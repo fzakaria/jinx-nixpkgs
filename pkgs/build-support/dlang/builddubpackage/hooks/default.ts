@@ -2,31 +2,28 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["license", 8, 12]], [["name", 7, 7], ["meta", 8, 7]], [["license", 17, 12]], [["name", 15, 7], ["propagatedBuildInputs", 16, 7], ["meta", 17, 7]], [["license", 26, 12]], [["name", 24, 7], ["propagatedBuildInputs", 25, 7], ["meta", 26, 7]], [["dubSetupHook", 4, 3], ["dubBuildHook", 12, 3], ["dubCheckHook", 21, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false }, ellipsis: false };
 const formals$2 = { args: { makeSetupHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["license", 8, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 7, 7], ["meta", 8, 7]]);
 const formals$3 = { args: { makeSetupHook: false, dub: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/default.nix", [["license", 17, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 15, 7], ["propagatedBuildInputs", 16, 7], ["meta", 17, 7]]);
 const formals$4 = { args: { makeSetupHook: false, dub: false }, ellipsis: false };
-const pos$5 = nix.positions(here + "/default.nix", [["license", 26, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 24, 7], ["propagatedBuildInputs", 25, 7], ["meta", 26, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["dubSetupHook", 4, 3], ["dubBuildHook", 12, 3], ["dubCheckHook", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const callPackage = nix.arg($, "callPackage");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     dubSetupHook: nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const makeSetupHook = nix.arg($_1, "makeSetupHook");
         return nix.app(makeSetupHook, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "dub-setup-hook",
-            meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({
+              [nix.POS]: $pos[0],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           })), nix.path(here, "./dub-setup-hook.sh"));
       })(), formals$2), nix.thunk(() => ({})))),
     dubBuildHook: nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
@@ -34,10 +31,13 @@ export default nix.lambda((args) => (() => {
         const makeSetupHook = nix.arg($_1, "makeSetupHook");
         const dub = nix.arg($_1, "dub");
         return nix.app(makeSetupHook, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "dub-build-hook",
             propagatedBuildInputs: nix.thunk(() => [dub]),
-            meta: nix.thunk(() => ({ [nix.POS]: pos$3, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({
+              [nix.POS]: $pos[2],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           })), nix.path(here, "./dub-build-hook.sh"));
       })(), formals$3), nix.thunk(() => ({})))),
     dubCheckHook: nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
@@ -45,10 +45,13 @@ export default nix.lambda((args) => (() => {
         const makeSetupHook = nix.arg($_1, "makeSetupHook");
         const dub = nix.arg($_1, "dub");
         return nix.app(makeSetupHook, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "dub-check-hook",
             propagatedBuildInputs: nix.thunk(() => [dub]),
-            meta: nix.thunk(() => ({ [nix.POS]: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({
+              [nix.POS]: $pos[4],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           })), nix.path(here, "./dub-check-hook.sh"));
       })(), formals$4), nix.thunk(() => ({})))),
   };

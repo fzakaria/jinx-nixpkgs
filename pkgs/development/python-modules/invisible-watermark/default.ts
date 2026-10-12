@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 27, 5], ["hash", 28, 5]], [["method", 61, 11], ["withOnnx", 62, 11]], [["method", 65, 11], ["withOnnx", 66, 11]], [["image", 80, 15], ["method", 81, 15], ["testName", 82, 15], ["withOnnx", 83, 15]], [["image", 91, 53]], [["python", 91, 7]], [["tests", 51, 12]], [["description", 97, 5], ["mainProgram", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["maintainers", 101, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["postPatch", 45, 3], ["passthru", 51, 3], ["pythonImportsCheck", 94, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "opencv-python": false, torch: false, onnx: false, onnxruntime: false, pillow: false, pywavelets: false, numpy: false, callPackage: false, withOnnx: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["method", 61, 11], ["withOnnx", 62, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["method", 65, 11], ["withOnnx", 66, 11]]);
 const formals$2 = { args: { method: false, withOnnx: false }, ellipsis: false };
-const pos$4 = nix.positions(here + "/default.nix", [["image", 80, 15], ["method", 81, 15], ["testName", 82, 15], ["withOnnx", 83, 15]]);
-const pos$5 = nix.positions(here + "/default.nix", [["image", 91, 53]]);
-const pos$6 = nix.positions(here + "/default.nix", [["python", 91, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["tests", 51, 12]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 97, 5], ["mainProgram", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["maintainers", 101, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["postPatch", 45, 3], ["passthru", 51, 3], ["pythonImportsCheck", 94, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ShieldMnt",
           repo: "invisible-watermark",
           rev: "e58e451cff7e092457cd915e445b1a20b64a7c8f",
@@ -45,13 +37,13 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => nix.concat([opencv_python, torch, pillow, pywavelets, numpy], nix.app(nix.sel(lib, "optionals"), withOnnx, nix.thunk(() => [onnx, onnxruntime]))));
       const postPatch = "substituteInPlace imwatermark/rivaGan.py --replace \\\n  'You can install it with pip: `pip install onnxruntime`.' \\\n  'You can install it with an override: `python3Packages.invisible-watermark.override { withOnnx = true; };`.'\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => (() => {
           const image = nix.thunk(() => nix.str`${src}/test_vectors/original.jpg`);
           const methods = nix.thunk(() => ["dwtDct", "dwtDctSvd", "rivaGan"]);
           const testCases = nix.thunk(() => nix.builtins.concatMap((method) => [
-              nix.thunk(() => ({ [nix.POS]: pos$2, method: method, withOnnx: true })),
-              nix.thunk(() => ({ [nix.POS]: pos$3, method: method, withOnnx: false })),
+              nix.thunk(() => ({ [nix.POS]: $pos[1], method: method, withOnnx: true })),
+              nix.thunk(() => ({ [nix.POS]: $pos[2], method: method, withOnnx: false })),
             ], methods));
           const createTest = nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
@@ -61,7 +53,7 @@ export default nix.lambda((args) => (() => {
             const skipTest = nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) && nix.asBool(withOnnx_1))) && nix.asBool(nix.eq(method, "rivaGan"))));
             return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(skipTest)), nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${testName}`, nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/cli.nix"), nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     image: image,
                     method: method,
                     testName: testName,
@@ -71,14 +63,14 @@ export default nix.lambda((args) => (() => {
           })(), formals$2);
           const allTests = nix.thunk(() => nix.builtins.map(createTest, testCases));
           return nix.update(nix.app(nix.sel(lib, "attrsets", "mergeAttrsList"), allTests), {
-            [nix.POS]: pos$6,
-            python: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/python"), nix.thunk(() => ({ [nix.POS]: pos$5, image: image })))),
+            [nix.POS]: $pos[5],
+            python: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/python"), nix.thunk(() => ({ [nix.POS]: $pos[4], image: image })))),
           });
         })()),
       }));
       const pythonImportsCheck = nix.thunk(() => ["imwatermark"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Library for creating and decoding invisible image watermarks",
         mainProgram: "invisible-watermark",
         homepage: "https://github.com/ShieldMnt/invisible-watermark",
@@ -89,7 +81,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         pyproject,

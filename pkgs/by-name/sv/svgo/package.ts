@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 28, 26], ["src", 28, 32], ["version", 28, 36], ["pnpm", 29, 13], ["fetcherVersion", 30, 5], ["hash", 31, 5]], [["changelog", 54, 5], ["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["pnpmDeps", 27, 3], ["nativeBuildInputs", 34, 3], ["installPhase", 42, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, makeWrapper: false, nodejs: false, stdenv: false, pnpm_11: false, fetchPnpmDeps: false, pnpmBuildHook: false, pnpmConfigHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 26], ["src", 28, 32], ["version", 28, 36], ["pnpm", 29, 13], ["fetcherVersion", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 54, 5], ["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["pnpmDeps", 27, 3], ["nativeBuildInputs", 34, 3], ["installPhase", 42, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "svgo",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "svg",
           repo: "svgo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-fwSuYPv9y16r6fCmxzqynTaq4FdrplNRrNH30tagJgI=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -51,7 +48,7 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), nodejs)}' "$out/bin/svgo" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/svg/svgo/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Node.js tool for optimizing SVG files",
         homepage: "https://github.com/svg/svgo",

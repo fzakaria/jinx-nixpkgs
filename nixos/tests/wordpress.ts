@@ -2,43 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wordpress.nix", [[["maintainers", 6, 5]], [["adminAddr", 22, 28], ["logPerVirtualHost", 23, 28]], [["tablePrefix", 28, 26]], [["database", 28, 17], ["package", 29, 25]], [["tablePrefix", 32, 26]], [["database", 32, 17], ["package", 33, 25]], [["site1.local", 27, 15], ["site2.local", 31, 15]], [["webserver", 25, 32], ["sites", 26, 32]], [["httpd", 22, 22], ["wordpress", 25, 22]], [["allowedTCPPorts", 37, 33]], [["127.0.0.1", 38, 30]], [["firewall", 37, 24], ["hosts", 38, 24]], [["services", 22, 13], ["networking", 37, 13]], [["tablePrefix", 48, 26]], [["database", 48, 17], ["package", 49, 25]], [["tablePrefix", 52, 26]], [["database", 52, 17], ["package", 53, 25]], [["site1.local", 47, 15], ["site2.local", 51, 15]], [["webserver", 45, 32], ["sites", 46, 32]], [["wordpress", 45, 22]], [["allowedTCPPorts", 57, 33]], [["127.0.0.1", 58, 30]], [["firewall", 57, 24], ["hosts", 58, 24]], [["services", 45, 13], ["networking", 57, 13]], [["tablePrefix", 68, 26]], [["database", 68, 17], ["package", 69, 25]], [["tablePrefix", 72, 26]], [["database", 72, 17], ["package", 73, 25]], [["site1.local", 67, 15], ["site2.local", 71, 15]], [["webserver", 65, 32], ["sites", 66, 32]], [["wordpress", 65, 22]], [["allowedTCPPorts", 77, 33]], [["127.0.0.1", 81, 30]], [["firewall", 77, 24], ["hosts", 81, 24]], [["services", 65, 13], ["networking", 77, 13]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 12, 3], ["testScript", 95, 3]]]);
 const formals$1 = { args: { lib: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/wordpress.nix", [["maintainers", 6, 5]]);
-const pos$2 = nix.positions(here + "/wordpress.nix", [["adminAddr", 22, 28], ["logPerVirtualHost", 23, 28]]);
-const pos$3 = nix.positions(here + "/wordpress.nix", [["tablePrefix", 28, 26]]);
-const pos$4 = nix.positions(here + "/wordpress.nix", [["database", 28, 17], ["package", 29, 25]]);
-const pos$5 = nix.positions(here + "/wordpress.nix", [["tablePrefix", 32, 26]]);
-const pos$6 = nix.positions(here + "/wordpress.nix", [["database", 32, 17], ["package", 33, 25]]);
-const pos$7 = nix.positions(here + "/wordpress.nix", [["site1.local", 27, 15], ["site2.local", 31, 15]]);
-const pos$8 = nix.positions(here + "/wordpress.nix", [["webserver", 25, 32], ["sites", 26, 32]]);
-const pos$9 = nix.positions(here + "/wordpress.nix", [["httpd", 22, 22], ["wordpress", 25, 22]]);
-const pos$10 = nix.positions(here + "/wordpress.nix", [["allowedTCPPorts", 37, 33]]);
-const pos$11 = nix.positions(here + "/wordpress.nix", [["127.0.0.1", 38, 30]]);
-const pos$12 = nix.positions(here + "/wordpress.nix", [["firewall", 37, 24], ["hosts", 38, 24]]);
-const pos$13 = nix.positions(here + "/wordpress.nix", [["services", 22, 13], ["networking", 37, 13]]);
-const pos$14 = nix.positions(here + "/wordpress.nix", [["tablePrefix", 48, 26]]);
-const pos$15 = nix.positions(here + "/wordpress.nix", [["database", 48, 17], ["package", 49, 25]]);
-const pos$16 = nix.positions(here + "/wordpress.nix", [["tablePrefix", 52, 26]]);
-const pos$17 = nix.positions(here + "/wordpress.nix", [["database", 52, 17], ["package", 53, 25]]);
-const pos$18 = nix.positions(here + "/wordpress.nix", [["site1.local", 47, 15], ["site2.local", 51, 15]]);
-const pos$19 = nix.positions(here + "/wordpress.nix", [["webserver", 45, 32], ["sites", 46, 32]]);
-const pos$20 = nix.positions(here + "/wordpress.nix", [["wordpress", 45, 22]]);
-const pos$21 = nix.positions(here + "/wordpress.nix", [["allowedTCPPorts", 57, 33]]);
-const pos$22 = nix.positions(here + "/wordpress.nix", [["127.0.0.1", 58, 30]]);
-const pos$23 = nix.positions(here + "/wordpress.nix", [["firewall", 57, 24], ["hosts", 58, 24]]);
-const pos$24 = nix.positions(here + "/wordpress.nix", [["services", 45, 13], ["networking", 57, 13]]);
-const pos$25 = nix.positions(here + "/wordpress.nix", [["tablePrefix", 68, 26]]);
-const pos$26 = nix.positions(here + "/wordpress.nix", [["database", 68, 17], ["package", 69, 25]]);
-const pos$27 = nix.positions(here + "/wordpress.nix", [["tablePrefix", 72, 26]]);
-const pos$28 = nix.positions(here + "/wordpress.nix", [["database", 72, 17], ["package", 73, 25]]);
-const pos$29 = nix.positions(here + "/wordpress.nix", [["site1.local", 67, 15], ["site2.local", 71, 15]]);
-const pos$30 = nix.positions(here + "/wordpress.nix", [["webserver", 65, 32], ["sites", 66, 32]]);
-const pos$31 = nix.positions(here + "/wordpress.nix", [["wordpress", 65, 22]]);
-const pos$32 = nix.positions(here + "/wordpress.nix", [["allowedTCPPorts", 77, 33]]);
-const pos$33 = nix.positions(here + "/wordpress.nix", [["127.0.0.1", 81, 30]]);
-const pos$34 = nix.positions(here + "/wordpress.nix", [["firewall", 77, 24], ["hosts", 81, 24]]);
-const pos$35 = nix.positions(here + "/wordpress.nix", [["services", 65, 13], ["networking", 77, 13]]);
-const pos$36 = nix.positions(here + "/wordpress.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 12, 3], ["testScript", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,7 +14,7 @@ export default nix.lambda((args) => (() => {
     const meta = nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "flokli")),
           nix.thunk(() => nix.lookup(w, "mmilata")),
@@ -60,95 +25,99 @@ export default nix.lambda((args) => (() => {
         const package$ = nix.thunk(() => nix.sel(config, "node", "pkgs", nix.key(nix.str`wordpress_${version}`)));
         return nix.update(a, nix.attrsDyn({}, [
           [nix.str`wp${version}_httpd`, (_) => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$9,
-              httpd: nix.thunk(() => ({ [nix.POS]: pos$2, adminAddr: "webmaster@site.local", logPerVirtualHost: true })),
+              [nix.POS]: $pos[8],
+              httpd: nix.thunk(() => ({
+                [nix.POS]: $pos[1],
+                adminAddr: "webmaster@site.local",
+                logPerVirtualHost: true,
+              })),
               wordpress: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 webserver: "httpd",
                 sites: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   "site1.local": nix.thunk(() => ({
-                    [nix.POS]: pos$4,
-                    database: nix.thunk(() => ({ [nix.POS]: pos$3, tablePrefix: "site1_" })),
+                    [nix.POS]: $pos[3],
+                    database: nix.thunk(() => ({ [nix.POS]: $pos[2], tablePrefix: "site1_" })),
                     package: package$,
                   })),
                   "site2.local": nix.thunk(() => ({
-                    [nix.POS]: pos$6,
-                    database: nix.thunk(() => ({ [nix.POS]: pos$5, tablePrefix: "site2_" })),
+                    [nix.POS]: $pos[5],
+                    database: nix.thunk(() => ({ [nix.POS]: $pos[4], tablePrefix: "site2_" })),
                     package: package$,
                   })),
                 })),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$12,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$10, allowedTCPPorts: nix.thunk(() => [80n]) })),
+              [nix.POS]: $pos[11],
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[9], allowedTCPPorts: nix.thunk(() => [80n]) })),
               hosts: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 "127.0.0.1": nix.thunk(() => ["site1.local", "site2.local"]),
               })),
             })),
           })],
           [nix.str`wp${version}_nginx`, (_) => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               wordpress: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 webserver: "nginx",
                 sites: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   "site1.local": nix.thunk(() => ({
-                    [nix.POS]: pos$15,
-                    database: nix.thunk(() => ({ [nix.POS]: pos$14, tablePrefix: "site1_" })),
+                    [nix.POS]: $pos[14],
+                    database: nix.thunk(() => ({ [nix.POS]: $pos[13], tablePrefix: "site1_" })),
                     package: package$,
                   })),
                   "site2.local": nix.thunk(() => ({
-                    [nix.POS]: pos$17,
-                    database: nix.thunk(() => ({ [nix.POS]: pos$16, tablePrefix: "site2_" })),
+                    [nix.POS]: $pos[16],
+                    database: nix.thunk(() => ({ [nix.POS]: $pos[15], tablePrefix: "site2_" })),
                     package: package$,
                   })),
                 })),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$23,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$21, allowedTCPPorts: nix.thunk(() => [80n]) })),
+              [nix.POS]: $pos[22],
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[20], allowedTCPPorts: nix.thunk(() => [80n]) })),
               hosts: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 "127.0.0.1": nix.thunk(() => ["site1.local", "site2.local"]),
               })),
             })),
           })],
           [nix.str`wp${version}_caddy`, (_) => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               wordpress: nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 webserver: "caddy",
                 sites: nix.thunk(() => ({
-                  [nix.POS]: pos$29,
+                  [nix.POS]: $pos[28],
                   "site1.local": nix.thunk(() => ({
-                    [nix.POS]: pos$26,
-                    database: nix.thunk(() => ({ [nix.POS]: pos$25, tablePrefix: "site1_" })),
+                    [nix.POS]: $pos[25],
+                    database: nix.thunk(() => ({ [nix.POS]: $pos[24], tablePrefix: "site1_" })),
                     package: package$,
                   })),
                   "site2.local": nix.thunk(() => ({
-                    [nix.POS]: pos$28,
-                    database: nix.thunk(() => ({ [nix.POS]: pos$27, tablePrefix: "site2_" })),
+                    [nix.POS]: $pos[27],
+                    database: nix.thunk(() => ({ [nix.POS]: $pos[26], tablePrefix: "site2_" })),
                     package: package$,
                   })),
                 })),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$34,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$32, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+              [nix.POS]: $pos[33],
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[31], allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
               hosts: nix.thunk(() => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 "127.0.0.1": nix.thunk(() => ["site1.local", "site2.local"]),
               })),
             })),
@@ -181,7 +150,7 @@ for machine in (${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() =
                 machine.succeed(f"cat /var/lib/wordpress/{site_name}/secret-keys.php")
             )
 `);
-    return { [nix.POS]: pos$36, name, meta, nodes, testScript };
+    return { [nix.POS]: $pos[35], name, meta, nodes, testScript };
   })();
 })(), formals$1);
 //# sourceMappingURL=wordpress.ts.map

@@ -2,46 +2,13 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/miniflux.nix", [[["maintainers", 26, 8]], [["enable", 32, 27]], [["apparmor", 32, 18]], [["enable", 34, 11], ["adminCredentialsFile", 35, 19]], [["miniflux", 33, 18]], [["security", 32, 9], ["services", 33, 9]], [["enable", 42, 27]], [["enable", 47, 23]], [["apparmor", 42, 18], ["sudo", 47, 18]], [["enable", 44, 11], ["adminCredentialsFile", 45, 19]], [["miniflux", 43, 18]], [["security", 42, 9], ["services", 43, 9]], [["enable", 53, 27]], [["apparmor", 53, 18]], [["CLEANUP_FREQUENCY", 57, 13], ["LISTEN_ADDR", 58, 13]], [["enable", 55, 11], ["config", 56, 11], ["adminCredentialsFile", 60, 11]], [["miniflux", 54, 18]], [["security", 53, 9], ["services", 54, 9]], [["enable", 73, 11], ["initialScript", 74, 11], ["enableTCPIP", 78, 11], ["authentication", 79, 11]], [["postgresql", 72, 18]], [["allowedTCPPorts", 83, 29]], [["firewall", 83, 20]], [["services", 72, 9], ["networking", 83, 9]], [["enable", 88, 27]], [["apparmor", 88, 18]], [["DATABASE_URL", 94, 13], ["PGPASSFILE", 95, 13]], [["enable", 90, 11], ["createDatabaseLocally", 91, 11], ["adminCredentialsFile", 92, 19], ["config", 93, 11]], [["miniflux", 89, 18]], [["preStart", 98, 35]], [["miniflux", 98, 26]], [["services", 98, 17]], [["security", 88, 9], ["services", 89, 9], ["systemd", 98, 9]], [["default", 29, 5], ["withoutSudo", 39, 5], ["customized", 50, 5], ["postgresTcp", 64, 5], ["externalDb", 85, 5]], [["name", 25, 3], ["meta", 26, 3], ["nodes", 28, 3], ["testScript", 104, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/miniflux.nix", [["maintainers", 26, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/miniflux.nix", [["enable", 32, 27]]);
-const pos$3 = nix.positions(here + "/miniflux.nix", [["apparmor", 32, 18]]);
-const pos$4 = nix.positions(here + "/miniflux.nix", [["enable", 34, 11], ["adminCredentialsFile", 35, 19]]);
-const pos$5 = nix.positions(here + "/miniflux.nix", [["miniflux", 33, 18]]);
-const pos$6 = nix.positions(here + "/miniflux.nix", [["security", 32, 9], ["services", 33, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$7 = nix.positions(here + "/miniflux.nix", [["enable", 42, 27]]);
-const pos$8 = nix.positions(here + "/miniflux.nix", [["enable", 47, 23]]);
-const pos$9 = nix.positions(here + "/miniflux.nix", [["apparmor", 42, 18], ["sudo", 47, 18]]);
-const pos$10 = nix.positions(here + "/miniflux.nix", [["enable", 44, 11], ["adminCredentialsFile", 45, 19]]);
-const pos$11 = nix.positions(here + "/miniflux.nix", [["miniflux", 43, 18]]);
-const pos$12 = nix.positions(here + "/miniflux.nix", [["security", 42, 9], ["services", 43, 9]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$13 = nix.positions(here + "/miniflux.nix", [["enable", 53, 27]]);
-const pos$14 = nix.positions(here + "/miniflux.nix", [["apparmor", 53, 18]]);
-const pos$15 = nix.positions(here + "/miniflux.nix", [["CLEANUP_FREQUENCY", 57, 13], ["LISTEN_ADDR", 58, 13]]);
-const pos$16 = nix.positions(here + "/miniflux.nix", [["enable", 55, 11], ["config", 56, 11], ["adminCredentialsFile", 60, 11]]);
-const pos$17 = nix.positions(here + "/miniflux.nix", [["miniflux", 54, 18]]);
-const pos$18 = nix.positions(here + "/miniflux.nix", [["security", 53, 9], ["services", 54, 9]]);
 const formals$5 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/miniflux.nix", [["enable", 73, 11], ["initialScript", 74, 11], ["enableTCPIP", 78, 11], ["authentication", 79, 11]]);
-const pos$20 = nix.positions(here + "/miniflux.nix", [["postgresql", 72, 18]]);
-const pos$21 = nix.positions(here + "/miniflux.nix", [["allowedTCPPorts", 83, 29]]);
-const pos$22 = nix.positions(here + "/miniflux.nix", [["firewall", 83, 20]]);
-const pos$23 = nix.positions(here + "/miniflux.nix", [["services", 72, 9], ["networking", 83, 9]]);
 const formals$6 = { args: {  }, ellipsis: true };
-const pos$24 = nix.positions(here + "/miniflux.nix", [["enable", 88, 27]]);
-const pos$25 = nix.positions(here + "/miniflux.nix", [["apparmor", 88, 18]]);
-const pos$26 = nix.positions(here + "/miniflux.nix", [["DATABASE_URL", 94, 13], ["PGPASSFILE", 95, 13]]);
-const pos$27 = nix.positions(here + "/miniflux.nix", [["enable", 90, 11], ["createDatabaseLocally", 91, 11], ["adminCredentialsFile", 92, 19], ["config", 93, 11]]);
-const pos$28 = nix.positions(here + "/miniflux.nix", [["miniflux", 89, 18]]);
-const pos$29 = nix.positions(here + "/miniflux.nix", [["preStart", 98, 35]]);
-const pos$30 = nix.positions(here + "/miniflux.nix", [["miniflux", 98, 26]]);
-const pos$31 = nix.positions(here + "/miniflux.nix", [["services", 98, 17]]);
-const pos$32 = nix.positions(here + "/miniflux.nix", [["security", 88, 9], ["services", 89, 9], ["systemd", 98, 9]]);
-const pos$33 = nix.positions(here + "/miniflux.nix", [["default", 29, 5], ["withoutSudo", 39, 5], ["customized", 50, 5], ["postgresTcp", 64, 5], ["externalDb", 85, 5]]);
-const pos$34 = nix.positions(here + "/miniflux.nix", [["name", 25, 3], ["meta", 26, 3], ["nodes", 28, 3], ["testScript", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -63,55 +30,55 @@ ADMIN_PASSWORD=${password}
   const postgresPasswordFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "pgpass", nix.thunk(() => nix.str`*:*:*:*:${postgresPassword}
 `)));
   return {
-    [nix.POS]: pos$34,
+    [nix.POS]: $pos[33],
     name: "miniflux",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$33,
+      [nix.POS]: $pos[32],
       default: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           security: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            apparmor: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            apparmor: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            miniflux: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, adminCredentialsFile: adminCredentialsFile })),
+            [nix.POS]: $pos[4],
+            miniflux: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, adminCredentialsFile: adminCredentialsFile })),
           })),
         };
       })(), formals$2),
       withoutSudo: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           security: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            apparmor: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
-            sudo: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
+            [nix.POS]: $pos[8],
+            apparmor: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
+            sudo: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: false })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            miniflux: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, adminCredentialsFile: adminCredentialsFile })),
+            [nix.POS]: $pos[10],
+            miniflux: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true, adminCredentialsFile: adminCredentialsFile })),
           })),
         };
       })(), formals$3),
       customized: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           security: nix.thunk(() => ({
-            [nix.POS]: pos$14,
-            apparmor: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
+            [nix.POS]: $pos[13],
+            apparmor: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             miniflux: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               enable: true,
               config: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 CLEANUP_FREQUENCY: "48",
                 LISTEN_ADDR: nix.thunk(() => nix.str`localhost:${nix.builtins.toString(port)}`),
               })),
@@ -126,11 +93,11 @@ ADMIN_PASSWORD=${password}
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "init-postgres", nix.thunk(() => nix.str`CREATE USER miniflux WITH PASSWORD '${postgresPassword}';
 CREATE DATABASE miniflux WITH OWNER miniflux;
@@ -140,9 +107,9 @@ CREATE DATABASE miniflux WITH OWNER miniflux;
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               allowedTCPPorts: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "services", "postgresql", "settings", "port")),
               ]),
@@ -153,31 +120,31 @@ CREATE DATABASE miniflux WITH OWNER miniflux;
       externalDb: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$6);
         return {
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           security: nix.thunk(() => ({
-            [nix.POS]: pos$25,
-            apparmor: nix.thunk(() => ({ [nix.POS]: pos$24, enable: true })),
+            [nix.POS]: $pos[24],
+            apparmor: nix.thunk(() => ({ [nix.POS]: $pos[23], enable: true })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             miniflux: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               enable: true,
               createDatabaseLocally: false,
               adminCredentialsFile: adminCredentialsFile,
               config: nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 DATABASE_URL: "user=miniflux host=postgresTcp dbname=miniflux sslmode=disable",
                 PGPASSFILE: "/run/miniflux/pgpass",
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$31,
+            [nix.POS]: $pos[30],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$30,
+              [nix.POS]: $pos[29],
               miniflux: nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 preStart: nix.thunk(() => nix.str`cp ${postgresPasswordFile} /run/miniflux/pgpass
 chmod 600 /run/miniflux/pgpass
 `),

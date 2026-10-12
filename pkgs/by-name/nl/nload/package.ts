@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["url", 26, 7], ["name", 27, 7], ["sha256", 28, 7]], [["url", 33, 7], ["extraPrefix", 34, 7], ["hash", 35, 7]], [["url", 40, 7], ["extraPrefix", 41, 7], ["hash", 42, 7]], [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]], [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, ncurses: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["name", 27, 7], ["sha256", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 33, 7], ["extraPrefix", 34, 7], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 40, 7], ["extraPrefix", 41, 7], ["hash", 42, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,29 +14,29 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "0.7.4",
       pname: "nload",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.roland-riegel.de/nload/nload-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1rb9skch2kgqzigf19x8bzk211jdfjfdkrcvaqyj89jy2pkm3h61",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/rolandriegel/nload/commit/8a93886e0fb33a81b8fe32e88ee106a581fedd34.patch",
             name: "nload-0.7.4-Eliminate-flicker-on-some-terminals.patch",
             sha256: "10yppy5l50wzpcvagsqkbyf1rcan6aj30am4rw8hmkgnbidf4zbq",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/macports/macports-ports/raw/28814c34711e7545929fd391feb6ce079bd73fd4/net/nload/files/patch-configure.in.diff",
             extraPrefix: "",
             hash: "sha256-lGbBG5ZOgMVnrwlwXVFGbUZx6RkmQwYSVLB3oqkAWRs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://sourceforge.net/p/nload/bugs/_discuss/thread/c9b68d8e/4a65/attachment/devreader-bsd.cpp.patch",
             extraPrefix: "",
             hash: "sha256-umRQDqcRUOGELOx5iB6CPFRkjaD8HXkMCWiKsYdaUa0=",
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), autoreconfHook)),
       buildInputs: nix.thunk(() => [ncurses]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Monitors network traffic and bandwidth usage with ncurses graphs",
         longDescription: "nload is a console application which monitors network traffic and\nbandwidth usage in real time. It visualizes the in- and outgoing traffic\nusing two graphs and provides additional info like total amount of\ntransferred data and min/max network usage.\n",
         homepage: "https://www.roland-riegel.de/nload/index.html",

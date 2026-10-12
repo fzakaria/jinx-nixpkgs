@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 70, 5], ["repo", 71, 5], ["tag", 72, 5], ["hash", 73, 5]], [["description", 100, 5], ["longDescription", 101, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["platforms", 111, 5], ["maintainers", 112, 5], ["mainProgram", 115, 5]], [["pname", 66, 3], ["version", 67, 3], ["src", 69, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 80, 3], ["installPhase", 82, 3], ["outputs", 94, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, perl: false, perlPackages: false, makeWrapper: false, installShellFiles: false, ps: false, dnsutils: false, withRecommends: true, withRecommendedSystemPrograms: true, "util-linuxMinimal": false, dmidecode: false, file: false, hddtemp: false, iproute2: false, ipmitool: false, usbutils: false, kmod: false, lm_sensors: false, smartmontools: false, binutils: false, tree: false, upower: false, pciutils: false, withRecommendedDisplayInformationPrograms: true, "mesa-demos": false, xrandr: false, xprop: false, xdpyinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 70, 5], ["repo", 71, 5], ["tag", 72, 5], ["hash", 73, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 100, 5], ["longDescription", 101, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["platforms", 111, 5], ["maintainers", 112, 5], ["mainProgram", 115, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 66, 3], ["version", 67, 3], ["src", 69, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 80, 3], ["installPhase", 82, 3], ["outputs", 94, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,11 +57,11 @@ export default nix.lambda((args) => (() => {
   const recommendedDisplayInformationPrograms = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withRecommendedDisplayInformationPrograms, nix.thunk(() => [mesa_demos, xdpyinfo, xprop, xrandr])));
   const programs = nix.thunk(() => nix.concat([ps, dnsutils], nix.concat(recommendedSystemPrograms, recommendedDisplayInformationPrograms)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "inxi",
       version: "3.3.41-1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "smxi",
           repo: "inxi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -86,7 +84,7 @@ runHook postInstall
 `),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Full featured CLI system information tool",
         longDescription: "inxi is a command line system information script built for console and\nIRC. It is also used a debugging tool for forum technical support to\nquickly ascertain users' system configurations and hardware. inxi shows\nsystem hardware, CPU, drivers, Xorg, Desktop, Kernel, gcc version(s),\nProcesses, RAM usage, and a wide variety of other useful information.\n",
         homepage: "https://smxi.org/docs/inxi.htm",

@@ -2,22 +2,11 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["driverLink", 100, 34]], [["enableSeccomp", 116, 7], ["enableSuid", 117, 7], ["externalLocalStateDir", 118, 7], ["projectName", 119, 7], ["removeCompat", 120, 7], ["starterSuidPath", 121, 7]], [["description", 278, 5], ["longDescription", 279, 5], ["license", 286, 5], ["platforms", 287, 5], ["maintainers", 288, 5], ["mainProgram", 292, 5]], [["pname", 96, 11], ["version", 96, 17], ["src", 96, 25], ["patches", 98, 3], ["vendorHash", 107, 11], ["deleteVendor", 107, 22], ["proxyVendor", 107, 35], ["allowGoReference", 110, 3], ["__structuredAttrs", 112, 3], ["passthru", 114, 3], ["nativeBuildInputs", 125, 3], ["buildInputs", 138, 3], ["configureScript", 153, 3], ["configureFlags", 155, 3], ["hardeningDisable", 168, 3], ["defaultPathInputs", 173, 3], ["postPatch", 186, 3], ["postConfigure", 208, 3], ["buildPhase", 215, 3], ["installPhase", 221, 3], ["postFixup", 227, 3], ["nativeInstallCheckInputs", 271, 3], ["versionCheckProgram", 274, 3], ["doInstallCheck", 275, 3], ["meta", 277, 3]], [["name", 304, 13], ["contents", 305, 13], ["singularity", 309, 13]], [["image-hello-cowsay", 303, 11]], [["name", 318, 15], ["contents", 319, 15], ["memSize", 320, 15], ["diskSize", 321, 15], ["singularity", 322, 15]], [["unwrapped", 337, 27]], [["requiredSystemFeatures", 334, 17], ["nativeBuildInputs", 335, 17], ["passthru", 336, 17]], [["image-saxpy", 315, 11], ["saxpy", 325, 11]], [["sourceFilesWithDefaultPaths", 301, 17], ["tests", 302, 9], ["gpuChecks", 312, 9]], [["systemDefaultPath", 298, 7], ["inputsDefaultPath", 299, 7], ["passthru", 300, 7]]]);
 const formals$1 = { args: { pname: false, version: false, src: false, projectName: false, vendorHash: true, deleteVendor: true, proxyVendor: true, extraConfigureFlags: true, extraDescription: true, extraMeta: true }, ellipsis: false };
 const formals$2 = { args: { lib: false, buildGoModule: false, runCommandLocal: false, replaceVars: false, addDriverRunpath: false, makeWrapper: false, "pkg-config": false, "util-linux": false, which: false, bash: false, callPackage: false, conmon: false, coreutils: false, cryptsetup: false, e2fsprogs: false, fakeroot: false, fuse2fs: true, go: false, gpgme: false, libseccomp: false, libuuid: false, mount: false, versionCheckHook: false, "nvidia-docker": false, openssl: false, "squashfs-tools": false, squashfuse: false, "singularity-tools": false, cowsay: false, hello: false, enableNvidiaContainerCli: true, forceNvcCli: true, enableSeccomp: true, defaultToSuid: true, enableSuid: true, starterSuidPath: true, systemBinPaths: true, externalLocalStateDir: true, removeCompat: true, sourceFilesWithDefaultPaths: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["driverLink", 100, 34]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["enableSeccomp", 116, 7], ["enableSuid", 117, 7], ["externalLocalStateDir", 118, 7], ["projectName", 119, 7], ["removeCompat", 120, 7], ["starterSuidPath", 121, 7]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["description", 278, 5], ["longDescription", 279, 5], ["license", 286, 5], ["platforms", 287, 5], ["maintainers", 288, 5], ["mainProgram", 292, 5]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["pname", 96, 11], ["version", 96, 17], ["src", 96, 25], ["patches", 98, 3], ["vendorHash", 107, 11], ["deleteVendor", 107, 22], ["proxyVendor", 107, 35], ["allowGoReference", 110, 3], ["__structuredAttrs", 112, 3], ["passthru", 114, 3], ["nativeBuildInputs", 125, 3], ["buildInputs", 138, 3], ["configureScript", 153, 3], ["configureFlags", 155, 3], ["hardeningDisable", 168, 3], ["defaultPathInputs", 173, 3], ["postPatch", 186, 3], ["postConfigure", 208, 3], ["buildPhase", 215, 3], ["installPhase", 221, 3], ["postFixup", 227, 3], ["nativeInstallCheckInputs", 271, 3], ["versionCheckProgram", 274, 3], ["doInstallCheck", 275, 3], ["meta", 277, 3]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["name", 304, 13], ["contents", 305, 13], ["singularity", 309, 13]]);
-const pos$6 = nix.positions(here + "/generic.nix", [["image-hello-cowsay", 303, 11]]);
 const formals$3 = { args: { "singularity-tools": false, cudaPackages: false }, ellipsis: false };
-const pos$7 = nix.positions(here + "/generic.nix", [["name", 318, 15], ["contents", 319, 15], ["memSize", 320, 15], ["diskSize", 321, 15], ["singularity", 322, 15]]);
 const formals$4 = { args: { runCommand: false, writeShellScriptBin: false }, ellipsis: false };
-const pos$8 = nix.positions(here + "/generic.nix", [["unwrapped", 337, 27]]);
-const pos$9 = nix.positions(here + "/generic.nix", [["requiredSystemFeatures", 334, 17], ["nativeBuildInputs", 335, 17], ["passthru", 336, 17]]);
-const pos$10 = nix.positions(here + "/generic.nix", [["image-saxpy", 315, 11], ["saxpy", 325, 11]]);
-const pos$11 = nix.positions(here + "/generic.nix", [["sourceFilesWithDefaultPaths", 301, 17], ["tests", 302, 9], ["gpuChecks", 312, 9]]);
-const pos$12 = nix.positions(here + "/generic.nix", [["systemDefaultPath", 298, 7], ["inputsDefaultPath", 299, 7], ["passthru", 300, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -75,13 +64,13 @@ export default nix.lambda((args) => (() => {
     const sourceFilesWithDefaultPaths = nix.argOr($_1, "sourceFilesWithDefaultPaths", () => ({}));
     const addShellDoubleQuotes = (s) => nix.add(nix.add(nix.app(nix.sel(lib, "escapeShellArg"), "\""), s), nix.app(nix.sel(lib, "escapeShellArg"), "\""));
     return nix.app(nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname,
         version: version,
         src: src,
         patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(projectName, "apptainer")), nix.thunk(() => [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./apptainer/0001-ldCache-patch-for-driverLink.patch"), nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 driverLink: nix.thunk(() => nix.attr(addDriverRunpath, "driverLink")),
               })))),
           ]))),
@@ -91,7 +80,7 @@ export default nix.lambda((args) => (() => {
         allowGoReference: true,
         __structuredAttrs: true,
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           enableSeccomp: enableSeccomp,
           enableSuid: enableSuid,
           externalLocalStateDir: externalLocalStateDir,
@@ -168,7 +157,7 @@ ln -s ${nix.app(nix.sel(lib, "escapeShellArg"), starterSuidPath)} "$out/libexec/
         versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${projectName}`),
         doInstallCheck: true,
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: nix.thunk(() => nix.add("Application containers for linux", extraDescription)),
           longDescription: "Singularity (the upstream) renamed themselves to Apptainer\nto distinguish themselves from a fork made by Sylabs Inc.. See\n\nhttps://sylabs.io/2021/05/singularity-community-edition\nhttps://apptainer.org/news/community-announcement-20211130\n",
           license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -183,29 +172,29 @@ ln -s ${nix.app(nix.sel(lib, "escapeShellArg"), starterSuidPath)} "$out/libexec/
           mainProgram: projectName,
         }, extraMeta)),
       }))), "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         systemDefaultPath: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", systemBinPaths)),
         inputsDefaultPath: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "defaultPathInputs")))),
         passthru: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "passthru"), {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           sourceFilesWithDefaultPaths: sourceFilesWithDefaultPaths,
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             "image-hello-cowsay": nix.thunk(() => nix.app(nix.sel(singularity_tools, "buildImage"), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 name: "hello-cowsay",
                 contents: nix.thunk(() => [hello, cowsay]),
                 singularity: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           })),
           gpuChecks: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(projectName, "apptainer")), nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               "image-saxpy": nix.thunk(() => nix.app(callPackage, nix.lambda((args_2) => (() => {
                   const $_2 = nix.formals(args_2, formals$3);
                   const singularity_tools_1 = nix.arg($_2, "singularity-tools");
                   const cudaPackages = nix.arg($_2, "cudaPackages");
                   return nix.app(nix.sel(singularity_tools_1, "buildImage"), nix.thunk(() => ({
-                      [nix.POS]: pos$7,
+                      [nix.POS]: $pos[6],
                       name: "saxpy",
                       contents: nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "saxpy"))]),
                       memSize: 2048n,
@@ -220,10 +209,10 @@ ln -s ${nix.app(nix.sel(lib, "escapeShellArg"), starterSuidPath)} "$out/libexec/
                   const unwrapped = nix.thunk(() => nix.app(writeShellScriptBin, "apptainer-cuda-saxpy", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} exec --nv $@ ${nix.sel(finalAttrs, "passthru", "gpuChecks", "image-saxpy")} saxpy
 `)));
                   return nix.app(runCommand, "run-apptainer-cuda-saxpy", nix.thunk(() => ({
-                      [nix.POS]: pos$9,
+                      [nix.POS]: $pos[8],
                       requiredSystemFeatures: nix.thunk(() => ["cuda"]),
                       nativeBuildInputs: nix.thunk(() => [unwrapped]),
-                      passthru: nix.thunk(() => ({ [nix.POS]: pos$8, unwrapped: unwrapped })),
+                      passthru: nix.thunk(() => ({ [nix.POS]: $pos[7], unwrapped: unwrapped })),
                     })), "apptainer-cuda-saxpy\n");
                 })(), formals$4), nix.thunk(() => ({})))),
             })))),

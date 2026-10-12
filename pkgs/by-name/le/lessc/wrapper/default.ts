@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 10, 3], ["nativeBuildInputs", 11, 3], ["buildPhase", 12, 3], ["doUnpack", 19, 3], ["version", 22, 5], ["src", 23, 5], ["passthru", 24, 5], ["meta", 25, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, lessc: false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["nativeBuildInputs", 11, 3], ["buildPhase", 12, 3], ["doUnpack", 19, 3], ["version", 22, 5], ["src", 23, 5], ["passthru", 24, 5], ["meta", 25, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lessc = nix.arg($, "lessc");
   const plugins = nix.argOr($, "plugins", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "lessc-with-plugins",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildPhase: nix.thunk(() => nix.str`mkdir -p $out/bin

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["PCRE2_INCLUDE_DIRS", 41, 9], ["PCRE2_LIBRARIES", 42, 9]], [["RUSTC_BOOTSTRAP", 49, 7]], [["extraArgs", 61, 47]], [["updateScript", 61, 12]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5], ["teams", 70, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoPatches", 29, 3], ["cargoHash", 35, 3], ["postPatch", 37, 3], ["env", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["passthru", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, stdenv: false, replaceVars: false, cmake: false, "pkg-config": false, protobuf: false, pcre2: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PCRE2_INCLUDE_DIRS", 41, 9], ["PCRE2_LIBRARIES", 42, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["RUSTC_BOOTSTRAP", 49, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 61, 47]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 61, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5], ["teams", 70, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoPatches", 29, 3], ["cargoHash", 35, 3], ["postPatch", 37, 3], ["env", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["passthru", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "holo-cli",
       version: "0.5.0-unstable-2026-03-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "holo-routing",
           repo: "holo-cli",
           rev: "36fdc13323e384c086da8663f0d510b238fb6e4f",
@@ -38,21 +32,21 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-77aUfXcnVQLVEKQuUdBZ4k5/3rOoe9PvGC0AlJS0UJc=",
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`pushd $cargoDepsCopy/*/libyang4-sys-*
 patch -p1 < ${nix.app(replaceVars, nix.path(here, "./libyang4-sys.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             PCRE2_INCLUDE_DIRS: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), pcre2)}/include`),
             PCRE2_LIBRARIES: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), pcre2)}/lib/libpcre2-8${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))}
 popd
 `))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], RUSTC_BOOTSTRAP: 1n })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, protobuf]),
       buildInputs: nix.thunk(() => [pcre2]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Holo` Command Line Interface",
         homepage: "https://github.com/holo-routing/holo-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 77, 5], ["mainProgram", 78, 5]], [["pname", 22, 3], ["version", 23, 25], ["src", 23, 33], ["postPatch", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["makeFlags", 45, 3], ["installFlags", 56, 3], ["preCheck", 61, 3], ["checkTarget", 63, 3], ["postCheck", 65, 3], ["doCheck", 67, 3], ["nativeCheckInputs", 68, 3], ["strictDeps", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, which: false, flex: false, bison: false, linuxHeaders: true, buildPackages: false, zstd: false, fetchpatch: false, libapparmor: false, runtimeShellPackage: false, perl: false, python3: false, bashInteractive: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 77, 5], ["mainProgram", 78, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 25], ["src", 23, 33], ["postPatch", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["makeFlags", 45, 3], ["installFlags", 56, 3], ["preCheck", 61, 3], ["checkTarget", 63, 3], ["postCheck", 65, 3], ["doCheck", 67, 3], ["nativeCheckInputs", 68, 3], ["strictDeps", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const bashInteractive = nix.arg($, "bashInteractive");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "apparmor-parser",
       version: nix.thunk(() => nix.attr(libapparmor, "version")),
       src: nix.thunk(() => nix.attr(libapparmor, "src")),
@@ -52,7 +51,7 @@ substituteInPlace Makefile \\
       nativeCheckInputs: nix.thunk(() => [bashInteractive, perl, python3]),
       strictDeps: true,
       meta: nix.thunk(() => nix.update(nix.sel(libapparmor, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Mandatory access control system - core library",
         mainProgram: "apparmor_parser",
       })),

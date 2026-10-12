@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 13]], [["PROTOC", 69, 5], ["PROTOC_INCLUDE", 70, 5], ["OPENSSL_DIR", 71, 5], ["FEDIMINT_BUILD_FORCE_GIT_HASH", 73, 5]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5]], [["pname", 15, 3], ["version", 16, 11], ["src", 18, 3], ["cargoHash", 25, 11], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["outputs", 37, 3], ["postInstall", 46, 3], ["env", 68, 3], ["doCheck", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildPackages: false, fetchFromGitHub: false, openssl: false, "pkg-config": false, protobuf: false, rustPlatform: false, version: true, hash: true, cargoHash: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PROTOC", 69, 5], ["PROTOC_INCLUDE", 70, 5], ["OPENSSL_DIR", 71, 5], ["FEDIMINT_BUILD_FORCE_GIT_HASH", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 11], ["src", 18, 3], ["cargoHash", 25, 11], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["outputs", 37, 3], ["postInstall", 46, 3], ["env", 68, 3], ["doCheck", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fedimint";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fedimint",
           repo: "fedimint",
           rev: nix.thunk(() => nix.str`v${version_1}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "fedimintCli", "fedimint", "gateway", "gatewayCli", "devimint"]);
       const postInstall = "mkdir -p $fedimint/bin $fedimintCli/bin $gateway/bin $gatewayCli/bin $devimint/bin\n\n# delete fuzzing targets and other binaries no one cares about\nbinsToKeep=(fedimint-cli fedimint-dbtool recoverytool fedimintd gatewayd gateway-cli devimint)\nkeepPattern=$(printf \"|%s\" \"${binsToKeep[@]}\")\nkeepPattern=${keepPattern:1}\nfind \"$out/bin\" -maxdepth 1 -type f | grep -Ev \"(${keepPattern})\" | xargs rm -f\n\ncp -a $releaseDir/fedimint-cli  $fedimintCli/bin/\ncp -a $releaseDir/fedimint-dbtool  $fedimintCli/bin/\ncp -a $releaseDir/fedimint-recoverytool  $fedimintCli/bin/\n\ncp -a $releaseDir/fedimintd  $fedimint/bin/\n\ncp -a $releaseDir/gateway-cli $gatewayCli/bin/\n\ncp -a $releaseDir/gatewayd $gateway/bin/\n\ncp -a $releaseDir/devimint $devimint/bin/\n";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PROTOC: nix.thunk(() => nix.str`${nix.sel(buildPackages, "protobuf")}/bin/protoc`),
         PROTOC_INCLUDE: nix.thunk(() => nix.str`${protobuf}/include`),
         OPENSSL_DIR: nix.thunk(() => nix.sel(openssl, "dev")),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Federated E-Cash Mint",
         homepage: "https://github.com/fedimint/fedimint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "fedimint-cli",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version: version_1,
         src,

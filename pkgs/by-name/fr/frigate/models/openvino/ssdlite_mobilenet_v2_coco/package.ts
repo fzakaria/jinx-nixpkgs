@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["url", 50, 7], ["hash", 51, 7], ["postFetch", 53, 7]], [["model", 48, 5], ["labelmap", 49, 5]], [["description", 60, 5], ["license", 61, 5], ["homepage", 62, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["postPatch", 26, 3], ["buildPhase", 33, 3], ["installPhase", 40, 3], ["passthru", 47, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { fetchurl: false, frigate: false, lib: false, stdenv: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 50, 7], ["hash", 51, 7], ["postFetch", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["model", 48, 5], ["labelmap", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["license", 61, 5], ["homepage", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["postPatch", 26, 3], ["buildPhase", 33, 3], ["installPhase", 40, 3], ["passthru", 47, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const python3Packages = nix.thunk(() => nix.attr(frigate, "python3Packages"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ssdlite_mobilenet_v2_coco",
       version: "2018_05_09",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://download.tensorflow.org/models/object_detection/ssdlite_mobilenet_v2_coco_2018_05_09.tar.gz",
           hash: "sha256-VCRFzOg02/u33xmRQl1HXoWi1+xoxgpPJiuxiqwQyLI=",
         })))),
@@ -34,17 +30,17 @@ substituteInPlace build_ov_model.py \\
       buildPhase: "runHook preBuild\nmkdir dist\npython3 build_ov_model.py\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out\ncp dist/*.{bin,xml} $out/\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         model: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/ssdlite_mobilnet_v2.xml`),
         labelmap: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/openvinotoolkit/open_model_zoo/raw/master/data/dataset_classes/coco_91cl_bkgr.txt",
             hash: "sha256-cQBhlxYm2yS6s7rm/06c5uZmUFZZkBI/P4bxLThbN9E=",
             postFetch: "sed -i \"s/truck/car/g\" $out\n",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Object detection model trained on the COCO dataset.",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://www.kaggle.com/models/tensorflow/ssdlite-mobilenet-v2/",

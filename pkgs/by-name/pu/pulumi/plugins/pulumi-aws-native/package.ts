@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 30, 5], ["mainProgram", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["owner", 6, 3], ["repo", 7, 3], ["version", 8, 3], ["rev", 9, 3], ["hash", 10, 3], ["vendorHash", 11, 3], ["cmdGen", 12, 3], ["cmdRes", 13, 3], ["extraLdflags", 14, 3], ["fetchSubmodules", 18, 3], ["postConfigure", 19, 3], ["__darwinAllowLocalNetworking", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, mkPulumiPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 30, 5], ["mainProgram", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 6, 3], ["repo", 7, 3], ["version", 8, 3], ["rev", 9, 3], ["hash", 10, 3], ["vendorHash", 11, 3], ["cmdGen", 12, 3], ["cmdRes", 13, 3], ["extraLdflags", 14, 3], ["fetchSubmodules", 18, 3], ["postConfigure", 19, 3], ["__darwinAllowLocalNetworking", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +30,7 @@ popd
 `);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Native AWS Pulumi Provider",
         mainProgram: "pulumi-resource-aws-native",
         homepage: "https://github.com/pulumi/pulumi-aws-native",
@@ -42,7 +41,7 @@ popd
         })()),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         owner,
         repo,
         version,

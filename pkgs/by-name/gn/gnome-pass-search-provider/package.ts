@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["LIBDIR", 38, 5], ["DATADIR", 39, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["env", 37, 3], ["postPatch", 42, 3], ["installPhase", 47, 3], ["postFixup", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3Packages: false, wrapGAppsHook3: false, gtk3: false, "gobject-introspection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBDIR", 38, 5], ["DATADIR", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["env", 37, 3], ["postPatch", 42, 3], ["installPhase", 47, 3], ["postFixup", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gnome-pass-search-provider",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jle64",
           repo: "gnome-pass-search-provider",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         gobject_introspection,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LIBDIR: nix.thunk(() => nix.add(nix.builtins.placeholder("out"), "/lib")),
         DATADIR: nix.thunk(() => nix.add(nix.builtins.placeholder("out"), "/share")),
       })),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nbash ./install.sh\n\nrunHook postInstall\n",
       postFixup: "makeWrapperArgs=( \"${gappsWrapperArgs[@]}\" )\nwrapPythonProgramsIn \"$out/lib\" \"$out $propagatedBuildInputs\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pass password manager search provider for gnome-shell",
         homepage: "https://github.com/jle64/gnome-pass-search-provider",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

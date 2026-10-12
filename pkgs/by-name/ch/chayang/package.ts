@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["longDescription", 46, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["depsBuildBuild", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false, meson: false, ninja: false, "pkg-config": false, "wayland-scanner": false, "wayland-protocols": false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["longDescription", 46, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["depsBuildBuild", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "chayang",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~emersion",
           repo: "chayang",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, wayland_scanner]),
       buildInputs: nix.thunk(() => [wayland_protocols, wayland]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Gradually dim the screen on Wayland",
         homepage: "https://git.sr.ht/~emersion/chayang/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 7], ["hash", 16, 7]], [["pname", 9, 3], ["patches", 11, 3], ["extraNativeBuildInputs", 20, 3], ["extraBuildInputs", 21, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, "pkg-config": false, ddcutil: false, qtwayland: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 7], ["hash", 16, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["patches", 11, 3], ["extraNativeBuildInputs", 20, 3], ["extraBuildInputs", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const qtwayland = nix.arg($, "qtwayland");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "powerdevil",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://invent.kde.org/plasma/powerdevil/-/commit/54f8a4a848fa02d06fefc5543f35224eef73670c.diff",
             hash: "sha256-YWUyOhFRUwzi+ISM2+TGctNDSUYc851U/b5hKkTmWXY=",
           })))),

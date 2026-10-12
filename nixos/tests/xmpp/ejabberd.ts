@@ -2,69 +2,42 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/ejabberd.nix", [["buildInputs", 4, 41]]);
+const $pos = nix.positions(here + "/ejabberd.nix", [[["buildInputs", 4, 41]], [["maintainers", 14, 5]], [["certificateFiles", 20, 22]], [["pki", 20, 18]], [["extraHosts", 21, 20]], [["security", 20, 9], ["networking", 21, 9], ["imports", 25, 9]], [["certificateFiles", 31, 22]], [["pki", 31, 18]], [["extraHosts", 32, 20]], [["connectTo", 38, 13]], [["systemPackages", 36, 21]], [["security", 31, 9], ["networking", 32, 9], ["environment", 36, 9]], [["certificateFiles", 46, 22]], [["pki", 46, 18]], [["enable", 305, 29]], [["extraHosts", 47, 20], ["firewall", 305, 20]], [["enable", 53, 11], ["configFile", 54, 11]], [["ejabberd", 52, 18]], [["TimeoutStartSec", 57, 49], ["EnvironmentFile", 302, 49]], [["serviceConfig", 57, 35]], [["ejabberd", 57, 26]], [["services", 57, 17]], [["user", 59, 11], ["mode", 60, 11], ["text", 61, 11]], [["ejabberd.yml", 58, 25]], [["etc", 58, 21]], [["security", 46, 9], ["networking", 47, 9], ["services", 52, 9], ["systemd", 57, 9], ["environment", 58, 9]], [["client-a", 17, 5], ["client-b", 28, 5], ["server", 43, 5]], [["name", 12, 3], ["meta", 13, 3], ["nodes", 16, 3], ["testScript", 309, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/ejabberd.nix", [["maintainers", 14, 5]]);
 const formals$2 = { args: { nodes: false, pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/ejabberd.nix", [["certificateFiles", 20, 22]]);
-const pos$4 = nix.positions(here + "/ejabberd.nix", [["pki", 20, 18]]);
-const pos$5 = nix.positions(here + "/ejabberd.nix", [["extraHosts", 21, 20]]);
-const pos$6 = nix.positions(here + "/ejabberd.nix", [["security", 20, 9], ["networking", 21, 9], ["imports", 25, 9]]);
 const formals$3 = { args: { nodes: false, pkgs: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/ejabberd.nix", [["certificateFiles", 31, 22]]);
-const pos$8 = nix.positions(here + "/ejabberd.nix", [["pki", 31, 18]]);
-const pos$9 = nix.positions(here + "/ejabberd.nix", [["extraHosts", 32, 20]]);
-const pos$10 = nix.positions(here + "/ejabberd.nix", [["connectTo", 38, 13]]);
-const pos$11 = nix.positions(here + "/ejabberd.nix", [["systemPackages", 36, 21]]);
-const pos$12 = nix.positions(here + "/ejabberd.nix", [["security", 31, 9], ["networking", 32, 9], ["environment", 36, 9]]);
 const formals$4 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/ejabberd.nix", [["certificateFiles", 46, 22]]);
-const pos$14 = nix.positions(here + "/ejabberd.nix", [["pki", 46, 18]]);
-const pos$15 = nix.positions(here + "/ejabberd.nix", [["enable", 305, 29]]);
-const pos$16 = nix.positions(here + "/ejabberd.nix", [["extraHosts", 47, 20], ["firewall", 305, 20]]);
-const pos$17 = nix.positions(here + "/ejabberd.nix", [["enable", 53, 11], ["configFile", 54, 11]]);
-const pos$18 = nix.positions(here + "/ejabberd.nix", [["ejabberd", 52, 18]]);
-const pos$19 = nix.positions(here + "/ejabberd.nix", [["TimeoutStartSec", 57, 49], ["EnvironmentFile", 302, 49]]);
-const pos$20 = nix.positions(here + "/ejabberd.nix", [["serviceConfig", 57, 35]]);
-const pos$21 = nix.positions(here + "/ejabberd.nix", [["ejabberd", 57, 26]]);
-const pos$22 = nix.positions(here + "/ejabberd.nix", [["services", 57, 17]]);
-const pos$23 = nix.positions(here + "/ejabberd.nix", [["user", 59, 11], ["mode", 60, 11], ["text", 61, 11]]);
-const pos$24 = nix.positions(here + "/ejabberd.nix", [["ejabberd.yml", 58, 25]]);
-const pos$25 = nix.positions(here + "/ejabberd.nix", [["etc", 58, 21]]);
-const pos$26 = nix.positions(here + "/ejabberd.nix", [["security", 46, 9], ["networking", 47, 9], ["services", 52, 9], ["systemd", 57, 9], ["environment", 58, 9]]);
-const pos$27 = nix.positions(here + "/ejabberd.nix", [["client-a", 17, 5], ["client-b", 28, 5], ["server", 43, 5]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$28 = nix.positions(here + "/ejabberd.nix", [["name", 12, 3], ["meta", 13, 3], ["nodes", 16, 3], ["testScript", 309, 3]]);
 
 export default nix.thunk(() => (() => {
   const cert = (pkgs) => nix.app(nix.sel(pkgs, "runCommand"), "selfSignedCerts", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), "openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -nodes -subj '/CN=example.com/CN=muc.example.com/CN=matrix.example.com' -addext \"subjectAltName = DNS:example.com,DNS:muc.example.com,DNS:matrix.example.com\" -days 36500\nmkdir -p $out\ncp key.pem cert.pem $out\n");
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       name: "ejabberd",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, maintainers: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[1], maintainers: [] })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         "client-a": nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const nodes = nix.arg($_1, "nodes");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             security: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               pki: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${nix.app(cert, pkgs_1)}/cert.pem`)]),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")} example.com
 `),
             })),
@@ -76,24 +49,24 @@ export default nix.thunk(() => (() => {
           const nodes = nix.arg($_1, "nodes");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             security: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               pki: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${nix.app(cert, pkgs_1)}/cert.pem`)]),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")} example.com
 `),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               systemPackages: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs_1, "callPackage"), nix.path(here, "./xmpp-sendmessage.nix"), nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     connectTo: nix.thunk(() => nix.sel(nodes, "server", "networking", "primaryIPAddress")),
                   })))),
               ]),
@@ -105,33 +78,33 @@ export default nix.thunk(() => (() => {
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             security: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               pki: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${nix.app(cert, pkgs_1)}/cert.pem`)]),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               extraHosts: nix.thunk(() => nix.str`${nix.sel(config, "networking", "primaryIPAddress")} example.com
 ${nix.sel(config, "networking", "primaryIPAddress")} matrix.example.com
 `),
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$15, enable: false })),
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[14], enable: false })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$18,
-              ejabberd: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true, configFile: "/etc/ejabberd.yml" })),
+              [nix.POS]: $pos[17],
+              ejabberd: nix.thunk(() => ({ [nix.POS]: $pos[16], enable: true, configFile: "/etc/ejabberd.yml" })),
             })),
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 ejabberd: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   serviceConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     TimeoutStartSec: "15min",
                     EnvironmentFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "ejabberd.env", "EJABBERD_MACRO_MATRIX_SECRET=SU4mu/j8b8A1i1EdyxIcKlFlrp+eSRBIlZwGyHP7Mfo=\n")),
                   })),
@@ -139,11 +112,11 @@ ${nix.sel(config, "networking", "primaryIPAddress")} matrix.example.com
               })),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               etc: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 "ejabberd.yml": nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   user: "ejabberd",
                   mode: "0600",
                   text: nix.thunk(() => nix.str`loglevel: 3

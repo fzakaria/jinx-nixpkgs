@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["cli", 52, 5], ["optimize", 56, 5]], [["description", 90, 5], ["mainProgram", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 47, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 75, 3], ["pythonImportsCheck", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, stdenv: false, "flit-core": false, "orderly-set": false, click: false, orjson: false, pyyaml: false, jsonpickle: false, numpy: false, pandas: false, polars: false, pydantic: false, pytestCheckHook: false, "python-dateutil": false, pytz: false, "tomli-w": false, uuid6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cli", 52, 5], ["optimize", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 90, 5], ["mainProgram", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 47, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 75, 3], ["pythonImportsCheck", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.6.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qlustered",
           repo: "deepdiff",
           tag: version,
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [orderly_set]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cli: nix.thunk(() => [click, pyyaml]),
         optimize: nix.thunk(() => [orjson]),
       }));
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.concat(["test_cache_deeply_nested_a1", "test_lfu"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_repeated_timer", "test_restricted_unpickler_memory_exhaustion_cve"]))));
       const pythonImportsCheck = nix.thunk(() => ["deepdiff"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Deep Difference and Search of any Python object/data",
         mainProgram: "deep",
         homepage: "https://github.com/qlustered/deepdiff",
@@ -77,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["prePatch", 20, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, lib: false, pytestCheckHook: false, setuptools: false, sphinx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["prePatch", 20, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-frzcrUnJna8wmKbsC7wduazLSZ8lzOKOCf75Smk675E=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [sphinx]);
       const pythonImportsCheck = nix.thunk(() => ["sphinxcontrib.jinjadomain"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sphinx domain for describing jinja templates",
         homepage: "https://github.com/offlinehacker/sphinxcontrib.jinjadomain",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sphinxcontrib-jinjadomain",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

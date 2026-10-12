@@ -2,19 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 7], ["repo", 28, 7], ["tag", 29, 7], ["hash", 30, 7]], [["flake8", 160, 9]], [["name", 165, 9], ["url", 166, 9], ["hash", 167, 9]], [["name", 172, 9], ["url", 173, 9], ["hash", 174, 9]], [["playwright", 237, 7], ["browser", 243, 7], ["help", 246, 7], ["bedrock", 252, 7]], [["pname", 277, 13], ["dependencies", 284, 13], ["propagatedBuildInputs", 291, 13], ["makeWrapperArgs", 294, 13]], [["extraArgs", 313, 9]], [["withOptional", 258, 7], ["updateScript", 312, 7]], [["description", 321, 7], ["homepage", 322, 7], ["changelog", 323, 7], ["license", 324, 7], ["maintainers", 325, 7], ["mainProgram", 329, 7]], [["pname", 22, 5], ["version", 23, 13], ["pyproject", 24, 5], ["src", 26, 5], ["pythonRelaxDeps", 33, 5], ["pythonRemoveDeps", 35, 5], ["build-system", 42, 5], ["dependencies", 44, 5], ["buildInputs", 146, 5], ["nativeCheckInputs", 148, 5], ["patches", 153, 5], ["disabledTestPaths", 183, 5], ["disabledTests", 190, 5], ["makeWrapperArgs", 222, 5], ["preCheck", 231, 5], ["optional-dependencies", 236, 5], ["passthru", 257, 5], ["meta", 320, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromGitHub: false, fetchpatch: false, replaceVars: false, gitMinimal: false, portaudio: false, "playwright-driver": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 7], ["repo", 28, 7], ["tag", 29, 7], ["hash", 30, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["flake8", 160, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 165, 9], ["url", 166, 9], ["hash", 167, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 172, 9], ["url", 173, 9], ["hash", 174, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["playwright", 237, 7], ["browser", 243, 7], ["help", 246, 7], ["bedrock", 252, 7]]);
 const formals$2 = { args: { withAll: true, withPlaywright: true, withBrowser: true, withHelp: true, withBedrock: true }, ellipsis: true };
 const formals$3 = { args: { pname: false, dependencies: false, makeWrapperArgs: false, propagatedBuildInputs: true }, ellipsis: true };
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 277, 13], ["dependencies", 284, 13], ["propagatedBuildInputs", 291, 13], ["makeWrapperArgs", 294, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 313, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["withOptional", 258, 7], ["updateScript", 312, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 321, 7], ["homepage", 322, 7], ["changelog", 323, 7], ["license", 324, 7], ["maintainers", 325, 7], ["mainProgram", 329, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 22, 5], ["version", 23, 13], ["pyproject", 24, 5], ["src", 26, 5], ["pythonRelaxDeps", 33, 5], ["pythonRemoveDeps", 35, 5], ["build-system", 42, 5], ["dependencies", 44, 5], ["buildInputs", 146, 5], ["nativeCheckInputs", 148, 5], ["patches", 153, 5], ["disabledTestPaths", 183, 5], ["disabledTests", 190, 5], ["makeWrapperArgs", 222, 5], ["preCheck", 231, 5], ["optional-dependencies", 236, 5], ["passthru", 257, 5], ["meta", 320, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +25,12 @@ export default nix.lambda((args) => (() => {
     ]));
   const version = "0.86.1";
   const aider_chat = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "aider-chat",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Aider-AI",
           repo: "aider",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -164,17 +155,17 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-tree-sitter.patch"),
         nix.path(here, "./replace-importlib_resources.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-flake8-invoke.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             flake8: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(python3Packages, "flake8")))),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "add-new-exceptions-to-LiteLLMExceptions.patch",
             url: "https://github.com/Aider-AI/aider/commit/7201abc56539ae8ee2bf4ea0926f584c9ec5558c.patch",
             hash: "sha256-bjL9nbEQGGNkFczm1hDOMP3b48eRJk17zcivXjOdVnw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "add-permission-denied-error-to-litellm-exceptions.patch",
             url: "https://github.com/Aider-AI/aider/commit/38716cc5a2621499c50454aa77ee379aa2b0c590.patch",
             hash: "sha256-uDIUHbauAmzCfaqx6aswnkUHcmgJi4X2OdMPyn4NeYU=",
@@ -206,7 +197,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           playwright: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "greenlet")),
             nix.thunk(() => nix.lookup(w_2, "playwright")),
@@ -224,7 +215,7 @@ export default nix.lambda((args) => (() => {
         };
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         withOptional: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const withAll = nix.argOr($_1, "withAll", () => false);
@@ -239,7 +230,7 @@ export default nix.lambda((args) => (() => {
               const makeWrapperArgs = nix.arg($_2, "makeWrapperArgs");
               const propagatedBuildInputs = nix.argOr($_2, "propagatedBuildInputs", () => []);
               return {
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 pname: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(pname, nix.app(nix.sel(lib, "optionalString"), withPlaywright, "-playwright")), nix.app(nix.sel(lib, "optionalString"), withBrowser, "-browser")), nix.app(nix.sel(lib, "optionalString"), withHelp, "-help")), nix.app(nix.sel(lib, "optionalString"), withBedrock, "-bedrock"))),
                 dependencies: nix.thunk(() => nix.concat(dependencies, nix.concat(nix.app(nix.sel(lib, "optionals"), withPlaywright, nix.thunk(() => nix.sel(aider_chat, "optional-dependencies", "playwright"))), nix.concat(nix.app(nix.sel(lib, "optionals"), withBrowser, nix.thunk(() => nix.sel(aider_chat, "optional-dependencies", "browser"))), nix.concat(nix.app(nix.sel(lib, "optionals"), withHelp, nix.thunk(() => nix.sel(aider_chat, "optional-dependencies", "help"))), nix.app(nix.sel(lib, "optionals"), withBedrock, nix.thunk(() => nix.sel(aider_chat, "optional-dependencies", "bedrock")))))))),
                 propagatedBuildInputs: nix.thunk(() => nix.concat(propagatedBuildInputs, nix.app(nix.sel(lib, "optionals"), withPlaywright, nix.thunk(() => [nix.thunk(() => nix.sel(playwright_driver, "browsers"))])))),
@@ -255,12 +246,12 @@ export default nix.lambda((args) => (() => {
             })(), formals$3));
         })(), formals$2),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "AI pair programming in your terminal",
         homepage: "https://github.com/Aider-AI/aider",
         changelog: nix.thunk(() => nix.str`https://github.com/Aider-AI/aider/blob/v${version}/HISTORY.md`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["homepage", 43, 35], ["description", 44, 5], ["mainProgram", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["broken", 48, 5], ["maintainers", 49, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 21, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 38, 3], ["doCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 43, 35], ["description", 44, 5], ["mainProgram", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["broken", 48, 5], ["maintainers", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 21, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 38, 3], ["doCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sqlcheck",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jarulraj",
           repo: "sqlcheck",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-13.patch",
             url: "https://github.com/jarulraj/sqlcheck/commit/ca131db13b860cf1d9194a1c7f7112f28f49acca.patch",
             hash: "sha256-uoF7rYvjdIUu82JCLXq/UGswgwM6JCpmABP4ItWjDe4=",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Automatically identify anti-patterns in SQL queries",
         mainProgram: "sqlcheck",

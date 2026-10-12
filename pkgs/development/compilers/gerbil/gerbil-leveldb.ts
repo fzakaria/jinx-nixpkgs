@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gerbil-leveldb.nix", [[["fun", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5]], [["pname", 10, 3], ["version", 11, 3], ["git-version", 12, 3], ["gerbil-package", 13, 3], ["gerbilInputs", 14, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["version-path", 17, 3], ["softwareName", 18, 3], ["pre-src", 20, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, fetchFromGitHub: false, leveldb: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gerbil-leveldb.nix", [["fun", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/gerbil-leveldb.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/gerbil-leveldb.nix", [["pname", 10, 3], ["version", 11, 3], ["git-version", 12, 3], ["gerbil-package", 13, 3], ["gerbilInputs", 14, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["version-path", 17, 3], ["softwareName", 18, 3], ["pre-src", 20, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const leveldb = nix.arg($, "leveldb");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     pname: "gerbil-leveldb",
     version: "unstable-2023-09-23",
     "git-version": "c62e47f",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
     "version-path": "",
     softwareName: "Gerbil-LevelDB",
     "pre-src": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fun: fetchFromGitHub,
       owner: "mighty-gerbils",
       repo: "gerbil-leveldb",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       sha256: "177zn1smv2zq97mlryf8fi7v5gbjk07v5i0dix3r2wsanphaawvl",
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       description: "LevelDB bindings for Gerbil",
       homepage: "https://github.com/mighty-gerbils/gerbil-leveldb",
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

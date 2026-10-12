@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["CARGO_TARGET_DIR", 35, 7]], [["pname", 39, 7], ["version", 40, 7], ["src", 41, 7], ["sourceRoot", 42, 7], ["cargoRoot", 43, 7], ["hash", 45, 5]], [["doCheck", 81, 5]], [["pytest", 80, 18]], [["tests", 80, 12]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["sourceRoot", 31, 3], ["cargoRoot", 32, 3], ["env", 35, 3], ["cargoDeps", 37, 3], ["nativeBuildInputs", 48, 3], ["pythonImportsCheck", 53, 3], ["nativeCheckInputs", 55, 3], ["disabledTestPaths", 65, 3], ["disabledTests", 72, 3], ["doCheck", 78, 3], ["passthru", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, datafusion: false, fastavro: false, pyarrow: false, pyiceberg: false, pytestCheckHook: false, "pyiceberg-core": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CARGO_TARGET_DIR", 35, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 39, 7], ["version", 40, 7], ["src", 41, 7], ["sourceRoot", 42, 7], ["cargoRoot", 43, 7], ["hash", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["doCheck", 81, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pytest", 80, 18]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 80, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["sourceRoot", 31, 3], ["cargoRoot", 32, 3], ["env", 35, 3], ["cargoDeps", 37, 3], ["nativeBuildInputs", 48, 3], ["pythonImportsCheck", 53, 3], ["nativeCheckInputs", 55, 3], ["disabledTestPaths", 65, 3], ["disabledTests", 72, 3], ["doCheck", 78, 3], ["passthru", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pyiceberg_core = nix.arg($, "pyiceberg-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "pyiceberg-core",
       version: "0.10.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "iceberg-rust",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,9 +32,9 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/bindings/python`),
       cargoRoot: "../..",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CARGO_TARGET_DIR: "./target" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CARGO_TARGET_DIR: "./target" })),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -59,14 +52,14 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_cdc_write_and_read_via_datafusion"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          pytest: nix.thunk(() => nix.app(nix.sel(pyiceberg_core, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$4, doCheck: true })))),
+          [nix.POS]: $pos[4],
+          pytest: nix.thunk(() => nix.app(nix.sel(pyiceberg_core, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[3], doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Iceberg-rust powered core for pyiceberg",
         homepage: "https://github.com/apache/iceberg-rust/tree/main/bindings/python",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/iceberg-rust/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

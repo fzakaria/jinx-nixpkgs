@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["OPENSSL_NO_VENDOR", 29, 7]], [["description", 34, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["nativeInstallCheckInputs", 25, 3], ["buildInputs", 27, 3], ["env", 29, 3], ["doInstallCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, openssl: false, "pkg-config": false, rustPlatform: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["nativeInstallCheckInputs", 25, 3], ["buildInputs", 27, 3], ["env", 29, 3], ["doInstallCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jwt-hack",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hahwul",
           repo: "jwt-hack",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,10 +28,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: 1n })),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "JSON Web Token Hack Toolkit",
         homepage: "https://github.com/hahwul/jwt-hack",
         changelog: nix.thunk(() => nix.str`https://github.com/hahwul/jwt-hack/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["pythonRelaxDeps", 31, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 52, 3], ["pythonImportsCheck", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, "async-timeout": false, buildPythonPackage: false, fetchFromCodeberg: false, "httpx-socks": false, httpx: false, "proxy-py": false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-mock": false, pytestCheckHook: false, "python-socks": false, rencode: false, setuptools: false, "tiny-proxy": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["pythonRelaxDeps", 31, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 52, 3], ["pythonImportsCheck", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const tiny_proxy = nix.arg($, "tiny-proxy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aiobtclientrpc",
       version: "6.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "plotski",
           repo: "aiobtclientrpc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["aiobtclientrpc"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Asynchronous low-level communication with BitTorrent clients",
         homepage: "https://aiobtclientrpc.readthedocs.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

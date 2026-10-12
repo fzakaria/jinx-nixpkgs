@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["updateScript", 50, 5]], [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["teams", 58, 5], ["mainProgram", 59, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 41, 3], ["passthru", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "desktop-file-utils": false, "nix-update-script": false, fetchFromGitHub: false, flatpak: false, gettext: false, glib: false, granite7: false, gtk4: false, meson: false, ninja: false, "pkg-config": false, vala: false, libxml2: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["teams", 58, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 41, 3], ["passthru", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sideload";
       const version = "6.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "sideload",
           tag: version,
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [desktop_file_utils, gettext, meson, ninja, pkg_config, vala, wrapGAppsHook4]);
       const buildInputs = nix.thunk(() => [flatpak, glib, granite7, gtk4, libxml2]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/elementary/sideload",
         description: "Flatpak installer, designed for elementary OS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "io.elementary.sideload",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

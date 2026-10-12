@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["fetchSubmodules", 24, 5], ["hash", 25, 5]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["longDescription", 54, 5], ["maintainers", 60, 5], ["platforms", 63, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["cmakeFlags", 43, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchFromGitHub: false, openssl: false, asio: false, "tinyxml-2": false, openjdk11: false, python3: false, "foonathan-memory": false, fastcdr: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["fetchSubmodules", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["longDescription", 54, 5], ["maintainers", 60, 5], ["platforms", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["cmakeFlags", 43, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const fastcdr = nix.arg($, "fastcdr");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fastdds",
       version: "3.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eProsima",
           repo: "Fast-DDS",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DCMAKE_PREFIX_PATH=${foonathan_memory}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C++ implementation of the DDS (Data Distribution Service) standard",
         homepage: "https://github.com/eProsima/Fast-DDS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

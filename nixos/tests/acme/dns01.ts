@@ -2,29 +2,12 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dns01.nix", [[["maintainers", 29, 5], ["timeout", 31, 5]], [["nameservers", 40, 20]], [["imports", 39, 9], ["networking", 40, 9]], [["allowedTCPPorts", 49, 20], ["allowedUDPPorts", 53, 20]], [["firewall", 49, 11], ["hostName", 57, 11], ["domain", 58, 11]], [["ExecStart", 65, 13], ["AmbientCapabilities", 67, 13]], [["enable", 61, 11], ["description", 62, 11], ["wantedBy", 63, 11], ["serviceConfig", 64, 11]], [["pebble-challtestsrv", 60, 26]], [["services", 60, 17]], [["networking", 48, 9], ["systemd", 60, 9]], [["domain", 76, 20], ["nameservers", 77, 20]], [["systemPackages", 80, 21]], [["domain", 83, 11], ["dnsProvider", 84, 11], ["dnsPropagationCheck", 85, 11], ["environmentFile", 86, 11]], [["certs", 82, 23]], [["acme", 82, 18]], [["imports", 75, 9], ["networking", 76, 9], ["environment", 80, 9], ["security", 82, 9]], [["acme", 36, 5], ["dnsserver", 45, 5], ["client", 72, 5]], [["name", 27, 3], ["meta", 28, 3], ["nodes", 34, 3], ["testScript", 96, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/dns01.nix", [["maintainers", 29, 5], ["timeout", 31, 5]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/dns01.nix", [["nameservers", 40, 20]]);
-const pos$3 = nix.positions(here + "/dns01.nix", [["imports", 39, 9], ["networking", 40, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/dns01.nix", [["allowedTCPPorts", 49, 20], ["allowedUDPPorts", 53, 20]]);
-const pos$5 = nix.positions(here + "/dns01.nix", [["firewall", 49, 11], ["hostName", 57, 11], ["domain", 58, 11]]);
-const pos$6 = nix.positions(here + "/dns01.nix", [["ExecStart", 65, 13], ["AmbientCapabilities", 67, 13]]);
-const pos$7 = nix.positions(here + "/dns01.nix", [["enable", 61, 11], ["description", 62, 11], ["wantedBy", 63, 11], ["serviceConfig", 64, 11]]);
-const pos$8 = nix.positions(here + "/dns01.nix", [["pebble-challtestsrv", 60, 26]]);
-const pos$9 = nix.positions(here + "/dns01.nix", [["services", 60, 17]]);
-const pos$10 = nix.positions(here + "/dns01.nix", [["networking", 48, 9], ["systemd", 60, 9]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/dns01.nix", [["domain", 76, 20], ["nameservers", 77, 20]]);
-const pos$12 = nix.positions(here + "/dns01.nix", [["systemPackages", 80, 21]]);
-const pos$13 = nix.positions(here + "/dns01.nix", [["domain", 83, 11], ["dnsProvider", 84, 11], ["dnsPropagationCheck", 85, 11], ["environmentFile", 86, 11]]);
-const pos$14 = nix.positions(here + "/dns01.nix", [["certs", 82, 23]]);
-const pos$15 = nix.positions(here + "/dns01.nix", [["acme", 82, 18]]);
-const pos$16 = nix.positions(here + "/dns01.nix", [["imports", 75, 9], ["networking", 76, 9], ["environment", 80, 9], ["security", 82, 9]]);
-const pos$17 = nix.positions(here + "/dns01.nix", [["acme", 36, 5], ["dnsserver", 45, 5], ["client", 72, 5]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$18 = nix.positions(here + "/dns01.nix", [["name", 27, 3], ["meta", 28, 3], ["nodes", 34, 3], ["testScript", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,23 +29,23 @@ EOF
 fi
 `)));
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "dns01",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "acme", "members")),
       timeout: 180n,
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       acme: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           imports: nix.thunk(() => [nix.path(here, "../common/acme/server")]),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             nameservers: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [nix.thunk(() => nix.app(dnsServerIP, nodes))]))),
           })),
         };
@@ -71,11 +54,11 @@ fi
         const $_1 = nix.formals(args_1, formals$3);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               allowedTCPPorts: nix.thunk(() => [8055n, 53n]),
               allowedUDPPorts: nix.thunk(() => [53n]),
             })),
@@ -83,16 +66,16 @@ fi
             domain: "test",
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               "pebble-challtestsrv": nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 enable: true,
                 description: "Pebble ACME challenge test server",
                 wantedBy: nix.thunk(() => ["network.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "pebble")}/bin/pebble-challtestsrv -dns01 ':53' -defaultIPv6 '' -defaultIPv4 '${nix.sel(nodes, "client", "networking", "primaryIPAddress")}'`),
                   AmbientCapabilities: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
                 })),
@@ -105,24 +88,24 @@ fi
         const $_1 = nix.formals(args_1, formals$4);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           imports: nix.thunk(() => [nix.path(here, "../common/acme/client")]),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             domain: domain,
             nameservers: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [nix.thunk(() => nix.app(dnsServerIP, nodes))]))),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             acme: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               certs: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${domain}`, nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   domain: nix.thunk(() => nix.str`*.${domain}`),
                   dnsProvider: "exec",
                   dnsPropagationCheck: false,

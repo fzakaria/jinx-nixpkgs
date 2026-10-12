@@ -2,22 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["flutter", 15, 55]], [["url", 29, 9], ["sha256", 30, 9]], [["url", 33, 9], ["sha256", 34, 9]], [["x86_64-linux", 28, 7], ["aarch64-linux", 32, 7]], [["owner", 45, 7], ["repo", 46, 7], ["tag", 47, 7], ["hash", 48, 7]], [["description", 56, 7], ["homepage", 57, 7], ["license", 58, 7], ["maintainers", 59, 7], ["broken", 65, 7], ["badPlatforms", 66, 7]], [["mainProgram", 69, 7]], [["pname", 41, 5], ["version", 42, 5], ["src", 44, 5], ["pubspecLock", 51, 13], ["targetFlutterPlatform", 53, 13], ["meta", 55, 5]], [["NIX_LDFLAGS", 81, 9], ["CXXFLAGS", 82, 9]], [["name", 86, 9], ["exec", 87, 9], ["icon", 88, 9], ["desktopName", 89, 9], ["genericName", 90, 9], ["categories", 91, 9], ["startupWMClass", 96, 9]], [["pname", 104, 11], ["version", 105, 19], ["src", 105, 27], ["passthru", 106, 25], ["postPatch", 108, 11], ["installPhase", 121, 11]], [["flutter_webrtc", 101, 7]], [["nativeBuildInputs", 73, 5], ["runtimeDependencies", 79, 5], ["env", 81, 5], ["desktopItems", 84, 5], ["customSourceBuilders", 100, 5], ["postPatch", 132, 5], ["postInstall", 139, 5]], [["preBuild", 149, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchzip: false, imagemagick: false, libgbm: false, libdrm: false, flutter344: false, pulseaudio: false, webkitgtk_4_1: false, copyDesktopItems: false, makeDesktopItem: false, callPackage: false, "vodozemac-wasm": true, targetFlutterPlatform: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["flutter", 15, 55]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 9], ["sha256", 30, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 33, 9], ["sha256", 34, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 28, 7], ["aarch64-linux", 32, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 45, 7], ["repo", 46, 7], ["tag", 47, 7], ["hash", 48, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 56, 7], ["homepage", 57, 7], ["license", 58, 7], ["maintainers", 59, 7], ["broken", 65, 7], ["badPlatforms", 66, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["mainProgram", 69, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 41, 5], ["version", 42, 5], ["src", 44, 5], ["pubspecLock", 51, 13], ["targetFlutterPlatform", 53, 13], ["meta", 55, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 81, 9], ["CXXFLAGS", 82, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 86, 9], ["exec", 87, 9], ["icon", 88, 9], ["desktopName", 89, 9], ["genericName", 90, 9], ["categories", 91, 9], ["startupWMClass", 96, 9]]);
 const formals$2 = { args: { version: false, src: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 104, 11], ["version", 105, 19], ["src", 105, 27], ["passthru", 106, 25], ["postPatch", 108, 11], ["installPhase", 121, 11]]);
-const pos$12 = nix.positions(here + "/package.nix", [["flutter_webrtc", 101, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 73, 5], ["runtimeDependencies", 79, 5], ["env", 81, 5], ["desktopItems", 84, 5], ["customSourceBuilders", 100, 5], ["postPatch", 132, 5], ["postInstall", 139, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["preBuild", 149, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,20 +21,20 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const callPackage = nix.arg($, "callPackage");
-  const vodozemac_wasm = nix.argOr($, "vodozemac-wasm", () => nix.app(callPackage, nix.path(here, "./vodozemac-wasm.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, flutter: flutter344 }))));
+  const vodozemac_wasm = nix.argOr($, "vodozemac-wasm", () => nix.app(callPackage, nix.path(here, "./vodozemac-wasm.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], flutter: flutter344 }))));
   const targetFlutterPlatform = nix.argOr($, "targetFlutterPlatform", () => "linux");
   const libwebrtcRpath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libgbm, libdrm])));
   const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
   const libwebrtc_version = "m144.7559.09";
   const libwebrtc = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/webrtc-sdk/libwebrtc/releases/download/libwebrtc.${libwebrtc_version}/libwebrtc-linux-x64-release.zip`),
         sha256: "sha256-uzS07voCGM1zs663UalYpb8pWiYpkrKMxKt/wB4rcB4=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://github.com/webrtc-sdk/libwebrtc/releases/download/libwebrtc.${libwebrtc_version}/libwebrtc-linux-arm64-release.zip`),
         sha256: "sha256-nMMU/HrCN4zSB4vO1O4TfJRBtK87OX+zYbxZRq8Q4Us=",
       })))),
@@ -56,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`fluffychat-${targetFlutterPlatform_1}`);
       const version = "2.9.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "krille-chan",
           repo: "fluffychat",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -65,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const pubspecLock_1 = pubspecLock;
       const targetFlutterPlatform_1 = targetFlutterPlatform;
       const meta = nix.thunk(() => nix.update({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Chat with your friends (matrix client)",
         homepage: "https://fluffychat.im/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -79,9 +66,9 @@ export default nix.lambda((args) => (() => {
         })()),
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")),
         badPlatforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(targetFlutterPlatform_1, "linux")), nix.thunk(() => ({ [nix.POS]: pos$7, mainProgram: "fluffychat" })))));
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(targetFlutterPlatform_1, "linux")), nix.thunk(() => ({ [nix.POS]: $pos[6], mainProgram: "fluffychat" })))));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,
@@ -90,17 +77,17 @@ export default nix.lambda((args) => (() => {
         meta,
       };
     })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(targetFlutterPlatform, "linux")), nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         nativeBuildInputs: nix.thunk(() => [imagemagick, copyDesktopItems, webkitgtk_4_1]),
         runtimeDependencies: nix.thunk(() => [pulseaudio]),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           NIX_LDFLAGS: nix.thunk(() => nix.str`-rpath-link ${libwebrtcRpath}`),
           CXXFLAGS: "-include cstdint",
         })),
         desktopItems: nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               name: "Fluffychat",
               exec: "fluffychat",
               icon: "fluffychat",
@@ -111,13 +98,13 @@ export default nix.lambda((args) => (() => {
             })))),
         ]),
         customSourceBuilders: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           flutter_webrtc: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const version = nix.arg($_1, "version");
             const src = nix.arg($_1, "src");
             return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 pname: "flutter_webrtc",
                 version: version,
                 src: src,
@@ -146,7 +133,7 @@ cp $src/assets/logo/vector/logo_standalone.svg $ICO/hicolor/scalable/apps/fluffy
 patchelf --add-rpath ${libwebrtcRpath} $out/app/fluffychat-linux/lib/libwebrtc.so
 `),
       }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(targetFlutterPlatform, "web")), nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         preBuild: nix.thunk(() => nix.str`cp -r ${vodozemac_wasm}/* ./assets/vodozemac/
 `),
       })))))));

@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 59, 9], ["hash", 60, 9]], [["version", 64, 9], ["hash", 65, 9]], [["url", 74, 5], ["hash", 75, 22]], [["url", 85, 7], ["hash", 86, 7]], [["homepage", 152, 5], ["license", 153, 5], ["description", 154, 5], ["longDescription", 155, 5], ["platforms", 174, 5], ["maintainers", 175, 5]], [["pname", 70, 3], ["version", 71, 3], ["src", 73, 3], ["patches", 78, 3], ["postPatch", 90, 3], ["outputs", 94, 3], ["nativeBuildInputs", 100, 3], ["buildInputs", 106, 3], ["propagatedBuildInputs", 122, 3], ["propagatedUserEnvPkgs", 123, 3], ["cmakeFlags", 125, 3], ["postInstall", 147, 3], ["meta", 151, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch2: false, cmake: false, hwloc: false, fftw: false, perl: false, blas: false, lapack: false, llvmPackages: false, mpi: false, cudaPackages: false, plumed: false, singlePrec: true, config: false, enableCuda: true, enableMpi: true, enablePlumed: true, cpuAcceleration: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 59, 9], ["hash", 60, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 64, 9], ["hash", 65, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 74, 5], ["hash", 75, 22]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 85, 7], ["hash", 86, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 152, 5], ["license", 153, 5], ["description", 154, 5], ["longDescription", 155, 5], ["platforms", 174, 5], ["maintainers", 175, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 70, 3], ["version", 71, 3], ["src", 73, 3], ["patches", 78, 3], ["postPatch", 90, 3], ["outputs", 94, 3], ["nativeBuildInputs", 100, 3], ["buildInputs", 106, 3], ["propagatedBuildInputs", 122, 3], ["propagatedUserEnvPkgs", 123, 3], ["cmakeFlags", 125, 3], ["postInstall", 147, 3], ["meta", 151, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,20 +35,20 @@ export default nix.lambda((args) => (() => {
   const defaultSIMD = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(hostPlatform, "system"), "i686-linux")) ? "SSE2" : (nix.asBool(nix.sel(hostPlatform, "isx86_64")) ? (nix.asBool(nix.sel(hostPlatform, "avx512Support")) ? "AVX_512" : (nix.asBool(nix.sel(hostPlatform, "avx2Support")) ? "AVX2_256" : (nix.asBool(nix.sel(hostPlatform, "avxSupport")) ? "AVX_256" : "SSE4.1"))) : (nix.asBool(nix.sel(hostPlatform, "isAarch64")) ? "ARM_NEON_ASIMD" : "None"))));
   const SIMD = nix.thunk(() => (nix.asBool(!nix.eq(cpuAcceleration, null)) ? nix.force(cpuAcceleration) : nix.force(defaultSIMD)));
   const source = nix.thunk(() => (nix.asBool(enablePlumed) ? {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "2024.2",
     hash: "sha256-gCp+M18uiVdw9XsVnk7DaOuw/yzm2sz3BsboAlw2hSs=",
   } : {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "2026.4",
     hash: "sha256-WO2mCXmxJPz53/ixtjzt+8cv2zbZnpIdwb3DEFcQmLY=",
   }));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gromacs",
       version: nix.thunk(() => nix.sel(source, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`ftp://ftp.gromacs.org/pub/gromacs/gromacs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: nix.thunk(() => nix.attr(source, "hash")),
         })))),
@@ -61,7 +56,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (nix.asBool(enablePlumed) ? nix.path(here, "./pkgconfig-2024.patch") : nix.path(here, "./pkgconfig-2025.patch"))),
       ], nix.app(nix.sel(lib, "optionals"), enablePlumed, nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: "https://gitlab.com/gromacs/gromacs/-/commit/e0180bc37f3111d7dcaffca3854c088ed910c3b4.diff",
               hash: "sha256-TvTzfb/RETAzFpYfFFr6/L5GV1Pile16gVJhNigwAB4=",
             })))),
@@ -93,7 +88,7 @@ export default nix.lambda((args) => (() => {
         ]))))),
       postInstall: "moveToOutput share/cmake $dev\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.gromacs.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         description: "Molecular dynamics software package",

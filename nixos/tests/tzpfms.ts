@@ -2,56 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tzpfms.nix", [[["maintainers", 7, 5]], [["systemPackages", 13, 19]], [["enable", 20, 24]], [["systemd", 20, 16]], [["enable", 22, 24]], [["canTouchEfiVariables", 24, 15]], [["systemd-boot", 22, 11], ["timeout", 23, 11], ["efi", 24, 11]], [["devNodes", 28, 11], ["forceImportRoot", 29, 11], ["requestEncryptionCredentials", 30, 11]], [["initrd", 20, 9], ["loader", 21, 9], ["supportedFilesystems", 26, 9], ["zfs", 27, 9]], [["hostId", 34, 18]], [["enable", 41, 13]], [["emptyDiskImages", 37, 9], ["mountHostNixStore", 38, 9], ["useBootLoader", 39, 9], ["useEFIBoot", 40, 9], ["tpm", 41, 9]], [["enable", 54, 15], ["datasets", 55, 15]], [["devNodes", 51, 13], ["requestEncryptionCredentials", 52, 13], ["tzpfms", 53, 13]], [["kernelParams", 46, 11], ["zfs", 50, 11]], [["device", 65, 13], ["fsType", 66, 13], ["options", 67, 13], ["neededForBoot", 68, 13]], [["device", 71, 13], ["fsType", 72, 13], ["options", 73, 13], ["neededForBoot", 74, 13]], [["/bootz", 64, 11], ["/dataz", 70, 11]], [["fileSystems", 63, 24]], [["boot", 45, 9], ["virtualisation", 63, 9]], [["configuration", 44, 36]], [["tzpfms-unlock", 44, 22]], [["environment", 13, 7], ["boot", 19, 7], ["networking", 34, 7], ["virtualisation", 36, 7], ["specialisation", 44, 7]], [["machine", 10, 9]], [["name", 4, 3], ["meta", 6, 3], ["nodes", 10, 3], ["testScript", 80, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tzpfms.nix", [["maintainers", 7, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/tzpfms.nix", [["systemPackages", 13, 19]]);
-const pos$3 = nix.positions(here + "/tzpfms.nix", [["enable", 20, 24]]);
-const pos$4 = nix.positions(here + "/tzpfms.nix", [["systemd", 20, 16]]);
-const pos$5 = nix.positions(here + "/tzpfms.nix", [["enable", 22, 24]]);
-const pos$6 = nix.positions(here + "/tzpfms.nix", [["canTouchEfiVariables", 24, 15]]);
-const pos$7 = nix.positions(here + "/tzpfms.nix", [["systemd-boot", 22, 11], ["timeout", 23, 11], ["efi", 24, 11]]);
-const pos$8 = nix.positions(here + "/tzpfms.nix", [["devNodes", 28, 11], ["forceImportRoot", 29, 11], ["requestEncryptionCredentials", 30, 11]]);
-const pos$9 = nix.positions(here + "/tzpfms.nix", [["initrd", 20, 9], ["loader", 21, 9], ["supportedFilesystems", 26, 9], ["zfs", 27, 9]]);
-const pos$10 = nix.positions(here + "/tzpfms.nix", [["hostId", 34, 18]]);
-const pos$11 = nix.positions(here + "/tzpfms.nix", [["enable", 41, 13]]);
-const pos$12 = nix.positions(here + "/tzpfms.nix", [["emptyDiskImages", 37, 9], ["mountHostNixStore", 38, 9], ["useBootLoader", 39, 9], ["useEFIBoot", 40, 9], ["tpm", 41, 9]]);
-const pos$13 = nix.positions(here + "/tzpfms.nix", [["enable", 54, 15], ["datasets", 55, 15]]);
-const pos$14 = nix.positions(here + "/tzpfms.nix", [["devNodes", 51, 13], ["requestEncryptionCredentials", 52, 13], ["tzpfms", 53, 13]]);
-const pos$15 = nix.positions(here + "/tzpfms.nix", [["kernelParams", 46, 11], ["zfs", 50, 11]]);
-const pos$16 = nix.positions(here + "/tzpfms.nix", [["device", 65, 13], ["fsType", 66, 13], ["options", 67, 13], ["neededForBoot", 68, 13]]);
-const pos$17 = nix.positions(here + "/tzpfms.nix", [["device", 71, 13], ["fsType", 72, 13], ["options", 73, 13], ["neededForBoot", 74, 13]]);
-const pos$18 = nix.positions(here + "/tzpfms.nix", [["/bootz", 64, 11], ["/dataz", 70, 11]]);
-const pos$19 = nix.positions(here + "/tzpfms.nix", [["fileSystems", 63, 24]]);
-const pos$20 = nix.positions(here + "/tzpfms.nix", [["boot", 45, 9], ["virtualisation", 63, 9]]);
-const pos$21 = nix.positions(here + "/tzpfms.nix", [["configuration", 44, 36]]);
-const pos$22 = nix.positions(here + "/tzpfms.nix", [["tzpfms-unlock", 44, 22]]);
-const pos$23 = nix.positions(here + "/tzpfms.nix", [["environment", 13, 7], ["boot", 19, 7], ["networking", 34, 7], ["virtualisation", 36, 7], ["specialisation", 44, 7]]);
-const pos$24 = nix.positions(here + "/tzpfms.nix", [["machine", 10, 9]]);
-const pos$25 = nix.positions(here + "/tzpfms.nix", [["name", 4, 3], ["meta", 6, 3], ["nodes", 10, 3], ["testScript", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$25,
+    [nix.POS]: $pos[24],
     name: "tzpfms",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "toastal"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "jq")),
               nix.thunk(() => nix.sel(pkgs, "parted")),
@@ -59,67 +35,67 @@ export default nix.lambda((args) => (() => {
             ]),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              systemd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+              [nix.POS]: $pos[3],
+              systemd: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
             })),
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+              [nix.POS]: $pos[6],
+              "systemd-boot": nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
               timeout: 0n,
-              efi: nix.thunk(() => ({ [nix.POS]: pos$6, canTouchEfiVariables: true })),
+              efi: nix.thunk(() => ({ [nix.POS]: $pos[5], canTouchEfiVariables: true })),
             })),
             supportedFilesystems: nix.thunk(() => ["zfs"]),
             zfs: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               devNodes: "/dev",
               forceImportRoot: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
               requestEncryptionCredentials: false,
             })),
           })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$10, hostId: "deadbeef" })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[9], hostId: "deadbeef" })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             emptyDiskImages: nix.thunk(() => [1024n]),
             mountHostNixStore: true,
             useBootLoader: true,
             useEFIBoot: true,
-            tpm: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
+            tpm: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: true })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             "tzpfms-unlock": nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 boot: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   kernelParams: nix.thunk(() => ["rd.debug", "rd.log=all"]),
                   zfs: nix.thunk(() => ({
-                    [nix.POS]: pos$14,
+                    [nix.POS]: $pos[13],
                     devNodes: "/dev",
                     requestEncryptionCredentials: false,
                     tzpfms: nix.thunk(() => ({
-                      [nix.POS]: pos$13,
+                      [nix.POS]: $pos[12],
                       enable: true,
                       datasets: nix.thunk(() => ["tpmpool/boot", "tpmpool/data"]),
                     })),
                   })),
                 })),
                 virtualisation: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   fileSystems: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
+                    [nix.POS]: $pos[17],
                     "/bootz": nix.thunk(() => ({
-                      [nix.POS]: pos$16,
+                      [nix.POS]: $pos[15],
                       device: "tpmpool/boot",
                       fsType: "zfs",
                       options: nix.thunk(() => ["zfsutil"]),
                       neededForBoot: true,
                     })),
                     "/dataz": nix.thunk(() => ({
-                      [nix.POS]: pos$17,
+                      [nix.POS]: $pos[16],
                       device: "tpmpool/data",
                       fsType: "zfs",
                       options: nix.thunk(() => ["zfsutil"]),

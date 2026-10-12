@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["platforms", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildPhase", 26, 3], ["installPhase", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, which: false, perl: false, perlPackages: false, buildNimPackage: false, git: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["platforms", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildPhase", 26, 3], ["installPhase", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const buildNimPackage = nix.arg($, "buildNimPackage");
   const git = nix.arg($, "git");
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "taskopen",
       version: "2.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jschlatow",
           repo: "taskopen",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "export HOME=$(pwd)\n",
       installPhase: "make PREFIX=$out install\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Script for taking notes and open urls with taskwarrior",
         mainProgram: "taskopen",
         homepage: "https://github.com/ValiValpas/taskopen",

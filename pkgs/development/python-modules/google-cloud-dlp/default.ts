@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 5], ["version", 22, 13], ["hash", 23, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 26, 3], ["pythonRelaxDeps", 28, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 39, 3], ["disabledTests", 46, 3], ["pythonImportsCheck", 52, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "google-api-core": false, "google-cloud-testutils": false, mock: false, "proto-plus": false, protobuf: false, "pytest-asyncio": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 5], ["version", 22, 13], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 26, 3], ["pythonRelaxDeps", 28, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 39, 3], ["disabledTests", 46, 3], ["pythonImportsCheck", 52, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.40.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "google_cloud_dlp",
           version: version,
           hash: "sha256-8qQqtcWaFPSHssbiqdTAkMaovS9YxfuwOH3P6fsr6uc=",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_inspect_content", "test_list_dlp_jobs"]);
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.dlp", "google.cloud.dlp_v2"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cloud Data Loss Prevention (DLP) API API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-dlp",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-dlp-v${version}/packages/google-cloud-dlp/CHANGELOG.md`),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["extraArgs", 35, 5]], [["updateScript", 34, 12]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["broken", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["makeFlags", 23, 3], ["installPhase", 28, 3], ["passthru", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 34, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["broken", 44, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["makeFlags", 23, 3], ["installPhase", 28, 3], ["passthru", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hid-ite8291r3";
       const version = "0-unstable-2026-07-31";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pobrn",
           repo: "hid-ite8291r3",
           rev: "1e1f01b5d8d0e45d70275a0dc29369002c39eb39",
@@ -37,11 +33,11 @@ install -D hid-ite8291r3.ko -t $out/lib/modules/${nix.sel(kernel, "modDirVersion
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Linux driver for the ITE 8291 RGB keyboard backlight controller",
         homepage: "https://github.com/pobrn/hid-ite8291r3/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -53,7 +49,7 @@ runHook postInstall
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelOlder"), "5.9")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

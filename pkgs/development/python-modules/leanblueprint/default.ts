@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 26, 5], ["owner", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["license", 52, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, plasTeX: false, plastexshowmore: false, plastexdepgraph: false, click: false, rich: false, "rich-click": false, tomlkit: false, jinja2: false, gitpython: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 26, 5], ["owner", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["license", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const jinja2 = nix.arg($, "jinja2");
   const gitpython = nix.arg($, "gitpython");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "leanblueprint",
       version: "0.0.20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "leanblueprint",
           owner: "PatrickMassot",
           rev: "v0.0.20",
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["leanblueprint"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "This plasTeX plugin allowing to write blueprints for Lean 4 projects",
         homepage: "https://github.com/PatrickMassot/leanblueprint",
         maintainers: nix.thunk(() => (() => {

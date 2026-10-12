@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 11], ["repo", 18, 11], ["rev", 19, 11], ["hash", 20, 11], ["fetchSubmodules", 21, 11]], [["version", 15, 9], ["src", 16, 9], ["patches", 23, 9]], [["lark", 13, 7]], [["self", 11, 5], ["packageOverrides", 12, 5]], [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["doCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["disabledTestPaths", 66, 3], ["pythonImportsCheck", 70, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, addBinToPathHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 11], ["repo", 18, 11], ["rev", 19, 11], ["hash", 20, 11], ["fetchSubmodules", 21, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 15, 9], ["src", 16, 9], ["patches", 23, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["lark", 13, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["self", 11, 5], ["packageOverrides", 12, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["doCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["disabledTestPaths", 66, 3], ["pythonImportsCheck", 70, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const addBinToPathHook = nix.arg($, "addBinToPathHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       self: python,
       packageOverrides: (self) => (super$) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         lark: nix.thunk(() => nix.app(nix.sel(super$, "lark", "overridePythonAttrs"), (old) => (() => {
             const version = "1.2.2";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 owner: "lark-parser",
                 repo: "lark",
                 rev: version,
@@ -34,7 +28,7 @@ export default nix.lambda((args) => (() => {
                 fetchSubmodules: true,
               }))));
             const patches = [];
-            return { [nix.POS]: pos$2, version, src, patches };
+            return { [nix.POS]: $pos[1], version, src, patches };
           })())),
       }),
     }))));
@@ -43,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "Scony",
           repo: "godot-gdscript-toolkit",
           tag: version,
@@ -81,7 +75,7 @@ export default nix.lambda((args) => (() => {
         "gdtoolkit.parser",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Independent set of tools for working with Godot's GDScript - parser, linter and formatter",
         homepage: "https://github.com/Scony/godot-gdscript-toolkit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -91,7 +85,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

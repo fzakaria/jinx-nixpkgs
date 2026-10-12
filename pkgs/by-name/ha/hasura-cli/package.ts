@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["homepage", 40, 5], ["maintainers", 41, 5], ["license", 42, 5], ["description", 43, 5], ["mainProgram", 44, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["modRoot", 17, 3], ["subPackages", 19, 3], ["vendorHash", 21, 3], ["doCheck", 23, 3], ["ldflags", 25, 3], ["postInstall", 31, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { buildGoModule: false, lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["maintainers", 41, 5], ["license", 42, 5], ["description", 43, 5], ["mainProgram", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["modRoot", 17, 3], ["subPackages", 19, 3], ["vendorHash", 21, 3], ["doCheck", 23, 3], ["ldflags", 25, 3], ["postInstall", 31, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hasura",
       version: "2.50.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hasura",
           repo: "graphql-engine",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/share/{bash-completion/completions,zsh/site-functions}\n\nexport HOME=$PWD\n$out/bin/hasura completion bash > $out/share/bash-completion/completions/hasura\n$out/bin/hasura completion zsh > $out/share/zsh/site-functions/_hasura\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.hasura.io",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "lassulus"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

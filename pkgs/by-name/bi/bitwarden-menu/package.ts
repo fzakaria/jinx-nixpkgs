@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 13, 5], ["version", 14, 26], ["hash", 15, 5]], [["changelog", 31, 5], ["description", 32, 5], ["mainProgram", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 13, 5], ["version", 14, 26], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 31, 5], ["description", 32, 5], ["mainProgram", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bitwarden-menu",
       version: "0.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "bitwarden_menu",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-M0OsqvXlJcuClb1Bg9U06wKkPVeGAj6b+0TiUEmTbSg=",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/firecat53/bitwarden-menu/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Dmenu/Rofi frontend for managing Bitwarden vaults. Uses the Bitwarden CLI tool to interact with the Bitwarden database",
         mainProgram: "bwm",

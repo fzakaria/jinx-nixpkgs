@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 19, 26], ["version", 19, 32], ["sha256", 20, 5]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 60, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeBuildInputs", 30, 3], ["makeWrapperArgs", 32, 3], ["doCheck", 43, 3], ["pythonImportsCheck", 45, 3], ["postInstall", 47, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, git: false, breezy: false, subversion: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 19, 26], ["version", 19, 32], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeBuildInputs", 30, 3], ["makeWrapperArgs", 32, 3], ["doCheck", 43, 3], ["pythonImportsCheck", 45, 3], ["postInstall", 47, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const w = nix.withScope(python3Packages, null);
   return nix.app(nix.lookup(w, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vcs2l",
       version: "1.1.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "1d86e685f9e01dda271b89df1b2bd42ca5555f5c0dcbef5cc727d443f25738cd",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["vcs2l"]),
       postInstall: "installShellCompletion $out/share/vcs2l-completion/vcs.{bash,fish,zsh}\nrm -rf $out/share/vcs2l-completion\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Provides a command line tool to invoke vcs commands on multiple repositories",
         homepage: "https://github.com/ros-infrastructure/vcs2l",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

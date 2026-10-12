@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 14, 7], ["rev", 15, 7], ["repo", 16, 7], ["owner", 17, 7]], [["license", 20, 7]], [["src", 13, 5], ["meta", 19, 5]], [["sha256", 26, 7], ["rev", 27, 7], ["repo", 28, 7], ["owner", 29, 7]], [["license", 32, 7]], [["src", 25, 5], ["meta", 31, 5]], [["sha256", 42, 5], ["tag", 43, 5], ["repo", 44, 5], ["owner", 45, 5]], [["description", 67, 5], ["mainProgram", 68, 5], ["longDescription", 69, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 84, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["buildInputs", 48, 3], ["nativeBuildInputs", 55, 3], ["postPatch", 60, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fftw: false, libsndfile: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 14, 7], ["rev", 15, 7], ["repo", 16, 7], ["owner", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 13, 5], ["meta", 19, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["sha256", 26, 7], ["rev", 27, 7], ["repo", 28, 7], ["owner", 29, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["license", 32, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["src", 25, 5], ["meta", 31, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["sha256", 42, 5], ["tag", 43, 5], ["repo", 44, 5], ["owner", 45, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 67, 5], ["mainProgram", 68, 5], ["longDescription", 69, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 84, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["buildInputs", 48, 3], ["nativeBuildInputs", 55, 3], ["postPatch", 60, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,39 +14,39 @@ export default nix.lambda((args) => (() => {
   const libsndfile = nix.arg($, "libsndfile");
   const libsForQt5 = nix.arg($, "libsForQt5");
   const reaperFork = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         sha256: "07m2wf2gqyya95b65gawrnr4pvc9jyzmg6h8sinzgxlpskz93wwc",
         rev: "39053e8896eedd7b3e8a9e9a9ffd80f1fc6ceb16",
         repo: "REAPER",
         owner: "gillesdegottex",
       })))),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
     })),
   }));
   const libqaudioextra = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         sha256: "0m6x1qm7lbjplqasr2jhnd2ndi0y6z9ybbiiixnlwfm23sp15wci",
         rev: "9ae051989a8fed0b2f8194b1501151909a821a89",
         repo: "libqaudioextra",
         owner: "gillesdegottex",
       })))),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "dfasma",
       version: "1.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           sha256: "09fcyjm0hg3y51fnjax88m93im39nbynxj79ffdknsazmqw9ac0h",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           repo: "dfasma",
@@ -75,7 +67,7 @@ cp -Rv "${nix.sel(libqaudioextra, "src")}"/* external/libqaudioextra
 substituteInPlace dfasma.pro --replace "CONFIG += file_sdif" "";
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Analyse and compare audio files in time and frequency",
         mainProgram: "dfasma",
         longDescription: "DFasma is free open-source software to compare audio files by time and\nfrequency. The comparison is first visual, using wavforms and spectra. It\nis also possible to listen to time-frequency segments in order to allow\nperceptual comparison. It is basically dedicated to analysis. Even though\nthere are basic functionalities to align the signals in time and\namplitude, this software does not aim to be an audio editor.\n",

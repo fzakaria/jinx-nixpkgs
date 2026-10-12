@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["url", 24, 7], ["extraPrefix", 25, 7], ["hash", 26, 7]], [["url", 29, 7], ["extraPrefix", 30, 7], ["hash", 31, 7]], [["url", 34, 7], ["extraPrefix", 35, 7], ["hash", 36, 7]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 25]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, SDL2: false, wxwidgets_3_2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["extraPrefix", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 29, 7], ["extraPrefix", 30, 7], ["hash", 31, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 34, 7], ["extraPrefix", 35, 7], ["hash", 36, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 25]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sound-of-sorting",
       version: "0.6.5-unstable-2022-10-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bingmann",
           repo: "sound-of-sorting",
           rev: "5cfcaf752593c8cbcf52555dd22745599a7d8b1b",
@@ -32,19 +27,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/freebsd/freebsd-ports/raw/31ec0266e31910c16b0f69e16a2a693aae20abdf/math/sound-of-sorting/files/patch-src_SortAlgo.cpp",
             extraPrefix: "",
             hash: "sha256-mOo3GsEZ8r8p9ROoel2TO9Z4yF5SmCN0/fUn/2qUKAo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/freebsd/freebsd-ports/raw/31ec0266e31910c16b0f69e16a2a693aae20abdf/math/sound-of-sorting/files/patch-src_SortAlgo.h",
             extraPrefix: "",
             hash: "sha256-NNSPs0gT6ndeMQWHLHAwLR5nMQGP880Qd6kulDYJYF0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/freebsd/freebsd-ports/raw/31ec0266e31910c16b0f69e16a2a693aae20abdf/math/sound-of-sorting/files/patch-src_SortArray.cpp",
             extraPrefix: "",
             hash: "sha256-WxqwcZ2L9HPG4QNf1Xi624aKTM3cRBWN+W00htcIJ5k=",
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL2, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Audibilization and Visualization of Sorting Algorithms",
         homepage: "https://panthema.net/2013/sound-of-sorting/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

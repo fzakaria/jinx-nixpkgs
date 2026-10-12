@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 25, 5], ["hash", 26, 5]], [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["checkInputs", 29, 3], ["propagatedBuildInputs", 30, 3], ["doCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, alcotest: false, "asn1-combinators": false, "domain-name": false, fmt: false, gmap: false, kdf: false, "mirage-crypto": false, "mirage-crypto-ec": false, "mirage-crypto-pk": false, ipaddr: false, logs: false, base64: false, ohex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["checkInputs", 29, 3], ["propagatedBuildInputs", 30, 3], ["doCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const base64 = nix.arg($, "base64");
   const ohex = nix.arg($, "ohex");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "x509",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirleft/ocaml-x509/releases/download/v${nix.sel(finalAttrs, "version")}/x509-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-SD9SkJah/O3D+YJ7gmgZ1qKU+Xq6CPkD62v4n7D2FnQ=",
         })))),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mirleft/ocaml-x509",
         description: "X509 (RFC5280) handling in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

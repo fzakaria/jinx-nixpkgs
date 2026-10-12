@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 31, 3], ["installPhase", 35, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, makeWrapper: false, installShellFiles: false, coreutils: false, findutils: false, gawk: false, iconv: false, wget: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 31, 3], ["installPhase", 35, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "podget";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dvehrs",
           repo: "podget",
           tag: nix.thunk(() => nix.str`V${version}`),
@@ -36,7 +34,7 @@ install -m 755 -D podget $out/bin/podget
 wrapProgram $out/bin/podget --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, findutils, gawk, iconv, wget]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Podcast aggregator optimized for running as a scheduled job (i.e. cron) on Linux",
         homepage: "https://github.com/dvehrs/podget",
         changelog: "https://github.com/dvehrs/podget/blob/dev/Changelog",
@@ -49,7 +47,7 @@ wrapProgram $out/bin/podget --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"
         mainProgram: "podget",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

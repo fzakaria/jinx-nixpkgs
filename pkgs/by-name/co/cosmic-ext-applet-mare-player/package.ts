@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["updateScript", 79, 12]], [["homepage", 82, 5], ["description", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["separateDebugInfo", 29, 3], ["__structuredAttrs", 30, 3], ["cargoBuildFlags", 33, 3], ["cargoTestFlags", 34, 3], ["checkFlags", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["dontUseJustBuild", 60, 3], ["dontUseJustCheck", 61, 3], ["justFlags", 63, 3], ["preFixup", 72, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, libcosmicAppHook: false, just: false, "pkg-config": false, dbus: false, glib: false, "glib-networking": false, gst_all_1: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 79, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 82, 5], ["description", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["separateDebugInfo", 29, 3], ["__structuredAttrs", 30, 3], ["cargoBuildFlags", 33, 3], ["cargoTestFlags", 34, 3], ["checkFlags", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["dontUseJustBuild", 60, 3], ["dontUseJustCheck", 61, 3], ["justFlags", 63, 3], ["preFixup", 72, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cosmic-ext-applet-mare-player",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "glima",
           repo: "mare-player",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,11 +71,11 @@ export default nix.lambda((args) => (() => {
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/glima/mare-player",
         description: "COSMIC desktop applet for TIDAL music streaming",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

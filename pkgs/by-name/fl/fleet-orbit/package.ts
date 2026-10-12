@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["CGO_ENABLED", 23, 7]], [["orbit", 49, 26]], [["tests", 48, 12]], [["shortName", 59, 9], ["fullName", 60, 9], ["url", 61, 9], ["free", 62, 9]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 70, 5], ["sourceProvenance", 71, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["env", 23, 3], ["subPackages", 25, 3], ["goFlags", 27, 3], ["ldflags", 29, 3], ["patches", 37, 3], ["doInstallCheck", 44, 3], ["versionCheckProgramArg", 45, 3], ["nativeInstallCheckInputs", 46, 3], ["passthru", 48, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["orbit", 49, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 48, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["shortName", 59, 9], ["fullName", 60, 9], ["url", 61, 9], ["free", 62, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 70, 5], ["sourceProvenance", 71, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["env", 23, 3], ["subPackages", 25, 3], ["goFlags", 27, 3], ["ldflags", 29, 3], ["patches", 37, 3], ["doInstallCheck", 44, 3], ["versionCheckProgramArg", 45, 3], ["nativeInstallCheckInputs", 46, 3], ["passthru", 48, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "fleet-orbit",
       version: "1.55.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fleetdm",
           repo: "fleet",
           tag: nix.thunk(() => nix.str`orbit-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-gaS6A9Zfpb/VMQMAO5qI0lIaohD8jj4KWFRTU0OeqMo=",
         })))),
       vendorHash: "sha256-fhACxmzJY0PEQmMbjQxlfQh5ZJ+7a4um0s8xFQq+57w=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: "1" })),
       subPackages: nix.thunk(() => ["orbit/cmd/orbit"]),
       goFlags: nix.thunk(() => ["-buildvcs=false"]),
       ldflags: nix.thunk(() => [
@@ -51,11 +45,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, orbit: nix.thunk(() => nix.attr(nixosTests, "orbit")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], orbit: nix.thunk(() => nix.attr(nixosTests, "orbit")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Fleet's lightweight osquery manager",
         homepage: "https://github.com/fleetdm/fleet",
         changelog: nix.thunk(() => nix.str`https://github.com/fleetdm/fleet/releases/tag/orbit-v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +58,7 @@ export default nix.lambda((args) => (() => {
           return [
             nix.thunk(() => nix.lookup(w, "mit")),
             nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 shortName: "fleet-ee",
                 fullName: "Fleet Enterprise Edition License",
                 url: nix.thunk(() => nix.str`https://github.com/fleetdm/fleet/blob/orbit-v${nix.sel(finalAttrs, "version")}/ee/LICENSE`),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["kwin_wayland", 17, 7], ["CMAKE_INSTALL_FULL_BINDIR", 18, 7]], [["pname", 11, 3], ["patches", 13, 3], ["extraNativeBuildInputs", 22, 3], ["extraBuildInputs", 27, 3], ["extraCmakeFlags", 29, 3], ["postInstall", 35, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, replaceVars: false, kwin: false, "pkg-config": false, qttools: false, pam: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["kwin_wayland", 17, 7], ["CMAKE_INSTALL_FULL_BINDIR", 18, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["patches", 13, 3], ["extraNativeBuildInputs", 22, 3], ["extraBuildInputs", 27, 3], ["extraCmakeFlags", 29, 3], ["postInstall", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const pam = nix.arg($, "pam");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "plasma-login-manager",
       patches: nix.thunk(() => [
         nix.path(here, "./config-path.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./kwin-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             kwin_wayland: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), kwin, "kwin_wayland")),
             CMAKE_INSTALL_FULL_BINDIR: null,
           })))),

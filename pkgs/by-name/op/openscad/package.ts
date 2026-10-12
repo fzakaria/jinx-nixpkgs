@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["sha256", 48, 5]], [["name", 53, 7], ["url", 54, 7], ["sha256", 55, 7]], [["name", 58, 7], ["url", 59, 7], ["sha256", 60, 7]], [["name", 64, 7], ["url", 65, 7], ["hash", 66, 7]], [["name", 70, 7], ["url", 71, 7], ["hash", 72, 7]], [["name", 76, 7], ["url", 77, 7], ["hash", 78, 7]], [["name", 81, 7], ["url", 82, 7], ["hash", 83, 7], ["postFetch", 86, 7]], [["name", 97, 7], ["url", 98, 7], ["hash", 99, 7]], [["description", 190, 5], ["longDescription", 191, 5], ["homepage", 202, 5], ["license", 203, 5], ["platforms", 204, 5], ["maintainers", 205, 5], ["mainProgram", 210, 5]], [["nativeBuildInputs", 218, 13]], [["lib3mf_support", 215, 7]], [["openscad", 227, 7], ["openscadPackages", 228, 15]], [["tests", 214, 5], ["withPackages", 226, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["patches", 51, 3], ["postPatch", 104, 3], ["nativeBuildInputs", 117, 3], ["buildInputs", 129, 3], ["qmakeFlags", 159, 3], ["enableParallelBuilding", 170, 3], ["preBuild", 172, 3], ["doInstallCheck", 176, 3], ["postInstall", 178, 3], ["meta", 189, 3], ["passthru", 213, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, libsForQt5: false, bison: false, flex: false, eigen: false, boost: false, libGLU: false, libGL: false, glew: false, opencsg: false, cgal_5: false, mpfr: false, gmp: false, glib: false, "pkg-config": false, harfbuzz: false, gettext: false, freetype: false, fontconfig: false, "double-conversion": false, lib3mf: false, libzip: false, spacenavSupport: true, libspnav: false, wayland: false, "wayland-protocols": false, wrapGAppsHook3: false, cairo: false, callPackage: false, openscad: false, runCommand: false, versionCheckHook: false, openscadPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["sha256", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 53, 7], ["url", 54, 7], ["sha256", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 58, 7], ["url", 59, 7], ["sha256", 60, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 64, 7], ["url", 65, 7], ["hash", 66, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 70, 7], ["url", 71, 7], ["hash", 72, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 76, 7], ["url", 77, 7], ["hash", 78, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 81, 7], ["url", 82, 7], ["hash", 83, 7], ["postFetch", 86, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 97, 7], ["url", 98, 7], ["hash", 99, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 190, 5], ["longDescription", 191, 5], ["homepage", 202, 5], ["license", 203, 5], ["platforms", 204, 5], ["maintainers", 205, 5], ["mainProgram", 210, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 218, 13]]);
-const pos$11 = nix.positions(here + "/package.nix", [["lib3mf_support", 215, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["openscad", 227, 7], ["openscadPackages", 228, 15]]);
-const pos$13 = nix.positions(here + "/package.nix", [["tests", 214, 5], ["withPackages", 226, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["patches", 51, 3], ["postPatch", 104, 3], ["nativeBuildInputs", 117, 3], ["buildInputs", 129, 3], ["qmakeFlags", 159, 3], ["enableParallelBuilding", 170, 3], ["preBuild", 172, 3], ["doInstallCheck", 176, 3], ["postInstall", 178, 3], ["meta", 189, 3], ["passthru", 213, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const openscadPackages = nix.arg($, "openscadPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: "openscad",
       version: "2021.01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openscad",
           repo: "openscad",
           rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
@@ -69,37 +56,37 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2022-0496.patch",
             url: "https://github.com/openscad/openscad/commit/00a4692989c4e2f191525f73f24ad8727bacdf41.patch",
             sha256: "sha256-q3SLj2b5aM/IQ8vIDj4iVcwCajgyJ5juNV/KN35uxfI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "CVE-2022-0497.patch",
             url: "https://github.com/openscad/openscad/commit/84addf3c1efbd51d8ff424b7da276400bbfa1a4b.patch",
             sha256: "sha256-KNEVu10E2d4G2x+FJcuHo2tjD8ygMRuhUcW9NbN98bM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "cgalutils-tess.cc-cgal-5.patch",
             url: "https://github.com/openscad/openscad/commit/3a81c1fb9b663ebbedd6eb044e7276357b1f30a1.patch",
             hash: "sha256-JdBznXkewx5ybY92Ss0h7UnMZ7d3IQbFRaDCDjb1bRA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "cgalutils-tess.cc-cgal-5_4.patch",
             url: "https://github.com/openscad/openscad/commit/71f2831c0484c3f35cbf44e1d1dc2c857384100b.patch",
             hash: "sha256-Fu8dnjNIwZKCI6ukOeHYK8NiJwoA0XtqT8dg8sVevG8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "cgalutils-polyhedron.cc-cgal-5_3.patch",
             url: "https://github.com/openscad/openscad/commit/cc49ad8dac24309f5452d5dea9abd406615a52d9.patch",
             hash: "sha256-B3i+o6lR5osRcVXTimDZUFQmm12JhmbFgG9UwOPebF4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "fix-application-icon-not-shown-on-wayland.patch",
             url: "https://github.com/openscad/openscad/commit/5ea83e5117f5f3ac2197c63db69f523721b8fa85.patch",
             hash: "sha256-nfeUv0R+J95fyqnVC0HNeBVZnxVoisY1pcdII82qUSU=",
@@ -108,7 +95,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./boost-1.89.patch"),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               name: "mem_fun-to-mem_fn.patch",
               url: "https://github.com/openscad/openscad/commit/c9a1abbedfbf6dda9a23d3ad5844d11e5278a928.patch",
               hash: "sha256-Man9ledRREb7U+2UOQ0VkpiwbYQjyVOY21YaRFObZc8=",
@@ -164,7 +151,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir $out/Applications\nmv $out/bin/*.app $out/Applications\nln -s \"$out/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD\" \"$out/bin/openscad\"\n\nmv --target-directory=$out/Applications/OpenSCAD.app/Contents/Resources \\\n  $out/share/openscad/{examples,color-schemes,locale,libraries,fonts,templates}\n\nrmdir $out/share/openscad\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "3D parametric model compiler",
         longDescription: "OpenSCAD is a software for creating solid 3D CAD objects. It is free\nsoftware and available for Linux/UNIX, MS Windows and macOS.\n\nUnlike most free software for creating 3D models (such as the famous\napplication Blender) it does not focus on the artistic aspects of 3D\nmodelling but instead on the CAD aspects. Thus it might be the\napplication you are looking for when you are planning to create 3D models of\nmachine parts but pretty sure is not what you are looking for when you are more\ninterested in creating computer-animated movies.\n",
         homepage: "https://openscad.org/",
@@ -181,16 +168,16 @@ export default nix.lambda((args) => (() => {
         mainProgram: "openscad",
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             lib3mf_support: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-lib3mf-support-test`), nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               })), "echo \"cube([1, 1, 1]);\" | openscad -o cube.3mf -\necho \"import(\\\"cube.3mf\\\");\" | openscad -o cube-import.3mf -\nmv cube-import.3mf $out\n")),
           })))),
         withPackages: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             openscad: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             openscadPackages: openscadPackages,
           })))),

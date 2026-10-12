@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["name", 22, 7], ["url", 23, 7], ["sha256", 24, 7], ["excludes", 26, 7]], [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5], ["longDescription", 49, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, fetchurl: false, fetchpatch: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 22, 7], ["url", 23, 7], ["sha256", 24, 7], ["excludes", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5], ["longDescription", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bwm-ng",
       version: "0.6.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.gropp.org/bwm-ng/bwm-ng-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0ikzyvnb73msm9n7ripg1dsw9av1i0c7q2hi2173xsj8zyv559f1",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ncurses-6.3.patch",
             url: "https://github.com/vgropp/bwm-ng/commit/6a2087db6cc7ac5b5f667fcd17c262c079e8dcf2.patch",
             sha256: "1l5dii9d52v0x0sq458ybw7m9p8aan2vl94gwx5s8mgxsnbcmzzx",
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [ncurses]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Small and simple console-based live network and disk io bandwidth monitor",
         mainProgram: "bwm-ng",
         homepage: "http://www.gropp.org/?id=projects&sub=bwm-ng",

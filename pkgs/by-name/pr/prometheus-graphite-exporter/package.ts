@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["graphite", 33, 64]], [["tests", 33, 12]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["checkFlags", 21, 3], ["passthru", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["graphite", 33, 64]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 33, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["checkFlags", 21, 3], ["passthru", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "graphite-exporter";
       const version = "0.16.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "prometheus",
           repo: "graphite_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,21 +35,21 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { [nix.POS]: pos$2, graphite: nix.thunk(() => nix.attr(from, "graphite")) };
+          return { [nix.POS]: $pos[1], graphite: nix.thunk(() => nix.attr(from, "graphite")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Exporter for metrics exported in the Graphite plaintext protocol",
         homepage: "https://github.com/prometheus/graphite_exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "misterio77"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

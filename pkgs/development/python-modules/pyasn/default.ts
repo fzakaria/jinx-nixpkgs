@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]], [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["datasrc", 19, 3], ["postInstall", 26, 3], ["doCheck", 31, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchFromGitHub: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 42, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["datasrc", 19, 3], ["postInstall", 26, 3], ["doCheck", 31, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-otVfs+5HlHYJ9QIRylsLrEEahvPJNfuSyksLirfGaP8=",
         }))));
       const datasrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "hadiasghari",
           repo: "pyasn",
           rev: version,
@@ -38,7 +35,7 @@ cp $datasrc/data/* $out/${nix.sel(python, "sitePackages")}/pyasn/data
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pyasn"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Offline IP address to Autonomous System Number lookup module",
         homepage: "https://github.com/hadiasghari/pyasn",
         license: nix.thunk(() => (() => {
@@ -54,7 +51,7 @@ cp $datasrc/data/* $out/${nix.sel(python, "sitePackages")}/pyasn/data
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

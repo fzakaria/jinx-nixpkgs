@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["fetchSubmodules", 24, 5], ["hash", 25, 5]], [["package", 69, 7], ["command", 70, 7]], [["version", 68, 11]], [["tests", 68, 5], ["updateScript", 72, 5]], [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 84, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["cmakeFlags", 44, 3], ["postPatch", 48, 3], ["passthru", 67, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, boost: false, capstone_4: false, "double-conversion": false, graphviz: false, libsForQt5: false, testers: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["fetchSubmodules", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 69, 7], ["command", 70, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 68, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 68, 5], ["updateScript", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["cmakeFlags", 44, 3], ["postPatch", 48, 3], ["passthru", 67, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "edb",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eteran",
           repo: "edb-debugger",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,11 +50,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "# The build script checks for the presence of .git to determine whether\n# submodules were fetched and will throw an error if it's not there.\n# Avoid using leaveDotGit in the fetchFromGitHub options as it is non-deterministic.\nmkdir -p src/qhexview/.git lib/gdtoa-desktop/.git\n\n# CMake 3.1 is deprecated and is no longer supported by CMake > 4\n# https://github.com/NixOS/nixpkgs/issues/445447\nsubstituteInPlace CMakeLists.txt src/CMakeLists.txt src/test/CMakeLists.txt plugins/CMakeLists.txt plugins/*/CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required (VERSION 3.1)\" \\\n  \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace lib/CMakeLists.txt lib/libELF/CMakeLists.txt lib/libPE/CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required(VERSION 3.1)\" \\\n  \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace lib/gdtoa-desktop/CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required (VERSION 3.0)\" \\\n  \"cmake_minimum_required (VERSION 3.10)\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.str`env QT_QPA_PLATFORM=minimal ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} --version`),
             })))),
@@ -67,7 +62,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cross platform AArch32/x86/x86-64 debugger",
         mainProgram: "edb",
         homepage: "https://github.com/eteran/edb-debugger",

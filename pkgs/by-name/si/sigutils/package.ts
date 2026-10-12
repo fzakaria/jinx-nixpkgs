@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, fftwSinglePrec: false, libsndfile: false, volk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libsndfile = nix.arg($, "libsndfile");
   const volk = nix.arg($, "volk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sigutils",
       version: "unstable-2022-07-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BatchDrake",
           repo: "sigutils",
           rev: "1d7559d427aadd253dd825eef26bf15e54860c5f",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [fftwSinglePrec, libsndfile, volk]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small signal processing utility library",
         homepage: "https://github.com/BatchDrake/sigutils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

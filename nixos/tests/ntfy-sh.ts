@@ -2,33 +2,28 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ntfy-sh.nix", [[["base-url", 10, 35]], [["enable", 9, 26], ["settings", 10, 26], ["environmentFile", 13, 26]], [["ntfy-sh", 9, 18]], [["services", 9, 9]], [["machine", 6, 11]], [["name", 4, 5], ["nodes", 6, 5], ["testScript", 20, 5]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ntfy-sh.nix", [["base-url", 10, 35]]);
-const pos$2 = nix.positions(here + "/ntfy-sh.nix", [["enable", 9, 26], ["settings", 10, 26], ["environmentFile", 13, 26]]);
-const pos$3 = nix.positions(here + "/ntfy-sh.nix", [["ntfy-sh", 9, 18]]);
-const pos$4 = nix.positions(here + "/ntfy-sh.nix", [["services", 9, 9]]);
-const pos$5 = nix.positions(here + "/ntfy-sh.nix", [["machine", 6, 11]]);
-const pos$6 = nix.positions(here + "/ntfy-sh.nix", [["name", 4, 5], ["nodes", 6, 5], ["testScript", 20, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "ntfy-sh",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               "ntfy-sh": nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 enable: true,
-                settings: nix.thunk(() => ({ [nix.POS]: pos$1, "base-url": "http://localhost:2586" })),
+                settings: nix.thunk(() => ({ [nix.POS]: $pos[0], "base-url": "http://localhost:2586" })),
                 environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "ntfy.env", "NTFY_AUTH_DEFAULT_ACCESS='deny-all'\nNTFY_AUTH_USERS='user:$2a$12$W2v7IQhkayvJOYRpg6YEruxj.jUO3R2xQOU7s1vC3HzLLB9gSKJ9.:user'\nNTFY_AUTH_ACCESS='user:test:rw'\n")),
               })),
             })),

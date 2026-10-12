@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["shortName", 46, 7], ["fullName", 47, 7], ["url", 48, 7], ["free", 49, 7]], [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]], [["pname", 14, 3], ["version", 15, 3], ["strictDeps", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["buildInputs", 25, 3], ["postPatch", 33, 3], ["patches", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false, libxext: false, libxrandr: false, libxrender: false, xorgproto: false, config: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["shortName", 46, 7], ["fullName", 47, 7], ["url", 48, 7], ["free", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["strictDeps", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["buildInputs", 25, 3], ["postPatch", 33, 3], ["patches", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const config = nix.arg($, "config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "evilwm",
       version: "1.5",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.6809.org.uk/evilwm/evilwm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-YQSFJBPm1QZpNh3K3aWiXTnisrDJWmOEAiyQWVeidA8=",
         })))),
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace ./Makefile \\\n  --replace /usr $out \\\n  --replace \"CC = gcc\" \"#CC = gcc\"\n",
       patches: nix.thunk(() => nix.selOr(config, () => [], "evilwm", "patches")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.6809.org.uk/evilwm/",
         description: "Minimalist window manager for the X Window System",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             shortName: "evilwm",
             fullName: "Custom, inherited from aewm and 9wm",
             url: "https://www.6809.org.uk/evilwm/",

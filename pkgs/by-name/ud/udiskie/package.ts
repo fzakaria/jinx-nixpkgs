@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["homepage", 95, 5], ["changelog", 96, 5], ["description", 97, 5], ["longDescription", 98, 5], ["license", 112, 5], ["maintainers", 113, 5], ["mainProgram", 114, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 43, 3], ["build-system", 50, 3], ["dontWrapGApps", 54, 3], ["buildInputs", 56, 3], ["dependencies", 64, 3], ["postBuild", 70, 3], ["postInstall", 74, 3], ["preFixup", 82, 3], ["nativeCheckInputs", 86, 3], ["nativeInstallCheckInputs", 90, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, asciidoc: false, fetchFromGitHub: false, "gobject-introspection": false, gtk3: false, installShellFiles: false, keyutils: false, libappindicator: false, libnotify: false, librsvg: false, python3Packages: false, stdenv: false, udisks: false, versionCheckHook: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["changelog", 96, 5], ["description", 97, 5], ["longDescription", 98, 5], ["license", 112, 5], ["maintainers", 113, 5], ["mainProgram", 114, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 43, 3], ["build-system", 50, 3], ["dontWrapGApps", 54, 3], ["buildInputs", 56, 3], ["dependencies", 64, 3], ["postBuild", 70, 3], ["postInstall", 74, 3], ["preFixup", 82, 3], ["nativeCheckInputs", 86, 3], ["nativeInstallCheckInputs", 90, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "udiskie",
       version: "2.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coldfix",
           repo: "udiskie",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +64,7 @@ substituteInPlace udiskie/keyutils.py \\
       })()),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/coldfix/udiskie",
         changelog: nix.thunk(() => nix.str`https://github.com/coldfix/udiskie/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),
         description: "Removable disk automounter for udisks",

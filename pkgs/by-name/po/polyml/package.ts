@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["description", 58, 5], ["longDescription", 59, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["broken", 67, 5], ["maintainers", 68, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["strictDeps", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 42, 3], ["configureFlags", 44, 3], ["preInstall", 50, 3], ["doCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pkgsHostTarget: false, fetchFromGitHub: false, autoreconfHook: false, gmp: false, libffi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["longDescription", 59, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["broken", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["strictDeps", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 42, 3], ["configureFlags", 44, 3], ["preInstall", 50, 3], ["doCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const libffi = nix.arg($, "libffi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "polyml",
       version: "5.9.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "polyml",
           repo: "polyml",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Standard ML compiler and interpreter",
         longDescription: "Poly/ML is a full implementation of Standard ML.\n",
         homepage: "https://www.polyml.org/",

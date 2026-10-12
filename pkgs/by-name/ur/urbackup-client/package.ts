@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 19, 3], ["buildInputs", 26, 3], ["configureFlags", 32, 3], ["enableParallelBuilding", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, wxwidgets_3_2: false, zlib: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 19, 3], ["buildInputs", 26, 3], ["configureFlags", 32, 3], ["enableParallelBuilding", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "urbackup-client",
       version: "2.5.25",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://hndl.urbackup.org/Client/${nix.sel(finalAttrs, "version")}/urbackup-client-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-+xm2mBcTLMvrstCq2sLgJiU3zbFCassKvln3SMmRH9s=",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-embedded-cryptopp"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Easy to setup Open Source client/server backup system",
         longDescription: "An easy to setup Open Source client/server backup system, that through a combination of image and file backups accomplishes both data safety and a fast restoration time",
         homepage: "https://www.urbackup.org/index.html",

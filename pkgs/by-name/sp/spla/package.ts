@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]], [["pname", 30, 3], ["version", 31, 3], ["strictDeps", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["outputs", 43, 3], ["postPatch", 48, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 60, 3], ["cmakeFlags", 73, 3], ["preFixup", 84, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, mpi: false, blas: false, gfortran: false, llvmPackages: false, cudaPackages: false, rocmPackages: false, config: false, gpuBackend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["strictDeps", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["outputs", 43, 3], ["postPatch", 48, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 60, 3], ["cmakeFlags", 73, 3], ["preFixup", 84, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const gpuBackend = nix.argOr($, "gpuBackend", () => (nix.asBool(nix.sel(config, "cudaSupport")) ? "cuda" : (nix.asBool(nix.sel(config, "rocmSupport")) ? "rocm" : "none")));
   nix.assert_(nix.builtins.elem(gpuBackend, nix.thunk(() => ["none", "cuda", "rocm"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sp/spla/package.nix:23:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "spla",
       version: "1.6.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eth-cscs",
           repo: "spla",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(gpuBackend, "cuda")), "-DSPLA_GPU_BACKEND=CUDA"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(gpuBackend, "rocm")), nix.thunk(() => ["-DSPLA_GPU_BACKEND=ROCM"]))))),
       preFixup: "substituteInPlace $out/lib/cmake/SPLA/SPLASharedTargets-release.cmake \\\n  --replace-fail \"\\${_IMPORT_PREFIX}\" \"$out\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Specialized Parallel Linear Algebra, providing distributed GEMM functionality for specific matrix distributions with optional GPU acceleration",
         homepage: "https://github.com/eth-cscs/spla",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["url", 29, 7], ["hash", 30, 7], ["excludes", 31, 7]], [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]], [["name", 49, 7], ["url", 50, 7], ["hash", 51, 7], ["includes", 52, 7]], [["doFakeLibgcc", 72, 7]], [["NIX_CFLAGS_COMPILE", 83, 5]], [["description", 96, 5], ["longDescription", 97, 5], ["homepage", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5]], [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 21, 3], ["patches", 26, 3], ["postPatch", 59, 3], ["strictDeps", 63, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 67, 3], ["configureFlags", 76, 3], ["env", 81, 3], ["doCheck", 86, 3], ["enableParallelBuilding", 88, 3], ["enableParallelChecking", 91, 3], ["__structuredAttrs", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchurl: false, boost: false, updateAutotoolsGnuConfigScriptsHook: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7], ["excludes", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 49, 7], ["url", 50, 7], ["hash", 51, 7], ["includes", 52, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["doFakeLibgcc", 72, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 83, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 96, 5], ["longDescription", 97, 5], ["homepage", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 21, 3], ["patches", 26, 3], ["postPatch", 59, 3], ["strictDeps", 63, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 67, 3], ["configureFlags", 76, 3], ["env", 81, 3], ["doCheck", 86, 3], ["enableParallelBuilding", 88, 3], ["enableParallelChecking", 91, 3], ["__structuredAttrs", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const updateAutotoolsGnuConfigScriptsHook = nix.arg($, "updateAutotoolsGnuConfigScriptsHook");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "source-highlight",
       version: "3.1.9",
       outputs: nix.thunk(() => ["out", "doc", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/src-highlite/source-highlight-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "148w47k3zswbxvhg83z38ifi85f9dqcpg7icvvw1cm6bg21x4zrs",
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.savannah.gnu.org/cgit/src-highlite.git/patch/?id=904949c9026cb772dc93fbe0947a252ef47127f4",
             hash: "sha256-h9DyD+pmlQT5dmKjWI9t0gCIYHe7pYkP55LnOqsE0vI=",
             excludes: nix.thunk(() => ["ChangeLog"]),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "gcc-12.patch",
             url: "https://git.savannah.gnu.org/cgit/src-highlite.git/patch/?id=ab9fe5cb9b85c5afab94f2a7f4b6d7d473c14ee9",
             hash: "sha256-wmSLgLnLuFE+IC6AjxzZp/HEnaOCS1VfY2cac0T7Y+w=",
@@ -47,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./gcc16-disambiguate-regex-ranges-test.patch"),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "remove-register-keyword",
               url: "https://git.savannah.gnu.org/cgit/src-highlite.git/patch/?id=416b39758dba2c74515584514a959ad1b0ad50d1",
               hash: "sha256-R5A7IGHhU82EqceMCsuNBanhRz4dFVqiaH8637dr7jw=",
@@ -57,18 +50,18 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), "substituteInPlace Makefile.in --replace-fail \"src doc tests\" \"src tests\"\n")),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [updateAutotoolsGnuConfigScriptsHook]),
-      buildInputs: nix.thunk(() => nix.concat([boost], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.selOr(stdenv, () => false, "targetPlatform", "useLLVM")), nix.thunk(() => nix.app(nix.sel(llvmPackages, "compiler-rt", "override"), nix.thunk(() => ({ [nix.POS]: pos$5, doFakeLibgcc: true }))))))),
+      buildInputs: nix.thunk(() => nix.concat([boost], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.selOr(stdenv, () => false, "targetPlatform", "useLLVM")), nix.thunk(() => nix.app(nix.sel(llvmPackages, "compiler-rt", "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], doFakeLibgcc: true }))))))),
       configureFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--with-boost=${nix.sel(boost, "out")}`),
         nix.thunk(() => nix.str`--with-bash-completion=${nix.builtins.placeholder("out")}/share/bash-completion/completions`),
       ]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(stdenv, () => false, "targetPlatform", "useLLVM")), nix.thunk(() => ({ [nix.POS]: pos$6, NIX_CFLAGS_COMPILE: "-lgcc" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(stdenv, () => false, "targetPlatform", "useLLVM")), nix.thunk(() => ({ [nix.POS]: $pos[5], NIX_CFLAGS_COMPILE: "-lgcc" })))),
       doCheck: true,
       enableParallelBuilding: true,
       enableParallelChecking: false,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Source code renderer with syntax highlighting",
         longDescription: "GNU Source-highlight, given a source file, produces a document\nwith syntax highlighting.\n",
         homepage: "https://www.gnu.org/software/src-highlite/",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["finalAttrs", 68, 54]], [["updateScript", 68, 12]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["teams", 74, 5], ["platforms", 75, 5]], [["pname", 20, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 41, 3], ["cmakeFlags", 47, 3], ["postPatch", 58, 3], ["postBuild", 64, 3], ["passthru", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, "rocm-cmake": false, "rocm-docs-core": false, half: false, clr: false, openmp: false, boost: false, python3Packages: false, buildDocs: true, useCPU: true, gpuTargets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["finalAttrs", 68, 54]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 68, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["teams", 74, 5], ["platforms", 75, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 41, 3], ["cmakeFlags", 47, 3], ["postPatch", 58, 3], ["postBuild", 64, 3], ["passthru", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const useCPU = nix.argOr($, "useCPU", () => false);
   const gpuTargets = nix.argOr($, "gpuTargets", () => nix.selOr(clr, () => [], "localGpuTargets"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`rpp-${(nix.asBool(useCPU) ? "cpu" : "hip")}`),
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rpp",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -54,11 +50,11 @@ substituteInPlace CMakeLists.txt \\
 `))),
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildDocs, "python3 -m sphinx -T -E -b html -d _build/doctrees -D language=en ../docs _build/html\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Comprehensive high-performance computer vision library for AMD processors",
         homepage: "https://github.com/ROCm/rpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

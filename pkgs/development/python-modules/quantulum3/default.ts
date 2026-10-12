@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["version", 21, 11], ["pname", 21, 19], ["pyproject", 22, 3], ["src", 25, 3], ["propagatedBuildInputs", 32, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, inflect: false, num2words: false, numpy: false, scipy: false, "scikit-learn": false, joblib: false, wikipedia: false, stemming: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 21, 11], ["pname", 21, 19], ["pyproject", 22, 3], ["src", 25, 3], ["propagatedBuildInputs", 32, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pname = "quantulum3";
   const version = "0.10.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       pname: pname,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nielstron",
           repo: "quantulum3",
           rev: "9dafd76d3586aa5ea1b96164d86c73037e827294",
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["quantulum3"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for unit extraction - fork of quantulum for python3",
         mainProgram: "quantulum3-training",
         homepage: "https://github.com/nielstron/quantulum3",

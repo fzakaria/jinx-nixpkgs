@@ -2,23 +2,21 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/npm-deps.nix", [["path", 3, 5], ["hash", 4, 5]]);
-const pos$2 = nix.positions(here + "/npm-deps.nix", [["path", 7, 5], ["hash", 8, 5]]);
-const pos$3 = nix.positions(here + "/npm-deps.nix", [["path", 11, 5], ["hash", 12, 5]]);
+const $pos = nix.positions(here + "/npm-deps.nix", [[["path", 3, 5], ["hash", 4, 5]], [["path", 7, 5], ["hash", 8, 5]], [["path", 11, 5], ["hash", 12, 5]]]);
 
 export default nix.thunk(() => [
   nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     path: "src/Avalonia.DesignerSupport/Remote/HtmlTransport/webapp",
     hash: "sha256-gncHW5SMtAUMtvHGZ2nUc0KEjxX24DZkAnmeHgo1Roc=",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     path: "tests/Avalonia.DesignerSupport.Tests/Remote/HtmlTransport/webapp",
     hash: "sha256-MiznlOJ+hIO1cUswy9oGNHP6MWfx+FDLKVT8qcmg8vo=",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     path: "src/Browser/Avalonia.Browser/webapp",
     hash: "sha256-ublhqSpTJUgb6XKdHBnjPpgw7GXs57jlWSJNgqbdR78=",
   })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]], [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["teams", 67, 5], ["mainProgram", 68, 5]], [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 46, 3], ["postPatch", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false, meson: false, ninja: false, vala: false, "pkg-config": false, libgee: false, gtk3: false, glib: false, gettext: false, "gsettings-desktop-schemas": false, "gobject-introspection": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["teams", 67, 5], ["mainProgram", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 46, 3], ["postPatch", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.2.0";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "granite",
           rev: version,
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [glib, gsettings_desktop_schemas, gtk3, libgee]);
       const postPatch = "chmod +x meson/post_install.py\npatchShebangs meson/post_install.py\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extension to GTK used by elementary OS",
         longDescription: "Granite is a companion library for GTK and GLib. Among other things, it provides complex widgets and convenience functions\ndesigned for use in apps built for elementary OS.\n",
         homepage: "https://github.com/elementary/granite",
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "granite-demo",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         outputs,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["maintainers", 115, 5], ["mainProgram", 118, 5]], [["pname", 19, 3], ["version", 20, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 26, 3], ["src", 28, 3], ["__structuredAttrs", 35, 3], ["modRoot", 37, 3], ["subPackages", 38, 3], ["vendorHash", 39, 3], ["proxyVendor", 41, 3], ["patches", 43, 3], ["postPatch", 45, 3], ["ldflags", 72, 3], ["postBuild", 79, 3], ["postInstall", 87, 3], ["postFixup", 92, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false, wirelesstools: false, makeWrapper: false, "wireguard-tools": false, openvpn: false, obfs4: false, iproute2: false, "dnscrypt-proxy": false, v2ray: false, iptables: false, gawk: false, "util-linux": false, liboqs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["maintainers", 115, 5], ["mainProgram", 118, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 26, 3], ["src", 28, 3], ["__structuredAttrs", 35, 3], ["modRoot", 37, 3], ["subPackages", 38, 3], ["vendorHash", 39, 3], ["proxyVendor", 41, 3], ["patches", 43, 3], ["postPatch", 45, 3], ["ldflags", 72, 3], ["postBuild", 79, 3], ["postInstall", 87, 3], ["postFixup", 92, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const liboqs = nix.arg($, "liboqs");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ivpn-service",
       version: "3.15.15",
       buildInputs: nix.thunk(() => [wirelesstools, liboqs]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ivpn",
           repo: "desktop-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +84,7 @@ wrapProgram "$out/bin/ivpn-service" \\
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [iptables, gawk, util_linux, iproute2]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Official IVPN Desktop app service daemon",
         homepage: "https://www.ivpn.net/apps",
         changelog: nix.thunk(() => nix.str`https://github.com/ivpn/desktop-app/releases/tag/v${nix.sel(finalAttrs, "version")}`),

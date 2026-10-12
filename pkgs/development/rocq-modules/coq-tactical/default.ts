@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["coq-tactical", 13, 18]], [["case", 18, 9], ["out", 19, 9]], [["rev", 24, 5], ["hash", 25, 5]], [["2022-02-15", 23, 11]], [["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 9, 3], ["owner", 10, 3], ["version", 12, 11], ["displayVersion", 13, 3], ["defaultVersion", 14, 3], ["release", 23, 3], ["installPhase", 28, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { coq: false, lib: false, mkCoqDerivation: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["coq-tactical", 13, 18]]);
-const pos$2 = nix.positions(here + "/default.nix", [["case", 18, 9], ["out", 19, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev", 24, 5], ["hash", 25, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["2022-02-15", 23, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["owner", 10, 3], ["version", 12, 11], ["displayVersion", 13, 3], ["defaultVersion", 14, 3], ["release", 23, 3], ["installPhase", 28, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,25 +12,25 @@ export default nix.lambda((args) => (() => {
   const mkCoqDerivation = nix.arg($, "mkCoqDerivation");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "coq-tactical",
       owner: "tchajed",
       version: version,
-      displayVersion: nix.thunk(() => ({ [nix.POS]: pos$1, "coq-tactical": (v) => nix.str`unstable-${v}` })),
+      displayVersion: nix.thunk(() => ({ [nix.POS]: $pos[0], "coq-tactical": (v) => nix.str`unstable-${v}` })),
       defaultVersion: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.11", "8.20")),
               out: "2022-02-15",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "2022-02-15": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           rev: "7c26f9a017395c240845184dfed23489d29dbae5",
           hash: "sha256-SNoQzGYw5tuabHUDwMAyUsAa/WNoYjmyR85b7a0hVl4=",
         })),
@@ -45,7 +40,7 @@ mkdir -p $COQLIB/user-contrib/Tactical
 cp -pR src/* $COQLIB/user-contrib/Tactical
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Library of Coq proof automation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 25, 7], ["homepage", 26, 7], ["license", 27, 7], ["maintainers", 28, 7], ["mainProgram", 30, 5]], [["pname", 7, 3], ["version", 9, 5], ["src", 10, 5], ["postPatch", 11, 5], ["passthru", 12, 5], ["subPackages", 15, 3], ["vendorHash", 17, 3], ["postInstall", 19, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { buildGoModule: false, plikd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 25, 7], ["homepage", 26, 7], ["license", 27, 7], ["maintainers", 28, 7], ["mainProgram", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 9, 5], ["src", 10, 5], ["postPatch", 11, 5], ["passthru", 12, 5], ["subPackages", 15, 3], ["vendorHash", 17, 3], ["postInstall", 19, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildGoModule = nix.arg($, "buildGoModule");
   const plikd = nix.arg($, "plikd");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "plik",
       version: nix.thunk(() => nix.attr(plikd, "version")),
       src: nix.thunk(() => nix.attr(plikd, "src")),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(plikd, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

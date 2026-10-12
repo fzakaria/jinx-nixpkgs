@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 12, 5], ["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["mainProgram", 26, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitLab: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 12, 5], ["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["mainProgram", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "taschenrechner",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.fem-net.de",
           owner: "mabl",
           repo: "taschenrechner",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-1DNEsVwrGekCuQTgBNAe+j/4JKk0EFgkSklTXAjwFXU=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cli-calculator written in Rust",
         homepage: "https://gitlab.fem-net.de/mabl/taschenrechner",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["homepage", 60, 5], ["description", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5], ["platforms", 65, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["cmakeDir", 40, 3], ["patches", 42, 3], ["installPhase", 46, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cryptopp: false, libusb1: false, makeWrapper: false, "pkg-config": false, qt5: false, cmake: false, withEspeak: true, espeak: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5], ["platforms", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["cmakeDir", 40, 3], ["patches", 42, 3], ["installPhase", 46, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const withEspeak = nix.argOr($, "withEspeak", () => false);
   const espeak = nix.argOr($, "espeak", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rockbox-utility",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.rockbox.org/rbutil/source/RockboxUtility-v${nix.sel(finalAttrs, "version")}-src.tar.bz2`),
           hash: "sha256-guNO11a0d30RexPEAAQGIgV9W17zgTjZ/LNz/oUn4HM=",
         })))),
@@ -55,7 +53,7 @@ ${nix.app(nix.sel(lib, "optionalString"), withEspeak, nix.thunk(() => nix.str`--
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.rockbox.org",
         description: "Open source firmware for digital music players",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

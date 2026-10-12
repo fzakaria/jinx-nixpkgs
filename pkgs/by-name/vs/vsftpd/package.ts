@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]], [["NIX_LDFLAGS", 59, 7]], [["vsftpd", 71, 36]], [["tests", 71, 5]], [["description", 75, 5], ["mainProgram", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 23, 3], ["patches", 31, 3], ["postPatch", 42, 3], ["makeFlags", 55, 3], ["env", 59, 3], ["enableParallelBuilding", 68, 3], ["passthru", 70, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, libcap: false, libseccomp: false, openssl: false, pam: false, libxcrypt: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["vsftpd", 71, 36]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 75, 5], ["mainProgram", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 23, 3], ["patches", 31, 3], ["postPatch", 42, 3], ["makeFlags", 55, 3], ["env", 59, 3], ["enableParallelBuilding", 68, 3], ["passthru", 70, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "vsftpd",
       version: "3.0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://security.appspot.com/downloads/vsftpd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-JrYCrkVLC6bZnvRKCba54N+n9nIoEGc23x8njHC8kdM=",
         })))),
@@ -36,7 +30,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./CVE-2015-1419.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "vsftpd-correct-the-definition-of-setup_bio_callbacks-in-ssl.patch",
             url: "https://src.fedoraproject.org/rpms/vsftpd/raw/c31087744900967ff4d572706a296bf6c8c4a68e/f/0076-Correct-the-definition-of-setup_bio_callbacks-in-ssl.patch",
             hash: "sha256-eYiY2eKQ+qS3CiRZYGuRHcnAe32zLDdb/GwF6NyHch4=",
@@ -45,16 +39,16 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i \"/VSF_BUILD_SSL/s/^#undef/#define/\" builddefs.h\n\nsubstituteInPlace Makefile \\\n  --replace -dirafter \"\" \\\n  --replace /usr $out \\\n  --replace /etc $out/etc \\\n  --replace \"-Werror\" \"\"\n\n\nmkdir -p $out/sbin $out/man/man{5,8}\n",
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lcrypt", "-lssl", "-lcrypto", "-lpam", "-lcap", "-lseccomp"]))),
       })),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, vsftpd: nix.thunk(() => nix.attr(nixosTests, "vsftpd")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], vsftpd: nix.thunk(() => nix.attr(nixosTests, "vsftpd")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Very secure FTP daemon",
         mainProgram: "vsftpd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

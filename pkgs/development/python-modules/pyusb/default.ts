@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["sha256", 17, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["postPatch", 23, 3], ["doCheck", 30, 3], ["pythonImportsCheck", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchPypi: false, buildPythonPackage: false, libusb1: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["postPatch", 23, 3], ["doCheck", 30, 3], ["pythonImportsCheck", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "sha256-OvBwtgdGfBwWT0nVsMqr6Kx42+2SmNcDqNv530BS0X4=",
@@ -33,7 +31,7 @@ sed -i -e "s|find_library=None|find_library=lambda _:\\"$libusb\\"|" usb/backend
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["usb"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python USB access module (wraps libusb 1.0)",
         homepage: "https://pyusb.github.io/pyusb/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -43,7 +41,7 @@ sed -i -e "s|find_library=None|find_library=lambda _:\\"$libusb\\"|" usb/backend
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

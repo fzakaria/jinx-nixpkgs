@@ -2,38 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hash", 12, 21]], [["hash", 13, 21]], [["hash", 14, 21]], [["hash", 15, 21]], [["hash", 16, 21]], [["hash", 17, 21]], [["hash", 18, 21]], [["hash", 19, 21]], [["hash", 20, 21]], [["hash", 21, 21]], [["hash", 22, 20]], [["8.20.0+0.20.0", 12, 5], ["8.19.0+0.19.3", 13, 5], ["8.18.0+0.18.3", 14, 5], ["8.17.0+0.17.3", 15, 5], ["8.16.0+0.16.3", 16, 5], ["8.15.0+0.15.0", 17, 5], ["8.14.0+0.14.0", 18, 5], ["8.13.0+0.13.0", 19, 5], ["8.12.0+0.12.1", 20, 5], ["8.11.0+0.11.1", 21, 5], ["8.10.0+0.7.2", 22, 5]], [["case", 34, 7], ["out", 35, 7]], [["case", 38, 7], ["out", 39, 7]], [["case", 42, 7], ["out", 43, 7]], [["case", 46, 7], ["out", 47, 7]], [["case", 50, 7], ["out", 51, 7]], [["case", 54, 7], ["out", 55, 7]], [["case", 58, 7], ["out", 59, 7]], [["case", 62, 7], ["out", 63, 7]], [["case", 66, 7], ["out", 67, 7]], [["case", 70, 7], ["out", 71, 7]], [["case", 74, 7], ["out", 75, 7]], [["homepage", 96, 5], ["description", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]], [["pname", 27, 3], ["owner", 28, 3], ["repo", 29, 3], ["version", 30, 11], ["release", 30, 19], ["defaultVersion", 32, 3], ["useDune", 79, 3], ["propagatedBuildInputs", 81, 3], ["installPhase", 89, 3], ["meta", 95, 3]], [["version", 109, 66]], [["url", 116, 11], ["hash", 119, 11]], [["ppx_deriving", 154, 53]], [["ppx_deriving", 155, 44]], [["src", 115, 9], ["patches", 122, 9], ["propagatedBuildInputs", 150, 9]], [["propagatedBuildInputs", 161, 9]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, mkCoqDerivation: false, coq: false, "coq-lsp": false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hash", 12, 21]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 13, 21]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 14, 21]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 15, 21]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 16, 21]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 17, 21]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 18, 21]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hash", 19, 21]]);
-const pos$9 = nix.positions(here + "/default.nix", [["hash", 20, 21]]);
-const pos$10 = nix.positions(here + "/default.nix", [["hash", 21, 21]]);
-const pos$11 = nix.positions(here + "/default.nix", [["hash", 22, 20]]);
-const pos$12 = nix.positions(here + "/default.nix", [["8.20.0+0.20.0", 12, 5], ["8.19.0+0.19.3", 13, 5], ["8.18.0+0.18.3", 14, 5], ["8.17.0+0.17.3", 15, 5], ["8.16.0+0.16.3", 16, 5], ["8.15.0+0.15.0", 17, 5], ["8.14.0+0.14.0", 18, 5], ["8.13.0+0.13.0", 19, 5], ["8.12.0+0.12.1", 20, 5], ["8.11.0+0.11.1", 21, 5], ["8.10.0+0.7.2", 22, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["case", 34, 7], ["out", 35, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["case", 38, 7], ["out", 39, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["case", 42, 7], ["out", 43, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["case", 46, 7], ["out", 47, 7]]);
-const pos$17 = nix.positions(here + "/default.nix", [["case", 50, 7], ["out", 51, 7]]);
-const pos$18 = nix.positions(here + "/default.nix", [["case", 54, 7], ["out", 55, 7]]);
-const pos$19 = nix.positions(here + "/default.nix", [["case", 58, 7], ["out", 59, 7]]);
-const pos$20 = nix.positions(here + "/default.nix", [["case", 62, 7], ["out", 63, 7]]);
-const pos$21 = nix.positions(here + "/default.nix", [["case", 66, 7], ["out", 67, 7]]);
-const pos$22 = nix.positions(here + "/default.nix", [["case", 70, 7], ["out", 71, 7]]);
-const pos$23 = nix.positions(here + "/default.nix", [["case", 74, 7], ["out", 75, 7]]);
-const pos$24 = nix.positions(here + "/default.nix", [["homepage", 96, 5], ["description", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]]);
-const pos$25 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["owner", 28, 3], ["repo", 29, 3], ["version", 30, 11], ["release", 30, 19], ["defaultVersion", 32, 3], ["useDune", 79, 3], ["propagatedBuildInputs", 81, 3], ["installPhase", 89, 3], ["meta", 95, 3]]);
-const pos$26 = nix.positions(here + "/default.nix", [["version", 109, 66]]);
-const pos$27 = nix.positions(here + "/default.nix", [["url", 116, 11], ["hash", 119, 11]]);
-const pos$28 = nix.positions(here + "/default.nix", [["ppx_deriving", 154, 53]]);
-const pos$29 = nix.positions(here + "/default.nix", [["ppx_deriving", 155, 44]]);
-const pos$30 = nix.positions(here + "/default.nix", [["src", 115, 9], ["patches", 122, 9], ["propagatedBuildInputs", 150, 9]]);
-const pos$31 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 161, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,54 +14,54 @@ export default nix.lambda((args) => (() => {
   const coq_lsp = nix.arg($, "coq-lsp");
   const version = nix.argOr($, "version", () => null);
   const release = nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     "8.20.0+0.20.0": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       hash: "sha256-Mll3m7CVfh52yA5zACDzMZk8lwhOONMMliqQ2l/ObKI=",
     })),
     "8.19.0+0.19.3": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       hash: "sha256-QWRXBTcjtAGskZBeLIuX7WDE95KfH6SxV8MJSMx8B2Q=",
     })),
     "8.18.0+0.18.3": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       hash: "sha256-3JGZCyn62LYJVpfXiwnSMxvdA2vQNTL7li2ZBPcjF0M=",
     })),
     "8.17.0+0.17.3": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       hash: "sha256-XolzpJd8zs4LLyJO4eWvCiAJ0HJSGBJTGVSBClQRGnw=",
     })),
     "8.16.0+0.16.3": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       hash: "sha256-22Kawp8jAsgyBTppwN5vmN7zEaB1QfPs0qKxd6x/7Uc=",
     })),
     "8.15.0+0.15.0": nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       hash: "sha256:1vh99ya2dq6a8xl2jrilgs0rpj4j227qx8zvzd2v5xylx0p4bbrp",
     })),
     "8.14.0+0.14.0": nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       hash: "sha256:1kh80yb791yl771qbqkvwhbhydfii23a7lql0jgifvllm2k8hd8d",
     })),
     "8.13.0+0.13.0": nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       hash: "sha256:0k69907xn4k61w4mkhwf8kh8drw9pijk9ynijsppihw98j8w38fy",
     })),
     "8.12.0+0.12.1": nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       hash: "sha256:048x3sgcq4h845hi6hm4j4dsfca8zfj70dm42w68n63qcm6xf9hn",
     })),
     "8.11.0+0.11.1": nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       hash: "sha256:1phmh99yqv71vlwklqgfxiq2vj99zrzxmryj2j4qvg5vav3y3y6c",
     })),
     "8.10.0+0.7.2": nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       hash: "sha256:1ljzm63hpd0ksvkyxcbh8rdf7p90vg91gb4h0zz0941v1zh40k8c",
     })),
   }));
   return nix.app(nix.sel(nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       pname: "serapi",
       owner: "ejgallego",
       repo: "coq-serapi",
@@ -99,57 +69,57 @@ export default nix.lambda((args) => (() => {
       release: release,
       defaultVersion: nix.thunk(() => nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             case: nix.thunk(() => nix.app(nix.sel(lib, "versions", "isEq"), "8.20")),
             out: "8.20.0+0.20.0",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             case: nix.thunk(() => nix.app(nix.sel(lib, "versions", "isEq"), "8.19")),
             out: "8.19.0+0.19.3",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             case: nix.thunk(() => nix.app(nix.sel(lib, "versions", "isEq"), "8.18")),
             out: "8.18.0+0.18.3",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             case: nix.thunk(() => nix.app(nix.sel(lib, "versions", "isEq"), "8.17")),
             out: "8.17.0+0.17.3",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             case: nix.thunk(() => nix.app(nix.sel(lib, "versions", "isEq"), "8.16")),
             out: "8.16.0+0.16.3",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             case: nix.thunk(() => nix.app(nix.sel(lib, "versions", "isEq"), "8.15")),
             out: "8.15.0+0.15.0",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             case: nix.thunk(() => nix.app(nix.sel(lib, "versions", "isEq"), "8.14")),
             out: "8.14.0+0.14.0",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             case: nix.thunk(() => nix.app(nix.sel(lib, "versions", "isEq"), "8.13")),
             out: "8.13.0+0.13.0",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             case: nix.thunk(() => nix.app(nix.sel(lib, "versions", "isEq"), "8.12")),
             out: "8.12.0+0.12.1",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             case: nix.thunk(() => nix.app(nix.sel(lib, "versions", "isEq"), "8.11")),
             out: "8.11.0+0.11.1",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             case: nix.thunk(() => nix.app(nix.sel(lib, "versions", "isEq"), "8.10")),
             out: "8.10.0+0.7.2",
           })),
@@ -167,7 +137,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\ndune install --prefix $out --libdir $OCAMLFIND_DESTDIR coq-serapi\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         homepage: "https://github.com/ejgallego/coq-serapi",
         description: "SerAPI is a library for machine-to-machine interaction with the Coq proof assistant",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -180,12 +150,12 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
     }))), "overrideAttrs"), (o) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "8.19.0+0.19.3", nix.thunk(() => nix.sel(o, "version")))) && nix.asBool(!nix.eq(nix.sel(o, "version"), "dev")))) ? (() => {
-      const ppx_deriving = nix.thunk(() => nix.app(nix.sel(coq, "ocamlPackages", "ppx_deriving", "override"), nix.thunk(() => ({ [nix.POS]: pos$26, version: "5.2.1" }))));
+      const ppx_deriving = nix.thunk(() => nix.app(nix.sel(coq, "ocamlPackages", "ppx_deriving", "override"), nix.thunk(() => ({ [nix.POS]: $pos[25], version: "5.2.1" }))));
       const version_1 = nix.thunk(() => nix.attr(o, "version"));
       return {
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             url: nix.thunk(() => nix.str`https://github.com/ejgallego/coq-serapi/releases/download/${version_1}/coq-serapi-${(nix.asBool(nix.eq(version_1, "8.11.0+0.11.1")) ? nix.force(version_1) : nix.builtins.replaceStrings(nix.thunk(() => ["+"]), nix.thunk(() => ["."]), version_1))}.tbz`),
             hash: nix.thunk(() => nix.sel(release, nix.key(nix.str`${version_1}`), "hash")),
           })))),
@@ -194,15 +164,15 @@ export default nix.lambda((args) => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(coq, "ocamlPackages")), null);
           return [
             ppx_deriving,
-            nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "ppx_deriving_yojson"), "override"), nix.thunk(() => ({ [nix.POS]: pos$28, ppx_deriving: ppx_deriving })))),
-            nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "ppx_import"), "override"), nix.thunk(() => ({ [nix.POS]: pos$29, ppx_deriving: ppx_deriving })))),
+            nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "ppx_deriving_yojson"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[27], ppx_deriving: ppx_deriving })))),
+            nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "ppx_import"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[28], ppx_deriving: ppx_deriving })))),
             nix.thunk(() => nix.lookup(w, "yojson")),
             nix.thunk(() => nix.lookup(w, "zarith")),
           ];
         })())),
       };
     })() : {
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "propagatedBuildInputs"), [coq_lsp])),
     }));
 })(), formals$1);

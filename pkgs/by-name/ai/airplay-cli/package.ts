@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 31, 5], ["fetchSubmodules", 32, 5], ["hash", 33, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5], ["sourceProvenance", 74, 5]], [["pname", 18, 3], ["version", 21, 3], ["__structuredAttrs", 23, 3], ["strictDeps", 24, 3], ["src", 26, 3], ["postPatch", 36, 3], ["buildInputs", 53, 3], ["makeFlags", 57, 3], ["installPhase", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, openssl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 31, 5], ["fetchSubmodules", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5], ["sourceProvenance", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 21, 3], ["__structuredAttrs", 23, 3], ["strictDeps", 24, 3], ["src", 26, 3], ["postPatch", 36, 3], ["buildInputs", 53, 3], ["makeFlags", 57, 3], ["installPhase", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const host = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "linux" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "macos" : nix.builtins.throw("libraop does not support this platform, yet"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "airplay-cli",
       version: "0.5.5",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "music-assistant",
           repo: "airplay-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +42,7 @@ substituteInPlace libraop/crosstools/src/cross_ssl.c \\
 cp bin/cliairplay-${host}-${nix.sel(stdenv, "hostPlatform", "uname", "processor")} $out/bin/cliairplay
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unified command-line binary for streaming to AirPlay 1 (RAOP) and AirPlay 2 devices",
         homepage: "https://github.com/music-assistant/airplay-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

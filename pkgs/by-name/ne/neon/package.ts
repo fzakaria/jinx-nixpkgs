@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["sha256", 30, 5]], [["compressionSupport", 56, 24], ["sslSupport", 56, 43]], [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["platforms", 63, 5], ["license", 64, 5]], [["version", 25, 3], ["pname", 26, 3], ["src", 28, 3], ["patches", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 36, 3], ["strictDeps", 43, 3], ["configureFlags", 45, 3], ["preConfigure", 52, 3], ["passthru", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libxml2: false, "pkg-config": false, compressionSupport: true, zlib: true, sslSupport: true, openssl: true, static: true, shared: true, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["compressionSupport", 56, 24], ["sslSupport", 56, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["platforms", 63, 5], ["license", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 25, 3], ["pname", 26, 3], ["src", 28, 3], ["patches", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 36, 3], ["strictDeps", 43, 3], ["configureFlags", 45, 3], ["preConfigure", 52, 3], ["passthru", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.37.1";
       const pname = "neon";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://notroj.github.io/${pname}/${pname}-${version}.tar.gz`),
           sha256: "sha256-qZtyYlJaRU0QZc923RckD9gI38TvFWNpkP+DpdDZ50A=",
         }))));
@@ -46,12 +43,12 @@ export default nix.lambda((args) => (() => {
       ]);
       const preConfigure = "export PKG_CONFIG=\"$(command -v \"$PKG_CONFIG\")\"\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         compressionSupport: compressionSupport,
         sslSupport: sslSupport,
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "HTTP and WebDAV client library",
         mainProgram: "neon-config",
         homepage: "https://notroj.github.io/neon/",
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version,
         pname,
         src,

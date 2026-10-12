@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["NIX_CFLAGS_COMPILE", 62, 7]], [["extraArgs", 87, 7]], [["package", 90, 7]], [["version", 89, 11]], [["updateScript", 86, 5], ["tests", 89, 5]], [["changelog", 95, 5], ["description", 96, 5], ["longDescription", 97, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["mainProgram", 112, 5], ["platforms", 113, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["preConfigure", 55, 3], ["env", 62, 3], ["passthru", 85, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libressl: false, libbsd: false, libevent: false, libuuid: false, libossp_uuid: false, libmd: false, zlib: false, ncurses: false, bison: false, autoPatchelfHook: false, testers: false, signify: false, "apple-sdk_15": false, "nix-update-script": false, withSsh: true, openssh: false, defaultEditor: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 87, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 90, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 89, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 86, 5], ["tests", 89, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 95, 5], ["description", 96, 5], ["longDescription", 97, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["mainProgram", 112, 5], ["platforms", 113, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["preConfigure", 55, 3], ["env", 62, 3], ["passthru", 85, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const defaultEditor = nix.argOr($, "defaultEditor", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "got",
       version: "0.129",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gameoftrees.org/releases/portable/got-portable-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Qg8um+iLXn3jOyR/auIbkYwRPM6yy5qUs3pG1RTzCj4=",
         })))),
@@ -48,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libressl, libbsd, libevent, libuuid, libmd, zlib, ncurses], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libossp_uuid, apple_sdk_15])))),
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# The configure script assumes dependencies on Darwin are installed via\n# Homebrew or MacPorts and hardcodes assumptions about the paths of\n# dependencies which fails the nixpkgs configurePhase.\nsubstituteInPlace configure --replace-fail 'xdarwin' 'xhomebrew'\n")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(defaultEditor, null)), nix.thunk(() => [
               nix.thunk(() => nix.str`-DGOT_DEFAULT_EDITOR="${nix.app(nix.sel(lib, "getExe"), defaultEditor)}"`),
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), withSsh, nix.thunk(() => [
@@ -59,21 +52,21 @@ export default nix.lambda((args) => (() => {
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=implicit-function-declaration", "-Wno-error=int-conversion"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-DHAVE_STRMODE=1", "-include getopt.h"]))))))))),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--url=https://github.com/ThomasAdam/got-portable"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: "https://gameoftrees.org/releases/CHANGES",
         description: "Version control system which prioritizes ease of use and simplicity over flexibility",
         longDescription: "Game of Trees (Got) is a version control system which prioritizes\nease of use and simplicity over flexibility.\n\nGot uses Git repositories to store versioned data. Git can be used\nfor any functionality which has not yet been implemented in\nGot. It will always remain possible to work with both Got and Git\non the same repository.\n",

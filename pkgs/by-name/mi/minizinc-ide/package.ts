@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]], [["name", 46, 7], ["desktopName", 47, 7], ["icon", 48, 7], ["comment", 49, 7], ["exec", 50, 7], ["type", 51, 7], ["terminal", 52, 7], ["categories", 53, 7]], [["homepage", 82, 5], ["description", 83, 5], ["mainProgram", 84, 5], ["longDescription", 85, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["desktopItems", 44, 3], ["sourceRoot", 61, 3], ["dontWrapQtApps", 63, 3], ["postInstall", 65, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, qt6: false, minizinc: false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 46, 7], ["desktopName", 47, 7], ["icon", 48, 7], ["comment", 49, 7], ["exec", 50, 7], ["type", 51, 7], ["terminal", 52, 7], ["categories", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 82, 5], ["description", 83, 5], ["mainProgram", 84, 5], ["longDescription", 85, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["desktopItems", 44, 3], ["sourceRoot", 61, 3], ["dontWrapQtApps", 63, 3], ["postInstall", 65, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const executableLoc = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "$out/Applications/MiniZincIDE.app/Contents/MacOS/MiniZincIDE" : "$out/bin/MiniZincIDE"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "minizinc-ide",
       version: "2.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MiniZinc",
           repo: "MiniZincIDE",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "MiniZincIDE",
             desktopName: "MiniZincIDE",
             icon: "minizinc",
@@ -67,7 +64,7 @@ for size in 16 24 32 48 64 128 256 512; do
 done
 `)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.minizinc.org/",
         description: "IDE for MiniZinc, a medium-level constraint modelling language",
         mainProgram: "MiniZincIDE",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["pname", 53, 67], ["version", 53, 73], ["src", 53, 81]], [["updateScript", 77, 12]], [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["platforms", 89, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 21, 3], ["dontUnpack", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["runtimeDependencies", 35, 3], ["libraryPath", 43, 3], ["binPath", 47, 3], ["appimageContents", 53, 3], ["installPhase", 55, 3], ["passthru", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, stdenvNoCC: false, appimageTools: false, autoPatchelfHook: false, makeWrapper: false, "gobject-introspection": false, openssl: false, "lttng-ust": false, mtdev: false, xsel: false, xclip: false, zenity: false, fetchurl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 53, 67], ["version", 53, 73], ["src", 53, 81]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 77, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["platforms", 89, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 21, 3], ["dontUnpack", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["runtimeDependencies", 35, 3], ["libraryPath", 43, 3], ["binPath", 47, 3], ["appimageContents", 53, 3], ["installPhase", 55, 3], ["passthru", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "archipelago",
       version: "0.6.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ArchipelagoMW/Archipelago/releases/download/${nix.sel(finalAttrs, "version")}/Archipelago_${nix.sel(finalAttrs, "version")}_linux-x86_64.AppImage`),
           hash: "sha256-EoH7e5gWvZGfkHMJPOr8s7GAQUP8IGv8NLcEFwB2JA4=",
         })))),
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
       libraryPath: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [mtdev]))),
       binPath: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xsel, xclip, zenity]))),
       appimageContents: nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -68,11 +64,11 @@ cp -r ${nix.sel(finalAttrs, "appimageContents")}/usr/share/icons $out/share
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Multi-Game Randomizer and Server",
         homepage: "https://archipelago.gg",
         changelog: nix.thunk(() => nix.str`https://github.com/ArchipelagoMW/Archipelago/releases/tag/${nix.sel(finalAttrs, "version")}`),

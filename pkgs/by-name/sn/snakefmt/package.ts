@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]], [["updateScript", 36, 12]], [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["pythonRelaxDeps", 26, 3], ["pythonImportsCheck", 31, 3], ["nativeInstallCheckInputs", 33, 3], ["doInstallCheck", 34, 3], ["passthru", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 36, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["pythonRelaxDeps", 26, 3], ["pythonImportsCheck", 31, 3], ["nativeInstallCheckInputs", 33, 3], ["doInstallCheck", 34, 3], ["passthru", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "snakefmt",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-cvdAXFVEegcuWoNWv/D3Etije73dt50O2EPOlFOnXQg=",
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Uncompromising Snakemake code formatter",
         homepage: "https://pypi.org/project/snakefmt/",
         changelog: nix.thunk(() => nix.str`https://github.com/snakemake/snakefmt/releases/tag/v${nix.sel(finalAttrs, "version")}`),

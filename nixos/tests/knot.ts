@@ -2,167 +2,105 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/knot.nix", [[["enable", 8, 25]], [["firewall", 8, 16], ["useDHCP", 9, 16]], [["networking", 8, 5]], [["name", 32, 5], ["paths", 33, 5]], [["maintainers", 49, 5]], [["cores", 59, 24]], [["address", 64, 15], ["prefixLength", 65, 15]], [["addresses", 62, 16]], [["address", 70, 15], ["prefixLength", 71, 15]], [["addresses", 68, 16]], [["ipv4", 62, 11], ["ipv6", 68, 11]], [["eth1", 61, 31]], [["interfaces", 61, 20]], [["listen", 80, 13], ["listen-quic", 84, 13], ["automatic-acl", 88, 13]], [["address", 92, 13], ["key", 93, 13], ["action", 94, 13]], [["secondary_acl", 91, 15]], [["address", 97, 28]], [["secondary", 97, 18]], [["storage", 100, 13], ["notify", 101, 13], ["acl", 102, 13], ["dnssec-signing", 103, 13], ["zonefile-sync", 107, 13], ["zonefile-load", 108, 13], ["journal-content", 109, 13]], [["default", 99, 20]], [["file", 113, 27]], [["file", 114, 31]], [["example.com", 113, 13], ["sub.example.com", 114, 13]], [["any", 117, 22]], [["syslog", 117, 15]], [["server", 79, 11], ["acl", 91, 11], ["remote", 97, 11], ["template", 99, 11], ["zone", 112, 11], ["log", 117, 11]], [["enable", 75, 23], ["extraArgs", 76, 23], ["keyFiles", 77, 23], ["settings", 78, 23]], [["knot", 75, 18]], [["imports", 56, 9], ["virtualisation", 59, 9], ["networking", 61, 9], ["services", 75, 9]], [["address", 128, 15], ["prefixLength", 129, 15]], [["addresses", 126, 16]], [["address", 134, 15], ["prefixLength", 135, 15]], [["addresses", 132, 16]], [["ipv4", 126, 11], ["ipv6", 132, 11]], [["eth1", 125, 31]], [["interfaces", 125, 20]], [["automatic-acl", 144, 13]], [["listen", 148, 13], ["tcp", 151, 13]], [["address", 155, 13], ["key", 156, 13]], [["address", 160, 13], ["key", 161, 13], ["quic", 162, 13]], [["primary", 154, 18], ["primary-quic", 159, 18]], [["zonefile-sync", 168, 13], ["zonefile-load", 169, 13], ["journal-content", 170, 13]], [["default", 165, 20]], [["master", 175, 15], ["file", 176, 15]], [["master", 179, 15], ["file", 180, 15]], [["example.com", 174, 13], ["sub.example.com", 178, 13]], [["any", 184, 22]], [["syslog", 184, 15]], [["server", 143, 11], ["xdp", 147, 11], ["remote", 154, 11], ["template", 165, 11], ["zone", 173, 11], ["log", 184, 11]], [["enable", 139, 23], ["keyFiles", 140, 23], ["extraArgs", 141, 23], ["settings", 142, 23]], [["knot", 139, 18]], [["imports", 124, 9], ["networking", 125, 9], ["services", 139, 9]], [["address", 194, 15], ["prefixLength", 195, 15]], [["addresses", 192, 16]], [["address", 200, 15], ["prefixLength", 201, 15]], [["addresses", 198, 16]], [["ipv4", 192, 11], ["ipv6", 198, 11]], [["eth1", 191, 31]], [["interfaces", 191, 20]], [["systemPackages", 205, 21]], [["imports", 190, 9], ["networking", 191, 9], ["environment", 205, 9]], [["primary", 53, 5], ["secondary", 121, 5], ["client", 187, 5]], [["name", 47, 3], ["meta", 48, 3], ["nodes", 52, 3], ["testScript", 209, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/knot.nix", [["enable", 8, 25]]);
-const pos$2 = nix.positions(here + "/knot.nix", [["firewall", 8, 16], ["useDHCP", 9, 16]]);
-const pos$3 = nix.positions(here + "/knot.nix", [["networking", 8, 5]]);
-const pos$4 = nix.positions(here + "/knot.nix", [["name", 32, 5], ["paths", 33, 5]]);
-const pos$5 = nix.positions(here + "/knot.nix", [["maintainers", 49, 5]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/knot.nix", [["cores", 59, 24]]);
-const pos$7 = nix.positions(here + "/knot.nix", [["address", 64, 15], ["prefixLength", 65, 15]]);
-const pos$8 = nix.positions(here + "/knot.nix", [["addresses", 62, 16]]);
-const pos$9 = nix.positions(here + "/knot.nix", [["address", 70, 15], ["prefixLength", 71, 15]]);
-const pos$10 = nix.positions(here + "/knot.nix", [["addresses", 68, 16]]);
-const pos$11 = nix.positions(here + "/knot.nix", [["ipv4", 62, 11], ["ipv6", 68, 11]]);
-const pos$12 = nix.positions(here + "/knot.nix", [["eth1", 61, 31]]);
-const pos$13 = nix.positions(here + "/knot.nix", [["interfaces", 61, 20]]);
-const pos$14 = nix.positions(here + "/knot.nix", [["listen", 80, 13], ["listen-quic", 84, 13], ["automatic-acl", 88, 13]]);
-const pos$15 = nix.positions(here + "/knot.nix", [["address", 92, 13], ["key", 93, 13], ["action", 94, 13]]);
-const pos$16 = nix.positions(here + "/knot.nix", [["secondary_acl", 91, 15]]);
-const pos$17 = nix.positions(here + "/knot.nix", [["address", 97, 28]]);
-const pos$18 = nix.positions(here + "/knot.nix", [["secondary", 97, 18]]);
-const pos$19 = nix.positions(here + "/knot.nix", [["storage", 100, 13], ["notify", 101, 13], ["acl", 102, 13], ["dnssec-signing", 103, 13], ["zonefile-sync", 107, 13], ["zonefile-load", 108, 13], ["journal-content", 109, 13]]);
-const pos$20 = nix.positions(here + "/knot.nix", [["default", 99, 20]]);
-const pos$21 = nix.positions(here + "/knot.nix", [["file", 113, 27]]);
-const pos$22 = nix.positions(here + "/knot.nix", [["file", 114, 31]]);
-const pos$23 = nix.positions(here + "/knot.nix", [["example.com", 113, 13], ["sub.example.com", 114, 13]]);
-const pos$24 = nix.positions(here + "/knot.nix", [["any", 117, 22]]);
-const pos$25 = nix.positions(here + "/knot.nix", [["syslog", 117, 15]]);
-const pos$26 = nix.positions(here + "/knot.nix", [["server", 79, 11], ["acl", 91, 11], ["remote", 97, 11], ["template", 99, 11], ["zone", 112, 11], ["log", 117, 11]]);
-const pos$27 = nix.positions(here + "/knot.nix", [["enable", 75, 23], ["extraArgs", 76, 23], ["keyFiles", 77, 23], ["settings", 78, 23]]);
-const pos$28 = nix.positions(here + "/knot.nix", [["knot", 75, 18]]);
-const pos$29 = nix.positions(here + "/knot.nix", [["imports", 56, 9], ["virtualisation", 59, 9], ["networking", 61, 9], ["services", 75, 9]]);
 const formals$3 = { args: { lib: false }, ellipsis: true };
-const pos$30 = nix.positions(here + "/knot.nix", [["address", 128, 15], ["prefixLength", 129, 15]]);
-const pos$31 = nix.positions(here + "/knot.nix", [["addresses", 126, 16]]);
-const pos$32 = nix.positions(here + "/knot.nix", [["address", 134, 15], ["prefixLength", 135, 15]]);
-const pos$33 = nix.positions(here + "/knot.nix", [["addresses", 132, 16]]);
-const pos$34 = nix.positions(here + "/knot.nix", [["ipv4", 126, 11], ["ipv6", 132, 11]]);
-const pos$35 = nix.positions(here + "/knot.nix", [["eth1", 125, 31]]);
-const pos$36 = nix.positions(here + "/knot.nix", [["interfaces", 125, 20]]);
-const pos$37 = nix.positions(here + "/knot.nix", [["automatic-acl", 144, 13]]);
-const pos$38 = nix.positions(here + "/knot.nix", [["listen", 148, 13], ["tcp", 151, 13]]);
-const pos$39 = nix.positions(here + "/knot.nix", [["address", 155, 13], ["key", 156, 13]]);
-const pos$40 = nix.positions(here + "/knot.nix", [["address", 160, 13], ["key", 161, 13], ["quic", 162, 13]]);
-const pos$41 = nix.positions(here + "/knot.nix", [["primary", 154, 18], ["primary-quic", 159, 18]]);
-const pos$42 = nix.positions(here + "/knot.nix", [["zonefile-sync", 168, 13], ["zonefile-load", 169, 13], ["journal-content", 170, 13]]);
-const pos$43 = nix.positions(here + "/knot.nix", [["default", 165, 20]]);
-const pos$44 = nix.positions(here + "/knot.nix", [["master", 175, 15], ["file", 176, 15]]);
-const pos$45 = nix.positions(here + "/knot.nix", [["master", 179, 15], ["file", 180, 15]]);
-const pos$46 = nix.positions(here + "/knot.nix", [["example.com", 174, 13], ["sub.example.com", 178, 13]]);
-const pos$47 = nix.positions(here + "/knot.nix", [["any", 184, 22]]);
-const pos$48 = nix.positions(here + "/knot.nix", [["syslog", 184, 15]]);
-const pos$49 = nix.positions(here + "/knot.nix", [["server", 143, 11], ["xdp", 147, 11], ["remote", 154, 11], ["template", 165, 11], ["zone", 173, 11], ["log", 184, 11]]);
-const pos$50 = nix.positions(here + "/knot.nix", [["enable", 139, 23], ["keyFiles", 140, 23], ["extraArgs", 141, 23], ["settings", 142, 23]]);
-const pos$51 = nix.positions(here + "/knot.nix", [["knot", 139, 18]]);
-const pos$52 = nix.positions(here + "/knot.nix", [["imports", 124, 9], ["networking", 125, 9], ["services", 139, 9]]);
 const formals$4 = { args: { lib: false, nodes: false }, ellipsis: true };
-const pos$53 = nix.positions(here + "/knot.nix", [["address", 194, 15], ["prefixLength", 195, 15]]);
-const pos$54 = nix.positions(here + "/knot.nix", [["addresses", 192, 16]]);
-const pos$55 = nix.positions(here + "/knot.nix", [["address", 200, 15], ["prefixLength", 201, 15]]);
-const pos$56 = nix.positions(here + "/knot.nix", [["addresses", 198, 16]]);
-const pos$57 = nix.positions(here + "/knot.nix", [["ipv4", 192, 11], ["ipv6", 198, 11]]);
-const pos$58 = nix.positions(here + "/knot.nix", [["eth1", 191, 31]]);
-const pos$59 = nix.positions(here + "/knot.nix", [["interfaces", 191, 20]]);
-const pos$60 = nix.positions(here + "/knot.nix", [["systemPackages", 205, 21]]);
-const pos$61 = nix.positions(here + "/knot.nix", [["imports", 190, 9], ["networking", 191, 9], ["environment", 205, 9]]);
-const pos$62 = nix.positions(here + "/knot.nix", [["primary", 53, 5], ["secondary", 121, 5], ["client", 187, 5]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$63 = nix.positions(here + "/knot.nix", [["name", 47, 3], ["meta", 48, 3], ["nodes", 52, 3], ["testScript", 209, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const common = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      firewall: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
+      [nix.POS]: $pos[1],
+      firewall: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: false })),
       useDHCP: false,
     })),
   }));
   const exampleZone = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "example.com.zone", "@ SOA ns.example.com. noc.example.com. 2019031301 86400 7200 3600000 172800\n@       NS      ns1\n@       NS      ns2\nns1     A       192.168.0.1\nns1     AAAA    fd00::1\nns2     A       192.168.0.2\nns2     AAAA    fd00::2\nwww     A       192.0.2.1\nwww     AAAA    2001:DB8::1\nsub     NS      ns.example.com.\n"));
   const delegatedZone = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "sub.example.com.zone", "@ SOA ns.example.com. noc.example.com. 2019031301 86400 7200 3600000 172800\n@       NS      ns1.example.com.\n@       NS      ns2.example.com.\n@       A       192.0.2.2\n@       AAAA    2001:DB8::2\n"));
   const knotZonesEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "knot-zones",
       paths: nix.thunk(() => [exampleZone, delegatedZone]),
     }))));
   const tsigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "tsig.conf", "key:\n  - id: xfr_key\n    algorithm: hmac-sha256\n    secret: zOYgOgnzx3TGe5J5I/0kxd7gTcxXhLYMEq3Ek3fY37s=\n"));
   return {
-    [nix.POS]: pos$63,
+    [nix.POS]: $pos[62],
     name: "knot",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "hexa"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$62,
+      [nix.POS]: $pos[61],
       primary: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           imports: nix.thunk(() => [common]),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, cores: 2n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[5], cores: 2n })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$7, address: "192.168.0.1", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[6], address: "192.168.0.1", prefixLength: 24n })),
                     ]))),
                 })),
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$9, address: "fd00::1", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[8], address: "fd00::1", prefixLength: 64n })),
                     ]))),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             knot: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               enable: true,
               extraArgs: nix.thunk(() => ["-v"]),
               keyFiles: nix.thunk(() => [tsigFile]),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 server: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   listen: nix.thunk(() => ["0.0.0.0@53", "::@53"]),
                   "listen-quic": nix.thunk(() => ["0.0.0.0@853", "::@853"]),
                   "automatic-acl": true,
                 })),
                 acl: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   secondary_acl: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     address: "192.168.0.2",
                     key: "xfr_key",
                     action: "transfer",
                   })),
                 })),
                 remote: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
-                  secondary: nix.thunk(() => ({ [nix.POS]: pos$17, address: "192.168.0.2@53" })),
+                  [nix.POS]: $pos[17],
+                  secondary: nix.thunk(() => ({ [nix.POS]: $pos[16], address: "192.168.0.2@53" })),
                 })),
                 template: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   default: nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     storage: knotZonesEnv,
                     notify: nix.thunk(() => ["secondary"]),
                     acl: nix.thunk(() => ["secondary_acl"]),
@@ -173,13 +111,13 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 zone: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
-                  "example.com": nix.thunk(() => ({ [nix.POS]: pos$21, file: "example.com.zone" })),
-                  "sub.example.com": nix.thunk(() => ({ [nix.POS]: pos$22, file: "sub.example.com.zone" })),
+                  [nix.POS]: $pos[22],
+                  "example.com": nix.thunk(() => ({ [nix.POS]: $pos[20], file: "example.com.zone" })),
+                  "sub.example.com": nix.thunk(() => ({ [nix.POS]: $pos[21], file: "sub.example.com.zone" })),
                 })),
                 log: nix.thunk(() => ({
-                  [nix.POS]: pos$25,
-                  syslog: nix.thunk(() => ({ [nix.POS]: pos$24, any: "info" })),
+                  [nix.POS]: $pos[24],
+                  syslog: nix.thunk(() => ({ [nix.POS]: $pos[23], any: "info" })),
                 })),
               })),
             })),
@@ -190,62 +128,62 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$52,
+          [nix.POS]: $pos[51],
           imports: nix.thunk(() => [common]),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$31,
+                  [nix.POS]: $pos[30],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$30, address: "192.168.0.2", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[29], address: "192.168.0.2", prefixLength: 24n })),
                     ]))),
                 })),
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$33,
+                  [nix.POS]: $pos[32],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$32, address: "fd00::2", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[31], address: "fd00::2", prefixLength: 64n })),
                     ]))),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$51,
+            [nix.POS]: $pos[50],
             knot: nix.thunk(() => ({
-              [nix.POS]: pos$50,
+              [nix.POS]: $pos[49],
               enable: true,
               keyFiles: nix.thunk(() => [tsigFile]),
               extraArgs: nix.thunk(() => ["-v"]),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$49,
-                server: nix.thunk(() => ({ [nix.POS]: pos$37, "automatic-acl": true })),
-                xdp: nix.thunk(() => ({ [nix.POS]: pos$38, listen: nix.thunk(() => ["eth1"]), tcp: true })),
+                [nix.POS]: $pos[48],
+                server: nix.thunk(() => ({ [nix.POS]: $pos[36], "automatic-acl": true })),
+                xdp: nix.thunk(() => ({ [nix.POS]: $pos[37], listen: nix.thunk(() => ["eth1"]), tcp: true })),
                 remote: nix.thunk(() => ({
-                  [nix.POS]: pos$41,
-                  primary: nix.thunk(() => ({ [nix.POS]: pos$39, address: "192.168.0.1@53", key: "xfr_key" })),
-                  "primary-quic": nix.thunk(() => ({ [nix.POS]: pos$40, address: "192.168.0.1@853", key: "xfr_key", quic: true })),
+                  [nix.POS]: $pos[40],
+                  primary: nix.thunk(() => ({ [nix.POS]: $pos[38], address: "192.168.0.1@53", key: "xfr_key" })),
+                  "primary-quic": nix.thunk(() => ({ [nix.POS]: $pos[39], address: "192.168.0.1@853", key: "xfr_key", quic: true })),
                 })),
                 template: nix.thunk(() => ({
-                  [nix.POS]: pos$43,
+                  [nix.POS]: $pos[42],
                   default: nix.thunk(() => ({
-                    [nix.POS]: pos$42,
+                    [nix.POS]: $pos[41],
                     "zonefile-sync": "-1",
                     "zonefile-load": "none",
                     "journal-content": "all",
                   })),
                 })),
                 zone: nix.thunk(() => ({
-                  [nix.POS]: pos$46,
-                  "example.com": nix.thunk(() => ({ [nix.POS]: pos$44, master: "primary", file: "example.com.zone" })),
-                  "sub.example.com": nix.thunk(() => ({ [nix.POS]: pos$45, master: "primary-quic", file: "sub.example.com.zone" })),
+                  [nix.POS]: $pos[45],
+                  "example.com": nix.thunk(() => ({ [nix.POS]: $pos[43], master: "primary", file: "example.com.zone" })),
+                  "sub.example.com": nix.thunk(() => ({ [nix.POS]: $pos[44], master: "primary-quic", file: "sub.example.com.zone" })),
                 })),
                 log: nix.thunk(() => ({
-                  [nix.POS]: pos$48,
-                  syslog: nix.thunk(() => ({ [nix.POS]: pos$47, any: "debug" })),
+                  [nix.POS]: $pos[47],
+                  syslog: nix.thunk(() => ({ [nix.POS]: $pos[46], any: "debug" })),
                 })),
               })),
             })),
@@ -257,31 +195,31 @@ export default nix.lambda((args) => (() => {
         const lib_1 = nix.arg($_1, "lib");
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$61,
+          [nix.POS]: $pos[60],
           imports: nix.thunk(() => [common]),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$59,
+            [nix.POS]: $pos[58],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$58,
+              [nix.POS]: $pos[57],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$57,
+                [nix.POS]: $pos[56],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$54,
+                  [nix.POS]: $pos[53],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$53, address: "192.168.0.3", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[52], address: "192.168.0.3", prefixLength: 24n })),
                   ]),
                 })),
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$56,
+                  [nix.POS]: $pos[55],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$55, address: "fd00::3", prefixLength: 64n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[54], address: "fd00::3", prefixLength: 64n })),
                   ]),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$60,
+            [nix.POS]: $pos[59],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "knot-dns"))]),
           })),
         };

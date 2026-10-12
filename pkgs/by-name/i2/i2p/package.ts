@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["modules", 18, 5]], [["urls", 38, 5], ["hash", 46, 5]], [["description", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["sourceProvenance", 121, 5], ["license", 125, 5], ["platforms", 140, 5], ["maintainers", 145, 5], ["mainProgram", 146, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 59, 3], ["postConfigure", 61, 3], ["buildPhase", 70, 3], ["installPhase", 83, 3], ["doInstallCheck", 105, 3], ["installCheckPhase", 107, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, jdk_headless: false, jre_minimal: false, ant: false, gettext: false, which: false, "dbip-country-lite": false, "java-service-wrapper": false, makeWrapper: false, gmp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["modules", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["urls", 38, 5], ["hash", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["sourceProvenance", 121, 5], ["license", 125, 5], ["platforms", 140, 5], ["maintainers", 145, 5], ["mainProgram", 146, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 59, 3], ["postConfigure", 61, 3], ["buildPhase", 70, 3], ["installPhase", 83, 3], ["doInstallCheck", 105, 3], ["installCheckPhase", 107, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const gmp = nix.arg($, "gmp");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       modules: nix.thunk(() => [
         "java.base",
         "java.desktop",
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "i2p",
       version: "2.13.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           urls: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.str`https://github.com/i2p/i2p.i2p/archive/i2p-${nix.sel(finalAttrs, "version")}.tar.gz`),
           ], nix.builtins.map((mirror) => nix.str`${mirror}${nix.sel(finalAttrs, "version")}/i2psource_${nix.sel(finalAttrs, "version")}.tar.bz2`, nix.thunk(() => [
@@ -87,7 +84,7 @@ ln -s ${nix.sel(dbip_country_lite, "mmdb")} $out/geoip/GeoLite2-Country.mmdb
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n# Check if jbigi is used\njava -cp $out/lib/i2p.jar -Djava.library.path=$out/lib/ net.i2p.util.NativeBigInteger \\\n  | tee /dev/stderr | grep -Fw \"Found native library\" || exit 1\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Applications and router for I2P, anonymity over the Internet",
         homepage: "https://geti2p.net",
         changelog: nix.thunk(() => nix.str`https://github.com/i2p/i2p.i2p/releases/tag/i2p-${nix.sel(finalAttrs, "version")}`),

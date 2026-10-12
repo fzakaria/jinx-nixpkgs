@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]], [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["patches", 20, 3], ["prePatch", 27, 3], ["buildInputs", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, flac: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["patches", 20, 3], ["prePatch", 27, 3], ["buildInputs", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const flac = nix.arg($, "flac");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "3.0.10+git20130108.4ca41f4-1",
       pname: "shntool",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "shntool",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       prePatch: "additional_patches=$(grep -v '#' ./debian/patches/series | while read patch; do echo \"./debian/patches/$patch\"; done | tr '\\n' ' ')\npatches=\"$patches $additional_patches\"\n",
       buildInputs: nix.thunk(() => [flac]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Multi-purpose WAVE data processing and reporting utility",
         homepage: "https://packages.qa.debian.org/s/shntool.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

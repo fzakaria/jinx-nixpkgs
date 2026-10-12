@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["description", 115, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5]], [["pname", 46, 3], ["version", 47, 3], ["pyproject", 48, 3], ["__structuredAttrs", 49, 3], ["src", 51, 3], ["build-system", 58, 3], ["dependencies", 63, 3], ["nativeCheckInputs", 92, 3], ["pythonImportsCheck", 99, 3], ["disabledTests", 101, 3], ["__darwinAllowLocalNetworking", 112, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "hatch-vcs": false, aiohttp: false, awkward: false, cachetools: false, cloudpickle: false, correctionlib: false, fsspec: false, hist: false, ipywidgets: false, loky: false, lz4: false, matplotlib: false, mplhep: false, numba: false, numpy: false, packaging: false, pandas: false, pyarrow: false, pydantic: false, pyyaml: false, requests: false, rich: false, scipy: false, toml: false, tqdm: false, uproot: false, vector: false, distributed: false, pyinstrument: false, "pytest-xdist": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 115, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 46, 3], ["version", 47, 3], ["pyproject", 48, 3], ["__structuredAttrs", 49, 3], ["src", 51, 3], ["build-system", 58, 3], ["dependencies", 63, 3], ["nativeCheckInputs", 92, 3], ["pythonImportsCheck", 99, 3], ["disabledTests", 101, 3], ["__darwinAllowLocalNetworking", 112, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,13 +43,13 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "coffea",
       version: "2026.9.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CoffeaTeam",
           repo: "coffea",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,7 +93,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Basic tools and wrappers for enabling not-too-alien syntax when running columnar Collider HEP analysis",
         homepage: "https://github.com/CoffeaTeam/coffea",
         changelog: nix.thunk(() => nix.str`https://github.com/CoffeaTeam/coffea/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["broken", 32, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, autoreconfHook: false, bison: false, flex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["broken", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pim6sd",
       version: "0-unstable-2024-12-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "troglobit",
           repo: "pim6sd",
           rev: "9fd332d92af4fe8c92a70c1b6c2048ffddb0e48a",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, bison, flex]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PIM for IPv6 sparse mode daemon",
         homepage: "https://github.com/troglobit/pim6sd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/7.0.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["url", 35, 11], ["sha256", 36, 19]], [["NIX_CFLAGS_COMPILE", 49, 5]], [["description", 55, 5], ["longDescription", 57, 5], ["homepage", 72, 5], ["license", 74, 5], ["maintainers", 76, 5], ["platforms", 78, 5], ["branch", 79, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 17, 3], ["strictDeps", 25, 3], ["propagatedBuildInputs", 26, 3], ["patchFlags", 28, 3], ["upstreamPatches", 30, 3], ["patches", 42, 3], ["env", 48, 3], ["__structuredAttrs", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/7.0.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/7.0.nix", [["url", 35, 11], ["sha256", 36, 19]]);
-const pos$3 = nix.positions(here + "/7.0.nix", [["NIX_CFLAGS_COMPILE", 49, 5]]);
-const pos$4 = nix.positions(here + "/7.0.nix", [["description", 55, 5], ["longDescription", 57, 5], ["homepage", 72, 5], ["license", 74, 5], ["maintainers", 76, 5], ["platforms", 78, 5], ["branch", 79, 5]]);
-const pos$5 = nix.positions(here + "/7.0.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 17, 3], ["strictDeps", 25, 3], ["propagatedBuildInputs", 26, 3], ["patchFlags", 28, 3], ["upstreamPatches", 30, 3], ["patches", 42, 3], ["env", 48, 3], ["__structuredAttrs", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "readline",
       version: nix.thunk(() => nix.str`7.0p${nix.builtins.toString(nix.thunk(() => nix.builtins.length(nix.thunk(() => nix.sel(finalAttrs, "upstreamPatches")))))}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/readline/readline-${nix.sel(finalAttrs, "meta", "branch")}.tar.gz`),
           sha256: "0d13sg9ksf982rrrmv5mb6a2p4ys9rvg9r71d6il0vr8hmql63bm",
         })))),
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
       patchFlags: nix.thunk(() => ["-p0"]),
       upstreamPatches: nix.thunk(() => (() => {
         const patch = (nr) => (sha256) => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`mirror://gnu/readline/readline-${nix.sel(finalAttrs, "meta", "branch")}-patches/readline70-${nr}`),
             sha256: sha256,
           })));
@@ -40,10 +36,10 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./link-against-ncurses.patch"),
         nix.path(here, "./no-arch_only-6.3.patch"),
       ], nix.sel(finalAttrs, "upstreamPatches"))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu17" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-std=gnu17" })))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library for interactive line editing",
         longDescription: "The GNU Readline library provides a set of functions for use by\napplications that allow users to edit command lines as they are\ntyped in.  Both Emacs and vi editing modes are available.  The\nReadline library includes additional functions to maintain a\nlist of previously-entered command lines, to recall and perhaps\nreedit those lines, and perform csh-like history expansion on\nprevious commands.\n\nThe history facilities are also placed into a separate library,\nthe History library, as part of the build process.  The History\nlibrary may be used without Readline in applications which\ndesire its capabilities.\n",
         homepage: "https://savannah.gnu.org/projects/readline/",

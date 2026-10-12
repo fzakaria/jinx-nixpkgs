@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 63, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 32, 3], ["preConfigure", 40, 3], ["postInstall", 45, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, protobuf: false, "pkg-config": false, grpc: false, libtool: false, which: false, automake: false, libax25: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 32, 3], ["preConfigure", 40, 3], ["postInstall", 45, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const libax25 = nix.arg($, "libax25");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ax25ms",
       version: "0-unstable-2024-04-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ThomasHabets",
           repo: "ax25ms",
           rev: "c7d7213bb182e4b60f655c3f9f1bcb2b2440406b",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "patchShebangs scripts\n./bootstrap.sh\n",
       postInstall: "set +e\nfor binary_path in \"$out/bin\"/*; do\n  filename=$(basename \"$binary_path\")\n  mv \"$binary_path\" \"$out/bin/ax25ms-$filename\"\ndone\nset -e\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Set of AX.25 microservices, designed to be pluggable for any implementation",
         homepage: "https://github.com/ThomasHabets/ax25ms",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

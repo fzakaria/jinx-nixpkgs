@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/protocols.nix", [[["domain", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 21, 3], ["patchPhase", 23, 3], ["doCheck", 29, 3], ["checkTarget", 30, 3], ["installFlags", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "wayland-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/protocols.nix", [["domain", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/protocols.nix", [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/protocols.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 21, 3], ["patchPhase", 23, 3], ["doCheck", 29, 3], ["checkTarget", 30, 3], ["installFlags", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wlr-protocols",
       version: "0-unstable-2022-09-05",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "wlroots",
           repo: "wlr-protocols",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "check",
       installFlags: nix.thunk(() => ["DESTDIR=$(out)", "PREFIX="]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Wayland roots protocol extensions",
         longDescription: "wlr-protocols contains Wayland protocols that add functionality not\navailable in the Wayland core protocol, and specific to wlroots-based\ncompositors. Such protocols either add completely new functionality, or\nextend the functionality of some other protocol either in Wayland core,\nor some other protocol in wayland-protocols.\n",
         homepage: "https://gitlab.freedesktop.org/wlroots/wlr-protocols",

@@ -2,9 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-with-nix.nix", [[["pkgs", 22, 17]], [["buildInputs", 20, 5], ["nativeBuildInputs", 25, 5], ["strictDeps", 30, 5]]]);
 const formals$1 = { args: { pkgs: false, lib: false, nix: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-with-nix.nix", [["pkgs", 22, 17]]);
-const pos$2 = nix.positions(here + "/test-with-nix.nix", [["buildInputs", 20, 5], ["nativeBuildInputs", 25, 5], ["strictDeps", 30, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nix$ = nix.arg($, "nix");
   return nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`nixpkgs-lib-tests-nix-${nix.sel(nix$, "version")}`), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../path/tests")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs })))),
+        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../path/tests")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs })))),
       ]),
       nativeBuildInputs: nix.thunk(() => nix.concat([nix$, nix.thunk(() => nix.sel(pkgs, "gitMinimal"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isLinux")), nix.thunk(() => nix.sel(pkgs, "inotify-tools"))))),
       strictDeps: true,

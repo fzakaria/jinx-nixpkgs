@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["updateScript", 34, 5]], [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]], [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["doCheck", 31, 3], ["passthru", 33, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, meson: false, ninja: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["doCheck", 31, 3], ["passthru", 33, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mutest",
       version: "0-unstable-2023-02-24",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ebassi",
           repo: "mutest",
           rev: "18a20071773f7c4b75e82a931ef9b916b273b3e5",
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/ebassi/mutest",
         description: "BDD testing framework for C, inspired by Mocha",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["url", 45, 7], ["sha256", 46, 7]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["hardeningDisable", 29, 3], ["cmakeFlags", 31, 3], ["patches", 37, 3], ["postPatch", 50, 3], ["preCheck", 55, 3], ["nativeCheckInputs", 58, 3], ["doCheck", 61, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 71, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, perl: false, enableJupyter: true, boost: false, jsoncpp: false, openssl: false, zmqpp: false, enableJava: true, openjdk: false, gtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 45, 7], ["sha256", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["hardeningDisable", 29, 3], ["cmakeFlags", 31, 3], ["patches", 37, 3], ["postPatch", 50, 3], ["preCheck", 55, 3], ["nativeCheckInputs", 58, 3], ["doCheck", 61, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 71, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const openjdk = nix.arg($, "openjdk");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "yacas",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grzegorzmazur",
           repo: "yacas",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./jsoncpp-fix-include.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/grzegorzmazur/yacas/commit/8bc22d517ecfdde3ac94800dc8506f5405564d48.patch",
             sha256: "sha256-aPO5T8iYNkGtF8j12YxNJyUPJJPKrXje1DmfCPt317A=",
           })))),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, perl], nix.app(nix.sel(lib, "optionals"), enableJava, nix.thunk(() => [openjdk])))),
       buildInputs: nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optionals"), enableJupyter, nix.thunk(() => [boost, jsoncpp, openssl, zmqpp])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Easy to use, general purpose Computer Algebra System, optionally with GUI",
         homepage: "http://www.yacas.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

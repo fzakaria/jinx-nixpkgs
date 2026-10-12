@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["crypto-eth-addresses", 25, 5]], [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["optional-dependencies", 24, 3], ["nativeCheckInputs", 28, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "eth-hash": false, fetchFromGitHub: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["crypto-eth-addresses", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["optional-dependencies", 24, 3], ["nativeCheckInputs", 28, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.35.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-validators",
           repo: "validators",
           tag: version,
@@ -29,13 +26,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "crypto-eth-addresses": nix.thunk(() => nix.concat([eth_hash], nix.sel(eth_hash, "optional-dependencies", "pycryptodome"))),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["validators"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python Data Validation for Humans",
         homepage: "https://github.com/python-validators/validators",
         changelog: nix.thunk(() => nix.str`https://github.com/python-validators/validators/blob/${version}/CHANGES.md`),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

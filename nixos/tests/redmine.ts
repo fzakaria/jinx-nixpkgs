@@ -2,59 +2,41 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/redmine.nix", [[["system", 4, 33], ["config", 4, 40]], [["system", 7, 49], ["pkgs", 7, 56]], [["type", 21, 22]], [["enable", 19, 13], ["package", 20, 13], ["database", 21, 13]], [["redmine", 18, 20]], [["services", 18, 11]], [["machine", 15, 13]], [["name", 14, 7], ["nodes", 15, 7], ["testScript", 25, 7]], [["maintainers", 33, 12]], [["meta", 33, 7]], [["name", 38, 5], ["type", 39, 5]], [["name", 42, 5], ["type", 43, 5]], [["name", 46, 5], ["type", 47, 5]], [["enable", 56, 11], ["package", 57, 11]], [["redmine", 55, 18]], [["services", 55, 9]], [["machine", 52, 11]], [["name", 51, 5], ["nodes", 52, 5], ["testScript", 61, 5]], [["sqlite3", 37, 3], ["mysql", 41, 3], ["pgsql", 45, 3], ["restart", 50, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/redmine.nix", [["system", 4, 33], ["config", 4, 40]]);
-const pos$2 = nix.positions(here + "/redmine.nix", [["system", 7, 49], ["pkgs", 7, 56]]);
 const formals$2 = { args: { name: false, type: false }, ellipsis: false };
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/redmine.nix", [["type", 21, 22]]);
-const pos$4 = nix.positions(here + "/redmine.nix", [["enable", 19, 13], ["package", 20, 13], ["database", 21, 13]]);
-const pos$5 = nix.positions(here + "/redmine.nix", [["redmine", 18, 20]]);
-const pos$6 = nix.positions(here + "/redmine.nix", [["services", 18, 11]]);
-const pos$7 = nix.positions(here + "/redmine.nix", [["machine", 15, 13]]);
-const pos$8 = nix.positions(here + "/redmine.nix", [["name", 14, 7], ["nodes", 15, 7], ["testScript", 25, 7]]);
-const pos$9 = nix.positions(here + "/redmine.nix", [["maintainers", 33, 12]]);
-const pos$10 = nix.positions(here + "/redmine.nix", [["meta", 33, 7]]);
-const pos$11 = nix.positions(here + "/redmine.nix", [["name", 38, 5], ["type", 39, 5]]);
-const pos$12 = nix.positions(here + "/redmine.nix", [["name", 42, 5], ["type", 43, 5]]);
-const pos$13 = nix.positions(here + "/redmine.nix", [["name", 46, 5], ["type", 47, 5]]);
 const formals$4 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/redmine.nix", [["enable", 56, 11], ["package", 57, 11]]);
-const pos$15 = nix.positions(here + "/redmine.nix", [["redmine", 55, 18]]);
-const pos$16 = nix.positions(here + "/redmine.nix", [["services", 55, 9]]);
-const pos$17 = nix.positions(here + "/redmine.nix", [["machine", 52, 11]]);
-const pos$18 = nix.positions(here + "/redmine.nix", [["name", 51, 5], ["nodes", 52, 5], ["testScript", 61, 5]]);
-const pos$19 = nix.positions(here + "/redmine.nix", [["sqlite3", 37, 3], ["mysql", 41, 3], ["pgsql", 45, 3], ["restart", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const redmineTest = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const name = nix.arg($_1, "name");
     const type = nix.arg($_1, "type");
     return nix.update(nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: nix.thunk(() => nix.str`redmine-${name}`),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const config_1 = nix.arg($_2, "config");
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 redmine: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   enable: true,
                   package: nix.thunk(() => nix.sel(pkgs_1, "redmine")),
-                  database: nix.thunk(() => ({ [nix.POS]: pos$3, type: type })),
+                  database: nix.thunk(() => ({ [nix.POS]: $pos[2], type: type })),
                 })),
               })),
             };
@@ -62,33 +44,33 @@ export default nix.lambda((args) => (() => {
         })),
         testScript: "start_all()\nmachine.wait_for_unit(\"redmine.service\")\nmachine.wait_for_open_port(3000)\nmachine.succeed(\"curl --fail http://localhost:3000/\")\n",
       }))), {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(nix.lookup(w_1, "maintainers"), "aanderse"))]),
       })),
     });
   })(), formals$2);
   return {
-    [nix.POS]: pos$19,
-    sqlite3: nix.thunk(() => nix.app(redmineTest, nix.thunk(() => ({ [nix.POS]: pos$11, name: "sqlite3", type: "sqlite3" })))),
-    mysql: nix.thunk(() => nix.app(redmineTest, nix.thunk(() => ({ [nix.POS]: pos$12, name: "mysql", type: "mysql2" })))),
-    pgsql: nix.thunk(() => nix.app(redmineTest, nix.thunk(() => ({ [nix.POS]: pos$13, name: "pgsql", type: "postgresql" })))),
+    [nix.POS]: $pos[18],
+    sqlite3: nix.thunk(() => nix.app(redmineTest, nix.thunk(() => ({ [nix.POS]: $pos[10], name: "sqlite3", type: "sqlite3" })))),
+    mysql: nix.thunk(() => nix.app(redmineTest, nix.thunk(() => ({ [nix.POS]: $pos[11], name: "mysql", type: "mysql2" })))),
+    pgsql: nix.thunk(() => nix.app(redmineTest, nix.thunk(() => ({ [nix.POS]: $pos[12], name: "pgsql", type: "postgresql" })))),
     restart: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         name: "redmine-restart",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$4);
             const config_1 = nix.arg($_1, "config");
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 redmine: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   enable: true,
                   package: nix.thunk(() => nix.sel(pkgs_1, "redmine")),
                 })),

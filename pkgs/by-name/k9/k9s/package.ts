@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["package", 46, 7], ["command", 47, 7], ["version", 48, 28]], [["version", 45, 11]], [["tests", 45, 5], ["updateScript", 50, 5]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["ldflags", 26, 3], ["tags", 33, 3], ["proxyVendor", 35, 3], ["vendorHash", 37, 3], ["doCheck", 40, 3], ["passthru", 44, 3], ["nativeBuildInputs", 53, 3], ["postInstall", 57, 3], ["nativeCheckInputs", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, makeWrapper: false, testers: false, "nix-update-script": false, k9s: false, kubectl: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 46, 7], ["command", 47, 7], ["version", 48, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 45, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 45, 5], ["updateScript", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["ldflags", 26, 3], ["tags", 33, 3], ["proxyVendor", 35, 3], ["vendorHash", 37, 3], ["doCheck", 40, 3], ["passthru", 44, 3], ["nativeBuildInputs", 53, 3], ["postInstall", 57, 3], ["nativeCheckInputs", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const kubectl = nix.arg($, "kubectl");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "k9s",
       version: "0.51.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "derailed",
           repo: "k9s",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,11 +40,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-PkYDJK2oGl+siCG9p4R8shC0e5BhGFdJsc+ksL9J5zw=",
       doCheck: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: k9s,
               command: "HOME=$(mktemp -d) k9s version -s",
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -76,7 +71,7 @@ cp -r $src/skins/* $out/share/k9s/skins/
 `),
       nativeCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Kubernetes CLI To Manage Your Clusters In Style",
         homepage: "https://github.com/derailed/k9s",
         changelog: nix.thunk(() => nix.str`https://github.com/derailed/k9s/releases/tag/v${nix.sel(finalAttrs, "version")}`),

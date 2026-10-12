@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["name", 25, 7], ["url", 26, 7], ["sha256", 27, 7]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["patchFlags", 30, 3], ["nativeBuildInputs", 37, 3], ["nativeCheckInputs", 40, 3], ["postPatch", 42, 3], ["checkPhase", 48, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, python: false, fetchFromGitHub: false, fetchpatch: false, cython: true, numpy: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 25, 7], ["url", 26, 7], ["sha256", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["patchFlags", 30, 3], ["nativeBuildInputs", 37, 3], ["nativeCheckInputs", 40, 3], ["postPatch", 42, 3], ["checkPhase", 48, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const cython = nix.argOr($, "cython", () => null);
   const numpy = nix.argOr($, "numpy", () => null);
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "purepng",
       version: "0.2.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Scondo",
           repo: "purepng",
           rev: "449aa00e97a8d7b8a200eb9048056d4da600a345",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-py37-stopiteration-in-generators.patch",
             url: "https://github.com/Scondo/purepng/pull/28/commits/62d71dfc2be9ffdc4b3e5f642af0281a8ce8f946.patch",
             sha256: "1ag0pji3p012hmj8kadcd0vydv9702188c0isizsi964qcl4va6m",
@@ -49,7 +46,7 @@ ${nix.sel(python, "interpreter")} code/test_png.py
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pure Python library for PNG image encoding/decoding",
         homepage: "https://github.com/scondo/purepng",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

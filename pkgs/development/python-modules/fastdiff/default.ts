@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 13], ["version", 19, 19], ["sha256", 20, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["broken", 51, 5]], [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["postPatch", 23, 3], ["propagatedBuildInputs", 30, 3], ["nativeCheckInputs", 35, 3], ["pytestFlags", 41, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchPypi: false, wasmer: false, "wasmer-compiler-cranelift": false, py: false, pytestCheckHook: false, "pytest-benchmark": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 13], ["version", 19, 19], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["broken", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["postPatch", 23, 3], ["propagatedBuildInputs", 30, 3], ["nativeCheckInputs", 35, 3], ["pytestFlags", 41, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "4dfa09c47832a8c040acda3f1f55fc0ab4d666f0e14e6951e6da78d59acd945a",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--benchmark-skip"]);
       const pythonImportsCheck = nix.thunk(() => ["fastdiff"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast native implementation of diff algorithm with a pure Python fallback",
         homepage: "https://github.com/syrusakbary/fastdiff",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is32bit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

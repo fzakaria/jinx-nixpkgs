@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableGtk3", 27, 11]], [["matplotlib", 26, 9]], [["self", 23, 5], ["packageOverrides", 24, 5]], [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["url", 48, 7], ["hash", 49, 7]], [["url", 54, 7], ["hash", 55, 7]], [["homepage", 120, 5], ["description", 121, 5], ["mainProgram", 122, 5], ["maintainers", 123, 5], ["license", 127, 5], ["platforms", 128, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["build-system", 59, 3], ["dependencies", 61, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 75, 3], ["makeWrapperArgs", 84, 3], ["nativeCheckInputs", 94, 3], ["postPatch", 104, 3], ["checkPhase", 109, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, fetchpatch: false, "gdk-pixbuf": false, "adwaita-icon-theme": false, gpsbabel: false, "glib-networking": false, glibcLocales: false, "gobject-introspection": false, gtk3: false, perl: false, sqlite: false, tzdata: false, webkitgtk_4_1: false, wrapGAppsHook3: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableGtk3", 27, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["matplotlib", 26, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["self", 23, 5], ["packageOverrides", 24, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 48, 7], ["hash", 49, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 54, 7], ["hash", 55, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 120, 5], ["description", 121, 5], ["mainProgram", 122, 5], ["maintainers", 123, 5], ["license", 127, 5], ["platforms", 128, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["build-system", 59, 3], ["dependencies", 61, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 75, 3], ["makeWrapperArgs", 84, 3], ["nativeCheckInputs", 94, 3], ["postPatch", 104, 3], ["checkPhase", 109, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,20 +25,20 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const xvfb_run = nix.arg($, "xvfb-run");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       self: python,
       packageOverrides: (self) => (super$) => ({
-        [nix.POS]: pos$2,
-        matplotlib: nix.thunk(() => nix.app(nix.sel(super$, "matplotlib", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableGtk3: true })))),
+        [nix.POS]: $pos[1],
+        matplotlib: nix.thunk(() => nix.app(nix.sel(super$, "matplotlib", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableGtk3: true })))),
       }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "pytrainer",
       version: "2.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "pytrainer",
           repo: "pytrainer",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,12 +46,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/pytrainer/pytrainer/commit/9847c76e61945466775bde038057bf5fd31ae089.patch",
             hash: "sha256-cGNu4lK0eQWzcSFTKc8g/qHSSHfy0ow4T3eT+zl5lPM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://github.com/pytrainer/pytrainer/commit/eda968a8b48074f03efbdfbd692b46edef3658cd.patch",
             hash: "sha256-MdxsKO6DgncHhGlJWcEeyYiPKf3qdhMqXrYYC+jqros=",
           })))),
@@ -103,7 +96,7 @@ export default nix.lambda((args) => (() => {
   ${nix.sel(python, "interpreter")} -m unittest
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/pytrainer/pytrainer",
         description: "Application for logging and graphing sporting excursions",
         mainProgram: "pytrainer",

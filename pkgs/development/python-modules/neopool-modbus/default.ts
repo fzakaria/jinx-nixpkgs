@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["disabled", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 30, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, pymodbus: false, "pytest-asyncio": false, pytestCheckHook: false, pythonOlder: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["disabled", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 30, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pythonOlder = nix.arg($, "pythonOlder");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "neopool-modbus",
       version: "4.9.0",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.13")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "svasek",
           repo: "python-neopool-modbus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["neopool_modbus"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Async Python client for Sugar Valley NeoPool / VistaPool / Hidrolife Modbus pool controllers",
         homepage: "https://github.com/svasek/python-neopool-modbus",
         changelog: nix.thunk(() => nix.str`https://github.com/svasek/python-neopool-modbus/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

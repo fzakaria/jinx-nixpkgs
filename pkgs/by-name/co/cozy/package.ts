@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 77, 5], ["homepage", 78, 5], ["maintainers", 79, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["platforms", 85, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 57, 3], ["dontWrapGApps", 66, 3], ["preFixup", 68, 3], ["postFixup", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, "appstream-glib": false, "desktop-file-utils": false, "gobject-introspection": false, libadwaita: false, gst_all_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["maintainers", 79, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["platforms", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 57, 3], ["dontWrapGApps", 66, 3], ["preFixup", 68, 3], ["postFixup", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const gst_all_1 = nix.arg($, "gst_all_1");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cozy",
       version: "1.3.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "geigi",
           repo: "cozy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,7 +70,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       postFixup: "ln -s $out/bin/com.github.geigi.cozy $out/bin/cozy\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modern audio book player for Linux",
         homepage: "https://cozy.geigi.de/",
         maintainers: nix.thunk(() => (() => {

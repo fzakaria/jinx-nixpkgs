@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["RUSTC_BOOTSTRAP", 16, 7]], [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7], ["excludes", 39, 7]], [["description", 55, 5], ["homepage", 56, 5], ["maintainers", 57, 5], ["license", 58, 5]], [["pname", 12, 3], ["version", 13, 3], ["env", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["cargoPatches", 27, 3], ["patches", 32, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, rustPlatform: false, "pkg-config": false, "alsa-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["RUSTC_BOOTSTRAP", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7], ["excludes", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["maintainers", 57, 5], ["license", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["env", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["cargoPatches", 27, 3], ["patches", 32, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const alsa_lib = nix.arg($, "alsa-lib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "kord",
       version: "0.6.1",
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], RUSTC_BOOTSTRAP: 1n })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "twitchax",
           repo: "kord",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       cargoPatches: nix.thunk(() => [nix.path(here, "./update-coreaudio-sys.patch")]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fix-rust-features.patch",
             url: "https://github.com/twitchax/kord/commit/fa9bb979b17d77f54812a915657c3121f76c5d82.patch",
             hash: "sha256-XQu9P7372J2dHWzvpvbPtALS0Bh8EC+J1EyG3qlak2M=",
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [pkg_config])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))])))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Music theory binary and library for Rust",
         homepage: "https://github.com/twitchax/kord",
         maintainers: nix.thunk(() => (() => {

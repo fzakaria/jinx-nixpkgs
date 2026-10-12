@@ -2,20 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcurand.nix", [[["description", 16, 5], ["longDescription", 17, 5], ["homepage", 21, 5]], [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { buildRedist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcurand.nix", [["description", 16, 5], ["longDescription", 17, 5], ["homepage", 21, 5]]);
-const pos$2 = nix.positions(here + "/libcurand.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "libcurand",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static", "stubs"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "GPU-accelerated random number generation library",
         longDescription: "The cuRAND library provides facilities that focus on the simple and efficient generation of high-quality\npseudorandom and quasirandom numbers.\n",
         homepage: "https://developer.nvidia.com/curand",

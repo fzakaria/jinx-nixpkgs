@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["url", 41, 7], ["hash", 42, 7]], [["description", 95, 5], ["homepage", 96, 5], ["platforms", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["mainProgram", 103, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 57, 3], ["prePatch", 74, 3], ["prefixKey", 84, 3], ["sconsFlags", 86, 3], ["postInstall", 89, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cairo: false, elfutils: false, fetchFromGitHub: false, fetchpatch: false, glib: false, "gobject-introspection": false, gtksourceview3: false, "json-glib": false, makeWrapper: false, pango: false, "pkg-config": false, polkit: false, python3: false, scons: false, "util-linux": false, wrapGAppsHook3: false, withGui: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["platforms", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["mainProgram", 103, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 57, 3], ["prePatch", 74, 3], ["prefixKey", 84, 3], ["sconsFlags", 86, 3], ["postInstall", 89, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const withGui = nix.argOr($, "withGui", () => false);
   nix.assert_((!nix.asBool(withGui) || nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/rm/rmlint/package.nix:23:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rmlint",
       version: "2.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sahib",
           repo: "rmlint",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./scons-nix-env.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/sahib/rmlint/commit/f0ca57ec907f7199e3670038d60b4702d1e1d8e2.patch",
             hash: "sha256-715X+R2BcQIaUV76hoO+EXPfNheOfw4OIHsqSoruIUI=",
           })))),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
 gappsWrapperArgs+=(--prefix PYTHONPATH : "$(toPythonPath $out):$(toPythonPath ${nix.sel(python3, "pkgs", "pygobject3")}):$(toPythonPath ${nix.sel(python3, "pkgs", "pycairo")})")
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Extremely fast tool to remove duplicates and other lint from your filesystem",
         homepage: "https://rmlint.readthedocs.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

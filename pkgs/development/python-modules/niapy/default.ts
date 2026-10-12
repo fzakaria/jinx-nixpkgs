@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["pythonRelaxDeps", 31, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, matplotlib: false, numpy: false, openpyxl: false, pandas: false, "pytest-xdist": false, pytestCheckHook: false, "uv-build": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["pythonRelaxDeps", 31, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const uv_build = nix.arg($, "uv-build");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "niapy",
       version: "2.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NiaOrg",
           repo: "NiaPy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_xdist]),
       pythonImportsCheck: nix.thunk(() => ["niapy"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Micro framework for building nature-inspired algorithms",
         homepage: "https://niapy.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/NiaOrg/NiaPy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

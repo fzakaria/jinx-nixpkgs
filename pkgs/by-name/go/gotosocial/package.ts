@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["yarnLock", 56, 5], ["hash", 57, 5]], [["gotosocial", 108, 18]], [["tests", 108, 12], ["updateScript", 109, 12]], [["homepage", 112, 5], ["changelog", 113, 5], ["description", 114, 5], ["longDescription", 115, 5], ["maintainers", 122, 5], ["license", 126, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["vendorHash", 35, 3], ["ldflags", 37, 3], ["tags", 43, 3], ["nativeBuildInputs", 48, 3], ["yarnOfflineCache", 55, 3], ["dontYarnInstallDeps", 61, 3], ["postConfigure", 63, 3], ["preBuild", 71, 3], ["postInstall", 79, 3], ["doCheck", 96, 3], ["checkFlags", 98, 3], ["passthru", 108, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromCodeberg: false, fetchYarnDeps: false, nodejs: false, yarn: false, yarnConfigHook: false, makeBinaryWrapper: false, ffmpeg: false, nixosTests: false, "nix-update-script": false, withWasm: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 56, 5], ["hash", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["gotosocial", 108, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 108, 12], ["updateScript", 109, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 112, 5], ["changelog", 113, 5], ["description", 114, 5], ["longDescription", 115, 5], ["maintainers", 122, 5], ["license", 126, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["vendorHash", 35, 3], ["ldflags", 37, 3], ["tags", 43, 3], ["nativeBuildInputs", 48, 3], ["yarnOfflineCache", 55, 3], ["dontYarnInstallDeps", 61, 3], ["postConfigure", 63, 3], ["preBuild", 71, 3], ["postInstall", 79, 3], ["doCheck", 96, 3], ["checkFlags", 98, 3], ["passthru", 108, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const withWasm = nix.argOr($, "withWasm", () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gotosocial",
       version: "0.22.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "superseriousbusiness",
           repo: "gotosocial",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
       tags: nix.thunk(() => nix.concat(["kvformat"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withWasm)), nix.thunk(() => ["nowasm"])))),
       nativeBuildInputs: nix.thunk(() => nix.concat([nodejs, yarn, yarnConfigHook], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withWasm)), nix.thunk(() => [makeBinaryWrapper])))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/web/source/yarn.lock`),
           hash: "sha256-rfZxslIEoOTufENIvk8Eq5wzdD3rUpUP3wrMjmLH44k=",
         })))),
@@ -70,15 +65,15 @@ wrapProgram $out/bin/gotosocial \\
         ];
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           gotosocial: nix.thunk(() => nix.sel(nixosTests, "gotosocial")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gotosocial.org",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/superseriousbusiness/gotosocial/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Fast, fun, ActivityPub server, powered by Go",

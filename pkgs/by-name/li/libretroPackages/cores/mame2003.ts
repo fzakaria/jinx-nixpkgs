@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mame2003.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["NIX_CFLAGS_COMPILE", 18, 7]], [["description", 23, 5], ["homepage", 24, 5], ["license", 26, 5]], [["core", 7, 3], ["version", 8, 3], ["src", 10, 3], ["env", 18, 3], ["makefile", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, mkLibretroCore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mame2003.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/mame2003.nix", [["NIX_CFLAGS_COMPILE", 18, 7]]);
-const pos$3 = nix.positions(here + "/mame2003.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 26, 5]]);
-const pos$4 = nix.positions(here + "/mame2003.nix", [["core", 7, 3], ["version", 8, 3], ["src", 10, 3], ["env", 18, 3], ["makefile", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,23 +11,23 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       core: "mame2003",
       version: "0-unstable-2026-09-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "mame2003-libretro",
           rev: "b9ac708f922386a0ae1f2379dbb31b60d7ec7b25",
           hash: "sha256-idaH5SQKuM1MLTHn3qhmgGixD/Vb4Ai2OEsGNRz9A5Q=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       makefile: "Makefile",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Port of MAME ~2003 to libretro, compatible with MAME 0.78 sets",
         homepage: "https://github.com/libretro/mame2003-libretro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

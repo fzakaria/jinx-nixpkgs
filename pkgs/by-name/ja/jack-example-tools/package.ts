@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["withCustomModes", 45, 25]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["mesonFlags", 56, 3], ["doCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "pkg-config": false, meson: false, ninja: false, jack2: false, "alsa-lib": false, libopus: false, libsamplerate: false, libsndfile: false, readline: false, "zita-alsa-pcmi": false, "zita-resampler": false, enableAlsa: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["withCustomModes", 45, 25]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["mesonFlags", 56, 3], ["doCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const zita_resampler = nix.arg($, "zita-resampler");
   const enableAlsa = nix.argOr($, "enableAlsa", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jack-example-tools",
       version: "4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jackaudio",
           repo: "jack-example-tools",
           rev: nix.thunk(() => nix.str`tags/${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja]),
       buildInputs: nix.thunk(() => nix.concat([
         jack2,
-        nix.thunk(() => nix.app(nix.sel(libopus, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withCustomModes: true })))),
+        nix.thunk(() => nix.app(nix.sel(libopus, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], withCustomModes: true })))),
         libsamplerate,
         libsndfile,
         readline,
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Official examples and tools from the JACK project",
         homepage: "https://jackaudio.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

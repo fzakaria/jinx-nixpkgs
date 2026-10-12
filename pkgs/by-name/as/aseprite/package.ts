@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["fetchSubmodules", 43, 5], ["hash", 44, 5]], [["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["hash", 51, 5]], [["NIX_LDFLAGS", 144, 7]], [["updateScript", 182, 12]], [["homepage", 185, 5], ["description", 186, 5], ["license", 187, 5], ["longDescription", 188, 5], ["maintainers", 201, 5], ["platforms", 202, 5], ["mainProgram", 203, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["asepriteStrings", 47, 3], ["postUnpack", 56, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 69, 3], ["patches", 96, 3], ["postPatch", 103, 3], ["cmakeFlags", 117, 3], ["env", 144, 3], ["postInstall", 146, 3], ["passthru", 182, 3], ["meta", 184, 3]]]);
 const formals$1 = { args: { clangStdenv: false, cmake: false, cmark: false, curl: false, fetchFromGitHub: false, fmt: false, fontconfig: false, freetype: false, giflib: false, glib: false, harfbuzzFull: false, libicns: false, lib: false, libGL: false, libjpeg: false, libpng: false, libwebp: false, libx11: false, libxcursor: false, libxext: false, libxi: false, libxxf86vm: false, libxcb: false, libxrandr: false, ninja: false, pcre2: false, pixman: false, "pkg-config": false, "skia-aseprite": false, "tinyxml-2": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["fetchSubmodules", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["hash", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 144, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 182, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 185, 5], ["description", 186, 5], ["license", 187, 5], ["longDescription", 188, 5], ["maintainers", 201, 5], ["platforms", 202, 5], ["mainProgram", 203, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["asepriteStrings", 47, 3], ["postUnpack", 56, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 69, 3], ["patches", 96, 3], ["postPatch", 103, 3], ["cmakeFlags", 117, 3], ["env", 144, 3], ["postInstall", 146, 3], ["passthru", 182, 3], ["meta", 184, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const tinyxml_2 = nix.arg($, "tinyxml-2");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "aseprite",
       version: "1.3.18.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aseprite",
           repo: "aseprite",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +51,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-oeTO93T/BQcM0PkrFVMw+kLDG6w3uT2798Kzgua4gsE=",
         })))),
       asepriteStrings: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "aseprite",
           repo: "strings",
           rev: "c6a218e3629ab5c0924682425091be6dec87f489",
@@ -132,13 +127,13 @@ substituteInPlace laf/os/osx/logger.mm \\
         nix.thunk(() => nix.str`-DSKIA_LIBRARY_DIR=${skia_aseprite}/lib`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isDarwin")), "-ljpeg -lwebp -lwebpdemux -lwebpmux")),
       })),
       postInstall: nix.thunk(() => nix.add("# Install desktop icons.\nsrc=\"$out/share/aseprite/data/icons\"\nfor size in 16 32 48 64 128 256; do\n  dst=\"$out\"/share/icons/hicolor/\"$size\"x\"$size\"\n  install -Dm644 \"$src\"/ase\"$size\".png \"$dst\"/apps/aseprite.png\n  install -Dm644 \"$src\"/doc\"$size\".png \"$dst\"/mimetypes/image-x-aseprite.png\ndone\n# Delete unneeded artifacts of bundled libraries.\nrm -rf \"$out\"/{include,lib,man}\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isDarwin")), "install -d \"$out/Applications\"\nif [ -d \"$out/bin/aseprite.app\" ]; then\n  rm -rf \"$out/Applications/Aseprite.app\"\n  mv \"$out/bin/aseprite.app\" \"$out/Applications/Aseprite.app\"\nfi\n# Generate the `.icns` files referenced by Info.plist from the shipped PNGs.\nres=\"$out/Applications/Aseprite.app/Contents/Resources\"\nicons=\"$res/data/icons\"\nif [ -d \"$icons\" ] && command -v png2icns >/dev/null; then\n  for spec in \"Aseprite ase\" \"Document doc\" \"Extension ext\"; do\n    set -- $spec\n    name=\"$1\"\n    prefix=\"$2\"\n    png2icns \"$res/$name.icns\" \\\n      \"$icons/${prefix}16.png\" \\\n      \"$icons/${prefix}32.png\" \\\n      \"$icons/${prefix}128.png\" \\\n      \"$icons/${prefix}256.png\"\n  done\nfi\n# Keep $out/bin clean on Darwin; the bundle lives under $out/Applications.\nrmdir \"$out/bin\" 2>/dev/null || true\n"))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.aseprite.org/",
         description: "Animated sprite editor & pixel art tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

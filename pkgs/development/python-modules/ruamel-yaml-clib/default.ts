@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["doCheck", 23, 3], ["nativeBuildInputs", 27, 3], ["preBuild", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchhg: false, setuptools: false, cython: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["doCheck", 23, 3], ["nativeBuildInputs", 27, 3], ["preBuild", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.15";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://hg.code.sf.net/p/ruamel-yaml-clib/code",
           rev: version,
           hash: "sha256-SnMELcG2L2ei3UjImljjG1sSCHHROhXYcLe5kAR6h8E=",
@@ -29,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cython]);
       const preBuild = "cython _ruamel_yaml.pyx -3 --module-name _ruamel_yaml -I.";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order",
         homepage: "https://sourceforge.net/projects/ruamel-yaml-clib/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7], ["revert", 36, 7]], [["runtimeDeps", 118, 13]], [["description", 122, 5], ["homepage", 123, 5], ["license", 124, 5], ["mainProgram", 125, 5], ["maintainers", 126, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 62, 3], ["disabledTests", 75, 3], ["disabledTestPaths", 92, 3], ["preCheck", 103, 3], ["makeWrapperArgs", 108, 3], ["__darwinAllowLocalNetworking", 115, 3], ["passthru", 117, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, fetchpatch: false, "ffmpeg-headless": false, mediainfo: false, oxipng: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7], ["revert", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["runtimeDeps", 118, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 122, 5], ["homepage", 123, 5], ["license", 124, 5], ["mainProgram", 125, 5], ["maintainers", 126, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 62, 3], ["disabledTests", 75, 3], ["disabledTestPaths", 92, 3], ["preCheck", 103, 3], ["makeWrapperArgs", 108, 3], ["__darwinAllowLocalNetworking", 115, 3], ["passthru", 117, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const runtimeDeps = nix.thunk(() => [ffmpeg_headless, mediainfo, oxipng]);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "upsies",
       version: "2026.08.09",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "plotski",
           repo: "upsies",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "use-pytest-timeout.patch",
             url: "https://codeberg.org/plotski/upsies/commit/db6b564f8575c913a6fbabb61d5326a073c9b52c.patch",
             hash: "sha256-UeUrZ6ogUSS0FvyNQwwwp8q+FArEK61o+Y2Uh7mrPtw=",
@@ -105,9 +101,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "runtimeDeps")))),
       ]),
       __darwinAllowLocalNetworking: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, runtimeDeps: runtimeDeps })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], runtimeDeps: runtimeDeps })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Toolkit for collecting, generating, normalizing and sharing video metadata",
         homepage: "https://upsies.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

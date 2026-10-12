@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bin.nix", [[["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 75, 5], ["sourceProvenance", 79, 5], ["maintainers", 80, 5]], [["pname", 18, 3], ["version", 19, 3], ["format", 20, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["pythonRemoveDeps", 32, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 40, 3], ["dontStrip", 44, 3], ["postFixup", 46, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, cudaPackages: false, buildPythonPackage: false, fetchurl: false, python: false, autoPatchelfHook: false, zlib: false, rocmPackages: false, rocmSupport: true, addDriverRunpath: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bin.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 75, 5], ["sourceProvenance", 79, 5], ["maintainers", 80, 5]]);
-const pos$2 = nix.positions(here + "/bin.nix", [["pname", 18, 3], ["version", 19, 3], ["format", 20, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["pythonRemoveDeps", 32, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 40, 3], ["dontStrip", 44, 3], ["postFixup", 46, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const rocmSupport = nix.argOr($, "rocmSupport", () => nix.sel(config, "rocmSupport"));
   const addDriverRunpath = nix.arg($, "addDriverRunpath");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "triton",
       version: "3.7.1",
       format: "wheel",
@@ -51,7 +50,7 @@ ln -s ${nix.sel(cudaPackages, "cuda_nvcc")}/bin/ptxas $out/${nix.sel(python, "si
     "return '${nix.sel(rocmPackages, "clr")}/lib/libamdhip64.so'"
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Language and compiler for custom Deep Learning operations",
         homepage: "https://github.com/triton-lang/triton/",
         changelog: nix.thunk(() => nix.str`https://github.com/triton-lang/triton/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["SDL", 18, 5]], [["url", 25, 5], ["sha256", 26, 5]], [["NIX_CFLAGS_COMPILE", 41, 7]], [["url", 50, 7], ["sha256", 51, 7]], [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["hardeningDisable", 38, 3], ["env", 41, 3], ["makeFlags", 43, 3], ["patches", 47, 3], ["patchFlags", 56, 3], ["installPhase", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, SDL_sixel: false, SDL_image: false, libjpeg: false, libpng: false, libtiff: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["SDL", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 41, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 50, 7], ["sha256", 51, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["hardeningDisable", 38, 3], ["env", 41, 3], ["makeFlags", 43, 3], ["patches", 47, 3], ["patchFlags", 56, 3], ["installPhase", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,25 +17,25 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const libpng = nix.arg($, "libpng");
   const libtiff = nix.arg($, "libtiff");
-  const SDL_image_sixel = nix.thunk(() => nix.app(nix.sel(SDL_image, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, SDL: SDL_sixel }))));
+  const SDL_image_sixel = nix.thunk(() => nix.app(nix.sel(SDL_image, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], SDL: SDL_sixel }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "zgv",
       version: "5.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://www.svgalib.org/rus/zgv/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1fk4i9x0cpnpn3llam0zy2pkmhlr2hy3iaxhxg07v9sizd4dircj",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [SDL_sixel, SDL_image_sixel, libjpeg, libpng, libtiff]),
       hardeningDisable: nix.thunk(() => ["format"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       makeFlags: nix.thunk(() => ["BACKEND=SDL"]),
       patches: nix.thunk(() => [
         nix.path(here, "./add-include.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://foss.aueb.gr/mirrors/linux/gentoo/media-gfx/zgv/files/zgv-5.9-libpng15.patch",
             sha256: "1blw9n04c28bnwcmcn64si4f5zpg42s8yn345js88fyzi9zm19xw",
           })))),
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
       patchFlags: nix.thunk(() => ["-p0"]),
       installPhase: "mkdir -p $out/bin\ncp src/zgv $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "http://www.svgalib.org/rus/zgv/",
         description: "Picture viewer with a thumbnail-based selector",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["changelog", 63, 5], ["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildPhase", 35, 3], ["installPhase", 41, 3], ["doCheck", 54, 3], ["checkPhase", 56, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ant: false, jdk8: false, jre8: false, makeWrapper: false, stripJavaArchivesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 63, 5], ["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildPhase", 35, 3], ["installPhase", 41, 3], ["doCheck", 54, 3], ["checkPhase", 56, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const jdk = jdk8;
   const jre = jre8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "javacc",
       version: "7.0.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "javacc",
           repo: "javacc",
           rev: nix.thunk(() => nix.str`javacc-${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +44,7 @@ runHook postInstall
       doCheck: true,
       checkPhase: "runHook preCheck\nant test\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/javacc/javacc/blob/${nix.sel(finalAttrs, "src", "rev")}/docs/release-notes.md`),
         description: "Parser generator for building parsers from grammars",
         homepage: "https://javacc.github.io/javacc",

@@ -2,18 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["src", 35, 15], ["srcDir", 35, 19], ["tagSuffix", 35, 26], ["name", 36, 7], ["nativeBuildInputs", 37, 7], ["installPhase", 40, 7]], [["name", 78, 15], ["tagCmd", 81, 15]], [["src", 73, 27], ["srcDir", 74, 11], ["name", 75, 11], ["createTagFiles", 76, 11]], [["sourceWithTags", 72, 9]], [["passthru", 71, 7]], [["name", 108, 31], ["tagCmd", 109, 15]], [["src", 104, 27], ["name", 105, 11], ["createTagFiles", 106, 11]], [["sourceWithTags", 103, 9]], [["passthru", 102, 7]], [["annotatedWithSourceAndTagInfo", 11, 3], ["sourceWithTagsFromDerivation", 15, 3], ["sourceWithTagsDerivation", 26, 3], ["addHasktagsTaggingInfo", 67, 3], ["addCTaggingInfo", 98, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, glibcLocales: false, unzip: false, hasktags: false, ctags: false }, ellipsis: false };
 const formals$2 = { args: { name: false, src: false, srcDir: true, tagSuffix: true, createTagFiles: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["src", 35, 15], ["srcDir", 35, 19], ["tagSuffix", 35, 26], ["name", 36, 7], ["nativeBuildInputs", 37, 7], ["installPhase", 40, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 78, 15], ["tagCmd", 81, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["src", 73, 27], ["srcDir", 74, 11], ["name", 75, 11], ["createTagFiles", 76, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["sourceWithTags", 72, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["passthru", 71, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 108, 31], ["tagCmd", 109, 15]]);
-const pos$7 = nix.positions(here + "/default.nix", [["src", 104, 27], ["name", 105, 11], ["createTagFiles", 106, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["sourceWithTags", 103, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["passthru", 102, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["annotatedWithSourceAndTagInfo", 11, 3], ["sourceWithTagsFromDerivation", 15, 3], ["sourceWithTagsDerivation", 26, 3], ["addHasktagsTaggingInfo", 67, 3], ["addCTaggingInfo", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const hasktags = nix.arg($, "hasktags");
   const ctags = nix.arg($, "ctags");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     annotatedWithSourceAndTagInfo: (x) => (nix.asBool((nix.asBool(nix.has(x, "passthru")) && nix.asBool(nix.has(nix.sel(x, "passthru"), "sourceWithTags")))) || nix.asBool((nix.asBool(nix.has(x, "meta")) && nix.asBool(nix.has(nix.sel(x, "meta"), "sourceWithTags"))))),
     sourceWithTagsFromDerivation: (x) => (nix.asBool((nix.asBool(nix.has(x, "passthru")) && nix.asBool(nix.has(nix.sel(x, "passthru"), "sourceWithTags")))) ? nix.sel(x, "passthru", "sourceWithTags") : (nix.asBool((nix.asBool(nix.has(x, "meta")) && nix.asBool(nix.has(nix.sel(x, "meta"), "sourceWithTags")))) ? nix.sel(x, "meta", "sourceWithTags") : null)),
     sourceWithTagsDerivation: nix.lambda((args_1) => (() => {
@@ -35,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const tagSuffix = nix.argOr($_1, "tagSuffix", () => "_tags");
       const createTagFiles = nix.argOr($_1, "createTagFiles", () => []);
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           src: src,
           srcDir: srcDir,
           tagSuffix: tagSuffix,
@@ -61,17 +52,17 @@ echo "TAG_FILES=\\"\\$TAG_FILES\\\${TAG_FILES:+:}$TAG_FILES\\"" >> $out/nix-supp
         })));
     })(), formals$2),
     addHasktagsTaggingInfo: (deriv) => nix.update(deriv, {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         sourceWithTags: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(deriv, "src")),
           srcDir: nix.thunk(() => (nix.asBool(nix.has(deriv, "srcDir")) ? nix.sel(deriv, "srcDir") : ".")),
           name: nix.thunk(() => nix.sel(deriv, "name")),
           createTagFiles: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: nix.thunk(() => nix.str`${nix.sel(deriv, "name")}_haskell`),
               tagCmd: nix.thunk(() => nix.str`
                    srcs="\`find . -type f -name "*.*hs"; find . -type f -name "*.*hs*";\`"
@@ -90,16 +81,16 @@ echo "TAG_FILES=\\"\\$TAG_FILES\\\${TAG_FILES:+:}$TAG_FILES\\"" >> $out/nix-supp
       })),
     }),
     addCTaggingInfo: (deriv) => nix.update(deriv, {
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         sourceWithTags: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           src: nix.thunk(() => nix.attr(deriv, "src")),
           name: nix.thunk(() => nix.str`${nix.sel(deriv, "name")}-source-ctags`),
           createTagFiles: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: nix.thunk(() => nix.attr(deriv, "name")),
               tagCmd: nix.thunk(() => nix.str`${nix.builtins.toString(ctags)}/bin/ctags --sort=yes -o $TAG_FILE -R .`),
             })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 57, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["pythonRelaxDeps", 28, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, blasthttp: false, buildPythonPackage: false, colorama: false, django: false, fetchFromGitHub: false, "flask-unsign": false, hatchling: false, pycryptodome: false, pyjwt: false, requests: false, "yara-python": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["pythonRelaxDeps", 28, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const yara_python = nix.arg($, "yara-python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "badsecrets",
       version: "1.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "blacklanternsecurity",
           repo: "badsecrets",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(pyjwt, "optional-dependencies", "crypto"))),
       pythonImportsCheck: nix.thunk(() => ["badsecrets"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Module for detecting known secrets across many web frameworks",
         homepage: "https://github.com/blacklanternsecurity/badsecrets",
         changelog: nix.thunk(() => nix.str`https://github.com/blacklanternsecurity/badsecrets/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

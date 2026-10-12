@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["maintainers", 53, 5], ["license", 57, 5], ["platforms", 58, 34], ["broken", 60, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["nativeBuildInputs", 35, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 43, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, "uv-build": false, "beets-minimal": false, pytestCheckHook: false, mediafile: false, typeguard: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["maintainers", 53, 5], ["license", 57, 5], ["platforms", 58, 34], ["broken", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["nativeBuildInputs", 35, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 43, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const typeguard = nix.arg($, "typeguard");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "beets-filetote",
       version: "1.3.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gtronset",
           repo: "beets-filetote",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(beets_minimal, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Beets plugin to move non-music files during the import process",
         homepage: "https://github.com/gtronset/beets-filetote",
         changelog: nix.thunk(() => nix.str`https://github.com/gtronset/beets-filetote/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

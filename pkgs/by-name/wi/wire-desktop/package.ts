@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 9], ["repo", 26, 9], ["tag", 27, 9], ["hash", 28, 9]], [["version", 23, 7], ["src", 24, 7]], [["owner", 34, 9], ["repo", 35, 9], ["tag", 36, 9], ["hash", 37, 9]], [["version", 32, 7], ["src", 33, 7]], [["x86_64-linux", 22, 5], ["aarch64-darwin", 31, 5], ["aarch64-linux", 40, 5]], [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["pname", 49, 5], ["version", 50, 5], ["src", 51, 5], ["nativeBuildInputs", 52, 5], ["buildPhase", 53, 5], ["dontInstall", 56, 5]], [["src", 65, 26], ["missingHashes", 65, 30], ["hash", 66, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 92, 7]], [["categories", 159, 7], ["comment", 165, 7], ["desktopName", 166, 7], ["exec", 167, 7], ["genericName", 168, 7], ["icon", 169, 7], ["name", 170, 7], ["startupWMClass", 171, 7]], [["description", 176, 5], ["longDescription", 177, 5], ["homepage", 188, 5], ["downloadPage", 189, 5], ["license", 190, 5], ["maintainers", 191, 5], ["platforms", 196, 5]], [["pname", 60, 3], ["version", 61, 62], ["src", 61, 70], ["missingHashes", 63, 3], ["offlineCache", 64, 3], ["nativeBuildInputs", 69, 3], ["patches", 81, 3], ["postPatch", 87, 3], ["env", 92, 3], ["buildPhase", 95, 3], ["installPhase", 128, 3], ["desktopItems", 157, 3], ["meta", 175, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, fetchFromGitHub: false, electron: false, nodejs: false, "yarn-berry_3": false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, darwin: false, zip: false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 9], ["repo", 26, 9], ["tag", 27, 9], ["hash", 28, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 23, 7], ["src", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 34, 9], ["repo", 35, 9], ["tag", 36, 9], ["hash", 37, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 32, 7], ["src", 33, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["x86_64-linux", 22, 5], ["aarch64-darwin", 31, 5], ["aarch64-linux", 40, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 49, 5], ["version", 50, 5], ["src", 51, 5], ["nativeBuildInputs", 52, 5], ["buildPhase", 53, 5], ["dontInstall", 56, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["src", 65, 26], ["missingHashes", 65, 30], ["hash", 66, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 92, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["categories", 159, 7], ["comment", 165, 7], ["desktopName", 166, 7], ["exec", 167, 7], ["genericName", 168, 7], ["icon", 169, 7], ["name", 170, 7], ["startupWMClass", 171, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 176, 5], ["longDescription", 177, 5], ["homepage", 188, 5], ["downloadPage", 189, 5], ["license", 190, 5], ["maintainers", 191, 5], ["platforms", 196, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 60, 3], ["version", 61, 62], ["src", 61, 70], ["missingHashes", 63, 3], ["offlineCache", 64, 3], ["nativeBuildInputs", 69, 3], ["patches", 81, 3], ["postPatch", 87, 3], ["env", 92, 3], ["buildPhase", 95, 3], ["installPhase", 128, 3], ["desktopItems", 157, 3], ["meta", 175, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,42 +27,42 @@ export default nix.lambda((args) => (() => {
     const x86_64_linux = nix.thunk(() => (() => {
       const version = "3.40.3882";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wireapp",
           repo: "wire-desktop",
           tag: nix.thunk(() => nix.str`linux/${version}`),
           hash: "sha256-pNu+/JKvaKSqHxNeDL8RcDy+FiY3aynQH06t05qgXrA=",
         }))));
-      return { [nix.POS]: pos$2, version, src };
+      return { [nix.POS]: $pos[1], version, src };
     })());
     const aarch64_darwin = nix.thunk(() => (() => {
       const version = "3.42.5489";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "wireapp",
           repo: "wire-desktop",
           tag: nix.thunk(() => nix.str`macos/${version}`),
           hash: "sha256-v80sdksor6V0OVXlBTeMf9Jz8lhQy+UdyTxxupuafeo=",
         }))));
-      return { [nix.POS]: pos$4, version, src };
+      return { [nix.POS]: $pos[3], version, src };
     })());
     const aarch64_linux = x86_64_linux;
     return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       "x86_64-linux": x86_64_linux,
       "aarch64-darwin": aarch64_darwin,
       "aarch64-linux": aarch64_linux,
     };
   })());
   const web_config = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       owner: "wireapp",
       repo: "wire-web-config-wire",
       tag: "v0.34.9-0",
       hash: "sha256-E9x/tRcMfXw/tjgNBUTefym9/m/Xu9/9CclwSmxpDzU=",
     }))));
   const electron_dist_zip = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "electron-dist-zip",
       version: nix.thunk(() => nix.sel(electron, "version")),
       src: nix.thunk(() => nix.sel(electron, "dist")),
@@ -84,13 +73,13 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.selOr(sources, () => nix.sel(sources, "x86_64-linux"), nix.key(nix.sel(stdenv, "system"))));
       return {
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "wire-desktop",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-md7B8NSqT9dmPxrp9zbWifNow+1j2tuTRMOljG1V8WE=",
@@ -106,7 +95,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`substituteInPlace .copyconfigrc.js \\
   --replace-fail 'repositoryUrl,' 'repositoryUrl, externalDir : "${web_config}",'
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$9, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[8], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       buildPhase: nix.thunk(() => nix.add(nix.add(nix.add(nix.str`runHook preBuild
 
 export BUILD_NUMBER=$(echo ${nix.sel(finalAttrs, "version")} | awk -F. '{print $NF}')
@@ -152,7 +141,7 @@ done
 `))), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             categories: nix.thunk(() => ["Network", "InstantMessaging", "Chat", "VideoConference"]),
             comment: "Secure messenger for everyone",
             desktopName: "Wire",
@@ -164,7 +153,7 @@ done
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Modern, secure messenger for everyone",
         longDescription: "Wire Personal is a secure, privacy-friendly messenger. It combines useful\nand fun features, audited security, and a beautiful, distinct user\ninterface.  It does not require a phone number to register and chat.\n\n  * End-to-end encrypted chats, calls, and files\n  * Crystal clear voice and video calling\n  * File and screen sharing\n  * Timed messages and chats\n  * Synced across your phone, desktop and tablet\n",
         homepage: "https://wire.com/",

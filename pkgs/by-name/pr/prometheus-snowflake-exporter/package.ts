@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["extraArgs", 38, 5]], [["updateScript", 37, 12]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]], [["pname", 10, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["ldflags", 26, 3], ["nativeInstallCheckInputs", 34, 3], ["doInstallCheck", 35, 3], ["passthru", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 37, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["ldflags", 26, 3], ["nativeInstallCheckInputs", 34, 3], ["doInstallCheck", 35, 3], ["passthru", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "prometheus-snowflake-exporter",
       version: "latest-unstable-2026-09-16",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grafana",
           repo: "snowflake-prometheus-exporter",
           rev: "557f0c2f87b449acbbc81be5057a795774e77636",
@@ -39,11 +35,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Prometheus exporter for Snowflake metrics",
         homepage: "https://github.com/grafana/snowflake-prometheus-exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

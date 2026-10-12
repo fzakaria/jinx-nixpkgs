@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["teams", 62, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["doCheck", 52, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, folium: false, gdal: false, geopandas: false, matplotlib: false, networkx: false, numpy: false, pandas: false, rasterio: false, requests: false, rtree: false, "scikit-learn": false, scipy: false, shapely: false, "uv-build": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["teams", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["doCheck", 52, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gboeing",
           repo: "osmnx",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["osmnx"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Package to easily download, construct, project, visualize, and analyze complex street networks from OpenStreetMap with NetworkX",
         homepage: "https://github.com/gboeing/osmnx",
         changelog: nix.thunk(() => nix.str`https://github.com/gboeing/osmnx/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

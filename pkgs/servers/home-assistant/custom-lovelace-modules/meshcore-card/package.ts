@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["updateScript", 31, 12]], [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 9, 3], ["version", 10, 3], ["strictDeps", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["installPhase", 22, 3], ["passthru", 31, 3], ["__structuredAttrs", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 31, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["strictDeps", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["installPhase", 22, 3], ["passthru", 31, 3], ["__structuredAttrs", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "meshcore-card",
       version: "0.4.3",
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jpettitt",
           repo: "meshcore-card",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,12 +32,12 @@ cp dist/${nix.sel(finalAttrs, "pname")}.js $out/
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "MeshCore Lovelace card for Home Assistant",
         homepage: "https://github.com/jpettitt/meshcore-card",
         changelog: nix.thunk(() => nix.str`https://github.com/jpettitt/meshcore-card/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

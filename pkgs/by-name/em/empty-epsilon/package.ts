@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["seriousproton", 18, 5], ["emptyepsilon", 19, 5], ["basis-universal", 20, 5]], [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["owner", 35, 7], ["repo", 36, 7], ["tag", 37, 7], ["hash", 38, 7]], [["description", 55, 7], ["homepage", 56, 7], ["license", 57, 7], ["maintainers", 58, 7], ["platforms", 59, 7]], [["pname", 31, 5], ["version", 32, 5], ["src", 34, 5], ["nativeBuildInputs", 41, 5], ["buildInputs", 42, 5], ["cmakeFlags", 49, 5], ["meta", 54, 5]], [["owner", 70, 5], ["repo", 71, 5], ["tag", 72, 5], ["hash", 73, 5]], [["description", 103, 5], ["mainProgram", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 110, 5]], [["pname", 66, 3], ["version", 67, 3], ["src", 69, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 77, 3], ["cmakeFlags", 88, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, sfml: false, libx11: false, glew: false, python3: false, glm_1_0_1: false, meshoptimizer: false, SDL2: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["seriousproton", 18, 5], ["emptyepsilon", 19, 5], ["basis-universal", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 35, 7], ["repo", 36, 7], ["tag", 37, 7], ["hash", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 55, 7], ["homepage", 56, 7], ["license", 57, 7], ["maintainers", 58, 7], ["platforms", 59, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 5], ["version", 32, 5], ["src", 34, 5], ["nativeBuildInputs", 41, 5], ["buildInputs", 42, 5], ["cmakeFlags", 49, 5], ["meta", 54, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 70, 5], ["repo", 71, 5], ["tag", 72, 5], ["hash", 73, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 103, 5], ["mainProgram", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 110, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 66, 3], ["version", 67, 3], ["src", 69, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 77, 3], ["cmakeFlags", 88, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,24 +20,24 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const ninja = nix.arg($, "ninja");
   const versions = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     seriousproton: "2024.12.08",
     emptyepsilon: "2024.12.08",
     "basis-universal": "1.15_final",
   }));
   const basis_universal = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "BinomialLLC",
       repo: "basis_universal",
       tag: nix.thunk(() => nix.sel(versions, "basis-universal")),
       hash: "sha256-pKvfVvdbPIdzdSOklicThS7xwt4i3/21bE6wg9f8kHY=",
     }))));
   const serious_proton = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "serious-proton",
       version: nix.thunk(() => nix.sel(versions, "seriousproton")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "daid",
           repo: "SeriousProton",
           tag: nix.thunk(() => nix.str`EE-${nix.sel(versions, "seriousproton")}`),
@@ -57,7 +50,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_CXX_FLAGS", "-DGLM_ENABLE_EXPERIMENTAL")),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C++ game engine coded on top of SFML used for EmptyEpsilon",
         homepage: "https://github.com/daid/SeriousProton",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -69,11 +62,11 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "empty-epsilon",
       version: nix.thunk(() => nix.sel(versions, "emptyepsilon")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           owner: "daid",
           repo: "EmptyEpsilon",
           tag: nix.thunk(() => nix.str`EE-${nix.sel(versions, "emptyepsilon")}`),
@@ -95,7 +88,7 @@ export default nix.lambda((args) => (() => {
         "-G Ninja",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Open source bridge simulator based on Artemis",
         mainProgram: "EmptyEpsilon",
         homepage: "https://daid.github.io/EmptyEpsilon/",

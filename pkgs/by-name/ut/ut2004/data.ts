@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/data.nix", [[["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5], ["sourceProvenance", 48, 5]], [["name", 11, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["nativeBuildInputs", 16, 3], ["unpackPhase", 21, 3], ["installPhase", 31, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, libarchive: false, stdenv: false, unshield: false, ut2004Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/data.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5], ["sourceProvenance", 48, 5]]);
-const pos$2 = nix.positions(here + "/data.nix", [["name", 11, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["nativeBuildInputs", 16, 3], ["unpackPhase", 21, 3], ["installPhase", 31, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const unshield = nix.arg($, "unshield");
   const ut2004Packages = nix.arg($, "ut2004Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "ut2004-data",
       __structuredAttrs: true,
       strictDeps: true,
@@ -30,7 +29,7 @@ runHook postUnpack
 `),
       installPhase: "runHook preInstall\n\nmv data $out\n\nrunHook preInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Unreal Tournament 2004 CD content provided by OldUnreal",
         homepage: "https://oldunreal.com/downloads/ut2004/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -2,28 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 13]], [["KANIDM_BUILD_PROFILE", 64, 7], ["RUSTFLAGS", 139, 7]], [["cpu_flags", 78, 9]], [["client_config_path", 81, 9], ["resolver_config_path", 82, 9], ["resolver_unix_shell_path", 83, 9], ["server_admin_bind_path", 84, 9], ["server_config_path", 85, 9], ["server_ui_pkg_path", 86, 9]], [["resolver_service_account_token_path", 89, 9]], [["server_migration_path", 92, 9]], [["from", 98, 13], ["to", 99, 13]], [["kanidmPackage", 167, 36]], [["args", 167, 31]], [["_module", 167, 23]], [["modules", 167, 9]], [["kanidmPackage", 170, 36]], [["args", 170, 31]], [["_module", 170, 23]], [["modules", 170, 9]], [["kanidm", 166, 7], ["kanidm-provisioning", 169, 7]], [["extraArgs", 175, 7]], [["tests", 165, 5], ["updateScript", 174, 5], ["enableSecretProvisioning", 183, 13], ["withSecretProvisioning", 186, 5], ["eolMessage", 188, 5]], [["changelog", 199, 5], ["description", 200, 5], ["homepage", 201, 5], ["license", 202, 5], ["platforms", 203, 5], ["maintainers", 204, 5], ["knownVulnerabilities", 209, 5]], [["pname", 50, 3], ["version", 51, 11], ["cargoHash", 51, 19], ["cargoDepsName", 53, 3], ["src", 55, 3], ["__structuredAttrs", 62, 3], ["env", 64, 3], ["patches", 66, 3], ["postPatch", 73, 3], ["nativeBuildInputs", 113, 3], ["buildInputs", 118, 3], ["postBuild", 131, 3], ["cargoTestFlags", 144, 3], ["doCheck", 150, 3], ["preFixup", 152, 3], ["passthru", 164, 3], ["requiredSystemFeatures", 196, 3], ["meta", 198, 3]]]);
 const formals$1 = { args: { version: false, hash: false, cargoHash: false, unsupported: true, eolDate: true, patches: true }, ellipsis: false };
 const formals$2 = { args: { stdenv: false, lib: false, formats: false, nixosTests: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, "nix-update-script": false, "pkg-config": false, udev: false, openssl: false, sqlite: false, pam: false, bashInteractive: false, "rust-jemalloc-sys": false, kanidmWithSecretProvisioning: false, enableSecretProvisioning: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 13]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["KANIDM_BUILD_PROFILE", 64, 7], ["RUSTFLAGS", 139, 7]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["cpu_flags", 78, 9]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["client_config_path", 81, 9], ["resolver_config_path", 82, 9], ["resolver_unix_shell_path", 83, 9], ["server_admin_bind_path", 84, 9], ["server_config_path", 85, 9], ["server_ui_pkg_path", 86, 9]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["resolver_service_account_token_path", 89, 9]]);
-const pos$6 = nix.positions(here + "/generic.nix", [["server_migration_path", 92, 9]]);
-const pos$7 = nix.positions(here + "/generic.nix", [["from", 98, 13], ["to", 99, 13]]);
-const pos$8 = nix.positions(here + "/generic.nix", [["kanidmPackage", 167, 36]]);
-const pos$9 = nix.positions(here + "/generic.nix", [["args", 167, 31]]);
-const pos$10 = nix.positions(here + "/generic.nix", [["_module", 167, 23]]);
-const pos$11 = nix.positions(here + "/generic.nix", [["modules", 167, 9]]);
-const pos$12 = nix.positions(here + "/generic.nix", [["kanidmPackage", 170, 36]]);
-const pos$13 = nix.positions(here + "/generic.nix", [["args", 170, 31]]);
-const pos$14 = nix.positions(here + "/generic.nix", [["_module", 170, 23]]);
-const pos$15 = nix.positions(here + "/generic.nix", [["modules", 170, 9]]);
-const pos$16 = nix.positions(here + "/generic.nix", [["kanidm", 166, 7], ["kanidm-provisioning", 169, 7]]);
-const pos$17 = nix.positions(here + "/generic.nix", [["extraArgs", 175, 7]]);
-const pos$18 = nix.positions(here + "/generic.nix", [["tests", 165, 5], ["updateScript", 174, 5], ["enableSecretProvisioning", 183, 13], ["withSecretProvisioning", 186, 5], ["eolMessage", 188, 5]]);
-const pos$19 = nix.positions(here + "/generic.nix", [["changelog", 199, 5], ["description", 200, 5], ["homepage", 201, 5], ["license", 202, 5], ["platforms", 203, 5], ["maintainers", 204, 5], ["knownVulnerabilities", 209, 5]]);
-const pos$20 = nix.positions(here + "/generic.nix", [["pname", 50, 3], ["version", 51, 11], ["cargoHash", 51, 19], ["cargoDepsName", 53, 3], ["src", 55, 3], ["__structuredAttrs", 62, 3], ["env", 64, 3], ["patches", 66, 3], ["postPatch", 73, 3], ["nativeBuildInputs", 113, 3], ["buildInputs", 118, 3], ["postBuild", 131, 3], ["cargoTestFlags", 144, 3], ["doCheck", 150, 3], ["preFixup", 152, 3], ["passthru", 164, 3], ["requiredSystemFeatures", 196, 3], ["meta", 198, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,13 +37,13 @@ export default nix.lambda((args) => (() => {
     const versionUnderscored = (finalAttrs) => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))));
     const upgradeNote = "Please upgrade by verifying `kanidmd domain upgrade-check` and choosing the\nnext version with `services.kanidm.package = pkgs.kanidm_1_x;`\n\nSee upgrade guide at https://kanidm.github.io/kanidm/master/server_updates.html\n";
     return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         pname: nix.thunk(() => nix.add("kanidm", nix.app(nix.sel(lib, "optionalString"), enableSecretProvisioning, "-with-secret-provisioning"))),
         version: version,
         cargoHash: cargoHash,
         cargoDepsName: "kanidm",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "kanidm",
             repo: "kanidm",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +51,7 @@ export default nix.lambda((args) => (() => {
           })))),
         __structuredAttrs: true,
         env: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           KANIDM_BUILD_PROFILE: nix.thunk(() => nix.str`release_nixpkgs_${arch}`),
           RUSTFLAGS: "--cap-lints warn",
         })),
@@ -82,18 +63,18 @@ export default nix.lambda((args) => (() => {
           const format = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(formats, "toml"), nix.thunk(() => ({}))), "generate"), nix.thunk(() => nix.str`${nix.sel(finalAttrs, "env", "KANIDM_BUILD_PROFILE")}.toml`)));
           const socket_path = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "/run/kanidmd/sock" : "/var/run/kanidm.socket"));
           const profile = nix.thunk(() => nix.update({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             cpu_flags: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x86_64_legacy" : "none")),
           }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "1.5")), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               client_config_path: "/etc/kanidm/config",
               resolver_config_path: "/etc/kanidm/unixd",
               resolver_unix_shell_path: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), bashInteractive)}/bin/bash`),
               server_admin_bind_path: socket_path,
               server_config_path: "/etc/kanidm/server.toml",
               server_ui_pkg_path: "@htmx_ui_pkg_path@",
-            }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "1.8")), nix.thunk(() => ({ [nix.POS]: pos$5, resolver_service_account_token_path: "/etc/kanidm/token" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "1.9")), nix.thunk(() => ({ [nix.POS]: pos$6, server_migration_path: "/etc/kanidm/migrations.d" })))))));
-          const rustVersion = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "1.11")) ? { [nix.POS]: pos$7, from: "1.96", to: "1.95" } : null));
+            }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "1.8")), nix.thunk(() => ({ [nix.POS]: $pos[4], resolver_service_account_token_path: "/etc/kanidm/token" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "1.9")), nix.thunk(() => ({ [nix.POS]: $pos[5], server_migration_path: "/etc/kanidm/migrations.d" })))))));
+          const rustVersion = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "1.11")) ? { [nix.POS]: $pos[6], from: "1.96", to: "1.95" } : null));
           return nix.add(nix.str`cp ${nix.app(format, profile)} libs/profiles/${nix.sel(finalAttrs, "env", "KANIDM_BUILD_PROFILE")}.toml
 substituteInPlace libs/profiles/${nix.sel(finalAttrs, "env", "KANIDM_BUILD_PROFILE")}.toml --replace-fail '@htmx_ui_pkg_path@' "$out/ui/hpkg"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(rustVersion, null)), nix.thunk(() => nix.str`substituteInPlace Cargo.toml \\
@@ -107,18 +88,18 @@ substituteInPlace libs/profiles/${nix.sel(finalAttrs, "env", "KANIDM_BUILD_PROFI
         doCheck: false,
         preFixup: nix.thunk(() => nix.add("installShellCompletion \\\n  --bash $releaseDir/build/completions/*.bash \\\n  --zsh $releaseDir/build/completions/_* \\\n  --fish $releaseDir/build/completions/*.fish\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "# PAM and NSS need fix library names\nmv $out/lib/libnss_kanidm.so $out/lib/libnss_kanidm.so.2\nmv $out/lib/libpam_kanidm.so $out/lib/pam_kanidm.so\n"))),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             kanidm: nix.thunk(() => nix.app(nix.sel(nixosTests, "kanidm", "extend"), nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 modules: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     _module: nix.thunk(() => ({
-                      [nix.POS]: pos$9,
+                      [nix.POS]: $pos[8],
                       args: nix.thunk(() => ({
-                        [nix.POS]: pos$8,
+                        [nix.POS]: $pos[7],
                         kanidmPackage: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                       })),
                     })),
@@ -126,14 +107,14 @@ substituteInPlace libs/profiles/${nix.sel(finalAttrs, "env", "KANIDM_BUILD_PROFI
                 ]),
               })))),
             "kanidm-provisioning": nix.thunk(() => nix.app(nix.sel(nixosTests, "kanidm-provisioning", "extend"), nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 modules: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$14,
+                    [nix.POS]: $pos[13],
                     _module: nix.thunk(() => ({
-                      [nix.POS]: pos$13,
+                      [nix.POS]: $pos[12],
                       args: nix.thunk(() => ({
-                        [nix.POS]: pos$12,
+                        [nix.POS]: $pos[11],
                         kanidmPackage: nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "withSecretProvisioning")),
                       })),
                     })),
@@ -142,7 +123,7 @@ substituteInPlace libs/profiles/${nix.sel(finalAttrs, "env", "KANIDM_BUILD_PROFI
               })))),
           })),
           updateScript: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(enableSecretProvisioning)), nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 extraArgs: nix.thunk(() => [
                   "-vr",
                   nix.thunk(() => nix.str`v(${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}\\.${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}\\.[0-9]*)`),
@@ -159,7 +140,7 @@ ${upgradeNote}
         })),
         requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           changelog: nix.thunk(() => nix.str`https://github.com/kanidm/kanidm/releases/tag/v${nix.sel(finalAttrs, "version")}`),
           description: "Simple, secure and fast identity management platform",
           homepage: "https://github.com/kanidm/kanidm",

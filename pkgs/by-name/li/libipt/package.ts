@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["NIX_LDFLAGS", 24, 5]], [["changelog", 28, 5], ["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["env", 23, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, freebsd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 28, 5], ["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["env", 23, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const freebsd = nix.arg($, "freebsd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libipt",
       version: "2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intel",
           repo: "libipt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,9 +25,9 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => nix.sel(freebsd, "libstdthreads")))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lstdthreads" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-lstdthreads" })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/intel/libipt/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Intel Processor Trace decoder library",
         homepage: "https://github.com/intel/libipt",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["description", 49, 5], ["mainProgram", 50, 5], ["longDescription", 52, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitLab: false, fetchpatch: false, lib: false, cmake: false, libGLU: false, libGL: false, glm: false, glew: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["mainProgram", 50, 5], ["longDescription", 52, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const glew = nix.arg($, "glew");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vite",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.inria.fr",
           owner: "solverstack",
           repo: "vite",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "cmake4-fix",
             url: "https://gitlab.inria.fr/solverstack/vite/-/commit/0359f78c8b11ced3a79ac4d73f4ecb9087eba1e8.patch",
             hash: "sha256-UMg21ZlwyRSVQ4CD1oKNUkT+RNxqOIQi2WNBLbYPkJg=",
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         glew,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Visual Trace Explorer (ViTE), a tool to visualize execution traces",
         mainProgram: "vite",
         longDescription: "ViTE is a trace explorer. It is a tool to visualize execution\ntraces in Pajé or OTF format for debugging and profiling\nparallel or distributed applications.\n",

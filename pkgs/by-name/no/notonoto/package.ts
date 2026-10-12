@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 26, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 48, 3], ["buildPhase", 53, 3], ["installPhase", 62, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false, fontforge: false, python3: false, width35: true, console: true, hideZenkakuSpace: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 48, 3], ["buildPhase", 53, 3], ["installPhase", 62, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
     })()));
   const fontforgeArgs = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), width35, "--35"), nix.concat(nix.app(nix.sel(lib, "optional"), console, "--console"), nix.app(nix.sel(lib, "optional"), hideZenkakuSpace, "--hidden-zenkaku-space"))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.add(nix.add(nix.add("notonoto", nix.app(nix.sel(lib, "optionalString"), hideZenkakuSpace, "-hs")), nix.app(nix.sel(lib, "optionalString"), width35, "-35")), nix.app(nix.sel(lib, "optionalString"), console, "-console"))),
       version: "0.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yuru7",
           repo: "NOTONOTO",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +50,7 @@ install -Dm444 build/*.ttf -t $out/share/fonts/truetype/${nix.sel(finalAttrs, "p
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Programming font that combines Noto Sans Mono and Noto Sans JP",
         homepage: "https://github.com/yuru7/NOTONOTO",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

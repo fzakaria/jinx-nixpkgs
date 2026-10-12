@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["build-system", 29, 3], ["doCheck", 32, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, file: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["build-system", 29, 3], ["doCheck", 32, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const file = nix.arg($, "file");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sqlmap",
       version: "1.10.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-YiColRzO57wX5CRkB/++LJSGiagxkvIZTDVInHolUHY=",
@@ -37,7 +35,7 @@ echo 'LAST_UPDATE_NAGGING_DAYS = float("inf")' >> sqlmap/lib/core/settings.py
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["sqlmap"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Automatic SQL injection and database takeover tool",
         homepage: "https://sqlmap.org",
         changelog: nix.thunk(() => nix.str`https://github.com/sqlmapproject/sqlmap/releases/tag/${nix.sel(finalAttrs, "version")}`),

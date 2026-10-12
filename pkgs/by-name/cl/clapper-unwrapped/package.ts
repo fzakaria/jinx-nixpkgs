@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]], [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["src", 34, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 53, 3], ["postPatch", 69, 3], ["preFixup", 73, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "gobject-introspection": false, "pkg-config": false, ninja: false, "desktop-file-utils": false, "shared-mime-info": false, meson: false, gtk4: false, gst_all_1: false, libGL: false, libadwaita: false, libsoup_3: false, vala: false, cmake: false, libmicrodns: false, "glib-networking": false, libpeas2: false, graphviz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["src", 34, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 53, 3], ["postPatch", 69, 3], ["preFixup", 73, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const libpeas2 = nix.arg($, "libpeas2");
   const graphviz = nix.arg($, "graphviz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "clapper-unwrapped",
       version: "0.10.0",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Rafostar",
           repo: "clapper",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,7 +68,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs --build build-aux/meson/postinstall.py\n",
       preFixup: "mkdir -p $out/share/gsettings-schemas\n# alias clapper-unwrapped schemas to also provide clapper schemas.\n# the precise schema patch can vary based on host platform.\nschemas=$(basename $lib/share/gsettings-schemas/clapper-unwrapped-*)\ncp -r $lib/share/gsettings-schemas/$schemas $out/share/gsettings-schemas/${schemas/clapper-unwrapped-/clapper-}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GNOME media player built using GTK4 toolkit and powered by GStreamer with OpenGL rendering",
         longDescription: "Clapper is a GNOME media player built using the GTK4 toolkit.\nThe media player is using GStreamer as a media backend.\n",
         homepage: "https://github.com/Rafostar/clapper",

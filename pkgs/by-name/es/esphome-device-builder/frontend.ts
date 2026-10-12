@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontend.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["pname", 30, 26], ["src", 30, 32], ["pnpm", 31, 13], ["fetcherVersion", 32, 5], ["hash", 33, 5]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["pnpmDeps", 29, 3], ["nativeBuildInputs", 36, 3], ["build-system", 43, 3], ["preBuild", 47, 3], ["pythonImportsCheck", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, nodejs: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_11: false, pyprojectVersionPatchHook: false, setuptools: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontend.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/frontend.nix", [["pname", 30, 26], ["src", 30, 32], ["pnpm", 31, 13], ["fetcherVersion", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/frontend.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5]]);
-const pos$4 = nix.positions(here + "/frontend.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["pnpmDeps", 29, 3], ["nativeBuildInputs", 36, 3], ["build-system", 43, 3], ["preBuild", 47, 3], ["pythonImportsCheck", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const meta = nix.arg($, "meta");
   const pnpm = pnpm_11;
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "esphome-device-builder-frontend",
       version: "0.1.329",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "esphome",
           repo: "device-builder-frontend",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-Zai2wwrexO9H+LCfEuckfRffuqyKOkG7p/42NeVGcsc=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pnpm: pnpm,
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "pnpm run build\n",
       pythonImportsCheck: nix.thunk(() => ["esphome_device_builder_frontend"]),
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Frontend for the ESPHome Device Builder",
         homepage: "https://github.com/esphome/device-builder-frontend",
         changelog: nix.thunk(() => nix.str`https://github.com/esphome/device-builder/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

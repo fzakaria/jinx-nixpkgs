@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["url", 29, 7], ["hash", 30, 7]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 66, 5], ["platforms", 67, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["patches", 25, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["installPhase", 45, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, qt6: false, "ffmpeg_7-headless": false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 66, 5], ["platforms", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["patches", 25, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["installPhase", 45, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_7_headless = nix.arg($, "ffmpeg_7-headless");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "karlyriceditor",
       version: "4.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gyunaev",
           repo: "karlyriceditor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/gyunaev/karlyriceditor/commit/1d5e095cc691d4239c919d78209bdd05e57ed2aa.patch",
             hash: "sha256-G93OfcQzgv8PhRQa8aUNsjaIt0GcGQxZGe4Eo0xP7TM=",
           })))),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ffmpeg_7_headless, nix.thunk(() => nix.sel(qt6, "qtmultimedia"))]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 bin/karlyriceditor $out/bin/karlyriceditor\ninstall -Dm644 packages/karlyriceditor.desktop $out/share/applications/karlyriceditor.desktop\ninstall -Dm644 packages/karlyriceditor.png $out/share/icons/hicolor/24x24/apps/karlyriceditor.png\ninstall -Dm644 src/images/application_icon.png $out/share/icons/hicolor/128x128/apps/karlyriceditor.png\n\nsubstituteInPlace $out/share/applications/karlyriceditor.desktop \\\n  --replace-fail 'Icon=/usr/share/pixmaps/karlyriceditor.png' 'Icon=karlyriceditor'\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Edit and synchronize lyrics with karaoke songs in various formats",
         homepage: "https://github.com/gyunaev/karlyriceditor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

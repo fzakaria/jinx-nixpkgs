@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["homepage", 55, 5], ["changelog", 56, 5], ["description", 57, 5], ["longDescription", 58, 5], ["mainProgram", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["configureFlags", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["enableParallelBuilding", 50, 3], ["strictDeps", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, libpng: false, libsamplerate: false, "pkg-config": false, python3: false, SDL2: false, SDL2_mixer: false, SDL2_net: false, zlib: false, enableTruecolor: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["changelog", 56, 5], ["description", 57, 5], ["longDescription", 58, 5], ["mainProgram", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["configureFlags", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["enableParallelBuilding", 50, 3], ["strictDeps", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const enableTruecolor = nix.argOr($, "enableTruecolor", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "crispy-doom",
       version: "7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fabiangreffrath",
           repo: "crispy-doom",
           tag: nix.thunk(() => nix.str`crispy-doom-${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://fabiangreffrath.github.io/crispy-homepage",
         changelog: nix.thunk(() => nix.str`https://github.com/fabiangreffrath/crispy-doom/releases/tag/crispy-doom-${nix.sel(finalAttrs, "version")}`),
         description: "Limit-removing enhanced-resolution Doom source port based on Chocolate Doom",

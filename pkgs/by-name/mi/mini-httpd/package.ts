@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["NIX_CFLAGS_COMPILE", 28, 7]], [["homepage", 31, 5], ["description", 32, 5], ["mainProgram", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["enableParallelBuilding", 26, 3], ["env", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, boost: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["description", 32, 5], ["mainProgram", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["enableParallelBuilding", 26, 3], ["env", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const boost = nix.arg($, "boost");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mini-httpd",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download-mirror.savannah.gnu.org/releases/mini-httpd/mini-httpd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0jggmlaywjfbdljzv5hyiz49plnxh0har2bnc9dq4xmj1pmjgs49",
         })))),
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost]),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++14"]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://mini-httpd.nongnu.org/",
         description: "Minimalistic high-performance web server",
         mainProgram: "httpd",

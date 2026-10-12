@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 51, 9], ["hash", 52, 9]], [["url", 55, 9], ["hash", 56, 9]], [["name", 47, 5], ["srcs", 49, 5], ["installPhase", 61, 5]], [["url", 73, 5], ["hash", 76, 5]], [["url", 85, 7], ["hash", 86, 7]], [["test-corpus-render", 223, 5], ["graphicsmagick", 225, 7], ["imagemagick", 226, 7], ["libspectre", 227, 7], ["lilypond", 228, 7], ["pstoedit", 229, 7], ["matplotlib", 231, 28]], [["tests", 222, 12]], [["homepage", 235, 5], ["changelog", 236, 5], ["description", 237, 5], ["longDescription", 238, 5], ["license", 246, 5], ["platforms", 247, 5], ["maintainers", 248, 5], ["mainProgram", 249, 5]], [["pname", 69, 3], ["version", 70, 3], ["src", 72, 3], ["patches", 79, 3], ["outputs", 90, 3], ["enableParallelBuilding", 97, 3], ["depsBuildBuild", 99, 3], ["nativeBuildInputs", 103, 3], ["buildInputs", 111, 3], ["preConfigure", 136, 3], ["configureFlags", 160, 3], ["doCheck", 177, 3], ["buildFlags", 180, 3], ["installTargets", 186, 3], ["postInstall", 188, 3], ["doInstallCheck", 199, 3], ["installCheckPhase", 200, 3], ["passthru", 222, 3], ["meta", 234, 3]]]);
 const formals$1 = { args: { config: false, stdenv: false, lib: false, fetchurl: false, fetchpatch2: false, "pkg-config": false, zlib: false, expat: false, openssl: false, autoconf: false, libjpeg: false, libpng: false, libtiff: false, freetype: false, fontconfig: false, libpaper: false, jbig2dec: false, libiconv: false, ijs: false, lcms2: false, callPackage: false, bash: false, buildPackages: false, openjpeg: false, fixDarwinDylibNames: false, cupsSupport: true, cups: false, x11Support: true, libice: false, libx11: false, libxext: false, libxt: false, dynamicDrivers: true, graphicsmagick: false, imagemagick: false, libspectre: false, lilypond: false, pstoedit: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 51, 9], ["hash", 52, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 55, 9], ["hash", 56, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 47, 5], ["srcs", 49, 5], ["installPhase", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 73, 5], ["hash", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 85, 7], ["hash", 86, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["test-corpus-render", 223, 5], ["graphicsmagick", 225, 7], ["imagemagick", 226, 7], ["libspectre", 227, 7], ["lilypond", 228, 7], ["pstoedit", 229, 7], ["matplotlib", 231, 28]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 222, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 235, 5], ["changelog", 236, 5], ["description", 237, 5], ["longDescription", 238, 5], ["license", 246, 5], ["platforms", 247, 5], ["maintainers", 248, 5], ["mainProgram", 249, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 69, 3], ["version", 70, 3], ["src", 72, 3], ["patches", 79, 3], ["outputs", 90, 3], ["enableParallelBuilding", 97, 3], ["depsBuildBuild", 99, 3], ["nativeBuildInputs", 103, 3], ["buildInputs", 111, 3], ["preConfigure", 136, 3], ["configureFlags", 160, 3], ["doCheck", 177, 3], ["buildFlags", 180, 3], ["installTargets", 186, 3], ["postInstall", 188, 3], ["doInstallCheck", 199, 3], ["installCheckPhase", 200, 3], ["passthru", 222, 3], ["meta", 234, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,16 +47,16 @@ export default nix.lambda((args) => (() => {
   const pstoedit = nix.arg($, "pstoedit");
   const python3 = nix.arg($, "python3");
   const fonts = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "ghostscript-fonts",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "mirror://sourceforge/gs-fonts/ghostscript-fonts-std-8.11.tar.gz",
             hash: "sha256-DrbzVhGfLkmyVjIQhS4X9X+dzFdV81Cmmkag1kGgxAE=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "mirror://gnu/ghostscript/gnu-gs-fonts-other-6.0.tar.gz",
             hash: "sha256-gUbMzEaZ/p2rhBRGvdFwOfR2nJA+zrVECRiLkgdUqrM=",
           })))),
@@ -72,11 +64,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir \"$out\"\nmv -v * \"$out/\"\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: nix.thunk(() => nix.str`ghostscript${nix.app(nix.sel(lib, "optionalString"), x11Support, "-with-X")}`),
       version: "10.08.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/ghostscript-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-wgSSvI67lsh/ouUqCSbhzajN6V1mFF4BiscT/tXaOM8=",
         })))),
@@ -84,7 +76,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./urw-font-files.patch"),
         nix.path(here, "./doc-no-ref.diff"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://salsa.debian.org/debian/ghostscript/-/raw/01e895fea033cc35054d1b68010de9818fa4a8fc/debian/patches/2010_add_build_timestamp_setting.patch",
             hash: "sha256-XTKkFKzMR2QpcS1YqoxzJnyuGk/l/Y2jdevsmbMtCXA=",
           })))),
@@ -144,11 +136,11 @@ ln -s "$fonts/share/fonts" "$out/share/ghostscript/fonts"
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/gs --version\n$out/bin/gsx --version\npushd examples\nfor f in *.{ps,eps,pdf}; do\n  echo \"Rendering $f\"\n  $out/bin/gs \\\n    -dNOPAUSE \\\n    -dBATCH \\\n    -sDEVICE=bitcmyk \\\n    -sOutputFile=/dev/null \\\n    -r600 \\\n    -dBufferSpace=100000 \\\n    $f\ndone\npopd # examples\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "test-corpus-render": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-corpus-render.nix"), nix.thunk(() => ({})))),
           graphicsmagick: graphicsmagick,
           imagemagick: imagemagick,
@@ -160,7 +152,7 @@ ln -s "$fonts/share/fonts" "$out/share/ghostscript/fonts"
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://www.ghostscript.com/",
         changelog: nix.thunk(() => nix.str`https://ghostscript.readthedocs.io/en/gs${nix.sel(finalAttrs, "version")}/News.html`),
         description: "PostScript interpreter (mainline version)",

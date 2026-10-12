@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 23, 5], ["mainProgram", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["shellPath", 33, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["subPackages", 20, 3], ["meta", 22, 3], ["passthru", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["mainProgram", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["shellPath", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["subPackages", 20, 3], ["meta", 22, 3], ["passthru", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "murex",
       version: "7.2.1001",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lmorg",
           repo: "murex",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-MaBBi2Qi7s9lfRWmnYkyr7PtwzC7ZL0jmyUXzISOXVg=",
       subPackages: nix.thunk(() => ["."]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bash-like shell and scripting environment with advanced features designed for safety and productivity",
         mainProgram: "murex",
         homepage: "https://murex.rocks",
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "kashw2"))];
         })()),
       })),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, shellPath: "/bin/murex" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], shellPath: "/bin/murex" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

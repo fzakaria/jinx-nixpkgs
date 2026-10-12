@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qt5compat.nix", [[["pname", 11, 3], ["propagatedBuildInputs", 12, 3], ["buildInputs", 16, 3]]]);
 const formals$1 = { args: { qtModule: false, qtbase: false, qtdeclarative: false, libiconv: false, icu: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qt5compat.nix", [["pname", 11, 3], ["propagatedBuildInputs", 12, 3], ["buildInputs", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const icu = nix.arg($, "icu");
   const openssl = nix.arg($, "openssl");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "qt5compat",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative]),
       buildInputs: nix.thunk(() => [libiconv, icu, openssl]),

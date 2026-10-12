@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/darwin.nix", [[["pname", 11, 5], ["version", 12, 5], ["src", 13, 5], ["meta", 14, 5], ["nativeBuildInputs", 17, 3], ["sourceRoot", 19, 3], ["installPhase", 21, 3]]]);
 const formals$1 = { args: { stdenv: false, undmg: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, src: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/darwin.nix", [["pname", 11, 5], ["version", 12, 5], ["src", 13, 5], ["meta", 14, 5], ["nativeBuildInputs", 17, 3], ["sourceRoot", 19, 3], ["installPhase", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const meta = nix.arg($_1, "meta");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: pname,
         version: version,
         src: src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["downloadPage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 24, 3], ["preFixup", 31, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchurl: false, "gnustep-back": false, wrapGNUstepAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["downloadPage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 24, 3], ["preFixup", 31, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pikopixel";
       const version = "1.0-b10";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://twilightedge.com/downloads/PikoPixel.Sources.${version}.tar.gz`),
           sha256: "1b27npgsan2nx1p581b9q2krx4506yyd6s34r4sf1r9x9adshm77",
         }))));
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gnustep_back]);
       const preFixup = "mkdir -p $out/share/applications\nsed \\\n  -e \"s@^Exec=.*\\$@Exec=$out/bin/PikoPixel %F@\" \\\n  -e \"s@^Icon=.*/local@Icon=$out@\" \\\n  PikoPixel.app/Resources/PikoPixel.desktop > $out/share/applications/PikoPixel.desktop\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Application for drawing and editing pixel-art images",
         mainProgram: "PikoPixel",
         homepage: "https://twilightedge.com/mac/pikopixel/",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

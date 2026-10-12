@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["name", 48, 9], ["exec", 49, 9], ["comment", 50, 9], ["desktopName", 51, 9], ["genericName", 52, 9]], [["homepage", 72, 5], ["description", 73, 5], ["longDescription", 74, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["desktopItems", 45, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, copyDesktopItems: false, libx11: false, libxpm: false, libpng: false, makeDesktopItem: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 48, 9], ["exec", 49, 9], ["comment", 50, 9], ["desktopName", 51, 9], ["genericName", 52, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["longDescription", 74, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["desktopItems", 45, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ace-of-penguins",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.delorie.com/store/ace/ace-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-H+47BTOSGkKHPAYj8z2HOgZ7HuxY8scMAUSRRueaTM4=",
         })))),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxpm, libpng, zlib]),
       desktopItems: nix.thunk(() => (() => {
         const generateItem = (gameName) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`ace-of-penguins-${gameName}`),
           exec: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${gameName}`),
           comment: nix.thunk(() => nix.str`Ace of Penguins ${gameName} Card Game`),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
           ]));
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.delorie.com/store/ace/",
         description: "Solitaire games in X11",
         longDescription: "The Ace of Penguins is a set of Unix/X solitaire games based on the ones\navailable for Windows(tm) but with a number of enhancements that my wife\nsays make my versions better :-)\n\nThe latest version includes clones of freecell, golf, mastermind, merlin,\nminesweeper, pegged, solitaire, taipei (with editor!), and thornq (by\nMartin Thornquist).\n",

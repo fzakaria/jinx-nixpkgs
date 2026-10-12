@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["skipBulkUpdate", 59, 12]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "devpi-server": false, ldap3: false, pyyaml: false, "packaging-legacy": false, "pytest-cov-stub": false, "pytest-mock": false, pytestCheckHook: false, webtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 59, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const webtest = nix.arg($, "webtest");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "devpi-ldap",
       version: "2.1.1-unstable-2026-01-22",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "devpi",
           repo: "devpi-ldap",
           rev: "5846e66a9206079c16321bd0f65c565ebe32be5f",
@@ -39,9 +36,9 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [devpi_server, ldap3, pyyaml]),
       nativeCheckInputs: nix.thunk(() => [packaging_legacy, pytest_cov_stub, pytest_mock, pytestCheckHook, webtest]),
       pythonImportsCheck: nix.thunk(() => ["devpi_ldap"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], skipBulkUpdate: true })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "LDAP authentication for devpi-server",
         homepage: "https://github.com/devpi/devpi-ldap",
         changelog: nix.thunk(() => nix.str`https://github.com/devpi/devpi-ldap/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.rst`),

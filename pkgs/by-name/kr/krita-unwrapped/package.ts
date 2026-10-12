@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 5], ["hash", 43, 5]], [["description", 150, 5], ["homepage", 151, 5], ["maintainers", 152, 5], ["mainProgram", 155, 5], ["platforms", 156, 5], ["license", 157, 5]], [["pname", 38, 3], ["version", 40, 3], ["src", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 54, 3], ["postPatch", 108, 3], ["cmakeBuildType", 140, 3], ["cmakeFlags", 142, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { stdenv: false, SDL2: false, boost: false, cmake: false, curl: false, eigen_5: false, exiv2: false, fetchurl: false, fftw: false, fribidi: false, giflib: false, gsl: false, immer: false, kseexpr: false, lager: false, lcms2: false, lib: false, libaom: false, libheif: false, libjxl: false, libmypaint: false, libraw: false, qt6: false, kdePackages: false, libunibreak: false, libwebp: false, opencolorio: false, openexr: false, openjpeg: false, "pkg-config": false, python3Packages: false, xsimd: false, zug: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 150, 5], ["homepage", 151, 5], ["maintainers", 152, 5], ["mainProgram", 155, 5], ["platforms", 156, 5], ["license", 157, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 40, 3], ["src", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 54, 3], ["postPatch", 108, 3], ["cmakeBuildType", 140, 3], ["cmakeFlags", 142, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const xsimd = nix.arg($, "xsimd");
   const zug = nix.arg($, "zug");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "krita-unwrapped",
       version: "6.0.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kde/stable/krita/${nix.sel(finalAttrs, "version")}/krita-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-6v8AUhlYUDqh0+8SBtdeALV+1lmT6VNonwoEhQQn4tg=",
         })))),
@@ -134,7 +132,7 @@ substituteInPlace plugins/impex/jp2/jp2_converter.cc \\
         "-DBUILD_KRITA_QT_DESIGNER_PLUGINS=ON",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free and open source painting application",
         homepage: "https://krita.org/",
         maintainers: nix.thunk(() => (() => {

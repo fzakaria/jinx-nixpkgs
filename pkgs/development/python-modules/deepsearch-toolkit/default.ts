@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["api", 69, 5]], [["changelog", 85, 5], ["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["pythonRelaxDeps", 63, 3], ["optional-dependencies", 68, 3], ["pythonImportsCheck", 76, 3], ["doCheck", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, certifi: false, "docling-core": false, platformdirs: false, pluggy: false, pydantic: false, "pydantic-settings": false, "python-dateutil": false, "python-dotenv": false, requests: false, six: false, tabulate: false, tqdm: false, typer: false, urllib3: false, anyio: false, fastapi: false, uvicorn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["api", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 85, 5], ["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["pythonRelaxDeps", 63, 3], ["optional-dependencies", 68, 3], ["pythonImportsCheck", 76, 3], ["doCheck", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const fastapi = nix.arg($, "fastapi");
   const uvicorn = nix.arg($, "uvicorn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "deepsearch-toolkit",
       version: "2.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DS4SD",
           repo: "deepsearch-toolkit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,11 +59,11 @@ export default nix.lambda((args) => (() => {
         urllib3,
       ]),
       pythonRelaxDeps: nix.thunk(() => ["certifi", "urllib3"]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, api: nix.thunk(() => [anyio, fastapi, uvicorn]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], api: nix.thunk(() => [anyio, fastapi, uvicorn]) })),
       pythonImportsCheck: nix.thunk(() => ["deepsearch"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/DS4SD/deepsearch-toolkit/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Interact with the Deep Search platform for new knowledge explorations and discoveries",
         homepage: "https://github.com/DS4SD/deepsearch-toolkit",

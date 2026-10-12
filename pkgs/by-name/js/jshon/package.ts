@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["NIX_CFLAGS_COMPILE", 22, 7]], [["url", 27, 7], ["sha256", 28, 7]], [["homepage", 41, 5], ["description", 42, 5], ["mainProgram", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["env", 22, 3], ["patches", 24, 3], ["postPatch", 32, 3], ["preInstall", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, jansson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 27, 7], ["sha256", 28, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["mainProgram", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["env", 22, 3], ["patches", 24, 3], ["postPatch", 32, 3], ["preInstall", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,21 +13,21 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const jansson = nix.arg($, "jansson");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jshon",
       version: "20170302",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "keenerd",
           repo: "jshon",
           rev: "d919aeaece37962251dbe6c1ee50f0028a5c90e4",
           sha256: "1x4zfmsjq0l2y994bxkhx3mn5vzjxxr39iib213zjchi9h6yxvnc",
         })))),
       buildInputs: nix.thunk(() => [jansson]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=strict-prototypes" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=strict-prototypes" })),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/keenerd/jshon/commit/96b4e9dbf578be7b31f29740b608aa7b34df3318.patch",
             sha256: "0kwbn3xb37iqb5y1n8vhzjiwlbg5jmki3f38pzakc24kzc5ksmaa",
           })))),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile --replace \"/usr/\" \"/\"\n",
       preInstall: "export DESTDIR=$out\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://kmkeen.com/jshon",
         description: "JSON parser designed for maximum convenience within the shell",
         mainProgram: "jshon",

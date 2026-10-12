@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 50, 5], ["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["hash", 54, 5]], [["description", 133, 5], ["homepage", 134, 5], ["changelog", 135, 5], ["license", 136, 5], ["platforms", 137, 5], ["mainProgram", 138, 5], ["maintainers", 139, 5]], [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["strictDeps", 57, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 71, 3], ["patches", 80, 3], ["postPatch", 84, 3], ["mesonFlags", 110, 3], ["postInstall", 115, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, asciidoc: false, binutils: false, coreutils: false, curl: false, gpgme: false, installShellFiles: false, libarchive: false, makeWrapper: false, meson: false, ninja: false, openssl: false, perl: false, "pkg-config": false, zlib: false, gzip: false, bzip2: false, xz: false, zstd: false, lrzip: false, lzop: false, ncompress: false, lz4: false, lzip: false, gawk: false, gettext: false, gnugrep: false, gnupg: false, bashInteractive: false, sysHookDir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 50, 5], ["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["hash", 54, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 133, 5], ["homepage", 134, 5], ["changelog", 135, 5], ["license", 136, 5], ["platforms", 137, 5], ["mainProgram", 138, 5], ["maintainers", 139, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["strictDeps", 57, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 71, 3], ["patches", 80, 3], ["postPatch", 84, 3], ["mesonFlags", 110, 3], ["postInstall", 115, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const bashInteractive = nix.arg($, "bashInteractive");
   const sysHookDir = nix.argOr($, "sysHookDir", () => "/usr/share/libalpm/hooks/");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pacman",
       version: "7.1.0-unstable-2026-01-25",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.archlinux.org",
           owner: "pacman",
           repo: "pacman",
@@ -95,7 +93,7 @@ wrapProgram $out/bin/pacman-key \\
         ]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple library-based package manager",
         homepage: "https://archlinux.org/pacman/",
         changelog: nix.thunk(() => nix.str`https://gitlab.archlinux.org/pacman/pacman/-/raw/v${nix.sel(finalAttrs, "version")}/NEWS`),

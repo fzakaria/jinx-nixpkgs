@@ -2,75 +2,15 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rspamd.nix", [[["system", 4, 33], ["config", 4, 40]], [["system", 7, 49], ["pkgs", 7, 56]], [["enable", 29, 25]], [["rspamd", 29, 18]], [["enableIPv6", 30, 20]], [["services", 29, 9], ["networking", 30, 9]], [["machine", 28, 13]], [["name", 27, 7], ["nodes", 28, 7], ["testScript", 32, 7]], [["socket", 63, 13], ["mode", 64, 13], ["owner", 65, 13], ["group", 66, 13]], [["bindSockets", 61, 24]], [["socket", 71, 13], ["mode", 72, 13], ["owner", 73, 13], ["group", 74, 13]], [["bindSockets", 69, 28]], [["normal", 61, 17], ["controller", 69, 17]], [["enable", 60, 9], ["workers", 61, 9]], [["rspamd", 59, 16]], [["services", 59, 7]], [["machine", 58, 11]], [["name", 57, 5], ["nodes", 58, 5], ["testScript", 80, 5]], [["socket", 106, 13], ["mode", 107, 13], ["owner", 108, 13], ["group", 109, 13]], [["bindSockets", 104, 24]], [["socket", 114, 13], ["mode", 115, 13], ["owner", 116, 13], ["group", 117, 13]], [["bindSockets", 112, 28]], [["type", 121, 11], ["bindSockets", 122, 11], ["extraConfig", 123, 11]], [["normal", 104, 17], ["controller", 112, 17], ["controller2", 120, 17]], [["enable", 103, 9], ["workers", 104, 9]], [["rspamd", 102, 16]], [["services", 102, 7]], [["machine", 101, 11]], [["name", 100, 5], ["nodes", 101, 5], ["testScript", 132, 5]], [["text", 167, 42]], [["text", 174, 39]], [["tests/no-muh.eml", 167, 23], ["tests/muh.eml", 174, 23]], [["etc", 167, 19]], [["text", 185, 13]], [["enable", 196, 13], ["text", 197, 13]], [["text", 201, 25]], [["antivirus.conf", 184, 11], ["redis.conf", 195, 11], ["groups.conf", 201, 11]], [["enable", 182, 9], ["locals", 183, 9], ["localLuaRules", 212, 9]], [["rspamd", 181, 16]], [["environment", 167, 7], ["services", 181, 7]], [["machine", 166, 11]], [["name", 165, 5], ["nodes", 166, 5], ["testScript", 238, 5]], [["text", 274, 41]], [["text", 283, 43]], [["tests/gtube.eml", 274, 23], ["tests/example.eml", 283, 23]], [["systemPackages", 273, 19], ["etc", 274, 19]], [["isNormalUser", 291, 9], ["password", 292, 9]], [["tester", 290, 19]], [["users", 290, 13]], [["mydestination", 296, 23]], [["main", 296, 18]], [["enable", 295, 9], ["settings", 296, 9]], [["enable", 300, 17]], [["type", 301, 30]], [["rspamd_proxy", 301, 17]], [["enable", 299, 9], ["postfix", 300, 9], ["workers", 301, 9]], [["postfix", 294, 16], ["rspamd", 298, 16]], [["environment", 273, 7], ["users", 290, 7], ["services", 294, 7]], [["machine", 272, 11]], [["name", 271, 5], ["nodes", 272, 5], ["testScript", 304, 5]], [["simple", 54, 3], ["ipv4only", 55, 3], ["deprecated", 56, 3], ["bindports", 99, 3], ["customLuaRules", 164, 3], ["postfixIntegration", 270, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rspamd.nix", [["system", 4, 33], ["config", 4, 40]]);
-const pos$2 = nix.positions(here + "/rspamd.nix", [["system", 7, 49], ["pkgs", 7, 56]]);
-const pos$3 = nix.positions(here + "/rspamd.nix", [["enable", 29, 25]]);
-const pos$4 = nix.positions(here + "/rspamd.nix", [["rspamd", 29, 18]]);
-const pos$5 = nix.positions(here + "/rspamd.nix", [["enableIPv6", 30, 20]]);
-const pos$6 = nix.positions(here + "/rspamd.nix", [["services", 29, 9], ["networking", 30, 9]]);
-const pos$7 = nix.positions(here + "/rspamd.nix", [["machine", 28, 13]]);
-const pos$8 = nix.positions(here + "/rspamd.nix", [["name", 27, 7], ["nodes", 28, 7], ["testScript", 32, 7]]);
-const pos$9 = nix.positions(here + "/rspamd.nix", [["socket", 63, 13], ["mode", 64, 13], ["owner", 65, 13], ["group", 66, 13]]);
-const pos$10 = nix.positions(here + "/rspamd.nix", [["bindSockets", 61, 24]]);
-const pos$11 = nix.positions(here + "/rspamd.nix", [["socket", 71, 13], ["mode", 72, 13], ["owner", 73, 13], ["group", 74, 13]]);
-const pos$12 = nix.positions(here + "/rspamd.nix", [["bindSockets", 69, 28]]);
-const pos$13 = nix.positions(here + "/rspamd.nix", [["normal", 61, 17], ["controller", 69, 17]]);
-const pos$14 = nix.positions(here + "/rspamd.nix", [["enable", 60, 9], ["workers", 61, 9]]);
-const pos$15 = nix.positions(here + "/rspamd.nix", [["rspamd", 59, 16]]);
-const pos$16 = nix.positions(here + "/rspamd.nix", [["services", 59, 7]]);
-const pos$17 = nix.positions(here + "/rspamd.nix", [["machine", 58, 11]]);
-const pos$18 = nix.positions(here + "/rspamd.nix", [["name", 57, 5], ["nodes", 58, 5], ["testScript", 80, 5]]);
-const pos$19 = nix.positions(here + "/rspamd.nix", [["socket", 106, 13], ["mode", 107, 13], ["owner", 108, 13], ["group", 109, 13]]);
-const pos$20 = nix.positions(here + "/rspamd.nix", [["bindSockets", 104, 24]]);
-const pos$21 = nix.positions(here + "/rspamd.nix", [["socket", 114, 13], ["mode", 115, 13], ["owner", 116, 13], ["group", 117, 13]]);
-const pos$22 = nix.positions(here + "/rspamd.nix", [["bindSockets", 112, 28]]);
-const pos$23 = nix.positions(here + "/rspamd.nix", [["type", 121, 11], ["bindSockets", 122, 11], ["extraConfig", 123, 11]]);
-const pos$24 = nix.positions(here + "/rspamd.nix", [["normal", 104, 17], ["controller", 112, 17], ["controller2", 120, 17]]);
-const pos$25 = nix.positions(here + "/rspamd.nix", [["enable", 103, 9], ["workers", 104, 9]]);
-const pos$26 = nix.positions(here + "/rspamd.nix", [["rspamd", 102, 16]]);
-const pos$27 = nix.positions(here + "/rspamd.nix", [["services", 102, 7]]);
-const pos$28 = nix.positions(here + "/rspamd.nix", [["machine", 101, 11]]);
-const pos$29 = nix.positions(here + "/rspamd.nix", [["name", 100, 5], ["nodes", 101, 5], ["testScript", 132, 5]]);
-const pos$30 = nix.positions(here + "/rspamd.nix", [["text", 167, 42]]);
-const pos$31 = nix.positions(here + "/rspamd.nix", [["text", 174, 39]]);
-const pos$32 = nix.positions(here + "/rspamd.nix", [["tests/no-muh.eml", 167, 23], ["tests/muh.eml", 174, 23]]);
-const pos$33 = nix.positions(here + "/rspamd.nix", [["etc", 167, 19]]);
-const pos$34 = nix.positions(here + "/rspamd.nix", [["text", 185, 13]]);
-const pos$35 = nix.positions(here + "/rspamd.nix", [["enable", 196, 13], ["text", 197, 13]]);
-const pos$36 = nix.positions(here + "/rspamd.nix", [["text", 201, 25]]);
-const pos$37 = nix.positions(here + "/rspamd.nix", [["antivirus.conf", 184, 11], ["redis.conf", 195, 11], ["groups.conf", 201, 11]]);
-const pos$38 = nix.positions(here + "/rspamd.nix", [["enable", 182, 9], ["locals", 183, 9], ["localLuaRules", 212, 9]]);
-const pos$39 = nix.positions(here + "/rspamd.nix", [["rspamd", 181, 16]]);
-const pos$40 = nix.positions(here + "/rspamd.nix", [["environment", 167, 7], ["services", 181, 7]]);
-const pos$41 = nix.positions(here + "/rspamd.nix", [["machine", 166, 11]]);
-const pos$42 = nix.positions(here + "/rspamd.nix", [["name", 165, 5], ["nodes", 166, 5], ["testScript", 238, 5]]);
-const pos$43 = nix.positions(here + "/rspamd.nix", [["text", 274, 41]]);
-const pos$44 = nix.positions(here + "/rspamd.nix", [["text", 283, 43]]);
-const pos$45 = nix.positions(here + "/rspamd.nix", [["tests/gtube.eml", 274, 23], ["tests/example.eml", 283, 23]]);
-const pos$46 = nix.positions(here + "/rspamd.nix", [["systemPackages", 273, 19], ["etc", 274, 19]]);
-const pos$47 = nix.positions(here + "/rspamd.nix", [["isNormalUser", 291, 9], ["password", 292, 9]]);
-const pos$48 = nix.positions(here + "/rspamd.nix", [["tester", 290, 19]]);
-const pos$49 = nix.positions(here + "/rspamd.nix", [["users", 290, 13]]);
-const pos$50 = nix.positions(here + "/rspamd.nix", [["mydestination", 296, 23]]);
-const pos$51 = nix.positions(here + "/rspamd.nix", [["main", 296, 18]]);
-const pos$52 = nix.positions(here + "/rspamd.nix", [["enable", 295, 9], ["settings", 296, 9]]);
-const pos$53 = nix.positions(here + "/rspamd.nix", [["enable", 300, 17]]);
-const pos$54 = nix.positions(here + "/rspamd.nix", [["type", 301, 30]]);
-const pos$55 = nix.positions(here + "/rspamd.nix", [["rspamd_proxy", 301, 17]]);
-const pos$56 = nix.positions(here + "/rspamd.nix", [["enable", 299, 9], ["postfix", 300, 9], ["workers", 301, 9]]);
-const pos$57 = nix.positions(here + "/rspamd.nix", [["postfix", 294, 16], ["rspamd", 298, 16]]);
-const pos$58 = nix.positions(here + "/rspamd.nix", [["environment", 273, 7], ["users", 290, 7], ["services", 294, 7]]);
-const pos$59 = nix.positions(here + "/rspamd.nix", [["machine", 272, 11]]);
-const pos$60 = nix.positions(here + "/rspamd.nix", [["name", 271, 5], ["nodes", 272, 5], ["testScript", 304, 5]]);
-const pos$61 = nix.positions(here + "/rspamd.nix", [["simple", 54, 3], ["ipv4only", 55, 3], ["deprecated", 56, 3], ["bindports", 99, 3], ["customLuaRules", 164, 3], ["postfixIntegration", 270, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const initMachine = "start_all()\nmachine.wait_for_unit(\"rspamd.service\")\nmachine.succeed(\"id rspamd >/dev/null\")\n";
   const checkSocket = (socket) => (user) => (group) => (mode) => nix.str`machine.succeed(
@@ -81,17 +21,17 @@ export default nix.lambda((args) => (() => {
 )
 `;
   const simple = (name) => (enableIPv6) => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: nix.thunk(() => nix.str`rspamd-${name}`),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            rspamd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[3],
+            rspamd: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
           })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$5, enableIPv6: enableIPv6 })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[4], enableIPv6: enableIPv6 })),
         })),
       })),
       testScript: nix.thunk(() => nix.str`start_all()
@@ -114,28 +54,28 @@ ${nix.app(nix.lookup(w_1, "optionalString"), enableIPv6, "machine.log(machine.su
 `),
     })));
   return {
-    [nix.POS]: pos$61,
+    [nix.POS]: $pos[60],
     simple: nix.thunk(() => nix.app(simple, "simple", true)),
     ipv4only: nix.thunk(() => nix.app(simple, "ipv4only", false)),
     deprecated: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         name: "rspamd-deprecated",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               rspamd: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 enable: true,
                 workers: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   normal: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     bindSockets: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$9,
+                        [nix.POS]: $pos[8],
                         socket: "/run/rspamd/rspamd.sock",
                         mode: "0600",
                         owner: "rspamd",
@@ -144,10 +84,10 @@ ${nix.app(nix.lookup(w_1, "optionalString"), enableIPv6, "machine.log(machine.su
                     ]),
                   })),
                   controller: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     bindSockets: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$11,
+                        [nix.POS]: $pos[10],
                         socket: "/run/rspamd/rspamd-worker.sock",
                         mode: "0666",
                         owner: "rspamd",
@@ -178,24 +118,24 @@ machine.log(
 `),
       })))),
     bindports: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         name: "rspamd-bindports",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               rspamd: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 enable: true,
                 workers: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   normal: nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     bindSockets: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$19,
+                        [nix.POS]: $pos[18],
                         socket: "/run/rspamd/rspamd.sock",
                         mode: "0600",
                         owner: "rspamd",
@@ -204,10 +144,10 @@ machine.log(
                     ]),
                   })),
                   controller: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
+                    [nix.POS]: $pos[21],
                     bindSockets: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$21,
+                        [nix.POS]: $pos[20],
                         socket: "/run/rspamd/rspamd-worker.sock",
                         mode: "0666",
                         owner: "rspamd",
@@ -216,7 +156,7 @@ machine.log(
                     ]),
                   })),
                   controller2: nix.thunk(() => ({
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     type: "controller",
                     bindSockets: nix.thunk(() => ["0.0.0.0:11335"]),
                     extraConfig: "static_dir = \"${WWWDIR}\";\nsecure_ip = null;\npassword = \"verysecretpassword\";\n",
@@ -258,40 +198,40 @@ machine.log(machine.succeed("curl http://localhost:11335/ping"))
 `),
       })))),
     customLuaRules: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$42,
+        [nix.POS]: $pos[41],
         name: "rspamd-custom-lua-rules",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$33,
+              [nix.POS]: $pos[32],
               etc: nix.thunk(() => ({
-                [nix.POS]: pos$32,
+                [nix.POS]: $pos[31],
                 "tests/no-muh.eml": nix.thunk(() => ({
-                  [nix.POS]: pos$30,
+                  [nix.POS]: $pos[29],
                   text: "From: Sheep1<bah@example.com>\nTo: Sheep2<mah@example.com>\nSubject: Evil cows\n\nI find cows to be evil don't you?\n",
                 })),
                 "tests/muh.eml": nix.thunk(() => ({
-                  [nix.POS]: pos$31,
+                  [nix.POS]: $pos[30],
                   text: "From: Cow<cow@example.com>\nTo: Sheep2<mah@example.com>\nSubject: Evil cows\n\nCows are majestic creatures don't Muh agree?\n",
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$39,
+              [nix.POS]: $pos[38],
               rspamd: nix.thunk(() => ({
-                [nix.POS]: pos$38,
+                [nix.POS]: $pos[37],
                 enable: true,
                 locals: nix.thunk(() => ({
-                  [nix.POS]: pos$37,
+                  [nix.POS]: $pos[36],
                   "antivirus.conf": nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), false, nix.thunk(() => ({
-                      [nix.POS]: pos$34,
+                      [nix.POS]: $pos[33],
                       text: "clamav {\n  action = \"reject\";\n  symbol = \"CLAM_VIRUS\";\n  type = \"clamav\";\n  log_clean = true;\n  servers = \"/run/clamav/clamd.ctl\";\n}\n",
                     })))),
-                  "redis.conf": nix.thunk(() => ({ [nix.POS]: pos$35, enable: false, text: "servers = \"127.0.0.1\";\n" })),
+                  "redis.conf": nix.thunk(() => ({ [nix.POS]: $pos[34], enable: false, text: "servers = \"127.0.0.1\";\n" })),
                   "groups.conf": nix.thunk(() => ({
-                    [nix.POS]: pos$36,
+                    [nix.POS]: $pos[35],
                     text: "group \"cows\" {\n  symbol {\n    NO_MUH = {\n      weight = 1.0;\n      description = \"Mails should not muh\";\n    }\n  }\n}\n",
                   })),
                 })),
@@ -332,54 +272,54 @@ machine.log(
 `),
       })))),
     postfixIntegration: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$60,
+        [nix.POS]: $pos[59],
         name: "rspamd-postfix-integration",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$59,
+          [nix.POS]: $pos[58],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$58,
+            [nix.POS]: $pos[57],
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$46,
+              [nix.POS]: $pos[45],
               systemPackages: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(pkgs, w_1);
                 return [nix.thunk(() => nix.lookup(w_2, "msmtp"))];
               })()),
               etc: nix.thunk(() => ({
-                [nix.POS]: pos$45,
+                [nix.POS]: $pos[44],
                 "tests/gtube.eml": nix.thunk(() => ({
-                  [nix.POS]: pos$43,
+                  [nix.POS]: $pos[42],
                   text: "From: Sheep1<bah@example.com>\nTo: Sheep2<tester@example.com>\nSubject: Evil cows\n\nI find cows to be evil don't you?\n\nXJS*C4JDBQADN1.NSBN3*2IDNEN*GTUBE-STANDARD-ANTI-UBE-TEST-EMAIL*C.34X\n",
                 })),
                 "tests/example.eml": nix.thunk(() => ({
-                  [nix.POS]: pos$44,
+                  [nix.POS]: $pos[43],
                   text: "From: Sheep1<bah@example.com>\nTo: Sheep2<tester@example.com>\nSubject: Evil cows\n\nI find cows to be evil don't you?\n",
                 })),
               })),
             })),
             users: nix.thunk(() => ({
-              [nix.POS]: pos$49,
+              [nix.POS]: $pos[48],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$48,
-                tester: nix.thunk(() => ({ [nix.POS]: pos$47, isNormalUser: true, password: "test" })),
+                [nix.POS]: $pos[47],
+                tester: nix.thunk(() => ({ [nix.POS]: $pos[46], isNormalUser: true, password: "test" })),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$57,
+              [nix.POS]: $pos[56],
               postfix: nix.thunk(() => ({
-                [nix.POS]: pos$52,
+                [nix.POS]: $pos[51],
                 enable: true,
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$51,
-                  main: nix.thunk(() => ({ [nix.POS]: pos$50, mydestination: nix.thunk(() => ["example.com"]) })),
+                  [nix.POS]: $pos[50],
+                  main: nix.thunk(() => ({ [nix.POS]: $pos[49], mydestination: nix.thunk(() => ["example.com"]) })),
                 })),
               })),
               rspamd: nix.thunk(() => ({
-                [nix.POS]: pos$56,
+                [nix.POS]: $pos[55],
                 enable: true,
-                postfix: nix.thunk(() => ({ [nix.POS]: pos$53, enable: true })),
+                postfix: nix.thunk(() => ({ [nix.POS]: $pos[52], enable: true })),
                 workers: nix.thunk(() => ({
-                  [nix.POS]: pos$55,
-                  rspamd_proxy: nix.thunk(() => ({ [nix.POS]: pos$54, type: "rspamd_proxy" })),
+                  [nix.POS]: $pos[54],
+                  rspamd_proxy: nix.thunk(() => ({ [nix.POS]: $pos[53], type: "rspamd_proxy" })),
                 })),
               })),
             })),

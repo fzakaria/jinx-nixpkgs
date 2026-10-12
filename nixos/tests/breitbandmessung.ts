@@ -2,64 +2,53 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/breitbandmessung.nix", [[["maintainers", 4, 8]], [["pkgsReadOnly", 6, 8]], [["x", 18, 9], ["y", 19, 9]], [["resolution", 17, 22]], [["user", 22, 40]], [["auto", 22, 35]], [["displayManager", 22, 20]], [["XAUTHORITY", 25, 29]], [["systemPackages", 24, 19], ["variables", 25, 19]], [["imports", 11, 7], ["virtualisation", 17, 7], ["test-support", 22, 7], ["environment", 24, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["node", 6, 3], ["nodes", 8, 3], ["enableOCR", 28, 3], ["testScript", 30, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/breitbandmessung.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/breitbandmessung.nix", [["pkgsReadOnly", 6, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/breitbandmessung.nix", [["x", 18, 9], ["y", 19, 9]]);
-const pos$4 = nix.positions(here + "/breitbandmessung.nix", [["resolution", 17, 22]]);
-const pos$5 = nix.positions(here + "/breitbandmessung.nix", [["user", 22, 40]]);
-const pos$6 = nix.positions(here + "/breitbandmessung.nix", [["auto", 22, 35]]);
-const pos$7 = nix.positions(here + "/breitbandmessung.nix", [["displayManager", 22, 20]]);
-const pos$8 = nix.positions(here + "/breitbandmessung.nix", [["XAUTHORITY", 25, 29]]);
-const pos$9 = nix.positions(here + "/breitbandmessung.nix", [["systemPackages", 24, 19], ["variables", 25, 19]]);
-const pos$10 = nix.positions(here + "/breitbandmessung.nix", [["imports", 11, 7], ["virtualisation", 17, 7], ["test-support", 22, 7], ["environment", 24, 7]]);
-const pos$11 = nix.positions(here + "/breitbandmessung.nix", [["machine", 8, 9]]);
-const pos$12 = nix.positions(here + "/breitbandmessung.nix", [["name", 3, 3], ["meta", 4, 3], ["node", 6, 3], ["nodes", 8, 3], ["enableOCR", 28, 3], ["testScript", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "breitbandmessung",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "b4dm4n"))];
       })()),
     })),
-    node: nix.thunk(() => ({ [nix.POS]: pos$2, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: $pos[1], pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           imports: nix.thunk(() => [
             nix.path(here, "./common/user-account.nix"),
             nix.path(here, "./common/x11.nix"),
           ]),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            resolution: nix.thunk(() => ({ [nix.POS]: pos$3, x: 1280n, y: 1024n })),
+            [nix.POS]: $pos[3],
+            resolution: nix.thunk(() => ({ [nix.POS]: $pos[2], x: 1280n, y: 1024n })),
           })),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$5, user: "alice" })),
+              [nix.POS]: $pos[5],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[4], user: "alice" })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "breitbandmessung"))];
             })()),
-            variables: nix.thunk(() => ({ [nix.POS]: pos$8, XAUTHORITY: "/home/alice/.Xauthority" })),
+            variables: nix.thunk(() => ({ [nix.POS]: $pos[7], XAUTHORITY: "/home/alice/.Xauthority" })),
           })),
         };
       })(), formals$2),

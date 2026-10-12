@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["updateScript", 58, 12]], [["name", 63, 7], ["exec", 64, 7], ["icon", 65, 7], ["desktopName", 66, 7], ["categories", 67, 7], ["startupWMClass", 68, 7]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]], [["pname", 35, 3], ["version", 36, 11], ["src", 38, 11], ["nativeBuildInputs", 40, 3], ["projectFile", 44, 3], ["dotnet-sdk", 51, 3], ["dotnet-runtime", 52, 3], ["nugetDeps", 54, 3], ["executables", 56, 11], ["passthru", 58, 3], ["desktopItems", 60, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false, copyDesktopItems: false, makeDesktopItem: false, lib: false, runCommandLocal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 58, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 63, 7], ["exec", 64, 7], ["icon", 65, 7], ["desktopName", 66, 7], ["categories", 67, 7], ["startupWMClass", 68, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 11], ["src", 38, 11], ["nativeBuildInputs", 40, 3], ["projectFile", 44, 3], ["dotnet-sdk", 51, 3], ["dotnet-runtime", 52, 3], ["nugetDeps", 54, 3], ["executables", 56, 11], ["passthru", 58, 3], ["desktopItems", 60, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const runCommandLocal = nix.arg($, "runCommandLocal");
   const version = "6.10";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "retrospy",
       repo: "RetroSpy",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
 ${nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.builtins.map((e) => nix.str`cp ${src}/${e}.ico $out/share/retrospy/${e}.ico`, executables)))}
 `)));
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "retrospy",
       version: version,
       src: src,
@@ -46,9 +42,9 @@ ${nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.builtins.map((e) => ni
       "dotnet-runtime": nix.thunk(() => nix.sel(dotnetCorePackages, "aspnetcore_8_0")),
       nugetDeps: nix.path(here, "./deps.json"),
       executables: executables,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       desktopItems: nix.thunk(() => nix.builtins.map((e) => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: e,
             exec: e,
             icon: nix.thunk(() => nix.str`${retrospy_icons}/share/retrospy/${e}.ico`),
@@ -57,7 +53,7 @@ ${nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.builtins.map((e) => ni
             startupWMClass: e,
           }))), executables)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Live controller viewer for Nintendo consoles as well as many other retro consoles and computers",
         homepage: "https://retro-spy.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/retrospy/RetroSpy/releases/tag/${nix.sel(src, "rev")}`),

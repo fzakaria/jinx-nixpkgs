@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["owner", 42, 9], ["repo", 43, 9], ["tag", 44, 9], ["hash", 45, 9]], [["owner", 48, 9], ["repo", 49, 9], ["tag", 50, 9], ["hash", 51, 9]], [["owner", 54, 9], ["repo", 55, 9], ["tag", 56, 9], ["hash", 57, 9]], [["description", 95, 5], ["maintainers", 96, 5], ["homepage", 97, 5], ["platforms", 98, 5], ["license", 99, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postUnpack", 38, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 72, 3], ["postInstall", 86, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, zlib: false, eigen: false, libGL: false, spglib: false, "mmtf-cpp": false, glew: false, python3: false, libarchive: false, libmsym: false, jkqtplotter: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 42, 9], ["repo", 43, 9], ["tag", 44, 9], ["hash", 45, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 48, 9], ["repo", 49, 9], ["tag", 50, 9], ["hash", 51, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 54, 9], ["repo", 55, 9], ["tag", 56, 9], ["hash", 57, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 95, 5], ["maintainers", 96, 5], ["homepage", 97, 5], ["platforms", 98, 5], ["license", 99, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postUnpack", 38, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 72, 3], ["postInstall", 86, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +30,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "avogadrolibs",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenChemistry",
           repo: "avogadrolibs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,21 +42,21 @@ export default nix.lambda((args) => (() => {
         })))),
       postUnpack: nix.thunk(() => (() => {
         const moleculesRepo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "OpenChemistry",
             repo: "molecules",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
             hash: "sha256-hMLf0gYYnQpjSGKcPy4tihNbmpRR7UxnXF/hyhforgI=",
           }))));
         const crystalsRepo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "OpenChemistry",
             repo: "crystals",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
             hash: "sha256-WhzFldaOt/wJy1kk+ypOkw1OYFT3hqD7j5qGdq9g+IY=",
           }))));
         const fragmentsRepo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             owner: "OpenChemistry",
             repo: "fragments",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -87,7 +82,7 @@ cp -r ${fragmentsRepo} fragments
       ]),
       postInstall: "substituteInPlace $out/lib/cmake/avogadrolibs/AvogadroLibsConfig.cmake \\\n  --replace-fail \"$out/\" \"\"\n\nsubstituteInPlace $out/lib/cmake/avogadrolibs/AvogadroLibsTargets.cmake \\\n  --replace-fail \"_IMPORT_PREFIX \\\"$out\\\"\" '_IMPORT_PREFIX \"/\"'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Molecule editor and visualizer",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

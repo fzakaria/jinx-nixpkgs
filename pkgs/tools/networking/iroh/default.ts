@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 9], ["repo", 19, 9], ["rev", 20, 9], ["hash", 21, 9]], [["description", 40, 9], ["homepage", 41, 9], ["license", 42, 9], ["maintainers", 46, 9], ["mainProgram", 49, 9]], [["pname", 14, 7], ["version", 15, 7], ["src", 17, 7], ["cargoHash", 24, 7], ["buildFeatures", 26, 7], ["cargoBuildFlags", 27, 7], ["nativeBuildInputs", 32, 7], ["doCheck", 37, 7], ["meta", 39, 7]], [["name", 55, 5]], [["name", 59, 5], ["cargoFeatures", 60, 5]], [["iroh-dns-server", 54, 3], ["iroh-relay", 58, 3]]]);
 const formals$1 = { args: { lib: false, lld: false, fetchFromGitHub: false, rustPlatform: false }, ellipsis: false };
 const formals$2 = { args: { name: false, cargoFeatures: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 9], ["repo", 19, 9], ["rev", 20, 9], ["hash", 21, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 9], ["homepage", 41, 9], ["license", 42, 9], ["maintainers", 46, 9], ["mainProgram", 49, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 7], ["version", 15, 7], ["src", 17, 7], ["cargoHash", 24, 7], ["buildFeatures", 26, 7], ["cargoBuildFlags", 27, 7], ["nativeBuildInputs", 32, 7], ["doCheck", 37, 7], ["meta", 39, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 55, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 59, 5], ["cargoFeatures", 60, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["iroh-dns-server", 54, 3], ["iroh-relay", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
         const pname = name;
         const version = "1.3.0";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "n0-computer",
             repo: "iroh",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
         const nativeBuildInputs = nix.thunk(() => [lld]);
         const doCheck = false;
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Efficient IPFS for the whole world right now",
           homepage: "https://iroh.computer",
           license: nix.thunk(() => (() => {
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
           mainProgram: name,
         }));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname,
           version,
           src,
@@ -68,10 +63,10 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   return {
-    [nix.POS]: pos$6,
-    "iroh-dns-server": nix.thunk(() => nix.app(mkIrohPackage, nix.thunk(() => ({ [nix.POS]: pos$4, name: "iroh-dns-server" })))),
+    [nix.POS]: $pos[5],
+    "iroh-dns-server": nix.thunk(() => nix.app(mkIrohPackage, nix.thunk(() => ({ [nix.POS]: $pos[3], name: "iroh-dns-server" })))),
     "iroh-relay": nix.thunk(() => nix.app(mkIrohPackage, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "iroh-relay",
         cargoFeatures: nix.thunk(() => ["server"]),
       })))),

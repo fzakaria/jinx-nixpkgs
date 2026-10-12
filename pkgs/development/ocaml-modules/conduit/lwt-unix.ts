@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt-unix.nix", [[["description", 41, 5]], [["pname", 18, 3], ["version", 19, 25], ["src", 19, 33], ["buildInputs", 21, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 34, 3], ["checkInputs", 35, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, "conduit-lwt": false, ppx_sexp_conv: false, lwt: false, uri: false, ipaddr: false, "ipaddr-sexp": false, "ca-certs": false, logs: false, lwt_ssl: false, lwt_log: false, ssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt-unix.nix", [["description", 41, 5]]);
-const pos$2 = nix.positions(here + "/lwt-unix.nix", [["pname", 18, 3], ["version", 19, 25], ["src", 19, 33], ["buildInputs", 21, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 34, 3], ["checkInputs", 35, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const lwt_log = nix.arg($, "lwt_log");
   const ssl = nix.arg($, "ssl");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "conduit-lwt-unix",
       version: nix.thunk(() => nix.attr(conduit_lwt, "version")),
       src: nix.thunk(() => nix.attr(conduit_lwt, "src")),
@@ -31,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(lwt, "version")), "6.0.0"))),
       checkInputs: nix.thunk(() => [lwt_log, ssl]),
       meta: nix.thunk(() => nix.update(nix.sel(conduit_lwt, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Network connection establishment library for Lwt_unix",
       })),
     })));

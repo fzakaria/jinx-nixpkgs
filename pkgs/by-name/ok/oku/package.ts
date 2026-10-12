@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["RUSTONIG_SYSTEM_LIBONIG", 55, 7]], [["oku", 66, 36]], [["updateScript", 65, 5], ["tests", 66, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["teams", 75, 5], ["mainProgram", 76, 5], ["platforms", 77, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["prePatch", 31, 3], ["cargoHash", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["env", 55, 3], ["postInstall", 59, 3], ["passthru", 64, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, wrapGAppsHook4: false, "pkg-config": false, fuse3: false, glib: false, gtk4: false, "hicolor-icon-theme": false, libadwaita: false, oniguruma: false, pango: false, webkitgtk_6_0: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTONIG_SYSTEM_LIBONIG", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["oku", 66, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 65, 5], ["tests", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["teams", 75, 5], ["mainProgram", 76, 5], ["platforms", 77, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["prePatch", 31, 3], ["cargoHash", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["env", 55, 3], ["postInstall", 59, 3], ["passthru", 64, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "oku",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "okubrowser",
           repo: "oku",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,17 +46,17 @@ export default nix.lambda((args) => (() => {
         pango,
         webkitgtk_6_0,
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTONIG_SYSTEM_LIBONIG: 1n })),
       postInstall: nix.thunk(() => nix.str`mkdir -p $out/share/icons
 cp -r ${nix.sel(finalAttrs, "src")}/data/hicolor $out/share/icons
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, oku: nix.thunk(() => nix.attr(nixosTests, "oku")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], oku: nix.thunk(() => nix.attr(nixosTests, "oku")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Browser for the Oku Network and Peer-to-peer sites",
         homepage: "https://github.com/okubrowser/oku",
         changelog: nix.thunk(() => nix.str`https://github.com/OkuBrowser/oku/releases/tag/v${nix.sel(finalAttrs, "version")}`),

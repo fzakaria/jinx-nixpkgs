@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["postInstall", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, fts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["postInstall", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const fts = nix.arg($, "fts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fpart",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "martymac",
           repo: "fpart",
           rev: nix.thunk(() => nix.str`fpart-${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fts]),
       postInstall: "sed \"s|^FPART_BIN=.*|FPART_BIN=\\\"$out/bin/fpart\\\"|\" \\\n    -i \"$out/bin/fpsync\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Split file trees into bags (called \"partitions\")",
         longDescription: "Fpart is a tool that helps you sort file trees and pack them into bags\n(called \"partitions\").\n\nIt splits a list of directories and file trees into a certain number of\npartitions, trying to produce partitions with the same size and number of\nfiles. It can also produce partitions with a given number of files or a\nlimited size.\n\nOnce generated, partitions are either printed as file lists to stdout\n(default) or to files. Those lists can then be used by third party programs.\n\nFpart also includes a live mode, which allows it to crawl very large\nfilesystems and produce partitions in live. Hooks are available to act on\nthose partitions (e.g. immediately start a transfer using rsync(1))\nwithout having to wait for the filesystem traversal job to be finished.\nUsed this way, fpart can be seen as a powerful data migration tool.\n",
         homepage: "http://contribs.martymac.org/",

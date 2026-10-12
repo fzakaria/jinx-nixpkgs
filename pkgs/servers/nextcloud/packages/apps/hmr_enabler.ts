@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hmr_enabler.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 8, 3], ["version", 11, 3], ["src", 13, 3], ["composerNoDev", 20, 3], ["vendorHash", 21, 3], ["postInstall", 23, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { php: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hmr_enabler.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/hmr_enabler.nix", [["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/hmr_enabler.nix", [["pname", 8, 3], ["version", 11, 3], ["src", 13, 3], ["composerNoDev", 20, 3], ["vendorHash", 21, 3], ["postInstall", 23, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hmr_enabler",
       version: "0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nextcloud",
           repo: "hmr_enabler",
           rev: "d5d9d330d405ac4aa0de1a87d1133784560462ed",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-js9O89jIRxX2DKI+LYjL3d9RsLdzUB4iUNUgngTryz8=",
       postInstall: "chmod -R u+w $out/share\nmv $out/share/php/hmr_enabler/* $out/\nrm -r $out/share $out/composer.* $out/Makefile $out/psalm.xml $out/tests\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Development Nextcloud app to enable apps to use hot module reloading",
         homepage: "https://github.com/nextcloud/hmr_enabler",
         changelog: "https://github.com/nextcloud/hmr_enabler/blob/master/CHANGELOG.md",

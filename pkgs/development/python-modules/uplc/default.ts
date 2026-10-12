@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["cbor2", 50, 5]], [["withoutCExtensions", 49, 18]], [["tests", 49, 12]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 22, 3], ["src", 24, 3], ["propagatedBuildInputs", 31, 3], ["postPatch", 43, 3], ["pythonImportsCheck", 47, 3], ["passthru", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, frozenlist2: false, "python-secp256k1-cardano": false, setuptools: false, "poetry-core": false, frozendict: false, cbor2WithoutCExtensions: false, cbor2: false, rply: false, pycardano: false, uplc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cbor2", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["withoutCExtensions", 49, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 49, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 22, 3], ["src", 24, 3], ["propagatedBuildInputs", 31, 3], ["postPatch", 43, 3], ["pythonImportsCheck", 47, 3], ["passthru", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpShin",
           repo: "uplc",
           tag: version,
@@ -49,14 +44,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(cbor2, "withCExtensions"))), "substituteInPlace uplc/ast.py --replace-fail 'from _cbor2' 'from cbor2'\n"));
       const pythonImportsCheck = nix.thunk(() => ["uplc"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          withoutCExtensions: nix.thunk(() => nix.app(nix.sel(uplc, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, cbor2: cbor2WithoutCExtensions })))),
+          [nix.POS]: $pos[2],
+          withoutCExtensions: nix.thunk(() => nix.app(nix.sel(uplc, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], cbor2: cbor2WithoutCExtensions })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python implementation of untyped plutus language core",
         homepage: "https://github.com/OpShin/uplc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -67,7 +62,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "opshin",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

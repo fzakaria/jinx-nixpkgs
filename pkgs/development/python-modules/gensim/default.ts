@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["description", 80, 5], ["homepage", 81, 5], ["downloadPage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["nativeCheckInputs", 55, 3], ["pythonImportsCheck", 62, 3], ["enabledTestPaths", 64, 3], ["disabledTests", 67, 3], ["preCheck", 69, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, setuptools: false, numpy: false, scipy: false, "smart-open": false, mock: false, pyemd: false, pytestCheckHook: false, testfixtures: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["downloadPage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["nativeCheckInputs", 55, 3], ["pythonImportsCheck", 62, 3], ["enabledTestPaths", 64, 3], ["disabledTests", 67, 3], ["preCheck", 69, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const testfixtures = nix.arg($, "testfixtures");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gensim",
       version: "4.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "piskvorky",
           repo: "gensim",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_parallel"]),
       preCheck: nix.thunk(() => nix.add("export GENSIM_DATA_DIR=\"$NIX_BUILD_TOP/gensim-data\"\nmkdir -p \"$GENSIM_DATA_DIR\"\nexport SKIP_NETWORK_TESTS=1\n", "rm gensim/__init__.py\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Topic-modelling library",
         homepage: "https://radimrehurek.com/gensim/",
         downloadPage: "https://github.com/piskvorky/gensim",

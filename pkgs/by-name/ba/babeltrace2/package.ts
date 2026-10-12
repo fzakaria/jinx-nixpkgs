@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 57, 3], ["configureFlags", 63, 3], ["makeFlags", 70, 3], ["enableParallelBuilding", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, "pkg-config": false, glib: false, elfutils: false, bison: false, flex: false, asciidoc: false, xmlto: false, docbook_xml_dtd_45: false, docbook_xsl: false, enablePython: true, python: true, pythonPackages: true, swig: false, ensureNewerSourcesForZipFilesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 57, 3], ["configureFlags", 63, 3], ["makeFlags", 70, 3], ["enableParallelBuilding", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "babeltrace2";
       const version = "2.1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "efficios",
           repo: "babeltrace",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const makeFlags = nix.thunk(() => ["CFLAGS=-Wno-error=stringop-truncation -Wno-error=null-dereference"]);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Babeltrace /ˈbæbəltreɪs/ is an open-source trace manipulation toolkit",
         homepage: "https://babeltrace.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -75,7 +73,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

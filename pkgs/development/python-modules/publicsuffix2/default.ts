@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 12, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["postPatch", 27, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "publicsuffix-list": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["postPatch", 27, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const publicsuffix_list = nix.arg($, "publicsuffix-list");
   const tagVersion = "2.2019-12-21";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "publicsuffix2",
       version: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["-"]), nix.thunk(() => [""]), tagVersion)),
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nexB",
           repo: "python-publicsuffix2",
           rev: nix.thunk(() => nix.str`release-${tagVersion}`),
@@ -37,7 +35,7 @@ ln -s ${publicsuffix_list}/share/publicsuffix/public_suffix_list.dat src/publics
 `),
       pythonImportsCheck: nix.thunk(() => ["publicsuffix2"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Get a public suffix for a domain name using the Public Suffix List",
         homepage: "https://github.com/nexB/python-publicsuffix2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

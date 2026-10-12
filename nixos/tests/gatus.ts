@@ -2,49 +2,41 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gatus.nix", [[["maintainers", 4, 8]], [["port", 13, 15]], [["name", 18, 15], ["url", 19, 15], ["interval", 20, 15], ["conditions", 21, 15]], [["web", 13, 11], ["metrics", 14, 11], ["endpoints", 16, 11]], [["enable", 10, 9], ["settings", 12, 9]], [["gatus", 9, 16]], [["services", 9, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 30, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gatus.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/gatus.nix", [["port", 13, 15]]);
-const pos$3 = nix.positions(here + "/gatus.nix", [["name", 18, 15], ["url", 19, 15], ["interval", 20, 15], ["conditions", 21, 15]]);
-const pos$4 = nix.positions(here + "/gatus.nix", [["web", 13, 11], ["metrics", 14, 11], ["endpoints", 16, 11]]);
-const pos$5 = nix.positions(here + "/gatus.nix", [["enable", 10, 9], ["settings", 12, 9]]);
-const pos$6 = nix.positions(here + "/gatus.nix", [["gatus", 9, 16]]);
-const pos$7 = nix.positions(here + "/gatus.nix", [["services", 9, 7]]);
-const pos$8 = nix.positions(here + "/gatus.nix", [["machine", 6, 9]]);
-const pos$9 = nix.positions(here + "/gatus.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "gatus",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "pizzapim"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             gatus: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$4,
-                web: nix.thunk(() => ({ [nix.POS]: pos$2, port: 8080n })),
+                [nix.POS]: $pos[3],
+                web: nix.thunk(() => ({ [nix.POS]: $pos[1], port: 8080n })),
                 metrics: true,
                 endpoints: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     name: "metrics",
                     url: "http://localhost:8080/metrics",
                     interval: "1s",

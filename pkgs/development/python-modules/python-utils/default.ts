@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["loguru", 35, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 44, 3], ["enabledTestPaths", 46, 3], ["disabledTests", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, loguru: false, "pytest-asyncio": false, pytestCheckHook: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["loguru", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 44, 3], ["enabledTestPaths", 46, 3], ["disabledTests", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "WoLpH",
           repo: "python-utils",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,13 +29,13 @@ export default nix.lambda((args) => (() => {
       const postPatch = "sed -i pytest.ini \\\n  -e '/--cov/d' \\\n  -e '/--mypy/d'\n";
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [typing_extensions]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, loguru: nix.thunk(() => [loguru]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], loguru: nix.thunk(() => [loguru]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_asyncio, pytestCheckHook], nix.sel(optional_dependencies, "loguru")));
       const pythonImportsCheck = nix.thunk(() => ["python_utils"]);
       const enabledTestPaths = nix.thunk(() => ["_python_utils_tests"]);
       const disabledTests = nix.thunk(() => ["test_timeout_generator"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Module with some convenient utilities",
         homepage: "https://github.com/WoLpH/python-utils",
         changelog: nix.thunk(() => nix.str`https://github.com/wolph/python-utils/releases/tag/v${version}`),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

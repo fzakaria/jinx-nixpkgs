@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["url", 23, 5], ["hash", 24, 5]], [["plikd", 53, 26]], [["tests", 52, 12]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["src-webapp", 22, 3], ["subPackages", 27, 3], ["vendorHash", 29, 3], ["nativeBuildInputs", 31, 3], ["postPatch", 35, 3], ["postInstall", 40, 3], ["passthru", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchurl: false, nixosTests: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["plikd", 53, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 52, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["src-webapp", 22, 3], ["subPackages", 27, 3], ["vendorHash", 29, 3], ["nativeBuildInputs", 31, 3], ["postPatch", 35, 3], ["postInstall", 40, 3], ["passthru", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "plikd",
       version: "1.3.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "root-gg",
           repo: "plik",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-WCtfkzlZnyzZDwNDBrW06bUbLYTL2C704Y7aXbiVi5c=",
         })))),
       "src-webapp": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/root-gg/plik/releases/download/${nix.sel(finalAttrs, "version")}/plik-${nix.sel(finalAttrs, "version")}-linux-amd64.tar.gz`),
           hash: "sha256-taUFXZJeUHYjjhrVlLgKYPxNn6W5o8uoEVcu+f5flCA=",
         })))),
@@ -51,11 +46,11 @@ makeWrapper $out/libexec/plikd/bin/plikd $out/bin/plikd \\
   --chdir "$out/libexec/plikd/bin"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, plikd: nix.thunk(() => nix.attr(nixosTests, "plikd")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], plikd: nix.thunk(() => nix.attr(nixosTests, "plikd")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Scalable & friendly temporary file upload system",
         homepage: "https://github.com/root-gg/plik",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

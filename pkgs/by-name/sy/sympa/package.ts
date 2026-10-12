@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 77, 5], ["repo", 78, 5], ["rev", 79, 5], ["sha256", 80, 5]], [["sympa", 120, 26]], [["tests", 119, 12]], [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 130, 5]], [["pname", 73, 3], ["version", 74, 3], ["src", 76, 3], ["configureFlags", 83, 3], ["nativeBuildInputs", 96, 3], ["strictDeps", 100, 3], ["patches", 101, 3], ["preInstall", 106, 3], ["postInstall", 115, 3], ["passthru", 119, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, perl: false, fetchFromGitHub: false, autoreconfHook: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 77, 5], ["repo", 78, 5], ["rev", 79, 5], ["sha256", 80, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["sympa", 120, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 119, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 130, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 73, 3], ["version", 74, 3], ["src", 76, 3], ["configureFlags", 83, 3], ["nativeBuildInputs", 96, 3], ["strictDeps", 100, 3], ["patches", 101, 3], ["preInstall", 106, 3], ["postInstall", 115, 3], ["passthru", 119, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -74,11 +70,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sympa",
       version: "6.2.76",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sympa-community",
           repo: "sympa",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -108,11 +104,11 @@ PATH="$TMP/bin:$PATH"
 `),
       postInstall: "rm -rf \"$TMP/bin\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, sympa: nix.thunk(() => nix.attr(nixosTests, "sympa")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], sympa: nix.thunk(() => nix.attr(nixosTests, "sympa")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open source mailing list manager",
         homepage: "https://www.sympa.community/sympa/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

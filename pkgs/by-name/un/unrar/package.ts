@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["stripRoot", 13, 5], ["hash", 14, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 17, 3], ["postPatch", 19, 3], ["outputs", 26, 3], ["buildPhase", 33, 3], ["installPhase", 43, 3], ["setupHook", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["stripRoot", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 17, 3], ["postPatch", 19, 3], ["outputs", 26, 3], ["buildPhase", 33, 3], ["installPhase", 43, 3], ["setupHook", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "unrar",
       version: "7.3.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.rarlab.com/rar/unrarsrc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           stripRoot: false,
           hash: "sha256-w95Jcz/mT6acO1nfXKG82Z/sYuwGg26QK05KeOSBjM4=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm755 unrar/unrar -t $out/bin/\ninstall -Dm644 unrar/{acknow.txt,license.txt} -t $out/share/doc/unrar/\n\ninstall -Dm755 libunrar/libunrar.so -t $out/lib/\ninstall -Dm644 libunrar/dll.hpp -t $dev/include/unrar/\n\nrunHook postInstall\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utility for RAR archives",
         homepage: "https://www.rarlab.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["updateScript", 50, 12]], [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["sourceProvenance", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["dontUnpack", 28, 3], ["installPhase", 30, 3], ["passthru", 50, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, jdk17: false, which: false, coreutils: false, openssh: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 50, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["sourceProvenance", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["dontUnpack", 28, 3], ["installPhase", 30, 3], ["passthru", 50, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rundeck",
       version: "6.2.1-20260909",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://packagecloud.io/pagerduty/rundeck/packages/java/org.rundeck/rundeck-${nix.sel(finalAttrs, "version")}.war/artifacts/rundeck-${nix.sel(finalAttrs, "version")}.war/download?distro_version_id=167`),
           hash: "sha256-x0+IRTV7EQUvQFli7C59zNprOthfteNZbuEHdBz0Z+c=",
         })))),
@@ -46,11 +43,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jdk17)} $out/bin/rundeck \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-rundeck", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts curl jq\nset -eu -o pipefail\n\nlatest_tag=$(curl -s \"https://api.github.com/repos/rundeck/rundeck/tags\" | jq -r '.[0].name')\nversion=$(echo \"$latest_tag\" | sed -E 's/^v//')\nfull_version=\"$version-$(date +\"%Y%m%d\")\"\n\nif [[ \"x$UPDATE_NIX_OLD_VERSION\" != \"x$full_version\" ]]; then\n  download_url=\"https://packagecloud.io/pagerduty/rundeck/packages/java/org.rundeck/rundeck-$full_version.war/artifacts/rundeck-$full_version.war/download?distro_version_id=167\"\n  hash=$(curl -L \"$download_url\" | nix-hash --flat --type sha256 --base32 - | nix --extra-experimental-features nix-command hash to-sri --type sha256)\n  update-source-version \"$UPDATE_NIX_ATTR_PATH\" \"$full_version\" \"$hash\"\nfi\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Job scheduler and runbook automation",
         longDescription: "Rundeck is an open source automation service with a web console,\ncommand line tools and a WebAPI. It lets you easily run automation tasks\nacross a set of nodes.\n",
         homepage: "https://www.rundeck.com/",

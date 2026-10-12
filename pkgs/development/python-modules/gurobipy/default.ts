@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["aarch64-darwin", 13, 5], ["aarch64-linux", 15, 5], ["x86_64-linux", 16, 5]], [["cp313-aarch64-darwin", 20, 5], ["cp313-aarch64-linux", 21, 5], ["cp313-x86_64-linux", 22, 5], ["cp314-aarch64-darwin", 23, 5], ["cp314-aarch64-linux", 24, 5], ["cp314-x86_64-linux", 25, 5]], [["pname", 37, 13], ["version", 37, 19], ["python", 38, 5], ["abi", 39, 5], ["dist", 40, 5], ["format", 41, 13], ["platform", 41, 20], ["hash", 41, 29]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 32, 3], ["version", 33, 3], ["format", 34, 11], ["src", 36, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, python: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["aarch64-darwin", 13, 5], ["aarch64-linux", 15, 5], ["x86_64-linux", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cp313-aarch64-darwin", 20, 5], ["cp313-aarch64-linux", 21, 5], ["cp313-x86_64-linux", 22, 5], ["cp314-aarch64-darwin", 23, 5], ["cp314-aarch64-linux", 24, 5], ["cp314-x86_64-linux", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 37, 13], ["version", 37, 19], ["python", 38, 5], ["abi", 39, 5], ["dist", 40, 5], ["format", 41, 13], ["platform", 41, 20], ["hash", 41, 29]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["format", 34, 11], ["src", 36, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const format = "wheel";
   const pyShortVersion = nix.thunk(() => nix.add("cp", nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(python, "pythonVersion")))));
   const platforms = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-darwin": nix.thunk(() => (nix.asBool(nix.eq(pyShortVersion, "cp314")) ? "macosx_10_15_universal2" : "macosx_10_13_universal2")),
     "aarch64-linux": "manylinux_2_26_aarch64",
     "x86_64-linux": "manylinux2014_x86_64.manylinux_2_17_x86_64",
   }));
   const platform = nix.thunk(() => nix.selOr(platforms, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
   const hashes = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "cp313-aarch64-darwin": "sha256-Zcp6DNHl7VfIDmE/NVCcCuqsFUTRdwW3P5pXB9QOJYg=",
     "cp313-aarch64-linux": "sha256-OnyM8RjyOB7J+A8ZkNUy6tZ9YfW7wL5Pl3/p6wzW/EE=",
     "cp313-x86_64-linux": "sha256-1U6n9B3/NRgCDBpiQPo++PiuMHcEC04eRF/mmiOemMo=",
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "13.0.3";
       const format_1 = format;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: pname,
           version: version,
           python: pyShortVersion,
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const pythonImportsCheck = nix.thunk(() => ["gurobipy"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python interface to Gurobi",
         homepage: "https://www.gurobi.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -63,7 +59,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.builtins.attrNames(platforms)),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         format: format_1,

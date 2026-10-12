@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 33, 7], ["maintainers", 34, 7]], [["__structuredAttrs", 17, 5], ["strictDeps", 18, 5], ["name", 20, 13], ["nativeBuildInputs", 22, 5], ["failed", 24, 5], ["expectedBuilderExitCode", 26, 13], ["expectedBuilderLogEntries", 26, 37], ["script", 28, 13], ["buildCommandPath", 30, 5], ["meta", 32, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, testers: false }, ellipsis: false };
 const formals$2 = { args: { drv: false, name: true, expectedBuilderExitCode: true, expectedBuilderLogEntries: true, script: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 33, 7], ["maintainers", 34, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["__structuredAttrs", 17, 5], ["strictDeps", 18, 5], ["name", 20, 13], ["nativeBuildInputs", 22, 5], ["failed", 24, 5], ["expectedBuilderExitCode", 26, 13], ["expectedBuilderLogEntries", 26, 37], ["script", 28, 13], ["buildCommandPath", 30, 5], ["meta", 32, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const expectedBuilderLogEntries = nix.argOr($_1, "expectedBuilderLogEntries", () => []);
       const script = nix.argOr($_1, "script", () => "");
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           __structuredAttrs: true,
           strictDeps: true,
           name: name,
@@ -31,7 +30,7 @@ export default nix.lambda((args) => (() => {
           script: script,
           buildCommandPath: nix.path(here, "./build-command.sh"),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             description: "Wrapper around testers.testBuildFailure to simplify common use cases",
             maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "connorbaker"))]),
           })),

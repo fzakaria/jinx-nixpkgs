@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 39, 3], ["disabledTestPaths", 49, 3], ["disabledTests", 59, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, anyascii: false, buildPythonPackage: false, fetchFromGitHub: false, flaky: false, "google-cloud-storage": false, "legacy-cgi": false, mock: false, pillow: false, pymongo: false, pytestCheckHook: false, pythonAtLeast: false, requests: false, setuptools: false, sqlalchemy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 39, 3], ["disabledTestPaths", 49, 3], ["disabledTests", 59, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const sqlalchemy = nix.arg($, "sqlalchemy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "filedepot",
       version: "0.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "amol-",
           repo: "depot",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ["test_notexisting"]))),
       pythonImportsCheck: nix.thunk(() => ["depot"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Toolkit for storing files and attachments in web applications",
         homepage: "https://github.com/amol-/depot",
         changelog: nix.thunk(() => nix.str`https://github.com/amol-/depot/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

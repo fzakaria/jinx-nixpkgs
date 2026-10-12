@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-basic-x86_64.nix", [[["nativeBuildInputs", 9, 5]]]);
 const formals$1 = { args: { runCommand: false, cargo: false, rustc: false, "cargo-show-asm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-basic-x86_64.nix", [["nativeBuildInputs", 9, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const cargo_show_asm = nix.arg($, "cargo-show-asm");
   return nix.app(runCommand, "test-basic", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [cargo, rustc, cargo_show_asm]),
     })), "  mkdir -p src\n  cat >Cargo.toml <<EOF\n[package]\nname = \"add\"\nversion = \"0.0.0\"\nEOF\n  cat >src/lib.rs <<EOF\n#[inline(never)] pub fn add(a: u32, b: u32) -> u32 { a + b }\nEOF\n\n  [[ \"$(cargo asm add::add | tee /dev/stderr)\" == *\"lea eax, \"* ]]\n  [[ \"$(cargo asm --mir add | tee /dev/stderr)\" == *\"= Add(\"* ]]\n  touch $out\n");
 })(), formals$1);

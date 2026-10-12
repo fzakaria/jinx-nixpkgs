@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 36, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromCodeberg: false, "blueprint-compiler": false, "desktop-file-utils": false, glib: false, gtk4: false, libadwaita: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 36, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "door-knocker",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tytan652",
           repo: "door-knocker",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [glib, gtk4, libadwaita]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to check the availability of portals",
         homepage: "https://codeberg.org/tytan652/door-knocker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

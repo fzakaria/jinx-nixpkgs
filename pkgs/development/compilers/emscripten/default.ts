@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 28, 5], ["paths", 29, 5]], [["name", 38, 5], ["pname", 39, 13], ["version", 39, 19], ["src", 39, 27], ["npmDepsHash", 41, 5], ["dontBuild", 43, 5], ["installPhase", 46, 5]], [["owner", 52, 5], ["repo", 53, 5], ["hash", 54, 5], ["rev", 55, 5]], [["resourceDir", 70, 7]], [["extraArgs", 222, 7]], [["targetPrefix", 219, 5], ["bintools", 220, 5], ["updateScript", 221, 5]], [["homepage", 230, 5], ["description", 231, 5], ["platforms", 232, 5], ["maintainers", 233, 5], ["license", 237, 5]], [["pname", 24, 3], ["version", 25, 3], ["llvmEnv", 27, 3], ["nodeModules", 37, 3], ["src", 51, 3], ["strictDeps", 58, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 64, 3], ["patches", 68, 3], ["buildPhase", 76, 3], ["installPhase", 136, 3], ["doInstallCheck", 201, 3], ["installCheckPhase", 205, 3], ["passthru", 216, 3], ["meta", 229, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false, nodejs: false, closurecompiler: false, jre: false, binaryen: false, llvmPackages: false, symlinkJoin: false, makeWrapper: false, replaceVars: false, buildNpmPackage: false, "nix-update-script": false, emscripten: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 28, 5], ["paths", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 38, 5], ["pname", 39, 13], ["version", 39, 19], ["src", 39, 27], ["npmDepsHash", 41, 5], ["dontBuild", 43, 5], ["installPhase", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 52, 5], ["repo", 53, 5], ["hash", 54, 5], ["rev", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["resourceDir", 70, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["extraArgs", 222, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["targetPrefix", 219, 5], ["bintools", 220, 5], ["updateScript", 221, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["homepage", 230, 5], ["description", 231, 5], ["platforms", 232, 5], ["maintainers", 233, 5], ["license", 237, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["llvmEnv", 27, 3], ["nodeModules", 37, 3], ["src", 51, 3], ["strictDeps", 58, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 64, 3], ["patches", 68, 3], ["buildPhase", 76, 3], ["installPhase", 136, 3], ["doInstallCheck", 201, 3], ["installCheckPhase", 205, 3], ["passthru", 216, 3], ["meta", 229, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "emscripten";
       const version = "6.0.9";
       const llvmEnv = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`emscripten-llvm-${version}`),
           paths: nix.thunk(() => (() => {
             const w = nix.withScope(llvmPackages, null);
@@ -47,7 +40,7 @@ export default nix.lambda((args) => (() => {
           })()),
         }))));
       const nodeModules = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`emscripten-node-modules-${version}`),
           pname: pname,
           version: version,
@@ -57,7 +50,7 @@ export default nix.lambda((args) => (() => {
           installPhase: "cp -r node_modules $out/\n",
         }))));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "emscripten-core",
           repo: "emscripten",
           hash: "sha256-zfNbudFzII/nc0oyojalEaVppSWbCg7v1yiM7ENYQSE=",
@@ -68,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [nodejs]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-emulate-clang-sysroot-include-logic.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             resourceDir: nix.thunk(() => nix.str`${llvmEnv}/lib/clang/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(llvmPackages, "llvm", "version")))}/`),
           })))),
         nix.path(here, "./0002-libunwind-restore-Unwind_CallPersonality.patch"),
@@ -197,16 +190,16 @@ fi
       const doInstallCheck = true;
       const installCheckPhase = "runHook preInstallCheck\n\npushd $TMPDIR\necho 'int main() { try { throw 42; } catch (int) { return 0; } return 1; }' > throw.cpp\n$out/bin/em++ -fwasm-exceptions throw.cpp -o throw.js\npopd\n\nrunHook postInstallCheck\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         targetPrefix: "em",
         bintools: emscripten,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--subpackage", "nodeModules"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/emscripten-core/emscripten",
         description: "LLVM-to-JavaScript Compiler",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -220,7 +213,7 @@ fi
         license: nix.thunk(() => nix.sel(lib, "licenses", "ncsa")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         llvmEnv,

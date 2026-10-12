@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 26], ["version", 22, 32], ["hash", 23, 5]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["pythonRelaxDeps", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 44, 3], ["disabledTests", 46, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, freezegun: false, hatchling: false, logfire: false, "pydantic-settings": false, pydantic: false, "pytest-vcr": false, pytestCheckHook: false, "requests-oauthlib": false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 26], ["version", 22, 32], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["pythonRelaxDeps", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 44, 3], ["disabledTests", 46, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const requests_oauthlib = nix.arg($, "requests-oauthlib");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "garth",
       version: "0.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-9y7fvv4YwQgeWJjKj8FlSKc6CfyrQ2S4SSIXzjP3SeM=",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         "test_default_callback_calls_logfire",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Garmin SSO auth and connect client",
         homepage: "https://github.com/matin/garth",
         changelog: nix.thunk(() => nix.str`https://github.com/matin/garth/releases/tag/${nix.sel(finalAttrs, "version")}`),

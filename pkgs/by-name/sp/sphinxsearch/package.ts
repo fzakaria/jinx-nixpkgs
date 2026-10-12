@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["CXXFLAGS", 43, 7]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["enableParallelBuilding", 21, 3], ["configureFlags", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["env", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, expat: false, libmysqlclient: false, enableXmlpipe2: true, enableMysql: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["enableParallelBuilding", 21, 3], ["configureFlags", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["env", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const enableXmlpipe2 = nix.argOr($, "enableXmlpipe2", () => false);
   const enableMysql = nix.argOr($, "enableMysql", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sphinxsearch",
       version: "2.2.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://sphinxsearch.com/files/sphinx-${nix.sel(finalAttrs, "version")}-release.tar.gz`),
           sha256: "1aa1mh32y019j8s3sjzn4vwi0xn83dwgl685jnbgh51k16gh6qk6",
         })))),
@@ -31,9 +28,9 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["--program-prefix=sphinxsearch-", "--enable-id64"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(enableMysql)), nix.thunk(() => ["--without-mysql"])))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), enableMysql, nix.thunk(() => [libmysqlclient])), nix.app(nix.sel(lib, "optionals"), enableXmlpipe2, nix.thunk(() => [expat])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=c++98" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-std=c++98" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open source full text search server",
         homepage: "http://sphinxsearch.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

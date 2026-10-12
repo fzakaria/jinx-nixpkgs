@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["dontWrapQtApps", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, libnotify: false, cmake: false, ninja: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["dontWrapQtApps", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libcprime",
       version: "5.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cubocore",
           repo: "libcprime",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./0001-fix-application-dirs.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "cmake-4.patch",
             url: "https://gitlab.com/cubocore/libcprime/-/commit/505931e9634d1b55ea97bdaa0f68dcd51faaea39.patch",
             hash: "sha256-toWG78tW6qOETTMb63/WtSyIiGkJ00RlPyGTqrWPnLY=",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for bookmarking, saving recent activities, managing settings of C-Suite",
         homepage: "https://gitlab.com/cubocore/libcprime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

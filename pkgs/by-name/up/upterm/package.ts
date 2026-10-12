@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["package", 61, 7], ["command", 62, 7], ["version", 63, 7]], [["uptermd", 59, 26], ["version", 60, 5]], [["tests", 58, 12]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["ldflags", 24, 3], ["vendorHash", 30, 3], ["subPackages", 32, 3], ["nativeBuildInputs", 37, 3], ["postInstall", 42, 3], ["doCheck", 56, 3], ["passthru", 58, 3], ["__darwinAllowLocalNetworking", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, writableTmpDirAsHomeHook: false, installShellFiles: false, nixosTests: false, testers: false, upterm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 61, 7], ["command", 62, 7], ["version", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["uptermd", 59, 26], ["version", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 58, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["ldflags", 24, 3], ["vendorHash", 30, 3], ["subPackages", 32, 3], ["nativeBuildInputs", 37, 3], ["postInstall", 42, 3], ["doCheck", 56, 3], ["passthru", 58, 3], ["__darwinAllowLocalNetworking", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const upterm = nix.arg($, "upterm");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "upterm",
       version: "0.29.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "owenthereal",
           repo: "upterm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,12 +38,12 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.add("# force go to build for build arch rather than host arch during cross-compiling\nCGO_ENABLED=0 GOOS= GOARCH= go run cmd/gendoc/main.go\ninstallManPage etc/man/man*/*\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for cmd in upterm uptermd; do\n  installShellCompletion --cmd $cmd \\\n    --bash <($out/bin/$cmd completion bash) \\\n    --fish <($out/bin/$cmd completion fish) \\\n    --zsh <($out/bin/$cmd completion zsh)\ndone\n"))),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           uptermd: nix.thunk(() => nix.attr(nixosTests, "uptermd")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: upterm,
               command: "HOME=$PWD upterm version",
               version: nix.thunk(() => nix.str`Upterm version ${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Secure terminal-session sharing",
         homepage: "https://upterm.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

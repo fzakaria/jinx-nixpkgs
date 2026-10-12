@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["url", 26, 7], ["hash", 27, 7]], [["homepage", 47, 5], ["description", 48, 5], ["mainProgram", 49, 5], ["license", 50, 5], ["changelog", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 37, 3], ["postInstall", 42, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, makeWrapper: false, iptables: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["description", 48, 5], ["mainProgram", 49, 5], ["license", 50, 5], ["changelog", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 37, 3], ["postInstall", 42, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const iptables = nix.arg($, "iptables");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "udp2raw",
       version: "20230206.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wangyu-",
           repo: "udp2raw",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/wangyu-/udp2raw/commit/4559e6d47bb69fda0fbd3fb4b7d04ddb1cf5e2ae.patch",
             hash: "sha256-2csZdXmMW89tjXhN5QIK0rnMSXlFjLvwGnmieeKRX90=",
           })))),
@@ -43,7 +40,7 @@ substituteInPlace CMakeLists.txt --replace "sanitize=address," "sanitize="
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/udp2raw" --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [iptables]))}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/wangyu-/udp2raw",
         description: "Tunnel which turns UDP traffic into encrypted UDP/FakeTCP/ICMP traffic by using a raw socket",
         mainProgram: "udp2raw",

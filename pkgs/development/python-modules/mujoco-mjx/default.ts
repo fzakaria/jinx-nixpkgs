@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 47, 5], ["homepage", 48, 27], ["changelog", 48, 36], ["license", 48, 46], ["maintainers", 49, 5]], [["pname", 23, 3], ["src", 24, 25], ["version", 24, 29], ["pyproject", 25, 3], ["__structuredAttrs", 26, 3], ["sourceRoot", 28, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "mujoco-main": false, setuptools: false, "absl-py": false, etils: false, "importlib-resources": false, jax: false, jaxlib: false, mujoco: false, scipy: false, trimesh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 27], ["changelog", 48, 36], ["license", 48, 46], ["maintainers", 49, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["src", 24, 25], ["version", 24, 29], ["pyproject", 25, 3], ["__structuredAttrs", 26, 3], ["sourceRoot", 28, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const trimesh = nix.arg($, "trimesh");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mujoco-mjx",
       src: nix.thunk(() => nix.attr(mujoco_main, "src")),
       version: nix.thunk(() => nix.attr(mujoco_main, "version")),
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mujoco, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "MuJoCo XLA (MJX)",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

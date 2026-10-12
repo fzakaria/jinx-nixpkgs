@@ -2,22 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["executableName", 88, 17], ["pname", 89, 30], ["version", 89, 36]], [["description", 93, 9]], [["name", 59, 7], ["targetPkgs", 62, 7], ["extraBwrapArgs", 75, 7], ["extraInstallCommands", 81, 7], ["runScript", 85, 7], ["passthru", 87, 7], ["meta", 92, 7]], [["owner", 112, 5], ["repo", 113, 5], ["tag", 114, 5], ["hash", 115, 5]], [["CARGO_PROFILE_RELEASE_DEBUG", 202, 5], ["ALLOW_MISSING_LICENSES", 204, 5], ["OPENSSL_NO_VENDOR", 205, 5], ["LIBGIT2_NO_VENDOR", 206, 5], ["LIBSQLITE3_SYS_USE_PKG_CONFIG", 207, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 208, 5], ["ZED_UPDATE_EXPLANATION", 211, 5], ["RELEASE_VERSION", 213, 5], ["LK_CUSTOM_WEBRTC", 214, 5]], [["NIX_CFLAGS_LINK", 219, 5]], [["extraArgs", 309, 7]], [["zed-editor", 319, 17]], [["zed-editor", 323, 9], ["additionalPkgs", 324, 9]], [["package", 328, 9], ["command", 329, 9]], [["remoteServerVersion", 327, 7]], [["updateScript", 308, 5], ["fhs", 319, 5], ["fhsWithPackages", 320, 5], ["tests", 326, 5]], [["description", 335, 5], ["homepage", 336, 5], ["changelog", 337, 5], ["license", 338, 5], ["maintainers", 339, 5], ["mainProgram", 345, 5], ["platforms", 346, 5]], [["pname", 101, 3], ["version", 102, 3], ["outputs", 104, 3], ["src", 111, 3], ["postPatch", 118, 3], ["cargoHash", 138, 3], ["__structuredAttrs", 140, 3], ["nativeBuildInputs", 142, 3], ["dontUseCmakeConfigure", 155, 3], ["buildInputs", 157, 3], ["cargoBuildFlags", 181, 3], ["buildFeatures", 189, 3], ["checkFeatures", 195, 3], ["env", 200, 3], ["preBuild", 222, 3], ["postFixup", 226, 3], ["nativeCheckInputs", 242, 3], ["useNextest", 246, 3], ["remoteServerExecutableName", 248, 3], ["installPhase", 249, 3], ["nativeInstallCheckInputs", 301, 3], ["versionCheckProgram", 304, 3], ["doInstallCheck", 305, 3], ["passthru", 307, 3], ["meta", 334, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, protobuf: false, fontconfig: false, libgit2: false, openssl: false, sqlite: false, zlib: false, zstd: false, glib: false, "alsa-lib": false, libxkbcommon: false, wayland: false, libxcb: false, stdenv: false, "vulkan-loader": false, envsubst: false, "nix-update-script": false, "cargo-about": false, versionCheckHook: false, buildFHSEnv: false, "cargo-bundle": false, git: false, makeBinaryWrapper: false, nodejs: false, libGL: false, libx11: false, libxext: false, "livekit-libwebrtc": false, lld: false, testers: false, writableTmpDirAsHomeHook: false, bubblewrap: false, buildRemoteServer: true }, ellipsis: false };
 const formals$2 = { args: { "zed-editor": false, additionalPkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["executableName", 88, 17], ["pname", 89, 30], ["version", 89, 36]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 93, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 59, 7], ["targetPkgs", 62, 7], ["extraBwrapArgs", 75, 7], ["extraInstallCommands", 81, 7], ["runScript", 85, 7], ["passthru", 87, 7], ["meta", 92, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 112, 5], ["repo", 113, 5], ["tag", 114, 5], ["hash", 115, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["CARGO_PROFILE_RELEASE_DEBUG", 202, 5], ["ALLOW_MISSING_LICENSES", 204, 5], ["OPENSSL_NO_VENDOR", 205, 5], ["LIBGIT2_NO_VENDOR", 206, 5], ["LIBSQLITE3_SYS_USE_PKG_CONFIG", 207, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 208, 5], ["ZED_UPDATE_EXPLANATION", 211, 5], ["RELEASE_VERSION", 213, 5], ["LK_CUSTOM_WEBRTC", 214, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_LINK", 219, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 309, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["zed-editor", 319, 17]]);
-const pos$9 = nix.positions(here + "/package.nix", [["zed-editor", 323, 9], ["additionalPkgs", 324, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["package", 328, 9], ["command", 329, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["remoteServerVersion", 327, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["updateScript", 308, 5], ["fhs", 319, 5], ["fhsWithPackages", 320, 5], ["tests", 326, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["description", 335, 5], ["homepage", 336, 5], ["changelog", 337, 5], ["license", 338, 5], ["maintainers", 339, 5], ["mainProgram", 345, 5], ["platforms", 346, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 101, 3], ["version", 102, 3], ["outputs", 104, 3], ["src", 111, 3], ["postPatch", 118, 3], ["cargoHash", 138, 3], ["__structuredAttrs", 140, 3], ["nativeBuildInputs", 142, 3], ["dontUseCmakeConfigure", 155, 3], ["buildInputs", 157, 3], ["cargoBuildFlags", 181, 3], ["buildFeatures", 189, 3], ["checkFeatures", 195, 3], ["env", 200, 3], ["preBuild", 222, 3], ["postFixup", 226, 3], ["nativeCheckInputs", 242, 3], ["useNextest", 246, 3], ["remoteServerExecutableName", 248, 3], ["installPhase", 249, 3], ["nativeInstallCheckInputs", 301, 3], ["versionCheckProgram", 304, 3], ["doInstallCheck", 305, 3], ["passthru", 307, 3], ["meta", 334, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,7 +52,7 @@ export default nix.lambda((args) => (() => {
     const zed_editor = nix.arg($_1, "zed-editor");
     const additionalPkgs = nix.argOr($_1, "additionalPkgs", () => (pkgs) => []);
     return nix.app(buildFHSEnv, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: executableName,
         targetPkgs: (pkgs) => nix.concat((() => {
           const w = nix.withScope(pkgs, null);
@@ -81,13 +68,13 @@ export default nix.lambda((args) => (() => {
 `),
         runScript: nix.thunk(() => nix.str`${zed_editor}/bin/${executableName}`),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           executableName: executableName,
           pname: nix.thunk(() => nix.attr(zed_editor, "pname")),
           version: nix.thunk(() => nix.attr(zed_editor, "version")),
         })),
         meta: nix.thunk(() => nix.update(nix.sel(zed_editor, "meta"), {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: nix.thunk(() => nix.str`Wrapped variant of ${nix.sel(zed_editor, "pname")} which launches in a FHS compatible environment.
 Should allow for easy usage of extensions without nix-specific modifications.
 `),
@@ -95,12 +82,12 @@ Should allow for easy usage of extensions without nix-specific modifications.
       })));
   })(), formals$2);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: "zed-editor",
       version: "1.22.0",
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), buildRemoteServer, nix.thunk(() => ["remote_server"])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "zed-industries",
           repo: "zed",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -142,7 +129,7 @@ substituteInPlace $cargoDepsCopy/*/webrtc-sys-*/build.rs \\
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["gpui_platform/runtime_shaders"]))),
       checkFeatures: nix.thunk(() => nix.concat(["visual-tests"], nix.sel(finalAttrs, "buildFeatures"))),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         CARGO_PROFILE_RELEASE_DEBUG: "false",
         ALLOW_MISSING_LICENSES: true,
         OPENSSL_NO_VENDOR: true,
@@ -152,7 +139,7 @@ substituteInPlace $cargoDepsCopy/*/webrtc-sys-*/build.rs \\
         ZED_UPDATE_EXPLANATION: "Zed has been installed using Nix. Auto-updates have thus been disabled.",
         RELEASE_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         LK_CUSTOM_WEBRTC: livekit_libwebrtc,
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$6, NIX_CFLAGS_LINK: "-fuse-ld=lld" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[5], NIX_CFLAGS_LINK: "-fuse-ld=lld" }))))),
       preBuild: "bash script/generate-licenses\n",
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`patchelf $out/libexec/zed-editor --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, vulkan_loader, wayland]))}
 wrapProgram $out/libexec/zed-editor --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nodejs, bubblewrap]))}
@@ -205,9 +192,9 @@ install -Dm644 $src/crates/zed/resources/app-icon.png $out/share/icons/hicolor/5
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/zeditor`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             extraArgs: nix.thunk(() => [
               "--version-regex",
               "^v(?!.*(?:-pre|0\\.999999\\.0|0\\.9999-temporary)$)(.+)$",
@@ -215,25 +202,25 @@ install -Dm644 $src/crates/zed/resources/app-icon.png $out/share/icons/hicolor/5
             ]),
           })))),
         fhs: nix.thunk(() => nix.app(fhs, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             "zed-editor": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         fhsWithPackages: (f) => nix.app(fhs, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             "zed-editor": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             additionalPkgs: f,
           }))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           remoteServerVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "remote_server")),
               command: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "remoteServerExecutableName")} version`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         description: "High-performance, multiplayer code editor from the creators of Atom and Tree-sitter",
         homepage: "https://zed.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/zed-industries/zed/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 7], ["hash", 29, 7]], [["url", 32, 7], ["hash", 33, 7]], [["url", 36, 7], ["hash", 37, 7]], [["url", 40, 7], ["hash", 41, 7]], [["x86_64-linux", 27, 5], ["aarch64-linux", 31, 5], ["i686-linux", 35, 5], ["aarch64-darwin", 39, 5]], [["url", 47, 5], ["hash", 48, 5]], [["url", 52, 5], ["hash", 53, 5]], [["src", 58, 9], ["nativeBuildInputs", 59, 9]], [["src", 69, 9], ["nativeBuildInputs", 70, 9]], [["x86_64-linux", 79, 7], ["aarch64-linux", 80, 7], ["i686-linux", 81, 7], ["aarch64-darwin", 82, 7]], [["name", 212, 7], ["desktopName", 213, 7], ["exec", 214, 7], ["icon", 215, 7], ["comment", 216, 7], ["categories", 217, 7]], [["isos", 223, 5]], [["description", 230, 5], ["license", 231, 5], ["platforms", 232, 5], ["maintainers", 233, 5], ["sourceProvenance", 237, 5], ["mainProgram", 238, 5]], [["pname", 87, 3], ["version", 88, 11], ["sourceRoot", 89, 3], ["src", 90, 3], ["buildInputs", 93, 3], ["nativeBuildInputs", 107, 3], ["installPhase", 118, 3], ["appendRunpaths", 206, 3], ["desktopItems", 210, 3], ["passthru", 221, 3], ["meta", 229, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoPatchelfHook: false, undmg: false, fetchurl: false, makeDesktopItem: false, makeWrapper: false, copyDesktopItems: false, libarchive: false, imagemagick: false, runCommand: false, libgcc: false, wxwidgets_3_2: false, libGL: false, SDL2: false, openal: false, libmpg123: false, libxmp: false, libiconv: false, darwin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 40, 7], ["hash", 41, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["x86_64-linux", 27, 5], ["aarch64-linux", 31, 5], ["i686-linux", 35, 5], ["aarch64-darwin", 39, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 47, 5], ["hash", 48, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 52, 5], ["hash", 53, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["src", 58, 9], ["nativeBuildInputs", 59, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["src", 69, 9], ["nativeBuildInputs", 70, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["x86_64-linux", 79, 7], ["aarch64-linux", 80, 7], ["i686-linux", 81, 7], ["aarch64-darwin", 82, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 212, 7], ["desktopName", 213, 7], ["exec", 214, 7], ["icon", 215, 7], ["comment", 216, 7], ["categories", 217, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["isos", 223, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["description", 230, 5], ["license", 231, 5], ["platforms", 232, 5], ["maintainers", 233, 5], ["sourceProvenance", 237, 5], ["mainProgram", 238, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 87, 3], ["version", 88, 11], ["sourceRoot", 89, 3], ["src", 90, 3], ["buildInputs", 93, 3], ["nativeBuildInputs", 107, 3], ["installPhase", 118, 3], ["appendRunpaths", 206, 3], ["desktopItems", 210, 3], ["passthru", 221, 3], ["meta", 229, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,57 +29,57 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const version = "469e";
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/OldUnreal/UnrealTournamentPatches/releases/download/v${version}/OldUnreal-UTPatch${nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), "-", version)), 0n)}-Linux-amd64.tar.bz2`),
         hash: "sha256-CMgGqjchsZcARaoVitkAUTKdmC6KmjZhFTkA6cy/aww=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/OldUnreal/UnrealTournamentPatches/releases/download/v${version}/OldUnreal-UTPatch${nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), "-", version)), 0n)}-Linux-arm64.tar.bz2`),
         hash: "sha256-TDl4BzsSsEnD/9600nXPx6IxNlDz61uU2wb7/ud8Pjs=",
       })))),
     "i686-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://github.com/OldUnreal/UnrealTournamentPatches/releases/download/v${version}/OldUnreal-UTPatch${nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), "-", version)), 0n)}-Linux-x86.tar.bz2`),
         hash: "sha256-y9bYAW77MOOYJ1elgsaIUygDch7B7HOPwor5s+FdPBQ=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         url: nix.thunk(() => nix.str`https://github.com/OldUnreal/UnrealTournamentPatches/releases/download/v${version}/OldUnreal-UTPatch${nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), "-", version)), 0n)}-macOS.dmg`),
         hash: "sha256-trOh9GLktwLfDuz5DWY+8fhHzDaq3KHsbdNSeNCR+g0=",
       })))),
   }));
   const iso1 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       url: "https://archive.org/download/ut-goty/UT_GOTY_CD1.iso",
       hash: "sha256-4YSYTKiPABxd3VIDXXbNZOJm4mx0l1Fhte1yNmx0cE8=",
     }))));
   const iso2 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       url: "https://archive.org/download/ut-goty/UT_GOTY_CD2.iso",
       hash: "sha256-2V2O4c+VVi7gI/1UA17IgT1CdfY9GEdCMiCYbtyNANg=",
     }))));
   const baseGame = nix.thunk(() => nix.app(runCommand, "ut1999-iso1", nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       src: iso1,
       nativeBuildInputs: nix.thunk(() => [libarchive]),
     })), "bsdtar -xvf \"$src\"\nmkdir $out\ncp -r Music Sounds Textures Maps $out\n"));
   const bonusPacks = nix.thunk(() => nix.app(runCommand, "ut1999-iso2", nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       src: iso2,
       nativeBuildInputs: nix.thunk(() => [libarchive]),
     })), "bsdtar -xvf \"$src\"\nmkdir $out\ncp -r System Sounds Textures maps $out\n"));
   const systemDir = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     "x86_64-linux": "System64",
     "aarch64-linux": "SystemARM64",
     "i686-linux": "System",
     "aarch64-darwin": "System",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: "ut1999",
       version: version,
       sourceRoot: ".",
@@ -174,7 +161,7 @@ rm $out/${systemDir}/libmpg123.so* \\
       appendRunpaths: nix.thunk(() => [nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${systemDir}`)]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             name: "ut1999",
             desktopName: "Unreal Tournament GOTY (1999)",
             exec: "ut1999",
@@ -183,9 +170,9 @@ rm $out/${systemDir}/libmpg123.so* \\
             categories: nix.thunk(() => ["Game"]),
           })))),
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$12, isos: nix.thunk(() => [iso1, iso2]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[11], isos: nix.thunk(() => [iso1, iso2]) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         description: "Unreal Tournament GOTY (1999) with the OldUnreal patch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), srcs)),

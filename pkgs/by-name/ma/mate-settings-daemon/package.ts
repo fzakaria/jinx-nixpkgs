@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["sha256", 35, 5]], [["NIX_CFLAGS_COMPILE", 61, 7]], [["url", 68, 5], ["odd-unstable", 69, 5], ["rev-prefix", 70, 5]], [["updateScript", 67, 12]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["platforms", 82, 5], ["teams", 83, 5]], [["pname", 26, 3], ["version", 27, 3], ["outputs", 28, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["configureFlags", 59, 3], ["env", 61, 3], ["enableParallelBuilding", 63, 3], ["doInstallCheck", 65, 3], ["passthru", 67, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gettext: false, glib: false, libxklavier: false, "libcanberra-gtk3": false, libnotify: false, libmatekbd: false, libmatemixer: false, nss: false, polkit: false, dconf: false, gtk3: false, "mate-desktop": false, pulseaudioSupport: true, libpulseaudio: false, wrapGAppsHook3: false, gitUpdater: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["sha256", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 61, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 68, 5], ["odd-unstable", 69, 5], ["rev-prefix", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 67, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["platforms", 82, 5], ["teams", 83, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["outputs", 28, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["configureFlags", 59, 3], ["env", 61, 3], ["enableParallelBuilding", 63, 3], ["doInstallCheck", 65, 3], ["passthru", 67, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mate-settings-daemon",
       version: "1.28.0",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mate-settings-daemon-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "TtfNraqkyZ7//AKCuEEXA7t24HLEHEtXmJ+MW0BhGjo=",
         })))),
@@ -58,22 +53,22 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), pulseaudioSupport, libpulseaudio))),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), pulseaudioSupport, "--enable-pulse")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(glib, "dev")}/include/gio-unix-2.0`),
       })),
       enableParallelBuilding: true,
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://git.mate-desktop.org/mate-settings-daemon",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "MATE settings daemon",
         homepage: "https://github.com/mate-desktop/mate-settings-daemon",
         license: nix.thunk(() => (() => {

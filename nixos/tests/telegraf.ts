@@ -2,56 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/telegraf.nix", [[["maintainers", 5, 34]], [["interval", 18, 15], ["flush_interval", 19, 15]], [["commands", 21, 11], ["timeout", 24, 11], ["data_format", 25, 11]], [["urls", 28, 11], ["count", 29, 11], ["interval", 30, 11], ["timeout", 31, 11]], [["exec", 20, 16], ["ping", 27, 16]], [["files", 33, 22], ["data_format", 34, 22]], [["file", 33, 17]], [["agent", 18, 9], ["inputs", 20, 9], ["outputs", 33, 9]], [["enable", 11, 25], ["environmentFiles", 12, 25], ["extraConfig", 17, 25]], [["telegraf", 11, 16]], [["services", 11, 7]], [["machine", 8, 14]], [["name", 3, 3], ["meta", 4, 3], ["containers", 8, 3], ["testScript", 38, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/telegraf.nix", [["maintainers", 5, 34]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/telegraf.nix", [["interval", 18, 15], ["flush_interval", 19, 15]]);
-const pos$3 = nix.positions(here + "/telegraf.nix", [["commands", 21, 11], ["timeout", 24, 11], ["data_format", 25, 11]]);
-const pos$4 = nix.positions(here + "/telegraf.nix", [["urls", 28, 11], ["count", 29, 11], ["interval", 30, 11], ["timeout", 31, 11]]);
-const pos$5 = nix.positions(here + "/telegraf.nix", [["exec", 20, 16], ["ping", 27, 16]]);
-const pos$6 = nix.positions(here + "/telegraf.nix", [["files", 33, 22], ["data_format", 34, 22]]);
-const pos$7 = nix.positions(here + "/telegraf.nix", [["file", 33, 17]]);
-const pos$8 = nix.positions(here + "/telegraf.nix", [["agent", 18, 9], ["inputs", 20, 9], ["outputs", 33, 9]]);
-const pos$9 = nix.positions(here + "/telegraf.nix", [["enable", 11, 25], ["environmentFiles", 12, 25], ["extraConfig", 17, 25]]);
-const pos$10 = nix.positions(here + "/telegraf.nix", [["telegraf", 11, 16]]);
-const pos$11 = nix.positions(here + "/telegraf.nix", [["services", 11, 7]]);
-const pos$12 = nix.positions(here + "/telegraf.nix", [["machine", 8, 14]]);
-const pos$13 = nix.positions(here + "/telegraf.nix", [["name", 3, 3], ["meta", 4, 3], ["containers", 8, 3], ["testScript", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "telegraf",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "telegraf", "meta"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             telegraf: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               environmentFiles: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secrets", "SECRET=example\n")),
               ]),
               extraConfig: nix.thunk(() => ({
-                [nix.POS]: pos$8,
-                agent: nix.thunk(() => ({ [nix.POS]: pos$2, interval: "1s", flush_interval: "1s" })),
+                [nix.POS]: $pos[7],
+                agent: nix.thunk(() => ({ [nix.POS]: $pos[1], interval: "1s", flush_interval: "1s" })),
                 inputs: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   exec: nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     commands: nix.thunk(() => [
                       nix.thunk(() => nix.str`${nix.sel(pkgs, "runtimeShell")} -c 'echo $SECRET,tag=a i=42i'`),
                     ]),
@@ -59,7 +47,7 @@ export default nix.lambda((args) => (() => {
                     data_format: "influx",
                   })),
                   ping: nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     urls: nix.thunk(() => ["127.0.0.1"]),
                     count: 4n,
                     interval: "10s",
@@ -67,9 +55,9 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 outputs: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   file: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     files: nix.thunk(() => ["/tmp/metrics.out"]),
                     data_format: "influx",
                   })),

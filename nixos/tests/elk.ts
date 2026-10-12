@@ -2,104 +2,74 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/elk.nix", [[["system", 8, 33], ["config", 8, 40]], [["maintainers", 21, 9]], [["memorySize", 41, 28]], [["systemPackages", 44, 25]], [["enable", 49, 17], ["package", 50, 17], ["extraConfig", 51, 17]], [["id", 67, 33]], [["enabled", 70, 19], ["paths", 71, 19]], [["journald", 67, 24], ["log", 69, 24]], [["level", 77, 27]], [["logging", 77, 19]], [["enable", 65, 17], ["package", 66, 17], ["inputs", 67, 17], ["settings", 76, 17]], [["metrics", 98, 23]], [["metrics", 102, 24]], [["metricsets", 85, 19], ["enabled", 95, 19], ["period", 96, 19], ["processes", 97, 19], ["cpu", 98, 19], ["core", 102, 19]], [["system", 84, 25]], [["hosts", 106, 21]], [["elasticsearch", 105, 26]], [["output", 105, 19]], [["enable", 82, 17], ["package", 83, 17], ["modules", 84, 17], ["settings", 104, 17]], [["enable", 112, 17], ["package", 113, 17], ["inputConfig", 114, 17], ["filterConfig", 118, 17], ["outputConfig", 123, 17]], [["enable", 135, 17], ["package", 136, 17]], [["enable", 140, 17], ["actionYAML", 141, 17]], [["journalbeat", 48, 15], ["filebeat", 64, 15], ["metricbeat", 81, 15], ["logstash", 111, 15], ["elasticsearch", 134, 15], ["elasticsearch-curator", 139, 15]], [["virtualisation", 41, 13], ["environment", 44, 13], ["services", 46, 13]], [["one", 26, 9]], [["elkPackages", 170, 16]], [["name", 19, 15], ["meta", 20, 7], ["nodes", 25, 7], ["passthru", 170, 7], ["testScript", 171, 7]], [["pkgs", 278, 17], ["system", 278, 22]], [["elasticsearch", 292, 7], ["logstash", 293, 7], ["filebeat", 294, 7], ["metricbeat", 295, 7]], [["ELK-7", 291, 5]], [["unfree", 290, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/elk.nix", [["system", 8, 33], ["config", 8, 40]]);
-const pos$2 = nix.positions(here + "/elk.nix", [["maintainers", 21, 9]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/elk.nix", [["memorySize", 41, 28]]);
-const pos$4 = nix.positions(here + "/elk.nix", [["systemPackages", 44, 25]]);
-const pos$5 = nix.positions(here + "/elk.nix", [["enable", 49, 17], ["package", 50, 17], ["extraConfig", 51, 17]]);
-const pos$6 = nix.positions(here + "/elk.nix", [["id", 67, 33]]);
-const pos$7 = nix.positions(here + "/elk.nix", [["enabled", 70, 19], ["paths", 71, 19]]);
-const pos$8 = nix.positions(here + "/elk.nix", [["journald", 67, 24], ["log", 69, 24]]);
-const pos$9 = nix.positions(here + "/elk.nix", [["level", 77, 27]]);
-const pos$10 = nix.positions(here + "/elk.nix", [["logging", 77, 19]]);
-const pos$11 = nix.positions(here + "/elk.nix", [["enable", 65, 17], ["package", 66, 17], ["inputs", 67, 17], ["settings", 76, 17]]);
-const pos$12 = nix.positions(here + "/elk.nix", [["metrics", 98, 23]]);
-const pos$13 = nix.positions(here + "/elk.nix", [["metrics", 102, 24]]);
-const pos$14 = nix.positions(here + "/elk.nix", [["metricsets", 85, 19], ["enabled", 95, 19], ["period", 96, 19], ["processes", 97, 19], ["cpu", 98, 19], ["core", 102, 19]]);
-const pos$15 = nix.positions(here + "/elk.nix", [["system", 84, 25]]);
-const pos$16 = nix.positions(here + "/elk.nix", [["hosts", 106, 21]]);
-const pos$17 = nix.positions(here + "/elk.nix", [["elasticsearch", 105, 26]]);
-const pos$18 = nix.positions(here + "/elk.nix", [["output", 105, 19]]);
-const pos$19 = nix.positions(here + "/elk.nix", [["enable", 82, 17], ["package", 83, 17], ["modules", 84, 17], ["settings", 104, 17]]);
-const pos$20 = nix.positions(here + "/elk.nix", [["enable", 112, 17], ["package", 113, 17], ["inputConfig", 114, 17], ["filterConfig", 118, 17], ["outputConfig", 123, 17]]);
-const pos$21 = nix.positions(here + "/elk.nix", [["enable", 135, 17], ["package", 136, 17]]);
-const pos$22 = nix.positions(here + "/elk.nix", [["enable", 140, 17], ["actionYAML", 141, 17]]);
-const pos$23 = nix.positions(here + "/elk.nix", [["journalbeat", 48, 15], ["filebeat", 64, 15], ["metricbeat", 81, 15], ["logstash", 111, 15], ["elasticsearch", 134, 15], ["elasticsearch-curator", 139, 15]]);
-const pos$24 = nix.positions(here + "/elk.nix", [["virtualisation", 41, 13], ["environment", 44, 13], ["services", 46, 13]]);
-const pos$25 = nix.positions(here + "/elk.nix", [["one", 26, 9]]);
-const pos$26 = nix.positions(here + "/elk.nix", [["elkPackages", 170, 16]]);
-const pos$27 = nix.positions(here + "/elk.nix", [["name", 19, 15], ["meta", 20, 7], ["nodes", 25, 7], ["passthru", 170, 7], ["testScript", 171, 7]]);
-const pos$28 = nix.positions(here + "/elk.nix", [["pkgs", 278, 17], ["system", 278, 22]]);
-const pos$29 = nix.positions(here + "/elk.nix", [["elasticsearch", 292, 7], ["logstash", 293, 7], ["filebeat", 294, 7], ["metricbeat", 295, 7]]);
-const pos$30 = nix.positions(here + "/elk.nix", [["ELK-7", 291, 5]]);
-const pos$31 = nix.positions(here + "/elk.nix", [["unfree", 290, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const esUrl = "http://localhost:9200";
   const mkElkTest = (name) => (elk) => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       name: name,
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "basvandijk"))]),
         };
       })()),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         one: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           const lib_1 = nix.arg($_1, "lib");
           return {
-            [nix.POS]: pos$24,
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, memorySize: 3000n })),
+            [nix.POS]: $pos[23],
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[2], memorySize: 3000n })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               journalbeat: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 enable: nix.thunk(() => nix.has(elk, "journalbeat")),
                 package: nix.thunk(() => nix.sel(elk, "journalbeat")),
                 extraConfig: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOptionDefault"), "logging:\n  to_syslog: true\n  level: warning\n  metrics.enabled: false\noutput.elasticsearch:\n  hosts: [ \"127.0.0.1:9200\" ]\njournalbeat.inputs:\n- paths: []\n  seek: cursor\n")),
               })),
               filebeat: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 enable: nix.thunk(() => nix.has(elk, "filebeat")),
                 package: nix.thunk(() => nix.sel(elk, "filebeat")),
                 inputs: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
-                  journald: nix.thunk(() => ({ [nix.POS]: pos$6, id: "everything" })),
+                  [nix.POS]: $pos[7],
+                  journald: nix.thunk(() => ({ [nix.POS]: $pos[5], id: "everything" })),
                   log: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     enabled: true,
                     paths: nix.thunk(() => ["/var/lib/filebeat/test"]),
                   })),
                 })),
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
-                  logging: nix.thunk(() => ({ [nix.POS]: pos$9, level: "info" })),
+                  [nix.POS]: $pos[9],
+                  logging: nix.thunk(() => ({ [nix.POS]: $pos[8], level: "info" })),
                 })),
               })),
               metricbeat: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 enable: true,
                 package: nix.thunk(() => nix.sel(elk, "metricbeat")),
                 modules: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   system: nix.thunk(() => ({
-                    [nix.POS]: pos$14,
+                    [nix.POS]: $pos[13],
                     metricsets: nix.thunk(() => [
                       "cpu",
                       "load",
@@ -114,22 +84,22 @@ export default nix.lambda((args) => (() => {
                     period: "5s",
                     processes: nix.thunk(() => [".*"]),
                     cpu: nix.thunk(() => ({
-                      [nix.POS]: pos$12,
+                      [nix.POS]: $pos[11],
                       metrics: nix.thunk(() => ["percentages", "normalized_percentages"]),
                     })),
-                    core: nix.thunk(() => ({ [nix.POS]: pos$13, metrics: nix.thunk(() => ["percentages"]) })),
+                    core: nix.thunk(() => ({ [nix.POS]: $pos[12], metrics: nix.thunk(() => ["percentages"]) })),
                   })),
                 })),
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   output: nix.thunk(() => ({
-                    [nix.POS]: pos$17,
-                    elasticsearch: nix.thunk(() => ({ [nix.POS]: pos$16, hosts: nix.thunk(() => ["127.0.0.1:9200"]) })),
+                    [nix.POS]: $pos[16],
+                    elasticsearch: nix.thunk(() => ({ [nix.POS]: $pos[15], hosts: nix.thunk(() => ["127.0.0.1:9200"]) })),
                   })),
                 })),
               })),
               logstash: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 enable: true,
                 package: nix.thunk(() => nix.sel(elk, "logstash")),
                 inputConfig: "exec { command => \"echo -n flowers\" interval => 1 type => \"test\" }\nexec { command => \"echo -n dragons\" interval => 1 type => \"test\" }\n",
@@ -144,12 +114,12 @@ elasticsearch {
 `),
               })),
               elasticsearch: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 enable: true,
                 package: nix.thunk(() => nix.sel(elk, "elasticsearch")),
               })),
               "elasticsearch-curator": nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 enable: nix.thunk(() => nix.has(elk, "elasticsearch-curator")),
                 actionYAML: "---\nactions:\n  1:\n    action: delete_indices\n    description: >-\n      Delete indices older than 1 second (based on index name), for logstash-\n      prefixed indices. Ignore the error if the filter does not result in an\n      actionable list of indices (ignore_empty_list) and exit cleanly.\n    options:\n      allow_ilm_indices: true\n      ignore_empty_list: True\n      disable_action: False\n    filters:\n    - filtertype: pattern\n      kind: prefix\n      value: logstash-\n    - filtertype: age\n      source: name\n      direction: older\n      timestring: '%Y.%m.%d'\n      unit: seconds\n      unit_count: 1\n",
               })),
@@ -157,7 +127,7 @@ elasticsearch {
           };
         })(), formals$2),
       })),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$26, elkPackages: elk })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[25], elkPackages: elk })),
       testScript: nix.thunk(() => (() => {
         const valueObject = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(elk, "elasticsearch", "version")), "7")), ".value"));
         return nix.add(nix.add(nix.add(nix.str`import json
@@ -235,13 +205,13 @@ with subtest("Logstash messages arive in elasticsearch"):
     )
 `)));
       })()),
-    })), nix.thunk(() => ({ [nix.POS]: pos$28, pkgs: pkgs, system: system })));
+    })), nix.thunk(() => ({ [nix.POS]: $pos[27], pkgs: pkgs, system: system })));
   return {
-    [nix.POS]: pos$31,
+    [nix.POS]: $pos[30],
     unfree: nix.thunk(() => nix.app(nix.sel(lib, "dontRecurseIntoAttrs"), nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         "ELK-7": nix.thunk(() => nix.app(mkElkTest, "elk-7", nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             elasticsearch: nix.thunk(() => nix.sel(pkgs, "elasticsearch7")),
             logstash: nix.thunk(() => nix.sel(pkgs, "logstash7")),
             filebeat: nix.thunk(() => nix.sel(pkgs, "filebeat7")),

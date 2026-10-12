@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["mainProgram", 30, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["mainProgram", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "yaffshiv",
       version: "0-unstable-2024-08-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "devttys0",
           repo: "yaffshiv",
           rev: "f6f0ef77bf79ca46aaa77bc34eda06e7b55da8e8",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [python3]),
       installPhase: "install -D -m755 src/yaffshiv $out/bin/yaffshiv\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple YAFFS file system parser and extractor",
         homepage: "https://github.com/devttys0/yaffshiv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

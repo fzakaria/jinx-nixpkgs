@@ -2,79 +2,49 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/prosody-mysql.nix", [["buildInputs", 4, 41]]);
+const $pos = nix.positions(here + "/prosody-mysql.nix", [[["buildInputs", 4, 41]], [["certificateFiles", 42, 22]], [["pki", 42, 18]], [["extraHosts", 43, 20]], [["connectTo", 50, 13]], [["systemPackages", 48, 21]], [["security", 42, 9], ["networking", 43, 9], ["environment", 48, 9]], [["withExtraLuaPackages", 61, 15]], [["prosody", 60, 13]], [["overlays", 58, 17]], [["certificateFiles", 65, 22]], [["pki", 65, 18]], [["enable", 71, 29]], [["extraHosts", 66, 20], ["firewall", 71, 20]], [["systemPackages", 72, 21]], [["cert", 78, 15], ["key", 79, 15]], [["cert", 83, 17], ["key", 84, 17]], [["domain", 81, 13], ["enabled", 82, 13], ["ssl", 83, 13]], [["example", 80, 24]], [["domain", 88, 15]], [["domain", 92, 13]], [["enable", 77, 11], ["ssl", 78, 11], ["virtualHosts", 80, 11], ["muc", 86, 11], ["httpFileShare", 91, 11], ["extraConfig", 94, 11]], [["prosody", 76, 18]], [["nixpkgs", 58, 9], ["security", 65, 9], ["networking", 66, 9], ["environment", 72, 9], ["services", 76, 9]], [["enable", 110, 29]], [["firewall", 110, 20]], [["enable", 112, 11], ["initialScript", 113, 11], ["package", 119, 11]], [["mysql", 111, 18]], [["networking", 110, 9], ["services", 111, 9]], [["client", 34, 5], ["server", 55, 5], ["mysql", 107, 5]], [["name", 32, 3], ["nodes", 33, 3], ["testScript", 124, 3]]]);
 const formals$1 = { args: { nodes: false, pkgs: false, config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/prosody-mysql.nix", [["certificateFiles", 42, 22]]);
-const pos$3 = nix.positions(here + "/prosody-mysql.nix", [["pki", 42, 18]]);
-const pos$4 = nix.positions(here + "/prosody-mysql.nix", [["extraHosts", 43, 20]]);
-const pos$5 = nix.positions(here + "/prosody-mysql.nix", [["connectTo", 50, 13]]);
-const pos$6 = nix.positions(here + "/prosody-mysql.nix", [["systemPackages", 48, 21]]);
-const pos$7 = nix.positions(here + "/prosody-mysql.nix", [["security", 42, 9], ["networking", 43, 9], ["environment", 48, 9]]);
 const formals$2 = { args: { nodes: false, pkgs: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/prosody-mysql.nix", [["withExtraLuaPackages", 61, 15]]);
-const pos$9 = nix.positions(here + "/prosody-mysql.nix", [["prosody", 60, 13]]);
-const pos$10 = nix.positions(here + "/prosody-mysql.nix", [["overlays", 58, 17]]);
-const pos$11 = nix.positions(here + "/prosody-mysql.nix", [["certificateFiles", 65, 22]]);
-const pos$12 = nix.positions(here + "/prosody-mysql.nix", [["pki", 65, 18]]);
-const pos$13 = nix.positions(here + "/prosody-mysql.nix", [["enable", 71, 29]]);
-const pos$14 = nix.positions(here + "/prosody-mysql.nix", [["extraHosts", 66, 20], ["firewall", 71, 20]]);
-const pos$15 = nix.positions(here + "/prosody-mysql.nix", [["systemPackages", 72, 21]]);
-const pos$16 = nix.positions(here + "/prosody-mysql.nix", [["cert", 78, 15], ["key", 79, 15]]);
-const pos$17 = nix.positions(here + "/prosody-mysql.nix", [["cert", 83, 17], ["key", 84, 17]]);
-const pos$18 = nix.positions(here + "/prosody-mysql.nix", [["domain", 81, 13], ["enabled", 82, 13], ["ssl", 83, 13]]);
-const pos$19 = nix.positions(here + "/prosody-mysql.nix", [["example", 80, 24]]);
-const pos$20 = nix.positions(here + "/prosody-mysql.nix", [["domain", 88, 15]]);
-const pos$21 = nix.positions(here + "/prosody-mysql.nix", [["domain", 92, 13]]);
-const pos$22 = nix.positions(here + "/prosody-mysql.nix", [["enable", 77, 11], ["ssl", 78, 11], ["virtualHosts", 80, 11], ["muc", 86, 11], ["httpFileShare", 91, 11], ["extraConfig", 94, 11]]);
-const pos$23 = nix.positions(here + "/prosody-mysql.nix", [["prosody", 76, 18]]);
-const pos$24 = nix.positions(here + "/prosody-mysql.nix", [["nixpkgs", 58, 9], ["security", 65, 9], ["networking", 66, 9], ["environment", 72, 9], ["services", 76, 9]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$25 = nix.positions(here + "/prosody-mysql.nix", [["enable", 110, 29]]);
-const pos$26 = nix.positions(here + "/prosody-mysql.nix", [["firewall", 110, 20]]);
-const pos$27 = nix.positions(here + "/prosody-mysql.nix", [["enable", 112, 11], ["initialScript", 113, 11], ["package", 119, 11]]);
-const pos$28 = nix.positions(here + "/prosody-mysql.nix", [["mysql", 111, 18]]);
-const pos$29 = nix.positions(here + "/prosody-mysql.nix", [["networking", 110, 9], ["services", 111, 9]]);
-const pos$30 = nix.positions(here + "/prosody-mysql.nix", [["client", 34, 5], ["server", 55, 5], ["mysql", 107, 5]]);
-const pos$31 = nix.positions(here + "/prosody-mysql.nix", [["name", 32, 3], ["nodes", 33, 3], ["testScript", 124, 3]]);
 
 export default nix.thunk(() => (() => {
   const cert = (pkgs) => nix.app(nix.sel(pkgs, "runCommand"), "selfSignedCerts", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), "openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -nodes -days 365 \\\n  -subj '/C=GB/CN=example.com' -addext \"subjectAltName = DNS:example.com,DNS:uploads.example.com,DNS:conference.example.com\"\nmkdir -p $out\ncp key.pem cert.pem $out\n");
   const createUsers = (pkgs) => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "create-prosody-users", "set -e\nprosodyctl register cthon98 example.com nothunter2\nprosodyctl register azurediamond example.com hunter2\n");
   const delUsers = (pkgs) => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "delete-prosody-users", "set -e\nprosodyctl deluser cthon98@example.com\nprosodyctl deluser azurediamond@example.com\n");
   return nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       name: "prosody-mysql",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         client: nix.lambda((args) => (() => {
           const $ = nix.formals(args, formals$1);
           const nodes = nix.arg($, "nodes");
           const pkgs = nix.arg($, "pkgs");
           const config = nix.arg($, "config");
           return {
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             security: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pki: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${nix.app(cert, pkgs)}/cert.pem`)]),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")} example.com
 ${nix.sel(nodes, "server", "networking", "primaryIPAddress")} conference.example.com
 ${nix.sel(nodes, "server", "networking", "primaryIPAddress")} uploads.example.com
 `),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               systemPackages: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./xmpp-sendmessage.nix"), nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     connectTo: nix.thunk(() => nix.sel(nodes, "server", "networking", "primaryIPAddress")),
                   })))),
               ]),
@@ -86,66 +56,66 @@ ${nix.sel(nodes, "server", "networking", "primaryIPAddress")} uploads.example.co
           const nodes = nix.arg($, "nodes");
           const pkgs = nix.arg($, "pkgs");
           return {
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             nixpkgs: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               overlays: nix.thunk(() => [
                 (self) => (super$) => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   prosody: nix.thunk(() => nix.app(nix.sel(super$, "prosody", "override"), nix.thunk(() => ({
-                      [nix.POS]: pos$8,
+                      [nix.POS]: $pos[7],
                       withExtraLuaPackages: (p) => [nix.thunk(() => nix.sel(p, "luadbi-mysql"))],
                     })))),
                 }),
               ]),
             })),
             security: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               pki: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${nix.app(cert, pkgs)}/cert.pem`)]),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")} example.com
 ${nix.sel(nodes, "server", "networking", "primaryIPAddress")} conference.example.com
 ${nix.sel(nodes, "server", "networking", "primaryIPAddress")} uploads.example.com
 `),
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: false })),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               systemPackages: nix.thunk(() => [
                 nix.thunk(() => nix.app(createUsers, pkgs)),
                 nix.thunk(() => nix.app(delUsers, pkgs)),
               ]),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               prosody: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 enable: true,
                 ssl: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   cert: nix.thunk(() => nix.str`${nix.app(cert, pkgs)}/cert.pem`),
                   key: nix.thunk(() => nix.str`${nix.app(cert, pkgs)}/key.pem`),
                 })),
                 virtualHosts: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   example: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
+                    [nix.POS]: $pos[17],
                     domain: "example.com",
                     enabled: true,
                     ssl: nix.thunk(() => ({
-                      [nix.POS]: pos$17,
+                      [nix.POS]: $pos[16],
                       cert: nix.thunk(() => nix.str`${nix.app(cert, pkgs)}/cert.pem`),
                       key: nix.thunk(() => nix.str`${nix.app(cert, pkgs)}/key.pem`),
                     })),
                   })),
                 })),
-                muc: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$20, domain: "conference.example.com" }))]),
-                httpFileShare: nix.thunk(() => ({ [nix.POS]: pos$21, domain: "uploads.example.com" })),
+                muc: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[19], domain: "conference.example.com" }))]),
+                httpFileShare: nix.thunk(() => ({ [nix.POS]: $pos[20], domain: "uploads.example.com" })),
                 extraConfig: "storage = \"sql\"\nsql = {\n  driver = \"MySQL\";\n  database = \"prosody\";\n  host = \"mysql\";\n  port = 3306;\n  username = \"prosody\";\n  password = \"password123\";\n};\n",
               })),
             })),
@@ -156,15 +126,15 @@ ${nix.sel(nodes, "server", "networking", "primaryIPAddress")} uploads.example.co
           const config = nix.arg($, "config");
           const pkgs = nix.arg($, "pkgs");
           return {
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$26,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$25, enable: false })),
+              [nix.POS]: $pos[25],
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[24], enable: false })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               mysql: nix.thunk(() => ({
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 enable: true,
                 initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mysql_init.sql", "CREATE DATABASE prosody;\nCREATE USER 'prosody'@'server' IDENTIFIED BY 'password123';\nGRANT ALL PRIVILEGES ON prosody.* TO 'prosody'@'server';\nFLUSH PRIVILEGES;\n")),
                 package: nix.thunk(() => nix.sel(pkgs, "mariadb")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 52], ["hash", 19, 56]], [["finalPackage", 179, 28], ["shell", 180, 24], ["patchelf", 181, 15], ["runCommand", 181, 24]], [["tests", 178, 5], ["updateScript", 183, 5]], [["description", 187, 5], ["longDescription", 188, 5], ["homepage", 194, 5], ["license", 195, 5], ["maintainers", 196, 5], ["platforms", 200, 5], ["sourceProvenance", 205, 5], ["mainProgram", 209, 5]], [["pname", 28, 3], ["version", 29, 21], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["srcs", 40, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 59, 3], ["dontConfigure", 68, 3], ["dontBuild", 69, 3], ["unpackPhase", 71, 3], ["installPhase", 85, 3], ["postFixup", 158, 3], ["passthru", 177, 3], ["meta", 186, 3]]]);
 const formals$1 = { args: { autoAddDriverRunpath: false, autoPatchelfHook: false, fetchurl: false, lib: false, libbsd: false, libtinfo: false, makeWrapper: false, patchelf: false, python3: false, runCommand: false, stdenv: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 52], ["hash", 19, 56]]);
-const pos$2 = nix.positions(here + "/package.nix", [["finalPackage", 179, 28], ["shell", 180, 24], ["patchelf", 181, 15], ["runCommand", 181, 24]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 178, 5], ["updateScript", 183, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 187, 5], ["longDescription", 188, 5], ["homepage", 194, 5], ["license", 195, 5], ["maintainers", 196, 5], ["platforms", 200, 5], ["sourceProvenance", 205, 5], ["mainProgram", 209, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 21], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["srcs", 40, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 59, 3], ["dontConfigure", 68, 3], ["dontBuild", 69, 3], ["unpackPhase", 71, 3], ["installPhase", 85, 3], ["postFixup", 158, 3], ["passthru", 177, 3], ["meta", 186, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const release = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./sources.json")))));
   const systemSources = nix.thunk(() => nix.sel(release, "systems", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const fetchWheel = (source) => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.attr(source, "url")),
       hash: nix.thunk(() => nix.attr(source, "hash")),
     })));
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mojo-bin",
       version: nix.thunk(() => nix.attr(release, "version")),
       strictDeps: true,
@@ -146,9 +142,9 @@ wrapProgram "$out/bin/mojo" \\
   --prefix PATH : "$out/bin:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc"))]))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tests.nix")), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
             shell: nix.thunk(() => nix.attr(stdenv, "shell")),
             patchelf: patchelf,
@@ -157,7 +153,7 @@ wrapProgram "$out/bin/mojo" \\
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Programming language and developer toolchain for heterogeneous computing",
         longDescription: "The prebuilt Linux toolchain requires an x86-64-v3 processor on x86_64,\nor an ARM Neoverse N1 processor or newer on aarch64. It includes the MAX\ncore runtime needed for accelerator compilation, but not MAX's optional\ndistributed multi-GPU SHMEM support.\n",
         homepage: "https://www.modular.com/mojo",

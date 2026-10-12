@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["NIX_CFLAGS_COMPILE", 37, 5], ["NIX_LDFLAGS", 38, 5]], [["description", 47, 5], ["longDescription", 48, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["env", 35, 3], ["postPatch", 41, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, cmake: false, libtirpc: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 37, 5], ["NIX_LDFLAGS", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["longDescription", 48, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["env", 35, 3], ["postPatch", 41, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libtirpc = nix.arg($, "libtirpc");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "teapot",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.syntax-k.de/projekte/teapot/teapot-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-wzAwZwOMeTsuR5LhfjspGdejT6X1V8YJ8B7v9pcbxaY=",
         })))),
@@ -32,13 +29,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [libtirpc, ncurses]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), libtirpc)}/include/tirpc`),
         NIX_LDFLAGS: "-ltirpc",
       })),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Table Editor And Planner, Or: Teapot",
         longDescription: "Teapot is a compact spreadsheet software originally written by Michael\nHaardt. It features a (n)curses-based text terminal interface, and\nrecently also a FLTK-based GUI.\n\nThese days, it may seem pointless having yet another spreadsheet program\n(and one that doesn't even know how to load Microsoft Excel files). Its\ncompact size (130k for the ncurses executable, 140k for the GUI\nexecutable, 300k for the self-contained Windows EXE) and the fact that it\ncan run across serial lines and SSH sessions make it an interesting choice\nfor embedded applications and as system administration utility, even more\nso since it has a batch processing mode and comes with example code for\ncreating graphs from data sets.\n\nAnother interesting feature is its modern approach to spread sheet theory:\nIt sports true three-dimensional tables and iterative expressions. And\nsince it breaks compatibility with the usual notions of big spreadsheet\npackages, it can also throw old syntactic cruft over board which many\nspreadsheets still inherit from the days of VisiCalc on ancient CP/M\nsystems.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

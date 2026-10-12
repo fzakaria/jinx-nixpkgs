@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["CFLAGS", 49, 7]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["prePatch", 27, 3], ["preAutoreconf", 38, 3], ["configureFlags", 44, 3], ["env", 49, 3], ["strictDeps", 54, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 61, 3], ["nativeCheckInputs", 68, 3], ["doCheck", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, autoreconfHook: false, "pkg-config": false, libxml2: false, gd: false, glib: false, getopt: false, libxslt: false, nix: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["prePatch", 27, 3], ["preAutoreconf", 38, 3], ["configureFlags", 44, 3], ["env", 49, 3], ["strictDeps", 54, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 61, 3], ["nativeCheckInputs", 68, 3], ["doCheck", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libnixxml",
       version: "0-unstable-2020-06-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "svanderburg",
           repo: "libnixxml",
           rev: "54c04a5fdbc8661b2445a7527f499e0a77753a1a",
@@ -45,7 +42,7 @@ substituteInPlace scripts/nixexpr2xml.in \\
       preAutoreconf: "# Copied from bootstrap script\nln -s README.md README\nmkdir -p config\n",
       configureFlags: nix.thunk(() => ["--with-gd", "--with-glib"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wall", "-std=c90"]))),
       })),
       strictDeps: true,
@@ -54,7 +51,7 @@ substituteInPlace scripts/nixexpr2xml.in \\
       nativeCheckInputs: nix.thunk(() => [nix$]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "XML-based Nix-friendly data integration library",
         homepage: "https://github.com/svanderburg/libnixxml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

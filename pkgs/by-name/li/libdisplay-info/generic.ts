@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["hash", 24, 13], ["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]], [["pname", 20, 3], ["version", 21, 11], ["src", 23, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 35, 3], ["postPatch", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { version: false, hash: false }, ellipsis: false };
 const formals$2 = { args: { lib: false, stdenv: false, buildPackages: false, fetchFromGitLab: false, meson: false, "pkg-config": false, ninja: false, python3: false, hwdata: false, libv4l: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["hash", 24, 13], ["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["pname", 20, 3], ["version", 21, 11], ["src", 23, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 35, 3], ["postPatch", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
     const hwdata = nix.arg($_1, "hwdata");
     const libv4l = nix.arg($_1, "libv4l");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "libdisplay-info",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             hash: hash,
             domain: "gitlab.freedesktop.org",
             owner: "emersion",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => nix.concat([meson, pkg_config, ninja, hwdata, python3], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages)), nix.thunk(() => [libv4l])))),
         postPatch: "patchShebangs tool/gen-search-table.py\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "EDID and DisplayID library",
           mainProgram: "di-edid-decode",
           homepage: "https://gitlab.freedesktop.org/emersion/libdisplay-info",

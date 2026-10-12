@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qthttpserver.nix", [[["pname", 8, 3], ["propagatedBuildInputs", 9, 3]]]);
 const formals$1 = { args: { qtModule: false, qtbase: false, qtwebsockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qthttpserver.nix", [["pname", 8, 3], ["propagatedBuildInputs", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qtwebsockets = nix.arg($, "qtwebsockets");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "qthttpserver",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtwebsockets]),
     })));

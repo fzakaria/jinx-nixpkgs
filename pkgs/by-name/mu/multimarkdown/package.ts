@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]], [["homepage", 41, 5], ["description", 42, 5], ["longDescription", 43, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 34, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, perl: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["longDescription", 43, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 34, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "multimarkdown",
       version: "6.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fletcher",
           repo: "MultiMarkdown-6",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "multimarkdown-fix-cmake-4.patch",
             url: "https://github.com/fletcher/MultiMarkdown-6/commit/655c0908155758e7c94858af2fb99dc992709075.patch",
             hash: "sha256-d1b5NcBQDVnbmTvVnPyiTS8aSx/VGgRLHD0nSs+JksI=",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs tools/enumsToPerl.pl\n",
       nativeBuildInputs: nix.thunk(() => [cmake, perl, pkg_config]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://fletcher.github.io/MultiMarkdown-6/introduction.html",
         description: "Derivative of Markdown that adds new syntax features",
         longDescription: "MultiMarkdown is a lightweight markup language created by\nFletcher T. Penney and based on Markdown, which supports\nmore export-formats (html, latex, beamer, memoir, odf, opml,\nlyx, mmd) and implements some added features currently not\navailable with plain Markdown syntax.\n\nIt adds the following features to Markdown:\n\n- footnotes\n- tables\n- citations and bibliography (works best in LaTeX using BibTeX)\n- math support\n- automatic cross-referencing ability\n- smart typography, with support for multiple languages\n- image attributes\n- table and image captions\n- definition lists\n- glossary entries (LaTeX only)\n- document metadata (e.g. title, author, date, etc.)\n",

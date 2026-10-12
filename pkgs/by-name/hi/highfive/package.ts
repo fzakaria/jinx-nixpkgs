@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5]], [["mpiSupport", 31, 13], ["mpi", 31, 24]], [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["passthru", 30, 3], ["cmakeFlags", 34, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, hdf5: false, mpiSupport: true, mpi: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mpiSupport", 31, 13], ["mpi", 31, 24]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["passthru", 30, 3], ["cmakeFlags", 34, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const mpi = nix.argOr($, "mpi", () => nix.sel(hdf5, "mpi"));
   nix.assert_((!nix.asBool(mpiSupport) || nix.asBool(!nix.eq(mpi, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/hi/highfive/package.nix:11:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`highfive${nix.app(nix.sel(lib, "optionalString"), mpiSupport, "-mpi")}`),
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "highfive-devs",
           repo: "highfive",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,10 +28,10 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [hdf5]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, mpiSupport: mpiSupport, mpi: mpi })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], mpiSupport: mpiSupport, mpi: mpi })),
       cmakeFlags: nix.thunk(() => nix.concat(["-DHIGHFIVE_EXAMPLES=OFF", "-DHIGHFIVE_UNIT_TESTS=OFF"], nix.app(nix.sel(lib, "optionals"), mpiSupport, nix.thunk(() => ["-DHDF5_IS_PARALLEL=ON"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Header-only C++ HDF5 interface",
         homepage: "https://github.com/highfive-devs/highfive",
         changelog: nix.thunk(() => nix.str`https://github.com/highfive-devs/highfive/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

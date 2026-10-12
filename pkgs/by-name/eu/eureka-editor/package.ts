@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["homepage", 46, 5], ["description", 47, 5], ["mainProgram", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["badPlatforms", 51, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["enableParallelBuilding", 31, 3], ["postPatch", 33, 3], ["preInstall", 38, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fltk: false, zlib: false, "xdg-utils": false, libxinerama: false, libjpeg: false, libGLU: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["description", 47, 5], ["mainProgram", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["badPlatforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["enableParallelBuilding", 31, 3], ["postPatch", 33, 3], ["preInstall", 38, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const libGLU = nix.arg($, "libGLU");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "eureka-editor",
       version: "1.27b",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/eureka-editor/Eureka/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/eureka-${nix.sel(finalAttrs, "version")}-source.tar.gz`),
           sha256: "075w7xxsgbgh6dhndc1pfxb2h1s5fhsw28yl1c025gmx9bb4v3bf",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/main.cc --replace /usr/local $out\nsubstituteInPlace Makefile    --replace /usr/local $out\n",
       preInstall: "mkdir -p $out/bin $out/share/applications $out/share/icons $out/man/man6\ncp misc/eureka.desktop $out/share/applications\ncp misc/eureka.ico $out/share/icons\ncp misc/eureka.6 $out/man/man6\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://eureka-editor.sourceforge.net",
         description: "Map editor for the classic DOOM games, and a few related games such as Heretic and Hexen",
         mainProgram: "eureka",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["url", 30, 7], ["hash", 31, 7]], [["OPENSSL_NO_VENDOR", 54, 7]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 74, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoPatches", 28, 3], ["cargoHash", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["nativeInstallCheckInputs", 49, 3], ["buildFeatures", 51, 3], ["env", 54, 3], ["postInstall", 59, 3], ["doInstallCheck", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bash: false, fetchFromGitHub: false, fetchpatch: false, libiconv: false, makeWrapper: false, openssl: false, "pkg-config": false, rustPlatform: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoPatches", 28, 3], ["cargoHash", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["nativeInstallCheckInputs", 49, 3], ["buildFeatures", 51, 3], ["env", 54, 3], ["postInstall", 59, 3], ["doInstallCheck", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "websocat",
       version: "1.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vi",
           repo: "websocat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoPatches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/vi/websocat/commit/d4455623e777231d69b029d69d7a17c0de2bafe7.diff",
             hash: "sha256-OUQQ+3eESE3XcGgToErqvF8ItpT8YCMAZhbvRzkFKpc=",
           })))),
@@ -45,13 +41,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       buildFeatures: nix.thunk(() => ["ssl"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], OPENSSL_NO_VENDOR: 1n })),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/websocat \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash]))}
 `),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command-line client for WebSockets (like netcat/socat)",
         homepage: "https://github.com/vi/websocat",
         changelog: nix.thunk(() => nix.str`https://github.com/vi/websocat/releases/tag/v${nix.sel(finalAttrs, "version")}`),

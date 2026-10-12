@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]], [["extraArgs", 113, 7]], [["url", 124, 11], ["hash", 125, 11]], [["version", 122, 9], ["src", 123, 9], ["patches", 127, 9]], [["owner", 142, 11], ["repo", 143, 11], ["rev", 144, 19], ["hash", 145, 11], ["postFetch", 146, 11]], [["rev", 140, 9], ["src", 141, 9]], [["pjsip", 119, 7], ["zrtpcpp", 138, 7]], [["updateScript", 112, 5], ["extDeps", 118, 5]], [["description", 156, 5], ["homepage", 157, 5], ["downloadPage", 158, 5], ["license", 159, 5], ["teams", 160, 5], ["maintainers", 161, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["postPatch", 54, 3], ["nativeBuildInputs", 62, 3], ["build-system", 66, 3], ["buildInputs", 71, 3], ["dependencies", 84, 3], ["preConfigure", 88, 3], ["doCheck", 107, 3], ["pythonImportsCheck", 109, 3], ["passthru", 111, 3], ["meta", 155, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchurl: false, fetchpatch: false, "nix-update-script": false, cython: false, setuptools: false, "alsa-lib": false, ffmpeg_7: false, libopus: false, libuuid: false, libv4l: false, libvpx: false, "opencore-amr": false, openssl: false, "pkg-config": false, sqlite: false, x264: false, "python3-application": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extraArgs", 113, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 124, 11], ["hash", 125, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 122, 9], ["src", 123, 9], ["patches", 127, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["owner", 142, 11], ["repo", 143, 11], ["rev", 144, 19], ["hash", 145, 11], ["postFetch", 146, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["rev", 140, 9], ["src", 141, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pjsip", 119, 7], ["zrtpcpp", 138, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["updateScript", 112, 5], ["extDeps", 118, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["description", 156, 5], ["homepage", 157, 5], ["downloadPage", 158, 5], ["license", 159, 5], ["teams", 160, 5], ["maintainers", 161, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["postPatch", 54, 3], ["nativeBuildInputs", 62, 3], ["build-system", 66, 3], ["buildInputs", 71, 3], ["dependencies", 84, 3], ["preConfigure", 88, 3], ["doCheck", 107, 3], ["pythonImportsCheck", 109, 3], ["passthru", 111, 3], ["meta", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,12 +31,12 @@ export default nix.lambda((args) => (() => {
 patch -p1 -d ${dir} < ${patch}
 `, nix.thunk(() => nix.sel(extDep, "patches")))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "python3-sipsimple",
       version: "5.3.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AGProjects",
           repo: "python3-sipsimple",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-mac`),
@@ -54,7 +44,7 @@ patch -p1 -d ${dir} < ${patch}
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-python3-sipsimple-port-to-cython-3.patch",
             url: "https://github.com/AGProjects/python3-sipsimple/commit/ccbbbb0225b2417bdf6ae07da96bffe367e242be.patch",
             hash: "sha256-MBiM9/yS5yX9QoZT7p76PI2rbBr22fZw6TAT4tw9iZk=",
@@ -89,17 +79,17 @@ bash ./get_dependencies.sh
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["sipsimple"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "^(.*)-mac$"]),
           })))),
         extDeps: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           pjsip: nix.thunk(() => (() => {
             const version = "2.10";
             const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 url: nix.thunk(() => nix.str`https://github.com/pjsip/pjproject/archive/${version}.tar.gz`),
                 hash: "sha256-k2pMW5hgG1IyVGOjl93xGrQQbGp7BPjcfN03fvu1l94=",
               }))));
@@ -108,24 +98,24 @@ bash ./get_dependencies.sh
               nix.path(here, "./pjsip-0002-RISC-V.patch"),
               nix.path(here, "./pjsip-0003-LoongArch64.patch"),
             ]);
-            return { [nix.POS]: pos$5, version, src, patches };
+            return { [nix.POS]: $pos[4], version, src, patches };
           })()),
           zrtpcpp: nix.thunk(() => (() => {
             const rev = "6b3cd8e6783642292bad0c21e3e5e5ce45ff3e03";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 owner: "wernerd",
                 repo: "ZRTPCPP",
                 rev: rev,
                 hash: "sha256-pGng1Y9N51nGBpiZbn2NTx4t2NGg4qkmbghTscJVhIA=",
                 postFetch: "# fix build with gcc15\nsed -e '9i #include <cstdint>' -i $out/zrtp/EmojiBase32.cpp\n",
               }))));
-            return { [nix.POS]: pos$7, rev, src };
+            return { [nix.POS]: $pos[6], rev, src };
           })()),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "SIP SIMPLE SDK written in Python",
         homepage: "https://sipsimpleclient.org/",
         downloadPage: "https://github.com/AGProjects/python3-sipsimple",

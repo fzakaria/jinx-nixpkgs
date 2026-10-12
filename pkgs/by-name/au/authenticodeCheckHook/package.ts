@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pesigcheck", 11, 5]], [["description", 15, 5], ["platforms", 16, 27], ["teams", 17, 5]], [["name", 8, 3], ["substitutions", 10, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { lib: false, makeSetupHook: false, pesign: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pesigcheck", 11, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 15, 5], ["platforms", 16, 27], ["teams", 17, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 8, 3], ["substitutions", 10, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,16 +11,16 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const pesign = nix.arg($, "pesign");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "authenticode-check-hook",
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pesigcheck: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), pesign, "pesigcheck")),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pesign, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Setup hook for verifying Authenticode signatures",
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "boot-security"))]),

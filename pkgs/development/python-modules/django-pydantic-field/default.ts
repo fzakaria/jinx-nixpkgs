@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["changelog", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["maintainers", 63, 5], ["license", 64, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 44, 3], ["preCheck", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, django: false, "dj-database-url": false, inflection: false, pydantic: false, pytestCheckHook: false, "pytest-django": false, djangorestframework: false, pyyaml: false, syrupy: false, "typing-extensions": false, uritemplate: false, "uv-build": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["maintainers", 63, 5], ["license", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 44, 3], ["preCheck", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "surenkov",
           repo: "django-pydantic-field",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const preCheck = "export DJANGO_SETTINGS_MODULE=tests.settings.django_test_settings\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/surenkov/django-pydantic-field/releases/tag/${nix.sel(src, "tag")}`),
         description: "Django JSONField with Pydantic models as a Schema",
         homepage: "https://github.com/surenkov/django-pydantic-field",
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

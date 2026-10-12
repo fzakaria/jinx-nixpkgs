@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 51, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["doCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, libGL: false, libx11: false, libxcursor: false, libxinerama: false, libxi: false, libxrandr: false, libxxf86vm: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["doCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libxxf86vm = nix.arg($, "libxxf86vm");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fyne",
       version: "1.7.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fyne-io",
           repo: "tools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libGL, libx11, libxcursor, libxinerama, libxi, libxrandr, libxxf86vm]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://fyne.io",
         description: "Cross platform GUI toolkit in Go",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 39, 7]], [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["env", 39, 3], ["pythonRelaxDeps", 41, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 73, 3], ["disabledTests", 75, 3], ["disabledTestPaths", 83, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, "poetry-core": false, "poetry-dynamic-versioning": false, blackrenderer: false, fonttools: false, "freetype-py": false, gflanguages: false, glyphsets: false, jinja2: false, ninja: false, pillow: false, protobuf: false, pyahocorasick: false, "python-bidi": false, selenium: false, tqdm: false, uharfbuzz: false, unicodedata2: false, youseedee: false, numpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["env", 39, 3], ["pythonRelaxDeps", 41, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 73, 3], ["disabledTests", 75, 3], ["disabledTestPaths", 83, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,18 +31,18 @@ export default nix.lambda((args) => (() => {
   const youseedee = nix.arg($, "youseedee");
   const numpy = nix.arg($, "numpy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "diffenator2",
       version: "0.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googlefonts",
           repo: "diffenator2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-7c9/D3uiHysvB2XCjlgm5ll71efLDgcQARXyKeGt5D0=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
       pythonRelaxDeps: nix.thunk(() => ["protobuf", "python-bidi", "youseedee", "unicodedata2"]),
       "build-system": nix.thunk(() => [poetry_core, poetry_dynamic_versioning]),
       dependencies: nix.thunk(() => [
@@ -81,7 +78,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_font.py",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Font comparison tool that will not stop until your fonts are exhaustively compared",
         homepage: "https://github.com/googlefonts/diffenator2",
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/diffenator2/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

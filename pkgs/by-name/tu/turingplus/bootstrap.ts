@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bootstrap.nix", [[["url", 13, 7], ["sha256", 14, 7]], [["x86_64-linux", 12, 5]], [["description", 76, 5], ["mainProgram", 77, 5], ["platforms", 78, 5], ["homepage", 81, 5], ["downloadPage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["sourceProvenance", 85, 5], ["maintainers", 86, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["dontBuild", 44, 3], ["installPhase", 46, 3], ["postInstall", 58, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, autoPatchelfHook: false, makeWrapper: false, coreutils: false, libredirect: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bootstrap.nix", [["url", 13, 7], ["sha256", 14, 7]]);
-const pos$2 = nix.positions(here + "/bootstrap.nix", [["x86_64-linux", 12, 5]]);
-const pos$3 = nix.positions(here + "/bootstrap.nix", [["description", 76, 5], ["mainProgram", 77, 5], ["platforms", 78, 5], ["homepage", 81, 5], ["downloadPage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["sourceProvenance", 85, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/bootstrap.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["dontBuild", 44, 3], ["installPhase", 46, 3], ["postInstall", 58, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const libredirect = nix.arg($, "libredirect");
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/CordyJ/Open-TuringPlus/releases/download/v6.2.1/opentplus-62-linux64.tar.gz",
       sha256: "sha256-FoOlOcRWpStg4aerjr+FmcXXnwYftrqG1j4iZJ+4AzE=",
     })),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.str`/bin/rm=${coreutils}/bin/rm`),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "turingplus-bootstrap",
       version: "6.2.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => nix.sel(sources, nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`))))),
@@ -57,7 +54,7 @@ wrapProgram $out/bin/tssl \\
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Extended version of the Turing programming language with concurrency and systems programming features",
         mainProgram: "tpc",
         platforms: nix.thunk(() => ["x86_64-linux"]),

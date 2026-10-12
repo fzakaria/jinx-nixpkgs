@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 45, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 8, 3], ["pyproject", 9, 3], ["src", 11, 43], ["version", 11, 47], ["sourceRoot", 13, 3], ["build-system", 15, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 24, 3], ["dependencies", 28, 3], ["dontWrapQtApps", 38, 3], ["preFixup", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 45, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["pyproject", 9, 3], ["src", 11, 43], ["version", 11, 47], ["sourceRoot", 13, 3], ["build-system", 15, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 24, 3], ["dependencies", 28, 3], ["dontWrapQtApps", 38, 3], ["preFixup", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const dontWrapQtApps = true;
       const preFixup = "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Graphical user interface of the Linien spectroscopy lock application",
         mainProgram: "linien",
         homepage: "https://github.com/linien-org/linien/tree/develop/linien-gui",
@@ -54,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         pyproject,
         src,

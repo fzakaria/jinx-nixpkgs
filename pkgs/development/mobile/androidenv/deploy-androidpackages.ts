@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/deploy-androidpackages.nix", [[["buildInputs", 91, 13], ["pname", 92, 5], ["version", 93, 5], ["src", 94, 5], ["os", 95, 13], ["arch", 95, 16], ["nativeBuildInputs", 96, 5], ["preferLocalBuild", 97, 5], ["unpackPhase", 99, 5], ["installPhase", 119, 5], ["dontStrip", 152, 5], ["dontPatchELF", 153, 5], ["dontAutoPatchelf", 154, 5], ["meta", 156, 13]]]);
 const formals$1 = { args: { stdenv: false, lib: false, unzip: false, mkLicenses: false, os: false, arch: false, meta: false }, ellipsis: false };
 const formals$2 = { args: { packages: false, nativeBuildInputs: true, buildInputs: true, patchesInstructions: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/deploy-androidpackages.nix", [["buildInputs", 91, 13], ["pname", 92, 5], ["version", 93, 5], ["src", 94, 5], ["os", 95, 13], ["arch", 95, 16], ["nativeBuildInputs", 96, 5], ["preferLocalBuild", 97, 5], ["unpackPhase", 99, 5], ["installPhase", 119, 5], ["dontStrip", 152, 5], ["dontPatchELF", 153, 5], ["dontAutoPatchelf", 154, 5], ["meta", 156, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
 </ns2:repository>
 `;
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         buildInputs: buildInputs,
         pname: nix.thunk(() => nix.str`android-sdk-${nix.app(nix.sel(lib, "concatMapStringsSep"), "-", (package$) => nix.sel(package$, "name"), sortedPackages)}`),
         version: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "-", (package$) => nix.sel(package$, "revision"), sortedPackages)),

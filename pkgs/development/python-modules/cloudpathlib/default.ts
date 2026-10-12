@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["all", 50, 5], ["azure", 51, 5], ["gs", 55, 5], ["s3", 56, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["build-system", 47, 3], ["optional-dependencies", 49, 3], ["pythonImportsCheck", 59, 3], ["nativeCheckInputs", 61, 3], ["__darwinAllowLocalNetworking", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, "azure-storage-blob": false, "azure-storage-file-datalake": false, "google-cloud-storage": false, boto3: false, "azure-identity": false, psutil: false, pydantic: false, pytestCheckHook: false, "pytest-cases": false, "pytest-cov-stub": false, "pytest-xdist": false, "python-dotenv": false, shortuuid: false, tenacity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 50, 5], ["azure", 51, 5], ["gs", 55, 5], ["s3", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["build-system", 47, 3], ["optional-dependencies", 49, 3], ["pythonImportsCheck", 59, 3], ["nativeCheckInputs", 61, 3], ["__darwinAllowLocalNetworking", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.24.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "drivendataorg",
           repo: "cloudpathlib",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace pyproject.toml \\\n  --replace-fail \"--report-log reportlog.jsonl\" \"\"\n";
       const build_system = nix.thunk(() => [flit_core]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => nix.concat(nix.sel(optional_dependencies, "azure"), nix.concat(nix.sel(optional_dependencies, "gs"), nix.sel(optional_dependencies, "s3")))),
         azure: nix.thunk(() => [azure_storage_blob, azure_storage_file_datalake]),
         gs: nix.thunk(() => [google_cloud_storage]),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(optional_dependencies, "all")));
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python pathlib-style classes for cloud storage services such as Amazon S3, Azure Blob Storage, and Google Cloud Storage",
         homepage: "https://github.com/drivendataorg/cloudpathlib",
         changelog: nix.thunk(() => nix.str`https://github.com/drivendataorg/cloudpathlib/blob/${nix.sel(src, "tag")}/HISTORY.md`),
@@ -74,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

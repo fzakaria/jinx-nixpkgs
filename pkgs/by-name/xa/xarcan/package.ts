@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["updateScript", 114, 12]], [["homepage", 117, 5], ["description", 118, 5], ["mainProgram", 119, 5], ["longDescription", 120, 5], ["license", 125, 5], ["maintainers", 126, 5], ["platforms", 127, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 60, 3], ["configureFlags", 95, 3], ["passthru", 114, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, arcan: false, audit: false, dbus: false, "dri-pkgconfig-stub": false, libepoxy: false, "font-util": false, libGL: false, libx11: false, libxau: false, libxdmcp: false, libxfont_2: false, libdrm: false, libgcrypt: false, libmd: false, libselinux: false, libtirpc: false, libxcb: false, libxkbfile: false, libxshmfence: false, libgbm: false, "mesa-gl-headers": false, meson: false, nettle: false, ninja: false, openssl: false, pixman: false, "pkg-config": false, systemd: false, "libxcb-util": false, "libxcb-wm": false, "libxcb-image": false, xkbcomp: false, xkeyboard_config: false, xorgproto: false, xtrans: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 114, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 117, 5], ["description", 118, 5], ["mainProgram", 119, 5], ["longDescription", 120, 5], ["license", 125, 5], ["maintainers", 126, 5], ["platforms", 127, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 60, 3], ["configureFlags", 95, 3], ["passthru", 114, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xarcan";
       const version = "0.7.1";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "letoram",
           repo: "xarcan",
           tag: version,
@@ -113,11 +110,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-xkb-path=${xkeyboard_config}/share/X11/xkb`),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://codeberg.org/letoram/xarcan",
         description: "Patched Xserver that bridges connections to Arcan",
         mainProgram: "Xarcan",
@@ -127,7 +124,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

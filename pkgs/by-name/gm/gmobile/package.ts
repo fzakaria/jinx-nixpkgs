@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 24, 5], ["group", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["updateScript", 59, 12]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 69, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 32, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 50, 3], ["doInstallCheck", 56, 3], ["strictDeps", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "gtk-doc": false, meson: false, ninja: false, "pkg-config": false, glib: false, "json-glib": false, libuev: false, "gobject-introspection": false, udevCheckHook: false, vala: false, "nix-update-script": false, fetchpatch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 24, 5], ["group", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 32, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 50, 3], ["doInstallCheck", 56, 3], ["strictDeps", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gmobile",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "Phosh",
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "dont-set-libexecdir.patch",
             url: "https://gitlab.gnome.org/World/Phosh/gmobile/-/commit/b085e13898edddf31b6da8c8fc4119bb2cb59c38.patch",
             hash: "sha256-S3S1FORPC8czFx0ivLVOUhamStaJsKd6oXnh1jbdr3Y=",
@@ -60,11 +56,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Functions useful in mobile related, glib based projects",
         homepage: "https://gitlab.gnome.org/World/Phosh/gmobile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

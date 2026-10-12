@@ -2,52 +2,40 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/firejail.nix", [[["maintainers", 5, 5]], [["executable", 18, 13], ["extraArgs", 19, 13]], [["bash-jailed", 16, 11], ["bash-jailed2", 17, 11]], [["enable", 14, 9], ["wrappedBinaries", 15, 9]], [["firejail", 13, 16]], [["HOME", 29, 11]], [["type", 33, 11], ["RemainAfterExit", 34, 11], ["user", 35, 11]], [["wantedBy", 25, 9], ["before", 26, 9], ["environment", 28, 9], ["unitConfig", 32, 9], ["script", 38, 9]], [["setupFirejailTest", 24, 24]], [["services", 24, 15]], [["imports", 11, 7], ["programs", 13, 7], ["systemd", 24, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 52, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/firejail.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/firejail.nix", [["executable", 18, 13], ["extraArgs", 19, 13]]);
-const pos$3 = nix.positions(here + "/firejail.nix", [["bash-jailed", 16, 11], ["bash-jailed2", 17, 11]]);
-const pos$4 = nix.positions(here + "/firejail.nix", [["enable", 14, 9], ["wrappedBinaries", 15, 9]]);
-const pos$5 = nix.positions(here + "/firejail.nix", [["firejail", 13, 16]]);
-const pos$6 = nix.positions(here + "/firejail.nix", [["HOME", 29, 11]]);
-const pos$7 = nix.positions(here + "/firejail.nix", [["type", 33, 11], ["RemainAfterExit", 34, 11], ["user", 35, 11]]);
-const pos$8 = nix.positions(here + "/firejail.nix", [["wantedBy", 25, 9], ["before", 26, 9], ["environment", 28, 9], ["unitConfig", 32, 9], ["script", 38, 9]]);
-const pos$9 = nix.positions(here + "/firejail.nix", [["setupFirejailTest", 24, 24]]);
-const pos$10 = nix.positions(here + "/firejail.nix", [["services", 24, 15]]);
-const pos$11 = nix.positions(here + "/firejail.nix", [["imports", 11, 7], ["programs", 13, 7], ["systemd", 24, 7]]);
-const pos$12 = nix.positions(here + "/firejail.nix", [["machine", 8, 9]]);
-const pos$13 = nix.positions(here + "/firejail.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "firejail",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "sgo"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             firejail: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               wrappedBinaries: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 "bash-jailed": nix.thunk(() => nix.str`${nix.sel(pkgs, "bash")}/bin/bash`),
                 "bash-jailed2": nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   executable: nix.thunk(() => nix.str`${nix.sel(pkgs, "bash")}/bin/bash`),
                   extraArgs: nix.thunk(() => ["--private=~/firejail-home"]),
                 })),
@@ -55,15 +43,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               setupFirejailTest: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 before: nix.thunk(() => ["multi-user.target"]),
-                environment: nix.thunk(() => ({ [nix.POS]: pos$6, HOME: "/home/alice" })),
-                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$7, type: "oneshot", RemainAfterExit: true, user: "alice" })),
+                environment: nix.thunk(() => ({ [nix.POS]: $pos[5], HOME: "/home/alice" })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[6], type: "oneshot", RemainAfterExit: true, user: "alice" })),
                 script: "cd $HOME\n\nmkdir .password-store && echo s3cret > .password-store/secret\nmkdir my-secrets && echo s3cret > my-secrets/secret\n\necho publ1c > public\n\nmkdir -p .config/firejail\necho 'blacklist ${HOME}/my-secrets' > .config/firejail/globals.local\n",
               })),
             })),

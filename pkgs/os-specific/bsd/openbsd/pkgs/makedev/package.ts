@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["mainProgram", 36, 8]], [["pname", 8, 3], ["path", 9, 3], ["patches", 11, 3], ["extraNativeBuildInputs", 13, 3], ["preBuild", 17, 3], ["buildTargets", 20, 3], ["postBuild", 24, 3], ["postInstall", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { mkDerivation: false, runtimeShell: false, m4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["mainProgram", 36, 8]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["path", 9, 3], ["patches", 11, 3], ["extraNativeBuildInputs", 13, 3], ["preBuild", 17, 3], ["buildTargets", 20, 3], ["postBuild", 24, 3], ["postInstall", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const m4 = nix.arg($, "m4");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "MAKEDEV",
       path: "etc",
       patches: nix.thunk(() => [nix.path(here, "./bash.patch")]),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
 sed -E -i -e '/^PATH=.*/d' -e 's/expr\\((.*)\\)/$((\\1))/g' etc.$TARGET_MACHINE_ARCH/MAKEDEV
 `),
       postInstall: "mkdir -p $out/bin\ncp etc.$TARGET_MACHINE_ARCH/MAKEDEV $out/bin\nchmod +x $out/bin/MAKEDEV\n",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "MAKEDEV" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "MAKEDEV" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

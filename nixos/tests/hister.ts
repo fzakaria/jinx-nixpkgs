@@ -2,38 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hister.nix", [[["maintainers", 16, 5]], [["systemPackages", 20, 17]], [["mode", 23, 7], ["user", 24, 7], ["group", 25, 7], ["argument", 26, 7]], [["f", 22, 65]], [["/run/hister.env", 22, 47]], [["10-hister-env", 22, 31]], [["settings", 22, 22]], [["tmpfiles", 22, 13]], [["log_level", 36, 13], ["title", 37, 13], ["search_url", 38, 13], ["open_results_on_new_tab", 39, 13]], [["alt+n", 41, 23]], [["web", 41, 19]], [["app", 35, 11], ["hotkeys", 41, 11]], [["enable", 31, 9], ["port", 32, 9], ["environmentFile", 33, 9], ["settings", 34, 9]], [["hister", 30, 46]], [["services", 30, 37]], [["configuration", 30, 23]], [["enable", 46, 9], ["port", 47, 9], ["configPath", 48, 9]], [["hister", 45, 42]], [["services", 45, 33]], [["configuration", 45, 19]], [["title", 55, 22]], [["app", 55, 18]], [["enable", 52, 9], ["port", 53, 9], ["dataDir", 54, 9], ["settings", 55, 9]], [["hister", 51, 46]], [["services", 51, 37]], [["configuration", 51, 23]], [["inline_settings", 30, 7], ["config_file", 45, 7], ["custom_data_dir", 51, 7]], [["environment", 20, 5], ["systemd", 22, 5], ["specialisation", 29, 5]], [["machine", 19, 9]], [["name", 13, 3], ["meta", 15, 3], ["nodes", 19, 3], ["testScript", 60, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/hister.nix", [["maintainers", 16, 5]]);
-const pos$2 = nix.positions(here + "/hister.nix", [["systemPackages", 20, 17]]);
-const pos$3 = nix.positions(here + "/hister.nix", [["mode", 23, 7], ["user", 24, 7], ["group", 25, 7], ["argument", 26, 7]]);
-const pos$4 = nix.positions(here + "/hister.nix", [["f", 22, 65]]);
-const pos$5 = nix.positions(here + "/hister.nix", [["/run/hister.env", 22, 47]]);
-const pos$6 = nix.positions(here + "/hister.nix", [["10-hister-env", 22, 31]]);
-const pos$7 = nix.positions(here + "/hister.nix", [["settings", 22, 22]]);
-const pos$8 = nix.positions(here + "/hister.nix", [["tmpfiles", 22, 13]]);
-const pos$9 = nix.positions(here + "/hister.nix", [["log_level", 36, 13], ["title", 37, 13], ["search_url", 38, 13], ["open_results_on_new_tab", 39, 13]]);
-const pos$10 = nix.positions(here + "/hister.nix", [["alt+n", 41, 23]]);
-const pos$11 = nix.positions(here + "/hister.nix", [["web", 41, 19]]);
-const pos$12 = nix.positions(here + "/hister.nix", [["app", 35, 11], ["hotkeys", 41, 11]]);
-const pos$13 = nix.positions(here + "/hister.nix", [["enable", 31, 9], ["port", 32, 9], ["environmentFile", 33, 9], ["settings", 34, 9]]);
-const pos$14 = nix.positions(here + "/hister.nix", [["hister", 30, 46]]);
-const pos$15 = nix.positions(here + "/hister.nix", [["services", 30, 37]]);
-const pos$16 = nix.positions(here + "/hister.nix", [["configuration", 30, 23]]);
-const pos$17 = nix.positions(here + "/hister.nix", [["enable", 46, 9], ["port", 47, 9], ["configPath", 48, 9]]);
-const pos$18 = nix.positions(here + "/hister.nix", [["hister", 45, 42]]);
-const pos$19 = nix.positions(here + "/hister.nix", [["services", 45, 33]]);
-const pos$20 = nix.positions(here + "/hister.nix", [["configuration", 45, 19]]);
-const pos$21 = nix.positions(here + "/hister.nix", [["title", 55, 22]]);
-const pos$22 = nix.positions(here + "/hister.nix", [["app", 55, 18]]);
-const pos$23 = nix.positions(here + "/hister.nix", [["enable", 52, 9], ["port", 53, 9], ["dataDir", 54, 9], ["settings", 55, 9]]);
-const pos$24 = nix.positions(here + "/hister.nix", [["hister", 51, 46]]);
-const pos$25 = nix.positions(here + "/hister.nix", [["services", 51, 37]]);
-const pos$26 = nix.positions(here + "/hister.nix", [["configuration", 51, 23]]);
-const pos$27 = nix.positions(here + "/hister.nix", [["inline_settings", 30, 7], ["config_file", 45, 7], ["custom_data_dir", 51, 7]]);
-const pos$28 = nix.positions(here + "/hister.nix", [["environment", 20, 5], ["systemd", 22, 5], ["specialisation", 29, 5]]);
-const pos$29 = nix.positions(here + "/hister.nix", [["machine", 19, 9]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$30 = nix.positions(here + "/hister.nix", [["name", 13, 3], ["meta", 15, 3], ["nodes", 19, 3], ["testScript", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,35 +12,35 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const configPathConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "hister-config.yml", "app:\n  title: NixOS Hister Config Path\n  search_url: https://config.example.invalid/?q={query}\nhotkeys:\n  web:\n    alt+c: open_query_in_search_engine\n"));
   return {
-    [nix.POS]: pos$30,
+    [nix.POS]: $pos[29],
     name: "hister",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "_4evy"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           tmpfiles: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               "10-hister-env": nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 "/run/hister.env": nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   f: nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     mode: "0600",
                     user: "root",
                     group: "root",
@@ -81,30 +52,30 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           inline_settings: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 hister: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   enable: true,
                   port: 4433n,
                   environmentFile: "/run/hister.env",
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     app: nix.thunk(() => ({
-                      [nix.POS]: pos$9,
+                      [nix.POS]: $pos[8],
                       log_level: "debug",
                       title: "NixOS Hister",
                       search_url: "https://search.example.invalid/?q={query}",
                       open_results_on_new_tab: true,
                     })),
                     hotkeys: nix.thunk(() => ({
-                      [nix.POS]: pos$11,
-                      web: nix.thunk(() => ({ [nix.POS]: pos$10, "alt+n": "open_query_in_search_engine" })),
+                      [nix.POS]: $pos[10],
+                      web: nix.thunk(() => ({ [nix.POS]: $pos[9], "alt+n": "open_query_in_search_engine" })),
                     })),
                   })),
                 })),
@@ -112,29 +83,29 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           config_file: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$18,
-                hister: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true, port: 4434n, configPath: configPathConfig })),
+                [nix.POS]: $pos[17],
+                hister: nix.thunk(() => ({ [nix.POS]: $pos[16], enable: true, port: 4434n, configPath: configPathConfig })),
               })),
             })),
           })),
           custom_data_dir: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 hister: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   enable: true,
                   port: 4435n,
                   dataDir: "/srv/hister-data",
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
-                    app: nix.thunk(() => ({ [nix.POS]: pos$21, title: "NixOS Hister Custom Data" })),
+                    [nix.POS]: $pos[21],
+                    app: nix.thunk(() => ({ [nix.POS]: $pos[20], title: "NixOS Hister Custom Data" })),
                   })),
                 })),
               })),

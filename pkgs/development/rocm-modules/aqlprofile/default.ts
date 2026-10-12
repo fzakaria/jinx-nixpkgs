@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["sparseCheckout", 18, 5], ["hash", 22, 5]], [["CXXFLAGS", 26, 7]], [["finalAttrs", 33, 54]], [["updateScript", 33, 12]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["teams", 39, 5], ["platforms", 40, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 24, 3], ["env", 26, 3], ["nativeBuildInputs", 28, 3], ["passthru", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, clr: false, cmake: false, fetchFromGitHub: false, rocmUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["sparseCheckout", 18, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CXXFLAGS", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["finalAttrs", 33, 54]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 33, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["teams", 39, 5], ["platforms", 40, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 24, 3], ["env", 26, 3], ["nativeBuildInputs", 28, 3], ["passthru", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rocmUpdateScript = nix.arg($, "rocmUpdateScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "aqlprofile",
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm-systems",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -31,14 +26,14 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-74HjB5Ughu17rSRx9mfCCsPJI4TVyXnT4aU7vIbm7ak=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/projects/aqlprofile`),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-DROCP_LD_AQLPROFILE=1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-DROCP_LD_AQLPROFILE=1" })),
       nativeBuildInputs: nix.thunk(() => [cmake, clr]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$3, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[2], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "AQLPROFILE library for AMD HSA runtime API extension support",
         homepage: "https://github.com/ROCm/rocm-systems/tree/develop/projects/aqlprofile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

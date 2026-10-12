@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchLFS", 23, 5]], [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["teams", 43, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["nativeCheckInputs", 30, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchgit: false, pillow: false, "poetry-core": false, pytestCheckHook: false, "pytest-benchmark": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchLFS", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["teams", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["nativeCheckInputs", 30, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/whtsky/pixelmatch-py.git",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-tl1y8SASS8XR3ix4DLvwi5OoIs73oxYOF9Z90jPIU4o=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pillow, pytest_benchmark, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pixelmatch"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "A pixel-level image comparison library",
         homepage: "https://github.com/whtsky/pixelmatch-py",
         changelog: nix.thunk(() => nix.str`https://github.com/whtsky/pixelmatch-py/tree/v${version}#changelog`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

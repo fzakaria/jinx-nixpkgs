@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 20, 5], ["hash", 21, 5]], [["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["homepage", 44, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["propagatedBuildInputs", 30, 3], ["doCheck", 37, 3], ["checkInputs", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, lib: false, fetchurl: false, jws: false, lun: false, logs: false, fmt: false, x509: false, ounit2: false, ptime: false, "domain-name": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["homepage", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["propagatedBuildInputs", 30, 3], ["doCheck", 37, 3], ["checkInputs", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const ptime = nix.arg($, "ptime");
   const domain_name = nix.arg($, "domain-name");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "letsencrypt",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mmaker/ocaml-letsencrypt/releases/download/v${nix.sel(finalAttrs, "version")}/letsencrypt-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-jv/CxJFhqb4ouC7CvYMXHhVRmgpdlMPIwPYPAMt7Bts=",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ACME implementation in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),

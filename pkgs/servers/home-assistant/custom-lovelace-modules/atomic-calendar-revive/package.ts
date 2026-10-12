@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["pnpm", 29, 13], ["fetcherVersion", 30, 5], ["hash", 31, 5]], [["updateScript", 57, 12]], [["changelog", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["pnpmDeps", 27, 3], ["nativeBuildInputs", 34, 3], ["buildPhase", 40, 3], ["installPhase", 48, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, nodejs: false, pnpm_11: false, pnpmConfigHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["pnpm", 29, 13], ["fetcherVersion", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["pnpmDeps", 27, 3], ["nativeBuildInputs", 34, 3], ["buildPhase", 40, 3], ["installPhase", 48, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "atomic-calendar-revive",
       version: "10.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "totaldebug",
           repo: "atomic-calendar-revive",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-qqEQrbLQU5zhMcDDtg5f9Py4raOSYKCy4uv2omK6eO8=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -44,11 +40,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npnpm run build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir $out\ncp ./dist/atomic-calendar-revive.js $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/totaldebug/atomic-calendar-revive/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Advanced calendar card for Home Assistant Lovelace",
         homepage: "https://github.com/totaldebug/atomic-calendar-revive",

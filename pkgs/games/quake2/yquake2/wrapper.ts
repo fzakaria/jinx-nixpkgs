@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["name", 19, 5], ["paths", 20, 5]], [["name", 53, 7], ["exec", 54, 7], ["icon", 55, 7], ["desktopName", 56, 7], ["comment", 57, 7], ["categories", 58, 7]], [["description", 66, 13]], [["pname", 25, 3], ["version", 26, 3], ["nativeBuildInputs", 28, 3], ["dontUnpack", 33, 3], ["installPhase", 35, 3], ["desktopItems", 50, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildEnv: false, makeWrapper: false, yquake2: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
 const formals$2 = { args: { games: false, name: false, description: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["name", 19, 5], ["paths", 20, 5]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["name", 53, 7], ["exec", 54, 7], ["icon", 55, 7], ["desktopName", 56, 7], ["comment", 57, 7], ["categories", 58, 7]]);
-const pos$3 = nix.positions(here + "/wrapper.nix", [["description", 66, 13]]);
-const pos$4 = nix.positions(here + "/wrapper.nix", [["pname", 25, 3], ["version", 26, 3], ["nativeBuildInputs", 28, 3], ["dontUnpack", 33, 3], ["installPhase", 35, 3], ["desktopItems", 50, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +21,12 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const description = nix.arg($_1, "description");
     const env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.str`${name}-env`),
         paths: nix.thunk(() => nix.concat([yquake2], games)),
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: name,
         version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), yquake2)),
         nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems]),
@@ -42,7 +39,7 @@ makeWrapper ${env}/bin/yq2ded $out/bin/yq2ded-${nix.sel(game, "title")} \\
 runHook postInstall
 `)),
         desktopItems: nix.thunk(() => nix.builtins.map((game) => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: nix.thunk(() => nix.sel(game, "id")),
               exec: nix.thunk(() => nix.sel(game, "title")),
               icon: "yamagi-quake2",
@@ -50,7 +47,7 @@ runHook postInstall
               comment: nix.thunk(() => nix.sel(game, "description")),
               categories: nix.thunk(() => ["Game", "Shooter"]),
             }))), games)),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$3, description: description })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[2], description: description })),
       })));
   })(), formals$2);
 })(), formals$1);

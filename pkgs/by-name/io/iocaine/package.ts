@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["iocaine", 36, 36]], [["tests", 36, 5]], [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 22, 3], ["__structuredAttrs", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["passthru", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitea: false, nftables: false, nixosTests: false, "pkg-config": false, rustPlatform: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["iocaine", 36, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 22, 3], ["__structuredAttrs", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["passthru", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "iocaine",
       version: "3.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.madhouse-project.org",
           owner: "iocaine",
           repo: "iocaine",
@@ -34,11 +30,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => [nftables]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, iocaine: nix.thunk(() => nix.attr(nixosTests, "iocaine")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          iocaine: nix.thunk(() => nix.attr(nixosTests, "iocaine")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Deadliest poison known to AI",
         homepage: "https://iocaine.madhouse-project.org/",
         changelog: nix.thunk(() => nix.str`https://git.madhouse-project.org/iocaine/iocaine/src/tag/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

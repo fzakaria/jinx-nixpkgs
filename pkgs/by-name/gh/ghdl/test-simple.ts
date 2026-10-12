@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-simple.nix", [[["timeout", 23, 8]], [["name", 22, 3], ["meta", 23, 3], ["nativeBuildInputs", 24, 3], ["buildCommand", 25, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, "ghdl-llvm": false, "ghdl-llvm-jit": false, "ghdl-mcode": false, "ghdl-gcc": false, backend: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-simple.nix", [["timeout", 23, 8]]);
-const pos$2 = nix.positions(here + "/test-simple.nix", [["name", 22, 3], ["meta", 23, 3], ["nativeBuildInputs", 24, 3], ["buildCommand", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const backend = nix.arg($, "backend");
   const ghdl = nix.thunk(() => (nix.asBool(nix.eq(backend, "llvm")) ? nix.force(ghdl_llvm) : (nix.asBool(nix.eq(backend, "llvm-jit")) ? nix.force(ghdl_llvm_jit) : (nix.asBool(nix.eq(backend, "gcc")) ? nix.force(ghdl_gcc) : nix.force(ghdl_mcode)))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "ghdl-test-simple",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 300n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 300n })),
       nativeBuildInputs: nix.thunk(() => [ghdl]),
       buildCommand: nix.thunk(() => nix.add(nix.add(nix.str`cp ${nix.path(here, "./simple.vhd")} simple.vhd
 cp ${nix.path(here, "./simple-tb.vhd")} simple-tb.vhd

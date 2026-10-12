@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["RUSTC_BOOTSTRAP", 27, 7]], [["pkgs", 43, 19]], [["package", 46, 19]], [["imports", 41, 7], ["holo-daemon", 46, 7]], [["default", 40, 14]], [["updateScript", 39, 5], ["services", 40, 5]], [["description", 51, 5], ["homepage", 52, 5], ["teams", 53, 5], ["maintainers", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5], ["platforms", 57, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["env", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["passthru", 38, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, protobuf: false, pcre2: false, pkgs: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTC_BOOTSTRAP", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkgs", 43, 19]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 46, 19]]);
-const pos$5 = nix.positions(here + "/package.nix", [["imports", 41, 7], ["holo-daemon", 46, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["default", 40, 14]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 39, 5], ["services", 40, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["teams", 53, 5], ["maintainers", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5], ["platforms", 57, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["env", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["passthru", 38, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,39 +17,39 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "holo-daemon",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "holo-routing",
           repo: "holo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-zZrse46NJb8gD4BtM20FfdtRdxVNLZ+/51dy2nuiOd8=",
         })))),
       cargoHash: "sha256-cHJzwI7FDVA1iwqg+x9sMlao22SGQoOuq+MB0XtYsEc=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTC_BOOTSTRAP: 1n })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, protobuf]),
       buildInputs: nix.thunk(() => [pcre2]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           default: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             imports: nix.thunk(() => [
-              nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, pkgs: pkgs })))),
+              nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], pkgs: pkgs })))),
             ]),
             "holo-daemon": nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
             })),
           })),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "`holo` daemon that provides the routing protocols, tools and policies",
         homepage: "https://github.com/holo-routing/holo",
         teams: nix.thunk(() => (() => {

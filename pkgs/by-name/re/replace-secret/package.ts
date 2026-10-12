@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["platforms", 29, 5], ["maintainers", 30, 5], ["license", 31, 5], ["description", 32, 5], ["longDescription", 33, 5], ["mainProgram", 39, 5]], [["name", 8, 3], ["buildInputs", 9, 3], ["dontUnpack", 10, 3], ["installPhase", 11, 3], ["installCheckPhase", 17, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["platforms", 29, 5], ["maintainers", 30, 5], ["license", 31, 5], ["description", 32, 5], ["longDescription", 33, 5], ["mainProgram", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 8, 3], ["buildInputs", 9, 3], ["dontUnpack", 10, 3], ["installPhase", 11, 3], ["installCheckPhase", 17, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "replace-secret",
       buildInputs: nix.thunk(() => [python3]),
       dontUnpack: true,
@@ -32,7 +31,7 @@ $out/bin/replace-secret "and this" <(echo "b") short_test
 diff ${nix.path(here, "./test/expected_short_output")} short_test
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

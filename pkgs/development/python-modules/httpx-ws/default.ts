@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 54, 3], ["disabledTestPaths", 56, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, anyio: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, httpcore: false, httpx: false, pytestCheckHook: false, "pytest-cov-stub": false, starlette: false, trio: false, uvicorn: false, wsproto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 54, 3], ["disabledTestPaths", 56, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "frankie567",
           repo: "httpx-ws",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["httpx_ws"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_api.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "WebSocket support for HTTPX",
         homepage: "https://github.com/frankie567/httpx-ws",
         changelog: nix.thunk(() => nix.str`https://github.com/frankie567/httpx-ws/releases/tag/${nix.sel(src, "tag")}`),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

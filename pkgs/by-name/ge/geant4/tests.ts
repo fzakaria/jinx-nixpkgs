@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["name", 9, 5], ["src", 11, 22], ["nativeBuildInputs", 13, 5], ["buildInputs", 14, 5], ["nativeCheckInputs", 15, 5], ["prePatch", 22, 5], ["doCheck", 26, 5], ["checkPhase", 27, 5], ["installPhase", 35, 5]], [["example_B1", 8, 3]]]);
 const formals$1 = { args: { stdenv: false, cmake: false, geant4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["name", 9, 5], ["src", 11, 22], ["nativeBuildInputs", 13, 5], ["buildInputs", 14, 5], ["nativeCheckInputs", 15, 5], ["prePatch", 22, 5], ["doCheck", 26, 5], ["checkPhase", 27, 5], ["installPhase", 35, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["example_B1", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const geant4 = nix.arg($, "geant4");
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     example_B1: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.str`${nix.sel(geant4, "name")}-test-example_B1`),
         src: nix.thunk(() => nix.attr(geant4, "src")),
         nativeBuildInputs: nix.thunk(() => [cmake]),

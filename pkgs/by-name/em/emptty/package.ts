@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["broken", 34, 5], ["mainProgram", 35, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["vendorHash", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false, libx11: false, pam: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["broken", 34, 5], ["mainProgram", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["vendorHash", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "emptty",
       version: "0.16.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tvrzna",
           repo: "emptty",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pam, libx11]),
       vendorHash: "sha256-PLyemAUcCz9H7+nAxftki3G7rQoEeyPzY3YUEj2RFn4=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Dead simple CLI Display Manager on TTY",
         homepage: "https://github.com/tvrzna/emptty",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 16, 37], ["out", 16, 42]], [["version", 24, 50]], [["case", 36, 37], ["out", 36, 42]], [["sha256", 46, 21]], [["sha256", 47, 21]], [["sha256", 48, 21]], [["sha256", 49, 21]], [["sha256", 50, 21]], [["sha256", 51, 21]], [["sha256", 52, 21]], [["sha256", 53, 21]], [["3.5.0", 46, 13], ["3.4.0", 47, 13], ["3.3.0", 48, 13], ["3.2.0", 49, 13], ["3.1.0", 50, 13], ["3.0.0", 51, 13], ["2.6.0", 52, 13], ["2.5.2", 53, 13]], [["description", 77, 7], ["maintainers", 78, 7], ["license", 79, 7]], [["pname", 30, 5], ["repo", 31, 5], ["owner", 32, 5], ["version", 33, 13], ["defaultVersion", 34, 5], ["release", 46, 5], ["releaseRev", 54, 5], ["mlPlugin", 56, 5], ["useDune", 57, 5], ["propagatedBuildInputs", 59, 5], ["configurePhase", 61, 5], ["buildPhase", 66, 5], ["installPhase", 70, 5], ["meta", 76, 5]], [["version", 86, 50]], [["propagatedBuildInputs", 85, 7]]]);
 const formals$1 = { args: { lib: false, mkRocqDerivation: false, which: false, "rocq-core": false, version: true, "elpi-version": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 16, 37], ["out", 16, 42]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 24, 50]]);
-const pos$3 = nix.positions(here + "/default.nix", [["case", 36, 37], ["out", 36, 42]]);
-const pos$4 = nix.positions(here + "/default.nix", [["sha256", 46, 21]]);
-const pos$5 = nix.positions(here + "/default.nix", [["sha256", 47, 21]]);
-const pos$6 = nix.positions(here + "/default.nix", [["sha256", 48, 21]]);
-const pos$7 = nix.positions(here + "/default.nix", [["sha256", 49, 21]]);
-const pos$8 = nix.positions(here + "/default.nix", [["sha256", 50, 21]]);
-const pos$9 = nix.positions(here + "/default.nix", [["sha256", 51, 21]]);
-const pos$10 = nix.positions(here + "/default.nix", [["sha256", 52, 21]]);
-const pos$11 = nix.positions(here + "/default.nix", [["sha256", 53, 21]]);
-const pos$12 = nix.positions(here + "/default.nix", [["3.5.0", 46, 13], ["3.4.0", 47, 13], ["3.3.0", 48, 13], ["3.2.0", 49, 13], ["3.1.0", 50, 13], ["3.0.0", 51, 13], ["2.6.0", 52, 13], ["2.5.2", 53, 13]]);
-const pos$13 = nix.positions(here + "/default.nix", [["description", 77, 7], ["maintainers", 78, 7], ["license", 79, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["pname", 30, 5], ["repo", 31, 5], ["owner", 32, 5], ["version", 33, 13], ["defaultVersion", 34, 5], ["release", 46, 5], ["releaseRev", 54, 5], ["mlPlugin", 56, 5], ["useDune", 57, 5], ["propagatedBuildInputs", 59, 5], ["configurePhase", 61, 5], ["buildPhase", 66, 5], ["installPhase", 70, 5], ["meta", 76, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["version", 86, 50]]);
-const pos$16 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 85, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const elpi_version = nix.argOr($, "elpi-version", () => null);
   const default_elpi_version = nix.thunk(() => (nix.asBool(!nix.eq(elpi_version, null)) ? nix.force(elpi_version) : (() => {
-    const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
+    const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[0], case: case$_1, out: out });
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
     return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(rocq_core, "rocq-version")), nix.thunk(() => [
         nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "9.0", "9.3")), "3.8.0")),
@@ -37,19 +22,19 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "9.0", "9.1")), "2.0.7")),
       ]), nix.thunk(() => nix.sel(rocq_core, "ocamlPackages", "elpi", "version")));
   })()));
-  const elpi = nix.thunk(() => nix.app(nix.sel(rocq_core, "ocamlPackages", "elpi", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, version: default_elpi_version }))));
+  const elpi = nix.thunk(() => nix.app(nix.sel(rocq_core, "ocamlPackages", "elpi", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], version: default_elpi_version }))));
   const propagatedBuildInputs_wo_elpi = nix.thunk(() => [
     nix.thunk(() => nix.sel(rocq_core, "ocamlPackages", "findlib")),
     nix.thunk(() => nix.sel(rocq_core, "ocamlPackages", "ppx_optcomp")),
   ]);
   const derivation = nix.thunk(() => nix.app(mkRocqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: "elpi",
       repo: "coq-elpi",
       owner: "LPCIC",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$3, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[2], case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(rocq_core, "rocq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "9.0", "9.3")), "3.5.0")),
@@ -60,37 +45,37 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         "3.5.0": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           sha256: "sha256-k6kbkFRngQmKUP0owiFOxJzdJVRte5IlZWG4Tpqd3YU=",
         })),
         "3.4.0": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           sha256: "sha256-8x2Sa/+pUpXEqB+NdyfOyw6Yyzp6Q1k5LnhrjG/qJNM=",
         })),
         "3.3.0": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           sha256: "sha256-wcsUpw7S+H9CaXuz+W3g22IFWO2cLllJ4xm2qLTG0nM=",
         })),
         "3.2.0": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           sha256: "sha256-FyYG/8lEyt1L/paMez8jYAnnUE+sxIp4Da5MztmwJ/c=",
         })),
         "3.1.0": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           sha256: "sha256-ytGPGwJv+jmRT6uN0sg6q+xh8ND0PMIZ9ULB0Uwca1w=",
         })),
         "3.0.0": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           sha256: "sha256-YMe2is7duGcvAHjM4joUE90EloibjSxqfZThsJhstdU=",
         })),
         "2.6.0": nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           sha256: "sha256-23BHq1NFUkI3ayXnGUwiGFySLyY3EuH4RyMgAhQqI4g=",
         })),
         "2.5.2": nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           sha256: "sha256-lLzjPrbVB3rrqox528YiheUb0u89R84Xmrgkn0oplOs=",
         })),
       })),
@@ -105,16 +90,16 @@ mkdir $out/lib/coq/
 mv $OCAMLFIND_DESTDIR/coq $out/lib/coq/${nix.sel(rocq_core, "rocq-version")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         description: "Rocq plugin embedding ELPI",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "cohencyril"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
       })),
     }))));
   const patched_derivation1 = nix.thunk(() => nix.app(nix.sel(derivation, "overrideAttrs"), (o) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(o, "elpi-version")), nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         propagatedBuildInputs: nix.thunk(() => nix.concat(propagatedBuildInputs_wo_elpi, [
-          nix.thunk(() => nix.app(nix.sel(rocq_core, "ocamlPackages", "elpi", "override"), nix.thunk(() => ({ [nix.POS]: pos$15, version: nix.thunk(() => nix.sel(o, "elpi-version")) })))),
+          nix.thunk(() => nix.app(nix.sel(rocq_core, "ocamlPackages", "elpi", "override"), nix.thunk(() => ({ [nix.POS]: $pos[14], version: nix.thunk(() => nix.sel(o, "elpi-version")) })))),
         ])),
       })))));
   return nix.force(patched_derivation1);

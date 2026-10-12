@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/languages.nix", [[["owner", 18, 9], ["repo", 19, 9], ["rev", 20, 9], ["hash", 21, 9]], [["url", 27, 11], ["hash", 28, 19]], [["name", 34, 9], ["buildCommand", 35, 9], ["outputHashMode", 40, 9], ["outputHashAlgo", 41, 9], ["outputHash", 42, 9]], [["all", 33, 7]], [["afr", 54, 7], ["amh", 55, 7], ["ara", 56, 7], ["asm", 57, 7], ["aze", 58, 7], ["aze_cyrl", 59, 7], ["bel", 60, 7], ["ben", 61, 7], ["bod", 62, 7], ["bos", 63, 7], ["bul", 64, 7], ["cat", 65, 7], ["ceb", 66, 7], ["ces", 67, 7], ["chi_sim", 68, 7], ["chi_tra", 69, 7], ["chr", 70, 7], ["cym", 71, 7], ["dan", 72, 7], ["dan_frak", 73, 7], ["deu", 74, 7], ["deu_frak", 75, 7], ["dzo", 76, 7], ["ell", 77, 7], ["eng", 78, 7], ["enm", 79, 7], ["epo", 80, 7], ["equ", 81, 7], ["est", 82, 7], ["eus", 83, 7], ["fas", 84, 7], ["fin", 85, 7], ["fra", 86, 7], ["frk", 87, 7], ["frm", 88, 7], ["gle", 89, 7], ["glg", 90, 7], ["grc", 91, 7], ["guj", 92, 7], ["hat", 93, 7], ["heb", 94, 7], ["hin", 95, 7], ["hrv", 96, 7], ["hun", 97, 7], ["iku", 98, 7], ["ind", 99, 7], ["isl", 100, 7], ["ita", 101, 7], ["ita_old", 102, 7], ["jav", 103, 7], ["jpn", 104, 7], ["kan", 105, 7], ["kat", 106, 7], ["kat_old", 107, 7], ["kaz", 108, 7], ["khm", 109, 7], ["kir", 110, 7], ["kor", 111, 7], ["kur", 112, 7], ["lao", 113, 7], ["lat", 114, 7], ["lav", 115, 7], ["lit", 116, 7], ["mal", 117, 7], ["mar", 118, 7], ["mkd", 119, 7], ["mlt", 120, 7], ["msa", 121, 7], ["mya", 122, 7], ["nep", 123, 7], ["nld", 124, 7], ["nor", 125, 7], ["ori", 126, 7], ["osd", 127, 7], ["pan", 128, 7], ["pol", 129, 7], ["por", 130, 7], ["pus", 131, 7], ["ron", 132, 7], ["rus", 133, 7], ["san", 134, 7], ["sin", 135, 7], ["slk", 136, 7], ["slk_frak", 137, 7], ["slv", 138, 7], ["spa", 139, 7], ["spa_old", 140, 7], ["sqi", 141, 7], ["srp", 142, 7], ["srp_latn", 143, 7], ["swa", 144, 7], ["swe", 145, 7], ["syr", 146, 7], ["tam", 147, 7], ["tel", 148, 7], ["tgk", 149, 7], ["tgl", 150, 7], ["tha", 151, 7], ["tir", 152, 7], ["tur", 153, 7], ["uig", 154, 7], ["ukr", 155, 7], ["urd", 156, 7], ["uzb", 157, 7], ["uzb_cyrl", 158, 7], ["vie", 159, 7], ["yid", 160, 7]], [["tessdataRev", 48, 5], ["tessdata", 49, 5], ["all", 50, 5], ["languages", 53, 5]], [["afr", 172, 7], ["amh", 173, 7], ["ara", 174, 7], ["asm", 175, 7], ["aze", 176, 7], ["aze_cyrl", 177, 7], ["bel", 178, 7], ["ben", 179, 7], ["bod", 180, 7], ["bos", 181, 7], ["bre", 182, 7], ["bul", 183, 7], ["cat", 184, 7], ["ceb", 185, 7], ["ces", 186, 7], ["chi_sim", 187, 7], ["chi_sim_vert", 188, 7], ["chi_tra", 189, 7], ["chi_tra_vert", 190, 7], ["chr", 191, 7], ["cos", 192, 7], ["cym", 193, 7], ["dan", 194, 7], ["dan_frak", 195, 7], ["deu", 196, 7], ["deu_frak", 197, 7], ["div", 198, 7], ["dzo", 199, 7], ["ell", 200, 7], ["eng", 201, 7], ["enm", 202, 7], ["epo", 203, 7], ["equ", 204, 7], ["est", 205, 7], ["eus", 206, 7], ["fao", 207, 7], ["fas", 208, 7], ["fil", 209, 7], ["fin", 210, 7], ["fra", 211, 7], ["frk", 212, 7], ["frm", 213, 7], ["fry", 214, 7], ["gla", 215, 7], ["gle", 216, 7], ["glg", 217, 7], ["grc", 218, 7], ["guj", 219, 7], ["hat", 220, 7], ["heb", 221, 7], ["hin", 222, 7], ["hrv", 223, 7], ["hun", 224, 7], ["hye", 225, 7], ["iku", 226, 7], ["ind", 227, 7], ["isl", 228, 7], ["ita", 229, 7], ["ita_old", 230, 7], ["jav", 231, 7], ["jpn", 232, 7], ["jpn_vert", 233, 7], ["kan", 234, 7], ["kat", 235, 7], ["kat_old", 236, 7], ["kaz", 237, 7], ["khm", 238, 7], ["kir", 239, 7], ["kmr", 240, 7], ["kor", 241, 7], ["kor_vert", 242, 7], ["lao", 243, 7], ["lat", 244, 7], ["lav", 245, 7], ["lit", 246, 7], ["ltz", 247, 7], ["mal", 248, 7], ["mar", 249, 7], ["mkd", 250, 7], ["mlt", 251, 7], ["mon", 252, 7], ["mri", 253, 7], ["msa", 254, 7], ["mya", 255, 7], ["nep", 256, 7], ["nld", 257, 7], ["nor", 258, 7], ["oci", 259, 7], ["ori", 260, 7], ["osd", 261, 7], ["pan", 262, 7], ["pol", 263, 7], ["por", 264, 7], ["pus", 265, 7], ["que", 266, 7], ["ron", 267, 7], ["rus", 268, 7], ["san", 269, 7], ["sin", 270, 7], ["slk", 271, 7], ["slk_frak", 272, 7], ["slv", 273, 7], ["snd", 274, 7], ["spa", 275, 7], ["spa_old", 276, 7], ["sqi", 277, 7], ["srp", 278, 7], ["srp_latn", 279, 7], ["sun", 280, 7], ["swa", 281, 7], ["swe", 282, 7], ["syr", 283, 7], ["tam", 284, 7], ["tat", 285, 7], ["tel", 286, 7], ["tgk", 287, 7], ["tgl", 288, 7], ["tha", 289, 7], ["tir", 290, 7], ["ton", 291, 7], ["tur", 292, 7], ["uig", 293, 7], ["ukr", 294, 7], ["urd", 295, 7], ["uzb", 296, 7], ["uzb_cyrl", 297, 7], ["vie", 298, 7], ["yid", 299, 7], ["yor", 300, 7]], [["tessdataRev", 166, 5], ["tessdata", 167, 5], ["all", 168, 5], ["languages", 171, 5]], [["makeLanguages", 9, 3], ["v3", 47, 3], ["v4", 165, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchFromGitHub: false }, ellipsis: false };
 const formals$2 = { args: { tessdataRev: false, tessdata: true, all: true, languages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/languages.nix", [["owner", 18, 9], ["repo", 19, 9], ["rev", 20, 9], ["hash", 21, 9]]);
-const pos$2 = nix.positions(here + "/languages.nix", [["url", 27, 11], ["hash", 28, 19]]);
-const pos$3 = nix.positions(here + "/languages.nix", [["name", 34, 9], ["buildCommand", 35, 9], ["outputHashMode", 40, 9], ["outputHashAlgo", 41, 9], ["outputHash", 42, 9]]);
-const pos$4 = nix.positions(here + "/languages.nix", [["all", 33, 7]]);
-const pos$5 = nix.positions(here + "/languages.nix", [["afr", 54, 7], ["amh", 55, 7], ["ara", 56, 7], ["asm", 57, 7], ["aze", 58, 7], ["aze_cyrl", 59, 7], ["bel", 60, 7], ["ben", 61, 7], ["bod", 62, 7], ["bos", 63, 7], ["bul", 64, 7], ["cat", 65, 7], ["ceb", 66, 7], ["ces", 67, 7], ["chi_sim", 68, 7], ["chi_tra", 69, 7], ["chr", 70, 7], ["cym", 71, 7], ["dan", 72, 7], ["dan_frak", 73, 7], ["deu", 74, 7], ["deu_frak", 75, 7], ["dzo", 76, 7], ["ell", 77, 7], ["eng", 78, 7], ["enm", 79, 7], ["epo", 80, 7], ["equ", 81, 7], ["est", 82, 7], ["eus", 83, 7], ["fas", 84, 7], ["fin", 85, 7], ["fra", 86, 7], ["frk", 87, 7], ["frm", 88, 7], ["gle", 89, 7], ["glg", 90, 7], ["grc", 91, 7], ["guj", 92, 7], ["hat", 93, 7], ["heb", 94, 7], ["hin", 95, 7], ["hrv", 96, 7], ["hun", 97, 7], ["iku", 98, 7], ["ind", 99, 7], ["isl", 100, 7], ["ita", 101, 7], ["ita_old", 102, 7], ["jav", 103, 7], ["jpn", 104, 7], ["kan", 105, 7], ["kat", 106, 7], ["kat_old", 107, 7], ["kaz", 108, 7], ["khm", 109, 7], ["kir", 110, 7], ["kor", 111, 7], ["kur", 112, 7], ["lao", 113, 7], ["lat", 114, 7], ["lav", 115, 7], ["lit", 116, 7], ["mal", 117, 7], ["mar", 118, 7], ["mkd", 119, 7], ["mlt", 120, 7], ["msa", 121, 7], ["mya", 122, 7], ["nep", 123, 7], ["nld", 124, 7], ["nor", 125, 7], ["ori", 126, 7], ["osd", 127, 7], ["pan", 128, 7], ["pol", 129, 7], ["por", 130, 7], ["pus", 131, 7], ["ron", 132, 7], ["rus", 133, 7], ["san", 134, 7], ["sin", 135, 7], ["slk", 136, 7], ["slk_frak", 137, 7], ["slv", 138, 7], ["spa", 139, 7], ["spa_old", 140, 7], ["sqi", 141, 7], ["srp", 142, 7], ["srp_latn", 143, 7], ["swa", 144, 7], ["swe", 145, 7], ["syr", 146, 7], ["tam", 147, 7], ["tel", 148, 7], ["tgk", 149, 7], ["tgl", 150, 7], ["tha", 151, 7], ["tir", 152, 7], ["tur", 153, 7], ["uig", 154, 7], ["ukr", 155, 7], ["urd", 156, 7], ["uzb", 157, 7], ["uzb_cyrl", 158, 7], ["vie", 159, 7], ["yid", 160, 7]]);
-const pos$6 = nix.positions(here + "/languages.nix", [["tessdataRev", 48, 5], ["tessdata", 49, 5], ["all", 50, 5], ["languages", 53, 5]]);
-const pos$7 = nix.positions(here + "/languages.nix", [["afr", 172, 7], ["amh", 173, 7], ["ara", 174, 7], ["asm", 175, 7], ["aze", 176, 7], ["aze_cyrl", 177, 7], ["bel", 178, 7], ["ben", 179, 7], ["bod", 180, 7], ["bos", 181, 7], ["bre", 182, 7], ["bul", 183, 7], ["cat", 184, 7], ["ceb", 185, 7], ["ces", 186, 7], ["chi_sim", 187, 7], ["chi_sim_vert", 188, 7], ["chi_tra", 189, 7], ["chi_tra_vert", 190, 7], ["chr", 191, 7], ["cos", 192, 7], ["cym", 193, 7], ["dan", 194, 7], ["dan_frak", 195, 7], ["deu", 196, 7], ["deu_frak", 197, 7], ["div", 198, 7], ["dzo", 199, 7], ["ell", 200, 7], ["eng", 201, 7], ["enm", 202, 7], ["epo", 203, 7], ["equ", 204, 7], ["est", 205, 7], ["eus", 206, 7], ["fao", 207, 7], ["fas", 208, 7], ["fil", 209, 7], ["fin", 210, 7], ["fra", 211, 7], ["frk", 212, 7], ["frm", 213, 7], ["fry", 214, 7], ["gla", 215, 7], ["gle", 216, 7], ["glg", 217, 7], ["grc", 218, 7], ["guj", 219, 7], ["hat", 220, 7], ["heb", 221, 7], ["hin", 222, 7], ["hrv", 223, 7], ["hun", 224, 7], ["hye", 225, 7], ["iku", 226, 7], ["ind", 227, 7], ["isl", 228, 7], ["ita", 229, 7], ["ita_old", 230, 7], ["jav", 231, 7], ["jpn", 232, 7], ["jpn_vert", 233, 7], ["kan", 234, 7], ["kat", 235, 7], ["kat_old", 236, 7], ["kaz", 237, 7], ["khm", 238, 7], ["kir", 239, 7], ["kmr", 240, 7], ["kor", 241, 7], ["kor_vert", 242, 7], ["lao", 243, 7], ["lat", 244, 7], ["lav", 245, 7], ["lit", 246, 7], ["ltz", 247, 7], ["mal", 248, 7], ["mar", 249, 7], ["mkd", 250, 7], ["mlt", 251, 7], ["mon", 252, 7], ["mri", 253, 7], ["msa", 254, 7], ["mya", 255, 7], ["nep", 256, 7], ["nld", 257, 7], ["nor", 258, 7], ["oci", 259, 7], ["ori", 260, 7], ["osd", 261, 7], ["pan", 262, 7], ["pol", 263, 7], ["por", 264, 7], ["pus", 265, 7], ["que", 266, 7], ["ron", 267, 7], ["rus", 268, 7], ["san", 269, 7], ["sin", 270, 7], ["slk", 271, 7], ["slk_frak", 272, 7], ["slv", 273, 7], ["snd", 274, 7], ["spa", 275, 7], ["spa_old", 276, 7], ["sqi", 277, 7], ["srp", 278, 7], ["srp_latn", 279, 7], ["sun", 280, 7], ["swa", 281, 7], ["swe", 282, 7], ["syr", 283, 7], ["tam", 284, 7], ["tat", 285, 7], ["tel", 286, 7], ["tgk", 287, 7], ["tgl", 288, 7], ["tha", 289, 7], ["tir", 290, 7], ["ton", 291, 7], ["tur", 292, 7], ["uig", 293, 7], ["ukr", 294, 7], ["urd", 295, 7], ["uzb", 296, 7], ["uzb_cyrl", 297, 7], ["vie", 298, 7], ["yid", 299, 7], ["yor", 300, 7]]);
-const pos$8 = nix.positions(here + "/languages.nix", [["tessdataRev", 166, 5], ["tessdata", 167, 5], ["all", 168, 5], ["languages", 171, 5]]);
-const pos$9 = nix.positions(here + "/languages.nix", [["makeLanguages", 9, 3], ["v3", 47, 3], ["v4", 165, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,21 +20,21 @@ export default nix.lambda((args) => (() => {
       const all = nix.argOr($_1, "all", () => null);
       const languages = nix.argOr($_1, "languages", () => ({}));
       const tessdataSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tesseract-ocr",
           repo: "tessdata",
           rev: tessdataRev,
           hash: tessdata,
         }))));
       const languageFile = (lang) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/tesseract-ocr/tessdata/raw/${tessdataRev}/${lang}.traineddata`),
           hash: hash,
         })));
       return nix.update({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         all: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "all",
             buildCommand: nix.thunk(() => nix.str`mkdir $out
 cd ${tessdataSrc}
@@ -55,12 +47,12 @@ cp *.traineddata $out
       }, nix.app(nix.sel(lib, "mapAttrs"), languageFile, languages));
     })(), formals$2);
     const v3 = nix.thunk(() => nix.app(makeLanguages, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tessdataRev: "3cf1e2df1fe1d1da29295c9ef0983796c7958b7d",
         tessdata: "sha256-591NFrPdZ9orB9PtxKqsukh6aAq5DDO8yJ19W/Ywi+w=",
         all: "sha256-FuIGfE0bNPvB8ip6cL8GRl0U9T7oD6sx+38CaGyCRno=",
         languages: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           afr: "sha256-birhlXVhETYI4SYipFROA0xGpJtvnEqjEVGlSPy3upU=",
           amh: "sha256-BJ73M3RYuc7ZuLBLr52GLilxdA9mUhXkUK9vPXDTbPE=",
           ara: "sha256-IcmKr3rroicawMxKNj02TYBmSdfLC8q4XUuaOF9JZFo=",
@@ -171,12 +163,12 @@ cp *.traineddata $out
         })),
       }))));
     const v4 = nix.thunk(() => nix.app(makeLanguages, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tessdataRev: "4.1.0",
         tessdata: "sha256-70bp4prs1zUbSzQmcqd7v736cyYWv8oNNbmZXypik5I=",
         all: "sha256-hk+DjoVWf7RW9S+Gu9XUX8aWYYsL5dU5c6jLSKJp+MY=",
         languages: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           afr: "sha256-XsQc6+0/SheO6dcuERKsmko4p7DdyvsSZtVdne1FLqk=",
           amh: "sha256-QIoWQufDlggA/5P5SyxmwSdQZhgXqIyFq/OULrtvO1Q=",
           ara: "sha256-IAWXZ3i7wU/Fak6o1DxggIR67ucvzCIBSI8kDayhXFs=",
@@ -308,7 +300,7 @@ cp *.traineddata $out
           yor: "sha256-m35CeoAKh2Rg8CDVaDgCkuIm1i/4pOutieZZUSJTgx8=",
         })),
       }))));
-    return { [nix.POS]: pos$9, makeLanguages, v3, v4 };
+    return { [nix.POS]: $pos[8], makeLanguages, v3, v4 };
   })();
 })(), formals$1);
 //# sourceMappingURL=languages.ts.map

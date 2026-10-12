@@ -2,9 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nix-generate-from-cpan.nix", [[["description", 32, 5], ["mainProgram", 33, 5], ["platforms", 34, 5], ["license", 35, 5]], [["name", 10, 3], ["nativeBuildInputs", 12, 3], ["buildInputs", 14, 3], ["dontUnpack", 22, 3], ["installPhase", 24, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, makeWrapper: false, perl: false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nix-generate-from-cpan.nix", [["description", 32, 5], ["mainProgram", 33, 5], ["platforms", 34, 5], ["license", 35, 5]]);
-const pos$2 = nix.positions(here + "/nix-generate-from-cpan.nix", [["name", 10, 3], ["nativeBuildInputs", 12, 3], ["buildInputs", 14, 3], ["dontUnpack", 22, 3], ["installPhase", 24, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "nix-generate-from-cpan-3",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => (() => {
@@ -34,7 +33,7 @@ patchShebangs $out/bin/nix-generate-from-cpan
 wrapProgram $out/bin/nix-generate-from-cpan --set PERL5LIB $PERL5LIB
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Utility to generate a Nix expression for a Perl package from CPAN",
         mainProgram: "nix-generate-from-cpan",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

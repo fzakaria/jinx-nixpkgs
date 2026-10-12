@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 38, 5], ["mainProgram", 39, 5], ["longDescription", 40, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 28, 3], ["postInstall", 33, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libpulseaudio: false, libx11: false, makeWrapper: false, sox: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["mainProgram", 39, 5], ["longDescription", 40, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 28, 3], ["postInstall", 33, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const sox = nix.arg($, "sox");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "multimon-ng",
       version: "1.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "EliasOenal",
           repo: "multimon-ng",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/multimon-ng --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [sox]))}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Digital baseband audio protocol decoder",
         mainProgram: "multimon-ng",
         longDescription: "multimon-ng a fork of multimon, a digital baseband audio\nprotocol decoder for common signaling modes in commercial and\namateur radio data services. It decodes the following digital\ntransmission modes:\n\nPOCSAG512 POCSAG1200 POCSAG2400 EAS UFSK1200 CLIPFSK AFSK1200\nAFSK2400 AFSK2400_2 AFSK2400_3 HAPN4800 FSK9600 DTMF ZVEI1 ZVEI2\nZVEI3 DZVEI PZVEI EEA EIA CCIR MORSE CW\n",

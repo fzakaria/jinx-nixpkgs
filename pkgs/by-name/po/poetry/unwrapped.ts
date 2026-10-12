@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unwrapped.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["url", 54, 7], ["hash", 55, 7], ["excludes", 56, 7]], [["changelog", 168, 5], ["homepage", 169, 5], ["description", 170, 5], ["license", 171, 5], ["maintainers", 172, 5], ["mainProgram", 176, 5]], [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["patches", 49, 3], ["build-system", 60, 3], ["nativeBuildInputs", 64, 3], ["dependencies", 68, 3], ["pythonRelaxDeps", 97, 3], ["postInstall", 99, 3], ["nativeCheckInputs", 106, 3], ["preCheck", 115, 3], ["postCheck", 125, 3], ["disabledTests", 129, 3], ["disabledTestMarks", 153, 3], ["pythonNamespaces", 158, 3], ["makeWrapperArgs", 165, 3], ["meta", 167, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, findpython: false, installShellFiles: false, build: false, cachecontrol: false, cleo: false, dulwich: false, fastjsonschema: false, installer: false, keyring: false, packaging: false, "pbs-installer": false, pkginfo: false, platformdirs: false, "poetry-core": false, "pyproject-hooks": false, requests: false, "requests-toolbelt": false, shellingham: false, tomlkit: false, "trove-classifiers": false, virtualenv: false, xattr: false, deepdiff: false, pytestCheckHook: false, httpretty: false, "pytest-mock": false, "pytest-xdist": false, responses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unwrapped.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/unwrapped.nix", [["url", 54, 7], ["hash", 55, 7], ["excludes", 56, 7]]);
-const pos$3 = nix.positions(here + "/unwrapped.nix", [["changelog", 168, 5], ["homepage", 169, 5], ["description", 170, 5], ["license", 171, 5], ["maintainers", 172, 5], ["mainProgram", 176, 5]]);
-const pos$4 = nix.positions(here + "/unwrapped.nix", [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["patches", 49, 3], ["build-system", 60, 3], ["nativeBuildInputs", 64, 3], ["dependencies", 68, 3], ["pythonRelaxDeps", 97, 3], ["postInstall", 99, 3], ["nativeCheckInputs", 106, 3], ["preCheck", 115, 3], ["postCheck", 125, 3], ["disabledTests", 129, 3], ["disabledTestMarks", 153, 3], ["pythonNamespaces", 158, 3], ["makeWrapperArgs", 165, 3], ["meta", 167, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-poetry",
           repo: "poetry",
           tag: version,
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/python-poetry/poetry/commit/aedda8577cd6e7c2d2b983130933a640b1b6545a.patch",
             hash: "sha256-n1etA9em5+kvCN4yiLwBensUb7n6asW+xrIEhA9fNaE=",
             excludes: nix.thunk(() => ["poetry.lock"]),
@@ -111,7 +108,7 @@ export default nix.lambda((args) => (() => {
       const pythonNamespaces = nix.thunk(() => ["poetry"]);
       const makeWrapperArgs = nix.thunk(() => ["--unset PYTHONPATH"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/python-poetry/poetry/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         homepage: "https://python-poetry.org/",
         description: "Python dependency management and packaging made easy",
@@ -126,7 +123,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "poetry",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

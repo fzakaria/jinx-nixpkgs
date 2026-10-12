@@ -2,7 +2,7 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/aliases.nix", [["kak-auto-pairs", 38, 5], ["kak-buffers", 39, 5], ["kak-byline", 40, 5], ["kak-fzf", 41, 5], ["kak-powerline", 42, 5], ["kak-prelude", 43, 5], ["kak-vertical-selection", 44, 5]]);
+const $pos = nix.positions(here + "/aliases.nix", [[["kak-auto-pairs", 38, 5], ["kak-buffers", 39, 5], ["kak-byline", 40, 5], ["kak-fzf", 41, 5], ["kak-powerline", 42, 5], ["kak-prelude", 43, 5], ["kak-vertical-selection", 44, 5]]]);
 
 export default (lib) => (overridden) => (() => {
   const removeRecurseForDerivations = (alias) => (nix.asBool(nix.selOr(alias, () => false, "recurseForDerivations")) ? nix.app(nix.sel(lib, "removeAttrs"), alias, nix.thunk(() => ["recurseForDerivations"])) : nix.force(alias));
@@ -11,7 +11,7 @@ export default (lib) => (overridden) => (() => {
   const mapAliases = (aliases) => nix.app(nix.sel(lib, "mapAttrs"), (n) => (alias) => nix.app(removeDistribute, nix.thunk(() => nix.app(removeRecurseForDerivations, nix.thunk(() => nix.app(checkInPkgs, n, alias))))), aliases);
   const deprecations = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (old) => (info) => nix.builtins.throw(nix.thunk(() => nix.str`${old} was renamed to ${nix.sel(info, "new")} on ${nix.sel(info, "date")}. Please update to ${nix.sel(info, "new")}.`)), nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./deprecated.json")))));
   return nix.app(mapAliases, nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       "kak-auto-pairs": nix.thunk(() => nix.sel(overridden, "auto-pairs-kak")),
       "kak-buffers": nix.thunk(() => nix.sel(overridden, "kakoune-buffers")),
       "kak-byline": nix.thunk(() => nix.sel(overridden, "byline-kak")),

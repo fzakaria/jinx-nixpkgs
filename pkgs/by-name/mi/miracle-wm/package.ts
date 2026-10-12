@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["rev-prefix", 136, 33]], [["vm", 138, 11]], [["updateScript", 136, 5], ["providedSessions", 137, 5], ["tests", 138, 5]], [["description", 142, 5], ["longDescription", 143, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["mainProgram", 153, 5], ["maintainers", 154, 5], ["platforms", 155, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["postPatch", 49, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 65, 3], ["checkInputs", 92, 3], ["dontWrapGApps", 95, 3], ["cmakeFlags", 97, 3], ["doCheck", 107, 3], ["checkPhase", 109, 3], ["postFixup", 119, 3], ["passthru", 135, 3], ["meta", 141, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, gitUpdater: false, nixosTests: false, boost: false, cmake: false, coreutils: false, dbus: false, glib: false, glm: false, gtest: false, gtk4: false, "gtk4-layer-shell": false, json_c: false, libevdev: false, libglvnd: false, libnotify: false, libuuid: false, libxkbcommon: false, libgbm: false, makeWrapper: false, mir: false, nlohmann_json: false, pcre2: false, "pkg-config": false, python3: false, systemd: false, wasmedge: false, wayland: false, "wayland-scanner": false, wrapGAppsHook4: false, "yaml-cpp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 136, 33]]);
-const pos$3 = nix.positions(here + "/package.nix", [["vm", 138, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 136, 5], ["providedSessions", 137, 5], ["tests", 138, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 142, 5], ["longDescription", 143, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["mainProgram", 153, 5], ["maintainers", 154, 5], ["platforms", 155, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["postPatch", 49, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 65, 3], ["checkInputs", 92, 3], ["dontWrapGApps", 95, 3], ["cmakeFlags", 97, 3], ["doCheck", 107, 3], ["checkPhase", 109, 3], ["postFixup", 119, 3], ["passthru", 135, 3], ["meta", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const yaml_cpp = nix.arg($, "yaml-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "miracle-wm",
       version: "0.11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "miracle-wm-org",
           repo: "miracle-wm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -109,13 +104,13 @@ wrapGApp $out/bin/miracle-wm-basic-error-reporter
 wrapGApp $out/bin/miracle-wm-debug-overlay
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
         providedSessions: nix.thunk(() => ["miracle-wm"]),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, vm: nix.thunk(() => nix.sel(nixosTests, "miracle-wm")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], vm: nix.thunk(() => nix.sel(nixosTests, "miracle-wm")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tiling Wayland compositor based on Mir",
         longDescription: nix.thunk(() => nix.str`miracle-wm is a Wayland compositor based on Mir. It features a tiling window manager at its core, very much in
 the style of i3 and sway. The intention is to build a compositor that is flashier and more feature-rich than

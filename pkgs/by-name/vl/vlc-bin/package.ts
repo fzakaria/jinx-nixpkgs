@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["arm64", 29, 9], ["intel64", 30, 9], ["universal", 31, 9]], [["url", 26, 5], ["hash", 27, 5]], [["arm64", 62, 9], ["intel64", 63, 9], ["universal", 64, 9]], [["description", 54, 5], ["homepage", 55, 5], ["downloadPage", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["sourceProvenance", 68, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["sourceRoot", 36, 3], ["nativeBuildInputs", 38, 3], ["installPhase", 43, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, makeWrapper: false, stdenv: false, undmg: false, variant: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["arm64", 29, 9], ["intel64", 30, 9], ["universal", 31, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["arm64", 62, 9], ["intel64", 63, 9], ["universal", 64, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["downloadPage", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["sourceProvenance", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["sourceRoot", 36, 3], ["nativeBuildInputs", 38, 3], ["installPhase", 43, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const variant = nix.argOr($, "variant", () => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) ? "arm64" : (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))) ? "intel64" : "universal")));
   nix.assert_(nix.builtins.elem(variant, nix.thunk(() => ["arm64", "intel64", "universal"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/vl/vlc-bin/package.nix:16:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`vlc-bin-${variant}`),
       version: "3.0.23",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`http://get.videolan.org/vlc/${nix.sel(finalAttrs, "version")}/macosx/vlc-${nix.sel(finalAttrs, "version")}-${variant}.dmg`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             arm64: "sha256-/G+sCNh/U4UX1ErKDF56JEtnyMTLWJv0eDY6cxX9Xg0=",
             intel64: "sha256-7AFTDOadhJ3QV/uoh25orDm/J53CjeTpwE5K7BH8mNs=",
             universal: "sha256-Vu5lfDqvXHG0q31uT0p39uylRjPgv0KpO4EW6x0fbsk=",
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, undmg]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications $out/bin\ncp -r \"VLC.app\" $out/Applications\nmakeWrapper \"$out/Applications/VLC.app/Contents/MacOS/VLC\" \"$out/bin/vlc\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cross-platform media player and streaming server; precompiled binary for MacOS, repacked from official website",
         homepage: "https://www.videolan.org/vlc/",
         downloadPage: "https://www.videolan.org/vlc/download-macosx.html",
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "pcasaretto"))];
         })()),
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "systems", "inspect", "patternLogicalAnd"), nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isDarwin")), nix.thunk(() => nix.sel({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             arm64: nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isAarch64")),
             intel64: nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isx86_64")),
             universal: nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isDarwin")),

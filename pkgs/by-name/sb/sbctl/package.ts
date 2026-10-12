@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["updateScript", 62, 12]], [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 75, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["ldflags", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["postBuild", 42, 3], ["checkFlags", 46, 3], ["postInstall", 52, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, stdenv: false, fetchFromGitHub: false, installShellFiles: false, asciidoc: false, databasePath: true, "nix-update-script": false, "pkg-config": false, pcsclite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["ldflags", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["postBuild", 42, 3], ["checkFlags", 46, 3], ["postInstall", 52, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const pcsclite = nix.arg($, "pcsclite");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sbctl",
       version: "0.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Foxboron",
           repo: "sbctl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,11 +41,11 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["-skip", "github.com/google/go-tpm-tools/.*"]),
       postInstall: nix.thunk(() => nix.add("installManPage docs/sbctl.conf.5 docs/sbctl.8\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd sbctl \\\n  --bash <($out/bin/sbctl completion bash) \\\n  --fish <($out/bin/sbctl completion fish) \\\n  --zsh <($out/bin/sbctl completion zsh)\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Secure Boot key manager",
         mainProgram: "sbctl",
         homepage: "https://github.com/Foxboron/sbctl",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["EMERGE_MP_SOLVER", 51, 13], ["NUMBA_DISABLE_JIT", 52, 13]], [["broken", 54, 14]], [["nativeBuildInputs", 33, 9], ["env", 51, 9], ["meta", 54, 9]], [["name", 64, 7], ["value", 65, 7]]]);
 const formals$1 = { args: { lib: false, runCommand: false, python: false, writableTmpDirAsHomeHook: false, "xvfb-run": false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["EMERGE_MP_SOLVER", 51, 13], ["NUMBA_DISABLE_JIT", 52, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["broken", 54, 14]]);
-const pos$3 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 33, 9], ["env", 51, 9], ["meta", 54, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 64, 7], ["value", 65, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const brokenTests = nix.thunk(() => [nix.path(here, "./resonant-cavity.py")]);
   const nameOf = (file) => nix.app(nix.sel(lib, "removeSuffix"), ".py", nix.thunk(() => nix.app(nix.sel(lib, "baseNameOf"), file)));
   const mkTest = (file) => nix.app(runCommand, nix.thunk(() => nix.str`test-${nix.app(nameOf, file)}`), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       nativeBuildInputs: nix.thunk(() => (() => {
         const pyEnv = nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (ps) => (() => {
             const w = nix.withScope(ps, null);
@@ -40,12 +37,12 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         EMERGE_MP_SOLVER: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(python, "pkgs", "emerge", "cudaSupport")), "CUDSS")),
         NUMBA_DISABLE_JIT: 1n,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.app(nix.sel(lib, "elem"), file, brokenTests)),
       })),
     })), nix.thunk(() => nix.str`xvfb-run python ${file}
@@ -53,7 +50,7 @@ mkdir -p $out
 cp *.png $out
 `));
   const testAttrs = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((file) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: nix.thunk(() => nix.app(nameOf, file)),
         value: nix.thunk(() => nix.app(mkTest, file)),
       }), testFiles))));

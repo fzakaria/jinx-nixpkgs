@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["mcp", 32, 5]], [["updateScript", 43, 12]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 31, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 41, 3], ["passthru", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, jsonschema: false, mcp: false, "nix-update-script": false, pytestCheckHook: false, rich: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mcp", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 43, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 31, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 41, 3], ["passthru", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const rich = nix.arg($, "rich");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pqc-audit",
       version: "0.4.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rauleteee",
           repo: "pqc-scanner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,15 +31,15 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [rich]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, mcp: nix.thunk(() => [mcp]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], mcp: nix.thunk(() => [mcp]) })),
       nativeCheckInputs: nix.thunk(() => [jsonschema, mcp, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pqc_scanner"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library to scan and audit PQC implementations for known vulnerabilities",
         homepage: "https://github.com/rauleteee/pqc-scanner",
         changelog: nix.thunk(() => nix.str`https://github.com/rauleteee/pqc-scanner/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

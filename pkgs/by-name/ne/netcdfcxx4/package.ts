@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["broken", 60, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["preConfigure", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 42, 3], ["doCheck", 48, 3], ["enableParallelChecking", 49, 3], ["preCheck", 50, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, netcdf: false, hdf5: false, curl: false, cmake: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["broken", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["preConfigure", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 42, 3], ["doCheck", 48, 3], ["enableParallelChecking", 49, 3], ["preCheck", 50, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "netcdf-cxx4",
       version: "4.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Unidata",
           repo: "netcdf-cxx4",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./cmake-h5free.patch"),
         nix.path(here, "./netcdf.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "cmake-4.patch",
             url: "https://github.com/Unidata/netcdf-cxx4/commit/8455a69867a420cffa226978174bc0f99029bc8b.patch?full_index=1",
             hash: "sha256-AS2nQIXEW1iSR2LAzvTB04M+kyureJAn63+mPNoCq+0=",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.str`export HDF5_PLUGIN_PATH=${netcdf}/lib/hdf5-plugins
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C++ API to manipulate netcdf files",
         mainProgram: "ncxx4-config",
         homepage: "https://www.unidata.ucar.edu/software/netcdf/",

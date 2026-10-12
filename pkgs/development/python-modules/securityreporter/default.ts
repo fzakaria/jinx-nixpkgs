@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 39, 3], ["disabledTestPaths", 41, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, docker: false, fetchFromGitHub: false, "poetry-core": false, pytestCheckHook: false, requests: false, responses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 39, 3], ["disabledTestPaths", 41, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const responses = nix.arg($, "responses");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "securityreporter",
       version: "1.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dongit-org",
           repo: "python-reporter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["reporter"]),
       disabledTestPaths: nix.thunk(() => ["tests/functional/"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python wrapper for the Reporter API",
         homepage: "https://github.com/dongit-org/python-reporter",
         changelog: nix.thunk(() => nix.str`https://github.com/dongit-org/python-reporter/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

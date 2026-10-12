@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 58, 5], ["homepage", 59, 5], ["mainProgram", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 47, 3], ["doCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "desktop-file-utils": false, glib: false, "gobject-introspection": false, gtk3: false, meson: false, ninja: false, "pkg-config": false, vala: false, wrapGAppsHook3: false, "xvfb-run": false, "libayatana-appindicator": false, libpeas: false, libxtst: false, zeitgeist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["mainProgram", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 47, 3], ["doCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libxtst = nix.arg($, "libxtst");
   const zeitgeist = nix.arg($, "zeitgeist");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "diodon",
       version: "1.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "diodon-dev",
           repo: "diodon",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, libayatana_appindicator, libpeas, libxtst, zeitgeist]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Aiming to be the best integrated clipboard manager for the Unity desktop",
         homepage: "https://launchpad.net/diodon",
         mainProgram: "diodon",

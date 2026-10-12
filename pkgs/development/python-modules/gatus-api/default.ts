@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 27, 3], ["pythonImportsCheck", 32, 3], ["__darwinAllowLocalNetworking", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "pytest-aiohttp": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 27, 3], ["pythonImportsCheck", 32, 3], ["__darwinAllowLocalNetworking", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytest_aiohttp = nix.arg($, "pytest-aiohttp");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gatus-api",
       version: "1.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TN-1",
           repo: "gatus-api",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["gatus_api"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Asynchronous Python client for the Gatus API",
         homepage: "https://github.com/TN-1/gatus-api",
         changelog: nix.thunk(() => nix.str`https://github.com/TN-1/gatus-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

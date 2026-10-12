@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 28, 5], ["sha256", 32, 5]], [["description", 36, 5], ["license", 37, 5], ["homepage", 38, 5], ["platforms", 39, 5]], [["pname", 14, 3], ["version", 15, 3], ["configureFlags", 17, 3], ["buildInputs", 24, 3], ["src", 27, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, checksumType: true, libmhash: true, openssl: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 28, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["license", 37, 5], ["homepage", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["configureFlags", 17, 3], ["buildInputs", 24, 3], ["src", 27, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(nix.eq(checksumType, "mhash")) || nix.asBool(!nix.eq(libmhash, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ne/netrw/package.nix:10:1");
   nix.assert_((!nix.asBool(nix.eq(checksumType, "openssl")) || nix.asBool(!nix.eq(openssl, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ne/netrw/package.nix:11:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "netrw",
       version: "1.3.2",
       configureFlags: nix.thunk(() => [
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(checksumType, "mhash")), libmhash), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(checksumType, "openssl")), openssl))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://mamuti.net/files/netrw/netrw-${nix.sel(finalAttrs, "version")}.tar.bz2`),
             nix.thunk(() => nix.str`http://www.sourcefiles.org/Networking/FTP/Other/netrw-${nix.sel(finalAttrs, "version")}.tar.bz2`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
           sha256: "1gnl80i5zkyj2lpnb4g0q0r5npba1x6cnafl2jb3i3pzlfz1bndr",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple tool for transporting data over the network",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://mamuti.net/netrw/index.en.html",

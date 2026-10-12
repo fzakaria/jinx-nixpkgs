@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["updateScript", 53, 12]], [["description", 56, 5], ["license", 57, 5], ["homepage", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["mainProgram", 64, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["makeFlags", 44, 3], ["doInstallCheck", 49, 3], ["nativeInstallCheckInputs", 50, 3], ["versionCheckProgramArg", 51, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, "pkg-config": false, "wayland-scanner": false, wayland: false, "wayland-protocols": false, libxkbcommon: false, libxcrypt: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["license", 57, 5], ["homepage", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["mainProgram", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["makeFlags", 44, 3], ["doInstallCheck", 49, 3], ["nativeInstallCheckInputs", 50, 3], ["versionCheckProgramArg", 51, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wlock",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sewn",
           repo: "wlock",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,11 +41,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-v",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sessionlocker for Wayland compositors that support the ext-session-lock-v1 protocol",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         homepage: "https://codeberg.org/sewn/wlock",

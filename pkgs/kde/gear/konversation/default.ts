@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 16, 8]], [["pname", 8, 3], ["extraBuildInputs", 10, 3], ["extraNativeBuildInputs", 11, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qttools: false, qtmultimedia: false, qt5compat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 16, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["extraBuildInputs", 10, 3], ["extraNativeBuildInputs", 11, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const qtmultimedia = nix.arg($, "qtmultimedia");
   const qt5compat = nix.arg($, "qt5compat");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "konversation",
       extraBuildInputs: nix.thunk(() => [qt5compat]),
       extraNativeBuildInputs: nix.thunk(() => [qtmultimedia, qttools]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "konversation" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "konversation" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

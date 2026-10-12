@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 19, 5], ["rev", 20, 5], ["repo", 21, 5], ["owner", 22, 5]], [["description", 52, 5], ["mainProgram", 53, 5], ["longDescription", 54, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["license", 63, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 31, 3], ["enableParallelBuilding", 37, 3], ["patchPhase", 39, 3], ["makeFlags", 44, 3], ["postInstall", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, gettext: false, makeWrapper: false, ncurses: false, libdrm: false, libpciaccess: false, libxcb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 19, 5], ["rev", 20, 5], ["repo", 21, 5], ["owner", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["longDescription", 54, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["license", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 31, 3], ["enableParallelBuilding", 37, 3], ["patchPhase", 39, 3], ["makeFlags", 44, 3], ["postInstall", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libpciaccess = nix.arg($, "libpciaccess");
   const libxcb = nix.arg($, "libxcb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "radeontop",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sha256: "0kwqddidr45s1blp0h8r8h1dd1p50l516yb6mb4s6zsc827xzgg3",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           repo: "radeontop",
@@ -39,7 +37,7 @@ substituteInPlace Makefile --replace pkg-config "$PKG_CONFIG"
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       postInstall: "wrapProgram $out/bin/radeontop \\\n  --prefix LD_LIBRARY_PATH : $out/lib\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Top-like tool for viewing AMD Radeon GPU utilization",
         mainProgram: "radeontop",
         longDescription: "View GPU utilization, both for the total activity percent and individual\nblocks. Supports R600 and later cards: even Southern Islands should work.\nWorks with both the open drivers and AMD Catalyst. Total GPU utilization\nis also valid for OpenCL loads; the other blocks are only useful for GL\nloads.\n",

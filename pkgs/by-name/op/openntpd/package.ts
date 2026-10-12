@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["homepage", 40, 5], ["license", 41, 5], ["description", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 19, 3], ["configureFlags", 24, 3], ["buildInputs", 32, 3], ["installFlags", 34, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libressl: false, privsepPath: true, privsepUser: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["license", 41, 5], ["description", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 19, 3], ["configureFlags", 24, 3], ["buildInputs", 32, 3], ["installFlags", 34, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const privsepPath = nix.argOr($, "privsepPath", () => "/var/empty");
   const privsepUser = nix.argOr($, "privsepUser", () => "ntp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openntpd",
       version: "6.8p1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://openbsd/OpenNTPD/openntpd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0ijsylc7a4jlpxsqa0jq1w1c7333id8pcakzl7a5749ria1xp0l5",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libressl]),
       installFlags: nix.thunk(() => ["sysconfdir=${out}/etc", "localstatedir=${TMPDIR}"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.openntpd.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         description: "OpenBSD NTP daemon (Debian port)",

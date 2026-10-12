@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 13, 5], ["version", 14, 26], ["hash", 15, 5]], [["description", 21, 5], ["mainProgram", 22, 5], ["homepage", 23, 5], ["changelog", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 12, 3], ["cargoHash", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 13, 5], ["version", 14, 26], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 21, 5], ["mainProgram", 22, 5], ["homepage", 23, 5], ["changelog", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 12, 3], ["cargoHash", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "minhtml",
       version: "0.18.1",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "minhtml",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-yrZueueww9rQXaHCeBO6d2pO58SZ8yz2a9Ia5dp7lBY=",
         })))),
       cargoHash: "sha256-TFlDbVL8JARwV/xSQ+Cbwguqnr11nw24/L0MbHJazas=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Minifier for HTML, JavaScript, and CSS",
         mainProgram: "minhtml",
         homepage: "https://github.com/wilsonzlin/minify-html",

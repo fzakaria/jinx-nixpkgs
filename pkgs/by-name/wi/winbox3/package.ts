@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 15, 5], ["url", 16, 5], ["hash", 17, 5]], [["url", 27, 9], ["hash", 28, 9]], [["url", 32, 9], ["hash", 33, 9]], [["name", 59, 7], ["desktopName", 60, 7], ["comment", 61, 7], ["exec", 62, 7], ["icon", 63, 7], ["categories", 64, 7]], [["description", 69, 5], ["homepage", 70, 5], ["downloadPage", 71, 5], ["changelog", 72, 5], ["sourceProvenance", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["dontUnpack", 37, 3], ["nativeBuildInputs", 39, 3], ["installPhase", 44, 3], ["desktopItems", 57, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, copyDesktopItems: false, makeDesktopItem: false, makeBinaryWrapper: false, wineWow64Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 15, 5], ["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 9], ["hash", 28, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 32, 9], ["hash", 33, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 59, 7], ["desktopName", 60, 7], ["comment", 61, 7], ["exec", 62, 7], ["icon", 63, 7], ["categories", 64, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["downloadPage", 71, 5], ["changelog", 72, 5], ["sourceProvenance", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["dontUnpack", 37, 3], ["nativeBuildInputs", 39, 3], ["installPhase", 44, 3], ["desktopItems", 57, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const wineWow64Packages = nix.arg($, "wineWow64Packages");
   const wine = nix.thunk(() => nix.sel(wineWow64Packages, "stable"));
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "winbox.png",
       url: "https://aur.archlinux.org/cgit/aur.git/plain/winbox.png?h=winbox",
       hash: "sha256-YD6u2N+1thRnEsXO6AHm138fRda9XEtUX5+EGTg004A=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "winbox",
       version: "3.43",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (nix.asBool(nix.builtins.elem("i686-linux", nix.thunk(() => nix.sel(wine, "meta", "platforms")))) ? {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://download.mikrotik.com/routeros/winbox/${nix.sel(finalAttrs, "version")}/winbox.exe`),
           hash: "sha256-pAOOTgmjQoXI2o2MKTDuOOpb7q0rb/zWATDNyAMOLms=",
         } : {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://download.mikrotik.com/routeros/winbox/${nix.sel(finalAttrs, "version")}/winbox64.exe`),
           hash: "sha256-W0HPUf2B6NCCaH9rUiFZz0q6IubfjtxIZyHU4JUHtuk=",
         })))),
@@ -54,7 +49,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "winbox",
             desktopName: "Winbox",
             comment: "GUI administration for Mikrotik RouterOS",
@@ -64,7 +59,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Graphical configuration utility for RouterOS-based devices",
         homepage: "https://mikrotik.com",
         downloadPage: "https://mikrotik.com/download",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["fetchSubmodules", 43, 5], ["hash", 44, 5]], [["rev-prefix", 96, 5], ["odd-unstable", 97, 5]], [["updateScript", 95, 12]], [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["platforms", 104, 5], ["teams", 105, 5]], [["pname", 30, 3], ["version", 31, 3], ["outputs", 33, 3], ["src", 38, 3], ["patches", 47, 3], ["strictDeps", 54, 3], ["depsBuildBuild", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 71, 3], ["propagatedBuildInputs", 82, 3], ["postPatch", 86, 3], ["mesonFlags", 90, 3], ["passthru", 95, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gettext: false, meson: false, ninja: false, "pkg-config": false, python3: false, vala: false, "wayland-scanner": false, glib: false, gtk3: false, "libdisplay-info": false, libwnck: false, libx11: false, libxrandr: false, wayland: false, "wayland-protocols": false, "wlr-protocols": false, withIntrospection: true, buildPackages: false, "gobject-introspection": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["fetchSubmodules", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 96, 5], ["odd-unstable", 97, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 95, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["platforms", 104, 5], ["teams", 105, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["outputs", 33, 3], ["src", 38, 3], ["patches", 47, 3], ["strictDeps", 54, 3], ["depsBuildBuild", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 71, 3], ["propagatedBuildInputs", 82, 3], ["postPatch", 86, 3], ["mesonFlags", 90, 3], ["passthru", 95, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libxfce4windowing",
       version: "4.20.7",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.xfce.org",
           owner: "xfce",
           repo: "libxfce4windowing",
@@ -69,11 +65,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "vala", withIntrospection)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "libxfce4windowing-", "odd-unstable": true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "libxfce4windowing-", "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Windowing concept abstraction library for X11 and Wayland",
         homepage: "https://gitlab.xfce.org/xfce/libxfce4windowing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

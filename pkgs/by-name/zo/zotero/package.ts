@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["fetchSubmodules", 42, 5], ["hash", 43, 5]], [["pname", 47, 5], ["version", 48, 13], ["nodejs", 48, 21], ["src", 49, 5], ["npmDepsHash", 50, 5], ["buildPhase", 51, 5], ["installPhase", 60, 5]], [["pname", 71, 5], ["version", 72, 13], ["nodejs", 72, 21], ["src", 73, 5], ["npmDepsHash", 74, 5], ["buildPhase", 75, 5], ["installPhase", 83, 5]], [["pname", 94, 5], ["version", 95, 13], ["nodejs", 95, 21], ["src", 96, 5], ["npmDepsHash", 97, 5], ["patches", 98, 5], ["postPatch", 102, 5], ["npmBuildScript", 114, 5], ["installPhase", 115, 5]], [["pname", 126, 5], ["version", 127, 13], ["nodejs", 127, 21], ["src", 128, 5], ["npmDepsHash", 129, 5], ["nativeBuildInputs", 130, 5], ["buildInputs", 134, 5], ["installPhase", 138, 5]], [["pname", 149, 5], ["version", 150, 13], ["nodejs", 150, 21], ["src", 151, 5], ["npmDepsHash", 152, 5], ["makeCacheWritable", 153, 5], ["patches", 154, 5], ["postPatch", 155, 5], ["installPhase", 159, 5]], [["ZOTERO_TEST", 276, 7]], [["name", 292, 7], ["exec", 293, 7], ["icon", 294, 7], ["comment", 295, 7], ["desktopName", 296, 7], ["genericName", 297, 7], ["categories", 298, 7], ["startupNotify", 302, 7], ["mimeTypes", 303, 7]], [["doCheck", 354, 7]], [["build-with-checks", 353, 11]], [["tests", 353, 5], ["updateScript", 356, 5]], [["homepage", 360, 5], ["description", 361, 5], ["changelog", 362, 5], ["mainProgram", 363, 5], ["license", 364, 5], ["platforms", 365, 5], ["maintainers", 366, 5]], [["pname", 172, 5], ["version", 173, 5], ["src", 174, 5], ["nodejs", 175, 5], ["npmDepsHash", 178, 3], ["nativeBuildInputs", 180, 3], ["patches", 198, 3], ["postPatch", 205, 3], ["buildPhase", 233, 3], ["doCheck", 274, 11], ["env", 276, 3], ["nativeCheckInputs", 278, 3], ["checkPhase", 282, 3], ["desktopItems", 290, 3], ["installPhase", 310, 3], ["preFixup", 337, 3], ["postFixup", 347, 3], ["passthru", 352, 3], ["meta", 359, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildNpmPackage: false, darwin: false, nodejs_22: false, perl: false, python3: false, zip: false, unzip: false, xz: false, gawk: false, rsync: false, "pkg-config": false, pango: false, giflib: false, "firefox-esr-153-unwrapped": false, makeDesktopItem: false, copyDesktopItems: false, libGL: false, pciutils: false, "speechd-minimal": false, wrapGAppsHook3: false, "nix-update-script": false, "xvfb-run": false, makeBinaryWrapper: false, doCheck: true, zotero: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["fetchSubmodules", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 47, 5], ["version", 48, 13], ["nodejs", 48, 21], ["src", 49, 5], ["npmDepsHash", 50, 5], ["buildPhase", 51, 5], ["installPhase", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 71, 5], ["version", 72, 13], ["nodejs", 72, 21], ["src", 73, 5], ["npmDepsHash", 74, 5], ["buildPhase", 75, 5], ["installPhase", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 94, 5], ["version", 95, 13], ["nodejs", 95, 21], ["src", 96, 5], ["npmDepsHash", 97, 5], ["patches", 98, 5], ["postPatch", 102, 5], ["npmBuildScript", 114, 5], ["installPhase", 115, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 126, 5], ["version", 127, 13], ["nodejs", 127, 21], ["src", 128, 5], ["npmDepsHash", 129, 5], ["nativeBuildInputs", 130, 5], ["buildInputs", 134, 5], ["installPhase", 138, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 149, 5], ["version", 150, 13], ["nodejs", 150, 21], ["src", 151, 5], ["npmDepsHash", 152, 5], ["makeCacheWritable", 153, 5], ["patches", 154, 5], ["postPatch", 155, 5], ["installPhase", 159, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["ZOTERO_TEST", 276, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 292, 7], ["exec", 293, 7], ["icon", 294, 7], ["comment", 295, 7], ["desktopName", 296, 7], ["genericName", 297, 7], ["categories", 298, 7], ["startupNotify", 302, 7], ["mimeTypes", 303, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["doCheck", 354, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["build-with-checks", 353, 11]]);
-const pos$11 = nix.positions(here + "/package.nix", [["tests", 353, 5], ["updateScript", 356, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["homepage", 360, 5], ["description", 361, 5], ["changelog", 362, 5], ["mainProgram", 363, 5], ["license", 364, 5], ["platforms", 365, 5], ["maintainers", 366, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 172, 5], ["version", 173, 5], ["src", 174, 5], ["nodejs", 175, 5], ["npmDepsHash", 178, 3], ["nativeBuildInputs", 180, 3], ["patches", 198, 3], ["postPatch", 205, 3], ["buildPhase", 233, 3], ["doCheck", 274, 11], ["env", 276, 3], ["nativeCheckInputs", 278, 3], ["checkPhase", 282, 3], ["desktopItems", 290, 3], ["installPhase", 310, 3], ["preFixup", 337, 3], ["postFixup", 347, 3], ["passthru", 352, 3], ["meta", 359, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const pname = "zotero";
   const version = "10.0.4";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "zotero",
       repo: "zotero",
       tag: version,
@@ -59,7 +47,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-vevcTBWo4o2K7ibg+FOetx07EyH3k1V2I43UF2tQrRU=",
     }))));
   const pdf_js = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "zotero-pdf-js",
       version: version,
       nodejs: nodejs,
@@ -69,7 +57,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r . $out\n\nrunHook postInstall\n",
     }))));
   const epub_js = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zotero-epub-js",
       version: version,
       nodejs: nodejs,
@@ -79,7 +67,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r . $out\n\nrunHook postInstall\n",
     }))));
   const pdf_reader = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zotero-pdf-reader",
       version: version,
       nodejs: nodejs,
@@ -104,7 +92,7 @@ cp -r ${src}/chrome/locale/en-US/zotero/* locales/en-US/
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r . $out\n\nrunHook postInstall\n",
     }))));
   const document_worker = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "zotero-document-worker",
       version: version,
       nodejs: nodejs,
@@ -115,7 +103,7 @@ cp -r ${src}/chrome/locale/en-US/zotero/* locales/en-US/
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r . $out\n\nrunHook postInstall\n",
     }))));
   const note_editor = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "zotero-note-editor",
       version: version,
       nodejs: nodejs,
@@ -129,7 +117,7 @@ cp -r ${src}/chrome/locale/en-US/zotero/* locales/en-US/
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r . $out\n\nrunHook postInstall\n",
     }))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: pname,
       version: version,
       src: src,
@@ -186,12 +174,12 @@ runHook postBuild
 `);
       })()),
       doCheck: doCheck,
-      env: nix.thunk(() => ({ [nix.POS]: pos$7, ZOTERO_TEST: doCheck })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[6], ZOTERO_TEST: doCheck })),
       nativeCheckInputs: nix.thunk(() => [xvfb_run]),
       checkPhase: "runHook preCheck\n\nCI=true xvfb-run test/runtests.sh\n\nrunHook postCheck\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "zotero",
             exec: "zotero -url %U",
             icon: "zotero",
@@ -208,15 +196,15 @@ runHook postBuild
 `))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/bin\nmakeWrapper $out/Applications/Zotero.app/Contents/MacOS/zotero $out/bin/zotero\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$10,
-          "build-with-checks": nix.thunk(() => nix.app(nix.sel(zotero, "override"), nix.thunk(() => ({ [nix.POS]: pos$9, doCheck: true })))),
+          [nix.POS]: $pos[9],
+          "build-with-checks": nix.thunk(() => nix.app(nix.sel(zotero, "override"), nix.thunk(() => ({ [nix.POS]: $pos[8], doCheck: true })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         homepage: "https://www.zotero.org",
         description: "Collect, organize, cite, and share your research sources",
         changelog: "https://www.zotero.org/support/changelog",

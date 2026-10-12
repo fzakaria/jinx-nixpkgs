@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["homepage", 44, 5], ["description", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["license", 48, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["dontWrapQtApps", 36, 3], ["outputs", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, meson: false, "pkg-config": false, ninja: false, qtbase: false, qtwayland: false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 44, 5], ["description", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["license", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["dontWrapQtApps", 36, 3], ["outputs", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const qtwayland = nix.arg($, "qtwayland");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wayqt",
       version: "0.3.0-unstable-2026-03-03",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "desktop-frameworks",
           repo: "wayqt",
           rev: "a7dfc9c682dce2721ddd84c17738619a95a23998",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.com/desktop-frameworks/wayqt",
         description: "Qt-based library to handle Wayland and Wlroots protocols to be used with any Qt project",
         maintainers: nix.thunk(() => (() => {

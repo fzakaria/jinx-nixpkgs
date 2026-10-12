@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]], [["CMAKE_ARGS", 45, 7]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["dependencies", 38, 3], ["dontUseCmakeConfigure", 43, 3], ["env", 45, 3], ["nativeCheckInputs", 47, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, setuptools: false, "setuptools-scm": false, "backports-zstd": false, numpy: false, pybind11: false, wheel: false, pytestCheckHook: false, graphviz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CMAKE_ARGS", 45, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["dependencies", 38, 3], ["dontUseCmakeConfigure", 43, 3], ["env", 45, 3], ["nativeCheckInputs", 47, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const graphviz = nix.arg($, "graphviz");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyhepmc",
       version: "2.16.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scikit-hep",
           repo: "pyhepmc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,13 +37,13 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [backports_zstd, numpy]),
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CMAKE_ARGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DEXTERNAL_PYBIND11=ON"]))),
       })),
       nativeCheckInputs: nix.thunk(() => [graphviz, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pyhepmc"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Easy-to-use Python bindings for HepMC3",
         homepage: "https://github.com/scikit-hep/pyhepmc",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-hep/pyhepmc/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

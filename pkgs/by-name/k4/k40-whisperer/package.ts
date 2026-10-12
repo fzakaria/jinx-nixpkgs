@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["stripRoot", 35, 5], ["sha256", 36, 5]], [["description", 68, 5], ["mainProgram", 71, 5], ["longDescription", 72, 5], ["homepage", 77, 5], ["downloadPage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 39, 3], ["patchPhase", 44, 3], ["buildPhase", 49, 3], ["doInstallCheck", 51, 3], ["installPhase", 53, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { stdenv: false, makeWrapper: false, writeText: false, python3: false, fetchzip: false, inkscape: false, lib: false, udevCheckHook: false, udevGroup: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["stripRoot", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["mainProgram", 71, 5], ["longDescription", 72, 5], ["homepage", 77, 5], ["downloadPage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 39, 3], ["patchPhase", 44, 3], ["buildPhase", 49, 3], ["doInstallCheck", 51, 3], ["installPhase", 53, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const udevRule = nix.thunk(() => nix.app(writeText, "k40-whisperer.rules", nix.thunk(() => nix.str`SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="5512", ENV{DEVTYPE}=="usb_device", MODE="0664", GROUP="${udevGroup}"
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "k40-whisperer",
       version: "0.71",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.scorchworks.com/K40whisperer/K40_Whisperer-${nix.sel(finalAttrs, "version")}_src.zip`),
           stripRoot: true,
           sha256: "sha256-Xj+o1Mo1e6Sp/DlY3QSo0h8sldn4Rt47JqYHEqzgZAY=",
@@ -59,7 +57,7 @@ makeWrapper '${nix.sel(pythonEnv, "interpreter")}' $out/bin/k40-whisperer \\
   --prefix PYTHONPATH : $out
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Control software for the stock K40 Laser controller\n",
         mainProgram: "k40-whisperer",
         longDescription: "K40 Whisperer is an alternative to the the Laser Draw (LaserDRW) program that comes with the cheap Chinese laser cutters available on E-Bay and Amazon.\nK40 Whisperer reads SVG and DXF files, interprets the data and sends commands to the K40 controller to move the laser head and control the laser accordingly.\nK40 Whisperer does not require a USB key (dongle) to function.\n",

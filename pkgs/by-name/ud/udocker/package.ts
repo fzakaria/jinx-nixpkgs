@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["package", 59, 43]], [["version", 59, 11]], [["tests", 59, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["buildInputs", 29, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 41, 3], ["disabledTests", 45, 3], ["disabledTestPaths", 50, 3], ["pythonImportsCheck", 56, 3], ["passthru", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, singularity: false, python3Packages: false, testers: false, udocker: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 59, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 59, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["buildInputs", 29, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 41, 3], ["disabledTests", 45, 3], ["disabledTestPaths", 50, 3], ["pythonImportsCheck", 56, 3], ["passthru", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const udocker = nix.arg($, "udocker");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "udocker",
       version: "1.3.17",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "indigo-dc",
           repo: "udocker",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,14 +43,14 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/unit/test_curl.py", "tests/unit/test_dockerioapi.py"]),
       pythonImportsCheck: nix.thunk(() => ["udocker"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: udocker })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: udocker })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Basic user tool to execute simple docker containers in user space without root privileges",
         homepage: "https://indigo-dc.gitbooks.io/udocker",
         changelog: nix.thunk(() => nix.str`https://github.com/indigo-dc/udocker/releases/tag/${nix.sel(finalAttrs, "version")}`),

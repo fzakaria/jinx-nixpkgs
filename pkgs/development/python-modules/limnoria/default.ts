@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 26], ["version", 23, 32], ["hash", 24, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 27, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 44, 3], ["checkPhase", 46, 3], ["pythonImportsCheck", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, setuptools: false, chardet: false, cryptography: false, feedparser: false, fetchPypi: false, mock: false, pysocks: false, pytestCheckHook: false, "python-dateutil": false, "python-gnupg": false, pytz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 26], ["version", 23, 32], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 27, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 44, 3], ["checkPhase", 46, 3], ["pythonImportsCheck", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const python_gnupg = nix.arg($, "python-gnupg");
   const pytz = nix.arg($, "pytz");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "limnoria",
       version: "2026.3.21",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-hg4NYKyUMu4jDv9i3gdejbz0w/v0ptswzO7TUSXP3+4=",
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\nexport PATH=\"$PATH:$out/bin\";\nsupybot-test test -v --no-network\nrunHook postCheck\n",
       pythonImportsCheck: nix.thunk(() => ["supybot"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modified version of Supybot, an IRC bot",
         homepage: "https://github.com/ProgVal/Limnoria",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

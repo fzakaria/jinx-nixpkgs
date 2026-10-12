@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/minimal.nix", [[["description", 10, 5], ["longDescription", 11, 5]], [["meta", 9, 3]]]);
 const formals$1 = { args: { callPackage: false, "timeshift-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/minimal.nix", [["description", 10, 5], ["longDescription", 11, 5]]);
-const pos$2 = nix.positions(here + "/minimal.nix", [["meta", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const timeshift_unwrapped = nix.arg($, "timeshift-unwrapped");
   const timeshift_wrapper = nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(nix.app(timeshift_wrapper, timeshift_unwrapped, []), "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.add(nix.sel(oldAttrs, "meta", "description"), " (without runtime dependencies)")),
         longDescription: nix.thunk(() => nix.add(nix.sel(oldAttrs, "meta", "longDescription"), "This package is a wrapped version of timeshift-unwrapped\nwithout runtime dependencies of command utilities.\n")),
       })),

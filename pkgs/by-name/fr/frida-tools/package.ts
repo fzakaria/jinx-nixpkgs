@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 13, 26], ["pname", 14, 5], ["hash", 15, 5]], [["description", 36, 5], ["homepage", 37, 5], ["maintainers", 38, 5], ["license", 42, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 18, 3], ["pythonRelaxDeps", 22, 3], ["dependencies", 27, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 13, 26], ["pname", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["maintainers", 38, 5], ["license", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 18, 3], ["pythonRelaxDeps", 22, 3], ["dependencies", 27, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "frida-tools",
       version: "14.10.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "frida_tools",
           hash: "sha256-eixUS1RdCVBA//vTdoooekJjQ9rYkJW0ok9LIDgtkmo=",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Dynamic instrumentation toolkit for developers, reverse-engineers, and security researchers (client tools)",
         homepage: "https://www.frida.re/",
         maintainers: nix.thunk(() => (() => {

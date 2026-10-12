@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["updateScript", 42, 12]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5], ["platforms", 50, 5]], [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["passthru", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, "nix-update-script": false, modemmanager: false, glib: false, libqmi: false, qrtr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 42, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5], ["platforms", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["passthru", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const libqmi = nix.arg($, "libqmi");
   const qrtr = nix.arg($, "qrtr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "81voltd",
       version: "1.2.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.postmarketos.org",
           owner: "modem",
           repo: "81voltd",
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [modemmanager, glib, libqmi, qrtr]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Server-side implementation of the QMI IMS Data service",
         homepage: "https://gitlab.postmarketos.org/modem/81voltd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["description", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["homepage", 69, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 32, 3], ["cmakeFlags", 54, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, cmake: false, "pkg-config": false, grantlee: false, sqlcipher: false, libofx: false, "shared-mime-info": false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["homepage", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 32, 3], ["cmakeFlags", 54, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "skrooge",
       version: "26.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kde/stable/skrooge/skrooge-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-TkrFiXZUsp+sTt3bW1lrKqJvNvBI8Jo8R8x947SdjCI=",
         })))),
@@ -71,7 +69,7 @@ export default nix.lambda((args) => (() => {
         "-DBUILD_TESTS=ON",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Personal finances manager, powered by KDE",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         maintainers: nix.thunk(() => (() => {

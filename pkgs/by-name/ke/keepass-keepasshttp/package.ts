@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 7], ["repo", 16, 7], ["rev", 20, 7], ["sha256", 21, 7]], [["description", 25, 7], ["homepage", 26, 7], ["platforms", 27, 7], ["license", 28, 7]], [["pname", 12, 5], ["version", 13, 13], ["src", 14, 5], ["meta", 24, 5], ["pluginFilename", 31, 5], ["installPhase", 33, 5]], [["pname", 41, 17], ["version", 41, 23], ["paths", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildEnv: false, fetchFromGitHub: false, mono: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 7], ["repo", 16, 7], ["rev", 20, 7], ["sha256", 21, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 7], ["homepage", 26, 7], ["platforms", 27, 7], ["license", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 5], ["version", 13, 13], ["src", 14, 5], ["meta", 24, 5], ["pluginFilename", 31, 5], ["installPhase", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 41, 17], ["version", 41, 23], ["paths", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const mono = nix.arg($, "mono");
   const version = "1.8.4.2";
   const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "keepasshttp",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pfn",
           repo: "keepasshttp",
           rev: "c2c4eb5388a02169400cba7a67be325caabdcc37",
           sha256: "0bkzxggbqx7sql3sp46bqham6r457in0vrgh3ai3lw2jrw79pwmh",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "KeePass plugin to expose password entries securely (256bit AES/CBC) over HTTP",
         homepage: "https://github.com/pfn/keepasshttp",
         platforms: nix.thunk(() => (() => {
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/lib/dotnet/keepass/\ncp $pluginFilename $out/lib/dotnet/keepass/$pluginFilename\n",
     }))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.attr(drv, "pname")),
       version: nix.thunk(() => nix.attr(drv, "version")),
       paths: nix.thunk(() => [mono, drv]),

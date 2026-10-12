@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 41, 3], ["preCheck", 52, 3], ["postCheck", 67, 3], ["disabledTests", 72, 3], ["pythonImportsCheck", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, django: false, "python-dateutil": false, "dj-database-url": false, freezegun: false, postgresql: false, psycopg2: false, "pytest-django": false, "pytest-freezegun": false, "pytest-lazy-fixture": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 41, 3], ["preCheck", 52, 3], ["postCheck", 67, 3], ["disabledTests", 72, 3], ["pythonImportsCheck", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SectorLabs",
           repo: "django-postgres-extra",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(django, "version")), "5.2")), nix.thunk(() => ["test_query_annotate_rename_chain"])))));
       const pythonImportsCheck = nix.thunk(() => ["psqlextra"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bringing all of PostgreSQL's awesomeness to Django",
         homepage: "https://github.com/SectorLabs/django-postgres-extra",
         changelog: nix.thunk(() => nix.str`https://github.com/SectorLabs/django-postgres-extra/releases/tag/v${version}`),
@@ -72,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

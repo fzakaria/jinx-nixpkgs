@@ -2,32 +2,28 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fontconfig-bitmap-fonts.nix", [[["allowBitmaps", 11, 24]], [["packages", 8, 13], ["fontconfig", 11, 13]], [["fonts", 8, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 14, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/fontconfig-bitmap-fonts.nix", [["allowBitmaps", 11, 24]]);
-const pos$2 = nix.positions(here + "/fontconfig-bitmap-fonts.nix", [["packages", 8, 13], ["fontconfig", 11, 13]]);
-const pos$3 = nix.positions(here + "/fontconfig-bitmap-fonts.nix", [["fonts", 8, 7]]);
-const pos$4 = nix.positions(here + "/fontconfig-bitmap-fonts.nix", [["machine", 5, 9]]);
-const pos$5 = nix.positions(here + "/fontconfig-bitmap-fonts.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     name: "fontconfig-bitmap-fonts",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           fonts: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "terminus_font"))]),
-            fontconfig: nix.thunk(() => ({ [nix.POS]: pos$1, allowBitmaps: true })),
+            fontconfig: nix.thunk(() => ({ [nix.POS]: $pos[0], allowBitmaps: true })),
           })),
         };
       })(), formals$2),

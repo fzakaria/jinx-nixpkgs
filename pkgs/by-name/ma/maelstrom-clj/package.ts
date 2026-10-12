@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["mainProgram", 52, 5], ["sourceProvenance", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["installPhase", 21, 3], ["nativeBuildInputs", 36, 3], ["runtimeDependencies", 40, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, makeWrapper: false, git: false, coreutils: false, jdk: false, gnuplot: false, graphviz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["mainProgram", 52, 5], ["sourceProvenance", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["installPhase", 21, 3], ["nativeBuildInputs", 36, 3], ["runtimeDependencies", 40, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gnuplot = nix.arg($, "gnuplot");
   const graphviz = nix.arg($, "graphviz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "maelstrom",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/jepsen-io/maelstrom/releases/download/v${nix.sel(finalAttrs, "version")}/maelstrom.tar.bz2`),
           hash: "sha256-MB7HHWsSrw12XttBP1z1qhBGtWCb1OMTdqC1SVSOV5k=",
         })))),
@@ -43,7 +41,7 @@ runHook postInstall
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       runtimeDependencies: nix.thunk(() => [git, coreutils, jdk, gnuplot, graphviz]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Workbench for writing toy implementations of distributed systems",
         homepage: "https://github.com/jepsen-io/maelstrom",
         changelog: nix.thunk(() => nix.str`https://github.com/jepsen-io/maelstrom/releases/tag/v${nix.sel(finalAttrs, "version")}`),

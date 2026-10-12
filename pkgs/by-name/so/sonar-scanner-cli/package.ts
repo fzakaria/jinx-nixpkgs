@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["updateScript", 70, 5]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5], ["platforms", 79, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["mvnHash", 23, 3], ["mvnParameters", 25, 3], ["nativeBuildInputs", 27, 3], ["doCheck", 33, 3], ["installPhase", 50, 3], ["passthru", 69, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, coreutils: false, fetchFromGitHub: false, jre: false, libarchive: false, makeWrapper: false, maven: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5], ["platforms", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["mvnHash", 23, 3], ["mvnParameters", 25, 3], ["nativeBuildInputs", 27, 3], ["doCheck", 33, 3], ["installPhase", 50, 3], ["passthru", 69, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sonar-scanner-cli";
       const version = "8.1.0.6389";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SonarSource",
           repo: "sonar-scanner-cli",
           tag: version,
@@ -45,11 +42,11 @@ wrapProgram $out/bin/sonar-scanner-debug \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils]))}
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Scanner CLI for SonarQube and SonarCloud",
         homepage: "https://github.com/SonarSource/sonar-scanner-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -61,7 +58,7 @@ wrapProgram $out/bin/sonar-scanner-debug \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

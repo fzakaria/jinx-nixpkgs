@@ -2,18 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dictionaries-chromium.nix", [[["url", 19, 9], ["rev", 20, 9], ["hash", 21, 9]], [["dictFileName", 34, 17], ["updateScript", 36, 9]], [["homepage", 40, 9], ["description", 41, 9], ["longDescription", 42, 9], ["license", 47, 9], ["maintainers", 53, 9], ["platforms", 54, 9]], [["pname", 15, 7], ["version", 16, 7], ["src", 18, 7], ["dontBuild", 24, 7], ["installPhase", 26, 7], ["passthru", 30, 7], ["meta", 39, 7]], [["shortName", 66, 5], ["dictFileName", 67, 5], ["shortDescription", 68, 5]], [["shortName", 73, 5], ["dictFileName", 74, 5], ["shortDescription", 75, 5]], [["shortName", 82, 5], ["dictFileName", 83, 5], ["shortDescription", 84, 5]], [["shortName", 91, 5], ["dictFileName", 92, 5], ["shortDescription", 93, 5]], [["shortName", 100, 5], ["dictFileName", 101, 5], ["shortDescription", 102, 5]], [["mkDictFromChromium", 60, 11], ["en_US", 64, 3], ["en-us", 65, 3], ["en_GB", 71, 3], ["en-gb", 72, 3], ["de_DE", 80, 3], ["de-de", 81, 3], ["fr_FR", 89, 3], ["fr-fr", 90, 3], ["sv_SE", 98, 3], ["sv-se", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false }, ellipsis: false };
 const formals$2 = { args: { shortName: false, dictFileName: false, shortDescription: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dictionaries-chromium.nix", [["url", 19, 9], ["rev", 20, 9], ["hash", 21, 9]]);
-const pos$2 = nix.positions(here + "/dictionaries-chromium.nix", [["dictFileName", 34, 17], ["updateScript", 36, 9]]);
-const pos$3 = nix.positions(here + "/dictionaries-chromium.nix", [["homepage", 40, 9], ["description", 41, 9], ["longDescription", 42, 9], ["license", 47, 9], ["maintainers", 53, 9], ["platforms", 54, 9]]);
-const pos$4 = nix.positions(here + "/dictionaries-chromium.nix", [["pname", 15, 7], ["version", 16, 7], ["src", 18, 7], ["dontBuild", 24, 7], ["installPhase", 26, 7], ["passthru", 30, 7], ["meta", 39, 7]]);
-const pos$5 = nix.positions(here + "/dictionaries-chromium.nix", [["shortName", 66, 5], ["dictFileName", 67, 5], ["shortDescription", 68, 5]]);
-const pos$6 = nix.positions(here + "/dictionaries-chromium.nix", [["shortName", 73, 5], ["dictFileName", 74, 5], ["shortDescription", 75, 5]]);
-const pos$7 = nix.positions(here + "/dictionaries-chromium.nix", [["shortName", 82, 5], ["dictFileName", 83, 5], ["shortDescription", 84, 5]]);
-const pos$8 = nix.positions(here + "/dictionaries-chromium.nix", [["shortName", 91, 5], ["dictFileName", 92, 5], ["shortDescription", 93, 5]]);
-const pos$9 = nix.positions(here + "/dictionaries-chromium.nix", [["shortName", 100, 5], ["dictFileName", 101, 5], ["shortDescription", 102, 5]]);
-const pos$10 = nix.positions(here + "/dictionaries-chromium.nix", [["mkDictFromChromium", 60, 11], ["en_US", 64, 3], ["en-us", 65, 3], ["en_GB", 71, 3], ["en-gb", 72, 3], ["de_DE", 80, 3], ["de-de", 81, 3], ["fr_FR", 89, 3], ["fr-fr", 90, 3], ["sv_SE", 98, 3], ["sv-se", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +17,11 @@ export default nix.lambda((args) => (() => {
     const dictFileName = nix.arg($_1, "dictFileName");
     const shortDescription = nix.arg($_1, "shortDescription");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: nix.thunk(() => nix.str`hunspell-dict-${shortName}-chromium`),
         version: "145.0.7632.45",
         src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://chromium.googlesource.com/chromium/deps/hunspell_dictionaries",
             rev: "cccf64a8acc951afe3f47fee023908e55699bc58",
             hash: "sha256-mYDPXa64IOKLMNiBiMqDrQMR7gDPI+vdyVc+M7E+ddc=",
@@ -39,12 +30,12 @@ export default nix.lambda((args) => (() => {
         installPhase: nix.thunk(() => nix.str`cp ${dictFileName} $out
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           dictFileName: dictFileName,
           updateScript: nix.path(here, "./update-chromium-dictionaries.py"),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           homepage: "https://chromium.googlesource.com/chromium/deps/hunspell_dictionaries/",
           description: nix.thunk(() => nix.str`Chromium compatible hunspell dictionary for ${shortDescription}`),
           longDescription: "Humspell directories in Chromium's custom bdic format\n\nSee https://www.chromium.org/developers/how-tos/editing-the-spell-checking-dictionaries/\n",
@@ -68,7 +59,7 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const mkDictFromChromium_1 = mkDictFromChromium;
     const en_us = nix.thunk(() => nix.app(mkDictFromChromium_1, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         shortName: "en-us",
         dictFileName: "en-US-10-1.bdic",
         shortDescription: "English (United States)",
@@ -76,34 +67,34 @@ export default nix.lambda((args) => (() => {
     const en_US = en_us;
     const en_GB = en_us;
     const en_gb = nix.thunk(() => nix.app(mkDictFromChromium_1, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         shortName: "en-gb",
         dictFileName: "en-GB-10-1.bdic",
         shortDescription: "English (United Kingdom)",
       }))));
     const de_de = nix.thunk(() => nix.app(mkDictFromChromium_1, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         shortName: "de-de",
         dictFileName: "de-DE-3-0.bdic",
         shortDescription: "German (Germany)",
       }))));
     const de_DE = de_de;
     const fr_fr = nix.thunk(() => nix.app(mkDictFromChromium_1, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         shortName: "fr-fr",
         dictFileName: "fr-FR-3-0.bdic",
         shortDescription: "French (France)",
       }))));
     const fr_FR = fr_fr;
     const sv_se = nix.thunk(() => nix.app(mkDictFromChromium_1, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         shortName: "sv-se",
         dictFileName: "sv-SE-3-0.bdic",
         shortDescription: "Swedish (Sweden)",
       }))));
     const sv_SE = sv_se;
     return {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       mkDictFromChromium: mkDictFromChromium_1,
       en_US,
       "en-us": en_us,

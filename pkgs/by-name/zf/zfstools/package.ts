@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 12, 5], ["gemdir", 13, 5]], [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 45, 5], ["homepage", 46, 5], ["longDescription", 47, 5], ["license", 51, 5], ["platforms", 52, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["buildInputs", 28, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 31, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, bundlerEnv: false, stdenv: false, fetchFromGitHub: false, zfs: false, freebsd: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 12, 5], ["gemdir", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["longDescription", 47, 5], ["license", 51, 5], ["platforms", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["buildInputs", 28, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 31, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const zfs = nix.arg($, "zfs");
   const freebsd = nix.arg($, "freebsd");
   const makeWrapper = nix.arg($, "makeWrapper");
-  const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({ [nix.POS]: pos$1, name: "zfstools-gems", gemdir: nix.path(here, "./.") }))));
+  const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({ [nix.POS]: $pos[0], name: "zfstools-gems", gemdir: nix.path(here, "./.") }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zfstools",
       version: "0.3.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "bdrewery",
           repo: "zfstools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +40,7 @@ for f in $out/bin/*; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OpenSolaris-compatible auto-snapshotting script for ZFS",
         homepage: "https://github.com/bdrewery/zfstools",
         longDescription: "zfstools is an OpenSolaris-like and compatible auto snapshotting script\nfor ZFS, which also supports auto snapshotting mysql databases.\n",

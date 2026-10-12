@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["url", 34, 7], ["name", 35, 7], ["hash", 36, 7]], [["homepage", 46, 5], ["description", 47, 5], ["platforms", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["strictDeps", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["configureFlags", 23, 3], ["outputs", 25, 3], ["patches", 32, 3], ["postInstall", 40, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openssl: false, fetchpatch: false, "lksctp-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 7], ["name", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["description", 47, 5], ["platforms", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["strictDeps", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["configureFlags", 23, 3], ["outputs", 25, 3], ["patches", 32, 3], ["postInstall", 40, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const lksctp_tools = nix.arg($, "lksctp-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "iperf",
       version: "3.21",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.es.net/pub/iperf/iperf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ZW5EBevWIBId587KPq9DqI956huFfQQaagsTFIAazdg=",
         })))),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "lib", "man"]),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://git.alpinelinux.org/aports/plain/main/iperf3/remove-pg-flags.patch?id=7f979fc51ae31d5c695d8481ba84a4afc5080efb",
               name: "remove-pg-flags.patch",
               hash: "sha256-cT3etRWaNRQrw7Gz4oTp6L5SJdKI/lrDywhYelzVf3w=",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         ]))),
       postInstall: "ln -s $out/bin/iperf3 $out/bin/iperf\nln -s $man/share/man/man1/iperf3.1 $man/share/man/man1/iperf.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://software.es.net/iperf/",
         description: "Tool to measure IP bandwidth using UDP or TCP",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

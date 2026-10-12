@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["package", 32, 37]], [["version", 32, 5]], [["tests", 31, 12]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["npmDepsHash", 25, 3], ["postInstall", 27, 3], ["passthru", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, jq: false, quicktype: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 32, 37]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 31, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["npmDepsHash", 25, 3], ["postInstall", 27, 3], ["passthru", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "quicktype";
       const version = "23.0.105";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "glideapps",
           repo: "quicktype",
           rev: "0b5924db1d3858d6f4abe5923cce53b2f4e581aa",
@@ -33,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-RA4HVQfB/ge1aIKl9HiUT7vUM5n+Ro6N2D6xj1dgSu8=";
       const postInstall = "mv packages/ $out/lib/node_modules/quicktype/\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: quicktype })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: quicktype })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Generate types and converters from JSON, Schema, and GraphQL",
         homepage: "https://quicktype.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -48,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "quicktype",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

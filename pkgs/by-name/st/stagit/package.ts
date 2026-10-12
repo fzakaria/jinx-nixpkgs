@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["platforms", 26, 5], ["maintainers", 27, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["makeFlags", 18, 3], ["buildInputs", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, libgit2: false, fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["platforms", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["makeFlags", 18, 3], ["buildInputs", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const libgit2 = nix.arg($, "libgit2");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "stagit",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.codemadness.org/stagit",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-GPJs63ElNBJFn571ZKLiQ8pABr4jX/fj2t53wDS284o=",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       buildInputs: nix.thunk(() => [libgit2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Git static site generator",
         homepage: "https://git.codemadness.org/stagit/file/README.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

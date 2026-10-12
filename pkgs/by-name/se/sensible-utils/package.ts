@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 20, 3], ["dontConfigure", 22, 3], ["installPhase", 24, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 20, 3], ["dontConfigure", 22, 3], ["installPhase", 24, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sensible-utils",
       version: "0.0.26",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "sensible-utils",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       installPhase: "mkdir -p $out/bin\n\ncp sensible-browser sensible-editor sensible-pager sensible-terminal $out/bin/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of utilities used by programs to sensibly select and spawn an appropriate browser, editor, or pager",
         longDescription: "The specific utilities included are:\n- sensible-browser\n- sensible-editor\n- sensible-pager\n",
         homepage: "https://salsa.debian.org/debian/sensible-utils",

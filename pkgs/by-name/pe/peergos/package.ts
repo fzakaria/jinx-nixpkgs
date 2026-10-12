@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 7], ["repo", 21, 7], ["rev", 22, 7], ["hash", 23, 7]], [["pname", 16, 5], ["version", 17, 5], ["src", 19, 5], ["postPatch", 26, 5], ["makeFlags", 31, 5], ["nativeBuildInputs", 33, 5], ["installPhase", 37, 5]], [["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5], ["fetchSubmodules", 51, 5]], [["updateScript", 86, 12]], [["changelog", 89, 5], ["description", 90, 5], ["downloadPage", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5], ["platforms", 102, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["nativeBuildInputs", 54, 3], ["postPatch", 61, 3], ["buildPhase", 66, 3], ["installPhase", 72, 3], ["passthru", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ant: false, jdk25: false, "openjdk8-bootstrap": false, jre: false, stripJavaArchivesHook: false, makeWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 7], ["repo", 21, 7], ["rev", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 16, 5], ["version", 17, 5], ["src", 19, 5], ["postPatch", 26, 5], ["makeFlags", 31, 5], ["nativeBuildInputs", 33, 5], ["installPhase", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5], ["fetchSubmodules", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 86, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 89, 5], ["description", 90, 5], ["downloadPage", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5], ["platforms", 102, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["nativeBuildInputs", 54, 3], ["postPatch", 61, 3], ["buildPhase", 66, 3], ["installPhase", 72, 3], ["passthru", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   const tweetnacl = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "tweetnacl",
       version: "0-unstable-2025-11-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ianopolous",
           repo: "tweetnacl-java",
           rev: "0cf99e1921b79eb91bc4c27cc15a27e325dbdb75",
@@ -42,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "peergos";
       const version = "1.36.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "Peergos",
           repo: "web-ui",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -67,11 +62,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/peergos \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/Peergos/web-ui/releases/tag/v${version}`),
         description: "P2P, secure file storage, social network and application protocol",
         downloadPage: "https://github.com/Peergos/web-ui",
@@ -91,7 +86,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["package", 58, 5], ["command", 59, 5]], [["version", 57, 18]], [["tests", 57, 12]], [["description", 63, 5], ["mainProgram", 64, 5], ["license", 65, 5], ["homepage", 66, 5], ["maintainers", 67, 5], ["broken", 69, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["modRoot", 25, 3], ["patches", 27, 3], ["nativeBuildInputs", 36, 3], ["ldflags", 38, 3], ["nativeCheckInputs", 44, 3], ["postFixup", 54, 3], ["passthru", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, git: false, sigtool: false, testers: false, linuxkit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["package", 58, 5], ["command", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 57, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 57, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["license", 65, 5], ["homepage", 66, 5], ["maintainers", 67, 5], ["broken", 69, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["modRoot", 25, 3], ["patches", 27, 3], ["nativeBuildInputs", 36, 3], ["ldflags", 38, 3], ["nativeCheckInputs", 44, 3], ["postFixup", 54, 3], ["passthru", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "linuxkit";
       const version = "1.8.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxkit",
           repo: "linuxkit",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -45,14 +40,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [git]);
       const postFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "make sign LOCAL_TARGET=$out/bin/linuxkit\n"));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: linuxkit, command: "linuxkit version" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: linuxkit, command: "linuxkit version" })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Toolkit for building secure, portable and lean operating systems for containers",
         mainProgram: "linuxkit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -64,7 +59,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

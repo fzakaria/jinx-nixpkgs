@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda_cudart.nix", [[["description", 98, 8]], [["redistName", 15, 3], ["pname", 16, 3], ["outputs", 21, 3], ["includeRemoveStubsFromRunpathHook", 26, 3], ["propagatedBuildOutputs", 28, 3], ["propagatedBuildInputs", 37, 3], ["allowFHSReferences", 54, 3], ["postPatch", 57, 3], ["postInstall", 86, 3], ["disallowedRequisites", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { _cuda: false, addDriverRunpath: false, buildRedist: false, cccl: false, cuda_compat: false, cuda_crt: false, cuda_nvcc: false, cudaAtLeast: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda_cudart.nix", [["description", 98, 8]]);
-const pos$2 = nix.positions(here + "/cuda_cudart.nix", [["redistName", 15, 3], ["pname", 16, 3], ["outputs", 21, 3], ["includeRemoveStubsFromRunpathHook", 26, 3], ["propagatedBuildOutputs", 28, 3], ["propagatedBuildInputs", 37, 3], ["allowFHSReferences", 54, 3], ["postPatch", 57, 3], ["postInstall", 86, 3], ["disallowedRequisites", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const cudaAtLeast = nix.arg($, "cudaAtLeast");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "cuda_cudart",
       outputs: nix.thunk(() => ["out"]),
@@ -48,7 +47,7 @@ unset -v path
 `)),
       postInstall: "pushd \"${!outputStubs:?}/lib/stubs\" >/dev/null\nif [[ -f libcuda.so && ! -f libcuda.so.1 ]]; then\n  nixLog \"creating versioned symlink for libcuda.so stub\"\n  ln -srv libcuda.so libcuda.so.1\nfi\npopd >/dev/null\n",
       disallowedRequisites: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getBin"), cuda_nvcc))]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "CUDA Runtime" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "CUDA Runtime" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=cuda_cudart.ts.map

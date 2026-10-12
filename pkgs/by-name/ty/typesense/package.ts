@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 13]], [["typesense", 38, 36]], [["tests", 38, 5], ["updateScript", 39, 5]], [["homepage", 43, 5], ["description", 44, 5], ["mainProgram", 45, 5], ["license", 46, 5], ["sourceProvenance", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]], [["pname", 18, 3], ["version", 19, 11], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["sourceRoot", 30, 3], ["installPhase", 32, 3], ["passthru", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["typesense", 38, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 38, 5], ["updateScript", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["mainProgram", 45, 5], ["license", 46, 5], ["sourceProvenance", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 11], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["sourceRoot", 30, 3], ["installPhase", 32, 3], ["passthru", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const arch = nix.thunk(() => nix.attr(platform, "arch"));
   const hash = nix.thunk(() => nix.attr(platform, "hash"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "typesense",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dl.typesense.org/releases/${version}/typesense-server-${version}-${arch}.tar.gz`),
           hash: hash,
         })))),
@@ -37,15 +33,15 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "mkdir -p $out/bin\ncp $sourceRoot/typesense-server $out/bin\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           typesense: nix.thunk(() => nix.attr(nixosTests, "typesense")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://typesense.org",
         description: "Fast, typo-tolerant search engine for building delightful search experiences",
         mainProgram: "typesense-server",

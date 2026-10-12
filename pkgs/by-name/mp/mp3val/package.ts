@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["makefile", 16, 3], ["installPhase", 18, 3], ["hardeningDisable", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["makefile", 16, 3], ["installPhase", 18, 3], ["hardeningDisable", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mp3val",
       version: "0.1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/mp3val/mp3val-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           sha256: "17y3646ghr38r620vkrxin3dksxqig5yb3nn4cfv6arm7kz6x8cm",
         })))),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "install -Dv mp3val \"$out/bin/mp3val\"\n",
       hardeningDisable: nix.thunk(() => ["fortify"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for validating and repairing MPEG audio streams",
         longDescription: "MP3val is a small, high-speed, free software tool for checking MPEG audio\nfiles' integrity. It can be useful for finding corrupted files (e.g.\nincompletely downloaded, truncated, containing garbage). MP3val is\nalso able to fix most of the problems. Being a multiplatform application,\nMP3val can be run both under Windows and under Linux (or BSD). The most\ncommon MPEG audio file type is MPEG 1 Layer III (mp3), but MP3val supports\nalso other MPEG versions and layers. The tool is also aware of the most\ncommon types of tags (ID3v1, ID3v2, APEv2).\n",
         homepage: "https://mp3val.sourceforge.net/index.shtml",

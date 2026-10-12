@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]], [["libespeak", 32, 7]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["homepage", 57, 5], ["changelog", 58, 5], ["description", 59, 5], ["mainProgram", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["build-system", 23, 3], ["src", 25, 3], ["patches", 30, 3], ["propagatedBuildInputs", 44, 3], ["doCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, replaceVars: false, buildPythonPackage: false, fetchPypi: false, fetchpatch2: false, joblib: false, segments: false, attrs: false, dlinfo: false, "typing-extensions": false, "espeak-ng": false, setuptools: false, pytest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libespeak", 32, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 57, 5], ["changelog", 58, 5], ["description", 59, 5], ["mainProgram", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["build-system", 23, 3], ["src", 25, 3], ["patches", 30, 3], ["propagatedBuildInputs", 44, 3], ["doCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,18 +27,18 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-Xgw4Ei7/4LMxok5nSv8laHTs4WnXCpzxEgM3tW+OPQw=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./backend-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             libespeak: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), espeak_ng)}/lib/libespeak-ng${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "pr191-add-option-to-use-custom-espeak-data-path.patch",
             url: "https://github.com/bootphon/phonemizer/commit/cc1db4bfaf688fdfb8275fd83d218f06411455e6.patch?full_index=1",
             hash: "sha256-PMeX7A9BBVLS3Sk/Lum85GpJzKXM5tULTWSURq3MD8E=",
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [joblib, segments, attrs, dlinfo, typing_extensions]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/bootphon/phonemizer",
         changelog: nix.thunk(() => nix.str`https://github.com/bootphon/phonemizer/blob/v${version}/CHANGELOG.md`),
         description: "Simple text to phones converter for multiple languages",
@@ -63,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

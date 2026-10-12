@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["extraArgs", 65, 47]], [["updateScript", 65, 12]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, aml: false, cyrus_sasl: false, ffmpeg: false, gnutls: false, libGL: false, libdrm: false, libgcrypt: false, libjpeg: false, libpng: false, libxkbcommon: false, lzo: false, libgbm: false, meson: false, ninja: false, openssl: false, "pkg-config": false, pixman: false, wayland: false, "wayland-scanner": false, zlib: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 65, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "wlvncc",
       version: "0-unstable-2026-04-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "any1",
           repo: "wlvncc",
           rev: "cc0abf87c37920540f2439a556e6a480c28f8f46",
@@ -66,11 +62,11 @@ export default nix.lambda((args) => (() => {
         zlib,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Wayland Native VNC Client",
         homepage: "https://github.com/any1/wlvncc",
         license: nix.thunk(() => (() => {

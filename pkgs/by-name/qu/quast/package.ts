@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 64, 5], ["homepage", 65, 5], ["sourceProvenance", 66, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 16, 3], ["version", 17, 3], ["format", 18, 3], ["src", 20, 3], ["pythonPath", 25, 3], ["buildInputs", 33, 3], ["dontConfigure", 35, 3], ["dontBuild", 37, 3], ["installPhase", 39, 3], ["postFixup", 49, 3], ["dontPatchELF", 58, 3], ["doCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, python3Packages: false, zlib: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["sourceProvenance", 66, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["format", 18, 3], ["src", 20, 3], ["pythonPath", 25, 3], ["buildInputs", 33, 3], ["dontConfigure", 35, 3], ["dontBuild", 37, 3], ["installPhase", 39, 3], ["postFixup", 49, 3], ["dontPatchELF", 58, 3], ["doCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.3.0";
       const format = "other";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ablab/quast/releases/download/quast_${version}/quast-${version}.tar.gz`),
           hash: "sha256-rJ26A++dClHXqeLFaCYQTnjzQPYmOjrTk2SEQt68dOw=",
         }))));
@@ -57,7 +55,7 @@ ln -s $out/bin/quast.py $out/bin/quast
       const dontPatchELF = true;
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Evaluates genome assemblies by computing various metrics",
         homepage: "https://github.com/ablab/quast",
         sourceProvenance: nix.thunk(() => (() => {
@@ -72,7 +70,7 @@ ln -s $out/bin/quast.py $out/bin/quast
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

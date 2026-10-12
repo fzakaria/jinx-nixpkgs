@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 22, 5], ["owner", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["extraArgs", 71, 47]], [["updateScript", 71, 12]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["mainProgram", 78, 5], ["maintainers", 79, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["patches", 38, 3], ["postPatch", 42, 3], ["preConfigure", 50, 3], ["buildPhase", 54, 3], ["installPhase", 60, 3], ["postFixup", 67, 3], ["passthru", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, fetchFromGitHub: false, libx11: false, "pkg-config": false, gdb: false, freetype: false, "nix-update-script": false, freetypeSupport: true, withExtensions: true, extraFlags: true, pluginsFile: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 22, 5], ["owner", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 71, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 71, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["mainProgram", 78, 5], ["maintainers", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["patches", 38, 3], ["postPatch", 42, 3], ["preConfigure", 50, 3], ["buildPhase", 54, 3], ["installPhase", 60, 3], ["postFixup", 67, 3], ["passthru", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const extraFlags = nix.argOr($, "extraFlags", () => "");
   const pluginsFile = nix.argOr($, "pluginsFile", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gf",
       version: "0-unstable-2026-06-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "gf",
           owner: "nakst",
           rev: "1c04ed95d45d49fb4b06cbc620c61acd58818977",
@@ -49,14 +45,14 @@ runHook postBuild
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/gf2 --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gdb]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), "--version=branch")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GDB Frontend",
         homepage: "https://github.com/nakst/gf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

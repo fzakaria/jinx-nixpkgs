@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["homepage", 46, 35], ["description", 47, 5], ["longDescription", 48, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["mainProgram", 62, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["mesonFlags", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["doInstallCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, meson: false, ninja: false, libnvme: false, json_c: false, zlib: false, python3Packages: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 46, 35], ["description", 47, 5], ["longDescription", 48, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["mainProgram", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["mesonFlags", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["doInstallCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nvme-cli",
       version: "2.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linux-nvme",
           repo: "nvme-cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "NVM-Express user space tooling for Linux",
         longDescription: "NVM-Express is a fast, scalable host controller interface designed to\naddress the needs for not only PCI Express based solid state drives, but\nalso NVMe-oF(over fabrics).\nThis nvme program is a user space utility to provide standards compliant\ntooling for NVM-Express drives. It was made specifically for Linux as it\nrelies on the IOCTLs defined by the mainline kernel driver.\n",

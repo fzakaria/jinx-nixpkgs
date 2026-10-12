@@ -2,19 +2,18 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/g-plane-pretty_graphql.nix", [[["configExcludes", 6, 5], ["configKey", 7, 5], ["fileExtensions", 8, 5]], [["description", 3, 3], ["hash", 4, 3], ["initConfig", 5, 3], ["pname", 13, 3], ["updateUrl", 14, 3], ["url", 15, 3], ["version", 16, 3]]]);
 const formals$1 = { args: { mkDprintPlugin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/g-plane-pretty_graphql.nix", [["configExcludes", 6, 5], ["configKey", 7, 5], ["fileExtensions", 8, 5]]);
-const pos$2 = nix.positions(here + "/g-plane-pretty_graphql.nix", [["description", 3, 3], ["hash", 4, 3], ["initConfig", 5, 3], ["pname", 13, 3], ["updateUrl", 14, 3], ["url", 15, 3], ["version", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDprintPlugin = nix.arg($, "mkDprintPlugin");
   return nix.app(mkDprintPlugin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       description: "GraphQL formatter",
       hash: "sha256-xEEBnmxxiIPNOePBDS2HG6lfAhR4l53w+QDF2mXdyzg=",
       initConfig: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         configExcludes: [],
         configKey: "graphql",
         fileExtensions: nix.thunk(() => ["graphql", "gql"]),

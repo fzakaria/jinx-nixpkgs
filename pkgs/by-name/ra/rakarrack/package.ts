@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["hardeningDisable", 27, 3], ["patches", 29, 3], ["buildInputs", 35, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "alsa-lib-with-plugins": false, "alsa-utils": false, fltk_1_3: false, libjack2: false, libxft: false, libxpm: false, libjpeg: false, libpng: false, libsamplerate: false, libsndfile: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["hardeningDisable", 27, 3], ["patches", 29, 3], ["buildInputs", 35, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libsndfile = nix.arg($, "libsndfile");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rakarrack",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/rakarrack/rakarrack-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1rpf63pdn54c4yg13k7cb1w1c7zsvl97c4qxcpz41c8l91xd55kn",
         })))),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
         zlib,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Multi-effects processor emulating a guitar effects pedalboard",
         homepage: "https://rakarrack.sourceforge.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["arch", 13, 11], ["hash", 14, 11]], [["arch", 17, 11], ["hash", 18, 11]], [["arch", 21, 11], ["hash", 22, 11]], [["x86_64-linux", 12, 9], ["aarch64-linux", 16, 9], ["aarch64-darwin", 20, 9]], [["name", 27, 7], ["publisher", 28, 7], ["version", 29, 7]], [["changelog", 35, 5], ["description", 36, 5], ["downloadPage", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["mktplcRef", 9, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 33, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, lib: false, stdenv: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["arch", 13, 11], ["hash", 14, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arch", 17, 11], ["hash", 18, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["arch", 21, 11], ["hash", 22, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 12, 9], ["aarch64-linux", 16, 9], ["aarch64-darwin", 20, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 27, 7], ["publisher", 28, 7], ["version", 29, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["changelog", 35, 5], ["description", 36, 5], ["downloadPage", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["mktplcRef", 9, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 33, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,34 +12,39 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       mktplcRef: nix.thunk(() => (() => {
         const sources = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "x86_64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             arch: "linux-x64",
             hash: "sha256-4GiTNT+UPdTth9VDhHTXfqhQ5gM6vfLAaU5Cy3VMTCI=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             arch: "linux-arm64",
             hash: "sha256-QngCharrjiDKrY7RgWtKzIJxjXazuRvpuHVUAxknWfA=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             arch: "darwin-arm64",
             hash: "sha256-QPRZG7/Pjo9uboJl/RH0cdNf+zGM+ZRxdaMULxl34Jk=",
           })),
         }));
-        return nix.update({ [nix.POS]: pos$5, name: "continue", publisher: "Continue", version: "2.0.0" }, nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
+        return nix.update({
+          [nix.POS]: $pos[4],
+          name: "continue",
+          publisher: "Continue",
+          version: "2.0.0",
+        }, nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
       })()),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: "https://marketplace.visualstudio.com/items/Continue.continue",
         description: "Open-source AI code assistant",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=Continue.continue",

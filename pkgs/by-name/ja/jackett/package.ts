@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["jackett", 54, 36]], [["updateScript", 53, 5], ["tests", 54, 5]], [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["projectFile", 24, 3], ["nugetDeps", 25, 3], ["dotnet-runtime", 27, 3], ["dotnet-sdk", 28, 3], ["dotnetInstallFlags", 30, 3], ["postPatch", 35, 3], ["runtimeDeps", 40, 3], ["doCheck", 42, 3], ["nativeCheckInputs", 43, 3], ["testProjectFile", 44, 3], ["postFixup", 46, 3], ["passthru", 52, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false, openssl: false, mono: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["jackett", 54, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 53, 5], ["tests", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["projectFile", 24, 3], ["nugetDeps", 25, 3], ["dotnet-runtime", 27, 3], ["dotnet-sdk", 28, 3], ["dotnetInstallFlags", 30, 3], ["postPatch", 35, 3], ["runtimeDeps", 40, 3], ["doCheck", 42, 3], ["nativeCheckInputs", 43, 3], ["testProjectFile", 44, 3], ["postFixup", 46, 3], ["passthru", 52, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jackett",
       version: "0.24.2793",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jackett",
           repo: "jackett",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,12 +41,15 @@ export default nix.lambda((args) => (() => {
       testProjectFile: "src/Jackett.Test/Jackett.Test.csproj",
       postFixup: "# For compatibility\nln -s $out/bin/jackett $out/bin/Jackett || :\nln -s $out/bin/Jackett $out/bin/jackett || :\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, jackett: nix.thunk(() => nix.attr(nixosTests, "jackett")) })),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          jackett: nix.thunk(() => nix.attr(nixosTests, "jackett")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "API Support for your favorite torrent trackers",
         mainProgram: "jackett",
         homepage: "https://github.com/Jackett/Jackett/",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]], [["url", 56, 5], ["hash", 57, 5]], [["updateScript", 80, 12]], [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["sourceRoot", 33, 3], ["format", 35, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 44, 3], ["jarName", 53, 3], ["xml_jar", 55, 3], ["postPatch", 60, 3], ["buildPhase", 65, 3], ["doCheck", 78, 3], ["passthru", 80, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchgit: false, fetchurl: false, "common-updater-scripts": false, curl: false, gnugrep: false, gnused: false, writeShellScript: false, jdk: false, wheel: false, casatools: false, casaconfig: false, matplotlib: false, scipy: false, certifi: false, pyerfa: false, setuptools: false, pipInstallHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 56, 5], ["hash", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 80, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["sourceRoot", 33, 3], ["format", 35, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 44, 3], ["jarName", 53, 3], ["xml_jar", 55, 3], ["postPatch", 60, 3], ["buildPhase", 65, 3], ["doCheck", 78, 3], ["passthru", 80, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pipInstallHook = nix.arg($, "pipInstallHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "casatasks",
       version: "6.7.5.18",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://open-bitbucket.nrao.edu/scm/casa/casa6.git",
           rev: nix.thunk(() => nix.str`refs/tags/${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-75oIlaNAyu70KWSjz38LoYAvV7RJgzH/X9uBnGpriF4=",
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [casatools, casaconfig, matplotlib, scipy, certifi, pyerfa]),
       jarName: "xml-casa-assembly-1.88.jar",
       xml_jar: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`http://casa.nrao.edu/download/devel/xml-casa/java/${nix.sel(finalAttrs, "jarName")}`),
           hash: "sha256-UJCiXLXAe7Prm1qGXJ9jbuZcgKhPTSrU8qnf4C5Goxs=",
         })))),
@@ -66,7 +62,7 @@ EOF
 `),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-casatasks", nix.thunk(() => nix.str`set -euo pipefail
 version=$(${nix.app(nix.sel(lib, "getExe"), curl)} -s https://pypi.org/pypi/casatasks/json | ${nix.app(nix.sel(lib, "getExe"), gnugrep)} -oP '"version"\\s*:\\s*"\\K[^"]+' | head -1)
 ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-version")} python3Packages.casatasks "$version"
@@ -86,7 +82,7 @@ ${nix.app(nix.sel(lib, "getExe"), gnused)} -i \\
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "High-level Python tasks for radio astronomy data reduction",
         homepage: "https://casa.nrao.edu/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

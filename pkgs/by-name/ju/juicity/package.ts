@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["vendorHash", 17, 3], ["proxyVendor", 19, 3], ["ldflags", 21, 3], ["subPackages", 25, 3], ["postInstall", 30, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["vendorHash", 17, 3], ["proxyVendor", 19, 3], ["ldflags", 21, 3], ["subPackages", 25, 3], ["postInstall", 30, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "juicity",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "juicity",
           repo: "juicity",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/server", "cmd/client"]),
       postInstall: "mv $out/bin/client $out/bin/juicity-client\nmv $out/bin/server $out/bin/juicity-server\ninstall -Dm444 install/juicity-server.service $out/lib/systemd/system/juicity-server.service\ninstall -Dm444 install/juicity-client.service $out/lib/systemd/system/juicity-client.service\nsubstituteInPlace $out/lib/systemd/system/juicity-server.service \\\n  --replace /usr/bin/juicity-server $out/bin/juicity-server\nsubstituteInPlace $out/lib/systemd/system/juicity-client.service \\\n  --replace /usr/bin/juicity-client $out/bin/juicity-client\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/juicity/juicity",
         description: "Quic-based proxy protocol",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

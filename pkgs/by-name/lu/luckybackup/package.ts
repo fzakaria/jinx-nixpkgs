@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["homepage", 57, 5], ["description", 58, 5], ["longDescription", 59, 5], ["license", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["strictDeps", 40, 3], ["prePatch", 42, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, libtool: false, openssh: false, "pkg-config": false, qt5: false, rsync: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 57, 5], ["description", 58, 5], ["longDescription", 59, 5], ["license", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["strictDeps", 40, 3], ["prePatch", 42, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const rsync = nix.arg($, "rsync");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "luckybackup",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/luckybackup/${nix.sel(finalAttrs, "version")}/source/luckybackup-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-6AGvJIPL3WK8mvji3tJSxRrbrYFILikQQvWOIcPUkls=",
         })))),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       prePatch: "for File in \\\n  luckybackup.pro \\\n  menu/luckybackup-pkexec \\\n  menu/luckybackup-su.desktop \\\n  menu/luckybackup.desktop \\\n  menu/net.luckybackup.su.policy \\\n  src/functions.cpp \\\n  src/global.cpp \\\n  src/scheduleDialog.cpp; do\n    substituteInPlace $File --replace \"/usr\" \"$out\"\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://luckybackup.sourceforge.net/",
         description: "Powerful, fast and reliable backup & sync tool",
         longDescription: "luckyBackup is an application for data back-up and synchronization\npowered by the rsync tool.\n\nIt is simple to use, fast (transfers over only changes made and not\nall data), safe (keeps your data safe by checking all declared directories\nbefore proceeding in any data manipulation), reliable and fully\ncustomizable.\n",

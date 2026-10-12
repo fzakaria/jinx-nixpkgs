@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 42, 5], ["homepage", 43, 5], ["mainProgram", 44, 5], ["license", 45, 5], ["platforms", 46, 5]], [["src", 16, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 24, 3], ["patches", 26, 3], ["postFixup", 30, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildNimSbom: false, fetchFromSourcehut: false, nim: false, "nix-prefetch": false, "nix-prefetch-git": false, openssl: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["mainProgram", 44, 5], ["license", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 16, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 24, 3], ["patches", 26, 3], ["postFixup", 30, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,9 +17,9 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nimUnwrapped = nix.thunk(() => nix.sel(nim, "passthru", "nim"));
   return nix.app(buildNimSbom, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~ehmry",
           repo: "nim_lk",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nimUnwrapped, nix_prefetch, nix_prefetch_git]))}
 `),
       meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "src", "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Generate Nix specific lock files for Nim packages",
         homepage: "https://git.sr.ht/~ehmry/nim_lk",
         mainProgram: "nim_lk",

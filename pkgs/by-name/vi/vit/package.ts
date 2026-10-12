@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 18, 26], ["version", 18, 32], ["hash", 19, 5]], [["homepage", 45, 5], ["description", 46, 5], ["mainProgram", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["license", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["disabled", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 29, 3], ["makeWrapperArgs", 31, 3], ["preCheck", 38, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, taskwarrior2: false, glibcLocales: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 18, 26], ["version", 18, 32], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["mainProgram", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["license", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["disabled", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 29, 3], ["makeWrapperArgs", 31, 3], ["preCheck", 38, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const glibcLocales = nix.arg($, "glibcLocales");
   const w = nix.withScope(python3Packages, null);
   return nix.app(nix.lookup(w, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vit",
       version: "2.3.4",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(nix.lookup(w, "python"), "version")), "3.7")),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-NGohCqDedUz3ra9zcjv30syO51Tut4XrGDcNM/dOXOI=",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export TERM=${TERM-linux}\n",
       pythonImportsCheck: nix.thunk(() => ["vit"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/scottkosty/vit",
         description: "Visual Interactive Taskwarrior",
         mainProgram: "vit",

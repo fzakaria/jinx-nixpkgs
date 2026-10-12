@@ -2,27 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nativeBuildInputs", 42, 9]], [["name", 69, 9], ["args", 70, 9], ["wrapped", 74, 9]], [["name", 77, 9], ["args", 78, 9]], [["name", 85, 9], ["args", 86, 9]], [["name", 93, 9], ["args", 94, 9]], [["name", 100, 9], ["args", 101, 9]], [["name", 107, 9], ["args", 108, 9]], [["name", 117, 9], ["args", 118, 9], ["wrapped", 124, 9]], [["name", 127, 9], ["args", 128, 9], ["wrapped", 134, 9]], [["name", 137, 9], ["args", 138, 9]], [["name", 146, 9], ["args", 147, 9]], [["name", 155, 9], ["args", 156, 9]], [["name", 164, 9], ["args", 165, 9]], [["name", 177, 9], ["args", 178, 9]], [["name", 186, 9], ["args", 187, 9]], [["name", 195, 9], ["args", 196, 9]], [["name", 204, 9], ["args", 205, 9]], [["name", 213, 9], ["args", 214, 9]], [["nativeBuildInputs", 66, 5]]]);
 const formals$1 = { args: { lib: false, writeText: false, writeCBin: false, writeShellScript: false, makeWrapper: false, runCommand: false, which: false }, ellipsis: true };
 const formals$2 = { args: { name: false, args: false, wrapped: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 42, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 69, 9], ["args", 70, 9], ["wrapped", 74, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 77, 9], ["args", 78, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 85, 9], ["args", 86, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 93, 9], ["args", 94, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 100, 9], ["args", 101, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 107, 9], ["args", 108, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["name", 117, 9], ["args", 118, 9], ["wrapped", 124, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["name", 127, 9], ["args", 128, 9], ["wrapped", 134, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 137, 9], ["args", 138, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["name", 146, 9], ["args", 147, 9]]);
-const pos$12 = nix.positions(here + "/default.nix", [["name", 155, 9], ["args", 156, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["name", 164, 9], ["args", 165, 9]]);
-const pos$14 = nix.positions(here + "/default.nix", [["name", 177, 9], ["args", 178, 9]]);
-const pos$15 = nix.positions(here + "/default.nix", [["name", 186, 9], ["args", 187, 9]]);
-const pos$16 = nix.positions(here + "/default.nix", [["name", 195, 9], ["args", 196, 9]]);
-const pos$17 = nix.positions(here + "/default.nix", [["name", 204, 9], ["args", 205, 9]]);
-const pos$18 = nix.positions(here + "/default.nix", [["name", 213, 9], ["args", 214, 9]]);
-const pos$19 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 66, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +25,7 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const args_2 = nix.arg($_1, "args");
     const wrapped = nix.argOr($_1, "wrapped", () => nix.force(wrappedBinaryVar));
-    return nix.app(runCommand, name, nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
+    return nix.app(runCommand, name, nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
 makeWrapper "${wrapped}" "$out/bin/${name}" ${nix.app(nix.sel(lib, "escapeShellArgs"), args_2)}
 `));
   })(), formals$2);
@@ -61,89 +43,89 @@ if [[ "$output" != ${nix.app(nix.sel(lib, "escapeShellArg"), toExpect)} ]]; then
 fi
 `;
   return nix.app(runCommand, "make-wrapper-test", nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       nativeBuildInputs: nix.thunk(() => [
         which,
         nix.thunk(() => nix.app(mkWrapperBinary, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "test-argv0",
             args: nix.thunk(() => ["--argv0", "foo"]),
             wrapped: nix.thunk(() => nix.str`${wrappedArgv0}/bin/wrapped-argv0`),
           })))),
         nix.thunk(() => nix.app(mkWrapperBinary, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "test-set",
             args: nix.thunk(() => ["--set", "VAR", "abc"]),
           })))),
         nix.thunk(() => nix.app(mkWrapperBinary, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "test-set-default",
             args: nix.thunk(() => ["--set-default", "VAR", "abc"]),
           })))),
         nix.thunk(() => nix.app(mkWrapperBinary, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "test-unset",
             args: nix.thunk(() => ["--unset", "VAR"]),
           })))),
         nix.thunk(() => nix.app(mkWrapperBinary, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "test-run",
             args: nix.thunk(() => ["--run", "echo bar"]),
           })))),
         nix.thunk(() => nix.app(mkWrapperBinary, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "test-run-and-set",
             args: nix.thunk(() => ["--run", "export VAR=foo", "--set", "VAR", "bar"]),
           })))),
         nix.thunk(() => nix.app(mkWrapperBinary, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "test-args",
             args: nix.thunk(() => ["--add-flags", "abc", "--append-flags", "xyz"]),
             wrapped: wrappedBinaryArgs,
           })))),
         nix.thunk(() => nix.app(mkWrapperBinary, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             name: "test-arg",
             args: nix.thunk(() => ["--add-flag", "abc 'aaaaa' jkhhjk", "--append-flag", "xyz ggg"]),
             wrapped: wrappedBinaryArgs,
           })))),
         nix.thunk(() => nix.app(mkWrapperBinary, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             name: "test-prefix",
             args: nix.thunk(() => ["--prefix", "VAR", ":", "abc"]),
           })))),
         nix.thunk(() => nix.app(mkWrapperBinary, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             name: "test-prefix-noglob",
             args: nix.thunk(() => ["--prefix", "VAR", ":", "./*"]),
           })))),
         nix.thunk(() => nix.app(mkWrapperBinary, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             name: "test-suffix",
             args: nix.thunk(() => ["--suffix", "VAR", ":", "abc"]),
           })))),
         nix.thunk(() => nix.app(mkWrapperBinary, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             name: "test-prefix-and-suffix",
             args: nix.thunk(() => ["--prefix", "VAR", ":", "foo", "--suffix", "VAR", ":", "bar"]),
           })))),
         nix.thunk(() => nix.app(mkWrapperBinary, nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             name: "test-prefix-multi",
             args: nix.thunk(() => ["--prefix", "VAR", ":", "abc:foo:foo"]),
           })))),
         nix.thunk(() => nix.app(mkWrapperBinary, nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             name: "test-suffix-each",
             args: nix.thunk(() => ["--suffix-each", "VAR", ":", "foo bar:def"]),
           })))),
         nix.thunk(() => nix.app(mkWrapperBinary, nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             name: "test-prefix-each",
             args: nix.thunk(() => ["--prefix-each", "VAR", ":", "foo bar:def"]),
           })))),
         nix.thunk(() => nix.app(mkWrapperBinary, nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             name: "test-suffix-contents",
             args: nix.thunk(() => [
               "--suffix-contents",
@@ -153,7 +135,7 @@ fi
             ]),
           })))),
         nix.thunk(() => nix.app(mkWrapperBinary, nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             name: "test-prefix-contents",
             args: nix.thunk(() => [
               "--prefix-contents",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["sourceRoot", 25, 3], ["buildInputs", 27, 3], ["propagatedBuildInputs", 29, 3], ["nativeBuildInputs", 31, 3], ["postFixup", 39, 3], ["dontWrapQtApps", 47, 3], ["preConfigure", 49, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, qtbase: false, qtmacextras: true, qmake: false, fixDarwinDylibNames: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["sourceRoot", 25, 3], ["buildInputs", 27, 3], ["propagatedBuildInputs", 29, 3], ["nativeBuildInputs", 31, 3], ["postFixup", 39, 3], ["dontWrapQtApps", 47, 3], ["preConfigure", 49, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   const qtVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`qscintilla-qt${qtVersion}`),
       version: "2.14.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.riverbankcomputing.com/static/Downloads/QScintilla/${nix.sel(finalAttrs, "version")}/QScintilla_src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-3+E8asydhd/Lp2zMgGHnGiI5V6bALzw0OzCp1DpM3U0=",
         })))),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       preConfigure: "substituteInPlace qscintilla.pro \\\n  --replace '$$[QT_INSTALL_LIBS]'         $out/lib \\\n  --replace '$$[QT_INSTALL_HEADERS]'      $out/include \\\n  --replace '$$[QT_INSTALL_TRANSLATIONS]' $out/translations \\\n  --replace '$$[QT_HOST_DATA]/mkspecs'    $out/mkspecs \\\n  --replace '$$[QT_INSTALL_DATA]'         $out/share\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Qt port of the Scintilla text editing library",
         longDescription: "QScintilla is a port to Qt of Neil Hodgson's Scintilla C++ editor\ncontrol.\n\nAs well as features found in standard text editing components,\nQScintilla includes features especially useful when editing and\ndebugging source code. These include support for syntax styling,\nerror indicators, code completion and call tips. The selection\nmargin can contain markers like those used in debuggers to\nindicate breakpoints and the current line. Styling choices are\nmore open than with many editors, allowing the use of\nproportional fonts, bold and italics, multiple foreground and\nbackground colours and multiple fonts.\n",
         homepage: "https://www.riverbankcomputing.com/software/qscintilla/intro",

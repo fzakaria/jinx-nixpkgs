@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 20, 5], ["mainProgram", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["platforms", 24, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, gccStdenv: false, fetchurl: false, gmp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 20, 5], ["mainProgram", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["platforms", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +15,20 @@ export default nix.lambda((args) => (() => {
       const pname = "cln";
       const version = "1.3.7";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`${nix.sel(meta, "homepage")}cln-${version}.tar.bz2`),
           sha256: "sha256-fH7YR0lYM35N9btX6lF2rQNlAEy7mLYhdlvEYGoQ2Gs=",
         }))));
       const buildInputs = nix.thunk(() => [gmp]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C/C++ library for numbers, a part of GiNaC",
         mainProgram: "pi",
         homepage: "https://www.ginac.de/CLN/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

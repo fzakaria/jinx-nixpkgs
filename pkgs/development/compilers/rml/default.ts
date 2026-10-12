@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["prefixKey", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ocamlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["prefixKey", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rml";
       const version = "1.09.07";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "reactiveml",
           repo: "rml",
           rev: nix.thunk(() => nix.str`rml-${version}-2021-07-26`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       })());
       const prefixKey = "-prefix ";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ReactiveML: a programming language for implementing interactive systems",
         homepage: "https://rml.lri.fr",
         license: nix.thunk(() => (() => {
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

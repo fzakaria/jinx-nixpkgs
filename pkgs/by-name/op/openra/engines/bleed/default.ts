@@ -2,15 +2,15 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["build", 4, 3], ["version", 5, 3], ["rev", 6, 3], ["hash", 7, 3], ["deps", 8, 3], ["dotnet-sdk", 9, 3]]]);
 const formals$1 = { args: { buildOpenRAEngine: false, dotnetCorePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["build", 4, 3], ["version", 5, 3], ["rev", 6, 3], ["hash", 7, 3], ["deps", 8, 3], ["dotnet-sdk", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildOpenRAEngine = nix.arg($, "buildOpenRAEngine");
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   return nix.app(buildOpenRAEngine, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       build: "bleed",
       version: "20250531",
       rev: "9c8470d18e3d850583e64a5defc5d3492ba5055b",

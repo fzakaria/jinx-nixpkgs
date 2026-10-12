@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["url", 38, 7], ["hash", 39, 7]], [["shortName", 53, 9], ["fullName", 54, 9], ["url", 55, 9]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 58, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["preConfigure", 19, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 30, 3], ["patches", 32, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, freetype: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["shortName", 53, 9], ["fullName", 54, 9], ["url", 55, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["preConfigure", 19, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 30, 3], ["patches", 32, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const freetype = nix.arg($, "freetype");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ttf2pt1",
       version: "3.4.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/ttf2pt1/ttf2pt1-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1l718n4k4widx49xz7qrj4mybzb8q67kp2jw7f47604ips4654mf",
         })))),
@@ -39,14 +35,14 @@ makeFlags="INSTDIR=$out OWNER=\`id -u\`"
       patches: nix.thunk(() => [
         nix.path(here, "./gentoo-makefile.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://src.fedoraproject.org/rpms/ttf2pt1/raw/070de5269475785d27ae7996513bee12cb9a0f53/f/ttf2pt1-c99.patch",
             hash: "sha256-7+RnExqxED+fUJSj3opfYi0eQ5zqswOZnKjQMvlF020=",
           })))),
         nix.path(here, "./ttf2pt1-gcc14.patch"),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "True Type to Postscript Type 3 converter, fpdf",
         homepage: "https://ttf2pt1.sourceforge.net/index.html",
         license: nix.thunk(() => (() => {
@@ -54,7 +50,7 @@ makeFlags="INSTDIR=$out OWNER=\`id -u\`"
           return [
             nix.thunk(() => nix.lookup(w, "gpl2Plus")),
             nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 shortName: "ttf2pt1",
                 fullName: "ttf2pt1 License",
                 url: "https://git.altlinux.org/gears/t/ttf2pt1.git?p=ttf2pt1.git;a=blob;f=ttf2pt1/COPYRIGHT;h=75e8f38e5a7638ee7d23892c86442ddcc35f4761;hb=f3cdb9f16159edf8115dc81520be9af791e846b2",

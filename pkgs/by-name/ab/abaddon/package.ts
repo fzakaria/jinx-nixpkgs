@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5], ["fetchSubmodules", 33, 5]], [["name", 77, 7], ["exec", 78, 7], ["desktopName", 79, 7], ["genericName", 80, 7], ["startupWMClass", 81, 7], ["categories", 82, 7], ["mimeTypes", 86, 7]], [["description", 91, 5], ["mainProgram", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["installPhase", 56, 3], ["desktopItems", 75, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, cmake: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, "pkg-config": false, "alsa-lib": false, curl: false, gtkmm3: false, libhandy: false, libopus: false, libpulseaudio: false, libsecret: false, libsodium: false, nlohmann_json: false, pcre2: false, spdlog: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5], ["fetchSubmodules", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 77, 7], ["exec", 78, 7], ["desktopName", 79, 7], ["genericName", 80, 7], ["startupWMClass", 81, 7], ["categories", 82, 7], ["mimeTypes", 86, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 91, 5], ["mainProgram", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["installPhase", 56, 3], ["desktopItems", 75, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const spdlog = nix.arg($, "spdlog");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "abaddon",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "uowuo",
           repo: "abaddon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +66,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             exec: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             desktopName: "Abaddon",
@@ -80,7 +77,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Discord client reimplementation, written in C++",
         mainProgram: "abaddon",
         homepage: "https://github.com/uowuo/abaddon",

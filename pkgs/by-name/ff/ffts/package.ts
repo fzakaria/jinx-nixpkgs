@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["cmakeFlags", 21, 3], ["patches", 23, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, cmake: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["cmakeFlags", 21, 3], ["patches", 23, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ffts",
       version: "0-unstable-2019-03-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linkotec",
           repo: "ffts",
           rev: "2c8da4877588e288ff4cd550f14bec2dc7bf668c",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DENABLE_SHARED=ON"]),
       patches: nix.thunk(() => [nix.path(here, "./cmake4.patch")]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fastest Fourier Transform in the South",
         homepage: "https://github.com/linkotec/ffts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

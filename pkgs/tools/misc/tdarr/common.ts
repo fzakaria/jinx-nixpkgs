@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["x86_64-linux", 43, 7], ["aarch64-linux", 44, 7], ["aarch64-darwin", 45, 7]], [["url", 109, 5], ["sha256", 110, 5], ["stripRoot", 111, 5]], [["desktopName", 194, 7], ["name", 195, 7], ["exec", 196, 7], ["terminal", 197, 7], ["type", 198, 7], ["icon", 199, 7], ["categories", 200, 7]], [["command", 206, 7], ["supportedFeatures", 207, 7]], [["nixos", 209, 11]], [["updateScript", 205, 5], ["tests", 209, 5]], [["description", 214, 5], ["homepage", 215, 5], ["license", 216, 5], ["platforms", 217, 5], ["maintainers", 222, 5], ["mainProgram", 223, 5]], [["pname", 105, 11], ["version", 106, 3], ["src", 108, 3], ["nativeBuildInputs", 114, 3], ["buildInputs", 120, 3], ["postPatch", 138, 3], ["preInstall", 155, 3], ["installPhase", 159, 3], ["postInstall", 170, 3], ["desktopItems", 192, 3], ["passthru", 204, 3], ["meta", 213, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, autoPatchelfHook: false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false, "jellyfin-ffmpeg": false, handbrake: false, mkvtoolnix: false, ccextractor: false, gtk3: false, "libayatana-appindicator": false, wayland: false, libxkbcommon: false, libxcb: false, leptonica: false, glib: false, "gobject-introspection": false, libx11: false, libxcursor: false, libxfixes: false, tesseract4: false, perl: false, apprise: false, openssl: false, nixosTests: false, pnpm_10: false, nodejs: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, component: false, hashes: false, includeInPath: true, installIcons: true, passthru: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["x86_64-linux", 43, 7], ["aarch64-linux", 44, 7], ["aarch64-darwin", 45, 7]]);
-const pos$2 = nix.positions(here + "/common.nix", [["url", 109, 5], ["sha256", 110, 5], ["stripRoot", 111, 5]]);
-const pos$3 = nix.positions(here + "/common.nix", [["desktopName", 194, 7], ["name", 195, 7], ["exec", 196, 7], ["terminal", 197, 7], ["type", 198, 7], ["icon", 199, 7], ["categories", 200, 7]]);
-const pos$4 = nix.positions(here + "/common.nix", [["command", 206, 7], ["supportedFeatures", 207, 7]]);
-const pos$5 = nix.positions(here + "/common.nix", [["nixos", 209, 11]]);
-const pos$6 = nix.positions(here + "/common.nix", [["updateScript", 205, 5], ["tests", 209, 5]]);
-const pos$7 = nix.positions(here + "/common.nix", [["description", 214, 5], ["homepage", 215, 5], ["license", 216, 5], ["platforms", 217, 5], ["maintainers", 222, 5], ["mainProgram", 223, 5]]);
-const pos$8 = nix.positions(here + "/common.nix", [["pname", 105, 11], ["version", 106, 3], ["src", 108, 3], ["nativeBuildInputs", 114, 3], ["buildInputs", 120, 3], ["postPatch", 138, 3], ["preInstall", 155, 3], ["installPhase", 159, 3], ["postInstall", 170, 3], ["desktopItems", 192, 3], ["passthru", 204, 3], ["meta", 213, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,7 +46,7 @@ export default nix.lambda((args) => (() => {
     const installIcons = nix.argOr($_1, "installIcons", () => false);
     const passthru = nix.argOr($_1, "passthru", () => ({}));
     const platform = nix.thunk(() => nix.selOr({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       "x86_64-linux": "linux_x64",
       "aarch64-linux": "linux_arm64",
       "aarch64-darwin": "darwin_arm64",
@@ -90,11 +83,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`${handbrake}/bin/HandBrakeCLI`),
         ]))))))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: pname,
         version: "2.87.01",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://storage.tdarr.io/versions/${nix.sel(finalAttrs, "version")}/${platform}/${componentName}.zip`),
             sha256: nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${platform}`)), nix.key(nix.force(platform)))),
             stripRoot: false,
@@ -161,7 +154,7 @@ done
 `))), "")),
         desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
             nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 desktopName: nix.thunk(() => nix.str`Tdarr ${componentUpper} Tray`),
                 name: nix.thunk(() => nix.str`Tdarr ${componentUpper} Tray`),
                 exec: nix.thunk(() => nix.str`${pname}-tray`),
@@ -172,16 +165,16 @@ done
               })))),
           ]))),
         passthru: nix.thunk(() => nix.update({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           updateScript: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             command: nix.thunk(() => [nix.path(here, "./update-hashes.sh")]),
             supportedFeatures: nix.thunk(() => ["commit"]),
           })),
-          tests: nix.thunk(() => ({ [nix.POS]: pos$5, nixos: nix.thunk(() => nix.sel(nixosTests, "tdarr")) })),
+          tests: nix.thunk(() => ({ [nix.POS]: $pos[4], nixos: nix.thunk(() => nix.sel(nixosTests, "tdarr")) })),
         }, passthru)),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           description: nix.thunk(() => nix.str`Distributed transcode automation ${component} using FFmpeg/HandBrake`),
           homepage: "https://tdarr.io",
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

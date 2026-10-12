@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["pkg-config", 87, 11]], [["extraArgs", 89, 7]], [["tests", 87, 5], ["updateScript", 88, 5]], [["description", 97, 5], ["mainProgram", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["platforms", 106, 5], ["pkgConfigModules", 107, 5], ["maintainers", 111, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["outputs", 38, 3], ["nativeBuildInputs", 45, 3], ["propagatedBuildInputs", 52, 3], ["buildInputs", 54, 3], ["postPatch", 59, 3], ["preConfigure", 66, 3], ["configureFlags", 70, 3], ["doCheck", 80, 3], ["strictDeps", 82, 3], ["enableParallelBuilding", 84, 3], ["passthru", 86, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, asciidoc: false, xmlto: false, liburcu: false, numactl: false, python3: false, testers: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 87, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 89, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 87, 5], ["updateScript", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 97, 5], ["mainProgram", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["platforms", 106, 5], ["pkgConfigModules", 107, 5], ["maintainers", 111, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["outputs", 38, 3], ["nativeBuildInputs", 45, 3], ["propagatedBuildInputs", 52, 3], ["buildInputs", 54, 3], ["postPatch", 59, 3], ["preConfigure", 66, 3], ["configureFlags", 70, 3], ["doCheck", 80, 3], ["strictDeps", 82, 3], ["enableParallelBuilding", 84, 3], ["passthru", 86, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lttng-ust",
       version: "2.15.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lttng",
           repo: "lttng-ust",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,15 +41,15 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version-regex", "v(.+)"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version-regex", "v(.+)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "LTTng Userspace Tracer libraries",
         mainProgram: "lttng-gen-tp",
         homepage: "https://lttng.org/",

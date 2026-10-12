@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["postPatch", 39, 3], ["build-system", 49, 3], ["buildInputs", 54, 3], ["dependencies", 58, 3], ["pythonImportsCheck", 64, 3], ["nativeCheckInputs", 66, 3], ["preCheck", 75, 3], ["enabledTestPaths", 79, 3], ["disabledTests", 81, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, python: false, cython: false, setuptools: false, zlib: false, bedtools: false, numpy: false, pandas: false, pysam: false, psutil: false, pytestCheckHook: false, pyyaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["postPatch", 39, 3], ["build-system", 49, 3], ["buildInputs", 54, 3], ["dependencies", 58, 3], ["pythonImportsCheck", 64, 3], ["nativeCheckInputs", 66, 3], ["preCheck", 75, 3], ["enabledTestPaths", 79, 3], ["disabledTests", 81, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pyyaml = nix.arg($, "pyyaml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pybedtools",
       version: "0.12.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "daler",
           repo: "pybedtools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["pybedtools/test"]),
       disabledTests: nix.thunk(() => nix.concat(["test_chromsizes", "test_issue_303"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_all"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Wrapper around BEDTools for bioinformatics work",
         homepage: "https://github.com/daler/pybedtools",
         changelog: nix.thunk(() => nix.str`https://github.com/daler/pybedtools/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

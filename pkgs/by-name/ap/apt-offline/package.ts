@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5]], [["pyproject", 21, 3], ["pname", 22, 11], ["version", 22, 17], ["src", 22, 25], ["nativeBuildInputs", 24, 3], ["build-system", 26, 3], ["postPatch", 30, 3], ["postInstall", 38, 3], ["postFixup", 42, 3], ["doCheck", 46, 3], ["pythonImportsCheck", 48, 3], ["outputs", 50, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, gnupg: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pyproject", 21, 3], ["pname", 22, 11], ["version", 22, 17], ["src", 22, 25], ["nativeBuildInputs", 24, 3], ["build-system", 26, 3], ["postPatch", 30, 3], ["postInstall", 38, 3], ["postFixup", 42, 3], ["doCheck", 46, 3], ["pythonImportsCheck", 48, 3], ["outputs", 50, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const pname = "apt-offline";
   const version = "1.8.6";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "rickysarraf",
       repo: "apt-offline",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-PnU8vbEY+EpEv8D6Ap/iJqfwOWxpNytT+XDFCFD8XqU=",
     }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pyproject: true,
       pname: pname,
       version: version,
@@ -46,7 +44,7 @@ substituteInPlace apt_offline_core/AptOfflineCoreLib.py \\
       pythonImportsCheck: nix.thunk(() => ["apt_offline_core"]),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/rickysarraf/apt-offline",
         description: "Offline APT package manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

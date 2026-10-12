@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 39, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "ffmpeg-headless": false, setuptools: false, pyee: false, pytestCheckHook: false, "pytest-asyncio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 39, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.12";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jonghwanhyeon",
           repo: "python-ffmpeg",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +40,7 @@ substituteInPlace tests/test_{,asyncio_}timeout.py \\
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_asyncio]);
       const pythonImportsCheck = nix.thunk(() => ["ffmpeg"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jonghwanhyeon/python-ffmpeg",
         description: "Python binding for FFmpeg which provides sync and async APIs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -52,7 +50,7 @@ substituteInPlace tests/test_{,asyncio_}timeout.py \\
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["teams", 37, 5], ["platforms", 38, 27]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 19, 3], ["enableParallelBuilding", 25, 3], ["doCheck", 27, 3], ["checkTarget", 28, 3], ["nativeCheckInputs", 29, 3], ["installFlags", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, m2libc: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["teams", 37, 5], ["platforms", 38, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 19, 3], ["enableParallelBuilding", 25, 3], ["doCheck", 27, 3], ["checkTarget", 28, 3], ["nativeCheckInputs", 29, 3], ["installFlags", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const m2libc = nix.arg($, "m2libc");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mescc-tools",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/${nix.sel(finalAttrs, "pname")}/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-toL3v1dvieVdCxxjjZ3i2b6yhVciaPWPq/TtFNm2V1w=",
         })))),
@@ -35,7 +33,7 @@ patchShebangs --build Kaem/test.sh
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(m2libc, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of tools written for use in bootstrapping",
         homepage: "https://savannah.nongnu.org/projects/mescc-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

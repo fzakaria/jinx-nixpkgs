@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["pythonRelaxDeps", 23, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["pythonRelaxDeps", 23, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "docstrfmt",
       version: "2.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LilSpazJoekp",
           repo: "docstrfmt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["docstrfmt"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Formatter for reStructuredText",
         homepage: "https://github.com/LilSpazJoekp/docstrfmt",
         changelog: nix.thunk(() => nix.str`https://github.com/LilSpazJoekp/docstrfmt/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]], [["url", 19, 5], ["hash", 20, 5]], [["pname", 23, 55], ["version", 23, 61], ["src", 23, 69]], [["buildCommand", 24, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 48, 11], ["version", 48, 17], ["src", 49, 3], ["extraPkgs", 51, 3], ["extraInstallCommands", 53, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchurl: false, asar: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 55], ["version", 23, 61], ["src", 23, 69]]);
-const pos$4 = nix.positions(here + "/package.nix", [["buildCommand", 24, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 48, 11], ["version", 48, 17], ["src", 49, 3], ["extraPkgs", 51, 3], ["extraInstallCommands", 53, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const pname = "flexoptix-app";
   const version = "5.68.0-latest";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`${pname}-${version}.AppImage`),
       url: nix.thunk(() => nix.str`https://flexbox.reconfigure.me/download/electron/linux/x64/FLEXOPTIX%20App.${version}.AppImage`),
       hash: "sha256-YHAn1ebD1VWCnQedfoh/IU95j1vUPe2nA/x9ZUNm6Ww=",
     }))));
   const udevRules = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://www.flexoptix.net/static/frontend/Flexoptix/default/en_US/files/99-tprogrammer.rules",
       hash: "sha256-/1ZtJT+1IMyYqw3N0bVJ/T3vbmex169lzx+SlY5WsnA=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src }))), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$4,
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, version: version, src: src }))), "overrideAttrs"), (old) => ({
+      [nix.POS]: $pos[3],
       buildCommand: nix.thunk(() => nix.str`${nix.sel(old, "buildCommand")}
 
 # Remove left-over node-gyp executable symlinks
@@ -53,7 +48,7 @@ ${asar}/bin/asar pack app $out/resources/app.asar
 `),
     })));
   return nix.app(nix.sel(appimageTools, "wrapAppImage"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: appimageContents,
@@ -72,7 +67,7 @@ mkdir -p $out/lib/udev/rules.d
 ln -s ${udevRules} $out/lib/udev/rules.d/99-tprogrammer.rules
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Configure FLEXOPTIX Universal Transceivers in seconds",
         homepage: "https://www.flexoptix.net",
         changelog: "https://www.flexoptix.net/en/flexoptix-app/?os=linux#flexapp__modal__changelog",

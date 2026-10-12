@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/module.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["checkFlags", 24, 3], ["postInstall", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/module.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/module.nix", [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/module.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["checkFlags", 24, 3], ["postInstall", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const libExt = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lspce-module",
       version: "1.1.0-unstable-2024-12-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zbelial",
           repo: "lspce",
           rev: "45f84ce102bb34e44c39e5f437107ba786973d6f",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`mv --verbose $out/lib/liblspce_module${libExt} $out/lib/lspce-module${libExt}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/zbelial/lspce",
         description: "LSP Client for Emacs implemented as a module using Rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

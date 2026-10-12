@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["pname", 65, 34], ["version", 65, 40], ["src", 65, 48], ["pnpm", 66, 7], ["fetcherVersion", 67, 7], ["hash", 68, 7]], [["CI", 77, 9]], [["pname", 53, 5], ["version", 54, 13], ["src", 56, 5], ["patches", 58, 5], ["pnpmDeps", 64, 5], ["nativeBuildInputs", 71, 5], ["env", 77, 5], ["__darwinAllowLocalNetworking", 79, 5], ["doCheck", 81, 5], ["checkPhase", 82, 5], ["buildPhase", 90, 5], ["installPhase", 98, 5]], [["prometheus", 236, 36]], [["extraArgs", 238, 7]], [["assets", 235, 13], ["tests", 236, 5], ["updateScript", 237, 5]], [["description", 246, 5], ["homepage", 247, 5], ["license", 248, 5], ["changelog", 249, 5], ["maintainers", 250, 5], ["mainProgram", 255, 5]], [["pname", 111, 5], ["version", 112, 5], ["src", 113, 5], ["vendorHash", 116, 3], ["proxyVendor", 118, 3], ["outputs", 120, 3], ["excludedPackages", 126, 3], ["postPatch", 132, 3], ["preBuild", 167, 3], ["tags", 188, 3], ["ldflags", 190, 3], ["preInstall", 204, 3], ["postInstall", 209, 3], ["doCheck", 215, 3], ["checkFlags", 217, 3], ["nativeInstallCheckInputs", 229, 3], ["doInstallCheck", 232, 3], ["passthru", 234, 3], ["meta", 245, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, "nix-update-script": false, go: false, buildGoModule: false, nodejs: false, pnpmConfigHook: false, pnpm_11: false, fetchPnpmDeps: false, fetchFromGitHub: false, nixosTests: false, enableAWS: true, enableAzure: true, enableConsul: true, enableDigitalOcean: true, enableDNS: true, enableEureka: true, enableGCE: true, enableHetzner: true, enableIONOS: true, enableKubernetes: true, enableLinode: true, enableMarathon: true, enableMoby: true, enableNomad: true, enableOpenstack: true, enableOVHCloud: true, enablePuppetDB: true, enableScaleway: true, enableSTACKIT: true, enableTriton: true, enableUyuni: true, enableVultr: true, enableXDS: true, enableZookeeper: true, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 65, 34], ["version", 65, 40], ["src", 65, 48], ["pnpm", 66, 7], ["fetcherVersion", 67, 7], ["hash", 68, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CI", 77, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 53, 5], ["version", 54, 13], ["src", 56, 5], ["patches", 58, 5], ["pnpmDeps", 64, 5], ["nativeBuildInputs", 71, 5], ["env", 77, 5], ["__darwinAllowLocalNetworking", 79, 5], ["doCheck", 81, 5], ["checkPhase", 82, 5], ["buildPhase", 90, 5], ["installPhase", 98, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["prometheus", 236, 36]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 238, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["assets", 235, 13], ["tests", 236, 5], ["updateScript", 237, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 246, 5], ["homepage", 247, 5], ["license", 248, 5], ["changelog", 249, 5], ["maintainers", 250, 5], ["mainProgram", 255, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 111, 5], ["version", 112, 5], ["src", 113, 5], ["vendorHash", 116, 3], ["proxyVendor", 118, 3], ["outputs", 120, 3], ["excludedPackages", 126, 3], ["postPatch", 132, 3], ["preBuild", 167, 3], ["tags", 188, 3], ["ldflags", 190, 3], ["preInstall", 204, 3], ["postInstall", 209, 3], ["doCheck", 215, 3], ["checkFlags", 217, 3], ["nativeInstallCheckInputs", 229, 3], ["doInstallCheck", 232, 3], ["passthru", 234, 3], ["meta", 245, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,20 +46,20 @@ export default nix.lambda((args) => (() => {
   const version = "3.15.0";
   const pname = "prometheus";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "prometheus",
       repo: "prometheus",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-H0VkirdEVWoFxg86g8utf6EuCSH3pHD8iuHg6y0xOZE=",
     }))));
   const assets = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAssetsAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`${pname}-assets`),
       version: version,
       src: nix.thunk(() => nix.str`${src}/web/ui`),
       patches: nix.thunk(() => [nix.path(here, "./disable-react-app.diff")]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAssetsAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAssetsAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAssetsAttrs, "src")),
@@ -76,7 +68,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-iSnP2zImIBklU/Ejq2NiuAYAo0SCuWtYbsAyTFHuD7Q=",
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_11]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CI: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CI: true })),
       __darwinAllowLocalNetworking: true,
       doCheck: true,
       checkPhase: "runHook preCheck\n\npnpm test\n\nrunHook postCheck\n",
@@ -84,7 +76,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/static\ncp -r static/* $out/static\nfind $out/static -type f -exec gzip -f9 {} \\;\n\nrunHook postInstall\n",
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: pname,
       version: version,
       src: src,
@@ -154,16 +146,16 @@ ${nix.app(nix.sel(lib, "optionalString"), enableZookeeper, "echo - github.com/pr
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         assets: assets,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           prometheus: nix.thunk(() => nix.attr(nixosTests, "prometheus")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["--subpackage", "assets"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[5], extraArgs: nix.thunk(() => ["--subpackage", "assets"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Service monitoring system and time series database",
         homepage: "https://prometheus.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

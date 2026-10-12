@@ -2,25 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/homebridge.nix", [[["maintainers", 12, 8]], [["name", 23, 13], ["port", 24, 13]], [["bridge", 22, 11]], [["port", 29, 11]], [["enable", 18, 9], ["userStoragePath", 19, 17], ["pluginPath", 19, 33], ["settings", 21, 9], ["uiSettings", 28, 9]], [["homebridge", 17, 16]], [["name", 36, 59]], [["bridge", 36, 52]], [["settings", 36, 43]], [["homebridge", 36, 32]], [["services", 36, 23]], [["inheritParentConfig", 35, 9], ["configuration", 36, 9]], [["differentName", 34, 22]], [["services", 17, 7], ["specialisation", 34, 7]], [["homebridge", 14, 9]], [["name", 11, 3], ["meta", 12, 3], ["nodes", 14, 3], ["testScript", 40, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/homebridge.nix", [["maintainers", 12, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/homebridge.nix", [["name", 23, 13], ["port", 24, 13]]);
-const pos$3 = nix.positions(here + "/homebridge.nix", [["bridge", 22, 11]]);
-const pos$4 = nix.positions(here + "/homebridge.nix", [["port", 29, 11]]);
-const pos$5 = nix.positions(here + "/homebridge.nix", [["enable", 18, 9], ["userStoragePath", 19, 17], ["pluginPath", 19, 33], ["settings", 21, 9], ["uiSettings", 28, 9]]);
-const pos$6 = nix.positions(here + "/homebridge.nix", [["homebridge", 17, 16]]);
-const pos$7 = nix.positions(here + "/homebridge.nix", [["name", 36, 59]]);
-const pos$8 = nix.positions(here + "/homebridge.nix", [["bridge", 36, 52]]);
-const pos$9 = nix.positions(here + "/homebridge.nix", [["settings", 36, 43]]);
-const pos$10 = nix.positions(here + "/homebridge.nix", [["homebridge", 36, 32]]);
-const pos$11 = nix.positions(here + "/homebridge.nix", [["services", 36, 23]]);
-const pos$12 = nix.positions(here + "/homebridge.nix", [["inheritParentConfig", 35, 9], ["configuration", 36, 9]]);
-const pos$13 = nix.positions(here + "/homebridge.nix", [["differentName", 34, 22]]);
-const pos$14 = nix.positions(here + "/homebridge.nix", [["services", 17, 7], ["specialisation", 34, 7]]);
-const pos$15 = nix.positions(here + "/homebridge.nix", [["homebridge", 14, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/homebridge.nix", [["name", 11, 3], ["meta", 12, 3], ["nodes", 14, 3], ["testScript", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,51 +13,51 @@ export default nix.lambda((args) => (() => {
   const userStoragePath = "/var/lib/foobar";
   const pluginPath = nix.thunk(() => nix.str`${userStoragePath}/node_modules`);
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     name: "homebridge",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "fmoda3"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       homebridge: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             homebridge: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               userStoragePath: userStoragePath,
               pluginPath: pluginPath,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                bridge: nix.thunk(() => ({ [nix.POS]: pos$2, name: "Homebridge", port: 51826n })),
+                [nix.POS]: $pos[2],
+                bridge: nix.thunk(() => ({ [nix.POS]: $pos[1], name: "Homebridge", port: 51826n })),
               })),
-              uiSettings: nix.thunk(() => ({ [nix.POS]: pos$4, port: 8581n })),
+              uiSettings: nix.thunk(() => ({ [nix.POS]: $pos[3], port: 8581n })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             differentName: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               inheritParentConfig: true,
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   homebridge: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     settings: nix.thunk(() => ({
-                      [nix.POS]: pos$8,
+                      [nix.POS]: $pos[7],
                       bridge: nix.thunk(() => ({
-                        [nix.POS]: pos$7,
+                        [nix.POS]: $pos[6],
                         name: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "Test Home")),
                       })),
                     })),

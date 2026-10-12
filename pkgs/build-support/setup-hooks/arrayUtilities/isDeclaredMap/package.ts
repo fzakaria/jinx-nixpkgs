@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["tests", 8, 12]], [["description", 10, 5], ["license", 11, 5]], [["name", 7, 3], ["passthru", 8, 3], ["meta", 9, 3]]]);
 const formals$1 = { args: { lib: false, callPackages: false, makeSetupHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["tests", 8, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 10, 5], ["license", 11, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 7, 3], ["passthru", 8, 3], ["meta", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const callPackages = nix.arg($, "callPackages");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "isDeclaredMap",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         tests: nix.thunk(() => nix.app(callPackages, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tests if an associative array is declared",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

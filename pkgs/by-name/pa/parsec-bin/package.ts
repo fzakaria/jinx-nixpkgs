@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["hash", 34, 5]], [["homepage", 112, 5], ["changelog", 113, 5], ["description", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["platforms", 120, 5], ["mainProgram", 121, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["runtimeDependenciesPath", 49, 3], ["binPath", 69, 3], ["prepareParsec", 73, 3], ["installPhase", 80, 3], ["dontAutoPatchelf", 101, 3], ["fixupPhase", 103, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, stdenv: false, lib: false, dpkg: false, autoPatchelfHook: false, makeWrapper: false, fetchurl: false, "alsa-lib": false, openssl: false, udev: false, libglvnd: false, libx11: false, libxcursor: false, libxi: false, libxrandr: false, libxfixes: false, libpulseaudio: false, libva: false, ffmpeg_7: false, libpng: false, libjpeg8: false, curl: false, "vulkan-loader": false, zenity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 112, 5], ["changelog", 113, 5], ["description", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["platforms", 120, 5], ["mainProgram", 121, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["runtimeDependenciesPath", 49, 3], ["binPath", 69, 3], ["prepareParsec", 73, 3], ["installPhase", 80, 3], ["dontAutoPatchelf", 101, 3], ["fixupPhase", 103, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const zenity = nix.arg($, "zenity");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "parsec-bin",
       version: "150_97c",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20250226223019/https://builds.parsec.app/package/parsec-linux.deb",
           hash: "sha256-8Wkbo6l1NGBPX2QMJszq+u9nLM96tu7WYRTQq6/CzM8=",
         })))),
@@ -88,7 +86,7 @@ runHook postInstall
       dontAutoPatchelf: true,
       fixupPhase: "runHook preFixup\n\nautoPatchelf $out/bin\n\nrunHook postFixup\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://parsec.app/",
         changelog: "https://parsec.app/changelog",
         description: "Remote streaming service client",

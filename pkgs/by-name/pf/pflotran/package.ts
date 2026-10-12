@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 9], ["hash", 28, 9]], [["version", 25, 7], ["src", 26, 7]], [["withMetis", 32, 9], ["withParmetis", 33, 9], ["python3Packages", 34, 9]], [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]], [["mpi", 62, 24]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["patches", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 52, 3], ["propagatedBuildInputs", 60, 3], ["propagatedUserEnvPkgs", 61, 3], ["passthru", 62, 3], ["enableParallelBuilding", 64, 3], ["preConfigure", 72, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromBitbucket: false, fetchzip: false, gfortran: false, mpi: false, petsc: false, blas: false, lapack: false, parmetis: false, "hdf5-fortran-mpi": false, mpiCheckPhaseHook: false, python312Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 9], ["hash", 28, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 25, 7], ["src", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withMetis", 32, 9], ["withParmetis", 33, 9], ["python3Packages", 34, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mpi", 62, 24]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["patches", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 52, 3], ["propagatedBuildInputs", 60, 3], ["propagatedUserEnvPkgs", 61, 3], ["passthru", 62, 3], ["enableParallelBuilding", 64, 3], ["preConfigure", 72, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,23 +23,23 @@ export default nix.lambda((args) => (() => {
   const petsc$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(petsc, "overrideAttrs"), nix.thunk(() => (() => {
       const version = "3.21.4";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://web.cels.anl.gov/projects/petsc/download/release-snapshots/petsc-${version}.tar.gz`),
           hash: "sha256-l7v+ASBL9FLbBmBGTRWDwBihjwLe3uLz+GwXtn8u7e0=",
         }))));
-      return { [nix.POS]: pos$2, version, src };
+      return { [nix.POS]: $pos[1], version, src };
     })())), "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       withMetis: true,
       withParmetis: true,
       python3Packages: python312Packages,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "PFLOTRAN",
       version: "6.0.1",
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "pflotran",
           repo: "pflotran",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,14 +50,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [petsc$, blas, lapack, hdf5_fortran_mpi, parmetis]),
       propagatedBuildInputs: nix.thunk(() => [mpi]),
       propagatedUserEnvPkgs: nix.thunk(() => [mpi]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, mpi: mpi })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], mpi: mpi })),
       enableParallelBuilding: true,
       preConfigure: nix.thunk(() => nix.str`substituteInPlace src/pflotran/makefile \\
   --subst-var-by "HDF5_FORTRAN_LIBS" "${nix.app(nix.sel(lib, "getLib"), hdf5_fortran_mpi)}/lib" \\
   --subst-var-by "HDF5_FORTRAN_INCLUDE" "${nix.app(nix.sel(lib, "getDev"), hdf5_fortran_mpi)}/include"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Parallel, multi-physics simulation code for subsurface flow and transport",
         homepage: "https://pflotran.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

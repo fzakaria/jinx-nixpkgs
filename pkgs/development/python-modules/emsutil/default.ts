@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["extraArgs", 57, 5]], [["updateScript", 56, 12]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["teams", 65, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["pythonRelaxDeps", 47, 3], ["pythonImportsCheck", 51, 3], ["passthru", 56, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "nix-update-script": false, hatchling: false, loguru: false, matplotlib: false, msgpack: false, "msgpack-numpy": false, numpy: false, pyvista: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 56, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["teams", 65, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["pythonRelaxDeps", 47, 3], ["pythonImportsCheck", 51, 3], ["passthru", 56, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pyvista = nix.arg($, "pyvista");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "emsutil",
       version: "0.8.3-unstable-2026-08-03",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FennisRobert",
           repo: "emsutil",
           rev: "18449659ca374ba84f02709a0d245b6bebb8ddb6",
@@ -41,11 +37,11 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["numpy"]),
       pythonImportsCheck: nix.thunk(() => ["emsutil"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Utilities for the EMerge software suite",
         homepage: "https://github.com/FennisRobert/emsutil",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

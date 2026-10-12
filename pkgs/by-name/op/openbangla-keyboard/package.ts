@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]], [["src", 55, 26], ["cargoRoot", 55, 30], ["postPatch", 55, 40], ["hash", 56, 5]], [["isIbusEngine", 77, 5], ["description", 78, 5], ["mainProgram", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5], ["broken", 85, 5]], [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 42, 3], ["cargoDeps", 54, 3], ["cmakeFlags", 59, 3], ["patches", 67, 3], ["cargoRoot", 71, 3], ["postPatch", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cargo: false, cmake: false, "pkg-config": false, rustPlatform: false, rustc: false, fcitx5: false, ibus: false, libsForQt5: false, zstd: false, withFcitx5Support: true, withIbusSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 55, 26], ["cargoRoot", 55, 30], ["postPatch", 55, 40], ["hash", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["isIbusEngine", 77, 5], ["description", 78, 5], ["mainProgram", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5], ["broken", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 42, 3], ["cargoDeps", 54, 3], ["cmakeFlags", 59, 3], ["patches", 67, 3], ["cargoRoot", 71, 3], ["postPatch", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const withFcitx5Support = nix.argOr($, "withFcitx5Support", () => false);
   const withIbusSupport = nix.argOr($, "withIbusSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openbangla-keyboard",
       version: "2.0.0-unstable-2025-08-19",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openbangla",
           repo: "openbangla-keyboard",
           rev: "723e348ad2cb0607684d907ce8a9457e12993f4f",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withFcitx5Support, nix.thunk(() => [fcitx5])), nix.concat(nix.app(nix.sel(lib, "optionals"), withIbusSupport, nix.thunk(() => [ibus])), [nix.thunk(() => nix.sel(libsForQt5, "qtbase")), zstd]))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
           postPatch: nix.thunk(() => nix.attr(finalAttrs, "postPatch")),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`cp ${nix.path(here, "./Cargo.lock")} ${nix.sel(finalAttrs, "cargoRoot")}/Cargo.lock
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         isIbusEngine: withIbusSupport,
         description: "OpenSource, Unicode compliant Bengali Input Method",
         mainProgram: "openbangla-gui",

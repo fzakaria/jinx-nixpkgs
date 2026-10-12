@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["CFLAGS_aarch64_apple_darwin", 63, 5], ["CXXFLAGS_aarch64_apple_darwin", 64, 5]], [["updateScript", 69, 12]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["mainProgram", 77, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["buildFeatures", 32, 3], ["updateAutotoolsGnuConfigScriptsPhase", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 53, 3], ["env", 62, 3], ["doCheck", 67, 3], ["passthru", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, chafa: false, fontconfig: false, glib: false, gnumake: false, gperf: false, libiconv: false, python3: false, unzip: false, writeShellScriptBin: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS_aarch64_apple_darwin", 63, 5], ["CXXFLAGS_aarch64_apple_darwin", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 69, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["mainProgram", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["buildFeatures", 32, 3], ["updateAutotoolsGnuConfigScriptsPhase", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 53, 3], ["env", 62, 3], ["doCheck", 67, 3], ["passthru", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScriptBin = nix.arg($, "writeShellScriptBin");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mdfried",
       version: "0.22.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "benjajaja",
           repo: "mdfried",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,17 +52,17 @@ exec ${nix.app(nix.sel(lib, "getExe"), gnumake)} "$@"
         nix.thunk(() => nix.sel(glib, "dev")),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           CFLAGS_aarch64_apple_darwin: "-UTARGET_OS_MAC",
           CXXFLAGS_aarch64_apple_darwin: "-UTARGET_OS_MAC",
         })))),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Markdown viewer TUI for the terminal, with big text and image rendering",
         homepage: "https://github.com/benjajaja/mdfried",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 10, 33], ["version", 10, 39], ["meta", 10, 47], ["paths", 12, 3], ["nativeBuildInputs", 14, 3], ["postBuild", 16, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, "nix-index-unwrapped": false, makeWrapper: false, nix: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 10, 33], ["version", 10, 39], ["meta", 10, 47], ["paths", 12, 3], ["nativeBuildInputs", 14, 3], ["postBuild", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix$ = nix.arg($, "nix");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.attr(nix_index_unwrapped, "pname")),
       version: nix.thunk(() => nix.attr(nix_index_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(nix_index_unwrapped, "meta")),

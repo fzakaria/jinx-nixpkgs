@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 13], ["fetchSubmodules", 44, 18]], [["openssl", 56, 30]], [["mysqlVersion", 105, 12]], [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["platforms", 111, 5], ["maintainers", 112, 5]], [["pname", 37, 3], ["version", 38, 11], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 55, 3], ["patches", 80, 3], ["cmakeFlags", 82, 3], ["postInstall", 99, 3], ["passthru", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bison: false, boost: false, cmake: false, makeWrapper: false, "pkg-config": false, curl: false, cyrus_sasl: false, libaio: false, libedit: false, libev: false, libevent: false, libgcrypt: false, "libgpg-error": false, lz4: false, ncurses: false, numactl: false, openssl: false, procps: false, protobuf: false, valgrind: false, xxd: false, zlib: false, perlPackages: false, version: false, hash: false, fetchSubmodules: true, extraPatches: true, extraPostInstall: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/generic.nix", [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 13], ["fetchSubmodules", 44, 18]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["openssl", 56, 30]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["mysqlVersion", 105, 12]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["platforms", 111, 5], ["maintainers", 112, 5]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["pname", 37, 3], ["version", 38, 11], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 55, 3], ["patches", 80, 3], ["cmakeFlags", 82, 3], ["postInstall", 99, 3], ["passthru", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const extraPatches = nix.argOr($, "extraPatches", () => []);
   const extraPostInstall = nix.argOr($, "extraPostInstall", () => "");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "percona-xtrabackup",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "percona",
           repo: "percona-xtrabackup",
           rev: nix.thunk(() => nix.str`percona-xtrabackup-${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [bison, boost, cmake, makeWrapper, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, openssl: openssl })))),
+        nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], openssl: openssl })))),
         cyrus_sasl,
         libaio,
         libedit,
@@ -100,11 +96,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.add("wrapProgram \"$out\"/bin/xtrabackup --prefix PERL5LIB : $PERL5LIB\nrm -r \"$out\"/lib/plugin/debug\n", extraPostInstall)),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mysqlVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Non-blocking backup tool for MySQL",
         homepage: "http://www.percona.com/software/percona-xtrabackup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

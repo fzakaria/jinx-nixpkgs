@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["pname", 46, 26], ["src", 46, 32], ["version", 46, 36], ["hash", 47, 5]], [["DDNET_GIT_SHORTREV_HASH", 110, 5]], [["description", 135, 5], ["homepage", 136, 5], ["changelog", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["mainProgram", 143, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["cargoDeps", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 61, 3], ["strictDeps", 82, 3], ["postPatch", 84, 3], ["cmakeFlags", 94, 3], ["env", 103, 3], ["doCheck", 117, 3], ["preFixup", 119, 3], ["postInstall", 124, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cargo: false, cmake: false, ninja: false, "pkg-config": false, rustPlatform: false, rustc: false, curl: false, freetype: false, libGLU: false, libnotify: false, libogg: false, libx11: false, opusfile: false, pcre2: false, python3: false, SDL2: false, sqlite: false, wavpack: false, ffmpeg: false, x264: false, "vulkan-headers": false, "vulkan-loader": false, glslang: false, "spirv-tools": false, glew: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 46, 26], ["src", 46, 32], ["version", 46, 36], ["hash", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["DDNET_GIT_SHORTREV_HASH", 110, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 135, 5], ["homepage", 136, 5], ["changelog", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["mainProgram", 143, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["cargoDeps", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 61, 3], ["strictDeps", 82, 3], ["postPatch", 84, 3], ["cmakeFlags", 94, 3], ["env", 103, 3], ["doCheck", 117, 3], ["preFixup", 119, 3], ["postInstall", 124, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,18 +37,18 @@ export default nix.lambda((args) => (() => {
   const glew = nix.arg($, "glew");
   const clientExecutable = "TaterClient-DDNet";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "taterclient-ddnet",
       version: "10.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TaterClient",
           repo: "TClient",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-QlLxY1k9S9mvRJ0LL7/jpBfIn638eEEnQQ6tKvT/MJY=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -98,7 +94,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CLIENT_EXECUTABLE", clientExecutable)),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         DDNET_GIT_SHORTREV_HASH: "6b4118bf0ec86822dea43cc3e97b0645",
       })),
       doCheck: false,
@@ -114,7 +110,7 @@ substituteInPlace $out/share/applications/taterclient-ddnet.desktop \\
   --replace-fail "Comment=Launch DDNet" "Comment=Launch ${clientExecutable}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Modification of DDNet teeworlds client",
         homepage: "https://github.com/sjrc6/taterclient-ddnet",
         changelog: "https://github.com/sjrc6/taterclient-ddnet/releases",

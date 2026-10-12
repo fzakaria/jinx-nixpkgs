@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["homepage", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["license", 65, 5], ["description", 66, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 50, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, meson: false, fetchFromGitHub: false, "pkg-config": false, libxrandr: false, libxext: false, libxcursor: false, libx11: false, libGL: false, cairo: false, glslang: false, python3: false, doxygen: false, "vulkan-loader": false, "vulkan-headers": false, sphinx: false, sphinxygen: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["license", 65, 5], ["description", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 50, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const sphinxygen = nix.arg($, "sphinxygen");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pugl",
       version: "0-unstable-2024-10-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lv2",
           repo: "pugl",
           rev: "edd13c1b952b16633861855fcdbdd164e87b3c0a",
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
         cairo,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/lv2/pugl",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

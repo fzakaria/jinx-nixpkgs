@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["dontConfigure", 29, 5], ["nativeBuildInputs", 30, 5], ["hash", 31, 5]], [["LIBGIT2_NO_VENDOR", 48, 5]], [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5], ["license", 73, 5], ["mainProgram", 74, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoDeps", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["env", 47, 3], ["outputs", 51, 3], ["enableParallelBuilding", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, zstd: false, "pkg-config": false, jq: false, cargo: false, rustc: false, rustPlatform: false, libgit2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["dontConfigure", 29, 5], ["nativeBuildInputs", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LIBGIT2_NO_VENDOR", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5], ["license", 73, 5], ["mainProgram", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoDeps", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["env", 47, 3], ["outputs", 51, 3], ["enableParallelBuilding", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const libgit2 = nix.arg($, "libgit2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "git-warp-time",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/alerque/git-warp-time/releases/download/v${nix.sel(finalAttrs, "version")}/git-warp-time-${nix.sel(finalAttrs, "version")}.tar.zst`),
           hash: "sha256-Fq0fb2EZkBHJvcwOF9xRIvfh6yAICQ6cpvkFLJtxF78=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -48,11 +44,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")),
       ]),
       buildInputs: nix.thunk(() => [libgit2]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, LIBGIT2_NO_VENDOR: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], LIBGIT2_NO_VENDOR: "1" })),
       outputs: nix.thunk(() => ["out", "doc", "man", "dev"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Utility to reset filesystem timestamps based on Git history",
         longDescription: "A CLI utility that resets the timestamps of files in a Git repository\nworking directory to the exact timestamp of the last commit which\nmodified each file.\n",
         homepage: "https://github.com/alerque/git-warp-time",

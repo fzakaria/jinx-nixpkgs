@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["__darwinAllowLocalNetworking", 28, 3], ["nativeCheckInputs", 30, 3], ["disabledTests", 35, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytoolconfig: false, "pytest-timeout": false, pytestCheckHook: false, pythonAtLeast: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["__darwinAllowLocalNetworking", 28, 3], ["nativeCheckInputs", 30, 3], ["disabledTests", 35, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.15.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-rope",
           repo: "rope",
           tag: version,
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
           "test_hint_parametrized_iterator",
         ]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python refactoring library",
         homepage: "https://github.com/python-rope/rope",
         changelog: nix.thunk(() => nix.str`https://github.com/python-rope/rope/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

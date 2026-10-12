@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unstable.nix", [[["urls", 15, 5], ["hash", 19, 5]], [["name", 26, 7], ["url", 27, 7], ["sha256", 28, 7]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 22, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchpatch: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unstable.nix", [["urls", 15, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/unstable.nix", [["name", 26, 7], ["url", 27, 7], ["sha256", 28, 7]]);
-const pos$3 = nix.positions(here + "/unstable.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const rev = "7bcf43f8dbd5c4a67ec573a1248114caa75fa3c2";
   return nix.app(callPackage, nix.path(here, "./dvtm.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dvtm-unstable",
       version: "0.15-unstable-2021-03-09",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://github.com/martanne/dvtm/archive/${rev}.tar.gz`),
             nix.thunk(() => nix.str`https://git.sr.ht/~martanne/dvtm/archive/${rev}.tar.gz`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "use-self-pipe-fix-darwin",
             url: "https://github.com/martanne/dvtm/commit/1f1ed664d64603f3f1ce1388571227dc723901b2.patch",
             sha256: "14j3kks7b1v6qq12442v1da3h7khp02rp0vi0qrz0rfgkg1zilpb",

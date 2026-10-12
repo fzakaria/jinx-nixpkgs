@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["homepage", 29, 5], ["description", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["mainProgram", 34, 5], ["platforms", 35, 24]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["strictDeps", 24, 3], ["__structuredAttrs", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, zig_0_16: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["mainProgram", 34, 5], ["platforms", 35, 24]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["strictDeps", 24, 3], ["__structuredAttrs", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_16 = nix.arg($, "zig_0_16");
   const zig = zig_0_16;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zigdoc",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rockorager",
           repo: "zigdoc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(zig, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/rockorager/zigdoc",
         description: "CLI tool to view documentation for zig library symbols",
         changelog: "https://github.com/rockorager/zigdoc/releases",

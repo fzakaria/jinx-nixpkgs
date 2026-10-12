@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["license", 61, 7], ["mainProgram", 62, 7]], [["pname", 25, 5], ["version", 26, 13], ["src", 26, 21], ["cargoHash", 27, 5], ["__structuredAttrs", 29, 5], ["cargoBuildFlags", 32, 5], ["cargoTestFlags", 36, 5], ["buildInputs", 41, 5], ["nativeBuildInputs", 42, 5], ["nativeCheckInputs", 48, 5], ["nativeInstallCheckInputs", 50, 5], ["doInstallCheck", 54, 5], ["postInstall", 56, 5], ["meta", 60, 5]], [["attrPath", 78, 7]], [["updateScript", 77, 5], ["kjn-rust", 82, 13]], [["changelog", 86, 5], ["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]], [["pname", 67, 3], ["version", 68, 11], ["src", 68, 19], ["dependencies", 70, 3], ["postInstall", 71, 3], ["passthru", 76, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, jujutsu: false, lib: false, makeBinaryWrapper: false, "nix-update-script": false, openssl: false, "pkg-config": false, rustPlatform: false, versionCheckHook: false, vimUtils: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 61, 7], ["mainProgram", 62, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 5], ["version", 26, 13], ["src", 26, 21], ["cargoHash", 27, 5], ["__structuredAttrs", 29, 5], ["cargoBuildFlags", 32, 5], ["cargoTestFlags", 36, 5], ["buildInputs", 41, 5], ["nativeBuildInputs", 42, 5], ["nativeCheckInputs", 48, 5], ["nativeInstallCheckInputs", 50, 5], ["doInstallCheck", 54, 5], ["postInstall", 56, 5], ["meta", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["attrPath", 78, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 77, 5], ["kjn-rust", 82, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["changelog", 86, 5], ["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 67, 3], ["version", 68, 11], ["src", 68, 19], ["dependencies", 70, 3], ["postInstall", 71, 3], ["passthru", 76, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const version = "0.2.4";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Yuki-bun",
       repo: "kenjutu",
       tag: nix.thunk(() => nix.str`kjn/v${version}`),
       hash: "sha256-Ogf8B/h8RZozeZH20YPFs7+3kBWduRuNOkwiKpj+8Hc=",
     }))));
   const kjn_rust = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kenjutu-kjn",
       version: version,
       src: src,
@@ -49,13 +43,13 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/kjn --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jujutsu]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         mainProgram: "kjn",
       })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "kenjutu-nvim",
       version: version,
       src: src,
@@ -64,12 +58,12 @@ export default nix.lambda((args) => (() => {
 ln -s ${nix.app(nix.sel(lib, "getExe"), kjn_rust)} $out/bin/kjn
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vimPlugins.kenjutu-nvim.kjn-rust" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], attrPath: "vimPlugins.kenjutu-nvim.kjn-rust" })))),
         "kjn-rust": kjn_rust,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/Yuki-bun/kenjutu/releases/tag/${nix.sel(src, "tag")}`),
         description: "Track your code review progress hunk-by-hunk through history rewrites for jj users",
         homepage: "https://github.com/Yuki-bun/kenjutu/",

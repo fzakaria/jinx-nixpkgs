@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableLiburing", 30, 15], ["enableJemalloc", 37, 7]], [["owner", 42, 13], ["repo", 43, 13], ["rev", 47, 13], ["hash", 48, 13]], [["src", 41, 11], ["version", 50, 11], ["patches", 51, 11], ["postPatch", 52, 11], ["cmakeFlags", 53, 11], ["outputs", 85, 11], ["preInstall", 86, 11]], [["owner", 95, 5], ["repo", 96, 5], ["tag", 97, 5], ["hash", 98, 5]], [["ZSTD_SYS_USE_PKG_CONFIG", 127, 5], ["ROCKSDB_INCLUDE_DIR", 128, 5], ["ROCKSDB_LIB_DIR", 129, 5]], [["name", 165, 9], ["text", 166, 9]], [["version", 188, 30], ["package", 189, 9]], [["version", 187, 7]], [["matrix-tuwunel", 193, 28]], [["rocksdb", 184, 5], ["updateScript", 185, 5], ["tests", 186, 5]], [["description", 200, 5], ["homepage", 201, 5], ["changelog", 202, 5], ["license", 203, 5], ["maintainers", 204, 5], ["mainProgram", 207, 5], ["broken", 208, 5]], [["pname", 91, 3], ["version", 92, 3], ["src", 94, 3], ["cargoTestFlags", 102, 3], ["cargoHash", 107, 3], ["nativeBuildInputs", 109, 3], ["patches", 114, 3], ["buildInputs", 120, 3], ["env", 126, 3], ["buildNoDefaultFeatures", 132, 3], ["buildFeatures", 137, 3], ["nativeCheckInputs", 155, 3], ["preCheck", 162, 3], ["doCheck", 181, 3], ["passthru", 183, 3], ["disallowedReferences", 197, 3], ["meta", 199, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, libredirect: false, bzip2: false, zstd: false, stdenv: false, rocksdb: false, "nix-update-script": false, testers: false, "matrix-tuwunel": false, enableJemalloc: true, enableLiburing: true, enableLdap: true, liburing: false, nixosTests: false, writeTextFile: false, "rustc-unwrapped": false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableLiburing", 30, 15], ["enableJemalloc", 37, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 42, 13], ["repo", 43, 13], ["rev", 47, 13], ["hash", 48, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 41, 11], ["version", 50, 11], ["patches", 51, 11], ["postPatch", 52, 11], ["cmakeFlags", 53, 11], ["outputs", 85, 11], ["preInstall", 86, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 95, 5], ["repo", 96, 5], ["tag", 97, 5], ["hash", 98, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ZSTD_SYS_USE_PKG_CONFIG", 127, 5], ["ROCKSDB_INCLUDE_DIR", 128, 5], ["ROCKSDB_LIB_DIR", 129, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 165, 9], ["text", 166, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 188, 30], ["package", 189, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["version", 187, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["matrix-tuwunel", 193, 28]]);
-const pos$10 = nix.positions(here + "/package.nix", [["rocksdb", 184, 5], ["updateScript", 185, 5], ["tests", 186, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 200, 5], ["homepage", 201, 5], ["changelog", 202, 5], ["license", 203, 5], ["maintainers", 204, 5], ["mainProgram", 207, 5], ["broken", 208, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 91, 3], ["version", 92, 3], ["src", 94, 3], ["cargoTestFlags", 102, 3], ["cargoHash", 107, 3], ["nativeBuildInputs", 109, 3], ["patches", 114, 3], ["buildInputs", 120, 3], ["env", 126, 3], ["buildNoDefaultFeatures", 132, 3], ["buildFeatures", 137, 3], ["nativeCheckInputs", 155, 3], ["preCheck", 162, 3], ["doCheck", 181, 3], ["passthru", 183, 3], ["disallowedReferences", 197, 3], ["meta", 199, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,10 +27,10 @@ export default nix.lambda((args) => (() => {
   const writeTextFile = nix.arg($, "writeTextFile");
   const rustc_unwrapped = nix.arg($, "rustc-unwrapped");
   const cacert = nix.arg($, "cacert");
-  const rocksdb$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(rocksdb, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableLiburing: enableLiburing, enableJemalloc: false }))), "overrideAttrs"), (final) => (old) => ({
-      [nix.POS]: pos$3,
+  const rocksdb$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(rocksdb, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableLiburing: enableLiburing, enableJemalloc: false }))), "overrideAttrs"), (final) => (old) => ({
+      [nix.POS]: $pos[2],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "matrix-construct",
           repo: "rocksdb",
           rev: "d8a89161c6a53e79d61694289d2b78be36e6ca12",
@@ -72,11 +61,11 @@ export default nix.lambda((args) => (() => {
       preInstall: "",
     })));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "matrix-tuwunel",
       version: "1.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "matrix-construct",
           repo: "tuwunel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +77,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./dont-record-compilation-flags.patch")]),
       buildInputs: nix.thunk(() => nix.concat([bzip2, zstd], nix.app(nix.sel(lib, "optional"), enableLiburing, liburing))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         ZSTD_SYS_USE_PKG_CONFIG: true,
         ROCKSDB_INCLUDE_DIR: nix.thunk(() => nix.str`${rocksdb$}/include`),
         ROCKSDB_LIB_DIR: nix.thunk(() => nix.str`${rocksdb$}/lib`),
@@ -107,31 +96,31 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), enableJemalloc, nix.thunk(() => ["jemalloc", "jemalloc_conf"])), nix.concat(nix.app(nix.sel(lib, "optional"), enableLiburing, "io_uring"), nix.app(nix.sel(lib, "optional"), enableLdap, "ldap"))))),
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libredirect, "hook")), cacert]),
       preCheck: nix.thunk(() => (() => {
-        const fakeResolvConf = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({ [nix.POS]: pos$6, name: "resolv.conf", text: "nameserver 0.0.0.0\n" }))));
+        const fakeResolvConf = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({ [nix.POS]: $pos[5], name: "resolv.conf", text: "nameserver 0.0.0.0\n" }))));
         return nix.str`export NIX_REDIRECTS="/etc/resolv.conf=${fakeResolvConf}"
 export TUWUNEL_DATABASE_PATH="$(mktemp -d)/smoketest.db"
 `;
       })()),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         rocksdb: rocksdb$,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: matrix_tuwunel,
             })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             "matrix-tuwunel": nix.thunk(() => nix.attr(nixosTests, "matrix-tuwunel")),
           }))))),
       })),
       disallowedReferences: nix.thunk(() => [rustc_unwrapped]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Matrix homeserver written in Rust, official successor to conduwuit",
         homepage: "https://github.com/matrix-construct/tuwunel",
         changelog: nix.thunk(() => nix.str`https://github.com/matrix-construct/tuwunel/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 29, 5], ["buildCommand", 31, 5]], [["NIX_CFLAGS_COMPILE", 100, 7]], [["description", 131, 5], ["license", 132, 5]], [["releaseName", 82, 3], ["outputs", 84, 3], ["xcodeHash", 90, 3], ["patches", 92, 3], ["nativeBuildInputs", 98, 3], ["env", 100, 3], ["buildInputs", 102, 3], ["postInstall", 115, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, "apple-sdk_26": false, bzip2: false, copyfile: false, less: false, libmd: false, libutil: false, libxo: false, mkAppleDerivation: false, ncurses: false, "pkg-config": false, removefile: false, shell_cmds: false, sourceRelease: false, stdenvNoCC: false, xz: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 29, 5], ["buildCommand", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 100, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 131, 5], ["license", 132, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["releaseName", 82, 3], ["outputs", 84, 3], ["xcodeHash", 90, 3], ["patches", 92, 3], ["nativeBuildInputs", 98, 3], ["env", 100, 3], ["buildInputs", 102, 3], ["postInstall", 115, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const libplatform = nix.thunk(() => nix.app(sourceRelease, "libplatform"));
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "file_cmds-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -t "$out/include" \\
   '${Libinfo}/membership.subproj/membershipPriv.h' \\
@@ -84,7 +81,7 @@ EOF
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       releaseName: "file_cmds",
       outputs: nix.thunk(() => ["out", "man", "xattr"]),
       xcodeHash: "sha256-O1eJGFrSVIZbZvBSonKkG4MeYZQ8W6izpYEcHIE+/DM=",
@@ -93,7 +90,7 @@ EOF
       ]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
       buildInputs: nix.thunk(() => [
@@ -122,7 +119,7 @@ moveToOutput bin/xattr "$xattr"
 ln -s "$xattr/bin/xattr" "$out/bin/xattr"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "File commands for Darwin",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

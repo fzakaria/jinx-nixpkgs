@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["NIX_CFLAGS_COMPILE", 39, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 56, 5], ["platforms", 57, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 26, 3], ["nativeBuildInputs", 31, 3], ["env", 38, 3], ["buildInputs", 42, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, cjson: false, cmocka: false, mbedtls: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 56, 5], ["platforms", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 26, 3], ["nativeBuildInputs", 31, 3], ["env", 38, 3], ["buildInputs", 42, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cmocka = nix.arg($, "cmocka");
   const mbedtls = nix.arg($, "mbedtls");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "librist",
       version: "0.2.11",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "code.videolan.org",
           owner: "rist",
           repo: "librist",
@@ -33,10 +30,10 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.path(here, "./no-brew-darwin.diff")]))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })))),
       buildInputs: nix.thunk(() => [cjson, cmocka, mbedtls]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library that can be used to easily add the RIST protocol to your application",
         homepage: "https://code.videolan.org/rist/librist",
         license: nix.thunk(() => (() => {

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["pillow", 39, 5], ["pyqt5", 40, 5], ["pyqt6", 44, 5], ["pyside2", 48, 5], ["pyside6", 52, 5], ["numpy", 56, 5], ["traitsui", 57, 5], ["wx", 58, 5]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["maintainers", 88, 5], ["license", 89, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 64, 3], ["enabledTestPaths", 69, 3], ["disabledTestPaths", 71, 3], ["pythonImportsCheck", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, numpy: false, pillow: false, pygments: false, pyqt5: false, pyqt6: false, pyside2: false, pyside6: false, pytestCheckHook: false, setuptools: false, traits: false, traitsui: false, writableTmpDirAsHomeHook: false, wxpython: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pillow", 39, 5], ["pyqt5", 40, 5], ["pyqt6", 44, 5], ["pyside2", 48, 5], ["pyside6", 52, 5], ["numpy", 56, 5], ["traitsui", 57, 5], ["wx", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["maintainers", 88, 5], ["license", 89, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 64, 3], ["enabledTestPaths", 69, 3], ["disabledTestPaths", 71, 3], ["pythonImportsCheck", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const wxpython = nix.arg($, "wxpython");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyface",
       version: "8.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "enthought",
           repo: "pyface",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [traits]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pillow: nix.thunk(() => [pillow]),
         pyqt5: nix.thunk(() => [pygments, pyqt5]),
         pyqt6: nix.thunk(() => [pygments, pyqt6]),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["pyface"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Traits-capable windowing framework",
         homepage: "https://github.com/enthought/pyface",
         changelog: nix.thunk(() => nix.str`https://github.com/enthought/pyface/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

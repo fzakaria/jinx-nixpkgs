@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["package", 77, 48]], [["pkg-config", 77, 5], ["pikepdf", 78, 28], ["cups-filters", 80, 7], ["pdfmixtool", 81, 7]], [["tests", 76, 12]], [["homepage", 86, 5], ["description", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["mainProgram", 90, 5], ["platforms", 91, 5], ["changelog", 92, 5], ["pkgConfigModules", 93, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 30, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["nativeCheckInputs", 48, 3], ["nativeInstallCheckInputs", 50, 3], ["doInstallCheck", 51, 3], ["cmakeFlags", 53, 3], ["preConfigure", 57, 3], ["doCheck", 64, 3], ["passthru", 76, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libjpeg: false, perl: false, zlib: false, ctestCheckHook: false, "cups-filters": false, pdfmixtool: false, python3: false, testers: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 77, 48]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 77, 5], ["pikepdf", 78, 28], ["cups-filters", 80, 7], ["pdfmixtool", 81, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 76, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 86, 5], ["description", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["mainProgram", 90, 5], ["platforms", 91, 5], ["changelog", 92, 5], ["pkgConfigModules", 93, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 30, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["nativeCheckInputs", 48, 3], ["nativeInstallCheckInputs", 50, 3], ["doInstallCheck", 51, 3], ["cmakeFlags", 53, 3], ["preConfigure", 57, 3], ["doCheck", 64, 3], ["passthru", 76, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.attrsDyn({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "qpdf",
       version: "12.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qpdf",
           repo: "qpdf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,13 +43,13 @@ export default nix.lambda((args) => (() => {
       preConfigure: "patchShebangs qtest/bin/qtest-driver\npatchShebangs run-qtest\n# qtest needs to know where the source code is\nsubstituteInPlace CMakeLists.txt --replace \"run-qtest\" \"run-qtest --top $src --code $src --bin $out\"\n",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           pikepdf: nix.thunk(() => nix.attr(from, "pikepdf")),
@@ -64,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://qpdf.sourceforge.io/",
         description: "C++ library and set of programs that inspect and manipulate the structure of PDF files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

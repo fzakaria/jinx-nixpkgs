@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchLibrustyV8", 9, 48]], [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["OPENSSL_NO_VENDOR", 33, 5], ["RUSTY_V8_ARCHIVE", 34, 5]], [["updateScript", 54, 12]], [["description", 60, 5], ["homepage", 61, 5], ["downloadPage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5], ["platforms", 67, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["env", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 41, 3], ["doCheck", 46, 3], ["nativeInstallCheckInputs", 48, 3], ["versionCheckProgramArg", 51, 3], ["doInstallCheck", 52, 3], ["passthru", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, callPackage: false, librusty_v8: true, openssl: false, tzdata: false, versionCheckHook: false, "_experimental-update-script-combinators": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchLibrustyV8", 9, 48]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 33, 5], ["RUSTY_V8_ARCHIVE", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["downloadPage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5], ["platforms", 67, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["env", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 41, 3], ["doCheck", 46, 3], ["nativeInstallCheckInputs", 48, 3], ["versionCheckProgramArg", 51, 3], ["doInstallCheck", 52, 3], ["passthru", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const librusty_v8 = nix.argOr($, "librusty_v8", () => nix.app(callPackage, nix.path(here, "./librusty_v8.nix"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetchers.nix"), nix.thunk(() => ({}))));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fetchLibrustyV8: nix.thunk(() => nix.attr(from, "fetchLibrustyV8")),
     };
     })())));
@@ -30,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "brioche",
       version: "0.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "brioche-dev",
           repo: "brioche",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-j0Hi75olubvlHEOzVbW0cMAslZFWCzHiwXaBqmkXzmE=",
         })))),
       cargoHash: "sha256-3UvggE45Gvus5ghd64ZK+Nh/VB3NJBmZNrbStl/xJu0=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: true, RUSTY_V8_ARCHIVE: librusty_v8 })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], OPENSSL_NO_VENDOR: true, RUSTY_V8_ARCHIVE: librusty_v8 })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       doCheck: false,
@@ -49,14 +44,14 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
             nix.path(here, "./update-librusty.sh"),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Package manager for building and running complex software projects",
         homepage: "https://brioche.dev/",
         downloadPage: "https://github.com/brioche-dev/brioche",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]], [["NIX_CFLAGS_COMPILE", 43, 7]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["outputs", 28, 3], ["enableParallelBuilding", 33, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["makeFlags", 39, 3], ["env", 43, 3], ["postInstall", 54, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, autoreconfHook: false, enableStatic: true, enableShared: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 43, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["outputs", 28, 3], ["enableParallelBuilding", 33, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["makeFlags", 39, 3], ["env", 43, 3], ["postInstall", 54, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const enableStatic = nix.argOr($, "enableStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "termcap",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/termcap/termcap-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-kaDiLlOHykRntbyxjt8cUbkwJi/UZtX9o5bdnSZxkQA=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-tparam-replace-write-with-fprintf.patch",
             url: "https://github.com/msys2/MINGW-packages/raw/c6691ad1bd9d4c6823a18068ca0683c3e32ea005/mingw-w64-termcap/0001-tparam-replace-write-with-fprintf.patch",
             hash: "sha256-R9XaLfa8fzQBt+M+uA1AFTvKYCeOWLUD/7GViazXwto=",
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`AR=${nix.sel(stdenv, "cc", "targetPrefix")}ar`)]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-DSTDC_HEADERS", "-std=gnu89"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-implicit-function-declaration"])))))),
       })),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableStatic)), "rm $out/lib/libtermcap.a\n"), nix.app(nix.sel(lib, "optionalString"), enableShared, nix.thunk(() => (() => {
@@ -54,7 +50,7 @@ install -Dm644 ${libName} $out/lib
 `)));
         })())))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Terminal feature database",
         homepage: "https://www.gnu.org/software/termutils/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 17, 26], ["version", 17, 32], ["hash", 18, 5]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["changelog", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]], [["pname", 12, 3], ["pyproject", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 21, 3], ["pythonRelaxDeps", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["propagatedBuildInputs", 39, 3], ["pythonImportsCheck", 47, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false, "kubernetes-helm": false, kind: false, docker: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 17, 26], ["version", 17, 32], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["changelog", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["pyproject", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 21, 3], ["pythonRelaxDeps", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["propagatedBuildInputs", 39, 3], ["pythonImportsCheck", 47, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const kind = nix.arg($, "kind");
   const docker = nix.arg($, "docker");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "airlift",
       pyproject: true,
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-JcW2FXl+SrdveRmG5bD1ttf6F3LwvGZQF4ZCTpDpPa8=",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["airlift"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Flexible, configuration driven CLI for Apache Airflow local development",
         homepage: "https://github.com/jl178/airlift",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

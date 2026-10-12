@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["updateScript", 40, 12]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["sourceProvenance", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 18, 3], ["__structuredAttrs", 19, 3], ["unpackCmd", 21, 3], ["nativeBuildInputs", 23, 3], ["sourceRoot", 28, 3], ["installPhase", 30, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, makeWrapper: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 40, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["sourceProvenance", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 18, 3], ["__structuredAttrs", 19, 3], ["unpackCmd", 21, 3], ["nativeBuildInputs", 23, 3], ["sourceRoot", 28, 3], ["installPhase", 30, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "orion-browser",
       version: "151",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://cdn.kagi.com/updates/26_0/${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-d6Va5mwN+ulAaFbo4dIKENzQammRdfkFnqOV2zmPgQA=",
         })))),
@@ -30,9 +27,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, unzip]),
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\" \"$out/bin\"\ncp -R Orion.app \"$out/Applications\"\nmakeWrapper \"$out/Applications/Orion.app/Contents/MacOS/Orion\" \"$out/bin/orion\"\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "WebKit-based web browser by Kagi",
         homepage: "https://orionbrowser.com/",
         changelog: "https://orionbrowser.com/updates/orion-release-notes",

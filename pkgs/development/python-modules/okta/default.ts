@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 33, 13], ["version", 33, 19], ["hash", 34, 5]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["checkInputs", 56, 3], ["enabledTestPaths", 64, 3], ["disabledTests", 66, 3], ["pythonImportsCheck", 76, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, aenum: false, aiohttp: false, blinker: false, buildPythonPackage: false, fetchPypi: false, flatdict: false, jwcrypto: false, pycryptodomex: false, pydantic: false, pydash: false, pyfakefs: false, pyjwt: false, "pytest-asyncio": false, "pytest-mock": false, "pytest-recording": false, pytestCheckHook: false, "python-dateutil": false, pyyaml: false, requests: false, setuptools: false, xmltodict: false, yarl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 33, 13], ["version", 33, 19], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["checkInputs", 56, 3], ["enabledTestPaths", 64, 3], ["disabledTests", 66, 3], ["pythonImportsCheck", 76, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-7ZYDrup+HJxlrOmSBGsWD4Ku8HRlQR4E68olWQtcazg=",
@@ -79,7 +77,7 @@ export default nix.lambda((args) => (() => {
         "okta.request_executor",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python SDK for the Okta Management API",
         homepage: "https://github.com/okta/okta-sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/okta/okta-sdk-python/blob/v${version}/CHANGELOG.md`),
@@ -90,7 +88,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

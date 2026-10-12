@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["NIX_LDFLAGS", 55, 5]], [["homepage", 71, 5], ["description", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 28, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["env", 54, 3], ["preConfigure", 66, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitiles: false, fetchpatch: false, meson: false, ninja: false, "pkg-config": false, python3: false, aemu: false, libdrm: false, libglvnd: false, "vulkan-headers": false, "vulkan-loader": false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 71, 5], ["description", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 28, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["env", 54, 3], ["preConfigure", 66, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gfxstream",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitiles, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://android.googlesource.com/platform/hardware/google/gfxstream",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-gfxstream-release`),
           hash: "sha256-AN6OpZQ2te4iVuh/kFHXzmLAWIMyuoj9FHTVicnbiPw=",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, python3]),
       buildInputs: nix.thunk(() => nix.concat([aemu, libglvnd, vulkan_headers, vulkan_loader, libx11], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), libdrm)), nix.thunk(() => [libdrm])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               "-framework Cocoa",
               "-framework IOKit",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })))),
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "mesonFlagsArray=(-Dcpp_link_args=\"-Wl,--push-state -Wl,--no-as-needed -lvulkan -Wl,--pop-state\")\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://android.googlesource.com/platform/hardware/google/gfxstream",
         description: "Graphics Streaming Kit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

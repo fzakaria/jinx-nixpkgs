@@ -2,23 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ssh-agent-auth.nix", [[["maintainers", 7, 8]], [["keys", 19, 38]], [["authorizedKeys", 19, 23]], [["isNormalUser", 17, 15], ["extraGroups", 18, 15], ["openssh", 19, 15]], [["isNormalUser", 21, 17]], [["admin", 16, 13], ["foo", 21, 13]], [["users", 15, 17]], [["authorizedKeysFiles", 26, 13], ["enable", 27, 13]], [["sshAgentAuth", 24, 24]], [["enable", 30, 13], ["wheelNeedsPassword", 31, 13]], [["pam", 24, 20]], [["enable", 35, 28]], [["openssh", 35, 20]], [["users", 15, 11], ["security", 24, 11], ["services", 35, 11]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 9, 3], ["testScript", 40, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ssh-agent-auth.nix", [["maintainers", 7, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/ssh-agent-auth.nix", [["keys", 19, 38]]);
-const pos$3 = nix.positions(here + "/ssh-agent-auth.nix", [["authorizedKeys", 19, 23]]);
-const pos$4 = nix.positions(here + "/ssh-agent-auth.nix", [["isNormalUser", 17, 15], ["extraGroups", 18, 15], ["openssh", 19, 15]]);
-const pos$5 = nix.positions(here + "/ssh-agent-auth.nix", [["isNormalUser", 21, 17]]);
-const pos$6 = nix.positions(here + "/ssh-agent-auth.nix", [["admin", 16, 13], ["foo", 21, 13]]);
-const pos$7 = nix.positions(here + "/ssh-agent-auth.nix", [["users", 15, 17]]);
-const pos$8 = nix.positions(here + "/ssh-agent-auth.nix", [["authorizedKeysFiles", 26, 13], ["enable", 27, 13]]);
-const pos$9 = nix.positions(here + "/ssh-agent-auth.nix", [["sshAgentAuth", 24, 24]]);
-const pos$10 = nix.positions(here + "/ssh-agent-auth.nix", [["enable", 30, 13], ["wheelNeedsPassword", 31, 13]]);
-const pos$11 = nix.positions(here + "/ssh-agent-auth.nix", [["pam", 24, 20]]);
-const pos$12 = nix.positions(here + "/ssh-agent-auth.nix", [["enable", 35, 28]]);
-const pos$13 = nix.positions(here + "/ssh-agent-auth.nix", [["openssh", 35, 20]]);
-const pos$14 = nix.positions(here + "/ssh-agent-auth.nix", [["users", 15, 11], ["security", 24, 11], ["services", 35, 11]]);
-const pos$15 = nix.positions(here + "/ssh-agent-auth.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 9, 3], ["testScript", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "ssh-agent-auth",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nicoo"))];
@@ -41,39 +27,39 @@ export default nix.lambda((args) => (() => {
       const nodeConfig = (n) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               admin: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 isNormalUser: true,
                 extraGroups: nix.thunk(() => ["wheel"]),
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$2, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: $pos[2],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[1], keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
-              foo: nix.thunk(() => ({ [nix.POS]: pos$5, isNormalUser: true })),
+              foo: nix.thunk(() => ({ [nix.POS]: $pos[4], isNormalUser: true })),
             })),
           })),
           security: nix.thunk(() => nix.attrsDyn({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             pam: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               sshAgentAuth: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 authorizedKeysFiles: nix.thunk(() => ["/etc/ssh/authorized_keys.d/%u"]),
                 enable: true,
               })),
             })),
           }, [
-            [nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["_"]), nix.thunk(() => ["-"]), n), nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, wheelNeedsPassword: true }))],
+            [nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["_"]), nix.thunk(() => ["-"]), n), nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true, wheelNeedsPassword: true }))],
           ])),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
+            [nix.POS]: $pos[12],
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: true })),
           })),
         };
       })(), formals$2);

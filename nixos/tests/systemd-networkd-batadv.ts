@@ -2,135 +2,93 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-networkd-batadv.nix", [[["maintainers", 6, 5]], [["vlans", 13, 24]], [["SYSTEMD_LOG_LEVEL", 14, 55]], [["environment", 14, 43]], [["systemd-networkd", 14, 26]], [["Name", 32, 25]], [["BatmanAdvanced", 34, 15], ["IPv6AcceptRA", 35, 15]], [["matchConfig", 32, 13], ["networkConfig", 33, 13]], [["Name", 50, 25]], [["IPv6AcceptRA", 51, 27]], [["matchConfig", 50, 13], ["networkConfig", 51, 13], ["address", 52, 13]], [["10-eth1", 31, 20], ["20-bat0", 49, 20]], [["Name", 40, 15], ["Kind", 41, 15], ["MACAddress", 42, 15]], [["OriginatorIntervalSec", 45, 15], ["RoutingAlgorithm", 46, 15]], [["netdevConfig", 39, 13], ["batmanAdvancedConfig", 44, 13]], [["20-bat0", 38, 19]], [["networks", 31, 11], ["netdevs", 38, 11]], [["services", 14, 17], ["network", 30, 17]], [["enable", 19, 20]], [["useNetworkd", 17, 11], ["useDHCP", 18, 11], ["firewall", 19, 11]], [["extraModulePackages", 23, 14]], [["systemPackages", 25, 21]], [["virtualisation", 13, 9], ["systemd", 14, 9], ["networking", 16, 9], ["boot", 23, 9], ["environment", 25, 9]], [["vlans", 63, 24]], [["SYSTEMD_LOG_LEVEL", 64, 55]], [["environment", 64, 43]], [["systemd-networkd", 64, 26]], [["Name", 82, 25]], [["BatmanAdvanced", 84, 15], ["IPv6AcceptRA", 85, 15]], [["matchConfig", 82, 13], ["networkConfig", 83, 13]], [["Name", 100, 25]], [["IPv6AcceptRA", 101, 27]], [["matchConfig", 100, 13], ["networkConfig", 101, 13], ["address", 102, 13]], [["10-eth1", 81, 20], ["20-bat0", 99, 20]], [["Name", 90, 15], ["Kind", 91, 15], ["MACAddress", 92, 15]], [["OriginatorIntervalSec", 95, 15], ["RoutingAlgorithm", 96, 15]], [["netdevConfig", 89, 13], ["batmanAdvancedConfig", 94, 13]], [["20-bat0", 88, 19]], [["networks", 81, 11], ["netdevs", 88, 11]], [["services", 64, 17], ["network", 80, 17]], [["enable", 69, 20]], [["useNetworkd", 67, 11], ["useDHCP", 68, 11], ["firewall", 69, 11]], [["extraModulePackages", 73, 14]], [["systemPackages", 75, 21]], [["virtualisation", 63, 9], ["systemd", 64, 9], ["networking", 66, 9], ["boot", 73, 9], ["environment", 75, 9]], [["machineA", 10, 5], ["machineB", 60, 5]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 112, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-networkd-batadv.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/systemd-networkd-batadv.nix", [["vlans", 13, 24]]);
-const pos$3 = nix.positions(here + "/systemd-networkd-batadv.nix", [["SYSTEMD_LOG_LEVEL", 14, 55]]);
-const pos$4 = nix.positions(here + "/systemd-networkd-batadv.nix", [["environment", 14, 43]]);
-const pos$5 = nix.positions(here + "/systemd-networkd-batadv.nix", [["systemd-networkd", 14, 26]]);
-const pos$6 = nix.positions(here + "/systemd-networkd-batadv.nix", [["Name", 32, 25]]);
-const pos$7 = nix.positions(here + "/systemd-networkd-batadv.nix", [["BatmanAdvanced", 34, 15], ["IPv6AcceptRA", 35, 15]]);
-const pos$8 = nix.positions(here + "/systemd-networkd-batadv.nix", [["matchConfig", 32, 13], ["networkConfig", 33, 13]]);
-const pos$9 = nix.positions(here + "/systemd-networkd-batadv.nix", [["Name", 50, 25]]);
-const pos$10 = nix.positions(here + "/systemd-networkd-batadv.nix", [["IPv6AcceptRA", 51, 27]]);
-const pos$11 = nix.positions(here + "/systemd-networkd-batadv.nix", [["matchConfig", 50, 13], ["networkConfig", 51, 13], ["address", 52, 13]]);
-const pos$12 = nix.positions(here + "/systemd-networkd-batadv.nix", [["10-eth1", 31, 20], ["20-bat0", 49, 20]]);
-const pos$13 = nix.positions(here + "/systemd-networkd-batadv.nix", [["Name", 40, 15], ["Kind", 41, 15], ["MACAddress", 42, 15]]);
-const pos$14 = nix.positions(here + "/systemd-networkd-batadv.nix", [["OriginatorIntervalSec", 45, 15], ["RoutingAlgorithm", 46, 15]]);
-const pos$15 = nix.positions(here + "/systemd-networkd-batadv.nix", [["netdevConfig", 39, 13], ["batmanAdvancedConfig", 44, 13]]);
-const pos$16 = nix.positions(here + "/systemd-networkd-batadv.nix", [["20-bat0", 38, 19]]);
-const pos$17 = nix.positions(here + "/systemd-networkd-batadv.nix", [["networks", 31, 11], ["netdevs", 38, 11]]);
-const pos$18 = nix.positions(here + "/systemd-networkd-batadv.nix", [["services", 14, 17], ["network", 30, 17]]);
-const pos$19 = nix.positions(here + "/systemd-networkd-batadv.nix", [["enable", 19, 20]]);
-const pos$20 = nix.positions(here + "/systemd-networkd-batadv.nix", [["useNetworkd", 17, 11], ["useDHCP", 18, 11], ["firewall", 19, 11]]);
-const pos$21 = nix.positions(here + "/systemd-networkd-batadv.nix", [["extraModulePackages", 23, 14]]);
-const pos$22 = nix.positions(here + "/systemd-networkd-batadv.nix", [["systemPackages", 25, 21]]);
-const pos$23 = nix.positions(here + "/systemd-networkd-batadv.nix", [["virtualisation", 13, 9], ["systemd", 14, 9], ["networking", 16, 9], ["boot", 23, 9], ["environment", 25, 9]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$24 = nix.positions(here + "/systemd-networkd-batadv.nix", [["vlans", 63, 24]]);
-const pos$25 = nix.positions(here + "/systemd-networkd-batadv.nix", [["SYSTEMD_LOG_LEVEL", 64, 55]]);
-const pos$26 = nix.positions(here + "/systemd-networkd-batadv.nix", [["environment", 64, 43]]);
-const pos$27 = nix.positions(here + "/systemd-networkd-batadv.nix", [["systemd-networkd", 64, 26]]);
-const pos$28 = nix.positions(here + "/systemd-networkd-batadv.nix", [["Name", 82, 25]]);
-const pos$29 = nix.positions(here + "/systemd-networkd-batadv.nix", [["BatmanAdvanced", 84, 15], ["IPv6AcceptRA", 85, 15]]);
-const pos$30 = nix.positions(here + "/systemd-networkd-batadv.nix", [["matchConfig", 82, 13], ["networkConfig", 83, 13]]);
-const pos$31 = nix.positions(here + "/systemd-networkd-batadv.nix", [["Name", 100, 25]]);
-const pos$32 = nix.positions(here + "/systemd-networkd-batadv.nix", [["IPv6AcceptRA", 101, 27]]);
-const pos$33 = nix.positions(here + "/systemd-networkd-batadv.nix", [["matchConfig", 100, 13], ["networkConfig", 101, 13], ["address", 102, 13]]);
-const pos$34 = nix.positions(here + "/systemd-networkd-batadv.nix", [["10-eth1", 81, 20], ["20-bat0", 99, 20]]);
-const pos$35 = nix.positions(here + "/systemd-networkd-batadv.nix", [["Name", 90, 15], ["Kind", 91, 15], ["MACAddress", 92, 15]]);
-const pos$36 = nix.positions(here + "/systemd-networkd-batadv.nix", [["OriginatorIntervalSec", 95, 15], ["RoutingAlgorithm", 96, 15]]);
-const pos$37 = nix.positions(here + "/systemd-networkd-batadv.nix", [["netdevConfig", 89, 13], ["batmanAdvancedConfig", 94, 13]]);
-const pos$38 = nix.positions(here + "/systemd-networkd-batadv.nix", [["20-bat0", 88, 19]]);
-const pos$39 = nix.positions(here + "/systemd-networkd-batadv.nix", [["networks", 81, 11], ["netdevs", 88, 11]]);
-const pos$40 = nix.positions(here + "/systemd-networkd-batadv.nix", [["services", 64, 17], ["network", 80, 17]]);
-const pos$41 = nix.positions(here + "/systemd-networkd-batadv.nix", [["enable", 69, 20]]);
-const pos$42 = nix.positions(here + "/systemd-networkd-batadv.nix", [["useNetworkd", 67, 11], ["useDHCP", 68, 11], ["firewall", 69, 11]]);
-const pos$43 = nix.positions(here + "/systemd-networkd-batadv.nix", [["extraModulePackages", 73, 14]]);
-const pos$44 = nix.positions(here + "/systemd-networkd-batadv.nix", [["systemPackages", 75, 21]]);
-const pos$45 = nix.positions(here + "/systemd-networkd-batadv.nix", [["virtualisation", 63, 9], ["systemd", 64, 9], ["networking", 66, 9], ["boot", 73, 9], ["environment", 75, 9]]);
-const pos$46 = nix.positions(here + "/systemd-networkd-batadv.nix", [["machineA", 10, 5], ["machineB", 60, 5]]);
-const pos$47 = nix.positions(here + "/systemd-networkd-batadv.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$47,
+    [nix.POS]: $pos[46],
     name: "systemd-networkd-batadv",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "herbetom"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$46,
+      [nix.POS]: $pos[45],
       machineA: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$23,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[22],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], vlans: nix.thunk(() => [1n]) })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               "systemd-networkd": nix.thunk(() => ({
-                [nix.POS]: pos$4,
-                environment: nix.thunk(() => ({ [nix.POS]: pos$3, SYSTEMD_LOG_LEVEL: "debug" })),
+                [nix.POS]: $pos[3],
+                environment: nix.thunk(() => ({ [nix.POS]: $pos[2], SYSTEMD_LOG_LEVEL: "debug" })),
               })),
             })),
             network: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               networks: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 "10-eth1": nix.thunk(() => ({
-                  [nix.POS]: pos$8,
-                  matchConfig: nix.thunk(() => ({ [nix.POS]: pos$6, Name: "eth1" })),
+                  [nix.POS]: $pos[7],
+                  matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[5], Name: "eth1" })),
                   networkConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     BatmanAdvanced: nix.thunk(() => nix.sel(config, "systemd", "network", "netdevs", "20-bat0", "netdevConfig", "Name")),
                     IPv6AcceptRA: false,
                   })),
                 })),
                 "20-bat0": nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   matchConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     Name: nix.thunk(() => nix.sel(config, "systemd", "network", "netdevs", "20-bat0", "netdevConfig", "Name")),
                   })),
-                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$10, IPv6AcceptRA: false })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[9], IPv6AcceptRA: false })),
                   address: nix.thunk(() => ["10.0.0.1/24", "2001:db8::a/64"]),
                 })),
               })),
               netdevs: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 "20-bat0": nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   netdevConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     Name: "bat0",
                     Kind: "batadv",
                     MACAddress: "00:00:5e:00:53:00",
                   })),
-                  batmanAdvancedConfig: nix.thunk(() => ({ [nix.POS]: pos$14, OriginatorIntervalSec: "5", RoutingAlgorithm: "batman-iv" })),
+                  batmanAdvancedConfig: nix.thunk(() => ({
+                    [nix.POS]: $pos[13],
+                    OriginatorIntervalSec: "5",
+                    RoutingAlgorithm: "batman-iv",
+                  })),
                 })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             useNetworkd: true,
             useDHCP: false,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$19, enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[18], enable: false })),
           })),
-          boot: nix.thunk(() => ({ [nix.POS]: pos$21, extraModulePackages: [] })),
+          boot: nix.thunk(() => ({ [nix.POS]: $pos[20], extraModulePackages: [] })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "batctl")),
               nix.thunk(() => nix.sel(pkgs, "jq")),
@@ -143,67 +101,71 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$45,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$24, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[44],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[23], vlans: nix.thunk(() => [1n]) })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               "systemd-networkd": nix.thunk(() => ({
-                [nix.POS]: pos$26,
-                environment: nix.thunk(() => ({ [nix.POS]: pos$25, SYSTEMD_LOG_LEVEL: "debug" })),
+                [nix.POS]: $pos[25],
+                environment: nix.thunk(() => ({ [nix.POS]: $pos[24], SYSTEMD_LOG_LEVEL: "debug" })),
               })),
             })),
             network: nix.thunk(() => ({
-              [nix.POS]: pos$39,
+              [nix.POS]: $pos[38],
               networks: nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 "10-eth1": nix.thunk(() => ({
-                  [nix.POS]: pos$30,
-                  matchConfig: nix.thunk(() => ({ [nix.POS]: pos$28, Name: "eth1" })),
+                  [nix.POS]: $pos[29],
+                  matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[27], Name: "eth1" })),
                   networkConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$29,
+                    [nix.POS]: $pos[28],
                     BatmanAdvanced: nix.thunk(() => nix.sel(config, "systemd", "network", "netdevs", "20-bat0", "netdevConfig", "Name")),
                     IPv6AcceptRA: false,
                   })),
                 })),
                 "20-bat0": nix.thunk(() => ({
-                  [nix.POS]: pos$33,
+                  [nix.POS]: $pos[32],
                   matchConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$31,
+                    [nix.POS]: $pos[30],
                     Name: nix.thunk(() => nix.sel(config, "systemd", "network", "netdevs", "20-bat0", "netdevConfig", "Name")),
                   })),
-                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$32, IPv6AcceptRA: false })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[31], IPv6AcceptRA: false })),
                   address: nix.thunk(() => ["10.0.0.2/24", "2001:db8::b/64"]),
                 })),
               })),
               netdevs: nix.thunk(() => ({
-                [nix.POS]: pos$38,
+                [nix.POS]: $pos[37],
                 "20-bat0": nix.thunk(() => ({
-                  [nix.POS]: pos$37,
+                  [nix.POS]: $pos[36],
                   netdevConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$35,
+                    [nix.POS]: $pos[34],
                     Name: "bat0",
                     Kind: "batadv",
                     MACAddress: "00:00:5e:00:53:10",
                   })),
-                  batmanAdvancedConfig: nix.thunk(() => ({ [nix.POS]: pos$36, OriginatorIntervalSec: "5", RoutingAlgorithm: "batman-iv" })),
+                  batmanAdvancedConfig: nix.thunk(() => ({
+                    [nix.POS]: $pos[35],
+                    OriginatorIntervalSec: "5",
+                    RoutingAlgorithm: "batman-iv",
+                  })),
                 })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             useNetworkd: true,
             useDHCP: false,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$41, enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[40], enable: false })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$43,
+            [nix.POS]: $pos[42],
             extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "batman_adv"))]),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$44,
+            [nix.POS]: $pos[43],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "batctl")),
               nix.thunk(() => nix.sel(pkgs, "jq")),

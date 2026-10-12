@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]], [["src", 66, 26], ["hash", 67, 5]], [["description", 174, 5], ["homepage", 175, 5], ["changelog", 176, 5], ["license", 177, 5], ["teams", 178, 5], ["badPlatforms", 179, 5]], [["pname", 53, 3], ["version", 54, 3], ["pyproject", 55, 3], ["__structuredAttrs", 56, 3], ["src", 58, 3], ["npmDeps", 65, 3], ["postPatch", 70, 3], ["nativeBuildInputs", 82, 3], ["build-system", 87, 3], ["dependencies", 92, 3], ["pythonImportsCheck", 110, 3], ["nativeCheckInputs", 112, 3], ["disabledTests", 133, 3], ["disabledTestPaths", 151, 3], ["__darwinAllowLocalNetworking", 171, 3], ["meta", 173, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchNpmDeps: false, "configurable-http-proxy": false, nodejs: false, npmHooks: false, setuptools: false, "setuptools-scm": false, alembic: false, certipy: false, idna: false, jinja2: false, "jupyter-events": false, oauthlib: false, packaging: false, pamela: false, "prometheus-client": false, pydantic: false, "python-dateutil": false, requests: false, sqlalchemy: false, tornado: false, traitlets: false, addBinToPathHook: false, beautifulsoup4: false, cryptography: false, jsonschema: false, jupyterlab: false, mock: false, nbclassic: false, playwright: false, "pytest-asyncio": false, pytestCheckHook: false, "requests-mock": false, versionCheckHook: false, virtualenv: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 66, 26], ["hash", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 174, 5], ["homepage", 175, 5], ["changelog", 176, 5], ["license", 177, 5], ["teams", 178, 5], ["badPlatforms", 179, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 53, 3], ["version", 54, 3], ["pyproject", 55, 3], ["__structuredAttrs", 56, 3], ["src", 58, 3], ["npmDeps", 65, 3], ["postPatch", 70, 3], ["nativeBuildInputs", 82, 3], ["build-system", 87, 3], ["dependencies", 92, 3], ["pythonImportsCheck", 110, 3], ["nativeCheckInputs", 112, 3], ["disabledTests", 133, 3], ["disabledTestPaths", 151, 3], ["__darwinAllowLocalNetworking", 171, 3], ["meta", 173, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,20 +47,20 @@ export default nix.lambda((args) => (() => {
   const virtualenv = nix.arg($, "virtualenv");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jupyterhub",
       version: "5.5.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jupyterhub",
           repo: "jupyterhub",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-BDU0RP6NRRnSZelRadhvSm2mfsuewyMwpcRlDBPDC0E=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-64FRdLHBpnywpCLjsMoXmWp/tK00+QwNIR9yAoQFIbg=",
         })))),
@@ -139,7 +136,7 @@ substituteInPlace jupyterhub/tests/test_proxy.py \\
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Serves multiple Jupyter notebook instances",
         homepage: "https://github.com/jupyterhub/jupyterhub",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyterhub/jupyterhub/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/source/reference/changelog.md`),

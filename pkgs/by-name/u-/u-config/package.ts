@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["makeFlags", 19, 3], ["nativeBuildInputs", 24, 3], ["buildFlags", 26, 3], ["installPhase", 28, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["makeFlags", 19, 3], ["nativeBuildInputs", 24, 3], ["buildFlags", 26, 3], ["installPhase", 28, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "u-config",
       version: "0.33.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "skeeto",
           repo: "u-config",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["pkg-config"]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 pkg-config -t $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Smaller, simpler, portable pkg-config clone",
         homepage: "https://github.com/skeeto/u-config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

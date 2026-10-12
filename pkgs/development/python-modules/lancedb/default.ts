@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["pname", 57, 26], ["version", 57, 32], ["src", 57, 40], ["hash", 58, 5]], [["description", 176, 5], ["homepage", 177, 5], ["changelog", 178, 5], ["license", 179, 5], ["maintainers", 180, 5]], [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["__structuredAttrs", 45, 3], ["src", 47, 3], ["buildAndTestSubdir", 54, 3], ["cargoDeps", 56, 3], ["postPatch", 68, 3], ["build-system", 81, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 89, 3], ["dependencies", 93, 3], ["pythonImportsCheck", 106, 3], ["nativeCheckInputs", 108, 3], ["preCheck", 122, 3], ["disabledTestMarks", 126, 3], ["disabledTests", 128, 3], ["disabledTestPaths", 163, 3], ["__darwinAllowLocalNetworking", 173, 3], ["meta", 175, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, pythonAtLeast: false, openssl: false, "pkg-config": false, protobuf: false, deprecation: false, "lance-namespace": false, numpy: false, packaging: false, pyarrow: false, pydantic: false, tqdm: false, pythonOlder: false, overrides: false, aiohttp: false, boto3: false, datafusion: false, duckdb: false, pandas: false, polars: false, pylance: false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, tantivy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 57, 26], ["version", 57, 32], ["src", 57, 40], ["hash", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 176, 5], ["homepage", 177, 5], ["changelog", 178, 5], ["license", 179, 5], ["maintainers", 180, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["__structuredAttrs", 45, 3], ["src", 47, 3], ["buildAndTestSubdir", 54, 3], ["cargoDeps", 56, 3], ["postPatch", 68, 3], ["build-system", 81, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 89, 3], ["dependencies", 93, 3], ["pythonImportsCheck", 106, 3], ["nativeCheckInputs", 108, 3], ["preCheck", 122, 3], ["disabledTestMarks", 126, 3], ["disabledTests", 128, 3], ["disabledTestPaths", 163, 3], ["__darwinAllowLocalNetworking", 173, 3], ["meta", 175, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const tantivy = nix.arg($, "tantivy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lancedb",
       version: "0.39.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lancedb",
           repo: "lancedb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildAndTestSubdir: "python",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -97,7 +94,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.concat(["test_namespace_integration.py", "test_s3.py"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_remote_db.py"])))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Developer-friendly, serverless vector database for AI applications",
         homepage: "https://github.com/lancedb/lancedb",
         changelog: nix.thunk(() => nix.str`https://github.com/lancedb/lancedb/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

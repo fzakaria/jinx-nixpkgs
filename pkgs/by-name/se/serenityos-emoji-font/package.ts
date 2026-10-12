@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 17, 7], ["url", 18, 7], ["hash", 19, 7]], [["url", 30, 11], ["extraPrefix", 31, 11], ["hash", 32, 11]], [["url", 35, 11], ["extraPrefix", 36, 11], ["hash", 37, 11]], [["url", 40, 11], ["extraPrefix", 41, 11], ["hash", 42, 11]], [["pname", 13, 5], ["version", 14, 5], ["src", 16, 5], ["patches", 22, 5], ["installPhase", 46, 5]], [["name", 58, 5], ["owner", 59, 5], ["repo", 60, 5], ["rev", 61, 5], ["hash", 62, 5]], [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 109, 5]], [["pname", 54, 3], ["version", 55, 3], ["src", 57, 3], ["strictDeps", 65, 3], ["nativeBuildInputs", 67, 3], ["buildPhase", 77, 3], ["installPhase", 93, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, fetchzip: false, python3Packages: false, fetchpatch2: false, parallel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 17, 7], ["url", 18, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 11], ["extraPrefix", 31, 11], ["hash", 32, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 35, 11], ["extraPrefix", 36, 11], ["hash", 37, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 40, 11], ["extraPrefix", 41, 11], ["hash", 42, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 5], ["version", 14, 5], ["src", 16, 5], ["patches", 22, 5], ["installPhase", 46, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 58, 5], ["owner", 59, 5], ["repo", 60, 5], ["rev", 61, 5], ["hash", 62, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 109, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 54, 3], ["version", 55, 3], ["src", 57, 3], ["strictDeps", 65, 3], ["nativeBuildInputs", 67, 3], ["buildPhase", 77, 3], ["installPhase", 93, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const parallel = nix.arg($, "parallel");
   const pixart2svg = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pixart2svg",
       version: "0-unstable-2021-07-18",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "pixart2svg",
           url: "https://gist.github.com/m13253/66284bc244deeff0f0f8863c206421c7/archive/f9454958dc0a33cea787cc6fbd7e8e34ba6eb23b.zip",
           hash: "sha256-lNA3qWK/bnUcMM/jrCGEgaX+HAk/DjKJnkE8niYmBDU=",
@@ -35,19 +28,19 @@ export default nix.lambda((args) => (() => {
         const urlFor = (name) => nix.str`https://raw.githubusercontent.com/linusg/serenityos-emoji-font/11c84f33777a5d5bbe97ef2ffe8b74af7d72d27f/patches/${name}.patch`;
         return [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.app(urlFor, "0001-pixart2svg-rgba")),
               extraPrefix: "./",
               hash: "sha256-/4a6btqp/6yiBnFhr4vI+SWfOopUjzDfOeW1Fs6Z5yU=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.app(urlFor, "0002-pixart2svg-no-style")),
               extraPrefix: "./",
               hash: "sha256-FVurs+bEOat74d2egl21JS5ywdkFKKIsqXSFGSJI8MI=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: nix.thunk(() => nix.app(urlFor, "0003-pixart2svg-imageio-deprecation-warning")),
               extraPrefix: "./",
               hash: "sha256-Vo3JIcXof+AtuEbsczNS3CUaBUEncCR0pnIuY4uF7R4=",
@@ -57,11 +50,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out\ncp ./pixart2svg.py $out\n",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "serenityos-emoji-font",
       version: "0-unstable-2025-05-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           name: "serenity",
           owner: "SerenityOS",
           repo: "serenity",
@@ -93,7 +86,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fonts/truetype\ncp build/SerenityOS-Emoji.ttf $out/share/fonts/truetype\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "SerenityOS pixel art emojis as a TTF",
         homepage: "https://emoji.serenityos.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

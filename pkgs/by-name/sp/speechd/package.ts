@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 47, 5], ["sha256", 48, 5]], [["utillinux", 53, 7], ["bindir", 55, 7]], [["name", 58, 7], ["url", 59, 7], ["hash", 60, 7]], [["mbrola", 66, 15]], [["nixos", 156, 18]], [["tests", 156, 12]], [["description", 159, 5], ["homepage", 161, 5], ["license", 162, 5], ["maintainers", 163, 5], ["platforms", 165, 5], ["mainProgram", 166, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["patches", 51, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 80, 3], ["pythonPath", 106, 3], ["configureFlags", 110, 3], ["postPatch", 136, 3], ["installFlags", 140, 3], ["postInstall", 144, 3], ["enableParallelBuilding", 154, 3], ["passthru", 156, 3], ["meta", 158, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, replaceVars: false, "pkg-config": false, fetchurl: false, fetchpatch: false, python3Packages: false, gettext: false, itstool: false, libtool: false, texinfo: false, systemdMinimal: false, "util-linux": false, autoreconfHook: false, glib: false, dotconf: false, libsndfile: false, withLibao: true, libao: false, withPulse: true, libpulseaudio: false, withAlsa: true, "alsa-lib": false, withOss: true, withFlite: true, flite: false, withEspeak: true, espeak: false, sonic: false, pcaudiolib: false, mbrola: false, withPico: true, picotts: false, libsOnly: true, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 47, 5], ["sha256", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["utillinux", 53, 7], ["bindir", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 58, 7], ["url", 59, 7], ["hash", 60, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mbrola", 66, 15]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nixos", 156, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 156, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 159, 5], ["homepage", 161, 5], ["license", 162, 5], ["maintainers", 163, 5], ["platforms", 165, 5], ["mainProgram", 166, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["patches", 51, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 80, 3], ["pythonPath", 106, 3], ["configureFlags", 110, 3], ["postPatch", 136, 3], ["installFlags", 140, 3], ["postInstall", 144, 3], ["enableParallelBuilding", 154, 3], ["passthru", 156, 3], ["meta", 158, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,24 +46,24 @@ export default nix.lambda((args) => (() => {
   const pyxdg = nix.thunk(() => nix.attr(python3Packages, "pyxdg"));
   const wrapPython = nix.thunk(() => nix.attr(python3Packages, "wrapPython"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "speech-dispatcher",
       version: "0.12.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/brailcom/speechd/releases/download/${nix.sel(finalAttrs, "version")}/speech-dispatcher-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-sUpSONKH0tzOTdQrvWbKZfoijn5oNwgmf3s0A297pLQ=",
         })))),
       patches: nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, utillinux: util_linux, bindir: null })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], utillinux: util_linux, bindir: null })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "use-binsh.patch",
             url: "https://github.com/brailcom/speechd/commit/66d5fe65cffd4c0ce9cfb4c6d292866ed8726999.diff?full_index=1",
             hash: "sha256-7R5BH6QmxovvtXoH/T76qu6YMfm1HE+CA0eB0mzwmfY=",
           })))),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(withEspeak) && nix.asBool(nix.sel(espeak, "mbrolaSupport")))), nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-mbrola-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$4, mbrola: mbrola })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-mbrola-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[3], mbrola: mbrola })))),
         ])))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook, gettext, libtool, itstool, texinfo, wrapPython]),
       buildInputs: nix.thunk(() => nix.concat([glib, dotconf, libsndfile, libao, libpulseaudio, python], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [systemdMinimal])), nix.concat(nix.app(nix.sel(lib, "optionals"), withAlsa, nix.thunk(() => [alsa_lib])), nix.concat(nix.app(nix.sel(lib, "optionals"), withEspeak, nix.thunk(() => [espeak, sonic, pcaudiolib])), nix.concat(nix.app(nix.sel(lib, "optionals"), withFlite, nix.thunk(() => [flite])), nix.app(nix.sel(lib, "optionals"), withPico, nix.thunk(() => [picotts])))))))),
@@ -87,11 +80,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => (nix.asBool(libsOnly) ? "rm -rf $out/{bin,etc,lib/speech-dispatcher,lib/systemd,libexec,share}\n" : "wrapPythonPrograms\n")),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, nixos: nix.thunk(() => nix.sel(nixosTests, "speechd")) })),
+        [nix.POS]: $pos[5],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[4], nixos: nix.thunk(() => nix.sel(nixosTests, "speechd")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: nix.thunk(() => nix.add("Common interface to speech synthesis", nix.app(nix.sel(lib, "optionalString"), libsOnly, " - client libraries only"))),
         homepage: "https://devel.freebsoft.org/speechd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

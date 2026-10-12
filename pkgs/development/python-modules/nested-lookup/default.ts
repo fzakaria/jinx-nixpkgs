@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["nativeCheckInputs", 21, 3], ["pythonImportsCheck", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, lib: false, pytestCheckHook: false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["nativeCheckInputs", 21, 3], ["pythonImportsCheck", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.25";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-b6gydIyQOB8ikdhQgJ4ySSUZ7l8lPWpay8Kdk37KAug=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["nested_lookup"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python functions for working with deeply nested documents (lists and dicts)",
         homepage: "https://github.com/russellballestrini/nested-lookup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

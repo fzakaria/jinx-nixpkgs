@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["aarch64-linux", 36, 7], ["x86_64-linux", 37, 7]], [["SOURCE_DATE_EPOCH", 41, 19]], [["env", 40, 21]], [["SOURCE_DATE_EPOCH", 45, 7]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5], ["mainProgram", 86, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["preBuild", 25, 3], ["mvnHash", 34, 3], ["mvnFetchExtraArgs", 40, 3], ["env", 45, 3], ["mvnParameters", 47, 3], ["nativeBuildInputs", 49, 3], ["runtimeDeps", 53, 3], ["installPhase", 57, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, jre: false, makeWrapper: false, maven: false, libGL: false, "xdg-utils": false, libxxf86vm: false, zip: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aarch64-linux", 36, 7], ["x86_64-linux", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["SOURCE_DATE_EPOCH", 41, 19]]);
-const pos$4 = nix.positions(here + "/package.nix", [["env", 40, 21]]);
-const pos$5 = nix.positions(here + "/package.nix", [["SOURCE_DATE_EPOCH", 45, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5], ["mainProgram", 86, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["preBuild", 25, 3], ["mvnHash", 34, 3], ["mvnFetchExtraArgs", 40, 3], ["env", 45, 3], ["mvnParameters", 47, 3], ["nativeBuildInputs", 49, 3], ["runtimeDeps", 53, 3], ["installPhase", 57, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "polyglot";
       const version = "3.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DraqueT",
           repo: "PolyGlot",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,18 +36,18 @@ zip -r ../../assets/assets/org/DarisaDesigns/exlex *
 cd ../..
 `);
       const mvnHash = nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "aarch64-linux": "sha256-o5dFk1pghCOaaxAto7e5kXn2mrVEGAtb9kTwQQN2N8o=",
         "x86_64-linux": "sha256-KYgeVBhqBjP6dqwpSzoqH8dfsL4WpJcSiHEMfgk0CNE=",
       }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
       const mvnFetchExtraArgs = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         env: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           SOURCE_DATE_EPOCH: nix.thunk(() => nix.attr(env, "SOURCE_DATE_EPOCH")),
         })),
       }));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$5, SOURCE_DATE_EPOCH: 315532802n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[4], SOURCE_DATE_EPOCH: 315532802n }));
       const mvnParameters = "-DskipTests";
       const nativeBuildInputs = nix.thunk(() => [makeWrapper, zip]);
       const runtimeDeps = nix.thunk(() => [xdg_utils, zlib]);
@@ -70,7 +64,7 @@ makeWrapper ${jre}/bin/java $out/bin/PolyGlot \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Conlang construction toolkit",
         homepage: "https://draquet.github.io/PolyGlot/readme.html",
         changelog: nix.thunk(() => nix.str`https://github.com/DraqueT/PolyGlot/releases/tag/v${version}`),
@@ -83,7 +77,7 @@ runHook postInstall
         mainProgram: "PolyGlot",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

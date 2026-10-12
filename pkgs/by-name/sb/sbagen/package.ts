@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 16, 3], ["buildPhase", 20, 3], ["installPhase", 22, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 16, 3], ["buildPhase", 20, 3], ["installPhase", 22, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sbagen";
       const version = "1.4.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://uazu.net/sbagen/sbagen-${version}.tgz`),
           sha256: "0w62yk1b0hq79kl0angma897yqa8p1ww0dwydf3zlwav333prkd2",
         }))));
@@ -24,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "./mk";
       const installPhase = "mkdir -p $out/{bin,share/sbagen/doc}\ncp -r --target-directory=$out/share/sbagen examples scripts river1.ogg river2.ogg\ncp sbagen $out/bin\ncp --target-directory=$out/share/sbagen/doc README.txt SBAGEN.txt theory{,2}.txt {wave,holosync,focus,TODO}.txt\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Binaural sound generator",
         homepage: "http://uazu.net/sbagen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         platforms: nix.thunk(() => ["i686-linux"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

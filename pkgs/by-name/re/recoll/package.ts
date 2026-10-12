@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["awk", 48, 5], ["antiword", 49, 5], ["catppt", 50, 5], ["catdvi", 51, 5], ["djvused", 52, 5], ["djvutxt", 53, 5], ["egrep", 54, 5], ["groff", 55, 5], ["gunzip", 56, 5], ["iconv", 57, 5], ["pdftotext", 58, 5], ["ps2ascii", 59, 5], ["sed", 60, 5], ["tar", 61, 5], ["unzip", 62, 5], ["xls2csv", 63, 5], ["xsltproc", 64, 5], ["unrtf", 65, 5], ["untex", 66, 5], ["wpd2html", 67, 5], ["perl", 68, 5]], [["url", 79, 5], ["hash", 80, 5]], [["NIX_CFLAGS_COMPILE", 106, 7]], [["description", 200, 5], ["longDescription", 201, 5], ["homepage", 205, 5], ["changelog", 206, 5], ["license", 207, 5], ["platforms", 208, 5], ["maintainers", 209, 5], ["broken", 214, 5]], [["pname", 75, 3], ["version", 76, 3], ["src", 78, 3], ["mesonFlags", 83, 3], ["env", 106, 3], ["patches", 110, 3], ["nativeBuildInputs", 115, 3], ["buildInputs", 131, 3], ["qtWrapperArgs", 152, 3], ["postInstall", 159, 3], ["postFixup", 193, 3], ["enableParallelBuilding", 197, 3], ["meta", 199, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, antiword: false, aspell: false, bison: false, catdoc: false, catdvi: false, chmlib: false, djvulibre: false, file: false, gawk: false, ghostscript: false, gnugrep: false, gnused: false, gnutar: false, groff: false, gzip: false, libiconv: false, libwpd: false, libxslt: false, lyx: false, makeWrapper: false, meson: false, ninja: false, perl: false, perlPackages: false, "pkg-config": false, "poppler-utils": false, python3Packages: false, libsForQt5: false, unrtf: false, untex: false, unzip: false, which: false, xapian: false, zlib: false, withGui: true, withPython: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["awk", 48, 5], ["antiword", 49, 5], ["catppt", 50, 5], ["catdvi", 51, 5], ["djvused", 52, 5], ["djvutxt", 53, 5], ["egrep", 54, 5], ["groff", 55, 5], ["gunzip", 56, 5], ["iconv", 57, 5], ["pdftotext", 58, 5], ["ps2ascii", 59, 5], ["sed", 60, 5], ["tar", 61, 5], ["unzip", 62, 5], ["xls2csv", 63, 5], ["xsltproc", 64, 5], ["unrtf", 65, 5], ["untex", 66, 5], ["wpd2html", 67, 5], ["perl", 68, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 79, 5], ["hash", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 106, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 200, 5], ["longDescription", 201, 5], ["homepage", 205, 5], ["changelog", 206, 5], ["license", 207, 5], ["platforms", 208, 5], ["maintainers", 209, 5], ["broken", 214, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 75, 3], ["version", 76, 3], ["src", 78, 3], ["mesonFlags", 83, 3], ["env", 106, 3], ["patches", 110, 3], ["nativeBuildInputs", 115, 3], ["buildInputs", 131, 3], ["qtWrapperArgs", 152, 3], ["postInstall", 159, 3], ["postFixup", 193, 3], ["enableParallelBuilding", 197, 3], ["meta", 199, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(nix.lookup(w, "buildPlatform"), "canExecute"), nix.thunk(() => nix.lookup(w, "hostPlatform")));
   })());
   const filters = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     awk: gawk,
     antiword: antiword,
     catppt: catdoc,
@@ -83,7 +79,7 @@ export default nix.lambda((args) => (() => {
       const pname = "recoll";
       const version = "1.43.9";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://www.recoll.org/${pname}-${version}.tar.gz`),
           hash: "sha256-irloDtMO9CBvtI+oEicUOy2myrGskieWoqNk5eapzU8=",
         }))));
@@ -94,7 +90,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dfile-command=${file}/bin/file`),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withPython)), nix.thunk(() => ["-Dpython-module=false", "-Dpython-chm=false"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withGui)), nix.thunk(() => ["-Dqtgui=false", "-Dx11mon=false"])), [nix.thunk(() => nix.str`-Dinotify=${useInotify}`)]))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fpermissive"]))),
       }));
       const patches = nix.thunk(() => [nix.path(here, "./0001-no-qtgui-darwin-bundle.patch")]);
@@ -133,7 +129,7 @@ wrapProgram $out/share/recoll/filters/rclimg \\
       const postFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(withGui))), "ln -s ../Applications/recoll.app/Contents/MacOS/recoll $out/bin/recoll\n"));
       const enableParallelBuilding = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Full-text search tool",
         longDescription: "Recoll is an Xapian frontend that can search through files, archive\nmembers, email attachments.\n",
         homepage: "https://www.recoll.org",
@@ -147,7 +143,7 @@ wrapProgram $out/share/recoll/filters/rclimg \\
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool((nix.asBool(withPython) && nix.asBool(!nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))))))),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

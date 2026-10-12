@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 26], ["version", 18, 32], ["hash", 19, 5]], [["description", 64, 5], ["homepage", 65, 5], ["downloadPage", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["postPatch", 23, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 31, 3], ["preCheck", 36, 3], ["enabledTestPaths", 40, 3], ["disabledTestPaths", 46, 3], ["disabledTests", 54, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, duckdb: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 26], ["version", 18, 32], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["downloadPage", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["postPatch", 23, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 31, 3], ["preCheck", 36, 3], ["enabledTestPaths", 40, 3], ["disabledTestPaths", 46, 3], ["disabledTests", 54, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const duckdb = nix.arg($, "duckdb");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "logica",
       version: "1.3.1415926535897",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-d5G/juvEOoBupWTneeKt85sPfZIyYYiFIywjwKCroaM=",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_one_of_arguments_any", "test_three_predicates"]),
       pythonImportsCheck: nix.thunk(() => ["logica"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Declarative logic programming language for data manipulation",
         homepage: "https://logica.dev/",
         downloadPage: "https://github.com/evgskv/logica",

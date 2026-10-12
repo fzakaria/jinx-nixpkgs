@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["NIX_CFLAGS_COMPILE", 64, 7]], [["description", 94, 5], ["mainProgram", 95, 5], ["license", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["platforms", 99, 5], ["maintainers", 100, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["buildFlags", 23, 3], ["patches", 38, 3], ["postPatch", 43, 3], ["env", 64, 3], ["nativeBuildInputs", 71, 3], ["enableParallelBuilding", 75, 3], ["installPhase", 77, 3], ["doInstallCheck", 87, 3], ["nativeInstallCheckInputs", 89, 3], ["versionCheckProgramArg", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, safestringlib: false, versionCheckHook: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 64, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 94, 5], ["mainProgram", 95, 5], ["license", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["platforms", 99, 5], ["maintainers", 100, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["buildFlags", 23, 3], ["patches", 38, 3], ["postPatch", 43, 3], ["env", 64, 3], ["nativeBuildInputs", 71, 3], ["enableParallelBuilding", 75, 3], ["installPhase", 77, 3], ["doInstallCheck", 87, 3], ["nativeInstallCheckInputs", 89, 3], ["versionCheckProgramArg", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bwa-mem2",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bwa-mem2",
           repo: "bwa-mem2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
     "fmi_test smem2_test bwt_seed_strategy_test sa2ref_test"
 `)),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-Wno-error=register", "-Wno-error=implicit-function-declaration"]))))),
       })),
       nativeBuildInputs: nix.thunk(() => [safestringlib]),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Next version of the bwa-mem algorithm in bwa, a software package for mapping low-divergent sequences against a large reference genome",
         mainProgram: "bwa-mem2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

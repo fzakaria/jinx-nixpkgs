@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 13, 3], ["version", 14, 25], ["src", 14, 33], ["pyproject", 15, 3], ["build-system", 17, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 26, 3], ["configureFlags", 31, 3], ["preBuild", 38, 3], ["doCheck", 43, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, setuptools: false, "btrfs-progs": false, autoreconfHook: false, "pkg-config": false, e2fsprogs: false, libuuid: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 25], ["src", 14, 33], ["pyproject", 15, 3], ["build-system", 17, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 26, 3], ["configureFlags", 31, 3], ["preBuild", 38, 3], ["doCheck", 43, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const libuuid = nix.arg($, "libuuid");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "btrfsutil",
       version: nix.thunk(() => nix.attr(btrfs_progs, "version")),
       src: nix.thunk(() => nix.attr(btrfs_progs, "src")),
@@ -36,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["btrfsutil"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Library for managing Btrfs filesystems",
         homepage: "https://btrfs.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

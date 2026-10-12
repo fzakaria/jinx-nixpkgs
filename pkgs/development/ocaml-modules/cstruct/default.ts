@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 28, 5], ["license", 29, 5], ["homepage", 30, 5], ["maintainers", 31, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["doCheck", 21, 3], ["checkInputs", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, fmt: false, alcotest: false, crowbar: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 28, 5], ["license", 29, 5], ["homepage", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["doCheck", 21, 3], ["checkInputs", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const crowbar = nix.arg($, "crowbar");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cstruct",
       version: "6.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-cstruct/releases/download/v${nix.sel(finalAttrs, "version")}/cstruct-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-lWsknd+1X9I1hMF2evKPZIcDPTZIiCF6FCddiY69d1Q=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkInputs: nix.thunk(() => [alcotest, crowbar]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Access C-like structures directly from OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         homepage: "https://github.com/mirage/ocaml-cstruct",

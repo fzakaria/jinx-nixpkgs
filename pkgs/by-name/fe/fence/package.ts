@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["updateScript", 75, 12]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["__structuredAttrs", 28, 3], ["subPackages", 30, 3], ["ldflags", 34, 3], ["nativeBuildInputs", 42, 3], ["doCheck", 49, 3], ["nativeCheckInputs", 51, 3], ["postInstall", 57, 3], ["passthru", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, stdenv: false, makeWrapper: false, bubblewrap: false, socat: false, bpftrace: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 75, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["__structuredAttrs", 28, 3], ["subPackages", 30, 3], ["ldflags", 34, 3], ["nativeBuildInputs", 42, 3], ["doCheck", 49, 3], ["nativeCheckInputs", 51, 3], ["postInstall", 57, 3], ["passthru", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const bpftrace = nix.arg($, "bpftrace");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fence",
       version: "0.1.67",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fencesandbox",
           repo: "fence",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,11 +49,11 @@ export default nix.lambda((args) => (() => {
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bubblewrap, socat, bpftrace]))}
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight, container-free sandbox for running commands with network and filesystem restrictions",
         homepage: "https://fencesandbox.com",
         changelog: "https://github.com/jy-tan/fence/releases",

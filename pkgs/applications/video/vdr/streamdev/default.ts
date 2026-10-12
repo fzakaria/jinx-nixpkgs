@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["homepage", 34, 24], ["description", 35, 5], ["maintainers", 36, 5], ["license", 37, 5], ["platforms", 38, 24]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontAddPrefix", 19, 3], ["makeFlags", 21, 3], ["enableParallelBuilding", 27, 3], ["buildInputs", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, vdr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 34, 24], ["description", 35, 5], ["maintainers", 36, 5], ["license", 37, 5], ["platforms", 38, 24]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontAddPrefix", 19, 3], ["makeFlags", 21, 3], ["enableParallelBuilding", 27, 3], ["buildInputs", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vdr-streamdev";
       const version = "0.6.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vdr-projects",
           repo: "vdr-plugin-streamdev",
           rev: version,
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         const from_1 = nix.thunk(() => nix.sel(vdr, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "This PlugIn is a VDR implementation of the VTP (Video Transfer Protocol) Version 0.0.3 (see file PROTOCOL) and a basic HTTP Streaming Protocol",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ck3d"))]),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

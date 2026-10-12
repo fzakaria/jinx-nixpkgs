@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["homepage", 39, 5], ["description", 40, 5], ["longDescription", 41, 5], ["maintainers", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["preInstall", 28, 3], ["dependencies", 34, 3], ["installFlags", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 39, 5], ["description", 40, 5], ["longDescription", 41, 5], ["maintainers", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["preInstall", 28, 3], ["dependencies", 34, 3], ["installFlags", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jarun",
           repo: "pdd",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       })());
       const installFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jarun/pdd",
         description: "Tiny date, time diff calculator",
         longDescription: "There are times you want to check how old you are (in years, months, days)\nor how long you need to wait for the next flash sale or the number of days\nleft of your notice period in your current job. pdd (Python3 Date Diff) is\na small cmdline utility to calculate date and time difference. If no\nprogram arguments are specified it shows the current date, time and\ntimezone.\n",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pdd",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

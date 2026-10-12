@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["sha256", 22, 5]], [["url", 28, 7], ["sha256", 29, 7]], [["name", 35, 7], ["url", 36, 7], ["sha256", 37, 7]], [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 11, 3], ["version", 12, 3], ["buildInputs", 13, 3], ["src", 18, 3], ["patches", 25, 3], ["installPhase", 41, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, ncurses: false, boost: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["sha256", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 35, 7], ["url", 36, 7], ["sha256", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["buildInputs", 13, 3], ["src", 18, 3], ["patches", 25, 3], ["installPhase", 41, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const boost = nix.arg($, "boost");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bastet",
       version: "0.43.2",
       buildInputs: nix.thunk(() => [ncurses, boost]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fph",
           repo: "bastet",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,12 +27,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/fph/bastet/commit/0e03f8d4d6bc6949cf1c447e632ce0d1b98c4be1.patch",
             sha256: "1475hisbm44jirsrhdlnddppsyn83xmvcx09gfkm9drcix05alzj",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "ncurses-6.3.patch",
             url: "https://github.com/fph/bastet/commit/54a6d127351ea2c62f50efafe97c5b02e23e86a7.patch",
             sha256: "14v95b0m16m6ycd82i3wpp81kbmj6qz029b1m5483dkk6mwz98iy",
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p \"$out\"/bin\ncp bastet \"$out\"/bin/\nmkdir -p \"$out\"/share/man/man6\ncp bastet.6 \"$out\"/share/man/man6\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tetris clone with 'bastard' block-choosing AI",
         mainProgram: "bastet",
         homepage: "http://fph.altervista.org/prog/bastet.html",

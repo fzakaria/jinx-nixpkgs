@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["extraArgs", 59, 7]], [["skipBulkUpdates", 57, 5], ["updateScript", 58, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["badPlatforms", 70, 5]], [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 36, 3], ["doBuildExamples", 45, 3], ["cmakeFlags", 47, 3], ["doCheck", 53, 3], ["passthru", 55, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, cppcheck: false, doxygen: false, graphviz: false, "pkg-config": false, python3: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["skipBulkUpdates", 57, 5], ["updateScript", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["badPlatforms", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 36, 3], ["doBuildExamples", 45, 3], ["cmakeFlags", 47, 3], ["doCheck", 53, 3], ["passthru", 55, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const version = "5.1.1";
   const versionPrefix = nix.thunk(() => nix.str`gz-cmake${nix.app(nix.sel(lib, "versions", "major"), version)}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gz-cmake",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gazebosim",
           repo: "gz-cmake",
           tag: nix.thunk(() => nix.str`${versionPrefix}_${nix.sel(finalAttrs, "version")}`),
@@ -47,15 +43,15 @@ substituteInPlace examples/CMakeLists.txt \\
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdates: true,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=gz-cmake(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CMake modules to build Gazebo projects",
         homepage: "https://github.com/gazebosim/gz-cmake",
         changelog: nix.thunk(() => nix.str`https://github.com/gazebosim/gz-cmake/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

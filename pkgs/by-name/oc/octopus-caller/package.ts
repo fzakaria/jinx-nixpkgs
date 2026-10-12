@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["url", 40, 7], ["sha256", 41, 7]], [["description", 63, 5], ["mainProgram", 64, 5], ["license", 65, 5], ["homepage", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["patches", 38, 3], ["postPatch", 45, 3], ["postInstall", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, cmake: false, boost179: false, gmp: false, htslib: false, zlib: false, xz: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 40, 7], ["sha256", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["license", 65, 5], ["homepage", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["patches", 38, 3], ["postPatch", 45, 3], ["postInstall", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "octopus",
       version: "0.7.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "luntergroup",
           repo: "octopus",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost179, gmp, htslib, zlib, xz]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/luntergroup/octopus/commit/17a597d192bcd5192689bf38c5836a98b824867a.patch",
             sha256: "sha256-VaUr63v7mzhh4VBghH7a7qrqOYwl6vucmmKzTi9yAjY=",
           })))),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Disable -Werror to avoid build failure on fresh toolchains like\n# gcc-13.\nsubstituteInPlace lib/date/CMakeLists.txt --replace-fail ' -Werror ' ' '\nsubstituteInPlace lib/ranger/CMakeLists.txt --replace-fail ' -Werror ' ' '\nsubstituteInPlace lib/tandem/CMakeLists.txt --replace-fail ' -Werror ' ' '\nsubstituteInPlace src/CMakeLists.txt --replace-fail ' -Werror ' ' '\n\n# Fix gcc-13 build due to missing <cstdint> header.\nsed -e '1i #include <cstdint>' -i src/core/tools/vargen/utils/assembler.hpp\n",
       postInstall: "mkdir $out/bin\nmv $out/octopus $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Bayesian haplotype-based mutation calling",
         mainProgram: "octopus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

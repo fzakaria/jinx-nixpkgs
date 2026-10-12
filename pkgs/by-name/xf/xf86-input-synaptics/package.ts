@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 27, 5], ["group", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["extraArgs", 59, 40]], [["pkg-config", 60, 11]], [["updateScript", 59, 5], ["tests", 60, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["pkgConfigModules", 68, 5], ["platforms", 69, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 26, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["configureFlags", 53, 3], ["passthru", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoreconfHook: false, "pkg-config": false, "util-macros": false, "xorg-server": false, xorgproto: false, libevdev: false, libx11: false, libxi: false, libxtst: false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 27, 5], ["group", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 59, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 60, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 59, 5], ["tests", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["pkgConfigModules", 68, 5], ["platforms", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 26, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["configureFlags", 53, 3], ["passthru", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "xf86-input-synaptics",
       version: "1.10.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "driver",
@@ -48,18 +43,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-xorg-conf-dir=${nix.builtins.placeholder("out")}/share/X11/xorg.conf.d`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=xf86-input-synaptics-(.*)"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Synaptics touchpad driver for the Xorg X server",
         homepage: "https://gitlab.freedesktop.org/xorg/driver/xf86-input-synaptics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

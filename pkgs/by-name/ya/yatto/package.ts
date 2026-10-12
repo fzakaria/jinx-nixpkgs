@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["nativeCheckInputs", 27, 3], ["checkFlags", 33, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, gitMinimal: false, gitSetupHook: false, jujutsu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["nativeCheckInputs", 27, 3], ["checkFlags", 33, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gitSetupHook = nix.arg($, "gitSetupHook");
   const jujutsu = nix.arg($, "jujutsu");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "yatto",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "handlebargh",
           repo: "yatto",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Terminal-based to-do application built with Bubble Tea",
         homepage: "https://github.com/handlebargh/yatto",
         changelog: nix.thunk(() => nix.str`https://github.com/handlebargh/yatto/releases/tag/${nix.sel(finalAttrs, "version")}`),

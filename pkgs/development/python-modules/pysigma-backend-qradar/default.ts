@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["pythonRelaxDeps", 23, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["nativeCheckInputs", 29, 3], ["pythonImportsCheck", 34, 3], ["disabledTests", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, pysigma: false, "pysigma-pipeline-sysmon": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["pythonRelaxDeps", 23, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["nativeCheckInputs", 29, 3], ["pythonImportsCheck", 34, 3], ["disabledTests", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pysigma_pipeline_sysmon = nix.arg($, "pysigma-pipeline-sysmon");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pysigma-backend-qradar",
       version: "0.3.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nNipsx-Sec",
           repo: "pySigma-backend-qradar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["sigma.backends.qradar"]),
       disabledTests: nix.thunk(() => ["test_qradar_extension_output"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library to support Qradar for pySigma",
         homepage: "https://github.com/nNipsx-Sec/pySigma-backend-qradar",
         changelog: nix.thunk(() => nix.str`https://github.com/nNipsx-Sec/pySigma-backend-qradar/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

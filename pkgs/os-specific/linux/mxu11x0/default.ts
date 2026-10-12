@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["fetchurl", 9, 38]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["broken", 46, 5]], [["pname", 12, 3], ["src", 14, 3], ["mxu_version", 15, 3], ["version", 18, 3], ["nativeBuildInputs", 20, 3], ["preBuild", 22, 3], ["installPhase", 27, 3], ["dontStrip", 32, 3], ["enableParallelBuilding", 34, 3], ["hardeningDisable", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, kernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["fetchurl", 9, 38]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["broken", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["src", 14, 3], ["mxu_version", 15, 3], ["version", 18, 3], ["nativeBuildInputs", 20, 3], ["preBuild", 22, 3], ["installPhase", 27, 3], ["dontStrip", 32, 3], ["enableParallelBuilding", 34, 3], ["hardeningDisable", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   const kernel = nix.arg($, "kernel");
-  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl }))));
+  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "mxu11x0";
       const src = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(kernel, "version")), "5.0")) ? nix.sel(srcs, "mxu11x0_5", "src") : nix.sel(srcs, "mxu11x0_4", "src")));
@@ -30,7 +28,7 @@ install -v -D -m 644 ./driver/mxu11x0.ko "$out/lib/modules/${nix.sel(kernel, "mo
       const enableParallelBuilding = true;
       const hardeningDisable = nix.thunk(() => ["pic"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MOXA UPort 11x0 USB to Serial Hub driver",
         homepage: "https://www.moxa.com/en/products/industrial-edge-connectivity/usb-to-serial-converters-usb-hubs/usb-to-serial-converters/uport-1000-series",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -42,7 +40,7 @@ install -v -D -m 644 ./driver/mxu11x0.ko "$out/lib/modules/${nix.sel(kernel, "mo
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelAtLeast"), "5.14")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         src,
         mxu_version,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["QT_PLUGIN_PATH", 39, 7]], [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["env", 39, 3], ["qmakeFlags", 41, 3], ["installPhase", 48, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchsvn: false, libsForQt5: false, bison: false, flex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["QT_PLUGIN_PATH", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["env", 39, 3], ["qmakeFlags", 41, 3], ["installPhase", 48, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qtspim",
       version: "9.1.23",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://svn.code.sf.net/p/spimsimulator/code/",
           rev: "r749",
           sha256: "0iazl7mlcilrdbw8gb98v868a8ldw2lmkn1xs8hnfvr93l6aj0rp",
@@ -45,13 +42,13 @@ substituteInPlace ../Setup/qtspim_debian_deployment/qtspim.desktop \\
       ]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtbase"))]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         QT_PLUGIN_PATH: nix.thunk(() => nix.str`${nix.sel(libsForQt5, "qtbase")}/${nix.sel(libsForQt5, "qtbase", "qtPluginPrefix")}`),
       })),
       qmakeFlags: nix.thunk(() => ["QtSpim.pro", "-spec", "linux-g++", "CONFIG+=release"]),
       installPhase: "runHook preInstall\n\ninstall -D QtSpim $out/bin/qtspim\ninstall -D ../Setup/qtspim_debian_deployment/copyright $out/share/licenses/qtspim/copyright\ninstall -D ../Setup/qtspim_debian_deployment/qtspim.desktop $out/share/applications/qtspim.desktop\ninstall -D ../Setup/NewIcon48x48.png $out/share/icons/hicolor/48x48/apps/qtspim.png\ninstall -D ../Setup/NewIcon256x256.png $out/share/icons/hicolor/256x256/apps/qtspim.png\ncp -r help $out/share/help\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "New user interface for spim, a MIPS simulator",
         mainProgram: "qtspim",
         homepage: "https://spimsimulator.sourceforge.net/",

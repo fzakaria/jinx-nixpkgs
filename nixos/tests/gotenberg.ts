@@ -2,32 +2,26 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gotenberg.nix", [[["autoStart", 10, 16]], [["autoStart", 11, 19]], [["enable", 8, 7], ["chromium", 10, 7], ["libreoffice", 11, 7]], [["gotenberg", 7, 14]], [["services", 7, 5]], [["machine", 6, 9]], [["name", 4, 3], ["nodes", 6, 3], ["testScript", 15, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gotenberg.nix", [["autoStart", 10, 16]]);
-const pos$2 = nix.positions(here + "/gotenberg.nix", [["autoStart", 11, 19]]);
-const pos$3 = nix.positions(here + "/gotenberg.nix", [["enable", 8, 7], ["chromium", 10, 7], ["libreoffice", 11, 7]]);
-const pos$4 = nix.positions(here + "/gotenberg.nix", [["gotenberg", 7, 14]]);
-const pos$5 = nix.positions(here + "/gotenberg.nix", [["services", 7, 5]]);
-const pos$6 = nix.positions(here + "/gotenberg.nix", [["machine", 6, 9]]);
-const pos$7 = nix.positions(here + "/gotenberg.nix", [["name", 4, 3], ["nodes", 6, 3], ["testScript", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "gotenberg",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           gotenberg: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
-            chromium: nix.thunk(() => ({ [nix.POS]: pos$1, autoStart: true })),
-            libreoffice: nix.thunk(() => ({ [nix.POS]: pos$2, autoStart: true })),
+            chromium: nix.thunk(() => ({ [nix.POS]: $pos[0], autoStart: true })),
+            libreoffice: nix.thunk(() => ({ [nix.POS]: $pos[1], autoStart: true })),
           })),
         })),
       })),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["updateScript", 106, 12]], [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["mainProgram", 112, 5], ["maintainers", 113, 5], ["platforms", 118, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 46, 3], ["depsBuildBuild", 54, 3], ["buildInputs", 56, 3], ["__structuredAttrs", 72, 3], ["strictDeps", 73, 3], ["nativeInstallCheckInputs", 75, 3], ["doInstallCheck", 76, 3], ["mesonFlags", 78, 3], ["postInstall", 90, 3], ["passthru", 106, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, makeWrapper: false, meson: false, ninja: false, addDriverRunpath: false, "pkg-config": false, libxcomposite: false, libpulseaudio: false, dbus: false, ffmpeg: false, wayland: false, "wayland-scanner": false, "vulkan-headers": false, pipewire: false, libdrm: false, libva: false, libglvnd: false, libxdamage: false, libxi: false, libxrandr: false, libxfixes: false, libjpeg_turbo: false, versionCheckHook: false, wrapperDir: true, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 106, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["mainProgram", 112, 5], ["maintainers", 113, 5], ["platforms", 118, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 46, 3], ["depsBuildBuild", 54, 3], ["buildInputs", 56, 3], ["__structuredAttrs", 72, 3], ["strictDeps", 73, 3], ["nativeInstallCheckInputs", 75, 3], ["doInstallCheck", 76, 3], ["mesonFlags", 78, 3], ["postInstall", 90, 3], ["passthru", 106, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const wrapperDir = nix.argOr($, "wrapperDir", () => "/run/wrappers/bin");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gpu-screen-recorder",
       version: "6.1.3",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://repo.dec05eba.com/gpu-screen-recorder",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-1bWCfwX28uzGZoxJDriKpUxPo6PAAO0gq3JU+Xc0N0k=",
@@ -88,11 +85,11 @@ substituteInPlace $out/lib/systemd/user/gpu-screen-recorder.service \\
   --replace-fail "ExecStart=gpu-screen-recorder" "ExecStart=$out/bin/gpu-screen-recorder"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Screen recorder that has minimal impact on system performance by recording a window using the GPU only",
         homepage: "https://git.dec05eba.com/gpu-screen-recorder/about/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/obs-freeze-filter.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["postInstall", 28, 3], ["dontWrapQtApps", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "obs-studio": false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/obs-freeze-filter.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]]);
-const pos$2 = nix.positions(here + "/obs-freeze-filter.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/obs-freeze-filter.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["postInstall", 28, 3], ["dontWrapQtApps", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const obs_studio = nix.arg($, "obs-studio");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "obs-freeze-filter",
       version: "0.3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "exeldro",
           repo: "obs-freeze-filter",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "rm -rf \"$out/share\"\nmkdir -p \"$out/share/obs\"\nmv \"$out/data/obs-plugins\" \"$out/share/obs\"\nrm -rf \"$out/obs-plugins\" \"$out/data\"\n",
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Plugin for OBS Studio to freeze a source using a filter",
         homepage: "https://github.com/exeldro/obs-freeze-filter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

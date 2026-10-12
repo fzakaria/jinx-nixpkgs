@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["url", 22, 7], ["hash", 23, 7]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5], ["maintainers", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["vendorHash", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitLab: false, fetchpatch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5], ["maintainers", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["vendorHash", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "golex",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cznic",
           repo: "golex",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,14 +24,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/cznic/golex/-/commit/a735a3b62b5fb36a715ba4e280270f9ca91c5e59.patch",
             hash: "sha256-Q/Vyh91IwL3ConWpJU0akslkaVhHTkBmrMbmDVU3Txs=",
           })))),
       ]),
       vendorHash: "sha256-Ig4cxZepvmI1EH0j2fuQ33jHOLWfS40UE+A4UHdo8oE=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lex/flex like utility rendering .l formatted data to Go source code",
         homepage: "https://pkg.go.dev/modernc.org/golex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

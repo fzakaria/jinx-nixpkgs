@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["unidic-lite", 44, 5], ["unidic", 45, 5]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["build-system", 31, 3], ["nativeCheckInputs", 37, 3], ["optional-dependencies", 43, 3], ["preCheck", 48, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, pytestCheckHook: false, buildPythonPackage: false, cython: false, mecab: false, "setuptools-scm": false, ipadic: false, unidic: false, "unidic-lite": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["unidic-lite", 44, 5], ["unidic", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["build-system", 31, 3], ["nativeCheckInputs", 37, 3], ["optional-dependencies", 43, 3], ["preCheck", 48, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "polm",
           repo: "fugashi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [cython, mecab, setuptools_scm]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([ipadic, pytestCheckHook], nix.sel(optional_dependencies, "unidic-lite")));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "unidic-lite": nix.thunk(() => [unidic_lite]),
         unidic: nix.thunk(() => [unidic]),
       }));
       const preCheck = "cd fugashi\n";
       const pythonImportsCheck = nix.thunk(() => ["fugashi"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cython MeCab wrapper for fast, pythonic Japanese tokenization and morphological analysis",
         homepage: "https://github.com/polm/fugashi",
         changelog: nix.thunk(() => nix.str`https://github.com/polm/fugashi/releases/tag/${nix.sel(src, "tag")}`),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

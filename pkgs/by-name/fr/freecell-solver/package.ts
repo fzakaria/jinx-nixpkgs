@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["homepage", 102, 5], ["description", 103, 5], ["longDescription", 104, 5], ["license", 109, 5], ["mainProgram", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["outputs", 26, 3], ["pythonPath", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 66, 3], ["strictDeps", 71, 3], ["cmakeFlags", 73, 3], ["preFixup", 78, 3], ["postFixup", 84, 3], ["nativeInstallCheckInputs", 88, 3], ["postInstallCheck", 89, 3], ["doInstallCheck", 97, 3], ["__structuredAttrs", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, cmocka: false, gmp: false, gperf: false, ninja: false, perl: false, "pkg-config": false, python3: false, rinutils: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 102, 5], ["description", 103, 5], ["longDescription", 104, 5], ["license", 109, 5], ["mainProgram", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["outputs", 26, 3], ["pythonPath", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 66, 3], ["strictDeps", 71, 3], ["cmakeFlags", 73, 3], ["preFixup", 78, 3], ["postFixup", 84, 3], ["nativeInstallCheckInputs", 88, 3], ["postInstallCheck", 89, 3], ["doInstallCheck", 97, 3], ["__structuredAttrs", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const rinutils = nix.arg($, "rinutils");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "freecell-solver",
       version: "6.16.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://fc-solve.shlomifish.org/downloads/fc-solve/freecell-solver-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-cbiILmjxvmJSkGkBjQxzK3UHhmkHfJY0gnlXWEnzQxM=",
         })))),
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://fc-solve.shlomifish.org/",
         description: "FreeCell automatic solver",
         longDescription: "FreeCell Solver is a program that automatically solves layouts of Freecell\nand similar variants of Card Solitaire such as Eight Off, Forecell, and\nSeahaven Towers, as well as Simple Simon boards.\n",

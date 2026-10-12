@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["rev", 15, 5], ["repo", 16, 5], ["sha256", 17, 5]], [["homepage", 67, 5], ["changelog", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 81, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["subPackages", 27, 3], ["nativeBuildInputs", 29, 3], ["preCheck", 31, 3], ["checkFlags", 43, 3], ["postInstall", 47, 3], ["doInstallCheck", 55, 3], ["installCheckPhase", 56, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["rev", 15, 5], ["repo", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["changelog", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["subPackages", 27, 3], ["nativeBuildInputs", 29, 3], ["preCheck", 31, 3], ["checkFlags", 43, 3], ["postInstall", 47, 3], ["doInstallCheck", 55, 3], ["installCheckPhase", 56, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "infracost",
       version: "0.10.46",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "infracost",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           repo: "infracost",
@@ -46,7 +44,7 @@ $out/bin/infracost --version | grep "v${nix.sel(finalAttrs, "version")}"
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://infracost.io",
         changelog: nix.thunk(() => nix.str`https://github.com/infracost/infracost/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Cloud cost estimates for Terraform in your CLI and pull requests",

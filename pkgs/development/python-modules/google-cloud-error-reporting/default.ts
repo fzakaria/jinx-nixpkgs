@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["pythonRelaxDeps", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 46, 3], ["disabledTests", 53, 3], ["preCheck", 61, 3], ["pythonImportsCheck", 66, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "google-api-core": false, "google-cloud-logging": false, "proto-plus": false, protobuf: false, "google-cloud-testutils": false, mock: false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["pythonRelaxDeps", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 46, 3], ["disabledTests", 53, 3], ["preCheck", 61, 3], ["pythonImportsCheck", 66, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "python-error-reporting",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# prevent google directory from shadowing google imports\nrm -r google\n";
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.error_reporting", "google.cloud.errorreporting_v1beta1"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Stackdriver Error Reporting API client library",
         homepage: "https://github.com/googleapis/python-error-reporting",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/python-error-reporting/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sarahec"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

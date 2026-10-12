@@ -2,25 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/defaults.nix", [[["type", 8, 7]], [["type", 11, 7]], [["type", 14, 7]], [["type", 17, 7]], [["type", 20, 7]], [["type", 25, 11], ["default", 26, 11]], [["type", 29, 11], ["default", 30, 11]], [["enabled", 24, 17], ["count", 28, 17]], [["options", 24, 9]], [["type", 23, 7]], [["message", 35, 29]], [["type", 35, 7]], [["type", 38, 7]], [["type", 42, 7]], [["enabled", 50, 13], ["count", 51, 13]], [["type", 46, 7], ["default", 47, 7]], [["list", 7, 5], ["attrs", 10, 5], ["attrsOf", 13, 5], ["null", 16, 5], ["submodule", 19, 5], ["submoduleWithDefaults", 22, 5], ["unique", 34, 5], ["coercedTo", 37, 5], ["int", 41, 5], ["result", 45, 5]], [["options", 6, 3]]]);
 const formals$1 = { args: { lib: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/defaults.nix", [["type", 8, 7]]);
-const pos$2 = nix.positions(here + "/defaults.nix", [["type", 11, 7]]);
-const pos$3 = nix.positions(here + "/defaults.nix", [["type", 14, 7]]);
-const pos$4 = nix.positions(here + "/defaults.nix", [["type", 17, 7]]);
-const pos$5 = nix.positions(here + "/defaults.nix", [["type", 20, 7]]);
-const pos$6 = nix.positions(here + "/defaults.nix", [["type", 25, 11], ["default", 26, 11]]);
-const pos$7 = nix.positions(here + "/defaults.nix", [["type", 29, 11], ["default", 30, 11]]);
-const pos$8 = nix.positions(here + "/defaults.nix", [["enabled", 24, 17], ["count", 28, 17]]);
-const pos$9 = nix.positions(here + "/defaults.nix", [["options", 24, 9]]);
-const pos$10 = nix.positions(here + "/defaults.nix", [["type", 23, 7]]);
-const pos$11 = nix.positions(here + "/defaults.nix", [["message", 35, 29]]);
-const pos$12 = nix.positions(here + "/defaults.nix", [["type", 35, 7]]);
-const pos$13 = nix.positions(here + "/defaults.nix", [["type", 38, 7]]);
-const pos$14 = nix.positions(here + "/defaults.nix", [["type", 42, 7]]);
-const pos$15 = nix.positions(here + "/defaults.nix", [["enabled", 50, 13], ["count", 51, 13]]);
-const pos$16 = nix.positions(here + "/defaults.nix", [["type", 46, 7], ["default", 47, 7]]);
-const pos$17 = nix.positions(here + "/defaults.nix", [["list", 7, 5], ["attrs", 10, 5], ["attrsOf", 13, 5], ["null", 16, 5], ["submodule", 19, 5], ["submoduleWithDefaults", 22, 5], ["unique", 34, 5], ["coercedTo", 37, 5], ["int", 41, 5], ["result", 45, 5]]);
-const pos$18 = nix.positions(here + "/defaults.nix", [["options", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,55 +11,59 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       list: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "int")))),
         })))),
-      attrs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$2, type: nix.thunk(() => nix.sel(types, "attrs")) })))),
+      attrs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[1], type: nix.thunk(() => nix.sel(types, "attrs")) })))),
       attrsOf: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "int")))),
         })))),
       null: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "int")))),
         })))),
       submodule: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({})))),
         })))),
       submoduleWithDefaults: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               options: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     type: nix.thunk(() => nix.sel(types, "bool")),
                     default: true,
                   })))),
-                count: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$7, type: nix.thunk(() => nix.sel(types, "int")), default: 13n })))),
+                count: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
+                    [nix.POS]: $pos[6],
+                    type: nix.thunk(() => nix.sel(types, "int")),
+                    default: 13n,
+                  })))),
               })),
             })))),
         })))),
       unique: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$12,
-          type: nix.thunk(() => nix.app(nix.sel(types, "unique"), nix.thunk(() => ({ [nix.POS]: pos$11, message: "hi" })), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "int")))))),
+          [nix.POS]: $pos[11],
+          type: nix.thunk(() => nix.app(nix.sel(types, "unique"), nix.thunk(() => ({ [nix.POS]: $pos[10], message: "hi" })), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "int")))))),
         })))),
       coercedTo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           type: nix.thunk(() => nix.app(nix.sel(types, "coercedTo"), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "int")))), nix.thunk(() => nix.builtins.attrNames), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))))),
         })))),
-      int: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$14, type: nix.thunk(() => nix.sel(types, "int")) })))),
+      int: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[13], type: nix.thunk(() => nix.sel(types, "int")) })))),
       result: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           type: nix.thunk(() => nix.sel(types, "str")),
           default: nix.thunk(() => (() => {
-            nix.assert_(nix.eq(nix.sel(config, "submoduleWithDefaults"), { [nix.POS]: pos$15, enabled: true, count: 13n }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/defaults.nix:48:9");
+            nix.assert_(nix.eq(nix.sel(config, "submoduleWithDefaults"), { [nix.POS]: $pos[14], enabled: true, count: 13n }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/defaults.nix:48:9");
             return "ok";
           })()),
         })))),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["updateScript", 51, 12]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 37, 3], ["strictDeps", 42, 3], ["postFixup", 45, 3], ["passthru", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, makeWrapper: false, boost188: false, xz: false, libiconv: false, withGog: true, unar: true, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 51, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 37, 3], ["strictDeps", 42, 3], ["postFixup", 45, 3], ["passthru", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const unar = nix.argOr($, "unar", () => null);
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "innoextract",
       version: "1.9-unstable-2025-02-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dscharrer",
           repo: "innoextract",
           rev: "6e9e34ed0876014fdb46e684103ef8c3605e382e",
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [unar]))}
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to unpack installers created by Inno Setup",
         homepage: "https://constexpr.org/innoextract/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["skipBulkUpdate", 47, 12]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["pythonRelaxDeps", 26, 3], ["build-system", 31, 3], ["propagatedBuildInputs", 36, 3], ["checkInputs", 43, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, kitchen: false, packaging: false, "poetry-core": false, "poetry-dynamic-versioning": false, "python-dateutil": false, pytz: false, taskwarrior2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 47, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["pythonRelaxDeps", 26, 3], ["build-system", 31, 3], ["propagatedBuildInputs", 36, 3], ["checkInputs", 43, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bergercookie",
           repo: "taskw-ng",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,9 +32,9 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core, poetry_dynamic_versioning]);
       const propagatedBuildInputs = nix.thunk(() => [kitchen, packaging, python_dateutil, pytz]);
       const checkInputs = nix.thunk(() => [taskwarrior2]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], skipBulkUpdate: true }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Module to interact with the Taskwarrior API",
         homepage: "https://github.com/bergercookie/taskw-ng",
         changelog: nix.thunk(() => nix.str`https://github.com/bergercookie/taskw-ng/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

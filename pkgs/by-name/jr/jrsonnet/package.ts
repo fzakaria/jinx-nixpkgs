@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["nativeBuildInputs", 22, 3], ["postInstall", 24, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["nativeBuildInputs", 22, 3], ["postInstall", 24, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jrsonnet",
       version: "0.5.0-pre98",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "deltarocks",
           repo: "jrsonnet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.add("ln -s $out/bin/jrsonnet $out/bin/jsonnet\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for shell in bash zsh fish; do\n  installShellCompletion --cmd jrsonnet \\\n    --$shell <($out/bin/jrsonnet generate $shell)\n  installShellCompletion --cmd jsonnet \\\n    --$shell <($out/bin/jrsonnet generate $shell | sed s/jrsonnet/jsonnet/g)\ndone\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Purely-functional configuration language that helps you define JSON data",
         homepage: "https://github.com/deltarocks/jrsonnet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

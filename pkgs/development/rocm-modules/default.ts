@@ -2,42 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["rocm-device-libs", 35, 26]], [["stdenv", 40, 50]], [["stdenv", 42, 52]], [["stdenv", 47, 9]], [["stdenv", 52, 48]], [["rocmUpdateScript", 55, 24]], [["rocmUpdateScript", 59, 24]], [["stdenv", 70, 42]], [["stdenv", 75, 48]], [["stdenv", 78, 9]], [["clang", 85, 24]], [["clang", 88, 24]], [["rocmUpdateScript", 134, 11], ["clr", 135, 11]], [["buildRockCompiler", 148, 9]], [["composable_kernel", 168, 24], ["rocm-toolchain", 168, 42]], [["enableStatic", 174, 37]], [["boost", 174, 9]], [["stdenv", 179, 48]], [["useCPU", 183, 37]], [["useCPU", 185, 37]], [["enablePython", 189, 36]], [["stdenv", 188, 9], ["opencv", 189, 9]], [["rpp", 193, 9], ["useOpenCL", 194, 9], ["useCPU", 195, 9]], [["rpp", 199, 9], ["useOpenCL", 200, 9], ["useCPU", 201, 9]], [["enableCuda", 210, 13], ["enableRocm", 211, 13], ["rocmPackages", 212, 13]], [["enableCuda", 218, 13], ["ucx", 219, 21]], [["ucx", 216, 19], ["ucc", 217, 11]], [["release-packagePlatforms", 228, 9]], [["rocmPackages", 245, 9]], [["rocmPackages", 249, 9]], [["rocmClangStdenv", 25, 15], ["stdenv", 26, 7], ["rocmUpdateScript", 28, 7], ["llvm", 31, 7], ["rocm-toolchain", 38, 27], ["clang", 38, 42], ["openmp", 38, 48], ["rocm-core", 40, 7], ["rocm-cmake", 42, 7], ["rocm-device-libs", 44, 7], ["rocm-runtime", 46, 7], ["rocm-comgr", 50, 7], ["rocminfo", 52, 7], ["amdsmi", 54, 7], ["rocm-smi", 58, 7], ["aqlprofile", 62, 7], ["rdc", 64, 7], ["rocm-docs-core", 66, 7], ["hip-common", 68, 7], ["hipcc", 70, 7], ["clr", 73, 7], ["aotriton", 75, 7], ["hipify", 77, 7], ["hsakmt", 82, 7], ["rocprofiler", 84, 7], ["rocprofiler-register", 87, 7], ["rocprofiler-sdk", 90, 7], ["rocprof-compute-viewer", 92, 7], ["rocprof-trace-decoder", 94, 7], ["roctracer", 96, 7], ["rocgdb", 98, 7], ["rocdbgapi", 100, 7], ["rocr-debug-agent", 102, 7], ["rocprim", 104, 7], ["rocsparse", 106, 7], ["rocthrust", 108, 7], ["rocrand", 110, 7], ["hiprand", 112, 7], ["rocfft", 114, 7], ["mscclpp", 116, 7], ["rccl", 118, 7], ["rocshmem", 120, 7], ["hipcub", 122, 7], ["hipsparse", 124, 7], ["hipfort", 126, 7], ["hipfft", 128, 7], ["hiprt", 130, 7], ["tensile", 132, 7], ["rocblas", 139, 7], ["rocsolver", 141, 7], ["rocwmma", 143, 7], ["rocalution", 145, 7], ["rocmlir-rock", 147, 7], ["rocmlir", 150, 7], ["hipsolver", 152, 7], ["hipblas-common", 154, 7], ["hipblas", 156, 7], ["hipblaslt", 158, 7], ["hipsparselt", 160, 7], ["composable_kernel_base", 164, 7], ["composable_kernel", 165, 7], ["ck4inductor", 167, 7], ["half", 171, 7], ["miopen", 173, 7], ["miopen-hip", 177, 7], ["migraphx", 179, 7], ["rpp", 181, 7], ["rpp-hip", 183, 7], ["rpp-cpu", 185, 7], ["mivisionx", 187, 7], ["mivisionx-hip", 192, 7], ["mivisionx-cpu", 198, 7], ["openmpi", 206, 7], ["mpi", 223, 7], ["meta", 225, 7], ["rocm-bandwidth-test", 244, 7], ["rocm-tests", 248, 7]], [["rpp-opencl", 253, 7], ["rocmPath", 258, 7], ["rocm-merged-llvm", 265, 7], ["hsa-amd-aqlprofile-bin", 275, 7], ["triton", 279, 7], ["rocm-thunk", 283, 7], ["clang-ocl", 287, 7], ["miopengemm", 291, 7], ["miopen-opencl", 295, 7], ["mivisionx-opencl", 299, 7]], [["localGpuTargets", 310, 11]], [["clr", 309, 9]], [["gfx9", 318, 3], ["gfx10", 324, 3], ["gfx11", 328, 3], ["gfx12", 335, 3]]]);
 const formals$1 = { args: { lib: false, config: false, callPackage: false, newScope: false, boost179: false, opencv: false, python3Packages: false, openmpi: false, stdenv: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["rocm-device-libs", 35, 26]]);
-const pos$2 = nix.positions(here + "/default.nix", [["stdenv", 40, 50]]);
-const pos$3 = nix.positions(here + "/default.nix", [["stdenv", 42, 52]]);
-const pos$4 = nix.positions(here + "/default.nix", [["stdenv", 47, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["stdenv", 52, 48]]);
-const pos$6 = nix.positions(here + "/default.nix", [["rocmUpdateScript", 55, 24]]);
-const pos$7 = nix.positions(here + "/default.nix", [["rocmUpdateScript", 59, 24]]);
-const pos$8 = nix.positions(here + "/default.nix", [["stdenv", 70, 42]]);
-const pos$9 = nix.positions(here + "/default.nix", [["stdenv", 75, 48]]);
-const pos$10 = nix.positions(here + "/default.nix", [["stdenv", 78, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["clang", 85, 24]]);
-const pos$12 = nix.positions(here + "/default.nix", [["clang", 88, 24]]);
-const pos$13 = nix.positions(here + "/default.nix", [["rocmUpdateScript", 134, 11], ["clr", 135, 11]]);
-const pos$14 = nix.positions(here + "/default.nix", [["buildRockCompiler", 148, 9]]);
-const pos$15 = nix.positions(here + "/default.nix", [["composable_kernel", 168, 24], ["rocm-toolchain", 168, 42]]);
-const pos$16 = nix.positions(here + "/default.nix", [["enableStatic", 174, 37]]);
-const pos$17 = nix.positions(here + "/default.nix", [["boost", 174, 9]]);
-const pos$18 = nix.positions(here + "/default.nix", [["stdenv", 179, 48]]);
-const pos$19 = nix.positions(here + "/default.nix", [["useCPU", 183, 37]]);
-const pos$20 = nix.positions(here + "/default.nix", [["useCPU", 185, 37]]);
-const pos$21 = nix.positions(here + "/default.nix", [["enablePython", 189, 36]]);
-const pos$22 = nix.positions(here + "/default.nix", [["stdenv", 188, 9], ["opencv", 189, 9]]);
-const pos$23 = nix.positions(here + "/default.nix", [["rpp", 193, 9], ["useOpenCL", 194, 9], ["useCPU", 195, 9]]);
-const pos$24 = nix.positions(here + "/default.nix", [["rpp", 199, 9], ["useOpenCL", 200, 9], ["useCPU", 201, 9]]);
-const pos$25 = nix.positions(here + "/default.nix", [["enableCuda", 210, 13], ["enableRocm", 211, 13], ["rocmPackages", 212, 13]]);
-const pos$26 = nix.positions(here + "/default.nix", [["enableCuda", 218, 13], ["ucx", 219, 21]]);
-const pos$27 = nix.positions(here + "/default.nix", [["ucx", 216, 19], ["ucc", 217, 11]]);
-const pos$28 = nix.positions(here + "/default.nix", [["release-packagePlatforms", 228, 9]]);
-const pos$29 = nix.positions(here + "/default.nix", [["rocmPackages", 245, 9]]);
-const pos$30 = nix.positions(here + "/default.nix", [["rocmPackages", 249, 9]]);
-const pos$31 = nix.positions(here + "/default.nix", [["rocmClangStdenv", 25, 15], ["stdenv", 26, 7], ["rocmUpdateScript", 28, 7], ["llvm", 31, 7], ["rocm-toolchain", 38, 27], ["clang", 38, 42], ["openmp", 38, 48], ["rocm-core", 40, 7], ["rocm-cmake", 42, 7], ["rocm-device-libs", 44, 7], ["rocm-runtime", 46, 7], ["rocm-comgr", 50, 7], ["rocminfo", 52, 7], ["amdsmi", 54, 7], ["rocm-smi", 58, 7], ["aqlprofile", 62, 7], ["rdc", 64, 7], ["rocm-docs-core", 66, 7], ["hip-common", 68, 7], ["hipcc", 70, 7], ["clr", 73, 7], ["aotriton", 75, 7], ["hipify", 77, 7], ["hsakmt", 82, 7], ["rocprofiler", 84, 7], ["rocprofiler-register", 87, 7], ["rocprofiler-sdk", 90, 7], ["rocprof-compute-viewer", 92, 7], ["rocprof-trace-decoder", 94, 7], ["roctracer", 96, 7], ["rocgdb", 98, 7], ["rocdbgapi", 100, 7], ["rocr-debug-agent", 102, 7], ["rocprim", 104, 7], ["rocsparse", 106, 7], ["rocthrust", 108, 7], ["rocrand", 110, 7], ["hiprand", 112, 7], ["rocfft", 114, 7], ["mscclpp", 116, 7], ["rccl", 118, 7], ["rocshmem", 120, 7], ["hipcub", 122, 7], ["hipsparse", 124, 7], ["hipfort", 126, 7], ["hipfft", 128, 7], ["hiprt", 130, 7], ["tensile", 132, 7], ["rocblas", 139, 7], ["rocsolver", 141, 7], ["rocwmma", 143, 7], ["rocalution", 145, 7], ["rocmlir-rock", 147, 7], ["rocmlir", 150, 7], ["hipsolver", 152, 7], ["hipblas-common", 154, 7], ["hipblas", 156, 7], ["hipblaslt", 158, 7], ["hipsparselt", 160, 7], ["composable_kernel_base", 164, 7], ["composable_kernel", 165, 7], ["ck4inductor", 167, 7], ["half", 171, 7], ["miopen", 173, 7], ["miopen-hip", 177, 7], ["migraphx", 179, 7], ["rpp", 181, 7], ["rpp-hip", 183, 7], ["rpp-cpu", 185, 7], ["mivisionx", 187, 7], ["mivisionx-hip", 192, 7], ["mivisionx-cpu", 198, 7], ["openmpi", 206, 7], ["mpi", 223, 7], ["meta", 225, 7], ["rocm-bandwidth-test", 244, 7], ["rocm-tests", 248, 7]]);
-const pos$32 = nix.positions(here + "/default.nix", [["rpp-opencl", 253, 7], ["rocmPath", 258, 7], ["rocm-merged-llvm", 265, 7], ["hsa-amd-aqlprofile-bin", 275, 7], ["triton", 279, 7], ["rocm-thunk", 283, 7], ["clang-ocl", 287, 7], ["miopengemm", 291, 7], ["miopen-opencl", 295, 7], ["mivisionx-opencl", 299, 7]]);
-const pos$33 = nix.positions(here + "/default.nix", [["localGpuTargets", 310, 11]]);
-const pos$34 = nix.positions(here + "/default.nix", [["clr", 309, 9]]);
-const pos$35 = nix.positions(here + "/default.nix", [["gfx9", 318, 3], ["gfx10", 324, 3], ["gfx11", 328, 3], ["gfx12", 335, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,42 +26,42 @@ export default nix.lambda((args) => (() => {
       return nix.update((() => {
         const from = nix.thunk(() => nix.sel(self, "llvm"));
         return {
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         rocmClangStdenv: rocmClangStdenv,
         stdenv: rocmClangStdenv,
         rocmUpdateScript: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./update.nix"), nix.thunk(() => ({})))),
         llvm: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./llvm/default.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               "rocm-device-libs": nix.thunk(() => nix.attr(self, "rocm-device-libs")),
             })))))),
         "rocm-toolchain": nix.thunk(() => nix.attr(from, "rocm-toolchain")),
         clang: nix.thunk(() => nix.attr(from, "clang")),
         openmp: nix.thunk(() => nix.attr(from, "openmp")),
-        "rocm-core": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocm-core"), nix.thunk(() => ({ [nix.POS]: pos$2, stdenv: origStdenv })))),
-        "rocm-cmake": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocm-cmake"), nix.thunk(() => ({ [nix.POS]: pos$3, stdenv: origStdenv })))),
+        "rocm-core": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocm-core"), nix.thunk(() => ({ [nix.POS]: $pos[1], stdenv: origStdenv })))),
+        "rocm-cmake": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocm-cmake"), nix.thunk(() => ({ [nix.POS]: $pos[2], stdenv: origStdenv })))),
         "rocm-device-libs": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocm-device-libs"), nix.thunk(() => ({})))),
-        "rocm-runtime": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocm-runtime"), nix.thunk(() => ({ [nix.POS]: pos$4, stdenv: origStdenv })))),
+        "rocm-runtime": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocm-runtime"), nix.thunk(() => ({ [nix.POS]: $pos[3], stdenv: origStdenv })))),
         "rocm-comgr": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocm-comgr"), nix.thunk(() => ({})))),
-        rocminfo: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocminfo"), nix.thunk(() => ({ [nix.POS]: pos$5, stdenv: origStdenv })))),
+        rocminfo: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocminfo"), nix.thunk(() => ({ [nix.POS]: $pos[4], stdenv: origStdenv })))),
         amdsmi: nix.thunk(() => nix.app(nix.sel(pyPackages, "callPackage"), nix.path(here, "./amdsmi"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             rocmUpdateScript: nix.thunk(() => nix.attr(self, "rocmUpdateScript")),
           })))),
         "rocm-smi": nix.thunk(() => nix.app(nix.sel(pyPackages, "callPackage"), nix.path(here, "./rocm-smi"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             rocmUpdateScript: nix.thunk(() => nix.attr(self, "rocmUpdateScript")),
           })))),
         aqlprofile: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./aqlprofile"), nix.thunk(() => ({})))),
         rdc: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rdc"), nix.thunk(() => ({})))),
         "rocm-docs-core": nix.thunk(() => nix.app(nix.sel(python3Packages, "callPackage"), nix.path(here, "./rocm-docs-core"), nix.thunk(() => ({})))),
         "hip-common": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./hip-common"), nix.thunk(() => ({})))),
-        hipcc: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./hipcc"), nix.thunk(() => ({ [nix.POS]: pos$8, stdenv: origStdenv })))),
+        hipcc: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./hipcc"), nix.thunk(() => ({ [nix.POS]: $pos[7], stdenv: origStdenv })))),
         clr: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./clr"), nix.thunk(() => ({})))),
-        aotriton: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./aotriton"), nix.thunk(() => ({ [nix.POS]: pos$9, stdenv: origStdenv })))),
-        hipify: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./hipify"), nix.thunk(() => ({ [nix.POS]: pos$10, stdenv: origStdenv })))),
+        aotriton: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./aotriton"), nix.thunk(() => ({ [nix.POS]: $pos[8], stdenv: origStdenv })))),
+        hipify: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./hipify"), nix.thunk(() => ({ [nix.POS]: $pos[9], stdenv: origStdenv })))),
         hsakmt: nix.thunk(() => nix.sel(self, "rocm-runtime")),
-        rocprofiler: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocprofiler"), nix.thunk(() => ({ [nix.POS]: pos$11, clang: nix.thunk(() => nix.attr(llvm, "clang")) })))),
-        "rocprofiler-register": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocprofiler-register"), nix.thunk(() => ({ [nix.POS]: pos$12, clang: nix.thunk(() => nix.attr(llvm, "clang")) })))),
+        rocprofiler: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocprofiler"), nix.thunk(() => ({ [nix.POS]: $pos[10], clang: nix.thunk(() => nix.attr(llvm, "clang")) })))),
+        "rocprofiler-register": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocprofiler-register"), nix.thunk(() => ({ [nix.POS]: $pos[11], clang: nix.thunk(() => nix.attr(llvm, "clang")) })))),
         "rocprofiler-sdk": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocprofiler-sdk"), nix.thunk(() => ({})))),
         "rocprof-compute-viewer": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocprof-compute-viewer"), nix.thunk(() => ({})))),
         "rocprof-trace-decoder": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocprof-trace-decoder"), nix.thunk(() => ({})))),
@@ -118,7 +84,7 @@ export default nix.lambda((args) => (() => {
         hipfft: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./hipfft"), nix.thunk(() => ({})))),
         hiprt: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./hiprt"), nix.thunk(() => ({})))),
         tensile: nix.thunk(() => nix.app(nix.sel(pyPackages, "callPackage"), nix.path(here, "./tensile"), nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             rocmUpdateScript: nix.thunk(() => nix.attr(self, "rocmUpdateScript")),
             clr: nix.thunk(() => nix.attr(self, "clr")),
           })))),
@@ -126,7 +92,7 @@ export default nix.lambda((args) => (() => {
         rocsolver: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocsolver"), nix.thunk(() => ({})))),
         rocwmma: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocwmma"), nix.thunk(() => ({})))),
         rocalution: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocalution"), nix.thunk(() => ({})))),
-        "rocmlir-rock": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocmlir"), nix.thunk(() => ({ [nix.POS]: pos$14, buildRockCompiler: true })))),
+        "rocmlir-rock": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocmlir"), nix.thunk(() => ({ [nix.POS]: $pos[13], buildRockCompiler: true })))),
         rocmlir: nix.thunk(() => nix.sel(self, "rocmlir-rock")),
         hipsolver: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./hipsolver"), nix.thunk(() => ({})))),
         "hipblas-common": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./hipblas-common"), nix.thunk(() => ({})))),
@@ -136,59 +102,59 @@ export default nix.lambda((args) => (() => {
         composable_kernel_base: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./composable_kernel/base.nix"), nix.thunk(() => ({})))),
         composable_kernel: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./composable_kernel"), nix.thunk(() => ({})))),
         ck4inductor: nix.thunk(() => nix.app(nix.sel(pyPackages, "callPackage"), nix.path(here, "./composable_kernel/ck4inductor.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             composable_kernel: nix.thunk(() => nix.attr(self, "composable_kernel")),
             "rocm-toolchain": nix.thunk(() => nix.attr(self, "rocm-toolchain")),
           })))),
         half: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./half"), nix.thunk(() => ({})))),
         miopen: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./miopen"), nix.thunk(() => ({
-            [nix.POS]: pos$17,
-            boost: nix.thunk(() => nix.app(nix.sel(boost179, "override"), nix.thunk(() => ({ [nix.POS]: pos$16, enableStatic: true })))),
+            [nix.POS]: $pos[16],
+            boost: nix.thunk(() => nix.app(nix.sel(boost179, "override"), nix.thunk(() => ({ [nix.POS]: $pos[15], enableStatic: true })))),
           })))),
         "miopen-hip": nix.thunk(() => nix.sel(self, "miopen")),
-        migraphx: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./migraphx"), nix.thunk(() => ({ [nix.POS]: pos$18, stdenv: origStdenv })))),
+        migraphx: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./migraphx"), nix.thunk(() => ({ [nix.POS]: $pos[17], stdenv: origStdenv })))),
         rpp: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rpp"), nix.thunk(() => ({})))),
-        "rpp-hip": nix.thunk(() => nix.app(nix.sel(self, "rpp", "override"), nix.thunk(() => ({ [nix.POS]: pos$19, useCPU: false })))),
-        "rpp-cpu": nix.thunk(() => nix.app(nix.sel(self, "rpp", "override"), nix.thunk(() => ({ [nix.POS]: pos$20, useCPU: true })))),
+        "rpp-hip": nix.thunk(() => nix.app(nix.sel(self, "rpp", "override"), nix.thunk(() => ({ [nix.POS]: $pos[18], useCPU: false })))),
+        "rpp-cpu": nix.thunk(() => nix.app(nix.sel(self, "rpp", "override"), nix.thunk(() => ({ [nix.POS]: $pos[19], useCPU: true })))),
         mivisionx: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./mivisionx"), nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             stdenv: origStdenv,
-            opencv: nix.thunk(() => nix.app(nix.sel(opencv, "override"), nix.thunk(() => ({ [nix.POS]: pos$21, enablePython: true })))),
+            opencv: nix.thunk(() => nix.app(nix.sel(opencv, "override"), nix.thunk(() => ({ [nix.POS]: $pos[20], enablePython: true })))),
           })))),
         "mivisionx-hip": nix.thunk(() => nix.app(nix.sel(self, "mivisionx", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             rpp: nix.thunk(() => nix.sel(self, "rpp-hip")),
             useOpenCL: false,
             useCPU: false,
           })))),
         "mivisionx-cpu": nix.thunk(() => nix.app(nix.sel(self, "mivisionx", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             rpp: nix.thunk(() => nix.sel(self, "rpp-cpu")),
             useOpenCL: false,
             useCPU: true,
           })))),
         openmpi: nix.thunk(() => nix.app(nix.sel(openmpi_orig, "override"), (prev) => (() => {
-            const ucx = nix.thunk(() => nix.app(nix.sel(prev, "ucx", "override"), nix.thunk(() => ({ [nix.POS]: pos$25, enableCuda: false, enableRocm: true, rocmPackages: self }))));
+            const ucx = nix.thunk(() => nix.app(nix.sel(prev, "ucx", "override"), nix.thunk(() => ({ [nix.POS]: $pos[24], enableCuda: false, enableRocm: true, rocmPackages: self }))));
             return {
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               ucx: ucx,
-              ucc: nix.thunk(() => nix.app(nix.sel(prev, "ucc", "override"), nix.thunk(() => ({ [nix.POS]: pos$26, enableCuda: false, ucx: ucx })))),
+              ucc: nix.thunk(() => nix.app(nix.sel(prev, "ucc", "override"), nix.thunk(() => ({ [nix.POS]: $pos[25], enableCuda: false, ucx: ucx })))),
             };
           })())),
         mpi: nix.thunk(() => nix.sel(self, "openmpi")),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           "release-packagePlatforms": nix.thunk(() => (() => {
             const platforms = nix.thunk(() => ["x86_64-linux"]);
             const attrPaths = nix.thunk(() => nix.sel(nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./release-attrPaths.json")))), "attrPaths"));
             return nix.app(nix.sel(lib, "foldl'"), (acc) => (path) => (nix.asBool(nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".", path)), pkgs)) ? nix.app(nix.sel(lib, "recursiveUpdate"), acc, nix.thunk(() => nix.app(nix.sel(lib, "setAttrByPath"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".", path)), platforms))) : nix.force(acc)), nix.thunk(() => ({})), attrPaths);
           })()),
         })),
-        "rocm-bandwidth-test": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocm-bandwidth-test"), nix.thunk(() => ({ [nix.POS]: pos$29, rocmPackages: self })))),
-        "rocm-tests": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocm-tests"), nix.thunk(() => ({ [nix.POS]: pos$30, rocmPackages: self })))),
+        "rocm-bandwidth-test": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocm-bandwidth-test"), nix.thunk(() => ({ [nix.POS]: $pos[28], rocmPackages: self })))),
+        "rocm-tests": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocm-tests"), nix.thunk(() => ({ [nix.POS]: $pos[29], rocmPackages: self })))),
       };
       })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           "rpp-opencl": nix.thunk(() => nix.builtins.throw("'rpp-opencl' has been removed as it has been broken for a year and has no consuming packages.\nUse 'rpp' or 'rpp-cpu' instead.\n")),
           rocmPath: nix.thunk(() => nix.builtins.throw("'rocm-path' has been removed. If a ROCM_PATH value is required in nixpkgs please\nconstruct one with the minimal set of required deps.\nFor convenience use outside of nixpkgs consider one of the entries in\n'rocmPackages.meta'.\n")),
           "rocm-merged-llvm": nix.thunk(() => nix.builtins.throw("'rocm-merged-llvm' has been removed.\nFor 'libllvm' or 'libclang' use 'rocmPackages.llvm.libllvm/clang'.\nFor a ROCm compiler toolchain use 'rocmPackages.rocm-toolchain'.\nIf a package uses '$<TARGET_FILE:clang>' in CMake from 'libclang'\nit may be necessary to convince it to use 'rocm-toolchain' instead.\n'rocm-merged-llvm' avoided this at the cost of significantly bloating closure\nsize.\n")),
@@ -202,11 +168,11 @@ export default nix.lambda((args) => (() => {
         }))));
     })()));
   const scopeForArches = (arches) => nix.app(nix.sel(outer, "overrideScope"), (_final) => (prev) => ({
-      [nix.POS]: pos$34,
-      clr: nix.thunk(() => nix.app(nix.sel(prev, "clr", "override"), nix.thunk(() => ({ [nix.POS]: pos$33, localGpuTargets: arches })))),
+      [nix.POS]: $pos[33],
+      clr: nix.thunk(() => nix.app(nix.sel(prev, "clr", "override"), nix.thunk(() => ({ [nix.POS]: $pos[32], localGpuTargets: arches })))),
     }));
   return nix.update(outer, nix.update(nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.sel(outer, "clr", "gpuTargets")), (arch) => nix.app(scopeForArches, nix.thunk(() => [arch]))), {
-    [nix.POS]: pos$35,
+    [nix.POS]: $pos[34],
     gfx9: nix.thunk(() => nix.app(scopeForArches, nix.thunk(() => ["gfx906", "gfx908", "gfx90a", "gfx942"]))),
     gfx10: nix.thunk(() => nix.app(scopeForArches, nix.thunk(() => ["gfx1010", "gfx1030"]))),
     gfx11: nix.thunk(() => nix.app(scopeForArches, nix.thunk(() => ["gfx1100", "gfx1101", "gfx1102", "gfx1150", "gfx1151"]))),

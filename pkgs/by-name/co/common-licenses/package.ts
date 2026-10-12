@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["platforms", 26, 5], ["maintainers", 27, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["platforms", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "common-licenses",
       version: "13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://deb.debian.org/debian/pool/main/b/base-files/base-files_${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Q5FTvfKWSBE1ywuAH+RnZdyD+LmRSgJ11qFiM53hL1Y=",
         })))),
       installPhase: "mkdir -p $out/share\ncp -r licenses $out/share/common-licenses\ncat debian/base-files.links | grep common-licenses | sed -e \"s|usr|$out|g\" -e \"s|^|ln -s |g\" | bash -x\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "common-licenses extracted from debian base-files package",
         homepage: "https://tracker.debian.org/pkg/base-files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

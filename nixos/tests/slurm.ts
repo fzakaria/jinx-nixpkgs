@@ -2,77 +2,39 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/slurm.nix", [[["controlMachine", 5, 7], ["nodeName", 6, 7], ["partitionName", 7, 7], ["extraConfig", 8, 7]], [["slurm", 4, 14]], [["systemPackages", 14, 17]], [["enable", 15, 25]], [["firewall", 15, 16]], [["rules", 16, 22]], [["tmpfiles", 16, 13]], [["services", 4, 5], ["environment", 14, 5], ["networking", 15, 5], ["systemd", 16, 5]], [["maintainers", 67, 8]], [["enable", 78, 20]], [["client", 78, 13]], [["slurm", 77, 20]], [["imports", 74, 11], ["services", 77, 11]], [["enable", 89, 20]], [["server", 89, 13]], [["slurm", 88, 20]], [["rules", 91, 28]], [["tmpfiles", 91, 19]], [["imports", 87, 11], ["services", 88, 11], ["systemd", 91, 11]], [["enableStools", 101, 13]], [["slurm", 100, 20]], [["imports", 99, 11], ["services", 100, 11]], [["enable", 111, 31]], [["firewall", 111, 22]], [["rules", 112, 28]], [["tmpfiles", 112, 19]], [["enable", 116, 13], ["storagePassFile", 117, 13]], [["dbdserver", 115, 26]], [["slurm_acct_db.*", 130, 19]], [["ensurePermissions", 129, 17], ["name", 132, 17]], [["enable", 120, 13], ["package", 121, 13], ["initialScript", 122, 13], ["ensureDatabases", 126, 13], ["ensureUsers", 127, 13]], [["slurm", 115, 20], ["mysql", 119, 20]], [["networking", 111, 11], ["systemd", 112, 11], ["services", 115, 11]], [["enable", 142, 31]], [["rest", 142, 26]], [["slurm", 142, 20]], [["imports", 141, 11], ["services", 142, 11]], [["control", 84, 7], ["submit", 96, 7], ["dbd", 105, 7], ["rest", 138, 7], ["node1", 145, 7], ["node2", 146, 7], ["node3", 147, 7]], [["name", 65, 3], ["meta", 67, 3], ["nodes", 69, 3], ["testScript", 150, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/slurm.nix", [["controlMachine", 5, 7], ["nodeName", 6, 7], ["partitionName", 7, 7], ["extraConfig", 8, 7]]);
-const pos$2 = nix.positions(here + "/slurm.nix", [["slurm", 4, 14]]);
-const pos$3 = nix.positions(here + "/slurm.nix", [["systemPackages", 14, 17]]);
-const pos$4 = nix.positions(here + "/slurm.nix", [["enable", 15, 25]]);
-const pos$5 = nix.positions(here + "/slurm.nix", [["firewall", 15, 16]]);
-const pos$6 = nix.positions(here + "/slurm.nix", [["rules", 16, 22]]);
-const pos$7 = nix.positions(here + "/slurm.nix", [["tmpfiles", 16, 13]]);
-const pos$8 = nix.positions(here + "/slurm.nix", [["services", 4, 5], ["environment", 14, 5], ["networking", 15, 5], ["systemd", 16, 5]]);
-const pos$9 = nix.positions(here + "/slurm.nix", [["maintainers", 67, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$10 = nix.positions(here + "/slurm.nix", [["enable", 78, 20]]);
-const pos$11 = nix.positions(here + "/slurm.nix", [["client", 78, 13]]);
-const pos$12 = nix.positions(here + "/slurm.nix", [["slurm", 77, 20]]);
-const pos$13 = nix.positions(here + "/slurm.nix", [["imports", 74, 11], ["services", 77, 11]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$14 = nix.positions(here + "/slurm.nix", [["enable", 89, 20]]);
-const pos$15 = nix.positions(here + "/slurm.nix", [["server", 89, 13]]);
-const pos$16 = nix.positions(here + "/slurm.nix", [["slurm", 88, 20]]);
-const pos$17 = nix.positions(here + "/slurm.nix", [["rules", 91, 28]]);
-const pos$18 = nix.positions(here + "/slurm.nix", [["tmpfiles", 91, 19]]);
-const pos$19 = nix.positions(here + "/slurm.nix", [["imports", 87, 11], ["services", 88, 11], ["systemd", 91, 11]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$20 = nix.positions(here + "/slurm.nix", [["enableStools", 101, 13]]);
-const pos$21 = nix.positions(here + "/slurm.nix", [["slurm", 100, 20]]);
-const pos$22 = nix.positions(here + "/slurm.nix", [["imports", 99, 11], ["services", 100, 11]]);
 const formals$5 = { args: { pkgs: false }, ellipsis: true };
-const pos$23 = nix.positions(here + "/slurm.nix", [["enable", 111, 31]]);
-const pos$24 = nix.positions(here + "/slurm.nix", [["firewall", 111, 22]]);
-const pos$25 = nix.positions(here + "/slurm.nix", [["rules", 112, 28]]);
-const pos$26 = nix.positions(here + "/slurm.nix", [["tmpfiles", 112, 19]]);
-const pos$27 = nix.positions(here + "/slurm.nix", [["enable", 116, 13], ["storagePassFile", 117, 13]]);
-const pos$28 = nix.positions(here + "/slurm.nix", [["dbdserver", 115, 26]]);
-const pos$29 = nix.positions(here + "/slurm.nix", [["slurm_acct_db.*", 130, 19]]);
-const pos$30 = nix.positions(here + "/slurm.nix", [["ensurePermissions", 129, 17], ["name", 132, 17]]);
-const pos$31 = nix.positions(here + "/slurm.nix", [["enable", 120, 13], ["package", 121, 13], ["initialScript", 122, 13], ["ensureDatabases", 126, 13], ["ensureUsers", 127, 13]]);
-const pos$32 = nix.positions(here + "/slurm.nix", [["slurm", 115, 20], ["mysql", 119, 20]]);
-const pos$33 = nix.positions(here + "/slurm.nix", [["networking", 111, 11], ["systemd", 112, 11], ["services", 115, 11]]);
 const formals$6 = { args: {  }, ellipsis: true };
-const pos$34 = nix.positions(here + "/slurm.nix", [["enable", 142, 31]]);
-const pos$35 = nix.positions(here + "/slurm.nix", [["rest", 142, 26]]);
-const pos$36 = nix.positions(here + "/slurm.nix", [["slurm", 142, 20]]);
-const pos$37 = nix.positions(here + "/slurm.nix", [["imports", 141, 11], ["services", 142, 11]]);
-const pos$38 = nix.positions(here + "/slurm.nix", [["control", 84, 7], ["submit", 96, 7], ["dbd", 105, 7], ["rest", 138, 7], ["node1", 145, 7], ["node2", 146, 7], ["node3", 147, 7]]);
-const pos$39 = nix.positions(here + "/slurm.nix", [["name", 65, 3], ["meta", 67, 3], ["nodes", 69, 3], ["testScript", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const slurmconfig = nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       slurm: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         controlMachine: "control",
         nodeName: nix.thunk(() => ["node[1-3] CPUs=1 State=UNKNOWN"]),
         partitionName: nix.thunk(() => ["debug Nodes=node[1-3] Default=YES MaxTime=INFINITE State=UP"]),
         extraConfig: "AccountingStorageHost=dbd\nAccountingStorageType=accounting_storage/slurmdbd\nAuthAltTypes=auth/jwt\n",
       })),
     })),
-    environment: nix.thunk(() => ({ [nix.POS]: pos$3, systemPackages: nix.thunk(() => [mpitest]) })),
+    environment: nix.thunk(() => ({ [nix.POS]: $pos[2], systemPackages: nix.thunk(() => [mpitest]) })),
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$5,
-      firewall: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
+      [nix.POS]: $pos[4],
+      firewall: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: false })),
     })),
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       tmpfiles: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         rules: nix.thunk(() => [
           "f /etc/munge/munge.key 0400 munge munge - mungeverryweakkeybuteasytointegratoinatest",
         ]),
@@ -94,45 +56,45 @@ ${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(pkgs, "mpi")))}/bin/mp
 echo "sbatch success"
 `)));
   return {
-    [nix.POS]: pos$39,
+    [nix.POS]: $pos[38],
     name: "slurm",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "markuskowa"))]),
     })),
     nodes: nix.thunk(() => (() => {
       const computeNode = nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           imports: nix.thunk(() => [slurmconfig]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             slurm: nix.thunk(() => ({
-              [nix.POS]: pos$11,
-              client: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+              [nix.POS]: $pos[10],
+              client: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
             })),
           })),
         };
       })(), formals$2);
       return {
-        [nix.POS]: pos$38,
+        [nix.POS]: $pos[37],
         control: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           return {
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             imports: nix.thunk(() => [slurmconfig]),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               slurm: nix.thunk(() => ({
-                [nix.POS]: pos$15,
-                server: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
+                [nix.POS]: $pos[14],
+                server: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: true })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               tmpfiles: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 rules: nix.thunk(() => [
                   "f /var/spool/slurmctld/jwt_hs256.key 0400 slurm slurm - thisisjustanexamplejwttoken0000",
                 ]),
@@ -143,11 +105,11 @@ echo "sbatch success"
         submit: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           return {
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             imports: nix.thunk(() => [slurmconfig]),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$21,
-              slurm: nix.thunk(() => ({ [nix.POS]: pos$20, enableStools: true })),
+              [nix.POS]: $pos[20],
+              slurm: nix.thunk(() => ({ [nix.POS]: $pos[19], enableStools: true })),
             })),
           };
         })(), formals$4),
@@ -156,40 +118,40 @@ echo "sbatch success"
           const pkgs_1 = nix.arg($_1, "pkgs");
           const passFile = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "dbdpassword", "password123"));
           return {
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$24,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$23, enable: false })),
+              [nix.POS]: $pos[23],
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[22], enable: false })),
             })),
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               tmpfiles: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 rules: nix.thunk(() => [
                   "f /etc/munge/munge.key 0400 munge munge - mungeverryweakkeybuteasytointegratoinatest",
                 ]),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               slurm: nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 dbdserver: nix.thunk(() => ({
-                  [nix.POS]: pos$27,
+                  [nix.POS]: $pos[26],
                   enable: true,
                   storagePassFile: nix.thunk(() => nix.str`${passFile}`),
                 })),
               })),
               mysql: nix.thunk(() => ({
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 enable: true,
                 package: nix.thunk(() => nix.sel(pkgs_1, "mariadb")),
                 initialScript: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "mysql-init.sql", "CREATE USER 'slurm'@'localhost' IDENTIFIED BY 'password123';\nGRANT ALL PRIVILEGES ON slurm_acct_db.* TO 'slurm'@'localhost';\n")),
                 ensureDatabases: nix.thunk(() => ["slurm_acct_db"]),
                 ensureUsers: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$30,
-                    ensurePermissions: nix.thunk(() => ({ [nix.POS]: pos$29, "slurm_acct_db.*": "ALL PRIVILEGES" })),
+                    [nix.POS]: $pos[29],
+                    ensurePermissions: nix.thunk(() => ({ [nix.POS]: $pos[28], "slurm_acct_db.*": "ALL PRIVILEGES" })),
                     name: "slurm",
                   })),
                 ]),
@@ -200,13 +162,13 @@ echo "sbatch success"
         rest: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$6);
           return {
-            [nix.POS]: pos$37,
+            [nix.POS]: $pos[36],
             imports: nix.thunk(() => [slurmconfig]),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$36,
+              [nix.POS]: $pos[35],
               slurm: nix.thunk(() => ({
-                [nix.POS]: pos$35,
-                rest: nix.thunk(() => ({ [nix.POS]: pos$34, enable: true })),
+                [nix.POS]: $pos[34],
+                rest: nix.thunk(() => ({ [nix.POS]: $pos[33], enable: true })),
               })),
             })),
           };

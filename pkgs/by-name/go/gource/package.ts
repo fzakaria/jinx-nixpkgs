@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["longDescription", 70, 5], ["platforms", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["configureFlags", 59, 3], ["enableParallelBuilding", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, SDL2: false, ftgl: false, autoreconfHook: false, "pkg-config": false, libpng: false, libjpeg: false, pcre2: false, SDL2_image: false, freetype: false, glew: false, libGLU: false, libGL: false, libx11: false, boost: false, glm: false, tinyxml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["longDescription", 70, 5], ["platforms", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["configureFlags", 59, 3], ["enableParallelBuilding", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const glm = nix.arg($, "glm");
   const tinyxml = nix.arg($, "tinyxml");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gource",
       version: "0.56",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/acaudwell/Gource/releases/download/gource-${nix.sel(finalAttrs, "version")}/gource-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-My2Jual5sXQX+84O3XKxmRTxQJ/RJqE9EXh9DhXcDXk=",
         })))),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gource.io/",
         description: "Software version control visualization tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

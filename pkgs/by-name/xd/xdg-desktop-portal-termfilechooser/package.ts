@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["updateScript", 40, 12]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5], ["mainProgram", 51, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["mesonFlags", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, "xdg-desktop-portal": false, ninja: false, meson: false, "pkg-config": false, inih: false, systemdLibs: false, scdoc: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 40, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5], ["mainProgram", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["mesonFlags", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xdg-desktop-portal-termfilechooser",
       version: "1.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hunkyburrito",
           repo: "xdg-desktop-portal-termfilechooser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [xdg_desktop_portal, inih, systemdLibs]),
       mesonFlags: nix.thunk(() => ["-Dsd-bus-provider=libsystemd"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "xdg-desktop-portal backend for choosing files with your favorite file chooser",
         homepage: "https://github.com/hunkyburrito/xdg-desktop-portal-termfilechooser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

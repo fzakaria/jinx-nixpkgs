@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["wrapperDir", 60, 17]], [["updateScript", 74, 12]], [["changelog", 77, 5], ["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5], ["platforms", 87, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 44, 3], ["__structuredAttrs", 54, 3], ["strictDeps", 55, 3], ["preFixup", 57, 3], ["passthru", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, "pkg-config": false, addDriverRunpath: false, "desktop-file-utils": false, makeWrapper: false, meson: false, ninja: false, gtk3: false, "libayatana-appindicator": false, libpulseaudio: false, libdrm: false, "gpu-screen-recorder": false, libglvnd: false, libx11: false, libxrandr: false, wayland: false, wrapGAppsHook3: false, wrapperDir: true, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["wrapperDir", 60, 17]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 74, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 77, 5], ["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5], ["platforms", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 44, 3], ["__structuredAttrs", 54, 3], ["strictDeps", 55, 3], ["preFixup", 57, 3], ["passthru", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const wrapperDir = nix.argOr($, "wrapperDir", () => "/run/wrappers/bin");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gpu-screen-recorder-gtk",
       version: "5.8.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://repo.dec05eba.com/gpu-screen-recorder-gtk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-LOaHYk7c8USZz5p17YdzcgGJ+FZkEt1qn15VggnQyJQ=",
@@ -55,18 +51,18 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       preFixup: nix.thunk(() => (() => {
-        const gpu_screen_recorder_wrapped = nix.thunk(() => nix.app(nix.sel(gpu_screen_recorder, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, wrapperDir: wrapperDir }))));
+        const gpu_screen_recorder_wrapped = nix.thunk(() => nix.app(nix.sel(gpu_screen_recorder, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], wrapperDir: wrapperDir }))));
         return nix.str`gappsWrapperArgs+=(--prefix PATH : ${wrapperDir})
 gappsWrapperArgs+=(--suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gpu_screen_recorder_wrapped]))})
 gappsWrapperArgs+=(--prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libglvnd, nix.thunk(() => nix.sel(addDriverRunpath, "driverLink"))]))})
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: "https://git.dec05eba.com/gpu-screen-recorder-gtk/tree/com.dec05eba.gpu_screen_recorder.appdata.xml#n82",
         description: "GTK frontend for gpu-screen-recorder",
         homepage: "https://git.dec05eba.com/gpu-screen-recorder-gtk/about/",

@@ -2,100 +2,60 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/userborn-migration.nix", [[["maintainers", 11, 8]], [["enable", 14, 23]], [["userborn", 14, 14]], [["enable", 15, 22]], [["sysusers", 15, 13]], [["isNormalUser", 20, 9], ["autoSubUidGidRange", 21, 9]], [["isNormalUser", 24, 9]], [["isNormalUser", 27, 9], ["enable", 29, 9]], [["survivor", 19, 7], ["ghost", 23, 7], ["intruder", 26, 7]], [["mutableUsers", 16, 11], ["users", 18, 11]], [["enable", 36, 27]], [["ghost", 36, 21]], [["users", 36, 15]], [["users", 36, 9]], [["configuration", 35, 26]], [["enable", 41, 27]], [["userborn", 41, 18]], [["enable", 42, 27]], [["enable", 43, 30]], [["ghost", 42, 21], ["intruder", 43, 21]], [["users", 42, 15]], [["services", 41, 9], ["users", 42, 9]], [["configuration", 40, 16]], [["enable", 48, 27]], [["userborn", 48, 18]], [["enable", 49, 30]], [["intruder", 49, 21]], [["users", 49, 15]], [["services", 48, 9], ["users", 49, 9]], [["configuration", 47, 24]], [["enable", 54, 27], ["importLegacyState", 55, 27]], [["userborn", 54, 18]], [["enable", 56, 30]], [["intruder", 56, 21]], [["users", 56, 15]], [["services", 54, 9], ["users", 56, 9]], [["configuration", 53, 31]], [["base-ghost-removed", 35, 7], ["userborn", 40, 7], ["userborn-revived", 47, 7], ["userborn-without-import", 53, 7]], [["services", 14, 5], ["systemd", 15, 5], ["users", 16, 5], ["specialisation", 33, 5]], [["machine", 13, 9]], [["name", 9, 3], ["meta", 11, 3], ["nodes", 13, 3], ["testScript", 61, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/userborn-migration.nix", [["maintainers", 11, 8]]);
-const pos$2 = nix.positions(here + "/userborn-migration.nix", [["enable", 14, 23]]);
-const pos$3 = nix.positions(here + "/userborn-migration.nix", [["userborn", 14, 14]]);
-const pos$4 = nix.positions(here + "/userborn-migration.nix", [["enable", 15, 22]]);
-const pos$5 = nix.positions(here + "/userborn-migration.nix", [["sysusers", 15, 13]]);
-const pos$6 = nix.positions(here + "/userborn-migration.nix", [["isNormalUser", 20, 9], ["autoSubUidGidRange", 21, 9]]);
-const pos$7 = nix.positions(here + "/userborn-migration.nix", [["isNormalUser", 24, 9]]);
-const pos$8 = nix.positions(here + "/userborn-migration.nix", [["isNormalUser", 27, 9], ["enable", 29, 9]]);
-const pos$9 = nix.positions(here + "/userborn-migration.nix", [["survivor", 19, 7], ["ghost", 23, 7], ["intruder", 26, 7]]);
-const pos$10 = nix.positions(here + "/userborn-migration.nix", [["mutableUsers", 16, 11], ["users", 18, 11]]);
-const pos$11 = nix.positions(here + "/userborn-migration.nix", [["enable", 36, 27]]);
-const pos$12 = nix.positions(here + "/userborn-migration.nix", [["ghost", 36, 21]]);
-const pos$13 = nix.positions(here + "/userborn-migration.nix", [["users", 36, 15]]);
-const pos$14 = nix.positions(here + "/userborn-migration.nix", [["users", 36, 9]]);
-const pos$15 = nix.positions(here + "/userborn-migration.nix", [["configuration", 35, 26]]);
-const pos$16 = nix.positions(here + "/userborn-migration.nix", [["enable", 41, 27]]);
-const pos$17 = nix.positions(here + "/userborn-migration.nix", [["userborn", 41, 18]]);
-const pos$18 = nix.positions(here + "/userborn-migration.nix", [["enable", 42, 27]]);
-const pos$19 = nix.positions(here + "/userborn-migration.nix", [["enable", 43, 30]]);
-const pos$20 = nix.positions(here + "/userborn-migration.nix", [["ghost", 42, 21], ["intruder", 43, 21]]);
-const pos$21 = nix.positions(here + "/userborn-migration.nix", [["users", 42, 15]]);
-const pos$22 = nix.positions(here + "/userborn-migration.nix", [["services", 41, 9], ["users", 42, 9]]);
-const pos$23 = nix.positions(here + "/userborn-migration.nix", [["configuration", 40, 16]]);
-const pos$24 = nix.positions(here + "/userborn-migration.nix", [["enable", 48, 27]]);
-const pos$25 = nix.positions(here + "/userborn-migration.nix", [["userborn", 48, 18]]);
-const pos$26 = nix.positions(here + "/userborn-migration.nix", [["enable", 49, 30]]);
-const pos$27 = nix.positions(here + "/userborn-migration.nix", [["intruder", 49, 21]]);
-const pos$28 = nix.positions(here + "/userborn-migration.nix", [["users", 49, 15]]);
-const pos$29 = nix.positions(here + "/userborn-migration.nix", [["services", 48, 9], ["users", 49, 9]]);
-const pos$30 = nix.positions(here + "/userborn-migration.nix", [["configuration", 47, 24]]);
-const pos$31 = nix.positions(here + "/userborn-migration.nix", [["enable", 54, 27], ["importLegacyState", 55, 27]]);
-const pos$32 = nix.positions(here + "/userborn-migration.nix", [["userborn", 54, 18]]);
-const pos$33 = nix.positions(here + "/userborn-migration.nix", [["enable", 56, 30]]);
-const pos$34 = nix.positions(here + "/userborn-migration.nix", [["intruder", 56, 21]]);
-const pos$35 = nix.positions(here + "/userborn-migration.nix", [["users", 56, 15]]);
-const pos$36 = nix.positions(here + "/userborn-migration.nix", [["services", 54, 9], ["users", 56, 9]]);
-const pos$37 = nix.positions(here + "/userborn-migration.nix", [["configuration", 53, 31]]);
-const pos$38 = nix.positions(here + "/userborn-migration.nix", [["base-ghost-removed", 35, 7], ["userborn", 40, 7], ["userborn-revived", 47, 7], ["userborn-without-import", 53, 7]]);
-const pos$39 = nix.positions(here + "/userborn-migration.nix", [["services", 14, 5], ["systemd", 15, 5], ["users", 16, 5], ["specialisation", 33, 5]]);
-const pos$40 = nix.positions(here + "/userborn-migration.nix", [["machine", 13, 9]]);
-const pos$41 = nix.positions(here + "/userborn-migration.nix", [["name", 9, 3], ["meta", 11, 3], ["nodes", 13, 3], ["testScript", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$41,
+    [nix.POS]: $pos[40],
     name: "userborn-migration",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "rvdp"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$40,
+      [nix.POS]: $pos[39],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          userborn: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+          [nix.POS]: $pos[2],
+          userborn: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          sysusers: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
+          [nix.POS]: $pos[4],
+          sysusers: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: false })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           mutableUsers: true,
           users: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            survivor: nix.thunk(() => ({ [nix.POS]: pos$6, isNormalUser: true, autoSubUidGidRange: true })),
-            ghost: nix.thunk(() => ({ [nix.POS]: pos$7, isNormalUser: true })),
+            [nix.POS]: $pos[8],
+            survivor: nix.thunk(() => ({ [nix.POS]: $pos[5], isNormalUser: true, autoSubUidGidRange: true })),
+            ghost: nix.thunk(() => ({ [nix.POS]: $pos[6], isNormalUser: true })),
             intruder: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               isNormalUser: true,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
             })),
           })),
         })),
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           "base-ghost-removed": nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   ghost: nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                   })),
                 })),
@@ -103,66 +63,66 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           userborn: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 userborn: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), true)),
                 })),
               })),
               users: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   ghost: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
+                    [nix.POS]: $pos[17],
                     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                   })),
-                  intruder: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true })),
+                  intruder: nix.thunk(() => ({ [nix.POS]: $pos[18], enable: true })),
                 })),
               })),
             })),
           })),
           "userborn-revived": nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 userborn: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), true)),
                 })),
               })),
               users: nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$27,
-                  intruder: nix.thunk(() => ({ [nix.POS]: pos$26, enable: true })),
+                  [nix.POS]: $pos[26],
+                  intruder: nix.thunk(() => ({ [nix.POS]: $pos[25], enable: true })),
                 })),
               })),
             })),
           })),
           "userborn-without-import": nix.thunk(() => ({
-            [nix.POS]: pos$37,
+            [nix.POS]: $pos[36],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$36,
+              [nix.POS]: $pos[35],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$32,
+                [nix.POS]: $pos[31],
                 userborn: nix.thunk(() => ({
-                  [nix.POS]: pos$31,
+                  [nix.POS]: $pos[30],
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), true)),
                   importLegacyState: false,
                 })),
               })),
               users: nix.thunk(() => ({
-                [nix.POS]: pos$35,
+                [nix.POS]: $pos[34],
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$34,
-                  intruder: nix.thunk(() => ({ [nix.POS]: pos$33, enable: true })),
+                  [nix.POS]: $pos[33],
+                  intruder: nix.thunk(() => ({ [nix.POS]: $pos[32], enable: true })),
                 })),
               })),
             })),

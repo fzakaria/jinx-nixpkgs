@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["url", 110, 5], ["odd-unstable", 111, 5], ["rev-prefix", 112, 5]], [["updateScript", 109, 12]], [["description", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["platforms", 119, 5], ["teams", 120, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 62, 3], ["postPatch", 85, 3], ["configureFlags", 90, 3], ["postInstall", 92, 3], ["preFixup", 98, 3], ["enableParallelBuilding", 107, 3], ["passthru", 109, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "autoconf-archive": false, autoreconfHook: false, "pkg-config": false, gettext: false, itstool: false, libxml2: false, accountsservice: false, caja: false, "dbus-glib": false, libxklavier: false, "libcanberra-gtk3": false, libgtop: false, libmatekbd: false, librsvg: false, "libayatana-appindicator": false, glib: false, "desktop-file-utils": false, dconf: false, gtk3: false, polkit: false, marco: false, "mate-common": false, "mate-desktop": false, "mate-menus": false, "mate-panel": false, "mate-settings-daemon": false, udisks: false, systemdLibs: false, "hicolor-icon-theme": false, wrapGAppsHook3: false, "yelp-tools": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 110, 5], ["odd-unstable", 111, 5], ["rev-prefix", 112, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 109, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["platforms", 119, 5], ["teams", 120, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 62, 3], ["postPatch", 85, 3], ["configureFlags", 90, 3], ["postInstall", 92, 3], ["preFixup", 98, 3], ["enableParallelBuilding", 107, 3], ["passthru", 109, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const yelp_tools = nix.arg($, "yelp-tools");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mate-control-center",
       version: "1.28.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mate-desktop",
           repo: "mate-control-center",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -104,16 +100,16 @@ export default nix.lambda((args) => (() => {
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.mate-desktop.org/mate-control-center",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Utilities to configure the MATE desktop",
         homepage: "https://github.com/mate-desktop/mate-control-center",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

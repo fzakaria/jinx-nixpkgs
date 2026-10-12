@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 26], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]], [["owner", 29, 3], ["domain", 30, 3], ["version", 31, 3], ["src", 33, 3], ["dependencies", 40, 3], ["ignoreVersionRequirement", 55, 3], ["nativeCheckInputs", 60, 3], ["disabledTestPaths", 69, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false, bleak: false, "bleak-retry-connector": false, "python-resize-image": false, numpy: false, "odl-renderer": false, qrcode: false, "py-opendisplay": false, "requests-toolbelt": false, "silabs-ble-ota": false, "websocket-client": false, websockets: false, "home-assistant": false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-freezegun": false, "pytest-homeassistant-custom-component": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 26], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 29, 3], ["domain", 30, 3], ["version", 31, 3], ["src", 33, 3], ["dependencies", 40, 3], ["ignoreVersionRequirement", 55, 3], ["nativeCheckInputs", 60, 3], ["disabledTestPaths", 69, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const pytest_homeassistant_custom_component = nix.arg($, "pytest-homeassistant-custom-component");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "OpenDisplay",
       domain: "opendisplay",
       version: "3.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: nix.thunk(() => nix.attr(finalAttrs, "owner")),
           repo: "Home_Assistant_Integration",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,7 +74,7 @@ export default nix.lambda((args) => (() => {
         "tests/drawcustom/text_test.py::test_text_truncate",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Home Assistant Integration for OpenDisplay",
         homepage: "https://github.com/OpenDisplay/Home_Assistant_Integration",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenDisplay/Home_Assistant_Integration/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

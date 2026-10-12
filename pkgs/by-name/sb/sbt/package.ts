@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-darwin", 19, 5], ["aarch64-linux", 20, 5], ["x86_64-linux", 21, 5]], [["url", 31, 5], ["hash", 32, 5]], [["command", 87, 5], ["supportedFeatures", 88, 5]], [["version", 91, 18]], [["updateScript", 86, 12], ["tests", 91, 12]], [["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["sourceProvenance", 102, 5], ["description", 106, 5], ["maintainers", 107, 5], ["platforms", 112, 5], ["mainProgram", 113, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["installPhase", 55, 3], ["doInstallCheck", 74, 3], ["installCheckPhase", 75, 3], ["passthru", 86, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, autoPatchelfHook: false, makeWrapper: false, zlib: false, ncurses: false, callPackage: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-darwin", 19, 5], ["aarch64-linux", 20, 5], ["x86_64-linux", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["command", 87, 5], ["supportedFeatures", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 91, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 86, 12], ["tests", 91, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["sourceProvenance", 102, 5], ["description", 106, 5], ["maintainers", 107, 5], ["platforms", 112, 5], ["mainProgram", 113, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["installPhase", 55, 3], ["doInstallCheck", 74, 3], ["installCheckPhase", 75, 3], ["passthru", 86, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const runCommand = nix.arg($, "runCommand");
   const nativeClients = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-darwin": "sbtn-universal-apple-darwin",
     "aarch64-linux": "sbtn-aarch64-pc-linux",
     "x86_64-linux": "sbtn-x86_64-pc-linux",
   }));
   const nativeClient = nix.thunk(() => nix.selOr(nativeClients, () => null, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "sbt",
       version: "2.0.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/sbt/sbt/releases/download/v${nix.sel(finalAttrs, "version")}/sbt-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-eD/gwnhWTmf70U7KqazmuUM8+OzgrY9QrUNsskYiEFw=",
         })))),
@@ -70,14 +64,14 @@ $out/bin/sbt --version --allow-empty | grep -q "${nix.sel(finalAttrs, "version")
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-version`), nix.thunk(() => ({})), nix.thunk(() => nix.str`export HOME="$TMPDIR"
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} --version --allow-empty > version.txt
 grep -q 'sbt runner version: ${nix.sel(finalAttrs, "version")}' version.txt
@@ -86,7 +80,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://www.scala-sbt.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/sbt/sbt/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

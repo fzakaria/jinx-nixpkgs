@@ -2,13 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/buildLua.nix", [[["scriptName", 80, 19]], [["extraWrapperArgs", 83, 11]], [["platforms", 92, 11]], [["position", 102, 45]], [["dontBuild", 44, 9], ["preferLocalBuild", 45, 9], ["patchFlags", 48, 9], ["outputHashMode", 53, 9], ["installPhase", 54, 9], ["passthru", 79, 9], ["meta", 91, 9]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, extraScriptsToCopy: true, "runtime-dependencies": true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/buildLua.nix", [["scriptName", 80, 19]]);
-const pos$2 = nix.positions(here + "/buildLua.nix", [["extraWrapperArgs", 83, 11]]);
-const pos$3 = nix.positions(here + "/buildLua.nix", [["platforms", 92, 11]]);
-const pos$4 = nix.positions(here + "/buildLua.nix", [["position", 102, 45]]);
-const pos$5 = nix.positions(here + "/buildLua.nix", [["dontBuild", 44, 9], ["preferLocalBuild", 45, 9], ["patchFlags", 48, 9], ["outputHashMode", 53, 9], ["installPhase", 54, 9], ["passthru", 79, 9], ["meta", 91, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
           const scriptName = nix.thunk(() => nix.selOr(nix.selOr(args_3, () => ({}), "passthru"), () => (nix.asBool(nix.has(args_3, "scriptPath")) ? nix.app(fileName, nix.thunk(() => nix.sel(args_3, "scriptPath"))) : nix.str`${strippedName}.lua`), "scriptName"));
           const scriptPath = nix.thunk(() => nix.selOr(args_3, () => nix.str`./${scriptName}`, "scriptPath"));
           return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             dontBuild: true,
             preferLocalBuild: true,
             patchFlags: nix.thunk(() => ["--no-backup-if-mismatch", "-p1"]),
@@ -65,8 +61,8 @@ fi
 
 runHook postInstall
 `),
-            passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$1, scriptName: scriptName }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(runtime_dependencies, [])), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+            passthru: nix.thunk(() => nix.update({ [nix.POS]: $pos[0], scriptName: scriptName }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(runtime_dependencies, [])), nix.thunk(() => ({
+                [nix.POS]: $pos[1],
                 extraWrapperArgs: nix.thunk(() => nix.concat([
                   "--prefix",
                   "PATH",
@@ -75,12 +71,12 @@ runHook postInstall
                 ], nix.selOr(args_3, () => [], "passthru", "extraWrapperArgs"))),
               }))))),
             meta: nix.thunk(() => nix.update({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
             }, (() => {
               const pos = nix.thunk(() => (nix.asBool(nix.has(nix.selOr(args_3, () => ({}), "meta"), "description")) ? nix.builtins.unsafeGetAttrPos("description", nix.thunk(() => nix.sel(args_3, "meta"))) : nix.builtins.unsafeGetAttrPos("pname", args_3)));
               return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(pos, null)), nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   position: nix.thunk(() => nix.str`${nix.sel(pos, "file")}:${nix.builtins.toString(nix.thunk(() => nix.sel(pos, "line")))}`),
                 })));
             })())),

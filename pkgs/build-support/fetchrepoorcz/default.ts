@@ -2,11 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 18, 10]], [["name", 16, 13], ["url", 17, 5], ["meta", 18, 5]], [["rev", 26, 11]]]);
 const formals$1 = { args: { lib: false, repoRevToNameMaybe: false, fetchzip: false }, ellipsis: false };
 const formals$2 = { args: { repo: false, rev: false, name: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 18, 10]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 16, 13], ["url", 17, 5], ["meta", 18, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev", 26, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +18,14 @@ export default nix.lambda((args) => (() => {
     const rev = nix.arg($_1, "rev");
     const name = nix.argOr($_1, "name", () => nix.app(repoRevToNameMaybe, repo, rev, "repoorcz"));
     return nix.update(nix.app(fetchzip, nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: name,
         url: nix.thunk(() => nix.str`https://repo.or.cz/${repo}.git/snapshot/${rev}.tar.gz`),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           homepage: nix.thunk(() => nix.str`https://repo.or.cz/${repo}.git/`),
         })),
-      }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["repo", "rev"]))))), { [nix.POS]: pos$3, rev: rev });
+      }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["repo", "rev"]))))), { [nix.POS]: $pos[2], rev: rev });
   })(), formals$2);
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 43, 3], ["postInstall", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, boost: false, "clang-tools": false, cmake: false, difftastic: false, makeWrapper: false, meson: false, ninja: false, nixVersions: false, nlohmann_json: false, "pkg-config": false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 43, 3], ["postInstall", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixComponents = nix.thunk(() => nix.sel(nixVersions, "nixComponents_2_35"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nix-unit",
       version: "2.35.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nix-community",
           repo: "nix-unit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/nix-unit" --prefix PATH : ${difftastic}/bin
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Nix unit test runner",
         homepage: "https://github.com/nix-community/nix-unit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

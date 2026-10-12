@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/beancount_share.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["pyproject", 20, 3], ["propagatedBuildInputs", 22, 3], ["buildInputs", 27, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, beancount: false, "beancount-plugin-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/beancount_share.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/beancount_share.nix", [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/beancount_share.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["pyproject", 20, 3], ["propagatedBuildInputs", 22, 3], ["buildInputs", 27, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "beancount_share";
       const version = "0.1.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "akuukis",
           repo: "beancount_share",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [beancount, beancount_plugin_utils]);
       const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "setuptools"))]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/akuukis/beancount_share",
         description: "Beancount plugin to share expenses with external partners within one ledger",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

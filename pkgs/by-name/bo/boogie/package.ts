@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["updateScript", 53, 12]], [["description", 56, 5], ["changelog", 57, 5], ["homepage", 58, 5], ["longDescription", 59, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dotnet-sdk", 21, 3], ["projectFile", 22, 3], ["nugetDeps", 23, 3], ["enableParallelBuilding", 26, 3], ["executables", 28, 3], ["makeWrapperArgs", 30, 3], ["postInstall", 34, 3], ["postFixup", 44, 3], ["doInstallCheck", 48, 3], ["installCheckPhase", 49, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, z3: false, dotnetCorePackages: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["changelog", 57, 5], ["homepage", 58, 5], ["longDescription", 59, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dotnet-sdk", 21, 3], ["projectFile", 22, 3], ["nugetDeps", 23, 3], ["enableParallelBuilding", 26, 3], ["executables", 28, 3], ["makeWrapperArgs", 30, 3], ["postInstall", 34, 3], ["postFixup", 44, 3], ["doInstallCheck", 48, 3], ["installCheckPhase", 49, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "Boogie";
       const version = "3.5.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "boogie-org",
           repo: "boogie",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       const installCheckPhase = nix.thunk(() => nix.str`$out/bin/boogie ${nix.path(here, "./install-check-file.bpl")}
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Intermediate verification language",
         changelog: nix.thunk(() => nix.str`https://github.com/boogie-org/boogie/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/boogie-org/boogie",
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

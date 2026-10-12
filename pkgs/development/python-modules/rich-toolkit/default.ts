@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["changelog", 54, 5], ["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, click: false, rich: false, "typing-extensions": false, "inline-snapshot": false, pydantic: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 54, 5], ["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pydantic = nix.arg($, "pydantic");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rich-toolkit",
       version: "0.20.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "patrick91",
           repo: "rich-toolkit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +37,7 @@ sed -i 's/version = ".*"/version = "${nix.sel(finalAttrs, "version")}"/' pyproje
       nativeCheckInputs: nix.thunk(() => [inline_snapshot, pydantic, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["rich_toolkit"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/patrick91/rich-toolkit/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Rich toolkit for building command-line applications",
         homepage: "https://github.com/patrick91/rich-toolkit/",

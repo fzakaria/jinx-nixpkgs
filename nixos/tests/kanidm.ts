@@ -2,47 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kanidm.nix", [[["password", 7, 5]], [["maintainers", 19, 8]], [["kanidmPackage", 25, 16]], [["args", 25, 11]], [["state", 40, 19], ["id", 41, 19], ["class", 42, 19], ["name", 46, 19], ["displayname", 47, 19]], [["id", 37, 15], ["assertions", 38, 15]], [["00-base", 36, 13]], [["migrations", 35, 27]], [["origin", 54, 13], ["domain", 55, 13], ["bindaddress", 56, 13], ["ldapbindaddress", 57, 13], ["tls_chain", 58, 13], ["tls_key", 59, 13]], [["enable", 33, 11], ["entryManagement", 35, 11], ["settings", 53, 11]], [["package", 31, 9], ["server", 32, 9]], [["kanidm", 30, 16]], [["certificateFiles", 64, 20]], [["pki", 64, 16]], [["::1", 66, 24]], [["allowedTCPPorts", 67, 27]], [["hosts", 66, 18], ["firewall", 67, 18]], [["shell", 69, 26]], [["kanidm", 69, 19]], [["users", 69, 13]], [["systemPackages", 71, 19]], [["services", 30, 7], ["security", 64, 7], ["networking", 66, 7], ["users", 69, 7], ["environment", 71, 7]], [["uri", 86, 13], ["verify_ca", 87, 13], ["verify_hostnames", 88, 13]], [["enable", 84, 11], ["settings", 85, 11]], [["pam_allowed_login_groups", 93, 27]], [["kanidm", 93, 20]], [["enable", 92, 11], ["settings", 93, 11]], [["package", 82, 9], ["client", 83, 9], ["unix", 91, 9]], [["kanidm", 81, 16]], [["hosts", 97, 18]], [["enable", 99, 21]], [["fish", 99, 16]], [["certificateFiles", 101, 20]], [["pki", 101, 16]], [["services", 81, 7], ["networking", 97, 7], ["programs", 99, 7], ["security", 101, 7]], [["server", 27, 9], ["client", 78, 9]], [["name", 18, 3], ["meta", 19, 3], ["_module", 25, 3], ["nodes", 27, 3], ["testScript", 104, 3]]]);
 const formals$1 = { args: { kanidmPackage: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/kanidm.nix", [["password", 7, 5]]);
-const pos$2 = nix.positions(here + "/kanidm.nix", [["maintainers", 19, 8]]);
-const pos$3 = nix.positions(here + "/kanidm.nix", [["kanidmPackage", 25, 16]]);
-const pos$4 = nix.positions(here + "/kanidm.nix", [["args", 25, 11]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/kanidm.nix", [["state", 40, 19], ["id", 41, 19], ["class", 42, 19], ["name", 46, 19], ["displayname", 47, 19]]);
-const pos$6 = nix.positions(here + "/kanidm.nix", [["id", 37, 15], ["assertions", 38, 15]]);
-const pos$7 = nix.positions(here + "/kanidm.nix", [["00-base", 36, 13]]);
-const pos$8 = nix.positions(here + "/kanidm.nix", [["migrations", 35, 27]]);
-const pos$9 = nix.positions(here + "/kanidm.nix", [["origin", 54, 13], ["domain", 55, 13], ["bindaddress", 56, 13], ["ldapbindaddress", 57, 13], ["tls_chain", 58, 13], ["tls_key", 59, 13]]);
-const pos$10 = nix.positions(here + "/kanidm.nix", [["enable", 33, 11], ["entryManagement", 35, 11], ["settings", 53, 11]]);
-const pos$11 = nix.positions(here + "/kanidm.nix", [["package", 31, 9], ["server", 32, 9]]);
-const pos$12 = nix.positions(here + "/kanidm.nix", [["kanidm", 30, 16]]);
-const pos$13 = nix.positions(here + "/kanidm.nix", [["certificateFiles", 64, 20]]);
-const pos$14 = nix.positions(here + "/kanidm.nix", [["pki", 64, 16]]);
-const pos$15 = nix.positions(here + "/kanidm.nix", [["::1", 66, 24]]);
-const pos$16 = nix.positions(here + "/kanidm.nix", [["allowedTCPPorts", 67, 27]]);
-const pos$17 = nix.positions(here + "/kanidm.nix", [["hosts", 66, 18], ["firewall", 67, 18]]);
-const pos$18 = nix.positions(here + "/kanidm.nix", [["shell", 69, 26]]);
-const pos$19 = nix.positions(here + "/kanidm.nix", [["kanidm", 69, 19]]);
-const pos$20 = nix.positions(here + "/kanidm.nix", [["users", 69, 13]]);
-const pos$21 = nix.positions(here + "/kanidm.nix", [["systemPackages", 71, 19]]);
-const pos$22 = nix.positions(here + "/kanidm.nix", [["services", 30, 7], ["security", 64, 7], ["networking", 66, 7], ["users", 69, 7], ["environment", 71, 7]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$23 = nix.positions(here + "/kanidm.nix", [["uri", 86, 13], ["verify_ca", 87, 13], ["verify_hostnames", 88, 13]]);
-const pos$24 = nix.positions(here + "/kanidm.nix", [["enable", 84, 11], ["settings", 85, 11]]);
-const pos$25 = nix.positions(here + "/kanidm.nix", [["pam_allowed_login_groups", 93, 27]]);
-const pos$26 = nix.positions(here + "/kanidm.nix", [["kanidm", 93, 20]]);
-const pos$27 = nix.positions(here + "/kanidm.nix", [["enable", 92, 11], ["settings", 93, 11]]);
-const pos$28 = nix.positions(here + "/kanidm.nix", [["package", 82, 9], ["client", 83, 9], ["unix", 91, 9]]);
-const pos$29 = nix.positions(here + "/kanidm.nix", [["kanidm", 81, 16]]);
-const pos$30 = nix.positions(here + "/kanidm.nix", [["hosts", 97, 18]]);
-const pos$31 = nix.positions(here + "/kanidm.nix", [["enable", 99, 21]]);
-const pos$32 = nix.positions(here + "/kanidm.nix", [["fish", 99, 16]]);
-const pos$33 = nix.positions(here + "/kanidm.nix", [["certificateFiles", 101, 20]]);
-const pos$34 = nix.positions(here + "/kanidm.nix", [["pki", 101, 16]]);
-const pos$35 = nix.positions(here + "/kanidm.nix", [["services", 81, 7], ["networking", 97, 7], ["programs", 99, 7], ["security", 101, 7]]);
-const pos$36 = nix.positions(here + "/kanidm.nix", [["server", 27, 9], ["client", 78, 9]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$37 = nix.positions(here + "/kanidm.nix", [["name", 18, 3], ["meta", 19, 3], ["_module", 25, 3], ["nodes", 27, 3], ["testScript", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")));
   const serverDomain = nix.thunk(() => nix.sel(certs, "domain"));
-  const testCredentials = nix.thunk(() => ({ [nix.POS]: pos$1, password: "Password1_cZPEwpCWvrReripJmAZdmVIZd8HHoHcl" }));
+  const testCredentials = nix.thunk(() => ({ [nix.POS]: $pos[0], password: "Password1_cZPEwpCWvrReripJmAZdmVIZd8HHoHcl" }));
   const certsPath = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "snakeoil-certs", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "cert")} $out/snakeoil.crt
 cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")} $out/snakeoil.key
 `)));
   return {
-    [nix.POS]: pos$37,
+    [nix.POS]: $pos[36],
     name: nix.thunk(() => nix.str`kanidm-${nix.sel(kanidmPackage, "version")}`),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -70,37 +34,37 @@ cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")} $out/snakeoil.key
       })()),
     })),
     _module: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       args: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         kanidmPackage: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkDefault"), nix.thunk(() => nix.sel(pkgs, "kanidm_1_11")))),
       })),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$36,
+      [nix.POS]: $pos[35],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             kanidm: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               package: kanidmPackage,
               server: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 enable: true,
                 entryManagement: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   migrations: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     "00-base": nix.thunk(() => ({
-                      [nix.POS]: pos$6,
+                      [nix.POS]: $pos[5],
                       id: "a2b58e97-0aaf-4b04-a4e4-7984616fe1df",
                       assertions: nix.thunk(() => [
                         nix.thunk(() => ({
-                          [nix.POS]: pos$5,
+                          [nix.POS]: $pos[4],
                           state: "present",
                           id: "0ee875bd-408d-4ff9-85ca-c162f262493d",
                           class: nix.thunk(() => ["person", "account"]),
@@ -112,7 +76,7 @@ cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")} $out/snakeoil.key
                   })),
                 })),
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   origin: nix.thunk(() => nix.str`https://${serverDomain}`),
                   domain: serverDomain,
                   bindaddress: "[::]:443",
@@ -124,29 +88,29 @@ cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")} $out/snakeoil.key
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$17,
-            hosts: nix.thunk(() => ({ [nix.POS]: pos$15, "::1": nix.thunk(() => [serverDomain]) })),
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$16, allowedTCPPorts: nix.thunk(() => [443n]) })),
+            [nix.POS]: $pos[16],
+            hosts: nix.thunk(() => ({ [nix.POS]: $pos[14], "::1": nix.thunk(() => [serverDomain]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[15], allowedTCPPorts: nix.thunk(() => [443n]) })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               kanidm: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 shell: nix.thunk(() => nix.sel(pkgs_1, "bashInteractive")),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             systemPackages: nix.thunk(() => [
               kanidmPackage,
               nix.thunk(() => nix.sel(pkgs_1, "openldap")),
@@ -159,46 +123,46 @@ cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")} $out/snakeoil.key
         const $_1 = nix.formals(args_1, formals$3);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             kanidm: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               package: kanidmPackage,
               client: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 enable: true,
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   uri: nix.thunk(() => nix.str`https://${serverDomain}`),
                   verify_ca: true,
                   verify_hostnames: true,
                 })),
               })),
               unix: nix.thunk(() => ({
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 enable: true,
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$26,
-                  kanidm: nix.thunk(() => ({ [nix.POS]: pos$25, pam_allowed_login_groups: nix.thunk(() => ["shell"]) })),
+                  [nix.POS]: $pos[25],
+                  kanidm: nix.thunk(() => ({ [nix.POS]: $pos[24], pam_allowed_login_groups: nix.thunk(() => ["shell"]) })),
                 })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             hosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")}`, nix.thunk(() => [serverDomain])],
             ])),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$32,
-            fish: nix.thunk(() => ({ [nix.POS]: pos$31, enable: true })),
+            [nix.POS]: $pos[31],
+            fish: nix.thunk(() => ({ [nix.POS]: $pos[30], enable: true })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$33,
+              [nix.POS]: $pos[32],
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),

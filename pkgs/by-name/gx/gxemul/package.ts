@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["homepage", 33, 5], ["description", 34, 5], ["longDescription", 35, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["mainProgram", 47, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["patches", 21, 3], ["dontAddPrefix", 26, 3], ["preConfigure", 28, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["longDescription", 35, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["mainProgram", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["patches", 21, 3], ["dontAddPrefix", 26, 3], ["preConfigure", 28, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gxemul",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gavare.se/gxemul/src/gxemul-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-ecRDfG+MqQT0bTOsNgYqZf3PSpKiSEeOQIqxEpXPjoM=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`export PREFIX=${nix.builtins.placeholder("out")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gavare.se/gxemul/",
         description: "Gavare's experimental emulator",
         longDescription: "GXemul is a framework for full-system computer architecture\nemulation. Several real machines have been implemented within the\nframework, consisting of processors (ARM, MIPS, Motorola 88K, PowerPC, and\nSuperH) and surrounding hardware components such as framebuffers,\ninterrupt controllers, busses, disk controllers, and serial\ncontrollers. The emulation is working well enough to allow several\nunmodified \"guest\" operating systems to run.\n",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["url", 67, 5], ["rev-prefix", 68, 5], ["ignoredVersions", 69, 5]], [["updateScript", 66, 12]], [["description", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["license", 77, 5], ["downloadPage", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["postPatch", 46, 3], ["enableParallelBuilding", 51, 3], ["postFixup", 53, 3], ["passthru", 66, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, makeWrapper: false, perl: false, "pkg-config": false, ncurses: false, libx11: false, file: false, which: false, groff: false, mediaSupport: true, python3: true, udisks: true, lib: true, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 67, 5], ["rev-prefix", 68, 5], ["ignoredVersions", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 66, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["license", 77, 5], ["downloadPage", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["postPatch", 46, 3], ["enableParallelBuilding", 51, 3], ["postFixup", 53, 3], ["passthru", 66, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const isFullPackage = mediaSupport;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => (nix.asBool(isFullPackage) ? "vifm-full" : "vifm")),
       version: "0.14.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/vifm/vifm/releases/download/v${nix.sel(finalAttrs, "version")}/vifm-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-QLwy7BDYKa2j0Cl9M81PMCxSC7QxKH1UT8CgWuRf2xs=",
         })))),
@@ -50,16 +46,16 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/vifm/vifm.git",
             "rev-prefix": "v",
             ignoredVersions: "beta",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: nix.thunk(() => nix.str`Vi-like file manager${nix.app(nix.sel(lib, "optionalString"), isFullPackage, "; Includes support for optional features")}`),
         mainProgram: "vifm",
         maintainers: nix.thunk(() => (() => {

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]], [["updateScript", 48, 12]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["installPhase", 34, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, sdl3: false, libGL: false, cmake: false, makeWrapper: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["installPhase", 34, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "OttoMatic",
       version: "4.0.1-unstable-2025-09-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jorio",
           repo: "OttoMatic",
           rev: "636056a92c1f276a5af5c3dc7df5c3cb952fd47a",
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [sdl3, libGL]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/bin\"\nmkdir -p \"$out/share/OttoMatic\"\nmv Data ReadMe.txt \"$out/share/OttoMatic/\"\ninstall -Dm755 {.,$out/bin}/OttoMatic\nwrapProgram $out/bin/OttoMatic --chdir \"$out/share/OttoMatic\"\ninstall -Dm644 $src/packaging/io.jor.ottomatic.desktop $out/share/applications/io.jor.ottomatic.desktop\ninstall -Dm644 $src/packaging/io.jor.ottomatic.png $out/share/icons/hicolor/512x512/apps/io.jor.ottomatic.png\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Port of Otto Matic, a 2001 Macintosh game by Pangea Software, for modern operating systems",
         homepage: "https://github.com/jorio/OttoMatic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),

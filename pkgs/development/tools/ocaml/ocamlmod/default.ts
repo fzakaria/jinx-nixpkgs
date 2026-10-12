@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["homepage", 26, 5], ["description", 27, 5], ["mainProgram", 28, 5], ["license", 29, 5]], [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["doCheck", 20, 3], ["checkInputs", 21, 3], ["dontStrip", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, ocaml: false, buildDunePackage: false, fetchurl: false, ounit2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 26, 5], ["description", 27, 5], ["mainProgram", 28, 5], ["license", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["doCheck", 20, 3], ["checkInputs", 21, 3], ["dontStrip", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ocamlmod",
       version: "0.1.1",
       minimalOCamlVersion: "4.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/gildor478/ocamlmod/releases/download/v${nix.sel(finalAttrs, "version")}/ocamlmod-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-qMG+y/iS+L4qtKiJX01pTTAdQuGLoIA+so1fqY9bm8o=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ounit2]),
       dontStrip: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/gildor478/ocamlmod",
         description: "Generate OCaml modules from source files",
         mainProgram: "ocamlmod",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["opts", 40, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 33, 3], ["optional-dependencies", 39, 3], ["pythonImportsCheck", 50, 3], ["doCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, gitpython: false, tqdm: false, mujoco: false, pinocchio: false, pybullet: false, pycollada: false, yourdfpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["opts", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 33, 3], ["optional-dependencies", 39, 3], ["pythonImportsCheck", 50, 3], ["doCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "robot-descriptions",
           repo: "robot_descriptions.py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,13 +32,13 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [gitpython, tqdm, pycollada]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         opts: nix.thunk(() => [mujoco, pinocchio, pybullet, yourdfpy]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["robot_descriptions"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Access 125+ robot descriptions from the main Python robotics frameworks",
         homepage: "https://github.com/robot-descriptions/robot_descriptions.py",
         changelog: nix.thunk(() => nix.str`https://github.com/robot-descriptions/robot_descriptions.py/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

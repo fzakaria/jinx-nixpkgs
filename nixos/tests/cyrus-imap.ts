@@ -2,54 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cyrus-imap.nix", [[["maintainers", 6, 5]], [["systemPackages", 12, 19]], [["enable", 17, 9], ["config", 18, 9]], [["cmd", 32, 15]], [["recover", 31, 13]], [["cmd", 40, 15], ["at", 41, 15]], [["cmd", 44, 15], ["at", 49, 15]], [["cmd", 52, 15], ["at", 59, 15]], [["cmd", 62, 15], ["at", 69, 15]], [["cmd", 72, 15], ["period", 76, 15]], [["tlsprune", 39, 13], ["delprune", 43, 13], ["deleteprune", 51, 13], ["expungeprune", 61, 13], ["checkpoint", 71, 13]], [["cmd", 81, 15], ["listen", 82, 15], ["prefork", 83, 15]], [["cmd", 86, 15], ["listen", 87, 15], ["prefork", 88, 15]], [["cmd", 91, 15], ["listen", 92, 15], ["prefork", 93, 15]], [["cmd", 96, 15], ["listen", 97, 15], ["proto", 98, 15], ["prefork", 99, 15]], [["http", 80, 13], ["imap", 85, 13], ["lmtpunix", 90, 13], ["notify", 95, 13]], [["START", 30, 11], ["EVENTS", 38, 11], ["SERVICES", 79, 11]], [["enable", 28, 9], ["cyrusSettings", 29, 9]], [["saslauthd", 16, 16], ["cyrus-imap", 27, 16]], [["environment", 12, 7], ["services", 16, 7]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 106, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cyrus-imap.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/cyrus-imap.nix", [["systemPackages", 12, 19]]);
-const pos$3 = nix.positions(here + "/cyrus-imap.nix", [["enable", 17, 9], ["config", 18, 9]]);
-const pos$4 = nix.positions(here + "/cyrus-imap.nix", [["cmd", 32, 15]]);
-const pos$5 = nix.positions(here + "/cyrus-imap.nix", [["recover", 31, 13]]);
-const pos$6 = nix.positions(here + "/cyrus-imap.nix", [["cmd", 40, 15], ["at", 41, 15]]);
-const pos$7 = nix.positions(here + "/cyrus-imap.nix", [["cmd", 44, 15], ["at", 49, 15]]);
-const pos$8 = nix.positions(here + "/cyrus-imap.nix", [["cmd", 52, 15], ["at", 59, 15]]);
-const pos$9 = nix.positions(here + "/cyrus-imap.nix", [["cmd", 62, 15], ["at", 69, 15]]);
-const pos$10 = nix.positions(here + "/cyrus-imap.nix", [["cmd", 72, 15], ["period", 76, 15]]);
-const pos$11 = nix.positions(here + "/cyrus-imap.nix", [["tlsprune", 39, 13], ["delprune", 43, 13], ["deleteprune", 51, 13], ["expungeprune", 61, 13], ["checkpoint", 71, 13]]);
-const pos$12 = nix.positions(here + "/cyrus-imap.nix", [["cmd", 81, 15], ["listen", 82, 15], ["prefork", 83, 15]]);
-const pos$13 = nix.positions(here + "/cyrus-imap.nix", [["cmd", 86, 15], ["listen", 87, 15], ["prefork", 88, 15]]);
-const pos$14 = nix.positions(here + "/cyrus-imap.nix", [["cmd", 91, 15], ["listen", 92, 15], ["prefork", 93, 15]]);
-const pos$15 = nix.positions(here + "/cyrus-imap.nix", [["cmd", 96, 15], ["listen", 97, 15], ["proto", 98, 15], ["prefork", 99, 15]]);
-const pos$16 = nix.positions(here + "/cyrus-imap.nix", [["http", 80, 13], ["imap", 85, 13], ["lmtpunix", 90, 13], ["notify", 95, 13]]);
-const pos$17 = nix.positions(here + "/cyrus-imap.nix", [["START", 30, 11], ["EVENTS", 38, 11], ["SERVICES", 79, 11]]);
-const pos$18 = nix.positions(here + "/cyrus-imap.nix", [["enable", 28, 9], ["cyrusSettings", 29, 9]]);
-const pos$19 = nix.positions(here + "/cyrus-imap.nix", [["saslauthd", 16, 16], ["cyrus-imap", 27, 16]]);
-const pos$20 = nix.positions(here + "/cyrus-imap.nix", [["environment", 12, 7], ["services", 16, 7]]);
-const pos$21 = nix.positions(here + "/cyrus-imap.nix", [["machine", 9, 9]]);
-const pos$22 = nix.positions(here + "/cyrus-imap.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     name: "cyrus-imap",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "moraxyc"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -59,59 +38,63 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             saslauthd: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               config: "DESC=\"SASL Authentication Daemon\"\nNAME=\"saslauthd\"\nMECH_OPTIONS=\"\"\nTHREADS=5\nSTART=yes\nOPTIONS=\"-c -m /run/saslauthd\"\n",
             })),
             "cyrus-imap": nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               enable: true,
               cyrusSettings: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 START: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
-                  recover: nix.thunk(() => ({ [nix.POS]: pos$4, cmd: nix.thunk(() => ["ctl_cyrusdb", "-r"]) })),
+                  [nix.POS]: $pos[4],
+                  recover: nix.thunk(() => ({ [nix.POS]: $pos[3], cmd: nix.thunk(() => ["ctl_cyrusdb", "-r"]) })),
                 })),
                 EVENTS: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
-                  tlsprune: nix.thunk(() => ({ [nix.POS]: pos$6, cmd: nix.thunk(() => ["tls_prune"]), at: 400n })),
-                  delprune: nix.thunk(() => ({ [nix.POS]: pos$7, cmd: nix.thunk(() => ["cyr_expire", "-E", "3"]), at: 400n })),
+                  [nix.POS]: $pos[10],
+                  tlsprune: nix.thunk(() => ({ [nix.POS]: $pos[5], cmd: nix.thunk(() => ["tls_prune"]), at: 400n })),
+                  delprune: nix.thunk(() => ({
+                    [nix.POS]: $pos[6],
+                    cmd: nix.thunk(() => ["cyr_expire", "-E", "3"]),
+                    at: 400n,
+                  })),
                   deleteprune: nix.thunk(() => ({
-                    [nix.POS]: pos$8,
+                    [nix.POS]: $pos[7],
                     cmd: nix.thunk(() => ["cyr_expire", "-E", "4", "-D", "28"]),
                     at: 430n,
                   })),
                   expungeprune: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     cmd: nix.thunk(() => ["cyr_expire", "-E", "4", "-X", "28"]),
                     at: 445n,
                   })),
-                  checkpoint: nix.thunk(() => ({ [nix.POS]: pos$10, cmd: nix.thunk(() => ["ctl_cyrusdb", "-c"]), period: 30n })),
+                  checkpoint: nix.thunk(() => ({ [nix.POS]: $pos[9], cmd: nix.thunk(() => ["ctl_cyrusdb", "-c"]), period: 30n })),
                 })),
                 SERVICES: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   http: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     cmd: nix.thunk(() => ["httpd"]),
                     listen: "80",
                     prefork: 0n,
                   })),
                   imap: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     cmd: nix.thunk(() => ["imapd"]),
                     listen: "143",
                     prefork: 0n,
                   })),
                   lmtpunix: nix.thunk(() => ({
-                    [nix.POS]: pos$14,
+                    [nix.POS]: $pos[13],
                     cmd: nix.thunk(() => ["lmtpd"]),
                     listen: "/run/cyrus/lmtp",
                     prefork: 0n,
                   })),
                   notify: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     cmd: nix.thunk(() => ["notifyd"]),
                     listen: "/run/cyrus/notify",
                     proto: "udp",

@@ -2,94 +2,79 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cgit.nix", [[["maintainers", 11, 5]], [["postInstall", 23, 15]], [["location", 29, 17]], [["path", 32, 15], ["desc", 33, 15]], [["some-repo", 31, 13]], [["readme", 37, 13]], [["checkExportOkFiles", 42, 26]], [["enable", 19, 11], ["package", 20, 11], ["nginx", 29, 11], ["repos", 30, 11], ["settings", 36, 11], ["gitHttpBackend", 42, 11]], [["strict-export", 48, 13]], [["checkExportOkFiles", 50, 26]], [["enable", 45, 11], ["scanPath", 46, 11], ["settings", 47, 11], ["gitHttpBackend", 50, 11]], [["strict-export", 56, 13]], [["enable", 58, 26]], [["enable", 53, 11], ["scanPath", 54, 11], ["settings", 55, 11], ["gitHttpBackend", 58, 11]], [["localhost", 18, 23], ["check.localhost", 44, 23], ["no-git-http-backend.localhost", 52, 23]], [["cgit", 18, 18]], [["systemPackages", 61, 21]], [["services", 18, 9], ["environment", 61, 9]], [["server", 15, 5]], [["name", 9, 3], ["meta", 10, 3], ["nodes", 14, 3], ["testScript", 65, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cgit.nix", [["maintainers", 11, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
 const formals$3 = { args: { postInstall: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/cgit.nix", [["postInstall", 23, 15]]);
-const pos$3 = nix.positions(here + "/cgit.nix", [["location", 29, 17]]);
-const pos$4 = nix.positions(here + "/cgit.nix", [["path", 32, 15], ["desc", 33, 15]]);
-const pos$5 = nix.positions(here + "/cgit.nix", [["some-repo", 31, 13]]);
-const pos$6 = nix.positions(here + "/cgit.nix", [["readme", 37, 13]]);
-const pos$7 = nix.positions(here + "/cgit.nix", [["checkExportOkFiles", 42, 26]]);
-const pos$8 = nix.positions(here + "/cgit.nix", [["enable", 19, 11], ["package", 20, 11], ["nginx", 29, 11], ["repos", 30, 11], ["settings", 36, 11], ["gitHttpBackend", 42, 11]]);
-const pos$9 = nix.positions(here + "/cgit.nix", [["strict-export", 48, 13]]);
-const pos$10 = nix.positions(here + "/cgit.nix", [["checkExportOkFiles", 50, 26]]);
-const pos$11 = nix.positions(here + "/cgit.nix", [["enable", 45, 11], ["scanPath", 46, 11], ["settings", 47, 11], ["gitHttpBackend", 50, 11]]);
-const pos$12 = nix.positions(here + "/cgit.nix", [["strict-export", 56, 13]]);
-const pos$13 = nix.positions(here + "/cgit.nix", [["enable", 58, 26]]);
-const pos$14 = nix.positions(here + "/cgit.nix", [["enable", 53, 11], ["scanPath", 54, 11], ["settings", 55, 11], ["gitHttpBackend", 58, 11]]);
-const pos$15 = nix.positions(here + "/cgit.nix", [["localhost", 18, 23], ["check.localhost", 44, 23], ["no-git-http-backend.localhost", 52, 23]]);
-const pos$16 = nix.positions(here + "/cgit.nix", [["cgit", 18, 18]]);
-const pos$17 = nix.positions(here + "/cgit.nix", [["systemPackages", 61, 21]]);
-const pos$18 = nix.positions(here + "/cgit.nix", [["services", 18, 9], ["environment", 61, 9]]);
-const pos$19 = nix.positions(here + "/cgit.nix", [["server", 15, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$20 = nix.positions(here + "/cgit.nix", [["name", 9, 3], ["meta", 10, 3], ["nodes", 14, 3], ["testScript", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const robotsTxt = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "cgit-robots.txt", "User-agent: *\nDisallow: /\n"));
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     name: "cgit",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "schnusch"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             cgit: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               localhost: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 enable: true,
                 package: nix.thunk(() => nix.app(nix.sel(pkgs, "cgit", "overrideAttrs"), nix.lambda((args_2) => (() => {
                     const $_2 = nix.formals(args_2, formals$3);
                     const postInstall = nix.arg($_2, "postInstall");
                     return {
-                      [nix.POS]: pos$2,
+                      [nix.POS]: $pos[1],
                       postInstall: nix.thunk(() => nix.str`${postInstall}
 cp ${robotsTxt} "$out/cgit/robots.txt"
 `),
                     };
                   })(), formals$3))),
-                nginx: nix.thunk(() => ({ [nix.POS]: pos$3, location: "/(c)git/" })),
+                nginx: nix.thunk(() => ({ [nix.POS]: $pos[2], location: "/(c)git/" })),
                 repos: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
-                  "some-repo": nix.thunk(() => ({ [nix.POS]: pos$4, path: "/tmp/git/some-repo", desc: "some-repo description" })),
+                  [nix.POS]: $pos[4],
+                  "some-repo": nix.thunk(() => ({
+                    [nix.POS]: $pos[3],
+                    path: "/tmp/git/some-repo",
+                    desc: "some-repo description",
+                  })),
                 })),
-                settings: nix.thunk(() => ({ [nix.POS]: pos$6, readme: nix.thunk(() => [":README.md", ":date.txt"]) })),
-                gitHttpBackend: nix.thunk(() => ({ [nix.POS]: pos$7, checkExportOkFiles: false })),
+                settings: nix.thunk(() => ({ [nix.POS]: $pos[5], readme: nix.thunk(() => [":README.md", ":date.txt"]) })),
+                gitHttpBackend: nix.thunk(() => ({ [nix.POS]: $pos[6], checkExportOkFiles: false })),
               })),
               "check.localhost": nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 enable: true,
                 scanPath: "/tmp/git",
-                settings: nix.thunk(() => ({ [nix.POS]: pos$9, "strict-export": "git-daemon-export-ok" })),
-                gitHttpBackend: nix.thunk(() => ({ [nix.POS]: pos$10, checkExportOkFiles: true })),
+                settings: nix.thunk(() => ({ [nix.POS]: $pos[8], "strict-export": "git-daemon-export-ok" })),
+                gitHttpBackend: nix.thunk(() => ({ [nix.POS]: $pos[9], checkExportOkFiles: true })),
               })),
               "no-git-http-backend.localhost": nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 enable: true,
                 scanPath: "/tmp/git",
-                settings: nix.thunk(() => ({ [nix.POS]: pos$12, "strict-export": "git-daemon-export-ok" })),
-                gitHttpBackend: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
+                settings: nix.thunk(() => ({ [nix.POS]: $pos[11], "strict-export": "git-daemon-export-ok" })),
+                gitHttpBackend: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: false })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "git"))]),
           })),
         };

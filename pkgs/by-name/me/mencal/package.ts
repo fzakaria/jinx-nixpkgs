@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5], ["mainProgram", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 17, 3], ["buildInputs", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5], ["mainProgram", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 17, 3], ["buildInputs", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mencal",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://kyberdigi.cz/projects/mencal/files/mencal-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "9328d0b2f3f57847e8753c5184531f4832be7123d1b6623afdff892074c03080",
         })))),
       installPhase: "mkdir -p $out/bin\ncp mencal $out/bin/\n",
       buildInputs: nix.thunk(() => [perl]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Menstruation calendar",
         longDescription: "Mencal is a simple variation of the well-known unix command cal.\nThe main difference is that you can have some periodically repeating\ndays highlighted in color. This can be used to track\nmenstruation (or other) cycles conveniently.\n",
         homepage: "http://www.kyberdigi.cz/projects/mencal/english.html",

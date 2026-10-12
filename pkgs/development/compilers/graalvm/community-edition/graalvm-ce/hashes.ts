@@ -2,29 +2,25 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/hashes.nix", [["sha256", 6, 7], ["url", 7, 7]]);
-const pos$2 = nix.positions(here + "/hashes.nix", [["sha256", 10, 7], ["url", 11, 7]]);
-const pos$3 = nix.positions(here + "/hashes.nix", [["sha256", 14, 7], ["url", 15, 7]]);
-const pos$4 = nix.positions(here + "/hashes.nix", [["aarch64-linux", 5, 5], ["x86_64-linux", 9, 5], ["aarch64-darwin", 13, 5]]);
-const pos$5 = nix.positions(here + "/hashes.nix", [["version", 3, 3], ["hashes", 4, 3]]);
+const $pos = nix.positions(here + "/hashes.nix", [[["sha256", 6, 7], ["url", 7, 7]], [["sha256", 10, 7], ["url", 11, 7]], [["sha256", 14, 7], ["url", 15, 7]], [["aarch64-linux", 5, 5], ["x86_64-linux", 9, 5], ["aarch64-darwin", 13, 5]], [["version", 3, 3], ["hashes", 4, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$5,
+  [nix.POS]: $pos[4],
   version: "25.4.4.1.1",
   hashes: nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       sha256: "1g1d1qg8f3054vz47y0vijfcd1kg405w07blbiv9dks3jvsy5xg5",
       url: "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-25.4.4.1.1/graalvm-community-jdk-25i4-25.0.4.1.1_linux-aarch64_bin.tar.gz",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       sha256: "1qh8pd5f5h2g523xn19bhpjdrib1n38gq23vzy36h2r1hgkvpk05",
       url: "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-25.4.4.1.1/graalvm-community-jdk-25i4-25.0.4.1.1_linux-x64_bin.tar.gz",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       sha256: "0kysmljnnxa9gci1mqhzqqand5bg5p9q46d31v5azcdalhm97jaf",
       url: "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-25.4.4.1.1/graalvm-community-jdk-25i4-25.0.4.1.1_macos-aarch64_bin.tar.gz",
     })),

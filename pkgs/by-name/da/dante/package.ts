@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["name", 54, 7], ["url", 55, 7], ["sha256", 56, 7]], [["description", 65, 5], ["homepage", 66, 5], ["maintainers", 67, 5], ["license", 68, 5], ["platforms", 69, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["configureFlags", 36, 3], ["dontAddDisableDepTrack", 45, 3], ["patches", 47, 3], ["postPatch", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, autoreconfHook: false, pam: false, libkrb5: false, cyrus_sasl: false, miniupnpc: false, libxcrypt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 54, 7], ["url", 55, 7], ["sha256", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["maintainers", 67, 5], ["license", 68, 5], ["platforms", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["configureFlags", 36, 3], ["dontAddDisableDepTrack", 45, 3], ["patches", 47, 3], ["postPatch", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const remove_getaddrinfo_checks = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMips64")) || nix.asBool(!nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dante",
       version: "1.4.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.inet.no/dante/files/dante-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-GXPHcy8fnwpMDM8sHORix8JQYLJWQ+qQ+bmPU6gT+uw=",
         })))),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       dontAddDisableDepTrack: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./clang-osint-m4.patch")], nix.app(nix.sel(lib, "optionals"), remove_getaddrinfo_checks, nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "0002-osdep-m4-Remove-getaddrinfo-too-low-checks.patch",
               url: "https://raw.githubusercontent.com/buildroot/buildroot/master/package/dante/0002-osdep-m4-Remove-getaddrinfo-too-low-checks.patch",
               sha256: "sha256-e+qF8lB5tkiA7RlJ+tX5O6KxQrQp33RSPdP1TxU961Y=",
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       postPatch: "substituteInPlace include/redefgen.sh --replace 'PATH=/bin:/usr/bin:/sbin:/usr/sbin' \"\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Circuit-level SOCKS client/server that can be used to provide convenient and secure network connectivity",
         homepage: "https://www.inet.no/dante/",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "arobyn"))]),

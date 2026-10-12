@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 49, 5], ["downloadPage", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["longDescription", 53, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["minimalOCamlVersion", 27, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 33, 3], ["checkInputs", 42, 3], ["doCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitLab: false, ocamlgraph: false, parmap: false, re: false, "stdlib-shims": false, base64: false, extlib: false, cudf: false, ocaml: false, ounit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 49, 5], ["downloadPage", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["longDescription", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["minimalOCamlVersion", 27, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 33, 3], ["checkInputs", 42, 3], ["doCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const ounit = nix.arg($, "ounit");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dose3",
       version: "7.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "irill",
           repo: "dose3",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ounit]),
       doCheck: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.12"))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Dose library (part of Mancoosi tools)",
         downloadPage: "https://gitlab.com/irill/dose3/",
         homepage: "https://www.mancoosi.org/software/",

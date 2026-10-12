@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 45, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["buildFlags", 30, 3], ["installPhase", 34, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, installShellFiles: false, bison: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["buildFlags", 30, 3], ["installPhase", 34, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bioawk",
       version: "1.0-unstable-2017-09-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lh3",
           repo: "bioawk",
           rev: "fd40150b7c557da45e781a999d372abbc634cc21",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 bioawk -t $out/bin\nmv awk.1 bioawk.1\ninstallManPage bioawk.1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "BWK awk modified for biological data",
         mainProgram: "bioawk",
         homepage: "https://github.com/lh3/bioawk",

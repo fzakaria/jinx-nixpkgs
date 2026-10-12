@@ -2,25 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cagebreak.nix", [[["maintainers", 13, 5]], [["autologinUser", 21, 22]], [["getty", 21, 16]], [["loginShellInit", 22, 21]], [["enable", 34, 25]], [["bash", 22, 16], ["xwayland", 34, 16]], [["enable", 33, 25]], [["graphics", 33, 16]], [["enable", 35, 23]], [["polkit", 35, 16]], [["systemPackages", 36, 19]], [["options", 42, 27]], [["qemu", 42, 22]], [["imports", 20, 7], ["services", 21, 7], ["programs", 22, 7], ["hardware", 33, 7], ["security", 35, 7], ["environment", 36, 7], ["virtualisation", 42, 7]], [["machine", 16, 9]], [["name", 11, 3], ["meta", 12, 3], ["nodes", 16, 3], ["enableOCR", 45, 3], ["testScript", 47, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cagebreak.nix", [["maintainers", 13, 5]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/cagebreak.nix", [["autologinUser", 21, 22]]);
-const pos$3 = nix.positions(here + "/cagebreak.nix", [["getty", 21, 16]]);
-const pos$4 = nix.positions(here + "/cagebreak.nix", [["loginShellInit", 22, 21]]);
-const pos$5 = nix.positions(here + "/cagebreak.nix", [["enable", 34, 25]]);
-const pos$6 = nix.positions(here + "/cagebreak.nix", [["bash", 22, 16], ["xwayland", 34, 16]]);
-const pos$7 = nix.positions(here + "/cagebreak.nix", [["enable", 33, 25]]);
-const pos$8 = nix.positions(here + "/cagebreak.nix", [["graphics", 33, 16]]);
-const pos$9 = nix.positions(here + "/cagebreak.nix", [["enable", 35, 23]]);
-const pos$10 = nix.positions(here + "/cagebreak.nix", [["polkit", 35, 16]]);
-const pos$11 = nix.positions(here + "/cagebreak.nix", [["systemPackages", 36, 19]]);
-const pos$12 = nix.positions(here + "/cagebreak.nix", [["options", 42, 27]]);
-const pos$13 = nix.positions(here + "/cagebreak.nix", [["qemu", 42, 22]]);
-const pos$14 = nix.positions(here + "/cagebreak.nix", [["imports", 20, 7], ["services", 21, 7], ["programs", 22, 7], ["hardware", 33, 7], ["security", 35, 7], ["environment", 36, 7], ["virtualisation", 42, 7]]);
-const pos$15 = nix.positions(here + "/cagebreak.nix", [["machine", 16, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/cagebreak.nix", [["name", 11, 3], ["meta", 12, 3], ["nodes", 16, 3], ["enableOCR", 45, 3], ["testScript", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,31 +16,31 @@ escape C-t
 bind t exec env DISPLAY=:0 ${nix.sel(pkgs, "xterm")}/bin/xterm -cm -pc
 `)));
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     name: "cagebreak",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "berbiche"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            getty: nix.thunk(() => ({ [nix.POS]: pos$2, autologinUser: "alice" })),
+            [nix.POS]: $pos[2],
+            getty: nix.thunk(() => ({ [nix.POS]: $pos[1], autologinUser: "alice" })),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             bash: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               loginShellInit: nix.thunk(() => nix.str`if [ "$(tty)" = "/dev/tty1" ]; then
   set -e
 
@@ -66,27 +51,27 @@ bind t exec env DISPLAY=:0 ${nix.sel(pkgs, "xterm")}/bin/xterm -cm -pc
 fi
 `),
             })),
-            xwayland: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+            xwayland: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
           })),
           hardware: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            graphics: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            [nix.POS]: $pos[7],
+            graphics: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$10,
-            polkit: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+            [nix.POS]: $pos[9],
+            polkit: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "cagebreak")),
               nix.thunk(() => nix.sel(pkgs, "wayland-utils")),
             ]),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             qemu: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               options: nix.thunk(() => ["-vga none -device virtio-gpu-pci"]),
             })),
           })),

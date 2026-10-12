@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["updateScript", 34, 5], ["tests", 35, 5]], [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["maintainers", 42, 5], ["license", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 26, 3], ["passthru", 33, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { python3Packages: false, fetchFromGitHub: false, "nix-update-script": false, callPackage: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 34, 5], ["tests", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["maintainers", 42, 5], ["license", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 26, 3], ["passthru", 33, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "michaelstepner",
           repo: "pandoc-mustache",
           tag: version,
@@ -43,12 +40,12 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests"), nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pandoc Mustache Filter",
         homepage: "https://github.com/michaelstepner/pandoc-mustache",
         changelog: nix.thunk(() => nix.str`https://github.com/michaelstepner/pandoc-mustache/releases/tag/${version}/CHANGELOG.md`),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 32, 5], ["maintainers", 33, 5], ["license", 34, 5], ["homepage", 35, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["minimalOCamlVersion", 20, 3], ["propagatedBuildInputs", 21, 3], ["checkInputs", 25, 3], ["doCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchzip: false, digestif: false, "mirage-crypto": false, alcotest: false, ohex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 32, 5], ["maintainers", 33, 5], ["license", 34, 5], ["homepage", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["minimalOCamlVersion", 20, 3], ["propagatedBuildInputs", 21, 3], ["checkInputs", 25, 3], ["doCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const ohex = nix.arg($, "ohex");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pbkdf",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/abeaumont/ocaml-pbkdf/archive/${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-D2dXpf1D/wsJrcajU3If37tuLYjahoA/+QoXZKr1vQs=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, ohex]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Password based key derivation functions (PBKDF) from PKCS#5",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

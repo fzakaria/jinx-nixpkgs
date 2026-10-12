@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["broken", 53, 5], ["description", 54, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["checkFlags", 27, 3], ["postInstall", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, makeWrapper: false, dpkg: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 53, 5], ["description", 54, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["checkFlags", 27, 3], ["postInstall", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const dpkg = nix.arg($, "dpkg");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cargo-deb",
       version: "3.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kornelski",
           repo: "cargo-deb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [dpkg]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Cargo subcommand that generates Debian packages from information in Cargo.toml",
         mainProgram: "cargo-deb",

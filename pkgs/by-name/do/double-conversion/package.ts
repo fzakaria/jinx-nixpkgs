@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["pkg-config", 46, 11]], [["tests", 46, 5]], [["pkgConfigModules", 50, 5], ["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 22, 3], ["nativeBuildInputs", 27, 3], ["doCheck", 33, 3], ["cmakeFlags", 35, 3], ["preConfigure", 41, 3], ["passthru", 45, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, ninja: false, ctestCheckHook: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 46, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkgConfigModules", 50, 5], ["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 22, 3], ["nativeBuildInputs", 27, 3], ["doCheck", 33, 3], ["cmakeFlags", 35, 3], ["preConfigure", 41, 3], ["passthru", 45, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "double-conversion",
       version: "3.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "double-conversion",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,14 +34,14 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "rm BUILD\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pkgConfigModules: nix.thunk(() => ["double-conversion"]),
         changelog: nix.thunk(() => nix.str`https://github.com/google/double-conversion/blob/${nix.sel(finalAttrs, "src", "tag")}/Changelog`),
         description: "Binary-decimal and decimal-binary routines for IEEE doubles",

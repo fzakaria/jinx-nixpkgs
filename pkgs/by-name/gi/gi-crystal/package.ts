@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["rev-prefix", 39, 33]], [["updateScript", 39, 5]], [["description", 43, 5], ["homepage", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["license", 47, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["nativeBuildInputs", 23, 3], ["buildTargets", 24, 3], ["doCheck", 26, 3], ["doInstallCheck", 27, 3], ["installPhase", 29, 3], ["passthru", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, crystal: false, "gobject-introspection": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 39, 33]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["license", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["nativeBuildInputs", 23, 3], ["buildTargets", 24, 3], ["doCheck", 26, 3], ["doInstallCheck", 27, 3], ["installPhase", 29, 3], ["passthru", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gi-crystal";
       const version = "0.25.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hugopl",
           repo: "gi-crystal",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = false;
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp -r * $out\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GI Crystal is a binding generator used to generate Crystal bindings for GObject based libraries using GObject Introspection",
         homepage: "https://github.com/hugopl/gi-crystal",
         mainProgram: "gi-crystal",
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

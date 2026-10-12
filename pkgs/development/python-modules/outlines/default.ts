@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["description", 252, 5], ["homepage", 253, 5], ["changelog", 254, 5], ["license", 255, 5], ["maintainers", 256, 5]], [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["src", 51, 3], ["postPatch", 59, 3], ["build-system", 76, 3], ["dependencies", 81, 3], ["pythonImportsCheck", 102, 3], ["doCheck", 106, 3], ["nativeCheckInputs", 108, 3], ["pytestFlags", 125, 3], ["disabledTests", 130, 3], ["disabledTestPaths", 231, 3], ["meta", 251, 3]]]);
 const formals$1 = { args: { lib: false, config: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, cloudpickle: false, datasets: false, diskcache: false, genson: false, interegular: false, jinja2: false, jsonschema: false, lark: false, "nest-asyncio": false, numpy: false, "outlines-core": false, pillow: false, pycountry: false, pydantic: false, torch: false, transformers: false, airportsdata: false, anthropic: false, "google-genai": false, iso3166: false, jax: false, lmstudio: false, "llama-cpp-python": false, mistralai: false, ollama: false, openai: false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, tensorflow: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 252, 5], ["homepage", 253, 5], ["changelog", 254, 5], ["license", 255, 5], ["maintainers", 256, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["src", 51, 3], ["postPatch", 59, 3], ["build-system", 76, 3], ["dependencies", 81, 3], ["pythonImportsCheck", 102, 3], ["doCheck", 106, 3], ["nativeCheckInputs", 108, 3], ["pytestFlags", 125, 3], ["disabledTests", 130, 3], ["disabledTestPaths", 231, 3], ["meta", 251, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,12 +44,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const tensorflow = nix.arg($, "tensorflow");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "outlines",
       version: "1.2.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "outlines-dev",
           repo: "outlines",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -198,7 +196,7 @@ export default nix.lambda((args) => (() => {
         "tests/models/test_gemini.py",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Structured text generation",
         homepage: "https://github.com/outlines-dev/outlines",
         changelog: nix.thunk(() => nix.str`https://github.com/dottxt-ai/outlines/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

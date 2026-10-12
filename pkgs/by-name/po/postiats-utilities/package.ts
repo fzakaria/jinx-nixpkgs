@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["homepage", 20, 5], ["license", 21, 5], ["platforms", 22, 5], ["maintainers", 23, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["meta", 19, 3], ["buildInputs", 26, 3], ["postPatch", 31, 3], ["installPhase", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 20, 5], ["license", 21, 5], ["platforms", 22, 5], ["maintainers", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["meta", 19, 3], ["buildInputs", 26, 3], ["postPatch", 31, 3], ["installPhase", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "postiats-utilities",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Hibou57",
           repo: "PostiATS-Utilities",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-QeBbv5lwqL2ARjB+RGyBHeuibaxugffBLhC9lYs+5tE=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/Hibou57/PostiATS-Utilities",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

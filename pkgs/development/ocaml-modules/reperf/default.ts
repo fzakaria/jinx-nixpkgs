@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 26, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, fetchFromGitHub: false, lib: false, "printbox-text": false, reason: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 26, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const printbox_text = nix.arg($, "printbox-text");
   const reason = nix.arg($, "reason");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "reperf",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bryphe",
           repo: "reperf",
           rev: "68ef2f96899c09e6ac7d929b0375f7a806aee067",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [reason]),
       propagatedBuildInputs: nix.thunk(() => [printbox_text]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Native Reason + JSOO cross-platform performance benchmarking tools",
         longDescription: "Inspired by the core_bench tools from Janestreet.\n\nreperf helps with:\n* Timing: time spent in a code block\n* Call count: frequency of code-path calls\n* Allocations: code-block impact to garbage collector\n\nSupports benchmarks, which are test cases that exercise performance scenarios.\nOutputs a JSON performance report, and compare it with previous iterations - and fail if a regression is detected.\n",
         homepage: "https://github.com/bryphe/reperf",

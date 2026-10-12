@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["RUSTFLAGS", 109, 5], ["NIRI_BUILD_COMMIT", 121, 5]], [["providedSessions", 129, 5], ["updateScript", 130, 5]], [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["mainProgram", 143, 5], ["platforms", 144, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["outputs", 39, 3], ["postPatch", 44, 3], ["cargoHash", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 58, 3], ["buildFeatures", 73, 3], ["buildNoDefaultFeatures", 78, 3], ["postInstall", 80, 3], ["env", 106, 3], ["checkFlags", 124, 3], ["nativeInstallCheckInputs", 125, 3], ["doInstallCheck", 126, 3], ["passthru", 128, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, dbus: false, eudev: false, fetchFromGitHub: false, installShellFiles: false, "libdisplay-info_0_3": false, libglvnd: false, libinput: false, libxkbcommon: false, libgbm: false, versionCheckHook: false, "nix-update-script": false, pango: false, pipewire: false, "pkg-config": false, rustPlatform: false, seatd: false, stdenv: false, systemdLibs: false, wayland: false, withDbus: true, withDinit: true, withScreencastSupport: true, withSystemd: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 109, 5], ["NIRI_BUILD_COMMIT", 121, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["providedSessions", 129, 5], ["updateScript", 130, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["mainProgram", 143, 5], ["platforms", 144, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["outputs", 39, 3], ["postPatch", 44, 3], ["cargoHash", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 58, 3], ["buildFeatures", 73, 3], ["buildNoDefaultFeatures", 78, 3], ["postInstall", 80, 3], ["env", 106, 3], ["checkFlags", 124, 3], ["nativeInstallCheckInputs", 125, 3], ["doInstallCheck", 126, 3], ["passthru", 128, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const withScreencastSupport = nix.argOr($, "withScreencastSupport", () => true);
   const withSystemd = nix.argOr($, "withSystemd", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "niri",
       version: "26.04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "niri-wm",
           repo: "niri",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +64,7 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: true,
       postInstall: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add("install -Dm0644 README.md resources/default-config.kdl -t $doc/share/doc/niri\nmv docs/wiki $doc/share/doc/niri/wiki\n\ninstall -Dm0644 resources/niri.desktop -t $out/share/wayland-sessions\n", nix.app(nix.sel(lib, "optionalString"), withDbus, "install -Dm0644 resources/niri-portals.conf -t $out/share/xdg-desktop-portal\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withSystemd) || nix.asBool(withDinit))), "install -Dm0755 resources/niri-session -t $out/bin\n")), nix.app(nix.sel(lib, "optionalString"), withSystemd, "install -Dm0644 resources/niri{-shutdown.target,.service} -t $out/lib/systemd/user\n")), nix.app(nix.sel(lib, "optionalString"), withDinit, "install -Dm0644 resources/dinit/niri{-shutdown,} -t $out/lib/dinit.d/user\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd $pname \\\n  --bash <($out/bin/niri completions bash) \\\n  --fish <($out/bin/niri completions fish) \\\n  --nushell <($out/bin/niri completions nushell) \\\n  --zsh <($out/bin/niri completions zsh)\n"))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RUSTFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.builtins.map((arg) => nix.add("-C link-arg=", arg), nix.thunk(() => [
               "-Wl,--push-state,--no-as-needed",
               "-lEGL",
@@ -81,12 +77,12 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         providedSessions: nix.thunk(() => ["niri"]),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Scrollable-tiling Wayland compositor",
         homepage: "https://github.com/niri-wm/niri",
         changelog: nix.thunk(() => nix.str`https://github.com/niri-wm/niri/releases/tag/v${nix.sel(finalAttrs, "version")}`),

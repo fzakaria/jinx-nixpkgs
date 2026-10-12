@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["extensionUuid", 24, 5], ["extensionPortalSlug", 25, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["passthru", 23, 3], ["buildPhase", 28, 3], ["installPhase", 35, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitLab: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extensionUuid", 24, 5], ["extensionPortalSlug", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["passthru", 23, 3], ["buildPhase", 28, 3], ["installPhase", 35, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gnome-shell-extension-guillotine",
       version: "27-unstable-2026-04-08",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ente76",
           repo: "guillotine",
           rev: "3bccda1d189ed0525daa12f6b12b4ebea4222fc5",
@@ -27,14 +24,14 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [glib]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         extensionUuid: "guillotine@fopdoodle.net",
         extensionPortalSlug: "guillotine",
       })),
       buildPhase: "runHook preBuild\nrm schemas/gschemas.compiled\nglib-compile-schemas schemas\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out/share/gnome-shell/extensions/guillotine@fopdoodle.net\ncp -R schemas \"$out/share/gnome-shell/extensions/guillotine@fopdoodle.net\"\ncp default.json $out/share/gnome-shell/extensions/guillotine@fopdoodle.net\ncp extension.js \"$out/share/gnome-shell/extensions/guillotine@fopdoodle.net\"\ncp guillotine-symbolic.svg \"$out/share/gnome-shell/extensions/guillotine@fopdoodle.net\"\ncp LICENSE \"$out/share/gnome-shell/extensions/guillotine@fopdoodle.net\"\ncp metadata.json \"$out/share/gnome-shell/extensions/guillotine@fopdoodle.net\"\ncp README.md \"$out/share/gnome-shell/extensions/guillotine@fopdoodle.net\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Gnome extension designed for efficiently carrying out executions of commands from a customizable menu",
         homepage: "https://gitlab.com/ente76/guillotine/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

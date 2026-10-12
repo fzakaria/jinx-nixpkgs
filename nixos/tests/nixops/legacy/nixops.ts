@@ -2,34 +2,29 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/nixops.nix", [["legacy", 5, 13]]);
-const pos$2 = nix.positions(here + "/nixops.nix", [["description", 3, 5], ["storage", 5, 5]]);
+const $pos = nix.positions(here + "/nixops.nix", [[["legacy", 5, 13]], [["description", 3, 5], ["storage", 5, 5]], [["targetEnv", 10, 18]], [["systemPackages", 15, 19]], [["deployment", 10, 7], ["imports", 11, 7], ["environment", 15, 7]], [["network", 2, 3], ["server", 7, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/nixops.nix", [["targetEnv", 10, 18]]);
-const pos$4 = nix.positions(here + "/nixops.nix", [["systemPackages", 15, 19]]);
-const pos$5 = nix.positions(here + "/nixops.nix", [["deployment", 10, 7], ["imports", 11, 7], ["environment", 15, 7]]);
-const pos$6 = nix.positions(here + "/nixops.nix", [["network", 2, 3], ["server", 7, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$6,
+  [nix.POS]: $pos[5],
   network: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "Legacy Network using <nixpkgs> and legacy state.",
-    storage: nix.thunk(() => ({ [nix.POS]: pos$1, legacy: nix.thunk(() => ({})) })),
+    storage: nix.thunk(() => ({ [nix.POS]: $pos[0], legacy: nix.thunk(() => ({})) })),
   })),
   server: nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$5,
-      deployment: nix.thunk(() => ({ [nix.POS]: pos$3, targetEnv: "none" })),
+      [nix.POS]: $pos[4],
+      deployment: nix.thunk(() => ({ [nix.POS]: $pos[2], targetEnv: "none" })),
       imports: nix.thunk(() => [
         nix.path(here, "./base-configuration.nix"),
         nix.thunk(() => nix.app(nix.sel(lib, "modules", "importJSON"), nix.path(here, "./server-network.json"))),
       ]),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         systemPackages: nix.thunk(() => [
           nix.thunk(() => nix.sel(pkgs, "hello")),
           nix.thunk(() => nix.sel(pkgs, "figlet")),

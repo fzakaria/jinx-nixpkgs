@@ -2,21 +2,20 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 12, 5], ["homepage", 13, 5], ["license", 14, 5], ["platforms", 15, 5], ["mainProgram", 16, 5]], [["pname", 7, 3], ["gemdir", 8, 3], ["exes", 9, 3], ["meta", 11, 3]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 12, 5], ["homepage", 13, 5], ["license", 14, 5], ["platforms", 15, 5], ["mainProgram", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["gemdir", 8, 3], ["exes", 9, 3], ["meta", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const bundlerApp = nix.arg($, "bundlerApp");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "haste",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["haste"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Command line interface to the AnyStyle Parser and Finder",
         homepage: "https://rubygems.org/gems/haste",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

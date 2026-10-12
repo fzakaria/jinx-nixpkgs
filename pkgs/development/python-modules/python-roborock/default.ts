@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["cli", 59, 25]], [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["pythonRelaxDeps", 40, 3], ["build-system", 45, 3], ["dependencies", 47, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 66, 3], ["disabledTests", 76, 3], ["__darwinAllowLocalNetworking", 81, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, aiohttp: false, aiomqtt: false, aioresponses: false, buildPythonPackage: false, click: false, construct: false, fetchFromGitHub: false, freezegun: false, hatchling: false, "paho-mqtt": false, protobuf: false, pycryptodome: false, pycryptodomex: false, "pyrate-limiter": false, pyshark: false, "pytest-asyncio": false, pytestCheckHook: false, pyyaml: false, "vacuum-map-parser-roborock": false, "click-shell": false, syrupy: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cli", 59, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["pythonRelaxDeps", 40, 3], ["build-system", 45, 3], ["dependencies", 47, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 66, 3], ["disabledTests", 76, 3], ["__darwinAllowLocalNetworking", 81, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const syrupy = nix.arg($, "syrupy");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "python-roborock",
       version: "7.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Python-roborock",
           repo: "python-roborock",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         vacuum_map_parser_roborock,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [pycryptodomex])))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cli: nix.thunk(() => [click, click_shell, pyyaml, pyshark]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([
@@ -74,7 +71,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["roborock"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python library & console tool for controlling Roborock vacuum",
         homepage: "https://github.com/Python-roborock/python-roborock",
         changelog: nix.thunk(() => nix.str`https://github.com/Python-roborock/python-roborock/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

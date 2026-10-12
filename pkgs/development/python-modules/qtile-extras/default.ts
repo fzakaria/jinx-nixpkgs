@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["qtile-extras", 100, 18]], [["tests", 100, 12]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 60, 3], ["disabledTestPaths", 79, 3], ["pytestFlags", 87, 3], ["preCheck", 92, 3], ["pythonImportsCheck", 98, 3], ["passthru", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, anyio: false, "gobject-introspection": false, gtk3: false, imagemagick: false, keyring: false, librsvg: false, pulseaudio: false, "pytest-asyncio": false, "pytest-lazy-fixture": false, "pytest-rerunfailures": false, "pytest-xdist": false, pytestCheckHook: false, "python-dateutil": false, qtile: false, requests: false, "setuptools-scm": false, "xorg-server": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["qtile-extras", 100, 18]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 100, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 60, 3], ["disabledTestPaths", 79, 3], ["pytestFlags", 87, 3], ["preCheck", 92, 3], ["pythonImportsCheck", 98, 3], ["passthru", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const xorg_server = nix.arg($, "xorg-server");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "qtile-extras",
       version: "0.37.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elParaguayo",
           repo: "qtile-extras",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,14 +82,14 @@ sed -i 's#/usr/bin/sleep#sleep#' test/widget/test_snapcast.py
 `),
       pythonImportsCheck: nix.thunk(() => ["qtile_extras"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "qtile-extras": nix.thunk(() => nix.sel(nixosTests, "qtile-extras")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Extra modules and widgets for the Qtile tiling window manager",
         homepage: "https://github.com/elParaguayo/qtile-extras",
         changelog: nix.thunk(() => nix.str`https://github.com/elParaguayo/qtile-extras/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG`),

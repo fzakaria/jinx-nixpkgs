@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["homepage", 43, 5], ["description", 44, 5], ["mainProgram", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["patchPhase", 29, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libmtsupport: false, libfacet: false, libbtree: false, libmtquery: false, help2man: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 43, 5], ["description", 44, 5], ["mainProgram", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["patchPhase", 29, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mt-utils";
       const version = "0.0.1alpha3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/multitran/mt-utils-${version}.tar.bz2`),
           sha256: "e407702c90c5272882386914e1eeca5f6c5039393af9a44538536b94867b0a0e",
         }))));
@@ -38,7 +36,7 @@ sed -i -e 's@message.length()@message.length()*5@' \\
   src/converter.cc;
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://multitran.sourceforge.net/",
         description: "Multitran: simple command line utilities for dictionary maintenance",
         mainProgram: "mtquery",
@@ -49,7 +47,7 @@ sed -i -e 's@message.length()@message.length()*5@' \\
           return nix.force(nix.lookup(w, "linux"));
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildInputs, patchPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, buildInputs, patchPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

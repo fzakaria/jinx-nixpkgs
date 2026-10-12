@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["group", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pname", 31, 5], ["version", 32, 26], ["src", 32, 34], ["impureEnvVars", 34, 5], ["nativeBuildInputs", 39, 5], ["dontConfigure", 44, 5], ["buildPhase", 46, 5], ["installPhase", 60, 5], ["dontFixup", 70, 5], ["outputHash", 72, 5], ["outputHashAlgo", 73, 5], ["outputHashMode", 74, 5]], [["extraArgs", 143, 5]], [["updateScript", 142, 12]], [["changelog", 150, 5], ["description", 151, 5], ["downloadPage", 152, 5], ["homepage", 153, 5], ["license", 154, 5], ["mainProgram", 155, 5], ["maintainers", 156, 5], ["sourceProvenance", 157, 5], ["platforms", 158, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 20, 3], ["node_modules", 30, 3], ["nativeBuildInputs", 77, 3], ["configurePhase", 88, 3], ["buildPhase", 98, 3], ["dontStrip", 125, 3], ["installPhase", 127, 3], ["doInstallCheck", 138, 3], ["nativeInstallCheckInputs", 139, 3], ["versionCheckProgramArg", 140, 3], ["passthru", 142, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, bun: false, fetchFromGitLab: false, makeBinaryWrapper: false, "nix-update-script": false, nodejs_22: false, ripgrep: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["group", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 31, 5], ["version", 32, 26], ["src", 32, 34], ["impureEnvVars", 34, 5], ["nativeBuildInputs", 39, 5], ["dontConfigure", 44, 5], ["buildPhase", 46, 5], ["installPhase", 60, 5], ["dontFixup", 70, 5], ["outputHash", 72, 5], ["outputHashAlgo", 73, 5], ["outputHashMode", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 143, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 142, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 150, 5], ["description", 151, 5], ["downloadPage", 152, 5], ["homepage", 153, 5], ["license", 154, 5], ["mainProgram", 155, 5], ["maintainers", 156, 5], ["sourceProvenance", 157, 5], ["platforms", 158, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 20, 3], ["node_modules", 30, 3], ["nativeBuildInputs", 77, 3], ["configurePhase", 88, 3], ["buildPhase", 98, 3], ["dontStrip", 125, 3], ["installPhase", 127, 3], ["doInstallCheck", 138, 3], ["nativeInstallCheckInputs", 139, 3], ["versionCheckProgramArg", 140, 3], ["passthru", 142, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gitlab-duo",
       version: "9.6.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           group: "gitlab-org",
           owner: "editor-extensions",
           repo: "gitlab-lsp",
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-RhBR/Jpf/utucPvPbjSK7b9Homgqtdu7P1ANFzLJF1I=",
         })))),
       node_modules: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -97,14 +92,14 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--subpackage", "node_modules"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: "https://gitlab.com/gitlab-org/editor-extensions/gitlab-lsp/-/blob/main/CHANGELOG.md",
         description: "CLI for GitLab AI assistant",
         downloadPage: "https://gitlab.com/gitlab-org/editor-extensions/gitlab-lsp",

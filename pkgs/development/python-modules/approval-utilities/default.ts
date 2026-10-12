@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 10, 3], ["version", 11, 27], ["src", 11, 35], ["pyproject", 12, 3], ["postPatch", 14, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["pythonImportsCheck", 26, 3], ["doCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, approvaltests: false, setuptools: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 27], ["src", 11, 35], ["pyproject", 12, 3], ["postPatch", 14, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["pythonImportsCheck", 26, 3], ["doCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "approval-utilities",
       version: nix.thunk(() => nix.attr(approvaltests, "version")),
       src: nix.thunk(() => nix.attr(approvaltests, "src")),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["approval_utilities"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Utilities for your production code that work well with approvaltests",
         homepage: "https://github.com/approvals/ApprovalTests.Python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

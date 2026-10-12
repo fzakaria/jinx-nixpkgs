@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 41, 3], ["propagatedBuildInputs", 43, 3], ["__darwinAllowLocalNetworking", 49, 3], ["nativeCheckInputs", 51, 3], ["disabledTestPaths", 57, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aresponses: false, attrs: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, "poetry-core": false, "pytest-asyncio": false, pytestCheckHook: false, pytz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 41, 3], ["propagatedBuildInputs", 43, 3], ["__darwinAllowLocalNetworking", 49, 3], ["nativeCheckInputs", 51, 3], ["disabledTestPaths", 57, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2022.04.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "McSwindler",
           repo: "seventeentrack",
           rev: version,
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "clean-up-build-dependencies.patch",
             url: "https://github.com/McSwindler/seventeentrack/commit/9a21e22f796a17628a9628f54e19d19d002b4d0a.patch",
             hash: "sha256-UvxUpiSkDbP8Jum5XbrWHBnH1HLBYEKUKw6GTV+Kvys=",
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["examples/"]);
       const pythonImportsCheck = nix.thunk(() => ["seventeentrack"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python library to track package info from 17track.com",
         homepage: "https://github.com/McSwindler/seventeentrack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

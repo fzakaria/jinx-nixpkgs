@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 20, 5], ["description", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]], [["pname", 8, 3], ["ename", 9, 3], ["version", 10, 3], ["src", 12, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, melpaBuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 20, 5], ["description", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["ename", 9, 3], ["version", 10, 3], ["src", 12, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,19 +11,19 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const melpaBuild = nix.arg($, "melpaBuild");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "font-lock-plus",
       ename: "font-lock+",
       version: "208-unstable-2022-04-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emacsmirror",
           repo: "font-lock-plus",
           rev: "aa1c82d05c9222b09099a0ccd7468e955497940c",
           hash: "sha256-er+knxqAejgKAtOnhqHfsGN286biHFdeMIUlbW7JyYw=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/emacsmirror/font-lock-plus",
         description: "Enhancements to standard library font-lock.el",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

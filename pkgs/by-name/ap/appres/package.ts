@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["updateScript", 37, 5]], [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["passthru", 36, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, xorgproto: false, libx11: false, libxt: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["passthru", 36, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "appres",
       version: "1.0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/app/appres-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ERSxiSOf2HqNHbQz7ctEhjRtKZEhMrkeru5WZ/E7gZ8=",
         })))),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja]),
       buildInputs: nix.thunk(() => [xorgproto, libx11, libxt]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname ${nix.sel(finalAttrs, "pname")} \\
@@ -43,7 +40,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utility to list X application resource database",
         longDescription: "The appres program prints the resources seen by an application (or subhierarchy of an\napplication) with the specified class and instance names.\nIt can be used to determine which resources a particular program will load.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/app/appres",

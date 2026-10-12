@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["withVodozemac", 36, 28]], [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["pyproject", 19, 3], ["postPatch", 21, 3], ["propagatedBuildInputs", 31, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["withVodozemac", 36, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["pyproject", 19, 3], ["postPatch", 21, 3], ["propagatedBuildInputs", 31, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "matrix-commander";
       const version = "8.0.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "8go",
           repo: "matrix-commander",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(python3Packages, null);
         return [
           nix.thunk(() => nix.lookup(w, "setuptools")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "matrix-nio"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withVodozemac: true })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "matrix-nio"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], withVodozemac: true })))),
           nix.thunk(() => nix.lookup(w, "python-magic")),
           nix.thunk(() => nix.lookup(w, "markdown")),
           nix.thunk(() => nix.lookup(w, "pillow")),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple but convenient CLI-based Matrix client app for sending and receiving",
         mainProgram: "matrix-commander",
         homepage: "https://github.com/8go/matrix-commander",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "seb314"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

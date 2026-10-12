@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 16, 5], ["buildCommand", 17, 5], ["outputHashMode", 23, 5], ["outputHash", 24, 5]], [["command", 50, 7], ["supportedFeatures", 51, 7]], [["package", 54, 43]], [["version", 54, 11]], [["updateScript", 49, 5], ["tests", 54, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["sourceProvenance", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 67, 5], ["platforms", 69, 5]], [["pname", 28, 3], ["version", 29, 11], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["dontUnpack", 37, 3], ["installPhase", 39, 3], ["passthru", 48, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, jre: false, coursier: false, makeWrapper: false, setJavaClassPath: false, callPackage: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 16, 5], ["buildCommand", 17, 5], ["outputHashMode", 23, 5], ["outputHash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["command", 50, 7], ["supportedFeatures", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 54, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 54, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 49, 5], ["tests", 54, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["sourceProvenance", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 67, 5], ["platforms", 69, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 11], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["dontUnpack", 37, 3], ["installPhase", 39, 3], ["passthru", 48, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const baseName = "scalafmt";
   const version = "3.11.5";
   const deps = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`${baseName}-deps-${version}`),
       buildCommand: nix.thunk(() => nix.str`export COURSIER_CACHE=$(pwd)
 ${coursier}/bin/cs fetch org.scalameta:scalafmt-cli_2.13:${version} > deps
@@ -35,7 +29,7 @@ cp $(< deps) $out/share/java/
       outputHash: "sha256-NTi63ufQE9FX6AR3TJMzE9rYm1FuKZVuXTTSaf3IxVc=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: baseName,
       version: version,
       nativeBuildInputs: nix.thunk(() => [makeWrapper, setJavaClassPath]),
@@ -49,22 +43,22 @@ makeWrapper ${jre}/bin/java $out/bin/${baseName} \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Opinionated code formatter for Scala",
         homepage: "http://scalameta.org/scalafmt",
         changelog: nix.thunk(() => nix.str`https://github.com/scalameta/scalafmt/releases/tag/v${version}`),

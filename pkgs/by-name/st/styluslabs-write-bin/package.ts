@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 13, 5], ["exec", 14, 5], ["comment", 15, 5], ["icon", 16, 5], ["desktopName", 17, 5], ["genericName", 18, 5], ["categories", 19, 5]], [["url", 30, 5], ["sha256", 31, 5]], [["homepage", 69, 5], ["description", 70, 5], ["sourceProvenance", 71, 5], ["platforms", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["sourceRoot", 34, 3], ["dontBuild", 36, 3], ["installPhase", 38, 3], ["preFixup", 50, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, libsForQt5: false, libglvnd: false, libx11: false, libxi: false, fetchurl: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 13, 5], ["exec", 14, 5], ["comment", 15, 5], ["icon", 16, 5], ["desktopName", 17, 5], ["genericName", 18, 5], ["categories", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 5], ["sha256", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["description", 70, 5], ["sourceProvenance", 71, 5], ["platforms", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["sourceRoot", 34, 3], ["dontBuild", 36, 3], ["installPhase", 38, 3], ["preFixup", 50, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "Write",
       exec: "Write",
       comment: "A word processor for handwriting",
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "styluslabs-write-bin";
       const version = "300";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`http://www.styluslabs.com/write/write${version}.tar.gz`),
           sha256: "0h1wf3af7jzp3f3l8mlnshi83d7a4v4y8nfqfai4lmskyicqlz7c",
         }))));
@@ -65,7 +62,7 @@ ln -s $out/Write/Write144x144.png $out/share/icons/write_stylus.png
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.styluslabs.com/",
         description: "Write is a word processor for handwriting",
         sourceProvenance: nix.thunk(() => (() => {
@@ -84,7 +81,7 @@ ln -s $out/Write/Write144x144.png $out/share/icons/write_stylus.png
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

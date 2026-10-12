@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/updater.nix", [[["mainProgram", 59, 5], ["license", 60, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 22, 3], ["nativeBuildInputs", 24, 3], ["pythonPath", 29, 3], ["dontUnpack", 33, 3], ["installPhase", 35, 3], ["shellHook", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonApplication: false, makeWrapper: false, nix: false, "nix-prefetch-github": false, "nix-prefetch-git": false, nurl: false, luajit: false, python3Packages: false, "neovim-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/updater.nix", [["mainProgram", 59, 5], ["license", 60, 5]]);
-const pos$2 = nix.positions(here + "/updater.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 22, 3], ["nativeBuildInputs", 24, 3], ["pythonPath", 29, 3], ["dontUnpack", 33, 3], ["installPhase", 35, 3], ["shellHook", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const neovim_unwrapped = nix.arg($, "neovim-unwrapped");
   const luaWithPackages = nix.thunk(() => nix.app(nix.sel(luajit, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "json"))]));
   return nix.app(buildPythonApplication, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "vim-plugins-updater",
       version: "0.1",
       pyproject: false,
@@ -44,7 +43,7 @@ wrapPythonPrograms
 `),
       shellHook: "export PYTHONPATH=pkgs/applications/editors/vim/plugins:$PYTHONPATH\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         mainProgram: "vim-plugins-updater",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

@@ -2,106 +2,16 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/checkAndMergeCompat.nix", [[["owner", 6, 7], ["repo", 7, 7], ["rev", 10, 7], ["hash", 11, 7]], [["call_v1", 32, 19], ["call_v2", 33, 19]], [["outer_v1", 34, 18], ["outer_v2", 35, 18]], [["inner_v1", 36, 18], ["inner_v2", 37, 18]], [["type", 50, 23], ["default", 55, 23]], [["foo", 49, 29]], [["options", 49, 21]], [["modules", 47, 17]], [["expr", 45, 13]], [["bar", 71, 7]], [["bar", 75, 9]], [["expected", 74, 7]], [["outerTypeName", 68, 5], ["innerTypeName", 69, 5], ["value", 70, 5], ["testAttrs", 73, 5]], [["bar", 83, 7]], [["type", 87, 9], ["msg", 88, 9]], [["expectedError", 86, 7]], [["outerTypeName", 80, 5], ["innerTypeName", 81, 5], ["value", 82, 5], ["testAttrs", 85, 5]], [["type", 98, 9], ["msg", 99, 9]], [["expectedError", 97, 7]], [["outerTypeName", 93, 5], ["innerTypeName", 94, 5], ["value", 95, 5], ["testAttrs", 96, 5]], [["expected", 113, 7]], [["outerTypeName", 106, 5], ["innerTypeName", 107, 5], ["value", 108, 5], ["testAttrs", 112, 5]], [["type", 128, 9], ["msg", 129, 9]], [["expectedError", 127, 7]], [["outerTypeName", 120, 5], ["innerTypeName", 121, 5], ["value", 122, 5], ["testAttrs", 126, 5]], [["foo", 137, 7]], [["type", 141, 9], ["msg", 142, 9]], [["expectedError", 140, 7]], [["outerTypeName", 134, 5], ["innerTypeName", 135, 5], ["value", 136, 5], ["testAttrs", 139, 5]], [["type", 153, 13]], [["nested", 152, 19]], [["options", 152, 11]], [["nested", 161, 9]], [["nested", 164, 9]], [["foo", 160, 7], ["bar", 163, 7]], [["nested", 170, 11]], [["nested", 173, 11]], [["foo", 169, 9], ["bar", 172, 9]], [["expected", 168, 7]], [["getType", 148, 5], ["outerTypeName", 157, 5], ["innerTypeName", 158, 5], ["value", 159, 5], ["testAttrs", 167, 5]], [["type", 186, 13]], [["nested", 185, 19]], [["options", 185, 11]], [["nested", 193, 9]], [["foo", 191, 7], ["bar", 192, 7]], [["type", 198, 9], ["msg", 199, 9]], [["expectedError", 197, 7]], [["outerTypeName", 179, 5], ["innerTypeName", 180, 5], ["getType", 181, 5], ["value", 190, 5], ["testAttrs", 196, 5]], [["type", 211, 13]], [["nested", 210, 19]], [["options", 210, 11]], [["type", 218, 9], ["msg", 219, 9]], [["expectedError", 217, 7]], [["outerTypeName", 204, 5], ["innerTypeName", 205, 5], ["getType", 206, 5], ["value", 215, 5], ["testAttrs", 216, 5]], [["expected", 232, 7]], [["outerTypeName", 226, 5], ["innerTypeName", 227, 5], ["getType", 229, 5], ["value", 230, 5], ["testAttrs", 231, 5]], [["type", 243, 9], ["msg", 244, 9]], [["expectedError", 242, 7]], [["outerTypeName", 236, 5], ["innerTypeName", 237, 5], ["getType", 239, 5], ["value", 240, 5], ["testAttrs", 241, 5]], [["bar", 254, 7]], [["type", 258, 9], ["msg", 259, 9]], [["expectedError", 257, 7]], [["outerTypeName", 249, 5], ["innerTypeName", 250, 5], ["getType", 252, 5], ["value", 253, 5], ["testAttrs", 256, 5]], [["bar", 270, 7], ["foo", 271, 7]], [["expected", 274, 7]], [["outerTypeName", 266, 5], ["innerTypeName", 267, 5], ["getType", 268, 5], ["value", 269, 5], ["testAttrs", 273, 5]], [["expected", 289, 7]], [["outerTypeName", 281, 5], ["innerTypeName", 282, 5], ["getType", 283, 5], ["value", 284, 5], ["testAttrs", 288, 5]], [["type", 305, 9], ["msg", 306, 9]], [["expectedError", 304, 7]], [["outerTypeName", 296, 5], ["innerTypeName", 297, 5], ["getType", 298, 5], ["value", 299, 5], ["testAttrs", 303, 5]], [["bar", 316, 9]], [["foo", 315, 7]], [["type", 321, 9], ["msg", 322, 9]], [["expectedError", 320, 7]], [["outerTypeName", 311, 5], ["innerTypeName", 312, 5], ["getType", 313, 5], ["value", 314, 5], ["testAttrs", 319, 5]], [["type", 333, 9], ["msg", 334, 9]], [["expectedError", 332, 7]], [["outerTypeName", 327, 5], ["innerTypeName", 328, 5], ["getType", 329, 5], ["value", 330, 5], ["testAttrs", 331, 5]], [["type", 347, 11]], [["type", 350, 11]], [["type", 353, 11]], [["attrs", 346, 17], ["list", 349, 17], ["either", 352, 17]], [["options", 346, 9]], [["foo", 358, 9]], [["attrs", 357, 7], ["list", 360, 7], ["either", 364, 7]], [["foo", 369, 11]], [["attrs", 368, 9], ["list", 371, 9], ["either", 375, 9]], [["expected", 367, 7]], [["outerTypeName", 341, 5], ["innerTypeName", 342, 5], ["getType", 343, 5], ["value", 356, 5], ["testAttrs", 366, 5]], [["attrsOf_str_ok", 67, 3], ["attrsOf_str_err_inner", 79, 3], ["attrsOf_str_err_outer", 92, 3], ["listOf_str_ok", 105, 3], ["listOf_str_err_inner", 119, 3], ["listOf_str_err_outer", 133, 3], ["attrsOf_submodule_ok", 147, 3], ["attrsOf_submodule_err_inner", 178, 3], ["attrsOf_submodule_err_outer", 203, 3], ["either_str_attrsOf_ok", 225, 3], ["either_str_attrsOf_err_1", 235, 3], ["either_str_attrsOf_err_2", 248, 3], ["coerce_attrsOf_str_to_listOf_str_run", 265, 3], ["coerce_attrsOf_str_to_listOf_str_final", 280, 3], ["coerce_attrsOf_str_to_listOf_err_coercer_input", 295, 3], ["coerce_attrsOf_str_to_listOf_err_coercer_ouput", 310, 3], ["coerce_str_to_int_coercer_ouput", 326, 3], ["submodule_with_ok", 340, 3]]]);
 const formals$1 = { args: { pkgs: true, currLibPath: true, prevLibPath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/checkAndMergeCompat.nix", [["owner", 6, 7], ["repo", 7, 7], ["rev", 10, 7], ["hash", 11, 7]]);
 const formals$2 = { args: { getType: true, outerTypeName: false, innerTypeName: false, value: false, testAttrs: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/checkAndMergeCompat.nix", [["call_v1", 32, 19], ["call_v2", 33, 19]]);
-const pos$3 = nix.positions(here + "/checkAndMergeCompat.nix", [["outer_v1", 34, 18], ["outer_v2", 35, 18]]);
-const pos$4 = nix.positions(here + "/checkAndMergeCompat.nix", [["inner_v1", 36, 18], ["inner_v2", 37, 18]]);
-const pos$5 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 50, 23], ["default", 55, 23]]);
-const pos$6 = nix.positions(here + "/checkAndMergeCompat.nix", [["foo", 49, 29]]);
-const pos$7 = nix.positions(here + "/checkAndMergeCompat.nix", [["options", 49, 21]]);
-const pos$8 = nix.positions(here + "/checkAndMergeCompat.nix", [["modules", 47, 17]]);
-const pos$9 = nix.positions(here + "/checkAndMergeCompat.nix", [["expr", 45, 13]]);
-const pos$10 = nix.positions(here + "/checkAndMergeCompat.nix", [["bar", 71, 7]]);
-const pos$11 = nix.positions(here + "/checkAndMergeCompat.nix", [["bar", 75, 9]]);
-const pos$12 = nix.positions(here + "/checkAndMergeCompat.nix", [["expected", 74, 7]]);
-const pos$13 = nix.positions(here + "/checkAndMergeCompat.nix", [["outerTypeName", 68, 5], ["innerTypeName", 69, 5], ["value", 70, 5], ["testAttrs", 73, 5]]);
-const pos$14 = nix.positions(here + "/checkAndMergeCompat.nix", [["bar", 83, 7]]);
-const pos$15 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 87, 9], ["msg", 88, 9]]);
-const pos$16 = nix.positions(here + "/checkAndMergeCompat.nix", [["expectedError", 86, 7]]);
-const pos$17 = nix.positions(here + "/checkAndMergeCompat.nix", [["outerTypeName", 80, 5], ["innerTypeName", 81, 5], ["value", 82, 5], ["testAttrs", 85, 5]]);
-const pos$18 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 98, 9], ["msg", 99, 9]]);
-const pos$19 = nix.positions(here + "/checkAndMergeCompat.nix", [["expectedError", 97, 7]]);
-const pos$20 = nix.positions(here + "/checkAndMergeCompat.nix", [["outerTypeName", 93, 5], ["innerTypeName", 94, 5], ["value", 95, 5], ["testAttrs", 96, 5]]);
-const pos$21 = nix.positions(here + "/checkAndMergeCompat.nix", [["expected", 113, 7]]);
-const pos$22 = nix.positions(here + "/checkAndMergeCompat.nix", [["outerTypeName", 106, 5], ["innerTypeName", 107, 5], ["value", 108, 5], ["testAttrs", 112, 5]]);
-const pos$23 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 128, 9], ["msg", 129, 9]]);
-const pos$24 = nix.positions(here + "/checkAndMergeCompat.nix", [["expectedError", 127, 7]]);
-const pos$25 = nix.positions(here + "/checkAndMergeCompat.nix", [["outerTypeName", 120, 5], ["innerTypeName", 121, 5], ["value", 122, 5], ["testAttrs", 126, 5]]);
-const pos$26 = nix.positions(here + "/checkAndMergeCompat.nix", [["foo", 137, 7]]);
-const pos$27 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 141, 9], ["msg", 142, 9]]);
-const pos$28 = nix.positions(here + "/checkAndMergeCompat.nix", [["expectedError", 140, 7]]);
-const pos$29 = nix.positions(here + "/checkAndMergeCompat.nix", [["outerTypeName", 134, 5], ["innerTypeName", 135, 5], ["value", 136, 5], ["testAttrs", 139, 5]]);
-const pos$30 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 153, 13]]);
-const pos$31 = nix.positions(here + "/checkAndMergeCompat.nix", [["nested", 152, 19]]);
-const pos$32 = nix.positions(here + "/checkAndMergeCompat.nix", [["options", 152, 11]]);
-const pos$33 = nix.positions(here + "/checkAndMergeCompat.nix", [["nested", 161, 9]]);
-const pos$34 = nix.positions(here + "/checkAndMergeCompat.nix", [["nested", 164, 9]]);
-const pos$35 = nix.positions(here + "/checkAndMergeCompat.nix", [["foo", 160, 7], ["bar", 163, 7]]);
-const pos$36 = nix.positions(here + "/checkAndMergeCompat.nix", [["nested", 170, 11]]);
-const pos$37 = nix.positions(here + "/checkAndMergeCompat.nix", [["nested", 173, 11]]);
-const pos$38 = nix.positions(here + "/checkAndMergeCompat.nix", [["foo", 169, 9], ["bar", 172, 9]]);
-const pos$39 = nix.positions(here + "/checkAndMergeCompat.nix", [["expected", 168, 7]]);
-const pos$40 = nix.positions(here + "/checkAndMergeCompat.nix", [["getType", 148, 5], ["outerTypeName", 157, 5], ["innerTypeName", 158, 5], ["value", 159, 5], ["testAttrs", 167, 5]]);
-const pos$41 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 186, 13]]);
-const pos$42 = nix.positions(here + "/checkAndMergeCompat.nix", [["nested", 185, 19]]);
-const pos$43 = nix.positions(here + "/checkAndMergeCompat.nix", [["options", 185, 11]]);
-const pos$44 = nix.positions(here + "/checkAndMergeCompat.nix", [["nested", 193, 9]]);
-const pos$45 = nix.positions(here + "/checkAndMergeCompat.nix", [["foo", 191, 7], ["bar", 192, 7]]);
-const pos$46 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 198, 9], ["msg", 199, 9]]);
-const pos$47 = nix.positions(here + "/checkAndMergeCompat.nix", [["expectedError", 197, 7]]);
-const pos$48 = nix.positions(here + "/checkAndMergeCompat.nix", [["outerTypeName", 179, 5], ["innerTypeName", 180, 5], ["getType", 181, 5], ["value", 190, 5], ["testAttrs", 196, 5]]);
-const pos$49 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 211, 13]]);
-const pos$50 = nix.positions(here + "/checkAndMergeCompat.nix", [["nested", 210, 19]]);
-const pos$51 = nix.positions(here + "/checkAndMergeCompat.nix", [["options", 210, 11]]);
-const pos$52 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 218, 9], ["msg", 219, 9]]);
-const pos$53 = nix.positions(here + "/checkAndMergeCompat.nix", [["expectedError", 217, 7]]);
-const pos$54 = nix.positions(here + "/checkAndMergeCompat.nix", [["outerTypeName", 204, 5], ["innerTypeName", 205, 5], ["getType", 206, 5], ["value", 215, 5], ["testAttrs", 216, 5]]);
-const pos$55 = nix.positions(here + "/checkAndMergeCompat.nix", [["expected", 232, 7]]);
-const pos$56 = nix.positions(here + "/checkAndMergeCompat.nix", [["outerTypeName", 226, 5], ["innerTypeName", 227, 5], ["getType", 229, 5], ["value", 230, 5], ["testAttrs", 231, 5]]);
-const pos$57 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 243, 9], ["msg", 244, 9]]);
-const pos$58 = nix.positions(here + "/checkAndMergeCompat.nix", [["expectedError", 242, 7]]);
-const pos$59 = nix.positions(here + "/checkAndMergeCompat.nix", [["outerTypeName", 236, 5], ["innerTypeName", 237, 5], ["getType", 239, 5], ["value", 240, 5], ["testAttrs", 241, 5]]);
-const pos$60 = nix.positions(here + "/checkAndMergeCompat.nix", [["bar", 254, 7]]);
-const pos$61 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 258, 9], ["msg", 259, 9]]);
-const pos$62 = nix.positions(here + "/checkAndMergeCompat.nix", [["expectedError", 257, 7]]);
-const pos$63 = nix.positions(here + "/checkAndMergeCompat.nix", [["outerTypeName", 249, 5], ["innerTypeName", 250, 5], ["getType", 252, 5], ["value", 253, 5], ["testAttrs", 256, 5]]);
-const pos$64 = nix.positions(here + "/checkAndMergeCompat.nix", [["bar", 270, 7], ["foo", 271, 7]]);
-const pos$65 = nix.positions(here + "/checkAndMergeCompat.nix", [["expected", 274, 7]]);
-const pos$66 = nix.positions(here + "/checkAndMergeCompat.nix", [["outerTypeName", 266, 5], ["innerTypeName", 267, 5], ["getType", 268, 5], ["value", 269, 5], ["testAttrs", 273, 5]]);
-const pos$67 = nix.positions(here + "/checkAndMergeCompat.nix", [["expected", 289, 7]]);
-const pos$68 = nix.positions(here + "/checkAndMergeCompat.nix", [["outerTypeName", 281, 5], ["innerTypeName", 282, 5], ["getType", 283, 5], ["value", 284, 5], ["testAttrs", 288, 5]]);
-const pos$69 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 305, 9], ["msg", 306, 9]]);
-const pos$70 = nix.positions(here + "/checkAndMergeCompat.nix", [["expectedError", 304, 7]]);
-const pos$71 = nix.positions(here + "/checkAndMergeCompat.nix", [["outerTypeName", 296, 5], ["innerTypeName", 297, 5], ["getType", 298, 5], ["value", 299, 5], ["testAttrs", 303, 5]]);
-const pos$72 = nix.positions(here + "/checkAndMergeCompat.nix", [["bar", 316, 9]]);
-const pos$73 = nix.positions(here + "/checkAndMergeCompat.nix", [["foo", 315, 7]]);
-const pos$74 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 321, 9], ["msg", 322, 9]]);
-const pos$75 = nix.positions(here + "/checkAndMergeCompat.nix", [["expectedError", 320, 7]]);
-const pos$76 = nix.positions(here + "/checkAndMergeCompat.nix", [["outerTypeName", 311, 5], ["innerTypeName", 312, 5], ["getType", 313, 5], ["value", 314, 5], ["testAttrs", 319, 5]]);
-const pos$77 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 333, 9], ["msg", 334, 9]]);
-const pos$78 = nix.positions(here + "/checkAndMergeCompat.nix", [["expectedError", 332, 7]]);
-const pos$79 = nix.positions(here + "/checkAndMergeCompat.nix", [["outerTypeName", 327, 5], ["innerTypeName", 328, 5], ["getType", 329, 5], ["value", 330, 5], ["testAttrs", 331, 5]]);
-const pos$80 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 347, 11]]);
-const pos$81 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 350, 11]]);
-const pos$82 = nix.positions(here + "/checkAndMergeCompat.nix", [["type", 353, 11]]);
-const pos$83 = nix.positions(here + "/checkAndMergeCompat.nix", [["attrs", 346, 17], ["list", 349, 17], ["either", 352, 17]]);
-const pos$84 = nix.positions(here + "/checkAndMergeCompat.nix", [["options", 346, 9]]);
-const pos$85 = nix.positions(here + "/checkAndMergeCompat.nix", [["foo", 358, 9]]);
-const pos$86 = nix.positions(here + "/checkAndMergeCompat.nix", [["attrs", 357, 7], ["list", 360, 7], ["either", 364, 7]]);
-const pos$87 = nix.positions(here + "/checkAndMergeCompat.nix", [["foo", 369, 11]]);
-const pos$88 = nix.positions(here + "/checkAndMergeCompat.nix", [["attrs", 368, 9], ["list", 371, 9], ["either", 375, 9]]);
-const pos$89 = nix.positions(here + "/checkAndMergeCompat.nix", [["expected", 367, 7]]);
-const pos$90 = nix.positions(here + "/checkAndMergeCompat.nix", [["outerTypeName", 341, 5], ["innerTypeName", 342, 5], ["getType", 343, 5], ["value", 356, 5], ["testAttrs", 366, 5]]);
-const pos$91 = nix.positions(here + "/checkAndMergeCompat.nix", [["attrsOf_str_ok", 67, 3], ["attrsOf_str_err_inner", 79, 3], ["attrsOf_str_err_outer", 92, 3], ["listOf_str_ok", 105, 3], ["listOf_str_err_inner", 119, 3], ["listOf_str_err_outer", 133, 3], ["attrsOf_submodule_ok", 147, 3], ["attrsOf_submodule_err_inner", 178, 3], ["attrsOf_submodule_err_outer", 203, 3], ["either_str_attrsOf_ok", 225, 3], ["either_str_attrsOf_err_1", 235, 3], ["either_str_attrsOf_err_2", 248, 3], ["coerce_attrsOf_str_to_listOf_str_run", 265, 3], ["coerce_attrsOf_str_to_listOf_str_final", 280, 3], ["coerce_attrsOf_str_to_listOf_err_coercer_input", 295, 3], ["coerce_attrsOf_str_to_listOf_err_coercer_ouput", 310, 3], ["coerce_str_to_int_coercer_ouput", 326, 3], ["submodule_with_ok", 340, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({}))));
   const currLibPath = nix.argOr($, "currLibPath", () => nix.path(here, "../."));
   const prevLibPath = nix.argOr($, "prevLibPath", () => nix.str`${nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "nixos",
       repo: "nixpkgs",
       rev: "bcf94dd3f07189b7475d823c8d67d08b58289905",
@@ -118,32 +28,32 @@ export default nix.lambda((args) => (() => {
     const value = nix.arg($_1, "value");
     const testAttrs = nix.arg($_1, "testAttrs");
     const evalModules = nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       call_v1: nix.thunk(() => nix.sel(lib_with_merge_v1, "evalModules")),
       call_v2: nix.thunk(() => nix.sel(lib_with_merge_v2, "evalModules")),
     }));
     const outerTypes = nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       outer_v1: nix.thunk(() => nix.sel(lib_with_merge_v1, "types")),
       outer_v2: nix.thunk(() => nix.sel(lib_with_merge_v2, "types")),
     }));
     const innerTypes = nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       inner_v1: nix.thunk(() => nix.sel(lib_with_merge_v1, "types")),
       inner_v2: nix.thunk(() => nix.sel(lib_with_merge_v2, "types")),
     }));
     return nix.app(nix.sel(lib, "mapAttrs"), (_) => (evalModules_1) => nix.app(nix.sel(lib, "mapAttrs"), (__1) => (outerTypes_1) => nix.app(nix.sel(lib, "mapAttrs"), (__2) => (innerTypes_1) => nix.attrsDyn({}, [
             [nix.str`test_${outerTypeName}_${innerTypeName}`, nix.thunk(() => nix.update(testAttrs, {
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               expr: nix.thunk(() => nix.sel(nix.app(evalModules_1, nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   modules: nix.thunk(() => [
                     (m) => ({
-                      [nix.POS]: pos$7,
+                      [nix.POS]: $pos[6],
                       options: nix.thunk(() => ({
-                        [nix.POS]: pos$6,
+                        [nix.POS]: $pos[5],
                         foo: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({
-                            [nix.POS]: pos$5,
+                            [nix.POS]: $pos[4],
                             type: nix.thunk(() => (nix.asBool(!nix.eq(getType, null)) ? nix.app(getType, outerTypes_1, innerTypes_1) : nix.app(nix.sel(outerTypes_1, nix.key(nix.force(outerTypeName))), nix.thunk(() => nix.sel(innerTypes_1, nix.key(nix.force(innerTypeName))))))),
                             default: value,
                           })))),
@@ -155,283 +65,295 @@ export default nix.lambda((args) => (() => {
           ]), innerTypes), outerTypes), evalModules);
   })(), formals$2);
   return {
-    [nix.POS]: pos$91,
+    [nix.POS]: $pos[90],
     attrsOf_str_ok: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         outerTypeName: "attrsOf",
         innerTypeName: "str",
-        value: nix.thunk(() => ({ [nix.POS]: pos$10, bar: "test" })),
+        value: nix.thunk(() => ({ [nix.POS]: $pos[9], bar: "test" })),
         testAttrs: nix.thunk(() => ({
-          [nix.POS]: pos$12,
-          expected: nix.thunk(() => ({ [nix.POS]: pos$11, bar: "test" })),
+          [nix.POS]: $pos[11],
+          expected: nix.thunk(() => ({ [nix.POS]: $pos[10], bar: "test" })),
         })),
       })))),
     attrsOf_str_err_inner: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         outerTypeName: "attrsOf",
         innerTypeName: "str",
-        value: nix.thunk(() => ({ [nix.POS]: pos$14, bar: 1n })),
+        value: nix.thunk(() => ({ [nix.POS]: $pos[13], bar: 1n })),
         testAttrs: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           expectedError: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             type: "ThrownError",
             msg: "A definition for option `foo.bar' is not of type `string'.*",
           })),
         })),
       })))),
     attrsOf_str_err_outer: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         outerTypeName: "attrsOf",
         innerTypeName: "str",
         value: nix.thunk(() => ["foo"]),
         testAttrs: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           expectedError: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             type: "ThrownError",
             msg: "A definition for option `foo' is not of type `attribute set of string'.*",
           })),
         })),
       })))),
     listOf_str_ok: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         outerTypeName: "listOf",
         innerTypeName: "str",
         value: nix.thunk(() => ["foo", "bar"]),
-        testAttrs: nix.thunk(() => ({ [nix.POS]: pos$21, expected: nix.thunk(() => ["foo", "bar"]) })),
+        testAttrs: nix.thunk(() => ({ [nix.POS]: $pos[20], expected: nix.thunk(() => ["foo", "bar"]) })),
       })))),
     listOf_str_err_inner: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         outerTypeName: "listOf",
         innerTypeName: "str",
         value: nix.thunk(() => ["foo", 1n]),
         testAttrs: nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           expectedError: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             type: "ThrownError",
             msg: "A definition for option `foo.\"\\[definition 1-entry 2\\]\"' is not of type `string'.",
           })),
         })),
       })))),
     listOf_str_err_outer: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         outerTypeName: "listOf",
         innerTypeName: "str",
-        value: nix.thunk(() => ({ [nix.POS]: pos$26, foo: 42n })),
+        value: nix.thunk(() => ({ [nix.POS]: $pos[25], foo: 42n })),
         testAttrs: nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           expectedError: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             type: "ThrownError",
             msg: "A definition for option `foo' is not of type `list of string'.*",
           })),
         })),
       })))),
     attrsOf_submodule_ok: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$40,
+        [nix.POS]: $pos[39],
         getType: (a) => (b) => nix.app(nix.sel(a, "attrsOf"), nix.thunk(() => nix.app(nix.sel(b, "submodule"), (m) => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               options: nix.thunk(() => ({
-                [nix.POS]: pos$31,
-                nested: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$30, type: nix.thunk(() => nix.sel(m, "lib", "types", "str")) })))),
+                [nix.POS]: $pos[30],
+                nested: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({
+                    [nix.POS]: $pos[29],
+                    type: nix.thunk(() => nix.sel(m, "lib", "types", "str")),
+                  })))),
               })),
             })))),
         outerTypeName: "attrsOf",
         innerTypeName: "submodule",
         value: nix.thunk(() => ({
-          [nix.POS]: pos$35,
-          foo: nix.thunk(() => ({ [nix.POS]: pos$33, nested: "test1" })),
-          bar: nix.thunk(() => ({ [nix.POS]: pos$34, nested: "test2" })),
+          [nix.POS]: $pos[34],
+          foo: nix.thunk(() => ({ [nix.POS]: $pos[32], nested: "test1" })),
+          bar: nix.thunk(() => ({ [nix.POS]: $pos[33], nested: "test2" })),
         })),
         testAttrs: nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           expected: nix.thunk(() => ({
-            [nix.POS]: pos$38,
-            foo: nix.thunk(() => ({ [nix.POS]: pos$36, nested: "test1" })),
-            bar: nix.thunk(() => ({ [nix.POS]: pos$37, nested: "test2" })),
+            [nix.POS]: $pos[37],
+            foo: nix.thunk(() => ({ [nix.POS]: $pos[35], nested: "test1" })),
+            bar: nix.thunk(() => ({ [nix.POS]: $pos[36], nested: "test2" })),
           })),
         })),
       })))),
     attrsOf_submodule_err_inner: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$48,
+        [nix.POS]: $pos[47],
         outerTypeName: "attrsOf",
         innerTypeName: "submodule",
         getType: (a) => (b) => nix.app(nix.sel(a, "attrsOf"), nix.thunk(() => nix.app(nix.sel(b, "submodule"), (m) => ({
-              [nix.POS]: pos$43,
+              [nix.POS]: $pos[42],
               options: nix.thunk(() => ({
-                [nix.POS]: pos$42,
-                nested: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$41, type: nix.thunk(() => nix.sel(m, "lib", "types", "str")) })))),
+                [nix.POS]: $pos[41],
+                nested: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({
+                    [nix.POS]: $pos[40],
+                    type: nix.thunk(() => nix.sel(m, "lib", "types", "str")),
+                  })))),
               })),
             })))),
         value: nix.thunk(() => ({
-          [nix.POS]: pos$45,
+          [nix.POS]: $pos[44],
           foo: nix.thunk(() => [1n]),
-          bar: nix.thunk(() => ({ [nix.POS]: pos$44, nested: "test2" })),
+          bar: nix.thunk(() => ({ [nix.POS]: $pos[43], nested: "test2" })),
         })),
         testAttrs: nix.thunk(() => ({
-          [nix.POS]: pos$47,
+          [nix.POS]: $pos[46],
           expectedError: nix.thunk(() => ({
-            [nix.POS]: pos$46,
+            [nix.POS]: $pos[45],
             type: "ThrownError",
             msg: "A definition for option `foo.foo' is not of type `submodule'.*",
           })),
         })),
       })))),
     attrsOf_submodule_err_outer: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$54,
+        [nix.POS]: $pos[53],
         outerTypeName: "attrsOf",
         innerTypeName: "submodule",
         getType: (a) => (b) => nix.app(nix.sel(a, "attrsOf"), nix.thunk(() => nix.app(nix.sel(b, "submodule"), (m) => ({
-              [nix.POS]: pos$51,
+              [nix.POS]: $pos[50],
               options: nix.thunk(() => ({
-                [nix.POS]: pos$50,
-                nested: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$49, type: nix.thunk(() => nix.sel(m, "lib", "types", "str")) })))),
+                [nix.POS]: $pos[49],
+                nested: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({
+                    [nix.POS]: $pos[48],
+                    type: nix.thunk(() => nix.sel(m, "lib", "types", "str")),
+                  })))),
               })),
             })))),
         value: nix.thunk(() => [123n]),
         testAttrs: nix.thunk(() => ({
-          [nix.POS]: pos$53,
+          [nix.POS]: $pos[52],
           expectedError: nix.thunk(() => ({
-            [nix.POS]: pos$52,
+            [nix.POS]: $pos[51],
             type: "ThrownError",
             msg: "A definition for option `foo' is not of type `attribute set of \\(submodule\\).*",
           })),
         })),
       })))),
     either_str_attrsOf_ok: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$56,
+        [nix.POS]: $pos[55],
         outerTypeName: "either",
         innerTypeName: "str_or_attrsOf_str",
         getType: (a) => (b) => nix.app(nix.sel(a, "either"), nix.thunk(() => nix.sel(b, "str")), nix.thunk(() => nix.app(nix.sel(b, "attrsOf"), nix.thunk(() => nix.sel(a, "str"))))),
         value: "string value",
-        testAttrs: nix.thunk(() => ({ [nix.POS]: pos$55, expected: "string value" })),
+        testAttrs: nix.thunk(() => ({ [nix.POS]: $pos[54], expected: "string value" })),
       })))),
     either_str_attrsOf_err_1: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$59,
+        [nix.POS]: $pos[58],
         outerTypeName: "either",
         innerTypeName: "str_or_attrsOf_str",
         getType: (a) => (b) => nix.app(nix.sel(a, "either"), nix.thunk(() => nix.sel(b, "str")), nix.thunk(() => nix.app(nix.sel(b, "attrsOf"), nix.thunk(() => nix.sel(a, "str"))))),
         value: 1n,
         testAttrs: nix.thunk(() => ({
-          [nix.POS]: pos$58,
+          [nix.POS]: $pos[57],
           expectedError: nix.thunk(() => ({
-            [nix.POS]: pos$57,
+            [nix.POS]: $pos[56],
             type: "ThrownError",
             msg: "A definition for option `foo' is not of type `string or attribute set of string'.*",
           })),
         })),
       })))),
     either_str_attrsOf_err_2: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$63,
+        [nix.POS]: $pos[62],
         outerTypeName: "either",
         innerTypeName: "str_or_attrsOf_str",
         getType: (a) => (b) => nix.app(nix.sel(a, "either"), nix.thunk(() => nix.sel(b, "str")), nix.thunk(() => nix.app(nix.sel(b, "attrsOf"), nix.thunk(() => nix.sel(a, "str"))))),
-        value: nix.thunk(() => ({ [nix.POS]: pos$60, bar: 1n })),
+        value: nix.thunk(() => ({ [nix.POS]: $pos[59], bar: 1n })),
         testAttrs: nix.thunk(() => ({
-          [nix.POS]: pos$62,
+          [nix.POS]: $pos[61],
           expectedError: nix.thunk(() => ({
-            [nix.POS]: pos$61,
+            [nix.POS]: $pos[60],
             type: "ThrownError",
             msg: "A definition for option `foo.bar' is not of type `string'.*",
           })),
         })),
       })))),
     coerce_attrsOf_str_to_listOf_str_run: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$66,
+        [nix.POS]: $pos[65],
         outerTypeName: "coercedTo",
         innerTypeName: "attrsOf_str->listOf_str",
         getType: (a) => (b) => nix.app(nix.sel(a, "coercedTo"), nix.thunk(() => nix.app(nix.sel(b, "attrsOf"), nix.thunk(() => nix.sel(b, "str")))), nix.thunk(() => nix.builtins.attrValues), nix.thunk(() => nix.app(nix.sel(b, "listOf"), nix.thunk(() => nix.sel(b, "str"))))),
-        value: nix.thunk(() => ({ [nix.POS]: pos$64, bar: "test1", foo: "test2" })),
-        testAttrs: nix.thunk(() => ({ [nix.POS]: pos$65, expected: nix.thunk(() => ["test1", "test2"]) })),
+        value: nix.thunk(() => ({ [nix.POS]: $pos[63], bar: "test1", foo: "test2" })),
+        testAttrs: nix.thunk(() => ({ [nix.POS]: $pos[64], expected: nix.thunk(() => ["test1", "test2"]) })),
       })))),
     coerce_attrsOf_str_to_listOf_str_final: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$68,
+        [nix.POS]: $pos[67],
         outerTypeName: "coercedTo",
         innerTypeName: "attrsOf_str->listOf_str",
         getType: (a) => (b) => nix.app(nix.sel(a, "coercedTo"), nix.thunk(() => nix.app(nix.sel(b, "attrsOf"), nix.thunk(() => nix.sel(b, "str")))), nix.thunk(() => nix.builtins.abort("This shouldnt run")), nix.thunk(() => nix.app(nix.sel(b, "listOf"), nix.thunk(() => nix.sel(b, "str"))))),
         value: nix.thunk(() => ["test1", "test2"]),
-        testAttrs: nix.thunk(() => ({ [nix.POS]: pos$67, expected: nix.thunk(() => ["test1", "test2"]) })),
+        testAttrs: nix.thunk(() => ({ [nix.POS]: $pos[66], expected: nix.thunk(() => ["test1", "test2"]) })),
       })))),
     coerce_attrsOf_str_to_listOf_err_coercer_input: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$71,
+        [nix.POS]: $pos[70],
         outerTypeName: "coercedTo",
         innerTypeName: "attrsOf_str->listOf_str",
         getType: (a) => (b) => nix.app(nix.sel(a, "coercedTo"), nix.thunk(() => nix.app(nix.sel(b, "attrsOf"), nix.thunk(() => nix.sel(b, "str")))), nix.thunk(() => nix.builtins.attrValues), nix.thunk(() => nix.app(nix.sel(b, "listOf"), nix.thunk(() => nix.sel(b, "str"))))),
         value: nix.thunk(() => [nix.thunk(() => ({})), nix.thunk(() => ({}))]),
         testAttrs: nix.thunk(() => ({
-          [nix.POS]: pos$70,
+          [nix.POS]: $pos[69],
           expectedError: nix.thunk(() => ({
-            [nix.POS]: pos$69,
+            [nix.POS]: $pos[68],
             type: "ThrownError",
             msg: "A definition for option `foo.\"\\[definition 1-entry 1\\]\"' is not of type `string'.*",
           })),
         })),
       })))),
     coerce_attrsOf_str_to_listOf_err_coercer_ouput: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$76,
+        [nix.POS]: $pos[75],
         outerTypeName: "coercedTo",
         innerTypeName: "attrsOf_str->listOf_str",
         getType: (a) => (b) => nix.app(nix.sel(a, "coercedTo"), nix.thunk(() => nix.app(nix.sel(b, "attrsOf"), nix.thunk(() => nix.sel(b, "str")))), nix.thunk(() => nix.builtins.attrValues), nix.thunk(() => nix.app(nix.sel(b, "listOf"), nix.thunk(() => nix.sel(b, "str"))))),
-        value: nix.thunk(() => ({ [nix.POS]: pos$73, foo: nix.thunk(() => ({ [nix.POS]: pos$72, bar: 1n })) })),
+        value: nix.thunk(() => ({
+          [nix.POS]: $pos[72],
+          foo: nix.thunk(() => ({ [nix.POS]: $pos[71], bar: 1n })),
+        })),
         testAttrs: nix.thunk(() => ({
-          [nix.POS]: pos$75,
+          [nix.POS]: $pos[74],
           expectedError: nix.thunk(() => ({
-            [nix.POS]: pos$74,
+            [nix.POS]: $pos[73],
             type: "ThrownError",
             msg: "A definition for option `foo.\"\\[definition 1-entry 1\\]\"' is not of type `string'.*",
           })),
         })),
       })))),
     coerce_str_to_int_coercer_ouput: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$79,
+        [nix.POS]: $pos[78],
         outerTypeName: "coercedTo",
         innerTypeName: "int->str",
         getType: (a) => (b) => nix.app(nix.sel(a, "coercedTo"), nix.thunk(() => nix.sel(b, "int")), nix.builtins.toString, nix.thunk(() => nix.sel(a, "str"))),
         value: [],
         testAttrs: nix.thunk(() => ({
-          [nix.POS]: pos$78,
+          [nix.POS]: $pos[77],
           expectedError: nix.thunk(() => ({
-            [nix.POS]: pos$77,
+            [nix.POS]: $pos[76],
             type: "ThrownError",
             msg: "A definition for option `foo' is not of type `string or signed integer convertible to it.*",
           })),
         })),
       })))),
     submodule_with_ok: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        [nix.POS]: pos$90,
+        [nix.POS]: $pos[89],
         outerTypeName: "submoduleWith",
         innerTypeName: "mixed_types",
         getType: (a) => (b) => nix.app(nix.sel(a, "submodule"), (m) => ({
-            [nix.POS]: pos$84,
+            [nix.POS]: $pos[83],
             options: nix.thunk(() => ({
-              [nix.POS]: pos$83,
+              [nix.POS]: $pos[82],
               attrs: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({
-                  [nix.POS]: pos$80,
+                  [nix.POS]: $pos[79],
                   type: nix.thunk(() => nix.app(nix.sel(b, "attrsOf"), nix.thunk(() => nix.sel(b, "str")))),
                 })))),
               list: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({
-                  [nix.POS]: pos$81,
+                  [nix.POS]: $pos[80],
                   type: nix.thunk(() => nix.app(nix.sel(b, "listOf"), nix.thunk(() => nix.sel(b, "str")))),
                 })))),
               either: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({
-                  [nix.POS]: pos$82,
+                  [nix.POS]: $pos[81],
                   type: nix.thunk(() => nix.app(nix.sel(b, "either"), nix.thunk(() => nix.sel(a, "str")), nix.thunk(() => nix.sel(a, "int")))),
                 })))),
             })),
           })),
         value: nix.thunk(() => ({
-          [nix.POS]: pos$86,
-          attrs: nix.thunk(() => ({ [nix.POS]: pos$85, foo: "bar" })),
+          [nix.POS]: $pos[85],
+          attrs: nix.thunk(() => ({ [nix.POS]: $pos[84], foo: "bar" })),
           list: nix.thunk(() => ["foo", "bar"]),
           either: 123n,
         })),
         testAttrs: nix.thunk(() => ({
-          [nix.POS]: pos$89,
+          [nix.POS]: $pos[88],
           expected: nix.thunk(() => ({
-            [nix.POS]: pos$88,
-            attrs: nix.thunk(() => ({ [nix.POS]: pos$87, foo: "bar" })),
+            [nix.POS]: $pos[87],
+            attrs: nix.thunk(() => ({ [nix.POS]: $pos[86], foo: "bar" })),
             list: nix.thunk(() => ["foo", "bar"]),
             either: 123n,
           })),

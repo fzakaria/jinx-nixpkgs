@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ppx.nix", [[["description", 25, 5], ["license", 26, 5]], [["pname", 10, 3], ["version", 11, 17], ["src", 11, 25], ["minimalOCamlVersion", 13, 3], ["propagatedBuildInputs", 15, 3], ["checkInputs", 20, 3], ["doCheck", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fmt: false, lun: false, ppxlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ppx.nix", [["description", 25, 5], ["license", 26, 5]]);
-const pos$2 = nix.positions(here + "/ppx.nix", [["pname", 10, 3], ["version", 11, 17], ["src", 11, 25], ["minimalOCamlVersion", 13, 3], ["propagatedBuildInputs", 15, 3], ["checkInputs", 20, 3], ["doCheck", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lun = nix.arg($, "lun");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ppx_lun",
       version: nix.thunk(() => nix.attr(lun, "version")),
       src: nix.thunk(() => nix.attr(lun, "src")),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [fmt]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(lun, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Optics with lun package and PPX",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

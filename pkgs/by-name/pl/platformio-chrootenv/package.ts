@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["license", 52, 5], ["platforms", 53, 5]], [["pname", 38, 3], ["version", 39, 29], ["targetPkgs", 41, 3], ["meta", 45, 3], ["extraInstallCommands", 56, 3], ["runScript", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildFHSEnv: false, "platformio-core": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["license", 52, 5], ["platforms", 53, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 29], ["targetPkgs", 41, 3], ["meta", 45, 3], ["extraInstallCommands", 56, 3], ["runScript", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,12 +38,12 @@ export default nix.lambda((args) => (() => {
     })());
   })();
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "platformio",
       version: nix.thunk(() => nix.attr(platformio_core, "version")),
       targetPkgs: pio_pkgs,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Open source ecosystem for IoT development",
         homepage: "https://platformio.org",
         maintainers: nix.thunk(() => (() => {

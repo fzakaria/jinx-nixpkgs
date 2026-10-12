@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["aarch64", 39, 7], ["x86_64", 40, 7]], [["darwin", 46, 7], ["linux", 47, 7]], [["url", 70, 5], ["hash", 71, 5]], [["url", 86, 7], ["hash", 87, 22], ["curlOpts", 88, 7]], [["jre", 185, 9]], [["package", 190, 11], ["command", 191, 11], ["version", 192, 11]], [["version", 189, 15]], [["home", 188, 9], ["tests", 189, 9]], [["bundle", 198, 9]], [["description", 202, 7], ["longDescription", 203, 7], ["homepage", 207, 7], ["license", 208, 7], ["mainProgram", 209, 7], ["teams", 210, 7], ["platforms", 211, 7], ["sourceProvenance", 212, 7]], [["pname", 79, 5], ["version", 80, 5], ["__structuredAttrs", 82, 5], ["strictDeps", 83, 5], ["src", 85, 5], ["nativeBuildInputs", 91, 5], ["buildInputs", 99, 5], ["autoPatchelfIgnoreMissingDeps", 115, 5], ["installPhase", 124, 5], ["preFixup", 148, 5], ["postFixup", 179, 5], ["passthru", 183, 5], ["meta", 201, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, setJavaClassPath: false, testers: false, enableJavaFX: true, dists: false, unzip: false, autoPatchelfHook: false, makeWrapper: false, "alsa-lib": false, fontconfig: false, freetype: false, zlib: false, libxxf86vm: false, libxtst: false, libxrender: false, libxi: false, libxext: false, libx11: false, cups: false, gtkSupport: true, cairo: false, glib: false, gtk2: false, gtk3: false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["aarch64", 39, 7], ["x86_64", 40, 7]]);
-const pos$2 = nix.positions(here + "/common.nix", [["darwin", 46, 7], ["linux", 47, 7]]);
-const pos$3 = nix.positions(here + "/common.nix", [["url", 70, 5], ["hash", 71, 5]]);
-const pos$4 = nix.positions(here + "/common.nix", [["url", 86, 7], ["hash", 87, 22], ["curlOpts", 88, 7]]);
-const pos$5 = nix.positions(here + "/common.nix", [["jre", 185, 9]]);
-const pos$6 = nix.positions(here + "/common.nix", [["package", 190, 11], ["command", 191, 11], ["version", 192, 11]]);
-const pos$7 = nix.positions(here + "/common.nix", [["version", 189, 15]]);
-const pos$8 = nix.positions(here + "/common.nix", [["home", 188, 9], ["tests", 189, 9]]);
-const pos$9 = nix.positions(here + "/common.nix", [["bundle", 198, 9]]);
-const pos$10 = nix.positions(here + "/common.nix", [["description", 202, 7], ["longDescription", 203, 7], ["homepage", 207, 7], ["license", 208, 7], ["mainProgram", 209, 7], ["teams", 210, 7], ["platforms", 211, 7], ["sourceProvenance", 212, 7]]);
-const pos$11 = nix.positions(here + "/common.nix", [["pname", 79, 5], ["version", 80, 5], ["__structuredAttrs", 82, 5], ["strictDeps", 83, 5], ["src", 85, 5], ["nativeBuildInputs", 91, 5], ["buildInputs", 99, 5], ["autoPatchelfIgnoreMissingDeps", 115, 5], ["installPhase", 124, 5], ["preFixup", 148, 5], ["postFixup", 179, 5], ["passthru", 183, 5], ["meta", 201, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const ffmpeg = nix.arg($, "ffmpeg");
   const dist = nix.thunk(() => nix.selOr(dists, () => nix.builtins.head(nix.thunk(() => nix.builtins.attrValues(dists))), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
-  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, aarch64: "aarch64", x86_64: "x64" }, () => "unsupported", nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"))));
-  const platform = nix.thunk(() => nix.selOr({ [nix.POS]: pos$2, darwin: "macosx", linux: "linux" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name"))));
+  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], aarch64: "aarch64", x86_64: "x64" }, () => "unsupported", nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"))));
+  const platform = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[1], darwin: "macosx", linux: "linux" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name"))));
   const runtimeDependencies = nix.thunk(() => nix.concat([cups], nix.concat(nix.app(nix.sel(lib, "optionals"), gtkSupport, nix.thunk(() => [cairo, glib, gtk3])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(gtkSupport) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(dist, "jdkVersion")), "17")))), nix.thunk(() => [gtk2])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(enableJavaFX))), nix.thunk(() => [nix.thunk(() => nix.sel(ffmpeg, "lib"))]))))));
   const runtimeLibraryPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), runtimeDependencies));
   const jce_policies = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://web.archive.org/web/20211126120343/http://cdn.azul.com/zcek/bin/ZuluJCEPolicies.zip",
       hash: "sha256-gCGii4ysQbRPFCH9IQoKCCL8r4jWLS5wo1sv9iioZ1o=",
     }))));
@@ -62,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const strictDeps = true;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://cdn.azul.com/zulu/bin/zulu${nix.sel(dist, "zuluVersion")}-${javaPackage}${nix.sel(dist, "jdkVersion")}-${platform}_${arch}.tar.gz`),
           hash: nix.thunk(() => nix.attr(dist, "hash")),
           curlOpts: "-H Referer:https://www.azul.com/downloads/zulu/",
@@ -119,24 +109,24 @@ for bin in $( find "$out" -executable -type f -not -name jspawnhelper ); do
 done
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "find \"$out\" -name libfontmanager.so -exec \\\n  patchelf --add-needed libfontconfig.so {} \\;\n")));
       const postFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -nsf $bundle/Contents/Home/man $out/share/man\n"));
-      const passthru = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), isJdk8, nix.thunk(() => ({ [nix.POS]: pos$5, jre: jdk }))), nix.update({
-        [nix.POS]: pos$8,
+      const passthru = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), isJdk8, nix.thunk(() => ({ [nix.POS]: $pos[4], jre: jdk }))), nix.update({
+        [nix.POS]: $pos[7],
         home: jdk,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               package: jdk,
               command: "java -version",
               version: nix.thunk(() => nix.str`openjdk version \\""${(nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "major"), version), "8")) ? "1.8" : nix.app(nix.sel(lib, "versions", "major"), version))}"`),
             })))),
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           bundle: nix.thunk(() => nix.str`${jdk}/Library/Java/JavaVirtualMachines/zulu-${nix.app(nix.sel(lib, "versions", "major"), version)}.jdk`),
         }))))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Certified builds of OpenJDK",
         longDescription: "Certified builds of OpenJDK that can be deployed across multiple\noperating systems, containers, hypervisors and Cloud platforms.\n",
         homepage: "https://www.azul.com/products/zulu/",
@@ -153,7 +143,7 @@ done
         })()),
       }));
       return {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         pname,
         version,
         __structuredAttrs,

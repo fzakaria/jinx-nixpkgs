@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["updateScript", 37, 12]], [["version", 9, 22], ["src", 9, 30], ["meta", 9, 34], ["pname", 11, 3], ["nativeBuildInputs", 13, 3], ["buildPhase", 15, 3], ["outputs", 23, 3], ["installPhase", 28, 3], ["passthru", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, "fasm-bin": false, isx86_64: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["updateScript", 37, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 9, 22], ["src", 9, 30], ["meta", 9, 34], ["pname", 11, 3], ["nativeBuildInputs", 13, 3], ["buildPhase", 15, 3], ["outputs", 23, 3], ["installPhase", 28, 3], ["passthru", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fasm_bin = nix.arg($, "fasm-bin");
   const isx86_64 = nix.arg($, "isx86_64");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(fasm_bin, "version")),
       src: nix.thunk(() => nix.attr(fasm_bin, "src")),
       meta: nix.thunk(() => nix.attr(fasm_bin, "meta")),
@@ -28,7 +27,7 @@ done
       outputs: nix.thunk(() => ["out", "doc"]),
       installPhase: "install -Dt $out/bin fasm tools/libc/fasm-*\n\ndocs=$doc/share/doc/fasm\nmkdir -p $docs\ncp -r examples/ *.txt tools/fas.txt $docs\ncp tools/readme.txt $docs/tools.txt\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.sel(fasm_bin, "updateScript")),
       })),
     })));

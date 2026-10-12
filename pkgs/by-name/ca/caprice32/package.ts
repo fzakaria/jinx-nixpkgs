@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 23, 5], ["rev", 24, 5], ["owner", 25, 5], ["sha256", 26, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["patches", 41, 3], ["makeFlags", 46, 3], ["postInstall", 53, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "desktop-file-utils": false, libGLU: false, libpng: false, "pkg-config": false, SDL: false, freetype: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 23, 5], ["rev", 24, 5], ["owner", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["patches", 41, 3], ["makeFlags", 46, 3], ["postInstall", 53, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const freetype = nix.arg($, "freetype");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "caprice32",
       version: "4.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "caprice32",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           owner: "ColinPitrat",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/share/icons/\nmv $out/share/caprice32/resources/freedesktop/caprice32.png $out/share/icons/\nmv $out/share/caprice32/resources/freedesktop/emulators.png $out/share/icons/\n\ndesktop-file-install --dir $out/share/applications \\\n  $out/share/caprice32/resources/freedesktop/caprice32.desktop\n\ndesktop-file-install --dir $out/share/desktop-directories \\\n  $out/share/caprice32/resources/freedesktop/Emulators.directory\n\ninstall -Dm644 $out/share/caprice32/resources/freedesktop/caprice32.menu -t $out/etc/xdg/menus/applications-merged/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Complete emulation of CPC464, CPC664 and CPC6128",
         homepage: "https://github.com/ColinPitrat/caprice32",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

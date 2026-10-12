@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["packageName", 57, 7]], [["updateScript", 56, 5]], [["homepage", 62, 5], ["changelog", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["teams", 66, 5], ["license", 67, 5], ["platforms", 68, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 44, 3], ["passthru", 55, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, meson: false, fetchurl: false, python3: false, "pkg-config": false, gtk4: false, glib: false, gtksourceview5: false, "gsettings-desktop-schemas": false, wrapGAppsHook4: false, ninja: false, gnome: false, icu: false, itstool: false, libadwaita: false, libspelling: false, "editorconfig-core-c": false, libxml2: false, "desktop-file-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["changelog", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["teams", 66, 5], ["license", 67, 5], ["platforms", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 44, 3], ["passthru", 55, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-text-editor",
       version: "50.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-text-editor/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-text-editor-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-9oA2sJ03j6qIO/6Tbkecb/NwJ8L/7RAdr5Et9wxR0OY=",
         })))),
@@ -61,11 +57,11 @@ export default nix.lambda((args) => (() => {
         editorconfig_core_c,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-text-editor" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-text-editor" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-text-editor",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-text-editor/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Text Editor for GNOME",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["pkg", 25, 5], ["data", 26, 5]], [["updateScript", 40, 12]], [["homepage", 43, 5], ["changelog", 44, 5], ["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["sourceProvenance", 48, 5], ["platforms", 52, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["mitmCache", 24, 3], ["__darwinAllowLocalNetworking", 29, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["installPhase", 34, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gradle_8: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg", 25, 5], ["data", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 40, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 43, 5], ["changelog", 44, 5], ["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["sourceProvenance", 48, 5], ["platforms", 52, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["mitmCache", 24, 3], ["__darwinAllowLocalNetworking", 29, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["installPhase", 34, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const gradle = gradle_8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "apple-identity-provider-keycloak",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "klausbetz",
           repo: "apple-identity-provider-keycloak",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [gradle]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pkg: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -42,11 +38,11 @@ install -Dm444 -t "$out" build/libs/apple-identity-provider-${nix.sel(finalAttrs
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/klausbetz/apple-identity-provider-keycloak",
         changelog: nix.thunk(() => nix.str`https://github.com/klausbetz/apple-identity-provider-keycloak/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Keycloak identity provider extension for Sign in with Apple",

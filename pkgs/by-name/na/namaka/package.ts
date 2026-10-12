@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["GEN_ARTIFACTS", 33, 5], ["RUSTONIG_SYSTEM_LIBONIG", 34, 5]], [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["env", 32, 3], ["postInstall", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, "pkg-config": false, oniguruma: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GEN_ARTIFACTS", 33, 5], ["RUSTONIG_SYSTEM_LIBONIG", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["env", 32, 3], ["postInstall", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const oniguruma = nix.arg($, "oniguruma");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "namaka",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nix-community",
           repo: "namaka",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,10 +27,14 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-0Hblz7Ri7QxWXDz9z235cNUYb0W/2IPA7E4AreisY9c=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => [oniguruma]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GEN_ARTIFACTS: "artifacts", RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        GEN_ARTIFACTS: "artifacts",
+        RUSTONIG_SYSTEM_LIBONIG: true,
+      })),
       postInstall: "installManPage artifacts/*.1\ninstallShellCompletion artifacts/namaka.{bash,fish} --zsh artifacts/_namaka\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Snapshot testing tool for Nix based on haumea",
         mainProgram: "namaka",
         homepage: "https://github.com/nix-community/namaka",

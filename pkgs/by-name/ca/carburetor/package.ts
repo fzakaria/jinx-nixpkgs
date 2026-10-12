@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5]], [["pname", 21, 3], ["version", 22, 11], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["dependencies", 49, 3], ["dontWrapGApps", 55, 3], ["preFixup", 57, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, fetchpatch2: false, python3Packages: false, appstream: false, "desktop-file-utils": false, "gobject-introspection": false, "pkg-config": false, meson: false, wrapGAppsHook4: false, libadwaita: false, tractor: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 11], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["dependencies", 49, 3], ["dontWrapGApps", 55, 3], ["preFixup", 57, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const tractor = nix.arg($, "tractor");
   const version = "5.1.1";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "carburetor",
       version: version,
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "framagit.org",
           owner: "tractor",
           repo: "carburetor",
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "substituteInPlace $out/share/applications/io.frama.tractor.carburetor.desktop \\\n  --replace-fail \"Exec=gapplication launch io.frama.tractor.carburetor\" \"Exec=$out/bin/carburetor\"\nmakeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://framagit.org/tractor/carburetor",
         description: "Graphical settings app for Tractor in GTK",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

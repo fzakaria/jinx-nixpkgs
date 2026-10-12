@@ -2,11 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mix-release.nix", [[["MIX_ENV", 147, 9], ["MIX_TARGET", 148, 9], ["MIX_BUILD_PREFIX", 149, 9], ["MIX_DEBUG", 150, 9], ["HEX_OFFLINE", 151, 9], ["DEBUG", 153, 9], ["MIX_REBAR", 156, 9], ["MIX_REBAR3", 157, 9], ["ERL_COMPILER_OPTIONS", 159, 9], ["LANG", 165, 9], ["LC_CTYPE", 166, 9]], [["nativeBuildInputs", 108, 7], ["buildInputs", 133, 7], ["__structuredAttrs", 141, 7], ["strictDeps", 142, 7], ["__darwinAllowLocalNetworking", 144, 7], ["env", 146, 7], ["erlang", 170, 15], ["mixReleaseRuntimePath", 172, 7]], [["constructDrv", 30, 3], ["excludeDrvArgNames", 32, 3], ["extendDrvArgs", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, bashNonInteractive: false, elixir: false, erlang: false, hex: false, git: false, rebar: false, rebar3: false, findutils: false, ripgrep: false, bbe: false, makeWrapper: false, writableTmpDirAsHomeHook: false, coreutils: false, gnused: false, gnugrep: false, gawk: false, mixBuildDirHook: false, mixCompileHook: false, mixDepsCompileHook: false, mixEscriptSetupHook: false, mixFodDepsSetupHook: false, mixNixDepsSetupHook: false, mixReleaseSetupHook: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, src: false, nativeBuildInputs: true, buildInputs: true, meta: true, enableDebugInfo: true, mixEnv: true, mixTarget: true, compileFlags: true, mixCompileFlags: true, mixReleaseName: true, escriptBinName: true, erlangCompilerOptions: true, erlangDeterministicBuilds: true, mixFodDeps: true, mixNixDeps: true, removeCookie: true, stripDebug: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mix-release.nix", [["MIX_ENV", 147, 9], ["MIX_TARGET", 148, 9], ["MIX_BUILD_PREFIX", 149, 9], ["MIX_DEBUG", 150, 9], ["HEX_OFFLINE", 151, 9], ["DEBUG", 153, 9], ["MIX_REBAR", 156, 9], ["MIX_REBAR3", 157, 9], ["ERL_COMPILER_OPTIONS", 159, 9], ["LANG", 165, 9], ["LC_CTYPE", 166, 9]]);
-const pos$2 = nix.positions(here + "/mix-release.nix", [["nativeBuildInputs", 108, 7], ["buildInputs", 133, 7], ["__structuredAttrs", 141, 7], ["strictDeps", 142, 7], ["__darwinAllowLocalNetworking", 144, 7], ["env", 146, 7], ["erlang", 170, 15], ["mixReleaseRuntimePath", 172, 7]]);
-const pos$3 = nix.positions(here + "/mix-release.nix", [["constructDrv", 30, 3], ["excludeDrvArgNames", 32, 3], ["extendDrvArgs", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const mixNixDepsSetupHook = nix.arg($, "mixNixDepsSetupHook");
   const mixReleaseSetupHook = nix.arg($, "mixReleaseSetupHook");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["compileFlags", "erlangCompilerOptions"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
         nix.assert_((!nix.asBool(stripDebug) || nix.asBool(!nix.asBool(enableDebugInfo))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/beam-modules/mix-release.nix:105:5");
         nix.assert_((!nix.asBool(!nix.eq(escriptBinName, null)) || nix.asBool(nix.eq(mixReleaseName, ""))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/beam-modules/mix-release.nix:106:5");
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, nix.concat([
             erlang,
             elixir,
@@ -87,7 +85,7 @@ export default nix.lambda((args) => (() => {
           strictDeps: true,
           __darwinAllowLocalNetworking: true,
           env: nix.thunk(() => nix.update({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             MIX_ENV: mixEnv,
             MIX_TARGET: mixTarget,
             MIX_BUILD_PREFIX: nix.thunk(() => nix.add((nix.asBool(nix.eq(mixTarget, "host")) ? "" : nix.str`${mixTarget}_`), nix.str`${mixEnv}`)),

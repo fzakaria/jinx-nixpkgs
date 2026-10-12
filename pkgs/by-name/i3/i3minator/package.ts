@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["LC_ALL", 20, 7]], [["description", 38, 5], ["mainProgram", 39, 5], ["longDescription", 40, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["env", 20, 3], ["buildInputs", 21, 3], ["build-system", 23, 3], ["dependencies", 27, 3], ["doCheck", 33, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, glibcLocales: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LC_ALL", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["mainProgram", 39, 5], ["longDescription", 40, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["env", 20, 3], ["buildInputs", 21, 3], ["build-system", 23, 3], ["dependencies", 27, 3], ["doCheck", 33, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const glibcLocales = nix.arg($, "glibcLocales");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "i3minator",
       version: "0.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "carlesso",
           repo: "i3minator",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "07dic5d2m0zw0psginpl43xn0mpxw7wilj49d02knz69f7c416lm",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LC_ALL: "en_US.UTF-8" })),
       buildInputs: nix.thunk(() => [glibcLocales]),
       "build-system": nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "setuptools"))]),
       dependencies: nix.thunk(() => [
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["i3minator"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "i3 project manager similar to tmuxinator",
         mainProgram: "i3minator",
         longDescription: "A simple \"workspace manager\" for i3. It allows to quickly\nmanage workspaces defining windows and their layout. The\nproject is inspired by tmuxinator and uses i3-py.\n",

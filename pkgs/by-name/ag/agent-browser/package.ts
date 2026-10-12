@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pname", 43, 7], ["version", 44, 15], ["src", 44, 23], ["pnpm", 44, 27], ["pnpmWorkspaces", 45, 7], ["fetcherVersion", 46, 7], ["hash", 47, 7]], [["pname", 31, 5], ["version", 32, 13], ["src", 32, 21], ["nativeBuildInputs", 34, 5], ["__darwinAllowLocalNetworking", 40, 5], ["pnpmDeps", 42, 5], ["pnpmWorkspaces", 50, 5], ["postPatch", 54, 5], ["buildPhase", 67, 5], ["installPhase", 73, 5]], [["extraArgs", 121, 7]], [["dashboard", 119, 13], ["updateScript", 120, 5]], [["description", 129, 5], ["homepage", 130, 5], ["license", 131, 5], ["sourceProvenance", 132, 5], ["platforms", 133, 5], ["maintainers", 134, 5], ["mainProgram", 138, 5]], [["pname", 81, 3], ["version", 82, 11], ["src", 82, 19], ["sourceRoot", 84, 3], ["cargoHash", 86, 3], ["postUnpack", 89, 3], ["postPatch", 96, 3], ["nativeCheckInputs", 102, 3], ["dontUseCargoParallelTests", 107, 3], ["__darwinAllowLocalNetworking", 109, 3], ["postInstall", 113, 3], ["passthru", 118, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, rustPlatform: false, nodejs: false, pnpm_11: false, pnpmConfigHook: false, "geist-font": false, "nix-update-script": false, which: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 43, 7], ["version", 44, 15], ["src", 44, 23], ["pnpm", 44, 27], ["pnpmWorkspaces", 45, 7], ["fetcherVersion", 46, 7], ["hash", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 31, 5], ["version", 32, 13], ["src", 32, 21], ["nativeBuildInputs", 34, 5], ["__darwinAllowLocalNetworking", 40, 5], ["pnpmDeps", 42, 5], ["pnpmWorkspaces", 50, 5], ["postPatch", 54, 5], ["buildPhase", 67, 5], ["installPhase", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 121, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["dashboard", 119, 13], ["updateScript", 120, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 129, 5], ["homepage", 130, 5], ["license", 131, 5], ["sourceProvenance", 132, 5], ["platforms", 133, 5], ["maintainers", 134, 5], ["mainProgram", 138, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 81, 3], ["version", 82, 11], ["src", 82, 19], ["sourceRoot", 84, 3], ["cargoHash", 86, 3], ["postUnpack", 89, 3], ["postPatch", 96, 3], ["nativeCheckInputs", 102, 3], ["dontUseCargoParallelTests", 107, 3], ["__darwinAllowLocalNetworking", 109, 3], ["postInstall", 113, 3], ["passthru", 118, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,21 +22,21 @@ export default nix.lambda((args) => (() => {
   const pnpm = pnpm_11;
   const version = "0.38.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "vercel-labs",
       repo: "agent-browser",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-PNIQvTMYqcu8hS1TOiXJtVEYTmFJdRv1nu0T5nG3MlE=",
     }))));
   const dashboard = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "agent-browser-dashboard",
       version: version,
       src: src,
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpm, pnpmConfigHook]),
       __darwinAllowLocalNetworking: true,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "agent-browser-dashboard",
           version: version,
           src: src,
@@ -67,7 +61,7 @@ cp "${geist_font}/share/fonts/opentype/Geist-Regular.otf" \\
       installPhase: "runHook preInstall\ncp -r packages/dashboard/out $out\nrunHook postInstall\n",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "agent-browser",
       version: version,
       src: src,
@@ -85,12 +79,15 @@ cp -r ${dashboard} source/packages/dashboard/out
       __darwinAllowLocalNetworking: true,
       postInstall: "cp -r ../skills $out/skills\ncp -r ../skill-data $out/skill-data\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         dashboard: dashboard,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "dashboard"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
+            [nix.POS]: $pos[3],
+            extraArgs: nix.thunk(() => ["--subpackage", "dashboard"]),
+          })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Headless browser automation CLI for AI agents",
         homepage: "https://github.com/vercel-labs/agent-browser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

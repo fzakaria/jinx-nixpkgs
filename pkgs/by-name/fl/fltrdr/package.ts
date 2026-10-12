@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 22, 5], ["owner", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["homepage", 40, 5], ["description", 41, 5], ["longDescription", 43, 5], ["platforms", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]], [["pname", 15, 3], ["version", 16, 3], ["strictDeps", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["postPatch", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, icu63: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 22, 5], ["owner", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["longDescription", 43, 5], ["platforms", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["strictDeps", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["postPatch", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const icu = icu63;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fltrdr",
       version: "0.3.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "fltrdr",
           owner: "octobanana",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [icu, openssl]),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "sed -i '/stdc++fs/d' CMakeLists.txt\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://octobanana.com/software/fltrdr",
         description: "TUI text reader for the terminal",
         longDescription: "Fltrdr, or flat-reader, is an interactive text reader for the terminal. It\nis flat in the sense that the reader is word-based. It creates a\nhorizontal stream of words, ignoring all newline characters and reducing\nextra whitespace. Its purpose is to facilitate reading, scanning, and\nsearching text. The program has a play mode that moves the reader forward\none word at a time, along with a configurable words per minute (WPM),\nsetting.\n",

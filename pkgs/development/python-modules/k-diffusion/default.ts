@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["teams", 67, 5]], [["pname", 26, 3], ["version", 27, 3], ["format", 28, 3], ["src", 30, 3], ["propagatedBuildInputs", 37, 3], ["pythonImportsCheck", 58, 3], ["doCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, accelerate: false, buildPythonPackage: false, "clean-fid": false, "clip-anytorch": false, dctorch: false, einops: false, fetchFromGitHub: false, jsonmerge: false, kornia: false, pillow: false, "rotary-embedding-torch": false, safetensors: false, "scikit-image": false, scipy: false, torch: false, torchdiffeq: false, torchsde: false, torchvision: false, tqdm: false, wandb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["teams", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["format", 28, 3], ["src", 30, 3], ["propagatedBuildInputs", 37, 3], ["pythonImportsCheck", 58, 3], ["doCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.1.post1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "crowsonkb",
           repo: "k-diffusion",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -64,14 +62,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["k_diffusion"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Karras et al. (2022) diffusion models for PyTorch",
         homepage: "https://github.com/crowsonkb/k-diffusion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "tts"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

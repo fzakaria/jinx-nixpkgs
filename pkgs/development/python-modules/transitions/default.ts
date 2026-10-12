@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]], [["homepage", 77, 5], ["description", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 33, 3], ["preCheck", 40, 3], ["disabledTestPaths", 45, 3], ["disabledTests", 55, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, fontconfig: false, graphviz: false, mock: false, pycodestyle: false, pygraphviz: false, pytestCheckHook: false, setuptools: false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 77, 5], ["description", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 33, 3], ["preCheck", 40, 3], ["disabledTestPaths", 45, 3], ["disabledTests", 55, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-iB+3W7FlTtVdhgYLsGfyxxb44VX1e7c/1ETlNxOq/sg=",
@@ -54,7 +52,7 @@ export HOME=$TMPDIR
         ]))));
       const pythonImportsCheck = nix.thunk(() => ["transitions"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/pytransitions/transitions",
         description: "Lightweight, object-oriented finite state machine implementation in Python",
         changelog: nix.thunk(() => nix.str`https://github.com/pytransitions/transitions/releases/tag/${version}`),
@@ -65,7 +63,7 @@ export HOME=$TMPDIR
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 24]], [["updateScript", 39, 12]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["sourceProvenance", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5]], [["pname", 16, 3], ["version", 17, 21], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["dontUnpack", 27, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 31, 3], ["passthru", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 24]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 39, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["sourceProvenance", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 21], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["dontUnpack", 27, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 31, 3], ["passthru", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   const platform = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenv, "hostPlatform", "system")}`)), "platforms", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "box-cli",
       version: nix.thunk(() => nix.attr(sources, "version")),
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ariana-dot-dev/agent-server/releases/download/${nix.sel(sources, "tag")}/${nix.sel(platform, "filename")}`),
           hash: nix.thunk(() => nix.attr(platform, "hash")),
         })))),
       dontUnpack: true,
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 $src $out/bin/box\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI for Ascii Box cloud sandboxes",
         homepage: "https://ascii.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 5], ["version", 17, 26], ["hash", 18, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["buildInputs", 21, 3], ["nativeCheckInputs", 23, 3], ["pythonImportsCheck", 25, 3], ["doCheck", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, isPy3k: false, pygccxml: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 26], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["buildInputs", 21, 3], ["nativeCheckInputs", 23, 3], ["pythonImportsCheck", 25, 3], ["doCheck", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const pygccxml = nix.arg($, "pygccxml");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pybindgen",
       version: "0.22.1",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "PyBindGen",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-jH8iORpJqEUY9aKtBuOlseg50Q402nYxUZyKKPy6N2Q=",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pybindgen"]),
       doCheck: nix.thunk(() => !nix.asBool(isPy3k)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python Bindings Generator",
         homepage: "https://github.com/gjcarneiro/pybindgen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 7], ["sha256", 18, 7]], [["description", 28, 7], ["longDescription", 29, 7], ["homepage", 33, 7], ["platforms", 34, 7], ["license", 39, 7], ["maintainers", 40, 7]], [["pname", 13, 5], ["version", 14, 13], ["src", 16, 5], ["dontUnpack", 21, 5], ["installPhase", 22, 5], ["meta", 27, 5]], [["pname", 46, 17], ["version", 46, 23], ["paths", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildEnv: false, fetchurl: false, mono: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 7], ["sha256", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 7], ["longDescription", 29, 7], ["homepage", 33, 7], ["platforms", 34, 7], ["license", 39, 7], ["maintainers", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 5], ["version", 14, 13], ["src", 16, 5], ["dontUnpack", 21, 5], ["installPhase", 22, 5], ["meta", 27, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 46, 17], ["version", 46, 23], ["paths", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const mono = nix.arg($, "mono");
   const version = "1.0.4";
   const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "keepass-qrcodeview",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/JanisEst/KeePassQRCodeView/releases/download/v${version}/KeePassQRCodeView.plgx`),
           sha256: "e13c9f02bb0d79b479ca0e92490b822b5b88f49bb18ba2954d3bbe0808f46e6d",
         })))),
       dontUnpack: true,
       installPhase: "mkdir -p $out/lib/dotnet/keepass/\ncp $src $out/lib/dotnet/keepass/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Enables KeePass to display data as QR code images",
         longDescription: "KeePassQRCodeView is a plugin for KeePass 2.x which shows QR codes for entry fields.\nThese codes can be scanned to copy the encoded data to the scanner (smartphone, ...)\n",
         homepage: "https://github.com/JanisEst/KeePassQRCodeView",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.attr(drv, "pname")),
       version: nix.thunk(() => nix.attr(drv, "version")),
       paths: nix.thunk(() => [mono, drv]),

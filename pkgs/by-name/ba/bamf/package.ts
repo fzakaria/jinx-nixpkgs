@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 38, 5], ["tag", 39, 5], ["sha256", 40, 5]], [["NIX_CFLAGS_COMPILE", 94, 7]], [["ignoredVersions", 97, 5]], [["updateScript", 96, 12]], [["description", 101, 5], ["longDescription", 102, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5], ["teams", 110, 5]], [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 37, 3], ["depsBuildBuild", 43, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 62, 3], ["postPatch", 71, 3], ["configureFlags", 76, 3], ["makeFlags", 84, 3], ["doCheck", 90, 3], ["strictDeps", 91, 3], ["env", 94, 3], ["passthru", 96, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, autoreconfHook: false, gitUpdater: false, "gnome-common": false, which: false, fetchgit: false, libgtop: false, libwnck: false, glib: false, vala: false, "pkg-config": false, libstartup_notification: false, "gobject-introspection": false, "gtk-doc": false, docbook_xsl: false, "xorg-server": false, dbus: false, python3: false, wrapGAppsHook3: false, withDocs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 38, 5], ["tag", 39, 5], ["sha256", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 94, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ignoredVersions", 97, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 96, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 101, 5], ["longDescription", 102, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5], ["teams", 110, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 37, 3], ["depsBuildBuild", 43, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 62, 3], ["postPatch", 71, 3], ["configureFlags", 76, 3], ["makeFlags", 84, 3], ["doCheck", 90, 3], ["strictDeps", 91, 3], ["env", 94, 3], ["passthru", 96, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const withDocs = nix.argOr($, "withDocs", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "bamf",
       version: "0.5.6",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), withDocs, nix.thunk(() => ["devdoc"])))),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.launchpad.net/~unity-team/bamf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "7U+2GcuDjPU8quZjkd8bLADGlG++tl6wSo0mUQkjAXQ=",
@@ -71,13 +66,16 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       strictDeps: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-DGLIB_DISABLE_DEPRECATION_WARNINGS" })),
+      env: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        NIX_CFLAGS_COMPILE: "-DGLIB_DISABLE_DEPRECATION_WARNINGS",
+      })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, ignoredVersions: ".ubuntu.*" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], ignoredVersions: ".ubuntu.*" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Application matching framework",
         longDescription: "Removes the headache of applications matching\ninto a simple DBus daemon and c wrapper library.\n",
         homepage: "https://launchpad.net/bamf",

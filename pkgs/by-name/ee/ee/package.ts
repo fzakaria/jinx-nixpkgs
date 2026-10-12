@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5], ["rootDir", 17, 5]], [["updateScript", 20, 12]], [["NIX_CFLAGS_COMPILE", 29, 7]], [["description", 41, 5], ["homepage", 42, 5], ["longDescription", 43, 5], ["license", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 20, 3], ["buildInputs", 22, 3], ["postPatch", 24, 3], ["env", 29, 3], ["installPhase", 31, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5], ["rootDir", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 20, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 29, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["longDescription", 43, 5], ["license", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 20, 3], ["buildInputs", 22, 3], ["postPatch", 24, 3], ["env", 29, 3], ["installPhase", 31, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,29 +12,29 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ee",
       version: "1.5.2-unstable-2024-06-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "freebsd",
           repo: "freebsd-src",
           rev: "0667538b888c1171932c6cf28b62fc19d393e119",
           hash: "sha256-nMhHXeoam9VtUuhhi0eoGZfcW9zZhpYQKVYbkAbfgc0=",
           rootDir: "contrib/ee",
         })))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       buildInputs: nix.thunk(() => [ncurses]),
       postPatch: nix.thunk(() => nix.str`substituteInPlace create.make --replace-fail "/usr/include/curses.h" "${nix.sel(ncurses, "dev")}/include/ncurses.h"
 substituteInPlace create.make --replace-fail "-lcurses" "-lncurses"
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: "-DHAS_UNISTD=1 -DHAS_STDLIB=1 -DHAS_SYS_WAIT=1",
       })),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp ee $out/bin/ee\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "classic curses text editor",
         homepage: "https://man.freebsd.org/cgi/man.cgi?ee",
         longDescription: "An easy to use text editor. Intended to be usable with little or no\ninstruction. Provides a terminal (curses based) interface. Features\npop-up menus. Born in HP-UX, included in FreeBSD.\n",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["cargoRoot", 29, 5], ["hash", 30, 5]], [["LIBCLANG_PATH", 44, 7], ["LD_LIBRARY_PATH", 45, 7]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["cargoDeps", 27, 3], ["build-system", 33, 3], ["nativeBuildInputs", 38, 3], ["env", 44, 3], ["prePatch", 47, 3], ["nativeCheckInputs", 52, 3], ["preCheck", 59, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, clang: false, fetchFromGitHub: false, llvmPackages: false, "pkg-config": false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-mock": false, pytestCheckHook: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["cargoRoot", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["LIBCLANG_PATH", 44, 7], ["LD_LIBRARY_PATH", 45, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["cargoDeps", 27, 3], ["build-system", 33, 3], ["nativeBuildInputs", 38, 3], ["env", 44, 3], ["prePatch", 47, 3], ["nativeCheckInputs", 52, 3], ["preCheck", 59, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pywebtransport",
       version: "0.20.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wtransport",
           repo: "pywebtransport",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-sgD5+yk6QpNVBXGfELavYNl9E0rBuk6TTH8BDwKzEng=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
         pkg_config,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.sel(llvmPackages, "libclang", "lib")}/lib`),
         LD_LIBRARY_PATH: nix.thunk(() => nix.str`${nix.sel(llvmPackages, "libclang", "lib")}/lib:${nix.app(nix.sel(lib, "getLib"), clang)}/lib`),
       })),
@@ -64,7 +60,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "cp -v $out/lib/python*/site-packages/pywebtransport/_pywebtransport*.so src/pywebtransport/\n",
       pythonImportsCheck: nix.thunk(() => ["pywebtransport"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Async-native WebTransport stack",
         homepage: "https://github.com/wtransport/pywebtransport",
         changelog: nix.thunk(() => nix.str`https://github.com/wtransport/pywebtransport/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

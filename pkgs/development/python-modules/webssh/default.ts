@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]], [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 29, 3], ["pythonImportsCheck", 31, 3], ["disabledTests", 33, 3], ["__darwinAllowLocalNetworking", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, paramiko: false, pytestCheckHook: false, setuptools: false, tornado: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 29, 3], ["pythonImportsCheck", 31, 3], ["disabledTests", 33, 3], ["__darwinAllowLocalNetworking", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-K85buvIGrTRZEMfk3IAks8QY5oHJ9f8JjxgCvv924QA=",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Web based SSH client",
         mainProgram: "wssh",
         homepage: "https://github.com/huashengdun/webssh/",
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

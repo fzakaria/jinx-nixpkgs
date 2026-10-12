@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 28], ["version", 21, 34], ["hash", 22, 7]], [["distributed", 39, 7]], [["changelog", 55, 7], ["description", 56, 7], ["homepage", 57, 7], ["license", 58, 7], ["maintainers", 59, 7], ["mainProgram", 60, 7]], [["pname", 16, 5], ["version", 17, 5], ["pyproject", 18, 5], ["src", 20, 5], ["build-system", 25, 5], ["dependencies", 30, 5], ["optional-dependencies", 38, 5], ["doCheck", 43, 5], ["pythonImportsCheck", 45, 5], ["meta", 54, 5]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, hatchling: false, "hatch-vcs": false, numpy: false, scipy: false, matplotlib: false, pandas: false, multiprocess: false, pathos: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 28], ["version", 21, 34], ["hash", 22, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["distributed", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 55, 7], ["description", 56, 7], ["homepage", 57, 7], ["license", 58, 7], ["maintainers", 59, 7], ["mainProgram", 60, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 5], ["pyproject", 18, 5], ["src", 20, 5], ["build-system", 25, 5], ["dependencies", 30, 5], ["optional-dependencies", 38, 5], ["doCheck", 43, 5], ["pythonImportsCheck", 45, 5], ["meta", 54, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const multiprocess = nix.arg($, "multiprocess");
   const pathos = nix.arg($, "pathos");
   const finalAttrs = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     pname: "salib",
     version: "1.6.0",
     pyproject: true,
     src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
         version: nix.thunk(() => nix.attr(finalAttrs, "version")),
         hash: "sha256-Ei0lgWE3pQtelyogbecRiWHiAqb7CSLZ7IdP1J/bv18=",
       })))),
     "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
     dependencies: nix.thunk(() => [numpy, scipy, matplotlib, pandas, multiprocess]),
-    "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, distributed: nix.thunk(() => [pathos]) })),
+    "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], distributed: nix.thunk(() => [pathos]) })),
     doCheck: false,
     pythonImportsCheck: nix.thunk(() => [
       "SALib",
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       "SALib.util",
     ]),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       changelog: "https://github.com/SALib/SALib/releases",
       description: "Python implementations of commonly used sensitivity analysis methods, useful in systems modeling to calculate the effects of model inputs or exogenous factors on outputs of interest",
       homepage: "https://github.com/SALib/SALib",

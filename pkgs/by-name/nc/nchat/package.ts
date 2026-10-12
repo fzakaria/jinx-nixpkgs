@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["pname", 30, 5], ["version", 31, 13], ["src", 31, 21], ["sourceRoot", 33, 5], ["vendorHash", 34, 5], ["buildPhase", 36, 5]], [["libcgowm", 55, 15]], [["extraArgs", 84, 7]], [["libcgowm", 82, 13], ["updateScript", 83, 5]], [["description", 92, 5], ["changelog", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5], ["platforms", 101, 5]], [["pname", 50, 3], ["version", 51, 11], ["src", 51, 19], ["patches", 53, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 67, 3], ["cmakeFlags", 76, 3], ["passthru", 81, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, replaceVars: false, file: false, ncurses: false, openssl: false, readline: false, sqlite: false, zlib: false, cmake: false, gperf: false, "nix-update-script": false, withWhatsApp: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 30, 5], ["version", 31, 13], ["src", 31, 21], ["sourceRoot", 33, 5], ["vendorHash", 34, 5], ["buildPhase", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["libcgowm", 55, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 84, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["libcgowm", 82, 13], ["updateScript", 83, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 92, 5], ["changelog", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5], ["platforms", 101, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 50, 3], ["version", 51, 11], ["src", 51, 19], ["patches", 53, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 67, 3], ["cmakeFlags", 76, 3], ["passthru", 81, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const withWhatsApp = nix.argOr($, "withWhatsApp", () => true);
   const version = "5.19.18";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "d99kris",
       repo: "nchat",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-wEdFMR9I7W80MHWg9knzPKKpVIrjWgvWIsMnXcArSEA=",
     }))));
   const libcgowm = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "nchat-wmchat-libcgowm",
       version: version,
       src: src,
@@ -46,12 +40,12 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nmkdir -p $out/\ngo build -o $out/ -buildmode=c-archive\nmv $out/go.a $out/libcgowm.a\nln -s $out/libcgowm.a $out/libref-cgowm.a\nmv $out/go.h $out/libcgowm.h\n\nrunHook postBuild\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "nchat",
       version: version,
       src: src,
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./go-libs-build.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, libcgowm: libcgowm })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./go-libs-build.patch"), nix.thunk(() => ({ [nix.POS]: $pos[2], libcgowm: libcgowm })))),
         nix.path(here, "./fix-darwin.patch"),
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake, gperf, libcgowm]),
@@ -61,12 +55,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "HAS_WHATSAPP", withWhatsApp)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         libcgowm: libcgowm,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "libcgowm"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--subpackage", "libcgowm"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Terminal-based chat client with support for Telegram and WhatsApp",
         changelog: nix.thunk(() => nix.str`https://github.com/d99kris/nchat/releases/tag/v${version}`),
         homepage: "https://github.com/d99kris/nchat",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["sha256", 16, 5]], [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5]], [["version", 10, 3], ["format", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["nativeCheckInputs", 19, 3], ["propagatedBuildInputs", 21, 3], ["checkPhase", 23, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, six: false, pytest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 10, 3], ["format", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["nativeCheckInputs", 19, 3], ["propagatedBuildInputs", 21, 3], ["checkPhase", 23, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "python-gflags";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "40ae131e899ef68e9e14aa53ca063839c34f6a168afe622217b5b875492a1ee2",
@@ -28,13 +26,13 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [six]);
       const checkPhase = "# clashes with our pythhon wrapper (which is in argv0)\n# AssertionError: 'gflags._helpers_test' != 'nix_run_setup.py'\npy.test -k 'not testGetCallingModule'\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/google/python-gflags",
         description: "Module for command line handling, similar to Google's gflags for C++",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         format,
         pname,

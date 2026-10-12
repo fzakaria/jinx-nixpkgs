@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 32, 13], ["version", 32, 19], ["hash", 33, 5]], [["src", 37, 13], ["hash", 38, 5]], [["OPENSSL_NO_VENDOR", 41, 7]], [["pandas", 65, 5], ["pyarrow", 66, 5]], [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["cargoDeps", 36, 3], ["env", 41, 3], ["dependencies", 43, 3], ["buildInputs", 48, 3], ["nativeBuildInputs", 55, 3], ["optional-dependencies", 64, 3], ["pythonImportsCheck", 69, 3], ["nativeCheckInputs", 71, 3], ["preCheck", 84, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, rustPlatform: false, "arro3-core": false, pyarrow: false, openssl: false, stdenv: false, libiconv: false, "opentelemetry-api": false, "opentelemetry-sdk": false, "pkg-config": false, polars: false, pytestCheckHook: false, "pytest-benchmark": false, "pytest-cov-stub": false, "pytest-mock": false, "pytest-timeout": false, pandas: false, deprecated: false, "azure-storage-blob": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 32, 13], ["version", 32, 19], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 37, 13], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["OPENSSL_NO_VENDOR", 41, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pandas", 65, 5], ["pyarrow", 66, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["cargoDeps", 36, 3], ["env", 41, 3], ["dependencies", 43, 3], ["buildInputs", 48, 3], ["nativeBuildInputs", 55, 3], ["optional-dependencies", 64, 3], ["pythonImportsCheck", 69, 3], ["nativeCheckInputs", 71, 3], ["preCheck", 84, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,17 +34,17 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-lX5SYk4dzuNfCSCGjj0Vof6rQPzQ/NRoIjGjPaPUQto=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: src,
           hash: "sha256-z7Qv/YGH2o5rQVeDs1m8fqJd6hgvGvf+TldUvAR7CGY=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], OPENSSL_NO_VENDOR: 1n }));
       const dependencies = nix.thunk(() => [arro3_core, deprecated]);
       const buildInputs = nix.thunk(() => nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))));
       const nativeBuildInputs = nix.thunk(() => nix.concat([pkg_config, writableTmpDirAsHomeHook], (() => {
@@ -60,7 +55,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pandas: nix.thunk(() => [pandas]),
         pyarrow: nix.thunk(() => [pyarrow]),
       }));
@@ -78,7 +73,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const preCheck = "# For paths in test to work, we have to be in python dir\ncd python\n\n# In tests we want to use deltalake that we have built\nrm -rf deltalake\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Native Rust library for Delta Lake, with bindings into Python",
         homepage: "https://github.com/delta-io/delta-rs",
         changelog: nix.thunk(() => nix.str`https://github.com/delta-io/delta-rs/blob/python-v${version}/CHANGELOG.md`),
@@ -94,7 +89,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

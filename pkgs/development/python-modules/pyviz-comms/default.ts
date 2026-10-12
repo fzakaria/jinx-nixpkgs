@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 5], ["version", 19, 26], ["hash", 20, 5]], [["panel", 42, 13]], [["tests", 41, 12]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 23, 3], ["build-system", 28, 3], ["dependencies", 34, 3], ["doCheck", 37, 3], ["pythonImportsCheck", 39, 3], ["passthru", 41, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, "hatch-jupyter-builder": false, "hatch-nodejs-version": false, hatchling: false, lib: false, param: false, panel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 26], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["panel", 42, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 41, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 23, 3], ["build-system", 28, 3], ["dependencies", 34, 3], ["doCheck", 37, 3], ["pythonImportsCheck", 39, 3], ["passthru", 41, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const param = nix.arg($, "param");
   const panel = nix.arg($, "panel");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pyviz-comms",
       version: "3.0.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pyviz_comms",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-c9ZrYgOQ2XlZssTYosB3jUH+IFgb5HF/AeRrj66MVpU=",
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pyviz_comms"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, panel: panel })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], panel: panel })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Bidirectional communication for the HoloViz ecosystem",
         homepage: "https://pyviz.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

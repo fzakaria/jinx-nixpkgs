@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 13, 13], ["version", 13, 19], ["sha256", 14, 5]], [["homepage", 20, 5], ["description", 21, 5], ["license", 22, 5]], [["pname", 8, 3], ["version", 9, 3], ["format", 10, 3], ["src", 12, 3], ["doCheck", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 13, 13], ["version", 13, 19], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 20, 5], ["description", 21, 5], ["license", 22, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["format", 10, 3], ["src", 12, 3], ["doCheck", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,19 +15,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "06vd010pa1z7lyfj1na30iqzffr4kzj2k2sba09spik7drlvvl56",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://fedorahosted.org/offtrac",
         description: "Trac xmlrpc library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
-      return { [nix.POS]: pos$3, pname, version, format, src, doCheck, meta };
+      return { [nix.POS]: $pos[2], pname, version, format, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 22, 3], ["patches", 29, 3], ["build-system", 33, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 43, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, numpy: false, setuptools: false, "pytest-cov-stub": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 22, 3], ["patches", 29, 3], ["build-system", 33, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 43, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0.16";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dedupeio",
           repo: "pylbfgs",
           tag: version,
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm -rf lbfgs\n";
       const pythonImportsCheck = nix.thunk(() => ["lbfgs"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python wrapper for L-BFGS and OWL-QN optimization algorithms",
         homepage: "https://github.com/dedupeio/pylbfgs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

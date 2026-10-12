@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 43, 5]], [["pname", 18, 3], ["version", 19, 34], ["src", 19, 42], ["buildInputs", 21, 3], ["propagatedBuildInputs", 26, 3], ["doCheck", 28, 3], ["nativeCheckInputs", 29, 3], ["checkInputs", 34, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, ocaml: false, alcotest: false, atd: false, "atd-jsonlike": false, "atd-yamlx": false, "atdgen-codec-runtime": false, "atdgen-runtime": false, atdml: false, biniou: false, re: false, yamlx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 34], ["src", 19, 42], ["buildInputs", 21, 3], ["propagatedBuildInputs", 26, 3], ["doCheck", 28, 3], ["nativeCheckInputs", 29, 3], ["checkInputs", 34, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const re = nix.arg($, "re");
   const yamlx = nix.arg($, "yamlx");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "atdgen",
       version: nix.thunk(() => nix.attr(atdgen_codec_runtime, "version")),
       src: nix.thunk(() => nix.attr(atdgen_codec_runtime, "src")),
@@ -32,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [atd, atdml, biniou]),
       checkInputs: nix.thunk(() => [alcotest, atdgen_codec_runtime, yamlx, atd_jsonlike, atd_yamlx]),
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(atd, "meta")), nix.thunk(() => ["mainProgram"])), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Generates efficient JSON serializers, deserializers and validators",
       })),
     })));

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]], [["updateScript", 23, 12]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 18, 3], ["__darwinAllowLocalNetworking", 21, 3], ["passthru", 23, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 27, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchCrate: false, rustPlatform: false, installShellFiles: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 23, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 18, 3], ["__darwinAllowLocalNetworking", 21, 3], ["passthru", 23, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 27, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "korrect",
       version: "0.3.8",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-iNM8annxL48uDAvrtYw/LhaK2lCirJsmQy/QWbDpczA=",
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-2MsrqsgvYc+XKgWKIVhoA+Opg8e7ybWFxKQ/SuVUfto=",
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
   --nushell <($out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")} completions nushell)
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Kubectl version managing shim that invokes the correct kubectl version",
         homepage: "https://gitlab.com/cromulentbanana/korrect",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

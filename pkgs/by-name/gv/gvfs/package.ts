@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 52, 5], ["hash", 53, 5]], [["ssh_program", 58, 7]], [["packageName", 147, 7], ["versionPolicy", 148, 7]], [["updateScript", 146, 5]], [["description", 153, 5], ["license", 155, 5], ["platforms", 156, 5], ["teams", 157, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["patches", 56, 3], ["postPatch", 62, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 78, 3], ["mesonFlags", 111, 3], ["doCheck", 140, 3], ["doInstallCheck", 141, 3], ["separateDebugInfo", 143, 3], ["passthru", 145, 3], ["meta", 152, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, replaceVars: false, gettext: false, dbus: false, glib: false, udevSupport: true, libgudev: false, udisks: false, libgcrypt: false, libcap: false, polkit: false, libgphoto2: false, avahi: false, libarchive: false, fuse3: false, libcdio: false, libxml2: false, libsoup_3: false, libxslt: false, docbook_xsl: false, docbook_xml_dtd_42: false, samba: false, libmtp: false, gnomeSupport: true, gnome: false, gcr_4: false, "glib-networking": false, "gnome-online-accounts": false, wrapGAppsHook3: false, libimobiledevice: false, libbluray: false, "libcdio-paranoia": false, libnfs: false, openssh: false, libsecret: false, libmsgraph: false, python3: false, "gsettings-desktop-schemas": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ssh_program", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 147, 7], ["versionPolicy", 148, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 146, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 153, 5], ["license", 155, 5], ["platforms", 156, 5], ["teams", 157, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["patches", 56, 3], ["postPatch", 62, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 78, 3], ["mesonFlags", 111, 3], ["doCheck", 140, 3], ["doInstallCheck", 141, 3], ["separateDebugInfo", 143, 3], ["passthru", 145, 3], ["meta", 152, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,17 +51,17 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gvfs",
       version: "1.60.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gvfs/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gvfs-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-TLIdURwuKVEamfOhk96qkUqLt9njciKGc8awha/2P0s=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-ssh-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             ssh_program: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), openssh)}/bin/ssh`),
           })))),
       ]),
@@ -125,11 +120,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")),
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gvfs", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "gvfs", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: nix.thunk(() => nix.add("Virtual Filesystem support library", nix.app(nix.sel(lib, "optionalString"), gnomeSupport, " (full GNOME support)"))),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

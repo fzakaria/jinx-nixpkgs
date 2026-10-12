@@ -2,57 +2,46 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/shadps4.nix", [[["maintainers", 5, 33]], [["url", 18, 15], ["hash", 19, 15]], [["license", 28, 20]], [["nativeBuildInputs", 24, 15], ["meta", 28, 15]], [["source", 15, 41]], [["openorbis-sample-packages", 15, 13]], [["TRACY_NO_INVARIANT_CHECK", 44, 11]], [["etc", 15, 9], ["systemPackages", 36, 9], ["variables", 42, 9]], [["memorySize", 48, 22]], [["imports", 11, 7], ["environment", 13, 7], ["virtualisation", 48, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["enableOCR", 51, 3], ["testScript", 53, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/shadps4.nix", [["maintainers", 5, 33]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/shadps4.nix", [["url", 18, 15], ["hash", 19, 15]]);
-const pos$3 = nix.positions(here + "/shadps4.nix", [["license", 28, 20]]);
-const pos$4 = nix.positions(here + "/shadps4.nix", [["nativeBuildInputs", 24, 15], ["meta", 28, 15]]);
-const pos$5 = nix.positions(here + "/shadps4.nix", [["source", 15, 41]]);
-const pos$6 = nix.positions(here + "/shadps4.nix", [["openorbis-sample-packages", 15, 13]]);
-const pos$7 = nix.positions(here + "/shadps4.nix", [["TRACY_NO_INVARIANT_CHECK", 44, 11]]);
-const pos$8 = nix.positions(here + "/shadps4.nix", [["etc", 15, 9], ["systemPackages", 36, 9], ["variables", 42, 9]]);
-const pos$9 = nix.positions(here + "/shadps4.nix", [["memorySize", 48, 22]]);
-const pos$10 = nix.positions(here + "/shadps4.nix", [["imports", 11, 7], ["environment", 13, 7], ["virtualisation", 48, 7]]);
-const pos$11 = nix.positions(here + "/shadps4.nix", [["machine", 8, 9]]);
-const pos$12 = nix.positions(here + "/shadps4.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["enableOCR", 51, 3], ["testScript", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "shadps4-openorbis-example",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "shadps4", "meta"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               "openorbis-sample-packages": nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 source: nix.thunk(() => (() => {
                   const sample_packages = nix.thunk(() => nix.app(nix.sel(pkgs_1, "fetchurl"), nix.thunk(() => ({
-                      [nix.POS]: pos$2,
+                      [nix.POS]: $pos[1],
                       url: "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/releases/download/v0.5.2/sample-packages.zip",
                       hash: "sha256-aWocIVpyMivA1vsUe9w97J3eMFANyXxyVLBxHGXIcEA=",
                     }))));
                   return nix.app(nix.sel(pkgs_1, "runCommand"), "OpenOrbis-PNG-Sample", nix.thunk(() => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       nativeBuildInputs: nix.thunk(() => (() => {
                         const w = nix.withScope(pkgs_1, null);
                         return [
@@ -61,7 +50,7 @@ export default nix.lambda((args) => (() => {
                         ];
                       })()),
                       meta: nix.thunk(() => ({
-                        [nix.POS]: pos$3,
+                        [nix.POS]: $pos[2],
                         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
                       })),
                     })), nix.thunk(() => nix.str`unzip ${sample_packages} samples/IV0000-BREW00086_00-IPNGDRAWEX000000.pkg
@@ -79,9 +68,9 @@ pkgtool pkg_extract samples/IV0000-BREW00086_00-IPNGDRAWEX000000.pkg $out/OpenOr
                 nix.thunk(() => nix.lookup(w, "xdotool")),
               ];
             })()),
-            variables: nix.thunk(() => ({ [nix.POS]: pos$7, TRACY_NO_INVARIANT_CHECK: "1" })),
+            variables: nix.thunk(() => ({ [nix.POS]: $pos[6], TRACY_NO_INVARIANT_CHECK: "1" })),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$9, memorySize: 2048n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[8], memorySize: 2048n })),
         };
       })(), formals$2),
     })),

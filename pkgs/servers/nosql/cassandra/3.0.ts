@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/3.0.nix", [[["generation", 6, 5]]]);
 const formals$1 = { args: { callPackage: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/3.0.nix", [["generation", 6, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const callPackage = nix.arg($, "callPackage");
   const lib = nix.arg($, "lib");
-  return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(args_1, nix.update(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./3.0.json")), { [nix.POS]: pos$1, generation: "3_0" }))));
+  return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(args_1, nix.update(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./3.0.json")), { [nix.POS]: $pos[0], generation: "3_0" }))));
 })(), formals$1);
 //# sourceMappingURL=3.0.ts.map

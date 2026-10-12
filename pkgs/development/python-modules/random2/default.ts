@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["extension", 17, 5], ["sha256", 18, 5]], [["url", 24, 7], ["sha256", 25, 7]], [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["doCheck", 13, 3], ["src", 15, 3], ["patches", 21, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, isPyPy: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["extension", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 24, 7], ["sha256", 25, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["doCheck", 13, 3], ["src", 15, 3], ["patches", 21, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const doCheck = nix.thunk(() => !nix.asBool(isPyPy));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           extension: "zip",
@@ -29,18 +26,18 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/strichter/random2/pull/3/commits/1bac6355d9c65de847cc445d782c466778b94fbd.patch",
             sha256: "064137pg1ilv3f9r10123lqbqz45070jca8pjjyp6gpfd0yk74pi",
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://pypi.org/pypi/random2/",
         description: "Python 3 compatible Python 2 `random` Module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "psfl")),
       }));
-      return { [nix.POS]: pos$4, pname, version, format, doCheck, src, patches, meta };
+      return { [nix.POS]: $pos[3], pname, version, format, doCheck, src, patches, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

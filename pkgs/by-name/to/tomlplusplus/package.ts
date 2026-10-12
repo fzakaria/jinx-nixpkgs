@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]], [["package", 63, 7]], [["pkg-config", 62, 11]], [["updateScript", 61, 5], ["tests", 62, 5]], [["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["pkgConfigModules", 72, 5], ["platforms", 73, 5]], [["pname", 16, 3], ["version", 17, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 39, 3], ["nativeCheckInputs", 46, 3], ["mesonFlags", 50, 3], ["doCheck", 58, 3], ["passthru", 60, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, fetchpatch2: false, glibcLocales: false, lib: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, stdenv: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 63, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 62, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 61, 5], ["tests", 62, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["pkgConfigModules", 72, 5], ["platforms", 73, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 39, 3], ["nativeCheckInputs", 46, 3], ["mesonFlags", 50, 3], ["doCheck", 58, 3], ["passthru", 60, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "tomlplusplus",
       version: "3.4.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "marzer",
           repo: "tomlplusplus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "tomlplusplus-install-example-programs.patch",
             url: "https://github.com/marzer/tomlplusplus/commit/8128eb632325d1820f4d17dd8250dcda6ab07743.patch",
             hash: "sha256-7m2P+e1/OASHrzm9LSy6RnayS/kGxFC82xOyGBGXeG0=",
@@ -53,18 +47,18 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isGnu")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/marzer/tomlplusplus",
         description: "Header-only TOML config file parser and serializer for C++17",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

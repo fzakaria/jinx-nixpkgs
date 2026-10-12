@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["AWS_LC_SYS_EXTERNAL_BINDGEN", 27, 7]], [["description", 101, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["mainProgram", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["maintainers", 107, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["env", 27, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 49, 3], ["cargoBuildFlags", 56, 3], ["cargoTestFlags", 57, 3], ["checkFlags", 64, 3], ["nativeInstallCheckInputs", 83, 3], ["doInstallCheck", 86, 3], ["installPhase", 88, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gcc: false, libseccomp: false, "rust-bindgen": false, rustPlatform: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["AWS_LC_SYS_EXTERNAL_BINDGEN", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["mainProgram", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["maintainers", 107, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["env", 27, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 49, 3], ["cargoBuildFlags", 56, 3], ["cargoTestFlags", 57, 3], ["checkFlags", 64, 3], ["nativeInstallCheckInputs", 83, 3], ["doInstallCheck", 86, 3], ["installPhase", 88, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "firecracker",
       version: "1.16.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "firecracker-microvm",
           repo: "firecracker",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-hr3fYejqtEl+ZcWbrkQNv9f9fw+S7DyAlpqaV0dTBa0=",
         })))),
       cargoHash: "sha256-txBUI+vZrymKVw4hxmRiUKLKUt42p8bUXPl3FIv3CYc=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, AWS_LC_SYS_EXTERNAL_BINDGEN: "true" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], AWS_LC_SYS_EXTERNAL_BINDGEN: "true" })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace $cargoDepsCopy/*/aws-lc-sys-*/aws-lc/crypto/asn1/a_bitstr.c \\
   --replace-warn '(len > INT_MAX - 1)' '(len < 0 || len > INT_MAX - 1)'
 
@@ -78,7 +75,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Secure, fast, minimal micro-container virtualization",
         homepage: "http://firecracker-microvm.io",
         changelog: nix.thunk(() => nix.str`https://github.com/firecracker-microvm/firecracker/releases/tag/v${nix.sel(finalAttrs, "version")}`),

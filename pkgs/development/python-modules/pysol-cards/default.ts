@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 15, 13], ["pname", 16, 5], ["hash", 17, 5]], [["description", 26, 5], ["mainProgram", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 20, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, six: false, random2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 15, 13], ["pname", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 26, 5], ["mainProgram", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 20, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.24.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "pysol_cards",
           hash: "sha256-qYVJLagaoViN/AVtmnxsqD9mJUwLkPJa/GgqcHE9TUs=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [six, random2]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Generates Solitaire deals",
         mainProgram: "pysol_cards",
         homepage: "https://github.com/shlomif/pysol_cards",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "mwolfe"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

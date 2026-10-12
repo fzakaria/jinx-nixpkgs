@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["gpuTuningTarget", 25, 5]], [["name", 29, 5], ["paths", 30, 5], ["postBuild", 52, 5]], [["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]], [["rocmGpuTarget", 151, 54]], [["changelog", 154, 5], ["description", 155, 5], ["longDescription", 156, 5], ["homepage", 159, 5], ["license", 160, 5], ["maintainers", 161, 5], ["platforms", 162, 5]], [["pname", 60, 3], ["version", 61, 3], ["src", 63, 3], ["__structuredAttrs", 70, 3], ["strictDeps", 71, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 81, 3], ["cmakeFlags", 105, 3], ["passthru", 151, 3], ["meta", 153, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, intelLlvmStdenv: false, cmake: false, ninja: false, onetbb: false, "opencl-headers": false, "generic-sycl-components": false, config: false, symlinkJoin: false, cudaPackages: false, rocmPackages: false, autoAddDriverRunpath: false, cudaSupport: true, rocmSupport: true, rocmGpuTarget: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["gpuTuningTarget", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 5], ["paths", 30, 5], ["postBuild", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["rocmGpuTarget", 151, 54]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 154, 5], ["description", 155, 5], ["longDescription", 156, 5], ["homepage", 159, 5], ["license", 160, 5], ["maintainers", 161, 5], ["platforms", 162, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 60, 3], ["version", 61, 3], ["src", 63, 3], ["__structuredAttrs", 70, 3], ["strictDeps", 71, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 81, 3], ["cmakeFlags", 105, 3], ["passthru", 151, 3], ["meta", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,9 +24,9 @@ export default nix.lambda((args) => (() => {
   const rocmSupport = nix.argOr($, "rocmSupport", () => nix.sel(config, "rocmSupport"));
   const rocmGpuTarget = nix.argOr($, "rocmGpuTarget", () => "gfx1030");
   const useGenericBlas = nix.thunk(() => (nix.asBool(!nix.asBool(cudaSupport)) && nix.asBool(!nix.asBool(rocmSupport))));
-  const generic_blas = nix.thunk(() => nix.app(nix.sel(generic_sycl_components, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, gpuTuningTarget: "INTEL_GPU" }))));
+  const generic_blas = nix.thunk(() => nix.app(nix.sel(generic_sycl_components, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], gpuTuningTarget: "INTEL_GPU" }))));
   const cudatoolkit_joined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "cuda-toolkit-joined",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(cudaPackages, null);
@@ -54,11 +49,11 @@ export default nix.lambda((args) => (() => {
       postBuild: "mkdir -p $out/lib64\nln -s $out/lib/stubs/libcuda.so $out/lib64/libcuda.so\nln -s $out/lib/stubs $out/lib64/stubs\n",
     }))));
   return nix.app(nix.sel(intelLlvmStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "oneMath",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "uxlfoundation",
           repo: "oneMath",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -105,9 +100,9 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_ROCRAND_BACKEND", true)),
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "HIP_TARGETS", rocmGpuTarget)),
         ]))))),
-      passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({ [nix.POS]: pos$4, rocmGpuTarget: rocmGpuTarget })))),
+      passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({ [nix.POS]: $pos[3], rocmGpuTarget: rocmGpuTarget })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/uxlfoundation/oneMath/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Unified Math Library for accelerated computing using SYCL",
         longDescription: "oneMath is an open-source implementation of the [oneMath specification](https://oneapi-spec.uxlfoundation.org/specifications/oneapi/latest/elements/onemath/source/) that can work with multiple devices using multiple libraries (backends) underneath.\n",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["pname", 21, 13], ["version", 21, 19], ["src", 21, 27], ["hash", 22, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["cargoDeps", 20, 3], ["nativeBuildInputs", 25, 3], ["pythonImportsCheck", 30, 3], ["doCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 21, 13], ["version", 21, 19], ["src", 21, 27], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["cargoDeps", 20, 3], ["nativeBuildInputs", 25, 3], ["pythonImportsCheck", 30, 3], ["doCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "willmcgugan",
           repo: "textual-speedups",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-zsDA8qPpeiOlmL18p4pItEgXQjgrQEBVRJazrGJT9Bw=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["textual_speedups"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Optional Rust speedups for Textual",
         homepage: "https://github.com/willmcgugan/textual-speedups",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

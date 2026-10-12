@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["pythonImportsCheck", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["pythonImportsCheck", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ct3",
       version: "3.4.0.post5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CheetahTemplate3",
           repo: "cheetah3",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       pythonImportsCheck: nix.thunk(() => ["Cheetah"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Template engine and code generation tool",
         homepage: "https://www.cheetahtemplate.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/CheetahTemplate3/cheetah3/releases/tag/${nix.sel(finalAttrs, "version")}`),

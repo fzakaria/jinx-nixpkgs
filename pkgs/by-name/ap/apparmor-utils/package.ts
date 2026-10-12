@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 79, 5]], [["pname", 20, 3], ["version", 21, 25], ["src", 21, 33], ["postPatch", 23, 3], ["pyproject", 38, 3], ["doCheck", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["pythonPath", 53, 3], ["makeFlags", 59, 3], ["installFlags", 66, 3], ["postInstall", 73, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, makeWrapper: false, gawk: false, perl: false, runtimeShellPackage: false, stdenv: false, which: false, linuxHeaders: true, python3Packages: false, buildPackages: false, "apparmor-init": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 79, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 25], ["src", 21, 33], ["postPatch", 23, 3], ["pyproject", 38, 3], ["doCheck", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["pythonPath", 53, 3], ["makeFlags", 59, 3], ["installFlags", 66, 3], ["postInstall", 73, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const apparmor_init = nix.arg($, "apparmor-init");
   const libapparmor = nix.thunk(() => nix.attr(python3Packages, "libapparmor"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "apparmor-utils",
       version: nix.thunk(() => nix.attr(libapparmor, "version")),
       src: nix.thunk(() => nix.attr(libapparmor, "src")),
@@ -60,7 +59,7 @@ sed -i aa-unconfined -e "/my_env\\['PATH'\\]/d"
  --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gawk]))}
 `),
       meta: nix.thunk(() => nix.update(nix.sel(libapparmor, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Mandatory access control system - script user-land utilities",
       })),
     })));

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["url", 30, 7], ["sha256", 31, 7]], [["url", 35, 7], ["sha256", 36, 7]], [["homepage", 67, 5], ["description", 68, 5], ["mainProgram", 69, 5], ["longDescription", 70, 5], ["platforms", 78, 5], ["maintainers", 79, 5], ["license", 80, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 27, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["installPhase", 50, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, makeWrapper: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["sha256", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 35, 7], ["sha256", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["mainProgram", 69, 5], ["longDescription", 70, 5], ["platforms", 78, 5], ["maintainers", 79, 5], ["license", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 27, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["installPhase", 50, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "infra-arcana",
       version: "23.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "martin-tornqvist",
           repo: "ia",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,12 +29,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/martin-tornqvist/ia/-/commit/6d82fe8ac58cfb33b65eb1c345d6a73d7c0a300b.patch",
             sha256: "sha256-WaJKcjKQ9Ip46MM4W2lTFu1ev1lutbgXpceWX2KnffI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.com/martin-tornqvist/ia/-/commit/51ca3d3cf577a159d65799124c3d19b7c6d49057.patch",
             sha256: "sha256-+GklNdHsywxN8tCciPjRK9/H75hoSp3oh7rIj6J0gMM=",
           })))),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, SDL2_image, SDL2_mixer]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/{opt/ia,bin}\n\n# Remove build artifacts\nrm -rf CMake* cmake* compile_commands.json CTest* Makefile\ncp -ra * $out/opt/ia\n\n# IA uses relative paths when looking for assets\nwrapProgram $out/opt/ia/ia --run \"cd $out/opt/ia\"\nln -s $out/opt/ia/ia $out/bin/infra-arcana\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://sites.google.com/site/infraarcana",
         description: "Lovecraftian single-player roguelike game",
         mainProgram: "infra-arcana",

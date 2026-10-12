@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["url", 17, 5], ["hash", 18, 5]], [["NIX_CFLAGS_COMPILE", 33, 7]], [["homepage", 42, 5], ["description", 43, 5], ["mainProgram", 44, 5], ["longDescription", 45, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["ini", 16, 3], ["unpackPhase", 21, 3], ["buildPhase", 26, 3], ["env", 33, 3], ["installPhase", 35, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 33, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["mainProgram", 44, 5], ["longDescription", 45, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["ini", 16, 3], ["unpackPhase", 21, 3], ["buildPhase", 26, 3], ["env", 33, 3], ["installPhase", 35, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
       const pname = "fairymax";
       const version = "4.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://home.hccnet.nl/h.g.muller/fmax4_8w.c",
           hash: "sha256-ikn+CA5lxtDYSDT+Nsv1tfORhKW6/vlmHcGAT9SFfQc=",
         }))));
       const ini = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://home.hccnet.nl/h.g.muller/fmax.ini",
           hash: "sha256-lh2ivXx4jNdWn3pT1WKKNEvkVQ31JfdDx+vqNx44nf8=",
         }))));
@@ -32,12 +28,12 @@ cp ${ini} fmax.ini
 `);
       const buildPhase = "cc *.c -Wno-return-type \\\n  -o fairymax \\\n  -DINI_FILE='\"'\"$out/share/fairymax/fmax.ini\"'\"'\n";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: "-Wno-error=return-mismatch -Wno-error=implicit-int",
       }));
       const installPhase = "mkdir -p \"$out\"/{bin,share/fairymax}\ncp fairymax \"$out/bin\"\ncp fmax.ini \"$out/share/fairymax\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://home.hccnet.nl/h.g.muller/dwnldpage.html",
         description: "Small chess engine supporting fairy pieces",
         mainProgram: "fairymax",
@@ -47,7 +43,7 @@ cp ${ini} fmax.ini
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

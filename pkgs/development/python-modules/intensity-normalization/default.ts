@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 5], ["version", 24, 26], ["hash", 25, 5]], [["homepage", 50, 5], ["description", 51, 5], ["changelog", 52, 5], ["maintainers", 53, 5], ["license", 54, 5], ["mainProgram", 55, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 38, 3], ["enabledTestPaths", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, nibabel: false, numpy: false, "scikit-fuzzy": false, scipy: false, typer: false, pytestCheckHook: false, "pytest-cov-stub": false, hypothesis: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 5], ["version", 24, 26], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 50, 5], ["description", 51, 5], ["changelog", 52, 5], ["maintainers", 53, 5], ["license", 54, 5], ["mainProgram", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 38, 3], ["enabledTestPaths", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const hypothesis = nix.arg($, "hypothesis");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "intensity-normalization",
       version: "4.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "intensity_normalization",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-aKOyW5fxNksHTQurrClJGowuq4coDTID2m9KAQI7ZIQ=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests"]),
       pythonImportsCheck: nix.thunk(() => ["intensity_normalization"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jcreinhold/intensity-normalization",
         description: "MRI intensity normalization tools",
         changelog: nix.thunk(() => nix.str`https://github.com/jcreinhold/intensity-normalization/releases/tag/${nix.sel(finalAttrs, "version")}`),

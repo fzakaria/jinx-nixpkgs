@@ -2,17 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/uptermd.nix", [[["systemPackages", 7, 19]], [["environment", 7, 7]], [["maintainers", 13, 5]], [["enable", 21, 11], ["openFirewall", 22, 11], ["port", 23, 11], ["extraFlags", 25, 11]], [["uptermd", 20, 18]], [["services", 20, 9]], [["server", 17, 5], ["client1", 31, 5], ["client2", 32, 5]], [["name", 11, 3], ["meta", 12, 3], ["nodes", 16, 3], ["testScript", 35, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/uptermd.nix", [["systemPackages", 7, 19]]);
-const pos$2 = nix.positions(here + "/uptermd.nix", [["environment", 7, 7]]);
-const pos$3 = nix.positions(here + "/uptermd.nix", [["maintainers", 13, 5]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/uptermd.nix", [["enable", 21, 11], ["openFirewall", 22, 11], ["port", 23, 11], ["extraFlags", 25, 11]]);
-const pos$5 = nix.positions(here + "/uptermd.nix", [["uptermd", 20, 18]]);
-const pos$6 = nix.positions(here + "/uptermd.nix", [["services", 20, 9]]);
-const pos$7 = nix.positions(here + "/uptermd.nix", [["server", 17, 5], ["client1", 31, 5], ["client2", 32, 5]]);
-const pos$8 = nix.positions(here + "/uptermd.nix", [["name", 11, 3], ["meta", 12, 3], ["nodes", 16, 3], ["testScript", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,34 +14,34 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "upterm"))]),
       })),
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "uptermd",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "fleaz"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             uptermd: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               openFirewall: true,
               port: 1337n,

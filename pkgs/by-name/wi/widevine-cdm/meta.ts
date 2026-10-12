@@ -2,10 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/meta.nix", [["description", 2, 3], ["homepage", 3, 3], ["sourceProvenance", 4, 3], ["license", 5, 3], ["maintainers", 6, 3], ["platforms", 10, 3]]);
+const $pos = nix.positions(here + "/meta.nix", [[["description", 2, 3], ["homepage", 3, 3], ["sourceProvenance", 4, 3], ["license", 5, 3], ["maintainers", 6, 3], ["platforms", 10, 3]]]);
 
 export default (lib) => ({
-  [nix.POS]: pos$1,
+  [nix.POS]: $pos[0],
   description: "Widevine CDM",
   homepage: "https://www.widevine.com",
   sourceProvenance: nix.thunk(() => (() => {

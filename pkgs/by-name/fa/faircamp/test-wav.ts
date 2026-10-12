@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-wav.nix", [[["timeout", 9, 8]], [["name", 8, 3], ["meta", 9, 3], ["buildCommand", 10, 3]]]);
 const formals$1 = { args: { stdenv: false, faircamp: false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-wav.nix", [["timeout", 9, 8]]);
-const pos$2 = nix.positions(here + "/test-wav.nix", [["name", 8, 3], ["meta", 9, 3], ["buildCommand", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const faircamp = nix.arg($, "faircamp");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "faircamp-test-wav",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 60n })),
       buildCommand: nix.thunk(() => nix.str`mkdir album
 ${ffmpeg}/bin/ffmpeg -f lavfi -i "sine=frequency=440:duration=1" album/track.wav
 ${faircamp}/bin/faircamp --build-dir $out

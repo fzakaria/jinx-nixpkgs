@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-darwin", 24, 7], ["aarch64-linux", 25, 7], ["x86_64-linux", 26, 7]], [["arm64-linux-hash", 31, 7], ["arm64-osx-hash", 32, 7], ["x64-linux-hash", 33, 7], ["x64-osx-hash", 34, 7]], [["name", 43, 5], ["url", 44, 5], ["hash", 45, 13]], [["whisparr_2", 80, 36]], [["updateScript", 79, 5], ["tests", 80, 5]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["sourceProvenance", 93, 5], ["mainProgram", 94, 5], ["maintainers", 95, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["__structuredAttrs", 48, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 51, 3], ["runtimeLibs", 53, 3], ["installPhase", 63, 3], ["passthru", 78, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, curl: false, "dotnet-runtime": false, fetchurl: false, icu: false, libmediainfo: false, makeWrapper: false, mono: false, openssl: false, sqlite: false, zlib: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-darwin", 24, 7], ["aarch64-linux", 25, 7], ["x86_64-linux", 26, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["arm64-linux-hash", 31, 7], ["arm64-osx-hash", 32, 7], ["x64-linux-hash", 33, 7], ["x64-osx-hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 43, 5], ["url", 44, 5], ["hash", 45, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["whisparr_2", 80, 36]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 79, 5], ["tests", 80, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["sourceProvenance", 93, 5], ["mainProgram", 94, 5], ["maintainers", 95, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["__structuredAttrs", 48, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 51, 3], ["runtimeLibs", 53, 3], ["installPhase", 63, 3], ["passthru", 78, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const os = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "osx" : "linux"));
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const arch = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-darwin": "arm64",
     "aarch64-linux": "arm64",
     "x86_64-linux": "x64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.str`${system}`)));
   const hash = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "arm64-linux-hash": "sha256-hFZ27VAIBDW8c7oP+Nl0rj6T2CRbee8Qxf4CzZJmCL8=",
     "arm64-osx-hash": "sha256-oFqnQnbBGAD4x97FANbY091nJrzHRMewalASwgOul8s=",
     "x64-linux-hash": "sha256-ZRgCJf2GGV1B+QgmYh4OfX7nMfRBdN6pIg5pU6Q/KCQ=",
@@ -45,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "whisparr";
       const version = "2.0.0.2151";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: nix.thunk(() => nix.str`${pname}-${arch}-${os}-${version}.tar.gz`),
           url: nix.thunk(() => nix.str`https://whisparr.servarr.com/v1/update/nightly/updatefile?runtime=netcore&version=${version}&arch=${arch}&os=${os}`),
           hash: hash,
@@ -68,15 +62,15 @@ makeWrapper "${dotnet_runtime}/bin/dotnet" $out/bin/Whisparr \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           whisparr_2: nix.thunk(() => nix.attr(nixosTests, "whisparr_2")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Adult video collection manager for Usenet and BitTorrent users",
         homepage: "https://wiki.servarr.com/en/whisparr",
         changelog: "https://whisparr.servarr.com/v1/update/nightly/changes",
@@ -87,7 +81,7 @@ runHook postInstall
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

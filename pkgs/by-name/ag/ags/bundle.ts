@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bundle.nix", [[["extraPackages", 27, 23]], [["nativeBuildInputs", 26, 5], ["buildInputs", 33, 5], ["preFixup", 43, 5], ["installPhase", 64, 5]]]);
 const formals$1 = { args: { lib: false, ags: false, astal: false, "dart-sass": false, fzf: false, gjs: false, gnused: false, "gobject-introspection": false, gtk3: false, "gtk4-layer-shell": false, stdenvNoCC: false, wrapGAppsHook3: false, wrapGAppsHook4: false }, ellipsis: false };
 const formals$2 = { args: { entry: true, dependencies: true, enableGtk4: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/bundle.nix", [["extraPackages", 27, 23]]);
-const pos$2 = nix.positions(here + "/bundle.nix", [["nativeBuildInputs", 26, 5], ["buildInputs", 33, 5], ["preFixup", 43, 5], ["installPhase", 64, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,9 +28,9 @@ export default nix.lambda((args) => (() => {
     const dependencies = nix.argOr($_1, "dependencies", () => []);
     const enableGtk4 = nix.argOr($_1, "enableGtk4", () => false);
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => nix.update(attrs, {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "nativeBuildInputs"), [
-          nix.thunk(() => nix.app(nix.sel(ags, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, extraPackages: dependencies })))),
+          nix.thunk(() => nix.app(nix.sel(ags, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], extraPackages: dependencies })))),
           gnused,
           gobject_introspection,
           nix.thunk(() => (nix.asBool(enableGtk4) ? nix.force(wrapGAppsHook4) : nix.force(wrapGAppsHook3))),

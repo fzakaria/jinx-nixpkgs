@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["packageName", 47, 5]], [["updateScript", 46, 12]], [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["teams", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 31, 3], ["postPatch", 33, 3], ["preFixup", 42, 3], ["passthru", 46, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, "xdg-user-dirs": false, wrapGAppsHook3: false, gtk3: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 46, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["teams", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 31, 3], ["postPatch", 33, 3], ["preFixup", 42, 3], ["passthru", 46, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xdg-user-dirs-gtk",
       version: "0.16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/xdg-user-dirs-gtk/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/xdg-user-dirs-gtk-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-voJd5/iRddterQzTdE0nYRCccJQyUahwkiWRYwJVIKk=",
         })))),
@@ -42,11 +38,11 @@ patchShebangs meson_custom_install_desktop_file.sh
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdg_user_dirs]))}")
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "xdg-user-dirs-gtk" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "xdg-user-dirs-gtk" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/xdg-user-dirs-gtk",
         description: "Companion to xdg-user-dirs that integrates it into the GNOME desktop and GTK applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 137, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["badPlatforms", 142, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 47, 3], ["pytestFlags", 55, 3], ["pythonImportsCheck", 61, 3], ["disabledTestMarks", 63, 3], ["disabledTests", 69, 3], ["disabledTestPaths", 98, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, setuptools: false, numpy: false, packaging: false, torch: false, "typing-extensions": false, onnx: false, pyparsing: false, pytestCheckHook: false, pyyaml: false, torchvision: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 137, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["badPlatforms", 142, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 47, 3], ["pytestFlags", 55, 3], ["pythonImportsCheck", 61, 3], ["disabledTestMarks", 63, 3], ["disabledTests", 69, 3], ["disabledTestPaths", 98, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const torchvision = nix.arg($, "torchvision");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pytorch-pfn-extras",
       version: "0.9.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pfnet",
           repo: "pytorch-pfn-extras",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,7 +73,7 @@ export default nix.lambda((args) => (() => {
           "tests/pytorch_pfn_extras_tests/training_tests/extensions_tests/test_sharded_snapshot.py",
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["tests/pytorch_pfn_extras_tests/nn_tests/modules_tests/test_lazy_conv.py"]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Supplementary components to accelerate research and development in PyTorch",
         homepage: "https://github.com/pfnet/pytorch-pfn-extras",
         changelog: nix.thunk(() => nix.str`https://github.com/pfnet/pytorch-pfn-extras/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 23, 5], ["mainProgram", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patchPhase", 16, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["mainProgram", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patchPhase", 16, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "podiff",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "ftp://download.gnu.org.ua/pub/release/podiff/podiff-1.4.tar.gz",
           sha256: "sha256-IxUx87CxdhWh8MqdcSo8GWaG358aZBaIx0oldK94sio=",
         })))),
       patchPhase: "sed \"s#PREFIX=/usr#PREFIX=$out#g\" -i Makefile\nmkdir -p $out/bin\nmkdir -p $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Finds differences in translations between two PO files, or revisions",
         mainProgram: "podiff",
         homepage: "http://puszcza.gnu.org.ua/software/podiff",

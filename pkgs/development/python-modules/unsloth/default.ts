@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5], ["postFetch", 47, 5]], [["pname", 62, 5], ["version", 63, 26], ["hash", 64, 5]], [["python3Packages", 150, 50]], [["broken", 157, 29]], [["meta", 157, 24]], [["libraries", 152, 11], ["gpuCheckArgs", 157, 11]], [["cuda", 147, 5], ["qlora-train-and-merge", 175, 5]], [["tests", 146, 12]], [["description", 179, 5], ["homepage", 180, 5], ["license", 181, 5], ["maintainers", 182, 5]], [["pname", 56, 3], ["version", 57, 3], ["pyproject", 58, 3], ["src", 61, 3], ["postPatch", 67, 3], ["build-system", 91, 3], ["dependencies", 96, 3], ["pythonRelaxDeps", 121, 3], ["pythonRemoveDeps", 130, 3], ["doCheck", 140, 3], ["dontUsePythonImportsCheck", 144, 3], ["passthru", 146, 3], ["meta", 178, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, "setuptools-scm": false, bitsandbytes: false, numpy: false, packaging: false, psutil: false, torch: false, "unsloth-zoo": false, xformers: false, tyro: false, transformers: false, datasets: false, sentencepiece: false, tqdm: false, accelerate: false, trl: false, peft: false, protobuf: false, "huggingface-hub": false, "hf-transfer": false, diffusers: false, torchvision: false, fetchFromGitHub: false, cudaPackages: false, python: false, gcc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5], ["postFetch", 47, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 62, 5], ["version", 63, 26], ["hash", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["python3Packages", 150, 50]]);
-const pos$4 = nix.positions(here + "/default.nix", [["broken", 157, 29]]);
-const pos$5 = nix.positions(here + "/default.nix", [["meta", 157, 24]]);
-const pos$6 = nix.positions(here + "/default.nix", [["libraries", 152, 11], ["gpuCheckArgs", 157, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["cuda", 147, 5], ["qlora-train-and-merge", 175, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["tests", 146, 12]]);
-const pos$9 = nix.positions(here + "/default.nix", [["description", 179, 5], ["homepage", 180, 5], ["license", 181, 5], ["maintainers", 182, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 56, 3], ["version", 57, 3], ["pyproject", 58, 3], ["src", 61, 3], ["postPatch", 67, 3], ["build-system", 91, 3], ["dependencies", 96, 3], ["pythonRelaxDeps", 121, 3], ["pythonRemoveDeps", 130, 3], ["doCheck", 140, 3], ["dontUsePythonImportsCheck", 144, 3], ["passthru", 146, 3], ["meta", 178, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const gcc = nix.arg($, "gcc");
   const testSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "unslothai",
       repo: "unsloth",
       rev: "cb78f0e83dc2d61fb1571b6e904eb2f064510d63",
@@ -54,12 +45,12 @@ export default nix.lambda((args) => (() => {
       postFetch: "mv $out/tests $TMPDIR/tests\nrm -rf $out/*\nmv $TMPDIR/tests $out/tests\n",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "unsloth",
       version: "2026.4.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "unsloth",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-35+IMV/WHVi0iGnOxtfSZNKo0+0ZlNVlbNtA5tXw9sE=",
@@ -93,17 +84,20 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       dontUsePythonImportsCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => (() => {
-          const cuda = nix.thunk(() => nix.app(nix.sel(cudaPackages, "writeGpuTestPython", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, python3Packages: nix.thunk(() => nix.sel(python, "pkgs")) })), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+          const cuda = nix.thunk(() => nix.app(nix.sel(cudaPackages, "writeGpuTestPython", "override"), nix.thunk(() => ({
+              [nix.POS]: $pos[2],
+              python3Packages: nix.thunk(() => nix.sel(python, "pkgs")),
+            })), nix.thunk(() => ({
+              [nix.POS]: $pos[5],
               libraries: (ps) => [
                 nix.thunk(() => nix.sel(ps, "unsloth")),
                 nix.thunk(() => nix.sel(ps, "unsloth-zoo")),
               ],
               gpuCheckArgs: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                meta: nix.thunk(() => ({ [nix.POS]: pos$4, broken: true })),
+                [nix.POS]: $pos[4],
+                meta: nix.thunk(() => ({ [nix.POS]: $pos[3], broken: true })),
               })),
             })), nix.thunk(() => nix.str`import os, sys, runpy
 
@@ -119,11 +113,11 @@ runpy.run_path(
 )
 `)));
           const qlora_train_and_merge = cuda;
-          return { [nix.POS]: pos$7, cuda, "qlora-train-and-merge": qlora_train_and_merge };
+          return { [nix.POS]: $pos[6], cuda, "qlora-train-and-merge": qlora_train_and_merge };
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Finetune Llama 3.3, DeepSeek-R1 & Reasoning LLMs 2x faster with 70% less memory",
         homepage: "https://github.com/unslothai/unsloth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

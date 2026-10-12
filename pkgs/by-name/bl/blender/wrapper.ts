@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["pname", 8, 3], ["src", 9, 3], ["version", 11, 21], ["meta", 11, 29], ["nativeBuildInputs", 13, 3], ["installPhase", 17, 3], ["pythonPath", 28, 3]]]);
 const formals$1 = { args: { stdenv: false, blender: false, makeWrapper: false, extraModules: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["pname", 8, 3], ["src", 9, 3], ["version", 11, 21], ["meta", 11, 29], ["nativeBuildInputs", 13, 3], ["installPhase", 17, 3], ["pythonPath", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const extraModules = nix.argOr($, "extraModules", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.sel(blender, "pname")),
       src: blender,
       version: nix.thunk(() => nix.attr(blender, "version")),

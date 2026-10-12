@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 17, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["preInstall", 25, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libpcap: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["preInstall", 25, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dnstop",
       version: "2014-09-15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://dns.measurement-factory.com/tools/dnstop/src/dnstop-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["-"]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.tar.gz`),
           sha256: "0yn5s2825l826506gclbcfk3lzllx9brk9rzja6yj5jv0013vc5l",
         })))),
       buildInputs: nix.thunk(() => [libpcap, ncurses]),
       preInstall: "mkdir -p $out/share/man/man8 $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "libpcap application that displays DNS traffic on your network",
         homepage: "http://dns.measurement-factory.com/tools/dnstop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

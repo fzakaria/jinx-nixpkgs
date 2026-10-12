@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["extraArgs", 106, 7]], [["updateScript", 105, 5], ["z3", 111, 5]], [["description", 115, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5], ["mainProgram", 122, 5], ["platforms", 123, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["prePatch", 40, 3], ["buildInputs", 45, 3], ["propagatedBuildInputs", 49, 3], ["preConfigure", 64, 3], ["buildPhase", 71, 3], ["installPhase", 77, 3], ["enableParallelBuilding", 102, 3], ["passthru", 104, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchFromGitHub: false, installShellFiles: false, lib: false, makeWrapper: false, "nix-update-script": false, "ocaml-ng": false, removeReferencesTo: false, "util-linux": false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 106, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 105, 5], ["z3", 111, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 115, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5], ["mainProgram", 122, 5], ["platforms", 123, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["prePatch", 40, 3], ["buildInputs", 45, 3], ["propagatedBuildInputs", 49, 3], ["preConfigure", 64, 3], ["buildPhase", 71, 3], ["installPhase", 77, 3], ["enableParallelBuilding", 102, 3], ["passthru", 104, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const ocamlPackages = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_5_4"));
   const fstarZ3 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./z3"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fstar",
       version: "2026.03.24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FStarLang",
           repo: "FStar",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,15 +91,15 @@ runHook postInstall
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9]{4}\\.[0-9]{2}\\.[0-9]{2})$"]),
           })))),
         z3: fstarZ3,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "ML-like functional programming language aimed at program verification",
         homepage: "https://www.fstar-lang.org",
         changelog: nix.thunk(() => nix.str`https://github.com/FStarLang/FStar/raw/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

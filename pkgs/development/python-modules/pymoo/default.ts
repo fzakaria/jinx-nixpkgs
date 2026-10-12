@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["MATPLOTLIBRC", 128, 7]], [["description", 135, 5], ["homepage", 136, 5], ["downloadPage", 137, 5], ["changelog", 138, 5], ["license", 139, 5], ["maintainers", 140, 5]], [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["src", 46, 3], ["postPatch", 53, 3], ["pythonRemoveDeps", 66, 3], ["build-system", 68, 3], ["dependencies", 73, 3], ["nativeCheckInputs", 84, 3], ["disabledTestMarks", 94, 3], ["disabledTests", 95, 3], ["disabledTestPaths", 118, 3], ["env", 128, 3], ["pythonImportsCheck", 132, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, setuptools: false, "alive-progress": false, autograd: false, cma: false, deprecated: false, matplotlib: false, moocore: false, numpy: false, scipy: false, jupytext: false, nbformat: false, notebook: false, numba: false, optuna: false, pytestCheckHook: false, pythonAtLeast: false, "scikit-learn": false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["MATPLOTLIBRC", 128, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 135, 5], ["homepage", 136, 5], ["downloadPage", 137, 5], ["changelog", 138, 5], ["license", 139, 5], ["maintainers", 140, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["src", 46, 3], ["postPatch", 53, 3], ["pythonRemoveDeps", 66, 3], ["build-system", 68, 3], ["dependencies", 73, 3], ["nativeCheckInputs", 84, 3], ["disabledTestMarks", 94, 3], ["disabledTests", 95, 3], ["disabledTestPaths", 118, 3], ["env", 128, 3], ["pythonImportsCheck", 132, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const scikit_learn = nix.arg($, "scikit-learn");
   const writeText = nix.arg($, "writeText");
   const pymoo_data = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "anyoptimization",
       repo: "pymoo-data",
       rev: "8dae7d02078def161ee109184399adc3db25265b",
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "anyoptimization",
           repo: "pymoo",
           tag: version,
@@ -79,12 +75,12 @@ substituteInPlace pymoo/config.py \\
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ["test_kktpm_correctness"]))));
       const disabledTestPaths = nix.thunk(() => nix.concat(["tests/algorithms/test_no_modfication.py"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/misc/test_kktpm.py::test_kktpm_correctness[zdt3-params3]"]))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         MATPLOTLIBRC: nix.thunk(() => nix.app(writeText, "", "backend: Agg\n")),
       }));
       const pythonImportsCheck = nix.thunk(() => ["pymoo"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Multi-objective Optimization in Python",
         homepage: "https://pymoo.org/",
         downloadPage: "https://github.com/anyoptimization/pymoo",
@@ -96,7 +92,7 @@ substituteInPlace pymoo/config.py \\
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

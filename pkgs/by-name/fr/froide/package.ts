@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withGdal", 22, 44]], [["hash", 29, 11]], [["version", 26, 9], ["src", 28, 9]], [["owner", 40, 11], ["repo", 41, 11], ["rev", 42, 11], ["hash", 43, 11]], [["pname", 35, 9], ["version", 36, 9], ["pyproject", 37, 9], ["src", 39, 9], ["build-system", 46, 9]], [["django_5", 22, 7], ["django", 23, 7], ["django-oauth-toolkit", 25, 7], ["dogtail", 34, 7]], [["packageOverrides", 21, 5]], [["owner", 58, 5], ["repo", 59, 5], ["rev", 60, 5], ["hash", 61, 5]], [["pname", 129, 7], ["version", 130, 7], ["src", 131, 7], ["fetcherVersion", 133, 5], ["hash", 134, 5]], [["python", 223, 13]], [["description", 227, 5], ["homepage", 228, 5], ["license", 229, 5], ["maintainers", 230, 5], ["mainProgram", 231, 5]], [["pname", 53, 3], ["version", 54, 3], ["pyproject", 55, 3], ["src", 57, 3], ["patches", 64, 3], ["build-system", 66, 3], ["nativeBuildInputs", 68, 3], ["dependencies", 75, 3], ["pnpmDeps", 127, 3], ["postBuild", 137, 3], ["postInstall", 141, 3], ["nativeCheckInputs", 149, 3], ["checkInputs", 158, 3], ["disabledTests", 165, 3], ["preCheck", 208, 3], ["doCheck", 220, 3], ["passthru", 222, 3], ["meta", 226, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, python3Packages: false, fetchFromGitHub: false, makeWrapper: false, gdal: false, geos: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_11: false, nodejs: false, postgresql: false, postgresqlTestHook: false, "playwright-driver": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withGdal", 22, 44]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hash", 29, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 26, 9], ["src", 28, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 40, 11], ["repo", 41, 11], ["rev", 42, 11], ["hash", 43, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 35, 9], ["version", 36, 9], ["pyproject", 37, 9], ["src", 39, 9], ["build-system", 46, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["django_5", 22, 7], ["django", 23, 7], ["django-oauth-toolkit", 25, 7], ["dogtail", 34, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["packageOverrides", 21, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 58, 5], ["repo", 59, 5], ["rev", 60, 5], ["hash", 61, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 129, 7], ["version", 130, 7], ["src", 131, 7], ["fetcherVersion", 133, 5], ["hash", 134, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["python", 223, 13]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 227, 5], ["homepage", 228, 5], ["license", 229, 5], ["maintainers", 230, 5], ["mainProgram", 231, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 53, 3], ["version", 54, 3], ["pyproject", 55, 3], ["src", 57, 3], ["patches", 64, 3], ["build-system", 66, 3], ["nativeBuildInputs", 68, 3], ["dependencies", 75, 3], ["pnpmDeps", 127, 3], ["postBuild", 137, 3], ["postInstall", 141, 3], ["nativeCheckInputs", 149, 3], ["checkInputs", 158, 3], ["disabledTests", 165, 3], ["preCheck", 208, 3], ["doCheck", 220, 3], ["passthru", 222, 3], ["meta", 226, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,26 +23,26 @@ export default nix.lambda((args) => (() => {
   const playwright_driver = nix.arg($, "playwright-driver");
   const pnpm = pnpm_11;
   const python = nix.thunk(() => nix.app(nix.sel(python3Packages, "python", "override"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       packageOverrides: (self) => (super$) => ({
-        [nix.POS]: pos$6,
-        django_5: nix.thunk(() => nix.app(nix.sel(super$, "django_5", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withGdal: true })))),
+        [nix.POS]: $pos[5],
+        django_5: nix.thunk(() => nix.app(nix.sel(super$, "django_5", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withGdal: true })))),
         django: nix.thunk(() => nix.sel(super$, "django_5")),
         "django-oauth-toolkit": nix.thunk(() => nix.app(nix.sel(super$, "django-oauth-toolkit", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             version: "3.3.0",
             src: nix.thunk(() => nix.app(nix.sel(old, "src", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 hash: "sha256-eRQzAFUvSgoDiP7LW/+hMrNxHuXVxY+wc/E3VU/zeXo=",
               })))),
           }))),
         dogtail: nix.thunk(() => nix.app(nix.sel(super$, "buildPythonPackage"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             pname: "dogtail",
             version: "0-unstable-2024-11-27",
             pyproject: true,
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 owner: "okfde",
                 repo: "dogtail",
                 rev: "d2f341cab0f05ef4e193f0158fe5a64aadc5bae6",
@@ -67,12 +56,12 @@ export default nix.lambda((args) => (() => {
       }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "froide",
       version: "0-unstable-2026-08-19",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           owner: "okfde",
           repo: "froide",
           rev: "a83f2c28e96f15c55f3009cdadbf2a8fcf17fda8",
@@ -136,7 +125,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -210,9 +199,9 @@ export GEOS_LIBRARY_PATH="${geos}/lib/libgeos_c.so"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV"))), nix.thunk(() => nix.str`export PLAYWRIGHT_BROWSERS_PATH="${nix.sel(playwright_driver, "browsers")}"
 `)))),
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), nix.thunk(() => nix.sel(playwright_driver, "browsers")))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$10, python: python })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[9], python: python })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Freedom of Information Portal",
         homepage: "https://github.com/okfde/froide",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

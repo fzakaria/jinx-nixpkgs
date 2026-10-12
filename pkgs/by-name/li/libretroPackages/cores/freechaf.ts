@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/freechaf.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5], ["fetchSubmodules", 15, 5]], [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]], [["core", 7, 3], ["version", 8, 3], ["src", 10, 3], ["makefile", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, mkLibretroCore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/freechaf.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5], ["fetchSubmodules", 15, 5]]);
-const pos$2 = nix.positions(here + "/freechaf.nix", [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]]);
-const pos$3 = nix.positions(here + "/freechaf.nix", [["core", 7, 3], ["version", 8, 3], ["src", 10, 3], ["makefile", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       core: "freechaf",
       version: "0-unstable-2026-04-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "FreeChaF",
           rev: "76c7a84f1f7e80f3e6f2bba96fe100cb24e99124",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makefile: "Makefile",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fairchild Channel F emulator core for libretro",
         homepage: "https://github.com/libretro/FreeChaF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

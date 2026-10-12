@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["maintainers", 73, 5], ["license", 74, 5], ["platforms", 75, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["patches", 39, 3], ["configureFlags", 41, 3], ["outputs", 46, 3], ["setOutputFlags", 50, 3], ["postInstall", 52, 3], ["doCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, makeWrapper: false, getconf: false, ocaml: false, unzip: false, ncurses: false, curl: false, bubblewrap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["maintainers", 73, 5], ["license", 74, 5], ["platforms", 75, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["patches", 39, 3], ["configureFlags", 41, 3], ["outputs", 46, 3], ["setOutputFlags", 50, 3], ["postInstall", 52, 3], ["doCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const bubblewrap = nix.arg($, "bubblewrap");
   nix.assert_(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08.0"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/tools/ocaml/opam/default.nix:14:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "opam",
       version: "2.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ocaml/opam/releases/download/${nix.sel(finalAttrs, "version")}/opam-full-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-s2I4CVZ/Ge1rXWebjHu8C97JQYv/Sodf8HmdRG2FVcM=",
         })))),
@@ -42,7 +40,7 @@ $out/bin/opam-installer --prefix=$installer opam-installer.install
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Package manager for OCaml",
         homepage: "https://opam.ocaml.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/ocaml/opam/raw/${nix.sel(finalAttrs, "version")}/CHANGES`),

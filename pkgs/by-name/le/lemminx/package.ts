@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["modules", 17, 5], ["jdk", 23, 5]], [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5], ["leaveDotGit", 37, 5], ["postFetch", 38, 5]], [["name", 92, 9], ["runtimeInputs", 93, 9], ["text", 99, 9]], [["updateScript", 87, 5]], [["description", 125, 5], ["mainProgram", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["maintainers", 129, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["mvnJdk", 49, 3], ["mvnHash", 50, 3], ["mvnParameters", 54, 3], ["installPhase", 72, 3], ["nativeBuildInputs", 84, 3], ["passthru", 86, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, makeWrapper: false, jdk_headless: false, jre_minimal: false, maven: false, writeShellApplication: false, curl: false, "common-updater-scripts": false, jq: false, gnused: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["modules", 17, 5], ["jdk", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5], ["leaveDotGit", 37, 5], ["postFetch", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 92, 9], ["runtimeInputs", 93, 9], ["text", 99, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 125, 5], ["mainProgram", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["maintainers", 129, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["mvnJdk", 49, 3], ["mvnHash", 50, 3], ["mvnParameters", 54, 3], ["installPhase", 72, 3], ["nativeBuildInputs", 84, 3], ["passthru", 86, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const gnused = nix.arg($, "gnused");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       modules: nix.thunk(() => ["java.base", "java.logging", "java.xml", "jdk.crypto.ec"]),
       jdk: jdk_headless,
     }))));
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lemminx";
       const version = "0.31.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "eclipse-lemminx",
           repo: "lemminx",
           tag: version,
@@ -65,11 +60,11 @@ runHook postInstall
 `);
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => (() => {
           const pkgFile = nix.thunk(() => nix.builtins.toString(nix.path(here, "./package.nix")));
           return nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 name: nix.thunk(() => nix.str`update-${pname}`),
                 runtimeInputs: nix.thunk(() => [curl, common_updater_scripts, jq, gnused]),
                 text: nix.thunk(() => nix.str`if [ -z "\${GITHUB_TOKEN:-}" ]; then
@@ -97,7 +92,7 @@ sed -i "0,/mvnHash *= *\\"[^\\"]*\\"/{s#mvnHash = \\"[^\\"]*\\"#mvnHash = \\"$NE
         })()),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "XML Language Server",
         mainProgram: "lemminx",
         homepage: "https://github.com/eclipse-lemminx/lemminx",
@@ -108,7 +103,7 @@ sed -i "0,/mvnHash *= *\\"[^\\"]*\\"/{s#mvnHash = \\"[^\\"]*\\"#mvnHash = \\"$NE
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["mainProgram", 26, 5]], [["pname", 7, 3], ["version", 8, 3], ["vendorHash", 10, 3], ["proxyVendor", 12, 3], ["src", 14, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["mainProgram", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["vendorHash", 10, 3], ["proxyVendor", 12, 3], ["src", 14, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,20 +11,20 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "adif-multitool",
       version: "0.1.22",
       vendorHash: "sha256-Fin0DUvpNPqKXpbDVekvWZYghJIpMLY9IRr2wdbZczc=",
       proxyVendor: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flwyd",
           repo: "adif-multitool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-UYnm4S4DP0c2ZkPkPScUHXdKiAz6JY9Lzdu4mAO49Dc=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command-line program for working with ham logfiles",
         homepage: "https://github.com/flwyd/adif-multitool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

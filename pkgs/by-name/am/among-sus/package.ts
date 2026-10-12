@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 29, 5], ["description", 30, 5], ["mainProgram", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patchPhase", 19, 3], ["installPhase", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false, port: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["mainProgram", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patchPhase", 19, 3], ["installPhase", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   const port = nix.argOr($, "port", () => "1234");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "among-sus-unstable",
       version: "2021-05-19",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~martijnbraam",
           repo: "among-sus",
           rev: "554e60bf52e3fa931661b9414189a92bb8f69d78",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "mkdir -p $out/bin\ninstall -Dm755 among-sus $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git.sr.ht/~martijnbraam/among-sus",
         description: "Among us, but it's a text adventure",
         mainProgram: "among-sus",

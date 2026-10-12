@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 63, 5], ["curlOpts", 64, 5], ["hash", 65, 5]], [["owner", 79, 5], ["repo", 80, 5], ["rev", 81, 5], ["hash", 82, 5]], [["url", 89, 7], ["name", 90, 7], ["stripRoot", 91, 7], ["hash", 92, 7]], [["url", 97, 5], ["hash", 98, 5]], [["NIX_CFLAGS_COMPILE", 176, 7]], [["description", 244, 5], ["homepage", 245, 5], ["license", 246, 5], ["platforms", 250, 5]], [["pname", 71, 3], ["version", 72, 3], ["vmVersionRelease", 74, 3], ["vmHash", 75, 3], ["vmSrcUrl", 77, 3], ["src", 78, 3], ["imageSrc", 84, 3], ["sourcesSrc", 96, 3], ["vmBuild", 103, 3], ["nativeBuildInputs", 105, 3], ["buildInputs", 114, 3], ["postUnpack", 130, 3], ["prePatch", 136, 3], ["patches", 140, 3], ["postPatch", 149, 3], ["env", 176, 3], ["preAutoreconf", 191, 3], ["postAutoreconf", 195, 3], ["preConfigure", 200, 3], ["configureFlags", 219, 3], ["configureScript", 231, 3], ["installTargets", 233, 3], ["postInstall", 238, 3], ["meta", 243, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, fetchzip: false, autoconf: false, automake: false, autoreconfHook: false, dos2unix: false, file: false, perl: false, "pkg-config": false, "alsa-lib": false, coreutils: false, freetype: false, glib: false, glibc: false, gnugrep: false, libGL: false, libpulseaudio: false, libtool: false, libuuid: false, openssl: false, pango: false, libx11: false, squeakImageHash: true, squeakSourcesHash: true, squeakSourcesVersion: true, squeakVersion: true, squeakVmCommitHash: true, squeakVmCommitHashHash: true, squeakVmVersion: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 63, 5], ["curlOpts", 64, 5], ["hash", 65, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 79, 5], ["repo", 80, 5], ["rev", 81, 5], ["hash", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 89, 7], ["name", 90, 7], ["stripRoot", 91, 7], ["hash", 92, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 97, 5], ["hash", 98, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 176, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 244, 5], ["homepage", 245, 5], ["license", 246, 5], ["platforms", 250, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 71, 3], ["version", 72, 3], ["vmVersionRelease", 74, 3], ["vmHash", 75, 3], ["vmSrcUrl", 77, 3], ["src", 78, 3], ["imageSrc", 84, 3], ["sourcesSrc", 96, 3], ["vmBuild", 103, 3], ["nativeBuildInputs", 105, 3], ["buildInputs", 114, 3], ["postUnpack", 130, 3], ["prePatch", 136, 3], ["patches", 140, 3], ["postPatch", 149, 3], ["env", 176, 3], ["preAutoreconf", 191, 3], ["postAutoreconf", 195, 3], ["preConfigure", 200, 3], ["configureFlags", 219, 3], ["configureScript", 231, 3], ["installTargets", 233, 3], ["postInstall", 238, 3], ["meta", 243, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -66,20 +60,20 @@ export default nix.lambda((args) => (() => {
   const squeakVmVersionMinor = nix.thunk(() => nix.app(elemAt, squeakVmVersionBaseSplit, 1n));
   const squeakVmVersionRelease = nix.thunk(() => nix.app(elemAt, squeakVmVersionSplit, 2n));
   const squeakVmCommitHash_1 = nix.thunk(() => nix.app(nullableOr, nix.thunk(() => nix.selOr(args_1, () => null, "squeakVmCommitHash")), nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://api.github.com/repos/OpenSmalltalk/opensmalltalk-vm/commits/${squeakVmVersionRelease}`),
         curlOpts: "--header Accept:application/vnd.github.v3.sha",
         hash: nix.thunk(() => nix.app(nullableOr, nix.thunk(() => nix.selOr(args_1, () => null, "squeakVmCommitHashHash")), "sha256-quwmhpJlb2fp0fI9b03fBxSR44j1xmHPW20wkSqTOhQ=")),
       }))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "squeak",
       version: squeakVersion_1,
       vmVersionRelease: squeakVmVersionRelease,
       vmHash: squeakVmCommitHash_1,
       vmSrcUrl: "https://github.com/OpenSmalltalk/opensmalltalk-vm.git",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "OpenSmalltalk",
           repo: "opensmalltalk-vm",
           rev: squeakVmVersionRelease,
@@ -88,7 +82,7 @@ export default nix.lambda((args) => (() => {
       imageSrc: nix.thunk(() => (() => {
         const squeakImageName = nix.thunk(() => nix.str`Squeak${squeakVersionBase}-${squeakImageVersion}-${nix.app(toString, bits)}bit`);
         return nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://files.squeak.org/${squeakVersionBase}/${squeakImageName}/${squeakImageName}.zip`),
             name: "source",
             stripRoot: false,
@@ -96,7 +90,7 @@ export default nix.lambda((args) => (() => {
           })));
       })()),
       sourcesSrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://files.squeak.org/sources_files/SqueakV${squeakSourcesVersion_1}.sources.gz`),
           hash: nix.thunk(() => nix.app(nullableOr, nix.thunk(() => nix.selOr(args_1, () => null, "squeakSourcesHash")), "sha256-ZViZ1VgI32LwLTEyw7utp8oaAK3UmCNJnHqsGm1IKYE=")),
         })))),
@@ -148,7 +142,7 @@ substituteInPlace ./platforms/unix/config/mkmf \\
   --replace '/bin/rm ' '${coreutils}/bin/rm '
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(toString, nix.thunk(() => nix.concat(["-fcommon", "-std=gnu17"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
               "-Wno-error=int-conversion",
               "-Wno-error=implicit-function-declaration",
@@ -192,7 +186,7 @@ substituteInPlace ./mvm \\
 cp --no-preserve mode "$sourcesSrc" "$out"/lib/squeak/SqueakV${nix.app(nix.sel(lib, "escapeShellArg"), squeakSourcesVersion_1)}.sources
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Squeak virtual machine",
         homepage: "https://opensmalltalk.org/",
         license: nix.thunk(() => (() => {

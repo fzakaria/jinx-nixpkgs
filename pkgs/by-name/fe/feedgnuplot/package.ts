@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fontDirectories", 16, 31]], [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["FONTCONFIG_FILE", 49, 7]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 74, 5], ["maintainers", 75, 5], ["mainProgram", 76, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["env", 49, 3], ["postPatch", 51, 3], ["doCheck", 56, 3], ["postInstall", 58, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, makeWrapper: false, makeFontsConf: false, freefont_ttf: false, gnuplot: false, perl: false, perlPackages: false, stdenv: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fontDirectories", 16, 31]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["FONTCONFIG_FILE", 49, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 74, 5], ["maintainers", 75, 5], ["mainProgram", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["env", 49, 3], ["postPatch", 51, 3], ["doCheck", 56, 3], ["postInstall", 58, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const stdenv = nix.arg($, "stdenv");
   const installShellFiles = nix.arg($, "installShellFiles");
-  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$1, fontDirectories: nix.thunk(() => [freefont_ttf]) }))));
+  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[0], fontDirectories: nix.thunk(() => [freefont_ttf]) }))));
   return nix.app(nix.sel(perlPackages, "buildPerlPackage"), nix.thunk(() => (() => {
       const pname = "feedgnuplot";
       const version = "1.61";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "dkogan",
           repo: "feedgnuplot",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -42,12 +38,12 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "StringShellQuote")),
         ];
       })()));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, FONTCONFIG_FILE: fontsConf }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], FONTCONFIG_FILE: fontsConf }));
       const postPatch = "patchShebangs .\n";
       const doCheck = false;
       const postInstall = "wrapProgram $out/bin/feedgnuplot \\\n    --prefix \"PATH\" \":\" \"$PATH\" \\\n    --prefix \"PERL5LIB\" \":\" \"$PERL5LIB\"\n\ninstallShellCompletion --bash --name feedgnuplot.bash completions/bash/feedgnuplot\ninstallShellCompletion --zsh completions/zsh/_feedgnuplot\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "General purpose pipe-oriented plotting tool",
         homepage: "https://github.com/dkogan/feedgnuplot/",
         license: nix.thunk(() => (() => {
@@ -65,7 +61,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "feedgnuplot",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

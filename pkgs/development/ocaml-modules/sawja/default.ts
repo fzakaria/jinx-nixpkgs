@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 26], ["broken", 56, 5]], [["pname", 17, 3], ["version", 19, 11], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["strictDeps", 34, 3], ["patches", 36, 3], ["createFindlibDestdir", 41, 3], ["configureScript", 43, 3], ["dontAddPrefix", 44, 3], ["dontAddStaticConfigureFlags", 45, 3], ["configurePlatforms", 46, 3], ["propagatedBuildInputs", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, which: false, ocaml: false, findlib: false, javalib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 26], ["broken", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 19, 11], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["strictDeps", 34, 3], ["patches", 36, 3], ["createFindlibDestdir", 41, 3], ["configureScript", 43, 3], ["dontAddPrefix", 44, 3], ["dontAddStaticConfigureFlags", 45, 3], ["configurePlatforms", 46, 3], ["propagatedBuildInputs", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pname = "sawja";
   const version = "1.5.12";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}`),
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "javalib-team",
           repo: pname,
           rev: version,
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library written in OCaml, relying on Javalib to provide a high level representation of Java bytecode programs",
         homepage: "https://github.com/javalib-team/sawja",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

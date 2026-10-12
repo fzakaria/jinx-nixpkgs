@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]], [["url", 56, 5], ["sha256", 57, 5]], [["description", 142, 5], ["homepage", 143, 5], ["license", 144, 5], ["maintainers", 145, 5], ["mainProgram", 146, 5], ["broken", 147, 5]], [["pname", 46, 3], ["version", 47, 3], ["src", 48, 3], ["sigs", 55, 3], ["createFindlibDestdir", 60, 3], ["setupHook", 62, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 76, 3], ["propagatedBuildInputs", 87, 3], ["installPhase", 111, 3], ["disableIda", 125, 3], ["disableGhidra", 126, 3], ["patches", 128, 3], ["preConfigure", 132, 3], ["configureFlags", 136, 3], ["meta", 141, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, ocaml: false, findlib: false, ocamlbuild: false, ocaml_oasis: false, bitstring: false, camlzip: false, cmdliner: false, core_kernel: false, ezjsonm: false, fileutils: false, jane_rope: true, mmap: false, lwt: false, ocamlgraph: false, ocurl: false, re: false, uri: false, zarith: false, piqi: false, "piqi-ocaml": false, uuidm: false, llvm: false, frontc: false, ounit: false, ppx_jane: false, parsexp: true, utop: false, libxml2: false, ncurses: false, linenoise: false, ppx_bap: false, ppx_bitstring: false, yojson: false, which: false, makeWrapper: false, writeText: false, z3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 56, 5], ["sha256", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 142, 5], ["homepage", 143, 5], ["license", 144, 5], ["maintainers", 145, 5], ["mainProgram", 146, 5], ["broken", 147, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 46, 3], ["version", 47, 3], ["src", 48, 3], ["sigs", 55, 3], ["createFindlibDestdir", 60, 3], ["setupHook", 62, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 76, 3], ["propagatedBuildInputs", 87, 3], ["installPhase", 111, 3], ["disableIda", 125, 3], ["disableGhidra", 126, 3], ["patches", 128, 3], ["preConfigure", 132, 3], ["configureFlags", 136, 3], ["meta", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,18 +49,18 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const z3 = nix.arg($, "z3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-bap`),
       version: "2.5.0+pr1621",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BinaryAnalysisPlatform",
           repo: "bap",
           rev: "65c282d94e8b7028e8a986c637db3a2378a753f6",
           hash: "sha256-LUZZOgG1T8xa5jLA/fDft8ofYb/Yf6QjTrl6AlLY7H0=",
         })))),
       sigs: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/BinaryAnalysisPlatform/bap/releases/download/v${nix.sel(finalAttrs, "version")}/sigs.zip`),
           sha256: "0d69jd28z4g64mglq94kj5imhmk5f6sgcsh9q2nij3b0arpcliwk",
         })))),
@@ -117,7 +114,7 @@ runHook postInstall
         nix.thunk(() => nix.str`--with-llvm-config=${nix.sel(llvm, "dev")}/bin/llvm-config`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Platform for binary analysis. It is written in OCaml, but can be used from other languages",
         homepage: "https://github.com/BinaryAnalysisPlatform/bap/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

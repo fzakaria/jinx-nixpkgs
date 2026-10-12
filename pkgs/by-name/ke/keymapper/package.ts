@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["changelog", 45, 5], ["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, dbus: false, libx11: false, libusb1: false, "pkg-config": false, udev: false, wayland: false, "wayland-scanner": false, libxkbcommon: false, gtk3: false, "libayatana-appindicator": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 45, 5], ["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const libayatana_appindicator = nix.arg($, "libayatana-appindicator");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "keymapper",
       version: "5.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "houmain",
           repo: "keymapper",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
         libayatana_appindicator,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/houmain/keymapper/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Cross-platform context-aware key remapper",
         homepage: "https://github.com/houmain/keymapper",

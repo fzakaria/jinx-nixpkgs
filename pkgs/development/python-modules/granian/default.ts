@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["pname", 43, 5], ["version", 44, 13], ["src", 44, 21], ["hash", 45, 5]], [["dotenv", 58, 5], ["pname", 59, 5], ["reload", 60, 5], ["uvloop", 62, 5]], [["SSL_CERT_FILE", 80, 7]], [["pname", 114, 7], ["buildPhase", 116, 7], ["nativeBuildInputs", 124, 7], ["doCheck", 125, 7], ["dontCheckPythonMetadata", 126, 7]], [["pytest", 113, 5]], [["tests", 111, 12], ["updateScript", 132, 12]], [["description", 135, 5], ["homepage", 136, 5], ["changelog", 137, 5], ["license", 138, 5], ["mainProgram", 139, 5], ["maintainers", 140, 5], ["platforms", 144, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 38, 3], ["cargoDeps", 42, 3], ["nativeBuildInputs", 48, 3], ["dependencies", 53, 3], ["optional-dependencies", 57, 3], ["nativeCheckInputs", 65, 3], ["preCheck", 74, 3], ["env", 80, 3], ["__darwinAllowLocalNetworking", 82, 3], ["enabledTestPaths", 84, 3], ["disabledTests", 86, 3], ["doCheck", 107, 3], ["passthru", 111, 3], ["pythonImportsCheck", 130, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, cacert: false, buildPythonPackage: false, granian: false, uvloop: false, click: false, setproctitle: false, watchfiles: false, versionCheckHook: false, pytestCheckHook: false, "pytest-asyncio": false, "python-dotenv": false, websockets: false, httpx: false, sniffio: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 43, 5], ["version", 44, 13], ["src", 44, 21], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["dotenv", 58, 5], ["pname", 59, 5], ["reload", 60, 5], ["uvloop", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["SSL_CERT_FILE", 80, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 114, 7], ["buildPhase", 116, 7], ["nativeBuildInputs", 124, 7], ["doCheck", 125, 7], ["dontCheckPythonMetadata", 126, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pytest", 113, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["tests", 111, 12], ["updateScript", 132, 12]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 135, 5], ["homepage", 136, 5], ["changelog", 137, 5], ["license", 138, 5], ["mainProgram", 139, 5], ["maintainers", 140, 5], ["platforms", 144, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 38, 3], ["cargoDeps", 42, 3], ["nativeBuildInputs", 48, 3], ["dependencies", 53, 3], ["optional-dependencies", 57, 3], ["nativeCheckInputs", 65, 3], ["preCheck", 74, 3], ["env", 80, 3], ["__darwinAllowLocalNetworking", 82, 3], ["enabledTestPaths", 84, 3], ["disabledTests", 86, 3], ["doCheck", 107, 3], ["passthru", 111, 3], ["pythonImportsCheck", 130, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.8.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emmett-framework",
           repo: "granian",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +38,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./no-alloc.patch")]);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "granian",
           version: version,
           src: src,
@@ -61,7 +53,7 @@ export default nix.lambda((args) => (() => {
       })());
       const dependencies = nix.thunk(() => [click]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         dotenv: nix.thunk(() => [python_dotenv]),
         pname: nix.thunk(() => [setproctitle]),
         reload: nix.thunk(() => [watchfiles]),
@@ -77,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const preCheck = "# collides with the one installed in $out\nrm -rf granian/\n";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
       }));
       const __darwinAllowLocalNetworking = true;
@@ -93,11 +85,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pytest: nix.thunk(() => nix.app(nix.sel(granian, "overridePythonAttrs"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               pname: "granian-with-check-phase",
               buildPhase: nix.thunk(() => nix.str`# runHook preBuild
 die() { echo >&2 "$@"; exit 1; }
@@ -115,7 +107,7 @@ runHook postBuild
       }));
       const pythonImportsCheck = nix.thunk(() => ["granian"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Rust HTTP server for Python ASGI/WSGI/RSGI applications",
         homepage: "https://github.com/emmett-framework/granian",
         changelog: nix.thunk(() => nix.str`https://github.com/emmett-framework/granian/releases/tag/v${version}`),
@@ -131,7 +123,7 @@ runHook postBuild
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         pyproject,

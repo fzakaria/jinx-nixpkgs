@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["pname", 31, 26], ["version", 31, 32], ["src", 31, 40], ["pnpm", 32, 5], ["fetcherVersion", 33, 5], ["hash", 34, 5]], [["url", 70, 11], ["hash", 71, 11]], [["deobfuscate", 67, 11]], [["tests", 67, 5], ["updateScript", 79, 5]], [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 27], ["mainProgram", 88, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["pnpmDeps", 30, 3], ["buildPhase", 37, 3], ["installPhase", 45, 3], ["fixupPhase", 56, 3], ["passthru", 66, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nodejs: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, "nix-update-script": false, fetchurl: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 31, 26], ["version", 31, 32], ["src", 31, 40], ["pnpm", 32, 5], ["fetcherVersion", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 70, 11], ["hash", 71, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["deobfuscate", 67, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 67, 5], ["updateScript", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 27], ["mainProgram", 88, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["pnpmDeps", 30, 3], ["buildPhase", 37, 3], ["installPhase", 45, 3], ["fixupPhase", 56, 3], ["passthru", 66, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "synchrony",
       version: "2.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "relative",
           repo: "synchrony",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_11]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -48,12 +42,12 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ninstall -Dm755 dist/{index,cli}.js -t $out/share/synchrony\ncp -r node_modules $out/share/synchrony\nln -s $out/share/synchrony/cli.js $out/bin/synchrony\n\nrunHook postInstall\n",
       fixupPhase: "runHook preFixup\n\nsubstituteInPlace $out/share/synchrony/cli.js \\\n  --replace-fail \"require('../')\" \"require('$out/share/synchrony')\"\npatchShebangs $out/share/synchrony/cli.js\n\nrunHook postFixup\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           deobfuscate: nix.thunk(() => (() => {
             const obfuscated = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 url: "https://gist.github.com/relative/79e392bced4b9bed8fd076f834e06dee/raw/obfuscated.js",
                 hash: "sha256-AQWKVIyb6x3wWG3bMMqIJWsV26S9W5Xd+QVB26zu8LA=",
               }))));
@@ -67,7 +61,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPack
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Simple deobfuscator for mangled or obfuscated JavaScript files",
         homepage: "https://deobfuscate.relative.im/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

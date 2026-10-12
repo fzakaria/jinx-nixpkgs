@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["changelog", 32, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, astring: false, asetmap: false, re: false, lwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["changelog", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const re = nix.arg($, "re");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "prometheus",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/prometheus/releases/download/v${nix.sel(finalAttrs, "version")}/prometheus-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-4C0UzwaCgqtk5SGIY89rg0dxdrKm63lhdcOaQAa20L8=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [astring, asetmap, re, lwt]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mirage/prometheus",
         description: "Client library for Prometheus monitoring",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

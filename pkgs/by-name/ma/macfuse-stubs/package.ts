@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["warning", 61, 12]], [["homepage", 64, 5], ["description", 65, 5], ["longDescription", 66, 5], ["platforms", 70, 5], ["maintainers", 71, 5], ["license", 76, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["postUnpack", 28, 3], ["sourceRoot", 34, 3], ["buildPhase", 36, 3], ["installPhase", 47, 3], ["passthru", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cpio: false, xar: false, undmg: false, libtapi: false, isFuse3: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["warning", 61, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["longDescription", 66, 5], ["platforms", 70, 5], ["maintainers", 71, 5], ["license", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["postUnpack", 28, 3], ["sourceRoot", 34, 3], ["buildPhase", 36, 3], ["installPhase", 47, 3], ["passthru", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "macfuse-stubs";
       const version = "5.1.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/osxfuse/osxfuse/releases/download/macfuse-${version}/macfuse-${version}.dmg`),
           hash: "sha256-5fgP+MPfgm6Zf7eGs1EloMamcvS7oncLDe9rpjyk74E=",
         }))));
@@ -31,9 +28,9 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = ".";
       const buildPhase = "pushd usr/local/lib\nfor f in *.dylib; do\n  tapi stubify --filetype=tbd-v2  \"$f\" -o \"${f%%.dylib}.tbd\"\ndone\nsed -i \"s|^prefix=.*|prefix=$out|\" pkgconfig/fuse{,3}.pc\npopd\n";
       const installPhase = nix.thunk(() => nix.add(nix.add("mkdir -p $out/include $out/lib/pkgconfig\n", nix.app(nix.sel(lib, "optionalString"), isFuse3, "cp usr/local/lib/libfuse3*.tbd $out/lib\ncp usr/local/lib/pkgconfig/fuse3.pc $out/lib/pkgconfig\ncp -R usr/local/include/fuse3 $out/include\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(isFuse3)), "cp usr/local/lib/libfuse{,.2}.tbd $out/lib\ncp usr/local/lib/pkgconfig/fuse.pc $out/lib/pkgconfig\ncp -R usr/local/include/fuse{,.h} $out/include\n")));
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, warning: nix.thunk(() => nix.sel(meta, "description")) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], warning: nix.thunk(() => nix.sel(meta, "description")) }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://osxfuse.github.io",
         description: "Build time stubs for FUSE on macOS",
         longDescription: "macFUSE is required for this package to work on macOS. To install macFUSE,\nuse the installer from the [project website](https://osxfuse.github.io/).\n",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

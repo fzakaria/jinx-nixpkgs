@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["17", 40, 7], ["21", 41, 7], ["25", 42, 7]], [["sourceFile", 50, 13], ["featureVersionPrefix", 51, 5]], [["url", 82, 13], ["excludes", 83, 13], ["hash", 92, 13]], [["url", 96, 13], ["includes", 97, 13], ["hash", 100, 13]], [["name", 109, 9], ["url", 110, 9], ["stripLen", 111, 9], ["extraPrefix", 112, 9], ["hash", 113, 9]], [["withWebKit", 138, 54]], [["attrPath", 137, 5], ["pkg", 138, 5], ["data", 139, 5]], [["NIX_CFLAGS_COMPILE", 151, 7], ["config", 152, 7]], [["command", 204, 7], ["supportedFeatures", 222, 7]], [["updateScript", 200, 12]], [["description", 227, 5], ["homepage", 228, 5], ["license", 229, 5], ["maintainers", 233, 5], ["platforms", 234, 5]], [["pname", 62, 3], ["version", 63, 3], ["src", 65, 20], ["patches", 67, 3], ["nativeBuildInputs", 117, 3], ["buildInputs", 127, 3], ["mitmCache", 136, 3], ["gradleBuildTask", 142, 3], ["stripDebugList", 144, 3], ["enableParallelBuilding", 146, 3], ["__darwinAllowLocalNetworking", 148, 3], ["env", 151, 3], ["dontUseCmakeConfigure", 159, 3], ["postPatch", 161, 3], ["preBuild", 177, 3], ["installPhase", 182, 3], ["postFixup", 186, 3], ["disallowedReferences", 195, 3], ["passthru", 200, 3], ["meta", 226, 3]]]);
 const formals$1 = { args: { featureVersion: true, lib: false, stdenv: false, pkgs: false, gradle_8: false, perl: false, "pkg-config": false, cmake: false, gperf: false, python3: false, ruby: false, gtk3: false, libxtst: false, libxxf86vm: false, glib: false, "alsa-lib": false, ffmpeg_7: false, "ffmpeg_7-headless": false, fetchpatch2: false, writeText: false, "_experimental-update-script-combinators": false, "nixpkgs-openjdk-updater": false, writeShellScript: false, path: false, withMedia: true, withWebKit: true, jdk17_headless: false, jdk21_headless: false, jdk25_headless: false, "jdk-bootstrap": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["17", 40, 7], ["21", 41, 7], ["25", 42, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["sourceFile", 50, 13], ["featureVersionPrefix", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 82, 13], ["excludes", 83, 13], ["hash", 92, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 96, 13], ["includes", 97, 13], ["hash", 100, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 109, 9], ["url", 110, 9], ["stripLen", 111, 9], ["extraPrefix", 112, 9], ["hash", 113, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["withWebKit", 138, 54]]);
-const pos$7 = nix.positions(here + "/package.nix", [["attrPath", 137, 5], ["pkg", 138, 5], ["data", 139, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 151, 7], ["config", 152, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["command", 204, 7], ["supportedFeatures", 222, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["updateScript", 200, 12]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 227, 5], ["homepage", 228, 5], ["license", 229, 5], ["maintainers", 233, 5], ["platforms", 234, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 62, 3], ["version", 63, 3], ["src", 65, 20], ["patches", 67, 3], ["nativeBuildInputs", 117, 3], ["buildInputs", 127, 3], ["mitmCache", 136, 3], ["gradleBuildTask", 142, 3], ["stripDebugList", 144, 3], ["enableParallelBuilding", 146, 3], ["__darwinAllowLocalNetworking", 148, 3], ["env", 151, 3], ["dontUseCmakeConfigure", 159, 3], ["postPatch", 161, 3], ["preBuild", 177, 3], ["installPhase", 182, 3], ["postFixup", 186, 3], ["disallowedReferences", 195, 3], ["passthru", 200, 3], ["meta", 226, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,14 +37,14 @@ export default nix.lambda((args) => (() => {
   const jdk21_headless = nix.arg($, "jdk21_headless");
   const jdk25_headless = nix.arg($, "jdk25_headless");
   const jdk_bootstrap = nix.argOr($, "jdk-bootstrap", () => nix.sel({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "17": jdk17_headless,
     "21": jdk21_headless,
     "25": jdk25_headless,
   }, nix.key(nix.force(featureVersion))));
   const sourceFile = nix.thunk(() => nix.add(nix.path(here, "./."), nix.str`/${featureVersion}/source.json`));
   const source = nix.thunk(() => nix.app(nix.sel(nixpkgs_openjdk_updater, "openjdkSource"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       sourceFile: sourceFile,
       featureVersionPrefix: featureVersion,
     }))));
@@ -63,7 +52,7 @@ export default nix.lambda((args) => (() => {
   const atLeast23 = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), featureVersion, "23"));
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.app(nix.sel(lib, "pathExists"), sourceFile)), nix.thunk(() => nix.str`OpenJFX ${featureVersion} is not a supported version`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/op/openjfx/package.nix:58:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "openjfx-modular-sdk",
       version: nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "refs/tags/", nix.thunk(() => nix.sel(source, "src", "rev")))),
       src: nix.thunk(() => nix.attr(source, "src")),
@@ -71,7 +60,7 @@ export default nix.lambda((args) => (() => {
           nix.path(here, "./17/patches/backport-ffmpeg-6-support-jfx11.patch"),
           nix.path(here, "./17/patches/backport-ffmpeg-7-support-jfx11.patch"),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://github.com/openjdk/jfx21u/commit/7f704c24c2238f9d7bb744a20667a8c1337decc6.patch?full_index=1",
               excludes: nix.thunk(() => [
                 "build.properties",
@@ -82,14 +71,14 @@ export default nix.lambda((args) => (() => {
               hash: "sha256-WuJtzPy0IV4xvn+i5xeDqekWO0VR2GIfsYKkEmh8KKU=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: "https://github.com/openjdk/jfx/commit/63635ee8160ba6507d625c44320b58e2f9bfb87a.patch?full_index=1",
               includes: nix.thunk(() => ["buildSrc/linux.gradle"]),
               hash: "sha256-p2vRy8jA/JJBGCC5irV3gGbcJqChFNi+ViMeQ1wjtU0=",
             })))),
         ]))), nix.app(nix.sel(lib, "optionals"), withWebKit, nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "cmake4.4-linked-into-quoting.patch",
               url: "https://aur.archlinux.org/cgit/aur.git/plain/cmake4-linked-into-quoting.patch?h=webkit2gtk&id=bcf95cb5382e16354be70b0a3c88436917588c8a",
               stripLen: 1n,
@@ -107,9 +96,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (nix.asBool(atLeast21) ? nix.force(ffmpeg_7) : nix.force(ffmpeg_7_headless))),
       ]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle_8, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           attrPath: nix.thunk(() => nix.str`openjfx${featureVersion}`),
-          pkg: nix.thunk(() => nix.app(nix.sel(pkgs, nix.key(nix.str`openjfx${featureVersion}`), "override"), nix.thunk(() => ({ [nix.POS]: pos$6, withWebKit: true })))),
+          pkg: nix.thunk(() => nix.app(nix.sel(pkgs, nix.key(nix.str`openjfx${featureVersion}`), "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], withWebKit: true })))),
           data: nix.thunk(() => nix.add(nix.path(here, "./."), nix.str`/${featureVersion}/deps.json`)),
         })))),
       gradleBuildTask: "sdk",
@@ -117,7 +106,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: false,
       __darwinAllowLocalNetworking: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types -Wno-error=int-conversion",
         config: nix.thunk(() => nix.app(writeText, "gradle.properties", nix.thunk(() => nix.str`CONF = Release
 JDK_HOME = ${nix.sel(jdk_bootstrap, "home")}
@@ -138,11 +127,11 @@ done
 `),
       disallowedReferences: nix.thunk(() => [jdk_bootstrap, nix.thunk(() => nix.sel(gradle_8, "jdk"))]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.sel(source, "updateScript")),
             nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               command: nix.thunk(() => [
                 nix.thunk(() => nix.app(writeShellScript, "update-openjfx-deps.sh", nix.thunk(() => nix.str`eval "$(
   nix-build "$1" \\
@@ -156,7 +145,7 @@ done
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Next-generation Java client toolkit",
         homepage: "https://openjdk.org/projects/openjfx/",
         license: nix.thunk(() => (() => {

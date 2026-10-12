@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 24, 13], ["version", 24, 19], ["hash", 25, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["pythonRelaxDeps", 28, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 48, 3], ["disabledTestPaths", 53, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "charset-normalizer": false, dsinternals: false, fetchPypi: false, flask: false, ldap3: false, ldapdomaindump: false, pyasn1: false, "pyasn1-modules": false, pycryptodomex: false, pyopenssl: false, setuptools: false, pytestCheckHook: false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 24, 13], ["version", 24, 19], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["pythonRelaxDeps", 28, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 48, 3], ["disabledTestPaths", 53, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.13.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-7ZHIAra+/2VGr9ImKUK8GhiLRnH7kex1HUah1m0ows8=",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["impacket", "impacket.msada_guids"]);
       const disabledTestPaths = nix.thunk(() => ["tests/dcerpc/", "tests/SMB_RPC/"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Network protocols Constructors and Dissectors",
         homepage: "https://github.com/SecureAuthCorp/impacket",
         changelog: nix.thunk(() => nix.add("https://github.com/fortra/impacket/releases/tag/impacket_", nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version))),
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

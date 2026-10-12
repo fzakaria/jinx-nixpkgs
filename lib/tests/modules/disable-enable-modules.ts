@@ -2,13 +2,13 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/disable-enable-modules.nix", [[["disabledModules", 4, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/disable-enable-modules.nix", [["disabledModules", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     disabledModules: nix.thunk(() => ["define-enable.nix", "declare-enable.nix"]),
   };
 })(), formals$1);

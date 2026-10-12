@@ -2,55 +2,46 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linkwarden.nix", [[["NEXTAUTH_SECRET", 22, 11]], [["NEXTAUTH_URL", 25, 11], ["ALLOW_PRIVATE_NETWORK_ACCESS", 26, 11]], [["enable", 19, 9], ["enableRegistration", 20, 9], ["secretFiles", 21, 9], ["environment", 24, 9]], [["root", 32, 32]], [["localhost", 32, 22]], [["enable", 31, 9], ["virtualHosts", 32, 9]], [["linkwarden", 18, 16], ["nginx", 30, 16]], [["services", 18, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 36, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/linkwarden.nix", [["NEXTAUTH_SECRET", 22, 11]]);
-const pos$2 = nix.positions(here + "/linkwarden.nix", [["NEXTAUTH_URL", 25, 11], ["ALLOW_PRIVATE_NETWORK_ACCESS", 26, 11]]);
-const pos$3 = nix.positions(here + "/linkwarden.nix", [["enable", 19, 9], ["enableRegistration", 20, 9], ["secretFiles", 21, 9], ["environment", 24, 9]]);
-const pos$4 = nix.positions(here + "/linkwarden.nix", [["root", 32, 32]]);
-const pos$5 = nix.positions(here + "/linkwarden.nix", [["localhost", 32, 22]]);
-const pos$6 = nix.positions(here + "/linkwarden.nix", [["enable", 31, 9], ["virtualHosts", 32, 9]]);
-const pos$7 = nix.positions(here + "/linkwarden.nix", [["linkwarden", 18, 16], ["nginx", 30, 16]]);
-const pos$8 = nix.positions(here + "/linkwarden.nix", [["services", 18, 7]]);
-const pos$9 = nix.positions(here + "/linkwarden.nix", [["machine", 5, 9]]);
-const pos$10 = nix.positions(here + "/linkwarden.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "linkwarden-nixos",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const secretsFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "linkwarden-secret-env", "VERY_SENSITIVE_SECRET\n"));
         const webroot = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "webroot", nix.thunk(() => ({})), "mkdir $out\ncd $out\necho '<!DOCTYPE html><html><body><h1>HELLO LINKWARDEN</h1></body></html>' > index.html\n"));
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             linkwarden: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               enableRegistration: true,
               secretFiles: nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 NEXTAUTH_SECRET: nix.thunk(() => nix.builtins.toString(secretsFile)),
               })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 NEXTAUTH_URL: "http://localhost:3000/api/v1/auth",
                 ALLOW_PRIVATE_NETWORK_ACCESS: "true",
               })),
             })),
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                localhost: nix.thunk(() => ({ [nix.POS]: pos$4, root: webroot })),
+                [nix.POS]: $pos[4],
+                localhost: nix.thunk(() => ({ [nix.POS]: $pos[3], root: webroot })),
               })),
             })),
           })),

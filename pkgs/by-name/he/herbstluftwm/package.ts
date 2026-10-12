@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["sha256", 33, 5]], [["url", 72, 7], ["hash", 73, 7]], [["url", 78, 7], ["hash", 79, 7]], [["url", 83, 7], ["hash", 84, 7]], [["herbstluftwm", 131, 11]], [["tests", 131, 5]], [["description", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["platforms", 138, 5], ["maintainers", 139, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["outputs", 36, 3], ["cmakeFlags", 42, 3], ["nativeBuildInputs", 46, 3], ["depsBuildBuild", 51, 3], ["buildInputs", 55, 3], ["patches", 67, 3], ["postPatch", 88, 3], ["doCheck", 101, 3], ["nativeCheckInputs", 103, 3], ["preCheck", 119, 3], ["enabledTestPaths", 123, 3], ["disabledTests", 124, 3], ["passthru", 130, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, "pkg-config": false, python3: false, libx11: false, libxext: false, libxinerama: false, libxrandr: false, libxft: false, libxrender: false, libxdmcp: false, libxfixes: false, freetype: false, asciidoc: false, xdotool: false, "xorg-server": false, xsetroot: false, xterm: false, runtimeShell: false, fetchpatch: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 72, 7], ["hash", 73, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 78, 7], ["hash", 79, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 83, 7], ["hash", 84, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["herbstluftwm", 131, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 131, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["platforms", 138, 5], ["maintainers", 139, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["outputs", 36, 3], ["cmakeFlags", 42, 3], ["nativeBuildInputs", 46, 3], ["depsBuildBuild", 51, 3], ["buildInputs", 55, 3], ["patches", 67, 3], ["postPatch", 88, 3], ["doCheck", 101, 3], ["nativeCheckInputs", 103, 3], ["preCheck", 119, 3], ["enabledTestPaths", 123, 3], ["disabledTests", 124, 3], ["passthru", 130, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "herbstluftwm",
       version: "0.9.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://herbstluftwm.org/tarballs/herbstluftwm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-stRgCQnlvs5a1jgY37MLsZ/SrJ9ShHsaenStQEBxgQU=",
         })))),
@@ -66,17 +59,17 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./test-path-environment.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/herbstluftwm/herbstluftwm/commit/8678168c7a3307b1271e94974e062799e745ab40.patch",
             hash: "sha256-uI6ErfDitT2Tw0txx4lMSBn/jjiiyL4Qw6AJa/CTh1E=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/herbstluftwm/herbstluftwm/commit/1a6e8ee24eac671569f54bfec22ab47ff285a52c.patch",
             hash: "sha256-srulWJQ9zTR4Kdxo40AdHND4nexDe2PDSR69yWsOpVA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/herbstluftwm/herbstluftwm/commit/8ff75588a750704ae06ad59b843eb88138c95653.patch",
             hash: "sha256-mrViVcW3jZes1QMn5It0t2WfLfwl/WNF6k9yz1fm/Gs=",
           })))),
@@ -112,14 +105,14 @@ substituteInPlace tests/test_herbstluftwm.py --replace "/usr/bin/env bash" ${run
       enabledTestPaths: nix.thunk(() => ["../tests"]),
       disabledTests: nix.thunk(() => ["test_autostart", "test_wmexec_to_other", "test_rules"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           herbstluftwm: nix.thunk(() => nix.sel(nixosTests, "herbstluftwm")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Manual tiling window manager for X",
         homepage: "https://herbstluftwm.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

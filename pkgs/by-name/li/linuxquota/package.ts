@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["out", 34, 20]], [["binlore", 34, 12]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5]], [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["outputs", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["passthru", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, e2fsprogs: false, openldap: false, "pkg-config": false, binlore: false, linuxquota: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["out", 34, 20]]);
-const pos$3 = nix.positions(here + "/package.nix", [["binlore", 34, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["outputs", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["passthru", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const binlore = nix.arg($, "binlore");
   const linuxquota = nix.arg($, "linuxquota");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "4.11",
       pname: "quota",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/linuxquota/quota-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ClG4+SAlTY6Dw0pMMIK30kH11v1lGIr63ymFnVIj73g=",
         })))),
@@ -32,14 +28,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [e2fsprogs, openldap]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         binlore: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           out: nix.thunk(() => nix.app(nix.sel(binlore, "synthesize"), linuxquota, "execer cannot bin/quota\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tools to manage kernel-level quotas in Linux",
         homepage: "https://sourceforge.net/projects/linuxquota/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

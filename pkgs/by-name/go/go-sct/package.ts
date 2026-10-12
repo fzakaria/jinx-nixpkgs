@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["mainProgram", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["vendorHash", 28, 3], ["buildInputs", 30, 3], ["ldflags", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, libxrandr: false, libx11: false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["mainProgram", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["vendorHash", 28, 3], ["buildInputs", 30, 3], ["ldflags", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const wayland = nix.arg($, "wayland");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "go-sct",
       version: "1.0-unstable-2022-01-31",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "d4l3k",
           repo: "go-sct",
           rev: "4ae88a6bf50e0b917541ddbcec1ff10ab77a0b15",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxrandr, nix.thunk(() => nix.sel(wayland, "dev"))]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Color temperature setting library and CLI that operates in a similar way to f.lux and Redshift",
         homepage: "https://github.com/d4l3k/go-sct",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

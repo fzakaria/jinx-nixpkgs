@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 29, 3], ["hardeningDisable", 39, 3], ["preConfigure", 41, 3], ["configureFlags", 47, 3], ["postInstall", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, pkgs: false, fetchgit: false, autoconf: false, automake: false, libtool: false, flex: false, perl: false, check: false, "pkg-config": false, python3: false, maps: true, arch: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 29, 3], ["hardeningDisable", 39, 3], ["preConfigure", 41, 3], ["configureFlags", 47, 3], ["postInstall", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const maps = nix.argOr($, "maps", () => nix.sel(pkgs, "crossfire-maps"));
   const arch = nix.argOr($, "arch", () => nix.sel(pkgs, "crossfire-arch"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "crossfire-server",
       version: "2025-04",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.code.sf.net/p/crossfire/crossfire-server",
           rev: "5f742b9f9f785e4a59a3a463bee1f31c9bc67098",
           hash: "sha256-e7e3xN7B1cv9+WkZGzOJgrFer50Cs0L/2dYB9RmGCiE=",
@@ -43,7 +41,7 @@ sh autogen.sh
       postInstall: nix.thunk(() => nix.str`ln -s ${maps} "$out/share/crossfire/maps"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Server for the Crossfire free MMORPG",
         homepage: "http://crossfire.real-time.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

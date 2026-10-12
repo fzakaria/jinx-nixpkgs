@@ -2,18 +2,16 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-typst-package.nix", [[["typstDeps", 62, 17]], [["name", 41, 7], ["strictDeps", 43, 7], ["__structuredAttrs", 44, 7], ["dontBuild", 46, 7], ["installPhase", 48, 7], ["propagatedBuildInputs", 59, 7], ["passthru", 61, 7]], [["constructDrv", 28, 3], ["excludeDrvArgNames", 30, 3], ["extendDrvArgs", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false }, ellipsis: false };
 const formals$2 = { args: { typstDeps: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-typst-package.nix", [["typstDeps", 62, 17]]);
-const pos$2 = nix.positions(here + "/build-typst-package.nix", [["name", 41, 7], ["strictDeps", 43, 7], ["__structuredAttrs", 44, 7], ["dontBuild", 46, 7], ["installPhase", 48, 7], ["propagatedBuildInputs", 59, 7], ["passthru", 61, 7]]);
-const pos$3 = nix.positions(here + "/build-typst-package.nix", [["constructDrv", 28, 3], ["excludeDrvArgNames", 30, 3], ["extendDrvArgs", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["typstDeps"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
         const attrs = args_1;
         const typstDeps = nix.argOr($_1, "typstDeps", () => []);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`typst-package-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
           strictDeps: true,
           __structuredAttrs: true,
@@ -35,7 +33,7 @@ runHook postInstall
 `;
           })()),
           propagatedBuildInputs: typstDeps,
-          passthru: nix.thunk(() => ({ [nix.POS]: pos$1, typstDeps: typstDeps })),
+          passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], typstDeps: typstDeps })),
         };
       })(), formals$2),
     })));

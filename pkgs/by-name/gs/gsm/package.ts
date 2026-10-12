@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 68, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patchPhase", 23, 3], ["preBuild", 48, 3], ["makeFlags", 52, 3], ["preInstall", 57, 3], ["parallelBuild", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, staticSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patchPhase", 23, 3], ["preBuild", 48, 3], ["makeFlags", 52, 3], ["preInstall", 57, 3], ["parallelBuild", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gsm";
       const version = "1.0.24";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.quut.com/gsm/gsm-${version}.tar.gz`),
           sha256: "sha256-o8QMZHGSg4P0q/yy6PJAEqH1Yr4vF7jWchRdWYZoGpI=",
         }))));
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const preInstall = "mkdir -p $out/{bin,lib,man/man1,man/man3,include/gsm}";
       const parallelBuild = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lossy speech compression codec",
         homepage: "https://www.quut.com/gsm/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

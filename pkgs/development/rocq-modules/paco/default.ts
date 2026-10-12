@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 15, 35], ["out", 15, 40]], [["hash", 26, 19]], [["hash", 27, 19]], [["hash", 28, 19]], [["hash", 29, 19]], [["hash", 30, 19]], [["hash", 31, 19]], [["hash", 32, 19]], [["4.2.3", 26, 11], ["4.2.2", 27, 11], ["4.2.0", 28, 11], ["4.1.2", 29, 11], ["4.1.1", 30, 11], ["4.0.2", 31, 11], ["1.2.8", 32, 11]], [["homepage", 46, 5], ["description", 47, 5], ["maintainers", 48, 5]], [["pname", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["defaultVersion", 13, 3], ["release", 26, 3], ["releaseRev", 33, 3], ["propagatedBuildInputs", 35, 3], ["preBuild", 37, 3], ["installPhase", 39, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, stdlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 15, 35], ["out", 15, 40]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 26, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 27, 19]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 28, 19]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 29, 19]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 30, 19]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 31, 19]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hash", 32, 19]]);
-const pos$9 = nix.positions(here + "/default.nix", [["4.2.3", 26, 11], ["4.2.2", 27, 11], ["4.2.0", 28, 11], ["4.1.2", 29, 11], ["4.1.1", 30, 11], ["4.0.2", 31, 11], ["1.2.8", 32, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["homepage", 46, 5], ["description", 47, 5], ["maintainers", 48, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["defaultVersion", 13, 3], ["release", 26, 3], ["releaseRev", 33, 3], ["propagatedBuildInputs", 35, 3], ["preBuild", 37, 3], ["installPhase", 39, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "paco",
       owner: "snu-sf",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[0], case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.14", "9.3")), "4.2.3")),
@@ -40,33 +30,33 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         "4.2.3": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-ldUjNd5daUu2B3v4tk20/iXFgyUuW4XHlbubTInpwcs=",
         })),
         "4.2.2": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-qr6o45Q90FK+kkBUJ+W7QhiA0YQRb1RUwwXUpTTFt8A=",
         })),
         "4.2.0": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-YHYtiz9hium96n3owL/C99AjJAFTlTCmmb2+ttevgMY=",
         })),
         "4.1.2": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256:1l8mwakqp4wnppsldl8wp2j24h1jvadnvrsgf35xnvdyygypjp2v",
         })),
         "4.1.1": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256:1qap8cyv649lr1s11r7h5jzdjd4hsna8kph15qy5fw24h5nx6byy",
         })),
         "4.0.2": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256:1q96bsxclqx84xn5vkid501jkwlc1p6fhb8szrlrp82zglj58b0b",
         })),
         "1.2.8": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           hash: "sha256:05fskx5x1qgaf9qv626m38y5izichzzqc7g2rglzrkygbskrrwsb",
         })),
       })),
@@ -78,7 +68,7 @@ mkdir -p $COQLIB/user-contrib/Paco
 cp -pR *.vo $COQLIB/user-contrib/Paco
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         homepage: "https://plv.mpi-sws.org/paco/",
         description: "Coq library implementing parameterized coinduction",
         maintainers: nix.thunk(() => (() => {

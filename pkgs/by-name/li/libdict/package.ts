@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["NIX_CFLAGS_COMPILE", 32, 7]], [["homepage", 42, 5], ["changelog", 43, 5], ["description", 44, 5], ["license", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 23, 3], ["cmakeFlags", 27, 3], ["env", 32, 3], ["doCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, cunit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["changelog", 43, 5], ["description", 44, 5], ["license", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 23, 3], ["cmakeFlags", 27, 3], ["env", 32, 3], ["doCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const cunit = nix.arg($, "cunit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libdict",
       version: "1.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rtbrick",
           repo: "libdict",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,12 +30,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DLIBDICT_SHARED=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")) ? "OFF" : "ON")}`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=strict-prototypes", "-Wno-error=newline-eof"]))))),
       })),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/rtbrick/libdict/",
         changelog: nix.thunk(() => nix.str`https://github.com/rtbrick/libdict/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "C library of key-value data structures",

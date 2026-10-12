@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["unwrapped", 34, 5], ["withPackages", 35, 5]], [["name", 20, 3], ["paths", 21, 3], ["nativeBuildInputs", 23, 3], ["postBuild", 25, 3], ["passthru", 33, 3]]]);
 const formals$1 = { args: { lib: false, makeWrapper: false, symlinkJoin: false, buildEnv: false, openscad: false, openscadPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["unwrapped", 34, 5], ["withPackages", 35, 5]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["name", 20, 3], ["paths", 21, 3], ["nativeBuildInputs", 23, 3], ["postBuild", 25, 3], ["passthru", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
     nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.app(nix.sel(lib, "isFunction"), f)), nix.thunk(() => nix.str`openscad.withPackages: Expected \`f\` to be callable (e.g., 'ps: [ ps.bosl2 ]'), but received a ${nix.app(nix.sel(lib, "typeOf"), f)}.`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/op/openscad/wrapper.nix:12:1");
     const selectedPackages = nix.thunk(() => nix.app(f, openscadPackages));
     return nix.app(symlinkJoin, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: nix.thunk(() => nix.str`${nix.sel(openscad, "pname")}-with-packages-${nix.sel(openscad, "version")}`),
         paths: nix.thunk(() => [openscad]),
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -29,7 +28,7 @@ makeWrapper ${openscad}/bin/openscad $out/bin/openscad \\
   --set OPENSCADPATH ${nix.app(nix.sel(lib, "makeSearchPath"), "share/openscad/libraries", selectedPackages)}
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           unwrapped: openscad,
           withPackages: nix.thunk(() => nix.sel(openscad, "withPackages")),
         })),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 31, 5], ["owner", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["name", 71, 7], ["exec", 72, 7], ["comment", 73, 7], ["desktopName", 74, 7], ["genericName", 75, 7], ["icon", 76, 7], ["categories", 77, 7]], [["license", 82, 5], ["platforms", 86, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5], ["homepage", 93, 5], ["description", 94, 5], ["downloadPage", 95, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["projectFile", 36, 3], ["dotnet-sdk", 37, 3], ["dotnet-runtime", 38, 3], ["nugetDeps", 39, 3], ["strictDeps", 40, 3], ["executables", 41, 3], ["nativeBuildInputs", 42, 3], ["runtimeDeps", 43, 3], ["postInstall", 61, 3], ["desktopItems", 69, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, dotnetCorePackages: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, SDL2: false, libGL: false, systemd: false, libpulseaudio: false, libselinux: false, wayland: false, libdecor: false, libxrandr: false, libxi: false, libxfixes: false, libxext: false, libxcursor: false, libx11: false, libxkbcommon: false, libdrm: false, withSELinux: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 31, 5], ["owner", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 71, 7], ["exec", 72, 7], ["comment", 73, 7], ["desktopName", 74, 7], ["genericName", 75, 7], ["icon", 76, 7], ["categories", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["license", 82, 5], ["platforms", 86, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5], ["homepage", 93, 5], ["description", 94, 5], ["downloadPage", 95, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["projectFile", 36, 3], ["dotnet-sdk", 37, 3], ["dotnet-runtime", 38, 3], ["nugetDeps", 39, 3], ["strictDeps", 40, 3], ["executables", 41, 3], ["nativeBuildInputs", 42, 3], ["runtimeDeps", 43, 3], ["postInstall", 61, 3], ["desktopItems", 69, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "celeste64";
       const version = "1.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "Celeste64",
           owner: "ExOK",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "export ICON_DIR=$out/share/icons/hicolor/256x256/apps\nmkdir -p $ICON_DIR\n\ncp -r $src/Content $out/lib/$pname/\ncp $src/Content/Models/Sources/logo1.png $ICON_DIR/Celeste64.png\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Celeste64",
             exec: "Celeste64",
             comment: nix.thunk(() => nix.sel(meta, "description")),
@@ -79,7 +76,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -95,7 +92,7 @@ export default nix.lambda((args) => (() => {
         downloadPage: "https://maddymakesgamesinc.itch.io/celeste64",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

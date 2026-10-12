@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/desmume2015.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5]], [["core", 12, 3], ["version", 13, 3], ["src", 15, 3], ["extraBuildInputs", 22, 3], ["makeFlags", 29, 3], ["preBuild", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, mkLibretroCore: false, libpcap: false, libGLU: false, libGL: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/desmume2015.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/desmume2015.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5]]);
-const pos$3 = nix.positions(here + "/desmume2015.nix", [["core", 12, 3], ["version", 13, 3], ["src", 15, 3], ["extraBuildInputs", 22, 3], ["makeFlags", 29, 3], ["preBuild", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const libx11 = nix.arg($, "libx11");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       core: "desmume2015",
       version: "0-unstable-2026-08-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "desmume2015",
           rev: "422b688009ccb9f2917c086a8fe79c8cecb030ae",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch32")), "platform=armv-unix"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))), "DESMUME_JIT=0"))),
       preBuild: "cd desmume",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Port of DeSmuME ~2015 to libretro",
         homepage: "https://github.com/libretro/desmume2015",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

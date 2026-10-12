@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["gs", 13, 7]], [["pname", 7, 3], ["patches", 9, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, replaceVars: false, ghostscript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["gs", 13, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["patches", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const ghostscript = nix.arg($, "ghostscript");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kdegraphics-thumbnailers",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gs-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$1, gs: nix.thunk(() => nix.str`${ghostscript}/bin/gs`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gs-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[0], gs: nix.thunk(() => nix.str`${ghostscript}/bin/gs`) })))),
       ]),
     })));
 })(), formals$1);

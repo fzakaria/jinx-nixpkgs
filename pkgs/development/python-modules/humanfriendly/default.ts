@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["sha256", 16, 5]], [["url", 22, 7], ["hash", 23, 7]], [["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["build-system", 27, 3], ["doCheck", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchpatch2: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["build-system", 27, 3], ["doCheck", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "6b0b831ce8f15f7300721aa49829fc4e83921a9a301cc7f606be6686a2288ddc",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/musicinmybrain/python-humanfriendly/commit/13d05b8057010121acd2a402a337ef4ee5834062.patch",
             hash: "sha256-m7cySiIx0gNhh6KKhT71DJFOtFu2Copk9ic2yaiCulk=",
           })))),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Human friendly output for text interfaces using Python",
         mainProgram: "humanfriendly",
         homepage: "https://humanfriendly.readthedocs.io/",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

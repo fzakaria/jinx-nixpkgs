@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["python", 37, 5], ["enablePython", 38, 5]], [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]], [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["owner", 84, 5], ["repo", 85, 5], ["tag", 86, 5], ["hash", 87, 5], ["fetchSubmodules", 88, 5], ["leaveDotGit", 89, 5], ["postFetch", 90, 5]], [["description", 158, 5], ["homepage", 159, 5], ["changelog", 160, 5], ["license", 161, 5], ["platforms", 162, 5], ["maintainers", 163, 5]], [["pname", 79, 3], ["version", 80, 3], ["__structuredAttrs", 81, 3], ["src", 83, 3], ["checkValidArch", 93, 3], ["nativeBuildInputs", 102, 3], ["buildInputs", 111, 3], ["cmakeFlags", 122, 3], ["doCheck", 153, 3], ["strictDeps", 155, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, boost: false, python3: false, eigen: false, python3Packages: false, icestorm: false, trellis: false, llvmPackages: false, prjoxide: false, qt6: false, enableGui: true, architectures: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["python", 37, 5], ["enablePython", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 84, 5], ["repo", 85, 5], ["tag", 86, 5], ["hash", 87, 5], ["fetchSubmodules", 88, 5], ["leaveDotGit", 89, 5], ["postFetch", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 158, 5], ["homepage", 159, 5], ["changelog", 160, 5], ["license", 161, 5], ["platforms", 162, 5], ["maintainers", 163, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 79, 3], ["version", 80, 3], ["__structuredAttrs", 81, 3], ["src", 83, 3], ["checkValidArch", 93, 3], ["nativeBuildInputs", 102, 3], ["buildInputs", 111, 3], ["cmakeFlags", 122, 3], ["doCheck", 153, 3], ["strictDeps", 155, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,16 +31,16 @@ export default nix.lambda((args) => (() => {
     "gatemate",
     "example",
   ]);
-  const boostPython = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python: python3, enablePython: true }))));
+  const boostPython = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], python: python3, enablePython: true }))));
   const prjbeyond_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "YosysHQ-GmbH",
       repo: "prjbeyond-db",
       rev: "f49f66be674d9857c657930353b867ba94bcbdd7",
       hash: "sha256-B/VmKgMu6f2Y8umE+NgGD5W0FYBIfDcMVwgHocFzreA=",
     }))));
   const prjpeppercorn_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "YosysHQ",
       repo: "prjpeppercorn",
       tag: "v1.13",
@@ -58,12 +53,12 @@ export default nix.lambda((args) => (() => {
   const hasArch = (arch) => (output) => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), arch, selectedArches)), output);
   const hasUArch = (arch) => (output) => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), arch, selectedUArches)), output);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nextpnr",
       version: "0.11.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "YosysHQ",
           repo: "nextpnr",
           tag: nix.thunk(() => nix.str`nextpnr-${nix.sel(finalAttrs, "version")}`),
@@ -106,7 +101,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Place and route tool for FPGAs",
         homepage: "https://github.com/yosyshq/nextpnr",
         changelog: nix.thunk(() => nix.str`https://github.com/YosysHQ/nextpnr/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

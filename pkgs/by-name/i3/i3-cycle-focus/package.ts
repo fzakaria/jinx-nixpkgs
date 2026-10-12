@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 23, 5], ["mainProgram", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5]], [["pname", 8, 3], ["version", 9, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["mainProgram", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "i3-cycle-focus",
       version: "0-unstable-2021-09-27",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TheDoctor314",
           repo: "i3-cycle-focus",
           rev: "d94f22e4b8502de4ed846a211fa0c8418b3e3e89",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-6d3a9iaXKakbs7g/649nO39bh4Ka8jcBI/yJImTqoZs=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple tool to cyclically switch between the windows on the active workspace",
         mainProgram: "i3-cycle-focus",
         homepage: "https://github.com/TheDoctor314/i3-cycle-focus",

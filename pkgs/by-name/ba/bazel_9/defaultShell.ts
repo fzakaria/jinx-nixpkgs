@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/defaultShell.nix", [[["name", 13, 5], ["runtimeInputs", 14, 5], ["text", 20, 5]], [["name", 34, 5], ["src", 35, 5], ["nativeBuildInputs", 36, 5], ["buildPhase", 37, 5]], [["defaultShellUtils", 30, 11], ["defaultShellPath", 30, 29], ["bashWithDefaultShellUtils", 33, 3]]]);
 const formals$1 = { args: { lib: false, makeBinaryWrapper: false, writeShellApplication: false, bash: false, stdenv: false }, ellipsis: false };
 const formals$2 = { args: { defaultShellUtils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/defaultShell.nix", [["name", 13, 5], ["runtimeInputs", 14, 5], ["text", 20, 5]]);
-const pos$2 = nix.positions(here + "/defaultShell.nix", [["name", 34, 5], ["src", 35, 5], ["nativeBuildInputs", 36, 5], ["buildPhase", 37, 5]]);
-const pos$3 = nix.positions(here + "/defaultShell.nix", [["defaultShellUtils", 30, 11], ["defaultShellPath", 30, 29], ["bashWithDefaultShellUtils", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
     const defaultShellUtils = nix.arg($_1, "defaultShellUtils");
     const defaultShellPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), defaultShellUtils));
     const bashWithDefaultShellUtilsSh = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "bash",
         runtimeInputs: defaultShellUtils,
         text: nix.thunk(() => nix.str`if [[ "$PATH" == "/no-such-path" ]]; then
@@ -30,11 +28,11 @@ exec ${bash}/bin/bash "$@"
 `),
       }))));
     return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       defaultShellUtils: defaultShellUtils,
       defaultShellPath: defaultShellPath,
       bashWithDefaultShellUtils: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "bash",
           src: bashWithDefaultShellUtilsSh,
           nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),

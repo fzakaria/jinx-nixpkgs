@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["NIX_CFLAGS_COMPILE", 30, 7]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 28, 3], ["env", 30, 3], ["patchPhase", 32, 3], ["makeFlags", 42, 3], ["preInstall", 47, 3], ["postInstall", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libclthreads: false, libx11: false, libxft: false, xorgproto: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 28, 3], ["env", 30, 3], ["patchPhase", 32, 3], ["makeFlags", 42, 3], ["preInstall", 47, 3], ["postInstall", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libclxclient",
       version: "3.9.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://kokkinizita.linuxaudio.org/linuxaudio/downloads/clxclient-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "10bq6fy8d3pr1x2x3xx9qhf2hdxrwdgvg843a2y6lx70y1jfj0c5",
         })))),
       buildInputs: nix.thunk(() => [libclthreads, libx11, libxft, xorgproto]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${xorgproto}/include -I${nix.sel(libxft, "dev")}/include`),
       })),
       patchPhase: "cd source\n# use pkg-config instead of pkgcon:\nsed -e 's/pkgconf/pkg-config/g' -i ./Makefile\n# don't run ldconfig:\nsed -e \"/ldconfig/d\" -i ./Makefile\n# make sure it can find clxclient.h:\nsed -e 's/<clxclient.h>/\"clxclient.h\"/' -i ./enumip.cc\n",
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "# The Makefile does not create the include directory\nmkdir -p $out/include\n",
       postInstall: "ln $out/lib/libclxclient.so $out/lib/libclxclient.so.3\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Zita X11 library",
         homepage: "http://kokkinizita.linuxaudio.org/linuxaudio/downloads/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

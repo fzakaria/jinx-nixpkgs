@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 20, 5], ["owner", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["CGO_ENABLED", 45, 5], ["GOWORK", 46, 5]], [["updateScript", 74, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 84, 5]], [["pname", 15, 3], ["version", 17, 11], ["src", 19, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["modRoot", 32, 3], ["tags", 34, 3], ["ldflags", 42, 3], ["env", 44, 3], ["postConfigure", 50, 3], ["checkFlags", 56, 3], ["postInstall", 62, 3], ["passthru", 73, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildGoModule: false, buildPackages: false, fetchFromGitHub: false, installShellFiles: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 20, 5], ["owner", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 45, 5], ["GOWORK", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 17, 11], ["src", 19, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["modRoot", 32, 3], ["tags", 34, 3], ["ldflags", 42, 3], ["env", 44, 3], ["postConfigure", 50, 3], ["checkFlags", 56, 3], ["postInstall", 62, 3], ["passthru", 73, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "0.0.62";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mcap-cli",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "mcap",
           owner: "foxglove",
           rev: nix.thunk(() => nix.str`releases/mcap-cli/v${version}`),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => [
         nix.thunk(() => nix.str`-X github.com/foxglove/mcap/go/cli/mcap/cmd.Version=${version}`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "1", GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: "1", GOWORK: "off" })),
       postConfigure: "chmod -R u+w vendor\nrm -rf vendor/github.com/foxglove/mcap/go/{mcap,ros}\ncp -r ../../{mcap,ros} vendor/github.com/foxglove/mcap/go\n",
       checkFlags: nix.thunk(() => [
         "-skip=TestCat|TestInfo|TestRequiresDuplicatedSchemasForIndexedMessages|TestPassesIndexedMessagesWithRepeatedSchemas|TestSortFile",
@@ -51,11 +47,11 @@ export default nix.lambda((args) => (() => {
 `;
         })()))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "MCAP CLI tool to inspect and fix MCAP files",
         homepage: "https://github.com/foxglove/mcap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

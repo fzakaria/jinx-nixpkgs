@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]], [["broken", 48, 5], ["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["cmakeFlags", 37, 3], ["installPhase", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, gtk3: false, gtkmm3: false, curl: false, gumbo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 48, 5], ["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["cmakeFlags", 37, 3], ["installPhase", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const gumbo = nix.arg($, "gumbo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "litebrowser",
       version: "0-unstable-2024-02-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "litehtml",
           repo: "litebrowser-linux",
           rev: "8130cf50af90e07d201d43b934b5a57f7ed4e68d",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DEXTERNAL_GUMBO=ON"]),
       installPhase: "runHook preInstall\ninstall -Dm755 litebrowser $out/bin/litebrowser\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "cc", "isClang")),
         description: "Simple browser based on the litehtml engine",
         mainProgram: "litebrowser",

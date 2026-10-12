@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["name", 51, 7], ["url", 52, 7], ["hash", 53, 7]], [["description", 213, 5], ["homepage", 214, 5], ["changelog", 215, 5], ["license", 216, 5], ["maintainers", 217, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["patches", 47, 3], ["postPatch", 57, 3], ["build-system", 75, 3], ["dependencies", 77, 3], ["pythonImportsCheck", 89, 3], ["nativeCheckInputs", 91, 3], ["preCheck", 104, 3], ["disabledTestPaths", 112, 3], ["disabledTests", 168, 3], ["meta", 212, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools_80: false, addict: false, distutils: false, matplotlib: false, numpy: false, opencv4: false, pyyaml: false, rich: false, termcolor: false, yapf: false, bitsandbytes: false, dvclive: false, "lion-pytorch": false, lmdb: false, mlflow: false, parameterized: false, pytestCheckHook: false, torchvision: false, transformers: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 51, 7], ["url", 52, 7], ["hash", 53, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 213, 5], ["homepage", 214, 5], ["changelog", 215, 5], ["license", 216, 5], ["maintainers", 217, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["patches", 47, 3], ["postPatch", 57, 3], ["build-system", 75, 3], ["dependencies", 77, 3], ["pythonImportsCheck", 89, 3], ["nativeCheckInputs", 91, 3], ["preCheck", 104, 3], ["disabledTestPaths", 112, 3], ["disabledTests", 168, 3], ["meta", 212, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const transformers = nix.arg($, "transformers");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mmengine",
       version: "0.10.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open-mmlab",
           repo: "mmengine",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "torch-2.6.0-compat.patch",
             url: "https://github.com/open-mmlab/mmengine/pull/1650/commits/c21b8431b2c625560a3866c65328cff0380ba1f8.patch",
             hash: "sha256-SLr030IdYD9wM/jPJuZd+Dr1jjFx/5/YkJj/IwhnNQg=",
@@ -134,7 +131,7 @@ export default nix.lambda((args) => (() => {
           "test_to_dtype_3",
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_setup_multi_processes", "test_with_runner"]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for training deep learning models based on PyTorch",
         homepage: "https://github.com/open-mmlab/mmengine",
         changelog: nix.thunk(() => nix.str`https://github.com/open-mmlab/mmengine/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

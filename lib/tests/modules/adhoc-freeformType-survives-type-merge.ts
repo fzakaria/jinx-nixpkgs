@@ -2,47 +2,42 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/adhoc-freeformType-survives-type-merge.nix", [[["type", 4, 5], ["default", 5, 5]], [["dummy", 3, 11]], [["bar", 9, 60]], [["options", 9, 52]], [["freeformItems", 16, 28]], [["merge", 16, 7]], [["bar", 18, 14]], [["foo", 18, 10]], [["options", 3, 3], ["freeformType", 7, 3], ["config", 18, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/adhoc-freeformType-survives-type-merge.nix", [["type", 4, 5], ["default", 5, 5]]);
-const pos$2 = nix.positions(here + "/adhoc-freeformType-survives-type-merge.nix", [["dummy", 3, 11]]);
-const pos$3 = nix.positions(here + "/adhoc-freeformType-survives-type-merge.nix", [["bar", 9, 60]]);
-const pos$4 = nix.positions(here + "/adhoc-freeformType-survives-type-merge.nix", [["options", 9, 52]]);
-const pos$5 = nix.positions(here + "/adhoc-freeformType-survives-type-merge.nix", [["freeformItems", 16, 28]]);
-const pos$6 = nix.positions(here + "/adhoc-freeformType-survives-type-merge.nix", [["merge", 16, 7]]);
-const pos$7 = nix.positions(here + "/adhoc-freeformType-survives-type-merge.nix", [["bar", 18, 14]]);
-const pos$8 = nix.positions(here + "/adhoc-freeformType-survives-type-merge.nix", [["foo", 18, 10]]);
-const pos$9 = nix.positions(here + "/adhoc-freeformType-survives-type-merge.nix", [["options", 3, 3], ["freeformType", 7, 3], ["config", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       dummy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.sel(lib, "types", "anything")),
           default: nix.thunk(() => ({})),
         })))),
     })),
     freeformType: nix.thunk(() => (() => {
       const a = nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             options: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               bar: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
             })),
           }))))));
       return nix.update(a, {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         merge: (loc) => (defs) => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           freeformItems: nix.thunk(() => nix.app(nix.sel(a, "merge"), loc, defs)),
         }),
       });
     })()),
-    config: nix.thunk(() => ({ [nix.POS]: pos$8, foo: nix.thunk(() => ({ [nix.POS]: pos$7, bar: "ok" })) })),
+    config: nix.thunk(() => ({
+      [nix.POS]: $pos[7],
+      foo: nix.thunk(() => ({ [nix.POS]: $pos[6], bar: "ok" })),
+    })),
   };
 })(), formals$1);
 //# sourceMappingURL=adhoc-freeformType-survives-type-merge.ts.map

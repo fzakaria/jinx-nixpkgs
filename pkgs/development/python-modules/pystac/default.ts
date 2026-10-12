@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["teams", 49, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["propagatedBuildInputs", 31, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, html5lib: false, jsonschema: false, "pytest-cov-stub": false, "pytest-mock": false, "pytest-recording": false, "python-dateutil": false, "requests-mock": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["teams", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["propagatedBuildInputs", 31, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stac-utils",
           repo: "pystac",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,14 +43,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["pystac"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for working with any SpatioTemporal Asset Catalog (STAC)",
         homepage: "https://github.com/stac-utils/pystac",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

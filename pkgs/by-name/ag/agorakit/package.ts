@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]], [["updateScript", 33, 12]], [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5], ["teams", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["installPhase", 20, 3], ["vendorHash", 30, 3], ["composerStrictValidation", 31, 3], ["passthru", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, php82: false, "nix-update-script": false, dataDir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5], ["teams", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["installPhase", 20, 3], ["vendorHash", 30, 3], ["composerStrictValidation", 31, 3], ["passthru", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const dataDir = nix.argOr($, "dataDir", () => "/var/lib/agorakit");
   return nix.app(nix.sel(php82, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "agorakit",
       version: "1.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "agorakit",
           repo: "agorakit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +34,11 @@ runHook postInstall
       vendorHash: "sha256-3Kxuvmb3eZN3ChW59b5rITgCe4NqPHIBHau1PBmxPis=",
       composerStrictValidation: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Web-based, open-source groupware",
         longDescription: "AgoraKit is web-based, open-source groupware for citizens' initiatives. By creating collaborative groups, people can discuss topics, organize events, store files and keep everyone updated as needed. AgoraKit is a forum, calendar, file manager and email notifier.",
         homepage: "https://github.com/agorakit/agorakit",

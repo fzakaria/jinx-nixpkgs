@@ -2,15 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 12, 5], ["runtimeInputs", 13, 5], ["text", 14, 5]], [["phpScriptUtils", 27, 7]], [["license", 29, 10]], [["name", 19, 5], ["propagatedNativeBuildInputs", 20, 5], ["propagatedBuildInputs", 23, 5], ["substitutions", 26, 5], ["meta", 29, 5]], [["cmp", 43, 7], ["phpScriptUtils", 44, 7]], [["license", 46, 10]], [["name", 33, 5], ["propagatedNativeBuildInputs", 34, 5], ["propagatedBuildInputs", 37, 5], ["substitutions", 40, 5], ["meta", 46, 5]], [["composerVendorHook", 18, 3], ["composerInstallHook", 32, 3]]]);
 const formals$1 = { args: { lib: false, makeSetupHook: false, jq: false, writeShellApplication: false, cacert: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 12, 5], ["runtimeInputs", 13, 5], ["text", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["phpScriptUtils", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["license", 29, 10]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 19, 5], ["propagatedNativeBuildInputs", 20, 5], ["propagatedBuildInputs", 23, 5], ["substitutions", 26, 5], ["meta", 29, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["cmp", 43, 7], ["phpScriptUtils", 44, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["license", 46, 10]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 33, 5], ["propagatedNativeBuildInputs", 34, 5], ["propagatedBuildInputs", 37, 5], ["substitutions", 40, 5], ["meta", 46, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["composerVendorHook", 18, 3], ["composerInstallHook", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,35 +14,41 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const buildPackages = nix.arg($, "buildPackages");
   const php_script_utils = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "php-script-utils",
       runtimeInputs: nix.thunk(() => [jq]),
       text: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./php-script-utils.bash"))),
     }))));
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     composerVendorHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "composer-vendor-hook.sh",
         propagatedNativeBuildInputs: nix.thunk(() => [jq]),
         propagatedBuildInputs: nix.thunk(() => [cacert]),
         substitutions: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           phpScriptUtils: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), php_script_utils)),
         })),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$3, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+        })),
       })), nix.path(here, "./composer-vendor-hook.sh"))),
     composerInstallHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: "composer-install-hook.sh",
         propagatedNativeBuildInputs: nix.thunk(() => [jq]),
         propagatedBuildInputs: nix.thunk(() => [cacert]),
         substitutions: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           cmp: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(buildPackages, "diffutils")))}/bin/cmp`),
           phpScriptUtils: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), php_script_utils)),
         })),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$6, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[5],
+          license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+        })),
       })), nix.path(here, "./composer-install-hook.sh"))),
   };
 })(), formals$1);

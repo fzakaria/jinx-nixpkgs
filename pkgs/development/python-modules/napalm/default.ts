@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["napalm", 58, 26]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["dependencies", 49, 3], ["nativeCheckInputs", 71, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, cffi: false, jinja2: false, "junos-eznc": false, lxml: false, ncclient: false, netaddr: false, netmiko: false, netutils: false, paramiko: false, pyeapi: false, pyyaml: false, requests: false, scp: false, textfsm: false, ttp: false, "ttp-templates": false, "typing-extensions": false, pytestCheckHook: false, ddt: false, mock: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["napalm", 58, 26]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["dependencies", 49, 3], ["nativeCheckInputs", 71, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const ddt = nix.arg($, "ddt");
   const mock = nix.arg($, "mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "napalm",
       version: "5.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "napalm-automation",
           repo: "napalm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         ncclient,
         netaddr,
         netmiko,
-        nix.thunk(() => nix.app(nix.sel(netutils, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, napalm: null })))),
+        nix.thunk(() => nix.app(nix.sel(netutils, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], napalm: null })))),
         paramiko,
         pyeapi,
         pyyaml,
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, mock, ddt]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Network Automation and Programmability Abstraction Layer with Multivendor support",
         homepage: "https://github.com/napalm-automation/napalm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

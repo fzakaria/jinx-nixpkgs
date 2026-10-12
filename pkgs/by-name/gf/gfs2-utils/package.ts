@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["homepage", 54, 5], ["description", 55, 5], ["maintainers", 56, 5], ["license", 57, 5], ["platforms", 61, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["outputs", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["nativeCheckInputs", 47, 3], ["doCheck", 48, 3], ["doInstallCheck", 49, 3], ["enableParallelBuilding", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, bison: false, flex: false, "pkg-config": false, bzip2: false, check: false, ncurses: false, udevCheckHook: false, "util-linux": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["maintainers", 56, 5], ["license", 57, 5], ["platforms", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["outputs", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["nativeCheckInputs", 47, 3], ["doCheck", 48, 3], ["doInstallCheck", 49, 3], ["enableParallelBuilding", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gfs2-utils",
       version: "3.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pagure.io/gfs2-utils/archive/${nix.sel(finalAttrs, "version")}/gfs2-utils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-VxvjRwPeWiImeJsSV7IJFrH0AvqD+IPgt22u9Gbqk4I=",
         })))),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://pagure.io/gfs2-utils",
         description: "Tools for creating, checking and working with gfs2 filesystems",
         maintainers: nix.thunk(() => (() => {

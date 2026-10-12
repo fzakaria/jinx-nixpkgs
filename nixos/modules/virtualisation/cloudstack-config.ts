@@ -2,66 +2,53 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cloudstack-config.nix", [[["device", 10, 7], ["autoResize", 11, 7], ["fsType", 12, 7]], [["/", 9, 17]], [["device", 17, 22]], [["grub", 17, 17], ["timeout", 18, 17]], [["growPartition", 15, 10], ["kernelParams", 16, 10], ["loader", 17, 10]], [["PermitRootLogin", 23, 16]], [["enable", 22, 7], ["settings", 23, 7]], [["enable", 27, 25]], [["openssh", 21, 14], ["cloud-init", 27, 14]], [["text", 32, 59]], [["cloud/cloud.cfg.d/99_cloudstack.cfg", 32, 21]], [["systemPackages", 30, 17], ["etc", 32, 17]], [["fileSystems", 9, 5], ["boot", 15, 5], ["services", 21, 5], ["environment", 30, 5]], [["imports", 4, 3], ["config", 8, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cloudstack-config.nix", [["device", 10, 7], ["autoResize", 11, 7], ["fsType", 12, 7]]);
-const pos$2 = nix.positions(here + "/cloudstack-config.nix", [["/", 9, 17]]);
-const pos$3 = nix.positions(here + "/cloudstack-config.nix", [["device", 17, 22]]);
-const pos$4 = nix.positions(here + "/cloudstack-config.nix", [["grub", 17, 17], ["timeout", 18, 17]]);
-const pos$5 = nix.positions(here + "/cloudstack-config.nix", [["growPartition", 15, 10], ["kernelParams", 16, 10], ["loader", 17, 10]]);
-const pos$6 = nix.positions(here + "/cloudstack-config.nix", [["PermitRootLogin", 23, 16]]);
-const pos$7 = nix.positions(here + "/cloudstack-config.nix", [["enable", 22, 7], ["settings", 23, 7]]);
-const pos$8 = nix.positions(here + "/cloudstack-config.nix", [["enable", 27, 25]]);
-const pos$9 = nix.positions(here + "/cloudstack-config.nix", [["openssh", 21, 14], ["cloud-init", 27, 14]]);
-const pos$10 = nix.positions(here + "/cloudstack-config.nix", [["text", 32, 59]]);
-const pos$11 = nix.positions(here + "/cloudstack-config.nix", [["cloud/cloud.cfg.d/99_cloudstack.cfg", 32, 21]]);
-const pos$12 = nix.positions(here + "/cloudstack-config.nix", [["systemPackages", 30, 17], ["etc", 32, 17]]);
-const pos$13 = nix.positions(here + "/cloudstack-config.nix", [["fileSystems", 9, 5], ["boot", 15, 5], ["services", 21, 5], ["environment", 30, 5]]);
-const pos$14 = nix.positions(here + "/cloudstack-config.nix", [["imports", 4, 3], ["config", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     imports: nix.thunk(() => [nix.path(here, "../profiles/qemu-guest.nix")]),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       fileSystems: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "/": nix.thunk(() => nix.app(nix.sel(lib, "mkImageMediaOverride"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             device: "/dev/disk/by-label/nixos",
             autoResize: true,
             fsType: "ext4",
           })))),
       })),
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         growPartition: true,
         kernelParams: nix.thunk(() => ["console=tty0"]),
         loader: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          grub: nix.thunk(() => ({ [nix.POS]: pos$3, device: "/dev/vda" })),
+          [nix.POS]: $pos[3],
+          grub: nix.thunk(() => ({ [nix.POS]: $pos[2], device: "/dev/vda" })),
           timeout: 0n,
         })),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         openssh: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           enable: true,
-          settings: nix.thunk(() => ({ [nix.POS]: pos$6, PermitRootLogin: "prohibit-password" })),
+          settings: nix.thunk(() => ({ [nix.POS]: $pos[5], PermitRootLogin: "prohibit-password" })),
         })),
-        "cloud-init": nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
+        "cloud-init": nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true })),
       })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "wget"))]),
         etc: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           "cloud/cloud.cfg.d/99_cloudstack.cfg": nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             text: "datasource:\n  CloudStack: {}\n  None: {}\ndatasource_list: [\"CloudStack\"]\n",
           })),
         })),

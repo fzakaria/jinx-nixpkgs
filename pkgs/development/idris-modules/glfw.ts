@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/glfw.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 9, 3], ["version", 10, 3], ["idrisDeps", 12, 3], ["nativeBuildInputs", 14, 3], ["extraBuildInputs", 15, 3], ["postPatch", 17, 3], ["src", 22, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { "build-idris-package": false, fetchFromGitHub: false, effects: false, lib: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/glfw.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/glfw.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/glfw.nix", [["pname", 9, 3], ["version", 10, 3], ["idrisDeps", 12, 3], ["nativeBuildInputs", 14, 3], ["extraBuildInputs", 15, 3], ["postPatch", 17, 3], ["src", 22, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "glfw",
       version: "2016-12-05",
       idrisDeps: nix.thunk(() => [effects]),
@@ -23,14 +21,14 @@ export default nix.lambda((args) => (() => {
       extraBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "glfw"))]),
       postPatch: "substituteInPlace src/MakefileGlfw \\\n  --replace glfw3 \"glfw3 gl\"\n",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eckart",
           repo: "glfw-idris",
           rev: "10220a734b69f3b884683041a1a9c533800b663a",
           sha256: "045ylaj66g5m4syzhqxlaxmivy8y7jznkcf1y7w4awa4y5znyqqd",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GLFW bindings for Idris",
         homepage: "https://github.com/eckart/glfw-idris",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

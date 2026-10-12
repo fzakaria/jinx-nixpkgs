@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["sha256", 26, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["propagatedBuildInputs", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["dontUseCmakeConfigure", 45, 3], ["nativeCheckInputs", 47, 3], ["pythonImportsCheck", 52, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, autoconf: false, automake: false, cmake: false, gcc: false, libtool: false, parameterized: false, perl: false, setuptools: false, simplejson: false, "snapshot-restore-py": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["propagatedBuildInputs", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["dontUseCmakeConfigure", 45, 3], ["nativeCheckInputs", 47, 3], ["pythonImportsCheck", 52, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aws",
           repo: "aws-lambda-python-runtime-interface-client",
           tag: version,
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [parameterized, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["awslambdaric", "runtime_client"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "AWS Lambda Runtime Interface Client for Python",
         homepage: "https://github.com/aws/aws-lambda-python-runtime-interface-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["name", 41, 5], ["runtimeInputs", 42, 5], ["text", 47, 5]], [["updateScript", 40, 12]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["sourceProvenance", 60, 5], ["mainProgram", 61, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["sourceRoot", 23, 3], ["installPhase", 25, 3], ["postPatch", 35, 3], ["passthru", 40, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, undmg: false, writeShellApplication: false, curl: false, xmlstarlet: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 41, 5], ["runtimeInputs", 42, 5], ["text", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 40, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["sourceProvenance", 60, 5], ["mainProgram", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["sourceRoot", 23, 3], ["installPhase", 25, 3], ["postPatch", 35, 3], ["passthru", 40, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const xmlstarlet = nix.arg($, "xmlstarlet");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xld",
       version: "20250302",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/xld/xld-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-ADKlRw6k4yoRo1uAd+v0mGECiR+OuCdDCU8sZiGtius=",
         })))),
@@ -33,16 +29,16 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\" \"$out/bin\"\ncp -r *.app \"$out/Applications\"\ncp -r CLI/xld \"$out/bin\"\n\nrunHook postInstall\n",
       postPatch: "substituteInPlace CLI/xld \\\n--replace \"/Applications/XLD.app\" \"$out/Applications/XLD.app\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "xld-update-script",
               runtimeInputs: nix.thunk(() => [curl, xmlstarlet, common_updater_scripts]),
               text: "url=$(curl --silent \"https://svn.code.sf.net/p/xld/code/appcast/xld-appcast_e.xml\")\nversion=$(echo \"$url\" | xmlstarlet sel -t -v \"//enclosure/@sparkle:shortVersionString\")\nupdate-source-version xld \"$version\" --file=./pkgs/by-name/xl/xld/package.nix\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lossless audio decoder",
         homepage: "https://tmkk.undo.jp/xld/index_e.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "osl3")),

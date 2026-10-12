@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 15, 11], ["version", 15, 17], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildPhase", 36, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false, installFonts: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 11], ["version", 15, 17], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildPhase", 36, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const date = "2023-10-09";
   const version = nix.thunk(() => nix.str`0.3.4-unstable-${date}`);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "firamath",
           repo: "firamath",
           rev: "4bd85bc943eb6a194cfc090f7e194aa27d8f8419",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildPhase: "runHook preBuild\n\npython scripts/build.py\n\nrunHook postBuild\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Math font with Unicode math support based on FiraSans and FiraGO",
         homepage: "https://github.com/firamath/firamath",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 12, 26], ["version", 12, 32], ["hash", 13, 5]], [["description", 19, 5], ["longDescription", 20, 5], ["homepage", 23, 5], ["changelog", 24, 5], ["license", 25, 5], ["maintainers", 29, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 12, 26], ["version", 12, 32], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 19, 5], ["longDescription", 20, 5], ["homepage", 23, 5], ["changelog", 24, 5], ["license", 25, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cargo-binutils",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-AF1MRBH8ULnHNHT2FS/LxMH+b06QMTIZMIR8mmkn17c=",
         })))),
       cargoHash: "sha256-pK6pFgOxQdEc4hYFj6mLEiIuPhoutpM2h3OLZgYrf6Q=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cargo subcommands to invoke the LLVM tools shipped with the Rust toolchain",
         longDescription: "In order for this to work, you either need to run `rustup component add llvm-tools` or install the `llvm-tools` component using your Nix library (e.g. fenix or rust-overlay)\n",
         homepage: "https://github.com/rust-embedded/cargo-binutils",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5], ["fetchSubmodules", 26, 5]], [["homepage", 64, 5], ["description", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["license", 68, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["postPatch", 51, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fltk: false, "alsa-lib": false, freetype: false, libxrandr: false, libxinerama: false, libxcursor: false, lv2: false, libjack2: false, cmake: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5], ["fetchSubmodules", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["license", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["postPatch", 51, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ensemble-chorus",
       version: "0-unstable-2019-02-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jpcima",
           repo: "ensemble-chorus",
           rev: "59baeb86b8851f521bc8162e22e3f15061662cc3",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fltk, alsa_lib, freetype, libxrandr, libxinerama, libxcursor, lv2, libjack2]),
       postPatch: "substituteInPlace CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required(VERSION \"3.3\")' \\\n  'cmake_minimum_required(VERSION 4.0)'\nsubstituteInPlace thirdparty/gsl-lite/CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required( VERSION 3.0 FATAL_ERROR )' \\\n  'cmake_minimum_required(VERSION 4.0)'\nsubstituteInPlace thirdparty/jsl/CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required(VERSION 3.3)' \\\n  'cmake_minimum_required(VERSION 4.0)'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jpcima/ensemble-chorus",
         description: "Digital model of electronic string ensemble chorus",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "magnetophon"))]),

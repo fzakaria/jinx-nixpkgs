@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["teams", 94, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 40, 3], ["dependencies", 45, 3], ["postPatch", 58, 3], ["preBuild", 68, 3], ["nativeCheckInputs", 72, 3], ["doCheck", 80, 3], ["pythonImportsCheck", 82, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, unasync: false, python: false, click: false, hiredis: false, "more-itertools": false, pydantic: false, "pydantic-extra-types": false, "python-ulid": false, redis: false, redisvl: false, redisTestHook: false, "types-redis": false, "typing-extensions": false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["teams", 94, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 40, 3], ["dependencies", 45, 3], ["postPatch", 58, 3], ["preBuild", 68, 3], ["nativeCheckInputs", 72, 3], ["doCheck", 80, 3], ["pythonImportsCheck", 82, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "redis",
           repo: "redis-om-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["aredis_om", "redis_om"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Object mapping, and more, for Redis and Python",
         mainProgram: "om",
         homepage: "https://github.com/redis/redis-om-python",
@@ -73,7 +71,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "redis"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

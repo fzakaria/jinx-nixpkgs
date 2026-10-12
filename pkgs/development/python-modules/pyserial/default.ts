@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["doCheck", 24, 3], ["nativeCheckInputs", 26, 3], ["unittestFlagsArray", 28, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, unittestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["doCheck", 24, 3], ["nativeCheckInputs", 26, 3], ["unittestFlagsArray", 28, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-PHfgFBcN//vYFub/wgXphC77EL6fWOwW0+hnW0klzds=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const unittestFlagsArray = nix.thunk(() => ["-s", "test"]);
       const pythonImportsCheck = nix.thunk(() => ["serial"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python serial port extension",
         homepage: "https://github.com/pyserial/pyserial",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

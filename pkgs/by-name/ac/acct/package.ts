@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["url", 21, 7], ["hash", 22, 7]], [["url", 27, 7], ["hash", 28, 7]], [["description", 33, 5], ["longDescription", 35, 5], ["license", 42, 5], ["homepage", 44, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["doCheck", 17, 3], ["patches", 19, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, fetchpatch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 33, 5], ["longDescription", 35, 5], ["license", 42, 5], ["homepage", 44, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["doCheck", 17, 3], ["patches", 19, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,29 +12,29 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "acct",
       version: "6.6.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/acct/acct-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0gv6m8giazshvgpvwbng98chpas09myyfw1zr2y7hqxib0mvy5ac",
         })))),
       doCheck: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://src.fedoraproject.org/rpms/psacct/raw/rawhide/f/psacct-6.6.4-sprintf-buffer-overflow.patch",
             hash: "sha256-l74tLIuhpXj+dIA7uAY9L0qMjQ2SbDdc+vjHMyVouFc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://salsa.debian.org/abower/acct/-/raw/7aeb2192d729bcd4583a75765add28c65a7fcf47/debian/patches/Fix-FTBFS-with-C23.patch",
             hash: "sha256-q1LtmhYopgSWIzIoONbKjgigIBU+LPvSvtUM3iL36c0=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GNU Accounting Utilities, login and process accounting utilities",
         longDescription: "The GNU Accounting Utilities provide login and process accounting\nutilities for GNU/Linux and other systems.  It is a set of utilities\nwhich reports and summarizes data about user connect times and process\nexecution statistics.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

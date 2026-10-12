@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 28, 5], ["mainProgram", 31, 5], ["longDescription", 32, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 20, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, jdk: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["mainProgram", 31, 5], ["longDescription", 32, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 20, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sshoogr",
       version: "0.9.26",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://maven/com/aestasit/infrastructure/sshoogr/sshoogr/${nix.sel(finalAttrs, "version")}/sshoogr-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "134qlx90y82g1rfxhyn12z9r2imm1l3fz09hrrn3pgcdcq5jz2s1",
         })))),
@@ -30,7 +28,7 @@ wrapProgram $out/bin/sshoogr \\
   --prefix JAVA_HOME : ${jdk}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "A Groovy-based DSL for working with remote SSH servers\n",
         mainProgram: "sshoogr",
         longDescription: "The sshoogr (pronounced [ʃʊgə]) is a Groovy-based DSL library for working\nwith remote servers through SSH. The DSL allows: connecting, executing\nremote commands, copying files and directories, creating tunnels in a\nsimple and concise way.\n",

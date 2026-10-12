@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5], ["platforms", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["strictDeps", 18, 3], ["dontConfigure", 19, 3], ["dontBuild", 20, 3], ["dontPatch", 21, 3], ["installPhase", 23, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5], ["platforms", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["strictDeps", 18, 3], ["dontConfigure", 19, 3], ["dontBuild", 20, 3], ["dontPatch", 21, 3], ["installPhase", 23, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zplug",
       version: "2.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zplug",
           repo: "zplug",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontPatch: true,
       installPhase: "mkdir -p $out/share/zplug\ncp -r $src/{autoload,base,bin,init.zsh,misc} $out/share/zplug/\nmkdir -p $out/share/man\ncp -r $src/doc/man/* $out/share/man/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Next-generation plugin manager for zsh",
         homepage: "https://github.com/zplug/zplug",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

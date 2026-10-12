@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["pythonPath", 27, 5]], [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["teams", 34, 5]], [["pname", 10, 3], ["namespace", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 21, 3], ["passthru", 26, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildKodiAddon: false, fetchFromGitHub: false, requests: false, infotagger: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pythonPath", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["teams", 34, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["namespace", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 21, 3], ["passthru", 26, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,23 +17,23 @@ export default nix.lambda((args) => (() => {
       const namespace = "script.module.jurialmunkey";
       const version = "0.2.35";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jurialmunkey",
           repo: namespace,
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-3qcLh1vZ4Y7Sf5NHl4j6cmb+n6KodwOBjmBmHLDinCY=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [requests, infotagger]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, pythonPath: "resources/modules" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], pythonPath: "resources/modules" }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/jurialmunkey/script.module.jurialmunkey/tree/main",
         description: "Common code required by TMDbHelper and other related jurialmunkey add-ons",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         namespace,
         version,

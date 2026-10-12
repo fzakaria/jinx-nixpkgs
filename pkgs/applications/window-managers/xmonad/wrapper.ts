@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["pname", 13, 3], ["version", 14, 23], ["nativeBuildInputs", 16, 3], ["buildCommand", 18, 3], ["preferLocalBuild", 26, 3], ["allowSubstitutes", 27, 3]]]);
 const formals$1 = { args: { stdenv: false, ghcWithPackages: false, xmessage: false, makeWrapper: false, packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["pname", 13, 3], ["version", 14, 23], ["nativeBuildInputs", 16, 3], ["buildCommand", 18, 3], ["preferLocalBuild", 26, 3], ["allowSubstitutes", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const packages = nix.arg($, "packages");
   const xmonadEnv = nix.thunk(() => nix.app(ghcWithPackages, (self) => nix.concat([nix.thunk(() => nix.sel(self, "xmonad"))], nix.app(packages, self))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "xmonad-with-packages",
       version: nix.thunk(() => nix.attr(xmonadEnv, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["NIX_CFLAGS_COMPILE", 41, 7]], [["description", 72, 5], ["mainProgram", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5]], [["pname", 12, 3], ["version", 17, 3], ["fullver", 18, 3], ["src", 19, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 32, 3], ["env", 41, 3], ["buildPhase", 43, 3], ["doCheck", 50, 3], ["nativeCheckInputs", 51, 3], ["checkPhase", 52, 3], ["installPhase", 62, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bash: false, flex: false, bison: false, valgrind: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 5], ["mainProgram", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 17, 3], ["fullver", 18, 3], ["src", 19, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 32, 3], ["env", 41, 3], ["buildPhase", 43, 3], ["doCheck", 50, 3], ["nativeCheckInputs", 51, 3], ["checkPhase", 52, 3], ["installPhase", 62, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const valgrind = nix.arg($, "valgrind");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lockdep",
       version: "5.0.21",
       fullver: "5.0.21",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kernel/linux/kernel/v5.x/linux-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1my2m9hvnvdrvzcg0fgqgaga59y2cd5zlpv7xrfj2nn98sjhglwq",
         })))),
       postPatch: "substituteInPlace tools/lib/lockdep/Makefile \\\n  --replace 'CONFIG_INCLUDES =' $'CONFIG_INCLUDES = -I../../../usr/include\\n#'\n",
       nativeBuildInputs: nix.thunk(() => [flex, bison]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fcommon" })),
       buildPhase: "make defconfig\nmake headers_install\ncd tools/lib/lockdep\nmake\n",
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [valgrind]),
@@ -43,7 +40,7 @@ done
 `),
       installPhase: "mkdir -p $out/bin $out/lib $out/include\n\ncp -R include/liblockdep $out/include\nmake install DESTDIR=$out prefix=\"\"\n\nsubstituteInPlace $out/bin/lockdep --replace \"./liblockdep.so\" \"$out/lib/liblockdep.so.$fullver\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Userspace locking validation tool built on the Linux kernel",
         mainProgram: "lockdep",
         homepage: "https://kernel.org/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]], [["homepage", 59, 5], ["description", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["mainProgram", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["makeFlags", 36, 3], ["patchPhase", 43, 3], ["installPhase", 47, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libjack2: false, lv2: false, libx11: false, liblo: false, libGL: false, libxcursor: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["mainProgram", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["makeFlags", 36, 3], ["patchPhase", 43, 3], ["installPhase", 47, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wolf-shaper",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wolf-plugins",
           repo: "wolf-shaper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "patchShebangs ./dpf/utils/generate-ttl.sh\n",
       installPhase: "mkdir -p $out/lib/lv2\nmkdir -p $out/lib/dssi\nmkdir -p $out/lib/vst\nmkdir -p $out/bin/\ncp -r bin/wolf-shaper.lv2    $out/lib/lv2/\ncp -r bin/wolf-shaper-dssi*  $out/lib/dssi/\ncp -r bin/wolf-shaper-vst.so $out/lib/vst/\ncp -r bin/wolf-shaper        $out/bin/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://wolf-plugins.github.io/wolf-shaper/",
         description: "Waveshaper plugin with spline-based graph editor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

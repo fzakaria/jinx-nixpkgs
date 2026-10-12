@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["hash", 14, 5]], [["url", 30, 5], ["rev-prefix", 31, 5], ["ignoredVersions", 32, 5]], [["updateScript", 29, 12]], [["description", 36, 5], ["changelog", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["mainProgram", 43, 5], ["maintainers", 44, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["installPhase", 23, 3], ["passthru", 29, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { fetchurl: false, gitUpdater: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 30, 5], ["rev-prefix", 31, 5], ["ignoredVersions", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 29, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 36, 5], ["changelog", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["mainProgram", 43, 5], ["maintainers", 44, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["installPhase", 23, 3], ["passthru", 29, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rubygems";
       const version = "3.7.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://rubygems.org/rubygems/rubygems-${version}.tgz`),
           hash: "sha256-7+zgEiWlMvS1LPh2TSCgDg0p7W+Fsz2TAt9IlqkPpas=",
         }))));
@@ -30,16 +26,16 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "runHook preInstall\ncp -r . $out\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/rubygems/rubygems.git",
             "rev-prefix": "v",
             ignoredVersions: "(pre|alpha|beta|rc|bundler).*",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Package management framework for Ruby",
         changelog: nix.thunk(() => nix.str`https://github.com/rubygems/rubygems/blob/v${version}/CHANGELOG.md`),
         homepage: "https://rubygems.org/",
@@ -56,7 +52,16 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w_1, "zimbatm"))];
         })()),
       }));
-      return { [nix.POS]: pos$5, pname, version, src, patches, installPhase, passthru, meta };
+      return {
+        [nix.POS]: $pos[4],
+        pname,
+        version,
+        src,
+        patches,
+        installPhase,
+        passthru,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

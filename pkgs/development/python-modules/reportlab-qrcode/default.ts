@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]], [["testing", 35, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 29, 3], ["optional-dependencies", 34, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, wheel: false, qrcode: false, reportlab: false, pillow: false, pytest: false, pyzbar: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["testing", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 29, 3], ["optional-dependencies", 34, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,17 +22,17 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-m/oeuA797MEBOJBIG157VIa7TbEbRRVK/O8Arz/oO/o=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools, wheel]);
       const propagatedBuildInputs = nix.thunk(() => [qrcode, reportlab]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, testing: nix.thunk(() => [pillow, pytest, pyzbar]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], testing: nix.thunk(() => [pillow, pytest, pyzbar]) }));
       const pythonImportsCheck = nix.thunk(() => ["reportlab_qrcode"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Allows to create QR codes for use with the ReportLab PDF library",
         homepage: "https://pypi.org/project/reportlab-qrcode/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

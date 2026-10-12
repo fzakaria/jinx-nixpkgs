@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["NIX_CFLAGS_COMPILE", 38, 7]], [["updateScript", 66, 12]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]], [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["src", 30, 3], ["env", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["dontStrip", 62, 3], ["enableParallelBuilding", 64, 3], ["passthru", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, dpdk: false, "intel-ipsec-mb": false, libbpf: false, libconfig: false, libpcap: false, numactl: false, openssl: false, zlib: false, zstd: false, libbsd: false, elfutils: false, jansson: false, libnl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 66, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["src", 30, 3], ["env", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["dontStrip", 62, 3], ["enableParallelBuilding", 64, 3], ["passthru", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,19 +27,19 @@ export default nix.lambda((args) => (() => {
   const libnl = nix.arg($, "libnl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "odp-dpdk",
       version: "1.51.0.0_DPDK_24.11",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenDataPlane",
           repo: "odp-dpdk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-L6lF8VaycAz7PcFArAgLhI8+sc0jnAHY3gum/uDIYz4=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [
         dpdk,
@@ -63,11 +59,11 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open Data Plane optimized for DPDK",
         homepage: "https://www.opendataplane.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

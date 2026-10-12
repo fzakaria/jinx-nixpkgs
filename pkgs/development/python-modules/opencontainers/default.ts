@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]], [["reggie", 23, 25]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["postPatch", 19, 3], ["optional-dependencies", 23, 3], ["pythonImportsCheck", 25, 3], ["nativeCheckInputs", 27, 3], ["__darwinAllowLocalNetworking", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pytestCheckHook: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["reggie", 23, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["postPatch", 19, 3], ["optional-dependencies", 23, 3], ["pythonImportsCheck", 25, 3], ["nativeCheckInputs", 27, 3], ["__darwinAllowLocalNetworking", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,25 +17,25 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.15";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-o6QBJMxo7aVse0xauSTxi1UEW4RYrKlhH1v6g/fvrv4=",
         }))));
       const postPatch = "sed -i \"/pytest-runner/d\" setup.py\n";
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, reggie: nix.thunk(() => [requests]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], reggie: nix.thunk(() => [requests]) }));
       const pythonImportsCheck = nix.thunk(() => ["opencontainers"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "reggie")));
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python module for oci specifications",
         homepage: "https://github.com/vsoch/oci-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

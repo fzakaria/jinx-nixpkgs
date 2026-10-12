@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["homepage", 35, 5], ["description", 36, 5], ["maintainers", 37, 5], ["license", 38, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["propagatedBuildInputs", 26, 3], ["configureFlags", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, mkTclDerivation: false, fetchFromGitHub: false, "opencl-headers": false, "ocl-icd": false, vectcl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 35, 5], ["description", 36, 5], ["maintainers", 37, 5], ["license", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["propagatedBuildInputs", 26, 3], ["configureFlags", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ocl_icd = nix.arg($, "ocl-icd");
   const vectcl = nix.arg($, "vectcl");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tcl-opencl",
       version: "0.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ray2501",
           repo: "tcl-opencl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-vectcl=${vectcl}/lib/vectcl${nix.sel(vectcl, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ray2501/tcl-opencl",
         description: "Tcl extension for OpenCL",
         maintainers: nix.thunk(() => (() => {

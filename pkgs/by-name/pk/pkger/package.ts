@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 24, 5], ["mainProgram", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["doCheck", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["mainProgram", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["doCheck", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pkger",
       version: "0.17.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "markbates",
           repo: "pkger",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-9+2s84bqoNU3aaxmWYzIuFKPA3Tw9phXu5Csaaq/L60=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Embed static files in Go binaries (replacement for gobuffalo/packr)",
         mainProgram: "pkger",
         homepage: "https://github.com/markbates/pkger",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["openjp2_lib", 40, 7], ["tiff_lib", 41, 7]], [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 45, 3], ["__propagatedImpureHostDeps", 52, 3], ["build-system", 54, 3], ["dependencies", 59, 3], ["nativeCheckInputs", 65, 3], ["disabledTestPaths", 71, 3], ["pythonImportsCheck", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, openjpeg: false, libtiff: false, glibc: false, setuptools: false, "setuptools-scm": false, lxml: false, numpy: false, pillow: false, addBinToPathHook: false, pytestCheckHook: false, "scikit-image": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["openjp2_lib", 40, 7], ["tiff_lib", 41, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 45, 3], ["__propagatedImpureHostDeps", 52, 3], ["build-system", 54, 3], ["dependencies", 59, 3], ["nativeCheckInputs", 65, 3], ["disabledTestPaths", 71, 3], ["pythonImportsCheck", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scikit_image = nix.arg($, "scikit-image");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "glymur",
       version: "0.14.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "quintusdias",
           repo: "glymur",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./set-lib-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             openjp2_lib: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), openjpeg)}/lib/libopenjp2${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             tiff_lib: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libtiff)}/lib/libtiff${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_config.py"]),
       pythonImportsCheck: nix.thunk(() => ["glymur"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tools for accessing JPEG2000 files",
         homepage: "https://github.com/quintusdias/glymur",
         changelog: nix.thunk(() => nix.str`https://github.com/quintusdias/glymur/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.txt`),

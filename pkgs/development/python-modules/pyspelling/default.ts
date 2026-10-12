@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]], [["changelog", 44, 5], ["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["pythonImportsCheck", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, beautifulsoup4: false, html5lib: false, lxml: false, markdown: false, pyyaml: false, soupsieve: false, wcmatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 44, 5], ["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["pythonImportsCheck", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.12.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-kQiYHcF01kAKftSRfPSvkdrz64NXjUVwwHJrksKjLno=",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [beautifulsoup4, html5lib, lxml, markdown, pyyaml, soupsieve, wcmatch]);
       const pythonImportsCheck = nix.thunk(() => ["pyspelling"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/facelessuser/pyspelling/blob/${version}/docs/src/markdown/about/changelog.md`),
         description: "Spell checker",
         homepage: "https://pypi.org/project/pyspelling",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

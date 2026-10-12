@@ -2,43 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/overrides.nix", [[["nativeBuildInputs", 10, 5]], [["buildInputs", 13, 5]], [["propagatedBuildInputs", 16, 5]], [["nativeBuildInputs", 19, 5]], [["broken", 24, 27]], [["broken", 25, 35]], [["CSC_OPTIONS", 27, 9]], [["env", 27, 5]], [["NIX_CFLAGS_COMPILE", 48, 11]], [["env", 48, 7]], [["NIX_CFLAGS_COMPILE", 65, 11]], [["env", 65, 7]], [["NIX_CFLAGS_COMPILE", 78, 11]], [["env", 78, 7]], [["postPatch", 89, 7]], [["NIX_CFLAGS_COMPILE", 96, 9]], [["env", 96, 5]], [["NIX_CFLAGS_COMPILE", 123, 9]], [["env", 123, 5]], [["NIX_CFLAGS_COMPILE", 143, 11]], [["preBuild", 137, 7], ["env", 143, 7]], [["postPatch", 151, 7]], [["postPatch", 224, 7]], [["NIX_CFLAGS_COMPILE", 246, 11]], [["env", 246, 7]], [["NIX_CFLAGS_COMPILE", 254, 11]], [["env", 254, 7]], [["postPatch", 273, 7]], [["postPatch", 287, 5]], [["platforms", 294, 27]], [["platforms", 295, 27]], [["preBuild", 304, 7]], [["preBuild", 315, 5]], [["preBuild", 323, 5]], [["propagatedBuildInputs", 336, 7]], [["breadline", 31, 3], ["blas", 32, 3], ["blosc", 33, 3], ["botan", 34, 3], ["cairo", 35, 3], ["cmark", 42, 3], ["crypt", 43, 3], ["epoxy", 44, 3], ["espeak", 58, 3], ["ephem", 59, 3], ["exif", 60, 3], ["expat", 61, 3], ["ezxdisp", 74, 3], ["freetype", 82, 3], ["fuse", 84, 3], ["isaac", 85, 3], ["gl-math", 95, 3], ["gl-utils", 100, 3], ["glfw3", 101, 3], ["glls", 102, 3], ["glut", 103, 3], ["hypergiant", 114, 3], ["icu", 115, 3], ["imlib2", 116, 3], ["inotify", 117, 3], ["leveldb", 121, 3], ["libyaml", 122, 3], ["lmdb-ht", 125, 3], ["magic", 126, 3], ["magic-pipes", 127, 3], ["mdh", 129, 3], ["mistie", 131, 3], ["mosquitto", 132, 3], ["mpi", 133, 3], ["nanomsg", 145, 3], ["ncurses", 146, 3], ["oauthtoothy", 147, 3], ["opencl", 155, 3], ["openssl", 159, 3], ["plot", 160, 3], ["postgresql", 161, 3], ["pyffi", 162, 3], ["rocksdb", 163, 3], ["s9fes-char-graphics-shapes", 165, 3], ["s9fes-char-graphics", 173, 3], ["scheme2c-compatibility", 181, 3], ["sdl-base", 182, 3], ["sdl2", 190, 3], ["sdl2-image", 198, 3], ["sdl2-ttf", 206, 3], ["soil", 214, 3], ["sqlite3", 215, 3], ["stemmer", 216, 3], ["stfl", 217, 3], ["svn-client", 219, 3], ["taglib", 235, 3], ["tokyocabinet", 242, 3], ["uuid-lib", 248, 3], ["ws-client", 249, 3], ["xlib", 250, 3], ["yaml", 263, 3], ["zlib", 264, 3], ["zmq", 265, 3], ["zstd", 266, 3], ["git", 269, 3], ["lazy-ffi", 278, 3], ["opengl", 279, 3], ["posix-shm", 286, 3], ["pledge", 294, 3], ["unveil", 295, 3], ["dbus", 298, 3], ["math", 311, 3], ["raylib", 320, 3], ["socket", 321, 3], ["allegro", 329, 3], ["canvas-draw", 340, 3], ["gemini", 341, 3], ["gemini-client", 342, 3], ["iup", 343, 3], ["kiwi", 344, 3], ["qt-light", 345, 3], ["sundials", 346, 3], ["webview", 348, 3], ["iconv", 353, 3], ["posix-mq", 355, 3], ["pthreads", 357, 3], ["stty", 359, 3]]]);
 const formals$1 = { args: { stdenv: false, pkgs: false, lib: false, chickenEggs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/overrides.nix", [["nativeBuildInputs", 10, 5]]);
-const pos$2 = nix.positions(here + "/overrides.nix", [["buildInputs", 13, 5]]);
-const pos$3 = nix.positions(here + "/overrides.nix", [["propagatedBuildInputs", 16, 5]]);
-const pos$4 = nix.positions(here + "/overrides.nix", [["nativeBuildInputs", 19, 5]]);
-const pos$5 = nix.positions(here + "/overrides.nix", [["broken", 24, 27]]);
-const pos$6 = nix.positions(here + "/overrides.nix", [["broken", 25, 35]]);
-const pos$7 = nix.positions(here + "/overrides.nix", [["CSC_OPTIONS", 27, 9]]);
-const pos$8 = nix.positions(here + "/overrides.nix", [["env", 27, 5]]);
-const pos$9 = nix.positions(here + "/overrides.nix", [["NIX_CFLAGS_COMPILE", 48, 11]]);
-const pos$10 = nix.positions(here + "/overrides.nix", [["env", 48, 7]]);
-const pos$11 = nix.positions(here + "/overrides.nix", [["NIX_CFLAGS_COMPILE", 65, 11]]);
-const pos$12 = nix.positions(here + "/overrides.nix", [["env", 65, 7]]);
-const pos$13 = nix.positions(here + "/overrides.nix", [["NIX_CFLAGS_COMPILE", 78, 11]]);
-const pos$14 = nix.positions(here + "/overrides.nix", [["env", 78, 7]]);
-const pos$15 = nix.positions(here + "/overrides.nix", [["postPatch", 89, 7]]);
-const pos$16 = nix.positions(here + "/overrides.nix", [["NIX_CFLAGS_COMPILE", 96, 9]]);
-const pos$17 = nix.positions(here + "/overrides.nix", [["env", 96, 5]]);
-const pos$18 = nix.positions(here + "/overrides.nix", [["NIX_CFLAGS_COMPILE", 123, 9]]);
-const pos$19 = nix.positions(here + "/overrides.nix", [["env", 123, 5]]);
-const pos$20 = nix.positions(here + "/overrides.nix", [["NIX_CFLAGS_COMPILE", 143, 11]]);
-const pos$21 = nix.positions(here + "/overrides.nix", [["preBuild", 137, 7], ["env", 143, 7]]);
-const pos$22 = nix.positions(here + "/overrides.nix", [["postPatch", 151, 7]]);
-const pos$23 = nix.positions(here + "/overrides.nix", [["postPatch", 224, 7]]);
-const pos$24 = nix.positions(here + "/overrides.nix", [["NIX_CFLAGS_COMPILE", 246, 11]]);
-const pos$25 = nix.positions(here + "/overrides.nix", [["env", 246, 7]]);
-const pos$26 = nix.positions(here + "/overrides.nix", [["NIX_CFLAGS_COMPILE", 254, 11]]);
-const pos$27 = nix.positions(here + "/overrides.nix", [["env", 254, 7]]);
-const pos$28 = nix.positions(here + "/overrides.nix", [["postPatch", 273, 7]]);
-const pos$29 = nix.positions(here + "/overrides.nix", [["postPatch", 287, 5]]);
-const pos$30 = nix.positions(here + "/overrides.nix", [["platforms", 294, 27]]);
-const pos$31 = nix.positions(here + "/overrides.nix", [["platforms", 295, 27]]);
-const pos$32 = nix.positions(here + "/overrides.nix", [["preBuild", 304, 7]]);
-const pos$33 = nix.positions(here + "/overrides.nix", [["preBuild", 315, 5]]);
-const pos$34 = nix.positions(here + "/overrides.nix", [["preBuild", 323, 5]]);
-const pos$35 = nix.positions(here + "/overrides.nix", [["propagatedBuildInputs", 336, 7]]);
-const pos$36 = nix.positions(here + "/overrides.nix", [["breadline", 31, 3], ["blas", 32, 3], ["blosc", 33, 3], ["botan", 34, 3], ["cairo", 35, 3], ["cmark", 42, 3], ["crypt", 43, 3], ["epoxy", 44, 3], ["espeak", 58, 3], ["ephem", 59, 3], ["exif", 60, 3], ["expat", 61, 3], ["ezxdisp", 74, 3], ["freetype", 82, 3], ["fuse", 84, 3], ["isaac", 85, 3], ["gl-math", 95, 3], ["gl-utils", 100, 3], ["glfw3", 101, 3], ["glls", 102, 3], ["glut", 103, 3], ["hypergiant", 114, 3], ["icu", 115, 3], ["imlib2", 116, 3], ["inotify", 117, 3], ["leveldb", 121, 3], ["libyaml", 122, 3], ["lmdb-ht", 125, 3], ["magic", 126, 3], ["magic-pipes", 127, 3], ["mdh", 129, 3], ["mistie", 131, 3], ["mosquitto", 132, 3], ["mpi", 133, 3], ["nanomsg", 145, 3], ["ncurses", 146, 3], ["oauthtoothy", 147, 3], ["opencl", 155, 3], ["openssl", 159, 3], ["plot", 160, 3], ["postgresql", 161, 3], ["pyffi", 162, 3], ["rocksdb", 163, 3], ["s9fes-char-graphics-shapes", 165, 3], ["s9fes-char-graphics", 173, 3], ["scheme2c-compatibility", 181, 3], ["sdl-base", 182, 3], ["sdl2", 190, 3], ["sdl2-image", 198, 3], ["sdl2-ttf", 206, 3], ["soil", 214, 3], ["sqlite3", 215, 3], ["stemmer", 216, 3], ["stfl", 217, 3], ["svn-client", 219, 3], ["taglib", 235, 3], ["tokyocabinet", 242, 3], ["uuid-lib", 248, 3], ["ws-client", 249, 3], ["xlib", 250, 3], ["yaml", 263, 3], ["zlib", 264, 3], ["zmq", 265, 3], ["zstd", 266, 3], ["git", 269, 3], ["lazy-ffi", 278, 3], ["opengl", 279, 3], ["posix-shm", 286, 3], ["pledge", 294, 3], ["unveil", 295, 3], ["dbus", 298, 3], ["math", 311, 3], ["raylib", 320, 3], ["socket", 321, 3], ["allegro", 329, 3], ["canvas-draw", 340, 3], ["gemini", 341, 3], ["gemini-client", 342, 3], ["iup", 343, 3], ["kiwi", 344, 3], ["qt-light", 345, 3], ["sundials", 346, 3], ["webview", 348, 3], ["iconv", 353, 3], ["posix-mq", 355, 3], ["pthreads", 357, 3], ["stty", 359, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,37 +13,37 @@ export default nix.lambda((args) => (() => {
   const chickenEggs = nix.arg($, "chickenEggs");
   const addMetaAttrs = nix.thunk(() => nix.attr(lib, "addMetaAttrs"));
   const addToNativeBuildInputs = (pkg) => (old) => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), nix.app(nix.sel(lib, "toList"), pkg))),
   });
   const addToBuildInputs = (pkg) => (old) => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), nix.app(nix.sel(lib, "toList"), pkg))),
   });
   const addToPropagatedBuildInputs = (pkg) => (old) => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "propagatedBuildInputs"), nix.app(nix.sel(lib, "toList"), pkg))),
   });
   const addPkgConfig = (old) => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "pkg-config"))])),
   });
   const addToBuildInputsWithPkgConfig = (pkg) => (old) => nix.update(nix.app(addPkgConfig, old), nix.app(addToBuildInputs, pkg, old));
   const addToPropagatedBuildInputsWithPkgConfig = (pkg) => (old) => nix.update(nix.app(addPkgConfig, old), nix.app(addToPropagatedBuildInputs, pkg, old));
-  const broken = nix.thunk(() => nix.app(addMetaAttrs, nix.thunk(() => ({ [nix.POS]: pos$5, broken: true }))));
+  const broken = nix.thunk(() => nix.app(addMetaAttrs, nix.thunk(() => ({ [nix.POS]: $pos[4], broken: true }))));
   const brokenOnDarwin = nix.thunk(() => nix.app(addMetaAttrs, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
     }))));
   const addToCscOptions = (opt) => (old) => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     env: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       CSC_OPTIONS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([nix.thunk(() => nix.selOr(old, () => "", "env", "CSC_OPTIONS"))], nix.app(nix.sel(lib, "toList"), opt))))),
     })),
   });
   return {
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     breadline: nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "readline")))),
     blas: nix.thunk(() => nix.app(addToBuildInputsWithPkgConfig, nix.thunk(() => nix.sel(pkgs, "blas")))),
     blosc: nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "c-blosc")))),
@@ -93,9 +58,9 @@ export default nix.lambda((args) => (() => {
     cmark: nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "cmark")))),
     crypt: nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "libxcrypt")))),
     epoxy: (old) => nix.update(nix.app(addToPropagatedBuildInputsWithPkgConfig, nix.thunk(() => nix.sel(pkgs, "libepoxy")), old), {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       env: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? "-Wno-error=incompatible-function-pointer-types" : "-Wno-error=incompatible-pointer-types")),
             "-Wno-error=int-conversion",
@@ -106,31 +71,31 @@ export default nix.lambda((args) => (() => {
     ephem: nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "libnova")))),
     exif: nix.thunk(() => nix.app(addToBuildInputsWithPkgConfig, nix.thunk(() => nix.sel(pkgs, "libexif")))),
     expat: (old) => nix.update(nix.app(addToBuildInputsWithPkgConfig, nix.thunk(() => nix.sel(pkgs, "expat")), old), {
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       env: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? "-Wno-error=incompatible-function-pointer-types" : "-Wno-error=incompatible-pointer-types")),
           ]))),
       })),
     }),
     ezxdisp: (old) => nix.update(nix.app(addToBuildInputsWithPkgConfig, nix.thunk(() => nix.sel(pkgs, "libx11")), old), {
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       env: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))),
       })),
     }),
     freetype: nix.thunk(() => nix.app(addToBuildInputsWithPkgConfig, nix.thunk(() => nix.sel(pkgs, "freetype")))),
     fuse: broken,
     isaac: (old) => nix.update(nix.app(addToBuildInputsWithPkgConfig, nix.thunk(() => nix.sel(pkgs, "libffi")), old), {
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       postPatch: "substituteInPlace rand.h \\\n  --replace-fail '/*_ randctx *r, word flag _*/' 'randctx *r, word flag' \\\n  --replace-fail '/*_ randctx *r _*/' 'randctx *r'\n",
     }),
     "gl-math": (old) => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       env: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=incompatible-pointer-types"]))),
       })),
     }),
@@ -148,8 +113,8 @@ export default nix.lambda((args) => (() => {
     inotify: (old) => nix.update(nix.app(addToBuildInputs, nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.sel(pkgs, "libinotify-kqueue")))), old), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.app(addToCscOptions, "-L -linotify", old)))),
     leveldb: nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "leveldb")))),
     libyaml: (old) => ({
-      [nix.POS]: pos$19,
-      env: nix.thunk(() => ({ [nix.POS]: pos$18, NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })),
+      [nix.POS]: $pos[18],
+      env: nix.thunk(() => ({ [nix.POS]: $pos[17], NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })),
     }),
     "lmdb-ht": nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "lmdb")))),
     magic: nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "file")))),
@@ -161,21 +126,21 @@ export default nix.lambda((args) => (() => {
       })()))),
     mosquitto: nix.thunk(() => nix.app(addToPropagatedBuildInputs, nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mosquitto"))]))),
     mpi: (old) => nix.update(nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "openmpi")), old), {
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       preBuild: nix.thunk(() => nix.str`mkdir -p $NIX_BUILD_TOP/mpi-dir
 ln -sf ${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(pkgs, "openmpi")))}/include $NIX_BUILD_TOP/mpi-dir/include
 ln -sf ${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "openmpi")))}/lib $NIX_BUILD_TOP/mpi-dir/lib
 export MPI_DIR=$NIX_BUILD_TOP/mpi-dir
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
     }),
     nanomsg: nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "nanomsg")))),
     ncurses: nix.thunk(() => nix.app(addToBuildInputsWithPkgConfig, nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ncurses"))]))),
     oauthtoothy: (old) => nix.update(nix.app(addToPropagatedBuildInputs, nix.thunk(() => [nix.thunk(() => nix.sel(chickenEggs, "http-client"))]), old), {
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       postPatch: "sed -i 's/http-curl/http-client/' oauthtoothy.scm oauthtoothy.egg\n",
     }),
     opencl: nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => [
@@ -218,7 +183,7 @@ export MPI_DIR=$NIX_BUILD_TOP/mpi-dir
         nix.thunk(() => nix.sel(pkgs, "subversion")),
         nix.thunk(() => nix.sel(pkgs, "aprutil")),
       ]), old), nix.update(nix.app(addToNativeBuildInputs, nix.thunk(() => nix.sel(pkgs, "apr")), old), {
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       postPatch: nix.thunk(() => (() => {
         const svnInclude = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(pkgs, "subversion")))}/include/subversion-1`);
         const aprUtilInclude = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(pkgs, "aprutil")))}/include`);
@@ -233,18 +198,18 @@ export MPI_DIR=$NIX_BUILD_TOP/mpi-dir
         nix.thunk(() => nix.sel(pkgs, "taglib_1")),
       ]), old), nix.app(addToNativeBuildInputs, nix.thunk(() => nix.sel(pkgs, "taglib_1")), old)),
     tokyocabinet: (old) => nix.update(nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "tokyocabinet")), old), {
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       env: nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
     }),
     "uuid-lib": nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "libuuid")))),
     "ws-client": nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "zlib")))),
     xlib: (old) => nix.update(nix.app(addToPropagatedBuildInputs, nix.thunk(() => nix.sel(pkgs, "libx11")), old), {
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       env: nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? "-Wno-error=incompatible-function-pointer-types" : "-Wno-error=incompatible-pointer-types")),
           ]))),
@@ -255,7 +220,7 @@ export MPI_DIR=$NIX_BUILD_TOP/mpi-dir
     zmq: nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "zeromq")))),
     zstd: nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "zstd")))),
     git: (old) => nix.update(nix.app(addToBuildInputsWithPkgConfig, nix.thunk(() => nix.sel(pkgs, "libgit2")), old), {
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       postPatch: "substituteInPlace libgit2.scm \\\n  --replace-fail \"asize\" \"reserved\"\n",
     }),
     "lazy-ffi": (old) => nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "libffi")), old),
@@ -264,29 +229,29 @@ export MPI_DIR=$NIX_BUILD_TOP/mpi-dir
           nix.thunk(() => nix.sel(pkgs, "libGLU")),
         ]))), old)),
     "posix-shm": (old) => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace build.scm \\\n  --replace \"-lrt\" \"\"\n")),
     }),
     pledge: nix.thunk(() => nix.app(addMetaAttrs, nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "openbsd")),
       })))),
     unveil: nix.thunk(() => nix.app(addMetaAttrs, nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "openbsd")),
       })))),
     dbus: (old) => nix.update(nix.app(addToBuildInputsWithPkgConfig, nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dbus"))]), old), {
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       preBuild: "substituteInPlace \\\n  dbus.egg dbus.setup \\\n  --replace-fail '`pkg-config --cflags dbus-1`' \"$(pkg-config --cflags dbus-1)\" \\\n  --replace-fail '`pkg-config --libs dbus-1`' \"$(pkg-config --libs dbus-1)\"\n",
     }),
     math: (old) => ({
-      [nix.POS]: pos$33,
+      [nix.POS]: $pos[32],
       preBuild: "substituteInPlace *.scm **/*.scm \\\n  --replace-quiet 'only chicken.base' 'only chicken.base define-values'\n",
     }),
     raylib: nix.thunk(() => nix.app(addToBuildInputsWithPkgConfig, nix.thunk(() => nix.sel(pkgs, "raylib")))),
-    socket: (old) => ({ [nix.POS]: pos$34, preBuild: "touch socket-config\n" }),
+    socket: (old) => ({ [nix.POS]: $pos[33], preBuild: "touch socket-config\n" }),
     allegro: (old) => nix.update(nix.app(broken, old), {
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(chickenEggs, "foreigners"))]),
     }),
     "canvas-draw": broken,

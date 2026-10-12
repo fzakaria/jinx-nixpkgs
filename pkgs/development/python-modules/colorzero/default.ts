@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["nativeBuildInputs", 27, 3], ["pythonImportsCheck", 29, 3], ["nativeCheckInputs", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pkginfo: false, pytestCheckHook: false, "pytest-cov-stub": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["nativeBuildInputs", 27, 3], ["pythonImportsCheck", 29, 3], ["nativeCheckInputs", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "colorzero",
       version: "2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "waveform80",
           repo: "colorzero",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["colorzero"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_cov_stub]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Yet another Python color library",
         homepage: "https://github.com/waveform80/colorzero",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

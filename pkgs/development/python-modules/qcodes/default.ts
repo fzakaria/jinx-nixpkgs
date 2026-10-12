@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]], [["docs", 115, 5], ["loop", 129, 5], ["refactor", 132, 5], ["zurichinstruments", 135, 5]], [["description", 214, 5], ["changelog", 215, 5], ["downloadPage", 216, 5], ["homepage", 217, 5], ["license", 218, 5], ["maintainers", 219, 5]], [["pname", 61, 3], ["version", 62, 3], ["pyproject", 63, 3], ["src", 65, 3], ["postPatch", 72, 3], ["build-system", 82, 3], ["dependencies", 87, 3], ["optional-dependencies", 114, 3], ["nativeCheckInputs", 140, 3], ["__darwinAllowLocalNetworking", 157, 3], ["pytestFlags", 159, 3], ["disabledTestPaths", 175, 3], ["disabledTestMarks", 184, 3], ["disabledTests", 188, 3], ["pythonImportsCheck", 211, 3], ["meta", 213, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, versioningit: false, broadbean: false, "cf-xarray": false, dask: false, h5netcdf: false, h5py: false, ipykernel: false, ipywidgets: false, jsonschema: false, libcst: false, matplotlib: false, networkx: false, numpy: false, "opentelemetry-api": false, packaging: false, pandas: false, pillow: false, pyarrow: false, pyvisa: false, "ruamel-yaml": false, tabulate: false, tqdm: false, "typing-extensions": false, uncertainties: false, websockets: false, xarray: false, furo: false, nbsphinx: false, "pyvisa-sim": false, scipy: false, sphinx: false, "sphinx-issues": false, towncrier: false, deepdiff: false, hypothesis: false, lxml: false, pip: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-mock": false, "pytest-rerunfailures": false, "pytest-xdist": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["docs", 115, 5], ["loop", 129, 5], ["refactor", 132, 5], ["zurichinstruments", 135, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 214, 5], ["changelog", 215, 5], ["downloadPage", 216, 5], ["homepage", 217, 5], ["license", 218, 5], ["maintainers", 219, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 61, 3], ["version", 62, 3], ["pyproject", 63, 3], ["src", 65, 3], ["postPatch", 72, 3], ["build-system", 82, 3], ["dependencies", 87, 3], ["optional-dependencies", 114, 3], ["nativeCheckInputs", 140, 3], ["__darwinAllowLocalNetworking", 157, 3], ["pytestFlags", 159, 3], ["disabledTestPaths", 175, 3], ["disabledTestMarks", 184, 3], ["disabledTests", 188, 3], ["pythonImportsCheck", 211, 3], ["meta", 213, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,12 +56,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qcodes",
       version: "0.56.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "Qcodes",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -106,7 +103,7 @@ export default nix.lambda((args) => (() => {
         xarray,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         docs: nix.thunk(() => [furo, nbsphinx, pyvisa_sim, scipy, sphinx, sphinx_issues, towncrier]),
         loop: [],
         refactor: nix.thunk(() => [libcst]),
@@ -161,7 +158,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["qcodes"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python-based data acquisition framework",
         changelog: nix.thunk(() => nix.str`https://github.com/QCoDeS/Qcodes/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         downloadPage: "https://github.com/QCoDeS/Qcodes",

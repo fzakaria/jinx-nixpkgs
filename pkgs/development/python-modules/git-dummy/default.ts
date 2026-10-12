@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeBuildInputs", 40, 3], ["postInstall", 42, 3], ["doCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, gitpython: false, "pydantic-settings": false, typer: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeBuildInputs", 40, 3], ["postInstall", 42, 3], ["doCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const typer = nix.arg($, "typer");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "git-dummy",
       version: "0.1.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "initialcommit-com",
           repo: "git-dummy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "export _TYPER_COMPLETE_TEST_DISABLE_SHELL_DETECTION=1\ninstallShellCompletion --cmd git-dummy \\\n  --bash <($out/bin/git-dummy --show-completion bash) \\\n  --fish <($out/bin/git-dummy --show-completion fish) \\\n  --zsh <($out/bin/git-dummy --show-completion zsh)\n")),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Generate dummy Git repositories populated with the desired number of commits, branches, and structure",
         homepage: "https://github.com/initialcommit-com/git-dummy",
         changelog: nix.thunk(() => nix.str`https://github.com/initialcommit-com/git-dummy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

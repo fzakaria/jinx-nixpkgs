@@ -2,24 +2,22 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/snakeoil-certs.nix", [["cert", 8, 5], ["key", 9, 5]]);
-const pos$2 = nix.positions(here + "/snakeoil-certs.nix", [["cert", 12, 5], ["key", 13, 5]]);
-const pos$3 = nix.positions(here + "/snakeoil-certs.nix", [["domain", 6, 11], ["ca", 7, 3]]);
+const $pos = nix.positions(here + "/snakeoil-certs.nix", [[["cert", 8, 5], ["key", 9, 5]], [["cert", 12, 5], ["key", 13, 5]], [["domain", 6, 11], ["ca", 7, 3]]]);
 
 export default nix.thunk(() => (() => {
   const domain = "*.test.nix";
   const domainSanitized = "_.test.nix";
   return nix.attrsDyn({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     domain: domain,
     ca: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       cert: nix.path(here, "./ca.cert.pem"),
       key: nix.path(here, "./ca.key.pem"),
     })),
   }, [
     [nix.str`${domain}`, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       cert: nix.thunk(() => nix.add(nix.path(here, "./."), nix.str`/${domainSanitized}.cert.pem`)),
       key: nix.thunk(() => nix.add(nix.path(here, "./."), nix.str`/${domainSanitized}.key.pem`)),
     }))],

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["updateScript", 110, 5]], [["description", 114, 5], ["longDescription", 115, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["teams", 123, 5], ["platforms", 124, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 36, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["nativeCheckInputs", 57, 3], ["checkInputs", 63, 3], ["dontWrapQtApps", 67, 3], ["cmakeFlags", 69, 3], ["doCheck", 86, 3], ["enableParallelChecking", 89, 3], ["preCheck", 91, 3], ["passthru", 109, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, cmake: false, "cmake-extras": false, cups: false, exiv2: false, "lomiri-ui-toolkit": false, mesa: false, pam: false, "pkg-config": false, qtbase: false, qtdeclarative: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 110, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 114, 5], ["longDescription", 115, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["teams", 123, 5], ["platforms", 124, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 36, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["nativeCheckInputs", 57, 3], ["checkInputs", 63, 3], ["dontWrapQtApps", 67, 3], ["cmakeFlags", 69, 3], ["doCheck", 86, 3], ["enableParallelChecking", 89, 3], ["preCheck", 91, 3], ["passthru", 109, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lomiri-ui-extras",
       version: "0.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-ui-extras",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,11 +61,11 @@ export XDG_RUNTIME_DIR=$PWD
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lomiri UI Extra Components",
         longDescription: "A collection of UI components that for various reasons can't be included in\nthe main Lomiri UI toolkit - mostly because of the level of quality, lack of\ndocumentation and/or lack of automated tests.\n",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-ui-extras",

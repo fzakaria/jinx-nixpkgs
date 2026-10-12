@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["url", 59, 7], ["hash", 60, 7], ["stripLen", 61, 7]], [["rev-prefix", 82, 5]], [["updateScript", 81, 12]], [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["sourceRoot", 54, 3], ["patches", 56, 3], ["postPatch", 65, 3], ["cmakeFlags", 71, 3], ["postInstall", 75, 3], ["passthru", 81, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, qmake: false, qtbase: false, qtsvg: false, qtx11extras: true, kwindowsystem: true, qtwayland: false, libx11: false, libxext: false, qttools: false, wrapQtAppsHook: false, gitUpdater: false, qt6Kvantum: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 59, 7], ["hash", 60, 7], ["stripLen", 61, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev-prefix", 82, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 81, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["sourceRoot", 54, 3], ["patches", 56, 3], ["postPatch", 65, 3], ["cmakeFlags", 71, 3], ["postInstall", 75, 3], ["passthru", 81, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const qt6Kvantum = nix.argOr($, "qt6Kvantum", () => null);
   const isQt5 = nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(qtbase, "version")), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`qtstyleplugin-kvantum${nix.app(nix.sel(lib, "optionalString"), isQt5, "5")}`),
       version: "1.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tsujan",
           repo: "Kvantum",
           rev: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/Kvantum`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/tsujan/Kvantum/commit/01989083f9ee75a013c2654e760efd0a1dea4a68.patch",
             hash: "sha256-HPx+p4Iek/Me78olty1fA0dUNceK7bwOlTYIcQu8ycc=",
             stripLen: 1n,
@@ -59,11 +54,11 @@ mkdir -p "$out/share"
 ln -s "${qt6Kvantum}/share/Kvantum" "$out/share/Kvantum"
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "V" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "V" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "SVG-based Qt5 theme engine plus a config tool and extra themes",
         homepage: "https://github.com/tsujan/Kvantum",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

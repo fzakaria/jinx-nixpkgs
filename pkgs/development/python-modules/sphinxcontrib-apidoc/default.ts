@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["teams", 39, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 25, 3], ["doCheck", 31, 3], ["pythonNamespaces", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pbr: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["teams", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 25, 3], ["doCheck", 31, 3], ["pythonNamespaces", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "sphinxcontrib_apidoc",
           version: version,
           hash: "sha256-MpuYENZpiPSOEnpr0YzI77vRzSC43rRpGjVzivSa2I0=",
@@ -29,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonNamespaces = nix.thunk(() => ["sphinxcontrib"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sphinx extension for running sphinx-apidoc on each build",
         homepage: "https://github.com/sphinx-contrib/apidoc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

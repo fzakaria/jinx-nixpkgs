@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["cmakeFlags", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, cmake: false, libx86: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["cmakeFlags", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const libx86 = nix.arg($, "libx86");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "read-edid",
       version: "3.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.polypux.org/projects/read-edid/read-edid-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0vqqmwsgh2gchw7qmpqk6idgzcm5rqf2fab84y7gk42v1x2diin7",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DCLASSICBUILD=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86")) ? "ON" : "OFF")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for reading and parsing EDID data from monitors",
         homepage: "http://www.polypux.org/projects/read-edid/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

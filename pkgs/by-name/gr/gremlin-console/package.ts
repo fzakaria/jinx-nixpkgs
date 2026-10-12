@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["mainProgram", 38, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { fetchzip: false, lib: false, stdenv: false, makeWrapper: false, openjdk11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["mainProgram", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const openjdk11 = nix.arg($, "openjdk11");
   const openjdk = openjdk11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gremlin-console",
       version: "3.8.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.apache.org/tinkerpop/${nix.sel(finalAttrs, "version")}/apache-tinkerpop-gremlin-console-${nix.sel(finalAttrs, "version")}-bin.zip`),
           sha256: "sha256-U2sorMLLFcYV9dRX64uHR+eUu92ZmxhYgOK4CBsL5YE=",
         })))),
@@ -35,7 +33,7 @@ makeWrapper $out/opt/bin/gremlin-console $out/bin/gremlin-console \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://tinkerpop.apache.org/",
         description: "Console of the Apache TinkerPop graph computing framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

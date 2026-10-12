@@ -2,95 +2,72 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [[["edition", 8, 12]], [["enable", 11, 5], ["enableQt5Integration", 12, 5]], [["plasma6", 10, 27]], [["enable", 17, 26]], [["enable", 19, 7], ["user", 20, 7]], [["plasma-login-manager", 17, 5], ["autoLogin", 18, 5]], [["desktopManager", 10, 12], ["displayManager", 16, 12]], [["excludePackages", 24, 23]], [["plasma6", 24, 15]], [["enable", 32, 20]], [["kde-pim", 32, 12]], [["user", 41, 9], ["group", 42, 9], ["mode", 43, 9]], [["d", 40, 29]], [["argument", 45, 55]], [["L+", 45, 50]], [["argument", 46, 50]], [["L+", 46, 45]], [["argument", 48, 52]], [["L+", 48, 47]], [["/home/nixos/Desktop", 40, 7], ["/home/nixos/Desktop/nixos-manual.desktop", 45, 7], ["/home/nixos/Desktop/gparted.desktop", 46, 7], ["/home/nixos/Desktop/calamares.desktop", 48, 7]], [["10-installer-desktop", 34, 29]], [["settings", 34, 20]], [["tmpfiles", 34, 11]], [["imports", 6, 3], ["isoImage", 8, 3], ["services", 10, 3], ["environment", 24, 3], ["programs", 32, 3], ["systemd", 34, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["edition", 8, 12]]);
-const pos$2 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["enable", 11, 5], ["enableQt5Integration", 12, 5]]);
-const pos$3 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["plasma6", 10, 27]]);
-const pos$4 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["enable", 17, 26]]);
-const pos$5 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["enable", 19, 7], ["user", 20, 7]]);
-const pos$6 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["plasma-login-manager", 17, 5], ["autoLogin", 18, 5]]);
-const pos$7 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["desktopManager", 10, 12], ["displayManager", 16, 12]]);
-const pos$8 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["excludePackages", 24, 23]]);
-const pos$9 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["plasma6", 24, 15]]);
-const pos$10 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["enable", 32, 20]]);
-const pos$11 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["kde-pim", 32, 12]]);
-const pos$12 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["user", 41, 9], ["group", 42, 9], ["mode", 43, 9]]);
-const pos$13 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["d", 40, 29]]);
-const pos$14 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["argument", 45, 55]]);
-const pos$15 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["L+", 45, 50]]);
-const pos$16 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["argument", 46, 50]]);
-const pos$17 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["L+", 46, 45]]);
-const pos$18 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["argument", 48, 52]]);
-const pos$19 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["L+", 48, 47]]);
-const pos$20 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["/home/nixos/Desktop", 40, 7], ["/home/nixos/Desktop/nixos-manual.desktop", 45, 7], ["/home/nixos/Desktop/gparted.desktop", 46, 7], ["/home/nixos/Desktop/calamares.desktop", 48, 7]]);
-const pos$21 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["10-installer-desktop", 34, 29]]);
-const pos$22 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["settings", 34, 20]]);
-const pos$23 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["tmpfiles", 34, 11]]);
-const pos$24 = nix.positions(here + "/installation-cd-graphical-calamares-plasma6.nix", [["imports", 6, 3], ["isoImage", 8, 3], ["services", 10, 3], ["environment", 24, 3], ["programs", 32, 3], ["systemd", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$24,
+    [nix.POS]: $pos[23],
     imports: nix.thunk(() => [nix.path(here, "./installation-cd-graphical-calamares.nix")]),
     isoImage: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       edition: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "plasma6")),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       desktopManager: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        plasma6: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, enableQt5Integration: false })),
+        [nix.POS]: $pos[2],
+        plasma6: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, enableQt5Integration: false })),
       })),
       displayManager: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        "plasma-login-manager": nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
-        autoLogin: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, user: "nixos" })),
+        [nix.POS]: $pos[5],
+        "plasma-login-manager": nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
+        autoLogin: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true, user: "nixos" })),
       })),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       plasma6: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         excludePackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "kdePackages", "plasma-workspace-wallpapers"))]),
       })),
     })),
     programs: nix.thunk(() => ({
-      [nix.POS]: pos$11,
-      "kde-pim": nix.thunk(() => ({ [nix.POS]: pos$10, enable: false })),
+      [nix.POS]: $pos[10],
+      "kde-pim": nix.thunk(() => ({ [nix.POS]: $pos[9], enable: false })),
     })),
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       tmpfiles: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         settings: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           "10-installer-desktop": nix.thunk(() => (() => {
             const manualDesktopFile = "/run/current-system/sw/share/applications/nixos-manual.desktop";
             return {
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               "/home/nixos/Desktop": nix.thunk(() => ({
-                [nix.POS]: pos$13,
-                d: nix.thunk(() => ({ [nix.POS]: pos$12, user: "nixos", group: "users", mode: "0755" })),
+                [nix.POS]: $pos[12],
+                d: nix.thunk(() => ({ [nix.POS]: $pos[11], user: "nixos", group: "users", mode: "0755" })),
               })),
               "/home/nixos/Desktop/nixos-manual.desktop": nix.thunk(() => ({
-                [nix.POS]: pos$15,
-                "L+": nix.thunk(() => ({ [nix.POS]: pos$14, argument: manualDesktopFile })),
+                [nix.POS]: $pos[14],
+                "L+": nix.thunk(() => ({ [nix.POS]: $pos[13], argument: manualDesktopFile })),
               })),
               "/home/nixos/Desktop/gparted.desktop": nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 "L+": nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   argument: nix.thunk(() => nix.str`${nix.sel(pkgs, "gparted")}/share/applications/gparted.desktop`),
                 })),
               })),
               "/home/nixos/Desktop/calamares.desktop": nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 "L+": nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   argument: nix.thunk(() => nix.str`${nix.sel(pkgs, "calamares-nixos")}/share/applications/calamares.desktop`),
                 })),
               })),

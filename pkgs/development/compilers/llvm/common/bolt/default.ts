@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["passthru", 29, 31], ["strictDeps", 30, 9], ["__structuredAttrs", 31, 9]], [["url", 48, 7], ["hash", 49, 7]], [["url", 52, 7], ["hash", 53, 7]], [["homepage", 100, 5], ["description", 101, 5]], [["pname", 22, 3], ["version", 23, 11], ["src", 26, 3], ["sourceRoot", 44, 3], ["patches", 46, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 63, 3], ["strictDeps", 68, 3], ["cmakeFlags", 70, 3], ["postUnpack", 75, 3], ["prePatch", 79, 3], ["postPatch", 83, 3], ["postInstall", 87, 3], ["outputs", 92, 3], ["__structuredAttrs", 97, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, llvm_meta: false, monorepoSrc: false, release_version: false, runCommand: false, cmake: false, libxml2: false, libllvm: false, ninja: false, libclang: false, version: false, python3: false, buildLlvmPackages: false, patches: true, devExtraCmakeFlags: true, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["passthru", 29, 31], ["strictDeps", 30, 9], ["__structuredAttrs", 31, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 48, 7], ["hash", 49, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 52, 7], ["hash", 53, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 100, 5], ["description", 101, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 11], ["src", 26, 3], ["sourceRoot", 44, 3], ["patches", 46, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 63, 3], ["strictDeps", 68, 3], ["cmakeFlags", 70, 3], ["postUnpack", 75, 3], ["prePatch", 79, 3], ["postPatch", 83, 3], ["postInstall", 87, 3], ["outputs", 92, 3], ["__structuredAttrs", 97, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const devExtraCmakeFlags = nix.argOr($, "devExtraCmakeFlags", () => []);
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bolt",
       version: version,
       src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`bolt-src-${nix.sel(finalAttrs, "version")}`), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -49,12 +45,12 @@ chmod -R +w $out/llvm
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/bolt`),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), release_version), "19")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://github.com/llvm/llvm-project/commit/abc2eae68290c453e1899a94eccc4ed5ea3b69c1.patch",
               hash: "sha256-oxCxOjhi5BhNBEraWalEwa1rS3Mx9CuQgRVZ2hrbd7M=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://github.com/llvm/llvm-project/commit/5909979869edca359bcbca74042c2939d900680e.patch",
               hash: "sha256-l4rQHYbblEADBXaZIdqTG0sZzH4fEQvYiqhLYNZDMa8=",
             })))),
@@ -72,7 +68,7 @@ chmod -R +w $out/llvm
       outputs: nix.thunk(() => ["out", "dev"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/llvm/llvm-project/tree/main/bolt",
         description: "LLVM post-link optimizer",
       })),

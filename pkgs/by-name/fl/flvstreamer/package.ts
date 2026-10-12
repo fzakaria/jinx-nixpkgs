@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 29, 5], ["longDescription", 31, 5], ["license", 36, 5], ["homepage", 38, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildPhase", 16, 3], ["installPhase", 20, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["longDescription", 31, 5], ["license", 36, 5], ["homepage", 38, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildPhase", 16, 3], ["installPhase", 20, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "flvstreamer",
       version: "2.1c1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/flvstreamer/source/flvstreamer-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "e90e24e13a48c57b1be01e41c9a7ec41f59953cdb862b50cf3e667429394d1ee",
         })))),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "mkdir -p $out/bin\ncp flvstreamer $out/bin\ncp streams $out/bin\ncp rtmpsrv $out/bin\ncp rtmpsuck $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command-line RTMP client",
         longDescription: "flvstreamer is an open source command-line RTMP client intended to\nstream audio or video content from all types of flash or rtmp servers.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

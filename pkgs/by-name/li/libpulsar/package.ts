@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["platforms", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 52, 3], ["strictDeps", 80, 3], ["cmakeFlags", 82, 3], ["doInstallCheck", 90, 3], ["installCheckPhase", 91, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, asio_1_32_0: false, boost: false, boost186: false, log4cxx: false, snappy: false, zlib: false, zstd: false, gtest: false, cmake: false, curl: false, protobuf_21: false, jsoncpp: false, openssl: false, "pkg-config": false, asioSupport: true, log4cxxSupport: true, snappySupport: true, zlibSupport: true, zstdSupport: true, gtestSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["platforms", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 52, 3], ["strictDeps", 80, 3], ["cmakeFlags", 82, 3], ["doInstallCheck", 90, 3], ["installCheckPhase", 91, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const gtestSupport = nix.argOr($, "gtestSupport", () => false);
   const protobuf = protobuf_21;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libpulsar",
       version: "4.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "pulsar-client-cpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
 $CXX test.cc -L $out/lib -I $out/include -lpulsar -o test
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Apache Pulsar C++ library",
         homepage: "https://pulsar.apache.org/docs/next/client-libraries-cpp/",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/pulsar-client-cpp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

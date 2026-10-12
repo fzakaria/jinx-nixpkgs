@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["url", 22, 7], ["sha256", 23, 7]], [["url", 27, 7], ["sha256", 28, 7]], [["url", 32, 7], ["sha256", 33, 7]], [["url", 37, 7], ["sha256", 38, 7]], [["url", 42, 7], ["sha256", 43, 7]], [["url", 47, 7], ["sha256", 48, 7]], [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["mainProgram", 70, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 20, 3], ["buildInputs", 52, 3], ["installFlags", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, cvs: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 7], ["sha256", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 27, 7], ["sha256", 28, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 32, 7], ["sha256", 33, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 37, 7], ["sha256", 38, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 42, 7], ["sha256", 43, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 47, 7], ["sha256", 48, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["mainProgram", 70, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 20, 3], ["buildInputs", 52, 3], ["installFlags", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,42 +14,42 @@ export default nix.lambda((args) => (() => {
   const cvs = nix.arg($, "cvs");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "cvsps",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/c/cvsps/cvsps_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           sha256: "0nh7q7zcmagx0i63h6fqqkkq9i55k77myvb8h6jn2f266f5iklwi",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://sources.debian.net/data/main/c/cvsps/2.1-7/debian/patches/01_ignoretrunk.patch",
             sha256: "1gzb97dw2a6bm0bmim7p7wvsn0r82y3a8n22ln6rbbkkd8vlnzcb",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://sources.debian.net/data/main/c/cvsps/2.1-7/debian/patches/02_dynamicbufferalloc.patch",
             sha256: "0dm7azxnw0g9pdqkb3y4y2h047zgrclbh40av6c868wfp2j6l9sc",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://sources.debian.net/data/main/c/cvsps/2.1-7/debian/patches/03_diffoptstypo.patch",
             sha256: "06n8652g7inpv8cgqir7ijq00qw1fr0v44m2pbmgx7ilmna2vrcw",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://sources.debian.net/data/main/c/cvsps/2.1-7/debian/patches/05-inet_addr_fix.patch",
             sha256: "10w6px96dz8bb69asjzshvp787ccazmqnjsggqc4gwdal95q3cn7",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://sources.debian.net/data/main/c/cvsps/2.1-7/debian/patches/fix-makefile",
             sha256: "0m92b55hgldwg6lwdaybbj0n3lw1b3wj2xkk1cz1ywq073bpf3jm",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://sources.debian.net/data/main/c/cvsps/2.1-7/debian/patches/fix-manpage",
             sha256: "0gky14rhx82wv0gj8bkc74ki5xilhv5i3k1jc7khklr4lb6mmhpx",
           })))),
@@ -65,7 +57,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cvs, zlib]),
       installFlags: nix.thunk(() => ["prefix=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Tool to generate CVS patch set information",
         longDescription: "CVSps is a program for generating `patchset' information from a\nCVS repository.  A patchset in this case is defined as a set of\nchanges made to a collection of files, and all committed at the\nsame time (using a single \"cvs commit\" command).\n",
         homepage: "https://sourceforge.net/projects/cvsps/",

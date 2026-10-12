@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 72, 7], ["repo", 73, 7], ["rev", 74, 7], ["hash", 75, 7], ["fetchSubmodules", 76, 7]], [["url", 150, 11], ["hash", 151, 11]], [["dashboardPath", 148, 9]], [["NIX_CFLAGS_COMPILE", 164, 9]], [["description", 313, 13], ["license", 314, 13]], [["pname", 296, 11], ["version", 297, 32], ["src", 297, 40], ["sourceRoot", 299, 11], ["vendorHash", 301, 11], ["proxyVendor", 302, 11], ["doCheck", 303, 11], ["subPackages", 305, 11], ["ldflags", 307, 11], ["meta", 312, 11]], [["description", 336, 13], ["mainProgram", 337, 13], ["license", 338, 13]], [["pname", 320, 11], ["version", 321, 32], ["src", 321, 40], ["sourceRoot", 323, 11], ["vendorHash", 325, 11], ["proxyVendor", 326, 11], ["doCheck", 327, 11], ["ldflags", 329, 11], ["meta", 335, 11]], [["netdata", 350, 13]], [["nd-mcp", 294, 7], ["netdata-go-modules", 318, 7], ["withIpmi", 343, 9], ["withNdsudo", 344, 9], ["withNetworkViewer", 345, 9], ["withOtel", 346, 9], ["withSystemdJournal", 347, 9], ["tests", 350, 7]], [["broken", 354, 7], ["description", 355, 7], ["homepage", 356, 7], ["changelog", 357, 7], ["license", 358, 7], ["mainProgram", 359, 7], ["platforms", 360, 7], ["maintainers", 361, 7]], [["pname", 68, 5], ["version", 69, 5], ["src", 71, 5], ["strictDeps", 79, 5], ["nativeBuildInputs", 81, 5], ["buildInputs", 99, 5], ["patches", 132, 5], ["disallowedReferences", 161, 5], ["dontStrip", 163, 5], ["env", 164, 5], ["postInstall", 166, 5], ["preConfigure", 218, 5], ["cmakeFlags", 253, 5], ["postFixup", 280, 5], ["enableParallelBuilding", 291, 5], ["passthru", 293, 5], ["meta", 353, 5]], [["pname", 373, 13], ["version", 374, 13], ["src", 375, 13], ["cargoRoot", 376, 13], ["hash", 378, 11]], [["pname", 381, 11], ["version", 382, 32], ["src", 382, 40], ["cargoRoot", 383, 11], ["hash", 384, 11]], [["name", 369, 7], ["paths", 370, 7]], [["cargoDeps", 368, 5], ["cargoRoot", 388, 5]]]);
 const formals$1 = { args: { bash: false, bison: false, buildGoModule: false, cargo: false, cmake: false, corrosion: false, cups: false, curl: false, dlib: false, fetchFromGitHub: false, fetchzip: false, flex: false, freeipmi: false, go: false, jemalloc: false, json_c: false, lib: false, libbacktrace: false, libbpf: false, libcap: false, libelf: false, libmnl: false, libnetfilter_acct: false, libossp_uuid: false, libuuid: false, libuv: false, libyaml: false, lz4: false, makeWrapper: false, ninja: false, nixosTests: false, openssl: false, "pkg-config": false, protobuf: false, replaceVars: false, rustc: false, rustPlatform: false, snappy: false, sqlite: false, stdenv: false, symlinkJoin: false, systemdLibs: false, zlib: false, withCloudUi: true, withConnPrometheus: true, withCups: true, withDBengine: true, withDebug: true, withEbpf: true, withIpmi: true, withLibbacktrace: true, withML: true, withNdMcp: true, withNdsudo: true, withNetfilter: true, withNetflow: true, withNetworkViewer: true, withOtel: true, withSsl: true, withSystemdJournal: true, withSystemdUnits: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 72, 7], ["repo", 73, 7], ["rev", 74, 7], ["hash", 75, 7], ["fetchSubmodules", 76, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 150, 11], ["hash", 151, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["dashboardPath", 148, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 164, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 313, 13], ["license", 314, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 296, 11], ["version", 297, 32], ["src", 297, 40], ["sourceRoot", 299, 11], ["vendorHash", 301, 11], ["proxyVendor", 302, 11], ["doCheck", 303, 11], ["subPackages", 305, 11], ["ldflags", 307, 11], ["meta", 312, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 336, 13], ["mainProgram", 337, 13], ["license", 338, 13]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 320, 11], ["version", 321, 32], ["src", 321, 40], ["sourceRoot", 323, 11], ["vendorHash", 325, 11], ["proxyVendor", 326, 11], ["doCheck", 327, 11], ["ldflags", 329, 11], ["meta", 335, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["netdata", 350, 13]]);
-const pos$10 = nix.positions(here + "/default.nix", [["nd-mcp", 294, 7], ["netdata-go-modules", 318, 7], ["withIpmi", 343, 9], ["withNdsudo", 344, 9], ["withNetworkViewer", 345, 9], ["withOtel", 346, 9], ["withSystemdJournal", 347, 9], ["tests", 350, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["broken", 354, 7], ["description", 355, 7], ["homepage", 356, 7], ["changelog", 357, 7], ["license", 358, 7], ["mainProgram", 359, 7], ["platforms", 360, 7], ["maintainers", 361, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["pname", 68, 5], ["version", 69, 5], ["src", 71, 5], ["strictDeps", 79, 5], ["nativeBuildInputs", 81, 5], ["buildInputs", 99, 5], ["patches", 132, 5], ["disallowedReferences", 161, 5], ["dontStrip", 163, 5], ["env", 164, 5], ["postInstall", 166, 5], ["preConfigure", 218, 5], ["cmakeFlags", 253, 5], ["postFixup", 280, 5], ["enableParallelBuilding", 291, 5], ["passthru", 293, 5], ["meta", 353, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["pname", 373, 13], ["version", 374, 13], ["src", 375, 13], ["cargoRoot", 376, 13], ["hash", 378, 11]]);
-const pos$14 = nix.positions(here + "/default.nix", [["pname", 381, 11], ["version", 382, 32], ["src", 382, 40], ["cargoRoot", 383, 11], ["hash", 384, 11]]);
-const pos$15 = nix.positions(here + "/default.nix", [["name", 369, 7], ["paths", 370, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["cargoDeps", 368, 5], ["cargoRoot", 388, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -84,11 +69,11 @@ export default nix.lambda((args) => (() => {
   const withSystemdJournal = nix.argOr($, "withSystemdJournal", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const withSystemdUnits = nix.argOr($, "withSystemdUnits", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "netdata",
       version: "2.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "netdata",
           repo: "netdata",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -110,9 +95,9 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./use-local-libbacktrace.patch"),
         nix.path(here, "./use-local-sqlite.patch"),
       ], nix.app(nix.sel(lib, "optional"), withCloudUi, nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dashboard-v3-add.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             dashboardPath: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 url: "https://web.archive.org/web/20251210212517if_/https://app.netdata.cloud/agent.tar.gz",
                 hash: "sha256-8ovYkvt324l6f0YT6wTG+Y2u7VaVqotAdssnNTtHIEk=",
               })))),
@@ -120,7 +105,7 @@ export default nix.lambda((args) => (() => {
       disallowedReferences: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withDebug)), nix.thunk(() => nix.sel(zlib, "dev")))),
       dontStrip: nix.thunk(() => (nix.asBool(withDebug) || nix.asBool(withLibbacktrace))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withDebug, "-O1 -ggdb -DNETDATA_INTERNAL_CHECKS=1")),
       })),
       postInstall: nix.thunk(() => nix.add("# Relocate one folder above.\nmv $out/usr/* $out/\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`# rename this plugin so netdata will look for setuid wrapper
@@ -213,9 +198,9 @@ rm -rf $out/{var,usr,etc}
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         "nd-mcp": nix.thunk(() => nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-nd-mcp`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -226,13 +211,13 @@ rm -rf $out/{var,usr,etc}
             subPackages: nix.thunk(() => ["."]),
             ldflags: nix.thunk(() => ["-s", "-w"]),
             meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "meta"), {
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               description: "Netdata Model Context Protocol (MCP) Integration",
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             })),
           }))), "goModules")),
         "netdata-go-modules": nix.thunk(() => nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-go-plugins`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -246,7 +231,7 @@ rm -rf $out/{var,usr,etc}
               nix.thunk(() => nix.str`-X main.version=${nix.sel(finalAttrs, "version")}`),
             ]),
             meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "meta"), {
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               description: "Netdata orchestrator for data collection modules written in Go",
               mainProgram: "godplugin",
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -257,10 +242,10 @@ rm -rf $out/{var,usr,etc}
         withNetworkViewer: withNetworkViewer,
         withOtel: withOtel,
         withSystemdJournal: withSystemdJournal,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$9, netdata: nix.thunk(() => nix.sel(nixosTests, "netdata")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[8], netdata: nix.thunk(() => nix.sel(nixosTests, "netdata")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         broken: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))) || nix.asBool(withEbpf))),
         description: "Real-time performance monitoring tool",
         homepage: "https://www.netdata.cloud/",
@@ -277,13 +262,13 @@ rm -rf $out/{var,usr,etc}
         })()),
       })),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(withNetflow) || nix.asBool(withOtel))) || nix.asBool(withSystemdJournal))), nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         cargoDeps: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             name: "cargo-vendor-dir",
             paths: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
                   version: nix.thunk(() => nix.attr(finalAttrs, "version")),
                   src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -291,7 +276,7 @@ rm -rf $out/{var,usr,etc}
                   hash: "sha256-u8x2vYIStJQvHokHmgL0fl6kCamM2dpl81re1BxSi0Y=",
                 })))),
               nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-nd-jf`),
                   version: nix.thunk(() => nix.attr(finalAttrs, "version")),
                   src: nix.thunk(() => nix.attr(finalAttrs, "src")),

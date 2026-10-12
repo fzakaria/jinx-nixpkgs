@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]], [["homepage", 56, 5], ["description", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 62, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["patches", 30, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["strictDeps", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch: false, gtest: false, meson: false, nasm: false, ninja: false, "pkg-config": false, stdenv: false, windows: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["patches", 30, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["strictDeps", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const windows = nix.arg($, "windows");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openh264",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cisco",
           repo: "openh264",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "freebsd-configure.patch",
             url: "https://github.com/cisco/openh264/commit/ea8a1ad5791ee5c4e2ecf459aec235128d69b35b.patch",
             hash: "sha256-pJvh9eRxFZQ+ob4WPu/x+jr1CCpgnug1uBViLfAtBDg=",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([gtest], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")), nix.thunk(() => [nix.thunk(() => nix.sel(windows, "pthreads"))])))),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.openh264.org",
         description: "Codec library which supports H.264 encoding and decoding",
         changelog: nix.thunk(() => nix.str`https://github.com/cisco/openh264/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

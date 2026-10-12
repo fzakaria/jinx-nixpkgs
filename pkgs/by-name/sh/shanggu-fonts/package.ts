@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 11], ["hash", 17, 19]], [["Mono", 21, 9], ["Round", 22, 9], ["Sans", 23, 9], ["Serif", 24, 9]], [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]], [["pname", 30, 3], ["version", 31, 11], ["outputs", 33, 3], ["nativeBuildInputs", 35, 3], ["unpackPhase", 37, 3], ["installPhase", 49, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, p7zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 11], ["hash", 17, 19]]);
-const pos$2 = nix.positions(here + "/package.nix", [["Mono", 21, 9], ["Round", 22, 9], ["Sans", 23, 9], ["Serif", 24, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 11], ["outputs", 33, 3], ["nativeBuildInputs", 35, 3], ["unpackPhase", 37, 3], ["installPhase", 49, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const source = nix.thunk(() => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "attrsets")), null);
     return nix.app(nix.lookup(w, "mapAttrs'"), (name) => (hash) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "toLower"), name)), nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/GuiWonder/Shanggu/releases/download/${version}/Shanggu${name}TTCs.7z`),
             hash: hash,
           }))))), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         Mono: "sha256-QQgEUQbWOr3sOIT2yQpkY9cL2sHFO/Z/hrhV5YqA3Zk=",
         Round: "sha256-izPntZyAfeL/DuhDvZ+FWKq71Uj4WuHWC4d7Z3qEsvc=",
         Sans: "sha256-a05MO8vq+PqDlYtuDstN6hlx/IkNY0JCwcmlYYK3Xcw=",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
   })());
   const extraOutputs = nix.thunk(() => nix.builtins.attrNames(source));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "shanggu-fonts",
       version: version,
       outputs: nix.thunk(() => nix.concat(["out"], extraOutputs)),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
 ln -s "${nix.builtins.placeholder(name)}" /share/fonts/truetype/*.ttc $out/share/fonts/truetype
 `)))), "runHook postInstall\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/GuiWonder/Shanggu",
         description: "Heritage glyph (old glyph) font based on Siyuan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

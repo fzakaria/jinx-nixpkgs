@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["homepage", 40, 5], ["description", 42, 5], ["longDescription", 43, 5], ["sourceProvenance", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5], ["platforms", 57, 5], ["downloadPage", 58, 5]], [["pname", 11, 3], ["version", 12, 3], ["jarName", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["dontUnpack", 24, 3], ["installPhase", 26, 3], ["nativeInstallCheckInputs", 33, 3], ["doInstallCheck", 36, 3], ["versionCheckProgram", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, makeWrapper: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 42, 5], ["longDescription", 43, 5], ["sourceProvenance", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5], ["platforms", 57, 5], ["downloadPage", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["jarName", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["dontUnpack", 24, 3], ["installPhase", 26, 3], ["nativeInstallCheckInputs", 33, 3], ["doInstallCheck", 36, 3], ["versionCheckProgram", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.15.0";
       const jarName = nix.thunk(() => nix.str`bfg-${version}.jar`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://maven/com/madgag/bfg/${version}/${jarName}`),
           hash: "sha256-3+KIWtwpFjeQk/AqgBgSAFNoVsmph78hxJLkUq3v73o=",
         }))));
@@ -36,7 +34,7 @@ makeWrapper "${jre}/bin/java" $out/bin/bfg --add-flags "-cp $out/share/java/$jar
       const doInstallCheck = true;
       const versionCheckProgram = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(meta, "mainProgram")}`);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://rtyley.github.io/bfg-repo-cleaner/",
         description: "Removes large or troublesome blobs in a git repository like git-filter-branch does, but faster",
         longDescription: "The BFG is a simpler, faster alternative to git-filter-branch for\ncleansing bad data out of your Git repository history, in particular removing\ncrazy big files and removing passwords, credentials, and other private data.\n\nThe git-filter-branch command is enormously powerful and can do things\nthat the BFG can't - but the BFG is much better for the tasks above, because\nit's faster (10-720x), simpler (dedicated to just removing things), and\nbeautiful (can use Scala instead of bash to script customizations).\n",
@@ -51,7 +49,7 @@ makeWrapper "${jre}/bin/java" $out/bin/bfg --add-flags "-cp $out/share/java/$jar
         downloadPage: nix.thunk(() => nix.str`https://mvnrepository.com/artifact/com.madgag/bfg/${version}`),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         jarName,

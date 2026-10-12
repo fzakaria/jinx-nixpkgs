@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]], [["NIX_CFLAGS_COMPILE", 25, 7]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["disabled", 16, 3], ["src", 18, 3], ["pythonRelaxDeps", 23, 3], ["env", 25, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["doCheck", 32, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pythonAtLeast: false, fetchPypi: false, buildPythonPackage: false, setuptools: false, greenlet: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 25, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["disabled", 16, 3], ["src", 18, 3], ["pythonRelaxDeps", 23, 3], ["env", 25, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["doCheck", 32, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +20,14 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.13"));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-AIx2k3rCEXzGngMtxpzqn4X8YF3pusFBf0R8QcFqVtY=",
         }))));
       const pythonRelaxDeps = nix.thunk(() => ["greenlet"]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-Wno-error=implicit-function-declaration")),
       }));
       const build_system = nix.thunk(() => [setuptools]);
@@ -38,13 +35,13 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["meinheld"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "High performance asynchronous Python WSGI Web Server",
         homepage: "https://meinheld.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

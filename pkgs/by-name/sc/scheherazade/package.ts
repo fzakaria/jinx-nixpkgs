@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["2.100", 12, 7], ["3.300", 13, 7], ["4.000", 14, 7], ["4.300", 15, 7], ["4.400", 16, 7]], [["url", 25, 5], ["hash", 26, 13]], [["homepage", 40, 5], ["description", 41, 5], ["longDescription", 42, 5], ["downloadPage", 59, 5], ["license", 60, 5], ["platforms", 61, 5]], [["pname", 22, 11], ["version", 22, 17], ["src", 24, 3], ["installPhase", 29, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["2.100", 12, 7], ["3.300", 13, 7], ["4.000", 14, 7], ["4.300", 15, 7], ["4.400", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["longDescription", 42, 5], ["downloadPage", 59, 5], ["license", 60, 5], ["platforms", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 11], ["version", 22, 17], ["src", 24, 3], ["installPhase", 29, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => "2.100");
   const new$ = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "3.000"));
   const hash = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "2.100": "sha256-d2UyOOOnmE1afCwyIrM1bL3lQC7XRwh03hzetk/4V30=",
     "3.300": "sha256-LaaA6DWAE2dcwVVX4go9cJaiuwI6efYbPk82ym3W3IY=",
     "4.000": "sha256-FhgHlHCfojIl3Y11EDYhNTmLYwQ60OrwnA9nbZbZGJE=",
@@ -28,13 +25,13 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://software.sil.org/downloads/r/scheherazade/Scheherazade${nix.app(nix.sel(lib, "optionalString"), new$, "New")}-${version_1}.zip`),
           hash: hash,
         }))));
       const installPhase = "runHook preInstall\n\ninstall -Dm644 *.ttf -t $out/share/fonts/truetype\ninstall -Dm644 FONTLOG.txt README.txt -t $out/share/doc\ncp -r documentation $out/share/doc/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://software.sil.org/scheherazade/",
         description: "Font designed in a similar style to traditional Naskh typefaces",
         longDescription: nix.thunk(() => nix.str`
@@ -58,7 +55,7 @@ font family, along with documentation.
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname_1,
         version: version_1,
         src,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtmultimedia.nix", [[["NIX_LDFLAGS", 40, 5]], [["pname", 15, 3], ["propagatedBuildInputs", 16, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["outputs", 33, 3], ["qmakeFlags", 38, 3], ["env", 39, 3]]]);
 const formals$1 = { args: { qtModule: false, lib: false, stdenv: false, qtbase: false, qtdeclarative: false, "pkg-config": false, "alsa-lib": false, gst_all_1: false, libpulseaudio: false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtmultimedia.nix", [["NIX_LDFLAGS", 40, 5]]);
-const pos$2 = nix.positions(here + "/qtmultimedia.nix", [["pname", 15, 3], ["propagatedBuildInputs", 16, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["outputs", 33, 3], ["qmakeFlags", 38, 3], ["env", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const wayland = nix.arg($, "wayland");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qtmultimedia",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
@@ -32,7 +31,7 @@ export default nix.lambda((args) => (() => {
       })()),
       outputs: nix.thunk(() => ["bin", "dev", "out"]),
       qmakeFlags: nix.thunk(() => ["GST_VERSION=1.0"]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$1, NIX_LDFLAGS: "-lobjc" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[0], NIX_LDFLAGS: "-lobjc" })))),
     })));
 })(), formals$1);
 //# sourceMappingURL=qtmultimedia.ts.map

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 45, 5], ["sha256", 46, 5]], [["packageName", 114, 7], ["versionPolicy", 115, 7]], [["updateScript", 113, 5]], [["homepage", 120, 5], ["description", 121, 5], ["license", 122, 5], ["platforms", 123, 5], ["maintainers", 124, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 61, 3], ["nativeCheckInputs", 94, 3], ["mesonFlags", 98, 3], ["doCheck", 104, 3], ["preFixup", 106, 3], ["passthru", 112, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, python3: false, vala: false, glib: false, gtk3: false, libpeas: false, libsoup_3: false, libxml2: false, libsecret: false, libnotify: false, libdmapsharing: false, gnome: false, "gobject-introspection": false, "totem-pl-parser": false, libgudev: false, libgpod: false, libmtp: false, lirc: false, "brasero-unwrapped": false, grilo: false, tdb: false, "json-glib": false, itstool: false, wrapGAppsHook3: false, "desktop-file-utils": false, gst_all_1: false, gst_plugins: true, check: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 45, 5], ["sha256", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 114, 7], ["versionPolicy", 115, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 113, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 120, 5], ["description", 121, 5], ["license", 122, 5], ["platforms", 123, 5], ["maintainers", 124, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 61, 3], ["nativeCheckInputs", 94, 3], ["mesonFlags", 98, 3], ["doCheck", 104, 3], ["preFixup", 106, 3], ["passthru", 112, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rhythmbox";
       const version = "3.4.9";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/rhythmbox/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/rhythmbox-${version}.tar.xz`),
           sha256: "5CKRoY33oh/+azUr9z8F1+KYu04FvOWWf5jujO5ECPE=",
         }))));
@@ -101,11 +97,11 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const preFixup = "gappsWrapperArgs+=(\n  --prefix PYTHONPATH : \"$out/lib/rhythmbox/plugins/\"\n)\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, versionPolicy: "none" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: pname, versionPolicy: "none" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/rhythmbox",
         description: "Music playing application for GNOME",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -113,7 +109,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

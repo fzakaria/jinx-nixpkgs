@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 24, 3], ["pythonImportsCheck", 29, 3], ["dependencies", 31, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, torch: false, "hydra-core": false, iopath: false, numpy: false, pillow: false, torchvision: false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 24, 3], ["pythonImportsCheck", 29, 3], ["dependencies", 31, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-fg6iUtQ8ENhT46z84LV3CsaDwwSBvW3jETAOnUT0W3Q=",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["sam2"]);
       const dependencies = nix.thunk(() => [hydra_core, iopath, numpy, pillow, torch, torchvision, tqdm]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SAM 2: Segment Anything in Images and Videos",
         homepage: "https://github.com/facebookresearch/sam2",
         license: nix.thunk(() => (() => {
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

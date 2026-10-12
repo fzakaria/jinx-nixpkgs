@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 15, 5], ["buildCommand", 17, 5]], [["NIX_CFLAGS_COMPILE", 58, 7]], [["description", 60, 8]], [["releaseName", 43, 3], ["outputs", 45, 3], ["xcodeHash", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 53, 3], ["env", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { "apple-sdk": false, mkAppleDerivation: false, ncurses: false, "pkg-config": false, sourceRelease: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 15, 5], ["buildCommand", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 8]]);
-const pos$4 = nix.positions(here + "/package.nix", [["releaseName", 43, 3], ["outputs", 45, 3], ["xcodeHash", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 53, 3], ["env", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const iokitUser = nix.thunk(() => nix.app(sourceRelease, "IOKitUser"));
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "IOKitTools-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -t "$out/include/IOKit/" \\
   '${iokitUser}/IOKitLibPrivate.h' \\
@@ -45,17 +42,17 @@ EOF
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       releaseName: "IOKitTools",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-qFG4sB8NXNPTSvYTEX2E1ReOX+NcMBHrS2NuNBLO7zw=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(apple_sdk, "privateFrameworksHook")), ncurses]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$3, description: "IOKit tools" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[2], description: "IOKit tools" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

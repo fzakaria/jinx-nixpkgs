@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-suite.nix", [[["licenseAccepted", 8, 55]], [["licenseAccepted", 10, 5]], [["licenseAccepted", 13, 5]], [["command", 31, 5], ["attrPath", 32, 5], ["supportedFeatures", 33, 5]], [["tests", 28, 12], ["updateScript", 30, 12]], [["timeout", 37, 5]], [["pname", 20, 3], ["version", 21, 3], ["buildInputs", 22, 3], ["buildCommand", 24, 3], ["passthru", 28, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false, stdenv: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-suite.nix", [["licenseAccepted", 8, 55]]);
-const pos$2 = nix.positions(here + "/test-suite.nix", [["licenseAccepted", 10, 5]]);
-const pos$3 = nix.positions(here + "/test-suite.nix", [["licenseAccepted", 13, 5]]);
-const pos$4 = nix.positions(here + "/test-suite.nix", [["command", 31, 5], ["attrPath", 32, 5], ["supportedFeatures", 33, 5]]);
-const pos$5 = nix.positions(here + "/test-suite.nix", [["tests", 28, 12], ["updateScript", 30, 12]]);
-const pos$6 = nix.positions(here + "/test-suite.nix", [["timeout", 37, 5]]);
-const pos$7 = nix.positions(here + "/test-suite.nix", [["pname", 20, 3], ["version", 21, 3], ["buildInputs", 22, 3], ["buildCommand", 24, 3], ["passthru", 28, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,27 +11,27 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const meta = nix.arg($, "meta");
-  const examples_shell = nix.thunk(() => nix.app(callPackage, nix.path(here, "./examples/shell.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, licenseAccepted: true }))));
-  const examples_shell_with_emulator = nix.thunk(() => nix.app(callPackage, nix.path(here, "./examples/shell-with-emulator.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, licenseAccepted: true }))));
-  const examples_shell_without_emulator = nix.thunk(() => nix.app(callPackage, nix.path(here, "./examples/shell-without-emulator.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, licenseAccepted: true }))));
+  const examples_shell = nix.thunk(() => nix.app(callPackage, nix.path(here, "./examples/shell.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], licenseAccepted: true }))));
+  const examples_shell_with_emulator = nix.thunk(() => nix.app(callPackage, nix.path(here, "./examples/shell-with-emulator.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], licenseAccepted: true }))));
+  const examples_shell_without_emulator = nix.thunk(() => nix.app(callPackage, nix.path(here, "./examples/shell-without-emulator.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], licenseAccepted: true }))));
   const all_tests = nix.thunk(() => nix.update(nix.sel(examples_shell, "passthru", "tests"), nix.update(nix.sel(examples_shell_with_emulator, "passthru", "tests"), nix.sel(examples_shell_without_emulator, "passthru", "tests"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "androidenv-test-suite",
       version: nix.thunk(() => nix.selOr(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./repo.json")), () => "0000000000000000", "latest", "fingerprint")),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), all_tests)),
       buildCommand: "touch $out\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: all_tests,
         updateScript: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           command: nix.thunk(() => [nix.path(here, "./update.rb")]),
           attrPath: "androidenv.test-suite",
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
       })),
-      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$6, timeout: 60n })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[5], timeout: 60n })),
     })));
 })(), formals$1);
 //# sourceMappingURL=test-suite.ts.map

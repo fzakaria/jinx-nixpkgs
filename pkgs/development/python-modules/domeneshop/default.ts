@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]], [["changelog", 33, 5], ["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["dependencies", 22, 3], ["doCheck", 28, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, urllib3: false, certifi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 33, 5], ["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["dependencies", 22, 3], ["doCheck", 28, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-UCxIDnhIAkxZ1oQXYRyAMdGgUsUZ6AlYXwsxL49TFAg=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["domeneshop"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/domeneshop/python-domeneshop/releases/tag/v${version}`),
         description: "Python library for working with the Domeneshop API",
         homepage: "https://api.domeneshop.no/docs/",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

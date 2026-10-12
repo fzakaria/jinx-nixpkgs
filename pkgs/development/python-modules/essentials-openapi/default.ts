@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["full", 49, 5]], [["homepage", 71, 5], ["description", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["nativeCheckInputs", 33, 3], ["propagatedBuildInputs", 42, 3], ["optional-dependencies", 48, 3], ["pythonRelaxDeps", 57, 3], ["pythonImportsCheck", 61, 3], ["disabledTestPaths", 63, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, lib: false, click: false, essentials: false, flask: false, hatchling: false, httpx: false, jinja2: false, markupsafe: false, pydantic: false, pytestCheckHook: false, pyyaml: false, rich: false, setuptools: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["full", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 71, 5], ["description", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["nativeCheckInputs", 33, 3], ["propagatedBuildInputs", 42, 3], ["optional-dependencies", 48, 3], ["pythonRelaxDeps", 57, 3], ["pythonImportsCheck", 61, 3], ["disabledTestPaths", 63, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Neoteroi",
           repo: "essentials-openapi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,12 +37,12 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [hatchling]);
       const nativeCheckInputs = nix.thunk(() => [flask, httpx, pydantic, pytestCheckHook, rich, setuptools]);
       const propagatedBuildInputs = nix.thunk(() => [pyyaml, essentials, markupsafe]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, full: nix.thunk(() => [click, jinja2, rich, httpx]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], full: nix.thunk(() => [click, jinja2, rich, httpx]) }));
       const pythonRelaxDeps = nix.thunk(() => ["markupsafe"]);
       const pythonImportsCheck = nix.thunk(() => ["openapidocs"]);
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_cli.py"])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/Neoteroi/essentials-openapi",
         description: "Functions to handle OpenAPI Documentation",
         changelog: nix.thunk(() => nix.str`https://github.com/Neoteroi/essentials-openapi/releases/${nix.sel(src, "tag")}`),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

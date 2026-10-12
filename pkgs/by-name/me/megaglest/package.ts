@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 40, 5], ["paths", 41, 5]], [["name", 64, 5], ["paths", 65, 5]], [["owner", 77, 5], ["repo", 78, 5], ["tag", 79, 5], ["fetchSubmodules", 80, 5], ["sha256", 81, 5]], [["name", 87, 7], ["url", 88, 7], ["sha256", 89, 7]], [["name", 93, 7], ["url", 94, 7], ["hash", 95, 7]], [["name", 98, 7], ["url", 99, 7], ["hash", 100, 7]], [["name", 103, 7], ["url", 104, 7], ["hash", 105, 7]], [["name", 108, 7], ["url", 109, 7], ["hash", 110, 7]], [["description", 164, 5], ["license", 165, 5], ["homepage", 166, 5], ["maintainers", 167, 5], ["platforms", 168, 5]], [["pname", 73, 3], ["version", 74, 11], ["src", 76, 3], ["patches", 84, 3], ["nativeBuildInputs", 114, 3], ["buildInputs", 120, 3], ["cmakeFlags", 142, 3], ["postPatch", 150, 3], ["postInstall", 155, 3], ["meta", 163, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, "pkg-config": false, git: false, curl: false, SDL2: false, xercesc: false, openal: false, lua: false, libvlc: false, libjpeg: false, wxwidgets_3_2: false, cppunit: false, ftgl: false, glew: false, libogg: false, libvorbis: false, buildEnv: false, libpng: false, fontconfig: false, freetype: false, libxext: false, libx11: false, libsm: false, libice: false, makeWrapper: false, bash: false, which: false, zenity: false, libGLU: false, glib: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 40, 5], ["paths", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 64, 5], ["paths", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 77, 5], ["repo", 78, 5], ["tag", 79, 5], ["fetchSubmodules", 80, 5], ["sha256", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 87, 7], ["url", 88, 7], ["sha256", 89, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 93, 7], ["url", 94, 7], ["hash", 95, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 98, 7], ["url", 99, 7], ["hash", 100, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 103, 7], ["url", 104, 7], ["hash", 105, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 108, 7], ["url", 109, 7], ["hash", 110, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 164, 5], ["license", 165, 5], ["homepage", 166, 5], ["maintainers", 167, 5], ["platforms", 168, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 73, 3], ["version", 74, 11], ["src", 76, 3], ["patches", 84, 3], ["nativeBuildInputs", 114, 3], ["buildInputs", 120, 3], ["cmakeFlags", 142, 3], ["postPatch", 150, 3], ["postInstall", 155, 3], ["meta", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const version = "3.13.0";
   const lib_env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "megaglest-lib-env",
       paths: nix.thunk(() => [
         SDL2,
@@ -77,16 +68,16 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const path_env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "megaglest-path-env",
       paths: nix.thunk(() => [bash, which, zenity]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "megaglest",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "MegaGlest",
           repo: "megaglest-source",
           tag: version,
@@ -95,31 +86,31 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "fno-common.patch",
             url: "https://github.com/MegaGlest/megaglest-source/commit/5a3520540276a6fd06f7c88e571b6462978e3eab.patch",
             sha256: "0y554kjw56dikq87vs709pmq97hdx9hvqsk27f81v4g90m3b3qhi",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "get-rid-of-manual-wxPaintEvent-creation-1.patch",
             url: "https://github.com/MegaGlest/megaglest-source/commit/e09ba53c436279588f769d6ce8852e74d58f8391.patch",
             hash: "sha256-1ZG6AjnLXW18wwad05kjH7W5rTaP1SDpZ5zLH4nRQt4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "get-rid-of-manual-wxPaintEvent-creation-2.patch",
             url: "https://sources.debian.org/data/main/m/megaglest/3.13.0-9/debian/patches/fbd0cfb17ed759d24aeb577a602b0d97f7895cc2.patch",
             hash: "sha256-aMDDboNdH22r7YOiZCEApwz+FpM60anBp82tLwiIH6g=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "get-rid-of-manual-wxPaintEvent-creation-3.patch",
             url: "https://github.com/MegaGlest/megaglest-source/commit/5801b1fafff8ad9618248d4d5d5c751fdf52be2f.patch",
             hash: "sha256-/RpBoT1JsSFtOrAXphHrPp9DnTbaEN/2h8EZmQ9PIPU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "fix-editor-and-g3dviewer-for-wx-3.1.x.patch",
             url: "https://github.com/MegaGlest/megaglest-source/commit/789e1cdf371137b729e832e28a5feb6e97a3a243.patch",
             hash: "sha256-fK7vkHCu6bqVB6I7vMsWMGiczSdxVgo1KqqBNMkEbfM=",
@@ -162,7 +153,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Entertaining free (freeware and free software) and open source cross-platform 3D real-time strategy (RTS) game",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         homepage: "https://megaglest.org/",

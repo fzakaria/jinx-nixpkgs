@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]], [["doh", 29, 5], ["idna", 34, 5], ["dnssec", 35, 5], ["trio", 36, 5], ["doq", 37, 5]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["optional-dependencies", 28, 3], ["nativeCheckInputs", 40, 3], ["disabledTests", 42, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, aioquic: false, buildPythonPackage: false, cryptography: false, fetchPypi: false, h2: false, httpcore: false, httpx: false, idna: false, hatchling: false, pytestCheckHook: false, trio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doh", 29, 5], ["idna", 34, 5], ["dnssec", 35, 5], ["trio", 36, 5], ["doq", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["optional-dependencies", 28, 3], ["nativeCheckInputs", 40, 3], ["disabledTests", 42, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-GB08aZZFLLEYnEBGxhWZuEpahuCZVi/9530mmE/ybQ8=",
         }))));
       const build_system = nix.thunk(() => [hatchling]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         doh: nix.thunk(() => [httpx, h2, httpcore]),
         idna: nix.thunk(() => [idna]),
         dnssec: nix.thunk(() => [cryptography]),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export NO_INTERNET=1\n";
       const pythonImportsCheck = nix.thunk(() => ["dns"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "DNS toolkit for Python",
         homepage: "https://www.dnspython.org",
         changelog: nix.thunk(() => nix.str`https://github.com/rthalley/dnspython/blob/v${version}/doc/whatsnew.rst`),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

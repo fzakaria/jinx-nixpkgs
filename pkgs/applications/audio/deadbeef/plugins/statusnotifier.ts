@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/statusnotifier.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["buildFlags", 30, 3], ["postPatch", 32, 3], ["installPhase", 37, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, deadbeef: false, gtk3: false, perl: false, libdbusmenu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/statusnotifier.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/statusnotifier.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/statusnotifier.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["buildFlags", 30, 3], ["postPatch", 32, 3], ["installPhase", 37, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const libdbusmenu = nix.arg($, "libdbusmenu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "deadbeef-statusnotifier-plugin",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vovochka404",
           repo: "deadbeef-statusnotifier-plugin",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\nmkdir -p $out/lib/deadbeef\ncp build/sni_gtk3.so $out/lib/deadbeef\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "DeaDBeeF StatusNotifier Plugin",
         homepage: "https://github.com/vovochka404/deadbeef-statusnotifier-plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

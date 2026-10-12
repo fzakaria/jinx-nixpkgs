@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["package", 57, 7]], [["version", 56, 5]], [["tests", 55, 12]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["hardeningDisable", 41, 3], ["sphinxBuilders", 43, 3], ["installPhase", 47, 3], ["passthru", 55, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchFromGitHub: false, boehmgc: false, libkrb5: false, openssl: false, pam: false, "pkg-config": false, postgresql: false, readline: false, sqlite: false, testers: false, zlib: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 55, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["hardeningDisable", 41, 3], ["sphinxBuilders", 43, 3], ["installPhase", 47, 3], ["passthru", 55, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pgcopydb",
       version: "0.17-unstable-2026-05-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dimitri",
           repo: "pgcopydb",
           rev: "984269274ccdaf0d297ed82db635e6746be55b75",
@@ -48,17 +43,17 @@ export default nix.lambda((args) => (() => {
       sphinxBuilders: nix.thunk(() => ["man"]),
       installPhase: "runHook preInstall\n\ninstall -D -t $out/bin/ src/bin/pgcopydb/pgcopydb\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Copy a Postgres database to a target Postgres server (pg_dump | pg_restore on steroids",
         homepage: "https://github.com/dimitri/pgcopydb",
         changelog: nix.thunk(() => nix.str`https://github.com/dimitri/pgcopydb/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

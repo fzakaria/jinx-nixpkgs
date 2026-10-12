@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["6.2.2", 14, 5], ["7.0.0", 15, 5]], [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["url", 33, 7], ["sha256", 34, 7]], [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]], [["pname", 20, 3], ["version", 21, 11], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 40, 3], ["outputs", 45, 3], ["nativeBuildInputs", 50, 3], ["preConfigure", 56, 3], ["cmakeFlags", 60, 3], ["doCheck", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, cmake: false, gfortran: false, perl: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["6.2.2", 14, 5], ["7.0.0", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 33, 7], ["sha256", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 11], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 40, 3], ["outputs", 45, 3], ["nativeBuildInputs", 50, 3], ["preConfigure", 56, 3], ["cmakeFlags", 60, 3], ["doCheck", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const version = nix.argOr($, "version", () => "6.2.2");
   const versionHashes = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "6.2.2": "sha256-JYhuyW95I7Q0edLIe7H//+ej5vh6MdAGxXjmNxDMuhQ=",
     "7.0.0": "sha256-mGyGtKDurOrSS0AYrtwhF62pJGPBLbPPNBgFV7fyyug=",
   }));
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libxc";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "libxc",
           repo: "libxc",
           rev: version_1,
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.com/libxc/libxc/-/commit/450202adb8a3d698841dca853f2999b1befd932e.patch",
             sha256: "sha256-XDt7+TzszSu+X6/PS+T8Q9BP76+bAXC9FzkA6ueo/OA=",
           })))),
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library of exchange-correlation functionals for density-functional theory",
         mainProgram: "xc-info",
         homepage: "https://www.tddft.org/programs/Libxc/",
@@ -68,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version: version_1,
         src,

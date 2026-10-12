@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["fetchSubmodules", 56, 5], ["hash", 57, 5]], [["cli", 92, 5]], [["description", 140, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["maintainers", 144, 5]], [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["__structuredAttrs", 50, 3], ["src", 52, 3], ["build-system", 60, 3], ["dependencies", 65, 3], ["optional-dependencies", 91, 3], ["pythonImportsCheck", 98, 3], ["nativeCheckInputs", 100, 3], ["preCheck", 105, 3], ["disabledTests", 109, 3], ["disabledTestPaths", 123, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, hatchling: false, "hatch-vcs": false, "asteroid-filterbanks": false, einops: false, "huggingface-hub": false, lightning: false, matplotlib: false, "opentelemetry-api": false, "opentelemetry-exporter-otlp": false, "opentelemetry-sdk": false, "pyannote-core": false, "pyannote-database": false, "pyannote-metrics": false, "pyannote-pipeline": false, "pyannoteai-sdk": false, "pytorch-metric-learning": false, pyyaml: false, safetensors: false, speechbrain: false, tensorboardx: false, torch: false, "torch-audiomentations": false, torchaudio: false, torchcodec: false, torchmetrics: false, "hydra-core": false, typer: false, papermill: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["fetchSubmodules", 56, 5], ["hash", 57, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cli", 92, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 140, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["maintainers", 144, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["__structuredAttrs", 50, 3], ["src", 52, 3], ["build-system", 60, 3], ["dependencies", 65, 3], ["optional-dependencies", 91, 3], ["pythonImportsCheck", 98, 3], ["nativeCheckInputs", 100, 3], ["preCheck", 105, 3], ["disabledTests", 109, 3], ["disabledTestPaths", 123, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,13 +42,13 @@ export default nix.lambda((args) => (() => {
   const papermill = nix.arg($, "papermill");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyannote-audio",
       version: "4.0.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyannote",
           repo: "pyannote-audio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -84,7 +81,7 @@ export default nix.lambda((args) => (() => {
         torchcodec,
         torchmetrics,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [hydra_core, typer]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], cli: nix.thunk(() => [hydra_core, typer]) })),
       pythonImportsCheck: nix.thunk(() => ["pyannote.audio"]),
       nativeCheckInputs: nix.thunk(() => [papermill, pytestCheckHook]),
       preCheck: "$out/bin/pyannote-audio --help\n",
@@ -102,7 +99,7 @@ export default nix.lambda((args) => (() => {
           "tests/tasks/test_reproducibility.py",
         ])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Neural building blocks for speaker diarization: speech activity detection, speaker change detection, overlapped speech detection, speaker embedding",
         homepage: "https://github.com/pyannote/pyannote-audio",
         changelog: nix.thunk(() => nix.str`https://github.com/pyannote/pyannote-audio/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

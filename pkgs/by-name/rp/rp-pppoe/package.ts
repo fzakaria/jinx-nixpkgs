@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["description", 40, 5], ["platforms", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildInputs", 18, 3], ["preConfigure", 20, 3], ["configureFlags", 25, 3], ["postConfigure", 30, 3], ["makeFlags", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, ppp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["platforms", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildInputs", 18, 3], ["preConfigure", 20, 3], ["configureFlags", 25, 3], ["postConfigure", 30, 3], ["makeFlags", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const ppp = nix.arg($, "ppp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rp-pppoe",
       version: "4.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dskoll",
           repo: "rp-pppoe",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +30,7 @@ export PPPD=${ppp}/sbin/pppd
       postConfigure: "sed -i Makefile -e 's@DESTDIR)/etc/ppp@out)/etc/ppp@'\nsed -i Makefile -e 's@/etc/ppp/plugins@$(out)/lib@'\nsed -i Makefile -e 's@PPPOESERVER_PPPD_OPTIONS=@&$(out)@'\nsed -i Makefile -e '/# Directory created by rp-pppoe for kernel-mode plugin/d'\n",
       makeFlags: nix.thunk(() => ["AR:=$(AR)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Roaring Penguin Point-to-Point over Ethernet tool",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         homepage: "https://dianne.skoll.ca/projects/rp-pppoe/",

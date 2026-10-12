@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["checkInputs", 17, 3], ["doCheck", 19, 3], ["minimalOCamlVersion", 21, 3], ["duneVersion", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["checkInputs", 17, 3], ["doCheck", 19, 3], ["minimalOCamlVersion", 21, 3], ["duneVersion", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ocaml-version",
       version: "4.1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ocurrent/ocaml-version/releases/download/v${nix.sel(finalAttrs, "version")}/ocaml-version-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-Iiik1STIuLd1639h99JE64H/2sowC3jCnY/drKWkPbI=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       minimalOCamlVersion: "4.07",
       duneVersion: "3",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Manipulate, parse and generate OCaml compiler version strings",
         homepage: "https://github.com/ocurrent/ocaml-version",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

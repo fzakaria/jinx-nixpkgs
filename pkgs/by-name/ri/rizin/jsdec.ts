@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jsdec.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 60, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postUnpack", 33, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, "pkg-config": false, ninja: false, rizin: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/jsdec.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/jsdec.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/jsdec.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/jsdec.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postUnpack", 33, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const version = "0.9.0";
   const libquickjs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "quickjs-ng",
       repo: "quickjs",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-o0Cpy+20EqNdNENaYlasJcKIGU7W4RYBcTMsQwFTUNc=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jsdec",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "rizinorg",
           repo: "jsdec",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [openssl, rizin]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple decompiler for Rizin",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),
         changelog: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "meta", "homepage")}/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

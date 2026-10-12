@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 5], ["version", 16, 26], ["extension", 17, 5], ["hash", 18, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 21, 3], ["pythonImportsCheck", 26, 3], ["doCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, beautifulsoup4: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 5], ["version", 16, 26], ["extension", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 21, 3], ["pythonImportsCheck", 26, 3], ["doCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const beautifulsoup4 = nix.arg($, "beautifulsoup4");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pylyrics",
       version: "1.1.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "PyLyrics",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           extension: "zip",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["PyLyrics"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pythonic Implementation of lyrics.wikia.com for getting lyrics of songs",
         homepage: "https://github.com/geekpradd/PyLyrics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

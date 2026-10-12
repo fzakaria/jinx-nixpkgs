@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 45, 5], ["hash", 46, 5]], [["url", 52, 7], ["hash", 53, 7]], [["updateScript", 171, 12]], [["description", 191, 5], ["homepage", 192, 5], ["license", 193, 5], ["maintainers", 194, 5], ["platforms", 197, 5], ["mainProgram", 198, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["patches", 49, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 63, 3], ["hardeningDisable", 74, 3], ["enableParallelBuilding", 75, 3], ["postPatch", 77, 3], ["preConfigure", 111, 3], ["postInstall", 123, 3], ["wrapperScript", 135, 3], ["passthru", 171, 3], ["meta", 190, 3]]]);
 const formals$1 = { args: { stdenv: false, acl: false, attr: false, autoconf: false, automake: false, "pkg-config": false, bash: false, bc: false, coreutils: false, e2fsprogs: false, fetchzip: false, fetchpatch: false, fio: false, gawk: false, keyutils: false, killall: false, lib: false, libaio: false, libcap: false, libtool: false, libuuid: false, libxfs: false, lvm2: false, openssl: false, perl: false, procps: false, quota: false, time: false, "util-linux": false, which: false, writeScript: false, writeShellScript: false, xfsprogs: false, gitMinimal: false, "nix-update": false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 52, 7], ["hash", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 171, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 191, 5], ["homepage", 192, 5], ["license", 193, 5], ["maintainers", 194, 5], ["platforms", 197, 5], ["mainProgram", 198, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["patches", 49, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 63, 3], ["hardeningDisable", 74, 3], ["enableParallelBuilding", 75, 3], ["postPatch", 77, 3], ["preConfigure", 111, 3], ["postInstall", 123, 3], ["wrapperScript", 135, 3], ["passthru", 171, 3], ["meta", 190, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,17 +44,17 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xfstests",
       version: "2026.09.02",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/fs/xfs/xfstests-dev.git/snapshot/xfstests-dev-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-jnwEcGUSkKW9afGQTUsWR7CNQECWz/sYdSaDx0hY1Uo=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://lore.kernel.org/fstests/20260813150846.280498-1-zlang@kernel.org/raw",
             hash: "sha256-NOPMo0cdKKoPMwG53BdTe+G+vDXb+2ICGYFRs4g+edQ=",
           })))),
@@ -135,7 +131,7 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
 exec ./check "$@"
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-xfstests", nix.thunk(() => nix.str`set -euo pipefail
 export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, gitMinimal, gawk, nix_update]))}:$PATH
 VERSION="$(git ls-remote --tags --refs https://git.kernel.org/pub/scm/fs/xfs/xfstests-dev.git \\
@@ -148,7 +144,7 @@ exec nix-update --version "$VERSION" xfstests "$@"
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Torture test suite for filesystems",
         homepage: "https://git.kernel.org/pub/scm/fs/xfs/xfstests-dev.git/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

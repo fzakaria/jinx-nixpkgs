@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 37, 3], ["nativeCheckInputs", 39, 3], ["checkInputs", 44, 3], ["preCheck", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, python: false, pytestCheckHook: false, hatchling: false, "typing-extensions": false, pytest: false, "pytest-mypy-plugins": false, mypy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 37, 3], ["nativeCheckInputs", 39, 3], ["checkInputs", 44, 3], ["preCheck", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest_mypy_plugins = nix.arg($, "pytest-mypy-plugins");
   const mypy = nix.arg($, "mypy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "obspec",
       version: "0.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "developmentseed",
           repo: "obspec",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.str`export MYPYPATH=$out/${nix.sel(python, "sitePackages")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Object storage interface definitions for Python",
         homepage: "http://developmentseed.org/obspec/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]], [["LANG", 80, 5], ["NIX_CFLAGS_COMPILE", 82, 5]], [["command", 114, 7], ["package", 115, 7], ["version", 116, 7]], [["version", 113, 11]], [["tests", 113, 5]], [["changelog", 121, 5], ["description", 122, 5], ["homepage", 123, 5], ["license", 124, 5], ["longDescription", 125, 5], ["mainProgram", 129, 5], ["maintainers", 130, 5], ["platforms", 134, 5]], [["pname", 25, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["cmakeFlags", 46, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 66, 3], ["env", 78, 3], ["preBuild", 85, 3], ["installPhase", 89, 3], ["desktopItems", 108, 3], ["passthru", 112, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { cmake: false, cmark: false, copyDesktopItems: false, djvulibre: false, fetchFromGitHub: false, fetchpatch: false, freetype: false, ghostscript: false, harfbuzz: false, installShellFiles: false, lib: false, man: false, mupdf: false, "pkg-config": false, poppler: false, qt6: false, qt6Packages: false, stdenv: false, tesseract: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LANG", 80, 5], ["NIX_CFLAGS_COMPILE", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["command", 114, 7], ["package", 115, 7], ["version", 116, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 113, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 113, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 121, 5], ["description", 122, 5], ["homepage", 123, 5], ["license", 124, 5], ["longDescription", 125, 5], ["mainProgram", 129, 5], ["maintainers", 130, 5], ["platforms", 134, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["cmakeFlags", 46, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 66, 3], ["env", 78, 3], ["preBuild", 85, 3], ["installPhase", 89, 3], ["desktopItems", 108, 3], ["passthru", 112, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const tesseract = nix.arg($, "tesseract");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "apvlv",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "naihe2010",
           repo: "apvlv",
           tag: "v0.7.0-final",
@@ -47,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "apvlv-cmake-4.patch",
             url: "https://github.com/naihe2010/apvlv/commit/03b9e74173e1b5cbf4451b71bed066f1b58c9c78.patch",
             hash: "sha256-OA3Qy+ECUW+Yq1FKiye+y6C01GD1ZLPbdzYK5ofM4Qg=",
@@ -75,7 +68,7 @@ export default nix.lambda((args) => (() => {
         tesseract,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         LANG: "C.UTF8",
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(qt6Packages, "poppler", "dev")}/include/poppler`),
       })),
@@ -83,11 +76,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\n# binary\nmkdir -p $out/bin\ncp src/apvlv $out/bin/apvlv\n\n# displays pdfStartup.pdf as default pdf entry\nmkdir -p $out/share/doc/apvlv/\ncp ../Startup.pdf $out/share/doc/apvlv/Startup.pdf\n\nmkdir -p $out/etc\ncp ../apvlvrc.example $out/etc/apvlvrc\n\ninstallManPage ../apvlv.1\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => ["../apvlv.desktop"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               command: nix.thunk(() => nix.str`QT_QPA_PLATFORM=offscreen ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} --version`),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-rel`),
@@ -95,7 +88,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://github.com/naihe2010/apvlv/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "PDF viewer with Vim-like behaviour",
         homepage: "https://naihe2010.github.io/apvlv/",

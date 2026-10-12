@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pname", 29, 26], ["version", 29, 32], ["src", 29, 40], ["hash", 30, 5]], [["url", 43, 9], ["hash", 44, 9]], [["SWAGGER_UI_DOWNLOAD_URL", 40, 7]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["cargoDeps", 28, 3], ["nativeBuildInputs", 33, 3], ["env", 40, 3], ["buildInputs", 49, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 58, 3], ["disabledTestPaths", 60, 3], ["disabledTests", 65, 3], ["preCheck", 73, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchurl: false, openssl: false, perl: false, "pkg-config": false, pydantic: false, "pytest-asyncio": false, pytestCheckHook: false, requests: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 29, 26], ["version", 29, 32], ["src", 29, 40], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 43, 9], ["hash", 44, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["SWAGGER_UI_DOWNLOAD_URL", 40, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["cargoDeps", 28, 3], ["nativeBuildInputs", 33, 3], ["env", 40, 3], ["buildInputs", 49, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 58, 3], ["disabledTestPaths", 60, 3], ["disabledTests", 65, 3], ["preCheck", 73, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cloudcheck",
       version: "11.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "blacklanternsecurity",
           repo: "cloudcheck",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-rOMr7J6XZGjWq11Mlr3gkE7IpBlBeQ30gJ5uGXfbxTI=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -53,10 +48,10 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         SWAGGER_UI_DOWNLOAD_URL: nix.thunk(() => (() => {
           const swaggerUi = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://github.com/swagger-api/swagger-ui/archive/refs/tags/v5.17.14.zip",
               hash: "sha256-SBJE0IEgl7Efuu73n3HZQrFxYX+cn5UU5jrL4T5xzNw=",
             }))));
@@ -75,7 +70,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preCheck: "rm -rf cloudcheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Module to check whether an IP address or hostname belongs to popular cloud providers",
         homepage: "https://github.com/blacklanternsecurity/cloudcheck",
         changelog: nix.thunk(() => nix.str`https://github.com/blacklanternsecurity/cloudcheck/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

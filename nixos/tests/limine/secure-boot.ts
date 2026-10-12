@@ -2,67 +2,53 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/secure-boot.nix", [[["maintainers", 5, 32], ["platforms", 8, 8]], [["keepVariables", 18, 26]], [["useBootLoader", 16, 22], ["useEFIBoot", 17, 22], ["efi", 18, 22]], [["canTouchEfiVariables", 20, 23]], [["enable", 26, 52], ["extraArgs", 27, 52]], [["enable", 24, 37], ["autoGenerateKeys", 25, 37], ["autoEnrollKeys", 26, 37]], [["enable", 22, 26], ["efiSupport", 23, 26], ["secureBoot", 24, 26]], [["efi", 20, 19], ["limine", 22, 19], ["timeout", 28, 19]], [["loader", 20, 12]], [["enable", 30, 22]], [["fwupd", 30, 16]], [["systemPackages", 32, 19]], [["virtualisation", 16, 7], ["boot", 20, 7], ["services", 30, 7], ["environment", 32, 7]], [["machine", 13, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 13, 3], ["testScript", 35, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/secure-boot.nix", [["maintainers", 5, 32], ["platforms", 8, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/secure-boot.nix", [["keepVariables", 18, 26]]);
-const pos$3 = nix.positions(here + "/secure-boot.nix", [["useBootLoader", 16, 22], ["useEFIBoot", 17, 22], ["efi", 18, 22]]);
-const pos$4 = nix.positions(here + "/secure-boot.nix", [["canTouchEfiVariables", 20, 23]]);
-const pos$5 = nix.positions(here + "/secure-boot.nix", [["enable", 26, 52], ["extraArgs", 27, 52]]);
-const pos$6 = nix.positions(here + "/secure-boot.nix", [["enable", 24, 37], ["autoGenerateKeys", 25, 37], ["autoEnrollKeys", 26, 37]]);
-const pos$7 = nix.positions(here + "/secure-boot.nix", [["enable", 22, 26], ["efiSupport", 23, 26], ["secureBoot", 24, 26]]);
-const pos$8 = nix.positions(here + "/secure-boot.nix", [["efi", 20, 19], ["limine", 22, 19], ["timeout", 28, 19]]);
-const pos$9 = nix.positions(here + "/secure-boot.nix", [["loader", 20, 12]]);
-const pos$10 = nix.positions(here + "/secure-boot.nix", [["enable", 30, 22]]);
-const pos$11 = nix.positions(here + "/secure-boot.nix", [["fwupd", 30, 16]]);
-const pos$12 = nix.positions(here + "/secure-boot.nix", [["systemPackages", 32, 19]]);
-const pos$13 = nix.positions(here + "/secure-boot.nix", [["virtualisation", 16, 7], ["boot", 20, 7], ["services", 30, 7], ["environment", 32, 7]]);
-const pos$14 = nix.positions(here + "/secure-boot.nix", [["machine", 13, 9]]);
-const pos$15 = nix.positions(here + "/secure-boot.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 13, 3], ["testScript", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "secureBoot",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "limine", "meta"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
       platforms: nix.thunk(() => ["aarch64-linux", "i686-linux", "x86_64-linux"]),
     };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             useBootLoader: true,
             useEFIBoot: true,
-            efi: nix.thunk(() => ({ [nix.POS]: pos$2, keepVariables: true })),
+            efi: nix.thunk(() => ({ [nix.POS]: $pos[1], keepVariables: true })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$8,
-              efi: nix.thunk(() => ({ [nix.POS]: pos$4, canTouchEfiVariables: true })),
+              [nix.POS]: $pos[7],
+              efi: nix.thunk(() => ({ [nix.POS]: $pos[3], canTouchEfiVariables: true })),
               limine: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 enable: true,
                 efiSupport: true,
                 secureBoot: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   enable: true,
                   autoGenerateKeys: true,
                   autoEnrollKeys: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     enable: true,
                     extraArgs: nix.thunk(() => ["--yes-this-might-brick-my-machine"]),
                   })),
@@ -72,11 +58,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            fwupd: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+            [nix.POS]: $pos[10],
+            fwupd: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "mokutil"))]),
           })),
         };

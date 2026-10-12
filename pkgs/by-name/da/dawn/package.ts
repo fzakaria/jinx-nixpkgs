@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 17, 5]], [["description", 40, 5], ["license", 41, 5], ["homepage", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 26, 3], ["dontConfigure", 28, 3], ["preInstall", 30, 3], ["postInstall", 34, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, tk: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["license", 41, 5], ["homepage", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 26, 3], ["dontConfigure", 28, 3], ["preInstall", 30, 3], ["postInstall", 34, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dawn";
       const version = "3.91a";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://geant4.kek.jp/~tanaka/src/dawn_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.tgz`),
           hash: "sha256-gdhV6tERdoGxiCQt0L46JOAF2b1AY/0r2pp6eU689fQ=",
         }))));
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [tk]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Vectorized 3D PostScript processor with analytical hidden line/surface removal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         homepage: "https://geant4.kek.jp/~tanaka/DAWN/About_DAWN.html",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

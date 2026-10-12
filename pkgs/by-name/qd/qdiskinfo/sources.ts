@@ -2,31 +2,28 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sources.nix", [[["url", 4, 5], ["hash", 5, 5], ["stripRoot", 6, 5]], [["url", 9, 5], ["hash", 10, 5], ["stripRoot", 11, 5]], [["url", 14, 5], ["hash", 15, 5], ["stripRoot", 16, 5]], [["aoi", 3, 3], ["kureikei", 8, 3], ["shizuku", 13, 3]]]);
 const formals$1 = { args: { fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sources.nix", [["url", 4, 5], ["hash", 5, 5], ["stripRoot", 6, 5]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["url", 9, 5], ["hash", 10, 5], ["stripRoot", 11, 5]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["url", 14, 5], ["hash", 15, 5], ["stripRoot", 16, 5]]);
-const pos$4 = nix.positions(here + "/sources.nix", [["aoi", 3, 3], ["kureikei", 8, 3], ["shizuku", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchzip = nix.arg($, "fetchzip");
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     aoi: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "https://pilotfiber.dl.sourceforge.net/project/crystaldiskinfo/9.3.2/CrystalDiskInfo9_3_2Aoi.zip?viasf=1#cdi.zip",
         hash: "sha256-yldOX/aQYK1Fsd+BpD0SdcyfnHxtwB5rmZHU1nY7Ov8=",
         stripRoot: false,
       })))),
     kureikei: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "https://pilotfiber.dl.sourceforge.net/project/crystaldiskinfo/9.3.2/CrystalDiskInfo9_3_2KureiKei.zip?viasf=1#cdi.zip",
         hash: "sha256-mzV3wHKczsh5NOsUxA3kGYSBZyVNJZUWkZdjiJA8+Po=",
         stripRoot: false,
       })))),
     shizuku: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: "https://pilotfiber.dl.sourceforge.net/project/crystaldiskinfo/9.3.2/CrystalDiskInfo9_3_2Shizuku.zip?viasf=1#cdi.zip",
         hash: "sha256-4dVeOHXWUVjfSssJKpcSBQ7OTMaYmgF15M4ROD3SBDA=",
         stripRoot: false,

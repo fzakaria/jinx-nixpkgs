@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/firefox.nix", [[["name", 12, 7], ["revision", 13, 15]], [["x86_64-linux", 22, 11], ["aarch64-linux", 23, 11]], [["url", 19, 26], ["stripRoot", 19, 30], ["hash", 20, 7]], [["name", 17, 5], ["src", 18, 5], ["nativeBuildInputs", 29, 7], ["buildInputs", 30, 7], ["runtimeDependencies", 31, 7], ["appendRunpaths", 32, 7], ["patchelfFlags", 33, 7], ["buildPhase", 36, 5]], [["aarch64-darwin", 45, 9]], [["url", 42, 24], ["stripRoot", 42, 28], ["hash", 43, 5]], [["x86_64-linux", 51, 3], ["aarch64-linux", 52, 3], ["aarch64-darwin", 53, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchzip: false, "firefox-bin": false, revision: false, system: false, throwSystem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/firefox.nix", [["name", 12, 7], ["revision", 13, 15]]);
-const pos$2 = nix.positions(here + "/firefox.nix", [["x86_64-linux", 22, 11], ["aarch64-linux", 23, 11]]);
-const pos$3 = nix.positions(here + "/firefox.nix", [["url", 19, 26], ["stripRoot", 19, 30], ["hash", 20, 7]]);
-const pos$4 = nix.positions(here + "/firefox.nix", [["name", 17, 5], ["src", 18, 5], ["nativeBuildInputs", 29, 7], ["buildInputs", 30, 7], ["runtimeDependencies", 31, 7], ["appendRunpaths", 32, 7], ["patchelfFlags", 33, 7], ["buildPhase", 36, 5]]);
-const pos$5 = nix.positions(here + "/firefox.nix", [["aarch64-darwin", 45, 9]]);
-const pos$6 = nix.positions(here + "/firefox.nix", [["url", 42, 24], ["stripRoot", 42, 28], ["hash", 43, 5]]);
-const pos$7 = nix.positions(here + "/firefox.nix", [["x86_64-linux", 51, 3], ["aarch64-linux", 52, 3], ["aarch64-darwin", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const revision = nix.arg($, "revision");
   const system = nix.arg($, "system");
   const throwSystem = nix.arg($, "throwSystem");
-  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, name: "firefox", revision: revision }))), () => nix.force(throwSystem), nix.key(nix.force(system))));
+  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], name: "firefox", revision: revision }))), () => nix.force(throwSystem), nix.key(nix.force(system))));
   const firefox_linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(firefox_bin, "unwrapped"));
       return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "playwright-firefox",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.attr(download, "url")),
           stripRoot: nix.thunk(() => nix.attr(download, "stripRoot")),
           hash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "x86_64-linux": "sha256-FyUUBrffHSh28C3BfYgHRJzTbAixRXN0QoZ3tbtdbYU=",
             "aarch64-linux": "sha256-vkK7bYqf5FiYoHcNmSjXYy7i5rsSLNpx9w+KL7MY0uo=",
           }, () => nix.force(throwSystem), nix.key(nix.force(system)))),
@@ -44,16 +38,16 @@ export default nix.lambda((args) => (() => {
     };
     })())));
   const firefox_darwin = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       url: nix.thunk(() => nix.attr(download, "url")),
       stripRoot: nix.thunk(() => nix.attr(download, "stripRoot")),
       hash: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "aarch64-darwin": "sha256-mFCMrL5PMX5C0Ob/tKKfbZfZJwF5QDM0rhS7v/P3IUw=",
       }, () => nix.force(throwSystem), nix.key(nix.force(system)))),
     }))));
   return nix.selOr({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     "x86_64-linux": firefox_linux,
     "aarch64-linux": firefox_linux,
     "aarch64-darwin": firefox_darwin,

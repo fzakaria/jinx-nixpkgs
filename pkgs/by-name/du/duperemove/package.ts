@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["updateScript", 64, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["outputs", 28, 3], ["postPatch", 33, 3], ["__structuredAttrs", 38, 3], ["strictDeps", 39, 3], ["enableParallelBuilding", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 43, 3], ["makeFlags", 53, 3], ["doInstallCheck", 58, 3], ["nativeInstallCheckInputs", 59, 3], ["passthru", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libbsd: false, libgcrypt: false, xxhash: false, "pkg-config": false, glib: false, linuxHeaders: true, sqlite: false, "util-linux": false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["outputs", 28, 3], ["postPatch", 33, 3], ["__structuredAttrs", 38, 3], ["strictDeps", 39, 3], ["enableParallelBuilding", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 43, 3], ["makeFlags", 53, 3], ["doInstallCheck", 58, 3], ["nativeInstallCheckInputs", 59, 3], ["passthru", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "duperemove",
       version: "0.15.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "markfasheh",
           repo: "duperemove",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +47,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple tool for finding duplicated extents and submitting them for deduplication",
         homepage: "https://github.com/markfasheh/duperemove",
         changelog: nix.thunk(() => nix.str`https://github.com/markfasheh/duperemove/releases/tag/v${nix.sel(finalAttrs, "version")}`),

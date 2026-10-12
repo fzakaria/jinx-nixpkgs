@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 37, 5], ["mainProgram", 38, 5], ["teams", 39, 5], ["platforms", 40, 5]], [["name", 11, 3], ["strictDeps", 13, 3], ["nativeBuildInputs", 15, 3], ["dontUnpack", 17, 3], ["installPhase", 19, 3], ["preferLocalBuild", 30, 3], ["passthru", 32, 3], ["__structuredAttrs", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, makeWrapper: false, jq: false, nurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 37, 5], ["mainProgram", 38, 5], ["teams", 39, 5], ["platforms", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 11, 3], ["strictDeps", 13, 3], ["nativeBuildInputs", 15, 3], ["dontUnpack", 17, 3], ["installPhase", 19, 3], ["preferLocalBuild", 30, 3], ["passthru", 32, 3], ["__structuredAttrs", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const nurl = nix.arg($, "nurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "swiftpm2nix",
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -28,7 +27,7 @@ wrapProgram $out/bin/$name \\
       passthru: nix.thunk(() => nix.app(callPackage, nix.path(here, "./support.nix"), nix.thunk(() => ({})))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Generate a Nix expression to fetch swiftpm dependencies",
         mainProgram: "swiftpm2nix",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "swift"))]),

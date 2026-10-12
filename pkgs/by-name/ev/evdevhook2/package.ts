@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["package", 61, 7], ["version", 62, 7]], [["version", 60, 11]], [["tests", 60, 5], ["updateScript", 65, 5]], [["changelog", 69, 5], ["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["postUnpack", 53, 3], ["mesonBuildType", 57, 3], ["passthru", 59, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, vala: false, glib: false, libevdev: false, libgee: false, udev: false, testers: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 61, 7], ["version", 62, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 60, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 60, 5], ["updateScript", 65, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 69, 5], ["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["postUnpack", 53, 3], ["mesonBuildType", 57, 3], ["passthru", 59, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nix_update_script = nix.arg($, "nix-update-script");
   const gcemuhook = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "gcemuhook",
       owner: "v1993",
       repo: "gcemuhook",
@@ -35,11 +29,11 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-CPjSuKtoqSDKd+vEBgFy3qh33TkCVbxBEnwiBAkaADs=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "evdevhook2",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "v1993",
           repo: "evdevhook2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,11 +45,11 @@ export default nix.lambda((args) => (() => {
 `),
       mesonBuildType: "release",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`Evdevhook ${nix.sel(finalAttrs, "version")}`),
             })))),
@@ -63,7 +57,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/v1993/evdevhook2/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Cemuhook UDP server for devices with modern Linux drivers",
         homepage: "https://github.com/v1993/evdevhook2",

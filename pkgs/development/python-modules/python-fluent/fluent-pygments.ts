@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fluent-pygments.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["changelog", 45, 5], ["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 25, 3], ["version", 26, 11], ["pyproject", 27, 3], ["src", 29, 11], ["sourceRoot", 30, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 40, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, lib: false, pytestCheckHook: false, setuptools: false, "fluent-syntax": false, pygments: false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fluent-pygments.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/fluent-pygments.nix", [["changelog", 45, 5], ["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/fluent-pygments.nix", [["pname", 25, 3], ["version", 26, 11], ["pyproject", 27, 3], ["src", 29, 11], ["sourceRoot", 30, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 40, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const version = "1.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "projectfluent",
       repo: "python-fluent",
       rev: nix.thunk(() => nix.str`fluent.pygments@${version}`),
       hash: "sha256-AR2uce3HS1ELzpoHmx7F/5/nrL+7KhYemw/00nmvLik=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fluent-pygments",
       version: version,
       pyproject: true,
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["fluent.pygments"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://github.com/projectfluent/python-fluent/blob/main/fluent.pygments/CHANGELOG.rst",
         description: "Plugin for pygments to add syntax highlighting of Fluent files in Sphinx",
         homepage: nix.thunk(() => nix.str`https://projectfluent.org/python-fluent/fluent.pygments/${version}`),

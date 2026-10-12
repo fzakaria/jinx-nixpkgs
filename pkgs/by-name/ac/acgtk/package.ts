@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["extraArgs", 64, 5]], [["updateScript", 63, 12]], [["homepage", 71, 5], ["description", 72, 5], ["license", 73, 5], ["platforms", 74, 40], ["maintainers", 75, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 38, 3], ["buildPhase", 53, 3], ["installPhase", 59, 3], ["passthru", 63, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, ocamlPackages: false, darwin: false, dune: false, "nix-update-script": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 71, 5], ["description", 72, 5], ["license", 73, 5], ["platforms", 74, 40], ["maintainers", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 38, 3], ["buildPhase", 53, 3], ["installPhase", 59, 3], ["passthru", 63, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "acgtk",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.inria.fr",
           owner: "acg",
           repo: "dev/acgtk",
@@ -62,16 +58,16 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\ndune build -p acgtk --profile=release ${enableParallelBuilding:+-j $NIX_BUILD_CORES}\nrunHook postBuild\n",
       installPhase: "dune install -p acgtk --prefix $out --libdir $OCAMLFIND_DESTDIR\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "^release-(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocamlPackages, "ocaml", "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://acg.loria.fr/",
         description: "Toolkit for developing ACG signatures and lexicon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill20")),

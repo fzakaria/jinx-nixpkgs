@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["LD_LIBRARY_PATH", 74, 7]], [["homepage", 104, 5], ["description", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5]], [["pname", 23, 3], ["version", 24, 3], ["format", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 60, 3], ["patches", 66, 3], ["postPatch", 68, 3], ["env", 74, 3], ["preFixup", 83, 3], ["postFixup", 87, 3], ["preCheck", 96, 3], ["doInstallCheck", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, python3Packages: false, fetchFromGitHub: false, wrapGAppsHook3: false, gtk3: false, "gobject-introspection": false, libappindicator: false, librsvg: false, bluez: false, linuxHeaders: false, libx11: false, libxext: false, libxfixes: false, libusb1: false, udev: false, udevCheckHook: false, "gtk-layer-shell": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LD_LIBRARY_PATH", 74, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 104, 5], ["description", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["format", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 60, 3], ["patches", 66, 3], ["postPatch", 68, 3], ["env", 74, 3], ["preFixup", 83, 3], ["postFixup", 87, 3], ["preCheck", 96, 3], ["doInstallCheck", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const gtk_layer_shell = nix.arg($, "gtk-layer-shell");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sc-controller",
       version: "0.7.2",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "C0rn3j",
           repo: "sc-controller",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +60,7 @@ substituteInPlace scc/uinput.py --replace /usr/include ${linuxHeaders}/include
 substituteInPlace scc/device_monitor.py --replace "find_library('bluetooth')" "'libbluetooth.so.3'"
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LD_LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libx11, libxext, libxfixes, libusb1, udev, bluez]))),
       })),
       preFixup: "gappsWrapperArgs+=(--prefix LD_LIBRARY_PATH : \"$LD_LIBRARY_PATH\")\n",
@@ -71,7 +68,7 @@ substituteInPlace scc/device_monitor.py --replace "find_library('bluetooth')" "'
       preCheck: "# Fix for tests not finding native libraries\nln -s build/lib.*/*.so -t .\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/C0rn3j/sc-controller",
         description: "User-mode driver and GUI for Steam Controller and other controllers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

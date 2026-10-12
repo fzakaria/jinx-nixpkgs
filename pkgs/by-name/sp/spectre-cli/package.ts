@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5], ["fetchSubmodules", 22, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["cmakeFlags", 37, 3], ["preConfigure", 42, 3], ["doCheck", 51, 3], ["checkPhase", 53, 3], ["installPhase", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, libsodium: false, json_c: false, ncurses: false, libxml2: false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5], ["fetchSubmodules", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["cmakeFlags", 37, 3], ["preConfigure", 42, 3], ["doCheck", 51, 3], ["checkPhase", 53, 3], ["installPhase", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const jq = nix.arg($, "jq");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "spectre-cli",
       version: "unstable-2022-02-05",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "spectre.app",
           repo: "cli",
           rev: "a5e7aab28f44b90e5bd1204126339a81f64942d2",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "mv ../spectre-cli-tests ../spectre_tests.xml ./\npatchShebangs spectre-cli-tests\nexport HOME=$(mktemp -d)\n\n./spectre-tests\n./spectre-cli-tests\n",
       installPhase: "mkdir -p $out/bin\nmv spectre $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Stateless cryptographic identity algorithm",
         homepage: "https://spectre.app",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

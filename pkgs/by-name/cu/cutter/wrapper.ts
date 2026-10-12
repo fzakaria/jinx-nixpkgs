@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["unwrapped", 28, 13]], [["priority", 41, 5]], [["name", 15, 3], ["paths", 23, 3], ["nativeBuildInputs", 25, 3], ["passthru", 27, 3], ["postBuild", 31, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, makeWrapper: false, symlinkJoin: false, plugins: false, rizin: false, isCutter: true, cutter: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["unwrapped", 28, 13]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["priority", 41, 5]]);
-const pos$3 = nix.positions(here + "/wrapper.nix", [["name", 15, 3], ["paths", 23, 3], ["nativeBuildInputs", 25, 3], ["passthru", 27, 3], ["postBuild", 31, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cutter = nix.arg($, "cutter");
   const unwrapped = nix.thunk(() => (nix.asBool(isCutter) ? nix.force(cutter) : nix.force(rizin)));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`${nix.sel(unwrapped, "pname")}-with-plugins-${nix.sel(unwrapped, "version")}`),
       paths: nix.thunk(() => nix.concat([unwrapped], nix.concat(nix.app(nix.sel(lib, "optional"), isCutter, rizin), plugins))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, unwrapped: unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], unwrapped: unwrapped })),
       postBuild: nix.thunk(() => nix.str`rm $out/bin/*
 wrapperArgs=(--set NIX_RZ_PREFIX $out${nix.app(nix.sel(lib, "optionalString"), isCutter, " --prefix XDG_DATA_DIRS : $out/share")})
 for binary in $(ls ${unwrapped}/bin); do
@@ -30,7 +28,7 @@ for binary in $(ls ${unwrapped}/bin); do
 done
 `),
       meta: nix.thunk(() => nix.update(nix.sel(unwrapped, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         priority: nix.thunk(() => nix.sub(nix.selOr(unwrapped, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
       })),
     })));

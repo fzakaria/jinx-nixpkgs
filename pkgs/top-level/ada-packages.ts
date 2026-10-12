@@ -2,25 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ada-packages.nix", [[["ocamlPackages", 28, 13]], [["component", 37, 9]], [["component", 40, 9]], [["component", 43, 9]], [["component", 46, 9]], [["component", 49, 9]], [["component", 52, 9], ["python3", 53, 9]], [["component", 56, 9]], [["component", 59, 9]], [["component", 62, 9]], [["component", 67, 9]], [["component", 69, 84]], [["component", 71, 9]], [["component", 73, 85]], [["component", 75, 9]], [["component", 78, 9]], [["gnat", 15, 15], ["gpr2", 17, 7], ["gprbuild-boot", 19, 7], ["gprbuild", 20, 7], ["xmlada", 22, 7], ["gnatprove", 24, 7], ["gnatcoll-core", 33, 7], ["gnatcoll-cpp", 36, 7], ["gnatcoll-gmp", 39, 7], ["gnatcoll-iconv", 42, 7], ["gnatcoll-lzma", 45, 7], ["gnatcoll-omp", 48, 7], ["gnatcoll-python3", 51, 7], ["gnatcoll-readline", 55, 7], ["gnatcoll-syslog", 58, 7], ["gnatcoll-zlib", 61, 7], ["gnatcoll-postgres", 66, 7], ["gnatcoll-sql", 69, 7], ["gnatcoll-sqlite", 70, 7], ["gnatcoll-xref", 73, 7], ["gnatcoll-db2ada", 74, 7], ["gnatinspect", 77, 7]], [["otherSplices", 12, 3], ["f", 13, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, "makeScopeWithSplicing'": false, generateSplicesForMkScope: false, gnat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ada-packages.nix", [["ocamlPackages", 28, 13]]);
-const pos$2 = nix.positions(here + "/ada-packages.nix", [["component", 37, 9]]);
-const pos$3 = nix.positions(here + "/ada-packages.nix", [["component", 40, 9]]);
-const pos$4 = nix.positions(here + "/ada-packages.nix", [["component", 43, 9]]);
-const pos$5 = nix.positions(here + "/ada-packages.nix", [["component", 46, 9]]);
-const pos$6 = nix.positions(here + "/ada-packages.nix", [["component", 49, 9]]);
-const pos$7 = nix.positions(here + "/ada-packages.nix", [["component", 52, 9], ["python3", 53, 9]]);
-const pos$8 = nix.positions(here + "/ada-packages.nix", [["component", 56, 9]]);
-const pos$9 = nix.positions(here + "/ada-packages.nix", [["component", 59, 9]]);
-const pos$10 = nix.positions(here + "/ada-packages.nix", [["component", 62, 9]]);
-const pos$11 = nix.positions(here + "/ada-packages.nix", [["component", 67, 9]]);
-const pos$12 = nix.positions(here + "/ada-packages.nix", [["component", 69, 84]]);
-const pos$13 = nix.positions(here + "/ada-packages.nix", [["component", 71, 9]]);
-const pos$14 = nix.positions(here + "/ada-packages.nix", [["component", 73, 85]]);
-const pos$15 = nix.positions(here + "/ada-packages.nix", [["component", 75, 9]]);
-const pos$16 = nix.positions(here + "/ada-packages.nix", [["component", 78, 9]]);
-const pos$17 = nix.positions(here + "/ada-packages.nix", [["gnat", 15, 15], ["gpr2", 17, 7], ["gprbuild-boot", 19, 7], ["gprbuild", 20, 7], ["xmlada", 22, 7], ["gnatprove", 24, 7], ["gnatcoll-core", 33, 7], ["gnatcoll-cpp", 36, 7], ["gnatcoll-gmp", 39, 7], ["gnatcoll-iconv", 42, 7], ["gnatcoll-lzma", 45, 7], ["gnatcoll-omp", 48, 7], ["gnatcoll-python3", 51, 7], ["gnatcoll-readline", 55, 7], ["gnatcoll-syslog", 58, 7], ["gnatcoll-zlib", 61, 7], ["gnatcoll-postgres", 66, 7], ["gnatcoll-sql", 69, 7], ["gnatcoll-sqlite", 70, 7], ["gnatcoll-xref", 73, 7], ["gnatcoll-db2ada", 74, 7], ["gnatinspect", 77, 7]]);
-const pos$18 = nix.positions(here + "/ada-packages.nix", [["otherSplices", 12, 3], ["f", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,39 +14,39 @@ export default nix.lambda((args) => (() => {
   const gnat = nix.arg($, "gnat");
   const gnat_version = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(gnat, "version"))));
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, nix.thunk(() => nix.add(nix.add("gnat", gnat_version), "Packages")))),
       f: (self) => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         gnat: gnat,
         gpr2: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gpr2"), nix.thunk(() => ({})))),
         "gprbuild-boot": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gprbuild/boot.nix"), nix.thunk(() => ({})))),
         gprbuild: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gprbuild"), nix.thunk(() => ({})))),
         xmlada: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/xmlada"), nix.thunk(() => ({})))),
         gnatprove: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(gnat, "version")), "16")) ? nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatprove"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             ocamlPackages: nix.thunk(() => nix.sel(pkgs, "ocaml-ng", "ocamlPackages_4_14")),
           }))) : null)),
         "gnatcoll-core": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/core.nix"), nix.thunk(() => ({})))),
-        "gnatcoll-cpp": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/bindings.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, component: "cpp" })))),
-        "gnatcoll-gmp": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/bindings.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, component: "gmp" })))),
-        "gnatcoll-iconv": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/bindings.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, component: "iconv" })))),
-        "gnatcoll-lzma": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/bindings.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, component: "lzma" })))),
-        "gnatcoll-omp": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/bindings.nix"), nix.thunk(() => ({ [nix.POS]: pos$6, component: "omp" })))),
+        "gnatcoll-cpp": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/bindings.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], component: "cpp" })))),
+        "gnatcoll-gmp": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/bindings.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], component: "gmp" })))),
+        "gnatcoll-iconv": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/bindings.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], component: "iconv" })))),
+        "gnatcoll-lzma": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/bindings.nix"), nix.thunk(() => ({ [nix.POS]: $pos[4], component: "lzma" })))),
+        "gnatcoll-omp": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/bindings.nix"), nix.thunk(() => ({ [nix.POS]: $pos[5], component: "omp" })))),
         "gnatcoll-python3": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/bindings.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             component: "python3",
             python3: nix.thunk(() => nix.sel(pkgs, "python312")),
           })))),
-        "gnatcoll-readline": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/bindings.nix"), nix.thunk(() => ({ [nix.POS]: pos$8, component: "readline" })))),
-        "gnatcoll-syslog": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/bindings.nix"), nix.thunk(() => ({ [nix.POS]: pos$9, component: "syslog" })))),
-        "gnatcoll-zlib": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/bindings.nix"), nix.thunk(() => ({ [nix.POS]: pos$10, component: "zlib" })))),
-        "gnatcoll-postgres": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/db.nix"), nix.thunk(() => ({ [nix.POS]: pos$11, component: "postgres" })))),
-        "gnatcoll-sql": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/db.nix"), nix.thunk(() => ({ [nix.POS]: pos$12, component: "sql" })))),
-        "gnatcoll-sqlite": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/db.nix"), nix.thunk(() => ({ [nix.POS]: pos$13, component: "sqlite" })))),
-        "gnatcoll-xref": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/db.nix"), nix.thunk(() => ({ [nix.POS]: pos$14, component: "xref" })))),
-        "gnatcoll-db2ada": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/db.nix"), nix.thunk(() => ({ [nix.POS]: pos$15, component: "gnatcoll_db2ada" })))),
-        gnatinspect: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/db.nix"), nix.thunk(() => ({ [nix.POS]: pos$16, component: "gnatinspect" })))),
+        "gnatcoll-readline": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/bindings.nix"), nix.thunk(() => ({ [nix.POS]: $pos[7], component: "readline" })))),
+        "gnatcoll-syslog": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/bindings.nix"), nix.thunk(() => ({ [nix.POS]: $pos[8], component: "syslog" })))),
+        "gnatcoll-zlib": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/bindings.nix"), nix.thunk(() => ({ [nix.POS]: $pos[9], component: "zlib" })))),
+        "gnatcoll-postgres": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/db.nix"), nix.thunk(() => ({ [nix.POS]: $pos[10], component: "postgres" })))),
+        "gnatcoll-sql": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/db.nix"), nix.thunk(() => ({ [nix.POS]: $pos[11], component: "sql" })))),
+        "gnatcoll-sqlite": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/db.nix"), nix.thunk(() => ({ [nix.POS]: $pos[12], component: "sqlite" })))),
+        "gnatcoll-xref": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/db.nix"), nix.thunk(() => ({ [nix.POS]: $pos[13], component: "xref" })))),
+        "gnatcoll-db2ada": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/db.nix"), nix.thunk(() => ({ [nix.POS]: $pos[14], component: "gnatcoll_db2ada" })))),
+        gnatinspect: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/ada-modules/gnatcoll/db.nix"), nix.thunk(() => ({ [nix.POS]: $pos[15], component: "gnatinspect" })))),
       }),
     })));
 })(), formals$1);

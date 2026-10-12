@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 7], ["repo", 29, 7], ["rev", 30, 7], ["hash", 31, 7]], [["description", 41, 7], ["homepage", 42, 7], ["license", 43, 7]], [["pname", 25, 5], ["version", 26, 5], ["src", 27, 5], ["propagatedBuildInputs", 34, 5], ["meta", 40, 5]], [["owner", 50, 7], ["repo", 51, 7], ["rev", 52, 7], ["hash", 53, 7]], [["description", 62, 7], ["homepage", 63, 7], ["license", 64, 7]], [["pname", 47, 5], ["version", 48, 5], ["src", 49, 5], ["propagatedBuildInputs", 56, 5], ["doCheck", 58, 5], ["checkInputs", 59, 5], ["meta", 61, 5]], [["owner", 76, 5], ["repo", 77, 5], ["rev", 78, 5], ["hash", 79, 5]], [["homepage", 110, 5], ["description", 111, 5], ["license", 112, 5], ["maintainers", 113, 5]], [["pname", 70, 3], ["version", 71, 3], ["minimalOCamlVersion", 73, 3], ["src", 75, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 86, 3], ["propagatedBuildInputs", 91, 3], ["checkInputs", 104, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDunePackage: false, bos: false, bwd: false, cmdliner: false, containers: false, ezjsonm: false, findlib: false, menhir: false, menhirLib: false, ppx_deriving: false, ppxlib: false, uuseg: false, uutf: false, yuujinchou: false, ounit2: false, qcheck: false, "qcheck-core": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 7], ["repo", 29, 7], ["rev", 30, 7], ["hash", 31, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 41, 7], ["homepage", 42, 7], ["license", 43, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 5], ["version", 26, 5], ["src", 27, 5], ["propagatedBuildInputs", 34, 5], ["meta", 40, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["owner", 50, 7], ["repo", 51, 7], ["rev", 52, 7], ["hash", 53, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 62, 7], ["homepage", 63, 7], ["license", 64, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 47, 5], ["version", 48, 5], ["src", 49, 5], ["propagatedBuildInputs", 56, 5], ["doCheck", 58, 5], ["checkInputs", 59, 5], ["meta", 61, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["owner", 76, 5], ["repo", 77, 5], ["rev", 78, 5], ["hash", 79, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["homepage", 110, 5], ["description", 111, 5], ["license", 112, 5], ["maintainers", 113, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 70, 3], ["version", 71, 3], ["minimalOCamlVersion", 73, 3], ["src", 75, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 86, 3], ["propagatedBuildInputs", 91, 3], ["checkInputs", 104, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const qcheck = nix.arg($, "qcheck");
   const qcheck_core = nix.arg($, "qcheck-core");
   const bantorra = nix.thunk(() => nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bantorra",
       version: "unstable-2022-05-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RedPRL",
           repo: "bantorra",
           rev: "d05c34295727dd06d0ac4416dc2e258732e8593d",
@@ -47,18 +39,18 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [bos, ezjsonm, findlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extensible Library Management and Path Resolution",
         homepage: "https://github.com/RedPRL/bantorra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
     }))));
   const kado = nix.thunk(() => nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kado",
       version: "unstable-2023-10-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "RedPRL",
           repo: "kado",
           rev: "6b2e9ba2095e294e6e0fc6febc280d80c5799c2b",
@@ -68,19 +60,19 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [qcheck_core]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cofibrations in Cartecian Cubical Type Theory",
         homepage: "https://github.com/RedPRL/kado",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
     }))));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "cooltt",
       version: "unstable-2023-10-03",
       minimalOCamlVersion: "5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "RedPRL",
           repo: "cooltt",
           rev: "a5eaf4db195b5166a7102d47d42724f59cf3de19",
@@ -102,7 +94,7 @@ export default nix.lambda((args) => (() => {
       ]),
       checkInputs: nix.thunk(() => [ounit2, qcheck]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://github.com/RedPRL/cooltt",
         description: "Cool implementation of normalization by evaluation (nbe) & elaboration for Cartesian cubical type theory",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

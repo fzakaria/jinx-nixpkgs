@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["pname", 22, 26], ["version", 22, 32], ["src", 22, 40], ["hash", 23, 5]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["cargoDeps", 21, 3], ["build-system", 26, 3], ["dependencies", 31, 3], ["doCheck", 39, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, buildPythonPackage: false, rustPlatform: false, lib: false, pillow: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 22, 26], ["version", 22, 32], ["src", 22, 40], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["cargoDeps", 21, 3], ["build-system", 26, 3], ["dependencies", 31, 3], ["doCheck", 39, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pillow = nix.arg($, "pillow");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "copykitten",
       version: "2.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Klavionik",
           repo: "copykitten",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-hjkRVX2+CuLyQw8/1cHRf84qbxPxAnDxCm5gVwdhecs=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["copykitten"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Robust, dependency-free way to use the system clipboard in Python",
         homepage: "https://github.com/Klavionik/copykitten",
         changelog: nix.thunk(() => nix.str`https://github.com/Klavionik/copykitten/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

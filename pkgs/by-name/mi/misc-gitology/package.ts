@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["updateScript", 46, 12]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontBuild", 20, 3], ["buildInputs", 22, 3], ["installPhase", 28, 3], ["meta", 39, 3], ["passthru", 46, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "nix-update-script": false, perl: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 46, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontBuild", 20, 3], ["buildInputs", 22, 3], ["installPhase", 28, 3], ["meta", 39, 3], ["passthru", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "misc-gitology",
       version: "0-unstable-2024-08-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "da-x",
           repo: "misc-gitology",
           rev: "8f6b200ed5f4d39f86026cf050f325d5f5713950",
@@ -31,14 +28,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [python3, perl]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\nfind . \\\n  -type f \\\n  -executable \\\n  -maxdepth 1 \\\n  -exec install --target-directory=$out/bin/ {} +\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Assortment of scripts around Git",
         homepage: "https://github.com/da-x/misc-gitology",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "_9999years"))]),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     })));

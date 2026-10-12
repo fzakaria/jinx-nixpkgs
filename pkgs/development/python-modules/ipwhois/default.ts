@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["__darwinAllowLocalNetworking", 26, 3], ["pythonRelaxDeps", 28, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 42, 3], ["preCheck", 44, 3], ["disabledTestPaths", 49, 3], ["disabledTests", 56, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, defusedxml: false, dnspython: false, fetchFromGitHub: false, "iana-etc": false, libredirect: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["__darwinAllowLocalNetworking", 26, 3], ["pythonRelaxDeps", 28, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 42, 3], ["preCheck", 44, 3], ["disabledTestPaths", 49, 3], ["disabledTests", 56, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "secynic",
           repo: "ipwhois",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +40,7 @@ export NIX_REDIRECTS=/etc/protocols=${iana_etc}/etc/protocols:/etc/resolv.conf=$
       const disabledTestPaths = nix.thunk(() => ["ipwhois/tests/online/", "ipwhois/tests/stress/test_experimental.py"]);
       const disabledTests = nix.thunk(() => ["test_lookup", "test_unique_addresses", "test_get_http_json"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library to retrieve and parse whois data",
         homepage: "https://github.com/secynic/ipwhois",
         changelog: nix.thunk(() => nix.str`https://github.com/secynic/ipwhois/blob/v${version}/CHANGES.rst`),
@@ -53,7 +51,7 @@ export NIX_REDIRECTS=/etc/protocols=${iana_etc}/etc/protocols:/etc/resolv.conf=$
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["daphne", 35, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 38, 3], ["disabledTestPaths", 47, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, asgiref: false, buildPythonPackage: false, daphne: false, django: false, fetchFromGitHub: false, "async-timeout": false, "pytest-asyncio": false, "pytest-django": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["daphne", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 38, 3], ["disabledTestPaths", 47, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "django",
           repo: "channels",
           tag: version,
@@ -34,12 +31,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [asgiref, django]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, daphne: nix.thunk(() => [daphne]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], daphne: nix.thunk(() => [daphne]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([async_timeout, pytest_asyncio, pytest_django, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const disabledTestPaths = nix.thunk(() => ["tests/sample_project/tests/test_selenium.py"]);
       const pythonImportsCheck = nix.thunk(() => ["channels"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Brings event-driven capabilities to Django with a channel system",
         homepage: "https://github.com/django/channels",
         changelog: nix.thunk(() => nix.str`https://github.com/django/channels/blob/${nix.sel(src, "tag")}/CHANGELOG.txt`),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

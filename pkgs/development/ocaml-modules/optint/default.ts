@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 17, 5], ["description", 18, 5], ["license", 19, 5], ["maintainers", 20, 5]], [["minimalOCamlVersion", 8, 3], ["version", 9, 3], ["pname", 10, 3], ["src", 11, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 17, 5], ["description", 18, 5], ["license", 19, 5], ["maintainers", 20, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["minimalOCamlVersion", 8, 3], ["version", 9, 3], ["pname", 10, 3], ["src", 11, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       minimalOCamlVersion: "4.07",
       version: "0.3.0",
       pname: "optint",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/optint/releases/download/v${nix.sel(finalAttrs, "version")}/optint-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-KVz/LBNLA4WxO6gdUAXZ+EG6QNSlAq7RDJl/I57xFHs=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mirage/optint",
         description: "Abstract type of integer between x64 and x86 architecture",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

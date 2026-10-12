@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["updateScript", 53, 12]], [["homepage", 60, 5], ["description", 61, 5], ["mainProgram", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["teams", 65, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["passthru", 53, 3], ["postPatch", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "layer-shell-qt": false, libexif: false, "libfm-qt": false, "lxqt-build-tools": false, "lxqt-menu-data": false, "menu-cache": false, "pkg-config": false, qtbase: false, qtimageformats: false, qttools: false, qtwayland: false, qtsvg: false, wrapQtAppsHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 53, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 60, 5], ["description", 61, 5], ["mainProgram", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["teams", 65, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["passthru", 53, 3], ["postPatch", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pcmanfm-qt";
       const version = "2.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxqt",
           repo: "pcmanfm-qt",
           rev: version,
@@ -51,12 +48,12 @@ export default nix.lambda((args) => (() => {
         qtsvg,
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const postPatch = "substituteInPlace config/pcmanfm-qt/lxqt/settings.conf.in --replace-fail @LXQT_SHARE_DIR@ /run/current-system/sw/share/lxqt\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/lxqt/pcmanfm-qt",
         description: "File manager and desktop icon manager (Qt port of PCManFM and libfm)",
         mainProgram: "pcmanfm-qt",
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]], [["name", 61, 7], ["url", 62, 7], ["hash", 63, 7]], [["excel", 98, 7], ["plot", 99, 7], ["cli", 107, 7]], [["rev-prefix", 145, 40]], [["updateScript", 145, 12]], [["description", 148, 5], ["homepage", 149, 5], ["changelog", 150, 5], ["license", 151, 5], ["maintainers", 152, 5], ["teams", 153, 5], ["mainProgram", 154, 5], ["platforms", 155, 5]], [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["__structuredAttrs", 50, 3], ["src", 52, 3], ["patches", 59, 3], ["build-system", 67, 3], ["dependencies", 69, 3], ["optional-dependencies", 88, 3], ["nativeCheckInputs", 113, 3], ["postPatch", 129, 3], ["pythonImportsCheck", 143, 3], ["passthru", 145, 3], ["meta", 147, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, gitUpdater: false, pythonAtLeast: false, setuptools: false, bahttext: false, click: false, "click-log": false, dictdiffer: false, ezodf: false, flask: false, lxml: false, numpy: false, "numpy-financial": false, openpyxl: false, "python-dateutil": false, regex: false, schedula: false, scipy: false, statsmodels: false, tqdm: false, docutils: false, graphviz: false, jinja2: false, pygments: false, ddt: false, dill: false, pytestCheckHook: false, sphinx: false, "sphinx-click": false, "sphinx-rtd-theme": false, "sphinxcontrib-restbuilder": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 61, 7], ["url", 62, 7], ["hash", 63, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["excel", 98, 7], ["plot", 99, 7], ["cli", 107, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["rev-prefix", 145, 40]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 145, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 148, 5], ["homepage", 149, 5], ["changelog", 150, 5], ["license", 151, 5], ["maintainers", 152, 5], ["teams", 153, 5], ["mainProgram", 154, 5], ["platforms", 155, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["__structuredAttrs", 50, 3], ["src", 52, 3], ["patches", 59, 3], ["build-system", 67, 3], ["dependencies", 69, 3], ["optional-dependencies", 88, 3], ["nativeCheckInputs", 113, 3], ["postPatch", 129, 3], ["pythonImportsCheck", 143, 3], ["passthru", 145, 3], ["meta", 147, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,13 +42,13 @@ export default nix.lambda((args) => (() => {
   const sphinx_rtd_theme = nix.arg($, "sphinx-rtd-theme");
   const sphinxcontrib_restbuilder = nix.arg($, "sphinxcontrib-restbuilder");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "formulas",
       version: "1.3.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vinci1it2000",
           repo: "formulas",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "linest-aarch64-blas-rounding.patch",
             url: "https://github.com/vinci1it2000/formulas/commit/2d68e59d1abb10433feefef5c7cdcab378459159.patch",
             hash: "sha256-5jnE7f2HypuFrP8g9rhWZovNw//T+vbHMfbBXhA4UmE=",
@@ -90,7 +84,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const excelDeps = nix.thunk(() => [dictdiffer, ezodf, lxml, openpyxl]);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           excel: excelDeps,
           plot: nix.thunk(() => [docutils, flask, graphviz, jinja2, pygments, regex]),
           cli: nix.thunk(() => nix.concat(excelDeps, [click_log, flask])),
@@ -112,11 +106,11 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), "cat > test/conftest.py << 'EOF'\nimport copyreg\nimport itertools\n\n\ndef _reduce_count(_obj):\n    return itertools.count, ()\n\n\ncopyreg.pickle(itertools.count, _reduce_count)\nEOF\n")),
       pythonImportsCheck: nix.thunk(() => ["formulas"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Parse and compile Excel formulas and workbooks in Python code",
         homepage: "https://github.com/vinci1it2000/formulas",
         changelog: nix.thunk(() => nix.str`https://github.com/vinci1it2000/formulas/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/overrides.nix", [[["nativeBuildInputs", 9, 5]], [["buildInputs", 12, 5]], [["nativeBuildInputs", 15, 5]], [["CSC_OPTIONS", 19, 9]], [["env", 19, 5]], [["broken", 21, 27]], [["broken", 22, 35]], [["blas", 26, 3], ["breadline", 27, 3], ["bvconv", 31, 3], ["espeak", 35, 3], ["ezxdisp", 36, 3], ["icu", 37, 3], ["leptonic", 39, 3], ["openssl", 40, 3], ["postgresql", 41, 3], ["bb", 45, 3], ["constructive-solid-geometry", 60, 3], ["svn-client", 70, 3], ["nutils", 79, 3], ["tkgui", 80, 3], ["feathers", 86, 3]]]);
 const formals$1 = { args: { stdenv: false, pkgs: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/overrides.nix", [["nativeBuildInputs", 9, 5]]);
-const pos$2 = nix.positions(here + "/overrides.nix", [["buildInputs", 12, 5]]);
-const pos$3 = nix.positions(here + "/overrides.nix", [["nativeBuildInputs", 15, 5]]);
-const pos$4 = nix.positions(here + "/overrides.nix", [["CSC_OPTIONS", 19, 9]]);
-const pos$5 = nix.positions(here + "/overrides.nix", [["env", 19, 5]]);
-const pos$6 = nix.positions(here + "/overrides.nix", [["broken", 21, 27]]);
-const pos$7 = nix.positions(here + "/overrides.nix", [["broken", 22, 35]]);
-const pos$8 = nix.positions(here + "/overrides.nix", [["blas", 26, 3], ["breadline", 27, 3], ["bvconv", 31, 3], ["espeak", 35, 3], ["ezxdisp", 36, 3], ["icu", 37, 3], ["leptonic", 39, 3], ["openssl", 40, 3], ["postgresql", 41, 3], ["bb", 45, 3], ["constructive-solid-geometry", 60, 3], ["svn-client", 70, 3], ["nutils", 79, 3], ["tkgui", 80, 3], ["feathers", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,32 +12,32 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const addMetaAttrs = nix.thunk(() => nix.attr(lib, "addMetaAttrs"));
   const addToNativeBuildInputs = (pkg) => (old) => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), nix.app(nix.sel(lib, "toList"), pkg))),
   });
   const addToBuildInputs = (pkg) => (old) => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), nix.app(nix.sel(lib, "toList"), pkg))),
   });
   const addPkgConfig = (old) => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "pkg-config"))])),
   });
   const addToBuildInputsWithPkgConfig = (pkg) => (old) => nix.update(nix.app(addPkgConfig, old), nix.app(addToBuildInputs, pkg, old));
   const addToCscOptions = (opt) => (old) => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     env: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       CSC_OPTIONS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([nix.thunk(() => nix.selOr(old, () => "", "env", "CSC_OPTIONS"))], nix.app(nix.sel(lib, "toList"), opt))))),
     })),
   });
-  const broken = nix.thunk(() => nix.app(addMetaAttrs, nix.thunk(() => ({ [nix.POS]: pos$6, broken: true }))));
+  const broken = nix.thunk(() => nix.app(addMetaAttrs, nix.thunk(() => ({ [nix.POS]: $pos[5], broken: true }))));
   const brokenOnDarwin = nix.thunk(() => nix.app(addMetaAttrs, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
     }))));
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     blas: nix.thunk(() => nix.app(addToBuildInputsWithPkgConfig, nix.thunk(() => nix.sel(pkgs, "blas")))),
     breadline: nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => nix.sel(pkgs, "readline")))),
     bvconv: (old) => nix.update(nix.app(addToBuildInputs, nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.sel(pkgs, "libiconv")))), old), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.app(addToCscOptions, "-L -liconv", old)))),

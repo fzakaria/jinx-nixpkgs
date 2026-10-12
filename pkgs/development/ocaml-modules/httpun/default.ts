@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 26, 5]], [["pname", 11, 3], ["src", 13, 26], ["version", 13, 30], ["propagatedBuildInputs", 15, 3], ["doCheck", 22, 3], ["checkInputs", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "httpun-types": false, angstrom: false, bigstringaf: false, faraday: false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["src", 13, 26], ["version", 13, 30], ["propagatedBuildInputs", 15, 3], ["doCheck", 22, 3], ["checkInputs", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const faraday = nix.arg($, "faraday");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "httpun",
       src: nix.thunk(() => nix.attr(httpun_types, "src")),
       version: nix.thunk(() => nix.attr(httpun_types, "version")),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => nix.update(nix.sel(httpun_types, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "High-performance, memory-efficient, and scalable HTTP library for OCaml",
       })),
     })));

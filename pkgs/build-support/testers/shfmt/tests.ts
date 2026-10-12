@@ -2,68 +2,58 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["name", 5, 5], ["indent", 6, 5], ["src", 7, 5]], [["name", 10, 5], ["indent", 11, 5], ["src", 12, 5]], [["name", 17, 7], ["indent", 18, 7], ["src", 19, 7]], [["drv", 16, 5]], [["name", 24, 7], ["indent", 25, 7], ["src", 26, 7]], [["drv", 23, 5]], [["name", 31, 7], ["indent", 32, 7], ["src", 33, 7]], [["drv", 30, 5]], [["name", 38, 7], ["indent", 39, 7], ["src", 40, 7]], [["drv", 37, 5]], [["indent2", 4, 3], ["indent2Bin", 9, 3], ["indent2With0", 15, 3], ["indent2BinWith0", 22, 3], ["indent2With4", 29, 3], ["indent2BinWith4", 36, 3]]]);
 const formals$1 = { args: { lib: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["name", 5, 5], ["indent", 6, 5], ["src", 7, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["name", 10, 5], ["indent", 11, 5], ["src", 12, 5]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["name", 17, 7], ["indent", 18, 7], ["src", 19, 7]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["drv", 16, 5]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["name", 24, 7], ["indent", 25, 7], ["src", 26, 7]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["drv", 23, 5]]);
-const pos$7 = nix.positions(here + "/tests.nix", [["name", 31, 7], ["indent", 32, 7], ["src", 33, 7]]);
-const pos$8 = nix.positions(here + "/tests.nix", [["drv", 30, 5]]);
-const pos$9 = nix.positions(here + "/tests.nix", [["name", 38, 7], ["indent", 39, 7], ["src", 40, 7]]);
-const pos$10 = nix.positions(here + "/tests.nix", [["drv", 37, 5]]);
-const pos$11 = nix.positions(here + "/tests.nix", [["indent2", 4, 3], ["indent2Bin", 9, 3], ["indent2With0", 15, 3], ["indent2BinWith0", 22, 3], ["indent2With4", 29, 3], ["indent2BinWith4", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       indent2: nix.thunk(() => nix.app(nix.sel(testers, "shfmt"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "indent2",
           indent: 2n,
           src: nix.path(here, "./src/indent2.sh"),
         })))),
       indent2Bin: nix.thunk(() => nix.app(nix.sel(testers, "shfmt"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "indent2Bin",
           indent: 2n,
           src: nix.path(here, "./src"),
         })))),
       indent2With0: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           drv: nix.thunk(() => nix.app(nix.sel(testers, "shfmt"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "indent2",
               indent: 0n,
               src: nix.path(here, "./src/indent2.sh"),
             })))),
         })))),
       indent2BinWith0: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           drv: nix.thunk(() => nix.app(nix.sel(testers, "shfmt"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "indent2Bin",
               indent: 0n,
               src: nix.path(here, "./src"),
             })))),
         })))),
       indent2With4: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           drv: nix.thunk(() => nix.app(nix.sel(testers, "shfmt"), nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               name: "indent2",
               indent: 4n,
               src: nix.path(here, "./src/indent2.sh"),
             })))),
         })))),
       indent2BinWith4: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           drv: nix.thunk(() => nix.app(nix.sel(testers, "shfmt"), nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               name: "indent2Bin",
               indent: 4n,
               src: nix.path(here, "./src"),

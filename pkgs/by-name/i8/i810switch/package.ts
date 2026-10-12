@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["NIX_CFLAGS_COMPILE", 40, 7]], [["description", 43, 5], ["homepage", 44, 5], ["maintainers", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["preBuild", 20, 3], ["installPhase", 27, 3], ["env", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, installShellFiles: false, pciutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["maintainers", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["preBuild", 20, 3], ["installPhase", 27, 3], ["env", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const pciutils = nix.arg($, "pciutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "i810switch",
       version: "0.6.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www16.plala.or.jp/mano-a-mano/i810switch/i810switch-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-1xSEDjsU4fqcQyxL4ARLfACNkE3s4NYRVUZVuXnK1MM=",
         })))),
@@ -32,11 +29,11 @@ substituteInPlace i810switch.c \\
 `),
       installPhase: "\n    runHook preInstall\n\n    install -Dm755 -t $out/bin i810switch i810rotate\n\n    installManPage i810switch.1.gz i810rotate.1.gz\n\n    runHook postInstall\n  ",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utility for switching between the LCD and external VGA display on Intel graphics cards",
         homepage: "http://www16.plala.or.jp/mano-a-mano/i810switch.html",
         maintainers: [],

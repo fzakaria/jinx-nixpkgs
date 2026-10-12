@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["platforms", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 18, 3], ["buildInputs", 35, 3], ["makeFlags", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 18, 3], ["buildInputs", 35, 3], ["makeFlags", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "3dpong",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://tuxpaint.org/ftp/unix/x/3dpong/src/3dpong-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-sVV4GDGfSCweB5UZLwE+z5mMnxATAztUJnbRv3Q6a8U=",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.newbreedsoftware.com/3dpong/",
         description: "One or two player 3d sports game based on Pong from Atari",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

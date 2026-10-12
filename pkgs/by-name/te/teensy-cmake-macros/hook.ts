@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hook.nix", [[["teensy-cmake-macros", 12, 24]], [["description", 15, 5], ["maintainers", 16, 40], ["platforms", 16, 52], ["broken", 16, 62], ["license", 17, 5]], [["name", 8, 3], ["propagatedBuildInputs", 10, 3], ["passthru", 12, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { lib: false, makeSetupHook: false, "teensy-cmake-macros": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hook.nix", [["teensy-cmake-macros", 12, 24]]);
-const pos$2 = nix.positions(here + "/hook.nix", [["description", 15, 5], ["maintainers", 16, 40], ["platforms", 16, 52], ["broken", 16, 62], ["license", 17, 5]]);
-const pos$3 = nix.positions(here + "/hook.nix", [["name", 8, 3], ["propagatedBuildInputs", 10, 3], ["passthru", 12, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const teensy_cmake_macros = nix.arg($, "teensy-cmake-macros");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "teensy-cmake-macros-hook",
       propagatedBuildInputs: nix.thunk(() => [teensy_cmake_macros]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, "teensy-cmake-macros": teensy_cmake_macros })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], "teensy-cmake-macros": teensy_cmake_macros })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(teensy_cmake_macros, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Setup hook for teensy-cmake-macros",
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

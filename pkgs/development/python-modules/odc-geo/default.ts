@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["xr", 58, 5], ["wrap", 59, 5], ["tiff", 60, 5], ["s3", 67, 5], ["az", 68, 5], ["all", 69, 5]], [["description", 107, 5], ["longDescription", 108, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["maintainers", 116, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["__structuredAttrs", 36, 3], ["src", 38, 3], ["build-system", 45, 3], ["dependencies", 49, 3], ["optional-dependencies", 57, 3], ["nativeCheckInputs", 80, 3], ["disabledTestMarks", 88, 3], ["disabledTests", 90, 3], ["pythonImportsCheck", 101, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, affine: false, cachetools: false, numpy: false, pyproj: false, shapely: false, "azure-storage-blob": false, boto3: false, dask: false, distributed: false, rasterio: false, tifffile: false, xarray: false, geopandas: false, imagecodecs: false, matplotlib: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["xr", 58, 5], ["wrap", 59, 5], ["tiff", 60, 5], ["s3", 67, 5], ["az", 68, 5], ["all", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 107, 5], ["longDescription", 108, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["maintainers", 116, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["__structuredAttrs", 36, 3], ["src", 38, 3], ["build-system", 45, 3], ["dependencies", 49, 3], ["optional-dependencies", 57, 3], ["nativeCheckInputs", 80, 3], ["disabledTestMarks", 88, 3], ["disabledTests", 90, 3], ["pythonImportsCheck", 101, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const matplotlib = nix.arg($, "matplotlib");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "odc-geo",
       version: "0.5.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "opendatacube",
           repo: "odc-geo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => [affine, cachetools, numpy, pyproj, shapely]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         xr: nix.thunk(() => [xarray]),
         wrap: nix.thunk(() => [rasterio]),
         tiff: nix.thunk(() => [dask, distributed, rasterio, tifffile, xarray]),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["odc.geo", "odc.geo.xr"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GeoBox and geometry utilities extracted from datacube-core",
         longDescription: "This library combines geometry shape classes from `shapely` with CRS from\n`pyproj` to provide a number of data types and utilities useful for working\nwith geospatial metadata and geo-registered `xarray` rasters.\n",
         homepage: "https://github.com/opendatacube/odc-geo/",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pgddl.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["finalPackage", 29, 26], ["sql", 30, 5]], [["extension", 28, 18]], [["tests", 28, 12]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["license", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["preBuild", 24, 3], ["passthru", 28, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, perl: false, postgresql: false, postgresqlBuildExtension: false, postgresqlTestExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pgddl.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/pgddl.nix", [["finalPackage", 29, 26], ["sql", 30, 5]]);
-const pos$3 = nix.positions(here + "/pgddl.nix", [["extension", 28, 18]]);
-const pos$4 = nix.positions(here + "/pgddl.nix", [["tests", 28, 12]]);
-const pos$5 = nix.positions(here + "/pgddl.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["license", 47, 5]]);
-const pos$6 = nix.positions(here + "/pgddl.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["preBuild", 24, 3], ["passthru", 28, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pgddl",
       version: "0.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lacanoid",
           repo: "pgddl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,18 +27,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [perl]),
       preBuild: "patchShebangs --build ./bin/ ./docs\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: "CREATE EXTENSION ddlx;\n\nCREATE TABLE a(i int PRIMARY KEY, j int);\n\nSELECT ddlx_create('a'::regclass);\nSELECT ddlx_drop('a'::regclass);\nSELECT ddlx_script('a'::regclass);\n",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "DDL eXtractor functions for PostgreSQL",
         homepage: "https://github.com/lacanoid/pgddl",
         changelog: nix.thunk(() => nix.str`https://github.com/lacanoid/pgddl/releases/tag/${nix.sel(finalAttrs, "version")}`),

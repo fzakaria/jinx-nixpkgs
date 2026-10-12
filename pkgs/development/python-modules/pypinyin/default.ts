@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["teams", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["nativeCheckInputs", 21, 3], ["enabledTestPaths", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, "pytest-cov-stub": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["teams", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["nativeCheckInputs", 21, 3], ["enabledTestPaths", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.55.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mozillazg",
           repo: "python-pinyin",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub]);
       const enabledTestPaths = nix.thunk(() => ["tests"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Chinese Characters to Pinyin - 汉字转拼音",
         mainProgram: "pypinyin",
         homepage: "https://github.com/mozillazg/python-pinyin",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "tts"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

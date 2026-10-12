@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["fetchSubmodules", 47, 5], ["hash", 48, 5]], [["mate", 105, 18]], [["providedSessions", 103, 12], ["tests", 105, 12]], [["homepage", 108, 5], ["description", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 116, 5], ["mainProgram", 117, 5]], [["pname", 35, 3], ["version", 36, 3], ["outputs", 38, 3], ["src", 43, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["propagatedBuildInputs", 78, 3], ["nativeCheckInputs", 86, 3], ["dontUseCmakeConfigure", 92, 3], ["doCheck", 94, 3], ["mesonFlags", 96, 3], ["passthru", 103, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nixosTests: false, cmake: false, meson: false, ninja: false, "pkg-config": false, "wf-config": false, cairo: false, doctest: false, libGL: false, libdrm: false, libexecinfo: false, libevdev: false, libinput: false, libjpeg: false, libxkbcommon: false, libxml2: false, "vulkan-headers": false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, wlroots_0_19: false, pango: false, "libxcb-wm": false, yyjson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["fetchSubmodules", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mate", 105, 18]]);
-const pos$3 = nix.positions(here + "/default.nix", [["providedSessions", 103, 12], ["tests", 105, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 108, 5], ["description", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 116, 5], ["mainProgram", 117, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["outputs", 38, 3], ["src", 43, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["propagatedBuildInputs", 78, 3], ["nativeCheckInputs", 86, 3], ["dontUseCmakeConfigure", 92, 3], ["doCheck", 94, 3], ["mesonFlags", 96, 3], ["passthru", 103, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const yyjson = nix.arg($, "yyjson");
   const wlroots = wlroots_0_19;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "wayfire",
       version: "0.10.1",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "WayfireWM",
           repo: "wayfire",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,12 +75,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "wf-touch:tests", nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         providedSessions: nix.thunk(() => ["wayfire"]),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, mate: nix.thunk(() => nix.sel(nixosTests, "mate-wayland")) })),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          mate: nix.thunk(() => nix.sel(nixosTests, "mate-wayland")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://wayfire.org/",
         description: "3D Wayland compositor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

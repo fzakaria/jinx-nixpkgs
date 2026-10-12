@@ -2,36 +2,30 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lib.nix", [[["type", 5, 5]], [["type", 9, 5]], [["type", 13, 5]], [["build", 41, 34]], [["pkgs", 41, 11], ["withMods", 42, 11]], [["passthru", 40, 9]], [["buildMod", 4, 3], ["buildSoundPack", 8, 3], ["buildTileSet", 12, 3], ["wrapCDDA", 16, 3], ["attachPkgs", 36, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lib.nix", [["type", 5, 5]]);
-const pos$2 = nix.positions(here + "/lib.nix", [["type", 9, 5]]);
-const pos$3 = nix.positions(here + "/lib.nix", [["type", 13, 5]]);
-const pos$4 = nix.positions(here + "/lib.nix", [["build", 41, 34]]);
-const pos$5 = nix.positions(here + "/lib.nix", [["pkgs", 41, 11], ["withMods", 42, 11]]);
-const pos$6 = nix.positions(here + "/lib.nix", [["passthru", 40, 9]]);
-const pos$7 = nix.positions(here + "/lib.nix", [["buildMod", 4, 3], ["buildSoundPack", 8, 3], ["buildTileSet", 12, 3], ["wrapCDDA", 16, 3], ["attachPkgs", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return (() => {
-    const buildMod = nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, type: "mod" }))));
-    const buildSoundPack = nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, type: "soundpack" }))));
-    const buildTileSet = nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, type: "tileset" }))));
+    const buildMod = nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], type: "mod" }))));
+    const buildSoundPack = nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], type: "soundpack" }))));
+    const buildTileSet = nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], type: "tileset" }))));
     const wrapCDDA = nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({}))));
     const attachPkgs = (pkgs) => (super$) => (() => {
       const self = nix.thunk(() => nix.app(nix.sel(super$, "overrideAttrs"), (old) => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-            [nix.POS]: pos$5,
-            pkgs: nix.thunk(() => nix.app(nix.sel(pkgs, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, build: self })))),
+            [nix.POS]: $pos[4],
+            pkgs: nix.thunk(() => nix.app(nix.sel(pkgs, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], build: self })))),
             withMods: nix.thunk(() => nix.app(wrapCDDA, self)),
           })),
         })));
       return nix.force(self);
     })();
     return {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       buildMod,
       buildSoundPack,
       buildTileSet,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["url", 62, 5], ["rev-prefix", 63, 5], ["allowedVersions", 65, 5]], [["updateScript", 61, 12]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 39, 3], ["configureFlags", 46, 3], ["passthru", 61, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gitUpdater: false, autoreconfHook: false, "pkg-config": false, glib: false, libuuid: false, popt: false, elfutils: false, enablePython: true, pythonPackages: true, swig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 62, 5], ["rev-prefix", 63, 5], ["allowedVersions", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 61, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 39, 3], ["configureFlags", 46, 3], ["passthru", 61, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pythonPackages = nix.argOr($, "pythonPackages", () => null);
   const swig = nix.arg($, "swig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "babeltrace",
       version: "1.5.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.efficios.com/files/babeltrace/babeltrace-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Z7Q6qu9clR+nrxpVfPcgGhH+iYdrfCK6CgPLwxbbWpw=",
         })))),
@@ -39,16 +35,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "debug-info")),
       ], nix.app(nix.sel(lib, "optionals"), enablePython, nix.thunk(() => ["--enable-python-bindings"])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.efficios.com/babeltrace.git",
             "rev-prefix": "v",
             allowedVersions: "^1\\.",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command-line tool and library to read and convert LTTng tracefiles",
         homepage: "https://www.efficios.com/babeltrace",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

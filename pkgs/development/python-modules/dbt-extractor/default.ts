@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 5], ["version", 17, 13], ["hash", 18, 5]], [["pname", 22, 13], ["version", 22, 19], ["src", 22, 27], ["hash", 23, 5]], [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["cargoDeps", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["doCheck", 34, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, libiconv: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 13], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 22, 13], ["version", 22, 19], ["src", 22, 27], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["cargoDeps", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["doCheck", 34, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +18,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "dbt_extractor",
           version: version,
           hash: "sha256-1s8I7Hk7i8K9biYO+BgjCuaKT3FDb6SJ8I19saUuL/4=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["dbt_extractor"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool that processes the most common jinja value templates in dbt model files",
         homepage: "https://github.com/dbt-labs/dbt-extractor",
         changelog: "https://github.com/dbt-labs/dbt-extractor/blob/main/CHANGELOG.md",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

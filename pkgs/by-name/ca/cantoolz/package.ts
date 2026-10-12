@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["url", 23, 7], ["hash", 24, 7]], [["url", 28, 7], ["sha256", 29, 7]], [["description", 60, 5], ["mainProgram", 61, 5], ["longDescription", 62, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 45, 3], ["disabledTests", 49, 3], ["pythonImportsCheck", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 28, 7], ["sha256", 29, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["mainProgram", 61, 5], ["longDescription", 62, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 45, 3], ["disabledTests", 49, 3], ["pythonImportsCheck", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cantoolz",
       version: "3.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CANToolz",
           repo: "CANToolz",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,12 +25,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/CANToolz/CANToolz/commit/9e818946716a744b3c7356f248e24ea650791d1f.patch",
             hash: "sha256-BTQ0Io2RF8WpWlLoYfBj8IhL92FRR8ustGClt28/R8c=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/CANToolz/CANToolz/pull/30/commits/d75574523d3b273c40fb714532c4de27f9e6dd3e.patch",
             sha256: "0g91hywg5q6f2qk1awgklywigclrbhh6a6mwd0kpbkk1wawiiwbc",
           })))),
@@ -60,7 +56,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_process", "test_server"]),
       pythonImportsCheck: nix.thunk(() => ["cantoolz"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Black-box CAN network analysis framework",
         mainProgram: "cantoolz",
         longDescription: "CANToolz is a framework for analysing CAN networks and devices. It\nprovides multiple modules that can be chained using CANToolz's pipe\nsystem and used by security researchers, automotive/OEM security\ntesters in black-box analysis.\n\nCANToolz can be used for ECU discovery, MitM testing, fuzzing, brute\nforcing, scanning or R&D, testing and validation. More can easily be\nimplemented with a new module.\n",

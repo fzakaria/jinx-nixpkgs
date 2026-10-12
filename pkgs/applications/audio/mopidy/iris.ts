@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/iris.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["src", 30, 26], ["hash", 31, 5]], [["homepage", 60, 5], ["description", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["npmDeps", 29, 3], ["nativeBuildInputs", 34, 3], ["preBuild", 39, 3], ["build-system", 43, 3], ["dependencies", 47, 3], ["doCheck", 55, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, pythonPackages: false, fetchFromGitHub: false, fetchNpmDeps: false, mopidy: false, nodejs: false, npmHooks: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/iris.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/iris.nix", [["src", 30, 26], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/iris.nix", [["homepage", 60, 5], ["description", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$4 = nix.positions(here + "/iris.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["npmDeps", 29, 3], ["nativeBuildInputs", 34, 3], ["preBuild", 39, 3], ["build-system", 43, 3], ["dependencies", 47, 3], ["doCheck", 55, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const npmHooks = nix.arg($, "npmHooks");
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mopidy-iris",
       version: "3.70.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jaedb",
           repo: "Iris",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "# turn off Google Analytics per default\nsubstituteInPlace src/js/store/index.js \\\n  --replace-fail 'allow_reporting: true' 'allow_reporting: false'\n",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-aQHq80SLaOPOANYV+aDTWC/bxfc1it5iDeRJ8L5iuEU=",
         })))),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["mopidy_iris"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/jaedb/Iris",
         description: "Fully-functional Mopidy web client encompassing Spotify and many other backends",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

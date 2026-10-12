@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["hash", 16, 5]], [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["changelog", 40, 5], ["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["mainProgram", 44, 5], ["maintainers", 45, 5]], [["pname", 20, 3], ["version", 21, 11], ["src", 23, 3], ["composerLock", 30, 3], ["vendorHash", 34, 3], ["doInstallCheck", 36, 3], ["nativeInstallCheckInputs", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchFromGitHub: false, php: false, versionCheckHook: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 40, 5], ["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["mainProgram", 44, 5], ["maintainers", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 11], ["src", 23, 3], ["composerLock", 30, 3], ["vendorHash", 34, 3], ["doInstallCheck", 36, 3], ["nativeInstallCheckInputs", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const version = "6.18.0";
   const psalm_phar = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/vimeo/psalm/releases/download/${version}/psalm.phar`),
       hash: "sha256-I3Yqogy3ge9Apfar6lqcilCgDvh4HNp8qRJLFE6ghAI=",
     }))));
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "psalm",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "vimeo",
           repo: "psalm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +37,7 @@ cp composer.lock $out
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/vimeo/psalm/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Static analysis tool for finding errors in PHP applications",
         homepage: "https://github.com/vimeo/psalm",

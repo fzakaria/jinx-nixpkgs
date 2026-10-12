@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 13, 13], ["version", 13, 19], ["hash", 14, 5]], [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]], [["pname", 8, 3], ["version", 9, 3], ["format", 10, 3], ["src", 12, 3], ["pythonNamespaces", 17, 3], ["doCheck", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 13, 13], ["version", 13, 19], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["format", 10, 3], ["src", 12, 3], ["pythonNamespaces", 17, 3], ["doCheck", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-oDEIw8ENjIC7Xd9cih8DMWH6YZcqmRf5ubOhhRfwCIw=",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pythonNamespaces = nix.thunk(() => ["opencensus.common"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OpenCensus Runtime Context",
         homepage: "https://github.com/census-instrumentation/opencensus-python/tree/master/context/opencensus-context",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

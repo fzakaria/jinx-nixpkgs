@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["NIX_CFLAGS_COMPILE", 29, 9]], [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["homepage", 58, 5], ["changelog", 59, 5], ["description", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["broken", 63, 5]], [["pname", 18, 3], ["version", 19, 3], ["env", 21, 3], ["src", 32, 3], ["patches", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, ocaml: false, fetchFromGitHub: false, buildDunePackage: false, "bigarray-compat": false, containers: false, cppo: false, ctypes: false, integers: false, num: false, ppxlib: false, re: false, findlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 29, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 58, 5], ["changelog", 59, 5], ["description", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["broken", 63, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["env", 21, 3], ["src", 32, 3], ["patches", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const re = nix.arg($, "re");
   const findlib = nix.arg($, "findlib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ppx_cstubs",
       version: "0.7.0",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.10")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14")))) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")))), nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.10")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14")))) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")))), nix.thunk(() => ({ [nix.POS]: $pos[0], NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "fdopen",
           repo: "ppx_cstubs",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bigarray_compat, containers, findlib, integers, num, ppxlib, re]),
       propagatedBuildInputs: nix.thunk(() => [ctypes]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/fdopen/ppx_cstubs",
         changelog: nix.thunk(() => nix.str`https://github.com/fdopen/ppx_cstubs/raw/${nix.sel(finalAttrs, "version")}/CHANGES.md`),
         description: "Preprocessor for easier stub generation with ocaml-ctypes",

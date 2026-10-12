@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["NIX_CFLAGS_COMPILE", 14, 7]], [["url", 17, 5], ["sha256", 18, 5]], [["description", 36, 5], ["mainProgram", 37, 5], ["longDescription", 38, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["env", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["preConfigure", 28, 3], ["outputs", 30, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoconf: false, automake: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 14, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["mainProgram", 37, 5], ["longDescription", 38, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["env", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["preConfigure", 28, 3], ["outputs", 30, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "unrtf",
       version: "0.21.10",
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://ftp.gnu.org/gnu/unrtf/unrtf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1bil6z4niydz9gqm2j861dkxmqnpc8m7hvidsjbzz7x63whj17xl",
         })))),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "./bootstrap",
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Converter from Rich Text Format to other formats",
         mainProgram: "unrtf",
         longDescription: "UnRTF converts documents in Rich Text Format to other\nformats, including HTML, LaTeX, and RTF itself.\n",

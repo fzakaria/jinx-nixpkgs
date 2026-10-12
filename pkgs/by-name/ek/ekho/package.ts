@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["CXXFLAGS", 31, 7]], [["description", 52, 5], ["homepage", 53, 5], ["longDescription", 54, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["preConfigure", 27, 3], ["env", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, autoconf: false, automake: false, libtool: false, libsndfile: false, libpulseaudio: false, "espeak-ng": false, sonic: false, utf8cpp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["longDescription", 54, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["preConfigure", 27, 3], ["env", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const sonic = nix.arg($, "sonic");
   const utf8cpp = nix.arg($, "utf8cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ekho",
       version: "9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hgneng",
           repo: "ekho",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       preConfigure: "./autogen.sh\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-O0",
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), utf8cpp)}/include/utf8cpp`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoconf, automake, libtool]),
       buildInputs: nix.thunk(() => [libsndfile, libpulseaudio, espeak_ng, sonic, utf8cpp]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Chinese text-to-speech software",
         homepage: "https://www.eguidedog.net/ekho.php",
         longDescription: "Ekho (余音) is a free, open source and multilingual text-to-speech (TTS)\nsoftware. It supports Cantonese (Chinese dialect spoken in Hong Kong and\npart of Guangdong province), Mandarin (standard Chinese), Zhaoan Hakka\n(a dialect in Taiwan), Tibetan, Ngangien (an ancient Chinese before\nYuan Dynasty) and Korean (in trial).\n",

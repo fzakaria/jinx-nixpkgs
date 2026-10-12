@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["updateScript", 72, 12]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5], ["platforms", 81, 5]], [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["cmakeFlags", 60, 3], ["doCheck", 70, 3], ["passthru", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, "pkg-config": false, wrapGAppsHook3: false, avahi: false, gettext: false, glib: false, gtest: false, "gtk-layer-shell": false, gtk3: false, libnotify: false, libsecret: false, nlohmann_json: false, openssl: false, procps: false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 72, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5], ["platforms", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["cmakeFlags", 60, 3], ["doCheck", 70, 3], ["passthru", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tether",
       version: "0.2.35",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zackb",
           repo: "tether",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,11 +55,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Linux + iPhone Continuity / iMessage / SMS",
         homepage: "https://github.com/zackb/tether",
         changelog: nix.thunk(() => nix.str`https://github.com/zackb/tether/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

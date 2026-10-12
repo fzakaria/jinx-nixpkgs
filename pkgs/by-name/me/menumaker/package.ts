@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 23, 5], ["mainProgram", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["platforms", 27, 5], ["maintainers", 28, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["pyproject", 17, 3], ["nativeInstallCheckInputs", 19, 3], ["doInstallCheck", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, python3Packages: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["mainProgram", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["platforms", 27, 5], ["maintainers", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["pyproject", 17, 3], ["nativeInstallCheckInputs", 19, 3], ["doInstallCheck", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "menumaker",
       version: "0.99.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/menumaker/menumaker-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-EeldDnajuFD1ffgbxVYCIr1gFBxXUbbpvQXDzVVg1lo=",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Heuristics-driven menu generator for several window managers",
         mainProgram: "mmaker",
         homepage: "https://menumaker.sourceforge.net",

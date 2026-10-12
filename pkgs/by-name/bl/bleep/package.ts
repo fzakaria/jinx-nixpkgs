@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 14, 7], ["aarch64-darwin", 15, 7]], [["x86_64-linux", 20, 7], ["aarch64-darwin", 21, 7]], [["url", 30, 5], ["hash", 31, 5]], [["package", 62, 5], ["command", 63, 5]], [["version", 61, 18]], [["tests", 61, 12]], [["homepage", 67, 5], ["sourceProvenance", 68, 5], ["license", 69, 5], ["description", 70, 5], ["mainProgram", 71, 5], ["platforms", 72, 5], ["maintainers", 76, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["installPhase", 42, 3], ["dontAutoPatchelf", 48, 3], ["postFixup", 50, 3], ["passthru", 61, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchzip: false, autoPatchelfHook: false, installShellFiles: false, makeWrapper: false, lib: false, zlib: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 14, 7], ["aarch64-darwin", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 20, 7], ["aarch64-darwin", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 62, 5], ["command", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 61, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 61, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["sourceProvenance", 68, 5], ["license", 69, 5], ["description", 70, 5], ["mainProgram", 71, 5], ["platforms", 72, 5], ["maintainers", 76, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["installPhase", 42, 3], ["dontAutoPatchelf", 48, 3], ["postFixup", 50, 3], ["passthru", 61, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const testers = nix.arg($, "testers");
   const platform = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "x86_64-pc-linux",
     "aarch64-darwin": "arm64-apple-darwin",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenvNoCC, "system")}`)));
   const hash = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "x86_64-linux": "sha256-SGV0fEuwmGwpqmD42a+x0fIK50RWSHEYDesH4obgRhg=",
     "aarch64-darwin": "sha256-qL0hjEdfkN62NDvhlzVgW4TYWv0IReo2Fo5eVhUaOrI=",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenvNoCC, "system")}`)));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "bleep",
       version: "0.0.13",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/oyvindberg/bleep/releases/download/v${nix.sel(finalAttrs, "version")}/bleep-${platform}.tar.gz`),
           hash: hash,
         })))),
@@ -47,18 +40,18 @@ export default nix.lambda((args) => (() => {
       dontAutoPatchelf: true,
       postFixup: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), "autoPatchelf $out\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform")))), "export PATH=$PATH:$out/bin\ninstallShellCompletion --cmd bleep \\\n  --bash <(bleep install-tab-completions-bash --stdout) \\\n  --zsh <(bleep install-tab-completions-zsh --stdout)\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "bleep --help | sed -n '/Bleeping/s/[^0-9.]//gp'",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://bleep.build/",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

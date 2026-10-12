@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["OUCH_ARTIFACTS_FOLDER", 68, 7]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 80, 5], ["mainProgram", 81, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["nativeCheckInputs", 40, 3], ["buildInputs", 44, 3], ["buildNoDefaultFeatures", 52, 3], ["buildFeatures", 53, 3], ["postInstall", 63, 3], ["env", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, cmake: false, "pkg-config": false, bzip2: false, bzip3: false, xz: false, git: false, zlib: false, zstd: false, enableUnfree: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OUCH_ARTIFACTS_FOLDER", 68, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 80, 5], ["mainProgram", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["nativeCheckInputs", 40, 3], ["buildInputs", 44, 3], ["buildNoDefaultFeatures", 52, 3], ["buildFeatures", 53, 3], ["postInstall", 63, 3], ["env", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const enableUnfree = nix.argOr($, "enableUnfree", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ouch",
       version: "0.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ouch-org",
           repo: "ouch",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,9 +43,9 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: true,
       buildFeatures: nix.thunk(() => nix.concat(["use_zlib", "use_zstd_thin", "bzip3", "zstd/pkg-config"], nix.app(nix.sel(lib, "optionals"), enableUnfree, nix.thunk(() => ["unrar"])))),
       postInstall: "installManPage artifacts/*.1\ninstallShellCompletion artifacts/ouch.{bash,fish} --zsh artifacts/_ouch --nushell artifacts/ouch.nu\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OUCH_ARTIFACTS_FOLDER: "artifacts" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OUCH_ARTIFACTS_FOLDER: "artifacts" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command-line utility for easily compressing and decompressing files and directories",
         homepage: "https://github.com/ouch-org/ouch",
         changelog: nix.thunk(() => nix.str`https://github.com/ouch-org/ouch/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

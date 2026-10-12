@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 13, 13], ["version", 13, 19], ["hash", 14, 5]], [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]], [["version", 8, 3], ["format", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["doCheck", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 13, 13], ["version", 13, 19], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 8, 3], ["format", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["doCheck", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +15,20 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "httpauth";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-C6rnFroAd5vOULBMwsLSyeSK5zPXOEgGHDSYt+Pm2dQ=",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "WSGI HTTP Digest Authentication middleware",
         homepage: "https://github.com/jonashaag/httpauth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: [],
       }));
-      return { [nix.POS]: pos$3, version, format, pname, src, doCheck, meta };
+      return { [nix.POS]: $pos[2], version, format, pname, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

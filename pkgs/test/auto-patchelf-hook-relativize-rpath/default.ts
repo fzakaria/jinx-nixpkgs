@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 17, 5], ["buildCommand", 19, 5], ["disallowedReferences", 28, 5]], [["name", 36, 5], ["nativeBuildInputs", 38, 5], ["autoPatchelfFlags", 42, 5], ["dontUnpack", 44, 5], ["installPhase", 48, 5], ["disallowedReferences", 54, 5]], [["platforms", 87, 8]], [["name", 65, 3], ["nativeBuildInputs", 66, 3], ["buildCommand", 71, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, tests: false, autoPatchelfHook: false, patchelf: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 17, 5], ["buildCommand", 19, 5], ["disallowedReferences", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 36, 5], ["nativeBuildInputs", 38, 5], ["autoPatchelfFlags", 42, 5], ["dontUnpack", 44, 5], ["installPhase", 48, 5], ["disallowedReferences", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["platforms", 87, 8]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 65, 3], ["nativeBuildInputs", 66, 3], ["buildCommand", 71, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const foo = nix.thunk(() => nix.sel(tests, "stdenv-inputs", "foo"));
   const baz_bundle = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "baz-bundle",
       buildCommand: nix.thunk(() => nix.str`mkdir -p $out/lib/libs
 cp ${nix.app(nix.sel(lib, "getDev"), foo)}/lib/libfoo.so $out/lib/libs/
@@ -29,7 +26,7 @@ $CC -shared -lfoo -L$out/lib/libs -o $out/lib/libbaz.so ${nix.path(here, "./lib-
       disallowedReferences: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getDev"), foo))]),
     }))));
   const baz_bundle_relocatable = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "baz-bundle-relocatable",
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       autoPatchelfFlags: nix.thunk(() => ["--relativize-rpath"]),
@@ -40,7 +37,7 @@ cp -R ${baz_bundle}/lib $out/lib
       disallowedReferences: nix.thunk(() => [baz_bundle, "out"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "auto-patchelf-hook-relativize-rpath",
       nativeBuildInputs: nix.thunk(() => [patchelf, python3]),
       buildCommand: nix.thunk(() => nix.str`mkdir -p libs/baz-bundle
@@ -58,7 +55,7 @@ python main.py |& tee /dev/stderr | grep -q "foo returned 42"
 touch $out
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
     })));

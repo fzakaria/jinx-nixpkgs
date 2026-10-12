@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["CI_COMMIT_TAG", 29, 7]], [["description", 37, 5], ["maintainers", 38, 5], ["homepage", 39, 5], ["license", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 16, 3], ["postPatch", 23, 3], ["env", 29, 3], ["propagatedBuildInputs", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, flask: false, werkzeug: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CI_COMMIT_TAG", 29, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 37, 5], ["maintainers", 38, 5], ["homepage", 39, 5], ["license", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 16, 3], ["postPatch", 23, 3], ["env", 29, 3], ["propagatedBuildInputs", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,17 +17,17 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "antarctica",
           repo: "flask-reverse-proxy-fix",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-ZRZI1psr1dnY2FbuLZXOQvLMJd4TF7BfBNZnW9kxeck=",
         }))));
       const postPatch = "sed -i 's@werkzeug.contrib.fixers@werkzeug.middleware.proxy_fix@g' flask_reverse_proxy_fix/middleware/__init__.py\n";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CI_COMMIT_TAG: nix.thunk(() => nix.str`v${version}`) }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], CI_COMMIT_TAG: nix.thunk(() => nix.str`v${version}`) }));
       const propagatedBuildInputs = nix.thunk(() => [flask, werkzeug]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python Flask middleware for applications running under a reverse proxy",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "ogluk30")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

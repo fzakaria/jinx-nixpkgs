@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["url", 26, 7], ["hash", 27, 7]], [["description", 45, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch2: false, autoreconfHook: false, "pkg-config": false, wrapGAppsHook3: false, glib: false, intltool: false, gtk3: false, gtksourceview4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gtksourceview4 = nix.arg($, "gtksourceview4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xpad",
       version: "5.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://launchpad.net/xpad/trunk/${nix.sel(finalAttrs, "version")}/+download/xpad-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-8mBSMIhQxAaxWtuNhqzTli7xCvIrQnuxpc/07slvguk=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.launchpad.net/~neil.mayhew/xpad/+git/xpad-1/patch/?id=637c7b51f1b09a28553a926f594f626d363c526a",
             hash: "sha256-ipebPkCpgj+5vvFS7QciZgH0CTZS12FdeVILfDReVsY=",
           })))),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, wrapGAppsHook3, intltool]),
       buildInputs: nix.thunk(() => [glib, gtk3, gtksourceview4]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sticky note application for jotting down things to remember",
         mainProgram: "xpad",
         homepage: "https://launchpad.net/xpad",

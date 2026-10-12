@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["filterPattern", 38, 3], ["gitignoreToPatterns", 64, 3], ["gitignoreFilter", 154, 3], ["gitignoreCompileIgnore", 157, 3], ["gitignoreFilterPure", 165, 3], ["compileRecursiveGitignore", 174, 3], ["withGitignoreFile", 215, 3], ["withRecursiveGitignoreFile", 217, 3], ["gitignoreFilterSourcePure", 222, 3], ["gitignoreFilterSource", 226, 3], ["gitignoreFilterRecursiveSource", 230, 3], ["gitignoreSourcePure", 236, 3], ["gitignoreSource", 237, 3], ["gitignoreRecursiveSource", 247, 3]]]);
 const formals$1 = { args: { lib: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["filterPattern", 38, 3], ["gitignoreToPatterns", 64, 3], ["gitignoreFilter", 154, 3], ["gitignoreCompileIgnore", 157, 3], ["gitignoreFilterPure", 165, 3], ["compileRecursiveGitignore", 174, 3], ["withGitignoreFile", 215, 3], ["withRecursiveGitignoreFile", 217, 3], ["gitignoreFilterSourcePure", 222, 3], ["gitignoreFilterSource", 226, 3], ["gitignoreFilterRecursiveSource", 230, 3], ["gitignoreSourcePure", 236, 3], ["gitignoreSource", 237, 3], ["gitignoreRecursiveSource", 247, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -131,7 +131,7 @@ find -type f -exec sh -c '
     })();
     const gitignoreRecursiveSource = nix.thunk(() => nix.app(gitignoreFilterRecursiveSource, (_) => (__1) => true));
     return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       filterPattern,
       gitignoreToPatterns,
       gitignoreFilter,

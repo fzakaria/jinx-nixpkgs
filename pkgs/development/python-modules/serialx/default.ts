@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["pname", 34, 26], ["version", 34, 32], ["src", 34, 40], ["hash", 35, 5]], [["esphome", 54, 25]], [["changelog", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["cargoDeps", 33, 3], ["build-system", 38, 3], ["nativeBuildInputs", 44, 3], ["dependencies", 50, 3], ["optional-dependencies", 54, 3], ["pythonImportsCheck", 58, 3], ["nativeCheckInputs", 60, 3], ["__darwinAllowLocalNetworking", 68, 3], ["disabledTests", 70, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { aioesphomeapi: false, buildPythonPackage: false, cargo: false, fetchFromGitHub: false, lib: false, psutil: false, pythonAtLeast: false, "pytest-asyncio": false, "pytest-xdist": false, pytestCheckHook: false, rustPlatform: false, rustc: false, setuptools: false, "setuptools-rust": false, "setuptools-scm": false, socat: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 34, 26], ["version", 34, 32], ["src", 34, 40], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["esphome", 54, 25]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["cargoDeps", 33, 3], ["build-system", 38, 3], ["nativeBuildInputs", 44, 3], ["dependencies", 50, 3], ["optional-dependencies", 54, 3], ["pythonImportsCheck", 58, 3], ["nativeCheckInputs", 60, 3], ["__darwinAllowLocalNetworking", 68, 3], ["disabledTests", 70, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,19 +25,19 @@ export default nix.lambda((args) => (() => {
   const socat = nix.arg($, "socat");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "serialx",
       version: "1.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "puddly",
           repo: "serialx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ASKucV1qvoETw1DslDkDiCQBrU//U/diFU044pWyAX0=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cargo, nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")), rustc]),
       dependencies: nix.thunk(() => [typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         esphome: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => [aioesphomeapi]))),
       })),
       pythonImportsCheck: nix.thunk(() => ["serialx"]),
@@ -65,7 +61,7 @@ export default nix.lambda((args) => (() => {
         "test_sync_readonly_partial_timeout",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/puddly/serialx/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Serial library with native async support for Windows and POSIX",
         homepage: "https://github.com/puddly/serialx",

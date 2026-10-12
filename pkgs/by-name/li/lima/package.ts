@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nativeBuildInputs", 120, 17]], [["assertion", 112, 11], ["expected", 113, 11], ["actual", 117, 11]], [["withAdditionalGuestAgents", 144, 21]], [["nativeBuildInputs", 141, 17]], [["assertion", 133, 11], ["expected", 134, 11], ["actual", 138, 11]], [["minimalAgent", 111, 9], ["additionalAgents", 132, 9]], [["extraArgs", 157, 7]], [["tests", 106, 5], ["updateScript", 156, 5]], [["description", 165, 5]], [["pname", 27, 3], ["version", 29, 20], ["src", 29, 28], ["vendorHash", 29, 32], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["postPatch", 42, 3], ["dontStrip", 50, 3], ["buildPhase", 52, 3], ["installPhase", 67, 3], ["postInstall", 84, 3], ["nativeInstallCheckInputs", 88, 3], ["doInstallCheck", 93, 3], ["versionCheckProgram", 94, 3], ["versionCheckKeepEnvironment", 95, 3], ["installCheckPhase", 97, 3], ["passthru", 105, 3], ["meta", 164, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, callPackage: false, installShellFiles: false, qemu: false, darwin: false, makeWrapper: false, "nix-update-script": false, "apple-sdk_15": false, withAdditionalGuestAgents: true, "lima-additional-guestagents": false, writableTmpDirAsHomeHook: false, versionCheckHook: false, testers: false, writeText: false, runCommand: false, lima: false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 120, 17]]);
-const pos$2 = nix.positions(here + "/package.nix", [["assertion", 112, 11], ["expected", 113, 11], ["actual", 117, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withAdditionalGuestAgents", 144, 21]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 141, 17]]);
-const pos$5 = nix.positions(here + "/package.nix", [["assertion", 133, 11], ["expected", 134, 11], ["actual", 138, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["minimalAgent", 111, 9], ["additionalAgents", 132, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 157, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 106, 5], ["updateScript", 156, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 165, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 29, 20], ["src", 29, 28], ["vendorHash", 29, 32], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["postPatch", 42, 3], ["dontStrip", 50, 3], ["buildPhase", 52, 3], ["installPhase", 67, 3], ["postInstall", 84, 3], ["nativeInstallCheckInputs", 88, 3], ["doInstallCheck", 93, 3], ["versionCheckProgram", 94, 3], ["versionCheckKeepEnvironment", 95, 3], ["installCheckPhase", 97, 3], ["passthru", 105, 3], ["meta", 164, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const source = nix.thunk(() => nix.app(callPackage, nix.path(here, "./source.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: nix.thunk(() => nix.add("lima", nix.app(nix.sel(lib, "optionalString"), withAdditionalGuestAgents, "-full"))),
       version: nix.thunk(() => nix.attr(source, "version")),
       src: nix.thunk(() => nix.attr(source, "src")),
@@ -72,31 +63,31 @@ wrapProgram $out/bin/limactl \\
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       installCheckPhase: "runHook preInstallCheck\n\nUSER=nix $out/bin/limactl validate templates/default.yaml\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => (() => {
           const arch = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"));
           return {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             minimalAgent: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 assertion: "limactl only detects host's architecture guest agent by default",
                 expected: nix.thunk(() => nix.app(writeText, "expected", "true\n1\n")),
                 actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({
-                    [nix.POS]: pos$1,
+                    [nix.POS]: $pos[0],
                     nativeBuildInputs: nix.thunk(() => [writableTmpDirAsHomeHook, lima, jq]),
                   })), nix.thunk(() => nix.str`limactl info | jq '.guestAgents | has("${arch}")' >>"$out"
 limactl info | jq '.guestAgents | length' >>"$out"
 `))),
               })))),
             additionalAgents: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 assertion: "limactl also detects additional guest agents if specified",
                 expected: nix.thunk(() => nix.app(writeText, "expected", "true\ntrue\n")),
                 actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     nativeBuildInputs: nix.thunk(() => [
                       writableTmpDirAsHomeHook,
-                      nix.thunk(() => nix.app(nix.sel(lima, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withAdditionalGuestAgents: true })))),
+                      nix.thunk(() => nix.app(nix.sel(lima, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], withAdditionalGuestAgents: true })))),
                       jq,
                     ]),
                   })), nix.thunk(() => nix.str`limactl info | jq '.guestAgents | has("${arch}")' >>"$out"
@@ -106,12 +97,12 @@ limactl info | jq '.guestAgents | length >= 2' >>"$out"
           };
         })()),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             extraArgs: nix.thunk(() => ["--override-filename", nix.path(here, "./source.nix")]),
           })))),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(source, "meta"), {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Linux virtual machines with automatic file sharing and port forwarding",
       })),
     }));

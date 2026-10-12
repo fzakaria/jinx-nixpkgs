@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]], [["testing", 44, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 36, 3], ["optional-dependencies", 43, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, "setuptools-scm": false, wheel: false, configupdater: false, "importlib-metadata": false, packaging: false, pyscaffold: false, "pre-commit": false, pytest: false, "pytest-cov": false, "pytest-xdist": false, tox: false, virtualenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["testing", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 36, 3], ["optional-dependencies", 43, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-xHtKNqLSCTlbbXubADfLYjD3/53WfM65rRuh9RsyeN4=",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools, setuptools_scm, wheel]);
       const propagatedBuildInputs = nix.thunk(() => [configupdater, importlib_metadata, packaging, pyscaffold]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         testing: nix.thunk(() => [
           configupdater,
           pre_commit,
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       }));
       const pythonImportsCheck = nix.thunk(() => ["pyscaffoldext.custom_extension"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "PyScaffold extension to create a custom PyScaffold extension",
         homepage: "https://pypi.org/project/pyscaffoldext-custom-extension/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

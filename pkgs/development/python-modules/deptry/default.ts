@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["hash", 33, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["mainProgram", 75, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["cargoDeps", 31, 3], ["build-system", 36, 3], ["nativeBuildInputs", 43, 3], ["dependencies", 45, 3], ["nativeCheckInputs", 53, 3], ["preCheck", 58, 3], ["disabledTestPaths", 62, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cargo: false, click: false, colorama: false, fetchFromGitHub: false, packaging: false, pyprojectVersionPatchHook: false, "pytest-xdist": false, pytestCheckHook: false, python: false, "requirements-parser": false, rustc: false, rustPlatform: false, tomli: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["mainProgram", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["cargoDeps", 31, 3], ["build-system", 36, 3], ["nativeBuildInputs", 43, 3], ["dependencies", 45, 3], ["nativeCheckInputs", 53, 3], ["preCheck", 58, 3], ["disabledTestPaths", 62, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const tomli = nix.arg($, "tomli");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "deptry",
       version: "0.25.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "osprey-oss",
           repo: "deptry",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-GQWivQMWQ8wi6cWsCbmvSSyPEx1yl9QidO+9mTDrN1c=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/functional/cli/"]),
       pythonImportsCheck: nix.thunk(() => ["deptry"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Find unused, missing and transitive dependencies in a Python project",
         homepage: "https://github.com/osprey-oss/deptry",
         changelog: nix.thunk(() => nix.str`https://github.com/osprey-oss/deptry/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

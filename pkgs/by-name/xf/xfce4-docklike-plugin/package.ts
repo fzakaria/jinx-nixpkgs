@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["rev-prefix", 61, 40]], [["updateScript", 61, 12]], [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["teams", 67, 5], ["platforms", 68, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["strictDeps", 34, 3], ["depsBuildBuild", 36, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["passthru", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gettext: false, meson: false, ninja: false, "pkg-config": false, cairo: false, glib: false, gtk3: false, "gtk-layer-shell": false, libx11: false, libxi: false, libxfce4ui: false, libxfce4util: false, libxfce4windowing: false, "xfce4-panel": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 61, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 61, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["teams", 67, 5], ["platforms", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["strictDeps", 34, 3], ["depsBuildBuild", 36, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["passthru", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const xfce4_panel = nix.arg($, "xfce4-panel");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xfce4-docklike-plugin",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.xfce.org",
           owner: "panel-plugins",
           repo: "xfce4-docklike-plugin",
@@ -57,11 +53,11 @@ export default nix.lambda((args) => (() => {
         xfce4_panel,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "xfce4-docklike-plugin-" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "xfce4-docklike-plugin-" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://docs.xfce.org/panel-plugins/xfce4-docklike-plugin/start",
         description: "Modern, minimalist taskbar for Xfce",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

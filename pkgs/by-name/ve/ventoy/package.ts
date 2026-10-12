@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 50, 7], ["i686-linux", 51, 7], ["aarch64-linux", 52, 7], ["mipsel-linux", 53, 7]], [["url", 65, 5], ["hash", 66, 5]], [["name", 115, 7], ["desktopName", 116, 7], ["comment", 117, 7], ["icon", 118, 7], ["exec", 119, 7], ["terminal", 120, 7], ["categories", 121, 7], ["startupNotify", 122, 7]], [["homepage", 196, 5], ["description", 197, 5], ["longDescription", 199, 5], ["changelog", 212, 5], ["knownVulnerabilities", 213, 5], ["license", 222, 5], ["mainProgram", 223, 5], ["maintainers", 224, 5], ["platforms", 227, 5], ["sourceProvenance", 233, 5]], [["pname", 58, 3], ["version", 62, 3], ["src", 64, 3], ["patches", 69, 3], ["postPatch", 73, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 89, 3], ["strictDeps", 111, 3], ["desktopItems", 113, 3], ["dontConfigure", 126, 3], ["dontBuild", 127, 3], ["installPhase", 129, 3], ["meta", 195, 3]]]);
 const formals$1 = { args: { lib: false, autoPatchelfHook: false, bash: false, copyDesktopItems: false, coreutils: false, cryptsetup: false, dosfstools: false, e2fsprogs: false, exfat: false, fetchurl: false, gawk: false, gnugrep: false, gnused: false, gtk3: false, hexdump: false, makeDesktopItem: false, makeWrapper: false, ntfs3g: false, parted: false, procps: false, stdenv: false, "util-linux": false, which: false, xfsprogs: false, xz: false, defaultGuiType: true, withCryptsetup: true, withXfs: true, withExt4: true, withNtfs: true, withGtk3: true, withQt5: true, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 50, 7], ["i686-linux", 51, 7], ["aarch64-linux", 52, 7], ["mipsel-linux", 53, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 65, 5], ["hash", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 115, 7], ["desktopName", 116, 7], ["comment", 117, 7], ["icon", 118, 7], ["exec", 119, 7], ["terminal", 120, 7], ["categories", 121, 7], ["startupNotify", 122, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 196, 5], ["description", 197, 5], ["longDescription", 199, 5], ["changelog", 212, 5], ["knownVulnerabilities", 213, 5], ["license", 222, 5], ["mainProgram", 223, 5], ["maintainers", 224, 5], ["platforms", 227, 5], ["sourceProvenance", 233, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 58, 3], ["version", 62, 3], ["src", 64, 3], ["patches", 69, 3], ["postPatch", 73, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 89, 3], ["strictDeps", 111, 3], ["desktopItems", 113, 3], ["dontConfigure", 126, 3], ["dontBuild", 127, 3], ["installPhase", 129, 3], ["meta", 195, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,18 +48,18 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.thunk(() => nix.attr(libsForQt5, "qtbase"));
   const wrapQtAppsHook = nix.thunk(() => nix.attr(libsForQt5, "wrapQtAppsHook"));
   const arch = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "x86_64",
     "i686-linux": "i386",
     "aarch64-linux": "aarch64",
     "mipsel-linux": "mips64el",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.add(nix.add("ventoy", nix.app(optionalString, nix.thunk(() => nix.eq(defaultGuiType, "gtk3")), "-gtk3")), nix.app(optionalString, nix.thunk(() => nix.eq(defaultGuiType, "qt5")), "-qt5"))),
       version: "1.1.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/ventoy/Ventoy/releases/download/v${nix.sel(finalAttrs, "version")}/ventoy-${nix.sel(finalAttrs, "version")}-linux.tar.gz`),
           hash: "sha256-f7TtCM72prTTndGSYNjIApGnjf35r31GFXHiPLvEOAU=",
         })))),
@@ -88,7 +84,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "Ventoy",
             desktopName: "Ventoy",
             comment: "Tool to create bootable USB drive for ISO/WIM/IMG/VHD(x)/EFI files",
@@ -149,7 +145,7 @@ mkdir "$out"/share/{applications,pixmaps}
 ln -s "$VENTOY_PATH"/WebUI/static/img/VentoyLogo.png "$out"/share/pixmaps/
 `))), nix.app(optionalString, nix.thunk(() => !nix.asBool(withGtk3)), "rm \"$VENTOY_PATH\"/tool/{\"$ARCH\"/Ventoy2Disk.gtk3,VentoyGTK.glade}\n")), nix.app(optionalString, nix.thunk(() => !nix.asBool(withQt5)), "rm \"$VENTOY_PATH/tool/$ARCH/Ventoy2Disk.qt5\"\n")), nix.app(optionalString, nix.thunk(() => (nix.asBool(!nix.asBool(withGtk3)) && nix.asBool(!nix.asBool(withQt5)))), "rm \"$VENTOY_PATH\"/VentoyGUI.*\n")), "\nrunHook postInstall\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.ventoy.net",
         description: nix.thunk(() => nix.add("New Bootable USB Solution", nix.app(optionalString, nix.thunk(() => !nix.eq(defaultGuiType, "")), " with GUI support"))),
         longDescription: "Ventoy is an open source tool to create bootable USB drive for\nISO/WIM/IMG/VHD(x)/EFI files.  With ventoy, you don't need to format the\ndisk over and over, you just need to copy the ISO/WIM/IMG/VHD(x)/EFI files\nto the USB drive and boot them directly. You can copy many files at a time\nand ventoy will give you a boot menu to select them. You can also browse\nISO/WIM/IMG/VHD(x)/EFI files in local disk and boot them. x86 Legacy\nBIOS, IA32 UEFI, x86_64 UEFI, ARM64 UEFI and MIPS64EL UEFI are supported\nin the same way.  Most type of OS supported\n(Windows/WinPE/Linux/ChromeOS/Unix/VMware/Xen...).  With ventoy you can\nalso browse ISO/WIM/IMG/VHD(x)/EFI files in local disk and boot them.\n800+ image files are tested.  90%+ distros in DistroWatch supported.\n",

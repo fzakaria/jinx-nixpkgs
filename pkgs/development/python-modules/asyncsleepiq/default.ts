@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]], [["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["propagatedBuildInputs", 21, 3], ["doCheck", 24, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, buildPythonPackage: false, fetchPypi: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["propagatedBuildInputs", 21, 3], ["doCheck", 24, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-m0Is5X46pOGTu7TBBBY/sgC3GNxULYkONe5H1rCAnb0=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["asyncsleepiq"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Async interface to SleepIQ API",
         homepage: "https://github.com/kbickar/asyncsleepiq",
         changelog: nix.thunk(() => nix.str`https://github.com/kbickar/asyncsleepiq/releases/tag/v${version}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["homepage", 23, 5], ["description", 24, 5], ["platforms", 25, 5], ["license", 26, 5], ["teams", 27, 5]], [["pname", 9, 3], ["namespace", 10, 3], ["version", 11, 3], ["src", 13, 3], ["extraBuildInputs", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, rel: false, buildKodiBinaryAddon: false, fetchFromGitHub: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 23, 5], ["description", 24, 5], ["platforms", 25, 5], ["license", 26, 5], ["teams", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["namespace", 10, 3], ["version", 11, 3], ["src", 13, 3], ["extraBuildInputs", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "pvr.vdr.vnsi";
       const version = "21.1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kodi-pvr",
           repo: "pvr.vdr.vnsi",
           rev: nix.thunk(() => nix.str`${version}-${rel}`),
@@ -27,14 +25,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const extraBuildInputs = nix.thunk(() => [libGL]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/kodi-pvr/pvr.vdr.vnsi",
         description: "Kodi's VDR VNSI PVR client addon",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
-      return { [nix.POS]: pos$3, pname, namespace, version, src, extraBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, namespace, version, src, extraBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

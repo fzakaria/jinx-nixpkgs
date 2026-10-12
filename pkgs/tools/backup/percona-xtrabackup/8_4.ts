@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/8_4.nix", [[["version", 6, 5], ["hash", 7, 5], ["fetchSubmodules", 10, 5], ["extraPatches", 12, 5], ["extraPostInstall", 15, 5]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/8_4.nix", [["version", 6, 5], ["hash", 7, 5], ["fetchSubmodules", 10, 5], ["extraPatches", 12, 5], ["extraPostInstall", 15, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const callPackage = nix.arg($, "callPackage");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(args_1, {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "8.4.0-4",
       hash: "sha256-ws+si8bpalL8y7l9W+R4B02GnnGOou50txtS6ktntP4=",
       fetchSubmodules: true,

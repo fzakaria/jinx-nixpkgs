@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["cli", 37, 5], ["discovery", 43, 5]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aioresponses: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, platformdirs: false, pyprojectVersionPatchHook: false, "pytest-asyncio": false, pytestCheckHook: false, rich: false, tomlkit: false, typer: false, zeroconf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cli", 37, 5], ["discovery", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const typer = nix.arg($, "typer");
   const zeroconf = nix.arg($, "zeroconf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vizaio",
       version: "0.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "raman325",
           repo: "vizaio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,14 +37,14 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [aiohttp]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cli: nix.thunk(() => [platformdirs, rich, tomlkit, typer]),
         discovery: nix.thunk(() => [zeroconf]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([aioresponses, pytest_asyncio, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pythonImportsCheck: nix.thunk(() => ["vizaio"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Modern async Python client and CLI for Vizio SmartCast devices",
         homepage: "https://github.com/raman325/vizaio",
         changelog: nix.thunk(() => nix.str`https://github.com/raman325/vizaio/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

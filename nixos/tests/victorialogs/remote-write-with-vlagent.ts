@@ -2,26 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/remote-write-with-vlagent.nix", [[["maintainers", 10, 8]], [["allowedTCPPorts", 15, 27]], [["firewall", 15, 18]], [["enable", 17, 9], ["basicAuthUsername", 18, 9], ["basicAuthPasswordFile", 19, 9]], [["victorialogs", 16, 16]], [["networking", 15, 7], ["services", 16, 7]], [["url", 29, 11], ["basicAuthUsername", 30, 11], ["basicAuthPasswordFile", 31, 11]], [["enable", 27, 9], ["remoteWrite", 28, 9]], [["URL", 38, 18]], [["Upload", 38, 11]], [["enable", 36, 9], ["settings", 37, 9]], [["upload", 35, 25]], [["vlagent", 26, 16], ["journald", 35, 16]], [["systemPackages", 41, 19]], [["services", 26, 7], ["environment", 41, 7]], [["server", 12, 14], ["client", 23, 14]], [["name", 9, 3], ["meta", 10, 3], ["containers", 12, 3], ["testScript", 45, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/remote-write-with-vlagent.nix", [["maintainers", 10, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/remote-write-with-vlagent.nix", [["allowedTCPPorts", 15, 27]]);
-const pos$3 = nix.positions(here + "/remote-write-with-vlagent.nix", [["firewall", 15, 18]]);
-const pos$4 = nix.positions(here + "/remote-write-with-vlagent.nix", [["enable", 17, 9], ["basicAuthUsername", 18, 9], ["basicAuthPasswordFile", 19, 9]]);
-const pos$5 = nix.positions(here + "/remote-write-with-vlagent.nix", [["victorialogs", 16, 16]]);
-const pos$6 = nix.positions(here + "/remote-write-with-vlagent.nix", [["networking", 15, 7], ["services", 16, 7]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/remote-write-with-vlagent.nix", [["url", 29, 11], ["basicAuthUsername", 30, 11], ["basicAuthPasswordFile", 31, 11]]);
-const pos$8 = nix.positions(here + "/remote-write-with-vlagent.nix", [["enable", 27, 9], ["remoteWrite", 28, 9]]);
-const pos$9 = nix.positions(here + "/remote-write-with-vlagent.nix", [["URL", 38, 18]]);
-const pos$10 = nix.positions(here + "/remote-write-with-vlagent.nix", [["Upload", 38, 11]]);
-const pos$11 = nix.positions(here + "/remote-write-with-vlagent.nix", [["enable", 36, 9], ["settings", 37, 9]]);
-const pos$12 = nix.positions(here + "/remote-write-with-vlagent.nix", [["upload", 35, 25]]);
-const pos$13 = nix.positions(here + "/remote-write-with-vlagent.nix", [["vlagent", 26, 16], ["journald", 35, 16]]);
-const pos$14 = nix.positions(here + "/remote-write-with-vlagent.nix", [["systemPackages", 41, 19]]);
-const pos$15 = nix.positions(here + "/remote-write-with-vlagent.nix", [["services", 26, 7], ["environment", 41, 7]]);
-const pos$16 = nix.positions(here + "/remote-write-with-vlagent.nix", [["server", 12, 14], ["client", 23, 14]]);
-const pos$17 = nix.positions(here + "/remote-write-with-vlagent.nix", [["name", 9, 3], ["meta", 10, 3], ["containers", 12, 3], ["testScript", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,27 +15,27 @@ export default nix.lambda((args) => (() => {
   const password = "rUceu1W41U";
   const passwordFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "password-file", password));
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "victorialogs-remote-write-with-vlagent",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "shawn8901"))]),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [9428n]) })),
+            [nix.POS]: $pos[2],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], allowedTCPPorts: nix.thunk(() => [9428n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             victorialogs: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               basicAuthUsername: username,
               basicAuthPasswordFile: nix.thunk(() => nix.builtins.toString(passwordFile)),
@@ -63,33 +47,33 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             vlagent: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               remoteWrite: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 url: "http://server:9428/internal/insert",
                 basicAuthUsername: username,
                 basicAuthPasswordFile: nix.thunk(() => nix.builtins.toString(passwordFile)),
               })),
             })),
             journald: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               upload: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 enable: true,
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
-                  Upload: nix.thunk(() => ({ [nix.POS]: pos$9, URL: "http://localhost:9429/insert/journald" })),
+                  [nix.POS]: $pos[9],
+                  Upload: nix.thunk(() => ({ [nix.POS]: $pos[8], URL: "http://localhost:9429/insert/journald" })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "curl"))]),
           })),
         };

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["unwrapped", 74, 13]], [["description", 120, 5], ["homepage", 121, 5], ["license", 122, 5], ["platforms", 123, 5], ["mainProgram", 124, 5], ["hydraPlatforms", 125, 5], ["maintainers", 126, 5]], [["pname", 12, 3], ["version", 13, 23], ["dieWithParent", 16, 3], ["unsharePid", 19, 3], ["targetPkgs", 21, 3], ["passthru", 73, 3], ["extraInstallCommands", 77, 3], ["extraBwrapArgs", 107, 3], ["runScript", 112, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, writeScript: false, ncurses5: false, callPackage: false, buildFHSEnv: false, unwrapped: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["unwrapped", 74, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 120, 5], ["homepage", 121, 5], ["license", 122, 5], ["platforms", 123, 5], ["mainProgram", 124, 5], ["hydraPlatforms", 125, 5], ["maintainers", 126, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 23], ["dieWithParent", 16, 3], ["unsharePid", 19, 3], ["targetPkgs", 21, 3], ["passthru", 73, 3], ["extraInstallCommands", 77, 3], ["extraBwrapArgs", 107, 3], ["runScript", 112, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const buildFHSEnv = nix.arg($, "buildFHSEnv");
   const unwrapped = nix.argOr($, "unwrapped", () => nix.app(callPackage, nix.path(here, "./runtime.nix"), nix.thunk(() => ({}))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "houdini",
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
       dieWithParent: false,
@@ -75,7 +73,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "libxcb-wm")),
         ];
       })(),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, unwrapped: unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], unwrapped: unwrapped })),
       extraInstallCommands: nix.thunk(() => (() => {
         const executables = nix.thunk(() => [
           "bin/houdini",
@@ -113,7 +111,7 @@ export LD_LIBRARY_PATH=${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() =
 exec "$@"
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "3D animation application software",
         homepage: "https://www.sidefx.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

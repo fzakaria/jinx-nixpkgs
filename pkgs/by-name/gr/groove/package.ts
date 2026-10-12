@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 14, 5], ["exec", 15, 5], ["icon", 16, 5], ["desktopName", 17, 5], ["comment", 18, 5], ["categories", 19, 5]], [["url", 31, 5], ["sha256", 34, 5]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["sourceProvenance", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["dontBuild", 43, 3], ["installPhase", 45, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, makeWrapper: false, makeDesktopItem: false, icoutils: false, jre8: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 14, 5], ["exec", 15, 5], ["icon", 16, 5], ["desktopName", 17, 5], ["comment", 18, 5], ["categories", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 5], ["sha256", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["sourceProvenance", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["dontBuild", 43, 3], ["installPhase", 45, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const icoutils = nix.arg($, "icoutils");
   const jre8 = nix.arg($, "jre8");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "groove-simulator",
       exec: "groove-simulator",
       icon: "groove",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "groove";
       const version = "5.8.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://sourceforge/groove/groove/${version}/groove-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}-bin.zip`),
           sha256: "sha256-JwoUlO6F2+8NtCnLC+xm5q0Jm8RIyU1rnuKGmjgJhFU=",
         }))));
@@ -57,7 +54,7 @@ icotool -x -i 1 -o $out/share/icons/hicolor/32x32/apps/groove.png groove-green-g
 icotool -x -i 2 -o $out/share/icons/hicolor/16x16/apps/groove.png groove-green-g.ico
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GRaphs for Object-Oriented VErification",
         homepage: "https://groove.cs.utwente.nl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -69,7 +66,7 @@ icotool -x -i 2 -o $out/share/icons/hicolor/16x16/apps/groove.png groove-green-g
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

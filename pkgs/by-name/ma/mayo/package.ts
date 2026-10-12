@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["name", 49, 7], ["exec", 50, 7], ["desktopName", 51, 7], ["icon", 52, 7], ["comment", 53, 7], ["categories", 54, 7]], [["description", 87, 5], ["mainProgram", 88, 5], ["changelog", 89, 5], ["homepage", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5], ["license", 93, 5]], [["version", 16, 3], ["pname", 17, 3], ["src", 19, 3], ["cmakeFlags", 26, 3], ["strictDeps", 34, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 42, 3], ["desktopItems", 47, 3], ["doCheck", 62, 3], ["nativeCheckInputs", 63, 3], ["installPhase", 67, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, qt6: false, assimp: false, "opencascade-occt": false, ctestCheckHook: false, copyDesktopItems: false, makeDesktopItem: false, withAssimp: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 49, 7], ["exec", 50, 7], ["desktopName", 51, 7], ["icon", 52, 7], ["comment", 53, 7], ["categories", 54, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 87, 5], ["mainProgram", 88, 5], ["changelog", 89, 5], ["homepage", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5], ["license", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 16, 3], ["pname", 17, 3], ["src", 19, 3], ["cmakeFlags", 26, 3], ["strictDeps", 34, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 42, 3], ["desktopItems", 47, 3], ["doCheck", 62, 3], ["nativeCheckInputs", 63, 3], ["installPhase", 67, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const withAssimp = nix.argOr($, "withAssimp", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "0.9.0",
       pname: "mayo",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fougue",
           repo: "mayo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook")), copyDesktopItems, cmake]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "mayo",
             exec: "mayo",
             desktopName: "Mayo",
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [ctestCheckHook]),
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n\ninstall -Dm755 mayo $out/bin/mayo\ninstall -Dm755 mayo-conv $out/bin/mayo-conv\n\npushd ..\ninstall -Dm444 images/appicon.svg \"$out/share/icons/hicolor/scalable/apps/mayo.svg\"\ninstall -Dm444 images/appicon_256.png \"$out/share/icons/hicolor/256x256/apps/mayo.png\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install -Dm444 images/appicons.icns \"$out/Applications/Mayo.app/Contents/Resources/mayo.icns\"\n")), "popd\n\nrunHook postInstall\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "3D CAD viewer and converter based on Qt + OpenCascade",
         mainProgram: "mayo",
         changelog: nix.thunk(() => nix.str`https://github.com/fougue/mayo/releases/tag/v${nix.sel(finalAttrs, "version")}`),

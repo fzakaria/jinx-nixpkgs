@@ -2,57 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/compose-android-packages.nix", [[["name", 71, 13], ["buildInputs", 72, 13], ["preferLocalBuild", 73, 13], ["unpackPhase", 74, 13], ["buildPhase", 75, 13], ["installPhase", 78, 13]], [["packages", 83, 11], ["images", 84, 11], ["addons", 85, 11]], [["x86_64-linux", 171, 7], ["aarch64-linux", 172, 7], ["aarch64-darwin", 173, 7]], [["x86_64-linux", 180, 7], ["aarch64-linux", 181, 7], ["aarch64-darwin", 182, 7]], [["info", 215, 19]], [["pname", 210, 17], ["version", 211, 17], ["url", 212, 35], ["sha1", 212, 39], ["meta", 213, 25], ["passthru", 214, 17]], [["name", 222, 21]], [["packages", 234, 5], ["system-images", 235, 5], ["addons", 236, 5], ["extras", 237, 5]], [["stdenv", 426, 7], ["lib", 427, 7], ["mkLicenses", 428, 7], ["meta", 429, 7], ["os", 430, 7], ["arch", 431, 7]], [["buildInputs", 454, 17], ["packages", 455, 9], ["patchesInstructions", 456, 9]], [["deployAndroidPackage", 468, 7], ["os", 469, 7], ["arch", 470, 7], ["meta", 471, 7], ["package", 473, 5]], [["name", 489, 9], ["plugin", 490, 9]], [["name", 493, 9], ["plugin", 494, 9], ["check", 495, 9]], [["deployAndroidPackage", 480, 7], ["os", 481, 7], ["arch", 482, 7], ["meta", 483, 7], ["package", 485, 5], ["postInstall", 487, 5]], [["name", 513, 11], ["plugin", 514, 11], ["check", 515, 11]], [["deployAndroidPackage", 504, 9], ["os", 505, 9], ["arch", 506, 9], ["meta", 507, 9], ["package", 509, 7], ["postInstall", 511, 7]], [["images", 534, 9], ["check", 535, 9]], [["deployAndroidPackage", 523, 7], ["os", 524, 7], ["arch", 525, 7], ["meta", 526, 7], ["package", 528, 5], ["postInstall", 532, 5]], [["package", 546, 7]], [["package", 565, 19]], [["name", 594, 15], ["value", 595, 15]], [["packages", 605, 11], ["patchesInstructions", 606, 11]], [["deployAndroidPackage", 616, 9], ["os", 617, 9], ["arch", 618, 9], ["meta", 619, 9], ["package", 621, 7]], [["deployAndroidPackage", 633, 13], ["os", 634, 13], ["arch", 635, 13], ["platform-tools", 636, 13], ["meta", 637, 13], ["package", 638, 13]], [["package", 661, 7]], [["package", 669, 7]], [["name", 708, 13], ["plugin", 709, 13]], [["name", 712, 13], ["plugin", 713, 13], ["check", 714, 13]], [["name", 717, 13], ["plugins", 718, 13]], [["name", 721, 13], ["plugin", 722, 13], ["check", 723, 13]], [["name", 726, 13], ["plugins", 727, 13]], [["name", 730, 13], ["plugins", 731, 13], ["check", 732, 13]], [["name", 735, 13], ["plugins", 736, 13], ["check", 737, 13]], [["name", 740, 13], ["rootName", 741, 13], ["plugins", 742, 13], ["check", 743, 13]], [["name", 746, 13], ["plugin", 747, 13], ["check", 748, 13]], [["images", 751, 13], ["check", 752, 13]], [["name", 755, 13], ["plugins", 756, 13], ["check", 757, 13]], [["name", 760, 13], ["plugins", 761, 13], ["check", 762, 13]], [["deployAndroidPackage", 773, 19], ["package", 774, 19], ["os", 775, 19], ["arch", 776, 19], ["meta", 777, 19]], [["deployAndroidPackage", 682, 7], ["os", 683, 7], ["arch", 684, 7], ["meta", 685, 7], ["package", 688, 5], ["postInstall", 690, 5]], [["deployAndroidPackages", 424, 3], ["deployAndroidPackage", 435, 3], ["all", 464, 3], ["platform-tools", 466, 3], ["tools", 478, 3], ["build-tools", 500, 3], ["emulator", 521, 3], ["platformVersions", 541, 3], ["platforms", 543, 3], ["sources", 551, 3], ["system-images", 570, 3], ["cmake", 612, 3], ["ndk-bundles", 626, 3], ["ndk-bundle", 655, 3], ["google-apis", 658, 3], ["google-tv-addons", 666, 3], ["cmdline-tools-package", 673, 3], ["androidsdk", 680, 3]]]);
 const formals$1 = { args: { callPackage: false, stdenv: false, stdenvNoCC: false, lib: false, fetchurl: false, ruby: false, writeText: false, licenseAccepted: true, meta: false }, ellipsis: false };
 const formals$2 = { args: { repoJson: true, repoXmls: true, repo: true, cmdLineToolsVersion: true, toolsVersion: true, platformToolsVersion: true, buildToolsVersions: true, includeEmulator: true, emulatorVersion: true, minPlatformVersion: true, maxPlatformVersion: true, numLatestPlatformVersions: true, platformVersions: true, includeSources: true, includeSystemImages: true, systemImageTypes: true, abiVersions: true, includeCmake: true, cmakeVersions: true, includeNDK: true, ndkVersion: true, ndkVersions: true, useGoogleAPIs: true, useGoogleTVAddOns: true, includeExtras: true, extraLicenses: true }, ellipsis: false };
 const formals$3 = { args: { packages: true, images: true, addons: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/compose-android-packages.nix", [["name", 71, 13], ["buildInputs", 72, 13], ["preferLocalBuild", 73, 13], ["unpackPhase", 74, 13], ["buildPhase", 75, 13], ["installPhase", 78, 13]]);
-const pos$2 = nix.positions(here + "/compose-android-packages.nix", [["packages", 83, 11], ["images", 84, 11], ["addons", 85, 11]]);
-const pos$3 = nix.positions(here + "/compose-android-packages.nix", [["x86_64-linux", 171, 7], ["aarch64-linux", 172, 7], ["aarch64-darwin", 173, 7]]);
-const pos$4 = nix.positions(here + "/compose-android-packages.nix", [["x86_64-linux", 180, 7], ["aarch64-linux", 181, 7], ["aarch64-darwin", 182, 7]]);
-const pos$5 = nix.positions(here + "/compose-android-packages.nix", [["info", 215, 19]]);
-const pos$6 = nix.positions(here + "/compose-android-packages.nix", [["pname", 210, 17], ["version", 211, 17], ["url", 212, 35], ["sha1", 212, 39], ["meta", 213, 25], ["passthru", 214, 17]]);
-const pos$7 = nix.positions(here + "/compose-android-packages.nix", [["name", 222, 21]]);
-const pos$8 = nix.positions(here + "/compose-android-packages.nix", [["packages", 234, 5], ["system-images", 235, 5], ["addons", 236, 5], ["extras", 237, 5]]);
 const formals$4 = { args: { name: false, plugins: false, check: true }, ellipsis: false };
 const formals$5 = { args: { name: false, plugins: false, rootName: true, check: true }, ellipsis: false };
 const formals$6 = { args: { name: false, plugin: false, check: false }, ellipsis: false };
 const formals$7 = { args: { name: false, plugin: false, check: true }, ellipsis: false };
 const formals$8 = { args: { images: false, check: false }, ellipsis: false };
 const formals$9 = { args: { name: false, plugins: false, check: false }, ellipsis: false };
-const pos$9 = nix.positions(here + "/compose-android-packages.nix", [["stdenv", 426, 7], ["lib", 427, 7], ["mkLicenses", 428, 7], ["meta", 429, 7], ["os", 430, 7], ["arch", 431, 7]]);
 const formals$10 = { args: { package: false, buildInputs: true, patchInstructions: true, meta: true }, ellipsis: true };
-const pos$10 = nix.positions(here + "/compose-android-packages.nix", [["buildInputs", 454, 17], ["packages", 455, 9], ["patchesInstructions", 456, 9]]);
-const pos$11 = nix.positions(here + "/compose-android-packages.nix", [["deployAndroidPackage", 468, 7], ["os", 469, 7], ["arch", 470, 7], ["meta", 471, 7], ["package", 473, 5]]);
-const pos$12 = nix.positions(here + "/compose-android-packages.nix", [["name", 489, 9], ["plugin", 490, 9]]);
-const pos$13 = nix.positions(here + "/compose-android-packages.nix", [["name", 493, 9], ["plugin", 494, 9], ["check", 495, 9]]);
-const pos$14 = nix.positions(here + "/compose-android-packages.nix", [["deployAndroidPackage", 480, 7], ["os", 481, 7], ["arch", 482, 7], ["meta", 483, 7], ["package", 485, 5], ["postInstall", 487, 5]]);
-const pos$15 = nix.positions(here + "/compose-android-packages.nix", [["name", 513, 11], ["plugin", 514, 11], ["check", 515, 11]]);
-const pos$16 = nix.positions(here + "/compose-android-packages.nix", [["deployAndroidPackage", 504, 9], ["os", 505, 9], ["arch", 506, 9], ["meta", 507, 9], ["package", 509, 7], ["postInstall", 511, 7]]);
-const pos$17 = nix.positions(here + "/compose-android-packages.nix", [["images", 534, 9], ["check", 535, 9]]);
-const pos$18 = nix.positions(here + "/compose-android-packages.nix", [["deployAndroidPackage", 523, 7], ["os", 524, 7], ["arch", 525, 7], ["meta", 526, 7], ["package", 528, 5], ["postInstall", 532, 5]]);
-const pos$19 = nix.positions(here + "/compose-android-packages.nix", [["package", 546, 7]]);
-const pos$20 = nix.positions(here + "/compose-android-packages.nix", [["package", 565, 19]]);
-const pos$21 = nix.positions(here + "/compose-android-packages.nix", [["name", 594, 15], ["value", 595, 15]]);
-const pos$22 = nix.positions(here + "/compose-android-packages.nix", [["packages", 605, 11], ["patchesInstructions", 606, 11]]);
-const pos$23 = nix.positions(here + "/compose-android-packages.nix", [["deployAndroidPackage", 616, 9], ["os", 617, 9], ["arch", 618, 9], ["meta", 619, 9], ["package", 621, 7]]);
-const pos$24 = nix.positions(here + "/compose-android-packages.nix", [["deployAndroidPackage", 633, 13], ["os", 634, 13], ["arch", 635, 13], ["platform-tools", 636, 13], ["meta", 637, 13], ["package", 638, 13]]);
-const pos$25 = nix.positions(here + "/compose-android-packages.nix", [["package", 661, 7]]);
-const pos$26 = nix.positions(here + "/compose-android-packages.nix", [["package", 669, 7]]);
-const pos$27 = nix.positions(here + "/compose-android-packages.nix", [["name", 708, 13], ["plugin", 709, 13]]);
-const pos$28 = nix.positions(here + "/compose-android-packages.nix", [["name", 712, 13], ["plugin", 713, 13], ["check", 714, 13]]);
-const pos$29 = nix.positions(here + "/compose-android-packages.nix", [["name", 717, 13], ["plugins", 718, 13]]);
-const pos$30 = nix.positions(here + "/compose-android-packages.nix", [["name", 721, 13], ["plugin", 722, 13], ["check", 723, 13]]);
-const pos$31 = nix.positions(here + "/compose-android-packages.nix", [["name", 726, 13], ["plugins", 727, 13]]);
-const pos$32 = nix.positions(here + "/compose-android-packages.nix", [["name", 730, 13], ["plugins", 731, 13], ["check", 732, 13]]);
-const pos$33 = nix.positions(here + "/compose-android-packages.nix", [["name", 735, 13], ["plugins", 736, 13], ["check", 737, 13]]);
-const pos$34 = nix.positions(here + "/compose-android-packages.nix", [["name", 740, 13], ["rootName", 741, 13], ["plugins", 742, 13], ["check", 743, 13]]);
-const pos$35 = nix.positions(here + "/compose-android-packages.nix", [["name", 746, 13], ["plugin", 747, 13], ["check", 748, 13]]);
-const pos$36 = nix.positions(here + "/compose-android-packages.nix", [["images", 751, 13], ["check", 752, 13]]);
-const pos$37 = nix.positions(here + "/compose-android-packages.nix", [["name", 755, 13], ["plugins", 756, 13], ["check", 757, 13]]);
-const pos$38 = nix.positions(here + "/compose-android-packages.nix", [["name", 760, 13], ["plugins", 761, 13], ["check", 762, 13]]);
-const pos$39 = nix.positions(here + "/compose-android-packages.nix", [["deployAndroidPackage", 773, 19], ["package", 774, 19], ["os", 775, 19], ["arch", 776, 19], ["meta", 777, 19]]);
-const pos$40 = nix.positions(here + "/compose-android-packages.nix", [["deployAndroidPackage", 682, 7], ["os", 683, 7], ["arch", 684, 7], ["meta", 685, 7], ["package", 688, 5], ["postInstall", 690, 5]]);
-const pos$41 = nix.positions(here + "/compose-android-packages.nix", [["deployAndroidPackages", 424, 3], ["deployAndroidPackage", 435, 3], ["all", 464, 3], ["platform-tools", 466, 3], ["tools", 478, 3], ["build-tools", 500, 3], ["emulator", 521, 3], ["platformVersions", 541, 3], ["platforms", 543, 3], ["sources", 551, 3], ["system-images", 570, 3], ["cmake", 612, 3], ["ndk-bundles", 626, 3], ["ndk-bundle", 655, 3], ["google-apis", 658, 3], ["google-tv-addons", 666, 3], ["cmdline-tools-package", 673, 3], ["androidsdk", 680, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -93,7 +53,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.builtins.map((addon) => ["--addons", nix.thunk(() => nix.str`${addon}`)], addons)),
           ])));
         return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "androidenv-repo-json",
             buildInputs: nix.thunk(() => [mkRepoRuby]),
             preferLocalBuild: true,
@@ -104,7 +64,7 @@ export default nix.lambda((args) => (() => {
           })));
       })(), formals$3);
       const repoXmlSpec = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         packages: nix.thunk(() => nix.selOr(repoXmls, () => [], "packages")),
         images: nix.thunk(() => nix.selOr(repoXmls, () => [], "images")),
         addons: nix.thunk(() => nix.selOr(repoXmls, () => [], "addons")),
@@ -154,13 +114,13 @@ export default nix.lambda((args) => (() => {
     const extraLicenses = nix.argOr($_1, "extraLicenses", () => []);
     const platformVersions$ = nix.thunk(() => nix.app(parseVersions, repo, "platforms", platformVersions));
     const os = nix.thunk(() => nix.selOr({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       "x86_64-linux": "linux",
       "aarch64-linux": "linux",
       "aarch64-darwin": "macosx",
     }, () => "all", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
     const arch = nix.thunk(() => nix.selOr({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "x86_64-linux": "x64",
       "aarch64-linux": "aarch64",
       "aarch64-darwin": "aarch64",
@@ -173,20 +133,20 @@ export default nix.lambda((args) => (() => {
           })(), value));
         const packageInfo = nix.thunk(() => nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => nix.app(nix.sel(lib, "sublist"), 0n, nix.thunk(() => nix.sub(nix.builtins.length(path), 1n)), path)), null, attrSet));
         return nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.gt(nix.builtins.length(validArchives), 0n)), nix.thunk(() => nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.builtins.map((archive) => nix.app(nix.sel(nix.app(fetchurl, nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   pname: nix.thunk(() => nix.sel(packageInfo, "name")),
                   version: nix.thunk(() => nix.sel(packageInfo, "revision")),
                   url: nix.thunk(() => nix.attr(archive, "url")),
                   sha1: nix.thunk(() => nix.attr(archive, "sha1")),
                   meta: meta,
-                  passthru: nix.thunk(() => ({ [nix.POS]: pos$5, info: packageInfo })),
+                  passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], info: packageInfo })),
                 }))), "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   name: nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.sel(finalAttrs, "urls")))))),
                 })), validArchives)))));
       })() : nix.force(value)), attrSet);
     const allArchives = nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       packages: nix.thunk(() => nix.app(fetchArchives, nix.thunk(() => nix.sel(repo, "packages")))),
       "system-images": nix.thunk(() => nix.app(fetchArchives, nix.thunk(() => nix.sel(repo, "images")))),
       addons: nix.thunk(() => nix.app(fetchArchives, nix.thunk(() => nix.sel(repo, "addons")))),
@@ -283,7 +243,7 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (plugin) => nix.str`ln -s ${plugin}/
     })(), formals$9);
     return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
         const deployAndroidPackages = nix.thunk(() => nix.app(callPackage, nix.path(here, "./deploy-androidpackages.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             stdenv: stdenv,
             lib: lib,
             mkLicenses: mkLicenses,
@@ -300,7 +260,7 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (plugin) => nix.str`ln -s ${plugin}/
           const meta_1 = nix.argOr($_2, "meta", () => ({}));
           const extraParams = nix.thunk(() => nix.builtins.removeAttrs(args_3, nix.thunk(() => ["package", "os", "arch", "buildInputs", "patchInstructions"])));
           return nix.app(deployAndroidPackages, nix.thunk(() => nix.update({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               buildInputs: buildInputs,
               packages: nix.thunk(() => [package$]),
               patchesInstructions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(package$, "name")}`, patchInstructions]])),
@@ -308,7 +268,7 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (plugin) => nix.str`ln -s ${plugin}/
         })(), formals$10);
         const all = allPackages;
         const platform_tools = nix.thunk(() => nix.app(callPackage, nix.path(here, "./platform-tools.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             deployAndroidPackage: deployAndroidPackage,
             os: os,
             arch: arch,
@@ -316,15 +276,15 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (plugin) => nix.str`ln -s ${plugin}/
             package: nix.thunk(() => nix.app(checkVersion, nix.thunk(() => nix.sel(allArchives, "packages")), "platform-tools", nix.thunk(() => nix.app(parseVersion, repo, "platform-tools", platformToolsVersion)))),
           }))));
         const tools = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tools.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             deployAndroidPackage: deployAndroidPackage,
             os: os,
             arch: arch,
             meta: meta,
             package: nix.thunk(() => nix.app(checkVersion, nix.thunk(() => nix.sel(allArchives, "packages")), "tools", nix.thunk(() => nix.app(parseVersion, repo, "tools", toolsVersion)))),
-            postInstall: nix.thunk(() => nix.str`${nix.app(linkPlugin, nix.thunk(() => ({ [nix.POS]: pos$12, name: "platform-tools", plugin: platform_tools })))}
+            postInstall: nix.thunk(() => nix.str`${nix.app(linkPlugin, nix.thunk(() => ({ [nix.POS]: $pos[11], name: "platform-tools", plugin: platform_tools })))}
 ${nix.app(linkPlugin, nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 name: "emulator",
                 plugin: emulator,
                 check: includeEmulator,
@@ -332,14 +292,14 @@ ${nix.app(linkPlugin, nix.thunk(() => ({
 `),
           }))));
         const build_tools = nix.thunk(() => nix.builtins.map((version) => nix.app(callPackage, nix.path(here, "./build-tools.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               deployAndroidPackage: deployAndroidPackage,
               os: os,
               arch: arch,
               meta: meta,
               package: nix.thunk(() => nix.app(checkVersion, nix.thunk(() => nix.sel(allArchives, "packages")), "build-tools", version)),
               postInstall: nix.thunk(() => nix.str`${nix.app(linkPlugin, nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   name: "tools",
                   plugin: tools,
                   check: nix.thunk(() => !nix.eq(toolsVersion, null)),
@@ -347,18 +307,18 @@ ${nix.app(linkPlugin, nix.thunk(() => ({
 `),
             }))), nix.thunk(() => nix.app(parseVersions, repo, "build-tools", buildToolsVersions))));
         const emulator = nix.thunk(() => nix.app(callPackage, nix.path(here, "./emulator.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             deployAndroidPackage: deployAndroidPackage,
             os: os,
             arch: arch,
             meta: meta,
             package: nix.thunk(() => nix.app(checkVersion, nix.thunk(() => nix.sel(allArchives, "packages")), "emulator", nix.thunk(() => nix.app(parseVersion, repo, "emulator", emulatorVersion)))),
-            postInstall: nix.thunk(() => nix.str`${nix.app(linkSystemImages, nix.thunk(() => ({ [nix.POS]: pos$17, images: system_images, check: includeSystemImages })))}
+            postInstall: nix.thunk(() => nix.str`${nix.app(linkSystemImages, nix.thunk(() => ({ [nix.POS]: $pos[16], images: system_images, check: includeSystemImages })))}
 `),
           }))));
         const platformVersions_1 = platformVersions$;
         const platforms = nix.thunk(() => nix.builtins.map((version) => nix.app(deployAndroidPackage, nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               package: nix.thunk(() => nix.app(checkVersion, nix.thunk(() => nix.sel(allArchives, "packages")), "platforms", version)),
             }))), platformVersions$));
         const sources = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (source) => !nix.eq(source, null), nix.thunk(() => nix.builtins.map((version) => (() => {
@@ -366,23 +326,23 @@ ${nix.app(linkPlugin, nix.thunk(() => ({
                 const version$ = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.app(checkVersion, nix.thunk(() => nix.sel(allArchives, "packages")), "sources", version))));
                 return (nix.asBool(nix.sel(version$, "success")) ? nix.sel(version$, "value") : null);
               })());
-              return (nix.asBool(nix.eq(package$, null)) ? null : nix.app(deployAndroidPackage, nix.thunk(() => ({ [nix.POS]: pos$20, package: package$ }))));
+              return (nix.asBool(nix.eq(package$, null)) ? null : nix.app(deployAndroidPackage, nix.thunk(() => ({ [nix.POS]: $pos[19], package: package$ }))));
             })(), platformVersions$))));
         const system_images = nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.map((apiVersion) => nix.builtins.map((type) => (() => {
                 const availablePackages = nix.thunk(() => nix.builtins.map((abiVersion) => nix.sel(allArchives, "system-images", nix.key(nix.builtins.toString(apiVersion)), nix.key(nix.force(type)), nix.key(nix.force(abiVersion))), nix.thunk(() => nix.builtins.filter((abiVersion) => nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => [nix.thunk(() => nix.builtins.toString(apiVersion)), type, abiVersion]), nix.thunk(() => nix.sel(allArchives, "system-images"))), abiVersions))));
                 const instructions = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((package$) => ({
-                      [nix.POS]: pos$21,
+                      [nix.POS]: $pos[20],
                       name: nix.thunk(() => nix.sel(package$, "name")),
                       value: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "google_apis", type)), "# Patch 'google_apis' system images so they're recognized by the sdk.\n# Without this, `android list targets` shows 'Tag/ABIs : no ABIs' instead\n# of 'Tag/ABIs : google_apis*/*' and the emulator fails with an ABI-related error.\nsed -i '/^Addon.Vendor/d' source.properties\n")),
                     }), availablePackages))));
                 return nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(availablePackages, [])), nix.thunk(() => nix.app(deployAndroidPackages, nix.thunk(() => ({
-                      [nix.POS]: pos$22,
+                      [nix.POS]: $pos[21],
                       packages: availablePackages,
                       patchesInstructions: instructions,
                     })))));
               })(), systemImageTypes), platformVersions$))));
         const cmake = nix.thunk(() => nix.builtins.map((version) => nix.app(callPackage, nix.path(here, "./cmake.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               deployAndroidPackage: deployAndroidPackage,
               os: os,
               arch: arch,
@@ -391,7 +351,7 @@ ${nix.app(linkPlugin, nix.thunk(() => ({
             }))), nix.thunk(() => nix.app(parseVersions, repo, "cmake", cmakeVersions))));
         const ndk_bundles = nix.thunk(() => (() => {
           const makeNdkBundle = (package$) => nix.app(callPackage, nix.path(here, "./ndk-bundle"), nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               deployAndroidPackage: deployAndroidPackage,
               os: os,
               arch: arch,
@@ -406,16 +366,16 @@ ${nix.app(linkPlugin, nix.thunk(() => ({
         })());
         const ndk_bundle = nix.thunk(() => (nix.asBool(nix.eq(ndk_bundles, [])) ? null : nix.app(nix.sel(lib, "head"), ndk_bundles)));
         const google_apis = nix.thunk(() => nix.builtins.map((version) => nix.app(deployAndroidPackage, nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               package: nix.thunk(() => nix.sel(nix.app(checkVersion, allArchives, "addons", version), "google_apis")),
             }))), nix.thunk(() => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.app(hasVersion, allArchives, "addons")), platformVersions$))));
         const google_tv_addons = nix.thunk(() => nix.builtins.map((version) => nix.app(deployAndroidPackage, nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               package: nix.thunk(() => nix.sel(nix.app(checkVersion, allArchives, "addons", version), "google_tv_addon")),
             }))), nix.thunk(() => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.app(hasVersion, allArchives, "addons")), platformVersions$))));
         const cmdline_tools_package = nix.thunk(() => nix.app(checkVersion, nix.thunk(() => nix.sel(allArchives, "packages")), "cmdline-tools", nix.thunk(() => nix.app(parseVersion, repo, "cmdline-tools", cmdLineToolsVersion))));
         const androidsdk = nix.thunk(() => nix.app(callPackage, nix.path(here, "./cmdline-tools.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             deployAndroidPackage: deployAndroidPackage,
             os: os,
             arch: arch,
@@ -432,40 +392,50 @@ b)
   by an environment variable for a single invocation of the nix tools.
     $ export NIXPKGS_ACCEPT_ANDROID_SDK_LICENSE=1
 `)) : nix.str`# Symlink all requested plugins
-${nix.app(linkPlugin, nix.thunk(() => ({ [nix.POS]: pos$27, name: "platform-tools", plugin: platform_tools })))}
+${nix.app(linkPlugin, nix.thunk(() => ({ [nix.POS]: $pos[26], name: "platform-tools", plugin: platform_tools })))}
 ${nix.app(linkPlugin, nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 name: "tools",
                 plugin: tools,
                 check: nix.thunk(() => !nix.eq(toolsVersion, null)),
               })))}
-${nix.app(linkPlugins, nix.thunk(() => ({ [nix.POS]: pos$29, name: "build-tools", plugins: build_tools })))}
+${nix.app(linkPlugins, nix.thunk(() => ({ [nix.POS]: $pos[28], name: "build-tools", plugins: build_tools })))}
 ${nix.app(linkPlugin, nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 name: "emulator",
                 plugin: emulator,
                 check: includeEmulator,
               })))}
-${nix.app(linkPlugins, nix.thunk(() => ({ [nix.POS]: pos$31, name: "platforms", plugins: platforms })))}
-${nix.app(linkPlatformPlugins, nix.thunk(() => ({ [nix.POS]: pos$32, name: "sources", plugins: sources, check: includeSources })))}
-${nix.app(linkPlugins, nix.thunk(() => ({ [nix.POS]: pos$33, name: "cmake", plugins: cmake, check: includeCmake })))}
+${nix.app(linkPlugins, nix.thunk(() => ({ [nix.POS]: $pos[30], name: "platforms", plugins: platforms })))}
+${nix.app(linkPlatformPlugins, nix.thunk(() => ({
+                [nix.POS]: $pos[31],
+                name: "sources",
+                plugins: sources,
+                check: includeSources,
+              })))}
+${nix.app(linkPlugins, nix.thunk(() => ({ [nix.POS]: $pos[32], name: "cmake", plugins: cmake, check: includeCmake })))}
 ${nix.app(linkNdkPlugins, nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 name: "ndk-bundle",
                 rootName: "ndk",
                 plugins: ndk_bundles,
                 check: includeNDK,
               })))}
-${nix.app(linkNdkPlugin, nix.thunk(() => ({ [nix.POS]: pos$35, name: "ndk-bundle", plugin: ndk_bundle, check: includeNDK })))}
-${nix.app(linkSystemImages, nix.thunk(() => ({ [nix.POS]: pos$36, images: system_images, check: includeSystemImages })))}
+${nix.app(linkNdkPlugin, nix.thunk(() => ({
+                [nix.POS]: $pos[34],
+                name: "ndk-bundle",
+                plugin: ndk_bundle,
+                check: includeNDK,
+              })))}
+${nix.app(linkSystemImages, nix.thunk(() => ({ [nix.POS]: $pos[35], images: system_images, check: includeSystemImages })))}
 ${nix.app(linkPlatformPlugins, nix.thunk(() => ({
-                [nix.POS]: pos$37,
+                [nix.POS]: $pos[36],
                 name: "add-ons",
                 plugins: google_apis,
                 check: useGoogleAPIs,
               })))}
 ${nix.app(linkPlatformPlugins, nix.thunk(() => ({
-                [nix.POS]: pos$38,
+                [nix.POS]: $pos[37],
                 name: "add-ons",
                 plugins: google_tv_addons,
                 check: useGoogleTVAddOns,
@@ -476,7 +446,7 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (identifier) => (() => {
                 const package$ = nix.thunk(() => nix.sel(allArchives, "extras", nix.key(nix.force(identifier))));
                 const path = nix.thunk(() => nix.sel(package$, "path"));
                 const extras = nix.thunk(() => nix.app(callPackage, nix.path(here, "./extras.nix"), nix.thunk(() => ({
-                    [nix.POS]: pos$39,
+                    [nix.POS]: $pos[38],
                     deployAndroidPackage: deployAndroidPackage,
                     package: package$,
                     os: os,
@@ -516,7 +486,7 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (licenseName) => (() => {
 `)),
           }))));
         return {
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           deployAndroidPackages,
           deployAndroidPackage,
           all,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5], ["sourceProvenance", 23, 5], ["platforms", 24, 36]], [["pname", 9, 3], ["data", 10, 3], ["repo", 12, 3], ["releasePrefix", 13, 3], ["isCrossArch", 14, 3], ["buildInputs", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, makeGaugePlugin: false, "gauge-unwrapped": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5], ["sourceProvenance", 23, 5], ["platforms", 24, 36]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["data", 10, 3], ["repo", 12, 3], ["releasePrefix", 13, 3], ["isCrossArch", 14, 3], ["buildInputs", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const gauge_unwrapped = nix.arg($, "gauge-unwrapped");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(makeGaugePlugin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "dotnet",
       data: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./data.json"))),
       repo: "getgauge/gauge-dotnet",
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(gauge_unwrapped, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Gauge plugin that lets you write tests in C#",
         homepage: "https://github.com/getgauge/gauge-dotnet/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

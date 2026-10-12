@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 25, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, git: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 25, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gato",
       version: "1.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "praetorian-inc",
           repo: "gato",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["gato"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GitHub Self-Hosted Runner Enumeration and Attack Tool",
         homepage: "https://github.com/praetorian-inc/gato",
         changelog: nix.thunk(() => nix.str`https://github.com/praetorian-inc/gato/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-linux", 30, 7], ["x86_64-linux", 31, 7]], [["url", 38, 5], ["hash", 39, 5]], [["url", 43, 5], ["hash", 44, 5]], [["aarch64-linux", 48, 5], ["x86_64-linux", 49, 5], ["aarch64-darwin", 50, 5]], [["url", 60, 37], ["hash", 60, 41]], [["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5]], [["pname", 57, 3], ["version", 58, 11], ["src", 60, 3], ["nativeBuildInputs", 62, 3], ["dontStrip", 64, 3], ["buildInputs", 66, 3], ["appendRunpaths", 86, 3], ["autoPatchelfIgnoreMissingDeps", 94, 3], ["installPhase", 98, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, "alsa-lib": false, "gcc-unwrapped": false, libx11: false, libcxx: false, libdrm: false, libgbm: false, libglvnd: false, libpulseaudio: false, libxcb: false, lz4: false, wayland: false, xz: false, zlib: false, libva: false, libvdpau: false, addDriverRunpath: false, freetype: false, harfbuzz: false, fontconfig: false, fribidi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-linux", 30, 7], ["x86_64-linux", 31, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 43, 5], ["hash", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["aarch64-linux", 48, 5], ["x86_64-linux", 49, 5], ["aarch64-darwin", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 60, 37], ["hash", 60, 41]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 57, 3], ["version", 58, 11], ["src", 60, 3], ["nativeBuildInputs", 62, 3], ["dontStrip", 64, 3], ["buildInputs", 66, 3], ["appendRunpaths", 86, 3], ["autoPatchelfIgnoreMissingDeps", 94, 3], ["installPhase", 98, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,31 +31,31 @@ export default nix.lambda((args) => (() => {
   const harfbuzz = nix.arg($, "harfbuzz");
   const fontconfig = nix.arg($, "fontconfig");
   const fribidi = nix.arg($, "fribidi");
-  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "aarch64-linux": "arm64", "x86_64-linux": "amd64" }, () => "", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], "aarch64-linux": "arm64", "x86_64-linux": "amd64" }, () => "", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const version = "0.37.0";
   const linux = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     url: nix.thunk(() => nix.str`https://github.com/wang-bin/mdk-sdk/releases/download/v${version}/mdk-sdk-linux.tar.xz`),
     hash: "sha256-bBneSsNHfMH2MoDddT1cOtnyWjRNYHo0UTqnjrLpk4Q=",
   }));
   const darwin = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     url: nix.thunk(() => nix.str`https://github.com/wang-bin/mdk-sdk/releases/download/v${version}/mdk-sdk-apple.tar.xz`),
     hash: "sha256-KGKzwy/unzkCUoh/dGjk0BVEUgDdMx5jy1Qt5C357DQ=",
   }));
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "aarch64-linux": linux,
     "x86_64-linux": linux,
     "aarch64-darwin": darwin,
   }));
   const source = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "mdk-sdk",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.attr(source, "url")),
           hash: nix.thunk(() => nix.attr(source, "hash")),
         })))),
@@ -99,7 +93,7 @@ ln -s . $out/lib/${arch}
 runHook postInstall
 `)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Multimedia development kit",
         homepage: "https://github.com/wang-bin/mdk-sdk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

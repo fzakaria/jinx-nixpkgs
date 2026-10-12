@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 5], ["version", 18, 13], ["hash", 19, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["pythonImportsCheck", 29, 3], ["checkPhase", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, gevent: false, preggy: false, python: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 13], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["pythonImportsCheck", 29, 3], ["checkPhase", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pyVows",
           version: version,
           hash: "sha256-2+4umWLNkbFlCpfFwX0FA2N0zOZhst/YM4ozBfXoaMI=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} pyvows/cli.py tests/
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "BDD test engine based on Vows.js",
         homepage: "https://github.com/heynemann/pyvows",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

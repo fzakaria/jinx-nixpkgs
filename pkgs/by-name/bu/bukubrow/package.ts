@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 10, 5], ["name", 11, 5], ["path", 12, 5], ["type", 13, 5]], [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["allowed_extensions", 35, 7]], [["allowed_origins", 41, 7]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["buildInputs", 30, 3], ["firefoxManifest", 32, 3], ["chromeManifest", 38, 3], ["postBuild", 44, 3], ["postInstall", 52, 3], ["__structuredAttrs", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 10, 5], ["name", 11, 5], ["path", 12, 5], ["type", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["allowed_extensions", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["allowed_origins", 41, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["buildInputs", 30, 3], ["firefoxManifest", 32, 3], ["chromeManifest", 38, 3], ["postBuild", 44, 3], ["postInstall", 52, 3], ["__structuredAttrs", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const sqlite = nix.arg($, "sqlite");
   const manifest = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Bukubrow extension host application",
     name: "com.samhh.bukubrow",
     path: "@out@/bin/bukubrow",
     type: "stdio",
   }));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "bukubrow-host",
       version: "5.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "SamHH",
           repo: "bukubrow-host",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,18 +32,18 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-mCPJE9WW14NtahbMnDcE+0xXl5w25dzerPy3wv78l20=",
       buildInputs: nix.thunk(() => [sqlite]),
       firefoxManifest: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.update(manifest, {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           allowed_extensions: nix.thunk(() => ["bukubrow@samhh.com"]),
         })))),
       chromeManifest: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.update(manifest, {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           allowed_origins: nix.thunk(() => ["chrome-extension://ghniladkapjacfajiooekgkfopkjblpn/"]),
         })))),
       postBuild: "printf \"%s\" \"$firefoxManifest\" > firefox.json\nsubstituteInPlace firefox.json \\\n  --replace-fail \"@out@\" \"$out\"\nprintf \"%s\" \"$chromeManifest\" > chrome.json\nsubstituteInPlace chrome.json \\\n  --replace-fail \"@out@\" \"$out\"\n",
       postInstall: "install -Dm0644 firefox.json $out/lib/mozilla/native-messaging-hosts/com.samhh.bukubrow.json\ninstall -Dm0644 chrome.json $out/etc/chromium/native-messaging-hosts/com.samhh.bukubrow.json\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "WebExtension for Buku, a command-line bookmark manager",
         homepage: "https://github.com/SamHH/bukubrow-host",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

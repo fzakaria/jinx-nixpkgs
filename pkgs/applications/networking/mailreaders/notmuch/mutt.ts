@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mutt.nix", [[["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["dontStrip", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["src", 34, 3], ["dontConfigure", 36, 3], ["dontBuild", 37, 3], ["installPhase", 39, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, perl: false, perlPackages: false, makeWrapper: false, coreutils: false, notmuch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mutt.nix", [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$2 = nix.positions(here + "/mutt.nix", [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["dontStrip", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["src", 34, 3], ["dontConfigure", 36, 3], ["dontBuild", 37, 3], ["installPhase", 39, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const notmuch = nix.arg($, "notmuch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "notmuch-mutt",
       version: nix.thunk(() => nix.sel(notmuch, "version")),
       outputs: nix.thunk(() => ["out"]),
@@ -46,7 +45,7 @@ wrapProgram $out/bin/notmuch-mutt \\
   --prefix PERL5LIB : $PERL5LIB
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Mutt support for notmuch",
         mainProgram: "notmuch-mutt",
         homepage: "https://notmuchmail.org/",

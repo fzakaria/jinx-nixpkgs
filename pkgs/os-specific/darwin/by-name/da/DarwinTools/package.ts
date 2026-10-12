@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["maintainers", 37, 5], ["platforms", 38, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 16, 3], ["configurePhase", 20, 3], ["makeFlags", 26, 3], ["postInstall", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 16, 3], ["configurePhase", 20, 3], ["makeFlags", 26, 3], ["postInstall", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "DarwinTools";
       const version = "1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20180408044816/https://opensource.apple.com/tarballs/DarwinTools/DarwinTools-${version}.tar.gz`),
           hash: "sha256-Fzo5QhLd3kZHVFKhJe7xzV6bmRz5nAsG2mNLkAqVBEI=",
         }))));
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "mv $out/usr/* $out\nrmdir $out/usr\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

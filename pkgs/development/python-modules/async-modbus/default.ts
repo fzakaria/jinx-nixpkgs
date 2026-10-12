@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["url", 29, 7], ["hash", 30, 7]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, connio: false, fetchFromGitHub: false, fetchpatch: false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, setuptools: false, umodbus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tiagocoutinho",
           repo: "async_modbus",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/tiagocoutinho/async_modbus/commit/d81d8ffe94870f0f505e0c8a0694768c98053ecc.patch",
             hash: "sha256-mG3XO2nAFYitatkswU7er29BJc/A0IL1rL2Zu4daZ7k=",
           })))),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytest_cov_stub, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["async_modbus"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for Modbus communication",
         homepage: "https://github.com/tiagocoutinho/async_modbus",
         changelog: nix.thunk(() => nix.str`https://github.com/tiagocoutinho/async_modbus/releases/tag/${nix.sel(src, "tag")}`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

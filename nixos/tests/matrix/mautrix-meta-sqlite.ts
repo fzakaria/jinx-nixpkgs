@@ -2,42 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mautrix-meta-sqlite.nix", [[["maintainers", 11, 8]], [["name", 20, 22]], [["compress", 36, 21], ["names", 37, 21]], [["compress", 40, 21], ["names", 41, 21]], [["bind_addresses", 30, 17], ["port", 33, 17], ["resources", 34, 17], ["tls", 44, 17], ["type", 45, 17]], [["database", 20, 13], ["enable_registration", 22, 13], ["enable_registration_without_verification", 25, 13], ["listeners", 27, 13]], [["enable", 18, 11], ["settings", 19, 11]], [["address", 56, 15], ["domain", 57, 15]], [["username", 64, 17], ["avatar", 65, 17]], [["port", 61, 15], ["bot", 63, 15]], [["allow", 70, 15], ["default", 71, 15], ["require", 72, 15]], [["permissions", 75, 20]], [["homeserver", 55, 13], ["appservice", 60, 13], ["encryption", 69, 13], ["bridge", 75, 13]], [["enable", 52, 11], ["settings", 54, 11]], [["address", 84, 15], ["domain", 85, 15]], [["username", 92, 17], ["avatar", 93, 17]], [["port", 89, 15], ["bot", 91, 15]], [["allow", 98, 15], ["default", 99, 15], ["require", 100, 15]], [["permissions", 103, 20]], [["homeserver", 83, 13], ["appservice", 88, 13], ["encryption", 97, 13], ["bridge", 103, 13]], [["enable", 80, 11], ["settings", 82, 11]], [["facebook", 51, 41], ["instagram", 79, 41]], [["instances", 51, 31]], [["matrix-synapse", 17, 18], ["mautrix-meta", 51, 18]], [["allowedTCPPorts", 107, 29]], [["firewall", 107, 20]], [["services", 17, 9], ["networking", 107, 9]], [["libraries", 116, 15], ["flakeIgnore", 117, 15]], [["libraries", 144, 15], ["flakeIgnore", 145, 15]], [["systemPackages", 113, 21]], [["environment", 113, 9]], [["server", 14, 5], ["client", 110, 5]], [["name", 10, 3], ["meta", 11, 3], ["nodes", 13, 3], ["testScript", 199, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["maintainers", 11, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["name", 20, 22]]);
-const pos$3 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["compress", 36, 21], ["names", 37, 21]]);
-const pos$4 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["compress", 40, 21], ["names", 41, 21]]);
-const pos$5 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["bind_addresses", 30, 17], ["port", 33, 17], ["resources", 34, 17], ["tls", 44, 17], ["type", 45, 17]]);
-const pos$6 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["database", 20, 13], ["enable_registration", 22, 13], ["enable_registration_without_verification", 25, 13], ["listeners", 27, 13]]);
-const pos$7 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["enable", 18, 11], ["settings", 19, 11]]);
-const pos$8 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["address", 56, 15], ["domain", 57, 15]]);
-const pos$9 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["username", 64, 17], ["avatar", 65, 17]]);
-const pos$10 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["port", 61, 15], ["bot", 63, 15]]);
-const pos$11 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["allow", 70, 15], ["default", 71, 15], ["require", 72, 15]]);
-const pos$12 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["permissions", 75, 20]]);
-const pos$13 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["homeserver", 55, 13], ["appservice", 60, 13], ["encryption", 69, 13], ["bridge", 75, 13]]);
-const pos$14 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["enable", 52, 11], ["settings", 54, 11]]);
-const pos$15 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["address", 84, 15], ["domain", 85, 15]]);
-const pos$16 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["username", 92, 17], ["avatar", 93, 17]]);
-const pos$17 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["port", 89, 15], ["bot", 91, 15]]);
-const pos$18 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["allow", 98, 15], ["default", 99, 15], ["require", 100, 15]]);
-const pos$19 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["permissions", 103, 20]]);
-const pos$20 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["homeserver", 83, 13], ["appservice", 88, 13], ["encryption", 97, 13], ["bridge", 103, 13]]);
-const pos$21 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["enable", 80, 11], ["settings", 82, 11]]);
-const pos$22 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["facebook", 51, 41], ["instagram", 79, 41]]);
-const pos$23 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["instances", 51, 31]]);
-const pos$24 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["matrix-synapse", 17, 18], ["mautrix-meta", 51, 18]]);
-const pos$25 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["allowedTCPPorts", 107, 29]]);
-const pos$26 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["firewall", 107, 20]]);
-const pos$27 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["services", 17, 9], ["networking", 107, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$28 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["libraries", 116, 15], ["flakeIgnore", 117, 15]]);
-const pos$29 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["libraries", 144, 15], ["flakeIgnore", 145, 15]]);
-const pos$30 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["systemPackages", 113, 21]]);
-const pos$31 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["environment", 113, 9]]);
-const pos$32 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["server", 14, 5], ["client", 110, 5]]);
-const pos$33 = nix.positions(here + "/mautrix-meta-sqlite.nix", [["name", 10, 3], ["meta", 11, 3], ["nodes", 13, 3], ["testScript", 199, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,38 +16,38 @@ export default nix.lambda((args) => (() => {
   const instagramBotUsername = "instagrambot";
   const metaBotUsername = "metabot";
   return {
-    [nix.POS]: pos$33,
+    [nix.POS]: $pos[32],
     name: "mautrix-meta-sqlite",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(pkgs, "mautrix-meta", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             "matrix-synapse": nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                database: nix.thunk(() => ({ [nix.POS]: pos$2, name: "sqlite3" })),
+                [nix.POS]: $pos[5],
+                database: nix.thunk(() => ({ [nix.POS]: $pos[1], name: "sqlite3" })),
                 enable_registration: true,
                 enable_registration_without_verification: true,
                 listeners: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     bind_addresses: nix.thunk(() => ["0.0.0.0"]),
                     port: 8008n,
                     resources: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$3, compress: true, names: nix.thunk(() => ["client"]) })),
-                      nix.thunk(() => ({ [nix.POS]: pos$4, compress: false, names: nix.thunk(() => ["federation"]) })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[2], compress: true, names: nix.thunk(() => ["client"]) })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[3], compress: false, names: nix.thunk(() => ["federation"]) })),
                     ]),
                     tls: false,
                     type: "http",
@@ -88,41 +56,41 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "mautrix-meta": nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               instances: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 facebook: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   enable: true,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
-                    homeserver: nix.thunk(() => ({ [nix.POS]: pos$8, address: homeserverUrl, domain: homeserverDomain })),
+                    [nix.POS]: $pos[12],
+                    homeserver: nix.thunk(() => ({ [nix.POS]: $pos[7], address: homeserverUrl, domain: homeserverDomain })),
                     appservice: nix.thunk(() => ({
-                      [nix.POS]: pos$10,
+                      [nix.POS]: $pos[9],
                       port: 8009n,
-                      bot: nix.thunk(() => ({ [nix.POS]: pos$9, username: metaBotUsername, avatar: "" })),
+                      bot: nix.thunk(() => ({ [nix.POS]: $pos[8], username: metaBotUsername, avatar: "" })),
                     })),
-                    encryption: nix.thunk(() => ({ [nix.POS]: pos$11, allow: false, default: false, require: false })),
+                    encryption: nix.thunk(() => ({ [nix.POS]: $pos[10], allow: false, default: false, require: false })),
                     bridge: nix.thunk(() => ({
-                      [nix.POS]: pos$12,
+                      [nix.POS]: $pos[11],
                       permissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`@${username}:server`, "user"]])),
                     })),
                   })),
                 })),
                 instagram: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   enable: true,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$20,
-                    homeserver: nix.thunk(() => ({ [nix.POS]: pos$15, address: homeserverUrl, domain: homeserverDomain })),
+                    [nix.POS]: $pos[19],
+                    homeserver: nix.thunk(() => ({ [nix.POS]: $pos[14], address: homeserverUrl, domain: homeserverDomain })),
                     appservice: nix.thunk(() => ({
-                      [nix.POS]: pos$17,
+                      [nix.POS]: $pos[16],
                       port: 8010n,
-                      bot: nix.thunk(() => ({ [nix.POS]: pos$16, username: instagramBotUsername, avatar: "" })),
+                      bot: nix.thunk(() => ({ [nix.POS]: $pos[15], username: instagramBotUsername, avatar: "" })),
                     })),
-                    encryption: nix.thunk(() => ({ [nix.POS]: pos$18, allow: false, default: false, require: false })),
+                    encryption: nix.thunk(() => ({ [nix.POS]: $pos[17], allow: false, default: false, require: false })),
                     bridge: nix.thunk(() => ({
-                      [nix.POS]: pos$19,
+                      [nix.POS]: $pos[18],
                       permissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`@${username}:server`, "user"]])),
                     })),
                   })),
@@ -131,8 +99,8 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$26,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$25, allowedTCPPorts: nix.thunk(() => [8008n]) })),
+            [nix.POS]: $pos[25],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[24], allowedTCPPorts: nix.thunk(() => [8008n]) })),
           })),
         };
       })(), formals$2),
@@ -140,17 +108,17 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "register_user", nix.thunk(() => ({
-                  [nix.POS]: pos$28,
+                  [nix.POS]: $pos[27],
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "matrix-nio"))]),
                   flakeIgnore: nix.thunk(() => ["E501"]),
                 })), "import sys\nimport asyncio\n\nfrom nio import AsyncClient\n\n\nasync def run(username: str, homeserver: str):\n    matrix = AsyncClient(homeserver)\n\n    response = await matrix.register(username, \"foobar\")\n    print(\"Matrix register response: \", response)\n\n\nif __name__ == \"__main__\":\n    asyncio.run(run(sys.argv[1], sys.argv[2]))\n")),
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "do_test", nix.thunk(() => ({
-                  [nix.POS]: pos$29,
+                  [nix.POS]: $pos[28],
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "matrix-nio"))]),
                   flakeIgnore: nix.thunk(() => ["E501"]),
                 })), nix.thunk(() => nix.str`import sys

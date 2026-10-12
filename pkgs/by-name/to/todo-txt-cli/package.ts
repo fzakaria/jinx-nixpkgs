@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["mainProgram", 31, 5], ["platforms", 32, 5]], [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["installPhase", 18, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["mainProgram", 31, 5], ["platforms", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["installPhase", 18, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "2.13.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "todo.txt-cli",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ginatrapani/todo.txt-cli/releases/download/v${version}/todo.txt_cli-${version}.tar.gz`),
           sha256: "sha256-07klQ0ApqsISITwQP7ZXOk+WDHTdRno++sm9mv6J0V8=",
         })))),
       installPhase: "install -vd $out/bin\ninstall -vm 755 todo.sh $out/bin\ninstall -vd $out/share/bash-completion/completions\ninstall -vm 644 todo_completion $out/share/bash-completion/completions/todo\ninstall -vd $out/etc/todo\ninstall -vm 644 todo.cfg $out/etc/todo/config\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple plaintext todo list manager",
         homepage: "http://todotxt.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

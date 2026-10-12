@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]], [["name", 70, 7], ["url", 71, 7], ["hash", 72, 7]], [["NIX_LDFLAGS", 180, 7]], [["pkg-config", 211, 11]], [["tests", 211, 5], ["updateScript", 212, 5]], [["description", 216, 5], ["homepage", 217, 5], ["changelog", 218, 5], ["license", 221, 5], ["mainProgram", 222, 5], ["teams", 223, 5], ["platforms", 224, 5], ["pkgConfigModules", 225, 5]], [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["outputs", 62, 3], ["patches", 67, 3], ["postPatch", 78, 3], ["strictDeps", 111, 3], ["nativeBuildInputs", 113, 3], ["buildInputs", 123, 3], ["propagatedBuildInputs", 141, 3], ["nativeCheckInputs", 157, 3], ["checkInputs", 164, 3], ["dontWrapQtApps", 170, 3], ["cmakeFlags", 172, 3], ["env", 180, 3], ["doCheck", 182, 3], ["enableParallelChecking", 185, 3], ["preCheck", 187, 3], ["postInstall", 201, 3], ["passthru", 210, 3], ["meta", 215, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, fetchpatch: false, gitUpdater: false, testers: false, accountsservice: false, biometryd: false, cmake: false, "cmake-extras": false, dbus: false, deviceinfo: false, geonames: false, gettext: false, glib: false, "gnome-desktop": false, "gsettings-qt": false, gtk3: false, icu75: false, intltool: false, "json-glib": false, libqofono: false, libqtdbustest: false, libqtdbusmock: false, "lomiri-content-hub": false, "lomiri-indicator-datetime": false, "lomiri-indicator-network": false, "lomiri-schemas": false, "lomiri-settings-components": false, "lomiri-ui-extras": false, "lomiri-ui-toolkit": false, "maliit-keyboard": false, mesa: false, "pkg-config": false, polkit: false, python3: false, qmenumodel: false, qtbase: false, qtdeclarative: false, qtmultimedia: false, "trust-store": false, "ubports-click": false, upower: false, validatePkgConfig: false, wrapGAppsHook3: false, wrapQtAppsHook: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 70, 7], ["url", 71, 7], ["hash", 72, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_LDFLAGS", 180, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pkg-config", 211, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 211, 5], ["updateScript", 212, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 216, 5], ["homepage", 217, 5], ["changelog", 218, 5], ["license", 221, 5], ["mainProgram", 222, 5], ["teams", 223, 5], ["platforms", 224, 5], ["pkgConfigModules", 225, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["outputs", 62, 3], ["patches", 67, 3], ["postPatch", 78, 3], ["strictDeps", 111, 3], ["nativeBuildInputs", 113, 3], ["buildInputs", 123, 3], ["propagatedBuildInputs", 141, 3], ["nativeCheckInputs", 157, 3], ["checkInputs", 164, 3], ["dontWrapQtApps", 170, 3], ["cmakeFlags", 172, 3], ["env", 180, 3], ["doCheck", 182, 3], ["enableParallelChecking", 185, 3], ["preCheck", 187, 3], ["postInstall", 201, 3], ["passthru", 210, 3], ["meta", 215, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -61,11 +55,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "lomiri-system-settings-unwrapped",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-system-settings",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -74,7 +68,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-lomiri-system-settings-Avoid-UB-when-VARIANT_ID-is-not-set.patch",
             url: "https://gitlab.com/ubports/development/core/lomiri-system-settings/-/commit/78b462aed589213e7a26064ec1bd27d201bb8f04.patch",
             hash: "sha256-Xb6x/AlL+m8qD29bHeiU20Je2GeHzybcUprPLQuh8fk=",
@@ -135,7 +129,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_TESTS", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")))),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "LOMIRI_KEYBOARD_PLUGIN_PATH", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), maliit_keyboard)}/lib/maliit/keyboard2/languages`))),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "--unresolved-symbols=report-all" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_LDFLAGS: "--unresolved-symbols=report-all" })),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       enableParallelChecking: false,
       preCheck: nix.thunk(() => nix.str`export QT_PLUGIN_PATH=${nix.app(nix.sel(lib, "getBin"), qtbase)}/${nix.sel(qtbase, "qtPluginPrefix")}
@@ -143,15 +137,15 @@ export QML2_IMPORT_PATH=${nix.app(nix.sel(lib, "makeSearchPathOutput"), "bin", n
 `),
       postInstall: "glib-compile-schemas $out/share/glib-2.0/schemas\n\nmkdir -p $out/share/{icons/hicolor/scalable/apps,lomiri-app-launch/splash}\n\nln -s $out/share/lomiri-system-settings/system-settings.svg $out/share/icons/hicolor/scalable/apps/lomiri-system-settings.svg\nln -s $out/share/lomiri-system-settings/system-settings-app-splash.svg $out/share/lomiri-app-launch/splash/lomiri-system-settings.svg\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "System Settings application for Lomiri",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-system-settings",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-system-settings/-/blob/${(nix.asBool(!nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(finalAttrs, "src", "tag"))))) ? nix.sel(finalAttrs, "src", "tag") : nix.sel(finalAttrs, "src", "rev"))}/ChangeLog`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["stripRoot", 24, 5], ["hash", 25, 5]], [["name", 36, 7], ["exec", 37, 7], ["icon", 38, 7], ["desktopName", 39, 7], ["comment", 40, 7], ["categories", 41, 7]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]], [["pname", 20, 11], ["version", 20, 17], ["src", 22, 3], ["nativeBuildInputs", 28, 3], ["desktopItems", 34, 3], ["installPhase", 48, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, electron: false, asar: false, git: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["stripRoot", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 36, 7], ["exec", 37, 7], ["icon", 38, 7], ["desktopName", 39, 7], ["comment", 40, 7], ["categories", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 11], ["version", 20, 17], ["src", 22, 3], ["nativeBuildInputs", 28, 3], ["desktopItems", 34, 3], ["installPhase", 48, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const installPath = nix.thunk(() => nix.str`share/${pname}`);
   const resourcesPath = nix.thunk(() => nix.str`${installPath}/resources`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ExpressLRS/ExpressLRS-Configurator/releases/download/v${version}/${pname}-${version}.zip`),
           stripRoot: false,
           hash: "sha256-KoT9YoeAkYrr9FIS7+Lm1CafTNwvV+jLTYYHziCVvrs=",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems, asar]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: pname,
             exec: pname,
             icon: pname,
@@ -74,7 +71,7 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' "$out/bin/${pname}" \
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross-platform build & configuration tool for ExpressLRS",
         homepage: "https://github.com/ExpressLRS/ExpressLRS-Configurator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

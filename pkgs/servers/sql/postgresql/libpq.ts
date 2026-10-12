@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libpq.nix", [[["owner", 46, 5], ["repo", 47, 5], ["rev", 49, 5], ["hash", 50, 5]], [["disallowedReferences", 60, 5], ["disallowedRequisites", 61, 5]], [["out", 59, 16]], [["CFLAGS", 98, 7], ["NIX_CFLAGS_COMPILE", 109, 7]], [["out", 179, 7]], [["finalPackage", 177, 26], ["outputs", 178, 5]], [["pg_config", 176, 12]], [["homepage", 185, 7], ["license", 186, 7], ["teams", 187, 7], ["platforms", 188, 7], ["description", 190, 5], ["changelog", 191, 5], ["pkgConfigModules", 192, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["__structuredAttrs", 53, 3], ["outputs", 55, 3], ["outputChecks", 59, 3], ["buildInputs", 67, 3], ["nativeBuildInputs", 75, 3], ["enableParallelBuilding", 84, 3], ["separateDebugInfo", 86, 3], ["buildFlags", 88, 3], ["env", 98, 3], ["configureFlags", 111, 3], ["patches", 124, 3], ["postPatch", 128, 3], ["installPhase", 140, 3], ["postInstall", 168, 3], ["doCheck", 174, 3], ["passthru", 176, 3], ["meta", 183, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, openssl: false, tzdata: false, zlib: false, bison: false, flex: false, makeWrapper: false, perl: false, "pkg-config": false, postgresql: false, buildPackages: false, curlSupport: true, curl: false, gssSupport: true, libkrb5: false, nlsSupport: true, gettext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libpq.nix", [["owner", 46, 5], ["repo", 47, 5], ["rev", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/libpq.nix", [["disallowedReferences", 60, 5], ["disallowedRequisites", 61, 5]]);
-const pos$3 = nix.positions(here + "/libpq.nix", [["out", 59, 16]]);
-const pos$4 = nix.positions(here + "/libpq.nix", [["CFLAGS", 98, 7], ["NIX_CFLAGS_COMPILE", 109, 7]]);
-const pos$5 = nix.positions(here + "/libpq.nix", [["out", 179, 7]]);
-const pos$6 = nix.positions(here + "/libpq.nix", [["finalPackage", 177, 26], ["outputs", 178, 5]]);
-const pos$7 = nix.positions(here + "/libpq.nix", [["pg_config", 176, 12]]);
-const pos$8 = nix.positions(here + "/libpq.nix", [["homepage", 185, 7], ["license", 186, 7], ["teams", 187, 7], ["platforms", 188, 7], ["description", 190, 5], ["changelog", 191, 5], ["pkgConfigModules", 192, 5]]);
-const pos$9 = nix.positions(here + "/libpq.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["__structuredAttrs", 53, 3], ["outputs", 55, 3], ["outputChecks", 59, 3], ["buildInputs", 67, 3], ["nativeBuildInputs", 75, 3], ["enableParallelBuilding", 84, 3], ["separateDebugInfo", 86, 3], ["buildFlags", 88, 3], ["env", 98, 3], ["configureFlags", 111, 3], ["patches", 124, 3], ["postPatch", 128, 3], ["installPhase", 140, 3], ["postInstall", 168, 3], ["doCheck", 174, 3], ["passthru", 176, 3], ["meta", 183, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const nlsSupport = nix.argOr($, "nlsSupport", () => false);
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "libpq",
       version: "18.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "postgres",
           repo: "postgres",
           rev: "refs/tags/REL_18_6",
@@ -51,9 +43,9 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       outputChecks: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         out: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           disallowedReferences: nix.thunk(() => ["dev"]),
           disallowedRequisites: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(stdenv, "cc"))], nix.builtins.map(nix.thunk(() => nix.sel(lib, "getDev")), nix.thunk(() => nix.builtins.filter((drv) => nix.has(drv, "dev"), nix.thunk(() => nix.sel(finalAttrs, "buildInputs"))))))),
         })),
@@ -64,7 +56,7 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       buildFlags: nix.thunk(() => ["submake-libpgport", "submake-libpq"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         CFLAGS: nix.thunk(() => nix.add("-fdata-sections -ffunction-sections", (nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? " -flto" : " -fmerge-constants -Wl,--gc-sections"))),
         NIX_CFLAGS_COMPILE: "-UUSE_PRIVATE_ENCODING_FUNCS",
       })),
@@ -84,12 +76,12 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")) ? "touch $out/empty" : nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.selOr(finalAttrs, () => false, "dontDisableStatic"))), "rm -rfv $dev/lib/*.a"))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pg_config: nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./pg_config.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
             outputs: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               out: nix.thunk(() => nix.app(nix.sel(lib, "getOutput"), "out", nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
             })),
           })))),
@@ -97,7 +89,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(postgresql, "meta"));
         return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         teams: nix.thunk(() => nix.attr(from, "teams")),

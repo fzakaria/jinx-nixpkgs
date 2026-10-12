@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["updateScript", 21, 12]], [["homepage", 24, 5], ["description", 25, 5], ["maintainers", 26, 5], ["license", 27, 5], ["mainProgram", 28, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["passthru", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, "nix-update-script": false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 21, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 24, 5], ["description", 25, 5], ["maintainers", 26, 5], ["license", 27, 5], ["mainProgram", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["passthru", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "goda",
       version: "0.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "loov",
           repo: "goda",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-jtri/73UnpI5oyykW2DYiH0vra62+jk8VIHhcWT2oJA=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/loov/goda",
         description: "Go Dependency Analysis toolkit",
         maintainers: nix.thunk(() => (() => {

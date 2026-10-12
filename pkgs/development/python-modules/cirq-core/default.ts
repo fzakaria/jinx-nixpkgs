@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["description", 101, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["maintainers", 105, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["sourceRoot", 44, 3], ["pythonRelaxDeps", 46, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 73, 3], ["disabledTestPaths", 80, 3], ["disabledTests", 87, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, attrs: false, autoray: true, buildPythonPackage: false, duet: false, fetchFromGitHub: false, freezegun: false, matplotlib: false, networkx: false, numpy: false, "opt-einsum": false, pandas: false, ply: false, pylatex: true, pyquil: true, "pytest-asyncio": false, "pytest-benchmark": false, pytestCheckHook: false, quimb: true, requests: false, scipy: false, setuptools: false, sortedcontainers: false, sympy: false, tqdm: false, "typing-extensions": false, withContribRequires: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 101, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["maintainers", 105, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["sourceRoot", 44, 3], ["pythonRelaxDeps", 46, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 73, 3], ["disabledTestPaths", 80, 3], ["disabledTests", 87, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const withContribRequires = nix.argOr($, "withContribRequires", () => false);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cirq-core",
       version: "1.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "quantumlib",
           repo: "cirq",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +68,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withContribRequires)), nix.thunk(() => ["cirq/contrib/", "cirq/_version_test.py"]))),
       disabledTests: nix.thunk(() => nix.concat(["test_parameterized_cphase"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["test_prepare_two_qubit_state_using_sqrt_iswap"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_scalar_division"]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Framework for creating, editing, and invoking Noisy Intermediate Scale Quantum (NISQ) circuits",
         homepage: "https://github.com/quantumlib/cirq",
         changelog: nix.thunk(() => nix.str`https://github.com/quantumlib/Cirq/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

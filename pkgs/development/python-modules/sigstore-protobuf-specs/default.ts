@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 5], ["version", 17, 13], ["hash", 18, 5]], [["skipBulkUpdate", 33, 12]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 29, 3], ["pythonImportsCheck", 31, 3], ["passthru", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, "flit-core": false, fetchPypi: false, buildPythonPackage: false, betterproto: false, pydantic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 13], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 33, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 29, 3], ["pythonImportsCheck", 31, 3], ["passthru", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "sigstore_protobuf_specs",
           version: version,
           hash: "sha256-zvnrMrLGwlHeNuIoWkCq8glIJ+rhifXngE10jMw9W4E=",
@@ -30,9 +27,9 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [betterproto, pydantic]);
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["sigstore_protobuf_specs"]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], skipBulkUpdate: true }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for serializing and deserializing Sigstore messages",
         homepage: "https://github.com/sigstore/protobuf-specs/tree/main/gen/pb-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

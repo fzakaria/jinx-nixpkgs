@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 13], ["hash", 25, 5]], [["url", 34, 7], ["sha256", 35, 7]], [["NIX_CFLAGS_COMPILE", 48, 7]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 69, 5]], [["pname", 17, 3], ["version", 18, 3], ["rev", 19, 3], ["src", 21, 3], ["vendorHash", 28, 3], ["patches", 30, 3], ["doCheck", 39, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 44, 3], ["env", 48, 3], ["preBuild", 49, 3], ["subPackages", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, xz: false, ipxe: false, stdenv: false, perl: false, "go-bindata": false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 13], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 7], ["sha256", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 48, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["rev", 19, 3], ["src", 21, 3], ["vendorHash", 28, 3], ["patches", 30, 3], ["doCheck", 39, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 44, 3], ["env", 48, 3], ["preBuild", 49, 3], ["subPackages", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0-unstable-2024-05-31";
       const rev = "2ed7bd30206a51bae786b02d9a5b8156fdcc8870";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "danderson",
           repo: "netboot",
           rev: rev,
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-3cVGDAZWhmZ1byvjoRodSWMNHCpNujDOAVQKHNntHR8=";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/danderson/netboot/commit/c999a6ca573c973e760c8df531b4c970c21f3d05.patch",
             sha256: "sha256-pRWcBz24cqqajLvJffugB/T6lKGVtvOG4ch3vyzDDQQ=",
           })))),
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), rebuildIpxe, nix.thunk(() => [xz])));
       const nativeBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), rebuildIpxe, nix.thunk(() => [perl, go_bindata])));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error"]))),
       }));
       const preBuild = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), rebuildIpxe, nix.thunk(() => nix.str`# don't run in our go-modules phase but only in the normal build phase
@@ -57,7 +53,7 @@ fi
 `)));
       const subPackages = nix.thunk(() => ["cmd/pixiecore"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tool to manage network booting of machines",
         homepage: "https://github.com/danderson/netboot/tree/master/pixiecore",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -71,7 +67,7 @@ fi
         mainProgram: "pixiecore",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         rev,

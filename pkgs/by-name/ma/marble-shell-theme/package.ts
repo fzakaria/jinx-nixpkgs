@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["maintainers", 56, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["postPatch", 33, 3], ["installPhase", 38, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, python3: false, "gnome-shell": false, dconf: false, writableTmpDirAsHomeHook: false, colors: true, additionalInstallationTweaks: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["postPatch", 33, 3], ["installPhase", 38, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const additionalInstallationTweaks = nix.argOr($, "additionalInstallationTweaks", () => []);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => !nix.eq(colors, [])), "The `colors` list can not be empty"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ma/marble-shell-theme/package.nix:13:1");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "marble-shell-theme",
       version: "50.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "imarkoff",
           repo: "Marble-shell-theme",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +39,7 @@ cp -r .themes $out/share/themes
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Shell theme for GNOME DE",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

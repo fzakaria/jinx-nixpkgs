@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["fetchSubmodules", 24, 5], ["hash", 25, 5]], [["src", 28, 61], ["version", 28, 65]], [["changelog", 131, 5], ["homepage", 132, 5], ["description", 133, 5], ["license", 134, 5], ["maintainers", 135, 5], ["mainProgram", 136, 5]], [["pname", 45, 3], ["version", 46, 11], ["src", 46, 19], ["pyproject", 47, 3], ["__structuredAttrs", 49, 3], ["patches", 51, 3], ["postPatch", 56, 3], ["pythonRelaxDeps", 67, 3], ["build-system", 69, 3], ["dependencies", 71, 3], ["pythonImportsCheck", 83, 3], ["postFixup", 85, 3], ["nativeCheckInputs", 105, 3], ["enabledTestPaths", 115, 3], ["disabledTestPaths", 119, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, bash: false, callPackage: false, diffutils: false, fetchFromGitHub: false, gawk: false, gzip: false, "home-assistant": false, kaldi: false, "opengrm-ngram": false, perl: false, phonetisaurus: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["fetchSubmodules", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 28, 61], ["version", 28, 65]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 131, 5], ["homepage", 132, 5], ["description", 133, 5], ["license", 134, 5], ["maintainers", 135, 5], ["mainProgram", 136, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 11], ["src", 46, 19], ["pyproject", 47, 3], ["__structuredAttrs", 49, 3], ["patches", 51, 3], ["postPatch", 56, 3], ["pythonRelaxDeps", 67, 3], ["build-system", 69, 3], ["dependencies", 71, 3], ["pythonImportsCheck", 83, 3], ["postFixup", 85, 3], ["nativeCheckInputs", 105, 3], ["enabledTestPaths", 115, 3], ["disabledTestPaths", 119, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const version = "1.4.3";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "OHF-voice",
       repo: "speech-to-phrase",
       tag: nix.thunk(() => nix.str`v${version}`),
       fetchSubmodules: true,
       hash: "sha256-1Yj4cxFxBQdhytl8YTDbjC44veRNmLhwiRZEhsVcfS4=",
     }))));
-  const stt_onlyprobs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./stt-onlyprobs.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version }))));
+  const stt_onlyprobs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./stt-onlyprobs.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], src: src, version: version }))));
   const tools = nix.thunk(() => nix.app(runCommand, "speech-to-phrase-tools", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/kaldi
 ln -s ${kaldi}/{bin,lib} $out/kaldi
 cp -r ${kaldi}/share/kaldi/egs/wsj/s5/{steps,utils} $out/kaldi
@@ -45,7 +42,7 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), stt_onlyprobs)} $out/stt_onlyprobs
 `)));
   const python3Packages = nix.thunk(() => nix.attr(home_assistant, "python3Packages"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "speech-to-phrase",
       version: version,
       src: src,
@@ -105,7 +102,7 @@ makeWrapper ${nix.sel(python3Packages, "python", "interpreter")} $out/bin/speech
         "tests/test_recognize.py::test_recognize",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/OHF-Voice/speech-to-phrase/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/OHF-Voice/speech-to-phrase",
         description: "Fast and personalized local speech-to-text",

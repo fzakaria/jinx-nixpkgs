@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["updateScript", 30, 12]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontBuild", 19, 3], ["installPhase", 21, 3], ["passthru", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 30, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontBuild", 19, 3], ["installPhase", 21, 3], ["passthru", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rmv-card",
       version: "0-unstable-2023-10-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "custom-cards",
           repo: "rmv-card",
           rev: "b0b2af1565bb69b8d304285cae163cb15883c9ab",
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir $out\ncp rmv-card.js $out/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Custom card for the RMV component",
         homepage: "https://github.com/custom-cards/rmv-card",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

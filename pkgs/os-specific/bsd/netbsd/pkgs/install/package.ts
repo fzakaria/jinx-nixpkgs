@@ -2,8 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["path", 28, 3], ["extraPaths", 29, 3], ["nativeBuildInputs", 33, 3], ["skipIncludesPhase", 40, 3], ["buildInputs", 41, 3], ["installPhase", 47, 3], ["setupHook", 58, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, writeShellScript: false, mtree: false, make: false, bsdSetupHook: false, netbsdSetupHook: false, makeMinimal: false, mandoc: false, groff: false, compatIfNeeded: false, fts: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["path", 28, 3], ["extraPaths", 29, 3], ["nativeBuildInputs", 33, 3], ["skipIncludesPhase", 40, 3], ["buildInputs", 41, 3], ["installPhase", 47, 3], ["setupHook", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const binstall = nix.thunk(() => nix.app(writeShellScript, "binstall", nix.thunk(() => nix.add(nix.builtins.readFile(nix.path(here, "../../../lib/install-wrapper.sh")), "@out@/bin/xinstall \"${args[@]}\"\n"))));
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "usr.bin/xinstall",
       extraPaths: nix.thunk(() => [
         nix.thunk(() => nix.sel(mtree, "path")),

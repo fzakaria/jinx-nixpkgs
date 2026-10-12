@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["pname", 24, 26], ["version", 24, 32], ["src", 24, 40], ["hash", 25, 5]], [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["cargoDeps", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, rustPlatform: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 24, 26], ["version", 24, 32], ["src", 24, 40], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["cargoDeps", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "evtx",
       version: "0.13.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "omerbenamram",
           repo: "pyevtx-rs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-5szp+yh2RCUFWbd44nr5dfnu6o6tyaF/vT5MyzwN4iY=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["evtx"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Bindings for evtx",
         homepage: "https://github.com/omerbenamram/pyevtx-rs",
         changelog: nix.thunk(() => nix.str`https://github.com/omerbenamram/pyevtx-rs/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

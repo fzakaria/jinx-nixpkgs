@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 7], ["repo", 24, 7], ["tag", 25, 7], ["hash", 26, 7]], [["name", 30, 7], ["src", 31, 28], ["hash", 32, 7]], [["name", 18, 5], ["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["npmDeps", 29, 5], ["makeCacheWritable", 34, 5], ["buildInputs", 36, 5], ["nativeBuildInputs", 39, 5], ["strictDeps", 53, 5], ["postPatch", 55, 5], ["buildPhase", 60, 5], ["installPhase", 66, 5]], [["attrPath", 86, 7]], [["vsix", 84, 5], ["updateScript", 85, 5]], [["description", 91, 5], ["homepage", 92, 5], ["downloadPage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]], [["pname", 74, 3], ["version", 75, 28], ["vscodeExtPublisher", 77, 3], ["vscodeExtName", 78, 3], ["vscodeExtUniqueId", 79, 3], ["src", 81, 3], ["passthru", 83, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchNpmDeps: false, "nodejs-slim": false, npmHooks: false, "pkg-config": false, libsecret: false, cctools: false, clang_20: false, "vscode-utils": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 7], ["repo", 24, 7], ["tag", 25, 7], ["hash", 26, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 30, 7], ["src", 31, 28], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 18, 5], ["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["npmDeps", 29, 5], ["makeCacheWritable", 34, 5], ["buildInputs", 36, 5], ["nativeBuildInputs", 39, 5], ["strictDeps", 53, 5], ["postPatch", 55, 5], ["buildPhase", 60, 5], ["installPhase", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["attrPath", 86, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["vsix", 84, 5], ["updateScript", 85, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 91, 5], ["homepage", 92, 5], ["downloadPage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 74, 3], ["version", 75, 28], ["vscodeExtPublisher", 77, 3], ["vscodeExtName", 78, 3], ["vscodeExtUniqueId", 79, 3], ["src", 81, 3], ["passthru", 83, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const nix_update_script = nix.arg($, "nix-update-script");
   const vsix = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`vscode-js-debug-${nix.sel(finalAttrs, "version")}.vsix`),
       pname: "vscode-js-debug-vsix",
       version: "1.140.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "vscode-js-debug",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4bYss4fWLGrOsmfKYbaF9zSGl45jmUH73GCuba2IFw0=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-VoWBedocCL1EyMm7y2f4eOfl3s8SB6LujJQp6wAUJRM=",
@@ -59,7 +53,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(vscode_utils, "buildVscodeExtension"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "src"));
       return {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "vscode-js-debug",
       version: nix.thunk(() => nix.attr(from, "version")),
       vscodeExtPublisher: "ms-vscode",
@@ -67,12 +61,12 @@ export default nix.lambda((args) => (() => {
       vscodeExtUniqueId: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "vscodeExtPublisher")}.${nix.sel(finalAttrs, "vscodeExtName")}`),
       src: vsix,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         vsix: nix.thunk(() => nix.sel(finalAttrs, "src")),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vscode-extensions.ms-vscode.js-debug.vsix" })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], attrPath: "vscode-extensions.ms-vscode.js-debug.vsix" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "An extension for debugging Node.js programs and Chrome",
         homepage: "https://github.com/microsoft/vscode-js-debug",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug",

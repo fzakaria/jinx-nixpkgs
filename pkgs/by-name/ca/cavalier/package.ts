@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["updateScript", 67, 12]], [["description", 70, 5], ["homepage", 71, 5], ["mainProgram", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["dotnet-sdk", 29, 3], ["dotnet-runtime", 30, 3], ["projectFile", 32, 3], ["nugetDeps", 33, 3], ["executables", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["runtimeDeps", 50, 3], ["postInstall", 57, 3], ["makeWrapperArgs", 65, 3], ["passthru", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, dotnetCorePackages: false, fetchFromGitHub: false, "pkg-config": false, "blueprint-compiler": false, glib: false, gtk4: false, libadwaita: false, wrapGAppsHook4: false, "appstream-glib": false, "desktop-file-utils": false, cava: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 67, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["mainProgram", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["dotnet-sdk", 29, 3], ["dotnet-runtime", 30, 3], ["projectFile", 32, 3], ["nugetDeps", 33, 3], ["executables", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["runtimeDeps", 50, 3], ["postInstall", 57, 3], ["makeWrapperArgs", 65, 3], ["passthru", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cavalier";
       const version = "2024.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NickvisionApps",
           repo: "Cavalier",
           tag: version,
@@ -52,9 +49,9 @@ export default nix.lambda((args) => (() => {
       const makeWrapperArgs = nix.thunk(() => [
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cava]))}`),
       ]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Visualize audio with CAVA",
         homepage: "https://github.com/NickvisionApps/Cavalier",
         mainProgram: "NickvisionCavalier.GNOME",
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

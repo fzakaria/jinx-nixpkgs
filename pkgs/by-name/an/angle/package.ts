@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 31, 5], ["paths", 32, 5], ["postBuild", 36, 5]], [["NIX_LDFLAGS", 107, 7]], [["description", 200, 5], ["longDescription", 201, 5], ["homepage", 207, 5], ["maintainers", 208, 5], ["license", 212, 5], ["platforms", 213, 5]], [["pname", 54, 3], ["version", 55, 3], ["gclientDeps", 57, 3], ["sourceRoot", 58, 3], ["strictDeps", 59, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 74, 3], ["gnFlags", 89, 3], ["env", 107, 3], ["patches", 109, 3], ["postPatch", 115, 3], ["installPhase", 142, 3], ["postInstall", 186, 3], ["postFixup", 192, 3], ["meta", 199, 3]]]);
 const formals$1 = { args: { stdenv: false, gn: false, ninja: false, llvmPackages_21: false, gclient2nix: false, "pkg-config": false, glib: false, python3: false, symlinkJoin: false, lib: false, libxi: false, libxext: false, libx11: false, libxcb: false, wayland: false, pciutils: false, libGL: false, "vulkan-loader": false, "apple-sdk_15": false, fixDarwinDylibNames: false, xcbuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 31, 5], ["paths", 32, 5], ["postBuild", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 107, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 200, 5], ["longDescription", 201, 5], ["homepage", 207, 5], ["maintainers", 208, 5], ["license", 212, 5], ["platforms", 213, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 54, 3], ["version", 55, 3], ["gclientDeps", 57, 3], ["sourceRoot", 58, 3], ["strictDeps", 59, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 74, 3], ["gnFlags", 89, 3], ["env", 107, 3], ["patches", 109, 3], ["postPatch", 115, 3], ["installPhase", 142, 3], ["postInstall", 186, 3], ["postFixup", 192, 3], ["meta", 199, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const arch = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"));
   const triplet = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "config"));
   const clang = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "angle-clang-llvm-join",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(llvmPackages, "llvm")),
@@ -53,7 +50,7 @@ ln -s $out/resource-root/lib/linux \\
 `)),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "angle",
       version: "7258",
       gclientDeps: nix.thunk(() => nix.app(nix.sel(gclient2nix, "importGclientDeps"), nix.path(here, "./info.json"))),
@@ -89,7 +86,7 @@ ln -s $out/resource-root/lib/linux \\
         "treat_warnings_as_errors=false",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isRiscV64")), nix.thunk(() => ["is_clang=true"])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-headerpad_max_install_names")),
       })),
       patches: nix.thunk(() => [nix.path(here, "./fix-uninitialized-const-pointer-error-001.patch")]),
@@ -145,7 +142,7 @@ ln -sfn ${nix.app(nix.sel(lib, "getLib"), vulkan_loader)}/lib/libvulkan.so.1 \\
 `))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool \\\n    -change ./libGLESv2.dylib \\\n    $out/lib/libGLESv2.dylib \\\n    $out/lib/libGLESv1_CM.dylib\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Conformant OpenGL ES implementation for Windows, Mac, Linux, iOS and Android",
         longDescription: "The goal of ANGLE is to allow users of multiple operating systems\nto seamlessly run WebGL and other OpenGL ES content by translating\nOpenGL ES API calls to one of the hardware-supported APIs available\nfor that platform.\n",
         homepage: "https://angleproject.org",

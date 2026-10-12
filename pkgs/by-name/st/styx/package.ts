@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 79, 5], ["maintainers", 80, 5], ["homepage", 81, 5], ["downloadPage", 82, 5], ["platforms", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["server", 27, 3], ["linkcheck", 28, 3], ["nativeBuildInputs", 30, 3], ["outputs", 32, 3], ["propagatedBuildInputs", 38, 3], ["installPhase", 48, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, caddy: false, asciidoctor: false, file: false, lessc: false, sass: false, multimarkdown: false, linkchecker: false, perlPackages: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 79, 5], ["maintainers", 80, 5], ["homepage", 81, 5], ["downloadPage", 82, 5], ["platforms", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["server", 27, 3], ["linkcheck", 28, 3], ["nativeBuildInputs", 30, 3], ["outputs", 32, 3], ["propagatedBuildInputs", 38, 3], ["installPhase", 48, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "styx",
       version: "0.7.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "styx-static",
           repo: "styx",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir $out\ninstall -D -m 777 src/styx.sh $out/bin/styx\n\nmkdir -p $out/share/styx-src\ncp -r ./* $out/share/styx-src\n\nmkdir -p $out/share/doc/styx\nasciidoctor src/doc/index.adoc       -o $out/share/doc/styx/index.html\nasciidoctor src/doc/styx-themes.adoc -o $out/share/doc/styx/styx-themes.html\nasciidoctor src/doc/library.adoc     -o $out/share/doc/styx/library.html\ncp -r src/doc/highlight $out/share/doc/styx/\ncp -r src/doc/imgs $out/share/doc/styx/\n\nsubstituteAllInPlace $out/bin/styx\nsubstituteAllInPlace $out/share/doc/styx/index.html\nsubstituteAllInPlace $out/share/doc/styx/styx-themes.html\nsubstituteAllInPlace $out/share/doc/styx/library.html\n\nmkdir -p $out/share/styx/scaffold\ncp -r src/scaffold $out/share/styx\ncp -r src/tools $out/share/styx\n\nmkdir $lib\ncp -r src/lib/* $lib\n\nmkdir $themes\ncp -r themes/* $themes\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Nix based static site generator",
         maintainers: [],
         homepage: "https://styx-static.github.io/styx-site/",

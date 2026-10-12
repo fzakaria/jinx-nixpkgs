@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5], ["mainProgram", 29, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["pythonImportsCheck", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5], ["mainProgram", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["pythonImportsCheck", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ps_mem",
       version: "3.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pixelb",
           repo: "ps_mem",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["ps_mem"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utility to accurately report the in core memory usage for a program",
         homepage: "https://github.com/pixelb/ps_mem",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

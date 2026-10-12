@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["table", 35, 5], ["markdown", 39, 5]], [["optional-dependencies", 34, 12]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["passthru", 34, 3], ["nativeCheckInputs", 45, 3], ["disabledTestPaths", 54, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "flatten-dict": false, funcy: false, matplotlib: false, tabulate: false, pytestCheckHook: false, "pytest-mock": false, "pytest-test-utils": false, setuptools: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["table", 35, 5], ["markdown", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["optional-dependencies", 34, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["passthru", 34, 3], ["nativeCheckInputs", 45, 3], ["disabledTestPaths", 54, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dvc-render",
       version: "1.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "iterative",
           repo: "dvc-render",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,9 +34,9 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "optional-dependencies": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           table: nix.thunk(() => [flatten_dict, tabulate]),
           markdown: nix.thunk(() => [tabulate, matplotlib]),
         })),
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_vega.py"]))),
       pythonImportsCheck: nix.thunk(() => ["dvc_render"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library for rendering DVC plots",
         homepage: "https://github.com/iterative/dvc-render",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/dvc-render/releases/tag/${nix.sel(finalAttrs, "version")}`),

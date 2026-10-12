@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/core.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]], [["enableGnatcollProjects", 72, 7], ["enableGnatcollCore", 73, 7]], [["enableGnatcollProjects", 76, 7], ["enableGnatcollCore", 77, 7]], [["minimalOnly", 71, 5], ["noProjects", 75, 5]], [["tests", 70, 12]], [["homepage", 82, 5], ["description", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 45, 3], ["propagatedBuildInputs", 55, 3], ["strictDeps", 59, 3], ["makeFlags", 61, 3], ["passthru", 70, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, gnat: false, gprbuild: false, fetchFromGitHub: false, fetchpatch2: false, which: false, python3: false, rsync: false, enableGnatcollCore: true, enableGnatcollProjects: true, "gnatcoll-core": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/core.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/core.nix", [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/core.nix", [["enableGnatcollProjects", 72, 7], ["enableGnatcollCore", 73, 7]]);
-const pos$4 = nix.positions(here + "/core.nix", [["enableGnatcollProjects", 76, 7], ["enableGnatcollCore", 77, 7]]);
-const pos$5 = nix.positions(here + "/core.nix", [["minimalOnly", 71, 5], ["noProjects", 75, 5]]);
-const pos$6 = nix.positions(here + "/core.nix", [["tests", 70, 12]]);
-const pos$7 = nix.positions(here + "/core.nix", [["homepage", 82, 5], ["description", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]]);
-const pos$8 = nix.positions(here + "/core.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 45, 3], ["propagatedBuildInputs", 55, 3], ["strictDeps", 59, 3], ["makeFlags", 61, 3], ["passthru", 70, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gnatcoll-core";
       const version = "25.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AdaCore",
           repo: "gnatcoll-core",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gnatcoll-core-gnat-16.patch",
             url: "https://github.com/AdaCore/gnatcoll-core/commit/b266466e0a05b30615ec43d72782c345470455b9.patch?full_index=1",
             hash: "sha256-rG0D1y2dbXA2M2Arnto+f7iAhg3yCfTPDbDRN+pMJKQ=",
@@ -57,15 +50,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`GNATCOLL_PROJECTS=${nix.app(nix.sel(lib, "boolToYesNo"), enableGnatcollProjects)}`),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          minimalOnly: nix.thunk(() => nix.app(nix.sel(gnatcoll_core, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, enableGnatcollProjects: false, enableGnatcollCore: false })))),
-          noProjects: nix.thunk(() => nix.app(nix.sel(gnatcoll_core, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, enableGnatcollProjects: false, enableGnatcollCore: true })))),
+          [nix.POS]: $pos[4],
+          minimalOnly: nix.thunk(() => nix.app(nix.sel(gnatcoll_core, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], enableGnatcollProjects: false, enableGnatcollCore: false })))),
+          noProjects: nix.thunk(() => nix.app(nix.sel(gnatcoll_core, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], enableGnatcollProjects: false, enableGnatcollCore: true })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/AdaCore/gnatcoll-core",
         description: "GNAT Components Collection - Core packages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -73,7 +66,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

@@ -2,23 +2,22 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/errno.nix", [[["description", 18, 5]], [["pname", 7, 3], ["version", 9, 24], ["src", 9, 32], ["propagatedBuildInputs", 11, 3], ["doCheck", 15, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "posix-base": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/errno.nix", [["description", 18, 5]]);
-const pos$2 = nix.positions(here + "/errno.nix", [["pname", 7, 3], ["version", 9, 24], ["src", 9, 32], ["propagatedBuildInputs", 11, 3], ["doCheck", 15, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const posix_base = nix.arg($, "posix-base");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "posix-errno",
       version: nix.thunk(() => nix.attr(posix_base, "version")),
       src: nix.thunk(() => nix.attr(posix_base, "src")),
       propagatedBuildInputs: nix.thunk(() => [posix_base]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(posix_base, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Posix-errno provides comprehensive errno handling",
       })),
     })));

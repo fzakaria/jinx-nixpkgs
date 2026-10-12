@@ -2,9 +2,9 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 12, 3], ["version", 13, 11], ["src", 13, 19], ["passthru", 14, 17], ["setupHook", 16, 3], ["installPhase", 24, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, writeScript: false, cairo: false, fribidi: false }, ellipsis: false };
 const formals$2 = { args: { version: false, src: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 11], ["src", 13, 19], ["passthru", 14, 17], ["setupHook", 16, 3], ["installPhase", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +36,7 @@ ln -s '${src_1}'/* "$out"
 runHook postInstall
 `);
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname,
           version: version_1,
           src: src_1,

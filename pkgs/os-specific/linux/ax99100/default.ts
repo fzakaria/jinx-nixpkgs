@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 22, 5], ["sha256", 23, 5], ["extension", 24, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 38, 5], ["platforms", 39, 5], ["broken", 44, 5]], [["pname", 12, 3], ["version", 13, 3], ["nativeBuildInputs", 15, 3], ["src", 21, 3], ["makeFlags", 27, 3], ["installPhase", 29, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { kernel: false, kernelModuleMakeFlags: false, stdenv: false, kmod: false, lib: false, fetchzip: false, dos2unix: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 22, 5], ["sha256", 23, 5], ["extension", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 38, 5], ["platforms", 39, 5], ["broken", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["nativeBuildInputs", 15, 3], ["src", 21, 3], ["makeFlags", 27, 3], ["installPhase", 29, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const dos2unix = nix.arg($, "dos2unix");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ax99100",
       version: "2.3.0",
       nativeBuildInputs: nix.thunk(() => nix.concat([dos2unix, kmod], nix.sel(kernel, "moduleBuildDependencies"))),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.asix.com.tw/en/support/download/file/1956",
           sha256: "sha256-acvKb+ohOFrfytgHp9KUVivqDRvgsFgK8bxxHkIh8PU=",
           extension: "tar.bz2",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
 cp ax99100x.ko $out/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/drivers/tty/serial
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ASIX AX99100 Serial and Parallel Port driver",
         homepage: "https://www.asix.com.tw/en/product/Interface/PCIe_Bridge/AX99100",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

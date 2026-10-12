@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 32, 5], ["version", 33, 13], ["hash", 34, 5]], [["aio", 46, 5], ["tracing", 47, 5]], [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["maintainers", 112, 5]], [["version", 25, 3], ["pname", 26, 3], ["pyproject", 27, 3], ["__darwinAllowLocalNetworking", 29, 3], ["src", 31, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 45, 3], ["nativeCheckInputs", 50, 3], ["preCheck", 65, 3], ["enabledTestPaths", 69, 3], ["disabledTests", 72, 3], ["disabledTestPaths", 86, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, aiodns: false, aiohttp: false, flask: false, mock: false, "opentelemetry-api": false, "opentelemetry-instrumentation": false, "opentelemetry-instrumentation-requests": false, "opentelemetry-sdk": false, "pytest-asyncio": false, "pytest-trio": false, pytest8_3CheckHook: false, requests: false, setuptools: false, six: false, trio: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 32, 5], ["version", 33, 13], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aio", 46, 5], ["tracing", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["maintainers", 112, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 25, 3], ["pname", 26, 3], ["pyproject", 27, 3], ["__darwinAllowLocalNetworking", 29, 3], ["src", 31, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 45, 3], ["nativeCheckInputs", 50, 3], ["preCheck", 65, 3], ["enabledTestPaths", 69, 3], ["disabledTests", 72, 3], ["disabledTestPaths", 86, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const __darwinAllowLocalNetworking = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "azure_core",
           version: version,
           hash: "sha256-gZTSaCJFo+TjFRpmfGhkZMN4b+15GLOU0DW9zWG7WZM=",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [requests, six, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         aio: nix.thunk(() => [aiohttp]),
         tracing: nix.thunk(() => [opentelemetry_api]),
       }));
@@ -85,7 +82,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_tracing_live.py",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Microsoft Azure Core Library for Python",
         homepage: "https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/core/azure-core",
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/azure-sdk-for-python/blob/azure-core_${version}/sdk/core/azure-core/CHANGELOG.md`),
@@ -93,7 +90,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version,
         pname,
         pyproject,

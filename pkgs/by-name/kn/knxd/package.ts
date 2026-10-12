@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["mainProgram", 68, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["configureFlags", 50, 3], ["depsBuildBuild", 55, 3], ["installFlags", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, indent: false, perl: false, "argp-standalone": false, fmt: false, libev: false, withSystemd: true, systemdLibs: false, withUsb: true, libusb1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["mainProgram", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["configureFlags", 50, 3], ["depsBuildBuild", 55, 3], ["installFlags", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const withUsb = nix.argOr($, "withUsb", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "knxd",
       version: "0.14.75",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "knxd",
           repo: "knxd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +48,7 @@ sed -i '2i exit' tools/get_libfmt
           "systemdsysusersdir=$(out)/lib/sysusers.d",
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Advanced router/gateway for KNX",
         homepage: "https://github.com/knxd/knxd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

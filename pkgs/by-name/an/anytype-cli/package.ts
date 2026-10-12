@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["CGO_ENABLED", 25, 7], ["CGO_LDFLAGS", 26, 7]], [["updateScript", 36, 12]], [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["mainProgram", 43, 5], ["maintainers", 44, 5], ["platforms", 48, 5]], [["__structuredAttrs", 10, 3], ["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["proxyVendor", 23, 3], ["env", 25, 3], ["ldflags", 28, 3], ["nativeInstallCheckInputs", 33, 3], ["doInstallCheck", 34, 3], ["passthru", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "tantivy-go": false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 25, 7], ["CGO_LDFLAGS", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 36, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["mainProgram", 43, 5], ["maintainers", 44, 5], ["platforms", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["__structuredAttrs", 10, 3], ["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["proxyVendor", 23, 3], ["env", 25, 3], ["ldflags", 28, 3], ["nativeInstallCheckInputs", 33, 3], ["doInstallCheck", 34, 3], ["passthru", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       __structuredAttrs: true,
       pname: "anytype-cli",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "anyproto",
           repo: "anytype-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-nEJ/EwagspWVCr13oTwOSdxdeb0Or+tcwNs2bJV/OjM=",
       proxyVendor: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CGO_ENABLED: 1n,
         CGO_LDFLAGS: nix.thunk(() => nix.str`-L${tantivy_go}/lib`),
       })),
@@ -43,11 +39,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command-line interface for interacting with Anytype",
         homepage: "https://github.com/anyproto/anytype-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/anyproto/anytype-cli/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

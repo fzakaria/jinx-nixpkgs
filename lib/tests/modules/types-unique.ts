@@ -2,22 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/types-unique.nix", [[["message", 9, 9]], [["type", 7, 5]], [["examples", 6, 11]], [["b", 16, 9]], [["merged", 15, 16]], [["examples", 15, 7]], [["b", 19, 41]], [["override", 19, 16]], [["examples", 19, 7]], [["a", 23, 7]], [["a", 26, 7]], [["a", 29, 7]], [["merged", 22, 5], ["override", 25, 5], ["badLazyType", 28, 5]], [["examples", 21, 10]], [["options", 6, 3], ["imports", 13, 3], ["config", 21, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/types-unique.nix", [["message", 9, 9]]);
-const pos$2 = nix.positions(here + "/types-unique.nix", [["type", 7, 5]]);
-const pos$3 = nix.positions(here + "/types-unique.nix", [["examples", 6, 11]]);
-const pos$4 = nix.positions(here + "/types-unique.nix", [["b", 16, 9]]);
-const pos$5 = nix.positions(here + "/types-unique.nix", [["merged", 15, 16]]);
-const pos$6 = nix.positions(here + "/types-unique.nix", [["examples", 15, 7]]);
-const pos$7 = nix.positions(here + "/types-unique.nix", [["b", 19, 41]]);
-const pos$8 = nix.positions(here + "/types-unique.nix", [["override", 19, 16]]);
-const pos$9 = nix.positions(here + "/types-unique.nix", [["examples", 19, 7]]);
-const pos$10 = nix.positions(here + "/types-unique.nix", [["a", 23, 7]]);
-const pos$11 = nix.positions(here + "/types-unique.nix", [["a", 26, 7]]);
-const pos$12 = nix.positions(here + "/types-unique.nix", [["a", 29, 7]]);
-const pos$13 = nix.positions(here + "/types-unique.nix", [["merged", 22, 5], ["override", 25, 5], ["badLazyType", 28, 5]]);
-const pos$14 = nix.positions(here + "/types-unique.nix", [["examples", 21, 10]]);
-const pos$15 = nix.positions(here + "/types-unique.nix", [["options", 6, 3], ["imports", 13, 3], ["config", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,37 +11,40 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       examples: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "unique"), nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 message: "We require a single definition, because seeing the whole value at once helps us maintain critical invariants of our system.",
               })), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))))))),
         })))),
     })),
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        examples: nix.thunk(() => ({ [nix.POS]: pos$5, merged: nix.thunk(() => ({ [nix.POS]: pos$4, b: "bee" })) })),
+        [nix.POS]: $pos[5],
+        examples: nix.thunk(() => ({
+          [nix.POS]: $pos[4],
+          merged: nix.thunk(() => ({ [nix.POS]: $pos[3], b: "bee" })),
+        })),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         examples: nix.thunk(() => ({
-          [nix.POS]: pos$8,
-          override: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({ [nix.POS]: pos$7, b: "bee" })))),
+          [nix.POS]: $pos[7],
+          override: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({ [nix.POS]: $pos[6], b: "bee" })))),
         })),
       })),
     ]),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       examples: nix.thunk(() => ({
-        [nix.POS]: pos$13,
-        merged: nix.thunk(() => ({ [nix.POS]: pos$10, a: "aye" })),
-        override: nix.thunk(() => ({ [nix.POS]: pos$11, a: "aye" })),
-        badLazyType: nix.thunk(() => ({ [nix.POS]: pos$12, a: true })),
+        [nix.POS]: $pos[12],
+        merged: nix.thunk(() => ({ [nix.POS]: $pos[9], a: "aye" })),
+        override: nix.thunk(() => ({ [nix.POS]: $pos[10], a: "aye" })),
+        badLazyType: nix.thunk(() => ({ [nix.POS]: $pos[11], a: true })),
       })),
     })),
   };

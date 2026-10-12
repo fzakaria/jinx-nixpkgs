@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["NIX_CFLAGS_COMPILE", 32, 5]], [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["cmakeFlags", 23, 3], ["doCheck", 28, 3], ["checkTarget", 29, 3], ["env", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["cmakeFlags", 23, 3], ["doCheck", 28, 3], ["checkTarget", 29, 3], ["env", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "range-v3",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ericniebler",
           repo: "range-v3",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,9 +26,9 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.concat(["-DRANGES_ENABLE_WERROR=OFF"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), "-DRANGE_V3_TESTS=OFF"))),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))),
       checkTarget: "test",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=c++17" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=c++17" })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Experimental range library for C++11/14/17",
         homepage: "https://github.com/ericniebler/range-v3",
         changelog: nix.thunk(() => nix.str`https://github.com/ericniebler/range-v3/releases/tag/${nix.sel(finalAttrs, "version")}`),

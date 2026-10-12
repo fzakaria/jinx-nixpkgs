@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["hash", 35, 5]], [["description", 69, 5], ["homepage", 70, 5], ["sourceProvenance", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 76, 5], ["mainProgram", 77, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["runtimeDependencies", 51, 3], ["unpackCmd", 61, 3], ["installPhase", 63, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, dpkg: false, "alsa-lib": false, freetype: false, libglvnd: false, curl: false, fontconfig: false, libxcursor: false, libxinerama: false, libxrandr: false, libxrender: false, libjack2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["sourceProvenance", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 76, 5], ["mainProgram", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["runtimeDependencies", 51, 3], ["unpackCmd", 61, 3], ["installPhase", 63, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tonelib-gfx";
       const version = "4.9.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://tonelib.vip/download/25-11-10/ToneLib-GFX-amd64.deb",
           hash: "sha256-WL9kV50R5AGG57I5IkNz7EKd4NPlf0iO+QiE8k+E26Q=",
         }))));
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const unpackCmd = "dpkg -x $curSrc source";
       const installPhase = "mv usr $out\nsubstituteInPlace $out/share/applications/ToneLib-GFX.desktop --replace /usr/ $out/\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tonelib GFX is an amp and effects modeling software for electric guitar and bass",
         homepage: "https://tonelib.net/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ToneLib-GFX",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

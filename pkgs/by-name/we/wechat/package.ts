@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 13, 5], ["homepage", 14, 5], ["downloadPage", 15, 5], ["license", 16, 5], ["sourceProvenance", 17, 5], ["maintainers", 18, 5], ["mainProgram", 22, 5], ["platforms", 23, 5]], [["url", 40, 11], ["hash", 41, 11]], [["version", 38, 17], ["src", 39, 9]], [["url", 50, 9], ["hash", 51, 9]], [["version", 48, 7], ["src", 49, 7]], [["url", 57, 9], ["hash", 58, 9]], [["version", 55, 7], ["src", 56, 7]], [["aarch64-darwin", 32, 5], ["aarch64-linux", 47, 5], ["x86_64-linux", 54, 5]], [["pname", 64, 11], ["meta", 64, 17], ["version", 65, 74], ["src", 65, 82]]]);
 const formals$1 = { args: { callPackage: false, fetchurl: false, lib: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 13, 5], ["homepage", 14, 5], ["downloadPage", 15, 5], ["license", 16, 5], ["sourceProvenance", 17, 5], ["maintainers", 18, 5], ["mainProgram", 22, 5], ["platforms", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 40, 11], ["hash", 41, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 38, 17], ["src", 39, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 50, 9], ["hash", 51, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 48, 7], ["src", 49, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 57, 9], ["hash", 58, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 55, 7], ["src", 56, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["aarch64-darwin", 32, 5], ["aarch64-linux", 47, 5], ["x86_64-linux", 54, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 64, 11], ["meta", 64, 17], ["version", 65, 74], ["src", 65, 82]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const pname = "wechat";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Messaging and calling app",
     homepage: "https://www.wechat.com/en/",
     downloadPage: "https://linux.weixin.qq.com/en",
@@ -40,34 +32,34 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["aarch64-darwin", "aarch64-linux", "x86_64-linux"]),
   }));
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     "aarch64-darwin": nix.thunk(() => (() => {
       const version = "4.1.13.59-269627";
       const version$ = nix.thunk(() => nix.app(nix.sel(lib, "replaceString"), "-", "_", version));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://dldir1v6.qq.com/weixin/Universal/Mac/xWeChatMac_universal_${version$}.dmg`),
             hash: "sha256-45zrtADGKikIfN+BQRMR74Pnmr4VHfXShamWEnOTdOk=",
           })))),
       };
     })()),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "4.1.1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: "https://web.archive.org/web/20260818044444if_/https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_arm64.AppImage",
           hash: "sha256-RLHhac3wSS1C9rx3GsA07Tp1EzxSf2LLBMyPtrECnUY=",
         })))),
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: "4.1.1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: "https://web.archive.org/web/20260818044436if_/https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_x86_64.AppImage",
           hash: "sha256-RX26ArkbAxzdRBLu4HT7v/udnQax5Q/Bgi00hw4RSZA=",
         })))),
@@ -76,7 +68,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(callPackage, nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.path(here, "./darwin.nix") : nix.path(here, "./linux.nix"))), nix.thunk(() => (() => {
       const from_1 = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system))));
       return {
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: pname,
       meta: meta,
       version: nix.thunk(() => nix.attr(from_1, "version")),

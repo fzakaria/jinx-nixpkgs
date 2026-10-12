@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["homepage", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 29, 3], ["nativeCheckInputs", 31, 3], ["enabledTestPaths", 33, 3], ["disabledTests", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, procps: false, python3Packages: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["homepage", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 29, 3], ["nativeCheckInputs", 31, 3], ["enabledTestPaths", 33, 3], ["disabledTests", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mackup",
       version: "0.11.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lra",
           repo: "mackup",
           rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/*.py"]),
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_is_process_running"]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to keep your application settings in sync (OS X/Linux)",
         changelog: nix.thunk(() => nix.str`https://github.com/lra/mackup/releases/tag/${nix.sel(finalAttrs, "version")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

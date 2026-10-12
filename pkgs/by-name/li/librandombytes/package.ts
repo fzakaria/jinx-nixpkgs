@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["NIX_CFLAGS_COMPILE", 37, 7]], [["updateScript", 54, 12]], [["homepage", 57, 5], ["description", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 69, 5], ["platforms", 74, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["postPatch", 19, 3], ["__structuredAttrs", 24, 3], ["configurePlatforms", 28, 3], ["hardeningDisable", 36, 3], ["env", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 47, 3], ["preFixup", 49, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, python3: false, openssl: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 57, 5], ["description", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 69, 5], ["platforms", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["postPatch", 19, 3], ["__structuredAttrs", 24, 3], ["configurePlatforms", 28, 3], ["hardeningDisable", 36, 3], ["env", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 47, 3], ["preFixup", 49, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "librandombytes",
       version: "20240318",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://randombytes.cr.yp.to/librandombytes-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-LE8iWw7FxckPREyqefgKtslD6CPDsL7VsfHScQ6JmLs=",
         })))),
@@ -31,15 +27,15 @@ export default nix.lambda((args) => (() => {
       configurePlatforms: [],
       hardeningDisable: nix.thunk(() => ["fortify"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Qunused-arguments"])), ["-D_FORTIFY_SOURCE=2", "-O1"])))),
       })),
       nativeBuildInputs: nix.thunk(() => [python3]),
       buildInputs: nix.thunk(() => [openssl]),
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool -id \"$out/lib/librandombytes-kernel.1.dylib\" \"$out/lib/librandombytes-kernel.1.dylib\"\ninstall_name_tool -change \"librandombytes-kernel.1.dylib\" \"$out/lib/librandombytes-kernel.1.dylib\" \"$out/bin/randombytes-info\"\n")),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://randombytes.cr.yp.to/",
         description: "Simple API for applications generating fresh randomness",
         changelog: "https://randombytes.cr.yp.to/download.html",

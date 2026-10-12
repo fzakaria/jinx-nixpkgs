@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["updateScript", 36, 12]], [["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["postInstall", 29, 3], ["passthru", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { stdenv: false, buildPackages: false, lib: false, fetchFromGitHub: false, rustPlatform: false, "nix-update-script": false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 36, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["postInstall", 29, 3], ["passthru", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const canRunStripAnsi = nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages));
   const stripAnsiCompletions = nix.thunk(() => nix.str`${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)} $out/bin/strip-ansi-completions`);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "strip-ansi",
       version: "0.1.0-unstable-2024-09-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KSXGitHub",
           repo: "strip-ansi-cli",
           rev: "60dbdbc22b41f743c237cb75b11e72cf7884b792",
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
   --zsh <(${stripAnsiCompletions} zsh)
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/KSXGitHub/strip-ansi-cli",
         description: "Strip ANSI escape sequences from text",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

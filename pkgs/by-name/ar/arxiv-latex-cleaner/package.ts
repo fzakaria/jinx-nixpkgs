@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["homepage", 37, 5], ["description", 38, 5], ["mainProgram", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["dependencies", 23, 3], ["checkPhase", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["mainProgram", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["dependencies", 23, 3], ["checkPhase", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "arxiv-latex-cleaner",
       version: "1.0.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google-research",
           repo: "arxiv-latex-cleaner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +41,7 @@ ${nix.sel(python3, "interpreter")} -m unittest arxiv_latex_cleaner.tests.arxiv_l
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/google-research/arxiv-latex-cleaner",
         description: "Easily clean the LaTeX code of your paper to submit to arXiv",
         mainProgram: "arxiv_latex_cleaner",

@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/maps.nix", [[["UNZIP", 17, 9]], [["url", 22, 5], ["sha256", 23, 5], ["stripRoot", 24, 5]], [["url", 28, 5], ["sha256", 29, 5], ["stripRoot", 30, 5]], [["url", 33, 5], ["sha256", 34, 5], ["stripRoot", 35, 5]], [["url", 38, 5], ["sha256", 39, 5], ["stripRoot", 40, 5]], [["url", 43, 5], ["sha256", 44, 5], ["stripRoot", 45, 5]], [["url", 48, 5], ["sha256", 49, 5], ["stripRoot", 50, 5]], [["url", 53, 5], ["sha256", 54, 5], ["stripRoot", 55, 5]], [["url", 58, 5], ["sha256", 59, 5], ["stripRoot", 60, 5]], [["url", 63, 5], ["sha256", 64, 5], ["stripRoot", 65, 5]], [["url", 68, 5], ["sha256", 69, 5], ["stripRoot", 70, 5]], [["url", 73, 5], ["sha256", 74, 5], ["stripRoot", 75, 5]], [["minigames", 21, 3], ["melee", 27, 3], ["ladder2017season1", 32, 3], ["ladder2017season2", 37, 3], ["ladder2017season3", 42, 3], ["ladder2017season4", 47, 3], ["ladder2018season1", 52, 3], ["ladder2018season2", 57, 3], ["ladder2018season3", 62, 3], ["ladder2018season4", 67, 3], ["ladder2019season1", 72, 3]]]);
 const formals$1 = { args: { fetchzip: false, licenseAccepted: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/maps.nix", [["UNZIP", 17, 9]]);
-const pos$2 = nix.positions(here + "/maps.nix", [["url", 22, 5], ["sha256", 23, 5], ["stripRoot", 24, 5]]);
-const pos$3 = nix.positions(here + "/maps.nix", [["url", 28, 5], ["sha256", 29, 5], ["stripRoot", 30, 5]]);
-const pos$4 = nix.positions(here + "/maps.nix", [["url", 33, 5], ["sha256", 34, 5], ["stripRoot", 35, 5]]);
-const pos$5 = nix.positions(here + "/maps.nix", [["url", 38, 5], ["sha256", 39, 5], ["stripRoot", 40, 5]]);
-const pos$6 = nix.positions(here + "/maps.nix", [["url", 43, 5], ["sha256", 44, 5], ["stripRoot", 45, 5]]);
-const pos$7 = nix.positions(here + "/maps.nix", [["url", 48, 5], ["sha256", 49, 5], ["stripRoot", 50, 5]]);
-const pos$8 = nix.positions(here + "/maps.nix", [["url", 53, 5], ["sha256", 54, 5], ["stripRoot", 55, 5]]);
-const pos$9 = nix.positions(here + "/maps.nix", [["url", 58, 5], ["sha256", 59, 5], ["stripRoot", 60, 5]]);
-const pos$10 = nix.positions(here + "/maps.nix", [["url", 63, 5], ["sha256", 64, 5], ["stripRoot", 65, 5]]);
-const pos$11 = nix.positions(here + "/maps.nix", [["url", 68, 5], ["sha256", 69, 5], ["stripRoot", 70, 5]]);
-const pos$12 = nix.positions(here + "/maps.nix", [["url", 73, 5], ["sha256", 74, 5], ["stripRoot", 75, 5]]);
-const pos$13 = nix.positions(here + "/maps.nix", [["minigames", 21, 3], ["melee", 27, 3], ["ladder2017season1", 32, 3], ["ladder2017season2", 37, 3], ["ladder2017season3", 42, 3], ["ladder2017season4", 47, 3], ["ladder2018season1", 52, 3], ["ladder2018season2", 57, 3], ["ladder2018season3", 62, 3], ["ladder2018season4", 67, 3], ["ladder2019season1", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,72 +11,72 @@ export default nix.lambda((args) => (() => {
   const licenseAccepted = nix.arg($, "licenseAccepted");
   const fetchzip$ = nix.thunk(() => (nix.asBool(!nix.asBool(licenseAccepted)) ? nix.builtins.throw("You must accept the Blizzard® Starcraft® II AI and Machine Learning License at\nhttps://blzdistsc2-a.akamaihd.net/AI_AND_MACHINE_LEARNING_LICENSE.html\nby setting nixpkgs config option 'sc2-headless.accept_license = true;'\n") : (() => {
     nix.assert_(licenseAccepted, "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sc/sc2-headless/maps.nix:14:7");
-    return (args_1) => nix.app(nix.sel(nix.app(fetchzip, args_1), "overrideAttrs"), (old) => ({ [nix.POS]: pos$1, UNZIP: "-j -P iagreetotheeula" }));
+    return (args_1) => nix.app(nix.sel(nix.app(fetchzip, args_1), "overrideAttrs"), (old) => ({ [nix.POS]: $pos[0], UNZIP: "-j -P iagreetotheeula" }));
   })()));
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     minigames: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "https://github.com/deepmind/pysc2/releases/download/v1.2/mini_games.zip",
         sha256: "19f873ilcdsf50g2v0s2zzmxil1bqncsk8nq99bzy87h0i7khkla",
         stripRoot: false,
       })))),
     melee: nix.thunk(() => nix.app(fetchzip$, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: "http://blzdistsc2-a.akamaihd.net/MapPacks/Melee.zip",
         sha256: "0z44pgy10jklsvgpr0kcn4c2mz3hw7nlcmvsy6a6lzpi3dvzf33i",
         stripRoot: false,
       })))),
     ladder2017season1: nix.thunk(() => nix.app(fetchzip$, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         url: "http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2017Season1.zip",
         sha256: "0ngg4g74s2ryhylny93fm8yq9rlrhphwnjg2s6f3qr85a2b3zdpd",
         stripRoot: false,
       })))),
     ladder2017season2: nix.thunk(() => nix.app(fetchzip$, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         url: "http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2017Season2.zip",
         sha256: "01kycnvqagql9pkjkcgngfcnry2pc4kcygdkk511m0qr34909za5",
         stripRoot: false,
       })))),
     ladder2017season3: nix.thunk(() => nix.app(fetchzip$, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         url: "http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2017Season3_Updated.zip",
         sha256: "0wix3lwmbyxfgh8ldg0n66i21p0dbavk2dxjngz79rx708m8qvld",
         stripRoot: false,
       })))),
     ladder2017season4: nix.thunk(() => nix.app(fetchzip$, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         url: "http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2017Season4.zip",
         sha256: "1sidnmk2rc9j5fd3a4623pvaika1mm1rwhznb2qklsqsq1x2qckp",
         stripRoot: false,
       })))),
     ladder2018season1: nix.thunk(() => nix.app(fetchzip$, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         url: "http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2018Season1.zip",
         sha256: "0mp0ilcq0gmd7ahahc5i8c7bdr3ivk6skx0b2cgb1z89l5d76irq",
         stripRoot: false,
       })))),
     ladder2018season2: nix.thunk(() => nix.app(fetchzip$, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         url: "http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2018Season2_Updated.zip",
         sha256: "176rs848cx5src7qbr6dnn81bv1i86i381fidk3v81q9bxlmc2rv",
         stripRoot: false,
       })))),
     ladder2018season3: nix.thunk(() => nix.app(fetchzip$, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         url: "http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2018Season3.zip",
         sha256: "1r3wv4w53g9zq6073ajgv74prbdsd1x3zfpyhv1kpxbffyr0x0zp",
         stripRoot: false,
       })))),
     ladder2018season4: nix.thunk(() => nix.app(fetchzip$, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         url: "http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2018Season4.zip",
         sha256: "0k47rr6pzxbanlqnhliwywkvf0w04c8hxmbanksbz6aj5wpkcn1s",
         stripRoot: false,
       })))),
     ladder2019season1: nix.thunk(() => nix.app(fetchzip$, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         url: "http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2019Season1.zip",
         sha256: "1dlk9zza8h70lbjvg2ykc5wr9vsvvdk02szwrkgdw26mkssl2rg9",
         stripRoot: false,

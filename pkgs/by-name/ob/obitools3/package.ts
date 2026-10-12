@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["broken", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["postPatch", 25, 3], ["preBuild", 30, 3], ["dontConfigure", 35, 3], ["doCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, python3Packages: false, cmake: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["broken", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["postPatch", 25, 3], ["preBuild", 30, 3], ["dontConfigure", 35, 3], ["doCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "obitools3",
       version: "3.0.1b11",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.metabarcoding.org/obitools/obitools3/repository/v${nix.sel(finalAttrs, "version")}/archive.tar.gz`),
           sha256: "1x7a0nrr9agg1pfgq8i1j8r1p6c0jpyxsv196ylix1dd2iivmas1",
         })))),
@@ -33,7 +31,7 @@ export NIX_CFLAGS_COMPILE="-L $out/${nix.sel(python3, "sitePackages")} $NIX_CFLA
       dontConfigure: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Management of analyses and data in DNA metabarcoding",
         mainProgram: "obi",
         homepage: "https://git.metabarcoding.org/obitools/obitools3",

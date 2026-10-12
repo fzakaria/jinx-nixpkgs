@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 11, 3], ["src", 14, 22], ["version", 14, 26], ["minimalOCamlVersion", 16, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 23, 3], ["checkInputs", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, decoders: false, msgpck: false, containers: false, ounit2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["src", 14, 22], ["version", 14, 26], ["minimalOCamlVersion", 16, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 23, 3], ["checkInputs", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const containers = nix.arg($, "containers");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "decoders-msgpck",
       src: nix.thunk(() => nix.attr(decoders, "src")),
       version: nix.thunk(() => nix.attr(decoders, "version")),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [containers, ounit2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Msgpck backend for decoders",
         homepage: "https://github.com/mattjbray/ocaml-decoders",
         changelog: nix.thunk(() => nix.str`https://github.com/mattjbray/ocaml-decoders/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

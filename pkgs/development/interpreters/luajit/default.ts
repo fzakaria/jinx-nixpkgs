@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["NIX_CFLAGS_COMPILE", 105, 7]], [["luapathsearchpaths", 119, 9], ["luacpathsearchpaths", 120, 9]], [["self", 146, 45]], [["self", 151, 15], ["packageOverrides", 151, 20], ["luaAttr", 151, 37], ["luaversion", 152, 28], ["executable", 153, 7], ["luaOnBuildForBuild", 154, 7], ["luaOnBuildForHost", 155, 7], ["luaOnBuildForTarget", 156, 7], ["luaOnHostForHost", 157, 7], ["luaOnTargetForTarget", 158, 7]], [["description", 166, 7], ["homepage", 167, 7], ["license", 168, 7], ["platforms", 171, 7], ["badPlatforms", 172, 7], ["mainProgram", 179, 7], ["maintainers", 180, 7]], [["pname", 69, 3], ["version", 70, 11], ["src", 70, 19], ["luaversion", 72, 3], ["postPatch", 74, 3], ["dontConfigure", 83, 3], ["buildInputs", 85, 3], ["buildFlags", 87, 3], ["makeFlags", 90, 3], ["enableParallelBuilding", 104, 3], ["env", 105, 3], ["preInstall", 109, 3], ["postInstall", 115, 3], ["LuaPathSearchPaths", 130, 3], ["LuaCPathSearchPaths", 131, 3], ["setupHook", 133, 3], ["passthru", 139, 3], ["meta", 163, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, version: false, src: false, replaceVars: false, extraMeta: true, self: false, packageOverrides: true, pkgsBuildBuild: false, pkgsBuildHost: false, pkgsBuildTarget: false, pkgsHostHost: false, pkgsTargetTarget: false, passthruFun: false, enableFFI: true, enableJIT: true, enableJITDebugModule: true, enableGC64: true, enable52Compat: true, enableValgrindSupport: true, valgrind: true, enableGDBJITSupport: true, enableAPICheck: true, enableVMAssertions: true, enableRegisterAllocationRandomization: true, useSystemMalloc: true, deterministicStringIds: true, luaAttr: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 105, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["luapathsearchpaths", 119, 9], ["luacpathsearchpaths", 120, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["self", 146, 45]]);
-const pos$4 = nix.positions(here + "/default.nix", [["self", 151, 15], ["packageOverrides", 151, 20], ["luaAttr", 151, 37], ["luaversion", 152, 28], ["executable", 153, 7], ["luaOnBuildForBuild", 154, 7], ["luaOnBuildForHost", 155, 7], ["luaOnBuildForTarget", 156, 7], ["luaOnHostForHost", 157, 7], ["luaOnTargetForTarget", 158, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 166, 7], ["homepage", 167, 7], ["license", 168, 7], ["platforms", 171, 7], ["badPlatforms", 172, 7], ["mainProgram", 179, 7], ["maintainers", 180, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 69, 3], ["version", 70, 11], ["src", 70, 19], ["luaversion", 72, 3], ["postPatch", 74, 3], ["dontConfigure", 83, 3], ["buildInputs", 85, 3], ["buildFlags", 87, 3], ["makeFlags", 90, 3], ["enableParallelBuilding", 104, 3], ["env", 105, 3], ["preInstall", 109, 3], ["postInstall", 115, 3], ["LuaPathSearchPaths", 130, 3], ["LuaCPathSearchPaths", 131, 3], ["setupHook", 133, 3], ["passthru", 139, 3], ["meta", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
   const XCFLAGS = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableFFI)), "-DLUAJIT_DISABLE_FFI"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableJIT)), "-DLUAJIT_DISABLE_JIT"), nix.concat(nix.app(nix.sel(lib, "optional"), enable52Compat, "-DLUAJIT_ENABLE_LUA52COMPAT"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableGC64)), "-DLUAJIT_DISABLE_GC64"), nix.concat(nix.app(nix.sel(lib, "optional"), useSystemMalloc, "-DLUAJIT_USE_SYSMALLOC"), nix.concat(nix.app(nix.sel(lib, "optional"), enableValgrindSupport, "-DLUAJIT_USE_VALGRIND"), nix.concat(nix.app(nix.sel(lib, "optional"), enableGDBJITSupport, "-DLUAJIT_USE_GDBJIT"), nix.concat(nix.app(nix.sel(lib, "optional"), enableAPICheck, "-DLUAJIT_USE_APICHECK"), nix.concat(nix.app(nix.sel(lib, "optional"), enableVMAssertions, "-DLUAJIT_USE_ASSERT"), nix.concat(nix.app(nix.sel(lib, "optional"), enableRegisterAllocationRandomization, "-DLUAJIT_RANDOM_RA"), nix.app(nix.sel(lib, "optional"), deterministicStringIds, "-DLUAJIT_SECURITY_STRID=0"))))))))))));
   const buildStdenv = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(buildPackages, "stdenv", "hostPlatform", "isx86_64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "is32bit")))) ? nix.sel(buildPackages, "pkgsi686Linux", "buildPackages", "stdenv") : nix.sel(buildPackages, "stdenv")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "luajit",
       version: version,
       src: src,
@@ -66,13 +61,13 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMinGW")), nix.thunk(() => ["TARGET_SYS=Windows"])), nix.concat(nix.app(nix.sel(lib, "optional"), enableJITDebugModule, "INSTALL_LJLIBD=$(INSTALL_LMOD)"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), "BUILDMODE=static"))))),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(XCFLAGS)),
       })),
       preInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMinGW")), "if [[ -e src/luajit.exe && ! -e src/luajit ]]; then\n  cp -p src/luajit.exe src/luajit\nfi\n")),
       postInstall: nix.thunk(() => nix.str`mkdir -p $out/nix-support
 cp ${nix.app(replaceVars, nix.path(here, "../lua-5/utils.sh"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           luapathsearchpaths: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(finalAttrs, "LuaPathSearchPaths")))),
           luacpathsearchpaths: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(finalAttrs, "LuaCPathSearchPaths")))),
         })))} $out/nix-support/utils.sh
@@ -88,7 +83,7 @@ fi
       passthru: nix.thunk(() => (() => {
         const inputs$ = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isDerivation"), v))) && nix.asBool(!nix.eq(n, "passthruFun"))), inputs));
         const override = (attr) => (() => {
-          const lua = nix.thunk(() => nix.app(nix.sel(attr, "override"), nix.thunk(() => nix.update(inputs$, { [nix.POS]: pos$3, self: lua }))));
+          const lua = nix.thunk(() => nix.app(nix.sel(attr, "override"), nix.thunk(() => nix.update(inputs$, { [nix.POS]: $pos[2], self: lua }))));
           return nix.force(lua);
         })();
         return nix.app(passthruFun, nix.thunk(() => (() => {
@@ -103,7 +98,7 @@ fi
             const luaOnHostForHost = nix.thunk(() => nix.app(override, nix.thunk(() => nix.sel(pkgsHostHost, nix.key(nix.force(luaAttr_1))))));
             const luaOnTargetForTarget = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "hasAttr"), luaAttr_1, pkgsTargetTarget)), nix.thunk(() => nix.app(override, nix.thunk(() => nix.sel(pkgsTargetTarget, nix.key(nix.force(luaAttr_1))))))));
             return {
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               self: self_1,
               packageOverrides: packageOverrides_1,
               luaAttr: luaAttr_1,
@@ -118,7 +113,7 @@ fi
           })()));
       })()),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "High-performance JIT compiler for Lua 5.1",
         homepage: "https://luajit.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5], ["platforms", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 20, 3], ["__structuredAttrs", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false, makeWrapper: false, python3: false, playerctl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 20, 3], ["__structuredAttrs", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const playerctl = nix.arg($, "playerctl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lyricspot",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vlensys",
           repo: "lyricspot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ wrapProgram $out/bin/lyricspot \\
   --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [python3, playerctl]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/vlensys/lyricspot",
         description: "Good old live synced lyrics in your terminal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["src", 60, 26], ["version", 60, 30]], [["src", 64, 26], ["version", 64, 30], ["meta", 64, 38], ["buildGoModule", 65, 13]], [["src", 111, 9], ["version", 112, 9], ["meta", 113, 9], ["frontend", 114, 9]], [["vikunja", 118, 11]], [["extraArgs", 121, 7]], [["desktop", 109, 5], ["tests", 118, 5], ["updateScript", 120, 5]], [["changelog", 133, 5], ["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["mainProgram", 141, 5], ["platforms", 142, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["vendorHash", 57, 3], ["frontend", 59, 3], ["veans", 63, 3], ["prePatch", 68, 3], ["postConfigure", 72, 3], ["buildPhase", 83, 3], ["checkPhase", 91, 3], ["installPhase", 100, 3], ["passthru", 108, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, fetchFromGitHub: false, buildGo127Module: false, mage: false, writableTmpDirAsHomeHook: false, writeShellScriptBin: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 60, 26], ["version", 60, 30]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 64, 26], ["version", 64, 30], ["meta", 64, 38], ["buildGoModule", 65, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 111, 9], ["version", 112, 9], ["meta", 113, 9], ["frontend", 114, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["vikunja", 118, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 121, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["desktop", 109, 5], ["tests", 118, 5], ["updateScript", 120, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["changelog", 133, 5], ["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["mainProgram", 141, 5], ["platforms", 142, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["vendorHash", 57, 3], ["frontend", 59, 3], ["veans", 63, 3], ["prePatch", 68, 3], ["postConfigure", 72, 3], ["buildPhase", 83, 3], ["checkPhase", 91, 3], ["installPhase", 100, 3], ["passthru", 108, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +25,11 @@ ${jumpAndAppend} t.Skip();
 `;
   })();
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "vikunja",
       version: "2.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "go-vikunja",
           repo: "vikunja",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,12 +47,12 @@ fi
       })()),
       vendorHash: "sha256-NLtp+2QyfS06W/Puuo5MEqalpLc9NodoPqtDJPBbOH4=",
       frontend: nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
         })))),
       veans: nix.thunk(() => nix.app(callPackage, nix.path(here, "./veans.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
@@ -81,17 +73,17 @@ rm pkg/web/error_codes_test.go
       checkPhase: "runHook preCheck\n\nmage test:feature\nmage test:web\n\nrunHook postCheck\n",
       installPhase: "runHook preInstall\n\ninstall -Dt $out/bin vikunja\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         desktop: nix.thunk(() => nix.app(callPackage, nix.path(here, "./desktop.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
             frontend: nix.thunk(() => nix.attr(finalAttrs, "frontend")),
           })))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, vikunja: nix.thunk(() => nix.sel(nixosTests, "vikunja")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[4], vikunja: nix.thunk(() => nix.sel(nixosTests, "vikunja")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             extraArgs: nix.thunk(() => [
               "--subpackage",
               "frontend",
@@ -103,7 +95,7 @@ rm pkg/web/error_codes_test.go
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: nix.thunk(() => nix.str`https://github.com/go-vikunja/vikunja/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Todo-app to organize your life",
         homepage: "https://vikunja.io/",

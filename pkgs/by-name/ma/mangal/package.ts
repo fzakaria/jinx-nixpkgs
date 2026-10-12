@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["proxyVendor", 19, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["nativeBuildInputs", 27, 3], ["postInstall", 29, 3], ["doCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["proxyVendor", 19, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["nativeBuildInputs", 27, 3], ["postInstall", 29, 3], ["doCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mangal",
       version: "4.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "metafates",
           repo: "mangal",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "# Mangal creates a config file in the folder ~/.config/mangal and fails if not possible\nexport HOME=$(mktemp -d)\ninstallShellCompletion --cmd mangal \\\n  --bash <($out/bin/mangal completion bash) \\\n  --zsh <($out/bin/mangal completion zsh) \\\n  --fish <($out/bin/mangal completion fish)\n")),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CLI app written in Go which scrapes, downloads and packs manga into different formats",
         homepage: "https://github.com/metafates/mangal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

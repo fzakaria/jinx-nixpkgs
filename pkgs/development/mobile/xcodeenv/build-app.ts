@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-app.nix", [[["name", 86, 5], ["buildPhase", 87, 5], ["failureHook", 181, 5], ["installPhase", 183, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, composeXcodeWrapper: false }, ellipsis: false };
 const formals$2 = { args: { name: false, src: false, sdkVersion: true, target: true, configuration: true, scheme: true, sdk: true, xcodeFlags: true, release: true, certificateFile: true, certificatePassword: true, provisioningProfile: true, codeSignIdentity: true, signMethod: true, generateIPA: true, generateXCArchive: true, enableWirelessDistribution: true, installURL: true, bundleId: true, appVersion: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-app.nix", [["name", 86, 5], ["buildPhase", 87, 5], ["failureHook", 181, 5], ["installPhase", 183, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         "version",
       ], nix.builtins.attrNames(xcodewrapperFormalArgs)))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => [" "]), nix.thunk(() => [""]), name)),
         buildPhase: nix.thunk(() => nix.str`# Be sure that the Xcode wrapper has priority over everything else.
 # When using buildInputs this does not seem to be the case.

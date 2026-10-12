@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["pname", 58, 7], ["version", 59, 7], ["src", 60, 7], ["patches", 61, 7], ["pnpm", 63, 5], ["fetcherVersion", 64, 5], ["hash", 65, 5]], [["karakeep", 157, 28]], [["tests", 156, 5], ["updateScript", 159, 5]], [["homepage", 163, 5], ["changelog", 164, 5], ["description", 165, 5], ["license", 166, 5], ["maintainers", 167, 5], ["mainProgram", 168, 5], ["platforms", 169, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["pnpmDeps", 56, 3], ["buildPhase", 67, 3], ["preInstall", 96, 3], ["installPhase", 102, 3], ["postFixup", 141, 3], ["doInstallCheck", 149, 3], ["nativeInstallCheckInputs", 151, 3], ["passthru", 155, 3], ["meta", 162, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, nixosTests: false, nodejs_22: false, "node-gyp": false, gnutar: false, inter: false, python3: false, srcOnly: false, removeReferencesTo: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 58, 7], ["version", 59, 7], ["src", 60, 7], ["patches", 61, 7], ["pnpm", 63, 5], ["fetcherVersion", 64, 5], ["hash", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["karakeep", 157, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 156, 5], ["updateScript", 159, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 163, 5], ["changelog", 164, 5], ["description", 165, 5], ["license", 166, 5], ["maintainers", 167, 5], ["mainProgram", 168, 5], ["platforms", 169, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["pnpmDeps", 56, 3], ["buildPhase", 67, 3], ["preInstall", 96, 3], ["installPhase", 102, 3], ["postFixup", 141, 3], ["doInstallCheck", 149, 3], ["nativeInstallCheckInputs", 151, 3], ["passthru", 155, 3], ["meta", 162, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "karakeep",
       version: "0.33.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "karakeep-app",
           repo: "karakeep",
           tag: nix.thunk(() => nix.str`cli/v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +46,7 @@ substituteInPlace apps/cli/src/commands/dump.ts \\
       nativeBuildInputs: nix.thunk(() => [python3, nodejs_22, node_gyp, pnpmConfigHook, pnpm_11]),
       buildInputs: nix.thunk(() => [gnutar]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -132,15 +127,15 @@ runHook postInstall
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           karakeep: nix.thunk(() => nix.attr(nixosTests, "karakeep")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://karakeep.app/",
         changelog: nix.thunk(() => nix.str`https://github.com/karakeep-app/karakeep/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Self-hostable bookmark-everything app (links, notes and images) with AI-based automatic tagging and full text search",

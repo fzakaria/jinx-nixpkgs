@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableGtk3", 13, 27]], [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["installPhase", 33, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, python3: false, fetchFromGitHub: false, makeWrapper: false, enableVisualization: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableGtk3", 13, 27]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["installPhase", 33, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const python = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
       const w = nix.withScope(ps, null);
       return [
-        nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "opencv4"), "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableGtk3: enableVisualization })))),
+        nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "opencv4"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableGtk3: enableVisualization })))),
         nix.thunk(() => nix.lookup(w, "onnxruntime")),
         nix.thunk(() => nix.lookup(w, "pillow")),
         nix.thunk(() => nix.lookup(w, "numpy")),
       ];
     })()));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openseeface",
       version: "1.20.4-unstable-2024-09-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "emilianavt",
           repo: "OpenSeeFace",
           rev: "e6e24efd2038ab778ac094bab21c2c18a7efbeb2",
@@ -48,7 +45,7 @@ makeWrapper ${nix.sel(python, "interpreter")} "$out/bin/facetracker" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Robust realtime face and facial landmark tracking on CPU with Unity integration",
         homepage: "https://github.com/emilianavt/OpenSeeFace",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -2,79 +2,60 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/user-activation-scripts.nix", [[["maintainers", 5, 5]], [["enable", 9, 19]], [["foo", 10, 34]], [["switch", 9, 12], ["userActivationScripts", 10, 12]], [["initialPassword", 12, 7], ["isNormalUser", 13, 7]], [["alice", 11, 17]], [["users", 11, 11]], [["rules", 15, 39]], [["alice", 15, 33]], [["users", 15, 27]], [["tmpfiles", 15, 18]], [["user", 15, 13]], [["bar", 16, 71]], [["userActivationScripts", 16, 49]], [["system", 16, 42]], [["configuration", 16, 28]], [["changed", 16, 20]], [["system", 9, 5], ["users", 11, 5], ["systemd", 15, 5], ["specialisation", 16, 5]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 19, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/user-activation-scripts.nix", [["maintainers", 5, 5]]);
-const pos$2 = nix.positions(here + "/user-activation-scripts.nix", [["enable", 9, 19]]);
-const pos$3 = nix.positions(here + "/user-activation-scripts.nix", [["foo", 10, 34]]);
-const pos$4 = nix.positions(here + "/user-activation-scripts.nix", [["switch", 9, 12], ["userActivationScripts", 10, 12]]);
-const pos$5 = nix.positions(here + "/user-activation-scripts.nix", [["initialPassword", 12, 7], ["isNormalUser", 13, 7]]);
-const pos$6 = nix.positions(here + "/user-activation-scripts.nix", [["alice", 11, 17]]);
-const pos$7 = nix.positions(here + "/user-activation-scripts.nix", [["users", 11, 11]]);
-const pos$8 = nix.positions(here + "/user-activation-scripts.nix", [["rules", 15, 39]]);
-const pos$9 = nix.positions(here + "/user-activation-scripts.nix", [["alice", 15, 33]]);
-const pos$10 = nix.positions(here + "/user-activation-scripts.nix", [["users", 15, 27]]);
-const pos$11 = nix.positions(here + "/user-activation-scripts.nix", [["tmpfiles", 15, 18]]);
-const pos$12 = nix.positions(here + "/user-activation-scripts.nix", [["user", 15, 13]]);
-const pos$13 = nix.positions(here + "/user-activation-scripts.nix", [["bar", 16, 71]]);
-const pos$14 = nix.positions(here + "/user-activation-scripts.nix", [["userActivationScripts", 16, 49]]);
-const pos$15 = nix.positions(here + "/user-activation-scripts.nix", [["system", 16, 42]]);
-const pos$16 = nix.positions(here + "/user-activation-scripts.nix", [["configuration", 16, 28]]);
-const pos$17 = nix.positions(here + "/user-activation-scripts.nix", [["changed", 16, 20]]);
-const pos$18 = nix.positions(here + "/user-activation-scripts.nix", [["system", 9, 5], ["users", 11, 5], ["systemd", 15, 5], ["specialisation", 16, 5]]);
-const pos$19 = nix.positions(here + "/user-activation-scripts.nix", [["machine", 8, 9]]);
-const pos$20 = nix.positions(here + "/user-activation-scripts.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     name: "user-activation-scripts",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "chkno"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         system: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          switch: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
-          userActivationScripts: nix.thunk(() => ({ [nix.POS]: pos$3, foo: "mktemp ~/user-activation-ran.XXXXXX" })),
+          [nix.POS]: $pos[3],
+          switch: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
+          userActivationScripts: nix.thunk(() => ({ [nix.POS]: $pos[2], foo: "mktemp ~/user-activation-ran.XXXXXX" })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            alice: nix.thunk(() => ({ [nix.POS]: pos$5, initialPassword: "pass1", isNormalUser: true })),
+            [nix.POS]: $pos[5],
+            alice: nix.thunk(() => ({ [nix.POS]: $pos[4], initialPassword: "pass1", isNormalUser: true })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           user: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$9,
-                alice: nix.thunk(() => ({ [nix.POS]: pos$8, rules: nix.thunk(() => ["r %h/file-to-remove"]) })),
+                [nix.POS]: $pos[8],
+                alice: nix.thunk(() => ({ [nix.POS]: $pos[7], rules: nix.thunk(() => ["r %h/file-to-remove"]) })),
               })),
             })),
           })),
         })),
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           changed: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               system: nix.thunk(() => ({
-                [nix.POS]: pos$14,
-                userActivationScripts: nix.thunk(() => ({ [nix.POS]: pos$13, bar: "true" })),
+                [nix.POS]: $pos[13],
+                userActivationScripts: nix.thunk(() => ({ [nix.POS]: $pos[12], bar: "true" })),
               })),
             })),
           })),

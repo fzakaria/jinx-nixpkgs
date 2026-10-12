@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 21, 7], ["version", 22, 28], ["src", 22, 36], ["__structuredAttrs", 24, 7], ["strictDeps", 25, 7], ["impureEnvVars", 27, 7], ["nativeBuildInputs", 32, 7], ["dontConfigure", 37, 7], ["buildPhase", 39, 7], ["installPhase", 61, 7], ["dontFixup", 78, 7], ["outputHash", 80, 7], ["outputHashAlgo", 81, 7], ["outputHashMode", 82, 7]], [["owner", 93, 5], ["repo", 94, 5], ["tag", 95, 5], ["hash", 96, 5]], [["MODELS_DEV_API_JSON", 141, 7], ["OPENCODE_DISABLE_MODELS_FETCH", 142, 7], ["OPENCODE_VERSION", 143, 7], ["OPENCODE_CHANNEL", 144, 7]], [["config", 241, 7], ["theme", 242, 7], ["tui", 243, 7]], [["extraArgs", 247, 7]], [["jsonschema", 240, 5], ["node_modules", 245, 5], ["updateScript", 246, 5]], [["description", 255, 5], ["homepage", 256, 5], ["changelog", 257, 5], ["license", 258, 5], ["maintainers", 259, 5], ["sourceProvenance", 264, 5], ["platforms", 265, 5], ["mainProgram", 270, 5]], [["pname", 86, 3], ["version", 87, 3], ["__structuredAttrs", 89, 3], ["strictDeps", 90, 3], ["src", 92, 3], ["postPatch", 99, 3], ["nativeBuildInputs", 120, 3], ["configurePhase", 131, 3], ["env", 141, 3], ["buildPhase", 146, 3], ["installPhase", 159, 3], ["postInstall", 216, 3], ["dontStrip", 226, 3], ["nativeInstallCheckInputs", 228, 3], ["doInstallCheck", 232, 3], ["versionCheckKeepEnvironment", 233, 3], ["versionCheckProgramArg", 237, 3], ["passthru", 239, 3], ["meta", 254, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bun: false, darwin: false, fetchFromGitHub: false, makeWrapper: false, "models-dev": false, nodejs: false, "nix-update-script": false, ripgrep: false, sysctl: false, installShellFiles: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 21, 7], ["version", 22, 28], ["src", 22, 36], ["__structuredAttrs", 24, 7], ["strictDeps", 25, 7], ["impureEnvVars", 27, 7], ["nativeBuildInputs", 32, 7], ["dontConfigure", 37, 7], ["buildPhase", 39, 7], ["installPhase", 61, 7], ["dontFixup", 78, 7], ["outputHash", 80, 7], ["outputHashAlgo", 81, 7], ["outputHashMode", 82, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 93, 5], ["repo", 94, 5], ["tag", 95, 5], ["hash", 96, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["MODELS_DEV_API_JSON", 141, 7], ["OPENCODE_DISABLE_MODELS_FETCH", 142, 7], ["OPENCODE_VERSION", 143, 7], ["OPENCODE_CHANNEL", 144, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["config", 241, 7], ["theme", 242, 7], ["tui", 243, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 247, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["jsonschema", 240, 5], ["node_modules", 245, 5], ["updateScript", 246, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 255, 5], ["homepage", 256, 5], ["changelog", 257, 5], ["license", 258, 5], ["maintainers", 259, 5], ["sourceProvenance", 264, 5], ["platforms", 265, 5], ["mainProgram", 270, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 86, 3], ["version", 87, 3], ["__structuredAttrs", 89, 3], ["strictDeps", 90, 3], ["src", 92, 3], ["postPatch", 99, 3], ["nativeBuildInputs", 120, 3], ["configurePhase", 131, 3], ["env", 141, 3], ["buildPhase", 146, 3], ["installPhase", 159, 3], ["postInstall", 216, 3], ["dontStrip", 226, 3], ["nativeInstallCheckInputs", 228, 3], ["doInstallCheck", 232, 3], ["versionCheckKeepEnvironment", 233, 3], ["versionCheckProgramArg", 237, 3], ["passthru", 239, 3], ["meta", 254, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const node_modules = (finalAttrs) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
       version: nix.thunk(() => nix.attr(finalAttrs, "version")),
       src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -46,13 +39,13 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "opencode",
       version: "1.18.35",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "anomalyco",
           repo: "opencode",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +62,7 @@ patchShebangs packages/*/node_modules
 runHook postConfigure
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         MODELS_DEV_API_JSON: nix.thunk(() => nix.str`${models_dev}/dist/_api.json`),
         OPENCODE_DISABLE_MODELS_FETCH: true,
         OPENCODE_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -129,21 +122,21 @@ runHook postInstall
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME", "OPENCODE_DISABLE_MODELS_FETCH"]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         jsonschema: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           config: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/config.json`),
           theme: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/theme.json`),
           tui: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/tui.json`),
         })),
         node_modules: nix.thunk(() => nix.app(node_modules, finalAttrs)),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--subpackage", "node_modules"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "AI coding agent built for the terminal",
         homepage: "https://github.com/anomalyco/opencode",
         changelog: nix.thunk(() => nix.str`https://github.com/anomalyco/opencode/releases/tag/v${nix.sel(finalAttrs, "version")}`),

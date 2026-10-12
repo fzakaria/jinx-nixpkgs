@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 29, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 18, 3], ["doCheck", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, buildPerlPackage: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 18, 3], ["doCheck", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildPerlPackage = nix.arg($, "buildPerlPackage");
   const lib = nix.arg($, "lib");
   return nix.app(buildPerlPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "MNI-Perllib",
       version: "2012-04-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BIC-MNI",
           repo: "mni-perllib",
           rev: "b908472b4390180ea5d19a121ac5edad6ed88d83",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./no-stdin.patch")]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MNI MINC perllib (not used much anymore)",
         homepage: "https://github.com/BIC-MNI/mni-perllib",
         license: nix.thunk(() => (() => {

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 23, 5], ["mainProgram", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, docutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 23, 5], ["mainProgram", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const docutils = nix.arg($, "docutils");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rst2ansi",
       version: "0.1.5-unstable-2025-02-12",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Snaipe",
           repo: "python-rst2ansi",
           rev: "3728e16f8b8b1dc338e5df90ba2c4a93ee054b3f",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [docutils]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Rst converter to ansi-decorated console output",
         mainProgram: "rst2ansi",
         homepage: "https://github.com/Snaipe/python-rst-to-ansi",

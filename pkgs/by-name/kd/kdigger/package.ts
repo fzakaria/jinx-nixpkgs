@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["leaveDotGit", 20, 5], ["postFetch", 21, 5]], [["CGO_ENABLED", 32, 7]], [["homepage", 62, 5], ["changelog", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["longDescription", 66, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 27, 3], ["nativeBuildInputs", 29, 3], ["env", 32, 3], ["ldflags", 34, 3], ["preBuild", 41, 3], ["postInstall", 45, 3], ["doInstallCheck", 52, 3], ["installCheckPhase", 53, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["leaveDotGit", 20, 5], ["postFetch", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["changelog", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["longDescription", 66, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 27, 3], ["nativeBuildInputs", 29, 3], ["env", 32, 3], ["ldflags", 34, 3], ["preBuild", 41, 3], ["postInstall", 45, 3], ["doInstallCheck", 52, 3], ["installCheckPhase", 53, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kdigger",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "quarkslab",
           repo: "kdigger",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-kMoTkrDuAJmgWAj7+V3a8VEYpPbTv3UdLscTdkpzud0=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/kdigger --help\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/quarkslab/kdigger",
         changelog: nix.thunk(() => nix.str`https://github.com/quarkslab/kdigger/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "In-pod context discovery tool for Kubernetes penetration testing",

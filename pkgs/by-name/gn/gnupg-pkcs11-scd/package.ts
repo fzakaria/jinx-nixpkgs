@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["changelog", 39, 5], ["description", 40, 5], ["mainProgram", 41, 5], ["longDescription", 42, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["configureFlags", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "libgpg-error": false, libassuan: false, libgcrypt: false, pkcs11helper: false, "pkg-config": false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 39, 5], ["description", 40, 5], ["mainProgram", 41, 5], ["longDescription", 42, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["configureFlags", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gnupg-pkcs11-scd",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/alonbl/gnupg-pkcs11-scd/releases/download/gnupg-pkcs11-scd-${nix.sel(finalAttrs, "version")}/gnupg-pkcs11-scd-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-lUeH5WLys9kpQhLDLdDYGizTesolDmaFAC0ok7uVkIc=",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-libgcrypt-prefix=${nix.sel(libgcrypt, "dev")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/alonbl/gnupg-pkcs11-scd/blob/gnupg-pkcs11-scd-${nix.sel(finalAttrs, "version")}/ChangeLog`),
         description: "Smart-card daemon to enable the use of PKCS#11 tokens with GnuPG",
         mainProgram: "gnupg-pkcs11-scd",

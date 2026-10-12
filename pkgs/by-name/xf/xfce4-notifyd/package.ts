@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["rev-prefix", 66, 5]], [["updateScript", 65, 12]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["platforms", 74, 5], ["teams", 75, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["strictDeps", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["passthru", 65, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gettext: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, dbus: false, glib: false, gtk3: false, "gtk-layer-shell": false, "libcanberra-gtk3": false, libnotify: false, libx11: false, libxfce4ui: false, libxfce4util: false, sqlite: false, systemdLibs: false, "xfce4-panel": false, xfconf: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["platforms", 74, 5], ["teams", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["strictDeps", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["passthru", 65, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const xfconf = nix.arg($, "xfconf");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xfce4-notifyd",
       version: "0.9.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.xfce.org",
           owner: "apps",
           repo: "xfce4-notifyd",
@@ -63,11 +59,11 @@ export default nix.lambda((args) => (() => {
         xfconf,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "xfce4-notifyd-" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "xfce4-notifyd-" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple notification daemon for Xfce",
         homepage: "https://gitlab.xfce.org/apps/xfce4-notifyd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

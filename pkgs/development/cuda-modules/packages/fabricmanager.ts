@@ -2,23 +2,22 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fabricmanager.nix", [[["homepage", 18, 8]], [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["allowFHSReferences", 14, 3], ["buildInputs", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { buildRedist: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fabricmanager.nix", [["homepage", 18, 8]]);
-const pos$2 = nix.positions(here + "/fabricmanager.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["allowFHSReferences", 14, 3], ["buildInputs", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "fabricmanager",
       outputs: nix.thunk(() => ["out", "bin", "dev", "include", "lib"]),
       allowFHSReferences: true,
       buildInputs: nix.thunk(() => [zlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://docs.nvidia.com/datacenter/tesla/fabric-manager-user-guide",
       })),
     })));

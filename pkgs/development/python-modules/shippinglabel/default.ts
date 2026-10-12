@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 23, 3], ["dependencies", 28, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, lib: false, "dist-meta": false, "dom-toml": false, "domdf-python-tools": false, hatchling: false, "hatch-requirements-txt": false, packaging: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 23, 3], ["dependencies", 28, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-JcDDGUwBHANV3/j1bMCzFoj2k7IJ9YSdRJkdii7JHy8=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling, hatch_requirements_txt]);
       const dependencies = nix.thunk(() => [dist_meta, dom_toml, domdf_python_tools, packaging, typing_extensions]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utilities for handling packages",
         homepage: "https://github.com/domdfcoding/shippinglabel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

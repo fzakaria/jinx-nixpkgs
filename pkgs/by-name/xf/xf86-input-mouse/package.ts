@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 18, 5], ["group", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["extraArgs", 43, 40]], [["pkg-config", 44, 11]], [["updateScript", 43, 5], ["tests", 44, 5]], [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 59, 5], ["pkgConfigModules", 60, 5], ["platforms", 62, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["configureFlags", 40, 3], ["passthru", 42, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoreconfHook: false, "pkg-config": false, "util-macros": false, xorgproto: false, "xorg-server": false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 18, 5], ["group", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 43, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 44, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 43, 5], ["tests", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 59, 5], ["pkgConfigModules", 60, 5], ["platforms", 62, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["configureFlags", 40, 3], ["passthru", 42, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "xf86-input-mouse",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "driver",
@@ -42,18 +37,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-sdkdir=${nix.builtins.placeholder("out")}/include/xorg`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=xf86-input-mouse-(.*)"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Mouse input driver for non-Linux platforms for the Xorg X server",
         longDescription: "This driver is used on non-Linux operating systems such as BSD & Solaris, as modern Linux\nsystems use the xf86-input-evdev or xf86-input-libinput drivers instead.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/driver/xf86-input-mouse",

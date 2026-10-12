@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 5], ["version", 18, 13], ["hash", 19, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 26, 3], ["pythonRemoveDeps", 32, 3], ["pythonRelaxDeps", 34, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, allpairspy: false, buildPythonPackage: false, fetchPypi: false, pyparsing: false, robotframework: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 13], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 26, 3], ["pythonRemoveDeps", 32, 3], ["pythonRelaxDeps", 34, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "RoboMachine",
           version: version,
           hash: "sha256-XrxHaV9U7mZ2TvySHGm6qw1AsoukppzwPq4wufIjL+k=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["pyparsing"]);
       const pythonImportsCheck = nix.thunk(() => ["robomachine"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Test data generator for Robot Framework",
         homepage: "https://github.com/mkorpela/RoboMachine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

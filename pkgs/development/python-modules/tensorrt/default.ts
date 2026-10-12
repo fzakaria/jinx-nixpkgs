@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 54, 5], ["badPlatforms", 58, 7], ["broken", 59, 7], ["changelog", 60, 7], ["downloadPage", 61, 7], ["homepage", 62, 7], ["license", 63, 7], ["longDescription", 64, 7], ["maintainers", 65, 7], ["platforms", 66, 7], ["sourceProvenance", 67, 7], ["teams", 68, 7]], [["pname", 23, 3], ["version", 25, 11], ["disabled", 28, 3], ["src", 30, 3], ["format", 40, 3], ["__structuredAttrs", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 47, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cudaPackages: false, buildPythonPackage: false, pythonAtLeast: false, python: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 54, 5], ["badPlatforms", 58, 7], ["broken", 59, 7], ["changelog", 60, 7], ["downloadPage", 61, 7], ["homepage", 62, 7], ["license", 63, 7], ["longDescription", 64, 7], ["maintainers", 65, 7], ["platforms", 66, 7], ["sourceProvenance", 67, 7], ["teams", 68, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 25, 11], ["disabled", 28, 3], ["src", 30, 3], ["format", 40, 3], ["__structuredAttrs", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 47, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const from_2 = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const parsed = nix.thunk(() => nix.attr(from_2, "parsed"));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${nix.sel(cudaPackages, "cudaNamePrefix")}-${pname}`),
       version: version,
       disabled: nix.thunk(() => nix.app(pythonAtLeast, nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "11.1")) ? "3.14" : "3.15")))),
@@ -43,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "tensorrt"))]),
       pythonImportsCheck: nix.thunk(() => ["tensorrt"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python bindings for TensorRT, a high-performance deep learning interface",
         badPlatforms: nix.thunk(() => nix.attr(meta, "badPlatforms")),
         broken: nix.thunk(() => nix.attr(meta, "broken")),

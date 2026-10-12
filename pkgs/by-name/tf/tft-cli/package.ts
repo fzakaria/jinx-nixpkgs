@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["homepage", 49, 5], ["changelog", 50, 5], ["description", 51, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5], ["mainProgram", 59, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["versionCheckProgramArg", 45, 3], ["doInstallCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, python3Packages: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["changelog", 50, 5], ["description", 51, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5], ["mainProgram", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["versionCheckProgramArg", 45, 3], ["doInstallCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tft-cli",
       version: "0.0.38",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "testing-farm",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://testing-farm.io/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/testing-farm/cli/-/releases/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Command-line interface for Testing Farm",

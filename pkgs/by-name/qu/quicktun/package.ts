@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["quicktun", 42, 18]], [["tests", 42, 12]], [["broken", 45, 5], ["description", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["license", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["buildInputs", 22, 3], ["postPatch", 24, 3], ["buildPhase", 29, 3], ["installPhase", 35, 3], ["passthru", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libsodium: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["quicktun", 42, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 42, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 45, 5], ["description", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["license", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["buildInputs", 22, 3], ["postPatch", 24, 3], ["buildPhase", 29, 3], ["installPhase", 35, 3], ["passthru", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libsodium = nix.arg($, "libsodium");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "quicktun",
       version: "2.2.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "UCIS",
           repo: "QuickTun",
           rev: "2d0c6a9cda8c21f921a5d1197aeee92e9568ca39",
@@ -33,11 +29,14 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nbash build.sh\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nrm out/quicktun*tgz\ninstall -vD out/quicktun* -t $out/bin\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, quicktun: nix.thunk(() => nix.sel(nixosTests, "quicktun")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          quicktun: nix.thunk(() => nix.sel(nixosTests, "quicktun")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Very simple, yet secure VPN software",
         homepage: "http://wiki.ucis.nl/QuickTun",

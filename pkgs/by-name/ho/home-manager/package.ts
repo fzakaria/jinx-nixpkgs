@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["url", 82, 5]], [["updateScript", 81, 12]], [["homepage", 86, 5], ["description", 87, 5], ["longDescription", 88, 5], ["license", 94, 5], ["mainProgram", 95, 5], ["maintainers", 96, 5], ["platforms", 97, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["dontConfigure", 36, 3], ["dontBuild", 37, 3], ["installPhase", 39, 3], ["postFixup", 60, 3], ["passthru", 81, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, bash: false, coreutils: false, fetchFromGitHub: false, findutils: false, gettext: false, gnused: false, inetutils: false, installShellFiles: false, jq: false, less: false, ncurses: false, "nixos-option": false, stdenvNoCC: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 81, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 86, 5], ["description", 87, 5], ["longDescription", 88, 5], ["license", 94, 5], ["mainProgram", 95, 5], ["maintainers", 96, 5], ["platforms", 97, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["dontConfigure", 36, 3], ["dontBuild", 37, 3], ["installPhase", 39, 3], ["postFixup", 60, 3], ["passthru", 81, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "home-manager",
       version: "0-unstable-2026-08-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "home-manager-source",
           owner: "nix-community",
           repo: "home-manager",
@@ -60,11 +56,11 @@ export default nix.lambda((args) => (() => {
   --subst-var-by OUT "$out"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://github.com/nix-community/home-manager/" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], url: "https://github.com/nix-community/home-manager/" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://nix-community.github.io/home-manager/",
         description: "Nix-based user environment configurator",
         longDescription: "The Home-Manager project provides a basic system for managing a user\nenvironment using the Nix package manager together with the Nix libraries\nfound in Nixpkgs. It allows declarative configuration of user specific\n(non global) packages and dotfiles.\n",

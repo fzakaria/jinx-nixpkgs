@@ -2,94 +2,57 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vdirsyncer.nix", [[["type", 6, 5], ["url", 7, 5], ["username", 9, 5], ["password", 10, 5]], [["type", 14, 5], ["url", 15, 5], ["username", 17, 5], ["password", 18, 5]], [["type", 22, 5], ["url", 23, 5]], [["type", 30, 5], ["url", 31, 5]], [["type", 35, 5], ["path", 36, 5], ["fileext", 37, 5]], [["type", 41, 5], ["path", 42, 5], ["fileext", 43, 5]], [["a", 48, 7], ["b", 49, 7], ["collections", 50, 7]], [["a", 56, 7], ["b", 57, 7], ["collections", 58, 7]], [["calendars", 47, 5], ["contacts", 55, 5]], [["tag", 69, 17]], [["uid", 102, 5], ["summary", 103, 5], ["dtstart", 104, 5], ["dtend", 105, 5]], [["uid", 109, 5], ["summary", 110, 5], ["dtstart", 111, 5], ["dtend", 112, 5]], [["uid", 134, 5], ["name", 135, 5], ["displayName", 136, 5], ["email", 137, 5]], [["uid", 141, 5], ["name", 142, 5], ["displayName", 143, 5], ["email", 144, 5]], [["maintainers", 151, 8]], [["type", 157, 23]], [["auth", 157, 18]], [["enable", 156, 9], ["settings", 157, 9]], [["enable", 161, 9], ["extraOptions", 162, 9]], [["local_calendars", 176, 19], ["local_contacts", 177, 19], ["radicale_calendars", 178, 19], ["radicale_contacts", 179, 19]], [["statusPath", 173, 15], ["storages", 174, 15], ["pairs", 182, 15]], [["user", 170, 13], ["group", 171, 13], ["config", 172, 13], ["forceDiscover", 184, 13]], [["local_calendars", 194, 19], ["local_contacts", 195, 19], ["xandikos_calendars", 196, 19], ["xandikos_contacts", 197, 19]], [["statusPath", 191, 15], ["storages", 192, 15], ["pairs", 200, 15]], [["user", 188, 13], ["group", 189, 13], ["config", 190, 13], ["forceDiscover", 202, 13]], [["radicale_calendars", 209, 19], ["radicale_contacts", 210, 19], ["xandikos_calendars", 211, 19], ["xandikos_contacts", 212, 19]], [["storages", 207, 15], ["pairs", 215, 15]], [["config", 206, 13], ["forceDiscover", 217, 13]], [["alice", 169, 11], ["bob", 187, 11], ["remote", 205, 11]], [["enable", 166, 9], ["jobs", 167, 9]], [["radicale", 155, 16], ["xandikos", 160, 16], ["vdirsyncer", 165, 16]], [["isNormalUser", 224, 15]], [["isNormalUser", 225, 13]], [["alice", 224, 9], ["bob", 225, 9]], [["users", 223, 13]], [["services", 155, 7], ["users", 223, 7]], [["machine", 154, 5]], [["name", 149, 3], ["meta", 151, 3], ["nodes", 153, 3], ["testScript", 230, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/vdirsyncer.nix", [["type", 6, 5], ["url", 7, 5], ["username", 9, 5], ["password", 10, 5]]);
-const pos$2 = nix.positions(here + "/vdirsyncer.nix", [["type", 14, 5], ["url", 15, 5], ["username", 17, 5], ["password", 18, 5]]);
-const pos$3 = nix.positions(here + "/vdirsyncer.nix", [["type", 22, 5], ["url", 23, 5]]);
-const pos$4 = nix.positions(here + "/vdirsyncer.nix", [["type", 30, 5], ["url", 31, 5]]);
-const pos$5 = nix.positions(here + "/vdirsyncer.nix", [["type", 35, 5], ["path", 36, 5], ["fileext", 37, 5]]);
-const pos$6 = nix.positions(here + "/vdirsyncer.nix", [["type", 41, 5], ["path", 42, 5], ["fileext", 43, 5]]);
-const pos$7 = nix.positions(here + "/vdirsyncer.nix", [["a", 48, 7], ["b", 49, 7], ["collections", 50, 7]]);
-const pos$8 = nix.positions(here + "/vdirsyncer.nix", [["a", 56, 7], ["b", 57, 7], ["collections", 58, 7]]);
-const pos$9 = nix.positions(here + "/vdirsyncer.nix", [["calendars", 47, 5], ["contacts", 55, 5]]);
-const pos$10 = nix.positions(here + "/vdirsyncer.nix", [["tag", 69, 17]]);
 const formals$2 = { args: { uid: false, summary: false, dtstart: false, dtend: false }, ellipsis: false };
-const pos$11 = nix.positions(here + "/vdirsyncer.nix", [["uid", 102, 5], ["summary", 103, 5], ["dtstart", 104, 5], ["dtend", 105, 5]]);
-const pos$12 = nix.positions(here + "/vdirsyncer.nix", [["uid", 109, 5], ["summary", 110, 5], ["dtstart", 111, 5], ["dtend", 112, 5]]);
 const formals$3 = { args: { uid: false, name: false, displayName: false, email: false }, ellipsis: false };
-const pos$13 = nix.positions(here + "/vdirsyncer.nix", [["uid", 134, 5], ["name", 135, 5], ["displayName", 136, 5], ["email", 137, 5]]);
-const pos$14 = nix.positions(here + "/vdirsyncer.nix", [["uid", 141, 5], ["name", 142, 5], ["displayName", 143, 5], ["email", 144, 5]]);
-const pos$15 = nix.positions(here + "/vdirsyncer.nix", [["maintainers", 151, 8]]);
-const pos$16 = nix.positions(here + "/vdirsyncer.nix", [["type", 157, 23]]);
-const pos$17 = nix.positions(here + "/vdirsyncer.nix", [["auth", 157, 18]]);
-const pos$18 = nix.positions(here + "/vdirsyncer.nix", [["enable", 156, 9], ["settings", 157, 9]]);
-const pos$19 = nix.positions(here + "/vdirsyncer.nix", [["enable", 161, 9], ["extraOptions", 162, 9]]);
-const pos$20 = nix.positions(here + "/vdirsyncer.nix", [["local_calendars", 176, 19], ["local_contacts", 177, 19], ["radicale_calendars", 178, 19], ["radicale_contacts", 179, 19]]);
-const pos$21 = nix.positions(here + "/vdirsyncer.nix", [["statusPath", 173, 15], ["storages", 174, 15], ["pairs", 182, 15]]);
-const pos$22 = nix.positions(here + "/vdirsyncer.nix", [["user", 170, 13], ["group", 171, 13], ["config", 172, 13], ["forceDiscover", 184, 13]]);
-const pos$23 = nix.positions(here + "/vdirsyncer.nix", [["local_calendars", 194, 19], ["local_contacts", 195, 19], ["xandikos_calendars", 196, 19], ["xandikos_contacts", 197, 19]]);
-const pos$24 = nix.positions(here + "/vdirsyncer.nix", [["statusPath", 191, 15], ["storages", 192, 15], ["pairs", 200, 15]]);
-const pos$25 = nix.positions(here + "/vdirsyncer.nix", [["user", 188, 13], ["group", 189, 13], ["config", 190, 13], ["forceDiscover", 202, 13]]);
-const pos$26 = nix.positions(here + "/vdirsyncer.nix", [["radicale_calendars", 209, 19], ["radicale_contacts", 210, 19], ["xandikos_calendars", 211, 19], ["xandikos_contacts", 212, 19]]);
-const pos$27 = nix.positions(here + "/vdirsyncer.nix", [["storages", 207, 15], ["pairs", 215, 15]]);
-const pos$28 = nix.positions(here + "/vdirsyncer.nix", [["config", 206, 13], ["forceDiscover", 217, 13]]);
-const pos$29 = nix.positions(here + "/vdirsyncer.nix", [["alice", 169, 11], ["bob", 187, 11], ["remote", 205, 11]]);
-const pos$30 = nix.positions(here + "/vdirsyncer.nix", [["enable", 166, 9], ["jobs", 167, 9]]);
-const pos$31 = nix.positions(here + "/vdirsyncer.nix", [["radicale", 155, 16], ["xandikos", 160, 16], ["vdirsyncer", 165, 16]]);
-const pos$32 = nix.positions(here + "/vdirsyncer.nix", [["isNormalUser", 224, 15]]);
-const pos$33 = nix.positions(here + "/vdirsyncer.nix", [["isNormalUser", 225, 13]]);
-const pos$34 = nix.positions(here + "/vdirsyncer.nix", [["alice", 224, 9], ["bob", 225, 9]]);
-const pos$35 = nix.positions(here + "/vdirsyncer.nix", [["users", 223, 13]]);
-const pos$36 = nix.positions(here + "/vdirsyncer.nix", [["services", 155, 7], ["users", 223, 7]]);
-const pos$37 = nix.positions(here + "/vdirsyncer.nix", [["machine", 154, 5]]);
-const pos$38 = nix.positions(here + "/vdirsyncer.nix", [["name", 149, 3], ["meta", 151, 3], ["nodes", 153, 3], ["testScript", 230, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const radicale_calendars = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     type: "caldav",
     url: "http://localhost:5232/",
     username: "alice",
     password: "password",
   }));
   const radicale_contacts = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     type: "carddav",
     url: "http://localhost:5232/",
     username: "alice",
     password: "password",
   }));
   const xandikos_calendars = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     type: "caldav",
     url: "http://localhost:8080/user/calendars",
   }));
   const xandikos_contacts = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     type: "carddav",
     url: "http://localhost:8080/user/contacts",
   }));
-  const local_calendars = nix.thunk(() => ({ [nix.POS]: pos$5, type: "filesystem", path: "~/calendars", fileext: ".ics" }));
-  const local_contacts = nix.thunk(() => ({ [nix.POS]: pos$6, type: "filesystem", path: "~/contacts", fileext: ".vcf" }));
+  const local_calendars = nix.thunk(() => ({ [nix.POS]: $pos[4], type: "filesystem", path: "~/calendars", fileext: ".ics" }));
+  const local_contacts = nix.thunk(() => ({ [nix.POS]: $pos[5], type: "filesystem", path: "~/contacts", fileext: ".vcf" }));
   const mkPairs = (a) => (b) => ({
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     calendars: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       a: nix.thunk(() => nix.str`${a}_calendars`),
       b: nix.thunk(() => nix.str`${b}_calendars`),
       collections: nix.thunk(() => ["from a", "from b"]),
     })),
     contacts: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       a: nix.thunk(() => nix.str`${a}_contacts`),
       b: nix.thunk(() => nix.str`${b}_contacts`),
       collections: nix.thunk(() => ["from a", "from b"]),
     })),
   });
-  const mkRadicaleProps = (tag) => nix.app(nix.sel(pkgs, "writeText"), "Radicale.props", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$10, tag: tag })))));
+  const mkRadicaleProps = (tag) => nix.app(nix.sel(pkgs, "writeText"), "Radicale.props", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[9], tag: tag })))));
   const writeLines = (name) => (eol) => (lines) => nix.app(nix.sel(pkgs, "writeText"), name, nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (l) => nix.str`${l}${eol}`, lines)));
   const prodid = "-//NixOS test//EN";
   const dtstamp = "20231129T194743Z";
@@ -114,14 +77,14 @@ export default nix.lambda((args) => (() => {
       ]));
   })(), formals$2);
   const foo_ics = nix.thunk(() => nix.app(writeICS, nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       uid: "foo",
       summary: "Epochalypse",
       dtstart: "19700101T000000Z",
       dtend: "20380119T031407Z",
     }))));
   const bar_ics = nix.thunk(() => nix.app(writeICS, nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       uid: "bar",
       summary: "One Billion Seconds",
       dtstart: "19700101T000000Z",
@@ -144,62 +107,62 @@ export default nix.lambda((args) => (() => {
       ]));
   })(), formals$3);
   const foo_vcf = nix.thunk(() => nix.app(writeVCF, nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       uid: "foo",
       name: "Doe;John;;;",
       displayName: "John Doe",
       email: "john.doe@example.org",
     }))));
   const bar_vcf = nix.thunk(() => nix.app(writeVCF, nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       uid: "bar",
       name: "Doe;Jane;;;",
       displayName: "Jane Doe",
       email: "jane.doe@example.org",
     }))));
   return {
-    [nix.POS]: pos$38,
+    [nix.POS]: $pos[37],
     name: "vdirsyncer",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "schnusch"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$37,
+      [nix.POS]: $pos[36],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$36,
+        [nix.POS]: $pos[35],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           radicale: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$17,
-              auth: nix.thunk(() => ({ [nix.POS]: pos$16, type: "none" })),
+              [nix.POS]: $pos[16],
+              auth: nix.thunk(() => ({ [nix.POS]: $pos[15], type: "none" })),
             })),
           })),
           xandikos: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             enable: true,
             extraOptions: nix.thunk(() => ["--autocreate"]),
           })),
           vdirsyncer: nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             enable: true,
             jobs: nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               alice: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 user: "alice",
                 group: "users",
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   statusPath: "/home/alice/.vdirsyncer",
                   storages: nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     local_calendars: local_calendars,
                     local_contacts: local_contacts,
                     radicale_calendars: radicale_calendars,
@@ -210,14 +173,14 @@ export default nix.lambda((args) => (() => {
                 forceDiscover: true,
               })),
               bob: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 user: "bob",
                 group: "users",
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   statusPath: "/home/bob/.vdirsyncer",
                   storages: nix.thunk(() => ({
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     local_calendars: local_calendars,
                     local_contacts: local_contacts,
                     xandikos_calendars: xandikos_calendars,
@@ -228,11 +191,11 @@ export default nix.lambda((args) => (() => {
                 forceDiscover: true,
               })),
               remote: nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$27,
+                  [nix.POS]: $pos[26],
                   storages: nix.thunk(() => ({
-                    [nix.POS]: pos$26,
+                    [nix.POS]: $pos[25],
                     radicale_calendars: radicale_calendars,
                     radicale_contacts: radicale_contacts,
                     xandikos_calendars: xandikos_calendars,
@@ -246,11 +209,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$34,
-            alice: nix.thunk(() => ({ [nix.POS]: pos$32, isNormalUser: true })),
-            bob: nix.thunk(() => ({ [nix.POS]: pos$33, isNormalUser: true })),
+            [nix.POS]: $pos[33],
+            alice: nix.thunk(() => ({ [nix.POS]: $pos[31], isNormalUser: true })),
+            bob: nix.thunk(() => ({ [nix.POS]: $pos[32], isNormalUser: true })),
           })),
         })),
       })),

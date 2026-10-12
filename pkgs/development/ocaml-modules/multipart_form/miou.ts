@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/miou.nix", [[["pname", 8, 3], ["version", 10, 28], ["src", 10, 36], ["meta", 10, 40], ["propagatedBuildInputs", 12, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, multipart_form: false, miou: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/miou.nix", [["pname", 8, 3], ["version", 10, 28], ["src", 10, 36], ["meta", 10, 40], ["propagatedBuildInputs", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const multipart_form = nix.arg($, "multipart_form");
   const miou = nix.arg($, "miou");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "multipart_form-miou",
       version: nix.thunk(() => nix.attr(multipart_form, "version")),
       src: nix.thunk(() => nix.attr(multipart_form, "src")),

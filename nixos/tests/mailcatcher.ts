@@ -2,54 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mailcatcher.nix", [[["maintainers", 5, 8]], [["enable", 10, 28]], [["mailcatcher", 10, 16]], [["host", 15, 11], ["port", 16, 11]], [["default", 14, 18]], [["enable", 13, 9], ["accounts", 14, 9]], [["msmtp", 12, 16]], [["systemPackages", 20, 19]], [["services", 10, 7], ["programs", 12, 7], ["environment", 20, 7]], [["machine", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 23, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mailcatcher.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/mailcatcher.nix", [["enable", 10, 28]]);
-const pos$3 = nix.positions(here + "/mailcatcher.nix", [["mailcatcher", 10, 16]]);
-const pos$4 = nix.positions(here + "/mailcatcher.nix", [["host", 15, 11], ["port", 16, 11]]);
-const pos$5 = nix.positions(here + "/mailcatcher.nix", [["default", 14, 18]]);
-const pos$6 = nix.positions(here + "/mailcatcher.nix", [["enable", 13, 9], ["accounts", 14, 9]]);
-const pos$7 = nix.positions(here + "/mailcatcher.nix", [["msmtp", 12, 16]]);
-const pos$8 = nix.positions(here + "/mailcatcher.nix", [["systemPackages", 20, 19]]);
-const pos$9 = nix.positions(here + "/mailcatcher.nix", [["services", 10, 7], ["programs", 12, 7], ["environment", 20, 7]]);
-const pos$10 = nix.positions(here + "/mailcatcher.nix", [["machine", 7, 9]]);
-const pos$11 = nix.positions(here + "/mailcatcher.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "mailcatcher",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "aanderse"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            mailcatcher: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            mailcatcher: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             msmtp: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               accounts: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                default: nix.thunk(() => ({ [nix.POS]: pos$4, host: "localhost", port: 1025n })),
+                [nix.POS]: $pos[4],
+                default: nix.thunk(() => ({ [nix.POS]: $pos[3], host: "localhost", port: 1025n })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mailutils"))]),
           })),
         };

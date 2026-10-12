@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["ldflags", 28, 3], ["nativeBuildInputs", 33, 3], ["checkFlags", 38, 3], ["postFixup", 42, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, gitMinimal: false, "poppler-utils": false, wv: false, unrtf: false, "html-tidy": false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["ldflags", 28, 3], ["nativeBuildInputs", 33, 3], ["checkFlags", 38, 3], ["postFixup", 42, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const html_tidy = nix.arg($, "html-tidy");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "earlybird",
       version: "4.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "americanexpress",
           repo: "earlybird",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [poppler_utils, wv, unrtf, html_tidy]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sensitive data detection tool capable of scanning source code repositories for passwords, key files, and more",
         mainProgram: "earlybird",
         homepage: "https://github.com/americanexpress/earlybird",

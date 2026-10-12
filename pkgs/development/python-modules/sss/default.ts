@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["python3", 13, 5]], [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 67, 7], ["changelog", 68, 7], ["platforms", 69, 7], ["maintainers", 70, 7]], [["pname", 17, 3], ["version", 18, 27], ["pyproject", 20, 3], ["dontUnpack", 21, 3], ["dontBuild", 22, 3], ["dependencies", 24, 3], ["installPhase", 28, 3], ["pythonImportsCheck", 39, 3], ["nativeCheckInputs", 48, 3], ["doCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, python: false, sssd: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["python3", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 67, 7], ["changelog", 68, 7], ["platforms", 69, 7], ["maintainers", 70, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 27], ["pyproject", 20, 3], ["dontUnpack", 21, 3], ["dontBuild", 22, 3], ["dependencies", 24, 3], ["installPhase", 28, 3], ["pythonImportsCheck", 39, 3], ["nativeCheckInputs", 48, 3], ["doCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const sssd = nix.arg($, "sssd");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
-  const sssdForPython = nix.thunk(() => nix.app(nix.sel(sssd, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python3: python }))));
+  const sssdForPython = nix.thunk(() => nix.app(nix.sel(sssd, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], python3: python }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sss",
       version: nix.thunk(() => nix.attr(sssdForPython, "version")),
       pyproject: false,
@@ -38,7 +36,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(sssd, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python bindings for SSSD (System Security Services Daemon)",
         longDescription: "This package provides Python bindings for SSSD including:\n- sssd: SSSD Python utilities module\n- pysss: Core Python module for SSSD operations\n- pysss_murmur: MurmurHash implementation\n- pysss_nss_idmap: NSS ID mapping functionality\n- pyhbac: HBAC (Host-Based Access Control) module\n- SSSDConfig: Configuration management module\n",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

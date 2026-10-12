@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["updateScript", 44, 12]], [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 59, 5]], [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["passthru", 44, 3], ["doInstallCheck", 46, 3], ["nativeInstallCheckInputs", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, perl: false, openssl: false, libxml2: false, sqlite: false, glib: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 44, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["passthru", 44, 3], ["doInstallCheck", 46, 3], ["nativeInstallCheckInputs", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "eilmeldung",
       version: "1.9.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "christo-auer",
           repo: "eilmeldung",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,13 +40,13 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [openssl, libxml2, sqlite]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Feature-rich TUI RSS reader based on the news-flash library",
         homepage: "https://github.com/christo-auer/eilmeldung",
         changelog: nix.thunk(() => nix.str`https://github.com/christo-auer/eilmeldung/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build.zig.zon.nix", [[["url", 9, 7], ["hash", 10, 7]], [["name", 7, 5], ["path", 8, 5]], [["url", 16, 7], ["hash", 17, 7]], [["name", 14, 5], ["path", 15, 5]], [["url", 23, 7], ["hash", 24, 7]], [["name", 21, 5], ["path", 22, 5]], [["url", 30, 7], ["hash", 31, 7]], [["name", 28, 5], ["path", 29, 5]], [["url", 37, 7], ["hash", 38, 7]], [["name", 35, 5], ["path", 36, 5]], [["url", 44, 7], ["hash", 45, 7]], [["name", 42, 5], ["path", 43, 5]]]);
 const formals$1 = { args: { linkFarm: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build.zig.zon.nix", [["url", 9, 7], ["hash", 10, 7]]);
-const pos$2 = nix.positions(here + "/build.zig.zon.nix", [["name", 7, 5], ["path", 8, 5]]);
-const pos$3 = nix.positions(here + "/build.zig.zon.nix", [["url", 16, 7], ["hash", 17, 7]]);
-const pos$4 = nix.positions(here + "/build.zig.zon.nix", [["name", 14, 5], ["path", 15, 5]]);
-const pos$5 = nix.positions(here + "/build.zig.zon.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$6 = nix.positions(here + "/build.zig.zon.nix", [["name", 21, 5], ["path", 22, 5]]);
-const pos$7 = nix.positions(here + "/build.zig.zon.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$8 = nix.positions(here + "/build.zig.zon.nix", [["name", 28, 5], ["path", 29, 5]]);
-const pos$9 = nix.positions(here + "/build.zig.zon.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$10 = nix.positions(here + "/build.zig.zon.nix", [["name", 35, 5], ["path", 36, 5]]);
-const pos$11 = nix.positions(here + "/build.zig.zon.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$12 = nix.positions(here + "/build.zig.zon.nix", [["name", 42, 5], ["path", 43, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,55 +11,55 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(linkFarm, "zig-packages", nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "12201bbf05e1fb73323a9b13d2599dc4bf82851e6d328d7523a1af5b861a87edf286",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://git.sr.ht/~leon_plickat/zig-ini/archive/879c74a3a801d49fa34343aebd55a22f591899b3.tar.gz",
             hash: "sha256-in7abjMSWtnmrri2tbTJW2WVL4ZLrKkTT8Bxy8njJT4=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "12202727aaaf0e742d4945be55af1ace8b25902095e0c1b0a24b70cc80a81b7ac518",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://git.sr.ht/~leon_plickat/zig-spoon/archive/fdba8e643c9558254bf4e6c600dfbd782fa7a267.tar.gz",
             hash: "sha256-c8V+HqtDMW6JBDKilzrC39GizvWPp1eMton1X4PpxJI=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "1220687c8c47a48ba285d26a05600f8700d37fc637e223ced3aa8324f3650bf52242",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://codeberg.org/ifreund/zig-wayland/archive/v0.2.0.tar.gz",
             hash: "sha256-dvit+yvc0MnipqWjxJdfIsA6fJaJZOaIpx4w4woCxbE=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: "12209db20ce873af176138b76632931def33a10539387cba745db72933c43d274d56",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://codeberg.org/ifreund/zig-pixman/archive/v0.2.0.tar.gz",
             hash: "sha256-zcfZEMnipWDPuptl9UN0PoaJDjy2EHc7Wwi4GQq3hkY=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         name: "1220a4029ee3ee70d3175c69878e2b70dccd000c4324bc74ba800d8a143b7250fb38",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             url: "https://git.sr.ht/~novakane/zig-fcft/archive/1.1.0.tar.gz",
             hash: "sha256-JAR6Ticav9l/3aemJWGsjXMEUyHjuhUr3L0fznnLoEY=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         name: "1220c90b2228d65fd8427a837d31b0add83e9fade1dcfa539bb56fd06f1f8461605f",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             url: "https://codeberg.org/ifreund/zig-xkbcommon/archive/v0.2.0.tar.gz",
             hash: "sha256-T+EZiStBfmxFUjaX05WhYkFJ8tRok/UQtpc9QY9NxZk=",
           })))),

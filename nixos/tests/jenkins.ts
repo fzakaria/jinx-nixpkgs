@@ -2,113 +2,78 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jenkins.nix", [[["maintainers", 11, 5]], [["shell", 31, 23]], [["name", 28, 19], ["builders", 29, 19]], [["job", 27, 17]], [["name", 41, 19], ["project-type", 42, 19]], [["job", 40, 17]], [["shell", 51, 23]], [["name", 48, 19], ["builders", 49, 19]], [["job", 47, 17]], [["enable", 24, 13], ["nixJobs", 25, 13]], [["enable", 22, 11], ["jobBuilder", 23, 11]], [["enable", 67, 31]], [["jenkins", 21, 18], ["jenkinsSlave", 67, 18]], [["nixJobs", 63, 39]], [["jobBuilder", 63, 28]], [["jenkins", 63, 20]], [["services", 63, 11]], [["configuration", 62, 38]], [["noJenkinsJobs", 62, 24]], [["extraGroups", 69, 29]], [["jenkins", 69, 21]], [["users", 69, 15]], [["TimeoutStartSec", 71, 48]], [["serviceConfig", 71, 34]], [["jenkins", 71, 26]], [["services", 71, 17]], [["diskSize", 76, 24]], [["services", 21, 9], ["specialisation", 62, 9], ["users", 69, 9], ["systemd", 71, 9], ["virtualisation", 76, 9]], [["enable", 82, 31]], [["jenkinsSlave", 82, 18]], [["extraGroups", 84, 29]], [["jenkins", 84, 21]], [["users", 84, 15]], [["services", 82, 9], ["users", 84, 9]], [["master", 18, 5], ["slave", 79, 5]], [["name", 9, 3], ["meta", 10, 3], ["nodes", 16, 3], ["testScript", 89, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/jenkins.nix", [["maintainers", 11, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/jenkins.nix", [["shell", 31, 23]]);
-const pos$3 = nix.positions(here + "/jenkins.nix", [["name", 28, 19], ["builders", 29, 19]]);
-const pos$4 = nix.positions(here + "/jenkins.nix", [["job", 27, 17]]);
-const pos$5 = nix.positions(here + "/jenkins.nix", [["name", 41, 19], ["project-type", 42, 19]]);
-const pos$6 = nix.positions(here + "/jenkins.nix", [["job", 40, 17]]);
-const pos$7 = nix.positions(here + "/jenkins.nix", [["shell", 51, 23]]);
-const pos$8 = nix.positions(here + "/jenkins.nix", [["name", 48, 19], ["builders", 49, 19]]);
-const pos$9 = nix.positions(here + "/jenkins.nix", [["job", 47, 17]]);
-const pos$10 = nix.positions(here + "/jenkins.nix", [["enable", 24, 13], ["nixJobs", 25, 13]]);
-const pos$11 = nix.positions(here + "/jenkins.nix", [["enable", 22, 11], ["jobBuilder", 23, 11]]);
-const pos$12 = nix.positions(here + "/jenkins.nix", [["enable", 67, 31]]);
-const pos$13 = nix.positions(here + "/jenkins.nix", [["jenkins", 21, 18], ["jenkinsSlave", 67, 18]]);
-const pos$14 = nix.positions(here + "/jenkins.nix", [["nixJobs", 63, 39]]);
-const pos$15 = nix.positions(here + "/jenkins.nix", [["jobBuilder", 63, 28]]);
-const pos$16 = nix.positions(here + "/jenkins.nix", [["jenkins", 63, 20]]);
-const pos$17 = nix.positions(here + "/jenkins.nix", [["services", 63, 11]]);
-const pos$18 = nix.positions(here + "/jenkins.nix", [["configuration", 62, 38]]);
-const pos$19 = nix.positions(here + "/jenkins.nix", [["noJenkinsJobs", 62, 24]]);
-const pos$20 = nix.positions(here + "/jenkins.nix", [["extraGroups", 69, 29]]);
-const pos$21 = nix.positions(here + "/jenkins.nix", [["jenkins", 69, 21]]);
-const pos$22 = nix.positions(here + "/jenkins.nix", [["users", 69, 15]]);
-const pos$23 = nix.positions(here + "/jenkins.nix", [["TimeoutStartSec", 71, 48]]);
-const pos$24 = nix.positions(here + "/jenkins.nix", [["serviceConfig", 71, 34]]);
-const pos$25 = nix.positions(here + "/jenkins.nix", [["jenkins", 71, 26]]);
-const pos$26 = nix.positions(here + "/jenkins.nix", [["services", 71, 17]]);
-const pos$27 = nix.positions(here + "/jenkins.nix", [["diskSize", 76, 24]]);
-const pos$28 = nix.positions(here + "/jenkins.nix", [["services", 21, 9], ["specialisation", 62, 9], ["users", 69, 9], ["systemd", 71, 9], ["virtualisation", 76, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$29 = nix.positions(here + "/jenkins.nix", [["enable", 82, 31]]);
-const pos$30 = nix.positions(here + "/jenkins.nix", [["jenkinsSlave", 82, 18]]);
-const pos$31 = nix.positions(here + "/jenkins.nix", [["extraGroups", 84, 29]]);
-const pos$32 = nix.positions(here + "/jenkins.nix", [["jenkins", 84, 21]]);
-const pos$33 = nix.positions(here + "/jenkins.nix", [["users", 84, 15]]);
-const pos$34 = nix.positions(here + "/jenkins.nix", [["services", 82, 9], ["users", 84, 9]]);
-const pos$35 = nix.positions(here + "/jenkins.nix", [["master", 18, 5], ["slave", 79, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$36 = nix.positions(here + "/jenkins.nix", [["name", 9, 3], ["meta", 10, 3], ["nodes", 16, 3], ["testScript", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     name: "jenkins",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "bjornfor"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       master: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             jenkins: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               enable: true,
               jobBuilder: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 enable: true,
                 nixJobs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     job: nix.thunk(() => ({
-                      [nix.POS]: pos$3,
+                      [nix.POS]: $pos[2],
                       name: "job-1",
-                      builders: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$2, shell: "echo \"Running job-1\"\n" }))]),
+                      builders: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[1], shell: "echo \"Running job-1\"\n" }))]),
                     })),
                   })),
                   nix.thunk(() => ({
-                    [nix.POS]: pos$6,
-                    job: nix.thunk(() => ({ [nix.POS]: pos$5, name: "folder-1", "project-type": "folder" })),
+                    [nix.POS]: $pos[5],
+                    job: nix.thunk(() => ({ [nix.POS]: $pos[4], name: "folder-1", "project-type": "folder" })),
                   })),
                   nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     job: nix.thunk(() => ({
-                      [nix.POS]: pos$8,
+                      [nix.POS]: $pos[7],
                       name: "folder-1/job-2",
-                      builders: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$7, shell: "echo \"Running job-2\"\n" }))]),
+                      builders: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[6], shell: "echo \"Running job-2\"\n" }))]),
                     })),
                   })),
                 ]),
               })),
             })),
-            jenkinsSlave: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
+            jenkinsSlave: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: true })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             noJenkinsJobs: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   jenkins: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     jobBuilder: nix.thunk(() => ({
-                      [nix.POS]: pos$14,
+                      [nix.POS]: $pos[13],
                       nixJobs: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
                     })),
                   })),
@@ -117,38 +82,38 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$21,
-              jenkins: nix.thunk(() => ({ [nix.POS]: pos$20, extraGroups: nix.thunk(() => ["users"]) })),
+              [nix.POS]: $pos[20],
+              jenkins: nix.thunk(() => ({ [nix.POS]: $pos[19], extraGroups: nix.thunk(() => ["users"]) })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               jenkins: nix.thunk(() => ({
-                [nix.POS]: pos$24,
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$23, TimeoutStartSec: "6min" })),
+                [nix.POS]: $pos[23],
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[22], TimeoutStartSec: "6min" })),
               })),
             })),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$27, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[26], diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
         };
       })(), formals$2),
       slave: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$30,
-            jenkinsSlave: nix.thunk(() => ({ [nix.POS]: pos$29, enable: true })),
+            [nix.POS]: $pos[29],
+            jenkinsSlave: nix.thunk(() => ({ [nix.POS]: $pos[28], enable: true })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$32,
-              jenkins: nix.thunk(() => ({ [nix.POS]: pos$31, extraGroups: nix.thunk(() => ["users"]) })),
+              [nix.POS]: $pos[31],
+              jenkins: nix.thunk(() => ({ [nix.POS]: $pos[30], extraGroups: nix.thunk(() => ["users"]) })),
             })),
           })),
         };

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["homepage", 99, 5], ["description", 100, 5], ["license", 101, 5], ["platforms", 102, 5], ["teams", 103, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["buildInputs", 48, 3], ["nativeBuildInputs", 71, 3], ["outputs", 78, 3], ["postPatch", 83, 3], ["postInstall", 88, 3], ["postFixup", 93, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, "cinnamon-desktop": false, "cinnamon-translations": false, colord: false, glib: false, "gsettings-desktop-schemas": false, gtk3: false, lcms2: false, "libcanberra-gtk3": false, libnotify: false, wrapGAppsHook3: false, "pkg-config": false, lib: false, stdenv: false, systemdLibs: false, upower: false, cups: false, polkit: false, librsvg: false, libwacom: false, libxi: false, libxext: false, libx11: false, fontconfig: false, tzdata: false, nss: false, libgudev: false, meson: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 99, 5], ["description", 100, 5], ["license", 101, 5], ["platforms", 102, 5], ["teams", 103, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["buildInputs", 48, 3], ["nativeBuildInputs", 71, 3], ["outputs", 78, 3], ["postPatch", 83, 3], ["postInstall", 88, 3], ["postFixup", 93, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cinnamon-settings-daemon",
       version: "6.6.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "cinnamon-settings-daemon",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -80,7 +78,7 @@ export default nix.lambda((args) => (() => {
 `),
       postFixup: "mkdir -p $out/bin/cinnamon-settings-daemon\nln -s $out/libexec/csd-backlight-helper $out/bin/cinnamon-settings-daemon/csd-backlight-helper\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/linuxmint/cinnamon-settings-daemon",
         description: "Settings daemon for the Cinnamon desktop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

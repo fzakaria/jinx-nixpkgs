@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["homepage", 77, 5], ["description", 78, 5], ["longDescription", 79, 5], ["license", 96, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["outputs", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["cmakeBuildDir", 55, 3], ["cmakeFlags", 56, 3], ["strictDeps", 66, 3], ["preConfigure", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, libglut: false, libGL: false, libheif: false, libjpeg: false, "pkg-config": false, stdenv: false, enableHEIFCodec: true, enableJPGCodec: true, enableOpenGL: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["description", 78, 5], ["longDescription", 79, 5], ["license", 96, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["outputs", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["cmakeBuildDir", 55, 3], ["cmakeFlags", 56, 3], ["strictDeps", 66, 3], ["preConfigure", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const enableJPGCodec = nix.argOr($, "enableJPGCodec", () => true);
   const enableOpenGL = nix.argOr($, "enableOpenGL", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jasper",
       version: "4.2.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jasper-software",
           repo: "jasper",
           rev: nix.thunk(() => nix.str`version-${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), "cmakeFlagsArray+=(-DJAS_STDC_VERSION=\"$(echo __STDC_VERSION__ | $CXX -E -P -)\")\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://jasper-software.github.io/jasper/",
         description: "Image processing/coding toolkit",
         longDescription: "JasPer is a software toolkit for the handling of image data. The software\nprovides a means for representing images, and facilitates the manipulation\nof image data, as well as the import/export of such data in numerous\nformats (e.g., JPEG-2000 JP2, JPEG, PNM, BMP, Sun Rasterfile, and\nPGX). The import functionality supports the auto-detection (i.e.,\nautomatic determination) of the image format, eliminating the need to\nexplicitly identify the format of coded input data. A simple color\nmanagement engine is also provided in order to allow the accurate\nrepresentation of color. Partial support is included for the ICC color\nprofile file format, an industry standard for specifying color.\n\nThe JasPer software consists of a library and several application\nprograms. The code is written in the C programming language. This language\nwas chosen primarily due to the availability of C development environments\nfor most computing platforms when JasPer was first developed, circa 1999.\n",

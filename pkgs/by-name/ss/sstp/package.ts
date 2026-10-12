@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 46, 5], ["homepage", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["configureFlags", 28, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "pkg-config": false, ppp: false, libevent: false, openssl: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["configureFlags", 28, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sstp-client",
       version: "unstable-2023-03-25",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sstp-project",
           repo: "sstp-client",
           rev: "3f7835df9ac5e84729903ca536cf65e4a7b04c6c",
@@ -39,7 +37,7 @@ sed "s,sstp-pppd-plugin.so,$out/lib/pppd/sstp-pppd-plugin.so," -i src/sstp-pppd.
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => [libevent, openssl, ppp]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SSTP client for Linux",
         homepage: "https://sstp-client.sourceforge.net/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

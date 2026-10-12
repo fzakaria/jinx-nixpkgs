@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withGui", 9, 65], ["withTeensyduino", 9, 73]], [["pname", 12, 3], ["version", 13, 36], ["targetPkgs", 15, 3], ["extraInstallCommands", 28, 3], ["runScript", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildFHSEnv: false, "arduino-core-unwrapped": false, withGui: true, withTeensyduino: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withGui", 9, 65], ["withTeensyduino", 9, 73]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 36], ["targetPkgs", 15, 3], ["extraInstallCommands", 28, 3], ["runScript", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const arduino_core_unwrapped = nix.arg($, "arduino-core-unwrapped");
   const withGui = nix.argOr($, "withGui", () => false);
   const withTeensyduino = nix.argOr($, "withTeensyduino", () => false);
-  const arduino_unwrapped = nix.thunk(() => nix.app(nix.sel(arduino_core_unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withGui: withGui, withTeensyduino: withTeensyduino }))));
+  const arduino_unwrapped = nix.thunk(() => nix.app(nix.sel(arduino_core_unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withGui: withGui, withTeensyduino: withTeensyduino }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "arduino",
       version: nix.thunk(() => nix.attr(arduino_core_unwrapped, "version")),
       targetPkgs: (pkgs) => (() => {

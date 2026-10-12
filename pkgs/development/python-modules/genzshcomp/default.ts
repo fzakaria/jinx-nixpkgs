@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 26], ["version", 14, 32], ["sha256", 15, 5]], [["description", 21, 5], ["mainProgram", 22, 5], ["homepage", 23, 5], ["license", 24, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 26], ["version", 14, 32], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 21, 5], ["mainProgram", 22, 5], ["homepage", 23, 5], ["license", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "genzshcomp",
       version: "0.6.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "b582910d36f9ad0992756d7e9ccbe3e5cf811934b1002b51f25b99d3dda9d573",
         })))),
       buildInputs: nix.thunk(() => [setuptools]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Automatically generated zsh completion function for Python's option parser modules",
         mainProgram: "genzshcomp",
         homepage: "https://bitbucket.org/hhatto/genzshcomp/",

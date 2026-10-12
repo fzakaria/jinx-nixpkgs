@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/3.nix", [[["url", 17, 5], ["hash", 18, 5]], [["NIX_CFLAGS_COMPILE", 51, 7]], [["couchdb", 65, 26]], [["tests", 64, 12]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["dontAddPrefix", 40, 3], ["configureFlags", 42, 3], ["buildFlags", 47, 3], ["env", 51, 3], ["installPhase", 57, 3], ["passthru", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, beamMinimalPackages: false, icu: false, openssl: false, python3: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/3.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/3.nix", [["NIX_CFLAGS_COMPILE", 51, 7]]);
-const pos$3 = nix.positions(here + "/3.nix", [["couchdb", 65, 26]]);
-const pos$4 = nix.positions(here + "/3.nix", [["tests", 64, 12]]);
-const pos$5 = nix.positions(here + "/3.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]]);
-const pos$6 = nix.positions(here + "/3.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["dontAddPrefix", 40, 3], ["configureFlags", 42, 3], ["buildFlags", 47, 3], ["env", 51, 3], ["installPhase", 57, 3], ["passthru", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "couchdb";
       const version = "3.5.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/couchdb/source/${version}/apache-${pname}-${version}.tar.gz`),
           hash: "sha256-5WEQKqrf3aHkmebp4S0kc0MykbYIvNOQvLz1kLu2z2g=",
         }))));
@@ -42,16 +37,19 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => ["--js-engine=quickjs", "--disable-spidermonkey"]);
       const buildFlags = nix.thunk(() => ["release"]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))))),
       }));
       const installPhase = "runHook preInstall\nmkdir -p $out\ncp -r rel/couchdb/* $out\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, couchdb: nix.thunk(() => nix.attr(nixosTests, "couchdb")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          couchdb: nix.thunk(() => nix.attr(nixosTests, "couchdb")),
+        })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Database that uses JSON for documents, JavaScript for MapReduce queries, and regular HTTP for an API",
         homepage: "https://couchdb.apache.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

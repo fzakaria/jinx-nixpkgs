@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]], [["description", 158, 5], ["homepage", 159, 5], ["changelog", 160, 5], ["license", 161, 5], ["maintainers", 162, 5], ["mainProgram", 163, 5], ["platforms", 164, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["strictDeps", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 65, 3], ["prePatch", 100, 3], ["cmakeFlags", 113, 3], ["postBuild", 140, 3], ["installPhase", 144, 3], ["postFixup", 150, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libsepol: false, popt: false, libxml2: false, libxslt: false, openssl: false, "util-linux": false, pcre2: false, libselinux: false, graphviz: false, glib: false, python3: false, swig: false, libgcrypt: false, opendbx: false, xmlbird: false, haskellPackages: false, libyaml: false, "yaml-filter": false, xmlsec: false, bzip2: false, valgrind: false, asciidoc: false, installShellFiles: false, makeWrapper: false, rpm: false, "system-sendmail": false, curl: false, procps: false, systemdLibs: false, perl: false, doxygen: false, "pkg-config": false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 158, 5], ["homepage", 159, 5], ["changelog", 160, 5], ["license", 161, 5], ["maintainers", 162, 5], ["mainProgram", 163, 5], ["platforms", 164, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["strictDeps", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 65, 3], ["prePatch", 100, 3], ["cmakeFlags", 113, 3], ["postBuild", 140, 3], ["installPhase", 144, 3], ["postFixup", 150, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openscap",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenSCAP",
           repo: "openscap",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -134,7 +132,7 @@ substituteInPlace src/SCE/sce_engine.c \\
       installPhase: "make install\ninstallManPage $out/share/man8/*.8\nrm -rf $out/share/man8\n",
       postFixup: "# Set plugin directory to discover the SCE plugin.\n# openscap calls dlopen with this as the directory prefix.\nwrapProgram $out/bin/oscap \\\n  --set OSCAP_CHECK_ENGINE_PLUGIN_DIR $out/lib\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "NIST Certified SCAP 1.2 toolkit",
         homepage: "https://github.com/OpenSCAP/openscap",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenSCAP/openscap/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

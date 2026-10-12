@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stub.nix", [[["description", 42, 5]], [["pname", 19, 3], ["version", 21, 17], ["src", 21, 25], ["propagatedBuildInputs", 23, 3], ["doCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, dns: false, "dns-client-mirage": false, "dns-mirage": false, "dns-resolver": false, "dns-tsig": false, "dns-server": false, duration: false, randomconv: false, lwt: false, "mirage-ptime": false, "mirage-crypto-rng": false, tcpip: false, metrics: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/stub.nix", [["description", 42, 5]]);
-const pos$2 = nix.positions(here + "/stub.nix", [["pname", 19, 3], ["version", 21, 17], ["src", 21, 25], ["propagatedBuildInputs", 23, 3], ["doCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const tcpip = nix.arg($, "tcpip");
   const metrics = nix.arg($, "metrics");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "dns-stub",
       version: nix.thunk(() => nix.attr(dns, "version")),
       src: nix.thunk(() => nix.attr(dns, "src")),
@@ -43,7 +42,7 @@ export default nix.lambda((args) => (() => {
         metrics,
       ]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { [nix.POS]: pos$1, description: "DNS stub resolver" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { [nix.POS]: $pos[0], description: "DNS stub resolver" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=stub.ts.map

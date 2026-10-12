@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcublasmp.nix", [[["message", 45, 11], ["assertion", 48, 11]], [["message", 51, 11], ["assertion", 52, 11]], [["message", 60, 9], ["assertion", 63, 9]], [["description", 68, 7], ["longDescription", 69, 7], ["homepage", 75, 7], ["changelog", 76, 7], ["license", 77, 7]], [["redistName", 17, 5], ["pname", 18, 5], ["outputs", 20, 5], ["buildInputs", 29, 5], ["autoPatchelfIgnoreMissingDeps", 34, 5], ["platformAssertions", 39, 5], ["brokenAssertions", 58, 5], ["meta", 67, 5]]]);
 const formals$1 = { args: { backendStdenv: false, buildRedist: false, cudaAtLeast: false, cudaMajorVersion: false, lib: false, libcublas: false, nccl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcublasmp.nix", [["message", 45, 11], ["assertion", 48, 11]]);
-const pos$2 = nix.positions(here + "/libcublasmp.nix", [["message", 51, 11], ["assertion", 52, 11]]);
-const pos$3 = nix.positions(here + "/libcublasmp.nix", [["message", 60, 9], ["assertion", 63, 9]]);
-const pos$4 = nix.positions(here + "/libcublasmp.nix", [["description", 68, 7], ["longDescription", 69, 7], ["homepage", 75, 7], ["changelog", 76, 7], ["license", 77, 7]]);
-const pos$5 = nix.positions(here + "/libcublasmp.nix", [["redistName", 17, 5], ["pname", 18, 5], ["outputs", 20, 5], ["buildInputs", 29, 5], ["autoPatchelfIgnoreMissingDeps", 34, 5], ["platformAssertions", 39, 5], ["brokenAssertions", 58, 5], ["meta", 67, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const cudaCapabilities = nix.thunk(() => nix.attr(backendStdenv, "cudaCapabilities"));
       const cublasmpAtLeast = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         redistName: "cublasmp",
         pname: "libcublasmp",
         outputs: nix.thunk(() => ["out", "dev", "include", "lib"]),
@@ -32,12 +28,12 @@ export default nix.lambda((args) => (() => {
           const minCudaCapability = nix.thunk(() => (nix.asBool(nix.app(cudaAtLeast, "13.0")) ? "7.5" : "7.0"));
           return [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               message: nix.thunk(() => nix.add(nix.str`cuBLASMp for CUDA ${cudaMajorVersion} supports CUDA compute capabilities ${minCudaCapability} and newer`, nix.str` (found ${nix.builtins.toJSON(cudaCapabilities)})`)),
               assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), minCudaCapability)), cudaCapabilities)),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               message: "cuBLASMp requires NCCL, which is unavailable for this platform",
               assertion: nix.thunk(() => nix.sel(nccl, "meta", "available")),
             })),
@@ -45,13 +41,13 @@ export default nix.lambda((args) => (() => {
         })()),
         brokenAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             message: nix.thunk(() => nix.add(nix.str`cuBLASMp releases since 0.8.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` require NCCL 2.29.2 or newer (found ${nix.sel(nccl, "version")})`)),
             assertion: nix.thunk(() => (!nix.asBool(nix.app(cublasmpAtLeast, "0.8")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nccl, "version")), "2.29.2")))),
           })),
         ]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "High-performance, multi-process, GPU-accelerated library for distributed basic dense linear algebra",
           longDescription: "NVIDIA cuBLASMp is a high-performance, multi-process, GPU-accelerated library for distributed basic dense linear\nalgebra.\n\ncuBLASMp is compatible with 2D block-cyclic data layout and provides PBLAS-like C APIs.\n",
           homepage: "https://docs.nvidia.com/cuda/cublasmp",

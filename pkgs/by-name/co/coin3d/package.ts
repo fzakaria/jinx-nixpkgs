@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["homepage", 39, 5], ["description", 40, 5], ["mainProgram", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["cmakeFlags", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, boost: false, cmake: false, libGL: false, libGLU: false, libx11: false, expat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 39, 5], ["description", 40, 5], ["mainProgram", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["cmakeFlags", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const expat = nix.arg($, "expat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "coin",
       version: "4.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coin3d",
           repo: "coin",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_EXTERNAL_EXPAT", true)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/coin3d/coin",
         description: "High-level, retained-mode toolkit for effective 3D graphics development",
         mainProgram: "coin-config",

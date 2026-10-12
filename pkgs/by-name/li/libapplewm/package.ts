@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["pkg-config", 41, 11]], [["tests", 41, 5]], [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["pkgConfigModules", 54, 5], ["platforms", 55, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["passthru", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "pkg-config": false, autoreconfHook: false, "util-macros": false, xorgproto: false, libx11: false, libxext: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 41, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["pkgConfigModules", 54, 5], ["platforms", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["passthru", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libapplewm",
       version: "1.4.1-unstable-2021-01-04",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "xorg/lib",
           repo: "libapplewm",
@@ -37,14 +33,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook, util_macros]),
       buildInputs: nix.thunk(() => [xorgproto, libx11, libxext]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Xlib-based library for the Apple-WM extension",
         longDescription: "AppleWM is a simple library designed to interface with the Apple-WM extension.\nThis extension allows X window managers to better interact with the Mac OS X Aqua user\ninterface when running X11 in a rootless mode.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/lib/libapplewm",

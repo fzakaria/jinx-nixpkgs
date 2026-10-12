@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["package", 38, 50]], [["version", 38, 18]], [["tests", 38, 12]], [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 34, 3], ["pythonImportsCheck", 36, 3], ["passthru", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, click: false, cve: false, fetchFromGitHub: false, jsonschema: false, pytestCheckHook: false, requests: false, hatchling: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["package", 38, 50]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 38, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 38, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 34, 3], ["pythonImportsCheck", 36, 3], ["passthru", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RedHatProductSecurity",
           repo: "cvelib",
           tag: version,
@@ -38,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["cvelib"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: cve })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: cve })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Library and a command line interface for the CVE Services API",
         homepage: "https://github.com/RedHatProductSecurity/cvelib",
         changelog: nix.thunk(() => nix.str`https://github.com/RedHatProductSecurity/cvelib/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cve",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

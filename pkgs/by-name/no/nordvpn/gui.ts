@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gui.nix", [[["comment", 38, 9], ["desktopName", 39, 9], ["exec", 40, 9], ["name", 41, 9]], [["src", 49, 17], ["nativeBuildInputs", 50, 9]], [["pubspecSource", 46, 12]], [["description", 57, 5], ["mainProgram", 58, 5]], [["pname", 16, 3], ["src", 17, 11], ["version", 17, 15], ["sourceRoot", 19, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 25, 3], ["pubspecLock", 29, 3], ["patches", 32, 3], ["desktopItems", 34, 3], ["passthru", 46, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { desktopItemArgs: false, meta: false, src: false, version: false, copyDesktopItems: false, flutter: false, lib: false, makeDesktopItem: false, libx11: false, runCommand: false, "yq-go": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/gui.nix", [["comment", 38, 9], ["desktopName", 39, 9], ["exec", 40, 9], ["name", 41, 9]]);
-const pos$2 = nix.positions(here + "/gui.nix", [["src", 49, 17], ["nativeBuildInputs", 50, 9]]);
-const pos$3 = nix.positions(here + "/gui.nix", [["pubspecSource", 46, 12]]);
-const pos$4 = nix.positions(here + "/gui.nix", [["description", 57, 5], ["mainProgram", 58, 5]]);
-const pos$5 = nix.positions(here + "/gui.nix", [["pname", 16, 3], ["src", 17, 11], ["version", 17, 15], ["sourceRoot", 19, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 25, 3], ["pubspecLock", 29, 3], ["patches", 32, 3], ["desktopItems", 34, 3], ["passthru", 46, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const yq_go = nix.arg($, "yq-go");
   return nix.app(nix.sel(flutter, "buildFlutterApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nordvpn-gui",
       src: src,
       version: version,
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./linux-cmake.patch")]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => nix.update(desktopItemArgs, {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             comment: "NordVPN's GUI to manage vpn connection, settings, etc.",
             desktopName: "NordVPN GUI",
             exec: "nordvpn-gui",
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: pos$2, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/gui/pubspec.lock > \"$out\"\n")),
+        [nix.POS]: $pos[2],
+        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: $pos[1], src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/gui/pubspec.lock > \"$out\"\n")),
       })),
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "NordVPN graphical interface",
         mainProgram: "nordvpn-gui",
       })),

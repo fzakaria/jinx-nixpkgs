@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]], [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 26, 3], ["patches", 31, 3], ["postPatch", 43, 3], ["build-system", 49, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 60, 3], ["nativeCheckInputs", 62, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchpatch2: false, setuptools: false, mergedeep: false, pyyaml: false, toml: false, "typing-inspect": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 26, 3], ["patches", 31, 3], ["postPatch", 43, 3], ["build-system", 49, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 60, 3], ["nativeCheckInputs", 62, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-uC4sICcDCuGg8QVRUSX5FOBQwHZqtRjfOgVgoH0Q3ck=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "remove-pyyaml-include-dep.patch",
             url: "https://github.com/dlwh/draccus/commit/3a6db0bc786e46cc13c481bc2235101d7a411441.patch",
             hash: "sha256-0OLUjXJSZ9eIL8dgE8o1Mg0HIMX+4XABSf0tYNFWn8I=",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["draccus"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Framework for simple dataclass-based configurations based on Pyrallis",
         homepage: "https://github.com/dlwh/draccus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

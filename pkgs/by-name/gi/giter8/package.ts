@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 16, 5], ["buildCommand", 17, 5], ["outputHashMode", 23, 5], ["outputHash", 24, 5]], [["command", 52, 7], ["supportedFeatures", 53, 7]], [["package", 57, 7], ["command", 58, 7]], [["version", 56, 11]], [["updateScript", 51, 5], ["tests", 56, 5]], [["description", 63, 5], ["homepage", 64, 5], ["sourceProvenance", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["changelog", 68, 5], ["mainProgram", 69, 5], ["platforms", 71, 5]], [["pname", 28, 11], ["version", 28, 17], ["strictDeps", 30, 3], ["__structuredAttrs", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["dontUnpack", 39, 3], ["installPhase", 41, 3], ["passthru", 50, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, jre: false, coursier: false, makeWrapper: false, setJavaClassPath: false, callPackage: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 16, 5], ["buildCommand", 17, 5], ["outputHashMode", 23, 5], ["outputHash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["command", 52, 7], ["supportedFeatures", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 57, 7], ["command", 58, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 56, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 51, 5], ["tests", 56, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["sourceProvenance", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["changelog", 68, 5], ["mainProgram", 69, 5], ["platforms", 71, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 28, 11], ["version", 28, 17], ["strictDeps", 30, 3], ["__structuredAttrs", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["dontUnpack", 39, 3], ["installPhase", 41, 3], ["passthru", 50, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const pname = "giter8";
   const version = "0.18.0";
   const deps = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`${pname}-deps-${version}`),
       buildCommand: nix.thunk(() => nix.str`export COURSIER_CACHE=$(pwd)
 ${coursier}/bin/cs fetch org.foundweekends.giter8:giter8_2.13:${version} > deps
@@ -35,7 +29,7 @@ cp $(< deps) $out/share/java/
       outputHash: "sha256-MrFuyktyXADZ8lh/vzpVNi12IbKjM/Q8P7X8EE4KFNo=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       strictDeps: true,
@@ -51,23 +45,23 @@ makeWrapper ${jre}/bin/java $out/bin/g8 \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "g8 --version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "A command line tool to apply templates defined on GitHub",
         homepage: "https://www.foundweekends.org/giter8/",
         sourceProvenance: nix.thunk(() => (() => {

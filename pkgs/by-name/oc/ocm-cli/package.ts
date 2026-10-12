@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5], ["platforms", 61, 5]], [["__structuredAttrs", 10, 3], ["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["nativeBuildInputs", 33, 3], ["ldflags", 37, 3], ["postInstall", 43, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5], ["platforms", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["__structuredAttrs", 10, 3], ["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["nativeBuildInputs", 33, 3], ["ldflags", 37, 3], ["postInstall", 43, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       __structuredAttrs: true,
       pname: "ocm-cli",
       version: "0.51.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open-component-model",
           repo: "ocm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd ocm \\\n  --bash <($out/bin/ocm completion bash) \\\n  --zsh <($out/bin/ocm completion zsh) \\\n  --fish <($out/bin/ocm completion fish)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open Component Model (OCM) is an open standard to describe software bills of delivery (SBOD)",
         longDescription: "OCM is a technology-agnostic and machine-readable format focused on the software artifacts that must be delivered for software products.\nThe specification is also used to express metadata needed for security, compliance, and certification purpose.\n",
         homepage: "https://ocm.software",

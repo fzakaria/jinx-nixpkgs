@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 5], ["version", 24, 13], ["sha256", 25, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 18, 3], ["version", 19, 3], ["format", 20, 3], ["src", 22, 3], ["propagatedBuildInputs", 28, 3], ["doCheck", 40, 3], ["pythonImportsCheck", 41, 3], ["postPatch", 43, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, libngspice: false, numpy: false, ply: false, scipy: false, pyyaml: false, cffi: false, requests: false, matplotlib: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 5], ["version", 24, 13], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["format", 20, 3], ["src", 22, 3], ["propagatedBuildInputs", 28, 3], ["doCheck", 40, 3], ["pythonImportsCheck", 41, 3], ["postPatch", 43, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "PySpice",
           version: version,
           sha256: "d28448accad98959e0f5932af8736e90a1f3f9ff965121c6881d24cdfca23d22",
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
     "ffi.dlopen('${libngspice}/lib/libngspice${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}')"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simulate electronic circuit using Python and the Ngspice / Xyce simulators",
         homepage: "https://github.com/FabriceSalvaire/PySpice",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

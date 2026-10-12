@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 5], ["hash", 43, 5]], [["description", 104, 5], ["longDescription", 105, 5], ["homepage", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["platforms", 117, 5], ["mainProgram", 118, 5]], [["pname", 31, 3], ["version", 32, 3], ["__structuredAttrs", 34, 3], ["strictDeps", 35, 3], ["allowSubstitutes", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["preConfigure", 69, 3], ["configureFlags", 84, 3], ["enableParallelBuilding", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, autoreconfHook: false, libsndfile: false, freeglut: false, libGL: false, libGLU: false, libjpeg: false, SDL: false, tcl: false, jackSupport: true, jack2: false, alsaSupport: true, "alsa-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 104, 5], ["longDescription", 105, 5], ["homepage", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["platforms", 117, 5], ["mainProgram", 118, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["__structuredAttrs", 34, 3], ["strictDeps", 35, 3], ["allowSubstitutes", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["preConfigure", 69, 3], ["configureFlags", 84, 3], ["enableParallelBuilding", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "count"), (x) => nix.force(x), nix.thunk(() => [jackSupport, alsaSupport])), 1n)), "din: exactly one audio backend must be selected (jackSupport or alsaSupport)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/di/din/package.nix:23:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "din",
       version: "65",
       __structuredAttrs: true,
       strictDeps: true,
       allowSubstitutes: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dinisnoise.org/files/din-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Iij8GGbeNVHCkrHc/on5pV5TU20+pQbI+oAnAXFsSmQ=",
         })))),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]), nix.concat(nix.app(nix.sel(lib, "optional"), jackSupport, "LIBS=-ljack"), nix.concat(nix.app(nix.sel(lib, "optional"), alsaSupport, "LIBS=-lasound"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["LDFLAGS=-framework OpenGL -framework GLUT -framework Cocoa -lSDLmain"])))))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open source cross-platform sound synthesizer",
         longDescription: "DIN Is Noise is a program for making sound, music and noise. Use bezier\ncurves to edit waveforms, envelopes, modulators and FX components; use\nthe keyboard (computer and MIDI) to trigger notes (or noise), use the\nmouse to sound like the theremin, create drones on microtones, launch,\norbit and drag them around; bounce balls on walls to trigger notes in a\nmondrian inspired drawing and also make binaural beats. Supports MIDI\ninput and scripting through TCL.\n",
         homepage: "https://dinisnoise.org/",

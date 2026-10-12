@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["pname", 10, 3], ["version", 11, 3], ["duneVersion", 13, 3], ["src", 15, 3], ["checkInputs", 20, 3], ["doCheck", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, ocaml: false, fetchurl: false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["duneVersion", 13, 3], ["src", 15, 3], ["checkInputs", 20, 3], ["doCheck", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,21 +17,21 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const duneVersion = "3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/cryptosense/terminal_size/releases/download/v${version}/terminal_size-${version}.tbz`),
           hash: "sha256-1rYs0oxAcayFypUoCIdFwSTJCU7+rpFyJRRzb5lzsPs=",
         }))));
       const checkInputs = nix.thunk(() => [alcotest]);
       const doCheck = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Get the dimensions of the terminal",
         homepage: "https://github.com/cryptosense/terminal_size",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         duneVersion,

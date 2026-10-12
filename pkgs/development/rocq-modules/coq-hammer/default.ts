@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 31, 5]], [["version", 9, 11], ["pname", 10, 3], ["owner", 12, 5], ["repo", 13, 5], ["defaultVersion", 14, 5], ["release", 15, 5], ["releaseRev", 16, 5], ["buildFlags", 19, 3], ["installTargets", 20, 3], ["extraInstallFlags", 21, 3], ["mlPlugin", 23, 3], ["propagatedBuildInputs", 25, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { mkCoqDerivation: false, coq: false, "coq-hammer-tactics": false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 9, 11], ["pname", 10, 3], ["owner", 12, 5], ["repo", 13, 5], ["defaultVersion", 14, 5], ["release", 15, 5], ["releaseRev", 16, 5], ["buildFlags", 19, 3], ["installTargets", 20, 3], ["extraInstallFlags", 21, 3], ["mlPlugin", 23, 3], ["propagatedBuildInputs", 25, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const coq_hammer_tactics = nix.arg($, "coq-hammer-tactics");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: version,
       pname: "coq-hammer",
       owner: nix.thunk(() => nix.attr(coq_hammer_tactics, "owner")),
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
         coq_hammer_tactics,
       ]),
       meta: nix.thunk(() => nix.update(nix.sel(coq_hammer_tactics, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "General-purpose automated reasoning hammer tool for Coq",
       })),
     })));

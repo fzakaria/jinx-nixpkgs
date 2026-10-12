@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["fontDirectories", 73, 7]], [["FONTCONFIG_FILE", 72, 5]], [["package", 79, 7], ["versionCheck", 80, 7]], [["pkg-config", 78, 11]], [["rev-prefix", 83, 7], ["ignoredVersions", 84, 7]], [["tests", 78, 5], ["updateScript", 82, 5]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5], ["pkgConfigModules", 95, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["outputs", 29, 3], ["nativeBuildInputs", 37, 3], ["configureFlags", 46, 3], ["enableParallelBuilding", 55, 3], ["buildFlags", 57, 3], ["doCheck", 64, 3], ["postInstall", 66, 3], ["env", 71, 3], ["passthru", 77, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gitUpdater: false, testers: false, withDocumentation: true, autoreconfHook: false, doxygen: false, graphviz: false, makeFontsConf: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fontDirectories", 73, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["FONTCONFIG_FILE", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 79, 7], ["versionCheck", 80, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pkg-config", 78, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["rev-prefix", 83, 7], ["ignoredVersions", 84, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 78, 5], ["updateScript", 82, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5], ["pkgConfigModules", 95, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["outputs", 29, 3], ["nativeBuildInputs", 37, 3], ["configureFlags", 46, 3], ["enableParallelBuilding", 55, 3], ["buildFlags", 57, 3], ["doCheck", 64, 3], ["postInstall", 66, 3], ["env", 71, 3], ["passthru", 77, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makeFontsConf = nix.arg($, "makeFontsConf");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "libresidfp",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libsidplayfp",
           repo: "libresidfp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,23 +42,23 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withDocumentation, "mkdir -p $doc/share/doc/\nmv docs/html $doc/share/doc/libresidfp\n")),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withDocumentation, nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))),
+          [nix.POS]: $pos[2],
+          FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[1], fontDirectories: [] })))),
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$6, "rev-prefix": "v", ignoredVersions: "[a-zA-Z]" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[5], "rev-prefix": "v", ignoredVersions: "[a-zA-Z]" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Cycle exact SID emulation",
         homepage: "https://github.com/libsidplayfp/libresidfp",
         changelog: nix.thunk(() => nix.str`https://github.com/libsidplayfp/libresidfp/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 15, 5], ["url", 16, 5], ["hash", 17, 5]], [["x86_64-linux", 30, 11], ["x86-linux", 31, 11]], [["description", 46, 5], ["platforms", 47, 5], ["license", 51, 5], ["sourceProvenance", 52, 5], ["maintainers", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 26, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false, autoPatchelfHook: false, cups: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 15, 5], ["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 30, 11], ["x86-linux", 31, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["platforms", 47, 5], ["license", 51, 5], ["sourceProvenance", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 26, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cups = nix.arg($, "cups");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cups-idprt-mt888",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "idprt_mt888_printer_linux_driver.zip",
           url: "https://www.idprt.com/prt_v2/files/down_file/id/324/fid/780.html",
           hash: "sha256-fmKDRa6NOXMM6IuxRK8sjToGhdPiHO6ZdfUVvR1KKb0=",
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cups]),
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook, unzip]),
       installPhase: nix.thunk(() => (() => {
-        const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$2, "x86_64-linux": "x64", "x86-linux": "x86" }, () => nix.builtins.throw(nix.thunk(() => nix.str`cups-idprt-mt888: No prebuilt filters for system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
+        const arch = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[1], "x86_64-linux": "x64", "x86-linux": "x86" }, () => nix.builtins.throw(nix.thunk(() => nix.str`cups-idprt-mt888: No prebuilt filters for system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
         return nix.str`runHook preInstall
 mkdir -p $out/share/cups/model $out/lib/cups/filter
 cp -r filter/${arch}/. $out/lib/cups/filter
@@ -39,7 +36,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CUPS driver for the iDPRT MT888",
         platforms: nix.thunk(() => ["x86_64-linux", "x86-linux"]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

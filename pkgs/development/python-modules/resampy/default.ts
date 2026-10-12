@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["design", 34, 25]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 36, 3], ["disabledTests", 42, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, numba: false, numpy: false, optuna: false, "pytest-cov-stub": false, pytestCheckHook: false, setuptools: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["design", 34, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 36, 3], ["disabledTests", 42, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bmcfee",
           repo: "resampy",
           tag: version,
@@ -34,19 +31,19 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [numpy, numba]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, design: nix.thunk(() => [optuna]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], design: nix.thunk(() => [optuna]) }));
       const nativeCheckInputs = nix.thunk(() => [pytest_cov_stub, pytestCheckHook, scipy]);
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")), nix.thunk(() => ["test_quality_sine_parallel", "test_resample_nu_quality_sine_parallel"])));
       const pythonImportsCheck = nix.thunk(() => ["resampy"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Efficient signal resampling",
         homepage: "https://github.com/bmcfee/resampy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

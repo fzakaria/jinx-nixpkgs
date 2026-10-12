@@ -2,14 +2,13 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/node-name.nix", [["ok", 4, 5], ["one_two", 7, 5], ["a-b", 10, 5]]);
-const pos$2 = nix.positions(here + "/node-name.nix", [["name", 2, 3], ["nodes", 3, 3], ["testScript", 19, 3]]);
+const $pos = nix.positions(here + "/node-name.nix", [[["ok", 4, 5], ["one_two", 7, 5], ["a-b", 10, 5]], [["name", 2, 3], ["nodes", 3, 3], ["testScript", 19, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$2,
+  [nix.POS]: $pos[1],
   name: "nixos-test-driver.node-name",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     ok: nix.thunk(() => ({})),
     one_two: nix.thunk(() => ({})),
     "a-b": nix.thunk(() => ({})),

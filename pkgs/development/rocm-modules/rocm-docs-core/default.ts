@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["rev-prefix", 59, 40]], [["updateScript", 59, 12]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["teams", 68, 5], ["platforms", 69, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["buildInputs", 37, 3], ["propagatedBuildInputs", 39, 3], ["pythonImportsCheck", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, gitUpdater: false, buildPythonPackage: false, setuptools: false, beautifulsoup4: false, gitpython: false, "pydata-sphinx-theme": false, pygithub: false, sphinx: false, breathe: false, "myst-nb": false, "myst-parser": false, "sphinx-book-theme": false, "sphinx-copybutton": false, "sphinx-design": false, "sphinx-external-toc": false, "sphinx-notfound-page": false, pyyaml: false, fastjsonschema: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 59, 40]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 59, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["teams", 68, 5], ["platforms", 69, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["buildInputs", 37, 3], ["propagatedBuildInputs", 39, 3], ["pythonImportsCheck", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const fastjsonschema = nix.arg($, "fastjsonschema");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rocm-docs-core",
       version: "1.34.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm-docs-core",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,11 +59,11 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["rocm_docs"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "ROCm Documentation Python package for ReadTheDocs build standardization",
         homepage: "https://github.com/ROCm/rocm-docs-core",
         license: nix.thunk(() => (() => {

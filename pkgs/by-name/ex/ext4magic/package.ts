@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["url", 24, 7], ["hash", 25, 7]], [["url", 29, 7], ["hash", 30, 7]], [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]], [["version", 14, 3], ["pname", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["buildInputs", 34, 3], ["installFlags", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, file: false, libuuid: false, e2fsprogs: false, zlib: false, bzip2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 14, 3], ["pname", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["buildInputs", 34, 3], ["installFlags", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,23 +17,23 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const bzip2 = nix.arg($, "bzip2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "0.3.2",
       pname: "ext4magic",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/ext4magic/ext4magic-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "8d9c6a594f212aecf4eb5410d277caeaea3adc03d35378257dfd017ef20ea115",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://sourceforge.net/p/ext4magic/tickets/10/attachment/ext4magic-0.3.2-i_dir_acl.patch",
             hash: "sha256-DHXjDQ+kT6uLuPb7ODRHfeRRYVxO5OiRafHFiVrzjKk=",
           })))),
         nix.path(here, "./glibc-fix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://salsa.debian.org/pkg-security-team/ext4magic/-/raw/0e52341dbe8681a6e1a59d902e5e33ec13be1cbe/debian/patches/fix-segfault-extent-free.patch",
             hash: "sha256-MI363/E676E8ZH41k/XnQ2kdWzKAp5uQF/h2FN7X/x8=",
           })))),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [file, libuuid, e2fsprogs, zlib, bzip2]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Recover / undelete files from ext3 or ext4 partitions",
         longDescription: "ext4magic can recover/undelete files from ext3 or ext4 partitions\nby retrieving file-information from the filesystem journal.\n\nIf the information in the journal are sufficient, ext4magic can\nrecover the most file types, with original filename, owner and group,\nfile mode bits and also the old atime/mtime stamps.\n\nIt's much more effective and works much better than extundelete.\n",
         homepage: "https://ext4magic.sourceforge.net/ext4magic_en.html",

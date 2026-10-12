@@ -2,34 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/keepalived.nix", [[["maintainers", 8, 14]], [["enable", 14, 35]], [["nftables", 14, 26]], [["addr", 21, 34]], [["interface", 18, 17], ["state", 19, 17], ["priority", 20, 17], ["virtualIps", 21, 17], ["virtualRouterId", 22, 17]], [["test", 17, 49]], [["enable", 15, 35], ["openFirewall", 16, 35], ["vrrpInstances", 17, 35]], [["keepalived", 15, 24]], [["systemPackages", 24, 27]], [["networking", 14, 15], ["services", 15, 15], ["environment", 24, 15]], [["enable", 29, 35]], [["nftables", 29, 26]], [["addr", 36, 34]], [["interface", 33, 17], ["state", 34, 17], ["priority", 35, 17], ["virtualIps", 36, 17], ["virtualRouterId", 37, 17]], [["test", 32, 49]], [["enable", 30, 35], ["openFirewall", 31, 35], ["vrrpInstances", 32, 35]], [["keepalived", 30, 24]], [["systemPackages", 39, 27]], [["networking", 29, 15], ["services", 30, 15], ["environment", 39, 15]], [["node1", 11, 11], ["node2", 26, 11]], [["name", 7, 9], ["meta", 8, 9], ["nodes", 10, 9], ["testScript", 43, 9]], [["useNftables", 58, 23]], [["useNftables", 59, 23]], [["nftables", 58, 3], ["iptables", 59, 3]]]);
 const formals$1 = { args: { useNftables: false }, ellipsis: false };
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/keepalived.nix", [["maintainers", 8, 14]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/keepalived.nix", [["enable", 14, 35]]);
-const pos$3 = nix.positions(here + "/keepalived.nix", [["nftables", 14, 26]]);
-const pos$4 = nix.positions(here + "/keepalived.nix", [["addr", 21, 34]]);
-const pos$5 = nix.positions(here + "/keepalived.nix", [["interface", 18, 17], ["state", 19, 17], ["priority", 20, 17], ["virtualIps", 21, 17], ["virtualRouterId", 22, 17]]);
-const pos$6 = nix.positions(here + "/keepalived.nix", [["test", 17, 49]]);
-const pos$7 = nix.positions(here + "/keepalived.nix", [["enable", 15, 35], ["openFirewall", 16, 35], ["vrrpInstances", 17, 35]]);
-const pos$8 = nix.positions(here + "/keepalived.nix", [["keepalived", 15, 24]]);
-const pos$9 = nix.positions(here + "/keepalived.nix", [["systemPackages", 24, 27]]);
-const pos$10 = nix.positions(here + "/keepalived.nix", [["networking", 14, 15], ["services", 15, 15], ["environment", 24, 15]]);
 const formals$4 = { args: { pkgs: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/keepalived.nix", [["enable", 29, 35]]);
-const pos$12 = nix.positions(here + "/keepalived.nix", [["nftables", 29, 26]]);
-const pos$13 = nix.positions(here + "/keepalived.nix", [["addr", 36, 34]]);
-const pos$14 = nix.positions(here + "/keepalived.nix", [["interface", 33, 17], ["state", 34, 17], ["priority", 35, 17], ["virtualIps", 36, 17], ["virtualRouterId", 37, 17]]);
-const pos$15 = nix.positions(here + "/keepalived.nix", [["test", 32, 49]]);
-const pos$16 = nix.positions(here + "/keepalived.nix", [["enable", 30, 35], ["openFirewall", 31, 35], ["vrrpInstances", 32, 35]]);
-const pos$17 = nix.positions(here + "/keepalived.nix", [["keepalived", 30, 24]]);
-const pos$18 = nix.positions(here + "/keepalived.nix", [["systemPackages", 39, 27]]);
-const pos$19 = nix.positions(here + "/keepalived.nix", [["networking", 29, 15], ["services", 30, 15], ["environment", 39, 15]]);
-const pos$20 = nix.positions(here + "/keepalived.nix", [["node1", 11, 11], ["node2", 26, 11]]);
-const pos$21 = nix.positions(here + "/keepalived.nix", [["name", 7, 9], ["meta", 8, 9], ["nodes", 10, 9], ["testScript", 43, 9]]);
-const pos$22 = nix.positions(here + "/keepalived.nix", [["useNftables", 58, 23]]);
-const pos$23 = nix.positions(here + "/keepalived.nix", [["useNftables", 59, 23]]);
-const pos$24 = nix.positions(here + "/keepalived.nix", [["nftables", 58, 3], ["iptables", 59, 3]]);
 
 export default nix.thunk(() => (() => {
   const mkTest = nix.lambda((args) => (() => {
@@ -40,44 +17,44 @@ export default nix.thunk(() => (() => {
         const pkgs = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           name: nix.thunk(() => nix.str`keepalived-${(nix.asBool(useNftables) ? "nftables" : "iptables")}`),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raitobezarius"))]),
           })),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             node1: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$3);
               const pkgs_1 = nix.arg($_2, "pkgs");
               return {
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 networking: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
-                  nftables: nix.thunk(() => ({ [nix.POS]: pos$2, enable: useNftables })),
+                  [nix.POS]: $pos[2],
+                  nftables: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: useNftables })),
                 })),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   keepalived: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     enable: true,
                     openFirewall: true,
                     vrrpInstances: nix.thunk(() => ({
-                      [nix.POS]: pos$6,
+                      [nix.POS]: $pos[5],
                       test: nix.thunk(() => ({
-                        [nix.POS]: pos$5,
+                        [nix.POS]: $pos[4],
                         interface: "eth1",
                         state: "MASTER",
                         priority: 50n,
-                        virtualIps: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$4, addr: "192.168.1.200" }))]),
+                        virtualIps: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[3], addr: "192.168.1.200" }))]),
                         virtualRouterId: 1n,
                       })),
                     })),
                   })),
                 })),
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "tcpdump"))]),
                 })),
               };
@@ -86,32 +63,32 @@ export default nix.thunk(() => (() => {
               const $_2 = nix.formals(args_2, formals$4);
               const pkgs_1 = nix.arg($_2, "pkgs");
               return {
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 networking: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
-                  nftables: nix.thunk(() => ({ [nix.POS]: pos$11, enable: useNftables })),
+                  [nix.POS]: $pos[11],
+                  nftables: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: useNftables })),
                 })),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   keepalived: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     enable: true,
                     openFirewall: true,
                     vrrpInstances: nix.thunk(() => ({
-                      [nix.POS]: pos$15,
+                      [nix.POS]: $pos[14],
                       test: nix.thunk(() => ({
-                        [nix.POS]: pos$14,
+                        [nix.POS]: $pos[13],
                         interface: "eth1",
                         state: "MASTER",
                         priority: 100n,
-                        virtualIps: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$13, addr: "192.168.1.200" }))]),
+                        virtualIps: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[12], addr: "192.168.1.200" }))]),
                         virtualRouterId: 1n,
                       })),
                     })),
                   })),
                 })),
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "tcpdump"))]),
                 })),
               };
@@ -122,9 +99,9 @@ export default nix.thunk(() => (() => {
       })(), formals$2));
   })(), formals$1);
   return {
-    [nix.POS]: pos$24,
-    nftables: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({ [nix.POS]: pos$22, useNftables: true })))),
-    iptables: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({ [nix.POS]: pos$23, useNftables: false })))),
+    [nix.POS]: $pos[23],
+    nftables: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({ [nix.POS]: $pos[21], useNftables: true })))),
+    iptables: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({ [nix.POS]: $pos[22], useNftables: false })))),
   };
 })());
 //# sourceMappingURL=keepalived.ts.map

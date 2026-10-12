@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["updateScript", 63, 12]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 20, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 44, 3], ["preCheck", 49, 3], ["postCheck", 55, 3], ["pythonImportsCheck", 59, 3], ["passthru", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, unstableGitUpdater: false, cython: false, numpy: false, setuptools: false, pylbfgs: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 63, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 44, 3], ["preCheck", 49, 3], ["postCheck", 55, 3], ["pythonImportsCheck", 59, 3], ["passthru", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pylbfgs = nix.arg($, "pylbfgs");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyhacrf-datamade",
       version: "0.2.8-unstable-2025-05-16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dedupeio",
           repo: "pyhacrf",
           rev: "899aa6c2c48e5afe8fb40727ffd6070e4ba71c31",
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       postCheck: "popd\n",
       pythonImportsCheck: nix.thunk(() => ["pyhacrf"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Hidden alignment conditional random field for classifying string pairs",
         homepage: "https://github.com/dedupeio/pyhacrf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

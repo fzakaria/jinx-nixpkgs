@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["XDG_CONFIG_HOME", 34, 7]], [["name", 88, 7], ["desktopName", 89, 7], ["comment", 90, 7], ["exec", 91, 7], ["icon", 92, 7], ["categories", 93, 7]], [["updateScript", 101, 5]], [["changelog", 108, 5], ["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["mainProgram", 112, 5], ["maintainers", 113, 5], ["platforms", 118, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["env", 34, 3], ["projectFile", 36, 3], ["nugetDeps", 37, 3], ["dotnet-sdk", 38, 3], ["dotnet-runtime", 39, 3], ["dotnetBuildFlags", 41, 3], ["executables", 46, 3], ["postPatch", 48, 3], ["nativeBuildInputs", 53, 3], ["runtimeDeps", 61, 3], ["postInstall", 72, 3], ["postFixup", 77, 3], ["desktopItems", 86, 3], ["passthru", 100, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildDotnetModule: false, dotnetCorePackages: false, fetchFromGitHub: false, copyDesktopItems: false, desktopToDarwinBundle: false, makeDesktopItem: false, makeBinaryWrapper: false, gitUpdater: false, "_experimental-update-script-combinators": false, libGL: false, libx11: false, libxcursor: false, libxext: false, libxi: false, libxrandr: false, libice: false, libsm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["XDG_CONFIG_HOME", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 88, 7], ["desktopName", 89, 7], ["comment", 90, 7], ["exec", 91, 7], ["icon", 92, 7], ["categories", 93, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 101, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 108, 5], ["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["mainProgram", 112, 5], ["maintainers", 113, 5], ["platforms", 118, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["env", 34, 3], ["projectFile", 36, 3], ["nugetDeps", 37, 3], ["dotnet-sdk", 38, 3], ["dotnet-runtime", 39, 3], ["dotnetBuildFlags", 41, 3], ["executables", 46, 3], ["postPatch", 48, 3], ["nativeBuildInputs", 53, 3], ["runtimeDeps", 61, 3], ["postInstall", 72, 3], ["postFixup", 77, 3], ["desktopItems", 86, 3], ["passthru", 100, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,17 +27,17 @@ export default nix.lambda((args) => (() => {
   const libice = nix.arg($, "libice");
   const libsm = nix.arg($, "libsm");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "discordchatexporter-desktop",
       version: "2.48",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tyrrrz",
           repo: "discordchatexporter",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-8t9T5H2ELoduvvHpxhNbVkjlx18T4dG7Vtuj935ysAo=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, XDG_CONFIG_HOME: "$HOME/.config" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], XDG_CONFIG_HOME: "$HOME/.config" })),
       projectFile: "DiscordChatExporter.Gui/DiscordChatExporter.Gui.csproj",
       nugetDeps: nix.path(here, "./deps.json"),
       "dotnet-sdk": nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_10_0")),
@@ -59,7 +54,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "ln -sf $out/bin/DiscordChatExporter $out/bin/discordchatexporter\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "rm $out/Applications/DiscordChatExporter.app/Contents/MacOS/DiscordChatExporter\nmakeBinaryWrapper $out/bin/DiscordChatExporter $out/Applications/DiscordChatExporter.app/Contents/MacOS/DiscordChatExporter\n"))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "discordchatexporter",
             desktopName: "DiscordChatExporter",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -69,14 +64,14 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.sel(nix.app(gitUpdater, nix.thunk(() => ({}))), "command")),
             nix.thunk(() => nix.sel(finalAttrs, "passthru", "fetch-deps")),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/Tyrrrz/DiscordChatExporter/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Tool to export Discord chat logs to a file (GUI version)",
         homepage: "https://github.com/Tyrrrz/DiscordChatExporter",

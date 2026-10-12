@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["OPENSSL_NO_VENDOR", 31, 5], ["OPENSSL_LIB_DIR", 32, 5], ["OPENSSL_DIR", 33, 5]], [["mycelium", 39, 28]], [["updateScript", 37, 5], ["tests", 38, 5]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["sourceRoot", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["doInstallCheck", 28, 3], ["env", 30, 3], ["passthru", 36, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, openssl: false, nixosTests: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 31, 5], ["OPENSSL_LIB_DIR", 32, 5], ["OPENSSL_DIR", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mycelium", 39, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 37, 5], ["tests", 38, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 53, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["sourceRoot", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["doInstallCheck", 28, 3], ["env", 30, 3], ["passthru", 36, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mycelium",
       version: "0.7.10",
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/myceliumd`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "threefoldtech",
           repo: "mycelium",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,21 +30,21 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OPENSSL_NO_VENDOR: 1n,
         OPENSSL_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), openssl)}/lib`),
         OPENSSL_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), openssl)}`),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           mycelium: nix.thunk(() => nix.attr(nixosTests, "mycelium")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "End-2-end encrypted IPv6 overlay network",
         homepage: "https://github.com/threefoldtech/mycelium",
         changelog: nix.thunk(() => nix.str`https://github.com/threefoldtech/mycelium/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

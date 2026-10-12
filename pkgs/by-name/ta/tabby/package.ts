@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rocmSupport", 100, 5], ["cudaSupport", 101, 5], ["metalSupport", 102, 5]], [["owner", 122, 5], ["repo", 123, 5], ["tag", 124, 5], ["hash", 125, 5], ["fetchSubmodules", 126, 5]], [["OPENSSL_NO_VENDOR", 170, 5]], [["extraArgs", 178, 5]], [["updateScript", 177, 12]], [["homepage", 185, 5], ["changelog", 186, 5], ["description", 187, 5], ["mainProgram", 188, 5], ["license", 189, 5], ["maintainers", 190, 5], ["broken", 191, 5]], [["pname", 118, 11], ["version", 118, 17], ["featureDevice", 119, 11], ["src", 121, 3], ["cargoHash", 129, 3], ["cargoBuildFlags", 133, 3], ["nativeInstallCheckInputs", 141, 3], ["doInstallCheck", 144, 3], ["nativeBuildInputs", 146, 3], ["buildInputs", 156, 3], ["postInstall", 163, 3], ["env", 169, 3], ["doCheck", 175, 3], ["passthru", 177, 3], ["meta", 184, 3]]]);
 const formals$1 = { args: { config: false, lib: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, stdenv: false, git: false, openssl: false, "pkg-config": false, protobuf: false, cmake: false, "llama-cpp": false, "apple-sdk_15": false, autoAddDriverRunpath: false, versionCheckHook: false, cudaSupport: true, rocmSupport: true, metalSupport: true, acceleration: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rocmSupport", 100, 5], ["cudaSupport", 101, 5], ["metalSupport", 102, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 122, 5], ["repo", 123, 5], ["tag", 124, 5], ["hash", 125, 5], ["fetchSubmodules", 126, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 170, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 178, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 177, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 185, 5], ["changelog", 186, 5], ["description", 187, 5], ["mainProgram", 188, 5], ["license", 189, 5], ["maintainers", 190, 5], ["broken", 191, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 118, 11], ["version", 118, 17], ["featureDevice", 119, 11], ["src", 121, 3], ["cargoHash", 129, 3], ["cargoBuildFlags", 133, 3], ["nativeInstallCheckInputs", 141, 3], ["doInstallCheck", 144, 3], ["nativeBuildInputs", 146, 3], ["buildInputs", 156, 3], ["postInstall", 163, 3], ["env", 169, 3], ["doCheck", 175, 3], ["passthru", 177, 3], ["meta", 184, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,7 +51,7 @@ supported; falling back to \`${result}\`
   const enableCuda = nix.thunk(() => (nix.asBool((nix.asBool(validAccel) && nix.asBool(nix.eq(featureDevice, "cuda")))) && nix.asBool(nix.app(warnIfNotLinux, "cuda"))));
   const enableMetal = nix.thunk(() => (nix.asBool((nix.asBool(validAccel) && nix.asBool(nix.eq(featureDevice, "metal")))) && nix.asBool(nix.app(warnIfNotDarwinAarch64, "metal"))));
   const llamaccpPackage = nix.thunk(() => nix.app(nix.sel(llama_cpp, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       rocmSupport: enableRocm,
       cudaSupport: enableCuda,
       metalSupport: enableMetal,
@@ -66,12 +60,12 @@ supported; falling back to \`${result}\`
   const cudaBuildInputs = nix.thunk(() => [llamaccpPackage]);
   const rocmBuildInputs = nix.thunk(() => [llamaccpPackage]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       featureDevice: featureDevice,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "TabbyML",
           repo: "tabby",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -88,17 +82,17 @@ supported; falling back to \`${result}\`
 # But, we already have a derivation for this
 ln -s ${nix.app(nix.sel(lib, "getExe'"), llama_cpp, "llama-server")} $out/bin/llama-server
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], OPENSSL_NO_VENDOR: 1n })),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/TabbyML/tabby",
         changelog: nix.thunk(() => nix.str`https://github.com/TabbyML/tabby/releases/tag/v${version}`),
         description: "Self-hosted AI coding assistant",

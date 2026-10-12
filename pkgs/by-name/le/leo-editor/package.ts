@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["name", 36, 5], ["exec", 37, 5], ["icon", 38, 5], ["type", 39, 5], ["comment", 40, 5], ["desktopName", 41, 5], ["genericName", 42, 5], ["categories", 43, 5], ["startupNotify", 48, 5], ["mimeTypes", 49, 5]], [["homepage", 107, 5], ["description", 108, 5], ["longDescription", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 115, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["dontBuild", 22, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 30, 3], ["desktopItem", 35, 3], ["installPhase", 85, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3: false, fetchFromGitHub: false, makeWrapper: false, makeDesktopItem: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 36, 5], ["exec", 37, 5], ["icon", 38, 5], ["type", 39, 5], ["comment", 40, 5], ["desktopName", 41, 5], ["genericName", 42, 5], ["categories", 43, 5], ["startupNotify", 48, 5], ["mimeTypes", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 107, 5], ["description", 108, 5], ["longDescription", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 115, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["dontBuild", 22, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 30, 3], ["desktopItem", 35, 3], ["installPhase", 85, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "leo-editor",
       version: "6.8.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "leo-editor",
           repo: "leo-editor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "leo-editor",
           exec: "leo %U",
           icon: "leoapp32",
@@ -103,7 +100,7 @@ wrapQtApp $out/bin/leo
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://leo-editor.github.io/leo-editor/",
         description: "Powerful folding editor",
         longDescription: "Leo is a PIM, IDE and outliner that accelerates the work flow of programmers, authors and web designers.",

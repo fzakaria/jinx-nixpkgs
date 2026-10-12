@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zen_workaround.nix", [[["name", 21, 7], ["url", 22, 7], ["stripLen", 23, 7], ["hash", 24, 7]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5], ["broken", 57, 5]], [["pname", 15, 3], ["src", 17, 16], ["version", 17, 20], ["sourceRoot", 18, 3], ["patches", 19, 3], ["hardeningDisable", 28, 3], ["nativeBuildInputs", 29, 3], ["makeFlags", 31, 3], ["postConfigure", 34, 3], ["buildFlags", 37, 3], ["installPhase", 39, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchpatch: false, kernel: false, rr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/zen_workaround.nix", [["name", 21, 7], ["url", 22, 7], ["stripLen", 23, 7], ["hash", 24, 7]]);
-const pos$2 = nix.positions(here + "/zen_workaround.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5], ["broken", 57, 5]]);
-const pos$3 = nix.positions(here + "/zen_workaround.nix", [["pname", 15, 3], ["src", 17, 16], ["version", 17, 20], ["sourceRoot", 18, 3], ["patches", 19, 3], ["hardeningDisable", 28, 3], ["nativeBuildInputs", 29, 3], ["makeFlags", 31, 3], ["postConfigure", 34, 3], ["buildFlags", 37, 3], ["installPhase", 39, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const rr = nix.arg($, "rr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rr-zen_workaround",
       src: nix.thunk(() => nix.attr(rr, "src")),
       version: nix.thunk(() => nix.attr(rr, "version")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(rr, "src", "name")}/third-party/zen-pmu-workaround`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "kernel-6.16.patch",
             url: "https://github.com/rr-debugger/rr/commit/86aa1ebe03c6a7f60eb65249233f866fd3da8316.diff",
             stripLen: 2n,
@@ -46,7 +44,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Kernel module supporting the rr debugger on (some) AMD Zen-based CPUs",
         homepage: "https://github.com/rr-debugger/rr/wiki/Zen#kernel-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

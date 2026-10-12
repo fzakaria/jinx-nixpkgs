@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 31, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cbor2: false, coincurve: false, crcmod: false, ecdsa: false, "ed25519-blake2b": false, fetchFromGitHub: false, "py-sr25519-bindings": false, pycryptodome: false, pynacl: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 31, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ebellocchia",
           repo: "bip_utils",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["bip_utils"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Implementation of BIP39, BIP32, BIP44, BIP49 and BIP84 for wallet seeds, keys and addresses generation",
         homepage: "https://github.com/ebellocchia/bip_utils",
         changelog: nix.thunk(() => nix.str`https://github.com/ebellocchia/bip_utils/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

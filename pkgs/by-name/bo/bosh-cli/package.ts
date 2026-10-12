@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]], [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 20, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 26, 3], ["subPackages", 28, 3], ["doCheck", 30, 3], ["postInstall", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, makeWrapper: false, openssh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 20, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 26, 3], ["subPackages", 28, 3], ["doCheck", 30, 3], ["postInstall", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const openssh = nix.arg($, "openssh");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bosh-cli",
       version: "7.10.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cloudfoundry",
           repo: "bosh-cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/bosh --prefix PATH : '${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssh]))}'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line interface to CloudFoundry BOSH",
         homepage: "https://bosh.io",
         changelog: nix.thunk(() => nix.str`https://github.com/cloudfoundry/bosh-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

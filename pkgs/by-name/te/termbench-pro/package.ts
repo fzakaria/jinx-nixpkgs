@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["enableSSL", 27, 23]], [["description", 42, 5], ["homepage", 43, 5], ["mainProgram", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["installPhase", 30, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, fmt: false, glaze: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enableSSL", 27, 23]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["mainProgram", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["installPhase", 30, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const glaze = nix.arg($, "glaze");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "termbench-pro",
       version: "unstable-2025-01-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "contour-terminal",
           repo: "termbench-pro",
           rev: "3a39a4ad592047dee3038d8bfcce84215ac55032",
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [
         fmt,
-        nix.thunk(() => nix.app(nix.sel(glaze, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableSSL: false })))),
+        nix.thunk(() => nix.app(nix.sel(glaze, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], enableSSL: false })))),
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmkdir -p $out/lib\nmv tb/tb $out/bin\nmv libtermbench/libtermbench.* $out/lib\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Terminal Benchmarking as CLI and library",
         homepage: "https://github.com/contour-terminal/termbench-pro",
         mainProgram: "tb",

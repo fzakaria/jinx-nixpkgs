@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["updateScript", 54, 12]], [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["teams", 62, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["patches", 44, 3], ["postPatch", 46, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gitUpdater: false, kwindowsystem: false, libxscrnsaver: false, libqtxdg: false, "lxqt-build-tools": false, "polkit-qt-1": false, qtsvg: false, qttools: false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 54, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["teams", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["patches", 44, 3], ["postPatch", 46, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "liblxqt";
       const version = "2.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxqt",
           repo: "liblxqt",
           rev: version,
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./fix-application-path.patch")]);
       const postPatch = "# https://github.com/NixOS/nixpkgs/issues/119766\nsubstituteInPlace lxqtbacklight/linux_backend/driver/libbacklight_backend.c \\\n  --replace-fail \"pkexec lxqt-backlight_backend\" \"pkexec $out/bin/lxqt-backlight_backend\"\n\nsed -i \"s|\\${POLKITQT-1_POLICY_FILES_INSTALL_DIR}|${out}/share/polkit-1/actions|\" CMakeLists.txt\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Core utility library for all LXQt components",
         mainProgram: "lxqt-backlight_backend",
         homepage: "https://github.com/lxqt/liblxqt",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

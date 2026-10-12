@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["file_roller", 23, 7]], [["url", 42, 7]], [["updateScript", 41, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["teams", 50, 5], ["platforms", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["dontConfigure", 27, 3], ["dontBuild", 29, 3], ["installPhase", 31, 3], ["passthru", 40, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, unstableGitUpdater: false, replaceVars: false, "file-roller": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["file_roller", 23, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 42, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 41, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["teams", 50, 5], ["platforms", 51, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["dontConfigure", 27, 3], ["dontBuild", 29, 3], ["installPhase", 31, 3], ["passthru", 40, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,31 +14,31 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const file_roller = nix.arg($, "file-roller");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "file-roller-contract",
       version: "0-unstable-2021-02-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "file-roller-contract",
           rev: "cf001d84a7e2ddcfbee2cfdb19885798a869833e",
           sha256: "sha256-jnXq44NiQiSYsvaBF828TklLg9d6z6n+gCZKgbFiERI=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./exec-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, file_roller: file_roller })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./exec-path.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], file_roller: file_roller })))),
       ]),
       dontConfigure: true,
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/contractor\ncp *.contract $out/share/contractor/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/elementary/file-roller-contract.git",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Contractor extension for File Roller",
         homepage: "https://github.com/elementary/file-roller-contract",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["sha256", 16, 9]], [["sha256", 19, 9]], [["sha256", 22, 9]], [["sha256", 25, 9]], [["sha256", 28, 9]], [["sha256", 31, 9], ["max_version", 32, 9]], [["sha256", 35, 9], ["max_version", 36, 9]], [["3.2.1", 15, 7], ["3.1.0", 18, 7], ["2.4.4", 21, 7], ["2.0.0", 24, 7], ["1.0.1", 27, 7], ["1.0.0", 30, 7], ["0.9.0", 34, 7]], [["url", 51, 7], ["sha256", 56, 23]], [["description", 66, 7], ["license", 67, 7], ["maintainers", 68, 7], ["homepage", 69, 7], ["changelog", 70, 7]], [["pname", 47, 5], ["version", 48, 13], ["src", 50, 5], ["propagatedBuildInputs", 59, 5], ["meta", 65, 5]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, ocaml: false, astring: false, result: false, "camlp-streams": false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["sha256", 16, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sha256", 19, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["sha256", 22, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["sha256", 25, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["sha256", 28, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["sha256", 31, 9], ["max_version", 32, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["sha256", 35, 9], ["max_version", 36, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["3.2.1", 15, 7], ["3.1.0", 18, 7], ["2.4.4", 21, 7], ["2.0.0", 24, 7], ["1.0.1", 27, 7], ["1.0.0", 30, 7], ["0.9.0", 34, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["url", 51, 7], ["sha256", 56, 23]]);
-const pos$10 = nix.positions(here + "/default.nix", [["description", 66, 7], ["license", 67, 7], ["maintainers", 68, 7], ["homepage", 69, 7], ["changelog", 70, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 47, 5], ["version", 48, 13], ["src", 50, 5], ["propagatedBuildInputs", 59, 5], ["meta", 65, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,34 +16,34 @@ export default nix.lambda((args) => (() => {
   const camlp_streams = nix.arg($, "camlp-streams");
   const version = nix.argOr($, "version", () => "3.2.1");
   const param = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     "3.2.1": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       sha256: "sha256-1F6xJVFIOf2awncCu0k40bTztpeOmxarlnPqBnJFr/w=",
     })),
     "3.1.0": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       sha256: "sha256-NVs8//STSQPLrti1HONeMz6GCZMtIwKUIAqfLUL/qRQ=",
     })),
     "2.4.4": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       sha256: "sha256-fiU6VbXI9hD54LSJQOza8hwBVTFDr5O0DJmMMEmeUfM=",
     })),
     "2.0.0": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       sha256: "sha256-QHkZ+7DrlXYdb8bsZ3dijZSqGQc0O9ymeLGIC6+zOSI=",
     })),
     "1.0.1": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       sha256: "sha256-orvo5CAbYOmAurAeluQfK6CwW6P1C0T3WDfoovuQfSw=",
     })),
     "1.0.0": nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       sha256: "sha256-tqoI6nGp662bK+vE2h7aDXE882dObVfRBFnZNChueqE=",
       max_version: "5.0",
     })),
     "0.9.0": nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       sha256: "sha256-3w2tG605v03mvmZsS2O5c71y66O3W+n3JjFxIbXwvXk=",
       max_version: "5.0",
     })),
@@ -62,13 +52,13 @@ export default nix.lambda((args) => (() => {
       const pname = "odoc-parser";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           url: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "2.4")) ? nix.str`https://github.com/ocaml/odoc/releases/download/${version_1}/odoc-${version_1}.tbz` : nix.str`https://github.com/ocaml-doc/odoc-parser/releases/download/${version_1}/odoc-parser-${version_1}.tbz`)),
           sha256: nix.thunk(() => nix.attr(param, "sha256")),
         }))));
       const propagatedBuildInputs = nix.thunk(() => nix.concat([astring], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "3.1.0"))), result), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version_1, "1.0.1")), camlp_streams))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Parser for Ocaml documentation comments",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: [],
@@ -76,7 +66,7 @@ export default nix.lambda((args) => (() => {
         changelog: nix.thunk(() => nix.str`https://github.com/ocaml-doc/odoc-parser/raw/${version_1}/CHANGES.md`),
       }));
       return {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         pname,
         version: version_1,
         src,

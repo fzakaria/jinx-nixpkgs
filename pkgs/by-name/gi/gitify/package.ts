@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["pname", 47, 26], ["version", 47, 32], ["src", 47, 40], ["pnpm", 48, 13], ["fetcherVersion", 49, 5], ["hash", 50, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 53, 7]], [["name", 120, 7], ["desktopName", 121, 7], ["exec", 122, 7], ["icon", 123, 7], ["comment", 124, 7], ["categories", 125, 7], ["startupWMClass", 126, 7]], [["updateScript", 130, 12]], [["homepage", 133, 5], ["changelog", 134, 5], ["description", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["platforms", 138, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["strictDeps", 43, 3], ["__structuredAttrs", 44, 3], ["pnpmDeps", 46, 3], ["env", 53, 3], ["postPatch", 55, 3], ["buildPhase", 73, 3], ["installPhase", 90, 3], ["desktopItems", 118, 3], ["passthru", 130, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, nodejs_24: false, electron_44: false, makeDesktopItem: false, copyDesktopItems: false, imagemagick: false, makeWrapper: false, cacert: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 47, 26], ["version", 47, 32], ["src", 47, 40], ["pnpm", 48, 13], ["fetcherVersion", 49, 5], ["hash", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 120, 7], ["desktopName", 121, 7], ["exec", 122, 7], ["icon", 123, 7], ["comment", 124, 7], ["categories", 125, 7], ["startupWMClass", 126, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 130, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 133, 5], ["changelog", 134, 5], ["description", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["platforms", 138, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["strictDeps", 43, 3], ["__structuredAttrs", 44, 3], ["pnpmDeps", 46, 3], ["env", 53, 3], ["postPatch", 55, 3], ["buildPhase", 73, 3], ["installPhase", 90, 3], ["desktopItems", 118, 3], ["passthru", 130, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nodejs_24;
   const electron = electron_44;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gitify",
       version: "7.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gitify-app",
           repo: "gitify",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +47,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -61,7 +55,7 @@ export default nix.lambda((args) => (() => {
           fetcherVersion: 4n,
           hash: "sha256-qMDsulcZKttYtVAbx/RvwZgfUgQMqq7mIt/S5vP/rJ8=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       postPatch: "substituteInPlace electron-builder.js \\\n  --replace-fail \"'Adam Setch (5KD23H9729)'\" \"null\" \\\n  --replace-fail \"'scripts/afterSign.js'\" \"null\"\n\n# With a nixpkgs electron wrapper, app.isPackaged always returns false,\n# so isDevMode() is always true. This causes the config.ts getter for\n# indexHtml to return VITE_DEV_SERVER_URL (which is empty) instead of the\n# packaged file:// URL, resulting in a blank white window.\n# Patch isDevMode() to false so the file:// path is always used.\nsubstituteInPlace src/main/config.ts \\\n  --replace-fail \"isDevMode()\" \"false\"\n\n# Disable auto-updater; updates are handled via nixpkgs.\nsubstituteInPlace src/main/updater.ts \\\n  --replace-fail \"if (!this.menubar.app.isPackaged)\" \"if (true)\"\n",
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
@@ -96,7 +90,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "gitify",
             desktopName: "Gitify",
             exec: "gitify %U",
@@ -107,11 +101,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://gitify.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/gitify-app/gitify/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "GitHub notifications on your menu bar",

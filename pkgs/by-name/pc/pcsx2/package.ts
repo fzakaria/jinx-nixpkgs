@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]], [["pname", 55, 5], ["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]], [["command", 142, 18]], [["pcsx2_patches", 141, 13], ["updateScript", 142, 5]], [["homepage", 146, 5], ["description", 147, 5], ["longDescription", 148, 5], ["changelog", 155, 5], ["downloadPage", 156, 5], ["license", 157, 5], ["mainProgram", 161, 5], ["maintainers", 162, 5], ["platforms", 167, 5]], [["pname", 52, 3], ["version", 53, 3], ["src", 54, 3], ["patches", 62, 3], ["postPatch", 66, 3], ["cmakeFlags", 71, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 87, 3], ["strictDeps", 115, 3], ["postInstall", 117, 3], ["qtWrapperArgs", 125, 3], ["dontWrapGApps", 134, 3], ["preFixup", 136, 3], ["passthru", 140, 3], ["meta", 145, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, sdl3: false, cmake: false, cubeb: false, curl: false, kdePackages: false, ffmpeg_8: false, gtk3: false, libxrandr: false, libaio: false, libbacktrace: false, libpcap: false, libwebp: false, llvmPackages: false, lz4: false, "pkg-config": false, qt6: false, rapidyaml: false, shaderc: false, soundtouch: false, "strip-nondeterminism": false, "vulkan-headers": false, "vulkan-loader": false, wayland: false, wrapGAppsHook3: false, zip: false, zstd: false, plutovg: false, plutosvg: false, kddockwidgets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 55, 5], ["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["command", 142, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pcsx2_patches", 141, 13], ["updateScript", 142, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 146, 5], ["description", 147, 5], ["longDescription", 148, 5], ["changelog", 155, 5], ["downloadPage", 156, 5], ["license", 157, 5], ["mainProgram", 161, 5], ["maintainers", 162, 5], ["platforms", 167, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 3], ["src", 54, 3], ["patches", 62, 3], ["postPatch", 66, 3], ["cmakeFlags", 71, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 87, 3], ["strictDeps", 115, 3], ["postInstall", 117, 3], ["qtWrapperArgs", 125, 3], ["dontWrapGApps", 134, 3], ["preFixup", 136, 3], ["passthru", 140, 3], ["meta", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const plutosvg = nix.arg($, "plutosvg");
   const kddockwidgets = nix.arg($, "kddockwidgets");
   const pcsx2_patches = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "PCSX2",
       repo: "pcsx2_patches",
       rev: "57e7089511430020ad9a8b22c6d27a593057d50a",
@@ -56,11 +51,11 @@ export default nix.lambda((args) => (() => {
   const qtwayland = nix.thunk(() => nix.attr(qt6, "qtwayland"));
   const wrapQtAppsHook = nix.thunk(() => nix.attr(qt6, "wrapQtAppsHook"));
   return nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pcsx2",
       version: "2.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "pcsx2-source",
           owner: "PCSX2",
           repo: "pcsx2",
@@ -126,12 +121,15 @@ strip-nondeterminism $out/share/PCSX2/resources/patches.zip
       dontWrapGApps: true,
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pcsx2_patches: pcsx2_patches,
-        updateScript: nix.thunk(() => ({ [nix.POS]: pos$3, command: nix.thunk(() => [nix.path(here, "./update.sh")]) })),
+        updateScript: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          command: nix.thunk(() => [nix.path(here, "./update.sh")]),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://pcsx2.net",
         description: "Playstation 2 emulator",
         longDescription: "PCSX2 is an open-source PlayStation 2 (AKA PS2) emulator. Its purpose is\nto emulate the PS2 hardware, using a combination of MIPS CPU Interpreters,\nRecompilers and a Virtual Machine which manages hardware states and PS2\nsystem memory. This allows you to play PS2 games on your PC, with many\nadditional features and benefits.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["postFetch", 19, 5]], [["homepage", 43, 5], ["description", 44, 5], ["changelog", 45, 5], ["mainProgram", 47, 5], ["maintainers", 48, 5], ["license", 49, 5], ["platforms", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["npmWorkspace", 26, 3], ["npmDepsHash", 28, 3], ["preBuild", 30, 3], ["postInstall", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildNpmPackage: false, "npm-lockfile-fix": false, jq: false, moreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["postFetch", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["changelog", 45, 5], ["mainProgram", 47, 5], ["maintainers", 48, 5], ["license", 49, 5], ["platforms", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["npmWorkspace", 26, 3], ["npmDepsHash", 28, 3], ["preBuild", 30, 3], ["postInstall", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "actions-languageserver",
       version: "0.3.61",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "actions",
           repo: "languageservices",
           tag: nix.thunk(() => nix.str`release-v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ ${nix.app(nix.sel(lib, "getExe"), jq)} 'del(.devDependencies.["rest-api-descript
       preBuild: "patchShebangs .\nnpm run build --workspace=expressions\nnpm run build --workspace=workflow-parser\nnpm run build --workspace=languageservice\n",
       postInstall: "cp -r expressions workflow-parser languageservice languageserver $out/lib/node_modules/actions-languageservices/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/actions/languageservices",
         description: "Language server for GitHub Actions",
         changelog: nix.thunk(() => nix.str`https://github.com/actions/languageservices/releases/tag/release-v${nix.sel(finalAttrs, "version")}`),

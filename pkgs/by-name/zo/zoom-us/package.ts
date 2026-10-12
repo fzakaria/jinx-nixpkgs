@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-darwin", 57, 12], ["x86_64-linux", 60, 12]], [["url", 64, 7], ["name", 65, 7], ["hash", 66, 7]], [["url", 69, 7], ["hash", 70, 7]], [["aarch64-darwin", 63, 5], ["x86_64-linux", 68, 5]], [["nixos-module", 133, 20]], [["updateScript", 132, 14], ["tests", 133, 14]], [["homepage", 136, 7], ["changelog", 137, 7], ["description", 138, 7], ["sourceProvenance", 139, 7], ["license", 140, 7], ["platforms", 141, 7], ["maintainers", 142, 7], ["mainProgram", 146, 7]], [["pname", 75, 5], ["version", 76, 5], ["src", 78, 5], ["dontUnpack", 80, 5], ["unpackPhase", 81, 5], ["nativeBuildInputs", 100, 5], ["installPhase", 106, 5], ["postFixup", 126, 5], ["dontPatchELF", 130, 5], ["passthru", 132, 5], ["meta", 135, 5]], [["unpacked", 249, 15]], [["pname", 231, 24], ["version", 231, 30], ["targetPkgs", 233, 5], ["extraPreBwrapCmds", 234, 5], ["extraBwrapArgs", 235, 5], ["runScript", 236, 5], ["extraInstallCommands", 238, 5], ["passthru", 248, 5], ["meta", 251, 24]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, makeWrapper: false, xar: false, cpio: false, callPackage: false, nixosTests: false, buildFHSEnv: false, pulseaudioSupport: true, xdgDesktopPortalSupport: true, plasma6XdgDesktopPortalSupport: true, lxqtXdgDesktopPortalSupport: true, gnomeXdgDesktopPortalSupport: true, hyprlandXdgDesktopPortalSupport: true, wlrXdgDesktopPortalSupport: true, xappXdgDesktopPortalSupport: true, targetPkgs: true, targetPkgsFixed: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-darwin", 57, 12], ["x86_64-linux", 60, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 64, 7], ["name", 65, 7], ["hash", 66, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 69, 7], ["hash", 70, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["aarch64-darwin", 63, 5], ["x86_64-linux", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nixos-module", 133, 20]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 132, 14], ["tests", 133, 14]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 136, 7], ["changelog", 137, 7], ["description", 138, 7], ["sourceProvenance", 139, 7], ["license", 140, 7], ["platforms", 141, 7], ["maintainers", 142, 7], ["mainProgram", 146, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 75, 5], ["version", 76, 5], ["src", 78, 5], ["dontUnpack", 80, 5], ["unpackPhase", 81, 5], ["nativeBuildInputs", 100, 5], ["installPhase", 106, 5], ["postFixup", 126, 5], ["dontPatchELF", 130, 5], ["passthru", 132, 5], ["meta", 135, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["unpacked", 249, 15]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 231, 24], ["version", 231, 30], ["targetPkgs", 233, 5], ["extraPreBwrapCmds", 234, 5], ["extraBwrapArgs", 235, 5], ["runScript", 236, 5], ["extraInstallCommands", 238, 5], ["passthru", 248, 5], ["meta", 251, 24]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,26 +29,26 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const versions = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-darwin": "7.2.2.88465",
     "x86_64-linux": "7.2.1.5760",
   }));
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://zoom.us/client/${nix.sel(versions, "aarch64-darwin")}/zoomusInstallerFull.pkg?archType=arm64`),
         name: "zoomusInstallerFull.pkg",
         hash: "sha256-/xXZJu9acUxmg8wj7WKKfC/EPQgKiKxUr04gC6A6JFY=",
       })))),
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://zoom.us/client/${nix.sel(versions, "x86_64-linux")}/zoom_x86_64.pkg.tar.xz`),
         hash: "sha256-Nuh5j0L1bqinPHcqrFlKMPFqGqTRUdYVdrPcgufS5Qo=",
       })))),
   }));
   const unpacked = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "zoom",
       version: nix.thunk(() => nix.selOr(versions, () => nix.sel(versions, "x86_64-linux"), nix.key(nix.force(system)))),
       src: nix.thunk(() => nix.selOr(srcs, () => nix.sel(srcs, "x86_64-linux"), nix.key(nix.force(system)))),
@@ -68,15 +59,15 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeWrapper $out/Applications/zoom.us.app/Contents/MacOS/zoom.us $out/bin/zoom\n")),
       dontPatchELF: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "nixos-module": nix.thunk(() => nix.sel(nixosTests, "zoom-us")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://zoom.us/",
         changelog: "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0061222",
         description: "zoom.us video conferencing application",
@@ -156,7 +147,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(pkgs, "xdg-desktop-portal-gtk")),
     ])), nix.concat(nix.app(nix.sel(lib, "optional"), hyprlandXdgDesktopPortalSupport, nix.thunk(() => nix.sel(pkgs, "xdg-desktop-portal-hyprland"))), nix.concat(nix.app(nix.sel(lib, "optional"), wlrXdgDesktopPortalSupport, nix.thunk(() => nix.sel(pkgs, "xdg-desktop-portal-wlr"))), nix.concat(nix.app(nix.sel(lib, "optional"), xappXdgDesktopPortalSupport, nix.thunk(() => nix.sel(pkgs, "xdg-desktop-portal-xapp"))), nix.concat(nix.app(targetPkgs, pkgs), targetPkgsFixed))))))))));
   return (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))) ? nix.force(unpacked) : nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: nix.thunk(() => nix.attr(unpacked, "pname")),
       version: nix.thunk(() => nix.attr(unpacked, "version")),
       targetPkgs: (pkgs) => nix.concat(nix.app(linuxGetDependencies, pkgs), [unpacked]),
@@ -171,7 +162,7 @@ substituteInPlace \\
 # Backwards compatibility: we also call it zoom-us
 ln -s $out/bin/{zoom,zoom-us}
 `),
-      passthru: nix.thunk(() => nix.update(nix.sel(unpacked, "passthru"), { [nix.POS]: pos$9, unpacked: unpacked })),
+      passthru: nix.thunk(() => nix.update(nix.sel(unpacked, "passthru"), { [nix.POS]: $pos[8], unpacked: unpacked })),
       meta: nix.thunk(() => nix.attr(unpacked, "meta")),
     }))));
 })(), formals$1);

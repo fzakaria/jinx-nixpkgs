@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["CFLAGS", 33, 5]], [["broken", 40, 5], ["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["cmakeFlags", 28, 3], ["env", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, FMIVersion: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 40, 5], ["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["cmakeFlags", 28, 3], ["env", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const FMIVersion = nix.argOr($, "FMIVersion", () => 3n);
   nix.assert_(nix.app(nix.sel(lib, "asserts", "assertMsg"), nix.thunk(() => (nix.asBool(nix.ge(FMIVersion, 2n)) && nix.asBool(nix.le(FMIVersion, 3n)))), nix.thunk(() => nix.str`FMIVersion must be a valid FMI specification standard of: 2 or 3; not ${nix.builtins.toString(FMIVersion)}`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fm/fmi-reference-fmus/package.nix:12:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "reference-fmus",
       version: "0.0.41",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "modelica",
           repo: "reference-fmus",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,9 +26,9 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DFMI_VERSION=${nix.builtins.toString(FMIVersion)}`)]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(FMIVersion, 3n)), nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-Wno-stringop-truncation" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(FMIVersion, 3n)), nix.thunk(() => ({ [nix.POS]: $pos[1], CFLAGS: "-Wno-stringop-truncation" })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(stdenv, "hostPlatform")), null);
           return (nix.asBool(nix.lookup(w, "isAarch64")) && nix.asBool(nix.lookup(w, "isDarwin")));

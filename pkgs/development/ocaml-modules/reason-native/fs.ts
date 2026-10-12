@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fs.nix", [[["description", 24, 5], ["homepage", 25, 5], ["downloadPage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]], [["src", 10, 11], ["pname", 12, 3], ["version", 13, 3], ["nativeBuildInputs", 15, 3], ["propagatedBuildInputs", 19, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fp: false, reason: false, src: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fs.nix", [["description", 24, 5], ["homepage", 25, 5], ["downloadPage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]]);
-const pos$2 = nix.positions(here + "/fs.nix", [["src", 10, 11], ["pname", 12, 3], ["version", 13, 3], ["nativeBuildInputs", 15, 3], ["propagatedBuildInputs", 19, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const reason = nix.arg($, "reason");
   const src = nix.arg($, "src");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: src,
       pname: "fs",
       version: "0.0.2-unstable-2024-05-07",
       nativeBuildInputs: nix.thunk(() => [reason]),
       propagatedBuildInputs: nix.thunk(() => [fp]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Reason Native file system API",
         homepage: "https://github.com/reasonml/reason-native",
         downloadPage: "https://github.com/reasonml/reason-native/tree/master/src/fs",

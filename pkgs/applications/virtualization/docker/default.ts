@@ -2,31 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cpeParts", 73, 21]], [["license", 68, 9], ["maintainers", 69, 9], ["identifiers", 73, 9]], [["owner", 81, 11], ["repo", 82, 11], ["tag", 83, 11], ["hash", 84, 11]], [["pname", 77, 9], ["version", 78, 17], ["src", 80, 9], ["preBuild", 87, 9], ["patches", 92, 9]], [["owner", 103, 11], ["repo", 104, 11], ["tag", 105, 11], ["hash", 106, 11]], [["pname", 96, 9], ["version", 97, 17], ["outputs", 100, 9], ["src", 102, 9], ["buildInputs", 109, 9], ["installTargets", 112, 9]], [["owner", 120, 11], ["repo", 121, 11], ["rev", 122, 11], ["hash", 123, 11]], [["NIX_CFLAGS_COMPILE", 136, 13]], [["pname", 116, 9], ["version", 117, 17], ["src", 119, 9], ["patches", 126, 9], ["postPatch", 129, 9], ["buildInputs", 131, 9], ["env", 136, 9]], [["owner", 140, 9], ["repo", 141, 9], ["tag", 142, 9], ["hash", 143, 9]], [["DOCKER_BUILDTAGS", 245, 15]], [["cpeParts", 255, 25]], [["homepage", 253, 13], ["description", 254, 13], ["identifiers", 255, 13]], [["pname", 169, 11], ["version", 170, 19], ["src", 172, 11], ["vendorHash", 174, 11], ["nativeBuildInputs", 176, 11], ["buildInputs", 185, 11], ["postPatch", 194, 11], ["buildPhase", 201, 11], ["installPhase", 214, 11], ["env", 245, 11], ["meta", 252, 11]], [["owner", 276, 11], ["repo", 277, 11], ["rev", 280, 11], ["hash", 281, 11]], [["docker", 373, 74]], [["moby-src", 372, 19], ["tests", 373, 11], ["updateScript", 375, 11]], [["homepage", 379, 11], ["description", 380, 11], ["longDescription", 381, 11], ["mainProgram", 386, 11], ["knownVulnerabilities", 387, 19]], [["pname", 272, 9], ["version", 273, 17], ["src", 275, 9], ["patches", 284, 9], ["vendorHash", 293, 9], ["nativeBuildInputs", 295, 9], ["buildInputs", 304, 9], ["postPatch", 311, 9], ["buildPhase", 317, 9], ["outputs", 334, 9], ["installPhase", 336, 9], ["doInstallCheck", 367, 9], ["nativeInstallCheckInputs", 368, 9], ["passthru", 370, 9], ["meta", 378, 9]], [["docker-runc", 394, 11], ["docker-containerd", 395, 11], ["docker-tini", 396, 11], ["moby", 397, 11]], [["version", 410, 15], ["cliRev", 413, 7], ["cliHash", 414, 7], ["mobyRev", 415, 7], ["mobyHash", 416, 7], ["runcRev", 417, 7], ["runcHash", 418, 7], ["containerdRev", 419, 7], ["containerdHash", 420, 7], ["tiniRev", 421, 7], ["tiniHash", 422, 7]], [["version", 430, 15], ["cliRev", 431, 7], ["cliHash", 432, 7], ["mobyRev", 433, 7], ["mobyHash", 434, 7], ["runcRev", 435, 7], ["runcHash", 436, 7], ["containerdRev", 437, 7], ["containerdHash", 438, 7], ["tiniRev", 439, 7], ["tiniHash", 440, 7]], [["docker_25", 405, 3], ["docker_29", 425, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false }, ellipsis: false };
 const formals$2 = { args: { version: false, cliRev: false, cliHash: false, mobyRev: false, mobyHash: false, runcRev: false, runcHash: false, containerdRev: false, containerdHash: false, tiniRev: false, tiniHash: false, buildxSupport: true, composeSupport: true, sbomSupport: true, initSupport: true, stdenv: false, fetchFromGitHub: false, buildGoModule: false, makeBinaryWrapper: false, installShellFiles: false, "pkg-config": false, glibc: false, "go-md2man": false, go: false, containerd: false, runc: false, tini: false, libtool: false, sqlite: false, iproute2: false, "docker-buildx": false, "docker-compose": false, "docker-sbom": false, "docker-init": false, iptables: false, nftables: false, e2fsprogs: false, xz: false, "util-linuxMinimal": false, xfsprogs: false, gitMinimal: false, procps: false, rootlesskit: false, slirp4netns: false, "fuse-overlayfs": false, nixosTests: false, clientOnly: true, symlinkJoin: false, withSystemd: true, systemdLibs: false, withBtrfs: true, "btrfs-progs": false, withLvm: true, lvm2: false, withSeccomp: true, libseccomp: false, knownVulnerabilities: true, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cpeParts", 73, 21]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 68, 9], ["maintainers", 69, 9], ["identifiers", 73, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 81, 11], ["repo", 82, 11], ["tag", 83, 11], ["hash", 84, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 77, 9], ["version", 78, 17], ["src", 80, 9], ["preBuild", 87, 9], ["patches", 92, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["owner", 103, 11], ["repo", 104, 11], ["tag", 105, 11], ["hash", 106, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 96, 9], ["version", 97, 17], ["outputs", 100, 9], ["src", 102, 9], ["buildInputs", 109, 9], ["installTargets", 112, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["owner", 120, 11], ["repo", 121, 11], ["rev", 122, 11], ["hash", 123, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 136, 13]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 116, 9], ["version", 117, 17], ["src", 119, 9], ["patches", 126, 9], ["postPatch", 129, 9], ["buildInputs", 131, 9], ["env", 136, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["owner", 140, 9], ["repo", 141, 9], ["tag", 142, 9], ["hash", 143, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["DOCKER_BUILDTAGS", 245, 15]]);
-const pos$12 = nix.positions(here + "/default.nix", [["cpeParts", 255, 25]]);
-const pos$13 = nix.positions(here + "/default.nix", [["homepage", 253, 13], ["description", 254, 13], ["identifiers", 255, 13]]);
-const pos$14 = nix.positions(here + "/default.nix", [["pname", 169, 11], ["version", 170, 19], ["src", 172, 11], ["vendorHash", 174, 11], ["nativeBuildInputs", 176, 11], ["buildInputs", 185, 11], ["postPatch", 194, 11], ["buildPhase", 201, 11], ["installPhase", 214, 11], ["env", 245, 11], ["meta", 252, 11]]);
-const pos$15 = nix.positions(here + "/default.nix", [["owner", 276, 11], ["repo", 277, 11], ["rev", 280, 11], ["hash", 281, 11]]);
-const pos$16 = nix.positions(here + "/default.nix", [["docker", 373, 74]]);
-const pos$17 = nix.positions(here + "/default.nix", [["moby-src", 372, 19], ["tests", 373, 11], ["updateScript", 375, 11]]);
-const pos$18 = nix.positions(here + "/default.nix", [["homepage", 379, 11], ["description", 380, 11], ["longDescription", 381, 11], ["mainProgram", 386, 11], ["knownVulnerabilities", 387, 19]]);
-const pos$19 = nix.positions(here + "/default.nix", [["pname", 272, 9], ["version", 273, 17], ["src", 275, 9], ["patches", 284, 9], ["vendorHash", 293, 9], ["nativeBuildInputs", 295, 9], ["buildInputs", 304, 9], ["postPatch", 311, 9], ["buildPhase", 317, 9], ["outputs", 334, 9], ["installPhase", 336, 9], ["doInstallCheck", 367, 9], ["nativeInstallCheckInputs", 368, 9], ["passthru", 370, 9], ["meta", 378, 9]]);
-const pos$20 = nix.positions(here + "/default.nix", [["docker-runc", 394, 11], ["docker-containerd", 395, 11], ["docker-tini", 396, 11], ["moby", 397, 11]]);
-const pos$21 = nix.positions(here + "/default.nix", [["version", 410, 15], ["cliRev", 413, 7], ["cliHash", 414, 7], ["mobyRev", 415, 7], ["mobyHash", 416, 7], ["runcRev", 417, 7], ["runcHash", 418, 7], ["containerdRev", 419, 7], ["containerdHash", 420, 7], ["tiniRev", 421, 7], ["tiniHash", 422, 7]]);
-const pos$22 = nix.positions(here + "/default.nix", [["version", 430, 15], ["cliRev", 431, 7], ["cliHash", 432, 7], ["mobyRev", 433, 7], ["mobyHash", 434, 7], ["runcRev", 435, 7], ["runcHash", 436, 7], ["containerdRev", 437, 7], ["containerdHash", 438, 7], ["tiniRev", 439, 7], ["tiniHash", 440, 7]]);
-const pos$23 = nix.positions(here + "/default.nix", [["docker_25", 405, 3], ["docker_29", 425, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -93,7 +71,7 @@ export default nix.lambda((args) => (() => {
     const knownVulnerabilities = nix.argOr($_1, "knownVulnerabilities", () => []);
     const versionCheckHook = nix.arg($_1, "versionCheckHook");
     const docker_meta = nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -103,16 +81,16 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       identifiers: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "docker", version)),
       })),
     }));
     const docker_runc = nix.thunk(() => nix.app(nix.sel(runc, "overrideAttrs"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "docker-runc",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "opencontainers",
             repo: "runc",
             tag: runcRev,
@@ -123,12 +101,12 @@ export default nix.lambda((args) => (() => {
         patches: [],
       }))));
     const docker_containerd = nix.thunk(() => nix.app(nix.sel(containerd, "overrideAttrs"), (oldAttrs) => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "docker-containerd",
         version: version,
         outputs: nix.thunk(() => ["out"]),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             owner: "containerd",
             repo: "containerd",
             tag: containerdRev,
@@ -138,11 +116,11 @@ export default nix.lambda((args) => (() => {
         installTargets: "install",
       })));
     const docker_tini = nix.thunk(() => nix.app(nix.sel(tini, "overrideAttrs"), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: "docker-tini",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             owner: "krallin",
             repo: "tini",
             rev: tiniRev,
@@ -151,9 +129,15 @@ export default nix.lambda((args) => (() => {
         patches: [],
         postPatch: "",
         buildInputs: nix.thunk(() => [glibc, nix.thunk(() => nix.sel(glibc, "static"))]),
-        env: nix.thunk(() => ({ [nix.POS]: pos$8, NIX_CFLAGS_COMPILE: "-DMINIMAL=ON" })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[7], NIX_CFLAGS_COMPILE: "-DMINIMAL=ON" })),
       }))));
-    const moby_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ [nix.POS]: pos$10, owner: "moby", repo: "moby", tag: mobyRev, hash: mobyHash }))));
+    const moby_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
+        [nix.POS]: $pos[9],
+        owner: "moby",
+        repo: "moby",
+        tag: mobyRev,
+        hash: mobyHash,
+      }))));
     const extraMobyPath = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
           iproute2,
           iptables,
@@ -166,7 +150,7 @@ export default nix.lambda((args) => (() => {
         ])))));
     const extraMobyUserPath = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(clientOnly)))), nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [rootlesskit, slirp4netns, fuse_overlayfs])))));
     const moby = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           pname: "moby",
           version: version,
           src: moby_src,
@@ -211,15 +195,15 @@ makeWrapper $out/libexec/docker/dockerd-rootless.sh $out/bin/dockerd-rootless \\
 runHook postInstall
 `),
           env: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             DOCKER_BUILDTAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withSystemd, nix.thunk(() => ["journald"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withBtrfs)), nix.thunk(() => ["exclude_graphdriver_btrfs"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withLvm)), nix.thunk(() => ["exclude_graphdriver_devicemapper"])), nix.app(nix.sel(lib, "optionals"), withSeccomp, nix.thunk(() => ["seccomp"])))))))),
           })),
           meta: nix.thunk(() => nix.update(docker_meta, {
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             homepage: "https://mobyproject.org/",
             description: "Collaborative project for the container ecosystem to assemble container-based systems",
             identifiers: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "mobyproject", version)),
             })),
           })),
@@ -227,10 +211,16 @@ runHook postInstall
     const plugins = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), buildxSupport, nix.thunk(() => [docker_buildx])), nix.concat(nix.app(nix.sel(lib, "optionals"), composeSupport, nix.thunk(() => [docker_compose])), nix.concat(nix.app(nix.sel(lib, "optionals"), sbomSupport, nix.thunk(() => [docker_sbom])), nix.app(nix.sel(lib, "optionals"), initSupport, nix.thunk(() => [docker_init]))))));
     const dockerCliPluginsDirs = nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), ":", nix.thunk(() => nix.builtins.map((p) => nix.str`${p}/libexec/docker/cli-plugins`, plugins))));
     return nix.app(buildGoModule, nix.thunk(() => nix.update({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         pname: "docker",
         version: version,
-        src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ [nix.POS]: pos$15, owner: "docker", repo: "cli", rev: cliRev, hash: cliHash })))),
+        src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
+            [nix.POS]: $pos[14],
+            owner: "docker",
+            repo: "cli",
+            rev: cliRev,
+            hash: cliHash,
+          })))),
         patches: nix.thunk(() => [
           nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "26.0.0")) ? nix.path(here, "./cli-system-plugin-dir-from-env-25.patch") : nix.path(here, "./cli-system-plugin-dir-from-env.patch"))),
         ]),
@@ -273,13 +263,13 @@ ln -s ${moby}/etc/systemd/system/docker.socket $out/etc/systemd/system/docker.so
         doInstallCheck: true,
         nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           "moby-src": moby_src,
-          tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(clientOnly)), nix.thunk(() => ({ [nix.POS]: pos$16, docker: nix.thunk(() => nix.attr(nixosTests, "docker")) })))),
+          tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(clientOnly)), nix.thunk(() => ({ [nix.POS]: $pos[15], docker: nix.thunk(() => nix.attr(nixosTests, "docker")) })))),
           updateScript: nix.path(here, "./update.sh"),
         })),
         meta: nix.thunk(() => nix.update(docker_meta, {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           homepage: "https://www.docker.com/",
           description: "Open source project to pack, ship and run any application as a lightweight container",
           longDescription: "Docker is a platform designed to help developers build, share, and run modern applications.\n\nTo enable the docker daemon on NixOS, set the `virtualisation.docker.enable` option to `true`.\n",
@@ -287,7 +277,7 @@ ln -s ${moby}/etc/systemd/system/docker.socket $out/etc/systemd/system/docker.so
           knownVulnerabilities: knownVulnerabilities,
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(clientOnly)), nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           "docker-runc": docker_runc,
           "docker-containerd": docker_containerd,
           "docker-tini": docker_tini,
@@ -295,11 +285,11 @@ ln -s ${moby}/etc/systemd/system/docker.socket $out/etc/systemd/system/docker.so
         }))))));
   })(), formals$2);
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     docker_25: nix.thunk(() => (() => {
       const version = "25.0.16";
       return nix.app(callPackage, dockerGen, nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           version: version,
           cliRev: "43987fca488a535d810c429f75743d8c7b63bf4f",
           cliHash: "sha256-OwufdfuUPbPtgqfPeiKrQVkOOacU2g4ommHb770gV40=",
@@ -316,7 +306,7 @@ ln -s ${moby}/etc/systemd/system/docker.socket $out/etc/systemd/system/docker.so
     docker_29: nix.thunk(() => (() => {
       const version = "29.8.1";
       return nix.app(callPackage, dockerGen, nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           version: version,
           cliRev: nix.thunk(() => nix.str`v${version}`),
           cliHash: "sha256-xJ0UATkStx31/DHzmmXE0Srm9BYMY1RZ5rIz36kHesw=",

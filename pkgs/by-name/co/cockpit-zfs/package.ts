@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["fetchSubmodules", 38, 5], ["hash", 39, 5]], [["src", 46, 26], ["missingHashes", 46, 30], ["hash", 47, 5]], [["updateScript", 60, 12], ["cockpitPath", 62, 12]], [["YARN_ENABLE_SCRIPTS", 87, 5], ["ELECTRON_SKIP_BINARY_DOWNLOAD", 88, 5]], [["description", 162, 5], ["homepage", 163, 5], ["changelog", 164, 5], ["license", 165, 5], ["platforms", 166, 5], ["maintainers", 167, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["missingHashes", 42, 3], ["offlineCache", 45, 3], ["nativeBuildInputs", 50, 3], ["disallowedRequisites", 58, 3], ["passthru", 60, 3], ["env", 85, 3], ["postPatch", 91, 3], ["buildPhase", 125, 3], ["installPhase", 133, 3], ["meta", 161, 3]]]);
 const formals$1 = { args: { acl: false, bash: false, cockpit: false, coreutils: false, fetchFromGitHub: false, getent: false, glibc: false, iproute2: false, jq: false, lib: false, lsscsi: false, makeWrapper: false, mbuffer: false, msmtp: false, "nix-update-script": false, nodejs: false, openssh: false, samba: false, shadow: false, smartmontools: false, stdenv: false, su: false, systemdLibs: false, "util-linux": false, "yarn-berry": false, zfs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["fetchSubmodules", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 46, 26], ["missingHashes", 46, 30], ["hash", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 60, 12], ["cockpitPath", 62, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["YARN_ENABLE_SCRIPTS", 87, 5], ["ELECTRON_SKIP_BINARY_DOWNLOAD", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 162, 5], ["homepage", 163, 5], ["changelog", 164, 5], ["license", 165, 5], ["platforms", 166, 5], ["maintainers", 167, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["missingHashes", 42, 3], ["offlineCache", 45, 3], ["nativeBuildInputs", 50, 3], ["disallowedRequisites", 58, 3], ["passthru", 60, 3], ["env", 85, 3], ["postPatch", 91, 3], ["buildPhase", 125, 3], ["installPhase", 133, 3], ["meta", 161, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const yarn_berry = nix.arg($, "yarn-berry");
   const zfs = nix.arg($, "zfs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cockpit-zfs",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "45Drives",
           repo: "cockpit-zfs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-nm3iHf9Rm5JFKzH0HAvglkQPFIV6Fl1e9WvNdqevTug=",
@@ -66,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disallowedRequisites: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "offlineCache"))]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         cockpitPath: nix.thunk(() => [
           acl,
@@ -92,7 +87,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         YARN_ENABLE_SCRIPTS: "0",
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
       })),
@@ -145,7 +140,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cockpit plugin for ZFS management by 45Drives",
         homepage: "https://github.com/45Drives/cockpit-zfs",
         changelog: nix.thunk(() => nix.str`https://github.com/45Drives/cockpit-zfs/releases/tag/v${nix.sel(finalAttrs, "version")}`),

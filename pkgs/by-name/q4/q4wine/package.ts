@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 33, 3], ["postInstall", 39, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, cmake: false, sqlite: false, qt6: false, icoutils: false, wget: false, wine: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 33, 3], ["postInstall", 39, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const wine = nix.arg($, "wine");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "q4wine",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "brezerk",
           repo: "q4wine",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [icoutils, wget, wine, which]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://q4wine.brezblock.org.ua/",
         description: "Qt GUI for Wine to manage prefixes and applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

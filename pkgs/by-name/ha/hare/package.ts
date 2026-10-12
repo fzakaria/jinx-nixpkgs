@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64", 43, 7], ["aarch64", 44, 7], ["riscv64", 45, 7]], [["ld", 58, 13], ["as", 59, 13], ["cc", 60, 13]], [["owner", 91, 5], ["repo", 92, 5], ["tag", 93, 5], ["hash", 94, 5]], [["tzdata", 100, 15]], [["harec_bin", 107, 7], ["qbe_bin", 108, 7]], [["mailcap", 112, 15]], [["LOCALVER", 147, 7]], [["hare", 160, 72]], [["crossCompilation", 160, 9]], [["hare", 163, 59]], [["mimeModule", 163, 9]], [["hare", 168, 76]], [["crossCompilation", 168, 13]], [["tests", 158, 5], ["harec", 171, 13], ["qbe", 171, 19]], [["homepage", 175, 5], ["description", 176, 5], ["license", 177, 5], ["maintainers", 178, 5], ["mainProgram", 179, 5], ["platforms", 180, 26], ["badPlatforms", 180, 36]], [["pname", 82, 3], ["version", 83, 3], ["outputs", 85, 3], ["src", 90, 3], ["patches", 97, 3], ["nativeBuildInputs", 116, 3], ["buildInputs", 122, 3], ["makeFlags", 127, 3], ["enableParallelBuilding", 144, 3], ["env", 147, 3], ["strictDeps", 149, 3], ["doCheck", 151, 3], ["postConfigure", 153, 3], ["passthru", 157, 3], ["meta", 174, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false, harec: false, scdoc: false, tzdata: false, mailcap: false, replaceVars: false, callPackage: false, enableCrossCompilation: true, pkgsCross: false, x86_64PkgsCrossToolchain: true, aarch64PkgsCrossToolchain: true, riscv64PkgsCrossToolchain: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64", 43, 7], ["aarch64", 44, 7], ["riscv64", 45, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ld", 58, 13], ["as", 59, 13], ["cc", 60, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 91, 5], ["repo", 92, 5], ["tag", 93, 5], ["hash", 94, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tzdata", 100, 15]]);
-const pos$5 = nix.positions(here + "/package.nix", [["harec_bin", 107, 7], ["qbe_bin", 108, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mailcap", 112, 15]]);
-const pos$7 = nix.positions(here + "/package.nix", [["LOCALVER", 147, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["hare", 160, 72]]);
-const pos$9 = nix.positions(here + "/package.nix", [["crossCompilation", 160, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["hare", 163, 59]]);
-const pos$11 = nix.positions(here + "/package.nix", [["mimeModule", 163, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["hare", 168, 76]]);
-const pos$13 = nix.positions(here + "/package.nix", [["crossCompilation", 168, 13]]);
-const pos$14 = nix.positions(here + "/package.nix", [["tests", 158, 5], ["harec", 171, 13], ["qbe", 171, 19]]);
-const pos$15 = nix.positions(here + "/package.nix", [["homepage", 175, 5], ["description", 176, 5], ["license", 177, 5], ["maintainers", 178, 5], ["mainProgram", 179, 5], ["platforms", 180, 26], ["badPlatforms", 180, 36]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 82, 3], ["version", 83, 3], ["outputs", 85, 3], ["src", 90, 3], ["patches", 97, 3], ["nativeBuildInputs", 116, 3], ["buildInputs", 122, 3], ["makeFlags", 127, 3], ["enableParallelBuilding", 144, 3], ["env", 147, 3], ["strictDeps", 149, 3], ["doCheck", 151, 3], ["postConfigure", 153, 3], ["passthru", 157, 3], ["meta", 174, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,7 +40,7 @@ ${nix.app(concatStringsSep, "\n", workingPlatforms)}
   const buildArch = nix.thunk(() => nix.sel(stdenv, "buildPlatform", "uname", "processor"));
   const arch = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "uname", "processor"));
   const platform = nix.thunk(() => nix.app(nix.sel(lib, "toLower"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "uname", "system"))));
-  const qbePlatform = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, x86_64: "amd64_sysv", aarch64: "arm64", riscv64: "rv64" }, nix.key(nix.force(arch))));
+  const qbePlatform = nix.thunk(() => nix.sel({ [nix.POS]: $pos[0], x86_64: "amd64_sysv", aarch64: "arm64", riscv64: "rv64" }, nix.key(nix.force(arch))));
   const embeddedOnBinaryTools = nix.thunk(() => (() => {
     const genPaths = (toolchain) => (() => {
       const from = nix.thunk(() => nix.sel(toolchain, "stdenv", "cc"));
@@ -64,7 +49,7 @@ ${nix.app(concatStringsSep, "\n", workingPlatforms)}
       const processor = nix.thunk(() => nix.attr(from_1, "processor"));
       return nix.attrsDyn({}, [
         [nix.str`${processor}`, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           ld: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(toolchain, "buildPackages", "binutils")), nix.thunk(() => nix.str`${targetPrefix}ld`))),
           as: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(toolchain, "buildPackages", "binutils")), nix.thunk(() => nix.str`${targetPrefix}as`))),
           cc: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(toolchain, "stdenv", "cc")), nix.thunk(() => nix.str`${targetPrefix}cc`))),
@@ -89,26 +74,26 @@ ${nix.app(concatStringsSep, "\n", workingPlatforms)}
       nix.thunk(() => nix.str`X86_64_LD=${nix.sel(embeddedOnBinaryTools, "x86_64", "ld")}`),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "hare",
       version: "0.26.0.1",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "~sircmpwn",
           repo: "hare",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-ypu3GXO2hTGg26l0+FUzEMK/+HiylJIWQxe9UbhKXz4=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./001-tzdata.patch"), nix.thunk(() => ({ [nix.POS]: pos$4, tzdata: tzdata })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./001-tzdata.patch"), nix.thunk(() => ({ [nix.POS]: $pos[3], tzdata: tzdata })))),
         nix.path(here, "./002-dont-build-haredoc.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./003-hardcode-qbe-and-harec.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             harec_bin: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), harec)),
             qbe_bin: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), qbe)),
           })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./004-use-mailcap-for-mimetypes.patch"), nix.thunk(() => ({ [nix.POS]: pos$6, mailcap: mailcap })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./004-use-mailcap-for-mimetypes.patch"), nix.thunk(() => ({ [nix.POS]: $pos[5], mailcap: mailcap })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [harec, qbe, scdoc]),
       buildInputs: nix.thunk(() => [harec, qbe]),
@@ -126,26 +111,29 @@ ${nix.app(concatStringsSep, "\n", workingPlatforms)}
         "HAREPATH=$(SRCDIR)/hare/stdlib",
       ], nix.app(nix.sel(lib, "optionals"), enableCrossCompilation, crossCompMakeFlags))),
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$7, LOCALVER: "nixpkgs" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[6], LOCALVER: "nixpkgs" })),
       strictDeps: true,
       doCheck: true,
       postConfigure: nix.thunk(() => nix.str`ln -s configs/${platform}.mk config.mk
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         tests: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), enableCrossCompilation, nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            crossCompilation: nix.thunk(() => nix.app(callPackage, nix.path(here, "./cross-compilation-tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$8, hare: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+            [nix.POS]: $pos[8],
+            crossCompilation: nix.thunk(() => nix.app(callPackage, nix.path(here, "./cross-compilation-tests.nix"), nix.thunk(() => ({
+                [nix.POS]: $pos[7],
+                hare: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
+              })))),
           }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             mimeModule: nix.thunk(() => nix.app(callPackage, nix.path(here, "./mime-module-test.nix"), nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 hare: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(enableCrossCompilation) && nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))))), nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             crossCompilation: nix.thunk(() => nix.app(callPackage, nix.path(here, "./cross-compilation-tests.nix"), nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 hare: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           })))))),
@@ -155,7 +143,7 @@ ${nix.app(concatStringsSep, "\n", workingPlatforms)}
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(harec, "meta"));
         return {
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         homepage: "https://harelang.org/",
         description: "Systems programming language designed to be simple, stable, and robust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

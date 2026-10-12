@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["description", 32, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["requiredOctavePackages", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { buildOctavePackage: false, lib: false, fetchurl: false, io: false, geometry: false, gdal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["description", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["requiredOctavePackages", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const pname = "mapping";
       const version = "1.4.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "sha256-IYiyRjnHCHhAFy5gR/dcuKWY11gSCubggQzmMAqGmhs=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [gdal]);
       const requiredOctavePackages = nix.thunk(() => [io, geometry]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gnu-octave.github.io/packages/mapping/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         description: "Simple mapping and GIS .shp .dxf and raster file functions",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

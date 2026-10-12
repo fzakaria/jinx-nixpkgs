@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["longDescription", 42, 5], ["platforms", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["preConfigure", 31, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, automake: false, autoconf: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["longDescription", 42, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["preConfigure", 31, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const autoconf = nix.arg($, "autoconf");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libstroke",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20161204100704/http://etla.net/libstroke/libstroke-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0bbpqzsqh9zrc6cg62f6vp1p4dzvv37blsd0gdlzdskgwvyzba8d",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11]),
       preConfigure: "rm config.sub\nautoconf\nautomake -a || true\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for simple gesture recognition",
         homepage: "https://web.archive.org/web/20161204100704/http://etla.net/libstroke/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

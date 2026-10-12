@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["url", 27, 7], ["hash", 28, 7]], [["extraArgs", 61, 40]], [["name", 63, 7], ["src", 64, 28], ["nativeBuildInputs", 66, 7], ["buildPhase", 72, 7], ["installPhase", 81, 7]], [["ld-preload", 91, 7], ["stress", 96, 7]], [["updateScript", 61, 5], ["ld-preload-tests", 62, 5], ["tests", 90, 5]], [["homepage", 108, 5], ["description", 109, 5], ["mainProgram", 110, 5], ["longDescription", 111, 5], ["license", 116, 5], ["maintainers", 117, 5], ["platforms", 121, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeCheckInputs", 32, 3], ["checkTarget", 34, 3], ["doCheck", 35, 3], ["buildPhase", 37, 3], ["installPhase", 45, 3], ["separateDebugInfo", 58, 3], ["passthru", 60, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchpatch: false, lib: false, makeWrapper: false, "nix-update-script": false, python3: false, runCommand: false, stdenv: false, "stress-ng": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 61, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 63, 7], ["src", 64, 28], ["nativeBuildInputs", 66, 7], ["buildPhase", 72, 7], ["installPhase", 81, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ld-preload", 91, 7], ["stress", 96, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 61, 5], ["ld-preload-tests", 62, 5], ["tests", 90, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 108, 5], ["description", 109, 5], ["mainProgram", 110, 5], ["longDescription", 111, 5], ["license", 116, 5], ["maintainers", 117, 5], ["platforms", 121, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeCheckInputs", 32, 3], ["checkTarget", 34, 3], ["doCheck", 35, 3], ["buildPhase", 37, 3], ["installPhase", 45, 3], ["separateDebugInfo", 58, 3], ["passthru", 60, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const stress_ng = nix.arg($, "stress-ng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "graphene-hardened-malloc",
       version: "14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GrapheneOS",
           repo: "hardened_malloc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/GrapheneOS/hardened_malloc/commit/04a25bd141efcd2c0d29ef7d868b205a844b3ad2.patch",
             hash: "sha256-+FBjnGnjs1nyN/zu0Gf0bIv7RHEDscevDsFkvb1/A20=",
           })))),
@@ -48,10 +41,10 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm444 -t $out/include include/*\ninstall -Dm444 -t $out/lib out/libhardened_malloc.so out-light/libhardened_malloc-light.so\n\nmkdir -p $out/bin\nsubstitute preload.sh $out/bin/preload-hardened-malloc --replace \"\\$dir\" $out/lib\nchmod 0555 $out/bin/preload-hardened-malloc\n\nrunHook postInstall\n",
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
         "ld-preload-tests": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-ld-preload-tests`),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -65,7 +58,7 @@ makeWrapper ${nix.sel(python3, "interpreter")} $out/bin/run-tests \\
 `),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "ld-preload": nix.thunk(() => nix.app(runCommand, "ld-preload-test-run", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/bin/preload-hardened-malloc ${nix.sel(finalAttrs, "passthru", "ld-preload-tests")}/bin/run-tests
 touch $out
 `))),
@@ -79,7 +72,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/GrapheneOS/hardened_malloc",
         description: "Hardened allocator designed for modern systems",
         mainProgram: "preload-hardened-malloc",

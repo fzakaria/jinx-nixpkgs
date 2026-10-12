@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/25.nix", [[["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7]], [["lib", 16, 7], ["stdenv", 17, 7], ["rsync", 18, 7], ["runCommand", 19, 7], ["testers", 20, 7], ["jdk", 22, 5], ["gradle", 23, 5], ["version", 24, 5], ["src", 25, 5], ["extraNativeBuildInputs", 31, 5]], [["patches", 36, 5]]]);
 const formals$1 = { args: { fetchFromGitHub: false, gradle_9: false, jdk25: false, lib: false, stdenv: false, rsync: false, pandoc: false, runCommand: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/25.nix", [["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7]]);
-const pos$2 = nix.positions(here + "/25.nix", [["lib", 16, 7], ["stdenv", 17, 7], ["rsync", 18, 7], ["runCommand", 19, 7], ["testers", 20, 7], ["jdk", 22, 5], ["gradle", 23, 5], ["version", 24, 5], ["src", 25, 5], ["extraNativeBuildInputs", 31, 5]]);
-const pos$3 = nix.positions(here + "/25.nix", [["patches", 36, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const gradle = gradle_9;
       const version = "25.0.1.9.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "corretto",
           repo: "corretto-25",
           rev: version,
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const extraNativeBuildInputs = nix.thunk(() => [pandoc]);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         lib: lib_1,
         stdenv: stdenv_1,
         rsync: rsync_1,
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(corretto, "overrideAttrs"), (final) => (prev) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       patches: nix.thunk(() => nix.concat(nix.selOr(prev, () => [], "patches"), [nix.path(here, "./remove_removal_of_wformat_during_test_compilation.patch")])),
     }));
 })(), formals$1);

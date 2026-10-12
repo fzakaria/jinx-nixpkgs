@@ -2,37 +2,26 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ustreamer.nix", [[["systemPackages", 11, 21]], [["environment", 11, 9]], [["libraries", 55, 15]], [["enable", 68, 11], ["device", 69, 11], ["extraArgs", 70, 11]], [["ustreamer", 67, 18]], [["systemPackages", 75, 21]], [["allowedTCPPorts", 78, 29]], [["firewall", 78, 20]], [["extraModulePackages", 80, 14], ["kernelModules", 81, 14], ["extraModprobeConfig", 82, 14]], [["services", 67, 9], ["environment", 75, 9], ["networking", 78, 9], ["boot", 80, 9]], [["client", 8, 5], ["camera", 13, 5]], [["name", 6, 3], ["nodes", 7, 3], ["testScript", 88, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ustreamer.nix", [["systemPackages", 11, 21]]);
-const pos$2 = nix.positions(here + "/ustreamer.nix", [["environment", 11, 9]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/ustreamer.nix", [["libraries", 55, 15]]);
-const pos$4 = nix.positions(here + "/ustreamer.nix", [["enable", 68, 11], ["device", 69, 11], ["extraArgs", 70, 11]]);
-const pos$5 = nix.positions(here + "/ustreamer.nix", [["ustreamer", 67, 18]]);
-const pos$6 = nix.positions(here + "/ustreamer.nix", [["systemPackages", 75, 21]]);
-const pos$7 = nix.positions(here + "/ustreamer.nix", [["allowedTCPPorts", 78, 29]]);
-const pos$8 = nix.positions(here + "/ustreamer.nix", [["firewall", 78, 20]]);
-const pos$9 = nix.positions(here + "/ustreamer.nix", [["extraModulePackages", 80, 14], ["kernelModules", 81, 14], ["extraModprobeConfig", 82, 14]]);
-const pos$10 = nix.positions(here + "/ustreamer.nix", [["services", 67, 9], ["environment", 75, 9], ["networking", 78, 9], ["boot", 80, 9]]);
-const pos$11 = nix.positions(here + "/ustreamer.nix", [["client", 8, 5], ["camera", 13, 5]]);
-const pos$12 = nix.positions(here + "/ustreamer.nix", [["name", 6, 3], ["nodes", 7, 3], ["testScript", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const test_output_filename = "snapshot.jpeg";
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "ustreamer-vmtest",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
           })),
         };
@@ -43,7 +32,7 @@ export default nix.lambda((args) => (() => {
         const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "akvcam-configFile", "[Cameras]\ncameras/size = 2\n\ncameras/1/type = output\ncameras/1/mode = mmap, userptr, rw\ncameras/1/description = Virtual Camera (output device)\ncameras/1/formats = 2\ncameras/1/videonr = 7\n\ncameras/2/type = capture\ncameras/2/mode = mmap, rw\ncameras/2/description = Virtual Camera\ncameras/2/formats = 1, 2\ncameras/2/videonr = 9\n\n[Connections]\nconnections/size = 1\nconnections/1/connection = 1:2\n\n[Formats]\nformats/size = 2\n\nformats/1/format = YUY2\nformats/1/width = 640\nformats/1/height = 480\nformats/1/fps = 30\n\nformats/2/format = RGB24, YUY2\nformats/2/width = 640\nformats/2/height = 480\nformats/2/fps = 20/1, 15/2\n"));
         const test_stream_name = "test_stream.jpeg";
         const test_ustreamer_python = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "test-ustreamer-python", nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "ustreamer"))]),
           })), nix.thunk(() => nix.str`import ustreamer
 
@@ -53,23 +42,23 @@ with open("${test_output_filename}", "wb") as file:
     file.write(frame["data"])
 `)));
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             ustreamer: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               device: "/dev/video9",
               extraArgs: nix.thunk(() => ["--device-timeout=8", nix.thunk(() => nix.str`--sink=${test_stream_name}`)]),
             })),
           })),
-          environment: nix.thunk(() => ({ [nix.POS]: pos$6, systemPackages: nix.thunk(() => [test_ustreamer_python]) })),
+          environment: nix.thunk(() => ({ [nix.POS]: $pos[5], systemPackages: nix.thunk(() => [test_ustreamer_python]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$7, allowedTCPPorts: nix.thunk(() => [8080n]) })),
+            [nix.POS]: $pos[7],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[6], allowedTCPPorts: nix.thunk(() => [8080n]) })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "akvcam"))]),
             kernelModules: nix.thunk(() => ["akvcam"]),
             extraModprobeConfig: nix.thunk(() => nix.str`options akvcam config_file=${configFile}

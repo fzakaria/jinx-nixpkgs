@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 9], ["hash", 19, 9]], [["url", 22, 9], ["hash", 23, 9]], [["x86_64-linux", 17, 7], ["aarch64-darwin", 21, 7]], [["sources", 16, 5], ["updateScript", 26, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 55, 5], ["sourceProvenance", 56, 5], ["mainProgram", 57, 5]], [["pname", 62, 5], ["version", 63, 5], ["passthru", 64, 5], ["meta", 65, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchurl: false, writeShellScript: false, curl: false, jq: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 9], ["hash", 19, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 9], ["hash", 23, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 17, 7], ["aarch64-darwin", 21, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["sources", 16, 5], ["updateScript", 26, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 55, 5], ["sourceProvenance", 56, 5], ["mainProgram", 57, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 62, 5], ["version", 63, 5], ["passthru", 64, 5], ["meta", 65, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const pname = "proton-pass";
   const version = "1.41.1";
   const passthru = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     sources: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://proton.me/download/pass/linux/x64/proton-pass_${version}_amd64.deb`),
           hash: "sha256-vQLZtWAitEgADCsL43cafWYkZy+uvDO3FGyxd3XmXog=",
         })))),
       "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://proton.me/download/pass/macos/ProtonPass_${version}.dmg`),
           hash: "sha256-lUUUj6wbWdo3d/wYRZ8DtwxAYMqM4oJC3cpfNbF/g6M=",
         })))),
@@ -50,7 +45,7 @@ done
 `))),
   }));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     description: "Desktop application for Proton Pass",
     homepage: "https://proton.me/pass",
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -70,7 +65,7 @@ done
     mainProgram: "proton-pass",
   }));
   return nix.app(callPackage, nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.path(here, "./darwin.nix") : nix.path(here, "./linux.nix"))), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       passthru: passthru,

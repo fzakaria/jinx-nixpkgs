@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["domain", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["NIX_CFLAGS_COMPILE", 49, 7]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 58, 5], ["broken", 59, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["postPatch", 25, 3], ["postConfigure", 32, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["env", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, ocaml: false, findlib: false, camlidl: false, m4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["domain", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 49, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 58, 5], ["broken", 59, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["postPatch", 25, 3], ["postConfigure", 32, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["env", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const camlidl = nix.arg($, "camlidl");
   const m4 = nix.arg($, "m4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-mlcuddidl`),
       version: "3.0.8",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nberth",
           repo: "mlcuddidl",
           domain: "framagit.org",
@@ -36,9 +33,9 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [ocaml, findlib, camlidl, m4]),
       buildInputs: nix.thunk(() => [camlidl]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C library offering an interface to the CUDD BDD library for OCaml",
         homepage: "https://pop-art.inrialpes.fr/people/bjeannet/mlxxxidl-forge/mlcuddidl/index.html",
         license: nix.thunk(() => (() => {

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 69, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["buildFlags", 21, 3], ["makeFlags", 22, 3], ["preBuild", 24, 3], ["postPatch", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, librime: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["buildFlags", 21, 3], ["makeFlags", 22, 3], ["preBuild", 24, 3], ["postPatch", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const librime = nix.arg($, "librime");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rime-data",
       version: "0.38.20231116",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rime",
           repo: "plum",
           rev: "6f502ff6fa87789847fa18200415318e705bffa4",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./fetchSchema.nix")), fetchFromGitHub)),
       postPatch: "# Disable git operations.\nsed -i /fetch_or_update_package$/d scripts/install-packages.sh\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Schema data of Rime Input Method Engine",
         longDescription: "Rime-data provides schema data for Rime Input Method Engine.\n",
         homepage: "https://rime.im",

@@ -2,65 +2,55 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tpm2-tpmrm.nix", [[["enable", 11, 13]], [["mountHostNixStore", 9, 9], ["useEFIBoot", 10, 9], ["tpm", 11, 9]], [["isNormalUser", 16, 11], ["extraGroups", 17, 11]], [["tss-user", 15, 9]], [["users", 14, 13]], [["wheelNeedsPassword", 21, 21]], [["enable", 25, 16]], [["enable", 26, 25]], [["ekCertLess", 27, 14]], [["enable", 24, 9], ["pkcs11", 25, 9], ["tctiEnvironment", 26, 9], ["fapi", 27, 9]], [["sudo", 21, 16], ["tpm2", 23, 16]], [["systemPackages", 30, 19]], [["virtualisation", 8, 7], ["users", 14, 7], ["security", 21, 7], ["environment", 30, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 38, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tpm2-tpmrm.nix", [["enable", 11, 13]]);
-const pos$2 = nix.positions(here + "/tpm2-tpmrm.nix", [["mountHostNixStore", 9, 9], ["useEFIBoot", 10, 9], ["tpm", 11, 9]]);
-const pos$3 = nix.positions(here + "/tpm2-tpmrm.nix", [["isNormalUser", 16, 11], ["extraGroups", 17, 11]]);
-const pos$4 = nix.positions(here + "/tpm2-tpmrm.nix", [["tss-user", 15, 9]]);
-const pos$5 = nix.positions(here + "/tpm2-tpmrm.nix", [["users", 14, 13]]);
-const pos$6 = nix.positions(here + "/tpm2-tpmrm.nix", [["wheelNeedsPassword", 21, 21]]);
-const pos$7 = nix.positions(here + "/tpm2-tpmrm.nix", [["enable", 25, 16]]);
-const pos$8 = nix.positions(here + "/tpm2-tpmrm.nix", [["enable", 26, 25]]);
-const pos$9 = nix.positions(here + "/tpm2-tpmrm.nix", [["ekCertLess", 27, 14]]);
-const pos$10 = nix.positions(here + "/tpm2-tpmrm.nix", [["enable", 24, 9], ["pkcs11", 25, 9], ["tctiEnvironment", 26, 9], ["fapi", 27, 9]]);
-const pos$11 = nix.positions(here + "/tpm2-tpmrm.nix", [["sudo", 21, 16], ["tpm2", 23, 16]]);
-const pos$12 = nix.positions(here + "/tpm2-tpmrm.nix", [["systemPackages", 30, 19]]);
-const pos$13 = nix.positions(here + "/tpm2-tpmrm.nix", [["virtualisation", 8, 7], ["users", 14, 7], ["security", 21, 7], ["environment", 30, 7]]);
-const pos$14 = nix.positions(here + "/tpm2-tpmrm.nix", [["machine", 5, 9]]);
-const pos$15 = nix.positions(here + "/tpm2-tpmrm.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "tpm2-tpmrm",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             mountHostNixStore: true,
             useEFIBoot: true,
-            tpm: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+            tpm: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              "tss-user": nix.thunk(() => ({ [nix.POS]: pos$3, isNormalUser: true, extraGroups: nix.thunk(() => ["tss"]) })),
+              [nix.POS]: $pos[3],
+              "tss-user": nix.thunk(() => ({
+                [nix.POS]: $pos[2],
+                isNormalUser: true,
+                extraGroups: nix.thunk(() => ["tss"]),
+              })),
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            sudo: nix.thunk(() => ({ [nix.POS]: pos$6, wheelNeedsPassword: false })),
+            [nix.POS]: $pos[10],
+            sudo: nix.thunk(() => ({ [nix.POS]: $pos[5], wheelNeedsPassword: false })),
             tpm2: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               enable: true,
-              pkcs11: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
-              tctiEnvironment: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
-              fapi: nix.thunk(() => ({ [nix.POS]: pos$9, ekCertLess: true })),
+              pkcs11: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
+              tctiEnvironment: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true })),
+              fapi: nix.thunk(() => ({ [nix.POS]: $pos[8], ekCertLess: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "tpm2-tools")),
               nix.thunk(() => nix.sel(pkgs_1, "openssl")),

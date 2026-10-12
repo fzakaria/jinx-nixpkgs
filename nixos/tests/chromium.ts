@@ -2,31 +2,17 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/chromium.nix", [[["system", 4, 33], ["config", 4, 40]], [["stable", 7, 5], ["beta", 8, 5], ["dev", 9, 5], ["ungoogled", 10, 5], ["chrome-stable", 11, 5], ["chrome-beta", 12, 5], ["chrome-dev", 13, 5]], [["system", 17, 49], ["pkgs", 17, 56]], [["url", 33, 11], ["sha256", 34, 11]], [["maintainers", 47, 7]], [["timeout", 54, 34]], [["memorySize", 66, 24]], [["user", 67, 42]], [["auto", 67, 37]], [["displayManager", 67, 22]], [["XAUTHORITY", 70, 21]], [["systemPackages", 69, 11], ["variables", 70, 11]], [["imports", 62, 9], ["virtualisation", 66, 9], ["test-support", 67, 9], ["environment", 68, 9]], [["machine", 59, 11]], [["name", 45, 5], ["meta", 46, 5], ["enableOCR", 57, 5], ["nodes", 59, 5], ["testScript", 74, 5]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true, channelMap: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/chromium.nix", [["system", 4, 33], ["config", 4, 40]]);
-const pos$2 = nix.positions(here + "/chromium.nix", [["stable", 7, 5], ["beta", 8, 5], ["dev", 9, 5], ["ungoogled", 10, 5], ["chrome-stable", 11, 5], ["chrome-beta", 12, 5], ["chrome-dev", 13, 5]]);
-const pos$3 = nix.positions(here + "/chromium.nix", [["system", 17, 49], ["pkgs", 17, 56]]);
-const pos$4 = nix.positions(here + "/chromium.nix", [["url", 33, 11], ["sha256", 34, 11]]);
-const pos$5 = nix.positions(here + "/chromium.nix", [["maintainers", 47, 7]]);
-const pos$6 = nix.positions(here + "/chromium.nix", [["timeout", 54, 34]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$7 = nix.positions(here + "/chromium.nix", [["memorySize", 66, 24]]);
-const pos$8 = nix.positions(here + "/chromium.nix", [["user", 67, 42]]);
-const pos$9 = nix.positions(here + "/chromium.nix", [["auto", 67, 37]]);
-const pos$10 = nix.positions(here + "/chromium.nix", [["displayManager", 67, 22]]);
-const pos$11 = nix.positions(here + "/chromium.nix", [["XAUTHORITY", 70, 21]]);
-const pos$12 = nix.positions(here + "/chromium.nix", [["systemPackages", 69, 11], ["variables", 70, 11]]);
-const pos$13 = nix.positions(here + "/chromium.nix", [["imports", 62, 9], ["virtualisation", 66, 9], ["test-support", 67, 9], ["environment", 68, 9]]);
-const pos$14 = nix.positions(here + "/chromium.nix", [["machine", 59, 11]]);
-const pos$15 = nix.positions(here + "/chromium.nix", [["name", 45, 5], ["meta", 46, 5], ["enableOCR", 57, 5], ["nodes", 59, 5], ["testScript", 74, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
   const channelMap = nix.argOr($, "channelMap", () => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     stable: nix.thunk(() => nix.sel(pkgs, "chromium")),
     beta: nix.thunk(() => nix.sel(pkgs, "chromiumBeta")),
     dev: nix.thunk(() => nix.sel(pkgs, "chromiumDev")),
@@ -35,7 +21,7 @@ export default nix.lambda((args) => (() => {
     "chrome-beta": nix.thunk(() => nix.sel(pkgs, "google-chrome-beta")),
     "chrome-dev": nix.thunk(() => nix.sel(pkgs, "google-chrome-dev")),
   }));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$3, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[2], system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const user = "alice";
   const startupHTML = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "chromium-startup.html", nix.thunk(() => nix.str`<!DOCTYPE html>
@@ -46,7 +32,7 @@ export default nix.lambda((args) => (() => {
 </head>
 <body onload="javascript:document.title='startup done'">
   <img src="file://${nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         url: "https://nixos.org/logo/nixos-hex.svg",
         sha256: "07ymq6nw8kc22m7kzxjxldhiq8gzmc7f45kq2bvhbdm0w5s112s4",
       })))}" />
@@ -54,38 +40,41 @@ export default nix.lambda((args) => (() => {
 </html>
 `)));
   return nix.app(nix.lookup(w_1, "mapAttrs"), (channel) => (chromiumPkg) => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         name: nix.thunk(() => nix.str`chromium-${channel}`),
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "aszlig"))];
           })()),
         }, nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => nix.has(nix.sel(chromiumPkg, "meta"), "timeout")), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(chromiumPkg, "meta"));
-            return { [nix.POS]: pos$6, timeout: nix.thunk(() => nix.attr(from, "timeout")) };
+            return { [nix.POS]: $pos[5], timeout: nix.thunk(() => nix.attr(from, "timeout")) };
           })())))),
         enableOCR: true,
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             return {
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               imports: nix.thunk(() => [
                 nix.path(here, "./common/user-account.nix"),
                 nix.path(here, "./common/x11.nix"),
               ]),
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$7, memorySize: 2047n })),
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[6], memorySize: 2047n })),
               "test-support": nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                displayManager: nix.thunk(() => ({ [nix.POS]: pos$9, auto: nix.thunk(() => ({ [nix.POS]: pos$8, user: user })) })),
+                [nix.POS]: $pos[9],
+                displayManager: nix.thunk(() => ({
+                  [nix.POS]: $pos[8],
+                  auto: nix.thunk(() => ({ [nix.POS]: $pos[7], user: user })),
+                })),
               })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 systemPackages: nix.thunk(() => [chromiumPkg]),
-                variables: nix.thunk(() => ({ [nix.POS]: pos$11, XAUTHORITY: "/home/alice/.Xauthority" })),
+                variables: nix.thunk(() => ({ [nix.POS]: $pos[10], XAUTHORITY: "/home/alice/.Xauthority" })),
               })),
             };
           })(), formals$2),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["updateScript", 91, 12]], [["description", 94, 5], ["longDescription", 95, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["platforms", 104, 5], ["mainProgram", 105, 5], ["maintainers", 106, 5], ["sourceProvenance", 110, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["enableParallelBuilding", 38, 3], ["installPhase", 40, 3], ["postPatch", 61, 3], ["preBuild", 84, 3], ["nativeInstallCheckInputs", 88, 3], ["doInstallCheck", 89, 3], ["passthru", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, "apple-sdk_15": false, "bintools-unwrapped": false, cups: false, fetchFromGitHub: false, installShellFiles: false, llvmPackages: false, "nix-update-script": false, stdenv: false, versionCheckHook: false, xxd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 91, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 94, 5], ["longDescription", 95, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["platforms", 104, 5], ["mainProgram", 105, 5], ["maintainers", 106, 5], ["sourceProvenance", 110, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["enableParallelBuilding", 38, 3], ["installPhase", 40, 3], ["postPatch", 61, 3], ["preBuild", 84, 3], ["nativeInstallCheckInputs", 88, 3], ["doInstallCheck", 89, 3], ["passthru", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const xxd = nix.arg($, "xxd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "yabai",
       version: "7.1.25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "asmvik",
           repo: "yabai",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,11 +56,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tiling window manager for macOS based on binary space partitioning",
         longDescription: "yabai is a window management utility that is designed to work as an extension to the built-in\nwindow manager of macOS. yabai allows you to control your windows, spaces and displays freely\nusing an intuitive command line interface and optionally set user-defined keyboard shortcuts\nusing skhd and other third-party software.\n",
         homepage: "https://github.com/asmvik/yabai",

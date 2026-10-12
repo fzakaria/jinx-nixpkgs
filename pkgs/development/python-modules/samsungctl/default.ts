@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["sha256", 17, 5]], [["websocket", 21, 5]], [["description", 31, 5], ["mainProgram", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["optional-dependencies", 20, 3], ["doCheck", 26, 3], ["pythonImportsCheck", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "websocket-client": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["websocket", 21, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 31, 5], ["mainProgram", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["optional-dependencies", 20, 3], ["doCheck", 26, 3], ["pythonImportsCheck", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,16 +16,16 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "0ipz3fd65rqkxlb02sql0awc3vnslrwb2pfrsnpfnf8bfgxpbh9g",
         }))));
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, websocket: nix.thunk(() => [websocket_client]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], websocket: nix.thunk(() => [websocket_client]) }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["samsungctl"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Remote control Samsung televisions via a TCP/IP connection",
         mainProgram: "samsungctl",
         homepage: "https://github.com/Ape/samsungctl",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

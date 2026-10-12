@@ -2,131 +2,79 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/authelia.nix", [[["maintainers", 5, 8]], [["storageEncryptionKeyFile", 16, 19], ["jwtSecretFile", 17, 19]], [["path", 19, 41]], [["file", 19, 36]], [["default_policy", 20, 28]], [["domain", 21, 21]], [["path", 22, 27]], [["local", 22, 21]], [["filename", 23, 33]], [["filesystem", 23, 22]], [["authentication_backend", 19, 13], ["access_control", 20, 13], ["session", 21, 13], ["storage", 22, 13], ["notifier", 23, 13]], [["enable", 15, 11], ["secrets", 16, 11], ["settings", 18, 11]], [["testing", 14, 37]], [["instances", 14, 27]], [["buildInputs", 60, 63]], [["certFile", 68, 19], ["keyFile", 69, 19]], [["certificates", 58, 17]], [["address", 73, 15], ["trustForwardHeader", 74, 15], ["authResponseHeaders", 75, 15]], [["forwardAuth", 72, 39]], [["address", 83, 15], ["trustForwardHeader", 84, 15], ["authResponseHeaders", 85, 15]], [["forwardAuth", 82, 45]], [["authelia", 72, 30], ["authelia-basic", 82, 30]], [["rule", 94, 15], ["tls", 95, 15], ["entryPoints", 96, 15], ["service", 97, 15]], [["rule", 100, 15], ["tls", 101, 15], ["entryPoints", 102, 15], ["service", 103, 15], ["middlewares", 104, 15]], [["rule", 116, 15], ["tls", 117, 15], ["entryPoints", 118, 15], ["service", 119, 15]], [["simplehttp", 93, 26], ["simplehttp-basic-auth", 99, 26], ["authelia", 115, 26]], [["url", 110, 19]], [["servers", 108, 28]], [["loadBalancer", 108, 15]], [["url", 125, 19]], [["servers", 123, 28]], [["loadBalancer", 123, 15]], [["simplehttp", 107, 27], ["authelia", 122, 27]], [["middlewares", 72, 18], ["routers", 93, 18], ["services", 107, 18]], [["tls", 58, 13], ["http", 72, 13]], [["checkNewVersion", 133, 15], ["sendAnonymousUsage", 134, 15]], [["address", 137, 29]], [["web", 137, 25]], [["global", 132, 13], ["entryPoints", 137, 13]], [["enable", 55, 11], ["dynamicConfigOptions", 57, 11], ["staticConfigOptions", 131, 11]], [["authelia", 14, 18], ["traefik", 54, 18]], [["mode", 30, 11], ["text", 31, 11]], [["mode", 34, 11], ["text", 35, 11]], [["mode", 38, 11], ["user", 39, 11], ["text", 40, 11]], [["authelia/storageEncryptionKeyFile", 29, 25], ["authelia/jwtSecretFile", 33, 25], ["authelia/users_database.yml", 37, 25]], [["etc", 29, 21]], [["Type", 147, 27]], [["script", 146, 13], ["serviceConfig", 147, 13], ["wantedBy", 148, 13]], [["simplehttp", 141, 26]], [["services", 141, 17]], [["services", 14, 9], ["environment", 29, 9], ["systemd", 141, 9]], [["authelia", 8, 5]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 153, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/authelia.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/authelia.nix", [["storageEncryptionKeyFile", 16, 19], ["jwtSecretFile", 17, 19]]);
-const pos$3 = nix.positions(here + "/authelia.nix", [["path", 19, 41]]);
-const pos$4 = nix.positions(here + "/authelia.nix", [["file", 19, 36]]);
-const pos$5 = nix.positions(here + "/authelia.nix", [["default_policy", 20, 28]]);
-const pos$6 = nix.positions(here + "/authelia.nix", [["domain", 21, 21]]);
-const pos$7 = nix.positions(here + "/authelia.nix", [["path", 22, 27]]);
-const pos$8 = nix.positions(here + "/authelia.nix", [["local", 22, 21]]);
-const pos$9 = nix.positions(here + "/authelia.nix", [["filename", 23, 33]]);
-const pos$10 = nix.positions(here + "/authelia.nix", [["filesystem", 23, 22]]);
-const pos$11 = nix.positions(here + "/authelia.nix", [["authentication_backend", 19, 13], ["access_control", 20, 13], ["session", 21, 13], ["storage", 22, 13], ["notifier", 23, 13]]);
-const pos$12 = nix.positions(here + "/authelia.nix", [["enable", 15, 11], ["secrets", 16, 11], ["settings", 18, 11]]);
-const pos$13 = nix.positions(here + "/authelia.nix", [["testing", 14, 37]]);
-const pos$14 = nix.positions(here + "/authelia.nix", [["instances", 14, 27]]);
-const pos$15 = nix.positions(here + "/authelia.nix", [["buildInputs", 60, 63]]);
-const pos$16 = nix.positions(here + "/authelia.nix", [["certFile", 68, 19], ["keyFile", 69, 19]]);
-const pos$17 = nix.positions(here + "/authelia.nix", [["certificates", 58, 17]]);
-const pos$18 = nix.positions(here + "/authelia.nix", [["address", 73, 15], ["trustForwardHeader", 74, 15], ["authResponseHeaders", 75, 15]]);
-const pos$19 = nix.positions(here + "/authelia.nix", [["forwardAuth", 72, 39]]);
-const pos$20 = nix.positions(here + "/authelia.nix", [["address", 83, 15], ["trustForwardHeader", 84, 15], ["authResponseHeaders", 85, 15]]);
-const pos$21 = nix.positions(here + "/authelia.nix", [["forwardAuth", 82, 45]]);
-const pos$22 = nix.positions(here + "/authelia.nix", [["authelia", 72, 30], ["authelia-basic", 82, 30]]);
-const pos$23 = nix.positions(here + "/authelia.nix", [["rule", 94, 15], ["tls", 95, 15], ["entryPoints", 96, 15], ["service", 97, 15]]);
-const pos$24 = nix.positions(here + "/authelia.nix", [["rule", 100, 15], ["tls", 101, 15], ["entryPoints", 102, 15], ["service", 103, 15], ["middlewares", 104, 15]]);
-const pos$25 = nix.positions(here + "/authelia.nix", [["rule", 116, 15], ["tls", 117, 15], ["entryPoints", 118, 15], ["service", 119, 15]]);
-const pos$26 = nix.positions(here + "/authelia.nix", [["simplehttp", 93, 26], ["simplehttp-basic-auth", 99, 26], ["authelia", 115, 26]]);
-const pos$27 = nix.positions(here + "/authelia.nix", [["url", 110, 19]]);
-const pos$28 = nix.positions(here + "/authelia.nix", [["servers", 108, 28]]);
-const pos$29 = nix.positions(here + "/authelia.nix", [["loadBalancer", 108, 15]]);
-const pos$30 = nix.positions(here + "/authelia.nix", [["url", 125, 19]]);
-const pos$31 = nix.positions(here + "/authelia.nix", [["servers", 123, 28]]);
-const pos$32 = nix.positions(here + "/authelia.nix", [["loadBalancer", 123, 15]]);
-const pos$33 = nix.positions(here + "/authelia.nix", [["simplehttp", 107, 27], ["authelia", 122, 27]]);
-const pos$34 = nix.positions(here + "/authelia.nix", [["middlewares", 72, 18], ["routers", 93, 18], ["services", 107, 18]]);
-const pos$35 = nix.positions(here + "/authelia.nix", [["tls", 58, 13], ["http", 72, 13]]);
-const pos$36 = nix.positions(here + "/authelia.nix", [["checkNewVersion", 133, 15], ["sendAnonymousUsage", 134, 15]]);
-const pos$37 = nix.positions(here + "/authelia.nix", [["address", 137, 29]]);
-const pos$38 = nix.positions(here + "/authelia.nix", [["web", 137, 25]]);
-const pos$39 = nix.positions(here + "/authelia.nix", [["global", 132, 13], ["entryPoints", 137, 13]]);
-const pos$40 = nix.positions(here + "/authelia.nix", [["enable", 55, 11], ["dynamicConfigOptions", 57, 11], ["staticConfigOptions", 131, 11]]);
-const pos$41 = nix.positions(here + "/authelia.nix", [["authelia", 14, 18], ["traefik", 54, 18]]);
-const pos$42 = nix.positions(here + "/authelia.nix", [["mode", 30, 11], ["text", 31, 11]]);
-const pos$43 = nix.positions(here + "/authelia.nix", [["mode", 34, 11], ["text", 35, 11]]);
-const pos$44 = nix.positions(here + "/authelia.nix", [["mode", 38, 11], ["user", 39, 11], ["text", 40, 11]]);
-const pos$45 = nix.positions(here + "/authelia.nix", [["authelia/storageEncryptionKeyFile", 29, 25], ["authelia/jwtSecretFile", 33, 25], ["authelia/users_database.yml", 37, 25]]);
-const pos$46 = nix.positions(here + "/authelia.nix", [["etc", 29, 21]]);
-const pos$47 = nix.positions(here + "/authelia.nix", [["Type", 147, 27]]);
-const pos$48 = nix.positions(here + "/authelia.nix", [["script", 146, 13], ["serviceConfig", 147, 13], ["wantedBy", 148, 13]]);
-const pos$49 = nix.positions(here + "/authelia.nix", [["simplehttp", 141, 26]]);
-const pos$50 = nix.positions(here + "/authelia.nix", [["services", 141, 17]]);
-const pos$51 = nix.positions(here + "/authelia.nix", [["services", 14, 9], ["environment", 29, 9], ["systemd", 141, 9]]);
-const pos$52 = nix.positions(here + "/authelia.nix", [["authelia", 8, 5]]);
-const pos$53 = nix.positions(here + "/authelia.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$53,
+    [nix.POS]: $pos[52],
     name: "authelia",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jk"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$52,
+      [nix.POS]: $pos[51],
       authelia: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$51,
+          [nix.POS]: $pos[50],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$41,
+            [nix.POS]: $pos[40],
             authelia: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               instances: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 testing: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   enable: true,
                   secrets: nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     storageEncryptionKeyFile: "/etc/authelia/storageEncryptionKeyFile",
                     jwtSecretFile: "/etc/authelia/jwtSecretFile",
                   })),
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     authentication_backend: nix.thunk(() => ({
-                      [nix.POS]: pos$4,
-                      file: nix.thunk(() => ({ [nix.POS]: pos$3, path: "/etc/authelia/users_database.yml" })),
+                      [nix.POS]: $pos[3],
+                      file: nix.thunk(() => ({ [nix.POS]: $pos[2], path: "/etc/authelia/users_database.yml" })),
                     })),
-                    access_control: nix.thunk(() => ({ [nix.POS]: pos$5, default_policy: "one_factor" })),
-                    session: nix.thunk(() => ({ [nix.POS]: pos$6, domain: "example.com" })),
+                    access_control: nix.thunk(() => ({ [nix.POS]: $pos[4], default_policy: "one_factor" })),
+                    session: nix.thunk(() => ({ [nix.POS]: $pos[5], domain: "example.com" })),
                     storage: nix.thunk(() => ({
-                      [nix.POS]: pos$8,
-                      local: nix.thunk(() => ({ [nix.POS]: pos$7, path: "/tmp/db.sqlite3" })),
+                      [nix.POS]: $pos[7],
+                      local: nix.thunk(() => ({ [nix.POS]: $pos[6], path: "/tmp/db.sqlite3" })),
                     })),
                     notifier: nix.thunk(() => ({
-                      [nix.POS]: pos$10,
-                      filesystem: nix.thunk(() => ({ [nix.POS]: pos$9, filename: "/tmp/notifications.txt" })),
+                      [nix.POS]: $pos[9],
+                      filesystem: nix.thunk(() => ({ [nix.POS]: $pos[8], filename: "/tmp/notifications.txt" })),
                     })),
                   })),
                 })),
               })),
             })),
             traefik: nix.thunk(() => ({
-              [nix.POS]: pos$40,
+              [nix.POS]: $pos[39],
               enable: true,
               dynamicConfigOptions: nix.thunk(() => ({
-                [nix.POS]: pos$35,
+                [nix.POS]: $pos[34],
                 tls: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   certificates: nix.thunk(() => (() => {
                     const certDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "selfSignedCerts", nix.thunk(() => ({
-                        [nix.POS]: pos$15,
+                        [nix.POS]: $pos[14],
                         buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
                       })), "openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -nodes -subj '/CN=example.com/CN=auth.example.com/CN=static.example.com' -days 36500\nmkdir -p $out\ncp key.pem cert.pem $out\n"));
                     return [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$16,
+                        [nix.POS]: $pos[15],
                         certFile: nix.thunk(() => nix.str`${certDir}/cert.pem`),
                         keyFile: nix.thunk(() => nix.str`${certDir}/key.pem`),
                       })),
@@ -134,22 +82,22 @@ export default nix.lambda((args) => (() => {
                   })()),
                 })),
                 http: nix.thunk(() => ({
-                  [nix.POS]: pos$34,
+                  [nix.POS]: $pos[33],
                   middlewares: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
+                    [nix.POS]: $pos[21],
                     authelia: nix.thunk(() => ({
-                      [nix.POS]: pos$19,
+                      [nix.POS]: $pos[18],
                       forwardAuth: nix.thunk(() => ({
-                        [nix.POS]: pos$18,
+                        [nix.POS]: $pos[17],
                         address: "http://localhost:9091/api/verify?rd=https%3A%2F%2Fauth.example.com%2F",
                         trustForwardHeader: true,
                         authResponseHeaders: nix.thunk(() => ["Remote-User", "Remote-Groups", "Remote-Email", "Remote-Name"]),
                       })),
                     })),
                     "authelia-basic": nix.thunk(() => ({
-                      [nix.POS]: pos$21,
+                      [nix.POS]: $pos[20],
                       forwardAuth: nix.thunk(() => ({
-                        [nix.POS]: pos$20,
+                        [nix.POS]: $pos[19],
                         address: "http://localhost:9091/api/verify?auth=basic",
                         trustForwardHeader: true,
                         authResponseHeaders: nix.thunk(() => ["Remote-User", "Remote-Groups", "Remote-Email", "Remote-Name"]),
@@ -157,16 +105,16 @@ export default nix.lambda((args) => (() => {
                     })),
                   })),
                   routers: nix.thunk(() => ({
-                    [nix.POS]: pos$26,
+                    [nix.POS]: $pos[25],
                     simplehttp: nix.thunk(() => ({
-                      [nix.POS]: pos$23,
+                      [nix.POS]: $pos[22],
                       rule: "Host(`static.example.com`)",
                       tls: true,
                       entryPoints: "web",
                       service: "simplehttp",
                     })),
                     "simplehttp-basic-auth": nix.thunk(() => ({
-                      [nix.POS]: pos$24,
+                      [nix.POS]: $pos[23],
                       rule: "Host(`static-basic-auth.example.com`)",
                       tls: true,
                       entryPoints: "web",
@@ -174,7 +122,7 @@ export default nix.lambda((args) => (() => {
                       middlewares: nix.thunk(() => ["authelia-basic@file"]),
                     })),
                     authelia: nix.thunk(() => ({
-                      [nix.POS]: pos$25,
+                      [nix.POS]: $pos[24],
                       rule: "Host(`auth.example.com`)",
                       tls: true,
                       entryPoints: "web",
@@ -182,46 +130,46 @@ export default nix.lambda((args) => (() => {
                     })),
                   })),
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$33,
+                    [nix.POS]: $pos[32],
                     simplehttp: nix.thunk(() => ({
-                      [nix.POS]: pos$29,
+                      [nix.POS]: $pos[28],
                       loadBalancer: nix.thunk(() => ({
-                        [nix.POS]: pos$28,
-                        servers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$27, url: "http://localhost:8000" }))]),
+                        [nix.POS]: $pos[27],
+                        servers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[26], url: "http://localhost:8000" }))]),
                       })),
                     })),
                     authelia: nix.thunk(() => ({
-                      [nix.POS]: pos$32,
+                      [nix.POS]: $pos[31],
                       loadBalancer: nix.thunk(() => ({
-                        [nix.POS]: pos$31,
-                        servers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$30, url: "http://localhost:9091" }))]),
+                        [nix.POS]: $pos[30],
+                        servers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[29], url: "http://localhost:9091" }))]),
                       })),
                     })),
                   })),
                 })),
               })),
               staticConfigOptions: nix.thunk(() => ({
-                [nix.POS]: pos$39,
-                global: nix.thunk(() => ({ [nix.POS]: pos$36, checkNewVersion: false, sendAnonymousUsage: false })),
+                [nix.POS]: $pos[38],
+                global: nix.thunk(() => ({ [nix.POS]: $pos[35], checkNewVersion: false, sendAnonymousUsage: false })),
                 entryPoints: nix.thunk(() => ({
-                  [nix.POS]: pos$38,
-                  web: nix.thunk(() => ({ [nix.POS]: pos$37, address: ":443" })),
+                  [nix.POS]: $pos[37],
+                  web: nix.thunk(() => ({ [nix.POS]: $pos[36], address: ":443" })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$46,
+            [nix.POS]: $pos[45],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$45,
+              [nix.POS]: $pos[44],
               "authelia/storageEncryptionKeyFile": nix.thunk(() => ({
-                [nix.POS]: pos$42,
+                [nix.POS]: $pos[41],
                 mode: "0400",
                 text: "you_must_generate_a_random_string_of_more_than_twenty_chars_and_configure_this",
               })),
-              "authelia/jwtSecretFile": nix.thunk(() => ({ [nix.POS]: pos$43, mode: "0400", text: "a_very_important_secret" })),
+              "authelia/jwtSecretFile": nix.thunk(() => ({ [nix.POS]: $pos[42], mode: "0400", text: "a_very_important_secret" })),
               "authelia/users_database.yml": nix.thunk(() => ({
-                [nix.POS]: pos$44,
+                [nix.POS]: $pos[43],
                 mode: "0400",
                 user: "authelia-testing",
                 text: "users:\n  bob:\n    disabled: false\n    displayname: bob\n    # password of password\n    password: $argon2id$v=19$m=65536,t=3,p=4$2ohUAfh9yetl+utr4tLcCQ$AsXx0VlwjvNnCsa70u4HKZvFkC8Gwajr2pHGKcND/xs\n    email: bob@jim.com\n    groups:\n      - admin\n      - dev\n",
@@ -229,15 +177,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$50,
+            [nix.POS]: $pos[49],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$49,
+              [nix.POS]: $pos[48],
               simplehttp: nix.thunk(() => (() => {
                 const fakeWebPageDir = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "index.html", "hello"));
                 return {
-                  [nix.POS]: pos$48,
+                  [nix.POS]: $pos[47],
                   script: nix.thunk(() => nix.str`${nix.sel(pkgs, "python3")}/bin/python -m http.server --directory ${fakeWebPageDir} 8000`),
-                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$47, Type: "simple" })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[46], Type: "simple" })),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                 };
               })()),

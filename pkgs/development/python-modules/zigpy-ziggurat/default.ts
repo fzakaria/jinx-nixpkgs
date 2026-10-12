@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 34, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, aiohttp: false, aiospinel: false, mashumaro: false, pyprojectVersionPatchHook: false, "pytest-asyncio": false, pytestCheckHook: false, zigpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 34, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const zigpy = nix.arg($, "zigpy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zigpy-ziggurat",
       version: "1.1.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zigpy",
           repo: "zigpy-ziggurat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["zigpy_ziggurat"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Zigpy radio library for communicating with the Ziggurat stack",
         homepage: "https://github.com/zigpy/zigpy-ziggurat",
         changelog: nix.thunk(() => nix.str`https://github.com/zigpy/zigpy-ziggurat/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

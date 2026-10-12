@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["mainProgram", 68, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["runtimeDependencies", 42, 3], ["cargoHash", 51, 3], ["doCheck", 54, 3], ["postFixup", 56, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, rustPlatform: false, "pkg-config": false, openssl: false, wayland: false, autoPatchelfHook: false, libxkbcommon: false, libGL: false, libx11: false, libxcursor: false, libxi: false, stdenv: false, makeWrapper: false, zenity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["mainProgram", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["runtimeDependencies", 42, 3], ["cargoHash", 51, 3], ["doCheck", 54, 3], ["postFixup", 56, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const zenity = nix.arg($, "zenity");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "surfer",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "surfer-project",
           repo: "surfer",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [zenity]))}
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extensible and Snappy Waveform Viewer",
         homepage: "https://surfer-project.org/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/surfer-project/surfer/-/releases/v${nix.sel(finalAttrs, "version")}`),

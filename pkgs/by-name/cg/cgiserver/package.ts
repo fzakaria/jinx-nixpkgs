@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["nativeBuildInputs", 14, 5], ["hash", 15, 5]], [["homepage", 21, 5], ["description", 22, 5], ["mainProgram", 23, 5], ["maintainers", 24, 5], ["license", 25, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchzip: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["nativeBuildInputs", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 21, 5], ["description", 22, 5], ["mainProgram", 23, 5], ["maintainers", 24, 5], ["license", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const zstd = nix.arg($, "zstd");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cgiserver",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://src.anomalous.eu/cgiserver/snapshot/cgiserver-${nix.sel(finalAttrs, "version")}.tar.zst`),
           nativeBuildInputs: nix.thunk(() => [zstd]),
           hash: "sha256-uIrOZbHzxAdUJF12MBOzRUA6mSPvOKJ/K9ZwwLVId5E=",
         })))),
       vendorHash: "sha256-mygMtVbNWwtIkxTGxMnuAMUU0mp49NZ50B9d436nWgI=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://src.anomalous.eu/cgiserver/about/",
         description: "Lightweight web server for sandboxing CGI applications",
         mainProgram: "cgiserver",

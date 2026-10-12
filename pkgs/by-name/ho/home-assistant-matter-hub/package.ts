@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["pname", 33, 7], ["version", 34, 7], ["src", 35, 7], ["pnpmInstallFlags", 36, 7], ["pnpmWorkspaces", 37, 7], ["pnpm", 39, 13], ["fetcherVersion", 40, 5], ["hash", 41, 5]], [["APP_VERSION", 50, 7]], [["extraArgs", 98, 7]], [["updateScript", 97, 5]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["mainProgram", 111, 5], ["platforms", 112, 27]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["pnpmInstallFlags", 29, 3], ["pnpmWorkspaces", 30, 3], ["pnpmDeps", 31, 3], ["__structuredAttrs", 44, 3], ["strictDeps", 45, 3], ["env", 50, 3], ["nativeBuildInputs", 52, 3], ["buildPhase", 59, 3], ["installPhase", 67, 3], ["passthru", 96, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, nodejs: false, pnpm_10: false, pnpmConfigHook: false, fetchPnpmDeps: false, makeWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 33, 7], ["version", 34, 7], ["src", 35, 7], ["pnpmInstallFlags", 36, 7], ["pnpmWorkspaces", 37, 7], ["pnpm", 39, 13], ["fetcherVersion", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["APP_VERSION", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 98, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 97, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["mainProgram", 111, 5], ["platforms", 112, 27]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["pnpmInstallFlags", 29, 3], ["pnpmWorkspaces", 30, 3], ["pnpmDeps", 31, 3], ["__structuredAttrs", 44, 3], ["strictDeps", 45, 3], ["env", 50, 3], ["nativeBuildInputs", 52, 3], ["buildPhase", 59, 3], ["installPhase", 67, 3], ["passthru", 96, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "home-assistant-matter-hub",
       version: "2.0.57",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RiDDiX",
           repo: "home-assistant-matter-hub",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +31,7 @@ export default nix.lambda((args) => (() => {
       pnpmInstallFlags: nix.thunk(() => ["--shamefully-hoist"]),
       pnpmWorkspaces: nix.thunk(() => ["home-assistant-matter-hub..."]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -50,7 +44,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         APP_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpm, pnpmConfigHook, makeWrapper]),
@@ -83,13 +77,13 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} "$out/bin/home-assistant-
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Publish your home-assistant instance using Matter",
         homepage: "https://riddix.github.io/home-assistant-matter-hub/",
         changelog: nix.thunk(() => nix.str`https://github.com/RiDDiX/home-assistant-matter-hub/releases/tag/v${nix.sel(finalAttrs, "version")}`),

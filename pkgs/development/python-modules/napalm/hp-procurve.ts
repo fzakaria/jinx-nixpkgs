@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hp-procurve.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patchPhase", 26, 3], ["build-system", 33, 3], ["buildInputs", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 45, 3], ["disabledTests", 50, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, napalm: false, netmiko: false, pip: false, "pytest-cov-stub": false, pytestCheckHook: false, setuptools: false, "standard-telnetlib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hp-procurve.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/hp-procurve.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$3 = nix.positions(here + "/hp-procurve.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patchPhase", 26, 3], ["build-system", 33, 3], ["buildInputs", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 45, 3], ["disabledTests", 50, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const standard_telnetlib = nix.arg($, "standard-telnetlib");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "napalm-procurve",
       version: "0.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "napalm-automation-community",
           repo: "napalm-hp-procurve",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["napalm_procurve"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "HP ProCurve Driver for NAPALM automation frontend",
         homepage: "https://github.com/napalm-automation-community/napalm-hp-procurve",
         changelog: nix.thunk(() => nix.str`https://github.com/napalm-automation-community/napalm-hp-procurve/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

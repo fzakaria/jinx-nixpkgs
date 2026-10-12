@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["nativeCheckInputs", 20, 3], ["pythonImportsCheck", 22, 3], ["preCheck", 24, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["nativeCheckInputs", 20, 3], ["pythonImportsCheck", 22, 3], ["preCheck", 24, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.2.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RoadrunnerWMC",
           repo: "ndspy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["ndspy"]);
       const preCheck = "cd tests\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for many Nintendo DS file formats",
         homepage: "https://github.com/RoadrunnerWMC/ndspy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

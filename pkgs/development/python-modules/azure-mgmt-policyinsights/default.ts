@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 5], ["version", 19, 26], ["hash", 20, 5]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["doCheck", 33, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, "azure-common": false, "azure-mgmt-core": false, buildPythonPackage: false, fetchPypi: false, isodate: false, setuptools: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 26], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["doCheck", 33, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "azure-mgmt-policyinsights",
       version: "1.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "azure_mgmt_policyinsights",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-rsmIKwVcRrWUxDjJf1Cj4YczEooRUwRpzgl6fFmaDl0=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["azure.mgmt.policyinsights"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Microsoft Azure Policy Insights Client Library",
         homepage: "https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/policyinsights/azure-mgmt-policyinsights",
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/azure-sdk-for-python/blob/azure-mgmt-policyinsights_${nix.sel(finalAttrs, "version")}/sdk/policyinsights/azure-mgmt-policyinsights/CHANGELOG.md`),

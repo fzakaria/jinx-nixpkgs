@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["fetchSubmodules", 43, 5], ["hash", 44, 5]], [["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 52, 3], ["cmakeFlags", 81, 3], ["installPhase", 87, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, "at-spi2-core": false, cmake: false, curl: false, dbus: false, libepoxy: false, fetchFromGitHub: false, libglut: false, freetype: false, "gcc-unwrapped": false, gtk3: false, lib: false, libGL: false, libxcursor: false, libxdmcp: false, libxext: false, libxinerama: false, libxrandr: false, libxtst: false, libdatrie: false, libjack2: false, libpsl: false, libselinux: false, libsepol: false, "libsysprof-capture": false, libthai: false, libxkbcommon: false, "pkg-config": false, python3: false, sqlite: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["fetchSubmodules", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 52, 3], ["cmakeFlags", 81, 3], ["installPhase", 87, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "chow-phaser",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jatinchowdhury18",
           repo: "ChowPhaser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +86,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/lib/lv2 $out/lib/vst3 $out/bin $out/share/doc/ChowPhaser/\ncd ChowPhaserMono_artefacts/Release\ncp libChowPhaserMono_SharedCode.a  $out/lib\ncp -r VST3/ChowPhaserMono.vst3 $out/lib/vst3\ncp Standalone/ChowPhaserMono  $out/bin\ncd ../../ChowPhaserStereo_artefacts/Release\ncp libChowPhaserStereo_SharedCode.a  $out/lib\ncp -r VST3/ChowPhaserStereo.vst3 $out/lib/vst3\ncp Standalone/ChowPhaserStereo  $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jatinchowdhury18/ChowPhaser",
         description: "Phaser effect based loosely on the Schulte Compact Phasing 'A'",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

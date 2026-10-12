@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5], ["mainProgram", 36, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["postPatch", 19, 3], ["buildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, python3: false, openssh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5], ["mainProgram", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["postPatch", 19, 3], ["buildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const openssh = nix.arg($, "openssh");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ssh-ident",
       version: "2016-04-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ccontavalli",
           repo: "ssh-ident",
           rev: "ebf8282728211dc4448d50f7e16e546ed03c22d2",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [python3]),
       installPhase: "mkdir -p $out/bin\ninstall -m 755 ssh-ident $out/bin/ssh-ident\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ccontavalli/ssh-ident",
         description: "Start and use ssh-agent and load identities as necessary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

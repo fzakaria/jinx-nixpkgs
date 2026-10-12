@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 36, 3], ["version", 37, 24], ["outputs", 37, 32], ["src", 39, 3], ["paths", 41, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 52, 3], ["dontUnpack", 59, 3], ["dontConfigure", 60, 3], ["dontBuild", 61, 3], ["preferLocalBuild", 63, 3], ["allowSubstitutes", 64, 3], ["installPhase", 66, 3], ["preFixup", 77, 3], ["__structuredAttrs", 86, 3], ["meta", 88, 24]]]);
 const formals$1 = { args: { stdenv: false, lib: false, glib: false, wrapGAppsHook3: false, lndir: false, marco: false, "mate-applets": false, "mate-indicator-applet": false, "mate-netbook": false, "mate-notification-daemon": false, "mate-media": false, "mate-panel": false, "mate-power-manager": false, "mate-sensors-applet": false, "mate-utils": false, applets: true, useDefaultApplets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 24], ["outputs", 37, 32], ["src", 39, 3], ["paths", 41, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 52, 3], ["dontUnpack", 59, 3], ["dontConfigure", 60, 3], ["dontBuild", 61, 3], ["preferLocalBuild", 63, 3], ["allowSubstitutes", 64, 3], ["installPhase", 66, 3], ["preFixup", 77, 3], ["__structuredAttrs", 86, 3], ["meta", 88, 24]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       mate_utils,
     ]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.str`${nix.sel(mate_panel, "pname")}-with-applets`),
       version: nix.thunk(() => nix.attr(mate_panel, "version")),
       outputs: nix.thunk(() => nix.attr(mate_panel, "outputs")),

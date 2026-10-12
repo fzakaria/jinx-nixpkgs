@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["name", 37, 7], ["desktopName", 38, 7], ["genericName", 39, 7], ["comment", 40, 7], ["categories", 41, 7], ["exec", 45, 7]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 56, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["installPhase", 28, 3], ["desktopItems", 35, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, electron: false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 37, 7], ["desktopName", 38, 7], ["genericName", 39, 7], ["comment", 40, 7], ["categories", 41, 7], ["exec", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["installPhase", 28, 3], ["desktopItems", 35, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nix-tour";
       const version = "unstable-2022-01-03";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nixcloud",
           repo: "tour_of_nix",
           rev: "6a6784983e6dc121574b97eb9b1d03592c8cb9a7",
@@ -36,7 +33,7 @@ makeWrapper ${electron}/bin/electron $out/bin/nix-tour \\
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: pname,
             desktopName: "Tour of Nix",
             genericName: "Tour of Nix",
@@ -46,7 +43,7 @@ makeWrapper ${electron}/bin/electron $out/bin/nix-tour \\
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "'the tour of nix' from nixcloud.io/tour as offline version",
         homepage: "https://nixcloud.io/tour",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -57,7 +54,7 @@ makeWrapper ${electron}/bin/electron $out/bin/nix-tour \\
         mainProgram: "nix-tour",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

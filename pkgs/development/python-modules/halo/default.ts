@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 26], ["version", 18, 32], ["sha256", 19, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 31, 3], ["pythonImportsCheck", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, colorama: false, fetchPypi: false, lib: false, "log-symbols": false, six: false, spinners: false, termcolor: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 26], ["version", 18, 32], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 31, 3], ["pythonImportsCheck", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const spinners = nix.arg($, "spinners");
   const termcolor = nix.arg($, "termcolor");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "halo",
       version: "0.0.31",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "1mn97h370ggbc9vi6x8r6akd5q8i512y6kid2nvm67g93r9a6rvv",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["halo"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Beautiful Spinners for Terminal, IPython and Jupyter",
         homepage: "https://github.com/manrajgrover/halo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

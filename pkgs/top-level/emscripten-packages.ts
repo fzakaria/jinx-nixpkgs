@@ -2,26 +2,19 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/emscripten-packages.nix", [[["stdenv", 11, 7]], [["nativeBuildInputs", 14, 9], ["propagatedBuildInputs", 18, 9], ["configurePhase", 19, 9], ["checkPhase", 25, 9]], [["stdenv", 53, 7], ["pythonSupport", 54, 7]], [["propagatedBuildInputs", 57, 9], ["nativeBuildInputs", 58, 9], ["autoreconfPhase", 61, 9], ["configurePhase", 62, 9], ["checkPhase", 68, 9]], [["owner", 113, 7], ["repo", 114, 7], ["rev", 115, 7], ["hash", 116, 7]], [["homepage", 161, 7]], [["pname", 94, 5], ["version", 95, 5], ["buildInputs", 97, 5], ["nativeBuildInputs", 105, 5], ["src", 112, 5], ["configurePhase", 119, 5], ["buildPhase", 133, 5], ["outputs", 138, 5], ["installPhase", 143, 5], ["checkPhase", 158, 5], ["meta", 160, 5]], [["stdenv", 167, 7]], [["NIX_CFLAGS_COMPILE", 173, 11]], [["nativeBuildInputs", 170, 9], ["env", 172, 9], ["dontStrip", 175, 9], ["outputs", 176, 9], ["buildPhase", 177, 9], ["installPhase", 180, 9], ["checkPhase", 183, 9], ["postPatch", 204, 9]], [["json_c", 9, 3], ["libxml2", 51, 3], ["xmlmirror", 93, 3], ["zlib", 165, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/emscripten-packages.nix", [["stdenv", 11, 7]]);
-const pos$2 = nix.positions(here + "/emscripten-packages.nix", [["nativeBuildInputs", 14, 9], ["propagatedBuildInputs", 18, 9], ["configurePhase", 19, 9], ["checkPhase", 25, 9]]);
-const pos$3 = nix.positions(here + "/emscripten-packages.nix", [["stdenv", 53, 7], ["pythonSupport", 54, 7]]);
-const pos$4 = nix.positions(here + "/emscripten-packages.nix", [["propagatedBuildInputs", 57, 9], ["nativeBuildInputs", 58, 9], ["autoreconfPhase", 61, 9], ["configurePhase", 62, 9], ["checkPhase", 68, 9]]);
-const pos$5 = nix.positions(here + "/emscripten-packages.nix", [["owner", 113, 7], ["repo", 114, 7], ["rev", 115, 7], ["hash", 116, 7]]);
-const pos$6 = nix.positions(here + "/emscripten-packages.nix", [["homepage", 161, 7]]);
-const pos$7 = nix.positions(here + "/emscripten-packages.nix", [["pname", 94, 5], ["version", 95, 5], ["buildInputs", 97, 5], ["nativeBuildInputs", 105, 5], ["src", 112, 5], ["configurePhase", 119, 5], ["buildPhase", 133, 5], ["outputs", 138, 5], ["installPhase", 143, 5], ["checkPhase", 158, 5], ["meta", 160, 5]]);
-const pos$8 = nix.positions(here + "/emscripten-packages.nix", [["stdenv", 167, 7]]);
-const pos$9 = nix.positions(here + "/emscripten-packages.nix", [["NIX_CFLAGS_COMPILE", 173, 11]]);
-const pos$10 = nix.positions(here + "/emscripten-packages.nix", [["nativeBuildInputs", 170, 9], ["env", 172, 9], ["dontStrip", 175, 9], ["outputs", 176, 9], ["buildPhase", 177, 9], ["installPhase", 180, 9], ["checkPhase", 183, 9], ["postPatch", 204, 9]]);
-const pos$11 = nix.positions(here + "/emscripten-packages.nix", [["json_c", 9, 3], ["libxml2", 51, 3], ["xmlmirror", 93, 3], ["zlib", 165, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(pkgs, null);
   return (() => {
-    const json_c = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "json_c", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.sel(pkgs, "emscriptenStdenv")) }))), "overrideAttrs"), (old) => ({
-        [nix.POS]: pos$2,
+    const json_c = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "json_c", "override"), nix.thunk(() => ({
+        [nix.POS]: $pos[0],
+        stdenv: nix.thunk(() => nix.sel(pkgs, "emscriptenStdenv")),
+      }))), "overrideAttrs"), (old) => ({
+        [nix.POS]: $pos[1],
         nativeBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "pkg-config")),
           nix.thunk(() => nix.lookup(w, "cmake")),
@@ -53,11 +46,11 @@ echo "================= /testing json_c using node ================="
 `),
       })));
     const libxml2 = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "libxml2", "override"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         stdenv: nix.thunk(() => nix.lookup(w, "emscriptenStdenv")),
         pythonSupport: false,
       }))), "overrideAttrs"), (old) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         propagatedBuildInputs: nix.thunk(() => [zlib]),
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.lookup(w, "pkg-config"))])),
         autoreconfPhase: "echo autoreconfPhase not used...",
@@ -101,7 +94,7 @@ echo "================= /testing libxml2 using node ================="
           nix.thunk(() => nix.lookup(w, "automake")),
         ]);
         const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitLab"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             owner: "odfplugfest",
             repo: "xmlmirror",
             rev: "4fd7e86f7c9526b8f4c1733e5c8b45175860a8fd",
@@ -125,9 +118,9 @@ cp *.rng $out/share
 cp README.md $doc/share/${pname}
 `);
         const checkPhase = "";
-        const meta = nix.thunk(() => ({ [nix.POS]: pos$6, homepage: "https://gitlab.com/odfplugfest/xmlmirror" }));
+        const meta = nix.thunk(() => ({ [nix.POS]: $pos[5], homepage: "https://gitlab.com/odfplugfest/xmlmirror" }));
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pname,
           version,
           buildInputs,
@@ -141,10 +134,13 @@ cp README.md $doc/share/${pname}
           meta,
         };
       })())));
-    const zlib = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "zlib", "override"), nix.thunk(() => ({ [nix.POS]: pos$8, stdenv: nix.thunk(() => nix.sel(pkgs, "emscriptenStdenv")) }))), "overrideAttrs"), (old) => ({
-        [nix.POS]: pos$10,
+    const zlib = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "zlib", "override"), nix.thunk(() => ({
+        [nix.POS]: $pos[7],
+        stdenv: nix.thunk(() => nix.sel(pkgs, "emscriptenStdenv")),
+      }))), "overrideAttrs"), (old) => ({
+        [nix.POS]: $pos[9],
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.lookup(w, "pkg-config"))])),
-        env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), { [nix.POS]: pos$9, NIX_CFLAGS_COMPILE: "" })),
+        env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), { [nix.POS]: $pos[8], NIX_CFLAGS_COMPILE: "" })),
         dontStrip: true,
         outputs: nix.thunk(() => ["out"]),
         buildPhase: "emmake make\n",
@@ -170,7 +166,7 @@ echo "================= /testing zlib using node ================="
 `),
         postPatch: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "optionalString"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isDarwin")), "substituteInPlace configure \\\n  --replace '/usr/bin/libtool' 'ar' \\\n  --replace 'AR=\"libtool\"' 'AR=\"ar\"' \\\n  --replace 'ARFLAGS=\"-o\"' 'ARFLAGS=\"-r\"'\n")),
       })));
-    return { [nix.POS]: pos$11, json_c, libxml2, xmlmirror, zlib };
+    return { [nix.POS]: $pos[10], json_c, libxml2, xmlmirror, zlib };
   })();
 })(), formals$1);
 //# sourceMappingURL=emscripten-packages.ts.map

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/joplin-plugin-backup.nix", [[["url", 22, 27], ["hash", 22, 31]], [["name", 16, 3], ["npmDepsHash", 18, 25], ["patches", 19, 11], ["src", 21, 3], ["nativeBuildInputs", 25, 3], ["npmBuildScript", 29, 3], ["installPhase", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, buildNpmPackage: false, clang_20: false, patches: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/joplin-plugin-backup.nix", [["url", 22, 27], ["hash", 22, 31]]);
-const pos$2 = nix.positions(here + "/joplin-plugin-backup.nix", [["name", 16, 3], ["npmDepsHash", 18, 25], ["patches", 19, 11], ["src", 21, 3], ["nativeBuildInputs", 25, 3], ["npmBuildScript", 29, 3], ["installPhase", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const patches = nix.argOr($, "patches", () => []);
   const releaseData = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./release-data.json")), "plugins", "io.github.jackgruber.backup"));
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "joplin-plugin-backup",
       npmDepsHash: nix.thunk(() => nix.attr(releaseData, "npmDepsHash")),
       patches: patches,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.attr(releaseData, "url")),
           hash: nix.thunk(() => nix.attr(releaseData, "hash")),
         })))),

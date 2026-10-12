@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 18, 5], ["version", 19, 13], ["hash", 20, 5]], [["name", 82, 7], ["exec", 83, 7], ["icon", 84, 7], ["desktopName", 85, 7], ["categories", 86, 7]], [["homepage", 96, 5], ["description", 97, 5], ["longDescription", 98, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 119, 5], ["mainProgram", 120, 5], ["platforms", 121, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["preCheck", 45, 3], ["postPatch", 53, 3], ["postInstall", 64, 3], ["preFixup", 73, 3], ["dontWrapGApps", 76, 3], ["pythonImportsCheck", 78, 3], ["desktopItems", 80, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, copyDesktopItems: false, fetchPypi: false, "gobject-introspection": false, makeDesktopItem: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 18, 5], ["version", 19, 13], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 82, 7], ["exec", 83, 7], ["icon", 84, 7], ["desktopName", 85, 7], ["categories", 86, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 96, 5], ["description", 97, 5], ["longDescription", 98, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 119, 5], ["mainProgram", 120, 5], ["platforms", 121, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["preCheck", 45, 3], ["postPatch", 53, 3], ["postInstall", 64, 3], ["preFixup", 73, 3], ["dontWrapGApps", 76, 3], ["pythonImportsCheck", 78, 3], ["desktopItems", 80, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "jellyfin_mpv_shim",
           version: version,
           hash: "sha256-ad6ZokTy8vxAVrgopK+DK9WQqOlEKssigA++68vuid4=",
@@ -57,7 +54,7 @@ done
       const pythonImportsCheck = nix.thunk(() => ["jellyfin_mpv_shim"]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "jellyfin-mpv-shim",
             exec: "jellyfin-mpv-shim",
             icon: "jellyfin-mpv-shim",
@@ -66,7 +63,7 @@ done
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/jellyfin/jellyfin-mpv-shim",
         description: "Allows casting of videos to MPV via the jellyfin mobile and web app",
         longDescription: "Jellyfin MPV Shim is a client for the Jellyfin media server which plays media in the\nMPV media player. The application runs in the background and opens MPV only\nwhen media is cast to the player. The player supports most file formats, allowing you\nto prevent needless transcoding of your media files on the server. The player also has\nadvanced features, such as bulk subtitle updates and launching commands on events.\n",
@@ -89,7 +86,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

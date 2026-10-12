@@ -2,17 +2,11 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/import-dub-lock.nix", [[["name", 26, 9], ["url", 27, 9], ["sha256", 28, 17]], [["pname", 24, 15], ["version", 24, 21], ["src", 25, 7]], [["url", 42, 9], ["rev", 43, 9], ["fetchSubmodules", 44, 9], ["sha256", 45, 17]], [["pname", 40, 15], ["version", 40, 21], ["src", 41, 7]], [["pname", 50, 56]], [["name", 60, 7], ["path", 61, 7]], [["nativeBuildInputs", 68, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, linkFarm: false, fetchurl: false, fetchgit: false, dub: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, lock: false }, ellipsis: false };
 const formals$3 = { args: { pname: false, version: false, sha256: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/import-dub-lock.nix", [["name", 26, 9], ["url", 27, 9], ["sha256", 28, 17]]);
-const pos$2 = nix.positions(here + "/import-dub-lock.nix", [["pname", 24, 15], ["version", 24, 21], ["src", 25, 7]]);
 const formals$4 = { args: { pname: false, version: false, repository: false, sha256: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/import-dub-lock.nix", [["url", 42, 9], ["rev", 43, 9], ["fetchSubmodules", 44, 9], ["sha256", 45, 17]]);
-const pos$4 = nix.positions(here + "/import-dub-lock.nix", [["pname", 40, 15], ["version", 40, 21], ["src", 41, 7]]);
-const pos$5 = nix.positions(here + "/import-dub-lock.nix", [["pname", 50, 56]]);
-const pos$6 = nix.positions(here + "/import-dub-lock.nix", [["name", 60, 7], ["path", 61, 7]]);
-const pos$7 = nix.positions(here + "/import-dub-lock.nix", [["nativeBuildInputs", 68, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +27,11 @@ export default nix.lambda((args) => (() => {
       const version_1 = nix.arg($_2, "version");
       const sha256 = nix.arg($_2, "sha256");
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: pname_1,
         version: version_1,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: nix.thunk(() => nix.str`dub-${pname_1}-${version_1}.zip`),
             url: nix.thunk(() => nix.str`mirror://dub/${pname_1}/${version_1}.zip`),
             sha256: sha256,
@@ -51,11 +45,11 @@ export default nix.lambda((args) => (() => {
       const repository = nix.arg($_2, "repository");
       const sha256 = nix.arg($_2, "sha256");
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname_1,
         version: version_1,
         src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: repository,
             rev: version_1,
             fetchSubmodules: true,
@@ -64,15 +58,15 @@ export default nix.lambda((args) => (() => {
       };
     })(), formals$4);
     const lockJson = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isPath"), lock)) ? nix.app(nix.sel(lib, "importJSON"), lock) : nix.force(lock)));
-    const depsRaw = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (pname_1) => (args_2) => nix.update({ [nix.POS]: pos$5, pname: pname_1 }, args_2), nix.thunk(() => nix.sel(lockJson, "dependencies"))));
+    const depsRaw = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (pname_1) => (args_2) => nix.update({ [nix.POS]: $pos[4], pname: pname_1 }, args_2), nix.thunk(() => nix.sel(lockJson, "dependencies"))));
     const dubDeps = nix.thunk(() => nix.builtins.map(makeDubDep, nix.thunk(() => nix.app(nix.sel(lib, "filter"), (args_2) => !nix.asBool(nix.has(args_2, "repository")), depsRaw))));
     const gitDeps = nix.thunk(() => nix.builtins.map(makeGitDep, nix.thunk(() => nix.app(nix.sel(lib, "filter"), (args_2) => nix.has(args_2, "repository"), depsRaw))));
     const dubRegistryBase = nix.thunk(() => nix.app(linkFarm, "dub-registry-base", nix.thunk(() => nix.builtins.map((dep) => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           name: nix.thunk(() => nix.str`${nix.sel(dep, "pname")}/${nix.sel(dep, "pname")}-${nix.sel(dep, "version")}.zip`),
           path: nix.thunk(() => nix.sel(dep, "src")),
         }), dubDeps))));
-    return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}-dub-deps`), nix.thunk(() => ({ [nix.POS]: pos$7, nativeBuildInputs: nix.thunk(() => [dub]) })), nix.thunk(() => nix.str`export DUB_HOME="$out/.dub"
+    return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}-dub-deps`), nix.thunk(() => ({ [nix.POS]: $pos[6], nativeBuildInputs: nix.thunk(() => [dub]) })), nix.thunk(() => nix.str`export DUB_HOME="$out/.dub"
 mkdir -p "$DUB_HOME"
 # register dub dependencies
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (dep) => nix.str`dub fetch ${nix.sel(dep, "pname")}@${nix.sel(dep, "version")} --cache=user --skip-registry=standard --registry=file://${dubRegistryBase}/${nix.sel(dep, "pname")}

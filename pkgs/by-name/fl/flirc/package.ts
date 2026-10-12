@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["homepage", 43, 5], ["description", 44, 5], ["maintainers", 45, 5], ["sourceProvenance", 46, 5], ["license", 47, 5], ["mainProgram", 48, 5], ["platforms", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["dontConfigure", 32, 3], ["dontBuild", 33, 3], ["installPhase", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, hidapi: false, readline: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["maintainers", 45, 5], ["sourceProvenance", 46, 5], ["license", 47, 5], ["mainProgram", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["dontConfigure", 32, 3], ["dontBuild", 33, 3], ["installPhase", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "flirc",
       version: "3.27.19",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20260826023719if_/http://apt.flirc.tv/arch/x86_64/flirc.latest.x86_64.tar.gz",
           hash: "sha256-oQCplncTkcpxnclyh0wqe2veoWEtIeSnEeDgN8Qi9fY=",
         })))),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
 install -D ${nix.path(here, "./99-flirc.rules")} $out/lib/udev/rules.d/99-flirc.rules
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://flirc.tv/more/flirc-usb",
         description: "Use any Remote with your Media Center",
         maintainers: nix.thunk(() => (() => {

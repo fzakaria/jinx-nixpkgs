@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/raygui.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 23, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 16, 20], ["propagatedBuildInputs", 18, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, fetchurl: false, raylib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/raygui.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/raygui.nix", [["description", 23, 5]]);
-const pos$3 = nix.positions(here + "/raygui.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 16, 20], ["propagatedBuildInputs", 18, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const raylib = nix.arg($, "raylib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "raygui",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/tjammer/raylib-ocaml/releases/download/${nix.sel(finalAttrs, "version")}/raygui-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-PQcVTAQKeTPkOOHk5w3O3Tz0n7jLvkIo3Urvrk66eMs=",
         })))),
       patches: nix.thunk(() => nix.attr(raylib, "patches")),
       propagatedBuildInputs: nix.thunk(() => [raylib]),
-      meta: nix.thunk(() => nix.update(nix.sel(raylib, "meta"), { [nix.POS]: pos$2, description: "OCaml bindings for raygui" })),
+      meta: nix.thunk(() => nix.update(nix.sel(raylib, "meta"), { [nix.POS]: $pos[1], description: "OCaml bindings for raygui" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=raygui.ts.map

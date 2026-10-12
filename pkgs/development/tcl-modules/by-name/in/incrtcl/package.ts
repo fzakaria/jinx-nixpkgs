@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5], ["broken", 49, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["enableParallelBuilding", 19, 3], ["patchPhase", 21, 3], ["postInstall", 25, 3], ["setupHook", 33, 3], ["outputs", 37, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkTclDerivation: false, fetchurl: false, writeText: false, tcl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5], ["broken", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["enableParallelBuilding", 19, 3], ["patchPhase", 21, 3], ["postInstall", 25, 3], ["setupHook", 33, 3], ["outputs", 37, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const tcl = nix.arg($, "tcl");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "incrtcl",
       version: "4.2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/incrtcl/%5BIncr%20Tcl_Tk%5D-source/3.4/itcl${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-idOs2GXP3ZY7ECtF+K9hg5REyK6sQ0qk+666gUQPjCY=",
         })))),
@@ -36,7 +34,7 @@ rmdir $out/lib/itcl${nix.sel(finalAttrs, "version")}
       setupHook: nix.thunk(() => nix.app(writeText, "setup-hook.sh", "export ITCL_LIBRARY=@out@/lib\n")),
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://incrtcl.sourceforge.net/",
         description: "Object Oriented Enhancements for Tcl/Tk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "tcltk")),

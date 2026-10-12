@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qt-env.nix", [[["name", 5, 11], ["paths", 6, 3], ["pathsToLink", 8, 3], ["extraOutputsToInstall", 15, 3], ["postBuild", 20, 3]]]);
 const formals$1 = { args: { buildEnv: false, qtbase: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qt-env.nix", [["name", 5, 11], ["paths", 6, 3], ["pathsToLink", 8, 3], ["extraOutputsToInstall", 15, 3], ["postBuild", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildEnv = nix.arg($, "buildEnv");
   const qtbase = nix.arg($, "qtbase");
   return (name) => (paths) => nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: name,
       paths: nix.thunk(() => nix.concat([qtbase], paths)),
       pathsToLink: nix.thunk(() => ["/bin", "/mkspecs", "/include", "/lib", "/share"]),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["homepage", 36, 5], ["description", 37, 5], ["mainProgram", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 28, 3], ["qtWrapperArgs", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, "pkg-config": false, qt6: false, liblscp: false, libgig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 36, 5], ["description", 37, 5], ["mainProgram", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 28, 3], ["qtWrapperArgs", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const liblscp = nix.arg($, "liblscp");
   const libgig = nix.arg($, "libgig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "qsampler",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/qsampler/qsampler-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-z6TlPsiccyYvr/DqUX+r6mLYHLkctvVD/ihzt8SLRkY=",
         })))),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libgig]))}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://qsampler.sourceforge.io",
         description: "LinuxSampler GUI front-end application",
         mainProgram: "qsampler",

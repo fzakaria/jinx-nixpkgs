@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["ruby", 14, 13], ["name", 15, 5], ["gemdir", 16, 5]], [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["package", 82, 7], ["command", 83, 7]], [["msfconsole-version", 81, 5]], [["tests", 80, 12], ["updateScript", 88, 12]], [["description", 91, 5], ["homepage", 92, 5], ["platforms", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 100, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["__structuredAttrs", 30, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["dontPatchELF", 41, 3], ["postPatch", 43, 3], ["installPhase", 54, 3], ["passthru", 80, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, ruby: false, bundlerEnv: false, testers: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["ruby", 14, 13], ["name", 15, 5], ["gemdir", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 82, 7], ["command", 83, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["msfconsole-version", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 80, 12], ["updateScript", 88, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["platforms", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 100, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["__structuredAttrs", 30, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["dontPatchELF", 41, 3], ["postPatch", 43, 3], ["installPhase", 54, 3], ["passthru", 80, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const python3 = nix.arg($, "python3");
   const env = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       ruby: ruby,
       name: "metasploit-bundler-env",
       gemdir: nix.path(here, "./."),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "metasploit-framework",
       version: "6.5.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "rapid7",
           repo: "metasploit-framework",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -71,11 +65,11 @@ makeWrapper ${env}/bin/bundle $out/bin/msf-pattern_offset \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "msfconsole-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "HOME=/tmp msfconsole -q -x 'version;exit'",
             })))),
@@ -83,7 +77,7 @@ runHook postInstall
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Metasploit Framework - a collection of exploits",
         homepage: "https://docs.metasploit.com/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

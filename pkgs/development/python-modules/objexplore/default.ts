@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["pythonRelaxDeps", 26, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 43, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, blessed: false, rich: false, pytestCheckHook: false, pandas: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["pythonRelaxDeps", 26, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 43, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pandas = nix.arg($, "pandas");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "objexplore",
       version: "1.6.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kylepollina",
           repo: "objexplore",
           rev: "3c2196d26e5a873eed0a694cddca66352ea7c81e",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         "objexplore.utils",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Terminal UI to interactively inspect and explore Python objects",
         homepage: "https://github.com/kylepollina/objexplore",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

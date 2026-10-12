@@ -2,44 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/samba.nix", [[["maintainers", 5, 8]], [["fsType", 13, 13], ["device", 14, 13], ["options", 15, 13]], [["/public", 12, 11]], [["fileSystems", 11, 24]], [["virtualisation", 11, 9]], [["path", 28, 15], ["read only", 29, 15], ["browseable", 30, 15], ["guest ok", 31, 15], ["comment", 32, 15]], [["public", 27, 13]], [["enable", 24, 11], ["openFirewall", 25, 11], ["settings", 26, 11]], [["samba", 23, 18]], [["services", 23, 9]], [["client", 8, 5], ["server", 20, 5]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 39, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/samba.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/samba.nix", [["fsType", 13, 13], ["device", 14, 13], ["options", 15, 13]]);
-const pos$3 = nix.positions(here + "/samba.nix", [["/public", 12, 11]]);
-const pos$4 = nix.positions(here + "/samba.nix", [["fileSystems", 11, 24]]);
-const pos$5 = nix.positions(here + "/samba.nix", [["virtualisation", 11, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$6 = nix.positions(here + "/samba.nix", [["path", 28, 15], ["read only", 29, 15], ["browseable", 30, 15], ["guest ok", 31, 15], ["comment", 32, 15]]);
-const pos$7 = nix.positions(here + "/samba.nix", [["public", 27, 13]]);
-const pos$8 = nix.positions(here + "/samba.nix", [["enable", 24, 11], ["openFirewall", 25, 11], ["settings", 26, 11]]);
-const pos$9 = nix.positions(here + "/samba.nix", [["samba", 23, 18]]);
-const pos$10 = nix.positions(here + "/samba.nix", [["services", 23, 9]]);
-const pos$11 = nix.positions(here + "/samba.nix", [["client", 8, 5], ["server", 20, 5]]);
-const pos$12 = nix.positions(here + "/samba.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "samba",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "anthonyroussel"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             fileSystems: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               "/public": nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 fsType: "cifs",
                 device: "//server/public",
                 options: nix.thunk(() => ["guest"]),
@@ -51,17 +40,17 @@ export default nix.lambda((args) => (() => {
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             samba: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               openFirewall: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 public: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   path: "/public",
                   "read only": true,
                   browseable: "yes",

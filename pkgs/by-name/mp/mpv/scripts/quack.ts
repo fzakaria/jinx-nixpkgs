@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/quack.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["updateScript", 18, 12]], [["description", 21, 5], ["longDescription", 22, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 9, 3], ["version", 11, 3], ["src", 12, 3], ["passthru", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, unstableGitUpdater: false, buildLua: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/quack.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/quack.nix", [["updateScript", 18, 12]]);
-const pos$3 = nix.positions(here + "/quack.nix", [["description", 21, 5], ["longDescription", 22, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$4 = nix.positions(here + "/quack.nix", [["pname", 9, 3], ["version", 11, 3], ["src", 12, 3], ["passthru", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,22 +12,22 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const buildLua = nix.arg($, "buildLua");
   return nix.app(buildLua, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mpv-quack",
       version: "0-unstable-2020-05-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CounterPillow",
           repo: "mpv-quack",
           rev: "1c87f36f9726d462dd112188c04be54d85692cf3",
           hash: "sha256-dEnJbS8RJoAxpKINdoMHN4l7vpEdf7+C5JVWpK0VXMw=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Reduce audio volume after seeking",
         longDescription: "quack is an mpv script to temporarily reduce the volume after a seek,\nin order to avoid loud noises when scrubbing through a movie.\n\nThe volume is linearly increased back up to its original level.\nRepeated seeks before the transition is done work as well.\n",
         homepage: "https://github.com/CounterPillow/mpv-quack",

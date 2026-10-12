@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["CFLAGS", 32, 7]], [["description", 40, 5], ["license", 41, 5], ["teams", 42, 5], ["platforms", 43, 5], ["homepage", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["env", 32, 3], ["enableParallelBuilding", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, autoreconfHook: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["license", 41, 5], ["teams", 42, 5], ["platforms", 43, 5], ["homepage", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["env", 32, 3], ["enableParallelBuilding", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "symmetrica",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sagemath",
           repo: "symmetrica",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,12 +25,12 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c99", "-Wno-deprecated-non-prototype"]))),
       })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Collection of routines for representation theory and combinatorics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),

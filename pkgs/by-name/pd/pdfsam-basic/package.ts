@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 56, 5], ["version", 57, 25], ["dontUnpack", 59, 5], ["nativeBuildInputs", 60, 5], ["buildPhase", 62, 5], ["dontInstall", 91, 5]], [["pname", 98, 21], ["version", 98, 27], ["paths", 99, 5]], [["jdk", 109, 5], ["modules", 110, 5]], [["owner", 118, 5], ["repo", 119, 5], ["tag", 120, 5], ["hash", 121, 5]], [["SOURCE_DATE_EPOCH", 130, 7]], [["SOURCE_DATE_EPOCH", 132, 19]], [["env", 131, 21]], [["name", 213, 7], ["exec", 214, 7], ["icon", 215, 7], ["comment", 216, 7], ["desktopName", 217, 7], ["genericName", 218, 7], ["mimeTypes", 219, 7], ["categories", 220, 7]], [["homepage", 225, 5], ["description", 226, 5], ["mainProgram", 227, 5], ["sourceProvenance", 228, 5], ["license", 232, 5], ["platforms", 233, 5], ["maintainers", 234, 5]], [["pname", 114, 3], ["version", 115, 3], ["src", 117, 3], ["mvnParameters", 124, 3], ["mvnHash", 125, 3], ["env", 130, 3], ["mvnFetchExtraArgs", 131, 3], ["mvnJdk", 146, 3], ["postPatch", 150, 3], ["buildInputs", 157, 3], ["nativeBuildInputs", 162, 3], ["installPhase", 172, 3], ["desktopItems", 211, 3], ["meta", 224, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, symlinkJoin: false, maven: false, makeDesktopItem: false, fetchFromGitHub: false, jdk25: false, jre25_minimal: false, openjfx25: false, xmlstarlet: false, glib: false, libxxf86vm: false, libxtst: false, libx11: false, gtk3: false, libGL: false, copyDesktopItems: false, wrapGAppsHook3: false, gettext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 56, 5], ["version", 57, 25], ["dontUnpack", 59, 5], ["nativeBuildInputs", 60, 5], ["buildPhase", 62, 5], ["dontInstall", 91, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 98, 21], ["version", 98, 27], ["paths", 99, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["jdk", 109, 5], ["modules", 110, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 118, 5], ["repo", 119, 5], ["tag", 120, 5], ["hash", 121, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["SOURCE_DATE_EPOCH", 130, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["SOURCE_DATE_EPOCH", 132, 19]]);
-const pos$7 = nix.positions(here + "/package.nix", [["env", 131, 21]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 213, 7], ["exec", 214, 7], ["icon", 215, 7], ["comment", 216, 7], ["desktopName", 217, 7], ["genericName", 218, 7], ["mimeTypes", 219, 7], ["categories", 220, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 225, 5], ["description", 226, 5], ["mainProgram", 227, 5], ["sourceProvenance", 228, 5], ["license", 232, 5], ["platforms", 233, 5], ["maintainers", 234, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 114, 3], ["version", 115, 3], ["src", 117, 3], ["mvnParameters", 124, 3], ["mvnHash", 125, 3], ["env", 130, 3], ["mvnFetchExtraArgs", 131, 3], ["mvnJdk", 146, 3], ["postPatch", 150, 3], ["buildInputs", 157, 3], ["nativeBuildInputs", 162, 3], ["installPhase", 172, 3], ["desktopItems", 211, 3], ["meta", 224, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,7 +40,7 @@ export default nix.lambda((args) => (() => {
     "jdk.localedata",
   ]);
   const javafxJmods = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "openjfx-jmods",
       version: nix.thunk(() => nix.attr(openjfx25, "version")),
       dontUnpack: true,
@@ -75,13 +66,13 @@ jmod create "\${jmodArgs[@]}" "$out/lib/openjdk/jmods/${mod}.jmod"
       dontInstall: true,
     }))));
   const jdk25WithJavafx = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(jdk25, "pname")),
       version: nix.thunk(() => nix.attr(jdk25, "version")),
       paths: nix.thunk(() => [jdk25, javafxJmods]),
     }))));
   const jre = nix.thunk(() => nix.app(nix.sel(jre25_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       jdk: jdk25WithJavafx,
       modules: nix.thunk(() => nix.concat(jdkModules, javafxModules)),
     }))));
@@ -89,7 +80,7 @@ jmod create "\${jmodArgs[@]}" "$out/lib/openjdk/jmods/${mod}.jmod"
       const pname = "pdfsam-basic";
       const version = "6.0.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "torakiki",
           repo: "pdfsam",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -97,11 +88,11 @@ jmod create "\${jmodArgs[@]}" "$out/lib/openjdk/jmods/${mod}.jmod"
         }))));
       const mvnParameters = "-Drelease -Dmaven.test.skip";
       const mvnHash = "sha256-l8ns++RTK69AV2dq8EFPOzhfzhcgYQlF/OUZ0IZ7QII=";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$5, SOURCE_DATE_EPOCH: 315532802n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[4], SOURCE_DATE_EPOCH: 315532802n }));
       const mvnFetchExtraArgs = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         env: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           SOURCE_DATE_EPOCH: nix.thunk(() => nix.attr(env, "SOURCE_DATE_EPOCH")),
         })),
       }));
@@ -142,7 +133,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "PDFsam Basic",
             exec: "pdfsam-basic",
             icon: "pdfsam-basic",
@@ -154,7 +145,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://github.com/torakiki/pdfsam",
         description: "Multi-platform software designed to extract pages, split, merge, mix and rotate PDF files",
         mainProgram: "pdfsam-basic",
@@ -176,7 +167,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version,
         src,

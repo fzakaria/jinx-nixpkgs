@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["longDescription", 58, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["nativeCheckInputs", 30, 3], ["doCheck", 41, 3], ["preCheck", 43, 3], ["disabledTests", 50, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, cython: false, libpq: false, uvloop: false, postgresql: false, "pytest-xdist": false, pytest8_3CheckHook: false, setuptools: false, distro: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["longDescription", 58, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["nativeCheckInputs", 30, 3], ["doCheck", 41, 3], ["preCheck", 43, 3], ["disabledTests", 50, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.31.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-yYk4bIOUC/vXhxgPKxUZQV4tPWJ3pw2dDwFFrHNQBzU=",
@@ -48,7 +46,7 @@ export PGBIN=${nix.app(nix.sel(lib, "getBin"), postgresql)}/bin
       const disabledTests = nix.thunk(() => ["test_connect_params"]);
       const pythonImportsCheck = nix.thunk(() => ["asyncpg"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Asyncio PosgtreSQL driver",
         homepage: "https://github.com/MagicStack/asyncpg",
         changelog: nix.thunk(() => nix.str`https://github.com/MagicStack/asyncpg/releases/tag/v${version}`),
@@ -60,7 +58,7 @@ export PGBIN=${nix.app(nix.sel(lib, "getBin"), postgresql)}/bin
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

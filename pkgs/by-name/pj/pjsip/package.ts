@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["NIX_LDFLAGS", 50, 5]], [["CXXFLAGS", 52, 44]], [["NIX_CFLAGS_LINK", 54, 5]], [["package", 123, 5], ["command", 124, 5]], [["package", 127, 61]], [["version", 122, 18], ["pkg-config", 127, 18], ["python-pjsua2", 129, 18]], [["tests", 122, 12]], [["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["mainProgram", 138, 5], ["platforms", 139, 5], ["pkgConfigModules", 140, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["env", 49, 3], ["preConfigure", 57, 3], ["postBuild", 61, 3], ["configureFlags", 65, 3], ["outputs", 67, 3], ["postInstall", 69, 3], ["dontPatchELF", 120, 3], ["passthru", 122, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, testers: false, stdenv: false, fetchFromGitHub: false, openssl: false, libsamplerate: false, swig: false, "alsa-lib": false, python3: false, pythonSupport: true, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CXXFLAGS", 52, 44]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_LINK", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 123, 5], ["command", 124, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["package", 127, 61]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 122, 18], ["pkg-config", 127, 18], ["python-pjsua2", 129, 18]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 122, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["mainProgram", 138, 5], ["platforms", 139, 5], ["pkgConfigModules", 140, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["env", 49, 3], ["preConfigure", 57, 3], ["postBuild", 61, 3], ["configureFlags", 65, 3], ["outputs", 67, 3], ["postInstall", 69, 3], ["dontPatchELF", 120, 3], ["passthru", 122, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pythonSupport = nix.argOr($, "pythonSupport", () => true);
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "pjsip",
       version: "2.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pjsip",
           repo: "pjproject",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,9 +40,9 @@ export default nix.lambda((args) => (() => {
         ]))),
       buildInputs: nix.thunk(() => nix.concat([openssl, libsamplerate], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), alsa_lib))),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "-lc++" : "-lstdc++")),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$3, CXXFLAGS: "-std=c++11" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_LINK: "-headerpad_max_install_names" })))))),
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: $pos[2], CXXFLAGS: "-std=c++11" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_LINK: "-headerpad_max_install_names" })))))),
       preConfigure: "export LD=$CC\n",
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), pythonSupport, "make -C pjsip-apps/src/swig/python\n")),
       configureFlags: nix.thunk(() => ["--enable-shared"]),
@@ -63,16 +54,16 @@ cp pjsip-apps/bin/samples/*/* $out/share/${nix.sel(finalAttrs, "pname")}-${nix.s
 `, nix.app(nix.sel(lib, "optionalString"), pythonSupport, "(cd pjsip-apps/src/swig/python && \\\n    python -m build --no-isolation --outdir dist/ --wheel\n    python -m installer --prefix $py dist/*.whl\n)\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# On MacOS relative paths are used to refer to libraries. All libraries use\n# a relative path like ../lib/*.dylib or ../../lib/*.dylib. We need to\n# rewrite these to use absolute ones.\n\n# First, find all libraries (and their symlinks) in our outputs to define\n# the install_name_tool -change arguments we should pass.\nreadarray -t libraries < <(\n  for outputName in $(getAllOutputNames); do\n    find \"${!outputName}\" \\( -name '*.dylib*' -o -name '*.so*' \\)\n  done\n)\n\n# Determine the install_name_tool -change arguments that are going to be\n# applied to all libraries.\nchange_args=()\nfor lib in \"${libraries[@]}\"; do\n  lib_name=\"$(basename $lib)\"\n  change_args+=(-change ../lib/$lib_name $lib)\n  change_args+=(-change ../../lib/$lib_name $lib)\ndone\n\n# Rewrite id and library refences for all non-symlinked libraries.\nfor lib in \"${libraries[@]}\"; do\n  if [ -f \"$lib\" ]; then\n    install_name_tool -id $lib \"${change_args[@]}\" $lib\n  fi\ndone\n\n# Rewrite library references for all executables.\nfind \"$out\" -type f -executable -path \"*/bin/*\" -o -type f -executable -path \"*/share/*/samples/*\" \\\n  | while read executable; do\n    if isMachO \"$executable\"; then\n      install_name_tool \"${change_args[@]}\" \"$executable\"\n    fi\n  done\n"))),
       dontPatchELF: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "pjsua --version",
             })))),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           "python-pjsua2": nix.thunk(() => nix.app(runCommand, "python-pjsua2", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(nix.app(nix.sel(python3, "withPackages"), (pkgs) => [nix.thunk(() => nix.sel(pkgs, "pjsua2"))]), "interpreter")} -c "import pjsua2" > $out
@@ -80,7 +71,7 @@ cp pjsip-apps/bin/samples/*/* $out/share/${nix.sel(finalAttrs, "pname")}-${nix.s
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Multimedia communication library written in C, implementing standard based protocols such as SIP, SDP, RTP, STUN, TURN, and ICE",
         homepage: "https://pjsip.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

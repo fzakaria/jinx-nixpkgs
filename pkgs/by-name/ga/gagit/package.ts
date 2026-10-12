@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["$editor", 35, 9]], [["scripts", 26, 7], ["interpreter", 27, 7], ["inputs", 28, 7], ["keep", 32, 7], ["execer", 37, 7]], [["default", 25, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["longDescription", 59, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5], ["platforms", 71, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["__structuredAttrs", 21, 3], ["strictDeps", 22, 3], ["solutions", 24, 3], ["nativeBuildInputs", 44, 3], ["nativeCheckInputs", 49, 3], ["doCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, resholve: false, fetchzip: false, bash: false, coreutils: false, git: false, meson: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["$editor", 35, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["scripts", 26, 7], ["interpreter", 27, 7], ["inputs", 28, 7], ["keep", 32, 7], ["execer", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["default", 25, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["longDescription", 59, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5], ["platforms", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["__structuredAttrs", 21, 3], ["strictDeps", 22, 3], ["solutions", 24, 3], ["nativeBuildInputs", 44, 3], ["nativeCheckInputs", 49, 3], ["doCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gagit",
       version: "4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gitweb.gentoo.org/proj/gagit.git/snapshot/gagit-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-V8qLZu2dpbUbpHZ5AH7Zr6HcgujjnWw9DFLF4K57RCc=",
         })))),
       __structuredAttrs: true,
       strictDeps: true,
       solutions: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         default: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           scripts: nix.thunk(() => ["bin/gagit"]),
           interpreter: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), bash)),
           inputs: nix.thunk(() => [coreutils, git]),
-          keep: nix.thunk(() => ({ [nix.POS]: pos$2, $editor: true })),
+          keep: nix.thunk(() => ({ [nix.POS]: $pos[1], $editor: true })),
           execer: nix.thunk(() => [nix.thunk(() => nix.str`cannot:${nix.app(nix.sel(lib, "getExe"), git)}`)]),
         })),
       })),
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [git]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Gentoo AGit workflow tool",
         homepage: "https://gitweb.gentoo.org/proj/gagit.git/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

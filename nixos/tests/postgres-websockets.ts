@@ -2,88 +2,71 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/postgres-websockets.nix", [[["maintainers", 6, 5]], [["systemPackages", 17, 19]], [["enable", 20, 9], ["initialScript", 21, 9]], [["dbname", 30, 33]], [["PGWS_DB_URI", 30, 21], ["PGWS_LISTEN_CHANNEL", 31, 21]], [["enable", 28, 9], ["jwtSecretFile", 29, 9], ["environment", 30, 9]], [["postgresql", 19, 16], ["postgres-websockets", 27, 16]], [["enableTCPIP", 35, 29]], [["host", 38, 35], ["user", 39, 35]], [["PGWS_DB_URI", 38, 23]], [["pgpassFile", 37, 11], ["environment", 38, 11]], [["postgresql", 35, 18], ["postgres-websockets", 36, 18]], [["services", 35, 9]], [["configuration", 34, 35]], [["withPassword", 34, 22]], [["environment", 17, 7], ["services", 19, 7], ["specialisation", 34, 7]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["extraPythonPackages", 44, 3], ["testScript", 46, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/postgres-websockets.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/postgres-websockets.nix", [["systemPackages", 17, 19]]);
-const pos$3 = nix.positions(here + "/postgres-websockets.nix", [["enable", 20, 9], ["initialScript", 21, 9]]);
-const pos$4 = nix.positions(here + "/postgres-websockets.nix", [["dbname", 30, 33]]);
-const pos$5 = nix.positions(here + "/postgres-websockets.nix", [["PGWS_DB_URI", 30, 21], ["PGWS_LISTEN_CHANNEL", 31, 21]]);
-const pos$6 = nix.positions(here + "/postgres-websockets.nix", [["enable", 28, 9], ["jwtSecretFile", 29, 9], ["environment", 30, 9]]);
-const pos$7 = nix.positions(here + "/postgres-websockets.nix", [["postgresql", 19, 16], ["postgres-websockets", 27, 16]]);
-const pos$8 = nix.positions(here + "/postgres-websockets.nix", [["enableTCPIP", 35, 29]]);
-const pos$9 = nix.positions(here + "/postgres-websockets.nix", [["host", 38, 35], ["user", 39, 35]]);
-const pos$10 = nix.positions(here + "/postgres-websockets.nix", [["PGWS_DB_URI", 38, 23]]);
-const pos$11 = nix.positions(here + "/postgres-websockets.nix", [["pgpassFile", 37, 11], ["environment", 38, 11]]);
-const pos$12 = nix.positions(here + "/postgres-websockets.nix", [["postgresql", 35, 18], ["postgres-websockets", 36, 18]]);
-const pos$13 = nix.positions(here + "/postgres-websockets.nix", [["services", 35, 9]]);
-const pos$14 = nix.positions(here + "/postgres-websockets.nix", [["configuration", 34, 35]]);
-const pos$15 = nix.positions(here + "/postgres-websockets.nix", [["withPassword", 34, 22]]);
-const pos$16 = nix.positions(here + "/postgres-websockets.nix", [["environment", 17, 7], ["services", 19, 7], ["specialisation", 34, 7]]);
-const pos$17 = nix.positions(here + "/postgres-websockets.nix", [["machine", 9, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$18 = nix.positions(here + "/postgres-websockets.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["extraPythonPackages", 44, 3], ["testScript", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "postgres-websockets",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "wolfgangwalther"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "websocat"))]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "init.sql", "CREATE ROLE \"postgres-websockets\" LOGIN NOINHERIT;\nCREATE ROLE \"postgres-websockets_with_password\" LOGIN NOINHERIT PASSWORD 'password';\n")),
             })),
             "postgres-websockets": nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               jwtSecretFile: "/run/secrets/jwt.secret",
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                PGWS_DB_URI: nix.thunk(() => ({ [nix.POS]: pos$4, dbname: "postgres" })),
+                [nix.POS]: $pos[4],
+                PGWS_DB_URI: nix.thunk(() => ({ [nix.POS]: $pos[3], dbname: "postgres" })),
                 PGWS_LISTEN_CHANNEL: "websockets-listener",
               })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             withPassword: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
-                  postgresql: nix.thunk(() => ({ [nix.POS]: pos$8, enableTCPIP: true })),
+                  [nix.POS]: $pos[11],
+                  postgresql: nix.thunk(() => ({ [nix.POS]: $pos[7], enableTCPIP: true })),
                   "postgres-websockets": nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     pgpassFile: "/run/secrets/.pgpass",
                     environment: nix.thunk(() => ({
-                      [nix.POS]: pos$10,
+                      [nix.POS]: $pos[9],
                       PGWS_DB_URI: nix.thunk(() => ({
-                        [nix.POS]: pos$9,
+                        [nix.POS]: $pos[8],
                         host: "localhost",
                         user: "postgres-websockets_with_password",
                       })),

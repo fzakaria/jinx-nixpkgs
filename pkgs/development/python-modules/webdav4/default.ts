@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["fsspec", 41, 5], ["http2", 42, 5], ["all", 43, 5]], [["description", 81, 5], ["mainProgram", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["optional-dependencies", 40, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 59, 3], ["disabledTests", 61, 3], ["disabledTestPaths", 73, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cheroot: false, colorama: false, fetchFromGitHub: false, fsspec: false, "hatch-vcs": false, hatchling: false, httpx: false, "pytest-xdist": false, pytestCheckHook: false, "pytest-cov-stub": false, "python-dateutil": false, wsgidav: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fsspec", 41, 5], ["http2", 42, 5], ["all", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 81, 5], ["mainProgram", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["optional-dependencies", 40, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 59, 3], ["disabledTests", 61, 3], ["disabledTestPaths", 73, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const python_dateutil = nix.arg($, "python-dateutil");
   const wsgidav = nix.arg($, "wsgidav");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "webdav4",
       version: "0.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "skshetry",
           repo: "webdav4",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [httpx, python_dateutil]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         fsspec: nix.thunk(() => [fsspec]),
         http2: nix.thunk(() => [nix.thunk(() => nix.sel(httpx, "optional-dependencies", "http2"))]),
         all: nix.thunk(() => [fsspec, nix.thunk(() => nix.sel(httpx, "optional-dependencies", "http2"))]),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["tests/test_client.py", "tests/test_fsspec.py", "tests/test_cli.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for interacting with WebDAV",
         mainProgram: "dav",
         homepage: "https://skshetry.github.io/webdav4/",

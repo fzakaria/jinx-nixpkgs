@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["toml", 42, 25]], [["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 33, 3], ["postPatch", 35, 3], ["propagatedBuildInputs", 40, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 44, 3], ["disabledTestPaths", 46, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch2: false, "poetry-core": false, snowballstemmer: false, tomli: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["toml", 42, 25]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 33, 3], ["postPatch", 35, 3], ["propagatedBuildInputs", 40, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 44, 3], ["disabledTestPaths", 46, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PyCQA",
           repo: "pydocstyle",
           tag: version,
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "python312-compat.patch",
             url: "https://github.com/PyCQA/pydocstyle/commit/306c7c8f2d863bdc098a65d2dadbd4703b9b16d5.patch",
             hash: "sha256-bqnoLz1owzDpFqlZn8z4Z+RzKCYBsI0PqqeOtjLxnMo=",
@@ -43,11 +39,11 @@ export default nix.lambda((args) => (() => {
   --replace 'version = "0.0.0-dev"' 'version = "${version}"'
 `);
       const propagatedBuildInputs = nix.thunk(() => [snowballstemmer]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, toml: nix.thunk(() => [tomli]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[2], toml: nix.thunk(() => [tomli]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "toml")));
       const disabledTestPaths = nix.thunk(() => ["src/tests/test_integration.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python docstring style checker",
         mainProgram: "pydocstyle",
         homepage: "https://github.com/PyCQA/pydocstyle",
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

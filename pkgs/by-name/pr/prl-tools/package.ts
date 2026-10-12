@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 52, 5], ["hash", 53, 5]], [["updateScript", 147, 12]], [["description", 150, 5], ["homepage", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["platforms", 157, 5]], [["pname", 46, 3], ["version", 47, 3], ["src", 51, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 64, 3], ["runtimeDependencies", 66, 3], ["unpackPhase", 74, 3], ["dontBuild", 83, 3], ["installPhase", 85, 3], ["passthru", 147, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, bash: false, bbe: false, coreutils: false, cups: false, dbus: false, fetchurl: false, fuse3: false, gawk: false, glib: false, gnugrep: false, gnused: false, gtk3: false, lib: false, makeWrapper: false, netcat: false, p7zip: false, stdenv: false, timetrap: false, undmg: false, "util-linux": false, wayland: false, libxrandr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 147, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 150, 5], ["homepage", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["platforms", 157, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 46, 3], ["version", 47, 3], ["src", 51, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 64, 3], ["runtimeDependencies", 66, 3], ["unpackPhase", 74, 3], ["dontBuild", 83, 3], ["installPhase", 85, 3], ["passthru", 147, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,11 +47,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`${util_linux}/bin`),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "prl-tools",
       version: "27.0.2-58673",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.parallels.com/desktop/v${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/${nix.sel(finalAttrs, "version")}/ParallelsDesktop-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-/buPuva2r9dxSpLdNI9Qg/YTk0Y82XRwFt2XhF24wh0=",
         })))),
@@ -130,9 +127,9 @@ runHook postUnpack
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Parallels Tools for Linux guests",
         homepage: "https://parallels.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

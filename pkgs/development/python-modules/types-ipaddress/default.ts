@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 5], ["version", 17, 26], ["hash", 18, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["build-system", 21, 3], ["pythonImportsCheck", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 26], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["build-system", 21, 3], ["pythonImportsCheck", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "types-ipaddress",
       version: "1.0.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "types-ipaddress",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-oD3zvlk15QugP6hD2qv/U5oEGijnPg/OLFcFvuVNOEE=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       pythonImportsCheck: nix.thunk(() => ["ipaddress-python2-stubs"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Typing stubs for ipaddress",
         homepage: "https://github.com/python/typeshed",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

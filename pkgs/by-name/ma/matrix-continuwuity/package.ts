@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["ZSTD_SYS_USE_PKG_CONFIG", 45, 5], ["ROCKSDB_INCLUDE_DIR", 46, 5], ["ROCKSDB_LIB_DIR", 47, 5]], [["version", 56, 30], ["package", 57, 9]], [["version", 55, 7]], [["matrix-continuwuity", 61, 28]], [["updateScript", 53, 5], ["tests", 54, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 76, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoHash", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["env", 44, 3], ["rocksdb", 50, 3], ["passthru", 52, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitea: false, "pkg-config": false, bzip2: false, zstd: false, stdenv: false, callPackage: false, "nix-update-script": false, testers: false, "matrix-continuwuity": false, "rust-jemalloc-sys-unprefixed": false, liburing: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ZSTD_SYS_USE_PKG_CONFIG", 45, 5], ["ROCKSDB_INCLUDE_DIR", 46, 5], ["ROCKSDB_LIB_DIR", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 56, 30], ["package", 57, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 55, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["matrix-continuwuity", 61, 28]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 53, 5], ["tests", 54, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 76, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoHash", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["env", 44, 3], ["rocksdb", 50, 3], ["passthru", 52, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const liburing = nix.arg($, "liburing");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "matrix-continuwuity",
       version: "26.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "forgejo.ellis.link",
           owner: "continuwuation",
           repo: "continuwuity",
@@ -44,29 +37,29 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => [bzip2, zstd, rust_jemalloc_sys_unprefixed, liburing]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ZSTD_SYS_USE_PKG_CONFIG: true,
         ROCKSDB_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "rocksdb")}/include`),
         ROCKSDB_LIB_DIR: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "rocksdb")}/lib`),
       })),
       rocksdb: nix.thunk(() => nix.app(callPackage, nix.path(here, "./rocksdb.nix"), nix.thunk(() => ({})))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: matrix_continuwuity,
             })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "matrix-continuwuity": nix.thunk(() => nix.attr(nixosTests, "matrix-continuwuity")),
           }))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Matrix homeserver written in Rust, forked from conduwuit",
         homepage: "https://continuwuity.org/",
         changelog: nix.thunk(() => nix.str`https://forgejo.ellis.link/continuwuation/continuwuity/releases/tag/v${nix.sel(finalAttrs, "version")}`),

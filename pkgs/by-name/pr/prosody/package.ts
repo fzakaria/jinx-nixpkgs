@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 43, 5], ["hash", 44, 5]], [["url", 58, 5], ["rev", 59, 5], ["hash", 60, 5]], [["prosody", 111, 36], ["prosody-mysql", 111, 44]], [["communityModules", 110, 5], ["tests", 111, 5]], [["description", 115, 5], ["license", 116, 5], ["changelog", 117, 5], ["homepage", 118, 5], ["platforms", 119, 5], ["mainProgram", 120, 5], ["maintainers", 121, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["nixosModuleDeps", 50, 3], ["communityModules", 57, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 65, 3], ["configureFlags", 73, 3], ["configurePlatforms", 82, 3], ["postBuild", 84, 3], ["buildFlags", 88, 3], ["postInstall", 95, 3], ["passthru", 109, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, libidn: false, openssl: false, makeWrapper: false, fetchhg: false, buildPackages: false, icu: false, lua: false, nixosTests: false, withDBI: true, withExtraLibs: true, withExtraLuaPackages: true, withOnlyInstalledCommunityModules: true, withCommunityModules: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 58, 5], ["rev", 59, 5], ["hash", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["prosody", 111, 36], ["prosody-mysql", 111, 44]]);
-const pos$4 = nix.positions(here + "/package.nix", [["communityModules", 110, 5], ["tests", 111, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 115, 5], ["license", 116, 5], ["changelog", 117, 5], ["homepage", 118, 5], ["platforms", 119, 5], ["mainProgram", 120, 5], ["maintainers", 121, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["nixosModuleDeps", 50, 3], ["communityModules", 57, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 65, 3], ["configureFlags", 73, 3], ["configurePlatforms", 82, 3], ["postBuild", 84, 3], ["buildFlags", 88, 3], ["postInstall", 95, 3], ["passthru", 109, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,17 +36,17 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), withDBI, nix.thunk(() => nix.sel(p, "luadbi"))), nix.app(withExtraLuaPackages, p)));
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "prosody",
       version: "13.0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://prosody.im/downloads/source/prosody-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-7GlvnPViw69KBLB9P7NqHO3MTmmjkv3c/FJLxn2TBQ8=",
         })))),
       nixosModuleDeps: nix.thunk(() => ["cloud_notify"]),
       communityModules: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://hg.prosody.im/prosody-modules",
           rev: "15a7749c7acb",
           hash: "sha256-RvhPV6YMdwxxIeHhpqXPfBh6087PAPAQV8D+stpXmBs=",
@@ -74,16 +69,16 @@ export default nix.lambda((args) => (() => {
 make -C tools/migration install
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         communityModules: withCommunityModules,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           prosody: nix.thunk(() => nix.attr(nixosTests, "prosody")),
           "prosody-mysql": nix.thunk(() => nix.attr(nixosTests, "prosody-mysql")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open-source XMPP application server written in Lua",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         changelog: nix.thunk(() => nix.str`https://prosody.im/doc/release/${nix.sel(finalAttrs, "version")}`),

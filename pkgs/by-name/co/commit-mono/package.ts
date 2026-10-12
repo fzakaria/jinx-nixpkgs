@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5], ["stripRoot", 14, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontConfigure", 17, 3], ["dontPatch", 18, 3], ["dontBuild", 19, 3], ["dontFixup", 20, 3], ["doCheck", 21, 3], ["nativeBuildInputs", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5], ["stripRoot", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontConfigure", 17, 3], ["dontPatch", 18, 3], ["dontBuild", 19, 3], ["dontFixup", 20, 3], ["doCheck", 21, 3], ["nativeBuildInputs", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "commit-mono",
       version: "1.143",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/eigilnikolajsen/commit-mono/releases/download/v${nix.sel(finalAttrs, "version")}/CommitMono-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-JTyPgWfbWq+lXQU/rgnyvPG6+V3f+FB5QUkd+I1oFKE=",
           stripRoot: false,
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Anonymous and neutral programming typeface focused on creating a better reading experience",
         homepage: "https://commitmono.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

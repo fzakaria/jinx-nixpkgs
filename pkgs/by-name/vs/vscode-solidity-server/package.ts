@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["npmDepsHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["npmBuildScript", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "pkg-config": false, libsecret: false, stdenv: false, clang_20: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["npmDepsHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["npmBuildScript", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const clang_20 = nix.arg($, "clang_20");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "solidity-language-server",
       version: "0.0.185",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "juanfranblanco",
           repo: "vscode-solidity",
           rev: "5198201a23874e79248e6b09558ca30e5bf5cdcf",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libsecret]),
       npmBuildScript: "build:cli",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Language Server for solidity code",
         homepage: "https://github.com/juanfranblanco/vscode-solidity",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

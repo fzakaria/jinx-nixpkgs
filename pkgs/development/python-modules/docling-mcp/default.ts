@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["llama-index-rag", 60, 5], ["llama-stack", 71, 5], ["smolagents", 72, 5]], [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["pythonRemoveDeps", 43, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 81, 3], ["pythonImportsCheck", 86, 3], ["disabledTestPaths", 88, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, accelerate: false, buildPythonPackage: false, docling: false, fetchFromGitHub: false, hatchling: false, httpx: false, "llama-index-core": false, "llama-index-embeddings-huggingface": false, "llama-index-embeddings-openai": false, "llama-index-llms-openai-like": false, "llama-index-node-parser-docling": false, "llama-index-readers-docling": false, "llama-index-readers-file": false, "llama-index-vector-stores-milvus": false, "llama-index": false, "llama-stack-client": false, mcp: false, ollama: false, "pydantic-settings": false, pydantic: false, "pytest-asyncio": false, pytestCheckHook: false, "python-dotenv": false, smolagents: false, torch: false, transformers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["llama-index-rag", 60, 5], ["llama-stack", 71, 5], ["smolagents", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["pythonRemoveDeps", 43, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 81, 3], ["pythonImportsCheck", 86, 3], ["disabledTestPaths", 88, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "docling-project",
           repo: "docling-mcp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [docling, httpx, mcp, pydantic, pydantic_settings, python_dotenv]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "llama-index-rag": nix.thunk(() => [
           llama_index,
           llama_index_core,
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["docling_mcp"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_mcp_server.py", "tests/test_conversion_tools.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Making docling agentic through MCP",
         homepage: "https://github.com/docling-project/docling-mcp",
         changelog: nix.thunk(() => nix.str`https://github.com/docling-project/docling-mcp/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -82,7 +79,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

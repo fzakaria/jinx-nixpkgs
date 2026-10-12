@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 31, 5], ["sha256", 32, 5]], [["pythonPaths", 38, 7]], [["packageName", 82, 7], ["versionPolicy", 83, 7], ["freeze", 84, 7]], [["updateScript", 81, 5]], [["description", 89, 5], ["mainProgram", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["teams", 94, 5]], [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 30, 3], ["patches", 35, 3], ["depsBuildBuild", 44, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 58, 3], ["propagatedBuildInputs", 66, 3], ["mesonFlags", 71, 3], ["postFixup", 75, 3], ["passthru", 80, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, replaceVars: false, meson: false, ninja: false, "pkg-config": false, gettext: false, "gi-docgen": false, gnome: false, glib: false, gtk3: false, "gobject-introspection": false, python3: false, ncurses: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pythonPaths", 38, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["packageName", 82, 7], ["versionPolicy", 83, 7], ["freeze", 84, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 81, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 89, 5], ["mainProgram", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["teams", 94, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 30, 3], ["patches", 35, 3], ["depsBuildBuild", 44, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 58, 3], ["propagatedBuildInputs", 66, 3], ["mesonFlags", 71, 3], ["postFixup", 75, 3], ["passthru", 80, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const version = "1.38.1";
       const outputs = nix.thunk(() => ["out", "dev", "devdoc"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libpeas/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libpeas-${version}.tar.xz`),
           sha256: "sha256-6C/TKK3KwaujS2QTa9/Lus8rMliovE5fSApyUCphGuk=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pythonPaths: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", (pkg) => nix.str`'${pkg}/${nix.sel(python3, "sitePackages")}'`, nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "pygobject3"))]))),
           })))),
       ]);
@@ -64,16 +59,16 @@ export default nix.lambda((args) => (() => {
       const mesonFlags = nix.thunk(() => ["-Dgtk_doc=true"]);
       const postFixup = "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             packageName: "libpeas",
             versionPolicy: "odd-unstable",
             freeze: true,
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "GObject-based plugins engine",
         mainProgram: "peas-demo",
         homepage: "https://gitlab.gnome.org/GNOME/libpeas",
@@ -82,7 +77,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         outputs,

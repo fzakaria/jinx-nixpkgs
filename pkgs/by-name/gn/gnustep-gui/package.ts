@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["changelog", 27, 5], ["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 37, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["propagatedBuildInputs", 20, 3], ["patches", 22, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchzip: false, "gnustep-base": false, wrapGNUstepAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 27, 5], ["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["propagatedBuildInputs", 20, 3], ["patches", 22, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const gnustep_base = nix.arg($, "gnustep-base");
   const wrapGNUstepAppsHook = nix.arg($, "wrapGNUstepAppsHook");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.32.0",
       pname: "gnustep-gui",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`ftp://ftp.gnustep.org/pub/gnustep/core/gnustep-gui-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-HEH80P51mnLRt4+d+gzpGCv4u6oOdf+x68CcvkR6G/o=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [gnustep_base]),
       patches: nix.thunk(() => [nix.path(here, "./fixup-all.patch")]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/gnustep/libs-gui/releases/tag/gui-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
         description: "GUI class library of GNUstep",
         homepage: "https://gnustep.github.io/",

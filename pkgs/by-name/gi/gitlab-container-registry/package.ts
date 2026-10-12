@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 13], ["hash", 17, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["teams", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]], [["pname", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["excludedPackages", 22, 3], ["checkFlags", 26, 3], ["__darwinAllowLocalNetworking", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitLab: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 13], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["teams", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["excludedPackages", 22, 3], ["checkFlags", 26, 3], ["__darwinAllowLocalNetworking", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.41.0";
       const rev = nix.thunk(() => nix.str`v${version}-gitlab`);
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gitlab-org",
           repo: "container-registry",
           rev: rev,
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       })());
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GitLab Docker toolset to pack, ship, store, and deliver content",
         homepage: "https://gitlab.com/gitlab-org/container-registry",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "registry",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         rev,

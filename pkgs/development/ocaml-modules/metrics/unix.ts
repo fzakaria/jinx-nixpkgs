@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unix.nix", [[["description", 31, 5]], [["pname", 13, 3], ["version", 15, 21], ["src", 15, 29], ["propagatedBuildInputs", 17, 3], ["nativeCheckInputs", 25, 3], ["checkInputs", 26, 3], ["doCheck", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, gnuplot: false, lwt: false, metrics: false, "metrics-lwt": false, mtime: false, uuidm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unix.nix", [["description", 31, 5]]);
-const pos$2 = nix.positions(here + "/unix.nix", [["pname", 13, 3], ["version", 15, 21], ["src", 15, 29], ["propagatedBuildInputs", 17, 3], ["nativeCheckInputs", 25, 3], ["checkInputs", 26, 3], ["doCheck", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const mtime = nix.arg($, "mtime");
   const uuidm = nix.arg($, "uuidm");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "metrics-unix",
       version: nix.thunk(() => nix.attr(metrics, "version")),
       src: nix.thunk(() => nix.attr(metrics, "src")),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [gnuplot]),
       checkInputs: nix.thunk(() => [metrics_lwt]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(metrics, "meta"), { [nix.POS]: pos$1, description: "Unix backend for the Metrics library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(metrics, "meta"), { [nix.POS]: $pos[0], description: "Unix backend for the Metrics library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=unix.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["dataframe", 39, 5], ["image", 43, 5], ["num", 47, 5]], [["changelog", 85, 5], ["description", 86, 5], ["longDescription", 87, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["buildInputs", 31, 3], ["dependencies", 33, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 53, 3], ["pytestFlags", 60, 3], ["disabledTests", 64, 3], ["pythonImportsCheck", 79, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchFromGitHub: false, matplotlib: false, numpy: false, pandas: false, pillow: false, pytest: false, "pytest-datadir": false, pytestCheckHook: false, pyyaml: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dataframe", 39, 5], ["image", 43, 5], ["num", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 85, 5], ["description", 86, 5], ["longDescription", 87, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["buildInputs", 31, 3], ["dependencies", 33, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 53, 3], ["pytestFlags", 60, 3], ["disabledTests", 64, 3], ["pythonImportsCheck", 79, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ESSS",
           repo: "pytest-regressions",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [pytest]);
       const dependencies = nix.thunk(() => [pytest_datadir, pyyaml]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         dataframe: nix.thunk(() => [pandas, numpy]),
         image: nix.thunk(() => [numpy, pillow]),
         num: nix.thunk(() => [numpy, pandas]),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isBigEndian")))), nix.thunk(() => ["test_different_data_types", "test_common_case"]))));
       const pythonImportsCheck = nix.thunk(() => ["pytest_regressions", "pytest_regressions.plugin"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/ESSS/pytest-regressions/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
         description: "Pytest fixtures to write regression tests",
         longDescription: "pytest-regressions makes it simple to test general data, images,\nfiles, and numeric tables by saving expected data in a data\ndirectory (courtesy of pytest-datadir) that can be used to verify\nthat future runs produce the same data.\n",
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 30, 5], ["mainProgram", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["prePatch", 19, 3], ["installPhase", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, wget: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["mainProgram", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["prePatch", 19, 3], ["installPhase", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const wget = nix.arg($, "wget");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wgetpaste",
       version: "2.34",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/zlin/wgetpaste/releases/download/${nix.sel(finalAttrs, "version")}/wgetpaste-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-vW0G7ZAaPWPJyMVxJghP8JlPCZAb+xY4uHlT6sHpQz8=",
         })))),
@@ -28,7 +26,7 @@ substituteInPlace wgetpaste --replace "LC_ALL=C wget" "LC_ALL=C ${wget}/bin/wget
 `),
       installPhase: "mkdir -p $out/bin;\ncp wgetpaste $out/bin;\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command-line interface to various pastebins",
         mainProgram: "wgetpaste",
         homepage: "https://github.com/zlin/wgetpaste",

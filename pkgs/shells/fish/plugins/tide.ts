@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tide.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postInstall", 21, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, buildFishPlugin: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tide.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/tide.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/tide.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postInstall", 21, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tide";
       const version = "6.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "IlanCosman",
           repo: "tide",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const postInstall = "cp -R functions/tide $out/share/fish/vendor_functions.d/\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Ultimate Fish prompt",
         homepage: "https://github.com/IlanCosman/tide",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jocelynthode"))]),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, postInstall, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, postInstall, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=tide.ts.map

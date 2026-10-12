@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5], ["license", 61, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 49, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, bash: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, discordpy: false, click: false, braceexpand: false, "import-expression": false, tabulate: false, pytestCheckHook: false, "pytest-asyncio": false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5], ["license", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 49, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jishaku",
       version: "2.6.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Gorialis",
           repo: "jishaku",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_asyncio]),
       pythonImportsCheck: nix.thunk(() => ["jishaku", "jishaku.repl", "jishaku.features"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Debugging and testing cog for discord.py bots",
         homepage: "https://jishaku.readthedocs.io/en/latest",
         changelog: nix.thunk(() => nix.str`https://github.com/Gorialis/jishaku/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

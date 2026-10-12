@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 28, 5], ["homepage", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["mainProgram", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cmakeFlags", 20, 3], ["nativeBuildInputs", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, scdoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["mainProgram", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cmakeFlags", 20, 3], ["nativeBuildInputs", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const scdoc = nix.arg($, "scdoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wl-restart",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Ferdi265",
           repo: "wl-restart",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [scdoc, cmake]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple tool that restarts your compositor when it crashes",
         homepage: "https://github.com/Ferdi265/wl-restart",
         changelog: nix.thunk(() => nix.str`https://github.com/Ferdi265/wl-restart/releases/tag/v${nix.sel(finalAttrs, "version")}`),

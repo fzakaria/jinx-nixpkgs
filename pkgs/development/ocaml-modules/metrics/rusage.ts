@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rusage.nix", [[["description", 24, 5]], [["pname", 9, 3], ["src", 10, 21], ["version", 10, 25], ["minimalOCamlVersion", 12, 3], ["duneVersion", 13, 3], ["propagatedBuildInputs", 15, 3], ["doCheck", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, metrics: false, fmt: false, logs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rusage.nix", [["description", 24, 5]]);
-const pos$2 = nix.positions(here + "/rusage.nix", [["pname", 9, 3], ["src", 10, 21], ["version", 10, 25], ["minimalOCamlVersion", 12, 3], ["duneVersion", 13, 3], ["propagatedBuildInputs", 15, 3], ["doCheck", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const logs = nix.arg($, "logs");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "metrics-rusage",
       src: nix.thunk(() => nix.attr(metrics, "src")),
       version: nix.thunk(() => nix.attr(metrics, "version")),
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [fmt, logs, metrics]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(metrics, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Resource usage (getrusage) sources for the Metrics library",
       })),
     })));

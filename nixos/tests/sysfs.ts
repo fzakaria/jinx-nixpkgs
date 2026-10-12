@@ -2,45 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sysfs.nix", [[["maintainers", 5, 8]], [["enabled", 10, 9], ["defrag", 11, 9], ["shmem_enabled", 12, 9]], [["transparent_hugepage", 9, 17]], [["mm", 9, 14]], [["scheduler", 15, 23]], [["queue", 15, 17]], [["*", 15, 13]], [["kernel", 9, 7], ["block", 15, 7]], [["sysfs", 8, 17]], [["kernel", 8, 10]], [["boot", 8, 5]], [["machine", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 19, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sysfs.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/sysfs.nix", [["enabled", 10, 9], ["defrag", 11, 9], ["shmem_enabled", 12, 9]]);
-const pos$3 = nix.positions(here + "/sysfs.nix", [["transparent_hugepage", 9, 17]]);
-const pos$4 = nix.positions(here + "/sysfs.nix", [["mm", 9, 14]]);
-const pos$5 = nix.positions(here + "/sysfs.nix", [["scheduler", 15, 23]]);
-const pos$6 = nix.positions(here + "/sysfs.nix", [["queue", 15, 17]]);
-const pos$7 = nix.positions(here + "/sysfs.nix", [["*", 15, 13]]);
-const pos$8 = nix.positions(here + "/sysfs.nix", [["kernel", 9, 7], ["block", 15, 7]]);
-const pos$9 = nix.positions(here + "/sysfs.nix", [["sysfs", 8, 17]]);
-const pos$10 = nix.positions(here + "/sysfs.nix", [["kernel", 8, 10]]);
-const pos$11 = nix.positions(here + "/sysfs.nix", [["boot", 8, 5]]);
-const pos$12 = nix.positions(here + "/sysfs.nix", [["machine", 7, 9]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/sysfs.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "sysfs",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           kernel: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             sysfs: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               kernel: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 mm: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   transparent_hugepage: nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     enabled: "always",
                     defrag: "defer",
                     shmem_enabled: "within_size",
@@ -48,10 +36,10 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               block: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 "*": nix.thunk(() => ({
-                  [nix.POS]: pos$6,
-                  queue: nix.thunk(() => ({ [nix.POS]: pos$5, scheduler: "none" })),
+                  [nix.POS]: $pos[5],
+                  queue: nix.thunk(() => ({ [nix.POS]: $pos[4], scheduler: "none" })),
                 })),
               })),
             })),

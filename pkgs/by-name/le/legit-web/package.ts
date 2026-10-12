@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 13, 5], ["owner", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["legit", 29, 43]], [["tests", 29, 12]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["postInstall", 21, 3], ["passthru", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 13, 5], ["owner", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["legit", 29, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 29, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["postInstall", 21, 3], ["passthru", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "legit",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "legit",
           owner: "icyphox",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-4XplNx+Pyv6dn+ophBFxQ3lv3xAf1jP2DpLYX1RenvQ=",
       postInstall: "mkdir -p $out/lib/legit/templates\nmkdir -p $out/lib/legit/static\n\ncp -r templates/* $out/lib/legit/templates\ncp -r static/* $out/lib/legit/static\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, legit: nix.thunk(() => nix.attr(nixosTests, "legit")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], legit: nix.thunk(() => nix.attr(nixosTests, "legit")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Web frontend for git",
         homepage: "https://github.com/icyphox/legit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

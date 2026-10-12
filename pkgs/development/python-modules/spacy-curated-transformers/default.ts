@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["pythonRelaxDeps", 26, 3], ["dependencies", 30, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "curated-tokenizers": false, "curated-transformers": false, spacy: false, torch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["pythonRelaxDeps", 26, 3], ["dependencies", 30, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const spacy = nix.arg($, "spacy");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "spacy-curated-transformers",
       version: "2.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "explosion",
           repo: "spacy-curated-transformers",
           tag: nix.thunk(() => nix.str`release-v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [curated_tokenizers, curated_transformers, spacy, torch]),
       pythonImportsCheck: nix.thunk(() => ["spacy_curated_transformers"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "spaCy entry points for Curated Transformers",
         homepage: "https://github.com/explosion/spacy-curated-transformers",
         changelog: nix.thunk(() => nix.str`https://github.com/explosion/spacy-curated-transformers/releases/tag/v${nix.sel(finalAttrs, "version")}`),

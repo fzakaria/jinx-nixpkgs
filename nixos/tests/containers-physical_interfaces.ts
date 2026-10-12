@@ -2,127 +2,54 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/containers-physical_interfaces.nix", [[["vlans", 11, 24]], [["address", 20, 17], ["prefixLength", 21, 17]], [["addresses", 18, 45]], [["ipv4", 18, 40]], [["eth1", 18, 35]], [["enable", 24, 33]], [["interfaces", 18, 24], ["firewall", 24, 24]], [["enable", 25, 17]], [["networking", 18, 13], ["nix", 25, 13]], [["privateNetwork", 14, 11], ["interfaces", 15, 11], ["config", 17, 11]], [["server", 13, 20]], [["virtualisation", 11, 9], ["containers", 13, 9]], [["vlans", 32, 24]], [["useNetworkd", 34, 20]], [["Name", 37, 11], ["Kind", 38, 11]], [["netdevConfig", 36, 49]], [["20-dummy-test", 36, 33]], [["netdevs", 36, 25]], [["network", 36, 17]], [["enable", 47, 33]], [["firewall", 47, 24]], [["enable", 48, 17]], [["networking", 47, 13], ["nix", 48, 13]], [["autoStart", 42, 11], ["privateNetwork", 43, 11], ["interfaces", 44, 11], ["config", 46, 11]], [["autoStart", 41, 20]], [["virtualisation", 32, 9], ["networking", 34, 9], ["systemd", 36, 9], ["containers", 41, 9]], [["vlans", 55, 24]], [["interfaces", 62, 36]], [["br0", 62, 32]], [["address", 65, 17], ["prefixLength", 66, 17]], [["addresses", 63, 44]], [["ipv4", 63, 39]], [["br0", 63, 35]], [["enable", 69, 33]], [["bridges", 62, 24], ["interfaces", 63, 24], ["firewall", 69, 24]], [["enable", 70, 17]], [["networking", 62, 13], ["nix", 70, 13]], [["privateNetwork", 58, 11], ["interfaces", 59, 11], ["config", 61, 11]], [["bridged", 57, 20]], [["virtualisation", 55, 9], ["containers", 57, 9]], [["vlans", 78, 24]], [["mode", 87, 29]], [["interfaces", 86, 15], ["driverOptions", 87, 15]], [["bond0", 85, 30]], [["address", 91, 17], ["prefixLength", 92, 17]], [["addresses", 89, 46]], [["ipv4", 89, 41]], [["bond0", 89, 35]], [["enable", 95, 33]], [["bonds", 85, 24], ["interfaces", 89, 24], ["firewall", 95, 24]], [["enable", 96, 17]], [["networking", 85, 13], ["nix", 96, 13]], [["privateNetwork", 81, 11], ["interfaces", 82, 11], ["config", 84, 11]], [["bonded", 80, 20]], [["virtualisation", 78, 9], ["containers", 80, 9]], [["vlans", 104, 24]], [["mode", 113, 29]], [["interfaces", 112, 15], ["driverOptions", 113, 15]], [["bond0", 111, 30]], [["interfaces", 115, 36]], [["br0", 115, 32]], [["address", 118, 17], ["prefixLength", 119, 17]], [["addresses", 116, 44]], [["ipv4", 116, 39]], [["br0", 116, 35]], [["enable", 122, 33]], [["bonds", 111, 24], ["bridges", 115, 24], ["interfaces", 116, 24], ["firewall", 122, 24]], [["enable", 123, 17]], [["networking", 111, 13], ["nix", 123, 13]], [["privateNetwork", 107, 11], ["interfaces", 108, 11], ["config", 110, 11]], [["bridgedbond", 106, 20]], [["virtualisation", 104, 9], ["containers", 106, 9]], [["server", 8, 5], ["autoStart", 29, 5], ["bridged", 52, 5], ["bonded", 75, 5], ["bridgedbond", 101, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 7, 3], ["testScript", 129, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/containers-physical_interfaces.nix", [["vlans", 11, 24]]);
-const pos$2 = nix.positions(here + "/containers-physical_interfaces.nix", [["address", 20, 17], ["prefixLength", 21, 17]]);
-const pos$3 = nix.positions(here + "/containers-physical_interfaces.nix", [["addresses", 18, 45]]);
-const pos$4 = nix.positions(here + "/containers-physical_interfaces.nix", [["ipv4", 18, 40]]);
-const pos$5 = nix.positions(here + "/containers-physical_interfaces.nix", [["eth1", 18, 35]]);
-const pos$6 = nix.positions(here + "/containers-physical_interfaces.nix", [["enable", 24, 33]]);
-const pos$7 = nix.positions(here + "/containers-physical_interfaces.nix", [["interfaces", 18, 24], ["firewall", 24, 24]]);
-const pos$8 = nix.positions(here + "/containers-physical_interfaces.nix", [["enable", 25, 17]]);
-const pos$9 = nix.positions(here + "/containers-physical_interfaces.nix", [["networking", 18, 13], ["nix", 25, 13]]);
-const pos$10 = nix.positions(here + "/containers-physical_interfaces.nix", [["privateNetwork", 14, 11], ["interfaces", 15, 11], ["config", 17, 11]]);
-const pos$11 = nix.positions(here + "/containers-physical_interfaces.nix", [["server", 13, 20]]);
-const pos$12 = nix.positions(here + "/containers-physical_interfaces.nix", [["virtualisation", 11, 9], ["containers", 13, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$13 = nix.positions(here + "/containers-physical_interfaces.nix", [["vlans", 32, 24]]);
-const pos$14 = nix.positions(here + "/containers-physical_interfaces.nix", [["useNetworkd", 34, 20]]);
-const pos$15 = nix.positions(here + "/containers-physical_interfaces.nix", [["Name", 37, 11], ["Kind", 38, 11]]);
-const pos$16 = nix.positions(here + "/containers-physical_interfaces.nix", [["netdevConfig", 36, 49]]);
-const pos$17 = nix.positions(here + "/containers-physical_interfaces.nix", [["20-dummy-test", 36, 33]]);
-const pos$18 = nix.positions(here + "/containers-physical_interfaces.nix", [["netdevs", 36, 25]]);
-const pos$19 = nix.positions(here + "/containers-physical_interfaces.nix", [["network", 36, 17]]);
-const pos$20 = nix.positions(here + "/containers-physical_interfaces.nix", [["enable", 47, 33]]);
-const pos$21 = nix.positions(here + "/containers-physical_interfaces.nix", [["firewall", 47, 24]]);
-const pos$22 = nix.positions(here + "/containers-physical_interfaces.nix", [["enable", 48, 17]]);
-const pos$23 = nix.positions(here + "/containers-physical_interfaces.nix", [["networking", 47, 13], ["nix", 48, 13]]);
-const pos$24 = nix.positions(here + "/containers-physical_interfaces.nix", [["autoStart", 42, 11], ["privateNetwork", 43, 11], ["interfaces", 44, 11], ["config", 46, 11]]);
-const pos$25 = nix.positions(here + "/containers-physical_interfaces.nix", [["autoStart", 41, 20]]);
-const pos$26 = nix.positions(here + "/containers-physical_interfaces.nix", [["virtualisation", 32, 9], ["networking", 34, 9], ["systemd", 36, 9], ["containers", 41, 9]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$27 = nix.positions(here + "/containers-physical_interfaces.nix", [["vlans", 55, 24]]);
-const pos$28 = nix.positions(here + "/containers-physical_interfaces.nix", [["interfaces", 62, 36]]);
-const pos$29 = nix.positions(here + "/containers-physical_interfaces.nix", [["br0", 62, 32]]);
-const pos$30 = nix.positions(here + "/containers-physical_interfaces.nix", [["address", 65, 17], ["prefixLength", 66, 17]]);
-const pos$31 = nix.positions(here + "/containers-physical_interfaces.nix", [["addresses", 63, 44]]);
-const pos$32 = nix.positions(here + "/containers-physical_interfaces.nix", [["ipv4", 63, 39]]);
-const pos$33 = nix.positions(here + "/containers-physical_interfaces.nix", [["br0", 63, 35]]);
-const pos$34 = nix.positions(here + "/containers-physical_interfaces.nix", [["enable", 69, 33]]);
-const pos$35 = nix.positions(here + "/containers-physical_interfaces.nix", [["bridges", 62, 24], ["interfaces", 63, 24], ["firewall", 69, 24]]);
-const pos$36 = nix.positions(here + "/containers-physical_interfaces.nix", [["enable", 70, 17]]);
-const pos$37 = nix.positions(here + "/containers-physical_interfaces.nix", [["networking", 62, 13], ["nix", 70, 13]]);
-const pos$38 = nix.positions(here + "/containers-physical_interfaces.nix", [["privateNetwork", 58, 11], ["interfaces", 59, 11], ["config", 61, 11]]);
-const pos$39 = nix.positions(here + "/containers-physical_interfaces.nix", [["bridged", 57, 20]]);
-const pos$40 = nix.positions(here + "/containers-physical_interfaces.nix", [["virtualisation", 55, 9], ["containers", 57, 9]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$41 = nix.positions(here + "/containers-physical_interfaces.nix", [["vlans", 78, 24]]);
-const pos$42 = nix.positions(here + "/containers-physical_interfaces.nix", [["mode", 87, 29]]);
-const pos$43 = nix.positions(here + "/containers-physical_interfaces.nix", [["interfaces", 86, 15], ["driverOptions", 87, 15]]);
-const pos$44 = nix.positions(here + "/containers-physical_interfaces.nix", [["bond0", 85, 30]]);
-const pos$45 = nix.positions(here + "/containers-physical_interfaces.nix", [["address", 91, 17], ["prefixLength", 92, 17]]);
-const pos$46 = nix.positions(here + "/containers-physical_interfaces.nix", [["addresses", 89, 46]]);
-const pos$47 = nix.positions(here + "/containers-physical_interfaces.nix", [["ipv4", 89, 41]]);
-const pos$48 = nix.positions(here + "/containers-physical_interfaces.nix", [["bond0", 89, 35]]);
-const pos$49 = nix.positions(here + "/containers-physical_interfaces.nix", [["enable", 95, 33]]);
-const pos$50 = nix.positions(here + "/containers-physical_interfaces.nix", [["bonds", 85, 24], ["interfaces", 89, 24], ["firewall", 95, 24]]);
-const pos$51 = nix.positions(here + "/containers-physical_interfaces.nix", [["enable", 96, 17]]);
-const pos$52 = nix.positions(here + "/containers-physical_interfaces.nix", [["networking", 85, 13], ["nix", 96, 13]]);
-const pos$53 = nix.positions(here + "/containers-physical_interfaces.nix", [["privateNetwork", 81, 11], ["interfaces", 82, 11], ["config", 84, 11]]);
-const pos$54 = nix.positions(here + "/containers-physical_interfaces.nix", [["bonded", 80, 20]]);
-const pos$55 = nix.positions(here + "/containers-physical_interfaces.nix", [["virtualisation", 78, 9], ["containers", 80, 9]]);
 const formals$6 = { args: {  }, ellipsis: true };
-const pos$56 = nix.positions(here + "/containers-physical_interfaces.nix", [["vlans", 104, 24]]);
-const pos$57 = nix.positions(here + "/containers-physical_interfaces.nix", [["mode", 113, 29]]);
-const pos$58 = nix.positions(here + "/containers-physical_interfaces.nix", [["interfaces", 112, 15], ["driverOptions", 113, 15]]);
-const pos$59 = nix.positions(here + "/containers-physical_interfaces.nix", [["bond0", 111, 30]]);
-const pos$60 = nix.positions(here + "/containers-physical_interfaces.nix", [["interfaces", 115, 36]]);
-const pos$61 = nix.positions(here + "/containers-physical_interfaces.nix", [["br0", 115, 32]]);
-const pos$62 = nix.positions(here + "/containers-physical_interfaces.nix", [["address", 118, 17], ["prefixLength", 119, 17]]);
-const pos$63 = nix.positions(here + "/containers-physical_interfaces.nix", [["addresses", 116, 44]]);
-const pos$64 = nix.positions(here + "/containers-physical_interfaces.nix", [["ipv4", 116, 39]]);
-const pos$65 = nix.positions(here + "/containers-physical_interfaces.nix", [["br0", 116, 35]]);
-const pos$66 = nix.positions(here + "/containers-physical_interfaces.nix", [["enable", 122, 33]]);
-const pos$67 = nix.positions(here + "/containers-physical_interfaces.nix", [["bonds", 111, 24], ["bridges", 115, 24], ["interfaces", 116, 24], ["firewall", 122, 24]]);
-const pos$68 = nix.positions(here + "/containers-physical_interfaces.nix", [["enable", 123, 17]]);
-const pos$69 = nix.positions(here + "/containers-physical_interfaces.nix", [["networking", 111, 13], ["nix", 123, 13]]);
-const pos$70 = nix.positions(here + "/containers-physical_interfaces.nix", [["privateNetwork", 107, 11], ["interfaces", 108, 11], ["config", 110, 11]]);
-const pos$71 = nix.positions(here + "/containers-physical_interfaces.nix", [["bridgedbond", 106, 20]]);
-const pos$72 = nix.positions(here + "/containers-physical_interfaces.nix", [["virtualisation", 104, 9], ["containers", 106, 9]]);
-const pos$73 = nix.positions(here + "/containers-physical_interfaces.nix", [["server", 8, 5], ["autoStart", 29, 5], ["bridged", 52, 5], ["bonded", 75, 5], ["bridgedbond", 101, 5]]);
-const pos$74 = nix.positions(here + "/containers-physical_interfaces.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 7, 3], ["testScript", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$74,
+    [nix.POS]: $pos[73],
     name: "containers-physical_interfaces",
     meta: nix.thunk(() => ({})),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$73,
+      [nix.POS]: $pos[72],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$12,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[11],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], vlans: nix.thunk(() => [1n]) })),
           containers: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             server: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               privateNetwork: true,
               interfaces: nix.thunk(() => ["eth1"]),
               config: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 networking: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   interfaces: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     eth1: nix.thunk(() => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       ipv4: nix.thunk(() => ({
-                        [nix.POS]: pos$3,
+                        [nix.POS]: $pos[2],
                         addresses: nix.thunk(() => [
-                          nix.thunk(() => ({ [nix.POS]: pos$2, address: "10.10.0.1", prefixLength: 24n })),
+                          nix.thunk(() => ({ [nix.POS]: $pos[1], address: "10.10.0.1", prefixLength: 24n })),
                         ]),
                       })),
                     })),
                   })),
-                  firewall: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
+                  firewall: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: false })),
                 })),
-                nix: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
+                nix: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: false })),
               })),
             })),
           })),
@@ -131,36 +58,36 @@ export default nix.lambda((args) => (() => {
       autoStart: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$26,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$13, vlans: nix.thunk(() => [1n]) })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$14, useNetworkd: true })),
+          [nix.POS]: $pos[25],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[12], vlans: nix.thunk(() => [1n]) })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[13], useNetworkd: true })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             network: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               netdevs: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 "20-dummy-test": nix.thunk(() => ({
-                  [nix.POS]: pos$16,
-                  netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$15, Name: "dummy-test", Kind: "dummy" })),
+                  [nix.POS]: $pos[15],
+                  netdevConfig: nix.thunk(() => ({ [nix.POS]: $pos[14], Name: "dummy-test", Kind: "dummy" })),
                 })),
               })),
             })),
           })),
           containers: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             autoStart: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               autoStart: true,
               privateNetwork: true,
               interfaces: nix.thunk(() => ["dummy-test"]),
               config: nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 networking: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
-                  firewall: nix.thunk(() => ({ [nix.POS]: pos$20, enable: false })),
+                  [nix.POS]: $pos[20],
+                  firewall: nix.thunk(() => ({ [nix.POS]: $pos[19], enable: false })),
                 })),
-                nix: nix.thunk(() => ({ [nix.POS]: pos$22, enable: false })),
+                nix: nix.thunk(() => ({ [nix.POS]: $pos[21], enable: false })),
               })),
             })),
           })),
@@ -169,37 +96,37 @@ export default nix.lambda((args) => (() => {
       bridged: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          [nix.POS]: pos$40,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$27, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[39],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[26], vlans: nix.thunk(() => [1n]) })),
           containers: nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             bridged: nix.thunk(() => ({
-              [nix.POS]: pos$38,
+              [nix.POS]: $pos[37],
               privateNetwork: true,
               interfaces: nix.thunk(() => ["eth1"]),
               config: nix.thunk(() => ({
-                [nix.POS]: pos$37,
+                [nix.POS]: $pos[36],
                 networking: nix.thunk(() => ({
-                  [nix.POS]: pos$35,
+                  [nix.POS]: $pos[34],
                   bridges: nix.thunk(() => ({
-                    [nix.POS]: pos$29,
-                    br0: nix.thunk(() => ({ [nix.POS]: pos$28, interfaces: nix.thunk(() => ["eth1"]) })),
+                    [nix.POS]: $pos[28],
+                    br0: nix.thunk(() => ({ [nix.POS]: $pos[27], interfaces: nix.thunk(() => ["eth1"]) })),
                   })),
                   interfaces: nix.thunk(() => ({
-                    [nix.POS]: pos$33,
+                    [nix.POS]: $pos[32],
                     br0: nix.thunk(() => ({
-                      [nix.POS]: pos$32,
+                      [nix.POS]: $pos[31],
                       ipv4: nix.thunk(() => ({
-                        [nix.POS]: pos$31,
+                        [nix.POS]: $pos[30],
                         addresses: nix.thunk(() => [
-                          nix.thunk(() => ({ [nix.POS]: pos$30, address: "10.10.0.2", prefixLength: 24n })),
+                          nix.thunk(() => ({ [nix.POS]: $pos[29], address: "10.10.0.2", prefixLength: 24n })),
                         ]),
                       })),
                     })),
                   })),
-                  firewall: nix.thunk(() => ({ [nix.POS]: pos$34, enable: false })),
+                  firewall: nix.thunk(() => ({ [nix.POS]: $pos[33], enable: false })),
                 })),
-                nix: nix.thunk(() => ({ [nix.POS]: pos$36, enable: false })),
+                nix: nix.thunk(() => ({ [nix.POS]: $pos[35], enable: false })),
               })),
             })),
           })),
@@ -208,41 +135,41 @@ export default nix.lambda((args) => (() => {
       bonded: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         return {
-          [nix.POS]: pos$55,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$41, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[54],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[40], vlans: nix.thunk(() => [1n]) })),
           containers: nix.thunk(() => ({
-            [nix.POS]: pos$54,
+            [nix.POS]: $pos[53],
             bonded: nix.thunk(() => ({
-              [nix.POS]: pos$53,
+              [nix.POS]: $pos[52],
               privateNetwork: true,
               interfaces: nix.thunk(() => ["eth1"]),
               config: nix.thunk(() => ({
-                [nix.POS]: pos$52,
+                [nix.POS]: $pos[51],
                 networking: nix.thunk(() => ({
-                  [nix.POS]: pos$50,
+                  [nix.POS]: $pos[49],
                   bonds: nix.thunk(() => ({
-                    [nix.POS]: pos$44,
+                    [nix.POS]: $pos[43],
                     bond0: nix.thunk(() => ({
-                      [nix.POS]: pos$43,
+                      [nix.POS]: $pos[42],
                       interfaces: nix.thunk(() => ["eth1"]),
-                      driverOptions: nix.thunk(() => ({ [nix.POS]: pos$42, mode: "active-backup" })),
+                      driverOptions: nix.thunk(() => ({ [nix.POS]: $pos[41], mode: "active-backup" })),
                     })),
                   })),
                   interfaces: nix.thunk(() => ({
-                    [nix.POS]: pos$48,
+                    [nix.POS]: $pos[47],
                     bond0: nix.thunk(() => ({
-                      [nix.POS]: pos$47,
+                      [nix.POS]: $pos[46],
                       ipv4: nix.thunk(() => ({
-                        [nix.POS]: pos$46,
+                        [nix.POS]: $pos[45],
                         addresses: nix.thunk(() => [
-                          nix.thunk(() => ({ [nix.POS]: pos$45, address: "10.10.0.3", prefixLength: 24n })),
+                          nix.thunk(() => ({ [nix.POS]: $pos[44], address: "10.10.0.3", prefixLength: 24n })),
                         ]),
                       })),
                     })),
                   })),
-                  firewall: nix.thunk(() => ({ [nix.POS]: pos$49, enable: false })),
+                  firewall: nix.thunk(() => ({ [nix.POS]: $pos[48], enable: false })),
                 })),
-                nix: nix.thunk(() => ({ [nix.POS]: pos$51, enable: false })),
+                nix: nix.thunk(() => ({ [nix.POS]: $pos[50], enable: false })),
               })),
             })),
           })),
@@ -251,45 +178,45 @@ export default nix.lambda((args) => (() => {
       bridgedbond: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$6);
         return {
-          [nix.POS]: pos$72,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$56, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[71],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[55], vlans: nix.thunk(() => [1n]) })),
           containers: nix.thunk(() => ({
-            [nix.POS]: pos$71,
+            [nix.POS]: $pos[70],
             bridgedbond: nix.thunk(() => ({
-              [nix.POS]: pos$70,
+              [nix.POS]: $pos[69],
               privateNetwork: true,
               interfaces: nix.thunk(() => ["eth1"]),
               config: nix.thunk(() => ({
-                [nix.POS]: pos$69,
+                [nix.POS]: $pos[68],
                 networking: nix.thunk(() => ({
-                  [nix.POS]: pos$67,
+                  [nix.POS]: $pos[66],
                   bonds: nix.thunk(() => ({
-                    [nix.POS]: pos$59,
+                    [nix.POS]: $pos[58],
                     bond0: nix.thunk(() => ({
-                      [nix.POS]: pos$58,
+                      [nix.POS]: $pos[57],
                       interfaces: nix.thunk(() => ["eth1"]),
-                      driverOptions: nix.thunk(() => ({ [nix.POS]: pos$57, mode: "active-backup" })),
+                      driverOptions: nix.thunk(() => ({ [nix.POS]: $pos[56], mode: "active-backup" })),
                     })),
                   })),
                   bridges: nix.thunk(() => ({
-                    [nix.POS]: pos$61,
-                    br0: nix.thunk(() => ({ [nix.POS]: pos$60, interfaces: nix.thunk(() => ["bond0"]) })),
+                    [nix.POS]: $pos[60],
+                    br0: nix.thunk(() => ({ [nix.POS]: $pos[59], interfaces: nix.thunk(() => ["bond0"]) })),
                   })),
                   interfaces: nix.thunk(() => ({
-                    [nix.POS]: pos$65,
+                    [nix.POS]: $pos[64],
                     br0: nix.thunk(() => ({
-                      [nix.POS]: pos$64,
+                      [nix.POS]: $pos[63],
                       ipv4: nix.thunk(() => ({
-                        [nix.POS]: pos$63,
+                        [nix.POS]: $pos[62],
                         addresses: nix.thunk(() => [
-                          nix.thunk(() => ({ [nix.POS]: pos$62, address: "10.10.0.4", prefixLength: 24n })),
+                          nix.thunk(() => ({ [nix.POS]: $pos[61], address: "10.10.0.4", prefixLength: 24n })),
                         ]),
                       })),
                     })),
                   })),
-                  firewall: nix.thunk(() => ({ [nix.POS]: pos$66, enable: false })),
+                  firewall: nix.thunk(() => ({ [nix.POS]: $pos[65], enable: false })),
                 })),
-                nix: nix.thunk(() => ({ [nix.POS]: pos$68, enable: false })),
+                nix: nix.thunk(() => ({ [nix.POS]: $pos[67], enable: false })),
               })),
             })),
           })),

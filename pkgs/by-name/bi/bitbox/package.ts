@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["fetchSubmodules", 33, 5], ["hash", 34, 5]], [["pname", 50, 5], ["version", 51, 13], ["src", 52, 13], ["sourceRoot", 53, 5], ["npmDepsHash", 54, 5], ["installPhase", 55, 5]], [["web", 49, 12]], [["description", 101, 5], ["homepage", 102, 5], ["downloadPage", 103, 5], ["changelog", 104, 5], ["license", 107, 5], ["maintainers", 108, 5], ["mainProgram", 109, 5], ["sourceProvenance", 110, 5], ["platforms", 111, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["dontConfigure", 47, 3], ["passthru", 49, 3], ["buildPhase", 58, 3], ["installPhase", 74, 3], ["buildInputs", 88, 3], ["nativeBuildInputs", 90, 3], ["doInstallCheck", 98, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, runCommand: false, buildNpmPackage: false, callPackage: false, clang: false, go: false, qt5: false, qt6: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["fetchSubmodules", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 50, 5], ["version", 51, 13], ["src", 52, 13], ["sourceRoot", 53, 5], ["npmDepsHash", 54, 5], ["installPhase", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["web", 49, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["downloadPage", 103, 5], ["changelog", 104, 5], ["license", 107, 5], ["maintainers", 108, 5], ["mainProgram", 109, 5], ["sourceProvenance", 110, 5], ["platforms", 111, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["dontConfigure", 47, 3], ["passthru", 49, 3], ["buildPhase", 58, 3], ["installPhase", 74, 3], ["buildInputs", 88, 3], ["nativeBuildInputs", 90, 3], ["doInstallCheck", 98, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +26,7 @@ cp ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(qt5, "qtbase", "de
       const pname = "bitbox";
       const version = "4.52.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BitBoxSwiss",
           repo: "bitbox-wallet-app",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,9 +43,9 @@ rm vendor/github.com/breez/breez-sdk-spark-go/breez_sdk_spark/lib/linux-amd64/li
 `);
       const dontConfigure = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         web: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: "bitbox-web",
             version: version,
             src: src,
@@ -94,7 +90,7 @@ runHook postInstall
       ]);
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Companion app for the BitBox02 hardware wallet",
         homepage: "https://bitbox.swiss/app/",
         downloadPage: "https://github.com/BitBoxSwiss/bitbox-wallet-app",
@@ -106,7 +102,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

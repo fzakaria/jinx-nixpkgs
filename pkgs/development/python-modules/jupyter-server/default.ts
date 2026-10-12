@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 52, 5], ["version", 53, 26], ["hash", 54, 5]], [["vendor", 148, 7], ["product", 149, 7], ["version", 150, 7], ["update", 151, 7]], [["cpeParts", 147, 17]], [["description", 141, 5], ["homepage", 142, 5], ["changelog", 143, 5], ["license", 144, 5], ["teams", 145, 5], ["mainProgram", 146, 5], ["identifiers", 147, 5]], [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["__structuredAttrs", 48, 3], ["src", 51, 3], ["build-system", 57, 3], ["dependencies", 62, 3], ["stripExclude", 84, 3], ["pythonImportsCheck", 86, 3], ["nativeCheckInputs", 88, 3], ["pytestFlags", 101, 3], ["disabledTests", 106, 3], ["disabledTestPaths", 127, 3], ["__darwinAllowLocalNetworking", 138, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, "hatch-jupyter-builder": false, hatchling: false, anyio: false, "argon2-cffi": false, jinja2: false, "jupyter-client": false, "jupyter-core": false, "jupyter-events": false, "jupyter-server-terminals": false, nbconvert: false, nbformat: false, overrides: false, packaging: false, "prometheus-client": false, pyzmq: false, send2trash: false, terminado: false, tornado: false, traitlets: false, "websocket-client": false, addBinToPathHook: false, flaky: false, ipykernel: false, "pytest-console-scripts": false, "pytest-jupyter": false, "pytest-timeout": false, pytestCheckHook: false, requests: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 52, 5], ["version", 53, 26], ["hash", 54, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["vendor", 148, 7], ["product", 149, 7], ["version", 150, 7], ["update", 151, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cpeParts", 147, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 141, 5], ["homepage", 142, 5], ["changelog", 143, 5], ["license", 144, 5], ["teams", 145, 5], ["mainProgram", 146, 5], ["identifiers", 147, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["__structuredAttrs", 48, 3], ["src", 51, 3], ["build-system", 57, 3], ["dependencies", 62, 3], ["stripExclude", 84, 3], ["pythonImportsCheck", 86, 3], ["nativeCheckInputs", 88, 3], ["pytestFlags", 101, 3], ["disabledTests", 106, 3], ["disabledTestPaths", 127, 3], ["__darwinAllowLocalNetworking", 138, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,13 +42,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jupyter-server",
       version: "2.21.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "jupyter_server",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-cNmhiD9X01duoX9M4GHsGnqtfvOI0AQoz7f15PACInE=",
@@ -110,7 +106,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Backend—i.e. core services, APIs, and REST endpoints—to Jupyter web applications",
         homepage: "https://github.com/jupyter-server/jupyter_server",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter-server/jupyter_server/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
@@ -118,9 +114,9 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "jupyter"))]),
         mainProgram: "jupyter-server",
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           cpeParts: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             vendor: "jupyter",
             product: "jupyter_server",
             version: nix.thunk(() => nix.sel(finalAttrs, "version")),

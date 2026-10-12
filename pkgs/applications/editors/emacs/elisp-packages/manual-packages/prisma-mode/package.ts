@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 26, 5], ["license", 27, 5]], [["pname", 10, 3], ["version", 11, 3], ["packageRequires", 13, 3], ["src", 18, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, melpaBuild: false, "js2-mode": false, "lsp-mode": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["license", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["packageRequires", 13, 3], ["src", 18, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const js2_mode = nix.arg($, "js2-mode");
   const lsp_mode = nix.arg($, "lsp-mode");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "prisma-mode",
       version: "0-unstable-2021-12-07",
       packageRequires: nix.thunk(() => [js2_mode, lsp_mode]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pimeys",
           repo: "emacs-prisma-mode",
           rev: "5283ca7403bcb21ca0cac8ecb063600752dfd9d4",
           hash: "sha256-DJJfjbu27Gi7Nzsa1cdi8nIQowKH8ZxgQBwfXLB0Q/I=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Major mode for Prisma Schema Language",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       })),

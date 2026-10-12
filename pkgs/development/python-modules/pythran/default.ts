@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["gomp", 40, 7]], [["changelog", 80, 5], ["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["postPatch", 47, 3], ["build-system", 52, 3], ["dependencies", 54, 3], ["pythonRelaxDeps", 62, 3], ["pythonImportsCheck", 67, 3], ["doCheck", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, python: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, setuptools: false, openmp: false, xsimd: false, ply: false, gast: false, numpy: false, beniget: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gomp", 40, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 80, 5], ["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["postPatch", 47, 3], ["build-system", 52, 3], ["dependencies", 54, 3], ["pythonRelaxDeps", 62, 3], ["pythonImportsCheck", 67, 3], ["doCheck", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.18.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "serge-sans-paille",
           repo: "pythran",
           tag: version,
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-hardcode-path-to-libgomp.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             gomp: nix.thunk(() => nix.str`${(nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? nix.force(openmp) : nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc"))))}/lib/libgomp${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
       ]);
@@ -56,7 +53,7 @@ ln -s '${nix.app(nix.sel(lib, "getDev"), xsimd)}'/include/xsimd pythran/
       ]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/serge-sans-paille/pythran/blob/${nix.sel(src, "tag")}/Changelog`),
         description: "Ahead of Time compiler for numeric kernels",
         homepage: "https://github.com/serge-sans-paille/pythran",
@@ -67,7 +64,7 @@ ln -s '${nix.app(nix.sel(lib, "getDev"), xsimd)}'/include/xsimd pythran/
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

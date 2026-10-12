@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 13, 13], ["version", 13, 19], ["url", 14, 5], ["hash", 15, 5]], [["homepage", 35, 5], ["description", 36, 5], ["mainProgram", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["patches", 22, 3], ["installPhase", 26, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 13, 13], ["version", 13, 19], ["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 35, 5], ["description", 36, 5], ["mainProgram", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["patches", 22, 3], ["installPhase", 26, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "msr";
       const version = "20060208";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           url: nix.thunk(() => nix.str`https://www.etallen.com/msr/msr-${version}.src.tar.gz`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./000-include-sysmacros.patch")]);
       const installPhase = "runHook preInstall\nmkdir -p $out/bin/\ncp msr $out/bin/\ninstallManPage msr.man\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.etallen.com/msr.html",
         description: "Linux tool to display or modify x86 model-specific registers (MSRs)",
         mainProgram: "msr",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

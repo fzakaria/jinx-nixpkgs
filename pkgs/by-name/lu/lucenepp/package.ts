@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 51, 5], ["maintainers", 52, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["cmakeFlags", 29, 3], ["doCheck", 35, 3], ["checkPhase", 37, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, boost: false, gtest: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["cmakeFlags", 29, 3], ["doCheck", 35, 3], ["checkPhase", 37, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lucene++";
       const version = "3.0.9-unstable-2026-01-25";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "luceneplusplus",
           repo: "LucenePlusPlus",
           rev: "f11e0895cf1dd7d6a68a0a736f13414f1e37ef7a",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const checkPhase = "runHook preCheck\nLD_LIBRARY_PATH=$PWD/src/contrib:$PWD/src/core \\\n        src/test/lucene++-tester\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C++ port of the popular Java Lucene search engine",
         homepage: "https://github.com/luceneplusplus/LucenePlusPlus",
         license: nix.thunk(() => (() => {
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,14 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/add-check.nix", [[["type", 15, 7], ["default", 16, 7]], [["type", 19, 7], ["default", 20, 7]], [["foo", 25, 9]], [["type", 23, 7], ["default", 24, 7], ["apply", 28, 7]], [["type", 31, 7], ["default", 32, 7], ["apply", 33, 7]], [["v1CheckedPass", 14, 13], ["v1CheckedFail", 18, 13], ["v2checkedPass", 22, 13], ["v2checkedFail", 30, 13]], [["options", 14, 5]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/add-check.nix", [["type", 15, 7], ["default", 16, 7]]);
-const pos$2 = nix.positions(here + "/add-check.nix", [["type", 19, 7], ["default", 20, 7]]);
-const pos$3 = nix.positions(here + "/add-check.nix", [["foo", 25, 9]]);
-const pos$4 = nix.positions(here + "/add-check.nix", [["type", 23, 7], ["default", 24, 7], ["apply", 28, 7]]);
-const pos$5 = nix.positions(here + "/add-check.nix", [["type", 31, 7], ["default", 32, 7], ["apply", 33, 7]]);
-const pos$6 = nix.positions(here + "/add-check.nix", [["v1CheckedPass", 14, 13], ["v1CheckedFail", 18, 13], ["v2checkedPass", 22, 13], ["v2checkedFail", 30, 13]]);
-const pos$7 = nix.positions(here + "/add-check.nix", [["options", 14, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const v1Type = nix.thunk(() => nix.app(addCheck, int, (v) => nix.eq(v, 0n)));
   const v2Type = nix.thunk(() => nix.app(addCheck, nix.thunk(() => nix.app(attrsOf, int)), (v) => nix.has(v, "foo")));
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$6,
-      v1CheckedPass: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, type: v1Type, default: 0n })))),
-      v1CheckedFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$2, type: v1Type, default: 1n })))),
+      [nix.POS]: $pos[5],
+      v1CheckedPass: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[0], type: v1Type, default: 0n })))),
+      v1CheckedFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[1], type: v1Type, default: 1n })))),
       v2checkedPass: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           type: v2Type,
-          default: nix.thunk(() => ({ [nix.POS]: pos$3, foo: 1n })),
+          default: nix.thunk(() => ({ [nix.POS]: $pos[2], foo: 1n })),
           apply: (v) => nix.eq(nix.sel(v, "foo"), 1n),
         })))),
       v2checkedFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           type: v2Type,
           default: nix.thunk(() => ({})),
           apply: (v) => nix.app(nix.sel(lib, "deepSeq"), v, v),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 15, 35], ["out", 15, 40]], [["hash", 22, 14]], [["0.0.15", 22, 5]], [["description", 31, 5], ["license", 32, 5]], [["pname", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["defaultVersion", 13, 3], ["release", 21, 3], ["releaseRev", 24, 3], ["propagatedBuildInputs", 26, 3], ["mlPlugin", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, stdlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 15, 35], ["out", 15, 40]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 22, 14]]);
-const pos$3 = nix.positions(here + "/default.nix", [["0.0.15", 22, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 31, 5], ["license", 32, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["defaultVersion", 13, 3], ["release", 21, 3], ["releaseRev", 24, 3], ["propagatedBuildInputs", 26, 3], ["mlPlugin", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,21 +13,21 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rewriter",
       owner: "mit-plv",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[0], case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.17", "9.2")), "0.0.15")),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "0.0.15": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-zxNIMppFXUKShOXLbdZphy0Je5ii6cjcWUUcQMTcaHk=",
         })),
       })),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [stdlib]),
       mlPlugin: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Reflective PHOAS rewriting/pattern-matching-compilation framework for simply-typed equalities and let-lifting, experimental and tailored for use in Fiat Cryptography",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

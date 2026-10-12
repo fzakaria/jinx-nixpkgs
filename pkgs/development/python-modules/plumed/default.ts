@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["plumed_version", 26, 5], ["plumed_include_dir", 27, 5], ["plumed_default_kernel", 30, 5]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 18, 3], ["version", 19, 20], ["src", 19, 28], ["pyproject", 20, 3], ["__structuredAttrs", 21, 3], ["sourceRoot", 23, 3], ["env", 25, 3], ["build-system", 33, 3], ["buildInputs", 38, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["enabledTestPaths", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, plumed: false, cython: false, setuptools: false, numpy: false, pandas: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["plumed_version", 26, 5], ["plumed_include_dir", 27, 5], ["plumed_default_kernel", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 20], ["src", 19, 28], ["pyproject", 20, 3], ["__structuredAttrs", 21, 3], ["sourceRoot", 23, 3], ["env", 25, 3], ["build-system", 33, 3], ["buildInputs", 38, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["enabledTestPaths", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pandas = nix.arg($, "pandas");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "plumed",
       version: nix.thunk(() => nix.attr(plumed, "version")),
       src: nix.thunk(() => nix.attr(plumed, "src")),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/python`),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         plumed_version: nix.thunk(() => nix.sel(finalAttrs, "version")),
         plumed_include_dir: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), plumed)}/include/plumed/wrapper`),
         plumed_default_kernel: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), plumed)}/lib/libplumedKernel${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [numpy, pandas, pytestCheckHook]),
       enabledTestPaths: nix.thunk(() => ["test"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python wrappers for plumed",
         homepage: "https://github.com/plumed/plumed2/tree/master/python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

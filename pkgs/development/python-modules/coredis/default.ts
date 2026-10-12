@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 42, 3], ["dependencies", 49, 3], ["nativeCheckInputs", 58, 3], ["pythonImportsCheck", 66, 3], ["enabledTestPaths", 68, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, anyio: false, beartype: false, buildPythonPackage: false, hatchling: false, "hatch-mypyc": false, "hatch-vcs": false, "types-deprecated": false, deprecated: false, exceptiongroup: false, fetchFromGitHub: false, packaging: false, "pytest-asyncio": false, "pytest-lazy-fixtures": false, "pytest-mock": false, pytestCheckHook: false, redis: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 42, 3], ["dependencies", 49, 3], ["nativeCheckInputs", 58, 3], ["pythonImportsCheck", 66, 3], ["enabledTestPaths", 68, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const redis = nix.arg($, "redis");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "coredis",
       version: "6.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alisaifee",
           repo: "coredis",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_utils.py",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Async redis client with support for redis server, cluster & sentinel",
         homepage: "https://github.com/alisaifee/coredis",
         changelog: nix.thunk(() => nix.str`https://github.com/alisaifee/coredis/blob/${nix.sel(finalAttrs, "src", "tag")}/HISTORY.rst`),

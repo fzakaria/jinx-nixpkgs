@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 38, 5], ["rev", 39, 5], ["hash", 40, 5]], [["NIX_LDFLAGS", 87, 7]], [["homepage", 94, 5], ["description", 95, 5], ["license", 96, 5], ["maintainers", 101, 5], ["platforms", 102, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["outputs", 43, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 55, 3], ["env", 87, 3], ["enableParallelBuilding", 89, 3], ["strictDeps", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, aalib: false, "alsa-lib": false, autoreconfHook: false, fetchhg: false, ffmpeg: false, flac: false, libGL: false, libGLU: false, libx11: false, libxext: false, libxinerama: false, libxv: false, libcaca: false, libcdio: false, libmng: false, libmpcdec: false, libpulseaudio: false, libtheora: false, libv4l: false, libvorbis: false, libxcb: false, ncurses: false, perl: false, "pkg-config": false, speex: false, stdenv: false, vcdimager: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 38, 5], ["rev", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 87, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 94, 5], ["description", 95, 5], ["license", 96, 5], ["maintainers", 101, 5], ["platforms", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["outputs", 43, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 55, 3], ["env", 87, 3], ["enableParallelBuilding", 89, 3], ["strictDeps", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const vcdimager = nix.arg($, "vcdimager");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xine-lib",
       version: "1.2.13-unstable-2025-11-03",
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://hg.code.sf.net/p/xine/xine-lib-1.2",
           rev: "405a16a848927ed9861d6ac177c7e9624ecf58d1",
           hash: "sha256-Q+PcpVMgV2b+htEhTlUK63ZpuJ9Vz+dlmBhNiO8PC2A=",
@@ -82,11 +79,11 @@ export default nix.lambda((args) => (() => {
         vcdimager,
         zlib,
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lxcb-shm" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-lxcb-shm" })),
       enableParallelBuilding: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://xine.sourceforge.net/",
         description: "High-performance, portable and reusable multimedia playback engine",
         license: nix.thunk(() => (() => {

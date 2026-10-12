@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]], [["RUSTC_BOOTSTRAP", 31, 7]], [["description", 37, 5], ["longDescription", 38, 5], ["license", 43, 5], ["homepage", 44, 5], ["downloadPage", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 13, 3], ["version", 14, 11], ["src", 15, 3], ["cargoHash", 23, 3], ["cargoBuildFlags", 24, 3], ["doCheck", 29, 3], ["env", 31, 3], ["nativeBuildInputs", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, rustPlatform: false, lib: false, versionCheckHook: false, writeShellScript: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTC_BOOTSTRAP", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["longDescription", 38, 5], ["license", 43, 5], ["homepage", 44, 5], ["downloadPage", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 11], ["src", 15, 3], ["cargoHash", 23, 3], ["cargoBuildFlags", 24, 3], ["doCheck", 29, 3], ["env", 31, 3], ["nativeBuildInputs", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const version = "0.9.0";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lovely-injector",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ethangreen-dev",
           repo: "lovely-injector",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,10 +29,10 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-4ECH8E/GuV2NYvvjSkanmj4gPIahY40HlCrhR2aFJ5M=",
       cargoBuildFlags: nix.thunk(() => ["--package", "lovely-unix"]),
       doCheck: false,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTC_BOOTSTRAP: 1n })),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Runtime lua injector for games built with LÖVE",
         longDescription: "Lovely is a lua injector which embeds code into a LÖVE 2d game at runtime.\nUnlike executable patchers, mods can be installed, updated, and removed over and over again without requiring a partial or total game reinstallation.\nThis is accomplished through in-process lua API detouring and an easy to use (and distribute) patch system.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

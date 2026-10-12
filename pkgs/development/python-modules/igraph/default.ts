@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["postFetch", 26, 5], ["hash", 30, 5]], [["cairo", 51, 5], ["matplotlib", 52, 5], ["plotly", 53, 5], ["plotting", 54, 5]], [["IGRAPH_USE_PKG_CONFIG", 60, 7]], [["description", 75, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 37, 3], ["build-system", 39, 3], ["dontUseCmakeConfigure", 44, 3], ["buildInputs", 46, 3], ["dependencies", 48, 3], ["optional-dependencies", 50, 3], ["env", 60, 3], ["nativeCheckInputs", 62, 3], ["disabledTests", 67, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, setuptools: false, igraph: false, texttable: false, cairocffi: false, matplotlib: false, plotly: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["postFetch", 26, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cairo", 51, 5], ["matplotlib", 52, 5], ["plotly", 53, 5], ["plotting", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["IGRAPH_USE_PKG_CONFIG", 60, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 75, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 37, 3], ["build-system", 39, 3], ["dontUseCmakeConfigure", 44, 3], ["buildInputs", 46, 3], ["dependencies", 48, 3], ["optional-dependencies", 50, 3], ["env", 60, 3], ["nativeCheckInputs", 62, 3], ["disabledTests", 67, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "igraph",
           repo: "python-igraph",
           tag: version,
@@ -42,18 +38,18 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [igraph]);
       const dependencies = nix.thunk(() => [texttable]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cairo: nix.thunk(() => [cairocffi]),
         matplotlib: nix.thunk(() => [matplotlib]),
         plotly: nix.thunk(() => [plotly]),
         plotting: nix.thunk(() => [cairocffi]),
       }));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, IGRAPH_USE_PKG_CONFIG: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], IGRAPH_USE_PKG_CONFIG: true }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const disabledTests = nix.thunk(() => ["testAuthorityScore", "test_labels"]);
       const pythonImportsCheck = nix.thunk(() => ["igraph"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "High performance graph data structures and algorithms",
         mainProgram: "igraph",
         homepage: "https://igraph.org/python/",
@@ -68,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 5], ["hash", 18, 5]], [["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["homepage", 37, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 29, 3], ["checkInputs", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, menhir: false, menhirLib: false, fmt: false, hmap: false, qcheck: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["homepage", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 29, 3], ["checkInputs", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const hmap = nix.arg($, "hmap");
   const qcheck = nix.arg($, "qcheck");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dolmen",
       version: "0.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Gbury/dolmen/releases/download/v${nix.sel(finalAttrs, "version")}/dolmen-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-xchfd+OSTzeOjYLxZu7+QTG04EG/nN7KRnQQ8zxx+mE=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkInputs: nix.thunk(() => [qcheck]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OCaml library providing clean and flexible parsers for input languages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

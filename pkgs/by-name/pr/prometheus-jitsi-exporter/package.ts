@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["jitsi", 20, 64]], [["tests", 20, 12]], [["description", 23, 5], ["mainProgram", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 18, 3], ["passthru", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchgit: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["jitsi", 20, 64]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 20, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 23, 5], ["mainProgram", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 18, 3], ["passthru", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,28 +15,28 @@ export default nix.lambda((args) => (() => {
       const pname = "jitsiexporter";
       const version = "0.2.18";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.xsfx.dev/prometheus/jitsiexporter",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "1cf46wp96d9dwlwlffcgbcr0v3xxxfdv6il0zqkm2i7cfsfw0skf",
         }))));
       const vendorHash = null;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { [nix.POS]: pos$2, jitsi: nix.thunk(() => nix.attr(from, "jitsi")) };
+          return { [nix.POS]: $pos[1], jitsi: nix.thunk(() => nix.attr(from, "jitsi")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Export Jitsi Videobridge metrics to Prometheus",
         mainProgram: "jitsiexporter",
         homepage: "https://git.xsfx.dev/prometheus/jitsiexporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { [nix.POS]: pos$5, pname, version, src, vendorHash, passthru, meta };
+      return { [nix.POS]: $pos[4], pname, version, src, vendorHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,8 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/scripts.nix", [[["name", 16, 3], ["nativeBuildInputs", 18, 3], ["pythonPath", 23, 3], ["dontUnpack", 28, 3], ["installPhase", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, coreutils: false, diffutils: false, git: false, gnugrep: false, gnused: false, jq: false, nix: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/scripts.nix", [["name", 16, 3], ["nativeBuildInputs", 18, 3], ["pythonPath", 23, 3], ["dontUnpack", 28, 3], ["installPhase", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "common-updater-scripts",
       nativeBuildInputs: nix.thunk(() => [makeWrapper, nix.thunk(() => nix.sel(python3Packages, "wrapPython"))]),
       pythonPath: nix.thunk(() => [

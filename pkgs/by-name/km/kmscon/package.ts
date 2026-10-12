@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["url", 91, 7], ["hash", 92, 7]], [["PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR", 99, 5], ["DESTDIR", 100, 5]], [["kmscon", 113, 11]], [["extraArgs", 114, 40]], [["tests", 113, 5], ["updateScript", 114, 5]], [["description", 118, 5], ["mainProgram", 119, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["maintainers", 127, 5], ["platforms", 128, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["strictDeps", 45, 3], ["__structuredAttrs", 46, 3], ["depsBuildBuild", 48, 3], ["buildInputs", 52, 3], ["nativeBuildInputs", 71, 3], ["outputs", 83, 3], ["patches", 89, 3], ["mesonFlags", 96, 3], ["env", 98, 3], ["postPatch", 103, 3], ["postFixup", 107, 3], ["passthru", 112, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, meson: false, libtsm: false, systemdLibs: false, libxkbcommon: false, libdrm: false, libGLU: false, libGL: false, freetype: false, fontconfig: false, zlib: false, pango: false, "pkg-config": false, docbook_xsl: false, docbook_xml_dtd_42: false, python3: false, ncurses: false, libxslt: false, libgbm: false, seatd: false, dbus: false, ninja: false, check: false, bash: false, "inotify-tools": false, buildPackages: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 91, 7], ["hash", 92, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR", 99, 5], ["DESTDIR", 100, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["kmscon", 113, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 114, 40]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 113, 5], ["updateScript", 114, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 118, 5], ["mainProgram", 119, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["maintainers", 127, 5], ["platforms", 128, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["strictDeps", 45, 3], ["__structuredAttrs", 46, 3], ["depsBuildBuild", 48, 3], ["buildInputs", 52, 3], ["nativeBuildInputs", 71, 3], ["outputs", 83, 3], ["patches", 89, 3], ["mesonFlags", 96, 3], ["env", 98, 3], ["postPatch", 103, 3], ["postFixup", 107, 3], ["passthru", 112, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "kmscon",
       version: "10.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kmscon",
           repo: "kmscon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,14 +83,14 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/kmscon/kmscon/commit/153db63d679df719a99dd36505f9c2f55d9c59f6.patch?full_index=1",
             hash: "sha256-aAH+drUZnj1wrKcdsphqacmqRRnZAKEwCNLwA2vSTmg=",
           })))),
       ]),
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "libseat", true))]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/system`),
         DESTDIR: "/",
       })),
@@ -106,12 +99,12 @@ export default nix.lambda((args) => (() => {
   --replace-fail "inotifywait" "${nix.app(nix.sel(lib, "getExe'"), inotify_tools, "inotifywait")}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, kmscon: nix.thunk(() => nix.sel(nixosTests, "kmscon")) })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: $pos[5],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], kmscon: nix.thunk(() => nix.sel(nixosTests, "kmscon")) })),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[4], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "KMS/DRM based System Console",
         mainProgram: "kmscon",
         homepage: "https://www.freedesktop.org/wiki/Software/kmscon/",

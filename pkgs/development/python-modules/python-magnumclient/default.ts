@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["PBR_VERSION", 42, 7]], [["homepage", 90, 5], ["description", 91, 5], ["license", 92, 5], ["mainProgram", 93, 5], ["teams", 94, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["env", 42, 3], ["nativeBuildInputs", 44, 3], ["sphinxBuilders", 49, 3], ["build-system", 51, 3], ["dependencies", 56, 3], ["nativeCheckInputs", 71, 3], ["checkPhase", 81, 3], ["pythonImportsCheck", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cryptography: false, decorator: false, fetchFromGitHub: false, fixtures: false, keystoneauth1: false, openstacksdk: false, openstackdocstheme: false, "osc-lib": false, "oslo-i18n": false, "oslo-log": false, "oslo-serialization": false, "oslo-utils": false, oslotest: false, osprofiler: false, pbr: false, prettytable: false, "python-openstackclient": false, "requests-mock": false, requests: false, setuptools: false, sphinxHook: false, stestr: false, stevedore: false, testtools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PBR_VERSION", 42, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 90, 5], ["description", 91, 5], ["license", 92, 5], ["mainProgram", 93, 5], ["teams", 94, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["env", 42, 3], ["nativeBuildInputs", 44, 3], ["sphinxBuilders", 49, 3], ["build-system", 51, 3], ["dependencies", 56, 3], ["nativeCheckInputs", 71, 3], ["checkPhase", 81, 3], ["pythonImportsCheck", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,13 +38,13 @@ export default nix.lambda((args) => (() => {
       const version = "4.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openstack",
           repo: "python-magnumclient",
           tag: version,
           hash: "sha256-kOnx2Fsx6WK7Z3z7O6so1LOjjyPiEB0jDFzOl7WlMS0=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PBR_VERSION: version }));
       const nativeBuildInputs = nix.thunk(() => [openstackdocstheme, sphinxHook]);
       const sphinxBuilders = nix.thunk(() => ["man"]);
       const build_system = nix.thunk(() => [pbr, setuptools]);
@@ -77,7 +74,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\nstestr run\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["magnumclient"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/openstack/python-magnumclient",
         description: "Client library for OpenStack Magnum API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -85,7 +82,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

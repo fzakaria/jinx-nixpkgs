@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hercules-ci-optparse-applicative.nix", [[["url", 17, 5], ["sha256", 18, 5], ["rev", 19, 5], ["fetchSubmodules", 20, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 16, 3], ["libraryHaskellDepends", 22, 3], ["testHaskellDepends", 30, 3], ["homepage", 34, 3], ["description", 35, 3], ["license", 36, 3], ["maintainers", 37, 3]]]);
 const formals$1 = { args: { mkDerivation: false, base: false, fetchgit: false, lib: false, prettyprinter: false, "prettyprinter-ansi-terminal": false, process: false, QuickCheck: false, text: false, transformers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hercules-ci-optparse-applicative.nix", [["url", 17, 5], ["sha256", 18, 5], ["rev", 19, 5], ["fetchSubmodules", 20, 5]]);
-const pos$2 = nix.positions(here + "/hercules-ci-optparse-applicative.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 16, 3], ["libraryHaskellDepends", 22, 3], ["testHaskellDepends", 30, 3], ["homepage", 34, 3], ["description", 35, 3], ["license", 36, 3], ["maintainers", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const text = nix.arg($, "text");
   const transformers = nix.arg($, "transformers");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "hercules-ci-optparse-applicative",
       version: "0.19.0.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/hercules-ci/optparse-applicative.git",
           sha256: "068rsq9j0afrywbcqf6vg4ivfxbb68ab7f0lvg1na81mfn7sfakk",
           rev: "b55bb38a2aea0cf776aec707cdce7c7418146077",

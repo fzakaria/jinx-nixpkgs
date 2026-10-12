@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 13, 11], ["version", 13, 17], ["src", 14, 3], ["patches", 20, 3], ["doCheck", 27, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, fetchFromGitHub: false, fetchpatch: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 11], ["version", 13, 17], ["src", 14, 3], ["patches", 20, 3], ["doCheck", 27, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pname = "camlgpc";
   const version = "1.2";
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "johnwhitington",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "camlgpc-pr-5-switch-to-dune",
             url: "https://github.com/johnwhitington/camlgpc/pull/5.diff",
             hash: "sha256-znm+mX60RwYNCYXwm9HYCO8BRbzUM0Bm6dI1f1FzncA=",
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OCaml interface to Alan Murta's General Polygon Clipper",
         homepage: "https://github.com/johnwhitington/camlgpc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

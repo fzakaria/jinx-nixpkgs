@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]], [["BERKELEYDB_INCDIR", 33, 5], ["BERKELEYDB_LIBDIR", 34, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 21, 3], ["doCheck", 25, 3], ["checkPhase", 27, 3], ["env", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, pkgs: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["BERKELEYDB_INCDIR", 33, 5], ["BERKELEYDB_LIBDIR", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 21, 3], ["doCheck", 25, 3], ["checkPhase", 27, 3], ["env", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "18.1.15";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-evpTFD11TGuyyFZWwTJeuuUYrc/NG1nhPMKruI3fdY4=",
@@ -32,19 +29,19 @@ export default nix.lambda((args) => (() => {
       const checkPhase = nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} test.py
 `);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         BERKELEYDB_INCDIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(pkgs, "db")))}/include`),
         BERKELEYDB_LIBDIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "db")))}/lib`),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python bindings for Oracle Berkeley DB",
         homepage: "https://www.jcea.es/programacion/pybsddb.htm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

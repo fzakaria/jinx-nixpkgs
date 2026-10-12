@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["homepage", 25, 5], ["description", 26, 5], ["longDescription", 27, 5], ["license", 44, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 27]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 17, 3], ["buildInputs", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 25, 5], ["description", 26, 5], ["longDescription", 27, 5], ["license", 44, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 17, 3], ["buildInputs", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xosview2",
       version: "2.3.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/xosview/xosview2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-aQugI9rL0N1qLxUrUvwP7Gk2z3v+PC/+BNVlINqvT8g=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libx11, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://xosview.sourceforge.net/index.html",
         description: "Lightweight graphical operating system monitor",
         longDescription: "xosview is a lightweight program that gathers information from your\noperating system and displays it in graphical form. It attempts to show\nyou in a quick glance an overview of how your system resources are being\nutilized.\n\nIt can be configured to be nothing more than a small strip showing a\ncouple of parameters on a desktop task bar. Or it can display dozens of\nmeters and rolling graphical charts over your entire screen.\n\nSince xosview renders all graphics with core X11 drawing methods, you can\nrun it on one machine and display it on another. This works even if your\nother host is an operating system not running an X server inside a\nvirtual machine running on a physically different host. If you can\nconnect to it on a network, then you can popup an xosview instance and\nmonitor what is going on.\n",

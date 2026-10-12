@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 33, 13], ["version", 33, 19], ["hash", 34, 5]], [["homepage", 78, 5], ["changelog", 79, 5], ["description", 80, 5], ["mainProgram", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["disabled", 30, 3], ["src", 32, 3], ["postPatch", 37, 3], ["build-system", 44, 3], ["nativeCheckInputs", 46, 3], ["dependencies", 54, 3], ["pythonImportsCheck", 66, 3], ["preCheck", 68, 3], ["disabledTests", 72, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, isPyPy: false, bash: false, setuptools: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-mock": false, freezegun: false, git: false, jinja2: false, binaryornot: false, click: false, "jinja2-time": false, requests: false, "python-slugify": false, pyyaml: false, arrow: false, rich: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 33, 13], ["version", 33, 19], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 78, 5], ["changelog", 79, 5], ["description", 80, 5], ["mainProgram", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["disabled", 30, 3], ["src", 32, 3], ["postPatch", 37, 3], ["build-system", 44, 3], ["nativeCheckInputs", 46, 3], ["dependencies", 54, 3], ["pythonImportsCheck", 66, 3], ["preCheck", 68, 3], ["disabledTests", 72, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-2yH4Fp6k9P3CQI1IykSFk0neJkf75JSp1sPt/AVCwhw=",
@@ -62,7 +60,7 @@ substituteInPlace tests/test_hooks.py \\
       const preCheck = "export HOME=\"$(mktemp -d)\"\n";
       const disabledTests = nix.thunk(() => ["test_should_invoke_main"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/audreyr/cookiecutter",
         changelog: nix.thunk(() => nix.str`https://github.com/cookiecutter/cookiecutter/blob/${version}/HISTORY.md`),
         description: "Command-line utility that creates projects from project templates",
@@ -74,7 +72,7 @@ substituteInPlace tests/test_hooks.py \\
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

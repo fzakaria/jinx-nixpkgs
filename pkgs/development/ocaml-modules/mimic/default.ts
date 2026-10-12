@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 22, 5], ["hash", 23, 5]], [["description", 42, 5], ["license", 43, 5], ["homepage", 44, 5], ["maintainers", 45, 5]], [["pname", 16, 3], ["version", 17, 3], ["minimalOCamlVersion", 19, 3], ["src", 21, 3], ["propagatedBuildInputs", 26, 3], ["doCheck", 32, 3], ["checkInputs", 33, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, "mirage-flow": false, cstruct: false, logs: false, ke: false, lwt: false, alcotest: false, "alcotest-lwt": false, bigstringaf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["license", 43, 5], ["homepage", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["minimalOCamlVersion", 19, 3], ["src", 21, 3], ["propagatedBuildInputs", 26, 3], ["doCheck", 32, 3], ["checkInputs", 33, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const alcotest_lwt = nix.arg($, "alcotest-lwt");
   const bigstringaf = nix.arg($, "bigstringaf");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mimic",
       version: "0.0.10",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/dinosaure/mimic/releases/download/${nix.sel(finalAttrs, "version")}/mimic-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-OFqqdzY59pdMYPTEt4IPJ1cijGsJ3Xkv2xD1jc1hzU4=",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, alcotest_lwt, bigstringaf, cstruct, ke]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple protocol dispatcher",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         homepage: "https://github.com/mirage/ocaml-git",

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["gtk_module_path", 66, 5], ["gtk_binary_version", 67, 5]], [["url", 93, 7], ["hash", 94, 7]], [["x11Support", 153, 36]], [["NIX_CFLAGS_COMPILE", 216, 7]], [["packageName", 277, 7], ["attrPath", 278, 7], ["freeze", 279, 7]], [["pkg-config", 281, 11]], [["updateScript", 276, 5], ["tests", 281, 5]], [["description", 285, 5], ["longDescription", 286, 5], ["homepage", 296, 5], ["license", 297, 5], ["teams", 298, 5], ["pkgConfigModules", 299, 5], ["platforms", 307, 5], ["changelog", 308, 5]], [["pname", 73, 3], ["version", 74, 3], ["outputs", 76, 3], ["outputBin", 81, 3], ["setupHooks", 83, 3], ["src", 88, 3], ["patches", 97, 3], ["depsBuildBuild", 115, 3], ["nativeBuildInputs", 118, 3], ["buildInputs", 147, 3], ["propagatedBuildInputs", 163, 3], ["mesonFlags", 200, 3], ["doCheck", 210, 3], ["separateDebugInfo", 212, 3], ["env", 216, 3], ["postPatch", 218, 3], ["postInstall", 242, 3], ["postFixup", 261, 3], ["passthru", 275, 3], ["meta", 284, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, replaceVars: false, fetchurl: false, "pkg-config": false, gettext: false, "docbook-xsl-nons": false, docbook_xml_dtd_43: false, "gtk-doc": false, meson: false, mesonEmulatorHook: false, ninja: false, python3: false, makeWrapper: false, "shared-mime-info": false, isocodes: false, expat: false, glib: false, cairo: false, pango: false, "gdk-pixbuf": false, atk: false, "at-spi2-atk": false, "gobject-introspection": false, buildPackages: false, withIntrospection: true, compileSchemas: true, fribidi: false, libxrender: false, libxrandr: false, libxi: false, libxinerama: false, libxfixes: false, libxdamage: false, libxcursor: false, libxcomposite: false, libsm: false, libice: false, libepoxy: false, libxkbcommon: false, libxml2: false, gnome: false, "gsettings-desktop-schemas": false, sassc: false, trackerSupport: true, tinysparql: false, x11Support: true, waylandSupport: true, libGL: false, wayland: false, "wayland-protocols": false, xineramaSupport: true, cupsSupport: true, cups: false, broadwaySupport: true, "wayland-scanner": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["gtk_module_path", 66, 5], ["gtk_binary_version", 67, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 93, 7], ["hash", 94, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x11Support", 153, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 216, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["packageName", 277, 7], ["attrPath", 278, 7], ["freeze", 279, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pkg-config", 281, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 276, 5], ["tests", 281, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 285, 5], ["longDescription", 286, 5], ["homepage", 296, 5], ["license", 297, 5], ["teams", 298, 5], ["pkgConfigModules", 299, 5], ["platforms", 307, 5], ["changelog", 308, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 73, 3], ["version", 74, 3], ["outputs", 76, 3], ["outputBin", 81, 3], ["setupHooks", 83, 3], ["src", 88, 3], ["patches", 97, 3], ["depsBuildBuild", 115, 3], ["nativeBuildInputs", 118, 3], ["buildInputs", 147, 3], ["propagatedBuildInputs", 163, 3], ["mesonFlags", 200, 3], ["doCheck", 210, 3], ["separateDebugInfo", 212, 3], ["env", 216, 3], ["postPatch", 218, 3], ["postInstall", 242, 3], ["postFixup", 261, 3], ["passthru", 275, 3], ["meta", 284, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -72,9 +64,9 @@ export default nix.lambda((args) => (() => {
   const broadwaySupport = nix.argOr($, "broadwaySupport", () => true);
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const testers = nix.arg($, "testers");
-  const gtkCleanImmodulesCache = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hooks/clean-immodules-cache.sh"), nix.thunk(() => ({ [nix.POS]: pos$1, gtk_module_path: "gtk-3.0", gtk_binary_version: "3.0.0" }))));
+  const gtkCleanImmodulesCache = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hooks/clean-immodules-cache.sh"), nix.thunk(() => ({ [nix.POS]: $pos[0], gtk_module_path: "gtk-3.0", gtk_binary_version: "3.0.0" }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "gtk+3",
       version: "3.24.52",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optional"), withIntrospection, "devdoc"))),
@@ -83,7 +75,7 @@ export default nix.lambda((args) => (() => {
       src: nix.thunk(() => (() => {
         const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`mirror://gnome/sources/gtk/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gtk-${version}.tar.xz`),
             hash: "sha256-gJMfpHKne5oWT2dA48C0RPrGdwBUYy01p/+dZ55ee58=",
           })));
@@ -102,7 +94,7 @@ export default nix.lambda((args) => (() => {
           libxml2,
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool((nix.asBool(withIntrospection) || nix.asBool(compileSchemas))) && nix.asBool(!nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))))), nix.thunk(() => [mesonEmulatorHook])), nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [wayland_scanner]))))))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(x11Support) || nix.asBool(waylandSupport))), nix.thunk(() => [libxkbcommon])), nix.concat([
-        nix.thunk(() => nix.app(nix.sel(libepoxy, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, x11Support: x11Support })))),
+        nix.thunk(() => nix.app(nix.sel(libepoxy, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], x11Support: x11Support })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(x11Support) || nix.asBool(waylandSupport))), nix.thunk(() => [isocodes])), nix.app(nix.sel(lib, "optionals"), trackerSupport, nix.thunk(() => [tinysparql])))))),
       propagatedBuildInputs: nix.thunk(() => nix.concat([
         at_spi2_atk,
@@ -136,7 +128,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       separateDebugInfo: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: "-DG_ENABLE_DEBUG -DG_DISABLE_CAST_CHECKS",
       })),
       postPatch: nix.thunk(() => nix.str`# See https://github.com/NixOS/nixpkgs/issues/132259
@@ -181,15 +173,15 @@ for program in \${demos[@]}; do
 done
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# a comment created a cycle between outputs\nsed '/^# ModulesPath =/d' -i \"$out\"/lib/gtk-*/*/immodules.cache\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$5, packageName: "gtk", attrPath: "gtk3", freeze: true })))),
+        [nix.POS]: $pos[6],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[4], packageName: "gtk", attrPath: "gtk3", freeze: true })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Multi-platform toolkit for creating graphical user interfaces",
         longDescription: "GTK is a highly usable, feature rich toolkit for creating\ngraphical user interfaces which boasts cross platform\ncompatibility and an easy to use API.  GTK it is written in C,\nbut has bindings to many other popular programming languages\nsuch as C++, Python and C# among others.  GTK is licensed\nunder the GNU LGPL 2.1 allowing development of both free and\nproprietary software with GTK without any license fees or\nroyalties.\n",
         homepage: "https://www.gtk.org/",

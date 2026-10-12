@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]], [["description", 159, 5], ["homepage", 160, 5], ["changelog", 161, 5], ["license", 163, 5], ["mainProgram", 170, 5], ["maintainers", 171, 5], ["platforms", 175, 5]], [["name", 188, 9], ["src", 189, 9], ["dontUnpack", 196, 9], ["buildInputs", 197, 9], ["dFlags", 198, 9], ["buildPhase", 199, 9], ["installPhase", 202, 9]], [["disallowedReferences", 212, 9], ["dFlags", 213, 9]], [["no-references-to-compiler", 211, 7]], [["ldcBootstrap", 183, 12], ["tests", 184, 12]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["hardeningDisable", 45, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 82, 3], ["outputs", 87, 3], ["outputInclude", 91, 3], ["cmakeFlags", 93, 3], ["postConfigure", 98, 3], ["makeFlags", 102, 3], ["fixNames", 104, 3], ["additionalExceptions", 124, 3], ["checkPhase", 126, 3], ["postInstall", 146, 3], ["preFixup", 152, 3], ["disallowedReferences", 156, 3], ["meta", 158, 3], ["passthru", 183, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, callPackage: false, makeWrapper: false, removeReferencesTo: false, runCommand: false, writeText: false, targetPackages: false, cmake: false, ninja: false, llvm_21: false, curl: false, tzdata: false, lit: false, gdb: false, unzip: false, ldcBootstrap: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 159, 5], ["homepage", 160, 5], ["changelog", 161, 5], ["license", 163, 5], ["mainProgram", 170, 5], ["maintainers", 171, 5], ["platforms", 175, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 188, 9], ["src", 189, 9], ["dontUnpack", 196, 9], ["buildInputs", 197, 9], ["dFlags", 198, 9], ["buildPhase", 199, 9], ["installPhase", 202, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["disallowedReferences", 212, 9], ["dFlags", 213, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["no-references-to-compiler", 211, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["ldcBootstrap", 183, 12], ["tests", 184, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["hardeningDisable", 45, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 82, 3], ["outputs", 87, 3], ["outputInclude", 91, 3], ["cmakeFlags", 93, 3], ["postConfigure", 98, 3], ["makeFlags", 102, 3], ["fixNames", 104, 3], ["additionalExceptions", 124, 3], ["checkPhase", 126, 3], ["postInstall", 146, 3], ["preFixup", 152, 3], ["disallowedReferences", 156, 3], ["meta", 158, 3], ["passthru", 183, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +30,11 @@ echo ${tzdata}/share/zoneinfo/ > $out/TZDatabaseDirFile
 echo ${nix.sel(curl, "out")}/lib/libcurl${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")} > $out/LibcurlPathFile
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "ldc",
       version: "1.42.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ldc-developers",
           repo: "ldc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -96,7 +90,7 @@ ctest -j$NIX_BUILD_CORES --output-on-failure -E "ldc2-unittest|lit-tests|dmd-tes
 `),
       disallowedReferences: nix.thunk(() => [ldcBootstrap]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "LLVM-based D compiler",
         homepage: "https://github.com/ldc-developers/ldc",
         changelog: nix.thunk(() => nix.str`https://github.com/ldc-developers/ldc/releases/tag/v${nix.sel(finalAttrs, "version")}`),
@@ -121,12 +115,12 @@ ctest -j$NIX_BUILD_CORES --output-on-failure -E "ldc2-unittest|lit-tests|dmd-tes
         platforms: nix.thunk(() => ["x86_64-linux", "i686-linux", "aarch64-linux", "aarch64-darwin"]),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         ldcBootstrap: ldcBootstrap,
         tests: nix.thunk(() => (() => {
           const ldc = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
           const helloWorld = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs_1) => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "ldc-hello-world",
               src: nix.thunk(() => nix.app(writeText, "hello_world.d", "module hello_world;\nimport std.stdio;\nvoid main() {\n  writeln(\"Hello, world!\");\n}\n")),
               dontUnpack: true,
@@ -137,9 +131,9 @@ ctest -j$NIX_BUILD_CORES --output-on-failure -E "ldc2-unittest|lit-tests|dmd-tes
               installPhase: "mkdir -p $out/bin\nmv test $out/bin\n",
             })));
           return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "no-references-to-compiler": nix.thunk(() => nix.app(nix.sel(helloWorld, "overrideAttrs"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 disallowedReferences: nix.thunk(() => [ldc]),
                 dFlags: nix.thunk(() => ["-g"]),
               })))),

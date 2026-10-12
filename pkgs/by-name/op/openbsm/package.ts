@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 27, 5], ["homepage", 28, 5], ["platforms", 29, 5], ["maintainers", 30, 5], ["license", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 18, 3], ["preConfigure", 20, 3], ["configureFlags", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["platforms", 29, 5], ["maintainers", 30, 5], ["license", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 18, 3], ["preConfigure", 20, 3], ["configureFlags", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openbsm",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openbsm",
           repo: "openbsm",
           rev: nix.thunk(() => nix.app(nix.sel(lib, "toUpper"), nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => [".", "-"]), nix.thunk(() => ["_", "_"]), nix.thunk(() => nix.str`openbsm-${nix.sel(finalAttrs, "version")}`))))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinMinVersion")), "11")), "MACOSX_DEPLOYMENT_TARGET=10.16\n")),
       configureFlags: nix.thunk(() => ["ac_cv_file__usr_include_mach_audit_triggers_defs=no"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Implementation of Sun's Basic Security Module (BSM) security audit API and file format",
         homepage: "http://www.openbsm.org/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

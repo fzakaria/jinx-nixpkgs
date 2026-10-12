@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["nativeCheckInputs", 40, 3], ["enableParallelBuilding", 42, 3], ["preAutoreconf", 46, 3], ["doCheck", 52, 3], ["postFixup", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, "autoconf-archive": false, makeWrapper: false, which: false, "tpm2-tss": false, glib: false, dbus: false, cmocka: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["nativeCheckInputs", 40, 3], ["enableParallelBuilding", 42, 3], ["preAutoreconf", 46, 3], ["doCheck", 52, 3], ["postFixup", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const cmocka = nix.arg($, "cmocka");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tpm2-abrmd",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tpm2-software",
           repo: "tpm2-abrmd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
   --suffix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [tpm2_tss]))}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "TPM2 resource manager, accessible via D-Bus",
         mainProgram: "tpm2-abrmd",
         homepage: "https://github.com/tpm2-software/tpm2-tools",

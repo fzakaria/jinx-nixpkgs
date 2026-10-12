@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["homepage", 86, 5], ["description", 87, 5], ["longDescription", 88, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5], ["platforms", 100, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["strictDeps", 53, 3], ["preBuild", 59, 3], ["makeFlags", 63, 3], ["preFixup", 73, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "glib-networking": false, gst_all_1: false, gtk3: false, help2man: false, luajit: false, luajitPackages: false, "pkg-config": false, sqlite: false, stdenv: false, webkitgtk_4_1: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 86, 5], ["description", 87, 5], ["longDescription", 88, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5], ["platforms", 100, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["strictDeps", 53, 3], ["preBuild", 59, 3], ["makeFlags", 63, 3], ["preFixup", 73, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const luafilesystem = nix.thunk(() => nix.attr(luajitPackages, "luafilesystem"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "luakit",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "luakit",
           repo: "luakit",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://luakit.github.io/",
         description: "Fast, small, webkit-based browser framework extensible in Lua",
         longDescription: "Luakit is a highly configurable browser framework based on the WebKit web\ncontent engine and the GTK+ toolkit. It is very fast, extensible with Lua,\nand licensed under the GNU GPLv3 license. It is primarily targeted at\npower users, developers and anyone who wants to have fine-grained control\nover their web browser’s behaviour and interface.\n",

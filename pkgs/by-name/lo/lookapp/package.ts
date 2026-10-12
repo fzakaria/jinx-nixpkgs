@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["name", 69, 7], ["desktopName", 70, 7], ["comment", 71, 7], ["exec", 72, 7], ["icon", 73, 7], ["categories", 74, 7], ["startupWMClass", 75, 7]], [["updateScript", 104, 12]], [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["platforms", 111, 5], ["mainProgram", 112, 5], ["maintainers", 114, 5]], [["pname", 29, 3], ["version", 30, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["cargoRoot", 41, 3], ["buildAndTestSubdir", 42, 3], ["cargoHash", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["desktopItems", 67, 3], ["preFixup", 79, 3], ["postInstall", 93, 3], ["passthru", 104, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, "pkg-config": false, wrapGAppsHook3: false, webkitgtk_4_1: false, gtk3: false, libsoup_3: false, glib: false, cairo: false, pango: false, "gdk-pixbuf": false, harfbuzz: false, "alsa-lib": false, dbus: false, openssl: false, libappindicator: false, "xdg-utils": false, fontconfig: false, curl: false, procps: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 69, 7], ["desktopName", 70, 7], ["comment", 71, 7], ["exec", 72, 7], ["icon", 73, 7], ["categories", 74, 7], ["startupWMClass", 75, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 104, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["platforms", 111, 5], ["mainProgram", 112, 5], ["maintainers", 114, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["cargoRoot", 41, 3], ["buildAndTestSubdir", 42, 3], ["cargoHash", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["desktopItems", 67, 3], ["preFixup", 79, 3], ["postInstall", 93, 3], ["passthru", 104, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lookapp",
       version: "0.7.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kunkka19xx",
           repo: "look",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "lookapp",
             desktopName: "Look",
             comment: "Keyboard-first desktop launcher",
@@ -83,11 +79,11 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "for size in 32 128 256; do\n  icon=\"$src/apps/linows/src-tauri/icons/${size}x${size}.png\"\n  if [ -f \"$icon\" ]; then\n    mkdir -p $out/share/icons/hicolor/${size}x${size}/apps\n    cp \"$icon\" \\\n      \"$out/share/icons/hicolor/${size}x${size}/apps/look.png\"\n  fi\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Keyboard-first, local-first desktop launcher",
         homepage: "https://github.com/kunkka19xx/look",
         changelog: nix.thunk(() => nix.str`https://github.com/kunkka19xx/look/releases/tag/v${nix.sel(finalAttrs, "version")}`),

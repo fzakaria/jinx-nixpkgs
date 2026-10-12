@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["speedups", 42, 5]], [["changelog", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["optional-dependencies", 41, 3], ["pythonImportsCheck", 50, 3], ["nativeCheckInputs", 54, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { aiodns: false, aiohttp: false, brotli: false, buildPythonPackage: false, "faust-cchardet": false, fetchFromGitHub: false, lib: false, orjson: false, pyprojectVersionPatchHook: false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["speedups", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["optional-dependencies", 41, 3], ["pythonImportsCheck", 50, 3], ["nativeCheckInputs", 54, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hass-client",
       version: "1.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "music-assistant",
           repo: "python-hass-client",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,13 +36,13 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [aiohttp]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         speedups: nix.thunk(() => [aiodns, brotli, faust_cchardet, orjson]),
       })),
       pythonImportsCheck: nix.thunk(() => ["hass_client"]),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_cov_stub, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/music-assistant/python-hass-client/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Basic client for connecting to Home Assistant over websockets and REST",
         homepage: "https://github.com/music-assistant/python-hass-client",

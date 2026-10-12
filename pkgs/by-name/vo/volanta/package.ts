@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["pname", 18, 54], ["version", 18, 60], ["src", 18, 68]], [["src", 37, 13], ["build", 37, 17], ["updateScript", 38, 5]], [["description", 48, 5], ["homepage", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5], ["license", 53, 5]], [["pname", 21, 11], ["version", 21, 17], ["src", 21, 25], ["nativeBuildInputs", 23, 3], ["extraInstallCommands", 26, 3], ["passthru", 36, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { appimageTools: false, fetchurl: false, lib: false, makeWrapper: false, writeShellScript: false, "common-updater-scripts": false, "nix-update": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 18, 54], ["version", 18, 60], ["src", 18, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 37, 13], ["build", 37, 17], ["updateScript", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5], ["license", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 11], ["version", 21, 17], ["src", 21, 25], ["nativeBuildInputs", 23, 3], ["extraInstallCommands", 26, 3], ["passthru", 36, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const version = "1.18.1";
   const build = "1dffdcab";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://cdn.volanta.app/software/volanta-app/${version}-${build}/volanta-${version}.AppImage`),
       hash: "sha256-sNrTus5AstRy9eHJhiXADotGpcjpARczpKX3DuYqSco=",
     }))));
-  const appImageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appImageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -42,7 +38,7 @@ wrapProgram $out/bin/volanta \\
   --add-flags "\\\${NIXOS_OZONE_WL:+\\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --wayland-text-input-version=3}}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         src: src,
         build: build,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-volanta", nix.thunk(() => nix.str`LATEST_YML=$(curl --fail --silent https://api.volanta.app/api/v1/ClientUpdate/latest-linux.yml)
@@ -53,7 +49,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} volanta --version $VERSION
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Easy-to-use smart flight tracker that integrates all your flight data across all major flightsims",
         homepage: "https://volanta.app/",
         maintainers: nix.thunk(() => (() => {

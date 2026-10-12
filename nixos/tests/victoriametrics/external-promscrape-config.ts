@@ -2,26 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/external-promscrape-config.nix", [[["scrape_interval", 6, 7]], [["targets", 13, 13]], [["job_name", 10, 9], ["static_configs", 11, 9]], [["global", 5, 5], ["scrape_configs", 8, 5]], [["maintainers", 27, 5]], [["systemPackages", 36, 21]], [["allowedTCPPorts", 37, 29]], [["firewall", 37, 20]], [["enable", 39, 11], ["extraOptions", 40, 11]], [["victoriametrics", 38, 18]], [["environment", 36, 9], ["networking", 37, 9], ["services", 38, 9]], [["enable", 48, 9], ["openFirewall", 49, 9]], [["node", 47, 37]], [["exporters", 47, 27]], [["prometheus", 47, 16]], [["services", 47, 7]], [["vmserver", 33, 5], ["node", 46, 5]], [["name", 25, 3], ["meta", 26, 3], ["containers", 32, 3], ["testScript", 54, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/external-promscrape-config.nix", [["scrape_interval", 6, 7]]);
-const pos$2 = nix.positions(here + "/external-promscrape-config.nix", [["targets", 13, 13]]);
-const pos$3 = nix.positions(here + "/external-promscrape-config.nix", [["job_name", 10, 9], ["static_configs", 11, 9]]);
-const pos$4 = nix.positions(here + "/external-promscrape-config.nix", [["global", 5, 5], ["scrape_configs", 8, 5]]);
-const pos$5 = nix.positions(here + "/external-promscrape-config.nix", [["maintainers", 27, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/external-promscrape-config.nix", [["systemPackages", 36, 21]]);
-const pos$7 = nix.positions(here + "/external-promscrape-config.nix", [["allowedTCPPorts", 37, 29]]);
-const pos$8 = nix.positions(here + "/external-promscrape-config.nix", [["firewall", 37, 20]]);
-const pos$9 = nix.positions(here + "/external-promscrape-config.nix", [["enable", 39, 11], ["extraOptions", 40, 11]]);
-const pos$10 = nix.positions(here + "/external-promscrape-config.nix", [["victoriametrics", 38, 18]]);
-const pos$11 = nix.positions(here + "/external-promscrape-config.nix", [["environment", 36, 9], ["networking", 37, 9], ["services", 38, 9]]);
-const pos$12 = nix.positions(here + "/external-promscrape-config.nix", [["enable", 48, 9], ["openFirewall", 49, 9]]);
-const pos$13 = nix.positions(here + "/external-promscrape-config.nix", [["node", 47, 37]]);
-const pos$14 = nix.positions(here + "/external-promscrape-config.nix", [["exporters", 47, 27]]);
-const pos$15 = nix.positions(here + "/external-promscrape-config.nix", [["prometheus", 47, 16]]);
-const pos$16 = nix.positions(here + "/external-promscrape-config.nix", [["services", 47, 7]]);
-const pos$17 = nix.positions(here + "/external-promscrape-config.nix", [["vmserver", 33, 5], ["node", 46, 5]]);
-const pos$18 = nix.positions(here + "/external-promscrape-config.nix", [["name", 25, 3], ["meta", 26, 3], ["containers", 32, 3], ["testScript", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,15 +12,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const nodeExporterPort = 9100n;
   const promscrapeConfig = nix.thunk(() => ({
-    [nix.POS]: pos$4,
-    global: nix.thunk(() => ({ [nix.POS]: pos$1, scrape_interval: "2s" })),
+    [nix.POS]: $pos[3],
+    global: nix.thunk(() => ({ [nix.POS]: $pos[0], scrape_interval: "2s" })),
     scrape_configs: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         job_name: "node",
         static_configs: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             targets: nix.thunk(() => [nix.thunk(() => nix.str`node:${nix.builtins.toString(nodeExporterPort)}`)]),
           })),
         ]),
@@ -47,34 +30,34 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const promscrapeConfigYaml = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "prometheusConfig.yaml", promscrapeConfig));
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "victoriametrics-external-promscrape-config",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ryan4yin"))]),
       };
     })()),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       vmserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$7, allowedTCPPorts: nix.thunk(() => [8428n]) })),
+            [nix.POS]: $pos[7],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[6], allowedTCPPorts: nix.thunk(() => [8428n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             victoriametrics: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               extraOptions: nix.thunk(() => [
                 nix.thunk(() => nix.str`-promscrape.config=${nix.builtins.toString(promscrapeConfigYaml)}`),
@@ -84,14 +67,14 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$2),
       node: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           prometheus: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             exporters: nix.thunk(() => ({
-              [nix.POS]: pos$13,
-              node: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true, openFirewall: true })),
+              [nix.POS]: $pos[12],
+              node: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: true, openFirewall: true })),
             })),
           })),
         })),

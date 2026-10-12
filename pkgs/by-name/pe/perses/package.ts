@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 26], ["hash", 23, 30]], [["name", 21, 7], ["path", 22, 7]], [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["version", 53, 26], ["src", 53, 34], ["pname", 54, 5], ["sourceRoot", 55, 5], ["hash", 56, 5]], [["nativeBuildInputs", 62, 5], ["preBuild", 63, 5]], [["nixos", 127, 11]], [["updateScript", 125, 5], ["tests", 127, 5], ["pluginsArchive", 129, 13]], [["description", 133, 5], ["homepage", 134, 5], ["changelog", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["platforms", 141, 5], ["mainProgram", 142, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["outputs", 40, 3], ["nativeBuildInputs", 45, 3], ["npmDeps", 52, 3], ["npmRoot", 59, 3], ["overrideModAttrs", 61, 3], ["vendorHash", 66, 3], ["ldflags", 68, 3], ["subPackages", 79, 3], ["prePatch", 84, 3], ["preBuild", 88, 3], ["postInstall", 103, 3], ["doInstallCheck", 113, 3], ["installCheckPhase", 114, 3], ["passthru", 124, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchNpmDeps: false, fetchurl: false, buildGoModule: false, npmHooks: false, nodejs: false, turbo: false, linkFarm: false, installShellFiles: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 26], ["hash", 23, 30]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 21, 7], ["path", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 53, 26], ["src", 53, 34], ["pname", 54, 5], ["sourceRoot", 55, 5], ["hash", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 62, 5], ["preBuild", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["nixos", 127, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 125, 5], ["tests", 127, 5], ["pluginsArchive", 129, 13]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 133, 5], ["homepage", 134, 5], ["changelog", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["platforms", 141, 5], ["mainProgram", 142, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["outputs", 40, 3], ["nativeBuildInputs", 45, 3], ["npmDeps", 52, 3], ["npmRoot", 59, 3], ["overrideModAttrs", 61, 3], ["vendorHash", 66, 3], ["ldflags", 68, 3], ["subPackages", 79, 3], ["prePatch", 84, 3], ["preBuild", 88, 3], ["postInstall", 103, 3], ["doInstallCheck", 113, 3], ["installCheckPhase", 114, 3], ["passthru", 124, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nixosTests = nix.arg($, "nixosTests");
   const pluginsArchive = nix.thunk(() => nix.app(linkFarm, "perses-plugin-archive", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (plugin) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: nix.thunk(() => nix.str`${name}-${nix.sel(plugin, "version")}.tar.gz`),
         path: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.attr(plugin, "url")),
             hash: nix.thunk(() => nix.attr(plugin, "hash")),
           })))),
       }), nix.thunk(() => nix.builtins.import(nix.path(here, "./plugins.nix")))))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "perses",
       version: "0.54.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "perses",
           repo: "perses",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +47,7 @@ export default nix.lambda((args) => (() => {
         installShellFiles,
       ]),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-ui`),
@@ -64,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmRoot: "ui",
       overrideModAttrs: (oldAttrs) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "remove"), nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(oldAttrs, "nativeBuildInputs")))),
         preBuild: null,
       }),
@@ -86,13 +78,13 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/percli help > /dev/null\n\n$out/bin/perses --help 2> /dev/null\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.path(here, "./update.sh"),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$6, nixos: nix.thunk(() => nix.sel(nixosTests, "perses")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[5], nixos: nix.thunk(() => nix.sel(nixosTests, "perses")) })),
         pluginsArchive: pluginsArchive,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "CNCF sandbox for observability visualisation",
         homepage: "https://perses.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/perses/perses/releases/tag/v${nix.sel(finalAttrs, "version")}`),

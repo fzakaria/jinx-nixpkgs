@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5]], [["description", 24, 5], ["homepage", 25, 5], ["changelog", 26, 5], ["license", 27, 5], ["platforms", 28, 5], ["maintainers", 29, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["installPhase", 15, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["changelog", 26, 5], ["license", 27, 5], ["platforms", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["installPhase", 15, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "explex-nf",
       version: "0.0.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/yuru7/Explex/releases/download/v${nix.sel(finalAttrs, "version")}/Explex_NF_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-X4CnYT5B7IyG1Z5Ex6CXCfX7Hz3vNb5bP+vq1Vjx8XI=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm444 ExplexConsole_NF/*.ttf -t $out/share/fonts/truetype/explex-nf-console\ninstall -Dm444 Explex35Console_NF/*.ttf -t $out/share/fonts/truetype/explex-nf-35console\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Composite font of 0xProto, IBM Plex Sans JP and nerd-fonts",
         homepage: "https://github.com/yuru7/Explex",
         changelog: nix.thunk(() => nix.str`https://github.com/yuru7/Explex/releases/tag/v${nix.sel(finalAttrs, "version")}`),

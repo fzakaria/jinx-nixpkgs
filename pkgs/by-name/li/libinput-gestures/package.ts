@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["homepage", 55, 5], ["description", 56, 5], ["mainProgram", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["postPatch", 31, 3], ["installPhase", 39, 3], ["postFixup", 44, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, libinput: false, wmctrl: false, python3: false, coreutils: false, xdotool: true, extraUtilsPath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["mainProgram", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["postPatch", 31, 3], ["installPhase", 39, 3], ["postFixup", 44, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const xdotool = nix.argOr($, "xdotool", () => null);
   const extraUtilsPath = nix.argOr($, "extraUtilsPath", () => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(xdotool, null)), xdotool));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libinput-gestures",
       version: "2.79",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bulletmark",
           repo: "libinput-gestures",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +52,7 @@ chmod +x "$out/share/applications/libinput-gestures.desktop"
 wrapProgram "$out/bin/libinput-gestures" --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([coreutils], extraUtilsPath)))}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/bulletmark/libinput-gestures",
         description: "Gesture mapper for libinput",
         mainProgram: "libinput-gestures",

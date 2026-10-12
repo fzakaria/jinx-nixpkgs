@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["teams", 63, 5]], [["pname", 16, 3], ["version", 17, 40], ["format", 18, 3], ["src", 20, 3], ["preUnpack", 23, 3], ["dependencies", 27, 3], ["pythonRemoveDeps", 39, 3], ["pythonNamespaces", 41, 3], ["pythonImportsCheck", 46, 3], ["doCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "home-assistant-chip-wheels": false, coloredlogs: false, construct: false, cryptography: false, dacite: false, deprecation: false, ipdb: false, pyyaml: false, rich: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["teams", 63, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 40], ["format", 18, 3], ["src", 20, 3], ["preUnpack", 23, 3], ["dependencies", 27, 3], ["pythonRemoveDeps", 39, 3], ["pythonNamespaces", 41, 3], ["pythonImportsCheck", 46, 3], ["doCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python-base APIs and tools for CHIP",
         homepage: "https://github.com/home-assistant-libs/chip-wheels",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/chip-wheels/releases/tag/${version}`),
@@ -56,7 +55,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "home-assistant"))]),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         format,

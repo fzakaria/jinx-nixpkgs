@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]], [["pname", 43, 7], ["version", 44, 7], ["src", 45, 7], ["postPatch", 46, 7], ["hash", 48, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 29, 5], ["version", 30, 5], ["src", 31, 5], ["postPatch", 32, 5], ["pyproject", 34, 3], ["build-system", 36, 3], ["cargoDeps", 41, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 58, 3], ["dependencies", 60, 3], ["doCheck", 67, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, rustPlatform: false, cargo: false, rustc: false, setuptools: false, "setuptools-rust": false, libiconv: false, requests: false, regex: false, blobfile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 43, 7], ["version", 44, 7], ["src", 45, 7], ["postPatch", 46, 7], ["hash", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 5], ["version", 30, 5], ["src", 31, 5], ["postPatch", 32, 5], ["pyproject", 34, 3], ["build-system", 36, 3], ["cargoDeps", 41, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 58, 3], ["dependencies", 60, 3], ["doCheck", 67, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const pname = "tiktoken";
   const version = "0.12.0";
   const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: pname,
       version: version,
       hash: "sha256-sYun7isJOGOXj8sU90s3B83I1NTTg2hTzn7GB3ITmTE=",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const postPatch = nix.thunk(() => nix.str`cp ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `);
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pyproject: true,
       "build-system": nix.thunk(() => [setuptools, setuptools_rust]),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["tiktoken"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast BPE tokeniser for use with OpenAI's models",
         homepage: "https://github.com/openai/tiktoken",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/extensions.nix", [[["ghidra", 9, 56]], [["ghidra", 19, 13]], [["ghidra", 28, 77]], [["ghidra", 34, 77]], [["ghidra", 40, 75]], [["ghidra", 42, 55]], [["buildGhidraExtension", 10, 5], ["buildGhidraScripts", 11, 5], ["findcrypt", 14, 3], ["ghidralib", 16, 3], ["ghidra-delinker-extension", 18, 3], ["ghidra-firmware-utils", 22, 3], ["ghidra-golanganalyzerextension", 24, 3], ["ghidraninja-ghidra-scripts", 26, 3], ["gnudisassembler", 28, 3], ["kaiju", 30, 3], ["lightkeeper", 32, 3], ["machinelearning", 34, 3], ["ret-sync", 36, 3], ["reva", 38, 3], ["sleighdevtools", 40, 3], ["wasm", 42, 3]]]);
 const formals$1 = { args: { lib: false, newScope: false, callPackage: false, ghidra: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/extensions.nix", [["ghidra", 9, 56]]);
-const pos$2 = nix.positions(here + "/extensions.nix", [["ghidra", 19, 13]]);
-const pos$3 = nix.positions(here + "/extensions.nix", [["ghidra", 28, 77]]);
-const pos$4 = nix.positions(here + "/extensions.nix", [["ghidra", 34, 77]]);
-const pos$5 = nix.positions(here + "/extensions.nix", [["ghidra", 40, 75]]);
-const pos$6 = nix.positions(here + "/extensions.nix", [["ghidra", 42, 55]]);
-const pos$7 = nix.positions(here + "/extensions.nix", [["buildGhidraExtension", 10, 5], ["buildGhidraScripts", 11, 5], ["findcrypt", 14, 3], ["ghidralib", 16, 3], ["ghidra-delinker-extension", 18, 3], ["ghidra-firmware-utils", 22, 3], ["ghidra-golanganalyzerextension", 24, 3], ["ghidraninja-ghidra-scripts", 26, 3], ["gnudisassembler", 28, 3], ["kaiju", 30, 3], ["lightkeeper", 32, 3], ["machinelearning", 34, 3], ["ret-sync", 36, 3], ["reva", 38, 3], ["sleighdevtools", 40, 3], ["wasm", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,25 +12,25 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const ghidra = nix.arg($, "ghidra");
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
-      const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-extension.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, ghidra: ghidra }))));
+      const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-extension.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], ghidra: ghidra }))));
       return {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       buildGhidraExtension: nix.thunk(() => nix.attr(from, "buildGhidraExtension")),
       buildGhidraScripts: nix.thunk(() => nix.attr(from, "buildGhidraScripts")),
       findcrypt: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/findcrypt"), nix.thunk(() => ({})))),
       ghidralib: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/ghidralib"), nix.thunk(() => ({})))),
-      "ghidra-delinker-extension": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/ghidra-delinker-extension"), nix.thunk(() => ({ [nix.POS]: pos$2, ghidra: ghidra })))),
+      "ghidra-delinker-extension": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/ghidra-delinker-extension"), nix.thunk(() => ({ [nix.POS]: $pos[1], ghidra: ghidra })))),
       "ghidra-firmware-utils": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/ghidra-firmware-utils"), nix.thunk(() => ({})))),
       "ghidra-golanganalyzerextension": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/ghidra-golanganalyzerextension"), nix.thunk(() => ({})))),
       "ghidraninja-ghidra-scripts": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/ghidraninja-ghidra-scripts"), nix.thunk(() => ({})))),
-      gnudisassembler: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/gnudisassembler"), nix.thunk(() => ({ [nix.POS]: pos$3, ghidra: ghidra })))),
+      gnudisassembler: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/gnudisassembler"), nix.thunk(() => ({ [nix.POS]: $pos[2], ghidra: ghidra })))),
       kaiju: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/kaiju"), nix.thunk(() => ({})))),
       lightkeeper: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/lightkeeper"), nix.thunk(() => ({})))),
-      machinelearning: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/machinelearning"), nix.thunk(() => ({ [nix.POS]: pos$4, ghidra: ghidra })))),
+      machinelearning: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/machinelearning"), nix.thunk(() => ({ [nix.POS]: $pos[3], ghidra: ghidra })))),
       "ret-sync": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/ret-sync"), nix.thunk(() => ({})))),
       reva: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/reva"), nix.thunk(() => ({})))),
-      sleighdevtools: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/sleighdevtools"), nix.thunk(() => ({ [nix.POS]: pos$5, ghidra: ghidra })))),
-      wasm: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/wasm"), nix.thunk(() => ({ [nix.POS]: pos$6, ghidra: ghidra })))),
+      sleighdevtools: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/sleighdevtools"), nix.thunk(() => ({ [nix.POS]: $pos[4], ghidra: ghidra })))),
+      wasm: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extensions/wasm"), nix.thunk(() => ({ [nix.POS]: $pos[5], ghidra: ghidra })))),
     };
     })());
 })(), formals$1);

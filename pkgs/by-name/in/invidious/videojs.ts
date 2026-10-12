@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/videojs.nix", [[["name", 12, 3], ["src", 14, 23], ["builder", 16, 3], ["nativeBuildInputs", 18, 3], ["outputHashAlgo", 25, 3], ["outputHashMode", 26, 3], ["outputHash", 27, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, cacert: false, crystal: false, openssl: false, "pkg-config": false, invidious: false, versions: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/videojs.nix", [["name", 12, 3], ["src", 14, 23], ["builder", 16, 3], ["nativeBuildInputs", 18, 3], ["outputHashAlgo", 25, 3], ["outputHashMode", 26, 3], ["outputHash", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const invidious = nix.arg($, "invidious");
   const versions = nix.arg($, "versions");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "videojs",
       src: nix.thunk(() => nix.attr(invidious, "src")),
       builder: nix.path(here, "./videojs.sh"),

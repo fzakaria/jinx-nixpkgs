@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["updateScript", 34, 12]], [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 14, 3], ["version", 15, 3], ["minimalOCamlVersion", 17, 3], ["src", 19, 3], ["checkInputs", 26, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 32, 3], ["passthru", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDunePackage: false, ocaml: false, "ocaml-syntax-shims": false, alcotest: false, bigstringaf: false, ppx_let: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 34, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["minimalOCamlVersion", 17, 3], ["src", 19, 3], ["checkInputs", 26, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 32, 3], ["passthru", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const ppx_let = nix.arg($, "ppx_let");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "angstrom",
       version: "0.16.1",
       minimalOCamlVersion: "4.04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "inhabitedtype",
           repo: "angstrom",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [bigstringaf]),
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/inhabitedtype/angstrom",
         description: "OCaml parser combinators built for speed and memory efficiency",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

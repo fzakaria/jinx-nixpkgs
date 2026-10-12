@@ -2,16 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 63, 5], ["hash", 64, 5]], [["orc", 147, 7], ["orc-compiler", 148, 7], ["nls", 149, 7], ["glib_debug", 151, 7], ["examples", 152, 7], ["introspection", 153, 7], ["doc", 154, 7], ["tests", 156, 7], ["libvisual", 158, 7], ["tremor", 159, 7], ["vorbis", 160, 7], ["x11", 162, 7], ["xi", 163, 7], ["xshm", 164, 7], ["xvideo", 165, 7], ["gl", 168, 7], ["alsa", 169, 7], ["cdparanoia", 170, 7], ["drm", 171, 7]], [["odd-unstable", 207, 46]], [["package", 210, 7], ["versionCheck", 211, 7]], [["pkg-config", 209, 11]], [["glEnabled", 204, 5], ["waylandEnabled", 205, 5], ["updateScript", 207, 5], ["tests", 209, 5]], [["cpeParts", 243, 17]], [["description", 216, 5], ["homepage", 217, 5], ["license", 218, 5], ["pkgConfigModules", 219, 5], ["platforms", 241, 5], ["maintainers", 242, 5], ["identifiers", 243, 5]], [["pname", 52, 3], ["version", 53, 3], ["outputs", 55, 3], ["separateDebugInfo", 60, 3], ["src", 62, 3], ["__structuredAttrs", 67, 3], ["strictDeps", 68, 3], ["depsBuildBuild", 69, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 92, 3], ["propagatedBuildInputs", 125, 3], ["mesonFlags", 132, 3], ["postPatch", 175, 3], ["hardeningDisable", 183, 3], ["doCheck", 185, 3], ["preFixup", 187, 3], ["passthru", 191, 3], ["meta", 215, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, "pkg-config": false, meson: false, ninja: false, gettext: false, python3: false, gstreamer: false, graphene: false, orc: false, pango: false, libtheora: false, libintl: false, libopus: false, isocodes: false, libjpeg: false, libpng: false, libvorbis: false, libGL: false, withIntrospection: true, buildPackages: false, "gobject-introspection": false, enableX11: true, libxext: false, libxi: false, libxv: false, libdrm: false, enableWayland: true, "wayland-scanner": false, wayland: false, "wayland-protocols": false, enableAlsa: true, "alsa-lib": false, enableCocoa: true, enableGl: true, enableCdparanoia: true, cdparanoia: false, glib: false, testers: false, enableDocumentation: true, hotdoc: false, directoryListingUpdater: false, "apple-sdk_gstreamer": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 63, 5], ["hash", 64, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["orc", 147, 7], ["orc-compiler", 148, 7], ["nls", 149, 7], ["glib_debug", 151, 7], ["examples", 152, 7], ["introspection", 153, 7], ["doc", 154, 7], ["tests", 156, 7], ["libvisual", 158, 7], ["tremor", 159, 7], ["vorbis", 160, 7], ["x11", 162, 7], ["xi", 163, 7], ["xshm", 164, 7], ["xvideo", 165, 7], ["gl", 168, 7], ["alsa", 169, 7], ["cdparanoia", 170, 7], ["drm", 171, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["odd-unstable", 207, 46]]);
-const pos$4 = nix.positions(here + "/default.nix", [["package", 210, 7], ["versionCheck", 211, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pkg-config", 209, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["glEnabled", 204, 5], ["waylandEnabled", 205, 5], ["updateScript", 207, 5], ["tests", 209, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["cpeParts", 243, 17]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 216, 5], ["homepage", 217, 5], ["license", 218, 5], ["pkgConfigModules", 219, 5], ["platforms", 241, 5], ["maintainers", 242, 5], ["identifiers", 243, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 52, 3], ["version", 53, 3], ["outputs", 55, 3], ["separateDebugInfo", 60, 3], ["src", 62, 3], ["__structuredAttrs", 67, 3], ["strictDeps", 68, 3], ["depsBuildBuild", 69, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 92, 3], ["propagatedBuildInputs", 125, 3], ["mesonFlags", 132, 3], ["postPatch", 175, 3], ["hardeningDisable", 183, 3], ["doCheck", 185, 3], ["preFixup", 187, 3], ["passthru", 191, 3], ["meta", 215, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,13 +52,13 @@ export default nix.lambda((args) => (() => {
   const directoryListingUpdater = nix.arg($, "directoryListingUpdater");
   const apple_sdk_gstreamer = nix.arg($, "apple-sdk_gstreamer");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "gst-plugins-base",
       version: "1.28.7",
       outputs: nix.thunk(() => ["out", "dev"]),
       separateDebugInfo: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-7W5UEPSW0XGBh2OvImXnl3FUvH+bgn6YrPjFvtId1ac=",
         })))),
@@ -90,7 +82,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => (() => {
         const enabledGlWinSys = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), enableX11, "x11"), nix.concat(nix.app(nix.sel(lib, "optional"), enableWayland, "wayland"), nix.app(nix.sel(lib, "optional"), enableCocoa, "cocoa"))));
         return nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonEnable")), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             orc: true,
             "orc-compiler": true,
             nls: true,
@@ -119,21 +111,21 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       preFixup: "moveToOutput \"lib/gstreamer-1.0/pkgconfig\" \"$dev\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         glEnabled: enableGl,
         waylandEnabled: enableWayland,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "odd-unstable": true })))),
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "odd-unstable": true })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Base GStreamer plug-ins and helper libraries",
         homepage: "https://gstreamer.freedesktop.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -156,7 +148,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "tmarkus"))];
         })()),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           cpeParts: nix.thunk(() => nix.app(nix.sel(gstreamer, "passthru", "gstreamerCpeParts"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

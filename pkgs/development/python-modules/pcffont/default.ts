@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["updateScript", 34, 12]], [["homepage", 37, 5], ["description", 38, 5], ["platforms", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["nativeCheckInputs", 26, 3], ["pythonImportsCheck", 32, 3], ["passthru", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, "nix-update-script": false, "uv-build": false, bdffont: false, "freetype-py": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 34, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["description", 38, 5], ["platforms", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["nativeCheckInputs", 26, 3], ["pythonImportsCheck", 32, 3], ["passthru", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.33";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TakWolf",
           repo: "pcffont",
           tag: version,
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, bdffont, freetype_py]);
       const pythonImportsCheck = nix.thunk(() => ["pcffont"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/TakWolf/pcffont",
         description: "Library for manipulating Portable Compiled Format (PCF) Fonts",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

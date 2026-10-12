@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 40, 5], ["mainProgram", 41, 5], ["longDescription", 42, 5], ["homepage", 47, 5], ["sourceProvenance", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["unpackCmd", 25, 3], ["installPhase", 27, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, jdk: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["mainProgram", 41, 5], ["longDescription", 42, 5], ["homepage", 47, 5], ["sourceProvenance", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["unpackCmd", 25, 3], ["installPhase", 27, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "6.1.1",
       pname: "omegat",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "mirror://sourceforge/project/omegat/OmegaT%20-%20Standard/OmegaT%206.1.1/OmegaT_6.1.1_Without_JRE.zip",
           sha256: "sha256-apnR+GeHs+ySARtH2LvYR9hfRuznC0xqrWN8WOtq9uk=",
         })))),
@@ -37,7 +35,7 @@ EOF
 chmod +x $out/bin/omegat
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free computer aided translation (CAT) tool for professionals",
         mainProgram: "omegat",
         longDescription: "OmegaT is a free and open source multiplatform Computer Assisted Translation\ntool with fuzzy matching, translation memory, keyword search, glossaries, and\ntranslation leveraging into updated projects.\n",

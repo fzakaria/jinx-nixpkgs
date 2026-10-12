@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 13], ["version", 25, 19], ["hash", 26, 5]], [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 36, 3], ["nativeCheckInputs", 44, 3], ["doCheck", 49, 3], ["disabledTests", 51, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchPypi: false, pytestCheckHook: false, "pytest-cov-stub": false, cython: false, setuptools: false, "setuptools-scm": false, wheel: false, numpy: false, scipy: false, matplotlib: false, networkx: false, nibabel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 13], ["version", 25, 19], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 36, 3], ["nativeCheckInputs", 44, 3], ["doCheck", 49, 3], ["disabledTests", 51, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-Esv0iLBlXcBaoYoMpZgt6XAwJgTkYfyS6H69m3U5tv8=",
@@ -41,14 +39,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_UniformTime_repr"]);
       const pythonImportsCheck = nix.thunk(() => ["nitime"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://nipy.org/nitime",
         description: "Algorithms and containers for time-series analysis in time and spectral domains",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bcdarwin"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

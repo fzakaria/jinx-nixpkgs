@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["name", 12, 3], ["paths", 14, 3], ["nativeBuildInputs", 16, 3], ["postBuild", 18, 3]]]);
 const formals$1 = { args: { symlinkJoin: false, puredata: false, makeWrapper: false, plugins: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["name", 12, 3], ["paths", 14, 3], ["nativeBuildInputs", 16, 3], ["postBuild", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const plugins = nix.arg($, "plugins");
   const puredataFlags = nix.thunk(() => nix.builtins.map((x) => nix.str`-path ${x}/`, plugins));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`puredata-with-plugins-${nix.sel(puredata, "version")}`),
       paths: nix.thunk(() => nix.concat([puredata], plugins)),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

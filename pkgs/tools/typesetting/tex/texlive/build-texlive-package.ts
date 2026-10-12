@@ -2,35 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-texlive-package.nix", [[["license", 67, 5], ["outputsToInstall", 69, 5], ["longDescription", 70, 5], ["priority", 74, 5], ["platforms", 75, 5], ["hydraPlatforms", 79, 5], ["maintainers", 80, 5]], [["description", 83, 5]], [["homepage", 86, 5]], [["mainProgram", 89, 13]], [["sourceProvenance", 92, 5]], [["pname", 117, 13], ["revision", 118, 5], ["version", 119, 5], ["outputSpecified", 121, 5]], [["tlDeps", 123, 40]], [["fontMaps", 124, 59]], [["formats", 125, 58]], [["hyphenPatterns", 126, 65]], [["postactionScript", 127, 67]], [["texsource", 128, 57]], [["tex", 129, 41]], [["urls", 144, 40], ["sha512", 144, 45]], [["src", 144, 15], ["passthru", 145, 23], ["meta", 147, 23], ["stripPrefix", 147, 28], ["tlOutputName", 147, 40]], [["outputHash", 150, 15], ["outputHashAlgo", 151, 15], ["outputHashMode", 152, 15]], [["jar", 177, 5], ["lua", 178, 5], ["py", 179, 5], ["rb", 180, 5], ["sno", 181, 5], ["tcl", 182, 5], ["texlua", 183, 5], ["tlu", 184, 5]], [["meta", 191, 15], ["tlOutputName", 192, 7], ["build", 193, 15]], [["tlOutputName", 209, 13]], [["meta", 207, 19], ["passthru", 208, 11], ["buildInputs", 212, 11], ["nativeBuildInputs", 227, 11], ["scriptsFolder", 229, 11], ["binfiles", 233, 26], ["binlinks", 234, 11], ["bintargets", 235, 11], ["patchScripts", 237, 11], ["makeBinContainers", 238, 11]], [["tlOutputName", 252, 13]], [["meta", 250, 19], ["texdoc", 250, 24], ["passthru", 251, 11]], [["tlOutputName", 267, 13]], [["meta", 265, 19], ["texdoc", 265, 24], ["passthru", 266, 11]], [["tex", 198, 5], ["texdoc", 199, 5], ["texsource", 200, 5], ["tlpkg", 201, 5], ["out", 204, 5], ["man", 247, 5], ["info", 262, 5]], [["build", 287, 19]], [["__structuredAttrs", 283, 9], ["meta", 284, 17], ["outputDrvs", 284, 22], ["outputs", 285, 9], ["passthru", 286, 9], ["preHook", 291, 9]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, runCommand: false, writeShellScript: false, bash: false, jre_headless: false, perl: false, python3: false, ruby: false, snobol4: false, tk: false, texliveBinaries: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, revision: false, version: true, extraRevision: true, extraVersion: true, sha512: true, mirrors: false, fixedHashes: true, postUnpack: true, postFixup: true, stripPrefix: true, license: true, hasHyphens: true, hasInfo: true, hasManpages: true, hasRunfiles: true, hasTlpkg: true, hasCatalogue: true, hasJar: true, catalogue: true, extraNativeBuildInputs: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-texlive-package.nix", [["license", 67, 5], ["outputsToInstall", 69, 5], ["longDescription", 70, 5], ["priority", 74, 5], ["platforms", 75, 5], ["hydraPlatforms", 79, 5], ["maintainers", 80, 5]]);
-const pos$2 = nix.positions(here + "/build-texlive-package.nix", [["description", 83, 5]]);
-const pos$3 = nix.positions(here + "/build-texlive-package.nix", [["homepage", 86, 5]]);
-const pos$4 = nix.positions(here + "/build-texlive-package.nix", [["mainProgram", 89, 13]]);
-const pos$5 = nix.positions(here + "/build-texlive-package.nix", [["sourceProvenance", 92, 5]]);
-const pos$6 = nix.positions(here + "/build-texlive-package.nix", [["pname", 117, 13], ["revision", 118, 5], ["version", 119, 5], ["outputSpecified", 121, 5]]);
-const pos$7 = nix.positions(here + "/build-texlive-package.nix", [["tlDeps", 123, 40]]);
-const pos$8 = nix.positions(here + "/build-texlive-package.nix", [["fontMaps", 124, 59]]);
-const pos$9 = nix.positions(here + "/build-texlive-package.nix", [["formats", 125, 58]]);
-const pos$10 = nix.positions(here + "/build-texlive-package.nix", [["hyphenPatterns", 126, 65]]);
-const pos$11 = nix.positions(here + "/build-texlive-package.nix", [["postactionScript", 127, 67]]);
-const pos$12 = nix.positions(here + "/build-texlive-package.nix", [["texsource", 128, 57]]);
-const pos$13 = nix.positions(here + "/build-texlive-package.nix", [["tex", 129, 41]]);
-const pos$14 = nix.positions(here + "/build-texlive-package.nix", [["urls", 144, 40], ["sha512", 144, 45]]);
-const pos$15 = nix.positions(here + "/build-texlive-package.nix", [["src", 144, 15], ["passthru", 145, 23], ["meta", 147, 23], ["stripPrefix", 147, 28], ["tlOutputName", 147, 40]]);
-const pos$16 = nix.positions(here + "/build-texlive-package.nix", [["outputHash", 150, 15], ["outputHashAlgo", 151, 15], ["outputHashMode", 152, 15]]);
-const pos$17 = nix.positions(here + "/build-texlive-package.nix", [["jar", 177, 5], ["lua", 178, 5], ["py", 179, 5], ["rb", 180, 5], ["sno", 181, 5], ["tcl", 182, 5], ["texlua", 183, 5], ["tlu", 184, 5]]);
-const pos$18 = nix.positions(here + "/build-texlive-package.nix", [["meta", 191, 15], ["tlOutputName", 192, 7], ["build", 193, 15]]);
-const pos$19 = nix.positions(here + "/build-texlive-package.nix", [["tlOutputName", 209, 13]]);
-const pos$20 = nix.positions(here + "/build-texlive-package.nix", [["meta", 207, 19], ["passthru", 208, 11], ["buildInputs", 212, 11], ["nativeBuildInputs", 227, 11], ["scriptsFolder", 229, 11], ["binfiles", 233, 26], ["binlinks", 234, 11], ["bintargets", 235, 11], ["patchScripts", 237, 11], ["makeBinContainers", 238, 11]]);
-const pos$21 = nix.positions(here + "/build-texlive-package.nix", [["tlOutputName", 252, 13]]);
-const pos$22 = nix.positions(here + "/build-texlive-package.nix", [["meta", 250, 19], ["texdoc", 250, 24], ["passthru", 251, 11]]);
-const pos$23 = nix.positions(here + "/build-texlive-package.nix", [["tlOutputName", 267, 13]]);
-const pos$24 = nix.positions(here + "/build-texlive-package.nix", [["meta", 265, 19], ["texdoc", 265, 24], ["passthru", 266, 11]]);
-const pos$25 = nix.positions(here + "/build-texlive-package.nix", [["tex", 198, 5], ["texdoc", 199, 5], ["texsource", 200, 5], ["tlpkg", 201, 5], ["out", 204, 5], ["man", 247, 5], ["info", 262, 5]]);
-const pos$26 = nix.positions(here + "/build-texlive-package.nix", [["build", 287, 19]]);
-const pos$27 = nix.positions(here + "/build-texlive-package.nix", [["__structuredAttrs", 283, 9], ["meta", 284, 17], ["outputDrvs", 284, 22], ["outputs", 285, 9], ["passthru", 286, 9], ["preHook", 291, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -72,7 +46,7 @@ export default nix.lambda((args) => (() => {
     const extraNativeBuildInputs = nix.argOr($_1, "extraNativeBuildInputs", () => []);
     const name = nix.thunk(() => nix.str`${pname}-${version}${extraVersion}`);
     const meta = nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       license: nix.thunk(() => nix.builtins.map((x) => nix.sel(lib, "licenses", nix.key(nix.force(x))), license)),
       outputsToInstall: [],
       longDescription: nix.thunk(() => nix.str`This package cannot be installed or used directly. Please use \`texlive.withPackages (ps: [ ps.${nix.app(nix.sel(lib, "strings", "escapeNixIdentifier"), pname)} ])\`.
@@ -84,11 +58,14 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "xworld21"))];
       })()),
-    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "shortdesc")), nix.thunk(() => ({ [nix.POS]: pos$2, description: nix.thunk(() => nix.sel(args_2, "shortdesc")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), hasCatalogue, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "shortdesc")), nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        description: nix.thunk(() => nix.sel(args_2, "shortdesc")),
+      }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), hasCatalogue, nix.thunk(() => ({
+        [nix.POS]: $pos[2],
         homepage: nix.thunk(() => nix.str`https://ctan.org/pkg/${catalogue}`),
-      }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(mainProgram, null)), nix.thunk(() => ({ [nix.POS]: pos$4, mainProgram: mainProgram }))), nix.app(nix.sel(lib, "optionalAttrs"), hasJar, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+      }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(mainProgram, null)), nix.thunk(() => ({ [nix.POS]: $pos[3], mainProgram: mainProgram }))), nix.app(nix.sel(lib, "optionalAttrs"), hasJar, nix.thunk(() => ({
+        [nix.POS]: $pos[4],
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),
       }))))))));
     const mainProgram = nix.thunk(() => nix.selOr(args_2, () => (nix.asBool(nix.eq(nix.builtins.length(nix.thunk(() => nix.selOr(args_2, () => [], "binfiles"))), 1n)) ? nix.builtins.head(nix.thunk(() => nix.sel(args_2, "binfiles"))) : null), "mainProgram"));
@@ -98,34 +75,34 @@ export default nix.lambda((args) => (() => {
     const outputs = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), hasBinfiles, "out"), nix.concat(nix.app(nix.sel(lib, "optional"), hasRunfiles, "tex"), nix.concat(nix.app(nix.sel(lib, "optional"), hasDocfiles, "texdoc"), nix.concat(nix.app(nix.sel(lib, "optional"), hasSource, "texsource"), nix.concat(nix.app(nix.sel(lib, "optional"), hasTlpkg, "tlpkg"), nix.concat(nix.app(nix.sel(lib, "optional"), hasManpages, "man"), nix.app(nix.sel(lib, "optional"), hasInfo, "info"))))))));
     const outputDrvs = nix.thunk(() => nix.app(nix.sel(lib, "getAttrs"), outputs, containers));
     const passthru = nix.thunk(() => nix.update({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       revision: nix.thunk(() => nix.add(nix.builtins.toString(revision), extraRevision)),
       version: nix.thunk(() => nix.add(version, extraVersion)),
       outputSpecified: true,
-    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "deps")), nix.thunk(() => ({ [nix.POS]: pos$7, tlDeps: nix.thunk(() => nix.sel(args_2, "deps")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "fontMaps")), nix.thunk(() => ({ [nix.POS]: pos$8, fontMaps: nix.thunk(() => nix.attr(args_2, "fontMaps")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "formats")), nix.thunk(() => ({ [nix.POS]: pos$9, formats: nix.thunk(() => nix.attr(args_2, "formats")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "hyphenPatterns")), nix.thunk(() => ({
-        [nix.POS]: pos$10,
+    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "deps")), nix.thunk(() => ({ [nix.POS]: $pos[6], tlDeps: nix.thunk(() => nix.sel(args_2, "deps")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "fontMaps")), nix.thunk(() => ({ [nix.POS]: $pos[7], fontMaps: nix.thunk(() => nix.attr(args_2, "fontMaps")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "formats")), nix.thunk(() => ({ [nix.POS]: $pos[8], formats: nix.thunk(() => nix.attr(args_2, "formats")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "hyphenPatterns")), nix.thunk(() => ({
+        [nix.POS]: $pos[9],
         hyphenPatterns: nix.thunk(() => nix.attr(args_2, "hyphenPatterns")),
       }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "postactionScript")), nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         postactionScript: nix.thunk(() => nix.attr(args_2, "postactionScript")),
       }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), hasSource, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         texsource: nix.thunk(() => nix.attr(containers, "texsource")),
-      }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(hasRunfiles)), nix.thunk(() => ({ [nix.POS]: pos$13, tex: fakeTeX })))))))))));
+      }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(hasRunfiles)), nix.thunk(() => ({ [nix.POS]: $pos[12], tex: fakeTeX })))))))))));
     const mkContainer = (tlType) => (tlOutputName) => (sha512_1) => (() => {
       const fixedHash = nix.thunk(() => nix.selOr(fixedHashes, () => null, nix.key(nix.force(tlType))));
       const urlName = nix.thunk(() => nix.add(pname, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.eq(tlType, "run")) && nix.asBool(!nix.eq(tlType, "tlpkg")))), nix.thunk(() => nix.str`.${tlType}`))));
       const urls = nix.thunk(() => nix.builtins.map((up) => nix.str`${up}/archive/${urlName}.r${nix.builtins.toString(revision)}.tar.xz`, mirrors));
       const container = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${name}-${tlOutputName}`), nix.thunk(() => nix.update({
-          [nix.POS]: pos$15,
-          src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$14, urls: urls, sha512: sha512_1 })))),
+          [nix.POS]: $pos[14],
+          src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[13], urls: urls, sha512: sha512_1 })))),
           passthru: passthru,
           meta: meta,
           stripPrefix: stripPrefix,
           tlOutputName: tlOutputName,
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(fixedHash, null)), nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             outputHash: fixedHash,
             outputHashAlgo: "sha256",
             outputHashMode: "recursive",
@@ -133,7 +110,7 @@ export default nix.lambda((args) => (() => {
       return nix.update(nix.builtins.removeAttrs(container, nix.thunk(() => ["out"])), outputDrvs);
     })();
     const extToInput = nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       jar: jre_headless,
       lua: nix.thunk(() => nix.sel(texliveBinaries, "luatex")),
       py: python3,
@@ -143,16 +120,16 @@ export default nix.lambda((args) => (() => {
       texlua: nix.thunk(() => nix.sel(texliveBinaries, "luatex")),
       tlu: nix.thunk(() => nix.sel(texliveBinaries, "luatex")),
     }));
-    const fakeTeX = nix.thunk(() => nix.update(passthru, nix.update({ [nix.POS]: pos$18, meta: meta, tlOutputName: "tex", build: build }, outputDrvs)));
+    const fakeTeX = nix.thunk(() => nix.update(passthru, nix.update({ [nix.POS]: $pos[17], meta: meta, tlOutputName: "tex", build: build }, outputDrvs)));
     const containers = nix.thunk(() => (() => {
       const tex = nix.thunk(() => nix.app(mkContainer, "run", "tex", nix.thunk(() => nix.sel(sha512, "run"))));
       const texdoc = nix.thunk(() => nix.app(mkContainer, "doc", "texdoc", nix.thunk(() => nix.sel(sha512, "doc"))));
       const texsource = nix.thunk(() => nix.app(mkContainer, "source", "texsource", nix.thunk(() => nix.sel(sha512, "source"))));
       const tlpkg = nix.thunk(() => nix.app(mkContainer, "tlpkg", "tlpkg", nix.thunk(() => nix.sel(sha512, "run"))));
       const out = nix.thunk(() => nix.update(nix.app(runCommand, nix.thunk(() => nix.str`${name}`), nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           meta: meta,
-          passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: pos$19, tlOutputName: "out" })),
+          passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: $pos[18], tlOutputName: "out" })),
           buildInputs: nix.thunk(() => (() => {
             const outName = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), pname));
             return nix.concat([
@@ -172,26 +149,26 @@ export default nix.lambda((args) => (() => {
 ${nix.selOr(args_2, () => "", "postFixup")}
 `)), outputDrvs));
       const man = nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${name}-man`), nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             meta: meta,
             texdoc: texdoc,
-            passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: pos$21, tlOutputName: "man" })),
+            passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: $pos[20], tlOutputName: "man" })),
           })), "mkdir -p \"$out\"/share\nln -s {\"$texdoc\"/doc,\"$out\"/share}/man\n")), nix.thunk(() => ["out"])), outputDrvs));
       const info = nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${name}-info`), nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             meta: meta,
             texdoc: texdoc,
-            passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: pos$23, tlOutputName: "info" })),
+            passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: $pos[22], tlOutputName: "info" })),
           })), "mkdir -p \"$out\"/share\nln -s {\"$texdoc\"/doc,\"$out\"/share}/info\n")), nix.thunk(() => ["out"])), outputDrvs));
-      return { [nix.POS]: pos$25, tex, texdoc, texsource, tlpkg, out, man, info };
+      return { [nix.POS]: $pos[24], tex, texdoc, texsource, tlpkg, out, man, info };
     })());
     const build = nix.thunk(() => nix.app(runCommand, name, nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         __structuredAttrs: true,
         meta: meta,
         outputDrvs: outputDrvs,
         outputs: nix.thunk(() => (nix.asBool(!nix.eq(outputs, [])) ? nix.force(outputs) : ["out"])),
-        passthru: nix.thunk(() => nix.update(nix.builtins.removeAttrs(passthru, nix.thunk(() => ["outputSpecified"])), { [nix.POS]: pos$26, build: build })),
+        passthru: nix.thunk(() => nix.update(nix.builtins.removeAttrs(passthru, nix.thunk(() => ["outputSpecified"])), { [nix.POS]: $pos[25], build: build })),
         preHook: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.asBool(hasBinfiles)) && nix.asBool(!nix.eq(outputs, [])))), nix.thunk(() => nix.str`export out="\${${nix.builtins.head(outputs)}-}"
 `))),
       })), "for outputName in ${!outputs[@]} ; do\n  if [[ -n ${outputDrvs[$outputName]} ]] ; then\n    ln -s \"${outputDrvs[$outputName]}\" \"${outputs[$outputName]}\"\n  else\n    touch \"${outputs[$outputName]}\"\n  fi\ndone\n"));

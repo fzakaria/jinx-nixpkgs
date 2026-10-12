@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]], [["ignoredVersions", 64, 5]], [["updateScript", 63, 12]], [["description", 68, 5], ["mainProgram", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["postPatch", 42, 3], ["cmakeFlags", 48, 3], ["dontWrapGApps", 52, 3], ["postFixup", 53, 3], ["passthru", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, gitUpdater: false, cmake: false, "pkg-config": false, python3: false, SDL2: false, fontconfig: false, gtk3: false, wrapGAppsHook3: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ignoredVersions", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 68, 5], ["mainProgram", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["postPatch", 42, 3], ["cmakeFlags", 48, 3], ["dontWrapGApps", 52, 3], ["postFixup", 53, 3], ["passthru", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "openboardview",
       version: "10.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenBoardView",
           repo: "OpenBoardView",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,11 +47,11 @@ export default nix.lambda((args) => (() => {
   --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [gtk3]))}
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: ".*\\.90\\..*" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], ignoredVersions: ".*\\.90\\..*" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Linux SDL/ImGui edition software for viewing .brd files",
         mainProgram: "openboardview",
         homepage: "https://github.com/OpenBoardView/OpenBoardView",

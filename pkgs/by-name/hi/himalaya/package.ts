@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["OPENSSL_NO_VENDOR", 37, 7]], [["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 81, 5]], [["__structuredAttrs", 21, 3], ["buildFeatures", 23, 11], ["buildNoDefaultFeatures", 23, 25], ["pname", 25, 3], ["version", 26, 3], ["cargoHash", 27, 3], ["src", 29, 3], ["env", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["postInstall", 46, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { buildFeatures: true, buildNoDefaultFeatures: true, buildPackages: false, fetchFromGitHub: false, installManPages: true, installShellCompletions: true, installShellFiles: false, lib: false, openssl: false, "pkg-config": false, rustPlatform: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["__structuredAttrs", 21, 3], ["buildFeatures", 23, 11], ["buildNoDefaultFeatures", 23, 25], ["pname", 25, 3], ["version", 26, 3], ["cargoHash", 27, 3], ["src", 29, 3], ["env", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["postInstall", 46, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const nativeTls = nix.thunk(() => nix.builtins.elem("native-tls", buildFeatures));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       __structuredAttrs: true,
       buildFeatures: buildFeatures,
       buildNoDefaultFeatures: buildNoDefaultFeatures,
@@ -32,13 +29,13 @@ export default nix.lambda((args) => (() => {
       version: "2.2.1",
       cargoHash: "sha256-KDsvF8wHMIEw+rjBJpUTgX6QIhcCMVjLWcPWklpxG3Q=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pimalaya",
           repo: "himalaya",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-fYspChAGb0PLdsgP5GViAwp4NdmDXDyait0mpqIkGfQ=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, installShellFiles]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nativeTls, openssl)),
       postInstall: nix.thunk(() => (() => {
@@ -50,7 +47,7 @@ ${exe} json-schema -d "$out"/share/schemas
 `, nix.app(nix.sel(lib, "optionalString"), installManPages, "installManPage \"$out\"/share/man/*\n")), nix.app(nix.sel(lib, "optionalString"), installShellCompletions, "installShellCompletion --cmd himalaya \\\n  --bash \"$out\"/share/completions/himalaya.bash \\\n  --fish \"$out\"/share/completions/himalaya.fish \\\n  --zsh \"$out\"/share/completions/_himalaya\n"));
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI to manage emails",
         mainProgram: "himalaya",
         homepage: "https://github.com/pimalaya/himalaya",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["GSSAPI_SUPPORT_DETECT", 43, 5]], [["changelog", 75, 5], ["homepage", 76, 5], ["description", 77, 5], ["license", 78, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["env", 42, 3], ["build-system", 46, 3], ["dependencies", 52, 3], ["doCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["preCheck", 63, 3], ["postCheck", 68, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, setuptools: false, decorator: false, "krb5-c": false, parameterized: false, k5test: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["GSSAPI_SUPPORT_DETECT", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 75, 5], ["homepage", 76, 5], ["description", 77, 5], ["license", 78, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["env", 42, 3], ["build-system", 46, 3], ["dependencies", 52, 3], ["doCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["preCheck", 63, 3], ["postCheck", 68, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const k5test = nix.arg($, "k5test");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gssapi",
       version: "1.11.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pythongssapi",
           repo: "python-gssapi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
 substituteInPlace setup.py \\
   --replace-fail 'get_output(f"{kc} gssapi --prefix")' '"${nix.app(nix.sel(lib, "getDev"), krb5_c)}"'
 `),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => ({ [nix.POS]: pos$2, GSSAPI_SUPPORT_DETECT: "false" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => ({ [nix.POS]: $pos[1], GSSAPI_SUPPORT_DETECT: "false" })))),
       "build-system": nix.thunk(() => [cython, krb5_c, setuptools]),
       dependencies: nix.thunk(() => [decorator]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
@@ -47,7 +44,7 @@ substituteInPlace setup.py \\
       postCheck: "popd\n",
       pythonImportsCheck: nix.thunk(() => ["gssapi"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/pythongssapi/python-gssapi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/pythongssapi/python-gssapi",
         description: "Python GSSAPI Wrapper",

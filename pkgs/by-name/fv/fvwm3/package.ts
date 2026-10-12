@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["homepage", 95, 5], ["description", 96, 5], ["longDescription", 97, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5], ["platforms", 120, 27]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["pythonPath", 78, 3], ["configureFlags", 82, 3], ["postFixup", 86, 3], ["enableParallelBuilding", 90, 3], ["strictDeps", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, asciidoctor: false, autoconf269: false, autoreconfHook: false, cairo: false, fetchFromGitHub: false, fontconfig: false, freetype: false, fribidi: false, libsm: false, libx11: false, libxcursor: false, libxft: false, libxi: false, libxinerama: false, libxpm: false, libxrandr: false, libxt: false, libevent: false, libintl: false, libpng: false, librsvg: false, libxslt: false, perl: false, "pkg-config": false, python3Packages: false, readline: false, sharutils: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["description", 96, 5], ["longDescription", 97, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5], ["platforms", 120, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["pythonPath", 78, 3], ["configureFlags", 82, 3], ["postFixup", 86, 3], ["enableParallelBuilding", 90, 3], ["strictDeps", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const sharutils = nix.arg($, "sharutils");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fvwm3",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fvwmorg",
           repo: "fvwm3",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -88,7 +86,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libx11, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://fvwm.org",
         description: "Multiple large virtual desktop window manager - Version 3",
         longDescription: "Fvwm is a virtual window manager for the X windows system. It was\noriginally a feeble fork of TWM by Robert Nation in 1993 (fvwm history),\nand has evolved into the fantastic, fabulous, famous, flexible, and so on,\nwindow manager we have today.\n\nFvwm is a ICCCM/EWMH compliant and highly configurable floating window\nmanager built primarily using Xlib. Fvwm is configured using a\nconfiguration file, which is used to configure most aspects of the window\nmanager including window looks, key bindings, menus, window behavior,\nadditional modules, and more. There is a default configuration file that\ncan be used as a starting point for writing one's own configuration file.\n\nFvwm is a light weight window manager and can be configured to be anything\nfrom a small sleek window manager to a full featured desktop\nenvironment. To get the most out of fvwm, one should be willing to read\nthe documents, and take the time to write a custom configuration file that\nsuites their needs. The manual pages and the fvwm wiki can be used to help\nlearn how to configure fvwm.\n",

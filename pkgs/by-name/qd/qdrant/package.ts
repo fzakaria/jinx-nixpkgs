@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["OPENSSL_NO_VENDOR", 41, 7]], [["updateScript", 61, 12]], [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["env", 41, 3], ["nativeCheckInputs", 43, 3], ["checkFlags", 45, 3], ["auditable", 52, 3], ["__darwinAllowLocalNetworking", 54, 3], ["nativeInstallCheckInputs", 56, 3], ["doInstallCheck", 59, 3], ["passthru", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, cacert: false, protobuf: false, "pkg-config": false, openssl: false, "rust-jemalloc-sys": false, "rust-jemalloc-sys-unprefixed": false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 61, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["env", 41, 3], ["nativeCheckInputs", 43, 3], ["checkFlags", 45, 3], ["auditable", 52, 3], ["__darwinAllowLocalNetworking", 54, 3], ["nativeInstallCheckInputs", 56, 3], ["doInstallCheck", 59, 3], ["passthru", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "qdrant",
       version: "1.18.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qdrant",
           repo: "qdrant",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-QG4HMADZmOu5ilFZBqogdrwBaBegoqNP9GvsDddUYbs=",
       nativeBuildInputs: nix.thunk(() => [protobuf, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook")), pkg_config]),
       buildInputs: nix.thunk(() => [openssl, rust_jemalloc_sys, rust_jemalloc_sys_unprefixed]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: 1n })),
       nativeCheckInputs: nix.thunk(() => [cacert]),
       checkFlags: nix.thunk(() => ["--skip=common::metrics::procfs_metrics::test_child_processes"]),
       auditable: false,
@@ -44,11 +40,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Vector Search Engine for the next generation of AI applications",
         longDescription: "Expects a config file at config/config.yaml with content similar to\nhttps://github.com/qdrant/qdrant/blob/master/config/config.yaml\n",
         homepage: "https://github.com/qdrant/qdrant",

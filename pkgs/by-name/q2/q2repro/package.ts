@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]], [["SOURCE_DATE_EPOCH", 50, 7]], [["name", 141, 7], ["desktopName", 142, 7], ["exec", 143, 7], ["icon", 144, 7], ["terminal", 145, 7], ["mimeTypes", 146, 7], ["type", 149, 7], ["categories", 150, 7]], [["updateScript", 157, 12]], [["description", 160, 5], ["homepage", 161, 5], ["license", 162, 5], ["maintainers", 163, 5], ["platforms", 164, 5], ["mainProgram", 165, 5]], [["pname", 34, 3], ["version", 35, 3], ["__structuredAttrs", 37, 3], ["strictDeps", 38, 3], ["src", 40, 3], ["revCount", 49, 3], ["env", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 62, 3], ["mesonBuildType", 85, 3], ["mesonFlags", 87, 3], ["internalVersion", 102, 3], ["postPatch", 103, 3], ["postInstall", 118, 3], ["nativeInstallCheckInputs", 133, 3], ["preVersionCheck", 134, 3], ["doInstallCheck", 137, 3], ["desktopItems", 139, 3], ["passthru", 157, 3], ["meta", 159, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, "pkg-config": false, ninja: false, zlib: false, libpng: false, libjpeg: false, curl: false, SDL2: false, "openal-soft": false, libGL: false, fmt: false, jsoncpp: false, libx11: false, libxi: false, wayland: false, "wayland-protocols": false, libdecor: false, ffmpeg: false, "wayland-scanner": false, makeBinaryWrapper: false, versionCheckHook: false, copyDesktopItems: false, makeDesktopItem: false, desktopToDarwinBundle: false, x11Support: true, waylandSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["SOURCE_DATE_EPOCH", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 141, 7], ["desktopName", 142, 7], ["exec", 143, 7], ["icon", 144, 7], ["terminal", 145, 7], ["mimeTypes", 146, 7], ["type", 149, 7], ["categories", 150, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 157, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 160, 5], ["homepage", 161, 5], ["license", 162, 5], ["maintainers", 163, 5], ["platforms", 164, 5], ["mainProgram", 165, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["__structuredAttrs", 37, 3], ["strictDeps", 38, 3], ["src", 40, 3], ["revCount", 49, 3], ["env", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 62, 3], ["mesonBuildType", 85, 3], ["mesonFlags", 87, 3], ["internalVersion", 102, 3], ["postPatch", 103, 3], ["postInstall", 118, 3], ["nativeInstallCheckInputs", 133, 3], ["preVersionCheck", 134, 3], ["doInstallCheck", 137, 3], ["desktopItems", 139, 3], ["passthru", 157, 3], ["meta", 159, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const x11Support = nix.argOr($, "x11Support", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const waylandSupport = nix.argOr($, "waylandSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "q2repro",
       version: "0-unstable-2026-09-27",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Paril",
           repo: "q2repro",
           rev: "e6b9273672a1d6ea65038ce9033979b25f1b94be",
@@ -56,7 +51,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-PeA2EuA7XBH9fhorkPtMD6UvHgajYwMtf8MRBXnCr28=",
         })))),
       revCount: "4613",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, SOURCE_DATE_EPOCH: "1790475158" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], SOURCE_DATE_EPOCH: "1790475158" })),
       nativeBuildInputs: nix.thunk(() => nix.concat([meson, pkg_config, ninja, makeBinaryWrapper, copyDesktopItems], nix.concat(nix.app(nix.sel(lib, "optional"), waylandSupport, wayland_scanner), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), desktopToDarwinBundle)))),
       buildInputs: nix.thunk(() => nix.concat([zlib, libpng, libjpeg, curl, SDL2, libGL, ffmpeg, openal_soft, fmt, jsoncpp], nix.concat(nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [wayland, wayland_protocols, libdecor])), nix.app(nix.sel(lib, "optionals"), x11Support, nix.thunk(() => [libx11, libxi]))))),
       mesonBuildType: "release",
@@ -100,7 +95,7 @@ install -D ${nix.sel(finalAttrs, "src")}/src/unix/res/q2pro.xpm $out/share/icons
       doInstallCheck: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "q2repro",
             desktopName: "Q2REPRO",
             exec: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "q2repro" : "q2repro +connect %u")),
@@ -111,9 +106,9 @@ install -D ${nix.sel(finalAttrs, "src")}/src/unix/res/q2pro.xpm $out/share/icons
             categories: nix.thunk(() => ["Game", "ActionGame"]),
           })))),
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Fork of Q2PRO designed to be a drop-in replacement of the Kex Quake II re-release engine",
         homepage: "https://github.com/Paril/q2repro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

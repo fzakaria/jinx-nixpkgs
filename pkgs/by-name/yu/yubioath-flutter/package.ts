@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["window_manager", 30, 13]], [["src", 81, 65], ["version", 81, 69], ["meta", 81, 77]], [["src", 85, 19], ["nativeBuildInputs", 86, 11]], [["extraArgs", 92, 28]], [["supportedFeatures", 96, 11]], [["helper", 81, 5], ["pubspecSource", 82, 5], ["updateScript", 91, 5]], [["description", 103, 5], ["mainProgram", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 111, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pubspecLock", 28, 3], ["gitHashes", 30, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["preInstall", 47, 3], ["postInstall", 52, 3], ["extraWrapProgramArgs", 76, 3], ["passthru", 80, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, flutter344: false, python3Packages: false, fetchFromGitHub: false, pcre2: false, libnotify: false, libappindicator: false, "gnome-screenshot": false, removeReferencesTo: false, runCommand: false, "yq-go": false, "_experimental-update-script-combinators": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["window_manager", 30, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 81, 65], ["version", 81, 69], ["meta", 81, 77]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 85, 19], ["nativeBuildInputs", 86, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 92, 28]]);
-const pos$6 = nix.positions(here + "/package.nix", [["supportedFeatures", 96, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["helper", 81, 5], ["pubspecSource", 82, 5], ["updateScript", 91, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 103, 5], ["mainProgram", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 111, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pubspecLock", 28, 3], ["gitHashes", 30, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["preInstall", 47, 3], ["postInstall", 52, 3], ["extraWrapProgramArgs", 76, 3], ["passthru", 80, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "yubioath-flutter";
       const version = "7.4.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Yubico",
           repo: "yubioath-flutter",
           tag: version,
@@ -40,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const gitHashes = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         window_manager: "sha256-WKcNwEOthXj1S2lKlpdhy+r8JZslVqhwY2ywXeTSBEs=",
       }));
       const postPatch = nix.thunk(() => nix.str`rm -f pubspec.lock
@@ -75,16 +67,16 @@ substituteInPlace "$out/share/applications/com.yubico.yubioath.desktop" \\
       const extraWrapProgramArgs = nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnome_screenshot]))}
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        helper: nix.thunk(() => nix.app(nix.sel(python3Packages, "callPackage"), nix.path(here, "./helper.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, src: src, version: version, meta: meta })))),
-        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: pos$4, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
+        [nix.POS]: $pos[6],
+        helper: nix.thunk(() => nix.app(nix.sel(python3Packages, "callPackage"), nix.path(here, "./helper.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], src: src, version: version, meta: meta })))),
+        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: $pos[3], src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "yubioath-flutter.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$6, supportedFeatures: [] })),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[4], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "yubioath-flutter.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: $pos[5], supportedFeatures: [] })),
           ]))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Yubico Authenticator for Desktop",
         mainProgram: "yubioath-flutter",
         homepage: "https://github.com/Yubico/yubioath-flutter",
@@ -99,7 +91,7 @@ substituteInPlace "$out/share/applications/com.yubico.yubioath.desktop" \\
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         src,

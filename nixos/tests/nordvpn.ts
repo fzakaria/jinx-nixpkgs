@@ -2,80 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nordvpn.nix", [[["maintainers", 4, 8]], [["enable", 10, 26]], [["enable", 11, 41]], [["plasma6", 11, 33]], [["enable", 12, 37]], [["enable", 14, 11], ["user", 15, 11]], [["gdm", 12, 33], ["autoLogin", 13, 33]], [["xserver", 10, 18], ["desktopManager", 11, 18], ["displayManager", 12, 18]], [["services", 10, 9]], [["extraGroups", 25, 13], ["isNormalUser", 26, 13]], [["alice", 24, 23]], [["users", 24, 17]], [["enable", 29, 28]], [["nordvpn", 29, 20]], [["users", 24, 11], ["services", 29, 11]], [["extraGroups", 35, 13], ["isNormalUser", 36, 13]], [["kanye", 34, 23]], [["users", 34, 17]], [["enable", 40, 13], ["user", 41, 13]], [["nordvpn", 39, 20]], [["users", 34, 11], ["services", 39, 11]], [["extraGroups", 48, 13], ["isNormalUser", 49, 13]], [["alice", 47, 23]], [["kanye", 51, 24]], [["users", 47, 17], ["groups", 51, 17]], [["enable", 54, 13], ["group", 55, 13]], [["nordvpn", 53, 20]], [["users", 47, 11], ["services", 53, 11]], [["group", 62, 13], ["isNormalUser", 63, 13]], [["kanye", 61, 23]], [["kanye", 65, 24]], [["users", 61, 17], ["groups", 65, 17]], [["enable", 68, 13], ["group", 69, 13], ["user", 70, 13]], [["nordvpn", 67, 20]], [["users", 61, 11], ["services", 67, 11]], [["nada", 20, 7], ["basic", 21, 7], ["userOnly", 31, 7], ["groupOnly", 44, 7], ["userAndGroup", 58, 7]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 5, 3], ["testScript", 75, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nordvpn.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/nordvpn.nix", [["enable", 10, 26]]);
-const pos$3 = nix.positions(here + "/nordvpn.nix", [["enable", 11, 41]]);
-const pos$4 = nix.positions(here + "/nordvpn.nix", [["plasma6", 11, 33]]);
-const pos$5 = nix.positions(here + "/nordvpn.nix", [["enable", 12, 37]]);
-const pos$6 = nix.positions(here + "/nordvpn.nix", [["enable", 14, 11], ["user", 15, 11]]);
-const pos$7 = nix.positions(here + "/nordvpn.nix", [["gdm", 12, 33], ["autoLogin", 13, 33]]);
-const pos$8 = nix.positions(here + "/nordvpn.nix", [["xserver", 10, 18], ["desktopManager", 11, 18], ["displayManager", 12, 18]]);
-const pos$9 = nix.positions(here + "/nordvpn.nix", [["services", 10, 9]]);
 const formals$2 = { args: {  }, ellipsis: true };
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$10 = nix.positions(here + "/nordvpn.nix", [["extraGroups", 25, 13], ["isNormalUser", 26, 13]]);
-const pos$11 = nix.positions(here + "/nordvpn.nix", [["alice", 24, 23]]);
-const pos$12 = nix.positions(here + "/nordvpn.nix", [["users", 24, 17]]);
-const pos$13 = nix.positions(here + "/nordvpn.nix", [["enable", 29, 28]]);
-const pos$14 = nix.positions(here + "/nordvpn.nix", [["nordvpn", 29, 20]]);
-const pos$15 = nix.positions(here + "/nordvpn.nix", [["users", 24, 11], ["services", 29, 11]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$16 = nix.positions(here + "/nordvpn.nix", [["extraGroups", 35, 13], ["isNormalUser", 36, 13]]);
-const pos$17 = nix.positions(here + "/nordvpn.nix", [["kanye", 34, 23]]);
-const pos$18 = nix.positions(here + "/nordvpn.nix", [["users", 34, 17]]);
-const pos$19 = nix.positions(here + "/nordvpn.nix", [["enable", 40, 13], ["user", 41, 13]]);
-const pos$20 = nix.positions(here + "/nordvpn.nix", [["nordvpn", 39, 20]]);
-const pos$21 = nix.positions(here + "/nordvpn.nix", [["users", 34, 11], ["services", 39, 11]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$22 = nix.positions(here + "/nordvpn.nix", [["extraGroups", 48, 13], ["isNormalUser", 49, 13]]);
-const pos$23 = nix.positions(here + "/nordvpn.nix", [["alice", 47, 23]]);
-const pos$24 = nix.positions(here + "/nordvpn.nix", [["kanye", 51, 24]]);
-const pos$25 = nix.positions(here + "/nordvpn.nix", [["users", 47, 17], ["groups", 51, 17]]);
-const pos$26 = nix.positions(here + "/nordvpn.nix", [["enable", 54, 13], ["group", 55, 13]]);
-const pos$27 = nix.positions(here + "/nordvpn.nix", [["nordvpn", 53, 20]]);
-const pos$28 = nix.positions(here + "/nordvpn.nix", [["users", 47, 11], ["services", 53, 11]]);
 const formals$6 = { args: {  }, ellipsis: true };
-const pos$29 = nix.positions(here + "/nordvpn.nix", [["group", 62, 13], ["isNormalUser", 63, 13]]);
-const pos$30 = nix.positions(here + "/nordvpn.nix", [["kanye", 61, 23]]);
-const pos$31 = nix.positions(here + "/nordvpn.nix", [["kanye", 65, 24]]);
-const pos$32 = nix.positions(here + "/nordvpn.nix", [["users", 61, 17], ["groups", 65, 17]]);
-const pos$33 = nix.positions(here + "/nordvpn.nix", [["enable", 68, 13], ["group", 69, 13], ["user", 70, 13]]);
-const pos$34 = nix.positions(here + "/nordvpn.nix", [["nordvpn", 67, 20]]);
-const pos$35 = nix.positions(here + "/nordvpn.nix", [["users", 61, 11], ["services", 67, 11]]);
-const pos$36 = nix.positions(here + "/nordvpn.nix", [["nada", 20, 7], ["basic", 21, 7], ["userOnly", 31, 7], ["groupOnly", 44, 7], ["userAndGroup", 58, 7]]);
-const pos$37 = nix.positions(here + "/nordvpn.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 5, 3], ["testScript", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$37,
+    [nix.POS]: $pos[36],
     name: "nordvpn",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(pkgs, "nordvpn", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => (() => {
       const commonConfig = (user) => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$8,
-          xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[7],
+          xserver: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           desktopManager: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            plasma6: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[3],
+            plasma6: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
           })),
           displayManager: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            gdm: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
-            autoLogin: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true, user: user })),
+            [nix.POS]: $pos[6],
+            gdm: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
+            autoLogin: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true, user: user })),
           })),
         })),
       });
       return {
-        [nix.POS]: pos$36,
+        [nix.POS]: $pos[35],
         nada: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return {};
@@ -83,82 +47,82 @@ export default nix.lambda((args) => (() => {
         basic: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           return nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   alice: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     extraGroups: nix.thunk(() => ["nordvpn"]),
                     isNormalUser: true,
                   })),
                 })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$14,
-                nordvpn: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
+                [nix.POS]: $pos[13],
+                nordvpn: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true })),
               })),
             })), nix.thunk(() => nix.app(commonConfig, "alice")));
         })(), formals$3),
         userOnly: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           return nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   kanye: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     extraGroups: nix.thunk(() => ["nordvpn"]),
                     isNormalUser: true,
                   })),
                 })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$20,
-                nordvpn: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true, user: "kanye" })),
+                [nix.POS]: $pos[19],
+                nordvpn: nix.thunk(() => ({ [nix.POS]: $pos[18], enable: true, user: "kanye" })),
               })),
             })), nix.thunk(() => nix.app(commonConfig, "kanye")));
         })(), formals$4),
         groupOnly: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$5);
           return nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   alice: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
+                    [nix.POS]: $pos[21],
                     extraGroups: nix.thunk(() => ["kanye"]),
                     isNormalUser: true,
                   })),
                 })),
-                groups: nix.thunk(() => ({ [nix.POS]: pos$24, kanye: nix.thunk(() => ({})) })),
+                groups: nix.thunk(() => ({ [nix.POS]: $pos[23], kanye: nix.thunk(() => ({})) })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$27,
-                nordvpn: nix.thunk(() => ({ [nix.POS]: pos$26, enable: true, group: "kanye" })),
+                [nix.POS]: $pos[26],
+                nordvpn: nix.thunk(() => ({ [nix.POS]: $pos[25], enable: true, group: "kanye" })),
               })),
             })), nix.thunk(() => nix.app(commonConfig, "alice")));
         })(), formals$5),
         userAndGroup: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$6);
           return nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$32,
+                [nix.POS]: $pos[31],
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$30,
-                  kanye: nix.thunk(() => ({ [nix.POS]: pos$29, group: "kanye", isNormalUser: true })),
+                  [nix.POS]: $pos[29],
+                  kanye: nix.thunk(() => ({ [nix.POS]: $pos[28], group: "kanye", isNormalUser: true })),
                 })),
-                groups: nix.thunk(() => ({ [nix.POS]: pos$31, kanye: nix.thunk(() => ({})) })),
+                groups: nix.thunk(() => ({ [nix.POS]: $pos[30], kanye: nix.thunk(() => ({})) })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$34,
-                nordvpn: nix.thunk(() => ({ [nix.POS]: pos$33, enable: true, group: "kanye", user: "kanye" })),
+                [nix.POS]: $pos[33],
+                nordvpn: nix.thunk(() => ({ [nix.POS]: $pos[32], enable: true, group: "kanye", user: "kanye" })),
               })),
             })), nix.thunk(() => nix.app(commonConfig, "kanye")));
         })(), formals$6),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["package", 40, 7]], [["version", 39, 11]], [["tests", 39, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["passthru", 38, 3], ["postInstall", 44, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromCodeberg: false, installShellFiles: false, "pkg-config": false, pcsclite: false, dbus: false, testers: false, "openpgp-card-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 39, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 39, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["passthru", 38, 3], ["postInstall", 44, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const openpgp_card_tools = nix.arg($, "openpgp-card-tools");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "openpgp-card-tools",
       version: "0.11.13",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openpgp-card",
           repo: "openpgp-card-tools",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,15 +36,15 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [pcsclite, dbus]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: openpgp_card_tools })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: openpgp_card_tools })))),
         })),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "OCT_COMPLETION_OUTPUT_DIR=$PWD/shell $out/bin/oct\ninstallShellCompletion ./shell/oct.{bash,fish} ./shell/_oct\nOCT_MANPAGE_OUTPUT_DIR=$PWD/man $out/bin/oct\ninstallManPage ./man/*.1\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tool for inspecting and configuring OpenPGP cards",
         homepage: "https://codeberg.org/openpgp-card/openpgp-card-tools",
         license: nix.thunk(() => (() => {

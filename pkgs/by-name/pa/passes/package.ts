@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["broken", 66, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 53, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "appstream-glib": false, "blueprint-compiler": false, "desktop-file-utils": false, gettext: false, gtk4: false, libadwaita: false, meson: false, ninja: false, "pkg-config": false, python3: false, wrapGAppsHook4: false, libzint: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["broken", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 53, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const libzint = nix.arg($, "libzint");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "passes",
       version: "0.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pablo-s",
           repo: "passes",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +52,7 @@ substituteInPlace ./src/meson.build \\
       ]),
       buildInputs: nix.thunk(() => [gtk4, libadwaita, libzint]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Digital pass manager",
         mainProgram: "passes",
         homepage: "https://github.com/pablo-s/passes",

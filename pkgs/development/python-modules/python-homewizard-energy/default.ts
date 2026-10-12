@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["__darwinAllowLocalNetworking", 49, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aresponses: false, "async-timeout": false, awesomeversion: false, backoff: false, buildPythonPackage: false, fetchFromGitHub: false, mashumaro: false, multidict: false, orjson: false, "poetry-core": false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, syrupy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["__darwinAllowLocalNetworking", 49, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const syrupy = nix.arg($, "syrupy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "python-homewizard-energy",
       version: "10.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DCSBL",
           repo: "python-homewizard-energy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aresponses, pytest_asyncio, pytest_cov_stub, pytestCheckHook, syrupy]),
       pythonImportsCheck: nix.thunk(() => ["homewizard_energy"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library to communicate with HomeWizard Energy devices",
         homepage: "https://github.com/homewizard/python-homewizard-energy",
         changelog: nix.thunk(() => nix.str`https://github.com/homewizard/python-homewizard-energy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]], [["package", 24, 7]], [["updateScript", 22, 5], ["tests", 23, 5]], [["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5], ["mainProgram", 32, 5], ["maintainers", 33, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 19, 3], ["passthru", 21, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, testers: false, "nix-update-script": false, diffedit3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 22, 5], ["tests", 23, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5], ["mainProgram", 32, 5], ["maintainers", 33, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 19, 3], ["passthru", 21, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,23 +14,23 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const diffedit3 = nix.arg($, "diffedit3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "diffedit3",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-tlrP97XMAAnk5H5wTHPsP1DMSmDqV9wJp1n+22jUtnM=",
         })))),
       cargoHash: "sha256-Hv3T0pxNUwp7No5tmFopMGjNdxfje4gRODj3B7sDVcg=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: diffedit3 })))),
+        tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: diffedit3 })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/ilyagr/diffedit3",
         description: "3-pane diff editor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,18 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/home-mount.nix", [[["system", 9, 52], ["pkgs", 9, 59]], [["maintainers", 14, 10]], [["fsType", 20, 9], ["device", 21, 9]], [["/mnt", 19, 19]], [["dbtype", 24, 16]], [["config", 24, 9], ["home", 25, 9]], [["nextcloud", 23, 16]], [["fileSystems", 19, 7], ["services", 23, 7]], [["nextcloud", 18, 11]], [["name", 13, 13], ["meta", 14, 5], ["imports", 16, 5], ["nodes", 18, 5]]]);
 const formals$1 = { args: { name: false, pkgs: false, testBase: false, system: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/home-mount.nix", [["system", 9, 52], ["pkgs", 9, 59]]);
 const formals$2 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/home-mount.nix", [["maintainers", 14, 10]]);
-const pos$3 = nix.positions(here + "/home-mount.nix", [["fsType", 20, 9], ["device", 21, 9]]);
-const pos$4 = nix.positions(here + "/home-mount.nix", [["/mnt", 19, 19]]);
-const pos$5 = nix.positions(here + "/home-mount.nix", [["dbtype", 24, 16]]);
-const pos$6 = nix.positions(here + "/home-mount.nix", [["config", 24, 9], ["home", 25, 9]]);
-const pos$7 = nix.positions(here + "/home-mount.nix", [["nextcloud", 23, 16]]);
-const pos$8 = nix.positions(here + "/home-mount.nix", [["fileSystems", 19, 7], ["services", 23, 7]]);
-const pos$9 = nix.positions(here + "/home-mount.nix", [["nextcloud", 18, 11]]);
-const pos$10 = nix.positions(here + "/home-mount.nix", [["name", 13, 13], ["meta", 14, 5], ["imports", 16, 5], ["nodes", 18, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,32 +12,32 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const testBase = nix.arg($, "testBase");
   const system = nix.arg($, "system");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, pkgs: pkgs })))), null);
   return nix.app(nix.lookup(w, "runTest"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       const lib = nix.arg($_1, "lib");
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         name: name,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           maintainers: nix.thunk(() => nix.sel(lib, "teams", "nextcloud", "members")),
         })),
         imports: nix.thunk(() => [testBase]),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           nextcloud: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             fileSystems: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              "/mnt": nix.thunk(() => ({ [nix.POS]: pos$3, fsType: "tmpfs", device: "tmpfs" })),
+              [nix.POS]: $pos[3],
+              "/mnt": nix.thunk(() => ({ [nix.POS]: $pos[2], fsType: "tmpfs", device: "tmpfs" })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               nextcloud: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                config: nix.thunk(() => ({ [nix.POS]: pos$5, dbtype: "sqlite" })),
+                [nix.POS]: $pos[5],
+                config: nix.thunk(() => ({ [nix.POS]: $pos[4], dbtype: "sqlite" })),
                 home: "/mnt/nextcloud",
               })),
             })),

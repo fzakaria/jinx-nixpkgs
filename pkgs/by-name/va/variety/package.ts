@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["homepage", 103, 5], ["description", 104, 5], ["mainProgram", 105, 5], ["longDescription", 106, 5], ["license", 118, 5], ["maintainers", 119, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["build-system", 50, 3], ["dependencies", 55, 3], ["doCheck", 73, 3], ["dontWrapGApps", 76, 3], ["preFixup", 78, 3], ["prePatch", 82, 3], ["postInstall", 92, 3], ["pythonImportsCheck", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, gexiv2_0_10: false, "gobject-introspection": false, gtk3: false, "hicolor-icon-theme": false, intltool: false, libnotify: false, librsvg: false, runtimeShell: false, wrapGAppsHook3: false, fehSupport: true, feh: false, imagemagickSupport: true, imagemagick: false, appindicatorSupport: true, "libayatana-appindicator": false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 103, 5], ["description", 104, 5], ["mainProgram", 105, 5], ["longDescription", 106, 5], ["license", 118, 5], ["maintainers", 119, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["build-system", 50, 3], ["dependencies", 55, 3], ["doCheck", 73, 3], ["dontWrapGApps", 76, 3], ["preFixup", 78, 3], ["prePatch", 82, 3], ["postInstall", 92, 3], ["pythonImportsCheck", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const libayatana_appindicator = nix.arg($, "libayatana-appindicator");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "variety",
       version: "0.9.0-b1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "varietywalls",
           repo: "variety",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -79,7 +77,7 @@ substituteInPlace data/variety-autostart.desktop.template \\
       postInstall: "mkdir -p $out/share/applications\nintltool-merge --desktop-style po variety.desktop.in $out/share/applications/variety.desktop\n\nmkdir -p $out/share/icons/hicolor/scalable/apps\ncp variety/data/icons/scalable/apps/variety.svg $out/share/icons/hicolor/scalable/apps/variety.svg\n",
       pythonImportsCheck: nix.thunk(() => ["variety"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/varietywalls/variety",
         description: "Wallpaper manager for Linux systems",
         mainProgram: "variety",

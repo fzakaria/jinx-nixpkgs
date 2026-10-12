@@ -2,29 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/azure-image.nix", [[["sinceRelease", 18, 7], ["from", 19, 7], ["to", 24, 7]], [["type", 33, 7], ["default", 34, 7], ["description", 35, 7]], [["type", 42, 7], ["default", 43, 7], ["description", 44, 7]], [["type", 50, 7], ["default", 51, 7], ["description", 52, 7]], [["type", 58, 7], ["default", 64, 7], ["description", 65, 7]], [["type", 72, 7], ["default", 73, 7], ["example", 74, 7], ["description", 75, 7]], [["bootSize", 32, 5], ["contents", 41, 5], ["label", 49, 5], ["vmGeneration", 57, 5], ["additionalSpace", 71, 5]], [["azureImage", 31, 26]], [["virtualisation", 31, 11]], [["extension", 83, 11]], [["tags", 84, 18]], [["name", 87, 7], ["baseName", 88, 30], ["format", 92, 7], ["postVM", 93, 7], ["configFile", 101, 7], ["bootSize", 103, 7], ["partitionTableType", 104, 7], ["contents", 106, 21], ["label", 106, 30], ["diskSize", 107, 39], ["config", 108, 15], ["lib", 108, 22], ["pkgs", 108, 26]], [["image", 85, 18], ["azureImage", 86, 18]], [["nixos", 84, 12], ["build", 85, 12]], [["efiSupport", 113, 7], ["device", 114, 7], ["efiInstallAsRemovable", 115, 7], ["font", 118, 7], ["splashImage", 119, 7], ["extraConfig", 123, 7]], [["grub", 112, 17]], [["growPartition", 111, 10], ["loader", 112, 10]], [["device", 132, 9], ["label", 133, 23], ["fsType", 134, 9], ["autoResize", 135, 9]], [["device", 139, 9], ["fsType", 140, 9]], [["/", 131, 7], ["/boot", 138, 7]], [["image", 83, 5], ["system", 84, 5], ["boot", 111, 5], ["fileSystems", 130, 5]], [["imports", 13, 3], ["options", 31, 3], ["config", 82, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/azure-image.nix", [["sinceRelease", 18, 7], ["from", 19, 7], ["to", 24, 7]]);
-const pos$2 = nix.positions(here + "/azure-image.nix", [["type", 33, 7], ["default", 34, 7], ["description", 35, 7]]);
-const pos$3 = nix.positions(here + "/azure-image.nix", [["type", 42, 7], ["default", 43, 7], ["description", 44, 7]]);
-const pos$4 = nix.positions(here + "/azure-image.nix", [["type", 50, 7], ["default", 51, 7], ["description", 52, 7]]);
-const pos$5 = nix.positions(here + "/azure-image.nix", [["type", 58, 7], ["default", 64, 7], ["description", 65, 7]]);
-const pos$6 = nix.positions(here + "/azure-image.nix", [["type", 72, 7], ["default", 73, 7], ["example", 74, 7], ["description", 75, 7]]);
-const pos$7 = nix.positions(here + "/azure-image.nix", [["bootSize", 32, 5], ["contents", 41, 5], ["label", 49, 5], ["vmGeneration", 57, 5], ["additionalSpace", 71, 5]]);
-const pos$8 = nix.positions(here + "/azure-image.nix", [["azureImage", 31, 26]]);
-const pos$9 = nix.positions(here + "/azure-image.nix", [["virtualisation", 31, 11]]);
-const pos$10 = nix.positions(here + "/azure-image.nix", [["extension", 83, 11]]);
-const pos$11 = nix.positions(here + "/azure-image.nix", [["tags", 84, 18]]);
-const pos$12 = nix.positions(here + "/azure-image.nix", [["name", 87, 7], ["baseName", 88, 30], ["format", 92, 7], ["postVM", 93, 7], ["configFile", 101, 7], ["bootSize", 103, 7], ["partitionTableType", 104, 7], ["contents", 106, 21], ["label", 106, 30], ["diskSize", 107, 39], ["config", 108, 15], ["lib", 108, 22], ["pkgs", 108, 26]]);
-const pos$13 = nix.positions(here + "/azure-image.nix", [["image", 85, 18], ["azureImage", 86, 18]]);
-const pos$14 = nix.positions(here + "/azure-image.nix", [["nixos", 84, 12], ["build", 85, 12]]);
-const pos$15 = nix.positions(here + "/azure-image.nix", [["efiSupport", 113, 7], ["device", 114, 7], ["efiInstallAsRemovable", 115, 7], ["font", 118, 7], ["splashImage", 119, 7], ["extraConfig", 123, 7]]);
-const pos$16 = nix.positions(here + "/azure-image.nix", [["grub", 112, 17]]);
-const pos$17 = nix.positions(here + "/azure-image.nix", [["growPartition", 111, 10], ["loader", 112, 10]]);
-const pos$18 = nix.positions(here + "/azure-image.nix", [["device", 132, 9], ["label", 133, 23], ["fsType", 134, 9], ["autoResize", 135, 9]]);
-const pos$19 = nix.positions(here + "/azure-image.nix", [["device", 139, 9], ["fsType", 140, 9]]);
-const pos$20 = nix.positions(here + "/azure-image.nix", [["/", 131, 7], ["/boot", 138, 7]]);
-const pos$21 = nix.positions(here + "/azure-image.nix", [["image", 83, 5], ["system", 84, 5], ["boot", 111, 5], ["fileSystems", 130, 5]]);
-const pos$22 = nix.positions(here + "/azure-image.nix", [["imports", 13, 3], ["options", 31, 3], ["config", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,32 +13,32 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "azureImage"));
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     imports: nix.thunk(() => [
       nix.path(here, "./azure-common.nix"),
       nix.path(here, "./disk-size-option.nix"),
       nix.path(here, "../image/file-options.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sinceRelease: 2411n,
           from: nix.thunk(() => ["virtualisation", "azureImage", "diskSize"]),
           to: nix.thunk(() => ["virtualisation", "diskSize"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         azureImage: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           bootSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 256n,
               description: "ESP partition size. Unit is MB.\nOnly effective when vmGeneration is `v2`.\n",
             })))),
           contents: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "attrs")));
@@ -68,13 +47,13 @@ export default nix.lambda((args) => (() => {
               description: "Extra contents to add to the image.\n",
             })))),
           label: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "nixos",
               description: "NixOS partition label.\n",
             })))),
           vmGeneration: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["v1", "v2"]));
@@ -83,7 +62,7 @@ export default nix.lambda((args) => (() => {
               description: "VM Generation to use.\nFor v2, secure boot needs to be turned off during creation.\n",
             })))),
           additionalSpace: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "512M",
               example: "2048M",
@@ -93,19 +72,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$21,
-      image: nix.thunk(() => ({ [nix.POS]: pos$10, extension: "vhd" })),
+      [nix.POS]: $pos[20],
+      image: nix.thunk(() => ({ [nix.POS]: $pos[9], extension: "vhd" })),
       system: nix.thunk(() => ({
-        [nix.POS]: pos$14,
-        nixos: nix.thunk(() => ({ [nix.POS]: pos$11, tags: nix.thunk(() => ["azure"]) })),
+        [nix.POS]: $pos[13],
+        nixos: nix.thunk(() => ({ [nix.POS]: $pos[10], tags: nix.thunk(() => ["azure"]) })),
         build: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           image: nix.thunk(() => nix.sel(config, "system", "build", "azureImage")),
           azureImage: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../lib/make-disk-image.nix"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "image"));
               const from_1 = nix.thunk(() => nix.sel(config, "virtualisation"));
               return {
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               name: "azure-image",
               baseName: nix.thunk(() => nix.attr(from, "baseName")),
               format: "raw",
@@ -128,10 +107,10 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "cloud-utils"))
         })),
       })),
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         growPartition: true,
         loader: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           grub: nix.thunk(() => (() => {
             const efiSupport = nix.thunk(() => nix.eq(nix.sel(cfg, "vmGeneration"), "v2"));
             const device = nix.thunk(() => (nix.asBool(efiSupport) ? "nodev" : "/dev/sda"));
@@ -140,7 +119,7 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "cloud-utils"))
             const splashImage = null;
             const extraConfig = nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(efiSupport)), "serial --unit=0 --speed=115200 --word=8 --parity=no --stop=1\nterminal_input --append serial\nterminal_output --append serial\n"));
             return {
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               efiSupport,
               device,
               efiInstallAsRemovable,
@@ -152,15 +131,15 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "cloud-utils"))
         })),
       })),
       fileSystems: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         "/": nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           device: nix.thunk(() => nix.str`/dev/disk/by-label/${nix.sel(cfg, "label")}`),
           label: nix.thunk(() => nix.attr(cfg, "label")),
           fsType: "ext4",
           autoResize: true,
         })),
-        "/boot": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "vmGeneration"), "v2")), nix.thunk(() => ({ [nix.POS]: pos$19, device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
+        "/boot": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "vmGeneration"), "v2")), nix.thunk(() => ({ [nix.POS]: $pos[18], device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
       })),
     })),
   };

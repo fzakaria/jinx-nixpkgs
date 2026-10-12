@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["description", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["license", 53, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["propagatedBuildInputs", 30, 3], ["cmakeFlags", 39, 3], ["doCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, fmt: false, gtest: false, logmich: false, tinycmmc: false, jsoncpp: false, "sexp-cpp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["license", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["propagatedBuildInputs", 30, 3], ["cmakeFlags", 39, 3], ["doCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const jsoncpp = nix.arg($, "jsoncpp");
   const sexp_cpp = nix.arg($, "sexp-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "priocpp",
       version: "0.0.0-unstable-2025-07-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Grumbel",
           repo: "priocpp",
           rev: "b2664449adcaed93f609e3ea1fb68f8295390ce9",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Property I/O for C++",
         homepage: "https://github.com/Grumbel/priocpp",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "SchweGELBin"))]),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["pythonImportsCheck", 26, 3], ["nativeCheckInputs", 28, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, colored: false, pytestCheckHook: false, numpy: false, pandas: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["pythonImportsCheck", 26, 3], ["nativeCheckInputs", 28, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-XUjXVs9/ETlbbtvYz8YJqCsP1BFajqQKQfSM+Rvm4O0=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["ansitable"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, numpy, pandas]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Quick and easy display of tabular data and matrices with optional ANSI color and borders",
         homepage: "https://pypi.org/project/ansitable/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

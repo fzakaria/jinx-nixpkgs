@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["owner", 74, 7], ["repo", 75, 7], ["rev", 76, 7], ["hash", 77, 7]], [["flatcc-src", 73, 5], ["flatcc-src-dest", 79, 5]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]], [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 24, 3], ["strictDeps", 25, 3], ["src", 27, 3], ["patches", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["doCheck", 55, 3], ["postPatch", 59, 3], ["mesonFlags", 63, 3], ["passthru", 70, 3], ["outputs", 82, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchzip: false, meson: false, ninja: false, "pkg-config": false, "arrow-cpp": false, gbenchmark: false, gtest: false, nlohmann_json: false, zlib: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 74, 7], ["repo", 75, 7], ["rev", 76, 7], ["hash", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["flatcc-src", 73, 5], ["flatcc-src-dest", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 24, 3], ["strictDeps", 25, 3], ["src", 27, 3], ["patches", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["doCheck", 55, 3], ["postPatch", 59, 3], ["mesonFlags", 63, 3], ["passthru", 70, 3], ["outputs", 82, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nanoarrow",
       version: "0.8.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "arrow-nanoarrow",
           tag: nix.thunk(() => nix.str`apache-arrow-nanoarrow-${nix.sel(finalAttrs, "version")}`),
@@ -46,9 +42,9 @@ cp subprojects/packagefiles/flatcc/meson.build ${nix.sel(finalAttrs, "finalPacka
 `),
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "metal", "disabled"))]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "flatcc-src": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "dvidelabs",
             repo: "flatcc",
             rev: "fd3c4ae5cd39f0651eda6a3a1a374278070135d6",
@@ -58,7 +54,7 @@ cp subprojects/packagefiles/flatcc/meson.build ${nix.sel(finalAttrs, "finalPacka
       })),
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Helpers for Arrow C Data & Arrow C Stream interfaces",
         homepage: "https://github.com/apache/arrow-nanoarrow",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/arrow-nanoarrow/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

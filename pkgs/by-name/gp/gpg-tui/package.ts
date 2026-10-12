@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 59, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, gpgme: false, "libgpg-error": false, "pkg-config": false, python3: false, libiconv: false, darwin: false, x11Support: true, libxcb: false, libxkbcommon: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gpg-tui",
       version: "0.11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "orhun",
           repo: "gpg-tui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gpgme, libgpg_error, pkg_config, python3]),
       buildInputs: nix.thunk(() => nix.concat([gpgme, libgpg_error], nix.concat(nix.app(nix.sel(lib, "optionals"), x11Support, nix.thunk(() => [libxcb, libxkbcommon])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv, nix.thunk(() => nix.sel(darwin, "libresolv"))]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Terminal user interface for GnuPG",
         homepage: "https://github.com/orhun/gpg-tui",
         changelog: nix.thunk(() => nix.str`https://github.com/orhun/gpg-tui/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

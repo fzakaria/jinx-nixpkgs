@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["subPackages", 23, 3], ["ldflags", 25, 3], ["nativeBuildInputs", 31, 3], ["doCheck", 35, 3], ["preCheck", 36, 3], ["postInstall", 41, 3], ["nativeInstallCheckInputs", 54, 3], ["doInstallCheck", 55, 3], ["versionCheckProgramArg", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { buildGoModule: false, buildPackages: false, fetchFromGitHub: false, installShellFiles: false, lib: false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["subPackages", 23, 3], ["ldflags", 25, 3], ["nativeBuildInputs", 31, 3], ["doCheck", 35, 3], ["preCheck", 36, 3], ["postInstall", 41, 3], ["nativeInstallCheckInputs", 54, 3], ["doInstallCheck", 55, 3], ["versionCheckProgramArg", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nelm",
       version: "1.30.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "werf",
           repo: "nelm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +48,7 @@ done
       doInstallCheck: true,
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Kubernetes deployment tool, alternative to Helm 3",
         longDescription: "Nelm is a Helm 3 alternative. It is a Kubernetes deployment tool that\nmanages Helm Charts and deploys them to Kubernetes.\n",
         homepage: "https://github.com/werf/nelm",

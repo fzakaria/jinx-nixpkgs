@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["sha256", 48, 5]], [["url", 58, 7], ["sha256", 59, 7], ["includes", 60, 7], ["revert", 61, 7]], [["package", 142, 9]], [["installedTests", 140, 7], ["pkg-config", 141, 7]], [["tests", 139, 5], ["updateScript", 146, 5]], [["description", 150, 5], ["homepage", 151, 5], ["license", 152, 5], ["teams", 153, 5], ["platforms", 154, 5], ["pkgConfigModules", 155, 5]], [["pname", 34, 3], ["version", 35, 3], ["outputs", 37, 3], ["src", 44, 3], ["patches", 51, 3], ["depsBuildBuild", 65, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 88, 3], ["nativeCheckInputs", 92, 3], ["mesonFlags", 96, 3], ["doCheck", 108, 3], ["postPatch", 110, 3], ["postFixup", 122, 3], ["passthru", 138, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, "nix-update-script": false, "pkg-config": false, meson: false, mesonEmulatorHook: false, ninja: false, python3: false, mutest: false, nixosTests: false, glib: false, withDocumentation: true, "gtk-doc": false, docbook_xsl: false, docbook_xml_dtd_43: false, buildPackages: false, "gobject-introspection": false, withIntrospection: true, makeWrapper: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["sha256", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 58, 7], ["sha256", 59, 7], ["includes", 60, 7], ["revert", 61, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 142, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["installedTests", 140, 7], ["pkg-config", 141, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 139, 5], ["updateScript", 146, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 150, 5], ["homepage", 151, 5], ["license", 152, 5], ["teams", 153, 5], ["platforms", 154, 5], ["pkgConfigModules", 155, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["outputs", 37, 3], ["src", 44, 3], ["patches", 51, 3], ["depsBuildBuild", 65, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 88, 3], ["nativeCheckInputs", 92, 3], ["mesonFlags", 96, 3], ["doCheck", 108, 3], ["postPatch", 110, 3], ["postFixup", 122, 3], ["passthru", 138, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "graphene",
       version: "1.10.8",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.concat(nix.app(nix.sel(lib, "optionals"), withDocumentation, nix.thunk(() => ["devdoc"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ["installedTests"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ebassi",
           repo: "graphene",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +44,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./0001-meson-add-options-for-tests-installation-dirs.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/ebassi/graphene/commit/4fbdd07ea3bcd0964cca3966010bf71cb6fa8209.patch",
             sha256: "uFkkH0u4HuQ/ua1mfO7sJZ7MPrQdV/JON7mTYB4DW80=",
             includes: nix.thunk(() => ["tests/simd.c"]),
@@ -85,19 +79,19 @@ fi
 `));
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "graphene")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Thin layer of graphic data types",
         homepage: "https://github.com/ebassi/graphene",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

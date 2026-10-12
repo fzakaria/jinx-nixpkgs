@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 33, 5], ["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5], ["deepClone", 38, 5], ["leaveDotGit", 39, 5], ["postFetch", 40, 5]], [["name", 107, 7], ["icon", 108, 7], ["exec", 109, 7], ["comment", 110, 7], ["desktopName", 111, 7], ["genericName", 112, 7], ["categories", 113, 7]], [["name", 116, 7], ["icon", 117, 7], ["exec", 118, 7], ["comment", 119, 7], ["desktopName", 120, 7], ["genericName", 121, 7], ["categories", 122, 7]], [["name", 125, 7], ["icon", 126, 7], ["exec", 127, 7], ["comment", 128, 7], ["desktopName", 129, 7], ["genericName", 130, 7], ["categories", 131, 7]], [["hardcodeZeroVersion", 179, 48]], [["updateScript", 179, 12]], [["description", 182, 5], ["homepage", 183, 5], ["license", 184, 5], ["maintainers", 185, 5], ["platforms", 188, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 47, 3], ["buildInputs", 53, 3], ["nativeBuildInputs", 66, 3], ["postPatch", 76, 3], ["makeFlags", 89, 3], ["buildFlags", 96, 3], ["preConfigure", 101, 3], ["desktopItems", 105, 3], ["enableParallelBuilding", 135, 3], ["installPhase", 137, 3], ["passthru", 179, 3], ["meta", 181, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, makeWrapper: false, "pkg-config": false, nasm: false, makeDesktopItem: false, copyDesktopItems: false, "alsa-lib": false, flac: false, libvorbis: false, libvpx: false, libGL: false, SDL2: false, SDL2_mixer: false, libx11: false, graphicsmagick: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 33, 5], ["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5], ["deepClone", 38, 5], ["leaveDotGit", 39, 5], ["postFetch", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 107, 7], ["icon", 108, 7], ["exec", 109, 7], ["comment", 110, 7], ["desktopName", 111, 7], ["genericName", 112, 7], ["categories", 113, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 116, 7], ["icon", 117, 7], ["exec", 118, 7], ["comment", 119, 7], ["desktopName", 120, 7], ["genericName", 121, 7], ["categories", 122, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 125, 7], ["icon", 126, 7], ["exec", 127, 7], ["comment", 128, 7], ["desktopName", 129, 7], ["genericName", 130, 7], ["categories", 131, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 179, 48]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 179, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 182, 5], ["homepage", 183, 5], ["license", 184, 5], ["maintainers", 185, 5], ["platforms", 188, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 47, 3], ["buildInputs", 53, 3], ["nativeBuildInputs", 66, 3], ["postPatch", 76, 3], ["makeFlags", 89, 3], ["buildFlags", 96, 3], ["preConfigure", 101, 3], ["desktopItems", 105, 3], ["enableParallelBuilding", 135, 3], ["installPhase", 137, 3], ["passthru", 179, 3], ["meta", 181, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const swWrapper = "voidsw-wrapper";
   const furyWrapper = "fury-wrapper";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "eduke32",
       version: "0-unstable-2026-08-07",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "voidpoint.io",
           owner: "terminx",
           repo: "eduke32",
@@ -68,7 +61,7 @@ done
       preConfigure: "appendToVar makeFlags \"VC_REV=$(cat VC_REV)\"\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "eduke32",
             icon: "eduke32",
             exec: nix.thunk(() => nix.str`${wrapper}`),
@@ -78,7 +71,7 @@ done
             categories: nix.thunk(() => ["Game"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "voidsw",
             icon: "voidsw",
             exec: nix.thunk(() => nix.str`${swWrapper}`),
@@ -88,7 +81,7 @@ done
             categories: nix.thunk(() => ["Game"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "fury",
             icon: "fury",
             exec: nix.thunk(() => nix.str`${furyWrapper}`),
@@ -116,11 +109,11 @@ install -Dm644 ./source/sw/rsrc/game_icon.svg $out/share/icons/hicolor/scalable/
 gm convert "./source/duke3d/rsrc/fury/game_icon.ico[4]" $out/share/icons/hicolor/scalable/apps/fury.png
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications/EDuke32.app/Contents/MacOS\nmkdir -p $out/Applications/Mapster32.app/Contents/MacOS\nmkdir -p $out/Applications/VoidSW.app/Contents/MacOS\nmkdir -p $out/Applications/Wangulator.app/Contents/MacOS\n\ncp -r platform/Apple/bundles/EDuke32.app/* $out/Applications/EDuke32.app/\ncp -r platform/Apple/bundles/Mapster32.app/* $out/Applications/Mapster32.app/\ncp -r platform/Apple/bundles/VoidSW.app/* $out/Applications/VoidSW.app/\ncp -r platform/Apple/bundles/Wangulator.app/* $out/Applications/Wangulator.app/\n\nln -sf $out/bin/eduke32 $out/Applications/EDuke32.app/Contents/MacOS/eduke32\nln -sf $out/bin/mapster32 $out/Applications/Mapster32.app/Contents/MacOS/mapster32\nln -sf $out/bin/voidsw $out/Applications/VoidSW.app/Contents/MacOS/voidsw\nln -sf $out/bin/wangulator $out/Applications/Wangulator.app/Contents/MacOS/wangulator\n")), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Enhanced port of Duke Nukem 3D for various platforms",
         homepage: "https://eduke32.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

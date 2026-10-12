@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 27, 3], ["cmakeFlags", 32, 3], ["postPatch", 34, 3], ["installPhase", 46, 3], ["postFixup", 62, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, boost: false, onetbb: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 27, 3], ["cmakeFlags", 32, 3], ["postPatch", 34, 3], ["installPhase", 46, 3], ["postFixup", 62, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const onetbb = nix.arg($, "onetbb");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "PotreeConverter",
       version: "unstable-2023-02-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "potree",
           repo: "PotreeConverter",
           rev: "af4666fa1090983d8ce7c11dcf49ba19eda90995",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib}\nmv liblaszip.so $out/lib\nmv PotreeConverter $out/bin\nln -s $out/bin/PotreeConverter $out/bin/potreeconverter\n\n# Create an empty wrapper, since PotreeConverter segfaults if called via\n# $PATH rather than absolute path. An empty wrapper forces an absolute path\n# on each invocation\nwrapProgram $out/bin/PotreeConverter\n\nrunHook postInstall\n",
       postFixup: "ln -s $src/resources $out/bin/resources\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Create multi res point cloud to use with potree",
         homepage: "https://github.com/potree/PotreeConverter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

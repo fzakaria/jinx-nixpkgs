@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 71, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["runtimeDependencies", 44, 3], ["noDumpEnvVars", 48, 3], ["installPhase", 50, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, makeWrapper: false, unzip: false, libGL: false, libice: false, libsm: false, libx11: false, libxrandr: false, zlib: false, "alsa-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["runtimeDependencies", 44, 3], ["noDumpEnvVars", 48, 3], ["installPhase", 50, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const alsa_lib = nix.arg($, "alsa-lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rigsofrods-bin",
       version: "2022.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://update.rigsofrods.org/rigs-of-rods-linux-2022-12.zip",
           hash: "sha256-jj152fd4YHlU6YCVCnN6DKRfmi5+ORpMQVDacy/TPeE=",
         })))),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       noDumpEnvVars: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/rigsofrods\ncp -a . $out/share/rigsofrods\nfor f in RoR RunRoR; do\n  makeWrapper $out/share/rigsofrods/$f $out/bin/$f \\\n    --chdir $out/share/rigsofrods\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free/libre soft-body physics simulator mainly targeted at simulating vehicle physics",
         homepage: "https://www.rigsofrods.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-extensions.nix", [[["version", 18, 22], ["pname", 19, 3], ["outputs", 21, 3], ["paths", 26, 3], ["nativeBuildInputs", 28, 3], ["postBuild", 30, 3], ["meta", 37, 22]]]);
 const formals$1 = { args: { lib: false, inkscape: false, symlinkJoin: false, makeWrapper: false, inkscapeExtensions: true, "inkscape-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/with-extensions.nix", [["version", 18, 22], ["pname", 19, 3], ["outputs", 21, 3], ["paths", 26, 3], ["nativeBuildInputs", 28, 3], ["postBuild", 30, 3], ["meta", 37, 22]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const allExtensions = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (pkg) => (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), pkg)) && nix.asBool(!nix.asBool(nix.selOr(pkg, () => false, "meta", "broken")))), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), inkscape_extensions))));
   const selectedExtensions = nix.thunk(() => (nix.asBool(nix.eq(inkscapeExtensions, null)) ? nix.force(allExtensions) : nix.force(inkscapeExtensions)));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: nix.thunk(() => nix.attr(inkscape, "version")),
       pname: "inkscape-with-extensions",
       outputs: nix.thunk(() => ["out", "man"]),

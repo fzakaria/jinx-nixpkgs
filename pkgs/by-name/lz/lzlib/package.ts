@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["platforms", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["outputs", 12, 3], ["nativeBuildInputs", 17, 3], ["src", 22, 3], ["postPatch", 28, 3], ["makeFlags", 32, 3], ["doCheck", 36, 3], ["configureFlags", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, texinfo: false, lzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["platforms", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["outputs", 12, 3], ["nativeBuildInputs", 17, 3], ["src", 22, 3], ["postPatch", 28, 3], ["makeFlags", 32, 3], ["doCheck", 36, 3], ["configureFlags", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const lzip = nix.arg($, "lzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lzlib",
       version: "1.16",
       outputs: nix.thunk(() => ["out", "info"]),
       nativeBuildInputs: nix.thunk(() => [texinfo, lzip]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/lzip/lzlib/lzlib-${nix.sel(finalAttrs, "version")}.tar.lz`),
           hash: "sha256-zSqW+8aF9+PcMrnw5eNARqd+PBD8/r5i+ZUeMX0KjPQ=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       configureFlags: nix.thunk(() => ["--enable-shared"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.nongnu.org/lzip/lzlib.html",
         description: "Data compression library providing in-memory LZMA compression and decompression functions, including integrity checking of the decompressed data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

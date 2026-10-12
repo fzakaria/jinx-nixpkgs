@@ -2,145 +2,10 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["crateName", 21, 9], ["version", 22, 9], ["authors", 23, 9]], [["name", 45, 7], ["destination", 46, 7], ["text", 47, 15]], [["crateName", 114, 13], ["dependencies", 115, 13], ["src", 116, 13]], [["nativeBuildInputs", 125, 9]], [["name", 199, 9], ["text", 200, 9]], [["libPath", 246, 11], ["src", 247, 11]], [["src", 250, 11]], [["libName", 264, 11], ["libPath", 265, 11], ["src", 266, 11]], [["name", 271, 15], ["path", 272, 15]], [["crateBin", 269, 11], ["src", 275, 11]], [["name", 278, 26]], [["crateBin", 278, 11], ["src", 279, 11]], [["name", 283, 15]], [["name", 284, 15]], [["name", 287, 13], ["paths", 288, 13]], [["crateBin", 282, 11], ["src", 286, 11]], [["name", 295, 26]], [["crateBin", 295, 11], ["src", 296, 11]], [["name", 299, 26]], [["crateBin", 299, 11], ["src", 300, 11]], [["name", 303, 26]], [["crateName", 307, 15], ["src", 308, 15]], [["foo", 312, 13]], [["crateBin", 303, 11], ["src", 304, 11], ["dependencies", 305, 11], ["crateRenames", 311, 11]], [["name", 316, 26]], [["crateName", 320, 15], ["libName", 321, 15], ["src", 322, 15]], [["foo", 326, 13]], [["crateBin", 316, 11], ["src", 317, 11], ["dependencies", 318, 11], ["crateRenames", 325, 11]], [["crateName", 334, 17], ["version", 335, 25], ["src", 336, 17]], [["name", 346, 15], ["paths", 347, 15]], [["version", 366, 19], ["rename", 367, 19]], [["version", 370, 19], ["rename", 371, 19]], [["my_lib", 364, 15]], [["crateName", 344, 13], ["src", 345, 13], ["dependencies", 359, 13], ["crateRenames", 363, 13], ["buildTests", 375, 13], ["expectedTestOutputs", 376, 13]], [["src", 382, 11], ["buildTests", 383, 11], ["expectedTestOutputs", 384, 11]], [["libPath", 387, 11], ["src", 388, 11], ["buildTests", 389, 11], ["expectedTestOutputs", 390, 11]], [["name", 395, 13], ["paths", 396, 13]], [["libPath", 393, 11], ["src", 394, 11], ["buildTests", 401, 11], ["expectedTestOutputs", 402, 11]], [["crateName", 410, 15], ["src", 411, 15]], [["src", 415, 13], ["devDependencies", 424, 13], ["buildTests", 425, 13], ["expectedTestOutputs", 426, 13]], [["name", 430, 13], ["paths", 431, 13]], [["src", 429, 11], ["buildTests", 437, 11], ["expectedTestOutputs", 438, 11]], [["name", 446, 13], ["paths", 447, 13]], [["src", 445, 11], ["buildTests", 453, 11], ["expectedTestBinaries", 455, 11], ["expectedTestOutputs", 459, 11]], [["name", 469, 13], ["paths", 470, 13]], [["src", 468, 11], ["buildTests", 475, 11], ["expectedTestBinaries", 476, 11], ["expectedTestOutputs", 477, 11]], [["name", 487, 13], ["paths", 488, 13]], [["crateName", 485, 11], ["src", 486, 11], ["buildTests", 508, 11], ["expectedTestOutputs", 509, 11]], [["name", 519, 13], ["paths", 520, 13]], [["crateName", 517, 11], ["src", 518, 11], ["buildTests", 545, 11], ["expectedTestOutputs", 546, 11]], [["crateName", 558, 15], ["type", 559, 15], ["src", 560, 15]], [["crateName", 551, 11], ["src", 552, 11], ["dependencies", 556, 11]], [["crateName", 569, 17], ["src", 570, 17]], [["name", 578, 15], ["paths", 579, 15]], [["crateName", 576, 13], ["src", 577, 13], ["buildDependencies", 593, 13], ["dependencies", 594, 13], ["buildTests", 595, 13], ["expectedTestOutputs", 596, 13]], [["name", 606, 13], ["paths", 607, 13]], [["crateName", 599, 11], ["features", 600, 11], ["src", 605, 11], ["buildTests", 633, 11], ["expectedTestOutputs", 634, 11]], [["name", 643, 17], ["paths", 644, 17]], [["crateName", 641, 15], ["src", 642, 15]], [["name", 659, 15], ["paths", 660, 15]], [["crateName", 657, 13], ["src", 658, 13], ["buildDependencies", 669, 13], ["dependencies", 670, 13]], [["crateName", 679, 17], ["src", 680, 17]], [["name", 696, 15], ["paths", 697, 15]], [["crateName", 694, 13], ["src", 695, 13], ["buildDependencies", 718, 13], ["dependencies", 719, 13], ["buildTests", 720, 13], ["expectedTestOutputs", 721, 13]], [["name", 727, 13], ["paths", 728, 13]], [["src", 726, 11]], [["name", 748, 13], ["paths", 749, 13]], [["name", 775, 21], ["text", 776, 29]], [["src", 747, 11], ["buildInputs", 769, 11]], [["name", 818, 30]], [["name", 822, 17], ["path", 823, 17]], [["name", 816, 13], ["paths", 817, 13]], [["workspace_member", 814, 11], ["src", 815, 11], ["buildTests", 830, 11], ["expectedTestOutputs", 831, 11]], [["expectedTestOutputs", 844, 13]], [["name", 852, 13], ["paths", 853, 13]], [["procMacro", 849, 11], ["edition", 850, 11], ["src", 851, 11]], [["procMacro", 862, 11], ["edition", 863, 11], ["extraRustcOpts", 864, 11], ["src", 865, 11]], [["procMacro", 874, 11], ["edition", 875, 11], ["extraRustcOpts", 876, 11], ["extraRustcOptsForProcMacro", 877, 11], ["src", 878, 11]], [["level", 895, 15], ["priority", 896, 15]], [["unused", 894, 13], ["dead_code", 898, 13]], [["rust", 893, 17]], [["lints", 893, 11], ["src", 900, 11]], [["libPath", 245, 9], ["srcLib", 249, 9], ["customLibNameAndLibPath", 263, 9], ["crateBinWithPath", 268, 9], ["crateBinNoPath1", 277, 9], ["crateBinNoPath2", 281, 9], ["crateBinNoPath3", 294, 9], ["crateBinNoPath4", 298, 9], ["crateBinRename1", 302, 9], ["crateBinRename2", 315, 9], ["crateBinRenameMultiVersion", 329, 9], ["rustLibTestsDefault", 381, 9], ["rustLibTestsCustomLibPath", 386, 9], ["rustLibTestsCustomLibPathWithTests", 392, 9], ["rustLibTestsWithDevDependency", 407, 9], ["rustBinTestsCombined", 428, 9], ["rustBinTestsSubdirCombined", 444, 9], ["rustBinTestsFlatMainSuffix", 465, 9], ["rustBinTestsCargoBinExe", 482, 9], ["rustBinTestsCargoBinExeAutoDetect", 513, 9], ["linkAgainstRlibCrate", 550, 9], ["buildScriptDeps", 564, 9], ["buildScriptFeatureEnv", 598, 9], ["buildScriptIncludeDirDeps", 638, 9], ["buildScriptInvocationPrefix", 674, 9], ["buildRsOutDirOverlay", 725, 9], ["linkOrder", 746, 9], ["rustCargoTomlInSubDir", 810, 9], ["rustCargoTomlInTopDir", 838, 9], ["procMacroInPrelude", 848, 9], ["procMacroExtraOptsInherit", 861, 9], ["procMacroExtraOptsOverride", 873, 9], ["lintsPriority", 892, 9]], [["buildRustCrate", 910, 9]], [["crateName", 913, 79]], [["name", 924, 15], ["path", 925, 15]], [["crateBin", 922, 11], ["src", 928, 11]], [["name", 920, 9], ["crateArgs", 921, 9], ["expectedFiles", 930, 9]], [["name", 941, 15], ["path", 942, 15]], [["release", 938, 11], ["crateBin", 939, 11], ["src", 945, 11]], [["name", 936, 9], ["crateArgs", 937, 9], ["expectedFiles", 947, 9]], [["name", 961, 26]], [["crateBin", 961, 11], ["src", 962, 11]], [["name", 959, 9], ["crateArgs", 960, 9], ["expectedFiles", 964, 9]], [["libName", 973, 11], ["type", 974, 11], ["libPath", 975, 11], ["src", 976, 11]], [["name", 970, 9], ["output", 971, 9], ["crateArgs", 972, 9], ["expectedFiles", 978, 9]], [["release", 989, 11], ["libName", 990, 11], ["type", 991, 11], ["libPath", 992, 11], ["src", 993, 11]], [["name", 986, 9], ["output", 987, 9], ["crateArgs", 988, 9], ["expectedFiles", 995, 9]], [["libName", 1007, 11], ["type", 1008, 11], ["libPath", 1009, 11], ["src", 1010, 11]], [["name", 1003, 9], ["output", 1004, 9], ["mkCrate", 1005, 9], ["crateArgs", 1006, 9], ["expectedFiles", 1012, 9]], [["name", 1024, 26]], [["crateName", 1023, 11], ["crateBin", 1024, 11], ["src", 1025, 11]], [["name", 1020, 9], ["mkCrate", 1021, 9], ["crateArgs", 1022, 9], ["expectedFiles", 1027, 9]], [["name", 1037, 26]], [["name", 1039, 13], ["paths", 1040, 13]], [["crateName", 1036, 11], ["crateBin", 1037, 11], ["src", 1038, 11]], [["name", 1033, 9], ["mkCrate", 1034, 9], ["crateArgs", 1035, 9], ["expectedFiles", 1057, 9]], [["name", 1067, 26]], [["name", 1069, 13], ["paths", 1070, 13]], [["crateName", 1066, 11], ["crateBin", 1067, 11], ["src", 1068, 11]], [["name", 1063, 9], ["mkCrate", 1064, 9], ["crateArgs", 1065, 9], ["expectedFiles", 1087, 9]], [["nativeBuildInputs", 1098, 13]], [["nativeBuildInputs", 1116, 13]], [["nativeBuildInputs", 1127, 13]], [["dead_code", 1138, 24]], [["rust", 1138, 19]], [["crateName", 1137, 13], ["lints", 1138, 13], ["src", 1139, 13]], [["failed", 1146, 54]], [["eq_op", 1161, 26]], [["clippy", 1161, 19]], [["crateName", 1159, 13], ["useClippy", 1160, 13], ["lints", 1161, 13], ["src", 1162, 13]], [["failed", 1170, 58]], [["crateName", 1181, 9], ["useClippy", 1182, 9], ["src", 1183, 9]], [["crateName", 1196, 13], ["useClippy", 1197, 13], ["src", 1198, 13]], [["crateName", 1205, 13], ["dependencies", 1206, 13], ["src", 1207, 13]], [["nativeBuildInputs", 1210, 52]], [["nativeBuildInputs", 1227, 13]], [["crateName", 1249, 13], ["src", 1250, 13], ["propagatedBuildInputs", 1251, 13]], [["crateName", 1256, 13], ["src", 1257, 13], ["dependencies", 1258, 13]], [["crateName", 1263, 13], ["src", 1264, 13], ["dependencies", 1265, 13]], [["crateName", 1270, 13], ["src", 1271, 13], ["dependencies", 1272, 13]], [["libCrateInputs", 1277, 13], ["binCrateInputs", 1278, 13], ["transitiveBinInputs", 1279, 13]], [["crateBinWithPathOutputs", 919, 7], ["crateBinWithPathOutputsDebug", 935, 7], ["crateBinNoPath1Outputs", 958, 7], ["crateLibOutputs", 969, 7], ["crateLibOutputsDebug", 985, 7], ["crateLibOutputsWasm32", 1002, 7], ["crateWasm32BinHyphens", 1019, 7], ["crateWasm32TargetEnv", 1032, 7], ["crateGnu64TargetEnv", 1062, 7], ["brotliTest", 1092, 7], ["allocNoStdLibTest", 1110, 7], ["brotliDecompressorTest", 1121, 7], ["lintsDenyFails", 1134, 7], ["useClippyDenyFails", 1156, 7], ["useClippyDefaultCapAllows", 1180, 7], ["useClippyRlibLinkCompat", 1193, 7], ["rcgenTest", 1221, 7], ["propagatedBuildInputsTest", 1243, 7]], [["description", 1307, 7], ["maintainers", 1308, 7]], [["name", 1305, 5], ["meta", 1306, 5], ["constituents", 1310, 5]], [["tests", 242, 3], ["test", 1304, 3]]]);
 const formals$1 = { args: { lib: false, buildPackages: false, buildRustCrate: false, callPackage: false, releaseTools: false, runCommand: false, runCommandCC: false, stdenv: false, symlinkJoin: false, testers: false, writeTextFile: false, pkgsCross: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["crateName", 21, 9], ["version", 22, 9], ["authors", 23, 9]]);
 const formals$2 = { args: { name: false, crateVersion: true, path: true }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["name", 45, 7], ["destination", 46, 7], ["text", 47, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["crateName", 114, 13], ["dependencies", 115, 13], ["src", 116, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 125, 9]]);
 const formals$3 = { args: { name: false, mkCrate: true, crateArgs: false, expectedFiles: false, output: true }, ellipsis: false };
-const pos$5 = nix.positions(here + "/default.nix", [["name", 199, 9], ["text", 200, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["libPath", 246, 11], ["src", 247, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["src", 250, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["libName", 264, 11], ["libPath", 265, 11], ["src", 266, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["name", 271, 15], ["path", 272, 15]]);
-const pos$10 = nix.positions(here + "/default.nix", [["crateBin", 269, 11], ["src", 275, 11]]);
-const pos$11 = nix.positions(here + "/default.nix", [["name", 278, 26]]);
-const pos$12 = nix.positions(here + "/default.nix", [["crateBin", 278, 11], ["src", 279, 11]]);
-const pos$13 = nix.positions(here + "/default.nix", [["name", 283, 15]]);
-const pos$14 = nix.positions(here + "/default.nix", [["name", 284, 15]]);
-const pos$15 = nix.positions(here + "/default.nix", [["name", 287, 13], ["paths", 288, 13]]);
-const pos$16 = nix.positions(here + "/default.nix", [["crateBin", 282, 11], ["src", 286, 11]]);
-const pos$17 = nix.positions(here + "/default.nix", [["name", 295, 26]]);
-const pos$18 = nix.positions(here + "/default.nix", [["crateBin", 295, 11], ["src", 296, 11]]);
-const pos$19 = nix.positions(here + "/default.nix", [["name", 299, 26]]);
-const pos$20 = nix.positions(here + "/default.nix", [["crateBin", 299, 11], ["src", 300, 11]]);
-const pos$21 = nix.positions(here + "/default.nix", [["name", 303, 26]]);
-const pos$22 = nix.positions(here + "/default.nix", [["crateName", 307, 15], ["src", 308, 15]]);
-const pos$23 = nix.positions(here + "/default.nix", [["foo", 312, 13]]);
-const pos$24 = nix.positions(here + "/default.nix", [["crateBin", 303, 11], ["src", 304, 11], ["dependencies", 305, 11], ["crateRenames", 311, 11]]);
-const pos$25 = nix.positions(here + "/default.nix", [["name", 316, 26]]);
-const pos$26 = nix.positions(here + "/default.nix", [["crateName", 320, 15], ["libName", 321, 15], ["src", 322, 15]]);
-const pos$27 = nix.positions(here + "/default.nix", [["foo", 326, 13]]);
-const pos$28 = nix.positions(here + "/default.nix", [["crateBin", 316, 11], ["src", 317, 11], ["dependencies", 318, 11], ["crateRenames", 325, 11]]);
-const pos$29 = nix.positions(here + "/default.nix", [["crateName", 334, 17], ["version", 335, 25], ["src", 336, 17]]);
-const pos$30 = nix.positions(here + "/default.nix", [["name", 346, 15], ["paths", 347, 15]]);
-const pos$31 = nix.positions(here + "/default.nix", [["version", 366, 19], ["rename", 367, 19]]);
-const pos$32 = nix.positions(here + "/default.nix", [["version", 370, 19], ["rename", 371, 19]]);
-const pos$33 = nix.positions(here + "/default.nix", [["my_lib", 364, 15]]);
-const pos$34 = nix.positions(here + "/default.nix", [["crateName", 344, 13], ["src", 345, 13], ["dependencies", 359, 13], ["crateRenames", 363, 13], ["buildTests", 375, 13], ["expectedTestOutputs", 376, 13]]);
-const pos$35 = nix.positions(here + "/default.nix", [["src", 382, 11], ["buildTests", 383, 11], ["expectedTestOutputs", 384, 11]]);
-const pos$36 = nix.positions(here + "/default.nix", [["libPath", 387, 11], ["src", 388, 11], ["buildTests", 389, 11], ["expectedTestOutputs", 390, 11]]);
-const pos$37 = nix.positions(here + "/default.nix", [["name", 395, 13], ["paths", 396, 13]]);
-const pos$38 = nix.positions(here + "/default.nix", [["libPath", 393, 11], ["src", 394, 11], ["buildTests", 401, 11], ["expectedTestOutputs", 402, 11]]);
-const pos$39 = nix.positions(here + "/default.nix", [["crateName", 410, 15], ["src", 411, 15]]);
-const pos$40 = nix.positions(here + "/default.nix", [["src", 415, 13], ["devDependencies", 424, 13], ["buildTests", 425, 13], ["expectedTestOutputs", 426, 13]]);
-const pos$41 = nix.positions(here + "/default.nix", [["name", 430, 13], ["paths", 431, 13]]);
-const pos$42 = nix.positions(here + "/default.nix", [["src", 429, 11], ["buildTests", 437, 11], ["expectedTestOutputs", 438, 11]]);
-const pos$43 = nix.positions(here + "/default.nix", [["name", 446, 13], ["paths", 447, 13]]);
-const pos$44 = nix.positions(here + "/default.nix", [["src", 445, 11], ["buildTests", 453, 11], ["expectedTestBinaries", 455, 11], ["expectedTestOutputs", 459, 11]]);
-const pos$45 = nix.positions(here + "/default.nix", [["name", 469, 13], ["paths", 470, 13]]);
-const pos$46 = nix.positions(here + "/default.nix", [["src", 468, 11], ["buildTests", 475, 11], ["expectedTestBinaries", 476, 11], ["expectedTestOutputs", 477, 11]]);
-const pos$47 = nix.positions(here + "/default.nix", [["name", 487, 13], ["paths", 488, 13]]);
-const pos$48 = nix.positions(here + "/default.nix", [["crateName", 485, 11], ["src", 486, 11], ["buildTests", 508, 11], ["expectedTestOutputs", 509, 11]]);
-const pos$49 = nix.positions(here + "/default.nix", [["name", 519, 13], ["paths", 520, 13]]);
-const pos$50 = nix.positions(here + "/default.nix", [["crateName", 517, 11], ["src", 518, 11], ["buildTests", 545, 11], ["expectedTestOutputs", 546, 11]]);
-const pos$51 = nix.positions(here + "/default.nix", [["crateName", 558, 15], ["type", 559, 15], ["src", 560, 15]]);
-const pos$52 = nix.positions(here + "/default.nix", [["crateName", 551, 11], ["src", 552, 11], ["dependencies", 556, 11]]);
-const pos$53 = nix.positions(here + "/default.nix", [["crateName", 569, 17], ["src", 570, 17]]);
-const pos$54 = nix.positions(here + "/default.nix", [["name", 578, 15], ["paths", 579, 15]]);
-const pos$55 = nix.positions(here + "/default.nix", [["crateName", 576, 13], ["src", 577, 13], ["buildDependencies", 593, 13], ["dependencies", 594, 13], ["buildTests", 595, 13], ["expectedTestOutputs", 596, 13]]);
-const pos$56 = nix.positions(here + "/default.nix", [["name", 606, 13], ["paths", 607, 13]]);
-const pos$57 = nix.positions(here + "/default.nix", [["crateName", 599, 11], ["features", 600, 11], ["src", 605, 11], ["buildTests", 633, 11], ["expectedTestOutputs", 634, 11]]);
-const pos$58 = nix.positions(here + "/default.nix", [["name", 643, 17], ["paths", 644, 17]]);
-const pos$59 = nix.positions(here + "/default.nix", [["crateName", 641, 15], ["src", 642, 15]]);
-const pos$60 = nix.positions(here + "/default.nix", [["name", 659, 15], ["paths", 660, 15]]);
-const pos$61 = nix.positions(here + "/default.nix", [["crateName", 657, 13], ["src", 658, 13], ["buildDependencies", 669, 13], ["dependencies", 670, 13]]);
-const pos$62 = nix.positions(here + "/default.nix", [["crateName", 679, 17], ["src", 680, 17]]);
-const pos$63 = nix.positions(here + "/default.nix", [["name", 696, 15], ["paths", 697, 15]]);
-const pos$64 = nix.positions(here + "/default.nix", [["crateName", 694, 13], ["src", 695, 13], ["buildDependencies", 718, 13], ["dependencies", 719, 13], ["buildTests", 720, 13], ["expectedTestOutputs", 721, 13]]);
-const pos$65 = nix.positions(here + "/default.nix", [["name", 727, 13], ["paths", 728, 13]]);
-const pos$66 = nix.positions(here + "/default.nix", [["src", 726, 11]]);
-const pos$67 = nix.positions(here + "/default.nix", [["name", 748, 13], ["paths", 749, 13]]);
-const pos$68 = nix.positions(here + "/default.nix", [["name", 775, 21], ["text", 776, 29]]);
-const pos$69 = nix.positions(here + "/default.nix", [["src", 747, 11], ["buildInputs", 769, 11]]);
-const pos$70 = nix.positions(here + "/default.nix", [["name", 818, 30]]);
-const pos$71 = nix.positions(here + "/default.nix", [["name", 822, 17], ["path", 823, 17]]);
-const pos$72 = nix.positions(here + "/default.nix", [["name", 816, 13], ["paths", 817, 13]]);
-const pos$73 = nix.positions(here + "/default.nix", [["workspace_member", 814, 11], ["src", 815, 11], ["buildTests", 830, 11], ["expectedTestOutputs", 831, 11]]);
-const pos$74 = nix.positions(here + "/default.nix", [["expectedTestOutputs", 844, 13]]);
-const pos$75 = nix.positions(here + "/default.nix", [["name", 852, 13], ["paths", 853, 13]]);
-const pos$76 = nix.positions(here + "/default.nix", [["procMacro", 849, 11], ["edition", 850, 11], ["src", 851, 11]]);
-const pos$77 = nix.positions(here + "/default.nix", [["procMacro", 862, 11], ["edition", 863, 11], ["extraRustcOpts", 864, 11], ["src", 865, 11]]);
-const pos$78 = nix.positions(here + "/default.nix", [["procMacro", 874, 11], ["edition", 875, 11], ["extraRustcOpts", 876, 11], ["extraRustcOptsForProcMacro", 877, 11], ["src", 878, 11]]);
-const pos$79 = nix.positions(here + "/default.nix", [["level", 895, 15], ["priority", 896, 15]]);
-const pos$80 = nix.positions(here + "/default.nix", [["unused", 894, 13], ["dead_code", 898, 13]]);
-const pos$81 = nix.positions(here + "/default.nix", [["rust", 893, 17]]);
-const pos$82 = nix.positions(here + "/default.nix", [["lints", 893, 11], ["src", 900, 11]]);
-const pos$83 = nix.positions(here + "/default.nix", [["libPath", 245, 9], ["srcLib", 249, 9], ["customLibNameAndLibPath", 263, 9], ["crateBinWithPath", 268, 9], ["crateBinNoPath1", 277, 9], ["crateBinNoPath2", 281, 9], ["crateBinNoPath3", 294, 9], ["crateBinNoPath4", 298, 9], ["crateBinRename1", 302, 9], ["crateBinRename2", 315, 9], ["crateBinRenameMultiVersion", 329, 9], ["rustLibTestsDefault", 381, 9], ["rustLibTestsCustomLibPath", 386, 9], ["rustLibTestsCustomLibPathWithTests", 392, 9], ["rustLibTestsWithDevDependency", 407, 9], ["rustBinTestsCombined", 428, 9], ["rustBinTestsSubdirCombined", 444, 9], ["rustBinTestsFlatMainSuffix", 465, 9], ["rustBinTestsCargoBinExe", 482, 9], ["rustBinTestsCargoBinExeAutoDetect", 513, 9], ["linkAgainstRlibCrate", 550, 9], ["buildScriptDeps", 564, 9], ["buildScriptFeatureEnv", 598, 9], ["buildScriptIncludeDirDeps", 638, 9], ["buildScriptInvocationPrefix", 674, 9], ["buildRsOutDirOverlay", 725, 9], ["linkOrder", 746, 9], ["rustCargoTomlInSubDir", 810, 9], ["rustCargoTomlInTopDir", 838, 9], ["procMacroInPrelude", 848, 9], ["procMacroExtraOptsInherit", 861, 9], ["procMacroExtraOptsOverride", 873, 9], ["lintsPriority", 892, 9]]);
-const pos$84 = nix.positions(here + "/default.nix", [["buildRustCrate", 910, 9]]);
-const pos$85 = nix.positions(here + "/default.nix", [["crateName", 913, 79]]);
-const pos$86 = nix.positions(here + "/default.nix", [["name", 924, 15], ["path", 925, 15]]);
-const pos$87 = nix.positions(here + "/default.nix", [["crateBin", 922, 11], ["src", 928, 11]]);
-const pos$88 = nix.positions(here + "/default.nix", [["name", 920, 9], ["crateArgs", 921, 9], ["expectedFiles", 930, 9]]);
-const pos$89 = nix.positions(here + "/default.nix", [["name", 941, 15], ["path", 942, 15]]);
-const pos$90 = nix.positions(here + "/default.nix", [["release", 938, 11], ["crateBin", 939, 11], ["src", 945, 11]]);
-const pos$91 = nix.positions(here + "/default.nix", [["name", 936, 9], ["crateArgs", 937, 9], ["expectedFiles", 947, 9]]);
-const pos$92 = nix.positions(here + "/default.nix", [["name", 961, 26]]);
-const pos$93 = nix.positions(here + "/default.nix", [["crateBin", 961, 11], ["src", 962, 11]]);
-const pos$94 = nix.positions(here + "/default.nix", [["name", 959, 9], ["crateArgs", 960, 9], ["expectedFiles", 964, 9]]);
-const pos$95 = nix.positions(here + "/default.nix", [["libName", 973, 11], ["type", 974, 11], ["libPath", 975, 11], ["src", 976, 11]]);
-const pos$96 = nix.positions(here + "/default.nix", [["name", 970, 9], ["output", 971, 9], ["crateArgs", 972, 9], ["expectedFiles", 978, 9]]);
-const pos$97 = nix.positions(here + "/default.nix", [["release", 989, 11], ["libName", 990, 11], ["type", 991, 11], ["libPath", 992, 11], ["src", 993, 11]]);
-const pos$98 = nix.positions(here + "/default.nix", [["name", 986, 9], ["output", 987, 9], ["crateArgs", 988, 9], ["expectedFiles", 995, 9]]);
-const pos$99 = nix.positions(here + "/default.nix", [["libName", 1007, 11], ["type", 1008, 11], ["libPath", 1009, 11], ["src", 1010, 11]]);
-const pos$100 = nix.positions(here + "/default.nix", [["name", 1003, 9], ["output", 1004, 9], ["mkCrate", 1005, 9], ["crateArgs", 1006, 9], ["expectedFiles", 1012, 9]]);
-const pos$101 = nix.positions(here + "/default.nix", [["name", 1024, 26]]);
-const pos$102 = nix.positions(here + "/default.nix", [["crateName", 1023, 11], ["crateBin", 1024, 11], ["src", 1025, 11]]);
-const pos$103 = nix.positions(here + "/default.nix", [["name", 1020, 9], ["mkCrate", 1021, 9], ["crateArgs", 1022, 9], ["expectedFiles", 1027, 9]]);
-const pos$104 = nix.positions(here + "/default.nix", [["name", 1037, 26]]);
-const pos$105 = nix.positions(here + "/default.nix", [["name", 1039, 13], ["paths", 1040, 13]]);
-const pos$106 = nix.positions(here + "/default.nix", [["crateName", 1036, 11], ["crateBin", 1037, 11], ["src", 1038, 11]]);
-const pos$107 = nix.positions(here + "/default.nix", [["name", 1033, 9], ["mkCrate", 1034, 9], ["crateArgs", 1035, 9], ["expectedFiles", 1057, 9]]);
-const pos$108 = nix.positions(here + "/default.nix", [["name", 1067, 26]]);
-const pos$109 = nix.positions(here + "/default.nix", [["name", 1069, 13], ["paths", 1070, 13]]);
-const pos$110 = nix.positions(here + "/default.nix", [["crateName", 1066, 11], ["crateBin", 1067, 11], ["src", 1068, 11]]);
-const pos$111 = nix.positions(here + "/default.nix", [["name", 1063, 9], ["mkCrate", 1064, 9], ["crateArgs", 1065, 9], ["expectedFiles", 1087, 9]]);
-const pos$112 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 1098, 13]]);
-const pos$113 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 1116, 13]]);
-const pos$114 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 1127, 13]]);
-const pos$115 = nix.positions(here + "/default.nix", [["dead_code", 1138, 24]]);
-const pos$116 = nix.positions(here + "/default.nix", [["rust", 1138, 19]]);
-const pos$117 = nix.positions(here + "/default.nix", [["crateName", 1137, 13], ["lints", 1138, 13], ["src", 1139, 13]]);
-const pos$118 = nix.positions(here + "/default.nix", [["failed", 1146, 54]]);
-const pos$119 = nix.positions(here + "/default.nix", [["eq_op", 1161, 26]]);
-const pos$120 = nix.positions(here + "/default.nix", [["clippy", 1161, 19]]);
-const pos$121 = nix.positions(here + "/default.nix", [["crateName", 1159, 13], ["useClippy", 1160, 13], ["lints", 1161, 13], ["src", 1162, 13]]);
-const pos$122 = nix.positions(here + "/default.nix", [["failed", 1170, 58]]);
-const pos$123 = nix.positions(here + "/default.nix", [["crateName", 1181, 9], ["useClippy", 1182, 9], ["src", 1183, 9]]);
-const pos$124 = nix.positions(here + "/default.nix", [["crateName", 1196, 13], ["useClippy", 1197, 13], ["src", 1198, 13]]);
-const pos$125 = nix.positions(here + "/default.nix", [["crateName", 1205, 13], ["dependencies", 1206, 13], ["src", 1207, 13]]);
-const pos$126 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 1210, 52]]);
-const pos$127 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 1227, 13]]);
-const pos$128 = nix.positions(here + "/default.nix", [["crateName", 1249, 13], ["src", 1250, 13], ["propagatedBuildInputs", 1251, 13]]);
-const pos$129 = nix.positions(here + "/default.nix", [["crateName", 1256, 13], ["src", 1257, 13], ["dependencies", 1258, 13]]);
-const pos$130 = nix.positions(here + "/default.nix", [["crateName", 1263, 13], ["src", 1264, 13], ["dependencies", 1265, 13]]);
-const pos$131 = nix.positions(here + "/default.nix", [["crateName", 1270, 13], ["src", 1271, 13], ["dependencies", 1272, 13]]);
-const pos$132 = nix.positions(here + "/default.nix", [["libCrateInputs", 1277, 13], ["binCrateInputs", 1278, 13], ["transitiveBinInputs", 1279, 13]]);
-const pos$133 = nix.positions(here + "/default.nix", [["crateBinWithPathOutputs", 919, 7], ["crateBinWithPathOutputsDebug", 935, 7], ["crateBinNoPath1Outputs", 958, 7], ["crateLibOutputs", 969, 7], ["crateLibOutputsDebug", 985, 7], ["crateLibOutputsWasm32", 1002, 7], ["crateWasm32BinHyphens", 1019, 7], ["crateWasm32TargetEnv", 1032, 7], ["crateGnu64TargetEnv", 1062, 7], ["brotliTest", 1092, 7], ["allocNoStdLibTest", 1110, 7], ["brotliDecompressorTest", 1121, 7], ["lintsDenyFails", 1134, 7], ["useClippyDenyFails", 1156, 7], ["useClippyDefaultCapAllows", 1180, 7], ["useClippyRlibLinkCompat", 1193, 7], ["rcgenTest", 1221, 7], ["propagatedBuildInputsTest", 1243, 7]]);
-const pos$134 = nix.positions(here + "/default.nix", [["description", 1307, 7], ["maintainers", 1308, 7]]);
-const pos$135 = nix.positions(here + "/default.nix", [["name", 1305, 5], ["meta", 1306, 5], ["constituents", 1310, 5]]);
-const pos$136 = nix.positions(here + "/default.nix", [["tests", 242, 3], ["test", 1304, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -158,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const pkgsCross = nix.arg($, "pkgsCross");
   const mkCrate = (buildRustCrate_1) => (args_1) => (() => {
     const p = nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       crateName: "nixtestcrate",
       version: "0.1.0",
       authors: nix.thunk(() => ["Test <test@example.com>"]),
@@ -177,7 +42,7 @@ version = ${nix.builtins.toJSON(crateVersion)}
 `));
   })(), formals$2);
   const mkFile = (destination) => (text) => nix.app(writeTextFile, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "src",
       destination: nix.thunk(() => nix.str`/${destination}`),
       text: text,
@@ -213,14 +78,14 @@ fn main() {}
     const crateName = nix.thunk(() => nix.selOr(crateArgs, () => "nixtestcrate", "crateName"));
     const libName = nix.thunk(() => nix.selOr(crateArgs, () => nix.force(crateName), "libName"));
     const libTestBinary = nix.thunk(() => (nix.asBool(!nix.asBool(isLib)) ? null : nix.app(mkHostCrate, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         crateName: nix.thunk(() => nix.str`run-test-${crateName}`),
         dependencies: nix.thunk(() => [crate]),
         src: nix.thunk(() => nix.app(mkBinExtern, "src/main.rs", libName)),
       })))));
     nix.assert_((!nix.asBool(!nix.eq(expectedTestOutputs, null)) || nix.asBool(hasTests)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/rust/build-rust-crate/test/default.nix:120:5");
     nix.assert_((!nix.asBool(hasTests) || nix.asBool(!nix.eq(expectedTestOutputs, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/rust/build-rust-crate/test/default.nix:121:5");
-    return nix.app(runCommand, nix.thunk(() => nix.str`run-buildRustCrate-${crateName}-test`), nix.thunk(() => ({ [nix.POS]: pos$4, nativeBuildInputs: nix.thunk(() => [crate]) })), nix.thunk(() => (nix.asBool(!nix.asBool(hasTests)) ? nix.str`${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (binary) => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "type "), binary), binaries)}
+    return nix.app(runCommand, nix.thunk(() => nix.str`run-buildRustCrate-${crateName}-test`), nix.thunk(() => ({ [nix.POS]: $pos[3], nativeBuildInputs: nix.thunk(() => [crate]) })), nix.thunk(() => (nix.asBool(!nix.asBool(hasTests)) ? nix.str`${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (binary) => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "type "), binary), binaries)}
 ${nix.app(nix.sel(lib, "optionalString"), isLib, nix.thunk(() => nix.str`test -e ${crate}/lib/*.rlib || exit 1
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "test -x ")} \\
   ${libTestBinary}/bin/run-test-${crateName}
@@ -251,7 +116,7 @@ touch "$out"
     const crate = nix.thunk(() => nix.app(mkCrate_1, nix.thunk(() => nix.builtins.removeAttrs(crateArgs, nix.thunk(() => ["expectedTestOutput"])))));
     const crateOutput = nix.thunk(() => (nix.asBool(nix.eq(output, null)) ? nix.force(crate) : nix.sel(crate, nix.key(nix.str`${output}`))));
     const expectedFilesFile = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: nix.thunk(() => nix.str`expected-files-${name}`),
         text: nix.thunk(() => (() => {
           const sorted = nix.thunk(() => nix.builtins.sort((a) => (b) => nix.lt(a, b), expectedFiles));
@@ -286,37 +151,37 @@ touch $out
     const tests = nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
         const cases = nix.thunk(() => (() => {
           const libPath = nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             libPath: "src/my_lib.rs",
             src: nix.thunk(() => nix.app(mkLib, "src/my_lib.rs")),
           }));
-          const srcLib = nix.thunk(() => ({ [nix.POS]: pos$7, src: nix.thunk(() => nix.app(mkLib, "src/lib.rs")) }));
+          const srcLib = nix.thunk(() => ({ [nix.POS]: $pos[6], src: nix.thunk(() => nix.app(mkLib, "src/lib.rs")) }));
           const customLibNameAndLibPath = nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             libName: "test_lib",
             libPath: "src/best-lib.rs",
             src: nix.thunk(() => nix.app(mkLib, "src/best-lib.rs")),
           }));
           const crateBinWithPath = nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             crateBin: nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$9, name: "test_binary1", path: "src/foobar.rs" })),
+              nix.thunk(() => ({ [nix.POS]: $pos[8], name: "test_binary1", path: "src/foobar.rs" })),
             ]),
             src: nix.thunk(() => nix.app(mkBin, "src/foobar.rs")),
           }));
           const crateBinNoPath1 = nix.thunk(() => ({
-            [nix.POS]: pos$12,
-            crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$11, name: "my-binary2" }))]),
+            [nix.POS]: $pos[11],
+            crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[10], name: "my-binary2" }))]),
             src: nix.thunk(() => nix.app(mkBin, "src/my_binary2.rs")),
           }));
           const crateBinNoPath2 = nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             crateBin: nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$13, name: "my-binary3" })),
-              nix.thunk(() => ({ [nix.POS]: pos$14, name: "my-binary4" })),
+              nix.thunk(() => ({ [nix.POS]: $pos[12], name: "my-binary3" })),
+              nix.thunk(() => ({ [nix.POS]: $pos[13], name: "my-binary4" })),
             ]),
             src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 name: "buildRustCrateMultipleBinariesCase",
                 paths: nix.thunk(() => [
                   nix.thunk(() => nix.app(mkBin, "src/bin/my_binary3.rs")),
@@ -325,45 +190,45 @@ touch $out
               })))),
           }));
           const crateBinNoPath3 = nix.thunk(() => ({
-            [nix.POS]: pos$18,
-            crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$17, name: "my-binary5" }))]),
+            [nix.POS]: $pos[17],
+            crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[16], name: "my-binary5" }))]),
             src: nix.thunk(() => nix.app(mkBin, "src/bin/main.rs")),
           }));
           const crateBinNoPath4 = nix.thunk(() => ({
-            [nix.POS]: pos$20,
-            crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$19, name: "my-binary6" }))]),
+            [nix.POS]: $pos[19],
+            crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[18], name: "my-binary6" }))]),
             src: nix.thunk(() => nix.app(mkBin, "src/main.rs")),
           }));
           const crateBinRename1 = nix.thunk(() => ({
-            [nix.POS]: pos$24,
-            crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$21, name: "my-binary-rename1" }))]),
+            [nix.POS]: $pos[23],
+            crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[20], name: "my-binary-rename1" }))]),
             src: nix.thunk(() => nix.app(mkBinExtern, "src/main.rs", "foo_renamed")),
             dependencies: nix.thunk(() => [
               nix.thunk(() => nix.app(mkHostCrate, nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   crateName: "foo",
                   src: nix.thunk(() => nix.app(mkLib, "src/lib.rs")),
                 })))),
             ]),
-            crateRenames: nix.thunk(() => ({ [nix.POS]: pos$23, foo: "foo_renamed" })),
+            crateRenames: nix.thunk(() => ({ [nix.POS]: $pos[22], foo: "foo_renamed" })),
           }));
           const crateBinRename2 = nix.thunk(() => ({
-            [nix.POS]: pos$28,
-            crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$25, name: "my-binary-rename2" }))]),
+            [nix.POS]: $pos[27],
+            crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[24], name: "my-binary-rename2" }))]),
             src: nix.thunk(() => nix.app(mkBinExtern, "src/main.rs", "foo_renamed")),
             dependencies: nix.thunk(() => [
               nix.thunk(() => nix.app(mkHostCrate, nix.thunk(() => ({
-                  [nix.POS]: pos$26,
+                  [nix.POS]: $pos[25],
                   crateName: "foo",
                   libName: "foolib",
                   src: nix.thunk(() => nix.app(mkLib, "src/lib.rs")),
                 })))),
             ]),
-            crateRenames: nix.thunk(() => ({ [nix.POS]: pos$27, foo: "foo_renamed" })),
+            crateRenames: nix.thunk(() => ({ [nix.POS]: $pos[26], foo: "foo_renamed" })),
           }));
           const crateBinRenameMultiVersion = nix.thunk(() => (() => {
             const crateWithVersion = (version) => nix.app(mkHostCrate, nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 crateName: "my_lib",
                 version: version,
                 src: nix.thunk(() => nix.app(mkFile, "src/lib.rs", nix.thunk(() => nix.str`pub const version: &str = "${version}";
@@ -372,10 +237,10 @@ touch $out
             const depCrate01 = nix.thunk(() => nix.app(crateWithVersion, "0.1.2"));
             const depCrate02 = nix.thunk(() => nix.app(crateWithVersion, "0.2.1"));
             return {
-              [nix.POS]: pos$34,
+              [nix.POS]: $pos[33],
               crateName: "my_bin",
               src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                  [nix.POS]: pos$30,
+                  [nix.POS]: $pos[29],
                   name: "my_bin_src",
                   paths: nix.thunk(() => [
                     nix.thunk(() => nix.app(mkFile, "src/main.rs", "#[test]\nfn my_lib_01() { assert_eq!(lib01::version, \"0.1.2\"); }\n\n#[test]\nfn my_lib_02() { assert_eq!(lib02::version, \"0.2.1\"); }\n\nfn main() { }\n")),
@@ -383,10 +248,10 @@ touch $out
                 })))),
               dependencies: nix.thunk(() => [depCrate01, depCrate02]),
               crateRenames: nix.thunk(() => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 my_lib: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$31, version: "0.1.2", rename: "lib01" })),
-                  nix.thunk(() => ({ [nix.POS]: pos$32, version: "0.2.1", rename: "lib02" })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[30], version: "0.1.2", rename: "lib01" })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[31], version: "0.2.1", rename: "lib02" })),
                 ]),
               })),
               buildTests: true,
@@ -394,23 +259,23 @@ touch $out
             };
           })());
           const rustLibTestsDefault = nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             src: nix.thunk(() => nix.app(mkTestFile, "src/lib.rs", "baz")),
             buildTests: true,
             expectedTestOutputs: nix.thunk(() => ["test baz ... ok"]),
           }));
           const rustLibTestsCustomLibPath = nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             libPath: "src/test_path.rs",
             src: nix.thunk(() => nix.app(mkTestFile, "src/test_path.rs", "bar")),
             buildTests: true,
             expectedTestOutputs: nix.thunk(() => ["test bar ... ok"]),
           }));
           const rustLibTestsCustomLibPathWithTests = nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             libPath: "src/test_path.rs",
             src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                [nix.POS]: pos$37,
+                [nix.POS]: $pos[36],
                 name: "rust-lib-tests-custom-lib-path-with-tests-dir",
                 paths: nix.thunk(() => [
                   nix.thunk(() => nix.app(mkTestFile, "src/test_path.rs", "bar")),
@@ -422,12 +287,12 @@ touch $out
           }));
           const rustLibTestsWithDevDependency = nix.thunk(() => (() => {
             const devDep = nix.thunk(() => nix.app(mkHostCrate, nix.thunk(() => ({
-                [nix.POS]: pos$39,
+                [nix.POS]: $pos[38],
                 crateName: "dev-dep",
                 src: nix.thunk(() => nix.app(mkLib, "src/lib.rs")),
               }))));
             return {
-              [nix.POS]: pos$40,
+              [nix.POS]: $pos[39],
               src: nix.thunk(() => nix.app(mkFile, "src/lib.rs", "#[cfg(test)]\nmod tests {\n    #[test]\n    fn uses_dev_dep() {\n        assert_eq!(dev_dep::test(), 23);\n    }\n}\n")),
               devDependencies: nix.thunk(() => [devDep]),
               buildTests: true,
@@ -435,9 +300,9 @@ touch $out
             };
           })());
           const rustBinTestsCombined = nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                [nix.POS]: pos$41,
+                [nix.POS]: $pos[40],
                 name: "rust-bin-tests-combined",
                 paths: nix.thunk(() => [
                   nix.thunk(() => nix.app(mkTestFileWithMain, "src/main.rs", "src_main")),
@@ -449,9 +314,9 @@ touch $out
             expectedTestOutputs: nix.thunk(() => ["test src_main ... ok", "test tests_foo ... ok", "test tests_bar ... ok"]),
           }));
           const rustBinTestsSubdirCombined = nix.thunk(() => ({
-            [nix.POS]: pos$44,
+            [nix.POS]: $pos[43],
             src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                [nix.POS]: pos$43,
+                [nix.POS]: $pos[42],
                 name: "rust-bin-tests-subdir-combined",
                 paths: nix.thunk(() => [
                   nix.thunk(() => nix.app(mkTestFileWithMain, "src/main.rs", "src_main")),
@@ -464,9 +329,9 @@ touch $out
             expectedTestOutputs: nix.thunk(() => ["test src_main ... ok", "test tests_foo ... ok", "test tests_bar ... ok"]),
           }));
           const rustBinTestsFlatMainSuffix = nix.thunk(() => ({
-            [nix.POS]: pos$46,
+            [nix.POS]: $pos[45],
             src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                [nix.POS]: pos$45,
+                [nix.POS]: $pos[44],
                 name: "rust-bin-tests-flat-main-suffix",
                 paths: nix.thunk(() => [
                   nix.thunk(() => nix.app(mkTestFileWithMain, "src/main.rs", "src_main")),
@@ -478,10 +343,10 @@ touch $out
             expectedTestOutputs: nix.thunk(() => ["test src_main ... ok", "test flat_test ... ok"]),
           }));
           const rustBinTestsCargoBinExe = nix.thunk(() => ({
-            [nix.POS]: pos$48,
+            [nix.POS]: $pos[47],
             crateName: "my-crate",
             src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                [nix.POS]: pos$47,
+                [nix.POS]: $pos[46],
                 name: "rust-bin-tests-cargo-bin-exe",
                 paths: nix.thunk(() => [
                   nix.thunk(() => nix.app(mkFile, "src/main.rs", "fn main() { println!(\"hello from my-crate\"); }\n")),
@@ -492,10 +357,10 @@ touch $out
             expectedTestOutputs: nix.thunk(() => ["test runs_binary ... ok"]),
           }));
           const rustBinTestsCargoBinExeAutoDetect = nix.thunk(() => ({
-            [nix.POS]: pos$50,
+            [nix.POS]: $pos[49],
             crateName: "multi-bin",
             src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                [nix.POS]: pos$49,
+                [nix.POS]: $pos[48],
                 name: "rust-bin-tests-cargo-bin-exe-auto",
                 paths: nix.thunk(() => [
                   nix.thunk(() => nix.app(mkFile, "src/lib.rs", "")),
@@ -508,12 +373,12 @@ touch $out
             expectedTestOutputs: nix.thunk(() => ["test runs_both ... ok"]),
           }));
           const linkAgainstRlibCrate = nix.thunk(() => ({
-            [nix.POS]: pos$52,
+            [nix.POS]: $pos[51],
             crateName: "foo",
             src: nix.thunk(() => nix.app(mkFile, "src/main.rs", "extern crate somerlib;\nfn main() {}\n")),
             dependencies: nix.thunk(() => [
               nix.thunk(() => nix.app(mkHostCrate, nix.thunk(() => ({
-                  [nix.POS]: pos$51,
+                  [nix.POS]: $pos[50],
                   crateName: "somerlib",
                   type: nix.thunk(() => ["rlib"]),
                   src: nix.thunk(() => nix.app(mkLib, "src/lib.rs")),
@@ -522,16 +387,16 @@ touch $out
           }));
           const buildScriptDeps = nix.thunk(() => (() => {
             const depCrate = (buildRustCrate_1) => (boolVal) => nix.app(mkCrate, buildRustCrate_1, nix.thunk(() => ({
-                [nix.POS]: pos$53,
+                [nix.POS]: $pos[52],
                 crateName: "bar",
                 src: nix.thunk(() => nix.app(mkFile, "src/lib.rs", nix.thunk(() => nix.str`pub const baz: bool = ${boolVal};
 `))),
               })));
             return {
-              [nix.POS]: pos$55,
+              [nix.POS]: $pos[54],
               crateName: "foo",
               src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                  [nix.POS]: pos$54,
+                  [nix.POS]: $pos[53],
                   name: "build-script-and-main",
                   paths: nix.thunk(() => [
                     nix.thunk(() => nix.app(mkFile, "src/main.rs", "extern crate bar;\n#[cfg(test)]\n#[test]\nfn baz_false() { assert!(!bar::baz); }\nfn main() { }\n")),
@@ -547,11 +412,11 @@ touch $out
             };
           })());
           const buildScriptFeatureEnv = nix.thunk(() => ({
-            [nix.POS]: pos$57,
+            [nix.POS]: $pos[56],
             crateName: "build-script-feature-env",
             features: nix.thunk(() => ["some-feature", "some-c++17-thing", "crate/another_feature"]),
             src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                [nix.POS]: pos$56,
+                [nix.POS]: $pos[55],
                 name: "build-script-feature-env",
                 paths: nix.thunk(() => [
                   nix.thunk(() => nix.app(mkFile, "src/main.rs", "#[cfg(test)]\n#[test]\nfn feature_not_visible() {\n  assert!(std::env::var(\"CARGO_FEATURE_SOME_FEATURE\").is_err());\n  assert!(option_env!(\"CARGO_FEATURE_SOME_FEATURE\").is_none());\n  assert!(std::env::var(\"CARGO_FEATURE_SOME_C++17_THING\").is_err());\n  assert!(option_env!(\"CARGO_FEATURE_SOME_C++17_THING\").is_none());\n  assert!(std::env::var(\"CARGO_FEATURE_ANOTHER_FEATURE\").is_err());\n  assert!(option_env!(\"CARGO_FEATURE_ANOTHER_FEATURE\").is_none());\n}\nfn main() {}\n")),
@@ -563,10 +428,10 @@ touch $out
           }));
           const buildScriptIncludeDirDeps = nix.thunk(() => (() => {
             const depCrate = nix.thunk(() => nix.app(mkHostCrate, nix.thunk(() => ({
-                [nix.POS]: pos$59,
+                [nix.POS]: $pos[58],
                 crateName: "bar",
                 src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                    [nix.POS]: pos$58,
+                    [nix.POS]: $pos[57],
                     name: "build-script-and-include-dir-bar",
                     paths: nix.thunk(() => [
                       nix.thunk(() => nix.app(mkFile, "src/lib.rs", "fn main() { }\n")),
@@ -575,10 +440,10 @@ touch $out
                   })))),
               }))));
             return {
-              [nix.POS]: pos$61,
+              [nix.POS]: $pos[60],
               crateName: "foo",
               src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                  [nix.POS]: pos$60,
+                  [nix.POS]: $pos[59],
                   name: "build-script-and-include-dir-foo",
                   paths: nix.thunk(() => [
                     nix.thunk(() => nix.app(mkFile, "src/main.rs", "fn main() { }\n")),
@@ -591,15 +456,15 @@ touch $out
           })());
           const buildScriptInvocationPrefix = nix.thunk(() => (() => {
             const depCrate = (buildRustCrate_1) => nix.app(mkCrate, buildRustCrate_1, nix.thunk(() => ({
-                [nix.POS]: pos$62,
+                [nix.POS]: $pos[61],
                 crateName: "bar",
                 src: nix.thunk(() => nix.app(mkFile, "build.rs", "fn main() {\n  // Old invocation prefix\n  // We likely won't see be mixing these syntaxes in the same build script in the wild.\n  println!(\"cargo:key_old=value_old\");\n\n  // New invocation prefix\n  println!(\"cargo::metadata=key=value\");\n  println!(\"cargo::metadata=key_complex=complex(value)\");\n}\n")),
               })));
             return {
-              [nix.POS]: pos$64,
+              [nix.POS]: $pos[63],
               crateName: "foo",
               src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                  [nix.POS]: pos$63,
+                  [nix.POS]: $pos[62],
                   name: "build-script-and-main-invocation-prefix",
                   paths: nix.thunk(() => [
                     nix.thunk(() => nix.app(mkFile, "src/main.rs", "const BUILDFOO: &'static str = env!(\"BUILDFOO\");\n\n#[test]\nfn build_foo_check() { assert!(BUILDFOO == \"yes(check)\"); }\n\nfn main() { }\n")),
@@ -615,9 +480,9 @@ touch $out
             };
           })());
           const buildRsOutDirOverlay = nix.thunk(() => ({
-            [nix.POS]: pos$66,
+            [nix.POS]: $pos[65],
             src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                [nix.POS]: pos$65,
+                [nix.POS]: $pos[64],
                 name: "buildrs-out-dir-overlay",
                 paths: nix.thunk(() => [
                   nix.thunk(() => nix.app(mkLib, "src/lib.rs")),
@@ -626,9 +491,9 @@ touch $out
               })))),
           }));
           const linkOrder = nix.thunk(() => ({
-            [nix.POS]: pos$69,
+            [nix.POS]: $pos[68],
             src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                [nix.POS]: pos$67,
+                [nix.POS]: $pos[66],
                 name: "buildrs-out-dir-overlay",
                 paths: nix.thunk(() => [
                   nix.thunk(() => nix.app(mkFile, "build.rs", "fn main() {\n  // in the other order, linkage will fail\n  println!(\"cargo:rustc-link-lib=b\");\n  println!(\"cargo:rustc-link-lib=a\");\n}\n")),
@@ -637,7 +502,11 @@ touch $out
               })))),
             buildInputs: nix.thunk(() => (() => {
               const compile = (name) => (text) => (() => {
-                const src = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({ [nix.POS]: pos$68, name: nix.thunk(() => nix.str`${name}-src.c`), text: text }))));
+                const src = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
+                    [nix.POS]: $pos[67],
+                    name: nix.thunk(() => nix.str`${name}-src.c`),
+                    text: text,
+                  }))));
                 return nix.app(runCommandCC, name, nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/lib
 # Note: On darwin (which defaults to clang) we have to add
 # \`-undefined dynamic_lookup\` as otherwise the compilation fails.
@@ -652,15 +521,19 @@ $CC -shared \\
             })()),
           }));
           const rustCargoTomlInSubDir = nix.thunk(() => ({
-            [nix.POS]: pos$73,
+            [nix.POS]: $pos[72],
             workspace_member: null,
             src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                [nix.POS]: pos$72,
+                [nix.POS]: $pos[71],
                 name: "find-cargo-toml",
                 paths: nix.thunk(() => [
-                  nix.thunk(() => nix.app(mkCargoToml, nix.thunk(() => ({ [nix.POS]: pos$70, name: "ignoreMe" })))),
+                  nix.thunk(() => nix.app(mkCargoToml, nix.thunk(() => ({ [nix.POS]: $pos[69], name: "ignoreMe" })))),
                   nix.thunk(() => nix.app(mkTestFileWithMain, "src/main.rs", "ignore_main")),
-                  nix.thunk(() => nix.app(mkCargoToml, nix.thunk(() => ({ [nix.POS]: pos$71, name: "rustCargoTomlInSubDir", path: "subdir/Cargo.toml" })))),
+                  nix.thunk(() => nix.app(mkCargoToml, nix.thunk(() => ({
+                      [nix.POS]: $pos[70],
+                      name: "rustCargoTomlInSubDir",
+                      path: "subdir/Cargo.toml",
+                    })))),
                   nix.thunk(() => nix.app(mkTestFileWithMain, "subdir/src/main.rs", "src_main")),
                   nix.thunk(() => nix.app(mkTestFile, "subdir/tests/foo/main.rs", "tests_foo")),
                   nix.thunk(() => nix.app(mkTestFile, "subdir/tests/bar/main.rs", "tests_bar")),
@@ -672,16 +545,16 @@ $CC -shared \\
           const rustCargoTomlInTopDir = nix.thunk(() => (() => {
             const withoutCargoTomlSearch = nix.thunk(() => nix.builtins.removeAttrs(rustCargoTomlInSubDir, nix.thunk(() => ["workspace_member"])));
             return nix.update(withoutCargoTomlSearch, {
-              [nix.POS]: pos$74,
+              [nix.POS]: $pos[73],
               expectedTestOutputs: nix.thunk(() => ["test ignore_main ... ok"]),
             });
           })());
           const procMacroInPrelude = nix.thunk(() => ({
-            [nix.POS]: pos$76,
+            [nix.POS]: $pos[75],
             procMacro: true,
             edition: "2018",
             src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                [nix.POS]: pos$75,
+                [nix.POS]: $pos[74],
                 name: "proc-macro-in-prelude",
                 paths: nix.thunk(() => [
                   nix.thunk(() => nix.app(mkFile, "src/lib.rs", "use proc_macro::TokenTree;\n")),
@@ -689,14 +562,14 @@ $CC -shared \\
               })))),
           }));
           const procMacroExtraOptsInherit = nix.thunk(() => ({
-            [nix.POS]: pos$77,
+            [nix.POS]: $pos[76],
             procMacro: true,
             edition: "2018",
             extraRustcOpts: nix.thunk(() => ["--cfg=target_only"]),
             src: nix.thunk(() => nix.app(mkFile, "src/lib.rs", "#[cfg(not(target_only))]\ncompile_error!(\"extraRustcOpts not inherited by proc-macro\");\nuse proc_macro as _;\n")),
           }));
           const procMacroExtraOptsOverride = nix.thunk(() => ({
-            [nix.POS]: pos$78,
+            [nix.POS]: $pos[77],
             procMacro: true,
             edition: "2018",
             extraRustcOpts: nix.thunk(() => ["--cfg=target_only"]),
@@ -704,19 +577,19 @@ $CC -shared \\
             src: nix.thunk(() => nix.app(mkFile, "src/lib.rs", "#[cfg(target_only)]\ncompile_error!(\"extraRustcOpts leaked into proc-macro\");\n#[cfg(not(host_only))]\ncompile_error!(\"extraRustcOptsForProcMacro not applied\");\nuse proc_macro as _;\n")),
           }));
           const lintsPriority = nix.thunk(() => ({
-            [nix.POS]: pos$82,
+            [nix.POS]: $pos[81],
             lints: nix.thunk(() => ({
-              [nix.POS]: pos$81,
+              [nix.POS]: $pos[80],
               rust: nix.thunk(() => ({
-                [nix.POS]: pos$80,
-                unused: nix.thunk(() => ({ [nix.POS]: pos$79, level: "deny", priority: nix.thunk(() => nix.neg(1n)) })),
+                [nix.POS]: $pos[79],
+                unused: nix.thunk(() => ({ [nix.POS]: $pos[78], level: "deny", priority: nix.thunk(() => nix.neg(1n)) })),
                 dead_code: "allow",
               })),
             })),
             src: nix.thunk(() => nix.app(mkFile, "src/lib.rs", "#![allow(nonstandard_style)]\nfn dead() {}\npub fn alive() {}\n")),
           }));
           return {
-            [nix.POS]: pos$83,
+            [nix.POS]: $pos[82],
             libPath,
             srcLib,
             customLibNameAndLibPath,
@@ -753,30 +626,30 @@ $CC -shared \\
           };
         })());
         const brotliCrates = nix.thunk(() => nix.app(callPackage, nix.path(here, "./brotli-crates.nix"), nix.thunk(() => ({}))));
-        const rcgenCrates = nix.thunk(() => nix.app(callPackage, nix.path(here, "./rcgen-crates.nix"), nix.thunk(() => ({ [nix.POS]: pos$84, buildRustCrate: null }))));
-        const tests_1 = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (key) => (value) => nix.app(mkTest, nix.thunk(() => nix.update(value, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.has(value, "crateName"))), nix.thunk(() => ({ [nix.POS]: pos$85, crateName: key })))))), cases));
+        const rcgenCrates = nix.thunk(() => nix.app(callPackage, nix.path(here, "./rcgen-crates.nix"), nix.thunk(() => ({ [nix.POS]: $pos[83], buildRustCrate: null }))));
+        const tests_1 = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (key) => (value) => nix.app(mkTest, nix.thunk(() => nix.update(value, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.has(value, "crateName"))), nix.thunk(() => ({ [nix.POS]: $pos[84], crateName: key })))))), cases));
         return nix.update(tests_1, {
-          [nix.POS]: pos$133,
+          [nix.POS]: $pos[132],
           crateBinWithPathOutputs: nix.thunk(() => nix.app(assertOutputs, nix.thunk(() => ({
-              [nix.POS]: pos$88,
+              [nix.POS]: $pos[87],
               name: "crateBinWithPath",
               crateArgs: nix.thunk(() => ({
-                [nix.POS]: pos$87,
+                [nix.POS]: $pos[86],
                 crateBin: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$86, name: "test_binary1", path: "src/foobar.rs" })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[85], name: "test_binary1", path: "src/foobar.rs" })),
                 ]),
                 src: nix.thunk(() => nix.app(mkBin, "src/foobar.rs")),
               })),
               expectedFiles: nix.thunk(() => ["./bin/test_binary1"]),
             })))),
           crateBinWithPathOutputsDebug: nix.thunk(() => nix.app(assertOutputs, nix.thunk(() => ({
-              [nix.POS]: pos$91,
+              [nix.POS]: $pos[90],
               name: "crateBinWithPath",
               crateArgs: nix.thunk(() => ({
-                [nix.POS]: pos$90,
+                [nix.POS]: $pos[89],
                 release: false,
                 crateBin: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$89, name: "test_binary1", path: "src/foobar.rs" })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[88], name: "test_binary1", path: "src/foobar.rs" })),
                 ]),
                 src: nix.thunk(() => nix.app(mkBin, "src/foobar.rs")),
               })),
@@ -787,21 +660,21 @@ $CC -shared \\
                 ])))),
             })))),
           crateBinNoPath1Outputs: nix.thunk(() => nix.app(assertOutputs, nix.thunk(() => ({
-              [nix.POS]: pos$94,
+              [nix.POS]: $pos[93],
               name: "crateBinNoPath1",
               crateArgs: nix.thunk(() => ({
-                [nix.POS]: pos$93,
-                crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$92, name: "my-binary2" }))]),
+                [nix.POS]: $pos[92],
+                crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[91], name: "my-binary2" }))]),
                 src: nix.thunk(() => nix.app(mkBin, "src/my_binary2.rs")),
               })),
               expectedFiles: nix.thunk(() => ["./bin/my-binary2"]),
             })))),
           crateLibOutputs: nix.thunk(() => nix.app(assertOutputs, nix.thunk(() => ({
-              [nix.POS]: pos$96,
+              [nix.POS]: $pos[95],
               name: "crateLib",
               output: "lib",
               crateArgs: nix.thunk(() => ({
-                [nix.POS]: pos$95,
+                [nix.POS]: $pos[94],
                 libName: "test_lib",
                 type: nix.thunk(() => ["rlib"]),
                 libPath: "src/lib.rs",
@@ -814,11 +687,11 @@ $CC -shared \\
               ]),
             })))),
           crateLibOutputsDebug: nix.thunk(() => nix.app(assertOutputs, nix.thunk(() => ({
-              [nix.POS]: pos$98,
+              [nix.POS]: $pos[97],
               name: "crateLib",
               output: "lib",
               crateArgs: nix.thunk(() => ({
-                [nix.POS]: pos$97,
+                [nix.POS]: $pos[96],
                 release: false,
                 libName: "test_lib",
                 type: nix.thunk(() => ["rlib"]),
@@ -832,12 +705,12 @@ $CC -shared \\
               ]),
             })))),
           crateLibOutputsWasm32: nix.thunk(() => nix.app(assertOutputs, nix.thunk(() => ({
-              [nix.POS]: pos$100,
+              [nix.POS]: $pos[99],
               name: "wasm32-crate-lib",
               output: "lib",
               mkCrate: nix.thunk(() => nix.app(mkCrate, nix.thunk(() => nix.sel(pkgsCross, "wasm32-unknown-none", "buildRustCrate")))),
               crateArgs: nix.thunk(() => ({
-                [nix.POS]: pos$99,
+                [nix.POS]: $pos[98],
                 libName: "test_lib",
                 type: nix.thunk(() => ["cdylib"]),
                 libPath: "src/lib.rs",
@@ -846,27 +719,29 @@ $CC -shared \\
               expectedFiles: nix.thunk(() => ["./nix-support/propagated-build-inputs", "./lib/test_lib.wasm", "./lib/link"]),
             })))),
           crateWasm32BinHyphens: nix.thunk(() => nix.app(assertOutputs, nix.thunk(() => ({
-              [nix.POS]: pos$103,
+              [nix.POS]: $pos[102],
               name: "wasm32-crate-bin-hyphens",
               mkCrate: nix.thunk(() => nix.app(mkCrate, nix.thunk(() => nix.sel(pkgsCross, "wasm32-unknown-none", "buildRustCrate")))),
               crateArgs: nix.thunk(() => ({
-                [nix.POS]: pos$102,
+                [nix.POS]: $pos[101],
                 crateName: "wasm32-crate-bin-hyphens",
-                crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$101, name: "wasm32-crate-bin-hyphens" }))]),
+                crateBin: nix.thunk(() => [
+                  nix.thunk(() => ({ [nix.POS]: $pos[100], name: "wasm32-crate-bin-hyphens" })),
+                ]),
                 src: nix.thunk(() => nix.app(mkBin, "src/main.rs")),
               })),
               expectedFiles: nix.thunk(() => ["./bin/wasm32-crate-bin-hyphens.wasm"]),
             })))),
           crateWasm32TargetEnv: nix.thunk(() => nix.app(assertOutputs, nix.thunk(() => ({
-              [nix.POS]: pos$107,
+              [nix.POS]: $pos[106],
               name: "gnu64-crate-target-env",
               mkCrate: nix.thunk(() => nix.app(mkCrate, nix.thunk(() => nix.sel(pkgsCross, "wasm32-unknown-none", "buildRustCrate")))),
               crateArgs: nix.thunk(() => ({
-                [nix.POS]: pos$106,
+                [nix.POS]: $pos[105],
                 crateName: "wasm32-crate-target-env",
-                crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$104, name: "wasm32-crate-target-env" }))]),
+                crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[103], name: "wasm32-crate-target-env" }))]),
                 src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                    [nix.POS]: pos$105,
+                    [nix.POS]: $pos[104],
                     name: "wasm32-crate-target-env-sources",
                     paths: nix.thunk(() => [
                       nix.thunk(() => nix.app(mkFile, "build.rs", "fn main() {\n  assert_eq!(std::env::var(\"CARGO_CFG_TARGET_ENV\"), Ok(\"\".to_string()));\n}\n")),
@@ -877,15 +752,15 @@ $CC -shared \\
               expectedFiles: nix.thunk(() => ["./bin/wasm32-crate-target-env.wasm"]),
             })))),
           crateGnu64TargetEnv: nix.thunk(() => nix.app(assertOutputs, nix.thunk(() => ({
-              [nix.POS]: pos$111,
+              [nix.POS]: $pos[110],
               name: "gnu64-crate-target-env",
               mkCrate: nix.thunk(() => nix.app(mkCrate, nix.thunk(() => nix.sel(pkgsCross, "gnu64", "buildRustCrate")))),
               crateArgs: nix.thunk(() => ({
-                [nix.POS]: pos$110,
+                [nix.POS]: $pos[109],
                 crateName: "gnu64-crate-target-env",
-                crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$108, name: "gnu64-crate-target-env" }))]),
+                crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[107], name: "gnu64-crate-target-env" }))]),
                 src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                    [nix.POS]: pos$109,
+                    [nix.POS]: $pos[108],
                     name: "gnu64-crate-target-env-sources",
                     paths: nix.thunk(() => [
                       nix.thunk(() => nix.app(mkFile, "build.rs", "fn main() {\n  assert_eq!(std::env::var(\"CARGO_CFG_TARGET_ENV\"), Ok(\"gnu\".to_string()));\n}\n")),
@@ -897,104 +772,104 @@ $CC -shared \\
             })))),
           brotliTest: nix.thunk(() => (() => {
             const pkg = nix.thunk(() => nix.app(nix.sel(brotliCrates, "brotli_2_5_0"), nix.thunk(() => ({}))));
-            return nix.app(runCommand, "run-brotli-test-cmd", nix.thunk(() => ({ [nix.POS]: pos$112, nativeBuildInputs: nix.thunk(() => [pkg]) })), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) ? nix.str`${pkg}/bin/brotli -c ${pkg}/bin/brotli > /dev/null && touch $out
+            return nix.app(runCommand, "run-brotli-test-cmd", nix.thunk(() => ({ [nix.POS]: $pos[111], nativeBuildInputs: nix.thunk(() => [pkg]) })), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) ? nix.str`${pkg}/bin/brotli -c ${pkg}/bin/brotli > /dev/null && touch $out
 ` : nix.str`test -x '${pkg}/bin/brotli' && touch $out
 `)));
           })()),
           allocNoStdLibTest: nix.thunk(() => (() => {
             const pkg = nix.thunk(() => nix.app(nix.sel(brotliCrates, "alloc_no_stdlib_1_3_0"), nix.thunk(() => ({}))));
-            return nix.app(runCommand, "run-alloc-no-stdlib-test-cmd", nix.thunk(() => ({ [nix.POS]: pos$113, nativeBuildInputs: nix.thunk(() => [pkg]) })), nix.thunk(() => nix.str`test -e ${pkg}/bin/example && touch $out
+            return nix.app(runCommand, "run-alloc-no-stdlib-test-cmd", nix.thunk(() => ({ [nix.POS]: $pos[112], nativeBuildInputs: nix.thunk(() => [pkg]) })), nix.thunk(() => nix.str`test -e ${pkg}/bin/example && touch $out
 `));
           })()),
           brotliDecompressorTest: nix.thunk(() => (() => {
             const pkg = nix.thunk(() => nix.app(nix.sel(brotliCrates, "brotli_decompressor_1_3_1"), nix.thunk(() => ({}))));
-            return nix.app(runCommand, "run-brotli-decompressor-test-cmd", nix.thunk(() => ({ [nix.POS]: pos$114, nativeBuildInputs: nix.thunk(() => [pkg]) })), nix.thunk(() => nix.str`test -e ${pkg}/bin/brotli-decompressor && touch $out
+            return nix.app(runCommand, "run-brotli-decompressor-test-cmd", nix.thunk(() => ({ [nix.POS]: $pos[113], nativeBuildInputs: nix.thunk(() => [pkg]) })), nix.thunk(() => nix.str`test -e ${pkg}/bin/brotli-decompressor && touch $out
 `));
           })()),
           lintsDenyFails: nix.thunk(() => (() => {
             const crate = nix.thunk(() => nix.app(mkHostCrate, nix.thunk(() => ({
-                [nix.POS]: pos$117,
+                [nix.POS]: $pos[116],
                 crateName: "lintsDenyFails",
                 lints: nix.thunk(() => ({
-                  [nix.POS]: pos$116,
-                  rust: nix.thunk(() => ({ [nix.POS]: pos$115, dead_code: "deny" })),
+                  [nix.POS]: $pos[115],
+                  rust: nix.thunk(() => ({ [nix.POS]: $pos[114], dead_code: "deny" })),
                 })),
                 src: nix.thunk(() => nix.app(mkFile, "src/lib.rs", "fn dead() {}\npub fn alive() {}\n")),
               }))));
             const failed = nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), crate));
-            return nix.app(runCommand, "assert-lintsDenyFails", nix.thunk(() => ({ [nix.POS]: pos$118, failed: failed })), "grep -q 'function .dead. is never used' \"$failed/testBuildFailure.log\"\ngrep -q '\\-D dead.code' \"$failed/testBuildFailure.log\"\ntouch $out\n");
+            return nix.app(runCommand, "assert-lintsDenyFails", nix.thunk(() => ({ [nix.POS]: $pos[117], failed: failed })), "grep -q 'function .dead. is never used' \"$failed/testBuildFailure.log\"\ngrep -q '\\-D dead.code' \"$failed/testBuildFailure.log\"\ntouch $out\n");
           })()),
           useClippyDenyFails: nix.thunk(() => (() => {
             const crate = nix.thunk(() => nix.app(mkHostCrate, nix.thunk(() => ({
-                [nix.POS]: pos$121,
+                [nix.POS]: $pos[120],
                 crateName: "useClippyDenyFails",
                 useClippy: true,
                 lints: nix.thunk(() => ({
-                  [nix.POS]: pos$120,
-                  clippy: nix.thunk(() => ({ [nix.POS]: pos$119, eq_op: "deny" })),
+                  [nix.POS]: $pos[119],
+                  clippy: nix.thunk(() => ({ [nix.POS]: $pos[118], eq_op: "deny" })),
                 })),
                 src: nix.thunk(() => nix.app(mkFile, "src/lib.rs", "pub fn check() -> bool {\n  1 == 1\n}\n")),
               }))));
             const failed = nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), crate));
-            return nix.app(runCommand, "assert-useClippyDenyFails", nix.thunk(() => ({ [nix.POS]: pos$122, failed: failed })), "grep -q 'clippy::eq.op' \"$failed/testBuildFailure.log\"\ngrep -q 'equal expressions' \"$failed/testBuildFailure.log\"\ntouch $out\n");
+            return nix.app(runCommand, "assert-useClippyDenyFails", nix.thunk(() => ({ [nix.POS]: $pos[121], failed: failed })), "grep -q 'clippy::eq.op' \"$failed/testBuildFailure.log\"\ngrep -q 'equal expressions' \"$failed/testBuildFailure.log\"\ntouch $out\n");
           })()),
           useClippyDefaultCapAllows: nix.thunk(() => nix.app(mkHostCrate, nix.thunk(() => ({
-              [nix.POS]: pos$123,
+              [nix.POS]: $pos[122],
               crateName: "useClippyDefaultCapAllows",
               useClippy: true,
               src: nix.thunk(() => nix.app(mkFile, "src/lib.rs", "pub fn check() -> bool {\n  1 == 1\n}\n")),
             })))),
           useClippyRlibLinkCompat: nix.thunk(() => (() => {
             const libCrate = nix.thunk(() => nix.app(mkHostCrate, nix.thunk(() => ({
-                [nix.POS]: pos$124,
+                [nix.POS]: $pos[123],
                 crateName: "clippylib",
                 useClippy: true,
                 src: nix.thunk(() => nix.app(mkFile, "src/lib.rs", "pub fn test() -> i32 {\n  23\n}\n")),
               }))));
             const binCrate = nix.thunk(() => nix.app(mkHostCrate, nix.thunk(() => ({
-                [nix.POS]: pos$125,
+                [nix.POS]: $pos[124],
                 crateName: "clippybin",
                 dependencies: nix.thunk(() => [libCrate]),
                 src: nix.thunk(() => nix.app(mkBinExtern, "src/main.rs", "clippylib")),
               }))));
-            return nix.app(runCommand, "run-useClippyRlibLinkCompat", nix.thunk(() => ({ [nix.POS]: pos$126, nativeBuildInputs: nix.thunk(() => [binCrate]) })), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) ? nix.str`${binCrate}/bin/clippybin && touch $out
+            return nix.app(runCommand, "run-useClippyRlibLinkCompat", nix.thunk(() => ({ [nix.POS]: $pos[125], nativeBuildInputs: nix.thunk(() => [binCrate]) })), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) ? nix.str`${binCrate}/bin/clippybin && touch $out
 ` : nix.str`test -x '${binCrate}/bin/clippybin' && touch $out
 `)));
           })()),
           rcgenTest: nix.thunk(() => (() => {
             const pkg = nix.thunk(() => nix.sel(rcgenCrates, "rootCrate", "build"));
-            return nix.app(runCommand, "run-rcgen-test-cmd", nix.thunk(() => ({ [nix.POS]: pos$127, nativeBuildInputs: nix.thunk(() => [pkg]) })), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) ? nix.str`${pkg}/bin/rcgen && touch $out
+            return nix.app(runCommand, "run-rcgen-test-cmd", nix.thunk(() => ({ [nix.POS]: $pos[126], nativeBuildInputs: nix.thunk(() => [pkg]) })), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) ? nix.str`${pkg}/bin/rcgen && touch $out
 ` : nix.str`test -x '${pkg}/bin/rcgen' && touch $out
 `)));
           })()),
           propagatedBuildInputsTest: nix.thunk(() => (() => {
             const fakeNativeLib = nix.thunk(() => nix.app(runCommand, "fake-native-lib", nix.thunk(() => ({})), "mkdir -p $out/lib && touch $out/lib/libfoo.a"));
             const libCrate = nix.thunk(() => nix.app(mkHostCrate, nix.thunk(() => ({
-                [nix.POS]: pos$128,
+                [nix.POS]: $pos[127],
                 crateName: "mylib",
                 src: nix.thunk(() => nix.app(mkLib, "src/lib.rs")),
                 propagatedBuildInputs: nix.thunk(() => [fakeNativeLib]),
               }))));
             const binCrate = nix.thunk(() => nix.app(mkHostCrate, nix.thunk(() => ({
-                [nix.POS]: pos$129,
+                [nix.POS]: $pos[128],
                 crateName: "mybin",
                 src: nix.thunk(() => nix.app(mkFile, "src/main.rs", "fn main() {}")),
                 dependencies: nix.thunk(() => [libCrate]),
               }))));
             const transitiveLib = nix.thunk(() => nix.app(mkHostCrate, nix.thunk(() => ({
-                [nix.POS]: pos$130,
+                [nix.POS]: $pos[129],
                 crateName: "transitivelib",
                 src: nix.thunk(() => nix.app(mkLib, "src/lib.rs")),
                 dependencies: nix.thunk(() => [libCrate]),
               }))));
             const transitiveBin = nix.thunk(() => nix.app(mkHostCrate, nix.thunk(() => ({
-                [nix.POS]: pos$131,
+                [nix.POS]: $pos[130],
                 crateName: "transitivebin",
                 src: nix.thunk(() => nix.app(mkFile, "src/main.rs", "fn main() {}")),
                 dependencies: nix.thunk(() => [transitiveLib]),
               }))));
             return nix.app(runCommand, "propagated-build-inputs-test", nix.thunk(() => ({
-                [nix.POS]: pos$132,
+                [nix.POS]: $pos[131],
                 libCrateInputs: nix.thunk(() => nix.sel(libCrate, "completePropagatedBuildInputs")),
                 binCrateInputs: nix.thunk(() => nix.sel(binCrate, "completePropagatedBuildInputs")),
                 transitiveBinInputs: nix.thunk(() => nix.sel(transitiveBin, "completePropagatedBuildInputs")),
@@ -1022,16 +897,16 @@ touch $out
         });
       })())));
     const test = nix.thunk(() => nix.app(nix.sel(releaseTools, "aggregate"), nix.thunk(() => ({
-        [nix.POS]: pos$135,
+        [nix.POS]: $pos[134],
         name: "buildRustCrate-tests",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$134,
+          [nix.POS]: $pos[133],
           description: "Test cases for buildRustCrate",
           maintainers: [],
         })),
         constituents: nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => nix.app(nix.sel(lib, "isDerivation"), v), tests)))),
       }))));
-    return { [nix.POS]: pos$136, tests, test };
+    return { [nix.POS]: $pos[135], tests, test };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 21, 47]], [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["NIX_LDFLAGS", 66, 7]], [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 116, 5], ["maintainers", 117, 5], ["platforms", 118, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["cmakeFlags", 42, 3], ["nativeBuildInputs", 54, 3], ["env", 66, 3], ["buildInputs", 81, 3], ["dependencies", 90, 3], ["postInstall", 96, 3], ["pythonImportsCheck", 106, 3], ["doCheck", 109, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, cmake: false, pip: false, setuptools: false, swig: false, wheel: false, autoAddDriverRunpath: false, openmm: false, torch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 21, 47]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_LDFLAGS", 66, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 116, 5], ["maintainers", 117, 5], ["platforms", 118, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["cmakeFlags", 42, 3], ["nativeBuildInputs", 54, 3], ["env", 66, 3], ["buildInputs", 81, 3], ["dependencies", 90, 3], ["postInstall", 96, 3], ["pythonImportsCheck", 106, 3], ["doCheck", 109, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const cudaSupport = nix.thunk(() => nix.attr(torch, "cudaSupport"));
   const cudaPackages = nix.thunk(() => nix.attr(torch, "cudaPackages"));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: $pos[4],
       pname: "openmm-torch",
       version: "1.5.1",
       pyproject: false,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "openmm",
           repo: "openmm-torch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pip, setuptools, swig, wheel], nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc")), autoAddDriverRunpath])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [
               nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/lib/stubs`),
               "-lcuda",
@@ -62,7 +58,7 @@ make PythonInstall
       pythonImportsCheck: nix.thunk(() => ["openmmtorch"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "OpenMM plugin to define forces with neural networks",
         homepage: "https://github.com/openmm/openmm-torch",
         changelog: nix.thunk(() => nix.str`https://github.com/openmm/openmm-torch/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

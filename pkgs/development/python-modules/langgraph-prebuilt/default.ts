@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["rev-prefix", 99, 7], ["ignoredVersions", 100, 7]], [["skipBulkUpdate", 97, 5], ["updateScript", 98, 5]], [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["sourceRoot", 46, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["skipPythonImportsCheck", 56, 3], ["doCheck", 60, 3], ["nativeCheckInputs", 62, 3], ["preCheck", 77, 3], ["pytestFlags", 81, 3], ["disabledTestPaths", 86, 3], ["passthru", 95, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "langchain-core": false, "langgraph-checkpoint": false, "langgraph-checkpoint-postgres": false, "langgraph-checkpoint-sqlite": false, "langgraph-sdk": false, postgresql: false, postgresqlTestHook: false, psycopg: false, "psycopg-pool": false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, syrupy: false, xxhash: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 99, 7], ["ignoredVersions", 100, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 97, 5], ["updateScript", 98, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["sourceRoot", 46, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["skipPythonImportsCheck", 56, 3], ["doCheck", 60, 3], ["nativeCheckInputs", 62, 3], ["preCheck", 77, 3], ["pytestFlags", 81, 3], ["disabledTestPaths", 86, 3], ["passthru", 95, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const xxhash = nix.arg($, "xxhash");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "langgraph-prebuilt",
       version: "1.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "langchain-ai",
           repo: "langgraph",
           tag: nix.thunk(() => nix.str`prebuilt==${nix.sel(finalAttrs, "version")}`),
@@ -68,12 +64,16 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["-Wignore::pytest.PytestDeprecationWarning", "-Wignore::DeprecationWarning"]),
       disabledTestPaths: nix.thunk(() => ["tests/test_react_agent.py", "tests/conftest.py"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdate: true,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "prebuilt==", ignoredVersions: "a|b|dev|rc" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            "rev-prefix": "prebuilt==",
+            ignoredVersions: "a|b|dev|rc",
+          })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Prebuilt agents add-on for Langgraph. Should always be bundled with langgraph",
         homepage: "https://github.com/langchain-ai/langgraph/tree/main/libs/prebuilt",
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langgraph/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

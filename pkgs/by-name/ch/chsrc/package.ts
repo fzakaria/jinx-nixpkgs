@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, texinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "chsrc",
       version: "0.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RubyMetric",
           repo: "chsrc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [texinfo]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 chsrc $out/bin/chsrc\ninstall -Dm644 doc/chsrc.1 -t $out/share/man/man1/\nmakeinfo doc/chsrc.texi --output=chsrc.info\ninstall -Dm644 chsrc.info -t $out/share/info/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Change Source everywhere for every software",
         homepage: "https://chsrc.run/",
         changelog: nix.thunk(() => nix.str`https://github.com/RubyMetric/chsrc/releases/tag/v${nix.sel(finalAttrs, "version")}`),

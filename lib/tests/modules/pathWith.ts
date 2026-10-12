@@ -2,36 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pathWith.nix", [[["inStore", 17, 77]], [["type", 17, 34]], [["inStore", 18, 80]], [["type", 18, 37]], [["type", 19, 30]], [["inStore", 23, 15], ["absolute", 24, 15]], [["type", 21, 11]], [["absolute", 31, 15]], [["type", 29, 11]], [["absolute", 37, 72]], [["type", 37, 48]], [["inStore", 43, 13], ["absolute", 44, 13]], [["type", 42, 11]], [["assertionsResult", 15, 9], ["pathInStore", 17, 9], ["pathNotInStore", 18, 9], ["anyPath", 19, 9], ["absolutePathNotInStore", 20, 9], ["absolutePath", 28, 9], ["conflictingPathOptionType", 37, 9], ["impossiblePathOptionType", 41, 9]], [["options", 14, 7]], [["inStore", 55, 15], ["absolute", 56, 15]], [["type", 53, 11]], [["absolute", 62, 72]], [["type", 62, 48]], [["pathNotInStore", 52, 9], ["conflictingPathOptionType", 62, 9]], [["options", 50, 7]], [["ok1", 67, 15], ["ok2", 68, 15], ["ok3", 69, 15], ["ok4", 70, 15], ["ok5", 71, 15], ["ok6", 72, 15], ["bad1", 73, 15], ["bad2", 74, 15], ["bad3", 75, 15], ["bad4", 76, 15], ["bad5", 77, 15]], [["ok1", 79, 18], ["ok2", 80, 18], ["ok3", 81, 18], ["ok4", 82, 18], ["ok5", 83, 18], ["bad1", 84, 18], ["bad2", 85, 18], ["bad3", 86, 18], ["bad4", 87, 18]], [["ok1", 89, 11], ["ok2", 90, 11], ["bad1", 91, 11]], [["ok1", 93, 26], ["bad1", 94, 26], ["bad2", 95, 26]], [["description", 102, 10]], [["type", 99, 5], ["outPath", 100, 5], ["drvPath", 101, 5], ["meta", 102, 5]], [["ok1", 97, 16], ["ok2", 98, 16]], [["imports", 12, 3], ["pathInStore", 67, 3], ["pathNotInStore", 79, 3], ["anyPath", 89, 3], ["absolutePathNotInStore", 93, 3], ["absolutePath", 97, 3], ["conflictingPathOptionType", 105, 3], ["impossiblePathOptionType", 107, 3], ["assertionsResult", 109, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pathWith.nix", [["inStore", 17, 77]]);
-const pos$2 = nix.positions(here + "/pathWith.nix", [["type", 17, 34]]);
-const pos$3 = nix.positions(here + "/pathWith.nix", [["inStore", 18, 80]]);
-const pos$4 = nix.positions(here + "/pathWith.nix", [["type", 18, 37]]);
-const pos$5 = nix.positions(here + "/pathWith.nix", [["type", 19, 30]]);
-const pos$6 = nix.positions(here + "/pathWith.nix", [["inStore", 23, 15], ["absolute", 24, 15]]);
-const pos$7 = nix.positions(here + "/pathWith.nix", [["type", 21, 11]]);
-const pos$8 = nix.positions(here + "/pathWith.nix", [["absolute", 31, 15]]);
-const pos$9 = nix.positions(here + "/pathWith.nix", [["type", 29, 11]]);
-const pos$10 = nix.positions(here + "/pathWith.nix", [["absolute", 37, 72]]);
-const pos$11 = nix.positions(here + "/pathWith.nix", [["type", 37, 48]]);
-const pos$12 = nix.positions(here + "/pathWith.nix", [["inStore", 43, 13], ["absolute", 44, 13]]);
-const pos$13 = nix.positions(here + "/pathWith.nix", [["type", 42, 11]]);
-const pos$14 = nix.positions(here + "/pathWith.nix", [["assertionsResult", 15, 9], ["pathInStore", 17, 9], ["pathNotInStore", 18, 9], ["anyPath", 19, 9], ["absolutePathNotInStore", 20, 9], ["absolutePath", 28, 9], ["conflictingPathOptionType", 37, 9], ["impossiblePathOptionType", 41, 9]]);
-const pos$15 = nix.positions(here + "/pathWith.nix", [["options", 14, 7]]);
-const pos$16 = nix.positions(here + "/pathWith.nix", [["inStore", 55, 15], ["absolute", 56, 15]]);
-const pos$17 = nix.positions(here + "/pathWith.nix", [["type", 53, 11]]);
-const pos$18 = nix.positions(here + "/pathWith.nix", [["absolute", 62, 72]]);
-const pos$19 = nix.positions(here + "/pathWith.nix", [["type", 62, 48]]);
-const pos$20 = nix.positions(here + "/pathWith.nix", [["pathNotInStore", 52, 9], ["conflictingPathOptionType", 62, 9]]);
-const pos$21 = nix.positions(here + "/pathWith.nix", [["options", 50, 7]]);
-const pos$22 = nix.positions(here + "/pathWith.nix", [["ok1", 67, 15], ["ok2", 68, 15], ["ok3", 69, 15], ["ok4", 70, 15], ["ok5", 71, 15], ["ok6", 72, 15], ["bad1", 73, 15], ["bad2", 74, 15], ["bad3", 75, 15], ["bad4", 76, 15], ["bad5", 77, 15]]);
-const pos$23 = nix.positions(here + "/pathWith.nix", [["ok1", 79, 18], ["ok2", 80, 18], ["ok3", 81, 18], ["ok4", 82, 18], ["ok5", 83, 18], ["bad1", 84, 18], ["bad2", 85, 18], ["bad3", 86, 18], ["bad4", 87, 18]]);
-const pos$24 = nix.positions(here + "/pathWith.nix", [["ok1", 89, 11], ["ok2", 90, 11], ["bad1", 91, 11]]);
-const pos$25 = nix.positions(here + "/pathWith.nix", [["ok1", 93, 26], ["bad1", 94, 26], ["bad2", 95, 26]]);
-const pos$26 = nix.positions(here + "/pathWith.nix", [["description", 102, 10]]);
-const pos$27 = nix.positions(here + "/pathWith.nix", [["type", 99, 5], ["outPath", 100, 5], ["drvPath", 101, 5], ["meta", 102, 5]]);
-const pos$28 = nix.positions(here + "/pathWith.nix", [["ok1", 97, 16], ["ok2", 98, 16]]);
-const pos$29 = nix.positions(here + "/pathWith.nix", [["imports", 12, 3], ["pathInStore", 67, 3], ["pathNotInStore", 79, 3], ["anyPath", 89, 3], ["absolutePathNotInStore", 93, 3], ["absolutePath", 97, 3], ["conflictingPathOptionType", 105, 3], ["impossiblePathOptionType", 107, 3], ["assertionsResult", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,60 +13,60 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   return {
-    [nix.POS]: pos$29,
+    [nix.POS]: $pos[28],
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         options: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           assertionsResult: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({})))),
           pathInStore: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$1, inStore: true })))))),
+              [nix.POS]: $pos[1],
+              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[0], inStore: true })))))),
             })))),
           pathNotInStore: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$3, inStore: false })))))),
+              [nix.POS]: $pos[3],
+              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[2], inStore: false })))))),
             })))),
           anyPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({})))))),
             })))),
           absolutePathNotInStore: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$6, inStore: false, absolute: true })))))),
+              [nix.POS]: $pos[6],
+              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[5], inStore: false, absolute: true })))))),
             })))),
           absolutePath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              [nix.POS]: pos$9,
-              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$8, absolute: true })))))),
+              [nix.POS]: $pos[8],
+              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[7], absolute: true })))))),
             })))),
           conflictingPathOptionType: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              [nix.POS]: pos$11,
-              type: nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$10, absolute: true })))),
+              [nix.POS]: $pos[10],
+              type: nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[9], absolute: true })))),
             })))),
           impossiblePathOptionType: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              [nix.POS]: pos$13,
-              type: nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$12, inStore: true, absolute: false })))),
+              [nix.POS]: $pos[12],
+              type: nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[11], inStore: true, absolute: false })))),
             })))),
         })),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         options: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           pathNotInStore: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              [nix.POS]: pos$17,
-              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$16, inStore: false, absolute: null })))))),
+              [nix.POS]: $pos[16],
+              type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[15], inStore: false, absolute: null })))))),
             })))),
           conflictingPathOptionType: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              [nix.POS]: pos$19,
-              type: nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$18, absolute: false })))),
+              [nix.POS]: $pos[18],
+              type: nix.thunk(() => nix.app(nix.sel(types, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[17], absolute: false })))),
             })))),
         })),
       })),
     ]),
     pathInStore: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       ok1: nix.thunk(() => nix.str`${storeDir}/0lz9p8xhf89kb1c1kk6jxrzskaiygnlh-bash-5.2-p15.drv`),
       ok2: nix.thunk(() => nix.str`${storeDir}/0fb3ykw9r5hpayd05sr0cizwadzq1d8q-bash-5.2-p15`),
       ok3: nix.thunk(() => nix.str`${storeDir}/0fb3ykw9r5hpayd05sr0cizwadzq1d8q-bash-5.2-p15/bin/bash`),
@@ -108,7 +80,7 @@ export default nix.lambda((args) => (() => {
       bad5: "/foo/bar",
     })),
     pathNotInStore: nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       ok1: "/foo/bar",
       ok2: nix.thunk(() => nix.str`${storeDir}`),
       ok3: nix.thunk(() => nix.str`${storeDir}/`),
@@ -120,26 +92,26 @@ export default nix.lambda((args) => (() => {
       bad4: nix.path(here, "./pathWith.nix"),
     })),
     anyPath: nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       ok1: "/this/is/absolute",
       ok2: "./this/is/relative",
       bad1: 42n,
     })),
     absolutePathNotInStore: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       ok1: "/this/is/absolute",
       bad1: "./this/is/relative",
       bad2: nix.thunk(() => nix.str`${storeDir}/0fb3ykw9r5hpayd05sr0cizwadzq1d8q-bash-5.2-p15`),
     })),
     absolutePath: nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       ok1: "/var/lib/postgresql",
       ok2: nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         type: "derivation",
         outPath: nix.thunk(() => nix.builtins.abort("do not instantiate (via outPath)")),
         drvPath: nix.thunk(() => nix.builtins.abort("do not instantiate (via drvPath)")),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$26, description: "just a test fixture" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[25], description: "just a test fixture" })),
       })),
     })),
     conflictingPathOptionType: "/foo/bar",

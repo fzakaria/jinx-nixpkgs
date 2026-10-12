@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["package", 72, 5], ["command", 73, 5], ["version", 74, 5]], [["version", 71, 18]], [["tests", 71, 12]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["configurePhase", 44, 3], ["installPhase", 58, 3], ["passthru", 71, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, mosquitto: false, curl: false, openssl: false, lmdb: false, lua: false, libsodium: false, libuuid: false, libconfig: false, testers: false, "owntracks-recorder": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 72, 5], ["command", 73, 5], ["version", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 71, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 71, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["configurePhase", 44, 3], ["installPhase", 58, 3], ["passthru", 71, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const owntracks_recorder = nix.arg($, "owntracks-recorder");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "owntracks-recorder",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "owntracks",
           repo: "recorder",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,11 +46,11 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\ncp config.mk.in config.mk\n\nsubstituteInPlace config.mk \\\n  --replace \"INSTALLDIR = /usr/local\" \"INSTALLDIR = $out\" \\\n  --replace \"DOCROOT = /var/spool/owntracks/recorder/htdocs\" \"DOCROOT = $out/htdocs\" \\\n  --replace \"WITH_LUA ?= no\" \"WITH_LUA ?= yes\" \\\n  --replace \"WITH_ENCRYPT ?= no\" \"WITH_ENCRYPT ?= yes\"\n\nrunHook postConfigure\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\n\ninstall -m 0755 ot-recorder $out/bin\ninstall -m 0755 ocat $out/bin\n\ncp -r docroot $out/htdocs\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: owntracks_recorder,
               command: "ocat --version",
               version: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Store and access data published by OwnTracks apps",
         homepage: "https://github.com/owntracks/recorder",
         changelog: nix.thunk(() => nix.str`https://github.com/owntracks/recorder/releases/tag/${nix.sel(finalAttrs, "version")}`),

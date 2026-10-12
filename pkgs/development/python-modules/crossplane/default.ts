@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["nativeCheckInputs", 24, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pytestCheckHook: false, fetchFromGitHub: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["nativeCheckInputs", 24, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "crossplane",
       version: "0.5.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nginxinc",
           repo: "crossplane",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["crossplane"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "NGINX configuration file parser and builder",
         mainProgram: "crossplane",
         homepage: "https://github.com/nginxinc/crossplane",

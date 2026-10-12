@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["url", 59, 5]], [["updateScript", 58, 12]], [["homepage", 63, 5], ["description", 64, 5], ["longDescription", 65, 5], ["license", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["preBuild", 37, 3], ["patches", 48, 11], ["postPatch", 51, 3], ["passthru", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, libx11: false, libxinerama: false, libxft: false, writeText: false, "pkg-config": false, config: false, conf: true, patches: true, extraLibs: true, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 58, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["longDescription", 65, 5], ["license", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["preBuild", 37, 3], ["patches", 48, 11], ["postPatch", 51, 3], ["passthru", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const extraLibs = nix.argOr($, "extraLibs", () => nix.selOr(config, () => [], "dwm", "extraLibs"));
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dwm",
       version: "6.8",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dl.suckless.org/dwm/dwm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-mkMFmqV9NVGTdDGqW8f+T7r0YQNU1KDsn6uRcacoNco=",
         })))),
@@ -48,11 +44,11 @@ export default nix.lambda((args) => (() => {
         return nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(conf, null)), nix.thunk(() => nix.str`cp ${configFile} config.def.h`));
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "git://git.suckless.org/dwm" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], url: "git://git.suckless.org/dwm" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://dwm.suckless.org/",
         description: "Extremely fast, small, and dynamic window manager for X",
         longDescription: "dwm is a dynamic window manager for X. It manages windows in tiled,\nmonocle and floating layouts. All of the layouts can be applied\ndynamically, optimising the environment for the application in use and the\ntask performed.\nWindows are grouped by tags. Each window can be tagged with one or\nmultiple tags. Selecting certain tags displays all windows with these\ntags.\n",

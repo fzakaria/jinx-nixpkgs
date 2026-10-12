@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["mainProgram", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 13, 3], ["makeFlags", 18, 3], ["buildInputs", 20, 3], ["doCheck", 22, 3], ["checkPhase", 23, 3], ["preInstall", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchzip: false, openssl: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["mainProgram", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 13, 3], ["makeFlags", 18, 3], ["buildInputs", 20, 3], ["doCheck", 22, 3], ["checkPhase", 23, 3], ["preInstall", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hashpump",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20201018005212/https://github.com/bwall/HashPump/archive/v1.20.tar.gz",
           hash: "sha256-xL/1os17agwFtdq0snS3ZJzwJhk22ujxfWLH65IMMEM=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n./hashpump --test\nrunHook postCheck\n",
       preInstall: "mkdir -p $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to exploit the hash length extension attack in various hashing algorithms",
         homepage: "https://github.com/bwall/HashPump",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

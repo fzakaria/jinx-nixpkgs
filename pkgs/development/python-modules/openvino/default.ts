@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 10, 3], ["version", 11, 29], ["pyproject", 12, 3], ["src", 14, 3], ["dependencies", 16, 3], ["installPhase", 21, 3], ["pythonImportsCheck", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "openvino-native": false, numpy: false, packaging: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 29], ["pyproject", 12, 3], ["src", 14, 3], ["dependencies", 16, 3], ["installPhase", 21, 3], ["pythonImportsCheck", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const packaging = nix.arg($, "packaging");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "openvino",
       version: nix.thunk(() => nix.attr(openvino_native, "version")),
       pyproject: false,
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -Rv * $out/\n\nrunHook postInstall\n",
       pythonImportsCheck: nix.thunk(() => ["openvino"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "OpenVINO(TM) Runtime",
         homepage: "https://github.com/openvinotoolkit/openvino",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

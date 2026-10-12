@@ -2,23 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["bootBintoolsNoLibc", 219, 5], ["bootBintools", 220, 5]], [["bootBintoolsNoLibc", 223, 5], ["bootBintools", 224, 5]], [["bintools", 230, 7]], [["id", 252, 11], ["version", 253, 11], ["about", 254, 11]], [["app.distributor", 258, 11], ["app.distributor.channel", 259, 11]], [["Global", 251, 9], ["Preferences", 256, 9]], [["value", 268, 11], ["reason", 269, 11]], [["geo.provider.network.url", 267, 9]], [["value", 275, 11], ["reason", 276, 11]], [["geo.provider.use_geoclue", 274, 9]], [["timeout", 310, 7]], [["HOST_CC", 642, 5], ["HOST_CXX", 643, 5]], [["LDFLAGS", 649, 5]], [["application", 711, 7], ["applicationName", 712, 7], ["binaryName", 713, 7], ["enableAddonSideload", 714, 7], ["enableAddonSigning", 715, 7], ["extraPatches", 716, 7], ["gtk3", 717, 7], ["nspr", 718, 7], ["tests", 719, 7], ["updateScript", 720, 7], ["wasiSysRoot", 721, 7], ["withALSA", 722, 7], ["withFFmpeg", 723, 7], ["withGSSAPI", 724, 7], ["withJACK", 725, 7], ["withPipewire", 726, 7], ["withSndio", 727, 7], ["version", 729, 5]], [["pname", 298, 3], ["version", 299, 3], ["src", 301, 11], ["unpackPhase", 301, 15], ["__structuredAttrs", 303, 3], ["strictDeps", 304, 3], ["meta", 306, 3], ["outputs", 313, 3], ["preConfigurePhases", 319, 3], ["patches", 325, 3], ["postPatch", 350, 3], ["patchFlags", 359, 3], ["nativeBuildInputs", 364, 3], ["setOutputFlags", 392, 3], ["preConfigure", 394, 3], ["configurePlatforms", 467, 3], ["configureFlags", 469, 3], ["buildInputs", 542, 3], ["profilingPhase", 605, 3], ["preBuild", 629, 3], ["postBuild", 633, 3], ["makeFlags", 637, 3], ["separateDebugInfo", 638, 3], ["enableParallelBuilding", 639, 3], ["env", 640, 3], ["doCheck", 653, 3], ["preInstall", 657, 3], ["installTargets", 668, 3], ["postInstall", 670, 3], ["postFixup", 692, 3], ["doInstallCheck", 697, 3], ["installCheckPhase", 698, 3], ["passthru", 709, 3], ["hardeningDisable", 733, 3], ["dontFixLibtool", 743, 3], ["dontUpdateAutotoolsGnuConfigScripts", 746, 3], ["requiredSystemFeatures", 748, 3]]]);
 const formals$1 = { args: { pname: false, version: false, packageVersion: true, meta: false, updateScript: true, binaryName: true, application: true, applicationName: true, branding: true, src: false, unpackPhase: true, extraPatches: true, extraPostPatch: true, extraNativeBuildInputs: true, extraConfigureFlags: true, extraPreConfigure: true, extraBuildInputs: true, extraMakeFlags: true, extraPassthru: true, tests: true }, ellipsis: false };
 const formals$2 = { args: { lib: false, pkgs: false, stdenv: false, patchelf: false, fetchpatch: false, autoconf: false, buildPackages: false, cargo: false, dump_syms: false, makeBinaryWrapper: false, mimalloc: false, nodejs: false, overrideCC: false, perl: false, "pkg-config": false, pkgsCross: false, python3: false, python313: false, runCommand: false, rustc: false, "rust-cbindgen": false, rustPlatform: false, unzip: false, which: false, wrapGAppsHook3: false, bzip2: false, dbus: false, "dbus-glib": false, file: false, fontconfig: false, freetype: false, glib: false, gnum4: false, gtk3: false, libGL: false, libGLU: false, libevent: false, libffi: false, libjpeg: false, libpng: false, libstartup_notification: false, libvpx: false, libwebp: false, nasm: false, nspr: false, nss_esr: false, nss_latest: false, onnxruntime: false, pango: false, libxt: false, libxtst: false, libxrender: false, libxi: false, libxft: false, libxext: false, libxdamage: false, libxcursor: false, libx11: false, xorgproto: false, pixman: false, zip: false, zlib: false, pkgsBuildBuild: false, "apple-sdk_14": false, "apple-sdk_15": false, "apple-sdk_26": false, cups: false, rsync: false, withALSA: true, "alsa-lib": false, withFFmpeg: true, withGSSAPI: true, libkrb5: false, withJACK: true, libjack2: false, withJemalloc: true, jemalloc: false, withPipewire: true, withPulseaudio: true, libpulseaudio: false, withSndio: true, sndio: false, withWayland: true, libxkbcommon: false, libdrm: false, enableAddonSigning: true, enableAddonSideload: true, enableElfhack: true, enableLTO: true, enablePGO: true, "xvfb-run": false, enableDebug: true, enableDebugSymbols: true, enableDataReporting: true, enableLocation: true, enableWebRTC: true, enableNeckoWiFi: true, enableCrashReporter: true, curl: false, enableEMENagbar: true, enableOfficialBranding: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["bootBintoolsNoLibc", 219, 5], ["bootBintools", 220, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["bootBintoolsNoLibc", 223, 5], ["bootBintools", 224, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["bintools", 230, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["id", 252, 11], ["version", 253, 11], ["about", 254, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["app.distributor", 258, 11], ["app.distributor.channel", 259, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["Global", 251, 9], ["Preferences", 256, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["value", 268, 11], ["reason", 269, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["geo.provider.network.url", 267, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["value", 275, 11], ["reason", 276, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["geo.provider.use_geoclue", 274, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["timeout", 310, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["HOST_CC", 642, 5], ["HOST_CXX", 643, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["LDFLAGS", 649, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["application", 711, 7], ["applicationName", 712, 7], ["binaryName", 713, 7], ["enableAddonSideload", 714, 7], ["enableAddonSigning", 715, 7], ["extraPatches", 716, 7], ["gtk3", 717, 7], ["nspr", 718, 7], ["tests", 719, 7], ["updateScript", 720, 7], ["wasiSysRoot", 721, 7], ["withALSA", 722, 7], ["withFFmpeg", 723, 7], ["withGSSAPI", 724, 7], ["withJACK", 725, 7], ["withPipewire", 726, 7], ["withSndio", 727, 7], ["version", 729, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["pname", 298, 3], ["version", 299, 3], ["src", 301, 11], ["unpackPhase", 301, 15], ["__structuredAttrs", 303, 3], ["strictDeps", 304, 3], ["meta", 306, 3], ["outputs", 313, 3], ["preConfigurePhases", 319, 3], ["patches", 325, 3], ["postPatch", 350, 3], ["patchFlags", 359, 3], ["nativeBuildInputs", 364, 3], ["setOutputFlags", 392, 3], ["preConfigure", 394, 3], ["configurePlatforms", 467, 3], ["configureFlags", 469, 3], ["buildInputs", 542, 3], ["profilingPhase", 605, 3], ["preBuild", 629, 3], ["postBuild", 633, 3], ["makeFlags", 637, 3], ["separateDebugInfo", 638, 3], ["enableParallelBuilding", 639, 3], ["env", 640, 3], ["doCheck", 653, 3], ["preInstall", 657, 3], ["installTargets", 668, 3], ["postInstall", 670, 3], ["postFixup", 692, 3], ["doInstallCheck", 697, 3], ["installCheckPhase", 698, 3], ["passthru", 709, 3], ["hardeningDisable", 733, 3], ["dontFixLibtool", 743, 3], ["dontUpdateAutotoolsGnuConfigScripts", 746, 3], ["requiredSystemFeatures", 748, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -152,10 +138,10 @@ export default nix.lambda((args) => (() => {
     const enableFeature = nix.thunk(() => nix.attr(lib, "enableFeature"));
     const llvmPackages0 = nix.thunk(() => nix.sel(rustc, "llvmPackages"));
     const llvmPackagesBuildBuild0 = nix.thunk(() => nix.sel(pkgsBuildBuild, "rustc", "llvmPackages"));
-    const llvmPackages = nix.thunk(() => nix.app(nix.sel(llvmPackages0, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, bootBintoolsNoLibc: null, bootBintools: null }))));
-    const llvmPackagesBuildBuild = nix.thunk(() => nix.app(nix.sel(llvmPackagesBuildBuild0, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, bootBintoolsNoLibc: null, bootBintools: null }))));
+    const llvmPackages = nix.thunk(() => nix.app(nix.sel(llvmPackages0, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], bootBintoolsNoLibc: null, bootBintools: null }))));
+    const llvmPackagesBuildBuild = nix.thunk(() => nix.app(nix.sel(llvmPackagesBuildBuild0, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], bootBintoolsNoLibc: null, bootBintools: null }))));
     const buildStdenv = nix.thunk(() => nix.app(overrideCC, nix.thunk(() => nix.sel(llvmPackages, "stdenv")), nix.thunk(() => nix.app(nix.sel(llvmPackages, "stdenv", "cc", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           bintools: nix.thunk(() => (nix.asBool(enableLTO) ? nix.sel(buildPackages, "rustc", "llvmPackages", "bintools") : nix.sel(stdenv, "cc", "bintools"))),
         }))))));
     const wasiSysRoot = nix.thunk(() => nix.app(runCommand, "wasi-sysroot", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/lib/wasm32-wasip1
@@ -166,31 +152,31 @@ done
     const distributionIni = nix.thunk(() => (() => {
       const platform = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "Nix on MacOS" : "NixOS"));
       return nix.app(nix.sel(pkgs, "writeText"), "distribution.ini", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             Global: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               id: "nixos",
               version: "1.0",
               about: nix.thunk(() => nix.str`${applicationName} for ${platform}`),
             })),
             Preferences: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               "app.distributor": "nixos",
               "app.distributor.channel": "nixpkgs",
             })),
           })))));
     })());
     const defaultPrefs = nix.thunk(() => (nix.asBool(enableLocation) ? {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       "geo.provider.network.url": nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         value: "https://api.beacondb.net/v1/geolocate",
         reason: "We have no Google API keys and Mozilla Location Services were retired.",
       })),
     } : {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       "geo.provider.use_geoclue": nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         value: false,
         reason: "Geolocation support has been disabled through the `enableLocation` package attribute.",
       })),
@@ -200,7 +186,7 @@ pref("${key}", ${nix.builtins.toJSON(nix.thunk(() => nix.sel(value, "value")))})
 `, defaultPrefs))))));
     const toolkit = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "cairo-cocoa" : nix.str`cairo-gtk3${nix.app(nix.sel(lib, "optionalString"), withWayland, "-wayland")}`));
     return nix.app(nix.sel(buildStdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         pname: nix.thunk(() => nix.str`${pname}-unwrapped`),
         version: packageVersion,
         src: src,
@@ -208,7 +194,7 @@ pref("${key}", ${nix.builtins.toJSON(nix.thunk(() => nix.sel(value, "value")))})
         __structuredAttrs: true,
         strictDeps: true,
         meta: nix.thunk(() => nix.update(meta, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             timeout: nix.thunk(() => nix.app(nix.sel(lib, "max"), nix.thunk(() => nix.mul(nix.mul(24n, 60n), 60n)), nix.thunk(() => nix.selOr(meta, () => 0n, "timeout")))),
           }))))),
         outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), enableCrashReporter, nix.thunk(() => ["symbols"])))),
@@ -361,11 +347,11 @@ export LD_PRELOAD=${mimalloc}/lib/libmimalloc.so
         separateDebugInfo: enableDebugSymbols,
         enableParallelBuilding: true,
         env: nix.thunk(() => nix.update({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           HOST_CC: nix.thunk(() => nix.str`${nix.sel(llvmPackagesBuildBuild, "stdenv", "cc")}/bin/cc`),
           HOST_CXX: nix.thunk(() => nix.str`${nix.sel(llvmPackagesBuildBuild, "stdenv", "cc")}/bin/c++`),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             LDFLAGS: nix.thunk(() => nix.str`-Wl,-rpath,${nix.builtins.placeholder("out")}/lib/${binaryName}`),
           }))))),
         doCheck: false,
@@ -393,7 +379,7 @@ cd ..
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(buildStdenv, "hostPlatform", "isDarwin"))), "bindir=$out/bin\n")), nix.str`"$bindir/${binaryName}" --version
 `)),
         passthru: nix.thunk(() => nix.update({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           application: application,
           applicationName: applicationName,
           binaryName: binaryName,

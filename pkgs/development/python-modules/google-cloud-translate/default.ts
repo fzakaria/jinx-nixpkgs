@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 5], ["version", 24, 13], ["hash", 25, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 28, 3], ["pythonRelaxDeps", 30, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 43, 3], ["preCheck", 50, 3], ["pythonImportsCheck", 55, 3], ["disabledTests", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "google-api-core": false, "google-cloud-core": false, "google-cloud-testutils": false, "grpc-google-iam-v1": false, mock: false, "proto-plus": false, protobuf: false, "pytest-asyncio": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 5], ["version", 24, 13], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 28, 3], ["pythonRelaxDeps", 30, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 43, 3], ["preCheck", 50, 3], ["pythonImportsCheck", 55, 3], ["disabledTests", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.27.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "google_cloud_translate",
           version: version,
           hash: "sha256-KueO8aqNu17JdnoI6rzjT9p7tFoHumeubg6tjP1flfc=",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTests = nix.thunk(() => ["test_list_glossaries"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Google Cloud Translation API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-translate",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-translate-v${version}/packages/google-cloud-translate/CHANGELOG.md`),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

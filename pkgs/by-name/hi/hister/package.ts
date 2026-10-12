@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["nodejs", 59, 44]], [["pname", 60, 7], ["version", 61, 28], ["src", 61, 36], ["strictDeps", 63, 7], ["npmWorkspace", 65, 7], ["npmDepsFetcherVersion", 66, 7], ["npmDepsHash", 67, 7], ["__darwinAllowLocalNetworking", 71, 7], ["preBuild", 73, 7], ["installPhase", 77, 7]], [["extraArgs", 85, 7]], [["hister", 90, 36]], [["frontend", 59, 5], ["updateScript", 84, 5], ["tests", 90, 5]], [["changelog", 94, 5], ["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["__structuredAttrs", 26, 3], ["vendorHash", 28, 3], ["proxyVendor", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["tags", 37, 3], ["preBuild", 39, 3], ["ldflags", 44, 3], ["subPackages", 48, 3], ["postInstall", 50, 3], ["nativeInstallCheckInputs", 55, 3], ["doInstallCheck", 56, 3], ["passthru", 58, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, buildNpmPackage: false, fetchFromGitHub: false, nodejs_22: false, sqlite: false, "yt-dlp-light": false, makeBinaryWrapper: false, "nix-update-script": false, "pkg-config": false, versionCheckHook: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nodejs", 59, 44]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 60, 7], ["version", 61, 28], ["src", 61, 36], ["strictDeps", 63, 7], ["npmWorkspace", 65, 7], ["npmDepsFetcherVersion", 66, 7], ["npmDepsHash", 67, 7], ["__darwinAllowLocalNetworking", 71, 7], ["preBuild", 73, 7], ["installPhase", 77, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 85, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["hister", 90, 36]]);
-const pos$6 = nix.positions(here + "/package.nix", [["frontend", 59, 5], ["updateScript", 84, 5], ["tests", 90, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 94, 5], ["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["__structuredAttrs", 26, 3], ["vendorHash", 28, 3], ["proxyVendor", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["tags", 37, 3], ["preBuild", 39, 3], ["ldflags", 44, 3], ["subPackages", 48, 3], ["postInstall", 50, 3], ["nativeInstallCheckInputs", 55, 3], ["doInstallCheck", 56, 3], ["passthru", 58, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "hister",
       version: "0.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "asciimoo",
           repo: "hister",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,9 +47,9 @@ cp -r ${nix.sel(finalAttrs, "passthru", "frontend")}/* server/static/app/
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        frontend: nix.thunk(() => nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, nodejs: nodejs_22 })), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+        [nix.POS]: $pos[5],
+        frontend: nix.thunk(() => nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], nodejs: nodejs_22 })), nix.thunk(() => ({
+            [nix.POS]: $pos[2],
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-frontend`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -68,11 +61,11 @@ cp -r ${nix.sel(finalAttrs, "passthru", "frontend")}/* server/static/app/
             preBuild: "patchShebangs webui\n",
             installPhase: "runHook preInstall\nmkdir -p \"$out\"\ncp -r webui/app/build/* \"$out/\"\nrunHook postInstall\n",
           })))),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, hister: nix.thunk(() => nix.attr(nixosTests, "hister")) })),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[4], hister: nix.thunk(() => nix.attr(nixosTests, "hister")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://github.com/asciimoo/hister/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Web history on steroids - blazing fast, content-based search for visited websites",
         homepage: "https://github.com/asciimoo/hister",

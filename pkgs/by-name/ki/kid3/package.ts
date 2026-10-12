@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 48, 5], ["hash", 49, 5]], [["DOCBOOKDIR", 96, 5], ["LANG", 97, 5], ["NIX_LDFLAGS", 98, 5]], [["homepage", 102, 5], ["description", 103, 5], ["longDescription", 104, 5], ["license", 133, 5], ["mainProgram", 134, 5], ["maintainers", 141, 5], ["platforms", 142, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 62, 3], ["cmakeFlags", 90, 3], ["env", 95, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, chromaprint: false, cmake: false, docbook_xml_dtd_45: false, docbook_xsl: false, fetchurl: false, ffmpeg: false, flac: false, id3lib: false, kdePackages: false, libogg: false, libvorbis: false, libxslt: false, mp4v2: false, "pkg-config": false, python3: false, qt6: false, readline: false, stdenv: false, taglib: false, zlib: false, withCLI: true, withKDE: true, withQt: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["DOCBOOKDIR", 96, 5], ["LANG", 97, 5], ["NIX_LDFLAGS", 98, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 102, 5], ["description", 103, 5], ["longDescription", 104, 5], ["license", 133, 5], ["mainProgram", 134, 5], ["maintainers", 141, 5], ["platforms", 142, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 62, 3], ["cmakeFlags", 90, 3], ["env", 95, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.thunk(() => nix.attr(qt6, "wrapQtAppsHook"));
   const apps = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withCLI, nix.thunk(() => ["CLI"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withKDE, nix.thunk(() => ["KDE"])), nix.app(nix.sel(lib, "optionals"), withQt, nix.thunk(() => ["Qt"])))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kid3",
       version: "3.10.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kde/stable/kid3/${nix.sel(finalAttrs, "version")}/kid3-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Agw1fHTDnJMUNbSedAkyjQt/baVJG1jC9zLtcjbqmkU=",
         })))),
@@ -89,13 +86,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_MP4V2", true)),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         DOCBOOKDIR: nix.thunk(() => nix.str`${docbook_xsl}/xml/xsl/docbook/`),
         LANG: "C.UTF-8",
         NIX_LDFLAGS: "-lm -lpthread",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://kid3.kde.org/",
         description: "Simple and powerful audio tag editor",
         longDescription: "If you want to easily tag multiple MP3, Ogg/Vorbis, FLAC, MPC, MP4/AAC,\nMP2, Opus, Speex, TrueAudio, WavPack, WMA, WAV and AIFF files (e.g. full\nalbums) without typing the same information again and again and have\ncontrol over both ID3v1 and ID3v2 tags, then Kid3 is the program you are\nlooking for.\n\nWith Kid3 you can:\n- Edit ID3v1.1 tags;\n- Edit all ID3v2.3 and ID3v2.4 frames;\n- Convert between ID3v1.1, ID3v2.3 and ID3v2.4 tags\n- Edit tags in MP3, Ogg/Vorbis, FLAC, MPC, MP4/AAC, MP2, Opus, Speex,\n  TrueAudio, WavPack, WMA, WAV, AIFF files and tracker modules (MOD, S3M,\n  IT, XM);\n- Edit tags of multiple files, e.g. the artist, album, year and genre of\n  all files of an album typically have the same values and can be set\n  together;\n- Generate tags from filenames;\n- Generate tags from the contents of tag fields;\n- Generate filenames from tags;\n- Rename and create directories from tags;\n- Generate playlist files;\n- Automatically convert upper and lower case and replace strings;\n- Import from gnudb.org, TrackType.org, MusicBrainz, Discogs, Amazon and\n  other sources of album data;\n- Export tags as CSV, HTML, playlists, Kover XML and in other formats;\n- Edit synchronized lyrics and event timing codes, import and export\n  LRC files.\n",

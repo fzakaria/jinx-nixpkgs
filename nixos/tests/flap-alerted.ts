@@ -2,64 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/flap-alerted.nix", [[["maintainers", 5, 8]], [["asn", 11, 9], ["bgpListenAddress", 12, 9], ["routeChangeCounter", 13, 9], ["overThresholdTarget", 14, 9]], [["enable", 9, 7], ["settings", 10, 7]], [["enable", 19, 7], ["preCheckConfig", 20, 7], ["config", 24, 7]], [["flap-alerted", 8, 14], ["bird", 18, 14]], [["BindReadOnlyPaths", 58, 41]], [["serviceConfig", 58, 27]], [["bird", 58, 22]], [["f", 60, 74]], [["/tmp/bird/routes.conf", 60, 50]], [["bird-static-routes", 60, 31]], [["settings", 60, 22]], [["services", 58, 13], ["tmpfiles", 60, 13]], [["services", 8, 5], ["systemd", 58, 5]], [["machine", 7, 9]], [["enable", 63, 27]], [["graphics", 64, 39]], [["virtualisation", 64, 24]], [["httpAPIListenAddress", 67, 36]], [["settings", 67, 27]], [["flap-alerted", 67, 14]], [["allowedTCPPorts", 68, 25]], [["firewall", 68, 16]], [["port", 72, 14]], [["port", 73, 15]], [["from", 71, 9], ["host", 72, 9], ["guest", 73, 9]], [["forwardPorts", 69, 20]], [["services", 67, 5], ["networking", 68, 5], ["virtualisation", 69, 5]], [["machine", 66, 21]], [["sshBackdoor", 63, 15], ["defaults", 64, 15], ["nodes", 66, 15]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["interactive", 63, 3], ["testScript", 78, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/flap-alerted.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/flap-alerted.nix", [["asn", 11, 9], ["bgpListenAddress", 12, 9], ["routeChangeCounter", 13, 9], ["overThresholdTarget", 14, 9]]);
-const pos$3 = nix.positions(here + "/flap-alerted.nix", [["enable", 9, 7], ["settings", 10, 7]]);
-const pos$4 = nix.positions(here + "/flap-alerted.nix", [["enable", 19, 7], ["preCheckConfig", 20, 7], ["config", 24, 7]]);
-const pos$5 = nix.positions(here + "/flap-alerted.nix", [["flap-alerted", 8, 14], ["bird", 18, 14]]);
-const pos$6 = nix.positions(here + "/flap-alerted.nix", [["BindReadOnlyPaths", 58, 41]]);
-const pos$7 = nix.positions(here + "/flap-alerted.nix", [["serviceConfig", 58, 27]]);
-const pos$8 = nix.positions(here + "/flap-alerted.nix", [["bird", 58, 22]]);
-const pos$9 = nix.positions(here + "/flap-alerted.nix", [["f", 60, 74]]);
-const pos$10 = nix.positions(here + "/flap-alerted.nix", [["/tmp/bird/routes.conf", 60, 50]]);
-const pos$11 = nix.positions(here + "/flap-alerted.nix", [["bird-static-routes", 60, 31]]);
-const pos$12 = nix.positions(here + "/flap-alerted.nix", [["settings", 60, 22]]);
-const pos$13 = nix.positions(here + "/flap-alerted.nix", [["services", 58, 13], ["tmpfiles", 60, 13]]);
-const pos$14 = nix.positions(here + "/flap-alerted.nix", [["services", 8, 5], ["systemd", 58, 5]]);
-const pos$15 = nix.positions(here + "/flap-alerted.nix", [["machine", 7, 9]]);
-const pos$16 = nix.positions(here + "/flap-alerted.nix", [["enable", 63, 27]]);
-const pos$17 = nix.positions(here + "/flap-alerted.nix", [["graphics", 64, 39]]);
-const pos$18 = nix.positions(here + "/flap-alerted.nix", [["virtualisation", 64, 24]]);
-const pos$19 = nix.positions(here + "/flap-alerted.nix", [["httpAPIListenAddress", 67, 36]]);
-const pos$20 = nix.positions(here + "/flap-alerted.nix", [["settings", 67, 27]]);
-const pos$21 = nix.positions(here + "/flap-alerted.nix", [["flap-alerted", 67, 14]]);
-const pos$22 = nix.positions(here + "/flap-alerted.nix", [["allowedTCPPorts", 68, 25]]);
-const pos$23 = nix.positions(here + "/flap-alerted.nix", [["firewall", 68, 16]]);
-const pos$24 = nix.positions(here + "/flap-alerted.nix", [["port", 72, 14]]);
-const pos$25 = nix.positions(here + "/flap-alerted.nix", [["port", 73, 15]]);
-const pos$26 = nix.positions(here + "/flap-alerted.nix", [["from", 71, 9], ["host", 72, 9], ["guest", 73, 9]]);
-const pos$27 = nix.positions(here + "/flap-alerted.nix", [["forwardPorts", 69, 20]]);
-const pos$28 = nix.positions(here + "/flap-alerted.nix", [["services", 67, 5], ["networking", 68, 5], ["virtualisation", 69, 5]]);
-const pos$29 = nix.positions(here + "/flap-alerted.nix", [["machine", 66, 21]]);
-const pos$30 = nix.positions(here + "/flap-alerted.nix", [["sshBackdoor", 63, 15], ["defaults", 64, 15], ["nodes", 66, 15]]);
-const pos$31 = nix.positions(here + "/flap-alerted.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["interactive", 63, 3], ["testScript", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$31,
+    [nix.POS]: $pos[30],
     name: "flap-alerted",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "flap-alerted": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               asn: 4213370001n,
               bgpListenAddress: ":1790",
               routeChangeCounter: 5n,
@@ -67,28 +37,28 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           bird: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
             preCheckConfig: "mkdir -p /tmp/bird\ntouch /tmp/bird/routes.conf\n",
             config: "router id 192.168.1.1;\n\nprotocol device { }\n\nprotocol bgp flapalerted {\n  local 2001:db8:1::1 as 4213370001;\n  neighbor ::1 as 4213370001 port 1790;\n\n  ipv4 {\n    add paths on;\n    export all;\n    import none;\n    extended next hop on;\n  };\n\n  ipv6 {\n    add paths on;\n    export all;\n    import none;\n  };\n}\n\nprotocol static {\n  include \"/tmp/bird/routes.conf\";\n\n  ipv4 {\n    import all;\n    export none;\n  };\n}\n",
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             bird: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$6, BindReadOnlyPaths: nix.thunk(() => ["/tmp/bird"]) })),
+              [nix.POS]: $pos[6],
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[5], BindReadOnlyPaths: nix.thunk(() => ["/tmp/bird"]) })),
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               "bird-static-routes": nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                "/tmp/bird/routes.conf": nix.thunk(() => ({ [nix.POS]: pos$9, f: nix.thunk(() => ({})) })),
+                [nix.POS]: $pos[9],
+                "/tmp/bird/routes.conf": nix.thunk(() => ({ [nix.POS]: $pos[8], f: nix.thunk(() => ({})) })),
               })),
             })),
           })),
@@ -96,35 +66,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$30,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true })),
+      [nix.POS]: $pos[29],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[15], enable: true })),
       defaults: nix.thunk(() => ({
-        [nix.POS]: pos$18,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$17, graphics: false })),
+        [nix.POS]: $pos[17],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[16], graphics: false })),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             "flap-alerted": nix.thunk(() => ({
-              [nix.POS]: pos$20,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$19, httpAPIListenAddress: ":8699" })),
+              [nix.POS]: $pos[19],
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[18], httpAPIListenAddress: ":8699" })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$23,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$22, allowedTCPPorts: nix.thunk(() => [8699n]) })),
+            [nix.POS]: $pos[22],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[21], allowedTCPPorts: nix.thunk(() => [8699n]) })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 from: "host",
-                host: nix.thunk(() => ({ [nix.POS]: pos$24, port: 8699n })),
-                guest: nix.thunk(() => ({ [nix.POS]: pos$25, port: 8699n })),
+                host: nix.thunk(() => ({ [nix.POS]: $pos[23], port: 8699n })),
+                guest: nix.thunk(() => ({ [nix.POS]: $pos[24], port: 8699n })),
               })),
             ]),
           })),

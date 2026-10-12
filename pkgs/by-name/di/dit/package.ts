@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["prePatch", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenv: false, libiconv: false, ncurses: false, lua: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["prePatch", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const lua = nix.arg($, "lua");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dit",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://hisham.hm/dit/releases/${nix.sel(finalAttrs, "version")}/dit-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-p1uD0Q2kqB40fbAEk7/fdOVg9T7SW+2aACSn7hDAD+E=",
         })))),
       buildInputs: nix.thunk(() => nix.concat([ncurses, lua], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libiconv))),
       prePatch: "patchShebangs tools/GenHeaders\nsubstituteInPlace Prototypes.h --replace 'tail' \"$(type -P tail)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Console text editor for Unix that you already know how to use",
         homepage: "https://hisham.hm/dit/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

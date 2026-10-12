@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/updater.nix", [[["build", 24, 5], ["currentVersion", 25, 5], ["currentRev", 26, 5]], [["name", 14, 3], ["runtimeInputs", 15, 3], ["runtimeEnv", 23, 3], ["bashOptions", 28, 3], ["text", 35, 3]]]);
 const formals$1 = { args: { lib: false, writeShellApplication: false, curl: false, jq: false, gnused: false, nix: false, "nix-prefetch-github": false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/updater.nix", [["build", 24, 5], ["currentVersion", 25, 5], ["currentRev", 26, 5]]);
-const pos$2 = nix.positions(here + "/updater.nix", [["name", 14, 3], ["runtimeInputs", 15, 3], ["runtimeEnv", 23, 3], ["bashOptions", 28, 3], ["text", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_prefetch_github = nix.arg($, "nix-prefetch-github");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return (engine) => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "openra-updater",
         runtimeInputs: nix.thunk(() => [curl, jq, gnused, nix$, nix_prefetch_github, common_updater_scripts]),
         runtimeEnv: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           build: nix.thunk(() => nix.sel(engine, "build")),
           currentVersion: nix.thunk(() => nix.sel(engine, "version")),
           currentRev: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "hasAttr"), "rev", engine)), nix.thunk(() => nix.sel(engine, "rev")))),

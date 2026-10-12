@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["ONNX_SCRIPT_RELEASE", 46, 5]], [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["maintainers", 120, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["__structuredAttrs", 36, 3], ["src", 38, 3], ["env", 45, 3], ["build-system", 49, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 67, 3], ["enabledTestPaths", 76, 3], ["disabledTests", 80, 3], ["disabledTestPaths", 101, 3], ["doCheck", 113, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "ml-dtypes": false, numpy: false, onnx: false, "onnx-ir": false, packaging: false, "typing-extensions": false, "nvidia-ml-py": false, onnxruntime: false, parameterized: false, pytestCheckHook: false, torch: false, torchvision: false, tqdm: false, cudaSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ONNX_SCRIPT_RELEASE", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["maintainers", 120, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["__structuredAttrs", 36, 3], ["src", 38, 3], ["env", 45, 3], ["build-system", 49, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 67, 3], ["enabledTestPaths", 76, 3], ["disabledTests", 80, 3], ["disabledTestPaths", 101, 3], ["doCheck", 113, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,19 +28,19 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "onnxscript",
       version: "0.7.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "onnxscript",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Fd7nQ4KZECgUUfLrCo54NiUVcx1IdhGfUdYWXEo7D8o=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ONNX_SCRIPT_RELEASE: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ONNX_SCRIPT_RELEASE: "1" })),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => nix.concat([ml_dtypes, numpy, onnx, onnx_ir, packaging, typing_extensions], nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nvidia_ml_py])))),
       pythonImportsCheck: nix.thunk(() => ["onnxscript"]),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Naturally author ONNX functions and models using a subset of Python",
         homepage: "https://github.com/microsoft/onnxscript",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/onnxscript/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["client", 50, 5], ["asyncio_client", 54, 5]], [["description", 79, 5], ["longDescription", 80, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 57, 3], ["pythonImportsCheck", 68, 3], ["disabledTestPaths", 70, 3], ["__darwinAllowLocalNetworking", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, bidict: false, "python-engineio": false, aiohttp: false, requests: false, "websocket-client": false, msgpack: false, pytestCheckHook: false, "simple-websocket": false, uvicorn: false, redis: false, valkey: false, "pytest-asyncio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["client", 50, 5], ["asyncio_client", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 79, 5], ["longDescription", 80, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 57, 3], ["pythonImportsCheck", 68, 3], ["disabledTestPaths", 70, 3], ["__darwinAllowLocalNetworking", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.17.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "miguelgrinberg",
           repo: "python-socketio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [bidict, python_engineio]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         client: nix.thunk(() => [requests, websocket_client]),
         asyncio_client: nix.thunk(() => [aiohttp]),
       }));
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/async/test_admin.py", "tests/common/test_admin.py"])));
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python Socket.IO server and client",
         longDescription: "Socket.IO is a lightweight transport protocol that enables real-time\nbidirectional event-based communication between clients and a server.\n",
         homepage: "https://github.com/miguelgrinberg/python-socketio/",
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 12, 5], ["publisher", 13, 5], ["version", 14, 5], ["hash", 15, 5]], [["extraArgs", 24, 5]], [["updateScript", 23, 12]], [["changelog", 28, 5], ["description", 29, 5], ["downloadPage", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 37, 5]], [["mktplcRef", 11, 3], ["postInstall", 18, 3], ["passthru", 23, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, jq: false, biome: false, moreutils: false, "vscode-extension-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 12, 5], ["publisher", 13, 5], ["version", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 23, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 28, 5], ["description", 29, 5], ["downloadPage", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 37, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["mktplcRef", 11, 3], ["postInstall", 18, 3], ["passthru", 23, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const moreutils = nix.arg($, "moreutils");
   const vscode_extension_update_script = nix.arg($, "vscode-extension-update-script");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "biome",
         publisher: "biomejs",
         version: "2026.8.190716",
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "getExe"), jq)} '.contributes.configuration.properties."biome.lsp.bin".oneOf[0].default = "${nix.app(nix.sel(lib, "getExe"), biome)}"' package.json | ${nix.app(nix.sel(lib, "getExe'"), moreutils, "sponge")} package.json
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--pre-release"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--pre-release"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: "https://github.com/biomejs/biome-vscode/blob/main/CHANGELOG.md",
         description: "Biome LSP extension for Visual Studio Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=biomejs.biome",

@@ -2,39 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/initrd-network.nix", [[["maintainers", 7, 8]], [["enable", 13, 27]], [["enable", 14, 27], ["postCommands", 15, 27]], [["systemd", 13, 19], ["network", 14, 19], ["postMountCommands", 22, 19]], [["initrd", 13, 12]], [["imports", 12, 7], ["boot", 13, 7]], [["machine", 9, 9]], [["name", 5, 3], ["meta", 7, 3], ["nodes", 9, 3], ["testScript", 30, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/initrd-network.nix", [["maintainers", 7, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/initrd-network.nix", [["enable", 13, 27]]);
-const pos$3 = nix.positions(here + "/initrd-network.nix", [["enable", 14, 27], ["postCommands", 15, 27]]);
-const pos$4 = nix.positions(here + "/initrd-network.nix", [["systemd", 13, 19], ["network", 14, 19], ["postMountCommands", 22, 19]]);
-const pos$5 = nix.positions(here + "/initrd-network.nix", [["initrd", 13, 12]]);
-const pos$6 = nix.positions(here + "/initrd-network.nix", [["imports", 12, 7], ["boot", 13, 7]]);
-const pos$7 = nix.positions(here + "/initrd-network.nix", [["machine", 9, 9]]);
-const pos$8 = nix.positions(here + "/initrd-network.nix", [["name", 5, 3], ["meta", 7, 3], ["nodes", 9, 3], ["testScript", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "initrd-network",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              systemd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+              [nix.POS]: $pos[3],
+              systemd: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
               network: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 enable: true,
                 postCommands: "ip addr show\nip route show\nip addr | grep 10.0.2.15 || exit 1\nping -c1 10.0.2.2 || exit 1\n",
               })),

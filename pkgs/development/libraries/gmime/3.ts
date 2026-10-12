@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/3.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["homepage", 77, 5], ["description", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]], [["version", 17, 3], ["pname", 18, 3], ["src", 20, 3], ["outputs", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 43, 3], ["configureFlags", 44, 3], ["postPatch", 50, 3], ["preConfigure", 60, 3], ["nativeCheckInputs", 70, 3], ["doCheck", 72, 3], ["enableParallelBuilding", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, glib: false, zlib: false, gnupg: false, gpgme: false, libidn2: false, libunistring: false, "gobject-introspection": false, vala: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/3.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/3.nix", [["homepage", 77, 5], ["description", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]]);
-const pos$3 = nix.positions(here + "/3.nix", [["version", 17, 3], ["pname", 18, 3], ["src", 20, 3], ["outputs", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 43, 3], ["configureFlags", 44, 3], ["postPatch", 50, 3], ["preConfigure", 60, 3], ["nativeCheckInputs", 70, 3], ["doCheck", 72, 3], ["enableParallelBuilding", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.15";
       const pname = "gmime";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/jstedfast/gmime/releases/download/${version}/gmime-${version}.tar.xz`),
           sha256: "sha256-hM0qSBonlw7Dm1yV9y2wJnIpBKLM8/29V7KAzy0CtcQ=",
         }))));
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jstedfast/gmime/",
         description: "C/C++ library for creating, editing and parsing MIME messages and structures",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         src,

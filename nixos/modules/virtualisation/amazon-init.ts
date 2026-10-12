@@ -2,19 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/amazon-init.nix", [[["default", 79, 7], ["type", 80, 7], ["description", 81, 7]], [["enable", 78, 5]], [["amazon-init", 77, 26]], [["virtualisation", 77, 11]], [["X-StopOnRemoval", 102, 18]], [["Type", 105, 9], ["RemainAfterExit", 106, 9]], [["script", 89, 15], ["description", 90, 7], ["wantedBy", 92, 7], ["after", 93, 7], ["requires", 94, 7], ["path", 96, 7], ["restartIfChanged", 101, 7], ["unitConfig", 102, 7], ["serviceConfig", 104, 7]], [["amazon-init", 88, 22]], [["services", 88, 13]], [["systemd", 88, 5]], [["maintainers", 110, 8]], [["options", 77, 3], ["config", 87, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/amazon-init.nix", [["default", 79, 7], ["type", 80, 7], ["description", 81, 7]]);
-const pos$2 = nix.positions(here + "/amazon-init.nix", [["enable", 78, 5]]);
-const pos$3 = nix.positions(here + "/amazon-init.nix", [["amazon-init", 77, 26]]);
-const pos$4 = nix.positions(here + "/amazon-init.nix", [["virtualisation", 77, 11]]);
-const pos$5 = nix.positions(here + "/amazon-init.nix", [["X-StopOnRemoval", 102, 18]]);
-const pos$6 = nix.positions(here + "/amazon-init.nix", [["Type", 105, 9], ["RemainAfterExit", 106, 9]]);
-const pos$7 = nix.positions(here + "/amazon-init.nix", [["script", 89, 15], ["description", 90, 7], ["wantedBy", 92, 7], ["after", 93, 7], ["requires", 94, 7], ["path", 96, 7], ["restartIfChanged", 101, 7], ["unitConfig", 102, 7], ["serviceConfig", 104, 7]]);
-const pos$8 = nix.positions(here + "/amazon-init.nix", [["amazon-init", 88, 22]]);
-const pos$9 = nix.positions(here + "/amazon-init.nix", [["services", 88, 13]]);
-const pos$10 = nix.positions(here + "/amazon-init.nix", [["systemd", 88, 5]]);
-const pos$11 = nix.positions(here + "/amazon-init.nix", [["maintainers", 110, 8]]);
-const pos$12 = nix.positions(here + "/amazon-init.nix", [["options", 77, 3], ["config", 87, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -82,15 +71,15 @@ fi
 nixos-rebuild switch
 `);
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "amazon-init": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               default: true,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Enable or disable the amazon-init service.\n",
@@ -99,13 +88,13 @@ nixos-rebuild switch
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             "amazon-init": nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               script: script,
               description: "Reconfigure the system from EC2 userdata on startup",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -113,14 +102,14 @@ nixos-rebuild switch
               requires: nix.thunk(() => ["network-online.target"]),
               path: nix.thunk(() => ["/run/wrappers", "/run/current-system/sw"]),
               restartIfChanged: false,
-              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$5, "X-StopOnRemoval": false })),
-              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$6, Type: "oneshot", RemainAfterExit: true })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[4], "X-StopOnRemoval": false })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[5], Type: "oneshot", RemainAfterExit: true })),
             })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "arianvp"))];

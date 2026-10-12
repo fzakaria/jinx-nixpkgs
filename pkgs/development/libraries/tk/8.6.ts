@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/8.6.nix", [[["url", 13, 7], ["hash", 14, 7]], [["src", 12, 5], ["patches", 17, 5]]]);
 const formals$1 = { args: { callPackage: false, fetchurl: false, tcl: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/8.6.nix", [["url", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/8.6.nix", [["src", 12, 5], ["patches", 17, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const tcl = nix.arg($, "tcl");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(args_1, {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/tcl/tk${nix.sel(tcl, "version")}-src.tar.gz`),
           hash: "sha256-vp+U01ddSzCZ2EvDwQ3omU3y16pAUggXPHCcxASn5f4=",
         })))),

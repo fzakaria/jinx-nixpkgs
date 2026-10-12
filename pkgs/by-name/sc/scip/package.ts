@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["GOWORK", 26, 7]], [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["env", 26, 3], ["ldflags", 28, 3], ["nativeCheckInputs", 33, 3], ["__darwinAllowLocalNetworking", 35, 3], ["preCheck", 37, 3], ["doInstallCheck", 41, 3], ["nativeInstallCheckInputs", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, libredirect: false, "iana-etc": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GOWORK", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["env", 26, 3], ["ldflags", 28, 3], ["nativeCheckInputs", 33, 3], ["__darwinAllowLocalNetworking", 35, 3], ["preCheck", 37, 3], ["doInstallCheck", 41, 3], ["nativeInstallCheckInputs", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const iana_etc = nix.arg($, "iana-etc");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "scip",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scip-code",
           repo: "scip",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-9oBoNTCPT/7wJbL0Z4S7JSmEqVI2JIeJUCmhpdBr/QI=",
       subPackages: nix.thunk(() => ["cmd/scip"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], GOWORK: "off" })),
       ldflags: nix.thunk(() => ["-s", "-X=main.Reproducible=true"]),
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(libredirect, "hook"))]))),
       __darwinAllowLocalNetworking: true,
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "SCIP Code Intelligence Protocol CLI",
         mainProgram: "scip",
         homepage: "https://github.com/scip-code/scip",

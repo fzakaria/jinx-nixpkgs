@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["broken", 89, 5], ["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 97, 5]], [["pname", 32, 3], ["version", 33, 33], ["src", 33, 41], ["pyproject", 34, 3], ["sourceRoot", 36, 3], ["build-system", 38, 3], ["makeWrapperArgs", 40, 3], ["_flet_version", 47, 3], ["_flet_utils_pip", 52, 3], ["postPatch", 57, 3], ["dependencies", 63, 3], ["nativeCheckInputs", 78, 3], ["pythonImportsCheck", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "flet-client-flutter": false, setuptools: false, fastapi: false, httpx: false, msgpack: false, oauthlib: false, packaging: false, qrcode: false, repath: false, cookiecutter: false, uvicorn: false, watchdog: false, "websocket-client": false, websockets: false, numpy: false, pillow: false, "pytest-asyncio": false, pytestCheckHook: false, "scikit-image": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["broken", 89, 5], ["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 97, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 33], ["src", 33, 41], ["pyproject", 34, 3], ["sourceRoot", 36, 3], ["build-system", 38, 3], ["makeWrapperArgs", 40, 3], ["_flet_version", 47, 3], ["_flet_utils_pip", 52, 3], ["postPatch", 57, 3], ["dependencies", 63, 3], ["nativeCheckInputs", 78, 3], ["pythonImportsCheck", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,7 +59,7 @@ def update_version():
       const nativeCheckInputs = nix.thunk(() => [numpy, pillow, pytest_asyncio, pytestCheckHook, scikit_image]);
       const pythonImportsCheck = nix.thunk(() => ["flet"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         broken: true,
         description: "Framework that enables you to easily build realtime web, mobile, and desktop apps in Python",
         homepage: "https://flet.dev/",
@@ -73,7 +72,7 @@ def update_version():
         mainProgram: "flet",
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

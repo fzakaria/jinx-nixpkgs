@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["CMAKE_ARGS", 27, 7]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 10, 3], ["pyproject", 11, 3], ["version", 13, 20], ["src", 13, 28], ["sourceRoot", 15, 3], ["postPatch", 22, 3], ["env", 27, 3], ["build-system", 31, 3], ["buildInputs", 36, 3], ["dontUseCmakeConfigure", 38, 3], ["pythonImportsCheck", 40, 3], ["doCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cmake: false, setuptools: false, xrootd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["CMAKE_ARGS", 27, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["pyproject", 11, 3], ["version", 13, 20], ["src", 13, 28], ["sourceRoot", 15, 3], ["postPatch", 22, 3], ["env", 27, 3], ["build-system", 31, 3], ["buildInputs", 36, 3], ["dontUseCmakeConfigure", 38, 3], ["pythonImportsCheck", 40, 3], ["doCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
 echo -n "${nix.sel(xrootd, "version")}" > VERSION
 `);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         CMAKE_ARGS: nix.thunk(() => nix.app(nix.sel(lib, "toString"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "XRootD_INCLUDE_DIR", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), xrootd)}/include/xrootd;${src}/src`))),
           ]))),
@@ -35,7 +33,7 @@ echo -n "${nix.sel(xrootd, "version")}" > VERSION
       const pythonImportsCheck = nix.thunk(() => ["XRootD"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "XRootD central repository",
         homepage: "https://github.com/xrootd/xrootd",
         changelog: nix.thunk(() => nix.str`https://github.com/xrootd/xrootd/releases/tag/v${version}`),
@@ -46,7 +44,7 @@ echo -n "${nix.sel(xrootd, "version")}" > VERSION
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         pyproject,
         version,

@@ -2,60 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/strongswan-swanctl.nix", [[["maintainers", 35, 8]], [["vlans", 41, 24]], [["enable", 43, 18]], [["dhcpcd", 43, 11], ["defaultGateway", 44, 11]], [["virtualisation", 41, 9], ["networking", 42, 9]], [["vlans", 54, 24]], [["enable", 59, 18]], [["allowedUDPPorts", 61, 13], ["extraCommands", 65, 13]], [["enable", 68, 13], ["internalIPs", 69, 13], ["internalInterfaces", 70, 13], ["externalIP", 71, 13], ["externalInterface", 72, 13]], [["dhcpcd", 59, 11], ["firewall", 60, 11], ["nat", 67, 11]], [["systemPackages", 75, 21]], [["auth", 83, 19]], [["main", 82, 23]], [["auth", 86, 19]], [["main", 85, 24]], [["local_ts", 90, 21], ["updown", 91, 21], ["esp_proposals", 92, 29]], [["net", 89, 19]], [["local_addrs", 81, 17], ["local", 82, 17], ["remote", 85, 17], ["children", 88, 17], ["version", 95, 25], ["proposals", 96, 25]], [["rw", 80, 15]], [["main", 101, 20]], [["id", 101, 17], ["secret", 102, 25]], [["carol", 100, 19]], [["ike", 100, 15]], [["connections", 79, 13], ["secrets", 99, 13]], [["enable", 77, 11], ["swanctl", 78, 11]], [["strongswan-swanctl", 76, 18]], [["virtualisation", 54, 9], ["networking", 58, 9], ["environment", 75, 9], ["services", 76, 9]], [["vlans", 115, 24]], [["enable", 117, 18]], [["extraCommands", 118, 20]], [["dhcpcd", 117, 11], ["firewall", 118, 11]], [["systemPackages", 120, 21]], [["auth", 129, 19], ["id", 130, 19]], [["main", 128, 23]], [["auth", 133, 19], ["id", 134, 19]], [["main", 132, 24]], [["remote_ts", 138, 21], ["start_action", 139, 21], ["updown", 140, 21], ["esp_proposals", 141, 29]], [["home", 137, 19]], [["local_addrs", 126, 17], ["remote_addrs", 127, 17], ["local", 128, 17], ["remote", 132, 17], ["children", 136, 17], ["version", 144, 25], ["proposals", 145, 25]], [["home", 125, 15]], [["main", 150, 20]], [["id", 150, 17], ["secret", 151, 25]], [["moon", 149, 19]], [["ike", 149, 15]], [["connections", 124, 13], ["secrets", 148, 13]], [["enable", 122, 11], ["swanctl", 123, 11]], [["strongswan-swanctl", 121, 18]], [["virtualisation", 115, 9], ["networking", 116, 9], ["environment", 120, 9], ["services", 121, 9]], [["alice", 38, 5], ["moon", 48, 5], ["carol", 109, 5]], [["name", 34, 3], ["meta", 35, 3], ["nodes", 36, 3], ["testScript", 159, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/strongswan-swanctl.nix", [["maintainers", 35, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/strongswan-swanctl.nix", [["vlans", 41, 24]]);
-const pos$3 = nix.positions(here + "/strongswan-swanctl.nix", [["enable", 43, 18]]);
-const pos$4 = nix.positions(here + "/strongswan-swanctl.nix", [["dhcpcd", 43, 11], ["defaultGateway", 44, 11]]);
-const pos$5 = nix.positions(here + "/strongswan-swanctl.nix", [["virtualisation", 41, 9], ["networking", 42, 9]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/strongswan-swanctl.nix", [["vlans", 54, 24]]);
-const pos$7 = nix.positions(here + "/strongswan-swanctl.nix", [["enable", 59, 18]]);
-const pos$8 = nix.positions(here + "/strongswan-swanctl.nix", [["allowedUDPPorts", 61, 13], ["extraCommands", 65, 13]]);
-const pos$9 = nix.positions(here + "/strongswan-swanctl.nix", [["enable", 68, 13], ["internalIPs", 69, 13], ["internalInterfaces", 70, 13], ["externalIP", 71, 13], ["externalInterface", 72, 13]]);
-const pos$10 = nix.positions(here + "/strongswan-swanctl.nix", [["dhcpcd", 59, 11], ["firewall", 60, 11], ["nat", 67, 11]]);
-const pos$11 = nix.positions(here + "/strongswan-swanctl.nix", [["systemPackages", 75, 21]]);
-const pos$12 = nix.positions(here + "/strongswan-swanctl.nix", [["auth", 83, 19]]);
-const pos$13 = nix.positions(here + "/strongswan-swanctl.nix", [["main", 82, 23]]);
-const pos$14 = nix.positions(here + "/strongswan-swanctl.nix", [["auth", 86, 19]]);
-const pos$15 = nix.positions(here + "/strongswan-swanctl.nix", [["main", 85, 24]]);
-const pos$16 = nix.positions(here + "/strongswan-swanctl.nix", [["local_ts", 90, 21], ["updown", 91, 21], ["esp_proposals", 92, 29]]);
-const pos$17 = nix.positions(here + "/strongswan-swanctl.nix", [["net", 89, 19]]);
-const pos$18 = nix.positions(here + "/strongswan-swanctl.nix", [["local_addrs", 81, 17], ["local", 82, 17], ["remote", 85, 17], ["children", 88, 17], ["version", 95, 25], ["proposals", 96, 25]]);
-const pos$19 = nix.positions(here + "/strongswan-swanctl.nix", [["rw", 80, 15]]);
-const pos$20 = nix.positions(here + "/strongswan-swanctl.nix", [["main", 101, 20]]);
-const pos$21 = nix.positions(here + "/strongswan-swanctl.nix", [["id", 101, 17], ["secret", 102, 25]]);
-const pos$22 = nix.positions(here + "/strongswan-swanctl.nix", [["carol", 100, 19]]);
-const pos$23 = nix.positions(here + "/strongswan-swanctl.nix", [["ike", 100, 15]]);
-const pos$24 = nix.positions(here + "/strongswan-swanctl.nix", [["connections", 79, 13], ["secrets", 99, 13]]);
-const pos$25 = nix.positions(here + "/strongswan-swanctl.nix", [["enable", 77, 11], ["swanctl", 78, 11]]);
-const pos$26 = nix.positions(here + "/strongswan-swanctl.nix", [["strongswan-swanctl", 76, 18]]);
-const pos$27 = nix.positions(here + "/strongswan-swanctl.nix", [["virtualisation", 54, 9], ["networking", 58, 9], ["environment", 75, 9], ["services", 76, 9]]);
 const formals$4 = { args: { config: false }, ellipsis: true };
-const pos$28 = nix.positions(here + "/strongswan-swanctl.nix", [["vlans", 115, 24]]);
-const pos$29 = nix.positions(here + "/strongswan-swanctl.nix", [["enable", 117, 18]]);
-const pos$30 = nix.positions(here + "/strongswan-swanctl.nix", [["extraCommands", 118, 20]]);
-const pos$31 = nix.positions(here + "/strongswan-swanctl.nix", [["dhcpcd", 117, 11], ["firewall", 118, 11]]);
-const pos$32 = nix.positions(here + "/strongswan-swanctl.nix", [["systemPackages", 120, 21]]);
-const pos$33 = nix.positions(here + "/strongswan-swanctl.nix", [["auth", 129, 19], ["id", 130, 19]]);
-const pos$34 = nix.positions(here + "/strongswan-swanctl.nix", [["main", 128, 23]]);
-const pos$35 = nix.positions(here + "/strongswan-swanctl.nix", [["auth", 133, 19], ["id", 134, 19]]);
-const pos$36 = nix.positions(here + "/strongswan-swanctl.nix", [["main", 132, 24]]);
-const pos$37 = nix.positions(here + "/strongswan-swanctl.nix", [["remote_ts", 138, 21], ["start_action", 139, 21], ["updown", 140, 21], ["esp_proposals", 141, 29]]);
-const pos$38 = nix.positions(here + "/strongswan-swanctl.nix", [["home", 137, 19]]);
-const pos$39 = nix.positions(here + "/strongswan-swanctl.nix", [["local_addrs", 126, 17], ["remote_addrs", 127, 17], ["local", 128, 17], ["remote", 132, 17], ["children", 136, 17], ["version", 144, 25], ["proposals", 145, 25]]);
-const pos$40 = nix.positions(here + "/strongswan-swanctl.nix", [["home", 125, 15]]);
-const pos$41 = nix.positions(here + "/strongswan-swanctl.nix", [["main", 150, 20]]);
-const pos$42 = nix.positions(here + "/strongswan-swanctl.nix", [["id", 150, 17], ["secret", 151, 25]]);
-const pos$43 = nix.positions(here + "/strongswan-swanctl.nix", [["moon", 149, 19]]);
-const pos$44 = nix.positions(here + "/strongswan-swanctl.nix", [["ike", 149, 15]]);
-const pos$45 = nix.positions(here + "/strongswan-swanctl.nix", [["connections", 124, 13], ["secrets", 148, 13]]);
-const pos$46 = nix.positions(here + "/strongswan-swanctl.nix", [["enable", 122, 11], ["swanctl", 123, 11]]);
-const pos$47 = nix.positions(here + "/strongswan-swanctl.nix", [["strongswan-swanctl", 121, 18]]);
-const pos$48 = nix.positions(here + "/strongswan-swanctl.nix", [["virtualisation", 115, 9], ["networking", 116, 9], ["environment", 120, 9], ["services", 121, 9]]);
-const pos$49 = nix.positions(here + "/strongswan-swanctl.nix", [["alice", 38, 5], ["moon", 48, 5], ["carol", 109, 5]]);
-const pos$50 = nix.positions(here + "/strongswan-swanctl.nix", [["name", 34, 3], ["meta", 35, 3], ["nodes", 36, 3], ["testScript", 159, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -69,25 +20,25 @@ export default nix.lambda((args) => (() => {
   const esp_proposals = nix.thunk(() => ["aes128gcm128-x25519"]);
   const proposals = nix.thunk(() => ["aes128-sha256-x25519"]);
   return {
-    [nix.POS]: pos$50,
+    [nix.POS]: $pos[49],
     name: "strongswan-swanctl",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "basvandijk"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$49,
+      [nix.POS]: $pos[48],
       alice: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$5,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [0n]) })),
+          [nix.POS]: $pos[4],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], vlans: nix.thunk(() => [0n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+            [nix.POS]: $pos[3],
+            dhcpcd: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
             defaultGateway: "192.168.0.3",
           })),
         };
@@ -97,18 +48,18 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const strongswan = nix.thunk(() => nix.sel(config, "services", "strongswan-swanctl", "package"));
         return {
-          [nix.POS]: pos$27,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, vlans: nix.thunk(() => [0n, 1n]) })),
+          [nix.POS]: $pos[26],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[5], vlans: nix.thunk(() => [0n, 1n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$10,
-            dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$7, enable: false })),
+            [nix.POS]: $pos[9],
+            dhcpcd: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: false })),
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               allowedUDPPorts: nix.thunk(() => [4500n, 500n]),
               extraCommands: allowESP,
             })),
             nat: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               internalIPs: nix.thunk(() => [vlan0]),
               internalInterfaces: nix.thunk(() => ["eth1"]),
@@ -116,31 +67,31 @@ export default nix.lambda((args) => (() => {
               externalInterface: "eth2",
             })),
           })),
-          environment: nix.thunk(() => ({ [nix.POS]: pos$11, systemPackages: nix.thunk(() => [strongswan]) })),
+          environment: nix.thunk(() => ({ [nix.POS]: $pos[10], systemPackages: nix.thunk(() => [strongswan]) })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             "strongswan-swanctl": nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               enable: true,
               swanctl: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 connections: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   rw: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
+                    [nix.POS]: $pos[17],
                     local_addrs: nix.thunk(() => [moonIp]),
                     local: nix.thunk(() => ({
-                      [nix.POS]: pos$13,
-                      main: nix.thunk(() => ({ [nix.POS]: pos$12, auth: "psk" })),
+                      [nix.POS]: $pos[12],
+                      main: nix.thunk(() => ({ [nix.POS]: $pos[11], auth: "psk" })),
                     })),
                     remote: nix.thunk(() => ({
-                      [nix.POS]: pos$15,
-                      main: nix.thunk(() => ({ [nix.POS]: pos$14, auth: "psk" })),
+                      [nix.POS]: $pos[14],
+                      main: nix.thunk(() => ({ [nix.POS]: $pos[13], auth: "psk" })),
                     })),
                     children: nix.thunk(() => ({
-                      [nix.POS]: pos$17,
+                      [nix.POS]: $pos[16],
                       net: nix.thunk(() => ({
-                        [nix.POS]: pos$16,
+                        [nix.POS]: $pos[15],
                         local_ts: nix.thunk(() => [vlan0]),
                         updown: nix.thunk(() => nix.str`${strongswan}/libexec/ipsec/_updown iptables`),
                         esp_proposals: esp_proposals,
@@ -151,12 +102,12 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 secrets: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   ike: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
+                    [nix.POS]: $pos[21],
                     carol: nix.thunk(() => ({
-                      [nix.POS]: pos$21,
-                      id: nix.thunk(() => ({ [nix.POS]: pos$20, main: carolIp })),
+                      [nix.POS]: $pos[20],
+                      id: nix.thunk(() => ({ [nix.POS]: $pos[19], main: carolIp })),
                       secret: secret,
                     })),
                   })),
@@ -171,39 +122,39 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const strongswan = nix.thunk(() => nix.sel(config, "services", "strongswan-swanctl", "package"));
         return {
-          [nix.POS]: pos$48,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$28, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[47],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[27], vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$31,
-            dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$29, enable: false })),
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$30, extraCommands: allowESP })),
+            [nix.POS]: $pos[30],
+            dhcpcd: nix.thunk(() => ({ [nix.POS]: $pos[28], enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[29], extraCommands: allowESP })),
           })),
-          environment: nix.thunk(() => ({ [nix.POS]: pos$32, systemPackages: nix.thunk(() => [strongswan]) })),
+          environment: nix.thunk(() => ({ [nix.POS]: $pos[31], systemPackages: nix.thunk(() => [strongswan]) })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$47,
+            [nix.POS]: $pos[46],
             "strongswan-swanctl": nix.thunk(() => ({
-              [nix.POS]: pos$46,
+              [nix.POS]: $pos[45],
               enable: true,
               swanctl: nix.thunk(() => ({
-                [nix.POS]: pos$45,
+                [nix.POS]: $pos[44],
                 connections: nix.thunk(() => ({
-                  [nix.POS]: pos$40,
+                  [nix.POS]: $pos[39],
                   home: nix.thunk(() => ({
-                    [nix.POS]: pos$39,
+                    [nix.POS]: $pos[38],
                     local_addrs: nix.thunk(() => [carolIp]),
                     remote_addrs: nix.thunk(() => [moonIp]),
                     local: nix.thunk(() => ({
-                      [nix.POS]: pos$34,
-                      main: nix.thunk(() => ({ [nix.POS]: pos$33, auth: "psk", id: carolIp })),
+                      [nix.POS]: $pos[33],
+                      main: nix.thunk(() => ({ [nix.POS]: $pos[32], auth: "psk", id: carolIp })),
                     })),
                     remote: nix.thunk(() => ({
-                      [nix.POS]: pos$36,
-                      main: nix.thunk(() => ({ [nix.POS]: pos$35, auth: "psk", id: moonIp })),
+                      [nix.POS]: $pos[35],
+                      main: nix.thunk(() => ({ [nix.POS]: $pos[34], auth: "psk", id: moonIp })),
                     })),
                     children: nix.thunk(() => ({
-                      [nix.POS]: pos$38,
+                      [nix.POS]: $pos[37],
                       home: nix.thunk(() => ({
-                        [nix.POS]: pos$37,
+                        [nix.POS]: $pos[36],
                         remote_ts: nix.thunk(() => [vlan0]),
                         start_action: "trap",
                         updown: nix.thunk(() => nix.str`${strongswan}/libexec/ipsec/_updown iptables`),
@@ -215,12 +166,12 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 secrets: nix.thunk(() => ({
-                  [nix.POS]: pos$44,
+                  [nix.POS]: $pos[43],
                   ike: nix.thunk(() => ({
-                    [nix.POS]: pos$43,
+                    [nix.POS]: $pos[42],
                     moon: nix.thunk(() => ({
-                      [nix.POS]: pos$42,
-                      id: nix.thunk(() => ({ [nix.POS]: pos$41, main: moonIp })),
+                      [nix.POS]: $pos[41],
+                      id: nix.thunk(() => ({ [nix.POS]: $pos[40], main: moonIp })),
                       secret: secret,
                     })),
                   })),

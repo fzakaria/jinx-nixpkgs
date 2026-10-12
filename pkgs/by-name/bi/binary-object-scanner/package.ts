@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["mainProgram", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dotnet-sdk", 19, 3], ["dotnet-runtime", 20, 3], ["dotnetFlags", 21, 3], ["nugetDeps", 22, 3], ["projectFile", 24, 3], ["executables", 28, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, dotnetCorePackages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["mainProgram", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dotnet-sdk", 19, 3], ["dotnet-runtime", 20, 3], ["dotnetFlags", 21, 3], ["nugetDeps", 22, 3], ["projectFile", 24, 3], ["executables", 28, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "BinaryObjectScanner";
       const version = "3.3.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SabreTools",
           repo: "BinaryObjectScanner",
           tag: version,
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const executables = nix.thunk(() => ["ProtectionScan", "ExtractionTool"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/SabreTools/BinaryObjectScanner",
         description: "C# protection, packer, and archive scanning library. Provides ProtectionScan and ExtractionTool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ProtectionScan",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

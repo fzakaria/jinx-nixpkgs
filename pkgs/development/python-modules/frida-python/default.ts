@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hash", 16, 9], ["platform", 17, 9]], [["hash", 20, 9], ["platform", 21, 9]], [["hash", 24, 9], ["platform", 25, 9]], [["x86_64-linux", 15, 7], ["aarch64-linux", 19, 7], ["aarch64-darwin", 23, 7]], [["pname", 35, 5], ["version", 36, 13], ["format", 36, 21], ["hash", 37, 24], ["platform", 37, 29], ["abi", 38, 5], ["python", 39, 5], ["dist", 40, 5]], [["updateScript", 48, 12]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 57, 5], ["platforms", 61, 5]], [["pname", 31, 3], ["version", 32, 11], ["format", 32, 19], ["src", 34, 3], ["pythonImportsCheck", 43, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, stdenvNoCC: false, buildPythonPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hash", 16, 9], ["platform", 17, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 20, 9], ["platform", 21, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 24, 9], ["platform", 25, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 15, 7], ["aarch64-linux", 19, 7], ["aarch64-darwin", 23, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 35, 5], ["version", 36, 13], ["format", 36, 21], ["hash", 37, 24], ["platform", 37, 29], ["abi", 38, 5], ["python", 39, 5], ["dist", 40, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["updateScript", 48, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 57, 5], ["platforms", 61, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 11], ["format", 32, 19], ["src", 34, 3], ["pythonImportsCheck", 43, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,30 +16,30 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const pypiMeta = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       hash: "sha256-owM+l9+L3BgfhJaTPoTVcVjJ34ot3MakuAPKCl9dhLc=",
       platform: "manylinux1_x86_64",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       hash: "sha256-EoHA1lQQUdJyA/wFcNfBb/oZk3PM+sKMPcOfxFJcP28=",
       platform: "manylinux2014_aarch64",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       hash: "sha256-nNmLnZx98FEBcVibRFtorpiElvY9ws54R0nfZcYHO34=",
       platform: "macosx_11_0_arm64",
     })),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "frida-python",
       version: version,
       format: format,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: "frida",
           version: version,
           format: format,
@@ -57,9 +50,9 @@ export default nix.lambda((args) => (() => {
           dist: "cp37",
         })))),
       pythonImportsCheck: nix.thunk(() => ["frida", "frida._frida"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Dynamic instrumentation toolkit for developers, reverse-engineers, and security researchers (Python bindings)",
         homepage: "https://www.frida.re",
         license: nix.thunk(() => (() => {

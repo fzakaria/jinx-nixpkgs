@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5]], [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["dontFixup", 17, 3], ["nativeBuildInputs", 20, 3], ["sourceRoot", 21, 3], ["installPhase", 23, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["dontFixup", 17, 3], ["nativeBuildInputs", 20, 3], ["sourceRoot", 21, 3], ["installPhase", 23, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bluesnooze",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/odlp/bluesnooze/releases/download/v${nix.sel(finalAttrs, "version")}/Bluesnooze.zip`),
           hash: "sha256-B1qLfPj2bU9AAsYqGYWl0/sEPj3wnn/UBeiM4kqW/rA=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -r Bluesnooze.app $out/Applications/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Prevents your sleeping Mac from connecting to Bluetooth accessories",
         homepage: "https://github.com/odlp/bluesnooze",
         changelog: nix.thunk(() => nix.str`https://github.com/odlp/bluesnooze/releases/tag/v${nix.sel(finalAttrs, "version")}`),

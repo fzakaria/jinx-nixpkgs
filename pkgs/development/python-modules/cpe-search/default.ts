@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["all", 37, 5], ["mariadb", 45, 5]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 36, 3], ["doCheck", 51, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aiolimiter: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, mariadb: false, requests: false, tqdm: false, ujson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 37, 5], ["mariadb", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 36, 3], ["doCheck", 51, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const ujson = nix.arg($, "ujson");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cpe-search",
       version: "0.2.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ra1nb0rn",
           repo: "cpe_search",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +32,14 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [aiohttp, aiolimiter, requests, tqdm, ujson]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [aiohttp, aiolimiter, mariadb, requests, tqdm, ujson]),
         mariadb: nix.thunk(() => [mariadb]),
       })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["cpe_search"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Search for Common Platform Enumeration (CPE) strings using software names and titles",
         homepage: "https://github.com/ra1nb0rn/cpe_search",
         changelog: nix.thunk(() => nix.str`https://github.com/ra1nb0rn/cpe_search/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5], ["platforms", 53, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["postPatch", 30, 3], ["buildInputs", 35, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, curl: false, nlohmann_json: false, freeglut: false, libGL: false, libGLU: false, curlpp: false, glm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5], ["platforms", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["postPatch", 30, 3], ["buildInputs", 35, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const curlpp = nix.arg($, "curlpp");
   const glm = nix.arg($, "glm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "arftracksat",
       version: "1.0-unstable-2026-02-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arf20",
           repo: "arftracksat",
           rev: "a9b86878e2ee6f332dc1df07685b7d20970c2f7e",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/main.cpp --replace-fail '/usr/local' \"$out\"\nsubstituteInPlace config.json --replace-fail '/usr/local' \"$out\"\n",
       buildInputs: nix.thunk(() => nix.concat([curl, nlohmann_json, curlpp, glm], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [freeglut, libGL, libGLU])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Satellite tracking software for linux",
         homepage: "https://github.com/arf20/arftracksat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

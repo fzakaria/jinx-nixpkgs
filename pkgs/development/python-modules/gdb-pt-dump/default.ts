@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["pythonImportsCheck", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["pythonImportsCheck", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const poetry_core = nix.arg($, "poetry-core");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gdb-pt-dump",
       version: "0-unstable-2024-04-01",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "martinradev",
           repo: "gdb-pt-dump",
           rev: "50227bda0b6332e94027f811a15879588de6d5cb",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core]),
       pythonImportsCheck: nix.thunk(() => ["pt"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GDB script to enhance debugging of a QEMU-based virtual machine",
         homepage: "https://github.com/martinradev/gdb-pt-dump",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["timeout", 11, 38]], [["meta", 11, 33]]]);
 const formals$1 = { args: { fontbakery: false, lib: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["timeout", 11, 38]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["meta", 11, 33]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,10 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const version = nix.thunk(() => nix.attr(fontbakery, "version"));
   const src = nix.thunk(() => nix.attr(fontbakery, "src"));
-  return nix.app(runCommand, "fontbakery-tests", nix.thunk(() => ({ [nix.POS]: pos$2, meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 5n })) })), nix.thunk(() => nix.str`# Check the version matches what we packaged.
+  return nix.app(runCommand, "fontbakery-tests", nix.thunk(() => ({
+      [nix.POS]: $pos[1],
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 5n })),
+    })), nix.thunk(() => nix.str`# Check the version matches what we packaged.
 ${nix.app(nix.sel(lib, "getExe"), fontbakery)} --version | grep -q "${version}"
 
 # Unpack src to get some test fonts.

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["stripRoot", 33, 5], ["hash", 34, 5]], [["name", 64, 5], ["desktopName", 65, 5], ["comment", 66, 5], ["icon", 67, 5], ["exec", 68, 5], ["categories", 69, 5]], [["updateScript", 117, 12]], [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["mainProgram", 125, 5], ["platforms", 126, 5], ["sourceProvenance", 127, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["desktopItem", 63, 3], ["installPhase", 72, 3], ["postFixup", 93, 3], ["passthru", 117, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, autoPatchelfHook: false, "alsa-lib": false, gtk3: false, zlib: false, dbus: false, hidapi: false, libGL: false, libxcursor: false, libxext: false, libxi: false, libxinerama: false, libxkbcommon: false, libxrandr: false, libxscrnsaver: false, libxxf86vm: false, udev: false, "vulkan-loader": false, wayland: false, makeDesktopItem: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["stripRoot", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 64, 5], ["desktopName", 65, 5], ["comment", 66, 5], ["icon", 67, 5], ["exec", 68, 5], ["categories", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 117, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["mainProgram", 125, 5], ["platforms", 126, 5], ["sourceProvenance", 127, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["desktopItem", 63, 3], ["installPhase", 72, 3], ["postFixup", 93, 3], ["passthru", 117, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "yarg",
       version: "0.15.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/YARC-Official/YARG/releases/download/v${nix.sel(finalAttrs, "version")}/YARG_v${nix.sel(finalAttrs, "version")}-Linux-x86_64.zip`),
           stripRoot: false,
           hash: "sha256-xIWiQe0GSt6S9j2Xte/p+FHuO07Tv69zxS+OdNEI1sI=",
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
         wayland,
       ]),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "yarg",
           desktopName: "YARG",
           comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -77,11 +73,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm755 YARG \"$out/bin/yarg\"\ninstall -Dm644 UnityPlayer.so \"$out/libexec/yarg/UnityPlayer.so\"\n\nmkdir -p \"$out/share/icons/hicolor/128x128/apps\"\ncp -r YARG_Data \"$out/share/yarg\"\nln -s \"$out/share/yarg\" \"$out/bin/yarg_Data\"\nln -s \"$out/share/yarg/Resources/UnityPlayer.png\" \"$out/share/icons/hicolor/128x128/apps/yarg.png\"\ninstall -Dm644 \"$desktopItem/share/applications/yarg.desktop\" \"$out/share/applications/yarg.desktop\"\n\nrunHook postInstall\n",
       postFixup: "patchelf \\\n  --add-needed libasound.so.2 \\\n  --add-needed libdbus-1.so.3 \\\n  --add-needed libGL.so.1 \\\n  --add-needed libhidapi-hidraw.so.0 \\\n  --add-needed libpthread.so.0 \\\n  --add-needed libudev.so.1 \\\n  --add-needed libvulkan.so.1 \\\n  --add-needed libwayland-client.so.0 \\\n  --add-needed libwayland-cursor.so.0 \\\n  --add-needed libwayland-egl.so.1 \\\n  --add-needed libX11.so.6 \\\n  --add-needed libXcursor.so.1 \\\n  --add-needed libXext.so.6 \\\n  --add-needed libXi.so.6 \\\n  --add-needed libXinerama.so.1 \\\n  --add-needed libxkbcommon.so.0 \\\n  --add-needed libXrandr.so.2 \\\n  --add-needed libXss.so.1 \\\n  --add-needed libXxf86vm.so.1 \\\n  \"$out/libexec/yarg/UnityPlayer.so\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Free, open-source, plastic guitar game",
         homepage: "https://yarg.in",
         changelog: nix.thunk(() => nix.str`https://github.com/YARC-Official/YARG/releases/tag/v${nix.sel(finalAttrs, "version")}`),

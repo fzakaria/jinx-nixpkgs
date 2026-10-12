@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frameworkintegration.nix", [[["pname", 21, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["propagatedBuildInputs", 39, 3]]]);
 const formals$1 = { args: { mkDerivation: false, cmake: false, "extra-cmake-modules": false, kbookmarks: false, kcompletion: false, kconfig: false, kconfigwidgets: false, ki18n: false, kiconthemes: false, kio: false, knewstuff: false, knotifications: false, kpackage: false, kwidgetsaddons: false, libxcursor: false, qtx11extras: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frameworkintegration.nix", [["pname", 21, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["propagatedBuildInputs", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const qtx11extras = nix.arg($, "qtx11extras");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "frameworkintegration",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules]),
       buildInputs: nix.thunk(() => [

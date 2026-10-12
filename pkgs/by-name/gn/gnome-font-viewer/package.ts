@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["packageName", 58, 7]], [["updateScript", 57, 5]], [["description", 63, 5], ["homepage", 64, 5], ["teams", 65, 5], ["license", 66, 5], ["platforms", 67, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["doCheck", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 42, 3], ["postInstall", 50, 3], ["passthru", 56, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, meson: false, ninja: false, gettext: false, fetchurl: false, "pkg-config": false, gtk4: false, glib: false, libxml2: false, libadwaita: false, fribidi: false, wrapGAppsHook4: false, gnome: false, harfbuzz: false, "desktop-file-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["teams", 65, 5], ["license", 66, 5], ["platforms", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["doCheck", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 42, 3], ["postInstall", 50, 3], ["passthru", 56, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const harfbuzz = nix.arg($, "harfbuzz");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-font-viewer",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-font-viewer/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-font-viewer-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-lWSwiMWxUMVOKjp7xwFN7sbuVRJh6YSI+JGx8bjca4A=",
         })))),
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk4, glib, harfbuzz, libadwaita, fribidi]),
       postInstall: "substituteInPlace $out/share/thumbnailers/gnome-font-viewer.thumbnailer \\\n  --replace-fail \"TryExec=gnome-thumbnail-font\" \"TryExec=$out/bin/gnome-thumbnail-font\" \\\n  --replace-fail \"Exec=gnome-thumbnail-font\" \"Exec=$out/bin/gnome-thumbnail-font\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-font-viewer" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-font-viewer" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Program that can preview fonts and create thumbnails for fonts",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-font-viewer",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),

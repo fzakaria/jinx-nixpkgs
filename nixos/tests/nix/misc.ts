@@ -2,35 +2,25 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/misc.nix", [[["nixPackage", 6, 37]], [["default", 6, 9]], [["override", 13, 16]], [["passthru", 13, 7]], [["test", 12, 5]], [["maintainers", 25, 14]], [["extraDependencies", 33, 20]], [["package", 35, 17]], [["system", 33, 13], ["nix", 35, 13]], [["machine", 30, 15]], [["name", 24, 9], ["meta", 25, 9], ["nodes", 30, 9], ["testScript", 38, 9]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/misc.nix", [["nixPackage", 6, 37]]);
-const pos$2 = nix.positions(here + "/misc.nix", [["default", 6, 9]]);
-const pos$3 = nix.positions(here + "/misc.nix", [["override", 13, 16]]);
-const pos$4 = nix.positions(here + "/misc.nix", [["passthru", 13, 7]]);
-const pos$5 = nix.positions(here + "/misc.nix", [["test", 12, 5]]);
 const formals$2 = { args: { nixPackage: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/misc.nix", [["maintainers", 25, 14]]);
 const formals$3 = { args: { lib: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/misc.nix", [["extraDependencies", 33, 20]]);
-const pos$8 = nix.positions(here + "/misc.nix", [["package", 35, 17]]);
-const pos$9 = nix.positions(here + "/misc.nix", [["system", 33, 13], ["nix", 35, 13]]);
-const pos$10 = nix.positions(here + "/misc.nix", [["machine", 30, 15]]);
-const pos$11 = nix.positions(here + "/misc.nix", [["name", 24, 9], ["meta", 25, 9], ["nodes", 30, 9], ["testScript", 38, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const tests = nix.thunk(() => ({
-    [nix.POS]: pos$2,
-    default: nix.thunk(() => nix.app(testsForPackage, nix.thunk(() => ({ [nix.POS]: pos$1, nixPackage: nix.thunk(() => nix.sel(pkgs, "nix")) })))),
+    [nix.POS]: $pos[1],
+    default: nix.thunk(() => nix.app(testsForPackage, nix.thunk(() => ({ [nix.POS]: $pos[0], nixPackage: nix.thunk(() => nix.sel(pkgs, "nix")) })))),
   }));
   const testsForPackage = (args_1) => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     test: nix.thunk(() => nix.update(nix.app(testMiscFeatures, args_1), {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         override: (args$) => nix.sel(nix.app(testsForPackage, nix.thunk(() => nix.update(args_1, args$))), "test"),
       })),
     })),
@@ -41,10 +31,10 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(pkgs, "testers", "nixosTest"), nix.thunk(() => (() => {
         const foo = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "foo", "Hello World"));
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           name: nix.thunk(() => nix.str`${nix.sel(nixPackage, "pname")}-misc`),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
               return [
@@ -54,14 +44,14 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$3);
               const lib_1 = nix.arg($_2, "lib");
               return {
-                [nix.POS]: pos$9,
-                system: nix.thunk(() => ({ [nix.POS]: pos$7, extraDependencies: nix.thunk(() => [foo]) })),
-                nix: nix.thunk(() => ({ [nix.POS]: pos$8, package: nixPackage })),
+                [nix.POS]: $pos[8],
+                system: nix.thunk(() => ({ [nix.POS]: $pos[6], extraDependencies: nix.thunk(() => [foo]) })),
+                nix: nix.thunk(() => ({ [nix.POS]: $pos[7], package: nixPackage })),
               };
             })(), formals$3),
           })),

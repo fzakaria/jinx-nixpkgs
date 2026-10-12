@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 21, 5], ["stripRoot", 22, 5]], [["homepage", 28, 5], ["description", 29, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5]], [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 21, 5], ["stripRoot", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 28, 5], ["description", 29, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fira-go",
       version: "1.001",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://carrois.com/downloads/FiraGO/Download_Folder_FiraGO_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           hash: "sha256-+lw4dh7G/Xv3pzGXdMUl9xNc2Nk7wUOAh+lq3K1LrXs=",
           stripRoot: false,
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://carrois.com/fira/",
         description: "Font with the same glyph set as Fira Sans 4.3 and additionally\nsupports Arabic, Devenagari, Georgian, Hebrew and Thai\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

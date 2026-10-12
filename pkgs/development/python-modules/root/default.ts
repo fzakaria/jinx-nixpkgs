@@ -2,20 +2,18 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["python3", 8, 31]], [["unwrapped", 14, 13]], [["passthru", 13, 3], ["pname", 17, 23], ["version", 17, 29], ["meta", 17, 37], ["src", 19, 3], ["pyproject", 21, 3], ["dontUnpack", 23, 3], ["dontConfigure", 24, 3], ["dontBuild", 25, 3], ["installPhase", 27, 3], ["pythonImportsCheck", 35, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, python: false, root: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["python3", 8, 31]]);
-const pos$2 = nix.positions(here + "/default.nix", [["unwrapped", 14, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["passthru", 13, 3], ["pname", 17, 23], ["version", 17, 29], ["meta", 17, 37], ["src", 19, 3], ["pyproject", 21, 3], ["dontUnpack", 23, 3], ["dontConfigure", 24, 3], ["dontBuild", 25, 3], ["installPhase", 27, 3], ["pythonImportsCheck", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   const python = nix.arg($, "python");
   const root = nix.arg($, "root");
-  const unwrapped = nix.thunk(() => nix.app(nix.sel(root, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python3: python }))));
+  const unwrapped = nix.thunk(() => nix.app(nix.sel(root, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], python3: python }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, unwrapped: unwrapped })),
+      [nix.POS]: $pos[2],
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], unwrapped: unwrapped })),
       pname: nix.thunk(() => nix.attr(unwrapped, "pname")),
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(unwrapped, "meta")),

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5]], [["ORT_LIB_LOCATION", 151, 5], ["ORT_PREFER_DYNAMIC_LINK", 152, 5], ["GST_PLUGIN_SYSTEM_PATH_1_0", 155, 5]], [["NIX_LDFLAGS", 160, 5], ["SWIFTC", 161, 5]], [["x86_64-linux", 257, 11], ["aarch64-linux", 258, 11], ["aarch64-darwin", 259, 11]], [["pname", 227, 7], ["src", 228, 28], ["version", 228, 32], ["nativeBuildInputs", 230, 7], ["dontConfigure", 235, 7], ["buildPhase", 237, 7], ["installPhase", 246, 7], ["dontFixup", 253, 7], ["outputHash", 255, 7], ["outputHashMode", 263, 7]], [["name", 267, 7], ["paths", 268, 7]], [["frontendDeps", 226, 5], ["alsaPluginDirectory", 266, 5]], [["description", 276, 5], ["longDescription", 277, 5], ["homepage", 283, 5], ["changelog", 284, 5], ["license", 285, 5], ["mainProgram", 286, 5], ["maintainers", 287, 5], ["platforms", 291, 5]], [["pname", 57, 3], ["version", 58, 3], ["__structuredAttrs", 60, 3], ["src", 62, 3], ["cargoRoot", 69, 3], ["cargoHash", 70, 3], ["nativeInstallInputs", 72, 3], ["postPatch", 74, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 126, 3], ["ortLibLocation", 147, 3], ["env", 150, 3], ["preBuild", 164, 3], ["installPhase", 179, 3], ["preFixup", 196, 3], ["postFixup", 203, 3], ["__darwinAllowLocalNetworking", 209, 3], ["preCheck", 211, 3], ["checkFlags", 219, 3], ["passthru", 224, 3], ["meta", 275, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, cmake: false, bun: false, nodejs: false, cctools: false, "cargo-tauri": false, jq: false, writableTmpDirAsHomeHook: false, makeBinaryWrapper: false, swift: false, "apple-sdk_26": false, symlinkJoin: false, webkitgtk_4_1: false, gtk3: false, glib: false, libsoup_3: false, "alsa-lib": false, "libayatana-appindicator": false, libevdev: false, libxtst: false, "gtk-layer-shell": false, "vulkan-loader": false, "vulkan-headers": false, "spirv-headers": false, shaderc: false, gst_all_1: false, "glib-networking": false, libx11: false, pipewire: false, "alsa-plugins": false, wrapGAppsHook4: false, onnxruntime: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ORT_LIB_LOCATION", 151, 5], ["ORT_PREFER_DYNAMIC_LINK", 152, 5], ["GST_PLUGIN_SYSTEM_PATH_1_0", 155, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 160, 5], ["SWIFTC", 161, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 257, 11], ["aarch64-linux", 258, 11], ["aarch64-darwin", 259, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 227, 7], ["src", 228, 28], ["version", 228, 32], ["nativeBuildInputs", 230, 7], ["dontConfigure", 235, 7], ["buildPhase", 237, 7], ["installPhase", 246, 7], ["dontFixup", 253, 7], ["outputHash", 255, 7], ["outputHashMode", 263, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 267, 7], ["paths", 268, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["frontendDeps", 226, 5], ["alsaPluginDirectory", 266, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 276, 5], ["longDescription", 277, 5], ["homepage", 283, 5], ["changelog", 284, 5], ["license", 285, 5], ["mainProgram", 286, 5], ["maintainers", 287, 5], ["platforms", 291, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 57, 3], ["version", 58, 3], ["__structuredAttrs", 60, 3], ["src", 62, 3], ["cargoRoot", 69, 3], ["cargoHash", 70, 3], ["nativeInstallInputs", 72, 3], ["postPatch", 74, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 126, 3], ["ortLibLocation", 147, 3], ["env", 150, 3], ["preBuild", 164, 3], ["installPhase", 179, 3], ["preFixup", 196, 3], ["postFixup", 203, 3], ["__darwinAllowLocalNetworking", 209, 3], ["preCheck", 211, 3], ["checkFlags", 219, 3], ["passthru", 224, 3], ["meta", 275, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -63,12 +55,12 @@ export default nix.lambda((args) => (() => {
       ];
     })())));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "handy",
       version: "0.9.6",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cjpais",
           repo: "Handy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -107,12 +99,12 @@ export default nix.lambda((args) => (() => {
         ]))))),
       ortLibLocation: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), onnxruntime)}/lib`),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ORT_LIB_LOCATION: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), onnxruntime)}/lib`),
         ORT_PREFER_DYNAMIC_LINK: "1",
         GST_PLUGIN_SYSTEM_PATH_1_0: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPathOutput"), "lib", "lib/gstreamer-1.0", gstPlugins)))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           NIX_LDFLAGS: "-lclang_rt.osx",
           SWIFTC: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), swift, "swiftc")),
         }))))),
@@ -148,9 +140,9 @@ ln -s "$out/Applications/Handy.app/Contents/MacOS/handy" "$out/bin/handy"
         "--skip=helpers::clamshell::tests::test_clamshell_check",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         frontendDeps: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             pname: "handy-frontend-deps",
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -160,7 +152,7 @@ ln -s "$out/Applications/Handy.app/Contents/MacOS/handy" "$out/bin/handy"
             installPhase: "runHook preInstall\nmkdir -p $out\ncp -R node_modules $out/\nrunHook postInstall\n",
             dontFixup: true,
             outputHash: nix.thunk(() => nix.sel({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               "x86_64-linux": "sha256-huOC2smHU0sGIxeyvWmzdewUEpKHfdSGNhf9xWpH9Jk=",
               "aarch64-linux": "sha256-UDn8nIgIx23ampe43Qr0j9h+hlU9g1QzzlIlbRH2CKs=",
               "aarch64-darwin": "sha256-8Rw4iNvqeq/sRvZpbtZo0f0iPAwu1TeB8Y+ut4kb9uw=",
@@ -168,7 +160,7 @@ ln -s "$out/Applications/Handy.app/Contents/MacOS/handy" "$out/bin/handy"
             outputHashMode: "recursive",
           })))),
         alsaPluginDirectory: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "combined-alsaPlugins",
             paths: nix.thunk(() => [
               nix.thunk(() => nix.str`${pipewire}/lib/alsa-lib`),
@@ -177,7 +169,7 @@ ln -s "$out/Applications/Handy.app/Contents/MacOS/handy" "$out/bin/handy"
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Free, open source, offline speech-to-text application",
         longDescription: "Handy is a cross-platform desktop application providing simple,\nprivacy-focused speech transcription. Press a shortcut, speak, and\nhave your words appear in any text field — entirely on your own\ncomputer, with no audio sent to the cloud.\n",
         homepage: "https://handy.computer",

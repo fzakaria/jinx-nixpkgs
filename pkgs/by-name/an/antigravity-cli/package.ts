@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 7], ["hash", 18, 7]], [["url", 21, 7], ["hash", 22, 7]], [["url", 25, 7], ["hash", 26, 7]], [["x86_64-linux", 16, 5], ["aarch64-linux", 20, 5], ["aarch64-darwin", 24, 5]], [["wholeVersion", 58, 13], ["updateScript", 59, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 71, 5], ["mainProgram", 72, 5], ["sourceProvenance", 73, 5]], [["pname", 31, 3], ["version", 32, 11], ["strictDeps", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["sourceRoot", 39, 3], ["nativeBuildInputs", 41, 3], ["dontConfigure", 43, 3], ["dontBuild", 44, 3], ["installPhase", 46, 3], ["nativeInstallCheckInputs", 54, 3], ["doInstallCheck", 55, 3], ["passthru", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, autoPatchelfHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 16, 5], ["aarch64-linux", 20, 5], ["aarch64-darwin", 24, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["wholeVersion", 58, 13], ["updateScript", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 71, 5], ["mainProgram", 72, 5], ["sourceProvenance", 73, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 11], ["strictDeps", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["sourceRoot", 39, 3], ["nativeBuildInputs", 41, 3], ["dontConfigure", 43, 3], ["dontBuild", 44, 3], ["installPhase", 46, 3], ["nativeInstallCheckInputs", 54, 3], ["doInstallCheck", 55, 3], ["passthru", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,25 +17,25 @@ export default nix.lambda((args) => (() => {
   const wholeVersion = nix.thunk(() => nix.str`${version}-${buildId}`);
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
   const sourceData = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://storage.googleapis.com/antigravity-public/antigravity-cli/${wholeVersion}/linux-x64/cli_linux_x64.tar.gz`),
         hash: "sha256-1CR0MOBM69vhypPZzLSDzS89rrTNsKzlpxzRMOC9q4Q=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://storage.googleapis.com/antigravity-public/antigravity-cli/${wholeVersion}/linux-arm/cli_linux_arm64.tar.gz`),
         hash: "sha256-ptJp0nZOVjarK82nO3jFh/6dAOrXZ6o5dFdCKVhe4NM=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://storage.googleapis.com/antigravity-public/antigravity-cli/${wholeVersion}/darwin-arm/cli_mac_arm64.tar.gz`),
         hash: "sha256-l7A+o+kJFuDIpJ7ephVAb47GkEfd4XIopHjBhURF0yo=",
       })))),
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "antigravity-cli",
       version: version,
       strictDeps: true,
@@ -55,12 +49,12 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         wholeVersion: wholeVersion,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Google's Go-based terminal user interface (TUI) agent client",
         homepage: "https://antigravity.google",
         changelog: "https://antigravity.google/changelog",

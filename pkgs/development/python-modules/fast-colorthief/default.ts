@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]], [["updateScript", 48, 12]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 19, 3], ["postPatch", 24, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["preBuild", 44, 3], ["pythonImportsCheck", 46, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, cmake: false, "nix-update-script": false, numpy: false, pillow: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 48, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 19, 3], ["postPatch", 24, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["preBuild", 44, 3], ["pythonImportsCheck", 46, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-yUO1vnOt2NPyldPjFMn0jbhVX8zHcKsJ2IFVugYBZa4=",
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
       const preBuild = "cd ..";
       const pythonImportsCheck = nix.thunk(() => ["fast_colorthief"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Selection of most dominant colors in image using Modified Median Cut Quantization",
         homepage: "https://github.com/bedapisl/fast-colorthief",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

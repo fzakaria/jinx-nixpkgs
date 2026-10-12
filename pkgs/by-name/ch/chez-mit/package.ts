@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 34, 5], ["homepage", 35, 5], ["maintainers", 36, 5], ["license", 37, 5], ["broken", 38, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["makeFlags", 25, 3], ["doCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, chez: false, "chez-srfi": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["maintainers", 36, 5], ["license", 37, 5], ["broken", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["makeFlags", 25, 3], ["doCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "chez-mit";
       const version = "0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fedeinthemix",
           repo: "chez-mit",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,14 +30,23 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MIT/GNU Scheme compatibility library for Chez Scheme",
         homepage: "https://github.com/fedeinthemix/chez-mit/",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jitwit"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildInputs, makeFlags, doCheck, meta };
+      return {
+        [nix.POS]: $pos[2],
+        pname,
+        version,
+        src,
+        buildInputs,
+        makeFlags,
+        doCheck,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

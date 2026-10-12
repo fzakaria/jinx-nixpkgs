@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["wireguard", 32, 64]], [["tests", 32, 12]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 42, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["postPatch", 23, 3], ["buildInputs", 28, 3], ["passthru", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { stdenv: false, rustPlatform: false, fetchFromGitHub: false, lib: false, libiconv: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["wireguard", 32, 64]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 32, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["postPatch", 23, 3], ["buildInputs", 28, 3], ["passthru", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "wireguard-exporter",
       version: "3.6.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MindFlavor",
           repo: "prometheus_wireguard_exporter",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,14 +28,14 @@ export default nix.lambda((args) => (() => {
       postPatch: "# drop hardcoded linker names, fixing static build\nrm .cargo/config.toml\n",
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { [nix.POS]: pos$2, wireguard: nix.thunk(() => nix.attr(from, "wireguard")) };
+          return { [nix.POS]: $pos[1], wireguard: nix.thunk(() => nix.attr(from, "wireguard")) };
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Prometheus exporter for WireGuard, written in Rust",
         homepage: "https://github.com/MindFlavor/prometheus_wireguard_exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

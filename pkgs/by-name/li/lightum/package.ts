@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["patchPhase", 36, 3], ["installPhase", 41, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libx11: false, libxscrnsaver: false, libxext: false, glib: false, dbus: false, "pkg-config": false, systemd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["patchPhase", 36, 3], ["installPhase", 41, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const systemd = nix.arg($, "systemd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lightum",
       version: "unstable-2014-06-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "poliva",
           repo: "lightum",
           rev: "123e6babe0669b23d4c1dfa5511088608ff2baa8",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "substituteInPlace Makefile \\\n  --replace \"libsystemd-login\" \"libsystemd\"\n",
       installPhase: "make install prefix=$out bindir=$out/bin docdir=$out/share/doc \\\n  mandir=$out/share/man INSTALL=\"install -c\" INSTALLDATA=\"install -c -m 644\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MacBook automatic light sensor daemon",
         mainProgram: "lightum",
         homepage: "https://github.com/poliva/lightum",

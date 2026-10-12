@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 50, 5], ["sourceProvenance", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]], [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 31, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, glib: false, zlib: false, libglvnd: false, python3: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 50, 5], ["sourceProvenance", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 31, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "3.5",
       pname: "sam-ba",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ww1.microchip.com/downloads/en/DeviceDoc/sam-ba_${nix.sel(finalAttrs, "version")}-linux_x86_64.tar.gz`),
           sha256: "1k0nbgyc98z94nphm2q7s82b274clfnayf4a2kv93l5594rzdbp1",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/bin/\" \\\n         \"$out/opt/sam-ba/\"\ncp -a . \"$out/opt/sam-ba/\"\nln -sr \"$out/opt/sam-ba/sam-ba\" \"$out/bin/\"\nln -sr \"$out/opt/sam-ba/multi_sam-ba.py\" \"$out/bin/\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Programming tools for Atmel SAM3/7/9 ARM-based microcontrollers",
         longDescription: "Atmel SAM-BA software provides an open set of tools for programming the\nAtmel SAM3, SAM7 and SAM9 ARM-based microcontrollers.\n",
         homepage: "http://www.at91.com/linux4sam/bin/view/Linux4SAM/SoftwareTools",

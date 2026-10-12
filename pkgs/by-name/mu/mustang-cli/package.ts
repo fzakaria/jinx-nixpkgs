@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["modules", 13, 5], ["jdk", 18, 5]], [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["extraArgs", 54, 5]], [["updateScript", 53, 12]], [["mainProgram", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["version", 22, 3], ["pname", 23, 3], ["src", 25, 3], ["strictDeps", 32, 3], ["__structuredAttrs", 33, 3], ["mvnHash", 35, 3], ["nativeBuildInputs", 37, 3], ["installPhase", 42, 3], ["passthru", 53, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, maven: false, jre_minimal: false, jdk_headless: false, makeWrapper: false, stripJavaArchivesHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["modules", 13, 5], ["jdk", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 22, 3], ["pname", 23, 3], ["src", 25, 3], ["strictDeps", 32, 3], ["__structuredAttrs", 33, 3], ["mvnHash", 35, 3], ["nativeBuildInputs", 37, 3], ["installPhase", 42, 3], ["passthru", 53, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       modules: nix.thunk(() => ["java.base", "java.desktop", "java.logging"]),
       jdk: jdk_headless,
     }))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "2.26.0",
       pname: "mustang-cli",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ZUGFeRD",
           repo: "mustangproject",
           tag: nix.thunk(() => nix.str`core-${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +45,14 @@ makeWrapper ${jre}/bin/java $out/bin/mustang-cli \\
   --add-flags "-jar $out/share/Mustang-CLI/Mustang-CLI.jar"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version-regex=core-(.*)"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
+            [nix.POS]: $pos[2],
+            extraArgs: nix.thunk(() => ["--version-regex=core-(.*)"]),
+          })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         mainProgram: "mustang-cli",
         description: "Open Source Java e-Invoicing library, validator and tool (Factur-X/ZUGFeRD, UNCEFACT/CII XRechnung)",
         homepage: "https://www.mustangproject.org",

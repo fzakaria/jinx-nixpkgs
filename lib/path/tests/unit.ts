@@ -2,79 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unit.nix", [[["expr", 21, 7], ["expected", 22, 7]], [["expr", 25, 7], ["expected", 26, 7]], [["expr", 29, 7], ["expected", 30, 7]], [["expr", 33, 7], ["expected", 34, 7]], [["expr", 37, 7], ["expected", 38, 7]], [["expr", 41, 7], ["expected", 42, 7]], [["expr", 45, 7], ["expected", 46, 7]], [["expr", 49, 7], ["expected", 50, 7]], [["expr", 54, 7], ["expected", 55, 7]], [["expr", 58, 7], ["expected", 59, 7]], [["expr", 62, 7], ["expected", 63, 7]], [["expr", 66, 7], ["expected", 67, 7]], [["expr", 71, 7], ["expected", 72, 7]], [["expr", 75, 7], ["expected", 76, 7]], [["expr", 79, 7], ["expected", 80, 7]], [["expr", 83, 7], ["expected", 84, 7]], [["root", 90, 9], ["subpath", 91, 9]], [["expr", 88, 7], ["expected", 89, 7]], [["root", 97, 9], ["subpath", 98, 9]], [["expr", 95, 7], ["expected", 96, 7]], [["root", 104, 9], ["subpath", 105, 9]], [["expr", 102, 7], ["expected", 103, 7]], [["expr", 109, 7], ["expected", 110, 7]], [["expr", 115, 7], ["expected", 116, 7]], [["expr", 120, 7], ["expected", 121, 7]], [["expr", 124, 7], ["expected", 125, 7]], [["expr", 128, 7], ["expected", 129, 7]], [["expr", 132, 7], ["expected", 133, 7]], [["expr", 136, 7], ["expected", 139, 7]], [["expr", 142, 7], ["expected", 143, 7]], [["expr", 148, 7], ["expected", 149, 7]], [["expr", 152, 7], ["expected", 153, 7]], [["expr", 158, 7], ["expected", 159, 7]], [["expr", 162, 7], ["expected", 163, 7]], [["expr", 166, 7], ["expected", 167, 7]], [["expr", 170, 7], ["expected", 171, 7]], [["expr", 174, 7], ["expected", 175, 7]], [["expr", 178, 7], ["expected", 179, 7]], [["expr", 183, 7], ["expected", 184, 7]], [["expr", 187, 7], ["expected", 188, 7]], [["expr", 191, 7], ["expected", 192, 7]], [["expr", 195, 7], ["expected", 196, 7]], [["expr", 199, 7], ["expected", 200, 7]], [["expr", 203, 7], ["expected", 204, 7]], [["expr", 207, 7], ["expected", 208, 7]], [["expr", 211, 7], ["expected", 212, 7]], [["expr", 215, 7], ["expected", 216, 7]], [["expr", 219, 7], ["expected", 220, 7]], [["expr", 225, 7], ["expected", 229, 7]], [["expr", 232, 7], ["expected", 237, 7]], [["expr", 240, 7], ["expected", 241, 7]], [["expr", 244, 7], ["expected", 245, 7]], [["expr", 248, 7], ["expected", 249, 7]], [["expr", 252, 7], ["expected", 253, 7]], [["expr", 256, 7], ["expected", 257, 7]], [["expr", 262, 7], ["expected", 263, 7]], [["expr", 266, 7], ["expected", 267, 7]], [["expr", 270, 7], ["expected", 271, 7]], [["expr", 274, 7], ["expected", 275, 7]], [["expr", 278, 7], ["expected", 279, 7]], [["expr", 282, 7], ["expected", 283, 7]], [["expr", 286, 7], ["expected", 287, 7]], [["expr", 290, 7], ["expected", 291, 7]], [["expr", 294, 7], ["expected", 295, 7]], [["expr", 299, 7], ["expected", 300, 7]], [["expr", 303, 7], ["expected", 304, 7]], [["expr", 307, 7], ["expected", 308, 7]], [["expr", 312, 7], ["expected", 313, 7]], [["expr", 316, 7], ["expected", 317, 7]], [["expr", 324, 7], ["expected", 325, 7]], [["testAppendExample1", 20, 5], ["testAppendExample2", 24, 5], ["testAppendExample3", 28, 5], ["testAppendExample4", 32, 5], ["testAppendExample5", 36, 5], ["testAppendExample6", 40, 5], ["testAppendExample7", 44, 5], ["testAppendExample8", 48, 5], ["testHasPrefixExample1", 53, 5], ["testHasPrefixExample2", 57, 5], ["testHasPrefixExample3", 61, 5], ["testHasPrefixExample4", 65, 5], ["testRemovePrefixExample1", 70, 5], ["testRemovePrefixExample2", 74, 5], ["testRemovePrefixExample3", 78, 5], ["testRemovePrefixExample4", 82, 5], ["testSplitRootExample1", 87, 5], ["testSplitRootExample2", 94, 5], ["testSplitRootExample3", 101, 5], ["testSplitRootExample4", 108, 5], ["testHasStorePathPrefixRoot", 114, 5], ["testHasStorePathPrefixExample1", 119, 5], ["testHasStorePathPrefixExample2", 123, 5], ["testHasStorePathPrefixExample3", 127, 5], ["testHasStorePathPrefixExample4", 131, 5], ["testHasStorePathPrefixExample5", 135, 5], ["testHasStorePathPrefixExample6", 141, 5], ["testHasStorePathPrefixExample7", 147, 5], ["testHasStorePathPrefixExample8", 151, 5], ["testSubpathIsValidExample1", 157, 5], ["testSubpathIsValidExample2", 161, 5], ["testSubpathIsValidExample3", 165, 5], ["testSubpathIsValidExample4", 169, 5], ["testSubpathIsValidExample5", 173, 5], ["testSubpathIsValidExample6", 177, 5], ["testSubpathIsValidTwoDotsEnd", 182, 5], ["testSubpathIsValidTwoDotsMiddle", 186, 5], ["testSubpathIsValidTwoDotsPrefix", 190, 5], ["testSubpathIsValidTwoDotsSuffix", 194, 5], ["testSubpathIsValidTwoDotsPrefixComponent", 198, 5], ["testSubpathIsValidTwoDotsSuffixComponent", 202, 5], ["testSubpathIsValidThreeDots", 206, 5], ["testSubpathIsValidFourDots", 210, 5], ["testSubpathIsValidThreeDotsComponent", 214, 5], ["testSubpathIsValidFourDotsComponent", 218, 5], ["testSubpathJoinExample1", 224, 5], ["testSubpathJoinExample2", 231, 5], ["testSubpathJoinExample3", 239, 5], ["testSubpathJoinExample4", 243, 5], ["testSubpathJoinExample5", 247, 5], ["testSubpathJoinExample6", 251, 5], ["testSubpathJoinExample7", 255, 5], ["testSubpathNormaliseExample1", 261, 5], ["testSubpathNormaliseExample2", 265, 5], ["testSubpathNormaliseExample3", 269, 5], ["testSubpathNormaliseExample4", 273, 5], ["testSubpathNormaliseExample5", 277, 5], ["testSubpathNormaliseExample6", 281, 5], ["testSubpathNormaliseExample7", 285, 5], ["testSubpathNormaliseExample8", 289, 5], ["testSubpathNormaliseExample9", 293, 5], ["testSubpathNormaliseIsValidDots", 298, 5], ["testSubpathNormaliseWrongType", 302, 5], ["testSubpathNormaliseTwoDots", 306, 5], ["testSubpathComponentsExample1", 311, 5], ["testSubpathComponentsExample2", 315, 5], ["testSubpathComponentsExample3", 323, 5]], [["failures", 330, 11]]]);
 const formals$1 = { args: { libpath: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unit.nix", [["expr", 21, 7], ["expected", 22, 7]]);
-const pos$2 = nix.positions(here + "/unit.nix", [["expr", 25, 7], ["expected", 26, 7]]);
-const pos$3 = nix.positions(here + "/unit.nix", [["expr", 29, 7], ["expected", 30, 7]]);
-const pos$4 = nix.positions(here + "/unit.nix", [["expr", 33, 7], ["expected", 34, 7]]);
-const pos$5 = nix.positions(here + "/unit.nix", [["expr", 37, 7], ["expected", 38, 7]]);
-const pos$6 = nix.positions(here + "/unit.nix", [["expr", 41, 7], ["expected", 42, 7]]);
-const pos$7 = nix.positions(here + "/unit.nix", [["expr", 45, 7], ["expected", 46, 7]]);
-const pos$8 = nix.positions(here + "/unit.nix", [["expr", 49, 7], ["expected", 50, 7]]);
-const pos$9 = nix.positions(here + "/unit.nix", [["expr", 54, 7], ["expected", 55, 7]]);
-const pos$10 = nix.positions(here + "/unit.nix", [["expr", 58, 7], ["expected", 59, 7]]);
-const pos$11 = nix.positions(here + "/unit.nix", [["expr", 62, 7], ["expected", 63, 7]]);
-const pos$12 = nix.positions(here + "/unit.nix", [["expr", 66, 7], ["expected", 67, 7]]);
-const pos$13 = nix.positions(here + "/unit.nix", [["expr", 71, 7], ["expected", 72, 7]]);
-const pos$14 = nix.positions(here + "/unit.nix", [["expr", 75, 7], ["expected", 76, 7]]);
-const pos$15 = nix.positions(here + "/unit.nix", [["expr", 79, 7], ["expected", 80, 7]]);
-const pos$16 = nix.positions(here + "/unit.nix", [["expr", 83, 7], ["expected", 84, 7]]);
-const pos$17 = nix.positions(here + "/unit.nix", [["root", 90, 9], ["subpath", 91, 9]]);
-const pos$18 = nix.positions(here + "/unit.nix", [["expr", 88, 7], ["expected", 89, 7]]);
-const pos$19 = nix.positions(here + "/unit.nix", [["root", 97, 9], ["subpath", 98, 9]]);
-const pos$20 = nix.positions(here + "/unit.nix", [["expr", 95, 7], ["expected", 96, 7]]);
-const pos$21 = nix.positions(here + "/unit.nix", [["root", 104, 9], ["subpath", 105, 9]]);
-const pos$22 = nix.positions(here + "/unit.nix", [["expr", 102, 7], ["expected", 103, 7]]);
-const pos$23 = nix.positions(here + "/unit.nix", [["expr", 109, 7], ["expected", 110, 7]]);
-const pos$24 = nix.positions(here + "/unit.nix", [["expr", 115, 7], ["expected", 116, 7]]);
-const pos$25 = nix.positions(here + "/unit.nix", [["expr", 120, 7], ["expected", 121, 7]]);
-const pos$26 = nix.positions(here + "/unit.nix", [["expr", 124, 7], ["expected", 125, 7]]);
-const pos$27 = nix.positions(here + "/unit.nix", [["expr", 128, 7], ["expected", 129, 7]]);
-const pos$28 = nix.positions(here + "/unit.nix", [["expr", 132, 7], ["expected", 133, 7]]);
-const pos$29 = nix.positions(here + "/unit.nix", [["expr", 136, 7], ["expected", 139, 7]]);
-const pos$30 = nix.positions(here + "/unit.nix", [["expr", 142, 7], ["expected", 143, 7]]);
-const pos$31 = nix.positions(here + "/unit.nix", [["expr", 148, 7], ["expected", 149, 7]]);
-const pos$32 = nix.positions(here + "/unit.nix", [["expr", 152, 7], ["expected", 153, 7]]);
-const pos$33 = nix.positions(here + "/unit.nix", [["expr", 158, 7], ["expected", 159, 7]]);
-const pos$34 = nix.positions(here + "/unit.nix", [["expr", 162, 7], ["expected", 163, 7]]);
-const pos$35 = nix.positions(here + "/unit.nix", [["expr", 166, 7], ["expected", 167, 7]]);
-const pos$36 = nix.positions(here + "/unit.nix", [["expr", 170, 7], ["expected", 171, 7]]);
-const pos$37 = nix.positions(here + "/unit.nix", [["expr", 174, 7], ["expected", 175, 7]]);
-const pos$38 = nix.positions(here + "/unit.nix", [["expr", 178, 7], ["expected", 179, 7]]);
-const pos$39 = nix.positions(here + "/unit.nix", [["expr", 183, 7], ["expected", 184, 7]]);
-const pos$40 = nix.positions(here + "/unit.nix", [["expr", 187, 7], ["expected", 188, 7]]);
-const pos$41 = nix.positions(here + "/unit.nix", [["expr", 191, 7], ["expected", 192, 7]]);
-const pos$42 = nix.positions(here + "/unit.nix", [["expr", 195, 7], ["expected", 196, 7]]);
-const pos$43 = nix.positions(here + "/unit.nix", [["expr", 199, 7], ["expected", 200, 7]]);
-const pos$44 = nix.positions(here + "/unit.nix", [["expr", 203, 7], ["expected", 204, 7]]);
-const pos$45 = nix.positions(here + "/unit.nix", [["expr", 207, 7], ["expected", 208, 7]]);
-const pos$46 = nix.positions(here + "/unit.nix", [["expr", 211, 7], ["expected", 212, 7]]);
-const pos$47 = nix.positions(here + "/unit.nix", [["expr", 215, 7], ["expected", 216, 7]]);
-const pos$48 = nix.positions(here + "/unit.nix", [["expr", 219, 7], ["expected", 220, 7]]);
-const pos$49 = nix.positions(here + "/unit.nix", [["expr", 225, 7], ["expected", 229, 7]]);
-const pos$50 = nix.positions(here + "/unit.nix", [["expr", 232, 7], ["expected", 237, 7]]);
-const pos$51 = nix.positions(here + "/unit.nix", [["expr", 240, 7], ["expected", 241, 7]]);
-const pos$52 = nix.positions(here + "/unit.nix", [["expr", 244, 7], ["expected", 245, 7]]);
-const pos$53 = nix.positions(here + "/unit.nix", [["expr", 248, 7], ["expected", 249, 7]]);
-const pos$54 = nix.positions(here + "/unit.nix", [["expr", 252, 7], ["expected", 253, 7]]);
-const pos$55 = nix.positions(here + "/unit.nix", [["expr", 256, 7], ["expected", 257, 7]]);
-const pos$56 = nix.positions(here + "/unit.nix", [["expr", 262, 7], ["expected", 263, 7]]);
-const pos$57 = nix.positions(here + "/unit.nix", [["expr", 266, 7], ["expected", 267, 7]]);
-const pos$58 = nix.positions(here + "/unit.nix", [["expr", 270, 7], ["expected", 271, 7]]);
-const pos$59 = nix.positions(here + "/unit.nix", [["expr", 274, 7], ["expected", 275, 7]]);
-const pos$60 = nix.positions(here + "/unit.nix", [["expr", 278, 7], ["expected", 279, 7]]);
-const pos$61 = nix.positions(here + "/unit.nix", [["expr", 282, 7], ["expected", 283, 7]]);
-const pos$62 = nix.positions(here + "/unit.nix", [["expr", 286, 7], ["expected", 287, 7]]);
-const pos$63 = nix.positions(here + "/unit.nix", [["expr", 290, 7], ["expected", 291, 7]]);
-const pos$64 = nix.positions(here + "/unit.nix", [["expr", 294, 7], ["expected", 295, 7]]);
-const pos$65 = nix.positions(here + "/unit.nix", [["expr", 299, 7], ["expected", 300, 7]]);
-const pos$66 = nix.positions(here + "/unit.nix", [["expr", 303, 7], ["expected", 304, 7]]);
-const pos$67 = nix.positions(here + "/unit.nix", [["expr", 307, 7], ["expected", 308, 7]]);
-const pos$68 = nix.positions(here + "/unit.nix", [["expr", 312, 7], ["expected", 313, 7]]);
-const pos$69 = nix.positions(here + "/unit.nix", [["expr", 316, 7], ["expected", 317, 7]]);
-const pos$70 = nix.positions(here + "/unit.nix", [["expr", 324, 7], ["expected", 325, 7]]);
-const pos$71 = nix.positions(here + "/unit.nix", [["testAppendExample1", 20, 5], ["testAppendExample2", 24, 5], ["testAppendExample3", 28, 5], ["testAppendExample4", 32, 5], ["testAppendExample5", 36, 5], ["testAppendExample6", 40, 5], ["testAppendExample7", 44, 5], ["testAppendExample8", 48, 5], ["testHasPrefixExample1", 53, 5], ["testHasPrefixExample2", 57, 5], ["testHasPrefixExample3", 61, 5], ["testHasPrefixExample4", 65, 5], ["testRemovePrefixExample1", 70, 5], ["testRemovePrefixExample2", 74, 5], ["testRemovePrefixExample3", 78, 5], ["testRemovePrefixExample4", 82, 5], ["testSplitRootExample1", 87, 5], ["testSplitRootExample2", 94, 5], ["testSplitRootExample3", 101, 5], ["testSplitRootExample4", 108, 5], ["testHasStorePathPrefixRoot", 114, 5], ["testHasStorePathPrefixExample1", 119, 5], ["testHasStorePathPrefixExample2", 123, 5], ["testHasStorePathPrefixExample3", 127, 5], ["testHasStorePathPrefixExample4", 131, 5], ["testHasStorePathPrefixExample5", 135, 5], ["testHasStorePathPrefixExample6", 141, 5], ["testHasStorePathPrefixExample7", 147, 5], ["testHasStorePathPrefixExample8", 151, 5], ["testSubpathIsValidExample1", 157, 5], ["testSubpathIsValidExample2", 161, 5], ["testSubpathIsValidExample3", 165, 5], ["testSubpathIsValidExample4", 169, 5], ["testSubpathIsValidExample5", 173, 5], ["testSubpathIsValidExample6", 177, 5], ["testSubpathIsValidTwoDotsEnd", 182, 5], ["testSubpathIsValidTwoDotsMiddle", 186, 5], ["testSubpathIsValidTwoDotsPrefix", 190, 5], ["testSubpathIsValidTwoDotsSuffix", 194, 5], ["testSubpathIsValidTwoDotsPrefixComponent", 198, 5], ["testSubpathIsValidTwoDotsSuffixComponent", 202, 5], ["testSubpathIsValidThreeDots", 206, 5], ["testSubpathIsValidFourDots", 210, 5], ["testSubpathIsValidThreeDotsComponent", 214, 5], ["testSubpathIsValidFourDotsComponent", 218, 5], ["testSubpathJoinExample1", 224, 5], ["testSubpathJoinExample2", 231, 5], ["testSubpathJoinExample3", 239, 5], ["testSubpathJoinExample4", 243, 5], ["testSubpathJoinExample5", 247, 5], ["testSubpathJoinExample6", 251, 5], ["testSubpathJoinExample7", 255, 5], ["testSubpathNormaliseExample1", 261, 5], ["testSubpathNormaliseExample2", 265, 5], ["testSubpathNormaliseExample3", 269, 5], ["testSubpathNormaliseExample4", 273, 5], ["testSubpathNormaliseExample5", 277, 5], ["testSubpathNormaliseExample6", 281, 5], ["testSubpathNormaliseExample7", 285, 5], ["testSubpathNormaliseExample8", 289, 5], ["testSubpathNormaliseExample9", 293, 5], ["testSubpathNormaliseIsValidDots", 298, 5], ["testSubpathNormaliseWrongType", 302, 5], ["testSubpathNormaliseTwoDots", 306, 5], ["testSubpathComponentsExample1", 311, 5], ["testSubpathComponentsExample2", 315, 5], ["testSubpathComponentsExample3", 323, 5]]);
-const pos$72 = nix.positions(here + "/unit.nix", [["failures", 330, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -89,343 +18,343 @@ export default nix.lambda((args) => (() => {
   const subpath = nix.thunk(() => nix.attr(from, "subpath"));
   const storeDirPath = nix.thunk(() => nix.add(nix.path("", "/."), nix.builtins.storeDir));
   const failures = nix.thunk(() => nix.app(nix.sel(lib, "runTests"), nix.thunk(() => ({
-      [nix.POS]: pos$71,
+      [nix.POS]: $pos[70],
       testAppendExample1: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         expr: nix.thunk(() => nix.app(append, nix.path("", "/foo"), "bar/baz")),
         expected: nix.path("", "/foo/bar/baz"),
       })),
       testAppendExample2: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         expr: nix.thunk(() => nix.app(append, nix.path("", "/foo"), "./bar//baz/./")),
         expected: nix.path("", "/foo/bar/baz"),
       })),
       testAppendExample3: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         expr: nix.thunk(() => nix.app(append, nix.path("", "/."), "foo/bar")),
         expected: nix.path("", "/foo/bar"),
       })),
       testAppendExample4: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(append, "/foo", "bar"))), "success")),
         expected: false,
       })),
       testAppendExample5: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(append, nix.path("", "/foo"), nix.path("", "/bar")))), "success")),
         expected: false,
       })),
       testAppendExample6: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(append, nix.path("", "/foo"), ""))), "success")),
         expected: false,
       })),
       testAppendExample7: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(append, nix.path("", "/foo"), "/bar"))), "success")),
         expected: false,
       })),
       testAppendExample8: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(append, nix.path("", "/foo"), "../bar"))), "success")),
         expected: false,
       })),
       testHasPrefixExample1: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         expr: nix.thunk(() => nix.app(hasPrefix, nix.path("", "/foo"), nix.path("", "/foo/bar"))),
         expected: true,
       })),
       testHasPrefixExample2: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         expr: nix.thunk(() => nix.app(hasPrefix, nix.path("", "/foo"), nix.path("", "/foo"))),
         expected: true,
       })),
       testHasPrefixExample3: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         expr: nix.thunk(() => nix.app(hasPrefix, nix.path("", "/foo/bar"), nix.path("", "/foo"))),
         expected: false,
       })),
       testHasPrefixExample4: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         expr: nix.thunk(() => nix.app(hasPrefix, nix.path("", "/."), nix.path("", "/foo"))),
         expected: true,
       })),
       testRemovePrefixExample1: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         expr: nix.thunk(() => nix.app(removePrefix, nix.path("", "/foo"), nix.path("", "/foo/bar/baz"))),
         expected: "./bar/baz",
       })),
       testRemovePrefixExample2: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         expr: nix.thunk(() => nix.app(removePrefix, nix.path("", "/foo"), nix.path("", "/foo"))),
         expected: "./.",
       })),
       testRemovePrefixExample3: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(removePrefix, nix.path("", "/foo/bar"), nix.path("", "/foo")))), "success")),
         expected: false,
       })),
       testRemovePrefixExample4: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         expr: nix.thunk(() => nix.app(removePrefix, nix.path("", "/."), nix.path("", "/foo"))),
         expected: "./foo",
       })),
       testSplitRootExample1: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         expr: nix.thunk(() => nix.app(splitRoot, nix.path("", "/foo/bar"))),
-        expected: nix.thunk(() => ({ [nix.POS]: pos$17, root: nix.path("", "/."), subpath: "./foo/bar" })),
+        expected: nix.thunk(() => ({ [nix.POS]: $pos[16], root: nix.path("", "/."), subpath: "./foo/bar" })),
       })),
       testSplitRootExample2: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         expr: nix.thunk(() => nix.app(splitRoot, nix.path("", "/."))),
-        expected: nix.thunk(() => ({ [nix.POS]: pos$19, root: nix.path("", "/."), subpath: "./." })),
+        expected: nix.thunk(() => ({ [nix.POS]: $pos[18], root: nix.path("", "/."), subpath: "./." })),
       })),
       testSplitRootExample3: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         expr: nix.thunk(() => nix.app(splitRoot, nix.path("", "/foo/../bar"))),
-        expected: nix.thunk(() => ({ [nix.POS]: pos$21, root: nix.path("", "/."), subpath: "./bar" })),
+        expected: nix.thunk(() => ({ [nix.POS]: $pos[20], root: nix.path("", "/."), subpath: "./bar" })),
       })),
       testSplitRootExample4: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(splitRoot, "/foo/bar"))), "success")),
         expected: false,
       })),
       testHasStorePathPrefixRoot: nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         expr: nix.thunk(() => nix.app(hasStorePathPrefix, nix.path("", "/."))),
         expected: false,
       })),
       testHasStorePathPrefixExample1: nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         expr: nix.thunk(() => nix.app(hasStorePathPrefix, nix.thunk(() => nix.add(storeDirPath, "/nvl9ic0pj1fpyln3zaqrf4cclbqdfn1j-foo/bar/baz")))),
         expected: true,
       })),
       testHasStorePathPrefixExample2: nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         expr: nix.thunk(() => nix.app(hasStorePathPrefix, storeDirPath)),
         expected: false,
       })),
       testHasStorePathPrefixExample3: nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         expr: nix.thunk(() => nix.app(hasStorePathPrefix, nix.thunk(() => nix.add(storeDirPath, "/nvl9ic0pj1fpyln3zaqrf4cclbqdfn1j-foo")))),
         expected: true,
       })),
       testHasStorePathPrefixExample4: nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         expr: nix.thunk(() => nix.app(hasStorePathPrefix, nix.path("", "/home/user"))),
         expected: false,
       })),
       testHasStorePathPrefixExample5: nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         expr: nix.thunk(() => nix.app(hasStorePathPrefix, nix.thunk(() => nix.add(storeDirPath, "/.links/10gg8k3rmbw8p7gszarbk7qyd9jwxhcfq9i6s5i0qikx8alkk4hq")))),
         expected: false,
       })),
       testHasStorePathPrefixExample6: nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         expr: nix.thunk(() => nix.app(hasStorePathPrefix, nix.thunk(() => nix.add(storeDirPath, "/nvl9ic0pj1fpyln3zaqrf4cclbqdfn1j-foo.drv")))),
         expected: true,
       })),
       testHasStorePathPrefixExample7: nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         expr: nix.thunk(() => nix.app(hasStorePathPrefix, nix.thunk(() => nix.add(nix.path("", "/."), "/1121rp0gvr1qya7hvy925g5kjwg66acz6sn1ra1hca09f1z5dsab")))),
         expected: true,
       })),
       testHasStorePathPrefixExample8: nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         expr: nix.thunk(() => nix.app(hasStorePathPrefix, nix.thunk(() => nix.add(nix.path("", "/."), "/1121rp0gvr1qya7hvy925g5kjwg66acz6sn1ra1hca09f1z5dsab/foo/bar")))),
         expected: true,
       })),
       testSubpathIsValidExample1: nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "isValid"), null)),
         expected: false,
       })),
       testSubpathIsValidExample2: nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "isValid"), "")),
         expected: false,
       })),
       testSubpathIsValidExample3: nix.thunk(() => ({
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "isValid"), "/foo")),
         expected: false,
       })),
       testSubpathIsValidExample4: nix.thunk(() => ({
-        [nix.POS]: pos$36,
+        [nix.POS]: $pos[35],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "isValid"), "../foo")),
         expected: false,
       })),
       testSubpathIsValidExample5: nix.thunk(() => ({
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "isValid"), "foo/bar")),
         expected: true,
       })),
       testSubpathIsValidExample6: nix.thunk(() => ({
-        [nix.POS]: pos$38,
+        [nix.POS]: $pos[37],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "isValid"), "./foo//bar/")),
         expected: true,
       })),
       testSubpathIsValidTwoDotsEnd: nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "isValid"), "foo/..")),
         expected: false,
       })),
       testSubpathIsValidTwoDotsMiddle: nix.thunk(() => ({
-        [nix.POS]: pos$40,
+        [nix.POS]: $pos[39],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "isValid"), "foo/../bar")),
         expected: false,
       })),
       testSubpathIsValidTwoDotsPrefix: nix.thunk(() => ({
-        [nix.POS]: pos$41,
+        [nix.POS]: $pos[40],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "isValid"), "..foo")),
         expected: true,
       })),
       testSubpathIsValidTwoDotsSuffix: nix.thunk(() => ({
-        [nix.POS]: pos$42,
+        [nix.POS]: $pos[41],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "isValid"), "foo..")),
         expected: true,
       })),
       testSubpathIsValidTwoDotsPrefixComponent: nix.thunk(() => ({
-        [nix.POS]: pos$43,
+        [nix.POS]: $pos[42],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "isValid"), "foo/..bar/baz")),
         expected: true,
       })),
       testSubpathIsValidTwoDotsSuffixComponent: nix.thunk(() => ({
-        [nix.POS]: pos$44,
+        [nix.POS]: $pos[43],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "isValid"), "foo/bar../baz")),
         expected: true,
       })),
       testSubpathIsValidThreeDots: nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "isValid"), "...")),
         expected: true,
       })),
       testSubpathIsValidFourDots: nix.thunk(() => ({
-        [nix.POS]: pos$46,
+        [nix.POS]: $pos[45],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "isValid"), "....")),
         expected: true,
       })),
       testSubpathIsValidThreeDotsComponent: nix.thunk(() => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "isValid"), "foo/.../bar")),
         expected: true,
       })),
       testSubpathIsValidFourDotsComponent: nix.thunk(() => ({
-        [nix.POS]: pos$48,
+        [nix.POS]: $pos[47],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "isValid"), "foo/..../bar")),
         expected: true,
       })),
       testSubpathJoinExample1: nix.thunk(() => ({
-        [nix.POS]: pos$49,
+        [nix.POS]: $pos[48],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "join"), nix.thunk(() => ["foo", "bar/baz"]))),
         expected: "./foo/bar/baz",
       })),
       testSubpathJoinExample2: nix.thunk(() => ({
-        [nix.POS]: pos$50,
+        [nix.POS]: $pos[49],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "join"), nix.thunk(() => ["./foo", ".", "bar//./baz/"]))),
         expected: "./foo/bar/baz",
       })),
       testSubpathJoinExample3: nix.thunk(() => ({
-        [nix.POS]: pos$51,
+        [nix.POS]: $pos[50],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "join"), [])),
         expected: "./.",
       })),
       testSubpathJoinExample4: nix.thunk(() => ({
-        [nix.POS]: pos$52,
+        [nix.POS]: $pos[51],
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(subpath, "join"), nix.thunk(() => [nix.path("", "/foo")])))), "success")),
         expected: false,
       })),
       testSubpathJoinExample5: nix.thunk(() => ({
-        [nix.POS]: pos$53,
+        [nix.POS]: $pos[52],
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(subpath, "join"), nix.thunk(() => [""])))), "success")),
         expected: false,
       })),
       testSubpathJoinExample6: nix.thunk(() => ({
-        [nix.POS]: pos$54,
+        [nix.POS]: $pos[53],
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(subpath, "join"), nix.thunk(() => ["/foo"])))), "success")),
         expected: false,
       })),
       testSubpathJoinExample7: nix.thunk(() => ({
-        [nix.POS]: pos$55,
+        [nix.POS]: $pos[54],
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(subpath, "join"), nix.thunk(() => ["../foo"])))), "success")),
         expected: false,
       })),
       testSubpathNormaliseExample1: nix.thunk(() => ({
-        [nix.POS]: pos$56,
+        [nix.POS]: $pos[55],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "normalise"), "foo//bar")),
         expected: "./foo/bar",
       })),
       testSubpathNormaliseExample2: nix.thunk(() => ({
-        [nix.POS]: pos$57,
+        [nix.POS]: $pos[56],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "normalise"), "foo/./bar")),
         expected: "./foo/bar",
       })),
       testSubpathNormaliseExample3: nix.thunk(() => ({
-        [nix.POS]: pos$58,
+        [nix.POS]: $pos[57],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "normalise"), "foo/bar")),
         expected: "./foo/bar",
       })),
       testSubpathNormaliseExample4: nix.thunk(() => ({
-        [nix.POS]: pos$59,
+        [nix.POS]: $pos[58],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "normalise"), "foo/bar/")),
         expected: "./foo/bar",
       })),
       testSubpathNormaliseExample5: nix.thunk(() => ({
-        [nix.POS]: pos$60,
+        [nix.POS]: $pos[59],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "normalise"), "foo/bar/.")),
         expected: "./foo/bar",
       })),
       testSubpathNormaliseExample6: nix.thunk(() => ({
-        [nix.POS]: pos$61,
+        [nix.POS]: $pos[60],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "normalise"), ".")),
         expected: "./.",
       })),
       testSubpathNormaliseExample7: nix.thunk(() => ({
-        [nix.POS]: pos$62,
+        [nix.POS]: $pos[61],
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(subpath, "normalise"), "foo/../bar"))), "success")),
         expected: false,
       })),
       testSubpathNormaliseExample8: nix.thunk(() => ({
-        [nix.POS]: pos$63,
+        [nix.POS]: $pos[62],
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(subpath, "normalise"), ""))), "success")),
         expected: false,
       })),
       testSubpathNormaliseExample9: nix.thunk(() => ({
-        [nix.POS]: pos$64,
+        [nix.POS]: $pos[63],
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(subpath, "normalise"), "/foo"))), "success")),
         expected: false,
       })),
       testSubpathNormaliseIsValidDots: nix.thunk(() => ({
-        [nix.POS]: pos$65,
+        [nix.POS]: $pos[64],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "normalise"), "./foo/.bar/.../baz...qux")),
         expected: "./foo/.bar/.../baz...qux",
       })),
       testSubpathNormaliseWrongType: nix.thunk(() => ({
-        [nix.POS]: pos$66,
+        [nix.POS]: $pos[65],
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(subpath, "normalise"), null))), "success")),
         expected: false,
       })),
       testSubpathNormaliseTwoDots: nix.thunk(() => ({
-        [nix.POS]: pos$67,
+        [nix.POS]: $pos[66],
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(subpath, "normalise"), ".."))), "success")),
         expected: false,
       })),
       testSubpathComponentsExample1: nix.thunk(() => ({
-        [nix.POS]: pos$68,
+        [nix.POS]: $pos[67],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "components"), ".")),
         expected: [],
       })),
       testSubpathComponentsExample2: nix.thunk(() => ({
-        [nix.POS]: pos$69,
+        [nix.POS]: $pos[68],
         expr: nix.thunk(() => nix.app(nix.sel(subpath, "components"), "./foo//bar/./baz/")),
         expected: nix.thunk(() => ["foo", "bar", "baz"]),
       })),
       testSubpathComponentsExample3: nix.thunk(() => ({
-        [nix.POS]: pos$70,
+        [nix.POS]: $pos[69],
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(subpath, "components"), "/foo"))), "success")),
         expected: false,
       })),
     }))));
-  return nix.app(nix.sel(lib, "debug", "throwTestFailures"), nix.thunk(() => ({ [nix.POS]: pos$72, failures: failures })));
+  return nix.app(nix.sel(lib, "debug", "throwTestFailures"), nix.thunk(() => ({ [nix.POS]: $pos[71], failures: failures })));
 })(), formals$1);
 //# sourceMappingURL=unit.ts.map

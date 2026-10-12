@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["PKG_CONFIG_ZATHURA_PLUGINDIR", 61, 7]], [["updateScript", 67, 12]], [["homepage", 70, 5], ["description", 71, 5], ["longDescription", 72, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]], [["version", 27, 3], ["pname", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["env", 61, 3], ["postPatch", 63, 3], ["passthru", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, meson: false, ninja: false, fetchFromGitHub: false, cairo: false, girara: false, "gtk-mac-integration": false, gumbo: false, jbig2dec: false, libjpeg: false, mupdf: false, openjpeg: false, "pkg-config": false, zathura_core: false, tesseract: false, leptonica: false, mujs: false, "desktop-file-utils": false, appstream: false, "appstream-glib": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PKG_CONFIG_ZATHURA_PLUGINDIR", 61, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 67, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 70, 5], ["description", 71, 5], ["longDescription", 72, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 27, 3], ["pname", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["env", 61, 3], ["postPatch", 63, 3], ["passthru", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const appstream_glib = nix.arg($, "appstream-glib");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "2026.05.10",
       pname: "zathura-pdf-mupdf",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pwmt",
           repo: "zathura-pdf-mupdf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,14 +54,14 @@ export default nix.lambda((args) => (() => {
         leptonica,
         mujs,
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), gtk_mac_integration))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PKG_CONFIG_ZATHURA_PLUGINDIR: "lib/zathura" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PKG_CONFIG_ZATHURA_PLUGINDIR: "lib/zathura" })),
       postPatch: "sed -i -e '/^mupdfthird =/d' -e 's/, mupdfthird//g' meson.build\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://pwmt.org/projects/zathura-pdf-mupdf/",
         description: "Zathura PDF plugin (mupdf)",
         longDescription: "The zathura-pdf-mupdf plugin adds PDF support to zathura by\nusing the mupdf rendering library.\n",

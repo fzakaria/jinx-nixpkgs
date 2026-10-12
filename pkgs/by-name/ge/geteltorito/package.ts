@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 51, 5], ["homepage", 52, 5], ["maintainers", 53, 5], ["license", 54, 5], ["mainProgram", 55, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["unpackCmd", 23, 3], ["dontBuild", 24, 3], ["configurePhase", 25, 3], ["installPhase", 26, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, perl: false, ronn: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["maintainers", 53, 5], ["license", 54, 5], ["mainProgram", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["unpackCmd", 23, 3], ["dontBuild", 24, 3], ["configurePhase", 25, 3], ["installPhase", 26, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const ronn = nix.arg($, "ronn");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "geteltorito",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://userpages.uni-koblenz.de/~krienke/ftp/noarch/geteltorito/geteltorito-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1gkbm9ahj2mgqrkrfpibzclsriqgsbsvjh19fr815vpd9f6snkxv",
         })))),
@@ -50,7 +48,7 @@ ronn --roff README.new --pipe > $out/man/man1/geteltorito.1
 install -vD geteltorito $out/bin/geteltorito
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extract the initial/default boot image from a CD image if existent",
         homepage: "https://userpages.uni-koblenz.de/~krienke/ftp/noarch/geteltorito/",
         maintainers: [],

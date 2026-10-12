@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["1.32.0", 24, 9], ["1.36.0", 25, 9], ["1.38.0", 26, 9]], [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["package", 67, 5], ["versionCheck", 68, 5]], [["pkg-config", 66, 18]], [["tests", 66, 12]], [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["pkgConfigModules", 77, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["sourceRoot", 31, 3], ["patches", 34, 3], ["nativeBuildInputs", 42, 3], ["checkInputs", 48, 3], ["configureFlags", 53, 3], ["enableParallelBuilding", 62, 3], ["doCheck", 64, 3], ["passthru", 66, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, openssl: false, boost: false, testers: false, asioVersion: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["1.32.0", 24, 9], ["1.36.0", 25, 9], ["1.38.0", 26, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 67, 5], ["versionCheck", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 66, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 66, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["pkgConfigModules", 77, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["sourceRoot", 31, 3], ["patches", 34, 3], ["nativeBuildInputs", 42, 3], ["checkInputs", 48, 3], ["configureFlags", 53, 3], ["enableParallelBuilding", 62, 3], ["doCheck", 64, 3], ["passthru", 66, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const asioVersion = nix.argOr($, "asioVersion", () => "1.38.0");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "asio",
       version: asioVersion,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "chriskohlhoff",
           repo: "asio",
           tag: nix.thunk(() => nix.str`asio-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
           hash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "1.32.0": "sha256-PBoa4OAOOmHas9wCutjz80rWXc3zGONntb9vTQk3FNY=",
             "1.36.0": "sha256-BhJpE5+t0WXsuQ5CtncU0P8Kf483uFoV+OGlFLc7TpQ=",
             "1.38.0": "sha256-pkSu8XMibmRPMoS3v5hO34oJb077bYc9KWELj3t8D6M=",
@@ -46,18 +40,18 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://think-async.com/Asio",
         description: "Cross-platform C++ library for network and low-level I/O programming",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["root", 14, 5], ["fileset", 15, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["duneVersion", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["doInstallCheck", 35, 3], ["postInstallCheck", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, reason: false, console: false, ppxlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["root", 14, 5], ["fileset", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["duneVersion", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["doInstallCheck", 35, 3], ["postInstallCheck", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const console = nix.arg($, "console");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "console_test",
       version: "1",
       src: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "toSource"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           root: nix.path(here, "./."),
           fileset: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "unions"), nix.thunk(() => [
               nix.path(here, "./console_test.opam"),

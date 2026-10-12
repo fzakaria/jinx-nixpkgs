@@ -2,42 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nyxt.nix", [[["maintainers", 9, 8]], [["systemPackages", 17, 17]], [["memorySize", 20, 20]], [["imports", 12, 5], ["environment", 17, 5], ["virtualisation", 20, 5]], [["machine", 11, 9]], [["name", 7, 3], ["meta", 9, 3], ["nodes", 11, 3], ["enableOCR", 23, 3], ["testScript", 25, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nyxt.nix", [["maintainers", 9, 8]]);
-const pos$2 = nix.positions(here + "/nyxt.nix", [["systemPackages", 17, 17]]);
-const pos$3 = nix.positions(here + "/nyxt.nix", [["memorySize", 20, 20]]);
-const pos$4 = nix.positions(here + "/nyxt.nix", [["imports", 12, 5], ["environment", 17, 5], ["virtualisation", 20, 5]]);
-const pos$5 = nix.positions(here + "/nyxt.nix", [["machine", 11, 9]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/nyxt.nix", [["name", 7, 3], ["meta", 9, 3], ["nodes", 11, 3], ["enableOCR", 23, 3], ["testScript", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "nyxt",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ethancedwards8"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "nyxt"))];
           })()),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, memorySize: 2048n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[2], memorySize: 2048n })),
       })),
     })),
     enableOCR: true,

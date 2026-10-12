@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["fetchSubmodules", 27, 5], ["hash", 28, 5]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["USE_EXTERNAL_JSON", 70, 7], ["USE_EXTERNAL_SPDLOG", 71, 7], ["USE_EXTERNAL_FMTLIB", 72, 7], ["USE_BPF_PROC_IMPL", 73, 7], ["BPF_BUILD_LIBBPF", 74, 7], ["ENABLE_SYSTEMD", 75, 7], ["ENABLE_REGEX_SUPPORT", 76, 7]], [["homepage", 87, 5], ["description", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5], ["mainProgram", 95, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 31, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["hardeningDisable", 63, 3], ["cmakeFlags", 68, 3], ["postInstall", 81, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchFromGitLab: false, fetchpatch: false, cmake: false, "pkg-config": false, spdlog: false, nlohmann_json: false, systemd: false, libbpf: false, elfutils: false, bpftools: false, pcre2: false, zlib: false, withBpf: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["fetchSubmodules", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["USE_EXTERNAL_JSON", 70, 7], ["USE_EXTERNAL_SPDLOG", 71, 7], ["USE_EXTERNAL_FMTLIB", 72, 7], ["USE_BPF_PROC_IMPL", 73, 7], ["BPF_BUILD_LIBBPF", 74, 7], ["ENABLE_SYSTEMD", 75, 7], ["ENABLE_REGEX_SUPPORT", 76, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 87, 5], ["description", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5], ["mainProgram", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 31, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["hardeningDisable", 63, 3], ["cmakeFlags", 68, 3], ["postInstall", 81, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withBpf = nix.argOr($, "withBpf", () => true);
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ananicy-cpp",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ananicy-cpp",
           repo: "ananicy-cpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./match-wrappers.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-cstring-include.patch",
             url: "https://gitlab.com/ananicy-cpp/ananicy-cpp/-/merge_requests/43.diff",
             hash: "sha256-drBUVh+N3KedJttzQIIA1s+38ngK9BgZFOdpxqBWV0E=",
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["stackprotector", "zerocallusedregs"]),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "cmakeBool")), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             USE_EXTERNAL_JSON: true,
             USE_EXTERNAL_SPDLOG: true,
             USE_EXTERNAL_FMTLIB: true,
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "rm -rf \"$out\"/include\nrm -rf \"$out\"/lib/cmake\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.com/ananicy-cpp/ananicy-cpp",
         description: "Rewrite of ananicy in c++ for lower cpu and memory usage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

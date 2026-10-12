@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["virtualboxVersion", 88, 13]], [["url", 122, 5], ["sha256", 123, 5]], [["url", 231, 9], ["hash", 232, 9]], [["qtPluginPath", 245, 9]], [["name", 251, 7], ["url", 252, 7], ["hash", 253, 7]], [["extensionPack", 397, 13], ["tests", 398, 5], ["updateScript", 399, 5]], [["description", 403, 5], ["longDescription", 404, 5], ["sourceProvenance", 410, 5], ["license", 414, 5], ["homepage", 415, 5], ["maintainers", 416, 5], ["platforms", 420, 5], ["mainProgram", 421, 5]], [["pname", 108, 3], ["version", 109, 3], ["buildType", 112, 5], ["virtualboxVersion", 113, 5], ["virtualboxSubVersion", 114, 5], ["virtualboxSha256", 115, 5], ["kvmPatchVersion", 116, 5], ["kvmPatchHash", 117, 5], ["virtualboxGuestAdditionsIso", 118, 5], ["src", 121, 3], ["outputs", 126, 3], ["nativeBuildInputs", 128, 3], ["dontWrapQtApps", 139, 3], ["buildInputs", 141, 3], ["hardeningDisable", 184, 3], ["prePatch", 191, 3], ["patches", 223, 3], ["postPatch", 261, 3], ["configurePhase", 267, 3], ["enableParallelBuilding", 324, 3], ["buildPhase", 326, 3], ["installPhase", 331, 3], ["preFixup", 386, 3], ["passthru", 396, 3], ["meta", 402, 3]]]);
 const formals$1 = { args: { config: false, stdenv: false, fetchurl: false, fetchpatch: false, callPackage: false, lib: false, "acpica-tools": false, dev86: false, pam: false, libxslt: false, libxml2: false, libx11: false, xorgproto: false, libxext: false, libxcursor: false, libxfixes: false, libxmu: false, SDL2: false, libcap: false, libGL: false, libGLU: false, libpng: false, glib: false, lvm2: false, libxrandr: false, libxinerama: false, libopus: false, libtpms: false, qt6: false, "pkg-config": false, which: false, docbook_xsl: false, docbook_xml_dtd_43: false, "alsa-lib": false, curl: false, libvpx: false, "net-tools": false, dbus: false, replaceVars: false, gsoap: false, zlib: false, xz: false, yasm: false, glslang: false, nixosTests: false, "open-watcom-bin": false, makeself: false, perl: false, javaBindings: true, jdk: false, pythonBindings: true, python3: false, extensionPack: true, fakeroot: false, pulseSupport: true, libpulseaudio: false, enableHardening: true, headless: true, enable32bitGuests: true, enableWebService: true, enableKvm: true, extraConfigureFlags: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["virtualboxVersion", 88, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 122, 5], ["sha256", 123, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 231, 9], ["hash", 232, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["qtPluginPath", 245, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 251, 7], ["url", 252, 7], ["hash", 253, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["extensionPack", 397, 13], ["tests", 398, 5], ["updateScript", 399, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 403, 5], ["longDescription", 404, 5], ["sourceProvenance", 410, 5], ["license", 414, 5], ["homepage", 415, 5], ["maintainers", 416, 5], ["platforms", 420, 5], ["mainProgram", 421, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 108, 3], ["version", 109, 3], ["buildType", 112, 5], ["virtualboxVersion", 113, 5], ["virtualboxSubVersion", 114, 5], ["virtualboxSha256", 115, 5], ["kvmPatchVersion", 116, 5], ["kvmPatchHash", 117, 5], ["virtualboxGuestAdditionsIso", 118, 5], ["src", 121, 3], ["outputs", 126, 3], ["nativeBuildInputs", 128, 3], ["dontWrapQtApps", 139, 3], ["buildInputs", 141, 3], ["hardeningDisable", 184, 3], ["prePatch", 191, 3], ["patches", 223, 3], ["postPatch", 261, 3], ["configurePhase", 267, 3], ["enableParallelBuilding", 324, 3], ["buildPhase", 326, 3], ["installPhase", 331, 3], ["preFixup", 386, 3], ["passthru", 396, 3], ["meta", 402, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -85,7 +78,7 @@ export default nix.lambda((args) => (() => {
   const kvmPatchVersion = "20260930";
   const kvmPatchHash = "sha256-gqfAsW2AQFXC0MAss0NfucKYAbpxvT9eYdStYAunwbk=";
   const withModsrc = nix.thunk(() => !nix.asBool(enableKvm));
-  const virtualboxGuestAdditionsIso = nix.thunk(() => nix.app(callPackage, nix.path(here, "./guest-additions-iso"), nix.thunk(() => ({ [nix.POS]: pos$1, virtualboxVersion: virtualboxVersion }))));
+  const virtualboxGuestAdditionsIso = nix.thunk(() => nix.app(callPackage, nix.path(here, "./guest-additions-iso"), nix.thunk(() => ({ [nix.POS]: $pos[0], virtualboxVersion: virtualboxVersion }))));
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
@@ -98,7 +91,7 @@ export default nix.lambda((args) => (() => {
   const qtscxml = nix.thunk(() => nix.attr(qt6, "qtscxml"));
   const wrapQtAppsHook = nix.thunk(() => nix.attr(qt6, "wrapQtAppsHook"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "virtualbox",
       version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "virtualboxVersion")}${nix.sel(finalAttrs, "virtualboxSubVersion")}`),
       buildType: buildType,
@@ -109,7 +102,7 @@ export default nix.lambda((args) => (() => {
       kvmPatchHash: kvmPatchHash,
       virtualboxGuestAdditionsIso: virtualboxGuestAdditionsIso,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://download.virtualbox.org/virtualbox/${nix.sel(finalAttrs, "virtualboxVersion")}/VirtualBox-${nix.sel(finalAttrs, "virtualboxVersion")}${nix.sel(finalAttrs, "virtualboxSubVersion")}.tar.bz2`),
           sha256: nix.thunk(() => nix.sel(finalAttrs, "virtualboxSha256")),
         })))),
@@ -174,15 +167,15 @@ set +x
       patches: nix.thunk(() => nix.concat(nix.app(optional, enableHardening, nix.path(here, "./hardened.patch")), nix.concat(nix.app(optionals, nix.thunk(() => !nix.asBool(headless)), nix.thunk(() => [
           nix.path(here, "./fix-sdl.patch"),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://salsa.debian.org/pkg-virtualbox-team/virtualbox/-/raw/8028d88e6876ca5977de13c58b54e243229efe98/debian/patches/16-no-update.patch",
               hash: "sha256-AGtFsRjwd8Yw296eqX3NC2TUptAhpFTRaOMutiheQ6Y=",
             })))),
         ])), nix.concat([nix.path(here, "./extra_symbols.patch")], nix.concat(nix.app(optional, nix.thunk(() => (nix.asBool(!nix.asBool(headless)) && nix.asBool(enableHardening))), nix.thunk(() => nix.app(replaceVars, nix.path(here, "./qt-env-vars.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             qtPluginPath: nix.thunk(() => nix.str`${qtbase}/bin/${nix.sel(qtbase, "qtPluginPrefix")}:${qtsvg}/bin/${nix.sel(qtbase, "qtPluginPrefix")}:${qtwayland}/bin/${nix.sel(qtbase, "qtPluginPrefix")}`),
           }))))), nix.concat(nix.app(optional, enableKvm, nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: nix.thunk(() => nix.str`virtualbox-${nix.sel(finalAttrs, "virtualboxVersion")}-kvm-dev-${nix.sel(finalAttrs, "kvmPatchVersion")}.patch`),
             url: nix.thunk(() => nix.str`https://github.com/cyberus-technology/virtualbox-kvm/releases/download/dev-${nix.sel(finalAttrs, "kvmPatchVersion")}/kvm-backend-${kvmPatchVboxVersion}-dev-${nix.sel(finalAttrs, "kvmPatchVersion")}.patch`),
             hash: nix.thunk(() => nix.sel(finalAttrs, "kvmPatchHash")),
@@ -284,13 +277,13 @@ ln -s "${nix.sel(finalAttrs, "virtualboxGuestAdditionsIso")}" "$out/share/virtua
 `),
       preFixup: nix.thunk(() => nix.add(nix.app(optionalString, nix.thunk(() => !nix.asBool(headless)), "wrapQtApp $out/bin/VirtualBox\n"), nix.app(optionalString, nix.thunk(() => (nix.asBool(!nix.asBool(headless)) && nix.asBool(!nix.asBool(enableHardening)))), "wrapQtApp $out/libexec/virtualbox/VirtualBoxVM\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         extensionPack: extensionPack,
         tests: nix.thunk(() => nix.sel(nixosTests, "virtualbox")),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "PC emulator",
         longDescription: "VirtualBox is an x86 and AMD64/Intel64 virtualization product for enterprise and home use.\n\nTo install on NixOS, please use the option `virtualisation.virtualbox.host.enable = true`.\nPlease also check other options under `virtualisation.virtualbox`.\n",
         sourceProvenance: nix.thunk(() => (() => {

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-hello-world.nix", [[["name", 8, 3], ["buildInputs", 9, 3], ["src", 11, 3], ["buildPhase", 16, 3], ["checkPhase", 22, 3], ["doCheck", 27, 3], ["installPhase", 29, 3]]]);
 const formals$1 = { args: { stdenv: false, microhs: false, writeTextDir: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-hello-world.nix", [["name", 8, 3], ["buildInputs", 9, 3], ["src", 11, 3], ["buildPhase", 16, 3], ["checkPhase", 22, 3], ["doCheck", 27, 3], ["installPhase", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const microhs = nix.arg($, "microhs");
   const writeTextDir = nix.arg($, "writeTextDir");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "microhs-hello-world",
       buildInputs: nix.thunk(() => [microhs]),
       src: nix.thunk(() => nix.app(writeTextDir, "helloworld.hs", "main :: IO ()\nmain = putStrLn \"Hello World\"\n")),

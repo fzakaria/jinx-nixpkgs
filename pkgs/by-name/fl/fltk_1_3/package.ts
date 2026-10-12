@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]], [["extraArgs", 188, 5]], [["updateScript", 187, 12]], [["description", 195, 5], ["homepage", 196, 5], ["platforms", 197, 5], ["license", 200, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["outputs", 51, 3], ["outputBin", 54, 3], ["patches", 56, 3], ["postPatch", 60, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 78, 3], ["propagatedBuildInputs", 90, 3], ["cmakeFlags", 111, 3], ["preBuild", 149, 3], ["postBuild", 154, 3], ["postInstall", 158, 3], ["postFixup", 182, 3], ["passthru", 187, 3], ["meta", 194, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, zlib: false, libjpeg: false, libpng: false, fontconfig: false, freetype: false, libx11: false, libxext: false, libxinerama: false, libxfixes: false, libxcursor: false, libxft: false, libxrender: false, withGL: true, libGL: false, libGLU: false, glew: false, withCairo: true, cairo: false, withDocs: true, doxygen: false, graphviz: false, withXorg: true, withExamples: true, withShared: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 188, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 187, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 195, 5], ["homepage", 196, 5], ["platforms", 197, 5], ["license", 200, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["outputs", 51, 3], ["outputBin", 54, 3], ["patches", 56, 3], ["postPatch", 60, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 78, 3], ["propagatedBuildInputs", 90, 3], ["cmakeFlags", 111, 3], ["preBuild", 149, 3], ["postBuild", 154, 3], ["postInstall", 158, 3], ["postFixup", 182, 3], ["passthru", 187, 3], ["meta", 194, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const withShared = nix.argOr($, "withShared", () => true);
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fltk",
       version: "1.3.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fltk",
           repo: "fltk",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -104,14 +100,14 @@ done
 `)))),
       postFixup: "substituteInPlace $out/bin/fltk-config \\\n  --replace-fail \"/$out/\" \"/\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "release-(1\\.3\\.[0-9.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C++ cross-platform lightweight GUI library",
         homepage: "https://www.fltk.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

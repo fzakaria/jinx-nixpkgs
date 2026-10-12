@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["source", 128, 9], ["external", 134, 9]], [["$PI_HOLE_BIN_DIR", 152, 9], ["$PI_HOLE_FILES_DIR", 153, 9], ["$PI_HOLE_INSTALL_DIR", 154, 9], ["$PI_HOLE_LOCAL_REPO", 155, 9], ["$PI_HOLE_SCRIPT_DIR", 156, 9], ["$colfile", 157, 9], ["$coltable", 158, 9], ["$PIHOLE_COLTABLE_FILE", 159, 9], ["$utilsfile", 160, 9], ["$apifile", 161, 9], ["$piholeGitDir", 162, 9], ["$PIHOLE_COMMAND", 163, 9]], [["source", 166, 9], ["$PIHOLE_SETUP_VARS_FILE", 185, 9], ["$PKG_INSTALL", 186, 9], ["$PKG_MANAGER", 187, 9], ["$cmd", 188, 9], ["$program_name", 189, 9], ["$svc", 190, 9], ["$addmode", 205, 9], ["$noReloadRequested", 206, 9], ["$oldAvail", 207, 9], ["$verbose", 208, 9], ["$web", 209, 9], ["$wildcard", 210, 9], ["/etc/.pihole", 220, 9], ["/etc/os-release", 221, 9], ["/etc/pihole/versions", 222, 9], ["/etc/pihole/setupVars.conf", 223, 9]], [["scripts", 79, 7], ["interpreter", 99, 7], ["inputs", 100, 7], ["fake", 127, 7], ["fix", 151, 7], ["keep", 165, 7], ["execer", 225, 7]], [["default", 73, 13]], [["stateDir", 235, 13], ["tests", 236, 5]], [["description", 240, 5], ["homepage", 241, 5], ["changelog", 242, 5], ["license", 243, 5], ["maintainers", 244, 5], ["platforms", 245, 5], ["mainProgram", 246, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["nativeBuildInputs", 51, 3], ["installPhase", 56, 3], ["solutions", 73, 3], ["passthru", 234, 3], ["meta", 239, 3]], [["version", 251, 19], ["src", 251, 27], ["preFixup", 254, 5]]]);
 const formals$1 = { args: { lib: false, nixosTests: false, fetchFromGitHub: false, makeBinaryWrapper: false, installShellFiles: false, bash: false, coreutils: false, curl: false, dig: false, gawk: false, getent: false, glibc: false, gnugrep: false, gnused: false, iproute2: false, jq: false, killall: false, libidn2: false, locale: false, ncurses: false, netcat: false, "net-tools": false, "pihole-ftl": false, procps: false, resholve: false, sqlite: false, systemd: false, "util-linux": false, stateDir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["source", 128, 9], ["external", 134, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["$PI_HOLE_BIN_DIR", 152, 9], ["$PI_HOLE_FILES_DIR", 153, 9], ["$PI_HOLE_INSTALL_DIR", 154, 9], ["$PI_HOLE_LOCAL_REPO", 155, 9], ["$PI_HOLE_SCRIPT_DIR", 156, 9], ["$colfile", 157, 9], ["$coltable", 158, 9], ["$PIHOLE_COLTABLE_FILE", 159, 9], ["$utilsfile", 160, 9], ["$apifile", 161, 9], ["$piholeGitDir", 162, 9], ["$PIHOLE_COMMAND", 163, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["source", 166, 9], ["$PIHOLE_SETUP_VARS_FILE", 185, 9], ["$PKG_INSTALL", 186, 9], ["$PKG_MANAGER", 187, 9], ["$cmd", 188, 9], ["$program_name", 189, 9], ["$svc", 190, 9], ["$addmode", 205, 9], ["$noReloadRequested", 206, 9], ["$oldAvail", 207, 9], ["$verbose", 208, 9], ["$web", 209, 9], ["$wildcard", 210, 9], ["/etc/.pihole", 220, 9], ["/etc/os-release", 221, 9], ["/etc/pihole/versions", 222, 9], ["/etc/pihole/setupVars.conf", 223, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["scripts", 79, 7], ["interpreter", 99, 7], ["inputs", 100, 7], ["fake", 127, 7], ["fix", 151, 7], ["keep", 165, 7], ["execer", 225, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["default", 73, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["stateDir", 235, 13], ["tests", 236, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 240, 5], ["homepage", 241, 5], ["changelog", 242, 5], ["license", 243, 5], ["maintainers", 244, 5], ["platforms", 245, 5], ["mainProgram", 246, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["nativeBuildInputs", 51, 3], ["installPhase", 56, 3], ["solutions", 73, 3], ["passthru", 234, 3], ["meta", 239, 3]]);
-const pos$10 = nix.positions(here + "/package.nix", [["version", 251, 19], ["src", 251, 27], ["preFixup", 254, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const stateDir = nix.argOr($, "stateDir", () => "/etc/pihole");
   return nix.app(nix.sel(nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "pihole",
       version: "6.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pi-hole",
           repo: "pi-hole",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,12 +54,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, installShellFiles]),
       installPhase: "runHook preInstall\n\nreadonly scriptsDir=$out/share/pihole\n\ninstall -Dm 555 -t $out/bin pihole\ninstall -Dm 555 -t $scriptsDir/advanced/Scripts gravity.sh\n\n# The installation script is sourced by advanced/Scripts/piholeDebug.sh etc\ncp --parents -r -t $scriptsDir/ 'automated install/' advanced/{Scripts,Templates}/\n\ninstallShellCompletion --bash --name pihole.bash \\\n  advanced/bash-completion/pihole.bash\n\nrunHook postInstall\n",
       solutions: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         default: nix.thunk(() => (() => {
           const out = nix.thunk(() => nix.builtins.placeholder("out"));
           const scriptsDir = nix.thunk(() => nix.str`${out}/share/pihole/advanced/Scripts`);
           return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             scripts: nix.thunk(() => (() => {
               const relativeScripts = "share/pihole/advanced/Scripts";
               return [
@@ -115,7 +106,7 @@ export default nix.lambda((args) => (() => {
               util_linux,
             ]),
             fake: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               source: nix.thunk(() => [
                 "/etc/os-release",
                 "/etc/pihole/versions",
@@ -135,7 +126,7 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             fix: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               $PI_HOLE_BIN_DIR: nix.thunk(() => [nix.thunk(() => nix.str`${out}/bin`)]),
               $PI_HOLE_FILES_DIR: nix.thunk(() => [nix.thunk(() => nix.str`${out}/share/pihole`)]),
               $PI_HOLE_INSTALL_DIR: nix.thunk(() => [scriptsDir]),
@@ -150,7 +141,7 @@ export default nix.lambda((args) => (() => {
               $PIHOLE_COMMAND: nix.thunk(() => ["pihole"]),
             })),
             keep: nix.thunk(() => nix.attrsDyn({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               source: nix.thunk(() => [
                 "$pihole_FTL",
                 "$setupVars",
@@ -212,12 +203,12 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         stateDir: stateDir,
         tests: nix.thunk(() => nix.sel(nixosTests, "pihole-ftl")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Black hole for Internet advertisements",
         homepage: "https://pi-hole.net",
         changelog: nix.thunk(() => nix.str`https://github.com/pi-hole/pi-hole/releases/tag/v${nix.sel(finalAttrs, "version")}`),
@@ -230,7 +221,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pihole",
       })),
     })), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       version: nix.thunk(() => nix.attr(old, "version")),
       src: nix.thunk(() => nix.attr(old, "src")),
       preFixup: nix.thunk(() => nix.add("scriptsDir=$out/share/pihole\n\nsubstituteInPlace $out/bin/pihole $scriptsDir/advanced/Scripts/*.sh \\\n  --replace-quiet /etc/.pihole $scriptsDir \\\n  --replace-quiet /opt/pihole $scriptsDir/advanced/Scripts\n", nix.sel(old, "preFixup"))),

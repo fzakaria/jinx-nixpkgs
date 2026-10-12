@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["bin/jaspr", 29, 5]], [["name", 55, 9], ["buildInputs", 57, 9], ["script", 58, 9]], [["name", 67, 9], ["buildInputs", 68, 9], ["script", 69, 9]], [["help-text", 54, 7], ["create-project", 66, 7]], [["updateScript", 50, 5], ["tests", 52, 5]], [["cpeParts", 91, 17]], [["mainProgram", 80, 5], ["homepage", 81, 5], ["description", 82, 5], ["longDescription", 83, 5], ["changelog", 86, 5], ["license", 89, 5], ["sourceProvenance", 90, 5], ["identifiers", 91, 5], ["maintainers", 92, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["strictDeps", 16, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["dartEntryPoints", 28, 3], ["pubspecLock", 32, 3], ["nativeBuildInputs", 34, 3], ["nativeInstallCheckInputs", 36, 3], ["doInstallCheck", 40, 3], ["preBuild", 45, 3], ["passthru", 49, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildDartApplication: false, fetchFromGitHub: false, versionCheckHook: false, callPackage: false, "yq-go": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["bin/jaspr", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 55, 9], ["buildInputs", 57, 9], ["script", 58, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 67, 9], ["buildInputs", 68, 9], ["script", 69, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["help-text", 54, 7], ["create-project", 66, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 50, 5], ["tests", 52, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["cpeParts", 91, 17]]);
-const pos$8 = nix.positions(here + "/package.nix", [["mainProgram", 80, 5], ["homepage", 81, 5], ["description", 82, 5], ["longDescription", 83, 5], ["changelog", 86, 5], ["license", 89, 5], ["sourceProvenance", 90, 5], ["identifiers", 91, 5], ["maintainers", 92, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["strictDeps", 16, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["dartEntryPoints", 28, 3], ["pubspecLock", 32, 3], ["nativeBuildInputs", 34, 3], ["nativeInstallCheckInputs", 36, 3], ["doInstallCheck", 40, 3], ["preBuild", 45, 3], ["passthru", 49, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,38 +15,38 @@ export default nix.lambda((args) => (() => {
   const yq_go = nix.arg($, "yq-go");
   const testers = nix.arg($, "testers");
   return nix.app(buildDartApplication, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "jaspr_cli",
       version: "0.23.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "schultek",
           repo: "jaspr",
           tag: nix.thunk(() => nix.str`jaspr_cli-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-V+cmnO4I4hZEdxzjnycPCTQbWpBmjESJSG9cIoMIwjo=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/packages/jaspr_cli`),
-      dartEntryPoints: nix.thunk(() => ({ [nix.POS]: pos$2, "bin/jaspr": "bin/jaspr.dart" })),
+      dartEntryPoints: nix.thunk(() => ({ [nix.POS]: $pos[1], "bin/jaspr": "bin/jaspr.dart" })),
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       nativeBuildInputs: nix.thunk(() => [yq_go]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       preBuild: "yq -i 'del(.resolution)' pubspec.yaml\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "help-text": nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "jaspr-cli-help-test",
               buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "jaspr --help | grep \"Usage: jaspr\"\ntouch $out\n",
             })))),
           "create-project": nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "jaspr-cli-create-test",
               buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "export HOME=$TMPDIR\njaspr create -t docs my_test_project --no-pub-get\ntest -f my_test_project/pubspec.yaml\ntouch $out\n",
@@ -62,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         mainProgram: "jaspr",
         homepage: "https://jaspr.site",
         description: "Command line tools for Jaspr",
@@ -74,7 +66,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "fromSource"))];
         })()),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "schultek", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
         maintainers: nix.thunk(() => (() => {

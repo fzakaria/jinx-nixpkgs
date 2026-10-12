@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 5], ["version", 15, 5], ["src", 16, 5], ["meta", 17, 5], ["pyproject", 19, 3], ["sourceRoot", 21, 3], ["preBuild", 22, 3], ["nativeBuildInputs", 26, 3], ["cmakeFlags", 32, 3], ["propagatedBuildInputs", 36, 3], ["pythonImportsCheck", 43, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, cmake: false, swig: false, elastix: false, itk: false, numpy: false, simpleitk: false, "scikit-build": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 5], ["version", 15, 5], ["src", 16, 5], ["meta", 17, 5], ["pyproject", 19, 3], ["sourceRoot", 21, 3], ["preBuild", 22, 3], ["nativeBuildInputs", 26, 3], ["cmakeFlags", 32, 3], ["propagatedBuildInputs", 36, 3], ["pythonImportsCheck", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [elastix, itk, simpleitk, numpy]);
       const pythonImportsCheck = nix.thunk(() => ["SimpleITK"]);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname,
         version,
         src,

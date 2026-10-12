@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 21, 13], ["hash", 22, 13]], [["9.0.1", 20, 11]], [["name", 27, 40], ["hash", 27, 45], ["url", 28, 9]], [["pname", 14, 5], ["version", 15, 13], ["src", 17, 5], ["nativeBuildInputs", 31, 5], ["installPhase", 35, 5]], [["pname", 64, 50], ["version", 64, 56], ["src", 64, 64]], [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["mainProgram", 92, 5], ["platforms", 93, 5], ["sourceProvenance", 94, 5]], [["pname", 46, 3], ["version", 47, 11], ["src", 49, 3], ["extraPkgs", 51, 3], ["extraBwrapArgs", 56, 3], ["extraInstallCommands", 62, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { appimageTools: false, dpkg: false, lib: false, libpng: false, libxkbfile: false, requireFile: false, stdenvNoCC: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 21, 13], ["hash", 22, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["9.0.1", 20, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 27, 40], ["hash", 27, 45], ["url", 28, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 5], ["version", 15, 13], ["src", 17, 5], ["nativeBuildInputs", 31, 5], ["installPhase", 35, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 64, 50], ["version", 64, 56], ["src", 64, 64]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["mainProgram", 92, 5], ["platforms", 93, 5], ["sourceProvenance", 94, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 46, 3], ["version", 47, 11], ["src", 49, 3], ["extraPkgs", 51, 3], ["extraBwrapArgs", 56, 3], ["extraInstallCommands", 62, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const version = nix.argOr($, "version", () => "9.0.1");
   const appimage = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cisco-packet-tracer-appimage",
       version: version,
       src: nix.thunk(() => (() => {
         const sources = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "9.0.1": nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "CiscoPacketTracer_901_Ubuntu_64bit.deb",
             hash: "sha256-NoPdh+d5iFNyrpo1wabllNEvST5knnxpdAhynBRZR5s=",
           })),
@@ -37,7 +31,7 @@ export default nix.lambda((args) => (() => {
         return nix.app(requireFile, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(sources, nix.key(nix.str`${version}`)));
             return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: nix.thunk(() => nix.attr(from, "name")),
             hash: nix.thunk(() => nix.attr(from, "hash")),
             url: "https://www.netacad.com/resources/lab-downloads",
@@ -54,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const extraPkgs = (_) => [libpng, libxkbfile];
       const extraBwrapArgs = nix.thunk(() => ["--setenv QT_QPA_PLATFORM xcb"]);
       const extraInstallCommands = nix.thunk(() => (() => {
-        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$5, pname: pname, version: version_1, src: src }))));
+        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[4], pname: pname, version: version_1, src: src }))));
         return nix.str`mv $out/bin/${pname} $out/bin/packettracer9
 
 install -Dm444 ${contents}/CiscoPacketTracer-9.0.1.desktop $out/share/applications/cisco-packet-tracer-9.desktop
@@ -74,7 +68,7 @@ done
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Network simulation tool from Cisco",
         homepage: "https://www.netacad.com/courses/packet-tracer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -90,7 +84,7 @@ done
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version: version_1,
         src,

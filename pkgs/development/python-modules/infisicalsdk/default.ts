@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["teams", 54, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 33, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["pythonImportsCheck", 45, 3], ["doCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pyprojectVersionPatchHook: false, setuptools: false, "python-dateutil": false, aenum: false, requests: false, boto3: false, botocore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["teams", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 33, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["pythonImportsCheck", 45, 3], ["doCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const boto3 = nix.arg($, "boto3");
   const botocore = nix.arg($, "botocore");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "infisicalsdk",
       version: "1.0.17",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Infisical",
           repo: "python-sdk-official",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["infisical_sdk"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/Infisical/python-sdk-official",
         description: "Infisical Python SDK",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

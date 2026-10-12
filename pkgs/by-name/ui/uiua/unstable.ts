@@ -2,7 +2,7 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/unstable.nix", [["version", 2, 3], ["tag", 3, 3], ["hash", 4, 3], ["cargoHash", 5, 3], ["updateScript", 6, 3], ["patches", 7, 3]]);
+const $pos = nix.positions(here + "/unstable.nix", [[["version", 2, 3], ["tag", 3, 3], ["hash", 4, 3], ["cargoHash", 5, 3], ["updateScript", 6, 3], ["patches", 7, 3]]]);
 
 export default nix.thunk(() => (() => {
   const version = "0.19.1";
@@ -11,6 +11,6 @@ export default nix.thunk(() => (() => {
   const cargoHash = "sha256-eKfqPipGrrKQZLVKyHPYyeGHl8xQEIm4X5I1lfEwdxA=";
   const updateScript = nix.path(here, "./update-unstable.sh");
   const patches = nix.thunk(() => [nix.path(here, "./0001-no-network-test.patch")]);
-  return { [nix.POS]: pos$1, version, tag, hash, cargoHash, updateScript, patches };
+  return { [nix.POS]: $pos[0], version, tag, hash, cargoHash, updateScript, patches };
 })());
 //# sourceMappingURL=unstable.ts.map

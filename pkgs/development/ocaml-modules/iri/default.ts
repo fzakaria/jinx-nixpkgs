@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["homepage", 34, 35]], [["pname", 11, 3], ["version", 12, 3], ["minimalOCamlVersion", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 24, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitLab: false, sedlex: false, uunf: false, uutf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["homepage", 34, 35]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["minimalOCamlVersion", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 24, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const uunf = nix.arg($, "uunf");
   const uutf = nix.arg($, "uutf");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "iri",
       version: "1.2.0",
       minimalOCamlVersion: "4.12",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "framagit.org",
           owner: "zoggy",
           repo: "ocaml-iri",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "IRI (RFC3987) native OCaml implementation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

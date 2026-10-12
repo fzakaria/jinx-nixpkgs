@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["PATH", 29, 7]], [["description", 92, 5]], [["pname", 22, 3], ["version", 23, 25], ["src", 23, 33], ["sourceRoot", 25, 3], ["patches", 27, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 60, 3], ["makeFlags", 64, 3], ["installFlags", 70, 3], ["doCheck", 79, 3], ["installTargets", 81, 3], ["strictDeps", 88, 3], ["__structuredAttrs", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, which: false, replaceVars: false, perl: false, buildPackages: false, runtimeShellPackage: false, libapparmor: false, "apparmor-bin-utils": false, "apparmor-parser": false, gnused: false, gnugrep: false, systemd: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["PATH", 29, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 25], ["src", 23, 33], ["sourceRoot", 25, 3], ["patches", 27, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 60, 3], ["makeFlags", 64, 3], ["installFlags", 70, 3], ["doCheck", 79, 3], ["installTargets", 81, 3], ["strictDeps", 88, 3], ["__structuredAttrs", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "apparmor-init",
       version: nix.thunk(() => nix.attr(libapparmor, "version")),
       src: nix.thunk(() => nix.attr(libapparmor, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/init`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-rc-apparmor-functions-FHS.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [apparmor_bin_utils, apparmor_parser, coreutils, gnused, gnugrep, systemd]))),
           })))),
       ]),
@@ -67,7 +65,7 @@ done
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(nix.sel(libapparmor, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Mandatory access control system - init files",
       })),
     }));

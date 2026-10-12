@@ -2,17 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pg_when.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["TZDIR", 36, 9]], [["query", 43, 9], ["expected", 44, 9], ["description", 45, 9]], [["query", 48, 9], ["expected", 49, 9], ["description", 50, 9]], [["query", 53, 9], ["expected", 54, 9], ["description", 55, 9]], [["finalPackage", 33, 26], ["env", 36, 5], ["sql", 38, 5], ["asserts", 41, 5]], [["extension", 32, 18]], [["updateScript", 30, 12], ["tests", 32, 12]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]], [["postgresql", 12, 11], ["cargo-pgrx", 13, 3], ["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["doCheck", 28, 3], ["passthru", 30, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { buildPgrxExtension: false, "cargo-pgrx_0_18_0": false, fetchFromGitHub: false, lib: false, "nix-update-script": false, postgresql: false, postgresqlTestExtension: false, tzdata: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pg_when.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/pg_when.nix", [["TZDIR", 36, 9]]);
-const pos$3 = nix.positions(here + "/pg_when.nix", [["query", 43, 9], ["expected", 44, 9], ["description", 45, 9]]);
-const pos$4 = nix.positions(here + "/pg_when.nix", [["query", 48, 9], ["expected", 49, 9], ["description", 50, 9]]);
-const pos$5 = nix.positions(here + "/pg_when.nix", [["query", 53, 9], ["expected", 54, 9], ["description", 55, 9]]);
-const pos$6 = nix.positions(here + "/pg_when.nix", [["finalPackage", 33, 26], ["env", 36, 5], ["sql", 38, 5], ["asserts", 41, 5]]);
-const pos$7 = nix.positions(here + "/pg_when.nix", [["extension", 32, 18]]);
-const pos$8 = nix.positions(here + "/pg_when.nix", [["updateScript", 30, 12], ["tests", 32, 12]]);
-const pos$9 = nix.positions(here + "/pg_when.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]]);
-const pos$10 = nix.positions(here + "/pg_when.nix", [["postgresql", 12, 11], ["cargo-pgrx", 13, 3], ["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["doCheck", 28, 3], ["passthru", 30, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   const tzdata = nix.arg($, "tzdata");
   return nix.app(buildPgrxExtension, (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       postgresql: postgresql,
       "cargo-pgrx": cargo_pgrx_0_18_0,
       pname: "pg_when",
       version: "0.1.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "frectonz",
           repo: "pg-when",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,30 +31,33 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-pHY71+egTX9AU8nNeDHCymmaFsz+2JYmRGqKq4uT7w4=",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
-              env: nix.thunk(() => ({ [nix.POS]: pos$2, TZDIR: nix.thunk(() => nix.str`${tzdata}/share/zoneinfo`) })),
+              env: nix.thunk(() => ({
+                [nix.POS]: $pos[1],
+                TZDIR: nix.thunk(() => nix.str`${tzdata}/share/zoneinfo`),
+              })),
               sql: "CREATE EXTENSION pg_when;\n",
               asserts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   query: "when_is('December 31, 2026 at evening in Asia/Tokyo')",
                   expected: "TIMESTAMPTZ '2026-12-31 18:00:00+09'",
                   description: "exact date with a time keyword and a named timezone resolves correctly",
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   query: "seconds_at('January 1, 2000 at midnight in UTC+3')",
                   expected: "946674000",
                   description: "UNIX timestamp accounts for the UTC offset",
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   query: "millis_at('1970-01-01 at midnight')",
                   expected: "0",
                   description: "UNIX epoch is zero milliseconds",
@@ -73,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "PostgreSQL extension for creating time values with natural language",
         homepage: "https://github.com/frectonz/pg-when",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

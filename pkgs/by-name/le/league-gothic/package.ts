@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 26, 5], ["longDescription", 27, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["longDescription", 27, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "league-gothic",
       version: "1.601",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/theleagueof/league-gothic/releases/download/${nix.sel(finalAttrs, "version")}/LeagueGothic-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-emkXKyQw4R0Zgg02oJsvBkqV0jmczP0tF0K2IKqJHMA=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -D -m444 -t $out/share/fonts/truetype $src/static/TTF/*.ttf\ninstall -D -m444 -t $out/share/fonts/opentype $src/static/OTF/*.otf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Revival of an old classic, Alternate Gothic #1",
         longDescription: "League Gothic is a revival of an old classic, and one of our favorite\ntypefaces, Alternate Gothic #1. It was originally designed by Morris\nFuller Benton for the American Type Founders Company in 1903. The company\nwent bankrupt in 1993, and since the original typeface was created before\n1923, the typeface is in the public domain.\n\nWe decided to make our own version, and contribute it to the Open Source\nType Movement. Thanks to a commission from the fine & patient folks over\nat WND.com, it’s been revised & updated with contributions from Micah\nRich, Tyler Finck, and Dannci, who contributed extra glyphs.\n",
         homepage: "https://www.theleagueofmoveabletype.com/league-gothic",

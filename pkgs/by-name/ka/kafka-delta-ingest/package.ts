@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["RUSTFLAGS", 44, 7]], [["lockFile", 47, 5]], [["broken", 58, 5], ["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildFeatures", 32, 3], ["buildInputs", 38, 3], ["env", 44, 3], ["cargoLock", 46, 3], ["postPatch", 50, 3], ["doCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, openssl: false, perl: false, rdkafka: false, enableS3: true, enableAzure: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["lockFile", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 58, 5], ["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildFeatures", 32, 3], ["buildInputs", 38, 3], ["env", 44, 3], ["cargoLock", 46, 3], ["postPatch", 50, 3], ["doCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const enableAzure = nix.argOr($, "enableAzure", () => true);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (nix.asBool(enableS3) || nix.asBool(enableAzure))), "Either S3 or azure support needs to be enabled"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ka/kafka-delta-ingest/package.nix:15:1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "kafka-delta-ingest",
       version: "0-unstable-2025-05-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "delta-io",
           repo: "kafka-delta-ingest",
           rev: "da9c932be3a98649da74ed91f5e1593bece65e89",
@@ -36,13 +32,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, perl]),
       buildFeatures: nix.thunk(() => nix.concat(["dynamic-linking"], nix.concat(nix.app(nix.sel(lib, "optional"), enableS3, "s3"), nix.app(nix.sel(lib, "optional"), enableAzure, "azure")))),
       buildInputs: nix.thunk(() => [openssl, rdkafka]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "--cap-lints warn" })),
-      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$3, lockFile: nix.path(here, "./Cargo.lock") })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTFLAGS: "--cap-lints warn" })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[2], lockFile: nix.path(here, "./Cargo.lock") })),
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Highly efficient daemon for streaming data from Kafka into Delta Lake",
         mainProgram: "kafka-delta-ingest",

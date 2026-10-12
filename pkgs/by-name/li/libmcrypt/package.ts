@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["url", 22, 7], ["hash", 23, 7]], [["NIX_CFLAGS_COMPILE", 37, 7]], [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["buildInputs", 27, 3], ["configureFlags", 29, 3], ["env", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, cctools: false, disablePosixThreads: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["buildInputs", 27, 3], ["configureFlags", 29, 3], ["env", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const cctools = nix.arg($, "cctools");
   const disablePosixThreads = nix.argOr($, "disablePosixThreads", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libmcrypt",
       version: "2.5.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/mcrypt/Libmcrypt/${nix.sel(finalAttrs, "version")}/libmcrypt-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-5OtsB0u6sWisR7lHwZX/jO+dUaIRzdGMqcnvNNJ6Nz4=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.alpinelinux.org/alpine/aports/-/raw/v20251224/community/libmcrypt/c23.patch",
             hash: "sha256-yTBCi5f0s8SiM5aq8X135E2Wwl7S2sO1tsVDthCdAMg=",
           })))),
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), cctools)),
       configureFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), disablePosixThreads, nix.thunk(() => ["--disable-posix-threads"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ["ac_cv_func_malloc_0_nonnull=yes", "ac_cv_func_realloc_0_nonnull=yes"])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-implicit-function-declaration", "-Wno-implicit-int"]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Replacement for the old crypt() package and crypt(1) command, with extensions",
         mainProgram: "libmcrypt-config",
         homepage: "https://mcrypt.sourceforge.net",

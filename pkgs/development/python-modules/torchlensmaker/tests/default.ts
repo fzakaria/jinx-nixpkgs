@@ -2,15 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nativeBuildInputs", 8, 5]]]);
 const formals$1 = { args: { runCommand: false, torchlensmaker: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 8, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommand = nix.arg($, "runCommand");
   const torchlensmaker = nix.arg($, "torchlensmaker");
   return nix.app(runCommand, "test-torchlensmaker", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(torchlensmaker, "pyEnv"))]),
     })), nix.thunk(() => nix.str`python ${nix.path(here, "./landscape.py")}
 mv landscape.json $out

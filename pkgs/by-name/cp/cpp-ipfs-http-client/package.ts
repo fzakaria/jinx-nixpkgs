@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["NIX_CFLAGS_COMPILE", 32, 7]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["broken", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 30, 3], ["env", 32, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, curl: false, cmake: false, nlohmann_json: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["broken", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 30, 3], ["env", 32, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const nlohmann_json = nix.arg($, "nlohmann_json");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cpp-ipfs-http-client",
       version: "0-unstable-2023-06-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vasild",
           repo: "cpp-ipfs-http-client",
           rev: "29a103af79ad62ef42180f54f6cd2128b4128836",
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl]),
       propagatedBuildInputs: nix.thunk(() => [nlohmann_json]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=range-loop-construct", "-Wno-error=deprecated-declarations"]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "IPFS C++ API client library",
         homepage: "https://github.com/vasild/cpp-ipfs-http-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

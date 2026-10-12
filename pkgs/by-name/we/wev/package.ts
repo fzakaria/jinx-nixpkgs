@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["homepage", 43, 5], ["description", 44, 5], ["longDescription", 45, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["depsBuildBuild", 26, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["installFlags", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false, "pkg-config": false, scdoc: false, "wayland-scanner": false, wayland: false, "wayland-protocols": false, libxkbcommon: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["longDescription", 45, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["depsBuildBuild", 26, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["installFlags", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wev",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~sircmpwn",
           repo: "wev",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [wayland, wayland_protocols, libxkbcommon]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git.sr.ht/~sircmpwn/wev",
         description: "Wayland event viewer",
         longDescription: "This is a tool for debugging events on a Wayland window, analogous to the\nX11 tool xev.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 37, 3], ["nativeCheckInputs", 39, 3], ["preCheck", 47, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, graphviz: false, "pdm-backend": false, "pytest-cov-stub": false, pytestCheckHook: false, pyyaml: false, test2ref: false, fontconfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 37, 3], ["nativeCheckInputs", 39, 3], ["preCheck", 47, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.13.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "c0fec0de",
           repo: "anytree",
           tag: version,
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
 `);
       const pythonImportsCheck = nix.thunk(() => ["anytree"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Powerful and Lightweight Python Tree Data Structure",
         homepage: "https://github.com/c0fec0de/anytree",
         changelog: nix.thunk(() => nix.str`https://github.com/c0fec0de/anytree/releases/tag/${version}`),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

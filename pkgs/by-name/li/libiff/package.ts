@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 23, 5], ["longDescription", 24, 5], ["homepage", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5], ["license", 32, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, autoreconfHook: false, help2man: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["longDescription", 24, 5], ["homepage", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5], ["license", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const help2man = nix.arg($, "help2man");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libiff",
       version: "0-unstable-2024-03-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "svanderburg",
           repo: "libiff",
           rev: "b5f542a83c824f26e0816770c9a17c22bd388606",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, help2man]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Parser for the Interchange File Format (IFF)",
         longDescription: "libiff is a portable, extensible parser library implemented in\nANSI C, for EA-IFF 85: Electronic Arts' Interchange File Format\n(IFF).\n",
         homepage: "https://github.com/svanderburg/libiff",

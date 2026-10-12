@@ -2,44 +2,37 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/loader.nix", [[["maintainers", 5, 8]], [["kernelPackages", 8, 10]], [["default_sched", 11, 14]], [["enable", 10, 7], ["config", 11, 7]], [["scx-loader", 9, 14]], [["boot", 8, 5], ["services", 9, 5]], [["machine", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 15, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/loader.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/loader.nix", [["kernelPackages", 8, 10]]);
-const pos$3 = nix.positions(here + "/loader.nix", [["default_sched", 11, 14]]);
-const pos$4 = nix.positions(here + "/loader.nix", [["enable", 10, 7], ["config", 11, 7]]);
-const pos$5 = nix.positions(here + "/loader.nix", [["scx-loader", 9, 14]]);
-const pos$6 = nix.positions(here + "/loader.nix", [["boot", 8, 5], ["services", 9, 5]]);
-const pos$7 = nix.positions(here + "/loader.nix", [["machine", 7, 9]]);
-const pos$8 = nix.positions(here + "/loader.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "scx-loader",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ccicnce113424"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "scx-loader": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
-            config: nix.thunk(() => ({ [nix.POS]: pos$3, default_sched: "scx_bpfland" })),
+            config: nix.thunk(() => ({ [nix.POS]: $pos[2], default_sched: "scx_bpfland" })),
           })),
         })),
       })),

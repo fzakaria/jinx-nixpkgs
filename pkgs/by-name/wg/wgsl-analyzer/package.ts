@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["updateScript", 29, 12]], [["description", 32, 5], ["homepage", 33, 5], ["changelog", 34, 5], ["license", 35, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["checkFlags", 21, 3], ["passthru", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 29, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["changelog", 34, 5], ["license", 35, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["checkFlags", 21, 3], ["passthru", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wgsl-analyzer",
       version: "2026-04-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wgsl-analyzer",
           repo: "wgsl-analyzer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
         "--skip=tests::struct_recover_3",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Language server implementation for the WGSL shading language",
         homepage: "https://github.com/wgsl-analyzer/wgsl-analyzer",
         changelog: nix.thunk(() => nix.str`https://github.com/wgsl-analyzer/wgsl-analyzer/releases/tag/v${nix.sel(finalAttrs, "version")}`),

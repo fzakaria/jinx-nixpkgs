@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 40, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, colored: false, h5py: false, hdf5plugin: false, numpy: false, pytestCheckHook: false, "python-dateutil": false, scipy: false, "setuptools-scm": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 40, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-uDHWO+nxfWe1d1eBona4fsqNDt0Swbkb513sSOPI9Sk=",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["nexusformat.nexus"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python API to open, create, and manipulate NeXus data written in the HDF5 format",
         homepage: "https://github.com/nexpy/nexusformat",
         changelog: nix.thunk(() => nix.str`https://github.com/nexpy/nexusformat/releases/tag/v${version}`),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

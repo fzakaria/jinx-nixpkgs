@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 31, 7]], [["name", 48, 7], ["exec", 49, 7], ["icon", 50, 7], ["desktopName", 51, 7], ["comment", 52, 7], ["categories", 53, 7]], [["updateScript", 60, 12]], [["description", 63, 5], ["homepage", 64, 5], ["downloadPage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 72, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["npmDepsHash", 22, 3], ["dontNpmBuild", 23, 3], ["nativeBuildInputs", 25, 3], ["env", 31, 3], ["postPatch", 33, 3], ["postInstall", 39, 3], ["desktopItems", 46, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, copyDesktopItems: false, electron: false, fetchFromGitHub: false, lib: false, makeDesktopItem: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 48, 7], ["exec", 49, 7], ["icon", 50, 7], ["desktopName", 51, 7], ["comment", 52, 7], ["categories", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["downloadPage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["npmDepsHash", 22, 3], ["dontNpmBuild", 23, 3], ["nativeBuildInputs", 25, 3], ["env", 31, 3], ["postPatch", 33, 3], ["postInstall", 39, 3], ["desktopItems", 46, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "google-chat-linux";
       const version = "5.39.28-1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "squalou",
           repo: "google-chat-linux",
           tag: version,
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-Lgo3pGmaRMawH4m264W0CwpIuiVZZbqhI5OHXOKau9c=";
       const dontNpmBuild = true;
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const postPatch = nix.thunk(() => nix.str`# https://github.com/electron/electron/issues/31121
 substituteInPlace src/paths.js \\
   --replace-fail "process.resourcesPath" "'$out/lib/node_modules/${pname}/assets'"
@@ -44,7 +39,7 @@ makeWrapper ${electron}/bin/electron $out/bin/${pname} \\
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "google-chat-linux",
             exec: "google-chat-linux",
             icon: "google-chat-linux",
@@ -54,11 +49,11 @@ makeWrapper ${electron}/bin/electron $out/bin/${pname} \\
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Electron-base client for Google Hangouts Chat",
         homepage: "https://github.com/squalou/google-chat-linux",
         downloadPage: "https://github.com/squalou/google-chat-linux/releases",
@@ -72,7 +67,7 @@ makeWrapper ${electron}/bin/electron $out/bin/${pname} \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

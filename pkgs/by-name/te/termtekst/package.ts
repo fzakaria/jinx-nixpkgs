@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 35, 5], ["mainProgram", 36, 5], ["longDescription", 37, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["build-system", 13, 3], ["src", 15, 3], ["dependencies", 22, 3], ["patchPhase", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["mainProgram", 36, 5], ["longDescription", 37, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["build-system", 13, 3], ["src", 15, 3], ["dependencies", 22, 3], ["patchPhase", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "termtekst",
       version: "1.0",
       pyproject: true,
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })()),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zevv",
           repo: "termtekst",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       })()),
       patchPhase: "substituteInPlace setup.py \\\n  --replace-fail \"assert\" \"assert 1==1 #\"\nsubstituteInPlace src/tt \\\n  --replace-fail \"locale.setlocale\" \"#locale.setlocale\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Console NOS Teletekst viewer in Python",
         mainProgram: "tt",
         longDescription: "Small Python app using curses to display Dutch NOS Teletekst on\nthe Linux console. The original Teletekst font includes 2x6\nraster graphics glyphs which have no representation in unicode;\nas a workaround the braille set is abused to approximate the\ngraphics.\n",

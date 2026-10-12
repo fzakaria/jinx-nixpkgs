@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["minimalOCamlVersion", 10, 3], ["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["doCheck", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, seq: false, "stdlib-shims": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["minimalOCamlVersion", 10, 3], ["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["doCheck", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const seq = nix.arg($, "seq");
   const stdlib_shims = nix.arg($, "stdlib-shims");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       minimalOCamlVersion: "4.08",
       pname: "ounit2",
       version: "2.2.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/gildor478/ounit/releases/download/v${nix.sel(finalAttrs, "version")}/ounit-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-kPbmO9EkClHYubL3IgWb15zgC1J2vdYji49cYTwOc4g=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [seq, stdlib_shims]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/gildor478/ounit",
         description: "Unit test framework for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

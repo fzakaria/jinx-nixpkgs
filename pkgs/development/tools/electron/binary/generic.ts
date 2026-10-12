@@ -2,17 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["teams", 54, 5], ["platforms", 55, 5], ["sourceProvenance", 61, 5], ["knownVulnerabilities", 63, 5]], [["url", 69, 7], ["sha256", 70, 7]], [["name", 76, 7], ["url", 77, 7], ["sha256", 78, 7]], [["x86_64-linux", 82, 5], ["armv7l-linux", 83, 5], ["aarch64-linux", 84, 5], ["aarch64-darwin", 85, 5]], [["headers", 93, 14]], [["pname", 91, 13], ["version", 91, 19], ["meta", 91, 27], ["src", 92, 5], ["passthru", 93, 5]], [["dist", 189, 14]], [["buildInputs", 135, 5], ["nativeBuildInputs", 141, 5], ["dontUnpack", 147, 5], ["dontBuild", 148, 5], ["installPhase", 150, 5], ["dontWrapGApps", 157, 5], ["preFixup", 159, 5], ["postFixup", 164, 5], ["passthru", 189, 5], ["__structuredAttrs", 191, 5], ["strictDeps", 192, 5]], [["dist", 209, 14]], [["nativeBuildInputs", 196, 5], ["buildCommand", 201, 5], ["passthru", 209, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, fetchurl: false, fetchzip: false, wrapGAppsHook3: false, glib: false, gtk3: false, gtk4: false, unzip: false, "at-spi2-atk": false, libdrm: false, libgbm: false, libxkbcommon: false, libxshmfence: false, libGL: false, "vulkan-loader": false, "alsa-lib": false, cairo: false, cups: false, dbus: false, expat: false, "gdk-pixbuf": false, nss: false, nspr: false, libxrandr: false, libxfixes: false, libxext: false, libxdamage: false, libxcomposite: false, libx11: false, libxkbfile: false, libxcb: false, pango: false, systemd: false, pciutils: false, libnotify: false, pipewire: false, libsecret: false, libpulseaudio: false, "speechd-minimal": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["teams", 54, 5], ["platforms", 55, 5], ["sourceProvenance", 61, 5], ["knownVulnerabilities", 63, 5]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["url", 69, 7], ["sha256", 70, 7]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["name", 76, 7], ["url", 77, 7], ["sha256", 78, 7]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["x86_64-linux", 82, 5], ["armv7l-linux", 83, 5], ["aarch64-linux", 84, 5], ["aarch64-darwin", 85, 5]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["headers", 93, 14]]);
-const pos$6 = nix.positions(here + "/generic.nix", [["pname", 91, 13], ["version", 91, 19], ["meta", 91, 27], ["src", 92, 5], ["passthru", 93, 5]]);
-const pos$7 = nix.positions(here + "/generic.nix", [["dist", 189, 14]]);
-const pos$8 = nix.positions(here + "/generic.nix", [["buildInputs", 135, 5], ["nativeBuildInputs", 141, 5], ["dontUnpack", 147, 5], ["dontBuild", 148, 5], ["installPhase", 150, 5], ["dontWrapGApps", 157, 5], ["preFixup", 159, 5], ["postFixup", 164, 5], ["passthru", 189, 5], ["__structuredAttrs", 191, 5], ["strictDeps", 192, 5]]);
-const pos$9 = nix.positions(here + "/generic.nix", [["dist", 209, 14]]);
-const pos$10 = nix.positions(here + "/generic.nix", [["nativeBuildInputs", 196, 5], ["buildCommand", 201, 5], ["passthru", 209, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,7 +51,7 @@ export default nix.lambda((args) => (() => {
   return (version) => (hashes) => (() => {
     const pname = "electron";
     const meta = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       description: "Cross platform desktop application shell",
       homepage: "https://github.com/electron/electron",
       license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -74,18 +65,18 @@ export default nix.lambda((args) => (() => {
       knownVulnerabilities: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "42.0.0")), nix.thunk(() => nix.str`Electron version ${version} is EOL`))),
     }));
     const fetcher = (vers) => (tag) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/electron/electron/releases/download/v${vers}/electron-v${vers}-${tag}.zip`),
         sha256: hash,
       })));
     const headersFetcher = (vers) => (hash) => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: nix.thunk(() => nix.str`electron-${vers}-headers`),
         url: nix.thunk(() => nix.str`https://artifacts.electronjs.org/headers/dist/v${vers}/node-v${vers}-headers.tar.gz`),
         sha256: hash,
       })));
     const tags = nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "x86_64-linux": "linux-x64",
       "armv7l-linux": "linux-armv7l",
       "aarch64-linux": "linux-arm64",
@@ -93,13 +84,13 @@ export default nix.lambda((args) => (() => {
     }));
     const get = (as) => (platform) => nix.selOr(as, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(platform, "system")}`)), nix.key(nix.sel(platform, "system")));
     const common = (platform) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => nix.app(fetcher, version, nix.thunk(() => nix.app(get, tags, platform)), nix.thunk(() => nix.app(get, hashes, platform)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         headers: nix.thunk(() => nix.app(headersFetcher, version, nix.thunk(() => nix.sel(hashes, "headers")))),
       })),
     });
@@ -141,7 +132,7 @@ export default nix.lambda((args) => (() => {
         vulkan_loader,
       ])));
     const linux = (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       buildInputs: nix.thunk(() => [glib, gtk3, gtk4]),
       nativeBuildInputs: nix.thunk(() => [unzip, makeWrapper, wrapGAppsHook3]),
       dontUnpack: true,
@@ -165,18 +156,18 @@ patchelf \\
   $out/libexec/electron/lib*GL*
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         dist: nix.thunk(() => nix.add(nix.sel(finalAttrs, "finalPackage"), "/libexec/electron")),
       })),
       __structuredAttrs: true,
       strictDeps: true,
     });
     const darwin = (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       nativeBuildInputs: nix.thunk(() => [makeWrapper, unzip]),
       buildCommand: "mkdir -p $out/Applications\nunzip $src\nmv Electron.app $out/Applications\nmkdir -p $out/bin\nmakeWrapper $out/Applications/Electron.app/Contents/MacOS/Electron $out/bin/electron\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         dist: nix.thunk(() => nix.add(nix.sel(finalAttrs, "finalPackage"), "/Applications")),
       })),
     });

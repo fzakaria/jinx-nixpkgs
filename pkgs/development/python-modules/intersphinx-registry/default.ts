@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["lookup", 48, 5], ["tests", 54, 5]], [["description", 76, 5], ["homepage", 77, 5], ["mainProgram", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["teams", 81, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["build-system", 41, 3], ["dependencies", 45, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 62, 3], ["doCheck", 69, 3], ["pythonImportsCheck", 71, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pyprojectVersionPatchHook: false, "flit-core": false, platformdirs: false, requests: false, "requests-cache": false, sphinx: false, mypy: false, pytest: false, "pytest-xdist": false, "types-requests": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lookup", 48, 5], ["tests", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["mainProgram", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["teams", 81, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["build-system", 41, 3], ["dependencies", 45, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 62, 3], ["doCheck", 69, 3], ["pythonImportsCheck", 71, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const types_requests = nix.arg($, "types-requests");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "intersphinx-registry",
       version: "0.2705.27",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Quansight-labs",
           repo: "intersphinx_registry",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "lookup")),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         lookup: nix.thunk(() => [platformdirs, requests, requests_cache, sphinx]),
         tests: nix.thunk(() => [mypy, pytest, pytest_xdist, types_requests]),
       })),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["intersphinx_registry"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utility package that provides a default intersphinx mapping",
         homepage: "https://github.com/Quansight-labs/intersphinx_registry",
         mainProgram: "intersphinx-registry",

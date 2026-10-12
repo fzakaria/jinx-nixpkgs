@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["name", 25, 7], ["desktopName", 26, 7], ["exec", 27, 7], ["icon", 28, 7], ["comment", 29, 7], ["categories", 30, 7], ["startupNotify", 31, 7]], [["homepage", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5], ["platforms", 77, 5], ["sourceProvenance", 78, 5], ["license", 82, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["desktopItems", 23, 3], ["patches", 35, 3], ["mvnHash", 40, 3], ["mvnParameters", 42, 3], ["nativeBuildInputs", 44, 3], ["installPhase", 50, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, jre: false, makeWrapper: false, maven: false, icoutils: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["desktopName", 26, 7], ["exec", 27, 7], ["icon", 28, 7], ["comment", 29, 7], ["categories", 30, 7], ["startupNotify", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5], ["platforms", 77, 5], ["sourceProvenance", 78, 5], ["license", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["desktopItems", 23, 3], ["patches", 35, 3], ["mvnHash", 40, 3], ["mvnParameters", 42, 3], ["nativeBuildInputs", 44, 3], ["installPhase", 50, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bytecode-viewer";
       const version = "2.13.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Konloch",
           repo: "bytecode-viewer",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "bytecode-viewer",
             desktopName: "Bytecode-Viewer",
             exec: nix.thunk(() => nix.sel(meta, "mainProgram")),
@@ -63,7 +60,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/${nix.sel(meta, "ma
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://bytecodeviewer.com",
         description: "Lightweight user-friendly Java/Android Bytecode Viewer, Decompiler & More",
         mainProgram: "bytecode-viewer",
@@ -82,7 +79,7 @@ runHook postInstall
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

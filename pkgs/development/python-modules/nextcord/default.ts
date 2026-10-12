@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["ffmpeg", 38, 7], ["libopus", 39, 7]], [["changelog", 77, 5], ["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["disabled", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["postPatch", 43, 3], ["build-system", 50, 3], ["dependencies", 55, 3], ["doCheck", 68, 3], ["pythonImportsCheck", 70, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, pythonAtLeast: false, pythonOlder: false, fetchFromGitHub: false, replaceVars: false, ffmpeg: false, libopus: false, aiohttp: false, aiodns: false, "audioop-lts": false, brotli: false, orjson: false, "poetry-core": false, "poetry-dynamic-versioning": false, pynacl: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ffmpeg", 38, 7], ["libopus", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 77, 5], ["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["disabled", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["postPatch", 43, 3], ["build-system", 50, 3], ["dependencies", 55, 3], ["doCheck", 68, 3], ["pythonImportsCheck", 70, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nextcord",
           repo: "nextcord",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             ffmpeg: nix.thunk(() => nix.str`${ffmpeg}/bin/ffmpeg`),
             libopus: nix.thunk(() => nix.str`${libopus}/lib/libopus${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
@@ -57,7 +54,7 @@ substituteInPlace pyproject.toml \\
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["nextcord", "nextcord.ext.commands", "nextcord.ext.tasks"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/nextcord/nextcord/blob/${nix.sel(src, "tag")}/docs/whats_new.rst`),
         description: "Python wrapper for the Discord API forked from discord.py",
         homepage: "https://github.com/nextcord/nextcord",
@@ -68,7 +65,7 @@ substituteInPlace pyproject.toml \\
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

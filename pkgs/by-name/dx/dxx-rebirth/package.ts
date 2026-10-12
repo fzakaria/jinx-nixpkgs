@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["NIX_CFLAGS_COMPILE", 55, 7]], [["updateScript", 65, 12]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["enableParallelBuilding", 51, 3], ["sconsFlags", 53, 3], ["env", 55, 3], ["postInstall", 60, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, scons: false, "pkg-config": false, SDL2: false, SDL2_image: false, SDL2_mixer: false, libGLU: false, libGL: false, libpng: false, physfs: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 55, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["enableParallelBuilding", 51, 3], ["sconsFlags", 53, 3], ["env", 55, 3], ["postInstall", 60, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const physfs = nix.arg($, "physfs");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const music = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://www.dxx-rebirth.com/download/dxx/res/d2xr-sc55-music.dxa",
       sha256: "05mz77vml396mff43dbs50524rlm4fyds6widypagfbh5hc55qdc",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dxx-rebirth",
       version: "0.60.0-beta2-unstable-2025-05-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "dxx-rebirth",
           repo: "dxx-rebirth",
           rev: "7a84b3f307ac6f72fd440e55b149d7c2c942dfaf",
@@ -47,18 +42,18 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       sconsFlags: nix.thunk(() => ["sdl2=1"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-format-nonliteral", "-Wno-format-truncation"]))),
       })),
       postInstall: nix.thunk(() => nix.str`install -Dm644 ${music} $out/share/games/dxx-rebirth/${nix.sel(music, "name")}
 install -Dm644 -t $out/share/doc/dxx-rebirth *.txt
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Source Port of the Descent 1 and 2 engines",
         homepage: "https://www.dxx-rebirth.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

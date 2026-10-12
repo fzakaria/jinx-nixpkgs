@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["name", 24, 7], ["url", 25, 7], ["sha256", 26, 7]], [["name", 34, 7], ["url", 35, 7], ["sha256", 36, 7]], [["description", 45, 5], ["license", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["buildInputs", 40, 3], ["installFlags", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 7], ["url", 25, 7], ["sha256", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["sha256", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 45, 5], ["license", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["buildInputs", 40, 3], ["installFlags", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bowtie",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BenLangmead",
           repo: "bowtie",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,13 +25,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix_compilation_on_arm64",
             url: "https://github.com/BenLangmead/bowtie/commit/091d72f4cb69ca0713704d38bd7f9b37e6c4ff2d.patch",
             sha256: "sha256-XBvgICUBnE5HKpJ36IHTDiKjJgLFKETsIaJC46uN+2I=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fix_include_search_path",
             url: "https://github.com/BenLangmead/bowtie/commit/c208b9db936eab0bc3ffdf0182b4f59a9017a1c4.patch",
             sha256: "sha256-772EE+oWFWXssSMabPryb0AfIS1tC10mPTRCBm7RrUs=",
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib]),
       installFlags: nix.thunk(() => ["prefix=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Ultrafast memory-efficient short read aligner",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),
         homepage: "https://bowtie-bio.sourceforge.net",

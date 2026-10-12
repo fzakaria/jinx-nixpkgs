@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/6.x.nix", [[["pname", 33, 5], ["version", 34, 26], ["hash", 35, 5]], [["sip", 130, 13], ["pyqt6-sip", 130, 17], ["multimediaEnabled", 131, 5], ["WebSocketsEnabled", 132, 5], ["serialPortEnabled", 133, 5]], [["NIX_CFLAGS_COMPILE", 156, 7]], [["description", 159, 5], ["homepage", 160, 5], ["license", 161, 5], ["platforms", 162, 25], ["maintainers", 163, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["patches", 38, 3], ["build-system", 46, 3], ["dependencies", 51, 3], ["postPatch", 58, 3], ["enableParallelBuilding", 68, 3], ["postUnpack", 75, 3], ["outputs", 79, 3], ["dontWrapQtApps", 84, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 107, 3], ["propagatedBuildInputs", 125, 3], ["passthru", 129, 3], ["dontConfigure", 136, 3], ["pythonImportsCheck", 140, 3], ["env", 156, 3], ["meta", 158, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, "pkg-config": false, dbus: false, lndir: false, "dbus-python": false, sip: false, "pyqt6-sip": false, "pyqt-builder": false, qt6Packages: false, mesa: false, withMultimedia: true, withWebSockets: true, withLocation: true, withPrintSupport: true, withSerialPort: true, cups: false, withSpeech: true, withPdf: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/6.x.nix", [["pname", 33, 5], ["version", 34, 26], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/6.x.nix", [["sip", 130, 13], ["pyqt6-sip", 130, 17], ["multimediaEnabled", 131, 5], ["WebSocketsEnabled", 132, 5], ["serialPortEnabled", 133, 5]]);
-const pos$3 = nix.positions(here + "/6.x.nix", [["NIX_CFLAGS_COMPILE", 156, 7]]);
-const pos$4 = nix.positions(here + "/6.x.nix", [["description", 159, 5], ["homepage", 160, 5], ["license", 161, 5], ["platforms", 162, 25], ["maintainers", 163, 5]]);
-const pos$5 = nix.positions(here + "/6.x.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["patches", 38, 3], ["build-system", 46, 3], ["dependencies", 51, 3], ["postPatch", 58, 3], ["enableParallelBuilding", 68, 3], ["postUnpack", 75, 3], ["outputs", 79, 3], ["dontWrapQtApps", 84, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 107, 3], ["propagatedBuildInputs", 125, 3], ["passthru", 129, 3], ["dontConfigure", 136, 3], ["pythonImportsCheck", 140, 3], ["env", 156, 3], ["meta", 158, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const withSpeech = nix.argOr($, "withSpeech", () => true);
   const withPdf = nix.argOr($, "withPdf", () => true);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pyqt6",
       version: "6.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pyqt6",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Rd1gqmmXbeGRi1zta057aiWr0qkZ7O9f1YJuzHZxiIk=",
@@ -88,7 +84,7 @@ substituteInPlace pyproject.toml \\
       })()),
       propagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(withPrintSupport) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), nix.thunk(() => [cups]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         sip: sip,
         "pyqt6-sip": pyqt6_sip,
         multimediaEnabled: withMultimedia,
@@ -105,13 +101,13 @@ substituteInPlace pyproject.toml \\
         "PyQt6.QtQuick",
       ], nix.concat(nix.app(nix.sel(lib, "optional"), withWebSockets, "PyQt6.QtWebSockets"), nix.concat(nix.app(nix.sel(lib, "optional"), withMultimedia, "PyQt6.QtMultimedia"), nix.concat(nix.app(nix.sel(lib, "optional"), withLocation, "PyQt6.QtPositioning"), nix.concat(nix.app(nix.sel(lib, "optional"), withSerialPort, "PyQt6.QtSerialPort"), nix.concat(nix.app(nix.sel(lib, "optional"), withSpeech, "PyQt6.QtTextToSpeech"), nix.app(nix.sel(lib, "optional"), withPdf, "PyQt6.QtPdf")))))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-address-of-temporary")),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python bindings for Qt6",
         homepage: "https://riverbankcomputing.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

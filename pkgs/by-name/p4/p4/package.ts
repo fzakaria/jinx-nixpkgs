@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["static", 15, 5]], [["url", 20, 9], ["sha256", 21, 9], ["stripRoot", 22, 9]], [["name", 30, 9], ["path", 31, 9]], [["url", 41, 5], ["hash", 42, 5]], [["CCFLAGS", 83, 5], ["C++FLAGS", 89, 5]], [["package", 128, 5], ["command", 129, 5]], [["version", 127, 18]], [["tests", 127, 12]], [["description", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["mainProgram", 136, 5], ["platforms", 137, 5], ["maintainers", 138, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 51, 3], ["outputs", 53, 3], ["hardeningDisable", 59, 3], ["jamFlags", 61, 3], ["env", 82, 3], ["preBuild", 107, 3], ["buildPhase", 111, 3], ["installPhase", 118, 3], ["passthru", 127, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, fetchzip: false, lib: false, emptyDirectory: false, linkFarm: false, jam: false, openssl: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["static", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 9], ["sha256", 21, 9], ["stripRoot", 22, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 30, 9], ["path", 31, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 41, 5], ["hash", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["CCFLAGS", 83, 5], ["C++FLAGS", 89, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["package", 128, 5], ["command", 129, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 127, 18]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 127, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["mainProgram", 136, 5], ["platforms", 137, 5], ["maintainers", 138, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 51, 3], ["outputs", 53, 3], ["hardeningDisable", 59, 3], ["jamFlags", 61, 3], ["env", 82, 3], ["preBuild", 107, 3], ["buildPhase", 111, 3], ["installPhase", 118, 3], ["passthru", 127, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,28 +16,28 @@ export default nix.lambda((args) => (() => {
   const jam = nix.arg($, "jam");
   const openssl = nix.arg($, "openssl");
   const testers = nix.arg($, "testers");
-  const opensslStatic = nix.thunk(() => nix.app(nix.sel(openssl, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, static: true }))));
+  const opensslStatic = nix.thunk(() => nix.app(nix.sel(openssl, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], static: true }))));
   const androidZlibContrib = nix.thunk(() => (() => {
     const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "https://android.googlesource.com/platform/external/zlib/+archive/61174f4fd262c6075f88768465f308aae95a2f04.tar.gz",
         sha256: "sha256-EMzKAHcEWOUugcHKH2Fj3ZaIHC9UlgO4ULKe3RvgxvI=",
         stripRoot: false,
       }))));
     return nix.app(linkFarm, "android-zlib-contrib", nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "contrib",
           path: nix.thunk(() => nix.str`${src}/contrib`),
         })),
       ]));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "p4",
       version: "2024.1/2596294",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: "https://web.archive.org/web/20240526153453id_/https://ftp.perforce.com/perforce/r24.1/bin.tools/p4source.tgz",
           hash: "sha256-6+DOJPeVzP4x0UsN9MlZRAyusapBTICX0BuyvVBQBC8=",
         })))),
@@ -71,7 +62,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-sLIBC++DIR=${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "libcxx")))}/lib`),
         ]))))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         CCFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => [nix.thunk(() => nix.str`-I${androidZlibContrib}`)]))))),
         "C++FLAGS": nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), nix.thunk(() => ["-Wno-narrowing"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) || nix.asBool((nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "cc", "version")), "11.0.0")))))), nix.thunk(() => ["-include", "limits", "-include", "thread"])))))),
       })),
@@ -79,18 +70,18 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\njam $jamFlags -j$NIX_BUILD_CORES p4\njam $jamFlags -j$NIX_BUILD_CORES -sPRODUCTION=yes p4api.tar\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $bin/bin $dev $out\ncp bin.unix/p4 $bin/bin\ncp -r bin.unix/p4api-*/include $dev\ncp -r bin.unix/p4api-*/lib $out\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "p4 -V",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Perforce Helix Core command-line client and APIs",
         homepage: "https://www.perforce.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

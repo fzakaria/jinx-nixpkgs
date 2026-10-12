@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["baseName", 11, 3], ["buildInputs", 13, 3], ["propagatedBuildInputs", 17, 3], ["dontWrapQtApps", 23, 3], ["preFixup", 25, 3]]]);
 const formals$1 = { args: { bash: false, boost: false, faust: false, lv2: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["baseName", 11, 3], ["buildInputs", 13, 3], ["propagatedBuildInputs", 17, 3], ["dontWrapQtApps", 23, 3], ["preFixup", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lv2 = nix.arg($, "lv2");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(faust, "wrapWithBuildEnv"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       baseName: "faust2lv2",
       buildInputs: nix.thunk(() => [bash]),
       propagatedBuildInputs: nix.thunk(() => [boost, lv2, nix.thunk(() => nix.sel(qt5, "qtbase"))]),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["pythonImportsCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, pytestCheckHook: false, fastapi: false, issubclass: false, jinja2: false, pydantic: false, starlette: false, "typing-extensions": false, "typing-inspection": false, "dirty-equals": false, httpx: false, "inline-snapshot": false, "pydantic-settings": false, "pytest-fixture-classes": false, "python-multipart": false, svcs: false, typer: false, uvicorn: false, pythonAtLeast: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["pythonImportsCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const uvicorn = nix.arg($, "uvicorn");
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cadwyn",
       version: "7.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zmievsa",
           repo: "cadwyn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
         uvicorn,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Production-ready community-driven modern Stripe-like API versioning in FastAPI",
         homepage: "https://github.com/zmievsa/cadwyn",
         changelog: nix.thunk(() => nix.str`https://github.com/zmievsa/cadwyn/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

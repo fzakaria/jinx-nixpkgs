@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 5], ["version", 23, 26], ["hash", 24, 5]], [["tests", 38, 12]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["teams", 44, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["pythonImportsCheck", 33, 3], ["doCheck", 36, 3], ["passthru", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, "hatch-jupyter-builder": false, "jupyter-builder": false, "jupyter-collaboration": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 5], ["version", 23, 26], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 38, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["teams", 44, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["pythonImportsCheck", 33, 3], ["doCheck", 36, 3], ["passthru", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const jupyter_builder = nix.arg($, "jupyter-builder");
   const jupyter_collaboration = nix.arg($, "jupyter-collaboration");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jupyter-docprovider",
       version: "3.0.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "jupyter_docprovider",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-yO49NbuaWAOFZBPkR7G5vYDOF7J6xtLaYj4cpER/LIw=",
@@ -32,9 +29,9 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_jupyter_builder, jupyter_builder]),
       pythonImportsCheck: nix.thunk(() => ["jupyter_docprovider"]),
       doCheck: false,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: jupyter_collaboration })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], tests: jupyter_collaboration })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "JupyterLab/Jupyter Notebook 7+ extension integrating collaborative shared models",
         homepage: "https://github.com/jupyterlab/jupyter-collaboration/tree/main/projects/jupyter-docprovider",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

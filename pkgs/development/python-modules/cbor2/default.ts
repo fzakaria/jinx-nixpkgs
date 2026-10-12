@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["pname", 32, 7], ["version", 33, 7], ["src", 34, 7], ["cargoRoot", 35, 7], ["hash", 37, 5]], [["CBOR2_BUILD_C_EXTENSION", 59, 5]], [["withCExtensions", 63, 13]], [["description", 69, 5], ["changelog", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["cargoRoot", 29, 3], ["cargoDeps", 30, 3], ["nativeBuildInputs", 40, 3], ["build-system", 46, 3], ["nativeCheckInputs", 52, 3], ["env", 58, 3], ["passthru", 62, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cargo: false, fetchFromGitHub: false, hypothesis: false, "pytest-cov-stub": false, pytestCheckHook: false, rustc: false, rustPlatform: false, setuptools: false, "setuptools-rust": false, "setuptools-scm": false, withCExtensions: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 32, 7], ["version", 33, 7], ["src", 34, 7], ["cargoRoot", 35, 7], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["CBOR2_BUILD_C_EXTENSION", 59, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["withCExtensions", 63, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 69, 5], ["changelog", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["cargoRoot", 29, 3], ["cargoDeps", 30, 3], ["nativeBuildInputs", 40, 3], ["build-system", 46, 3], ["nativeCheckInputs", 52, 3], ["env", 58, 3], ["passthru", 62, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const withCExtensions = nix.argOr($, "withCExtensions", () => true);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cbor2",
       version: "6.1.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "agronholm",
           repo: "cbor2",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoRoot: "rust",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,11 +44,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cargo, rustc, nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook"))]),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm, setuptools_rust]),
       nativeCheckInputs: nix.thunk(() => [hypothesis, pytest_cov_stub, pytestCheckHook]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withCExtensions)), nix.thunk(() => ({ [nix.POS]: pos$3, CBOR2_BUILD_C_EXTENSION: "0" })))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, withCExtensions: withCExtensions })),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withCExtensions)), nix.thunk(() => ({ [nix.POS]: $pos[2], CBOR2_BUILD_C_EXTENSION: "0" })))),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], withCExtensions: withCExtensions })),
       pythonImportsCheck: nix.thunk(() => ["cbor2"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python CBOR (de)serializer with extensive tag support",
         changelog: nix.thunk(() => nix.str`https://github.com/agronholm/cbor2/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/agronholm/cbor2",

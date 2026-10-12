@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["shortName", 15, 7], ["fullName", 16, 7], ["url", 17, 7], ["free", 18, 7]], [["description", 11, 5], ["homepage", 12, 5], ["sourceProvenance", 13, 5], ["license", 14, 5], ["maintainers", 20, 5], ["platforms", 24, 5], ["mainProgram", 25, 5]], [["pname", 29, 38], ["version", 29, 44], ["meta", 29, 52]], [["pname", 31, 37], ["version", 31, 43], ["meta", 31, 51]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["shortName", 15, 7], ["fullName", 16, 7], ["url", 17, 7], ["free", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 11, 5], ["homepage", 12, 5], ["sourceProvenance", 13, 5], ["license", 14, 5], ["maintainers", 20, 5], ["platforms", 24, 5], ["mainProgram", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 38], ["version", 29, 44], ["meta", 29, 52]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 37], ["version", 31, 43], ["meta", 31, 51]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pname = "realvnc-vnc-viewer";
   const version = "7.15.1";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "VNC remote desktop client software by RealVNC",
     homepage: "https://www.realvnc.com/en/connect/download/viewer/",
     sourceProvenance: nix.thunk(() => (() => {
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];
     })()),
     license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         shortName: "vncConnect",
         fullName: "VNC Connect End User License Agreement",
         url: "https://static.realvnc.com/media/documents/LICENSE-4.0a_en.pdf",
@@ -40,6 +37,6 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.concat(["x86_64-linux"], nix.sel(lib, "platforms", "darwin"))),
     mainProgram: "vncviewer",
   }));
-  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname, version: version, meta: meta }))));
+  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, version: version, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], pname: pname, version: version, meta: meta }))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

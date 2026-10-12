@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["rev-prefix", 59, 33]], [["frog", 65, 17]], [["reverseDependencies", 64, 7]], [["updateScript", 59, 5], ["tests", 60, 5]], [["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["longDescription", 78, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["postInstall", 49, 3], ["passthru", 58, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false, autoreconfHook: false, libtool: false, "pkg-config": false, "autoconf-archive": false, libxml2: false, icu: false, bzip2: false, libtar: false, libexttextcat: false, ticcutils: false, libfolia: false, uctodata: false, frog: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 59, 33]]);
-const pos$3 = nix.positions(here + "/package.nix", [["frog", 65, 17]]);
-const pos$4 = nix.positions(here + "/package.nix", [["reverseDependencies", 64, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 59, 5], ["tests", 60, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["longDescription", 78, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["postInstall", 49, 3], ["passthru", 58, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const uctodata = nix.arg($, "uctodata");
   const frog = nix.arg($, "frog");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "ucto",
       version: "0.36",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LanguageMachines",
           repo: "ucto",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,15 +56,15 @@ for f in ${uctodata}/share/ucto/*; do
 done;
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          reverseDependencies: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, frog: frog })))),
+          [nix.POS]: $pos[3],
+          reverseDependencies: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], frog: frog })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Rule-based tokenizer for natural language",
         mainProgram: "ucto",
         homepage: "https://languagemachines.github.io/ucto/",

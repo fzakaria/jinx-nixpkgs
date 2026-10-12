@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 51, 5], ["sha256", 52, 5]], [["description", 102, 5], ["homepage", 103, 5], ["sourceProvenance", 104, 5], ["platforms", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]], [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["unpackPhase", 55, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 61, 3], ["dontBuild", 69, 3], ["patchPhase", 71, 3], ["installPhase", 85, 3], ["dontPatchELF", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cups: false, perl: false, ghostscript: false, which: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 51, 5], ["sha256", 52, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["sourceProvenance", 104, 5], ["platforms", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["unpackPhase", 55, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 61, 3], ["dontBuild", 69, 3], ["patchPhase", 71, 3], ["installPhase", 85, 3], ["dontPatchELF", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "brgenml1lpr";
       const version = "3.1.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf101123/brgenml1lpr-${version}.i386.deb`),
           sha256: "0zdvjnrjrz9sba0k525linxp55lr4cyivfhqbkq1c11br2nvy09f",
         }))));
@@ -65,7 +63,7 @@ wrapProgram $out/$LPDDIR/filter_BrGenML1 \\
 `);
       const dontPatchELF = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Brother BrGenML1 LPR driver",
         homepage: "http://www.brother.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -80,7 +78,7 @@ wrapProgram $out/$LPDDIR/filter_BrGenML1 \\
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

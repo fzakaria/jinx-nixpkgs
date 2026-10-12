@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["homepage", 25, 5], ["description", 26, 5], ["license", 27, 5], ["teams", 28, 5]], [["pname", 9, 3], ["namespace", 10, 3], ["version", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 20, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildKodiAddon: false, fetchFromGitHub: false, myconnpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 25, 5], ["description", 26, 5], ["license", 27, 5], ["teams", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["namespace", 10, 3], ["version", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 20, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "plugin.video.mediathekview";
       const version = "1.0.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: pname,
           repo: namespace,
           rev: nix.thunk(() => nix.str`release-${version}`),
@@ -26,14 +24,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const propagatedBuildInputs = nix.thunk(() => [myconnpy]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mediathekview/plugin.video.mediathekview",
         description: "Access media libraries of German speaking broadcasting stations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         namespace,
         version,

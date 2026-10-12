@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["package", 49, 7], ["version", 50, 7]], [["version", 48, 5], ["zenohd", 52, 5]], [["tests", 47, 12]], [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5], ["platforms", 63, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["cargoBuildFlags", 22, 3], ["doCheck", 35, 3], ["preInstall", 37, 3], ["passthru", 47, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, nixosTests: false, testers: false, zenoh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 49, 7], ["version", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 48, 5], ["zenohd", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 47, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5], ["platforms", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["cargoBuildFlags", 22, 3], ["doCheck", 35, 3], ["preInstall", 37, 3], ["passthru", 47, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const zenoh = nix.arg($, "zenoh");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "zenoh",
       version: "1.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eclipse-zenoh",
           repo: "zenoh",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,11 +40,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       preInstall: "cp -r $releaseDir/examples/* $tmpDir/\nbins=$(find $tmpDir \\\n  -maxdepth 1 \\\n  -type f \\\n  -executable \\\n  -regextype posix-extended \\\n  ! -regex \".*\\.(so\\.[0-9.]+|so|a|d|dylib)|.*-[0-9a-f]{16,}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: zenoh,
               version: nix.thunk(() => nix.add("v", nix.sel(finalAttrs, "version"))),
             })))),
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Communication protocol that combines pub/sub with key value storage and computation",
         longDescription: "Zenoh unifies data in motion, data in-use, data at rest and computations. It carefully blends traditional pub/sub with geo-distributed storages, queries and computations, while retaining a level of time and space efficiency that is well beyond any of the mainstream stacks",
         homepage: "https://zenoh.io",

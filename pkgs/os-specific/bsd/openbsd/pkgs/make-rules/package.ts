@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 19, 7], ["url", 20, 7], ["hash", 21, 7]], [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7], ["includes", 29, 7]], [["platforms", 45, 8]], [["path", 8, 3], ["noCC", 9, 3], ["buildInputs", 11, 3], ["nativeBuildInputs", 12, 3], ["dontBuild", 14, 3], ["patches", 16, 3], ["postPatch", 33, 3], ["installPhase", 41, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { fetchpatch: false, lib: false, mkDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 19, 7], ["url", 20, 7], ["hash", 21, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7], ["includes", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["platforms", 45, 8]]);
-const pos$4 = nix.positions(here + "/package.nix", [["path", 8, 3], ["noCC", 9, 3], ["buildInputs", 11, 3], ["nativeBuildInputs", 12, 3], ["dontBuild", 14, 3], ["patches", 16, 3], ["postPatch", 33, 3], ["installPhase", 41, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       path: "share/mk",
       noCC: true,
       buildInputs: [],
@@ -22,14 +19,14 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "use-ar-variable.patch",
             url: "https://marc.info/?l=openbsd-tech&m=171575284906018&q=raw",
             hash: "sha256-bigxJGbaf9mCmFXxLVzQpnUUaEMMDfF3eZkTXVzd6B8=",
           })))),
         nix.path(here, "./netbsd-make-sinclude.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "nolibstatic-support.patch",
             url: "https://marc.info/?l=openbsd-tech&m=171972639411562&q=raw",
             hash: "sha256-p4izV6ZXkfgJud+ZZU1Wqr5qFuHUzE6qVXM7QnXvV3k=",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i -E \\\n  -e 's|/usr/lib|\\$\\{LIBDIR\\}|' \\\n  share/mk/bsd.prog.mk\n\nsubstituteInPlace share/mk/bsd.obj.mk --replace-fail /bin/pwd pwd\n",
       installPhase: "cp -r share/mk $out\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

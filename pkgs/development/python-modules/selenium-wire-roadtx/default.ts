@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["updateScript", 83, 12]], [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 61, 3], ["pythonImportsCheck", 67, 3], ["disabledTestPaths", 69, 3], ["disabledTests", 76, 3], ["passthru", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, blinker: false, brotli: false, buildPythonPackage: false, certifi: false, cryptography: false, fetchFromGitHub: false, gunicorn: false, h2: false, httpbin: false, hyperframe: false, kaitaistruct: false, "nix-update-script": false, pyasn1: false, pyopenssl: false, pyparsing: false, pysocks: false, pytestCheckHook: false, "ruamel-yaml": false, selenium: false, setuptools: false, wsproto: false, zstandard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 83, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 61, 3], ["pythonImportsCheck", 67, 3], ["disabledTestPaths", 69, 3], ["disabledTests", 76, 3], ["passthru", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const wsproto = nix.arg($, "wsproto");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "selenium-wire-roadtx",
       version: "5.2.4-unstable-2026-05-20",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dirkjanm",
           repo: "selenium-wire-roadtx",
           rev: "98e91ea9e2472902d19b4a328a2ea08539b488b9",
@@ -69,11 +66,11 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/end2end/test_end2end.py", "tests/seleniumwire/test_server.py"]),
       disabledTests: nix.thunk(() => ["BackendIntegrationTest", "test_save_response"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Extends Selenium's Python bindings to give you the ability to inspect requests made by the browser",
         homepage: "https://github.com/dirkjanm/selenium-wire-roadtx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

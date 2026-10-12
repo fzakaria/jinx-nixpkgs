@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 17, 3], ["nativeBuildInputs", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, stdenvNoCC: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 17, 3], ["nativeBuildInputs", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "raleway",
       version: "4.101",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/theleagueof/raleway/releases/download/${nix.sel(finalAttrs, "version")}/Raleway-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-itNHIMoRjiaqYAJoDNetkCquv47VAfel8MAzwsd//Ww=",
         })))),
       outputs: nix.thunk(() => ["out", "webfont"]),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Raleway is an elegant sans-serif typeface family",
         longDescription: "Initially designed by Matt McInerney as a single thin weight, it was\nexpanded into a 9 weight family by Pablo Impallari and Rodrigo Fuenzalida\nin 2012 and iKerned by Igino Marini. In 2013 the Italics where added, and\nmost recently — a variable version.\n\nIt features both old style and lining numerals, standard and\ndiscretionary ligatures, a pretty complete set of diacritics, as well as\na stylistic alternate inspired by more geometric sans-serif typefaces\nthan its neo-grotesque inspired default character set.\n\nIt also has a sister display family, Raleway Dots.\n",
         homepage: "https://www.theleagueofmoveabletype.com/raleway",

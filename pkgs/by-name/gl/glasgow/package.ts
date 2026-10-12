@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sdcc", 13, 40]], [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]], [["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["mainProgram", 132, 5]], [["pname", 16, 3], ["version", 17, 3], ["pdmVersion", 19, 3], ["firmwareGitRev", 27, 3], ["pyproject", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 63, 3], ["unittestFlags", 71, 3], ["enableParallelBuilding", 73, 3], ["__darwinAllowLocalNetworking", 75, 3], ["preBuild", 77, 3], ["doInstallCheck", 96, 3], ["postInstall", 98, 3], ["preCheck", 103, 3], ["makeWrapperArgs", 112, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, icestorm: false, nextpnr: false, sdcc_4_5: false, yosys: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sdcc", 13, 40]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["mainProgram", 132, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pdmVersion", 19, 3], ["firmwareGitRev", 27, 3], ["pyproject", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 63, 3], ["unittestFlags", 71, 3], ["enableParallelBuilding", 73, 3], ["__darwinAllowLocalNetworking", 75, 3], ["preBuild", 77, 3], ["doInstallCheck", 96, 3], ["postInstall", 98, 3], ["preCheck", 103, 3], ["makeWrapperArgs", 112, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const nextpnr = nix.arg($, "nextpnr");
   const sdcc_4_5 = nix.arg($, "sdcc_4_5");
   const yosys = nix.arg($, "yosys");
-  const fx2 = nix.thunk(() => nix.app(nix.sel(python3Packages, "fx2", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, sdcc: sdcc_4_5 }))));
+  const fx2 = nix.thunk(() => nix.app(nix.sel(python3Packages, "fx2", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], sdcc: sdcc_4_5 }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => (() => {
       const pname = "glasgow";
       const version = "0-unstable-2025-07-25";
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const firmwareGitRev = "12b5cfb3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "GlasgowEmbedded",
           repo: "glasgow",
           rev: "c424688ff0d7faee49198bbdb2a34b1026534350",
@@ -93,7 +90,7 @@ export PDM_BUILD_SCM_VERSION="${pdmVersion}"
         nix.thunk(() => nix.str`${nextpnr}/bin/nextpnr-ice40`),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Software for Glasgow, a digital interface multitool",
         homepage: "https://github.com/GlasgowEmbedded/Glasgow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
@@ -107,7 +104,7 @@ export PDM_BUILD_SCM_VERSION="${pdmVersion}"
         mainProgram: "glasgow",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pdmVersion,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 21, 10]], [["description", 31, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 5], ["mainProgram", 41, 5]], [["name", 17, 3], ["ruby", 18, 11], ["gemName", 19, 3], ["version", 20, 3], ["source", 21, 3], ["postInstall", 23, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildRubyGem: false, ruby: false, openssh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 21, 10]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 5], ["mainProgram", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 17, 3], ["ruby", 18, 11], ["gemName", 19, 3], ["version", 20, 3], ["source", 21, 3], ["postInstall", 23, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const gemName = "hss";
       const version = "1.1.0";
       const source = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         sha256: "0zfgsiqy2c99c6hlg69bzj83kn6clkw1jmz6n6xh9ap4hz17blgm",
       }));
       const postInstall = nix.thunk(() => nix.str`substituteInPlace $GEM_HOME/gems/${gemName}-${version}/bin/hss \\
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
     "'${openssh}/bin/ssh'"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "A SSH helper that uses regex and fancy expansion to dynamically manage SSH shortcuts.\n",
         homepage: "https://github.com/akerl/hss",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "hss",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name,
         ruby: ruby_1,
         gemName,

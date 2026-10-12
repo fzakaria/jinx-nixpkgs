@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["pname", 26, 26], ["version", 26, 32], ["src", 26, 40], ["hash", 27, 5]], [["updateScript", 42, 12]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["cargoDeps", 25, 3], ["build-system", 30, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cargo: false, fetchFromGitHub: false, "nix-update-script": false, rustc: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 26, 26], ["version", 26, 32], ["src", 26, 40], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 42, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["cargoDeps", 25, 3], ["build-system", 30, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "phonors",
       version: "0.5.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "phonopy",
           repo: "phonors",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-XEQcvmZ/eA7k4fBkDz9DleC7mpwQAmaG5WysDRugSlc=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -47,11 +43,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["phonors"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python module implemented in Rust for Phonopy",
         homepage: "https://github.com/phonopy/phonors",
         changelog: nix.thunk(() => nix.str`https://github.com/phonopy/phonors/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

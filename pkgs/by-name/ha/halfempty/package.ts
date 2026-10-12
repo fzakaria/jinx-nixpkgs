@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["name", 35, 7], ["url", 36, 7], ["sha256", 37, 7]], [["description", 54, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["maintainers", 57, 5], ["license", 58, 5], ["platforms", 59, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["makeFlags", 29, 3], ["enableParallelBuilding", 31, 3], ["patches", 33, 3], ["postPatch", 41, 3], ["installPhase", 46, 3], ["doCheck", 50, 3], ["checkTarget", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, glib: false, hexdump: false, scowl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 7], ["url", 36, 7], ["sha256", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["maintainers", 57, 5], ["license", 58, 5], ["platforms", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["makeFlags", 29, 3], ["enableParallelBuilding", 31, 3], ["patches", 33, 3], ["postPatch", 41, 3], ["installPhase", 46, 3], ["doCheck", 50, 3], ["checkTarget", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const hexdump = nix.arg($, "hexdump");
   const scowl = nix.arg($, "scowl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "halfempty",
       version: "0.40",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleprojectzero",
           repo: "halfempty",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-bash-specific-syntax.patch",
             url: "https://github.com/googleprojectzero/halfempty/commit/ad15964d0fcaba12e5aca65c8935ebe3f37d7ea3.patch",
             sha256: "sha256:0hgdci0wwi5wyw8i57w0545cxjmsmswm1y6g4vhykap0y40zizav",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkTarget: "test",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast, parallel test case minimization tool",
         mainProgram: "halfempty",
         homepage: "https://github.com/googleprojectzero/halfempty/",

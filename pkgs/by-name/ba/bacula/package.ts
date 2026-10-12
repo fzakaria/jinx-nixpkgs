@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 84, 5], ["platforms", 87, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["postPatch", 31, 3], ["buildInputs", 36, 3], ["configureFlags", 50, 3], ["installFlags", 67, 3], ["postInstall", 72, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, sqlite: false, libpq: false, zlib: false, acl: false, ncurses: false, openssl: false, readline: false, gettext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 84, 5], ["platforms", 87, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["postPatch", 31, 3], ["buildInputs", 36, 3], ["configureFlags", 50, 3], ["installFlags", 67, 3], ["postInstall", 72, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bacula",
       version: "15.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/bacula/bacula-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-KUr9PS651bccPQ6I/fGetRO/24Q7KNNcBVLkrgYoJ6E=",
         })))),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["logdir=${out}/logdir", "working_dir=${out}/workdir"]),
       postInstall: "mkdir -p $out/bin\nln -s $out/sbin/* $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Enterprise ready, Network Backup Tool",
         homepage: "http://bacula.org/",
         license: nix.thunk(() => (() => {

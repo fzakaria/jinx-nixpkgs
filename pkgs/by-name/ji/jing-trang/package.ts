@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]], [["CLASSPATH", 31, 7]], [["description", 58, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["sourceProvenance", 63, 5], ["maintainers", 67, 5], ["license", 68, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 25, 3], ["env", 31, 3], ["patches", 33, 3], ["preBuild", 37, 3], ["installPhase", 39, 3], ["doCheck", 54, 3], ["checkPhase", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, jre_headless: false, jdk8_headless: false, ant: false, saxon: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CLASSPATH", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["sourceProvenance", 63, 5], ["maintainers", 67, 5], ["license", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 25, 3], ["env", 31, 3], ["patches", 33, 3], ["preBuild", 37, 3], ["installPhase", 39, 3], ["doCheck", 54, 3], ["checkPhase", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const saxon = nix.arg($, "saxon");
   const jdk_headless = jdk8_headless;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jing-trang",
       version: "20181222",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "relaxng",
           repo: "jing-trang",
           rev: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       buildInputs: nix.thunk(() => [jdk_headless, ant, saxon]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CLASSPATH: "lib/saxon.jar" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CLASSPATH: "lib/saxon.jar" })),
       patches: nix.thunk(() => [nix.path(here, "./no-git-during-build.patch")]),
       preBuild: "ant",
       installPhase: nix.thunk(() => nix.str`mkdir -p "$out"/{share/java,bin}
@@ -50,7 +47,7 @@ chmod +x "$out"/bin/*
       doCheck: true,
       checkPhase: "ant test",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "RELAX NG validator in Java",
         homepage: "https://www.thaiopensource.com/relaxng/trang.html",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

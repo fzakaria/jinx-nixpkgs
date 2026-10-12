@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["name", 32, 5], ["src", 33, 5], ["sourceRoot", 34, 5], ["hash", 35, 5]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 11, 3], ["version", 13, 3], ["src", 15, 3], ["leanPackageName", 22, 3], ["lakeHash", 24, 3], ["nativeBuildInputs", 26, 3], ["npmDeps", 31, 3], ["npmRoot", 37, 3], ["postConfigure", 39, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildLakePackage: false, fetchFromGitHub: false, fetchNpmDeps: false, npmHooks: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 32, 5], ["src", 33, 5], ["sourceRoot", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 13, 3], ["src", 15, 3], ["leanPackageName", 22, 3], ["lakeHash", 24, 3], ["nativeBuildInputs", 26, 3], ["npmDeps", 31, 3], ["npmRoot", 37, 3], ["postConfigure", 39, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const npmHooks = nix.arg($, "npmHooks");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildLakePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lean4-proofwidgets",
       version: "0.0.111-unstable-2026-09-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "leanprover-community",
           repo: "ProofWidgets4",
           rev: "106ff4fafc74ef4ac99d81dbf3ab399118f497a5",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       lakeHash: null,
       nativeBuildInputs: nix.thunk(() => [nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))]),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "lean4-proofwidgets-npm-deps",
           src: nix.thunk(() => nix.sel(finalAttrs, "src")),
           sourceRoot: "source/widget",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       npmRoot: "widget",
       postConfigure: "local realNpm\nrealNpm=\"$(type -P npm)\"\nmkdir -p \"$TMPDIR/npm-wrap\"\ncat > \"$TMPDIR/npm-wrap/npm\" <<WRAPPER\n#!/bin/sh\ncase \"\\$1\" in ci|clean-install) exit 0 ;; esac\nexec \"$realNpm\" \"\\$@\"\nWRAPPER\nchmod +x \"$TMPDIR/npm-wrap/npm\"\nexport PATH=\"$TMPDIR/npm-wrap:$PATH\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Interactive UI framework for Lean 4 proof assistants",
         homepage: "https://github.com/leanprover-community/ProofWidgets4",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

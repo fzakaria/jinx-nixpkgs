@@ -2,33 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gawkextlib.nix", [[["url", 48, 9], ["rev", 49, 9], ["sha256", 50, 9]], [["homepage", 82, 9], ["description", 83, 9], ["mainProgram", 84, 9], ["longDescription", 85, 9], ["license", 93, 9], ["platforms", 94, 9], ["maintainers", 95, 9]], [["broken", 97, 55]], [["pname", 44, 7], ["version", 45, 7], ["src", 47, 7], ["patches", 53, 15], ["postPatch", 55, 7], ["nativeBuildInputs", 60, 7], ["buildInputs", 70, 7], ["propagatedBuildInputs", 71, 7], ["setupHook", 73, 7], ["gawk", 74, 15], ["env", 76, 15], ["doCheck", 78, 15], ["nativeCheckInputs", 79, 7], ["meta", 81, 7]], [["gawkextlib", 101, 5], ["name", 102, 5]], [["gawkextlib", 106, 15], ["name", 107, 7]], [["gawkextlib", 110, 15], ["name", 111, 7], ["extraBuildInputs", 112, 7]], [["gawkextlib", 115, 15], ["name", 116, 7]], [["gawkextlib", 119, 15], ["name", 120, 7], ["extraPostPatch", 121, 7]], [["NIX_CFLAGS_COMPILE", 130, 11]], [["gawkextlib", 126, 15], ["name", 127, 7], ["extraBuildInputs", 128, 7], ["env", 130, 7]], [["NIX_CFLAGS_COMPILE", 142, 11]], [["gawkextlib", 133, 15], ["name", 134, 7], ["extraBuildInputs", 135, 7], ["patches", 136, 7], ["env", 142, 7]], [["gawkextlib", 145, 15], ["name", 146, 7], ["extraBuildInputs", 147, 7]], [["gawkextlib", 150, 15], ["name", 151, 7], ["extraPostPatch", 152, 7], ["extraBuildInputs", 155, 7], ["doCheck", 160, 7]], [["gawkextlib", 163, 15], ["name", 164, 7], ["extraBuildInputs", 165, 7], ["doCheck", 167, 7]], [["gawkextlib", 170, 15], ["name", 171, 7], ["extraBuildInputs", 172, 7]], [["gawkextlib", 178, 15], ["name", 179, 7]], [["gawkextlib", 182, 15], ["name", 183, 7], ["extraBuildInputs", 184, 7]], [["gawkextlib", 187, 15], ["name", 188, 7], ["extraBuildInputs", 189, 7]], [["gawkextlib", 192, 15], ["name", 193, 7], ["extraPostPatch", 194, 7]], [["gawkextlib", 199, 15], ["name", 200, 7]], [["gawkextlib", 203, 15], ["name", 204, 7], ["extraBuildInputs", 205, 7], ["broken", 210, 7]], [["abort", 105, 5], ["aregex", 109, 5], ["csv", 114, 5], ["errno", 118, 5], ["gd", 125, 5], ["haru", 132, 5], ["json", 144, 5], ["lmdb", 149, 5], ["mbs", 162, 5], ["mpfr", 169, 5], ["nl_langinfo", 177, 5], ["pgsql", 181, 5], ["redis", 186, 5], ["select", 191, 5], ["timex", 198, 5], ["xml", 202, 5]], [["gawkextlib", 217, 13], ["buildExtension", 217, 24], ["full", 218, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, "pkg-config": false, autoreconfHook: false, autoconf: false, automake: false, libiconv: false, libtool: false, texinfo: false, gettext: false, gawk: false, rapidjson: false, gd: false, libharu: false, lmdb: false, gmp: false, glibcLocales: false, mpfr: false, more: false, libpq: false, hiredis: false, expat: false, tre: false }, ellipsis: false };
 const formals$2 = { args: { name: false, gawkextlib: false, extraBuildInputs: true, doCheck: true, patches: true, extraPostPatch: true, env: true, broken: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/gawkextlib.nix", [["url", 48, 9], ["rev", 49, 9], ["sha256", 50, 9]]);
-const pos$2 = nix.positions(here + "/gawkextlib.nix", [["homepage", 82, 9], ["description", 83, 9], ["mainProgram", 84, 9], ["longDescription", 85, 9], ["license", 93, 9], ["platforms", 94, 9], ["maintainers", 95, 9]]);
-const pos$3 = nix.positions(here + "/gawkextlib.nix", [["broken", 97, 55]]);
-const pos$4 = nix.positions(here + "/gawkextlib.nix", [["pname", 44, 7], ["version", 45, 7], ["src", 47, 7], ["patches", 53, 15], ["postPatch", 55, 7], ["nativeBuildInputs", 60, 7], ["buildInputs", 70, 7], ["propagatedBuildInputs", 71, 7], ["setupHook", 73, 7], ["gawk", 74, 15], ["env", 76, 15], ["doCheck", 78, 15], ["nativeCheckInputs", 79, 7], ["meta", 81, 7]]);
-const pos$5 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 101, 5], ["name", 102, 5]]);
-const pos$6 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 106, 15], ["name", 107, 7]]);
-const pos$7 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 110, 15], ["name", 111, 7], ["extraBuildInputs", 112, 7]]);
-const pos$8 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 115, 15], ["name", 116, 7]]);
-const pos$9 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 119, 15], ["name", 120, 7], ["extraPostPatch", 121, 7]]);
-const pos$10 = nix.positions(here + "/gawkextlib.nix", [["NIX_CFLAGS_COMPILE", 130, 11]]);
-const pos$11 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 126, 15], ["name", 127, 7], ["extraBuildInputs", 128, 7], ["env", 130, 7]]);
-const pos$12 = nix.positions(here + "/gawkextlib.nix", [["NIX_CFLAGS_COMPILE", 142, 11]]);
-const pos$13 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 133, 15], ["name", 134, 7], ["extraBuildInputs", 135, 7], ["patches", 136, 7], ["env", 142, 7]]);
-const pos$14 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 145, 15], ["name", 146, 7], ["extraBuildInputs", 147, 7]]);
-const pos$15 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 150, 15], ["name", 151, 7], ["extraPostPatch", 152, 7], ["extraBuildInputs", 155, 7], ["doCheck", 160, 7]]);
-const pos$16 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 163, 15], ["name", 164, 7], ["extraBuildInputs", 165, 7], ["doCheck", 167, 7]]);
-const pos$17 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 170, 15], ["name", 171, 7], ["extraBuildInputs", 172, 7]]);
-const pos$18 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 178, 15], ["name", 179, 7]]);
-const pos$19 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 182, 15], ["name", 183, 7], ["extraBuildInputs", 184, 7]]);
-const pos$20 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 187, 15], ["name", 188, 7], ["extraBuildInputs", 189, 7]]);
-const pos$21 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 192, 15], ["name", 193, 7], ["extraPostPatch", 194, 7]]);
-const pos$22 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 199, 15], ["name", 200, 7]]);
-const pos$23 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 203, 15], ["name", 204, 7], ["extraBuildInputs", 205, 7], ["broken", 210, 7]]);
-const pos$24 = nix.positions(here + "/gawkextlib.nix", [["abort", 105, 5], ["aregex", 109, 5], ["csv", 114, 5], ["errno", 118, 5], ["gd", 125, 5], ["haru", 132, 5], ["json", 144, 5], ["lmdb", 149, 5], ["mbs", 162, 5], ["mpfr", 169, 5], ["nl_langinfo", 177, 5], ["pgsql", 181, 5], ["redis", 186, 5], ["select", 191, 5], ["timex", 198, 5], ["xml", 202, 5]]);
-const pos$25 = nix.positions(here + "/gawkextlib.nix", [["gawkextlib", 217, 13], ["buildExtension", 217, 24], ["full", 218, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -71,7 +47,7 @@ export default nix.lambda((args) => (() => {
           const pname = nix.thunk(() => nix.str`gawkextlib-${name}`);
           const version = "unstable-2022-10-20";
           const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: "git://git.code.sf.net/p/gawkextlib/code",
               rev: "f6c75b4ac1e0cd8d70c2f6c7a8d58b4d94cfde97",
               sha256: "sha256-0p3CrQ3TBl7UcveZytK/9rkAzn69RRM2GwY2eCeqlkg=",
@@ -88,7 +64,7 @@ export default nix.lambda((args) => (() => {
           const doCheck_1 = doCheck;
           const nativeCheckInputs = nix.thunk(() => [more]);
           const meta = nix.thunk(() => nix.update({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             homepage: "https://sourceforge.net/projects/gawkextlib/",
             description: "Dynamically loaded extension libraries for GNU AWK",
             mainProgram: "xmlgawk",
@@ -99,9 +75,9 @@ export default nix.lambda((args) => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "tomberek"))];
             })()),
-          }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(broken, null)), nix.thunk(() => ({ [nix.POS]: pos$3, broken: broken })))));
+          }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(broken, null)), nix.thunk(() => ({ [nix.POS]: $pos[2], broken: broken })))));
           return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname,
             version,
             src,
@@ -119,53 +95,53 @@ export default nix.lambda((args) => (() => {
           };
         })()));
     })(), formals$2)));
-  const gawkextlib = nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ [nix.POS]: pos$5, gawkextlib: null, name: "lib" }))));
+  const gawkextlib = nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ [nix.POS]: $pos[4], gawkextlib: null, name: "lib" }))));
   const libs = nix.thunk(() => ({
-    [nix.POS]: pos$24,
-    abort: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ [nix.POS]: pos$6, gawkextlib: gawkextlib, name: "abort" })))),
+    [nix.POS]: $pos[23],
+    abort: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ [nix.POS]: $pos[5], gawkextlib: gawkextlib, name: "abort" })))),
     aregex: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         gawkextlib: gawkextlib,
         name: "aregex",
         extraBuildInputs: nix.thunk(() => [tre]),
       })))),
-    csv: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ [nix.POS]: pos$8, gawkextlib: gawkextlib, name: "csv" })))),
+    csv: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ [nix.POS]: $pos[7], gawkextlib: gawkextlib, name: "csv" })))),
     errno: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         gawkextlib: gawkextlib,
         name: "errno",
         extraPostPatch: nix.thunk(() => nix.str`substituteInPlace Makefile.am --replace-fail 'cpp -M' '${nix.sel(stdenv, "cc", "targetPrefix")}cpp -M'
 `),
       })))),
     gd: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         gawkextlib: gawkextlib,
         name: "gd",
         extraBuildInputs: nix.thunk(() => [gd]),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         })),
       })))),
     haru: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         gawkextlib: gawkextlib,
         name: "haru",
         extraBuildInputs: nix.thunk(() => [libharu]),
         patches: nix.thunk(() => [nix.path(here, "./fix-typos-corrected-in-libharu-2.4.4.patch")]),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         })),
       })))),
     json: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         gawkextlib: gawkextlib,
         name: "json",
         extraBuildInputs: nix.thunk(() => [rapidjson]),
       })))),
     lmdb: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         gawkextlib: gawkextlib,
         name: "lmdb",
         extraPostPatch: nix.thunk(() => nix.str`substituteInPlace Makefile.am --replace-fail 'cpp -M' '${nix.sel(stdenv, "cc", "targetPrefix")}cpp -M'
@@ -174,41 +150,41 @@ export default nix.lambda((args) => (() => {
         doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       })))),
     mbs: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         gawkextlib: gawkextlib,
         name: "mbs",
         extraBuildInputs: nix.thunk(() => [glibcLocales]),
         doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       })))),
     mpfr: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         gawkextlib: gawkextlib,
         name: "mpfr",
         extraBuildInputs: nix.thunk(() => [gmp, mpfr]),
       })))),
-    nl_langinfo: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ [nix.POS]: pos$18, gawkextlib: gawkextlib, name: "nl_langinfo" })))),
+    nl_langinfo: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ [nix.POS]: $pos[17], gawkextlib: gawkextlib, name: "nl_langinfo" })))),
     pgsql: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         gawkextlib: gawkextlib,
         name: "pgsql",
         extraBuildInputs: nix.thunk(() => [libpq]),
       })))),
     redis: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         gawkextlib: gawkextlib,
         name: "redis",
         extraBuildInputs: nix.thunk(() => [hiredis]),
       })))),
     select: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         gawkextlib: gawkextlib,
         name: "select",
         extraPostPatch: nix.thunk(() => nix.str`substituteInPlace Makefile.am --replace-fail 'cpp -M' '${nix.sel(stdenv, "cc", "targetPrefix")}cpp -M'
 `),
       })))),
-    timex: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ [nix.POS]: pos$22, gawkextlib: gawkextlib, name: "timex" })))),
+    timex: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ [nix.POS]: $pos[21], gawkextlib: gawkextlib, name: "timex" })))),
     xml: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         gawkextlib: gawkextlib,
         name: "xml",
         extraBuildInputs: nix.thunk(() => [expat, libiconv]),
@@ -216,7 +192,7 @@ export default nix.lambda((args) => (() => {
       })))),
   }));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.update(libs, {
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       gawkextlib: gawkextlib,
       buildExtension: buildExtension,
       full: nix.thunk(() => nix.builtins.attrValues(libs)),

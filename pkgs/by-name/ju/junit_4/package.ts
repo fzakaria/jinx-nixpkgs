@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5], ["sourceProvenance", 82, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 25, 3], ["patches", 27, 3], ["postPatch", 35, 3], ["buildPhase", 44, 3], ["installPhase", 65, 3], ["strictDeps", 73, 3], ["__structuredAttrs", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, jdk: false, "java-hamcrest": false, stripJavaArchivesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5], ["sourceProvenance", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 25, 3], ["patches", 27, 3], ["postPatch", 35, 3], ["buildPhase", 44, 3], ["installPhase", 65, 3], ["strictDeps", 73, 3], ["__structuredAttrs", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const java_hamcrest = nix.arg($, "java-hamcrest");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "junit",
       version: "4.13.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "junit-team",
           repo: "junit4",
           tag: nix.thunk(() => nix.str`r${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +65,7 @@ runHook postInstall
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "JUnit 4 testing framework for Java",
         homepage: "https://junit.org/junit4/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "epl10")),

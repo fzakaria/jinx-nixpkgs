@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["env", 25, 12]], [["pname", 14, 3], ["dontUnpack", 15, 3], ["nativeBuildInputs", 16, 3], ["buildCommand", 18, 3], ["passthru", 25, 3], ["meta", 27, 32], ["version", 27, 37]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, haskellPackages: false, extraPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["env", 25, 12]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["pname", 14, 3], ["dontUnpack", 15, 3], ["nativeBuildInputs", 16, 3], ["buildCommand", 18, 3], ["passthru", 25, 3], ["meta", 27, 32], ["version", 27, 37]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(haskellPackages, "yi"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "yi-custom",
       dontUnpack: true,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
 makeWrapper ${nix.sel(haskellPackages, "yi")}/bin/yi $out/bin/yi \\
   --set NIX_GHC ${yiEnv}/bin/ghc
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, env: yiEnv })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], env: yiEnv })),
       meta: nix.thunk(() => nix.attr(from, "meta")),
       version: nix.thunk(() => nix.attr(from, "version")),
     };

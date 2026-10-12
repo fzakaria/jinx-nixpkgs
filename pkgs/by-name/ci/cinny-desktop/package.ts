@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["enabled", 40, 22]], [["hashRouter", 40, 11]], [["conf", 39, 9]], [["attrPath", 85, 28]], [["updateScript", 84, 5]], [["description", 91, 5], ["homepage", 92, 5], ["maintainers", 93, 5], ["license", 98, 5], ["platforms", 99, 5], ["mainProgram", 100, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["sourceRoot", 32, 3], ["cargoHash", 34, 3], ["postPatch", 36, 3], ["postInstall", 50, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 74, 3], ["buildNoDefaultFeatures", 80, 3], ["buildFeatures", 81, 3], ["passthru", 83, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, "cargo-tauri": false, cinny: false, "desktop-file-utils": false, wrapGAppsHook3: false, makeBinaryWrapper: false, "pkg-config": false, openssl: false, "glib-networking": false, webkitgtk_4_1: false, jq: false, moreutils: false, "nix-update-script": false, "_experimental-update-script-combinators": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enabled", 40, 22]]);
-const pos$3 = nix.positions(here + "/package.nix", [["hashRouter", 40, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["conf", 39, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["attrPath", 85, 28]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 84, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["maintainers", 93, 5], ["license", 98, 5], ["platforms", 99, 5], ["mainProgram", 100, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["sourceRoot", 32, 3], ["cargoHash", 34, 3], ["postPatch", 36, 3], ["postInstall", 50, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 74, 3], ["buildNoDefaultFeatures", 80, 3], ["buildFeatures", 81, 3], ["passthru", 83, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "cinny-desktop",
       version: "4.12.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cinnyapp",
           repo: "cinny-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,10 +39,10 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-14PevMGb0nI89uma0dK7JScn8xkefv2VDb/Sh1rt/qI=",
       postPatch: nix.thunk(() => (() => {
         const cinny$ = nix.thunk(() => nix.app(nix.sel(cinny, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             conf: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              hashRouter: nix.thunk(() => ({ [nix.POS]: pos$2, enabled: true })),
+              [nix.POS]: $pos[2],
+              hashRouter: nix.thunk(() => ({ [nix.POS]: $pos[1], enabled: true })),
             })),
           }))));
         return nix.str`${nix.app(nix.sel(lib, "getExe"), jq)} \\
@@ -63,14 +56,14 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: true,
       buildFeatures: nix.thunk(() => ["custom-protocol"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, attrPath: "cinny-unwrapped" })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[4], attrPath: "cinny-unwrapped" })))),
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Yet another matrix client for desktop",
         homepage: "https://github.com/cinnyapp/cinny-desktop",
         maintainers: nix.thunk(() => (() => {

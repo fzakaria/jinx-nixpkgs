@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["build-system", 37, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 52, 3], ["disabledTests", 59, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, aioesphomeapi: false, bleak: false, "bleak-retry-connector": false, "bluetooth-data-tools": false, buildPythonPackage: false, cython: false, fetchFromGitHub: false, habluetooth: false, "lru-dict": false, "poetry-core": false, "pytest-asyncio": false, "pytest-codspeed": false, "pytest-cov-stub": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["build-system", 37, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 52, 3], ["disabledTests", 59, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bleak-esphome",
       version: "4.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bluetooth-devices",
           repo: "bleak-esphome",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["bleak_esphome"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bleak backend of ESPHome",
         homepage: "https://github.com/bluetooth-devices/bleak-esphome",
         changelog: nix.thunk(() => nix.str`https://github.com/bluetooth-devices/bleak-esphome/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

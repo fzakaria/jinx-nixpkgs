@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libsys.nix", [[["pname", 9, 3], ["path", 10, 3], ["extraPaths", 11, 3], ["outputs", 19, 3], ["noLibc", 24, 3], ["buildInputs", 26, 3], ["preBuild", 32, 3], ["alwaysKeepStatic", 36, 3]]]);
 const formals$1 = { args: { mkDerivation: false, include: false, libcompiler_rt: false, csu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libsys.nix", [["pname", 9, 3], ["path", 10, 3], ["extraPaths", 11, 3], ["outputs", 19, 3], ["noLibc", 24, 3], ["buildInputs", 26, 3], ["preBuild", 32, 3], ["alwaysKeepStatic", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const libcompiler_rt = nix.arg($, "libcompiler_rt");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "libsys",
       path: "lib/libsys",
       extraPaths: nix.thunk(() => [

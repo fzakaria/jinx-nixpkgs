@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["LIBGIT2_NO_VENDOR", 28, 7]], [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 61, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["env", 28, 3], ["preCheck", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["nativeCheckInputs", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, perl: false, "pkg-config": false, curl: false, libgit2: false, libiconv: false, openssl: false, gitMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBGIT2_NO_VENDOR", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["env", 28, 3], ["preCheck", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["nativeCheckInputs", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,24 +19,24 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cargo-crev",
       version: "0.27.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "crev-dev",
           repo: "cargo-crev",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-ezMpxYrJJ2zqEwCaDu2DFMwd6d/nfPVO6z2Lm4elIYE=",
         })))),
       cargoHash: "sha256-CYvvwgDZ+yAr7kLGEVZLVx7+sZUc5vu85AT5xLJBSbQ=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LIBGIT2_NO_VENDOR: 1n })),
       preCheck: "export HOME=$(mktemp -d)\ngit config --global user.name \"Nixpkgs Test\"\ngit config --global user.email \"nobody@example.com\"\n",
       nativeBuildInputs: nix.thunk(() => [perl, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([libgit2, openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv, curl])))),
       nativeCheckInputs: nix.thunk(() => [gitMinimal]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cryptographically verifiable code review system for the cargo (Rust) package manager",
         mainProgram: "cargo-crev",
         homepage: "https://github.com/crev-dev/cargo-crev",

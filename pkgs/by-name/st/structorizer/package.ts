@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["updateScript", 84, 12]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["postPatch", 39, 3], ["buildPhase", 49, 3], ["installPhase", 58, 3], ["dontWrapGApps", 82, 3], ["passthru", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, jdk11: false, makeDesktopItem: false, makeWrapper: false, wrapGAppsHook3: false, copyDesktopItems: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 84, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["postPatch", 39, 3], ["buildPhase", 49, 3], ["installPhase", 58, 3], ["dontWrapGApps", 82, 3], ["passthru", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "structorizer";
       const version = "3.32-35";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fesch",
           repo: "Structorizer.Desktop",
           rev: version,
@@ -62,11 +59,11 @@ runHook postInstall
 `);
       const dontWrapGApps = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Create Nassi-Shneiderman diagrams (NSD)",
         homepage: "https://structorizer.fisch.lu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -78,7 +75,7 @@ runHook postInstall
         mainProgram: "structorizer",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

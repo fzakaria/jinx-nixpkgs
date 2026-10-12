@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["GIT_AUTHOR_NAME", 62, 5], ["GIT_COMMITTER_NAME", 63, 5], ["GIT_AUTHOR_EMAIL", 64, 5], ["GIT_COMMITTER_EMAIL", 65, 5]], [["description", 84, 5], ["longDescription", 85, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["env", 61, 3], ["nativeCheckInputs", 68, 3], ["__darwinAllowLocalNetworking", 79, 3], ["pythonImportsCheck", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "hatch-vcs": false, click: false, httpx: false, pydantic: false, "pydantic-settings": false, questionary: false, "rich-click": false, rich: false, tomlkit: false, wcmatch: false, mercurial: false, gitMinimal: false, freezegun: false, "pytest-cov-stub": false, "pytest-localserver": false, "pytest-mock": false, pytestCheckHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["GIT_AUTHOR_NAME", 62, 5], ["GIT_COMMITTER_NAME", 63, 5], ["GIT_AUTHOR_EMAIL", 64, 5], ["GIT_COMMITTER_EMAIL", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 84, 5], ["longDescription", 85, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["env", 61, 3], ["nativeCheckInputs", 68, 3], ["__darwinAllowLocalNetworking", 79, 3], ["pythonImportsCheck", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "callowayproject",
           repo: "bump-my-version",
           tag: version,
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         wcmatch,
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         GIT_AUTHOR_NAME: "test",
         GIT_COMMITTER_NAME: "test",
         GIT_AUTHOR_EMAIL: "test@example.com",
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["bumpversion"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Small command line tool to update version",
         longDescription: "This is a maintained refactor of the bump2version fork of the\nexcellent bumpversion project. This is a small command line tool to\nsimplify releasing software by updating all version strings in your source code\nby the correct increment and optionally commit and tag the changes.\n",
         homepage: "https://github.com/callowayproject/bump-my-version",
@@ -88,7 +85,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "bump-my-version",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,20 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ssh-audit.nix", [[["allowedTCPPorts", 14, 27]], [["firewall", 14, 18]], [["enable", 17, 24]], [["openssh", 17, 16]], [["keys", 20, 32]], [["authorizedKeys", 20, 17]], [["isNormalUser", 19, 9], ["openssh", 20, 9]], [["users", 18, 13]], [["networking", 14, 7], ["services", 17, 7], ["users", 18, 7]], [["ciphers", 27, 9], ["extraConfig", 35, 9], ["hostKeyAlgorithms", 38, 9], ["kexAlgorithms", 48, 9], ["macs", 56, 9]], [["ssh", 26, 16]], [["programs", 26, 7]], [["name", 10, 3], ["nodes", 12, 3], ["testScript", 65, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ssh-audit.nix", [["allowedTCPPorts", 14, 27]]);
-const pos$2 = nix.positions(here + "/ssh-audit.nix", [["firewall", 14, 18]]);
-const pos$3 = nix.positions(here + "/ssh-audit.nix", [["enable", 17, 24]]);
-const pos$4 = nix.positions(here + "/ssh-audit.nix", [["openssh", 17, 16]]);
-const pos$5 = nix.positions(here + "/ssh-audit.nix", [["keys", 20, 32]]);
-const pos$6 = nix.positions(here + "/ssh-audit.nix", [["authorizedKeys", 20, 17]]);
-const pos$7 = nix.positions(here + "/ssh-audit.nix", [["isNormalUser", 19, 9], ["openssh", 20, 9]]);
-const pos$8 = nix.positions(here + "/ssh-audit.nix", [["users", 18, 13]]);
-const pos$9 = nix.positions(here + "/ssh-audit.nix", [["networking", 14, 7], ["services", 17, 7], ["users", 18, 7]]);
-const pos$10 = nix.positions(here + "/ssh-audit.nix", [["ciphers", 27, 9], ["extraConfig", 35, 9], ["hostKeyAlgorithms", 38, 9], ["kexAlgorithms", 48, 9], ["macs", 56, 9]]);
-const pos$11 = nix.positions(here + "/ssh-audit.nix", [["ssh", 26, 16]]);
-const pos$12 = nix.positions(here + "/ssh-audit.nix", [["programs", 26, 7]]);
-const pos$13 = nix.positions(here + "/ssh-audit.nix", [["name", 10, 3], ["nodes", 12, 3], ["testScript", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,29 +14,29 @@ export default nix.lambda((args) => (() => {
   const clientName = "client";
   const sshAuditPort = 2222n;
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "ssh",
     nodes: nix.thunk(() => nix.attrsDyn({}, [
       [nix.str`${serverName}`, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$1, allowedTCPPorts: nix.thunk(() => [sshAuditPort]) })),
+          [nix.POS]: $pos[1],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[0], allowedTCPPorts: nix.thunk(() => [sshAuditPort]) })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          openssh: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+          [nix.POS]: $pos[3],
+          openssh: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${sshUsername}`, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               isNormalUser: true,
               openssh: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 authorizedKeys: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   keys: nix.thunk(() => [nix.thunk(() => nix.sel(sshKeys, "snakeOilPublicKey"))]),
                 })),
               })),
@@ -57,11 +45,11 @@ export default nix.lambda((args) => (() => {
         })),
       }))],
       [nix.str`${clientName}`, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         programs: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           ssh: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             ciphers: nix.thunk(() => [
               "aes128-ctr",
               "aes128-gcm@openssh.com",

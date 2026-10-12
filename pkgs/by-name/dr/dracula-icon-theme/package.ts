@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 38, 5], ["homepage", 39, 5], ["platforms", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["dontDropIconThemeCache", 23, 3], ["dontPatchELF", 25, 3], ["dontRewriteSymlinks", 26, 3], ["installPhase", 28, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, jdupes: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["platforms", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["dontDropIconThemeCache", 23, 3], ["dontPatchELF", 25, 3], ["dontRewriteSymlinks", 26, 3], ["installPhase", 28, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const jdupes = nix.arg($, "jdupes");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dracula-icon-theme",
       version: "0-unstable-2024-05-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "m4thewz",
           repo: "dracula-icons",
           rev: "6232e5217429a3ae6396c9e054f5338cecdbb7a5",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontRewriteSymlinks: true,
       installPhase: "runHook preInstall\nmkdir -p $out/share/icons/Dracula\ncp -a * $out/share/icons/Dracula/\njdupes --quiet --link-soft --recurse $out/share\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Dracula Icon theme",
         homepage: "https://github.com/m4thewz/dracula-icons",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

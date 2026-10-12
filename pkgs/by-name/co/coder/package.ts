@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 20, 9], ["aarch64-linux", 21, 9], ["aarch64-darwin", 22, 9]], [["version", 18, 7], ["hash", 19, 7]], [["x86_64-linux", 28, 9], ["aarch64-linux", 29, 9], ["aarch64-darwin", 30, 9]], [["version", 26, 7], ["hash", 27, 7]], [["stable", 17, 5], ["mainline", 25, 5]], [["x86_64-linux", 48, 13], ["aarch64-linux", 49, 13], ["aarch64-darwin", 50, 13]], [["x86_64-linux", 56, 13], ["aarch64-linux", 57, 13], ["aarch64-darwin", 58, 13]], [["hash", 42, 5], ["url", 44, 5]], [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5]], [["coder", 116, 28]], [["updateScript", 114, 5], ["tests", 115, 5]], [["pname", 36, 3], ["version", 37, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 65, 3], ["unpackPhase", 71, 3], ["installPhase", 82, 3], ["postInstall", 90, 3], ["doCheck", 96, 3], ["meta", 98, 3], ["passthru", 113, 3]]]);
 const formals$1 = { args: { lib: false, channel: true, fetchurl: false, installShellFiles: false, makeBinaryWrapper: false, terraform: false, stdenvNoCC: false, unzip: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 20, 9], ["aarch64-linux", 21, 9], ["aarch64-darwin", 22, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 18, 7], ["hash", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 28, 9], ["aarch64-linux", 29, 9], ["aarch64-darwin", 30, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 26, 7], ["hash", 27, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["stable", 17, 5], ["mainline", 25, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["x86_64-linux", 48, 13], ["aarch64-linux", 49, 13], ["aarch64-darwin", 50, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["x86_64-linux", 56, 13], ["aarch64-linux", 57, 13], ["aarch64-darwin", 58, 13]]);
-const pos$8 = nix.positions(here + "/package.nix", [["hash", 42, 5], ["url", 44, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["coder", 116, 28]]);
-const pos$11 = nix.positions(here + "/package.nix", [["updateScript", 114, 5], ["tests", 115, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 65, 3], ["unpackPhase", 71, 3], ["installPhase", 82, 3], ["postInstall", 90, 3], ["doCheck", 96, 3], ["meta", 98, 3], ["passthru", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,22 +19,22 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const channels = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     stable: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "2.36.6",
       hash: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         "x86_64-linux": "sha256-VXm0K7A+aqZGqfGQhi5lo9rfpjUylrqZVT/pW4UDKcI=",
         "aarch64-linux": "sha256-jof9EX3Xb73dFr51eAOliuDPEfUnkdLul3ZdKU4Vv5w=",
         "aarch64-darwin": "sha256-vaz+mpt4hNhN9Jc39wNOnh0/Q5RjenXyGKl7BgMtj10=",
       })),
     })),
     mainline: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "2.37.2",
       hash: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "x86_64-linux": "sha256-gSl6eWk4vYyCAAUCvomaiiYRUDl2wPVQ37rdHMH06zY=",
         "aarch64-linux": "sha256-HVWGvqcdPogWBo015gtxWnXM/iRLcJEO8UVAROtkHEQ=",
         "aarch64-darwin": "sha256-INFPg6wUu4O/Cr+U9o/059bfr4g3QYZWbG17DU8KeJk=",
@@ -53,22 +42,22 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "coder",
       version: nix.thunk(() => nix.sel(channels, nix.key(nix.force(channel)), "version")),
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           hash: nix.thunk(() => nix.sel(nix.sel(channels, nix.key(nix.force(channel)), "hash"), nix.key(nix.force(system)))),
           url: nix.thunk(() => (() => {
             const systemName = nix.thunk(() => nix.sel({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               "x86_64-linux": "linux_amd64",
               "aarch64-linux": "linux_arm64",
               "aarch64-darwin": "darwin_arm64",
             }, nix.key(nix.force(system))));
             const ext = nix.thunk(() => nix.sel({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               "x86_64-linux": "tar.gz",
               "aarch64-linux": "tar.gz",
               "aarch64-darwin": "zip",
@@ -84,7 +73,7 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Provision remote development environments via Terraform",
         homepage: "https://coder.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -102,9 +91,9 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         updateScript: nix.path(here, "./update.sh"),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$10, coder: nix.thunk(() => nix.attr(nixosTests, "coder")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[9], coder: nix.thunk(() => nix.attr(nixosTests, "coder")) })),
       })),
     }));
 })(), formals$1);

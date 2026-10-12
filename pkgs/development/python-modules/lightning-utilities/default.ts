@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["changelog", 73, 5], ["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 37, 3], ["pythonImportsCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["disabledTests", 51, 3], ["disabledTestPaths", 66, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, packaging: false, setuptools: false, jsonargparse: false, tomlkit: false, "typing-extensions": false, "pytest-timeout": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 73, 5], ["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 37, 3], ["pythonImportsCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["disabledTests", 51, 3], ["disabledTestPaths", 66, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest_timeout = nix.arg($, "pytest-timeout");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lightning-utilities",
       version: "0.15.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Lightning-AI",
           repo: "utilities",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["docs", "src/lightning_utilities/install/requirements.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/Lightning-AI/utilities/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Common Python utilities and GitHub Actions in Lightning Ecosystem",
         homepage: "https://github.com/Lightning-AI/utilities",

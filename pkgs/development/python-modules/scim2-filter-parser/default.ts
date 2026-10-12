@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["django-query", 44, 5]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["build-system", 34, 3], ["postPatch", 36, 3], ["dependencies", 41, 3], ["optional-dependencies", 43, 3], ["pythonImportsCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, "poetry-core": false, django: false, sly: false, mock: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["django-query", 44, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["build-system", 34, 3], ["postPatch", 36, 3], ["dependencies", 41, 3], ["optional-dependencies", 43, 3], ["pythonImportsCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "15five",
           repo: "scim2-filter-parser",
           tag: version,
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "replace-poetry-with-poetry-core.patch",
             url: "https://github.com/15five/scim2-filter-parser/commit/675d85f3a3ff338e96a408827d64d9e893fa5255.patch",
             hash: "sha256-PjJH1S5CDe/BMI0+mB34KdpNNcHfexBFYBmHolsWH4o=",
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const postPatch = "substituteInPlace pyproject.toml \\\n  --replace \"poetry.masonry.api\" \"poetry.core.masonry.api\"\n";
       const dependencies = nix.thunk(() => [sly]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, "django-query": nix.thunk(() => [django]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[2], "django-query": nix.thunk(() => [django]) }));
       const pythonImportsCheck = nix.thunk(() => ["scim2_filter_parser"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([mock, pytestCheckHook], nix.sel(optional_dependencies, "django-query")));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Customizable parser/transpiler for SCIM2.0 filters",
         homepage: "https://github.com/15five/scim2-filter-parser",
         changelog: nix.thunk(() => nix.str`https://github.com/15five/scim2-filter-parser/blob/${version}/CHANGELOG.rst`),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

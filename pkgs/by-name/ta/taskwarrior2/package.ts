@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]], [["url", 28, 7], ["sha256", 29, 7], ["stripLen", 30, 7], ["extraPrefix", 31, 7]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 82, 5], ["platforms", 83, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 40, 3], ["cmakeFlags", 48, 3], ["doCheck", 53, 3], ["preCheck", 54, 3], ["checkTarget", 57, 3], ["postInstall", 59, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, libuuid: false, gnutls: false, python3: false, "xdg-utils": false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["sha256", 29, 7], ["stripLen", 30, 7], ["extraPrefix", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 82, 5], ["platforms", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 40, 3], ["cmakeFlags", 48, 3], ["doCheck", 53, 3], ["preCheck", 54, 3], ["checkTarget", 57, 3], ["postInstall", 59, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const xdg_utils = nix.arg($, "xdg-utils");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "taskwarrior",
       version: "2.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GothenburgBitFactory",
           repo: "taskwarrior",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/GothenburgBitFactory/libshared/commit/bde76fb717c8e56e5859472ba1e890abc5b94e63.patch",
             sha256: "sha256-6esIya9VATtDbL3jOpXZtvMoIJ8ztznqUju4d4lE49w=",
             stripLen: 1n,
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "test",
       postInstall: "# ZSH is installed automatically from some reason, only bash and fish need\n# manual installation\ninstallShellCompletion --cmd task \\\n  --bash $out/share/doc/task/scripts/bash/task.sh \\\n  --fish $out/share/doc/task/scripts/fish/task.fish\nrm -r $out/share/doc/task/scripts/bash\nrm -r $out/share/doc/task/scripts/fish\n# Install vim and neovim plugin\nmkdir -p $out/share/vim-plugins\nmv $out/share/doc/task/scripts/vim $out/share/vim-plugins/task\nmkdir -p $out/share/nvim\nln -s $out/share/vim-plugins/task $out/share/nvim/site\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Highly flexible command-line tool to manage TODO lists",
         homepage: "https://taskwarrior.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 27, 3], ["doCheck", 43, 3], ["enableParallelBuilding", 45, 3], ["hardeningDisable", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libpng: false, libjpeg: false, libtiff: false, zlib: false, bzip2: false, mesa_glu: false, libxcursor: false, libxext: false, libxrandr: false, libxft: false, cups: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 27, 3], ["doCheck", 43, 3], ["enableParallelBuilding", 45, 3], ["hardeningDisable", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxft = nix.arg($, "libxft");
   const cups = nix.arg($, "cups");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fox",
       version: "1.7.81",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://fox-toolkit.org/ftp/fox-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-bu+IEqNkv9OAf96dPYre3CP759pjalVIbYyc3QSQW2w=",
         })))),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C++ based class library for building Graphical User Interfaces",
         longDescription: "FOX stands for Free Objects for X.\nIt is a C++ based class library for building Graphical User Interfaces.\nInitially, it was developed for LINUX, but the scope of this project has in the course of time become somewhat more ambitious.\nCurrent aims are to make FOX completely platform independent, and thus programs written against the FOX library will be only a compile away from running on a variety of platforms.\n",
         homepage: "http://fox-toolkit.org",

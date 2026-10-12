@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["aws", 68, 5], ["azure", 69, 5], ["gcs", 70, 5]], [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["pythonRelaxDeps", 47, 3], ["dependencies", 51, 3], ["optional-dependencies", 67, 3], ["nativeCheckInputs", 73, 3], ["pythonImportsCheck", 82, 3], ["enabledTestPaths", 84, 3], ["disabledTestPaths", 86, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, adlfs: false, appdirs: false, buildPythonPackage: false, databackend: false, fastparquet: false, fetchFromGitHub: false, fsspec: false, gcsfs: false, humanize: false, "importlib-metadata": false, "importlib-resources": false, jinja2: false, joblib: false, pandas: false, pyarrow: false, "pytest-cases": false, "pytest-parallel": false, pytestCheckHook: false, pyyaml: false, requests: false, s3fs: false, "setuptools-scm": false, setuptools: false, "typing-extensions": false, xxhash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aws", 68, 5], ["azure", 69, 5], ["gcs", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["pythonRelaxDeps", 47, 3], ["dependencies", 51, 3], ["optional-dependencies", 67, 3], ["nativeCheckInputs", 73, 3], ["pythonImportsCheck", 82, 3], ["enabledTestPaths", 84, 3], ["disabledTestPaths", 86, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rstudio",
           repo: "pins-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
         xxhash,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         aws: nix.thunk(() => [s3fs]),
         azure: nix.thunk(() => [adlfs]),
         gcs: nix.thunk(() => [gcsfs]),
@@ -80,7 +77,7 @@ export default nix.lambda((args) => (() => {
         "pins/tests/test_rsconnect_api.py",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Module to publishes data, models and other Python objects",
         homepage: "https://github.com/rstudio/pins-python",
         changelog: nix.thunk(() => nix.str`https://github.com/rstudio/pins-python/releases/tag/${nix.sel(src, "tag")}`),
@@ -91,7 +88,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["NIX_CFLAGS_COMPILE", 39, 7]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["postPatch", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["env", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, libpcap: false, glib: false, "pkg-config": false, libnet: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["postPatch", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["env", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libnet = nix.arg($, "libnet");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libnids",
       version: "1.24",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "mirror://sourceforge/libnids/libnids-1.24.tar.gz",
           sha256: "1cblklfdfxcmy0an6xyyzx4l877xdawhjd28daqfsvrh81mb07k1",
         })))),
@@ -31,9 +28,9 @@ export default nix.lambda((args) => (() => {
 `),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libpcap, glib, libnet]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Dg_thread_init= -std=gnu17 " })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Dg_thread_init= -std=gnu17 " })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "E-component of Network Intrusion Detection System which emulates the IP stack of Linux 2.0.x",
         homepage: "https://libnids.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 38, 5], ["downloadPage", 39, 5], ["changelog", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["mainProgram", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["preConfigure", 20, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["installPhase", 30, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { ceph: false, fetchFromGitHub: false, go: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["downloadPage", 39, 5], ["changelog", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["mainProgram", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["preConfigure", 20, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["installPhase", 30, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ceph-csi",
       version: "3.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ceph",
           repo: "ceph-csi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ceph]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp ./_output/* $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Container Storage Interface (CSI) driver for Ceph RBD and CephFS",
         downloadPage: "https://github.com/ceph/ceph-csi",
         changelog: nix.thunk(() => nix.str`https://github.com/ceph/ceph-csi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

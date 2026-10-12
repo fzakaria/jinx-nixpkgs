@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["asyncio", 59, 5], ["http2", 60, 5], ["socks", 61, 5], ["trio", 62, 5]], [["httpx2", 89, 13]], [["tests", 88, 12]], [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 47, 3], ["dependencies", 53, 3], ["optional-dependencies", 58, 3], ["pythonImportsCheck", 65, 3], ["preCheck", 69, 3], ["nativeCheckInputs", 73, 3], ["pytestFlags", 80, 3], ["disabledTests", 83, 3], ["passthru", 88, 3], ["__darwinAllowLocalNetworking", 92, 3], ["__structuredAttrs", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "hatch-fancy-pypi-readme": false, "uv-dynamic-versioning": false, h11: false, truststore: false, h2: false, socksio: false, trio: false, anyio: false, pytestCheckHook: false, "pytest-httpbin": false, "pytest-trio": false, httpx2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["asyncio", 59, 5], ["http2", 60, 5], ["socks", 61, 5], ["trio", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["httpx2", 89, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 88, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 47, 3], ["dependencies", 53, 3], ["optional-dependencies", 58, 3], ["pythonImportsCheck", 65, 3], ["preCheck", 69, 3], ["nativeCheckInputs", 73, 3], ["pytestFlags", 80, 3], ["disabledTests", 83, 3], ["passthru", 88, 3], ["__darwinAllowLocalNetworking", 92, 3], ["__structuredAttrs", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pytest_trio = nix.arg($, "pytest-trio");
   const httpx2 = nix.arg($, "httpx2");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "httpcore2",
       version: "2.9.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pydantic",
           repo: "httpx2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_fancy_pypi_readme, uv_dynamic_versioning]),
       dependencies: nix.thunk(() => [h11, truststore]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         asyncio: nix.thunk(() => [anyio]),
         http2: nix.thunk(() => [h2]),
         socks: nix.thunk(() => [socksio]),
@@ -57,13 +52,13 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["tests/httpcore2"]),
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isRiscV64")), nix.thunk(() => ["test_h2_timeout_during_request", "test_h2_timeout_during_response"]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, httpx2: httpx2 })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], httpx2: httpx2 })),
       })),
       __darwinAllowLocalNetworking: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "A next generation HTTP client for Python",
         homepage: "https://github.com/pydantic/httpx2",
         changelog: nix.thunk(() => nix.str`https://github.com/pydantic/httpx2/blob/${nix.sel(finalAttrs, "src", "tag")}/src/httpcore2/CHANGELOG.md`),

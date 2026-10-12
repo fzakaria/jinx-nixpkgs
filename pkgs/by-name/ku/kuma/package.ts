@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5]], [["pname", 19, 11], ["version", 20, 3], ["tags", 21, 3], ["src", 23, 3], ["vendorHash", 30, 3], ["doCheck", 33, 3], ["nativeBuildInputs", 35, 3], ["preBuild", 37, 3], ["subPackages", 41, 3], ["postInstall", 43, 3], ["ldflags", 56, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildGo127Module: false, coredns: false, installShellFiles: false, isFull: true, enableGateway: true, pname: true, components: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 11], ["version", 20, 3], ["tags", 21, 3], ["src", 23, 3], ["vendorHash", 30, 3], ["doCheck", 33, 3], ["nativeBuildInputs", 35, 3], ["preBuild", 37, 3], ["subPackages", 41, 3], ["postInstall", 43, 3], ["ldflags", 56, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.14.5";
       const tags = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), enableGateway, nix.thunk(() => ["gateway"])));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kumahq",
           repo: "kuma",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,14 +51,14 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Service mesh controller",
         homepage: "https://kuma.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/kumahq/kuma/releases/tag/v${version}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: pname_1,
         version,
         tags,

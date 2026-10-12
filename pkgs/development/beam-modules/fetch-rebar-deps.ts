@@ -2,9 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetch-rebar-deps.nix", [[["pname", 16, 3], ["version", 17, 11], ["dontUnpack", 19, 3], ["dontConfigure", 20, 3], ["dontFixup", 21, 3], ["buildPhase", 23, 3], ["installPhase", 30, 3], ["outputHashAlgo", 40, 3], ["outputHashMode", 41, 3], ["outputHash", 42, 3], ["impureEnvVars", 44, 3], ["meta", 45, 11]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rebar3: false }, ellipsis: false };
 const formals$2 = { args: { name: false, version: false, sha256: false, src: false, meta: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fetch-rebar-deps.nix", [["pname", 16, 3], ["version", 17, 11], ["dontUnpack", 19, 3], ["dontConfigure", 20, 3], ["dontFixup", 21, 3], ["buildPhase", 23, 3], ["installPhase", 30, 3], ["outputHashAlgo", 40, 3], ["outputHashMode", 41, 3], ["outputHash", 42, 3], ["impureEnvVars", 44, 3], ["meta", 45, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const meta = nix.argOr($_1, "meta", () => ({}));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: nix.thunk(() => nix.str`rebar-deps-${name}`),
         version: version,
         dontUnpack: true,

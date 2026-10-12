@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 5], ["version", 24, 13], ["hash", 25, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["teams", 57, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 37, 3], ["checkPhase", 45, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, keystoneauth1: false, openssl: false, "oslo-config": false, "oslo-serialization": false, pbr: false, "requests-mock": false, setuptools: false, stestr: false, testresources: false, testscenarios: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 5], ["version", 24, 13], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["teams", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 37, 3], ["checkPhase", 45, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "python_keystoneclient",
           version: version,
           hash: "sha256-1qw6Ca3yMZqqxXKOO/fL6vlSwpW9eDHx35pXOyX7z4I=",
@@ -38,14 +36,14 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\nstestr run\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["keystoneclient"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Client Library for OpenStack Identity",
         homepage: "https://github.com/openstack/python-keystoneclient",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

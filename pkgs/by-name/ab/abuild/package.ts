@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["ignoredVersions", 88, 5]], [["updateScript", 87, 12]], [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 46, 3], ["patchPhase", 54, 3], ["makeFlags", 60, 3], ["installFlags", 65, 3], ["postInstall", 69, 3], ["passthru", 87, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, gitUpdater: false, makeWrapper: false, "pkg-config": false, file: false, scdoc: false, openssl: false, zlib: false, busybox: false, "apk-tools": false, perl: false, findutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ignoredVersions", 88, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 87, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 46, 3], ["patchPhase", 54, 3], ["makeFlags", 60, 3], ["installFlags", 65, 3], ["postInstall", 69, 3], ["passthru", 87, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const findutils = nix.arg($, "findutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "abuild",
       version: "3.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.alpinelinux.org",
           owner: "alpine",
           repo: "abuild",
@@ -76,11 +72,11 @@ for prog in \\
 done
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "_rc" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], ignoredVersions: "_rc" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Alpine Linux build tools",
         homepage: "https://gitlab.alpinelinux.org/alpine/abuild",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

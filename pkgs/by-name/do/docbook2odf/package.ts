@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["installPhase", 23, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perlPackages: false, makeWrapper: false, zip: false, libxslt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["installPhase", 23, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const zip = nix.arg($, "zip");
   const libxslt = nix.arg($, "libxslt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "docbook2odf",
       version: "0.244",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://open.comsultia.com/docbook2odf/dwn/docbook2odf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "10k44g0qqa37k30pfj8vz95j6zdzz0nmnqjq1lyahfs2h4glzgwb",
         })))),
@@ -46,7 +44,7 @@ wrapProgram "$out/bin/docbook2odf" \\
   --prefix PERL5PATH : "${nix.app(nix.sel(perlPackages, "makePerlPath"), nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "ImageMagick"))]))}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Convert DocBook to OpenDocument Format (ODF)",
         longDescription: "Docbook2odf is a toolkit that automatically converts DocBook to OASIS\nOpenDocument (ODF, the ISO standardized format used for texts,\nspreadsheets and presentations). Conversion is based on a XSLT which\nmakes it easy to convert DocBook->ODF, ODT, ODS and ODP as all these\ndocuments are XML based.\n",
         homepage: "http://open.comsultia.com/docbook2odf/",

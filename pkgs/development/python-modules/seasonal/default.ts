@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 23, 5], ["hash", 24, 5]], [["csv", 40, 5], ["plot", 41, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 34, 3], ["optional-dependencies", 39, 3], ["pythonImportsCheck", 44, 3], ["nativeCheckInputs", 49, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, numpy: false, scipy: false, pandas: false, matplotlib: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["csv", 40, 5], ["plot", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 34, 3], ["optional-dependencies", 39, 3], ["pythonImportsCheck", 44, 3], ["nativeCheckInputs", 49, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "welch",
           repo: "seasonal",
           rev: "2a2396014d46283d0c7aff34cde5dafb6c462c58",
@@ -34,21 +31,21 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const propagatedBuildInputs = nix.thunk(() => [numpy, scipy]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         csv: nix.thunk(() => [pandas]),
         plot: nix.thunk(() => [matplotlib]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["seasonal", "seasonal.trend", "seasonal.periodogram"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Robustly estimate trend and periodicity in a timeseries",
         homepage: "https://github.com/welch/seasonal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["updateScript", 27, 5]], [["changelog", 31, 5], ["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["mainProgram", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["nativeInstallCheckInputs", 22, 3], ["doInstallCheck", 25, 3], ["passthru", 26, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 31, 5], ["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["mainProgram", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["nativeInstallCheckInputs", 22, 3], ["doInstallCheck", 25, 3], ["passthru", 26, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "httpyac";
       const version = "6.16.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "anweber",
           repo: "httpyac",
           tag: version,
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/anweber/httpyac/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Command Line Interface for *.http and *.rest files. Connect with http, gRPC, WebSocket and MQTT",
         homepage: "https://github.com/anweber/httpyac",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

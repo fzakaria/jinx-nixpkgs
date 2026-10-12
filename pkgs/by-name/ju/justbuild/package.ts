@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["url", 47, 5], ["hash", 48, 5]], [["url", 52, 5], ["hash", 53, 5]], [["package", 173, 7], ["command", 174, 7], ["version", 175, 7]], [["version", 172, 11]], [["updateScript", 171, 5], ["tests", 172, 5]], [["broken", 180, 5], ["description", 181, 5], ["homepage", 182, 5], ["changelog", 183, 5], ["mainProgram", 184, 5], ["license", 185, 5], ["maintainers", 186, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["bazelapi", 46, 3], ["googleapi", 51, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 76, 3], ["postPatch", 84, 3], ["buildPhase", 115, 3], ["installPhase", 149, 3], ["passthru", 170, 3], ["meta", 179, 3]]]);
 const formals$1 = { args: { gccStdenv: false, fetchFromGitHub: false, fetchurl: false, fetchpatch2: false, fmt: false, nlohmann_json: false, cli11: false, "microsoft-gsl": false, libgit2: false, openssl: false, "pkg-config": false, protobuf: false, grpc: false, pandoc: false, python3: false, unzip: false, wget: false, lib: false, jq: false, coreutils: false, curl: false, libarchive: false, "nix-update-script": false, testers: false, justbuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 47, 5], ["hash", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 52, 5], ["hash", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 173, 7], ["command", 174, 7], ["version", 175, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 172, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 171, 5], ["tests", 172, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["broken", 180, 5], ["description", 181, 5], ["homepage", 182, 5], ["changelog", 183, 5], ["mainProgram", 184, 5], ["license", 185, 5], ["maintainers", 186, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["bazelapi", 46, 3], ["googleapi", 51, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 76, 3], ["postPatch", 84, 3], ["buildPhase", 115, 3], ["installPhase", 149, 3], ["passthru", 170, 3], ["meta", 179, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,19 +37,19 @@ export default nix.lambda((args) => (() => {
       const pname = "justbuild";
       const version = "1.6.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "just-buildsystem",
           repo: "justbuild",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-WvoH4xPtXbF0QoJLVOcrajavfbsEdnFSV+P6eTWV/vA=",
         }))));
       const bazelapi = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://github.com/bazelbuild/remote-apis/archive/9ef19c6b5fbf77d6dd9d84d75fbb5a20a6b62ef1.tar.gz",
           hash: "sha256-zPV1ObY0fOsKp+k+5Duf/xrrSW02zAl9qRjEo172WDk=",
         }))));
       const googleapi = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://github.com/googleapis/googleapis/archive/fe8ba054ad4f7eca946c2d14a63c3f07c0b586a0.tar.gz",
           hash: "sha256:1r33jj8yipxjgiarddcxr1yc5kmn98rwrjl9qxfx0fzn1bsg04q5",
         }))));
@@ -118,12 +111,12 @@ runHook postBuild
 `);
       const installPhase = "runHook preInstall\nmkdir -p \"$out/bin\"\n\n\ninstall -m 755 -Dt \"$out/bin\" \"../build/out/bin/just\"\ninstall -m 755 -Dt \"$out/bin\" \"../build/out/bin/just-mr\"\ninstall -m 755 -DT \"bin/just-import-git.py\" \"$out/bin/just-import-git\"\ninstall -m 755 -DT \"bin/just-deduplicate-repos.py\" \"$out/bin/just-deduplicate-repos\"\ninstall -m 755 -DT \"bin/just-lock.py\" \"$out/bin/just-lock\"\n\nmkdir -p \"$out/share/bash-completion/completions\"\ninstall -m 0644 ./share/just_complete.bash \"$out/share/bash-completion/completions/just\"\n\nmkdir -p \"$out/share/man/\"{man1,man5}\ninstall -m 0644 -t \"$out/share/man/man1\" ./share/man/*.1\ninstall -m 0644 -t \"$out/share/man/man5\" ./share/man/*.5\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: justbuild,
               command: "just version",
               version: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [","]), version)),
@@ -131,7 +124,7 @@ runHook postBuild
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Generic build tool",
         homepage: "https://github.com/just-buildsystem/justbuild",
@@ -144,7 +137,7 @@ runHook postBuild
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

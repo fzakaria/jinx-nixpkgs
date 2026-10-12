@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 29, 13], ["version", 29, 19], ["hash", 30, 5]], [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["license", 69, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 51, 3], ["disabledTests", 58, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, id: false, keyring: false, packaging: false, pkginfo: false, "readme-renderer": false, requests: false, "requests-toolbelt": false, rich: false, rfc3986: false, setuptools: false, "setuptools-scm": false, urllib3: false, build: false, pretend: false, "pytest-socket": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 29, 13], ["version", 29, 19], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["license", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 51, 3], ["disabledTests", 58, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-5e0NL9cMmVl3Dc5RyPOciUXFdOGBc6e4GALatRtLdc8=",
@@ -55,14 +53,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_fails_rst_syntax_error"]);
       const pythonImportsCheck = nix.thunk(() => ["twine"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of utilities for interacting with PyPI",
         mainProgram: "twine",
         homepage: "https://github.com/pypa/twine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

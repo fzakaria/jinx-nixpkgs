@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["CGO_ENABLED", 22, 7]], [["changelog", 37, 5], ["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["env", 22, 3], ["ldflags", 24, 3], ["nativeCheckInputs", 26, 3], ["preCheck", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, gitMinimal: false, buildGoModule: false, fetchFromGitHub: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 37, 5], ["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["env", 22, 3], ["ldflags", 24, 3], ["nativeCheckInputs", 26, 3], ["preCheck", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,23 +13,23 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gitcs",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hrtsegv",
           repo: "gitcs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-mRQfW0sY6la8SyO+zDr/HcakDugRShW/Aea9uj6G/gA=",
         })))),
       vendorHash: "sha256-bG0BaH8yYp8TUiK/7xvghB4T48LcBEvmF1uvY5eYkww=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => ["-s"]),
       nativeCheckInputs: nix.thunk(() => [gitMinimal, writableTmpDirAsHomeHook]),
       preCheck: "git config --global init.defaultBranch main\nbash ./setup-test.sh\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/hrtsegv/gitcs/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Scan local git repositories and generate a visual contributions graph",
         homepage: "https://github.com/hrtsegv/gitcs",

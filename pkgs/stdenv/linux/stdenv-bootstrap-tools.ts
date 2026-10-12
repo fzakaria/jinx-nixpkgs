@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stdenv-bootstrap-tools.nix", [[["schedulingPriority", 39, 5]], [["busybox", 206, 7], ["bootstrapTools", 207, 7]], [["bootstrapFiles", 204, 5]], [["name", 34, 3], ["meta", 36, 3], ["nativeBuildInputs", 42, 3], ["buildCommand", 47, 3], ["allowedReferences", 201, 3], ["passthru", 203, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bashNonInteractive: false, binutils: false, bootBinutils: false, bootGCC: false, buildPackages: false, busyboxMinimal: false, bzip2: false, coreutilsMinimal: false, diffutils: false, findutils: false, gawk: false, gmpxx: false, gnugrep: false, gnumake: false, gnused: false, gzip: false, libc: false, libmpc: false, mpfr: false, patch: false, patchelf: false, runCommand: false, tarMinimal: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/stdenv-bootstrap-tools.nix", [["schedulingPriority", 39, 5]]);
-const pos$2 = nix.positions(here + "/stdenv-bootstrap-tools.nix", [["busybox", 206, 7], ["bootstrapTools", 207, 7]]);
-const pos$3 = nix.positions(here + "/stdenv-bootstrap-tools.nix", [["bootstrapFiles", 204, 5]]);
-const pos$4 = nix.positions(here + "/stdenv-bootstrap-tools.nix", [["name", 34, 3], ["meta", 36, 3], ["nativeBuildInputs", 42, 3], ["buildCommand", 47, 3], ["allowedReferences", 201, 3], ["passthru", 203, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,9 +35,9 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withLibnsl = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "stdenv-bootstrap-tools",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, schedulingPriority: 200n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], schedulingPriority: 200n })),
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(buildPackages, "nukeReferences")),
         nix.thunk(() => nix.sel(buildPackages, "cpio")),
@@ -177,9 +174,9 @@ nuke-refs $out/on-server/busybox
 `)),
       allowedReferences: [],
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         bootstrapFiles: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           busybox: nix.thunk(() => nix.app(runCommand, "busybox", nix.thunk(() => ({})), nix.thunk(() => nix.str`cp ${nix.sel(finalAttrs, "finalPackage")}/on-server/busybox $out`))),
           bootstrapTools: nix.thunk(() => nix.app(runCommand, "bootstrap-tools.tar.xz", nix.thunk(() => ({})), nix.thunk(() => nix.str`cp ${nix.sel(finalAttrs, "finalPackage")}/on-server/bootstrap-tools.tar.xz $out`))),
         })),

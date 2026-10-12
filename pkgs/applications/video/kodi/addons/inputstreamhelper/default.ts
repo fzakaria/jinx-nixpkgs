@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["url", 21, 7], ["hash", 22, 7]], [["attrPath", 29, 7]], [["pythonPath", 27, 5], ["updateScript", 28, 5]], [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["teams", 37, 5]], [["pname", 10, 3], ["namespace", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["passthru", 26, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, rel: false, buildKodiAddon: false, fetchzip: false, fetchpatch: false, addonUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["attrPath", 29, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pythonPath", 27, 5], ["updateScript", 28, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["teams", 37, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["namespace", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["passthru", 26, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,30 +18,30 @@ export default nix.lambda((args) => (() => {
       const namespace = "script.module.inputstreamhelper";
       const version = "0.6.1+matrix.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mirrors.kodi.tv/addons/${nix.app(nix.sel(lib, "toLower"), rel)}/${namespace}/${namespace}-${version}.zip`),
           sha256: "sha256-v5fRikswmP+KVbxYibD0NbCK8leUnFbya5EtF1FmS0I=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/emilsvennesson/script.module.inputstreamhelper/commit/af6adc16a0bee4921a827946b004ee070406ae37.patch",
             hash: "sha256-901EyVeZUb0EMvxsEza95qFjTOZ7PDYyqHMRawPM5Zs=",
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pythonPath: "lib",
-        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$3, attrPath: "kodi.packages.inputstreamhelper" })))),
+        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[2], attrPath: "kodi.packages.inputstreamhelper" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/emilsvennesson/script.module.inputstreamhelper",
         description: "Simple Kodi module that makes life easier for add-on developers relying on InputStream based add-ons and DRM playback",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
-      return { [nix.POS]: pos$6, pname, namespace, version, src, patches, passthru, meta };
+      return { [nix.POS]: $pos[5], pname, namespace, version, src, patches, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

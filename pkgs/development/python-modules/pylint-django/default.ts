@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["with_django", 31, 5]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 30, 3], ["nativeCheckInputs", 34, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, django: false, "django-tables2": false, "django-tastypie": false, "factory-boy": false, fetchFromGitHub: false, "poetry-core": false, "pylint-plugin-utils": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["with_django", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 30, 3], ["nativeCheckInputs", 34, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pylint_plugin_utils = nix.arg($, "pylint-plugin-utils");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pylint-django",
       version: "2.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PyCQA",
           repo: "pylint-django",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [pylint_plugin_utils]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, with_django: nix.thunk(() => [django]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], with_django: nix.thunk(() => [django]) })),
       nativeCheckInputs: nix.thunk(() => [django_tables2, django_tastypie, factory_boy, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pylint_django"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pylint plugin to analyze Django applications",
         homepage: "https://github.com/PyCQA/pylint-django",
         changelog: nix.thunk(() => nix.str`https://github.com/pylint-dev/pylint-django/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

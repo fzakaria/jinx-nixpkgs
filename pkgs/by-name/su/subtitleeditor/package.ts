@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["enableParallelBuilding", 60, 3], ["preConfigure", 62, 3], ["configureFlags", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, intltool: false, file: false, "desktop-file-utils": false, enchant: false, gtk3: false, gtkmm3: false, gst_all_1: false, "hicolor-icon-theme": false, libsigcxx_2_0: false, libxmlxx: false, "xdg-utils": false, isocodes: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["enableParallelBuilding", 60, 3], ["preConfigure", 62, 3], ["configureFlags", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const isocodes = nix.arg($, "isocodes");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "subtitleeditor",
       version: "0.56.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "subtitleeditor",
           repo: "subtitleeditor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`substituteInPlace ./configure --replace /usr/bin/file ${file}/bin/file`),
       configureFlags: nix.thunk(() => ["--disable-debug"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GTK 3 application to edit video subtitles",
         longDescription: "Subtitle Editor is a GTK 3 tool to edit subtitles for GNU/Linux/*BSD. It\ncan be used for new subtitles or as a tool to transform, edit, correct\nand refine existing subtitle. This program also shows sound waves, which\nmakes it easier to synchronise subtitles to voices.\n",
         homepage: "https://subtitleeditor.github.io/subtitleeditor/",

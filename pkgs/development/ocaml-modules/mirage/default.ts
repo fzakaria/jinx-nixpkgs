@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 51, 5]], [["pname", 18, 3], ["version", 19, 28], ["src", 19, 36], ["minimalOCamlVersion", 21, 3], ["outputs", 23, 3], ["propagatedBuildInputs", 28, 3], ["doCheck", 42, 3], ["installPhase", 44, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, ocaml: false, "mirage-runtime": false, astring: false, bos: false, cmdliner: false, emile: false, fmt: false, fpath: false, ipaddr: false, logs: false, rresult: false, uri: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 51, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 28], ["src", 19, 36], ["minimalOCamlVersion", 21, 3], ["outputs", 23, 3], ["propagatedBuildInputs", 28, 3], ["doCheck", 42, 3], ["installPhase", 44, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const rresult = nix.arg($, "rresult");
   const uri = nix.arg($, "uri");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mirage",
       version: nix.thunk(() => nix.attr(mirage_runtime, "version")),
       src: nix.thunk(() => nix.attr(mirage_runtime, "src")),
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
 dune install --prefix=$out --libdir=$dev/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib/ mirage
 runHook postInstall
 `),
-      meta: nix.thunk(() => nix.update(nix.sel(mirage_runtime, "meta"), { [nix.POS]: pos$1, description: "MirageOS library operating system" })),
+      meta: nix.thunk(() => nix.update(nix.sel(mirage_runtime, "meta"), { [nix.POS]: $pos[0], description: "MirageOS library operating system" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

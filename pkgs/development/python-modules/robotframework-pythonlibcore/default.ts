@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["changelog", 40, 5], ["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 30, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, robotframework: false, approvaltests: false, "pytest-mockito": false, pytestCheckHook: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 40, 5], ["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 30, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "robotframework",
           repo: "PythonLibCore",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [approvaltests, pytest_mockito, pytestCheckHook, typing_extensions]);
       const pythonImportsCheck = nix.thunk(() => ["robotlibcore"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/robotframework/PythonLibCore/blob/${nix.sel(src, "tag")}/docs/PythonLibCore-${nix.sel(src, "tag")}.rst`),
         description: "Tools to ease creating larger test libraries for Robot Framework using Python",
         homepage: "https://github.com/robotframework/PythonLibCore",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

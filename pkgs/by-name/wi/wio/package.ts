@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["NIX_CFLAGS_COMPILE", 56, 7]], [["providedSessions", 69, 5], ["updateScript", 70, 5]], [["homepage", 74, 5], ["description", 75, 5], ["longDescription", 76, 5], ["license", 80, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 28]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["strictDeps", 53, 3], ["__structuredAttrs", 54, 3], ["env", 56, 3], ["postInstall", 58, 3], ["passthru", 68, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, alacritty: false, cage: false, cairo: false, libxkbcommon: false, makeWrapper: false, libgbm: false, meson: false, ninja: false, "pkg-config": false, "wayland-scanner": false, udev: false, unstableGitUpdater: false, wayland: false, "wayland-protocols": false, wlroots_0_19: false, xwayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["providedSessions", 69, 5], ["updateScript", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["description", 75, 5], ["longDescription", 76, 5], ["license", 80, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["strictDeps", 53, 3], ["__structuredAttrs", 54, 3], ["env", 56, 3], ["postInstall", 58, 3], ["passthru", 68, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const wlroots_0_19 = nix.arg($, "wlroots_0_19");
   const xwayland = nix.arg($, "xwayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "wio",
       version: "0.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Rubo",
           repo: "wio",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,19 +50,19 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       __structuredAttrs: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=maybe-uninitialized" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=maybe-uninitialized" })),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/wio \\
   --prefix PATH ":" "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [alacritty, cage]))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         providedSessions: nix.thunk(() => ["wio"]),
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wayland, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/Rubo3/wio",
         description: "Wayland compositor similar to Plan 9's rio",
         longDescription: "Wio is a Wayland compositor for Linux and FreeBSD which has a similar look\nand feel to plan9's rio.\n",

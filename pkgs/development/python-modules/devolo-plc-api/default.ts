@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["url", 34, 7], ["hash", 35, 7]], [["url", 38, 7], ["hash", 39, 7]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 43, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["__darwinAllowLocalNetworking", 58, 3], ["nativeCheckInputs", 60, 3], ["disabledTests", 68, 3], ["pythonImportsCheck", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, httpx: false, protobuf: false, "pytest-asyncio_0": false, "pytest-httpx": false, "pytest-mock": false, pytestCheckHook: false, segno: false, "setuptools-scm": false, syrupy: false, tenacity: false, zeroconf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 43, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["__darwinAllowLocalNetworking", 58, 3], ["nativeCheckInputs", 60, 3], ["disabledTests", 68, 3], ["pythonImportsCheck", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "2Fake",
           repo: "devolo_plc_api",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,12 +35,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/2Fake/devolo_plc_api/commit/3b1c167e2df5909910e97bf1626de88b17fb94d1.patch",
             hash: "sha256-oaLYMvRl2Zcum9XkFQ1Dm1/F/BhURLGKrwh6FguVL9Y=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/2Fake/devolo_plc_api/pull/224.patch",
             hash: "sha256-fDGYhjA/tMFKQnEtix1no8Wf+cp9Ph7keXRq1+sH6YA=",
           })))),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_wrong_password_type"]);
       const pythonImportsCheck = nix.thunk(() => ["devolo_plc_api"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Module to interact with Devolo PLC devices",
         homepage: "https://github.com/2Fake/devolo_plc_api",
         changelog: nix.thunk(() => nix.str`https://github.com/2Fake/devolo_plc_api/releases/tag/v${version}`),
@@ -68,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

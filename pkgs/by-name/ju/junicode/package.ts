@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["tlDeps", 49, 5], ["tests", 54, 5]], [["homepage", 58, 5], ["description", 59, 5], ["maintainers", 60, 5], ["license", 61, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 17, 3], ["patches", 23, 3], ["postPatch", 25, 3], ["installPhase", 33, 3], ["passthru", 48, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tlDeps", 49, 5], ["tests", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["description", 59, 5], ["maintainers", 60, 5], ["license", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 17, 3], ["patches", 23, 3], ["postPatch", 25, 3], ["installPhase", 33, 3], ["passthru", 48, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "junicode";
       const version = "2.222";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/psb1558/Junicode-font/releases/download/v${version}/Junicode_${version}.zip`),
           hash: "sha256-fAhK6IAw1UL0Q2CusNmN+LedySZnBrfUAHMQJoHTRl4=",
         }))));
@@ -39,7 +36,7 @@ install -Dm 444 -t $tex/tex/latex/junicodevf TeX/junicodevf.{sty,lua}
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tlDeps: (ps) => [
           nix.thunk(() => nix.sel(ps, "xkeyval")),
           nix.thunk(() => nix.sel(ps, "fontspec")),
@@ -47,7 +44,7 @@ runHook postInstall
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/psb1558/Junicode-font",
         description: "Unicode font for medievalists",
         maintainers: nix.thunk(() => (() => {
@@ -57,7 +54,7 @@ runHook postInstall
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

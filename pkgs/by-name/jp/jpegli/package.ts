@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]], [["hardcodeZeroVersion", 85, 41]], [["updateScript", 85, 5]], [["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["platforms", 92, 5], ["maintainers", 93, 5], ["mainProgram", 97, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 32, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["cmakeFlags", 61, 3], ["postInstall", 78, 3], ["doCheck", 82, 3], ["passthru", 84, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, asciidoc: false, brotli: false, cmake: false, fetchFromGitHub: false, giflib: false, gtest: false, lcms2: false, libjpeg: false, libhwy: false, libpng: false, ninja: false, openexr: false, "pkg-config": false, python3Minimal: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 85, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["platforms", 92, 5], ["maintainers", 93, 5], ["mainProgram", 97, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 32, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["cmakeFlags", 61, 3], ["postInstall", 78, 3], ["doCheck", 82, 3], ["passthru", 84, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const python3Minimal = nix.arg($, "python3Minimal");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jpegli",
       version: "0-unstable-2026-04-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "jpegli",
           rev: "7a57896e68a8ab861ded9857b2d3a402868d3d9e",
@@ -60,11 +56,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "moveToOutput \"bin/benchmark_xl\" \"$benchmark\"\n",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Improved JPEG encoder and decoder implementation",
         homepage: "https://github.com/google/jpegli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

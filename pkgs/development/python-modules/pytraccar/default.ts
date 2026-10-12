@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 27, 3], ["pytestFlags", 32, 3], ["postPatch", 34, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, pytestCheckHook: false, "pytest-asyncio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 27, 3], ["pytestFlags", 32, 3], ["postPatch", 34, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ludeeus",
           repo: "pytraccar",
           tag: version,
@@ -37,7 +35,7 @@ substituteInPlace pyproject.toml \\
 `);
       const pythonImportsCheck = nix.thunk(() => ["pytraccar"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library to handle device information from Traccar",
         homepage: "https://github.com/ludeeus/pytraccar",
         changelog: nix.thunk(() => nix.str`https://github.com/ludeeus/pytraccar/releases/tag/${nix.sel(src, "tag")}`),
@@ -48,7 +46,7 @@ substituteInPlace pyproject.toml \\
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

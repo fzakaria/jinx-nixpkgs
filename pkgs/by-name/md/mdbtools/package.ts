@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 31, 7]], [["updateScript", 57, 12]], [["changelog", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 67, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["configureFlags", 29, 3], ["env", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 42, 3], ["postUnpack", 47, 3], ["enableParallelBuilding", 51, 3], ["doInstallCheck", 53, 3], ["nativeInstallCheckInputs", 54, 3], ["versionCheckProgram", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, glib: false, readline: false, bison: false, flex: false, "pkg-config": false, autoreconfHook: false, txt2man: false, which: false, gettext: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["configureFlags", 29, 3], ["env", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 42, 3], ["postUnpack", 47, 3], ["enableParallelBuilding", 51, 3], ["doInstallCheck", 53, 3], ["nativeInstallCheckInputs", 54, 3], ["versionCheckProgram", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mdbtools",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mdbtools",
           repo: "mdbtools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       configureFlags: nix.thunk(() => ["--disable-scrollkeeper"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=unused-but-set-variable")),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, bison, flex, autoreconfHook, txt2man, which]),
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/mdb-ver`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/mdbtools/mdbtools/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: ".mdb (MS Access) format tools",
         homepage: "https://mdbtools.github.io/",

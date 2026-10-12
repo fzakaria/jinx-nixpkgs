@@ -2,37 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/docker-tools-overlay.nix", [[["maintainers", 6, 5]], [["enable", 15, 31], ["storageDriver", 16, 31]], [["docker", 15, 24]], [["virtualisation", 15, 9]], [["docker", 12, 5]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 11, 3], ["testScript", 20, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/docker-tools-overlay.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/docker-tools-overlay.nix", [["enable", 15, 31], ["storageDriver", 16, 31]]);
-const pos$3 = nix.positions(here + "/docker-tools-overlay.nix", [["docker", 15, 24]]);
-const pos$4 = nix.positions(here + "/docker-tools-overlay.nix", [["virtualisation", 15, 9]]);
-const pos$5 = nix.positions(here + "/docker-tools-overlay.nix", [["docker", 12, 5]]);
-const pos$6 = nix.positions(here + "/docker-tools-overlay.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 11, 3], ["testScript", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "docker-tools-overlay",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "roberth"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       docker: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            docker: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, storageDriver: "overlay2" })),
+            [nix.POS]: $pos[2],
+            docker: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, storageDriver: "overlay2" })),
           })),
         };
       })(), formals$2),

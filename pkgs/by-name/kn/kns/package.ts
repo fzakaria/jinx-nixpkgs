@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 19, 3], ["buildInputs", 21, 3], ["installPhase", 26, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, fzf: false, kubectl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 19, 3], ["buildInputs", 21, 3], ["installPhase", 26, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fzf = nix.arg($, "fzf");
   const kubectl = nix.arg($, "kubectl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kns",
       version: "0-unstable-2023-04-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "blendle",
           repo: "kns",
           rev: "86502949c31432bd95895cfb26d1c5893c533d5c",
@@ -35,7 +33,7 @@ install -D -m755 -t $out/bin bin/kns bin/ktx
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Kubernetes namespace switcher",
         homepage: "https://github.com/blendle/kns",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

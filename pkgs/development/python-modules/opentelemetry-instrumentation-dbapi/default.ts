@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 34, 5], ["description", 35, 5]], [["version", 12, 43], ["src", 12, 51], ["pname", 13, 3], ["pyproject", 14, 3], ["sourceRoot", 16, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["nativeCheckInputs", 26, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, pytestCheckHook: false, hatchling: false, "opentelemetry-api": false, "opentelemetry-instrumentation": false, "opentelemetry-semantic-conventions": false, "opentelemetry-test-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 34, 5], ["description", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 12, 43], ["src", 12, 51], ["pname", 13, 3], ["pyproject", 14, 3], ["sourceRoot", 16, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["nativeCheckInputs", 26, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const opentelemetry_semantic_conventions = nix.arg($, "opentelemetry-semantic-conventions");
   const opentelemetry_test_utils = nix.arg($, "opentelemetry-test-utils");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "src")),
       pname: "opentelemetry-instrumentation-dbapi",
@@ -31,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [opentelemetry_test_utils, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.instrumentation.dbapi"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-dbapi",
         description: "OpenTelemetry Database API instrumentation",
       })),

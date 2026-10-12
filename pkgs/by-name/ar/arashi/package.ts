@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["maintainers", 31, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["installPhase", 17, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["installPhase", 17, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "arashi",
       version: "25.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "0hStormy",
           repo: "Arashi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/icons/Arashi\ncp -r . $out/share/icons/Arashi/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Arashi icon theme",
         homepage: "https://github.com/0hStormy/Arashi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),

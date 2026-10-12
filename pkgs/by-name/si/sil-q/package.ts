@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["saveDirCreation", 64, 5]], [["tests", 63, 12]], [["description", 71, 5], ["mainProgram", 72, 5], ["longDescription", 73, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 33, 3], ["sourceRoot", 39, 3], ["postPatch", 41, 3], ["makefile", 49, 3], ["installPhase", 51, 3], ["passthru", 63, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, stdenv: false, fetchFromGitHub: false, writeScript: false, makeWrapper: false, ncurses: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["saveDirCreation", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 63, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 71, 5], ["mainProgram", 72, 5], ["longDescription", 73, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 33, 3], ["sourceRoot", 39, 3], ["postPatch", 41, 3], ["makefile", 49, 3], ["installPhase", 51, 3], ["passthru", 63, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const setup = nix.thunk(() => nix.app(writeScript, "setup", "mkdir -p \"$ANGBAND_PATH\"\n# copy all the data files into place\ncp -ar $1/* \"$ANGBAND_PATH\"\n# the copied files need to be writable\nchmod +w -R \"$ANGBAND_PATH\"\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sil-q",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sil-quirk",
           repo: "sil-q",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,16 +43,16 @@ wrapProgram $out/bin/sil-q \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           saveDirCreation: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "save-dir-creation", nix.thunk(() => ({})), nix.thunk(() => nix.str`HOME=$(pwd) ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "sil-q")))} --help
 test -d .sil-q && touch $out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Roguelike game set in the First Age of Middle-earth",
         mainProgram: "sil-q",
         longDescription: "A game of adventure set in the First Age of Middle-earth, when the world still\nrang with Elven song and gleamed with Dwarven mail.\n\nWalk the dark halls of Angband.  Slay creatures black and fell.  Wrest a shining\nSilmaril from Morgoth’s iron crown.\n\nA fork of Sil that's still actively developed.\n",

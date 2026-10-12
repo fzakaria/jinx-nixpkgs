@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["name", 21, 7], ["url", 22, 7], ["sha256", 23, 7]], [["CXXFLAGS", 36, 7]], [["license", 39, 5], ["homepage", 40, 5], ["description", 41, 5], ["platforms", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 32, 3], ["preConfigure", 34, 3], ["env", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 21, 7], ["url", 22, 7], ["sha256", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CXXFLAGS", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["license", 39, 5], ["homepage", 40, 5], ["description", 41, 5], ["platforms", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 32, 3], ["preConfigure", 34, 3], ["env", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +16,13 @@ export default nix.lambda((args) => (() => {
       const pname = "gecode";
       const version = "3.7.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.gecode.org/download/${pname}-${version}.tar.gz`),
           sha256: "0k45jas6p3cyldgyir1314ja3174sayn2h2ly3z9b4dl3368pk77",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-const-weights-clang.patch",
             url: "https://github.com/Gecode/gecode/commit/c810c96b1ce5d3692e93439f76c4fa7d3daf9fbb.patch",
             sha256: "0270msm22q5g5sqbdh8kmrihlxnnxqrxszk9a49hdxd72736p4fc",
@@ -36,18 +32,18 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [perl]);
       const preConfigure = "patchShebangs configure";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CXXFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-std=c++14")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://www.gecode.org",
         description: "Toolkit for developing constraint-based systems",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

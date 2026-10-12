@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 42, 9], ["version", 43, 9], ["src", 44, 9], ["sourceRoot", 45, 9], ["fetcherVersion", 47, 7], ["pnpm", 48, 7], ["hash", 49, 7]], [["pname", 28, 5], ["version", 29, 13], ["src", 29, 21], ["sourceRoot", 31, 5], ["nativeBuildInputs", 33, 5], ["pnpmDeps", 40, 5], ["installPhase", 52, 5]], [["extraArgs", 90, 7]], [["filebrowser", 97, 28]], [["updateScript", 89, 5], ["frontend", 95, 13], ["tests", 96, 5]], [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["mainProgram", 107, 5]], [["pname", 64, 3], ["version", 65, 11], ["src", 65, 19], ["vendorHash", 67, 3], ["nativeBuildInputs", 69, 3], ["postInstall", 71, 3], ["excludedPackages", 78, 3], ["preBuild", 80, 3], ["ldflags", 84, 3], ["passthru", 88, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, buildGoModule: false, stdenvNoCC: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpmBuildHook: false, "nodejs-slim": false, pnpm_10: false, installShellFiles: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 42, 9], ["version", 43, 9], ["src", 44, 9], ["sourceRoot", 45, 9], ["fetcherVersion", 47, 7], ["pnpm", 48, 7], ["hash", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 5], ["version", 29, 13], ["src", 29, 21], ["sourceRoot", 31, 5], ["nativeBuildInputs", 33, 5], ["pnpmDeps", 40, 5], ["installPhase", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 90, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["filebrowser", 97, 28]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 89, 5], ["frontend", 95, 13], ["tests", 96, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["mainProgram", 107, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 64, 3], ["version", 65, 11], ["src", 65, 19], ["vendorHash", 67, 3], ["nativeBuildInputs", 69, 3], ["postInstall", 71, 3], ["excludedPackages", 78, 3], ["preBuild", 80, 3], ["ldflags", 84, 3], ["passthru", 88, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,21 +22,21 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const version = "2.63.23";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "filebrowser",
       repo: "filebrowser",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-G0TIQE+Rru4JWBJIi8kdxSaP0CDPo2DyWLmcU2AX7Fs=",
     }))));
   const frontend = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "filebrowser-frontend",
       version: version,
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/frontend`),
       nativeBuildInputs: nix.thunk(() => [nodejs_slim, pnpmConfigHook, pnpmBuildHook, pnpm_10]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -55,7 +48,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir $out\nmv dist $out\n\nrunHook postInstall\n",
     })));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "filebrowser",
       version: version,
       src: src,
@@ -69,16 +62,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/filebrowser/filebrowser/v2/version.Version=v${version}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
         frontend: frontend,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           filebrowser: nix.thunk(() => nix.attr(nixosTests, "filebrowser")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Web application for managing files and directories",
         homepage: "https://filebrowser.org",
         changelog: nix.thunk(() => nix.str`https://github.com/filebrowser/filebrowser/releases/${nix.sel(src, "tag")}`),

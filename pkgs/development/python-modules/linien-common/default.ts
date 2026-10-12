@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["pytest", 50, 5]], [["tests", 49, 12]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["broken", 73, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["preBuild", 28, 3], ["build-system", 32, 3], ["pythonRelaxDeps", 34, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 47, 3], ["passthru", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "importlib-metadata": false, numpy: false, rpyc: false, scipy: false, appdirs: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pytest", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 49, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["broken", 73, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["preBuild", 28, 3], ["build-system", 32, 3], ["pythonRelaxDeps", 34, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 47, 3], ["passthru", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linien-org",
           repo: "linien",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [importlib_metadata, numpy, rpyc, scipy, appdirs]);
       const pythonImportsCheck = nix.thunk(() => ["linien_common"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pytest: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Shared components of the Linien spectroscopy lock application",
         homepage: "https://github.com/linien-org/linien/tree/develop/linien-common",
         changelog: nix.thunk(() => nix.str`https://github.com/linien-org/linien/blob/v${version}/CHANGELOG.md`),
@@ -61,7 +57,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(numpy, "version")), "2")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

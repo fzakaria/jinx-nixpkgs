@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-adapters.nix", [[["dbt-bigquery", 12, 7], ["dbt-postgres", 13, 7], ["dbt-redshift", 14, 7], ["dbt-snowflake", 15, 7]], [["extraLibs", 21, 3], ["ignoreCollisions", 22, 3]], [["mainProgram", 24, 10]], [["meta", 24, 5]]]);
 const formals$1 = { args: { python: false, "dbt-bigquery": false, "dbt-core": false, "dbt-postgres": false, "dbt-redshift": false, "dbt-snowflake": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/with-adapters.nix", [["dbt-bigquery", 12, 7], ["dbt-postgres", 13, 7], ["dbt-redshift", 14, 7], ["dbt-snowflake", 15, 7]]);
-const pos$2 = nix.positions(here + "/with-adapters.nix", [["extraLibs", 21, 3], ["ignoreCollisions", 22, 3]]);
-const pos$3 = nix.positions(here + "/with-adapters.nix", [["mainProgram", 24, 10]]);
-const pos$4 = nix.positions(here + "/with-adapters.nix", [["meta", 24, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const dbt_redshift = nix.arg($, "dbt-redshift");
   const dbt_snowflake = nix.arg($, "dbt-snowflake");
   const adapters = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "dbt-bigquery": dbt_bigquery,
     "dbt-postgres": dbt_postgres,
     "dbt-redshift": dbt_redshift,
     "dbt-snowflake": dbt_snowflake,
   }));
   return (adapterFun) => nix.app(nix.sel(nix.app(nix.sel(python, "buildEnv", "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       extraLibs: nix.thunk(() => nix.concat([dbt_core], nix.app(adapterFun, adapters))),
       ignoreCollisions: true,
     }))), "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: nix.thunk(() => nix.sel(dbt_core, "meta", "mainProgram")),
       })),
     })));

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withBaseWrapper", 16, 5], ["extraSessionCommands", 17, 5], ["withGtkWrapper", 18, 5], ["extraOptions", 19, 5], ["isNixOS", 20, 5], ["enableXWayland", 21, 5], ["dbusSupport", 22, 5], ["sway-unwrapped", 24, 3]]]);
 const formals$1 = { args: { "swayfx-unwrapped": false, sway: false, withBaseWrapper: true, extraSessionCommands: true, withGtkWrapper: true, extraOptions: true, isNixOS: true, enableXWayland: true, dbusSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withBaseWrapper", 16, 5], ["extraSessionCommands", 17, 5], ["withGtkWrapper", 18, 5], ["extraOptions", 19, 5], ["isNixOS", 20, 5], ["enableXWayland", 21, 5], ["dbusSupport", 22, 5], ["sway-unwrapped", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const enableXWayland = nix.argOr($, "enableXWayland", () => true);
   const dbusSupport = nix.argOr($, "dbusSupport", () => true);
   return nix.app(nix.sel(sway, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       withBaseWrapper: withBaseWrapper,
       extraSessionCommands: extraSessionCommands,
       withGtkWrapper: withGtkWrapper,

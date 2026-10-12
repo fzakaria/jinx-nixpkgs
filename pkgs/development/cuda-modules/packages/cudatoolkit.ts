@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cudatoolkit.nix", [[["pname", 75, 15], ["version", 75, 21], ["paths", 76, 7]], [["cc", 73, 5], ["lib", 74, 5]], [["description", 81, 5], ["license", 82, 5], ["teams", 83, 5]], [["pname", 67, 3], ["version", 68, 3], ["paths", 70, 3], ["passthru", 72, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, backendStdenv: false, cudaAtLeast: false, cudaMajorMinorVersion: false, cccl: true, cuda_crt: true, cuda_cudart: true, cuda_cuobjdump: true, cuda_cupti: true, cuda_cuxxfilt: true, cuda_gdb: true, cuda_nvcc: true, cuda_nvdisasm: true, cuda_nvml_dev: true, cuda_nvprune: true, cuda_nvrtc: true, cuda_nvtx: true, cuda_profiler_api: true, cuda_sanitizer_api: true, libcublas: true, libcufft: true, libcurand: true, libcusolver: true, libcusparse: true, libnpp: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cudatoolkit.nix", [["pname", 75, 15], ["version", 75, 21], ["paths", 76, 7]]);
-const pos$2 = nix.positions(here + "/cudatoolkit.nix", [["cc", 73, 5], ["lib", 74, 5]]);
-const pos$3 = nix.positions(here + "/cudatoolkit.nix", [["description", 81, 5], ["license", 82, 5], ["teams", 83, 5]]);
-const pos$4 = nix.positions(here + "/cudatoolkit.nix", [["pname", 67, 3], ["version", 68, 3], ["paths", 70, 3], ["passthru", 72, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -61,22 +58,22 @@ export default nix.lambda((args) => (() => {
       const version = cudaMajorMinorVersion;
       const paths = nix.thunk(() => nix.builtins.concatMap(getAllOutputs, allPackages));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cc: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "cudaPackages.cudatoolkit is deprecated, refer to the manual and use splayed packages instead", nix.thunk(() => nix.sel(backendStdenv, "cc")))),
         lib: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             pname: pname,
             version: version,
             paths: nix.thunk(() => nix.builtins.map((p) => nix.app(nix.sel(lib, "getLib"), p), allPackages)),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wrapper substituting the deprecated runfile-based CUDA installation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "nvidiaCudaRedist")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "cuda"))]),
       }));
-      return { [nix.POS]: pos$4, pname, version, paths, passthru, meta };
+      return { [nix.POS]: $pos[3], pname, version, paths, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=cudatoolkit.ts.map

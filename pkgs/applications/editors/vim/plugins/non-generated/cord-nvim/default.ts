@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["mainProgram", 37, 10]], [["pname", 18, 5], ["src", 19, 13], ["version", 19, 17], ["postPatch", 22, 5], ["cargoHash", 27, 5], ["RUSTC_BOOTSTRAP", 30, 5], ["nativeInstallCheckInputs", 32, 5], ["doInstallCheck", 35, 5], ["meta", 37, 5]], [["attrPath", 56, 7]], [["updateScript", 55, 5], ["cord-server", 60, 13]], [["homepage", 64, 5], ["license", 65, 5], ["changelog", 66, 5], ["maintainers", 67, 5]], [["pname", 41, 3], ["version", 42, 11], ["src", 42, 19], ["postPatch", 47, 3], ["passthru", 54, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, versionCheckHook: false, "nix-update-script": false, vimUtils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mainProgram", 37, 10]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["src", 19, 13], ["version", 19, 17], ["postPatch", 22, 5], ["cargoHash", 27, 5], ["RUSTC_BOOTSTRAP", 30, 5], ["nativeInstallCheckInputs", 32, 5], ["doInstallCheck", 35, 5], ["meta", 37, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["attrPath", 56, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 55, 5], ["cord-server", 60, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 64, 5], ["license", 65, 5], ["changelog", 66, 5], ["maintainers", 67, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 41, 3], ["version", 42, 11], ["src", 42, 19], ["postPatch", 47, 3], ["passthru", 54, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const vimUtils = nix.arg($, "vimUtils");
   const version = "2.2.7";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "vyfor",
       repo: "cord.nvim",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-SONErPOIaRltx51+GCsGtR0FDSWp/36x3lDbYLSMxXM=",
     }))));
   const cord_server = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cord",
       src: src,
       version: version,
@@ -39,10 +33,10 @@ export default nix.lambda((args) => (() => {
       RUSTC_BOOTSTRAP: 1n,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: false,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "cord" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[1], mainProgram: "cord" })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cord.nvim",
       version: version,
       src: src,
@@ -52,12 +46,12 @@ export default nix.lambda((args) => (() => {
     "or '${cord_server}'"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vimPlugins.cord-nvim.cord-nvim-rust" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], attrPath: "vimPlugins.cord-nvim.cord-nvim-rust" })))),
         "cord-server": cord_server,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/vyfor/cord.nvim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         changelog: nix.thunk(() => nix.str`https://github.com/vyfor/cord.nvim/releases/tag/v${version}`),

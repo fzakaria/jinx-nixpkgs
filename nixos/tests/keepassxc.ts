@@ -2,62 +2,48 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/keepassxc.nix", [[["maintainers", 6, 5], ["timeout", 7, 5]], [["enable", 19, 24]], [["xserver", 19, 16]], [["enable", 20, 22]], [["dconf", 20, 16]], [["text", 23, 44]], [["icewm/prefoverride", 23, 23]], [["etc", 23, 19], ["systemPackages", 35, 19]], [["enable", 29, 9], ["platformTheme", 30, 9], ["style", 31, 9]], [["user", 34, 40]], [["auto", 34, 35]], [["displayManager", 34, 20]], [["imports", 14, 7], ["services", 19, 7], ["programs", 20, 7], ["environment", 23, 7], ["qt", 28, 7], ["test-support", 34, 7]], [["machine", 10, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 10, 3], ["enableOCR", 41, 3], ["testScript", 43, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/keepassxc.nix", [["maintainers", 6, 5], ["timeout", 7, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/keepassxc.nix", [["enable", 19, 24]]);
-const pos$3 = nix.positions(here + "/keepassxc.nix", [["xserver", 19, 16]]);
-const pos$4 = nix.positions(here + "/keepassxc.nix", [["enable", 20, 22]]);
-const pos$5 = nix.positions(here + "/keepassxc.nix", [["dconf", 20, 16]]);
-const pos$6 = nix.positions(here + "/keepassxc.nix", [["text", 23, 44]]);
-const pos$7 = nix.positions(here + "/keepassxc.nix", [["icewm/prefoverride", 23, 23]]);
-const pos$8 = nix.positions(here + "/keepassxc.nix", [["etc", 23, 19], ["systemPackages", 35, 19]]);
-const pos$9 = nix.positions(here + "/keepassxc.nix", [["enable", 29, 9], ["platformTheme", 30, 9], ["style", 31, 9]]);
-const pos$10 = nix.positions(here + "/keepassxc.nix", [["user", 34, 40]]);
-const pos$11 = nix.positions(here + "/keepassxc.nix", [["auto", 34, 35]]);
-const pos$12 = nix.positions(here + "/keepassxc.nix", [["displayManager", 34, 20]]);
-const pos$13 = nix.positions(here + "/keepassxc.nix", [["imports", 14, 7], ["services", 19, 7], ["programs", 20, 7], ["environment", 23, 7], ["qt", 28, 7], ["test-support", 34, 7]]);
-const pos$14 = nix.positions(here + "/keepassxc.nix", [["machine", 10, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/keepassxc.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 10, 3], ["enableOCR", 41, 3], ["testScript", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "keepassxc",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "turion"))]),
         timeout: 1800n,
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           imports: nix.thunk(() => [
             nix.path(here, "./common/user-account.nix"),
             nix.path(here, "./common/x11.nix"),
           ]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            xserver: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            dconf: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+            [nix.POS]: $pos[4],
+            dconf: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              "icewm/prefoverride": nix.thunk(() => ({ [nix.POS]: pos$6, text: "ColorActiveTitleBar = \"rgb:FF/FF/FF\"\n" })),
+              [nix.POS]: $pos[6],
+              "icewm/prefoverride": nix.thunk(() => ({ [nix.POS]: $pos[5], text: "ColorActiveTitleBar = \"rgb:FF/FF/FF\"\n" })),
             })),
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, null);
@@ -68,16 +54,16 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           qt: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             enable: true,
             platformTheme: "gnome",
             style: "adwaita-dark",
           })),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$11,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$10, user: "alice" })),
+              [nix.POS]: $pos[10],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[9], user: "alice" })),
             })),
           })),
         };

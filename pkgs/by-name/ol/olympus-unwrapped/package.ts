@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 36, 13], ["owner", 37, 5], ["repo", 38, 5], ["fetchSubmodules", 39, 5], ["hash", 40, 5]], [["updateScript", 84, 12]], [["description", 87, 5], ["homepage", 88, 5], ["downloadPage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 95, 5], ["platforms", 96, 5], ["badPlatforms", 97, 5]], [["pname", 30, 3], ["version", 31, 11], ["strictDeps", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 43, 3], ["nugetDeps", 47, 3], ["projectFile", 48, 3], ["executables", 49, 3], ["installPath", 50, 3], ["preConfigure", 53, 3], ["preInstall", 60, 3], ["postInstall", 78, 3], ["passthru", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchzip: false, buildDotnetModule: false, dotnetCorePackages: false, luajitPackages: false, sqlite: false, libarchive: false, curl: false, love: false, "xdg-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 36, 13], ["owner", 37, 5], ["repo", 38, 5], ["fetchSubmodules", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 84, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["downloadPage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 95, 5], ["platforms", 96, 5], ["badPlatforms", 97, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 11], ["strictDeps", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 43, 3], ["nugetDeps", 47, 3], ["projectFile", 48, 3], ["executables", 49, 3], ["installPath", 50, 3], ["preConfigure", 53, 3], ["preInstall", 60, 3], ["postInstall", 78, 3], ["passthru", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const buildId = "5921";
   const rev = "9324c1098132ccba752a466c924481be39ea6965";
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "olympus-unwrapped",
       version: version,
       strictDeps: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: rev,
           owner: "EverestAPI",
           repo: "Olympus",
@@ -70,9 +67,9 @@ makeWrapper ${phome}/find-love $out/bin/olympus \\
 bsdtar --format zip --strip-components 1 -cf ${phome}/olympus.love src
 `),
       postInstall: "install -Dm644 lib-linux/olympus.desktop $out/share/applications/olympus.desktop\ninstall -Dm644 src/data/icon.png $out/share/icons/hicolor/128x128/apps/olympus.png\ninstall -Dm644 LICENSE $out/share/licenses/olympus/LICENSE\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross-platform GUI Everest installer and Celeste mod manager",
         homepage: "https://github.com/EverestAPI/Olympus",
         downloadPage: "https://everestapi.github.io/#olympus",

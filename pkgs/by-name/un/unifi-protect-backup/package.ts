@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["name", 23, 7], ["url", 24, 7], ["hash", 25, 7]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["pythonRelaxDeps", 29, 3], ["nativeBuildInputs", 36, 3], ["propagatedBuildInputs", 38, 3], ["nativeCheckInputs", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 23, 7], ["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["pythonRelaxDeps", 29, 3], ["nativeBuildInputs", 36, 3], ["propagatedBuildInputs", 38, 3], ["nativeCheckInputs", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "unifi-protect-backup",
       version: "0.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ep1cman",
           repo: "unifi-protect-backup",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "switch-uiprotect.patch",
             url: "https://github.com/ep1cman/unifi-protect-backup/commit/ccf2cde27229ade5c70ebfa902f289bf1a439f64.patch",
             hash: "sha256-kogl/crvLE+7t9DLTuZqeW3/WB5/sytWDgbndoBw+RQ=",
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w_2, "pytestCheckHook"))];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python tool to backup unifi event clips in realtime",
         homepage: "https://github.com/ep1cman/unifi-protect-backup",
         changelog: nix.thunk(() => nix.str`https://github.com/ep1cman/unifi-protect-backup/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

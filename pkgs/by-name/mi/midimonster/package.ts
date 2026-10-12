@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 35, 5], ["owner", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]], [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]], [["pname", 18, 3], ["version", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["src", 34, 3], ["doCheck", 41, 3], ["enableParallelBuilding", 42, 3], ["outputs", 44, 3], ["buildPhase", 49, 3], ["installPhase", 53, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gnumake: false, gcc: false, "pkg-config": false, lua5_4: false, openssl: false, jack1: false, python3: false, "alsa-lib": false, ncurses: false, libevdev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 35, 5], ["owner", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["src", 34, 3], ["doCheck", 41, 3], ["enableParallelBuilding", 42, 3], ["outputs", 44, 3], ["buildPhase", 49, 3], ["installPhase", 53, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const libevdev = nix.arg($, "libevdev");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "midimonster",
       version: "0.6.0",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [gnumake, gcc, lua5_4, openssl, jack1, python3, alsa_lib, ncurses, libevdev]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "midimonster",
           owner: "cbdevnet",
           rev: "f16f7db86662fcdbf45b6373257c90c824b0b4b0",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "PLUGINS=$out/lib/midimonster make all\n",
       installPhase: "PREFIX=$out make install\n\nmkdir -p \"$man/share/man/man1\"\ncp assets/midimonster.1 \"$man/share/man/man1\"\n\nmkdir -p \"$out/share/icons/hicolor/scalable/apps\"\ncp assets/MIDIMonster.svg \"$out/share/icons/hicolor/scalable/apps/\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://midimonster.net",
         description: "Multi-protocol translation tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

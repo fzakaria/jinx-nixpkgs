@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]], [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["enableParallelBuilding", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["installFlags", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, autoreconfHook: false, glib: false, pcre2: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["enableParallelBuilding", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["installFlags", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rdup",
       version: "1.1.16-unstable-2024-03-05",
       strictDeps: true,
       __structuredAttrs: true,
       enableParallelBuilding: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "miekg",
           repo: "rdup",
           rev: "fa1c753a107c12b3797204c41779ce2c8d5da45a",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, pcre2]),
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`INSTALL=${coreutils}/bin/install`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Only backup program that doesn't make backups",
         homepage: "https://github.com/miekg/rdup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

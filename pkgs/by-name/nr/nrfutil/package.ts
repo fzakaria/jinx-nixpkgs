@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["sourceProvenance", 32, 5], ["maintainers", 33, 5]], [["url", 51, 13], ["hash", 52, 31]], [["mainProgram", 93, 13]], [["pname", 47, 11], ["version", 48, 29], ["src", 50, 11], ["nativeBuildInputs", 55, 11], ["buildInputs", 59, 11], ["dontConfigure", 69, 11], ["dontBuild", 70, 11], ["installPhase", 72, 11], ["doInstallCheck", 81, 11], ["nativeInstallCheckInputs", 82, 11], ["versionCheckKeepEnvironment", 87, 11], ["preVersionCheck", 88, 11], ["meta", 92, 11]], [["extensions", 172, 63]], [["extensions", 173, 46]], [["updateScript", 170, 7], ["allExtensions", 171, 7], ["withExtensions", 172, 7], ["withAllExtensions", 173, 7]], [["mainProgram", 177, 5]], [["pname", 107, 3], ["version", 108, 46], ["paths", 110, 3], ["nativeBuildInputs", 112, 3], ["postBuild", 117, 3], ["passthru", 160, 3], ["meta", 176, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, xz: false, zlib: false, libusb1: false, "segger-jlink-headless": false, gcc: false, autoPatchelfHook: false, versionCheckHook: false, makeWrapper: false, installShellFiles: false, symlinkJoin: false, extensions: true, nrfutil: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["sourceProvenance", 32, 5], ["maintainers", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 51, 13], ["hash", 52, 31]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 93, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 47, 11], ["version", 48, 29], ["src", 50, 11], ["nativeBuildInputs", 55, 11], ["buildInputs", 59, 11], ["dontConfigure", 69, 11], ["dontBuild", 70, 11], ["installPhase", 72, 11], ["doInstallCheck", 81, 11], ["nativeInstallCheckInputs", 82, 11], ["versionCheckKeepEnvironment", 87, 11], ["preVersionCheck", 88, 11], ["meta", 92, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extensions", 172, 63]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extensions", 173, 46]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 170, 7], ["allExtensions", 171, 7], ["withExtensions", 172, 7], ["withAllExtensions", 173, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["mainProgram", 177, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 107, 3], ["version", 108, 46], ["paths", 110, 3], ["nativeBuildInputs", 112, 3], ["postBuild", 117, 3], ["passthru", 160, 3], ["meta", 176, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./source.nix")));
   const platformSources = nix.thunk(() => nix.selOr(sources, () => nix.sel(sources, "x86_64-linux"), nix.key(nix.sel(stdenvNoCC, "system"))));
   const sharedMeta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "CLI tool for managing Nordic Semiconductor devices",
     homepage: "https://www.nordicsemi.com/Products/Development-tools/nRF-Util",
     changelog: "https://docs.nordicsemi.com/bundle/nrfutil/page/guides/revision_history.html",
@@ -54,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const packages = nix.thunk(() => nix.builtins.map((name) => (() => {
       const package$ = nix.thunk(() => nix.sel(platformSources, "packages", nix.key(nix.force(name))));
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: name,
           version: nix.thunk(() => nix.attr(package$, "version")),
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://files.nordicsemi.com/artifactory/swtools/external/nrfutil/packages/${name}/${name}-${nix.sel(platformSources, "triplet")}-${nix.sel(package$, "version")}.tar.gz`),
               hash: nix.thunk(() => nix.attr(package$, "hash")),
             })))),
@@ -71,13 +63,13 @@ export default nix.lambda((args) => (() => {
           nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
           versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
           preVersionCheck: "export HOME=$(mktemp -d)\n",
-          meta: nix.thunk(() => nix.update(sharedMeta, { [nix.POS]: pos$3, mainProgram: name })),
+          meta: nix.thunk(() => nix.update(sharedMeta, { [nix.POS]: $pos[2], mainProgram: name })),
         }));
     })(), nix.thunk(() => nix.concat(["nrfutil"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(nix.sel(platformSources, "packages"), "nrfutil-completion")), "nrfutil-completion"), extensions)))));
   return nix.app(symlinkJoin, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(platformSources, "packages", "nrfutil"));
       return {
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "nrfutil",
       version: nix.thunk(() => nix.attr(from, "version")),
       paths: packages,
@@ -105,14 +97,14 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(nix.sel(platfo
       passthru: nix.thunk(() => (() => {
         const availableExtensions = nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), nix.thunk(() => nix.sel(platformSources, "packages")), nix.thunk(() => ["nrfutil", "nrfutil-completion"])))));
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           updateScript: nix.path(here, "./update.sh"),
           allExtensions: availableExtensions,
-          withExtensions: (extensions_1) => nix.app(nix.sel(nrfutil, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, extensions: extensions_1 }))),
-          withAllExtensions: nix.thunk(() => nix.app(nix.sel(nrfutil, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, extensions: availableExtensions })))),
+          withExtensions: (extensions_1) => nix.app(nix.sel(nrfutil, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], extensions: extensions_1 }))),
+          withAllExtensions: nix.thunk(() => nix.app(nix.sel(nrfutil, "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], extensions: availableExtensions })))),
         };
       })()),
-      meta: nix.thunk(() => nix.update(sharedMeta, { [nix.POS]: pos$8, mainProgram: "nrfutil" })),
+      meta: nix.thunk(() => nix.update(sharedMeta, { [nix.POS]: $pos[7], mainProgram: "nrfutil" })),
     };
     })()));
 })(), formals$1);

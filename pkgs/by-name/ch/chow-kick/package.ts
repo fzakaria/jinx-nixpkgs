@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]], [["homepage", 88, 5], ["description", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5], ["mainProgram", 93, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["cmakeFlags", 52, 3], ["postPatch", 57, 3], ["installPhase", 80, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, cmake: false, curl: false, libepoxy: false, fetchFromGitHub: false, freetype: false, lib: false, libGL: false, libxcursor: false, libxext: false, libxinerama: false, libxrandr: false, libjack2: false, libxkbcommon: false, lv2: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 88, 5], ["description", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5], ["mainProgram", 93, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["cmakeFlags", 52, 3], ["postPatch", 57, 3], ["installPhase", 80, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "chow-kick",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Chowdhury-DSP",
           repo: "ChowKick",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Fix width/height naming in chowdsp_GraphicsHelpers.h\nsubstituteInPlace modules/chowdsp_utils/modules/common/chowdsp_core/DataStructures/chowdsp_GraphicsHelpers.h --replace-fail \\\n  'position.y += r.h;' \\\n  'position.y += r.height;'\n\nsubstituteInPlace modules/chowdsp_utils/modules/common/chowdsp_core/DataStructures/chowdsp_GraphicsHelpers.h --replace-fail \\\n  'height -= r.h;' \\\n  'height -= r.height;'\n\nsubstituteInPlace modules/chowdsp_utils/modules/common/chowdsp_core/DataStructures/chowdsp_GraphicsHelpers.h --replace-fail \\\n  'position.x += r.w;' \\\n  'position.x += r.width;'\n\nsubstituteInPlace modules/chowdsp_utils/modules/common/chowdsp_core/DataStructures/chowdsp_GraphicsHelpers.h --replace-fail \\\n  'width -= r.w;' \\\n  'width -= r.width;'\n\nsubstituteInPlace modules/chowdsp_wdf/CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required(VERSION 3.1)' \\\n  'cmake_minimum_required(VERSION 4.0)'\n",
       installPhase: "mkdir -p $out/lib/lv2 $out/lib/vst3 $out/bin\ncp -r ChowKick_artefacts/Release/LV2/ChowKick.lv2 $out/lib/lv2\ncp -r ChowKick_artefacts/Release/VST3/ChowKick.vst3 $out/lib/vst3\ncp ChowKick_artefacts/Release/Standalone/ChowKick  $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/Chowdhury-DSP/ChowKick",
         description: "Kick synthesizer based on old-school drum machine circuits",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

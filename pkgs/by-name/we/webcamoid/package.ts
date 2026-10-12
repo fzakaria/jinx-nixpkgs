@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["buildInputs", 28, 3], ["nativeBuildInputs", 42, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, libxcb: false, cmake: false, qt6: false, ffmpeg: false, gst_all_1: false, libpulseaudio: false, "alsa-lib": false, jack2: false, libv4l: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["buildInputs", 28, 3], ["nativeBuildInputs", 42, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "webcamoid";
       const version = "9.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "webcamoid",
           repo: "webcamoid",
           tag: version,
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const nativeBuildInputs = nix.thunk(() => [pkg_config, cmake, nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Webcam Capture Software",
         longDescription: "Webcamoid is a full featured and multiplatform webcam suite.",
         homepage: "https://github.com/webcamoid/webcamoid/",
@@ -59,7 +57,15 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "webcamoid",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildInputs, nativeBuildInputs, meta };
+      return {
+        [nix.POS]: $pos[2],
+        pname,
+        version,
+        src,
+        buildInputs,
+        nativeBuildInputs,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

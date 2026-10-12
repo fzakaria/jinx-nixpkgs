@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["description", 45, 5], ["longDescription", 47, 5], ["homepage", 63, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["patches", 25, 3], ["preBuild", 31, 3], ["configureFlags", 36, 3], ["hardeningDisable", 38, 3], ["doCheck", 40, 3], ["enableParallelBuilding", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, libpng: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["longDescription", 47, 5], ["homepage", 63, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["patches", 25, 3], ["preBuild", 31, 3], ["configureFlags", 36, 3], ["hardeningDisable", 38, 3], ["doCheck", 40, 3], ["enableParallelBuilding", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "plotutils",
       version: "2.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/plotutils/plotutils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1arkyizn5wbgvbh53aziv3s6lmd3wm9lqzkhxb3hijlp1y124hjg",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Powerful C/C++ library for exporting 2D vector graphics",
         longDescription: "The GNU plotutils package contains software for both programmers and\ntechnical users.  Its centerpiece is libplot, a powerful C/C++\nfunction library for exporting 2-D vector graphics in many file\nformats, both vector and raster.  It can also do vector graphics\nanimations.\n\nlibplot is device-independent in the sense that its API (application\nprogramming interface) does not depend on the type of graphics file\nto be exported.\n\nBesides libplot, the package contains command-line programs for\nplotting scientific data.  Many of them use libplot to export\ngraphics.\n",
         homepage: "https://www.gnu.org/software/plotutils/",

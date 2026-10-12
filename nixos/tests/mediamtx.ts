@@ -2,23 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mediamtx.nix", [[["maintainers", 8, 8]], [["source", 16, 21]], [["all", 16, 17]], [["metrics", 15, 11], ["paths", 16, 11]], [["enable", 13, 9], ["settings", 14, 9]], [["mediamtx", 12, 16]], [["DynamicUser", 26, 11], ["Restart", 27, 11], ["RestartSec", 28, 11], ["TimeoutStartSec", 29, 11], ["ExecStart", 30, 11]], [["description", 21, 9], ["after", 22, 9], ["bindsTo", 23, 9], ["wantedBy", 24, 9], ["serviceConfig", 25, 9]], [["StartLimitIntervalSec", 39, 20]], [["DynamicUser", 41, 11], ["Restart", 42, 11], ["RestartSec", 43, 11], ["TimeoutStartSec", 44, 11], ["ExecStart", 45, 11]], [["description", 35, 9], ["after", 36, 9], ["bindsTo", 37, 9], ["wantedBy", 38, 9], ["unitConfig", 39, 9], ["serviceConfig", 40, 9]], [["rtmp-publish", 20, 24], ["rtmp-receive", 34, 24]], [["services", 20, 15]], [["services", 12, 7], ["systemd", 20, 7]], [["machine", 11, 5]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 51, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mediamtx.nix", [["maintainers", 8, 8]]);
-const pos$2 = nix.positions(here + "/mediamtx.nix", [["source", 16, 21]]);
-const pos$3 = nix.positions(here + "/mediamtx.nix", [["all", 16, 17]]);
-const pos$4 = nix.positions(here + "/mediamtx.nix", [["metrics", 15, 11], ["paths", 16, 11]]);
-const pos$5 = nix.positions(here + "/mediamtx.nix", [["enable", 13, 9], ["settings", 14, 9]]);
-const pos$6 = nix.positions(here + "/mediamtx.nix", [["mediamtx", 12, 16]]);
-const pos$7 = nix.positions(here + "/mediamtx.nix", [["DynamicUser", 26, 11], ["Restart", 27, 11], ["RestartSec", 28, 11], ["TimeoutStartSec", 29, 11], ["ExecStart", 30, 11]]);
-const pos$8 = nix.positions(here + "/mediamtx.nix", [["description", 21, 9], ["after", 22, 9], ["bindsTo", 23, 9], ["wantedBy", 24, 9], ["serviceConfig", 25, 9]]);
-const pos$9 = nix.positions(here + "/mediamtx.nix", [["StartLimitIntervalSec", 39, 20]]);
-const pos$10 = nix.positions(here + "/mediamtx.nix", [["DynamicUser", 41, 11], ["Restart", 42, 11], ["RestartSec", 43, 11], ["TimeoutStartSec", 44, 11], ["ExecStart", 45, 11]]);
-const pos$11 = nix.positions(here + "/mediamtx.nix", [["description", 35, 9], ["after", 36, 9], ["bindsTo", 37, 9], ["wantedBy", 38, 9], ["unitConfig", 39, 9], ["serviceConfig", 40, 9]]);
-const pos$12 = nix.positions(here + "/mediamtx.nix", [["rtmp-publish", 20, 24], ["rtmp-receive", 34, 24]]);
-const pos$13 = nix.positions(here + "/mediamtx.nix", [["services", 20, 15]]);
-const pos$14 = nix.positions(here + "/mediamtx.nix", [["services", 12, 7], ["systemd", 20, 7]]);
-const pos$15 = nix.positions(here + "/mediamtx.nix", [["machine", 11, 5]]);
-const pos$16 = nix.positions(here + "/mediamtx.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,46 +11,46 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const rtmpUrl = "rtmp://localhost:1935/test";
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     name: "mediamtx",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "fpletz"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           mediamtx: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               metrics: true,
               paths: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                all: nix.thunk(() => ({ [nix.POS]: pos$2, source: "publisher" })),
+                [nix.POS]: $pos[2],
+                all: nix.thunk(() => ({ [nix.POS]: $pos[1], source: "publisher" })),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             "rtmp-publish": nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               description: "Publish an RTMP stream to mediamtx",
               after: nix.thunk(() => ["mediamtx.service"]),
               bindsTo: nix.thunk(() => ["mediamtx.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 DynamicUser: true,
                 Restart: "on-failure",
                 RestartSec: "1s",
@@ -74,14 +59,14 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "rtmp-receive": nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               description: "Receive an RTMP stream from mediamtx",
               after: nix.thunk(() => ["rtmp-publish.service"]),
               bindsTo: nix.thunk(() => ["rtmp-publish.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$9, StartLimitIntervalSec: 0n })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[8], StartLimitIntervalSec: 0n })),
               serviceConfig: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 DynamicUser: true,
                 Restart: "on-failure",
                 RestartSec: "1s",

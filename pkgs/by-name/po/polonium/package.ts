@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5], ["fetchSubmodules", 17, 5]], [["description", 47, 5], ["homepage", 48, 5], ["downloadPage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 56, 37]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 20, 3], ["__structuredAttrs", 22, 3], ["dontConfigure", 24, 3], ["buildFlags", 28, 3], ["dontNpmBuild", 33, 3], ["dontWrapQtApps", 35, 3], ["installPhase", 37, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildNpmPackage: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5], ["fetchSubmodules", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["downloadPage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 56, 37]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 20, 3], ["__structuredAttrs", 22, 3], ["dontConfigure", 24, 3], ["buildFlags", 28, 3], ["dontNpmBuild", 33, 3], ["dontWrapQtApps", 35, 3], ["installPhase", 37, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "polonium",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zeroxoneafour",
           repo: "polonium",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kdePackages, "kwin", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Auto-tiler that uses KWin 6.0+ tiling functionality",
         homepage: "https://polonium.vaughanm.xyz/",
         downloadPage: "https://github.com/zeroxoneafour/polonium/releases",

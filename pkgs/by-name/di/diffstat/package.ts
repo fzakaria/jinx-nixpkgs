@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 14, 5], ["hash", 18, 5]], [["url", 24, 5]], [["updateScript", 23, 12]], [["description", 28, 5], ["mainProgram", 29, 5], ["longDescription", 30, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 21, 3], ["passthru", 23, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, zstd: false, directoryListingUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 14, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 23, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 28, 5], ["mainProgram", 29, 5], ["longDescription", 30, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 21, 3], ["passthru", 23, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const directoryListingUpdater = nix.arg($, "directoryListingUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "diffstat",
       version: "1.69",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://invisible-island.net/archives/diffstat/diffstat-${nix.sel(finalAttrs, "version")}.tgz`),
             nix.thunk(() => nix.str`https://invisible-mirror.net/archives/diffstat/diffstat-${nix.sel(finalAttrs, "version")}.tgz`),
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [zstd]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://invisible-island.net/archives/diffstat/" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], url: "https://invisible-island.net/archives/diffstat/" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Read output of diff and display a histogram of the changes",
         mainProgram: "diffstat",
         longDescription: "diffstat reads the output of diff and displays a histogram of the\ninsertions, deletions, and modifications per-file. It is useful for\nreviewing large, complex patch files.\n",

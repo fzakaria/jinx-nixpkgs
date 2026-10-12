@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["DJANGO_SETTINGS_MODULE", 41, 7]], [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["env", 41, 3], ["nativeCheckInputs", 43, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, django: false, djangorestframework: false, ujson: false, "pytest-cov-stub": false, "pytest-django": false, "pytest-mock": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["DJANGO_SETTINGS_MODULE", 41, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["env", 41, 3], ["nativeCheckInputs", 43, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Amertz08",
           repo: "drf_ujson2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,10 +31,10 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [django, djangorestframework, ujson]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], DJANGO_SETTINGS_MODULE: "tests.settings" }));
       const nativeCheckInputs = nix.thunk(() => [pytest_cov_stub, pytest_django, pytest_mock, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/Amertz08/drf_ujson2/releases/tag/v${version}`),
         description: "JSON parser and renderer using ujson for Django Rest Framework",
         homepage: "https://github.com/Amertz08/drf_ujson2",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

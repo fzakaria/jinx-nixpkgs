@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 64, 9], ["aarch64-darwin", 65, 9]], [["x86_64-linux", 69, 7], ["aarch64-darwin", 70, 7]], [["url", 62, 5], ["hash", 68, 5]], [["updateScript", 187, 12]], [["description", 190, 5], ["homepage", 191, 5], ["changelog", 192, 5], ["license", 193, 5], ["sourceProvenance", 194, 5], ["mainProgram", 195, 5], ["maintainers", 196, 5], ["platforms", 200, 5]], [["pname", 120, 11], ["version", 120, 17], ["src", 120, 25], ["__structuredAttrs", 122, 3], ["strictDeps", 123, 3], ["nativeBuildInputs", 125, 3], ["dontUnpack", 133, 3], ["dontFixup", 134, 3], ["sourceRoot", 135, 3], ["buildCommand", 137, 3], ["installPhase", 166, 3], ["passthru", 187, 3], ["meta", 189, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, unzip: false, wrapGAppsHook3: false, makeWrapper: false, runtimeShell: false, gtk3: false, libxtst: false, libxscrnsaver: false, libxrender: false, libxrandr: false, libxi: false, libxfixes: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, libxshmfence: false, libxkbfile: false, glib: false, cairo: false, pango: false, dbus: false, cups: false, "at-spi2-atk": false, "at-spi2-core": false, atk: false, libdrm: false, "gdk-pixbuf": false, nss: false, nspr: false, "alsa-lib": false, expat: false, libxkbcommon: false, libgbm: false, "vulkan-loader": false, systemd: false, libGL: false, krb5: false, fontconfig: false, freetype: false, libnotify: false, libsecret: false, libuuid: false, libxcb: false, patchelf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 64, 9], ["aarch64-darwin", 65, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 69, 7], ["aarch64-darwin", 70, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 62, 5], ["hash", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 187, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 190, 5], ["homepage", 191, 5], ["changelog", 192, 5], ["license", 193, 5], ["sourceProvenance", 194, 5], ["mainProgram", 195, 5], ["maintainers", 196, 5], ["platforms", 200, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 120, 11], ["version", 120, 17], ["src", 120, 25], ["__structuredAttrs", 122, 3], ["strictDeps", 123, 3], ["nativeBuildInputs", 125, 3], ["dontUnpack", 133, 3], ["dontFixup", 134, 3], ["sourceRoot", 135, 3], ["buildCommand", 137, 3], ["installPhase", 166, 3], ["passthru", 187, 3], ["meta", 189, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,14 +60,14 @@ export default nix.lambda((args) => (() => {
   const version = "1.50.0";
   const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://downloads.mongodb.com/compass/${nix.app(selectSystem, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           "x86_64-linux": nix.thunk(() => nix.str`mongodb-compass_${version}_amd64.deb`),
           "aarch64-darwin": nix.thunk(() => nix.str`mongodb-compass-${version}-darwin-arm64.zip`),
         })))}`),
       hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "x86_64-linux": "sha256-lZ78YAjY3tZv8fdxlh0uFAEtzcV6u8+Jf6jugobzvLA=",
           "aarch64-darwin": "sha256-2yih0zGO6XTH6n+bbuYXEuIkQxo4BKJS1Yrk0uwKwc0=",
         })))),
@@ -121,7 +116,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -176,9 +171,9 @@ chmod +x "$out/bin/${pname}"
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "GUI for MongoDB",
         homepage: "https://github.com/mongodb-js/compass",
         changelog: nix.thunk(() => nix.str`https://github.com/mongodb-js/compass/releases/tag/v${nix.sel(finalAttrs, "version")}`),

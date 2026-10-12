@@ -2,28 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/varnish.nix", [[["maintainers", 13, 5]], [["enable", 26, 11]], [["address", 36, 15], ["port", 37, 15], ["proto", 38, 15]], [["name", 41, 15], ["address", 42, 15], ["port", 43, 15], ["proto", 44, 15]], [["address", 47, 15], ["user", 48, 15], ["group", 49, 15], ["mode", 50, 15]], [["address", 52, 15]], [["package", 31, 19], ["enable", 32, 11], ["http_address", 33, 11], ["listen", 34, 11], ["config", 54, 11]], [["nix-serve", 25, 18], ["varnish", 30, 18]], [["enable", 28, 13]], [["allowedTCPPorts", 64, 29]], [["firewall", 64, 20]], [["extraDependencies", 65, 16]], [["assertion", 73, 15], ["message", 74, 15]], [["services", 25, 9], ["nix", 28, 9], ["networking", 64, 9], ["system", 65, 9], ["assertions", 67, 9]], [["require-sigs", 89, 11], ["substituters", 90, 11]], [["settings", 88, 13], ["enable", 92, 13]], [["nix", 88, 9]], [["varnish", 17, 5], ["client", 85, 5]], [["name", 11, 3], ["meta", 12, 3], ["nodes", 16, 3], ["testScript", 96, 3]]]);
 const formals$1 = { args: { config: false, package: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/varnish.nix", [["maintainers", 13, 5]]);
 const formals$2 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/varnish.nix", [["enable", 26, 11]]);
-const pos$3 = nix.positions(here + "/varnish.nix", [["address", 36, 15], ["port", 37, 15], ["proto", 38, 15]]);
-const pos$4 = nix.positions(here + "/varnish.nix", [["name", 41, 15], ["address", 42, 15], ["port", 43, 15], ["proto", 44, 15]]);
-const pos$5 = nix.positions(here + "/varnish.nix", [["address", 47, 15], ["user", 48, 15], ["group", 49, 15], ["mode", 50, 15]]);
-const pos$6 = nix.positions(here + "/varnish.nix", [["address", 52, 15]]);
-const pos$7 = nix.positions(here + "/varnish.nix", [["package", 31, 19], ["enable", 32, 11], ["http_address", 33, 11], ["listen", 34, 11], ["config", 54, 11]]);
-const pos$8 = nix.positions(here + "/varnish.nix", [["nix-serve", 25, 18], ["varnish", 30, 18]]);
-const pos$9 = nix.positions(here + "/varnish.nix", [["enable", 28, 13]]);
-const pos$10 = nix.positions(here + "/varnish.nix", [["allowedTCPPorts", 64, 29]]);
-const pos$11 = nix.positions(here + "/varnish.nix", [["firewall", 64, 20]]);
-const pos$12 = nix.positions(here + "/varnish.nix", [["extraDependencies", 65, 16]]);
-const pos$13 = nix.positions(here + "/varnish.nix", [["assertion", 73, 15], ["message", 74, 15]]);
-const pos$14 = nix.positions(here + "/varnish.nix", [["services", 25, 9], ["nix", 28, 9], ["networking", 64, 9], ["system", 65, 9], ["assertions", 67, 9]]);
 const formals$3 = { args: { lib: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/varnish.nix", [["require-sigs", 89, 11], ["substituters", 90, 11]]);
-const pos$16 = nix.positions(here + "/varnish.nix", [["settings", 88, 13], ["enable", 92, 13]]);
-const pos$17 = nix.positions(here + "/varnish.nix", [["nix", 88, 9]]);
-const pos$18 = nix.positions(here + "/varnish.nix", [["varnish", 17, 5], ["client", 85, 5]]);
-const pos$19 = nix.positions(here + "/varnish.nix", [["name", 11, 3], ["meta", 12, 3], ["nodes", 16, 3], ["testScript", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,43 +15,43 @@ export default nix.lambda((args) => (() => {
   const testPath = nix.thunk(() => nix.sel(pkgs, "hello"));
   const stateDir = "/var/run/varnishd";
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: nix.thunk(() => nix.str`varnish-${nix.sel(package$, "version")}`),
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       varnish: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config_1 = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            "nix-serve": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[7],
+            "nix-serve": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             varnish: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               package: package$,
               enable: true,
               http_address: "0.0.0.0:81",
               listen: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$3, address: "0.0.0.0", port: 80n, proto: "HTTP" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[2], address: "0.0.0.0", port: 80n, proto: "HTTP" })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   name: "proxyport",
                   address: "0.0.0.0",
                   port: 8080n,
                   proto: "PROXY",
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   address: "/var/run/varnishd/client.http.sock",
                   user: "varnish",
                   group: "varnish",
                   mode: "660",
                 })),
-                nix.thunk(() => ({ [nix.POS]: pos$6, address: "@asdf" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[5], address: "@asdf" })),
               ]),
               config: nix.thunk(() => nix.str`vcl 4.1;
 
@@ -80,16 +62,16 @@ backend nix-serve {
 `),
             })),
           })),
-          nix: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+          nix: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$10, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: $pos[10],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[9], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
-          system: nix.thunk(() => ({ [nix.POS]: pos$12, extraDependencies: nix.thunk(() => [testPath]) })),
+          system: nix.thunk(() => ({ [nix.POS]: $pos[11], extraDependencies: nix.thunk(() => [testPath]) })),
           assertions: nix.thunk(() => (() => {
             const cmdline = nix.thunk(() => nix.sel(config_1, "systemd", "services", "varnish", "serviceConfig", "ExecStart"));
             return nix.builtins.map((pattern) => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 assertion: nix.thunk(() => nix.app(nix.sel(lib, "hasInfix"), pattern, cmdline)),
                 message: nix.thunk(() => nix.str`Address argument \`${pattern}\` missing in commandline \`${cmdline}\`.`),
               }), nix.thunk(() => [
@@ -106,11 +88,11 @@ backend nix-serve {
         const $_1 = nix.formals(args_1, formals$3);
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               "require-sigs": false,
               substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ["http://varnish"]))),
             })),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 24, 47]], [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["extraArgs", 73, 5]], [["updateScript", 72, 12]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 33, 3], ["build-system", 40, 3], ["buildInputs", 45, 3], ["dependencies", 49, 3], ["pythonImportsCheck", 53, 3], ["nativeCheckInputs", 55, 3], ["preCheck", 61, 3], ["disabledTests", 65, 3], ["passthru", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, torch: false, pybind11: false, scipy: false, pytestCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 24, 47]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extraArgs", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 72, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 33, 3], ["build-system", 40, 3], ["buildInputs", 45, 3], ["dependencies", 49, 3], ["pythonImportsCheck", 53, 3], ["nativeCheckInputs", 55, 3], ["preCheck", 61, 3], ["disabledTests", 65, 3], ["passthru", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: $pos[5],
       pname: "torch-cluster",
       version: "1.6.3-unstable-2026-06-05",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "rusty1s",
           repo: "pytorch_cluster",
           rev: "e9a855c284b45edcbf0282cf70ac09bee0ce4e49",
@@ -43,11 +38,11 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -rf torch_cluster\n",
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_fps", "test_nearest"]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "PyTorch Extension Library of Optimized Graph Cluster Algorithms",
         homepage: "https://github.com/rusty1s/pytorch_cluster",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

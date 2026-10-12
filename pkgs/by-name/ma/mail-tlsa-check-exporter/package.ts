@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["extraArgs", 41, 5]], [["updateScript", 40, 12]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5], ["platforms", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 28, 3], ["passthru", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, makeWrapper: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 40, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5], ["platforms", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 28, 3], ["passthru", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mail-tlsa-check-exporter",
       version: "0-unstable-2025-06-12",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ietf-tools",
           repo: "mail-tlsa-check-exporter",
           rev: "9843bf85971fbe130e8cd32e6fcf0dfcee92e929",
@@ -42,11 +38,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/mail-tlsa-check-
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch=main"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch=main"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Validate SMTP / IMAP server certificates against a TLSA record as a Prometheus exporter",
         homepage: "https://github.com/ietf-tools/mail-tlsa-check-exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

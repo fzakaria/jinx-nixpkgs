@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["changelog", 63, 5], ["homepage", 64, 5], ["description", 65, 5], ["maintainers", 66, 5], ["license", 67, 5], ["platforms", 68, 5]], [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["outputs", 19, 3], ["src", 24, 3], ["unpackPhase", 35, 3], ["nativeBuildInputs", 41, 3], ["cmakeFlags", 47, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, python3: false, validatePkgConfig: false, secureMemory: true, enableStatic: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 63, 5], ["homepage", 64, 5], ["description", 65, 5], ["maintainers", 66, 5], ["license", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["outputs", 19, 3], ["src", 24, 3], ["unpackPhase", 35, 3], ["nativeBuildInputs", 41, 3], ["cmakeFlags", 47, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const secureMemory = nix.argOr($, "secureMemory", () => false);
   const enableStatic = nix.argOr($, "enableStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jsoncpp",
       version: "1.9.8",
       strictDeps: true,
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open-source-parsers",
           repo: "jsoncpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +42,7 @@ export sourceRoot=${nix.sel(finalAttrs, "src", "name")}
         nix.thunk(() => nix.str`-DBUILD_STATIC_LIBS=${(nix.asBool(enableStatic) ? "ON" : "OFF")}`),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))) || nix.asBool(secureMemory))), "-DJSONCPP_WITH_TESTS=OFF"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/open-source-parsers/jsoncpp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/open-source-parsers/jsoncpp",
         description: "C++ library for interacting with JSON",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["updateScript", 69, 12]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["cmakeBuildType", 58, 3], ["cmakeFlags", 60, 3], ["passthru", 69, 3], ["postPatch", 71, 3], ["postInstall", 75, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, config: false, callPackage: false, stdenv: false, fetchFromGitHub: false, asio: false, cmake: false, libcpr: false, onnxruntime: false, opencv: false, isBeta: true, cudaSupport: true, cudaPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 69, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["cmakeBuildType", 58, 3], ["cmakeFlags", 60, 3], ["passthru", 69, 3], ["postPatch", 71, 3], ["postInstall", 75, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const fastdeploy = nix.thunk(() => nix.app(callPackage, nix.path(here, "./fastdeploy-ppocr.nix"), nix.thunk(() => ({}))));
   const sources = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pin.json")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.add("maa-assistant-arknights", nix.app(nix.sel(lib, "optionalString"), isBeta, "-beta"))),
       version: nix.thunk(() => (nix.asBool(isBeta) ? nix.sel(sources, "beta", "version") : nix.sel(sources, "stable", "version"))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MaaAssistantArknights",
           repo: "MaaAssistantArknights",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,14 +55,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_MAADEPS", false)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "MAA_VERSION", nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`))),
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       postPatch: nix.thunk(() => nix.str`cp -v ${nix.sel(fastdeploy, "cmake")}/Findonnxruntime.cmake cmake/
 `),
       postInstall: nix.thunk(() => nix.str`mkdir -p $out/share/${nix.sel(finalAttrs, "pname")}
 mv $out/{Python,resource} $out/share/${nix.sel(finalAttrs, "pname")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Arknights assistant",
         homepage: "https://github.com/MaaAssistantArknights/MaaAssistantArknights",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

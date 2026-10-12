@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["pname", 34, 26], ["version", 34, 32], ["src", 34, 40], ["hash", 35, 5]], [["aarch64-darwin", 81, 9], ["aarch64-linux", 82, 9], ["x86_64-linux", 83, 9]], [["src", 39, 26], ["version", 39, 30], ["pname", 40, 5], ["impureEnvVars", 42, 5], ["nativeBuildInputs", 47, 5], ["dontConfigure", 52, 5], ["dontFixup", 53, 5], ["dontPatchShebangs", 54, 5], ["buildPhase", 56, 5], ["installPhase", 72, 5], ["outputHash", 79, 5], ["outputHashMode", 87, 5]], [["NODE_OPTIONS", 109, 5], ["NIX_CFLAGS_COMPILE", 112, 5]], [["createUpdaterArtifacts", 116, 40]], [["bundle", 116, 33]], [["updateScript", 149, 12]], [["description", 160, 5], ["homepage", 161, 5], ["downloadPage", 162, 5], ["changelog", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["mainProgram", 170, 5], ["platforms", 171, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoRoot", 32, 3], ["cargoDeps", 33, 3], ["node_modules", 38, 3], ["nativeBuildInputs", 90, 3], ["buildInputs", 99, 3], ["env", 107, 3], ["tauriConf", 116, 3], ["preBuild", 117, 3], ["configurePhase", 126, 3], ["passthru", 149, 3], ["checkFlags", 151, 3], ["doCheck", 155, 3], ["__structuredAttrs", 157, 3], ["meta", 159, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, wrapGAppsHook4: false, "nix-update-script": false, "cargo-tauri": false, nodejs: false, "pkg-config": false, bun: false, writableTmpDirAsHomeHook: false, "alsa-lib": false, "glib-networking": false, libappindicator: false, openssl: false, webkitgtk_4_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 34, 26], ["version", 34, 32], ["src", 34, 40], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-darwin", 81, 9], ["aarch64-linux", 82, 9], ["x86_64-linux", 83, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 39, 26], ["version", 39, 30], ["pname", 40, 5], ["impureEnvVars", 42, 5], ["nativeBuildInputs", 47, 5], ["dontConfigure", 52, 5], ["dontFixup", 53, 5], ["dontPatchShebangs", 54, 5], ["buildPhase", 56, 5], ["installPhase", 72, 5], ["outputHash", 79, 5], ["outputHashMode", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NODE_OPTIONS", 109, 5], ["NIX_CFLAGS_COMPILE", 112, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["createUpdaterArtifacts", 116, 40]]);
-const pos$7 = nix.positions(here + "/package.nix", [["bundle", 116, 33]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 149, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 160, 5], ["homepage", 161, 5], ["downloadPage", 162, 5], ["changelog", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["mainProgram", 170, 5], ["platforms", 171, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoRoot", 32, 3], ["cargoDeps", 33, 3], ["node_modules", 38, 3], ["nativeBuildInputs", 90, 3], ["buildInputs", 99, 3], ["env", 107, 3], ["tauriConf", 116, 3], ["preBuild", 117, 3], ["configurePhase", 126, 3], ["passthru", 149, 3], ["checkFlags", 151, 3], ["doCheck", 155, 3], ["__structuredAttrs", 157, 3], ["meta", 159, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "atuin-desktop",
       version: "0.2.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "atuinsh",
           repo: "desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,14 +36,14 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoRoot: "./.",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-68yQkgIVpqUo5tOcvxKh6NOkW565V94zHIZeI4q7nNA=",
         })))),
       node_modules: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
@@ -64,7 +55,7 @@ export default nix.lambda((args) => (() => {
           buildPhase: "runHook preBuild\n\nexport BUN_INSTALL_CACHE_DIR=$(mktemp -d)\n\n# Install dependencies without running lifecycle scripts:\n#  - Skip scripts to avoid running ts-tiny-activerecord's prepare script with unpatched shebangs.\n#  - Rebuild in the main derivation after shebangs are patched there manually.\nbun install \\\n  --force \\\n  --no-progress \\\n  --frozen-lockfile \\\n  --ignore-scripts\n\nrunHook postBuild\n",
           installPhase: "runHook preInstall\n\ncp -R ./node_modules $out\n\nrunHook postInstall\n",
           outputHash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "aarch64-darwin": "sha256-YbjDAa2KG8U0ODqIYc5h7iNr5px+6+iforDrPomOVDo=",
             "aarch64-linux": "sha256-JoUPAfBF4xdQxtx+J/VNpYomBACNsL7Wes0XXuGByGk=",
             "x86_64-linux": "sha256-w8fMS6f+F+23EtMjjl0RsHMm6b5jOXSwUDAc21vqLAg=",
@@ -80,13 +71,13 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [wrapGAppsHook4])))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib, glib_networking, libappindicator, openssl, webkitgtk_4_1]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NODE_OPTIONS: "--max-old-space-size=6144",
         NIX_CFLAGS_COMPILE: "-std=gnu17",
       })),
       tauriConf: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          bundle: nix.thunk(() => ({ [nix.POS]: pos$6, createUpdaterArtifacts: false })),
+          [nix.POS]: $pos[6],
+          bundle: nix.thunk(() => ({ [nix.POS]: $pos[5], createUpdaterArtifacts: false })),
         })))),
       preBuild: "tauriConfPath=\"tauriConf\"\nprintf \"%s\" \"$tauriConf\" > \"$tauriConfPath\"\ntauriBuildFlags+=(\n  \"--config\"\n  \"$tauriConfPath\"\n)\n",
       configurePhase: nix.thunk(() => nix.str`runHook preConfigure
@@ -111,7 +102,7 @@ export PATH="$PWD/node_modules/.bin:$PATH"
 runHook postConfigure
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       checkFlags: nix.thunk(() => [
@@ -121,7 +112,7 @@ runHook postConfigure
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Local-first, executable runbook editor",
         homepage: "https://atuin.sh",
         downloadPage: "https://github.com/atuinsh/desktop",

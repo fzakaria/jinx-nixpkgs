@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["pythonRelaxDeps", 24, 3], ["propagatedBuildInputs", 26, 3], ["nativeCheckInputs", 28, 3], ["pythonImportsCheck", 30, 3], ["disabledTests", 32, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pytestCheckHook: false, setuptools: false, smmap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["pythonRelaxDeps", 24, 3], ["propagatedBuildInputs", 26, 3], ["nativeCheckInputs", 28, 3], ["pythonImportsCheck", 30, 3], ["disabledTests", 32, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.12";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-XvcfhV0ZGjMm/PvA1dqDXyaxP7y6YMMsIQkcNJ/9tXE=",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         "test_stream_reading",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Git Object Database",
         homepage: "https://github.com/gitpython-developers/gitdb",
         changelog: nix.thunk(() => nix.str`https://github.com/gitpython-developers/gitdb/releases/tag/${version}`),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

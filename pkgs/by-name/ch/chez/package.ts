@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 23, 7], ["x86-linux", 24, 7], ["aarch64-linux", 25, 7], ["aarch64-darwin", 26, 7], ["x86_64-windows", 27, 7], ["aarch64-windows", 28, 7]], [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5], ["fetchSubmodules", 43, 5]], [["package", 120, 5]], [["version", 119, 18]], [["tests", 119, 12]], [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["platforms", 132, 5], ["mainProgram", 133, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["strictDeps", 46, 3], ["depsBuildBuild", 47, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 58, 3], ["enableParallelBuilding", 77, 3], ["dontAddPrefix", 78, 3], ["configurePlatforms", 79, 3], ["configureFlags", 80, 3], ["enableParallelChecking", 103, 3], ["nativeCheckInputs", 104, 3], ["doCheck", 105, 3], ["postInstall", 108, 3], ["setupHook", 112, 3], ["doInstallCheck", 114, 3], ["installCheckPhase", 115, 3], ["passthru", 119, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, zuo: false, zlib: false, lz4: false, libffi: false, cctools: false, darwin: false, ncurses: false, libiconv: false, libx11: false, testers: false, writableTmpDirAsHomeHook: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 23, 7], ["x86-linux", 24, 7], ["aarch64-linux", 25, 7], ["aarch64-darwin", 26, 7], ["x86_64-windows", 27, 7], ["aarch64-windows", 28, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5], ["fetchSubmodules", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 120, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 119, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 119, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["platforms", 132, 5], ["mainProgram", 133, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["strictDeps", 46, 3], ["depsBuildBuild", 47, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 58, 3], ["enableParallelBuilding", 77, 3], ["dontAddPrefix", 78, 3], ["configurePlatforms", 79, 3], ["configureFlags", 80, 3], ["enableParallelChecking", 103, 3], ["nativeCheckInputs", 104, 3], ["doCheck", 105, 3], ["postInstall", 108, 3], ["setupHook", 112, 3], ["doInstallCheck", 114, 3], ["installCheckPhase", 115, 3], ["passthru", 119, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const extensions = nix.thunk(() => nix.attr(from, "extensions"));
   const arch = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "ta6le",
     "x86-linux": "ti3le",
     "aarch64-linux": "tarm64le",
@@ -40,11 +34,11 @@ export default nix.lambda((args) => (() => {
     "aarch64-windows": "tarm64nt",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported host system, try checking https://cisco.github.io/ChezScheme/release_notes/latest/release_notes.html to see if ${nix.sel(stdenv, "hostPlatform", "system")} is supported`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "chez-scheme",
       version: "10.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "cisco",
           repo: "ChezScheme",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,17 +74,17 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "echo \"(exit)\" | \"$out/bin/scheme\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Powerful and incredibly fast R6RS Scheme compiler",
         homepage: "https://cisco.github.io/ChezScheme/",
         changelog: nix.thunk(() => nix.str`https://cisco.github.io/ChezScheme/release_notes/v${nix.sel(finalAttrs, "version")}/release_notes.html`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["CFLAGS", 30, 7]], [["broken", 52, 5], ["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["env", 30, 3], ["makeFlags", 31, 3], ["buildInputs", 32, 3], ["enableParallelBuilding", 39, 3], ["postInstall", 41, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, freetype: false, libx11: false, libxi: false, libxt: false, libxft: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 52, 5], ["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["env", 30, 3], ["makeFlags", 31, 3], ["buildInputs", 32, 3], ["enableParallelBuilding", 39, 3], ["postInstall", 41, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const libxft = nix.arg($, "libxft");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "deadpixi-sam-unstable",
       version: "2020-07-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "deadpixi",
           repo: "sam",
           rev: "5d8acb35d78c327d76f00a54857cbd566ed9bc11",
@@ -34,13 +31,13 @@ export default nix.lambda((args) => (() => {
   --replace "CC=gcc" "CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc" \\
   --replace "RXPATH=/usr/bin/ssh" "RXPATH=ssh"
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-D_DARWIN_C_SOURCE" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CFLAGS: "-D_DARWIN_C_SOURCE" })),
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       buildInputs: nix.thunk(() => [libx11, libxi, libxt, libxft]),
       enableParallelBuilding: false,
       postInstall: "substituteInPlace deadpixi-sam.desktop \\\n  --replace \"accessories-text-editor\" \"$out/share/icons/hicolor/scalable/apps/sam.svg\"\nmkdir -p $out/share/applications\nmkdir -p $out/share/icons/hicolor/scalable/apps\nmv deadpixi-sam.desktop $out/share/applications\nmv sam.svg $out/share/icons/hicolor/scalable/apps\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/deadpixi/sam",
         description: "Updated version of the sam text editor",

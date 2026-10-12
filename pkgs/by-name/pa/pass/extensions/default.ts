@@ -2,15 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pass-audit", 8, 3], ["pass-checkup", 9, 3], ["pass-import", 10, 3], ["pass-otp", 11, 3], ["pass-tomb", 12, 3], ["pass-update", 13, 3], ["pass-genphrase", 14, 3], ["pass-file", 15, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["pass-audit", 8, 3], ["pass-checkup", 9, 3], ["pass-import", 10, 3], ["pass-otp", 11, 3], ["pass-tomb", 12, 3], ["pass-update", 13, 3], ["pass-genphrase", 14, 3], ["pass-file", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const callPackage = nix.thunk(() => nix.attr(pkgs, "callPackage"));
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "pass-audit": nix.thunk(() => nix.app(callPackage, nix.path(here, "./audit"), nix.thunk(() => ({})))),
     "pass-checkup": nix.thunk(() => nix.app(callPackage, nix.path(here, "./checkup.nix"), nix.thunk(() => ({})))),
     "pass-import": nix.thunk(() => nix.app(callPackage, nix.path(here, "./import.nix"), nix.thunk(() => ({})))),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]], [["description", 26, 5], ["homepage", 27, 5], ["changelog", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["pythonImportsCheck", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, exceptiongroup: false, fetchPypi: false, "poetry-core": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 26, 5], ["homepage", 27, 5], ["changelog", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["pythonImportsCheck", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const poetry_core = nix.arg($, "poetry-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "generic",
       version: "1.1.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-0U2uZihULrCEQ0WI01B1bIjy8wx+I0itX8+gH723zu0=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [exceptiongroup]),
       pythonImportsCheck: nix.thunk(() => ["generic"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Generic programming (Multiple dispatch) library for Python",
         homepage: "https://github.com/gaphor/generic",
         changelog: nix.thunk(() => nix.str`https://github.com/gaphor/generic/releases/tag/${nix.sel(finalAttrs, "version")}`),

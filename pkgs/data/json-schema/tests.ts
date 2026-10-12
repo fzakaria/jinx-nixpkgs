@@ -2,9 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["nativeBuildInputs", 12, 9]], [["test-with-json-schema-catalog-rs", 9, 3]]]);
 const formals$1 = { args: { "json-schema": false, lib: false, "json-schema-catalog-rs": false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["nativeBuildInputs", 12, 9]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["test-with-json-schema-catalog-rs", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const json_schema_catalog_rs = nix.arg($, "json-schema-catalog-rs");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       "test-with-json-schema-catalog-rs": nix.thunk(() => nix.app(runCommand, "json-schema-catalogs-integration-test", nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           nativeBuildInputs: nix.thunk(() => [json_schema, json_schema_catalog_rs]),
         })), nix.thunk(() => nix.str`cat >example.json <<"EOF"
 {

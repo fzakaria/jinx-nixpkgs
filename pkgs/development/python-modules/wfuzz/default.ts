@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["changelog", 84, 5], ["description", 85, 5], ["longDescription", 86, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 97, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 42, 3], ["build-system", 49, 3], ["dependencies", 51, 3], ["nativeCheckInputs", 62, 3], ["disabledTestPaths", 68, 3], ["pythonImportsCheck", 76, 3], ["postInstall", 78, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, chardet: false, colorama: false, distutils: false, fetchFromGitHub: false, netaddr: false, pycurl: false, pyparsing: false, pytestCheckHook: false, setuptools: false, six: false, "legacy-cgi": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 84, 5], ["description", 85, 5], ["longDescription", 86, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 97, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 42, 3], ["build-system", 49, 3], ["dependencies", 51, 3], ["nativeCheckInputs", 62, 3], ["disabledTestPaths", 68, 3], ["pythonImportsCheck", 76, 3], ["postInstall", 78, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const legacy_cgi = nix.arg($, "legacy-cgi");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wfuzz",
       version: "3.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xmendez",
           repo: "wfuzz",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["wfuzz"]),
       postInstall: "mkdir -p $out/share/wordlists/wfuzz\ncp -R -T \"wordlist\" \"$out/share/wordlists/wfuzz\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/xmendez/wfuzz/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Web content fuzzer to facilitate web applications assessments",
         longDescription: "Wfuzz provides a framework to automate web applications security assessments\nand could help you to secure your web applications by finding and exploiting\nweb application vulnerabilities.\n",

@@ -2,15 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/alias-with-priority.nix", [[["type", 22, 7], ["default", 23, 7], ["example", 24, 7], ["description", 25, 7]], [["internal", 32, 7], ["default", 33, 7], ["type", 34, 7], ["example", 35, 7], ["description", 36, 7]], [["enable", 21, 5], ["warnings", 31, 5]], [["enableAlias", 52, 9]], [["enable", 60, 9]], [["options", 19, 3], ["imports", 43, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/alias-with-priority.nix", [["type", 22, 7], ["default", 23, 7], ["example", 24, 7], ["description", 25, 7]]);
-const pos$2 = nix.positions(here + "/alias-with-priority.nix", [["internal", 32, 7], ["default", 33, 7], ["type", 34, 7], ["example", 35, 7], ["description", 36, 7]]);
-const pos$3 = nix.positions(here + "/alias-with-priority.nix", [["enable", 21, 5], ["warnings", 31, 5]]);
 const formals$2 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/alias-with-priority.nix", [["enableAlias", 52, 9]]);
 const formals$3 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/alias-with-priority.nix", [["enable", 60, 9]]);
-const pos$6 = nix.positions(here + "/alias-with-priority.nix", [["options", 19, 3], ["imports", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "bool")))),
           default: null,
           example: true,
           description: "Some descriptive text\n",
         })))),
       warnings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           internal: true,
           default: [],
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
@@ -46,13 +41,13 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config_1 = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
-        return { [nix.POS]: pos$4, enableAlias: nix.thunk(() => nix.app(mkDefault, false)) };
+        return { [nix.POS]: $pos[3], enableAlias: nix.thunk(() => nix.app(mkDefault, false)) };
       })(), formals$2),
       nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config_1 = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
-        return { [nix.POS]: pos$5, enable: true };
+        return { [nix.POS]: $pos[4], enable: true };
       })(), formals$3),
     ]),
   };

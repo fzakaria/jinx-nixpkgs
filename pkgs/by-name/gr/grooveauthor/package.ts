@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5], ["stripRoot", 21, 5]], [["desktopName", 36, 7], ["name", 37, 7], ["genericName", 38, 7], ["icon", 39, 7], ["exec", 40, 7], ["categories", 41, 7], ["keywords", 45, 7], ["prefersNonDefaultGPU", 57, 7], ["singleMainWindow", 58, 7], ["terminal", 59, 7]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["sourceProvenance", 90, 5], ["platforms", 91, 5], ["maintainers", 92, 5], ["mainProgram", 93, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["runtimeDependencies", 32, 3], ["desktopItems", 34, 3], ["installPhase", 63, 3], ["preFixup", 71, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, autoPatchelfHook: false, copyDesktopItems: false, makeDesktopItem: false, wrapGAppsHook3: false, "alsa-lib": false, dotnetCorePackages: false, gtk3: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5], ["stripRoot", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["desktopName", 36, 7], ["name", 37, 7], ["genericName", 38, 7], ["icon", 39, 7], ["exec", 40, 7], ["categories", 41, 7], ["keywords", 45, 7], ["prefersNonDefaultGPU", 57, 7], ["singleMainWindow", 58, 7], ["terminal", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["sourceProvenance", 90, 5], ["platforms", 91, 5], ["maintainers", 92, 5], ["mainProgram", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["runtimeDependencies", 32, 3], ["desktopItems", 34, 3], ["installPhase", 63, 3], ["preFixup", 71, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "grooveauthor",
       version: "1.1.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/PerryAsleep/GrooveAuthor/releases/download/v${nix.sel(finalAttrs, "version")}/GrooveAuthor-v${nix.sel(finalAttrs, "version")}-linux-x64.tar.gz`),
           hash: "sha256-LjOOI1cUbYpl4tmY1eAZV3S99yQOb4V6LU9Gu/hTtnY=",
           stripRoot: false,
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       runtimeDependencies: nix.thunk(() => [gtk3]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             desktopName: "GrooveAuthor",
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             genericName: "Editor for StepMania",
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GrooveAuthor is an editor for authoring StepMania charts",
         homepage: "https://github.com/PerryAsleep/GrooveAuthor",
         license: nix.thunk(() => (() => {

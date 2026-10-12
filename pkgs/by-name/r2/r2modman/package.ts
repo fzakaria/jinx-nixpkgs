@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 31, 11], ["substitutions", 32, 11]], [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["postFetch", 27, 5]], [["src", 44, 26], ["missingHashes", 44, 30], ["hash", 45, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 69, 5]], [["name", 114, 7], ["exec", 115, 7], ["icon", 116, 7], ["desktopName", 117, 7], ["comment", 118, 7], ["categories", 119, 7], ["mimeTypes", 120, 7], ["keywords", 121, 7]], [["updateScript", 129, 12]], [["changelog", 132, 5], ["description", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["mainProgram", 136, 5], ["maintainers", 137, 5], ["platforms", 141, 29]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["missingHashes", 42, 3], ["offlineCache", 43, 3], ["patches", 48, 3], ["__darwinAllowLocalNetworking", 56, 3], ["nativeBuildInputs", 58, 3], ["env", 67, 3], ["postPatch", 72, 3], ["buildPhase", 77, 3], ["installPhase", 88, 3], ["desktopItems", 112, 3], ["passthru", 129, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, copyDesktopItems: false, "dart-sass": false, electron: false, fetchFromGitHub: false, makeDesktopItem: false, makeWrapper: false, nodejs: false, "yarn-berry": false, substitute: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 31, 11], ["substitutions", 32, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["postFetch", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 44, 26], ["missingHashes", 44, 30], ["hash", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 114, 7], ["exec", 115, 7], ["icon", 116, 7], ["desktopName", 117, 7], ["comment", 118, 7], ["categories", 119, 7], ["mimeTypes", 120, 7], ["keywords", 121, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 129, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 132, 5], ["description", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["mainProgram", 136, 5], ["maintainers", 137, 5], ["platforms", 141, 29]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["missingHashes", 42, 3], ["offlineCache", 43, 3], ["patches", 48, 3], ["__darwinAllowLocalNetworking", 56, 3], ["nativeBuildInputs", 58, 3], ["env", 67, 3], ["postPatch", 72, 3], ["buildPhase", 77, 3], ["installPhase", 88, 3], ["desktopItems", 112, 3], ["passthru", 129, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const yarn_berry = nix.arg($, "yarn-berry");
   const substitute = nix.arg($, "substitute");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "r2modman",
       version: "3.2.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ebkr",
           repo: "r2modmanPlus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-6vSc3Gx0VZJoGSXm70T6rsOLhlv/7CnjK4HWkPOZv2s=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -49,7 +42,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-CAtDbWbl9u8tPdPQKxB2qcN7OhDomwO8EqDdRZppgQU=",
@@ -67,7 +60,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         yarn_berry,
         nix.thunk(() => nix.sel(yarn_berry, "yarnBerryConfigHook")),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], ELECTRON_SKIP_BINARY_DOWNLOAD: true })),
       postPatch: "# Hide update banner\necho \"<template></template>\" > src/components/banner/ManagerUpdateBanner.vue\n",
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
@@ -102,7 +95,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "r2modman",
             exec: "r2modman %U",
             icon: "r2modman",
@@ -113,11 +106,11 @@ runHook postInstall
             keywords: nix.thunk(() => ["launcher", "mod manager", "thunderstore"]),
           })))),
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://github.com/ebkr/r2modmanPlus/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Unofficial Thunderstore mod manager",
         homepage: "https://github.com/ebkr/r2modmanPlus",

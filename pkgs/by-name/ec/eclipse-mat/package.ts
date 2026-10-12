@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["suffix", 25, 9], ["hash", 26, 9]], [["suffix", 29, 9], ["hash", 30, 9]], [["suffix", 33, 9], ["hash", 34, 9]], [["x86_64-linux", 24, 7], ["aarch64-linux", 28, 7], ["aarch64-darwin", 32, 7]], [["urls", 49, 7], ["hash", 53, 24]], [["name", 81, 9], ["exec", 82, 9], ["icon", 83, 9], ["comment", 84, 9], ["desktopName", 85, 9], ["genericName", 86, 9], ["categories", 87, 9]], [["updateScript", 143, 14]], [["description", 146, 7], ["longDescription", 147, 7], ["homepage", 155, 7], ["changelog", 156, 7], ["sourceProvenance", 157, 7], ["license", 161, 7], ["mainProgram", 162, 7], ["maintainers", 163, 7], ["platforms", 167, 7]], [["pname", 42, 5], ["version", 43, 5], ["strictDeps", 45, 5], ["__structuredAttrs", 46, 5], ["src", 48, 5], ["sourceRoot", 56, 5], ["nativeBuildInputs", 58, 5], ["buildInputs", 67, 5], ["dontPatchShebangs", 73, 5], ["noAuditTmpdir", 77, 5], ["desktopItems", 79, 5], ["installPhase", 94, 5], ["passthru", 143, 5], ["meta", 145, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, bintools: false, fetchurl: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, unzip: false, jdk: false, glib: false, "gsettings-desktop-schemas": false, gtk3: false, libxtst: false, webkitgtk_4_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["suffix", 25, 9], ["hash", 26, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["suffix", 29, 9], ["hash", 30, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["suffix", 33, 9], ["hash", 34, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 24, 7], ["aarch64-linux", 28, 7], ["aarch64-darwin", 32, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["urls", 49, 7], ["hash", 53, 24]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 81, 9], ["exec", 82, 9], ["icon", 83, 9], ["comment", 84, 9], ["desktopName", 85, 9], ["genericName", 86, 9], ["categories", 87, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 143, 14]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 146, 7], ["longDescription", 147, 7], ["homepage", 155, 7], ["changelog", 156, 7], ["sourceProvenance", 157, 7], ["license", 161, 7], ["mainProgram", 162, 7], ["maintainers", 163, 7], ["platforms", 167, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 42, 5], ["version", 43, 5], ["strictDeps", 45, 5], ["__structuredAttrs", 46, 5], ["src", 48, 5], ["sourceRoot", 56, 5], ["nativeBuildInputs", 58, 5], ["buildInputs", 67, 5], ["dontPatchShebangs", 73, 5], ["noAuditTmpdir", 77, 5], ["desktopItems", 79, 5], ["installPhase", 94, 5], ["passthru", 143, 5], ["meta", 145, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,19 +24,19 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => (() => {
       const baseVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "pad"), 3n, nix.thunk(() => nix.sel(finalAttrs, "version"))));
       const sources = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "x86_64-linux": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           suffix: "linux.gtk.x86_64",
           hash: "sha256-4eqAp5hNQR5MTX37qwktqSVfe3ctaBolamEEm8yIN2c=",
         })),
         "aarch64-linux": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           suffix: "linux.gtk.aarch64",
           hash: "sha256-MJUome0KjXjmjROTTnDbSTSnDKiUGHt6LAZY1giXmQ0=",
         })),
         "aarch64-darwin": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           suffix: "macosx.cocoa.aarch64",
           hash: "sha256-Of/BJTaxD6x0+aNDKeod1RVWG86XFBmk8qdbU/p73qQ=",
         })),
@@ -53,13 +45,13 @@ export default nix.lambda((args) => (() => {
       const system = nix.thunk(() => nix.attr(from, "system"));
       const source = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system))));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: "eclipse-mat",
         version: "1.17.0.20260601",
         strictDeps: true,
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://ftp.halifax.rwth-aachen.de/eclipse/mat/${baseVersion}/rcp/MemoryAnalyzer-${nix.sel(finalAttrs, "version")}-${nix.sel(source, "suffix")}.zip`),
               nix.thunk(() => nix.str`https://download.eclipse.org/mat/${baseVersion}/rcp/MemoryAnalyzer-${nix.sel(finalAttrs, "version")}-${nix.sel(source, "suffix")}.zip`),
@@ -73,7 +65,7 @@ export default nix.lambda((args) => (() => {
         noAuditTmpdir: nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")),
         desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => [
             nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 name: "eclipse-mat",
                 exec: "eclipse-mat",
                 icon: "eclipse-mat",
@@ -118,9 +110,9 @@ done
 
 runHook postInstall
 `)),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$7, updateScript: nix.path(here, "./update.sh") })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[6], updateScript: nix.path(here, "./update.sh") })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           description: "Fast and feature-rich Java heap analyzer",
           longDescription: "The Eclipse Memory Analyzer is a tool that helps you find memory\nleaks and reduce memory consumption. Use the Memory Analyzer to\nanalyze productive heap dumps with hundreds of millions of\nobjects, quickly calculate the retained sizes of objects, see\nwho is preventing the Garbage Collector from collecting objects,\nrun a report to automatically extract leak suspects.\n",
           homepage: "https://eclipse.dev/mat/",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["package", 29, 54]], [["pkg-config", 29, 11]], [["updateScript", 28, 5], ["tests", 29, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 5], ["pkgConfigModules", 41, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["passthru", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, meson: false, ninja: false, unstableGitUpdater: false, stdenv: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 29, 54]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 29, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 28, 5], ["tests", 29, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 5], ["pkgConfigModules", 41, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["passthru", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "frog-protocols",
       version: "0.01-unstable-2024-09-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "misyltoad",
           repo: "frog-protocols",
           rev: "38db7e30e62a988f701a2751447e0adffd68bb3f",
@@ -32,18 +27,18 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Wayland protocols but much more iterative",
         homepage: "https://github.com/misyltoad/frog-protocols",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

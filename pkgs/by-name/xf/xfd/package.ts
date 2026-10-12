@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 24, 5], ["group", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["extraArgs", 54, 47]], [["updateScript", 54, 12]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["installFlags", 52, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoreconfHook: false, "pkg-config": false, "util-macros": false, wrapWithXFileSearchPathHook: false, fontconfig: false, libxaw: false, libxft: false, libxkbfile: false, libxmu: false, libxrender: false, libxt: false, xorgproto: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 24, 5], ["group", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 54, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["installFlags", 52, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xfd",
       version: "1.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "app",
@@ -45,11 +41,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fontconfig, libxaw, libxft, libxkbfile, libxmu, libxrender, libxt, xorgproto]),
       installFlags: nix.thunk(() => ["appdefaultdir=$out/share/X11/app-defaults"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version-regex=xfd-(.*)"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version-regex=xfd-(.*)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "X font display utility, using either the X11 core protocol or libxft.",
         homepage: "https://gitlab.freedesktop.org/xorg/app/xfd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mitOpenGroup")),

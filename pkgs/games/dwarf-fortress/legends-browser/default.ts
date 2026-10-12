@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 36, 5], ["maintainers", 37, 5], ["sourceProvenance", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["homepage", 44, 5]], [["version", 31, 11], ["pname", 32, 3], ["paths", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildEnv: false, writeShellScriptBin: false, fetchurl: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 36, 5], ["maintainers", 37, 5], ["sourceProvenance", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["homepage", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 31, 11], ["pname", 32, 3], ["paths", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const version = "1.19.2";
   const jar = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/robertjanetzko/LegendsBrowser/releases/download/${version}/legendsbrowser-${version}.jar`),
       hash: "sha256-jkv7InwaRn0K3VAa0LqkYpH6TnrT/tGYBtbvNGM6t98=",
     }))));
@@ -31,12 +29,12 @@ fi
 exec ${jre}/bin/java -jar ${jar}
 `)));
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       pname: "legends-browser",
       paths: nix.thunk(() => [script]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Multi-platform, open source, java-based legends viewer for dwarf fortress",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 35, 3], ["dependencies", 39, 3], ["dontWrapGApps", 43, 3], ["preFixup", 45, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, wrapGAppsHook4: false, "desktop-file-utils": false, libadwaita: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 35, 3], ["dependencies", 39, 3], ["dontWrapGApps", 43, 3], ["preFixup", 45, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Bytezz",
           repo: "IPLookup-gtk",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const dontWrapGApps = true;
       const preFixup = "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Find info about an IP address",
         homepage: "https://github.com/Bytezz/IPLookup-gtk",
         changelog: nix.thunk(() => nix.str`https://github.com/Bytezz/IPLookup-gtk/releases/tag/${nix.sel(src, "tag")}`),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

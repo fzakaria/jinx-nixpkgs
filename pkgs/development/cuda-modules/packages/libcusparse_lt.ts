@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcusparse_lt.nix", [[["message", 41, 9], ["assertion", 44, 9]], [["message", 47, 9], ["assertion", 50, 9]], [["description", 55, 5], ["longDescription", 56, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["maintainers", 63, 5], ["license", 64, 5]], [["redistName", 10, 3], ["pname", 11, 3], ["outputs", 13, 3], ["appendRunpaths", 22, 3], ["platformAssertions", 35, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { _cuda: false, buildRedist: false, cuda_nvrtc: false, cudaAtLeast: false, cudaMajorMinorVersion: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcusparse_lt.nix", [["message", 41, 9], ["assertion", 44, 9]]);
-const pos$2 = nix.positions(here + "/libcusparse_lt.nix", [["message", 47, 9], ["assertion", 50, 9]]);
-const pos$3 = nix.positions(here + "/libcusparse_lt.nix", [["description", 55, 5], ["longDescription", 56, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["maintainers", 63, 5], ["license", 64, 5]]);
-const pos$4 = nix.positions(here + "/libcusparse_lt.nix", [["redistName", 10, 3], ["pname", 11, 3], ["outputs", 13, 3], ["appendRunpaths", 22, 3], ["platformAssertions", 35, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const cudaMajorMinorVersion = nix.arg($, "cudaMajorMinorVersion");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       redistName: "cusparselt",
       pname: "libcusparse_lt",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static"]),
@@ -26,19 +23,19 @@ export default nix.lambda((args) => (() => {
         const cusparseltAtLeast = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
         return [
           nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             message: nix.thunk(() => nix.add(nix.str`cuSPARSELt releases since 0.7.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA 12.8 and newer (found ${cudaMajorMinorVersion})`)),
             assertion: nix.thunk(() => (!nix.asBool(nix.app(cusparseltAtLeast, "0.7")) || nix.asBool(nix.app(cudaAtLeast, "12.8")))),
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             message: nix.thunk(() => nix.add(nix.str`cuSPARSELt releases since 0.8.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA 12.9 and newer (found ${cudaMajorMinorVersion})`)),
             assertion: nix.thunk(() => (!nix.asBool(nix.app(cusparseltAtLeast, "0.8")) || nix.asBool(nix.app(cudaAtLeast, "12.9")))),
           })),
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "High-performance CUDA library dedicated to general matrix-matrix operations in which at least one operand is a structured sparse matrix with 50% sparsity ratio",
         longDescription: "NVIDIA cuSPARSELt is a high-performance CUDA library dedicated to general matrix-matrix operations in which at\nleast one operand is a structured sparse matrix with 50% sparsity ratio.\n",
         homepage: "https://developer.nvidia.com/cusparselt-downloads",

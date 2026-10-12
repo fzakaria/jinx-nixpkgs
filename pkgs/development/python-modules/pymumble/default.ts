@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, opuslib: false, protobuf: false, pytestCheckHook: false, pycrypto: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pycrypto = nix.arg($, "pycrypto");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pymumble",
       version: "unstable-2024-10-20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tjni",
           repo: "pymumble",
           rev: "3241e84e5ce162a20597e4df6a9c443122357fec",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pycrypto, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pymumble_py3", "pymumble_py3.constants"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library to create mumble bots",
         homepage: "https://github.com/tjni/pymumble",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

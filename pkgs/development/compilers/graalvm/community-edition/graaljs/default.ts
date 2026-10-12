@@ -2,8 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["src", 8, 3], ["version", 9, 3], ["product", 11, 3], ["doInstallCheck", 13, 3], ["installCheckPhase", 14, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, graalvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["src", 8, 3], ["version", 9, 3], ["product", 11, 3], ["doInstallCheck", 13, 3], ["installCheckPhase", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const graalvmPackages = nix.arg($, "graalvmPackages");
   return nix.app(nix.sel(graalvmPackages, "buildGraalvmProduct"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")), "hashes", nix.key(nix.sel(stdenv, "system")))))),
       version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")), "version")),
       product: "graaljs",

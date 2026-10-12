@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["sha256", 26, 5]], [["smoke", 99, 18]], [["tests", 99, 12]], [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["prePatch", 41, 3], ["preConfigure", 55, 3], ["configureFlags", 61, 3], ["enableParallelBuilding", 88, 3], ["postInstall", 90, 3], ["passthru", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, systemd: false, unixtools: false, "libusb-compat-0_1": false, coreutils: false, wall: false, hostname: false, man: false, enableCgiScripts: true, gd: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["smoke", 99, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 99, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["prePatch", 41, 3], ["preConfigure", 55, 3], ["configureFlags", 61, 3], ["enableParallelBuilding", 88, 3], ["postInstall", 90, 3], ["passthru", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   nix.assert_((!nix.asBool(enableCgiScripts) || nix.asBool(!nix.eq(gd, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ap/apcupsd/package.nix:18:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "apcupsd",
       version: "3.14.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/apcupsd/apcupsd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0rwqiyzlg9p0szf3x6q1ppvrw6f6dbpn2rc5z623fk3bkdalhxyv",
         })))),
@@ -74,11 +70,11 @@ done
 rm -f "$out/bin/apcupsd-uninstall"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, smoke: nix.thunk(() => nix.sel(nixosTests, "apcupsd")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], smoke: nix.thunk(() => nix.sel(nixosTests, "apcupsd")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Daemon for controlling APC UPSes",
         homepage: "http://www.apcupsd.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

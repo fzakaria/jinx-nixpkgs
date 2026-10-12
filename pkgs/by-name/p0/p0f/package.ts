@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["patches", 20, 3], ["buildPhase", 22, 3], ["installPhase", 29, 3], ["hardeningDisable", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libpcap: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["patches", 20, 3], ["buildPhase", 22, 3], ["installPhase", 29, 3], ["hardeningDisable", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "p0f",
       version: "3.09b",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://lcamtuf.coredump.cx/p0f3/releases/p0f-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "0zqfq3gdnha29ckvlqmyp36c0jhj7f69bhqqx31yb6vkirinhfsl",
         })))),
@@ -33,7 +31,7 @@ cd tools && make && cd ..
       installPhase: "mkdir -p $out/sbin $out/etc\n\ncp ./p0f                $out/sbin\ncp ./p0f.fp             $out/etc\n\ncp ./tools/p0f-client   $out/sbin\ncp ./tools/p0f-sendsyn  $out/sbin\ncp ./tools/p0f-sendsyn6 $out/sbin\n",
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Passive network reconnaissance and fingerprinting tool",
         homepage: "https://lcamtuf.coredump.cx/p0f3/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

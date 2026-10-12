@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["sha256", 12, 5]], [["pname", 14, 54], ["version", 14, 60], ["src", 14, 68]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5], ["mainProgram", 32, 5]], [["pname", 17, 11], ["version", 17, 17], ["src", 17, 25], ["extraInstallCommands", 19, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["sha256", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 14, 54], ["version", 14, 60], ["src", 14, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5], ["mainProgram", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 11], ["version", 17, 17], ["src", 17, 25], ["extraInstallCommands", 19, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pname = "sonixd";
   const version = "0.15.5";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/jeffvli/sonixd/releases/download/v${version}/Sonixd-${version}-linux-x86_64.AppImage`),
       sha256: "sha256-j8B+o/CJ5SsZPMNbugyP3T9Kb+xuxlVxH02loxlwwDg=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => (() => {
       const pname_1 = pname;
       const version_1 = version;
@@ -31,7 +28,7 @@ substituteInPlace $out/share/applications/${pname_1}.desktop \\
 cp -r ${appimageContents}/usr/share/icons $out/share
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Full-featured Subsonic/Jellyfin compatible desktop music player",
         homepage: "https://github.com/jeffvli/sonixd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -43,7 +40,7 @@ cp -r ${appimageContents}/usr/share/icons $out/share
         mainProgram: "sonixd",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname_1,
         version: version_1,
         src: src_1,

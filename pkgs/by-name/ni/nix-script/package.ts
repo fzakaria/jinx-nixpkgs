@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 48, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 20, 3], ["buildPhase", 24, 3], ["installPhase", 32, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, haskellPackages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 20, 3], ["buildPhase", 24, 3], ["installPhase", 32, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const haskellPackages = nix.arg($, "haskellPackages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nix-script",
       version: "2020-03-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bennofs",
           repo: "nix-script",
           rev: "7706b45429ff22c35bab575734feb2926bf8840b",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nmkdir -p $out/bin\nghc -O2 $src/nix-script.hs -o $out/bin/nix-script -odir . -hidir .\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nln -s $out/bin/nix-script $out/bin/nix-scripti\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Shebang for running inside nix-shell",
         homepage: "https://github.com/bennofs/nix-script",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

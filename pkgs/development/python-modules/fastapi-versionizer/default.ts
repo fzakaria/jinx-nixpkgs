@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["changelog", 54, 5], ["description", 55, 5], ["downloadPage", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 37, 3], ["nativeCheckInputs", 42, 3], ["disabledTestPaths", 47, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, lib: false, setuptools: false, fastapi: false, natsort: false, httpx: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 54, 5], ["description", 55, 5], ["downloadPage", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 37, 3], ["nativeCheckInputs", 42, 3], ["disabledTestPaths", 47, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const httpx = nix.arg($, "httpx");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fastapi-versionizer",
       version: "4.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alexschimpf",
           repo: "fastapi-versionizer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [httpx, pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => ["tests/test_simple.py", "tests/test_with_root_path.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/alexschimpf/fastapi-versionizer/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "API versionizer for FastAPI web applications",
         downloadPage: nix.thunk(() => nix.str`https://github.com/alexschimpf/fastapi-versionizer/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

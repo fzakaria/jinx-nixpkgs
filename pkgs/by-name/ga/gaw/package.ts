@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["BASE", 21, 9], ["FNAME", 22, 9], ["nativeBuildInputs", 24, 9], ["SSL_CERT_FILE", 28, 9], ["outputHashMode", 30, 9], ["outputHashAlgo", 31, 9], ["outputHash", 32, 9]], [["NIX_CFLAGS_COMPILE", 82, 7]], [["description", 85, 5], ["mainProgram", 86, 5], ["longDescription", 87, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 18, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 79, 3], ["env", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { stdenv: false, runCommandLocal: false, lib: false, htmlq: false, curl: false, cacert: false, gtk3: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["BASE", 21, 9], ["FNAME", 22, 9], ["nativeBuildInputs", 24, 9], ["SSL_CERT_FILE", 28, 9], ["outputHashMode", 30, 9], ["outputHashAlgo", 31, 9], ["outputHash", 32, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 82, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 85, 5], ["mainProgram", 86, 5], ["longDescription", 87, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 18, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 79, 3], ["env", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gaw3",
       version: "20250128",
       src: nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.str`gaw3-${nix.sel(finalAttrs, "version")}.tar.gz`), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           BASE: "https://www.rvq.fr/php/ndl.php",
           FNAME: nix.thunk(() => nix.str`gaw3-${nix.sel(finalAttrs, "version")}.tar.gz`),
           nativeBuildInputs: nix.thunk(() => [htmlq, curl]),
@@ -34,9 +31,9 @@ export default nix.lambda((args) => (() => {
         })), "# fetch download page\nhtml_form=$(\n  curl \"$BASE?id=$FNAME\" |\n    tr '\\n' ' ' | tr -s ' ' | # minimize whitespace\n    htmlq tr | # select table rows, one per line\n    grep \"<td>$FNAME</td>\" | # filter for row of interest\n    head -n1 | # first match, just in case\n    htmlq form --base \"$BASE\"\n)\n\ndeclare -a curl_args=()\n\n# hidden fields\ndeclare -a input_names=()\nreadarray -td $'\\n' input_names < <(\n  htmlq <<<\"$html_form\" \"input[type=hidden]\" -a name\n)\nfor input_name in \"${input_names[@]}\"; do\n  input_value=$(\n    htmlq <<<\"$html_form\" \"input[type=hidden][name=${input_name}]\" -a value\n  )\n  echo \"$input_name = $input_value\"\n  curl_args+=( --form \"$input_name=$input_value\" )\ndone\n\n# destination\ncurl_args+=(\n  \"https://www.rvq.fr/$( htmlq <<<\"$html_form\"  form -a action )\"\n)\n\n# POST and download\n(set -x\n  curl -X POST \"${curl_args[@]}\" $NIX_CURL_FLAGS --output \"$FNAME\"\n)\n\n# unpack and strip root dir\nmkdir unpack/\ntar xvf \"$FNAME\" --directory=unpack/\n[[ \"$(printf \"%s\\n\" unpack/* | wc -l)\" -eq 1 ]]\ncp -a unpack/* $out\n")),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [gtk3]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Gtk Analog Wave viewer",
         mainProgram: "gaw",
         longDescription: "Gaw is a software tool for displaying analog waveforms from\nsampled data, for example from the output of simulators or\ninput from sound cards. Data can be imported to gaw using files,\ndirect tcp/ip connection or directly from the sound card.\n",

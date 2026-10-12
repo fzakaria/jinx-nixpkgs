@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 38, 5], ["rev", 39, 5], ["hash", 40, 5]], [["url", 47, 7], ["hash", 48, 7]], [["airspy", 98, 7], ["airspyhf", 99, 7], ["bladerf", 100, 7], ["hackrf", 101, 7], ["rtl", 102, 7], ["soapy", 103, 7]], [["featuresDeps", 95, 5], ["enabledFeaturesDeps", 105, 5], ["enabledFeaturesCmakeFlags", 110, 5]], [["description", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["maintainers", 119, 5], ["platforms", 120, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 43, 3], ["disabled", 52, 3], ["outputs", 54, 3], ["buildInputs", 59, 3], ["cmakeFlags", 82, 3], ["nativeBuildInputs", 86, 3], ["passthru", 94, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, gnuradioAtLeast: false, fetchgit: false, fetchpatch: false, gnuradio: false, cmake: false, "pkg-config": false, logLib: false, libsndfile: false, mpir: false, boost: false, gmp: false, thrift: false, fftwFloat: false, python: false, uhd: false, icu: false, airspy: false, airspyhf: false, hackrf: false, libbladeRF: false, "rtl-sdr": false, "soapysdr-with-plugins": false, features: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 38, 5], ["rev", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 47, 7], ["hash", 48, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["airspy", 98, 7], ["airspyhf", 99, 7], ["bladerf", 100, 7], ["hackrf", 101, 7], ["rtl", 102, 7], ["soapy", 103, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["featuresDeps", 95, 5], ["enabledFeaturesDeps", 105, 5], ["enabledFeaturesCmakeFlags", 110, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["maintainers", 119, 5], ["platforms", 120, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 43, 3], ["disabled", 52, 3], ["outputs", 54, 3], ["buildInputs", 59, 3], ["cmakeFlags", 82, 3], ["nativeBuildInputs", 86, 3], ["passthru", 94, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,18 +33,18 @@ export default nix.lambda((args) => (() => {
   const soapysdr_with_plugins = nix.arg($, "soapysdr-with-plugins");
   const features = nix.argOr($, "features", () => ({}));
   return nix.app(mkDerivation, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gr-osmosdr",
       version: "0.2.6",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gitea.osmocom.org/sdr/gr-osmosdr",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-jCUzBY1pYiEtcRQ97t9F6uEMVYw2NU0eoB5Xc2H6pGQ=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/osmocom/gr-osmosdr/commit/06249f1f0930aa553ef8877b50503b9f5c77b4a0.patch",
             hash: "sha256-ofjuDvTT2PzRTR6UWchTQzmr9a83ka5TfUdlCBe4Is0=",
           })))),
@@ -65,9 +60,9 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(finalAttrs, "finalPackage", "passthru", "enabledFeaturesCmakeFlags"))),
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(gnuradio, "hasFeature"), "python-support")), nix.thunk(() => [nix.thunk(() => nix.sel(python, "pkgs", "mako")), python])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         featuresDeps: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           airspy: nix.thunk(() => [airspy]),
           airspyhf: nix.thunk(() => [airspyhf]),
           bladerf: nix.thunk(() => [libbladeRF]),
@@ -83,7 +78,7 @@ export default nix.lambda((args) => (() => {
         enabledFeaturesCmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (feat) => (val) => nix.app(nix.sel(lib, "cmakeBool"), nix.thunk(() => nix.str`ENABLE_${nix.app(nix.sel(lib, "toUpper"), feat)}`), val), features)),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Gnuradio block for OsmoSDR and rtl-sdr",
         homepage: "https://sdr.osmocom.org/trac/wiki/GrOsmoSDR",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

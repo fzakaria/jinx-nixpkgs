@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["extraArgs", 58, 5]], [["updateScript", 57, 12]], [["homepage", 62, 5], ["changelog", 63, 5], ["description", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["preConfigure", 26, 3], ["build-system", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["postPatch", 42, 3], ["nativeCheckInputs", 47, 3], ["enabledTestPaths", 49, 3], ["disabledTests", 51, 3], ["passthru", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "nix-update-script": false, setuptools: false, "pkg-config": false, swig: false, libcdio: false, libiconv: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 57, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 62, 5], ["changelog", 63, 5], ["description", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["preConfigure", 26, 3], ["build-system", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["postPatch", 42, 3], ["nativeCheckInputs", 47, 3], ["enabledTestPaths", 49, 3], ["disabledTests", 51, 3], ["passthru", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pycdio",
       version: "2.1.1-unstable-2024-02-26",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rocky",
           repo: "pycdio",
           rev: "806c6a2eeeeb546055ce2ac9a0ae6a14ea53ae35",
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["test/test-*.py"]),
       disabledTests: nix.thunk(() => ["test_bincue", "test_cdda"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.gnu.org/software/libcdio/",
         changelog: nix.thunk(() => nix.str`https://github.com/rocky/pycdio/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),
         description: "Wrapper around libcdio (CD Input and Control library)",

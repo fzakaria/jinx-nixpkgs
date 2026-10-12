@@ -2,60 +2,43 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rsyslogd.nix", [[["system", 4, 33], ["config", 4, 40]], [["system", 7, 49], ["pkgs", 7, 56]], [["maintainers", 13, 10]], [["enable", 18, 27]], [["ForwardToSyslog", 20, 44]], [["Journal", 20, 36]], [["settings", 20, 27]], [["rsyslogd", 18, 18], ["journald", 20, 18]], [["services", 18, 9]], [["machine", 15, 11]], [["name", 12, 5], ["meta", 13, 5], ["nodes", 15, 5], ["testScript", 24, 5]], [["maintainers", 32, 10]], [["enable", 37, 27]], [["rsyslogd", 37, 18]], [["services", 37, 9]], [["machine", 34, 11]], [["name", 31, 5], ["meta", 32, 5], ["nodes", 34, 5], ["testScript", 41, 5]], [["test1", 11, 3], ["test2", 30, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rsyslogd.nix", [["system", 4, 33], ["config", 4, 40]]);
-const pos$2 = nix.positions(here + "/rsyslogd.nix", [["system", 7, 49], ["pkgs", 7, 56]]);
-const pos$3 = nix.positions(here + "/rsyslogd.nix", [["maintainers", 13, 10]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/rsyslogd.nix", [["enable", 18, 27]]);
-const pos$5 = nix.positions(here + "/rsyslogd.nix", [["ForwardToSyslog", 20, 44]]);
-const pos$6 = nix.positions(here + "/rsyslogd.nix", [["Journal", 20, 36]]);
-const pos$7 = nix.positions(here + "/rsyslogd.nix", [["settings", 20, 27]]);
-const pos$8 = nix.positions(here + "/rsyslogd.nix", [["rsyslogd", 18, 18], ["journald", 20, 18]]);
-const pos$9 = nix.positions(here + "/rsyslogd.nix", [["services", 18, 9]]);
-const pos$10 = nix.positions(here + "/rsyslogd.nix", [["machine", 15, 11]]);
-const pos$11 = nix.positions(here + "/rsyslogd.nix", [["name", 12, 5], ["meta", 13, 5], ["nodes", 15, 5], ["testScript", 24, 5]]);
-const pos$12 = nix.positions(here + "/rsyslogd.nix", [["maintainers", 32, 10]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$13 = nix.positions(here + "/rsyslogd.nix", [["enable", 37, 27]]);
-const pos$14 = nix.positions(here + "/rsyslogd.nix", [["rsyslogd", 37, 18]]);
-const pos$15 = nix.positions(here + "/rsyslogd.nix", [["services", 37, 9]]);
-const pos$16 = nix.positions(here + "/rsyslogd.nix", [["machine", 34, 11]]);
-const pos$17 = nix.positions(here + "/rsyslogd.nix", [["name", 31, 5], ["meta", 32, 5], ["nodes", 34, 5], ["testScript", 41, 5]]);
-const pos$18 = nix.positions(here + "/rsyslogd.nix", [["test1", 11, 3], ["test2", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     test1: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         name: "rsyslogd-test1",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "aanderse"))]),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const lib = nix.arg($_1, "lib");
             return {
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$8,
-                rsyslogd: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+                [nix.POS]: $pos[7],
+                rsyslogd: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
                 journald: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     Journal: nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       ForwardToSyslog: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
                     })),
                   })),
@@ -67,21 +50,21 @@ export default nix.lambda((args) => (() => {
         testScript: "machine.wait_for_unit(\"default.target\")\nmachine.fail(\"test -f /var/log/messages\")\n",
       })))),
     test2: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         name: "rsyslogd-test2",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "aanderse"))]),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$3);
             return {
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$14,
-                rsyslogd: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
+                [nix.POS]: $pos[13],
+                rsyslogd: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true })),
               })),
             };
           })(), formals$3),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["touchegg", 36, 7]], [["updateScript", 61, 5]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["teams", 69, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["passthru", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, replaceVars: false, meson: false, ninja: false, "pkg-config": false, vala: false, libgee: false, libxml2: false, granite7: false, gtk4: false, switchboard: false, gettext: false, "gnome-settings-daemon": false, glib: false, gala: false, touchegg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["touchegg", 36, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["teams", 69, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["passthru", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const pname = "switchboard-plug-mouse-touchpad";
       const version = "8.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "settings-mouse-touchpad",
           tag: version,
           hash: "sha256-KfaC1yfsL3GowcjqqwPpYQ6DJIoO7ejl0y3IQ4Gtdj8=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, touchegg: touchegg })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], touchegg: touchegg })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [gettext, meson, ninja, pkg_config, vala]);
       const buildInputs = nix.thunk(() => [
@@ -56,11 +52,11 @@ export default nix.lambda((args) => (() => {
         touchegg,
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Switchboard Mouse & Touchpad Plug",
         homepage: "https://github.com/elementary/settings-mouse-touchpad",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -68,7 +64,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

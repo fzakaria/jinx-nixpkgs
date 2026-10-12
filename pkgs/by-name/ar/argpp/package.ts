@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 33, 5], ["homepage", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5], ["license", 37, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["postPatch", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, gtest: false, tinycmmc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5], ["license", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["postPatch", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const tinycmmc = nix.arg($, "tinycmmc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "argpp",
       version: "0-unstable-2022-08-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Grumbel",
           repo: "argpp",
           rev: "9e1d54f8ed20af0aa5857e6653ab605b2ab63d5c",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtest, tinycmmc]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.0)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Argument Parser for C++",
         homepage: "https://github.com/Grumbel/argpp",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "SchweGELBin"))]),

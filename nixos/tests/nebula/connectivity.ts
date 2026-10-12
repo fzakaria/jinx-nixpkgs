@@ -2,115 +2,14 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/connectivity.nix", [[["systemPackages", 19, 21]], [["keys", 25, 49]], [["authorizedKeys", 25, 34]], [["openssh", 25, 26]], [["root", 25, 21]], [["users", 25, 15]], [["enable", 26, 26]], [["host", 47, 13], ["port", 48, 13]], [["ca", 43, 11], ["cert", 44, 11], ["key", 45, 11], ["listen", 46, 11]], [["smoke", 41, 34]], [["networks", 41, 25]], [["openssh", 26, 18], ["nebula", 41, 18]], [["enable", 27, 29], ["allowedUDPPorts", 30, 29]], [["useDHCP", 39, 36]], [["eth1", 39, 31]], [["firewall", 27, 20], ["interfaces", 39, 20]], [["ExecStart", 35, 13], ["Restart", 36, 13]], [["description", 32, 11], ["wantedBy", 33, 11], ["serviceConfig", 34, 11]], [["udp-echo", 31, 26]], [["services", 31, 17]], [["environment", 19, 9], ["users", 25, 9], ["services", 26, 9], ["networking", 27, 9], ["systemd", 31, 9]], [["allowedUDPPorts", 70, 29]], [["address", 74, 15], ["prefixLength", 75, 15]], [["addresses", 72, 16]], [["address", 80, 15], ["prefixLength", 81, 15]], [["addresses", 78, 16]], [["ipv4", 72, 11], ["ipv6", 78, 11]], [["eth1", 71, 31]], [["firewall", 70, 20], ["interfaces", 71, 20]], [["port", 92, 17], ["proto", 93, 17], ["host", 94, 17]], [["port", 99, 17], ["proto", 100, 17], ["host", 101, 17]], [["outbound", 90, 13], ["inbound", 97, 13]], [["enable", 107, 15], ["host", 108, 15], ["port", 109, 15]], [["dns", 106, 13]], [["isLighthouse", 87, 11], ["isRelay", 88, 11], ["firewall", 89, 11], ["lighthouse", 105, 11]], [["host", 121, 13], ["port", 122, 13]], [["disable", 125, 13], ["device", 126, 13]], [["ca", 116, 11], ["cert", 117, 11], ["key", 118, 11], ["isLighthouse", 119, 11], ["listen", 120, 11], ["tun", 124, 11], ["user", 128, 11], ["group", 129, 11]], [["smoke", 86, 34], ["tunless", 115, 34]], [["networks", 86, 25]], [["nebula", 86, 18]], [["networking", 70, 9], ["services", 86, 9]], [["address", 139, 15], ["prefixLength", 140, 15]], [["addresses", 137, 16]], [["address", 145, 15], ["prefixLength", 146, 15]], [["addresses", 143, 16]], [["ipv4", 137, 11], ["ipv6", 143, 11]], [["eth1", 136, 31]], [["interfaces", 136, 20]], [["10.0.100.1", 153, 13]], [["port", 164, 17], ["proto", 165, 17], ["host", 166, 17]], [["port", 171, 17], ["proto", 172, 17], ["host", 173, 17]], [["outbound", 162, 13], ["inbound", 169, 13]], [["staticHostMap", 152, 11], ["isLighthouse", 158, 11], ["lighthouses", 159, 11], ["relays", 160, 11], ["firewall", 161, 11]], [["smoke", 151, 34]], [["networks", 151, 25]], [["nebula", 151, 18]], [["networking", 136, 9], ["services", 151, 9]], [["address", 186, 15], ["prefixLength", 187, 15]], [["addresses", 184, 16]], [["ipv6", 184, 11]], [["eth1", 183, 31]], [["interfaces", 183, 20]], [["10.0.100.1", 194, 13]], [["port", 205, 17], ["proto", 206, 17], ["host", 207, 17]], [["port", 212, 17], ["proto", 213, 17], ["host", 214, 17]], [["outbound", 203, 13], ["inbound", 210, 13]], [["staticHostMap", 193, 11], ["isLighthouse", 199, 11], ["lighthouses", 200, 11], ["relays", 201, 11], ["firewall", 202, 11]], [["smoke", 192, 34]], [["networks", 192, 25]], [["nebula", 192, 18]], [["networking", 183, 9], ["services", 192, 9]], [["address", 226, 13], ["prefixLength", 227, 13]], [["addresses", 224, 41]], [["ipv4", 224, 36]], [["eth1", 224, 31]], [["interfaces", 224, 20]], [["10.0.100.1", 234, 13]], [["port", 245, 17], ["proto", 246, 17], ["host", 247, 17]], [["port", 252, 17], ["proto", 253, 17], ["host", 254, 17]], [["outbound", 243, 13], ["inbound", 250, 13]], [["enable", 232, 11], ["staticHostMap", 233, 11], ["isLighthouse", 239, 11], ["lighthouses", 240, 11], ["relays", 241, 11], ["firewall", 242, 11]], [["smoke", 231, 34]], [["networks", 231, 25]], [["nebula", 231, 18]], [["networking", 224, 9], ["services", 231, 9]], [["address", 266, 13], ["prefixLength", 267, 13]], [["addresses", 264, 41]], [["ipv4", 264, 36]], [["eth1", 264, 31]], [["interfaces", 264, 20]], [["10.0.100.1", 274, 13]], [["port", 284, 17], ["proto", 285, 17], ["host", 286, 17]], [["port", 291, 17], ["proto", 292, 17], ["host", 293, 17]], [["outbound", 282, 13], ["inbound", 289, 13]], [["enable", 272, 11], ["staticHostMap", 273, 11], ["isLighthouse", 278, 11], ["lighthouses", 279, 11], ["relays", 280, 11], ["firewall", 281, 11]], [["smoke", 271, 34]], [["networks", 271, 25]], [["nebula", 271, 18]], [["networking", 264, 9], ["services", 271, 9]], [["lighthouse", 67, 5], ["allowAny", 133, 5], ["allowFromLighthouse", 180, 5], ["allowToLighthouse", 221, 5], ["disabled", 261, 5]], [["name", 64, 3], ["nodes", 66, 3], ["testScript", 301, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/connectivity.nix", [["systemPackages", 19, 21]]);
-const pos$2 = nix.positions(here + "/connectivity.nix", [["keys", 25, 49]]);
-const pos$3 = nix.positions(here + "/connectivity.nix", [["authorizedKeys", 25, 34]]);
-const pos$4 = nix.positions(here + "/connectivity.nix", [["openssh", 25, 26]]);
-const pos$5 = nix.positions(here + "/connectivity.nix", [["root", 25, 21]]);
-const pos$6 = nix.positions(here + "/connectivity.nix", [["users", 25, 15]]);
-const pos$7 = nix.positions(here + "/connectivity.nix", [["enable", 26, 26]]);
-const pos$8 = nix.positions(here + "/connectivity.nix", [["host", 47, 13], ["port", 48, 13]]);
-const pos$9 = nix.positions(here + "/connectivity.nix", [["ca", 43, 11], ["cert", 44, 11], ["key", 45, 11], ["listen", 46, 11]]);
-const pos$10 = nix.positions(here + "/connectivity.nix", [["smoke", 41, 34]]);
-const pos$11 = nix.positions(here + "/connectivity.nix", [["networks", 41, 25]]);
-const pos$12 = nix.positions(here + "/connectivity.nix", [["openssh", 26, 18], ["nebula", 41, 18]]);
-const pos$13 = nix.positions(here + "/connectivity.nix", [["enable", 27, 29], ["allowedUDPPorts", 30, 29]]);
-const pos$14 = nix.positions(here + "/connectivity.nix", [["useDHCP", 39, 36]]);
-const pos$15 = nix.positions(here + "/connectivity.nix", [["eth1", 39, 31]]);
-const pos$16 = nix.positions(here + "/connectivity.nix", [["firewall", 27, 20], ["interfaces", 39, 20]]);
-const pos$17 = nix.positions(here + "/connectivity.nix", [["ExecStart", 35, 13], ["Restart", 36, 13]]);
-const pos$18 = nix.positions(here + "/connectivity.nix", [["description", 32, 11], ["wantedBy", 33, 11], ["serviceConfig", 34, 11]]);
-const pos$19 = nix.positions(here + "/connectivity.nix", [["udp-echo", 31, 26]]);
-const pos$20 = nix.positions(here + "/connectivity.nix", [["services", 31, 17]]);
-const pos$21 = nix.positions(here + "/connectivity.nix", [["environment", 19, 9], ["users", 25, 9], ["services", 26, 9], ["networking", 27, 9], ["systemd", 31, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$22 = nix.positions(here + "/connectivity.nix", [["allowedUDPPorts", 70, 29]]);
-const pos$23 = nix.positions(here + "/connectivity.nix", [["address", 74, 15], ["prefixLength", 75, 15]]);
-const pos$24 = nix.positions(here + "/connectivity.nix", [["addresses", 72, 16]]);
-const pos$25 = nix.positions(here + "/connectivity.nix", [["address", 80, 15], ["prefixLength", 81, 15]]);
-const pos$26 = nix.positions(here + "/connectivity.nix", [["addresses", 78, 16]]);
-const pos$27 = nix.positions(here + "/connectivity.nix", [["ipv4", 72, 11], ["ipv6", 78, 11]]);
-const pos$28 = nix.positions(here + "/connectivity.nix", [["eth1", 71, 31]]);
-const pos$29 = nix.positions(here + "/connectivity.nix", [["firewall", 70, 20], ["interfaces", 71, 20]]);
-const pos$30 = nix.positions(here + "/connectivity.nix", [["port", 92, 17], ["proto", 93, 17], ["host", 94, 17]]);
-const pos$31 = nix.positions(here + "/connectivity.nix", [["port", 99, 17], ["proto", 100, 17], ["host", 101, 17]]);
-const pos$32 = nix.positions(here + "/connectivity.nix", [["outbound", 90, 13], ["inbound", 97, 13]]);
-const pos$33 = nix.positions(here + "/connectivity.nix", [["enable", 107, 15], ["host", 108, 15], ["port", 109, 15]]);
-const pos$34 = nix.positions(here + "/connectivity.nix", [["dns", 106, 13]]);
-const pos$35 = nix.positions(here + "/connectivity.nix", [["isLighthouse", 87, 11], ["isRelay", 88, 11], ["firewall", 89, 11], ["lighthouse", 105, 11]]);
-const pos$36 = nix.positions(here + "/connectivity.nix", [["host", 121, 13], ["port", 122, 13]]);
-const pos$37 = nix.positions(here + "/connectivity.nix", [["disable", 125, 13], ["device", 126, 13]]);
-const pos$38 = nix.positions(here + "/connectivity.nix", [["ca", 116, 11], ["cert", 117, 11], ["key", 118, 11], ["isLighthouse", 119, 11], ["listen", 120, 11], ["tun", 124, 11], ["user", 128, 11], ["group", 129, 11]]);
-const pos$39 = nix.positions(here + "/connectivity.nix", [["smoke", 86, 34], ["tunless", 115, 34]]);
-const pos$40 = nix.positions(here + "/connectivity.nix", [["networks", 86, 25]]);
-const pos$41 = nix.positions(here + "/connectivity.nix", [["nebula", 86, 18]]);
-const pos$42 = nix.positions(here + "/connectivity.nix", [["networking", 70, 9], ["services", 86, 9]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$43 = nix.positions(here + "/connectivity.nix", [["address", 139, 15], ["prefixLength", 140, 15]]);
-const pos$44 = nix.positions(here + "/connectivity.nix", [["addresses", 137, 16]]);
-const pos$45 = nix.positions(here + "/connectivity.nix", [["address", 145, 15], ["prefixLength", 146, 15]]);
-const pos$46 = nix.positions(here + "/connectivity.nix", [["addresses", 143, 16]]);
-const pos$47 = nix.positions(here + "/connectivity.nix", [["ipv4", 137, 11], ["ipv6", 143, 11]]);
-const pos$48 = nix.positions(here + "/connectivity.nix", [["eth1", 136, 31]]);
-const pos$49 = nix.positions(here + "/connectivity.nix", [["interfaces", 136, 20]]);
-const pos$50 = nix.positions(here + "/connectivity.nix", [["10.0.100.1", 153, 13]]);
-const pos$51 = nix.positions(here + "/connectivity.nix", [["port", 164, 17], ["proto", 165, 17], ["host", 166, 17]]);
-const pos$52 = nix.positions(here + "/connectivity.nix", [["port", 171, 17], ["proto", 172, 17], ["host", 173, 17]]);
-const pos$53 = nix.positions(here + "/connectivity.nix", [["outbound", 162, 13], ["inbound", 169, 13]]);
-const pos$54 = nix.positions(here + "/connectivity.nix", [["staticHostMap", 152, 11], ["isLighthouse", 158, 11], ["lighthouses", 159, 11], ["relays", 160, 11], ["firewall", 161, 11]]);
-const pos$55 = nix.positions(here + "/connectivity.nix", [["smoke", 151, 34]]);
-const pos$56 = nix.positions(here + "/connectivity.nix", [["networks", 151, 25]]);
-const pos$57 = nix.positions(here + "/connectivity.nix", [["nebula", 151, 18]]);
-const pos$58 = nix.positions(here + "/connectivity.nix", [["networking", 136, 9], ["services", 151, 9]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$59 = nix.positions(here + "/connectivity.nix", [["address", 186, 15], ["prefixLength", 187, 15]]);
-const pos$60 = nix.positions(here + "/connectivity.nix", [["addresses", 184, 16]]);
-const pos$61 = nix.positions(here + "/connectivity.nix", [["ipv6", 184, 11]]);
-const pos$62 = nix.positions(here + "/connectivity.nix", [["eth1", 183, 31]]);
-const pos$63 = nix.positions(here + "/connectivity.nix", [["interfaces", 183, 20]]);
-const pos$64 = nix.positions(here + "/connectivity.nix", [["10.0.100.1", 194, 13]]);
-const pos$65 = nix.positions(here + "/connectivity.nix", [["port", 205, 17], ["proto", 206, 17], ["host", 207, 17]]);
-const pos$66 = nix.positions(here + "/connectivity.nix", [["port", 212, 17], ["proto", 213, 17], ["host", 214, 17]]);
-const pos$67 = nix.positions(here + "/connectivity.nix", [["outbound", 203, 13], ["inbound", 210, 13]]);
-const pos$68 = nix.positions(here + "/connectivity.nix", [["staticHostMap", 193, 11], ["isLighthouse", 199, 11], ["lighthouses", 200, 11], ["relays", 201, 11], ["firewall", 202, 11]]);
-const pos$69 = nix.positions(here + "/connectivity.nix", [["smoke", 192, 34]]);
-const pos$70 = nix.positions(here + "/connectivity.nix", [["networks", 192, 25]]);
-const pos$71 = nix.positions(here + "/connectivity.nix", [["nebula", 192, 18]]);
-const pos$72 = nix.positions(here + "/connectivity.nix", [["networking", 183, 9], ["services", 192, 9]]);
 const formals$6 = { args: {  }, ellipsis: true };
-const pos$73 = nix.positions(here + "/connectivity.nix", [["address", 226, 13], ["prefixLength", 227, 13]]);
-const pos$74 = nix.positions(here + "/connectivity.nix", [["addresses", 224, 41]]);
-const pos$75 = nix.positions(here + "/connectivity.nix", [["ipv4", 224, 36]]);
-const pos$76 = nix.positions(here + "/connectivity.nix", [["eth1", 224, 31]]);
-const pos$77 = nix.positions(here + "/connectivity.nix", [["interfaces", 224, 20]]);
-const pos$78 = nix.positions(here + "/connectivity.nix", [["10.0.100.1", 234, 13]]);
-const pos$79 = nix.positions(here + "/connectivity.nix", [["port", 245, 17], ["proto", 246, 17], ["host", 247, 17]]);
-const pos$80 = nix.positions(here + "/connectivity.nix", [["port", 252, 17], ["proto", 253, 17], ["host", 254, 17]]);
-const pos$81 = nix.positions(here + "/connectivity.nix", [["outbound", 243, 13], ["inbound", 250, 13]]);
-const pos$82 = nix.positions(here + "/connectivity.nix", [["enable", 232, 11], ["staticHostMap", 233, 11], ["isLighthouse", 239, 11], ["lighthouses", 240, 11], ["relays", 241, 11], ["firewall", 242, 11]]);
-const pos$83 = nix.positions(here + "/connectivity.nix", [["smoke", 231, 34]]);
-const pos$84 = nix.positions(here + "/connectivity.nix", [["networks", 231, 25]]);
-const pos$85 = nix.positions(here + "/connectivity.nix", [["nebula", 231, 18]]);
-const pos$86 = nix.positions(here + "/connectivity.nix", [["networking", 224, 9], ["services", 231, 9]]);
 const formals$7 = { args: {  }, ellipsis: true };
-const pos$87 = nix.positions(here + "/connectivity.nix", [["address", 266, 13], ["prefixLength", 267, 13]]);
-const pos$88 = nix.positions(here + "/connectivity.nix", [["addresses", 264, 41]]);
-const pos$89 = nix.positions(here + "/connectivity.nix", [["ipv4", 264, 36]]);
-const pos$90 = nix.positions(here + "/connectivity.nix", [["eth1", 264, 31]]);
-const pos$91 = nix.positions(here + "/connectivity.nix", [["interfaces", 264, 20]]);
-const pos$92 = nix.positions(here + "/connectivity.nix", [["10.0.100.1", 274, 13]]);
-const pos$93 = nix.positions(here + "/connectivity.nix", [["port", 284, 17], ["proto", 285, 17], ["host", 286, 17]]);
-const pos$94 = nix.positions(here + "/connectivity.nix", [["port", 291, 17], ["proto", 292, 17], ["host", 293, 17]]);
-const pos$95 = nix.positions(here + "/connectivity.nix", [["outbound", 282, 13], ["inbound", 289, 13]]);
-const pos$96 = nix.positions(here + "/connectivity.nix", [["enable", 272, 11], ["staticHostMap", 273, 11], ["isLighthouse", 278, 11], ["lighthouses", 279, 11], ["relays", 280, 11], ["firewall", 281, 11]]);
-const pos$97 = nix.positions(here + "/connectivity.nix", [["smoke", 271, 34]]);
-const pos$98 = nix.positions(here + "/connectivity.nix", [["networks", 271, 25]]);
-const pos$99 = nix.positions(here + "/connectivity.nix", [["nebula", 271, 18]]);
-const pos$100 = nix.positions(here + "/connectivity.nix", [["networking", 264, 9], ["services", 271, 9]]);
-const pos$101 = nix.positions(here + "/connectivity.nix", [["lighthouse", 67, 5], ["allowAny", 133, 5], ["allowFromLighthouse", 180, 5], ["allowToLighthouse", 221, 5], ["disabled", 261, 5]]);
-const pos$102 = nix.positions(here + "/connectivity.nix", [["name", 64, 3], ["nodes", 66, 3], ["testScript", 301, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -124,9 +23,9 @@ export default nix.lambda((args) => (() => {
     const config = nix.arg($_1, "config");
     return (name) => (extraConfig) => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "dig")),
               nix.thunk(() => nix.sel(pkgs, "nebula")),
@@ -135,32 +34,32 @@ export default nix.lambda((args) => (() => {
             ]),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               root: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$2, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: $pos[2],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[1], keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            [nix.POS]: $pos[11],
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
             nebula: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               networks: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 smoke: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   ca: "/etc/nebula/ca.crt",
                   cert: nix.thunk(() => nix.str`/etc/nebula/${name}.crt`),
                   key: nix.thunk(() => nix.str`/etc/nebula/${name}.key`),
                   listen: nix.thunk(() => ({
-                    [nix.POS]: pos$8,
+                    [nix.POS]: $pos[7],
                     host: "::",
                     port: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(config, "services", "nebula", "networks", "smoke", "isLighthouse")) || nix.asBool(nix.sel(config, "services", "nebula", "networks", "smoke", "isRelay")))) ? 4242n : 0n)),
                   })),
@@ -169,23 +68,23 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$16,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true, allowedUDPPorts: nix.thunk(() => [8000n]) })),
+            [nix.POS]: $pos[15],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true, allowedUDPPorts: nix.thunk(() => [8000n]) })),
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$15,
-              eth1: nix.thunk(() => ({ [nix.POS]: pos$14, useDHCP: false })),
+              [nix.POS]: $pos[14],
+              eth1: nix.thunk(() => ({ [nix.POS]: $pos[13], useDHCP: false })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               "udp-echo": nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 description: "UDP echo service",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "nmap")}/bin/ncat -u -l -k -p 8000 -e ${nix.sel(pkgs, "coreutils")}/bin/cat`),
                   Restart: "always",
                 })),
@@ -197,69 +96,69 @@ export default nix.lambda((args) => (() => {
       ]));
   })(), formals$2);
   return {
-    [nix.POS]: pos$102,
+    [nix.POS]: $pos[101],
     name: "nebula",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$101,
+      [nix.POS]: $pos[100],
       lighthouse: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const args_2 = args_1;
         return nix.app(makeNebulaNode, args_2, "lighthouse", nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$29,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$22, allowedUDPPorts: nix.thunk(() => [53n]) })),
+              [nix.POS]: $pos[28],
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[21], allowedUDPPorts: nix.thunk(() => [53n]) })),
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$27,
+                  [nix.POS]: $pos[26],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$24,
+                    [nix.POS]: $pos[23],
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$23, address: "192.168.1.1", prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[22], address: "192.168.1.1", prefixLength: 24n })),
                       ]))),
                   })),
                   ipv6: nix.thunk(() => ({
-                    [nix.POS]: pos$26,
+                    [nix.POS]: $pos[25],
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$25, address: "3fff::1", prefixLength: 64n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[24], address: "3fff::1", prefixLength: 64n })),
                       ]))),
                   })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$41,
+              [nix.POS]: $pos[40],
               nebula: nix.thunk(() => ({
-                [nix.POS]: pos$40,
+                [nix.POS]: $pos[39],
                 networks: nix.thunk(() => ({
-                  [nix.POS]: pos$39,
+                  [nix.POS]: $pos[38],
                   smoke: nix.thunk(() => ({
-                    [nix.POS]: pos$35,
+                    [nix.POS]: $pos[34],
                     isLighthouse: true,
                     isRelay: true,
                     firewall: nix.thunk(() => ({
-                      [nix.POS]: pos$32,
+                      [nix.POS]: $pos[31],
                       outbound: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$30, port: "any", proto: "any", host: "any" })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[29], port: "any", proto: "any", host: "any" })),
                       ]),
                       inbound: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$31, port: "any", proto: "any", host: "any" })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[30], port: "any", proto: "any", host: "any" })),
                       ]),
                     })),
                     lighthouse: nix.thunk(() => ({
-                      [nix.POS]: pos$34,
-                      dns: nix.thunk(() => ({ [nix.POS]: pos$33, enable: true, host: "10.0.100.1", port: 53n })),
+                      [nix.POS]: $pos[33],
+                      dns: nix.thunk(() => ({ [nix.POS]: $pos[32], enable: true, host: "10.0.100.1", port: 53n })),
                     })),
                   })),
                   tunless: nix.thunk(() => ({
-                    [nix.POS]: pos$38,
+                    [nix.POS]: $pos[37],
                     ca: "/etc/nebula/ca.crt",
                     cert: "/etc/nebula/lighthouse.crt",
                     key: "/etc/nebula/lighthouse.key",
                     isLighthouse: true,
-                    listen: nix.thunk(() => ({ [nix.POS]: pos$36, host: "0.0.0.0", port: 4243n })),
-                    tun: nix.thunk(() => ({ [nix.POS]: pos$37, disable: true, device: "nebula.tunless-too-long" })),
+                    listen: nix.thunk(() => ({ [nix.POS]: $pos[35], host: "0.0.0.0", port: 4243n })),
+                    tun: nix.thunk(() => ({ [nix.POS]: $pos[36], disable: true, device: "nebula.tunless-too-long" })),
                     user: "nebula-smoke",
                     group: "nebula-smoke",
                   })),
@@ -272,50 +171,50 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const args_2 = args_1;
         return nix.app(makeNebulaNode, args_2, "allowAny", nix.thunk(() => ({
-            [nix.POS]: pos$58,
+            [nix.POS]: $pos[57],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$49,
+              [nix.POS]: $pos[48],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$48,
+                [nix.POS]: $pos[47],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$47,
+                  [nix.POS]: $pos[46],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$44,
+                    [nix.POS]: $pos[43],
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$43, address: "192.168.1.2", prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[42], address: "192.168.1.2", prefixLength: 24n })),
                       ]))),
                   })),
                   ipv6: nix.thunk(() => ({
-                    [nix.POS]: pos$46,
+                    [nix.POS]: $pos[45],
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$45, address: "3fff::2", prefixLength: 64n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[44], address: "3fff::2", prefixLength: 64n })),
                       ]))),
                   })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$57,
+              [nix.POS]: $pos[56],
               nebula: nix.thunk(() => ({
-                [nix.POS]: pos$56,
+                [nix.POS]: $pos[55],
                 networks: nix.thunk(() => ({
-                  [nix.POS]: pos$55,
+                  [nix.POS]: $pos[54],
                   smoke: nix.thunk(() => ({
-                    [nix.POS]: pos$54,
+                    [nix.POS]: $pos[53],
                     staticHostMap: nix.thunk(() => ({
-                      [nix.POS]: pos$50,
+                      [nix.POS]: $pos[49],
                       "10.0.100.1": nix.thunk(() => ["192.168.1.1:4242", "[3fff::1]:4242"]),
                     })),
                     isLighthouse: false,
                     lighthouses: nix.thunk(() => ["10.0.100.1"]),
                     relays: nix.thunk(() => ["10.0.100.1"]),
                     firewall: nix.thunk(() => ({
-                      [nix.POS]: pos$53,
+                      [nix.POS]: $pos[52],
                       outbound: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$51, port: "any", proto: "any", host: "any" })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[50], port: "any", proto: "any", host: "any" })),
                       ]),
                       inbound: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$52, port: "any", proto: "any", host: "any" })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[51], port: "any", proto: "any", host: "any" })),
                       ]),
                     })),
                   })),
@@ -328,44 +227,44 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         const args_2 = args_1;
         return nix.app(makeNebulaNode, args_2, "allowFromLighthouse", nix.thunk(() => ({
-            [nix.POS]: pos$72,
+            [nix.POS]: $pos[71],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$63,
+              [nix.POS]: $pos[62],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$62,
+                [nix.POS]: $pos[61],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$61,
+                  [nix.POS]: $pos[60],
                   ipv6: nix.thunk(() => ({
-                    [nix.POS]: pos$60,
+                    [nix.POS]: $pos[59],
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$59, address: "3fff::3", prefixLength: 64n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[58], address: "3fff::3", prefixLength: 64n })),
                       ]))),
                   })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$71,
+              [nix.POS]: $pos[70],
               nebula: nix.thunk(() => ({
-                [nix.POS]: pos$70,
+                [nix.POS]: $pos[69],
                 networks: nix.thunk(() => ({
-                  [nix.POS]: pos$69,
+                  [nix.POS]: $pos[68],
                   smoke: nix.thunk(() => ({
-                    [nix.POS]: pos$68,
+                    [nix.POS]: $pos[67],
                     staticHostMap: nix.thunk(() => ({
-                      [nix.POS]: pos$64,
+                      [nix.POS]: $pos[63],
                       "10.0.100.1": nix.thunk(() => ["192.168.1.1:4242", "[3fff::1]:4242"]),
                     })),
                     isLighthouse: false,
                     lighthouses: nix.thunk(() => ["10.0.100.1"]),
                     relays: nix.thunk(() => ["10.0.100.1"]),
                     firewall: nix.thunk(() => ({
-                      [nix.POS]: pos$67,
+                      [nix.POS]: $pos[66],
                       outbound: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$65, port: "any", proto: "any", host: "any" })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[64], port: "any", proto: "any", host: "any" })),
                       ]),
                       inbound: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$66, port: "any", proto: "any", host: "lighthouse" })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[65], port: "any", proto: "any", host: "lighthouse" })),
                       ]),
                     })),
                   })),
@@ -378,45 +277,45 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$6);
         const args_2 = args_1;
         return nix.app(makeNebulaNode, args_2, "allowToLighthouse", nix.thunk(() => ({
-            [nix.POS]: pos$86,
+            [nix.POS]: $pos[85],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$77,
+              [nix.POS]: $pos[76],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$76,
+                [nix.POS]: $pos[75],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$75,
+                  [nix.POS]: $pos[74],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$74,
+                    [nix.POS]: $pos[73],
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$73, address: "192.168.1.4", prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[72], address: "192.168.1.4", prefixLength: 24n })),
                       ]))),
                   })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$85,
+              [nix.POS]: $pos[84],
               nebula: nix.thunk(() => ({
-                [nix.POS]: pos$84,
+                [nix.POS]: $pos[83],
                 networks: nix.thunk(() => ({
-                  [nix.POS]: pos$83,
+                  [nix.POS]: $pos[82],
                   smoke: nix.thunk(() => ({
-                    [nix.POS]: pos$82,
+                    [nix.POS]: $pos[81],
                     enable: true,
                     staticHostMap: nix.thunk(() => ({
-                      [nix.POS]: pos$78,
+                      [nix.POS]: $pos[77],
                       "10.0.100.1": nix.thunk(() => ["192.168.1.1:4242", "[3fff::1]:4242"]),
                     })),
                     isLighthouse: false,
                     lighthouses: nix.thunk(() => ["10.0.100.1"]),
                     relays: nix.thunk(() => ["10.0.100.1"]),
                     firewall: nix.thunk(() => ({
-                      [nix.POS]: pos$81,
+                      [nix.POS]: $pos[80],
                       outbound: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$79, port: "any", proto: "any", host: "lighthouse" })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[78], port: "any", proto: "any", host: "lighthouse" })),
                       ]),
                       inbound: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$80, port: "any", proto: "any", host: "any" })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[79], port: "any", proto: "any", host: "any" })),
                       ]),
                     })),
                   })),
@@ -429,42 +328,42 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$7);
         const args_2 = args_1;
         return nix.app(makeNebulaNode, args_2, "disabled", nix.thunk(() => ({
-            [nix.POS]: pos$100,
+            [nix.POS]: $pos[99],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$91,
+              [nix.POS]: $pos[90],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$90,
+                [nix.POS]: $pos[89],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$89,
+                  [nix.POS]: $pos[88],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$88,
+                    [nix.POS]: $pos[87],
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$87, address: "192.168.1.5", prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[86], address: "192.168.1.5", prefixLength: 24n })),
                       ]))),
                   })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$99,
+              [nix.POS]: $pos[98],
               nebula: nix.thunk(() => ({
-                [nix.POS]: pos$98,
+                [nix.POS]: $pos[97],
                 networks: nix.thunk(() => ({
-                  [nix.POS]: pos$97,
+                  [nix.POS]: $pos[96],
                   smoke: nix.thunk(() => ({
-                    [nix.POS]: pos$96,
+                    [nix.POS]: $pos[95],
                     enable: false,
-                    staticHostMap: nix.thunk(() => ({ [nix.POS]: pos$92, "10.0.100.1": nix.thunk(() => ["192.168.1.1:4242"]) })),
+                    staticHostMap: nix.thunk(() => ({ [nix.POS]: $pos[91], "10.0.100.1": nix.thunk(() => ["192.168.1.1:4242"]) })),
                     isLighthouse: false,
                     lighthouses: nix.thunk(() => ["10.0.100.1"]),
                     relays: nix.thunk(() => ["10.0.100.1"]),
                     firewall: nix.thunk(() => ({
-                      [nix.POS]: pos$95,
+                      [nix.POS]: $pos[94],
                       outbound: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$93, port: "any", proto: "any", host: "lighthouse" })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[92], port: "any", proto: "any", host: "lighthouse" })),
                       ]),
                       inbound: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$94, port: "any", proto: "any", host: "any" })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[93], port: "any", proto: "any", host: "any" })),
                       ]),
                     })),
                   })),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["fetchSubmodules", 37, 5], ["hash", 38, 5]], [["doCheck", 75, 47]], [["pytest", 75, 5]], [["tests", 74, 12]], [["homepage", 79, 5], ["changelog", 80, 5], ["description", 81, 5], ["longDescription", 82, 5], ["license", 89, 5], ["maintainers", 90, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["build-system", 41, 3], ["dependencies", 48, 3], ["dontUseCmakeBuildDir", 50, 3], ["doCheck", 55, 3], ["preCheck", 58, 3], ["nativeCheckInputs", 62, 3], ["passthru", 74, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, ninja: false, pathspec: false, "scikit-build-core": false, eigen: false, pytestCheckHook: false, numpy: false, scipy: false, torch: false, "tensorflow-bin": false, jax: false, jaxlib: false, nanobind_3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["fetchSubmodules", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 75, 47]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pytest", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 74, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 79, 5], ["changelog", 80, 5], ["description", 81, 5], ["longDescription", 82, 5], ["license", 89, 5], ["maintainers", 90, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["build-system", 41, 3], ["dependencies", 48, 3], ["dontUseCmakeBuildDir", 50, 3], ["doCheck", 55, 3], ["preCheck", 58, 3], ["nativeCheckInputs", 62, 3], ["passthru", 74, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const jaxlib = nix.arg($, "jaxlib");
   const nanobind_3 = nix.arg($, "nanobind_3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nanobind",
       version: "3.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wjakob",
           repo: "nanobind",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,14 +45,14 @@ export default nix.lambda((args) => (() => {
       preCheck: "make -j $NIX_BUILD_CORES\n",
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, numpy, scipy, torch], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), tensorflow_bin)), nix.thunk(() => [tensorflow_bin, jax, jaxlib])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(nanobind_3, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
+          [nix.POS]: $pos[2],
+          pytest: nix.thunk(() => nix.app(nix.sel(nanobind_3, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/wjakob/nanobind",
         changelog: nix.thunk(() => nix.str`https://github.com/wjakob/nanobind/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/changelog.rst`),
         description: "Tiny and efficient C++/Python bindings",

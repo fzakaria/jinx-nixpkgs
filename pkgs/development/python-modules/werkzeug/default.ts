@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 34, 13], ["version", 34, 19], ["hash", 35, 5]], [["watchdog", 43, 5]], [["moto", 78, 13], ["sentry-sdk", 78, 18]], [["tests", 77, 12]], [["changelog", 82, 5], ["homepage", 85, 5], ["description", 86, 5], ["longDescription", 87, 5], ["license", 93, 5], ["maintainers", 94, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 55, 3], ["disabledTests", 57, 3], ["disabledTestPaths", 66, 3], ["disabledTestMarks", 71, 3], ["passthru", 77, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, "flit-core": false, markupsafe: false, watchdog: false, cffi: false, cryptography: false, "ephemeral-port-reserve": false, "pytest-timeout": false, pytestCheckHook: false, moto: false, "sentry-sdk": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 34, 13], ["version", 34, 19], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["watchdog", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["moto", 78, 13], ["sentry-sdk", 78, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 77, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["changelog", 82, 5], ["homepage", 85, 5], ["description", 86, 5], ["longDescription", 87, 5], ["license", 93, 5], ["maintainers", 94, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 55, 3], ["disabledTests", 57, 3], ["disabledTestPaths", 66, 3], ["disabledTestMarks", 71, 3], ["passthru", 77, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,25 +26,25 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-m61hpCaNrBEvHFzUYwpW7eYBtu1CAwBneoaQg9cKTEQ=",
         }))));
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [markupsafe]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, watchdog: nix.thunk(() => [watchdog]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], watchdog: nix.thunk(() => [watchdog]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([cffi, cryptography, ephemeral_port_reserve, pytest_timeout, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["werkzeug"]);
       const disabledTests = nix.thunk(() => nix.concat(["test_http_proxy", "test_basic", "test_long_build"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_get_machine_id"]))));
       const disabledTestPaths = nix.thunk(() => ["tests/test_serving.py"]);
       const disabledTestMarks = nix.thunk(() => ["filterwarnings"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, moto: moto, "sentry-sdk": sentry_sdk })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], moto: moto, "sentry-sdk": sentry_sdk })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://werkzeug.palletsprojects.com/en/stable/changes/#version-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version)}`),
         homepage: "https://palletsprojects.com/p/werkzeug/",
         description: "Comprehensive WSGI web application library",
@@ -58,7 +53,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

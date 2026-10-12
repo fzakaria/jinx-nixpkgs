@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["rev", 35, 11], ["hash", 36, 11]], [["rev", 40, 11], ["hash", 41, 11]], [["rev", 45, 11], ["hash", 46, 11]], [["rev", 50, 11], ["hash", 51, 11]], [["rev", 55, 11], ["hash", 56, 11]], [["url", 63, 9], ["hash", 64, 9]], [["pname", 81, 26], ["data", 82, 5]], [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["platforms", 117, 5], ["mainProgram", 118, 5], ["sourceProvenance", 119, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 26, 3], ["patches", 28, 3], ["postPatch", 68, 3], ["nativeBuildInputs", 74, 3], ["mitmCache", 80, 3], ["__darwinAllowLocalNetworking", 85, 3], ["gradleBuildTask", 87, 3], ["installPhase", 89, 3], ["doInstallCheck", 108, 3], ["nativeInstallCheckInputs", 109, 3], ["versionCheckProgramArg", 110, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, coreutils: false, findutils: false, gnused: false, jre: false, gradle: false, makeBinaryWrapper: false, gitMinimal: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev", 35, 11], ["hash", 36, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev", 40, 11], ["hash", 41, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["rev", 45, 11], ["hash", 46, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["rev", 50, 11], ["hash", 51, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["rev", 55, 11], ["hash", 56, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 63, 9], ["hash", 64, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 81, 26], ["data", 82, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["platforms", 117, 5], ["mainProgram", 118, 5], ["sourceProvenance", 119, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 26, 3], ["patches", 28, 3], ["postPatch", 68, 3], ["nativeBuildInputs", 74, 3], ["mitmCache", 80, 3], ["__darwinAllowLocalNetworking", 85, 3], ["gradleBuildTask", 87, 3], ["installPhase", 89, 3], ["doInstallCheck", 108, 3], ["nativeInstallCheckInputs", 109, 3], ["versionCheckProgramArg", 110, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "structurizr-cli",
       version: "2025.05.28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "structurizr",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,33 +34,33 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => (() => {
         const commits = nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             rev: "eb1657c2be62fb493adde954330a70eebd72026a",
             hash: "sha256-B1vqQNHHSOgiRysc5ZkcBB/8YZ1dMjJuFu5uwGRQKWs=",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             rev: "24be5eeec893df5261100913c4e51ca0bd100689",
             hash: "sha256-tj7fNOqKLPvgTYKCRIJlGg1OGyGOmmx0Pj4H8oDPVdU=",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             rev: "2cb1d86c59f210ce32211395570e8dccf138df16",
             hash: "sha256-wswvXJujyPpbvXvL2SOFC4zZLnfskYFdHvzry66vukQ=",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             rev: "3260d8622a9cf6197d6ab5d9440087dcaac3fbb9",
             hash: "sha256-0zUmg+smxQLZm9wWu3JL1pIXQJcQ1uyQ433C1pDLatQ=",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             rev: "1a11940d089a8d70d6e298660c6f5db638cc8d00",
             hash: "sha256-Myj3s7Kc+bQS3iJIZoEyc39pn3DkBOHFu/B9UUPKXf8=",
           })),
         ]);
         return nix.builtins.map((entry) => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               url: nix.thunk(() => nix.str`https://github.com/structurizr/cli/commit/${nix.sel(entry, "rev")}.patch`),
               hash: nix.thunk(() => nix.sel(entry, "hash")),
             }))), commits);
@@ -80,7 +71,7 @@ export default nix.lambda((args) => (() => {
 `),
       nativeBuildInputs: nix.thunk(() => [gradle, makeBinaryWrapper, gitMinimal]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -100,7 +91,7 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Structurizr CLI for publishing C4 architecture diagrams and models",
         homepage: "https://github.com/structurizr/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 24, 13], ["pname", 25, 5], ["hash", 26, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 29, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 37, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, setuptools: false, django: false, jinja2: false, "pytest-django": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 24, 13], ["pname", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 29, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 37, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "django_csp",
           hash: "sha256-snAQu3Ausgo9rTKReN8rYaK4LTOLcPvcE8OjvShxKDM=",
@@ -32,13 +30,13 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [django]);
       const nativeCheckInputs = nix.thunk(() => [jinja2, pytest_django, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Adds Content-Security-Policy headers to Django",
         homepage: "https://github.com/mozilla/django-csp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

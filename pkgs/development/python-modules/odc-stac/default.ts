@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["botocore", 61, 5]], [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["optional-dependencies", 60, 3], ["nativeCheckInputs", 64, 3], ["disabledTestMarks", 72, 3], ["disabledTests", 74, 3], ["pythonImportsCheck", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, affine: false, dask: false, numpy: false, "odc-geo": false, "odc-loader": false, pandas: false, pystac: false, rasterio: false, toolz: false, "typing-extensions": false, xarray: false, botocore: false, geopandas: false, distributed: false, "pystac-client": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["botocore", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["optional-dependencies", 60, 3], ["nativeCheckInputs", 64, 3], ["disabledTestMarks", 72, 3], ["disabledTests", 74, 3], ["pythonImportsCheck", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "opendatacube",
           repo: "odc-stac",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
         xarray,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, botocore: nix.thunk(() => [botocore]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], botocore: nix.thunk(() => [botocore]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([geopandas, distributed, pystac_client, pytestCheckHook], nix.sel(optional_dependencies, "botocore")));
       const disabledTestMarks = nix.thunk(() => ["network"]);
       const disabledTests = nix.thunk(() => [
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["odc.stac"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Load STAC items into xarray Datasets",
         homepage: "https://github.com/opendatacube/odc-stac/",
         changelog: nix.thunk(() => nix.str`https://github.com/opendatacube/odc-stac/releases/tag/${nix.sel(src, "tag")}`),
@@ -80,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

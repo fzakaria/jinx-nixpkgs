@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["broken", 64, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 34, 3], ["checkPhase", 41, 3], ["pythonImportsCheck", 52, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, numpy: false, scipy: false, pytest: false, python: false, pybind11: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["broken", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 34, 3], ["checkPhase", 41, 3], ["pythonImportsCheck", 52, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-UyPQ8aTNmZviRqkNWAyeHptYS5iIf2KY05dhEIfvhgs=",
@@ -43,7 +41,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["pyamg", "pyamg.amg_core.evolution_strength"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Algebraic Multigrid Solvers in Python",
         homepage: "https://github.com/pyamg/pyamg",
         changelog: nix.thunk(() => nix.str`https://github.com/pyamg/pyamg/blob/v${version}/changelog.md`),
@@ -55,7 +53,7 @@ runHook postCheck
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

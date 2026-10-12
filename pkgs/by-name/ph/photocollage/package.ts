@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 35, 3], ["dontWrapGApps", 41, 3], ["preFixup", 43, 3], ["postInstall", 47, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, gettext: false, "gdk-pixbuf": false, "gobject-introspection": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 35, 3], ["dontWrapGApps", 41, 3], ["preFixup", 43, 3], ["postInstall", 47, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "photocollage",
       version: "1.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "adrienverge",
           repo: "PhotoCollage",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "# Based on the debian package's list of files. Link:\n# https://packages.debian.org/bookworm/all/photocollage/filelist\ninstall -Dm0644 ./data/photocollage.desktop $out/share/applications/photocollage.desktop\ninstall -Dm0644 ./data/photocollage.appdata.xml $out/share/appdata/photocollage.appdata.xml\ncp -r ./data/icons $out/share/icons\n",
       pythonImportsCheck: nix.thunk(() => ["photocollage"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Graphical tool to make photo collage posters",
         homepage: "https://github.com/adrienverge/PhotoCollage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

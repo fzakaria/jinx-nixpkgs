@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["LOCALE_ARCHIVE", 79, 5]], [["extraLoaders", 93, 9]], [["updateScript", 140, 5]], [["homepage", 144, 5], ["description", 145, 5], ["changelog", 146, 5], ["license", 147, 5], ["maintainers", 148, 5], ["platforms", 152, 5], ["mainProgram", 153, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["runtimeDeps", 47, 3], ["buildInputs", 69, 3], ["dotnet-sdk", 71, 3], ["dotnet-runtime", 72, 3], ["nugetDeps", 74, 3], ["projectFile", 76, 3], ["env", 78, 3], ["dotnetFlags", 82, 3], ["postBuild", 84, 3], ["postInstall", 89, 3], ["postFixup", 100, 3], ["passthru", 139, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, dotnetCorePackages: false, buildDotnetModule: false, fetchFromGitHub: false, glibcLocales: false, gtk4: false, glib: false, libadwaita: false, pango: false, intltool: false, wrapGAppsHook4: false, "webp-pixbuf-loader": false, gnome: false, "nix-update-script": false, graphene: false, gettext: false, "gdk-pixbuf": false, cairo: false, harfbuzz: false, fribidi: false, fontconfig: false, freetype: false, libthai: false, pcre2: false, libepoxy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LOCALE_ARCHIVE", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraLoaders", 93, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 140, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 144, 5], ["description", 145, 5], ["changelog", 146, 5], ["license", 147, 5], ["maintainers", 148, 5], ["platforms", 152, 5], ["mainProgram", 153, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["runtimeDeps", 47, 3], ["buildInputs", 69, 3], ["dotnet-sdk", 71, 3], ["dotnet-runtime", 72, 3], ["nugetDeps", 74, 3], ["projectFile", 76, 3], ["env", 78, 3], ["dotnetFlags", 82, 3], ["postBuild", 84, 3], ["postInstall", 89, 3], ["postFixup", 100, 3], ["passthru", 139, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "Pinta";
       const version = "3.1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PintaProject",
           repo: "Pinta",
           rev: version,
@@ -68,13 +63,13 @@ export default nix.lambda((args) => (() => {
       const nugetDeps = nix.path(here, "./deps.json");
       const projectFile = "Pinta";
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           LOCALE_ARCHIVE: nix.thunk(() => nix.str`${glibcLocales}/lib/locale/locale-archive`),
         }))));
       const dotnetFlags = nix.thunk(() => ["-p:BuildTranslations=true"]);
       const postBuild = "intltool-merge -x po/ xdg/com.github.PintaProject.Pinta.metainfo.xml.in xdg/com.github.PintaProject.Pinta.metainfo.xml\nintltool-merge -d po/ xdg/com.github.PintaProject.Pinta.desktop.in xdg/com.github.PintaProject.Pinta.desktop\n";
       const postInstall = nix.thunk(() => nix.str`# In postInstall to run before gappsWrapperArgsHook.
-export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({ [nix.POS]: pos$3, extraLoaders: nix.thunk(() => [webp_pixbuf_loader]) })))}"
+export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({ [nix.POS]: $pos[2], extraLoaders: nix.thunk(() => [webp_pixbuf_loader]) })))}"
 `);
       const postFixup = nix.thunk(() => nix.add(nix.add("# Two-step rename needed on macOS: 'Pinta' is the same as 'pinta' on case-insensitive filesystems.\nmv \"$out/bin/Pinta\" \"$out/bin/pinta_tmp\"\nmv \"$out/bin/pinta_tmp\" \"$out/bin/pinta\"\n\n# Use icons from the dotnet publish output (already at $out/lib/Pinta/icons/).\nmkdir -p \"$out/share/icons\"\ncp -r \"$out/lib/Pinta/icons/.\" \"$out/share/icons/\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "dotnet build installer/linux/install.proj \\\n  -target:Install \\\n  -p:ContinuousIntegrationBuild=true \\\n  -p:Deterministic=true \\\n  -p:SourceDir=\"$NIX_BUILD_TOP/source\" \\\n  -p:PublishDir=\"$out/lib/Pinta\" \\\n  -p:InstallPrefix=\"$out\"\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`# Symlink all dylibs from runtimeDeps into the assembly dir.
 # GirCore and Pinta's own NativeImportResolver both search here by bare name.
@@ -96,11 +91,11 @@ ln -s "$out/share" "$APP/Resources/share"
 ln -s "$out/lib"   "$APP/Resources/lib"
 `))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.pinta-project.com/",
         description: "Drawing/editing program modeled after Paint.NET",
         changelog: nix.thunk(() => nix.str`https://github.com/PintaProject/Pinta/releases/tag/${version}`),
@@ -116,7 +111,7 @@ ln -s "$out/lib"   "$APP/Resources/lib"
         mainProgram: "pinta",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

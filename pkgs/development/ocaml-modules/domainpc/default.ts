@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["minimalOCamlVersion", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 21, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, processor: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["minimalOCamlVersion", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 21, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const processor = nix.arg($, "processor");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "domainpc",
       version: "0.2",
       minimalOCamlVersion: "5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ocamlpro",
           repo: "domainpc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [processor]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Domain Per Core, spawn domains ensuring that they run on separate cores",
         homepage: "https://github.com/ocamlpro/domainpc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

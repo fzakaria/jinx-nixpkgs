@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 39, 5], ["mainProgram", 40, 5], ["longDescription", 42, 5], ["homepage", 47, 5], ["license", 49, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 32, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, meson: false, ninja: false, gettext: false, "pkg-config": false, pulseaudioFull: false, glibmm_2_4: false, gtkmm3: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["longDescription", 42, 5], ["homepage", 47, 5], ["license", 49, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 32, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const gtkmm3 = nix.arg($, "gtkmm3");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "paprefs",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://freedesktop.org/software/pulseaudio/paprefs/paprefs-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-s/IeQNw5NtFeP/yRD7DAfBS4jowodxW0VqlIwXY49jM=",
         })))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, gettext, pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [pulseaudioFull, glibmm_2_4, gtkmm3]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PulseAudio Preferences",
         mainProgram: "paprefs",
         longDescription: "PulseAudio Preferences (paprefs) is a simple GTK based configuration\ndialog for the PulseAudio sound server.\n",

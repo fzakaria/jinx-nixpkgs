@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["pythonRelaxDeps", 19, 3], ["build-system", 23, 3], ["nativeBuildInputs", 28, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 42, 3], ["disabledTestPaths", 47, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["pythonRelaxDeps", 19, 3], ["build-system", 23, 3], ["nativeBuildInputs", 28, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 42, 3], ["disabledTestPaths", 47, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cfripper",
       version: "1.22.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Skyscanner",
           repo: "cfripper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_multiple_resources_with_wildcard_resources_are_detected"]),
       pythonImportsCheck: nix.thunk(() => ["cfripper"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for analysing CloudFormation templates",
         homepage: "https://github.com/Skyscanner/cfripper",
         changelog: nix.thunk(() => nix.str`https://github.com/Skyscanner/cfripper/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["cargoHash", 45, 3], ["postInstall", 47, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, gtk3: false, glib: false, wrapGAppsHook3: false, libusb1: false, hidapi: false, udev: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["cargoHash", 45, 3], ["postInstall", 47, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "system76-keyboard-configurator",
       version: "1.3.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pop-os",
           repo: "keyboard-configurator",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-Ws1LLX3K9/kpPJa6wureScSDswn1bIsu+s3C/VsDiEY=",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -Dm444 linux/com.system76.keyboardconfigurator.desktop -t $out/share/applications\ncp -r data/icons $out/share\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Keyboard configuration application for System76 keyboards and laptops",
         mainProgram: "system76-keyboard-configurator",
         homepage: "https://github.com/pop-os/keyboard-configurator",

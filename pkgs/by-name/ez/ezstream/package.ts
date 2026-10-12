@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["description", 55, 5], ["longDescription", 56, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["checkInputs", 48, 3], ["doCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libiconv: false, libshout: false, libxml2: false, taglib: false, check: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["longDescription", 56, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["checkInputs", 48, 3], ["doCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const taglib = nix.arg($, "taglib");
   const check = nix.arg($, "check");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ezstream",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ftp.osuosl.org/pub/xiph/releases/ezstream/ezstream-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Ed6Jf0ValbpYVGvc1AqV072mmGbsX3h5qDsCQSbFTCo=",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [check]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line source client for Icecast media streaming servers",
         longDescription: "Ezstream is a command line source client for Icecast media\nstreaming servers. It began as the successor of the old \"shout\"\nutility, and has since gained a lot of useful features.\n\nIn its basic mode of operation, it streams media files or data\nfrom standard input without reencoding and thus requires only\nvery little CPU resources.\n",
         homepage: "https://icecast.org/ezstream/",

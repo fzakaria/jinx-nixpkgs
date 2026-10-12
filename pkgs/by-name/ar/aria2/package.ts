@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["aria2", 69, 5]], [["tests", 68, 12]], [["homepage", 73, 5], ["changelog", 74, 5], ["description", 75, 5], ["mainProgram", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["outputs", 45, 3], ["configureFlags", 53, 3], ["prePatch", 59, 3], ["nativeCheckInputs", 63, 3], ["doCheck", 64, 3], ["enableParallelBuilding", 66, 3], ["passthru", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, autoreconfHook: false, gnutls: false, "c-ares": false, libxml2: false, sqlite: false, zlib: false, libssh2: false, cppunit: false, sphinx: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aria2", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 68, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 73, 5], ["changelog", 74, 5], ["description", 75, 5], ["mainProgram", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["outputs", 45, 3], ["configureFlags", 53, 3], ["prePatch", 59, 3], ["nativeCheckInputs", 63, 3], ["doCheck", 64, 3], ["enableParallelBuilding", 66, 3], ["passthru", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const sphinx = nix.arg($, "sphinx");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "aria2",
       version: "1.37.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aria2",
           repo: "aria2",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, aria2: nix.thunk(() => nix.sel(nixosTests, "aria2")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], aria2: nix.thunk(() => nix.sel(nixosTests, "aria2")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://aria2.github.io",
         changelog: nix.thunk(() => nix.str`https://github.com/aria2/aria2/releases/tag/release-${nix.sel(finalAttrs, "version")}`),
         description: "Lightweight, multi-protocol, multi-source, command-line download utility",

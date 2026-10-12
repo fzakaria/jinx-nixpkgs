@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5], ["platforms", 56, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, glslang: false, imath: false, "ktx-tools": false, openimageio: false, qt6Packages: false, spdlog: false, "spirv-cross": false, "vulkan-memory-allocator": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const spirv_cross = nix.arg($, "spirv-cross");
   const vulkan_memory_allocator = nix.arg($, "vulkan-memory-allocator");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gpupad",
       version: "3.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "houmain",
           repo: "gpupad",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
         vulkan_memory_allocator,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Flexible GLSL and HLSL shader editor and IDE",
         homepage: "https://github.com/houmain/gpupad",
         changelog: nix.thunk(() => nix.str`https://github.com/houmain/gpupad/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

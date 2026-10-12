@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["hash", 19, 5], ["tag", 20, 5]], [["fetchHex", 25, 15], ["fetchgit", 25, 24], ["fetchFromGitHub", 25, 33], ["builder", 26, 7]], [["updateScript", 30, 12]], [["homepage", 51, 5], ["description", 52, 5], ["platforms", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]], [["releaseType", 12, 3], ["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["beamDeps", 23, 3], ["passthru", 30, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { buildRebar3: false, fetchFromGitHub: false, fetchHex: false, fetchgit: false, lib: false, rebar3Relx: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["hash", 19, 5], ["tag", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fetchHex", 25, 15], ["fetchgit", 25, 24], ["fetchFromGitHub", 25, 33], ["builder", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 30, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 51, 5], ["description", 52, 5], ["platforms", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["releaseType", 12, 3], ["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["beamDeps", 23, 3], ["passthru", 30, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,21 +19,21 @@ export default nix.lambda((args) => (() => {
       const pname = "elvis-erlang";
       const version = "5.0.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "inaka",
           repo: "elvis",
           hash: "sha256-T1LRumm3mP6Vfv3vEiCBm7XnkcY3GvDbe0nYcaxlrGg=",
           tag: version,
         }))));
       const beamDeps = nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rebar-deps.nix")), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             fetchHex: fetchHex,
             fetchgit: fetchgit,
             fetchFromGitHub: fetchFromGitHub,
             builder: buildRebar3,
           }))))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p bash common-updater-scripts git nix-prefetch-git gnutar gzip "rebar3WithPlugins {globalPlugins = [beamPackages.rebar3-nix];}"
 
@@ -58,7 +54,7 @@ fi
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/inaka/elvis",
         description: "Erlang Style Reviewer",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -69,7 +65,16 @@ fi
         })()),
         mainProgram: "elvis",
       }));
-      return { [nix.POS]: pos$5, releaseType, pname, version, src, beamDeps, passthru, meta };
+      return {
+        [nix.POS]: $pos[4],
+        releaseType,
+        pname,
+        version,
+        src,
+        beamDeps,
+        passthru,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,140 +2,84 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ejabberd-h2o.nix", [[["domain", 5, 5], ["port", 6, 5], ["info", 7, 5], ["description", 8, 5]], [["c2s", 13, 7], ["s2s", 14, 7], ["http", 15, 7]], [["JID", 19, 7], ["username", 20, 7], ["password", 21, 7]], [["domain", 11, 5], ["ports", 12, 5], ["spoolDir", 17, 5], ["admin", 18, 5]], [["auto", 43, 12]], [["user", 49, 13]], [["user_regexp", 51, 15]], [["ip", 52, 18]], [["admin", 48, 9], ["local", 51, 9], ["loopback", 52, 9]], [["deny", 59, 11], ["allow", 60, 11]], [["allow", 63, 11]], [["allow", 65, 15]], [["allow", 66, 18]], [["allow", 67, 19]], [["allow", 68, 27]], [["allow", 69, 25]], [["c2s", 58, 9], ["s2s", 62, 9], ["local", 65, 9], ["announce", 66, 9], ["configure", 67, 9], ["pubsub_createnode", 68, 9], ["trusted_network", 69, 9]], [["from", 73, 11], ["who", 74, 11], ["what", 75, 11]], [["console commands", 72, 9]], [["rate", 80, 11], ["burst_size", 81, 11]], [["normal", 79, 9], ["fast", 83, 9]], [["Access-Control-Allow-Origin", 97, 13], ["Access-Control-Allow-Methods", 98, 13], ["Access-Control-Allow-Headers", 99, 13]], [["docroot", 90, 11], ["dir_mode", 91, 11], ["file_mode", 92, 11], ["get_url", 93, 11], ["put_url", 94, 11], ["max_size", 95, 11], ["custom_headers", 96, 11]], [["max_items", 112, 13]], [["access_model", 119, 33]], [["access_model", 120, 48]], [["access_model", 122, 15], ["send_last_published_item", 123, 15], ["max_items", 124, 15], ["persist_items", 125, 15]], [["access_model", 128, 15], ["send_last_published_item", 129, 15], ["max_items", 130, 15], ["persist_items", 131, 15]], [["access_model", 134, 15], ["max_items", 135, 15], ["persist_items", 136, 15]], [["notify_retract", 139, 15], ["max_items", 140, 15], ["persist_items", 141, 15]], [["access_model", 144, 15], ["notify_retract", 145, 15], ["max_items", 146, 15], ["persist_items", 147, 15]], [["storage:bookmarks", 119, 13], ["eu.siacs.conversations.axolotl.*", 120, 13], ["urn:xmpp:bookmarks:0", 121, 13], ["urn:xmpp:bookmarks:1", 127, 13], ["urn:xmpp:pubsub:movim-public-subscription", 133, 13], ["urn:xmpp:microblog:0", 138, 13], ["urn:xmpp:microblog:0:comments*", 143, 13]], [["hosts", 106, 11], ["access_createnode", 107, 11], ["ignore_pep_from_offline", 108, 11], ["last_item_cache", 109, 11], ["max_items_node", 110, 11], ["default_node_config", 111, 11], ["plugins", 114, 11], ["force_node_config", 118, 11]], [["mod_caps", 86, 9], ["mod_disco", 87, 9], ["mod_mam", 88, 9], ["mod_http_upload", 89, 9], ["mod_pubsub", 105, 9], ["mod_stream_mgmt", 151, 9]], [["module", 155, 11], ["port", 156, 11], ["max_stanza_size", 157, 11], ["access", 158, 11], ["starttls_required", 159, 11]], [["module", 162, 11], ["port", 163, 11], ["max_stanza_size", 164, 11], ["shaper", 165, 11]], [["/upload", 171, 13]], [["module", 168, 11], ["port", 169, 11], ["request_handlers", 170, 11]], [["loglevel", 39, 7], ["hide_sensitive_log_data", 40, 7], ["hosts", 41, 7], ["default_db", 42, 7], ["acme", 43, 7], ["s2s_access", 44, 7], ["s2s_use_starttls", 45, 7], ["new_sql_schema", 46, 7], ["acl", 47, 7], ["access_rules", 57, 7], ["api_permissions", 71, 7], ["shaper", 78, 7], ["modules", 85, 7], ["listen", 153, 7]], [["maintainers", 182, 5]], [["systemPackages", 189, 21]], [["description", 199, 29], ["info", 199, 41], ["xmppdomain", 200, 13]], [["type", 203, 13], ["createLocally", 204, 13]], [["domain", 195, 27], ["port", 195, 34], ["enable", 196, 11], ["verbose", 197, 11], ["podConfig", 198, 11], ["database", 202, 11], ["h2o", 206, 11]], [["spoolDir", 210, 30], ["enable", 211, 11], ["configFile", 212, 11], ["imagemagick", 213, 11]], [["compress", 217, 11]], [["settings", 216, 22]], [["movim", 194, 18], ["ejabberd", 209, 18], ["h2o", 216, 18]], [["StartupMemoryMax", 224, 13], ["MemoryMax", 225, 13]], [["serviceConfig", 221, 11]], [["ejabberd", 220, 26]], [["services", 220, 17]], [["allowedTCPPorts", 230, 20]], [["firewall", 230, 11], ["extraHosts", 234, 11]], [["environment", 189, 9], ["services", 194, 9], ["systemd", 220, 9], ["networking", 229, 9]], [["server", 186, 5]], [["name", 179, 3], ["meta", 181, 3], ["nodes", 185, 3], ["testScript", 242, 3]]]);
 const formals$1 = { args: { hostPkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ejabberd-h2o.nix", [["domain", 5, 5], ["port", 6, 5], ["info", 7, 5], ["description", 8, 5]]);
-const pos$2 = nix.positions(here + "/ejabberd-h2o.nix", [["c2s", 13, 7], ["s2s", 14, 7], ["http", 15, 7]]);
-const pos$3 = nix.positions(here + "/ejabberd-h2o.nix", [["JID", 19, 7], ["username", 20, 7], ["password", 21, 7]]);
-const pos$4 = nix.positions(here + "/ejabberd-h2o.nix", [["domain", 11, 5], ["ports", 12, 5], ["spoolDir", 17, 5], ["admin", 18, 5]]);
-const pos$5 = nix.positions(here + "/ejabberd-h2o.nix", [["auto", 43, 12]]);
-const pos$6 = nix.positions(here + "/ejabberd-h2o.nix", [["user", 49, 13]]);
-const pos$7 = nix.positions(here + "/ejabberd-h2o.nix", [["user_regexp", 51, 15]]);
-const pos$8 = nix.positions(here + "/ejabberd-h2o.nix", [["ip", 52, 18]]);
-const pos$9 = nix.positions(here + "/ejabberd-h2o.nix", [["admin", 48, 9], ["local", 51, 9], ["loopback", 52, 9]]);
-const pos$10 = nix.positions(here + "/ejabberd-h2o.nix", [["deny", 59, 11], ["allow", 60, 11]]);
-const pos$11 = nix.positions(here + "/ejabberd-h2o.nix", [["allow", 63, 11]]);
-const pos$12 = nix.positions(here + "/ejabberd-h2o.nix", [["allow", 65, 15]]);
-const pos$13 = nix.positions(here + "/ejabberd-h2o.nix", [["allow", 66, 18]]);
-const pos$14 = nix.positions(here + "/ejabberd-h2o.nix", [["allow", 67, 19]]);
-const pos$15 = nix.positions(here + "/ejabberd-h2o.nix", [["allow", 68, 27]]);
-const pos$16 = nix.positions(here + "/ejabberd-h2o.nix", [["allow", 69, 25]]);
-const pos$17 = nix.positions(here + "/ejabberd-h2o.nix", [["c2s", 58, 9], ["s2s", 62, 9], ["local", 65, 9], ["announce", 66, 9], ["configure", 67, 9], ["pubsub_createnode", 68, 9], ["trusted_network", 69, 9]]);
-const pos$18 = nix.positions(here + "/ejabberd-h2o.nix", [["from", 73, 11], ["who", 74, 11], ["what", 75, 11]]);
-const pos$19 = nix.positions(here + "/ejabberd-h2o.nix", [["console commands", 72, 9]]);
-const pos$20 = nix.positions(here + "/ejabberd-h2o.nix", [["rate", 80, 11], ["burst_size", 81, 11]]);
-const pos$21 = nix.positions(here + "/ejabberd-h2o.nix", [["normal", 79, 9], ["fast", 83, 9]]);
-const pos$22 = nix.positions(here + "/ejabberd-h2o.nix", [["Access-Control-Allow-Origin", 97, 13], ["Access-Control-Allow-Methods", 98, 13], ["Access-Control-Allow-Headers", 99, 13]]);
-const pos$23 = nix.positions(here + "/ejabberd-h2o.nix", [["docroot", 90, 11], ["dir_mode", 91, 11], ["file_mode", 92, 11], ["get_url", 93, 11], ["put_url", 94, 11], ["max_size", 95, 11], ["custom_headers", 96, 11]]);
-const pos$24 = nix.positions(here + "/ejabberd-h2o.nix", [["max_items", 112, 13]]);
-const pos$25 = nix.positions(here + "/ejabberd-h2o.nix", [["access_model", 119, 33]]);
-const pos$26 = nix.positions(here + "/ejabberd-h2o.nix", [["access_model", 120, 48]]);
-const pos$27 = nix.positions(here + "/ejabberd-h2o.nix", [["access_model", 122, 15], ["send_last_published_item", 123, 15], ["max_items", 124, 15], ["persist_items", 125, 15]]);
-const pos$28 = nix.positions(here + "/ejabberd-h2o.nix", [["access_model", 128, 15], ["send_last_published_item", 129, 15], ["max_items", 130, 15], ["persist_items", 131, 15]]);
-const pos$29 = nix.positions(here + "/ejabberd-h2o.nix", [["access_model", 134, 15], ["max_items", 135, 15], ["persist_items", 136, 15]]);
-const pos$30 = nix.positions(here + "/ejabberd-h2o.nix", [["notify_retract", 139, 15], ["max_items", 140, 15], ["persist_items", 141, 15]]);
-const pos$31 = nix.positions(here + "/ejabberd-h2o.nix", [["access_model", 144, 15], ["notify_retract", 145, 15], ["max_items", 146, 15], ["persist_items", 147, 15]]);
-const pos$32 = nix.positions(here + "/ejabberd-h2o.nix", [["storage:bookmarks", 119, 13], ["eu.siacs.conversations.axolotl.*", 120, 13], ["urn:xmpp:bookmarks:0", 121, 13], ["urn:xmpp:bookmarks:1", 127, 13], ["urn:xmpp:pubsub:movim-public-subscription", 133, 13], ["urn:xmpp:microblog:0", 138, 13], ["urn:xmpp:microblog:0:comments*", 143, 13]]);
-const pos$33 = nix.positions(here + "/ejabberd-h2o.nix", [["hosts", 106, 11], ["access_createnode", 107, 11], ["ignore_pep_from_offline", 108, 11], ["last_item_cache", 109, 11], ["max_items_node", 110, 11], ["default_node_config", 111, 11], ["plugins", 114, 11], ["force_node_config", 118, 11]]);
-const pos$34 = nix.positions(here + "/ejabberd-h2o.nix", [["mod_caps", 86, 9], ["mod_disco", 87, 9], ["mod_mam", 88, 9], ["mod_http_upload", 89, 9], ["mod_pubsub", 105, 9], ["mod_stream_mgmt", 151, 9]]);
-const pos$35 = nix.positions(here + "/ejabberd-h2o.nix", [["module", 155, 11], ["port", 156, 11], ["max_stanza_size", 157, 11], ["access", 158, 11], ["starttls_required", 159, 11]]);
-const pos$36 = nix.positions(here + "/ejabberd-h2o.nix", [["module", 162, 11], ["port", 163, 11], ["max_stanza_size", 164, 11], ["shaper", 165, 11]]);
-const pos$37 = nix.positions(here + "/ejabberd-h2o.nix", [["/upload", 171, 13]]);
-const pos$38 = nix.positions(here + "/ejabberd-h2o.nix", [["module", 168, 11], ["port", 169, 11], ["request_handlers", 170, 11]]);
-const pos$39 = nix.positions(here + "/ejabberd-h2o.nix", [["loglevel", 39, 7], ["hide_sensitive_log_data", 40, 7], ["hosts", 41, 7], ["default_db", 42, 7], ["acme", 43, 7], ["s2s_access", 44, 7], ["s2s_use_starttls", 45, 7], ["new_sql_schema", 46, 7], ["acl", 47, 7], ["access_rules", 57, 7], ["api_permissions", 71, 7], ["shaper", 78, 7], ["modules", 85, 7], ["listen", 153, 7]]);
-const pos$40 = nix.positions(here + "/ejabberd-h2o.nix", [["maintainers", 182, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$41 = nix.positions(here + "/ejabberd-h2o.nix", [["systemPackages", 189, 21]]);
-const pos$42 = nix.positions(here + "/ejabberd-h2o.nix", [["description", 199, 29], ["info", 199, 41], ["xmppdomain", 200, 13]]);
-const pos$43 = nix.positions(here + "/ejabberd-h2o.nix", [["type", 203, 13], ["createLocally", 204, 13]]);
-const pos$44 = nix.positions(here + "/ejabberd-h2o.nix", [["domain", 195, 27], ["port", 195, 34], ["enable", 196, 11], ["verbose", 197, 11], ["podConfig", 198, 11], ["database", 202, 11], ["h2o", 206, 11]]);
-const pos$45 = nix.positions(here + "/ejabberd-h2o.nix", [["spoolDir", 210, 30], ["enable", 211, 11], ["configFile", 212, 11], ["imagemagick", 213, 11]]);
-const pos$46 = nix.positions(here + "/ejabberd-h2o.nix", [["compress", 217, 11]]);
-const pos$47 = nix.positions(here + "/ejabberd-h2o.nix", [["settings", 216, 22]]);
-const pos$48 = nix.positions(here + "/ejabberd-h2o.nix", [["movim", 194, 18], ["ejabberd", 209, 18], ["h2o", 216, 18]]);
-const pos$49 = nix.positions(here + "/ejabberd-h2o.nix", [["StartupMemoryMax", 224, 13], ["MemoryMax", 225, 13]]);
-const pos$50 = nix.positions(here + "/ejabberd-h2o.nix", [["serviceConfig", 221, 11]]);
-const pos$51 = nix.positions(here + "/ejabberd-h2o.nix", [["ejabberd", 220, 26]]);
-const pos$52 = nix.positions(here + "/ejabberd-h2o.nix", [["services", 220, 17]]);
-const pos$53 = nix.positions(here + "/ejabberd-h2o.nix", [["allowedTCPPorts", 230, 20]]);
-const pos$54 = nix.positions(here + "/ejabberd-h2o.nix", [["firewall", 230, 11], ["extraHosts", 234, 11]]);
-const pos$55 = nix.positions(here + "/ejabberd-h2o.nix", [["environment", 189, 9], ["services", 194, 9], ["systemd", 220, 9], ["networking", 229, 9]]);
-const pos$56 = nix.positions(here + "/ejabberd-h2o.nix", [["server", 186, 5]]);
-const pos$57 = nix.positions(here + "/ejabberd-h2o.nix", [["name", 179, 3], ["meta", 181, 3], ["nodes", 185, 3], ["testScript", 242, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const hostPkgs = nix.arg($, "hostPkgs");
   const lib = nix.arg($, "lib");
   const movim = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     domain: "movim.local",
     port: 8080n,
     info: "No ToS in tests",
     description: "NixOS testing server",
   }));
   const ejabberd = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     domain: "ejabberd.local",
-    ports: nix.thunk(() => ({ [nix.POS]: pos$2, c2s: 5222n, s2s: 5269n, http: 5280n })),
+    ports: nix.thunk(() => ({ [nix.POS]: $pos[1], c2s: 5222n, s2s: 5269n, http: 5280n })),
     spoolDir: "/var/lib/ejabberd",
     admin: nix.thunk(() => (() => {
       const JID = nix.thunk(() => nix.str`${username}@${nix.sel(ejabberd, "domain")}`);
       const username = "romeo";
       const password = "juliet";
-      return { [nix.POS]: pos$3, JID, username, password };
+      return { [nix.POS]: $pos[2], JID, username, password };
     })()),
   }));
   const ejabberd_config_file = nix.thunk(() => (() => {
     const settingsFormat = nix.thunk(() => nix.app(nix.sel(hostPkgs, "formats", "yaml"), nix.thunk(() => ({}))));
     return nix.app(nix.sel(settingsFormat, "generate"), "ejabberd.yml", nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         loglevel: "info",
         hide_sensitive_log_data: false,
         hosts: nix.thunk(() => [nix.thunk(() => nix.sel(ejabberd, "domain"))]),
         default_db: "mnesia",
-        acme: nix.thunk(() => ({ [nix.POS]: pos$5, auto: false })),
+        acme: nix.thunk(() => ({ [nix.POS]: $pos[4], auto: false })),
         s2s_access: "s2s",
         s2s_use_starttls: false,
         new_sql_schema: true,
         acl: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           admin: nix.thunk(() => [
-            nix.thunk(() => ({ [nix.POS]: pos$6, user: nix.thunk(() => nix.sel(ejabberd, "admin", "JID")) })),
+            nix.thunk(() => ({ [nix.POS]: $pos[5], user: nix.thunk(() => nix.sel(ejabberd, "admin", "JID")) })),
           ]),
-          local: nix.thunk(() => ({ [nix.POS]: pos$7, user_regexp: "" })),
-          loopback: nix.thunk(() => ({ [nix.POS]: pos$8, ip: nix.thunk(() => ["127.0.0.1/8", "::1/128"]) })),
+          local: nix.thunk(() => ({ [nix.POS]: $pos[6], user_regexp: "" })),
+          loopback: nix.thunk(() => ({ [nix.POS]: $pos[7], ip: nix.thunk(() => ["127.0.0.1/8", "::1/128"]) })),
         })),
         access_rules: nix.thunk(() => ({
-          [nix.POS]: pos$17,
-          c2s: nix.thunk(() => ({ [nix.POS]: pos$10, deny: "blocked", allow: "all" })),
-          s2s: nix.thunk(() => ({ [nix.POS]: pos$11, allow: "all" })),
-          local: nix.thunk(() => ({ [nix.POS]: pos$12, allow: "local" })),
-          announce: nix.thunk(() => ({ [nix.POS]: pos$13, allow: "admin" })),
-          configure: nix.thunk(() => ({ [nix.POS]: pos$14, allow: "admin" })),
-          pubsub_createnode: nix.thunk(() => ({ [nix.POS]: pos$15, allow: "local" })),
-          trusted_network: nix.thunk(() => ({ [nix.POS]: pos$16, allow: "loopback" })),
+          [nix.POS]: $pos[16],
+          c2s: nix.thunk(() => ({ [nix.POS]: $pos[9], deny: "blocked", allow: "all" })),
+          s2s: nix.thunk(() => ({ [nix.POS]: $pos[10], allow: "all" })),
+          local: nix.thunk(() => ({ [nix.POS]: $pos[11], allow: "local" })),
+          announce: nix.thunk(() => ({ [nix.POS]: $pos[12], allow: "admin" })),
+          configure: nix.thunk(() => ({ [nix.POS]: $pos[13], allow: "admin" })),
+          pubsub_createnode: nix.thunk(() => ({ [nix.POS]: $pos[14], allow: "local" })),
+          trusted_network: nix.thunk(() => ({ [nix.POS]: $pos[15], allow: "loopback" })),
         })),
         api_permissions: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           "console commands": nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             from: nix.thunk(() => ["ejabberd_ctl"]),
             who: "all",
             what: "*",
           })),
         })),
         shaper: nix.thunk(() => ({
-          [nix.POS]: pos$21,
-          normal: nix.thunk(() => ({ [nix.POS]: pos$20, rate: 3000n, burst_size: 20000n })),
+          [nix.POS]: $pos[20],
+          normal: nix.thunk(() => ({ [nix.POS]: $pos[19], rate: 3000n, burst_size: 20000n })),
           fast: 100000n,
         })),
         modules: nix.thunk(() => ({
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           mod_caps: nix.thunk(() => ({})),
           mod_disco: nix.thunk(() => ({})),
           mod_mam: nix.thunk(() => ({})),
           mod_http_upload: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             docroot: nix.thunk(() => nix.str`${nix.sel(ejabberd, "spoolDir")}/uploads`),
             dir_mode: "0755",
             file_mode: "0644",
@@ -143,53 +87,53 @@ export default nix.lambda((args) => (() => {
             put_url: "http://@HOST@/upload",
             max_size: 65536n,
             custom_headers: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               "Access-Control-Allow-Origin": nix.thunk(() => nix.str`http://@HOST@,http://${nix.sel(movim, "domain")}`),
               "Access-Control-Allow-Methods": "GET,HEAD,PUT,OPTIONS",
               "Access-Control-Allow-Headers": "Content-Type",
             })),
           })),
           mod_pubsub: nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             hosts: nix.thunk(() => ["pubsub.@HOST@"]),
             access_createnode: "pubsub_createnode",
             ignore_pep_from_offline: false,
             last_item_cache: false,
             max_items_node: 2048n,
-            default_node_config: nix.thunk(() => ({ [nix.POS]: pos$24, max_items: 2048n })),
+            default_node_config: nix.thunk(() => ({ [nix.POS]: $pos[23], max_items: 2048n })),
             plugins: nix.thunk(() => ["flat", "pep"]),
             force_node_config: nix.thunk(() => ({
-              [nix.POS]: pos$32,
-              "storage:bookmarks": nix.thunk(() => ({ [nix.POS]: pos$25, access_model: "whitelist" })),
-              "eu.siacs.conversations.axolotl.*": nix.thunk(() => ({ [nix.POS]: pos$26, access_model: "open" })),
+              [nix.POS]: $pos[31],
+              "storage:bookmarks": nix.thunk(() => ({ [nix.POS]: $pos[24], access_model: "whitelist" })),
+              "eu.siacs.conversations.axolotl.*": nix.thunk(() => ({ [nix.POS]: $pos[25], access_model: "open" })),
               "urn:xmpp:bookmarks:0": nix.thunk(() => ({
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 access_model: "whitelist",
                 send_last_published_item: "never",
                 max_items: "infinity",
                 persist_items: true,
               })),
               "urn:xmpp:bookmarks:1": nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 access_model: "whitelist",
                 send_last_published_item: "never",
                 max_items: "infinity",
                 persist_items: true,
               })),
               "urn:xmpp:pubsub:movim-public-subscription": nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 access_model: "whitelist",
                 max_items: "infinity",
                 persist_items: true,
               })),
               "urn:xmpp:microblog:0": nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 notify_retract: true,
                 max_items: "infinity",
                 persist_items: true,
               })),
               "urn:xmpp:microblog:0:comments*": nix.thunk(() => ({
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 access_model: "open",
                 notify_retract: true,
                 max_items: "infinity",
@@ -201,7 +145,7 @@ export default nix.lambda((args) => (() => {
         })),
         listen: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             module: "ejabberd_c2s",
             port: nix.thunk(() => nix.sel(ejabberd, "ports", "c2s")),
             max_stanza_size: 262144n,
@@ -209,85 +153,85 @@ export default nix.lambda((args) => (() => {
             starttls_required: false,
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             module: "ejabberd_s2s_in",
             port: nix.thunk(() => nix.sel(ejabberd, "ports", "s2s")),
             max_stanza_size: 524288n,
             shaper: "fast",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             module: "ejabberd_http",
             port: nix.thunk(() => nix.sel(ejabberd, "ports", "http")),
-            request_handlers: nix.thunk(() => ({ [nix.POS]: pos$37, "/upload": "mod_http_upload" })),
+            request_handlers: nix.thunk(() => ({ [nix.POS]: $pos[36], "/upload": "mod_http_upload" })),
           })),
         ]),
       })));
   })());
   return {
-    [nix.POS]: pos$57,
+    [nix.POS]: $pos[56],
     name: "movim-ejabberd-h2o",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$40,
+      [nix.POS]: $pos[39],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "toastal"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$56,
+      [nix.POS]: $pos[55],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$55,
+          [nix.POS]: $pos[54],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$41,
+            [nix.POS]: $pos[40],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "websocat"))]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$48,
+            [nix.POS]: $pos[47],
             movim: nix.thunk(() => ({
-              [nix.POS]: pos$44,
+              [nix.POS]: $pos[43],
               domain: nix.thunk(() => nix.attr(movim, "domain")),
               port: nix.thunk(() => nix.attr(movim, "port")),
               enable: true,
               verbose: true,
               podConfig: nix.thunk(() => ({
-                [nix.POS]: pos$42,
+                [nix.POS]: $pos[41],
                 description: nix.thunk(() => nix.attr(movim, "description")),
                 info: nix.thunk(() => nix.attr(movim, "info")),
                 xmppdomain: nix.thunk(() => nix.sel(ejabberd, "domain")),
               })),
-              database: nix.thunk(() => ({ [nix.POS]: pos$43, type: "postgresql", createLocally: true })),
+              database: nix.thunk(() => ({ [nix.POS]: $pos[42], type: "postgresql", createLocally: true })),
               h2o: nix.thunk(() => ({})),
             })),
             ejabberd: nix.thunk(() => ({
-              [nix.POS]: pos$45,
+              [nix.POS]: $pos[44],
               spoolDir: nix.thunk(() => nix.attr(ejabberd, "spoolDir")),
               enable: true,
               configFile: ejabberd_config_file,
               imagemagick: false,
             })),
             h2o: nix.thunk(() => ({
-              [nix.POS]: pos$47,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$46, compress: "ON" })),
+              [nix.POS]: $pos[46],
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[45], compress: "ON" })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$52,
+            [nix.POS]: $pos[51],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$51,
+              [nix.POS]: $pos[50],
               ejabberd: nix.thunk(() => ({
-                [nix.POS]: pos$50,
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$49, StartupMemoryMax: "1G", MemoryMax: "512M" })),
+                [nix.POS]: $pos[49],
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[48], StartupMemoryMax: "1G", MemoryMax: "512M" })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$54,
+            [nix.POS]: $pos[53],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$53,
+              [nix.POS]: $pos[52],
               allowedTCPPorts: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(ejabberd, "ports")), null);
                 return [nix.thunk(() => nix.lookup(w, "c2s")), nix.thunk(() => nix.lookup(w, "s2s"))];

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["updateScript", 44, 12]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 40, 3], ["__darwinAllowLocalNetworking", 42, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "google-api-core": false, hatchling: false, "nix-update-script": false, "pytest-cov-stub": false, pytestCheckHook: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 44, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 40, 3], ["__darwinAllowLocalNetworking", 42, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lbox-clients",
       version: "1.1.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Labelbox",
           repo: "labelbox-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["lbox"]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "The data factory for next gen AI",
         homepage: "https://github.com/Labelbox/labelbox-python",
         changelog: nix.thunk(() => nix.str`https://github.com/Labelbox/labelbox-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

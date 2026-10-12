@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 3], ["version", 21, 21], ["meta", 21, 29], ["dontUnpack", 23, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 27, 3], ["installPhase", 40, 3]]]);
 const formals$1 = { args: { stdenv: false, pkgs: false, ocaml: false, findlib: false, "frama-c": false, camlzip: false, "dune-site": false, ocamlgraph: false, menhirLib: false, ppx_deriving: false, ppx_inline_test: false, yaml: false, yojson: false, zarith: false, zmq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 21], ["meta", 21, 29], ["dontUnpack", 23, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 27, 3], ["installPhase", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const zarith = nix.arg($, "zarith");
   const zmq = nix.arg($, "zmq");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-frama-c`),
       version: nix.thunk(() => nix.attr(frama_c, "version")),
       meta: nix.thunk(() => nix.attr(frama_c, "meta")),

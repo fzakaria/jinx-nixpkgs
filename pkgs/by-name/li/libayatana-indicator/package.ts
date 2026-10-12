@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 31, 3], ["strictDeps", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { "ayatana-ido": false, cmake: false, fetchFromGitHub: false, glib: false, gtk3: false, lib: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 31, 3], ["strictDeps", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libayatana-indicator",
       version: "0.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AyatanaIndicators",
           repo: "libayatana-indicator",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ayatana_ido]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Ayatana Indicators Shared Library",
         homepage: "https://github.com/AyatanaIndicators/libayatana-indicator",
         changelog: nix.thunk(() => nix.str`https://github.com/AyatanaIndicators/libayatana-indicator/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

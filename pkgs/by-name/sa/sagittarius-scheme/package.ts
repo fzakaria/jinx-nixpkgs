@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["NIX_CFLAGS_COMPILE", 56, 7]], [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["maintainers", 88, 5], ["broken", 89, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 27, 3], ["patches", 32, 3], ["preBuild", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["env", 56, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, "pkg-config": false, libffi: false, boehmgc: false, openssl: false, zlib: false, odbcSupport: true, libiodbc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["maintainers", 88, 5], ["broken", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 27, 3], ["patches", 32, 3], ["preBuild", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["env", 56, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libiodbc = nix.arg($, "libiodbc");
   const platformLdLibraryPath = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "DYLD_FALLBACK_LIBRARY_PATH" : (nix.asBool(nix.selOr(stdenv, () => nix.sel(stdenv, "hostPlatform", "isBSD"), "hostPlatform", "isLinux")) ? "LD_LIBRARY_PATH" : nix.builtins.throw("unsupported platform"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sagittarius-scheme",
       version: "0.9.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ktakashi/sagittarius-scheme/releases/download/v${nix.sel(finalAttrs, "version")}/sagittarius-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-L0ZKCiSbneWe1+czj83x+bCHPZw1uuYSdJwKHp4qTnk=",
         })))),
@@ -40,11 +37,11 @@ export ${platformLdLibraryPath}="$(pwd)/build"
       nativeBuildInputs: nix.thunk(() => [pkg_config, cmake]),
       buildInputs: nix.thunk(() => nix.concat([libffi, boehmgc, openssl, zlib], nix.app(nix.sel(lib, "optional"), odbcSupport, libiodbc))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-Wno-error=int-conversion"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ["-maes"])))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "R6RS/R7RS Scheme system",
         longDescription: "Sagittarius Scheme is a free Scheme implementation supporting\nR6RS/R7RS specification.\n\nFeatures:\n\n-  Builtin CLOS.\n-  Common Lisp like reader macro.\n-  Cryptographic libraries.\n-  Customisable cipher and hash algorithm.\n-  Custom codec mechanism.\n-  CL like keyword lambda syntax (taken from Gauche).\n-  Constant definition form. (define-constant form).\n-  Builtin regular expression\n-  mostly works O(n)\n-  Replaceable reader\n",
         homepage: "https://github.com/ktakashi/sagittarius-scheme",

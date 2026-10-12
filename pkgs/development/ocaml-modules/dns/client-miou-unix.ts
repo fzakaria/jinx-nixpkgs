@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/client-miou-unix.nix", [[["description", 30, 5]], [["pname", 14, 3], ["src", 15, 17], ["version", 15, 21], ["propagatedBuildInputs", 17, 3], ["doCheck", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, dns: false, "dns-client": false, "domain-name": false, ipaddr: false, miou: false, "tls-miou-unix": false, "happy-eyeballs": false, "happy-eyeballs-miou-unix": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/client-miou-unix.nix", [["description", 30, 5]]);
-const pos$2 = nix.positions(here + "/client-miou-unix.nix", [["pname", 14, 3], ["src", 15, 17], ["version", 15, 21], ["propagatedBuildInputs", 17, 3], ["doCheck", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const happy_eyeballs = nix.arg($, "happy-eyeballs");
   const happy_eyeballs_miou_unix = nix.arg($, "happy-eyeballs-miou-unix");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "dns-client-miou-unix",
       src: nix.thunk(() => nix.attr(dns, "src")),
       version: nix.thunk(() => nix.attr(dns, "version")),
@@ -32,7 +31,7 @@ export default nix.lambda((args) => (() => {
         happy_eyeballs_miou_unix,
       ]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(dns_client, "meta"), { [nix.POS]: pos$1, description: "DNS client API for Miou" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dns_client, "meta"), { [nix.POS]: $pos[0], description: "DNS client API for Miou" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=client-miou-unix.ts.map

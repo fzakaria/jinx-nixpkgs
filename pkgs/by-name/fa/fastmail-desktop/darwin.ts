@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/darwin.nix", [[["pname", 12, 5], ["version", 13, 5], ["src", 14, 5], ["passthru", 15, 5], ["meta", 16, 5], ["sourceRoot", 19, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 22, 3], ["dontBuild", 27, 3], ["dontFixup", 30, 3]]]);
 const formals$1 = { args: { pname: false, version: false, src: false, passthru: false, meta: false, stdenvNoCC: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/darwin.nix", [["pname", 12, 5], ["version", 13, 5], ["src", 14, 5], ["passthru", 15, 5], ["meta", 16, 5], ["sourceRoot", 19, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 22, 3], ["dontBuild", 27, 3], ["dontFixup", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: pname,
       version: version,
       src: src,

@@ -2,39 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/modules.nix", [[["module_name", 50, 18]], [["platforms", 53, 11]], [["buildPhase", 37, 17], ["installPhase", 37, 28], ["nativeBuildInputs", 39, 9], ["dontUseCmakeConfigure", 46, 9], ["buildInputs", 48, 9], ["passthru", 50, 9], ["meta", 52, 9]], [["owner", 67, 7], ["repo", 68, 7], ["rev", 69, 7], ["hash", 70, 7]], [["description", 74, 7], ["homepage", 75, 7], ["license", 76, 7], ["maintainers", 77, 7]], [["pname", 62, 5], ["version", 63, 5], ["module_name", 64, 5], ["src", 66, 5], ["meta", 73, 5]], [["owner", 87, 7], ["repo", 88, 7], ["rev", 89, 7], ["hash", 90, 7]], [["description", 94, 7], ["homepage", 95, 7], ["license", 96, 7], ["maintainers", 97, 7]], [["pname", 82, 5], ["version", 83, 5], ["module_name", 84, 5], ["src", 86, 5], ["meta", 93, 5]], [["owner", 110, 7], ["repo", 111, 7], ["rev", 112, 7], ["hash", 113, 7]], [["description", 117, 7], ["homepage", 118, 7], ["license", 119, 7], ["maintainers", 120, 7]], [["pname", 105, 5], ["version", 106, 5], ["module_name", 107, 5], ["src", 109, 5], ["meta", 116, 5]], [["owner", 131, 7], ["repo", 132, 7], ["rev", 133, 7], ["hash", 134, 7]], [["description", 138, 7], ["homepage", 139, 7], ["maintainers", 140, 7], ["license", 142, 7]], [["pname", 125, 5], ["version", 126, 5], ["module_name", 127, 5], ["src", 129, 5], ["meta", 137, 5]], [["owner", 152, 7], ["repo", 153, 7], ["rev", 154, 7], ["hash", 155, 7]], [["description", 159, 7], ["homepage", 160, 7], ["license", 161, 7], ["maintainers", 162, 7]], [["pname", 147, 5], ["version", 148, 5], ["module_name", 149, 5], ["src", 151, 5], ["meta", 158, 5]], [["owner", 172, 7], ["repo", 173, 7], ["tag", 174, 7], ["hash", 175, 7]], [["description", 179, 7], ["homepage", 180, 7], ["license", 181, 7], ["maintainers", 182, 7]], [["pname", 167, 5], ["version", 168, 5], ["module_name", 169, 5], ["src", 171, 5], ["meta", 178, 5]], [["owner", 192, 7], ["repo", 193, 7], ["rev", 194, 7], ["hash", 195, 7]], [["description", 199, 7], ["homepage", 200, 7], ["license", 201, 7]], [["pname", 187, 5], ["version", 188, 5], ["module_name", 189, 5], ["src", 191, 5], ["meta", 198, 5]], [["owner", 211, 7], ["repo", 212, 7], ["rev", 213, 7], ["hash", 214, 7]], [["description", 218, 7], ["homepage", 219, 7], ["license", 221, 7]], [["pname", 206, 5], ["version", 207, 5], ["module_name", 208, 5], ["src", 210, 5], ["meta", 217, 5]], [["owner", 231, 7], ["repo", 232, 7], ["tag", 233, 7], ["hash", 234, 7]], [["description", 238, 7], ["homepage", 239, 7], ["license", 240, 7], ["maintainers", 241, 7]], [["pname", 226, 5], ["version", 227, 5], ["module_name", 228, 5], ["src", 230, 5], ["meta", 237, 5]], [["backlog", 61, 3], ["clientbuffer", 81, 3], ["clientaway", 104, 3], ["fish", 124, 3], ["ignore", 146, 3], ["palaver", 166, 3], ["playback", 186, 3], ["privmsg", 205, 3], ["push", 225, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, znc: false, cmake: false, "pkg-config": false, python3: false, which: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, src: false, module_name: false, buildPhase: true, installPhase: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/modules.nix", [["module_name", 50, 18]]);
-const pos$2 = nix.positions(here + "/modules.nix", [["platforms", 53, 11]]);
-const pos$3 = nix.positions(here + "/modules.nix", [["buildPhase", 37, 17], ["installPhase", 37, 28], ["nativeBuildInputs", 39, 9], ["dontUseCmakeConfigure", 46, 9], ["buildInputs", 48, 9], ["passthru", 50, 9], ["meta", 52, 9]]);
-const pos$4 = nix.positions(here + "/modules.nix", [["owner", 67, 7], ["repo", 68, 7], ["rev", 69, 7], ["hash", 70, 7]]);
-const pos$5 = nix.positions(here + "/modules.nix", [["description", 74, 7], ["homepage", 75, 7], ["license", 76, 7], ["maintainers", 77, 7]]);
-const pos$6 = nix.positions(here + "/modules.nix", [["pname", 62, 5], ["version", 63, 5], ["module_name", 64, 5], ["src", 66, 5], ["meta", 73, 5]]);
-const pos$7 = nix.positions(here + "/modules.nix", [["owner", 87, 7], ["repo", 88, 7], ["rev", 89, 7], ["hash", 90, 7]]);
-const pos$8 = nix.positions(here + "/modules.nix", [["description", 94, 7], ["homepage", 95, 7], ["license", 96, 7], ["maintainers", 97, 7]]);
-const pos$9 = nix.positions(here + "/modules.nix", [["pname", 82, 5], ["version", 83, 5], ["module_name", 84, 5], ["src", 86, 5], ["meta", 93, 5]]);
-const pos$10 = nix.positions(here + "/modules.nix", [["owner", 110, 7], ["repo", 111, 7], ["rev", 112, 7], ["hash", 113, 7]]);
-const pos$11 = nix.positions(here + "/modules.nix", [["description", 117, 7], ["homepage", 118, 7], ["license", 119, 7], ["maintainers", 120, 7]]);
-const pos$12 = nix.positions(here + "/modules.nix", [["pname", 105, 5], ["version", 106, 5], ["module_name", 107, 5], ["src", 109, 5], ["meta", 116, 5]]);
-const pos$13 = nix.positions(here + "/modules.nix", [["owner", 131, 7], ["repo", 132, 7], ["rev", 133, 7], ["hash", 134, 7]]);
-const pos$14 = nix.positions(here + "/modules.nix", [["description", 138, 7], ["homepage", 139, 7], ["maintainers", 140, 7], ["license", 142, 7]]);
-const pos$15 = nix.positions(here + "/modules.nix", [["pname", 125, 5], ["version", 126, 5], ["module_name", 127, 5], ["src", 129, 5], ["meta", 137, 5]]);
-const pos$16 = nix.positions(here + "/modules.nix", [["owner", 152, 7], ["repo", 153, 7], ["rev", 154, 7], ["hash", 155, 7]]);
-const pos$17 = nix.positions(here + "/modules.nix", [["description", 159, 7], ["homepage", 160, 7], ["license", 161, 7], ["maintainers", 162, 7]]);
-const pos$18 = nix.positions(here + "/modules.nix", [["pname", 147, 5], ["version", 148, 5], ["module_name", 149, 5], ["src", 151, 5], ["meta", 158, 5]]);
-const pos$19 = nix.positions(here + "/modules.nix", [["owner", 172, 7], ["repo", 173, 7], ["tag", 174, 7], ["hash", 175, 7]]);
-const pos$20 = nix.positions(here + "/modules.nix", [["description", 179, 7], ["homepage", 180, 7], ["license", 181, 7], ["maintainers", 182, 7]]);
-const pos$21 = nix.positions(here + "/modules.nix", [["pname", 167, 5], ["version", 168, 5], ["module_name", 169, 5], ["src", 171, 5], ["meta", 178, 5]]);
-const pos$22 = nix.positions(here + "/modules.nix", [["owner", 192, 7], ["repo", 193, 7], ["rev", 194, 7], ["hash", 195, 7]]);
-const pos$23 = nix.positions(here + "/modules.nix", [["description", 199, 7], ["homepage", 200, 7], ["license", 201, 7]]);
-const pos$24 = nix.positions(here + "/modules.nix", [["pname", 187, 5], ["version", 188, 5], ["module_name", 189, 5], ["src", 191, 5], ["meta", 198, 5]]);
-const pos$25 = nix.positions(here + "/modules.nix", [["owner", 211, 7], ["repo", 212, 7], ["rev", 213, 7], ["hash", 214, 7]]);
-const pos$26 = nix.positions(here + "/modules.nix", [["description", 218, 7], ["homepage", 219, 7], ["license", 221, 7]]);
-const pos$27 = nix.positions(here + "/modules.nix", [["pname", 206, 5], ["version", 207, 5], ["module_name", 208, 5], ["src", 210, 5], ["meta", 217, 5]]);
-const pos$28 = nix.positions(here + "/modules.nix", [["owner", 231, 7], ["repo", 232, 7], ["tag", 233, 7], ["hash", 234, 7]]);
-const pos$29 = nix.positions(here + "/modules.nix", [["description", 238, 7], ["homepage", 239, 7], ["license", 240, 7], ["maintainers", 241, 7]]);
-const pos$30 = nix.positions(here + "/modules.nix", [["pname", 226, 5], ["version", 227, 5], ["module_name", 228, 5], ["src", 230, 5], ["meta", 237, 5]]);
-const pos$31 = nix.positions(here + "/modules.nix", [["backlog", 61, 3], ["clientbuffer", 81, 3], ["clientaway", 104, 3], ["fish", 124, 3], ["ignore", 146, 3], ["palaver", 166, 3], ["playback", 186, 3], ["privmsg", 205, 3], ["push", 225, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,35 +35,35 @@ install -D ${module_name}.so $out/lib/znc/${module_name}.so
 runHook postInstall
 `);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(a, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         buildPhase: buildPhase,
         installPhase: installPhase,
         nativeBuildInputs: nix.thunk(() => [python3, which, cmake, pkg_config]),
         dontUseCmakeConfigure: true,
         buildInputs: nix.thunk(() => nix.sel(znc, "buildInputs")),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$1, module_name: module_name })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], module_name: module_name })),
         meta: nix.thunk(() => nix.update(nix.sel(a, "meta"), {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         })),
       })));
   })(), formals$2);
   return {
-    [nix.POS]: pos$31,
+    [nix.POS]: $pos[30],
     backlog: nix.thunk(() => nix.app(zncDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "znc-backlog",
         version: "0-unstable-2018-08-24",
         module_name: "backlog",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             owner: "FruitieX",
             repo: "znc-backlog",
             rev: "44314a6aca0409ae59b0d841807261be1159fff4",
             hash: "sha256-yhoMuwXul6zq4VPGn810PlFwiCUIvvV6wkQupE3svOQ=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           description: "Request backlog for IRC channels",
           homepage: "https://github.com/fruitiex/znc-backlog/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -101,19 +71,19 @@ runHook postInstall
         })),
       })))),
     clientbuffer: nix.thunk(() => nix.app(zncDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: "znc-clientbuffer",
         version: "0-unstable-2021-05-30",
         module_name: "clientbuffer",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             owner: "CyberShadow",
             repo: "znc-clientbuffer",
             rev: "9a7465b413b53408f5d7af86e84b1d08efb6bec0",
             hash: "sha256-pAj4Iot0RFuNJOLSZFaXoH5BPb4vf0H8KPfIoo0kbig=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           description: "ZNC module for client specific buffers",
           homepage: "https://github.com/CyberShadow/znc-clientbuffer",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -127,19 +97,19 @@ runHook postInstall
         })),
       })))),
     clientaway: nix.thunk(() => nix.app(zncDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pname: "znc-clientaway",
         version: "0-unstable-2017-04-28",
         module_name: "clientaway",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             owner: "kylef-archive",
             repo: "znc-contrib",
             rev: "f6724a4a3b16b050088adde0cbeed74f189e5044",
             hash: "sha256-KBd78ucRFbgV/jILS1OSsZqqKyjT4RmBfiBTKX8bbUY=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           description: "ZNC clientaway module",
           homepage: "https://github.com/kylef-archive/znc-contrib",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -147,19 +117,19 @@ runHook postInstall
         })),
       })))),
     fish: nix.thunk(() => nix.app(zncDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         pname: "znc-fish",
         version: "0-unstable-2017-06-26",
         module_name: "fish",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             owner: "oilslump",
             repo: "znc-fish",
             rev: "7d91467dbb195f7b591567911210523c6087662e",
             hash: "sha256-VW/je7vDc9arbrj848T0bbeqP9qx7Az5SMOVecLrxc8=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           description: "ZNC FiSH module",
           homepage: "https://github.com/oilslump/znc-fish",
           maintainers: [],
@@ -167,19 +137,19 @@ runHook postInstall
         })),
       })))),
     ignore: nix.thunk(() => nix.app(zncDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         pname: "znc-ignore",
         version: "0-unstable-2017-04-28",
         module_name: "ignore",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             owner: "kylef",
             repo: "znc-contrib",
             rev: "f6724a4a3b16b050088adde0cbeed74f189e5044",
             hash: "sha256-KBd78ucRFbgV/jILS1OSsZqqKyjT4RmBfiBTKX8bbUY=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           description: "ZNC ignore module",
           homepage: "https://github.com/kylef/znc-contrib",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -191,14 +161,14 @@ runHook postInstall
         const version = "1.2.2";
         const module_name = "palaver";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             owner: "cocodelabs",
             repo: "znc-palaver",
             tag: version,
             hash: "sha256-8W3uF1PrLQiEZm7JaFrpqmJLSFioa4F4qlM1J6Zua8U=",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           description: "Palaver ZNC module",
           homepage: "https://github.com/cocodelabs/znc-palaver",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -207,41 +177,41 @@ runHook postInstall
             return [nix.thunk(() => nix.lookup(w, "szlend"))];
           })()),
         }));
-        return { [nix.POS]: pos$21, pname, version, module_name, src, meta };
+        return { [nix.POS]: $pos[20], pname, version, module_name, src, meta };
       })()))),
     playback: nix.thunk(() => nix.app(zncDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         pname: "znc-playback",
         version: "0-unstable-2020-05-10",
         module_name: "playback",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             owner: "jpnurmi",
             repo: "znc-playback",
             rev: "8dd128bfe2b24b2cc6a9ea2e2d28bfaa28d2a833",
             hash: "sha256-/hmwhrWDYGzjfmTeCB4mk+FABAJNZvREnuxzvzl6uo4=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           description: "Advanced playback module for ZNC",
           homepage: "https://github.com/jpnurmi/znc-playback",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         })),
       })))),
     privmsg: nix.thunk(() => nix.app(zncDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         pname: "znc-privmsg",
         version: "0-unstable-2017-04-28",
         module_name: "privmsg",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             owner: "kylef",
             repo: "znc-contrib",
             rev: "f6724a4a3b16b050088adde0cbeed74f189e5044",
             hash: "sha256-KBd78ucRFbgV/jILS1OSsZqqKyjT4RmBfiBTKX8bbUY=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           description: "ZNC privmsg module",
           homepage: "https://github.com/kylef/znc-contrib",
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -252,20 +222,20 @@ runHook postInstall
         const version = "1.1.0";
         const module_name = "push";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             owner: "jreese",
             repo: "znc-push",
             tag: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-OS2nIU/DlESpJT82cWhb75TizSO7LQr74CMz09ulKyQ=",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           description: "Push notification service module for ZNC",
           homepage: "https://github.com/jreese/znc-push",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           maintainers: [],
         }));
-        return { [nix.POS]: pos$30, pname, version, module_name, src, meta };
+        return { [nix.POS]: $pos[29], pname, version, module_name, src, meta };
       })()))),
   };
 })(), formals$1);

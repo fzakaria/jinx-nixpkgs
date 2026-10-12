@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["npmDepsHash", 34, 3], ["npmWorkspace", 36, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 44, 3], ["buildPhase", 49, 3], ["installPhase", 57, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "pkg-config": false, pixman: false, cairo: false, pango: false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["npmDepsHash", 34, 3], ["npmWorkspace", 36, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 44, 3], ["buildPhase", 49, 3], ["installPhase", 57, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const jq = nix.arg($, "jq");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vega-cli",
       version: "6.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vega",
           repo: "vega",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +42,7 @@ mv lerna.json.tmp lerna.json
       buildPhase: "runHook preBuild\n\nnpm run build --scope vega-cli --include-dependencies --stream\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\n# prune non-prod deps\nnpm prune --omit=dev --no-save --workspace vega-cli\n\nmkdir -p $out/lib/node_modules/vega-cli\nrm -rf packages/**/{test,*.md,.npmignore}\ncp -r ./packages ./node_modules $out/lib/node_modules/vega-cli\nln -s $out/lib/node_modules/vega-cli/packages/vega-cli/bin $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line tools for the Vega visualization grammar",
         homepage: "https://vega.github.io/vega/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

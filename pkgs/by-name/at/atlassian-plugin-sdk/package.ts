@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["package", 50, 7], ["command", 51, 7], ["version", 52, 7]], [["version", 49, 11]], [["tests", 49, 5], ["updateScript", 55, 5]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["unpackPhase", 32, 3], ["installPhase", 34, 3], ["passthru", 48, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, jdk11: false, "atlassian-plugin-sdk": false, testers: false, writeShellScript: false, "common-updater-scripts": false, curl: false, jq: false, yq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 50, 7], ["command", 51, 7], ["version", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 49, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 49, 5], ["updateScript", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["unpackPhase", 32, 3], ["installPhase", 34, 3], ["passthru", 48, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const yq = nix.arg($, "yq");
   const mavenGroupIdUrl = "https://packages.atlassian.com/maven/public/com/atlassian/amps";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "atlassian-plugin-sdk",
       version: "9.9.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`${mavenGroupIdUrl}/atlassian-plugin-sdk/${nix.sel(finalAttrs, "version")}/atlassian-plugin-sdk-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-6svtGwk9d+/ipPHy/1kCQ5kyt1v9uaTwjYv6/ncCStc=",
         })))),
@@ -50,11 +45,11 @@ done
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: atlassian_plugin_sdk,
               command: "atlas-version",
               version: nix.thunk(() => nix.str`atlassian-plugin-sdk-${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +72,7 @@ update-source-version "atlassian-plugin-sdk" "$NEW_VERSION" "$NIX_HASH" "$DOWNLO
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Atlassian Plugin SDK",
         homepage: "https://developer.atlassian.com/server/framework/atlassian-sdk/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

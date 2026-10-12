@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]], [["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["dependencies", 22, 3], ["pythonImportsCheck", 24, 3], ["doCheck", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, streamlit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["dependencies", 22, 3], ["pythonImportsCheck", 24, 3], ["doCheck", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "streamlit_card",
           version: version,
           hash: "sha256-gAHNXt2Kbi2zbugfN9xkXwj3jCGiupaEAxdsaLTzPLE=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["streamlit_card"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Streamlit component to make UI cards",
         homepage: "https://github.com/gamcoh/st-card",
         changelog: nix.thunk(() => nix.str`https://github.com/gamcoh/st-card/releases/tag/${version}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

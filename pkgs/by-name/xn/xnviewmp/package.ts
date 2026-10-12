@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 11], ["hash", 19, 11]], [["nativeBuildInputs", 16, 9], ["src", 17, 9]], [["url", 31, 5], ["hash", 32, 5]], [["name", 41, 7], ["desktopName", 42, 7], ["exec", 43, 7], ["icon", 44, 7], ["comment", 45, 7], ["categories", 46, 7]], [["src", 59, 13], ["updateScript", 60, 5]], [["description", 67, 5], ["changelog", 68, 5], ["homepage", 69, 5], ["downloadPage", 70, 5], ["sourceProvenance", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["desktopItems", 39, 3], ["extraPkgs", 50, 3], ["extraInstallCommands", 54, 3], ["passthru", 58, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { appimageTools: false, fetchurl: false, runCommand: false, lib: false, makeDesktopItem: false, copyDesktopItems: false, imagemagick: false, writeShellScript: false, "nix-update": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 11], ["hash", 19, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 16, 9], ["src", 17, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 41, 7], ["desktopName", 42, 7], ["exec", 43, 7], ["icon", 44, 7], ["comment", 45, 7], ["categories", 46, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["src", 59, 13], ["updateScript", 60, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 67, 5], ["changelog", 68, 5], ["homepage", 69, 5], ["downloadPage", 70, 5], ["sourceProvenance", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["desktopItems", 39, 3], ["extraPkgs", 50, 3], ["extraInstallCommands", 54, 3], ["passthru", 58, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,10 +17,10 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const nix_update = nix.arg($, "nix-update");
   const icon = nix.thunk(() => nix.app(runCommand, "xnviewmp-icon.png", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => [imagemagick]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.xnview.com/img/app-xnsoft-360.webp",
           hash: "sha256-wIzF/WOsPcrYFYC/kGZi6FSJFuErci5EMONjrx1VCdQ=",
         })))),
@@ -35,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const pname = "xnviewmp";
       const version = "1.12.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://download.xnview.com/old_versions/XnView_MP/XnView_MP-${version}.glibc2.34-x86_64.AppImage`),
           hash: "sha256-3iAi6/+GEaFiobk1n1aciHidOmdyDkmGKAgXvbqddQc=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "xnviewmp",
             desktopName: "XnView MP",
             exec: "xnviewmp %F",
@@ -55,14 +49,14 @@ export default nix.lambda((args) => (() => {
       const extraInstallCommands = nix.thunk(() => nix.str`install -m 444 -D ${icon} $out/share/icons/hicolor/512x512/apps/xnviewmp.png
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         src: src,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-xnviewmp", nix.thunk(() => nix.str`latestVersion=$(curl --fail --silent "http://www.xnview.com/update.txt" | awk -F= '/\\[XnViewMP\\]/{getline; if($1=="version") print $2}')
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} xnviewmp --version $latestVersion
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Efficient multimedia viewer, browser and converter",
         changelog: "https://www.xnview.com/mantisbt/changelog_page.php",
         homepage: "https://www.xnview.com/en/xnviewmp/",
@@ -77,7 +71,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} xnviewmp --version $latestVersion
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

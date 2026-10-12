@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]], [["owner", 50, 5], ["repo", 51, 5], ["rev", 52, 5], ["hash", 53, 5]], [["owner", 56, 5], ["repo", 57, 5], ["rev", 58, 5], ["hash", 59, 5]], [["owner", 62, 5], ["repo", 63, 5], ["rev", 64, 5], ["hash", 65, 5]], [["owner", 68, 5], ["repo", 69, 5], ["rev", 70, 5], ["hash", 71, 5]], [["owner", 74, 5], ["repo", 75, 5], ["rev", 76, 5], ["hash", 77, 5]], [["owner", 80, 5], ["repo", 81, 5], ["rev", 82, 5], ["hash", 83, 5]], [["owner", 86, 5], ["repo", 87, 5], ["rev", 88, 5], ["hash", 89, 5]], [["owner", 92, 5], ["repo", 93, 5], ["rev", 94, 5], ["hash", 95, 5]], [["owner", 98, 5], ["repo", 99, 5], ["rev", 100, 5], ["hash", 101, 5]], [["owner", 108, 7], ["repo", 109, 7], ["rev", 110, 7], ["hash", 111, 7]], [["pname", 104, 5], ["version", 105, 5], ["src", 107, 5], ["nativeBuildInputs", 114, 5], ["buildInputs", 119, 5], ["cmakeFlags", 129, 5]], [["type", 143, 7], ["name", 144, 7], ["desktopName", 145, 7], ["genericName", 146, 7], ["comment", 147, 7], ["exec", 148, 7], ["icon", 149, 7], ["categories", 150, 7], ["keywords", 155, 7]], [["owner", 160, 5], ["repo", 161, 5], ["tag", 162, 5], ["hash", 163, 5]], [["description", 356, 5], ["homepage", 357, 5], ["license", 360, 5], ["maintainers", 365, 5], ["mainProgram", 370, 5], ["platforms", 371, 5]], [["pname", 138, 3], ["version", 139, 3], ["desktopItems", 141, 3], ["src", 159, 3], ["patches", 166, 3], ["prePatch", 178, 3], ["nativeBuildInputs", 247, 3], ["buildInputs", 261, 3], ["enableParallelBuilding", 283, 3], ["makeFlags", 285, 3], ["postBuild", 297, 3], ["installPhase", 301, 3], ["dontWrapGApps", 337, 3], ["postFixup", 338, 3], ["nativeInstallCheckInputs", 352, 3], ["doInstallCheck", 353, 3], ["meta", 355, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, "apple-sdk_14": false, cmake: false, copyDesktopItems: false, curl: false, fetchFromBitbucket: false, fetchFromGitHub: false, fetchpatch: false, ghc_filesystem: false, glew: false, glfw: false, zenity: false, "gtk3-x11": false, imagemagick: false, jansson: false, jq: false, lib: false, libarchive: false, libicns: false, libjack2: false, libpulseaudio: false, libsamplerate: false, makeDesktopItem: false, makeWrapper: false, openssl: false, "pkg-config": false, rtmidi: false, rsync: false, speexdsp: false, stdenv: false, wrapGAppsHook3: false, zstd: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 50, 5], ["repo", 51, 5], ["rev", 52, 5], ["hash", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 56, 5], ["repo", 57, 5], ["rev", 58, 5], ["hash", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 62, 5], ["repo", 63, 5], ["rev", 64, 5], ["hash", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 68, 5], ["repo", 69, 5], ["rev", 70, 5], ["hash", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 74, 5], ["repo", 75, 5], ["rev", 76, 5], ["hash", 77, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 80, 5], ["repo", 81, 5], ["rev", 82, 5], ["hash", 83, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 86, 5], ["repo", 87, 5], ["rev", 88, 5], ["hash", 89, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["owner", 92, 5], ["repo", 93, 5], ["rev", 94, 5], ["hash", 95, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["owner", 98, 5], ["repo", 99, 5], ["rev", 100, 5], ["hash", 101, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["owner", 108, 7], ["repo", 109, 7], ["rev", 110, 7], ["hash", 111, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 104, 5], ["version", 105, 5], ["src", 107, 5], ["nativeBuildInputs", 114, 5], ["buildInputs", 119, 5], ["cmakeFlags", 129, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["type", 143, 7], ["name", 144, 7], ["desktopName", 145, 7], ["genericName", 146, 7], ["comment", 147, 7], ["exec", 148, 7], ["icon", 149, 7], ["categories", 150, 7], ["keywords", 155, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["owner", 160, 5], ["repo", 161, 5], ["tag", 162, 5], ["hash", 163, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["description", 356, 5], ["homepage", 357, 5], ["license", 360, 5], ["maintainers", 365, 5], ["mainProgram", 370, 5], ["platforms", 371, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 138, 3], ["version", 139, 3], ["desktopItems", 141, 3], ["src", 159, 3], ["patches", 166, 3], ["prePatch", 178, 3], ["nativeBuildInputs", 247, 3], ["buildInputs", 261, 3], ["enableParallelBuilding", 283, 3], ["makeFlags", 285, 3], ["postBuild", 297, 3], ["installPhase", 301, 3], ["dontWrapGApps", 337, 3], ["postFixup", 338, 3], ["nativeInstallCheckInputs", 352, 3], ["doInstallCheck", 353, 3], ["meta", 355, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,81 +41,81 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const filesystem_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "gulrak",
       repo: "filesystem",
       rev: "7e37433f318488ae4bc80f80e12df12a01579874",
       hash: "sha256-dHwNsuuFkhd9Y24KRzGV9Z9UZolNtOtxyA1AEVG7uMU=",
     }))));
   const fuzzysearchdatabase_source = nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "j_norberg",
       repo: "fuzzysearchdatabase",
       rev: "23122d1ff60d936fd766361a30210c954e0c5449",
       hash: "sha256-f+ed6zZGfEuYILXQcUoQ+1Qf4ASvWLQqU1nYHDpdCOk=",
     }))));
   const nanosvg_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "memononen",
       repo: "nanosvg",
       rev: "25241c5a8f8451d41ab1b02ab2d865b01600d949",
       hash: "sha256-b/aBmvuvKScF8zSkyF1tuqL9hov4XVLzKLTpr6p7mIQ=",
     }))));
   const nanovg_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "VCVRack",
       repo: "nanovg",
       rev: "0bebdb314aff9cfa28fde4744bcb037a2b3fd756",
       hash: "sha256-HmQhCE/zIKc3f+Zld229s5i5MWzRrBMF9gYrn8JVQzg=",
     }))));
   const osdialog_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       owner: "AndrewBelt",
       repo: "osdialog",
       rev: "64482bde25a8e19cc38342ed21aa0e38c2751f6c",
       hash: "sha256-FiejDeZkLoyS7BBwPYBfdOCLxBV8hAFzJAFeTz80tH0=",
     }))));
   const oui_blendish_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       owner: "VCVRack",
       repo: "oui-blendish",
       rev: "2fc6405883f8451944ed080547d073c8f9f31898",
       hash: "sha256-/QZFZuI5kSsEvSfMJlcqB1HiZ9Vcf3vqLqWIMEgxQK8=",
     }))));
   const pffft_source = nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       owner: "jpommier",
       repo: "pffft",
       rev: "74d7261be17cf659d5930d4830609406bd7553e3",
       hash: "sha256-gYaumUeXYf3axAexGqWI/tYBs1dyebjAESo4o/DTjCA=",
     }))));
   const simde_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       owner: "simd-everywhere",
       repo: "simde",
       rev: "dd0b662fd8cf4b1617dbbb4d08aa053e512b08e4",
       hash: "sha256-21YBpP7jwFqNiOu5Ilu8t9nt+AZmLc3PVEwHAWn7vM8=",
     }))));
   const tinyexpr_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       owner: "codeplea",
       repo: "tinyexpr",
       rev: "4e8cc0067a1e2378faae23eb2dfdd21e9e9907c2",
       hash: "sha256-jYC0kSmYdzJsEaH9gres/NOcfsh+2ymqZAGxNbjus/s=",
     }))));
   const fundamental_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       owner: "VCVRack",
       repo: "Fundamental",
       rev: "v2.6.4",
       hash: "sha256-rpOIMFO17ixgJZDRRg6RdLKorN/XKCUXkapsxN1pmQ4=",
     }))));
   const vcv_rtaudio = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "vcv-rtaudio",
       version: "5.1.0-unstable-2022-11-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           owner: "VCVRack",
           repo: "rtaudio",
           rev: "22d64cdcb151e388791caceee8aa0011a6aa46e0",
@@ -146,12 +131,12 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "vcv-rack",
       version: "2.6.6",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             type: "Application",
             name: "vcv-rack",
             desktopName: "VCV Rack",
@@ -164,7 +149,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           owner: "VCVRack",
           repo: "Rack",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -249,7 +234,7 @@ cp -r res cacert.pem Core.json template.vcv LICENSE-GPLv3.txt \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         description: "Open-source virtual modular synthesizer",
         homepage: "https://vcvrack.com/",
         license: nix.thunk(() => (() => {

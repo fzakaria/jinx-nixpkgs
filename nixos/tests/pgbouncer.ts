@@ -2,50 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pgbouncer.nix", [[["maintainers", 6, 5]], [["postStart", 14, 11]], [["postgresql-setup", 13, 26]], [["services", 13, 17]], [["name", 24, 31]], [["enable", 22, 13], ["ensureDatabases", 23, 13], ["ensureUsers", 24, 13], ["authentication", 25, 13]], [["listen_addr", 35, 17], ["auth_type", 36, 17], ["auth_file", 37, 17]], [["test", 42, 17]], [["pgbouncer", 34, 15], ["databases", 41, 15]], [["enable", 31, 13], ["openFirewall", 32, 13], ["settings", 33, 13]], [["postgresql", 21, 11], ["pgbouncer", 30, 11]], [["systemd", 13, 9], ["services", 20, 9]], [["one", 10, 5]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 50, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pgbouncer.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/pgbouncer.nix", [["postStart", 14, 11]]);
-const pos$3 = nix.positions(here + "/pgbouncer.nix", [["postgresql-setup", 13, 26]]);
-const pos$4 = nix.positions(here + "/pgbouncer.nix", [["services", 13, 17]]);
-const pos$5 = nix.positions(here + "/pgbouncer.nix", [["name", 24, 31]]);
-const pos$6 = nix.positions(here + "/pgbouncer.nix", [["enable", 22, 13], ["ensureDatabases", 23, 13], ["ensureUsers", 24, 13], ["authentication", 25, 13]]);
-const pos$7 = nix.positions(here + "/pgbouncer.nix", [["listen_addr", 35, 17], ["auth_type", 36, 17], ["auth_file", 37, 17]]);
-const pos$8 = nix.positions(here + "/pgbouncer.nix", [["test", 42, 17]]);
-const pos$9 = nix.positions(here + "/pgbouncer.nix", [["pgbouncer", 34, 15], ["databases", 41, 15]]);
-const pos$10 = nix.positions(here + "/pgbouncer.nix", [["enable", 31, 13], ["openFirewall", 32, 13], ["settings", 33, 13]]);
-const pos$11 = nix.positions(here + "/pgbouncer.nix", [["postgresql", 21, 11], ["pgbouncer", 30, 11]]);
-const pos$12 = nix.positions(here + "/pgbouncer.nix", [["systemd", 13, 9], ["services", 20, 9]]);
-const pos$13 = nix.positions(here + "/pgbouncer.nix", [["one", 10, 5]]);
-const pos$14 = nix.positions(here + "/pgbouncer.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "pgbouncer",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "_1000101"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       one: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               "postgresql-setup": nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 postStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "postgresql")}/bin/psql -U postgres -c "ALTER ROLE testuser WITH LOGIN PASSWORD 'testpass'";
 ${nix.sel(pkgs_1, "postgresql")}/bin/psql -U postgres -c "ALTER DATABASE testdb OWNER TO testuser;";
 `),
@@ -53,28 +40,28 @@ ${nix.sel(pkgs_1, "postgresql")}/bin/psql -U postgres -c "ALTER DATABASE testdb 
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               ensureDatabases: nix.thunk(() => ["testdb"]),
-              ensureUsers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$5, name: "testuser" }))]),
+              ensureUsers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[4], name: "testuser" }))]),
               authentication: "local testdb testuser scram-sha-256\n",
             })),
             pgbouncer: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               enable: true,
               openFirewall: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 pgbouncer: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   listen_addr: "localhost",
                   auth_type: "scram-sha-256",
                   auth_file: nix.thunk(() => nix.builtins.toFile("pgbouncer-users.txt", "\"testuser\" \"testpass\"\n")),
                 })),
                 databases: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   test: "host=/run/postgresql port=5432 auth_user=testuser dbname=testdb",
                 })),
               })),

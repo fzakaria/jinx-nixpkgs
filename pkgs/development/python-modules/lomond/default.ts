@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 17, 3], ["version", 18, 3], ["format", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["propagatedBuildInputs", 33, 3], ["nativeCheckInputs", 35, 3], ["disabledTests", 41, 3], ["disabledTestPaths", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, lib: false, pythonAtLeast: false, six: false, freezegun: false, "pytest-mock": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["format", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["propagatedBuildInputs", 33, 3], ["nativeCheckInputs", 35, 3], ["disabledTests", 41, 3], ["disabledTestPaths", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wildfoundry",
           repo: nix.thunk(() => nix.str`dataplicity-${pname}`),
           rev: "b30dad3cc38d5ff210c5dd01f8c3c76aa6c616d1",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.concat(["test_proxy", "test_live"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ["test_that_on_ping_responds_with_pong"]))));
       const disabledTestPaths = nix.thunk(() => ["tests/test_integration.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Websocket Client Library",
         homepage: "https://github.com/wildfoundry/dataplicity-lomond",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

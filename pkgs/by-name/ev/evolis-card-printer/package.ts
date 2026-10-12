@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["strictDeps", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["installPhase", 36, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, cups: false, dpkg: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["strictDeps", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["installPhase", 36, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const dpkg = nix.arg($, "dpkg");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "evolis-card-printer",
       version: "4.12.8",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://archive.org/download/evolisprinter-4.12.8.8/64%20bit%20version%20-%20evolisprinter-4.12.8.8.amd64.deb",
           hash: "sha256-xldAk9FunkIcStu6hAS6onlRS3JdWIVftkbj8Bxtx8c=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cups]),
       installPhase: "runHook preInstall\ncp -r usr $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Evolis printer drivers, for Pebble, Badgy, Dualys, Primacy, Quantum, Securion, Tattoo, Tatoo2 and Zenus card printers",
         homepage: "https://myplace.evolis.com/s/product/pebble-4/01t5p00000CXScZAAX?language=en_US&tabset-100fe=2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

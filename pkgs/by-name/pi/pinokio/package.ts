@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 11], ["hash", 16, 11]], [["x86_64-linux", 14, 9]], [["pname", 21, 54], ["version", 21, 60], ["src", 21, 68]], [["homepage", 24, 5], ["description", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5], ["mainProgram", 31, 5], ["sourceProvenance", 32, 5]], [["pname", 39, 7], ["version", 40, 7], ["src", 41, 7], ["meta", 42, 7], ["sourceRoot", 45, 5], ["nativeBuildInputs", 47, 5], ["installPhase", 49, 5]], [["pname", 59, 7], ["version", 60, 7], ["src", 61, 7], ["meta", 62, 7], ["extraInstallCommands", 65, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, pkgs: false, appimageTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 11], ["hash", 16, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 14, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 54], ["version", 21, 60], ["src", 21, 68]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 24, 5], ["description", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5], ["mainProgram", 31, 5], ["sourceProvenance", 32, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 39, 7], ["version", 40, 7], ["src", 41, 7], ["meta", 42, 7], ["sourceRoot", 45, 5], ["nativeBuildInputs", 47, 5], ["installPhase", 49, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 59, 7], ["version", 60, 7], ["src", 61, 7], ["meta", 62, 7], ["extraInstallCommands", 65, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const pname = "pinokio";
   const version = "1.3.4";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/pinokiocomputer/pinokio/releases/download/${version}/Pinokio-${version}.AppImage`),
         hash: "sha256-/E/IAOUgxH9RWpE2/vLlQy92LOgwpHF79K/1XEtSpXI=",
       })),
     }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, version: version, src: src }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     homepage: "https://pinokio.computer",
     description: "Browser to install, run, and programmatically control ANY application automatically",
     license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\nmkdir -p \"$out/Applications\"\nmv Pinokio.app $out/Applications/\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,

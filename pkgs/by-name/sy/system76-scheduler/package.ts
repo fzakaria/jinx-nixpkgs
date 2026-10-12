@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["EXECSNOOP_PATH", 35, 7]], [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 56, 5]], [["pname", 15, 3], ["version", 16, 11], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["env", 35, 3], ["doCheck", 38, 3], ["postInstall", 40, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, pipewire: false, "pkg-config": false, bcc: false, dbus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["EXECSNOOP_PATH", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 11], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["env", 35, 3], ["doCheck", 38, 3], ["postInstall", 40, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const version = "2.0.2-unstable-2026-07-22";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "system76-scheduler",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pop-os",
           repo: "system76-scheduler",
           rev: "8651bbf74bcfc8a46443b30199b380e12defa97e",
@@ -33,13 +30,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => [dbus, pipewire]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         EXECSNOOP_PATH: nix.thunk(() => nix.str`${bcc}/bin/execsnoop`),
       })),
       doCheck: false,
       postInstall: "mkdir -p $out/data\ninstall -D -m 0644 data/com.system76.Scheduler.conf $out/etc/dbus-1/system.d/com.system76.Scheduler.conf\ninstall -D -m 0644 data/*.kdl $out/data/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "System76 Scheduler",
         mainProgram: "system76-scheduler",
         homepage: "https://github.com/pop-os/system76-scheduler",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 12, 26], ["version", 12, 32], ["hash", 13, 5]], [["homepage", 47, 5], ["description", 48, 5], ["longDescription", 49, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5], ["platforms", 56, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["pyproject", 16, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["pythonRelaxDeps", 31, 3], ["buildInputs", 39, 3], ["doCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, python3Packages: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 12, 26], ["version", 12, 32], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["description", 48, 5], ["longDescription", 49, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["pyproject", 16, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["pythonRelaxDeps", 31, 3], ["buildInputs", 39, 3], ["doCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "isisdl",
       version: "1.3.21",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-YyR0A7NqmUcR+hQnQlIgBdU6CxfHtDOjR3q5I21ROCI=",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [util_linux]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/Emily3403/isisdl",
         description: "Downloader for ISIS of TU-Berlin",
         longDescription: "A downloading utility for ISIS of TU-Berlin.\nDownload all your files and videos from ISIS.\n",

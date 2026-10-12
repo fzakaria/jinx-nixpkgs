@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vhba.nix", [[["url", 15, 5], ["hash", 16, 5]], [["updateScript", 26, 5]], [["description", 40, 5], ["homepage", 41, 5], ["platforms", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["makeFlags", 19, 3], ["nativeBuildInputs", 23, 3], ["passthru", 25, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, kernel: false, kernelModuleMakeFlags: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/vhba.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/vhba.nix", [["updateScript", 26, 5]]);
-const pos$3 = nix.positions(here + "/vhba.nix", [["description", 40, 5], ["homepage", 41, 5], ["platforms", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$4 = nix.positions(here + "/vhba.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["makeFlags", 19, 3], ["nativeBuildInputs", 23, 3], ["passthru", 25, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vhba",
       version: "20260313",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/cdemu/vhba-module-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-KTADv12dwrOG2w0F9ZXFVINVpTXW38Bv03n9mLsZAXQ=",
         })))),
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
       ])),
       nativeBuildInputs: nix.thunk(() => nix.sel(kernel, "moduleBuildDependencies")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-vhba-module", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\n# Fetch the latest version from the SourceForge RSS feed for vhba-module\nnewVersion=\"$(curl -s \"https://sourceforge.net/projects/cdemu/rss?path=/vhba-module\" | pcre2grep -o1 'vhba-module-([0-9.]+)\\.tar\\.xz' | head -n 1)\"\n\nupdate-source-version linuxPackages.vhba \"$newVersion\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Provides a Virtual (SCSI) HBA",
         homepage: "https://cdemu.sourceforge.io/about/vhba/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

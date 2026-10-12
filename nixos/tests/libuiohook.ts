@@ -2,53 +2,46 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libuiohook.nix", [[["maintainers", 5, 5]], [["systemPackages", 19, 19]], [["user", 21, 40]], [["auto", 21, 35]], [["displayManager", 21, 20]], [["imports", 14, 7], ["environment", 19, 7], ["test-support", 21, 7]], [["client", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 24, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/libuiohook.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/libuiohook.nix", [["systemPackages", 19, 19]]);
-const pos$3 = nix.positions(here + "/libuiohook.nix", [["user", 21, 40]]);
-const pos$4 = nix.positions(here + "/libuiohook.nix", [["auto", 21, 35]]);
-const pos$5 = nix.positions(here + "/libuiohook.nix", [["displayManager", 21, 20]]);
-const pos$6 = nix.positions(here + "/libuiohook.nix", [["imports", 14, 7], ["environment", 19, 7], ["test-support", 21, 7]]);
-const pos$7 = nix.positions(here + "/libuiohook.nix", [["client", 8, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/libuiohook.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "libuiohook",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "anoa"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         const user = nix.thunk(() => nix.sel(nodes, "client", "users", "users", "alice"));
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           imports: nix.thunk(() => [
             nix.path(here, "./common/user-account.nix"),
             nix.path(here, "./common/x11.nix"),
           ]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libuiohook", "test"))]),
           })),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$3, user: nix.thunk(() => nix.sel(user, "name")) })),
+              [nix.POS]: $pos[3],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[2], user: nix.thunk(() => nix.sel(user, "name")) })),
             })),
           })),
         };

@@ -2,15 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 25, 9], ["sha256", 26, 17]], [["NIX_CFLAGS_COMPILE", 41, 11]], [["homepage", 48, 9], ["description", 49, 9], ["mainProgram", 50, 9], ["broken", 51, 17], ["license", 51, 24], ["platforms", 52, 9], ["maintainers", 53, 9]], [["pname", 21, 7], ["version", 22, 15], ["src", 24, 7], ["buildInputs", 29, 7], ["preConfigure", 35, 7], ["configureFlags", 39, 7], ["env", 41, 7], ["doCheck", 43, 7], ["enableParallelBuilding", 45, 7], ["meta", 47, 7]], [["version", 61, 5], ["sha256", 62, 5], ["license", 63, 5]], [["version", 67, 5], ["sha256", 68, 5], ["license", 69, 5], ["broken", 70, 5]], [["ragelStable", 60, 3], ["ragelDev", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fig2dev: false, texliveSmall: false, ghostscript: false, colm: false, "build-manual": true }, ellipsis: false };
 const formals$2 = { args: { version: false, sha256: false, broken: true, license: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 25, 9], ["sha256", 26, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 41, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 48, 9], ["description", 49, 9], ["mainProgram", 50, 9], ["broken", 51, 17], ["license", 51, 24], ["platforms", 52, 9], ["maintainers", 53, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 7], ["version", 22, 15], ["src", 24, 7], ["buildInputs", 29, 7], ["preConfigure", 35, 7], ["configureFlags", 39, 7], ["env", 41, 7], ["doCheck", 43, 7], ["enableParallelBuilding", 45, 7], ["meta", 47, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 61, 5], ["sha256", 62, 5], ["license", 63, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 67, 5], ["sha256", 68, 5], ["license", 69, 5], ["broken", 70, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["ragelStable", 60, 3], ["ragelDev", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +26,7 @@ export default nix.lambda((args) => (() => {
         const pname = "ragel";
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://www.colm.net/files/ragel/${pname}-${version_1}.tar.gz`),
             sha256: sha256,
           }))));
@@ -40,13 +34,13 @@ export default nix.lambda((args) => (() => {
         const preConfigure = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), build_manual, "sed -i \"s/build_manual=no/build_manual=yes/g\" DIST\n"));
         const configureFlags = nix.thunk(() => [nix.thunk(() => nix.str`--with-colm=${colm}`)]);
         const env = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-std=gnu++98")),
         }));
         const doCheck = true;
         const enableParallelBuilding = true;
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           homepage: "https://www.colm.net/open-source/ragel/",
           description: "State machine compiler",
           mainProgram: "ragel",
@@ -59,7 +53,7 @@ export default nix.lambda((args) => (() => {
           })()),
         }));
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname,
           version: version_1,
           src,
@@ -74,15 +68,15 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     ragelStable: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version: "6.10",
         sha256: "0gvcsl62gh6sg73nwaxav4a5ja23zcnyxncdcdnqa2yjcpdnw5az",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       })))),
     ragelDev: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version: "7.0.0.12",
         sha256: "0x3si355lv6q051lgpg8bpclpiq5brpri5lv3p8kk2qhzfbyz69r",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

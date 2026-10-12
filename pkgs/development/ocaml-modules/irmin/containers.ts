@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/containers.nix", [[["description", 38, 5]], [["pname", 14, 3], ["src", 16, 23], ["version", 16, 27], ["nativeBuildInputs", 18, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 30, 3], ["checkInputs", 31, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, irmin: false, "irmin-fs": false, ppx_irmin: false, lwt: false, mtime: false, alcotest: false, "alcotest-lwt": false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/containers.nix", [["description", 38, 5]]);
-const pos$2 = nix.positions(here + "/containers.nix", [["pname", 14, 3], ["src", 16, 23], ["version", 16, 27], ["nativeBuildInputs", 18, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 30, 3], ["checkInputs", 31, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const alcotest_lwt = nix.arg($, "alcotest-lwt");
   const cacert = nix.arg($, "cacert");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "irmin-containers",
       src: nix.thunk(() => nix.attr(ppx_irmin, "src")),
       version: nix.thunk(() => nix.attr(ppx_irmin, "version")),
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [irmin, irmin_fs, ppx_irmin, lwt, mtime]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, alcotest_lwt, cacert]),
-      meta: nix.thunk(() => nix.update(nix.sel(ppx_irmin, "meta"), { [nix.POS]: pos$1, description: "Mergeable Irmin data structures" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ppx_irmin, "meta"), { [nix.POS]: $pos[0], description: "Mergeable Irmin data structures" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=containers.ts.map

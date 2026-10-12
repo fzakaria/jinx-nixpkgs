@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["COPTS", 51, 5], ["_LDADD", 72, 5]], [["homepage", 90, 5], ["description", 91, 5], ["longDescription", 92, 5], ["changelog", 102, 5], ["license", 103, 5], ["mainProgram", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 29, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 40, 3], ["nativeCheckInputs", 45, 3], ["env", 50, 3], ["makeFlags", 83, 3], ["checkFlags", 85, 3], ["doCheck", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, bmake: false, fetchurl: false, groff: false, inetutils: false, libxcrypt: false, lua: false, openssl: false, stdenv: false, wget: false, minimal: true, userSupport: true, cgiSupport: true, dirIndexSupport: true, dynamicContentSupport: true, sslSupport: true, luaSupport: true, htpasswdSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["COPTS", 51, 5], ["_LDADD", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 90, 5], ["description", 91, 5], ["longDescription", 92, 5], ["changelog", 102, 5], ["license", 103, 5], ["mainProgram", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 29, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 40, 3], ["nativeCheckInputs", 45, 3], ["env", 50, 3], ["makeFlags", 83, 3], ["checkFlags", 85, 3], ["doCheck", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const luaSupport = nix.argOr($, "luaSupport", () => !nix.asBool(minimal));
   const htpasswdSupport = nix.argOr($, "htpasswdSupport", () => !nix.asBool(minimal));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bozohttpd",
       version: "20240126",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://eterna23.net/bozohttpd/bozohttpd-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha512-fr1PnyYAS3wkpmj/npRC3A87UL9LIXw4thlM4GfrtlJbuX5EkWGVJnHJW/EmYp7z+N91dcdRJgdO79l6WJsKpg==",
         })))),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [bmake, groff]),
       nativeCheckInputs: nix.thunk(() => [inetutils, wget]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         COPTS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([
             "-D_DEFAULT_SOURCE",
             "-D_GNU_SOURCE",
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(cgiSupport)), nix.thunk(() => ["CGITESTS="]))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.eterna23.net/bozohttpd/",
         description: "Bozotic HTTP server; small and secure",
         longDescription: "bozohttpd is a small and secure HTTP version 1.1 server. Its main\nfeature is the lack of features, reducing the code size and improving\nverifiability.\n\nIt supports CGI/1.1, HTTP/1.1, HTTP/1.0, HTTP/0.9, ~user translations,\nvirtual hosting support, as well as multiple IP-based servers on a\nsingle machine. It is capable of servicing pages via the IPv6 protocol.\nIt has SSL support. It has no configuration file by design.\n",

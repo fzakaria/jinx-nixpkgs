@@ -2,31 +2,28 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 8, 5], ["buildCommand", 10, 5]], [["NIX_CFLAGS_COMPILE", 39, 7]], [["description", 41, 8]], [["releaseName", 29, 3], ["outputs", 31, 3], ["xcodeHash", 37, 3], ["env", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { mkAppleDerivation: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 8, 5], ["buildCommand", 10, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 8]]);
-const pos$4 = nix.positions(here + "/package.nix", [["releaseName", 29, 3], ["outputs", 31, 3], ["xcodeHash", 37, 3], ["env", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkAppleDerivation = nix.arg($, "mkAppleDerivation");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "removefile-deps-private-headers",
       buildCommand: "mkdir -p \"$out/include/apfs\"\n# APFS group is 'J' per https://github.com/apple-oss-distributions/xnu/blob/94d3b452840153a99b38a3a9659680b2a006908e/bsd/vfs/vfs_fsevents.c#L1054\ncat <<EOF > \"$out/include/apfs/apfs_fsctl.h\"\n#pragma once\n#include <stdint.h>\n#include <sys/ioccom.h>\nstruct xdstream_obj_id {\n  char* xdi_name;\n  uint64_t xdi_xdtream_obj_id;\n};\n#define APFS_CLEAR_PURGEABLE 0\n#define APFSIOC_MARK_PURGEABLE _IOWR('J', 68, uint64_t)\n#define APFSIOC_XDSTREAM_OBJ_ID _IOR('J', 35, struct xdstream_obj_id)\nEOF\n",
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       releaseName: "removefile",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       xcodeHash: "sha256-7dNq0nE2MmFM9U+epTrkCoM1lrswm98m3RWuLDsAuDk=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$3, description: "Darwin file removing library" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[2], description: "Darwin file removing library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

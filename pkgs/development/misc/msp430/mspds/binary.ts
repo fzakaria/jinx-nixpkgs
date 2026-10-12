@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/binary.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["description", 38, 5], ["homepage", 39, 5], ["sourceProvenance", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["sourceRoot", 21, 3], ["libname", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["installPhase", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, unzip: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/binary.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/binary.nix", [["description", 38, 5], ["homepage", 39, 5], ["sourceProvenance", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/binary.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["sourceRoot", 21, 3], ["libname", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["installPhase", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const archPostfix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "is64bit")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), "_64"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "msp-debug-stack-bin",
       version: "3.15.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSPDS/3_15_1_001/export/MSP430_DLL_Developer_Package_Rev_3_15_1_1.zip",
           sha256: "1m1ssrwbhqvqwbp3m4hnjyxnz3f9d4acz9vl1av3fbnhvxr0d2hb",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc"))]),
       installPhase: "install -Dm0755 $libname $out/lib/${libname//_64/}\ninstall -Dm0644 -t $out/include Inc/*.h\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unfree binary release of the TI MSP430 FET debug driver",
         homepage: "https://www.ti.com/tool/MSPDS",
         sourceProvenance: nix.thunk(() => (() => {

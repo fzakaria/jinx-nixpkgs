@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 32, 3], ["buildInputs", 37, 3], ["nativeCheckInputs", 38, 3], ["cmakeFlags", 45, 3], ["dontWrapQtApps", 47, 3], ["doCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, qtbase: false, "pkg-config": false, python3Packages: false, "dbus-glib": false, dbus: false, "telepathy-farstream": false, "telepathy-glib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 32, 3], ["buildInputs", 37, 3], ["nativeCheckInputs", 38, 3], ["cmakeFlags", 45, 3], ["dontWrapQtApps", 47, 3], ["doCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "telepathy-qt";
       const version = "0.9.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://telepathy.freedesktop.org/releases/telepathy-qt/telepathy-qt-${version}.tar.gz`),
           sha256: "bf8e2a09060addb80475a4938105b9b41d9e6837999b7a00e5351783857e18ad",
         }))));
@@ -38,14 +36,14 @@ export default nix.lambda((args) => (() => {
       const dontWrapQtApps = true;
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Telepathy Qt bindings",
         homepage: "https://telepathy.freedesktop.org/components/telepathy-qt/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

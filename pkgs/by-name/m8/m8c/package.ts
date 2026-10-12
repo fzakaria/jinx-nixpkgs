@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["updateScript", 39, 12]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["makeFlags", 24, 3], ["installFlags", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["passthru", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, "pkg-config": false, sdl3: false, libserialport: false, cmake: false, copyDesktopItems: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 39, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["makeFlags", 24, 3], ["installFlags", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["passthru", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "m8c",
       version: "2.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "laamaa",
           repo: "m8c",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, copyDesktopItems]),
       buildInputs: nix.thunk(() => [sdl3, libserialport]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross-platform M8 tracker headless client",
         homepage: "https://github.com/laamaa/m8c",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

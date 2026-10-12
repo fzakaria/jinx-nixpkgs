@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["package", 54, 5], ["command", 55, 5], ["version", 58, 5]], [["version", 53, 18]], [["tests", 53, 12]], [["homepage", 62, 5], ["description", 63, 5], ["mainProgram", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 21, 3], ["subPackages", 23, 3], ["ldflags", 27, 3], ["nativeBuildInputs", 45, 3], ["postInstall", 46, 3], ["passthru", 53, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, testers: false, "kubernetes-kcp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 54, 5], ["command", 55, 5], ["version", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 53, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 53, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["description", 63, 5], ["mainProgram", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 21, 3], ["subPackages", 23, 3], ["ldflags", 27, 3], ["nativeBuildInputs", 45, 3], ["postInstall", 46, 3], ["passthru", 53, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const kubernetes_kcp = nix.arg($, "kubernetes-kcp");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kubernetes-kcp",
       version: "0.29.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kcp-dev",
           repo: "kcp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,11 +40,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "$out/bin/kcp completion bash > kcp.bash\n$out/bin/kcp completion zsh > kcp.zsh\n$out/bin/kcp completion fish > kcp.fish\ninstallShellCompletion kcp.{bash,zsh,fish}\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: kubernetes_kcp,
               command: "kcp --version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://kcp.io",
         description: "Kubernetes-like control planes for form-factors and use-cases beyond Kubernetes and container workloads",
         mainProgram: "kcp",

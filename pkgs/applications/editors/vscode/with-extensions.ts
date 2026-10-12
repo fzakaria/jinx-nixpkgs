@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-extensions.nix", [[["name", 64, 5], ["destination", 65, 5], ["text", 66, 5]], [["name", 70, 5], ["paths", 71, 5]], [["pname", 81, 5], ["version", 82, 5], ["nativeBuildInputs", 83, 5], ["buildInputs", 84, 5], ["dontPatchELF", 85, 5], ["dontStrip", 86, 5], ["meta", 87, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, runCommand: false, buildEnv: false, vscode: false, "vscode-utils": false, makeWrapper: false, writeTextFile: false, vscodeExtensions: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/with-extensions.nix", [["name", 64, 5], ["destination", 65, 5], ["text", 66, 5]]);
-const pos$2 = nix.positions(here + "/with-extensions.nix", [["name", 70, 5], ["paths", 71, 5]]);
-const pos$3 = nix.positions(here + "/with-extensions.nix", [["pname", 81, 5], ["version", 82, 5], ["nativeBuildInputs", 83, 5], ["buildInputs", 84, 5], ["dontPatchELF", 85, 5], ["dontStrip", 86, 5], ["meta", 87, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,20 +22,20 @@ export default nix.lambda((args) => (() => {
   const wrappedPkgVersion = nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), vscode));
   const wrappedPkgName = nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), nix.thunk(() => nix.str`-${wrappedPkgVersion}`), nix.thunk(() => nix.sel(vscode, "name"))));
   const extensionJsonFile = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "vscode-extensions-json",
       destination: "/share/vscode/extensions/extensions.json",
       text: nix.thunk(() => nix.app(nix.sel(vscode_utils, "toExtensionJson"), vscodeExtensions)),
     }))));
   const combinedExtensionsDrv = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "vscode-extensions",
       paths: nix.thunk(() => nix.concat(vscodeExtensions, [extensionJsonFile])),
     }))));
   const extensionsFlag = nix.thunk(() => nix.str`--add-flags "--extensions-dir ${combinedExtensionsDrv}/share/vscode/extensions"
 `);
   return nix.app(runCommand, nix.thunk(() => nix.str`${wrappedPkgName}-with-extensions-${wrappedPkgVersion}`), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: wrappedPkgName,
       version: wrappedPkgVersion,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

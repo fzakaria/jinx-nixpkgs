@@ -2,9 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetchElmDeps.nix", [[["stdenv", 16, 7], ["lib", 17, 7], ["fetchurl", 18, 7], ["registryDat", 19, 7]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false }, ellipsis: false };
 const formals$2 = { args: { elmPackages: false, registryDat: false, elmVersion: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fetchElmDeps.nix", [["stdenv", 16, 7], ["lib", 17, 7], ["fetchurl", 18, 7], ["registryDat", 19, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
     const registryDat = nix.arg($_1, "registryDat");
     const elmVersion = nix.arg($_1, "elmVersion");
     const makeDotElm = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./makeDotElm.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         stdenv: stdenv,
         lib: lib,
         fetchurl: fetchurl,

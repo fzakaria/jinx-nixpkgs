@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 14, 35], ["out", 14, 40]], [["hash", 23, 13]], [["hash", 24, 13]], [["1.1.1", 23, 5], ["1.1.0", 24, 5]], [["description", 54, 5], ["license", 55, 5]], [["pname", 9, 3], ["owner", 10, 3], ["version", 11, 11], ["defaultVersion", 12, 3], ["release", 22, 3], ["releaseRev", 26, 3], ["mlPlugin", 28, 3], ["useDune", 29, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 35, 3], ["configurePhase", 39, 3], ["buildPhase", 43, 3], ["installPhase", 47, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, mkRocqDerivation: false, "rocq-core": false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 14, 35], ["out", 14, 40]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 23, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 24, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["1.1.1", 23, 5], ["1.1.0", 24, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 54, 5], ["license", 55, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["owner", 10, 3], ["version", 11, 11], ["defaultVersion", 12, 3], ["release", 22, 3], ["releaseRev", 26, 3], ["mlPlugin", 28, 3], ["useDune", 29, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 35, 3], ["configurePhase", 39, 3], ["buildPhase", 43, 3], ["installPhase", 47, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const rocq_core = nix.arg($, "rocq-core");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkRocqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "micromega-plugin",
       owner: "rocq-community",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[0], case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(rocq_core, "rocq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "9.0", "9.3")), "1.1.1")),
@@ -30,13 +25,13 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "1.1.1": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-TIUbrMRoPkLx3QcBGTAEdnzqt4HcKOHaQwJWUtBXUQA=",
         })),
         "1.1.0": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-CWMbGErC5bu20Yu9eskgslLkzmSof6klNlOYEkQjUjc=",
         })),
       })),
@@ -52,7 +47,7 @@ mkdir $out/lib/coq/
 mv $OCAMLFIND_DESTDIR/coq $out/lib/coq/${nix.sel(rocq_core, "rocq-version")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Plugin for (semi)decision procedures for arithmetic.",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
       })),

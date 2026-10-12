@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mkesdb.nix", [[["platforms", 18, 8]], [["path", 9, 3], ["extraPaths", 11, 3], ["extraNativeBuildInputs", 13, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, byacc: false, flex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mkesdb.nix", [["platforms", 18, 8]]);
-const pos$2 = nix.positions(here + "/mkesdb.nix", [["path", 9, 3], ["extraPaths", 11, 3], ["extraNativeBuildInputs", 13, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const byacc = nix.arg($, "byacc");
   const flex = nix.arg($, "flex");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.bin/mkesdb",
       extraPaths: nix.thunk(() => ["lib/libc/iconv"]),
       extraNativeBuildInputs: nix.thunk(() => [byacc, flex]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

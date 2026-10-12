@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 30, 5], ["group", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["forceFetchGit", 35, 5], ["hash", 36, 5]], [["ignoredVersions", 74, 40]], [["updateScript", 74, 12]], [["homepage", 77, 5], ["changelog", 78, 5], ["description", 79, 5], ["maintainers", 80, 5], ["license", 83, 5], ["platforms", 84, 5]], [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 29, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 40, 3], ["propagatedBuildInputs", 52, 3], ["nativeCheckInputs", 58, 3], ["doCheck", 62, 3], ["checkPhase", 63, 3], ["passthru", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, glib: false, gtk3: false, meson: false, mesonEmulatorHook: false, ninja: false, "pkg-config": false, "gobject-introspection": false, "gtk-doc": false, "docbook-xsl-nons": false, gitUpdater: false, dbus: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 30, 5], ["group", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["forceFetchGit", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ignoredVersions", 74, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 74, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["changelog", 78, 5], ["description", 79, 5], ["maintainers", 80, 5], ["license", 83, 5], ["platforms", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 29, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 40, 3], ["propagatedBuildInputs", 52, 3], ["nativeCheckInputs", 58, 3], ["doCheck", 62, 3], ["checkPhase", 63, 3], ["passthru", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libgedit-amtk",
       version: "5.10.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "gedit",
@@ -56,11 +52,11 @@ ${xvfb_run}/bin/xvfb-run -s '-screen 0 800x600x24' dbus-run-session \\
 runHook postCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "(alpha|beta|rc).*" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], ignoredVersions: "(alpha|beta|rc).*" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/World/gedit/libgedit-amtk",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/gedit/libgedit-amtk/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Actions, Menus and Toolbars Kit for GTK applications",

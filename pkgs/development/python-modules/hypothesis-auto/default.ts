@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 5], ["version", 19, 13], ["hash", 20, 5]], [["pytest", 36, 5]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["pythonRelaxDeps", 23, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["optional-dependencies", 35, 3], ["pythonImportsCheck", 39, 3], ["nativeCheckInputs", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hypothesis: false, "poetry-core": false, pydantic: false, pytest: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 13], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pytest", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["pythonRelaxDeps", 23, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["optional-dependencies", 35, 3], ["pythonImportsCheck", 39, 3], ["nativeCheckInputs", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "hypothesis_auto",
           version: version,
           hash: "sha256-U0vcOB9jXmUV5v2IwybVu2arY1FpPnKkP7m2kbD1kRw=",
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["hypothesis", "pydantic"]);
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [hypothesis, pydantic]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, pytest: nix.thunk(() => [pytest]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], pytest: nix.thunk(() => [pytest]) }));
       const pythonImportsCheck = nix.thunk(() => ["hypothesis_auto"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Enables fully automatic tests for type annotated functions",
         homepage: "https://github.com/timothycrosley/hypothesis-auto/",
         changelog: "https://github.com/timothycrosley/hypothesis-auto/blob/master/CHANGELOG.md",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

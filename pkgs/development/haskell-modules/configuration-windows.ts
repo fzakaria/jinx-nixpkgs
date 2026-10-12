@@ -2,9 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/configuration-windows.nix", [[["name", 28, 7], ["url", 29, 7], ["sha256", 30, 7]], [["digest", 11, 3], ["echo", 12, 3], ["http-client", 13, 3], ["regex-posix", 14, 3], ["simple-sendfile", 15, 3], ["snap-core", 18, 3], ["tar-conduit", 19, 3], ["unix-time", 20, 3], ["warp", 21, 3], ["network", 23, 3], ["iserv-proxy", 39, 3]]]);
 const formals$1 = { args: { pkgs: false, haskellLib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/configuration-windows.nix", [["name", 28, 7], ["url", 29, 7], ["sha256", 30, 7]]);
-const pos$2 = nix.positions(here + "/configuration-windows.nix", [["digest", 11, 3], ["echo", 12, 3], ["http-client", 13, 3], ["regex-posix", 14, 3], ["simple-sendfile", 15, 3], ["snap-core", 18, 3], ["tar-conduit", 19, 3], ["unix-time", 20, 3], ["warp", 21, 3], ["network", 23, 3], ["iserv-proxy", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const w = nix.withScope(haskellLib, null);
   return (self) => (super$) => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     digest: nix.thunk(() => nix.app(nix.lookup(w, "addBuildDepends"), nix.thunk(() => [nix.thunk(() => nix.sel(self, "zlib"))]), nix.thunk(() => nix.sel(super$, "digest")))),
     echo: nix.thunk(() => nix.app(nix.lookup(w, "addBuildDepends"), nix.thunk(() => [nix.thunk(() => nix.sel(self, "mintty"))]), nix.thunk(() => nix.sel(super$, "echo")))),
     "http-client": nix.thunk(() => nix.app(nix.lookup(w, "addBuildDepends"), nix.thunk(() => [nix.thunk(() => nix.sel(self, "safe"))]), nix.thunk(() => nix.sel(super$, "http-client")))),
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
     network: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(super$, "network")), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.lookup(w, "addBuildDepends"), nix.thunk(() => [nix.thunk(() => nix.sel(self, "temporary"))]))),
         nix.thunk(() => nix.app(nix.lookup(w, "appendPatch"), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               name: "dont-frag-wine.patch",
               url: "https://github.com/haskell/network/commit/ecd94408696117d34d4c13031c30d18033504827.patch",
               sha256: "sha256-8LtAkBmgMMMIW6gPYDVuwYck/4fcOf08Hp2zLmsRW2w=",

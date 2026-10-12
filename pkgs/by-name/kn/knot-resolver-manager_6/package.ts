@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["kresd", 103, 13]], [["mainProgram", 107, 5], ["description", 108, 26]], [["pname", 12, 3], ["version", 13, 19], ["src", 13, 27], ["pyproject", 14, 3], ["patches", 16, 3], ["postPatch", 24, 3], ["build-system", 30, 3], ["propagatedBuildInputs", 35, 3], ["buildInputs", 45, 3], ["makeWrapperArgs", 54, 3], ["postCheck", 63, 3], ["doCheck", 72, 3], ["nativeCheckInputs", 73, 3], ["preCheck", 84, 3], ["disabledTestPaths", 88, 3], ["disabledTests", 96, 3], ["passthru", 102, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, "knot-resolver_6": false, python3Packages: false, extraFeatures: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["kresd", 103, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 107, 5], ["description", 108, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 19], ["src", 13, 27], ["pyproject", 14, 3], ["patches", 16, 3], ["postPatch", 24, 3], ["build-system", 30, 3], ["propagatedBuildInputs", 35, 3], ["buildInputs", 45, 3], ["makeWrapperArgs", 54, 3], ["postCheck", 63, 3], ["doCheck", 72, 3], ["nativeCheckInputs", 73, 3], ["preCheck", 84, 3], ["disabledTestPaths", 88, 3], ["disabledTests", 96, 3], ["passthru", 102, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const kresd = nix.thunk(() => nix.sel(knot_resolver_6, "finalPackage"));
   nix.assert_(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(kresd, "version")), "6.0.0"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/kn/knot-resolver-manager_6/package.nix:10:1");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "knot-resolver",
       version: nix.thunk(() => nix.attr(kresd, "version")),
       src: nix.thunk(() => nix.attr(kresd, "src")),
@@ -78,11 +76,11 @@ echo -e 'quit()' | env -i ./kresd -a 127.0.0.1#53535 -c test-http.lua
         "tests/pytests/test_tls.py",
       ]),
       disabledTests: nix.thunk(() => ["test_proxy_random_close", "test_proxy_rehandshake_tls12"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, kresd: kresd })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], kresd: kresd })),
       meta: nix.thunk(() => nix.update(nix.sel(kresd, "meta"), (() => {
         const from = nix.thunk(() => nix.sel(kresd, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "knot-resolver",
         description: nix.thunk(() => nix.attr(from, "description")),
       };

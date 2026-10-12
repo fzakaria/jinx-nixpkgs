@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["url", 39, 7], ["hash", 40, 7]], [["url", 43, 7], ["hash", 44, 7]], [["url", 47, 7], ["hash", 48, 7]], [["url", 51, 7], ["hash", 52, 7]], [["url", 55, 7], ["hash", 56, 7]], [["url", 59, 7], ["hash", 60, 7]], [["url", 63, 7], ["hash", 64, 7]], [["NIX_CFLAGS_COMPILE", 72, 7]], [["description", 83, 5], ["mainProgram", 84, 5], ["license", 85, 5], ["homepage", 86, 5], ["maintainers", 87, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["patches", 37, 3], ["env", 72, 3], ["postPatch", 74, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, gettext: false, libx11: false, libxext: false, xorgproto: false, libice: false, libsm: false, libpng12: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 43, 7], ["hash", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 47, 7], ["hash", 48, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 51, 7], ["hash", 52, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 55, 7], ["hash", 56, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 59, 7], ["hash", 60, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 63, 7], ["hash", 64, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 72, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 83, 5], ["mainProgram", 84, 5], ["license", 85, 5], ["homepage", 86, 5], ["maintainers", 87, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["patches", 37, 3], ["env", 72, 3], ["postPatch", 74, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libpng12 = nix.arg($, "libpng12");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "lincity",
       version: "1.13.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/lincity/lincity-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-e0y9Ef/Uy+15oKrbJfKxw04lqCARgvuyWc4vRQ/lAV0=",
         })))),
@@ -42,48 +32,48 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libice, libpng12, libsm, libx11, libxext, xorgproto, zlib]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://sources.debian.net/data/main/l/lincity/1.13.1-13/debian/patches/extern-inline-functions-777982",
             hash: "sha256-4LKZuUztvfOUhkKwjZJnku1yfBVSqT5Uybx8MPkftxk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://sources.debian.net/data/main/l/lincity/1.13.1-13/debian/patches/clang-ftbfs-757859",
             hash: "sha256-91mzptO37x1UfY6pa6CrEkSkfhu1KNJDqIB5zbi3GSU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://sources.debian.org/data/main/l/lincity/1.13.1-16/debian/patches/fix-implicit-declarations-823432",
             hash: "sha256-S9TQ7KcmGGsQeTKLXqF/9FDXv/+WjrEPL4ly7DSki1s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://sources.debian.org/data/main/l/lincity/1.13.1-16/debian/patches/fix-implicit-function-declarations-1066295",
             hash: "sha256-KlmXBWPI8lFWO8kPA78uG52DCs8NeGmNNFpZYfCwo5M=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://sources.debian.org/data/main/l/lincity/1.13.1-16/debian/patches/delay_timers",
             hash: "sha256-IxstC74R7kige0ormFLGEj4uzbJt/b8bLmygheN08II=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://sources.debian.org/data/main/l/lincity/1.13.1-16/debian/patches/map-max-draw",
             hash: "sha256-9qLPrmEKMMrSVwqtEvoiyjPPo1eLO3u6bCJslubmBJU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: "https://sources.debian.org/data/main/l/lincity/1.13.1-17/debian/patches/function-pointer-1097300",
             hash: "sha256-6fwDIX88dCpAFE02Z4Ts5gsMf3wwxrToEwpy0DwZ6H4=",
           })))),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$9, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[8], NIX_CFLAGS_COMPILE: "-fcommon" })),
       postPatch: nix.thunk(() => nix.str`sed -e 's@\\[MPS_INFO_CHARS\\]@[MPS_INFO_CHARS+8]@' -i mps.c -i mps.h
 
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "sed -i '/\\#include \\\"malloc.h\\\"/d' readpng.c\n")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "City simulation game",
         mainProgram: "xlincity",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

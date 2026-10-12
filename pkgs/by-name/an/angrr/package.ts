@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["package", 49, 9]], [["module", 47, 7], ["version", 48, 7]], [["tests", 46, 5], ["updateScript", 52, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["buildAndTestSubdir", 25, 3], ["nativeBuildInputs", 27, 3], ["postBuild", 31, 3], ["postInstall", 36, 3], ["passthru", 45, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, nixosTests: false, testers: false, "nix-update-script": false, "go-md2man": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 49, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["module", 47, 7], ["version", 48, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 46, 5], ["updateScript", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["buildAndTestSubdir", 25, 3], ["nativeBuildInputs", 27, 3], ["postBuild", 31, 3], ["postInstall", 36, 3], ["passthru", 45, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const go_md2man = nix.arg($, "go-md2man");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "angrr",
       version: "0.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linyinfeng",
           repo: "angrr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,19 +32,19 @@ export default nix.lambda((args) => (() => {
       postBuild: "mkdir --parents build/{man-pages,shell-completions}\ncargo xtask man-pages --out build/man-pages\ncargo xtask shell-completions --out build/shell-completions\n",
       postInstall: "install -m400 -D ./direnv/angrr.sh $out/share/direnv/lib/angrr.sh\ninstallManPage build/man-pages/*\ninstallShellCompletion --cmd angrr \\\n  --bash build/shell-completions/angrr.bash \\\n  --fish build/shell-completions/angrr.fish \\\n  --zsh  build/shell-completions/_angrr\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           module: nix.thunk(() => nix.sel(nixosTests, "angrr")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Auto Nix GC Root Retention",
         homepage: "https://github.com/linyinfeng/angrr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

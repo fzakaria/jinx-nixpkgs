@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]], [["NIX_CFLAGS_COMPILE", 98, 7]], [["package", 145, 7], ["command", 147, 7]], [["version", 144, 11]], [["rev-prefix", 150, 7], ["ignoredVersions", 151, 7]], [["tests", 144, 5], ["updateScript", 149, 5]], [["homepage", 156, 5], ["description", 157, 5], ["longDescription", 158, 5], ["license", 165, 5], ["maintainers", 166, 5], ["platforms", 170, 5], ["mainProgram", 171, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["postPatch", 54, 3], ["strictDeps", 65, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 77, 3], ["env", 98, 3], ["configureFlags", 100, 3], ["enableParallelBuilding", 102, 3], ["postBuild", 105, 3], ["postInstall", 110, 3], ["doInstallCheck", 124, 3], ["installCheckPhase", 126, 3], ["passthru", 143, 3], ["meta", 155, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false, writers: false, "alsa-lib": false, autoreconfHook: false, ffmpeg: false, fluidsynth: false, freetype: false, glib: false, libGL: false, libicns: false, libpcap: false, libpng: false, libslirp: false, libxkbfile: false, libxrandr: false, makeWrapper: false, ncurses: false, "pkg-config": false, python3: false, SDL2: false, SDL2_net: false, testers: false, yad: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 98, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 145, 7], ["command", 147, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 144, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["rev-prefix", 150, 7], ["ignoredVersions", 151, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 144, 5], ["updateScript", 149, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 156, 5], ["description", 157, 5], ["longDescription", 158, 5], ["license", 165, 5], ["maintainers", 166, 5], ["platforms", 170, 5], ["mainProgram", 171, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["postPatch", 54, 3], ["strictDeps", 65, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 77, 3], ["env", 98, 3], ["configureFlags", 100, 3], ["enableParallelBuilding", 102, 3], ["postBuild", 105, 3], ["postInstall", 110, 3], ["doInstallCheck", 124, 3], ["installCheckPhase", 126, 3], ["passthru", 143, 3], ["meta", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const check_dosbox_conf = nix.thunk(() => nix.app(nix.sel(writers, "writeText"), "check-dosbox.conf", "[autoexec]\nMOUNT C .\n\nVER > C:\\BLUB\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "dosbox-x",
       version: "2026.08.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "joncampbell123",
           repo: "dosbox-x",
           rev: nix.thunk(() => nix.str`dosbox-x-v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +63,7 @@ export default nix.lambda((args) => (() => {
         zlib,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib, libGL, libxkbfile, libxrandr])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2_net)}/include/SDL2`),
       })),
       configureFlags: nix.thunk(() => [
@@ -98,19 +91,19 @@ grep -q 'Reported DOS version' BLUB
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} -version 2>&1 || true`),
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "dosbox-x-v", ignoredVersions: "-osfree$" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], "rev-prefix": "dosbox-x-v", ignoredVersions: "-osfree$" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://dosbox-x.com",
         description: "Cross-platform DOS emulator based on the DOSBox project",
         longDescription: "DOSBox-X is an expanded fork of DOSBox with specific focus on running\nWindows 3.x/9x/Me, PC-98 and 3D support via 3dfx.\n\nThe full expanded feature list is available here:\nhttps://dosbox-x.com/wiki/DOSBox%E2%80%90X%E2%80%99s-Feature-Highlights\n",

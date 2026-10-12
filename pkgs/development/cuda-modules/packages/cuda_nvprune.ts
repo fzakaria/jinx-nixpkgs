@@ -2,20 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda_nvprune.nix", [[["description", 9, 5], ["longDescription", 10, 5], ["homepage", 13, 5]], [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["meta", 8, 3]]]);
 const formals$1 = { args: { buildRedist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda_nvprune.nix", [["description", 9, 5], ["longDescription", 10, 5], ["homepage", 13, 5]]);
-const pos$2 = nix.positions(here + "/cuda_nvprune.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["meta", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "cuda_nvprune",
       outputs: nix.thunk(() => ["out"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Prune host object files and libraries to only contain device code for the specified targets",
         longDescription: "`nvprune` prunes host object files and libraries to only contain device code for the specified targets.\n",
         homepage: "https://docs.nvidia.com/cuda/cuda-binary-utilities#nvprune",

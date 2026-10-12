@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 33, 5], ["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["name", 46, 5], ["fetchSubmodules", 47, 5], ["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["NIX_CFLAGS_COMPILE", 106, 7]], [["updateScript", 133, 12]], [["description", 136, 5], ["homepage", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 145, 5]], [["pname", 42, 3], ["version", 43, 11], ["src", 45, 3], ["strictDeps", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 66, 3], ["autoPatchelfIgnoreMissingDeps", 84, 3], ["appendRunpaths", 85, 3], ["cmakeFlags", 90, 3], ["env", 106, 3], ["postPatch", 109, 3], ["postInstall", 118, 3], ["passthru", 133, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, llvm: false, fetchFromGitHub: false, mbedtls: false, gtk3: false, "pkg-config": false, capstone: false, dbus: false, libGLU: false, libGL: false, glfw3: false, file: false, perl: false, python3: false, jansson: false, curl: false, fmt_11: false, nlohmann_json: false, yara: false, "nix-update-script": false, autoPatchelfHook: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 33, 5], ["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 46, 5], ["fetchSubmodules", 47, 5], ["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 106, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 133, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 136, 5], ["homepage", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 145, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 11], ["src", 45, 3], ["strictDeps", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 66, 3], ["autoPatchelfIgnoreMissingDeps", 84, 3], ["appendRunpaths", 85, 3], ["cmakeFlags", 90, 3], ["env", 106, 3], ["postPatch", 109, 3], ["postInstall", 118, 3], ["passthru", 133, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const version = "1.38.1";
   const patterns_version = "1.38.1";
   const patterns_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`ImHex-Patterns-source-${patterns_version}`),
       owner: "WerWolv",
       repo: "ImHex-Patterns",
@@ -47,11 +42,11 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-MqQHzR5lKWhQI6pIX1kbAPDVG18UrMJM45mtIe/ggJE=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "imhex",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`ImHex-source-${version}`),
           fetchSubmodules: true,
           owner: "WerWolv",
@@ -95,17 +90,17 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INSTALL_NAME_DIR", "@executable_path/../Frameworks")),
         ])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })),
       postPatch: nix.thunk(() => nix.add(nix.str`# Link patterns source into location expected by cmake when IMHEX_OFFLINE_BUILD is set
 ln -s ${patterns_src} ImHex-Patterns
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace cmake/modules/PostprocessBundle.cmake \\\n  --replace-fail \"fixup_bundle\" \"#fixup_bundle\"\n"))),
       postInstall: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "# without this imhex is not able to find pattern files\nwrapProgram $out/bin/imhex --prefix XDG_DATA_DIRS : $out/share\n" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p $out/Applications\nmv $out/imhex.app $out/Applications\nmakeWrapper \"$out/Applications/imhex.app/Contents/MacOS/imhex\" \"$out/bin/imhex\"\n" : nix.builtins.throw("Unsupported system")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Hex Editor for Reverse Engineers, Programmers and people who value their retinas when working at 3 AM",
         homepage: "https://github.com/WerWolv/ImHex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

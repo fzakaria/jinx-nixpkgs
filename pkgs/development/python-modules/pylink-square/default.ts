@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["pyocd", 58, 13]], [["tests", 57, 12]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 48, 3], ["disabledTests", 50, 3], ["passthru", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, psutil: false, six: false, mock: false, pytestCheckHook: false, pyocd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pyocd", 58, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 57, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 48, 3], ["disabledTests", 50, 3], ["passthru", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "square",
           repo: "pylink",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
         "test_set_log_file_success",
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, pyocd: pyocd })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], pyocd: pyocd })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python interface for the SEGGER J-Link",
         homepage: "https://github.com/square/pylink",
         changelog: nix.thunk(() => nix.str`https://github.com/square/pylink/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

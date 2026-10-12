@@ -2,54 +2,45 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/speechd.nix", [[["maintainers", 4, 8]], [["text", 15, 36]], [["libao.conf", 15, 23]], [["systemPackages", 11, 19], ["etc", 15, 19]], [["testmodule", 25, 17]], [["enable", 20, 9], ["config", 21, 9], ["modules", 25, 9]], [["speechd", 19, 16]], [["imports", 9, 7], ["environment", 11, 7], ["services", 19, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 33, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/speechd.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/speechd.nix", [["text", 15, 36]]);
-const pos$3 = nix.positions(here + "/speechd.nix", [["libao.conf", 15, 23]]);
-const pos$4 = nix.positions(here + "/speechd.nix", [["systemPackages", 11, 19], ["etc", 15, 19]]);
-const pos$5 = nix.positions(here + "/speechd.nix", [["testmodule", 25, 17]]);
-const pos$6 = nix.positions(here + "/speechd.nix", [["enable", 20, 9], ["config", 21, 9], ["modules", 25, 9]]);
-const pos$7 = nix.positions(here + "/speechd.nix", [["speechd", 19, 16]]);
-const pos$8 = nix.positions(here + "/speechd.nix", [["imports", 9, 7], ["environment", 11, 7], ["services", 19, 7]]);
-const pos$9 = nix.positions(here + "/speechd.nix", [["machine", 6, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/speechd.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "speechd",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "h7x4"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "speechd"))]),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              "libao.conf": nix.thunk(() => ({ [nix.POS]: pos$2, text: "default_driver=null\n" })),
+              [nix.POS]: $pos[2],
+              "libao.conf": nix.thunk(() => ({ [nix.POS]: $pos[1], text: "default_driver=null\n" })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             speechd: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               config: "AddModule \"testmodule\" \"sd_generic\" \"testmodule.conf\"\nDefaultModule \"testmodule\"\n",
               modules: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 testmodule: "AddVoice \"en\" \"male1\" \"testmodule_voice\"\nGenericLanguage \"en\" \"en\"\nGenericExecuteSynth \"echo \\'$DATA\\' >> /tmp/speechd-spoken.txt\"\n",
               })),
             })),

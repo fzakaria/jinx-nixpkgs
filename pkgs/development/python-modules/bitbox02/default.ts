@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 26], ["version", 21, 32], ["hash", 22, 5]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, base58: false, buildPythonPackage: false, ecdsa: false, fetchPypi: false, hidapi: false, noiseprotocol: false, protobuf: false, semver: false, setuptools: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 26], ["version", 21, 32], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bitbox02",
       version: "7.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-J9UQXrFaVTcZ+p0+aJIchksAyGGzpkQETZrGhCbxhEc=",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["bitbox02"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Firmware code of the BitBox02 hardware wallet",
         homepage: "https://github.com/digitalbitbox/bitbox02-firmware/",
         changelog: nix.thunk(() => nix.str`https://github.com/digitalbitbox/bitbox02-firmware/blob/py-bitbox02-${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

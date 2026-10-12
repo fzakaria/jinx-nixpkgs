@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]], [["maintainers", 34, 5], ["description", 35, 5], ["longDescription", 36, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["dependencies", 25, 3], ["pythonImportsCheck", 29, 3], ["nativeCheckInputs", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "legacy-cgi": false, pyasyncore: false, pythonAtLeast: false, setuptools: false, unittestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["maintainers", 34, 5], ["description", 35, 5], ["longDescription", 36, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["dependencies", 25, 3], ["pythonImportsCheck", 29, 3], ["nativeCheckInputs", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-MTh2BwNTu7NsTHuvoH+r0YHjEGfphX84f04Ah2eu02A=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["wsgitools"]);
       const nativeCheckInputs = nix.thunk(() => [unittestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "clkamp"))];
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

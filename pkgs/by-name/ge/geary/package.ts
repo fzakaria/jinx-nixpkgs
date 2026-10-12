@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 53, 5], ["hash", 54, 5]], [["packageName", 150, 7]], [["updateScript", 149, 5]], [["homepage", 155, 5], ["changelog", 156, 5], ["description", 157, 5], ["teams", 158, 5], ["license", 159, 5], ["platforms", 160, 5]], [["pname", 49, 3], ["version", 50, 3], ["src", 52, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 71, 3], ["nativeCheckInputs", 98, 3], ["mesonFlags", 106, 3], ["strictDeps", 111, 3], ["postPatch", 113, 3], ["doCheck", 127, 3], ["checkPhase", 129, 3], ["preFixup", 143, 3], ["passthru", 148, 3], ["meta", 154, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gtk3: false, vala: false, enchant: false, wrapGAppsHook3: false, meson: false, ninja: false, "desktop-file-utils": false, "gnome-online-accounts": false, "gsettings-desktop-schemas": false, "adwaita-icon-theme": false, libpeas: false, libsecret: false, gmime3: false, isocodes: false, icu: false, libxml2: false, gettext: false, sqlite: false, gcr_3: false, "json-glib": false, itstool: false, libgee: false, gnome: false, webkitgtk_4_1: false, python3: false, gnutls: false, cacert: false, "xvfb-run": false, glibcLocales: false, dbus: false, "shared-mime-info": false, libunwind: false, folks: false, "glib-networking": false, "gobject-introspection": false, gspell: false, libstemmer: false, libytnef: false, libhandy: false, gsound: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 53, 5], ["hash", 54, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 150, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 149, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 155, 5], ["changelog", 156, 5], ["description", 157, 5], ["teams", 158, 5], ["license", 159, 5], ["platforms", 160, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 49, 3], ["version", 50, 3], ["src", 52, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 71, 3], ["nativeCheckInputs", 98, 3], ["mesonFlags", 106, 3], ["strictDeps", 111, 3], ["postPatch", 113, 3], ["doCheck", 127, 3], ["checkPhase", 129, 3], ["preFixup", 143, 3], ["passthru", 148, 3], ["meta", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,11 +52,11 @@ export default nix.lambda((args) => (() => {
   const libhandy = nix.arg($, "libhandy");
   const gsound = nix.arg($, "gsound");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "geary",
       version: "46.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/geary/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/geary-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-r60VEwKBfd8Ji15BbnrH8tXupWejuAu5C9PGKv0TuaE=",
         })))),
@@ -122,11 +118,11 @@ runHook postCheck
 `),
       preFixup: "# Add geary to path for geary-attach\ngappsWrapperArgs+=(--prefix PATH : \"$out/bin\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "geary" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "geary" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/geary",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/geary/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Mail client for GNOME 3",

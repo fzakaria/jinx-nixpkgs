@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["PBR_VERSION", 39, 7]], [["description", 122, 5], ["mainProgram", 123, 5], ["homepage", 124, 5], ["downloadPage", 125, 5], ["license", 126, 5], ["teams", 127, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["env", 39, 3], ["build-system", 41, 3], ["sphinxBuilders", 49, 3], ["dependencies", 51, 3], ["nativeCheckInputs", 65, 3], ["disabledTests", 73, 3], ["pythonImportsCheck", 106, 3], ["nativeInstallCheckInputs", 116, 3], ["doInstallCheck", 119, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cliff: false, fetchFromGitHub: false, iso8601: false, keystoneauth1: false, openstackdocstheme: false, "osc-lib": false, "oslo-i18n": false, "oslo-serialization": false, "oslo-utils": false, pbr: false, prettytable: false, "python-openstackclient": false, "python-swiftclient": false, pyyaml: false, "requests-mock": false, requests: false, setuptools: false, sphinxHook: false, stestrCheckHook: false, testscenarios: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PBR_VERSION", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 122, 5], ["mainProgram", 123, 5], ["homepage", 124, 5], ["downloadPage", 125, 5], ["license", 126, 5], ["teams", 127, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["env", 39, 3], ["build-system", 41, 3], ["sphinxBuilders", 49, 3], ["dependencies", 51, 3], ["nativeCheckInputs", 65, 3], ["disabledTests", 73, 3], ["pythonImportsCheck", 106, 3], ["nativeInstallCheckInputs", 116, 3], ["doInstallCheck", 119, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,19 +31,19 @@ export default nix.lambda((args) => (() => {
   const testscenarios = nix.arg($, "testscenarios");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "python-heatclient",
       version: "5.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openstack",
           repo: "python-heatclient",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-KUFpFqjFtuF9VFQ0Fn9oVQSpwsocZhKY6vWtqpefUJs=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       "build-system": nix.thunk(() => [openstackdocstheme, python_openstackclient, setuptools, pbr, sphinxHook]),
@@ -109,7 +106,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OpenStack Heat Client and bindings",
         mainProgram: "heat",
         homepage: "https://docs.openstack.org/python-heatclient/latest/",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["package", 81, 9], ["version", 82, 30]], [["nixos", 79, 7], ["version", 80, 7]], [["tests", 78, 5], ["updateScript", 86, 5]], [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 97, 5], ["mainProgram", 101, 5], ["broken", 103, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["__darwinAllowLocalNetworking", 32, 3], ["checkFlags", 36, 3], ["postPatch", 58, 3], ["postBuild", 63, 3], ["postInstall", 67, 3], ["outputs", 72, 3], ["passthru", 77, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "ntpd-rs": false, installShellFiles: false, pandoc: false, nixosTests: false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 81, 9], ["version", 82, 30]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nixos", 79, 7], ["version", 80, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 78, 5], ["updateScript", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 97, 5], ["mainProgram", 101, 5], ["broken", 103, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["__darwinAllowLocalNetworking", 32, 3], ["checkFlags", 36, 3], ["postPatch", 58, 3], ["postBuild", 63, 3], ["postInstall", 67, 3], ["outputs", 72, 3], ["passthru", 77, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ntpd-rs",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pendulum-project",
           repo: "ntpd-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,12 +57,12 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm444 -t $out/lib/systemd/system docs/examples/conf/{ntpd-rs,ntpd-rs-metrics}.service\ninstallManPage docs/precompiled/man/{ntp.toml.5,ntp-ctl.8,ntp-daemon.8,ntp-metrics-exporter.8}\n",
       outputs: nix.thunk(() => ["out", "man"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           nixos: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.sel(nixosTests, "ntpd-rs")))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: ntpd_rs,
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             })))),
@@ -75,7 +70,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Full-featured implementation of the Network Time Protocol",
         homepage: "https://tweedegolf.nl/en/pendulum",
         changelog: nix.thunk(() => nix.str`https://github.com/pendulum-project/ntpd-rs/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

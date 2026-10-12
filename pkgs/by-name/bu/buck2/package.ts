@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-darwin", 50, 7], ["x86_64-linux", 51, 7], ["aarch64-linux", 52, 7]], [["url", 72, 7], ["hash", 73, 7]], [["url", 128, 7], ["hash", 129, 7]], [["prelude", 127, 5], ["updateScript", 132, 5]], [["description", 136, 5], ["homepage", 137, 5], ["changelog", 138, 5], ["license", 139, 5], ["mainProgram", 143, 5], ["sourceProvenance", 144, 5], ["maintainers", 145, 5], ["platforms", 151, 5]], [["pname", 66, 3], ["version", 67, 3], ["srcs", 69, 3], ["unpackCmd", 77, 3], ["sourceRoot", 78, 3], ["strictDeps", 80, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 89, 3], ["installPhase", 94, 3], ["preInstallCheck", 105, 3], ["doInstallCheck", 116, 3], ["nativeInstallCheckInputs", 117, 3], ["preVersionCheck", 121, 3], ["passthru", 123, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, fetchurl: false, installShellFiles: false, versionCheckHook: false, autoPatchelfHook: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-darwin", 50, 7], ["x86_64-linux", 51, 7], ["aarch64-linux", 52, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 72, 7], ["hash", 73, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 128, 7], ["hash", 129, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["prelude", 127, 5], ["updateScript", 132, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 136, 5], ["homepage", 137, 5], ["changelog", 138, 5], ["license", 139, 5], ["mainProgram", 143, 5], ["sourceProvenance", 144, 5], ["maintainers", 145, 5], ["platforms", 151, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 66, 3], ["version", 67, 3], ["srcs", 69, 3], ["unpackCmd", 77, 3], ["sourceRoot", 78, 3], ["strictDeps", 80, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 89, 3], ["installPhase", 94, 3], ["preInstallCheck", 105, 3], ["doInstallCheck", 116, 3], ["nativeInstallCheckInputs", 117, 3], ["preVersionCheck", 121, 3], ["passthru", 123, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const buildHashes = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./hashes.json")))));
   const archHashes = nix.thunk(() => nix.sel(buildHashes, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const platform_suffix = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-darwin": "aarch64-apple-darwin",
     "x86_64-linux": "x86_64-unknown-linux-gnu",
     "aarch64-linux": "aarch64-unknown-linux-gnu",
   }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const binaries = nix.thunk(() => ["buck2", "rust-project", "starlark_fmt"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "buck2",
       version: nix.thunk(() => nix.sel(buildHashes, "version")),
       srcs: nix.thunk(() => nix.builtins.map((binary) => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://github.com/facebook/buck2/releases/download/${nix.sel(finalAttrs, "version")}/${binary}-${platform_suffix}.zst`),
             hash: nix.thunk(() => nix.sel(archHashes, nix.key(nix.force(binary)))),
           }))), binaries)),
@@ -61,16 +56,16 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       preVersionCheck: "version=buck2",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         prelude: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://github.com/facebook/buck2-prelude/archive/${nix.sel(buildHashes, "preludeGit")}.tar.gz`),
             hash: nix.thunk(() => nix.sel(buildHashes, "preludeFod")),
           })))),
         updateScript: nix.path(here, "./update.nu"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Fast, hermetic, multi-language build system",
         homepage: "https://buck2.build",
         changelog: nix.thunk(() => nix.str`https://github.com/facebook/buck2/releases/tag/${nix.sel(finalAttrs, "version")}`),

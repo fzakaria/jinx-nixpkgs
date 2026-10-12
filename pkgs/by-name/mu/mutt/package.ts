@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 5], ["hash", 43, 5]], [["url", 51, 5], ["sha256", 52, 5]], [["updateScript", 116, 5]], [["description", 130, 5], ["homepage", 131, 5], ["mainProgram", 132, 5], ["license", 133, 5], ["platforms", 134, 5], ["maintainers", 135, 5]], [["pname", 33, 3], ["version", 34, 3], ["outputs", 35, 3], ["src", 41, 3], ["patches", 46, 3], ["enableParallelBuilding", 55, 3], ["strictDeps", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 63, 3], ["configureFlags", 72, 3], ["postPatch", 97, 3], ["postInstall", 101, 3], ["passthru", 115, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, ncurses: false, which: false, perl: false, gdbm: false, openssl: false, cyrus_sasl: false, gnupg: false, gpgme: false, libkrb5: false, zlib: false, headerCache: true, sslSupport: true, saslSupport: true, smimeSupport: true, gpgSupport: true, gpgmeSupport: true, imapSupport: true, pop3Support: true, smtpSupport: true, withSidebar: true, gssSupport: true, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 51, 5], ["sha256", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 116, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 130, 5], ["homepage", 131, 5], ["mainProgram", 132, 5], ["license", 133, 5], ["platforms", 134, 5], ["maintainers", 135, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["outputs", 35, 3], ["src", 41, 3], ["patches", 46, 3], ["enableParallelBuilding", 55, 3], ["strictDeps", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 63, 3], ["configureFlags", 72, 3], ["postPatch", 97, 3], ["postInstall", 101, 3], ["passthru", 115, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,12 +40,12 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.2";
       const outputs = nix.thunk(() => ["out", "doc", "info"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://ftp.mutt.org/pub/mutt/${pname}-${version}.tar.gz`),
           hash: "sha256-JwP/GlGpnDFj1P2ZisIumCu9VJPVEqfFvecWqK26A5Q=",
         }))));
       const patches = nix.thunk(() => nix.concat([nix.path(here, "./no-build-only-refs.patch")], nix.app(nix.sel(lib, "optional"), smimeSupport, nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/mutt-team/mutt/raw/debian/1.10.1-2/debian/patches/misc/smime.rc.patch",
             sha256: "0b4i00chvx6zj9pcb06x2jysmrcb2znn831lcy32cgfds6gr3nsi",
           })))))));
@@ -81,7 +77,7 @@ sed -i 's#\\(command="\\)gpg #\\1${gnupg}/bin/gpg #' $out/etc/gpg.rc
 echo "source $out/etc/gpg.rc" >> $out/etc/Muttrc
 `))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-mutt", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -94,7 +90,7 @@ update-source-version ${pname} "$new_version"
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Small but very powerful text-based mail client",
         homepage: "http://www.mutt.org",
         mainProgram: "mutt",
@@ -106,7 +102,7 @@ update-source-version ${pname} "$new_version"
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         outputs,

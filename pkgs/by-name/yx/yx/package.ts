@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["url", 26, 7], ["hash", 27, 7]], [["package", 42, 5], ["command", 43, 5], ["version", 44, 5]], [["version", 41, 18]], [["tests", 41, 12]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["makeFlags", 31, 3], ["strictDeps", 35, 3], ["buildInputs", 37, 3], ["doCheck", 39, 3], ["passthru", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, libyaml: false, testers: false, yx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 42, 5], ["command", 43, 5], ["version", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 41, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 41, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["makeFlags", 31, 3], ["strictDeps", 35, 3], ["buildInputs", 37, 3], ["doCheck", 39, 3], ["passthru", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "yx";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tomalok",
           repo: "yx",
           rev: version,
@@ -33,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./0001-Don-t-strip-binary-when-installing.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/tomalok/yx/-/commit/5747ca40f4b0acb56d67fd29a818734d7b19d61a.patch",
             hash: "sha256-0tNtkq1tZ96Ag5EJfUfDao/QxpRB4Jadop3OPBvhnlo=",
           })))),
@@ -43,11 +37,11 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libyaml]);
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: yx,
               command: nix.thunk(() => nix.str`${nix.sel(meta, "mainProgram")} -v`),
               version: nix.thunk(() => nix.str`v${nix.sel(yx, "version")}`),
@@ -55,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "YAML Data Extraction Tool",
         homepage: "https://gitlab.com/tomalok/yx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -67,7 +61,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "yx",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

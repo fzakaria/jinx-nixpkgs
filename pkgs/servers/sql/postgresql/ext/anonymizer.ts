@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/anonymizer.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["tests", 45, 5], ["updateScript", 46, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["maintainers", 53, 5], ["license", 58, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postgresql", 24, 11], ["cargo-pgrx", 25, 3], ["cargoHash", 26, 3], ["doCheck", 29, 3], ["postPatch", 32, 3], ["postInstall", 40, 3], ["passthru", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { "cargo-pgrx_0_19_0": false, fetchFromGitLab: false, jitSupport: false, lib: false, nixosTests: false, "nix-update-script": false, postgresql: false, buildPgrxExtension: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/anonymizer.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/anonymizer.nix", [["tests", 45, 5], ["updateScript", 46, 5]]);
-const pos$3 = nix.positions(here + "/anonymizer.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["maintainers", 53, 5], ["license", 58, 5]]);
-const pos$4 = nix.positions(here + "/anonymizer.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postgresql", 24, 11], ["cargo-pgrx", 25, 3], ["cargoHash", 26, 3], ["doCheck", 29, 3], ["postPatch", 32, 3], ["postInstall", 40, 3], ["passthru", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const buildPgrxExtension = nix.arg($, "buildPgrxExtension");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(buildPgrxExtension, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "postgresql_anonymizer",
       version: "3.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dalibo",
           repo: "postgresql_anonymizer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,12 +34,12 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace sql/init.sql \\\n  --replace-fail \"SELECT setting AS sharedir\" \"SELECT '$out/share/postgresql' AS sharedir\" \\\n  --replace-fail \"FROM pg_catalog.pg_config\" \"\" \\\n  --replace-fail \"WHERE name = 'SHAREDIR'\" \"\"\n",
       postInstall: "install -Dm644 -t $out/share/postgresql/extension/anon data/*.csv data/en_US/fake/*.csv\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => nix.app(nix.sel(nixosTests, "postgresql", "anonymizer", "passthru", "override"), postgresql)),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Extension to mask or replace personally identifiable information (PII) or commercially sensitive data from a PostgreSQL database",
         homepage: "https://postgresql-anonymizer.readthedocs.io/en/stable/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/dalibo/postgresql_anonymizer/-/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

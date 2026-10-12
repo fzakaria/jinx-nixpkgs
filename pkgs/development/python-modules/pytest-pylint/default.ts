@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]], [["url", 26, 7], ["hash", 27, 7]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["buildInputs", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 48, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchpatch2: false, setuptools: false, pylint: false, pytest: false, pytestCheckHook: false, toml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["buildInputs", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 48, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.21.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-iHZLjh1c+hiAkkjgzML8BQNfCMNfCwIi3c/qHDxOVT4=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/carsongee/pytest-pylint/commit/62457e8013df106116fb2a62c7c44870103ff393.patch?full_index=1",
             hash: "sha256-EnlHEe5uZkvrWO8B33xkQ3LCQ7Bj5/oLES//NP8vkwE=",
           })))),
@@ -44,14 +41,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pytest_pylint"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pytest plugin to check source code with pylint",
         homepage: "https://github.com/carsongee/pytest-pylint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

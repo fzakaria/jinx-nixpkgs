@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["updateScript", 45, 12]], [["mainProgram", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["buildAndTestSubdir", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["doCheck", 40, 3], ["doInstallCheck", 42, 3], ["nativeInstallCheckInputs", 43, 3], ["passthru", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, rustPlatform: false, lib: false, versionCheckHook: false, "pkg-config": false, zstd: false, OVMF: false, qemu: false, "qemu-utils": false, openssl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 45, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["buildAndTestSubdir", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["doCheck", 40, 3], ["doInstallCheck", 42, 3], ["nativeInstallCheckInputs", 43, 3], ["passthru", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "goldboot",
       version: "0.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fossable",
           repo: "goldboot",
           rev: nix.thunk(() => nix.str`goldboot-v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +37,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: "goldboot",
         description: "Immutable infrastructure for the desktop",
         homepage: "https://github.com/fossable/goldboot",

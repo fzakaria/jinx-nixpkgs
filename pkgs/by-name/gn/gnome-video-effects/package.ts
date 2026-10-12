@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["packageName", 30, 7], ["versionPolicy", 31, 7]], [["updateScript", 29, 5]], [["description", 36, 5], ["homepage", 37, 5], ["platforms", 38, 5], ["teams", 39, 5], ["license", 40, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["passthru", 28, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, gettext: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 30, 7], ["versionPolicy", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["platforms", 38, 5], ["teams", 39, 5], ["license", 40, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["passthru", 28, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,24 +19,24 @@ export default nix.lambda((args) => (() => {
       const pname = "gnome-video-effects";
       const version = "0.6.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-video-effects/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gnome-video-effects-${version}.tar.xz`),
           sha256: "166utGs/WoMvsuDZC0K/jGFgICylKsmt0Xr84ZLjyKg=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [meson, ninja, pkg_config, gettext]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, versionPolicy: "none" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: pname, versionPolicy: "none" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Collection of GStreamer effects to be used in different GNOME Modules",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-video-effects",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
-      return { [nix.POS]: pos$5, pname, version, src, nativeBuildInputs, passthru, meta };
+      return { [nix.POS]: $pos[4], pname, version, src, nativeBuildInputs, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,74 +2,48 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mautrix-discord.nix", [[["maintainers", 7, 8]], [["name", 17, 22]], [["compress", 29, 21], ["names", 30, 21]], [["compress", 33, 21], ["names", 34, 21]], [["bind_addresses", 25, 17], ["port", 26, 17], ["resources", 27, 17], ["tls", 37, 17], ["type", 38, 17]], [["server_name", 16, 13], ["database", 17, 13], ["enable_registration", 19, 13], ["enable_registration_without_verification", 21, 13], ["listeners", 23, 13]], [["enable", 14, 11], ["settings", 15, 11]], [["address", 50, 15], ["domain", 51, 15]], [["username", 60, 17], ["displayname", 61, 17], ["avatar", 62, 17]], [["type", 66, 17], ["uri", 67, 17]], [["address", 55, 15], ["hostname", 56, 15], ["port", 57, 15], ["id", 58, 15], ["bot", 59, 15], ["database", 65, 15]], [["@alice:homeserver", 73, 17], ["*", 74, 17]], [["permissions", 72, 15]], [["type", 82, 19], ["format", 83, 19], ["time_format", 84, 19]], [["min_level", 79, 15], ["writers", 80, 15]], [["homeserver", 49, 13], ["appservice", 54, 13], ["bridge", 71, 13], ["logging", 78, 13]], [["enable", 45, 11], ["registerToSynapse", 46, 11], ["settings", 48, 11]], [["matrix-synapse", 13, 18], ["mautrix-discord", 44, 18]], [["allowedTCPPorts", 91, 29]], [["firewall", 91, 20]], [["systemPackages", 96, 21]], [["services", 13, 9], ["networking", 91, 9], ["environment", 96, 9]], [["libraries", 108, 15], ["flakeIgnore", 109, 15]], [["systemPackages", 105, 21]], [["environment", 105, 9]], [["homeserver", 10, 5], ["client", 102, 5]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 9, 3], ["testScript", 158, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mautrix-discord.nix", [["maintainers", 7, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/mautrix-discord.nix", [["name", 17, 22]]);
-const pos$3 = nix.positions(here + "/mautrix-discord.nix", [["compress", 29, 21], ["names", 30, 21]]);
-const pos$4 = nix.positions(here + "/mautrix-discord.nix", [["compress", 33, 21], ["names", 34, 21]]);
-const pos$5 = nix.positions(here + "/mautrix-discord.nix", [["bind_addresses", 25, 17], ["port", 26, 17], ["resources", 27, 17], ["tls", 37, 17], ["type", 38, 17]]);
-const pos$6 = nix.positions(here + "/mautrix-discord.nix", [["server_name", 16, 13], ["database", 17, 13], ["enable_registration", 19, 13], ["enable_registration_without_verification", 21, 13], ["listeners", 23, 13]]);
-const pos$7 = nix.positions(here + "/mautrix-discord.nix", [["enable", 14, 11], ["settings", 15, 11]]);
-const pos$8 = nix.positions(here + "/mautrix-discord.nix", [["address", 50, 15], ["domain", 51, 15]]);
-const pos$9 = nix.positions(here + "/mautrix-discord.nix", [["username", 60, 17], ["displayname", 61, 17], ["avatar", 62, 17]]);
-const pos$10 = nix.positions(here + "/mautrix-discord.nix", [["type", 66, 17], ["uri", 67, 17]]);
-const pos$11 = nix.positions(here + "/mautrix-discord.nix", [["address", 55, 15], ["hostname", 56, 15], ["port", 57, 15], ["id", 58, 15], ["bot", 59, 15], ["database", 65, 15]]);
-const pos$12 = nix.positions(here + "/mautrix-discord.nix", [["@alice:homeserver", 73, 17], ["*", 74, 17]]);
-const pos$13 = nix.positions(here + "/mautrix-discord.nix", [["permissions", 72, 15]]);
-const pos$14 = nix.positions(here + "/mautrix-discord.nix", [["type", 82, 19], ["format", 83, 19], ["time_format", 84, 19]]);
-const pos$15 = nix.positions(here + "/mautrix-discord.nix", [["min_level", 79, 15], ["writers", 80, 15]]);
-const pos$16 = nix.positions(here + "/mautrix-discord.nix", [["homeserver", 49, 13], ["appservice", 54, 13], ["bridge", 71, 13], ["logging", 78, 13]]);
-const pos$17 = nix.positions(here + "/mautrix-discord.nix", [["enable", 45, 11], ["registerToSynapse", 46, 11], ["settings", 48, 11]]);
-const pos$18 = nix.positions(here + "/mautrix-discord.nix", [["matrix-synapse", 13, 18], ["mautrix-discord", 44, 18]]);
-const pos$19 = nix.positions(here + "/mautrix-discord.nix", [["allowedTCPPorts", 91, 29]]);
-const pos$20 = nix.positions(here + "/mautrix-discord.nix", [["firewall", 91, 20]]);
-const pos$21 = nix.positions(here + "/mautrix-discord.nix", [["systemPackages", 96, 21]]);
-const pos$22 = nix.positions(here + "/mautrix-discord.nix", [["services", 13, 9], ["networking", 91, 9], ["environment", 96, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$23 = nix.positions(here + "/mautrix-discord.nix", [["libraries", 108, 15], ["flakeIgnore", 109, 15]]);
-const pos$24 = nix.positions(here + "/mautrix-discord.nix", [["systemPackages", 105, 21]]);
-const pos$25 = nix.positions(here + "/mautrix-discord.nix", [["environment", 105, 9]]);
-const pos$26 = nix.positions(here + "/mautrix-discord.nix", [["homeserver", 10, 5], ["client", 102, 5]]);
-const pos$27 = nix.positions(here + "/mautrix-discord.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 9, 3], ["testScript", 158, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const homeserverUrl = "http://homeserver:8008";
   return {
-    [nix.POS]: pos$27,
+    [nix.POS]: $pos[26],
     name: "mautrix-discord",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(pkgs, "mautrix-discord", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       homeserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             "matrix-synapse": nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 server_name: "homeserver",
-                database: nix.thunk(() => ({ [nix.POS]: pos$2, name: "sqlite3" })),
+                database: nix.thunk(() => ({ [nix.POS]: $pos[1], name: "sqlite3" })),
                 enable_registration: true,
                 enable_registration_without_verification: true,
                 listeners: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     bind_addresses: nix.thunk(() => ["0.0.0.0"]),
                     port: 8008n,
                     resources: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$3, compress: true, names: nix.thunk(() => ["client"]) })),
-                      nix.thunk(() => ({ [nix.POS]: pos$4, compress: false, names: nix.thunk(() => ["federation"]) })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[2], compress: true, names: nix.thunk(() => ["client"]) })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[3], compress: false, names: nix.thunk(() => ["federation"]) })),
                     ]),
                     tls: false,
                     type: "http",
@@ -78,40 +52,40 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "mautrix-discord": nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               enable: true,
               registerToSynapse: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$16,
-                homeserver: nix.thunk(() => ({ [nix.POS]: pos$8, address: homeserverUrl, domain: "homeserver" })),
+                [nix.POS]: $pos[15],
+                homeserver: nix.thunk(() => ({ [nix.POS]: $pos[7], address: homeserverUrl, domain: "homeserver" })),
                 appservice: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   address: "http://homeserver:8009",
                   hostname: "0.0.0.0",
                   port: 8009n,
                   id: "discord",
                   bot: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     username: "discordbot",
                     displayname: "Discord bridge bot",
                     avatar: "mxc://maunium.net/nIdEykemnwdisvHbpxflpDlC",
                   })),
                   database: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     type: "sqlite3",
                     uri: "file:/var/lib/mautrix-discord/mautrix-discord.db?_txlock=immediate",
                   })),
                 })),
                 bridge: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
-                  permissions: nix.thunk(() => ({ [nix.POS]: pos$12, "@alice:homeserver": "user", "*": "relay" })),
+                  [nix.POS]: $pos[12],
+                  permissions: nix.thunk(() => ({ [nix.POS]: $pos[11], "@alice:homeserver": "user", "*": "relay" })),
                 })),
                 logging: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   min_level: "info",
                   writers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$14,
+                      [nix.POS]: $pos[13],
                       type: "stdout",
                       format: "pretty-colored",
                       time_format: " ",
@@ -122,11 +96,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$20,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$19, allowedTCPPorts: nix.thunk(() => [8008n, 8009n]) })),
+            [nix.POS]: $pos[19],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[18], allowedTCPPorts: nix.thunk(() => [8008n, 8009n]) })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "nettools")),
               nix.thunk(() => nix.sel(pkgs_1, "yq")),
@@ -138,12 +112,12 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "do_test", nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "matrix-nio"))]),
                   flakeIgnore: nix.thunk(() => ["F401", "E302"]),
                 })), "import sys\nimport asyncio\nfrom nio import AsyncClient, RoomMessageNotice, RoomCreateResponse\n\n\nasync def message_callback(matrix: AsyncClient, msg: str, _r, e):\n    print(f\"Received message: {msg}\")\n\n\nasync def run(homeserver: str):\n    client = AsyncClient(homeserver, \"@test:homeserver\")\n\n    # Register a new user\n    response = await client.register(\"test\", \"password123\")\n    if not response.transport_response.ok:\n        print(f\"Failed to register: {response}\")\n        return False\n\n    # Login\n    response = await client.login(\"password123\")\n    if not response.transport_response.ok:\n        print(f\"Failed to login: {response}\")\n        return False\n\n    print(\"Successfully logged in and basic functionality works\")\n    await client.close()\n    return True\n\n\nif __name__ == \"__main__\":\n    if len(sys.argv) != 2:\n        print(\"Usage: do_test <homeserver_url>\")\n        sys.exit(1)\n\n    homeserver_url = sys.argv[1]\n    success = asyncio.run(run(homeserver_url))\n    sys.exit(0 if success else 1)\n")),

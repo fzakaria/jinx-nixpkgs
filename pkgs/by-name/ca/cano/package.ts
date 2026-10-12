@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["hardeningDisable", 30, 3], ["installPhase", 35, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, installShellFiles: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["hardeningDisable", 30, 3], ["installPhase", 35, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cano",
       version: "0.2.0-alpha",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Cano-Projects",
           repo: "Cano",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format", "fortify"]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 build/cano -t $out/bin\n\nmkdir -p $out/share\ncp -r docs/help $out/share\ninstallManPage docs/cano.1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Text Editor Written In C Using ncurses",
         homepage: "https://github.com/Cano-Projects/Cano",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

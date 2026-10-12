@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["lua", 41, 5], ["json", 42, 5], ["bf", 43, 5], ["cf", 44, 5], ["probabilistic", 45, 5], ["valkey", 46, 5], ["vectorset", 47, 5]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 40, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 62, 3], ["disabledTestMarks", 64, 3], ["disabledTests", 66, 3], ["preCheck", 71, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, redisTestHook: false, hatchling: false, hypothesis: false, "jsonpath-ng": false, lupa: false, numpy: false, pyprobables: false, "pytest-asyncio": false, "pytest-mock": false, redis: false, sortedcontainers: false, valkey: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lua", 41, 5], ["json", 42, 5], ["bf", 43, 5], ["cf", 44, 5], ["probabilistic", 45, 5], ["valkey", 46, 5], ["vectorset", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 40, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 62, 3], ["disabledTestMarks", 64, 3], ["disabledTests", 66, 3], ["preCheck", 71, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const sortedcontainers = nix.arg($, "sortedcontainers");
   const valkey = nix.arg($, "valkey");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fakeredis",
       version: "2.36.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cunla",
           repo: "fakeredis-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [redis, sortedcontainers]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         lua: nix.thunk(() => [lupa]),
         json: nix.thunk(() => [jsonpath_ng]),
         bf: nix.thunk(() => [pyprobables]),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_async_lock"]),
       preCheck: "redisTestPort=6390\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fake implementation of Redis API",
         homepage: "https://github.com/cunla/fakeredis-py",
         changelog: nix.thunk(() => nix.str`https://github.com/cunla/fakeredis-py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["antlr4RuntimeCpp", 28, 7], ["yamlCpp", 29, 7], ["libargs", 30, 15], ["catch2", 30, 23]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, antlr4_9: false, libargs: false, catch2: false, cmake: false, "yaml-cpp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["antlr4RuntimeCpp", 28, 7], ["yamlCpp", 29, 7], ["libargs", 30, 15], ["catch2", 30, 23]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const yaml_cpp = nix.arg($, "yaml-cpp");
   const antlr4 = antlr4_9;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "luaformatter",
       version: "1.3.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Koihik",
           repo: "LuaFormatter",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-lib-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             antlr4RuntimeCpp: nix.thunk(() => nix.sel(antlr4, "runtime", "cpp", "dev")),
             yamlCpp: yaml_cpp,
             libargs: libargs,
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(antlr4, "runtime", "cpp")), yaml_cpp]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Code formatter for Lua",
         homepage: "https://github.com/Koihik/LuaFormatter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

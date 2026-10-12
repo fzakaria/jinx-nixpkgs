@@ -2,42 +2,34 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/image-based-appliance.nix", [[["enable", 16, 7]], [["enable", 17, 17]], [["switch", 17, 10]], [["mutableUsers", 20, 9]], [["enable", 24, 23]], [["systemd", 24, 15]], [["initrd", 24, 8]], [["useNetworkd", 25, 14]], [["imports", 11, 3], ["nix", 16, 3], ["system", 17, 3], ["users", 20, 3], ["boot", 24, 3], ["networking", 25, 3]]]);
 const formals$1 = { args: { lib: false, modulesPath: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/image-based-appliance.nix", [["enable", 16, 7]]);
-const pos$2 = nix.positions(here + "/image-based-appliance.nix", [["enable", 17, 17]]);
-const pos$3 = nix.positions(here + "/image-based-appliance.nix", [["switch", 17, 10]]);
-const pos$4 = nix.positions(here + "/image-based-appliance.nix", [["mutableUsers", 20, 9]]);
-const pos$5 = nix.positions(here + "/image-based-appliance.nix", [["enable", 24, 23]]);
-const pos$6 = nix.positions(here + "/image-based-appliance.nix", [["systemd", 24, 15]]);
-const pos$7 = nix.positions(here + "/image-based-appliance.nix", [["initrd", 24, 8]]);
-const pos$8 = nix.positions(here + "/image-based-appliance.nix", [["useNetworkd", 25, 14]]);
-const pos$9 = nix.positions(here + "/image-based-appliance.nix", [["imports", 11, 3], ["nix", 16, 3], ["system", 17, 3], ["users", 20, 3], ["boot", 24, 3], ["networking", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const modulesPath = nix.arg($, "modulesPath");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     imports: nix.thunk(() => [nix.thunk(() => nix.str`${modulesPath}/profiles/minimal.nix`)]),
-    nix: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
+    nix: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: false })),
     system: nix.thunk(() => ({
-      [nix.POS]: pos$3,
-      switch: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+      [nix.POS]: $pos[2],
+      switch: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
     })),
-    users: nix.thunk(() => ({ [nix.POS]: pos$4, mutableUsers: false })),
+    users: nix.thunk(() => ({ [nix.POS]: $pos[3], mutableUsers: false })),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       initrd: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
         })),
       })),
     })),
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       useNetworkd: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
     })),
   };

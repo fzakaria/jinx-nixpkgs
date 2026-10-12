@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64", 38, 7], ["i686", 39, 7], ["loongarch64", 40, 7], ["riscv64", 41, 7], ["x86_64", 42, 7]], [["url", 56, 5], ["hash", 57, 5]], [["tests", 92, 12]], [["homepage", 95, 5], ["changelog", 96, 5], ["description", 97, 5], ["mainProgram", 98, 5], ["platforms", 101, 5], ["badPlatforms", 102, 5], ["license", 104, 5], ["maintainers", 113, 5]], [["pname", 49, 3], ["version", 50, 3], ["src", 55, 3], ["enableParallelBuilding", 60, 3], ["hardeningDisable", 62, 3], ["nativeBuildInputs", 66, 3], ["outputs", 75, 3], ["configureFlags", 82, 3], ["passthru", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, llvmPackages: false, mtools: false, nasm: false, nixosTests: false, enableAll: true, buildCDs: true, targets: true, biosSupport: true, pxeSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64", 38, 7], ["i686", 39, 7], ["loongarch64", 40, 7], ["riscv64", 41, 7], ["x86_64", 42, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 56, 5], ["hash", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 92, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["changelog", 96, 5], ["description", 97, 5], ["mainProgram", 98, 5], ["platforms", 101, 5], ["badPlatforms", 102, 5], ["license", 104, 5], ["maintainers", 113, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 49, 3], ["version", 50, 3], ["src", 55, 3], ["enableParallelBuilding", 60, 3], ["hardeningDisable", 62, 3], ["nativeBuildInputs", 66, 3], ["outputs", 75, 3], ["configureFlags", 82, 3], ["passthru", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const biosSupport$ = nix.thunk(() => (nix.asBool(biosSupport) && nix.asBool(hasX86)));
   const pxeSupport$ = nix.thunk(() => (nix.asBool(pxeSupport) && nix.asBool(hasX86)));
   const uefiFlags = (target) => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     aarch64: nix.thunk(() => ["--enable-uefi-aarch64"]),
     i686: nix.thunk(() => ["--enable-uefi-ia32"]),
     loongarch64: nix.thunk(() => ["--enable-uefi-loongarch64"]),
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
     x86_64: nix.thunk(() => ["--enable-uefi-x86-64"]),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported target ${target}`)), nix.key(nix.force(target)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "limine",
       version: "12.9.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/Limine-Bootloader/Limine/releases/download/v${nix.sel(finalAttrs, "version")}/limine-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-soucn2FPQlLK55WA1su8CfTXZKVB7AHVhrXDheN3bJk=",
         })))),
@@ -52,9 +48,9 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(enableAll) || nix.asBool(buildCDs))), nix.thunk(() => [mtools])), nix.app(nix.sel(lib, "optionals"), hasX86, nix.thunk(() => [nasm]))))),
       outputs: nix.thunk(() => ["out", "dev", "doc", "man"]),
       configureFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), enableAll, nix.thunk(() => ["--enable-all"])), nix.concat(nix.app(nix.sel(lib, "optionals"), biosSupport$, nix.thunk(() => ["--enable-bios"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(buildCDs) && nix.asBool(biosSupport$))), nix.thunk(() => ["--enable-bios-cd"])), nix.concat(nix.app(nix.sel(lib, "optionals"), buildCDs, nix.thunk(() => ["--enable-uefi-cd"])), nix.concat(nix.app(nix.sel(lib, "optionals"), pxeSupport$, nix.thunk(() => ["--enable-bios-pxe"])), nix.app(nix.sel(lib, "concatMap"), uefiFlags, nix.thunk(() => (nix.asBool(nix.eq(targets, [])) ? [nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"))] : nix.force(targets)))))))))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "limine")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], tests: nix.thunk(() => nix.sel(nixosTests, "limine")) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://limine-bootloader.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/Limine-Bootloader/Limine/raw/refs/tags/v${nix.sel(finalAttrs, "version")}/ChangeLog`),
         description: "Limine Bootloader",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["lockFile", 21, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 46, 5], ["maintainers", 47, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoLock", 19, 3], ["cargoBuildFlags", 24, 3], ["postPatch", 29, 3], ["postInstall", 33, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { rustPlatform: false, fetchFromGitHub: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lockFile", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 46, 5], ["maintainers", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoLock", 19, 3], ["cargoBuildFlags", 24, 3], ["postPatch", 29, 3], ["postInstall", 33, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rustc-demangle",
       version: "0.1.28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rust-lang",
           repo: "rustc-demangle",
           tag: nix.thunk(() => nix.str`rustc-demangle-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Fu9Lvg2QRMQSBWXLZMIRBUoX2aJB4HirfnMe2v9x6Yc=",
         })))),
-      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") })),
       cargoBuildFlags: nix.thunk(() => ["-p", "rustc-demangle-capi"]),
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
@@ -34,7 +31,7 @@ cp target/${nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")}/release/
 cp -R crates/capi/include $out
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Rust symbol demangling",
         homepage: "https://github.com/rust-lang/rustc-demangle",
         license: nix.thunk(() => (() => {

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pg_cron.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 20, 5], ["homepage", 21, 5], ["changelog", 22, 5], ["maintainers", 23, 5], ["platforms", 24, 5], ["license", 25, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, postgresql: false, postgresqlBuildExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pg_cron.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/pg_cron.nix", [["description", 20, 5], ["homepage", 21, 5], ["changelog", 22, 5], ["maintainers", 23, 5], ["platforms", 24, 5], ["license", 25, 5]]);
-const pos$3 = nix.positions(here + "/pg_cron.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pg_cron",
       version: "1.6.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "citusdata",
           repo: "pg_cron",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-i5bgIFBjpb2KVUk9eABz7CpP+AwlgKAPQI0vNPd7Eb8=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Run Cron jobs through PostgreSQL",
         homepage: "https://github.com/citusdata/pg_cron",
         changelog: nix.thunk(() => nix.str`https://github.com/citusdata/pg_cron/releases/tag/v${nix.sel(finalAttrs, "version")}`),

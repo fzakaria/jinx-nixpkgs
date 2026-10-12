@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 30, 5], ["hash", 31, 5]], [["CXXFLAGS", 52, 7]], [["homepage", 60, 5], ["description", 61, 5], ["platforms", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["broken", 67, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["env", 52, 3], ["cmakeFlags", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libuuid: false, expat: false, curl: false, pcre2: false, sqlite: false, python3: false, boost: false, libxml2: false, libvirt: false, munge: false, voms: false, perl: false, "scitokens-cpp": false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["platforms", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["broken", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["env", 52, 3], ["cmakeFlags", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "htcondor";
       const version = "24.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "htcondor",
           repo: "htcondor",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -55,10 +52,10 @@ export default nix.lambda((args) => (() => {
         perl,
         scitokens_cpp,
       ]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-fpermissive" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-fpermissive" }));
       const cmakeFlags = nix.thunk(() => ["-DSYSTEM_NAME=NixOS", "-DWITH_PYTHON_BINDINGS=false"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://htcondor.org/",
         description: "Software system that creates a High-Throughput Computing (HTC) environment",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["package", 44, 5], ["command", 45, 5], ["version", 46, 26]], [["version", 43, 18]], [["tests", 43, 12]], [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["nativeBuildInputs", 22, 3], ["ldflags", 24, 3], ["postInstall", 30, 3], ["doCheck", 41, 3], ["passthru", 43, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 44, 5], ["command", 45, 5], ["version", 46, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 43, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 43, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["nativeBuildInputs", 22, 3], ["ldflags", 24, 3], ["postInstall", 30, 3], ["doCheck", 41, 3], ["passthru", 43, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ytt",
       version: "0.55.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "carvel-dev",
           repo: "ytt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +34,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd ytt \\\n  --bash <($out/bin/ytt completion bash) \\\n  --fish <($out/bin/ytt completion fish) \\\n  --zsh <($out/bin/ytt completion zsh)\n")),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "meta", "mainProgram")} --version`),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "YAML templating tool that allows configuration of complex software via reusable templates with user-provided values",
         mainProgram: "ytt",
         homepage: "https://get-ytt.io",

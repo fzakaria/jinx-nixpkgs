@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["sourceProvenance", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]], [["version", 12, 3], ["pname", 13, 3], ["uname", 14, 3], ["src", 16, 3], ["buildCommand", 21, 3], ["nativeBuildInputs", 34, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, unzip: false, jre: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["sourceProvenance", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pname", 13, 3], ["uname", 14, 3], ["src", 16, 3], ["buildCommand", 21, 3], ["nativeBuildInputs", 34, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "msgviewer";
       const uname = "MSGViewer";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/msgviewer/${uname}-${version}/${uname}-${version}.zip`),
           sha256: "0igmr8c0757xsc94xlv2470zv2mz57zaj52dwr9wj8agmj23jbjz",
         }))));
@@ -38,7 +36,7 @@ chmod 755 $out/bin/msgviewer
 `);
       const nativeBuildInputs = nix.thunk(() => [makeWrapper, unzip]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Viewer for .msg files (MS Outlook)",
         mainProgram: "msgviewer",
         homepage: "https://www.washington.edu/alpine/",
@@ -54,7 +52,7 @@ chmod 755 $out/bin/msgviewer
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         uname,

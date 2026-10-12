@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["url", 31, 7], ["hash", 32, 7]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5]], [["version", 17, 3], ["pname", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["configureFlags", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, autoreconfHook: false, flex: false, bison: false, gperf: false, libxml2: false, perl: false, perlPackages: false, gd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 17, 3], ["pname", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["configureFlags", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const gd = nix.arg($, "gd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "2.3.7",
       pname: "adms",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Qucs",
           repo: "adms",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/science-team/adms/-/raw/01ef4a94a48736c49c67d90da506b34f6114f0b0/debian/patches/0002-fix-ftbfs-gcc-15.patch",
             hash: "sha256-rSNBqdpuXA9ViyygRGn4KVknLCu0Q+UoOGLfoNAgccc=",
           })))),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       configureFlags: nix.thunk(() => ["--enable-maintainer-mode"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Automatic device model synthesizer",
         homepage: "https://github.com/Qucs/adms",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

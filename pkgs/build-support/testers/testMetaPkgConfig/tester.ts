@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tester.nix", [[["description", 12, 7]], [["package", 14, 55]], [["meta", 11, 5], ["dependsOn", 14, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tester.nix", [["description", 12, 7]]);
-const pos$2 = nix.positions(here + "/tester.nix", [["package", 14, 55]]);
-const pos$3 = nix.positions(here + "/tester.nix", [["meta", 11, 5], ["dependsOn", 14, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const testers = nix.arg($, "testers");
   return (package$) => nix.app(runCommand, nix.thunk(() => nix.str`check-meta-pkg-config-modules-for-${nix.sel(package$, "name")}`), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.str`Test whether ${nix.sel(package$, "name")} exposes all pkg-config modules ${nix.builtins.toString(nix.thunk(() => nix.sel(package$, "meta", "pkgConfigModules")))}`),
       })),
-      dependsOn: nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$2, package: package$ })))),
+      dependsOn: nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: package$ })))),
     })), nix.thunk(() => nix.str`echo "found all of ${nix.builtins.toString(nix.thunk(() => nix.sel(package$, "meta", "pkgConfigModules")))}" > "$out"
 `));
 })(), formals$1);

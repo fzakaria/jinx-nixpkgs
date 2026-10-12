@@ -2,19 +2,15 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 5, 5], ["dontUnpack", 7, 5], ["installPhase", 9, 5]], [["name", 22, 5], ["outputs", 23, 5], ["dontUnpack", 28, 5], ["installPhase", 30, 5]], [["platforms", 72, 8]], [["foo", 74, 13], ["bar", 74, 17]], [["name", 44, 3], ["buildInputs", 46, 3], ["buildCommand", 51, 3], ["meta", 72, 3], ["passthru", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 5, 5], ["dontUnpack", 7, 5], ["installPhase", 9, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 22, 5], ["outputs", 23, 5], ["dontUnpack", 28, 5], ["installPhase", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["platforms", 72, 8]]);
-const pos$4 = nix.positions(here + "/default.nix", [["foo", 74, 13], ["bar", 74, 17]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 44, 3], ["buildInputs", 46, 3], ["buildCommand", 51, 3], ["meta", 72, 3], ["passthru", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const foo = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "foo-test",
       dontUnpack: true,
       installPhase: nix.thunk(() => nix.str`mkdir -p $out/bin $out/include $out/lib
@@ -28,7 +24,7 @@ $CC -shared \\
 `),
     }))));
   const bar = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "bar-test",
       outputs: nix.thunk(() => ["out", "dev"]),
       dontUnpack: true,
@@ -43,7 +39,7 @@ $CC -shared \\
 `),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "stdenv-inputs-test",
       buildInputs: nix.thunk(() => [foo, bar]),
       buildCommand: nix.thunk(() => nix.str`env
@@ -66,10 +62,10 @@ $CC -lfoo -lbar -o lib-check ${nix.path(here, "./lib-main.c")}
 touch $out
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, foo: foo, bar: bar })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], foo: foo, bar: bar })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

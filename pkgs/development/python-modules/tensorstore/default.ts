@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["aarch64-linux", 15, 5], ["x86_64-linux", 16, 5], ["aarch64-darwin", 17, 5]], [["311-x86_64-linux", 20, 5], ["312-x86_64-linux", 21, 5], ["313-x86_64-linux", 22, 5], ["314-x86_64-linux", 23, 5], ["311-aarch64-linux", 24, 5], ["312-aarch64-linux", 25, 5], ["313-aarch64-linux", 26, 5], ["314-aarch64-linux", 27, 5], ["311-aarch64-darwin", 28, 5], ["312-aarch64-darwin", 29, 5], ["313-aarch64-darwin", 30, 5], ["314-aarch64-darwin", 31, 5]], [["pname", 42, 26], ["version", 42, 32], ["format", 43, 5], ["python", 44, 5], ["abi", 45, 5], ["dist", 46, 5], ["platform", 47, 5], ["hash", 48, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["sourceProvenance", 67, 5], ["maintainers", 68, 5]], [["pname", 35, 3], ["version", 36, 3], ["format", 37, 3], ["__structuredAttrs", 38, 3], ["src", 41, 3], ["nativeBuildInputs", 53, 3], ["dependencies", 55, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, buildPythonPackage: false, fetchPypi: false, lib: false, "ml-dtypes": false, numpy: false, python: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["aarch64-linux", 15, 5], ["x86_64-linux", 16, 5], ["aarch64-darwin", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["311-x86_64-linux", 20, 5], ["312-x86_64-linux", 21, 5], ["313-x86_64-linux", 22, 5], ["314-x86_64-linux", 23, 5], ["311-aarch64-linux", 24, 5], ["312-aarch64-linux", 25, 5], ["313-aarch64-linux", 26, 5], ["314-aarch64-linux", 27, 5], ["311-aarch64-darwin", 28, 5], ["312-aarch64-darwin", 29, 5], ["313-aarch64-darwin", 30, 5], ["314-aarch64-darwin", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 42, 26], ["version", 42, 32], ["format", 43, 5], ["python", 44, 5], ["abi", 45, 5], ["dist", 46, 5], ["platform", 47, 5], ["hash", 48, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["sourceProvenance", 67, 5], ["maintainers", 68, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["format", 37, 3], ["__structuredAttrs", 38, 3], ["src", 41, 3], ["nativeBuildInputs", 53, 3], ["dependencies", 55, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const pythonVersionNoDot = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(python, "pythonVersion"))));
   const systemToPlatform = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-linux": "manylinux_2_27_aarch64.manylinux_2_28_aarch64",
     "x86_64-linux": "manylinux_2_27_x86_64.manylinux_2_28_x86_64",
     "aarch64-darwin": "macosx_11_0_arm64",
   }));
   const hashes = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "311-x86_64-linux": "sha256-iudEUatcyKDNnlGSat8E9N/b2K1awxrHHxyqe9+ygo0=",
     "312-x86_64-linux": "sha256-ZMgDlVjVYHtzkDlI/OBYclcx30EMXBls9Ys/xiIjlbU=",
     "313-x86_64-linux": "sha256-jqU6hR6oaq09mcFKeQyFRo1jJL4Ux6whHx8CZej6twc=",
@@ -42,13 +38,13 @@ export default nix.lambda((args) => (() => {
     "314-aarch64-darwin": "sha256-19AXdZhfyqKw8QA0l2apU8UIbpLnRr85XpNhUdTY+aw=",
   }));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tensorstore",
       version: "0.1.84",
       format: "wheel",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           format: "wheel",
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [ml_dtypes, numpy]),
       pythonImportsCheck: nix.thunk(() => ["tensorstore"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library for reading and writing large multi-dimensional arrays",
         homepage: "https://google.github.io/tensorstore",
         changelog: nix.thunk(() => nix.str`https://github.com/google/tensorstore/releases/tag/v${nix.sel(finalAttrs, "version")}`),

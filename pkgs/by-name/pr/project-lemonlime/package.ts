@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["patches", 30, 3], ["postPatch", 34, 3], ["cmakeFlags", 43, 3], ["buildInputs", 47, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, qt6: false, "nix-update-script": false, bubblewrap: false, bash: false, diffutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["patches", 30, 3], ["postPatch", 34, 3], ["cmakeFlags", 43, 3], ["buildInputs", 47, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const diffutils = nix.arg($, "diffutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "project-lemonlime",
       version: "0.3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Project-LemonLime",
           repo: "Project_LemonLime",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +44,7 @@ substituteInPlace src/base/settings.cpp \\
         nix.thunk(() => nix.sel(qt6, "qtwayland")),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight evaluation system based on Lemon + LemonPlus for OI competitions",
         homepage: "https://github.com/Project-LemonLime/Project_LemonLime",
         changelog: nix.thunk(() => nix.str`https://github.com/Project-LemonLime/Project_LemonLime/releases/tag/${nix.sel(finalAttrs, "version")}`),

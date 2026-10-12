@@ -2,84 +2,64 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wiki-js.nix", [[["maintainers", 5, 5]], [["memorySize", 11, 22]], [["host", 14, 21], ["user", 15, 21], ["db", 16, 21]], [["db", 14, 18], ["logLevel", 17, 18]], [["enable", 13, 9], ["settings", 14, 9]], [["name", 24, 13], ["ensureDBOwnership", 25, 13]], [["enable", 20, 9], ["ensureDatabases", 21, 9], ["ensureUsers", 22, 9]], [["wiki-js", 12, 16], ["postgresql", 19, 16]], [["requires", 30, 9], ["after", 31, 9]], [["wiki-js", 29, 24]], [["services", 29, 15]], [["systemPackages", 33, 19]], [["virtualisation", 11, 7], ["services", 12, 7], ["systemd", 29, 7], ["environment", 33, 7]], [["machine", 8, 9]], [["adminEmail", 40, 11], ["adminPassword", 41, 11], ["adminPasswordConfirm", 42, 11], ["siteUrl", 43, 11], ["telemetry", 44, 11]], [["password", 77, 15], ["strategy", 78, 15], ["username", 79, 15]], [["operationName", 50, 13], ["extensions", 51, 13], ["query", 52, 13], ["variables", 76, 13]], [["content", 112, 15], ["description", 113, 15], ["editor", 114, 15], ["isPrivate", 115, 15], ["isPublished", 116, 15], ["locale", 117, 15], ["path", 118, 15], ["publishEndDate", 119, 15], ["publishStartDate", 120, 15], ["scriptCss", 121, 15], ["scriptJs", 122, 15], ["tags", 123, 15], ["title", 124, 15]], [["extensions", 87, 13], ["operationName", 88, 13], ["query", 89, 13], ["variables", 111, 13]], [["finalize", 38, 16], ["login", 47, 16], ["content", 84, 16]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 36, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/wiki-js.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/wiki-js.nix", [["memorySize", 11, 22]]);
-const pos$3 = nix.positions(here + "/wiki-js.nix", [["host", 14, 21], ["user", 15, 21], ["db", 16, 21]]);
-const pos$4 = nix.positions(here + "/wiki-js.nix", [["db", 14, 18], ["logLevel", 17, 18]]);
-const pos$5 = nix.positions(here + "/wiki-js.nix", [["enable", 13, 9], ["settings", 14, 9]]);
-const pos$6 = nix.positions(here + "/wiki-js.nix", [["name", 24, 13], ["ensureDBOwnership", 25, 13]]);
-const pos$7 = nix.positions(here + "/wiki-js.nix", [["enable", 20, 9], ["ensureDatabases", 21, 9], ["ensureUsers", 22, 9]]);
-const pos$8 = nix.positions(here + "/wiki-js.nix", [["wiki-js", 12, 16], ["postgresql", 19, 16]]);
-const pos$9 = nix.positions(here + "/wiki-js.nix", [["requires", 30, 9], ["after", 31, 9]]);
-const pos$10 = nix.positions(here + "/wiki-js.nix", [["wiki-js", 29, 24]]);
-const pos$11 = nix.positions(here + "/wiki-js.nix", [["services", 29, 15]]);
-const pos$12 = nix.positions(here + "/wiki-js.nix", [["systemPackages", 33, 19]]);
-const pos$13 = nix.positions(here + "/wiki-js.nix", [["virtualisation", 11, 7], ["services", 12, 7], ["systemd", 29, 7], ["environment", 33, 7]]);
-const pos$14 = nix.positions(here + "/wiki-js.nix", [["machine", 8, 9]]);
-const pos$15 = nix.positions(here + "/wiki-js.nix", [["adminEmail", 40, 11], ["adminPassword", 41, 11], ["adminPasswordConfirm", 42, 11], ["siteUrl", 43, 11], ["telemetry", 44, 11]]);
-const pos$16 = nix.positions(here + "/wiki-js.nix", [["password", 77, 15], ["strategy", 78, 15], ["username", 79, 15]]);
-const pos$17 = nix.positions(here + "/wiki-js.nix", [["operationName", 50, 13], ["extensions", 51, 13], ["query", 52, 13], ["variables", 76, 13]]);
-const pos$18 = nix.positions(here + "/wiki-js.nix", [["content", 112, 15], ["description", 113, 15], ["editor", 114, 15], ["isPrivate", 115, 15], ["isPublished", 116, 15], ["locale", 117, 15], ["path", 118, 15], ["publishEndDate", 119, 15], ["publishStartDate", 120, 15], ["scriptCss", 121, 15], ["scriptJs", 122, 15], ["tags", 123, 15], ["title", 124, 15]]);
-const pos$19 = nix.positions(here + "/wiki-js.nix", [["extensions", 87, 13], ["operationName", 88, 13], ["query", 89, 13], ["variables", 111, 13]]);
-const pos$20 = nix.positions(here + "/wiki-js.nix", [["finalize", 38, 16], ["login", 47, 16], ["content", 84, 16]]);
-const pos$21 = nix.positions(here + "/wiki-js.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     name: "wiki-js",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ma27"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$13,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2047n })),
+          [nix.POS]: $pos[12],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 2047n })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             "wiki-js": nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$4,
-                db: nix.thunk(() => ({ [nix.POS]: pos$3, host: "/run/postgresql", user: "wiki-js", db: "wiki-js" })),
+                [nix.POS]: $pos[3],
+                db: nix.thunk(() => ({ [nix.POS]: $pos[2], host: "/run/postgresql", user: "wiki-js", db: "wiki-js" })),
                 logLevel: "debug",
               })),
             })),
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               ensureDatabases: nix.thunk(() => ["wiki-js"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$6, name: "wiki-js", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: $pos[5], name: "wiki-js", ensureDBOwnership: true })),
               ]),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               "wiki-js": nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 requires: nix.thunk(() => ["postgresql.target"]),
                 after: nix.thunk(() => ["postgresql.target"]),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w_1, "jq"))];
@@ -90,9 +70,9 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: nix.thunk(() => (() => {
       const payloads = nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         finalize: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "finalize.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               adminEmail: "webmaster@example.com",
               adminPassword: "notapassword",
               adminPasswordConfirm: "notapassword",
@@ -101,12 +81,12 @@ export default nix.lambda((args) => (() => {
             })))))),
         login: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "login.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 operationName: null,
                 extensions: nix.thunk(() => ({})),
                 query: "mutation ($username: String!, $password: String!, $strategy: String!) {\n  authentication {\n    login(username: $username, password: $password, strategy: $strategy) {\n      responseResult {\n        succeeded\n        errorCode\n        slug\n        message\n        __typename\n      }\n      jwt\n      mustChangePwd\n      mustProvideTFA\n      mustSetupTFA\n      continuationToken\n      redirect\n      tfaQRImage\n      __typename\n    }\n    __typename\n  }\n}\n",
                 variables: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   password: "notapassword",
                   strategy: "local",
                   username: "webmaster@example.com",
@@ -115,12 +95,12 @@ export default nix.lambda((args) => (() => {
             ]))))),
         content: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "content.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 extensions: nix.thunk(() => ({})),
                 operationName: null,
                 query: "mutation ($content: String!, $description: String!, $editor: String!, $isPrivate: Boolean!, $isPublished: Boolean!, $locale: String!, $path: String!, $publishEndDate: Date, $publishStartDate: Date, $scriptCss: String, $scriptJs: String, $tags: [String]!, $title: String!) {\n  pages {\n    create(content: $content, description: $description, editor: $editor, isPrivate: $isPrivate, isPublished: $isPublished, locale: $locale, path: $path, publishEndDate: $publishEndDate, publishStartDate: $publishStartDate, scriptCss: $scriptCss, scriptJs: $scriptJs, tags: $tags, title: $title) {\n      responseResult {\n        succeeded\n        errorCode\n        slug\n        message\n        __typename\n      }\n      page {\n        id\n        updatedAt\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
                 variables: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   content: "# Header\n\nHello world!",
                   description: "",
                   editor: "markdown",

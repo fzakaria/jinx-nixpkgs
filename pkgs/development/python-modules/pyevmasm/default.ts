@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 26, 5], ["mainProgram", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 21, 3], ["nativeCheckInputs", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, future: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 26, 5], ["mainProgram", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 21, 3], ["nativeCheckInputs", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "crytic",
           repo: "pyevmasm",
           rev: version,
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [future]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Ethereum Virtual Machine (EVM) assembler and disassembler",
         mainProgram: "evmasm",
         homepage: "https://github.com/crytic/pyevmasm",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

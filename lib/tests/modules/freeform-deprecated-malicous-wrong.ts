@@ -2,21 +2,16 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/freeform-deprecated-malicous-wrong.nix", [["int", 4, 5]]);
-const pos$2 = nix.positions(here + "/freeform-deprecated-malicous-wrong.nix", [["int", 8, 5]]);
-const pos$3 = nix.positions(here + "/freeform-deprecated-malicous-wrong.nix", [["int", 12, 5]]);
-const pos$4 = nix.positions(here + "/freeform-deprecated-malicous-wrong.nix", [["str", 16, 5]]);
-const pos$5 = nix.positions(here + "/freeform-deprecated-malicous-wrong.nix", [["either", 3, 10], ["eitherBehindNullor", 7, 10], ["oneOf", 11, 10], ["number", 15, 10]]);
-const pos$6 = nix.positions(here + "/freeform-deprecated-malicous-wrong.nix", [["config", 3, 3]]);
+const $pos = nix.positions(here + "/freeform-deprecated-malicous-wrong.nix", [[["int", 4, 5]], [["int", 8, 5]], [["int", 12, 5]], [["str", 16, 5]], [["either", 3, 10], ["eitherBehindNullor", 7, 10], ["oneOf", 11, 10], ["number", 15, 10]], [["config", 3, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$6,
+  [nix.POS]: $pos[5],
   config: nix.thunk(() => ({
-    [nix.POS]: pos$5,
-    either: nix.thunk(() => ({ [nix.POS]: pos$1, int: "foo" })),
-    eitherBehindNullor: nix.thunk(() => ({ [nix.POS]: pos$2, int: "foo" })),
-    oneOf: nix.thunk(() => ({ [nix.POS]: pos$3, int: "foo" })),
-    number: nix.thunk(() => ({ [nix.POS]: pos$4, str: "foo" })),
+    [nix.POS]: $pos[4],
+    either: nix.thunk(() => ({ [nix.POS]: $pos[0], int: "foo" })),
+    eitherBehindNullor: nix.thunk(() => ({ [nix.POS]: $pos[1], int: "foo" })),
+    oneOf: nix.thunk(() => ({ [nix.POS]: $pos[2], int: "foo" })),
+    number: nix.thunk(() => ({ [nix.POS]: $pos[3], str: "foo" })),
   })),
 }));
 //# sourceMappingURL=freeform-deprecated-malicous-wrong.ts.map

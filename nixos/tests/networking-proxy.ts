@@ -2,45 +2,31 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/networking-proxy.nix", [["enable", 10, 22]]);
-const pos$2 = nix.positions(here + "/networking-proxy.nix", [["xserver", 10, 14]]);
-const pos$3 = nix.positions(here + "/networking-proxy.nix", [["imports", 8, 5], ["services", 10, 5]]);
+const $pos = nix.positions(here + "/networking-proxy.nix", [[["enable", 10, 22]], [["xserver", 10, 14]], [["imports", 8, 5], ["services", 10, 5]], [["maintainers", 18, 5]], [["default", 34, 26]], [["proxy", 34, 20]], [["networking", 34, 9]], [["default", 45, 11], ["httpProxy", 47, 11], ["httpsProxy", 48, 11], ["rsyncProxy", 49, 11], ["ftpProxy", 50, 11], ["noProxy", 51, 11]], [["proxy", 43, 20]], [["networking", 43, 9]], [["default", 63, 11], ["rsyncProxy", 65, 11], ["noProxy", 66, 11]], [["proxy", 61, 20]], [["networking", 61, 9]], [["machine", 23, 5], ["machine2", 29, 5], ["machine3", 38, 5], ["machine4", 56, 5]], [["name", 16, 3], ["meta", 17, 3], ["nodes", 21, 3], ["testScript", 71, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/networking-proxy.nix", [["maintainers", 18, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$5 = nix.positions(here + "/networking-proxy.nix", [["default", 34, 26]]);
-const pos$6 = nix.positions(here + "/networking-proxy.nix", [["proxy", 34, 20]]);
-const pos$7 = nix.positions(here + "/networking-proxy.nix", [["networking", 34, 9]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$8 = nix.positions(here + "/networking-proxy.nix", [["default", 45, 11], ["httpProxy", 47, 11], ["httpsProxy", 48, 11], ["rsyncProxy", 49, 11], ["ftpProxy", 50, 11], ["noProxy", 51, 11]]);
-const pos$9 = nix.positions(here + "/networking-proxy.nix", [["proxy", 43, 20]]);
-const pos$10 = nix.positions(here + "/networking-proxy.nix", [["networking", 43, 9]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$11 = nix.positions(here + "/networking-proxy.nix", [["default", 63, 11], ["rsyncProxy", 65, 11], ["noProxy", 66, 11]]);
-const pos$12 = nix.positions(here + "/networking-proxy.nix", [["proxy", 61, 20]]);
-const pos$13 = nix.positions(here + "/networking-proxy.nix", [["networking", 61, 9]]);
-const pos$14 = nix.positions(here + "/networking-proxy.nix", [["machine", 23, 5], ["machine2", 29, 5], ["machine3", 38, 5], ["machine4", 56, 5]]);
-const pos$15 = nix.positions(here + "/networking-proxy.nix", [["name", 16, 3], ["meta", 17, 3], ["nodes", 21, 3], ["testScript", 71, 3]]);
 
 export default nix.thunk(() => (() => {
   const default_config = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      xserver: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
+      [nix.POS]: $pos[1],
+      xserver: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: false })),
     })),
   }));
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       name: "networking-proxy",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$4, maintainers: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[3], maintainers: [] })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return nix.force(default_config);
@@ -48,21 +34,21 @@ export default nix.thunk(() => (() => {
         machine2: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           return nix.update(default_config, {
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              proxy: nix.thunk(() => ({ [nix.POS]: pos$5, default: "http://user:pass@host:port" })),
+              [nix.POS]: $pos[5],
+              proxy: nix.thunk(() => ({ [nix.POS]: $pos[4], default: "http://user:pass@host:port" })),
             })),
           });
         })(), formals$3),
         machine3: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           return nix.update(default_config, {
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               proxy: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 default: "http://user:pass@host:port",
                 httpProxy: "123-http://user:pass@http-host:port",
                 httpsProxy: "456-http://user:pass@https-host:port",
@@ -76,11 +62,11 @@ export default nix.thunk(() => (() => {
         machine4: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$5);
           return nix.update(default_config, {
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               proxy: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 default: "000-http://user:pass@default-host:port",
                 rsyncProxy: "123-http://user:pass@http-host:port",
                 noProxy: "131415-127.0.0.1,localhost,.localdomain",

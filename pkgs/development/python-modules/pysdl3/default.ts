@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["url", 46, 5], ["hash", 47, 5]], [["SDL_VIDEODRIVER", 82, 5], ["SDL_AUDIODRIVER", 83, 5], ["SDL_RENDER_DRIVER", 84, 5], ["PYTHONFAULTHANDLER", 85, 5], ["SDL_CHECK_BINARY_VERSION", 88, 5], ["SDL_DISABLE_METADATA", 89, 5], ["SDL_DOC_GENERATOR", 92, 5]], [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 103, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["pythonImportsCheck", 36, 3], ["src", 38, 3], ["docfile", 45, 3], ["postUnpack", 50, 3], ["postInstall", 54, 3], ["build-system", 61, 3], ["buildInputs", 65, 3], ["dependencies", 71, 3], ["setupHook", 79, 3], ["env", 81, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchFromGitHub: false, python: false, buildPythonPackage: false, "setuptools-scm": false, packaging: false, aiohttp: false, requests: false, sdl3: false, "sdl3-ttf": false, "sdl3-image": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 46, 5], ["hash", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["SDL_VIDEODRIVER", 82, 5], ["SDL_AUDIODRIVER", 83, 5], ["SDL_RENDER_DRIVER", 84, 5], ["PYTHONFAULTHANDLER", 85, 5], ["SDL_CHECK_BINARY_VERSION", 88, 5], ["SDL_DISABLE_METADATA", 89, 5], ["SDL_DOC_GENERATOR", 92, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 103, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["pythonImportsCheck", 36, 3], ["src", 38, 3], ["docfile", 45, 3], ["postUnpack", 50, 3], ["postInstall", 54, 3], ["build-system", 61, 3], ["buildInputs", 65, 3], ["dependencies", 71, 3], ["setupHook", 79, 3], ["env", 81, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const pythonImportsCheck = nix.thunk(() => ["sdl3"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Aermoss",
           repo: "PySDL3",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-CI/WQ6JxcyUVYZh0AJQMkdh1YGXZAO/xf3sZcjbqkIY=",
         }))));
       const docfile = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/Aermoss/PySDL3/releases/download/v${version}/${nix.sel(stdenv, "hostPlatform", "uname", "system")}-Docs.py`),
           hash: dochash,
         }))));
@@ -55,7 +51,7 @@ ln -s ${sdl3_image}/lib/libSDL3_image${lib_ext} -t $out/${nix.sel(python, "siteP
       const dependencies = nix.thunk(() => [packaging, aiohttp, requests]);
       const setupHook = nix.path(here, "./setup-hook.sh");
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         SDL_VIDEODRIVER: "dummy",
         SDL_AUDIODRIVER: "dummy",
         SDL_RENDER_DRIVER: "software",
@@ -65,7 +61,7 @@ ln -s ${sdl3_image}/lib/libSDL3_image${lib_ext} -t $out/${nix.sel(python, "siteP
         SDL_DOC_GENERATOR: 0n,
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Pure Python wrapper for SDL3",
         homepage: "https://github.com/Aermoss/PySDL3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -85,7 +81,7 @@ ln -s ${sdl3_image}/lib/libSDL3_image${lib_ext} -t $out/${nix.sel(python, "siteP
         ]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["pname", 30, 26], ["version", 30, 32], ["src", 30, 40], ["hash", 31, 5]], [["ci", 49, 5]], [["updateScript", 60, 12]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["cargoDeps", 29, 3], ["build-system", 34, 3], ["nativeBuildInputs", 41, 3], ["dependencies", 43, 3], ["optional-dependencies", 48, 3], ["doCheck", 56, 3], ["pythonImportsCheck", 58, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cargo: false, fetchFromGitHub: false, "nix-update-script": false, pycryptodome: false, pyprojectVersionPatchHook: false, rustc: false, rustPlatform: false, "stream-inflate": false, trio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 30, 26], ["version", 30, 32], ["src", 30, 40], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["ci", 49, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 60, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["cargoDeps", 29, 3], ["build-system", 34, 3], ["nativeBuildInputs", 41, 3], ["dependencies", 43, 3], ["optional-dependencies", 48, 3], ["doCheck", 56, 3], ["pythonImportsCheck", 58, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,20 +19,20 @@ export default nix.lambda((args) => (() => {
   const stream_inflate = nix.arg($, "stream-inflate");
   const trio = nix.arg($, "trio");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "stream-unzip",
       version: "0.0.101",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "uktrade",
           repo: "stream-unzip",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-JTMJdc61wR2nqYq3BMkLgi+krKsDUKBAgzbqlvYx8L0=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -51,15 +46,15 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [pyprojectVersionPatchHook]),
       dependencies: nix.thunk(() => [pycryptodome, stream_inflate]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, ci: nix.thunk(() => [pycryptodome, stream_inflate]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[2], ci: nix.thunk(() => [pycryptodome, stream_inflate]) })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["stream_unzip"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python function to stream unzip all the files in a ZIP archive on the fly",
         homepage: "https://github.com/uktrade/stream-unzip",
         changelog: nix.thunk(() => nix.str`https://github.com/uktrade/stream-unzip/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

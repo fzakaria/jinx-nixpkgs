@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 13], ["hash", 19, 5], ["name", 20, 5]], [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5], ["name", 28, 5]], [["description", 71, 5], ["longDescription", 72, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 85, 5]], [["pname", 33, 3], ["version", 34, 3], ["srcs", 36, 3], ["sourceRoot", 40, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 43, 3], ["cmakeFlags", 47, 3], ["preConfigure", 53, 3], ["postInstall", 58, 3], ["doInstallCheck", 64, 3], ["installCheckPhase", 66, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false, boost: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 13], ["hash", 19, 5], ["name", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5], ["name", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["longDescription", 72, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["srcs", 36, 3], ["sourceRoot", 40, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 43, 3], ["cmakeFlags", 47, 3], ["preConfigure", 53, 3], ["postInstall", 58, 3], ["doInstallCheck", 64, 3], ["installCheckPhase", 66, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const rev = "e821bcbecdc997d71766836a200e16b27535a835";
   const realVersion = nix.thunk(() => nix.str`1.4-12-g${nix.builtins.substring(0n, 7n, rev)}`);
   const main_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "YosysHQ",
       repo: "prjtrellis",
       rev: rev,
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       name: "trellis",
     }))));
   const database_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "YosysHQ",
       repo: "prjtrellis-db",
       rev: "015e0330630d7c238c0e4f2cdd9c8157eb78c54a",
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       name: "trellis-database",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "trellis",
       version: "unstable-2025-01-30",
       srcs: nix.thunk(() => [main_src, database_src]),
@@ -53,7 +50,7 @@ cd libtrellis
       doInstallCheck: true,
       installCheckPhase: "$out/bin/ecppack $out/share/trellis/misc/basecfgs/empty_lfe5u-85f.config /tmp/test.bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Documentation and bitstream tools for Lattice ECP5 FPGAs",
         longDescription: "Project Trellis documents the Lattice ECP5 architecture\nto enable development of open-source tools. Its goal is\nto provide sufficient information to develop a free and\nopen Verilog to bitstream toolchain for these devices.\n",
         homepage: "https://github.com/YosysHQ/prjtrellis",

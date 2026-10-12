@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 7], ["repo", 16, 7], ["rev", 17, 7], ["sha256", 18, 7]], [["url", 26, 9], ["hash", 27, 9]], [["url", 31, 9], ["hash", 32, 9]], [["src", 14, 5], ["patches", 23, 5]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5], ["platforms", 56, 27]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postInstall", 37, 3], ["npmDepsHash", 45, 3], ["dontBuild", 47, 3], ["dontNpmBuild", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, applyPatches: false, fetchpatch: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 7], ["repo", 16, 7], ["rev", 17, 7], ["sha256", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 9], ["hash", 27, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 31, 9], ["hash", 32, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 14, 5], ["patches", 23, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5], ["platforms", 56, 27]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postInstall", 37, 3], ["npmDepsHash", 45, 3], ["dontBuild", 47, 3], ["dontNpmBuild", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "speed-cloudflare-cli",
       version: "2.0.3-unstable-2025-07-31",
       src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "KNawm",
               repo: "speed-cloudflare-cli",
               rev: "8eb34f4bd4f63493fbd93b1659389b9a1e5e4a36",
@@ -33,12 +28,12 @@ export default nix.lambda((args) => (() => {
             })))),
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 url: "https://github.com/KNawm/speed-cloudflare-cli/commit/2682f167a1776de2f0c8085b591b06319a2aac7d.patch",
                 hash: "sha256-pkGNg7NwSP9QrBI2e0q44ZyJ8ckp0Pw/brpDkZkevdk=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 url: "https://github.com/KNawm/speed-cloudflare-cli/commit/2cb89f9b9af0f43c75ed2ea8f6c0a8519766b7c8.patch",
                 hash: "sha256-tLkyfXYd1s4FaMOwffyyObXZyIFlkvWvy7YkqBxU1SU=",
               })))),
@@ -56,7 +51,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} "$out/bin/speed-cloudflar
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Measure the speed and consistency of your internet connection using speed.cloudflare.com",
         homepage: "https://github.com/KNawm/speed-cloudflare-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

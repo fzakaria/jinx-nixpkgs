@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["pythonRelaxDeps", 34, 3], ["dependencies", 39, 3], ["disabledTestPaths", 47, 3], ["pythonImportsCheck", 54, 3], ["nativeCheckInputs", 55, 3], ["nativeInstallCheckInputs", 62, 3], ["postInstall", 68, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, "libusb-package": false, numpy: false, packaging: false, pyusb: false, scipy: false, pytestCheckHook: false, pyyaml: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["pythonRelaxDeps", 34, 3], ["dependencies", 39, 3], ["disabledTestPaths", 47, 3], ["pythonImportsCheck", 54, 3], ["nativeCheckInputs", 55, 3], ["nativeInstallCheckInputs", 62, 3], ["postInstall", 68, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cflib",
       version: "0.1.31",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bitcraze",
           repo: "crazyflie-lib-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [udevCheckHook]),
       postInstall: "# Install udev rules\nmkdir -p $out/etc/udev/rules.d\n\ncat <<EOF > $out/etc/udev/rules.d/99-bitcraze.rules\n# Crazyradio (normal operation)\nSUBSYSTEM==\"usb\", ATTRS{idVendor}==\"1915\", ATTRS{idProduct}==\"7777\", MODE=\"0664\", GROUP=\"plugdev\"\n# Bootloader\nSUBSYSTEM==\"usb\", ATTRS{idVendor}==\"1915\", ATTRS{idProduct}==\"0101\", MODE=\"0664\", GROUP=\"plugdev\"\n# Crazyflie (over USB)\nSUBSYSTEM==\"usb\", ATTRS{idVendor}==\"0483\", ATTRS{idProduct}==\"5740\", MODE=\"0664\", GROUP=\"plugdev\"\nEOF\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for the Crazyflie quadcopter by Bitcraze",
         homepage: "https://github.com/bitcraze/crazyflie-lib-python",
         changelog: nix.thunk(() => nix.str`https://github.com/bitcraze/crazyflie-lib-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["lockFile", 22, 5]], [["ZSTD_SYS_USE_PKG_CONFIG", 39, 5]], [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoLock", 21, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["env", 38, 3], ["doCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, bzip2: false, fetchFromGitHub: false, "pkg-config": false, rustPlatform: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lockFile", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ZSTD_SYS_USE_PKG_CONFIG", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoLock", 21, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["env", 38, 3], ["doCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,25 +14,25 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fim-rs",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Achiefs",
           repo: "fim",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-xJzglrNB5rqaRQTgRFIl8/AXjeDwFPykIE5LJwJ3cX4=",
         })))),
-      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") })),
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [bzip2, zstd]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ZSTD_SYS_USE_PKG_CONFIG: true })),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Host-based file integrity monitoring tool",
         longDescription: "FIM is a File Integrity Monitoring tool that tracks any event over your\nfiles. It is capable of keeping historical data of your files. It checks\nthe filesystem changes in the background.\n\nFIM is the fastest alternative to other software like Ossec, which\nperforms file integrity monitoring. It could integrate with other\nsecurity tools. The produced data can be ingested and analyzed with\ntools like ElasticSearch/OpenSearch.\n",
         homepage: "https://github.com/Achiefs/fim",

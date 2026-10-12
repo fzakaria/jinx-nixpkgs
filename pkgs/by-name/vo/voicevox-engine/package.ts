@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["name", 107, 7], ["owner", 108, 7], ["repo", 109, 7], ["tag", 110, 7], ["hash", 111, 7]], [["resources", 106, 5], ["pyopenjtalk", 114, 5]], [["changelog", 118, 5], ["description", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["mainProgram", 122, 5], ["maintainers", 123, 5], ["platforms", 127, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["pythonRemoveDeps", 51, 3], ["pythonRelaxDeps", 56, 3], ["preConfigure", 60, 3], ["makeWrapperArgs", 80, 3], ["preCheck", 84, 3], ["nativeCheckInputs", 94, 3], ["disabledTests", 100, 3], ["passthru", 105, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, "voicevox-core": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 107, 7], ["owner", 108, 7], ["repo", 109, 7], ["tag", 110, 7], ["hash", 111, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["resources", 106, 5], ["pyopenjtalk", 114, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 118, 5], ["description", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["mainProgram", 122, 5], ["maintainers", 123, 5], ["platforms", 127, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["pythonRemoveDeps", 51, 3], ["pythonRelaxDeps", 56, 3], ["preConfigure", 60, 3], ["makeWrapperArgs", 80, 3], ["preCheck", 84, 3], ["nativeCheckInputs", 94, 3], ["disabledTests", 100, 3], ["passthru", 105, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const voicevox_core = nix.arg($, "voicevox-core");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "voicevox-engine",
       version: "0.25.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "VOICEVOX",
           repo: "voicevox_engine",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -87,9 +83,9 @@ popd
       })()),
       disabledTests: nix.thunk(() => ["test_OpenAPIの形が変わっていないことを確認"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         resources: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: nix.thunk(() => nix.str`voicevox-resource-${nix.sel(finalAttrs, "version")}`),
             owner: "VOICEVOX",
             repo: "voicevox_resource",
@@ -99,7 +95,7 @@ popd
         pyopenjtalk: nix.thunk(() => nix.app(nix.sel(python3Packages, "callPackage"), nix.path(here, "./pyopenjtalk.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/VOICEVOX/voicevox_engine/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Engine for the VOICEVOX speech synthesis software",
         homepage: "https://github.com/VOICEVOX/voicevox_engine",

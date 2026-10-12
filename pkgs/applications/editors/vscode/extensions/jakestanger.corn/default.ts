@@ -2,26 +2,24 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 8, 5], ["publisher", 9, 5], ["version", 10, 5], ["hash", 11, 5]], [["changelog", 15, 5], ["description", 16, 5], ["downloadPage", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["maintainers", 20, 5]], [["mktplcRef", 7, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { "vscode-utils": false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 8, 5], ["publisher", 9, 5], ["version", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 15, 5], ["description", 16, 5], ["downloadPage", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["maintainers", 20, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 7, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const vscode_utils = nix.arg($, "vscode-utils");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "corn",
         publisher: "JakeStanger",
         version: "0.1.0",
         hash: "sha256-6c9lxwJDVUuT3VKAbIohd0mRHFbfmfDgKfYJ+XET5hQ=",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://marketplace.visualstudio.com/items/JakeStanger.corn/changelog",
         description: "Visual Studio Code extension for Cornlang",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=JakeStanger.corn",

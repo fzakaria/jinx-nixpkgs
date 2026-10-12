@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 5], ["version", 19, 5], ["nativeBuildInputs", 20, 5], ["buildInputs", 21, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, makeWrapper: false, python3: false, nix: false, "nix-prefetch-git": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 5], ["nativeBuildInputs", 20, 5], ["buildInputs", 21, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const nix_prefetch_git = nix.arg($, "nix-prefetch-git");
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix$, nix_prefetch_git])));
   return nix.app(runCommand, "dub-to-nix", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "dub-to-nix",
       version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

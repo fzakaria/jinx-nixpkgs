@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["yarnLock", 43, 5], ["hash", 44, 5]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["nlnog_communities", 33, 3], ["cargoHash", 40, 3], ["offlineCache", 42, 3], ["cargoBuildFlags", 47, 3], ["preBuild", 57, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, fetchYarnDeps: false, "fixup-yarn-lock": false, python3: false, jq: false, yarn: false, "nodejs-slim": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["yarnLock", 43, 5], ["hash", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["nlnog_communities", 33, 3], ["cargoHash", 40, 3], ["offlineCache", 42, 3], ["cargoBuildFlags", 47, 3], ["preBuild", 57, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const yarn = nix.arg($, "yarn");
   const nodejs_slim = nix.arg($, "nodejs-slim");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fernglas",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wobcom",
           repo: "fernglas",
           rev: nix.thunk(() => nix.str`fernglas-${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [yarn, nodejs_slim, fixup_yarn_lock, python3, jq]),
       nlnog_communities: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "NLNOG",
           repo: "lg.ring.nlnog.net",
           rev: "20f9a9f3da8b1bc9d7046e88c62df4b41b4efb99",
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-aY5/dIplV8yWaQ2IdWxxC7T1DoKeRjsN5eT+UxsaA1E=",
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/frontend/yarn.lock")),
           hash: "sha256-/ubCAs4C5nG8xNC77jTH+cJVNgddSxqGGPEVLDH/Cdo=",
         })))),
@@ -63,7 +59,7 @@ cp -r dist/ ../static
 popd
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Looking glass for your network using BGP and BMP as data source",
         homepage: "https://wobcom.github.io/fernglas/",
         changelog: nix.thunk(() => nix.str`https://github.com/wobcom/fernglas/releases/tag/fernglas-${nix.sel(finalAttrs, "version")}`),

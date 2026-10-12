@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["LD_LIBRARY_PATH", 43, 7]], [["test", 60, 18]], [["tests", 60, 12]], [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["env", 43, 3], ["postPatch", 47, 3], ["postInstall", 53, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, expat: false, gettext: false, gtk3: false, libconfuse: false, makeWrapper: false, pcre2: false, "pkg-config": false, vte: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LD_LIBRARY_PATH", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["test", 60, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 60, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["env", 43, 3], ["postPatch", 47, 3], ["postInstall", 53, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const vte = nix.arg($, "vte");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tilda",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lanoxx",
           repo: "tilda",
           rev: nix.thunk(() => nix.str`tilda-${nix.sel(finalAttrs, "version")}`),
@@ -39,20 +34,20 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, makeWrapper, pkg_config]),
       buildInputs: nix.thunk(() => [gettext, gtk3, libconfuse, pcre2, vte]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LD_LIBRARY_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), expat)}/lib`),
       })),
       postPatch: "substituteInPlace configure.ac --replace-fail -std=c99 -std=gnu99\n",
       postInstall: "mkdir $out/bin/wrapped\nmv \"$out/bin/tilda\" \"$out/bin/wrapped/tilda\"\nmakeWrapper \"$out/bin/wrapped/tilda\" \"$out/bin/tilda\" \\\n    --prefix XDG_DATA_DIRS : \"$GSETTINGS_SCHEMAS_PATH\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "tilda")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/lanoxx/tilda/",
         description: "Gtk based drop down terminal for Linux and Unix",
         mainProgram: "tilda",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 36, 3], ["nativeCheckInputs", 38, 3], ["outputs", 46, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, makeWrapper: false, "pkg-config": false, unzip: false, git: false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 36, 3], ["nativeCheckInputs", 38, 3], ["outputs", 46, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vcsh",
       version: "2.0.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/RichiH/vcsh/releases/download/v${nix.sel(finalAttrs, "version")}/vcsh-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-M/UME2kNCxwzngKXMYp0cdps7LWVwoS2I/mTrvPts7g=",
         })))),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       })())),
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Version Control System for $HOME",
         homepage: "https://github.com/RichiH/vcsh",
         changelog: nix.thunk(() => nix.str`https://github.com/RichiH/vcsh/blob/v${nix.sel(finalAttrs, "version")}/changelog`),

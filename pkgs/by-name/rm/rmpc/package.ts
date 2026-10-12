@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["updateScript", 30, 12]], [["VERGEN_GIT_DESCRIBE", 32, 7]], [["changelog", 46, 5], ["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["longDescription", 50, 5], ["maintainers", 56, 5], ["mainProgram", 60, 5], ["platforms", 61, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["passthru", 30, 3], ["env", 32, 3], ["postInstall", 34, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, installShellFiles: false, "pkg-config": false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 30, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["VERGEN_GIT_DESCRIBE", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 46, 5], ["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["longDescription", 50, 5], ["maintainers", 56, 5], ["mainProgram", 60, 5], ["platforms", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["passthru", 30, 3], ["env", 32, 3], ["postInstall", 34, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rmpc",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mierak",
           repo: "rmpc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,16 +28,16 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-DDOJqA5S+JiRCOgAPqw1k1b8SNCLS0aKsJsFqlykZDI=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config, cmake]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         VERGEN_GIT_DESCRIBE: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       postInstall: "installManPage target/man/rmpc.1\n\ninstallShellCompletion --cmd rmpc \\\n  --bash target/completions/rmpc.bash \\\n  --fish target/completions/rmpc.fish \\\n  --zsh target/completions/_rmpc\n\ninstall -m 444 -D assets/rmpc.desktop $out/share/applications/rmpc.desktop\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/mierak/rmpc/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "TUI music player client for MPD with album art support via kitty image protocol",
         homepage: "https://rmpc.mierak.dev/",

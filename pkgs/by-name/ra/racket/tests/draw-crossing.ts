@@ -2,13 +2,13 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/draw-crossing.nix", [[["nativeBuildInputs", 5, 5]]]);
 const formals$1 = { args: { runCommandLocal: false, racket: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/draw-crossing.nix", [["nativeBuildInputs", 5, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommandLocal = nix.arg($, "runCommandLocal");
   const racket = nix.arg($, "racket");
-  return nix.app(runCommandLocal, "racket-test-draw-crossing", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [racket]) })), "racket -f - <<EOF\n(require racket/draw)\n\n(define target (make-bitmap 64 64))\n(define dc (new bitmap-dc% [bitmap target]))\n(send dc draw-line 0 0 64 64)\n(send dc draw-line 0 64 64 0)\n\n(send target save-file (getenv \"out\") 'png)\nEOF\n");
+  return nix.app(runCommandLocal, "racket-test-draw-crossing", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [racket]) })), "racket -f - <<EOF\n(require racket/draw)\n\n(define target (make-bitmap 64 64))\n(define dc (new bitmap-dc% [bitmap target]))\n(send dc draw-line 0 0 64 64)\n(send dc draw-line 0 64 64 0)\n\n(send target save-file (getenv \"out\") 'png)\nEOF\n");
 })(), formals$1);
 //# sourceMappingURL=draw-crossing.ts.map

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ldd.nix", [[["NIX_CFLAGS_COMPILE", 14, 5]], [["path", 7, 3], ["extraPaths", 8, 3], ["env", 13, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ldd.nix", [["NIX_CFLAGS_COMPILE", 14, 5]]);
-const pos$2 = nix.positions(here + "/ldd.nix", [["path", 7, 3], ["extraPaths", 8, 3], ["env", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.bin/ldd",
       extraPaths: nix.thunk(() => ["libexec/rtld-elf", "contrib/elftoolchain/libelf"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-D_RTLD_PATH=${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "libc")))}/libexec/ld-elf.so.1`),
       })),
     })));

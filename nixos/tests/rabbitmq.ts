@@ -2,18 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rabbitmq.nix", [[["enable", 15, 24]], [["enable", 14, 7], ["managementPlugin", 15, 7], ["config", 21, 7]], [["rabbitmq", 13, 14]], [["Restart", 40, 45]], [["serviceConfig", 40, 31]], [["rabbitmq", 40, 22]], [["services", 40, 13]], [["diskSize", 43, 20]], [["services", 13, 5], ["systemd", 40, 5], ["virtualisation", 43, 5]], [["machine", 12, 9]], [["name", 10, 3], ["nodes", 12, 3], ["testScript", 46, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/rabbitmq.nix", [["enable", 15, 24]]);
-const pos$2 = nix.positions(here + "/rabbitmq.nix", [["enable", 14, 7], ["managementPlugin", 15, 7], ["config", 21, 7]]);
-const pos$3 = nix.positions(here + "/rabbitmq.nix", [["rabbitmq", 13, 14]]);
-const pos$4 = nix.positions(here + "/rabbitmq.nix", [["Restart", 40, 45]]);
-const pos$5 = nix.positions(here + "/rabbitmq.nix", [["serviceConfig", 40, 31]]);
-const pos$6 = nix.positions(here + "/rabbitmq.nix", [["rabbitmq", 40, 22]]);
-const pos$7 = nix.positions(here + "/rabbitmq.nix", [["services", 40, 13]]);
-const pos$8 = nix.positions(here + "/rabbitmq.nix", [["diskSize", 43, 20]]);
-const pos$9 = nix.positions(here + "/rabbitmq.nix", [["services", 13, 5], ["systemd", 40, 5], ["virtualisation", 43, 5]]);
-const pos$10 = nix.positions(here + "/rabbitmq.nix", [["machine", 12, 9]]);
-const pos$11 = nix.positions(here + "/rabbitmq.nix", [["name", 10, 3], ["nodes", 12, 3], ["testScript", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const configKeyPath = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "fake-config-key", "hOjWzSEn2Z7cHzKOcf6i183O2NdjurSuoMDIIv01"));
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "rabbitmq",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           rabbitmq: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             enable: true,
-            managementPlugin: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+            managementPlugin: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
             config: nix.thunk(() => nix.str`[ { rabbit
   , [ {default_user, <<"alice">>}
     , { default_pass
@@ -53,19 +43,19 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             rabbitmq: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               serviceConfig: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "no")),
               })),
             })),
           })),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, diskSize: 1024n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[7], diskSize: 1024n })),
       })),
     })),
     testScript: nix.thunk(() => nix.str`machine.start()

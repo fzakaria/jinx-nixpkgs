@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["ECM", 28, 7]], [["broken", 45, 5], ["description", 46, 5], ["mainProgram", 47, 5], ["license", 48, 5], ["homepage", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 20, 3], ["buildInputs", 22, 3], ["env", 28, 3], ["makeFlags", 31, 3], ["enableParallelBuilding", 36, 3], ["installPhase", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchsvn: false, zlib: false, gmp: false, ecm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ECM", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 45, 5], ["description", 46, 5], ["mainProgram", 47, 5], ["license", 48, 5], ["homepage", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 20, 3], ["buildInputs", 22, 3], ["env", 28, 3], ["makeFlags", 31, 3], ["enableParallelBuilding", 36, 3], ["installPhase", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const ecm = nix.arg($, "ecm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "msieve",
       version: "1056",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "svn://svn.code.sf.net/p/msieve/code/trunk",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-6ErVn4pYPMG5VFjOQURLsHNpN0pGdp55+rjY8988onU=",
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./savefile_t-pointer-type.patch")]),
       buildInputs: nix.thunk(() => [zlib, gmp, ecm]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ECM: nix.thunk(() => (nix.asBool(nix.eq(ecm, null)) ? "0" : "1")),
       })),
       makeFlags: nix.thunk(() => [
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "mkdir -p $out/bin/\ncp msieve $out/bin/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "C library implementing a suite of algorithms to factor large integers",
         mainProgram: "msieve",

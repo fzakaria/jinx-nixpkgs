@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 132, 7], ["desktopName", 133, 7], ["genericName", 134, 7], ["icon", 135, 7], ["exec", 136, 7], ["categories", 137, 7]], [["libArch", 170, 5], ["libSuffix", 171, 5]], [["description", 175, 5], ["homepage", 176, 5], ["mainProgram", 177, 5], ["sourceProvenance", 178, 5], ["license", 179, 5], ["platforms", 180, 5], ["maintainers", 181, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 55, 3], ["unpackPhase", 65, 3], ["postPatch", 67, 3], ["buildPhase", 71, 3], ["installPhase", 80, 3], ["desktopItems", 130, 3], ["fixupPhase", 146, 3], ["passthru", 169, 3], ["meta", 174, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoPatchelfHook: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false, "alsa-lib": false, glib: false, "glib-networking": false, "gsettings-desktop-schemas": false, gtk3: false, libsecret: false, openjdk: false, sqlite: false, unixodbc: false, gtk2: false, libxtst: false, glibcLocales: false, releasePath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 132, 7], ["desktopName", 133, 7], ["genericName", 134, 7], ["icon", 135, 7], ["exec", 136, 7], ["categories", 137, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libArch", 170, 5], ["libSuffix", 171, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 175, 5], ["homepage", 176, 5], ["mainProgram", 177, 5], ["sourceProvenance", 178, 5], ["license", 179, 5], ["platforms", 180, 5], ["maintainers", 181, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 55, 3], ["unpackPhase", 65, 3], ["postPatch", 67, 3], ["buildPhase", 71, 3], ["installPhase", 80, 3], ["desktopItems", 130, 3], ["fixupPhase", 146, 3], ["passthru", 169, 3], ["meta", 174, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -95,7 +92,7 @@ runHook postInstall
       })());
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "oplide",
             desktopName: "IBM ILOG CPLEX Optimization Studio",
             genericName: "Optimization Software",
@@ -106,12 +103,12 @@ runHook postInstall
       ]);
       const fixupPhase = "runHook preFixup\n\nrm -r $out/Uninstall\n\nbins=(\n  $out/bin/*\n  $out/cplex/bin/x86-64_linux/cplex\n  $out/cplex/bin/x86-64_linux/cplexamp\n  $out/cpoptimizer/bin/x86-64_linux/cpoptimizer\n  $out/opl/bin/x86-64_linux/oplrun\n  $out/opl/bin/x86-64_linux/oplrunjava\n  $out/opl/oplide/jre/bin/*\n  $out/opl/oplide/oplide\n)\n\nfind $out -type d -exec chmod 755 {} \\;\nfind $out -type f -exec chmod 644 {} \\;\nchmod +111 \"${bins[@]}\"\n\nrunHook postFixup\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         libArch: "x86-64_linux",
         libSuffix: nix.thunk(() => nix.str`${version}0`),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Optimization solver for mathematical programming",
         homepage: "https://www.ibm.com/be-en/marketplace/ibm-ilog-cplex",
         mainProgram: "cplex",
@@ -127,7 +124,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

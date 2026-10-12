@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["__darwinAllowLocalNetworking", 28, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 39, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, "aio-geojson-client": false, aiohttp: false, aiointercept: false, aioresponses: false, buildPythonPackage: false, fetchFromGitHub: false, geojson: false, "pytest-asyncio": false, pytestCheckHook: false, pytz: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["__darwinAllowLocalNetworking", 28, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 39, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aio-geojson-generic-client",
       version: "2026.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "exxamalte",
           repo: "python-aio-geojson-generic-client",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aioresponses, aiointercept, pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["aio_geojson_generic_client"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for accessing GeoJSON feeds",
         homepage: "https://github.com/exxamalte/python-aio-geojson-generic-client",
         changelog: nix.thunk(() => nix.str`https://github.com/exxamalte/python-aio-geojson-generic-client/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

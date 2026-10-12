@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["name", 47, 7], ["exec", 48, 7], ["icon", 49, 7], ["desktopName", 50, 7], ["genericName", 51, 7], ["categories", 52, 7]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 38], ["maintainers", 61, 5], ["mainProgram", 62, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["postInstall", 41, 3], ["desktopItems", 45, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, copyDesktopItems: false, inih: false, libsForQt5: false, makeDesktopItem: false, ninja: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 47, 7], ["exec", 48, 7], ["icon", 49, 7], ["desktopName", 50, 7], ["genericName", 51, 7], ["categories", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 38], ["maintainers", 61, 5], ["mainProgram", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["postInstall", 41, 3], ["desktopItems", 45, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qzdl",
       version: "3.3.0.0-unstable-2025-01-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qbasicer",
           repo: "qzdl",
           rev: "a03191777152b932b9bf15f45d439bf38e8c7679",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 $src/res/zdl3.svg $out/share/icons/hicolor/scalable/apps/zdl3.svg\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "zdl3",
             exec: "zdl %U",
             icon: "zdl3",
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libsForQt5, "qtbase", "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "ZDoom WAD Launcher",
         homepage: "https://zdl.vectec.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

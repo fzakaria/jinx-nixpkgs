@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["broken", 51, 5], ["maintainers", 52, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["postPatch", 41, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, "pkg-config": false, cairo: false, "gdk-pixbuf": false, glib: false, "adwaita-icon-theme": false, wrapGAppsHook3: false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["broken", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["postPatch", 41, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "coyim",
       version: "0.4.1-unstable-2023-09-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coyim",
           repo: "coyim",
           rev: "3f84daa8c27277543b1b4ad4536dde5100d9df12",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, cairo, gdk_pixbuf, gtk3, adwaita_icon_theme]),
       postPatch: "# fixes build on aarch64\nrm -v windows_amd64_icon.syso\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Safe and secure chat client",
         mainProgram: "coyim",
         homepage: "https://coy.im/",

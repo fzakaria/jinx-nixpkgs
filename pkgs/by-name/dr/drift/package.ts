@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["updateScript", 33, 12]], [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 51, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["doInstallCheck", 29, 3], ["nativeInstallCheckInputs", 30, 3], ["versionCheckProgramArg", 31, 3], ["passthru", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["doInstallCheck", 29, 3], ["nativeInstallCheckInputs", 30, 3], ["versionCheckProgramArg", 31, 3], ["passthru", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "drift",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "phlx0",
           repo: "drift",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Terminal screensaver that turns idle time into ambient art",
         longDescription: "Constellations, rain, particles & braille waves.  Press any key\nto resume.\n\nEvery OS has a screensaver.  The terminal had nothing — until\nnow.\n",
         homepage: "https://github.com/phlx0/drift",

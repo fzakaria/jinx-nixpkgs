@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 12, 26], ["version", 12, 32], ["hash", 13, 5]], [["description", 23, 5], ["mainProgram", 24, 5], ["longDescription", 25, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 16, 3], ["buildFeatures", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { fetchCrate: false, lib: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 12, 26], ["version", 12, 32], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["mainProgram", 24, 5], ["longDescription", 25, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 16, 3], ["buildFeatures", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ttfb",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-9iuDGnUB0Oi2yZQ8zDjLSXGUbLfRP+glkJLxrDgPnpQ=",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-8CIXk7OvSRmtWP/P5teJLSW9tBPHIyhW2A/NjCC6lTo=",
       buildFeatures: nix.thunk(() => ["bin"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CLI-Tool to measure the TTFB (time to first byte) of HTTP(S) requests",
         mainProgram: "ttfb",
         longDescription: "ttfb measure the TTFB (time to first byte) of HTTP(S) requests. This includes data\nof intermediate steps, such as the relative and absolute timings of DNS lookup, TCP\nconnect, and TLS handshake.\n",

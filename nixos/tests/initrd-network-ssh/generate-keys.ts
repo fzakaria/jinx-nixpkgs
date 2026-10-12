@@ -2,12 +2,12 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/generate-keys.nix", [["buildInputs", 5, 5]]);
+const $pos = nix.positions(here + "/generate-keys.nix", [[["buildInputs", 5, 5]]]);
 
 export default nix.thunk(() => (() => {
   const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({})))), null);
   return nix.app(nix.lookup(w, "runCommand"), "gen-keys", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "openssh"))]),
     })), "mkdir $out\nssh-keygen -q -t ed25519 -N \"\" -f $out/ssh_host_ed25519_key\nssh-keygen -q -t ed25519 -N \"\" -f $out/id_ed25519\n");
 })());

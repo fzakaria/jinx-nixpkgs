@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "libpthread-stubs": false, qtbase: false, qtwebsockets: false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qcoro";
       const version = "0.12.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "danvratil",
           repo: "qcoro",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [wrapQtAppsHook, cmake]);
       const buildInputs = nix.thunk(() => [qtbase, qtwebsockets, libpthread_stubs]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for using C++20 coroutines in connection with certain asynchronous Qt actions",
         homepage: "https://github.com/danvratil/qcoro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

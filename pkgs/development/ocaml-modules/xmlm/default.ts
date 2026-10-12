@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5], ["platforms", 38, 26]], [["name", 11, 3], ["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 26, 3], ["strictDeps", 28, 3], ["buildPhase", 30, 19], ["installPhase", 30, 30], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocaml: false, findlib: false, ocamlbuild: false, topkg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5], ["platforms", 38, 26]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 11, 3], ["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 26, 3], ["strictDeps", 28, 3], ["buildPhase", 30, 19], ["installPhase", 30, 30], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const ocamlbuild = nix.arg($, "ocamlbuild");
   const topkg = nix.arg($, "topkg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "xmlm",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://erratique.ch/software/xmlm/releases/xmlm-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-CRJSJY490WMgw85N2yG81X79nIwuv7eZ7mpUPtSS2fo=",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OCaml streaming codec to decode and encode the XML data format",
         homepage: "https://erratique.ch/software/xmlm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

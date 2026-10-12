@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["url", 24, 7], ["hash", 25, 7]], [["description", 32, 5], ["mainProgram", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["nativeBuildInputs", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 32, 5], ["mainProgram", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["nativeBuildInputs", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fasttext",
       version: "0.9.2-unstable-2023-11-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebookresearch",
           repo: "fastText",
           rev: "6c2204ba66776b700095ff73e3e599a908ffd9c3",
@@ -28,14 +25,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/science-team/fasttext/-/raw/b2a0e52d302b32b6786b1a8fb9c0b21ca23e2be9/debian/patches/fix-ftbfs-cmake4.patch",
             hash: "sha256-I5w+/4SNyp2FtHGYBWU2Fi76vmJpG4nbgsb0akVddAs=",
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for text classification and representation learning",
         mainProgram: "fasttext",
         homepage: "https://fasttext.cc/",

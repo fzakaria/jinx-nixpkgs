@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["url", 26, 5], ["branch", 27, 5], ["hardcodeZeroVersion", 30, 5]], [["updateScript", 25, 12]], [["CXXFLAGS", 52, 7]], [["homepage", 55, 5], ["description", 56, 5], ["mainProgram", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["passthru", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["doInstallCheck", 44, 3], ["installCheckPhase", 45, 3], ["env", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, cmake: false, llvmPackages_21: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 5], ["branch", 27, 5], ["hardcodeZeroVersion", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 25, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CXXFLAGS", 52, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["mainProgram", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["passthru", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["doInstallCheck", 44, 3], ["installCheckPhase", 45, 3], ["env", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const c2ffiBranch = "llvm-21.1.0";
   const llvmPackages = llvmPackages_21;
   return nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`c2ffi-${c2ffiBranch}`),
       version: "0-unstable-2026-01-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rpav",
           repo: "c2ffi",
           rev: "f52a6c90651cd5f2f5239b67b41fb9a7e4de1f2e",
           hash: "sha256-9PUTuRmTuycHN1L4p9jiJnrymnD1EBctzHXeAJwzulY=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/rpav/c2ffi.git",
             branch: c2ffiBranch,
             hardcodeZeroVersion: true,
@@ -47,9 +42,9 @@ export default nix.lambda((args) => (() => {
       ]),
       doInstallCheck: true,
       installCheckPhase: "$out/bin/c2ffi --help 2>&1 >/dev/null\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, CXXFLAGS: "-fno-rtti" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], CXXFLAGS: "-fno-rtti" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/rpav/c2ffi",
         description: "LLVM based tool for extracting definitions from C, C++, and Objective C header files for use with foreign function call interfaces",
         mainProgram: "c2ffi",

@@ -2,15 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["arch", 12, 11], ["hash", 13, 11]], [["arch", 16, 11], ["hash", 17, 11]], [["arch", 20, 11], ["hash", 21, 11]], [["arch", 24, 11], ["hash", 25, 11]], [["x86_64-linux", 11, 9], ["aarch64-linux", 15, 9], ["x86_64-darwin", 19, 9], ["aarch64-darwin", 23, 9]], [["name", 30, 7], ["publisher", 31, 7], ["version", 32, 7]], [["description", 38, 5], ["downloadPage", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 46, 5]], [["mktplcRef", 8, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["arch", 12, 11], ["hash", 13, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arch", 16, 11], ["hash", 17, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["arch", 20, 11], ["hash", 21, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["arch", 24, 11], ["hash", 25, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["x86_64-linux", 11, 9], ["aarch64-linux", 15, 9], ["x86_64-darwin", 19, 9], ["aarch64-darwin", 23, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 30, 7], ["publisher", 31, 7], ["version", 32, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 38, 5], ["downloadPage", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 46, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["mktplcRef", 8, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,40 +11,40 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       mktplcRef: nix.thunk(() => (() => {
         const sources = nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "x86_64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             arch: "linux-x64",
             hash: "sha256-fOqG/GSQmKDHA3J10x/m9q5URjSPAoWHqg/OfZtz418=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             arch: "linux-arm64",
             hash: "sha256-MA2kXhM6rSp9OPtDm4daFrBpH+CNNXLjSG095QndOvM=",
           })),
           "x86_64-darwin": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             arch: "darwin-x64",
             hash: "sha256-UiA9Ar34UuHKBKm0B6jc+qWwzxlJbXEG2FaMBV39AeI=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             arch: "darwin-arm64",
             hash: "sha256-+v8U/aFNp/b6Dj62J+MLYQ8dcfO4qinWd/XST6ntnNc=",
           })),
         }));
         return nix.update({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           name: "vscode-python-envs",
           publisher: "ms-python",
           version: "1.36.0",
         }, nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Provides a unified python environment experience",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-python-envs",
         homepage: "https://github.com/microsoft/vscode-python-environments",

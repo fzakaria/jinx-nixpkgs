@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["NIX_LDFLAGS", 26, 5]], [["extraArgs", 50, 5]], [["updateScript", 49, 12]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 64, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["env", 25, 3], ["checkFlags", 32, 3], ["postPatch", 37, 3], ["postInstall", 41, 3], ["passthru", 49, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 49, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["env", 25, 3], ["checkFlags", 32, 3], ["postPatch", 37, 3], ["postInstall", 41, 3], ["passthru", 49, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "watchexec",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "watchexec",
           repo: "watchexec",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,18 +27,21 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-ZwF5nNI2ESwgaH129MhcJPlhtmxqwhhQ9W49u9bilRk=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-framework", "AppKit"]))),
         })))),
       checkFlags: nix.thunk(() => ["--skip=help", "--skip=help_short"]),
       postPatch: "rm .cargo/config.toml\n",
       postInstall: "installManPage doc/watchexec.1\ninstallShellCompletion --cmd watchexec \\\n  --bash completions/bash \\\n  --fish completions/fish \\\n  --zsh completions/zsh\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version-regex", "^v(.+)"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
+            [nix.POS]: $pos[2],
+            extraArgs: nix.thunk(() => ["--version-regex", "^v(.+)"]),
+          })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Executes commands in response to file modifications",
         homepage: "https://watchexec.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

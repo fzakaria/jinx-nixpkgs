@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["updateScript", 41, 12]], [["description", 44, 5], ["mainProgram", 45, 5], ["longDescription", 46, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["platforms", 77, 5], ["maintainers", 78, 5]], [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["nativeInstallCheckInputs", 25, 3], ["doInstallCheck", 26, 3], ["cargoBuildFlags", 28, 3], ["cargoTestFlags", 29, 3], ["buildNoDefaultFeatures", 31, 3], ["checkNoDefaultFeatures", 32, 3], ["postPatch", 34, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, mold: false, "nix-update-script": false, versionCheckHook: false, rustc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 41, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["mainProgram", 45, 5], ["longDescription", 46, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["platforms", 77, 5], ["maintainers", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["nativeInstallCheckInputs", 25, 3], ["doInstallCheck", 26, 3], ["cargoBuildFlags", 28, 3], ["cargoTestFlags", 29, 3], ["buildNoDefaultFeatures", 31, 3], ["checkNoDefaultFeatures", 32, 3], ["postPatch", 34, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const rustc = nix.arg($, "rustc");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bencher-cli",
       version: "0.6.13",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bencherdev",
           repo: "bencher",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
       checkNoDefaultFeatures: nix.thunk(() => nix.sel(finalAttrs, "buildNoDefaultFeatures")),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(finalAttrs, "buildNoDefaultFeatures")), "# Replaces the proprietary Rust files with empty files\n# This is just a safeguard, the build shouldn't touch these files anyways\necho \"find . -path '*/plus/*' -type f ! -name Cargo.toml -exec truncate -s 0 {} +\"\nfind . -path '*/plus/*' -type f ! -name Cargo.toml -exec truncate -s 0 {} +\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command-Line interface for the Bencher continuous benchmarking platform",
         mainProgram: "bencher",
         longDescription: "Bencher is a suite of continuous benchmarking tools.\nBencher allows you to detect and prevent performance regressions\n*before* they hit production.\n\n- Run: Run your benchmarks locally or in CI using your favorite\n  benchmarking tools. The bencher CLI simply wraps your existing\n  benchmark harness and stores its results.\n- Track: Track the results of your benchmarks over time. Monitor, query,\n  and graph the results using the Bencher web console based on the source\n  branch, testbed, benchmark, and measure.\n- Catch: Catch performance regressions in CI. Bencher uses state of the\n  art, customizable analytics to detect performance regressions before\n  they make it to production.\n\nBencher's source repo includes non-free features, included in the build\nas the Cargo feature \"plus\".\nFiles in the plus directories are proprietary, while the other files\nare dual Apache-2.0/MIT licensed.\nThe Nix derivation does not compile the proprietary features.\n",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["cosmic", 78, 9], ["cosmic-autologin", 79, 9], ["cosmic-noxwayland", 80, 9], ["cosmic-autologin-noxwayland", 81, 9]], [["extraArgs", 86, 7]], [["tests", 76, 5], ["updateScript", 85, 5]], [["homepage", 94, 5], ["description", 95, 5], ["mainProgram", 96, 5], ["license", 97, 5], ["teams", 98, 5], ["platforms", 99, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 25, 3], ["postPatch", 32, 3], ["cargoHash", 37, 3], ["separateDebugInfo", 39, 3], ["__structuredAttrs", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["makeFlags", 58, 3], ["dontCargoInstall", 63, 3], ["postFixup", 65, 3], ["passthru", 75, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, rustPlatform: false, makeBinaryWrapper: false, "adw-gtk3": false, "pkg-config": false, libpulseaudio: false, pipewire: false, libinput: false, udev: false, libxkbcommon: false, wayland: false, openssl: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cosmic", 78, 9], ["cosmic-autologin", 79, 9], ["cosmic-noxwayland", 80, 9], ["cosmic-autologin-noxwayland", 81, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 86, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 76, 5], ["updateScript", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 94, 5], ["description", 95, 5], ["mainProgram", 96, 5], ["license", 97, 5], ["teams", 98, 5], ["platforms", 99, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 25, 3], ["postPatch", 32, 3], ["cargoHash", 37, 3], ["separateDebugInfo", 39, 3], ["__structuredAttrs", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["makeFlags", 58, 3], ["dontCargoInstall", 63, 3], ["postFixup", 65, 3], ["passthru", 75, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cosmic-settings-daemon",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pop-os",
           repo: "cosmic-settings-daemon",
           tag: nix.thunk(() => nix.str`epoch-${nix.sel(finalAttrs, "version")}`),
@@ -60,21 +55,21 @@ export default nix.lambda((args) => (() => {
   --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [wayland, libxkbcommon]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           cosmic: nix.thunk(() => nix.attr(nixosTests, "cosmic")),
           "cosmic-autologin": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin")),
           "cosmic-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-noxwayland")),
           "cosmic-autologin-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin-noxwayland")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "epoch-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/pop-os/cosmic-settings-daemon",
         description: "Settings Daemon for the COSMIC Desktop Environment",
         mainProgram: "cosmic-settings-daemon",

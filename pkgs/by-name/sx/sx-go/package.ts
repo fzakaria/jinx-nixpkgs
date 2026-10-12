@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["patches", 22, 3], ["buildInputs", 31, 3], ["postFixup", 35, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchpatch: false, libpcap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["patches", 22, 3], ["buildInputs", 31, 3], ["postFixup", 35, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sx-go";
       const version = "0.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "v-byte-cpu",
           repo: "sx",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-TWRMNt6x8zuvhP1nz4R6IVCX+9HityvVpzxRhDiMyO4=";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "non-linux-method-signature.patch",
             url: "https://github.com/v-byte-cpu/sx/commit/56457bfaa49eb6fbb7a33d7092d9c636b9c85895.patch",
             hash: "sha256-0lCu3tZ0fEiC7qWfk1APLVwwrK9eovbVa/yG7OuXEWQ=",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
 mv $out/bin/sx $out/bin/${pname}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command-line network scanner",
         homepage: "https://github.com/v-byte-cpu/sx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -50,7 +47,7 @@ mv $out/bin/sx $out/bin/${pname}
         mainProgram: "sx-go",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

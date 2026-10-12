@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["smoke-test", 26, 5]], [["tests", 25, 12]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["mainProgram", 34, 5]], [["pname", 14, 3], ["version", 15, 34], ["src", 15, 42], ["nativeBuildInputs", 17, 3], ["buildInputs", 18, 3], ["propagatedBuildInputs", 19, 3], ["passthru", 25, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, "atdgen-codec-runtime": false, cmdliner: false, menhir: false, "easy-format": false, buildDunePackage: false, re: false, yojson: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["smoke-test", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 25, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["mainProgram", 34, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 34], ["src", 15, 42], ["nativeBuildInputs", 17, 3], ["buildInputs", 18, 3], ["propagatedBuildInputs", 19, 3], ["passthru", 25, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "atd",
       version: nix.thunk(() => nix.attr(atdgen_codec_runtime, "version")),
       src: nix.thunk(() => nix.attr(atdgen_codec_runtime, "src")),
@@ -28,11 +25,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cmdliner]),
       propagatedBuildInputs: nix.thunk(() => [easy_format, re, yojson]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$1, "smoke-test": nix.thunk(() => nix.sel(nixosTests, "atd")) })),
+        [nix.POS]: $pos[1],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[0],
+          "smoke-test": nix.thunk(() => nix.sel(nixosTests, "atd")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Syntax for cross-language type definitions",
         homepage: "https://github.com/mjambon/atd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

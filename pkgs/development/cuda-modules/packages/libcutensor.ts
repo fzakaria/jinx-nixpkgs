@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcutensor.nix", [[["message", 47, 9], ["assertion", 50, 9]], [["description", 55, 5], ["longDescription", 56, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 65, 5]], [["redistName", 11, 3], ["pname", 12, 3], ["outputs", 14, 3], ["allowFHSReferences", 22, 3], ["buildInputs", 24, 3], ["autoPatchelfIgnoreMissingDeps", 35, 3], ["platformAssertions", 39, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { _cuda: false, backendStdenv: false, buildRedist: false, cuda_cudart: false, lib: false, libcublas: false, nccl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcutensor.nix", [["message", 47, 9], ["assertion", 50, 9]]);
-const pos$2 = nix.positions(here + "/libcutensor.nix", [["description", 55, 5], ["longDescription", 56, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 65, 5]]);
-const pos$3 = nix.positions(here + "/libcutensor.nix", [["redistName", 11, 3], ["pname", 12, 3], ["outputs", 14, 3], ["allowFHSReferences", 22, 3], ["buildInputs", 24, 3], ["autoPatchelfIgnoreMissingDeps", 35, 3], ["platformAssertions", 39, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libcublas = nix.arg($, "libcublas");
   const nccl = nix.arg($, "nccl");
   return nix.app(buildRedist, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       redistName: "cutensor",
       pname: "libcutensor",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static"]),
@@ -30,14 +28,14 @@ export default nix.lambda((args) => (() => {
         const allCCNewerThan75 = nix.thunk(() => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), "7.5")), cudaCapabilities));
         return [
           nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             message: nix.thunk(() => nix.add(nix.str`cuTENSOR releases since 2.3.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA compute capabilities 7.5 and newer (found ${nix.builtins.toJSON(cudaCapabilities)})`)),
             assertion: nix.thunk(() => (!nix.asBool(cutensorAtLeast23) || nix.asBool(allCCNewerThan75))),
           })),
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GPU-accelerated tensor linear algebra library for tensor contraction, reduction, and elementwise operations",
         longDescription: "NVIDIA cuTENSOR is a GPU-accelerated tensor linear algebra library for tensor contraction, reduction, and\nelementwise operations. Using cuTENSOR, applications can harness the specialized tensor cores on NVIDIA GPUs for\nhigh-performance tensor computations and accelerate deep learning training and inference, computer vision,\nquantum chemistry, and computational physics workloads.\n",
         homepage: "https://developer.nvidia.com/cutensor",

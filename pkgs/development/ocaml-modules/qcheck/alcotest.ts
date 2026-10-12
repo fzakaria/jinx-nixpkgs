@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/alcotest.nix", [[["description", 18, 5]], [["pname", 8, 3], ["version", 10, 25], ["src", 10, 33], ["propagatedBuildInputs", 12, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "qcheck-core": false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/alcotest.nix", [["description", 18, 5]]);
-const pos$2 = nix.positions(here + "/alcotest.nix", [["pname", 8, 3], ["version", 10, 25], ["src", 10, 33], ["propagatedBuildInputs", 12, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const qcheck_core = nix.arg($, "qcheck-core");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qcheck-alcotest",
       version: nix.thunk(() => nix.attr(qcheck_core, "version")),
       src: nix.thunk(() => nix.attr(qcheck_core, "src")),
       propagatedBuildInputs: nix.thunk(() => [qcheck_core, alcotest]),
-      meta: nix.thunk(() => nix.update(nix.sel(qcheck_core, "meta"), { [nix.POS]: pos$1, description: "Alcotest backend for qcheck" })),
+      meta: nix.thunk(() => nix.update(nix.sel(qcheck_core, "meta"), { [nix.POS]: $pos[0], description: "Alcotest backend for qcheck" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=alcotest.ts.map

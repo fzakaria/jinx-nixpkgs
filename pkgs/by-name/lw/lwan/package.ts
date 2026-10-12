@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 35, 5], ["mainProgram", 36, 5], ["longDescription", 37, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["cmakeFlags", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, zlib: false, cmake: false, enableJemalloc: true, jemalloc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["mainProgram", 36, 5], ["longDescription", 37, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["cmakeFlags", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lwan";
       const version = "0.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lpereira",
           repo: "lwan",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.concat([zlib], nix.app(nix.sel(lib, "optional"), enableJemalloc, jemalloc)));
       const cmakeFlags = nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableJemalloc, "-DUSE_ALTERNATIVE_MALLOC=jemalloc"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight high-performance multi-threaded web server",
         mainProgram: "lwan",
         longDescription: "A lightweight and speedy web server with a low memory\n      footprint (~500KiB for 10k idle connections), with minimal system calls and\n      memory allocation.  Lwan contains a hand-crafted HTTP request parser. Files are\n      served using the most efficient way according to their size: no copies between\n      kernel and userland for files larger than 16KiB.  Smaller files are sent using\n      vectored I/O of memory-mapped buffers. Header overhead is considered before\n      compressing small files.  Features include: mustache templating engine and IPv6\n      support.\n    ",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

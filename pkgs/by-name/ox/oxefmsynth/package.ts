@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["NIX_CFLAGS_COMPILE", 19, 7]], [["homepage", 31, 5], ["description", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["license", 35, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 19, 3], ["buildFlags", 21, 3], ["buildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, libx11: false, "vst2-sdk": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["description", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["license", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 19, 3], ["buildFlags", 21, 3], ["buildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,21 +16,21 @@ export default nix.lambda((args) => (() => {
       const pname = "oxefmsynth";
       const version = "1.3.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oxesoft",
           repo: "oxefmsynth",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "1rk71ls33a38wx8i22plsi7d89cqqxrfxknq5i4f9igsw1ipm4gn",
         }))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-narrowing"]))),
       }));
       const buildFlags = nix.thunk(() => [nix.thunk(() => nix.str`VSTSDK_PATH=${vst2_sdk}`)]);
       const buildInputs = nix.thunk(() => [libx11]);
       const installPhase = "mkdir -p $out/lib/lxvst\ninstall -Dm644 oxevst64.so -t $out/lib/lxvst\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/oxesoft/oxefmsynth",
         description: "Open source VST 2.4 instrument plugin",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "hirenashah"))]),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

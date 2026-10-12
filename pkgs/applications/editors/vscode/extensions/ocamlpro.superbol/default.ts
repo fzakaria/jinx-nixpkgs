@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 38, 7], ["src", 39, 28], ["hash", 40, 7]], [["name", 19, 5], ["pname", 20, 5], ["strictDeps", 22, 5], ["__structuredAttrs", 23, 5], ["version", 25, 49], ["src", 25, 57], ["patches", 25, 61], ["prePatch", 27, 5], ["postPatch", 32, 5], ["npmDeps", 37, 5], ["nativeBuildInputs", 43, 5], ["buildInputs", 56, 5], ["buildPhase", 61, 5], ["installPhase", 73, 5]], [["vsix", 91, 5]], [["description", 95, 5], ["downloadPage", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["teams", 100, 5]], [["pname", 81, 3], ["version", 82, 28], ["vscodeExtPublisher", 84, 3], ["vscodeExtName", 85, 3], ["vscodeExtUniqueId", 86, 3], ["src", 88, 3], ["passthru", 90, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchNpmDeps: false, ocamlPackages: false, "vscode-utils": false, npmHooks: false, "nodejs-slim": false, llvmPackages_20: false, dune_3: false, "pkg-config": false, libsecret: false, vsce: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 38, 7], ["src", 39, 28], ["hash", 40, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 19, 5], ["pname", 20, 5], ["strictDeps", 22, 5], ["__structuredAttrs", 23, 5], ["version", 25, 49], ["src", 25, 57], ["patches", 25, 61], ["prePatch", 27, 5], ["postPatch", 32, 5], ["npmDeps", 37, 5], ["nativeBuildInputs", 43, 5], ["buildInputs", 56, 5], ["buildPhase", 61, 5], ["installPhase", 73, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["vsix", 91, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 95, 5], ["downloadPage", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["teams", 100, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 81, 3], ["version", 82, 28], ["vscodeExtPublisher", 84, 3], ["vscodeExtName", 85, 3], ["vscodeExtUniqueId", 86, 3], ["src", 88, 3], ["passthru", 90, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const vsix = nix.thunk(() => nix.app(nix.sel(vsixStdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(ocamlPackages, "superbol-studio-oss"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`superbol-studio-oss-${nix.sel(finalAttrs, "version")}.vsix`),
       pname: "superbol-studio-oss-vsix",
       strictDeps: true,
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       prePatch: "rm -rf import/gnucobol*\n",
       postPatch: "substituteInPlace Makefile.vsix-rules \\\n  --replace-fail '--target=es6' '--target=es2020'\n",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-7wu+iPsVUz9qVFZonF7pGrrwSPyGdFWOonUttWe53lM=",
@@ -72,16 +68,16 @@ runHook postBuild
   return nix.app(nix.sel(vscode_utils, "buildVscodeExtension"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "src"));
       return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "superbol-studio-oss",
       version: nix.thunk(() => nix.attr(from, "version")),
       vscodeExtPublisher: "OCamlPro",
       vscodeExtName: "SuperBOL",
       vscodeExtUniqueId: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "vscodeExtPublisher")}.${nix.sel(finalAttrs, "vscodeExtName")}`),
       src: vsix,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, vsix: nix.thunk(() => nix.sel(finalAttrs, "src")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], vsix: nix.thunk(() => nix.sel(finalAttrs, "src")) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Visual Studio Code extension for COBOL",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=OCamlPro.SuperBOL",
         homepage: "https://superbol.eu/en",

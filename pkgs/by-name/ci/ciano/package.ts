@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 42, 3], ["dontWrapGApps", 49, 3], ["strictDeps", 51, 3], ["postPatch", 53, 3], ["postFixup", 58, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, "desktop-file-utils": false, fetchFromGitHub: false, ffmpeg: false, gtk3: false, imagemagick: false, meson: false, ninja: false, pantheon: false, "pkg-config": false, python3: false, stdenv: false, vala: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 42, 3], ["dontWrapGApps", 49, 3], ["strictDeps", 51, 3], ["postPatch", 53, 3], ["postFixup", 58, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const granite = nix.thunk(() => nix.attr(pantheon, "granite"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ciano",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "robertsanseries",
           repo: "ciano",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +46,7 @@ ln -s $out/bin/com.github.robertsanseries.ciano $out/bin/ciano
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/robertsanseries/ciano",
         description: "Multimedia file converter focused on simplicity",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["module", 23, 18]], [["tests", 23, 12]], [["changelog", 26, 5], ["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["composerLock", 19, 3], ["composerStrictValidation", 20, 3], ["vendorHash", 21, 3], ["passthru", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, php: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["module", 23, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 23, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 26, 5], ["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["composerLock", 19, 3], ["composerStrictValidation", 20, 3], ["vendorHash", 21, 3], ["passthru", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "flarum",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flarum",
           repo: "flarum",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
       composerStrictValidation: false,
       vendorHash: "sha256-EHl+Mr6y5A51EpLPAWUGtiPkLOky6KvsSY4JWHeyO28=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, module: nix.thunk(() => nix.sel(nixosTests, "flarum")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], module: nix.thunk(() => nix.sel(nixosTests, "flarum")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: "https://github.com/flarum/framework/blob/main/CHANGELOG.md",
         description: "Delightfully simple discussion platform for your website",
         homepage: "https://github.com/flarum/flarum",

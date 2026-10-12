@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]], [["pname", 31, 5], ["version", 32, 5], ["src", 33, 5], ["sourceRoot", 34, 5], ["outputs", 37, 3], ["pyproject", 42, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["pythonRelaxDeps", 61, 3], ["nativeCheckInputs", 72, 3], ["installCheckPhase", 85, 3], ["__darwinAllowLocalNetworking", 101, 3], ["pythonImportsCheck", 103, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, pulumiPackages: false, buildPythonPackage: false, hatchling: false, protobuf: false, grpcio: false, dill: false, six: false, semver: false, pyyaml: false, debugpy: false, pip: false, "opentelemetry-api": false, "opentelemetry-sdk": false, "opentelemetry-instrumentation-grpc": false, "opentelemetry-exporter-otlp-proto-grpc": false, pytest: false, "pytest-asyncio": false, "pytest-timeout": false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 31, 5], ["version", 32, 5], ["src", 33, 5], ["sourceRoot", 34, 5], ["outputs", 37, 3], ["pyproject", 42, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["pythonRelaxDeps", 61, 3], ["nativeCheckInputs", 72, 3], ["installCheckPhase", 85, 3], ["__darwinAllowLocalNetworking", 101, 3], ["pythonImportsCheck", 103, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const pulumi_python = nix.thunk(() => nix.attr(pulumiPackages, "pulumi-python"));
   const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/sdk/python`);
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: src,
@@ -85,7 +84,7 @@ runHook postInstallCheck
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["pulumi"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Modern Infrastructure as Code. Any cloud, any language",
         homepage: "https://www.pulumi.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

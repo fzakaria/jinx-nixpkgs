@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["cmakeFlags", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, qt6: false, exiv2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["cmakeFlags", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const exiv2 = nix.arg($, "exiv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pineapple-pictures",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BLumia",
           repo: "pineapple-pictures",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtsvg")), exiv2]),
       cmakeFlags: nix.thunk(() => ["-DPREFER_QT_5=OFF"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Homebrew lightweight image viewer",
         homepage: "https://github.com/BLumia/pineapple-pictures",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

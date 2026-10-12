@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 59, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 42, 3], ["__structuredAttrs", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromCodeberg: false, "gobject-introspection": false, wrapGAppsHook4: false, geoclue2: false, libadwaita: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 42, 3], ["__structuredAttrs", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const geoclue2 = nix.arg($, "geoclue2");
   const libadwaita = nix.arg($, "libadwaita");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "geobug",
       version: "0.9.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tpikonen",
           repo: "geobug",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["geobug"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Adaptive GeoClue client",
         longDescription: "Geobug is an adaptive client for GeoClue, the geolocation D-bus server from freedesktop.org. It can display your location information (coordinates, speed etc.) and save a track of your movements to a GPX-file.\n",
         homepage: "https://codeberg.org/tpikonen/geobug",

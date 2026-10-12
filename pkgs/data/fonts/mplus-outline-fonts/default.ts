@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 7], ["hash", 19, 7]], [["description", 25, 7], ["homepage", 26, 7], ["maintainers", 27, 7], ["platforms", 28, 7], ["license", 29, 7]], [["pname", 14, 5], ["version", 15, 5], ["src", 17, 5], ["nativeBuildInputs", 22, 5], ["meta", 24, 5]], [["owner", 38, 7], ["repo", 39, 7], ["rev", 40, 7], ["hash", 41, 7]], [["description", 47, 7], ["homepage", 48, 7], ["maintainers", 49, 7], ["platforms", 50, 7], ["license", 51, 7]], [["pname", 34, 5], ["version", 35, 5], ["src", 37, 5], ["nativeBuildInputs", 44, 5], ["meta", 46, 5]], [["osdnRelease", 13, 3], ["githubRelease", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, fetchFromGitHub: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 25, 7], ["homepage", 26, 7], ["maintainers", 27, 7], ["platforms", 28, 7], ["license", 29, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 5], ["version", 15, 5], ["src", 17, 5], ["nativeBuildInputs", 22, 5], ["meta", 24, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["owner", 38, 7], ["repo", 39, 7], ["rev", 40, 7], ["hash", 41, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 47, 7], ["homepage", 48, 7], ["maintainers", 49, 7], ["platforms", 50, 7], ["license", 51, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 34, 5], ["version", 35, 5], ["src", 37, 5], ["nativeBuildInputs", 44, 5], ["meta", 46, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["osdnRelease", 13, 3], ["githubRelease", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const pname = "mplus-outline-fonts";
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     osdnRelease: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: nix.thunk(() => nix.str`${pname}-osdn`),
         version: "063a",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "mirror://osdn/mplus-fonts/62344/mplus-TESTFLIGHT-063a.tar.xz",
             hash: "sha256-ROuXO0tq/1dN5FTbEF3cI+Z0nCKUc0vZyx4Nc05M3Xk=",
           })))),
         nativeBuildInputs: nix.thunk(() => [installFonts]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "M+ Outline Fonts (legacy OSDN release)",
           homepage: "https://mplus-fonts.osdn.jp",
           maintainers: nix.thunk(() => (() => {
@@ -44,11 +38,11 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     githubRelease: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: nix.thunk(() => nix.str`${pname}-github`),
         version: "unstable-2022-05-19",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             owner: "coz-m",
             repo: "MPLUS_FONTS",
             rev: "336fec4e9e7c1e61bd22b82e6364686121cf3932",
@@ -56,7 +50,7 @@ export default nix.lambda((args) => (() => {
           })))),
         nativeBuildInputs: nix.thunk(() => [installFonts]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           description: "M+ Outline Fonts (GitHub release)",
           homepage: "https://mplusfonts.github.io",
           maintainers: nix.thunk(() => (() => {

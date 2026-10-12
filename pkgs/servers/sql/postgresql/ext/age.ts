@@ -2,20 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/age.nix", [[["version", 15, 7], ["hash", 16, 7]], [["version", 19, 7], ["hash", 20, 7]], [["version", 23, 7], ["hash", 24, 7]], [["version", 27, 7], ["hash", 28, 7]], [["version", 31, 7], ["hash", 32, 7]], [["version", 35, 7], ["hash", 36, 7]], [["19", 14, 5], ["18", 18, 5], ["17", 22, 5], ["16", 26, 5], ["15", 30, 5], ["14", 34, 5]], [["version", 42, 7], ["hash", 43, 7]], [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 22]], [["version", 65, 26], ["src", 65, 34], ["pname", 67, 5], ["dontConfigure", 69, 5], ["buildPhase", 71, 5], ["installPhase", 90, 5]], [["tests", 64, 12]], [["broken", 96, 5], ["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5], ["license", 102, 5]], [["pname", 47, 3], ["version", 48, 20], ["src", 50, 3], ["makeFlags", 57, 3], ["enableUpdateScript", 63, 3], ["passthru", 64, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { bison: false, fetchFromGitHub: false, flex: false, lib: false, perl: false, postgresql: false, postgresqlBuildExtension: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/age.nix", [["version", 15, 7], ["hash", 16, 7]]);
-const pos$2 = nix.positions(here + "/age.nix", [["version", 19, 7], ["hash", 20, 7]]);
-const pos$3 = nix.positions(here + "/age.nix", [["version", 23, 7], ["hash", 24, 7]]);
-const pos$4 = nix.positions(here + "/age.nix", [["version", 27, 7], ["hash", 28, 7]]);
-const pos$5 = nix.positions(here + "/age.nix", [["version", 31, 7], ["hash", 32, 7]]);
-const pos$6 = nix.positions(here + "/age.nix", [["version", 35, 7], ["hash", 36, 7]]);
-const pos$7 = nix.positions(here + "/age.nix", [["19", 14, 5], ["18", 18, 5], ["17", 22, 5], ["16", 26, 5], ["15", 30, 5], ["14", 34, 5]]);
-const pos$8 = nix.positions(here + "/age.nix", [["version", 42, 7], ["hash", 43, 7]]);
-const pos$9 = nix.positions(here + "/age.nix", [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 22]]);
-const pos$10 = nix.positions(here + "/age.nix", [["version", 65, 26], ["src", 65, 34], ["pname", 67, 5], ["dontConfigure", 69, 5], ["buildPhase", 71, 5], ["installPhase", 90, 5]]);
-const pos$11 = nix.positions(here + "/age.nix", [["tests", 64, 12]]);
-const pos$12 = nix.positions(here + "/age.nix", [["broken", 96, 5], ["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5], ["license", 102, 5]]);
-const pos$13 = nix.positions(here + "/age.nix", [["pname", 47, 3], ["version", 48, 20], ["src", 50, 3], ["makeFlags", 57, 3], ["enableUpdateScript", 63, 3], ["passthru", 64, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,49 +16,49 @@ export default nix.lambda((args) => (() => {
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const stdenv = nix.arg($, "stdenv");
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     "19": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "1.8.0-rc0",
       hash: "sha256-tEWWn2Wtz30N18pfvW+R3TEylustFeII7kBE1aiJw80=",
     })),
     "18": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "1.8.0-rc0",
       hash: "sha256-QtcH0lUWvey/URZm/cqh1TempMU2Vnerzu6SQg+yofA=",
     })),
     "17": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.7.0-rc0",
       hash: "sha256-hAjhNj/benwZbbuxDl9RSjwWRai9CUozbEN6ecPKoFE=",
     })),
     "16": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "1.6.0-rc0",
       hash: "sha256-iukdi2c3CukGvjuTojybFFAZBlAw8GEfzFPr2qJuwTA=",
     })),
     "15": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "1.6.0-rc0",
       hash: "sha256-W4EALCgCuyzCOUiTu5aU2fz2P8rJFv+7/8m+d+dIV60=",
     })),
     "14": nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "1.6.0-rc0",
       hash: "sha256-6TTuqJs//QpNgNMw4TZf/3rdtMGSO/ytG4s8i+Jv2d8=",
     })),
   }));
   const source = nix.thunk(() => nix.selOr(sources, () => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       version: "",
       hash: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Source for Age is not available for ${nix.sel(postgresql, "version")}`))),
     }), nix.key(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(postgresql, "version"))))));
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "age",
       version: nix.thunk(() => nix.attr(source, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           owner: "apache",
           repo: "age",
           tag: nix.thunk(() => nix.str`PG${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(postgresql, "version")))}/v${nix.sel(finalAttrs, "version")}`),
@@ -83,9 +71,9 @@ export default nix.lambda((args) => (() => {
       ]),
       enableUpdateScript: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         tests: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             pname: "age-regression",
@@ -110,7 +98,7 @@ ${nix.app(nix.sel(lib, "getDev"), postgresql)}/lib/pgxs/src/test/regress/pg_regr
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         broken: nix.thunk(() => !nix.asBool(nix.builtins.elem(nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(postgresql, "version")))), nix.thunk(() => nix.builtins.attrNames(sources))))),
         description: "Graph database extension for PostgreSQL",
         homepage: "https://age.apache.org/",

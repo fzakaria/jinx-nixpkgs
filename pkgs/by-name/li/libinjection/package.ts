@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]], [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]], [["broken", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["strictDeps", 22, 3], ["patches", 24, 3], ["postPatch", 32, 3], ["configurePhase", 38, 3], ["buildPhase", 39, 3], ["outputs", 42, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["strictDeps", 22, 3], ["patches", 24, 3], ["postPatch", 32, 3], ["configurePhase", 38, 3], ["buildPhase", 39, 3], ["outputs", 42, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libinjection",
       version: "3.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "client9",
           repo: "libinjection",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "support-python3-for-building",
             url: "https://raw.githubusercontent.com/sysown/proxysql/bed58f92917eb651b80fd8ffa627a485eb320805/deps/libinjection/update-build-py3.diff",
             hash: "sha256-SPdf57FIDDNpatWe5pjhAiZl5yPMDEv50k0Wj+eWTEM=",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "make all",
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "SQL / SQLI tokenizer parser analyzer",
         homepage: "https://github.com/client9/libinjection",

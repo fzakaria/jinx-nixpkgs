@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["CGO_LDFLAGS", 52, 7]], [["smoke-test", 76, 5]], [["tests", 75, 12]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 86, 5], ["mainProgram", 87, 5]], [["pname", 20, 3], ["version", 21, 3], ["commit", 22, 3], ["src", 24, 3], ["proxyVendor", 31, 3], ["vendorHash", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 37, 3], ["ldflags", 46, 3], ["env", 52, 3], ["preBuild", 63, 3], ["subPackages", 67, 3], ["postInstall", 69, 3], ["passthru", 75, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, bzip2: false, fetchFromGitHub: false, lz4: false, nixosTests: false, "pkg-config": false, rocksdb_9_10: false, snappy: false, stdenv: false, zeromq: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_LDFLAGS", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["smoke-test", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 75, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 86, 5], ["mainProgram", 87, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["commit", 22, 3], ["src", 24, 3], ["proxyVendor", 31, 3], ["vendorHash", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 37, 3], ["ldflags", 46, 3], ["env", 52, 3], ["preBuild", 63, 3], ["subPackages", 67, 3], ["postInstall", 69, 3], ["passthru", 75, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const commit = "657cbcf";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trezor",
           repo: "blockbook",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
         "-X github.com/trezor/blockbook/common.buildDate=unknown",
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CGO_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/lib`),
             "-lrocksdb",
@@ -62,14 +57,14 @@ export default nix.lambda((args) => (() => {
       const subPackages = nix.thunk(() => ["."]);
       const postInstall = "mkdir -p $out/share/\ncp -r $src/static/templates/ $out/share/\ncp -r $src/static/css/ $out/share/\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "blockbook-frontend")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Trezor address/account balance backend",
         homepage: "https://github.com/trezor/blockbook",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -81,7 +76,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "blockbook",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         commit,

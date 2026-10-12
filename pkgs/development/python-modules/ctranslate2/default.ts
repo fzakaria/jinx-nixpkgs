@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["CTRANSLATE2_ROOT", 45, 7]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["pname", 24, 29], ["version", 24, 35], ["src", 24, 43], ["pyproject", 25, 3], ["sourceRoot", 28, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["dependencies", 40, 3], ["env", 45, 3], ["cmakeFlags", 47, 3], ["pythonImportsCheck", 49, 3], ["nativeCheckInputs", 57, 3], ["preCheck", 65, 3], ["disabledTests", 70, 3], ["disabledTestPaths", 80, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, pybind11: false, setuptools: false, "ctranslate2-cpp": false, numpy: false, pyyaml: false, pytestCheckHook: false, torch: false, transformers: false, writableTmpDirAsHomeHook: false, wurlitzer: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["CTRANSLATE2_ROOT", 45, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 29], ["version", 24, 35], ["src", 24, 43], ["pyproject", 25, 3], ["sourceRoot", 28, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["dependencies", 40, 3], ["env", 45, 3], ["cmakeFlags", 47, 3], ["pythonImportsCheck", 49, 3], ["nativeCheckInputs", 57, 3], ["preCheck", 65, 3], ["disabledTests", 70, 3], ["disabledTestPaths", 80, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [pybind11, setuptools]);
       const dependencies = nix.thunk(() => [numpy, pyyaml]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         CTRANSLATE2_ROOT: nix.thunk(() => nix.str`${ctranslate2_cpp}`),
       }));
       const cmakeFlags = nix.thunk(() => ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]);
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => ["test_torch_variables"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_invalid_model_path"]))));
       const disabledTestPaths = nix.thunk(() => ["tests/test_opennmt_tf.py", "tests/test_transformers.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast inference engine for Transformer models",
         homepage: "https://github.com/OpenNMT/CTranslate2",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenNMT/CTranslate2/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

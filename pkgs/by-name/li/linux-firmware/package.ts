@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["priority", 61, 5], ["sourceProvenance", 62, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["postUnpack", 35, 3], ["nativeBuildInputs", 39, 3], ["installTargets", 46, 3], ["makeFlags", 50, 3], ["dontFixup", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchFromGitLab: false, fetchpatch: false, lib: false, python3: false, rdfind: false, which: false, writeShellScriptBin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["priority", 61, 5], ["sourceProvenance", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["postUnpack", 35, 3], ["nativeBuildInputs", 39, 3], ["installTargets", 46, 3], ["makeFlags", 50, 3], ["dontFixup", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "linux-firmware";
       const version = "20260916";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kernel-firmware",
           repo: "linux-firmware",
           tag: version,
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const makeFlags = nix.thunk(() => ["DESTDIR=$(out)"]);
       const dontFixup = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Binary firmware collection packaged by kernel.org",
         homepage: "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

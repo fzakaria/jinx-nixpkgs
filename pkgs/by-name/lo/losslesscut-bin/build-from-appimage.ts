@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-from-appimage.nix", [[["url", 13, 5], ["hash", 14, 13]], [["pname", 18, 13], ["version", 18, 19], ["src", 18, 27]], [["platforms", 47, 5], ["mainProgram", 48, 5]], [["pname", 22, 11], ["version", 22, 17], ["src", 22, 25], ["nativeBuildInputs", 24, 3], ["profile", 26, 3], ["extraInstallCommands", 30, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { appimageTools: false, fetchurl: false, makeWrapper: false, pname: false, version: false, hash: false, metaCommon: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-from-appimage.nix", [["url", 13, 5], ["hash", 14, 13]]);
-const pos$2 = nix.positions(here + "/build-from-appimage.nix", [["pname", 18, 13], ["version", 18, 19], ["src", 18, 27]]);
-const pos$3 = nix.positions(here + "/build-from-appimage.nix", [["platforms", 47, 5], ["mainProgram", 48, 5]]);
-const pos$4 = nix.positions(here + "/build-from-appimage.nix", [["pname", 22, 11], ["version", 22, 17], ["src", 22, 25], ["nativeBuildInputs", 24, 3], ["profile", 26, 3], ["extraInstallCommands", 30, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const hash = nix.arg($, "hash");
   const metaCommon = nix.argOr($, "metaCommon", () => ({}));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/mifi/lossless-cut/releases/download/v${version}/LosslessCut-linux-x86_64.AppImage`),
       hash: hash,
     }))));
-  const extracted = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const extracted = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -45,7 +42,7 @@ wrapProgram "$out/bin/losslesscut" \\
   --add-flags "--disable-seccomp-filter-sandbox"
 `),
       meta: nix.thunk(() => nix.update(metaCommon, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         platforms: nix.thunk(() => ["x86_64-linux"]),
         mainProgram: "losslesscut",
       })),

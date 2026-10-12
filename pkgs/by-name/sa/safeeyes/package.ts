@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 26, 26], ["version", 26, 32], ["hash", 27, 5]], [["healthstats", 53, 5], ["wayland", 54, 5]], [["package", 83, 43]], [["version", 83, 11]], [["updateScript", 82, 5], ["tests", 83, 5]], [["homepage", 87, 5], ["description", 88, 5], ["longDescription", 89, 5], ["license", 94, 5], ["platforms", 95, 5], ["mainProgram", 96, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["optional-dependencies", 52, 3], ["dontWrapGApps", 58, 3], ["preFixup", 60, 3], ["doCheck", 74, 3], ["pythonImportsCheck", 76, 3], ["doInstallCheck", 78, 3], ["nativeInstallCheckInputs", 79, 3], ["passthru", 81, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, "alsa-utils": false, "gobject-introspection": false, libnotify: false, wlrctl: false, gtk4: false, gettext: false, safeeyes: false, testers: false, xprintidle: false, xprop: false, wrapGAppsHook3: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 26, 26], ["version", 26, 32], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["healthstats", 53, 5], ["wayland", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 83, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 83, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 82, 5], ["tests", 83, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 87, 5], ["description", 88, 5], ["longDescription", 89, 5], ["license", 94, 5], ["platforms", 95, 5], ["mainProgram", 96, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["optional-dependencies", 52, 3], ["dontWrapGApps", 58, 3], ["preFixup", 60, 3], ["doCheck", 74, 3], ["pythonImportsCheck", 76, 3], ["doInstallCheck", 78, 3], ["nativeInstallCheckInputs", 79, 3], ["passthru", 81, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "safeeyes",
       version: "3.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-XO+i+JTZHqXPQGkqAPB9ekESZovCfsDs7wMUxKTbdsQ=",
@@ -60,7 +54,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           healthstats: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "croniter"))]),
           wayland: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "pywayland"))]),
         };
@@ -76,15 +70,15 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: safeeyes })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: safeeyes })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "http://slgobinath.github.io/SafeEyes",
         description: "Break reminder to prevent eye strain",
         longDescription: "Protect your eyes from eye strain using this simple and\nbeautiful, yet extensible break reminder.  Free GNU/Linux\nalternative to EyeLeo.\n",

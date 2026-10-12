@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 53, 5], ["hash", 54, 5]], [["owner", 66, 7], ["repo", 67, 7], ["rev", 68, 7], ["hash", 69, 7]], [["version", 63, 5], ["src", 65, 5]], [["domain", 79, 5], ["owner", 80, 5], ["repo", 81, 5], ["tag", 82, 5], ["hash", 83, 5]], [["nx_tzdb", 188, 13], ["compat-list", 188, 21], ["updateScript", 190, 5]], [["description", 202, 5], ["homepage", 203, 5], ["mainProgram", 204, 5], ["maintainers", 205, 5], ["license", 206, 5], ["platforms", 232, 5]], [["pname", 75, 3], ["version", 76, 3], ["src", 78, 3], ["strictDeps", 86, 3], ["__structuredAttrs", 87, 3], ["nativeBuildInputs", 89, 3], ["buildInputs", 100, 3], ["doCheck", 142, 3], ["checkInputs", 144, 3], ["cmakeFlags", 149, 3], ["postConfigure", 170, 3], ["postInstall", 174, 3], ["preFixup", 178, 3], ["passthru", 187, 3], ["meta", 201, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, ninja: false, SDL2: false, boost: false, catch2_3: false, "cpp-jwt": false, cubeb: false, enet: false, fetchFromGitea: false, fetchFromGitHub: false, fetchurl: false, "ffmpeg-headless": false, fmt_11: false, "frozen-containers": false, gamemode: false, glslang: false, httplib: false, kdePackages: false, libopus: false, libusb1: false, lz4: false, nlohmann_json: false, oaknut: false, openssl: false, pipewire: false, "pkg-config": false, python3: false, qt6: false, simpleini: false, sirit: false, "spirv-headers": false, stb: false, unordered_dense: false, "vulkan-headers": false, "vulkan-loader": false, "vulkan-memory-allocator": false, "vulkan-utility-libraries": false, xbyak: false, zlib: false, zstd: false, writeScript: false, callPackage: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 53, 5], ["hash", 54, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 66, 7], ["repo", 67, 7], ["rev", 68, 7], ["hash", 69, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 63, 5], ["src", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["domain", 79, 5], ["owner", 80, 5], ["repo", 81, 5], ["tag", 82, 5], ["hash", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nx_tzdb", 188, 13], ["compat-list", 188, 21], ["updateScript", 190, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 202, 5], ["homepage", 203, 5], ["mainProgram", 204, 5], ["maintainers", 205, 5], ["license", 206, 5], ["platforms", 232, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 75, 3], ["version", 76, 3], ["src", 78, 3], ["strictDeps", 86, 3], ["__structuredAttrs", 87, 3], ["nativeBuildInputs", 89, 3], ["buildInputs", 100, 3], ["doCheck", 142, 3], ["checkInputs", 144, 3], ["cmakeFlags", 149, 3], ["postConfigure", 170, 3], ["postInstall", 174, 3], ["preFixup", 178, 3], ["passthru", 187, 3], ["meta", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,16 +53,16 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const compat_list = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://raw.githubusercontent.com/flathub/org.yuzu_emu.yuzu/4abf1d239aba843180abfed58fa8541432fece5b/compatibility_list.json",
       hash: "sha256-OC22KdawYK9yKiffqc1rtgrBanVExYMi9jqhvkwMD6w=",
     }))));
   const nx_tzdb = nix.thunk(() => nix.app(callPackage, nix.path(here, "./nx_tzdb.nix"), nix.thunk(() => ({}))));
   const httplib$ = nix.thunk(() => nix.app(nix.sel(httplib, "overrideAttrs"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.30.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "yhirose",
           repo: "cpp-httplib",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -76,11 +70,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "eden",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           domain: "git.eden-emu.dev",
           owner: "eden-emu",
           repo: "eden",
@@ -153,13 +147,13 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`qtWrapperArgs+=(--prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [vulkan_loader, pipewire]))})
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         nx_tzdb: nx_tzdb,
         "compat-list": compat_list,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-eden", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p nix-update\n\nset -eu -o pipefail\n\nnix-update eden\nnix-update eden.nx_tzdb\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Switch 1 emulator derived from Yuzu and Sudachi",
         homepage: "https://eden-emu.dev/",
         mainProgram: "eden",

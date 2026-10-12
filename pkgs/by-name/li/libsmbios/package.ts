@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["name", 29, 7], ["url", 30, 7], ["sha256", 31, 7]], [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 45, 3], ["configureFlags", 47, 3], ["enableParallelBuilding", 49, 3], ["postInstall", 51, 3], ["preFixup", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, "pkg-config": false, autoreconfHook: false, help2man: false, gettext: false, libxml2: false, perl: false, python3: false, doxygen: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["sha256", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 45, 3], ["configureFlags", 47, 3], ["enableParallelBuilding", 49, 3], ["postInstall", 51, 3], ["preFixup", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const doxygen = nix.arg($, "doxygen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libsmbios",
       version: "2.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dell",
           repo: "libsmbios",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "musl.patch",
             url: "https://git.alpinelinux.org/aports/plain/community/libsmbios/fixes.patch?id=bdc4f67889c958c1266fa5d0cab71c3cd639122f",
             sha256: "aVVc52OovDYvqWRyKcRAi62daa9AalkKvnVOGvrTmRk=",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/include\ncp -a src/include/smbios_c $out/include/\ncp -a out/public-include/smbios_c $out/include/\n",
       preFixup: "patchelf --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\" \"$out/sbin/smbios-sys-info-lite\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/dell/libsmbios",
         description: "Library to obtain BIOS information",
         license: nix.thunk(() => (() => {

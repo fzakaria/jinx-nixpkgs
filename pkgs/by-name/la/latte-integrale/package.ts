@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 19, 5]], [["url", 25, 7], ["excludes", 26, 7], ["hash", 27, 7]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["buildInputs", 31, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, gmp: false, ntl: false, cddlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 7], ["excludes", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["buildInputs", 31, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const ntl = nix.arg($, "ntl");
   const cddlib = nix.arg($, "cddlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "latte-integrale",
       version: "1.7.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/latte-int/latte/releases/download/version_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/latte-int-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-AGwQ6+XVv9ybFZy6YmSkQyhh/nY84F/oIWJKt9P8IXA=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/latte-int/latte/commit/6dbf7f07d5c9e1f3afe793f782d191d4465088ae.patch",
             excludes: nix.thunk(() => ["code/latte/sqlite/IntegrationDB.h"]),
             hash: "sha256-i7c11y54OLuJ0m7PBnhEoAzJzxC842JU7A6TOtTz06k=",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [gmp, ntl, cddlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Software for counting lattice points and integration over convex polytopes",
         homepage: "https://www.math.ucdavis.edu/~latte/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

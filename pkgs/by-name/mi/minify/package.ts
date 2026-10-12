@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["version", 37, 28], ["package", 38, 7], ["command", 39, 7]], [["version", 36, 11]], [["updateScript", 35, 5], ["tests", 36, 5]], [["description", 48, 5], ["homepage", 49, 5], ["downloadPage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["nativeBuildInputs", 24, 3], ["ldflags", 26, 3], ["subPackages", 32, 3], ["passthru", 34, 3], ["postInstall", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, "nix-update-script": false, testers: false, minify: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 37, 28], ["package", 38, 7], ["command", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 36, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 35, 5], ["tests", 36, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["downloadPage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["nativeBuildInputs", 24, 3], ["ldflags", 26, 3], ["subPackages", 32, 3], ["passthru", 34, 3], ["postInstall", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const minify = nix.arg($, "minify");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "minify",
       version: "2.24.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tdewolff",
           repo: "minify",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,12 +34,12 @@ export default nix.lambda((args) => (() => {
       ]),
       subPackages: nix.thunk(() => ["cmd/minify"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: minify,
               command: "minify --version",
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
       })),
       postInstall: "installShellCompletion --cmd minify --bash cmd/minify/bash_completion\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Go minifiers for web formats",
         homepage: "https://go.tacodewolff.nl/minify",
         downloadPage: "https://github.com/tdewolff/minify",

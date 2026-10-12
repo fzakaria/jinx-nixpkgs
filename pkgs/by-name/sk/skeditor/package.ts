@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["name", 39, 7], ["desktopName", 40, 7], ["exec", 41, 7], ["icon", 42, 7], ["startupWMClass", 43, 7], ["genericName", 44, 7], ["keywords", 45, 7], ["categories", 49, 7]], [["updateScript", 58, 12]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["projectFile", 21, 3], ["executables", 22, 3], ["nugetDeps", 23, 3], ["dotnet-sdk", 25, 3], ["dotnet-runtime", 26, 3], ["nativeBuildInputs", 28, 3], ["postInstall", 33, 3], ["desktopItems", 37, 3], ["passthru", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false, makeDesktopItem: false, copyDesktopItems: false, iconConvTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 39, 7], ["desktopName", 40, 7], ["exec", 41, 7], ["icon", 42, 7], ["startupWMClass", 43, 7], ["genericName", 44, 7], ["keywords", 45, 7], ["categories", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 58, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["projectFile", 21, 3], ["executables", 22, 3], ["nugetDeps", 23, 3], ["dotnet-sdk", 25, 3], ["dotnet-runtime", 26, 3], ["nativeBuildInputs", 28, 3], ["postInstall", 33, 3], ["desktopItems", 37, 3], ["passthru", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "skeditor";
       const version = "2.9.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "skeditorteam",
           repo: "skeditor",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "icoFileToHiColorTheme SkEditor/Assets/SkEditor.ico skeditor $out\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: pname,
             desktopName: "SkEditor",
             exec: nix.thunk(() => nix.sel(meta, "mainProgram")),
@@ -48,9 +44,9 @@ export default nix.lambda((args) => (() => {
             categories: nix.thunk(() => ["Utility", "TextEditor", "Development", "IDE"]),
           })))),
       ]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "App for editing Skript files",
         homepage: "https://github.com/SkEditorTeam/SkEditor",
         changelog: nix.thunk(() => nix.str`https://github.com/SkEditorTeam/SkEditor/releases/tag/v${version}`),
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

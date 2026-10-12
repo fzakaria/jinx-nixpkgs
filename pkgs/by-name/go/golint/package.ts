@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["homepage", 32, 5], ["description", 33, 5], ["mainProgram", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["__structuredAttrs", 11, 3], ["allowGoReference", 15, 3], ["src", 17, 3], ["vendorHash", 23, 3], ["doCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 32, 5], ["description", 33, 5], ["mainProgram", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["__structuredAttrs", 11, 3], ["allowGoReference", 15, 3], ["src", 17, 3], ["vendorHash", 23, 3], ["doCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "golint",
       version: "0-unstable-2020-12-08",
       __structuredAttrs: true,
       allowGoReference: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://go.googlesource.com/lint",
           rev: "83fdc39ff7b56453e3793356bcff3070b9b96445",
           hash: "sha256-g4Z9PREOxGoN7n/XhutawsITBznJlbz6StXeDYvOQ1c=",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-dPadFoymYu2Uw2AXZfbaBfxsN8IWMuK1TrcknHco3Bo=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://golang.org",
         description: "Linter for Go source code",
         mainProgram: "golint",

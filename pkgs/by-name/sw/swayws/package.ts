@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 27, 5], ["mainProgram", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 21, 3], ["doCheck", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["mainProgram", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 21, 3], ["doCheck", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swayws",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "w0lff",
           repo: "swayws",
           rev: "0c125d65f9fe9269f78ddaf575cd39f00f749659",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-AS1vEnNLDLsNaIZ6pLrsQpQy9+bSoCn5oyj8SXjJ+OE=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sway workspace tool which allows easy moving of workspaces to and from outputs",
         mainProgram: "swayws",
         homepage: "https://gitlab.com/w0lff/swayws",

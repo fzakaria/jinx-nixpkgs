@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fail.nix", [[["https://exampl[e]\\.com", 13, 7]], [["site", 11, 5], ["remap", 12, 5]], [["failure", 20, 40]]]);
 const formals$1 = { args: { runCommand: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fail.nix", [["https://exampl[e]\\.com", 13, 7]]);
-const pos$2 = nix.positions(here + "/fail.nix", [["site", 11, 5], ["remap", 12, 5]]);
-const pos$3 = nix.positions(here + "/fail.nix", [["failure", 20, 40]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const sitePkg = nix.thunk(() => nix.app(runCommand, "site", nix.thunk(() => ({})), "dist=$out/dist\nmkdir -p $dist\necho \"<html><body><a href=\\\"https://example.com/foo.html#foos-missing-anchor\\\">foo</a></body></html>\" > $dist/index.html\necho \"<html><body><a href=\\\".\\\">index</a></body></html>\" > $dist/foo.html\n"));
   const linkCheck = nix.thunk(() => nix.app(nix.sel(testers, "lycheeLinkCheck"), nix.thunk(() => (() => {
       const site = nix.thunk(() => nix.add(sitePkg, "/dist"));
-      const remap = nix.thunk(() => ({ [nix.POS]: pos$1, "https://exampl[e]\\.com": site }));
-      return { [nix.POS]: pos$2, site, remap };
+      const remap = nix.thunk(() => ({ [nix.POS]: $pos[0], "https://exampl[e]\\.com": site }));
+      return { [nix.POS]: $pos[1], site, remap };
     })())));
   const failure = nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), linkCheck));
-  return nix.app(runCommand, "link-check-fail", nix.thunk(() => ({ [nix.POS]: pos$3, failure: failure })), "grep -F foos-missing-anchor $failure/testBuildFailure.log >/dev/null\ntouch $out\n");
+  return nix.app(runCommand, "link-check-fail", nix.thunk(() => ({ [nix.POS]: $pos[2], failure: failure })), "grep -F foos-missing-anchor $failure/testBuildFailure.log >/dev/null\ntouch $out\n");
 })(), formals$1);
 //# sourceMappingURL=fail.ts.map

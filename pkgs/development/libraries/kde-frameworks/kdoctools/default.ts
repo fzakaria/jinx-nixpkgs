@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 47, 7], ["url", 48, 7], ["hash", 49, 7]], [["pname", 18, 3], ["nativeBuildInputs", 19, 3], ["propagatedBuildInputs", 26, 3], ["buildInputs", 33, 3], ["outputs", 37, 3], ["patches", 41, 3], ["cmakeFlags", 52, 3], ["postFixup", 56, 3]]]);
 const formals$1 = { args: { mkDerivation: false, lib: false, stdenv: false, fetchpatch: false, cmake: false, "extra-cmake-modules": false, docbook_xml_dtd_45: false, docbook_xsl_ns: false, karchive: false, ki18n: false, qtbase: false, perl: false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 47, 7], ["url", 48, 7], ["hash", 49, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["nativeBuildInputs", 19, 3], ["propagatedBuildInputs", 26, 3], ["buildInputs", 33, 3], ["outputs", 37, 3], ["patches", 41, 3], ["cmakeFlags", 52, 3], ["postFixup", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kdoctools",
       nativeBuildInputs: nix.thunk(() => [
         cmake,
@@ -35,7 +34,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./kdoctools-no-find-docbook-xml.patch")], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               name: "kdoctools-relocate-datapath.patch",
               url: "https://github.com/msys2/MINGW-packages/raw/0900785a1f4e4146ab9561fb92a1c70fa70fcfc4/mingw-w64-kdoctools-qt5/0001-kdoctools-relocate-datapath.patch",
               hash: "sha256-MlokdrabXavWHGXYmdz9zZDJQIwAdNxebJBSAH2Z3vI=",

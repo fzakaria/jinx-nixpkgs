@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 25, 7], ["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["sha256", 29, 7]], [["description", 44, 7], ["license", 45, 7], ["platforms", 46, 7], ["homepage", 47, 37]], [["pname", 21, 5], ["version", 22, 5], ["src", 24, 5], ["nativeBuildInputs", 32, 5], ["buildPhase", 34, 5], ["installPhase", 38, 5], ["meta", 43, 5]], [["name", 58, 5], ["owner", 59, 5], ["repo", 60, 5], ["rev", 61, 5], ["sha256", 62, 5]], [["description", 110, 5], ["license", 111, 5], ["homepage", 115, 35], ["maintainers", 116, 5], ["platforms", 117, 5]], [["pname", 54, 3], ["version", 55, 3], ["src", 57, 3], ["nativeBuildInputs", 65, 3], ["cmakeFlags", 72, 3], ["buildInputs", 77, 3], ["runtimeDependencies", 86, 3], ["postInstall", 93, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, fpc: false, makeWrapper: false, SDL2: false, freetype: false, physfs: false, openal: false, gamenetworkingsockets: false, libx11: false, autoPatchelfHook: false, cmake: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 25, 7], ["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["sha256", 29, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 7], ["license", 45, 7], ["platforms", 46, 7], ["homepage", 47, 37]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 5], ["version", 22, 5], ["src", 24, 5], ["nativeBuildInputs", 32, 5], ["buildPhase", 34, 5], ["installPhase", 38, 5], ["meta", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 58, 5], ["owner", 59, 5], ["repo", 60, 5], ["rev", 61, 5], ["sha256", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 110, 5], ["license", 111, 5], ["homepage", 115, 35], ["maintainers", 116, 5], ["platforms", 117, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 54, 3], ["version", 55, 3], ["src", 57, 3], ["nativeBuildInputs", 65, 3], ["cmakeFlags", 72, 3], ["buildInputs", 77, 3], ["runtimeDependencies", 86, 3], ["postInstall", 93, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const python3 = nix.arg($, "python3");
   const base = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "opensoldat-base",
       version: "0.4-unstable-2025-10-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "base",
           owner: "opensoldat",
           repo: "base",
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Opensoldat's base game content",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-40")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -54,11 +49,11 @@ export default nix.lambda((args) => (() => {
       })()),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "opensoldat",
       version: "1.8-unstable-2025-10-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: "opensoldat",
           owner: "opensoldat",
           repo: "opensoldat",
@@ -86,7 +81,7 @@ done
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Unique 2D (side-view) multiplayer action game",
         license: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "licenses", "mit")),

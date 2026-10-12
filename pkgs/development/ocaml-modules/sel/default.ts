@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["propagatedBuildInputs", 24, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, ppxlib: false, ppx_deriving: false, buildDunePackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["propagatedBuildInputs", 24, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const ppx_deriving = nix.arg($, "ppx_deriving");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sel",
       version: "0.8.0",
       minimalOCamlVersion: "4.07",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/gares/sel/releases/download/v${nix.sel(finalAttrs, "version")}/sel-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-jTAjWdaoioR5+G96qoOY+JXrJY00eF7y7WhGSiFwfqg=",
         })))),
       buildInputs: nix.thunk(() => [ppxlib]),
       propagatedBuildInputs: nix.thunk(() => [ppx_deriving]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple event library",
         homepage: "https://github.com/gares/sel/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

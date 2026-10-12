@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 59, 5], ["homepage", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 25, 3], ["nativeBuildInputs", 27, 3], ["dontWrapGApps", 30, 3], ["preFixup", 31, 3], ["dependencies", 45, 3], ["preConfigure", 51, 3], ["doCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, wrapGAppsHook3: false, p7zip: false, parted: false, grub2: false, ntfs3g: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 25, 3], ["nativeBuildInputs", 27, 3], ["dontWrapGApps", 30, 3], ["preFixup", 31, 3], ["dependencies", 45, 3], ["preConfigure", 51, 3], ["doCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const grub2 = nix.arg($, "grub2");
   const ntfs3g = nix.arg($, "ntfs3g");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "woeusb-ng",
       version: "0.2.12-unstable-2026-01-25",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "WoeUSB",
           repo: "WoeUSB-ng",
           rev: "cc52ffc6aedad12540c2315c9101e4a4b919d4be",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "mkdir -p $out/bin $out/share/applications $out/share/polkit-1/actions\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to create a Windows USB stick installer from a real Windows DVD or image",
         homepage: "https://github.com/WoeUSB/WoeUSB-ng",
         mainProgram: "woeusb",

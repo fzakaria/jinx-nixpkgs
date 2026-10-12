@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 46, 5], ["sha256", 47, 5], ["curlOpts", 48, 5]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 73, 5]], [["pname", 43, 3], ["version", 44, 11], ["src", 45, 3], ["dontUnpack", 51, 3], ["dontInstall", 52, 3], ["nativeBuildInputs", 54, 3], ["buildPhase", 59, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, cpio: false, xz: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 46, 5], ["sha256", 47, 5], ["curlOpts", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 11], ["src", 45, 3], ["dontUnpack", 51, 3], ["dontInstall", 52, 3], ["nativeBuildInputs", 54, 3], ["buildPhase", 59, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
 exit 0
 `)));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "facetimehd-firmware",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: dmgUrl,
           sha256: "0s8crlh8rvpanzk1w4z3hich0a3mw0m5xhpcg07bxy02calhpdk1",
           curlOpts: nix.thunk(() => nix.str`-r ${dmgRange}`),
@@ -44,7 +42,7 @@ mkdir -p $out/lib/firmware/facetimehd
 gunzip -c ${firmwareOut}.gz > $out/lib/firmware/facetimehd/${firmwareOut}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "facetimehd firmware",
         homepage: "https://support.apple.com/kb/DL1877",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

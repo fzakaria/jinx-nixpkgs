@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["src", 25, 5], ["hash", 26, 5]], [["nativeBuildInputs", 37, 5]], [["karma", 60, 18]], [["tests", 60, 12]], [["changelog", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["npmDeps", 24, 3], ["npmRoot", 29, 3], ["nativeBuildInputs", 31, 3], ["overrideModAttrs", 36, 3], ["postPatch", 40, 3], ["buildPhase", 48, 3], ["installPhase", 56, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchNpmDeps: false, nixosTests: false, nodejs: false, npmHooks: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["karma", 60, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 60, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["npmDeps", 24, 3], ["npmRoot", 29, 3], ["nativeBuildInputs", 31, 3], ["overrideModAttrs", 36, 3], ["postPatch", 40, 3], ["buildPhase", 48, 3], ["installPhase", 56, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const npmHooks = nix.arg($, "npmHooks");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "karma",
       version: "0.125",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "prymitive",
           repo: "karma",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,14 +27,14 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-O+f8drIs+XOvLo8ifB/SHkBBxj0KPg2H1MAcCyJvLe4=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/ui`),
           hash: "sha256-wcQ6QWoRm+aQRf1L7xkmQIbYnfN+Fr/D0LeRlEK5nbE=",
         })))),
       npmRoot: "ui",
       nativeBuildInputs: nix.thunk(() => [nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))]),
       overrideModAttrs: (oldAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (drv) => !nix.eq(drv, nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(oldAttrs, "nativeBuildInputs")))),
       }),
       postPatch: "# Since we're using node2nix packages, the NODE_INSTALL hook isn't needed in the makefile\nsed -i \\\n  -e 's/$(NODE_INSTALL)//g' ./ui/Makefile \\\n  -e 's~NODE_PATH    := $(shell npm bin)~NODE_PATH    := ./node_modules~g' ./ui/Makefile \\\n  -e 's~NODE_MODULES := $(shell dirname `npm bin`)~NODE_MODULES := ./~g' ./ui/Makefile\n",
@@ -52,11 +46,11 @@ runHook postBuild
 `),
       installPhase: "install -Dm 755 ./karma $out/bin/karma\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, karma: nix.thunk(() => nix.sel(nixosTests, "karma")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], karma: nix.thunk(() => nix.sel(nixosTests, "karma")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/prymitive/karma/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Alert dashboard for Prometheus Alertmanager",
         mainProgram: "karma",

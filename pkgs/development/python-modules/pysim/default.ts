@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 39, 3], ["propagatedBuildInputs", 41, 3], ["nativeCheckInputs", 58, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pytestCheckHook: false, colorlog: false, "smpp-pdu": false, pyscard: false, packaging: false, gsm0338: false, bidict: false, "jsonpath-ng": false, termcolor: false, pyyaml: false, pycryptodomex: false, construct: false, pyserial: false, pytlv: false, cmd2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 39, 3], ["propagatedBuildInputs", 41, 3], ["nativeCheckInputs", 58, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const pytlv = nix.arg($, "pytlv");
   const cmd2 = nix.arg($, "cmd2");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pysim",
       version: "unstable-2023-08-13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "osmocom",
           repo: "pysim",
           rev: "09ff0e2b433b7143d5b40b4494744569b805e554",
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pySim"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python tool to program SIMs / USIMs / ISIMs",
         homepage: "https://github.com/osmocom/pysim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -2,30 +2,26 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/basic.nix", [[["lib", 4, 63]], [["maintainers", 16, 7]], [["bank", 22, 9], ["client", 23, 9], ["exchange", 24, 9], ["merchant", 25, 9]], [["lib", 33, 71], ["pkgs", 33, 75], ["nodes", 33, 80]], [["name", 14, 5], ["meta", 15, 5], ["nodes", 20, 5], ["testScript", 30, 5]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/basic.nix", [["lib", 4, 63]]);
-const pos$2 = nix.positions(here + "/basic.nix", [["maintainers", 16, 7]]);
-const pos$3 = nix.positions(here + "/basic.nix", [["bank", 22, 9], ["client", 23, 9], ["exchange", 24, 9], ["merchant", 25, 9]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/basic.nix", [["lib", 33, 71], ["pkgs", 33, 75], ["nodes", 33, 80]]);
-const pos$5 = nix.positions(here + "/basic.nix", [["name", 14, 5], ["meta", 15, 5], ["nodes", 20, 5], ["testScript", 30, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
-    const cfgNodes = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../common/nodes.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
+    const cfgNodes = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../common/nodes.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
     return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "GNU Taler Basic Test",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
       })),
       nodes: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cfgNodes, "nodes"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         bank: nix.thunk(() => nix.attr(from, "bank")),
         client: nix.thunk(() => nix.attr(from, "client")),
         exchange: nix.thunk(() => nix.attr(from, "exchange")),
@@ -35,7 +31,7 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..
       testScript: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
-        const cfgScripts = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../common/scripts.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, lib: lib, pkgs: pkgs, nodes: nodes }))));
+        const cfgScripts = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../common/scripts.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], lib: lib, pkgs: pkgs, nodes: nodes }))));
         const CURRENCY = nix.thunk(() => nix.attr(cfgNodes, "CURRENCY"));
         const FIAT_CURRENCY = nix.thunk(() => nix.attr(cfgNodes, "FIAT_CURRENCY"));
         const commonScripts = nix.thunk(() => nix.attr(cfgScripts, "commonScripts"));

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["postPatch", 24, 3], ["installPhase", 30, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, wget: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["postPatch", 24, 3], ["installPhase", 30, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const wget = nix.arg($, "wget");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ipfetch",
       version: "0-unstable-2024-12-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trakBan",
           repo: "ipfetch",
           rev: "a9cf53c17946fe1cfd786c5edf4cc88e903d80ce",
@@ -35,7 +33,7 @@ cp ipfetch-wget $out/bin/ipfetch
 wrapProgram $out/bin/ipfetch --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [wget]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Neofetch but for ip addresses",
         mainProgram: "ipfetch",
         homepage: "https://github.com/trakBan/ipfetch",

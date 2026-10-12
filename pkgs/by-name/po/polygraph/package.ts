@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["homepage", 26, 5], ["description", 27, 5], ["platforms", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openssl: false, zlib: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 26, 5], ["description", 27, 5], ["platforms", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "polygraph",
       version: "4.13.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.web-polygraph.org/downloads/srcs/polygraph-${nix.sel(finalAttrs, "version")}-src.tgz`),
           sha256: "1rwzci3n7q33hw3spd79adnclzwgwlxcisc9szzjmcjqhbkcpj1a",
         })))),
       buildInputs: nix.thunk(() => [openssl, zlib, ncurses]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.web-polygraph.org",
         description: "Performance testing tool for caching proxies, origin server accelerators, L4/7 switches, content filters, and other Web intermediaries",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

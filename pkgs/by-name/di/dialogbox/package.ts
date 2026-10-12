@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["broken", 40, 5], ["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 24, 3], ["installPhase", 28, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 40, 5], ["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 24, 3], ["installPhase", 28, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dialogbox",
       version: "1.0-unstable-2020-11-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "martynets",
           repo: "dialogbox",
           rev: "6989740746f376becc989ab2698e77d14186a0f9",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtbase"))]),
       installPhase: "runHook preInstall\n\ninstall -d $out/{bin,share/doc/dialogbox}\ninstall dist/dialogbox $out/bin\ninstall README.md $out/share/doc/dialogbox/\ncp -r demos $out/share/doc/dialogbox/demos\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/martynets/dialogbox/",
         description: "Qt-based scriptable engine providing GUI dialog boxes",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5], ["stripRoot", 14, 5]], [["homepage", 27, 5], ["description", 28, 5], ["longDescription", 29, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 17, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5], ["stripRoot", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["longDescription", 29, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 17, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lato",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.latofonts.com/files/Lato2OFL.zip",
           hash: "sha256-n1TsqigCQIGqyGLGTjLtjHuBf/iCwRlnqh21IHfAuXI=",
           stripRoot: false,
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm644 Lato2OFL/*.ttf \\\n  --target-directory=$out/share/fonts/lato\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.latofonts.com",
         description: "Sans-serif typeface family designed in Summer 2010 by Łukasz Dziedzic",
         longDescription: "Lato is a sans-serif typeface family designed in the Summer 2010\nby Warsaw-based designer Łukasz Dziedzic (\"Lato\" means \"Summer\"\nin Polish).  In December 2010 the Lato family was published\nunder the open-source Open Font License by his foundry tyPoland,\nwith support from Google.\n\nIn 2013-2014, the family was greatly extended to cover 3000+\nglyphs per style. The Lato 2.010 family now supports 100+\nLatin-based languages, 50+ Cyrillic-based languages as well as\nGreek and IPA phonetics. In the process, the metrics and kerning\nof the family have been revised and four additional weights were\ncreated.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["description", 115, 5], ["mainProgram", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["maintainers", 120, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["build-system", 49, 3], ["pythonRemoveDeps", 51, 3], ["dependencies", 56, 3], ["nativeCheckInputs", 78, 3], ["pytestFlags", 87, 3], ["enabledTestPaths", 95, 3], ["disabledTests", 99, 3], ["pythonImportsCheck", 104, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, aiofiles: false, "asgi-csrf": false, click: false, "click-default-group": false, flexcache: false, flexparser: false, httpx: false, hupper: false, itsdangerous: false, janus: false, jinja2: false, mergedeep: false, platformdirs: false, pluggy: false, pyyaml: false, "typing-extensions": false, uvicorn: false, pytestCheckHook: false, "pytest-asyncio": false, "pytest-timeout": false, aiohttp: false, beautifulsoup4: false, asgiref: false, setuptools: false, trustme: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 115, 5], ["mainProgram", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["maintainers", 120, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["build-system", 49, 3], ["pythonRemoveDeps", 51, 3], ["dependencies", 56, 3], ["nativeCheckInputs", 78, 3], ["pytestFlags", 87, 3], ["enabledTestPaths", 95, 3], ["disabledTests", 99, 3], ["pythonImportsCheck", 104, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.65.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "simonw",
           repo: "datasette",
           tag: version,
@@ -93,7 +91,7 @@ export default nix.lambda((args) => (() => {
         "datasette.plugins",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Multi-tool for exploring and publishing data",
         mainProgram: "datasette",
         homepage: "https://datasette.io/",
@@ -102,7 +100,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

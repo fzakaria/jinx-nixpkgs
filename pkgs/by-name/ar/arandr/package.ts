@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]], [["extraArgs", 81, 5]], [["updateScript", 80, 12]], [["changelog", 87, 5], ["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["mainProgram", 91, 5], ["maintainers", 92, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["build-system", 56, 3], ["dependencies", 58, 3], ["preBuild", 63, 3], ["doCheck", 68, 3], ["dontWrapGApps", 70, 3], ["makeWrapperArgs", 72, 3], ["passthru", 80, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, fetchpatch: false, python3Packages: false, "gobject-introspection": false, "gsettings-desktop-schemas": false, gtk3: false, wrapGAppsHook3: false, xrandr: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 80, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 87, 5], ["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["mainProgram", 91, 5], ["maintainers", 92, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["build-system", 56, 3], ["dependencies", 58, 3], ["preBuild", 63, 3], ["doCheck", 68, 3], ["dontWrapGApps", 70, 3], ["makeWrapperArgs", 72, 3], ["passthru", 80, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const docutils = nix.thunk(() => nix.attr(python3Packages, "docutils"));
   const pygobject3 = nix.thunk(() => nix.attr(python3Packages, "pygobject3"));
   return nix.app(buildPythonApplication, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "arandr",
       version: "0.1.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arandr",
           repo: "arandr",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./gzip-timestamp-fix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "arandr-0.1.11-setuptools-81.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/x11-misc/arandr/files/arandr-0.1.11-setuptools-81.patch",
             hash: "sha256-b9U8b4rdkN5lWDVpv50szaVS0rAZVSy7q6IXNVLvq3A=",
@@ -62,11 +57,11 @@ export default nix.lambda((args) => (() => {
         "${gappsWrapperArgs[@]}",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version-regex=(\\d.*)"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version-regex=(\\d.*)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://gitlab.com/arandr/arandr/-/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog`),
         description: "Simple visual front end for XRandR",
         homepage: "https://christian.amsuess.com/tools/arandr/",

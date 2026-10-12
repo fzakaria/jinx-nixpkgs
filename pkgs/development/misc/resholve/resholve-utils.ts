@@ -2,25 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/resholve-utils.nix", [[["drvs", 132, 7], ["strip", 133, 7]], [["unresholved", 147, 57]], [["invokable", 178, 15], ["prep", 179, 7]], [["invokable", 181, 60]], [["scripts", 198, 17]], [["name", 190, 15], ["text", 190, 20], ["executable", 191, 7], ["checkPhase", 192, 7]], [["scripts", 216, 15]], [["name", 208, 15], ["text", 208, 20], ["executable", 209, 7], ["destination", 210, 7], ["checkPhase", 211, 7]], [["postResholve", 256, 19], ["solutions", 256, 32]], [["pname", 253, 9], ["passthru", 254, 9]], [["unresholved", 270, 11], ["originalSrc", 272, 11]], [["src", 262, 9], ["pname", 263, 9], ["version", 264, 31], ["buildInputs", 265, 9], ["disallowedReferences", 266, 9], ["passthru", 268, 9], ["dontConfigure", 276, 9], ["dontBuild", 277, 9], ["installPhase", 279, 9], ["preFixup", 286, 9], ["postFixup", 288, 9], ["meta", 290, 31], ["strictDeps", 290, 36], ["__structuredAttrs", 290, 47]], [["constructDrv", 236, 5], ["excludeDrvArgNames", 237, 5], ["extendDrvArgs", 241, 5], ["transformDrv", 259, 5]], [["spaces", 19, 3], ["colons", 20, 3], ["semicolons", 21, 3], ["nope", 24, 3], ["phraseDirective", 27, 3], ["phraseDirectives", 49, 3], ["relSafeBinPath", 54, 3], ["phraseEnvVal", 64, 3], ["shellEnv", 81, 3], ["phraseEnv", 86, 3], ["removeUnneededArgs", 95, 3], ["validateSolution", 104, 3], ["phraseEnvs", 114, 3], ["phraseArgs", 118, 3], ["phraseBinloreArgs", 126, 3], ["phraseInvocation", 137, 3], ["injectUnresholved", 145, 3], ["phraseCommands", 150, 3], ["phraseContext", 161, 3], ["phraseContextForPWD", 175, 3], ["phraseContextForOut", 181, 3], ["phraseSolution", 183, 3], ["phraseSolutions", 184, 3], ["writeScript", 187, 3], ["writeScriptBin", 205, 3], ["mkDerivation", 235, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, resholve: false, binlore: false, writeTextFile: false }, ellipsis: false };
 const formals$2 = { args: { scripts: false, inputs: false, interpreter: false }, ellipsis: true };
 const formals$3 = { args: { flags: true, scripts: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/resholve-utils.nix", [["drvs", 132, 7], ["strip", 133, 7]]);
-const pos$2 = nix.positions(here + "/resholve-utils.nix", [["unresholved", 147, 57]]);
 const formals$4 = { args: { invokable: false, prep: true }, ellipsis: false };
-const pos$3 = nix.positions(here + "/resholve-utils.nix", [["invokable", 178, 15], ["prep", 179, 7]]);
-const pos$4 = nix.positions(here + "/resholve-utils.nix", [["invokable", 181, 60]]);
-const pos$5 = nix.positions(here + "/resholve-utils.nix", [["scripts", 198, 17]]);
-const pos$6 = nix.positions(here + "/resholve-utils.nix", [["name", 190, 15], ["text", 190, 20], ["executable", 191, 7], ["checkPhase", 192, 7]]);
-const pos$7 = nix.positions(here + "/resholve-utils.nix", [["scripts", 216, 15]]);
-const pos$8 = nix.positions(here + "/resholve-utils.nix", [["name", 208, 15], ["text", 208, 20], ["executable", 209, 7], ["destination", 210, 7], ["checkPhase", 211, 7]]);
 const formals$5 = { args: { pname: false, src: false, version: false, passthru: true, solutions: false, postResholve: true }, ellipsis: true };
-const pos$9 = nix.positions(here + "/resholve-utils.nix", [["postResholve", 256, 19], ["solutions", 256, 32]]);
-const pos$10 = nix.positions(here + "/resholve-utils.nix", [["pname", 253, 9], ["passthru", 254, 9]]);
-const pos$11 = nix.positions(here + "/resholve-utils.nix", [["unresholved", 270, 11], ["originalSrc", 272, 11]]);
-const pos$12 = nix.positions(here + "/resholve-utils.nix", [["src", 262, 9], ["pname", 263, 9], ["version", 264, 31], ["buildInputs", 265, 9], ["disallowedReferences", 266, 9], ["passthru", 268, 9], ["dontConfigure", 276, 9], ["dontBuild", 277, 9], ["installPhase", 279, 9], ["preFixup", 286, 9], ["postFixup", 288, 9], ["meta", 290, 31], ["strictDeps", 290, 36], ["__structuredAttrs", 290, 47]]);
-const pos$13 = nix.positions(here + "/resholve-utils.nix", [["constructDrv", 236, 5], ["excludeDrvArgNames", 237, 5], ["extendDrvArgs", 241, 5], ["transformDrv", 259, 5]]);
-const pos$14 = nix.positions(here + "/resholve-utils.nix", [["spaces", 19, 3], ["colons", 20, 3], ["semicolons", 21, 3], ["nope", 24, 3], ["phraseDirective", 27, 3], ["phraseDirectives", 49, 3], ["relSafeBinPath", 54, 3], ["phraseEnvVal", 64, 3], ["shellEnv", 81, 3], ["phraseEnv", 86, 3], ["removeUnneededArgs", 95, 3], ["validateSolution", 104, 3], ["phraseEnvs", 114, 3], ["phraseArgs", 118, 3], ["phraseBinloreArgs", 126, 3], ["phraseInvocation", 137, 3], ["injectUnresholved", 145, 3], ["phraseCommands", 150, 3], ["phraseContext", 161, 3], ["phraseContextForPWD", 175, 3], ["phraseContextForOut", 181, 3], ["phraseSolution", 183, 3], ["phraseSolutions", 184, 3], ["writeScript", 187, 3], ["writeScriptBin", 205, 3], ["mkDerivation", 235, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,13 +45,13 @@ export default nix.lambda((args) => (() => {
     const phraseBinloreArgs = (value) => (() => {
       const hasUnresholved = nix.thunk(() => nix.builtins.hasAttr("unresholved", value));
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         drvs: nix.thunk(() => nix.concat(nix.sel(value, "inputs"), nix.app(nix.sel(lib, "optionals"), hasUnresholved, nix.thunk(() => [nix.thunk(() => nix.sel(value, "unresholved"))])))),
         strip: nix.thunk(() => (nix.asBool(hasUnresholved) ? [nix.thunk(() => nix.sel(value, "unresholved"))] : [])),
       };
     })();
     const phraseInvocation = (solution) => (value) => (nix.asBool(nix.app(validateSolution, value)) ? nix.str`RESHOLVE_LORE=${nix.app(nix.sel(binlore, "collect"), nix.thunk(() => nix.app(phraseBinloreArgs, value)))} ${nix.app(phraseEnvs, solution, value)} ${resholve}/bin/resholve --overwrite ${nix.app(phraseArgs, value)}` : nix.builtins.throw("invalid solution"));
-    const injectUnresholved = (solutions) => (unresholved) => nix.builtins.mapAttrs((name) => (value) => nix.update(value, { [nix.POS]: pos$2, unresholved: unresholved }), solutions);
+    const injectUnresholved = (solutions) => (unresholved) => nix.builtins.mapAttrs((name) => (value) => nix.update(value, { [nix.POS]: $pos[1], unresholved: unresholved }), solutions);
     const phraseCommands = (solutions) => (unresholved) => nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), phraseInvocation, nix.thunk(() => nix.app(injectUnresholved, solutions, unresholved)))));
     const phraseContext = nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$4);
@@ -79,17 +66,17 @@ export default nix.lambda((args) => (() => {
 )
 `;
     })(), formals$4);
-    const phraseContextForPWD = (invokable) => nix.app(phraseContext, nix.thunk(() => ({ [nix.POS]: pos$3, invokable: invokable, prep: "" })));
-    const phraseContextForOut = (invokable) => nix.app(phraseContext, nix.thunk(() => ({ [nix.POS]: pos$4, invokable: invokable })));
+    const phraseContextForPWD = (invokable) => nix.app(phraseContext, nix.thunk(() => ({ [nix.POS]: $pos[2], invokable: invokable, prep: "" })));
+    const phraseContextForOut = (invokable) => nix.app(phraseContext, nix.thunk(() => ({ [nix.POS]: $pos[3], invokable: invokable })));
     const phraseSolution = (name) => (solution) => nix.app(phraseContextForOut, nix.thunk(() => nix.app(phraseInvocation, name, solution)));
     const phraseSolutions = (solutions) => (unresholved) => nix.app(phraseContextForOut, nix.thunk(() => nix.app(phraseCommands, solutions, unresholved)));
     const writeScript = (name) => (partialSolution) => (text) => nix.app(writeTextFile, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: name,
         text: text,
         executable: true,
         checkPhase: nix.thunk(() => nix.str`${nix.app(phraseContextForPWD, nix.thunk(() => nix.app(phraseInvocation, name, nix.thunk(() => nix.update(partialSolution, {
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               scripts: nix.thunk(() => [nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}`)]),
             })))))}
 `),
@@ -100,12 +87,12 @@ export default nix.lambda((args) => (() => {
         const executable = true;
         const destination = nix.thunk(() => nix.str`/bin/${name_1}`);
         const checkPhase = nix.thunk(() => nix.str`${nix.app(phraseContextForOut, nix.thunk(() => nix.app(phraseInvocation, name_1, nix.thunk(() => nix.update(partialSolution, {
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               scripts: nix.thunk(() => [nix.thunk(() => nix.str`bin/${name_1}`)]),
             })))))}
 `);
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           name: name_1,
           text: text_1,
           executable,
@@ -114,7 +101,7 @@ export default nix.lambda((args) => (() => {
         };
       })()));
     const mkDerivation = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
         excludeDrvArgNames: nix.thunk(() => ["postResholve", "solutions"]),
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -127,20 +114,20 @@ export default nix.lambda((args) => (() => {
           const solutions = nix.arg($_1, "solutions");
           const postResholve = nix.argOr($_1, "postResholve", () => "");
           return {
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             pname: nix.thunk(() => nix.str`${pname}-unresholved`),
-            passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: pos$9, postResholve: postResholve, solutions: solutions })),
+            passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: $pos[8], postResholve: postResholve, solutions: solutions })),
           };
         })(), formals$5),
         transformDrv: (unresholved) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             src: unresholved,
             pname: nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), "-unresholved", nix.thunk(() => nix.sel(unresholved, "pname")))),
             version: nix.thunk(() => nix.attr(unresholved, "version")),
             buildInputs: nix.thunk(() => [resholve]),
             disallowedReferences: nix.thunk(() => [resholve]),
             passthru: nix.thunk(() => nix.update(nix.sel(unresholved, "passthru"), {
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               unresholved: unresholved,
               originalSrc: nix.thunk(() => nix.sel(unresholved, "src")),
             })),
@@ -155,7 +142,7 @@ export default nix.lambda((args) => (() => {
           }))),
       }))));
     return {
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       spaces,
       colons,
       semicolons,

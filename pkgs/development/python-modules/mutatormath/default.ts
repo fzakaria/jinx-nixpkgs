@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 5], ["version", 18, 26], ["sha256", 19, 5], ["extension", 20, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["checkPhase", 31, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, defcon: false, fontmath: false, setuptools: false, unicodedata2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 26], ["sha256", 19, 5], ["extension", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["checkPhase", 31, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const unicodedata2 = nix.arg($, "unicodedata2");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mutatormath",
       version: "3.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "MutatorMath",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "0r1qq45np49x14zz1zwkaayqrn7m8dn2jlipjldg2ihnmpzw29w1",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [fontmath, unicodedata2, defcon]),
       checkPhase: "runHook preCheck\n\npython Lib/mutatorMath/test/run.py\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Piecewise linear interpolation in multiple dimensions with multiple, arbitrarily placed, masters",
         homepage: "https://github.com/LettError/MutatorMath",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

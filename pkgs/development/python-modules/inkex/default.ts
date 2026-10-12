@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 33, 7], ["hash", 34, 7], ["stripLen", 35, 7], ["extraPrefix", 36, 7]], [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5]], [["pname", 23, 3], ["version", 24, 22], ["pyproject", 25, 3], ["src", 27, 22], ["patches", 29, 3], ["build-system", 44, 3], ["pythonRelaxDeps", 46, 3], ["dependencies", 51, 3], ["pythonImportsCheck", 63, 3], ["dontCheckPythonMetadata", 66, 3], ["nativeCheckInputs", 68, 3], ["checkInputs", 73, 3], ["disabledTests", 77, 3], ["disabledTestPaths", 90, 3], ["postPatch", 99, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchpatch: false, inkscape: false, "poetry-core": false, cssselect: false, lxml: false, numpy: false, pillow: false, pygobject3: false, pyparsing: false, pyserial: false, scour: false, tinycss2: false, "gobject-introspection": false, pytestCheckHook: false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 33, 7], ["hash", 34, 7], ["stripLen", 35, 7], ["extraPrefix", 36, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 22], ["pyproject", 25, 3], ["src", 27, 22], ["patches", 29, 3], ["build-system", 44, 3], ["pythonRelaxDeps", 46, 3], ["dependencies", 51, 3], ["pythonImportsCheck", 63, 3], ["dontCheckPythonMetadata", 66, 3], ["nativeCheckInputs", 68, 3], ["checkInputs", 73, 3], ["disabledTests", 77, 3], ["disabledTestPaths", 90, 3], ["postPatch", 99, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +26,14 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "inkex",
       version: nix.thunk(() => nix.attr(inkscape, "version")),
       pyproject: true,
       src: nix.thunk(() => nix.attr(inkscape, "src")),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://gitlab.com/inkscape/extensions/-/commit/b04ab718b400778a264f2085bbc779faebc08368.patch",
             hash: "sha256-BXRcfoeX7X8+x6CuKKBhrnzUHIwgnPay22Z8+rPZS54=",
             stripLen: 1n,
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "cd share/extensions\n\nsubstituteInPlace pyproject.toml \\\n  --replace-fail 'scour = \"^0.37\"' 'scour = \">=0.37\"'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for manipulating SVG documents which is the basis for Inkscape extensions",
         homepage: "https://gitlab.com/inkscape/extensions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

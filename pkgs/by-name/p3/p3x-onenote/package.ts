@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-linux", 17, 7], ["x86_64-linux", 18, 7]], [["url", 25, 5], ["hash", 26, 13]], [["pname", 30, 13], ["version", 30, 19], ["src", 30, 27]], [["updateScript", 48, 12]], [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 59, 5]], [["pname", 34, 11], ["version", 34, 17], ["src", 34, 25], ["extraInstallCommands", 36, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, appimageTools: false, "desktop-file-utils": false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-linux", 17, 7], ["x86_64-linux", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 13], ["version", 30, 19], ["src", 30, 27]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 34, 11], ["version", 34, 17], ["src", 34, 25], ["extraInstallCommands", 36, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const pname = "p3x-onenote";
   const onenote = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   const version = nix.thunk(() => nix.sel(onenote, "version"));
-  const plat = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, "aarch64-linux": "-arm64", "x86_64-linux": "" }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const plat = nix.thunk(() => nix.sel({ [nix.POS]: $pos[0], "aarch64-linux": "-arm64", "x86_64-linux": "" }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const hash = nix.thunk(() => nix.sel(onenote, "hash", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://github.com/patrikx3/onenote/releases/download/v${version}/P3X-OneNote-${version}${plat}.AppImage`),
       hash: hash,
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -43,9 +38,9 @@ ${desktop_file_utils}/bin/desktop-file-install --dir $out/share/applications \\
   --set-key Exec --set-value "p3x-onenote" \\
   --delete-original $out/p3x-onenote.desktop
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/patrikx3/onenote",
         description: "Linux Electron Onenote - A Linux compatible version of OneNote",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

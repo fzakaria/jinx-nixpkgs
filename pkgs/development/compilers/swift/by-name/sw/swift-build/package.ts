@@ -2,15 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["coreutils", 38, 69]], [["pname", 32, 5], ["version", 33, 5], ["buildCommand", 37, 5]], [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 41]], [["xcrun", 67, 7], ["graphics_cmds", 68, 15], ["coreutils", 69, 7], ["diffutils", 70, 7], ["gnused", 71, 7], ["libiconv", 72, 7], ["libtool", 73, 7], ["llvm", 74, 7], ["shell_cmds", 75, 7], ["sigtool", 77, 7]], [["store-dir", 82, 7]], [["NIX_LDFLAGS", 129, 7]], [["homepage", 160, 5], ["description", 161, 5], ["platforms", 162, 5], ["license", 163, 5], ["teams", 164, 5]], [["pname", 48, 3], ["version", 49, 3], ["outputs", 51, 3], ["src", 57, 3], ["patches", 64, 3], ["postPatch", 89, 3], ["strictDeps", 101, 3], ["cmakeFlags", 103, 3], ["preConfigure", 108, 3], ["nativeBuildInputs", 113, 3], ["buildInputs", 119, 3], ["env", 129, 3], ["postInstall", 131, 3], ["__structuredAttrs", 157, 3], ["meta", 159, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, coreutils: false, darwin: false, diffutils: false, fetchFromGitHub: false, gnused: false, libiconv: false, libtiff: false, llvmPackages_upstream: false, llvm_libtool: false, ninja: false, oxipng: false, replaceVars: false, sqlite: false, stdenv: false, stdenvNoCC: false, swift: false, "swift-argument-parser": false, "swift-driver": false, "swift-llbuild": false, "swift-system": false, "swift-tools-support-core": false, xcbuild: false, swift_release: false, swift_sources: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["coreutils", 38, 69]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 32, 5], ["version", 33, 5], ["buildCommand", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 41]]);
-const pos$4 = nix.positions(here + "/package.nix", [["xcrun", 67, 7], ["graphics_cmds", 68, 15], ["coreutils", 69, 7], ["diffutils", 70, 7], ["gnused", 71, 7], ["libiconv", 72, 7], ["libtool", 73, 7], ["llvm", 74, 7], ["shell_cmds", 75, 7], ["sigtool", 77, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["store-dir", 82, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 129, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 160, 5], ["description", 161, 5], ["platforms", 162, 5], ["license", 163, 5], ["teams", 164, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["outputs", 51, 3], ["src", 57, 3], ["patches", 64, 3], ["postPatch", 89, 3], ["strictDeps", 101, 3], ["cmakeFlags", 103, 3], ["preConfigure", 108, 3], ["nativeBuildInputs", 113, 3], ["buildInputs", 119, 3], ["env", 129, 3], ["postInstall", 131, 3], ["__structuredAttrs", 157, 3], ["meta", 159, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,23 +34,23 @@ export default nix.lambda((args) => (() => {
   const swift_release = nix.arg($, "swift_release");
   const swift_sources = nix.arg($, "swift_sources");
   const graphics_cmds = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "graphics_cmds",
       version: "1",
-      buildCommand: nix.thunk(() => nix.str`install -m755 -D ${nix.app(replaceVars, nix.path(here, "./extra-bins/copypng"), nix.thunk(() => ({ [nix.POS]: pos$1, coreutils: coreutils })))} "$out/bin/copypng"
+      buildCommand: nix.thunk(() => nix.str`install -m755 -D ${nix.app(replaceVars, nix.path(here, "./extra-bins/copypng"), nix.thunk(() => ({ [nix.POS]: $pos[0], coreutils: coreutils })))} "$out/bin/copypng"
 install -m755 -D ${nix.app(replaceVars, nix.path(here, "./extra-bins/tiffutil"), nix.thunk(() => ({})))} "$out/bin/tiffutil"
 `),
     }))));
   const swiftPlatform = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "swift", "platform"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "swift-build",
       version: swift_release,
       outputs: nix.thunk(() => ["out", "dev", "lib"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-build"));
           return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "swiftlang",
           repo: "swift-build",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -66,7 +59,7 @@ install -m755 -D ${nix.app(replaceVars, nix.path(here, "./extra-bins/tiffutil"),
         })()))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/0001-replace-impure-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             xcrun: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.sel(xcbuild, "xcrun") : "/not-supported")),
             graphics_cmds: graphics_cmds,
             coreutils: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), coreutils)),
@@ -78,7 +71,7 @@ install -m755 -D ${nix.app(replaceVars, nix.path(here, "./extra-bins/tiffutil"),
             shell_cmds: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(darwin, "shell_cmds"))) : "/not-supported")),
             sigtool: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(darwin, "sigtool")))),
           })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/0002-treat-nixpkgs-sdk-as-xcode.patch"), nix.thunk(() => ({ [nix.POS]: pos$5, "store-dir": nix.thunk(() => nix.builtins.storeDir) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/0002-treat-nixpkgs-sdk-as-xcode.patch"), nix.thunk(() => ({ [nix.POS]: $pos[4], "store-dir": nix.thunk(() => nix.builtins.storeDir) })))),
         nix.path(here, "./patches/0003-find-bundles-in-store.patch"),
       ]),
       postPatch: nix.thunk(() => nix.str`# Allow Swift Build to find \`SWBBuildServiceBundle\` in \`$out/libexec\`.
@@ -108,7 +101,7 @@ appendToVar cmakeFlags -DCMAKE_Swift_FLAGS=-module-cache-path\\ "$NIX_BUILD_TOP/
         swift_tools_support_core,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-headerpad_max_install_names")),
       })),
       postInstall: nix.thunk(() => nix.str`mkdir -p "\${!outputLib}/libexec"
@@ -137,7 +130,7 @@ substitute ${nix.path(here, "./files/SwiftBuildConfig.cmake")} "\${!outputDev}/l
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/swiftlang/swift-build",
         description: "High-level build system based on llbuild",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), nix.sel(lib, "platforms", "linux"))),

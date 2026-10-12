@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["homepage", 90, 5], ["description", 91, 5], ["license", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 69, 3], ["makefile", 85, 3], ["strictDeps", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, SDL: false, SDL_image: false, SDL_mixer: false, SDL_ttf: false, bzip2: false, fetchFromGitHub: false, fontconfig: false, freetype: false, libjpeg: false, libogg: false, libpng: false, libvorbis: false, lua5_1: false, runCommand: false, smpeg: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 90, 5], ["description", 91, 5], ["license", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 69, 3], ["makefile", 85, 3], ["strictDeps", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const isDarwin = nix.thunk(() => nix.attr(from, "isDarwin"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "onscripter",
       version: "20230825",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ogapee",
           repo: "onscripter",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,7 +71,7 @@ ln -s ${nix.app(nix.sel(lib, "escapeShellArgs"), commands)} $out/bin
       makefile: nix.thunk(() => (nix.asBool(isDarwin) ? "Makefile.MacOSX" : "Makefile.Linux")),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://ogapee.github.io/www/onscripter_en.html",
         description: "Japanese visual novel scripting engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

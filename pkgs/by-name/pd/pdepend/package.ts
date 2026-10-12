@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["changelog", 26, 5], ["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["longDescription", 30, 5], ["mainProgram", 36, 5], ["teams", 37, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["composerLock", 19, 3], ["vendorHash", 20, 3], ["nativeInstallCheckInputs", 22, 3], ["doInstallCheck", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { php: false, fetchFromGitHub: false, lib: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 26, 5], ["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["longDescription", 30, 5], ["mainProgram", 36, 5], ["teams", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["composerLock", 19, 3], ["vendorHash", 20, 3], ["nativeInstallCheckInputs", 22, 3], ["doInstallCheck", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pdepend",
       version: "2.16.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pdepend",
           repo: "pdepend",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/pdepend/pdepend/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Adaptation of JDepend for PHP",
         homepage: "https://github.com/pdepend/pdepend",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["ppdFileCommands", 82, 7]], [["changelog", 101, 5], ["description", 102, 5], ["downloadPage", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["longDescription", 109, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 29, 3], ["__structuredAttrs", 30, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 41, 3], ["postPatch", 50, 3], ["preConfigure", 58, 3], ["configureFlags", 65, 3], ["postInstall", 70, 3], ["env", 82, 3], ["postFixup", 94, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, coreutils: false, cups: false, "cups-filters": false, ghostscript: false, gnused: false, perl: false, autoconf: false, automake: false, patchPpdFilesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ppdFileCommands", 82, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 101, 5], ["description", 102, 5], ["downloadPage", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["longDescription", 109, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 29, 3], ["__structuredAttrs", 30, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 41, 3], ["postPatch", 50, 3], ["preConfigure", 58, 3], ["configureFlags", 65, 3], ["postInstall", 70, 3], ["env", 82, 3], ["postFixup", 94, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const patchPpdFilesHook = nix.arg($, "patchPpdFilesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "foomatic-db",
       version: "0-unstable-2026-09-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenPrinting",
           repo: "foomatic-db",
           rev: "76dd1e31354c189b2edd9ae8201285d622c89395",
@@ -56,7 +53,7 @@ ln -s "${nix.builtins.placeholder("out")}/share/foomatic/db/source/PPD"  \\
   "${nix.builtins.placeholder("out")}/share/cups/model/foomatic-db"
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ppdFileCommands: nix.thunk(() => nix.app(nix.sel(lib, "join"), " ", nix.thunk(() => ["cat", "date", "printf", "rastertohp", "foomatic-rip", "gs", "sed", "perl"]))),
       })),
       postFixup: nix.thunk(() => nix.str`echo 'compressing ppd files'
@@ -64,7 +61,7 @@ find -H "${nix.builtins.placeholder("out")}/share/cups/model/foomatic-db" -type 
   | xargs -0r -n 64 -P "$NIX_BUILD_CORES" gzip -9n
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/OpenPrinting/foomatic-db/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),
         description: "OpenPrinting printer support database (free content)",
         downloadPage: "https://www.openprinting.org/download/foomatic/",

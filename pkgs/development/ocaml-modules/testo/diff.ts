@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/diff.nix", [[["description", 15, 5]], [["pname", 9, 3], ["version", 10, 19], ["src", 10, 27], ["propagatedBuildInputs", 12, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { fetchurl: false, buildDunePackage: false, testo: false, ppx_deriving: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/diff.nix", [["description", 15, 5]]);
-const pos$2 = nix.positions(here + "/diff.nix", [["pname", 9, 3], ["version", 10, 19], ["src", 10, 27], ["propagatedBuildInputs", 12, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const testo = nix.arg($, "testo");
   const ppx_deriving = nix.arg($, "ppx_deriving");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "testo-diff",
       version: nix.thunk(() => nix.attr(testo, "version")),
       src: nix.thunk(() => nix.attr(testo, "src")),
       propagatedBuildInputs: nix.thunk(() => [ppx_deriving]),
-      meta: nix.thunk(() => nix.update(nix.sel(testo, "meta"), { [nix.POS]: pos$1, description: "Pure-OCaml diff implementation" })),
+      meta: nix.thunk(() => nix.update(nix.sel(testo, "meta"), { [nix.POS]: $pos[0], description: "Pure-OCaml diff implementation" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=diff.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 45, 5], ["sha256", 46, 5]], [["url", 50, 5], ["sha256", 51, 5]], [["homepage", 113, 5], ["description", 114, 5], ["license", 115, 5], ["platforms", 116, 5], ["maintainers", 117, 5]], [["pname", 34, 3], ["version", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["src", 44, 3], ["lpr_src", 49, 3], ["unpackPhase", 54, 3], ["patches", 59, 3], ["installPhase", 68, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, dpkg: false, autoPatchelfHook: false, makeWrapper: false, perl: false, gnused: false, ghostscript: false, file: false, coreutils: false, gnugrep: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 45, 5], ["sha256", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 50, 5], ["sha256", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 113, 5], ["description", 114, 5], ["license", 115, 5], ["platforms", 116, 5], ["maintainers", 117, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["src", 44, 3], ["lpr_src", 49, 3], ["unpackPhase", 54, 3], ["patches", 59, 3], ["installPhase", 68, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const arches = nix.thunk(() => ["x86_64", "i686", "armv7l"]);
   const runtimeDeps = nix.thunk(() => [ghostscript, file, gnused, gnugrep, coreutils, which]);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mfcl5750dw",
       version: "3.5.1-1",
       nativeBuildInputs: nix.thunk(() => [dpkg, makeWrapper, autoPatchelfHook]),
       buildInputs: nix.thunk(() => [perl]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf102614/mfcl5750dwcupswrapper-${nix.sel(finalAttrs, "version")}.i386.deb`),
           sha256: "afe6d18e17d26348f3b8a4f9a003107984940c429a7dd193054303a21f5e65b5",
         })))),
       lpr_src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf102613/mfcl5750dwlpr-${nix.sel(finalAttrs, "version")}.i386.deb`),
           sha256: "b1b9c1f9ae8522a65fdd2db1e760aed835807ba593d001ac5471635a157cd1f1",
         })))),
@@ -78,7 +75,7 @@ $out/share/cups/model/
 runHook postInstall
 `)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.brother.com/",
         description: "Brother MFCL5750DW CUPS driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

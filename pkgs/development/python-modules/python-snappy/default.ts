@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 5], ["version", 18, 13], ["hash", 19, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["buildInputs", 27, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, cramjam: false, setuptools: false, "snappy-cpp": false, unittestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 13], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["buildInputs", 27, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "python_snappy",
           version: version,
           hash: "sha256-QCFsG637LTiseB7LFiodDsQPjul0fmELz+/fp5SGzuM=",
@@ -31,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [cramjam]);
       const nativeCheckInputs = nix.thunk(() => [unittestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for the snappy compression library from Google",
         homepage: "https://github.com/intake/python-snappy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

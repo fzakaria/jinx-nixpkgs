@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["rev", 14, 17], ["hash", 15, 17]], [["0.5", 14, 11]], [["description", 22, 5]], [["pname", 10, 3], ["owner", 11, 3], ["defaultVersion", 12, 3], ["release", 14, 3], ["buildInputs", 17, 3], ["propagatedBuildInputs", 18, 3], ["mlPlugin", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, Vpl: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["rev", 14, 17], ["hash", 15, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["0.5", 14, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 22, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["owner", 11, 3], ["defaultVersion", 12, 3], ["release", 14, 3], ["buildInputs", 17, 3], ["propagatedBuildInputs", 18, 3], ["mlPlugin", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const Vpl = nix.arg($, "Vpl");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "VplTactic",
       owner: "VERIMAG-Polyhedra",
       defaultVersion: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "isEq"), "8.9", nix.thunk(() => nix.sel(coq, "version")))) ? "0.5" : null)),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "0.5": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: "487e3aff8446bed2c5116cefc7d71d98a06e85de",
           hash: "sha256-4h0hyvj9R+GOgnGWQFDi0oENLZPiJoimyK1q327qvIY=",
         })),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(coq, "ocamlPackages", "vpl-core"))]),
       propagatedBuildInputs: nix.thunk(() => [Vpl]),
       mlPlugin: true,
-      meta: nix.thunk(() => nix.update(nix.sel(Vpl, "meta"), { [nix.POS]: pos$3, description: "Coq Tactic for Arithmetic (based on VPL)" })),
+      meta: nix.thunk(() => nix.update(nix.sel(Vpl, "meta"), { [nix.POS]: $pos[2], description: "Coq Tactic for Arithmetic (based on VPL)" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

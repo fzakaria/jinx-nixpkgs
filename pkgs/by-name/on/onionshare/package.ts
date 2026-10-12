@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["meek", 37, 9], ["obfs4", 38, 9], ["snowflake", 39, 9], ["tor", 40, 9], ["geoip", 42, 21]], [["rev-prefix", 114, 33]], [["onionshare-gui", 116, 15]], [["updateScript", 114, 5], ["tests", 115, 5]], [["description", 121, 5], ["longDescription", 122, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["mainProgram", 145, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["sourceRoot", 31, 3], ["patches", 33, 3], ["build-system", 46, 3], ["pythonRelaxDeps", 50, 3], ["pythonRemoveDeps", 52, 3], ["dependencies", 56, 3], ["buildInputs", 85, 3], ["nativeCheckInputs", 90, 3], ["disabledTests", 98, 3], ["__darwinAllowLocalNetworking", 111, 3], ["passthru", 113, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromGitHub: false, replaceVars: false, meek: false, obfs4: false, snowflake: false, tor: false, versionCheckHook: false, gitUpdater: false, "onionshare-gui": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["meek", 37, 9], ["obfs4", 38, 9], ["snowflake", 39, 9], ["tor", 40, 9], ["geoip", 42, 21]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 114, 33]]);
-const pos$4 = nix.positions(here + "/package.nix", [["onionshare-gui", 116, 15]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 114, 5], ["tests", 115, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 121, 5], ["longDescription", 122, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["mainProgram", 145, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["sourceRoot", 31, 3], ["patches", 33, 3], ["build-system", 46, 3], ["pythonRelaxDeps", 50, 3], ["pythonRemoveDeps", 52, 3], ["dependencies", 56, 3], ["buildInputs", 85, 3], ["nativeCheckInputs", 90, 3], ["disabledTests", 98, 3], ["__darwinAllowLocalNetworking", 111, 3], ["passthru", 113, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const onionshare_gui = nix.arg($, "onionshare-gui");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "onionshare-cli",
       version: "2.6.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "onionshare",
           repo: "onionshare",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +35,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/cli`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             meek: meek,
             obfs4: obfs4,
             snowflake: snowflake,
@@ -91,12 +85,12 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["test_get_tor_paths_linux"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_get_tor_paths_darwin", "test_receive_mode_webhook"])))),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, "onionshare-gui": onionshare_gui })),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], "onionshare-gui": onionshare_gui })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Securely and anonymously send and receive files",
         longDescription: "OnionShare is an open source tool for securely and anonymously sending\nand receiving files using Tor onion services. It works by starting a web\nserver directly on your computer and making it accessible as an\nunguessable Tor web address that others can load in Tor Browser to\ndownload files from you, or upload files to you. It doesn't require\nsetting up a separate server, using a third party file-sharing service,\nor even logging into an account.\n\nUnlike services like email, Google Drive, DropBox, WeTransfer, or nearly\nany other way people typically send files to each other, when you use\nOnionShare you don't give any companies access to the files that you're\nsharing. So long as you share the unguessable web address in a secure way\n(like pasting it in an encrypted messaging app), no one but you and the\nperson you're sharing with can access the files.\n",
         homepage: "https://onionshare.org/",

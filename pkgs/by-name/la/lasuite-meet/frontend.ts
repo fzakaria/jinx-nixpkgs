@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontend.nix", [[["version", 16, 7], ["src", 17, 7], ["sourceRoot", 18, 7], ["hash", 20, 5]], [["description", 33, 5]], [["pname", 9, 3], ["src", 10, 11], ["version", 10, 15], ["sourceRoot", 12, 3], ["npmDeps", 14, 3], ["npmBuildScript", 22, 3], ["installPhase", 24, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { src: false, version: false, meta: false, fetchNpmDeps: false, buildNpmPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontend.nix", [["version", 16, 7], ["src", 17, 7], ["sourceRoot", 18, 7], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/frontend.nix", [["description", 33, 5]]);
-const pos$3 = nix.positions(here + "/frontend.nix", [["pname", 9, 3], ["src", 10, 11], ["version", 10, 15], ["sourceRoot", 12, 3], ["npmDeps", 14, 3], ["npmBuildScript", 22, 3], ["installPhase", 24, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const fetchNpmDeps = nix.arg($, "fetchNpmDeps");
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lasuite-meet-frontend",
       src: src,
       version: version,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src/frontend`),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.attr(finalAttrs, "sourceRoot")),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       npmBuildScript: "build",
       installPhase: "runHook preInstall\n\ncp -r dist $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open source alternative to Google Meet and Zoom powered by LiveKit: HD video calls, screen sharing, and chat features. Built with Django and React",
       })),
     }));

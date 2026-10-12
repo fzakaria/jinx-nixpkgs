@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]], [["description", 46, 5], ["longDescription", 47, 5], ["license", 51, 5], ["homepage", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["patches", 37, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, ninja: false, libusb1: false, meson: false, boost: false, fetchFromGitHub: false, "pkg-config": false, "microsoft-gsl": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["longDescription", 47, 5], ["license", 51, 5], ["homepage", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["patches", 37, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const microsoft_gsl = nix.arg($, "microsoft-gsl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ite-backlight",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hexagonal-sun",
           repo: "ite-backlight",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +32,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, libusb1]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-gcc13-build-failure.patch",
             url: "https://github.com/hexagonal-sun/ite-backlight/commit/dc8c19d4785d80cbe7a82869daee1f723d3f3fb2.patch",
             hash: "sha256-iTRTVy7qB2z1ip135b8k3RufTBzeJaP1wdrRWN9tPsU=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Commands to control ite-backlight devices",
         longDescription: "This project aims to provide a set of simple utilities for controlling ITE 8291\nkeyboard backlight controllers.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

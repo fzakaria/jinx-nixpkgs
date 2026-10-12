@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["desktopName", 17, 5], ["genericName", 18, 5], ["categories", 19, 5], ["exec", 20, 5], ["icon", 21, 5], ["name", 22, 5]], [["message", 39, 5], ["name", 40, 5], ["sha256", 41, 5]], [["description", 79, 5], ["longDescription", 80, 5], ["homepage", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["maintainers", 91, 5], ["sourceProvenance", 92, 5]], [["pname", 28, 3], ["version", 29, 3], ["helpMsg", 31, 3], ["src", 38, 3], ["nativeBuildInputs", 44, 3], ["sourceRoot", 45, 3], ["libPath", 47, 3], ["unpackPhase", 56, 3], ["installPhase", 64, 3], ["dontStrip", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, requireFile: false, unzip: false, makeDesktopItem: false, SDL2: false, SDL2_mixer: false, libogg: false, libvorbis: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["desktopName", 17, 5], ["genericName", 18, 5], ["categories", 19, 5], ["exec", 20, 5], ["icon", 21, 5], ["name", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["message", 39, 5], ["name", 40, 5], ["sha256", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 79, 5], ["longDescription", 80, 5], ["homepage", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["maintainers", 91, 5], ["sourceProvenance", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["helpMsg", 31, 3], ["src", 38, 3], ["nativeBuildInputs", 44, 3], ["sourceRoot", 45, 3], ["libPath", 47, 3], ["unpackPhase", 56, 3], ["installPhase", 64, 3], ["dontStrip", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const libvorbis = nix.arg($, "libvorbis");
   const arch = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "system"), "x86_64-linux")) ? "x86_64" : "x86"));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       desktopName: "World of Goo",
       genericName: "World of Goo",
       categories: nix.thunk(() => ["Game"]),
@@ -38,7 +35,7 @@ You can do this by using "nix-prefetch-url file://$PWD/${pname}.Linux.${version}
 in the directory where you saved it.
 `);
       const src = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           message: helpMsg,
           name: "WorldOfGoo.Linux.1.53.sh",
           sha256: "175e4b0499a765f1564942da4bd65029f8aae1de8231749c56bec672187d53ee",
@@ -71,7 +68,7 @@ patchelf --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" --set-rpath $
 `);
       const dontStrip = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Physics based puzzle game",
         longDescription: "World of Goo is a physics based puzzle / construction game. The millions of Goo\nBalls who live in the beautiful World of Goo don't know that they are in a\ngame, or that they are extremely delicious.\n",
         homepage: "https://worldofgoo.com",
@@ -84,7 +81,7 @@ patchelf --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" --set-rpath $
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         helpMsg,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["shortTarget", 26, 7]], [["updateScript", 35, 12]], [["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["patches", 23, 3], ["checkFlags", 30, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, replaceVars: false, stdenv: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["shortTarget", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 35, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["patches", 23, 3], ["checkFlags", 30, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cargo-benchcmp",
       version: "0.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BurntSushi",
           repo: "cargo-benchcmp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,17 +27,17 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-Dpn3MbU56zX4vibG0pw5LuQEwvC6Uqzse1GCRHWyAEw=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-test-binary-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             shortTarget: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")),
           })))),
       ]),
       checkFlags: nix.thunk(() => ["--skip=different_input_colored"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Small utility to compare Rust micro-benchmarks",
         mainProgram: "cargo-benchcmp",
         homepage: "https://github.com/BurntSushi/cargo-benchcmp",

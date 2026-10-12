@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["changelog", 68, 5], ["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["pythonRelaxDeps", 38, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 56, 3], ["pythonImportsCheck", 63, 3], ["__darwinAllowLocalNetworking", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, aiodns: false, aiohttp: false, awesomeversion: false, backoff: false, cachetools: false, mashumaro: false, orjson: false, pycountry: false, yarl: false, aresponses: false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 68, 5], ["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["pythonRelaxDeps", 38, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 56, 3], ["pythonImportsCheck", 63, 3], ["__darwinAllowLocalNetworking", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "frenck",
           repo: "python-radios",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["radios"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/frenck/python-radios/releases/tag/v${version}`),
         description: "Asynchronous Python client for the Radio Browser API",
         homepage: "https://github.com/frenck/python-radios",
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["leaveDotGit", 27, 5], ["postFetch", 28, 5]], [["package", 80, 5], ["command", 81, 5], ["version", 82, 5]], [["version", 79, 18]], [["tests", 79, 12]], [["homepage", 86, 5], ["changelog", 87, 5], ["description", 88, 5], ["mainProgram", 89, 5], ["longDescription", 90, 5], ["license", 100, 5], ["maintainers", 101, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 36, 3], ["nativeBuildInputs", 38, 3], ["subPackages", 40, 3], ["ldflags", 42, 3], ["preBuild", 50, 3], ["preCheck", 55, 3], ["checkFlags", 60, 3], ["postInstall", 64, 3], ["passthru", 79, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, buildPackages: false, stdenv: false, testers: false, fulcio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["leaveDotGit", 27, 5], ["postFetch", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 80, 5], ["command", 81, 5], ["version", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 79, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 79, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 86, 5], ["changelog", 87, 5], ["description", 88, 5], ["mainProgram", 89, 5], ["longDescription", 90, 5], ["license", 100, 5], ["maintainers", 101, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 36, 3], ["nativeBuildInputs", 38, 3], ["subPackages", 40, 3], ["ldflags", 42, 3], ["preBuild", 50, 3], ["preCheck", 55, 3], ["checkFlags", 60, 3], ["postInstall", 64, 3], ["passthru", 79, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const fulcio = nix.arg($, "fulcio");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "fulcio",
       version: "1.8.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sigstore",
           repo: "fulcio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,11 +49,11 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: fulcio,
               command: "fulcio version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/sigstore/fulcio",
         changelog: nix.thunk(() => nix.str`https://github.com/sigstore/fulcio/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Root-CA for code signing certs - issuing certificates based on an OIDC email address",

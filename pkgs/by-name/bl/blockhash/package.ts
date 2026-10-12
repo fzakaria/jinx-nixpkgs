@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["homepage", 32, 5], ["description", 33, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5], ["mainProgram", 41, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["strictDeps", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false, "pkg-config": false, imagemagick: false, wafHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 32, 5], ["description", 33, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5], ["mainProgram", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["strictDeps", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const wafHook = nix.arg($, "wafHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "blockhash",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "commonsmachinery",
           repo: "blockhash",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [imagemagick]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/commonsmachinery/blockhash",
         description: "This is a perceptual image hash calculation tool based on algorithm\ndescribed in Block Mean Value Based Image Perceptual Hashing by Bian Yang,\nFan Gu and Xiamu Niu.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

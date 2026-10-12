@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 17, 26], ["version", 17, 32], ["hash", 18, 5]], [["updateScript", 42, 12]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 52, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 21, 3], ["postPatch", 23, 3], ["nativeCheckInputs", 27, 3], ["preCheck", 33, 3], ["__darwinAllowLocalNetworking", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, cacert: false, gitMinimal: false, jq: false, sops: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 17, 26], ["version", 17, 32], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 42, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 21, 3], ["postPatch", 23, 3], ["nativeCheckInputs", 27, 3], ["preCheck", 33, 3], ["__darwinAllowLocalNetworking", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const sops = nix.arg($, "sops");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "secretspec",
       version: "0.21.1",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-VCvo+O3IHVUeZG6cxBmWy8/CEDZOwVr8IVcWxroUd00=",
@@ -37,11 +34,11 @@ export SSL_CERT_FILE="${cacert}/etc/ssl/certs/ca-bundle.crt"
 `),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Declarative secrets, every environment, any provider",
         homepage: "https://secretspec.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

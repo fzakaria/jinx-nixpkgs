@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["NIX_CFLAGS_COMPILE", 32, 7]], [["shortName", 57, 7], ["fullName", 58, 7], ["url", 59, 7], ["free", 60, 7]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 62, 5], ["maintainers", 63, 5]], [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["patches", 29, 3], ["env", 32, 3], ["postPatch", 34, 3], ["preInstall", 47, 3], ["enableParallelBuilding", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, which: false, gfortran: false, libGLU: false, libxmu: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["shortName", 57, 7], ["fullName", 58, 7], ["url", 59, 7], ["free", 60, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 62, 5], ["maintainers", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["patches", 29, 3], ["env", 32, 3], ["postPatch", 34, 3], ["preInstall", 47, 3], ["enableParallelBuilding", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.3";
       const pname = "molden";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ftp.science.ru.nl/Molden//molden${version}.tar.gz`),
           sha256: "02qi16pz2wffn3cc47dpjqhfafzwfmb79waw4nnhfyir8a4h3cq1",
         }))));
@@ -31,18 +27,18 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gfortran, libGLU, libx11, libxmu]);
       const patches = nix.thunk(() => [nix.path(here, "./dont_register_file_types.patch")]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration -Wno-implicit-int -Wno-return-mismatch -std=gnu17",
       }));
       const postPatch = "substituteInPlace ./makefile --replace '-L/usr/X11R6/lib'  \"\" \\\n                             --replace '-I/usr/X11R6/include' \"\" \\\n                             --replace '/usr/local/' $out/ \\\n                             --replace 'sudo' \"\" \\\n                             --replace '-C surf depend' '-C surf' \\\n                             --replace 'FFLAGS =' 'FFLAGS = -fallow-argument-mismatch'\n\nsubstituteInPlace ambfor/makefile --replace 'FFLAGS =' 'FFLAGS = -fallow-argument-mismatch'\n\nsed -i '/^# DO NOT DELETE THIS LINE/q;' surf/Makefile\n";
       const preInstall = "mkdir -p $out/bin\n";
       const enableParallelBuilding = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Display and manipulate molecular structures",
         homepage: "http://www3.cmbi.umcn.nl/molden/",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             shortName: "molden",
             fullName: "Free for academic/non-profit use",
             url: "http://www3.cmbi.umcn.nl/molden/CopyRight.html",
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version,
         pname,
         src,

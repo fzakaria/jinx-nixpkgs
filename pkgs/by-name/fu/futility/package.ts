@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 13], ["rev", 19, 5], ["hash", 20, 5]], [["NIX_CFLAGS_COMPILE", 30, 7]], [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["teams", 55, 5], ["mainProgram", 56, 5], ["badPlatforms", 57, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["env", 30, 3], ["postPatch", 32, 3], ["makeFlags", 40, 3], ["buildFlags", 46, 3], ["installTargets", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, openssl: false, "pkg-config": false, nss: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 13], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["teams", 55, 5], ["mainProgram", 56, 5], ["badPlatforms", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["env", 30, 3], ["postPatch", 32, 3], ["makeFlags", 40, 3], ["buildFlags", 46, 3], ["installTargets", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const url = "https://chromium.googlesource.com/chromiumos/platform/vboot_reference";
   const branch = "release-R145-16552.B";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "futility",
       version: nix.thunk(() => nix.str`0-${branch}`),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: url,
           rev: nix.thunk(() => nix.str`refs/heads/${branch}`),
           hash: "sha256-LctTKkf8nTVcrErMiAkvSCYkZnBoTYjqxWj0xADi0Q4=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl, nss]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       postPatch: nix.thunk(() => nix.str`patchShebangs ./scripts
 substituteInPlace ./scripts/getversion.sh \\
   --replace-fail "unknown" "${branch}"
@@ -41,7 +38,7 @@ substituteInPlace ./Makefile \\
       buildFlags: "futil",
       installTargets: "futil_install",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: url,
         description: "ChromeOS firmware utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

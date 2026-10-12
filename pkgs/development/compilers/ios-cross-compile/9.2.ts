@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/9.2.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["name", 33, 5], ["sha256", 34, 5], ["message", 35, 5]], [["description", 79, 5], ["platforms", 80, 5], ["hydraPlatforms", 81, 5], ["maintainers", 82, 5], ["license", 83, 5]], [["pname", 17, 3], ["version", 18, 3], ["sdk", 19, 3], ["cctools_port", 20, 3], ["ldid", 26, 3], ["src", 32, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 68, 3], ["alt_wrapper", 76, 3], ["builder", 77, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, git: false, clang: false, fetchFromGitHub: false, requireFile: false, openssl: false, xz: false, gnutar: false, automake: false, autoconf: false, libtool: false, clangStdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/9.2.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/9.2.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$3 = nix.positions(here + "/9.2.nix", [["name", 33, 5], ["sha256", 34, 5], ["message", 35, 5]]);
-const pos$4 = nix.positions(here + "/9.2.nix", [["description", 79, 5], ["platforms", 80, 5], ["hydraPlatforms", 81, 5], ["maintainers", 82, 5], ["license", 83, 5]]);
-const pos$5 = nix.positions(here + "/9.2.nix", [["pname", 17, 3], ["version", 18, 3], ["sdk", 19, 3], ["cctools_port", 20, 3], ["ldid", 26, 3], ["src", 32, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 68, 3], ["alt_wrapper", 76, 3], ["builder", 77, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const version = "9.2";
       const sdk = "iPhoneOS9.2.sdk";
       const cctools_port = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tpoechtrager",
           repo: "cctools-port",
           rev: "7d405492b09fa27546caaa989b8493829365deab",
           sha256: "0nj1q5bqdx5jm68dispybxc7wnkb6p8p2igpnap9q6qyv2r9p07w",
         }))));
       const ldid = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "tpoechtrager",
           repo: "ldid",
           rev: "3064ed628108da4b9a52cfbe5d4c1a5817811400",
@@ -71,14 +67,14 @@ nix-prefetch-url file:///path/to/${name}
 
 and run this installation again.
 `);
-          return { [nix.POS]: pos$3, name, sha256, message };
+          return { [nix.POS]: $pos[2], name, sha256, message };
         })())));
       const nativeBuildInputs = nix.thunk(() => [autoconf, automake]);
       const buildInputs = nix.thunk(() => [git, xz, gnutar, openssl, libtool, clang]);
       const alt_wrapper = nix.path(here, "./alt_wrapper.c");
       const builder = nix.path(here, "./9.2_builder.sh");
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: nix.thunk(() => nix.str`Provides an iOS cross compiler from 7.1 up to iOS-${version} and ldid`),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         hydraPlatforms: [],
@@ -89,7 +85,7 @@ and run this installation again.
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         sdk,

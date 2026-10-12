@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["git_branch", 28, 7], ["git_revision", 29, 7], ["git_remote", 30, 7]], [["yarnLock", 38, 5], ["hash", 39, 5]], [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 117, 5], ["platforms", 118, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["offlineCache", 37, 3], ["nativeBuildInputs", 42, 3], ["configurePhase", 50, 3], ["buildPhase", 70, 3], ["installPhase", 85, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, electron: false, fetchFromGitHub: false, fetchYarnDeps: false, "fixup-yarn-lock": false, replaceVars: false, writableTmpDirAsHomeHook: false, makeWrapper: false, nodejs: false, yarn: false, libglvnd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["git_branch", 28, 7], ["git_revision", 29, 7], ["git_remote", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["yarnLock", 38, 5], ["hash", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 117, 5], ["platforms", 118, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["offlineCache", 37, 3], ["nativeBuildInputs", 42, 3], ["configurePhase", 50, 3], ["buildPhase", 70, 3], ["installPhase", 85, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const yarn = nix.arg($, "yarn");
   const libglvnd = nix.arg($, "libglvnd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "unofficial-homestuck-collection",
       version: "2.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GiovanH",
           repo: "unofficial-homestuck-collection",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-disable-git-rev-check.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             git_branch: "'main'",
             git_revision: nix.thunk(() => nix.str`'${nix.sel(finalAttrs, "src", "rev")}'`),
             git_remote: nix.thunk(() => nix.str`'${nix.sel(finalAttrs, "src", "url")}'`),
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0004-Upgrade-Electron-14-to-force-removal-of-remote-module.patch"),
       ]),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           yarnLock: nix.path(here, "./yarn.lock"),
           hash: "sha256-CKWFtIZBASGx/1tBR8n7aKPqfj4P9dCAPIzee/DIOP8=",
         })))),
@@ -101,7 +97,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/unofficial-hom
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Offline collection of Homestuck and its related works (ruffle only)",
         homepage: "https://homestuck.giovanh.com/unofficial-homestuck-collection/",
         changelog: nix.thunk(() => nix.str`https://github.com/GiovanH/unofficial-homestuck-collection/releases/tag/v${nix.sel(finalAttrs, "version")}`),

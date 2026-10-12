@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 26, 5], ["hash", 29, 5]], [["homepage", 78, 5], ["description", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["teams", 82, 5]], [["version", 20, 3], ["pyproject", 21, 3], ["pname", 22, 3], ["disabled", 24, 3], ["src", 25, 3], ["patches", 32, 3], ["postPatch", 41, 3], ["buildInputs", 46, 3], ["nativeBuildInputs", 56, 3], ["build-system", 60, 3], ["dependencies", 64, 3], ["nativeCheckInputs", 68, 3], ["disabledTests", 71, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchurl: false, isPyPy: false, R: false, rWrapper: false, xz: false, bzip2: false, zlib: false, zstd: false, icu: false, libdeflate: false, pytestCheckHook: false, setuptools: false, cffi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 26, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 78, 5], ["description", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["teams", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 20, 3], ["pyproject", 21, 3], ["pname", 22, 3], ["disabled", 24, 3], ["src", 25, 3], ["patches", 32, 3], ["postPatch", 41, 3], ["buildInputs", 46, 3], ["nativeBuildInputs", 56, 3], ["build-system", 60, 3], ["dependencies", 64, 3], ["nativeCheckInputs", 68, 3], ["disabledTests", 71, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rpy2-rinterface";
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://pypi/${nix.builtins.substring(0n, 1n, pname)}/${pname}/${nix.builtins.replaceStrings(nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), pname)}-${version}.tar.gz`),
           hash: "sha256-qcwTQc5ctN8dxnxA3Dss4Mr6znIVvUJi/g7QEZWKM2k=",
         }))));
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         "test_parse_error_when_evaluting",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://rpy2.github.io/",
         description: "Python interface to R",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pyproject,
         pname,

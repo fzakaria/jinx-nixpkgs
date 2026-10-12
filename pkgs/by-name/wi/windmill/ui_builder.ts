@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ui_builder.nix", [[["url", 5, 3], ["sha256", 6, 3], ["stripRoot", 7, 3]]]);
 const formals$1 = { args: { fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ui_builder.nix", [["url", 5, 3], ["sha256", 6, 3], ["stripRoot", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://pub-06154ed168a24e73a86ab84db6bf15d8.r2.dev/ui_builder-7a79f03.tar.gz",
       sha256: "1r5dkymjlqngwvpiv11pr0sdhkw0wp4jg0rhrwzczl3jjnc2azwq",
       stripRoot: false,

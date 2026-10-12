@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/obs-shaderfilter.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 39, 5], ["homepage", 40, 5], ["maintainers", 41, 5], ["license", 42, 5], ["platforms", 43, 31]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["cmakeFlags", 27, 3], ["dontWrapQtApps", 31, 3], ["postInstall", 33, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "obs-studio": false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/obs-shaderfilter.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/obs-shaderfilter.nix", [["description", 39, 5], ["homepage", 40, 5], ["maintainers", 41, 5], ["license", 42, 5], ["platforms", 43, 31]]);
-const pos$3 = nix.positions(here + "/obs-shaderfilter.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["cmakeFlags", 27, 3], ["dontWrapQtApps", 31, 3], ["postInstall", 33, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-shaderfilter";
       const version = "2.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "exeldro",
           repo: "obs-shaderfilter",
           rev: version,
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OBS Studio filter for applying an arbitrary shader to a source",
         homepage: "https://github.com/exeldro/obs-shaderfilter",
         maintainers: nix.thunk(() => (() => {
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

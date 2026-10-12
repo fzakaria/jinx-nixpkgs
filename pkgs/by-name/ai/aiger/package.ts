@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["includedir", 35, 9], ["libdir", 36, 9]], [["name", 27, 7], ["version", 28, 28], ["cflags", 29, 7], ["libs", 30, 7], ["variables", 34, 7], ["description", 38, 33]], [["includedir", 44, 5], ["libdir", 45, 5]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["enableParallelBuilding", 21, 3], ["nativeBuildInputs", 23, 3], ["pkgconfigItems", 25, 3], ["env", 42, 3], ["configurePhase", 48, 3], ["postBuild", 61, 3], ["installFlags", 65, 3], ["postInstall", 66, 3], ["outputs", 74, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, copyPkgconfigItems: false, makePkgconfigItem: false, picosat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["includedir", 35, 9], ["libdir", 36, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 27, 7], ["version", 28, 28], ["cflags", 29, 7], ["libs", 30, 7], ["variables", 34, 7], ["description", 38, 33]]);
-const pos$4 = nix.positions(here + "/package.nix", [["includedir", 44, 5], ["libdir", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["enableParallelBuilding", 21, 3], ["nativeBuildInputs", 23, 3], ["pkgconfigItems", 25, 3], ["env", 42, 3], ["configurePhase", 48, 3], ["postBuild", 61, 3], ["installFlags", 65, 3], ["postInstall", 66, 3], ["outputs", 74, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const makePkgconfigItem = nix.arg($, "makePkgconfigItem");
   const picosat = nix.arg($, "picosat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "aiger",
       version: "1.9.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arminbiere",
           repo: "aiger",
           tag: nix.thunk(() => nix.str`rel-${nix.sel(finalAttrs, "version")}`),
@@ -35,18 +30,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(makePkgconfigItem, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
             return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "aiger",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             cflags: nix.thunk(() => ["-I${includedir}"]),
             libs: nix.thunk(() => ["-L${libdir}", "-laiger"]),
-            variables: nix.thunk(() => ({ [nix.POS]: pos$2, includedir: "@includedir@", libdir: "@libdir@" })),
+            variables: nix.thunk(() => ({ [nix.POS]: $pos[1], includedir: "@includedir@", libdir: "@libdir@" })),
             description: nix.thunk(() => nix.attr(from, "description")),
           };
           })()))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         includedir: nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/include`),
         libdir: nix.thunk(() => nix.str`${nix.builtins.placeholder("lib")}/lib`),
       })),
@@ -66,7 +61,7 @@ runHook postConfigure
       postInstall: "# test that installing picosat in configurePhase suceeded\ntest -f $out/bin/aigbmc\n\ninstall -m 444 -Dt $lib/lib libaiger.a\ninstall -m 444 -Dt $dev/include aiger.h\n",
       outputs: nix.thunk(() => ["out", "dev", "lib"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "And-Inverter Graph (AIG) utilities",
         homepage: "https://fmv.jku.at/aiger/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

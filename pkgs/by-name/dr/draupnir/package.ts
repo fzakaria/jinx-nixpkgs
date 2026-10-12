@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["url", 42, 7], ["hash", 43, 7]], [["draupnir", 91, 36]], [["tests", 91, 5], ["updateScript", 92, 5]], [["description", 96, 5], ["homepage", 97, 5], ["longDescription", 98, 5], ["license", 112, 5], ["maintainers", 113, 5], ["mainProgram", 114, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["patches", 40, 3], ["npmDepsHash", 47, 3], ["preBuild", 49, 3], ["postInstall", 58, 3], ["passthru", 90, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, makeBinaryWrapper: false, nodejs_26: false, "matrix-sdk-crypto-nodejs": false, python3: false, sqlite: false, srcOnly: false, removeReferencesTo: false, buildNpmPackage: false, stdenv: false, cctools: false, nixosTests: false, "nix-update-script": false, fetchpatch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 42, 7], ["hash", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["draupnir", 91, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 91, 5], ["updateScript", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["longDescription", 98, 5], ["license", 112, 5], ["maintainers", 113, 5], ["mainProgram", 114, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["patches", 40, 3], ["npmDepsHash", 47, 3], ["preBuild", 49, 3], ["postInstall", 58, 3], ["passthru", 90, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const nodeSources = nix.thunk(() => nix.app(srcOnly, nodejs_26));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "draupnir",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "the-draupnir-project",
           repo: "Draupnir",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([makeBinaryWrapper, sqlite, python3], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.sel(cctools, "libtool"))))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/the-draupnir-project/Draupnir/commit/4e63164046153c656050c6d0a325c79f1492153a.patch?full_index=1",
             hash: "sha256-dVG0BAE8pATfGdcHvTV8jTC+OQP0gMB7v396MtJlG4o=",
           })))),
@@ -86,15 +81,15 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs_26)} $out/bin/draupnir \\
 
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           draupnir: nix.thunk(() => nix.attr(nixosTests, "draupnir")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Moderation tool for Matrix",
         homepage: "https://github.com/the-draupnir-project/Draupnir",
         longDescription: "As an all-in-one moderation tool, it can protect your server from\nmalicious invites, spam messages, and whatever else you don't want.\nIn addition to server-level protection, Draupnir is great for communities\nwanting to protect their rooms without having to use their personal\naccounts for moderation.\n\nThe bot by default includes support for bans, redactions, anti-spam,\nserver ACLs, room directory changes, room alias transfers, account\ndeactivation, room shutdown, and more.\n\nA Synapse module is also available to apply the same rulesets the bot\nuses across an entire homeserver.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 42, 5], ["mainProgram", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["disabled", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, isPyPy: false, isPy3k: false, setuptools: false, click: false, gmpy2: false, pytestCheckHook: false, numpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["mainProgram", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["disabled", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const numpy = nix.arg($, "numpy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "phe",
       version: "1.5.1",
       pyproject: true,
       disabled: nix.thunk(() => (nix.asBool(isPyPy) || nix.asBool(!nix.asBool(isPy3k)))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "data61",
           repo: "python-paillier",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [click, gmpy2]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, numpy]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for Partially Homomorphic Encryption in Python",
         mainProgram: "pheutil",
         homepage: "https://github.com/data61/python-paillier",

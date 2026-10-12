@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 7], ["repo", 31, 7], ["tag", 32, 7], ["fetchSubmodules", 33, 7], ["hash", 34, 7]], [["pname", 26, 5], ["version", 27, 13], ["src", 29, 5], ["nativeBuildInputs", 37, 5], ["buildCommand", 43, 5], ["outputHashMode", 51, 5], ["outputHash", 52, 5]], [["updateScript", 85, 12]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5]], [["pname", 56, 3], ["version", 57, 11], ["src", 59, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 71, 3], ["preConfigure", 81, 3], ["passthru", 85, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, cmake: false, ninja: false, "pkg-config": false, python3: false, git: false, SDL2: false, SDL2_ttf: false, libx11: false, freetype: false, harfbuzz: false, ffmpeg: false, cacert: false, zlib: false, writeShellScript: false, "nix-update": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 7], ["repo", 31, 7], ["tag", 32, 7], ["fetchSubmodules", 33, 7], ["hash", 34, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 26, 5], ["version", 27, 13], ["src", 29, 5], ["nativeBuildInputs", 37, 5], ["buildCommand", 43, 5], ["outputHashMode", 51, 5], ["outputHash", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 85, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 56, 3], ["version", 57, 11], ["src", 59, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 71, 3], ["preConfigure", 81, 3], ["passthru", 85, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const version = "1.3.2";
   const withSubprojects = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "sources-with-subprojects",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vivictorg",
           repo: "vivictpp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
       outputHash: "sha256-RQRlH+wByWRfVyVR/kjjUm9/fLXUupd2yRK80FogzRM=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "vivictpp",
       version: version,
       src: withSubprojects,
@@ -57,13 +53,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, libx11, SDL2_ttf, freetype, harfbuzz, ffmpeg, zlib]),
       preConfigure: "patchShebangs .\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-vivictpp", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} vivictpp.src
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} vivictpp --version skip
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Easy to use tool for subjective comparison of the visual quality of different encodings of the same video source",
         homepage: "https://github.com/vivictorg/vivictpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

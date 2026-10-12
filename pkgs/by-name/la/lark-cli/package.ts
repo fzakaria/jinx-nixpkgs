@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["name", 51, 5], ["url", 52, 5], ["hash", 53, 5]], [["nativeBuildInputs", 59, 9]], [["extraArgs", 84, 7]], [["package", 92, 5], ["command", 93, 5], ["version", 94, 5]], [["version", 91, 18]], [["metaData", 82, 26], ["updateScript", 83, 5], ["tests", 91, 12]], [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["mainProgram", 103, 5]], [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["subPackages", 27, 3], ["metaDataRelease", 50, 3], ["metaData", 56, 3], ["postPatch", 66, 3], ["postInstall", 70, 3], ["ldflags", 74, 3], ["passthru", 81, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchurl: false, python3: false, runCommand: false, testers: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 51, 5], ["url", 52, 5], ["hash", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 59, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 84, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 92, 5], ["command", 93, 5], ["version", 94, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 91, 18]]);
-const pos$7 = nix.positions(here + "/package.nix", [["metaData", 82, 26], ["updateScript", 83, 5], ["tests", 91, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["mainProgram", 103, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["subPackages", 27, 3], ["metaDataRelease", 50, 3], ["metaData", 56, 3], ["postPatch", 66, 3], ["postInstall", 70, 3], ["ldflags", 74, 3], ["passthru", 81, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "lark-cli",
       version: "1.0.88",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "larksuite",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,12 +30,12 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-WClES7ilNmQ0018Qf13tNHouE/SIwh99MaewZ7VGQ2E=",
       subPackages: nix.thunk(() => ["."]),
       metaDataRelease: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`lark-cli-${nix.sel(finalAttrs, "version")}-linux-amd64.tar.gz`),
           url: nix.thunk(() => nix.str`https://github.com/larksuite/cli/releases/download/v${nix.sel(finalAttrs, "version")}/lark-cli-${nix.sel(finalAttrs, "version")}-linux-amd64.tar.gz`),
           hash: "sha256-SX3iCTms3SquTImP6noMpx1aRZ7VQyAudiqLyzIo7/4=",
         })))),
-      metaData: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`meta_data.json-${nix.sel(finalAttrs, "version")}`), nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [python3]) })), nix.thunk(() => nix.str`tar xf ${nix.sel(finalAttrs, "metaDataRelease")} lark-cli
+      metaData: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`meta_data.json-${nix.sel(finalAttrs, "version")}`), nix.thunk(() => ({ [nix.POS]: $pos[2], nativeBuildInputs: nix.thunk(() => [python3]) })), nix.thunk(() => nix.str`tar xf ${nix.sel(finalAttrs, "metaDataRelease")} lark-cli
 python3 ${nix.path(here, "./extract-meta.py")} lark-cli $out
 `))),
       postPatch: nix.thunk(() => nix.str`cp ${nix.sel(finalAttrs, "metaData")} internal/registry/meta_data.json
@@ -56,16 +48,16 @@ python3 ${nix.path(here, "./extract-meta.py")} lark-cli $out
         "-X github.com/larksuite/cli/internal/build.Date=2026-06-01",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         metaData: nix.thunk(() => nix.attr(finalAttrs, "metaData")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--custom-dep", "metaDataRelease"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "lark-cli --version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -73,7 +65,7 @@ python3 ${nix.path(here, "./extract-meta.py")} lark-cli $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "The official CLI for Lark/Feishu open platform",
         homepage: "https://github.com/larksuite/cli",
         changelog: nix.thunk(() => nix.str`https://github.com/larksuite/cli/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),

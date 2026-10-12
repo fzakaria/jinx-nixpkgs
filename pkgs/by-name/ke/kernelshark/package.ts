@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["url", 30, 7], ["hash", 31, 7]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["outputs", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["cmakeFlags", 55, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, qt6: false, cmake: false, json_c: false, mesa_glu: false, libglut: false, "trace-cmd": false, "pkg-config": false, libtraceevent: false, libtracefs: false, freefont_ttf: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["outputs", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["cmakeFlags", 55, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const freefont_ttf = nix.arg($, "freefont_ttf");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kernelshark",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/utils/trace-cmd/kernel-shark.git/snapshot/kernelshark-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-OT6ClyZRE+pxWwm+sfzvN3CnoCIyxcAiVsi1fdzaT4M=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://lore.kernel.org/linux-trace-devel/20251010131715.1123934-1-michal.sojka@cvut.cz/raw",
             hash: "sha256-hT+EhauFlQGjhXyq7Z9FwjS3C+0Jlz6n5BDKCXwzBCc=",
           })))),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DTT_FONT_FILE=${freefont_ttf}/share/fonts/truetype/FreeSans.ttf`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GUI for trace-cmd which is an interface for the Linux kernel ftrace subsystem",
         homepage: "https://kernelshark.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

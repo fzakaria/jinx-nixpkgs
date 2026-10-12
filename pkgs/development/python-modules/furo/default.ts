@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["pname", 48, 17], ["version", 49, 9], ["format", 50, 9], ["dist", 51, 9], ["python", 52, 9], ["hash", 53, 9]], [["nativeBuildInputs", 58, 9]], [["pname", 67, 5], ["version", 68, 13], ["src", 68, 21], ["npmDepsHash", 70, 5], ["installPhase", 72, 5]], [["web", 113, 13]], [["description", 117, 5], ["homepage", 118, 5], ["changelog", 119, 5], ["license", 120, 5], ["maintainers", 121, 5]], [["pname", 84, 11], ["version", 84, 17], ["src", 84, 25], ["pyproject", 85, 3], ["postPatch", 87, 3], ["build-system", 98, 3], ["pythonRelaxDeps", 100, 3], ["dependencies", 102, 3], ["pythonImportsCheck", 110, 3], ["passthru", 112, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, nodejs: false, buildNpmPackage: false, buildPythonPackage: false, runCommand: false, fetchFromGitHub: false, fetchPypi: false, "flit-core": false, "accessible-pygments": false, beautifulsoup4: false, pygments: false, sphinx: false, "sphinx-basic-ng": false, unzip: false, useWebNative: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 48, 17], ["version", 49, 9], ["format", 50, 9], ["dist", 51, 9], ["python", 52, 9], ["hash", 53, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 58, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 67, 5], ["version", 68, 13], ["src", 68, 21], ["npmDepsHash", 70, 5], ["installPhase", 72, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["web", 113, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 117, 5], ["homepage", 118, 5], ["changelog", 119, 5], ["license", 120, 5], ["maintainers", 121, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 84, 11], ["version", 84, 17], ["src", 84, 25], ["pyproject", 85, 3], ["postPatch", 87, 3], ["build-system", 98, 3], ["pythonRelaxDeps", 100, 3], ["dependencies", 102, 3], ["pythonImportsCheck", 110, 3], ["passthru", 112, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +31,7 @@ export default nix.lambda((args) => (() => {
     return nix.add(nix.add(nix.add(nix.add(nix.app(nix.sel(lib, "lists", "elemAt"), versionComponents, 0n), "."), nix.app(dropLeadingZero, nix.thunk(() => nix.app(nix.sel(lib, "lists", "elemAt"), versionComponents, 1n)))), "."), nix.app(dropLeadingZero, nix.thunk(() => nix.app(nix.sel(lib, "lists", "elemAt"), versionComponents, 2n))));
   })());
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "pradyunsg",
       repo: "furo",
       tag: version,
@@ -45,7 +39,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const web_bin = nix.thunk(() => (() => {
     const web_bin_src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: pname,
         version: pypiVersion,
         format: "wheel",
@@ -53,13 +47,13 @@ export default nix.lambda((args) => (() => {
         python: "py3",
         hash: "sha256-uw6tUwn5UAEwZlomvuh2k8Qc5Nvf+GTb+2sNrkZz0k8=",
       }))));
-    return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-web-bin`), nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [unzip]) })), nix.thunk(() => nix.str`mkdir $out
+    return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-web-bin`), nix.thunk(() => ({ [nix.POS]: $pos[2], nativeBuildInputs: nix.thunk(() => [unzip]) })), nix.thunk(() => nix.str`mkdir $out
 unzip ${web_bin_src}
 cp -rv furo/theme/furo/static/{scripts,styles} $out/
 `));
   })());
   const web_native = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`${pname}-web`),
       version: version,
       src: src,
@@ -85,9 +79,9 @@ popd
       const pythonRelaxDeps = nix.thunk(() => ["sphinx"]);
       const dependencies = nix.thunk(() => [accessible_pygments, beautifulsoup4, pygments, sphinx, sphinx_basic_ng]);
       const pythonImportsCheck = nix.thunk(() => ["furo"]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, web: web }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[4], web: web }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Clean customizable documentation theme for Sphinx",
         homepage: "https://github.com/pradyunsg/furo",
         changelog: nix.thunk(() => nix.str`https://github.com/pradyunsg/furo/blob/${version_1}/docs/changelog.md`),
@@ -98,7 +92,7 @@ popd
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: pname_1,
         version: version_1,
         src: src_1,

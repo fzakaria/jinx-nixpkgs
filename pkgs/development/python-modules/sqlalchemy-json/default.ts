@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 31, 5], ["homepage", 32, 5], ["changelog", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["pythonImportsCheck", 26, 3], ["nativeCheckInputs", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, setuptools: false, sqlalchemy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 31, 5], ["homepage", 32, 5], ["changelog", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["pythonImportsCheck", 26, 3], ["nativeCheckInputs", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "edelooff",
           repo: "sqlalchemy-json",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["sqlalchemy_json"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Full-featured JSON type with mutation tracking for SQLAlchemy",
         homepage: "https://github.com/edelooff/sqlalchemy-json",
         changelog: nix.thunk(() => nix.str`https://github.com/edelooff/sqlalchemy-json/tree/v${version}#changelog`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

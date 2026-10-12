@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["rev-prefix", 148, 40]], [["updateScript", 148, 12]], [["description", 151, 5], ["homepage", 152, 5], ["license", 153, 5], ["maintainers", 154, 5], ["platforms", 155, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 29, 3], ["pyproject", 34, 3], ["build-system", 36, 3], ["dependencies", 40, 3], ["postPatch", 46, 3], ["postFixup", 97, 3], ["preInstall", 104, 3], ["passthru", 148, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { fetchgit: false, gitUpdater: false, glib: false, "gobject-introspection": false, gtk3: false, lib: false, python3Packages: false, "sound-theme-freedesktop": false, stdenv: false, wrapGAppsHook4: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 148, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 148, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 151, 5], ["homepage", 152, 5], ["license", 153, 5], ["maintainers", 154, 5], ["platforms", 155, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 29, 3], ["pyproject", 34, 3], ["build-system", 36, 3], ["dependencies", 40, 3], ["postPatch", 46, 3], ["postFixup", 97, 3], ["preInstall", 104, 3], ["passthru", 148, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "timekpr";
       const version = "0.5.10";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.launchpad.net/timekpr-next",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-0vIMWIGVuyqU/eV9NmUvbBRwmONHgcmoqzPUI0XfCa0=",
@@ -94,11 +90,11 @@ ln -s ${setup_py} setup.py
       const postFixup = "for executable in $out/bin/*\ndo\n  wrapProgram \"$executable\" --prefix PYTHONPATH : \"$PYTHONPATH\"\ndone\n";
       const preInstall = "while IFS= read -r line\ndo\n  # Trim leading/trailing whitespace\n  line=$(echo \"$line\" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')\n\n  # Skip empty lines and comments\n  if [[ -z \"$line\" || \"$line\" =~ ^# ]]; then\n      continue\n  fi\n\n  # Separate source and destination\n  # This assumes the destination is the last field and source path doesn't contain problematic spaces\n  # More robust parsing might be needed if source paths have spaces.\n  source_path=$(echo \"$line\" | awk '{ $NF=\"\"; print $0 }' | sed 's/[[:space:]]*$//')\n  dest_path=$(echo \"$line\" | awk '{ print $NF }')\n\n  # Check destination path prefix and map to $out/*\n  case \"$dest_path\" in\n    usr/share/*)\n      # Remove \"usr/\" prefix and prepend \"$out/\"\n      install -D --mode=444 \"$source_path\" --target-directory=\"$out/${dest_path#usr/}\"\n      ;;\n    usr/bin/*)\n      # Remove \"usr/\" prefix and prepend \"$out/\"\n      install -D --mode=555 \"$source_path\" --target-directory=\"$out/${dest_path#usr/}\"\n      ;;\n    etc/*|lib/*|var/*)\n      # Prepend \"$out/\"\n      install -D --mode=444 \"$source_path\" --target-directory=\"$out/$dest_path\"\n      ;;\n    usr/lib/python3/dist-packages/*)\n      # Skip this line if the destination is a Python module\n      # because it will be handled by the Python build process\n      continue\n      ;;\n    *)\n      echo \"Error: Unknown destination prefix: '$dest_path'\" >&2\n      exit 1\n      ;;\n  esac\ndone < debian/install\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Manages and restricts user screen time by enforcing time limits",
         homepage: "https://mjasnik.gitlab.io/timekpr-next/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -106,7 +102,7 @@ ln -s ${setup_py} setup.py
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

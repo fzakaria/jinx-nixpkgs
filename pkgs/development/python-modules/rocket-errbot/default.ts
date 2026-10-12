@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 13], ["version", 14, 19], ["sha256", 15, 5]], [["name", 22, 7], ["url", 23, 7], ["sha256", 24, 7]], [["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["patches", 19, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, fetchpatch: false, buildPythonPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 13], ["version", 14, 19], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 22, 7], ["url", 23, 7], ["sha256", 24, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["patches", 19, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,26 +16,26 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "181y1wqjvlry5xdzbliajvrxvswzh3myh795jnj1pm92r5grqzda",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "errbotio-rocket-pull-1.patch",
             url: "https://github.com/errbotio/rocket/compare/f1a52fe17164f83bccce5e6a1935fc5071c2265f...d69adcd49de5d78bd80f952a2ee31e6a0bac4e3d.patch",
             sha256: "1s668yv5b86b78vbqwhcl44k2l16c9bhk3199yy9hayf0vkxnwif",
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/errbotio/rocket",
         description: "Modern, multi-threaded and extensible web server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { [nix.POS]: pos$4, pname, version, format, src, patches, meta };
+      return { [nix.POS]: $pos[3], pname, version, format, src, patches, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

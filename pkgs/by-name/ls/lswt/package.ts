@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["url", 24, 7], ["hash", 25, 7]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["mainProgram", 43, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["makeFlags", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false, fetchpatch: false, "wayland-scanner": false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["mainProgram", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["makeFlags", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lswt",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~leon_plickat",
           repo: "lswt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.sr.ht/~leon_plickat/lswt/commit/d35786da4383388c19f5437128fd393a6f16f74f.patch",
             hash: "sha256-3RTq8BXRR7MgKV0BueoOjPORMrYVAKNbKR74hZ75W/Y=",
           })))),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
         "PREFIX=",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command that lists Wayland toplevels",
         homepage: "https://sr.ht/~leon_plickat/lswt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

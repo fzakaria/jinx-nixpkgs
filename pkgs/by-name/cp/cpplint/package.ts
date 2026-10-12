@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["homepage", 55, 5], ["description", 56, 5], ["changelog", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["postPatch", 36, 3], ["build-system", 41, 3], ["nativeCheckInputs", 45, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, fetchpatch2: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["changelog", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["postPatch", 36, 3], ["build-system", 41, 3], ["nativeCheckInputs", 45, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cpplint",
       version: "2.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cpplint",
           repo: "cpplint",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,13 +26,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "drop-codecs-open.patch",
             url: "https://github.com/cpplint/cpplint/commit/89bff410afed72e58d23ae084de4103986ea8630.patch?full_index=1",
             hash: "sha256-Jdeewj3GM7GMoRF7+Qz/9n1hc8PYPcXLgtSGwSUpT1E=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "use-universal-newlines.patch",
             url: "https://github.com/cpplint/cpplint/commit/d15a8715a6e848f784fda700758c4ac2d252fd31.patch?full_index=1",
             hash: "sha256-Oo2doknEGnuxDJA0y17n1DCaKwadtMW/14a5wnIgfkw=",
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/cpplint/cpplint",
         description: "Static code checker for C++",
         changelog: nix.thunk(() => nix.str`https://github.com/cpplint/cpplint/releases/tag/${nix.sel(finalAttrs, "version")}`),

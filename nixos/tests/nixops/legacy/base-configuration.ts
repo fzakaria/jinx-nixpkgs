@@ -2,28 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/base-configuration.nix", [[["writableStore", 26, 18], ["graphics", 28, 18]], [["substituters", 27, 16]], [["settings", 27, 7]], [["enable", 29, 17]], [["enable", 30, 22]], [["enable", 33, 20]], [["qemuGuest", 30, 12], ["openssh", 33, 12]], [["enable", 31, 20]], [["grub", 31, 15]], [["loader", 31, 8]], [["keys", 34, 43]], [["authorizedKeys", 34, 28]], [["openssh", 34, 20]], [["root", 34, 15]], [["users", 34, 9]], [["domain", 39, 7], ["item", 40, 7], ["type", 41, 7], ["value", 42, 7]], [["limits", 37, 30]], [["sshd", 37, 25]], [["services", 37, 16]], [["pam", 37, 12]], [["imports", 21, 3], ["virtualisation", 26, 3], ["nix", 27, 3], ["documentation", 29, 3], ["services", 30, 3], ["boot", 31, 3], ["users", 34, 3], ["security", 37, 3]]]);
 const formals$1 = { args: { lib: false, modulesPath: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/base-configuration.nix", [["writableStore", 26, 18], ["graphics", 28, 18]]);
-const pos$2 = nix.positions(here + "/base-configuration.nix", [["substituters", 27, 16]]);
-const pos$3 = nix.positions(here + "/base-configuration.nix", [["settings", 27, 7]]);
-const pos$4 = nix.positions(here + "/base-configuration.nix", [["enable", 29, 17]]);
-const pos$5 = nix.positions(here + "/base-configuration.nix", [["enable", 30, 22]]);
-const pos$6 = nix.positions(here + "/base-configuration.nix", [["enable", 33, 20]]);
-const pos$7 = nix.positions(here + "/base-configuration.nix", [["qemuGuest", 30, 12], ["openssh", 33, 12]]);
-const pos$8 = nix.positions(here + "/base-configuration.nix", [["enable", 31, 20]]);
-const pos$9 = nix.positions(here + "/base-configuration.nix", [["grub", 31, 15]]);
-const pos$10 = nix.positions(here + "/base-configuration.nix", [["loader", 31, 8]]);
-const pos$11 = nix.positions(here + "/base-configuration.nix", [["keys", 34, 43]]);
-const pos$12 = nix.positions(here + "/base-configuration.nix", [["authorizedKeys", 34, 28]]);
-const pos$13 = nix.positions(here + "/base-configuration.nix", [["openssh", 34, 20]]);
-const pos$14 = nix.positions(here + "/base-configuration.nix", [["root", 34, 15]]);
-const pos$15 = nix.positions(here + "/base-configuration.nix", [["users", 34, 9]]);
-const pos$16 = nix.positions(here + "/base-configuration.nix", [["domain", 39, 7], ["item", 40, 7], ["type", 41, 7], ["value", 42, 7]]);
-const pos$17 = nix.positions(here + "/base-configuration.nix", [["limits", 37, 30]]);
-const pos$18 = nix.positions(here + "/base-configuration.nix", [["sshd", 37, 25]]);
-const pos$19 = nix.positions(here + "/base-configuration.nix", [["services", 37, 16]]);
-const pos$20 = nix.positions(here + "/base-configuration.nix", [["pam", 37, 12]]);
-const pos$21 = nix.positions(here + "/base-configuration.nix", [["imports", 21, 3], ["virtualisation", 26, 3], ["nix", 27, 3], ["documentation", 29, 3], ["services", 30, 3], ["boot", 31, 3], ["users", 34, 3], ["security", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,56 +15,56 @@ export default nix.lambda((args) => (() => {
   const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     imports: nix.thunk(() => [
       nix.thunk(() => nix.add(modulesPath, "/virtualisation/qemu-vm.nix")),
       nix.thunk(() => nix.add(modulesPath, "/virtualisation/guest-networking-options.nix")),
       nix.thunk(() => nix.add(modulesPath, "/testing/test-instrumentation.nix")),
     ]),
-    virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, writableStore: true, graphics: false })),
+    virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], writableStore: true, graphics: false })),
     nix: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       settings: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
       })),
     })),
-    documentation: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
+    documentation: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: false })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$7,
-      qemuGuest: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
-      openssh: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+      [nix.POS]: $pos[6],
+      qemuGuest: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
+      openssh: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
     })),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       loader: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        grub: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
+        [nix.POS]: $pos[8],
+        grub: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: false })),
       })),
     })),
     users: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       users: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         root: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           openssh: nix.thunk(() => ({
-            [nix.POS]: pos$12,
-            authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$11, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+            [nix.POS]: $pos[11],
+            authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[10], keys: nix.thunk(() => [snakeOilPublicKey]) })),
           })),
         })),
       })),
     })),
     security: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       pam: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           sshd: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             limits: nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$16, domain: "*", item: "memlock", type: "-", value: 1024n })),
+              nix.thunk(() => ({ [nix.POS]: $pos[15], domain: "*", item: "memlock", type: "-", value: 1024n })),
             ]),
           })),
         })),

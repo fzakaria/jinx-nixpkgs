@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["NIX_LDFLAGS", 49, 7]], [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["license", 60, 5], ["platforms", 61, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["enableParallelBuilding", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["env", 49, 3], ["postInstall", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libzip: false, boost: false, wt: false, libconfig: false, "pkg-config": false, libarchive: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["license", 60, 5], ["platforms", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["enableParallelBuilding", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["env", 49, 3], ["postInstall", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libarchive = nix.arg($, "libarchive");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fileshelter",
       version: "6.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "epoupon",
           repo: "fileshelter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [libzip, boost, wt, libconfig, libarchive]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lpthread" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-lpthread" })),
       postInstall: nix.thunk(() => nix.str`ln -s ${wt}/share/Wt/resources $out/share/fileshelter/docroot/resources
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/epoupon/fileshelter",
         description: "One-click file sharing web application",
         mainProgram: "fileshelter",

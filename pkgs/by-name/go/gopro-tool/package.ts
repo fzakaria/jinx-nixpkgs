@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["buildInputs", 9, 5]], [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["gopro-tool", 48, 26]], [["tests", 47, 12]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["strictDeps", 29, 3], ["__structuredAttrs", 30, 3], ["installPhase", 32, 3], ["passthru", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, ffmpeg: false, vlc: false, "vlc'": true, jq: false, x264: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["buildInputs", 9, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["gopro-tool", 48, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 47, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["strictDeps", 29, 3], ["__structuredAttrs", 30, 3], ["installPhase", 32, 3], ["passthru", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const vlc = nix.arg($, "vlc");
   const vlc$ = nix.argOr($, "vlc'", () => nix.app(nix.sel(vlc, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [x264])),
     })));
   const jq = nix.arg($, "jq");
   const x264 = nix.arg($, "x264");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gopro-tool",
       version: "1.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "juchem",
           repo: "gopro-tool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,14 +42,14 @@ wrapProgram $out/bin/gopro-tool \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg, vlc$, jq]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "gopro-tool": nix.thunk(() => nix.attr(nixosTests, "gopro-tool")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tool to control GoPro webcam mode in Linux (requires v4l2loopback kernel module and a firewall rule)",
         homepage: "https://github.com/juchem/gopro-tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

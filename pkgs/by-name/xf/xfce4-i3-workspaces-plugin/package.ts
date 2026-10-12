@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 24, 5], ["hash", 25, 5]], [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["teams", 58, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["patches", 43, 3], ["enableParallelBuilding", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gettext: false, "pkg-config": false, intltool: false, gtk3: false, libxfce4ui: false, libxfce4util: false, "xfce4-dev-tools": false, "xfce4-panel": false, "i3ipc-glib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["teams", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["patches", 43, 3], ["enableParallelBuilding", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const xfce4_panel = nix.arg($, "xfce4-panel");
   const i3ipc_glib = nix.arg($, "i3ipc-glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xfce4-i3-workspaces-plugin",
       version: "1.4.2-unstable-2025-05-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "denesb",
           repo: "xfce4-i3-workspaces-plugin",
           rev: "d7c2d978e736a5e07f96142a31fac3bb7d0806b4",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./gettext-0.25.patch")]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/denesb/xfce4-i3-workspaces-plugin",
         description: "Workspace switcher plugin for xfce4-panel which can be used for the i3 window manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

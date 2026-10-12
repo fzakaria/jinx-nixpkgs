@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["src", 18, 5], ["hash", 19, 5]], [["pname", 13, 3], ["version", 14, 30], ["cargoDeps", 16, 3], ["extraNativeBuildInputs", 22, 3], ["extraBuildInputs", 28, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, sources: false, qtsvg: false, qtwebengine: false, corrosion: false, rustPlatform: false, cargo: false, rustc: false, qcoro: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["src", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 30], ["cargoDeps", 16, 3], ["extraNativeBuildInputs", 22, 3], ["extraBuildInputs", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const from = nix.thunk(() => nix.sel(sources, nix.key(pname)));
       const version = nix.thunk(() => nix.attr(from, "version"));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           src: nix.thunk(() => nix.sel(sources, nix.key(pname))),
@@ -31,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const extraNativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")), cargo, rustc]);
       const extraBuildInputs = nix.thunk(() => [qtsvg, qtwebengine, corrosion, qcoro]);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         cargoDeps,

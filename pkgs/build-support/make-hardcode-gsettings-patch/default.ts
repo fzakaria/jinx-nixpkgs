@@ -2,9 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["src", 66, 13], ["patches", 66, 17], ["nativeBuildInputs", 67, 5]]]);
 const formals$1 = { args: { runCommand: false, gitMinimal: false, coccinelle: false, python3: false }, ellipsis: false };
 const formals$2 = { args: { src: false, patches: true, schemaIdToVariableMapping: false, schemaExistsFunction: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["src", 66, 13], ["patches", 66, 17], ["nativeBuildInputs", 67, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
     const schemaIdToVariableMapping = nix.arg($_1, "schemaIdToVariableMapping");
     const schemaExistsFunction = nix.argOr($_1, "schemaExistsFunction", () => null);
     return nix.app(runCommand, "hardcode-gsettings.patch", nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         src: src,
         patches: patches,
         nativeBuildInputs: nix.thunk(() => [gitMinimal, coccinelle, python3]),

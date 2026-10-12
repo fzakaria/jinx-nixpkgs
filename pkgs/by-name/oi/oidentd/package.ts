@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["description", 23, 5], ["mainProgram", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["platforms", 27, 5]], [["pname", 10, 3], ["version", 11, 3], ["nativeBuildInputs", 12, 3], ["src", 17, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bison: false, flex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["mainProgram", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["platforms", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["nativeBuildInputs", 12, 3], ["src", 17, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "oidentd",
       version: "3.1.0",
       nativeBuildInputs: nix.thunk(() => [bison, flex]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://files.janikrabe.com/pub/oidentd/releases/${nix.sel(finalAttrs, "version")}/oidentd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-yyvcnabxNkcIMOiZBjvoOm/pEjrGXFt4W4SG5lprkbc=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Configurable Ident protocol server",
         mainProgram: "oidentd",
         homepage: "https://oidentd.janikrabe.com/",

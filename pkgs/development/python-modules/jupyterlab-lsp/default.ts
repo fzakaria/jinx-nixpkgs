@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 5], ["version", 17, 13], ["hash", 18, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 28, 3], ["pythonImportsCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, jupyterlab: false, "jupyter-lsp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 13], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 28, 3], ["pythonImportsCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "jupyterlab_lsp",
           version: version,
           hash: "sha256-vfAU/rwOwpf/aQh+lXVJ1yTrDCnfPyTU9MQHWKca/D8=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["jupyterlab_lsp"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Language Server Protocol integration for Jupyter(Lab)",
         homepage: "https://github.com/jupyter-lsp/jupyterlab-lsp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

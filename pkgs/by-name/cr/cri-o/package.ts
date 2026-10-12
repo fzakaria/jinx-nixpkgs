@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 31, 5], ["pname", 32, 31], ["version", 32, 37], ["passthru", 32, 45], ["preferLocalBuild", 34, 5], ["meta", 36, 5], ["outputs", 38, 5], ["nativeBuildInputs", 43, 5]]]);
 const formals$1 = { args: { "cri-o-unwrapped": false, runCommand: false, makeWrapper: false, lib: false, extraPackages: true, runc: false, "conntrack-tools": false, crun: false, conmon: false, "util-linux": false, iptables: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 31, 5], ["pname", 32, 31], ["version", 32, 37], ["passthru", 32, 45], ["preferLocalBuild", 34, 5], ["meta", 36, 5], ["outputs", 38, 5], ["nativeBuildInputs", 43, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const iptables = nix.arg($, "iptables");
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([runc, conntrack_tools, crun, conmon, util_linux, iptables], extraPackages))));
   return nix.app(runCommand, nix.thunk(() => nix.sel(cri_o_unwrapped, "name")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`${nix.sel(cri_o_unwrapped, "pname")}-wrapper-${nix.sel(cri_o_unwrapped, "version")}`),
       pname: nix.thunk(() => nix.attr(cri_o_unwrapped, "pname")),
       version: nix.thunk(() => nix.attr(cri_o_unwrapped, "version")),

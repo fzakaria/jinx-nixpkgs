@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 7], ["sha256", 18, 7]], [["description", 28, 7], ["longDescription", 29, 7], ["homepage", 34, 7], ["platforms", 35, 7], ["license", 40, 7], ["maintainers", 41, 7]], [["pname", 13, 5], ["version", 14, 13], ["src", 16, 5], ["dontUnpack", 21, 5], ["installPhase", 22, 5], ["meta", 27, 5]], [["pname", 47, 17], ["version", 47, 23], ["paths", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildEnv: false, fetchurl: false, mono: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 7], ["sha256", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 7], ["longDescription", 29, 7], ["homepage", 34, 7], ["platforms", 35, 7], ["license", 40, 7], ["maintainers", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 5], ["version", 14, 13], ["src", 16, 5], ["dontUnpack", 21, 5], ["installPhase", 22, 5], ["meta", 27, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 47, 17], ["version", 47, 23], ["paths", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const mono = nix.arg($, "mono");
   const version = "0.108.0";
   const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "keepass-keetraytotp",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/KeeTrayTOTP/KeeTrayTOTP/releases/download/v${version}/KeeTrayTOTP.plgx`),
           sha256: "4f7251a9bbb79cad04aee96d1809c6b36d43285a9f3834fef5330fc97ae8bc09",
         })))),
       dontUnpack: true,
       installPhase: "mkdir -p $out/lib/dotnet/keepass/\ncp $src $out/lib/dotnet/keepass/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Augments KeePass with TOTP user interface",
         longDescription: "This KeePass2 plugin adds advanced support for generating Time-based One-Time Passwords (TOTPs)\nfrom the KeePass tray icon. It also provides a column in the main entry list to display and/or use TOTPs.\nTOTPs can also be sent by auto-type. The plugin is compatible with Google, Dropbox, Steam, and many more services.\n",
         homepage: "https://github.com/KeeTrayTOTP/KeeTrayTOTP",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.attr(drv, "pname")),
       version: nix.thunk(() => nix.attr(drv, "version")),
       paths: nix.thunk(() => [mono, drv]),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["PKG_CONFIG_DBUS_1_SESSION_BUS_SERVICES_DIR", 33, 7]], [["updateScript", 58, 12]], [["homepage", 61, 5], ["changelog", 62, 5], ["description", 63, 5], ["license", 64, 5], ["maintainers", 68, 5], ["mainProgram", 71, 5], ["platforms", 72, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["env", 33, 3], ["strictDeps", 35, 3], ["depsBuildBuild", 36, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["passthru", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, gitUpdater: false, fetchFromCodeberg: false, "pkg-config": false, meson: false, ninja: false, scdoc: false, "wayland-scanner": false, fontconfig: false, freetype: false, pixman: false, libpng: false, tllist: false, wayland: false, "wayland-protocols": false, dbus: false, fcft: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_DBUS_1_SESSION_BUS_SERVICES_DIR", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 58, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["changelog", 62, 5], ["description", 63, 5], ["license", 64, 5], ["maintainers", 68, 5], ["mainProgram", 71, 5], ["platforms", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["env", 33, 3], ["strictDeps", 35, 3], ["depsBuildBuild", 36, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["passthru", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const fcft = nix.arg($, "fcft");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fnott",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dnkl",
           repo: "fnott",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-II8fij64ufwXg71VoSayVpSFim9+2w3j4gdTRDBrYQE=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_DBUS_1_SESSION_BUS_SERVICES_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/dbus-1/services`),
       })),
       strictDeps: true,
@@ -59,11 +55,11 @@ export default nix.lambda((args) => (() => {
         fcft,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://codeberg.org/dnkl/fnott",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/dnkl/fnott/src/tag/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Keyboard driven and lightweight Wayland notification daemon for wlroots-based compositors",

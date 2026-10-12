@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["fetchSubmodules", 20, 5], ["hash", 21, 5]], [["updateScript", 42, 12]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["postPatch", 24, 3], ["build-system", 31, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, setuptools: false, pybind11: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["fetchSubmodules", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 42, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["postPatch", 24, 3], ["build-system", 31, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pybind11 = nix.arg($, "pybind11");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libparse-python",
       version: "0-unstable-2025-08-30",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "librelane",
           repo: "libparse-python",
           rev: "ff5b26da3d66affb60696fd6c4af7f8726729c8c",
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["libparse"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python library for parsing Yosys output",
         homepage: "https://github.com/librelane/libparse-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 29], ["platforms", 49, 41]], [["pyproject", 14, 3], ["pname", 15, 3], ["version", 16, 22], ["src", 16, 30], ["postPatch", 18, 3], ["build-system", 22, 3], ["postConfigure", 26, 3], ["preBuild", 31, 3], ["postInstall", 40, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, python3Packages: false, pkgsBuildTarget: false, minijail: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 29], ["platforms", 49, 41]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pyproject", 14, 3], ["pname", 15, 3], ["version", 16, 22], ["src", 16, 30], ["postPatch", 18, 3], ["build-system", 22, 3], ["postConfigure", 26, 3], ["preBuild", 31, 3], ["postInstall", 40, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const minijail = nix.arg($, "minijail");
   const targetClang = nix.thunk(() => nix.sel(pkgsBuildTarget, "targetPackages", "clangStdenv", "cc"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pyproject: true,
       pname: "minijail-tools",
       version: nix.thunk(() => nix.attr(minijail, "version")),
@@ -34,7 +33,7 @@ ${nix.sel(python3, "pythonOnBuildForHost", "interpreter")} tools/generate_consta
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(minijail, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://android.googlesource.com/platform/external/minijail/+/refs/heads/master/tools/",
         description: "Set of tools for minijail",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 13, 5], ["url", 14, 5], ["hash", 15, 5], ["stripRoot", 16, 5], ["postFetch", 17, 5]], [["name", 25, 5], ["desktopName", 26, 5], ["exec", 27, 5], ["icon", 28, 5], ["comment", 29, 5], ["categories", 30, 5]], [["url", 33, 5], ["hash", 34, 5]], [["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]], [["pname", 39, 11], ["version", 39, 17], ["src", 39, 25], ["extraInstallCommands", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchzip: false, fetchurl: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 13, 5], ["url", 14, 5], ["hash", 15, 5], ["stripRoot", 16, 5], ["postFetch", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 5], ["desktopName", 26, 5], ["exec", 27, 5], ["icon", 28, 5], ["comment", 29, 5], ["categories", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 33, 5], ["hash", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 39, 11], ["version", 39, 17], ["src", 39, 25], ["extraInstallCommands", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const version = "2.36.1";
   const commit = "ad089d";
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`StatusIm-Desktop-${version}-${commit}-x86_64.AppImage`),
       url: nix.thunk(() => nix.str`https://github.com/status-im/status-desktop/releases/download/${version}/StatusIm-Desktop-${version}-${commit}-x86_64.tar.gz`),
       hash: "sha256-urBk1CqVRuBpXc8WAVyyzP1devK8NwbpbBJ+FPX1Awg=",
@@ -30,7 +26,7 @@ mv $TMPDIR/tmp $out
 `),
     }))));
   const desktopEntry = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "status",
       desktopName: "Status Desktop",
       exec: "status-desktop",
@@ -39,13 +35,13 @@ mv $TMPDIR/tmp $out
       categories: nix.thunk(() => ["Network"]),
     }))));
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://github.com/status-im/status-desktop/raw/afde83651724a555626b5d9a3d582918de6c3d59/status.png",
       hash: "sha256-ViGuOr9LskGs/P7pjPO9zYgosWaZlZZYVuPpliOA5dY=",
     }))));
   const pname = "status-desktop";
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -53,7 +49,7 @@ mv $TMPDIR/tmp $out
 install -m 444 -D ${icon} $out/share/icons/hicolor/512x512/apps/status.png
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Desktop client for the Status Network",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         maintainers: nix.thunk(() => (() => {

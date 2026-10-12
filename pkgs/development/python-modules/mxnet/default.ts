@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["LD_LIBRARY_PATH", 33, 7]], [["pname", 14, 24], ["version", 14, 30], ["src", 14, 38], ["pyproject", 15, 3], ["build-system", 17, 3], ["buildInputs", 19, 3], ["dependencies", 21, 3], ["pythonRelaxDeps", 28, 3], ["env", 33, 3], ["postPatch", 35, 3], ["preConfigure", 41, 3], ["postInstall", 45, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, distutils: false, graphviz: false, numpy: false, pkgs: false, python: false, requests: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["LD_LIBRARY_PATH", 33, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 14, 24], ["version", 14, 30], ["src", 14, 38], ["pyproject", 15, 3], ["build-system", 17, 3], ["buildInputs", 19, 3], ["dependencies", 21, 3], ["pythonRelaxDeps", 28, 3], ["env", 33, 3], ["postPatch", 35, 3], ["preConfigure", 41, 3], ["postInstall", 45, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "mxnet"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [distutils, graphviz, numpy, requests]),
       pythonRelaxDeps: nix.thunk(() => ["graphviz", "numpy"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         LD_LIBRARY_PATH: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mxnet"))]))))),
       })),
       postPatch: "# Required to support numpy >=1.24 where np.bool is removed in favor of just bool\nsubstituteInPlace python/mxnet/numpy/utils.py \\\n  --replace-fail \"bool = onp.bool\" \"bool = bool\"\n",

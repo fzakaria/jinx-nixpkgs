@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["stdenv", 40, 42]], [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["cargoHash", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 58, 3], ["postInstall", 60, 3], ["dontPatchELF", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, clangStdenv: false, gtk3: false, libxrandr: false, libxi: false, libxcursor: false, libx11: false, libxcb: false, perl: false, "pkg-config": false, openssl: false, "speechd-minimal": false, libxkbcommon: false, libGL: false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["stdenv", 40, 42]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["cargoHash", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 58, 3], ["postInstall", 60, 3], ["dontPatchELF", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +38,11 @@ export default nix.lambda((args) => (() => {
     libx11,
     libxcb,
   ]);
-  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: clangStdenv })), nix.thunk(() => (() => {
+  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: clangStdenv })), nix.thunk(() => (() => {
       const pname = "BoilR";
       const version = "1.10.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "PhilipK",
           repo: "BoilR",
           tag: nix.thunk(() => nix.str`v.${version}`),
@@ -60,7 +57,7 @@ install -Dpm 0644 resources/io.github.philipk.boilr.png -t $out/share/icons/hico
 `);
       const dontPatchELF = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Automatically adds (almost) all your games to your Steam library (including image art)",
         homepage: "https://github.com/PhilipK/BoilR",
         license: nix.thunk(() => (() => {
@@ -78,7 +75,7 @@ install -Dpm 0644 resources/io.github.philipk.boilr.png -t $out/share/icons/hico
         mainProgram: "boilr",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

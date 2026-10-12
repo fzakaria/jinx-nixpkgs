@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["package", 80, 7], ["command", 81, 7]], [["version", 79, 11]], [["tests", 79, 5]], [["changelog", 86, 5], ["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5], ["platforms", 98, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["vendorHash", 32, 3], ["ldflags", 34, 3], ["nativeBuildInputs", 41, 3], ["preCheck", 43, 3], ["checkFlags", 57, 3], ["installPhase", 66, 3], ["passthru", 78, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, restic: false, bash: false, testers: false, resticprofile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 80, 7], ["command", 81, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 79, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 86, 5], ["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5], ["platforms", 98, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["vendorHash", 32, 3], ["ldflags", 34, 3], ["nativeBuildInputs", 41, 3], ["preCheck", 43, 3], ["checkFlags", 57, 3], ["installPhase", 66, 3], ["passthru", 78, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const resticprofile = nix.arg($, "resticprofile");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "resticprofile",
       version: "0.33.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "creativeprojects",
           repo: "resticprofile",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,14 +50,14 @@ substituteInPlace filesearch/filesearch.go \\
       })()),
       installPhase: "runHook preInstall\n\ninstall -Dm755 $GOPATH/bin/resticprofile -t $out/bin\n\ninstallShellCompletion --cmd resticprofile \\\n    --bash <($out/bin/resticprofile generate --bash-completion) \\\n    --zsh <($out/bin/resticprofile generate --zsh-completion)\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: resticprofile, command: "resticprofile version" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: resticprofile, command: "resticprofile version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/creativeprojects/resticprofile/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Configuration profiles manager for restic backup",
         homepage: "https://creativeprojects.github.io/resticprofile/",

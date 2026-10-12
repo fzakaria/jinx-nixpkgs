@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 76, 5], ["license", 77, 5]], [["path", 28, 3], ["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["outputs", 34, 3], ["extraNativeBuildInputs", 39, 3], ["hardeningDisable", 41, 3], ["NIX_CFLAGS_COMPILE", 47, 3], ["env", 58, 3], ["SYSDIR", 59, 3], ["KMODDIR", 61, 3], ["KERN_DEBUGDIR", 62, 3], ["KERN_DEBUGDIR_KODIR", 63, 3], ["KERN_DEBUGDIR_KMODDIR", 64, 3], ["preBuild", 66, 3], ["makeFlags", 70, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, fetchFromGitHub: false, "xargs-j": false, versionData: false, sys: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 76, 5], ["license", 77, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["path", 28, 3], ["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["outputs", 34, 3], ["extraNativeBuildInputs", 39, 3], ["hardeningDisable", 41, 3], ["NIX_CFLAGS_COMPILE", 47, 3], ["env", 58, 3], ["SYSDIR", 59, 3], ["KMODDIR", 61, 3], ["KERN_DEBUGDIR", 62, 3], ["KERN_DEBUGDIR_KODIR", 63, 3], ["KERN_DEBUGDIR_KMODDIR", 64, 3], ["preBuild", 66, 3], ["makeFlags", 70, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const preBuild = "mkdir -p linuxkpi/dummy/include\n";
       const makeFlags = nix.thunk(() => ["DEBUG_FLAGS=-g", "XARGS_J=xargs-j"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Linux drm driver, ported to FreeBSD",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
@@ -55,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         path,
         pname,
         version,

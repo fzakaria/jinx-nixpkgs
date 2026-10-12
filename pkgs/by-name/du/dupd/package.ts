@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 43, 3], ["makeFlags", 48, 3], ["enableParallelBuilding", 52, 3], ["doCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, perl: false, which: false, openssl: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 43, 3], ["makeFlags", 48, 3], ["enableParallelBuilding", 52, 3], ["doCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dupd",
       version: "1.7.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jvirkki",
           repo: "dupd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CLI utility to find duplicate files",
         homepage: "http://www.virkki.com/dupd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

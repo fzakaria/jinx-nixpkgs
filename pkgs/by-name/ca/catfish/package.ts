@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["rev-prefix", 60, 40]], [["updateScript", 60, 12]], [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["longDescription", 66, 5], ["license", 72, 5], ["platforms", 73, 5], ["teams", 74, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["postPatch", 50, 3], ["preFixup", 55, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, "gobject-introspection": false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, glib: false, gtk3: false, python3: false, xfconf: false, "shared-mime-info": false, "xdg-utils": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 60, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["longDescription", 66, 5], ["license", 72, 5], ["platforms", 73, 5], ["teams", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["postPatch", 50, 3], ["preFixup", 55, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const xdg_utils = nix.arg($, "xdg-utils");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "catfish",
       version: "4.20.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.xfce.org",
           owner: "apps",
           repo: "catfish",
@@ -56,11 +52,11 @@ export default nix.lambda((args) => (() => {
 gappsWrapperArgs+=(--prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdg_utils]))}")
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "catfish-" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "catfish-" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://docs.xfce.org/apps/catfish/start",
         description: "Handy file search tool",
         mainProgram: "catfish",

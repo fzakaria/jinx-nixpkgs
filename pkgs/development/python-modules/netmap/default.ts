@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["sha256", 22, 5]], [["nmap", 31, 7]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["patches", 29, 3], ["checkPhase", 37, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, nmap: false, python: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nmap", 31, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["patches", 29, 3], ["checkPhase", 37, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "netmap",
       version: "0.7.0.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "home-assistant-libs",
           repo: "python-nmap",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./nmap-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             nmap: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nmap)}/bin/nmap`),
           })))),
       ]),
@@ -43,7 +40,7 @@ runHook postCheck
 `),
       pythonImportsCheck: nix.thunk(() => ["nmap"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python class to use nmap and access scan results from python3",
         homepage: "https://github.com/home-assistant-libs/python-nmap",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/python-nmap/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 15, 5], ["rev", 16, 5], ["repo", 17, 5], ["owner", 18, 5]], [["description", 47, 5], ["mainProgram", 48, 5], ["longDescription", 49, 5], ["homepage", 54, 5], ["license", 55, 5], ["platforms", 56, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["setSourceRoot", 21, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 26, 3], ["postPatch", 31, 3], ["buildPhase", 36, 3], ["installPhase", 42, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bobcat: false, icmake: false, yodl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 15, 5], ["rev", 16, 5], ["repo", 17, 5], ["owner", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["mainProgram", 48, 5], ["longDescription", 49, 5], ["homepage", 54, 5], ["license", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["setSourceRoot", 21, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 26, 3], ["postPatch", 31, 3], ["buildPhase", 36, 3], ["installPhase", 42, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const icmake = nix.arg($, "icmake");
   const yodl = nix.arg($, "yodl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "flexc++",
       version: "2.05.00",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sha256: "0s25d9jsfsqvm34rwf48cxwz23aq1zja3cqlzfz3z33p29wwazwz",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           repo: "flexcpp",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "./build man\n./build manual\n./build program\n",
       installPhase: "./build install x\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C++ tool for generating lexical scanners",
         mainProgram: "flexc++",
         longDescription: "Flexc++ was designed after `flex'. Flexc++ offers a cleaner class design\nand requires simpler specification files than offered by flex's C++\noption.\n",

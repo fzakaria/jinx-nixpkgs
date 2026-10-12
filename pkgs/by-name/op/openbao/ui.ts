@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ui.nix", [[["nodejs-slim", 13, 37]], [["pname", 29, 7], ["version", 30, 7], ["src", 31, 7], ["sourceRoot", 32, 7], ["pnpm", 34, 13], ["fetcherVersion", 35, 5], ["hash", 36, 5]], [["description", 47, 5]], [["pname", 16, 3], ["version", 17, 21], ["src", 17, 29], ["sourceRoot", 18, 3], ["nativeBuildInputs", 20, 3], ["pnpmDeps", 27, 3], ["postConfigure", 39, 3], ["dontInstall", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, openbao: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpmBuildHook: false, pnpm_10: false, "nodejs-slim_22": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ui.nix", [["nodejs-slim", 13, 37]]);
-const pos$2 = nix.positions(here + "/ui.nix", [["pname", 29, 7], ["version", 30, 7], ["src", 31, 7], ["sourceRoot", 32, 7], ["pnpm", 34, 13], ["fetcherVersion", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/ui.nix", [["description", 47, 5]]);
-const pos$4 = nix.positions(here + "/ui.nix", [["pname", 16, 3], ["version", 17, 21], ["src", 17, 29], ["sourceRoot", 18, 3], ["nativeBuildInputs", 20, 3], ["pnpmDeps", 27, 3], ["postConfigure", 39, 3], ["dontInstall", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const pnpm_10 = nix.arg($, "pnpm_10");
   const nodejs_slim_22 = nix.arg($, "nodejs-slim_22");
   const nodejs_slim = nodejs_slim_22;
-  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim }))));
+  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], "nodejs-slim": nodejs_slim }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.add(nix.sel(openbao, "pname"), "-ui")),
       version: nix.thunk(() => nix.attr(openbao, "version")),
       src: nix.thunk(() => nix.attr(openbao, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/ui`),
       nativeBuildInputs: nix.thunk(() => [pnpmConfigHook, pnpmBuildHook, pnpm, nodejs_slim]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postConfigure: "substituteInPlace .ember-cli \\\n  --replace-fail \"../internal/http/web_ui\" \"$out\"\n",
       dontInstall: true,
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(openbao, "meta")), nix.thunk(() => ["mainProgram"])), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: nix.thunk(() => nix.add(nix.sel(openbao, "meta", "description"), " - web UI")),
       })),
     }));

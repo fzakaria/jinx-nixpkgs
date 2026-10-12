@@ -2,17 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["fetchFromGitHub", 20, 44], ["fetchgit", 20, 60], ["fetchHex", 20, 69]], [["owner", 31, 7], ["repo", 32, 7], ["tag", 33, 7], ["sha256", 34, 7]], [["homepage", 95, 7], ["changelog", 96, 7], ["description", 97, 7], ["mainProgram", 98, 7], ["longDescription", 100, 7], ["platforms", 109, 7], ["teams", 110, 7], ["license", 111, 7]], [["globalPlugins", 124, 32]], [["updateScript", 114, 14]], [["pname", 22, 5], ["version", 23, 5], ["__structuredAttrs", 25, 5], ["strictDeps", 26, 5], ["src", 30, 5], ["nativeBuildInputs", 37, 5], ["buildInputs", 42, 5], ["postPatch", 44, 5], ["buildPhase", 67, 5], ["checkPhase", 75, 5], ["doCheck", 83, 5], ["installPhase", 85, 5], ["meta", 94, 5], ["passthru", 114, 5]], [["patches", 163, 11], ["doCheck", 169, 11]], [["pname", 174, 7], ["version", 175, 24], ["nativeBuildInputs", 176, 7], ["unpackPhase", 180, 7], ["installPhase", 185, 7]], [["rebar3", 203, 11], ["rebar3WithPlugins", 203, 18]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchgit: false, fetchHex: false, erlang: false, makeWrapper: false, writableTmpDirAsHomeHook: false, writeScript: false, "common-updater-scripts": false, coreutils: false, git: false, gnused: false, nix: false, "rebar3-nix": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["fetchFromGitHub", 20, 44], ["fetchgit", 20, 60], ["fetchHex", 20, 69]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 31, 7], ["repo", 32, 7], ["tag", 33, 7], ["sha256", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 95, 7], ["changelog", 96, 7], ["description", 97, 7], ["mainProgram", 98, 7], ["longDescription", 100, 7], ["platforms", 109, 7], ["teams", 110, 7], ["license", 111, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["globalPlugins", 124, 32]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 114, 14]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 22, 5], ["version", 23, 5], ["__structuredAttrs", 25, 5], ["strictDeps", 26, 5], ["src", 30, 5], ["nativeBuildInputs", 37, 5], ["buildInputs", 42, 5], ["postPatch", 44, 5], ["buildPhase", 67, 5], ["checkPhase", 75, 5], ["doCheck", 83, 5], ["installPhase", 85, 5], ["meta", 94, 5], ["passthru", 114, 5]]);
 const formals$2 = { args: { plugins: true, globalPlugins: true, rebar3: true }, ellipsis: false };
-const pos$7 = nix.positions(here + "/default.nix", [["patches", 163, 11], ["doCheck", 169, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 174, 7], ["version", 175, 24], ["nativeBuildInputs", 176, 7], ["unpackPhase", 180, 7], ["installPhase", 185, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["rebar3", 203, 11], ["rebar3WithPlugins", 203, 18]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,19 +24,19 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const rebar3_nix = nix.arg($, "rebar3-nix");
   const deps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rebar-deps.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fetchFromGitHub: fetchFromGitHub,
       fetchgit: fetchgit,
       fetchHex: fetchHex,
     }))));
   const rebar3 = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rebar3",
       version: "3.27.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "erlang",
           repo: "rebar3",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,7 +60,7 @@ done
       doCheck: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp rebar3 $out/bin/rebar3\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/rebar/rebar3",
         changelog: nix.thunk(() => nix.str`https://github.com/erlang/rebar3/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Erlang build tool that makes it easy to compile and test Erlang applications, port drivers and releases",
@@ -79,7 +71,7 @@ done
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}
 set -ox errexit
 PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
@@ -88,7 +80,7 @@ PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
               git,
               gnused,
               nix$,
-              nix.thunk(() => nix.app(rebar3WithPlugins, nix.thunk(() => ({ [nix.POS]: pos$4, globalPlugins: nix.thunk(() => [rebar3_nix]) })))),
+              nix.thunk(() => nix.app(rebar3WithPlugins, nix.thunk(() => ({ [nix.POS]: $pos[3], globalPlugins: nix.thunk(() => [rebar3_nix]) })))),
             ]))}
 latest=$(list-git-tags | sed -n '/[\\d\\.]\\+/p' | sort -V | tail -1)
 if [ "$latest" != "${nix.sel(finalAttrs, "version")}" ]; then
@@ -114,7 +106,7 @@ fi
     const pluginLibDirs = nix.thunk(() => nix.builtins.map((p) => nix.str`${p}/lib/erlang/lib`, nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(plugins, globalPlugins))))));
     const globalPluginNames = nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.builtins.map((p) => nix.sel(p, "pname"), globalPlugins))));
     const rebar3Patched = nix.thunk(() => nix.app(nix.sel(rebar3_1, "overrideAttrs"), (old) => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         patches: nix.thunk(() => [
           nix.path(here, "./skip-plugins.patch"),
           nix.path(here, "./global-plugins.patch"),
@@ -122,7 +114,7 @@ fi
         doCheck: false,
       })));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: "rebar3-with-plugins",
         version: nix.thunk(() => nix.attr(rebar3_1, "version")),
         nativeBuildInputs: nix.thunk(() => [erlang, makeWrapper]),
@@ -143,6 +135,6 @@ makeWrapper ${erlang}/bin/erl $out/bin/rebar3 \\
 `),
       })));
   })(), formals$2);
-  return { [nix.POS]: pos$9, rebar3: rebar3, rebar3WithPlugins: rebar3WithPlugins };
+  return { [nix.POS]: $pos[8], rebar3: rebar3, rebar3WithPlugins: rebar3WithPlugins };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

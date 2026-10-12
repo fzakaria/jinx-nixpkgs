@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["driverPath", 61, 12]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["broken", 71, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["installPhase", 52, 3], ["passthru", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, "pkg-config": false, libfprint: false, "libfprint-tod": false, gusb: false, udev: false, nss: false, openssl: false, meson: false, pixman: false, ninja: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["driverPath", 61, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["broken", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["installPhase", 52, 3], ["passthru", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libfprint-2-tod1-vfs0090",
       version: "0.8.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "3v1n0",
           repo: "libfprint-tod-vfs0090",
@@ -43,9 +40,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja]),
       buildInputs: nix.thunk(() => [libfprint, libfprint_tod, glib, gusb, udev, nss, openssl, pixman]),
       installPhase: "runHook preInstall\n\ninstall -D -t \"$out/lib/libfprint-2/tod-1/\" libfprint-tod-vfs009x.so\ninstall -D -t \"$out/lib/udev/rules.d/\" $src/60-libfprint-2-tod-vfs0090.rules\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, driverPath: "/lib/libfprint-2/tod-1" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], driverPath: "/lib/libfprint-2/tod-1" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Libfprint-2-tod Touch OEM Driver for 2016 ThinkPad's fingerprint readers",
         homepage: "https://gitlab.freedesktop.org/3v1n0/libfprint-tod-vfs0090",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

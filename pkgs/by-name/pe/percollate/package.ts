@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["PUPPETEER_SKIP_CHROMIUM_DOWNLOAD", 31, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["dontNpmBuild", 22, 3], ["npmInstallFlags", 26, 3], ["nativeBuildInputs", 28, 3], ["env", 30, 3], ["postPatch", 34, 3], ["postInstall", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, chromium: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PUPPETEER_SKIP_CHROMIUM_DOWNLOAD", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["dontNpmBuild", 22, 3], ["npmInstallFlags", 26, 3], ["nativeBuildInputs", 28, 3], ["env", 30, 3], ["postPatch", 34, 3], ["postInstall", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "percollate";
       const version = "4.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "danburzo",
           repo: "percollate",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,13 +26,13 @@ export default nix.lambda((args) => (() => {
       const dontNpmBuild = true;
       const npmInstallFlags = nix.thunk(() => ["--omit=dev"]);
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true }));
       const postPatch = "substituteInPlace package.json --replace \"git config core.hooksPath .git-hooks\" \"\"\n";
       const postInstall = nix.thunk(() => nix.str`wrapProgram $out/bin/percollate \\
   --set PUPPETEER_EXECUTABLE_PATH ${chromium}/bin/chromium
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command-line tool to turn web pages into readable PDF, EPUB, HTML, or Markdown docs",
         homepage: "https://github.com/danburzo/percollate",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "percollate",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

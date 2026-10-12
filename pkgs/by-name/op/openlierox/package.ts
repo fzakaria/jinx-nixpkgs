@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 67, 7]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["strictDeps", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["cmakeFlags", 65, 3], ["env", 67, 3], ["installPhase", 69, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, curl: false, gd: false, libx11: false, libxml2: false, libzip: false, SDL: false, SDL_image: false, SDL_mixer: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 67, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["strictDeps", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["cmakeFlags", 65, 3], ["env", 67, 3], ["installPhase", 69, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const SDL_mixer = nix.arg($, "SDL_mixer");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openlierox",
       version: "0.58_rc5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openlierox",
           repo: "openlierox",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,12 +40,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DSYSTEM_DATA_DIR=${nix.builtins.placeholder("out")}/share`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), libxml2)}/include/libxml2`),
       })),
       installPhase: "runHook preInstall\n\ninstall -Dm755 bin/* -t $out/bin\n\nmkdir -p $out/share/OpenLieroX\ncp -r ../share/gamedir/* $out/share/OpenLieroX\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Real-time game with Worms-like shooting",
         homepage: "http://openlierox.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

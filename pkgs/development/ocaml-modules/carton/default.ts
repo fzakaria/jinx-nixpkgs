@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 38, 5], ["hash", 39, 5]], [["getconf", 44, 7]], [["description", 90, 5], ["license", 91, 5], ["homepage", 92, 5], ["maintainers", 93, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 42, 3], ["postPatch", 49, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 62, 3], ["doCheck", 76, 3], ["nativeBuildInputs", 77, 3], ["checkInputs", 80, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, ke: false, duff: false, decompress: false, cstruct: false, optint: false, bigstringaf: false, checkseum: false, logs: false, psq: false, fmt: false, result: false, rresult: false, fpath: false, base64: false, bos: false, digestif: false, alcotest: false, crowbar: false, "alcotest-lwt": false, lwt: false, findlib: false, "mirage-flow": false, cmdliner: false, hxd: false, getconf: false, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["getconf", 44, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 90, 5], ["license", 91, 5], ["homepage", 92, 5], ["maintainers", 93, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 42, 3], ["postPatch", 49, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 62, 3], ["doCheck", 76, 3], ["nativeBuildInputs", 77, 3], ["checkInputs", 80, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,16 +37,16 @@ export default nix.lambda((args) => (() => {
   const getconf = nix.arg($, "getconf");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "carton",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-git/releases/download/carton-v${nix.sel(finalAttrs, "version")}/git-carton-v${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-vWkBJdP4ZpRCEwzrFMzsdHay4VyiXix/+1qzk+7yDvk=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./carton-find-getconf.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, getconf: nix.thunk(() => nix.str`${getconf}`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./carton-find-getconf.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], getconf: nix.thunk(() => nix.str`${getconf}`) })))),
       ]),
       postPatch: "rm CHANGES.md\n",
       buildInputs: nix.thunk(() => [cmdliner, digestif, result, rresult, fpath, bos, hxd]),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [findlib]),
       checkInputs: nix.thunk(() => [base64, alcotest, alcotest_lwt, crowbar, lwt, mirage_flow]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Implementation of PACKv2 file in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/mirage/ocaml-git",

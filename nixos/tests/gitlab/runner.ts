@@ -2,47 +2,11 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/runner.nix", [[["enabled", 28, 7], ["desc", 29, 7], ["name", 30, 7], ["path", 31, 7], ["tokenFile", 32, 7]], [["shell", 27, 5]], [["maintainers", 38, 8]], [["runnerConfig", 53, 21]], [["diskSize", 58, 11]], [["log_level", 66, 13]], [["enable", 63, 11], ["settings", 65, 11], ["gracefulTermination", 69, 11]], [["gitlab-runner", 62, 18]], [["imports", 46, 9], ["virtualisation", 57, 9], ["services", 62, 9]], [["allowedTCPPorts", 77, 29]], [["firewall", 77, 20]], [["systemPackages", 81, 21]], [["memorySize", 83, 24], ["cores", 84, 24]], [["Restart", 86, 47]], [["serviceConfig", 86, 33]], [["Restart", 87, 57]], [["serviceConfig", 87, 43]], [["Restart", 88, 47]], [["serviceConfig", 88, 33]], [["Restart", 89, 55]], [["serviceConfig", 89, 41]], [["gitlab", 86, 26], ["gitlab-workhorse", 87, 26], ["gitaly", 88, 26], ["gitlab-sidekiq", 89, 26]], [["services", 86, 17]], [["proxyPass", 96, 29]], [["/", 96, 25]], [["locations", 96, 15]], [["localhost", 95, 13]], [["enable", 92, 11], ["recommendedProxySettings", 93, 11], ["virtualHosts", 94, 11]], [["secretFile", 106, 13], ["otpFile", 107, 13], ["dbFile", 108, 13], ["jwsFile", 109, 13], ["activeRecordPrimaryKeyFile", 110, 13], ["activeRecordDeterministicKeyFile", 111, 13], ["activeRecordSaltFile", 112, 13]], [["concurrency", 116, 19]], [["workers", 117, 16]], [["enable", 102, 11], ["databasePasswordFile", 103, 11], ["initialRootPasswordFile", 104, 11], ["secrets", 105, 11], ["sidekiq", 116, 11], ["puma", 117, 11]], [["nginx", 91, 18], ["gitlab", 101, 18]], [["imports", 75, 9], ["networking", 77, 9], ["environment", 81, 9], ["virtualisation", 83, 9], ["systemd", 86, 9], ["services", 91, 9]], [["gitlab-runner", 43, 5], ["gitlab", 72, 5]], [["runner_type", 132, 11]], [["name", 37, 3], ["meta", 38, 3], ["nodes", 42, 3], ["testScript", 122, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/runner.nix", [["enabled", 28, 7], ["desc", 29, 7], ["name", 30, 7], ["path", 31, 7], ["tokenFile", 32, 7]]);
-const pos$2 = nix.positions(here + "/runner.nix", [["shell", 27, 5]]);
-const pos$3 = nix.positions(here + "/runner.nix", [["maintainers", 38, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$4 = nix.positions(here + "/runner.nix", [["runnerConfig", 53, 21]]);
-const pos$5 = nix.positions(here + "/runner.nix", [["diskSize", 58, 11]]);
-const pos$6 = nix.positions(here + "/runner.nix", [["log_level", 66, 13]]);
-const pos$7 = nix.positions(here + "/runner.nix", [["enable", 63, 11], ["settings", 65, 11], ["gracefulTermination", 69, 11]]);
-const pos$8 = nix.positions(here + "/runner.nix", [["gitlab-runner", 62, 18]]);
-const pos$9 = nix.positions(here + "/runner.nix", [["imports", 46, 9], ["virtualisation", 57, 9], ["services", 62, 9]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/runner.nix", [["allowedTCPPorts", 77, 29]]);
-const pos$11 = nix.positions(here + "/runner.nix", [["firewall", 77, 20]]);
-const pos$12 = nix.positions(here + "/runner.nix", [["systemPackages", 81, 21]]);
-const pos$13 = nix.positions(here + "/runner.nix", [["memorySize", 83, 24], ["cores", 84, 24]]);
-const pos$14 = nix.positions(here + "/runner.nix", [["Restart", 86, 47]]);
-const pos$15 = nix.positions(here + "/runner.nix", [["serviceConfig", 86, 33]]);
-const pos$16 = nix.positions(here + "/runner.nix", [["Restart", 87, 57]]);
-const pos$17 = nix.positions(here + "/runner.nix", [["serviceConfig", 87, 43]]);
-const pos$18 = nix.positions(here + "/runner.nix", [["Restart", 88, 47]]);
-const pos$19 = nix.positions(here + "/runner.nix", [["serviceConfig", 88, 33]]);
-const pos$20 = nix.positions(here + "/runner.nix", [["Restart", 89, 55]]);
-const pos$21 = nix.positions(here + "/runner.nix", [["serviceConfig", 89, 41]]);
-const pos$22 = nix.positions(here + "/runner.nix", [["gitlab", 86, 26], ["gitlab-workhorse", 87, 26], ["gitaly", 88, 26], ["gitlab-sidekiq", 89, 26]]);
-const pos$23 = nix.positions(here + "/runner.nix", [["services", 86, 17]]);
-const pos$24 = nix.positions(here + "/runner.nix", [["proxyPass", 96, 29]]);
-const pos$25 = nix.positions(here + "/runner.nix", [["/", 96, 25]]);
-const pos$26 = nix.positions(here + "/runner.nix", [["locations", 96, 15]]);
-const pos$27 = nix.positions(here + "/runner.nix", [["localhost", 95, 13]]);
-const pos$28 = nix.positions(here + "/runner.nix", [["enable", 92, 11], ["recommendedProxySettings", 93, 11], ["virtualHosts", 94, 11]]);
-const pos$29 = nix.positions(here + "/runner.nix", [["secretFile", 106, 13], ["otpFile", 107, 13], ["dbFile", 108, 13], ["jwsFile", 109, 13], ["activeRecordPrimaryKeyFile", 110, 13], ["activeRecordDeterministicKeyFile", 111, 13], ["activeRecordSaltFile", 112, 13]]);
-const pos$30 = nix.positions(here + "/runner.nix", [["concurrency", 116, 19]]);
-const pos$31 = nix.positions(here + "/runner.nix", [["workers", 117, 16]]);
-const pos$32 = nix.positions(here + "/runner.nix", [["enable", 102, 11], ["databasePasswordFile", 103, 11], ["initialRootPasswordFile", 104, 11], ["secrets", 105, 11], ["sidekiq", 116, 11], ["puma", 117, 11]]);
-const pos$33 = nix.positions(here + "/runner.nix", [["nginx", 91, 18], ["gitlab", 101, 18]]);
-const pos$34 = nix.positions(here + "/runner.nix", [["imports", 75, 9], ["networking", 77, 9], ["environment", 81, 9], ["virtualisation", 83, 9], ["systemd", 86, 9], ["services", 91, 9]]);
-const pos$35 = nix.positions(here + "/runner.nix", [["gitlab-runner", 43, 5], ["gitlab", 72, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$36 = nix.positions(here + "/runner.nix", [["runner_type", 132, 11]]);
-const pos$37 = nix.positions(here + "/runner.nix", [["name", 37, 3], ["meta", 38, 3], ["nodes", 42, 3], ["testScript", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const initialRootPassword = "notproduction";
   const runnerTokenDir = "/run/secrets/gitlab-runner";
   const runnerConfigs = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     shell: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       enabled: true,
       desc: "Shell runner (host NixOS shell, host Nix store)",
       name: "shell",
@@ -62,29 +26,29 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    [nix.POS]: pos$37,
+    [nix.POS]: $pos[36],
     name: "gitlab-runner",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "gabyx"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       "gitlab-runner": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$9,
-          imports: nix.thunk(() => nix.concat([nix.path(here, "../common/user-account.nix")], nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (runnerConfig) => nix.app(nix.builtins.import(nix.thunk(() => nix.sel(runnerConfig, "path"))), nix.thunk(() => ({ [nix.POS]: pos$4, runnerConfig: runnerConfig }))), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (k) => (runnerCfg) => nix.sel(runnerCfg, "enabled"), runnerConfigs))))),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$5, diskSize: 10000n })),
+          [nix.POS]: $pos[8],
+          imports: nix.thunk(() => nix.concat([nix.path(here, "../common/user-account.nix")], nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (runnerConfig) => nix.app(nix.builtins.import(nix.thunk(() => nix.sel(runnerConfig, "path"))), nix.thunk(() => ({ [nix.POS]: $pos[3], runnerConfig: runnerConfig }))), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (k) => (runnerCfg) => nix.sel(runnerCfg, "enabled"), runnerConfigs))))),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[4], diskSize: 10000n })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             "gitlab-runner": nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$6, log_level: "info" })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[5], log_level: "info" })),
               gracefulTermination: false,
             })),
           })),
@@ -94,73 +58,73 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               allowedTCPPorts: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "services", "nginx", "defaultHTTPListenPort")),
               ]),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "git"))];
             })()),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$13, memorySize: 6144n, cores: 4n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[12], memorySize: 6144n, cores: 4n })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               gitlab: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "no")),
                 })),
               })),
               "gitlab-workhorse": nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "no")),
                 })),
               })),
               gitaly: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "no")),
                 })),
               })),
               "gitlab-sidekiq": nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "no")),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               enable: true,
               recommendedProxySettings: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 localhost: nix.thunk(() => ({
-                  [nix.POS]: pos$26,
+                  [nix.POS]: $pos[25],
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$25,
+                    [nix.POS]: $pos[24],
                     "/": nix.thunk(() => ({
-                      [nix.POS]: pos$24,
+                      [nix.POS]: $pos[23],
                       proxyPass: "http://unix:/run/gitlab/gitlab-workhorse.socket",
                     })),
                   })),
@@ -168,12 +132,12 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             gitlab: nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               enable: true,
               databasePasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "dbPassword", "xo0daiF4")),
               initialRootPasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "rootPassword", initialRootPassword)),
               secrets: nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 secretFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secret", "Aig5zaic")),
                 otpFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "otpsecret", "Riew9mue")),
                 dbFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "dbsecret", "we2quaeZ")),
@@ -182,8 +146,8 @@ export default nix.lambda((args) => (() => {
                 activeRecordDeterministicKeyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "ardeterministic", "kQarv9wb2JVP7XzLTh5f6DFcMHms4nEC")),
                 activeRecordSaltFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "arsalt", "QkgR9CfFU3MXEWGqa7LbP24AntK5ZeYw")),
               })),
-              sidekiq: nix.thunk(() => ({ [nix.POS]: pos$30, concurrency: 1n })),
-              puma: nix.thunk(() => ({ [nix.POS]: pos$31, workers: 2n })),
+              sidekiq: nix.thunk(() => ({ [nix.POS]: $pos[29], concurrency: 1n })),
+              puma: nix.thunk(() => ({ [nix.POS]: $pos[30], workers: 2n })),
             })),
           })),
         };
@@ -193,7 +157,7 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$4);
       const nodes = nix.arg($_1, "nodes");
       const runnerTokenEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "runner-token.env", "CI_SERVER_URL=http://gitlab\nCI_SERVER_TOKEN=$token\n"));
-      const createRunnerPayload = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "create-runner.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$36, runner_type: "instance_type" }))))));
+      const createRunnerPayload = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "create-runner.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[35], runner_type: "instance_type" }))))));
       return nix.str`# Define some globals for the python script below.
 JQ_BINARY="${nix.sel(pkgs, "jq")}/bin/jq"
 GITLAB_STATE_PATH="${nix.sel(nodes, "gitlab", "services", "gitlab", "statePath")}"

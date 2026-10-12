@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["name", 132, 7], ["desktopName", 133, 7], ["comment", 134, 7], ["exec", 135, 7], ["icon", 136, 7], ["terminal", 137, 7], ["categories", 138, 7], ["keywords", 142, 7], ["startupWMClass", 148, 7]], [["updateScript", 152, 12]], [["description", 155, 5], ["longDescription", 156, 5], ["homepage", 166, 5], ["changelog", 167, 5], ["license", 168, 5], ["mainProgram", 169, 5], ["maintainers", 170, 5], ["platforms", 171, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 38, 3], ["dependencies", 47, 3], ["installPhase", 68, 3], ["dontWrapQtApps", 109, 3], ["postFixup", 111, 3], ["desktopItems", 130, 3], ["passthru", 152, 3], ["meta", 154, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3Packages: false, qt6: false, copyDesktopItems: false, makeDesktopItem: false, "nix-update-script": false, xdotool: false, kdotool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 132, 7], ["desktopName", 133, 7], ["comment", 134, 7], ["exec", 135, 7], ["icon", 136, 7], ["terminal", 137, 7], ["categories", 138, 7], ["keywords", 142, 7], ["startupWMClass", 148, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 152, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 155, 5], ["longDescription", 156, 5], ["homepage", 166, 5], ["changelog", 167, 5], ["license", 168, 5], ["mainProgram", 169, 5], ["maintainers", 170, 5], ["platforms", 171, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 38, 3], ["dependencies", 47, 3], ["installPhase", 68, 3], ["dontWrapQtApps", 109, 3], ["postFixup", 111, 3], ["desktopItems", 130, 3], ["passthru", 152, 3], ["meta", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const xdotool = nix.arg($, "xdotool");
   const kdotool = nix.arg($, "kdotool");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mouser",
       version: "3.7.3",
       pyproject: false,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TomBadash",
           repo: "Mouser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -89,7 +85,7 @@ EOF
 `))), "--add-flags \"$out/share/mouser/main_qml.py\"\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeWrapper $out/bin/mouser $out/Applications/Mouser.app/Contents/MacOS/Mouser\n"))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "mouser",
               desktopName: "Mouser",
               comment: "Logitech mouse remapper",
@@ -102,11 +98,11 @@ EOF
             })))),
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lightweight local alternative to Logitech Options+ for remapping HID++ mice",
         longDescription: "Mouser is a fully-local, open-source alternative to Logitech Options+ for\nremapping Logitech HID++ mice (MX Master / MX Anywhere families and other\nLogitech devices). It supports per-application profiles, DPI / Smart Shift\ncontrol, scroll direction inversion, and gesture-button swipes.\n\nOn NixOS, add the package to `services.udev.packages` so the bundled\n`69-mouser-logitech.rules` is loaded and the active local session can access\n`/dev/hidraw*`, `/dev/input/event*`, and `/dev/uinput` without root.\n",
         homepage: "https://github.com/TomBadash/Mouser",

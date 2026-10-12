@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 7], ["hash", 21, 7]], [["url", 24, 7], ["hash", 25, 7]], [["x86_64-linux", 19, 5], ["aarch64-linux", 23, 5]], [["twingate", 65, 43]], [["tests", 65, 12]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5]], [["pname", 30, 3], ["version", 31, 11], ["src", 33, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 43, 3], ["postPatch", 48, 3], ["installPhase", 56, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, curl: false, dpkg: false, dbus: false, fetchurl: false, lib: false, libnl: false, udev: false, cryptsetup: false, stdenv: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 19, 5], ["aarch64-linux", 23, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["twingate", 65, 43]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 65, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 11], ["src", 33, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 43, 3], ["postPatch", 48, 3], ["installPhase", 56, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const version = "2026.160.6555";
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://binaries.twingate.com/client/linux/DEB/x86_64/${version}/twingate-amd64.deb`),
       hash: "sha256-Sk2pALZtcraNpca6wkDiPCvWgU0hYlSeiwwszfZeKeM=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://binaries.twingate.com/client/linux/DEB/aarch64/${version}/twingate-arm64.deb`),
       hash: "sha256-rK6bSSdkCNWHpOpojHn+CtZejiy6jarCb34aumBbmbs=",
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "twingate",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(sources, nix.key(nix.sel(stdenv, "hostPlatform", "system")))))),
@@ -48,14 +42,14 @@ export default nix.lambda((args) => (() => {
       postPatch: "while read file; do\n  substituteInPlace \"$file\" \\\n    --replace \"/usr/bin\" \"$out/bin\" \\\n    --replace \"/usr/sbin\" \"$out/bin\"\ndone < <(find etc usr/lib usr/share -type f)\n",
       installPhase: "mkdir $out\nmv etc $out/\nmv usr/bin $out/bin\nmv usr/sbin/* $out/bin\nmv usr/lib $out/lib\nmv usr/share $out/share\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           twingate: nix.thunk(() => nix.attr(nixosTests, "twingate")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Twingate Client",
         homepage: "https://twingate.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

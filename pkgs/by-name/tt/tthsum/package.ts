@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["broken", 25, 5], ["description", 26, 5], ["longDescription", 27, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["mainProgram", 44, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["doCheck", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 25, 5], ["description", 26, 5], ["longDescription", 27, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["mainProgram", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["doCheck", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tthsum",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://tthsum.devs.nu/pkg/tthsum-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0z6jq8lbg9rasv98kxfs56936dgpgzsg3yc9k52878qfw1l2bp59",
         })))),
       installPhase: "mkdir -p $out/bin $out/share/man/man1\ncp share/tthsum.1.gz $out/share/man/man1\ncp obj-unix/tthsum $out/bin\n",
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Md5sum-alike program that works with Tiger/THEX hashes",
         longDescription: "tthsum generates or checks TTH checksums (root of the THEX hash\ntree). The Merkle Hash Tree, invented by Ralph Merkle, is a hash\nconstruct that exhibits desirable properties for verifying the\nintegrity of files and file subranges in an incremental or\nout-of-order fashion. tthsum uses the Tiger hash algorithm for\nboth the internal and the leaf nodes.\n\nThe specification of the Tiger hash algorithm is at:\nhttp://www.cs.technion.ac.il/~biham/Reports/Tiger/\n\nThe specification of the THEX algorithm is at:\nhttp://adc.sourceforge.net/draft-jchapweske-thex-02.html\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["sha256", 29, 5]], [["homepage", 77, 5], ["description", 78, 5], ["maintainers", 79, 5], ["license", 80, 5], ["platforms", 81, 5]], [["version", 24, 3], ["pname", 25, 3], ["src", 27, 3], ["outputs", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["configureFlags", 59, 3], ["hardeningDisable", 67, 3], ["enableParallelBuilding", 69, 3], ["postInstall", 71, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, which: false, attr: false, e2fsprogs: false, curl: false, libargon2: false, librsync: false, libthreadar: false, gpgme: false, libgcrypt: false, openssl: false, bzip2: false, lz4: false, lzo: false, xz: false, zlib: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["description", 78, 5], ["maintainers", 79, 5], ["license", 80, 5], ["platforms", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 24, 3], ["pname", 25, 3], ["src", 27, 3], ["outputs", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["configureFlags", 59, 3], ["hardeningDisable", 67, 3], ["enableParallelBuilding", 69, 3], ["postInstall", 71, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "2.8.6",
       pname: "dar",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/dar/dar-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-wO2W/iZwbaytduQE8DOGtgLXd92nm8CGafZaoygwRJY=",
         })))),
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "# Disable html help\nrm -r \"$out\"/share/dar\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://dar.linux.free.fr",
         description: "Disk ARchiver, allows backing up files into indexed archives",
         maintainers: nix.thunk(() => (() => {

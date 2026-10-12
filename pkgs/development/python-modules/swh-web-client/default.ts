@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 27, 5], ["group", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 35, 3], ["pythonRelaxDeps", 40, 3], ["dependencies", 45, 3], ["pythonImportsCheck", 54, 3], ["nativeCheckInputs", 56, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitLab: false, setuptools: false, "setuptools-scm": false, click: false, dateutils: false, requests: false, "swh-auth": false, "swh-core": false, "swh-model": false, pytestCheckHook: false, "pytest-mock": false, "requests-mock": false, "types-python-dateutil": false, "types-pyyaml": false, "types-requests": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 27, 5], ["group", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 35, 3], ["pythonRelaxDeps", 40, 3], ["dependencies", 45, 3], ["pythonImportsCheck", 54, 3], ["nativeCheckInputs", 56, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const types_pyyaml = nix.arg($, "types-pyyaml");
   const types_requests = nix.arg($, "types-requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swh-web-client",
       version: "0.9.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.softwareheritage.org",
           group: "swh",
           owner: "devel",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         types_requests,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Client for Software Heritage Web applications, via their APIs",
         homepage: "https://gitlab.softwareheritage.org/swh/devel/swh-web-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

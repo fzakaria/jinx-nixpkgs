@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["smokeTest", 37, 18]], [["tests", 37, 12], ["updateScript", 52, 12]], [["description", 64, 5], ["mainProgram", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["sourceProvenance", 69, 5]], [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["installPhase", 28, 3], ["preFixup", 33, 3], ["passthru", 37, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { ballerina: false, lib: false, writeText: false, writeScript: false, runCommand: false, makeWrapper: false, fetchzip: false, stdenv: false, openjdk21_headless: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["smokeTest", 37, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 37, 12], ["updateScript", 52, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["mainProgram", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["sourceProvenance", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["installPhase", 28, 3], ["preFixup", 33, 3], ["passthru", 37, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const codeName = "swan-lake";
   const openjdk = openjdk21_headless;
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ballerina",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dist.ballerina.io/downloads/${version}/ballerina-${version}-${codeName}.zip`),
           hash: "sha256-te7ZW9CISAg0ahkFBBWW2Q6pkB9jXGNBDHw6slX2V/E=",
         })))),
@@ -40,9 +36,9 @@ runHook postInstall
       preFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/bal --set JAVA_HOME ${openjdk}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           smokeTest: nix.thunk(() => (() => {
             const helloWorld = nix.thunk(() => nix.app(writeText, "hello-world.bal", "import ballerina/io;\npublic function main() {\n  io:println(\"Hello, World!\");\n}\n"));
             return nix.app(runCommand, nix.thunk(() => nix.str`ballerina-${version}-smoketest`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${ballerina}/bin/bal run ${helloWorld} >$out
@@ -54,7 +50,7 @@ read result <$out
         updateScript: nix.thunk(() => nix.app(writeScript, "update-ballerina", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts curl pcre2\nset -euo pipefail\n\nversion=\"$(curl -s https://ballerina.io/downloads/ |\n  pcre2grep -o '(?<=swan-lake-)\\d+(?:\\.\\d+)+(?=)')\"\n\nupdate-source-version \"$UPDATE_NIX_ATTR_PATH\" \"$version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open-source programming language for the cloud",
         mainProgram: "bal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

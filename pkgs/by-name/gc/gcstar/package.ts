@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["LANG", 50, 7]], [["homepage", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["longDescription", 69, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 22, 3], ["env", 50, 3], ["installPhase", 52, 3], ["postFixup", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, perlPackages: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LANG", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["longDescription", 69, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 22, 3], ["env", 50, 3], ["installPhase", 52, 3], ["postFixup", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gcstar",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Kerenoc",
           repo: "GCstar",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,11 +53,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "XMLParser")),
         ];
       })()),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LANG: "C.UTF-8" })),
       installPhase: "runHook preInstall\n\ncd gcstar\nperl install --text --prefix=$out\n\nrunHook postInstall\n",
       postFixup: "wrapProgram $out/bin/gcstar --prefix PERL5LIB : $PERL5LIB\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gitlab.com/Kerenoc/GCstar",
         description: "Manage your collections of movies, games, books, music and more",
         mainProgram: "gcstar",

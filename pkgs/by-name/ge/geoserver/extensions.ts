@@ -2,56 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/extensions.nix", [[["url", 24, 9], ["hash", 25, 17], ["stripRoot", 27, 9]], [["pname", 20, 7], ["buildInputs", 21, 15], ["version", 21, 27], ["src", 23, 7], ["installPhase", 30, 7]], [["name", 44, 5], ["version", 45, 5], ["hash", 46, 5]], [["name", 50, 5], ["version", 51, 5], ["hash", 52, 5]], [["name", 56, 5], ["version", 57, 5], ["hash", 58, 5]], [["name", 62, 5], ["version", 63, 5], ["hash", 64, 5]], [["name", 68, 5], ["version", 69, 5], ["hash", 70, 5]], [["name", 74, 5], ["version", 75, 5], ["hash", 76, 5]], [["name", 80, 5], ["version", 81, 5], ["hash", 82, 5]], [["name", 86, 5], ["version", 87, 5], ["hash", 88, 5]], [["name", 92, 5], ["version", 93, 5], ["hash", 94, 5]], [["name", 99, 5], ["version", 100, 5], ["hash", 101, 5]], [["name", 105, 5], ["version", 106, 5], ["hash", 107, 5]], [["name", 111, 5], ["version", 112, 5], ["hash", 113, 5]], [["name", 118, 5], ["version", 119, 5], ["buildInputs", 120, 5], ["hash", 121, 5]], [["name", 150, 5], ["version", 151, 5], ["hash", 152, 5]], [["name", 156, 5], ["version", 157, 5], ["hash", 158, 5], ["buildInputs", 159, 5]], [["name", 163, 5], ["version", 164, 5], ["hash", 165, 5]], [["name", 169, 5], ["version", 170, 5], ["hash", 171, 5]], [["name", 175, 5], ["version", 176, 5], ["hash", 177, 5]], [["name", 181, 5], ["version", 182, 5], ["hash", 183, 5]], [["name", 187, 5], ["version", 188, 5], ["hash", 189, 5]], [["name", 211, 5], ["version", 212, 5], ["hash", 213, 5]], [["name", 217, 5], ["version", 218, 5], ["hash", 219, 5]], [["name", 223, 5], ["version", 224, 5], ["hash", 225, 5]], [["name", 229, 5], ["version", 230, 5], ["hash", 231, 5]], [["name", 235, 5], ["version", 236, 5], ["hash", 237, 5]], [["name", 241, 5], ["version", 242, 5], ["hash", 243, 5]], [["name", 247, 5], ["version", 248, 5], ["hash", 249, 5], ["buildInputs", 250, 5]], [["name", 254, 5], ["version", 255, 5], ["hash", 256, 5], ["buildInputs", 257, 5]], [["name", 261, 5], ["version", 262, 5], ["buildInputs", 263, 5], ["hash", 264, 5]], [["name", 269, 5], ["version", 270, 5], ["hash", 272, 5]], [["name", 276, 5], ["version", 277, 5], ["hash", 278, 5]], [["name", 282, 5], ["version", 283, 5], ["hash", 284, 5]], [["name", 288, 5], ["version", 289, 5], ["hash", 290, 5]], [["name", 294, 5], ["version", 295, 5], ["hash", 296, 5]], [["name", 300, 5], ["version", 301, 5], ["hash", 302, 5]], [["name", 306, 5], ["version", 307, 5], ["hash", 308, 5]], [["name", 312, 5], ["version", 313, 5], ["hash", 314, 5]], [["name", 318, 5], ["version", 319, 5], ["hash", 320, 5]], [["name", 324, 5], ["version", 325, 5], ["hash", 326, 5]], [["name", 330, 5], ["version", 331, 5], ["hash", 332, 5]], [["name", 336, 5], ["version", 337, 5], ["hash", 338, 5]], [["name", 342, 5], ["version", 343, 5], ["hash", 344, 5]], [["name", 356, 5], ["version", 357, 5], ["hash", 358, 5]], [["name", 364, 5], ["version", 365, 5], ["hash", 366, 5]], [["name", 370, 5], ["version", 371, 5], ["hash", 372, 5]], [["app-schema", 43, 3], ["authkey", 49, 3], ["cas", 55, 3], ["charts", 61, 3], ["control-flow", 67, 3], ["css", 73, 3], ["csw", 79, 3], ["csw-iso", 85, 3], ["db2", 91, 3], ["dxf", 98, 3], ["excel", 104, 3], ["feature-pregeneralized", 110, 3], ["gdal", 117, 3], ["geopkg-output", 149, 3], ["grib", 155, 3], ["gwc-s3", 162, 3], ["h2", 168, 3], ["iau", 174, 3], ["importer", 180, 3], ["inspire", 186, 3], ["mapml", 210, 3], ["mbstyle", 216, 3], ["metadata", 222, 3], ["mongodb", 228, 3], ["monitor", 234, 3], ["mysql", 240, 3], ["netcdf", 246, 3], ["netcdf-out", 253, 3], ["ogr-wfs", 260, 3], ["ogr-wps", 268, 3], ["oracle", 275, 3], ["params-extractor", 281, 3], ["printing", 287, 3], ["pyramid", 293, 3], ["querylayer", 299, 3], ["sldservice", 305, 3], ["sqlserver", 311, 3], ["vectortiles", 317, 3], ["wcs2_0-eo", 323, 3], ["web-resource", 329, 3], ["wmts-multi-dimensional", 335, 3], ["wps", 341, 3], ["wps-download", 355, 3], ["wps-jdbc", 363, 3], ["ysld", 369, 3]]]);
 const formals$1 = { args: { fetchzip: false, libjpeg: false, netcdf: false, pkgs: false, stdenv: false }, ellipsis: false };
 const formals$2 = { args: { name: false, version: false, hash: false, buildInputs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/extensions.nix", [["url", 24, 9], ["hash", 25, 17], ["stripRoot", 27, 9]]);
-const pos$2 = nix.positions(here + "/extensions.nix", [["pname", 20, 7], ["buildInputs", 21, 15], ["version", 21, 27], ["src", 23, 7], ["installPhase", 30, 7]]);
-const pos$3 = nix.positions(here + "/extensions.nix", [["name", 44, 5], ["version", 45, 5], ["hash", 46, 5]]);
-const pos$4 = nix.positions(here + "/extensions.nix", [["name", 50, 5], ["version", 51, 5], ["hash", 52, 5]]);
-const pos$5 = nix.positions(here + "/extensions.nix", [["name", 56, 5], ["version", 57, 5], ["hash", 58, 5]]);
-const pos$6 = nix.positions(here + "/extensions.nix", [["name", 62, 5], ["version", 63, 5], ["hash", 64, 5]]);
-const pos$7 = nix.positions(here + "/extensions.nix", [["name", 68, 5], ["version", 69, 5], ["hash", 70, 5]]);
-const pos$8 = nix.positions(here + "/extensions.nix", [["name", 74, 5], ["version", 75, 5], ["hash", 76, 5]]);
-const pos$9 = nix.positions(here + "/extensions.nix", [["name", 80, 5], ["version", 81, 5], ["hash", 82, 5]]);
-const pos$10 = nix.positions(here + "/extensions.nix", [["name", 86, 5], ["version", 87, 5], ["hash", 88, 5]]);
-const pos$11 = nix.positions(here + "/extensions.nix", [["name", 92, 5], ["version", 93, 5], ["hash", 94, 5]]);
-const pos$12 = nix.positions(here + "/extensions.nix", [["name", 99, 5], ["version", 100, 5], ["hash", 101, 5]]);
-const pos$13 = nix.positions(here + "/extensions.nix", [["name", 105, 5], ["version", 106, 5], ["hash", 107, 5]]);
-const pos$14 = nix.positions(here + "/extensions.nix", [["name", 111, 5], ["version", 112, 5], ["hash", 113, 5]]);
-const pos$15 = nix.positions(here + "/extensions.nix", [["name", 118, 5], ["version", 119, 5], ["buildInputs", 120, 5], ["hash", 121, 5]]);
-const pos$16 = nix.positions(here + "/extensions.nix", [["name", 150, 5], ["version", 151, 5], ["hash", 152, 5]]);
-const pos$17 = nix.positions(here + "/extensions.nix", [["name", 156, 5], ["version", 157, 5], ["hash", 158, 5], ["buildInputs", 159, 5]]);
-const pos$18 = nix.positions(here + "/extensions.nix", [["name", 163, 5], ["version", 164, 5], ["hash", 165, 5]]);
-const pos$19 = nix.positions(here + "/extensions.nix", [["name", 169, 5], ["version", 170, 5], ["hash", 171, 5]]);
-const pos$20 = nix.positions(here + "/extensions.nix", [["name", 175, 5], ["version", 176, 5], ["hash", 177, 5]]);
-const pos$21 = nix.positions(here + "/extensions.nix", [["name", 181, 5], ["version", 182, 5], ["hash", 183, 5]]);
-const pos$22 = nix.positions(here + "/extensions.nix", [["name", 187, 5], ["version", 188, 5], ["hash", 189, 5]]);
-const pos$23 = nix.positions(here + "/extensions.nix", [["name", 211, 5], ["version", 212, 5], ["hash", 213, 5]]);
-const pos$24 = nix.positions(here + "/extensions.nix", [["name", 217, 5], ["version", 218, 5], ["hash", 219, 5]]);
-const pos$25 = nix.positions(here + "/extensions.nix", [["name", 223, 5], ["version", 224, 5], ["hash", 225, 5]]);
-const pos$26 = nix.positions(here + "/extensions.nix", [["name", 229, 5], ["version", 230, 5], ["hash", 231, 5]]);
-const pos$27 = nix.positions(here + "/extensions.nix", [["name", 235, 5], ["version", 236, 5], ["hash", 237, 5]]);
-const pos$28 = nix.positions(here + "/extensions.nix", [["name", 241, 5], ["version", 242, 5], ["hash", 243, 5]]);
-const pos$29 = nix.positions(here + "/extensions.nix", [["name", 247, 5], ["version", 248, 5], ["hash", 249, 5], ["buildInputs", 250, 5]]);
-const pos$30 = nix.positions(here + "/extensions.nix", [["name", 254, 5], ["version", 255, 5], ["hash", 256, 5], ["buildInputs", 257, 5]]);
-const pos$31 = nix.positions(here + "/extensions.nix", [["name", 261, 5], ["version", 262, 5], ["buildInputs", 263, 5], ["hash", 264, 5]]);
-const pos$32 = nix.positions(here + "/extensions.nix", [["name", 269, 5], ["version", 270, 5], ["hash", 272, 5]]);
-const pos$33 = nix.positions(here + "/extensions.nix", [["name", 276, 5], ["version", 277, 5], ["hash", 278, 5]]);
-const pos$34 = nix.positions(here + "/extensions.nix", [["name", 282, 5], ["version", 283, 5], ["hash", 284, 5]]);
-const pos$35 = nix.positions(here + "/extensions.nix", [["name", 288, 5], ["version", 289, 5], ["hash", 290, 5]]);
-const pos$36 = nix.positions(here + "/extensions.nix", [["name", 294, 5], ["version", 295, 5], ["hash", 296, 5]]);
-const pos$37 = nix.positions(here + "/extensions.nix", [["name", 300, 5], ["version", 301, 5], ["hash", 302, 5]]);
-const pos$38 = nix.positions(here + "/extensions.nix", [["name", 306, 5], ["version", 307, 5], ["hash", 308, 5]]);
-const pos$39 = nix.positions(here + "/extensions.nix", [["name", 312, 5], ["version", 313, 5], ["hash", 314, 5]]);
-const pos$40 = nix.positions(here + "/extensions.nix", [["name", 318, 5], ["version", 319, 5], ["hash", 320, 5]]);
-const pos$41 = nix.positions(here + "/extensions.nix", [["name", 324, 5], ["version", 325, 5], ["hash", 326, 5]]);
-const pos$42 = nix.positions(here + "/extensions.nix", [["name", 330, 5], ["version", 331, 5], ["hash", 332, 5]]);
-const pos$43 = nix.positions(here + "/extensions.nix", [["name", 336, 5], ["version", 337, 5], ["hash", 338, 5]]);
-const pos$44 = nix.positions(here + "/extensions.nix", [["name", 342, 5], ["version", 343, 5], ["hash", 344, 5]]);
-const pos$45 = nix.positions(here + "/extensions.nix", [["name", 356, 5], ["version", 357, 5], ["hash", 358, 5]]);
-const pos$46 = nix.positions(here + "/extensions.nix", [["name", 364, 5], ["version", 365, 5], ["hash", 366, 5]]);
-const pos$47 = nix.positions(here + "/extensions.nix", [["name", 370, 5], ["version", 371, 5], ["hash", 372, 5]]);
-const pos$48 = nix.positions(here + "/extensions.nix", [["app-schema", 43, 3], ["authkey", 49, 3], ["cas", 55, 3], ["charts", 61, 3], ["control-flow", 67, 3], ["css", 73, 3], ["csw", 79, 3], ["csw-iso", 85, 3], ["db2", 91, 3], ["dxf", 98, 3], ["excel", 104, 3], ["feature-pregeneralized", 110, 3], ["gdal", 117, 3], ["geopkg-output", 149, 3], ["grib", 155, 3], ["gwc-s3", 162, 3], ["h2", 168, 3], ["iau", 174, 3], ["importer", 180, 3], ["inspire", 186, 3], ["mapml", 210, 3], ["mbstyle", 216, 3], ["metadata", 222, 3], ["mongodb", 228, 3], ["monitor", 234, 3], ["mysql", 240, 3], ["netcdf", 246, 3], ["netcdf-out", 253, 3], ["ogr-wfs", 260, 3], ["ogr-wps", 268, 3], ["oracle", 275, 3], ["params-extractor", 281, 3], ["printing", 287, 3], ["pyramid", 293, 3], ["querylayer", 299, 3], ["sldservice", 305, 3], ["sqlserver", 311, 3], ["vectortiles", 317, 3], ["wcs2_0-eo", 323, 3], ["web-resource", 329, 3], ["wmts-multi-dimensional", 335, 3], ["wps", 341, 3], ["wps-download", 355, 3], ["wps-jdbc", 363, 3], ["ysld", 369, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -67,12 +20,12 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const buildInputs = nix.argOr($_1, "buildInputs", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: nix.thunk(() => nix.str`geoserver-${name}-extension`),
         buildInputs: buildInputs,
         version: version,
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://sourceforge.net/projects/geoserver/files/GeoServer/${version}/extensions/geoserver-${version}-${name}-plugin.zip`),
             hash: hash,
             stripRoot: false,
@@ -81,278 +34,278 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return {
-    [nix.POS]: pos$48,
+    [nix.POS]: $pos[47],
     "app-schema": nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "app-schema",
         version: "2.28.4",
         hash: "sha256-qgzJP8m3CnkZHlM3Wmix9wl8M0G9m8DTJZ8HcBJx/aw=",
       })))),
     authkey: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "authkey",
         version: "2.28.4",
         hash: "sha256-UDRVVPGqhCwen/irMz8YUbv01PQ4oRFJgELtzvJ6WGk=",
       })))),
     cas: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "cas",
         version: "2.28.4",
         hash: "sha256-g0BqPXtRoIYfLps6cFCg/+DBYOZpQX/bolJcwGuCTaI=",
       })))),
     charts: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "charts",
         version: "2.28.4",
         hash: "sha256-vhFVGX64M+5NfHYBNj1yMadZ2bKLwemURjwd6jp2HPM=",
       })))),
     "control-flow": nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: "control-flow",
         version: "2.28.4",
         hash: "sha256-FJj8g145s1qOoym+5SQymcSzH8bTzthUg5dWIR7ZGPU=",
       })))),
     css: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: "css",
         version: "2.28.4",
         hash: "sha256-9BYc4j1fk5hTT4jKdHReaoSg7bWjxmyUrOdwMospiiM=",
       })))),
     csw: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         name: "csw",
         version: "2.28.4",
         hash: "sha256-/+IQO/X26cMz5+aOtMDJ23ovjnmOOATSgRNs40bzM0I=",
       })))),
     "csw-iso": nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         name: "csw-iso",
         version: "2.28.4",
         hash: "sha256-kmUH2g18/PXBTl2cUzs2q1fzSn6BllikvatRgNlxRtc=",
       })))),
     db2: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         name: "db2",
         version: "2.28.4",
         hash: "sha256-4xeE1Y6PXqlt7LCz5s86+Uj6JMV2HqrmJpIAR6pnQhk=",
       })))),
     dxf: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         name: "dxf",
         version: "2.28.4",
         hash: "sha256-lfvvlennN7Ig0sV2ujAi3KpLmgqFSf1Y5m6pcpSc2wY=",
       })))),
     excel: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         name: "excel",
         version: "2.28.4",
         hash: "sha256-VSh9rNAnJzbfEYKELY1BRcoHRtifk3J0D08ZnF5+kTc=",
       })))),
     "feature-pregeneralized": nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         name: "feature-pregeneralized",
         version: "2.28.4",
         hash: "sha256-ZY7Qr3faGZOFg7zX4JFJ+FdSIhXQ1ROulcPRmGRGyAI=",
       })))),
     gdal: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         name: "gdal",
         version: "2.28.4",
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gdal"))]),
         hash: "sha256-7GT6XfpDjCX+TYprg4Y59UshSYa0tACIFQrtPW8vrFM=",
       })))),
     "geopkg-output": nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         name: "geopkg-output",
         version: "2.28.4",
         hash: "sha256-2CbA5opqZwwKBcM87nbY9e/i67vs70SShW08Fpryy8o=",
       })))),
     grib: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         name: "grib",
         version: "2.28.4",
         hash: "sha256-apCBtt1SOB8rimpUDny6KOjxzwMjCk+E3vdpv336iJE=",
         buildInputs: nix.thunk(() => [netcdf]),
       })))),
     "gwc-s3": nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         name: "gwc-s3",
         version: "2.28.4",
         hash: "sha256-Jy3/EFNJym61st2LAysgRKsS2KBTFhkFSZc6WouO3LA=",
       })))),
     h2: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         name: "h2",
         version: "2.28.4",
         hash: "sha256-tqchE8kkyo35rL9ESs/TD8n9CWAaWiWqe3wxKXt3Ut4=",
       })))),
     iau: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         name: "iau",
         version: "2.28.4",
         hash: "sha256-yorqFxLh9PWoC0j4WXwXs5uK1sy2gV9S1vS36ebKBIc=",
       })))),
     importer: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         name: "importer",
         version: "2.28.4",
         hash: "sha256-XGCVD/CUZjiPCzLyHec7na+fNARkBvnfR1+GbCdogXQ=",
       })))),
     inspire: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         name: "inspire",
         version: "2.28.4",
         hash: "sha256-/9juMAOOCycPeJcuB9a3DMIC8xzN1WjrzEi951utodg=",
       })))),
     mapml: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         name: "mapml",
         version: "2.28.4",
         hash: "sha256-fZVPUqUlNx2xvh9qEJgIX+rfvT2ZeLjb8SgTEdYC4FI=",
       })))),
     mbstyle: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         name: "mbstyle",
         version: "2.28.4",
         hash: "sha256-OHEJ5u1r4KcikluRjah1S137IjbDDtGtVQQbqczjoco=",
       })))),
     metadata: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         name: "metadata",
         version: "2.28.4",
         hash: "sha256-pL1Xti6+TUPN0ujpJjGRt26q3ItEKQa37loNpmQvwVs=",
       })))),
     mongodb: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         name: "mongodb",
         version: "2.28.4",
         hash: "sha256-XwQAKp6XZH3W4qsNjhmA73hf6SjINz9/SOPwb2wGdcU=",
       })))),
     monitor: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         name: "monitor",
         version: "2.28.4",
         hash: "sha256-JhmsDRoHGbTBCKxKqlxdpmn2WGC/aQnyeuWLs1u0xFE=",
       })))),
     mysql: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         name: "mysql",
         version: "2.28.4",
         hash: "sha256-f8xdJ2WVYQV+HG5U2J/1vKBAFo5srFWSPXVAyRUt8kE=",
       })))),
     netcdf: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         name: "netcdf",
         version: "2.28.4",
         hash: "sha256-wU5MkTYgxxOgBBybbbeHtT2Rj1CoTFBTjGzyLPlPT7A=",
         buildInputs: nix.thunk(() => [netcdf]),
       })))),
     "netcdf-out": nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         name: "netcdf-out",
         version: "2.28.4",
         hash: "sha256-0RIRTDtTUEj9OUDpAD1LbCY1iGCbXAKbgmH7ZkNHWhM=",
         buildInputs: nix.thunk(() => [netcdf]),
       })))),
     "ogr-wfs": nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         name: "ogr-wfs",
         version: "2.28.4",
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gdal"))]),
         hash: "sha256-UAsTKEMVlYTrCpbs8++Kxdn0w6ejzMiPrT7S2NlMNxc=",
       })))),
     "ogr-wps": nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         name: "ogr-wps",
         version: "2.28.4",
         hash: "sha256-sjV0YwR21GQYt4YuDIE2H+5UQ2qRmP7tWVyOXNuLkSM=",
       })))),
     oracle: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         name: "oracle",
         version: "2.28.4",
         hash: "sha256-xiIPgpWCDycE6rTW49QnB/7rHbns1GJhWCdIfMEBuXE=",
       })))),
     "params-extractor": nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         name: "params-extractor",
         version: "2.28.4",
         hash: "sha256-/AOjfsA58btiOBv4zvF4jdLt2lE5GPDKUKzNZyX8fI0=",
       })))),
     printing: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         name: "printing",
         version: "2.28.4",
         hash: "sha256-smytiUVPKq31YyWE/xLwiGPLQ6DxScj2gHjMbgKCjMc=",
       })))),
     pyramid: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$36,
+        [nix.POS]: $pos[35],
         name: "pyramid",
         version: "2.28.4",
         hash: "sha256-xfOzBm5eTbzfRRiMQ63i29GW91IxWKIotrSUa6BgD5M=",
       })))),
     querylayer: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         name: "querylayer",
         version: "2.28.4",
         hash: "sha256-WyLyUoLfv8JIKBqjphcXgWBbtkJEB3ig4cyY158lRQk=",
       })))),
     sldservice: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$38,
+        [nix.POS]: $pos[37],
         name: "sldservice",
         version: "2.28.4",
         hash: "sha256-DsN9tKZshcsz6/IsPA0l757YtmsakBi/NbgEUwnfafs=",
       })))),
     sqlserver: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         name: "sqlserver",
         version: "2.28.4",
         hash: "sha256-MBMU4pJKgS3qra9pli8SAnOtIiDU2zD0sXJaKXlr0+A=",
       })))),
     vectortiles: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$40,
+        [nix.POS]: $pos[39],
         name: "vectortiles",
         version: "2.28.4",
         hash: "sha256-6E3lwH573lTSMYtQ00b3fVtJYSsIFETwT7JAZHI6ubQ=",
       })))),
     "wcs2_0-eo": nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$41,
+        [nix.POS]: $pos[40],
         name: "wcs2_0-eo",
         version: "2.28.4",
         hash: "sha256-w30lrzli6++7NDu59QsRFxyIQBMSV7M5BeTqGSJmw18=",
       })))),
     "web-resource": nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$42,
+        [nix.POS]: $pos[41],
         name: "web-resource",
         version: "2.28.4",
         hash: "sha256-GH0foPjbBcKOXahqgPv+02Jex3ZE5XKmeWNDew0DKF4=",
       })))),
     "wmts-multi-dimensional": nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$43,
+        [nix.POS]: $pos[42],
         name: "wmts-multi-dimensional",
         version: "2.28.4",
         hash: "sha256-gi8qwwKG9K1l4AJ05vDGykxCmd42oSFSZtwhDwDI8m0=",
       })))),
     wps: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$44,
+        [nix.POS]: $pos[43],
         name: "wps",
         version: "2.28.4",
         hash: "sha256-2qh7fDeJAswTb+P60zNQeH1nc0886Dfh7pWpUWCaEKc=",
       })))),
     "wps-download": nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         name: "wps-download",
         version: "2.28.4",
         hash: "sha256-MAL71aYRKOFSKnhj+3dxZhCDQL/6GAeAtB11Zs6C5tI=",
       })))),
     "wps-jdbc": nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$46,
+        [nix.POS]: $pos[45],
         name: "wps-jdbc",
         version: "2.28.4",
         hash: "sha256-QBydO6EKLe22W+3pCP4p9TqMyp1KeKReyeidL5yxndo=",
       })))),
     ysld: nix.thunk(() => nix.app(mkGeoserverExtension, nix.thunk(() => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         name: "ysld",
         version: "2.28.4",
         hash: "sha256-Qg+wzMzRebqqOAK4Y7hsfcTyKcz/E5Fw/fHLcUr3KwY=",

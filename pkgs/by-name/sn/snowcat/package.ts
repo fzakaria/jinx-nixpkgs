@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["homepage", 25, 5], ["changelog", 26, 5], ["description", 27, 5], ["mainProgram", 28, 5], ["longDescription", 29, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 17, 3], ["ldflags", 19, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 25, 5], ["changelog", 26, 5], ["description", 27, 5], ["mainProgram", 28, 5], ["longDescription", 29, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 17, 3], ["ldflags", 19, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "snowcat",
       version: "0.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "praetorian-inc",
           repo: "snowcat",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-D6ipwGMxT0B3uYUzg6Oo2TYnsOVBY0mYO5lC7vtVPc0=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/praetorian-inc/snowcat",
         changelog: nix.thunk(() => nix.str`https://github.com/praetorian-inc/snowcat/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Tool to audit the istio service mesh",

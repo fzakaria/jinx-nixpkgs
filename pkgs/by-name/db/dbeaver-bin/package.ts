@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 29, 9], ["aarch64-linux", 30, 9], ["aarch64-darwin", 31, 9]], [["x86_64-linux", 34, 9], ["aarch64-linux", 35, 9], ["aarch64-darwin", 36, 9]], [["url", 40, 7], ["hash", 41, 15]], [["updateScript", 131, 12]], [["homepage", 134, 5], ["changelog", 135, 5], ["description", 136, 5], ["longDescription", 137, 5], ["sourceProvenance", 143, 5], ["license", 144, 5], ["platforms", 145, 5], ["maintainers", 150, 5], ["mainProgram", 156, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["sourceRoot", 44, 3], ["nativeBuildInputs", 46, 3], ["dontConfigure", 59, 3], ["dontBuild", 60, 3], ["prePatch", 62, 3], ["preInstall", 72, 3], ["installPhase", 83, 3], ["passthru", 131, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, undmg: false, makeWrapper: false, openjdk21: false, gnused: false, autoPatchelfHook: false, darwin: false, wrapGAppsHook3: false, gtk3: false, glib: false, webkitgtk_4_1: false, "glib-networking": false, override_xmx: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 29, 9], ["aarch64-linux", 30, 9], ["aarch64-darwin", 31, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 34, 9], ["aarch64-linux", 35, 9], ["aarch64-darwin", 36, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 40, 7], ["hash", 41, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 131, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 134, 5], ["changelog", 135, 5], ["description", 136, 5], ["longDescription", 137, 5], ["sourceProvenance", 143, 5], ["license", 144, 5], ["platforms", 145, 5], ["maintainers", 150, 5], ["mainProgram", 156, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["sourceRoot", 44, 3], ["nativeBuildInputs", 46, 3], ["dontConfigure", 59, 3], ["dontBuild", 60, 3], ["prePatch", 62, 3], ["preInstall", 72, 3], ["installPhase", 83, 3], ["passthru", 131, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const glib_networking = nix.arg($, "glib-networking");
   const override_xmx = nix.argOr($, "override_xmx", () => "1024m");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dbeaver-bin",
       version: "26.2.1",
       src: nix.thunk(() => (() => {
@@ -36,19 +31,19 @@ export default nix.lambda((args) => (() => {
         const system = nix.thunk(() => nix.attr(from, "system"));
         const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system)));
         const suffix = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "x86_64-linux": "linux-x86_64.tar.gz",
             "aarch64-linux": "linux-aarch64.tar.gz",
             "aarch64-darwin": "macos-aarch64.dmg",
           }))));
         const hash = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "x86_64-linux": "sha256-Fte9AehPjNj0bWl2rBJ/olZ47AEJU8m03OQZM68gZ+g=",
             "aarch64-linux": "sha256-dvrR2QZNDtra33rIEbM7Z17KeXoQjcRqjjgtoiOZzI4=",
             "aarch64-darwin": "sha256-K/9ehDV8pe4mY/SEI9o52zg9EZbAhvl6oiYYj0qiwKA=",
           }))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://github.com/dbeaver/dbeaver/releases/download/${nix.sel(finalAttrs, "version")}/dbeaver-ce-${nix.sel(finalAttrs, "version")}-${suffix}`),
             hash: hash,
           })));
@@ -103,9 +98,9 @@ makeWrapper $out/{Applications/dbeaver.app/Contents/MacOS/dbeaver,bin/dbeaver}
 
 runHook postInstall
 `)),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://dbeaver.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/dbeaver/dbeaver/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Universal SQL Client for developers, DBA and analysts. Supports MySQL, PostgreSQL, MariaDB, SQLite, and more",

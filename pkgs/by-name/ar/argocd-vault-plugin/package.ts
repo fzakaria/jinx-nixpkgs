@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["homepage", 37, 5], ["changelog", 38, 5], ["description", 39, 5], ["mainProgram", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["doCheck", 30, 3], ["nativeInstallCheckInputs", 32, 3], ["versionCheckProgramArg", 33, 3], ["doInstallCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["changelog", 38, 5], ["description", 39, 5], ["mainProgram", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["doCheck", 30, 3], ["nativeInstallCheckInputs", 32, 3], ["versionCheckProgramArg", 33, 3], ["doInstallCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "argocd-vault-plugin",
       version: "1.18.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "argoproj-labs",
           repo: "argocd-vault-plugin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://argocd-vault-plugin.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/argoproj-labs/argocd-vault-plugin/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Argo CD plugin to retrieve secrets from Secret Management tools and inject them into Kubernetes secrets",

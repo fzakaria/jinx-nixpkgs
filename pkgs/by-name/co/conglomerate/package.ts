@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["homepage", 67, 5], ["description", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["license", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 35, 3], ["cmakeFlags", 45, 3], ["postPatch", 50, 3], ["postFixup", 55, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, coreutils: false, perlPackages: false, bicpl: false, libminc: false, zlib: false, minc_tools: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["license", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 35, 3], ["cmakeFlags", 45, 3], ["postPatch", 50, 3], ["postFixup", 55, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const minc_tools = nix.arg($, "minc_tools");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "conglomerate",
       version: "1.6.80-unstable-2023-01-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BIC-MNI",
           repo: "conglomerate",
           rev: "6fb26084f2871a85044e2e4afc868982702b40ed",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/BIC-MNI/conglomerate",
         description: "More command-line utilities for working with MINC files",
         maintainers: nix.thunk(() => (() => {

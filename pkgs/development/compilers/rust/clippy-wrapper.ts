@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/clippy-wrapper.nix", [[["description", 18, 7], ["priority", 19, 7]], [["preferLocalBuild", 11, 5], ["strictDeps", 12, 5], ["outputs", 13, 32], ["nativeBuildInputs", 15, 5], ["meta", 17, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, "clippy-unwrapped": false, "rustc-unwrapped": false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/clippy-wrapper.nix", [["description", 18, 7], ["priority", 19, 7]]);
-const pos$2 = nix.positions(here + "/clippy-wrapper.nix", [["preferLocalBuild", 11, 5], ["strictDeps", 12, 5], ["outputs", 13, 32], ["nativeBuildInputs", 15, 5], ["meta", 17, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const rustc_unwrapped = nix.arg($, "rustc-unwrapped");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(clippy_unwrapped, "pname")}-wrapper-${nix.sel(clippy_unwrapped, "version")}`), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       preferLocalBuild: true,
       strictDeps: true,
       outputs: nix.thunk(() => nix.attr(clippy_unwrapped, "outputs")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       meta: nix.thunk(() => nix.update(nix.sel(clippy_unwrapped, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.str`${nix.sel(clippy_unwrapped, "meta", "description")} (wrapper script)`),
         priority: 10n,
       })),

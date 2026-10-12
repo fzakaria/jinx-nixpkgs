@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]], [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 20, 3], ["nativeCheckInputs", 22, 3], ["pythonImportsCheck", 27, 3], ["disabledTests", 29, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pytestCheckHook: false, pyyaml: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 20, 3], ["nativeCheckInputs", 22, 3], ["pythonImportsCheck", 27, 3], ["disabledTests", 29, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-XiU6aO6EhFVgj1g7TYMdbgg7IvjkU2DFoiwYikrB13A=",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         "test_import_from_url",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for managing a hosts file",
         longDescription: "python-hosts is a Python library for managing a hosts file. It enables you to add\nand remove entries, or import them from a file or URL.\n",
         homepage: "https://github.com/jonhadfield/python-hosts",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

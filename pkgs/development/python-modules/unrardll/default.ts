@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]], [["NIX_CFLAGS_LINK", 22, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["env", 21, 3], ["postInstall", 25, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, unrar: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_LINK", 22, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["env", 21, 3], ["postInstall", 25, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,19 +17,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.7";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-4QZ/4nu03iBO+PNpLyPZPF07QpL3iyksb8fcT3V0n3Y=",
         }))));
       const buildInputs = nix.thunk(() => [unrar]);
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_LINK: "-headerpad_max_install_names" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_LINK: "-headerpad_max_install_names" }))));
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`install_name_tool -change libunrar.so ${unrar}/lib/libunrar.so $out/lib/python*/site-packages/unrardll/unrar.*-darwin.so
 install_name_tool -change libunrar.so ${unrar}/lib/libunrar.so build/lib.*/unrardll/unrar.*-darwin.so
 `)));
       const pythonImportsCheck = nix.thunk(() => ["unrardll"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wrap the Unrar DLL to enable unraring of files in python",
         homepage: "https://github.com/kovidgoyal/unrardll",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -42,7 +39,7 @@ install_name_tool -change libunrar.so ${unrar}/lib/libunrar.so build/lib.*/unrar
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

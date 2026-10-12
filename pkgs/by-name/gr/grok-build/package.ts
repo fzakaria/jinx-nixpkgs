@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 18, 5], ["aarch64-linux", 19, 5], ["aarch64-darwin", 20, 5]], [["x86_64-linux", 29, 11], ["aarch64-linux", 30, 11], ["aarch64-darwin", 31, 11]], [["url", 26, 7], ["hash", 27, 7]], [["updateScript", 86, 12]], [["description", 89, 5], ["homepage", 90, 5], ["downloadPage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5], ["sourceProvenance", 96, 5]], [["pname", 38, 3], ["version", 39, 11], ["strictDeps", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["dontUnpack", 46, 3], ["dontBuild", 47, 3], ["nativeBuildInputs", 49, 3], ["installPhase", 54, 3], ["doInstallCheck", 70, 3], ["nativeInstallCheckInputs", 71, 3], ["versionCheckProgramArg", 72, 3], ["installCheckPhase", 74, 3], ["passthru", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, installShellFiles: false, autoPatchelfHook: false, versionCheckHook: false, runCommand: false, testers: false, "grok-build": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 18, 5], ["aarch64-linux", 19, 5], ["aarch64-darwin", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 29, 11], ["aarch64-linux", 30, 11], ["aarch64-darwin", 31, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 86, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["downloadPage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5], ["sourceProvenance", 96, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 11], ["strictDeps", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["dontUnpack", 46, 3], ["dontBuild", 47, 3], ["nativeBuildInputs", 49, 3], ["installPhase", 54, 3], ["doInstallCheck", 70, 3], ["nativeInstallCheckInputs", 71, 3], ["versionCheckProgramArg", 72, 3], ["installCheckPhase", 74, 3], ["passthru", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,23 +19,23 @@ export default nix.lambda((args) => (() => {
   const version = "1.0.50";
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
   const platform = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "linux-x86_64",
     "aarch64-linux": "linux-aarch64",
     "aarch64-darwin": "macos-aarch64",
   }));
   const sourceData = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (system) => (upstreamPlatform) => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://x.ai/cli/grok-${version}-${upstreamPlatform}`),
         hash: nix.thunk(() => nix.sel({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "x86_64-linux": "sha256-yA3gFVcG/y2ZViOIexAvLQq9LGKyZD3qOgzrr33XJNU=",
           "aarch64-linux": "sha256-lH7qY+Ujk+AHeNZR0i4NrSLTDp7lsq95RO/D/UQ47MA=",
           "aarch64-darwin": "sha256-r0Gx1l1BFv9kmmia2dBw1MKr4lVzfUa6Cz6BYTRWluY=",
         }, nix.key(nix.force(system)))),
       }))), platform));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "grok-build",
       version: version,
       strictDeps: true,
@@ -62,9 +57,9 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       installCheckPhase: "runHook preInstallCheck\n\n# ensure is a symlink\ntest -L \"$out/bin/agent\"\n\n# ensure agent points at grok\n[ \"$(readlink -f \"$out/bin/agent\")\" = \"$(readlink -f \"$out/bin/grok\")\" ]\n\nrunHook postInstallCheck\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Command-line coding agent by xAI",
         homepage: "https://docs.x.ai/build/overview",
         downloadPage: "https://x.ai/cli/stable",

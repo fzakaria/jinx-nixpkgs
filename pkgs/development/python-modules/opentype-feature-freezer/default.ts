@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["SETUPTOOLS_SCM_PRETEND_VERSION", 30, 7]], [["rev-prefix", 48, 40]], [["updateScript", 48, 12]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["env", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 34, 3], ["disabledTestPaths", 39, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, gitUpdater: false, pytestCheckHook: false, fonttools: false, "hatch-vcs": false, hatchling: false, biplist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["SETUPTOOLS_SCM_PRETEND_VERSION", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev-prefix", 48, 40]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 48, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["env", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 34, 3], ["disabledTestPaths", 39, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.32.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "twardoch",
           repo: "fonttools-opentype-feature-freezer",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-uwU9lsTK6XlKwar46DLTzjwtD/zQDJnC+Kq/sVNCNE0=",
         }))));
       const build_system = nix.thunk(() => [hatch_vcs, hatchling]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], SETUPTOOLS_SCM_PRETEND_VERSION: version }));
       const dependencies = nix.thunk(() => [fonttools]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, biplist]);
       const disabledTestPaths = nix.thunk(() => [
@@ -42,11 +37,11 @@ export default nix.lambda((args) => (() => {
         "app/OTFeatureFreezer.py",
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Permanently \"apply\" OpenType features to fonts, by remapping their Unicode assignments",
         homepage: "https://github.com/twardoch/fonttools-opentype-feature-freezer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

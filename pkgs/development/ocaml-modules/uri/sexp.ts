@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sexp.nix", [[["broken", 26, 5]], [["pname", 12, 3], ["version", 13, 17], ["src", 13, 25], ["duneVersion", 15, 3], ["checkInputs", 17, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, ocaml: false, buildDunePackage: false, uri: false, ounit: false, ppx_sexp_conv: false, sexplib0: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sexp.nix", [["broken", 26, 5]]);
-const pos$2 = nix.positions(here + "/sexp.nix", [["pname", 12, 3], ["version", 13, 17], ["src", 13, 25], ["duneVersion", 15, 3], ["checkInputs", 17, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const ppx_sexp_conv = nix.arg($, "ppx_sexp_conv");
   const sexplib0 = nix.arg($, "sexplib0");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "uri-sexp",
       version: nix.thunk(() => nix.attr(uri, "version")),
       src: nix.thunk(() => nix.attr(uri, "src")),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ppx_sexp_conv, sexplib0, uri]),
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       meta: nix.thunk(() => nix.update(nix.sel(uri, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         broken: nix.thunk(() => (nix.asBool(nix.selOr(uri, () => false, "meta", "broken")) || nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.04")))),
       })),
     })));

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["dontConfigure", 23, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 27, 3], ["nativeCheckInputs", 33, 3], ["disabledTests", 41, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, "setuptools-scm": false, click: false, commoncode: false, pluggy: false, pytestCheckHook: false, "pytest-xdist": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["dontConfigure", 23, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 27, 3], ["nativeCheckInputs", 33, 3], ["disabledTests", 41, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "32.0.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-QTLZOxdVJxxuImydouIET/YuvLhztelY1mqN3enzRfo=",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_xdist]);
       const disabledTests = nix.thunk(() => ["test_skeleton_codestyle"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library that provides plugin functionality for ScanCode toolkit",
         homepage: "https://github.com/nexB/plugincode",
         changelog: nix.thunk(() => nix.str`https://github.com/nexB/plugincode/blob/v${version}/CHANGELOG.rst`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

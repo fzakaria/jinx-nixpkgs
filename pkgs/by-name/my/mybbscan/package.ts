@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5], ["sourceProvenance", 43, 5], ["platforms", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 23, 3], ["installPhase", 28, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, makeWrapper: false, python3: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5], ["sourceProvenance", 43, 5], ["platforms", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 23, 3], ["installPhase", 28, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "0xB9",
           repo: "MyBBscan",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +38,7 @@ makeWrapper ${nix.sel(python3, "interpreter")} $out/bin/mybbscan \\
   --add-flags "$out/share/mybbscan/scan.py"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Scans plugins directory for possible vulnerable plugins",
         homepage: "https://github.com/0xB9/MyBBscan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -56,7 +54,7 @@ makeWrapper ${nix.sel(python3, "interpreter")} $out/bin/mybbscan \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

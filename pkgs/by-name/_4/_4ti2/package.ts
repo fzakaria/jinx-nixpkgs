@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["strictDeps", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["enableParallelBuilding", 45, 3], ["enableParallelInstalling", 46, 3], ["installFlags", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, glpk: false, gmp: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["strictDeps", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["enableParallelBuilding", 45, 3], ["enableParallelInstalling", 46, 3], ["installFlags", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "4ti2",
       version: "1.6.15",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "4ti2",
           repo: "4ti2",
           tag: nix.thunk(() => nix.str`Release_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       enableParallelInstalling: false,
       installFlags: nix.thunk(() => ["install-exec"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://4ti2.github.io/",
         description: "Software package for algebraic, geometric and combinatorial problems on linear spaces",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

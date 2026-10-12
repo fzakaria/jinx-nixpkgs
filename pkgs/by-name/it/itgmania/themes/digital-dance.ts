@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/digital-dance.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["extraArgs", 23, 47]], [["updateScript", 23, 12]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postInstall", 18, 3], ["passthru", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/digital-dance.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/digital-dance.nix", [["extraArgs", 23, 47]]);
-const pos$3 = nix.positions(here + "/digital-dance.nix", [["updateScript", 23, 12]]);
-const pos$4 = nix.positions(here + "/digital-dance.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$5 = nix.positions(here + "/digital-dance.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postInstall", 18, 3], ["passthru", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "digital-dance",
       version: "1.1.5-unstable-2026-08-05",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JNero",
           repo: "Digital-Dance-ITGMania",
           rev: "dbcf7b36fa4d3915ac0de73074dbdea263dcd3dc",
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
         })))),
       postInstall: "mkdir -p \"$out/itgmania/Themes/Digital Dance\"\nmv * \"$out/itgmania/Themes/Digital Dance\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Theme for ITGMania to (hopefully) utilize all of it's features and more",
         homepage: "https://codeberg.org/JNero/Digital-Dance-ITGMania",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["cctools_cmds", 118, 13], ["llvm_cmds", 118, 26], ["targetPrefix", 118, 36], ["isCCTools", 119, 5]], [["maintainers", 123, 5], ["priority", 124, 5]], [["pname", 55, 3], ["version", 56, 21], ["outputs", 58, 3], ["strictDeps", 60, 3], ["nativeBuildInputs", 62, 3], ["buildCommand", 64, 3], ["__structuredAttrs", 115, 3], ["passthru", 117, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, cctools: false, "clang-unwrapped": false, ld64: false, llvm: false, "llvm-manpages": false, makeWrapper: false, enableManpages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["cctools_cmds", 118, 13], ["llvm_cmds", 118, 26], ["targetPrefix", 118, 36], ["isCCTools", 119, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["maintainers", 123, 5], ["priority", 124, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 55, 3], ["version", 56, 21], ["outputs", 58, 3], ["strictDeps", 60, 3], ["nativeBuildInputs", 62, 3], ["buildCommand", 64, 3], ["__structuredAttrs", 115, 3], ["passthru", 117, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,7 +43,7 @@ if [ -f "$sourcePath" ]; then
 fi
 `));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`${targetPrefix}cctools-binutils-darwin`),
       version: nix.thunk(() => nix.attr(cctools, "version")),
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optional"), enableManpages, "man"))),
@@ -95,14 +93,14 @@ ${nix.app(linkManPages, nix.thunk(() => nix.app(nix.sel(lib, "getMan"), ld64)), 
 `),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         cctools_cmds: cctools_cmds,
         llvm_cmds: llvm_cmds,
         targetPrefix: targetPrefix,
         isCCTools: true,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "reckenrode"))];

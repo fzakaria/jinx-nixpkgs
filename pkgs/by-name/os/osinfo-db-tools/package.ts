@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 39, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, gettext: false, glib: false, libxml2: false, perl: false, python3: false, libxslt: false, libarchive: false, bzip2: false, xz: false, "json-glib": false, libsoup_3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 39, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const json_glib = nix.arg($, "json-glib");
   const libsoup_3 = nix.arg($, "libsoup_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "osinfo-db-tools",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gitlab.com/api/v4/projects/libosinfo%2Fosinfo-db-tools/packages/generic/release-assets/v${nix.sel(finalAttrs, "version")}/osinfo-db-tools-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-8zFfZ10Ydw8l3qjtBLILj8gO+wD2DDfuXoFfnDd25/M=",
         })))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, gettext, perl, python3]),
       buildInputs: nix.thunk(() => [glib, json_glib, libxml2, libxslt, libarchive, bzip2, xz, libsoup_3]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tools for managing the osinfo database",
         homepage: "https://libosinfo.org/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/libosinfo/osinfo-db-tools/-/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),

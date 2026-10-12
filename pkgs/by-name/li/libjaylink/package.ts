@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["updateScript", 46, 12]], [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["doInstallCheck", 35, 3], ["postPatch", 37, 3], ["postInstall", 42, 3], ["passthru", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { fetchFromGitLab: false, lib: false, libusb1: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 46, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["doInstallCheck", 35, 3], ["postPatch", 37, 3], ["postInstall", 42, 3], ["passthru", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libjaylink",
       version: "0.5.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.zapb.de",
           owner: "libjaylink",
           repo: "libjaylink",
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace contrib/60-libjaylink.rules \\\n  --replace-fail 'GROUP=\"plugdev\"' 'GROUP=\"jlink\"'\n",
       postInstall: "install -Dm644 ../contrib/60-libjaylink.rules $out/lib/udev/rules.d/60-libjaylink.rules\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gitlab.zapb.de/libjaylink/libjaylink",
         description: "Shared library written in C to access SEGGER J-Link and compatible devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

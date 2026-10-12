@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 13, 38], ["license", 13, 47], ["description", 14, 5]], [["pname", 4, 3], ["src", 5, 31], ["version", 5, 35], ["files", 7, 3], ["meta", 12, 3]]]);
 const formals$1 = { args: { melpaBuild: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 13, 38], ["license", 13, 47], ["description", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 4, 3], ["src", 5, 31], ["version", 5, 35], ["files", 7, 3], ["meta", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(melpaBuild, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(llvmPackages, "llvm"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "llvm-mode",
       src: nix.thunk(() => nix.attr(from, "src")),
       version: nix.thunk(() => nix.attr(from, "version")),
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(llvmPackages, "llvm", "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from_1, "homepage")),
         license: nix.thunk(() => nix.attr(from_1, "license")),
         description: "Major mode for the LLVM assembler language",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["owner", 16, 3], ["domain", 17, 3], ["version", 18, 3], ["src", 20, 3], ["dependencies", 27, 3], ["ignoreVersionRequirement", 35, 3], ["nativeCheckInputs", 39, 3], ["disabledTestPaths", 45, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildHomeAssistantComponent: false, cachetools: false, meshcore: false, "meshcore-cli": false, "paho-mqtt": false, pynacl: false, "pytest-asyncio": false, "pytest-homeassistant-custom-component": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 16, 3], ["domain", 17, 3], ["version", 18, 3], ["src", 20, 3], ["dependencies", 27, 3], ["ignoreVersionRequirement", 35, 3], ["nativeCheckInputs", 39, 3], ["disabledTestPaths", 45, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_homeassistant_custom_component = nix.arg($, "pytest-homeassistant-custom-component");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "meshcore-dev",
       domain: "meshcore",
       version: "2.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "meshcore-dev",
           repo: "meshcore-ha",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_cli_command.py::test_command_ui_noop_on_empty_input",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/meshcore-dev/meshcore-ha/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Home Assistant integration for MeshCore",
         homepage: "https://github.com/meshcore-dev/meshcore-ha/",

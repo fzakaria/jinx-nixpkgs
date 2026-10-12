@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["openssl", 31, 34]], [["NIX_CFLAGS_COMPILE", 53, 7]], [["coturn", 55, 18]], [["tests", 55, 12]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5], ["broken", 64, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["patches", 39, 3], ["configureFlags", 43, 3], ["env", 53, 3], ["passthru", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, openssl: false, libevent: false, "pkg-config": false, libmicrohttpd: false, sqlite: false, nixosTests: false, systemdMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["openssl", 31, 34]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["coturn", 55, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 55, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5], ["broken", 64, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["patches", 39, 3], ["configureFlags", 43, 3], ["env", 53, 3], ["passthru", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const systemdMinimal = nix.arg($, "systemdMinimal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "coturn",
       version: "4.17.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coturn",
           repo: "coturn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,19 +31,19 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([
         openssl,
-        nix.thunk(() => nix.app(nix.sel(libevent, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, openssl: openssl })))),
+        nix.thunk(() => nix.app(nix.sel(libevent, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], openssl: openssl })))),
         libmicrohttpd,
         nix.thunk(() => nix.sel(sqlite, "dev")),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdMinimal)), nix.thunk(() => [systemdMinimal])))),
       patches: nix.thunk(() => [nix.path(here, "./pure-configure.patch")]),
       configureFlags: nix.thunk(() => ["--examplesdir=.."]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-fcommon" })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, coturn: nix.thunk(() => nix.sel(nixosTests, "coturn")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], coturn: nix.thunk(() => nix.sel(nixosTests, "coturn")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "TURN server",
         homepage: "https://coturn.net/",
         changelog: nix.thunk(() => nix.str`https://github.com/coturn/coturn/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

@@ -2,24 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 10, 7], ["version", 11, 7], ["src", 12, 7], ["license", 13, 7], ["env", 15, 15]], [["PUPPY", 22, 11]], [["expr", 20, 7], ["expected", 24, 7]], [["PUPPY", 32, 15], ["SILLY", 33, 15]], [["PUPPY", 37, 25], ["SILLY", 37, 31]], [["PUPPY", 40, 9], ["SILLY", 41, 9]], [["expr", 28, 7], ["expected", 39, 7]], [["PUPPY", 48, 11]], [["expr", 46, 7], ["expected", 50, 7]], [["testCanSetEnv", 19, 5], ["testCanSetEnvMultiple", 27, 5], ["testCanSetEnvPassthru", 45, 5]]]);
 const formals$1 = { args: { lib: false, haskellPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 10, 7], ["version", 11, 7], ["src", 12, 7], ["license", 13, 7], ["env", 15, 15]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PUPPY", 22, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["expr", 20, 7], ["expected", 24, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["PUPPY", 32, 15], ["SILLY", 33, 15]]);
-const pos$5 = nix.positions(here + "/default.nix", [["PUPPY", 37, 25], ["SILLY", 37, 31]]);
-const pos$6 = nix.positions(here + "/default.nix", [["PUPPY", 40, 9], ["SILLY", 41, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["expr", 28, 7], ["expected", 39, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["PUPPY", 48, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["expr", 46, 7], ["expected", 50, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["testCanSetEnv", 19, 5], ["testCanSetEnvMultiple", 27, 5], ["testCanSetEnvPassthru", 45, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const haskellPackages = nix.arg($, "haskellPackages");
   const withEnv = (env) => nix.app(nix.sel(haskellPackages, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "puppy",
       version: "1.0.0",
       src: null,
@@ -27,27 +18,27 @@ export default nix.lambda((args) => (() => {
       env: env,
     })));
   const failures = nix.thunk(() => nix.app(nix.sel(lib, "runTests"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       testCanSetEnv: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        expr: nix.thunk(() => nix.sel(nix.app(withEnv, nix.thunk(() => ({ [nix.POS]: pos$2, PUPPY: "DOGGY" }))), "drvAttrs", "PUPPY")),
+        [nix.POS]: $pos[2],
+        expr: nix.thunk(() => nix.sel(nix.app(withEnv, nix.thunk(() => ({ [nix.POS]: $pos[1], PUPPY: "DOGGY" }))), "drvAttrs", "PUPPY")),
         expected: "DOGGY",
       })),
       testCanSetEnvMultiple: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         expr: nix.thunk(() => (() => {
-          const env = nix.thunk(() => nix.sel(nix.app(withEnv, nix.thunk(() => ({ [nix.POS]: pos$4, PUPPY: "DOGGY", SILLY: "GOOFY" }))), "drvAttrs"));
+          const env = nix.thunk(() => nix.sel(nix.app(withEnv, nix.thunk(() => ({ [nix.POS]: $pos[3], PUPPY: "DOGGY", SILLY: "GOOFY" }))), "drvAttrs"));
           return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             PUPPY: nix.thunk(() => nix.attr(env, "PUPPY")),
             SILLY: nix.thunk(() => nix.attr(env, "SILLY")),
           };
         })()),
-        expected: nix.thunk(() => ({ [nix.POS]: pos$6, PUPPY: "DOGGY", SILLY: "GOOFY" })),
+        expected: nix.thunk(() => ({ [nix.POS]: $pos[5], PUPPY: "DOGGY", SILLY: "GOOFY" })),
       })),
       testCanSetEnvPassthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        expr: nix.thunk(() => nix.sel(nix.app(withEnv, nix.thunk(() => ({ [nix.POS]: pos$8, PUPPY: "DOGGY" }))), "passthru", "env", "PUPPY")),
+        [nix.POS]: $pos[8],
+        expr: nix.thunk(() => nix.sel(nix.app(withEnv, nix.thunk(() => ({ [nix.POS]: $pos[7], PUPPY: "DOGGY" }))), "passthru", "env", "PUPPY")),
         expected: "DOGGY",
       })),
     }))));

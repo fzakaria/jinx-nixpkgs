@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["pname", 34, 7], ["version", 35, 7], ["src", 36, 7], ["postPatch", 37, 7], ["pnpm", 39, 5], ["fetcherVersion", 40, 5], ["hash", 41, 5]], [["extraArgs", 49, 5]], [["updateScript", 48, 12]], [["NODE_OPTIONS", 76, 7]], [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 113, 5], ["mainProgram", 120, 5], ["platforms", 125, 27]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["pnpmDeps", 32, 3], ["postPatch", 44, 3], ["passthru", 48, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 63, 3], ["env", 76, 3], ["postBuild", 78, 3], ["installPhase", 82, 3], ["doInstallCheck", 94, 3], ["nativeInstallCheckInputs", 95, 3], ["versionCheckKeepEnvironment", 99, 3], ["preFixup", 101, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, nodejs: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, autoPatchelfHook: false, cacert: false, llvmPackages: false, musl: false, libx11: false, jq: false, moreutils: false, "nix-update-script": false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 34, 7], ["version", 35, 7], ["src", 36, 7], ["postPatch", 37, 7], ["pnpm", 39, 5], ["fetcherVersion", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NODE_OPTIONS", 76, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 113, 5], ["mainProgram", 120, 5], ["platforms", 125, 27]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["pnpmDeps", 32, 3], ["postPatch", 44, 3], ["passthru", 48, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 63, 3], ["env", 76, 3], ["postBuild", 78, 3], ["installPhase", 82, 3], ["doInstallCheck", 94, 3], ["nativeInstallCheckInputs", 95, 3], ["versionCheckKeepEnvironment", 99, 3], ["preFixup", 101, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "wrangler",
       version: "4.148.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cloudflare",
           repo: "workers-sdk",
           rev: nix.thunk(() => nix.str`wrangler@${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Wo8D86TSrG8yL8TrGmeZHzwhr6YoYHD2haDiRIUYEIY=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -54,9 +48,9 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "jq 'del(.packageManager)' package.json | sponge package.json\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex=wrangler@(.*)"]),
           })))),
       })),
@@ -65,7 +59,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(llvmPackages, "libunwind")),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [musl, libx11])))),
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper, nodejs, pnpmConfigHook, pnpm_10, jq, moreutils], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, NODE_OPTIONS: "--max-old-space-size=4096" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], NODE_OPTIONS: "--max-old-space-size=4096" })),
       postBuild: "NODE_ENV=\"production\" pnpm --filter wrangler... run build\n",
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 mkdir -p $out/{bin,lib}
@@ -85,7 +79,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Command-line interface for all things Cloudflare Workers",
         homepage: "https://github.com/cloudflare/workers-sdk#readme",
         license: nix.thunk(() => (() => {

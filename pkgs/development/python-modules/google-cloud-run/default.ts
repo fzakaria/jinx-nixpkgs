@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 5], ["version", 21, 26], ["hash", 22, 5]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 25, 3], ["pythonRelaxDeps", 27, 3], ["dependencies", 31, 3], ["doCheck", 41, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "google-api-core": false, "google-auth": false, "grpc-google-iam-v1": false, grpcio: false, "proto-plus": false, protobuf: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 26], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 25, 3], ["pythonRelaxDeps", 27, 3], ["dependencies", 31, 3], ["doCheck", 41, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "google-cloud-run",
       version: "0.16.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "google_cloud_run",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-SA7N6JsY3JmqxFhASPZHfoVgAq9Neo56briUgB0BGQs=",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["google.cloud.run"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Google Cloud Run API client library",
         homepage: "https://pypi.org/project/google-cloud-run/",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-run-v${nix.sel(finalAttrs, "version")}/packages/google-cloud-run/CHANGELOG.md`),

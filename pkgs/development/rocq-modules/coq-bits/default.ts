@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cases", 21, 11], ["out", 25, 11]], [["cases", 28, 11], ["out", 32, 11]], [["hash", 37, 19]], [["hash", 38, 19]], [["1.1.0", 37, 11], ["1.0.0", 38, 11]], [["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 12, 3], ["repo", 13, 3], ["version", 14, 11], ["defaultVersion", 15, 3], ["release", 37, 3], ["propagatedBuildInputs", 40, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, mathcomp: false, "mathcomp-algebra-tactics": false, stdlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cases", 21, 11], ["out", 25, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cases", 28, 11], ["out", 32, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 37, 19]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 38, 19]]);
-const pos$5 = nix.positions(here + "/default.nix", [["1.1.0", 37, 11], ["1.0.0", 38, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["repo", 13, 3], ["version", 14, 11], ["defaultVersion", 15, 3], ["release", 37, 3], ["propagatedBuildInputs", 40, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "coq-bits",
       repo: "bits",
       version: version,
@@ -32,7 +26,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.sel(mathcomp, "version")),
           ]), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.10", "8.16")),
                 nix.thunk(() => nix.app(nix.lookup(w, "isLt"), "2.0")),
@@ -40,7 +34,7 @@ export default nix.lambda((args) => (() => {
               out: "1.1.0",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.7", "8.15")),
                 nix.thunk(() => nix.app(nix.lookup(w, "isLt"), "2.0")),
@@ -50,13 +44,13 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "1.1.0": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-TCw1kSXeW0ysIdLeNr+EGmpGumEE9i8tinEMp57UXaE=",
         })),
         "1.0.0": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256:0nv5mdgrd075dpd8bc7h0xc5i95v0pkm0bfyq5rj6ii1s54dwcjl",
         })),
       })),
@@ -66,7 +60,7 @@ export default nix.lambda((args) => (() => {
         stdlib,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Formalization of bitset operations in Coq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

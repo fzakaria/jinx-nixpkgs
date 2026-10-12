@@ -2,26 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-postgresql-and-redis.nix", [[["system", 9, 52], ["pkgs", 9, 59]], [["maintainers", 14, 10]], [["systemPackages", 27, 23]], [["apcu", 30, 15], ["redis", 31, 15], ["memcached", 32, 15]], [["dbtype", 34, 20]], [["enable", 36, 15], ["bendDomainToLocalhost", 37, 15], ["logLevel", 38, 15]], [["notes", 42, 23]], [["trusted_proxies", 44, 22]], [["caching", 29, 13], ["config", 34, 13], ["notify_push", 35, 13], ["extraAppsEnable", 40, 13], ["extraApps", 41, 13], ["settings", 44, 13]], [["enable", 47, 46], ["port", 48, 46]], [["nextcloud", 47, 34]], [["servers", 47, 26]], [["nextcloud", 28, 20], ["redis", 47, 20]], [["environment", 27, 11], ["services", 28, 11]], [["nextcloud", 19, 7]], [["init", 52, 18], ["extraTests", 65, 18]], [["name", 13, 13], ["meta", 14, 5], ["imports", 16, 5], ["nodes", 18, 5], ["test-helpers", 52, 5]]]);
 const formals$1 = { args: { name: false, pkgs: false, testBase: false, system: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/with-postgresql-and-redis.nix", [["system", 9, 52], ["pkgs", 9, 59]]);
 const formals$2 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/with-postgresql-and-redis.nix", [["maintainers", 14, 10]]);
 const formals$3 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/with-postgresql-and-redis.nix", [["systemPackages", 27, 23]]);
-const pos$4 = nix.positions(here + "/with-postgresql-and-redis.nix", [["apcu", 30, 15], ["redis", 31, 15], ["memcached", 32, 15]]);
-const pos$5 = nix.positions(here + "/with-postgresql-and-redis.nix", [["dbtype", 34, 20]]);
-const pos$6 = nix.positions(here + "/with-postgresql-and-redis.nix", [["enable", 36, 15], ["bendDomainToLocalhost", 37, 15], ["logLevel", 38, 15]]);
-const pos$7 = nix.positions(here + "/with-postgresql-and-redis.nix", [["notes", 42, 23]]);
-const pos$8 = nix.positions(here + "/with-postgresql-and-redis.nix", [["trusted_proxies", 44, 22]]);
-const pos$9 = nix.positions(here + "/with-postgresql-and-redis.nix", [["caching", 29, 13], ["config", 34, 13], ["notify_push", 35, 13], ["extraAppsEnable", 40, 13], ["extraApps", 41, 13], ["settings", 44, 13]]);
-const pos$10 = nix.positions(here + "/with-postgresql-and-redis.nix", [["enable", 47, 46], ["port", 48, 46]]);
-const pos$11 = nix.positions(here + "/with-postgresql-and-redis.nix", [["nextcloud", 47, 34]]);
-const pos$12 = nix.positions(here + "/with-postgresql-and-redis.nix", [["servers", 47, 26]]);
-const pos$13 = nix.positions(here + "/with-postgresql-and-redis.nix", [["nextcloud", 28, 20], ["redis", 47, 20]]);
-const pos$14 = nix.positions(here + "/with-postgresql-and-redis.nix", [["environment", 27, 11], ["services", 28, 11]]);
-const pos$15 = nix.positions(here + "/with-postgresql-and-redis.nix", [["nextcloud", 19, 7]]);
-const pos$16 = nix.positions(here + "/with-postgresql-and-redis.nix", [["init", 52, 18], ["extraTests", 65, 18]]);
-const pos$17 = nix.positions(here + "/with-postgresql-and-redis.nix", [["name", 13, 13], ["meta", 14, 5], ["imports", 16, 5], ["nodes", 18, 5], ["test-helpers", 52, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,40 +13,40 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const testBase = nix.arg($, "testBase");
   const system = nix.arg($, "system");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, pkgs: pkgs })))), null);
   return nix.app(nix.lookup(w, "runTest"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       const lib = nix.arg($_1, "lib");
       return {
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         name: name,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           maintainers: nix.thunk(() => nix.sel(lib, "teams", "nextcloud", "members")),
         })),
         imports: nix.thunk(() => [testBase]),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           nextcloud: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const config_1 = nix.arg($_2, "config");
             const pkgs_1 = nix.arg($_2, "pkgs");
             const lib_1 = nix.arg($_2, "lib");
             return {
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 nextcloud: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
-                  caching: nix.thunk(() => ({ [nix.POS]: pos$4, apcu: false, redis: true, memcached: false })),
-                  config: nix.thunk(() => ({ [nix.POS]: pos$5, dbtype: "pgsql" })),
+                  [nix.POS]: $pos[8],
+                  caching: nix.thunk(() => ({ [nix.POS]: $pos[3], apcu: false, redis: true, memcached: false })),
+                  config: nix.thunk(() => ({ [nix.POS]: $pos[4], dbtype: "pgsql" })),
                   notify_push: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     enable: true,
                     bendDomainToLocalhost: true,
                     logLevel: "debug",
@@ -70,15 +54,15 @@ export default nix.lambda((args) => (() => {
                   extraAppsEnable: true,
                   extraApps: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.sel(config_1, "services", "nextcloud", "package", "packages", "apps")), w);
-                    return { [nix.POS]: pos$7, notes: nix.thunk(() => nix.lookup(w_1, "notes")) };
+                    return { [nix.POS]: $pos[6], notes: nix.thunk(() => nix.lookup(w_1, "notes")) };
                   })()),
-                  settings: nix.thunk(() => ({ [nix.POS]: pos$8, trusted_proxies: nix.thunk(() => ["::1"]) })),
+                  settings: nix.thunk(() => ({ [nix.POS]: $pos[7], trusted_proxies: nix.thunk(() => ["::1"]) })),
                 })),
                 redis: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   servers: nix.thunk(() => ({
-                    [nix.POS]: pos$11,
-                    nextcloud: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, port: 6379n })),
+                    [nix.POS]: $pos[10],
+                    nextcloud: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true, port: 6379n })),
                   })),
                 })),
               })),
@@ -86,7 +70,7 @@ export default nix.lambda((args) => (() => {
           })(), formals$3),
         })),
         "test-helpers": nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           init: nix.thunk(() => (() => {
             const configureRedis = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScript"), "configure-redis", "nextcloud-occ config:system:set redis 'host' --value 'localhost' --type string\nnextcloud-occ config:system:set redis 'port' --value 6379 --type integer\nnextcloud-occ config:system:set memcache.local --value '\\OC\\Memcache\\Redis' --type string\nnextcloud-occ config:system:set memcache.locking --value '\\OC\\Memcache\\Redis' --type string\n"));
             return nix.str`nextcloud.succeed("${configureRedis}")

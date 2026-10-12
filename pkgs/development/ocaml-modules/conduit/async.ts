@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/async.nix", [[["description", 39, 5]], [["pname", 16, 3], ["version", 18, 5], ["src", 19, 5], ["buildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, async: false, async_ssl: true, ppx_sexp_conv: false, ppx_here: false, uri: false, conduit: false, core: false, ipaddr: false, "ipaddr-sexp": false, sexplib0: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/async.nix", [["description", 39, 5]]);
-const pos$2 = nix.positions(here + "/async.nix", [["pname", 16, 3], ["version", 18, 5], ["src", 19, 5], ["buildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const ipaddr_sexp = nix.arg($, "ipaddr-sexp");
   const sexplib0 = nix.arg($, "sexplib0");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "conduit-async",
       version: nix.thunk(() => nix.attr(conduit, "version")),
       src: nix.thunk(() => nix.attr(conduit, "src")),
       buildInputs: nix.thunk(() => [ppx_sexp_conv, ppx_here]),
       propagatedBuildInputs: nix.thunk(() => [async$, async_ssl, conduit, uri, ipaddr, ipaddr_sexp, core, sexplib0]),
       meta: nix.thunk(() => nix.update(nix.sel(conduit, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Network connection establishment library for Async",
       })),
     })));

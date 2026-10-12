@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["homepage", 21, 5], ["description", 22, 5], ["longDescription", 23, 5], ["changelog", 29, 5], ["maintainers", 30, 5], ["license", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["doCheck", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDunePackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 21, 5], ["description", 22, 5], ["longDescription", 23, 5], ["changelog", 29, 5], ["maintainers", 30, 5], ["license", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["doCheck", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "landmarks",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LexiFi",
           repo: "landmarks",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/LexiFi/landmarks",
         description: "Simple Profiling Library for OCaml",
         longDescription: "Landmarks is a simple profiling library for OCaml. It provides\nprimitives to measure time spent in portion of instrumented code. The\ninstrumentation of the code may either done by hand, automatically or\nsemi-automatically using the ppx pepreprocessor (see landmarks-ppx package).\n",

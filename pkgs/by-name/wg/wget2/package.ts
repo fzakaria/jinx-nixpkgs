@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["description", 103, 5], ["longDescription", 104, 5], ["homepage", 111, 5], ["license", 113, 5], ["maintainers", 117, 5], ["mainProgram", 118, 5]], [["pname", 30, 3], ["version", 31, 3], ["outputs", 33, 3], ["src", 39, 3], ["postPatch", 47, 3], ["strictDeps", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 62, 3], ["autoreconfPhase", 80, 3], ["configureFlags", 90, 3], ["nativeInstallCheckInputs", 96, 3], ["doInstallCheck", 99, 3], ["versionCheckProgram", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoreconfHook: false, flex: false, gnulib: false, "pkg-config": false, texinfo: false, brotli: false, bzip2: false, gpgme: false, libhsts: false, libidn2: false, libpsl: false, lzip: false, nghttp2: false, openssl: false, pcre2: false, sslSupport: true, xz: false, zlib: false, zstd: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 103, 5], ["longDescription", 104, 5], ["homepage", 111, 5], ["license", 113, 5], ["maintainers", 117, 5], ["mainProgram", 118, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["outputs", 33, 3], ["src", 39, 3], ["postPatch", 47, 3], ["strictDeps", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 62, 3], ["autoreconfPhase", 80, 3], ["configureFlags", 90, 3], ["nativeInstallCheckInputs", 96, 3], ["doInstallCheck", 99, 3], ["versionCheckProgram", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wget2",
       version: "2.2.1",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gnuwget",
           repo: "wget2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +74,7 @@ chmod -R u+w gnulib/{build-aux,lib}
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Successor of GNU Wget, a file and recursive website downloader",
         longDescription: "Designed and written from scratch it wraps around libwget, that provides the basic\nfunctions needed by a web client.\nWget2 works multi-threaded and uses many features to allow fast operation.\nIn many cases Wget2 downloads much faster than Wget1.x due to HTTP2, HTTP compression,\nparallel connections and use of If-Modified-Since HTTP header.\n",
         homepage: "https://gitlab.com/gnuwget/wget2",

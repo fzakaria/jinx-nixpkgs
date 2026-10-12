@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 35, 5], ["longDescription", 36, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["doCheck", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["longDescription", 36, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["doCheck", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "claude-monitor",
       version: "4.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Maciek-roboblog",
           repo: "Claude-Code-Usage-Monitor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Real-time Claude Code usage monitor",
         longDescription: "Real-time terminal monitoring tool for Claude AI token usage\nwith advanced analytics, machine learning-based predictions,\nand Rich UI. Track your token consumption, burn rate, cost analysis,\nand get intelligent predictions about session limits.\n",
         homepage: "https://github.com/Maciek-roboblog/Claude-Code-Usage-Monitor",

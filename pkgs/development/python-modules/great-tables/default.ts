@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 67, 3], ["pytestFlags", 81, 3], ["disabledTests", 86, 3], ["__darwinAllowLocalNetworking", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, babel: false, commonmark: false, "css-inline": false, faicons: false, htmltools: false, "importlib-metadata": false, "importlib-resources": false, numpy: false, "typing-extensions": false, ipykernel: false, ipython: false, pandas: false, polars: false, pyarrow: false, pytestCheckHook: false, "pytest-cov-stub": false, requests: false, selenium: false, shiny: false, syrupy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 67, 3], ["pytestFlags", 81, 3], ["disabledTests", 86, 3], ["__darwinAllowLocalNetworking", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const shiny = nix.arg($, "shiny");
   const syrupy = nix.arg($, "syrupy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "great-tables",
       version: "0.21.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "posit-dev",
           repo: "great-tables",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,7 +80,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_html_string_generated_inline_css"])))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for rendering and formatting dataframes",
         homepage: "https://github.com/posit-dev/great-tables",
         changelog: nix.thunk(() => nix.str`https://github.com/posit-dev/great-tables/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

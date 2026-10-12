@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["postPatch", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, openal: false, libvorbis: false, opusfile: false, libsndfile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["postPatch", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const opusfile = nix.arg($, "opusfile");
   const libsndfile = nix.arg($, "libsndfile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "alure2",
       version: "0-unstable-2020-02-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kcat",
           repo: "alure",
           rev: "50f92fe528e77da82197fd947d1cf9b0a82a0c7d",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openal, libvorbis, opusfile, libsndfile]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.0)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utility library for OpenAL, providing a C++ API and managing common tasks that include file loading, caching, and streaming",
         homepage: "https://github.com/kcat/alure",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

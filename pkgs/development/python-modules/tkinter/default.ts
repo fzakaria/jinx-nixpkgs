@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["python_version", 36, 9], ["python_internal_dir", 37, 9]], [["TCLTK_LIBS", 63, 5], ["TCLTK_CFLAGS", 69, 5]], [["description", 132, 5], ["longDescription", 133, 5], ["homepage", 154, 5], ["license", 156, 7], ["maintainers", 157, 7]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["prePatch", 23, 3], ["patches", 49, 3], ["preConfigure", 51, 3], ["build-system", 55, 3], ["buildInputs", 57, 3], ["env", 62, 3], ["nativeCheckInputs", 75, 3], ["preCheck", 77, 3], ["checkPhase", 98, 3], ["pythonImportsCheck", 128, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, replaceVars: false, setuptools: false, python: false, pythonAtLeast: false, pythonOlder: false, tcl: false, tclPackages: false, tk: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["python_version", 36, 9], ["python_internal_dir", 37, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["TCLTK_LIBS", 63, 5], ["TCLTK_CFLAGS", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 132, 5], ["longDescription", 133, 5], ["homepage", 154, 5], ["license", 156, 7], ["maintainers", 157, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["prePatch", 23, 3], ["patches", 49, 3], ["preConfigure", 51, 3], ["build-system", 55, 3], ["buildInputs", 57, 3], ["env", 62, 3], ["nativeCheckInputs", 75, 3], ["preCheck", 77, 3], ["checkPhase", 98, 3], ["pythonImportsCheck", 128, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const tk = nix.arg($, "tk");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tkinter",
       version: nix.thunk(() => nix.sel(python, "version")),
       pyproject: true,
@@ -39,7 +36,7 @@ cp -rv Lib/tkinter "$tkinter_src"
 
 # install our custom pyproject.toml
 cp ${nix.app(replaceVars, nix.path(here, "./pyproject.toml"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           python_version: nix.thunk(() => nix.sel(python, "version")),
           python_internal_dir: nix.thunk(() => nix.str`${python}/include/${nix.sel(python, "libPrefix")}/internal`),
         })))} "$tkinter_src"/pyproject.toml
@@ -53,7 +50,7 @@ cp ${nix.app(replaceVars, nix.path(here, "./pyproject.toml"), nix.thunk(() => ({
       "build-system": nix.thunk(() => [setuptools]),
       buildInputs: nix.thunk(() => [tcl, tk]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         TCLTK_LIBS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), tcl)}/lib`),
             nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), tk)}/lib`),
@@ -80,7 +77,7 @@ ${nix.sel(python, "interpreter")} -m unittest ${nix.app(nix.sel(lib, "concatStri
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(python, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Standard Python interface to the Tcl/Tk GUI toolkit",
         longDescription: "The tkinter package (“Tk interface”) is the standard Python interface to\nthe Tcl/Tk GUI toolkit. Both Tk and tkinter are available on most Unix\nplatforms, including macOS, as well as on Windows systems.\n\nRunning python -m tkinter from the command line should open a window\ndemonstrating a simple Tk interface, letting you know that tkinter is\nproperly installed on your system, and also showing what version of\nTcl/Tk is installed, so you can read the Tcl/Tk documentation specific to\nthat version.\n\nTkinter supports a range of Tcl/Tk versions, built either with or without\nthread support. The official Python binary release bundles Tcl/Tk 8.6\nthreaded. See the source code for the _tkinter module for more\ninformation about supported versions.\n\nTkinter is not a thin wrapper, but adds a fair amount of its own logic to\nmake the experience more pythonic. This documentation will concentrate on\nthese additions and changes, and refer to the official Tcl/Tk\ndocumentation for details that are unchanged.\n",
         homepage: "https://docs.python.org/3/library/tkinter.html",

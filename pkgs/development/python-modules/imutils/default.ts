@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 13], ["version", 14, 19], ["sha256", 15, 5]], [["homepage", 32, 5], ["description", 33, 5], ["mainProgram", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["version", 9, 3], ["format", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 21, 3], ["pythonImportsCheck", 23, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, opencv4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 13], ["version", 14, 19], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 32, 5], ["description", 33, 5], ["mainProgram", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 9, 3], ["format", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 21, 3], ["pythonImportsCheck", 23, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "imutils";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "03827a9fca8b5c540305c0844a62591cf35a0caec199cb0f2f0a4a0fb15d8f24",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
         "imutils.face_utils",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jrosebr1/imutils",
         description: "Series of convenience functions to make basic image processing functions",
         mainProgram: "range-detector",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         format,
         pname,

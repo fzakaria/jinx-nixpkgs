@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 18, 5]], [["LDUTILS_LIB", 33, 5], ["LDUTILS_INCLUDE", 34, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 26, 3], ["qmakeFlags", 30, 3], ["env", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { mkDerivation: false, lib: false, fetchFromGitLab: false, qtcharts: false, qtsvg: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["LDUTILS_LIB", 33, 5], ["LDUTILS_INCLUDE", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 26, 3], ["qmakeFlags", 30, 3], ["env", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const cmake = nix.arg($, "cmake");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ldutils",
       version: "1.15",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ldutils-projects",
           repo: "ldutils",
           rev: "4fc416f694ce888c5bd4c4432a7730bb6260475c",
@@ -31,12 +28,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       qmakeFlags: nix.thunk(() => ["ldutils.pro"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LDUTILS_LIB: nix.thunk(() => nix.builtins.placeholder("out")),
         LDUTILS_INCLUDE: nix.thunk(() => nix.builtins.placeholder("out")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Headers and link library for other ldutils projects",
         homepage: "https://gitlab.com/ldutils-projects/ldutils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

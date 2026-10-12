@@ -2,33 +2,28 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/influxdb.nix", [[["enable", 11, 27]], [["influxdb", 11, 18]], [["systemPackages", 12, 21]], [["services", 11, 9], ["environment", 12, 9]], [["one", 8, 5]], [["name", 5, 3], ["nodes", 7, 3], ["testScript", 16, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/influxdb.nix", [["enable", 11, 27]]);
-const pos$2 = nix.positions(here + "/influxdb.nix", [["influxdb", 11, 18]]);
-const pos$3 = nix.positions(here + "/influxdb.nix", [["systemPackages", 12, 21]]);
-const pos$4 = nix.positions(here + "/influxdb.nix", [["services", 11, 9], ["environment", 12, 9]]);
-const pos$5 = nix.positions(here + "/influxdb.nix", [["one", 8, 5]]);
-const pos$6 = nix.positions(here + "/influxdb.nix", [["name", 5, 3], ["nodes", 7, 3], ["testScript", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "influxdb",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       one: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            influxdb: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+            [nix.POS]: $pos[1],
+            influxdb: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "httpie"))]),
           })),
         };

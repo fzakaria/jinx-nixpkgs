@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["CUDA and ROCm are mutually exclusive", 31, 5], ["CUDA is not targeting Linux", 32, 5]], [["name", 60, 5], ["paths", 61, 5]], [["name", 73, 5], ["paths", 74, 5]], [["owner", 83, 5], ["repo", 84, 5], ["tag", 85, 5], ["hash", 86, 5]], [["CUDA_HOME", 171, 5], ["NVCC_PREPEND_FLAGS", 172, 5]], [["ignoredVersions", 203, 7]], [["cudaSupport", 195, 7], ["cudaPackages", 196, 7], ["rocmSupport", 197, 7], ["rocmPackages", 198, 7], ["brokenConditions", 199, 7], ["updateScript", 202, 5]], [["description", 208, 5], ["homepage", 209, 5], ["changelog", 210, 5], ["license", 211, 5], ["maintainers", 212, 5]], [["pname", 78, 3], ["version", 79, 3], ["pyproject", 80, 3], ["src", 82, 3], ["patches", 89, 3], ["postPatch", 102, 3], ["nativeBuildInputs", 117, 3], ["build-system", 127, 3], ["buildInputs", 133, 3], ["cmakeFlags", 152, 3], ["env", 170, 3], ["preBuild", 178, 3], ["dependencies", 183, 3], ["doCheck", 189, 3], ["pythonImportsCheck", 191, 3], ["passthru", 193, 3], ["meta", 207, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, symlinkJoin: false, buildPythonPackage: false, fetchFromGitHub: false, gitUpdater: false, cmake: false, ninja: false, "scikit-build-core": false, setuptools: false, torch: false, scipy: false, "trove-classifiers": false, cudaSupport: true, cudaPackages: true, rocmSupport: true, rocmPackages: true, rocmGpuTargets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["CUDA and ROCm are mutually exclusive", 31, 5], ["CUDA is not targeting Linux", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 60, 5], ["paths", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 73, 5], ["paths", 74, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["owner", 83, 5], ["repo", 84, 5], ["tag", 85, 5], ["hash", 86, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["CUDA_HOME", 171, 5], ["NVCC_PREPEND_FLAGS", 172, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["ignoredVersions", 203, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["cudaSupport", 195, 7], ["cudaPackages", 196, 7], ["rocmSupport", 197, 7], ["rocmPackages", 198, 7], ["brokenConditions", 199, 7], ["updateScript", 202, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 208, 5], ["homepage", 209, 5], ["changelog", 210, 5], ["license", 211, 5], ["maintainers", 212, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 78, 3], ["version", 79, 3], ["pyproject", 80, 3], ["src", 82, 3], ["patches", 89, 3], ["postPatch", 102, 3], ["nativeBuildInputs", 117, 3], ["build-system", 127, 3], ["buildInputs", 133, 3], ["cmakeFlags", 152, 3], ["env", 170, 3], ["preBuild", 178, 3], ["dependencies", 183, 3], ["doCheck", 189, 3], ["pythonImportsCheck", 191, 3], ["passthru", 193, 3], ["meta", 207, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const rocmPackages = nix.argOr($, "rocmPackages", () => nix.sel(torch, "rocmPackages"));
   const rocmGpuTargets = nix.argOr($, "rocmGpuTargets", () => nix.selOr(rocmPackages, () => nix.sel(rocmPackages, "clr", "gpuTargets"), "clr", "localGpuTargets"));
   const brokenConditions = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "filterAttrs"), (_) => (cond) => nix.force(cond), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       "CUDA and ROCm are mutually exclusive": nix.thunk(() => (nix.asBool(cudaSupport) && nix.asBool(rocmSupport))),
       "CUDA is not targeting Linux": nix.thunk(() => (nix.asBool(cudaSupport) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))))),
     }))));
@@ -58,7 +50,7 @@ export default nix.lambda((args) => (() => {
     ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cudaPackages, "cuda_crt", "meta", "available")), nix.thunk(() => [nix.thunk(() => nix.lookup(w, "cuda_crt"))])));
   })());
   const cuda_native_redist = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`cuda-native-redist-${cudaMajorMinorVersion}`),
       paths: nix.thunk(() => (() => {
         const w_1 = nix.withScope(cudaPackages, null);
@@ -71,17 +63,17 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   const cuda_redist = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`cuda-redist-${cudaMajorMinorVersion}`),
       paths: cuda_common_redist,
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "bitsandbytes",
       version: "0.49.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "bitsandbytes-foundation",
           repo: "bitsandbytes",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -124,7 +116,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_HIP_ARCHITECTURES", nix.thunk(() => nix.builtins.concatStringsSep(";", rocmGpuTargets)))),
         ])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           CUDA_HOME: cuda_native_redist,
           NVCC_PREPEND_FLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               nix.thunk(() => nix.str`-I${cuda_native_redist}/include`),
@@ -136,16 +128,16 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["bitsandbytes"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         cudaSupport: cudaSupport,
         cudaPackages: cudaPackages,
         rocmSupport: rocmSupport,
         rocmPackages: rocmPackages,
         brokenConditions: brokenConditions,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$6, ignoredVersions: "continuous-release.*" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[5], ignoredVersions: "continuous-release.*" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "8-bit CUDA functions for PyTorch",
         homepage: "https://github.com/bitsandbytes-foundation/bitsandbytes",
         changelog: nix.thunk(() => nix.str`https://github.com/bitsandbytes-foundation/bitsandbytes/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["postPatch", 25, 3], ["propagatedBuildInputs", 29, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, fetchFromGitLab: false, numpy: false, scipy: false, periodictable: false, fields: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["postPatch", 25, 3], ["propagatedBuildInputs", 29, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const periodictable = nix.arg($, "periodictable");
   const fields = nix.arg($, "fields");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "polarizationsolver",
       version: "unstable-2021-11-02",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "reinholdt",
           repo: "polarizationsolver",
           rev: "00424ac4d1862257a55e4b16543f63ace3fe8c22",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [fields]),
       pythonImportsCheck: nix.thunk(() => ["polarizationsolver"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Multipole moment solver for quantum chemistry and polarisable embedding",
         homepage: "https://gitlab.com/reinholdt/polarizationsolver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

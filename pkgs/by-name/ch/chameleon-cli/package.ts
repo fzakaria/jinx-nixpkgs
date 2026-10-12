@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["rootDir", 32, 5], ["hash", 33, 5]], [["extraArgs", 72, 5]], [["updateScript", 71, 12]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["cmakeFlags", 52, 3], ["installPhase", 57, 3], ["passthru", 71, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, makeWrapper: false, openssl: false, xz: false, python3: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["rootDir", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 71, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["cmakeFlags", 52, 3], ["installPhase", 57, 3], ["passthru", 71, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
       ]));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "chameleon-cli",
       version: "2.2.0-unstable-2026-10-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RfidResearchGroup",
           repo: "ChameleonUltra",
           rev: "5a4c8873981a22a2d3901fa63ac870069a732a49",
@@ -57,14 +53,14 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), python3)} $out/bin/chameleon-cli \
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version=branch", "--version-regex=v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command line interface for Chameleon Ultra",
         homepage: "https://github.com/RfidResearchGroup/ChameleonUltra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

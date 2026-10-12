@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]], [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 15, 11], ["version", 15, 17], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["nativeBuildInputs", 32, 3], ["preCheck", 35, 3], ["nativeCheckInputs", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchpatch: false, fetchPypi: false, "flit-core": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 11], ["version", 15, 17], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["nativeBuildInputs", 32, 3], ["preCheck", 35, 3], ["nativeCheckInputs", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const pname = "socksio";
   const version = "1.0.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-+IvrPaW1w4uYkEad5n0MsPnUlLeLEGyhhF+WwQuRxKw=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "unpin-flit-core.patch",
             url: "https://github.com/sethmlarson/socksio/commit/5c50fd76e7459bb822ff8f712172a78e21b8dd04.patch",
             hash: "sha256-VVUzFvF2KCXXkCfCU5xu9acT6OLr+PlQQPeVGONtU4A=",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm pytest.ini\n",
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sans-I/O implementation of SOCKS4, SOCKS4A, and SOCKS5",
         homepage: "https://github.com/sethmlarson/socksio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

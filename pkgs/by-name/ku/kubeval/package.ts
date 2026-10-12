@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]], [["description", 33, 5], ["mainProgram", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["vendorHash", 28, 3], ["doCheck", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["mainProgram", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["vendorHash", 28, 3], ["doCheck", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kubeval",
       version: "0.16.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "instrumenta",
           repo: "kubeval",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "bump-golang.org/x/sys.patch",
             url: "https://github.com/instrumenta/kubeval/commit/d64502b04d9e1b85fd3d5509049adb50f3e39954.patch",
             hash: "sha256-S/lgwdykFLU2QZRW927fgCPxaIAMK3vSqmH08pXBQxM=",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-R/vVrLsVSA9SGra4ytoHlQkPaIgQaj/XdivcQp8xjSM=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Validate your Kubernetes configuration files",
         mainProgram: "kubeval",
         homepage: "https://github.com/instrumenta/kubeval",

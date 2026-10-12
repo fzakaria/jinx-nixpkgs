@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["NIX_CFLAGS_COMPILE", 66, 7]], [["package", 77, 7], ["moduleNames", 78, 7]], [["pgroonga", 75, 34], ["pkg-config", 76, 5]], [["tests", 74, 12]], [["homepage", 83, 5], ["changelog", 84, 5], ["description", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5], ["mainProgram", 91, 5], ["longDescription", 92, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["env", 66, 3], ["strictDeps", 68, 3], ["__structuredAttrs", 69, 3], ["nativeInstallCheckInputs", 71, 3], ["doInstallCheck", 72, 3], ["passthru", 74, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchurl: false, kytea: false, libstemmer: false, "msgpack-c": false, mecab: false, "pkg-config": false, rapidjson: false, testers: false, xxhash: false, zstd: false, versionCheckHook: false, postgresqlPackages: false, suggestSupport: true, zeromq: false, libevent: false, lz4Support: true, lz4: false, zlibSupport: true, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 66, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 77, 7], ["moduleNames", 78, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pgroonga", 75, 34], ["pkg-config", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 74, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 83, 5], ["changelog", 84, 5], ["description", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5], ["mainProgram", 91, 5], ["longDescription", 92, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["env", 66, 3], ["strictDeps", 68, 3], ["__structuredAttrs", 69, 3], ["nativeInstallCheckInputs", 71, 3], ["doInstallCheck", 72, 3], ["passthru", 74, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const zlibSupport = nix.argOr($, "zlibSupport", () => true);
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "groonga",
       version: "16.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://packages.groonga.org/source/groonga/groonga-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-MxM6806HcFIsXoAJbrbZTsiMUwIBrsga1DCtcHP5Mgo=",
         })))),
@@ -51,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, mecab, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([rapidjson, xxhash, zstd, mecab, kytea, libstemmer, msgpack_c], nix.concat(nix.app(nix.sel(lib, "optionals"), lz4Support, nix.thunk(() => [lz4])), nix.concat(nix.app(nix.sel(lib, "optionals"), zlibSupport, nix.thunk(() => [zlib])), nix.app(nix.sel(lib, "optionals"), suggestSupport, nix.thunk(() => [zeromq, libevent])))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), zlibSupport, nix.thunk(() => nix.str`-I${nix.sel(zlib, "dev")}/include`))),
       })),
       strictDeps: true,
@@ -59,19 +53,19 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pgroonga: nix.thunk(() => nix.attr(postgresqlPackages, "pgroonga")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["groonga"]),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://groonga.org/",
         changelog: nix.thunk(() => nix.str`https://groonga.org/docs/news/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.html#release-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
         description: "Open-source fulltext search engine and column store",

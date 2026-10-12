@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]], [["homepage", 40, 5], ["description", 41, 5], ["mainProgram", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["cmakeFlags", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, boost: false, eigen: false, zlib: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["mainProgram", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["cmakeFlags", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "iqtree",
       version: "3.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "iqtree",
           repo: "iqtree3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([boost, eigen, zlib], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "openmp"))])))),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_CMAPLE", false))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://iqtree.github.io/",
         description: "Efficient and versatile phylogenomic software by maximum likelihood",
         mainProgram: "iqtree3",

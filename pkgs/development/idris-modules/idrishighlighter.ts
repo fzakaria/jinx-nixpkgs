@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/idrishighlighter.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["ipkgName", 12, 3], ["idrisDeps", 13, 3], ["src", 18, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { "build-idris-package": false, fetchFromGitHub: false, effects: false, lightyear: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/idrishighlighter.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/idrishighlighter.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/idrishighlighter.nix", [["pname", 9, 3], ["version", 10, 3], ["ipkgName", 12, 3], ["idrisDeps", 13, 3], ["src", 18, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const lightyear = nix.arg($, "lightyear");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "idrishighlighter",
       version: "2018-02-22",
       ipkgName: "idris-code-highlighter",
       idrisDeps: nix.thunk(() => [effects, lightyear]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "david-christiansen",
           repo: "idris-code-highlighter",
           rev: "708a29c7d1433adf7b0f69d1aec50e69b2915bba",
           sha256: "16ahzf2jzh7wzi4jjq94s5z9nzkgnj2962dy13s1crim53csjgw5",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Semantic highlighter for Idris code",
         homepage: "https://github.com/david-christiansen/idris-code-highlighter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

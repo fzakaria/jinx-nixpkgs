@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/deps.nix", [[["url", 9, 7], ["rev", 10, 7], ["hash", 11, 7]], [["name", 7, 5], ["path", 8, 5]]]);
 const formals$1 = { args: { linkFarm: false, fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/deps.nix", [["url", 9, 7], ["rev", 10, 7], ["hash", 11, 7]]);
-const pos$2 = nix.positions(here + "/deps.nix", [["name", 7, 5], ["path", 8, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(linkFarm, "zig-packages", nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "zzdoc-0.0.0-tzT1PjPfAAD6wsVuNRwwCStXJC5la08OkS3u4ra7fHpM",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/rockorager/zzdoc",
             rev: "98cdf8ba5ae2d01b4da0793dd43dd2f6d6b1e217",
             hash: "sha256-34FtjraFGbA+QcwiBolpFQoma1bscup/3+4RgkXVJEg=",

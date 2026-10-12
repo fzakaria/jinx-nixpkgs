@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 56, 5], ["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]], [["homepage", 154, 5], ["changelog", 155, 5], ["description", 156, 5], ["teams", 157, 5], ["license", 158, 5], ["platforms", 159, 5]], [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["strictDeps", 63, 3], ["__structuredAttrs", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 81, 3], ["nativeCheckInputs", 112, 3], ["mesonFlags", 120, 3], ["postPatch", 125, 3], ["doCheck", 132, 3], ["checkPhase", 134, 3], ["preFixup", 148, 3], ["meta", 153, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "pkg-config": false, gtk4: false, vala: false, enchant: false, wrapGAppsHook3: false, meson: false, ninja: false, "desktop-file-utils": false, "gnome-online-accounts": false, "gsettings-desktop-schemas": false, "adwaita-icon-theme": false, libpeas2: false, libsecret: false, gmime3: false, isocodes: false, icu: false, libxml2: false, gettext: false, sqlite: false, "json-glib": false, itstool: false, libgee: false, webkitgtk_6_0: false, python3: false, gnutls: false, cacert: false, "xvfb-run": false, glibcLocales: false, dbus: false, "shared-mime-info": false, libunwind: false, folks: false, "glib-networking": false, "gobject-introspection": false, gspell: false, libstemmer: false, libytnef: false, libhandy: false, gsound: false, cmake: false, gcr_4: false, libspelling: false, libadwaita: false, gst_all_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 56, 5], ["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 154, 5], ["changelog", 155, 5], ["description", 156, 5], ["teams", 157, 5], ["license", 158, 5], ["platforms", 159, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["strictDeps", 63, 3], ["__structuredAttrs", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 81, 3], ["nativeCheckInputs", 112, 3], ["mesonFlags", 120, 3], ["postPatch", 125, 3], ["doCheck", 132, 3], ["checkPhase", 134, 3], ["preFixup", 148, 3], ["meta", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,11 +55,11 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const gst_all_1 = nix.arg($, "gst_all_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "convey",
       version: "50.2-1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "donnybeelo",
           repo: "convey",
@@ -132,7 +130,7 @@ runHook postCheck
 `),
       preFixup: "# Add geary to path for geary-attach\ngappsWrapperArgs+=(--prefix PATH : \"$out/bin\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.gnome.org/donnybeelo/convey",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/donnybeelo/convey/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Mail client for GNOME 3",

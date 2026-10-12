@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["pname", 31, 7], ["version", 32, 7], ["debianRevision", 33, 7], ["patch", 34, 7], ["hash", 35, 7]], [["homepage", 59, 5], ["description", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["version", 19, 3], ["pname", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["postInstall", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchDebianPatch: false, glib: false, gtk3: false, gtksourceview3: false, gtkspell3: false, poppler: false, texlive: false, "pkg-config": false, intltool: false, autoreconfHook: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 31, 7], ["version", 32, 7], ["debianRevision", 33, 7], ["patch", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 19, 3], ["pname", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["postInstall", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "0.8.3",
       pname: "gummi",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alexandervdm",
           repo: "gummi",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: "gummi",
             version: "0.8.3+really0.8.3",
             debianRevision: "6",
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -Dpm644 COPYING $out/share/licenses/$name/COPYING\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gummi.app",
         description: "Simple LaTex editor for GTK users",
         mainProgram: "gummi",

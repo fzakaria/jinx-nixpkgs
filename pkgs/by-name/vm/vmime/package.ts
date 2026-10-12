@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 18, 3], ["version", 21, 3], ["src", 22, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 37, 3], ["cmakeFlags", 42, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gsasl: false, gnutls: false, "pkg-config": false, cmake: false, zlib: false, libtasn1: false, libgcrypt: false, gtk3: false, sendmailPath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 21, 3], ["src", 22, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 37, 3], ["cmakeFlags", 42, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const sendmailPath = nix.argOr($, "sendmailPath", () => "/run/wrappers/bin/sendmail");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vmime",
       version: "0-unstable-2025-07-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kisli",
           repo: "vmime",
           rev: "7046a4360bbeea21d1d8b5cfa4589bb4df7f980d",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, cmake]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DVMIME_SENDMAIL_PATH=${sendmailPath}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.vmime.org/",
         description: "Free mail library for C++",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

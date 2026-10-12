@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["ghidra", 47, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 50, 3], ["disabledTestPaths", 56, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, filelock: false, gitpython: false, libbs: false, "prompt-toolkit": false, pycparser: false, pyside6: false, "pytest-qt": false, pytestCheckHook: false, setuptools: false, sortedcontainers: false, toml: false, tqdm: false, wordfreq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ghidra", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 50, 3], ["disabledTestPaths", 56, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "binsync",
           repo: "binsync",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,12 +46,12 @@ export default nix.lambda((args) => (() => {
         tqdm,
         wordfreq,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, ghidra: nix.thunk(() => [pyside6]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], ghidra: nix.thunk(() => [pyside6]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_qt, pyside6]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_angr_gui.py"]);
       const pythonImportsCheck = nix.thunk(() => ["binsync"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Reversing plugin for cross-decompiler collaboration, built on git",
         homepage: "https://github.com/binsync/binsync",
         changelog: nix.thunk(() => nix.str`https://github.com/binsync/binsync/releases/tag/${nix.sel(src, "tag")}`),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

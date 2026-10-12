@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["url", 22, 7], ["hash", 23, 7], ["stripLen", 24, 7], ["extraPrefix", 25, 7]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["mainProgram", 44, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["installPhase", 32, 3], ["nativeInstallCheckInputs", 36, 3], ["doInstallCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, unzip: false, zlib: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 7], ["hash", 23, 7], ["stripLen", 24, 7], ["extraPrefix", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["mainProgram", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["installPhase", 32, 3], ["nativeInstallCheckInputs", 36, 3], ["doInstallCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "uif2iso",
       version: "0.1.7c",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://aluigi.altervista.org/mytoolz/uif2iso.zip",
           sha256: "1v18fmlzhkkhv8xdc9dyvl8vamwg3ka4dsrg7vvmk1f2iczdx3dp",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/app-cdr/uif2iso/files/uif2iso-0.1.7c-fix_c23.patch?id=80ed6e7c6b7b628e80f9f76d614c49f583ed5152",
             hash: "sha256-8b18Q6gGVd2pjQzRf17jhrYuaz86crHH26gOJy/krqk=",
             stripLen: 2n,
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool for converting single/multi part UIF image files to ISO",
         homepage: "http://aluigi.org/mytoolz.htm#uif2iso",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl1Plus")),

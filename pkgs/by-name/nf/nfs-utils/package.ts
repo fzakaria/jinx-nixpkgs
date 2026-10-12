@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 51, 5], ["hash", 52, 5]], [["url", 120, 7], ["sha256", 121, 7]], [["url", 124, 7], ["hash", 125, 7]], [["url", 128, 7], ["hash", 129, 7]], [["nfs3-simple", 194, 5], ["nfs4-simple", 195, 5], ["nfs4-kerberos", 196, 5]], [["tests", 193, 12], ["updateScript", 199, 12]], [["description", 202, 5], ["longDescription", 204, 5], ["changelog", 210, 5], ["homepage", 211, 5], ["license", 212, 5], ["platforms", 213, 5], ["maintainers", 214, 5]], [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["outputs", 57, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 71, 3], ["enableParallelBuilding", 90, 3], ["preConfigure", 92, 3], ["configureFlags", 98, 3], ["patches", 117, 3], ["postPatch", 133, 3], ["makeFlags", 150, 3], ["doInstallCheck", 157, 3], ["installFlags", 159, 3], ["stripDebugList", 164, 3], ["postInstall", 173, 3], ["doCheck", 189, 3], ["disallowedReferences", 191, 3], ["passthru", 193, 3], ["meta", 201, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, fetchpatch: false, lib: false, "pkg-config": false, "util-linux": false, libcap: false, libtirpc: false, libevent: false, libnl: false, sqlite: false, libkrb5: false, kmod: false, libuuid: false, keyutils: false, lvm2: false, systemdMinimal: false, coreutils: false, python3: false, buildPackages: false, nixosTests: false, "rpcsvc-proto": false, openldap: false, cyrus_sasl: false, libxml2: false, readline: false, udevCheckHook: false, enablePython: true, enableLdap: true, enableSystemd: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 120, 7], ["sha256", 121, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 124, 7], ["hash", 125, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 128, 7], ["hash", 129, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nfs3-simple", 194, 5], ["nfs4-simple", 195, 5], ["nfs4-kerberos", 196, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 193, 12], ["updateScript", 199, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 202, 5], ["longDescription", 204, 5], ["changelog", 210, 5], ["homepage", 211, 5], ["license", 212, 5], ["platforms", 213, 5], ["maintainers", 214, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["outputs", 57, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 71, 3], ["enableParallelBuilding", 90, 3], ["preConfigure", 92, 3], ["configureFlags", 98, 3], ["patches", 117, 3], ["postPatch", 133, 3], ["makeFlags", 150, 3], ["doInstallCheck", 157, 3], ["installFlags", 159, 3], ["stripDebugList", 164, 3], ["postInstall", 173, 3], ["doCheck", 189, 3], ["disallowedReferences", 191, 3], ["passthru", 193, 3], ["meta", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const enableSystemd = nix.argOr($, "enableSystemd", () => true);
   const statdPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([util_linux, coreutils], nix.app(nix.sel(lib, "optionals"), enableSystemd, nix.thunk(() => [systemdMinimal]))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "nfs-utils",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kernel/linux/utils/nfs-utils/${nix.sel(finalAttrs, "version")}/nfs-utils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-fbwF64sygosyKHK3WaYss5ectBGPNE3YYWgT0TkOhOA=",
         })))),
@@ -93,17 +86,17 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), enableLdap, "--enable-ldap"))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://raw.githubusercontent.com/alpinelinux/aports/cb880042d48d77af412d4688f24b8310ae44f55f/main/nfs-utils/musl-getservbyport.patch",
               sha256: "1fqws9dz8n1d9a418c54r11y3w330qgy2652dpwcy96cm44sqyhf",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://github.com/void-linux/void-packages/raw/31f0d5fef2f74999212bcfa6f982969973432750/srcpkgs/nfs-utils/patches/musl-includes.patch",
               hash: "sha256-dZEafrXDZH/IPo1u7B65u01nwFMfcqSMnVyHAapexa8=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: "https://github.com/void-linux/void-packages/raw/31f0d5fef2f74999212bcfa6f982969973432750/srcpkgs/nfs-utils/patches/musl-fix_long_unsigned_int.patch",
               hash: "sha256-wcQ2IRmlBP61qZVlXk6osi4UH8ETtjllVogPEaZNK9o=",
             })))),
@@ -136,9 +129,9 @@ sed -i \\
       doCheck: false,
       disallowedReferences: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getDev"), libkrb5))]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "nfs3-simple": nix.thunk(() => nix.sel(nixosTests, "nfs3", "simple")),
           "nfs4-simple": nix.thunk(() => nix.sel(nixosTests, "nfs4", "simple")),
           "nfs4-kerberos": nix.thunk(() => nix.sel(nixosTests, "nfs4", "kerberos")),
@@ -146,7 +139,7 @@ sed -i \\
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Linux user-space NFS utilities",
         longDescription: "This package contains various Linux user-space Network File\nSystem (NFS) utilities, including RPC `mount' and `nfs'\ndaemons.\n",
         changelog: nix.thunk(() => nix.str`https://www.kernel.org/pub/linux/utils/nfs-utils/${nix.sel(finalAttrs, "version")}/${nix.sel(finalAttrs, "version")}-Changelog`),

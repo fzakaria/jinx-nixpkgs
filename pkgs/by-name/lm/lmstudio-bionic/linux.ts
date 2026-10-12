@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["url", 15, 28], ["hash", 15, 32]], [["pname", 17, 54], ["version", 17, 60], ["src", 17, 68]], [["meta", 21, 5], ["pname", 22, 5], ["version", 23, 5], ["src", 24, 5], ["passthru", 25, 5], ["nativeBuildInputs", 28, 3], ["extraPkgs", 30, 3], ["extraInstallCommands", 32, 3]]]);
 const formals$1 = { args: { appimageTools: false, fetchurl: false, version: false, url: false, hash: false, pname: false, meta: false, stdenv: false, lib: false, passthru: false, graphicsmagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["url", 15, 28], ["hash", 15, 32]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["pname", 17, 54], ["version", 17, 60], ["src", 17, 68]]);
-const pos$3 = nix.positions(here + "/linux.nix", [["meta", 21, 5], ["pname", 22, 5], ["version", 23, 5], ["src", 24, 5], ["passthru", 25, 5], ["nativeBuildInputs", 28, 3], ["extraPkgs", 30, 3], ["extraInstallCommands", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,10 +18,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const passthru = nix.arg($, "passthru");
   const graphicsmagick = nix.arg($, "graphicsmagick");
-  const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, hash: hash }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, hash: hash }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       meta: meta,
       pname: pname,
       version: version,

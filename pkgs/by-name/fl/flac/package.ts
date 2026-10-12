@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["CFLAGS", 42, 5], ["CXXFLAGS", 46, 5]], [["updateScript", 63, 12]], [["homepage", 66, 5], ["description", 67, 5], ["changelog", 68, 5], ["mainProgram", 69, 5], ["platforms", 70, 5], ["license", 71, 5], ["maintainers", 77, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 21, 3], ["hardeningDisable", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["cmakeFlags", 37, 3], ["env", 41, 3], ["patches", 49, 3], ["doCheck", 50, 3], ["outputs", 52, 3], ["nativeInstallCheckInputs", 60, 3], ["doInstallCheck", 61, 3], ["passthru", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { cmake: false, doxygen: false, fetchurl: false, graphviz: false, lib: false, libogg: false, "nix-update-script": false, buildPackages: false, "pkg-config": false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS", 42, 5], ["CXXFLAGS", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["changelog", 68, 5], ["mainProgram", 69, 5], ["platforms", 70, 5], ["license", 71, 5], ["maintainers", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 21, 3], ["hardeningDisable", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["cmakeFlags", 37, 3], ["env", 41, 3], ["patches", 49, 3], ["doCheck", 50, 3], ["outputs", 52, 3], ["nativeInstallCheckInputs", 60, 3], ["doInstallCheck", 61, 3], ["passthru", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "flac",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.xiph.org/releases/flac/flac-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-8sHHZZKoL//4QTujxKEpm2x6sGxzTe4D/YhjBIXCuSA=",
         })))),
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libogg]),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))), nix.thunk(() => ["-DBUILD_SHARED_LIBS=ON"]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-O3", "-funroll-loops"]))),
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-O3"]))),
       })),
@@ -46,11 +42,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://xiph.org/flac/",
         description: "Library and tools for encoding and decoding the FLAC lossless audio file format",
         changelog: nix.thunk(() => nix.str`https://github.com/xiph/flac/releases/tag/${nix.sel(finalAttrs, "version")}`),

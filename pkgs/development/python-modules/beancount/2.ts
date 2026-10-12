@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/2.nix", [[["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5]], [["skipBulkUpdate", 54, 12]], [["homepage", 57, 5], ["description", 58, 5], ["longDescription", 59, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["version", 21, 3], ["format", 22, 3], ["pname", 23, 3], ["disabled", 25, 3], ["src", 27, 3], ["doCheck", 33, 3], ["propagatedBuildInputs", 35, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, isPy3k: false, beautifulsoup4: false, bottle: false, chardet: false, "python-dateutil": false, "google-api-python-client": false, "google-auth-oauthlib": false, lxml: false, oauth2client: false, ply: false, pytest: false, "python-magic": false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/2.nix", [["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/2.nix", [["skipBulkUpdate", 54, 12]]);
-const pos$3 = nix.positions(here + "/2.nix", [["homepage", 57, 5], ["description", 58, 5], ["longDescription", 59, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/2.nix", [["version", 21, 3], ["format", 22, 3], ["pname", 23, 3], ["disabled", 25, 3], ["src", 27, 3], ["doCheck", 33, 3], ["propagatedBuildInputs", 35, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "beancount";
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-gB+Tvta1fS4iQ2aIxInVob8fduIQ887RhoB1fmDTR1o=",
@@ -52,9 +49,9 @@ export default nix.lambda((args) => (() => {
         requests,
         pytest,
       ]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], skipBulkUpdate: true }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/beancount/beancount",
         description: "Double-entry bookkeeping computer language",
         longDescription: "A double-entry bookkeeping computer language that lets you define\nfinancial transaction records in a text file, read them in memory,\ngenerate a variety of reports from them, and provides a web interface.\n",
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version,
         format,
         pname,

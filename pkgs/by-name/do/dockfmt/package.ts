@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 28, 5], ["mainProgram", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["mainProgram", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dockfmt",
       version: "0.3.3-unstable-2020-09-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jessfraz",
           repo: "dockfmt",
           rev: "1455059b8bb53ab4723ef41946c43160583a8333",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/jessfraz/dockfmt/version.VERSION=${nix.sel(finalAttrs, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Dockerfile format",
         mainProgram: "dockfmt",
         homepage: "https://github.com/jessfraz/dockfmt",

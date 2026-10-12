@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 5], ["version", 19, 13], ["hash", 20, 5]], [["homepage", 39, 5], ["description", 40, 5], ["mainProgram", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 27, 3], ["preCheck", 33, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, requests: false, responses: false, pytestCheckHook: false, glibcLocalesUtf8: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 13], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 39, 5], ["description", 40, 5], ["mainProgram", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 27, 3], ["preCheck", 33, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "python_bugzilla",
           version: version,
           hash: "sha256-4YIgFx4DPrO6YAxNE5NZ0BqhrOwdrrxDCJEORQdj3kc=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, glibcLocalesUtf8, responses]);
       const preCheck = "mkdir -p check-phase\nexport HOME=$(pwd)/check-phase\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/python-bugzilla/python-bugzilla",
         description: "Bugzilla XMLRPC access module",
         mainProgram: "bugzilla",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

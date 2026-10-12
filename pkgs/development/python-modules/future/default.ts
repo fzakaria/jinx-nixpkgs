@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]], [["changelog", 37, 5], ["description", 38, 5], ["longDescription", 39, 5], ["homepage", 50, 5], ["downloadPage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["disabled", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["pythonImportsCheck", 26, 3], ["doCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pythonAtLeast: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 37, 5], ["description", 38, 5], ["longDescription", 39, 5], ["homepage", 50, 5], ["downloadPage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["disabled", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["pythonImportsCheck", 26, 3], ["doCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.13"));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-vSloMJMHhh7a4UWKT4pPNZjAO+Q7l1IQdq6/XZTAewU=",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/PythonCharmers/python-future/blob/v${version}/docs/whatsnew.rst`),
         description: "Clean single-source support for Python 3 and 2",
         longDescription: "python-future is the missing compatibility layer between Python 2 and\nPython 3. It allows you to use a single, clean Python 3.x-compatible\ncodebase to support both Python 2 and Python 3 with minimal overhead.\n\nIt provides future and past packages with backports and forward ports\nof features from Python 3 and 2. It also comes with futurize and\npasteurize, customized 2to3-based scripts that helps you to convert\neither Py2 or Py3 code easily to support both Python 2 and 3 in a\nsingle clean Py3-style codebase, module by module.\n",
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

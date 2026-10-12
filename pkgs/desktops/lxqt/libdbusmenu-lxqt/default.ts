@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["updateScript", 31, 12]], [["broken", 34, 5], ["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["teams", 39, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["passthru", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, qtbase: false, wrapQtAppsHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 31, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["broken", 34, 5], ["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["teams", 39, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["passthru", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libdbusmenu-lxqt";
       const version = "0.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxqt",
           repo: "libdbusmenu-lxqt",
           rev: version,
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake, wrapQtAppsHook]);
       const buildInputs = nix.thunk(() => [qtbase]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Qt implementation of the DBusMenu protocol",
         homepage: "https://github.com/lxqt/libdbusmenu-lxqt",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

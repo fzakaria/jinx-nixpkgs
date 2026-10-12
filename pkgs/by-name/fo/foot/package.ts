@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 7], ["hash", 43, 7]], [["name", 39, 5], ["src", 41, 5], ["dontUnpack", 46, 5], ["buildInputs", 48, 5], ["installPhase", 50, 5]], [["clang", 77, 7], ["gcc", 78, 7]], [["clang", 86, 7], ["gcc", 87, 7], ["unknown", 88, 7]], [["owner", 103, 5], ["repo", 104, 5], ["tag", 105, 5], ["hash", 106, 5]], [["CFLAGS", 141, 7]], [["stdenv", 206, 30]], [["allowPgo", 210, 7]], [["name", 217, 7]], [["clang-default-compilation", 205, 5], ["noPgo", 209, 5], ["stimulus-script-is-current", 216, 5]], [["stimulusGenerator", 201, 24], ["updateScript", 202, 12], ["tests", 204, 12]], [["homepage", 222, 5], ["changelog", 223, 5], ["description", 224, 5], ["license", 225, 5], ["maintainers", 226, 5], ["platforms", 230, 5], ["mainProgram", 231, 5]], [["pname", 99, 3], ["version", 100, 11], ["src", 102, 3], ["separateDebugInfo", 109, 3], ["depsBuildBuild", 111, 3], ["nativeBuildInputs", 115, 3], ["buildInputs", 127, 3], ["env", 141, 3], ["preConfigure", 144, 3], ["mesonBuildType", 148, 3], ["mesonFlags", 151, 3], ["preBuild", 168, 3], ["postInstall", 187, 3], ["doCheck", 191, 3], ["strictDeps", 193, 3], ["outputs", 195, 3], ["passthru", 201, 3], ["meta", 221, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromCodeberg: false, fetchurl: false, runCommand: false, fcft: false, freetype: false, pixman: false, libxkbcommon: false, fontconfig: false, wayland: false, meson: false, ninja: false, ncurses: false, scdoc: false, tllist: false, "wayland-protocols": false, "wayland-scanner": false, "pkg-config": false, utf8proc: false, allowPgo: true, python3: false, foot: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 7], ["hash", 43, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 39, 5], ["src", 41, 5], ["dontUnpack", 46, 5], ["buildInputs", 48, 5], ["installPhase", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["clang", 77, 7], ["gcc", 78, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["clang", 86, 7], ["gcc", 87, 7], ["unknown", 88, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 103, 5], ["repo", 104, 5], ["tag", 105, 5], ["hash", 106, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["CFLAGS", 141, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["stdenv", 206, 30]]);
-const pos$8 = nix.positions(here + "/package.nix", [["allowPgo", 210, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 217, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["clang-default-compilation", 205, 5], ["noPgo", 209, 5], ["stimulus-script-is-current", 216, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["stimulusGenerator", 201, 24], ["updateScript", 202, 12], ["tests", 204, 12]]);
-const pos$12 = nix.positions(here + "/package.nix", [["homepage", 222, 5], ["changelog", 223, 5], ["description", 224, 5], ["license", 225, 5], ["maintainers", 226, 5], ["platforms", 230, 5], ["mainProgram", 231, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 99, 3], ["version", 100, 11], ["src", 102, 3], ["separateDebugInfo", 109, 3], ["depsBuildBuild", 111, 3], ["nativeBuildInputs", 115, 3], ["buildInputs", 127, 3], ["env", 141, 3], ["preConfigure", 144, 3], ["mesonBuildType", 148, 3], ["mesonFlags", 151, 3], ["preBuild", 168, 3], ["postInstall", 187, 3], ["doCheck", 191, 3], ["strictDeps", 193, 3], ["outputs", 195, 3], ["passthru", 201, 3], ["meta", 221, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,10 +33,10 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const version = "1.28.0";
   const stimulusGenerator = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "foot-generate-alt-random-writes",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://codeberg.org/dnkl/foot/raw/tag/${version}/scripts/generate-alt-random-writes.py`),
           hash: "sha256-RUCG4EK9+aXe+EKvFYv6/JzQBglGZHyaEpr63v8akW4=",
         })))),
@@ -67,19 +55,19 @@ export default nix.lambda((args) => (() => {
 `)));
   const compilerName = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? "clang" : (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? "gcc" : "unknown")));
   const pgoCflags = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     clang: "-O3 -Wno-ignored-optimization-argument",
     gcc: "-O3",
   }, nix.key(nix.str`${compilerName}`)));
-  const ar = nix.thunk(() => nix.add(nix.sel(stdenv, "cc", "bintools", "targetPrefix"), nix.sel({ [nix.POS]: pos$4, clang: "llvm-ar", gcc: "gcc-ar", unknown: "ar" }, nix.key(nix.str`${compilerName}`))));
+  const ar = nix.thunk(() => nix.add(nix.sel(stdenv, "cc", "bintools", "targetPrefix"), nix.sel({ [nix.POS]: $pos[3], clang: "llvm-ar", gcc: "gcc-ar", unknown: "ar" }, nix.key(nix.str`${compilerName}`))));
   const doPgo = nix.thunk(() => (nix.asBool((nix.asBool(allowPgo) && nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))))) && nix.asBool(!nix.eq(compilerName, "unknown"))));
   const terminfoDir = nix.thunk(() => nix.str`${nix.builtins.placeholder("terminfo")}/share/terminfo`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "foot",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "dnkl",
           repo: "foot",
           tag: version,
@@ -100,7 +88,7 @@ export default nix.lambda((args) => (() => {
         utf8proc,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         CFLAGS: nix.thunk(() => (nix.asBool(!nix.asBool(doPgo)) ? "-O3" : nix.force(pgoCflags))),
       })),
       preConfigure: nix.thunk(() => nix.str`export AR="${ar}"
@@ -130,21 +118,24 @@ meson configure -Db_pgo=use
       strictDeps: true,
       outputs: nix.thunk(() => ["out", "terminfo", "themes"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         stimulusGenerator: stimulusGenerator,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$10,
-          "clang-default-compilation": nix.thunk(() => nix.app(nix.sel(foot, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, stdenv: nix.thunk(() => nix.attr(llvmPackages, "stdenv")) })))),
-          noPgo: nix.thunk(() => nix.app(nix.sel(foot, "override"), nix.thunk(() => ({ [nix.POS]: pos$8, allowPgo: false })))),
+          [nix.POS]: $pos[9],
+          "clang-default-compilation": nix.thunk(() => nix.app(nix.sel(foot, "override"), nix.thunk(() => ({
+              [nix.POS]: $pos[6],
+              stdenv: nix.thunk(() => nix.attr(llvmPackages, "stdenv")),
+            })))),
+          noPgo: nix.thunk(() => nix.app(nix.sel(foot, "override"), nix.thunk(() => ({ [nix.POS]: $pos[7], allowPgo: false })))),
           "stimulus-script-is-current": nix.thunk(() => nix.app(nix.sel(stimulusGenerator, "src", "overrideAttrs"), (_) => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               name: nix.thunk(() => nix.str`generate-alt-random-writes-${version}.py`),
             }))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         homepage: "https://codeberg.org/dnkl/foot/",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/dnkl/foot/releases/tag/${version}`),
         description: "Fast, lightweight and minimalistic Wayland terminal emulator",

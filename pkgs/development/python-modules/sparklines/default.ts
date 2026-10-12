@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]], [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["maintainers", 42, 5], ["license", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 22, 3], ["nativeCheckInputs", 27, 3], ["pythonImportsCheck", 29, 3], ["postPatch", 31, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, termcolor: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["maintainers", 42, 5], ["license", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 22, 3], ["nativeCheckInputs", 27, 3], ["pythonImportsCheck", 29, 3], ["postPatch", 31, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "deeplook",
           repo: "sparklines",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["sparklines"]);
       const postPatch = "export TMPDIR=$PWD/tmp\nmkdir -p $TMPDIR\nsubstituteInPlace tests/test_sparkline.py \\\n  --replace-fail \"/tmp/\" \"$TMPDIR/\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "This Python package implements Edward Tufte's concept of sparklines, but limited to text only",
         mainProgram: "sparklines",
         homepage: "https://github.com/deeplook/sparklines",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

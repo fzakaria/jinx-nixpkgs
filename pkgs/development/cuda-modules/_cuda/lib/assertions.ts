@@ -2,17 +2,16 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/assertions.nix", [[["message", 135, 7], ["assertion", 136, 7]], [["_evaluateAssertions", 16, 3], ["_mkFailedAssertionsString", 67, 3], ["_mkMissingPackagesAssertions", 129, 3]]]);
 const formals$1 = { args: { _cuda: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { assertion: false, message: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/assertions.nix", [["message", 135, 7], ["assertion", 136, 7]]);
-const pos$2 = nix.positions(here + "/assertions.nix", [["_evaluateAssertions", 16, 3], ["_mkFailedAssertionsString", 67, 3], ["_mkMissingPackagesAssertions", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const _cuda = nix.arg($, "_cuda");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     _evaluateAssertions: (assertions) => (() => {
       const failedAssertionsString = nix.thunk(() => nix.app(nix.sel(_cuda, "lib", "_mkFailedAssertionsString"), assertions));
       return (nix.asBool(nix.eq(failedAssertionsString, "")) ? true : nix.app(nix.sel(lib, "addErrorContext"), nix.thunk(() => nix.str`with failed assertions:${failedAssertionsString}`), false));
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (value) => nix.eq(value, null))),
         nix.thunk(() => nix.sel(lib, "attrNames")),
         nix.thunk(() => nix.app(nix.sel(lib, "map"), (name) => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             message: nix.thunk(() => nix.str`${name} is available`),
             assertion: false,
           }))),

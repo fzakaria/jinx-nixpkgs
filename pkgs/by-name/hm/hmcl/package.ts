@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableJavaFX", 16, 5]], [["enableJavaFX", 20, 5]], [["url", 58, 5], ["hash", 59, 5]], [["name", 72, 5], ["url", 73, 5], ["hash", 74, 5]], [["name", 77, 5], ["url", 78, 5], ["hash", 79, 5]], [["TERRACOTTA_BIN", 93, 7]], [["name", 123, 7], ["exec", 124, 7], ["icon", 125, 7], ["comment", 126, 7], ["desktopName", 127, 7], ["categories", 128, 7]], [["updateScript", 200, 12]], [["homepage", 203, 5], ["description", 204, 5], ["changelog", 205, 5], ["mainProgram", 206, 5], ["sourceProvenance", 207, 5], ["license", 211, 5], ["longDescription", 212, 5], ["maintainers", 226, 5], ["platforms", 231, 28]], [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["terracottaBundleJava", 71, 3], ["macOSProviderJava", 76, 3], ["terracottaBundleJavaPath", 81, 3], ["macOSProviderJavaPath", 82, 3], ["dontUnpack", 84, 3], ["prePatch", 86, 3], ["patches", 91, 3], ["buildPhase", 98, 3], ["dontWrapGApps", 119, 3], ["desktopItems", 121, 3], ["nativeBuildInputs", 132, 3], ["runtimeDeps", 143, 3], ["installPhase", 165, 3], ["postFixup", 188, 3], ["passthru", 200, 3], ["meta", 202, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, replaceVars: false, terracotta: false, makeDesktopItem: false, makeWrapper: false, wrapGAppsHook3: false, copyDesktopItems: false, desktopToDarwinBundle: false, jdk: false, jdk25: false, hmclJdk: true, buildPackages: false, hmclJdkBuild: true, minecraftJdks: true, libxxf86vm: false, libxtst: false, libxrandr: false, libxext: false, libxcursor: false, libxkbcommon: false, libx11: false, xrandr: false, glib: false, libGL: false, glfw3: false, "glfw3-minecraft": false, openal: false, libglvnd: false, "alsa-lib": false, wayland: false, "vulkan-loader": false, libpulseaudio: false, "gobject-introspection": false, callPackage: false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableJavaFX", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enableJavaFX", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 58, 5], ["hash", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 72, 5], ["url", 73, 5], ["hash", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 77, 5], ["url", 78, 5], ["hash", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["TERRACOTTA_BIN", 93, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 123, 7], ["exec", 124, 7], ["icon", 125, 7], ["comment", 126, 7], ["desktopName", 127, 7], ["categories", 128, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 200, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 203, 5], ["description", 204, 5], ["changelog", 205, 5], ["mainProgram", 206, 5], ["sourceProvenance", 207, 5], ["license", 211, 5], ["longDescription", 212, 5], ["maintainers", 226, 5], ["platforms", 231, 28]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["terracottaBundleJava", 71, 3], ["macOSProviderJava", 76, 3], ["terracottaBundleJavaPath", 81, 3], ["macOSProviderJavaPath", 82, 3], ["dontUnpack", 84, 3], ["prePatch", 86, 3], ["patches", 91, 3], ["buildPhase", 98, 3], ["dontWrapGApps", 119, 3], ["desktopItems", 121, 3], ["nativeBuildInputs", 132, 3], ["runtimeDeps", 143, 3], ["installPhase", 165, 3], ["postFixup", 188, 3], ["passthru", 200, 3], ["meta", 202, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,9 +19,9 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const jdk = nix.arg($, "jdk");
   const jdk25 = nix.arg($, "jdk25");
-  const hmclJdk = nix.argOr($, "hmclJdk", () => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
+  const hmclJdk = nix.argOr($, "hmclJdk", () => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableJavaFX: true }))));
   const buildPackages = nix.arg($, "buildPackages");
-  const hmclJdkBuild = nix.argOr($, "hmclJdkBuild", () => nix.app(nix.sel(buildPackages, "jdk", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableJavaFX: true }))));
+  const hmclJdkBuild = nix.argOr($, "hmclJdkBuild", () => nix.app(nix.sel(buildPackages, "jdk", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], enableJavaFX: true }))));
   const minecraftJdks = nix.argOr($, "minecraftJdks", () => [hmclJdk, jdk25]);
   const libxxf86vm = nix.arg($, "libxxf86vm");
   const libxtst = nix.arg($, "libxtst");
@@ -55,22 +46,22 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const glfw3$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.force(glfw3_minecraft) : nix.force(glfw3)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "hmcl",
       version: "3.16.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/HMCL-dev/HMCL/releases/download/v${nix.sel(finalAttrs, "version")}/HMCL-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-mPASPzjoamBqpYP3TSGudBKGeekh6n7AxDqyYwN2fp4=",
         })))),
       terracottaBundleJava: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: nix.thunk(() => nix.str`hmcl-terracotta-bundle-java-${nix.sel(finalAttrs, "version")}`),
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/HMCL-dev/HMCL/v${nix.sel(finalAttrs, "version")}/${nix.sel(finalAttrs, "terracottaBundleJavaPath")}`),
           hash: "sha256-dZHRim/7VNW0/nA6I8r3t5zGfzIMxG2lzdZ//dzv2Gs=",
         })))),
       macOSProviderJava: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: nix.thunk(() => nix.str`hmcl-macos-provider-java-${nix.sel(finalAttrs, "version")}`),
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/HMCL-dev/HMCL/v${nix.sel(finalAttrs, "version")}/${nix.sel(finalAttrs, "macOSProviderJavaPath")}`),
           hash: "sha256-7vI2U8vx3GYwlshoHJF/J8n2RS6TZ/cvoAivqYtW23Q=",
@@ -81,7 +72,7 @@ export default nix.lambda((args) => (() => {
       prePatch: "install -Dm644 $terracottaBundleJava $terracottaBundleJavaPath\ninstall -Dm644 $macOSProviderJava $macOSProviderJavaPath\n",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-nix-use-terracotta-from-nix.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             TERRACOTTA_BIN: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), terracotta)),
           })))),
         nix.path(here, "./0002-nix-skip-terracotta-existence-check-on-darwin.patch"),
@@ -90,7 +81,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "HMCL",
             exec: "hmcl",
             icon: "hmcl",
@@ -129,13 +120,13 @@ export default nix.lambda((args) => (() => {
   \${gappsWrapperArgs[@]}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hmclJdk, "meta"));
         return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://hmcl.huangyuhui.net",
         description: "Minecraft Launcher which is multi-functional, cross-platform and popular",
         changelog: "https://docs.hmcl.net/changelog/stable.html",

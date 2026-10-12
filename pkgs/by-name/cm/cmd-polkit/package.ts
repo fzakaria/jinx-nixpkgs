@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5], ["platforms", 47, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, glib: false, cmake: false, "json-glib": false, polkit: false, gtk3: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cmd-polkit",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OmarCastro",
           repo: "cmd-polkit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, cmake, pkg_config, ninja]),
       buildInputs: nix.thunk(() => [json_glib, glib, polkit, gtk3]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Easily create polkit authentication agents by using commands",
         homepage: "https://github.com/OmarCastro/cmd-polkit",
         changelog: nix.thunk(() => nix.str`https://github.com/OmarCastro/cmd-polkit/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG`),

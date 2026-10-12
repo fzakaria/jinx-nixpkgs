@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["TARGET", 64, 5]], [["snapcast", 79, 18]], [["tests", 79, 12]], [["description", 82, 5], ["homepage", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5], ["license", 86, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["env", 63, 3], ["cmakeFlags", 67, 3], ["postInstall", 74, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, "alsa-lib": false, asio: false, avahi: false, boost: false, expat: false, flac: false, libogg: false, libvorbis: false, libopus: false, soxr: false, aixlog: false, popl: false, config: false, pulseaudioSupport: true, pipewireSupport: true, libpulseaudio: false, pipewire: false, nixosTests: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["TARGET", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["snapcast", 79, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 79, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5], ["license", 86, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["env", 63, 3], ["cmakeFlags", 67, 3], ["postInstall", 74, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "snapcast",
       version: "0.35.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "snapcast",
           repo: "snapcast",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,18 +57,21 @@ export default nix.lambda((args) => (() => {
         soxr,
         openssl,
       ], nix.concat(nix.app(nix.sel(lib, "optional"), pulseaudioSupport, libpulseaudio), nix.concat(nix.app(nix.sel(lib, "optional"), pipewireSupport, pipewire), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), alsa_lib))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, TARGET: "MACOS" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[1], TARGET: "MACOS" })))),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_WITH_PULSE", pulseaudioSupport)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_WITH_PIPEWIRE", pipewireSupport)),
       ]),
       postInstall: "install -d $out/share/doc/snapcast\ncp -r ../doc/* ../*.md $out/share/doc/snapcast\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, snapcast: nix.thunk(() => nix.sel(nixosTests, "snapcast")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          snapcast: nix.thunk(() => nix.sel(nixosTests, "snapcast")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Synchronous multi-room audio player",
         homepage: "https://github.com/snapcast/snapcast",
         maintainers: nix.thunk(() => (() => {

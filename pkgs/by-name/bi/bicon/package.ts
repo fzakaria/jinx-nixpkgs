@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 47, 5], ["platforms", 48, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 30, 3], ["preConfigure", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, perl: false, fribidi: false, kbd: false, xkbutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 30, 3], ["preConfigure", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const kbd = nix.arg($, "kbd");
   const xkbutils = nix.arg($, "xkbutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bicon",
       version: "0.5-unstable-2024-01-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "behdad",
           repo: "bicon",
           rev: "48720c0f22197d4d5f7b0f5162a3d8f071e6e8a8",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       preConfigure: "patchShebangs .\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bidirectional console",
         homepage: "https://github.com/behdad/bicon",
         license: nix.thunk(() => (() => {

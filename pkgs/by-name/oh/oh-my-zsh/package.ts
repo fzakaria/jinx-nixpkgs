@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["oh-my-zsh", 90, 36]], [["tests", 90, 5], ["updateScript", 92, 5]], [["description", 121, 5], ["longDescription", 122, 5], ["homepage", 130, 5], ["license", 131, 5], ["platforms", 132, 5]], [["version", 22, 3], ["pname", 23, 3], ["src", 25, 3], ["strictDeps", 32, 3], ["buildInputs", 33, 3], ["installPhase", 35, 3], ["passthru", 89, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nixosTests: false, writeScript: false, "common-updater-scripts": false, git: false, nix: false, jq: false, coreutils: false, gnused: false, curl: false, cacert: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["oh-my-zsh", 90, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 90, 5], ["updateScript", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 121, 5], ["longDescription", 122, 5], ["homepage", 130, 5], ["license", 131, 5], ["platforms", 132, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 22, 3], ["pname", 23, 3], ["src", 25, 3], ["strictDeps", 32, 3], ["buildInputs", 33, 3], ["installPhase", 35, 3], ["passthru", 89, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026-08-16";
       const pname = "oh-my-zsh";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ohmyzsh",
           repo: "ohmyzsh",
           rev: "97e11051e2f8053b1d694788d1cb4b0dbb1e2365",
@@ -39,9 +35,9 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [bash]);
       const installPhase = "runHook preInstall\n\noutdir=$out/share/oh-my-zsh\ntemplate=templates/zshrc.zsh-template\n\nmkdir -p $outdir\ncp -r * $outdir\ncd $outdir\n\nrm LICENSE.txt\nrm -rf .git*\n\nchmod -R +w templates\n\n# Change the path to oh-my-zsh dir and disable auto-updating.\nsed -i -e \"s#ZSH=\\\"\\$HOME/.oh-my-zsh\\\"#ZSH=\\\"$outdir\\\"#\" \\\n       -e 's/\\# \\(DISABLE_AUTO_UPDATE=\"true\"\\)/\\1/' \\\n $template\n\nchmod +w oh-my-zsh.sh\n\n# Both functions expect oh-my-zsh to be in ~/.oh-my-zsh and try to\n# modify the directory.\ncat >> oh-my-zsh.sh <<- EOF\n\n# Undefine functions that don't work on Nix.\nunfunction uninstall_oh_my_zsh\nunfunction upgrade_oh_my_zsh\nEOF\n\n# Look for .zsh_variables, .zsh_aliases, and .zsh_funcs, and source\n# them, if found.\ncat >> $template <<- EOF\n\n# Load the variables.\nif [ -f ~/.zsh_variables ]; then\n    . ~/.zsh_variables\nfi\n\n# Load the functions.\nif [ -f ~/.zsh_funcs ]; then\n  . ~/.zsh_funcs\nfi\n\n# Load the aliases.\nif [ -f ~/.zsh_aliases ]; then\n    . ~/.zsh_aliases\nfi\nEOF\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "oh-my-zsh": nix.thunk(() => nix.attr(nixosTests, "oh-my-zsh")),
         })),
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}
@@ -60,7 +56,7 @@ fi
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Framework for managing your zsh configuration",
         longDescription: "Oh My Zsh is a framework for managing your zsh configuration.\n\nTo copy the Oh My Zsh configuration file to your home directory, run\nthe following command:\n\n  $ cp -v $(nix-env -q --out-path oh-my-zsh | cut -d' ' -f3)/share/oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc\n",
         homepage: "https://ohmyz.sh/",
@@ -68,7 +64,7 @@ fi
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version,
         pname,
         src,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["all", 47, 5], ["full", 52, 5], ["lite", 56, 5]], [["updateScript", 95, 12]], [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 40, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 59, 3], ["pythonImportsCheck", 70, 3], ["disabledTests", 72, 3], ["passthru", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, configupdater: false, distutils: false, fetchFromGitHub: false, "nix-update-script": false, packaging: false, "pytest-cov-stub": false, "pytest-randomly": false, "pytest-xdist": false, pytestCheckHook: false, "setuptools-scm": false, setuptools: false, "tomli-w": false, tomli: false, tomlkit: false, "validate-pyproject": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 47, 5], ["full", 52, 5], ["lite", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 95, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 40, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 59, 3], ["pythonImportsCheck", 70, 3], ["disabledTests", 72, 3], ["passthru", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const tomlkit = nix.arg($, "tomlkit");
   const validate_pyproject = nix.arg($, "validate-pyproject");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ini2toml",
       version: "0.16",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "abravalheri",
           repo: "ini2toml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [distutils, packaging, setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [configupdater, tomli_w, tomlkit]),
         full: nix.thunk(() => [configupdater, tomlkit]),
         lite: nix.thunk(() => [tomli_w]),
@@ -77,11 +73,11 @@ export default nix.lambda((args) => (() => {
           ], examples));
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Automatically conversion of .ini/.cfg files to TOML equivalents",
         homepage: "https://github.com/abravalheri/ini2toml",
         changelog: nix.thunk(() => nix.str`https://github.com/abravalheri/ini2toml/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.rst`),

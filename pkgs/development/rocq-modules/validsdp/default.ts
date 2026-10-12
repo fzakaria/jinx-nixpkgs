@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cases", 24, 9], ["out", 28, 17]], [["hash", 40, 13]], [["hash", 41, 13]], [["1.1.0", 40, 5], ["1.1.1", 41, 5]], [["libvalidsdp", 47, 5], ["validsdp", 48, 5]], [["case", 76, 11], ["out", 77, 11]], [["case", 80, 11], ["out", 81, 11]], [["description", 113, 11], ["license", 114, 11]], [["version", 88, 11], ["pname", 89, 11], ["defaultVersion", 90, 11], ["release", 91, 11], ["releaseRev", 92, 11], ["repo", 93, 11], ["owner", 94, 11], ["namePrefix", 97, 9], ["mlPlugin", 101, 9], ["propagatedBuildInputs", 103, 9], ["preBuild", 108, 9], ["meta", 112, 9], ["passthru", 117, 9]]]);
 const formals$1 = { args: { coq: false, mkCoqDerivation: false, mathcomp: false, bignums: false, flocq: false, coquelicot: false, interval: false, "mathcomp-reals-stdlib": false, multinomials: false, coqeal: false, lib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cases", 24, 9], ["out", 28, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 40, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 41, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["1.1.0", 40, 5], ["1.1.1", 41, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["libvalidsdp", 47, 5], ["validsdp", 48, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["case", 76, 11], ["out", 77, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["case", 80, 11], ["out", 81, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 113, 11], ["license", 114, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["version", 88, 11], ["pname", 89, 11], ["defaultVersion", 90, 11], ["release", 91, 11], ["releaseRev", 92, 11], ["repo", 93, 11], ["owner", 94, 11], ["namePrefix", 97, 9], ["mlPlugin", 101, 9], ["propagatedBuildInputs", 103, 9], ["preBuild", 108, 9], ["meta", 112, 9], ["passthru", 117, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const owner = "validsdp";
   const version_1 = version;
   const defaultVersion = nix.thunk(() => (() => {
-    const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
+    const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: $pos[0], cases: nix.thunk(() => [coq_1, mc]), out: out });
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
     return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
         nix.thunk(() => nix.sel(coq, "coq-version")),
@@ -42,19 +34,19 @@ export default nix.lambda((args) => (() => {
       ]), null);
   })());
   const release = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "1.1.0": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       hash: "sha256-lbESAFBEBpOShNFh6RZQYPLRhdqYvdKBrxJOMy2L+Ws=",
     })),
     "1.1.1": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       hash: "sha256-B+Gy16WjBqqNHvjLE6nBV/ulfDVZUWwA5FO07XnqC60=",
     })),
   }));
   const releaseRev = (v) => nix.str`v${v}`;
   const packages = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     libvalidsdp: [],
     validsdp: nix.thunk(() => ["libvalidsdp"]),
   }));
@@ -80,12 +72,12 @@ export default nix.lambda((args) => (() => {
     ]);
     const intra_deps = nix.thunk(() => nix.builtins.map(validsdp_, nix.thunk(() => nix.sel(packages, nix.key(nix.force(package$))))));
     const pkgpath = nix.thunk(() => nix.app(nix.sel(lib, "switch"), package$, nix.thunk(() => [
-        nix.thunk(() => ({ [nix.POS]: pos$6, case: "libvalidsdp", out: "libvalidsdp" })),
-        nix.thunk(() => ({ [nix.POS]: pos$7, case: "validsdp", out: "." })),
+        nix.thunk(() => ({ [nix.POS]: $pos[5], case: "libvalidsdp", out: "libvalidsdp" })),
+        nix.thunk(() => ({ [nix.POS]: $pos[6], case: "validsdp", out: "." })),
       ]), package$));
     const pname = package$;
     const derivation = nix.thunk(() => nix.app(mkCoqDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         version: version_1,
         pname: pname,
         defaultVersion: defaultVersion,
@@ -99,7 +91,7 @@ export default nix.lambda((args) => (() => {
         preBuild: nix.thunk(() => nix.str`cd ${pkgpath}
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           description: "ValidSDP",
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         })),

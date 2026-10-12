@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["GRAPHITE_NO_PREFIX", 79, 5], ["REDIS_HOST", 81, 5]], [["graphite", 120, 26]], [["tests", 119, 12]], [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["broken", 131, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["dependencies", 57, 3], ["pythonRelaxDeps", 71, 3], ["env", 76, 3], ["nativeCheckInputs", 84, 3], ["preCheck", 91, 3], ["checkPhase", 98, 3], ["postCheck", 111, 3], ["__darwinAllowLocalNetworking", 115, 3], ["pythonImportsCheck", 117, 3], ["passthru", 119, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pkgs: false, buildPythonPackage: false, fetchFromGitHub: false, cairocffi: false, django: false, "django-tagging": false, gunicorn: false, pyparsing: false, "python-memcached": false, pytz: false, six: false, txamqp: false, urllib3: false, whisper: false, mock: false, redis: false, rrdtool: false, writableTmpDirAsHomeHook: false, python: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["GRAPHITE_NO_PREFIX", 79, 5], ["REDIS_HOST", 81, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["graphite", 120, 26]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 119, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["broken", 131, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["dependencies", 57, 3], ["pythonRelaxDeps", 71, 3], ["env", 76, 3], ["nativeCheckInputs", 84, 3], ["preCheck", 91, 3], ["checkPhase", 98, 3], ["postCheck", 111, 3], ["__darwinAllowLocalNetworking", 115, 3], ["pythonImportsCheck", 117, 3], ["passthru", 119, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "graphite-web",
       version: "1.1.10-unstable-2025-02-24",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "graphite-project",
           repo: "graphite-web",
           rev: "49c28e2015d605ad9ec93524f7076dd924a4731a",
@@ -61,7 +56,7 @@ export default nix.lambda((args) => (() => {
         whisper,
       ]),
       pythonRelaxDeps: nix.thunk(() => ["django", "django-tagging"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GRAPHITE_NO_PREFIX: "True", REDIS_HOST: "127.0.0.1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], GRAPHITE_NO_PREFIX: "True", REDIS_HOST: "127.0.0.1" })),
       nativeCheckInputs: nix.thunk(() => [mock, redis, rrdtool, writableTmpDirAsHomeHook]),
       preCheck: nix.thunk(() => nix.str`${nix.sel(pkgs, "valkey")}/bin/redis-server &
 REDIS_PID=$!
@@ -81,14 +76,14 @@ runHook postCheck
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["graphite"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           graphite: nix.thunk(() => nix.attr(nixosTests, "graphite")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Enterprise scalable realtime graphing",
         homepage: "http://graphiteapp.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

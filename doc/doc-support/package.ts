@@ -2,21 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["visible", 31, 9]], [["url", 43, 11], ["name", 44, 11]], [["declarations", 49, 29]], [["modules", 52, 34]], [["options", 52, 95], ["transformOptions", 53, 7]], [["meta-maintainers", 51, 18]], [["generic", 51, 10]], [["src", 63, 7], ["filter", 64, 7]], [["buildArgs", 161, 13], ["open", 162, 13]], [["packages", 167, 11]], [["manpage-urls", 176, 9]], [["lib-docs", 150, 7], ["epub", 152, 7], ["optionsDoc", 154, 7], ["pythonInterpreterTable", 156, 7], ["shell", 158, 7], ["tests", 174, 7]], [["license", 180, 10]], [["version", 57, 5], ["pname", 58, 5], ["nativeBuildInputs", 60, 5], ["src", 62, 5], ["postPatch", 81, 5], ["buildPhase", 88, 5], ["installPhase", 130, 5], ["passthru", 149, 5], ["meta", 180, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, callPackage: false, devmode: false, mkShellNoCC: false, "documentation-highlighter": false, "nixos-render-docs": false, "nixos-render-docs-redirects": false, writeShellScriptBin: false, nixpkgs: true, "markdown-code-runner": false, roboto: false, treefmt: false, nixosOptionsDoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["visible", 31, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 43, 11], ["name", 44, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["declarations", 49, 29]]);
-const pos$4 = nix.positions(here + "/package.nix", [["modules", 52, 34]]);
-const pos$5 = nix.positions(here + "/package.nix", [["options", 52, 95], ["transformOptions", 53, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["meta-maintainers", 51, 18]]);
-const pos$7 = nix.positions(here + "/package.nix", [["generic", 51, 10]]);
-const pos$8 = nix.positions(here + "/package.nix", [["src", 63, 7], ["filter", 64, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["buildArgs", 161, 13], ["open", 162, 13]]);
-const pos$10 = nix.positions(here + "/package.nix", [["packages", 167, 11]]);
-const pos$11 = nix.positions(here + "/package.nix", [["manpage-urls", 176, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["lib-docs", 150, 7], ["epub", 152, 7], ["optionsDoc", 154, 7], ["pythonInterpreterTable", 156, 7], ["shell", 158, 7], ["tests", 174, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["license", 180, 10]]);
-const pos$14 = nix.positions(here + "/package.nix", [["version", 57, 5], ["pname", 58, 5], ["nativeBuildInputs", 60, 5], ["src", 62, 5], ["postPatch", 81, 5], ["buildPhase", 88, 5], ["installPhase", 130, 5], ["passthru", 149, 5], ["meta", 180, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const lib_docs = nix.thunk(() => nix.attr(from_1, "lib-docs"));
       const pythonInterpreterTable = nix.thunk(() => nix.attr(from_1, "pythonInterpreterTable"));
       const hide_lib = (opt) => nix.update(opt, {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         visible: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "all"), (decl) => nix.eq(decl, "lib/modules.nix"), nix.thunk(() => nix.sel(opt, "declarations")))) ? false : nix.sel(opt, "visible"))),
       });
       const toURL = (decl) => (() => {
@@ -50,26 +37,26 @@ export default nix.lambda((args) => (() => {
         const root = nix.thunk(() => nix.builtins.toString(nix.path(here, "../..")));
         const subpath = nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "/", nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), root, declStr))));
         return (nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), root, declStr)) ? {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/NixOS/nixpkgs/blob/master/${subpath}`),
           name: nix.thunk(() => nix.str`nixpkgs/${subpath}`),
         } : nix.force(decl));
       })();
       const mapURLs = (opt) => nix.update(opt, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         declarations: nix.thunk(() => nix.builtins.map(toURL, nix.thunk(() => nix.sel(opt, "declarations")))),
       });
       const docs = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         generic: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "meta-maintainers": nix.thunk(() => nix.app(nixosOptionsDoc, nix.thunk(() => (() => {
               const from_2 = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   modules: nix.thunk(() => [nix.path(here, "../../modules/generic/meta-maintainers.nix")]),
                 }))));
               return {
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               options: nix.thunk(() => nix.attr(from_2, "options")),
               transformOptions: (opt) => nix.app(hide_lib, nix.thunk(() => nix.app(mapURLs, opt))),
             };
@@ -77,12 +64,12 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       return {
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
         pname: "nixpkgs-manual",
         nativeBuildInputs: nix.thunk(() => [nixos_render_docs]),
         src: nix.thunk(() => nix.app(nix.sel(lib, "cleanSourceWith"), nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             src: nix.path(here, "../."),
             filter: (path) => (type) => (nix.asBool((nix.asBool((nix.asBool(nix.eq(type, "directory")) || nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".md", path)))) || nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".md.in", path)))) || nix.asBool(nix.app(nix.sel(lib, "elem"), path, nix.thunk(() => nix.builtins.map(nix.builtins.toString, nix.thunk(() => [
                   nix.path(here, "../style.css"),
@@ -156,29 +143,32 @@ echo "doc manual $dest nixpkgs-manual.epub" >> $out/nix-support/hydra-build-prod
 runHook postInstall
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           "lib-docs": nix.thunk(() => nix.app(callPackage, nix.path(here, "./lib-function-docs.nix"), nix.thunk(() => ({})))),
           epub: nix.thunk(() => nix.app(callPackage, nix.path(here, "./epub.nix"), nix.thunk(() => ({})))),
           optionsDoc: nix.thunk(() => nix.app(callPackage, nix.path(here, "./options-doc.nix"), nix.thunk(() => ({})))),
           pythonInterpreterTable: nix.thunk(() => nix.app(callPackage, nix.path(here, "./python-interpreter-table.nix"), nix.thunk(() => ({})))),
           shell: nix.thunk(() => (() => {
             const devmode$ = nix.thunk(() => nix.app(nix.sel(devmode, "override"), nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 buildArgs: nix.thunk(() => nix.builtins.toString(nix.path(here, "../."))),
                 open: "/share/doc/nixpkgs/index.html",
               }))));
             const nixos_render_docs_redirects$ = nix.thunk(() => nix.app(writeShellScriptBin, "redirects", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nixos_render_docs_redirects)} --file '${nix.builtins.toString(nix.path(here, "../redirects.json"))}' "$@"`)));
             return nix.app(mkShellNoCC, nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 packages: nix.thunk(() => [devmode$, nixos_render_docs_redirects$, markdown_code_runner]),
               })));
           })()),
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             "manpage-urls": nix.thunk(() => nix.app(callPackage, nix.path(here, "../tests/manpage-urls.nix"), nix.thunk(() => ({})))),
           })),
         })),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$13, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[12],
+          license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+        })),
       };
     })());
 })(), formals$1);

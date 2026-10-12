@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["fetchSubmodules", 25, 5]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5], ["platforms", 63, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 28, 3], ["buildFeatures", 30, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 40, 3], ["postInstall", 49, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, dbus: false, openssl: false, gtk4: false, "gtk4-layer-shell": false, mimalloc: false, glib: false, "pkg-config": false, wrapGAppsHook4: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["fetchSubmodules", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5], ["platforms", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 28, 3], ["buildFeatures", 30, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 40, 3], ["postInstall", 49, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dynisland",
       version: "0.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cr3eperall",
           repo: "dynisland",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "installShellCompletion --cmd dynisland \\\n  --bash ./target/dynisland.bash \\\n  --fish ./target/dynisland.fish \\\n  --zsh ./target/_dynisland\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Dynamic and extensible GTK4 layer-shell, written in Rust",
         homepage: "https://github.com/cr3eperall/dynisland",
         changelog: nix.thunk(() => nix.str`https://github.com/cr3eperall/dynisland/releases/tag/${nix.sel(finalAttrs, "version")}`),

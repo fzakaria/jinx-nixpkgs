@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["atari", 63, 5], ["butterfly", 67, 5], ["classic", 71, 5], ["mpe", 78, 5], ["other", 79, 5], ["sisl", 83, 5]], [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5]], [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["__structuredAttrs", 43, 3], ["src", 45, 3], ["build-system", 52, 3], ["dependencies", 56, 3], ["optional-dependencies", 62, 3], ["pythonImportsCheck", 94, 3], ["nativeCheckInputs", 96, 3], ["disabledTestPaths", 109, 3], ["disabledTests", 116, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, setuptools: false, gymnasium: false, numpy: false, "typing-extensions": false, "pygame-ce": false, pymunk: false, chess: false, rlcard: false, shimmy: false, moviepy: false, pillow: false, scipy: false, pybox2d: false, swig: false, "pytest-markdown-docs": false, "pytest-xdist": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["atari", 63, 5], ["butterfly", 67, 5], ["classic", 71, 5], ["mpe", 78, 5], ["other", 79, 5], ["sisl", 83, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["__structuredAttrs", 43, 3], ["src", 45, 3], ["build-system", 52, 3], ["dependencies", 56, 3], ["optional-dependencies", 62, 3], ["pythonImportsCheck", 94, 3], ["nativeCheckInputs", 96, 3], ["disabledTestPaths", 109, 3], ["disabledTests", 116, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pettingzoo",
       version: "1.27.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Farama-Foundation",
           repo: "PettingZoo",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [gymnasium, numpy, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         atari: nix.thunk(() => [pygame_ce]),
         butterfly: nix.thunk(() => [pygame_ce, pymunk]),
         classic: nix.thunk(() => [chess, pygame_ce, rlcard, shimmy]),
@@ -80,7 +77,7 @@ export default nix.lambda((args) => (() => {
         "test_rgb_array_render_does_not_init_audio",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_multi_episode_parallel_env_wrapper"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "API standard for multi-agent reinforcement learning environments, with popular reference environments and related utilities",
         homepage: "https://github.com/Farama-Foundation/PettingZoo",
         changelog: nix.thunk(() => nix.str`https://github.com/Farama-Foundation/PettingZoo/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

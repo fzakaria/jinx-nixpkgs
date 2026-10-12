@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 21, 3], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, eigen: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 21, 3], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const eigen = nix.arg($, "eigen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "orocos-kdl",
       version: "1.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "orocos",
           repo: "orocos_kinematics_dynamics",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       propagatedBuildInputs: nix.thunk(() => [eigen]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Kinematics and Dynamics Library",
         homepage: "https://www.orocos.org/kdl.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

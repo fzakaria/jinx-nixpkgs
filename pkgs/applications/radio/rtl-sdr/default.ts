@@ -2,20 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["longDescription", 50, 24], ["homepage", 50, 40], ["description", 51, 9], ["license", 52, 9], ["maintainers", 53, 9], ["platforms", 58, 9], ["mainProgram", 59, 9]], [["version", 19, 15], ["pname", 19, 23], ["src", 19, 29], ["outputs", 21, 7], ["nativeBuildInputs", 26, 7], ["propagatedBuildInputs", 31, 7], ["cmakeFlags", 33, 7], ["doInstallCheck", 38, 7], ["postPatch", 40, 7], ["meta", 49, 7]], [["domain", 69, 7], ["owner", 70, 7], ["repo", 71, 7], ["rev", 72, 7], ["hash", 73, 7]], [["longDescription", 76, 7], ["homepage", 77, 7]], [["pname", 65, 5], ["version", 66, 5], ["src", 68, 5], ["meta", 75, 5]], [["owner", 86, 7], ["repo", 87, 7], ["rev", 88, 7], ["hash", 89, 7]], [["longDescription", 92, 7], ["homepage", 96, 7]], [["pname", 82, 5], ["version", 83, 5], ["src", 85, 5], ["meta", 91, 5]], [["owner", 105, 7], ["repo", 106, 7], ["rev", 107, 7], ["hash", 108, 7]], [["longDescription", 111, 7], ["homepage", 115, 7]], [["pname", 101, 5], ["version", 102, 5], ["src", 104, 5], ["meta", 110, 5]], [["rtl-sdr-osmocom", 64, 3], ["rtl-sdr-librtlsdr", 81, 3], ["rtl-sdr-blog", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitea: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, libusb1: false }, ellipsis: false };
 const formals$2 = { args: { version: false, pname: false, src: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["longDescription", 50, 24], ["homepage", 50, 40], ["description", 51, 9], ["license", 52, 9], ["maintainers", 53, 9], ["platforms", 58, 9], ["mainProgram", 59, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 19, 15], ["pname", 19, 23], ["src", 19, 29], ["outputs", 21, 7], ["nativeBuildInputs", 26, 7], ["propagatedBuildInputs", 31, 7], ["cmakeFlags", 33, 7], ["doInstallCheck", 38, 7], ["postPatch", 40, 7], ["meta", 49, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["domain", 69, 7], ["owner", 70, 7], ["repo", 71, 7], ["rev", 72, 7], ["hash", 73, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["longDescription", 76, 7], ["homepage", 77, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 65, 5], ["version", 66, 5], ["src", 68, 5], ["meta", 75, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["owner", 86, 7], ["repo", 87, 7], ["rev", 88, 7], ["hash", 89, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["longDescription", 92, 7], ["homepage", 96, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 82, 5], ["version", 83, 5], ["src", 85, 5], ["meta", 91, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["owner", 105, 7], ["repo", 106, 7], ["rev", 107, 7], ["hash", 108, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["longDescription", 111, 7], ["homepage", 115, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 101, 5], ["version", 102, 5], ["src", 104, 5], ["meta", 110, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["rtl-sdr-osmocom", 64, 3], ["rtl-sdr-librtlsdr", 81, 3], ["rtl-sdr-blog", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const meta = nix.arg($_1, "meta");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version: version,
         pname: pname,
         src: src,
@@ -50,7 +39,7 @@ substituteInPlace rtl-sdr.rules \\
   --replace 'MODE:="0666"' 'ENV{ID_SOFTWARE_RADIO}="1", MODE="0660", GROUP="plugdev"'
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           longDescription: nix.thunk(() => nix.attr(meta, "longDescription")),
           homepage: nix.thunk(() => nix.attr(meta, "homepage")),
           description: "Software to turn the RTL2832U into a SDR receiver",
@@ -69,12 +58,12 @@ substituteInPlace rtl-sdr.rules \\
       })));
   })(), formals$2);
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     "rtl-sdr-osmocom": nix.thunk(() => nix.app(generic, nix.thunk(() => (() => {
         const pname = "rtl-sdr-osmocom";
         const version = "2.0.1";
         const src = nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             domain: "gitea.osmocom.org",
             owner: "sdr",
             repo: "rtl-sdr",
@@ -82,45 +71,45 @@ substituteInPlace rtl-sdr.rules \\
             hash: "sha256-+RYSCn+wAkb9e7NRI5kLY8a6OXtJu7QcSUht1R6wDX0=",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           longDescription: "Rtl-sdr library by the Osmocom project",
           homepage: "https://gitea.osmocom.org/sdr/rtl-sdr",
         }));
-        return { [nix.POS]: pos$5, pname, version, src, meta };
+        return { [nix.POS]: $pos[4], pname, version, src, meta };
       })()))),
     "rtl-sdr-librtlsdr": nix.thunk(() => nix.app(generic, nix.thunk(() => (() => {
         const pname = "rtl-sdr-librtlsdr";
         const version = "0.9.0";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             owner: "librtlsdr",
             repo: "librtlsdr",
             rev: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-I1rbywQ0ZBw26wZdtMBkfpj7+kv09XKrrcoDuhIkRmw=",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           longDescription: "Fork of the rtl-sdr library by the Osmocom project. A list of differences\ncan be found here: https://github.com/librtlsdr/librtlsdr/blob/master/README_improvements.md\n",
           homepage: "https://github.com/librtlsdr/librtlsdr",
         }));
-        return { [nix.POS]: pos$8, pname, version, src, meta };
+        return { [nix.POS]: $pos[7], pname, version, src, meta };
       })()))),
     "rtl-sdr-blog": nix.thunk(() => nix.app(generic, nix.thunk(() => (() => {
         const pname = "rtl-sdr-blog";
         const version = "1.3.5";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             owner: "rtlsdrblog",
             repo: "rtl-sdr-blog",
             rev: version,
             hash: "sha256-7FpT+BoQ2U8KiKwX4NfEwrO3lMBti7RX8uKtT5dFH8M=",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           longDescription: "Fork of the rtl-sdr library by the Osmocom project. A list of differences\ncan be found here: https://github.com/rtlsdrblog/rtl-sdr-blog/blob/master/README\n",
           homepage: "https://github.com/rtlsdrblog/rtl-sdr-blog",
         }));
-        return { [nix.POS]: pos$11, pname, version, src, meta };
+        return { [nix.POS]: $pos[10], pname, version, src, meta };
       })()))),
   };
 })(), formals$1);

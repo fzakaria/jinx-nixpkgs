@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]], [["IODATA_VERSION", 75, 7]], [["updateScript", 77, 12]], [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["teams", 84, 5], ["platforms", 85, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 39, 3], ["strictDeps", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 65, 3], ["dontWrapQtApps", 69, 3], ["postConfigure", 71, 3], ["env", 75, 3], ["passthru", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, gitUpdater: false, bison: false, flex: false, qmake: false, "pkg-config": false, libxcrypt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["IODATA_VERSION", 75, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 77, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["teams", 84, 5], ["platforms", 85, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 39, 3], ["strictDeps", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 65, 3], ["dontWrapQtApps", 69, 3], ["postConfigure", 71, 3], ["env", 75, 3], ["passthru", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libiodata",
       version: "0.19.14",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sailfishos",
           repo: "libiodata",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-libiodata-Fix-dependencies-between-sub-projects.patch",
             url: "https://github.com/sailfishos/libiodata/commit/85517a9f2103e461cbb69dc195335df73b7a8b7e.patch",
             hash: "sha256-qrRZ1Af5uBJvEoRHifgUSeVHFC5RATDsL3374CmoUDc=",
@@ -49,15 +44,15 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       postConfigure: "make qmake_all\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         IODATA_VERSION: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Library for reading and writing simple structured data",
         homepage: "https://github.com/sailfishos/libiodata",
         changelog: nix.thunk(() => nix.str`https://github.com/sailfishos/libiodata/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dirsearch-native.nix", [[["pname", 24, 7], ["version", 25, 7], ["src", 26, 7], ["sourceRoot", 27, 7], ["hash", 29, 5]], [["description", 44, 5], ["homepage", 46, 7], ["changelog", 47, 7], ["license", 48, 7], ["maintainers", 49, 7]], [["pname", 10, 3], ["version", 15, 3], ["disabled", 17, 3], ["src", 19, 11], ["sourceRoot", 20, 3], ["cargoDeps", 22, 3], ["pyproject", 32, 3], ["build-system", 33, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, rustPlatform: false, pythonOlder: false, src: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dirsearch-native.nix", [["pname", 24, 7], ["version", 25, 7], ["src", 26, 7], ["sourceRoot", 27, 7], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/dirsearch-native.nix", [["description", 44, 5], ["homepage", 46, 7], ["changelog", 47, 7], ["license", 48, 7], ["maintainers", 49, 7]]);
-const pos$3 = nix.positions(here + "/dirsearch-native.nix", [["pname", 10, 3], ["version", 15, 3], ["disabled", 17, 3], ["src", 19, 11], ["sourceRoot", 20, 3], ["cargoDeps", 22, 3], ["pyproject", 32, 3], ["build-system", 33, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const meta = nix.arg($, "meta");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dirsearch-native",
       version: "0.1.0",
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.14")),
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/native`),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "cargoCheckHook"))]),
       pythonImportsCheck: nix.thunk(() => ["dirsearch_native"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Rust native backend for dirsearch",
         homepage: nix.thunk(() => nix.attr(meta, "homepage")),
         changelog: nix.thunk(() => nix.attr(meta, "changelog")),

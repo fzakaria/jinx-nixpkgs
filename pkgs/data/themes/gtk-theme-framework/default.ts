@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["installPhase", 27, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, theme: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["installPhase", 27, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gtk-theme-framework";
       const version = "0.2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jaxwilko",
           repo: "gtk-theme-framework",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,12 +30,12 @@ mkdir -p $out/share/themes
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jaxwilko/gtk-theme-framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         maintainers: [],
       }));
-      return { [nix.POS]: pos$3, pname, version, src, postPatch, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, postPatch, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

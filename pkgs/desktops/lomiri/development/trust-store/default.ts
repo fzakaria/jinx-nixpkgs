@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["name", 51, 7], ["url", 52, 7], ["hash", 53, 7]], [["name", 63, 7], ["url", 64, 7], ["hash", 65, 7]], [["pkg-config", 141, 11]], [["tests", 141, 5], ["updateScript", 142, 5]], [["description", 146, 5], ["homepage", 147, 5], ["license", 148, 5], ["teams", 149, 5], ["platforms", 150, 5], ["pkgConfigModules", 151, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["outputs", 41, 3], ["patches", 48, 3], ["postPatch", 69, 3], ["strictDeps", 83, 3], ["nativeBuildInputs", 85, 3], ["buildInputs", 94, 3], ["nativeCheckInputs", 107, 3], ["checkInputs", 111, 3], ["dontWrapQtApps", 115, 3], ["cmakeFlags", 117, 3], ["doCheck", 131, 3], ["preCheck", 133, 3], ["enableParallelChecking", 138, 3], ["passthru", 140, 3], ["meta", 145, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, fetchpatch: false, gitUpdater: false, testers: false, boost186: false, cmake: false, "cmake-extras": false, dbus: false, "dbus-cpp": false, doxygen: false, gettext: false, glog: false, graphviz: false, gtest: false, libapparmor: false, newt: false, "pkg-config": false, "process-cpp": false, "properties-cpp": false, qtbase: false, qtdeclarative: false, validatePkgConfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 51, 7], ["url", 52, 7], ["hash", 53, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 63, 7], ["url", 64, 7], ["hash", 65, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pkg-config", 141, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 141, 5], ["updateScript", 142, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 146, 5], ["homepage", 147, 5], ["license", 148, 5], ["teams", 149, 5], ["platforms", 150, 5], ["pkgConfigModules", 151, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["outputs", 41, 3], ["patches", 48, 3], ["postPatch", 69, 3], ["strictDeps", 83, 3], ["nativeBuildInputs", 85, 3], ["buildInputs", 94, 3], ["nativeCheckInputs", 107, 3], ["checkInputs", 111, 3], ["dontWrapQtApps", 115, 3], ["cmakeFlags", 117, 3], ["doCheck", 131, 3], ["preCheck", 133, 3], ["enableParallelChecking", 138, 3], ["passthru", 140, 3], ["meta", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "trust-store",
       version: "2.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/trust-store",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,14 +45,14 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "doc", "bin"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-trust-store-Fix-boost-184-compat.patch",
             url: "https://gitlab.com/ubports/development/core/trust-store/-/commit/569f6b35d8bcdb2ae5ff84549cd92cfc0899675b.patch",
             hash: "sha256-3lrdVIzscXGiLKwftC5oECICVv3sBoS4UedfRHx7uOs=",
           })))),
         nix.path(here, "./1001-treewide-Switch-to-glog-CMake-module.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "1002-trust-store-CMakeLists.txt-Bump-minimum-version-to-3.10.patch",
             url: "https://gitlab.com/ubports/development/core/trust-store/-/commit/64bc51f45e1407f16d389120508c2bcddf9e0d5b.patch",
             hash: "sha256-+ZkTQd6wphd29dTmEIBI7nADFjPQD5012/FVFOtdGbI=",
@@ -98,15 +92,15 @@ substituteInPlace src/core/trust/terminal_agent.h \\
       preCheck: "export XDG_DATA_HOME=$TMPDIR\n",
       enableParallelChecking: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Common implementation of a trust store to be used by trusted helpers",
         homepage: "https://gitlab.com/ubports/development/core/trust-store",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["owner", 9, 3], ["domain", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dependencies", 20, 3], ["dontCheckManifest", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildHomeAssistantComponent: false, defusedxml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 9, 3], ["domain", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dependencies", 20, 3], ["dontCheckManifest", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const domain = "dwd";
       const version = "2026.10.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hg1337",
           repo: "homeassistant-dwd",
           rev: version,
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [defusedxml]);
       const dontCheckManifest = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Custom component for Home Assistant that integrates weather data (measurements and forecasts) of Deutscher Wetterdienst",
         homepage: "https://github.com/hg1337/homeassistant-dwd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner,
         domain,
         version,

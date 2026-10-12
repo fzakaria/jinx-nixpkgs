@@ -2,23 +2,22 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["changelog", 11, 7], ["description", 12, 7], ["homepage", 13, 7], ["license", 14, 7], ["maintainers", 15, 7], ["platforms", 16, 7]], [["version", 6, 26], ["pname", 6, 34], ["src", 7, 3], ["meta", 9, 3]]]);
 const formals$1 = { args: { vimUtils: false, taskwarrior3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["changelog", 11, 7], ["description", 12, 7], ["homepage", 13, 7], ["license", 14, 7], ["maintainers", 15, 7], ["platforms", 16, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 6, 26], ["pname", 6, 34], ["src", 7, 3], ["meta", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const vimUtils = nix.arg($, "vimUtils");
   const taskwarrior3 = nix.arg($, "taskwarrior3");
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(taskwarrior3, "version")),
       pname: nix.thunk(() => nix.attr(taskwarrior3, "pname")),
       src: nix.thunk(() => nix.str`${nix.sel(taskwarrior3, "src")}/scripts/vim`),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(taskwarrior3, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

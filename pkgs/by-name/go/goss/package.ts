@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["CGO_ENABLED", 29, 7]], [["command", 56, 9], ["package", 57, 9], ["version", 58, 9]], [["goss", 54, 28], ["version", 55, 7]], [["tests", 53, 5], ["updateScript", 61, 5]], [["homepage", 65, 5], ["changelog", 66, 5], ["description", 67, 5], ["longDescription", 68, 5], ["license", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["platforms", 80, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["env", 29, 3], ["ldflags", 31, 3], ["nativeBuildInputs", 37, 3], ["postInstall", 39, 3], ["passthru", 52, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { bash: false, buildGoModule: false, fetchFromGitHub: false, getent: false, goss: false, lib: false, makeWrapper: false, "nix-update-script": false, nixosTests: false, stdenv: false, systemd: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["command", 56, 9], ["package", 57, 9], ["version", 58, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["goss", 54, 28], ["version", 55, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 53, 5], ["updateScript", 61, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["changelog", 66, 5], ["description", 67, 5], ["longDescription", 68, 5], ["license", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["platforms", 80, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["env", 29, 3], ["ldflags", 31, 3], ["nativeBuildInputs", 37, 3], ["postInstall", 39, 3], ["passthru", 52, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const pname = "goss";
       const version = "0.4.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "goss-org",
           repo: "goss",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-4DCPPeTL2x6mMpcP/cdyQWpqehGWkk7MWM7P93WzwCA=",
         }))));
       const vendorHash = "sha256-NlOS5APp9R45QpYKwP673pmN7CR+Ufz8LxWyMkrVeq0=";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n }));
       const ldflags = nix.thunk(() => [
         "-s",
         "-w",
@@ -50,12 +44,12 @@ export default nix.lambda((args) => (() => {
 `;
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           goss: nix.thunk(() => nix.attr(nixosTests, "goss")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               command: "goss --version",
               package: goss,
               version: nix.thunk(() => nix.str`v${version}`),
@@ -64,7 +58,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/goss-org/goss/",
         changelog: nix.thunk(() => nix.str`https://github.com/goss-org/goss/releases/tag/v${version}`),
         description: "Quick and easy server validation",
@@ -82,7 +76,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

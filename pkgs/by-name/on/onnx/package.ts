@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["BUILD_SHARED_LIBS", 84, 5], ["ONNX_BUILD_TESTS", 86, 5], ["ONNX_ML", 89, 5], ["ONNX_NAMESPACE", 90, 5], ["ONNX_USE_PROTOBUF_SHARED_LIBS", 91, 5], ["nanobind_DIR", 93, 5]], [["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["changelog", 137, 5], ["maintainers", 138, 5]], [["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["outputs", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 64, 3], ["cmakeBuildDir", 73, 3], ["env", 76, 3], ["cmakeFlags", 96, 3], ["preConfigure", 98, 3], ["preBuild", 104, 3], ["doCheck", 119, 3], ["checkInputs", 121, 3], ["preCheck", 123, 3], ["postInstall", 128, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromGitHub: false, cmake: false, ninja: false, protobuf: false, gtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["BUILD_SHARED_LIBS", 84, 5], ["ONNX_BUILD_TESTS", 86, 5], ["ONNX_ML", 89, 5], ["ONNX_NAMESPACE", 90, 5], ["ONNX_USE_PROTOBUF_SHARED_LIBS", 91, 5], ["nanobind_DIR", 93, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["changelog", 137, 5], ["maintainers", 138, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["outputs", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 64, 3], ["cmakeBuildDir", 73, 3], ["env", 76, 3], ["cmakeFlags", 96, 3], ["preConfigure", 98, 3], ["preBuild", 104, 3], ["doCheck", 119, 3], ["checkInputs", 121, 3], ["preCheck", 123, 3], ["postInstall", 128, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const python = nix.thunk(() => nix.attr(python3Packages, "python"));
   const scikit_build_core = nix.thunk(() => nix.attr(python3Packages, "scikit-build-core"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       __structuredAttrs: true,
       strictDeps: true,
       pname: "onnx",
       version: "1.23.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "onnx",
           repo: "onnx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [protobuf, nix.thunk(() => nix.sel(python3Packages, "protobuf"))]),
       cmakeBuildDir: "build-cpp",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         BUILD_SHARED_LIBS: "0",
         ONNX_BUILD_TESTS: nix.thunk(() => (nix.asBool(nix.sel(finalAttrs, "finalPackage", "doCheck")) ? "1" : "0")),
         ONNX_ML: "1",
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "nixLog \"running C++ tests with $PWD/onnx_gtests\"\n\"$PWD/onnx_gtests\"\n",
       postInstall: "nixLog \"removing empty directories in $out/include/onnx\"\nfind \"$out/include/onnx\" -type d -empty -delete\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open Neural Network Exchange",
         homepage: "https://onnx.ai",
         license: nix.thunk(() => nix.sel(licenses, "asl20")),

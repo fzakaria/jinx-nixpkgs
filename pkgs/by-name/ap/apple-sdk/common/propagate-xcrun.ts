@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/propagate-xcrun.nix", [[["lib", 11, 13], ["stdenvNoCC", 11, 17], ["sdkVersion", 11, 28], ["xcodePlatform", 12, 5]], [["propagatedNativeBuildInputs", 17, 3], ["postInstall", 19, 3]]]);
 const formals$1 = { args: { lib: false, pkgsBuildHost: false, stdenv: false, stdenvNoCC: false, sdkVersion: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/propagate-xcrun.nix", [["lib", 11, 13], ["stdenvNoCC", 11, 17], ["sdkVersion", 11, 28], ["xcodePlatform", 12, 5]]);
-const pos$2 = nix.positions(here + "/propagate-xcrun.nix", [["propagatedNativeBuildInputs", 17, 3], ["postInstall", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const sdkVersion = nix.arg($, "sdkVersion");
   const plists = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plists.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       lib: lib,
       stdenvNoCC: stdenvNoCC,
       sdkVersion: sdkVersion,
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const cctools = nix.thunk(() => nix.attr(pkgsBuildHost, "cctools"));
   const xcbuild = nix.thunk(() => nix.attr(pkgsBuildHost, "xcbuild"));
   return (self) => (super$) => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     propagatedNativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(super$, () => [], "propagatedNativeBuildInputs"), [nix.thunk(() => nix.sel(xcbuild, "xcrun"))])),
     postInstall: nix.thunk(() => nix.add(nix.selOr(super$, () => "", "postInstall"), nix.str`specspath=$out/Library/Xcode/Specifications
 toolchainsPath=$out/Toolchains/XcodeDefault.xctoolchain

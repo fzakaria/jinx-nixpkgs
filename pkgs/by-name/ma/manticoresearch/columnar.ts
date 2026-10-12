@@ -2,25 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/columnar.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["owner", 29, 7], ["repo", 30, 7], ["rev", 31, 7], ["hash", 32, 7]], [["description", 39, 7], ["homepage", 40, 7], ["license", 41, 7], ["platforms", 42, 7]], [["pname", 26, 5], ["version", 27, 5], ["src", 28, 5], ["nativeBuildInputs", 34, 5], ["meta", 38, 5]], [["owner", 49, 7], ["repo", 50, 7], ["rev", 51, 7], ["hash", 52, 7]], [["description", 63, 7], ["homepage", 64, 7], ["license", 65, 7], ["platforms", 66, 7]], [["pname", 46, 5], ["version", 47, 5], ["src", 48, 5], ["nativeBuildInputs", 54, 5], ["postPatch", 59, 5], ["meta", 62, 5]], [["owner", 73, 7], ["repo", 74, 7], ["rev", 75, 7], ["hash", 76, 7]], [["NIX_CFLAGS_COMPILE", 83, 9]], [["description", 89, 7], ["homepage", 90, 7], ["license", 91, 7], ["platforms", 92, 7]], [["pname", 70, 5], ["version", 71, 5], ["src", 72, 5], ["nativeBuildInputs", 78, 5], ["env", 83, 5], ["postPatch", 85, 5], ["meta", 88, 5]], [["owner", 99, 7], ["repo", 100, 7], ["rev", 101, 7], ["hash", 102, 7]], [["NIX_CFLAGS_COMPILE", 111, 9]], [["description", 127, 7], ["homepage", 128, 7], ["license", 129, 7], ["platforms", 130, 7]], [["pname", 96, 5], ["version", 97, 5], ["src", 98, 5], ["nativeBuildInputs", 104, 5], ["buildInputs", 108, 5], ["env", 111, 5], ["prePatch", 114, 5], ["patches", 117, 5], ["postPatch", 118, 5], ["meta", 126, 5]], [["version", 156, 7]], [["description", 168, 5], ["homepage", 169, 5], ["license", 170, 5]], [["pname", 135, 3], ["version", 136, 3], ["outputs", 138, 3], ["src", 143, 3], ["nativeBuildInputs", 144, 3], ["buildInputs", 147, 3], ["patches", 154, 3], ["cmakeFlags", 159, 3], ["postPatch", 162, 3], ["meta", 167, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, fetchzip: false, lib: false, "pkg-config": false, replaceVars: false, simde: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/columnar.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/columnar.nix", [["owner", 29, 7], ["repo", 30, 7], ["rev", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/columnar.nix", [["description", 39, 7], ["homepage", 40, 7], ["license", 41, 7], ["platforms", 42, 7]]);
-const pos$4 = nix.positions(here + "/columnar.nix", [["pname", 26, 5], ["version", 27, 5], ["src", 28, 5], ["nativeBuildInputs", 34, 5], ["meta", 38, 5]]);
-const pos$5 = nix.positions(here + "/columnar.nix", [["owner", 49, 7], ["repo", 50, 7], ["rev", 51, 7], ["hash", 52, 7]]);
-const pos$6 = nix.positions(here + "/columnar.nix", [["description", 63, 7], ["homepage", 64, 7], ["license", 65, 7], ["platforms", 66, 7]]);
-const pos$7 = nix.positions(here + "/columnar.nix", [["pname", 46, 5], ["version", 47, 5], ["src", 48, 5], ["nativeBuildInputs", 54, 5], ["postPatch", 59, 5], ["meta", 62, 5]]);
-const pos$8 = nix.positions(here + "/columnar.nix", [["owner", 73, 7], ["repo", 74, 7], ["rev", 75, 7], ["hash", 76, 7]]);
-const pos$9 = nix.positions(here + "/columnar.nix", [["NIX_CFLAGS_COMPILE", 83, 9]]);
-const pos$10 = nix.positions(here + "/columnar.nix", [["description", 89, 7], ["homepage", 90, 7], ["license", 91, 7], ["platforms", 92, 7]]);
-const pos$11 = nix.positions(here + "/columnar.nix", [["pname", 70, 5], ["version", 71, 5], ["src", 72, 5], ["nativeBuildInputs", 78, 5], ["env", 83, 5], ["postPatch", 85, 5], ["meta", 88, 5]]);
-const pos$12 = nix.positions(here + "/columnar.nix", [["owner", 99, 7], ["repo", 100, 7], ["rev", 101, 7], ["hash", 102, 7]]);
-const pos$13 = nix.positions(here + "/columnar.nix", [["NIX_CFLAGS_COMPILE", 111, 9]]);
-const pos$14 = nix.positions(here + "/columnar.nix", [["description", 127, 7], ["homepage", 128, 7], ["license", 129, 7], ["platforms", 130, 7]]);
-const pos$15 = nix.positions(here + "/columnar.nix", [["pname", 96, 5], ["version", 97, 5], ["src", 98, 5], ["nativeBuildInputs", 104, 5], ["buildInputs", 108, 5], ["env", 111, 5], ["prePatch", 114, 5], ["patches", 117, 5], ["postPatch", 118, 5], ["meta", 126, 5]]);
-const pos$16 = nix.positions(here + "/columnar.nix", [["version", 156, 7]]);
-const pos$17 = nix.positions(here + "/columnar.nix", [["description", 168, 5], ["homepage", 169, 5], ["license", 170, 5]]);
-const pos$18 = nix.positions(here + "/columnar.nix", [["pname", 135, 3], ["version", 136, 3], ["outputs", 138, 3], ["src", 143, 3], ["nativeBuildInputs", 144, 3], ["buildInputs", 147, 3], ["patches", 154, 3], ["cmakeFlags", 159, 3], ["postPatch", 162, 3], ["meta", 167, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const libraryVersion = "c27-s18-k9";
   const numericVersion = "9.0.0";
   const columnarSource = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "manticoresoftware",
       repo: "columnar",
       tag: libraryVersion,
       hash: "sha256-26zSdLNJkC7zYHT8sDq/2mZPRfdc9db1vIIrkaiPqFM=",
     }))));
   const hnswlib = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hnswlib",
       version: "d7bb3bbd59220f62203012b2f649aa537cc97cdc",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "manticoresoftware",
           repo: "hnswlib",
           rev: "d7bb3bbd59220f62203012b2f649aa537cc97cdc",
@@ -54,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Header-only C++/python library for fast approximate nearest neighbors",
         homepage: "https://github.com/nmslib/hnswlib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -62,11 +45,11 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   const pgm_index = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "pgm-index",
       version: "pgm_2022_08_02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "manticoresoftware",
           repo: "PGM-index",
           rev: "5a5a763c7c07e56f56fd33137dcee9f1b3c3b640",
@@ -76,7 +59,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`cp ${columnarSource}/pgm/CMakeLists.txt CMakeLists.txt
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Piecewise Geometric Model index - a fast and space-efficient data structure",
         homepage: "https://github.com/gvinciguerra/PGM-index",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -84,11 +67,11 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   const streamvbyte = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "streamvbyte",
       version: "efdd9dace81a4a8f844267631879b500c6d913cf",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           owner: "manticoresoftware",
           repo: "streamvbyte",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -96,13 +79,13 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), "-msse4.1")),
       })),
       postPatch: nix.thunk(() => nix.str`cp ${columnarSource}/streamvbyte/CMakeLists.txt CMakeLists.txt
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Fast integer compression library using StreamVByte encoding",
         homepage: "https://github.com/manticoresoftware/streamvbyte/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -110,11 +93,11 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   const fastpfor = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "fastpfor",
       version: "simde",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           owner: "manticoresoftware",
           repo: "FastPFor",
           rev: "5f6b7df8f0dba402bb616a81ca510bfeb04c42ce",
@@ -123,7 +106,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [simde]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), "-msse3 -mssse3 -msse4.1")),
       })),
       prePatch: nix.thunk(() => nix.str`cp ${columnarSource}/libfastpfor/CMakeLists.txt CMakeLists.txt
@@ -137,7 +120,7 @@ sed -i '/Add simde for arm/,/FetchContent_GetProperties ( simde )/c\\
 ' CMakeLists.txt
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "Fast integer compression",
         homepage: "https://github.com/manticoresoftware/FastPFor/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -145,7 +128,7 @@ sed -i '/Add simde for arm/,/FetchContent_GetProperties ( simde )/c\\
       })),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       pname: "manticore-columnar",
       version: numericVersion,
       outputs: nix.thunk(() => ["out", "dev"]),
@@ -153,12 +136,12 @@ sed -i '/Add simde for arm/,/FetchContent_GetProperties ( simde )/c\\
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [fastpfor, hnswlib, pgm_index, streamvbyte]),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./columnar.patch"), nix.thunk(() => ({ [nix.POS]: pos$16, version: numericVersion })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./columnar.patch"), nix.thunk(() => ({ [nix.POS]: $pos[15], version: numericVersion })))),
       ]),
       cmakeFlags: nix.thunk(() => ["-DSKIP_KNN=ON"]),
       postPatch: "# I've failed to get avx compiled, skip it for now.\nsed -i '/set (ADD_AVX_BUILDS 1)/d' CMakeLists.txt\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         description: "Manticore Columnar Library - columnar storage and secondary indexes library for Manticore Search",
         homepage: "https://github.com/manticoresoftware/columnar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

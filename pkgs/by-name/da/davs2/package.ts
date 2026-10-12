@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["package", 58, 54]], [["pkg-config", 58, 11]], [["updateScript", 57, 5], ["tests", 58, 5]], [["cpeParts", 69, 17]], [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["pkgConfigModules", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["identifiers", 69, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["preConfigure", 26, 3], ["configureFlags", 38, 3], ["nativeBuildInputs", 46, 3], ["outputs", 50, 3], ["passthru", 56, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, gitUpdater: false, stdenv: false, testers: false, nasm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 58, 54]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 58, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 57, 5], ["tests", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["cpeParts", 69, 17]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["pkgConfigModules", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["identifiers", 69, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["preConfigure", 26, 3], ["configureFlags", 38, 3], ["nativeBuildInputs", 46, 3], ["outputs", 50, 3], ["passthru", 56, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nasm = nix.arg($, "nasm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "davs2",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pkuvcl",
           repo: "davs2",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,18 +44,18 @@ export AS=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86")) ? "nasm" : "")
       nativeBuildInputs: nix.thunk(() => [nasm]),
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/pkuvcl/davs2",
         description: "Open-source decoder of AVS2-P2/IEEE1857.4 video coding standard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -73,7 +67,7 @@ export AS=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86")) ? "nasm" : "")
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "davs2_project", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

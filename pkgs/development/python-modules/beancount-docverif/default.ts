@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 5], ["version", 18, 13], ["hash", 19, 5]], [["description", 34, 5], ["homepage", 35, 5], ["longDescription", 36, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 26, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, beancount: false, buildPythonPackage: false, fetchPypi: false, pytestCheckHook: false, regex: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 13], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 34, 5], ["homepage", 35, 5], ["longDescription", 36, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 26, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "beancount_docverif",
           version: version,
           hash: "sha256-CFBv1FZP5JO+1MPnD86ttrO42zZlvE157zqig7s4HOg=",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, regex]);
       const pythonImportsCheck = nix.thunk(() => ["beancount_docverif"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Document verification plugin for Beancount",
         homepage: "https://github.com/siriobalmelli/beancount_docverif",
         longDescription: "Docverif is the \"Document Verification\" plugin for beancount, fulfilling the following functions:\n\n- Require that every transaction touching an account have an accompanying document on disk.\n- Explicitly declare the name of a document accompanying a transaction.\n- Explicitly declare that a transaction is expected not to have an accompanying document.\n- Look for an \"implicit\" PDF document matching transaction data.\n- Associate (and require) a document with any type of entry, including open entries themselves.\n- Guarantee integrity: verify that every document declared does in fact exist on disk.\n",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

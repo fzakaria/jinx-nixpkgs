@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["homepage", 25, 5], ["description", 26, 5], ["mainProgram", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["pyproject", 19, 3], ["build-system", 20, 3], ["pythonImportsCheck", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromCodeberg: false, buildPythonPackage: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 25, 5], ["description", 26, 5], ["mainProgram", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["pyproject", 19, 3], ["build-system", 20, 3], ["pythonImportsCheck", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rpatool";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "shiz",
           repo: "rpatool",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const pythonImportsCheck = nix.thunk(() => ["rpatool"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://codeberg.org/shiz/rpatool",
         description: "Simple tool allowing you to create, modify and extract Ren'Py Archive (.rpa/.rpi) files",
         mainProgram: "rpatool",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

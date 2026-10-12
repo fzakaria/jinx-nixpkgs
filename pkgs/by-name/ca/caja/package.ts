@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["sha256", 31, 5]], [["url", 38, 7], ["hash", 39, 7]], [["url", 66, 5], ["odd-unstable", 67, 5], ["rev-prefix", 68, 5]], [["updateScript", 65, 12]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 78, 5], ["teams", 79, 5]], [["pname", 22, 3], ["version", 23, 3], ["outputs", 24, 3], ["src", 29, 3], ["patches", 34, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["configureFlags", 61, 3], ["enableParallelBuilding", 63, 3], ["passthru", 65, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, gettext: false, "gtk-layer-shell": false, gtk3: false, libnotify: false, libxml2: false, libexif: false, exempi: false, "mate-desktop": false, "hicolor-icon-theme": false, wayland: false, wrapGAppsHook3: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 66, 5], ["odd-unstable", 67, 5], ["rev-prefix", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 78, 5], ["teams", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["outputs", 24, 3], ["src", 29, 3], ["patches", 34, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["configureFlags", 61, 3], ["enableParallelBuilding", 63, 3], ["passthru", 65, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "caja",
       version: "1.28.0",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/caja-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "HjAUzhRVgX7C73TQnv37aDXYo3LtmhbvtZGe97ghlXo=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/mate-desktop/caja/commit/b0fb727c62ef9f45865d5d7974df7b79bcf0d133.patch",
             hash: "sha256-2QAXveJnrPPyFSBST6wQcXz9PRsJVdt4iSYy0gubDAs=",
           })))),
@@ -61,16 +56,16 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--disable-update-mimedb"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://git.mate-desktop.org/caja",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "File manager for the MATE desktop",
         homepage: "https://mate-desktop.org",
         license: nix.thunk(() => (() => {

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]], [["extraArgs", 70, 47]], [["updateScript", 70, 12]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 30, 3], ["buildInputs", 38, 3], ["nativeCheckInputs", 48, 3], ["nativeBuildInputs", 50, 3], ["preAutoreconf", 55, 3], ["postAutoreconf", 59, 3], ["cmakeBuildType", 63, 3], ["cmakeFlags", 65, 3], ["passthru", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, cmake: false, zlib: false, openssl: false, "c-ares": false, readline: false, icu: false, git: false, gbenchmark: false, nghttp2: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 70, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 70, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 30, 3], ["buildInputs", 38, 3], ["nativeCheckInputs", 48, 3], ["nativeBuildInputs", 50, 3], ["preAutoreconf", 55, 3], ["postAutoreconf", 59, 3], ["cmakeBuildType", 63, 3], ["cmakeFlags", 65, 3], ["passthru", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nghttp2 = nix.arg($, "nghttp2");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tarantool",
       version: "3.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tarantool",
           repo: "tarantool",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,11 +45,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DTARANTOOL_VERSION=${nix.sel(finalAttrs, "version")}.builtByNix`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "In-memory computing platform consisting of a database and an application server",
         homepage: "https://www.tarantool.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

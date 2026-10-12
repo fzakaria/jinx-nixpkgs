@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["homepage", 32, 5], ["description", 33, 5], ["platforms", 34, 5], ["license", 35, 5], ["teams", 36, 5]], [["pname", 13, 3], ["namespace", 14, 3], ["version", 15, 3], ["src", 17, 3], ["extraBuildInputs", 24, 3], ["propagatedBuildInputs", 30, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, rel: false, buildKodiBinaryAddon: false, fetchFromGitHub: false, "pkg-config": false, glm: false, libGL: false, projectm_3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 32, 5], ["description", 33, 5], ["platforms", 34, 5], ["license", 35, 5], ["teams", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["namespace", 14, 3], ["version", 15, 3], ["src", 17, 3], ["extraBuildInputs", 24, 3], ["propagatedBuildInputs", 30, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "visualization.projectm";
       const version = "21.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xbmc",
           repo: namespace,
           rev: nix.thunk(() => nix.str`${version}-${rel}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const extraBuildInputs = nix.thunk(() => [pkg_config, libGL, projectm_3]);
       const propagatedBuildInputs = nix.thunk(() => [glm]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/xbmc/visualization.projectm",
         description: "Projectm visualization for kodi",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         namespace,
         version,

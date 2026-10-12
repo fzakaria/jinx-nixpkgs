@@ -2,36 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fider.nix", [[["JWT_SECRET", 13, 13], ["BASE_URL", 14, 13], ["EMAIL_NOREPLY", 15, 13], ["EMAIL_SMTP_HOST", 16, 13], ["EMAIL_SMTP_PORT", 17, 13]], [["enable", 11, 11], ["environment", 12, 11]], [["fider", 10, 18]], [["services", 10, 9]], [["machine", 7, 5]], [["maintainers", 29, 8]], [["name", 4, 3], ["nodes", 6, 3], ["testScript", 23, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/fider.nix", [["JWT_SECRET", 13, 13], ["BASE_URL", 14, 13], ["EMAIL_NOREPLY", 15, 13], ["EMAIL_SMTP_HOST", 16, 13], ["EMAIL_SMTP_PORT", 17, 13]]);
-const pos$2 = nix.positions(here + "/fider.nix", [["enable", 11, 11], ["environment", 12, 11]]);
-const pos$3 = nix.positions(here + "/fider.nix", [["fider", 10, 18]]);
-const pos$4 = nix.positions(here + "/fider.nix", [["services", 10, 9]]);
-const pos$5 = nix.positions(here + "/fider.nix", [["machine", 7, 5]]);
-const pos$6 = nix.positions(here + "/fider.nix", [["maintainers", 29, 8]]);
-const pos$7 = nix.positions(here + "/fider.nix", [["name", 4, 3], ["nodes", 6, 3], ["testScript", 23, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "fider-server",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             fider: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 JWT_SECRET: "not_so_secret",
                 BASE_URL: "/",
                 EMAIL_NOREPLY: "noreply@fider.io",
@@ -45,7 +39,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "machine.start()\nmachine.wait_for_unit(\"fider.service\")\nmachine.wait_for_open_port(3000)\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "niklaskorz"))];

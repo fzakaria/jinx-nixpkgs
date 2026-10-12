@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/autosubsync-mpv.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["scriptName", 30, 12]], [["description", 33, 5], ["homepage", 34, 5], ["maintainers", 35, 5], ["license", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patchPhase", 20, 3], ["scriptPath", 29, 3], ["passthru", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildLua: false, ffsubsync: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/autosubsync-mpv.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/autosubsync-mpv.nix", [["scriptName", 30, 12]]);
-const pos$3 = nix.positions(here + "/autosubsync-mpv.nix", [["description", 33, 5], ["homepage", 34, 5], ["maintainers", 35, 5], ["license", 36, 5]]);
-const pos$4 = nix.positions(here + "/autosubsync-mpv.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patchPhase", 20, 3], ["scriptPath", 29, 3], ["passthru", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const buildLua = nix.arg($, "buildLua");
   const ffsubsync = nix.arg($, "ffsubsync");
   return nix.app(buildLua, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "autosubsync-mpv",
       version: "0-unstable-2024-10-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "joaquintorres",
           repo: "autosubsync-mpv",
           rev: "125ac13d1b84b3a64bb2e912225a8356c1c01364",
@@ -33,9 +30,9 @@ substituteInPlace autosubsync.lua                                            \\
 runHook postPatch
 `),
       scriptPath: "./",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, scriptName: "autosubsync-mpv" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], scriptName: "autosubsync-mpv" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Automatically sync subtitles in mpv using the `n` button",
         homepage: "https://github.com/joaquintorres/autosubsync-mpv",
         maintainers: nix.thunk(() => (() => {

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 27, 26], ["version", 27, 32], ["hash", 28, 5]], [["description", 73, 5], ["mainProgram", 74, 5], ["longDescription", 75, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 31, 3], ["nativeBuildInputs", 33, 3], ["dependencies", 39, 3], ["buildInputs", 46, 3], ["dontWrapGApps", 60, 3], ["preFixup", 62, 3], ["strictDeps", 66, 3], ["pythonImportsCheck", 68, 3], ["doCheck", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, "pkg-config": false, librsvg: false, "gobject-introspection": false, atk: false, gtk3: false, gtkspell3: false, "adwaita-icon-theme": false, glib: false, goocanvas_2: false, "gdk-pixbuf": false, pango: false, fontconfig: false, freetype: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 27, 26], ["version", 27, 32], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 5], ["mainProgram", 74, 5], ["longDescription", 75, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 31, 3], ["nativeBuildInputs", 33, 3], ["dependencies", 39, 3], ["buildInputs", 46, 3], ["dontWrapGApps", 60, 3], ["preFixup", 62, 3], ["strictDeps", 66, 3], ["pythonImportsCheck", 68, 3], ["doCheck", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const freetype = nix.arg($, "freetype");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tryton",
       version: "7.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-X8jJ/NXbvoKJdKep78inefILaFLjJyAmRMVfdOEb0tk=",
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["tryton"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Client of the Tryton application platform",
         mainProgram: "tryton",
         longDescription: "The client for Tryton, a three-tier high-level general purpose\napplication platform under the license GPL-3 written in Python and using\nPostgreSQL as database engine.\n\nIt is the core base of a complete business solution providing\nmodularity, scalability and security.\n",

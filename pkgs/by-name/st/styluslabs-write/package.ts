@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5], ["leaveDotGit", 25, 5], ["postFetch", 28, 5]], [["homepage", 92, 5], ["description", 93, 5], ["license", 94, 5], ["maintainers", 102, 5], ["platforms", 106, 5], ["broken", 107, 5], ["mainProgram", 108, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["hardeningDisable", 36, 3], ["makeFlags", 37, 3], ["preBuild", 41, 3], ["postBuild", 49, 3], ["strictDeps", 53, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 60, 3], ["installPhase", 68, 3], ["enableParallelBuilding", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, "pkg-config": false, SDL2: false, libxi: false, libxcursor: false, libx11: false, libGL: false, roboto: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5], ["leaveDotGit", 25, 5], ["postFetch", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 92, 5], ["description", 93, 5], ["license", 94, 5], ["maintainers", 102, 5], ["platforms", 106, 5], ["broken", 107, 5], ["mainProgram", 108, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["hardeningDisable", 36, 3], ["makeFlags", 37, 3], ["preBuild", 41, 3], ["postBuild", 49, 3], ["strictDeps", 53, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 60, 3], ["installPhase", 68, 3], ["enableParallelBuilding", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const roboto = nix.arg($, "roboto");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "styluslabs-write",
       version: "2024-10-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "styluslabs",
           repo: "Write",
           rev: "b13572e2dd6a87af35cd3edde92c9144a6dd8a2b",
@@ -62,7 +60,7 @@ substituteInPlace $out/share/applications/Write.desktop \\
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://styluslabs.com/",
         description: "Cross-platform (Windows, Mac, Linux, iOS, Android) application for handwritten notes",
         license: nix.thunk(() => (() => {

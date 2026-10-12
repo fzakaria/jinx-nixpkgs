@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["stunnel", 60, 5]], [["tests", 59, 12]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]], [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 23, 3], ["enableParallelBuilding", 30, 3], ["buildInputs", 32, 3], ["configureFlags", 42, 3], ["postInstall", 49, 3], ["installFlags", 54, 3], ["passthru", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, nixosTests: false, openssl: false, stdenv: false, systemdLibs: false, systemdSupport: true, mimalloc: false, mimallocSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["stunnel", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 59, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 23, 3], ["enableParallelBuilding", 30, 3], ["buildInputs", 32, 3], ["configureFlags", 42, 3], ["postInstall", 49, 3], ["installFlags", 54, 3], ["passthru", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const mimalloc = nix.arg($, "mimalloc");
   const mimallocSupport = nix.argOr($, "mimallocSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "stunnel",
       version: "5.80",
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.stunnel.org/archive/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.x/stunnel-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-bQhB1I3gfLuvSgVZGQZb97tevGPMFcl6LHbKor8oVRM=",
         })))),
@@ -41,11 +37,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "# remove legacy compatibility-wrapper that would require perl\nrm $out/bin/stunnel3\n",
       installFlags: nix.thunk(() => ["sysconfdir=${out}/etc", "localstatedir=${TMPDIR}"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, stunnel: nix.thunk(() => nix.sel(nixosTests, "stunnel")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], stunnel: nix.thunk(() => nix.sel(nixosTests, "stunnel")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Universal tls/ssl wrapper",
         homepage: "https://www.stunnel.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

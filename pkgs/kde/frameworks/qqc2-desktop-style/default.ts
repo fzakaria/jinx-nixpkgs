@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 8, 3], ["extraNativeBuildInputs", 10, 3], ["extraBuildInputs", 11, 3], ["excludeDependencies", 16, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qtdeclarative: false, qttools: false, kirigami: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["extraNativeBuildInputs", 10, 3], ["extraBuildInputs", 11, 3], ["excludeDependencies", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const kirigami = nix.arg($, "kirigami");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "qqc2-desktop-style",
       extraNativeBuildInputs: nix.thunk(() => [qttools]),
       extraBuildInputs: nix.thunk(() => [qtdeclarative, nix.thunk(() => nix.sel(kirigami, "unwrapped"))]),

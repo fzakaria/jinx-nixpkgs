@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]], [["description", 35, 5], ["homepage", 36, 5], ["mainProgram", 37, 5], ["maintainers", 38, 5], ["license", 39, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["pythonImportsCheck", 29, 3], ["doCheck", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "poetry-core": false, pyyaml: false, colorama: false, "junit-xml": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 35, 5], ["homepage", 36, 5], ["mainProgram", 37, 5], ["maintainers", 38, 5], ["license", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["pythonImportsCheck", 29, 3], ["doCheck", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha512-ju0lqCSg0zcZNqRXDmFX6X1ugBocpmHMBWJApO6Tzhm/tLMQTKy2RpB4C8fkKCEWA2mYX4w1dLdHe68hZixwkQ==",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["refery"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Functional testing tool",
         homepage: "https://github.com/RostanTabet/refery",
         mainProgram: "refery",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

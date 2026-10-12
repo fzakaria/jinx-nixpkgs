@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 28, 5], ["description", 29, 5]], [["src", 10, 31], ["pname", 11, 3], ["version", 14, 3], ["pyproject", 15, 3], ["sourceRoot", 17, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["nativeCheckInputs", 23, 3], ["pythonImportsCheck", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, hatchling: false, "opentelemetry-api": false, "opentelemetry-instrumentation": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 28, 5], ["description", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 10, 31], ["pname", 11, 3], ["version", 14, 3], ["pyproject", 15, 3], ["sourceRoot", 17, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["nativeCheckInputs", 23, 3], ["pythonImportsCheck", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const opentelemetry_instrumentation = nix.arg($, "opentelemetry-instrumentation");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.attr(opentelemetry_api, "src")),
       pname: "opentelemetry-semantic-conventions",
       version: nix.thunk(() => nix.sel(opentelemetry_instrumentation, "version")),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.semconv"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_api, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/open-telemetry/opentelemetry-python/tree/main/opentelemetry-semantic-conventions",
         description: "OpenTelemetry Semantic Conventions",
       })),

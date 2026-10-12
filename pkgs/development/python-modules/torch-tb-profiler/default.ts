@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 22, 3], ["version", 23, 11], ["pyproject", 24, 3], ["src", 27, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 36, 3], ["disabledTests", 42, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pandas: false, pytestCheckHook: false, setuptools: false, tensorboard: false, torch: false, torchvision: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 11], ["pyproject", 24, 3], ["src", 27, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 36, 3], ["disabledTests", 42, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const torchvision = nix.arg($, "torchvision");
   const version = "0.4.0";
   const repo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "pytorch",
       repo: "kineto",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-nAtqGCv8q3Tati3NOGWWLb+gXdvO3qmECeC1WG2Mt3M=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "torch_tb_profiler",
       version: version,
       pyproject: true,
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["torch_tb_profiler"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PyTorch Profiler TensorBoard Plugin",
         homepage: "https://github.com/pytorch/kineto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

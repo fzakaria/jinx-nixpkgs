@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 5], ["version", 15, 26], ["hash", 16, 5]], [["description", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 19, 3], ["pythonImportsCheck", 21, 3], ["doCheck", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 5], ["version", 15, 26], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 19, 3], ["pythonImportsCheck", 21, 3], ["doCheck", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "types-awscrt",
       version: "0.36.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "types_awscrt",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-m9ZpldIQrLjpKnDg0QeHUrCDOja8pz8Ih0K8P9ims2M=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["awscrt-stubs"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Type annotations and code completion for awscrt",
         homepage: "https://github.com/youtype/types-awscrt",
         changelog: nix.thunk(() => nix.str`https://github.com/youtype/types-awscrt/releases/tag/${nix.sel(finalAttrs, "version")}`),

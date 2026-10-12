@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/uvcdynctrl-udev-rules.nix", [[["name", 14, 5], ["paths", 15, 5], ["pathsToLink", 16, 5], ["ignoreCollisions", 17, 5]], [["dataPath", 26, 13], ["nativeBuildInputs", 27, 5], ["buildInputs", 30, 5], ["dontPatchELF", 33, 5], ["dontStrip", 34, 5], ["preferLocalBuild", 35, 5]]]);
 const formals$1 = { args: { buildEnv: false, libwebcam: false, makeWrapper: false, runCommand: false, drivers: true, udevDebug: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/uvcdynctrl-udev-rules.nix", [["name", 14, 5], ["paths", 15, 5], ["pathsToLink", 16, 5], ["ignoreCollisions", 17, 5]]);
-const pos$2 = nix.positions(here + "/uvcdynctrl-udev-rules.nix", [["dataPath", 26, 13], ["nativeBuildInputs", 27, 5], ["buildInputs", 30, 5], ["dontPatchELF", 33, 5], ["dontStrip", 34, 5], ["preferLocalBuild", 35, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const udevDebug = nix.argOr($, "udevDebug", () => false);
   const version = "0.0.0";
   const dataPath = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "uvcdynctrl-with-drivers-data-path",
       paths: nix.thunk(() => nix.concat(drivers, [libwebcam])),
       pathsToLink: nix.thunk(() => ["/share/uvcdynctrl/data"]),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const dataDir = nix.thunk(() => nix.str`${dataPath}/share/uvcdynctrl/data`);
   const udevDebugVarValue = nix.thunk(() => (nix.asBool(udevDebug) ? "1" : "0"));
   return nix.app(runCommand, nix.thunk(() => nix.str`uvcdynctrl-udev-rules-${version}`), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       dataPath: dataPath,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => [libwebcam]),

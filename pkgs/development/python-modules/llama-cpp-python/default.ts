@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5], ["fetchSubmodules", 48, 5]], [["rev-prefix", 129, 7], ["allowedVersions", 130, 7]], [["cudaSupport", 134, 9]], [["withCuda", 133, 7]], [["updateScript", 128, 5], ["tests", 132, 5]], [["description", 140, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["maintainers", 144, 5]], [["pname", 38, 3], ["version", 39, 3], ["__structuredAttrs", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["dontUseCmakeConfigure", 51, 3], ["cmakeFlags", 52, 3], ["enableParallelBuilding", 69, 3], ["nativeBuildInputs", 71, 3], ["build-system", 79, 3], ["buildInputs", 85, 3], ["dependencies", 94, 3], ["nativeCheckInputs", 101, 3], ["disabledTests", 107, 3], ["pythonImportsCheck", 119, 3], ["passthru", 127, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, ninja: false, autoAddDriverRunpath: false, pathspec: false, "pyproject-metadata": false, "scikit-build-core": false, diskcache: false, jinja2: false, numpy: false, "typing-extensions": false, scipy: false, "huggingface-hub": false, gitUpdater: false, pytestCheckHook: false, "llama-cpp-python": false, config: false, cudaSupport: true, cudaPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5], ["fetchSubmodules", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 129, 7], ["allowedVersions", 130, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cudaSupport", 134, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["withCuda", 133, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 128, 5], ["tests", 132, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 140, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["maintainers", 144, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 38, 3], ["version", 39, 3], ["__structuredAttrs", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["dontUseCmakeConfigure", 51, 3], ["cmakeFlags", 52, 3], ["enableParallelBuilding", 69, 3], ["nativeBuildInputs", 71, 3], ["build-system", 79, 3], ["buildInputs", 85, 3], ["dependencies", 94, 3], ["nativeCheckInputs", 101, 3], ["disabledTests", 107, 3], ["pythonImportsCheck", 119, 3], ["passthru", 127, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const cudaPackages = nix.argOr($, "cudaPackages", () => ({}));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "llama-cpp-python",
       version: "0.3.36",
       __structuredAttrs: true,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "abetlen",
           repo: "llama-cpp-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,15 +74,15 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(cudaSupport)), nix.thunk(() => ["llama_cpp"]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v", allowedVersions: "^[.0-9]+$" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v", allowedVersions: "^[.0-9]+$" })))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            withCuda: nix.thunk(() => nix.app(nix.sel(llama_cpp_python, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, cudaSupport: true })))),
+            [nix.POS]: $pos[3],
+            withCuda: nix.thunk(() => nix.app(nix.sel(llama_cpp_python, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], cudaSupport: true })))),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Python bindings for llama.cpp",
         homepage: "https://github.com/abetlen/llama-cpp-python",
         changelog: nix.thunk(() => nix.str`https://github.com/abetlen/llama-cpp-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

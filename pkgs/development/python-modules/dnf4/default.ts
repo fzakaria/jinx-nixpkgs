@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["updateScript", 93, 12]], [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["mainProgram", 101, 5], ["platforms", 102, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["outputs", 24, 3], ["src", 30, 3], ["patches", 37, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 53, 3], ["propagatedBuildInputs", 59, 3], ["cmakeFlags", 65, 3], ["dontWrapPythonPrograms", 67, 3], ["postBuild", 69, 3], ["postInstall", 73, 3], ["postFixup", 89, 3], ["passthru", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cmake: false, fetchFromGitHub: false, gettext: false, libcomps: false, libdnf: false, python: false, rpm: false, sphinx: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 93, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["mainProgram", 101, 5], ["platforms", 102, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["outputs", 24, 3], ["src", 30, 3], ["patches", 37, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 53, 3], ["propagatedBuildInputs", 59, 3], ["cmakeFlags", 65, 3], ["dontWrapPythonPrograms", 67, 3], ["postBuild", 69, 3], ["postInstall", 73, 3], ["postFixup", 89, 3], ["passthru", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = false;
       const outputs = nix.thunk(() => ["out", "man", "py"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rpm-software-management",
           repo: "dnf",
           tag: version,
@@ -69,11 +66,11 @@ rm -r $out/etc/bash_completion.d
       const postFixup = nix.thunk(() => nix.str`moveToOutput "lib/${nix.sel(python, "libPrefix")}" "$py"
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Package manager based on libdnf and libsolv. Replaces YUM",
         homepage: "https://github.com/rpm-software-management/dnf",
         changelog: nix.thunk(() => nix.str`https://github.com/rpm-software-management/dnf/releases/tag/${version}`),
@@ -86,7 +83,7 @@ rm -r $out/etc/bash_completion.d
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

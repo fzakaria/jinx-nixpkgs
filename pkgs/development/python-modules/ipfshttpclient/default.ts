@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 36, 3], ["nativeCheckInputs", 41, 3], ["postPatch", 55, 3], ["checkPhase", 74, 3], ["doCheck", 82, 3], ["pythonImportsCheck", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, python: false, multiaddr: false, requests: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-dependency": false, "pytest-localserver": false, "pytest-mock": false, "pytest-order": false, "pytest-cid": false, mock: false, kubo: false, httpx: false, httpcore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 36, 3], ["nativeCheckInputs", 41, 3], ["postPatch", 55, 3], ["checkPhase", 74, 3], ["doCheck", 82, 3], ["pythonImportsCheck", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.0a2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ipfs-shipyard",
           repo: "py-ipfs-http-client",
           rev: version,
@@ -63,7 +61,7 @@ runHook postCheck
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["ipfshttpclient"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python client library for the IPFS API",
         homepage: "https://github.com/ipfs-shipyard/py-ipfs-http-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -76,7 +74,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

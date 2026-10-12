@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]], [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 26, 3], ["nativeCheckInputs", 33, 3], ["disabledTests", 38, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, dnspython: false, fetchPypi: false, filelock: false, idna: false, platformdirs: false, pytestCheckHook: false, setuptools: false, uritools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 26, 3], ["nativeCheckInputs", 33, 3], ["disabledTests", 38, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-cFCOArqd83LiXPBkLbNnzs4nPocSzQzngXj8XdfqANs=",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["urlextract"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collects and extracts URLs from given text",
         mainProgram: "urlextract",
         homepage: "https://github.com/lipoja/URLExtract",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

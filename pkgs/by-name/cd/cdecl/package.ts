@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["NIX_CFLAGS_COMPILE", 35, 5], ["NIX_LDFLAGS", 45, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["mainProgram", 75, 5], ["broken", 76, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 23, 3], ["preConfigure", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["env", 34, 3], ["makeFlags", 48, 3], ["doCheck", 56, 3], ["checkTarget", 57, 3], ["preInstall", 59, 3], ["outputs", 63, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, automake: false, bison: false, flex: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 35, 5], ["NIX_LDFLAGS", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["mainProgram", 75, 5], ["broken", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 23, 3], ["preConfigure", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["env", 34, 3], ["makeFlags", 48, 3], ["doCheck", 56, 3], ["checkTarget", 57, 3], ["preInstall", 59, 3], ["outputs", 63, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cdecl",
       version: "18.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "paul-j-lucas",
           repo: "cdecl",
           tag: nix.thunk(() => nix.str`cdecl-${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoconf, automake, bison, flex]),
       buildInputs: nix.thunk(() => [readline]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-DBSD", "-DUSE_READLINE"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
               "-Wno-error=int-conversion",
               "-Wno-error=incompatible-function-pointer-types",
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin;\n",
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Composing and deciphering C (or C++) declarations or casts, aka 'gibberish'",
         homepage: "https://github.com/paul-j-lucas/cdecl",
         changelog: nix.thunk(() => nix.str`https://github.com/paul-j-lucas/cdecl/blob/cdecl-${nix.sel(finalAttrs, "version")}/ChangeLog`),

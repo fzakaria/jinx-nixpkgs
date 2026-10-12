@@ -2,311 +2,235 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tayga.nix", [[["maintainers", 30, 5]], [["vlans", 42, 22]], [["eth1", 47, 20]], [["useDHCP", 46, 9], ["interfaces", 47, 9]], [["Name", 52, 23]], [["Destination", 58, 15], ["Gateway", 59, 15]], [["matchConfig", 52, 11], ["address", 53, 11], ["routes", 56, 11]], [["vlan1", 51, 18]], [["enable", 50, 9], ["networks", 51, 9]], [["network", 49, 15]], [["enable", 64, 20]], [["mtr", 64, 16]], [["systemPackages", 65, 19]], [["virtualisation", 42, 7], ["networking", 45, 7], ["systemd", 49, 7], ["programs", 64, 7], ["environment", 65, 7]], [["net.ipv4.ip_forward", 80, 9], ["net.ipv6.conf.all.forwarding", 81, 9]], [["sysctl", 79, 19]], [["kernel", 79, 12]], [["vlans", 84, 22]], [["enable", 93, 18]], [["address", 98, 17], ["prefixLength", 99, 17]], [["addresses", 96, 13]], [["ipv4", 95, 11]], [["address", 108, 17], ["prefixLength", 109, 17]], [["addresses", 106, 13]], [["ipv6", 105, 11]], [["eth1", 94, 20], ["eth2", 104, 20]], [["hostName", 90, 9], ["useDHCP", 91, 9], ["useNetworkd", 92, 9], ["firewall", 93, 9], ["interfaces", 94, 9]], [["address", 121, 13]], [["address", 124, 13], ["prefixLength", 125, 13]], [["address", 119, 11], ["router", 120, 11], ["pool", 123, 11]], [["address", 131, 13]], [["address", 134, 13], ["prefixLength", 135, 13]], [["address", 129, 11], ["router", 130, 11], ["pool", 133, 11]], [["192.0.2.42", 139, 11]], [["enable", 117, 9], ["ipv4", 118, 9], ["ipv6", 128, 9], ["mappings", 138, 9], ["log", 141, 9], ["wkpfStrict", 147, 9]], [["tayga", 116, 16]], [["systemPackages", 149, 19]], [["boot", 79, 7], ["virtualisation", 84, 7], ["networking", 89, 7], ["services", 116, 7], ["environment", 149, 7]], [["net.ipv4.ip_forward", 154, 9], ["net.ipv6.conf.all.forwarding", 155, 9]], [["sysctl", 153, 19]], [["kernel", 153, 12]], [["vlans", 158, 22]], [["enable", 166, 18]], [["address", 171, 17], ["prefixLength", 172, 17]], [["addresses", 169, 13]], [["ipv4", 168, 11]], [["address", 181, 17], ["prefixLength", 182, 17]], [["addresses", 179, 13]], [["ipv6", 178, 11]], [["eth1", 167, 20], ["eth2", 177, 20]], [["hostName", 164, 9], ["useDHCP", 165, 9], ["firewall", 166, 9], ["interfaces", 167, 9]], [["address", 194, 13]], [["address", 197, 13], ["prefixLength", 198, 13]], [["address", 192, 11], ["router", 193, 11], ["pool", 196, 11]], [["address", 204, 13]], [["address", 207, 13], ["prefixLength", 208, 13]], [["address", 202, 11], ["router", 203, 11], ["pool", 206, 11]], [["192.0.2.42", 212, 11]], [["enable", 190, 9], ["ipv4", 191, 9], ["ipv6", 201, 9], ["mappings", 211, 9], ["log", 214, 9], ["wkpfStrict", 220, 9]], [["tayga", 189, 16]], [["systemPackages", 222, 19]], [["boot", 153, 7], ["virtualisation", 158, 7], ["networking", 163, 7], ["services", 189, 7], ["environment", 222, 7]], [["vlans", 229, 22]], [["eth1", 235, 20]], [["useDHCP", 234, 9], ["interfaces", 235, 9]], [["Name", 241, 23]], [["Destination", 247, 15], ["Gateway", 248, 15]], [["matchConfig", 241, 11], ["address", 242, 11], ["routes", 245, 11]], [["vlan1", 240, 18]], [["enable", 239, 9], ["networks", 240, 9]], [["network", 238, 15]], [["enable", 253, 20]], [["mtr", 253, 16]], [["systemPackages", 254, 19]], [["virtualisation", 229, 7], ["networking", 233, 7], ["systemd", 238, 7], ["programs", 253, 7], ["environment", 254, 7]], [["server", 41, 5], ["router_systemd", 78, 5], ["router_nixos", 152, 5], ["client", 228, 5]], [["name", 28, 3], ["meta", 29, 3], ["nodes", 33, 3], ["testScript", 258, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tayga.nix", [["maintainers", 30, 5]]);
-const pos$2 = nix.positions(here + "/tayga.nix", [["vlans", 42, 22]]);
-const pos$3 = nix.positions(here + "/tayga.nix", [["eth1", 47, 20]]);
-const pos$4 = nix.positions(here + "/tayga.nix", [["useDHCP", 46, 9], ["interfaces", 47, 9]]);
-const pos$5 = nix.positions(here + "/tayga.nix", [["Name", 52, 23]]);
-const pos$6 = nix.positions(here + "/tayga.nix", [["Destination", 58, 15], ["Gateway", 59, 15]]);
-const pos$7 = nix.positions(here + "/tayga.nix", [["matchConfig", 52, 11], ["address", 53, 11], ["routes", 56, 11]]);
-const pos$8 = nix.positions(here + "/tayga.nix", [["vlan1", 51, 18]]);
-const pos$9 = nix.positions(here + "/tayga.nix", [["enable", 50, 9], ["networks", 51, 9]]);
-const pos$10 = nix.positions(here + "/tayga.nix", [["network", 49, 15]]);
-const pos$11 = nix.positions(here + "/tayga.nix", [["enable", 64, 20]]);
-const pos$12 = nix.positions(here + "/tayga.nix", [["mtr", 64, 16]]);
-const pos$13 = nix.positions(here + "/tayga.nix", [["systemPackages", 65, 19]]);
-const pos$14 = nix.positions(here + "/tayga.nix", [["virtualisation", 42, 7], ["networking", 45, 7], ["systemd", 49, 7], ["programs", 64, 7], ["environment", 65, 7]]);
-const pos$15 = nix.positions(here + "/tayga.nix", [["net.ipv4.ip_forward", 80, 9], ["net.ipv6.conf.all.forwarding", 81, 9]]);
-const pos$16 = nix.positions(here + "/tayga.nix", [["sysctl", 79, 19]]);
-const pos$17 = nix.positions(here + "/tayga.nix", [["kernel", 79, 12]]);
-const pos$18 = nix.positions(here + "/tayga.nix", [["vlans", 84, 22]]);
-const pos$19 = nix.positions(here + "/tayga.nix", [["enable", 93, 18]]);
-const pos$20 = nix.positions(here + "/tayga.nix", [["address", 98, 17], ["prefixLength", 99, 17]]);
-const pos$21 = nix.positions(here + "/tayga.nix", [["addresses", 96, 13]]);
-const pos$22 = nix.positions(here + "/tayga.nix", [["ipv4", 95, 11]]);
-const pos$23 = nix.positions(here + "/tayga.nix", [["address", 108, 17], ["prefixLength", 109, 17]]);
-const pos$24 = nix.positions(here + "/tayga.nix", [["addresses", 106, 13]]);
-const pos$25 = nix.positions(here + "/tayga.nix", [["ipv6", 105, 11]]);
-const pos$26 = nix.positions(here + "/tayga.nix", [["eth1", 94, 20], ["eth2", 104, 20]]);
-const pos$27 = nix.positions(here + "/tayga.nix", [["hostName", 90, 9], ["useDHCP", 91, 9], ["useNetworkd", 92, 9], ["firewall", 93, 9], ["interfaces", 94, 9]]);
-const pos$28 = nix.positions(here + "/tayga.nix", [["address", 121, 13]]);
-const pos$29 = nix.positions(here + "/tayga.nix", [["address", 124, 13], ["prefixLength", 125, 13]]);
-const pos$30 = nix.positions(here + "/tayga.nix", [["address", 119, 11], ["router", 120, 11], ["pool", 123, 11]]);
-const pos$31 = nix.positions(here + "/tayga.nix", [["address", 131, 13]]);
-const pos$32 = nix.positions(here + "/tayga.nix", [["address", 134, 13], ["prefixLength", 135, 13]]);
-const pos$33 = nix.positions(here + "/tayga.nix", [["address", 129, 11], ["router", 130, 11], ["pool", 133, 11]]);
-const pos$34 = nix.positions(here + "/tayga.nix", [["192.0.2.42", 139, 11]]);
-const pos$35 = nix.positions(here + "/tayga.nix", [["enable", 117, 9], ["ipv4", 118, 9], ["ipv6", 128, 9], ["mappings", 138, 9], ["log", 141, 9], ["wkpfStrict", 147, 9]]);
-const pos$36 = nix.positions(here + "/tayga.nix", [["tayga", 116, 16]]);
-const pos$37 = nix.positions(here + "/tayga.nix", [["systemPackages", 149, 19]]);
-const pos$38 = nix.positions(here + "/tayga.nix", [["boot", 79, 7], ["virtualisation", 84, 7], ["networking", 89, 7], ["services", 116, 7], ["environment", 149, 7]]);
-const pos$39 = nix.positions(here + "/tayga.nix", [["net.ipv4.ip_forward", 154, 9], ["net.ipv6.conf.all.forwarding", 155, 9]]);
-const pos$40 = nix.positions(here + "/tayga.nix", [["sysctl", 153, 19]]);
-const pos$41 = nix.positions(here + "/tayga.nix", [["kernel", 153, 12]]);
-const pos$42 = nix.positions(here + "/tayga.nix", [["vlans", 158, 22]]);
-const pos$43 = nix.positions(here + "/tayga.nix", [["enable", 166, 18]]);
-const pos$44 = nix.positions(here + "/tayga.nix", [["address", 171, 17], ["prefixLength", 172, 17]]);
-const pos$45 = nix.positions(here + "/tayga.nix", [["addresses", 169, 13]]);
-const pos$46 = nix.positions(here + "/tayga.nix", [["ipv4", 168, 11]]);
-const pos$47 = nix.positions(here + "/tayga.nix", [["address", 181, 17], ["prefixLength", 182, 17]]);
-const pos$48 = nix.positions(here + "/tayga.nix", [["addresses", 179, 13]]);
-const pos$49 = nix.positions(here + "/tayga.nix", [["ipv6", 178, 11]]);
-const pos$50 = nix.positions(here + "/tayga.nix", [["eth1", 167, 20], ["eth2", 177, 20]]);
-const pos$51 = nix.positions(here + "/tayga.nix", [["hostName", 164, 9], ["useDHCP", 165, 9], ["firewall", 166, 9], ["interfaces", 167, 9]]);
-const pos$52 = nix.positions(here + "/tayga.nix", [["address", 194, 13]]);
-const pos$53 = nix.positions(here + "/tayga.nix", [["address", 197, 13], ["prefixLength", 198, 13]]);
-const pos$54 = nix.positions(here + "/tayga.nix", [["address", 192, 11], ["router", 193, 11], ["pool", 196, 11]]);
-const pos$55 = nix.positions(here + "/tayga.nix", [["address", 204, 13]]);
-const pos$56 = nix.positions(here + "/tayga.nix", [["address", 207, 13], ["prefixLength", 208, 13]]);
-const pos$57 = nix.positions(here + "/tayga.nix", [["address", 202, 11], ["router", 203, 11], ["pool", 206, 11]]);
-const pos$58 = nix.positions(here + "/tayga.nix", [["192.0.2.42", 212, 11]]);
-const pos$59 = nix.positions(here + "/tayga.nix", [["enable", 190, 9], ["ipv4", 191, 9], ["ipv6", 201, 9], ["mappings", 211, 9], ["log", 214, 9], ["wkpfStrict", 220, 9]]);
-const pos$60 = nix.positions(here + "/tayga.nix", [["tayga", 189, 16]]);
-const pos$61 = nix.positions(here + "/tayga.nix", [["systemPackages", 222, 19]]);
-const pos$62 = nix.positions(here + "/tayga.nix", [["boot", 153, 7], ["virtualisation", 158, 7], ["networking", 163, 7], ["services", 189, 7], ["environment", 222, 7]]);
-const pos$63 = nix.positions(here + "/tayga.nix", [["vlans", 229, 22]]);
-const pos$64 = nix.positions(here + "/tayga.nix", [["eth1", 235, 20]]);
-const pos$65 = nix.positions(here + "/tayga.nix", [["useDHCP", 234, 9], ["interfaces", 235, 9]]);
-const pos$66 = nix.positions(here + "/tayga.nix", [["Name", 241, 23]]);
-const pos$67 = nix.positions(here + "/tayga.nix", [["Destination", 247, 15], ["Gateway", 248, 15]]);
-const pos$68 = nix.positions(here + "/tayga.nix", [["matchConfig", 241, 11], ["address", 242, 11], ["routes", 245, 11]]);
-const pos$69 = nix.positions(here + "/tayga.nix", [["vlan1", 240, 18]]);
-const pos$70 = nix.positions(here + "/tayga.nix", [["enable", 239, 9], ["networks", 240, 9]]);
-const pos$71 = nix.positions(here + "/tayga.nix", [["network", 238, 15]]);
-const pos$72 = nix.positions(here + "/tayga.nix", [["enable", 253, 20]]);
-const pos$73 = nix.positions(here + "/tayga.nix", [["mtr", 253, 16]]);
-const pos$74 = nix.positions(here + "/tayga.nix", [["systemPackages", 254, 19]]);
-const pos$75 = nix.positions(here + "/tayga.nix", [["virtualisation", 229, 7], ["networking", 233, 7], ["systemd", 238, 7], ["programs", 253, 7], ["environment", 254, 7]]);
-const pos$76 = nix.positions(here + "/tayga.nix", [["server", 41, 5], ["router_systemd", 78, 5], ["router_nixos", 152, 5], ["client", 228, 5]]);
-const pos$77 = nix.positions(here + "/tayga.nix", [["name", 28, 3], ["meta", 29, 3], ["nodes", 33, 3], ["testScript", 258, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$77,
+    [nix.POS]: $pos[76],
     name: "tayga",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "hax404"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$76,
+      [nix.POS]: $pos[75],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$14,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [2n]) })),
+        [nix.POS]: $pos[13],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], vlans: nix.thunk(() => [2n]) })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           useDHCP: false,
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             eth1: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({})))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           network: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             enable: true,
             networks: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               vlan1: nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                matchConfig: nix.thunk(() => ({ [nix.POS]: pos$5, Name: "eth1" })),
+                [nix.POS]: $pos[6],
+                matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[4], Name: "eth1" })),
                 address: nix.thunk(() => ["100.64.0.2/24"]),
                 routes: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$6, Destination: "192.0.2.0/24", Gateway: "100.64.0.1" })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[5], Destination: "192.0.2.0/24", Gateway: "100.64.0.1" })),
                 ]),
               })),
             })),
           })),
         })),
         programs: nix.thunk(() => ({
-          [nix.POS]: pos$12,
-          mtr: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
+          [nix.POS]: $pos[11],
+          mtr: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: true })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "tcpdump"))]),
         })),
       })),
       router_systemd: nix.thunk(() => ({
-        [nix.POS]: pos$38,
+        [nix.POS]: $pos[37],
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           kernel: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             sysctl: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               "net.ipv4.ip_forward": 1n,
               "net.ipv6.conf.all.forwarding": 1n,
             })),
           })),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$18, vlans: nix.thunk(() => [2n, 3n]) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[17], vlans: nix.thunk(() => [2n, 3n]) })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           hostName: "router-systemd",
           useDHCP: false,
           useNetworkd: true,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$19, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[18], enable: false })),
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             eth1: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$20, address: "100.64.0.1", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[19], address: "100.64.0.1", prefixLength: 24n })),
                   ]),
                 })),
               })))),
             eth2: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$23, address: "2001:db8::1", prefixLength: 64n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[22], address: "2001:db8::1", prefixLength: 64n })),
                   ]),
                 })),
               })))),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           tayga: nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             enable: true,
             ipv4: nix.thunk(() => ({
-              [nix.POS]: pos$30,
+              [nix.POS]: $pos[29],
               address: "192.0.2.0",
-              router: nix.thunk(() => ({ [nix.POS]: pos$28, address: "192.0.2.1" })),
-              pool: nix.thunk(() => ({ [nix.POS]: pos$29, address: "192.0.2.0", prefixLength: 24n })),
+              router: nix.thunk(() => ({ [nix.POS]: $pos[27], address: "192.0.2.1" })),
+              pool: nix.thunk(() => ({ [nix.POS]: $pos[28], address: "192.0.2.0", prefixLength: 24n })),
             })),
             ipv6: nix.thunk(() => ({
-              [nix.POS]: pos$33,
+              [nix.POS]: $pos[32],
               address: "2001:db8::1",
-              router: nix.thunk(() => ({ [nix.POS]: pos$31, address: "64:ff9b::1" })),
-              pool: nix.thunk(() => ({ [nix.POS]: pos$32, address: "64:ff9b::", prefixLength: 96n })),
+              router: nix.thunk(() => ({ [nix.POS]: $pos[30], address: "64:ff9b::1" })),
+              pool: nix.thunk(() => ({ [nix.POS]: $pos[31], address: "64:ff9b::", prefixLength: 96n })),
             })),
-            mappings: nix.thunk(() => ({ [nix.POS]: pos$34, "192.0.2.42": "2001:db8::2" })),
+            mappings: nix.thunk(() => ({ [nix.POS]: $pos[33], "192.0.2.42": "2001:db8::2" })),
             log: nix.thunk(() => ["drop", "reject", "icmp", "self"]),
             wkpfStrict: false,
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "tcpdump"))]),
         })),
       })),
       router_nixos: nix.thunk(() => ({
-        [nix.POS]: pos$62,
+        [nix.POS]: $pos[61],
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           kernel: nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             sysctl: nix.thunk(() => ({
-              [nix.POS]: pos$39,
+              [nix.POS]: $pos[38],
               "net.ipv4.ip_forward": 1n,
               "net.ipv6.conf.all.forwarding": 1n,
             })),
           })),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$42, vlans: nix.thunk(() => [2n, 3n]) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[41], vlans: nix.thunk(() => [2n, 3n]) })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$51,
+          [nix.POS]: $pos[50],
           hostName: "router-nixos",
           useDHCP: false,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$43, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[42], enable: false })),
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$50,
+            [nix.POS]: $pos[49],
             eth1: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                [nix.POS]: pos$46,
+                [nix.POS]: $pos[45],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$45,
+                  [nix.POS]: $pos[44],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$44, address: "100.64.0.1", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[43], address: "100.64.0.1", prefixLength: 24n })),
                   ]),
                 })),
               })))),
             eth2: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                [nix.POS]: pos$49,
+                [nix.POS]: $pos[48],
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$48,
+                  [nix.POS]: $pos[47],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$47, address: "2001:db8::1", prefixLength: 64n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[46], address: "2001:db8::1", prefixLength: 64n })),
                   ]),
                 })),
               })))),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$60,
+          [nix.POS]: $pos[59],
           tayga: nix.thunk(() => ({
-            [nix.POS]: pos$59,
+            [nix.POS]: $pos[58],
             enable: true,
             ipv4: nix.thunk(() => ({
-              [nix.POS]: pos$54,
+              [nix.POS]: $pos[53],
               address: "192.0.2.0",
-              router: nix.thunk(() => ({ [nix.POS]: pos$52, address: "192.0.2.1" })),
-              pool: nix.thunk(() => ({ [nix.POS]: pos$53, address: "192.0.2.0", prefixLength: 24n })),
+              router: nix.thunk(() => ({ [nix.POS]: $pos[51], address: "192.0.2.1" })),
+              pool: nix.thunk(() => ({ [nix.POS]: $pos[52], address: "192.0.2.0", prefixLength: 24n })),
             })),
             ipv6: nix.thunk(() => ({
-              [nix.POS]: pos$57,
+              [nix.POS]: $pos[56],
               address: "2001:db8::1",
-              router: nix.thunk(() => ({ [nix.POS]: pos$55, address: "64:ff9b::1" })),
-              pool: nix.thunk(() => ({ [nix.POS]: pos$56, address: "64:ff9b::", prefixLength: 96n })),
+              router: nix.thunk(() => ({ [nix.POS]: $pos[54], address: "64:ff9b::1" })),
+              pool: nix.thunk(() => ({ [nix.POS]: $pos[55], address: "64:ff9b::", prefixLength: 96n })),
             })),
-            mappings: nix.thunk(() => ({ [nix.POS]: pos$58, "192.0.2.42": "2001:db8::2" })),
+            mappings: nix.thunk(() => ({ [nix.POS]: $pos[57], "192.0.2.42": "2001:db8::2" })),
             log: nix.thunk(() => ["drop", "reject", "icmp", "self"]),
             wkpfStrict: false,
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$61,
+          [nix.POS]: $pos[60],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "tcpdump"))]),
         })),
       })),
       client: nix.thunk(() => ({
-        [nix.POS]: pos$75,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$63, vlans: nix.thunk(() => [3n]) })),
+        [nix.POS]: $pos[74],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[62], vlans: nix.thunk(() => [3n]) })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$65,
+          [nix.POS]: $pos[64],
           useDHCP: false,
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$64,
+            [nix.POS]: $pos[63],
             eth1: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({})))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$71,
+          [nix.POS]: $pos[70],
           network: nix.thunk(() => ({
-            [nix.POS]: pos$70,
+            [nix.POS]: $pos[69],
             enable: true,
             networks: nix.thunk(() => ({
-              [nix.POS]: pos$69,
+              [nix.POS]: $pos[68],
               vlan1: nix.thunk(() => ({
-                [nix.POS]: pos$68,
-                matchConfig: nix.thunk(() => ({ [nix.POS]: pos$66, Name: "eth1" })),
+                [nix.POS]: $pos[67],
+                matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[65], Name: "eth1" })),
                 address: nix.thunk(() => ["2001:db8::2/64"]),
                 routes: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$67, Destination: "64:ff9b::/96", Gateway: "2001:db8::1" })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[66], Destination: "64:ff9b::/96", Gateway: "2001:db8::1" })),
                 ]),
               })),
             })),
           })),
         })),
         programs: nix.thunk(() => ({
-          [nix.POS]: pos$73,
-          mtr: nix.thunk(() => ({ [nix.POS]: pos$72, enable: true })),
+          [nix.POS]: $pos[72],
+          mtr: nix.thunk(() => ({ [nix.POS]: $pos[71], enable: true })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$74,
+          [nix.POS]: $pos[73],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "tcpdump"))]),
         })),
       })),

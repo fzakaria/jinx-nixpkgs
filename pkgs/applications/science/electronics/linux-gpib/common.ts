@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["url", 11, 5], ["hash", 12, 5]], [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["platforms", 27, 5]], [["version", 7, 3], ["pname", 8, 11], ["src", 10, 3], ["unpackPhase", 15, 3], ["sourceRoot", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { pname: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/common.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["platforms", 27, 5]]);
-const pos$3 = nix.positions(here + "/common.nix", [["version", 7, 3], ["pname", 8, 11], ["src", 10, 3], ["unpackPhase", 15, 3], ["sourceRoot", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
     const version = "4.3.7";
     const pname_1 = pname;
     const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`mirror://sourceforge/project/linux-gpib/linux-gpib%20for%203.x.x%20and%202.6.x%20kernels/${version}/linux-gpib-${version}.tar.gz`),
         hash: "sha256-s/+BJgaGXIW1iwEqQhim/juC0XfIwKvHlcsi20HzrWg=",
       }))));
@@ -25,7 +23,7 @@ tar xf linux-gpib-${version}/${pname_1}-${version}.tar.gz
 `);
     const sourceRoot = nix.thunk(() => nix.str`${pname_1}-${version}`);
     const meta = nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       description: "Support package for GPIB (IEEE 488) hardware",
       homepage: "https://linux-gpib.sourceforge.io/",
       license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -36,7 +34,7 @@ tar xf linux-gpib-${version}/${pname_1}-${version}.tar.gz
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
     }));
     return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version,
       pname: pname_1,
       src,

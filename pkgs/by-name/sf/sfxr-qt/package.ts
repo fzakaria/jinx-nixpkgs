@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]], [["export-square-wave", 57, 5], ["sfxr-qt-starts", 58, 5]], [["tests", 56, 12]], [["homepage", 62, 5], ["description", 63, 5], ["mainProgram", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 40, 3], ["checkInputs", 46, 3], ["cmakeFlags", 50, 3], ["doCheck", 54, 3], ["passthru", 56, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kdePackages: false, libsForQt5: false, cmake: false, SDL: false, python3: false, catch2_3: false, callPackage: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["export-square-wave", 57, 5], ["sfxr-qt-starts", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 56, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["description", 63, 5], ["mainProgram", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 40, 3], ["checkInputs", 46, 3], ["cmakeFlags", 50, 3], ["doCheck", 54, 3], ["passthru", 56, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sfxr-qt",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "agateau",
           repo: "sfxr-qt",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,15 +54,15 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "export-square-wave": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-export-square-wave"), nix.thunk(() => ({})))),
           "sfxr-qt-starts": nix.thunk(() => nix.sel(nixosTests, "sfxr-qt")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/agateau/sfxr-qt",
         description: "Sound effect generator, QtQuick port of sfxr",
         mainProgram: "sfxr-qt",

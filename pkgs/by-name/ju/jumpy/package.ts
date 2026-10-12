@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["url", 35, 7], ["hash", 36, 7]], [["ZSTD_SYS_USE_PKG_CONFIG", 71, 5]], [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 98, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoPatches", 33, 3], ["cargoHash", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["cargoBuildFlags", 65, 3], ["env", 70, 3], ["postInstall", 76, 3], ["postFixup", 82, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, fetchpatch2: false, makeWrapper: false, "pkg-config": false, zstd: false, stdenv: false, "alsa-lib": false, libxkbcommon: false, udev: false, "vulkan-loader": false, wayland: false, libxrandr: false, libxi: false, libxcursor: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ZSTD_SYS_USE_PKG_CONFIG", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 98, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoPatches", 33, 3], ["cargoHash", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["cargoBuildFlags", 65, 3], ["env", 70, 3], ["postInstall", 76, 3], ["postFixup", 82, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jumpy",
       version: "0.12.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fishfolk",
           repo: "jumpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoPatches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/fishfolk/jumpy/commit/8234e6d2c0b33c75e2112596ded1734fdba50fb8.patch?full_index=1",
             hash: "sha256-IWjBw1Wj/6CT/x6xm6vfpUMfk7A5/EsdbPDvWywRFc8=",
           })))),
@@ -60,13 +56,13 @@ export default nix.lambda((args) => (() => {
           libxrandr,
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]))))),
       cargoBuildFlags: nix.thunk(() => ["--bin", "jumpy"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ZSTD_SYS_USE_PKG_CONFIG: true })),
       postInstall: "mkdir $out/share\ncp -r assets $out/share\nwrapProgram $out/bin/jumpy --chdir $out/share\n",
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`patchelf $out/bin/.jumpy-wrapped \\
   --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [vulkan_loader]))}
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tactical 2D shooter played by up to 4 players online or on a shared screen",
         mainProgram: "jumpy",
         homepage: "https://fishfolk.org/games/jumpy",

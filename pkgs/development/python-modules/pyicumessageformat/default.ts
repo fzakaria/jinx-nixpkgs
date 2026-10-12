@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]], [["description", 25, 5], ["homepage", 26, 5], ["changelog", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["build-system", 13, 3], ["src", 15, 3], ["nativeCheckInputs", 20, 3], ["pythonImportsCheck", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 25, 5], ["homepage", 26, 5], ["changelog", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["build-system", 13, 3], ["src", 15, 3], ["nativeCheckInputs", 20, 3], ["pythonImportsCheck", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-s+l8DtEMKxA/DzpwGqZSlwDqCrZuDzsj3I5K7hgfyEA=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pyicumessageformat"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unopinionated Python3 parser for ICU MessageFormat",
         homepage: "https://github.com/SirStendec/pyicumessageformat/",
         changelog: "https://github.com/SirStendec/pyicumessageformat/blob/master/CHANGELOG.md",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

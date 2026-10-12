@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["pname", 10, 3], ["version", 11, 19], ["paths", 13, 3], ["nativeBuildInputs", 15, 3], ["postBuild", 17, 3]]]);
 const formals$1 = { args: { arcan: false, makeWrapper: false, symlinkJoin: false, appls: true, name: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["pname", 10, 3], ["version", 11, 19], ["paths", 13, 3], ["nativeBuildInputs", 15, 3], ["postBuild", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const appls = nix.argOr($, "appls", () => []);
   const name = nix.argOr($, "name", () => "arcan-wrapped");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: name,
       version: nix.thunk(() => nix.attr(arcan, "version")),
       paths: nix.thunk(() => nix.concat(appls, [arcan])),

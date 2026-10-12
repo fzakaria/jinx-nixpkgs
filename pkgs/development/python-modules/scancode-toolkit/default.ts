@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 68, 5], ["version", 69, 26], ["hash", 70, 5]], [["description", 147, 5], ["homepage", 148, 5], ["changelog", 149, 5], ["license", 150, 5], ["maintainers", 154, 5], ["teams", 155, 5]], [["pname", 63, 3], ["version", 64, 3], ["pyproject", 65, 3], ["src", 67, 3], ["dontConfigure", 73, 3], ["build-system", 75, 3], ["dependencies", 77, 3], ["nativeBuildInputs", 132, 3], ["nativeCheckInputs", 134, 3], ["postInstall", 137, 3], ["pythonImportsCheck", 141, 3], ["dontStrip", 144, 3], ["meta", 146, 3]]]);
 const formals$1 = { args: { lib: false, attrs: false, beautifulsoup4: false, bitarray: false, "boolean-py": false, buildPythonPackage: false, chardet: false, click: false, colorama: false, commoncode: false, "container-inspector": false, "debian-inspector": false, dparse2: false, extractcode: false, "extractcode-7z": false, "extractcode-libarchive": false, fasteners: false, fetchPypi: false, fingerprints: false, ftfy: false, gemfileparser2: false, html5lib: false, "importlib-metadata": false, intbitset: false, "jaraco-functools": false, javaproperties: false, jinja2: false, jsonstreams: false, "license-expression": false, lxml: false, markupsafe: false, multiregex: false, "packageurl-python": false, packaging: false, "parameter-expansion-patched": false, pefile: false, "pip-requirements-parser": false, pkginfo2: false, pluggy: false, plugincode: false, publicsuffix2: false, pyahocorasick: false, pycryptodome: false, pygmars: false, pygments: false, "pymaven-patch": false, pytestCheckHook: false, requests: false, saneyaml: false, setuptools: false, "spdx-tools": false, "text-unidecode": false, toml: false, typecode: false, "typecode-libmagic": false, urlpy: false, writableTmpDirAsHomeHook: false, xmltodict: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 68, 5], ["version", 69, 26], ["hash", 70, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 147, 5], ["homepage", 148, 5], ["changelog", 149, 5], ["license", 150, 5], ["maintainers", 154, 5], ["teams", 155, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 63, 3], ["version", 64, 3], ["pyproject", 65, 3], ["src", 67, 3], ["dontConfigure", 73, 3], ["build-system", 75, 3], ["dependencies", 77, 3], ["nativeBuildInputs", 132, 3], ["nativeCheckInputs", 134, 3], ["postInstall", 137, 3], ["pythonImportsCheck", 141, 3], ["dontStrip", 144, 3], ["meta", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -68,12 +66,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xmltodict = nix.arg($, "xmltodict");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "scancode-toolkit",
       version: "32.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "scancode_toolkit",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-WXAZCk0aRmKb1UU1ud95mZFHAMC9U+gDRd9w7TZTVSA=",
@@ -140,7 +138,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["scancode"]),
       dontStrip: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to scan code for license, copyright, package and their documented dependencies and other interesting facts",
         homepage: "https://github.com/aboutcode-org/scancode-toolkit",
         changelog: nix.thunk(() => nix.str`https://github.com/aboutcode-org/scancode-toolkit/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),

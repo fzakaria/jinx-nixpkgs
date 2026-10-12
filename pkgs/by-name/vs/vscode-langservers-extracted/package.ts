@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nativeBuildInputs", 64, 9]], [["initialization", 61, 18]], [["tests", 61, 12]], [["license", 84, 29], ["platforms", 84, 37], ["description", 85, 5], ["maintainers", 86, 5]], [["version", 13, 22], ["src", 13, 30], ["pname", 14, 3], ["sourceRoot", 16, 3], ["nativeBuildInputs", 22, 3], ["__structuredAttrs", 32, 3], ["strictDeps", 33, 3], ["dontConfigure", 34, 3], ["dontBuild", 35, 3], ["installPhase", 37, 3], ["passthru", 61, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, vscodium: false, "vscode-extensions": false, "nodejs-slim": false, makeBinaryWrapper: false, unzip: false, runCommandLocal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 64, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["initialization", 61, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 61, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["license", 84, 29], ["platforms", 84, 37], ["description", 85, 5], ["maintainers", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 13, 22], ["src", 13, 30], ["pname", 14, 3], ["sourceRoot", 16, 3], ["nativeBuildInputs", 22, 3], ["__structuredAttrs", 32, 3], ["strictDeps", 33, 3], ["dontConfigure", 34, 3], ["dontBuild", 35, 3], ["installPhase", 37, 3], ["passthru", 61, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: nix.thunk(() => nix.attr(vscodium, "version")),
       src: nix.thunk(() => nix.attr(vscodium, "src")),
       pname: "vscode-langservers-extracted",
@@ -53,11 +49,11 @@ cp -a node_modules/typescript "$out/lib/extensions/node_modules/typescript"
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           initialization: nix.thunk(() => nix.app(runCommandLocal, "vscode-langservers-extracted-initialization", nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "request() {\n  init_request='{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"initialize\",\"params\":{\"processId\":null,\"rootUri\":null,\"capabilities\":{}}}'\n  content_length=${#init_request}\n  printf \"Content-Length: %d\\r\\n\\r\\n%s\" \"$content_length\" \"$init_request\"\n  sleep 1\n}\n\nfor language in css html json eslint; do\n  echo \"Checking $language language server\"\n  response=$(request | timeout 3 \"vscode-$language-language-server\" --stdio) || true\n  grep -q '\"capabilities\"' <<< \"$response\"\ndone\n\ntouch $out\n")),
         })),
@@ -65,7 +61,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(vscodium, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         license: nix.thunk(() => nix.attr(from, "license")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "HTML/CSS/JSON/ESLint language servers extracted from vscode",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 48, 5], ["maintainers", 49, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["cmakeFlags", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, cmake: false, sqlite: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["cmakeFlags", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tagainijisho",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Gnurou/tagainijisho/releases/download/${nix.sel(finalAttrs, "version")}/tagainijisho-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-CTDMoYGbVE4W0SDerW//aAdUVsySWFQycSy0I3a9+94=",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "qtbase")), sqlite]),
       cmakeFlags: nix.thunk(() => ["-DEMBED_SQLITE=OFF"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free, open-source Japanese dictionary and kanji lookup tool",
         mainProgram: "tagainijisho",
         homepage: "https://www.tagaini.net/",

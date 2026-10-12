@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 47, 5], ["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["name", 54, 5], ["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["owner", 61, 5], ["repo", 62, 5], ["tag", 64, 5], ["hash", 65, 5]], [["name", 69, 5], ["desktopName", 70, 5], ["exec", 71, 5], ["icon", 72, 5], ["categories", 73, 5]], [["pname", 150, 13], ["data", 151, 5]], [["nixosTest", 262, 18]], [["tests", 262, 12]], [["homepage", 265, 5], ["downloadPage", 266, 5], ["description", 267, 5], ["sourceProvenance", 268, 5], ["license", 272, 5], ["maintainers", 273, 5], ["platforms", 277, 5], ["broken", 279, 5]], [["pname", 81, 11], ["version", 81, 17], ["unpackPhase", 83, 3], ["postPatch", 95, 3], ["mitmCache", 149, 3], ["__darwinAllowLocalNetworking", 154, 3], ["buildInputs", 156, 3], ["nativeBuildInputs", 161, 3], ["desktopItems", 174, 3], ["gradleFlags", 176, 3], ["buildPhase", 181, 3], ["installPhase", 208, 3], ["postGradleUpdate", 256, 3], ["passthru", 262, 3], ["meta", 264, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, fetchFromGitHub: false, gradle: false, jdk17: false, zenity: false, SDL2: false, "pkg-config": false, ant: false, curl: false, wget: false, "alsa-lib": false, "alsa-plugins": false, glew: false, libpulseaudio: true, libjack2: true, nixosTests: false, makeBuildVersion: true, enableClient: true, enableServer: true, enableWayland: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 47, 5], ["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 54, 5], ["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 61, 5], ["repo", 62, 5], ["tag", 64, 5], ["hash", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 69, 5], ["desktopName", 70, 5], ["exec", 71, 5], ["icon", 72, 5], ["categories", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 150, 13], ["data", 151, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["nixosTest", 262, 18]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 262, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 265, 5], ["downloadPage", 266, 5], ["description", 267, 5], ["sourceProvenance", 268, 5], ["license", 272, 5], ["maintainers", 273, 5], ["platforms", 277, 5], ["broken", 279, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 81, 11], ["version", 81, 17], ["unpackPhase", 83, 3], ["postPatch", 95, 3], ["mitmCache", 149, 3], ["__darwinAllowLocalNetworking", 154, 3], ["buildInputs", 156, 3], ["nativeBuildInputs", 161, 3], ["desktopItems", 174, 3], ["gradleFlags", 176, 3], ["buildPhase", 181, 3], ["installPhase", 208, 3], ["postGradleUpdate", 256, 3], ["passthru", 262, 3], ["meta", 264, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const buildVersion = nix.thunk(() => nix.app(makeBuildVersion, version));
   const jdk = jdk17;
   const Mindustry = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "Mindustry-source",
       owner: "Anuken",
       repo: "Mindustry",
@@ -52,7 +44,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-B3pZQiaDJ4GSTsFCeCu/ENYfIxSWyyR+J/UHuKItXYI=",
     }))));
   const Arc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "Arc-source",
       owner: "Anuken",
       repo: "Arc",
@@ -60,14 +52,14 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-sQ9QnMBqbcdVKoNLfdyUCvFsBd92f04aKystrhCfsfo=",
     }))));
   const soloud = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "Anuken",
       repo: "soloud",
       tag: "2026.09.04",
       hash: "sha256-g8ZELw+hB9x7/HnmNzvXihGTBqpigdtScvYbrhvlZVM=",
     }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "Mindustry",
       desktopName: "Mindustry",
       exec: "mindustry",
@@ -76,7 +68,7 @@ export default nix.lambda((args) => (() => {
     }))));
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (nix.asBool(enableClient) || nix.asBool(enableServer))), "mindustry: at least one of 'enableClient' and 'enableServer' must be true"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mi/mindustry/package.nix:77:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: pname,
       version: version,
       unpackPhase: nix.thunk(() => nix.str`runHook preUnpack
@@ -135,7 +127,7 @@ sed -i '/^project(":ios"){/,/^}/d' build.gradle
 sed -i '/robo(vm|VM)/d' build.gradle
 rm ios/build.gradle
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))), "substituteInPlace ../Arc/arc-core/build.gradle \\\n  --replace-fail \"-msse\" \"\"\nsubstituteInPlace ../Arc/backends/backend-sdl/build.gradle \\\n  --replace-fail \"-m64\" \"\"\n"))),
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$5, pname: pname, data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: $pos[4], pname: pname, data: nix.path(here, "./deps.json") })))),
       __darwinAllowLocalNetworking: true,
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), enableClient, nix.thunk(() => [SDL2, alsa_lib, glew]))),
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, gradle, makeWrapper, jdk], nix.app(nix.sel(lib, "optionals"), enableClient, nix.thunk(() => [ant, copyDesktopItems, curl, wget])))),
@@ -190,14 +182,14 @@ makeWrapper ${jdk}/bin/java $out/bin/mindustry-server \\
       })()),
       postGradleUpdate: "# this fetches non-gradle dependencies\ncd ../Arc\ngradle preJni\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           nixosTest: nix.thunk(() => nix.sel(nixosTests, "mindustry")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://mindustrygame.github.io/",
         downloadPage: "https://github.com/Anuken/Mindustry/releases",
         description: "Sandbox tower defense game",

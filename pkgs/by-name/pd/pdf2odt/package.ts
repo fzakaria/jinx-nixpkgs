@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["scripts", 40, 5], ["interpreter", 41, 5], ["inputs", 42, 5], ["execer", 53, 5]], [["default", 39, 13]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["installPhase", 28, 3], ["solutions", 39, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, resholve: false, fetchFromGitHub: false, bc: false, coreutils: false, file: false, gawk: false, ghostscript: false, gnused: false, imagemagick: false, zip: false, runtimeShell: false, findutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["scripts", 40, 5], ["interpreter", 41, 5], ["inputs", 42, 5], ["execer", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["default", 39, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["installPhase", 28, 3], ["solutions", 39, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const findutils = nix.arg($, "findutils");
   return nix.app(nix.sel(resholve, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pdf2odt",
       version: "20220827",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gutschke",
           repo: "pdf2odt",
           rev: "a05fbdebcc39277d905d1ae66f585a19f467b406",
@@ -37,9 +33,9 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm0555 pdf2odt           -t $out/bin\ninstall -Dm0444 README.md LICENSE -t $out/share/doc/pdf2odt\n\nln -rs $out/bin/pdf2odt $out/bin/pdf2ods\n\nrunHook postInstall\n",
       solutions: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         default: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           scripts: nix.thunk(() => ["bin/pdf2odt"]),
           interpreter: runtimeShell,
           inputs: nix.thunk(() => [bc, coreutils, file, findutils, gawk, ghostscript, gnused, imagemagick, zip]),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "PDF to ODT/ODS format converter",
         homepage: "https://github.com/gutschke/pdf2odt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

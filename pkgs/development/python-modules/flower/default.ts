@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["postPatch", 23, 3], ["propagatedBuildInputs", 29, 3], ["__darwinAllowLocalNetworking", 37, 3], ["nativeCheckInputs", 39, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, celery: false, humanize: false, pytz: false, tornado: false, "prometheus-client": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["postPatch", 23, 3], ["propagatedBuildInputs", 29, 3], ["__darwinAllowLocalNetworking", 37, 3], ["nativeCheckInputs", 39, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-WrcXuXlTB3DBavtItQ0qmNI8Pp/jmFHc9rxNAYRaAqA=",
@@ -34,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["flower"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Real-time monitor and web admin for Celery distributed task queue",
         homepage: "https://github.com/mher/flower",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

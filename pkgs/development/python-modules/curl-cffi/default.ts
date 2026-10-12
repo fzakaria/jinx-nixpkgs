@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["changelog", 113, 5], ["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["buildInputs", 40, 3], ["build-system", 42, 3], ["dependencies", 47, 3], ["pythonImportsCheck", 53, 3], ["nativeCheckInputs", 55, 3], ["preCheck", 73, 3], ["enabledTestPaths", 78, 3], ["disabledTestPaths", 82, 3], ["disabledTests", 96, 3], ["__darwinAllowLocalNetworking", 110, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, addBinToPathHook: false, "curl-impersonate": false, cffi: false, certifi: false, "charset-normalizer": false, cryptography: false, fastapi: false, httpx: false, litestar: false, "proxy-py": false, "pytest-asyncio": false, "pytest-trio": false, pytestCheckHook: false, "python-multipart": false, rich: false, trustme: false, uvicorn: false, websockets: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 113, 5], ["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["buildInputs", 40, 3], ["build-system", 42, 3], ["dependencies", 47, 3], ["pythonImportsCheck", 53, 3], ["nativeCheckInputs", 55, 3], ["preCheck", 73, 3], ["enabledTestPaths", 78, 3], ["disabledTestPaths", 82, 3], ["disabledTests", 96, 3], ["__darwinAllowLocalNetworking", 110, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.16.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lexiforest",
           repo: "curl_cffi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -86,7 +84,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/lexiforest/curl_cffi/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python binding for curl-impersonate via cffi",
         homepage: "https://curl-cffi.readthedocs.io",
@@ -100,7 +98,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

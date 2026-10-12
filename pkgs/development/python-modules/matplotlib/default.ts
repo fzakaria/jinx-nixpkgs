@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 77, 26], ["version", 77, 32], ["hash", 78, 5]], [["XDG_RUNTIME_DIR", 81, 7]], [["system-freetype", 153, 5], ["system-qhull", 154, 5], ["system-libraqm", 155, 5], ["b_lto", 160, 5]], [["sage", 164, 13]], [["tests", 163, 12]], [["description", 188, 5], ["homepage", 189, 5], ["changelog", 190, 5], ["license", 191, 5], ["maintainers", 195, 5]], [["version", 72, 3], ["pname", 73, 3], ["pyproject", 74, 3], ["src", 76, 3], ["env", 81, 3], ["postPatch", 89, 3], ["nativeBuildInputs", 107, 3], ["buildInputs", 109, 3], ["hardeningDisable", 122, 3], ["build-system", 124, 3], ["dependencies", 131, 3], ["mesonFlags", 152, 3], ["passthru", 163, 3], ["pythonImportsCheck", 167, 3], ["doCheck", 172, 3], ["nativeCheckInputs", 173, 3], ["preCheck", 174, 3], ["meta", 187, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchPypi: false, buildPythonPackage: false, isPyPy: false, certifi: false, "pkg-config": false, pybind11: false, "meson-python": false, "setuptools-scm": false, pytestCheckHook: false, python: false, "ffmpeg-headless": false, freetype: false, qhull: false, libraqm: false, contourpy: false, cycler: false, fonttools: false, kiwisolver: false, numpy: false, packaging: false, pillow: false, pyparsing: false, "python-dateutil": false, enableGtk3: true, cairo: false, "gobject-introspection": false, gtk3: false, pycairo: false, pygobject3: false, enableTk: true, tkinter: false, enableQt: true, pyqt5: false, enableWebagg: true, tornado: false, enableNbagg: true, ipykernel: false, libx11: false, wayland: false, sage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 77, 26], ["version", 77, 32], ["hash", 78, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["XDG_RUNTIME_DIR", 81, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["system-freetype", 153, 5], ["system-qhull", 154, 5], ["system-libraqm", 155, 5], ["b_lto", 160, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["sage", 164, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 163, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 188, 5], ["homepage", 189, 5], ["changelog", 190, 5], ["license", 191, 5], ["maintainers", 195, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 72, 3], ["pname", 73, 3], ["pyproject", 74, 3], ["src", 76, 3], ["env", 81, 3], ["postPatch", 89, 3], ["nativeBuildInputs", 107, 3], ["buildInputs", 109, 3], ["hardeningDisable", 122, 3], ["build-system", 124, 3], ["dependencies", 131, 3], ["mesonFlags", 152, 3], ["passthru", 163, 3], ["pythonImportsCheck", 167, 3], ["doCheck", 172, 3], ["nativeCheckInputs", 173, 3], ["preCheck", 174, 3], ["meta", 187, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,17 +51,17 @@ export default nix.lambda((args) => (() => {
   const sage = nix.arg($, "sage");
   const interactive = nix.thunk(() => (nix.asBool((nix.asBool(enableTk) || nix.asBool(enableGtk3))) || nix.asBool(enableQt)));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: "3.11.1",
       pname: "matplotlib",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-aWR9tXRpQceT1uRFpM00kyP/uH2cyVjCrYSmWbSDLTA=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, XDG_RUNTIME_DIR: "/tmp" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], XDG_RUNTIME_DIR: "/tmp" })),
       postPatch: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), isPyPy, "substituteInPlace tools/generate_matplotlibrc.py \\\n  --replace-fail \"/usr/bin/env python3\" \"/usr/bin/env pypy3\"\n"), "substituteInPlace pyproject.toml \\\n  --replace-fail \"setuptools_scm>=7,<10\" setuptools_scm\n\npatchShebangs tools\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(interactive))), nix.thunk(() => nix.str`# fix paths to libraries in dlopen calls (headless detection)
 substituteInPlace src/_c_internal_utils.cpp \\
   --replace-fail libX11.so.6 ${libx11}/lib/libX11.so.6 \\
@@ -89,13 +83,16 @@ substituteInPlace src/_c_internal_utils.cpp \\
         python_dateutil,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), enableGtk3, nix.thunk(() => [pycairo, pygobject3])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableQt, nix.thunk(() => [pyqt5])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableWebagg, nix.thunk(() => [tornado])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableNbagg, nix.thunk(() => [ipykernel])), nix.app(nix.sel(lib, "optionals"), enableTk, nix.thunk(() => [tkinter])))))))),
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonBool")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "system-freetype": true,
           "system-qhull": true,
           "system-libraqm": true,
           b_lto: false,
         })))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, tests: nix.thunk(() => ({ [nix.POS]: pos$4, sage: sage })) })),
+      passthru: nix.thunk(() => ({
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], sage: sage })),
+      })),
       pythonImportsCheck: nix.thunk(() => ["matplotlib"]),
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
@@ -111,7 +108,7 @@ cp \\
 cd $out
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Python plotting library, making publication quality plots",
         homepage: "https://matplotlib.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/matplotlib/matplotlib/releases/tag/v${nix.sel(finalAttrs, "version")}`),

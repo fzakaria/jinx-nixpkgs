@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]], [["updateScript", 23, 12]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 70, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["passthru", 23, 3], ["nativeBuildInputs", 25, 3], ["buildPhase", 30, 3], ["installPhase", 34, 3], ["dontPatchShebangs", 50, 3], ["postFixup", 51, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, dash: false, "xdg-terminal-exec": false, scdoc: false, fetchFromGitHub: false, "nix-update-script": false, installShellFiles: false, withTerminalSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 23, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["passthru", 23, 3], ["nativeBuildInputs", 25, 3], ["buildPhase", 30, 3], ["installPhase", 34, 3], ["dontPatchShebangs", 50, 3], ["postFixup", 51, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const withTerminalSupport = nix.argOr($, "withTerminalSupport", () => true);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "app2unit",
       version: "1.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Vladimir-csp",
           repo: "app2unit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-TIY+/9ekGub+10uyqXy5aYU+2NLysMtaQnD1PIjBCFA=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [scdoc, installShellFiles]),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
                  'A2U__TERMINAL_HANDLER=${nix.app(nix.sel(lib, "getExe"), xdg_terminal_exec)}'
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Launches Desktop Entries as Systemd user units",
         homepage: "https://github.com/Vladimir-csp/app2unit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

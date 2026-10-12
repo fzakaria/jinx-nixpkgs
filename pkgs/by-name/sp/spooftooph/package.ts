@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["NIX_CFLAGS_COMPILE", 23, 7]], [["homepage", 32, 5], ["description", 33, 5], ["mainProgram", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["env", 23, 3], ["makeFlags", 25, 3], ["preInstall", 27, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bluez: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 32, 5], ["description", 33, 5], ["mainProgram", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["env", 23, 3], ["makeFlags", 25, 3], ["preInstall", 27, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const bluez = nix.arg($, "bluez");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "spooftooph",
       version: "0.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/spooftooph/spooftooph-${nix.sel(finalAttrs, "version")}/spooftooph-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-JH5+fHpe83NJV9AR5MXKnrwaTqz4s2BGAcczbddVNHw=",
         })))),
       buildInputs: nix.thunk(() => [bluez, ncurses]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-incompatible-pointer-types" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-incompatible-pointer-types" })),
       makeFlags: nix.thunk(() => ["BIN=$(out)/bin"]),
       preInstall: "mkdir -p $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://sourceforge.net/projects/spooftooph",
         description: "Automate spoofing or clone Bluetooth device Name, Class, and Address",
         mainProgram: "spooftooph",

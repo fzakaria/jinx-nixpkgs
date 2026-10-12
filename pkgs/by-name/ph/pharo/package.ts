@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 58, 7]], [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["longDescription", 101, 5], ["mainProgram", 107, 5], ["platforms", 108, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 29, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 43, 3], ["cmakeFlags", 48, 3], ["env", 58, 3], ["preBuild", 63, 3], ["installPhase", 68, 3], ["preFixup", 80, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cairo: false, cmake: false, fetchzip: false, freetype: false, libffi: false, libgit2: false, libpng: false, libuuid: false, makeBinaryWrapper: false, openssl: false, pixman: false, SDL2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["longDescription", 101, 5], ["mainProgram", 107, 5], ["platforms", 108, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 29, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 43, 3], ["cmakeFlags", 48, 3], ["env", 58, 3], ["preBuild", 63, 3], ["installPhase", 68, 3], ["preFixup", 80, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pixman = nix.arg($, "pixman");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pharo",
       version: "10.3.4+3.884643b",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://files.pharo.org/vm/pharo-spur64-headless/Linux-x86_64/source/PharoVM-v${nix.sel(finalAttrs, "version")}-Linux-x86_64-c-src.zip`),
           hash: "sha256-JBN0gPVMIUFzrdLqrCnCvf4cbZMfpluO2/jCxk3U+M8=",
         })))),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         "-DBUILD_BUNDLE=OFF",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-incompatible-pointer-types"]))),
       })),
       preBuild: nix.thunk(() => nix.str`mkdir -p /build/source/build/
@@ -59,7 +56,7 @@ wrapProgram "$out/bin/pharo" --argv0 $out/bin/pharo --prefix LD_LIBRARY_PATH ":"
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Clean and innovative Smalltalk-inspired environment",
         homepage: "https://pharo.org",
         changelog: "https://github.com/pharo-project/pharo/releases/",

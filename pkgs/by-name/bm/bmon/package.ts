@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["url", 28, 7], ["extraPrefix", 29, 7], ["sha256", 30, 7]], [["description", 51, 5], ["homepage", 52, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["mainProgram", 62, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["preConfigure", 45, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, "pkg-config": false, ncurses: false, libconfuse: false, libnl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["extraPrefix", 29, 7], ["sha256", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["mainProgram", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["preConfigure", 45, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libconfuse = nix.arg($, "libconfuse");
   const libnl = nix.arg($, "libnl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bmon",
       version: "4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Jafaral",
           repo: "bmon",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/macports/macports-ports/raw/6d1dd5e9c8fae608bd22f3ede21e576f29c6358c/net/bmon/files/patch-fix__unused.diff",
             extraPrefix: "",
             sha256: "sha256-UYIiJZzipsx9a0xabrKfyj8TWNW7IM77oXnVnSPkQkc=",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([ncurses, libconfuse], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), libnl))),
       preConfigure: "# Must be an absolute path\nexport PKG_CONFIG=\"$(command -v \"$PKG_CONFIG\")\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Network bandwidth monitor",
         homepage: "https://github.com/Jafaral/bmon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generated-package.nix", [[["url", 39, 5], ["sha256", 40, 5], ["rev", 41, 5], ["fetchSubmodules", 42, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 38, 3], ["isLibrary", 44, 3], ["isExecutable", 45, 3], ["libraryHaskellDepends", 46, 3], ["executableHaskellDepends", 75, 3], ["license", 104, 3], ["mainProgram", 105, 3]]]);
 const formals$1 = { args: { mkDerivation: false, aeson: false, base: false, "base64-bytestring": false, bytestring: false, containers: false, "cryptohash-sha256": false, directory: false, fetchgit: false, hsyslog: false, "http-conduit": false, "http-types": false, lib: false, mtl: false, network: false, "network-uri": false, "optparse-applicative": false, "pretty-simple": false, process: false, random: false, "streaming-commons": false, "string-qq": false, strings: false, text: false, time: false, twain: false, unix: false, "utf8-string": false, warp: false, yaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generated-package.nix", [["url", 39, 5], ["sha256", 40, 5], ["rev", 41, 5], ["fetchSubmodules", 42, 5]]);
-const pos$2 = nix.positions(here + "/generated-package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 38, 3], ["isLibrary", 44, 3], ["isExecutable", 45, 3], ["libraryHaskellDepends", 46, 3], ["executableHaskellDepends", 75, 3], ["license", 104, 3], ["mainProgram", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const warp = nix.arg($, "warp");
   const yaml = nix.arg($, "yaml");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "oama",
       version: "0.22.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/pdobsan/oama.git",
           sha256: "1lasr8psfsgc43in6lgaf7byvmdvanhg7idxijz504z6ga7v0pnj",
           rev: "e419ef10ca4feacf4818c5cd9bd5e617f7ee2ee7",

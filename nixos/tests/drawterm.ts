@@ -2,62 +2,47 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/drawterm.nix", [[["sessionCommands", 13, 43]], [["enable", 12, 28], ["displayManager", 13, 28]], [["xserver", 12, 20]], [["user", 16, 44]], [["auto", 16, 39]], [["displayManager", 16, 24]], [["imports", 8, 11], ["services", 12, 11], ["test-support", 16, 11]], [["node", 5, 7], ["systems", 18, 7]], [["program", 28, 25]], [["cage", 28, 20]], [["imports", 27, 11], ["services", 28, 11]], [["node", 24, 7], ["systems", 30, 7]], [["xorg", 4, 5], ["wayland", 23, 5]], [["maintainers", 46, 11]], [["name", 39, 17], ["nodes", 41, 9], ["meta", 45, 9], ["enableOCR", 49, 9], ["testScript", 51, 9]], [["system", 89, 64]]]);
 const formals$1 = { args: { system: false, pkgs: false }, ellipsis: false };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/drawterm.nix", [["sessionCommands", 13, 43]]);
-const pos$2 = nix.positions(here + "/drawterm.nix", [["enable", 12, 28], ["displayManager", 13, 28]]);
-const pos$3 = nix.positions(here + "/drawterm.nix", [["xserver", 12, 20]]);
-const pos$4 = nix.positions(here + "/drawterm.nix", [["user", 16, 44]]);
-const pos$5 = nix.positions(here + "/drawterm.nix", [["auto", 16, 39]]);
-const pos$6 = nix.positions(here + "/drawterm.nix", [["displayManager", 16, 24]]);
-const pos$7 = nix.positions(here + "/drawterm.nix", [["imports", 8, 11], ["services", 12, 11], ["test-support", 16, 11]]);
-const pos$8 = nix.positions(here + "/drawterm.nix", [["node", 5, 7], ["systems", 18, 7]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/drawterm.nix", [["program", 28, 25]]);
-const pos$10 = nix.positions(here + "/drawterm.nix", [["cage", 28, 20]]);
-const pos$11 = nix.positions(here + "/drawterm.nix", [["imports", 27, 11], ["services", 28, 11]]);
-const pos$12 = nix.positions(here + "/drawterm.nix", [["node", 24, 7], ["systems", 30, 7]]);
-const pos$13 = nix.positions(here + "/drawterm.nix", [["xorg", 4, 5], ["wayland", 23, 5]]);
 const formals$4 = { args: { pkgs: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/drawterm.nix", [["maintainers", 46, 11]]);
-const pos$15 = nix.positions(here + "/drawterm.nix", [["name", 39, 17], ["nodes", 41, 9], ["meta", 45, 9], ["enableOCR", 49, 9], ["testScript", 51, 9]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$16 = nix.positions(here + "/drawterm.nix", [["system", 89, 64]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.arg($, "system");
   const pkgs = nix.arg($, "pkgs");
   const tests = nix.thunk(() => ({
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     xorg: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       node: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           imports: nix.thunk(() => [
             nix.path(here, "./common/user-account.nix"),
             nix.path(here, "./common/x11.nix"),
           ]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               displayManager: nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 sessionCommands: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "drawterm")}/bin/drawterm -g 1024x768 &
 `),
               })),
             })),
           })),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$4, user: "alice" })),
+              [nix.POS]: $pos[4],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[3], user: "alice" })),
             })),
           })),
         };
@@ -65,17 +50,17 @@ export default nix.lambda((args) => (() => {
       systems: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
     })),
     wayland: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       node: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           imports: nix.thunk(() => [nix.path(here, "./common/wayland-cage.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             cage: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               program: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "drawterm-wayland")}/bin/drawterm`),
             })),
           })),
@@ -88,13 +73,13 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$4);
       const pkgs_1 = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         name: name,
         nodes: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${name}`, machine]])),
         meta: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "lib", "maintainers")), null);
           return {
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "moody"))]),
           };
         })()),
@@ -135,6 +120,6 @@ machine.screenshot("out.png")
     const $_1 = nix.formals(args_1, formals$5);
     return {};
   })(), formals$5));
-  return nix.builtins.mapAttrs((k) => (v) => nix.app(mkTestOn, nix.thunk(() => nix.sel(v, "systems")), k, nix.thunk(() => nix.sel(v, "node")), nix.thunk(() => ({ [nix.POS]: pos$16, system: system }))), tests);
+  return nix.builtins.mapAttrs((k) => (v) => nix.app(mkTestOn, nix.thunk(() => nix.sel(v, "systems")), k, nix.thunk(() => nix.sel(v, "node")), nix.thunk(() => ({ [nix.POS]: $pos[15], system: system }))), tests);
 })(), formals$1);
 //# sourceMappingURL=drawterm.ts.map

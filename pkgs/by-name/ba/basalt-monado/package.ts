@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableGtk3", 30, 31]], [["domain", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5], ["fetchSubmodules", 42, 5]], [["updateScript", 78, 12]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 52, 3], ["cmakeFlags", 72, 3], ["passthru", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { config: false, autoPatchelfHook: false, boost: false, bzip2: false, cereal: false, cmake: false, eigen: false, kdePackages: false, fetchFromGitLab: false, fmt: false, freeglut: false, glew: false, lib: false, libepoxy: false, libGL: false, lz4: false, "magic-enum": false, "nix-update-script": false, opencv: false, "pkg-config": false, stdenv: false, onetbb: false, libx11: false, cudaPackages: false, enableCuda: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableGtk3", 30, 31]]);
-const pos$2 = nix.positions(here + "/package.nix", [["domain", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5], ["fetchSubmodules", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 78, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 52, 3], ["cmakeFlags", 72, 3], ["passthru", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const cudaPackages = nix.arg($, "cudaPackages");
   const enableCuda = nix.argOr($, "enableCuda", () => nix.sel(config, "cudaSupport"));
-  const opencv$ = nix.thunk(() => nix.app(nix.sel(opencv, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableGtk3: true }))));
+  const opencv$ = nix.thunk(() => nix.app(nix.sel(opencv, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableGtk3: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "basalt-monado",
       version: "0-unstable-2025-09-25",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           domain: "gitlab.freedesktop.org",
           owner: "mateosss",
           repo: "basalt",
@@ -78,11 +74,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "EIGEN_ROOT", nix.thunk(() => nix.str`${eigen}/include/eigen3`))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fork of Basalt improved for tracking XR devices with Monado",
         homepage: "https://gitlab.freedesktop.org/mateosss/basalt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

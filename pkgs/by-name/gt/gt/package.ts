@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 47, 5], ["homepage", 48, 5], ["mainProgram", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["postPatch", 25, 3], ["preConfigure", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "bash-completion": false, "pkg-config": false, libconfig: false, asciidoc: false, libusbgx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["mainProgram", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["postPatch", 25, 3], ["preConfigure", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const asciidoc = nix.arg($, "asciidoc");
   const libusbgx = nix.arg($, "libusbgx");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gt",
       version: "0-unstable-2022-05-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linux-usb-gadgets",
           repo: "gt",
           rev: "7f9c45d98425a27444e49606ce3cf375e6164e8e",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, asciidoc]),
       buildInputs: nix.thunk(() => [bash_completion, libconfig, libusbgx]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Linux command line tool for setting up USB gadgets using configfs",
         homepage: "https://github.com/linux-usb-gadgets/gt",
         mainProgram: "gt",

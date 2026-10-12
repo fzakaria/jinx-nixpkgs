@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/composer-phar.nix", [[["url", 23, 5], ["hash", 24, 5]], [["changelog", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5], ["maintainers", 65, 5], ["teams", 66, 5], ["platforms", 67, 5]], [["pname", 19, 3], ["version", 20, 11], ["src", 22, 3], ["dontUnpack", 27, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 34, 3], ["postInstall", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { _7zz: false, curl: false, fetchurl: false, git: false, lib: false, makeBinaryWrapper: false, php: false, stdenvNoCC: false, unzip: false, xz: false, version: false, pharHash: false, installShellFiles: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/composer-phar.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/composer-phar.nix", [["changelog", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5], ["maintainers", 65, 5], ["teams", 66, 5], ["platforms", 67, 5]]);
-const pos$3 = nix.positions(here + "/composer-phar.nix", [["pname", 19, 3], ["version", 20, 11], ["src", 22, 3], ["dontUnpack", 27, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 34, 3], ["postInstall", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "composer-phar",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/composer/composer/releases/download/${nix.sel(finalAttrs, "version")}/composer.phar`),
           hash: pharHash,
         })))),
@@ -46,7 +44,7 @@ runHook postInstall
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd composer \\\n  --bash <($out/bin/composer completion bash)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/composer/composer/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Dependency Manager for PHP, shipped from the PHAR file",
         homepage: "https://getcomposer.org/",

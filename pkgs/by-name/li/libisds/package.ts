@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["NIX_CFLAGS_COMPILE", 37, 7]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["configureFlags", 23, 3], ["buildInputs", 27, 3], ["env", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, expat: false, gpgme: false, libgcrypt: false, libxml2: false, libxslt: false, curl: false, docbook_xsl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["configureFlags", 23, 3], ["buildInputs", 27, 3], ["env", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const docbook_xsl = nix.arg($, "docbook_xsl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libisds",
       version: "0.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://xpisar.wz.cz/libisds/dist/libisds-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-YUb4N7J7EaYHHiFI965kUhtNitRTJfmY/ns3MTfkGPs=",
         })))),
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [expat, gpgme, libgcrypt, libxml2, libxslt, curl, docbook_xsl]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=deprecated-declarations"]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Client library for accessing SOAP services of Czech government-provided Databox information system",
         homepage: "http://xpisar.wz.cz/libisds/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

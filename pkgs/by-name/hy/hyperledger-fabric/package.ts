@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["postPatch", 20, 3], ["subPackages", 27, 3], ["ldflags", 38, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["postPatch", 20, 3], ["subPackages", 27, 3], ["ldflags", 38, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hyperledger-fabric",
       version: "2.5.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hyperledger",
           repo: "fabric",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/hyperledger/fabric/common/metadata.CommitSha=${nix.sel(finalAttrs, "src", "tag")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High-performance, secure, permissioned blockchain network",
         longDescription: "Hyperledger Fabric is an enterprise-grade permissioned distributed ledger\nframework for developing solutions and applications. Its modular and\nversatile design satisfies a broad range of industry use cases. It offers\na unique approach to consensus that enables performance at scale while\npreserving privacy.\n",
         homepage: "https://wiki.hyperledger.org/display/fabric",

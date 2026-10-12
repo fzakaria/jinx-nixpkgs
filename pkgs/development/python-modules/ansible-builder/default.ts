@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 5], ["version", 21, 13], ["hash", 22, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patchPhase", 25, 3], ["build-system", 31, 3], ["dependencies", 36, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, setuptools: false, "setuptools-scm": false, jsonschema: false, pyyaml: false, podman: false, fetchPypi: false, bindep: false, buildPythonPackage: false, packaging: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 13], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patchPhase", 25, 3], ["build-system", 31, 3], ["dependencies", 36, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "ansible_builder",
           version: version,
           hash: "sha256-nYi8FazH0xBW0MUZFKYQLayOWtc/ny01upg3jIlxTtI=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [podman, bindep, jsonschema, pyyaml, packaging]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Ansible execution environment builder",
         homepage: "https://ansible-builder.readthedocs.io/en/stable/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

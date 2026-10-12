@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gambit-support.nix", [[["stable", 5, 5], ["defaultRuntimeOptions", 6, 5], ["buildRuntimeOptions", 7, 5], ["targets", 8, 5], ["fixStamp", 10, 5], ["modules", 20, 5], ["extraOptions", 21, 5]], [["stable", 25, 5], ["extraOptions", 26, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 39, 5], ["maintainers", 40, 5]], [["stable-params", 4, 3], ["unstable-params", 24, 3], ["export-gambopt", 29, 3], ["gambit-bootstrap", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/gambit-support.nix", [["stable", 5, 5], ["defaultRuntimeOptions", 6, 5], ["buildRuntimeOptions", 7, 5], ["targets", 8, 5], ["fixStamp", 10, 5], ["modules", 20, 5], ["extraOptions", 21, 5]]);
-const pos$2 = nix.positions(here + "/gambit-support.nix", [["stable", 25, 5], ["extraOptions", 26, 5]]);
-const pos$3 = nix.positions(here + "/gambit-support.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 39, 5], ["maintainers", 40, 5]]);
-const pos$4 = nix.positions(here + "/gambit-support.nix", [["stable-params", 4, 3], ["unstable-params", 24, 3], ["export-gambopt", 29, 3], ["gambit-bootstrap", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   return (() => {
     const stable_params = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       stable: true,
       defaultRuntimeOptions: "iL,fL,-L,tL",
       buildRuntimeOptions: "i8,f8,-8,t8",
@@ -31,11 +28,11 @@ grep -i ' version=\\|echo..#define ___STAMP_VERSION' include/makefile.in # XXX D
       modules: true,
       extraOptions: nix.thunk(() => ["CFLAGS=-foptimize-sibling-calls"]),
     }));
-    const unstable_params = nix.thunk(() => nix.update(stable_params, { [nix.POS]: pos$2, stable: false, extraOptions: [] }));
+    const unstable_params = nix.thunk(() => nix.update(stable_params, { [nix.POS]: $pos[1], stable: false, extraOptions: [] }));
     const export_gambopt = (params) => nix.str`export GAMBOPT=${nix.sel(params, "buildRuntimeOptions")} ;`;
     const gambit_bootstrap = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bootstrap.nix")), pkgs));
     const meta = nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       description: "Optimizing Scheme to C compiler",
       homepage: "http://gambitscheme.org",
       license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
@@ -50,7 +47,7 @@ grep -i ' version=\\|echo..#define ___STAMP_VERSION' include/makefile.in # XXX D
       })()),
     }));
     return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "stable-params": stable_params,
       "unstable-params": unstable_params,
       "export-gambopt": export_gambopt,

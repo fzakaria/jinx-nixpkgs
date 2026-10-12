@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["extraArgs", 30, 7]], [["dutctl", 34, 7]], [["updateScript", 29, 5], ["tests", 33, 5]], [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["teams", 61, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["ldflags", 24, 3], ["passthru", 28, 3], ["__structuredAttrs", 38, 3], ["__darwinAllowLocalNetworking", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["dutctl", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 29, 5], ["tests", 33, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["teams", 61, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["ldflags", 24, 3], ["passthru", 28, 3], ["__structuredAttrs", 38, 3], ["__darwinAllowLocalNetworking", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dutctl",
       version: "1.0.0-alpha.4-unstable-2026-09-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BlindspotSoftware",
           repo: "dutctl",
           rev: "f2d2aec5ad1f54b4380ab2b1d8c3aa4d270fd5d5",
@@ -31,17 +26,17 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-trdOZfYUbw11/OT168WYyYGkwXkosSnL8h8z3tN9um0=",
       ldflags: nix.thunk(() => ["-s"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             dutctl: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
       })),
       __structuredAttrs: true,
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Unified device management for open firmware development",
         longDescription: "dutctl stands for \"Device-under-Test Control\" and is an open-source\ncommand-line utility and service ecosystem for managing development and\ntest devices in firmware environments.\n\nBy providing a unified interface to interact with boards and test\nfixtures across platforms, dutctl eliminates the fragmentation of device\nmanagement tools that has long plagued firmware workflows.\n\nThe project features remote device control, command streaming,\nmulti-architecture testing, and a flexible plugin architecture for\nextensibility.\n",
         homepage: "https://github.com/BlindspotSoftware/dutctl",

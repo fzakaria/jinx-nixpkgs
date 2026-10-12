@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 13, 26], ["version", 13, 32], ["sha256", 14, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5], ["mainProgram", 29, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 17, 3], ["doCheck", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 13, 26], ["version", 13, 32], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5], ["mainProgram", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 17, 3], ["doCheck", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gomp",
       version: "1.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "sha256-Ixq9jtV56FKbh68jqmRd3lwpbMG00GcOUIpjzJhnSp0=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for comparing Git branches",
         homepage: "https://github.com/MarkForged/GOMP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

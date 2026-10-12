@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]], [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]], [["mpi", 42, 13], ["updateScript", 43, 5]], [["NIX_LDFLAGS", 64, 7]], [["description", 91, 5], ["mainProgram", 92, 5], ["longDescription", 93, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 32, 3], ["passthru", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["env", 64, 3], ["cmakeFlags", 66, 3], ["enableParallelBuilding", 72, 3], ["preBuild", 74, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gfortran: false, blas: false, lapack: false, scalapack: false, useMpi: true, mpi: false, fetchFromGitLab: false, fetchpatch: false, cmake: false, "pkg-config": false, readline: false, ninja: false, elpa: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mpi", 42, 13], ["updateScript", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 64, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 91, 5], ["mainProgram", 92, 5], ["longDescription", 93, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 32, 3], ["passthru", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["env", 64, 3], ["cmakeFlags", 66, 3], ["enableParallelBuilding", 72, 3], ["preBuild", 74, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const elpa = nix.arg($, "elpa");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "siesta",
       version: "5.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "siesta-project",
           repo: "siesta",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,20 +37,20 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-bug-125383",
             url: "https://gitlab.com/siesta-project/siesta/-/commit/bb6d7f5493c19078ecc236cf36b8672eeaf228c8.patch",
             hash: "sha256-p7jE5m055m0XW/lJHtyHYmGIJ3Dz+5sLy0jcG/zyAqg=",
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mpi: mpi,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [ninja, gfortran, cmake, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([blas, lapack, readline, elpa], nix.app(nix.sel(lib, "optionals"), useMpi, nix.thunk(() => [mpi, scalapack])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_LDFLAGS: "-lm" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_LDFLAGS: "-lm" })),
       cmakeFlags: nix.thunk(() => [
         "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
         "-DCMAKE_INSTALL_INCLUDEDIR=include",
@@ -64,7 +59,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       preBuild: nix.thunk(() => (nix.asBool(useMpi) ? "makeFlagsArray+=(\n    CC=\"mpicc\" FC=\"mpifort\"\n    FPPFLAGS=\"-DMPI\" MPI_INTERFACE=\"libmpi_f90.a\" MPI_INCLUDE=\".\"\n    COMP_LIBS=\"\" LIBS=\"-lblas -llapack -lscalapack\"\n);\n" : "makeFlagsArray+=(\n  COMP_LIBS=\"\" LIBS=\"-lblas -llapack\"\n);\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "First-principles materials simulation code using DFT",
         mainProgram: "siesta",
         longDescription: "SIESTA is both a method and its computer program\nimplementation, to perform efficient electronic structure\ncalculations and ab initio molecular dynamics simulations of\nmolecules and solids. SIESTA's efficiency stems from the use\nof strictly localized basis sets and from the implementation\nof linear-scaling algorithms which can be applied to suitable\nsystems. A very important feature of the code is that its\naccuracy and cost can be tuned in a wide range, from quick\nexploratory calculations to highly accurate simulations\nmatching the quality of other approaches, such as plane-wave\nand all-electron methods.\n",

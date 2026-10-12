@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 83, 5], ["mainProgram", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 89, 5], ["maintainers", 90, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["pythonRelaxDeps", 38, 3], ["postPatch", 40, 3], ["build-system", 46, 3], ["nativeBuildInputs", 48, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 66, 3], ["doCheck", 74, 3], ["checkPhase", 76, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, configargparse: false, decorator: false, dict2xml: false, fetchFromGitHub: false, "google-i18n-address": false, intervaltree: false, jinja2: false, lxml: false, natsort: false, platformdirs: false, pycairo: false, pycountry: false, pypdf: false, pyprojectVersionPatchHook: false, pytestCheckHook: false, "python-fontconfig": false, pyyaml: false, requests: false, setuptools: false, wcwidth: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 83, 5], ["mainProgram", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 89, 5], ["maintainers", 90, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["pythonRelaxDeps", 38, 3], ["postPatch", 40, 3], ["build-system", 46, 3], ["nativeBuildInputs", 48, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 66, 3], ["doCheck", 74, 3], ["checkPhase", 76, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const wcwidth = nix.arg($, "wcwidth");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xml2rfc",
       version: "3.34.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ietf-tools",
           repo: "xml2rfc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "make tests-no-network\n",
       pythonImportsCheck: nix.thunk(() => ["xml2rfc"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool generating IETF RFCs and drafts from XML sources",
         mainProgram: "xml2rfc",
         homepage: "https://github.com/ietf-tools/xml2rfc",

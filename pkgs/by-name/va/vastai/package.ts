@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["url", 35, 7], ["hash", 36, 7]], [["updateScript", 146, 12]], [["description", 149, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["mainProgram", 154, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["postPatch", 42, 3], ["build-system", 54, 3], ["pythonRelaxDeps", 59, 3], ["dependencies", 64, 3], ["makeWrapperArgs", 86, 3], ["pythonImportsCheck", 99, 3], ["nativeCheckInputs", 107, 3], ["versionCheckProgramArg", 116, 3], ["versionCheckKeepEnvironment", 117, 3], ["enabledTestPaths", 119, 3], ["disabledTestMarks", 120, 3], ["disabledTests", 124, 3], ["postCheck", 141, 3], ["passthru", 146, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, fetchpatch2: false, openssh: false, rsync: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 146, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 149, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["mainProgram", 154, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["postPatch", 42, 3], ["build-system", 54, 3], ["pythonRelaxDeps", 59, 3], ["dependencies", 64, 3], ["makeWrapperArgs", 86, 3], ["pythonImportsCheck", 99, 3], ["nativeCheckInputs", 107, 3], ["versionCheckProgramArg", 116, 3], ["versionCheckKeepEnvironment", 117, 3], ["enabledTestPaths", 119, 3], ["disabledTestMarks", 120, 3], ["disabledTests", 124, 3], ["postCheck", 141, 3], ["passthru", 146, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "vastai",
       version: "1.8.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vast-ai",
           repo: "vast-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/vast-ai/vast-cli/commit/0889fe32e5bf3228074436dd9688f6a1fdc649e8.patch",
             hash: "sha256-g3Nje1M1SnXK3eJ26XE13+/Wdg0pv63AKU5wbgZacMM=",
           })))),
@@ -117,11 +113,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postCheck: "$out/bin/vastai --help >/dev/null\ntest -x $out/bin/serve-vast-deployment\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CLI and SDK for the Vast.ai GPU cloud service",
         homepage: "https://vast.ai/",
         changelog: nix.thunk(() => nix.str`https://github.com/vast-ai/vast-cli/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

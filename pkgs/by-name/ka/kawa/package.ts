@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildPhase", 25, 3], ["installPhase", 33, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jdk11: false, ant: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildPhase", 25, 3], ["installPhase", 33, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ant = nix.arg($, "ant");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kawa",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/kawa/kawa-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-jJpQzWsQAVTJAb0ZCzrNL7g1PzNiLEos6Po5Kn8J4Bk=",
         })))),
@@ -47,7 +45,7 @@ makeWrapper ${jdk11}/bin/java $out/bin/kawa \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Scheme implementation running on the Java platform",
         longDescription: "Kawa is a general-purpose programming language that runs on the Java platform.\nIt aims to combine the benefits of dynamic scripting languages (less boiler-plate\ncode, fast and easy start-up, a REPL, no required compilation step) with the\nbenefits of traditional compiled languages (fast execution, static error detection,\nmodularity, zero-overhead Java platform integration).\n",
         homepage: "https://www.gnu.org/software/kawa",

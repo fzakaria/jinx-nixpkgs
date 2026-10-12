@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["RUSTFLAGS", 66, 7]], [["lact", 137, 26]], [["updateScript", 135, 12], ["tests", 136, 12]], [["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["platforms", 149, 5], ["mainProgram", 150, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoHash", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 47, 3], ["checkFlags", 60, 3], ["env", 66, 3], ["postPatch", 81, 3], ["postInstall", 109, 3], ["preFixup", 115, 3], ["postFixup", 121, 3], ["passthru", 135, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, wrapGAppsHook4: false, bashNonInteractive: false, clinfo: false, "gdk-pixbuf": false, gtk4: false, libadwaita: false, "libdisplay-info_0_3": false, libdrm: false, "ocl-icd": false, "vulkan-loader": false, "vulkan-tools": false, coreutils: false, systemdMinimal: false, "nix-update-script": false, nixosTests: false, hwdata: false, fuse3: false, autoAddDriverRunpath: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 66, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["lact", 137, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 135, 12], ["tests", 136, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["platforms", 149, 5], ["mainProgram", 150, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoHash", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 47, 3], ["checkFlags", 60, 3], ["env", 66, 3], ["postPatch", 81, 3], ["postInstall", 109, 3], ["preFixup", 115, 3], ["postFixup", 121, 3], ["passthru", 135, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const fuse3 = nix.arg($, "fuse3");
   const autoAddDriverRunpath = nix.arg($, "autoAddDriverRunpath");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lact",
       version: "0.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ilya-zlobintsev",
           repo: "LACT",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]),
       checkFlags: nix.thunk(() => ["--skip=tests::apply_settings"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isElf")), nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
               nix.thunk(() => nix.str`-C link-arg=-Wl,-rpath,${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [vulkan_loader, libdrm, ocl_icd]))}`),
               nix.thunk(() => nix.str`-C link-arg=-Wl,--add-needed,${vulkan_loader}/lib/libvulkan.so`),
@@ -113,12 +108,12 @@ substituteInPlace lact-daemon/src/server/handler.rs \\
 --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [vulkan_loader, libdrm, ocl_icd]))}
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, lact: nix.thunk(() => nix.attr(nixosTests, "lact")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], lact: nix.thunk(() => nix.attr(nixosTests, "lact")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Linux GPU Configuration Tool for AMD and NVIDIA",
         homepage: "https://github.com/ilya-zlobintsev/LACT",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

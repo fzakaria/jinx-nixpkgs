@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugins.nix", [[["GOTOOLCHAIN", 67, 11]], [["pname", 56, 7], ["version", 57, 7], ["nativeBuildInputs", 59, 7], ["dontUnpack", 65, 7], ["env", 67, 7], ["impureEnvVars", 69, 7], ["buildPhase", 75, 7], ["installPhase", 85, 7], ["outputHashMode", 89, 7], ["outputHash", 90, 7], ["outputHashAlgo", 91, 7]], [["vendorHash", 52, 5], ["subPackages", 53, 5], ["src", 55, 5], ["doInstallCheck", 96, 13], ["installCheckPhase", 97, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, go: false, xcaddy: false, cacert: false, git: false, caddy: false }, ellipsis: false };
 const formals$2 = { args: { plugins: false, hash: true, doInstallCheck: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/plugins.nix", [["GOTOOLCHAIN", 67, 11]]);
-const pos$2 = nix.positions(here + "/plugins.nix", [["pname", 56, 7], ["version", 57, 7], ["nativeBuildInputs", 59, 7], ["dontUnpack", 65, 7], ["env", 67, 7], ["impureEnvVars", 69, 7], ["buildPhase", 75, 7], ["installPhase", 85, 7], ["outputHashMode", 89, 7], ["outputHash", 90, 7], ["outputHashAlgo", 91, 7]]);
-const pos$3 = nix.positions(here + "/plugins.nix", [["vendorHash", 52, 5], ["subPackages", 53, 5], ["src", 55, 5], ["doInstallCheck", 96, 13], ["installCheckPhase", 97, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,16 +37,16 @@ export default nix.lambda((args) => (() => {
     const pluginsWithoutVersion = nix.thunk(() => nix.app(filter, (p) => !nix.asBool(nix.app(hasInfix, "@", p)), pluginsSorted));
     nix.assert_(nix.app(assertMsg, nix.thunk(() => nix.eq(nix.app(length, pluginsWithoutVersion), 0n)), nix.thunk(() => nix.str`Plugins must have tags present (e.g. ${nix.app(elemAt, pluginsWithoutVersion, 0n)}@x.y.z)!`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ca/caddy/plugins.nix:46:1");
     return nix.app(nix.sel(caddy, "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         vendorHash: null,
         subPackages: nix.thunk(() => ["."]),
         src: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.str`caddy-src-with-plugins-${pluginsHash}`),
             version: nix.thunk(() => nix.sel(finalAttrs, "version")),
             nativeBuildInputs: nix.thunk(() => [go, xcaddy, cacert, git]),
             dontUnpack: true,
-            env: nix.thunk(() => ({ [nix.POS]: pos$1, GOTOOLCHAIN: "local" })),
+            env: nix.thunk(() => ({ [nix.POS]: $pos[0], GOTOOLCHAIN: "local" })),
             impureEnvVars: nix.thunk(() => nix.concat(nix.sel(lib, "fetchers", "proxyImpureEnvVars"), ["GIT_PROXY_COMMAND", "SOCKS_SERVER", "GOPROXY"])),
             buildPhase: nix.thunk(() => (() => {
               const withArgs = nix.thunk(() => nix.app(concatMapStrings, (plugin) => nix.str`--with ${plugin} `, pluginsSorted));

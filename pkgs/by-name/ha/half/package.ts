@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5], ["stripRoot", 14, 5]], [["description", 24, 5], ["platforms", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["version", 8, 3], ["pname", 9, 3], ["src", 11, 3], ["buildCommand", 17, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5], ["stripRoot", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["platforms", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 8, 3], ["pname", 9, 3], ["src", 11, 3], ["buildCommand", 17, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "2.2.0",
       pname: "half",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/half/${nix.sel(finalAttrs, "version")}/half-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-ZdGgBMZylFgkvs/XVBnvgBY2EYSHRLY3S4YwXjshpOY=",
           stripRoot: false,
         })))),
       buildCommand: "mkdir -p $out/include $out/share/doc\ncp $src/include/half.hpp               $out/include/\ncp $src/{ChangeLog,LICENSE,README}.txt $out/share/doc/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C++ library for half precision floating point arithmetics",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

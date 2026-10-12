@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]], [["NIX_LDFLAGS", 132, 5]], [["homepage", 151, 5], ["changelog", 152, 5], ["description", 153, 5], ["longDescription", 154, 5], ["platforms", 160, 5], ["license", 161, 5], ["maintainers", 165, 5]], [["pname", 26, 3], ["version", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 55, 3], ["src", 59, 3], ["strictDeps", 66, 3], ["__structuredAttrs", 67, 3], ["postPatch", 69, 3], ["preConfigure", 93, 3], ["preInstall", 99, 3], ["cmakeFlags", 103, 3], ["nativeCheckInputs", 124, 3], ["doCheck", 128, 3], ["dontUseNinjaCheck", 129, 3], ["env", 131, 3], ["disabledTests", 139, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, cmake: false, ninja: false, "level-zero": false, hwloc: false, autoconf: false, onetbb: false, numactl: false, jemalloc: false, "pkg-config": false, cudaPackages: false, useJemalloc: true, config: false, cudaSupport: true, ctestCheckHook: false, gtest: false, gbenchmark: false, python3: false, sphinx: false, buildDocs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 132, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 151, 5], ["changelog", 152, 5], ["description", 153, 5], ["longDescription", 154, 5], ["platforms", 160, 5], ["license", 161, 5], ["maintainers", 165, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 55, 3], ["src", 59, 3], ["strictDeps", 66, 3], ["__structuredAttrs", 67, 3], ["postPatch", 69, 3], ["preConfigure", 93, 3], ["preInstall", 99, 3], ["cmakeFlags", 103, 3], ["nativeCheckInputs", 124, 3], ["doCheck", 128, 3], ["dontUseNinjaCheck", 129, 3], ["env", 131, 3], ["disabledTests", 139, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const sphinx = nix.arg($, "sphinx");
   const buildDocs = nix.argOr($, "buildDocs", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "unified-memory-framework",
       version: "1.2.0",
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, ninja, pkg_config], nix.concat(nix.app(nix.sel(lib, "optionals"), useJemalloc, nix.thunk(() => [autoconf])), nix.app(nix.sel(lib, "optionals"), buildDocs, nix.thunk(() => [python3, sphinx]))))),
       buildInputs: nix.thunk(() => nix.concat([onetbb, level_zero], nix.concat(nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart"))])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), nix.thunk(() => [numactl, gtest, gbenchmark]))))),
       propagatedBuildInputs: nix.thunk(() => [hwloc]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oneapi-src",
           repo: "unified-memory-framework",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -89,7 +86,7 @@ chmod -R u+w ../jemalloc
       doCheck: true,
       dontUseNinjaCheck: true,
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(finalAttrs, "doCheck")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_LDFLAGS: nix.thunk(() => nix.str`-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [onetbb]))}`),
         })))),
       disabledTests: nix.thunk(() => [
@@ -100,7 +97,7 @@ chmod -R u+w ../jemalloc
         "test_provider_file_memory_ipc",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/oneapi-src/unified-memory-framework",
         changelog: nix.thunk(() => nix.str`https://github.com/oneapi-src/unified-memory-framework/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Library for constructing allocators and memory pools",

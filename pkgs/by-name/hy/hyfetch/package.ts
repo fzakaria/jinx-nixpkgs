@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["extraArgs", 63, 5]], [["updateScript", 62, 12]], [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["postInstall", 35, 3], ["postFixup", 48, 3], ["outputs", 53, 3], ["nativeInstallCheckInputs", 58, 3], ["versionCheckKeepEnvironment", 59, 3], ["doInstallCheck", 60, 3], ["passthru", 62, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, stdenv: false, makeWrapper: false, pciutils: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["postInstall", 35, 3], ["postFixup", 48, 3], ["outputs", 53, 3], ["nativeInstallCheckInputs", 58, 3], ["versionCheckKeepEnvironment", 59, 3], ["doInstallCheck", 60, 3], ["passthru", 62, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hyfetch",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hykilpikonna",
           repo: "hyfetch",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,14 +38,14 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["PATH"]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=^(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Neofetch with LGBTQ+ pride flags",
         longDescription: "HyFetch is a command-line system information tool fork of neofetch.\nHyFetch displays information about your system next to your OS logo\nin ASCII representation. The ASCII representation is then colored in\nthe pattern of the pride flag of your choice. The main purpose of\nHyFetch is to be used in screenshots to show other users what\noperating system or distribution you are running, what theme or\nicon set you are using, etc.\n",
         homepage: "https://github.com/hykilpikonna/hyfetch",

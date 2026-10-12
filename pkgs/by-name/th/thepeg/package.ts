@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["url", 28, 7], ["hash", 29, 7]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["badPlatforms", 60, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["configureFlags", 45, 3], ["enableParallelBuilding", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, autoreconfHook: false, boost: false, fastjet: false, gsl: false, hepmc3: false, lhapdf: false, rivet: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["badPlatforms", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["configureFlags", 45, 3], ["enableParallelBuilding", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const rivet = nix.arg($, "rivet");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "thepeg",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.hepforge.org/archive/thepeg/ThePEG-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-rDWXmuicKWCMqSwVakn/aKrOeloSoMkvCgGoM9LTRXI=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/hep-mirrors/thepeg/commit/d974704fe48876c13cb7f544cabcf6ef30c00f48.diff",
             hash: "sha256-HzyNigbhWzSpjvvYw3+LZvnrSoV6Pmzghw/5VY5nlqk=",
           })))),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Toolkit for High Energy Physics Event Generation",
         homepage: "https://herwig.hepforge.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

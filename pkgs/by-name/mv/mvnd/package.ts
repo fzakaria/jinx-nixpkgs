@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-darwin", 16, 5], ["aarch64-linux", 17, 5], ["x86_64-linux", 18, 5]], [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["updateScript", 80, 5]], [["version", 89, 34], ["nativeBuildInputs", 90, 13]], [["package", 86, 7]], [["version", 83, 11]], [["tests", 83, 5]], [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["platforms", 104, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 25, 3], ["mvnJdk", 33, 3], ["mvnHash", 34, 3], ["nativeBuildInputs", 36, 3], ["mvnDepsParameters", 42, 3], ["mvnParameters", 43, 3], ["installPhase", 63, 3], ["passthru", 79, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, graalvmPackages: false, installShellFiles: false, makeWrapper: false, maven: false, "nix-update-script": false, runCommand: false, stdenv: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-darwin", 16, 5], ["aarch64-linux", 17, 5], ["x86_64-linux", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 89, 34], ["nativeBuildInputs", 90, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 86, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 83, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 83, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["platforms", 104, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 25, 3], ["mvnJdk", 33, 3], ["mvnHash", 34, 3], ["nativeBuildInputs", 36, 3], ["mvnDepsParameters", 42, 3], ["mvnParameters", 43, 3], ["installPhase", 63, 3], ["passthru", 79, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   const platformMap = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-darwin": "darwin-aarch64",
     "aarch64-linux": "linux-aarch64",
     "x86_64-linux": "linux-amd64",
   }));
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "mvnd",
       version: "1.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "apache",
           repo: "maven-mvnd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -75,16 +67,16 @@ installShellCompletion --cmd mvnd \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 package: nix.thunk(() => nix.app(runCommand, "mvnd", nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     version: nix.thunk(() => nix.attr(finalAttrs, "version")),
                     nativeBuildInputs: nix.thunk(() => [makeWrapper]),
                   })), nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -95,7 +87,7 @@ makeWrapper ${nix.sel(finalAttrs, "finalPackage")}/bin/mvnd $out/bin/mvnd \\
           })),
         }))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Apache Maven Daemon",
         homepage: "https://maven.apache.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 28, 5], ["version", 29, 13], ["src", 30, 5], ["vendorHash", 31, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]], [["pname", 35, 3], ["version", 36, 11], ["src", 36, 19], ["nativeBuildInputs", 38, 3], ["buildInputs", 48, 3], ["mesonFlags", 53, 3], ["postInstall", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, buildGoModule: false, meson: false, ninja: false, "pkg-config": false, "blueprint-compiler": false, typescript_5: false, "desktop-file-utils": false, wrapGAppsHook4: false, gjs: false, libadwaita: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 5], ["version", 29, 13], ["src", 30, 5], ["vendorHash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 11], ["src", 36, 19], ["nativeBuildInputs", 38, 3], ["buildInputs", 48, 3], ["mesonFlags", 53, 3], ["postInstall", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,21 +22,21 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const version = "1.2.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "ezratweaver",
       repo: "adw-bluetooth",
       tag: version,
       hash: "sha256-UQg2pEmRfTOt6QKdiL1Z86SeGYJ/zZ4XM09l7F/4+UU=",
     }))));
   const daemon = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "adw-bluetooth-daemon",
       version: version,
       src: nix.thunk(() => nix.add(src, "/daemon")),
       vendorHash: "sha256-7tiSwNhq6e4LEh4lUkfh2i4tEdWWL6TxQpYYwYKsfog=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "adw-bluetooth",
       version: version,
       src: src,
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
 ln -s ${daemon}/bin/daemon $out/libexec/adw-bluetooth-daemon
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GNOME Inspired LibAdwaita Bluetooth Applet",
         homepage: "https://github.com/ezratweaver/adw-bluetooth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

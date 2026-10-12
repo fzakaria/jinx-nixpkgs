@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["sha256", 19, 5]], [["homepage", 25, 5], ["description", 26, 5], ["platforms", 27, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 13, 3], ["disabled", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pythonAtLeast: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 25, 5], ["description", 26, 5], ["platforms", 27, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 13, 3], ["disabled", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.12"));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "1cffe776842917e09f073bd6ea5856c64136aebddbe51bd17ea29913472fecbf",
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://code.google.com/archive/p/py-leveldb/",
         description: "Thread-safe Python bindings for LevelDB",
         platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "aanderse"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

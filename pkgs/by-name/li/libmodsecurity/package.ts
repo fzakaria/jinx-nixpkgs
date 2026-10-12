@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]], [["nginx-modsecurity", 97, 5]], [["tests", 96, 12]], [["homepage", 101, 5], ["description", 102, 5], ["longDescription", 105, 5], ["license", 113, 5], ["platforms", 114, 5], ["maintainers", 115, 5], ["mainProgram", 116, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["outputs", 52, 3], ["configureFlags", 57, 3], ["postPatch", 65, 3], ["postInstall", 89, 3], ["enableParallelBuilding", 94, 3], ["passthru", 96, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, bison: false, flex: false, "pkg-config": false, curl: false, geoip: false, libmaxminddb: false, libxml2: false, lmdb: false, lua: false, pcre2: false, ssdeep: false, yajl: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nginx-modsecurity", 97, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 96, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 101, 5], ["description", 102, 5], ["longDescription", 105, 5], ["license", 113, 5], ["platforms", 114, 5], ["maintainers", 115, 5], ["mainProgram", 116, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["outputs", 52, 3], ["configureFlags", 57, 3], ["postPatch", 65, 3], ["postInstall", 89, 3], ["enableParallelBuilding", 94, 3], ["passthru", 96, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const yajl = nix.arg($, "yajl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libmodsecurity",
       version: "3.0.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "owasp-modsecurity",
           repo: "ModSecurity",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,14 +52,14 @@ cp ${nix.sel(finalAttrs, "src")}/{AUTHORS,CHANGES,LICENSE,README.md,modsecurity.
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "nginx-modsecurity": nix.thunk(() => nix.sel(nixosTests, "nginx-modsecurity")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/owasp-modsecurity/ModSecurity",
         description: "ModSecurity v3 library component.\n",
         longDescription: "Libmodsecurity is one component of the ModSecurity v3 project. The\nlibrary codebase serves as an interface to ModSecurity Connectors taking\nin web traffic and applying traditional ModSecurity processing. In\ngeneral, it provides the capability to load/interpret rules written in\nthe ModSecurity SecRules format and apply them to HTTP content provided\nby your application via Connectors.\n",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]], [["url", 25, 7], ["hash", 26, 7], ["stripLen", 27, 7], ["extraPrefix", 28, 7]], [["CXXFLAGS", 44, 7]], [["changelog", 55, 5], ["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 40, 3], ["env", 44, 3], ["buildInputs", 48, 3], ["dontWrapQtApps", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, fetchpatch: false, lib: false, qtlocation: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 25, 7], ["hash", 26, 7], ["stripLen", 27, 7], ["extraPrefix", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["CXXFLAGS", 44, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 55, 5], ["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 40, 3], ["env", 44, 3], ["buildInputs", 48, 3], ["dontWrapQtApps", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const qtlocation = nix.arg($, "qtlocation");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "maplibre-native-qt",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "maplibre",
           repo: "maplibre-native-qt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/maplibre/maplibre-native/commit/dde3fdd398a5f7b49300b1a761057bdd3286ae24.patch",
             hash: "sha256-UQ4Y2aoBsHQHEqlrwn4OUzICeT3MNVZlHFK/KphvV/c=",
             stripLen: 1n,
@@ -41,13 +37,13 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(qtlocation, "version")), "6.10")), "# fix build with Qt 6.10\n# included in https://github.com/maplibre/maplibre-native-qt/pull/216\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail 'find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Location REQUIRED)' \\\n                 'find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Location LocationPrivate REQUIRED)'\n")),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DQT_NO_USE_NODISCARD_FILE_OPEN"]))),
       })),
       buildInputs: nix.thunk(() => [qtlocation]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/maplibre/maplibre-native-qt/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "MapLibre Native Qt Bindings and Qt Location Plugin",
         homepage: "https://github.com/maplibre/maplibre-native-qt",

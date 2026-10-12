@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pname", 29, 26], ["version", 29, 32], ["src", 29, 40], ["hash", 30, 5]], [["updateScript", 49, 12]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoDeps", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 45, 3], ["passthru", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, "blueprint-compiler": false, cargo: false, "desktop-file-utils": false, fetchFromGitLab: false, libadwaita: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, rustPlatform: false, rustc: false, stdenv: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 29, 26], ["version", 29, 32], ["src", 29, 40], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 49, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoDeps", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 45, 3], ["passthru", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "chance",
       version: "4.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zelikos",
           repo: "rollit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-25+/TvTba/QF7+QE8+O7u4yc9BNi0pcZeNj11dGkEfg=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -56,11 +52,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [libadwaita]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Dice roller built using GTK4 and libadwaita",
         homepage: "https://gitlab.com/zelikos/rollit",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/zelikos/rollit/-/releases/${nix.sel(finalAttrs, "version")}`),

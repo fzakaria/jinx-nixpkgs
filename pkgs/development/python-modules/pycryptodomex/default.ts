@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 4, 3], ["postPatch", 6, 3], ["pythonImportsCheck", 10, 3]]]);
 const formals$1 = { args: { pycryptodome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 4, 3], ["postPatch", 6, 3], ["pythonImportsCheck", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pycryptodome = nix.arg($, "pycryptodome");
   return nix.app(nix.sel(pycryptodome, "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "pycryptodomex",
       postPatch: "touch .separate_namespace\n",
       pythonImportsCheck: nix.thunk(() => ["Cryptodome"]),

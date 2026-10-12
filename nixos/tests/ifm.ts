@@ -2,54 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ifm.nix", [[["maintainers", 6, 5]], [["enable", 14, 11], ["port", 15, 11], ["dataDir", 16, 11]], [["ifm", 13, 18]], [["mode", 22, 15], ["user", 23, 15], ["group", 24, 15]], [["d", 21, 44]], [["ifm-data-dir", 20, 11]], [["settings", 19, 26]], [["tmpfiles", 19, 17]], [["services", 13, 9], ["systemd", 19, 9]], [["server", 10, 5]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 31, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ifm.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/ifm.nix", [["enable", 14, 11], ["port", 15, 11], ["dataDir", 16, 11]]);
-const pos$3 = nix.positions(here + "/ifm.nix", [["ifm", 13, 18]]);
-const pos$4 = nix.positions(here + "/ifm.nix", [["mode", 22, 15], ["user", 23, 15], ["group", 24, 15]]);
-const pos$5 = nix.positions(here + "/ifm.nix", [["d", 21, 44]]);
-const pos$6 = nix.positions(here + "/ifm.nix", [["ifm-data-dir", 20, 11]]);
-const pos$7 = nix.positions(here + "/ifm.nix", [["settings", 19, 26]]);
-const pos$8 = nix.positions(here + "/ifm.nix", [["tmpfiles", 19, 17]]);
-const pos$9 = nix.positions(here + "/ifm.nix", [["services", 13, 9], ["systemd", 19, 9]]);
-const pos$10 = nix.positions(here + "/ifm.nix", [["server", 10, 5]]);
-const pos$11 = nix.positions(here + "/ifm.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "ifm",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "litchipi"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            ifm: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, port: 9001n, dataDir: "/data" })),
+            [nix.POS]: $pos[2],
+            ifm: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, port: 9001n, dataDir: "/data" })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 "ifm-data-dir": nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(config, "services", "ifm", "dataDir"), nix.thunk(() => ({
-                    [nix.POS]: pos$5,
-                    d: nix.thunk(() => ({ [nix.POS]: pos$4, mode: "0777", user: "root", group: "root" })),
+                    [nix.POS]: $pos[4],
+                    d: nix.thunk(() => ({ [nix.POS]: $pos[3], mode: "0777", user: "root", group: "root" })),
                   }))],
                 ])),
               })),

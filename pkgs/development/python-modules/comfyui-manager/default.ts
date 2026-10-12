@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 5], ["version", 26, 26], ["hash", 27, 5]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 28]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["doCheck", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, chardet: false, gitpython: false, "huggingface-hub": false, pygithub: false, rich: false, toml: false, transformers: false, typer: false, "typing-extensions": false, uv: false, comfyui: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 5], ["version", 26, 26], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 28]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["doCheck", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const uv = nix.arg($, "uv");
   const comfyui = nix.arg($, "comfyui");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "comfyui-manager",
       version: "4.2.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "comfyui_manager",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-7kjoOOetsHroQzLpu0+nvzZFVkNwxGz4qHBviNA0G8Y=",
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(comfyui, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Custom-node manager extension for ComfyUI",
         homepage: "https://github.com/ltdrdata/ComfyUI-Manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

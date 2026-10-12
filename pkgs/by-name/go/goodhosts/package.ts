@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 30, 5], ["license", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["mainProgram", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["ldflags", 19, 3], ["postInstall", 23, 3], ["vendorHash", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["license", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["mainProgram", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["ldflags", 19, 3], ["postInstall", 23, 3], ["vendorHash", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "goodhosts";
       const version = "1.1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "goodhosts",
           repo: "cli",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "mv $out/bin/cli $out/bin/goodhosts\n";
       const vendorHash = "sha256-FsjCpwvehmRm67Tqwld+0vn4IFO6E46SJnLwRjKVAiw=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CLI tool for managing hostfiles",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/goodhosts/cli/tree/main",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "goodhosts",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

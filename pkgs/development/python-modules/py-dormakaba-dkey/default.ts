@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 39, 3], ["doCheck", 46, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, bleak: false, "bleak-retry-connector": false, buildPythonPackage: false, cryptography: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, wheel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 39, 3], ["doCheck", 46, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emontnemery",
           repo: "py-dormakaba-dkey",
           tag: version,
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "relax-setuptools-dependency.patch",
             url: "https://github.com/emontnemery/py-dormakaba-dkey/commit/cfda4be71d39f2cfd1c0d4f7fff9018050c57f1a.patch",
             hash: "sha256-JGsaLQNbUfz0uK/MeGnR2XTJDs4RnTOEg7BavfDPArg=",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["py_dormakaba_dkey"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library to interact with a Dormakaba dkey lock",
         homepage: "https://github.com/emontnemery/py-dormakaba-dkey",
         changelog: nix.thunk(() => nix.str`https://github.com/emontnemery/py-dormakaba-dkey/releases/tag/${nix.sel(src, "tag")}`),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["dependencies", 42, 3], ["pythonRelaxDeps", 51, 3], ["dontWrapGApps", 53, 3], ["preFixup", 55, 3], ["postInstall", 59, 3], ["pythonImportsCheck", 68, 3], ["nativeCheckInputs", 70, 3], ["preCheck", 75, 3], ["checkPhase", 82, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, glib: false, "gnome-desktop": false, "gobject-introspection": false, gtk4: false, libadwaita: false, python3Packages: false, wrapGAppsHook4: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["dependencies", 42, 3], ["pythonRelaxDeps", 51, 3], ["dontWrapGApps", 53, 3], ["preFixup", 55, 3], ["postInstall", 59, 3], ["pythonImportsCheck", 68, 3], ["nativeCheckInputs", 70, 3], ["preCheck", 75, 3], ["checkPhase", 82, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hyprmod",
       version: "0.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BlueManCZ",
           repo: "hyprmod",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export HOME=$(mktemp -d)\n# GnomeDesktop.XkbInfo aborts without the org.gnome.desktop.* schemas, which\n# are otherwise only wired up by the wrapper this phase runs before\nexport XDG_DATA_DIRS=\"$GSETTINGS_SCHEMAS_PATH${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}\"\n",
       checkPhase: "runHook preCheck\nxvfb-run -s '-screen 0 1024x768x24' pytest\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Native GTK4/libadwaita settings application for Hyprland",
         homepage: "https://github.com/BlueManCZ/hyprmod",
         changelog: nix.thunk(() => nix.str`https://github.com/BlueManCZ/hyprmod/releases/tag/v${nix.sel(finalAttrs, "version")}`),

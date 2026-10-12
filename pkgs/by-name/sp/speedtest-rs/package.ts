@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["package", 38, 43]], [["version", 38, 11]], [["updateScript", 37, 5], ["tests", 38, 5]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 26, 3], ["cargoHash", 28, 3], ["checkFlags", 31, 3], ["passthru", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, openssl: false, "pkg-config": false, stdenv: false, "nix-update-script": false, testers: false, "speedtest-rs": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 38, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 38, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 37, 5], ["tests", 38, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 26, 3], ["cargoHash", 28, 3], ["checkFlags", 31, 3], ["passthru", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const speedtest_rs = nix.arg($, "speedtest-rs");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "speedtest-rs",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nelsonjchen",
           repo: "speedtest-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,15 +35,15 @@ export default nix.lambda((args) => (() => {
           "--skip=speedtest::tests::test_get_server_list_with_config",
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: speedtest_rs })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: speedtest_rs })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Command line internet speedtest tool written in rust",
         homepage: "https://github.com/nelsonjchen/speedtest-rs",
         changelog: nix.thunk(() => nix.str`https://github.com/nelsonjchen/speedtest-rs/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

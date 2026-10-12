@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 24, 5], ["hash", 28, 5]], [["homepage", 64, 5], ["description", 65, 5], ["platforms", 66, 5], ["maintainers", 71, 5], ["license", 72, 5]], [["version", 19, 3], ["pname", 20, 3], ["year", 21, 3], ["src", 23, 3], ["postPatch", 31, 3], ["preConfigure", 43, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 48, 3], ["setupHook", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, freetype: false, gfortran: false, openssl: false, libnsl: false, motif: false, libxt: false, libxft: false, libxaw: false, libx11: false, libxcrypt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 24, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["platforms", 66, 5], ["maintainers", 71, 5], ["license", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 19, 3], ["pname", 20, 3], ["year", 21, 3], ["src", 23, 3], ["postPatch", 31, 3], ["preConfigure", 43, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 48, 3], ["setupHook", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cernlib";
       const year = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://ftp.riken.jp/cernlib/download/${year}_source/tar/cernlib-cernlib-${version}-free.tar.gz`),
             nix.thunk(() => nix.str`https://cernlib.web.cern.ch/download/${year}_source/tar/cernlib-cernlib-${version}-free.tar.gz`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.concat([freetype, gfortran, openssl, libx11, libxaw, libxft, libxt, libxcrypt, motif], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), libnsl)));
       const setupHook = nix.path(here, "./setup-hook.sh");
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://cernlib.web.cern.ch",
         description: "Legacy collection of libraries and modules for data analysis in high energy physics",
         platforms: nix.thunk(() => ["aarch64-linux", "i686-linux", "x86_64-linux"]),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         year,

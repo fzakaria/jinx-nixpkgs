@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["tests", 55, 12]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 51, 3], ["passthru", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, llm: false, click: false, ollama: false, pydantic: false, pytestCheckHook: false, "pytest-asyncio": false, "pytest-mock": false, writableTmpDirAsHomeHook: false, "llm-ollama": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 55, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 51, 3], ["passthru", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.16.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "taketwo",
           repo: "llm-ollama",
           tag: version,
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_asyncio, pytest_mock, writableTmpDirAsHomeHook]);
       const pythonImportsCheck = nix.thunk(() => ["llm_ollama"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => nix.app(nix.sel(llm, "mkPluginTest"), llm_ollama)),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "LLM plugin providing access to Ollama models using HTTP API",
         homepage: "https://github.com/taketwo/llm-ollama",
         changelog: nix.thunk(() => nix.str`https://github.com/taketwo/llm-ollama/releases/tag/${version}`),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["description", 32, 5], ["mainProgram", 33, 5], ["homepage", 34, 5], ["license", 35, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["vendorHash", 20, 3], ["outputs", 22, 3], ["postInstall", 27, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchgit: false, buildGoModule: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["mainProgram", 33, 5], ["homepage", 34, 5], ["license", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["vendorHash", 20, 3], ["outputs", 22, 3], ["postInstall", 27, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bombadillo",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://tildegit.org/sloum/bombadillo.git",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-FjU9AyRAdGFr1bVpkmj5STkbzCXvpxOaOj7WNQJq7A0=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       postInstall: "installManPage bombadillo.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Non-web client for the terminal, supporting Gopher, Gemini and more",
         mainProgram: "bombadillo",
         homepage: "https://bombadillo.colorfield.space/",

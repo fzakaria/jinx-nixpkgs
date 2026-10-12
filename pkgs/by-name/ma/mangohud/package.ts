@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 53, 7], ["repo", 54, 7], ["tag", 55, 7], ["hash", 56, 7]], [["url", 59, 7], ["hash", 60, 7]], [["version", 51, 5], ["src", 52, 5], ["patch", 58, 5]], [["owner", 68, 7], ["repo", 69, 7], ["tag", 70, 7], ["hash", 71, 7]], [["url", 74, 7], ["hash", 75, 7]], [["version", 66, 5], ["src", 67, 5], ["patch", 73, 5]], [["owner", 83, 7], ["repo", 84, 7], ["tag", 85, 7], ["hash", 86, 7]], [["version", 81, 5], ["src", 82, 5]], [["owner", 94, 7], ["repo", 95, 7], ["tag", 96, 7], ["hash", 97, 7]], [["version", 92, 5], ["src", 93, 5]], [["owner", 110, 5], ["repo", 111, 5], ["tag", 112, 5], ["fetchSubmodules", 113, 5], ["hash", 114, 5]], [["path", 143, 7], ["libdbus", 151, 7], ["libGL", 152, 7], ["libX11", 153, 7], ["hwdata", 154, 15]], [["x86_64-linux", 231, 9], ["i686-linux", 232, 9]], [["updateScript", 252, 12]], [["description", 255, 5], ["homepage", 256, 5], ["changelog", 257, 5], ["platforms", 258, 5], ["license", 259, 5], ["maintainers", 260, 5], ["mainProgram", 264, 5]], [["pname", 106, 3], ["version", 107, 3], ["src", 109, 3], ["outputs", 117, 3], ["postUnpack", 124, 3], ["patches", 134, 3], ["postPatch", 158, 3], ["mesonFlags", 180, 3], ["strictDeps", 190, 3], ["nativeBuildInputs", 192, 3], ["buildInputs", 202, 3], ["doCheck", 215, 3], ["nativeCheckInputs", 217, 3], ["postInstall", 223, 3], ["postFixup", 228, 3], ["passthru", 252, 3], ["meta", 254, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, replaceVars: false, coreutils: false, curl: false, gnugrep: false, gnused: false, "xdg-utils": false, dbus: false, libGL: false, libx11: false, hwdata: false, pkgsi686Linux: false, addDriverRunpath: false, appstream: false, glslang: false, python3Packages: false, meson: false, ninja: false, "pkg-config": false, unzip: false, wayland: false, linuxPackages: false, spdlog: false, libxkbcommon: false, glfw: false, libxrandr: false, x11Support: true, waylandSupport: true, nvidiaSupport: true, gamescopeSupport: true, mangoappSupport: true, mangohudctlSupport: true, lowerBitnessSupport: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 53, 7], ["repo", 54, 7], ["tag", 55, 7], ["hash", 56, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 59, 7], ["hash", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 51, 5], ["src", 52, 5], ["patch", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 68, 7], ["repo", 69, 7], ["tag", 70, 7], ["hash", 71, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 74, 7], ["hash", 75, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 66, 5], ["src", 67, 5], ["patch", 73, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 83, 7], ["repo", 84, 7], ["tag", 85, 7], ["hash", 86, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["version", 81, 5], ["src", 82, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["owner", 94, 7], ["repo", 95, 7], ["tag", 96, 7], ["hash", 97, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["version", 92, 5], ["src", 93, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["owner", 110, 5], ["repo", 111, 5], ["tag", 112, 5], ["fetchSubmodules", 113, 5], ["hash", 114, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["path", 143, 7], ["libdbus", 151, 7], ["libGL", 152, 7], ["libX11", 153, 7], ["hwdata", 154, 15]]);
-const pos$13 = nix.positions(here + "/package.nix", [["x86_64-linux", 231, 9], ["i686-linux", 232, 9]]);
-const pos$14 = nix.positions(here + "/package.nix", [["updateScript", 252, 12]]);
-const pos$15 = nix.positions(here + "/package.nix", [["description", 255, 5], ["homepage", 256, 5], ["changelog", 257, 5], ["platforms", 258, 5], ["license", 259, 5], ["maintainers", 260, 5], ["mainProgram", 264, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 106, 3], ["version", 107, 3], ["src", 109, 3], ["outputs", 117, 3], ["postUnpack", 124, 3], ["patches", 134, 3], ["postPatch", 158, 3], ["mesonFlags", 180, 3], ["strictDeps", 190, 3], ["nativeBuildInputs", 192, 3], ["buildInputs", 202, 3], ["doCheck", 215, 3], ["nativeCheckInputs", 217, 3], ["postInstall", 223, 3], ["postFixup", 228, 3], ["passthru", 252, 3], ["meta", 254, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,65 +50,65 @@ export default nix.lambda((args) => (() => {
   const imgui = nix.thunk(() => (() => {
     const version = "1.91.6";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "ocornut",
         repo: "imgui",
         tag: nix.thunk(() => nix.str`v${version}`),
         hash: "sha256-CLS26CRzzY4vUBgILjSQVvziHMyPGK4fwwcLZcOAzPw=",
       }))));
     const patch = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://wrapdb.mesonbuild.com/v2/imgui_${version}-3/get_patch`),
         hash: "sha256-L3l3EUugfQZVmq+IkKkqTr0lGGWS1ER5VGBaryJEY00=",
       }))));
-    return { [nix.POS]: pos$3, version, src, patch };
+    return { [nix.POS]: $pos[2], version, src, patch };
   })());
   const implot = nix.thunk(() => (() => {
     const version = "0.16";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         owner: "epezent",
         repo: "implot",
         tag: nix.thunk(() => nix.str`v${version}`),
         hash: "sha256-/wkVsgz3wiUVZBCgRl2iDD6GWb+AoHN+u0aeqHHgem0=",
       }))));
     const patch = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         url: nix.thunk(() => nix.str`https://wrapdb.mesonbuild.com/v2/implot_${version}-1/get_patch`),
         hash: "sha256-HGsUYgZqVFL6UMHaHdR/7YQfKCMpcsgtd48pYpNlaMc=",
       }))));
-    return { [nix.POS]: pos$6, version, src, patch };
+    return { [nix.POS]: $pos[5], version, src, patch };
   })());
   const vulkan_headers = nix.thunk(() => (() => {
     const version = "1.4.346";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         owner: "KhronosGroup",
         repo: "Vulkan-Headers",
         tag: nix.thunk(() => nix.str`v${version}`),
         hash: "sha256-JTBW5CF5hlHWkhCjjRd08hpoAarB5W3FJbHzhQM4YFs=",
       }))));
-    return { [nix.POS]: pos$8, version, src };
+    return { [nix.POS]: $pos[7], version, src };
   })());
   const vulkan_utility_libraries = nix.thunk(() => (() => {
     const version = "1.4.346";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         owner: "KhronosGroup",
         repo: "Vulkan-Utility-Libraries",
         tag: nix.thunk(() => nix.str`v${version}`),
         hash: "sha256-FWZe6NdhLmI/3bm3OIK646vkWkIQ5xmBa4jlSVHSnDs=",
       }))));
-    return { [nix.POS]: pos$10, version, src };
+    return { [nix.POS]: $pos[9], version, src };
   })());
   const libXNVCtrl = nix.thunk(() => nix.sel(linuxPackages, "nvidia_x11", "settings", "libXNVCtrl"));
   const mangohud32 = nix.thunk(() => nix.sel(pkgsi686Linux, "mangohud"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "mangohud",
       version: "0.8.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           owner: "flightlessmango",
           repo: "MangoHud",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -142,7 +127,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./preload-nix-workaround.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-dependencies.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             path: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, curl, gnugrep, gnused, xdg_utils]))),
             libdbus: nix.thunk(() => nix.sel(dbus, "lib")),
             libGL: libGL,
@@ -189,7 +174,7 @@ export default nix.lambda((args) => (() => {
   "$out/share/vulkan/implicit_layer.d"
 `))),
       postFixup: nix.thunk(() => (() => {
-        const archMap = nix.thunk(() => ({ [nix.POS]: pos$13, "x86_64-linux": "x86_64", "i686-linux": "x86" }));
+        const archMap = nix.thunk(() => ({ [nix.POS]: $pos[12], "x86_64-linux": "x86_64", "i686-linux": "x86" }));
         const layerPlatform = nix.thunk(() => nix.selOr(archMap, () => null, nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
         return nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(layerPlatform, null)), nix.thunk(() => nix.str`substituteInPlace $out/share/vulkan/implicit_layer.d/MangoHud.${layerPlatform}.json \\
   --replace-fail "VK_LAYER_MANGOHUD_overlay" "VK_LAYER_MANGOHUD_overlay_${nix.builtins.toString(nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "bits")))}"
@@ -199,11 +184,11 @@ patchelf --add-rpath ${libXNVCtrl}/lib "$out/lib/mangohud/libMangoHud.so"
 `))), nix.app(nix.sel(lib, "optionalString"), mangoappSupport, "addDriverRunpath \"$out/bin/mangoapp\"\n"));
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         description: "Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more",
         homepage: "https://github.com/flightlessmango/MangoHud",
         changelog: nix.thunk(() => nix.str`https://github.com/flightlessmango/MangoHud/releases/tag/v${nix.sel(finalAttrs, "version")}`),

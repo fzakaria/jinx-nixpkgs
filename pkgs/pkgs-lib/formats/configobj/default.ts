@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["typeName", 14, 38]], [["nativeBuildInputs", 20, 13], ["value", 24, 21], ["__structuredAttrs", 25, 13], ["strictDeps", 26, 13]], [["type", 14, 7], ["generate", 16, 7]], [["format", 11, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: false };
 const formals$2 = { args: {  }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["typeName", 14, 38]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 20, 13], ["value", 24, 21], ["__structuredAttrs", 25, 13], ["strictDeps", 26, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["type", 14, 7], ["generate", 16, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["format", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(lib, "types"));
   const serializableValueWith = nix.thunk(() => nix.attr(from, "serializableValueWith"));
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       return {
-        [nix.POS]: pos$3,
-        type: nix.thunk(() => nix.app(serializableValueWith, nix.thunk(() => ({ [nix.POS]: pos$1, typeName: "ConfigObj mapping" })))),
+        [nix.POS]: $pos[2],
+        type: nix.thunk(() => nix.app(serializableValueWith, nix.thunk(() => ({ [nix.POS]: $pos[0], typeName: "ConfigObj mapping" })))),
         generate: (name) => (value) => nix.app(nix.sel(pkgs, "runCommandLocal"), name, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             nativeBuildInputs: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "python3", "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "configobj"))])),
             ]),

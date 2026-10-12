@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/top.nix", [[["description", 17, 5]], [["pname", 8, 3], ["version", 9, 20], ["src", 9, 28], ["propagatedBuildInputs", 11, 3], ["doCheck", 13, 3], ["checkInputs", 14, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, cohttp: false, ppx_expect: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/top.nix", [["description", 17, 5]]);
-const pos$2 = nix.positions(here + "/top.nix", [["pname", 8, 3], ["version", 9, 20], ["src", 9, 28], ["propagatedBuildInputs", 11, 3], ["doCheck", 13, 3], ["checkInputs", 14, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const cohttp = nix.arg($, "cohttp");
   const ppx_expect = nix.arg($, "ppx_expect");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "cohttp-top",
       version: nix.thunk(() => nix.attr(cohttp, "version")),
       src: nix.thunk(() => nix.attr(cohttp, "src")),
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [ppx_expect]),
       meta: nix.thunk(() => nix.update(nix.sel(cohttp, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "CoHTTP toplevel pretty printers for HTTP types",
       })),
     })));

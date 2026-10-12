@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["packageName", 45, 7], ["versionPolicy", 46, 7]], [["updateScript", 44, 5]], [["description", 51, 5], ["license", 52, 5], ["teams", 53, 5], ["platforms", 54, 5]], [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 39, 3], ["passthru", 43, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, glib: false, "pkg-config": false, perl: false, gettext: false, "gobject-introspection": false, gnome: false, "gtk-doc": false, "deterministic-uname": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 45, 7], ["versionPolicy", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 51, 5], ["license", 52, 5], ["teams", 53, 5], ["platforms", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 39, 3], ["passthru", 43, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const gtk_doc = nix.arg($, "gtk-doc");
   const deterministic_uname = nix.arg($, "deterministic-uname");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libgtop",
       version: "2.41.3",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgtop/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libgtop-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-d1Z235WOLqJFL3Vo8osupYEGPTEnc91cC3Ykwbmy2ow=",
         })))),
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
       ]),
       propagatedBuildInputs: nix.thunk(() => [glib]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "libgtop", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "libgtop", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library that reads information about processes and the running system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),

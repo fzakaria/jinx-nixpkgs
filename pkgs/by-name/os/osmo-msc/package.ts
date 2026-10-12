@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["enableParallelBuilding", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, libosmocore: false, sqlite: false, libosmoabis: false, "libosmo-netif": false, "libosmo-sigtran": false, "osmo-mgw": false, "osmo-hlr": false, "lksctp-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["enableParallelBuilding", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const osmo_hlr = nix.arg($, "osmo-hlr");
   const lksctp_tools = nix.arg($, "lksctp-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "osmo-msc",
       version: "1.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "osmocom",
           repo: "osmo-msc",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Osmocom implementation of 3GPP Mobile Switching Centre (MSC)",
         mainProgram: "osmo-msc",
         homepage: "https://osmocom.org/projects/osmomsc/wiki",

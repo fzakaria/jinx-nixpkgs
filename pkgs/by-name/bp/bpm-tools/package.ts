@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["sha256", 28, 5]], [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["installFlags", 35, 3], ["postFixup", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, gnuplot: false, sox: false, flac: false, id3v2: false, "vorbis-tools": false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["installFlags", 35, 3], ["postFixup", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const path = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnuplot, sox, flac, id3v2, vorbis_tools])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bpm-tools",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.pogo.org.uk/~mark/bpm-tools/releases/bpm-tools-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "151vfbs8h3cibs7kbdps5pqrsxhpjv16y2iyfqbxzsclylgfivrp",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/bpm-graph --prefix PATH : "${path}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.pogo.org.uk/~mark/bpm-tools/",
         description: "Automatically calculate BPM (tempo) of music files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

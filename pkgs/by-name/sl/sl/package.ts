@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["shortName", 36, 7], ["fullName", 37, 7], ["url", 38, 7]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["makeFlags", 21, 3], ["installPhase", 23, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["shortName", 36, 7], ["fullName", 37, 7], ["url", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["makeFlags", 21, 3], ["installPhase", 23, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sl",
       version: "5.05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eyJhb",
           repo: "sl",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,14 +26,14 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["CC:=$(CC)"]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 -t $out/bin sl\ninstall -Dm644 -t $out/share/man/man1 sl.1{,.ja}\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Steam Locomotive runs across your terminal when you type 'sl'",
         homepage: "http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/index_e.html",
         license: nix.thunk(() => (() => {
           const shortName = "Toyoda Masashi's free software license";
           const fullName = shortName;
           const url = "https://github.com/eyJhb/sl/blob/master/LICENSE";
-          return { [nix.POS]: pos$2, shortName, fullName, url };
+          return { [nix.POS]: $pos[1], shortName, fullName, url };
         })()),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

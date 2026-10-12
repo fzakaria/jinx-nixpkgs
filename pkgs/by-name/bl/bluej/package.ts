@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableJavaFX", 20, 7]], [["withWebKit", 23, 42]], [["openjfx_jdk", 23, 7]], [["url", 32, 5], ["sha256", 33, 5]], [["name", 62, 7], ["desktopName", 63, 7], ["exec", 64, 7], ["icon", 65, 7], ["comment", 66, 7], ["categories", 67, 7]], [["updateScript", 99, 12]], [["description", 102, 5], ["homepage", 103, 5], ["sourceProvenance", 104, 5], ["license", 105, 5], ["mainProgram", 109, 5], ["maintainers", 110, 5], ["platforms", 114, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["unpackPhase", 36, 3], ["sourceRoot", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["dontWrapGApps", 58, 3], ["desktopItems", 60, 3], ["installPhase", 74, 3], ["passthru", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeDesktopItem: false, copyDesktopItems: false, unzip: false, openjdk21: false, openjfx21: false, glib: false, "gsettings-desktop-schemas": false, gtk3: false, wrapGAppsHook3: false, imagemagick: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableJavaFX", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["withWebKit", 23, 42]]);
-const pos$3 = nix.positions(here + "/package.nix", [["openjfx_jdk", 23, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 32, 5], ["sha256", 33, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 62, 7], ["desktopName", 63, 7], ["exec", 64, 7], ["icon", 65, 7], ["comment", 66, 7], ["categories", 67, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 99, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 102, 5], ["homepage", 103, 5], ["sourceProvenance", 104, 5], ["license", 105, 5], ["mainProgram", 109, 5], ["maintainers", 110, 5], ["platforms", 114, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["unpackPhase", 36, 3], ["sourceRoot", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["dontWrapGApps", 58, 3], ["desktopItems", 60, 3], ["installPhase", 74, 3], ["passthru", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const imagemagick = nix.arg($, "imagemagick");
   const nix_update_script = nix.arg($, "nix-update-script");
-  const openjdk = nix.thunk(() => nix.app(nix.sel(openjdk21, "override"), nix.thunk(() => nix.update({ [nix.POS]: pos$1, enableJavaFX: true }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        openjfx_jdk: nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withWebKit: true })))),
+  const openjdk = nix.thunk(() => nix.app(nix.sel(openjdk21, "override"), nix.thunk(() => nix.update({ [nix.POS]: $pos[0], enableJavaFX: true }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        openjfx_jdk: nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], withWebKit: true })))),
       })))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "bluej",
       version: "5.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://github.com/k-pet-group/BlueJ-Greenfoot/releases/download/BLUEJ-RELEASE-${nix.sel(finalAttrs, "version")}/BlueJ-generic-${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "sha256-UClhTH/9oFfhjYsScBvmD4cKZUJwuAsiyRTiVkPAV0o=",
         })))),
@@ -54,7 +47,7 @@ runHook postUnpack
       dontWrapGApps: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "BlueJ",
             desktopName: "BlueJ",
             exec: "bluej",
@@ -87,11 +80,11 @@ makeWrapper ${openjdk}/bin/java $out/bin/bluej \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Simple integrated development environment for Java",
         homepage: "https://www.bluej.org/",
         sourceProvenance: nix.thunk(() => (() => {

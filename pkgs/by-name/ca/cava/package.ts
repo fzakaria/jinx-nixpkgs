@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 57, 3], ["doInstallCheck", 63, 3], ["versionCheckProgramArg", 64, 3], ["preAutoreconf", 66, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "autoconf-archive": false, "alsa-lib": false, darwinMinVersionHook: false, fftw: false, iniparser: false, libGL: false, libpulseaudio: false, libtool: false, ncurses: false, pipewire: false, pkgconf: false, portaudio: false, SDL2: false, versionCheckHook: false, withSDL2: true, withPipewire: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 57, 3], ["doInstallCheck", 63, 3], ["versionCheckProgramArg", 64, 3], ["preAutoreconf", 66, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const withSDL2 = nix.argOr($, "withSDL2", () => false);
   const withPipewire = nix.argOr($, "withPipewire", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cava",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "karlstav",
           repo: "cava",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       preAutoreconf: nix.thunk(() => nix.str`echo ${nix.sel(finalAttrs, "version")} > version
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Console-based Audio Visualizer for Alsa",
         homepage: "https://github.com/karlstav/cava",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

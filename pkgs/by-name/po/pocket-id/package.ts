@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["CGO_ENABLED", 30, 7]], [["pname", 70, 28], ["version", 70, 34], ["src", 70, 42], ["pnpm", 71, 7], ["fetcherVersion", 72, 7], ["hash", 73, 7]], [["BUILD_OUTPUT_PATH", 76, 9]], [["pname", 60, 5], ["version", 61, 26], ["src", 61, 34], ["nativeBuildInputs", 63, 5], ["pnpmDeps", 69, 5], ["env", 76, 5], ["pnpmWorkspaces", 78, 5], ["installPhase", 80, 5]], [["pocket-id", 92, 28]], [["extraArgs", 95, 7]], [["tests", 91, 5], ["updateScript", 94, 5]], [["product", 118, 7]], [["cpeParts", 116, 17]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["mainProgram", 107, 5], ["maintainers", 108, 5], ["platforms", 115, 5], ["identifiers", 116, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["vendorHash", 28, 3], ["env", 30, 3], ["ldflags", 31, 3], ["preBuild", 36, 3], ["checkFlags", 40, 3], ["__darwinAllowLocalNetworking", 46, 3], ["sandboxProfile", 47, 3], ["preFixup", 51, 3], ["nativeInstallCheckInputs", 55, 3], ["doInstallCheck", 56, 3], ["versionCheckProgramArg", 57, 3], ["frontend", 59, 3], ["passthru", 90, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGo127Module: false, stdenvNoCC: false, nodejs: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpmBuildHook: false, nixosTests: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 70, 28], ["version", 70, 34], ["src", 70, 42], ["pnpm", 71, 7], ["fetcherVersion", 72, 7], ["hash", 73, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["BUILD_OUTPUT_PATH", 76, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 60, 5], ["version", 61, 26], ["src", 61, 34], ["nativeBuildInputs", 63, 5], ["pnpmDeps", 69, 5], ["env", 76, 5], ["pnpmWorkspaces", 78, 5], ["installPhase", 80, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pocket-id", 92, 28]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 95, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 91, 5], ["updateScript", 94, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["product", 118, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["cpeParts", 116, 17]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["mainProgram", 107, 5], ["maintainers", 108, 5], ["platforms", 115, 5], ["identifiers", 116, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["vendorHash", 28, 3], ["env", 30, 3], ["ldflags", 31, 3], ["preBuild", 36, 3], ["checkFlags", 40, 3], ["__darwinAllowLocalNetworking", 46, 3], ["sandboxProfile", 47, 3], ["preFixup", 51, 3], ["nativeInstallCheckInputs", 55, 3], ["doInstallCheck", 56, 3], ["versionCheckProgramArg", 57, 3], ["frontend", 59, 3], ["passthru", 90, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "pocket-id",
       version: "2.18.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pocket-id",
           repo: "pocket-id",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/backend`),
       vendorHash: "sha256-nwvgYWUMlt51dH+uYQd8KeTo0E55kSAyMkBGjObbkb8=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         nix.thunk(() => nix.str`-X github.com/pocket-id/pocket-id/backend/internal/common.Version=${nix.sel(finalAttrs, "version")}`),
         nix.thunk(() => nix.str`-buildid=${nix.sel(finalAttrs, "version")}`),
@@ -58,13 +47,13 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgramArg: "version",
       frontend: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: "pocket-id-frontend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpmBuildHook, pnpm_10]),
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -72,20 +61,20 @@ export default nix.lambda((args) => (() => {
               fetcherVersion: 4n,
               hash: "sha256-zCwpCnxYVEVQUjC64W3ZZlloNNtQXD8SVlpV+0JgDzQ=",
             })))),
-          env: nix.thunk(() => ({ [nix.POS]: pos$4, BUILD_OUTPUT_PATH: "dist" })),
+          env: nix.thunk(() => ({ [nix.POS]: $pos[3], BUILD_OUTPUT_PATH: "dist" })),
           pnpmWorkspaces: nix.thunk(() => ["pocket-id-frontend"]),
           installPhase: "runHook preInstall\n\nmkdir -p $out/lib/pocket-id-frontend\ncp -r frontend/dist $out/lib/pocket-id-frontend/dist\n\nrunHook postInstall\n",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "pocket-id": nix.thunk(() => nix.attr(nixosTests, "pocket-id")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$7, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[6], extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "OIDC provider with passkeys support",
         homepage: "https://pocket-id.org",
         changelog: nix.thunk(() => nix.str`https://github.com/pocket-id/pocket-id/releases/tag/v${nix.sel(finalAttrs, "version")}`),
@@ -103,8 +92,8 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$10,
-          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "pocket-id", nix.thunk(() => nix.sel(finalAttrs, "version"))), { [nix.POS]: pos$9, product: "pocket_id" })),
+          [nix.POS]: $pos[9],
+          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "pocket-id", nix.thunk(() => nix.sel(finalAttrs, "version"))), { [nix.POS]: $pos[8], product: "pocket_id" })),
         })),
       })),
     }));

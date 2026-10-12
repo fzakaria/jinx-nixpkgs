@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 56, 5], ["hash", 57, 5]], [["packageName", 131, 41]], [["updateScript", 131, 5]], [["description", 135, 5], ["mainProgram", 136, 5], ["homepage", 137, 5], ["license", 138, 5], ["platforms", 139, 5], ["teams", 140, 5]], [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["patches", 60, 3], ["doCheck", 66, 3], ["nativeBuildInputs", 68, 3], ["propagatedUserEnvPkgs", 84, 3], ["buildInputs", 86, 3], ["preFixup", 119, 3], ["passthru", 130, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, wrapGAppsHook3: false, "pkg-config": false, gettext: false, itstool: false, "libvirt-glib": false, glib: false, "gobject-introspection": false, libxml2: false, gtk3: false, libvirt: false, "spice-gtk": false, "spice-protocol": false, libhandy: false, libsoup_3: false, libosinfo: false, systemd: false, vala: false, libcap: false, yajl: false, gmp: false, gdbm: false, cyrus_sasl: false, gnome: false, "adwaita-icon-theme": false, librsvg: false, "desktop-file-utils": false, mtools: false, cdrkit: false, libcdio: false, libusb1: false, libarchive: false, acl: false, libgudev: false, libcap_ng: false, numactl: false, libapparmor: false, "json-glib": false, webkitgtk_4_1: false, vte: false, "glib-networking": false, "qemu-utils": false, "libportal-gtk3": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 56, 5], ["hash", 57, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 131, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 131, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 135, 5], ["mainProgram", 136, 5], ["homepage", 137, 5], ["license", 138, 5], ["platforms", 139, 5], ["teams", 140, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["patches", 60, 3], ["doCheck", 66, 3], ["nativeBuildInputs", 68, 3], ["propagatedUserEnvPkgs", 84, 3], ["buildInputs", 86, 3], ["preFixup", 119, 3], ["passthru", 130, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,11 +55,11 @@ export default nix.lambda((args) => (() => {
   const qemu_utils = nix.arg($, "qemu-utils");
   const libportal_gtk3 = nix.arg($, "libportal-gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-boxes",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-boxes/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-boxes-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-/Wpd4Y0QkJRsqZ8fWjSqPhXcgYP2pyIm6NFQShNnLWc=",
         })))),
@@ -118,11 +114,11 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [mtools, cdrkit, libcdio, qemu_utils]))}")
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-boxes" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-boxes" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple GNOME application to access virtual systems",
         mainProgram: "gnome-boxes",
         homepage: "https://apps.gnome.org/Boxes/",

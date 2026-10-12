@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["license", 50, 10]], [["name", 49, 5], ["meta", 50, 5]], [["maintainers", 99, 7], ["license", 103, 7], ["platforms", 104, 7]], [["buildInputs", 78, 5], ["nativeBuildInputs", 81, 5], ["makeFlags", 92, 5], ["doCheck", 94, 5], ["dontStrip", 96, 5], ["meta", 98, 5]], [["patchEngine", 55, 3], ["wrapLaunchGame", 65, 3], ["packageAttrs", 77, 3]]]);
 const formals$1 = { args: { lib: false, makeSetupHook: false, curl: false, unzip: false, dos2unix: false, "pkg-config": false, makeWrapper: false, lua: false, mono: false, python3: false, libGL: false, freetype: false, openal: false, SDL2: false, zenity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["license", 50, 10]]);
-const pos$2 = nix.positions(here + "/common.nix", [["name", 49, 5], ["meta", 50, 5]]);
-const pos$3 = nix.positions(here + "/common.nix", [["maintainers", 99, 7], ["license", 103, 7], ["platforms", 104, 7]]);
-const pos$4 = nix.positions(here + "/common.nix", [["buildInputs", 78, 5], ["nativeBuildInputs", 81, 5], ["makeFlags", 92, 5], ["doCheck", 94, 5], ["dontStrip", 96, 5], ["meta", 98, 5]]);
-const pos$5 = nix.positions(here + "/common.nix", [["patchEngine", 55, 3], ["wrapLaunchGame", 65, 3], ["packageAttrs", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +31,15 @@ export default nix.lambda((args) => (() => {
   const path = nix.thunk(() => nix.app(makeBinPath, nix.thunk(() => nix.concat([mono, python3], nix.app(optional, nix.thunk(() => !nix.eq(zenity, null)), zenity)))));
   const rpath = nix.thunk(() => nix.app(makeLibraryPath, nix.thunk(() => [lua, freetype, openal, SDL2])));
   const mkdirp = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "openra-mkdirp-hook",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[0],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })), nix.path(here, "./mkdirp.sh")));
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     patchEngine: (dir) => (version) => nix.str`sed -i \\
   -e 's/^VERSION.*/VERSION = ${version}/g' \\
   -e '/fetch-geoip-db/d' \\
@@ -60,14 +59,14 @@ makeWrapper $out/lib/openra${openraSuffix}/launch-game.sh $(mkdirp $out/bin)/${b
   --chdir "$out/lib/openra${openraSuffix}"
 `,
     packageAttrs: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       buildInputs: nix.thunk(() => [libGL]),
       nativeBuildInputs: nix.thunk(() => [curl, unzip, dos2unix, pkg_config, makeWrapper, mkdirp, mono, python3]),
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       doCheck: true,
       dontStrip: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(maintainers, null);
           return [

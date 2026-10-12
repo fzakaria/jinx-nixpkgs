@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, mkNginxPlugin: false, curl: false, geoip: false, libmodsecurity: false, libxml2: false, lmdb: false, yajl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const lmdb = nix.arg($, "lmdb");
   const yajl = nix.arg($, "yajl");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "modsecurity",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "owasp-modsecurity",
           repo: "ModSecurity-nginx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [curl, geoip, libmodsecurity, libxml2, lmdb, yajl]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open source, cross platform web application firewall (WAF)",
         homepage: "https://github.com/owasp-modsecurity/ModSecurity-nginx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

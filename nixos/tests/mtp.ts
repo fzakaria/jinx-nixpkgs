@@ -2,51 +2,40 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mtp.nix", [[["maintainers", 5, 5]], [["autologinUser", 17, 24]], [["enable", 28, 23]], [["getty", 17, 18], ["gvfs", 28, 18]], [["XDG_RUNTIME_DIR", 21, 31]], [["variables", 21, 21], ["systemPackages", 23, 21]], [["options", 33, 29]], [["qemu", 33, 24]], [["services", 17, 9], ["environment", 21, 9], ["virtualisation", 33, 9]], [["client", 11, 5]], [["mountAllMtpDevices", 55, 9], ["unmountAllMtpDevices", 63, 9], ["gvfsTest", 76, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 10, 3], ["testScript", 40, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mtp.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/mtp.nix", [["autologinUser", 17, 24]]);
-const pos$3 = nix.positions(here + "/mtp.nix", [["enable", 28, 23]]);
-const pos$4 = nix.positions(here + "/mtp.nix", [["getty", 17, 18], ["gvfs", 28, 18]]);
-const pos$5 = nix.positions(here + "/mtp.nix", [["XDG_RUNTIME_DIR", 21, 31]]);
-const pos$6 = nix.positions(here + "/mtp.nix", [["variables", 21, 21], ["systemPackages", 23, 21]]);
-const pos$7 = nix.positions(here + "/mtp.nix", [["options", 33, 29]]);
-const pos$8 = nix.positions(here + "/mtp.nix", [["qemu", 33, 24]]);
-const pos$9 = nix.positions(here + "/mtp.nix", [["services", 17, 9], ["environment", 21, 9], ["virtualisation", 33, 9]]);
-const pos$10 = nix.positions(here + "/mtp.nix", [["client", 11, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/mtp.nix", [["mountAllMtpDevices", 55, 9], ["unmountAllMtpDevices", 63, 9], ["gvfsTest", 76, 9]]);
-const pos$12 = nix.positions(here + "/mtp.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 10, 3], ["testScript", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "mtp",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "matthewcroughan"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            getty: nix.thunk(() => ({ [nix.POS]: pos$2, autologinUser: "root" })),
-            gvfs: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[3],
+            getty: nix.thunk(() => ({ [nix.POS]: $pos[1], autologinUser: "root" })),
+            gvfs: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            variables: nix.thunk(() => ({ [nix.POS]: pos$5, XDG_RUNTIME_DIR: "/run/user/0" })),
+            [nix.POS]: $pos[5],
+            variables: nix.thunk(() => ({ [nix.POS]: $pos[4], XDG_RUNTIME_DIR: "/run/user/0" })),
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs_1, null);
               return [
@@ -57,9 +46,9 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             qemu: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               options: nix.thunk(() => ["-usb", "-device usb-mtp,rootdir=/tmp,readonly=false"]),
             })),
           })),
@@ -97,7 +86,7 @@ do
 done
 ${unmountAllMtpDevices}
 `)));
-        return { [nix.POS]: pos$11, mountAllMtpDevices, unmountAllMtpDevices, gvfsTest };
+        return { [nix.POS]: $pos[10], mountAllMtpDevices, unmountAllMtpDevices, gvfsTest };
       })());
       return nix.str`start_all()
 client.wait_for_unit("multi-user.target")

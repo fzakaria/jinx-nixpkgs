@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["pkg-config", 54, 11]], [["updateScript", 46, 5], ["tests", 54, 5]], [["description", 58, 5], ["longDescription", 59, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["pkgConfigModules", 66, 5], ["platforms", 67, 5]], [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 27, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 43, 3], ["passthru", 45, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, xorgproto: false, libx11: false, libxau: false, libxext: false, writeScript: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 54, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 46, 5], ["tests", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["longDescription", 59, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["pkgConfigModules", 66, 5], ["platforms", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 27, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 43, 3], ["passthru", 45, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libxp",
       version: "1.0.4",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/lib/libXp-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-HxnjuOgqNKj9mImn2a8KvoWIywP7V8N8VpY0zzud8aQ=",
         })))),
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [xorgproto, libx11, libxau, libxext]),
       propagatedBuildInputs: nix.thunk(() => [xorgproto]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname libXp \\
@@ -45,12 +41,12 @@ version="$(list-directory-versions --pname libXp \\
 update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "X Print Client Library",
         longDescription: "This library provides support for X11 clients to print via the X Print Extension, as\npreviously implemented in the Xprt server.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/lib/libxp",

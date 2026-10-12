@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 7], ["repo", 19, 7], ["tag", 20, 7], ["hash", 21, 7]], [["homepage", 38, 7], ["description", 39, 7], ["license", 40, 7], ["platforms", 41, 7]], [["pname", 14, 5], ["version", 15, 5], ["src", 17, 5], ["nativeBuildInputs", 24, 5], ["buildInputs", 30, 5], ["dontWrapQtApps", 35, 5], ["meta", 37, 5]], [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["homepage", 73, 5], ["description", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["postUnpack", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 66, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, meson: false, ninja: false, "pkg-config": false, qt6: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 7], ["repo", 19, 7], ["tag", 20, 7], ["hash", 21, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 38, 7], ["description", 39, 7], ["license", 40, 7], ["platforms", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 5], ["version", 15, 5], ["src", 17, 5], ["nativeBuildInputs", 24, 5], ["buildInputs", 30, 5], ["dontWrapQtApps", 35, 5], ["meta", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 73, 5], ["description", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["postUnpack", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 66, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const cmake = nix.arg($, "cmake");
   const libopenrazer = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libopenrazer",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "z3ntu",
           repo: "libopenrazer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/z3ntu/libopenrazer",
         description: "Qt wrapper around the D-Bus API from OpenRazer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -46,11 +41,11 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "razergenie",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "z3ntu",
           repo: "RazerGenie",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +65,7 @@ export default nix.lambda((args) => (() => {
         libopenrazer,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/z3ntu/RazerGenie",
         description: "Qt application for configuring your Razer devices under GNU/Linux",
         mainProgram: "razergenie",

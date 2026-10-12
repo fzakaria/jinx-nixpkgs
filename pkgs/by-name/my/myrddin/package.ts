@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 16, 5], ["owner", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["broken", 57, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["postPatch", 28, 3], ["buildPhase", 33, 3], ["postInstall", 38, 3], ["checkPhase", 44, 3], ["doCheck", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "pkg-config": false, bison: false, binutils: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 16, 5], ["owner", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["broken", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["postPatch", 28, 3], ["buildPhase", 33, 3], ["postInstall", 38, 3], ["checkPhase", 44, 3], ["doCheck", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const binutils = nix.arg($, "binutils");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "myrddin",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "mc",
           owner: "oridb",
           rev: nix.thunk(() => nix.str`r${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ done
       checkPhase: "make check\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Systems language that is both powerful and fun to use",
         homepage: "https://myrlang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

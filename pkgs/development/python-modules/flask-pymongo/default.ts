@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 5], ["version", 18, 13], ["hash", 19, 5]], [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["pythonImportsCheck", 29, 3], ["nativeCheckInputs", 31, 3], ["doCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, flask: false, pymongo: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 13], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["pythonImportsCheck", 29, 3], ["nativeCheckInputs", 31, 3], ["doCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "flask_pymongo",
           version: version,
           hash: "sha256-0iW1HCHOyi5nDmzKebXFhK0XuWJStI6E47Qj3bczBMw=",
@@ -32,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/dcrosta/flask-pymongo",
         description: "PyMongo support for Flask applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

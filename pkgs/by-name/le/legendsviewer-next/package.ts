@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["version", 28, 13], ["src", 28, 21], ["patches", 29, 5]], [["name", 42, 7], ["desktopName", 43, 7], ["genericName", 44, 7], ["comment", 45, 7], ["icon", 46, 7], ["tryExec", 47, 7], ["exec", 48, 7], ["categories", 50, 7], ["keywords", 55, 7]], [["updateScript", 141, 5]], [["description", 145, 5], ["homepage", 146, 5], ["license", 147, 5], ["mainProgram", 148, 5], ["platforms", 149, 5], ["maintainers", 153, 5]], [["pname", 33, 3], ["version", 34, 11], ["src", 34, 19], ["patches", 35, 3], ["strictDeps", 37, 3], ["__structuredAttrs", 38, 3], ["desktopItems", 40, 3], ["dotnet-sdk", 65, 3], ["dotnet-runtime", 66, 3], ["nugetDeps", 69, 3], ["projectFile", 71, 3], ["testProjectFile", 72, 3], ["executables", 73, 3], ["nativeBuildInputs", 75, 3], ["installPhase", 79, 3], ["doInstallCheck", 92, 3], ["nativeInstallCheckInputs", 94, 3], ["installCheckPhase", 98, 3], ["passthru", 140, 3], ["meta", 144, 3]]]);
 const formals$1 = { args: { patches: true, lib: false, dotnetCorePackages: false, curl: false, buildDotnetModule: false, callPackage: false, copyDesktopItems: false, fetchFromGitHub: false, makeDesktopItem: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 28, 13], ["src", 28, 21], ["patches", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 42, 7], ["desktopName", 43, 7], ["genericName", 44, 7], ["comment", 45, 7], ["icon", 46, 7], ["tryExec", 47, 7], ["exec", 48, 7], ["categories", 50, 7], ["keywords", 55, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 141, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 145, 5], ["homepage", 146, 5], ["license", 147, 5], ["mainProgram", 148, 5], ["platforms", 149, 5], ["maintainers", 153, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 11], ["src", 34, 19], ["patches", 35, 3], ["strictDeps", 37, 3], ["__structuredAttrs", 38, 3], ["desktopItems", 40, 3], ["dotnet-sdk", 65, 3], ["dotnet-runtime", 66, 3], ["nugetDeps", 69, 3], ["projectFile", 71, 3], ["testProjectFile", 72, 3], ["executables", 73, 3], ["nativeBuildInputs", 75, 3], ["installPhase", 79, 3], ["doInstallCheck", 92, 3], ["nativeInstallCheckInputs", 94, 3], ["installCheckPhase", 98, 3], ["passthru", 140, 3], ["meta", 144, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "1.3.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Kromtec",
       repo: "LegendsViewer-Next",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-NfNCWRN54NHbTDGcZDqd4PGFUudh14jhZYaYBL4jPc0=",
     }))));
   const patches$ = nix.thunk(() => nix.concat(patches, [nix.path(here, "./remove-npm-frontend.patch")]));
-  const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, version: version, src: src, patches: patches$ }))));
+  const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], version: version, src: src, patches: patches$ }))));
   return nix.app(buildDotnetModule, nix.thunk(() => (() => {
       const pname = "legendsviewer-next";
       const version_1 = version;
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: pname,
             desktopName: "Legends Viewer",
             genericName: "DF Legends Export Browser",
@@ -114,11 +109,11 @@ trap - EXIT
 runHook postInstallCheck
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Recreates Dwarf Fortress' Legends Mode from exported files",
         homepage: "https://github.com/Kromtec/LegendsViewer-Next",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -130,7 +125,7 @@ runHook postInstallCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version: version_1,
         src: src_1,

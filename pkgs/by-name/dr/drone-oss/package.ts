@@ -2,12 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableUnfree", 5, 18]]]);
 const formals$1 = { args: { drone: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableUnfree", 5, 18]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const drone = nix.arg($, "drone");
-  return nix.app(nix.sel(drone, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableUnfree: false })));
+  return nix.app(nix.sel(drone, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableUnfree: false })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

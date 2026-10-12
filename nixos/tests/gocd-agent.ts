@@ -2,16 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gocd-agent.nix", [[["maintainers", 16, 5], ["broken", 22, 5]], [["memorySize", 29, 24]], [["enable", 31, 11]], [["enable", 34, 11]], [["gocd-agent", 30, 18], ["gocd-server", 33, 18]], [["virtualisation", 29, 9], ["services", 30, 9]], [["agent", 26, 5]], [["name", 14, 3], ["meta", 15, 3], ["nodes", 25, 3], ["testScript", 39, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gocd-agent.nix", [["maintainers", 16, 5], ["broken", 22, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/gocd-agent.nix", [["memorySize", 29, 24]]);
-const pos$3 = nix.positions(here + "/gocd-agent.nix", [["enable", 31, 11]]);
-const pos$4 = nix.positions(here + "/gocd-agent.nix", [["enable", 34, 11]]);
-const pos$5 = nix.positions(here + "/gocd-agent.nix", [["gocd-agent", 30, 18], ["gocd-server", 33, 18]]);
-const pos$6 = nix.positions(here + "/gocd-agent.nix", [["virtualisation", 29, 9], ["services", 30, 9]]);
-const pos$7 = nix.positions(here + "/gocd-agent.nix", [["agent", 26, 5]]);
-const pos$8 = nix.positions(here + "/gocd-agent.nix", [["name", 14, 3], ["meta", 15, 3], ["nodes", 25, 3], ["testScript", 39, 3]]);
 
 export default nix.thunk(() => (() => {
   const serverUrl = "localhost:8153/go/api/agents";
@@ -20,27 +13,27 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "gocd-agent",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "swarren83"))]),
           broken: true,
         };
       })()),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         agent: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return {
-            [nix.POS]: pos$6,
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2046n })),
+            [nix.POS]: $pos[5],
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 2046n })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              "gocd-agent": nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
-              "gocd-server": nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+              [nix.POS]: $pos[4],
+              "gocd-agent": nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
+              "gocd-server": nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
             })),
           };
         })(), formals$2),

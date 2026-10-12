@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 38, 5], ["license", 39, 5], ["homepage", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, wayland: false, "wayland-protocols": false, "wayland-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["license", 39, 5], ["homepage", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wlinhibit",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "einetuer",
           repo: "wlinhibit",
           rev: "v0.1.2",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, wayland_scanner]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple, stupid idle inhibitor for wayland",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/einetuer/wlinhibit",

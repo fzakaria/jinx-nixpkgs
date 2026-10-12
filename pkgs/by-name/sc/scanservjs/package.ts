@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["name", 23, 5], ["src", 24, 26], ["sourceRoot", 25, 5], ["hash", 26, 5]], [["name", 30, 5], ["src", 31, 26], ["sourceRoot", 32, 5], ["hash", 33, 5]], [["smoke-test", 80, 11]], [["tests", 80, 5]], [["description", 84, 5], ["longDescription", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["mainProgram", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["appServerNpmDeps", 22, 3], ["appUiNpmDeps", 29, 3], ["npmDepsHash", 36, 3], ["patches", 38, 3], ["nativeBuildInputs", 42, 3], ["preConfigure", 46, 3], ["postBuild", 51, 3], ["installPhase", 60, 3], ["passthru", 79, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchNpmDeps: false, buildNpmPackage: false, nodejs: false, npmHooks: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 23, 5], ["src", 24, 26], ["sourceRoot", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 30, 5], ["src", 31, 26], ["sourceRoot", 32, 5], ["hash", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["smoke-test", 80, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 80, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 84, 5], ["longDescription", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["mainProgram", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["appServerNpmDeps", 22, 3], ["appUiNpmDeps", 29, 3], ["npmDepsHash", 36, 3], ["patches", 38, 3], ["nativeBuildInputs", 42, 3], ["preConfigure", 46, 3], ["postBuild", 51, 3], ["installPhase", 60, 3], ["passthru", 79, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,25 +15,25 @@ export default nix.lambda((args) => (() => {
   const npmHooks = nix.arg($, "npmHooks");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "scanservjs",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sbs20",
           repo: "scanservjs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-UyNSEjwqL+DHTJWgJ6lrNXfPuNJv2H3rUtpRqdNeEkg=",
         })))),
       appServerNpmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-app-server-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/app-server`),
           hash: "sha256-zp8gguoc+OdSABCOKUzLMuKIrnuYVX39kCD8b7ZTIgQ=",
         })))),
       appUiNpmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-app-ui-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/app-ui`),
@@ -76,14 +70,14 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/scanservjs \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "scanservjs")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "SANE scanner nodejs web ui",
         longDescription: "scanservjs is a simple web-based UI for SANE which allows you to share a scanner on a network without the need for drivers or complicated installation.",
         homepage: "https://github.com/sbs20/scanservjs",

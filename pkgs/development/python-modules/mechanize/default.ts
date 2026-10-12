@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]], [["name", 23, 7], ["url", 24, 7], ["hash", 25, 7]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 35, 3], ["disabledTestPaths", 37, 3], ["disabledTests", 43, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchpatch: false, fetchPypi: false, html5lib: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 23, 7], ["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 35, 3], ["disabledTestPaths", 37, 3], ["disabledTests", 43, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-HeqUf5vn6gq2EPe7xKTja0XWv9/O6imtPTiaiKGVfd8=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-cookietests-python3.13.patch",
             url: "https://github.com/python-mechanize/mechanize/commit/0c1cd4b65697dee4e4192902c9a2965d94700502.patch",
             hash: "sha256-Xlx8ZwHkFbJqeWs+/fllYZt3CZRu9rD8bMHHPuUlRv4=",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["test/test_urllib2_localnet.py", "test/test_functional.py"]);
       const disabledTests = nix.thunk(() => ["test_pickling", "test_password_manager"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Stateful programmatic web browsing in Python",
         homepage: "https://github.com/python-mechanize/mechanize",
         changelog: nix.thunk(() => nix.str`https://github.com/python-mechanize/mechanize/blob/v${version}/ChangeLog`),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

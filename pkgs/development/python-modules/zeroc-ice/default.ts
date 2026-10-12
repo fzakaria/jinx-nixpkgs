@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 5], ["version", 23, 13], ["hash", 24, 5]], [["homepage", 37, 5], ["license", 38, 5], ["description", 39, 5], ["mainProgram", 40, 5], ["maintainers", 41, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["disabled", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["buildInputs", 29, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pythonAtLeast: false, fetchPypi: false, setuptools: false, bzip2: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 5], ["version", 23, 13], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["license", 38, 5], ["description", 39, 5], ["mainProgram", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["disabled", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["buildInputs", 29, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.13"));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "zeroc_ice",
           version: version,
           hash: "sha256-SwR/4BSH/8+cYWVKA7aE3bnFOL52fWzynFehZr5VC9c=",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [bzip2, openssl]);
       const pythonImportsCheck = nix.thunk(() => ["Ice"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://zeroc.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         description: "Comprehensive RPC framework with support for Python, C++, .NET, Java, JavaScript and more",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

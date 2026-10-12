@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 53, 7]], [["url", 50, 5], ["hash", 51, 5], ["meta", 52, 5]], [["homepage", 147, 35], ["description", 148, 5], ["license", 149, 5], ["platforms", 150, 5], ["maintainers", 151, 5]], [["version", 46, 3], ["pname", 47, 3], ["src", 49, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 72, 3], ["postPatch", 94, 3], ["patches", 99, 3], ["configureFlags", 103, 3], ["preBuild", 140, 3], ["dontUseCmakeConfigure", 144, 3], ["meta", 146, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "shared-mime-info": false, autoconf: false, automake116x: false, intltool: false, libtool: false, "pkg-config": false, cmake: false, ruby: false, librsvg: false, ncurses: false, m17n_lib: false, m17n_db: false, expat: false, withAnthy: true, anthy: false, withGtk: true, withGtk2: true, gtk2: false, withGtk3: true, gtk3: false, withQt: true, withQt5: true, qt5: false, withLibnotify: true, libnotify: false, withSqlite: true, sqlite: false, withNetworking: true, curl: false, openssl: false, withFFI: true, libffi: false, withMisc: true, libeb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 53, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 50, 5], ["hash", 51, 5], ["meta", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 147, 35], ["description", 148, 5], ["license", 149, 5], ["platforms", 150, 5], ["maintainers", 151, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 46, 3], ["pname", 47, 3], ["src", 49, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 72, 3], ["postPatch", 94, 3], ["patches", 99, 3], ["configureFlags", 103, 3], ["preBuild", 140, 3], ["dontUseCmakeConfigure", 144, 3], ["meta", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,14 +45,14 @@ export default nix.lambda((args) => (() => {
   const withMisc = nix.argOr($, "withMisc", () => false);
   const libeb = nix.arg($, "libeb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "1.9.6",
       pname: "uim",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/uim/uim/releases/download/${nix.sel(finalAttrs, "version")}/uim-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Z/Dl+kKSpTPtxvmLhC32DFMaic+C0DNqThq3IgKrjIM=",
-          meta: nix.thunk(() => ({ [nix.POS]: pos$1, homepage: "https://github.com/uim/uim/" })),
+          meta: nix.thunk(() => ({ [nix.POS]: $pos[0], homepage: "https://github.com/uim/uim/" })),
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([autoconf, automake116x, intltool, libtool, pkg_config, cmake, ruby, librsvg], nix.app(nix.sel(lib, "optionals"), withQt5, nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))])))),
       buildInputs: nix.thunk(() => nix.concat([ncurses, m17n_lib, m17n_db, expat], nix.concat(nix.app(nix.sel(lib, "optional"), withAnthy, anthy), nix.concat(nix.app(nix.sel(lib, "optional"), withGtk2, gtk2), nix.concat(nix.app(nix.sel(lib, "optional"), withGtk3, gtk3), nix.concat(nix.app(nix.sel(lib, "optionals"), withQt5, nix.thunk(() => [
@@ -81,7 +78,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Multilingual input method framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

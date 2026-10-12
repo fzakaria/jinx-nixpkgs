@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 158, 5], ["repo", 159, 5], ["rev", 160, 5], ["hash", 161, 5]], [["updateScript", 181, 5]], [["description", 185, 5], ["homepage", 186, 5], ["changelog", 187, 5], ["license", 188, 5], ["maintainers", 189, 5]], [["pname", 154, 3], ["version", 155, 11], ["src", 157, 3], ["nativeBuildInputs", 164, 3], ["installPhase", 166, 3], ["passthru", 180, 3], ["meta", 184, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, python3: false, makeWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 158, 5], ["repo", 159, 5], ["rev", 160, 5], ["hash", 161, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 181, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 185, 5], ["homepage", 186, 5], ["changelog", 187, 5], ["license", 188, 5], ["maintainers", 189, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 154, 3], ["version", 155, 11], ["src", 157, 3], ["nativeBuildInputs", 164, 3], ["installPhase", 166, 3], ["passthru", 180, 3], ["meta", 184, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -152,11 +149,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(d, "averaged-perceptron-tagger")),
     ]));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "unstructured-api",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Unstructured-IO",
           repo: "unstructured-api",
           rev: version,
@@ -176,11 +173,11 @@ makeWrapper ${pythonEnv}/bin/uvicorn $out/bin/unstructured-api \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open-source toolkit designed to make it easy to prepare unstructured data like PDFs, HTML and Word Documents for downstream data science tasks",
         homepage: "https://github.com/Unstructured-IO/unstructured-api",
         changelog: nix.thunk(() => nix.str`https://github.com/Unstructured-IO/unstructured-api/releases/tag/${version}`),

@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["baseName", 11, 3], ["runtimeInputs", 13, 3]]]);
 const formals$1 = { args: { faust: false, "xdg-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["baseName", 11, 3], ["runtimeInputs", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const faust = nix.arg($, "faust");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(faust, "wrap"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       baseName: "faust2firefox",
       runtimeInputs: nix.thunk(() => [xdg_utils]),
     })));

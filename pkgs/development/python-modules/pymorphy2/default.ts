@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 26], ["version", 20, 32], ["hash", 21, 5]], [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["postPatch", 24, 3], ["propagatedBuildInputs", 29, 3], ["pythonImportsCheck", 36, 3], ["installCheckPhase", 39, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, python: false, "dawg-python": false, docopt: false, "pymorphy2-dicts-ru": false, "pkg-resources-backport": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 26], ["version", 20, 32], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["postPatch", 24, 3], ["propagatedBuildInputs", 29, 3], ["pythonImportsCheck", 36, 3], ["installCheckPhase", 39, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pymorphy2_dicts_ru = nix.arg($, "pymorphy2-dicts-ru");
   const pkg_resources_backport = nix.arg($, "pkg-resources-backport");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pymorphy2",
       version: "0.9.1",
       format: "setuptools",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-hsRHFX3uLrI0HvvkU44SgadUdWuhqjLad6iWFMWLVgw=",
@@ -38,7 +36,7 @@ PYTHONPATH="$out/${nix.sel(python, "sitePackages")}:$PYTHONPATH" \\
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Morphological analyzer/inflection engine for Russian and Ukrainian",
         mainProgram: "pymorphy",
         homepage: "https://github.com/kmike/pymorphy2",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 23, 5], ["longDescription", 24, 5], ["homepage", 32, 5], ["license", 33, 5], ["mainProgram", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["longDescription", 24, 5], ["homepage", 32, 5], ["license", 33, 5], ["mainProgram", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "clock-rs",
       version: "0.2.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Oughie",
           repo: "clock-rs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-K5AdTjRz1GEWmbqW/D/7faYABUo71tpiyyOrCjHd1GM=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modern, digital clock that effortlessly runs in your terminal",
         longDescription: "clock-rs is a terminal-based clock written in Rust, designed to be a new alternative to tty-clock.\nIt supports all major platforms and offers several improvements, which include:\n\n- The use of a single configuration file to manage its settings, with the ability to override them through the command line,\n- Many additional features such as a timer and a stopwatch,\n- And greater flexibility as well as better user experience!\n",
         homepage: "https://github.com/Oughie/clock-rs",

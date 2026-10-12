@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["name", 47, 5], ["desktopName", 48, 13], ["comment", 49, 5], ["icon", 50, 5], ["exec", 51, 5], ["terminal", 52, 5], ["categories", 53, 5], ["keywords", 57, 5]], [["pname", 82, 15], ["data", 83, 7]], [["sourceProvenance", 132, 9], ["license", 136, 9], ["maintainers", 137, 9], ["platforms", 138, 9], ["mainProgram", 139, 9]], [["pname", 74, 7], ["version", 75, 7], ["src", 76, 7], ["patches", 77, 7], ["postPatch", 78, 7], ["mitmCache", 81, 5], ["__darwinAllowLocalNetworking", 86, 5], ["nativeBuildInputs", 88, 5], ["desktopItems", 96, 5], ["gradleBuildTask", 98, 5], ["installPhase", 100, 5], ["meta", 129, 5]]]);
 const formals$1 = { args: { pname: false, version: false, src: false, meta: false, desktopName: false, patches: true, depsPath: true, lib: false, stdenv: false, makeWrapper: false, gradle_8: false, perl: false, jre: false, libGL: false, libpulseaudio: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/generic.nix", [["name", 47, 5], ["desktopName", 48, 13], ["comment", 49, 5], ["icon", 50, 5], ["exec", 51, 5], ["terminal", 52, 5], ["categories", 53, 5], ["keywords", 57, 5]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["pname", 82, 15], ["data", 83, 7]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["sourceProvenance", 132, 9], ["license", 136, 9], ["maintainers", 137, 9], ["platforms", 138, 9], ["mainProgram", 139, 9]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["pname", 74, 7], ["version", 75, 7], ["src", 76, 7], ["patches", 77, 7], ["postPatch", 78, 7], ["mitmCache", 81, 5], ["__darwinAllowLocalNetworking", 86, 5], ["nativeBuildInputs", 88, 5], ["desktopItems", 96, 5], ["gradleBuildTask", 98, 5], ["installPhase", 100, 5], ["meta", 129, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,7 +44,7 @@ rm -f android/build.gradle ios/build.gradle
 ${nix.selOr(attrs, () => "", "postPatch")}
 `);
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: pname,
       desktopName: desktopName,
       comment: nix.thunk(() => nix.sel(meta, "description")),
@@ -60,13 +57,13 @@ ${nix.selOr(attrs, () => "", "postPatch")}
   const depsPath$ = nix.thunk(() => (nix.asBool(!nix.eq(depsPath, null)) ? nix.force(depsPath) : nix.add(nix.path(here, "./."), nix.str`/${pname}/deps.json`)));
   const gradle = gradle_8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(cleanAttrs, {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
       patches: patches,
       postPatch: postPatch,
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, data: depsPath$ })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, data: depsPath$ })))),
       __darwinAllowLocalNetworking: true,
       nativeBuildInputs: nix.thunk(() => nix.concat([gradle, perl, makeWrapper, copyDesktopItems], nix.selOr(attrs, () => [], "nativeBuildInputs"))),
       desktopItems: nix.thunk(() => [desktopItem]),
@@ -94,7 +91,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
           return [

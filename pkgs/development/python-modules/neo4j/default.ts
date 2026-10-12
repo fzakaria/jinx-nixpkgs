@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["numpy", 35, 5], ["pandas", 36, 5], ["pyarrow", 40, 5]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["optional-dependencies", 34, 3], ["doCheck", 44, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, numpy: false, pandas: false, pyarrow: false, pytz: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["numpy", 35, 5], ["pandas", 36, 5], ["pyarrow", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["optional-dependencies", 34, 3], ["doCheck", 44, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "neo4j",
       version: "6.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "neo4j",
           repo: "neo4j-python-driver",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [pytz]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         numpy: nix.thunk(() => [numpy]),
         pandas: nix.thunk(() => [numpy, pandas]),
         pyarrow: nix.thunk(() => [pyarrow]),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["neo4j"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Neo4j Bolt Driver for Python",
         homepage: "https://github.com/neo4j/neo4j-python-driver",
         changelog: nix.thunk(() => nix.str`https://github.com/neo4j/neo4j-python-driver/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

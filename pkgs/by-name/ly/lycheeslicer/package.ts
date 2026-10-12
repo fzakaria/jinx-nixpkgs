@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["name", 20, 5], ["genericName", 21, 5], ["comment", 22, 5], ["desktopName", 23, 5], ["noDisplay", 24, 5], ["exec", 25, 5], ["terminal", 26, 5], ["mimeTypes", 27, 5], ["categories", 31, 5], ["keywords", 32, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]], [["pname", 41, 11], ["version", 41, 17], ["src", 41, 25], ["extraInstallCommands", 43, 3], ["extraPkgs", 47, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { appimageTools: false, fetchurl: false, makeDesktopItem: false, lib: false, libxshmfence: false, wayland: false, "wayland-protocols": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 20, 5], ["genericName", 21, 5], ["comment", 22, 5], ["desktopName", 23, 5], ["noDisplay", 24, 5], ["exec", 25, 5], ["terminal", 26, 5], ["mimeTypes", 27, 5], ["categories", 31, 5], ["keywords", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 41, 11], ["version", 41, 17], ["src", 41, 25], ["extraInstallCommands", 43, 3], ["extraPkgs", 47, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pname = "lycheeslicer";
   const version = "7.6.6";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://mango-lychee.nyc3.cdn.digitaloceanspaces.com/LycheeSlicer-${version}.AppImage`),
       hash: "sha256-eDMhA8fCD++BYK58t4/2XUlzrhcwtbAuOzRsThQAiVs=",
     }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "Lychee Slicer",
       genericName: "Resin Slicer",
       comment: "All-in-one 3D slicer for Resin and Filament",
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       keywords: nix.thunk(() => ["STL", "Slicer", "Printing"]),
     }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
 `),
       extraPkgs: (_) => [libxshmfence, wayland, wayland_protocols],
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "All-in-one 3D slicer for resin and FDM printers",
         homepage: "https://lychee.mango3d.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

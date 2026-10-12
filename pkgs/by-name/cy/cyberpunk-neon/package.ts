@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["hardcodeZeroVersion", 51, 41]], [["updateScript", 51, 5]], [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["nativeBuildInputs", 28, 3], ["installPhase", 30, 3], ["strictDeps", 48, 3], ["passthru", 50, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, unzip: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 51, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["nativeBuildInputs", 28, 3], ["installPhase", 30, 3], ["strictDeps", 48, 3], ["passthru", 50, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cyberpunk-neon",
       version: "0-unstable-2025-05-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Roboron3042",
           repo: "Cyberpunk-Neon",
           rev: "e74c25c8507bbbb23d81d075402bd983a61ebe07",
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dt $out/share/doc/cyberpunk-neon/ README.md\n\nmkdir -p $gtk/share/themes\nunzip gtk/materia-cyberpunk-neon.zip -d $gtk/share/themes/\nunzip gtk/oomox-cyberpunk-neon.zip -d $gtk/share/themes/\n\ninstall -Dt $kde/share/color-schemes kde/cyberpunk-neon.colors\n\ninstall -Dt $konsole/share/konsole terminal/konsole/cyberpunk-neon.colorscheme\n\ninstall -Dt $tilix/share/tilix/schemes terminal/tilix/cyberpunk-neon.json\n\nrunHook postInstall\n",
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/Roboron3042/Cyberpunk-Neon",
         description: "Neon themes for many programs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),

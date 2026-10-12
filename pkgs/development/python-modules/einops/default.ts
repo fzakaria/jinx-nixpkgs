@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["EINOPS_TEST_BACKENDS", 36, 7]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["nativeCheckInputs", 30, 3], ["env", 36, 3], ["pythonImportsCheck", 38, 3], ["disabledTestPaths", 40, 3], ["__darwinAllowLocalNetworking", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, numpy: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["EINOPS_TEST_BACKENDS", 36, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["nativeCheckInputs", 30, 3], ["env", 36, 3], ["pythonImportsCheck", 38, 3], ["disabledTestPaths", 40, 3], ["__darwinAllowLocalNetworking", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "einops",
       version: "0.8.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arogozhnikov",
           repo: "einops",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,12 +29,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       nativeCheckInputs: nix.thunk(() => [numpy, pytestCheckHook, writableTmpDirAsHomeHook]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, EINOPS_TEST_BACKENDS: "numpy" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], EINOPS_TEST_BACKENDS: "numpy" })),
       pythonImportsCheck: nix.thunk(() => ["einops"]),
       disabledTestPaths: nix.thunk(() => ["scripts/"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Flexible and powerful tensor operations for readable and reliable code",
         homepage: "https://github.com/arogozhnikov/einops",
         changelog: nix.thunk(() => nix.str`https://github.com/arogozhnikov/einops/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

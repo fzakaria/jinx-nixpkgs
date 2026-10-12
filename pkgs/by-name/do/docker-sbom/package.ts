@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["vendorHash", 25, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, docker: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["vendorHash", 25, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "docker-sbom";
       const version = "0.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "docker",
           repo: "sbom-cli-plugin",
           rev: nix.thunk(() => nix.str`tags/v${version}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [docker]);
       const installPhase = "runHook preInstall\ninstall -D $GOPATH/bin/sbom-cli-plugin $out/libexec/docker/cli-plugins/docker-sbom\n\nmkdir -p $out/bin\nln -s $out/libexec/docker/cli-plugins/docker-sbom $out/bin/docker-sbom\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Plugin for Docker CLI to support SBOM creation using Syft",
         mainProgram: "docker-sbom",
         homepage: "https://github.com/docker/sbom-cli-plugin",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

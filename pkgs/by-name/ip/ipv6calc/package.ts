@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["url", 37, 7], ["hash", 38, 7]], [["description", 71, 5], ["longDescription", 72, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 25, 3], ["patches", 34, 3], ["postPatch", 42, 3], ["configureFlags", 49, 3], ["enableParallelBuilding", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, getopt: false, "ip2location-c": false, openssl: false, perl: false, fetchpatch: false, libmaxminddb: true, "geolite-legacy": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["longDescription", 72, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 25, 3], ["patches", 34, 3], ["postPatch", 42, 3], ["configureFlags", 49, 3], ["enableParallelBuilding", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libmaxminddb = nix.argOr($, "libmaxminddb", () => null);
   const geolite_legacy = nix.argOr($, "geolite-legacy", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ipv6calc",
       version: "4.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pbiering",
           repo: "ipv6calc",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libmaxminddb, geolite_legacy, getopt, ip2location_c, openssl, perl]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/pbiering/ipv6calc/commit/9b6aebd3690d93b6c2f9efa9346ec72540b1a718.patch",
             hash: "sha256-Y/XBMWdG2/Pfr/vZ2+RGYGj2JS3mWJwQGkXnKvXHArg=",
           })))),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(libmaxminddb, null)), nix.thunk(() => ["--enable-mmdb"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(geolite_legacy, null)), nix.thunk(() => [nix.thunk(() => nix.str`--with-geoip-db=${geolite_legacy}/share/GeoIP`)])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(ip2location_c, null)), nix.thunk(() => ["--enable-ip2location"])))))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Calculate/manipulate (not only) IPv6 addresses",
         longDescription: "ipv6calc is a small utility to manipulate (not only) IPv6 addresses and\nis able to do other tricky things. Intentions were converting a given\nIPv6 address into compressed format, converting a given IPv6 address into\nthe same format like shown in /proc/net/if_inet6 and (because it was not\ndifficult) migrating the Perl program ip6_int into.\nNow only one utility is needed to do a lot.\n",
         homepage: "http://www.deepspace6.net/projects/ipv6calc.html",

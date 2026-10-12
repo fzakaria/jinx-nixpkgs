@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 20, 7], ["aarch64-linux", 21, 7]], [["x64-linux_hash", 26, 7], ["arm64-linux_hash", 27, 7], ["x64-osx_hash", 28, 7]], [["url", 37, 5], ["sha256", 38, 5]], [["smoke-test", 66, 11]], [["updateScript", 65, 5], ["tests", 66, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 77, 5], ["sourceProvenance", 78, 5], ["platforms", 79, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["installPhase", 43, 3], ["passthru", 64, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libmediainfo: false, sqlite: false, curl: false, makeWrapper: false, icu: false, "dotnet-runtime": false, openssl: false, nixosTests: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 20, 7], ["aarch64-linux", 21, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x64-linux_hash", 26, 7], ["arm64-linux_hash", 27, 7], ["x64-osx_hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 37, 5], ["sha256", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["smoke-test", 66, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 65, 5], ["tests", 66, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 77, 5], ["sourceProvenance", 78, 5], ["platforms", 79, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["installPhase", 43, 3], ["passthru", 64, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,9 +20,9 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const zlib = nix.arg($, "zlib");
   const os = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "osx" : "linux"));
-  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "x86_64-linux": "x64", "aarch64-linux": "arm64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
+  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], "x86_64-linux": "x64", "aarch64-linux": "arm64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const hash = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "x64-linux_hash": "sha256-hCqxH6xPLhA+V7reqsHi1EY2sU3HJ6ESMJiiWXrcUUE=",
     "arm64-linux_hash": "sha256-7NpH32tkEOYVyfwIBq9LCKAo0IQ1IehYfKi+qiBzf8o=",
     "x64-osx_hash": "sha256-ypzOWXxtzvOTgTmU7pQ1cS+FcyNCOo5R2Z4l5Mk+4wA=",
@@ -37,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "readarr";
       const version = "0.4.18.2805";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/Readarr/Readarr/releases/download/v${version}/Readarr.develop.${version}.${os}-core-${arch}.tar.gz`),
           sha256: hash,
         }))));
@@ -53,15 +47,15 @@ makeWrapper "${dotnet_runtime}/bin/dotnet" $out/bin/Readarr \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "readarr")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Usenet/BitTorrent ebook downloader",
         homepage: "https://readarr.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -80,7 +74,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

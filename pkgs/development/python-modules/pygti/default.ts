@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["changelog", 47, 5], ["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 30, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "hatch-vcs": false, aiohttp: false, pydantic: false, pytz: false, voluptuous: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 47, 5], ["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 30, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const voluptuous = nix.arg($, "voluptuous");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pygti",
       version: "1.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vigonotion",
           repo: "pygti",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pygti.auth", "pygti.exceptions", "pygti.gti"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/vigonotion/pygti/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Access public transport information in Hamburg, Germany",
         homepage: "https://github.com/vigonotion/pygti",

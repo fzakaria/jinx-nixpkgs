@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 7], ["sha256", 28, 7]], [["pkg-config", 79, 18]], [["tests", 79, 12]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["pkgConfigModules", 89, 5], ["platforms", 94, 5], ["maintainers", 95, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["patches", 45, 3], ["postPatch", 49, 3], ["preConfigure", 57, 3], ["configureFlags", 62, 3], ["doCheck", 71, 3], ["installFlags", 73, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, file: false, "pkg-config": false, intltool: false, glib: false, "dbus-glib": false, "json-glib": false, "gobject-introspection": false, vala: false, withGtk3: true, gtk3: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 7], ["sha256", 28, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 79, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 79, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["pkgConfigModules", 89, 5], ["platforms", 94, 5], ["maintainers", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["patches", 45, 3], ["postPatch", 49, 3], ["preConfigure", 57, 3], ["configureFlags", 62, 3], ["doCheck", 71, 3], ["installFlags", 73, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`libdbusmenu-${(nix.asBool(withGtk3) ? "gtk3" : "glib")}`),
       version: "16.04.0",
       src: nix.thunk(() => (() => {
         const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://launchpad.net/dbusmenu/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${version}/+download/libdbusmenu-${version}.tar.gz`),
             sha256: "12l7z8dhl917iy9h02sxmpclnhkdjryn08r8i4sr8l3lrlm4mk5r",
           })));
@@ -61,14 +57,14 @@ done
         nix.thunk(() => nix.str`typelibdir=${nix.builtins.placeholder("out")}/lib/girepository-1.0`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library for passing menu structures across DBus",
         homepage: "https://launchpad.net/dbusmenu",
         license: nix.thunk(() => (() => {

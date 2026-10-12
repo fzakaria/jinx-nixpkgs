@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["homepage", 74, 5], ["description", 75, 5], ["changelog", 76, 5], ["teams", 77, 5], ["platforms", 78, 5], ["license", 79, 5]], [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 31, 3], ["mesonFlags", 39, 3], ["strictDeps", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 60, 3], ["doCheck", 66, 3], ["postPatch", 68, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, glib: false, python3: false, help2man: false, "bash-completion": false, bash: false, buildPackages: false, withIntrospection: true, withDocs: true, "gobject-introspection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["description", 75, 5], ["changelog", 76, 5], ["teams", 77, 5], ["platforms", 78, 5], ["license", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 31, 3], ["mesonFlags", 39, 3], ["strictDeps", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 60, 3], ["doCheck", 66, 3], ["postPatch", 68, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const withDocs = nix.argOr($, "withDocs", () => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform")));
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libmbim",
       version: "1.34.0",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), withDocs, nix.thunk(() => ["man"])))),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "mobile-broadband",
           repo: "libmbim",
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "patchShebangs \\\n  build-aux/mbim-codegen/mbim-codegen\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.freedesktop.org/wiki/Software/libmbim/",
         description: "Library for talking to WWAN modems and devices which speak the Mobile Interface Broadband Model (MBIM) protocol",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/mobile-broadband/libmbim/-/raw/${nix.sel(finalAttrs, "version")}/NEWS`),

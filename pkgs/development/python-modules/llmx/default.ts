@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]], [["web", 48, 5], ["transformers", 52, 5]], [["description", 65, 5], ["homepage", 66, 5], ["mainProgram", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 31, 3], ["dependencies", 36, 3], ["optional-dependencies", 47, 3], ["doCheck", 60, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "setuptools-scm": false, setuptools: false, pydantic: false, openai: false, tiktoken: false, diskcache: false, cohere: false, "google-auth": false, typer: false, pyyaml: false, transformers: false, fastapi: false, uvicorn: false, accelerate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["web", 48, 5], ["transformers", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["mainProgram", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 31, 3], ["dependencies", 36, 3], ["optional-dependencies", 47, 3], ["doCheck", 60, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.21a0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-OEo6wIaDTktzAsP0rOmhxjFSHygTR/EpcRI6AXsu+6M=",
@@ -40,14 +37,14 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [pydantic, openai, tiktoken, diskcache, cohere, google_auth, typer, pyyaml]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         web: nix.thunk(() => [fastapi, uvicorn]),
         transformers: nix.thunk(() => nix.concat([accelerate, transformers], nix.sel(transformers, "optional-dependencies", "torch"))),
       }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["llmx"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for LLM Text Generation",
         homepage: "https://github.com/victordibia/llmx",
         mainProgram: "llmx",
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

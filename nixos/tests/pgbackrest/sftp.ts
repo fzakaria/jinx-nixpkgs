@@ -2,32 +2,11 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sftp.nix", [[["enable", 16, 9], ["initialScript", 17, 9]], [["type", 26, 11], ["path", 27, 11], ["sftp-host-key-check-type", 28, 11], ["sftp-host-key-hash-type", 29, 11], ["sftp-host-user", 30, 11], ["sftp-private-key-file", 31, 11], ["bundle", 33, 11]], [["backup", 25, 15]], [["start-fast", 37, 18]], [["schedule", 40, 11], ["type", 41, 11]], [["future", 39, 30]], [["jobs", 39, 25]], [["default", 39, 17]], [["enable", 24, 9], ["repos", 25, 9], ["settings", 37, 9], ["stanzas", 39, 9]], [["postgresql", 15, 16], ["pgbackrest", 23, 16]], [["services", 15, 7]], [["enable", 52, 24]], [["openssh", 52, 16]], [["keys", 58, 32]], [["authorizedKeys", 58, 17]], [["name", 54, 9], ["group", 55, 9], ["isNormalUser", 56, 9], ["createHome", 57, 9], ["openssh", 58, 9]], [["backup", 53, 19]], [["backup", 62, 20]], [["users", 53, 13], ["groups", 62, 13]], [["services", 52, 7], ["users", 53, 7]], [["primary", 9, 9], ["backup", 46, 9]], [["name", 7, 3], ["nodes", 9, 3], ["testScript", 65, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sftp.nix", [["enable", 16, 9], ["initialScript", 17, 9]]);
-const pos$2 = nix.positions(here + "/sftp.nix", [["type", 26, 11], ["path", 27, 11], ["sftp-host-key-check-type", 28, 11], ["sftp-host-key-hash-type", 29, 11], ["sftp-host-user", 30, 11], ["sftp-private-key-file", 31, 11], ["bundle", 33, 11]]);
-const pos$3 = nix.positions(here + "/sftp.nix", [["backup", 25, 15]]);
-const pos$4 = nix.positions(here + "/sftp.nix", [["start-fast", 37, 18]]);
-const pos$5 = nix.positions(here + "/sftp.nix", [["schedule", 40, 11], ["type", 41, 11]]);
-const pos$6 = nix.positions(here + "/sftp.nix", [["future", 39, 30]]);
-const pos$7 = nix.positions(here + "/sftp.nix", [["jobs", 39, 25]]);
-const pos$8 = nix.positions(here + "/sftp.nix", [["default", 39, 17]]);
-const pos$9 = nix.positions(here + "/sftp.nix", [["enable", 24, 9], ["repos", 25, 9], ["settings", 37, 9], ["stanzas", 39, 9]]);
-const pos$10 = nix.positions(here + "/sftp.nix", [["postgresql", 15, 16], ["pgbackrest", 23, 16]]);
-const pos$11 = nix.positions(here + "/sftp.nix", [["services", 15, 7]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$12 = nix.positions(here + "/sftp.nix", [["enable", 52, 24]]);
-const pos$13 = nix.positions(here + "/sftp.nix", [["openssh", 52, 16]]);
-const pos$14 = nix.positions(here + "/sftp.nix", [["keys", 58, 32]]);
-const pos$15 = nix.positions(here + "/sftp.nix", [["authorizedKeys", 58, 17]]);
-const pos$16 = nix.positions(here + "/sftp.nix", [["name", 54, 9], ["group", 55, 9], ["isNormalUser", 56, 9], ["createHome", 57, 9], ["openssh", 58, 9]]);
-const pos$17 = nix.positions(here + "/sftp.nix", [["backup", 53, 19]]);
-const pos$18 = nix.positions(here + "/sftp.nix", [["backup", 62, 20]]);
-const pos$19 = nix.positions(here + "/sftp.nix", [["users", 53, 13], ["groups", 62, 13]]);
-const pos$20 = nix.positions(here + "/sftp.nix", [["services", 52, 7], ["users", 53, 7]]);
-const pos$21 = nix.positions(here + "/sftp.nix", [["primary", 9, 9], ["backup", 46, 9]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$22 = nix.positions(here + "/sftp.nix", [["name", 7, 3], ["nodes", 9, 3], ["testScript", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,29 +17,29 @@ export default nix.lambda((args) => (() => {
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   const backupPath = "/home/backup";
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     name: "pgbackrest-sftp",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       primary: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "init.sql", "CREATE TABLE t(c text);\nINSERT INTO t VALUES ('hello world');\n")),
             })),
             pgbackrest: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               repos: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 backup: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   type: "sftp",
                   path: "/home/backup",
                   "sftp-host-key-check-type": "none",
@@ -70,14 +49,14 @@ export default nix.lambda((args) => (() => {
                   bundle: true,
                 })),
               })),
-              settings: nix.thunk(() => ({ [nix.POS]: pos$4, "start-fast": true })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[3], "start-fast": true })),
               stanzas: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 default: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   jobs: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
-                    future: nix.thunk(() => ({ [nix.POS]: pos$5, schedule: "3000-01-01", type: "diff" })),
+                    [nix.POS]: $pos[5],
+                    future: nix.thunk(() => ({ [nix.POS]: $pos[4], schedule: "3000-01-01", type: "diff" })),
                   })),
                 })),
               })),
@@ -89,28 +68,28 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
+            [nix.POS]: $pos[12],
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: true })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               backup: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 name: "backup",
                 group: "backup",
                 isNormalUser: true,
                 createHome: true,
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$14, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: $pos[14],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[13], keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),
-            groups: nix.thunk(() => ({ [nix.POS]: pos$18, backup: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: $pos[17], backup: nix.thunk(() => ({})) })),
           })),
         };
       })(), formals$3),

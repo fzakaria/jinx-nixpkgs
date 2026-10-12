@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]], [["withConnectivity", 31, 7], ["withMultimedia", 32, 7], ["withWebKit", 33, 7], ["withWebSockets", 34, 7]], [["description", 45, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["license", 48, 5]], [["pname", 16, 3], ["version", 17, 3], ["format", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 25, 3], ["doCheck", 27, 3], ["nativeCheckInputs", 28, 3], ["disabledTestPaths", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, packaging: false, pyqt5: false, pyside2: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["withConnectivity", 31, 7], ["withMultimedia", 32, 7], ["withWebKit", 33, 7], ["withWebSockets", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 45, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["license", 48, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["format", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 25, 3], ["doCheck", 27, 3], ["nativeCheckInputs", 28, 3], ["disabledTestPaths", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-23RPeDLm09qQVoumzLyj7is7SokMPW+7xjFC9uTN9bs=",
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [
         pyside2,
         nix.thunk(() => nix.app(nix.sel(pyqt5, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             withConnectivity: true,
             withMultimedia: true,
             withWebKit: true,
@@ -42,14 +39,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTestPaths = nix.thunk(() => ["qtpy/tests/test_uic.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Abstraction layer for PyQt5/PyQt6/PySide2/PySide6",
         mainProgram: "qtpy",
         homepage: "https://github.com/spyder-ide/qtpy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

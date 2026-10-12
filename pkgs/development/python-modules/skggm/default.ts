@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["extraArgs", 120, 5]], [["updateScript", 119, 12]], [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5]], [["pname", 29, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["build-system", 56, 3], ["pythonRelaxDeps", 60, 3], ["pythonRemoveDeps", 64, 3], ["dependencies", 67, 3], ["nativeCheckInputs", 79, 3], ["preCheck", 84, 3], ["disabledTestPaths", 90, 3], ["disabledTests", 112, 3], ["pythonImportsCheck", 117, 3], ["passthru", 119, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, cython: false, joblib: false, lapack: false, nilearn: false, numpy: false, "scikit-learn": false, scipy: false, seaborn: false, tabulate: false, pytestCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 120, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 119, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["build-system", 56, 3], ["pythonRelaxDeps", 60, 3], ["pythonRemoveDeps", 64, 3], ["dependencies", 67, 3], ["nativeCheckInputs", 79, 3], ["preCheck", 84, 3], ["disabledTestPaths", 90, 3], ["disabledTests", 112, 3], ["pythonImportsCheck", 117, 3], ["passthru", 119, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "skggm",
       version: "0.2.8-unstable-2025-06-14",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "skggm",
           repo: "skggm",
           rev: "6792fe7d0079bb7c62e701921e37782a209234cb",
@@ -67,11 +63,11 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_has_approx_support"]),
       pythonImportsCheck: nix.thunk(() => ["inverse_covariance"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Gaussian graphical models using the scikit-learn API",
         homepage: "https://github.com/skggm/skggm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

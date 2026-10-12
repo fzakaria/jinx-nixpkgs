@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["uselibtirpc", 88, 7], ["libtirpc", 89, 7], ["szipSupport", 90, 7], ["szip", 91, 7], ["javaSupport", 92, 7], ["jdk", 93, 7]], [["description", 98, 5], ["homepage", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5], ["license", 102, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["cmakeFlags", 45, 3], ["doCheck", 73, 3], ["outputs", 75, 3], ["postInstall", 81, 3], ["passthru", 86, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, libjpeg: false, uselibtirpc: true, libtirpc: false, zlib: false, szipSupport: true, szip: false, javaSupport: true, jdk: false, fortranSupport: true, gfortran: false, netcdfSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["uselibtirpc", 88, 7], ["libtirpc", 89, 7], ["szipSupport", 90, 7], ["szip", 91, 7], ["javaSupport", 92, 7], ["jdk", 93, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5], ["license", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["cmakeFlags", 45, 3], ["doCheck", 73, 3], ["outputs", 75, 3], ["postInstall", 81, 3], ["passthru", 86, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gfortran = nix.arg($, "gfortran");
   const netcdfSupport = nix.argOr($, "netcdfSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hdf",
       version: "4.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "HDFGroup",
           repo: "hdf4",
           tag: nix.thunk(() => nix.str`hdf${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["bin", "dev", "out"]),
       postInstall: "moveToOutput lib/libhdf4.settings \"$dev\"\nmoveToOutput bin \"$bin\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         uselibtirpc: uselibtirpc,
         libtirpc: libtirpc,
         szipSupport: szipSupport,
@@ -74,7 +71,7 @@ export default nix.lambda((args) => (() => {
         jdk: jdk,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Data model, library, and file format for storing and managing data",
         homepage: "https://support.hdfgroup.org/products/hdf4/",
         maintainers: [],

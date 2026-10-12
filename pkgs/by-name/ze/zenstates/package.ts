@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]], [["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["buildInputs", 41, 3], ["installPhase", 43, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["buildInputs", 41, 3], ["installPhase", 43, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zenstates",
       version: "0.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "r4m0n",
           repo: "ZenStates-Linux",
           rev: "0bc27f4740e382f2a2896dc1dabfec1d0ac96818",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [python3]),
       installPhase: "mkdir -p $out/bin\ncp $src/zenstates.py $out/bin/zenstates\nchmod +x $out/bin/zenstates\npatchShebangs --build $out/bin/zenstates\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Linux utility for Ryzen processors and motherboards",
         mainProgram: "zenstates",
         homepage: "https://github.com/r4m0n/ZenStates-Linux",

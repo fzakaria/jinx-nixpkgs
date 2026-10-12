@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 7], ["hash", 30, 7]], [["name", 42, 7], ["desktopName", 43, 7], ["tryExec", 44, 7], ["exec", 45, 7], ["icon", 46, 7], ["categories", 47, 7], ["terminal", 48, 7], ["keywords", 49, 7]], [["description", 73, 5], ["homepage", 74, 5], ["maintainers", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["sourceProvenance", 78, 5]], [["pname", 21, 11], ["version", 22, 3], ["src", 24, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["desktopItems", 40, 3], ["installPhase", 56, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, copyDesktopItems: false, fetchurl: false, makeDesktopItem: false, makeWrapper: false, openjdk25: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 42, 7], ["desktopName", 43, 7], ["tryExec", 44, 7], ["exec", 45, 7], ["icon", 46, 7], ["categories", 47, 7], ["terminal", 48, 7], ["keywords", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["maintainers", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["sourceProvenance", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 11], ["version", 22, 3], ["src", 24, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["desktopItems", 40, 3], ["installPhase", 56, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const pname = "dbvisualizer";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: "26.1.3",
       src: nix.thunk(() => (() => {
         const underscoreVersion = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version"))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://www.dbvis.com/product_download/dbvis-${nix.sel(finalAttrs, "version")}/media/dbvis_linux_${underscoreVersion}.tar.gz`),
             hash: "sha256-ifD6pNWsw0n+aiPvQXG0pjNp/NMIAbr+bxzzntDahhs=",
           })));
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: pname,
             desktopName: "DB Visualizer",
             tryExec: "dbvis",
@@ -60,7 +57,7 @@ wrapProgram $out/bin/dbvis --set INSTALL4J_JAVA_HOME ${openjdk25}
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Universal database tool",
         homepage: "https://www.dbvis.com/",
         maintainers: nix.thunk(() => (() => {

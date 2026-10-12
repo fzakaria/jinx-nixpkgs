@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 5], ["version", 26, 26], ["hash", 27, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 28]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 24, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["doCheck", 44, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, comfyui: false, "comfyui-workflow-templates-core": false, "comfyui-workflow-templates-json": false, "comfyui-workflow-templates-media-api": false, "comfyui-workflow-templates-media-assets-01": false, "comfyui-workflow-templates-media-assets-02": false, "comfyui-workflow-templates-media-video": false, "comfyui-workflow-templates-media-image": false, "comfyui-workflow-templates-media-other": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 5], ["version", 26, 26], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 28]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 24, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["doCheck", 44, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const comfyui_workflow_templates_media_image = nix.arg($, "comfyui-workflow-templates-media-image");
   const comfyui_workflow_templates_media_other = nix.arg($, "comfyui-workflow-templates-media-other");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "comfyui-workflow-templates",
       version: "0.11.66",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "comfyui_workflow_templates",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-PYTvWQ0u7MavD9lPHaEytxkdXOy35eze55qjd+D8tGI=",
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(comfyui, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Workflow templates for ComfyUI",
         homepage: "https://github.com/Comfy-Org/workflow_templates",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,31 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bin.nix", [[["url", 155, 7], ["hash", 156, 7]], [["name", 214, 11], ["value", 215, 11]], [["src", 154, 5], ["prePatch", 159, 5], ["configureFlags", 179, 5], ["binToOutput", 210, 5], ["moveBins", 220, 5]], [["version", 362, 26], ["buildInputs", 362, 34]], [["description", 365, 7], ["homepage", 366, 7], ["license", 367, 7], ["maintainers", 368, 7], ["platforms", 374, 7]], [["pname", 251, 5], ["version", 252, 13], ["__structuredAttrs", 254, 5], ["binToOutput", 256, 22], ["src", 256, 34], ["prePatch", 256, 38], ["outputs", 258, 5], ["nativeBuildInputs", 266, 5], ["buildInputs", 282, 5], ["hardeningDisable", 296, 5], ["preConfigure", 298, 5], ["configureScript", 306, 5], ["depsBuildBuild", 308, 5], ["configureFlags", 310, 5], ["enableParallelBuilding", 334, 5], ["doCheck", 336, 5], ["preCheck", 337, 5], ["installTargets", 339, 5], ["postInstall", 342, 5], ["passthru", 362, 5], ["meta", 364, 5]], [["name", 399, 9], ["url", 400, 9], ["sha256", 401, 9]], [["pname", 388, 5], ["version", 389, 13], ["__structuredAttrs", 391, 5], ["binToOutput", 393, 22], ["src", 393, 34], ["prePatch", 393, 38], ["patches", 395, 5], ["hardeningDisable", 419, 5], ["depsBuildBuild", 421, 20], ["nativeBuildInputs", 422, 5], ["buildInputs", 427, 5], ["preConfigure", 448, 5], ["configureFlags", 469, 5], ["configureScript", 510, 5], ["enableParallelBuilding", 512, 5], ["doCheck", 514, 5], ["outputs", 516, 5], ["postInstall", 537, 5]], [["pname", 541, 5], ["version", 542, 35], ["src", 544, 22], ["nativeBuildInputs", 546, 5], ["buildInputs", 548, 5], ["preConfigure", 553, 5], ["configureFlags", 555, 5], ["enableParallelBuilding", 557, 5]], [["description", 583, 9], ["homepage", 584, 9], ["license", 585, 9], ["maintainers", 586, 9]], [["pname", 569, 7], ["version", 570, 7], ["src", 572, 7], ["sourceRoot", 573, 7], ["enableParallelBuilding", 575, 7], ["nativeBuildInputs", 576, 7], ["meta", 582, 7]], [["url", 601, 9], ["hash", 602, 9]], [["pname", 594, 5], ["version", 595, 5], ["src", 597, 5], ["configureFlags", 605, 5], ["postPatch", 611, 5], ["nativeBuildInputs", 616, 5], ["buildInputs", 617, 5], ["enableParallelBuilding", 630, 5]], [["pname", 634, 5], ["version", 635, 35], ["src", 637, 22], ["nativeBuildInputs", 639, 5], ["buildInputs", 644, 5], ["preConfigure", 653, 5], ["configureFlags", 658, 5], ["GS", 664, 5], ["enableParallelBuilding", 666, 5]], [["url", 683, 11], ["hash", 684, 11]], [["version", 675, 9], ["src", 682, 9], ["texContainer", 687, 9], ["texdocContainer", 688, 9], ["preConfigure", 690, 9]], [["pname", 700, 5], ["version", 701, 36], ["src", 703, 22], ["nativeBuildInputs", 705, 5], ["buildInputs", 706, 5], ["preConfigure", 711, 5], ["configureFlags", 713, 5], ["enableParallelBuilding", 718, 5]], [["pname", 722, 5], ["version", 723, 33], ["src", 725, 22], ["nativeBuildInputs", 727, 5], ["buildInputs", 728, 5], ["preConfigure", 742, 5], ["configureFlags", 744, 5], ["enableParallelBuilding", 749, 5], ["postInstall", 751, 5]], [["pname", 759, 5], ["version", 760, 37], ["src", 762, 22], ["buildInputs", 764, 5], ["preConfigure", 766, 5], ["enableParallelBuilding", 768, 5]], [["pname", 786, 11]], [["pname", 774, 5], ["meta", 775, 35], ["version", 775, 40], ["outputs", 777, 5], ["src", 779, 5], ["nativeBuildInputs", 781, 5], ["preHook", 792, 5], ["buildPhase", 798, 5], ["installPhase", 820, 5]], [["texliveYear", 248, 3], ["core", 250, 3], ["metafont", 379, 5], ["mflua", 380, 5], ["metapost", 381, 5], ["luatex", 382, 5], ["luahbtex", 383, 5], ["xetex", 384, 5], ["luajittex", 386, 3], ["core-big", 387, 3], ["chktex", 540, 3], ["context", 563, 3], ["dvisvgm", 593, 3], ["dvipng", 633, 3], ["asymptote", 669, 3], ["biber", 696, 11], ["biber-ms", 697, 11], ["bibtexu", 698, 3], ["bibtex8", 699, 3], ["xdvi", 721, 3], ["xpdfopen", 758, 3], ["tex4htJar", 773, 3]], [["pname", 832, 9], ["version", 833, 38], ["src", 835, 26], ["HOME", 838, 9], ["prePatch", 840, 9], ["postPatch", 842, 9], ["nativeBuildInputs", 850, 9], ["buildInputs", 854, 9], ["configureFlags", 860, 9], ["preInstall", 866, 9], ["postInstall", 868, 9]], [["xindy", 831, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, fetchpatch: false, unzip: false, buildPackages: false, texlive: false, gnum4: false, jdk_headless: false, zlib: false, libiconv: false, libpng: false, libx11: false, freetype: false, ttfautohint: false, gd: false, libxaw: false, icu: false, ghostscript_headless: false, libxpm: false, libxmu: false, libxext: false, perl: false, perlPackages: false, python3Packages: false, "pkg-config": false, autoconf: false, automake: false, libtool: false, cmake: false, ninja: false, libpaper: false, graphite2: false, zziplib: false, harfbuzzFull: false, potrace: false, gmp: false, mpfr: false, "mupdf-headless": false, brotli: false, cairo: false, pixman: false, libxi: false, libxfixes: false, clisp: false, biber: false, woff2: false, xxhash: false, makeWrapper: false, useFixedHashes: true, asymptote: false, "biber-ms": false, tlpdb: false, luajit: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/bin.nix", [["url", 155, 7], ["hash", 156, 7]]);
-const pos$2 = nix.positions(here + "/bin.nix", [["name", 214, 11], ["value", 215, 11]]);
-const pos$3 = nix.positions(here + "/bin.nix", [["src", 154, 5], ["prePatch", 159, 5], ["configureFlags", 179, 5], ["binToOutput", 210, 5], ["moveBins", 220, 5]]);
-const pos$4 = nix.positions(here + "/bin.nix", [["version", 362, 26], ["buildInputs", 362, 34]]);
-const pos$5 = nix.positions(here + "/bin.nix", [["description", 365, 7], ["homepage", 366, 7], ["license", 367, 7], ["maintainers", 368, 7], ["platforms", 374, 7]]);
-const pos$6 = nix.positions(here + "/bin.nix", [["pname", 251, 5], ["version", 252, 13], ["__structuredAttrs", 254, 5], ["binToOutput", 256, 22], ["src", 256, 34], ["prePatch", 256, 38], ["outputs", 258, 5], ["nativeBuildInputs", 266, 5], ["buildInputs", 282, 5], ["hardeningDisable", 296, 5], ["preConfigure", 298, 5], ["configureScript", 306, 5], ["depsBuildBuild", 308, 5], ["configureFlags", 310, 5], ["enableParallelBuilding", 334, 5], ["doCheck", 336, 5], ["preCheck", 337, 5], ["installTargets", 339, 5], ["postInstall", 342, 5], ["passthru", 362, 5], ["meta", 364, 5]]);
-const pos$7 = nix.positions(here + "/bin.nix", [["name", 399, 9], ["url", 400, 9], ["sha256", 401, 9]]);
-const pos$8 = nix.positions(here + "/bin.nix", [["pname", 388, 5], ["version", 389, 13], ["__structuredAttrs", 391, 5], ["binToOutput", 393, 22], ["src", 393, 34], ["prePatch", 393, 38], ["patches", 395, 5], ["hardeningDisable", 419, 5], ["depsBuildBuild", 421, 20], ["nativeBuildInputs", 422, 5], ["buildInputs", 427, 5], ["preConfigure", 448, 5], ["configureFlags", 469, 5], ["configureScript", 510, 5], ["enableParallelBuilding", 512, 5], ["doCheck", 514, 5], ["outputs", 516, 5], ["postInstall", 537, 5]]);
-const pos$9 = nix.positions(here + "/bin.nix", [["pname", 541, 5], ["version", 542, 35], ["src", 544, 22], ["nativeBuildInputs", 546, 5], ["buildInputs", 548, 5], ["preConfigure", 553, 5], ["configureFlags", 555, 5], ["enableParallelBuilding", 557, 5]]);
-const pos$10 = nix.positions(here + "/bin.nix", [["description", 583, 9], ["homepage", 584, 9], ["license", 585, 9], ["maintainers", 586, 9]]);
-const pos$11 = nix.positions(here + "/bin.nix", [["pname", 569, 7], ["version", 570, 7], ["src", 572, 7], ["sourceRoot", 573, 7], ["enableParallelBuilding", 575, 7], ["nativeBuildInputs", 576, 7], ["meta", 582, 7]]);
-const pos$12 = nix.positions(here + "/bin.nix", [["url", 601, 9], ["hash", 602, 9]]);
-const pos$13 = nix.positions(here + "/bin.nix", [["pname", 594, 5], ["version", 595, 5], ["src", 597, 5], ["configureFlags", 605, 5], ["postPatch", 611, 5], ["nativeBuildInputs", 616, 5], ["buildInputs", 617, 5], ["enableParallelBuilding", 630, 5]]);
-const pos$14 = nix.positions(here + "/bin.nix", [["pname", 634, 5], ["version", 635, 35], ["src", 637, 22], ["nativeBuildInputs", 639, 5], ["buildInputs", 644, 5], ["preConfigure", 653, 5], ["configureFlags", 658, 5], ["GS", 664, 5], ["enableParallelBuilding", 666, 5]]);
-const pos$15 = nix.positions(here + "/bin.nix", [["url", 683, 11], ["hash", 684, 11]]);
-const pos$16 = nix.positions(here + "/bin.nix", [["version", 675, 9], ["src", 682, 9], ["texContainer", 687, 9], ["texdocContainer", 688, 9], ["preConfigure", 690, 9]]);
-const pos$17 = nix.positions(here + "/bin.nix", [["pname", 700, 5], ["version", 701, 36], ["src", 703, 22], ["nativeBuildInputs", 705, 5], ["buildInputs", 706, 5], ["preConfigure", 711, 5], ["configureFlags", 713, 5], ["enableParallelBuilding", 718, 5]]);
-const pos$18 = nix.positions(here + "/bin.nix", [["pname", 722, 5], ["version", 723, 33], ["src", 725, 22], ["nativeBuildInputs", 727, 5], ["buildInputs", 728, 5], ["preConfigure", 742, 5], ["configureFlags", 744, 5], ["enableParallelBuilding", 749, 5], ["postInstall", 751, 5]]);
-const pos$19 = nix.positions(here + "/bin.nix", [["pname", 759, 5], ["version", 760, 37], ["src", 762, 22], ["buildInputs", 764, 5], ["preConfigure", 766, 5], ["enableParallelBuilding", 768, 5]]);
-const pos$20 = nix.positions(here + "/bin.nix", [["pname", 786, 11]]);
-const pos$21 = nix.positions(here + "/bin.nix", [["pname", 774, 5], ["meta", 775, 35], ["version", 775, 40], ["outputs", 777, 5], ["src", 779, 5], ["nativeBuildInputs", 781, 5], ["preHook", 792, 5], ["buildPhase", 798, 5], ["installPhase", 820, 5]]);
-const pos$22 = nix.positions(here + "/bin.nix", [["texliveYear", 248, 3], ["core", 250, 3], ["metafont", 379, 5], ["mflua", 380, 5], ["metapost", 381, 5], ["luatex", 382, 5], ["luahbtex", 383, 5], ["xetex", 384, 5], ["luajittex", 386, 3], ["core-big", 387, 3], ["chktex", 540, 3], ["context", 563, 3], ["dvisvgm", 593, 3], ["dvipng", 633, 3], ["asymptote", 669, 3], ["biber", 696, 11], ["biber-ms", 697, 11], ["bibtexu", 698, 3], ["bibtex8", 699, 3], ["xdvi", 721, 3], ["xpdfopen", 758, 3], ["tex4htJar", 773, 3]]);
-const pos$23 = nix.positions(here + "/bin.nix", [["pname", 832, 9], ["version", 833, 38], ["src", 835, 26], ["HOME", 838, 9], ["prePatch", 840, 9], ["postPatch", 842, 9], ["nativeBuildInputs", 850, 9], ["buildInputs", 854, 9], ["configureFlags", 860, 9], ["preInstall", 866, 9], ["postInstall", 868, 9]]);
-const pos$24 = nix.positions(here + "/bin.nix", [["xindy", 831, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -148,9 +125,9 @@ export default nix.lambda((args) => (() => {
   const coreBigPackages = nix.thunk(() => nix.concat(["metafont", "mflua", "metapost", "luatex", "luahbtex", "upmendex", "xetex"], nix.app(nix.sel(lib, "optional"), withLuaJIT, "luajittex")));
   const binPackages = nix.thunk(() => nix.app(nix.sel(lib, "getAttrs"), nix.thunk(() => nix.concat(corePackages, coreBigPackages)), tlpdb));
   const common = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "https://github.com/TeX-Live/texlive-source/archive/refs/tags/svn74917.tar.gz",
         hash: "sha256-QgUN5LOFeD6Jt0ENF6Uwi516D8PH+TXZ+MCO8bCTHqE=",
       })))),
@@ -178,7 +155,7 @@ export default nix.lambda((args) => (() => {
         "zlib",
       ])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => nix.str`BUILDCC=${nix.sel(buildPackages, "stdenv", "cc", "targetPrefix")}cc`))))),
     binToOutput: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (n) => nix.builtins.map((v) => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: v,
             value: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), n)),
           }), nix.thunk(() => nix.selOr(binPackages, () => [], nix.key(nix.force(n)), "binfiles"))), nix.thunk(() => nix.builtins.attrNames(binPackages)))))),
@@ -241,9 +218,9 @@ cp texk/psutils/{extractres.pl,includeres.pl,psjoin.pl} "${nix.builtins.placehol
 `), nix.str`rm "$out"/bin/{eptex,ptex,uptex}
 rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
 `));
-        const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, version: version_1, buildInputs: buildInputs }));
+        const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], version: version_1, buildInputs: buildInputs }));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           description: "Basic binaries for TeX Live",
           homepage: "http://www.tug.org/texlive",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -259,7 +236,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname,
           version: version_1,
           __structuredAttrs,
@@ -291,7 +268,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
     const xetex = nix.thunk(() => nix.attr(core_big, "xetex"));
     const luajittex = nix.thunk(() => nix.selOr(core, () => null, "big", "luajittex"));
     const core_big = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: "texlive-bin-big",
         version: version,
         __structuredAttrs: true,
@@ -300,7 +277,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
         prePatch: nix.thunk(() => nix.attr(common, "prePatch")),
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               name: "lua_fixed_hash.patch",
               url: "https://bugs.debian.org/cgi-bin/bugreport.cgi?att=1;bug=1009196;filename=lua_fixed_hash.patch;msg=45",
               sha256: "sha256-FTu1eRd3AUU7IRs2/7e7uwHuvZsrzTBPypbcEZkU7y4=",
@@ -335,7 +312,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
     const chktex = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(texlive, "pkgs", "chktex"));
         return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: "chktex",
         version: nix.thunk(() => nix.attr(from, "version")),
         src: nix.thunk(() => nix.attr(common, "src")),
@@ -350,7 +327,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
       const version_1 = "2.11.08";
       const level = "20260217";
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           pname: "luametatex",
           version: nix.thunk(() => nix.str`${version_1}-${level}`),
           src: nix.thunk(() => nix.add(nix.sel(texlive, "pkgs", "context", "texsource"), nix.str`/source/context/base/luametatex-${level}.src.zip`)),
@@ -358,7 +335,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
           enableParallelBuilding: true,
           nativeBuildInputs: nix.thunk(() => [cmake, ninja, unzip]),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             description: "LUAMETATEX engine is a follow up on LUATEX and is again part of CONTEXT development",
             homepage: "https://www.pragma-ade.nl/luametatex-1.htm",
             license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -378,7 +355,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
         const src = nix.thunk(() => (() => {
           nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.eq(version_1, nix.sel(texlive, "pkgs", "dvisvgm", "version"))), nix.thunk(() => nix.str`dvisvgm: TeX Live version (${nix.sel(texlive, "pkgs", "dvisvgm", "version")}) different from source (${version_1}), please update dvisvgm`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/tools/typesetting/tex/texlive/bin.nix:598:7");
           return nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               url: nix.thunk(() => nix.str`https://github.com/mgieseki/dvisvgm/releases/download/${version_1}/dvisvgm-${version_1}.tar.gz`),
               hash: "sha256-JkRrs7EHOf8JJcnkFrdtLSIgdcnV3Pr+biFGCdBy7Ro=",
             })));
@@ -400,7 +377,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
         ]);
         const enableParallelBuilding = true;
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           pname,
           version: version_1,
           src,
@@ -414,7 +391,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
     const dvipng = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(texlive, "pkgs", "dvipng"));
         return {
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         pname: "dvipng",
         version: nix.thunk(() => nix.attr(from, "version")),
         src: nix.thunk(() => nix.attr(common, "src")),
@@ -429,13 +406,13 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
     const asymptote_1 = nix.thunk(() => (() => {
       const version_1 = "3.09";
       return nix.app(nix.sel(args_1, "asymptote", "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           version: nix.thunk(() => (() => {
             nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.eq(version_1, nix.sel(texlive, "pkgs", "asymptote", "version"))), nix.thunk(() => nix.str`asymptote: TeX Live version (${nix.sel(texlive, "pkgs", "asymptote", "version")}) different from source in bin.nix (${version_1}), please update it`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/tools/typesetting/tex/texlive/bin.nix:676:11");
             return version_1;
           })()),
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               url: nix.thunk(() => nix.str`mirror://sourceforge/asymptote/${nix.sel(finalAttrs, "version")}/asymptote-${nix.sel(finalAttrs, "version")}.src.tgz`),
               hash: "sha256-unM6mfyq8MCajo8wtG/ksr4E6mQNK/A03gGIa9Fxeuc=",
             })))),
@@ -449,7 +426,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
     const bibtex8 = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(texlive, "pkgs", "bibtexu"));
         return {
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         pname: "bibtex-x",
         version: nix.thunk(() => nix.attr(from, "version")),
         src: nix.thunk(() => nix.attr(common, "src")),
@@ -464,7 +441,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
     const xdvi = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(texlive, "pkgs", "xdvi"));
         return {
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         pname: "xdvi",
         version: nix.thunk(() => nix.attr(from, "version")),
         src: nix.thunk(() => nix.attr(common, "src")),
@@ -491,7 +468,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
     const xpdfopen = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(texlive, "pkgs", "xpdfopen"));
         return {
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         pname: "xpdfopen",
         version: nix.thunk(() => nix.attr(from, "version")),
         src: nix.thunk(() => nix.attr(common, "src")),
@@ -503,7 +480,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
     const tex4htJar = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(texlive, "pkgs", "tex4ht"));
         return {
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         pname: "tex4ht-jar",
         meta: nix.thunk(() => nix.attr(from, "meta")),
         version: nix.thunk(() => nix.attr(from, "version")),
@@ -513,7 +490,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
           gnum4,
           jdk_headless,
           nix.thunk(() => nix.app(nix.sel(texlive, "schemes", "texliveBasic", "withPackages"), (ps) => [
-              nix.thunk(() => ({ [nix.POS]: pos$20, pname: "tex4ht-jar" })),
+              nix.thunk(() => ({ [nix.POS]: $pos[19], pname: "tex4ht-jar" })),
               nix.thunk(() => nix.sel(ps, "protex")),
               nix.thunk(() => nix.sel(ps, "tex4ht")),
             ])),
@@ -524,7 +501,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
       };
       })())));
     return {
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       texliveYear,
       core,
       metafont,
@@ -549,11 +526,11 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
       tex4htJar,
     };
   })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(clisp, "meta", "broken"))), nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       xindy: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(texlive, "pkgs", "xindy"));
           return {
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           pname: "xindy",
           version: nix.thunk(() => nix.attr(from, "version")),
           src: nix.thunk(() => nix.attr(common, "src")),

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 46, 7], ["repo", 47, 7], ["tag", 48, 7], ["hash", 49, 7], ["fetchSubmodules", 51, 7], ["name", 52, 7]], [["owner", 55, 7], ["repo", 56, 7], ["tag", 57, 7], ["hash", 58, 7], ["name", 59, 7]], [["AOTRITON_CI_SUPPLIED_SHA1", 80, 5], ["ROCM_PATH", 81, 5], ["CFLAGS", 82, 5], ["CXXFLAGS", 83, 5], ["TRITON_STORE_BINARY_ONLY", 84, 5], ["AOTRITON_GIT_TREESHA1", 85, 5]], [["gpuTargets", 173, 13]], [["name", 167, 7], ["nativeBuildInputs", 168, 7], ["buildCommand", 169, 7]], [["ld-preload-into-hello", 166, 5]], [["tests", 163, 12]], [["description", 182, 5], ["homepage", 183, 5], ["license", 184, 5], ["teams", 185, 5], ["platforms", 186, 5], ["broken", 188, 5]], [["pname", 40, 3], ["version", 41, 3], ["sourceRoot", 42, 11], ["srcs", 44, 3], ["postUnpack", 64, 3], ["patches", 68, 3], ["cmakeBuildType", 72, 3], ["separateDebugInfo", 73, 3], ["__structuredAttrs", 74, 3], ["strictDeps", 75, 3], ["requiredSystemFeatures", 77, 3], ["env", 79, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 98, 3], ["dontBuild", 118, 3], ["installPhase", 120, 3], ["doCheck", 126, 3], ["doInstallCheck", 127, 3], ["preConfigure", 134, 3], ["cmakeFlags", 141, 3], ["passthru", 163, 3], ["meta", 181, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "rocm-cmake": false, clr: false, python3: false, ninja: false, xz: false, writableTmpDirAsHomeHook: false, "pkg-config": false, gpuTargets: true, aotriton: false, hello: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 46, 7], ["repo", 47, 7], ["tag", 48, 7], ["hash", 49, 7], ["fetchSubmodules", 51, 7], ["name", 52, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 55, 7], ["repo", 56, 7], ["tag", 57, 7], ["hash", 58, 7], ["name", 59, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["AOTRITON_CI_SUPPLIED_SHA1", 80, 5], ["ROCM_PATH", 81, 5], ["CFLAGS", 82, 5], ["CXXFLAGS", 83, 5], ["TRITON_STORE_BINARY_ONLY", 84, 5], ["AOTRITON_GIT_TREESHA1", 85, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["gpuTargets", 173, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 167, 7], ["nativeBuildInputs", 168, 7], ["buildCommand", 169, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["ld-preload-into-hello", 166, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["tests", 163, 12]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 182, 5], ["homepage", 183, 5], ["license", 184, 5], ["teams", 185, 5], ["platforms", 186, 5], ["broken", 188, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["version", 41, 3], ["sourceRoot", 42, 11], ["srcs", 44, 3], ["postUnpack", 64, 3], ["patches", 68, 3], ["cmakeBuildType", 72, 3], ["separateDebugInfo", 73, 3], ["__structuredAttrs", 74, 3], ["strictDeps", 75, 3], ["requiredSystemFeatures", 77, 3], ["env", 79, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 98, 3], ["dontBuild", 118, 3], ["installPhase", 120, 3], ["doCheck", 126, 3], ["doInstallCheck", 127, 3], ["preConfigure", 134, 3], ["cmakeFlags", 141, 3], ["passthru", 163, 3], ["meta", 181, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const supportedTargets$ = nix.thunk(() => (nix.asBool(anySupportedTargets) ? nix.app(nix.sel(lib, "concatStringsSep"), ";", supportedTargets) : "gfx1200"));
   const sourceRoot = "aotriton";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: nix.thunk(() => nix.str`aotriton${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(anySupportedTargets)), "-shim")}`),
       version: "0.12b",
       sourceRoot: sourceRoot,
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "ROCm",
             repo: "aotriton",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +50,7 @@ export default nix.lambda((args) => (() => {
             name: sourceRoot,
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "ROCm",
             repo: "aiter",
             tag: "v0.1.11",
@@ -75,7 +67,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       requiredSystemFeatures: nix.thunk(() => (nix.asBool(anySupportedTargets) ? ["big-parallel"] : [])),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         AOTRITON_CI_SUPPLIED_SHA1: nix.thunk(() => nix.sel(finalAttrs, "version")),
         ROCM_PATH: nix.thunk(() => nix.str`${clr}`),
         CFLAGS: "-w -g1 -gz -Wno-c++11-narrowing",
@@ -116,22 +108,22 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "AOTRITON_TARGET_ARCH", supportedTargets$)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "ld-preload-into-hello": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "aotriton-basic-load-test",
               nativeBuildInputs: nix.thunk(() => [hello]),
               buildCommand: nix.thunk(() => nix.str`set -e
-LD_PRELOAD=${nix.app(nix.sel(aotriton, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, gpuTargets: [] })))}/lib/libaotriton_v2.so ${hello}/bin/hello > /dev/null
+LD_PRELOAD=${nix.app(nix.sel(aotriton, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], gpuTargets: [] })))}/lib/libaotriton_v2.so ${hello}/bin/hello > /dev/null
 echo "ld-preload-into-hello" > $out
 `),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "ROCm Ahead of Time (AOT) Triton Math Library",
         homepage: "https://github.com/ROCm/aotriton",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

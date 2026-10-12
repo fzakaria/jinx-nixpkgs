@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["optional", 47, 5]], [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 37, 3], ["optional-dependencies", 46, 3], ["pythonImportsCheck", 54, 3], ["nativeCheckInputs", 56, 3], ["preCheck", 61, 3], ["disabledTestPaths", 68, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, joblib: false, keras: false, numpy: false, pandas: false, "scikit-learn": false, scipy: false, tensorflow: false, threadpoolctl: false, pytestCheckHook: false, python: false, "sklearn-compat": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["optional", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 37, 3], ["optional-dependencies", 46, 3], ["pythonImportsCheck", 54, 3], ["nativeCheckInputs", 56, 3], ["preCheck", 61, 3], ["disabledTestPaths", 68, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scikit-learn-contrib",
           repo: "imbalanced-learn",
           tag: version,
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [joblib, numpy, scikit_learn, scipy, threadpoolctl, sklearn_compat]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, optional: nix.thunk(() => [keras, pandas, tensorflow]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], optional: nix.thunk(() => [keras, pandas, tensorflow]) }));
       const pythonImportsCheck = nix.thunk(() => ["imblearn"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pandas]);
       const preCheck = nix.thunk(() => nix.str`export HOME=$TMPDIR
@@ -54,7 +51,7 @@ cd $out/${nix.sel(python, "sitePackages")}
         "imblearn/utils/tests/test_min_dependencies.py",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library offering a number of re-sampling techniques commonly used in datasets showing strong between-class imbalance",
         homepage: "https://github.com/scikit-learn-contrib/imbalanced-learn",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-learn-contrib/imbalanced-learn/releases/tag/${nix.sel(src, "tag")}`),
@@ -68,7 +65,7 @@ cd $out/${nix.sel(python, "sitePackages")}
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

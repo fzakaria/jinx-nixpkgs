@@ -2,20 +2,18 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/armv6l-unknown-linux-musleabihf.nix", [["url", 3, 5], ["sha256", 4, 5], ["executable", 5, 5]]);
-const pos$2 = nix.positions(here + "/armv6l-unknown-linux-musleabihf.nix", [["url", 8, 5], ["sha256", 9, 5]]);
-const pos$3 = nix.positions(here + "/armv6l-unknown-linux-musleabihf.nix", [["busybox", 2, 3], ["bootstrapTools", 7, 3]]);
+const $pos = nix.positions(here + "/armv6l-unknown-linux-musleabihf.nix", [[["url", 3, 5], ["sha256", 4, 5], ["executable", 5, 5]], [["url", 8, 5], ["sha256", 9, 5]], [["busybox", 2, 3], ["bootstrapTools", 7, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$3,
+  [nix.POS]: $pos[2],
   busybox: nix.thunk(() => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nix/fetchurl.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://wdtz.org/files/xmz441m69qrlfdw47l2k10zf87fsya6r-stdenv-bootstrap-tools-armv6l-unknown-linux-musleabihf/on-server/busybox",
       sha256: "01d0hp1xgrriiy9w0sd9vbqzwxnpwiyah80pi4vrpcmbwji36j1i",
       executable: true,
     })))),
   bootstrapTools: nix.thunk(() => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nix/fetchurl.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://wdtz.org/files/xmz441m69qrlfdw47l2k10zf87fsya6r-stdenv-bootstrap-tools-armv6l-unknown-linux-musleabihf/on-server/bootstrap-tools.tar.xz",
       sha256: "1r9mz9w8y5jd7gfwfsrvs20qarzxy7bvrp5dlm41hnx6z617if1h",
     })))),

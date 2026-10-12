@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5], ["postFetch", 55, 5]], [["buildinputs_include", 60, 7], ["buildinputs_lib", 67, 7]], [["enableSTB", 134, 28]], [["SDL_CONFIG", 149, 5]], [["NIX_CFLAGS_COMPILE", 152, 5]], [["pygame-gui", 189, 15]], [["updateScript", 187, 5], ["tests", 188, 5]], [["description", 194, 5], ["homepage", 195, 5], ["changelog", 196, 5], ["license", 197, 5], ["maintainers", 198, 5], ["platforms", 199, 5]], [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["__structuredAttrs", 47, 3], ["src", 49, 3], ["patches", 58, 3], ["postPatch", 76, 3], ["build-system", 112, 3], ["nativeBuildInputs", 123, 3], ["buildInputs", 127, 3], ["nativeCheckInputs", 139, 3], ["preConfigure", 144, 3], ["env", 148, 3], ["preCheck", 155, 3], ["checkPhase", 163, 3], ["pythonImportsCheck", 169, 3], ["passthru", 186, 3], ["meta", 193, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, python: false, cython: false, "meson-python": false, ninja: false, "pyproject-metadata": false, setuptools: false, sphinx: false, "sphinx-autoapi": false, astroid: false, "pkg-config": false, fontconfig: false, freetype: false, libjpeg: false, libpng: false, libx11: false, portmidi: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, SDL2_ttf: false, numpy: false, writableTmpDirAsHomeHook: false, "nix-update-script": false, "pygame-gui": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5], ["postFetch", 55, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["buildinputs_include", 60, 7], ["buildinputs_lib", 67, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["enableSTB", 134, 28]]);
-const pos$4 = nix.positions(here + "/default.nix", [["SDL_CONFIG", 149, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 152, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pygame-gui", 189, 15]]);
-const pos$7 = nix.positions(here + "/default.nix", [["updateScript", 187, 5], ["tests", 188, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 194, 5], ["homepage", 195, 5], ["changelog", 196, 5], ["license", 197, 5], ["maintainers", 198, 5], ["platforms", 199, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["__structuredAttrs", 47, 3], ["src", 49, 3], ["patches", 58, 3], ["postPatch", 76, 3], ["build-system", 112, 3], ["nativeBuildInputs", 123, 3], ["buildInputs", 127, 3], ["nativeCheckInputs", 139, 3], ["preConfigure", 144, 3], ["env", 148, 3], ["preCheck", 155, 3], ["checkPhase", 163, 3], ["pythonImportsCheck", 169, 3], ["passthru", 186, 3], ["meta", 193, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pygame_gui = nix.arg($, "pygame-gui");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "pygame-ce",
       version: "2.5.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pygame-community",
           repo: "pygame-ce",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-dependency-finding.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             buildinputs_include: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.builtins.concatMap((dep) => [
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), dep)}/`),
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), dep)}/include`),
@@ -98,7 +90,7 @@ export default nix.lambda((args) => (() => {
         libpng,
         portmidi,
         SDL2,
-        nix.thunk(() => nix.app(nix.sel(SDL2_image, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, enableSTB: false })))),
+        nix.thunk(() => nix.app(nix.sel(SDL2_image, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], enableSTB: false })))),
         SDL2_mixer,
         SDL2_ttf,
       ]),
@@ -106,10 +98,10 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`${nix.sel(python, "pythonOnBuildForHost", "interpreter")} -m buildconfig.config
 `),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         SDL_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), SDL2)), "sdl2-config")),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-function-pointer-types",
         }))))),
       preCheck: "# No audio or video device in test environment\nexport SDL_VIDEODRIVER=dummy\nexport SDL_AUDIODRIVER=disk\n# traceback for segfaults\nexport PYTHONFAULTHANDLER=1\n",
@@ -134,12 +126,12 @@ runHook postCheck
         "pygame.version",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$6, "pygame-gui": pygame_gui })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[5], "pygame-gui": pygame_gui })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Pygame Community Edition (CE) - library for multimedia application built on SDL",
         homepage: "https://pyga.me/",
         changelog: nix.thunk(() => nix.str`https://github.com/pygame-community/pygame-ce/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

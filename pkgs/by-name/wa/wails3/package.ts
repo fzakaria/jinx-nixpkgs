@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["mainProgram", 44, 5], ["platforms", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["vendorHash", 25, 3], ["subPackages", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 34, 3], ["depsTargetTargetPropagated", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "pkg-config": false, wrapGAppsHook4: false, webkitgtk_6_0: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["mainProgram", 44, 5], ["platforms", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["vendorHash", 25, 3], ["subPackages", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 34, 3], ["depsTargetTargetPropagated", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const webkitgtk_6_0 = nix.arg($, "webkitgtk_6_0");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wails3",
       version: "3.0.0-beta.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wailsapp",
           repo: "wails",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook4]),
       depsTargetTargetPropagated: nix.thunk(() => [webkitgtk_6_0]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Build desktop applications using Go & Web Technologies, v3 alpha",
         homepage: "https://wails.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

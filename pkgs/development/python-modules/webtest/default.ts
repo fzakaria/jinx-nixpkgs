@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 35, 3], ["__darwinAllowLocalNetworking", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, beautifulsoup4: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, pastedeploy: false, pyquery: false, pytestCheckHook: false, six: false, waitress: false, webob: false, wsgiproxy2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 35, 3], ["__darwinAllowLocalNetworking", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-euq1D5cNRsBo56Nt0WLLJCWR7fcqHQTv0hN0dyuTF0E=",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["webtest"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Helper to test WSGI applications",
         homepage: "https://webtest.readthedocs.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

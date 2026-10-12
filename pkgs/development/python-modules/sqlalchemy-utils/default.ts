@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["babel", 51, 5], ["arrow", 52, 5], ["pendulum", 53, 5], ["phone", 55, 5], ["password", 56, 5], ["color", 57, 5], ["timezone", 58, 5], ["url", 59, 5], ["encrypted", 60, 5]], [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["build-system", 46, 3], ["propagatedBuildInputs", 48, 3], ["optional-dependencies", 50, 3], ["nativeCheckInputs", 63, 3], ["disabledTests", 82, 3], ["pytestFlags", 91, 3], ["pythonImportsCheck", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, arrow: false, babel: false, colour: false, cryptography: false, docutils: false, fetchFromGitHub: false, flexmock: false, furl: false, jinja2: false, passlib: false, pendulum: false, pg8000: false, phonenumbers: false, psycopg2: false, psycopg2cffi: false, pygments: false, pymysql: false, pyodbc: false, pytestCheckHook: false, "python-dateutil": false, pythonAtLeast: false, pythonOlder: false, pytz: false, setuptools: false, sqlalchemy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["babel", 51, 5], ["arrow", 52, 5], ["pendulum", 53, 5], ["phone", 55, 5], ["password", 56, 5], ["color", 57, 5], ["timezone", 58, 5], ["url", 59, 5], ["encrypted", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["build-system", 46, 3], ["propagatedBuildInputs", 48, 3], ["optional-dependencies", 50, 3], ["nativeCheckInputs", 63, 3], ["disabledTests", 82, 3], ["pytestFlags", 91, 3], ["pythonImportsCheck", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.41.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kvesteri",
           repo: "sqlalchemy-utils",
           tag: version,
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const propagatedBuildInputs = nix.thunk(() => [sqlalchemy]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         babel: nix.thunk(() => [babel]),
         arrow: nix.thunk(() => [arrow]),
         pendulum: nix.thunk(() => [pendulum]),
@@ -80,7 +77,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["-Wignore::DeprecationWarning"]);
       const pythonImportsCheck = nix.thunk(() => ["sqlalchemy_utils"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Various utility functions and datatypes for SQLAlchemy",
         homepage: "https://github.com/kvesteri/sqlalchemy-utils",
         changelog: nix.thunk(() => nix.str`https://github.com/kvesteri/sqlalchemy-utils/releases/tag/${version}`),
@@ -91,7 +88,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

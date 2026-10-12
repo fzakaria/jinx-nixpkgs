@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]], [["description", 36, 5], ["maintainers", 37, 5], ["homepage", 38, 46], ["license", 38, 55]], [["pname", 8, 3], ["version", 9, 3], ["src", 13, 3], ["pyproject", 20, 3], ["propagatedBuildInputs", 22, 3], ["installPhase", 26, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["maintainers", 37, 5], ["homepage", 38, 46], ["license", 38, 55]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 13, 3], ["pyproject", 20, 3], ["propagatedBuildInputs", 22, 3], ["installPhase", 26, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "broadlink-cli",
       version: "0.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mjg59",
           repo: "python-broadlink",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(python3Packages, "broadlink", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tools for interfacing with Broadlink RM2/3 (Pro) remote controls, A1 sensor platforms and SP2/3 smartplugs",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

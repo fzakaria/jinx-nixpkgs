@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/certify.nix", [[["description", 42, 5]], [["pname", 19, 3], ["version", 21, 17], ["src", 21, 25], ["propagatedBuildInputs", 23, 3], ["doCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, dns: false, "dns-tsig": false, "dns-mirage": false, randomconv: false, x509: false, "mirage-sleep": false, "mirage-ptime": false, logs: false, "mirage-crypto-pk": false, "mirage-crypto-rng": false, "mirage-crypto-ec": false, lwt: false, tcpip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/certify.nix", [["description", 42, 5]]);
-const pos$2 = nix.positions(here + "/certify.nix", [["pname", 19, 3], ["version", 21, 17], ["src", 21, 25], ["propagatedBuildInputs", 23, 3], ["doCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const tcpip = nix.arg($, "tcpip");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "dns-certify",
       version: nix.thunk(() => nix.attr(dns, "version")),
       src: nix.thunk(() => nix.attr(dns, "src")),
@@ -44,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "MirageOS let's encrypt certificate retrieval",
       })),
     })));

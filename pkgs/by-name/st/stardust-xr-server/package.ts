@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["updateScript", 70, 12]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["teams", 78, 5], ["platforms", 79, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["cargoHash", 39, 3], ["__structuredAttrs", 41, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 45, 3], ["postFixup", 50, 3], ["passthru", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "alsa-lib": false, libGL: false, libx11: false, libxcursor: false, libxcb: false, libxi: false, libxkbcommon: false, "openxr-loader": false, "pkg-config": false, "vulkan-loader": false, wayland: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 70, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["teams", 78, 5], ["platforms", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["cargoHash", 39, 3], ["__structuredAttrs", 41, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 45, 3], ["postFixup", 50, 3], ["passthru", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "stardust-xr-server",
       version: "0.51.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stardustxr",
           repo: "server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,11 +50,11 @@ export default nix.lambda((args) => (() => {
         ]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wayland compositor and display server for 3D applications",
         homepage: "https://stardustxr.org/",
         changelog: "https://github.com/StardustXR/server/releases",

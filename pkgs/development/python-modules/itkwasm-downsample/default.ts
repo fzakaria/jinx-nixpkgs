@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 5], ["version", 20, 26], ["hash", 21, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["nativeBuildInputs", 29, 3], ["dependencies", 31, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "hatch-vcs": false, hatchling: false, itkwasm: false, "itkwasm-downsample-emscripten": false, "itkwasm-downsample-wasi": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 26], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["nativeBuildInputs", 29, 3], ["dependencies", 31, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const itkwasm_downsample_wasi = nix.arg($, "itkwasm-downsample-wasi");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "itkwasm-downsample",
       version: "2.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "itkwasm_downsample",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-2X//X492VXmV8t2w4BO936XjjkRTBLvPQ+7G82RLonk=",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["itkwasm_downsample"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pipelines for downsampling images",
         homepage: "https://pypi.org/project/itkwasm-downsample",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

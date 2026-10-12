@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["JOSH_VERSION", 48, 7]], [["description", 56, 5], ["homepage", 57, 5], ["downloadPage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 65, 5]], [["pname", 17, 3], ["version", 18, 11], ["src", 20, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["cargoBuildFlags", 39, 3], ["cargoTestFlags", 41, 3], ["env", 48, 3], ["postInstall", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, libgit2: false, openssl: false, "pkg-config": false, makeWrapper: false, git: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["JOSH_VERSION", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["downloadPage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 11], ["src", 20, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["cargoBuildFlags", 39, 3], ["cargoTestFlags", 41, 3], ["env", 48, 3], ["postInstall", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const version = "26.05.08";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "josh",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "josh-project",
           repo: "josh",
           rev: nix.thunk(() => nix.str`r${version}`),
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libgit2, openssl]),
       cargoBuildFlags: nix.thunk(() => ["--workspace"]),
       cargoTestFlags: nix.thunk(() => ["--workspace", "--exclude", "josh-proxy"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, JOSH_VERSION: nix.thunk(() => nix.str`r${version}`) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], JOSH_VERSION: nix.thunk(() => nix.str`r${version}`) })),
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/josh-proxy" --prefix PATH : "${git}/bin"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Just One Single History",
         homepage: "https://josh-project.github.io/josh/",
         downloadPage: "https://github.com/josh-project/josh",

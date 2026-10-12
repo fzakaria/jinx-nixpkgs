@@ -2,54 +2,46 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/optionTypeMerging.nix", [[["type", 5, 5]], [["type", 9, 5]], [["theType", 4, 11], ["theOption", 8, 11]], [["type", 15, 9], ["default", 16, 9]], [["int", 14, 15]], [["options", 14, 7]], [["type", 21, 9]], [["str", 20, 15]], [["options", 20, 7]], [["str", 26, 20]], [["theType", 12, 10], ["theOption", 26, 10]], [["options", 4, 3], ["config", 12, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/optionTypeMerging.nix", [["type", 5, 5]]);
-const pos$2 = nix.positions(here + "/optionTypeMerging.nix", [["type", 9, 5]]);
-const pos$3 = nix.positions(here + "/optionTypeMerging.nix", [["theType", 4, 11], ["theOption", 8, 11]]);
-const pos$4 = nix.positions(here + "/optionTypeMerging.nix", [["type", 15, 9], ["default", 16, 9]]);
-const pos$5 = nix.positions(here + "/optionTypeMerging.nix", [["int", 14, 15]]);
-const pos$6 = nix.positions(here + "/optionTypeMerging.nix", [["options", 14, 7]]);
-const pos$7 = nix.positions(here + "/optionTypeMerging.nix", [["type", 21, 9]]);
-const pos$8 = nix.positions(here + "/optionTypeMerging.nix", [["str", 20, 15]]);
-const pos$9 = nix.positions(here + "/optionTypeMerging.nix", [["options", 20, 7]]);
-const pos$10 = nix.positions(here + "/optionTypeMerging.nix", [["str", 26, 20]]);
-const pos$11 = nix.positions(here + "/optionTypeMerging.nix", [["theType", 12, 10], ["theOption", 26, 10]]);
-const pos$12 = nix.positions(here + "/optionTypeMerging.nix", [["options", 4, 3], ["config", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$3,
-      theType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "optionType")) })))),
-      theOption: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$2, type: nix.thunk(() => nix.sel(config, "theType")) })))),
+      [nix.POS]: $pos[2],
+      theType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
+          [nix.POS]: $pos[0],
+          type: nix.thunk(() => nix.sel(lib, "types", "optionType")),
+        })))),
+      theOption: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[1], type: nix.thunk(() => nix.sel(config, "theType")) })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       theType: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               options: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 int: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     type: nix.thunk(() => nix.sel(lib, "types", "int")),
                     default: 10n,
                   })))),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               options: nix.thunk(() => ({
-                [nix.POS]: pos$8,
-                str: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$7, type: nix.thunk(() => nix.sel(lib, "types", "str")) })))),
+                [nix.POS]: $pos[7],
+                str: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[6], type: nix.thunk(() => nix.sel(lib, "types", "str")) })))),
               })),
             })))),
         ]))),
-      theOption: nix.thunk(() => ({ [nix.POS]: pos$10, str: "hello" })),
+      theOption: nix.thunk(() => ({ [nix.POS]: $pos[9], str: "hello" })),
     })),
   };
 })(), formals$1);

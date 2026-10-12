@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 50, 5], ["hash", 51, 5]], [["gimp", 130, 15]], [["tests", 129, 5]], [["description", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["platforms", 139, 5]], [["pname", 39, 3], ["version", 40, 3], ["outputs", 42, 3], ["outputBin", 47, 3], ["src", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 64, 3], ["propagatedBuildInputs", 92, 3], ["strictDeps", 98, 3], ["mesonFlags", 100, 3], ["postPatch", 115, 3], ["postFixup", 120, 3], ["doCheck", 126, 3], ["passthru", 128, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, vala: false, "gi-docgen": false, "gobject-introspection": false, glib: false, babl: false, libpng: false, llvmPackages: false, cairo: false, libjpeg: false, librsvg: false, lensfun: false, libspiro: false, maxflow: false, libnsgif: false, pango: false, "poly2tri-c": false, poppler: false, bzip2: false, "json-glib": false, gettext: false, meson: false, ninja: false, libraw: false, gexiv2_0_10: false, libwebp: false, luajit: false, openexr: false, suitesparse: false, withLuaJIT: true, gimp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gimp", 130, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 129, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["platforms", 139, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["outputs", 42, 3], ["outputBin", 47, 3], ["src", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 64, 3], ["propagatedBuildInputs", 92, 3], ["strictDeps", 98, 3], ["mesonFlags", 100, 3], ["postPatch", 115, 3], ["postFixup", 120, 3], ["doCheck", 126, 3], ["passthru", 128, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,13 +42,13 @@ export default nix.lambda((args) => (() => {
   const withLuaJIT = nix.argOr($, "withLuaJIT", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), luajit));
   const gimp = nix.arg($, "gimp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gegl",
       version: "0.4.70",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       outputBin: "dev",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.gimp.org/pub/gegl/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gegl-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-R/UNnDrs03XetIwR6/6tUtFi5PwWKks9RGGCd/H67AI=",
         })))),
@@ -91,9 +87,12 @@ export default nix.lambda((args) => (() => {
       postPatch: "chmod +x tests/opencl/opencl_test.sh\npatchShebangs tests/ff-load-save/tests_ff_load_save.sh tests/opencl/opencl_test.sh tools/xml_insert.sh\n",
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, gimp: gimp })) })),
+      passthru: nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], gimp: gimp })),
+      })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Graph-based image processing framework",
         homepage: "https://www.gegl.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

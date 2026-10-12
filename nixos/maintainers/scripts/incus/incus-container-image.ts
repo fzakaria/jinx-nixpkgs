@@ -2,43 +2,24 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/incus-container-image.nix", [[["enable", 7, 5], ["target", 8, 5], ["template", 9, 5], ["when", 10, 5]], [["nix", 6, 32]], [["templates", 6, 22]], [["lxc", 6, 18]], [["stateVersion", 21, 9]], [["ConditionPathExists", 27, 18]], [["Type", 29, 9], ["RemainAfterExit", 30, 9], ["ExecStart", 31, 9]], [["description", 25, 7], ["wantedBy", 26, 7], ["unitConfig", 27, 7], ["serviceConfig", 28, 7]], [["incus-create-nixos-config", 18, 20]], [["Name", 47, 19]], [["DHCP", 49, 9], ["IPv6AcceptRA", 50, 9]], [["RequiredForOnline", 52, 18]], [["matchConfig", 47, 7], ["networkConfig", 48, 7], ["linkConfig", 52, 7]], [["50-eth0", 46, 14]], [["enable", 45, 5], ["networks", 46, 5]], [["services", 18, 11], ["network", 44, 11]], [["cloneConfig", 36, 13]], [["enable", 39, 12]], [["dhcpcd", 39, 5], ["useDHCP", 40, 5], ["useHostResolvConf", 41, 5]], [["imports", 4, 3], ["virtualisation", 6, 3], ["systemd", 18, 3], ["installer", 36, 3], ["networking", 38, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/incus-container-image.nix", [["enable", 7, 5], ["target", 8, 5], ["template", 9, 5], ["when", 10, 5]]);
-const pos$2 = nix.positions(here + "/incus-container-image.nix", [["nix", 6, 32]]);
-const pos$3 = nix.positions(here + "/incus-container-image.nix", [["templates", 6, 22]]);
-const pos$4 = nix.positions(here + "/incus-container-image.nix", [["lxc", 6, 18]]);
-const pos$5 = nix.positions(here + "/incus-container-image.nix", [["stateVersion", 21, 9]]);
-const pos$6 = nix.positions(here + "/incus-container-image.nix", [["ConditionPathExists", 27, 18]]);
-const pos$7 = nix.positions(here + "/incus-container-image.nix", [["Type", 29, 9], ["RemainAfterExit", 30, 9], ["ExecStart", 31, 9]]);
-const pos$8 = nix.positions(here + "/incus-container-image.nix", [["description", 25, 7], ["wantedBy", 26, 7], ["unitConfig", 27, 7], ["serviceConfig", 28, 7]]);
-const pos$9 = nix.positions(here + "/incus-container-image.nix", [["incus-create-nixos-config", 18, 20]]);
-const pos$10 = nix.positions(here + "/incus-container-image.nix", [["Name", 47, 19]]);
-const pos$11 = nix.positions(here + "/incus-container-image.nix", [["DHCP", 49, 9], ["IPv6AcceptRA", 50, 9]]);
-const pos$12 = nix.positions(here + "/incus-container-image.nix", [["RequiredForOnline", 52, 18]]);
-const pos$13 = nix.positions(here + "/incus-container-image.nix", [["matchConfig", 47, 7], ["networkConfig", 48, 7], ["linkConfig", 52, 7]]);
-const pos$14 = nix.positions(here + "/incus-container-image.nix", [["50-eth0", 46, 14]]);
-const pos$15 = nix.positions(here + "/incus-container-image.nix", [["enable", 45, 5], ["networks", 46, 5]]);
-const pos$16 = nix.positions(here + "/incus-container-image.nix", [["services", 18, 11], ["network", 44, 11]]);
-const pos$17 = nix.positions(here + "/incus-container-image.nix", [["cloneConfig", 36, 13]]);
-const pos$18 = nix.positions(here + "/incus-container-image.nix", [["enable", 39, 12]]);
-const pos$19 = nix.positions(here + "/incus-container-image.nix", [["dhcpcd", 39, 5], ["useDHCP", 40, 5], ["useHostResolvConf", 41, 5]]);
-const pos$20 = nix.positions(here + "/incus-container-image.nix", [["imports", 4, 3], ["virtualisation", 6, 3], ["systemd", 18, 3], ["installer", 36, 3], ["networking", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     imports: nix.thunk(() => [nix.path(here, "../../../modules/virtualisation/lxc-container.nix")]),
     virtualisation: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       lxc: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         templates: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             enable: true,
             target: "/etc/nixos/incus.nix",
             template: nix.path(here, "./nix.tpl"),
@@ -48,21 +29,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         "incus-create-nixos-config": nix.thunk(() => (() => {
           const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "replaceVars"), nix.path(here, "./incus-container-image-inner.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
             }))));
           return {
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             description: "Create default NixOS configuration for Incus",
             wantedBy: nix.thunk(() => ["multi-user.target"]),
-            unitConfig: nix.thunk(() => ({ [nix.POS]: pos$6, ConditionPathExists: "!/etc/nixos/configuration.nix" })),
+            unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[5], ConditionPathExists: "!/etc/nixos/configuration.nix" })),
             serviceConfig: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               Type: "oneshot",
               RemainAfterExit: true,
               ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/install -m 0644 -D ${configFile} /etc/nixos/configuration.nix`),
@@ -71,23 +52,23 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       network: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         enable: true,
         networks: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           "50-eth0": nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            matchConfig: nix.thunk(() => ({ [nix.POS]: pos$10, Name: "eth0" })),
-            networkConfig: nix.thunk(() => ({ [nix.POS]: pos$11, DHCP: "ipv4", IPv6AcceptRA: true })),
-            linkConfig: nix.thunk(() => ({ [nix.POS]: pos$12, RequiredForOnline: "routable" })),
+            [nix.POS]: $pos[12],
+            matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[9], Name: "eth0" })),
+            networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[10], DHCP: "ipv4", IPv6AcceptRA: true })),
+            linkConfig: nix.thunk(() => ({ [nix.POS]: $pos[11], RequiredForOnline: "routable" })),
           })),
         })),
       })),
     })),
-    installer: nix.thunk(() => ({ [nix.POS]: pos$17, cloneConfig: false })),
+    installer: nix.thunk(() => ({ [nix.POS]: $pos[16], cloneConfig: false })),
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$19,
-      dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$18, enable: false })),
+      [nix.POS]: $pos[18],
+      dhcpcd: nix.thunk(() => ({ [nix.POS]: $pos[17], enable: false })),
       useDHCP: false,
       useHostResolvConf: false,
     })),

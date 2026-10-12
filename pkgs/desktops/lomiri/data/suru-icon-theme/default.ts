@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["updateScript", 57, 12]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["teams", 64, 5], ["platforms", 65, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 25, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 39, 3], ["dontConfigure", 41, 3], ["dontBuild", 42, 3], ["installPhase", 44, 3], ["dontDropIconThemeCache", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitLab: false, "adwaita-icon-theme": false, gitUpdater: false, gtk3: false, "hicolor-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 57, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["teams", 64, 5], ["platforms", 65, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 25, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 39, 3], ["dontConfigure", 41, 3], ["dontBuild", 42, 3], ["installPhase", 44, 3], ["dontDropIconThemeCache", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "suru-icon-theme",
       version: "2026.03.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/suru-icon-theme",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/icons\ncp -r suru $out/share/icons/\n\ngtk-update-icon-cache $out/share/icons/suru\n\nrunHook postInstall\n",
       dontDropIconThemeCache: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Suru Icon Theme for Lomiri Operating Environment",
         homepage: "https://gitlab.com/ubports/development/core/suru-icon-theme",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/suru-icon-theme/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

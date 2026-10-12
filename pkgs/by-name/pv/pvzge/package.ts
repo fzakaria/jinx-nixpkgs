@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["license", 29, 10]], [["url", 27, 5], ["hash", 28, 5], ["meta", 29, 5]], [["name", 83, 7], ["exec", 84, 7], ["icon", 85, 7], ["desktopName", 86, 7], ["comment", 87, 7], ["categories", 88, 7]], [["updateScript", 92, 12]], [["description", 95, 5], ["homepage", 96, 5], ["downloadPage", 97, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["iconSrc", 26, 3], ["nativeBuildInputs", 32, 3], ["postPatch", 39, 3], ["dontConfigure", 43, 3], ["dontBuild", 45, 3], ["installPhase", 47, 3], ["desktopItems", 81, 3], ["passthru", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, fetchFromGitHub: false, copyDesktopItems: false, makeWrapper: false, makeDesktopItem: false, desktopToDarwinBundle: false, electron: false, imagemagick: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 29, 10]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5], ["meta", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 83, 7], ["exec", 84, 7], ["icon", 85, 7], ["desktopName", 86, 7], ["comment", 87, 7], ["categories", 88, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 92, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["downloadPage", 97, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["iconSrc", 26, 3], ["nativeBuildInputs", 32, 3], ["postPatch", 39, 3], ["dontConfigure", 43, 3], ["dontBuild", 45, 3], ["installPhase", 47, 3], ["desktopItems", 81, 3], ["passthru", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,22 +19,22 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "pvzge",
       version: "0.12.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Gzh0821",
           repo: "pvzge_web",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-3jyivZcBfh3UvhYUF0hVK6O8xBws1EZCqa7hGAd2348=",
         })))),
       iconSrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/Gzh0821/pvzg_site/refs/tags/${nix.sel(finalAttrs, "version")}/src/.vuepress/public/pvz_logo.webp`),
           hash: "sha256-PkUS4iESw+R8o+tZMDJ+PTyu6PTmKeRkq/VG3+egsQY=",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
           })),
         })))),
@@ -82,7 +76,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "pvzge",
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             icon: "pvzge",
@@ -92,11 +86,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Completely remastered PvZ2 for all desktop platforms",
         homepage: "https://pvzge.com",
         downloadPage: "https://pvzge.com/en/download",

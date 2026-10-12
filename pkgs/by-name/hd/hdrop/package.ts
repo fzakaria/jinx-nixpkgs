@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["makeFlags", 33, 3], ["postInstall", 35, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { coreutils: false, curl: false, fetchFromGitHub: false, gawk: false, hyprland: false, jq: false, lib: false, libnotify: false, makeWrapper: false, scdoc: false, stdenvNoCC: false, "util-linux": false, withHyprland: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["makeFlags", 33, 3], ["postInstall", 35, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hdrop";
       const version = "0.7.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Schweber",
           repo: "hdrop",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
   "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([coreutils, curl, util_linux, jq, libnotify, gawk], nix.app(nix.sel(lib, "optional"), withHyprland, hyprland))))}"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Emulate 'tdrop' in Hyprland (run, show and hide specific programs per keybind)",
         homepage: "https://github.com/Schweber/hdrop",
         changelog: nix.thunk(() => nix.str`https://github.com/Schweber/hdrop/releases/tag/v${version}`),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "hdrop",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

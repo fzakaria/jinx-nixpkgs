@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 26, 5], ["homepage", 27, 5], ["mainProgram", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["teams", 31, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["buildPhase", 22, 3], ["installPhase", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, beamPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["homepage", 27, 5], ["mainProgram", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["teams", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["buildPhase", 22, 3], ["installPhase", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const beamPackages = nix.arg($, "beamPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mix2nix",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ydlr",
           repo: "mix2nix",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "mix escript.build",
       installPhase: "install -Dt $out/bin mix2nix",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Generate nix expressions from mix.lock file",
         homepage: "https://github.com/ydlr/mix2nix",
         mainProgram: "mix2nix",

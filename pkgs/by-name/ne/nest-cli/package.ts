@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["npm_config_build_from_source", 25, 5]], [["changelog", 34, 5], ["description", 35, 5], ["downloadPage", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5], ["maintainers", 40, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["npmDepsHash", 21, 3], ["npmFlags", 22, 3], ["env", 24, 3], ["nativeBuildInputs", 28, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3: false, clang_20: false, buildNpmPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["npm_config_build_from_source", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 34, 5], ["description", 35, 5], ["downloadPage", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5], ["maintainers", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["npmDepsHash", 21, 3], ["npmFlags", 22, 3], ["env", 24, 3], ["nativeBuildInputs", 28, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nest-cli",
       version: "12.0.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nestjs",
           repo: "nest-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,10 +26,10 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-4N0crjsb53XAP1ssmMa2y5x6FdX88fzpB9ZdERZp6dc=",
       npmFlags: nix.thunk(() => ["--legacy-peer-deps"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, npm_config_build_from_source: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], npm_config_build_from_source: true })),
       nativeBuildInputs: nix.thunk(() => nix.concat([python3], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => [clang_20])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/nestjs/nest-cli/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "CLI tool for Nest applications",
         downloadPage: "https://github.com/nestjs/nest-cli",

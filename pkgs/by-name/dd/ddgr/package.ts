@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 5], ["mainProgram", 41, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 22, 3], ["makeFlags", 24, 3], ["postInstall", 26, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 5], ["mainProgram", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 22, 3], ["makeFlags", 24, 3], ["postInstall", 26, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "2.2",
       pname: "ddgr",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jarun",
           repo: "ddgr",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       postInstall: "installShellCompletion --bash --name ddgr.bash auto-completion/bash/ddgr-completion.bash\ninstallShellCompletion --fish auto-completion/fish/ddgr.fish\ninstallShellCompletion --zsh auto-completion/zsh/_ddgr\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jarun/ddgr",
         description: "Search DuckDuckGo from the terminal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

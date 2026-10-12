@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5], ["stripRoot", 15, 5]], [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["sourceProvenance", 47, 5], ["platforms", 48, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 18, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5], ["stripRoot", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["sourceProvenance", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 18, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "discord-gamesdk";
       const version = "3.2.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dl-game-sdk.discordapp.net/${version}/discord_game_sdk.zip`),
           hash: "sha256-83DgL9y3lHLLJ8vgL3EOVk2Tjcue64N+iuDj/UpSdLc=",
           stripRoot: false,
@@ -38,7 +36,7 @@ runHook postInstall
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://discord.com/developers/docs/game-sdk/sdk-starter-guide",
         description: "Library to allow other programs to interact with the Discord desktop application",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -53,7 +51,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-darwin", "x86_64-windows"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

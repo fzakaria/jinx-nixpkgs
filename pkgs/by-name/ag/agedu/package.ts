@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["rev", 19, 13], ["hash", 20, 5]], [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5], ["mainProgram", 45, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, cmake: false, halibut: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["rev", 19, 13], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5], ["mainProgram", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const date = "20241013";
   const rev = "3622eda";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "agedu",
       version: nix.thunk(() => nix.str`${date}.${rev}`),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.tartarus.org/simon/agedu.git",
           rev: rev,
           hash: "sha256-ZU2bVVo//mAVtVtrKPQ20wZHip/AZPmlL2uaCBcc7rw=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, halibut]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unix utility for tracking down wasted disk space",
         longDescription: "Most Unix file systems, in their default mode, helpfully record when a\nfile was last accessed. So if you generated a large amount of data years\nago, forgot to clean it up, and have never used it since, then it ought\nin principle to be possible to use those last-access time stamps to tell\nthe difference between that and a large amount of data you're still\nusing regularly.\n\nagedu uses this information to tell you which files waste disk space when\nyou haven't used them since a long time.\n",
         homepage: "https://www.chiark.greenend.org.uk/~sgtatham/agedu/",

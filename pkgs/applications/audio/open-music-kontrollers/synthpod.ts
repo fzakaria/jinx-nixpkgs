@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/synthpod.nix", [[["pname", 21, 5], ["version", 22, 5], ["url", 24, 5], ["sha256", 25, 5], ["additionalBuildInputs", 27, 5], ["description", 43, 5]]]);
 const formals$1 = { args: { callPackage: false, lilv: false, libjack2: false, "alsa-lib": false, "zita-alsa-pcmi": false, libxcb: false, xcbutilxrm: false, sratom: false, gtk2: false, qt5: false, "libvterm-neovim": false, robodoc: false, cmake: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/synthpod.nix", [["pname", 21, 5], ["version", 22, 5], ["url", 24, 5], ["sha256", 25, 5], ["additionalBuildInputs", 27, 5], ["description", 43, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const robodoc = nix.arg($, "robodoc");
   const cmake = nix.arg($, "cmake");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(args_1, {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "synthpod",
       version: "unstable-2021-10-22",
       url: "https://git.open-music-kontrollers.ch/lv2/synthpod/snapshot/synthpod-6f284bdad882037a522c120af92b96d8abf2de60.tar.xz",

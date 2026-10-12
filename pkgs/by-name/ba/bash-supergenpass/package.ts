@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["url", 37, 5]], [["updateScript", 36, 12]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5], ["platforms", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["nativeBuildInputs", 16, 3], ["src", 18, 3], ["installPhase", 25, 3], ["passthru", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, unstableGitUpdater: false, makeWrapper: false, openssl: false, coreutils: false, gnugrep: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 36, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5], ["platforms", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["nativeBuildInputs", 16, 3], ["src", 18, 3], ["installPhase", 25, 3], ["passthru", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const gnugrep = nix.arg($, "gnugrep");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bash-supergenpass",
       version: "0-unstable-2024-03-24",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lanzz",
           repo: "bash-supergenpass",
           rev: "03416ad4d753d825acd0443a01ac13d385d5e048",
@@ -35,11 +31,11 @@ export default nix.lambda((args) => (() => {
 wrapProgram "$out/bin/supergenpass" --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssl, coreutils, gnugrep]))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://github.com/lanzz/bash-supergenpass.git" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], url: "https://github.com/lanzz/bash-supergenpass.git" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Bash shell-script implementation of SuperGenPass password generation",
         longDescription: "Bash shell-script implementation of SuperGenPass password generation\nUsage: ./supergenpass.sh <domain> [ <length> ]\n\nDefault <length> is 10, which is also the original SuperGenPass default length.\n\nThe <domain> parameter is also optional, but it does not make much sense to omit it.\n\nsupergenpass will ask for your master password interactively, and it will not be displayed on your terminal.\n",
         homepage: "https://github.com/lanzz/bash-supergenpass",

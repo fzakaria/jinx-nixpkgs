@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["bin/clang", 17, 36]], [["bin/wasm-ld", 21, 5]], [["owner", 31, 5], ["repo", 32, 5], ["rev", 35, 5], ["hash", 36, 5]], [["TREE_SITTER_WASI_SDK_PATH", 55, 7]], [["updateScript", 92, 12]], [["description", 95, 5], ["mainProgram", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]], [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["postPatch", 39, 3], ["npmDepsHash", 43, 3], ["npmFlags", 44, 3], ["npmWorkspace", 45, 3], ["nativeBuildInputs", 47, 3], ["env", 55, 3], ["dontNpmBuild", 57, 3], ["buildPhase", 60, 3], ["makeWrapperArgs", 74, 3], ["dontCheckForBrokenSymlinks", 87, 3], ["doInstallCheck", 89, 3], ["nativeInstallCheckInputs", 90, 3], ["passthru", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, pkgsCross: false, buildNpmPackage: false, fetchFromGitHub: false, linkFarm: false, versionCheckHook: false, jre_headless: false, nodejs: false, "tree-sitter": false, umple: false, withUmple: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["bin/clang", 17, 36]]);
-const pos$2 = nix.positions(here + "/package.nix", [["bin/wasm-ld", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["TREE_SITTER_WASI_SDK_PATH", 55, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 92, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 95, 5], ["mainProgram", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["postPatch", 39, 3], ["npmDepsHash", 43, 3], ["npmFlags", 44, 3], ["npmWorkspace", 45, 3], ["nativeBuildInputs", 47, 3], ["env", 55, 3], ["dontNpmBuild", 57, 3], ["buildPhase", 60, 3], ["makeWrapperArgs", 74, 3], ["dontCheckForBrokenSymlinks", 87, 3], ["doInstallCheck", 89, 3], ["nativeInstallCheckInputs", 90, 3], ["passthru", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const umple = nix.arg($, "umple");
   const withUmple = nix.argOr($, "withUmple", () => true);
   const wasi32cc = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgsCross, "wasi32", "stdenv", "cc"))));
-  const wasi_sdk = nix.thunk(() => nix.app(linkFarm, "wasi-sdk", nix.thunk(() => ({ [nix.POS]: pos$1, "bin/clang": wasi32cc }))));
+  const wasi_sdk = nix.thunk(() => nix.app(linkFarm, "wasi-sdk", nix.thunk(() => ({ [nix.POS]: $pos[0], "bin/clang": wasi32cc }))));
   const wasm_ld = nix.thunk(() => nix.app(linkFarm, "wasm-ld", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       "bin/wasm-ld": nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgsCross, "wasi32", "buildPackages", "llvmPackages", "lld")), "wasm-ld")),
     }))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "umple-lsp",
       version: "1.0.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "umple",
           repo: "umple-lsp",
           rev: "1771d55d7e00a720b97c0f2422971efa26e110f6",
@@ -53,7 +47,7 @@ export default nix.lambda((args) => (() => {
         tree_sitter,
         wasm_ld,
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, TREE_SITTER_WASI_SDK_PATH: wasi_sdk })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], TREE_SITTER_WASI_SDK_PATH: wasi_sdk })),
       dontNpmBuild: true,
       buildPhase: "runHook preBuild\n\ncd packages/tree-sitter-umple\ntree-sitter generate\ntree-sitter build --wasm\ncd -\n\nnpm run copy-wasm\nnode_modules/.bin/tsc -b\n\nrunHook postBuild\n",
       makeWrapperArgs: nix.thunk(() => nix.concat([
@@ -69,9 +63,9 @@ export default nix.lambda((args) => (() => {
       dontCheckForBrokenSymlinks: true,
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Umple language server",
         mainProgram: "umple-lsp-server",
         homepage: "https://github.com/umple/umple-lsp",

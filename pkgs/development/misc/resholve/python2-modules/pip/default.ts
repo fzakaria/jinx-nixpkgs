@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5], ["name", 21, 5]], [["description", 40, 5], ["license", 41, 5], ["homepage", 42, 5], ["knownVulnerabilities", 43, 5], ["priority", 46, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["pipInstallFlags", 28, 3], ["nativeCheckInputs", 30, 3], ["doCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "bootstrapped-pip": false, fetchFromGitHub: false, scripttest: false, virtualenv: false, pretend: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5], ["name", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 5], ["license", 41, 5], ["homepage", 42, 5], ["knownVulnerabilities", 43, 5], ["priority", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["pipInstallFlags", 28, 3], ["nativeCheckInputs", 30, 3], ["doCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "20.3.4";
       const format = "other";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pypa",
           repo: pname,
           rev: version,
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [scripttest, virtualenv, pretend]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PyPA recommended tool for installing Python packages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://pip.pypa.io/",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         priority: 10n,
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

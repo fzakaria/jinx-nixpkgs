@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["stdenv", 9, 65]], [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["updateScript", 47, 12]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["mainProgram", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["teams", 56, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["buildFeatures", 27, 3], ["cargoBuildFlags", 31, 3], ["cargoTestFlags", 36, 3], ["hardeningDisable", 42, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["stdenv", 9, 65]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 47, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["mainProgram", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["teams", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["buildFeatures", 27, 3], ["cargoBuildFlags", 31, 3], ["cargoTestFlags", 36, 3], ["hardeningDisable", 42, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +12,16 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   const llvmPackages = nix.arg($, "llvmPackages");
-  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(llvmPackages, "stdenv")) })), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({
+      [nix.POS]: $pos[0],
+      stdenv: nix.thunk(() => nix.attr(llvmPackages, "stdenv")),
+    })), (finalAttrs) => ({
+      [nix.POS]: $pos[4],
       pname: "openvaf",
       version: "24.0.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "OpenVAF",
           repo: "OpenVAF-Reloaded",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}mob`),
@@ -37,11 +36,11 @@ export default nix.lambda((args) => (() => {
       cargoTestFlags: nix.thunk(() => ["--package", "openvaf-driver"]),
       hardeningDisable: nix.thunk(() => ["pic", "zerocallusedregs"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Verilog-A compiler",
         homepage: "https://github.com/OpenVAF/OpenVAF-Reloaded",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenVAF/OpenVAF-Reloaded/releases/tag/v${nix.sel(finalAttrs, "version")}mob`),

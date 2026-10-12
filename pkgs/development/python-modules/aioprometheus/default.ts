@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["aiohttp", 50, 5], ["starlette", 51, 5], ["quart", 52, 5]], [["optional-dependencies", 49, 12]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 45, 3], ["__darwinAllowLocalNetworking", 47, 3], ["passthru", 49, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, orjson: false, "quantile-python": false, aiohttp: false, "aiohttp-basicauth": false, starlette: false, quart: false, pytestCheckHook: false, httpx: false, fastapi: false, uvicorn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aiohttp", 50, 5], ["starlette", 51, 5], ["quart", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["optional-dependencies", 49, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 45, 3], ["__darwinAllowLocalNetworking", 47, 3], ["passthru", 49, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const fastapi = nix.arg($, "fastapi");
   const uvicorn = nix.arg($, "uvicorn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "aioprometheus",
       version: "22.5.0-unstable-2023-12-27",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "claws",
           repo: "aioprometheus",
           rev: "2fabe659c3c5259b50ac90c3106df7d41b8a3c74",
@@ -43,16 +39,16 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["aioprometheus"]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "optional-dependencies": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           aiohttp: nix.thunk(() => [aiohttp]),
           starlette: nix.thunk(() => [starlette]),
           quart: nix.thunk(() => [quart]),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Prometheus Python client library for asyncio-based applications",
         homepage: "https://github.com/claws/aioprometheus",
         changelog: nix.thunk(() => nix.str`https://github.com/claws/aioprometheus/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

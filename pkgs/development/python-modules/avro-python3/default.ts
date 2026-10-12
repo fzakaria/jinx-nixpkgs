@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 26], ["version", 18, 32], ["hash", 19, 5]], [["description", 31, 5], ["mainProgram", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 36, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["disabled", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["buildInputs", 24, 3], ["doCheck", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, isPy3k: false, pycodestyle: false, isort: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 26], ["version", 18, 32], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 31, 5], ["mainProgram", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["disabled", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["buildInputs", 24, 3], ["doCheck", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const isort = nix.arg($, "isort");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "avro-python3",
       version: "1.10.2",
       pyproject: true,
       disabled: nix.thunk(() => !nix.asBool(isPy3k)),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-O2PyTmsENow+Sm+SP0hL4CMNghqtZaw2EI7b/ynpqqs=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pycodestyle, isort]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Serialization and RPC framework",
         mainProgram: "avro",
         homepage: "https://pypi.org/project/avro-python3/",

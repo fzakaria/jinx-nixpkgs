@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 17, 7], ["i686-linux", 18, 7]], [["url", 27, 7], ["hash", 28, 7]], [["version", 23, 13], ["pname", 24, 5], ["src", 26, 5], ["dontBuild", 30, 5], ["installPhase", 32, 5]], [["libsane_smfp_cfg_to", 39, 5], ["smfp_conf_to", 40, 5], ["usedby_to", 41, 5], ["oem_to", 42, 5], ["sane_d_to", 43, 5], ["opt_to", 44, 5]], [["pname", 50, 5], ["version", 51, 13], ["unpackPhase", 53, 5], ["buildPhase", 57, 5], ["installPhase", 61, 5]], [["description", 141, 5], ["homepage", 142, 5], ["sourceProvenance", 143, 5], ["license", 144, 5], ["platforms", 145, 5], ["maintainers", 149, 5]], [["version", 76, 11], ["pname", 78, 3], ["src", 79, 3], ["nativeBuildInputs", 81, 3], ["dontPatchELF", 83, 3], ["dontStrip", 84, 3], ["installPhase", 86, 3], ["postFixup", 119, 3], ["ppdFileCommands", 134, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cups: false, libusb1: false, libxml2_13: false, fetchurl: false, patchPpdFilesHook: false, buildPackages: false, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 17, 7], ["i686-linux", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 23, 13], ["pname", 24, 5], ["src", 26, 5], ["dontBuild", 30, 5], ["installPhase", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["libsane_smfp_cfg_to", 39, 5], ["smfp_conf_to", 40, 5], ["usedby_to", 41, 5], ["oem_to", 42, 5], ["sane_d_to", 43, 5], ["opt_to", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 50, 5], ["version", 51, 13], ["unpackPhase", 53, 5], ["buildPhase", 57, 5], ["installPhase", 61, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 141, 5], ["homepage", 142, 5], ["sourceProvenance", 143, 5], ["license", 144, 5], ["platforms", 145, 5], ["maintainers", 149, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 76, 11], ["pname", 78, 3], ["src", 79, 3], ["nativeBuildInputs", 81, 3], ["dontPatchELF", 83, 3], ["dontStrip", 84, 3], ["installPhase", 86, 3], ["postFixup", 119, 3], ["ppdFileCommands", 134, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const replaceVars = nix.arg($, "replaceVars");
   const version = "1.00.39.12_00.15";
-  const installationPath = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "x86_64-linux": "x86_64", "i686-linux": "i386" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const installationPath = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], "x86_64-linux": "x86_64", "i686-linux": "i386" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const unpacked = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       pname: "hp-unified-linux-driver-unpacked",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://ftp.hp.com/pub/softlib/software13/printers/MFP170/uld-hp_V${version}.tar.gz`),
           hash: "sha256-zrube2El50BmNLucKpiwFHfR4R1mx8kEdGad6ZJ7yR0=",
         })))),
@@ -37,7 +31,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/opt/smfp-common/scanner/.usedby/\ncp -r . $out\n",
     })));
   const patchedWrapper = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libsane-smfp-wrapper.c"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       libsane_smfp_cfg_to: nix.thunk(() => nix.str`${unpacked}/noarch/libsane-smfp.cfg`),
       smfp_conf_to: nix.thunk(() => nix.str`${unpacked}/noarch/etc/smfp.conf`),
       usedby_to: nix.thunk(() => nix.str`${unpacked}/opt/smfp-common/scanner/.usedby/`),
@@ -47,7 +41,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const wrapperLibName = "libsane-smfp-wrapper.so";
   const wrapperLib = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libsane-smfp-wrapper-lib",
       version: version,
       unpackPhase: nix.thunk(() => nix.str`cp ${patchedWrapper} libsane-smfp-wrapper.c
@@ -59,7 +53,7 @@ export default nix.lambda((args) => (() => {
     })));
   const libPath = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [cups, libusb1, libxml2_13, wrapperLib])), nix.str`:$out/lib:${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/lib`));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: version,
       pname: "hp-unified-linux-driver",
       src: unpacked,
@@ -112,7 +106,7 @@ patchelf --set-rpath ${libPath} $out/lib/libscmssc.so
 `),
       ppdFileCommands: nix.thunk(() => ["pstosecps", "rastertospl", "smfpnetdiscovery"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Drivers for HP printers that are actually Samsung printers",
         homepage: "http://www.hp.com/",
         sourceProvenance: nix.thunk(() => (() => {

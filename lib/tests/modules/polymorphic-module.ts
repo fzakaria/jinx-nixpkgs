@@ -2,16 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/polymorphic-module.nix", [[["default", 7, 9]], [["foo", 6, 15]], [["options", 6, 7]], [["default", 14, 9]], [["bar", 13, 15]], [["options", 13, 7]], [["imports", 19, 3]]]);
 const formals$1 = { args: { _class: false, lib: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/polymorphic-module.nix", [["default", 7, 9]]);
-const pos$2 = nix.positions(here + "/polymorphic-module.nix", [["foo", 6, 15]]);
-const pos$3 = nix.positions(here + "/polymorphic-module.nix", [["options", 6, 7]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$4 = nix.positions(here + "/polymorphic-module.nix", [["default", 14, 9]]);
-const pos$5 = nix.positions(here + "/polymorphic-module.nix", [["bar", 13, 15]]);
-const pos$6 = nix.positions(here + "/polymorphic-module.nix", [["options", 13, 7]]);
-const pos$7 = nix.positions(here + "/polymorphic-module.nix", [["imports", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,25 +14,25 @@ export default nix.lambda((args) => (() => {
   const nixosModule = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       options: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, default: "bar" })))),
+        [nix.POS]: $pos[1],
+        foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[0], default: "bar" })))),
       })),
     };
   })(), formals$2);
   const darwinModule = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     return {
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       options: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        bar: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$4, default: "foo" })))),
+        [nix.POS]: $pos[4],
+        bar: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[3], default: "foo" })))),
       })),
     };
   })(), formals$3);
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(_class, "nixos")), nixosModule)),
       nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(_class, "darwin")), darwinModule)),

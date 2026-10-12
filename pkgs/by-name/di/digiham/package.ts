@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["platforms", 54, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["nativeInstallCheckInputs", 46, 3], ["versionCheckProgram", 47, 3], ["doInstallCheck", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, protobuf: false, icu: false, csdr: false, codecserver: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["platforms", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["nativeInstallCheckInputs", 46, 3], ["versionCheckProgram", 47, 3], ["doInstallCheck", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const codecserver = nix.arg($, "codecserver");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "digiham",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jketterl",
           repo: "digiham",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/dmr_decoder`),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jketterl/digiham",
         description: "Tools for decoding digital ham communication",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

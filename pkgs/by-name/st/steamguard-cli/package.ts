@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["changelog", 38, 5], ["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5], ["platforms", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["buildNoDefaultFeatures", 23, 3], ["buildFeatures", 24, 3], ["nativeBuildInputs", 29, 3], ["postInstall", 30, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { installShellFiles: false, lib: false, rustPlatform: false, fetchFromGitHub: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 38, 5], ["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["buildNoDefaultFeatures", 23, 3], ["buildFeatures", 24, 3], ["nativeBuildInputs", 29, 3], ["postInstall", 30, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "steamguard-cli",
       version: "0.18.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dyc3",
           repo: "steamguard-cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd steamguard \\\n  --bash <($out/bin/steamguard completion --shell bash) \\\n  --fish <($out/bin/steamguard completion --shell fish) \\\n  --zsh <($out/bin/steamguard completion --shell zsh)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/dyc3/steamguard-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Linux utility for generating 2FA codes for Steam and managing Steam trade confirmations",
         homepage: "https://github.com/dyc3/steamguard-cli",

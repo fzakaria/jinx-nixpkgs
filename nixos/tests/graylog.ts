@@ -2,57 +2,40 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/graylog.nix", [[["maintainers", 4, 8]], [["memorySize", 9, 22], ["diskSize", 10, 22]], [["enable", 12, 24]], [["enable", 13, 30], ["extraConf", 14, 30]], [["enable", 20, 9], ["passwordSecret", 21, 9], ["elasticsearchHosts", 22, 9], ["rootPasswordSha2", 25, 9]], [["mongodb", 12, 16], ["elasticsearch", 13, 16], ["graylog", 19, 16]], [["systemPackages", 28, 19]], [["path", 30, 32], ["preStart", 31, 32]], [["graylog", 30, 24]], [["services", 30, 15]], [["virtualisation", 9, 7], ["services", 12, 7], ["environment", 28, 7], ["systemd", 30, 7]], [["machine", 6, 9]], [["host", 42, 11], ["username", 43, 11], ["password", 44, 11]], [["bind_address", 55, 13], ["decompress_size_limit", 56, 13], ["number_worker_threads", 57, 13], ["override_source", 58, 13], ["port", 59, 13], ["recv_buffer_size", 60, 13]], [["title", 50, 11], ["global", 51, 11], ["type", 52, 11], ["node", 53, 11], ["configuration", 54, 11]], [["host", 67, 11], ["short_message", 68, 11], ["full_message", 69, 11], ["version", 70, 11], ["level", 71, 11], ["facility", 72, 11]], [["login", 40, 16], ["input", 48, 16], ["gelf_message", 65, 16]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 38, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/graylog.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/graylog.nix", [["memorySize", 9, 22], ["diskSize", 10, 22]]);
-const pos$3 = nix.positions(here + "/graylog.nix", [["enable", 12, 24]]);
-const pos$4 = nix.positions(here + "/graylog.nix", [["enable", 13, 30], ["extraConf", 14, 30]]);
-const pos$5 = nix.positions(here + "/graylog.nix", [["enable", 20, 9], ["passwordSecret", 21, 9], ["elasticsearchHosts", 22, 9], ["rootPasswordSha2", 25, 9]]);
-const pos$6 = nix.positions(here + "/graylog.nix", [["mongodb", 12, 16], ["elasticsearch", 13, 16], ["graylog", 19, 16]]);
-const pos$7 = nix.positions(here + "/graylog.nix", [["systemPackages", 28, 19]]);
-const pos$8 = nix.positions(here + "/graylog.nix", [["path", 30, 32], ["preStart", 31, 32]]);
-const pos$9 = nix.positions(here + "/graylog.nix", [["graylog", 30, 24]]);
-const pos$10 = nix.positions(here + "/graylog.nix", [["services", 30, 15]]);
-const pos$11 = nix.positions(here + "/graylog.nix", [["virtualisation", 9, 7], ["services", 12, 7], ["environment", 28, 7], ["systemd", 30, 7]]);
-const pos$12 = nix.positions(here + "/graylog.nix", [["machine", 6, 9]]);
-const pos$13 = nix.positions(here + "/graylog.nix", [["host", 42, 11], ["username", 43, 11], ["password", 44, 11]]);
-const pos$14 = nix.positions(here + "/graylog.nix", [["bind_address", 55, 13], ["decompress_size_limit", 56, 13], ["number_worker_threads", 57, 13], ["override_source", 58, 13], ["port", 59, 13], ["recv_buffer_size", 60, 13]]);
-const pos$15 = nix.positions(here + "/graylog.nix", [["title", 50, 11], ["global", 51, 11], ["type", 52, 11], ["node", 53, 11], ["configuration", 54, 11]]);
-const pos$16 = nix.positions(here + "/graylog.nix", [["host", 67, 11], ["short_message", 68, 11], ["full_message", 69, 11], ["version", 70, 11], ["level", 71, 11], ["facility", 72, 11]]);
-const pos$17 = nix.positions(here + "/graylog.nix", [["login", 40, 16], ["input", 48, 16], ["gelf_message", 65, 16]]);
-const pos$18 = nix.positions(here + "/graylog.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "graylog",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             memorySize: 4096n,
             diskSize: nix.thunk(() => nix.mul(1024n, 6n)),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            mongodb: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[5],
+            mongodb: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
             elasticsearch: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               extraConf: "network.publish_host: 127.0.0.1\nnetwork.bind_host: 127.0.0.1\n",
             })),
             graylog: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               passwordSecret: "YGhZ59wXMrYOojx5xdgEpBpDw2N6FbhM4lTtaJ1KPxxmKrUvSlDbtWArwAWMQ5LKx1ojHEVrQrBMVRdXbRyZLqffoUzHfssc",
               elasticsearchHosts: nix.thunk(() => ["http://localhost:9200"]),
@@ -60,15 +43,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               graylog: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "netcat"))]),
                 preStart: "until nc -z localhost 9200; do\n  sleep 2\ndone\n",
               })),
@@ -79,21 +62,21 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: nix.thunk(() => (() => {
       const payloads = nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         login: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "login.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               host: "127.0.0.1:9000",
               username: "admin",
               password: "nixos",
             })))))),
         input: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "input.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               title: "Demo",
               global: false,
               type: "org.graylog2.inputs.gelf.udp.GELFUDPInput",
               node: "@node@",
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 bind_address: "0.0.0.0",
                 decompress_size_limit: 8388608n,
                 number_worker_threads: 1n,
@@ -103,7 +86,7 @@ export default nix.lambda((args) => (() => {
               })),
             })))))),
         gelf_message: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "gelf.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               host: "example.org",
               short_message: "A short message",
               full_message: "A long message",

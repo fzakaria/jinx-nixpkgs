@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 7], ["repo", 22, 7], ["rev", 23, 7], ["sha256", 24, 7], ["name", 25, 7]], [["name", 18, 5], ["src", 20, 5], ["patches", 28, 5], ["buildPhase", 32, 5], ["installPhase", 42, 5]], [["pip", 59, 32]], [["setuptools", 61, 7], ["wheel", 62, 7]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["knownVulnerabilities", 85, 5], ["platforms", 88, 5], ["priority", 89, 5]], [["pname", 49, 11], ["version", 49, 17], ["format", 53, 3], ["src", 55, 3], ["nativeBuildInputs", 57, 3], ["preBuild", 66, 3], ["pipInstallFlags", 70, 3], ["catchConflicts", 73, 3], ["doCheck", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, python: false, "bootstrapped-pip": false, lib: false, pipInstallHook: false, setuptoolsBuildHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 7], ["repo", 22, 7], ["rev", 23, 7], ["sha256", 24, 7], ["name", 25, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 18, 5], ["src", 20, 5], ["patches", 28, 5], ["buildPhase", 32, 5], ["installPhase", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pip", 59, 32]]);
-const pos$4 = nix.positions(here + "/default.nix", [["setuptools", 61, 7], ["wheel", 62, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["knownVulnerabilities", 85, 5], ["platforms", 88, 5], ["priority", 89, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 49, 11], ["version", 49, 17], ["format", 53, 3], ["src", 55, 3], ["nativeBuildInputs", 57, 3], ["preBuild", 66, 3], ["pipInstallFlags", 70, 3], ["catchConflicts", 73, 3], ["doCheck", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const sdist = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const name = nix.thunk(() => nix.str`${pname}-${version}-sdist.tar.gz`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pypa",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,25 +39,25 @@ tar -czf dist/${name} -C dist/ --mtime="@$SOURCE_DATE_EPOCH" ${pname}-${version}
       const installPhase = nix.thunk(() => nix.str`echo "Moving sdist..."
 mv dist/${name} $out
 `);
-      return { [nix.POS]: pos$2, name, src, patches, buildPhase, installPhase };
+      return { [nix.POS]: $pos[1], name, src, patches, buildPhase, installPhase };
     })())));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       format: "other",
       src: sdist,
       nativeBuildInputs: nix.thunk(() => [
         bootstrapped_pip,
-        nix.thunk(() => nix.app(nix.sel(pipInstallHook, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, pip: null })))),
-        nix.thunk(() => nix.app(nix.sel(setuptoolsBuildHook, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, setuptools: null, wheel: null })))),
+        nix.thunk(() => nix.app(nix.sel(pipInstallHook, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], pip: null })))),
+        nix.thunk(() => nix.app(nix.sel(setuptoolsBuildHook, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], setuptools: null, wheel: null })))),
       ]),
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))), "export SETUPTOOLS_INSTALL_WINDOWS_SPECIFIC_FILES=0\n")),
       pipInstallFlags: nix.thunk(() => ["--ignore-installed"]),
       catchConflicts: false,
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Utilities to facilitate the installation of Python packages",
         homepage: "https://pypi.org/project/setuptools/",
         license: nix.thunk(() => (() => {

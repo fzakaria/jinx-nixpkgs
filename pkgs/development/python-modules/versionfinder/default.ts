@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["nativeCheckInputs", 32, 3], ["disabledTestPaths", 38, 3], ["disabledTests", 43, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, backoff: false, buildPythonPackage: false, fetchFromGitHub: false, gitpython: false, pip: false, pytestCheckHook: false, requests: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["nativeCheckInputs", 32, 3], ["disabledTestPaths", 38, 3], ["disabledTests", 43, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jantman",
           repo: "versionfinder",
           rev: version,
@@ -36,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["TestFindPipInfo", "test_find_pkg_info"]);
       const pythonImportsCheck = nix.thunk(() => ["versionfinder"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Find the version of another package, whether installed via pip, setuptools or git",
         homepage: "https://github.com/jantman/versionfinder",
         changelog: nix.thunk(() => nix.str`https://github.com/jantman/versionfinder/blob/${version}/CHANGES.rst`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

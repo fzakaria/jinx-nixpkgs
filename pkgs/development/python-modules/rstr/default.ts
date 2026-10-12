@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["pyproject", 19, 3], ["nativeBuildInputs", 21, 3], ["nativeCheckInputs", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, "setuptools-scm": false, unittestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["pyproject", 19, 3], ["nativeBuildInputs", 21, 3], ["nativeCheckInputs", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rstr";
       const version = "3.2.2";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-xKVk1N+0Ry2THRRcQ9HPGteMJFkhQud1W4hmF57qwBI=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools, setuptools_scm]);
       const nativeCheckInputs = nix.thunk(() => [unittestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library to generate random strings",
         homepage: "https://github.com/leapfrogonline/rstr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

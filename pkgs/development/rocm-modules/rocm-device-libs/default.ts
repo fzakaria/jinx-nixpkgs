@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["teams", 64, 5], ["platforms", 65, 5]], [["pname", 22, 3], ["version", 24, 23], ["src", 25, 3], ["sourceRoot", 26, 3], ["strictDeps", 27, 3], ["__structuredAttrs", 28, 3], ["postPatch", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["cmakeFlags", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, ninja: false, zlib: false, zstd: false, llvm: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["teams", 64, 5], ["platforms", 65, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 24, 23], ["src", 25, 3], ["sourceRoot", 26, 3], ["strictDeps", 27, 3], ["__structuredAttrs", 28, 3], ["postPatch", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["cmakeFlags", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(llvm, "llvm"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "rocm-device-libs",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.sel(llvm, "llvm", "monorepoSrc")),
@@ -40,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DLLVM_TARGETS_TO_BUILD=AMDGPU;${llvmNativeTarget}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Set of AMD-specific device-side language runtime libraries",
         homepage: "https://github.com/ROCm/ROCm-Device-Libs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ncsa")),

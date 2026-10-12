@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ftw.nix", [[["fun", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["platforms", 29, 5], ["maintainers", 30, 5]], [["pname", 9, 3], ["version", 10, 3], ["git-version", 11, 3], ["softwareName", 12, 3], ["gerbil-package", 13, 3], ["gerbilInputs", 15, 3], ["pre-src", 17, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, gerbilPackages: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ftw.nix", [["fun", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/ftw.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["platforms", 29, 5], ["maintainers", 30, 5]]);
-const pos$3 = nix.positions(here + "/ftw.nix", [["pname", 9, 3], ["version", 10, 3], ["git-version", 11, 3], ["softwareName", 12, 3], ["gerbil-package", 13, 3], ["gerbilInputs", 15, 3], ["pre-src", 17, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gerbilPackages = nix.arg($, "gerbilPackages");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     pname: "ftw",
     version: "unstable-2023-11-15",
     "git-version": "e5e2f56",
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "gerbil-utils"))];
     })()),
     "pre-src": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fun: fetchFromGitHub,
       owner: "drewc",
       repo: "ftw",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       sha256: "04164190vv1fzfk014mgqqmy5cml5amh63df31q2yc2kzvfajfc3",
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       description: "Simple web handlers for Gerbil Scheme",
       homepage: "https://github.com/drewc/ftw",
       license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

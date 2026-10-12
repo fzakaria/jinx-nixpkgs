@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["description", 43, 5], ["longDescription", 44, 5], ["license", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 22, 3], ["patches", 27, 3], ["dontBuild", 31, 3], ["installPhase", 33, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["longDescription", 44, 5], ["license", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 22, 3], ["patches", 27, 3], ["dontBuild", 31, 3], ["installPhase", 33, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wallabag",
       version: "2.6.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/wallabag/wallabag/releases/download/${nix.sel(finalAttrs, "version")}/wallabag-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-AEk0WuxZfazo4r4shcK453RCF/4V/VMDvKs4EXGe/w0=",
         })))),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir $out\ncp -R * $out/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Self-hostable application for saving web pages",
         longDescription: "wallabag is a self-hostable PHP application allowing you to not\nmiss any content anymore. Click, save and read it when you can.\nIt extracts content so that you can read it when you have time.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

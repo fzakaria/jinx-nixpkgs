@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 41, 5], ["homepage", 43, 5], ["license", 45, 5], ["platforms", 50, 5], ["maintainers", 51, 5]], [["name", 21, 3], ["paths", 23, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, aileron: false, vegur: false, f5_6: false, tenderness: false, medio: false, ferrum: false, seshat: false, penna: false, eunomia: false, route159: false, f1_8: false, nacelle: false, melete: false, fa_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 43, 5], ["license", 45, 5], ["platforms", 50, 5], ["maintainers", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 21, 3], ["paths", 23, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const melete = nix.arg($, "melete");
   const fa_1 = nix.arg($, "fa_1");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "dotcolon-fonts",
       paths: nix.thunk(() => [
         aileron,
@@ -44,7 +43,7 @@ export default nix.lambda((args) => (() => {
         fa_1,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Font Collection by Sora Sagano",
         homepage: "https://dotcolon.net/",
         license: nix.thunk(() => (() => {

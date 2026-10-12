@@ -2,18 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 43, 9], ["hash", 46, 30]], [["sparkPackage", 74, 11]], [["pysparkPython", 80, 13]], [["tests", 73, 9], ["withPythonPackages", 77, 9]], [["description", 85, 9], ["homepage", 86, 9], ["sourceProvenance", 87, 9], ["license", 88, 9], ["platforms", 89, 9], ["maintainers", 90, 9]], [["pname", 26, 9], ["version", 27, 9], ["hash", 28, 9], ["hadoop", 29, 9], ["R", 30, 9], ["pysparkPython", 31, 9], ["jdk", 33, 7], ["src", 42, 7], ["nativeBuildInputs", 48, 7], ["buildInputs", 49, 7], ["installPhase", 57, 7], ["passthru", 72, 7], ["meta", 84, 7]], [["pname", 109, 5], ["version", 110, 5], ["hash", 111, 5]], [["pname", 114, 5], ["version", 115, 5], ["hash", 116, 5]], [["pname", 119, 5], ["version", 120, 5], ["hash", 121, 5]], [["spark_4_0", 108, 3], ["spark_3_5", 113, 3], ["spark_3_4", 118, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, makeWrapper: false, python3: false, hadoop: false, RSupport: true, R: false, nixosTests: false, jdk21_headless: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, hash: false, extraMeta: true, pysparkPython: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 43, 9], ["hash", 46, 30]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sparkPackage", 74, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pysparkPython", 80, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 73, 9], ["withPythonPackages", 77, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 85, 9], ["homepage", 86, 9], ["sourceProvenance", 87, 9], ["license", 88, 9], ["platforms", 89, 9], ["maintainers", 90, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 26, 9], ["version", 27, 9], ["hash", 28, 9], ["hadoop", 29, 9], ["R", 30, 9], ["pysparkPython", 31, 9], ["jdk", 33, 7], ["src", 42, 7], ["nativeBuildInputs", 48, 7], ["buildInputs", 49, 7], ["installPhase", 57, 7], ["passthru", 72, 7], ["meta", 84, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 109, 5], ["version", 110, 5], ["hash", 111, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 114, 5], ["version", 115, 5], ["hash", 116, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 119, 5], ["version", 120, 5], ["hash", 121, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["spark_4_0", 108, 3], ["spark_3_5", 113, 3], ["spark_3_4", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +26,7 @@ export default nix.lambda((args) => (() => {
     const extraMeta = nix.argOr($_1, "extraMeta", () => ({}));
     const pysparkPython = nix.argOr($_1, "pysparkPython", () => nix.force(python3));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: pname,
         version: version,
         hash: hash,
@@ -44,7 +35,7 @@ export default nix.lambda((args) => (() => {
         pysparkPython: pysparkPython,
         jdk: nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "4")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "hadoop", "jdk", "version")), "21")))) ? nix.force(jdk21_headless) : nix.sel(finalAttrs, "hadoop", "jdk"))),
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`mirror://apache/spark/${pname}-${version}/${pname}-${version}-bin-without-hadoop.tgz`),
             hash: nix.thunk(() => nix.attr(finalAttrs, "hash")),
           })))),
@@ -65,18 +56,18 @@ ln -s ${nix.sel(finalAttrs, "hadoop")} "$out/opt/hadoop"
 ${nix.app(nix.sel(lib, "optionalString"), RSupport, nix.thunk(() => nix.str`ln -s ${nix.sel(finalAttrs, "R")} "$out/opt/R"`))}
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           tests: nix.thunk(() => nix.app(nix.sel(nixosTests, "spark", "default", "passthru", "override"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               sparkPackage: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           withPythonPackages: (f) => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (old) => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pysparkPython: nix.thunk(() => nix.app(nix.sel(old, "pysparkPython", "withPackages"), f)),
             })),
         })),
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           description: "Apache Spark is a fast and general engine for large-scale data processing",
           homepage: "https://spark.apache.org/",
           sourceProvenance: nix.thunk(() => (() => {
@@ -97,21 +88,21 @@ ${nix.app(nix.sel(lib, "optionalString"), RSupport, nix.thunk(() => nix.str`ln -
       }));
   })(), formals$2);
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     spark_4_0: nix.thunk(() => nix.app(spark, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "spark",
         version: "4.0.1",
         hash: "sha256-AW+EQ83b4orJO3+dUPPDlTRAH/D94U7KQBKvKjguChY=",
       })))),
     spark_3_5: nix.thunk(() => nix.app(spark, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: "spark",
         version: "3.5.5",
         hash: "sha256-vzcWgIfHPhN3nyrxdk3f0p4fW3MpQ+FuEPnWPw0xNPg=",
       })))),
     spark_3_4: nix.thunk(() => nix.app(spark, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: "spark",
         version: "3.4.4",
         hash: "sha256-GItHmthLhG7y0XSF3QINCyE7wYFb0+lPZmYLUuMa4Ww=",

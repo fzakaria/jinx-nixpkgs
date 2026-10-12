@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nestopia.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5]], [["core", 7, 3], ["version", 8, 3], ["src", 10, 3], ["makefile", 17, 3], ["preBuild", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, mkLibretroCore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nestopia.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/nestopia.nix", [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5]]);
-const pos$3 = nix.positions(here + "/nestopia.nix", [["core", 7, 3], ["version", 8, 3], ["src", 10, 3], ["makefile", 17, 3], ["preBuild", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       core: "nestopia",
       version: "0-unstable-2026-09-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "nestopia",
           rev: "8f00f500912a847062de432e38765c7285483e62",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       makefile: "Makefile",
       preBuild: "cd libretro",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Nestopia libretro port",
         homepage: "https://github.com/libretro/nestopia",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

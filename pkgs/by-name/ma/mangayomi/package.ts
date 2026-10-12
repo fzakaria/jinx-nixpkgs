@@ -2,22 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["changelog", 27, 5], ["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5]], [["libraryPath", 42, 14]], [["pname", 36, 13], ["version", 36, 19], ["src", 36, 27], ["sourceRoot", 38, 5], ["cargoHash", 40, 5], ["passthru", 42, 5], ["meta", 44, 5]], [["pname", 56, 9], ["version", 57, 17], ["src", 57, 25], ["passthru", 58, 23], ["postPatch", 60, 9], ["installPhase", 72, 9]], [["libraryPath", 91, 20]], [["pname", 84, 11], ["version", 85, 19], ["src", 85, 27], ["buildAndTestSubdir", 87, 11], ["cargoHash", 89, 11], ["passthru", 91, 11]], [["pname", 95, 9], ["version", 96, 17], ["src", 96, 25], ["passthru", 97, 23], ["postPatch", 99, 9], ["installPhase", 111, 9]], [["rust_lib_mangayomi", 53, 5], ["flutter_discord_rpc_fork", 80, 5]], [["name", 133, 7], ["exec", 134, 7], ["icon", 135, 7], ["genericName", 136, 7], ["desktopName", 137, 7], ["categories", 138, 7], ["keywords", 141, 7]], [["rustDep", 165, 13], ["updateScript", 166, 5]], [["mainProgram", 170, 5]], [["pname", 48, 11], ["version", 48, 17], ["src", 48, 25], ["pubspecLock", 50, 3], ["customSourceBuilders", 52, 3], ["gitHashes", 121, 3], ["nativeBuildInputs", 123, 3], ["buildInputs", 125, 3], ["desktopItems", 131, 3], ["postInstall", 149, 3], ["postPatch", 155, 3], ["extraWrapProgramArgs", 160, 3], ["passthru", 164, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, flutter347: false, rustPlatform: false, fetchFromGitHub: false, copyDesktopItems: false, "alsa-lib": false, "mpv-unwrapped": false, webkitgtk_4_1: false, makeDesktopItem: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 27, 5], ["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["libraryPath", 42, 14]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 36, 13], ["version", 36, 19], ["src", 36, 27], ["sourceRoot", 38, 5], ["cargoHash", 40, 5], ["passthru", 42, 5], ["meta", 44, 5]]);
 const formals$2 = { args: { version: false, src: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 56, 9], ["version", 57, 17], ["src", 57, 25], ["passthru", 58, 23], ["postPatch", 60, 9], ["installPhase", 72, 9]]);
 const formals$3 = { args: { version: false, src: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/package.nix", [["libraryPath", 91, 20]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 84, 11], ["version", 85, 19], ["src", 85, 27], ["buildAndTestSubdir", 87, 11], ["cargoHash", 89, 11], ["passthru", 91, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 95, 9], ["version", 96, 17], ["src", 96, 25], ["passthru", 97, 23], ["postPatch", 99, 9], ["installPhase", 111, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["rust_lib_mangayomi", 53, 5], ["flutter_discord_rpc_fork", 80, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 133, 7], ["exec", 134, 7], ["icon", 135, 7], ["genericName", 136, 7], ["desktopName", 137, 7], ["categories", 138, 7], ["keywords", 141, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["rustDep", 165, 13], ["updateScript", 166, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["mainProgram", 170, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 48, 11], ["version", 48, 17], ["src", 48, 25], ["pubspecLock", 50, 3], ["customSourceBuilders", 52, 3], ["gitHashes", 121, 3], ["nativeBuildInputs", 123, 3], ["buildInputs", 125, 3], ["desktopItems", 131, 3], ["postInstall", 149, 3], ["postPatch", 155, 3], ["extraWrapProgramArgs", 160, 3], ["passthru", 164, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const pname = "mangayomi";
   const version = "0.9.7";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "kodjodevf",
       repo: "mangayomi",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-5ZjyG3NRati8IWGI2QpV0Ywu9sAI4vrFGRJorH5MbQk=",
     }))));
   const metaCommon = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     changelog: nix.thunk(() => nix.str`https://github.com/kodjodevf/mangayomi/releases/tag/v${version}`),
     description: "Reading manga, novels, and watching animes",
     homepage: "https://github.com/kodjodevf/mangayomi",
@@ -54,29 +42,29 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
   }));
   const rustDep = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/rust`),
       cargoHash: "sha256-q/jlamNxHrBe4z+MIpNr4T4HJgPsJMh0x18bXr4HKtU=",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, libraryPath: "lib/librust_lib_mangayomi.so" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], libraryPath: "lib/librust_lib_mangayomi.so" })),
       meta: metaCommon,
     }))));
   return nix.app(nix.sel(flutter347, "buildFlutterApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: pname,
       version: version,
       src: src,
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       customSourceBuilders: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         rust_lib_mangayomi: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const version_1 = nix.arg($_1, "version");
           const src_1 = nix.arg($_1, "src");
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               pname: "rust_lib_mangayomi",
               version: version_1,
               src: src_1,
@@ -97,16 +85,16 @@ endfunction()
           const version_1 = nix.arg($_1, "version");
           const src_1 = nix.arg($_1, "src");
           const flutter_discord_rpc_fork_rs = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               pname: "flutter_discord_rpc_fork-rs",
               version: version_1,
               src: src_1,
               buildAndTestSubdir: "rust",
               cargoHash: "sha256-mS8XJNw6qn6AVdUtZmSe2xfuraHz8m8t7tQhnSlof2M=",
-              passthru: nix.thunk(() => ({ [nix.POS]: pos$6, libraryPath: "lib/libflutter_discord_rpc_fork.so" })),
+              passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], libraryPath: "lib/libflutter_discord_rpc_fork.so" })),
             }))));
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               pname: "flutter_discord_rpc_fork",
               version: version_1,
               src: src_1,
@@ -128,7 +116,7 @@ endfunction()
       buildInputs: nix.thunk(() => [alsa_lib, mpv_unwrapped, webkitgtk_4_1]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             name: "mangayomi",
             exec: "mangayomi",
             icon: "mangayomi",
@@ -142,11 +130,11 @@ endfunction()
       postPatch: "substituteInPlace lib/ffi/image_decoder.cpp \\\n  --replace-fail 'fread(magic, 1, 2, f);' '(void)fread(magic, 1, 2, f);'\n",
       extraWrapProgramArgs: "--prefix LD_LIBRARY_PATH : $out/app/mangayomi/lib\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         rustDep: rustDep,
         updateScript: nix.path(here, "./update.sh"),
       })),
-      meta: nix.thunk(() => nix.update(metaCommon, { [nix.POS]: pos$12, mainProgram: "mangayomi" })),
+      meta: nix.thunk(() => nix.update(metaCommon, { [nix.POS]: $pos[11], mainProgram: "mangayomi" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

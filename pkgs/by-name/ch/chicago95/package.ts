@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["platforms", 54, 5], ["maintainers", 55, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["buildPhase", 21, 3], ["installPhase", 27, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["platforms", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["buildPhase", 21, 3], ["installPhase", 27, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "chicago95",
       version: "3.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grassmunk",
           repo: "Chicago95",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nfind . -xtype l -delete\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/themes\nmv Theme/Chicago95 $out/share/themes\n\nmkdir -p $out/share/icons\nmv Icons/Chicago95 $out/share/icons\ngtk-update-icon-cache $out/share/icons/Chicago95\n\nmkdir -p $out/share/sddm/themes\ntar -xzf KDE/SDDM/Chicago95.tar.gz -C \"$out/share/sddm/themes/\"\n\nmkdir -p $out/share/fonts\ncp Fonts/vga_font/* $out/share/fonts\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Windows 95 theme for GTK",
         homepage: "https://github.com/grassmunk/Chicago95",
         changelog: nix.thunk(() => nix.str`https://github.com/grassmunk/Chicago95/releases/tag/v${nix.sel(finalAttrs, "version")}`),

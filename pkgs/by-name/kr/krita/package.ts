@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["binaryPlugins", 34, 13], ["unwrapped", 35, 5]], [["pname", 12, 3], ["version", 14, 5], ["buildInputs", 15, 5], ["meta", 16, 5], ["nativeBuildInputs", 19, 3], ["paths", 23, 3], ["postBuild", 25, 3], ["passthru", 33, 3]]]);
 const formals$1 = { args: { symlinkJoin: false, "krita-plugin-gmic": false, binaryPlugins: true, "krita-unwrapped": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["binaryPlugins", 34, 13], ["unwrapped", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 14, 5], ["buildInputs", 15, 5], ["meta", 16, 5], ["nativeBuildInputs", 19, 3], ["paths", 23, 3], ["postBuild", 25, 3], ["passthru", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const krita_unwrapped = nix.arg($, "krita-unwrapped");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "krita",
       version: nix.thunk(() => nix.attr(krita_unwrapped, "version")),
       buildInputs: nix.thunk(() => nix.attr(krita_unwrapped, "buildInputs")),
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(krita_unwrapped, "nativeBuildInputs"), [wrapGAppsHook3])),
       paths: nix.thunk(() => nix.concat([krita_unwrapped], binaryPlugins)),
       postBuild: "gappsWrapperArgsHook\nwrapQtApp \"$out/bin/krita\" \\\n  \"${gappsWrapperArgs[@]}\" \\\n  --prefix PYTHONPATH : \"$PYTHONPATH\" \\\n  --set KRITA_PLUGIN_PATH \"$out/lib/kritaplugins\"\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, binaryPlugins: binaryPlugins, unwrapped: krita_unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], binaryPlugins: binaryPlugins, unwrapped: krita_unwrapped })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

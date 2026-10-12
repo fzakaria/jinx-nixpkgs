@@ -2,37 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/turborepo-remote-cache.nix", [[["turborepo-remote-cache", 5, 5]], [["PORT", 21, 9], ["TURBO_TEAM", 22, 9], ["TURBO_TOKEN", 23, 9]], [["enable", 18, 7], ["environment", 20, 7]], [["turborepo-remote-cache", 17, 14]], [["services", 17, 5]], [["machine", 16, 9]], [["maintainers", 64, 8]], [["name", 14, 3], ["nodes", 16, 3], ["testScript", 28, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/turborepo-remote-cache.nix", [["turborepo-remote-cache", 5, 5]]);
-const pos$2 = nix.positions(here + "/turborepo-remote-cache.nix", [["PORT", 21, 9], ["TURBO_TEAM", 22, 9], ["TURBO_TOKEN", 23, 9]]);
-const pos$3 = nix.positions(here + "/turborepo-remote-cache.nix", [["enable", 18, 7], ["environment", 20, 7]]);
-const pos$4 = nix.positions(here + "/turborepo-remote-cache.nix", [["turborepo-remote-cache", 17, 14]]);
-const pos$5 = nix.positions(here + "/turborepo-remote-cache.nix", [["services", 17, 5]]);
-const pos$6 = nix.positions(here + "/turborepo-remote-cache.nix", [["machine", 16, 9]]);
-const pos$7 = nix.positions(here + "/turborepo-remote-cache.nix", [["maintainers", 64, 8]]);
-const pos$8 = nix.positions(here + "/turborepo-remote-cache.nix", [["name", 14, 3], ["nodes", 16, 3], ["testScript", 28, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const ports = nix.thunk(() => ({ [nix.POS]: pos$1, "turborepo-remote-cache": 8080n }));
+  const ports = nix.thunk(() => ({ [nix.POS]: $pos[0], "turborepo-remote-cache": 8080n }));
   const token = "myrandomtoken";
   const team = "nixos-team";
   const artifactid = "82286e93a6f84e18a8fe4770c5a88b24653e7f59";
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "turborepo-remote-cache",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "turborepo-remote-cache": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               PORT: nix.thunk(() => nix.sel(ports, "turborepo-remote-cache")),
               TURBO_TEAM: team,
               TURBO_TOKEN: token,
@@ -76,7 +69,7 @@ if out != "myartifact":
   raise Exception(f"reponse in not 'myartifact': {out}")
 `),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ibizaman"))]),
     })),
   };

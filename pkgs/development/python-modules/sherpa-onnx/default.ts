@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 29, 5]], [["pname", 9, 3], ["version", 10, 25], ["pyproject", 11, 3], ["src", 13, 3], ["dependencies", 15, 3], ["installPhase", 17, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, "sherpa-onnx": false, numpy: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 25], ["pyproject", 11, 3], ["src", 13, 3], ["dependencies", 15, 3], ["installPhase", 17, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "sherpa-onnx",
       version: nix.thunk(() => nix.attr(sherpa_onnx, "version")),
       pyproject: false,
@@ -28,7 +27,7 @@ runHook postInstall
 `),
       pythonImportsCheck: nix.thunk(() => ["sherpa_onnx"]),
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(sherpa_onnx, "meta")), nix.thunk(() => ["mainProgram"])), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python bindings for sherpa-onnx speech recognition",
       })),
     })));

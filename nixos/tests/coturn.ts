@@ -2,42 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/coturn.nix", [[["enable", 6, 23]], [["coturn", 6, 16]], [["services", 6, 7]], [["postBootCommands", 9, 12]], [["enable", 13, 9], ["static-auth-secret-file", 14, 9]], [["coturn", 12, 16]], [["boot", 9, 7], ["services", 12, 7]], [["default", 5, 5], ["secretsfile", 8, 5]], [["name", 3, 3], ["nodes", 4, 3], ["testScript", 19, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/coturn.nix", [["enable", 6, 23]]);
-const pos$2 = nix.positions(here + "/coturn.nix", [["coturn", 6, 16]]);
-const pos$3 = nix.positions(here + "/coturn.nix", [["services", 6, 7]]);
-const pos$4 = nix.positions(here + "/coturn.nix", [["postBootCommands", 9, 12]]);
-const pos$5 = nix.positions(here + "/coturn.nix", [["enable", 13, 9], ["static-auth-secret-file", 14, 9]]);
-const pos$6 = nix.positions(here + "/coturn.nix", [["coturn", 12, 16]]);
-const pos$7 = nix.positions(here + "/coturn.nix", [["boot", 9, 7], ["services", 12, 7]]);
-const pos$8 = nix.positions(here + "/coturn.nix", [["default", 5, 5], ["secretsfile", 8, 5]]);
-const pos$9 = nix.positions(here + "/coturn.nix", [["name", 3, 3], ["nodes", 4, 3], ["testScript", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "coturn",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       default: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          coturn: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+          [nix.POS]: $pos[1],
+          coturn: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         })),
       })),
       secretsfile: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           postBootCommands: "echo \"some-very-secret-string\" > /run/coturn-secret\n",
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           coturn: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
             "static-auth-secret-file": "/run/coturn-secret",
           })),

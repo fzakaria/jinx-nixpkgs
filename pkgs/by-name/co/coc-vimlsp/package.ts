@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["src", 24, 26], ["hash", 25, 5]], [["NODE_OPTIONS", 35, 7]], [["extraArgs", 37, 47]], [["updateScript", 37, 12]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["yarnOfflineCache", 23, 3], ["nativeBuildInputs", 28, 3], ["env", 35, 3], ["passthru", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, fetchYarnDeps: false, yarnConfigHook: false, yarnBuildHook: false, yarnInstallHook: false, nodejs: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 24, 26], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NODE_OPTIONS", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 37, 47]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 37, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["yarnOfflineCache", 23, 3], ["nativeBuildInputs", 28, 3], ["env", 35, 3], ["passthru", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,29 +17,29 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "coc-vimlsp",
       version: "0.8.0-unstable-2023-06-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "iamcco",
           repo: "coc-vimlsp",
           rev: "9e88f053201b8b224a6849ce8f891f526e75a28b",
           hash: "sha256-U5nJRn0UZsGfyDR4gZN2E+TSWk0A7RXJqMRQMK3QV00=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-K5hC3YrzSxULt0SiX7r+b8uNWdnvqGe+/GBvZiFzW0c=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, yarnInstallHook, nodejs]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NODE_OPTIONS: "--openssl-legacy-provider" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NODE_OPTIONS: "--openssl-legacy-provider" })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "vim-language-server extension for coc.nvim",
         homepage: "https://github.com/iamcco/coc-vimlsp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

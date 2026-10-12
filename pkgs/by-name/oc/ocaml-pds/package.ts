@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["buildFlags", 41, 3], ["preInstall", 43, 3], ["makeFlags", 47, 3], ["doInstallCheck", 51, 3], ["installCheckPhase", 52, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchhg: false, ocaml: false, "ocaml-crunch": false, ocamlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["buildFlags", 41, 3], ["preInstall", 43, 3], ["makeFlags", 47, 3], ["doInstallCheck", 51, 3], ["installCheckPhase", 52, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ocaml_crunch = nix.arg($, "ocaml-crunch");
   const ocamlPackages = nix.arg($, "ocamlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ocaml-pds",
       version: "6.55",
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://hg.sr.ht/~mmatalka/pds",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-a6sMFzAwqLsLOq75JTyFxZiXuQvmOZG0bPzPehzLcws=",
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n$out/bin/pds --help\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "A tool to build Makefiles for OCaml projects",
         longDescription: "pds is a build system for Ocaml that is meant to make it easy to build a project that follows a particular layout by generating a makefile for the project. The input to pds is a config file, pds.conf, and a directory structure, which is always the current working directory, and the output is the build description.\n",
         homepage: "https://hg.sr.ht/~mmatalka/pds",

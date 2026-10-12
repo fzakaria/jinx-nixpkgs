@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 80, 5], ["longDescription", 81, 5], ["homepage", 87, 5], ["license", 98, 5], ["maintainers", 104, 5]], [["pname", 23, 3], ["version", 24, 11], ["srcs", 26, 3], ["sourceRoot", 31, 3], ["postUnpack", 33, 3], ["strictDeps", 38, 36], ["depsBuildBuild", 38, 47], ["nativeBuildInputs", 38, 62], ["postPatch", 40, 3], ["makeFlags", 65, 3], ["enableParallelBuilding", 73, 3], ["installPhase", 75, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, "noto-fonts-color-emoji": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 80, 5], ["longDescription", 81, 5], ["homepage", 87, 5], ["license", 98, 5], ["maintainers", 104, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 11], ["srcs", 26, 3], ["sourceRoot", 31, 3], ["postUnpack", 33, 3], ["strictDeps", 38, 36], ["depsBuildBuild", 38, 47], ["nativeBuildInputs", 38, 62], ["postPatch", 40, 3], ["makeFlags", 65, 3], ["enableParallelBuilding", 73, 3], ["installPhase", 75, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const noto_fonts_color_emoji = nix.arg($, "noto-fonts-color-emoji");
   const version = "17.0.2";
   const twemojiSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "twemoji-src",
       owner: "jdecked",
       repo: "twemoji",
@@ -64,7 +62,7 @@ popd
       const enableParallelBuilding = true;
       const installPhase = "install -Dm644 TwitterColorEmoji.ttf $out/share/fonts/truetype/TwitterColorEmoji.ttf\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Color emoji font with a flat visual style, designed and used by Twitter",
         longDescription: "A bitmap color emoji font built from Twitter's Twemoji emoji set\nwith support for ZWJ, skin tone diversity and country flags.\n\nThis font uses Google’s CBDT format making it work on Android and Linux graphical stack.\n",
         homepage: "https://github.com/jdecked/twemoji",
@@ -83,7 +81,7 @@ popd
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version: version_1,
         srcs,

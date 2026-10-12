@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["pname", 46, 7], ["version", 47, 7], ["src", 48, 7], ["patches", 49, 7], ["pnpm", 51, 5], ["fetcherVersion", 52, 5], ["hash", 53, 5]], [["updateScript", 82, 12]], [["description", 85, 5], ["mainProgram", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["patches", 40, 3], ["pnpmDeps", 44, 3], ["cargoHash", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 67, 3], ["cargoRoot", 79, 3], ["buildAndTestSubdir", 80, 3], ["passthru", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "cargo-tauri": false, nodejs: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, "pkg-config": false, "glib-networking": false, openssl: false, webkitgtk_4_1: false, wrapGAppsHook3: false, libsoup_3: false, "libayatana-appindicator": false, gtk3: false, gst_all_1: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 46, 7], ["version", 47, 7], ["src", 48, 7], ["patches", 49, 7], ["pnpm", 51, 5], ["fetcherVersion", 52, 5], ["hash", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 82, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 85, 5], ["mainProgram", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["patches", 40, 3], ["pnpmDeps", 44, 3], ["cargoHash", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 67, 3], ["cargoRoot", 79, 3], ["buildAndTestSubdir", 80, 3], ["passthru", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "quantframe",
       version: "1.6.28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Kenya-DK",
           repo: "quantframe-react",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +44,7 @@ substituteInPlace src-tauri/tauri.conf.json \\
 `),
       patches: nix.thunk(() => [nix.path(here, "./0001-disable-telemetry.patch")]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -80,11 +76,11 @@ substituteInPlace src-tauri/tauri.conf.json \\
       cargoRoot: "src-tauri",
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Warframe Market listings and transactions manager",
         mainProgram: "Quantframe",
         homepage: "https://quantframe.app/",

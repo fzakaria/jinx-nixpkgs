@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5], ["mainProgram", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["outputs", 13, 3], ["src", 19, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["enableParallelBuilding", 31, 3], ["doCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, lzip: false, lzlib: false, texinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5], ["mainProgram", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["outputs", 13, 3], ["src", 19, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["enableParallelBuilding", 31, 3], ["doCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const lzlib = nix.arg($, "lzlib");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "plzip",
       version: "1.13",
       outputs: nix.thunk(() => ["out", "man", "info"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/lzip/plzip/plzip-${nix.sel(finalAttrs, "version")}.tar.lz`),
           hash: "sha256-f+AUG3Lq8ITYKq07FLOk2W3/C97698OJ91XYlIs2N8g=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.nongnu.org/lzip/plzip.html",
         description: "Massively parallel lossless data compressor based on the lzlib compression library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

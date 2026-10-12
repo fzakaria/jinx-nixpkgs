@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["postFetch", 26, 5], ["hash", 27, 5]], [["url", 32, 7], ["hash", 33, 7]], [["homepage", 61, 5], ["license", 62, 5], ["description", 74, 5], ["platforms", 75, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 30, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 42, 3], ["propagatedBuildInputs", 48, 3], ["cmakeFlags", 50, 3], ["doCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, cmake: false, ninja: false, gfortran: false, blas: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["postFetch", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["license", 62, 5], ["description", 74, 5], ["platforms", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 30, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 42, 3], ["propagatedBuildInputs", 48, 3], ["cmakeFlags", 50, 3], ["doCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gfortran = nix.arg($, "gfortran");
   const blas = nix.arg($, "blas");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "superlu",
       version: "7.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xiaoyeli",
           repo: "superlu",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/science-team/superlu/-/raw/fae141179928d1cc5a8e381503e8b1264d297c3d/debian/patches/mc64ad-stub.patch",
             hash: "sha256-QUaNUDaRghTqr6jk1TE6a7CdXABqu7xAkYZDhL/lZBQ=",
           })))),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://portal.nersc.gov/project/sparse/superlu/",
         license: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "licenses", "bsd3Lbnl")),

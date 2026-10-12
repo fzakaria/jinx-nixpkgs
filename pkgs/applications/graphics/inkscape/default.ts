@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 86, 5], ["sha256", 87, 5]], [["python3", 100, 7]], [["ghostscript", 104, 15]], [["name", 108, 7], ["url", 109, 7], ["hash", 110, 7]], [["ps2pdf-plugin", 202, 7], ["inkex", 203, 30]], [["nativeBuildInputs", 209, 11], ["src", 213, 32]], [["tests", 201, 5], ["pythonDependencies", 206, 5]], [["description", 222, 5], ["homepage", 223, 5], ["license", 224, 5], ["maintainers", 225, 5], ["platforms", 230, 5], ["mainProgram", 231, 5], ["longDescription", 232, 5]], [["pname", 78, 3], ["version", 79, 3], ["outputs", 80, 3], ["src", 85, 3], ["strictDeps", 94, 3], ["patches", 96, 3], ["postPatch", 118, 3], ["nativeBuildInputs", 135, 3], ["buildInputs", 153, 3], ["postInstall", 194, 3], ["passthru", 200, 3], ["meta", 221, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, boehmgc: false, boost: false, cairo: false, callPackage: false, cmake: false, desktopToDarwinBundle: false, fetchpatch: false, fetchurl: false, fd: false, gettext: false, ghostscript: false, glib: false, glibmm_2_4: false, "gobject-introspection": false, gsl: false, gspell: false, "gtk-mac-integration": false, gtkmm3: false, gtksourceview4: false, "gdk-pixbuf": false, graphicsmagick: false, lcms: false, lib2geom: false, libcdr: false, libexif: false, libpng: false, librevenge: false, librsvg: false, libsigcxx_2_0: false, libvisio: false, libwpg: false, libxft: false, libxml2: false, libxslt: false, readline: false, ninja: false, perlPackages: false, "pkg-config": false, poppler: false, popt: false, potrace: false, python3: false, runCommand: false, replaceVars: false, wrapGAppsHook3: false, libepoxy: false, zlib: false, yq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 86, 5], ["sha256", 87, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["python3", 100, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["ghostscript", 104, 15]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 108, 7], ["url", 109, 7], ["hash", 110, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["ps2pdf-plugin", 202, 7], ["inkex", 203, 30]]);
-const pos$6 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 209, 11], ["src", 213, 32]]);
-const pos$7 = nix.positions(here + "/default.nix", [["tests", 201, 5], ["pythonDependencies", 206, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 222, 5], ["homepage", 223, 5], ["license", 224, 5], ["maintainers", 225, 5], ["platforms", 230, 5], ["mainProgram", 231, 5], ["longDescription", 232, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 78, 3], ["version", 79, 3], ["outputs", 80, 3], ["src", 85, 3], ["strictDeps", 94, 3], ["patches", 96, 3], ["postPatch", 118, 3], ["nativeBuildInputs", 135, 3], ["buildInputs", 153, 3], ["postInstall", 194, 3], ["passthru", 200, 3], ["meta", 221, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -88,24 +80,24 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "inkscape",
       version: "1.4.4",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://inkscape.org/release/inkscape-${nix.sel(finalAttrs, "version")}/source/archive/xz/dl/inkscape-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-u85XU6Hgi4caXPFsZl6wYHAKqrmmo3ncY/TE2bO4hW4=",
         })))),
       strictDeps: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-python-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             python3: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), python3Env)),
           })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-ps2pdf-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, ghostscript: ghostscript })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-ps2pdf-path.patch"), nix.thunk(() => ({ [nix.POS]: $pos[2], ghostscript: ghostscript })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "fix-build-poppler-26.05.0",
             url: "https://gitlab.com/inkscape/inkscape/-/commit/98828255aa0c1212329236b3ff4ac7f41efb4a67.patch",
             hash: "sha256-ujUl0SxZyb/TyJRmq1ETNn5W8lDDNn3JqHQQQPU5klA=",
@@ -178,23 +170,23 @@ shopt -u globstar
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [gspell])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cairo, gtk_mac_integration]))))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "for f in $out/lib/inkscape/*.dylib; do\n  ln -s $f $out/lib/$(basename $f)\ndone\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "ps2pdf-plugin": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-ps2pdf-plugin.nix"), nix.thunk(() => ({})))),
           inkex: nix.thunk(() => nix.attr(from, "inkex")),
         };
         })()),
         pythonDependencies: nix.thunk(() => nix.app(runCommand, "python-dependency-list", nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             nativeBuildInputs: nix.thunk(() => [fd, yq]),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           })), "unpackPhase\ntomlq --slurp 'map(.tool.poetry.dependencies | to_entries | map(.key)) | flatten | map(ascii_downcase) | unique' $(fd pyproject.toml) > \"$out\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Vector graphics editor",
         homepage: "https://www.inkscape.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

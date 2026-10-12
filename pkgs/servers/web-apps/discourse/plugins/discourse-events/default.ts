@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["gemdir", 9, 18]], [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]], [["homepage", 17, 5], ["maintainers", 18, 5], ["license", 19, 5], ["description", 20, 5]], [["name", 8, 3], ["bundlerEnvArgs", 9, 3], ["src", 10, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, mkDiscoursePlugin: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["gemdir", 9, 18]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 17, 5], ["maintainers", 18, 5], ["license", 19, 5], ["description", 20, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 8, 3], ["bundlerEnvArgs", 9, 3], ["src", 10, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const mkDiscoursePlugin = nix.arg($, "mkDiscoursePlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(mkDiscoursePlugin, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "discourse-events",
-      bundlerEnvArgs: nix.thunk(() => ({ [nix.POS]: pos$1, gemdir: nix.path(here, "./.") })),
+      bundlerEnvArgs: nix.thunk(() => ({ [nix.POS]: $pos[0], gemdir: nix.path(here, "./.") })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "angusmcleod",
           repo: "discourse-events",
           rev: "5e22962b7346dbcdb579e7c3abb13c5c965c3c42",
           sha256: "sha256-IZ7xJaPb44CZOtg4xA4crCe4//oZO3pjkgvXOM1lihE=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/angusmcleod/discourse-events",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "leona"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

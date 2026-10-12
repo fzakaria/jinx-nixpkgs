@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["nativeCheckInputs", 25, 3], ["pythonImportsCheck", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, flake8: false, pycodestyle: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["nativeCheckInputs", 25, 3], ["pythonImportsCheck", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-UrACVglB422b+Ab8olI9x/uFYKKV1fGm4VrC3tenOEA=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["flake8_debugger"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ipdb/pdb statement checker plugin for flake8",
         homepage: "https://github.com/jbkahn/flake8-debugger",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

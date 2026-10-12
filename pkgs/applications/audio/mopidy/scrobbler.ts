@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/scrobbler.nix", [[["version", 14, 26], ["pname", 15, 5], ["sha256", 16, 5]], [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 19, 3], ["dependencies", 23, 3], ["doCheck", 29, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, pythonPackages: false, fetchPypi: false, mopidy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/scrobbler.nix", [["version", 14, 26], ["pname", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/scrobbler.nix", [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/scrobbler.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 19, 3], ["dependencies", 23, 3], ["doCheck", 29, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const mopidy = nix.arg($, "mopidy");
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mopidy-scrobbler",
       version: "2.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "Mopidy-Scrobbler",
           sha256: "11vxgax4xgkggnq4fr1rh2rcvzspkkimck5p3h4phdj3qpnj0680",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["mopidy_scrobbler"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mopidy/mopidy-scrobbler",
         description: "Mopidy extension for scrobbling played tracks to Last.fm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

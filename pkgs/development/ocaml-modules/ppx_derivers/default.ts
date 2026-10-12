@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 21, 5], ["license", 22, 5], ["maintainers", 23, 5], ["homepage", 24, 35]], [["pname", 8, 3], ["version", 9, 3], ["minimalOCamlVersion", 11, 3], ["src", 13, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDunePackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 21, 5], ["license", 22, 5], ["maintainers", 23, 5], ["homepage", 24, 35]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["minimalOCamlVersion", 11, 3], ["src", 13, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ppx_derivers",
       version: "1.2.1",
       minimalOCamlVersion: "4.02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "diml",
           repo: "ppx_derivers",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Shared [@@deriving] plugin registry",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["rtl_433", 24, 64]], [["tests", 24, 12]], [["description", 27, 5], ["mainProgram", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["vendorHash", 22, 3], ["passthru", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, bash: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rtl_433", 24, 64]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 24, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 27, 5], ["mainProgram", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["vendorHash", 22, 3], ["passthru", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rtl_433-exporter";
       const version = "0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mhansen",
           repo: "rtl_433_prometheus",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = nix.thunk(() => nix.str`substituteInPlace rtl_433_prometheus.go --replace /bin/bash ${bash}/bin/bash`);
       const vendorHash = "sha256-BsNB0OTwBUu9kK+lSN7EF8ZQH3kFx8P9h4QgcfCvtg4=";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { [nix.POS]: pos$2, rtl_433: nix.thunk(() => nix.attr(from, "rtl_433")) };
+          return { [nix.POS]: $pos[1], rtl_433: nix.thunk(() => nix.attr(from, "rtl_433")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Prometheus time-series DB exporter for rtl_433 433MHz radio packet decoder",
         mainProgram: "rtl_433_prometheus",
         homepage: "https://github.com/mhansen/rtl_433_prometheus",
@@ -46,7 +42,16 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "zopieux"))];
         })()),
       }));
-      return { [nix.POS]: pos$5, pname, version, src, postPatch, vendorHash, passthru, meta };
+      return {
+        [nix.POS]: $pos[4],
+        pname,
+        version,
+        src,
+        postPatch,
+        vendorHash,
+        passthru,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

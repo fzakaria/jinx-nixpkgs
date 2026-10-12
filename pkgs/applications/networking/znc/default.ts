@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 30, 5], ["hash", 31, 5]], [["pkg-config", 71, 11]], [["tests", 71, 5]], [["description", 75, 5], ["homepage", 76, 5], ["maintainers", 77, 5], ["license", 79, 5], ["platforms", 80, 5], ["pkgConfigModules", 81, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["configureFlags", 58, 3], ["enableParallelBuilding", 68, 3], ["passthru", 70, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, openssl: false, "pkg-config": false, withPerl: true, perl: false, withPython: true, python3: false, withTcl: true, tcl: false, withCyrus: true, cyrus_sasl: false, withUnicode: true, icu: false, withZlib: true, zlib: false, withIPv6: true, withDebug: true, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg-config", 71, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["maintainers", 77, 5], ["license", 79, 5], ["platforms", 80, 5], ["pkgConfigModules", 81, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["configureFlags", 58, 3], ["enableParallelBuilding", 68, 3], ["passthru", 70, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const withDebug = nix.argOr($, "withDebug", () => false);
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "znc",
       version: "1.10.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://znc.in/releases/archive/znc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-aPP2ZBtIDAQQEMVZbhI0BD4FyRN+2gYjOEUBdgMJX1s=",
         })))),
@@ -53,14 +49,14 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withIPv6)), nix.thunk(() => ["--disable-ipv6"])), nix.app(nix.sel(lib, "optionals"), withDebug, nix.thunk(() => ["--enable-debug"]))))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Advanced IRC bouncer",
         homepage: "https://wiki.znc.in/ZNC",
         maintainers: [],

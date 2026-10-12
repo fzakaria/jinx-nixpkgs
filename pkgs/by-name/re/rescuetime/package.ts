@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 23, 9], ["url", 24, 9], ["sha256", 25, 9]], [["name", 29, 9], ["url", 30, 9], ["sha256", 31, 9]], [["updateScript", 64, 12]], [["description", 82, 5], ["homepage", 83, 5], ["maintainers", 84, 5], ["sourceProvenance", 85, 5], ["license", 86, 5], ["platforms", 87, 5]], [["version", 36, 11], ["pname", 37, 3], ["src", 38, 11], ["nativeBuildInputs", 39, 3], ["dontStrip", 44, 3], ["installPhase", 46, 3], ["passthru", 64, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, dpkg: false, patchelf: false, qt5: false, libxtst: false, libxext: false, libx11: false, libxscrnsaver: false, writeScript: false, "common-updater-scripts": false, curl: false, pup: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 23, 9], ["url", 24, 9], ["sha256", 25, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 9], ["url", 30, 9], ["sha256", 31, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 64, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["maintainers", 84, 5], ["sourceProvenance", 85, 5], ["license", 86, 5], ["platforms", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 36, 11], ["pname", 37, 3], ["src", 38, 11], ["nativeBuildInputs", 39, 3], ["dontStrip", 44, 3], ["installPhase", 46, 3], ["passthru", 64, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pup = nix.arg($, "pup");
   const version = "2.16.5.1";
   const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "rescuetime-installer.deb",
       url: nix.thunk(() => nix.str`https://www.rescuetime.com/installers/rescuetime_${version}_i386.deb`),
       sha256: "1xrvyy0higc1fbc8ascpaszvg2bl6x0a35bzmdq6dkay48hnrd8b",
     }))) : nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "rescuetime-installer.deb",
       url: nix.thunk(() => nix.str`https://www.rescuetime.com/installers/rescuetime_${version}_amd64.deb`),
       sha256: "09ng0yal66d533vzfv27k9l2va03rqbqmsni43qi3hgx7w9wx5ii",
@@ -58,7 +54,7 @@ ${patchelf}/bin/patchelf \\
   $out/bin/rescuetime
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`${pname}-updater`), nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}
 set -eu -o pipefail
 PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, pup, common_updater_scripts]))}:$PATH
@@ -70,7 +66,7 @@ done
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Helps you understand your daily habits so you can focus and be more productive",
         homepage: "https://www.rescuetime.com",
         maintainers: [],
@@ -82,7 +78,7 @@ done
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version: version_1,
         pname,
         src: src_1,

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["pname", 34, 26], ["version", 34, 32], ["src", 34, 40], ["sourceRoot", 35, 5], ["pnpm", 36, 13], ["fetcherVersion", 37, 5], ["hash", 38, 5]], [["CXXFLAGS", 54, 5], ["OPENSSL_NO_VENDOR", 55, 5]], [["package", 85, 5]], [["version", 84, 18]], [["tests", 84, 12]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["pnpmDeps", 33, 3], ["pnpmRoot", 40, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 44, 3], ["env", 53, 3], ["preBuild", 58, 3], ["checkFlags", 64, 3], ["postInstall", 77, 3], ["passthru", 84, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, fetchPnpmDeps: false, testers: false, installShellFiles: false, "pkg-config": false, openssl: false, nodejs: false, pnpm_10: false, pnpmConfigHook: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 34, 26], ["version", 34, 32], ["src", 34, 40], ["sourceRoot", 35, 5], ["pnpm", 36, 13], ["fetcherVersion", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CXXFLAGS", 54, 5], ["OPENSSL_NO_VENDOR", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 84, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 84, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["pnpmDeps", 33, 3], ["pnpmRoot", 40, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 44, 3], ["env", 53, 3], ["preBuild", 58, 3], ["checkFlags", 64, 3], ["postInstall", 77, 3], ["passthru", 84, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "weaver",
       version: "0.25.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open-telemetry",
           repo: "weaver",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-hWewiXx5+wL2DNPi+9nUJ5IXHzg1mxass2ASSnTEKk0=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -53,7 +46,7 @@ export default nix.lambda((args) => (() => {
       pnpmRoot: "ui",
       buildInputs: nix.thunk(() => [openssl]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config, nodejs, pnpmConfigHook, pnpm, python3]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CXXFLAGS: "-std=c++20", OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CXXFLAGS: "-std=c++20", OPENSSL_NO_VENDOR: true })),
       preBuild: "pushd ui\npnpm build\npopd\n",
       checkFlags: nix.thunk(() => [
         "--skip=test_cli_interface",
@@ -72,17 +65,17 @@ export default nix.lambda((args) => (() => {
   --fish <($out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")} completion fish)
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "OpenTelemetry tool for dealing with semantic conventions and application telemetry schemas",
         homepage: "https://github.com/open-telemetry/weaver",
         changelog: nix.thunk(() => nix.str`https://github.com/open-telemetry/weaver/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

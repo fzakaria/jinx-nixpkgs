@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["LIBGIT2_NO_VENDOR", 33, 7]], [["description", 73, 5], ["longDescription", 74, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["platforms", 91, 5]], [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["env", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["buildNoDefaultFeatures", 46, 3], ["buildFeatures", 47, 3], ["outputs", 49, 3], ["postInstall", 54, 3], ["nativeInstallCheckInputs", 69, 3], ["doInstallCheck", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, gitSupport: true, fetchFromGitHub: false, rustPlatform: false, cmake: false, pandoc: false, "pkg-config": false, libgit2: false, zlib: false, installShellFiles: false, versionCheckHook: false, exaAlias: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBGIT2_NO_VENDOR", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 73, 5], ["longDescription", 74, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["platforms", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["env", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["buildNoDefaultFeatures", 46, 3], ["buildFeatures", 47, 3], ["outputs", 49, 3], ["postInstall", 54, 3], ["nativeInstallCheckInputs", 69, 3], ["doInstallCheck", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const exaAlias = nix.argOr($, "exaAlias", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "eza",
       version: "0.23.5",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eza-community",
           repo: "eza",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4XgPePl90mnQxmTUJfOvIsCcTRSYNBuRUNOb/3kmO1k=",
         })))),
       cargoHash: "sha256-IRG+mVgU8ZZ8PsxZWqmf3ZjW8fGL0RD0CwIrjsL366I=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LIBGIT2_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, installShellFiles, pandoc]),
       buildInputs: nix.thunk(() => [libgit2, zlib]),
       buildNoDefaultFeatures: true,
@@ -54,7 +51,7 @@ installShellCompletion \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Modern, maintained replacement for ls",
         longDescription: "eza is a modern replacement for ls. It uses colours for information by\ndefault, helping you distinguish between many types of files, such as\nwhether you are the owner, or in the owning group. It also has extra\nfeatures not present in the original ls, such as viewing the Git status\nfor a directory, or recursing into directories with a tree view. eza is\nwritten in Rust, so it’s small, fast, and portable.\n",
         homepage: "https://github.com/eza-community/eza",

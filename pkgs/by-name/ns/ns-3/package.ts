@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 69, 5], ["repo", 70, 5], ["rev", 71, 5], ["hash", 72, 5]], [["CXXFLAGS", 136, 7]], [["pythonModule", 140, 5]], [["homepage", 164, 5], ["license", 165, 5], ["description", 166, 5], ["platforms", 167, 5], ["maintainers", 168, 5], ["broken", 173, 5]], [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["nativeBuildInputs", 75, 3], ["outputs", 81, 3], ["buildInputs", 84, 3], ["propagatedBuildInputs", 117, 3], ["preConfigure", 119, 3], ["doCheck", 130, 3], ["buildTargets", 132, 3], ["env", 136, 3], ["passthru", 139, 3], ["cmakeFlags", 143, 3], ["hardeningDisable", 158, 3], ["meta", 163, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitLab: false, python3: false, libxml2: false, sqlite: false, boost: false, "gtk3-x11": false, root: false, glib: false, gsl: false, cmake: false, "pkg-config": false, libpcap: false, jansson: false, harfbuzz: false, freetype: false, castxml: true, cppyy: true, enableDoxygen: true, withManual: true, doxygen: true, graphviz: true, imagemagick: true, dia: false, tetex: true, ghostscript: true, texliveMedium: true, pythonSupport: true, ncurses: true, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 69, 5], ["repo", 70, 5], ["rev", 71, 5], ["hash", 72, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 136, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pythonModule", 140, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 164, 5], ["license", 165, 5], ["description", 166, 5], ["platforms", 167, 5], ["maintainers", 168, 5], ["broken", 173, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["nativeBuildInputs", 75, 3], ["outputs", 81, 3], ["buildInputs", 84, 3], ["propagatedBuildInputs", 117, 3], ["preConfigure", 119, 3], ["doCheck", 130, 3], ["buildTargets", 132, 3], ["env", 136, 3], ["passthru", 139, 3], ["cmakeFlags", 143, 3], ["hardeningDisable", 158, 3], ["meta", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
         ];
       })())))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ns-3",
       version: "47",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nsnam",
           repo: "ns-3-dev",
           rev: nix.thunk(() => nix.str`ns-3.${nix.sel(finalAttrs, "version")}`),
@@ -81,8 +77,8 @@ export default nix.lambda((args) => (() => {
       preConfigure: " substituteInPlace src/tap-bridge/CMakeLists.txt \\\n   --replace-fail '-DTAP_CREATOR=\"${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/src/tap-bridge/' \"-DTAP_CREATOR=\\\"$out/libexec/ns3/\"\n\nsubstituteInPlace src/fd-net-device/CMakeLists.txt \\\n  --replace-fail '-DRAW_SOCK_CREATOR=\"${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/src/fd-net-device/' \"-DRAW_SOCK_CREATOR=\\\"$out/libexec/ns3/\"\n\nsubstituteInPlace src/fd-net-device/CMakeLists.txt \\\n  --replace-fail '-DTAP_DEV_CREATOR=\"${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/src/fd-net-device/' \"-DTAP_DEV_CREATOR=\\\"$out/libexec/ns3/\"\n",
       doCheck: false,
       buildTargets: nix.thunk(() => nix.add(nix.add("build", nix.app(nix.sel(lib, "optionalString"), enableDoxygen, " doxygen")), nix.app(nix.sel(lib, "optionalString"), withManual, "sphinx"))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-D_GLIBCXX_PERMIT_BACKWARD_HASH" })),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, pythonModule: python3 })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-D_GLIBCXX_PERMIT_BACKWARD_HASH" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], pythonModule: python3 })),
       cmakeFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.str`-DPython3_LIBRARY_DIRS=${pythonEnv}/lib`),
         nix.thunk(() => nix.str`-DPython3_INCLUDE_DIRS=${pythonEnv}/include`),
@@ -97,7 +93,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), "-DNS3_TESTS=ON"))),
       hardeningDisable: nix.thunk(() => ["fortify", "strictoverflow"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://www.nsnam.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         description: "Discrete time event network simulator",

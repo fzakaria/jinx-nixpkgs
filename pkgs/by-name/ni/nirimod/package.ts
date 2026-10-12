@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["name", 49, 7], ["exec", 50, 7], ["icon", 51, 7], ["desktopName", 52, 7], ["genericName", 53, 7], ["comment", 54, 7], ["categories", 55, 7], ["keywords", 60, 7], ["startupNotify", 68, 7], ["startupWMClass", 69, 7]], [["updateScript", 79, 12]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["dependencies", 41, 3], ["postInstall", 43, 3], ["desktopItems", 47, 3], ["dontWrapGApps", 73, 3], ["preFixup", 75, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, copyDesktopItems: false, "gobject-introspection": false, gtk4: false, libadwaita: false, makeDesktopItem: false, unstableGitUpdater: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 49, 7], ["exec", 50, 7], ["icon", 51, 7], ["desktopName", 52, 7], ["genericName", 53, 7], ["comment", 54, 7], ["categories", 55, 7], ["keywords", 60, 7], ["startupNotify", 68, 7], ["startupWMClass", 69, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 79, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["dependencies", 41, 3], ["postInstall", 43, 3], ["desktopItems", 47, 3], ["dontWrapGApps", 73, 3], ["preFixup", 75, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nirimod",
       version: "0-unstable-2026-09-19",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "srinivasr",
           repo: "nirimod",
           rev: "e8517343f801e109817f43d34734bb50a91e9639",
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 data/nirimod.svg $out/share/icons/hicolor/scalable/apps/nirimod.svg\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "io.github.nirimod",
             exec: "nirimod",
             icon: "nirimod",
@@ -57,11 +53,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Visual configuration interface for the niri Wayland compositor",
         homepage: "https://github.com/srinivasr/nirimod",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

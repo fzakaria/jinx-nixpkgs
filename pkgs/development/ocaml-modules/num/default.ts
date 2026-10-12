@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 7], ["repo", 16, 7], ["tag", 17, 7], ["hash", 18, 7]], [["description", 40, 7], ["license", 41, 7], ["platforms", 42, 28], ["homepage", 43, 26]], [["version", 12, 5], ["pname", 13, 5], ["src", 14, 5], ["patches", 21, 5], ["postPatch", 23, 5], ["nativeBuildInputs", 28, 5], ["strictDeps", 33, 5], ["createFindlibDestdir", 35, 5], ["installTargets", 37, 5], ["meta", 39, 5]], [["NIX_CFLAGS_COMPILE", 47, 9]], [["env", 47, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, ocaml: false, findlib: false, withStatic: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 7], ["repo", 16, 7], ["tag", 17, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 7], ["license", 41, 7], ["platforms", 42, 28], ["homepage", 43, 26]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 12, 5], ["pname", 13, 5], ["src", 14, 5], ["patches", 21, 5], ["postPatch", 23, 5], ["nativeBuildInputs", 28, 5], ["strictDeps", 33, 5], ["createFindlibDestdir", 35, 5], ["installTargets", 37, 5], ["meta", 39, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 47, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["env", 47, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6";
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-num`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ocaml",
           repo: "num",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +35,7 @@ substituteInPlace src/Makefile --replace-fail "cp META.num META" "mv META.num ME
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         const from_1 = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Legacy Num library for arbitrary-precision integer and rational arithmetic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
@@ -47,7 +43,7 @@ substituteInPlace src/Makefile --replace-fail "cp META.num META" "mv META.num ME
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         src,
@@ -60,8 +56,8 @@ substituteInPlace src/Makefile --replace-fail "cp META.num META" "mv META.num ME
         meta,
       };
     })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "4.06")), nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-fcommon" })),
+        [nix.POS]: $pos[4],
+        env: nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-fcommon" })),
       }))))));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

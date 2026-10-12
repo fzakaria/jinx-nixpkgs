@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["name", 25, 7], ["url", 26, 7], ["sha256", 27, 7]], [["NIX_CFLAGS_COMPILE", 36, 7]], [["homepage", 39, 35], ["description", 40, 5], ["mainProgram", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["buildInputs", 31, 3], ["env", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, ncurses: false, libpcap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["sha256", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 39, 35], ["description", 40, 5], ["mainProgram", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["buildInputs", 31, 3], ["env", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const libpcap = nix.arg($, "libpcap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tcptrack",
       version: "1.4.3-unstable-2017-04-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bchretien",
           repo: "tcptrack",
           rev: "2b096ac103af2884bbd7648cff8adcbadbda9394",
@@ -30,18 +26,18 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ncurses-6.3.patch",
             url: "https://github.com/bchretien/tcptrack/commit/409007afbce8ec5a81312a2a4123dd83b62b4494.patch",
             sha256: "00641jyr52ksww5bbzvxlprmbb36jnvzg2w1aj1jgnm75jiajcfc",
           })))),
       ]),
       buildInputs: nix.thunk(() => [ncurses, libpcap]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=cpp" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-error=cpp" })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "libpcap based program for live TCP connection monitoring",
         mainProgram: "tcptrack",

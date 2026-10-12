@@ -2,44 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/4.x.nix", [[["owner", 116, 5], ["repo", 117, 5], ["tag", 118, 5], ["hash", 119, 5]], [["owner", 123, 5], ["repo", 124, 5], ["tag", 125, 5], ["hash", 126, 5]], [["owner", 130, 5], ["repo", 131, 5], ["tag", 132, 5], ["hash", 133, 5]], [["owner", 143, 9], ["repo", 144, 9], ["rev", 145, 9], ["hash", 146, 9]], [["src", 141, 5], ["files", 149, 5], ["dst", 161, 5]], [["owner", 167, 7], ["repo", 168, 7], ["rev", 169, 7], ["hash", 170, 7]], [["vgg_generated_48.i", 173, 7], ["vgg_generated_64.i", 174, 7], ["vgg_generated_80.i", 175, 7], ["vgg_generated_120.i", 176, 7]], [["src", 166, 5], ["files", 172, 5], ["dst", 178, 5]], [["owner", 184, 7], ["repo", 185, 7], ["rev", 186, 7], ["sha256", 187, 7]], [["boostdesc_bgm.i", 190, 7], ["boostdesc_bgm_bi.i", 191, 7], ["boostdesc_bgm_hd.i", 192, 7], ["boostdesc_binboost_064.i", 193, 7], ["boostdesc_binboost_128.i", 194, 7], ["boostdesc_binboost_256.i", 195, 7], ["boostdesc_lbgm.i", 196, 7]], [["src", 183, 5], ["files", 189, 5], ["dst", 198, 5]], [["owner", 204, 7], ["repo", 205, 7], ["rev", 206, 7], ["hash", 207, 7]], [["face_landmark_model.dat", 210, 7]], [["src", 203, 5], ["files", 209, 5], ["dst", 212, 5]], [["url", 218, 7], ["hash", 219, 7]], [["src", 217, 5], ["name", 221, 5], ["md5", 222, 5], ["dst", 223, 5]], [["owner", 229, 7], ["repo", 230, 7], ["rev", 231, 7], ["hash", 232, 7]], [["detect.caffemodel", 235, 7], ["detect.prototxt", 236, 7], ["sr.caffemodel", 237, 7], ["sr.prototxt", 238, 7]], [["src", 228, 5], ["files", 234, 5], ["dst", 240, 5]], [["singleThreaded", 277, 40]], [["name", 312, 9], ["url", 313, 9], ["stripLen", 314, 9], ["extraPrefix", 315, 9], ["hash", 316, 9]], [["name", 322, 9], ["url", 323, 9], ["stripLen", 324, 9], ["extraPrefix", 325, 9], ["hash", 326, 9]], [["OpenBLAS_HOME", 488, 5], ["OpenBLAS", 489, 5]], [["gst-plugins-bad", 647, 27]], [["enableIpp", 651, 36]], [["qimgv", 650, 15], ["withIpp", 651, 7]], [["pythonEnabled", 653, 40]], [["enableGStreamer", 657, 11], ["enableGtk3", 658, 11], ["runAccuracyTests", 659, 11], ["runPerformanceTests", 660, 11], ["testDataSrc", 661, 11], ["opencv4", 663, 17]], [["opencv4-tests", 655, 7]], [["attrName", 667, 64]], [["no-libstdcxx-errors", 667, 7]], [["cudaSupport", 644, 5], ["tests", 646, 5]], [["pythonPath", 670, 35]], [["description", 673, 5], ["homepage", 674, 5], ["license", 675, 5], ["maintainers", 676, 5], ["platforms", 677, 5]], [["pname", 284, 3], ["version", 285, 11], ["src", 285, 19], ["outputs", 287, 3], ["cudaPropagateToOutput", 294, 3], ["postUnpack", 296, 3], ["patches", 301, 3], ["postPatch", 331, 3], ["preConfigure", 345, 3], ["buildInputs", 357, 3], ["propagatedBuildInputs", 465, 3], ["nativeBuildInputs", 467, 3], ["env", 486, 3], ["cmakeFlags", 492, 3], ["postBuild", 576, 3], ["preInstall", 580, 3], ["postInstall", 604, 3], ["pythonImportsCheck", 638, 3], ["passthru", 643, 3], ["meta", 672, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, unzip: false, zlib: false, pcre2: false, hdf5: false, boost: false, glib: false, glog: false, gflags: false, protobuf: false, config: false, "ocl-icd": false, qimgv: false, opencv4: false, enableJPEG: true, libjpeg: false, enablePNG: true, libpng: false, enableTIFF: true, libtiff: false, enableWebP: true, libwebp: false, enableJpegXL: true, libjxl: false, enableEXR: true, openexr: false, enableJPEG2000: true, openjpeg: false, enableEigen: true, eigen: false, enableBlas: true, blas: false, enableVA: true, libva: false, enableContrib: true, enableCuda: true, enableCublas: true, enableCudnn: true, enableCufft: true, cudaPackages: false, "nvidia-optical-flow-sdk": false, enableLto: true, enableUnfree: true, enableIpp: true, enablePython: true, pythonPackages: false, enableGtk3: true, gtk3: false, enableVtk: true, vtk: false, enableFfmpeg: true, "ffmpeg_8-headless": false, enableGStreamer: true, elfutils: false, gst_all_1: false, orc: false, libunwind: false, zstd: false, enableTesseract: true, tesseract: false, leptonica: false, enableTbb: true, onetbb: false, enableOvis: true, ogre: false, enableGPhoto2: true, libgphoto2: false, enableDC1394: true, libdc1394: false, enableDocs: true, doxygen: false, "graphviz-nox": false, runAccuracyTests: true, runPerformanceTests: true, enabledModules: true, bzip2: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/4.x.nix", [["owner", 116, 5], ["repo", 117, 5], ["tag", 118, 5], ["hash", 119, 5]]);
-const pos$2 = nix.positions(here + "/4.x.nix", [["owner", 123, 5], ["repo", 124, 5], ["tag", 125, 5], ["hash", 126, 5]]);
-const pos$3 = nix.positions(here + "/4.x.nix", [["owner", 130, 5], ["repo", 131, 5], ["tag", 132, 5], ["hash", 133, 5]]);
-const pos$4 = nix.positions(here + "/4.x.nix", [["owner", 143, 9], ["repo", 144, 9], ["rev", 145, 9], ["hash", 146, 9]]);
-const pos$5 = nix.positions(here + "/4.x.nix", [["src", 141, 5], ["files", 149, 5], ["dst", 161, 5]]);
-const pos$6 = nix.positions(here + "/4.x.nix", [["owner", 167, 7], ["repo", 168, 7], ["rev", 169, 7], ["hash", 170, 7]]);
-const pos$7 = nix.positions(here + "/4.x.nix", [["vgg_generated_48.i", 173, 7], ["vgg_generated_64.i", 174, 7], ["vgg_generated_80.i", 175, 7], ["vgg_generated_120.i", 176, 7]]);
-const pos$8 = nix.positions(here + "/4.x.nix", [["src", 166, 5], ["files", 172, 5], ["dst", 178, 5]]);
-const pos$9 = nix.positions(here + "/4.x.nix", [["owner", 184, 7], ["repo", 185, 7], ["rev", 186, 7], ["sha256", 187, 7]]);
-const pos$10 = nix.positions(here + "/4.x.nix", [["boostdesc_bgm.i", 190, 7], ["boostdesc_bgm_bi.i", 191, 7], ["boostdesc_bgm_hd.i", 192, 7], ["boostdesc_binboost_064.i", 193, 7], ["boostdesc_binboost_128.i", 194, 7], ["boostdesc_binboost_256.i", 195, 7], ["boostdesc_lbgm.i", 196, 7]]);
-const pos$11 = nix.positions(here + "/4.x.nix", [["src", 183, 5], ["files", 189, 5], ["dst", 198, 5]]);
-const pos$12 = nix.positions(here + "/4.x.nix", [["owner", 204, 7], ["repo", 205, 7], ["rev", 206, 7], ["hash", 207, 7]]);
-const pos$13 = nix.positions(here + "/4.x.nix", [["face_landmark_model.dat", 210, 7]]);
-const pos$14 = nix.positions(here + "/4.x.nix", [["src", 203, 5], ["files", 209, 5], ["dst", 212, 5]]);
-const pos$15 = nix.positions(here + "/4.x.nix", [["url", 218, 7], ["hash", 219, 7]]);
-const pos$16 = nix.positions(here + "/4.x.nix", [["src", 217, 5], ["name", 221, 5], ["md5", 222, 5], ["dst", 223, 5]]);
-const pos$17 = nix.positions(here + "/4.x.nix", [["owner", 229, 7], ["repo", 230, 7], ["rev", 231, 7], ["hash", 232, 7]]);
-const pos$18 = nix.positions(here + "/4.x.nix", [["detect.caffemodel", 235, 7], ["detect.prototxt", 236, 7], ["sr.caffemodel", 237, 7], ["sr.prototxt", 238, 7]]);
-const pos$19 = nix.positions(here + "/4.x.nix", [["src", 228, 5], ["files", 234, 5], ["dst", 240, 5]]);
 const formals$2 = { args: { dst: false, files: false, src: false }, ellipsis: true };
 const formals$3 = { args: { dst: false, md5: false, name: false, src: false }, ellipsis: true };
-const pos$20 = nix.positions(here + "/4.x.nix", [["singleThreaded", 277, 40]]);
-const pos$21 = nix.positions(here + "/4.x.nix", [["name", 312, 9], ["url", 313, 9], ["stripLen", 314, 9], ["extraPrefix", 315, 9], ["hash", 316, 9]]);
-const pos$22 = nix.positions(here + "/4.x.nix", [["name", 322, 9], ["url", 323, 9], ["stripLen", 324, 9], ["extraPrefix", 325, 9], ["hash", 326, 9]]);
-const pos$23 = nix.positions(here + "/4.x.nix", [["OpenBLAS_HOME", 488, 5], ["OpenBLAS", 489, 5]]);
-const pos$24 = nix.positions(here + "/4.x.nix", [["gst-plugins-bad", 647, 27]]);
-const pos$25 = nix.positions(here + "/4.x.nix", [["enableIpp", 651, 36]]);
-const pos$26 = nix.positions(here + "/4.x.nix", [["qimgv", 650, 15], ["withIpp", 651, 7]]);
-const pos$27 = nix.positions(here + "/4.x.nix", [["pythonEnabled", 653, 40]]);
-const pos$28 = nix.positions(here + "/4.x.nix", [["enableGStreamer", 657, 11], ["enableGtk3", 658, 11], ["runAccuracyTests", 659, 11], ["runPerformanceTests", 660, 11], ["testDataSrc", 661, 11], ["opencv4", 663, 17]]);
-const pos$29 = nix.positions(here + "/4.x.nix", [["opencv4-tests", 655, 7]]);
-const pos$30 = nix.positions(here + "/4.x.nix", [["attrName", 667, 64]]);
-const pos$31 = nix.positions(here + "/4.x.nix", [["no-libstdcxx-errors", 667, 7]]);
-const pos$32 = nix.positions(here + "/4.x.nix", [["cudaSupport", 644, 5], ["tests", 646, 5]]);
-const pos$33 = nix.positions(here + "/4.x.nix", [["pythonPath", 670, 35]]);
-const pos$34 = nix.positions(here + "/4.x.nix", [["description", 673, 5], ["homepage", 674, 5], ["license", 675, 5], ["maintainers", 676, 5], ["platforms", 677, 5]]);
-const pos$35 = nix.positions(here + "/4.x.nix", [["pname", 284, 3], ["version", 285, 11], ["src", 285, 19], ["outputs", 287, 3], ["cudaPropagateToOutput", 294, 3], ["postUnpack", 296, 3], ["patches", 301, 3], ["postPatch", 331, 3], ["preConfigure", 345, 3], ["buildInputs", 357, 3], ["propagatedBuildInputs", 465, 3], ["nativeBuildInputs", 467, 3], ["env", 486, 3], ["cmakeFlags", 492, 3], ["postBuild", 576, 3], ["preInstall", 580, 3], ["postInstall", 604, 3], ["pythonImportsCheck", 638, 3], ["passthru", 643, 3], ["meta", 672, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -146,21 +112,21 @@ export default nix.lambda((args) => (() => {
   const stdenv_1 = nix.thunk(() => nix.builtins.throw("Use effectiveStdenv instead"));
   const effectiveStdenv = nix.thunk(() => (nix.asBool(enableCuda) ? nix.sel(cudaPackages, "backendStdenv") : nix.sel(inputs, "stdenv")));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "opencv",
       repo: "opencv",
       tag: version,
       hash: "sha256-h9gpSf+xf/OafQSCYq3JYBt/ShnxafSG7WbxesTjM/A=",
     }))));
   const contribSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "opencv",
       repo: "opencv_contrib",
       tag: version,
       hash: "sha256-8YRCq1H9afb1a0pVevH0x61SMW4dTpLAno/P9A6bOIg=",
     }))));
   const testDataSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "opencv",
       repo: "opencv_extra",
       tag: version,
@@ -168,9 +134,9 @@ export default nix.lambda((args) => (() => {
     }))));
   const buildContrib = nix.thunk(() => (nix.asBool((nix.asBool(enableContrib) || nix.asBool(enableTesseract))) || nix.asBool(enableOvis)));
   const ippicv = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     src: nix.thunk(() => nix.add(nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         owner: "opencv",
         repo: "opencv_3rdparty",
         rev: "c934a2a15a6df020446ac3dfa07e3acf72b63a8f",
@@ -183,16 +149,16 @@ export default nix.lambda((args) => (() => {
     dst: ".cache/ippicv",
   }));
   const vgg = nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         owner: "opencv",
         repo: "opencv_3rdparty",
         rev: "fccf7cd6a4b12079f73bbfb21745f9babcd4eb1d",
         hash: "sha256-fjdGM+CxV1QX7zmF2AiR9NDknrP2PjyaxtjT21BVLmU=",
       })))),
     files: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       "vgg_generated_48.i": "e8d0dcd54d1bcfdc29203d011a797179",
       "vgg_generated_64.i": "7126a5d9a8884ebca5aea5d63d677225",
       "vgg_generated_80.i": "7cd47228edec52b6d82f46511af325c5",
@@ -201,16 +167,16 @@ export default nix.lambda((args) => (() => {
     dst: ".cache/xfeatures2d/vgg",
   }));
   const boostdesc = nix.thunk(() => ({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         owner: "opencv",
         repo: "opencv_3rdparty",
         rev: "34e4206aef44d50e6bbcd0ab06354b52e7466d26",
         sha256: "13yig1xhvgghvxspxmdidss5lqiikpjr0ddm83jsi0k85j92sn62",
       })))),
     files: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       "boostdesc_bgm.i": "0ea90e7a8f3f7876d450e4149c97c74f",
       "boostdesc_bgm_bi.i": "232c966b13651bd0e46a1497b0852191",
       "boostdesc_bgm_hd.i": "324426a24fa56ad9c5b8e3e0b3e5303e",
@@ -222,42 +188,42 @@ export default nix.lambda((args) => (() => {
     dst: ".cache/xfeatures2d/boostdesc",
   }));
   const face = nix.thunk(() => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         owner: "opencv",
         repo: "opencv_3rdparty",
         rev: "8afa57abc8229d611c4937165d20e2a2d9fc5a12",
         hash: "sha256-m9yF4kfmpRJybohdRwUTmboeU+SbZQ6F6gm32PDWNBg=",
       })))),
     files: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       "face_landmark_model.dat": "7505c44ca4eb54b4ab1e4777cb96ac05",
     })),
     dst: ".cache/data",
   }));
   const ade = nix.thunk(() => (() => {
     const src_1 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         url: nix.thunk(() => nix.str`https://github.com/opencv/ade/archive/${name}`),
         hash: "sha256-O+Yshk3N2Lkl6S9qWxWnoDmBngSms88IiCfwjPLMB78=",
       }))));
     const name = "v0.1.2e.zip";
     const md5 = "962ce79e0b95591f226431f7b5f152cd";
     const dst = ".cache/ade";
-    return { [nix.POS]: pos$16, src: src_1, name, md5, dst };
+    return { [nix.POS]: $pos[15], src: src_1, name, md5, dst };
   })());
   const wechat_qrcode = nix.thunk(() => ({
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         owner: "opencv",
         repo: "opencv_3rdparty",
         rev: "a8b69ccc738421293254aec5ddb38bd523503252",
         hash: "sha256-/n6zHwf0Rdc4v9o4rmETzow/HTv+81DnHP+nL56XiTY=",
       })))),
     files: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       "detect.caffemodel": "238e2b2d6f3c18d6c3a30de0c31e23cf",
       "detect.prototxt": "6fb4976b32695f9f5c6305c19f12537d",
       "sr.caffemodel": "cbfcd60361a73beb8c583eea7e8e6664",
@@ -285,12 +251,12 @@ ln -s "${src_1}" "${dst}/${md5}-${name}"
 `;
   })(), formals$3);
   const withOpenblas = nix.thunk(() => (nix.asBool(enableBlas) && nix.asBool(nix.eq(nix.sel(blas, "provider", "pname"), "openblas"))));
-  const openblas_ = nix.thunk(() => nix.app(nix.sel(blas, "provider", "override"), nix.thunk(() => ({ [nix.POS]: pos$20, singleThreaded: true }))));
+  const openblas_ = nix.thunk(() => nix.app(nix.sel(blas, "provider", "override"), nix.thunk(() => ({ [nix.POS]: $pos[19], singleThreaded: true }))));
   const from_4 = nix.thunk(() => nix.sel(cudaPackages, "flags"));
   const cmakeCudaArchitecturesString = nix.thunk(() => nix.attr(from_4, "cmakeCudaArchitecturesString"));
   const cudaCapabilities = nix.thunk(() => nix.attr(from_4, "cudaCapabilities"));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       pname: "opencv",
       version: version,
       src: src,
@@ -303,7 +269,7 @@ ln -s "${src_1}" "${dst}/${md5}-${name}"
         nix.path(here, "./0001-cmake-OpenCVUtils.cmake-invalidate-Nix-store-paths-b.patch"),
       ], nix.app(optionals, enableCuda, nix.thunk(() => nix.concat([nix.path(here, "./cuda_opt_flow.patch")], nix.concat(nix.app(optionals, nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "4.14.0")), nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 name: "videostab-add-missing-include-to-fix-build-failure",
                 url: "https://github.com/opencv/opencv_contrib/commit/054007b78c8288ef2fd040e77dc0cf2e45f70c15.patch",
                 stripLen: 2n,
@@ -312,7 +278,7 @@ ln -s "${src_1}" "${dst}/${md5}-${name}"
               })))),
           ])), nix.app(optionals, nix.thunk(() => nix.app(nix.sel(cudaPackages, "cudaAtLeast"), "13.2")), nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 name: "fix-cuda-13-2-compat",
                 url: "https://github.com/opencv/opencv_contrib/commit/f2854f4f5e7b67d4e073ea002ae0174d437e2962.patch",
                 stripLen: 2n,
@@ -349,7 +315,7 @@ ${nix.app(installExtraFiles, wechat_qrcode)}
           nix.thunk(() => nix.sel(pythonPackages, "setuptools")),
         ], nix.app(optionals, nix.thunk(() => nix.eq(nix.sel(effectiveStdenv, "hostPlatform"), nix.sel(effectiveStdenv, "buildPlatform"))), nix.thunk(() => [nix.thunk(() => nix.sel(pythonPackages, "pythonImportsCheckHook"))]))))), nix.app(optionals, enableCuda, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc"))]))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         OpenBLAS_HOME: nix.thunk(() => nix.app(optionalString, withOpenblas, nix.thunk(() => nix.sel(openblas_, "dev")))),
         OpenBLAS: nix.thunk(() => nix.app(optionalString, withOpenblas, openblas_)),
       })),
@@ -411,22 +377,22 @@ ${nix.app(installExtraFiles, wechat_qrcode)}
       postInstall: nix.thunk(() => nix.add(nix.add(nix.add("sed -i \"s|{exec_prefix}/$out|{exec_prefix}|;s|{prefix}/$out|{prefix}|\" \\\n  \"$out/lib/pkgconfig/opencv4.pc\"\nmkdir \"$cxxdev\"\n", nix.app(optionalString, nix.thunk(() => !nix.asBool(enableCuda)), "mkdir -p \"$cxxdev/nix-support\"\necho \"${!outputDev}\" >> \"$cxxdev/nix-support/propagated-build-inputs\"\n")), nix.app(optionalString, enableCuda, "substituteInPlace \"$out/lib/cmake/opencv4/OpenCVConfig.cmake\" \\\n  --replace-fail \\\n    'find_host_package(CUDA ${OpenCV_CUDA_VERSION} EXACT REQUIRED)' \\\n    'find_host_package(CUDAToolkit REQUIRED)' \\\n  --replace-fail \\\n    'message(FATAL_ERROR \"OpenCV static library was compiled with CUDA' \\\n    'message(\"OpenCV static library was compiled with CUDA'\n")), nix.app(optionalString, enablePython, "pushd $NIX_BUILD_TOP/$sourceRoot/modules/python/package\npython -m pip wheel --verbose --no-index --no-deps --no-clean --no-build-isolation --wheel-dir dist .\n\npushd dist\npython -m pip install ./*.whl --no-index --no-warn-script-location --prefix=\"$out\" --no-cache\n\npopd\npopd\n"))),
       pythonImportsCheck: nix.thunk(() => ["cv2", "cv2.sfm"]),
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         cudaSupport: enableCuda,
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           "gst-plugins-bad": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-bad")),
         }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(nix.sel(effectiveStdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             qimgv: qimgv,
-            withIpp: nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ [nix.POS]: pos$25, enableIpp: true })))),
+            withIpp: nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ [nix.POS]: $pos[24], enableIpp: true })))),
           }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(enablePython)), nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             pythonEnabled: nix.thunk(() => nix.sel(pythonPackages, "opencv4")),
           }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(effectiveStdenv, "buildPlatform"), "x86_64-darwin")), nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             "opencv4-tests": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 enableGStreamer: enableGStreamer,
                 enableGtk3: enableGtk3,
                 runAccuracyTests: runAccuracyTests,
@@ -435,12 +401,12 @@ ${nix.app(installExtraFiles, wechat_qrcode)}
                 opencv4: opencv4,
               })))),
           }))), nix.app(optionalAttrs, enableCuda, nix.thunk(() => ({
-            [nix.POS]: pos$31,
-            "no-libstdcxx-errors": nix.thunk(() => nix.app(callPackage, nix.path(here, "./libstdcxx-test.nix"), nix.thunk(() => ({ [nix.POS]: pos$30, attrName: "opencv4" })))),
+            [nix.POS]: $pos[30],
+            "no-libstdcxx-errors": nix.thunk(() => nix.app(callPackage, nix.path(here, "./libstdcxx-test.nix"), nix.thunk(() => ({ [nix.POS]: $pos[29], attrName: "opencv4" })))),
           })))))))),
-      }, nix.app(optionalAttrs, enablePython, nix.thunk(() => ({ [nix.POS]: pos$33, pythonPath: [] }))))),
+      }, nix.app(optionalAttrs, enablePython, nix.thunk(() => ({ [nix.POS]: $pos[32], pythonPath: [] }))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         description: "Open Computer Vision Library with more than 500 algorithms",
         homepage: "https://opencv.org/",
         license: nix.thunk(() => (nix.asBool(enableUnfree) ? nix.sel(lib, "licenses", "unfree") : nix.sel(lib, "licenses", "bsd3"))),

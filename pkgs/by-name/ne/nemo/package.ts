@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]], [["extensiondir", 109, 12]], [["homepage", 112, 5], ["description", 113, 5], ["license", 114, 5], ["platforms", 118, 5], ["teams", 119, 5], ["mainProgram", 120, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["patches", 49, 3], ["outputs", 55, 3], ["buildInputs", 61, 3], ["nativeBuildInputs", 75, 3], ["mesonFlags", 85, 3], ["preFixup", 90, 3], ["passthru", 109, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, glib: false, "gobject-introspection": false, meson: false, ninja: false, "pkg-config": false, lib: false, stdenv: false, wrapGAppsHook3: false, libxmlb: false, gtk3: false, gvfs: false, "cinnamon-desktop": false, xapp: false, "xapp-symbolic-icons": false, "xdg-user-dirs": false, libexif: false, "json-glib": false, exempi: false, intltool: false, "shared-mime-info": false, "cinnamon-translations": false, libgsf: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extensiondir", 109, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 112, 5], ["description", 113, 5], ["license", 114, 5], ["platforms", 118, 5], ["teams", 119, 5], ["mainProgram", 120, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["patches", 49, 3], ["outputs", 55, 3], ["buildInputs", 61, 3], ["nativeBuildInputs", 75, 3], ["mesonFlags", 85, 3], ["preFixup", 90, 3], ["passthru", 109, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +40,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nemo",
       version: "6.6.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "nemo",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -83,9 +80,9 @@ export default nix.lambda((args) => (() => {
    --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdg_user_dirs]))}"
 )
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, extensiondir: "lib/nemo/extensions-3.0" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], extensiondir: "lib/nemo/extensions-3.0" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/linuxmint/nemo",
         description: "File browser for Cinnamon",
         license: nix.thunk(() => [

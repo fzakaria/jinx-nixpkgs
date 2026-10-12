@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 20, 5], ["paths", 21, 5]], [["pname", 34, 5], ["version", 35, 13], ["hash", 36, 5]], [["NLTK_DATA", 66, 7]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 33, 3], ["pythonRelaxDeps", 39, 3], ["nativeBuildInputs", 44, 3], ["propagatedBuildInputs", 48, 3], ["doCheck", 61, 3], ["env", 66, 3], ["pythonImportsCheck", 67, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, colorlog: false, "dataclasses-json": false, fetchPypi: false, "nltk-data": false, numpy: false, pandas: false, "poetry-core": false, pydantic: false, pydateinfer: false, "python-dateutil": false, scipy: false, symlinkJoin: false, "type-infer": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 20, 5], ["paths", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 34, 5], ["version", 35, 13], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NLTK_DATA", 66, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 33, 3], ["pythonRelaxDeps", 39, 3], ["nativeBuildInputs", 44, 3], ["propagatedBuildInputs", 48, 3], ["doCheck", 61, 3], ["env", 66, 3], ["pythonImportsCheck", 67, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const type_infer = nix.arg($, "type-infer");
   const testNltkData = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "nltk-test-data",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(nltk_data, "punkt")),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.2.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "dataprep_ml",
           version: version,
           hash: "sha256-pULqrPTxGtBLRsKCpSsP3a/QA0O5eXOP6BSI5TbCQWY=",
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
         type_infer,
       ]);
       const doCheck = false;
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, NLTK_DATA: testNltkData }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], NLTK_DATA: testNltkData }));
       const pythonImportsCheck = nix.thunk(() => [
         "dataprep_ml",
         "dataprep_ml.cleaners",
@@ -69,14 +65,14 @@ export default nix.lambda((args) => (() => {
         "dataprep_ml.splitters",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Data utilities for Machine Learning pipelines",
         homepage: "https://github.com/mindsdb/dataprep_ml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

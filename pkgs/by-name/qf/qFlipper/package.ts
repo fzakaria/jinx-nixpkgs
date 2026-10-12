@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 13]], [["updateScript", 87, 12]], [["broken", 90, 5], ["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]], [["pname", 23, 11], ["version", 23, 17], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["qmakeFlags", 59, 3], ["dontWrapGApps", 64, 3], ["postPatch", 66, 3], ["postInstall", 74, 3], ["doInstallCheck", 85, 3], ["passthru", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "pkg-config": false, zlib: false, libusb1: false, libGL: false, wrapGAppsHook3: false, libsForQt5: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 87, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 90, 5], ["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 11], ["version", 23, 17], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["qmakeFlags", 59, 3], ["dontWrapGApps", 64, 3], ["postPatch", 66, 3], ["postInstall", 74, 3], ["doInstallCheck", 85, 3], ["passthru", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const timestamp = "99999999999";
   const commit = nix.thunk(() => nix.str`nix-${version}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flipperdevices",
           repo: "qFlipper",
           rev: version,
@@ -74,11 +71,11 @@ cp installer-assets/udev/42-flipperzero.rules $out/etc/udev/rules.d/
 `),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Cross-platform desktop tool to manage your flipper device",
         homepage: "https://flipperzero.one/",

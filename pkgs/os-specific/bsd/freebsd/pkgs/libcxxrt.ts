@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcxxrt.nix", [[["pname", 12, 3], ["path", 13, 3], ["extraPaths", 14, 3], ["outputs", 15, 3], ["noLibcxx", 20, 3], ["libName", 21, 3], ["preBuild", 24, 3]]]);
 const formals$1 = { args: { mkDerivation: false, stdenv: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcxxrt.nix", [["pname", 12, 3], ["path", 13, 3], ["extraPaths", 14, 3], ["outputs", 15, 3], ["noLibcxx", 20, 3], ["libName", 21, 3], ["preBuild", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const lib = nix.arg($, "lib");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "libcxxrt",
       path: "lib/libcxxrt",
       extraPaths: nix.thunk(() => ["contrib/libcxxrt"]),

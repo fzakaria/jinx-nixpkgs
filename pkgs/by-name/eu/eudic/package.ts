@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 34, 5], ["url", 35, 5], ["hash", 36, 5]], [["description", 84, 5], ["homepage", 85, 5], ["platforms", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 89, 5], ["sourceProvenance", 90, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["installPhase", 67, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, "desktop-file-utils": false, dpkg: false, makeWrapper: false, libnotify: false, libx11: false, libxscrnsaver: false, libxext: false, libxtst: false, libuuid: false, libsecret: false, "xdg-utils": false, "xdg-utils-cxx": false, "at-spi2-atk": false, gtk3: false, "alsa-lib": false, e2fsprogs: false, nss: false, "libgpg-error": false, libjack2: false, libgbm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 34, 5], ["url", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["platforms", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 89, 5], ["sourceProvenance", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["installPhase", 67, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const libjack2 = nix.arg($, "libjack2");
   const libgbm = nix.arg($, "libgbm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "eudic",
       version: "13.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "eudic.deb",
           url: nix.thunk(() => nix.str`https://www.eudic.net/download/eudic.deb?v=${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-UPkDRaqWF/oydH6AMo3t3PUT5VU961EPLcFb5XwOXVs=",
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nrm -r usr/share/icons\ndesktop-file-edit usr/share/applications/eusoft-eudic.desktop \\\n  --set-key=\"Exec\" --set-value=\"eudic %F\"\nmkdir -p $out/bin\ncp -r usr/share $out/share\nmakeWrapper $out/share/eusoft-eudic/eudic $out/bin/eudic \\\n  --inherit-argv0 \\\n  --set GST_PLUGIN_PATH $out/share/eusoft-eudic/gstreamer-1.0 \\\n  --set QT_PLUGIN_PATH $out/share/eusoft-eudic/plugins\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Authoritative English Dictionary Software Essential Tools for English Learners",
         homepage: "https://www.eudic.net/v4/en/app/eudic",
         platforms: nix.thunk(() => ["x86_64-linux"]),

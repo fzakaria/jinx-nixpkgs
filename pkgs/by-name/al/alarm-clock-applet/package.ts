@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["url", 27, 7], ["hash", 28, 7]], [["url", 31, 7], ["hash", 32, 7]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["cmakeFlags", 49, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, wrapGAppsHook3: false, gst_all_1: false, libnotify: false, "libayatana-appindicator": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["cmakeFlags", 49, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libnotify = nix.arg($, "libnotify");
   const libayatana_appindicator = nix.arg($, "libayatana-appindicator");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "alarm-clock-applet",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alarm-clock-applet",
           repo: "alarm-clock",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,12 +30,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/alarm-clock-applet/alarm-clock/commit/6a11003099660dfae0e3d5800f49880d3a26f5ec.patch",
             hash: "sha256-NP1PlEw5AFWZgywvppIs2e+5EfMSPbU4Pq2tIfwODrQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/alarm-clock-applet/alarm-clock/commit/cbcf22fac5b45ab251ade2e7e993f422f33f926e.patch",
             hash: "sha256-xKaaNfXsv9Ckwy73r1n93kOWIZ01fU5GDqYSQCch1Kc=",
           })))),
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => ["-DENABLE_GCONF_MIGRATION=OFF"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fully-featured alarm clock with an indicator",
         homepage: "https://alarm-clock-applet.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

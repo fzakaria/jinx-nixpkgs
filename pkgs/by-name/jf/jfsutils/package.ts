@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["name", 26, 7], ["url", 27, 7], ["sha256", 28, 7]], [["name", 32, 7], ["url", 33, 7], ["sha256", 34, 7]], [["NIX_CFLAGS_COMPILE", 45, 7]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 39, 3], ["env", 45, 3], ["postInstall", 48, 3], ["outputs", 53, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, libuuid: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["sha256", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 32, 7], ["url", 33, 7], ["sha256", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 45, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 39, 3], ["env", 45, 3], ["postInstall", 48, 3], ["outputs", 53, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libuuid = nix.arg($, "libuuid");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "jfsutils",
       version: "1.1.15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/jfs/jfsutils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0kbsy2sk1jv4m82rxyl25gwrlkzvl3hzdga9gshkxkhm83v1aji4",
         })))),
@@ -32,13 +27,13 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./hardening-format.patch"),
         nix.path(here, "./ar-fix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "add_sysmacros.patch",
             url: "https://sources.debian.org/data/main/j/jfsutils/1.1.15-4/debian/patches/add_sysmacros.patch",
             sha256: "1qcwvxs4d0d24w5x98z59arqfx2n7f0d9xaqhjcg6w8n34vkhnyc",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "musl-fix-includes.patch",
             url: "https://git.alpinelinux.org/aports/plain/main/jfsutils/musl-fix-includes.patch?id=567823dca7dc1f8ce919efbe99762d2d5c020124",
             sha256: "sha256-FjdUOI+y+MdSWxTR+csH41uR0P+PWWTfIMPwQjBfQtQ=",
@@ -46,11 +41,11 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [libuuid]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-fcommon" })),
       postInstall: "install -Dm644 include/*.h -t ${!outputDev}/include\ninstall -Dm644 ./libfs/libfs.a -t ${!outputLib}/lib\n",
       outputs: nix.thunk(() => ["out", "man", "dev", "lib"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "IBM JFS utilities",
         homepage: "https://jfs.sourceforge.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["NIX_CFLAGS_COMPILE", 36, 7]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["longDescription", 57, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 24, 3], ["buildInputs", 28, 3], ["env", 36, 3], ["makefile", 38, 3], ["makeFlags", 40, 3], ["installPhase", 42, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, libGLU: false, SDL2: false, SDL2_net: false, libx11: false, stdenv: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["longDescription", 57, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 24, 3], ["buildInputs", 28, 3], ["env", 36, 3], ["makefile", 38, 3], ["makeFlags", 40, 3], ["installPhase", 42, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "supermodel",
       version: "0-unstable-2026-03-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trzy",
           repo: "supermodel",
           rev: "d6dec3dcf0922459801907950d966e5767c674de",
@@ -31,12 +28,12 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "sed -i '/^#include <memory>/a #include <cstdint>' Src/Game.h\n",
       buildInputs: nix.thunk(() => [libGLU, SDL2, SDL2_net, libx11, zlib]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })),
       makefile: "Makefiles/Makefile.UNIX",
       makeFlags: nix.thunk(() => ["NET_BOARD=1"]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmkdir -p $out/share/supermodel\ncp bin/* $out/bin\ncp -r Config Assets $out/share/supermodel\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sega Model 3 Arcade Emulator",
         homepage: "https://github.com/trzy/supermodel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

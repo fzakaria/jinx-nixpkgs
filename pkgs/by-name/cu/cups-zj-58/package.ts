@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["NIX_CFLAGS_COMPILE", 33, 7]], [["description", 42, 5], ["homepage", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["license", 49, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["patchPhase", 28, 3], ["env", 33, 3], ["installPhase", 35, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cups: false, cmake: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["license", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["patchPhase", 28, 3], ["env", 33, 3], ["installPhase", 35, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cups-zj-58",
       version: "0-unstable-2019-04-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "klirichek",
           repo: "zj-58",
           rev: "64743565df4379098b68a197d074c86617a8fc0a",
@@ -31,12 +28,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cups]),
       patchPhase: "substituteInPlace CMakeLists.txt \\\n--replace-fail \"cmake_minimum_required ( VERSION 3.0 )\" \"cmake_minimum_required ( VERSION 3.10 )\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       installPhase: "install -D ppd/zj80.ppd $out/share/cups/model/zjiang/zj80.ppd\ninstall -D ppd/zj58.ppd $out/share/cups/model/zjiang/zj58.ppd\ninstall -D rastertozj $out/lib/cups/filter/rastertozj\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CUPS filter for thermal printer Zjiang ZJ-58",
         homepage: "https://github.com/klirichek/zj-58",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

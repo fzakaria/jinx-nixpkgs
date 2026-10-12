@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["extras", 57, 5]], [["optional-dependencies", 56, 12]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["passthru", 56, 3], ["nativeCheckInputs", 62, 3], ["pythonImportsCheck", 67, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pytestCheckHook: false, matplotlib: false, numpy: false, pandas: false, "pandas-flavor": false, "scikit-learn": false, scipy: false, seaborn: false, statsmodels: false, tabulate: false, mpmath: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extras", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["optional-dependencies", 56, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["passthru", 56, 3], ["nativeCheckInputs", 62, 3], ["pythonImportsCheck", 67, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const tabulate = nix.arg($, "tabulate");
   const mpmath = nix.arg($, "mpmath");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pingouin",
       version: "0.7.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "raphaelvallat",
           repo: "pingouin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,13 +48,13 @@ export default nix.lambda((args) => (() => {
         tabulate,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, extras: nix.thunk(() => [mpmath]) })),
+        [nix.POS]: $pos[2],
+        "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], extras: nix.thunk(() => [mpmath]) })),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "extras"))),
       pythonImportsCheck: nix.thunk(() => ["pingouin"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Statistical package in Python based on Pandas",
         homepage: "https://github.com/raphaelvallat/pingouin",
         changelog: nix.thunk(() => nix.str`https://github.com/raphaelvallat/pingouin/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

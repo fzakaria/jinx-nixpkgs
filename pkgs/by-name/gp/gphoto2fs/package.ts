@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["NIX_CFLAGS_COMPILE", 44, 5]], [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["license", 59, 5]], [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["env", 43, 3], ["doInstallCheck", 47, 3], ["installCheckPhase", 48, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, gettext: false, libtool: false, libgphoto2: false, fuse3: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["license", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["env", 43, 3], ["doInstallCheck", 47, 3], ["installCheckPhase", 48, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const fuse3 = nix.arg($, "fuse3");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gphoto2fs",
       version: "1.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gphoto",
           repo: "gphotofs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,13 +33,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, gettext, libtool, glib]),
       buildInputs: nix.thunk(() => [libgphoto2, fuse3, glib]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         })))),
       doInstallCheck: true,
       installCheckPhase: "$out/bin/gphotofs --help > /dev/null\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fuse FS to mount a digital camera",
         mainProgram: "gphotofs",
         homepage: "http://www.gphoto.org/",

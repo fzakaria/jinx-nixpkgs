@@ -2,17 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gerbil-libp2p.nix", [[["fun", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["platforms", 24, 5], ["maintainers", 25, 5]], [["pname", 4, 3], ["version", 5, 3], ["git-version", 6, 3], ["softwareName", 7, 3], ["gerbil-package", 8, 3], ["buildInputs", 10, 3], ["pre-src", 12, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gerbil-libp2p.nix", [["fun", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/gerbil-libp2p.nix", [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["platforms", 24, 5], ["maintainers", 25, 5]]);
-const pos$3 = nix.positions(here + "/gerbil-libp2p.nix", [["pname", 4, 3], ["version", 5, 3], ["git-version", 6, 3], ["softwareName", 7, 3], ["gerbil-package", 8, 3], ["buildInputs", 10, 3], ["pre-src", 12, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     pname: "gerbil-libp2p",
     version: "unstable-2022-02-03",
     "git-version": "15b3246",
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
     "gerbil-package": "vyzo",
     buildInputs: [],
     "pre-src": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fun: fetchFromGitHub,
       owner: "vyzo",
       repo: "gerbil-libp2p",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       sha256: "059lydp7d6pjgrd4pdnqq2zffzlba62ch102f01rgzf9aps3c8lz",
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       description: "Gerbil libp2p: use libp2p from Gerbil",
       homepage: "https://github.com/vyzo/gerbil-libp2p",
       license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

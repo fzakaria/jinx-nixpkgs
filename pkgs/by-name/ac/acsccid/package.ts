@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]], [["version", 19, 3], ["pname", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 38, 3], ["configureFlags", 46, 3], ["doCheck", 50, 3], ["postPatch", 52, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoconf: false, "autoconf-archive": false, automake: false, libtool: false, gettext: false, flex: false, perl: false, "pkg-config": false, pcsclite: false, libusb1: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 19, 3], ["pname", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 38, 3], ["configureFlags", 46, 3], ["doCheck", 50, 3], ["postPatch", 52, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.1.13",
       pname: "acsccid",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/acsccid/acsccid-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-ixmroQPsA8RIudG1YsgyL40v83zyHUy4sM9SLF84XJ8=",
         })))),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "substituteInPlace src/Makefile.in \\\n  --replace-fail '$(INSTALL_UDEV_RULE_FILE)' \"\"\npatchShebangs src/convert_version.pl\npatchShebangs src/create_Info_plist.pl\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PC/SC driver for Linux/Mac OS X and it supports ACS CCID smart card readers",
         longDescription: "acsccid is a PC/SC driver for Linux/Mac OS X and it supports ACS CCID smart card\nreaders. This library provides a PC/SC IFD handler implementation and\ncommunicates with the readers through the PC/SC Lite resource manager (pcscd).\n\nacsccid is based on ccid. See CCID free software driver for more\ninformation:\nhttps://ccid.apdu.fr/\n\nIt can be enabled in /etc/nixos/configuration.nix by adding:\n  services.pcscd.enable = true;\n  services.pcscd.plugins = [ pkgs.acsccid ];\n",
         homepage: "http://acsccid.sourceforge.net",

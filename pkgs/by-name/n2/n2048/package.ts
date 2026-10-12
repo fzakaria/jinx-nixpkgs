@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["NIX_CFLAGS_COMPILE", 18, 5]], [["description", 36, 5], ["mainProgram", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5], ["homepage", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 17, 3], ["buildInputs", 23, 3], ["makeFlags", 27, 3], ["preInstall", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 18, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["mainProgram", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5], ["homepage", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 17, 3], ["buildInputs", 23, 3], ["makeFlags", 27, 3], ["preInstall", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,23 +12,23 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "n2048",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.dettus.net/n2048/n2048_v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-c4bHWmdQuwyRXIm/sqw3p71pMv6VLAzIuUTaDHIWn6A=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))),
       })),
       buildInputs: nix.thunk(() => [ncurses]),
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       preInstall: "mkdir -p \"$out\"/{share/man,bin}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Console implementation of 2048 game",
         mainProgram: "n2048",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

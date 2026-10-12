@@ -2,18 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/calibre-web.nix", [[["maintainers", 10, 8]], [["port", 18, 18]], [["enable", 22, 15], ["header", 23, 15]], [["calibreLibrary", 20, 13], ["reverseProxyAuth", 21, 13]], [["enable", 17, 11], ["listen", 18, 11], ["options", 19, 11]], [["calibre-web", 16, 18]], [["systemPackages", 27, 21]], [["services", 16, 9], ["environment", 27, 9]], [["customized", 13, 5]], [["name", 9, 3], ["meta", 10, 3], ["nodes", 12, 3], ["testScript", 30, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/calibre-web.nix", [["maintainers", 10, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/calibre-web.nix", [["port", 18, 18]]);
-const pos$3 = nix.positions(here + "/calibre-web.nix", [["enable", 22, 15], ["header", 23, 15]]);
-const pos$4 = nix.positions(here + "/calibre-web.nix", [["calibreLibrary", 20, 13], ["reverseProxyAuth", 21, 13]]);
-const pos$5 = nix.positions(here + "/calibre-web.nix", [["enable", 17, 11], ["listen", 18, 11], ["options", 19, 11]]);
-const pos$6 = nix.positions(here + "/calibre-web.nix", [["calibre-web", 16, 18]]);
-const pos$7 = nix.positions(here + "/calibre-web.nix", [["systemPackages", 27, 21]]);
-const pos$8 = nix.positions(here + "/calibre-web.nix", [["services", 16, 9], ["environment", 27, 9]]);
-const pos$9 = nix.positions(here + "/calibre-web.nix", [["customized", 13, 5]]);
-const pos$10 = nix.positions(here + "/calibre-web.nix", [["name", 9, 3], ["meta", 10, 3], ["nodes", 12, 3], ["testScript", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,37 +13,37 @@ export default nix.lambda((args) => (() => {
   const defaultPort = 8083n;
   const libraryPath = "/var/lib/test-books";
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "calibre-web",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "pborzenkov"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       customized: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             "calibre-web": nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
-              listen: nix.thunk(() => ({ [nix.POS]: pos$2, port: port })),
+              listen: nix.thunk(() => ({ [nix.POS]: $pos[1], port: port })),
               options: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 calibreLibrary: libraryPath,
-                reverseProxyAuth: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, header: "X-User" })),
+                reverseProxyAuth: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true, header: "X-User" })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "calibre"))]),
           })),
         };

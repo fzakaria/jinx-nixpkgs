@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 30, 3], ["pythonImportsCheck", 36, 3], ["nativeCheckInputs", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cffi: false, pillow: false, pytestCheckHook: false, "setuptools-scm": false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 30, 3], ["pythonImportsCheck", 36, 3], ["nativeCheckInputs", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "woltapp",
           repo: "blurhash-python",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["blurhash"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Compact representation of a placeholder for an image",
         homepage: "https://github.com/woltapp/blurhash-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

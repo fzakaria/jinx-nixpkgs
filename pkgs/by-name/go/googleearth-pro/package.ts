@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 46, 5], ["sha256", 47, 5]], [["description", 133, 5], ["homepage", 134, 5], ["sourceProvenance", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["platforms", 140, 5], ["knownVulnerabilities", 141, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 50, 3], ["propagatedBuildInputs", 56, 3], ["buildInputs", 57, 3], ["doInstallCheck", 80, 3], ["dontBuild", 82, 3], ["unpackPhase", 84, 3], ["installPhase", 94, 3], ["installCheckPhase", 121, 3], ["postFixup", 126, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, freetype: false, glib: false, libGL: false, libGLU: false, libsm: false, libxcomposite: false, libxi: false, libxrender: false, libx11: false, libxcb: false, sqlite: false, zlib: false, fontconfig: false, dpkg: false, libproxy: false, libxml2_13: false, gst_all_1: false, dbus: false, makeWrapper: false, cups: false, "alsa-lib": false, "xkeyboard-config": false, autoPatchelfHook: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 46, 5], ["sha256", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 133, 5], ["homepage", 134, 5], ["sourceProvenance", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["platforms", 140, 5], ["knownVulnerabilities", 141, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 50, 3], ["propagatedBuildInputs", 56, 3], ["buildInputs", 57, 3], ["doInstallCheck", 80, 3], ["dontBuild", 82, 3], ["unpackPhase", 84, 3], ["installPhase", 94, 3], ["installCheckPhase", 121, 3], ["postFixup", 126, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "googleearth-pro";
       const version = "7.3.7.1155";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dl.google.com/linux/earth/deb/pool/main/g/google-earth-pro-stable/google-earth-pro-stable_${version}-r0_${arch}.deb`),
           sha256: "sha256-lWFGpO4fCywxK/najHzFQoftfCEFiYX/31nloJSzCyM=",
         }))));
@@ -84,7 +82,7 @@ export default nix.lambda((args) => (() => {
   --set QT_XKB_CONFIG_ROOT "${xkeyboard_config}/share/X11/xkb"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "World sphere viewer",
         homepage: "https://www.google.com/earth/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -102,7 +100,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

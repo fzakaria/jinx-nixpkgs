@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["rev-prefix", 69, 7]], [["libvirtd", 72, 28]], [["updateScript", 68, 5], ["tests", 71, 5]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 26, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["mesonFlags", 58, 3], ["doCheck", 65, 3], ["passthru", 67, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitLab: false, meson: false, "pkg-config": false, docutils: false, ninja: false, glib: false, libvirt: false, "libvirt-glib": false, systemd: false, gitUpdater: false, lib: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 69, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["libvirtd", 72, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 68, 5], ["tests", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 26, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["mesonFlags", 58, 3], ["doCheck", 65, 3], ["passthru", 67, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libvirt-dbus",
       version: "1.4.1",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libvirt",
           repo: "libvirt-dbus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,15 +41,15 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           libvirtd: nix.thunk(() => nix.attr(nixosTests, "libvirtd")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "libvirt D-Bus API binding",
         homepage: "https://libvirt.org/dbus.html",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/libvirt/libvirt-dbus/-/blob/v${nix.sel(finalAttrs, "version")}/NEWS.rst`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["url", 28, 5], ["stripRoot", 29, 5], ["sha256", 30, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["sourceRoot", 24, 3], ["models", 26, 3], ["patches", 33, 3], ["cmakeFlags", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 46, 3], ["postPatch", 54, 3], ["installPhase", 58, 3], ["postFixup", 65, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchFromGitHub: false, cmake: false, "vulkan-headers": false, "vulkan-loader": false, glslang: false, libwebp: false, ncnn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 5], ["stripRoot", 29, 5], ["sha256", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["sourceRoot", 24, 3], ["models", 26, 3], ["patches", 33, 3], ["cmakeFlags", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 46, 3], ["postPatch", 54, 3], ["installPhase", 58, 3], ["postFixup", 65, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "Real-ESRGAN-ncnn-vulkan";
       const version = "0.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xinntao",
           repo: "Real-ESRGAN-ncnn-vulkan",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/src`);
       const models = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesrgan-ncnn-vulkan-20220424-ubuntu.zip",
           stripRoot: false,
           sha256: "sha256-1YiPzv1eGnHrazJFRvl37+C1F2xnoEbN0UQYkxLT+JQ=",
@@ -53,7 +50,7 @@ cp -r ${models}/models $out/share
 `);
       const postFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "patchelf $out/bin/realesrgan-ncnn-vulkan --add-needed libvulkan.so\n"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "NCNN implementation of Real-ESRGAN. Real-ESRGAN aims at developing Practical Algorithms for General Image Restoration",
         homepage: "https://github.com/xinntao/Real-ESRGAN-ncnn-vulkan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -68,7 +65,7 @@ cp -r ${models}/models $out/share
         mainProgram: "realesrgan-ncnn-vulkan",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]], [["description", 68, 5], ["longDescription", 69, 5], ["homepage", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["postUnpack", 61, 3], ["mesonFlags", 63, 3], ["postInstall", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, cmake: false, "pkg-config": false, liblxi: false, readline: false, lua: false, "bash-completion": false, wrapGAppsHook4: false, glib: false, gtk4: false, gtksourceview5: false, libadwaita: false, "json-glib": false, "desktop-file-utils": false, "appstream-glib": false, "gsettings-desktop-schemas": false, withGui: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["longDescription", 69, 5], ["homepage", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["postUnpack", 61, 3], ["mesonFlags", 63, 3], ["postInstall", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lxi-tools";
       const version = "2.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxi-tools",
           repo: "lxi-tools",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const mesonFlags = nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withGui)), "-Dgui=false"));
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withGui, "glib-compile-schemas $out/share/glib-2.0/schemas"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for communicating with LXI compatible instruments",
         longDescription: "lxi-tools is a collection of open source software tools\nthat enables control of LXI compatible instruments such\nas modern oscilloscopes, power supplies,\nspectrum analyzers etc.\n",
         homepage: "https://lxi-tools.github.io/",
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lxi",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

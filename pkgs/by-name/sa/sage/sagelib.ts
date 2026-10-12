@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sagelib.nix", [[["NIX_CFLAGS_COMPILE", 126, 5]], [["version", 94, 3], ["pname", 97, 3], ["src", 98, 3], ["pyproject", 99, 3], ["nativeBuildInputs", 101, 3], ["buildInputs", 114, 3], ["mesonFlags", 120, 3], ["env", 122, 3], ["propagatedBuildInputs", 129, 3], ["preBuild", 202, 3], ["doCheck", 206, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "sage-src": false, "env-locations": false, python: false, buildPythonPackage: false, m4: false, perl: false, "pkg-config": false, "sage-setup": false, "sage-docbuild": false, setuptools: false, gd: false, iml: false, libpng: false, blas: false, boost: false, brial: false, cliquer: false, eclib: false, ecm: false, "fflas-ffpack": false, flint: false, gap: false, givaro: false, glpk: false, gsl: false, lapack: false, lcalc: false, libbraiding: false, libhomfly: false, libmpc: false, linbox: false, "lisp-compiler": false, lrcalc: false, m4ri: false, m4rie: false, mpfi: false, mpfr: false, ntl: false, pari: false, planarity: false, ppl: false, rankwidth: false, singular: false, sqlite: false, symmetrica: false, "conway-polynomials": false, cvxopt: false, cypari2: false, cysignals: false, cython: false, fpylll: false, gmpy2: false, "importlib-metadata": false, "importlib-resources": false, ipykernel: false, ipython: false, ipywidgets: false, "jupyter-client": false, "jupyter-core": false, "lrcalc-python": false, matplotlib: false, "memory-allocator": false, "meson-python": false, mpmath: false, networkx: false, numpy: false, pexpect: false, pillow: false, pip: false, pkgconfig: false, pplpy: false, primecountpy: false, ptyprocess: false, pytest: false, requests: false, rpy2: false, scipy: false, sphinx: false, sympy: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sagelib.nix", [["NIX_CFLAGS_COMPILE", 126, 5]]);
-const pos$2 = nix.positions(here + "/sagelib.nix", [["version", 94, 3], ["pname", 97, 3], ["src", 98, 3], ["pyproject", 99, 3], ["nativeBuildInputs", 101, 3], ["buildInputs", 114, 3], ["mesonFlags", 120, 3], ["env", 122, 3], ["propagatedBuildInputs", 129, 3], ["preBuild", 202, 3], ["doCheck", 206, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -111,7 +110,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gd, iml, libpng]);
       const mesonFlags = nix.thunk(() => ["-Dbuild-docs=false"]);
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           NIX_CFLAGS_COMPILE: "-Wno-error=c++11-narrowing-const-reference",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [
@@ -186,7 +185,7 @@ export default nix.lambda((args) => (() => {
       const preBuild = "patchShebangs src/sage_setup/autogen/interpreters/__main__.py\n";
       const doCheck = false;
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version,
         pname,
         src,

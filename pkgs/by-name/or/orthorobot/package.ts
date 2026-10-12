@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["sha256", 29, 5]], [["name", 34, 7], ["exec", 35, 7], ["icon", 36, 7], ["comment", 37, 7], ["desktopName", 38, 7], ["genericName", 39, 7], ["categories", 40, 7], ["singleMainWindow", 44, 7]], [["name", 59, 7], ["url", 60, 7], ["sha256", 61, 7]], [["description", 81, 5], ["homepage", 82, 5], ["mainProgram", 83, 5], ["platforms", 84, 5], ["license", 85, 5], ["downloadPage", 86, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["desktopItems", 32, 3], ["nativeBuildInputs", 48, 3], ["patches", 55, 3], ["buildPhase", 65, 3], ["installPhase", 72, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, copyDesktopItems: false, fetchFromGitHub: false, fetchpatch: false, fetchurl: false, love: false, makeDesktopItem: false, makeWrapper: false, stdenv: false, "strip-nondeterminism": false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["sha256", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 34, 7], ["exec", 35, 7], ["icon", 36, 7], ["comment", 37, 7], ["desktopName", 38, 7], ["genericName", 39, 7], ["categories", 40, 7], ["singleMainWindow", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 59, 7], ["url", 60, 7], ["sha256", 61, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["mainProgram", 83, 5], ["platforms", 84, 5], ["license", 85, 5], ["downloadPage", 86, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["desktopItems", 32, 3], ["nativeBuildInputs", 48, 3], ["patches", 55, 3], ["buildPhase", 65, 3], ["installPhase", 72, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,16 +19,16 @@ export default nix.lambda((args) => (() => {
   const strip_nondeterminism = nix.arg($, "strip-nondeterminism");
   const zip = nix.arg($, "zip");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://stabyourself.net/images/screenshots/orthorobot-5.png",
       sha256: "13fa4divdqz4vpdij1lcs5kf6w2c4jm3cc9q6bz5h7lkng31jzi6",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "orthorobot",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Stabyourself",
           repo: "orthorobot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "orthorobot",
             exec: "orthorobot",
             icon: icon,
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper, strip_nondeterminism, zip]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "Stabyourself-orthorobot-pull-3.patch",
             url: "https://github.com/Stabyourself/orthorobot/compare/48f07423950b29a94b04aefe268f2f951f55b62e...05856ba7dbf1bb86d0f16a5f511d8ee9f2176015.patch",
             sha256: "sha256-WHHP6QM7R5eEkVF+J2pGNnds/OKRIRXyon85wjd3GXI=",
@@ -69,7 +64,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), love)} $out/bin/orthorobot \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Recharge the robot",
         homepage: "https://github.com/Stabyourself/orthorobot",
         mainProgram: "orthorobot",

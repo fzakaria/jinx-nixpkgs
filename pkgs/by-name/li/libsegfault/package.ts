@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["NIX_CFLAGS_COMPILE", 23, 7]], [["updateScript", 36, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["env", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["passthru", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, meson: false, ninja: false, boost: false, libbacktrace: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["env", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["passthru", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,28 +16,28 @@ export default nix.lambda((args) => (() => {
   const libbacktrace = nix.arg($, "libbacktrace");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libsegfault",
       version: "0-unstable-2025-10-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jonathanpoelen",
           repo: "libsegfault",
           rev: "30346f0103d6c301d5be28ec59c57396a9939931",
           sha256: "AlR5lVo/lQ8RPY2/mlztwhOmWqINU0hHVE6as5D2s8k=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DBOOST_STACKTRACE_GNU_SOURCE_NOT_REQUIRED=1")),
       })),
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       buildInputs: nix.thunk(() => [boost, libbacktrace]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Implementation of libSegFault.so with Boost.stracktrace",
         homepage: "https://github.com/jonathanpoelen/libsegfault",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

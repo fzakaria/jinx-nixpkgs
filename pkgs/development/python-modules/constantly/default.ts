@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 7], ["repo", 22, 7], ["tag", 23, 7], ["hash", 24, 7]], [["doCheck", 45, 60]], [["constantly", 45, 20]], [["tests", 45, 14]], [["description", 48, 7], ["homepage", 49, 7], ["license", 50, 7], ["maintainers", 51, 7]], [["pname", 16, 5], ["version", 17, 5], ["pyproject", 18, 5], ["src", 20, 5], ["nativeBuildInputs", 27, 5], ["doCheck", 33, 5], ["nativeCheckInputs", 35, 5], ["checkPhase", 37, 5], ["pythonImportsCheck", 43, 5], ["passthru", 45, 5], ["meta", 47, 5]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, versioneer: false, twisted: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 7], ["repo", 22, 7], ["tag", 23, 7], ["hash", 24, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 45, 60]]);
-const pos$3 = nix.positions(here + "/default.nix", [["constantly", 45, 20]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 45, 14]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 48, 7], ["homepage", 49, 7], ["license", 50, 7], ["maintainers", 51, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 5], ["pyproject", 18, 5], ["src", 20, 5], ["nativeBuildInputs", 27, 5], ["doCheck", 33, 5], ["nativeCheckInputs", 35, 5], ["checkPhase", 37, 5], ["pythonImportsCheck", 43, 5], ["passthru", 45, 5], ["meta", 47, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "23.10.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "twisted",
           repo: "constantly",
           tag: version,
@@ -35,21 +30,21 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\ntrial constantly\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["constantly"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          constantly: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
+          [nix.POS]: $pos[2],
+          constantly: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: true })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Module for symbolic constant support",
         homepage: "https://github.com/twisted/constantly",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

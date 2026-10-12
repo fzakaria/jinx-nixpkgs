@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 39, 5], ["configurePhase", 40, 5], ["makeFlags", 45, 5], ["installPhase", 46, 5]], [["pname", 57, 5], ["configurePhase", 58, 5], ["preBuild", 64, 5], ["postBuild", 67, 5], ["setupHook", 70, 5]]]);
 const formals$1 = { args: { stdenv: false, buildPackages: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 39, 5], ["configurePhase", 40, 5], ["makeFlags", 45, 5], ["installPhase", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 57, 5], ["configurePhase", 58, 5], ["preBuild", 64, 5], ["postBuild", 67, 5], ["setupHook", 70, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const chezSystem = nix.thunk(() => nix.str`t${chezArch}${chezOs}`);
   const forBoot = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     pname: "chez-scheme-racket-boot",
     configurePhase: "runHook preConfigure\n./configure --pb ZLIB=$ZLIB LZ4=$LZ4\nrunHook postConfigure\n",
     makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`${chezSystem}.bootquick`)]),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
   }));
   const boot = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./shared.nix")), forBoot)), nix.thunk(() => ({}))));
   const forFinal = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     pname: "chez-scheme-racket",
     configurePhase: nix.thunk(() => nix.str`runHook preConfigure
 cp -r ${boot}/* -t ./boot

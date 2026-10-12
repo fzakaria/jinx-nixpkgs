@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withSandboxSupport", 5, 3], ["withNom", 6, 3], ["withDelta", 7, 3], ["withGlow", 8, 3]]]);
 const formals$1 = { args: { stdenv: false, "nixpkgs-review": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withSandboxSupport", 5, 3], ["withNom", 6, 3], ["withDelta", 7, 3], ["withGlow", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stdenv = nix.arg($, "stdenv");
   const nixpkgs_review = nix.arg($, "nixpkgs-review");
   return nix.app(nix.sel(nixpkgs_review, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       withSandboxSupport: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       withNom: true,
       withDelta: true,

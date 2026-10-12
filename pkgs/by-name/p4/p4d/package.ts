@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 7], ["sha256", 13, 7]], [["x86_64-linux", 11, 5]], [["description", 38, 5], ["homepage", 39, 5], ["sourceProvenance", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 26, 3], ["nativeBuildInputs", 28, 3], ["dontBuild", 30, 3], ["installPhase", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 7], ["sha256", 13, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 11, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["sourceProvenance", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 26, 3], ["nativeBuildInputs", 28, 3], ["dontBuild", 30, 3], ["installPhase", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,15 +12,15 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "https://web.archive.org/web/20231109221336id_/https://ftp.perforce.com/perforce/r23.1/bin.linux26x86_64/helix-core-server.tgz",
         sha256: "b68c4907cf9258ab47102e8f0e489c11d528a8f614bfa45e3a2fa198639e2362",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "p4d",
       version: "2023.1.2513900",
       src: nix.thunk(() => (() => {
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "install -D -t $out/bin p4broker p4d p4p\ninstall -D -t $out/doc/p4d -m 0644 *.txt\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Perforce Helix Core Server",
         homepage: "https://www.perforce.com",
         sourceProvenance: nix.thunk(() => (() => {

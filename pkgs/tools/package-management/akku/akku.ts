@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/akku.nix", [[["url", 19, 7], ["sha256", 20, 7]], [["src", 18, 5]], [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]], [["extraArgs", 55, 5]], [["updateScript", 54, 12]], [["homepage", 59, 5], ["description", 60, 5], ["changelog", 61, 5], ["platforms", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 68, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["preBuild", 48, 3], ["makeFlags", 52, 3], ["passthru", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitLab: false, autoreconfHook: false, "pkg-config": false, git: false, guile_3_0: false, curl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/akku.nix", [["url", 19, 7], ["sha256", 20, 7]]);
-const pos$2 = nix.positions(here + "/akku.nix", [["src", 18, 5]]);
-const pos$3 = nix.positions(here + "/akku.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]]);
-const pos$4 = nix.positions(here + "/akku.nix", [["extraArgs", 55, 5]]);
-const pos$5 = nix.positions(here + "/akku.nix", [["updateScript", 54, 12]]);
-const pos$6 = nix.positions(here + "/akku.nix", [["homepage", 59, 5], ["description", 60, 5], ["changelog", 61, 5], ["platforms", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 68, 5]]);
-const pos$7 = nix.positions(here + "/akku.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["preBuild", 48, 3], ["makeFlags", 52, 3], ["passthru", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,9 +18,9 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const nix_update_script = nix.arg($, "nix-update-script");
   const guile_3_0_10 = nix.thunk(() => nix.app(nix.sel(guile_3_0, "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "mirror://gnu/guile/guile-3.0.10.tar.xz",
           sha256: "sha256-vXFoUX/VJjM0RtT3q4FlJ5JWNAlPvTcyLhfiuNjnY4g=",
         })))),
@@ -35,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "akku";
       const version = "1.1.0-unstable-2026-09-13";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "akkuscm",
           repo: "akku",
           rev: "c37e3e9e320cf9ab363eaf557771c95a4dbb55b6",
@@ -46,11 +40,11 @@ export default nix.lambda((args) => (() => {
       const preBuild = "touch bootstrap.db\n";
       const makeFlags = nix.thunk(() => ["GUILE_AUTO_COMPILE=0"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://akkuscm.org/",
         description: "Language package manager for Scheme",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/akkuscm/akku/-/raw/v${version}/NEWS.md`),
@@ -66,7 +60,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "akku",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["updateScript", 24, 12]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["maintainers", 31, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontBuild", 17, 3], ["makeFlags", 19, 3], ["passthru", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, directoryListingUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 24, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["maintainers", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontBuild", 17, 3], ["makeFlags", 19, 3], ["passthru", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wireless-regdb";
       const version = "2026.09.03";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.kernel.org/pub/software/network/wireless-regdb/wireless-regdb-${version}.tar.xz`),
           hash: "sha256-si4JASJ7ggzRwoCr5oGhW3c6UQOl4Q3EQulOuzTL9Y0=",
         }))));
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
         "PREFIX=",
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wireless regulatory database for CRDA",
         homepage: "https://wireless.docs.kernel.org/en/latest/en/developers/regulatory/wireless-regdb.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -42,7 +39,16 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "fpletz"))];
         })()),
       }));
-      return { [nix.POS]: pos$4, pname, version, src, dontBuild, makeFlags, passthru, meta };
+      return {
+        [nix.POS]: $pos[3],
+        pname,
+        version,
+        src,
+        dontBuild,
+        makeFlags,
+        passthru,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

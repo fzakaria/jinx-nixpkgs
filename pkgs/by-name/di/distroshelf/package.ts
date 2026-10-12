@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["hash", 33, 5]], [["updateScript", 54, 12]], [["homepage", 57, 5], ["description", 58, 5], ["mainProgram", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoDeps", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 48, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, wrapGAppsHook4: false, "desktop-file-utils": false, rustPlatform: false, cargo: false, rustc: false, "pkg-config": false, glib: false, libadwaita: false, libxml2: false, "vte-gtk4": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 57, 5], ["description", 58, 5], ["mainProgram", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoDeps", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 48, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const vte_gtk4 = nix.arg($, "vte-gtk4");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "distroshelf",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ranfdev",
           repo: "DistroShelf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-6UAsG8K/j6lX6mwZOg5JZYbYUe98i6+nPaPLjQMM3w8=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -58,11 +54,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [glib, libadwaita, vte_gtk4]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/ranfdev/DistroShelf",
         description: "GUI for Distrobox Containers",
         mainProgram: "distroshelf",

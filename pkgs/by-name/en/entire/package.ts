@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["updateScript", 47, 12]], [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 64, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["subPackages", 25, 3], ["ldflags", 27, 3], ["nativeBuildInputs", 33, 3], ["nativeCheckInputs", 35, 3], ["postInstall", 40, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildGo127Module: false, fetchFromGitHub: false, installShellFiles: false, git: false, stdenv: false, writableTmpDirAsHomeHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 47, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["subPackages", 25, 3], ["ldflags", 27, 3], ["nativeBuildInputs", 33, 3], ["nativeCheckInputs", 35, 3], ["postInstall", 40, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "entire",
       version: "0.11.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "entireio",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +37,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [git, writableTmpDirAsHomeHook]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd entire \\\n  --bash <($out/bin/entire completion bash) \\\n  --fish <($out/bin/entire completion fish) \\\n  --zsh <($out/bin/entire completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI tool that captures AI agent sessions alongside git commits",
         longDescription: "Entire hooks into your git workflow to capture AI agent sessions on every\npush. Sessions are indexed alongside commits, creating a searchable record\nof how code was written in your repo.\n",
         homepage: "https://github.com/entireio/cli",

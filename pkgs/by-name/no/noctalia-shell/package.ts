@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 74, 5], ["repo", 75, 5], ["tag", 76, 5], ["hash", 77, 5]], [["updateScript", 113, 12]], [["changelog", 116, 5], ["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["mainProgram", 120, 5], ["maintainers", 121, 5], ["platforms", 122, 5]], [["pname", 70, 3], ["version", 71, 3], ["src", 73, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 84, 3], ["installPhase", 89, 3], ["preFixup", 104, 3], ["passthru", 113, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, "nix-update-script": false, stdenvNoCC: false, qt6: false, "noctalia-qs": false, bluez: false, brightnessctl: false, cliphist: false, ddcutil: false, wlsunset: false, "wl-clipboard": false, "wlr-randr": false, imagemagick: false, wget: false, "gpu-screen-recorder": false, python3: false, "wayland-scanner": false, "evolution-data-server": false, libical: false, glib: false, libsoup_3: false, "json-glib": false, "gobject-introspection": false, bluetoothSupport: true, brightnessctlSupport: true, cliphistSupport: true, ddcutilSupport: true, wlsunsetSupport: true, "wl-clipboardSupport": true, "wlr-randrSupport": true, imagemagickSupport: true, calendarSupport: true, gpuScreenRecorderSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 74, 5], ["repo", 75, 5], ["tag", 76, 5], ["hash", 77, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 113, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 116, 5], ["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["mainProgram", 120, 5], ["maintainers", 121, 5], ["platforms", 122, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 70, 3], ["version", 71, 3], ["src", 73, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 84, 3], ["installPhase", 89, 3], ["preFixup", 104, 3], ["passthru", 113, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,11 +54,11 @@ export default nix.lambda((args) => (() => {
       gobject_introspection,
     ])));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "noctalia-shell",
       version: "4.7.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "noctalia-dev",
           repo: "noctalia",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -93,11 +90,11 @@ runHook postInstall
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/noctalia-dev/noctalia/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Sleek and minimal desktop shell thoughtfully crafted for Wayland, built with Quickshell",
         homepage: "https://github.com/noctalia-dev/noctalia",

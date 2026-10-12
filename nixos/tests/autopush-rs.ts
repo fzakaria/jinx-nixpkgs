@@ -2,68 +2,50 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/autopush-rs.nix", [[["systemPackages", 10, 21]], [["enable", 15, 11], ["port", 16, 11]], [["autopush-rs", 14, 32]], [["servers", 14, 24]], [["redis", 14, 18]], [["crypto_key", 24, 13], ["db_dsn", 25, 13], ["port", 26, 13]], [["settings", 22, 23]], [["imports", 19, 11], ["autoconnect", 22, 11]], [["crypto_key", 35, 13], ["auth_keys", 36, 13], ["db_dsn", 37, 13], ["port", 38, 13]], [["settings", 33, 24]], [["imports", 30, 11], ["autoendpoint", 33, 11]], [["autopush-autoconnect", 18, 25], ["autopush-autoendpoint", 29, 25]], [["services", 18, 16]], [["allowedTCPPorts", 42, 29]], [["firewall", 42, 20]], [["environment", 10, 9], ["services", 14, 9], ["system", 18, 9], ["networking", 42, 9]], [["machine", 7, 5]], [["maintainers", 60, 8]], [["_class", 3, 3], ["name", 4, 3], ["nodes", 6, 3], ["testScript", 49, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/autopush-rs.nix", [["systemPackages", 10, 21]]);
-const pos$2 = nix.positions(here + "/autopush-rs.nix", [["enable", 15, 11], ["port", 16, 11]]);
-const pos$3 = nix.positions(here + "/autopush-rs.nix", [["autopush-rs", 14, 32]]);
-const pos$4 = nix.positions(here + "/autopush-rs.nix", [["servers", 14, 24]]);
-const pos$5 = nix.positions(here + "/autopush-rs.nix", [["redis", 14, 18]]);
-const pos$6 = nix.positions(here + "/autopush-rs.nix", [["crypto_key", 24, 13], ["db_dsn", 25, 13], ["port", 26, 13]]);
-const pos$7 = nix.positions(here + "/autopush-rs.nix", [["settings", 22, 23]]);
-const pos$8 = nix.positions(here + "/autopush-rs.nix", [["imports", 19, 11], ["autoconnect", 22, 11]]);
-const pos$9 = nix.positions(here + "/autopush-rs.nix", [["crypto_key", 35, 13], ["auth_keys", 36, 13], ["db_dsn", 37, 13], ["port", 38, 13]]);
-const pos$10 = nix.positions(here + "/autopush-rs.nix", [["settings", 33, 24]]);
-const pos$11 = nix.positions(here + "/autopush-rs.nix", [["imports", 30, 11], ["autoendpoint", 33, 11]]);
-const pos$12 = nix.positions(here + "/autopush-rs.nix", [["autopush-autoconnect", 18, 25], ["autopush-autoendpoint", 29, 25]]);
-const pos$13 = nix.positions(here + "/autopush-rs.nix", [["services", 18, 16]]);
-const pos$14 = nix.positions(here + "/autopush-rs.nix", [["allowedTCPPorts", 42, 29]]);
-const pos$15 = nix.positions(here + "/autopush-rs.nix", [["firewall", 42, 20]]);
-const pos$16 = nix.positions(here + "/autopush-rs.nix", [["environment", 10, 9], ["services", 14, 9], ["system", 18, 9], ["networking", 42, 9]]);
-const pos$17 = nix.positions(here + "/autopush-rs.nix", [["machine", 7, 5]]);
-const pos$18 = nix.positions(here + "/autopush-rs.nix", [["maintainers", 60, 8]]);
-const pos$19 = nix.positions(here + "/autopush-rs.nix", [["_class", 3, 3], ["name", 4, 3], ["nodes", 6, 3], ["testScript", 49, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     _class: "nixosTest",
     name: "autopush-rs",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             redis: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               servers: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                "autopush-rs": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, port: 6000n })),
+                [nix.POS]: $pos[2],
+                "autopush-rs": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, port: 6000n })),
               })),
             })),
           })),
           system: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               "autopush-autoconnect": nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 imports: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "autopush-rs", "services", "autoconnect"))]),
                 autoconnect: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     crypto_key: "[fZQX8jgdESUYFTYfWw3Dv5RRMuwYJPPaaPcbUgHM69Q=]",
                     db_dsn: nix.thunk(() => nix.str`redis://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "redis", "servers", "autopush-rs", "port")))}`),
                     port: 8000n,
@@ -71,12 +53,12 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               "autopush-autoendpoint": nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 imports: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "autopush-rs", "services", "autoendpoint"))]),
                 autoendpoint: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     crypto_key: "[fZQX8jgdESUYFTYfWw3Dv5RRMuwYJPPaaPcbUgHM69Q=]",
                     auth_keys: "[fZQX8jgdESUYFTYfWw3Dv5RRMuwYJPPaaPcbUgHM69Q=]",
                     db_dsn: nix.thunk(() => nix.str`redis://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "redis", "servers", "autopush-rs", "port")))}`),
@@ -87,15 +69,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$15,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [8080n, 8000n]) })),
+            [nix.POS]: $pos[14],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[13], allowedTCPPorts: nix.thunk(() => [8080n, 8000n]) })),
           })),
         };
       })(), formals$2),
     })),
     testScript: "start_all()\nmachine.wait_for_unit(\"multi-user.target\")\nmachine.wait_for_unit(\"autopush-autoconnect.service\")\nmachine.wait_for_unit(\"autopush-autoendpoint.service\")\nmachine.wait_for_open_port(8080)\nmachine.wait_for_open_port(8000)\nmachine.succeed(\"curl -s -f http://localhost:8080/health\")\nmachine.succeed(\"curl -s -f http://localhost:8000/health\")\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "zimward"))];

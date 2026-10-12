@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt.nix", [[["pname", 12, 3], ["version", 14, 25], ["src", 14, 33], ["meta", 14, 37], ["buildInputs", 16, 3], ["propagatedBuildInputs", 18, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, "js_of_ocaml-ppx": false, js_of_ocaml: false, lwt: false, lwt_log: false, loggerSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt.nix", [["pname", 12, 3], ["version", 14, 25], ["src", 14, 33], ["meta", 14, 37], ["buildInputs", 16, 3], ["propagatedBuildInputs", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const lwt_log = nix.arg($, "lwt_log");
   const loggerSupport = nix.argOr($, "loggerSupport", () => !nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(lwt, "version")), "6.0.0")));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "js_of_ocaml-lwt",
       version: nix.thunk(() => nix.attr(js_of_ocaml, "version")),
       src: nix.thunk(() => nix.attr(js_of_ocaml, "src")),

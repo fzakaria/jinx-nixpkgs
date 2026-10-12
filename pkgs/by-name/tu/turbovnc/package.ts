@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableJava", 15, 45]], [["owner", 52, 5], ["repo", 53, 5], ["rev", 54, 5], ["hash", 55, 5]], [["turbovnc-headless-server", 176, 18]], [["tests", 176, 12]], [["homepage", 179, 5], ["license", 180, 5], ["description", 181, 5], ["maintainers", 182, 5], ["platforms", 183, 5], ["changelog", 184, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 82, 3], ["postPatch", 108, 3], ["cmakeFlags", 114, 3], ["postInstall", 144, 3], ["passthru", 176, 3], ["meta", 178, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nixosTests: false, bzip2: false, cmake: false, "dri-pkgconfig-stub": false, freetype: false, libGL: false, libgbm: false, libjpeg_turbo: false, "libjpeg_turbo'": true, makeWrapper: false, "mesa-gl-headers": false, openjdk: false, openjdk_headless: false, openssh: false, openssl: false, pam: false, perl: false, "pkg-config": false, python3: false, which: false, xkbcomp: false, xkeyboard_config: false, "tab-window-manager": false, libxi: false, libxfont_2: false, libxext: false, libxdmcp: false, libxdamage: false, libx11: false, libsm: false, xtrans: false, xorgproto: false, xauth: false, pixman: false, libxshmfence: false, libxkbfile: false, libfontenc: false, xterm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableJava", 15, 45]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 52, 5], ["repo", 53, 5], ["rev", 54, 5], ["hash", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["turbovnc-headless-server", 176, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 176, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 179, 5], ["license", 180, 5], ["description", 181, 5], ["maintainers", 182, 5], ["platforms", 183, 5], ["changelog", 184, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 82, 3], ["postPatch", 108, 3], ["cmakeFlags", 114, 3], ["postInstall", 144, 3], ["passthru", 176, 3], ["meta", 178, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const libgbm = nix.arg($, "libgbm");
   const libjpeg_turbo = nix.arg($, "libjpeg_turbo");
-  const libjpeg_turbo$ = nix.argOr($, "libjpeg_turbo'", () => nix.app(nix.sel(libjpeg_turbo, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJava: true }))));
+  const libjpeg_turbo$ = nix.argOr($, "libjpeg_turbo'", () => nix.app(nix.sel(libjpeg_turbo, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableJava: true }))));
   const makeWrapper = nix.arg($, "makeWrapper");
   const mesa_gl_headers = nix.arg($, "mesa-gl-headers");
   const openjdk = nix.arg($, "openjdk");
@@ -54,11 +49,11 @@ export default nix.lambda((args) => (() => {
   const libfontenc = nix.arg($, "libfontenc");
   const xterm = nix.arg($, "xterm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "turbovnc",
       version: "3.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "TurboVNC",
           repo: "turbovnc",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -123,14 +118,14 @@ wrapProgram $out/bin/vncviewer \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssh]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "turbovnc-headless-server": nix.thunk(() => nix.sel(nixosTests, "turbovnc-headless-server")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://turbovnc.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         description: "High-speed version of VNC derived from TightVNC",

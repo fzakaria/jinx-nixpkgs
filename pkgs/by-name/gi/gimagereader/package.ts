@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["sha256", 49, 5]], [["description", 101, 5], ["mainProgram", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 107, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 64, 3], ["cmakeFlags", 95, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, libuuid: false, "sane-backends": false, podofo: false, libjpeg: false, djvulibre: false, libxmlxx3: false, libzip: false, tesseract: false, intltool: false, poppler: false, "json-glib": false, ninja: false, python3: false, doxygen: false, enchant: false, "gobject-introspection": false, wrapGAppsHook3: false, gtkmm3: false, gtksourceview3: false, gtksourceviewmm: false, gtkspell3: false, gtkspellmm: false, cairomm_1_0: false, kdePackages: false, qt6Packages: false, withQt6: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["sha256", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 101, 5], ["mainProgram", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 107, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 64, 3], ["cmakeFlags", 95, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,11 +43,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "pygobject3"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gimagereader",
       version: "3.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "manisandro",
           repo: "gImageReader",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,7 +93,7 @@ export default nix.lambda((args) => (() => {
         })())))),
       cmakeFlags: nix.thunk(() => nix.concat(["-DINTERFACE_TYPE=gtk"], nix.app(nix.sel(lib, "optionals"), withQt6, nix.thunk(() => ["-DINTERFACE_TYPE=qt6 -DQT_VER=6"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple Gtk/Qt front-end to tesseract-ocr",
         mainProgram: nix.thunk(() => (nix.asBool(withQt6) ? "gImageReader-qt6" : "gImageReader")),
         homepage: "https://github.com/manisandro/gImageReader",

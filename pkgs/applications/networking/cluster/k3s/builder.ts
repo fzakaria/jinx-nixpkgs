@@ -2,24 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/builder.nix", [[["description", 113, 5], ["license", 114, 5], ["homepage", 115, 5], ["teams", 116, 5], ["platforms", 117, 5], ["priority", 121, 5]], [["chart", 179, 5], ["name", 180, 5]], [["chart", 183, 5], ["name", 184, 5]], [["x86_64-linux", 191, 7], ["aarch64-linux", 192, 7]], [["url", 208, 5], ["sha256", 209, 5], ["stripRoot", 210, 5]], [["owner", 221, 9], ["repo", 222, 9], ["rev", 223, 9], ["sha256", 224, 9]], [["description", 232, 9]], [["pname", 214, 7], ["version", 215, 7], ["vendorHash", 216, 7], ["subPackages", 218, 7], ["src", 220, 7], ["postInstall", 227, 7], ["meta", 231, 7]], [["url", 239, 5], ["rev", 240, 5], ["sha256", 241, 5]], [["description", 353, 9]], [["pname", 300, 7], ["version", 301, 7], ["src", 303, 7], ["vendorHash", 304, 7], ["nativeBuildInputs", 306, 7], ["buildInputs", 307, 7], ["subPackages", 312, 7], ["ldflags", 313, 7], ["tags", 315, 7], ["CGO_CFLAGS", 322, 7], ["preBuild", 325, 7], ["postInstall", 334, 7], ["meta", 352, 7]], [["owner", 364, 9], ["repo", 365, 9], ["rev", 366, 9], ["sha256", 367, 9]], [["pname", 361, 7], ["version", 362, 7], ["src", 363, 7], ["vendorHash", 369, 7], ["buildInputs", 370, 7], ["subPackages", 371, 7], ["ldflags", 372, 7]], [["airgap-images", 507, 7], ["k3sCNIPlugins", 508, 7], ["k3sContainerd", 509, 7], ["k3sRepo", 510, 7], ["k3sRoot", 511, 7], ["k3sBundle", 512, 7], ["updateScript", 513, 7], ["tests", 515, 5], ["imagesList", 522, 5], ["airgapImages", 523, 5], ["airgapImagesAmd64", 524, 5], ["airgapImagesArm64", 525, 5], ["airgapImagesArm", 526, 5]], [["mainProgram", 531, 5]], [["pname", 377, 3], ["version", 378, 3], ["pos", 379, 3], ["__structuredAttrs", 380, 3], ["tags", 382, 3], ["src", 387, 3], ["vendorHash", 388, 3], ["postPatch", 390, 3], ["k3sRuntimeDeps", 415, 3], ["k3sKillallDeps", 431, 3], ["buildInputs", 441, 3], ["nativeBuildInputs", 443, 3], ["propagatedBuildInputs", 451, 3], ["buildPhase", 462, 3], ["doCheck", 484, 3], ["installPhase", 486, 3], ["doInstallCheck", 502, 3], ["nativeInstallCheckInputs", 503, 3], ["passthru", 505, 3], ["meta", 530, 3]]]);
 const formals$1 = { args: { k3sVersion: false, k3sCommit: false, k3sRepoSha256: true, k3sVendorHash: true, k3sRootVersion: false, k3sRootSha256: true, chartVersions: false, imagesVersions: false, k3sCNIVersion: false, k3sCNISha256: true, containerdVersion: false, containerdSha256: true, containerdPackage: false, criCtlVersion: false, updateScript: true, flannelVersion: false, flannelPluginVersion: false, kubeRouterVersion: false, criDockerdVersion: false, helmJobVersion: false }, ellipsis: false };
 const formals$2 = { args: { bash: false, "bridge-utils": false, "btrfs-progs": false, buildGoModule: false, "conntrack-tools": false, coreutils: false, ethtool: false, fetchFromGitHub: false, fetchgit: false, fetchurl: false, fetchzip: false, findutils: false, gnugrep: false, gnused: false, go: false, iproute2: false, ipset: false, iptables: false, nftables: false, kmod: false, lib: false, libseccomp: false, makeBinaryWrapper: false, nixosTests: false, overrideBundleAttrs: true, overrideCniPluginsAttrs: true, overrideContainerdAttrs: true, "pkg-config": false, pkgsBuildBuild: false, procps: false, rsync: false, runCommand: false, runc: false, socat: false, sqlite: false, stdenv: false, shadow: false, systemdMinimal: false, "util-linuxMinimal": false, "yq-go": false, zstd: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/builder.nix", [["description", 113, 5], ["license", 114, 5], ["homepage", 115, 5], ["teams", 116, 5], ["platforms", 117, 5], ["priority", 121, 5]]);
-const pos$2 = nix.positions(here + "/builder.nix", [["chart", 179, 5], ["name", 180, 5]]);
-const pos$3 = nix.positions(here + "/builder.nix", [["chart", 183, 5], ["name", 184, 5]]);
-const pos$4 = nix.positions(here + "/builder.nix", [["x86_64-linux", 191, 7], ["aarch64-linux", 192, 7]]);
-const pos$5 = nix.positions(here + "/builder.nix", [["url", 208, 5], ["sha256", 209, 5], ["stripRoot", 210, 5]]);
-const pos$6 = nix.positions(here + "/builder.nix", [["owner", 221, 9], ["repo", 222, 9], ["rev", 223, 9], ["sha256", 224, 9]]);
-const pos$7 = nix.positions(here + "/builder.nix", [["description", 232, 9]]);
-const pos$8 = nix.positions(here + "/builder.nix", [["pname", 214, 7], ["version", 215, 7], ["vendorHash", 216, 7], ["subPackages", 218, 7], ["src", 220, 7], ["postInstall", 227, 7], ["meta", 231, 7]]);
-const pos$9 = nix.positions(here + "/builder.nix", [["url", 239, 5], ["rev", 240, 5], ["sha256", 241, 5]]);
-const pos$10 = nix.positions(here + "/builder.nix", [["description", 353, 9]]);
-const pos$11 = nix.positions(here + "/builder.nix", [["pname", 300, 7], ["version", 301, 7], ["src", 303, 7], ["vendorHash", 304, 7], ["nativeBuildInputs", 306, 7], ["buildInputs", 307, 7], ["subPackages", 312, 7], ["ldflags", 313, 7], ["tags", 315, 7], ["CGO_CFLAGS", 322, 7], ["preBuild", 325, 7], ["postInstall", 334, 7], ["meta", 352, 7]]);
-const pos$12 = nix.positions(here + "/builder.nix", [["owner", 364, 9], ["repo", 365, 9], ["rev", 366, 9], ["sha256", 367, 9]]);
-const pos$13 = nix.positions(here + "/builder.nix", [["pname", 361, 7], ["version", 362, 7], ["src", 363, 7], ["vendorHash", 369, 7], ["buildInputs", 370, 7], ["subPackages", 371, 7], ["ldflags", 372, 7]]);
-const pos$14 = nix.positions(here + "/builder.nix", [["airgap-images", 507, 7], ["k3sCNIPlugins", 508, 7], ["k3sContainerd", 509, 7], ["k3sRepo", 510, 7], ["k3sRoot", 511, 7], ["k3sBundle", 512, 7], ["updateScript", 513, 7], ["tests", 515, 5], ["imagesList", 522, 5], ["airgapImages", 523, 5], ["airgapImagesAmd64", 524, 5], ["airgapImagesArm64", 525, 5], ["airgapImagesArm", 526, 5]]);
-const pos$15 = nix.positions(here + "/builder.nix", [["mainProgram", 531, 5]]);
-const pos$16 = nix.positions(here + "/builder.nix", [["pname", 377, 3], ["version", 378, 3], ["pos", 379, 3], ["__structuredAttrs", 380, 3], ["tags", 382, 3], ["src", 387, 3], ["vendorHash", 388, 3], ["postPatch", 390, 3], ["k3sRuntimeDeps", 415, 3], ["k3sKillallDeps", 431, 3], ["buildInputs", 441, 3], ["nativeBuildInputs", 443, 3], ["propagatedBuildInputs", 451, 3], ["buildPhase", 462, 3], ["doCheck", 484, 3], ["installPhase", 486, 3], ["doInstallCheck", 502, 3], ["nativeInstallCheckInputs", 503, 3], ["passthru", 505, 3], ["meta", 530, 3]]);
 
 export default (lib) => nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -89,7 +74,7 @@ export default (lib) => nix.lambda((args) => (() => {
     const zstd = nix.arg($_1, "zstd");
     const versionCheckHook = nix.arg($_1, "versionCheckHook");
     const baseMeta = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       description: "Lightweight Kubernetes distribution",
       license: nix.thunk(() => nix.sel(lib_1, "licenses", "asl20")),
       homepage: "https://k3s.io",
@@ -139,22 +124,22 @@ export default (lib) => nix.lambda((args) => (() => {
       ];
     })());
     const traefik = nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       chart: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(chartVersions, "traefik")))),
       name: nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.sel(chartVersions, "traefik", "url")))),
     }));
     const traefik_crd = nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       chart: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(chartVersions, "traefik-crd")))),
       name: nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.sel(chartVersions, "traefik-crd", "url")))),
     }));
     const airgap_images = nix.thunk(() => nix.selOr({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(imagesVersions, "airgap-images-amd64-tar-zst")))),
       "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(imagesVersions, "airgap-images-arm64-tar-zst")))),
     }, () => nix.builtins.throw(nix.thunk(() => nix.str`k3s: no airgap images available for system ${nix.sel(stdenv, "hostPlatform", "system")}, consider using an image archive with an explicit architecture.`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
     const k3sRoot = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         url: nix.thunk(() => nix.str`https://github.com/k3s-io/k3s-root/releases/download/v${k3sRootVersion}/k3s-root-amd64.tar`),
         sha256: k3sRootSha256,
         stripRoot: false,
@@ -165,16 +150,19 @@ export default (lib) => nix.lambda((args) => (() => {
         const vendorHash = null;
         const subPackages = nix.thunk(() => ["."]);
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             owner: "rancher",
             repo: "plugins",
             rev: nix.thunk(() => nix.str`v${version}`),
             sha256: k3sCNISha256,
           }))));
         const postInstall = "mv $out/bin/plugins $out/bin/cni\n";
-        const meta = nix.thunk(() => nix.update(baseMeta, { [nix.POS]: pos$7, description: "CNI plugins, as patched by rancher for k3s" }));
+        const meta = nix.thunk(() => nix.update(baseMeta, {
+          [nix.POS]: $pos[6],
+          description: "CNI plugins, as patched by rancher for k3s",
+        }));
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           pname,
           version,
           vendorHash,
@@ -185,7 +173,7 @@ export default (lib) => nix.lambda((args) => (() => {
         };
       })())), "overrideAttrs"), overrideCniPluginsAttrs));
     const k3sRepo = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         url: "https://github.com/k3s-io/k3s",
         rev: nix.thunk(() => nix.str`v${k3sVersion}`),
         sha256: k3sRepoSha256,
@@ -219,7 +207,7 @@ sed -i '$acreate_killall' install.sh
 KILLALL_K3S_SH=$out bash install.sh
 `)));
     const k3sBundle = nix.thunk(() => nix.app(nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         pname: "k3s-bin",
         version: k3sVersion,
         src: k3sRepo,
@@ -238,16 +226,16 @@ cp -v ${nix.sel(traefik_crd, "chart")} ./pkg/static/embed/charts/${nix.sel(traef
 `),
         postInstall: "mv $out/bin/server $out/bin/k3s\npushd $out\n# taken verbatim from https://github.com/k3s-io/k3s/blob/v1.23.3%2Bk3s1/scripts/build#L105-L113\nln -s k3s ./bin/containerd\nln -s k3s ./bin/crictl\nln -s k3s ./bin/ctr\nln -s k3s ./bin/k3s-agent\nln -s k3s ./bin/k3s-certificate\nln -s k3s ./bin/k3s-completion\nln -s k3s ./bin/k3s-etcd-snapshot\nln -s k3s ./bin/k3s-secrets-encrypt\nln -s k3s ./bin/k3s-server\nln -s k3s ./bin/k3s-token\nln -s k3s ./bin/kubectl\npopd\n",
         meta: nix.thunk(() => nix.update(baseMeta, {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           description: "Various binaries that get packaged into the final k3s binary",
         })),
       }))), "overrideAttrs"), overrideBundleAttrs));
     const k3sContainerd = nix.thunk(() => nix.app(nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         pname: "k3s-containerd",
         version: containerdVersion,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             owner: "k3s-io",
             repo: "containerd",
             rev: nix.thunk(() => nix.str`v${containerdVersion}`),
@@ -259,7 +247,7 @@ cp -v ${nix.sel(traefik_crd, "chart")} ./pkg/static/embed/charts/${nix.sel(traef
         ldflags: versionldflags,
       }))), "overrideAttrs"), overrideContainerdAttrs));
     return nix.app(buildGoModule, (finalAttrs) => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         pname: "k3s",
         version: k3sVersion,
         pos: nix.thunk(() => nix.builtins.unsafeGetAttrPos("k3sVersion", attrs)),
@@ -324,7 +312,7 @@ runHook postInstall
         doInstallCheck: true,
         nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
         passthru: nix.thunk(() => nix.update({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           "airgap-images": airgap_images,
           k3sCNIPlugins: k3sCNIPlugins,
           k3sContainerd: k3sContainerd,
@@ -342,7 +330,7 @@ runHook postInstall
           airgapImagesArm64: nix.thunk(() => nix.builtins.throw("k3s.airgapImagesArm64 was renamed to k3s.airgap-images-arm64-tar-zst")),
           airgapImagesArm: nix.thunk(() => nix.builtins.throw("k3s.airgapImagesArm was renamed to k3s.airgap-images-arm-tar-zst")),
         }, nix.app(nix.sel(lib_1, "mapAttrs"), (_) => (value) => nix.app(fetchurl, value), imagesVersions))),
-        meta: nix.thunk(() => nix.update(baseMeta, { [nix.POS]: pos$15, mainProgram: "k3s" })),
+        meta: nix.thunk(() => nix.update(baseMeta, { [nix.POS]: $pos[14], mainProgram: "k3s" })),
       }));
   })(), formals$2);
 })(), formals$1);

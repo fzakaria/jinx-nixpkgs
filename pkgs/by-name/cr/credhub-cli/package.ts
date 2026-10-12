@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 19, 3], ["__darwinAllowLocalNetworking", 23, 3], ["vendorHash", 25, 3], ["ldflags", 27, 3], ["postInstall", 33, 3], ["preCheck", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 19, 3], ["__darwinAllowLocalNetworking", 23, 3], ["vendorHash", 25, 3], ["ldflags", 27, 3], ["postInstall", 33, 3], ["preCheck", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "credhub-cli",
       version: "2.9.60",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cloudfoundry",
           repo: "credhub-cli",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "ln -s $out/bin/credhub-cli $out/bin/credhub\n",
       preCheck: "export HOME=$TMPDIR\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Provides a command line interface to interact with CredHub servers",
         homepage: "https://github.com/cloudfoundry/credhub-cli",
         maintainers: nix.thunk(() => (() => {

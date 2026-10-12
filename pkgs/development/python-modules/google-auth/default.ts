@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["aiohttp", 50, 5], ["cryptography", 54, 5], ["enterprise_cert", 55, 5], ["pyopenssl", 58, 5], ["pyjwt", 61, 5], ["reauth", 64, 5], ["requests", 65, 5], ["rsa", 66, 5], ["urllib3", 67, 5]], [["rev-prefix", 103, 5]], [["updateScript", 102, 12]], [["description", 107, 5], ["longDescription", 108, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["sourceRoot", 40, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["optional-dependencies", 49, 3], ["pythonRelaxDeps", 73, 3], ["nativeCheckInputs", 75, 3], ["disabledTestPaths", 88, 3], ["pythonImportsCheck", 95, 3], ["__darwinAllowLocalNetworking", 100, 3], ["passthru", 102, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, aiohttp: false, aioresponses: false, buildPythonPackage: false, cryptography: false, flask: false, freezegun: false, gitUpdater: false, grpcio: false, mock: false, packaging: false, "pyasn1-modules": false, pyjwt: false, pyopenssl: false, "pytest-asyncio": false, "pytest-localserver": false, pytestCheckHook: false, pyu2f: false, requests: false, responses: false, rsa: false, setuptools: false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aiohttp", 50, 5], ["cryptography", 54, 5], ["enterprise_cert", 55, 5], ["pyopenssl", 58, 5], ["pyjwt", 61, 5], ["reauth", 64, 5], ["requests", 65, 5], ["rsa", 66, 5], ["urllib3", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev-prefix", 103, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 102, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 107, 5], ["longDescription", 108, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["sourceRoot", 40, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["optional-dependencies", 49, 3], ["pythonRelaxDeps", 73, 3], ["nativeCheckInputs", 75, 3], ["disabledTestPaths", 88, 3], ["pythonImportsCheck", 95, 3], ["__darwinAllowLocalNetworking", 100, 3], ["passthru", 102, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.50.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "google-cloud-python",
           tag: nix.thunk(() => nix.str`google-auth-v${version}`),
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [cryptography, pyasn1_modules]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         aiohttp: nix.thunk(() => [aiohttp, requests]),
         cryptography: nix.thunk(() => [cryptography]),
         enterprise_cert: nix.thunk(() => [pyopenssl]),
@@ -81,11 +76,11 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["google.auth", "google.oauth2"]);
       const __darwinAllowLocalNetworking = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "google-auth-v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "google-auth-v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Google Auth Python Library",
         longDescription: "This library simplifies using Google's various server-to-server\nauthentication mechanisms to access Google APIs.\n",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-auth",
@@ -94,7 +89,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sarahec"))]),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

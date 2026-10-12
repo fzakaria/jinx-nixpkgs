@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 71, 5], ["url", 72, 5], ["sha256", 73, 5]], [["name", 77, 5], ["exec", 78, 5], ["icon", 79, 5], ["comment", 80, 5], ["desktopName", 81, 5], ["genericName", 82, 5], ["categories", 83, 5]], [["description", 130, 5], ["homepage", 131, 5], ["sourceProvenance", 132, 5], ["license", 133, 5], ["platforms", 134, 5], ["maintainers", 135, 5]], [["pname", 67, 3], ["version", 68, 3], ["src", 70, 3], ["desktopItem", 76, 3], ["nativeBuildInputs", 86, 3], ["installPhase", 88, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, glib: false, libsm: false, libice: false, gtk2: false, libxext: false, libxft: false, fontconfig: false, libxrender: false, libxfixes: false, libx11: false, libxi: false, libxrandr: false, libxcursor: false, freetype: false, libxinerama: false, libxcb: false, zlib: false, pciutils: false, makeDesktopItem: false, "xkeyboard-config": false, dbus: false, runtimeShell: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 71, 5], ["url", 72, 5], ["sha256", 73, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 77, 5], ["exec", 78, 5], ["icon", 79, 5], ["comment", 80, 5], ["desktopName", 81, 5], ["genericName", 82, 5], ["categories", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 130, 5], ["homepage", 131, 5], ["sourceProvenance", 132, 5], ["license", 133, 5], ["platforms", 134, 5], ["maintainers", 135, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 67, 3], ["version", 68, 3], ["src", 70, 3], ["desktopItem", 76, 3], ["nativeBuildInputs", 86, 3], ["installPhase", 88, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -63,13 +60,13 @@ export default nix.lambda((args) => (() => {
       const pname = "saleae-logic";
       const version = "1.2.18";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`saleae-logic-${version}-64bit.zip`),
           url: nix.thunk(() => nix.str`https://downloads.saleae.com/logic/${version}/Logic%20${version}%20(64-bit).zip`),
           sha256: "0lhair2vsg8sjvzicvfcjfmvy30q7i01xj4z02iqh7pgzpb025h8",
         }))));
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "saleae-logic",
           exec: "saleae-logic",
           icon: "",
@@ -119,7 +116,7 @@ mkdir -p "$out/etc/udev/rules.d"
 cp Drivers/99-SaleaeLogic.rules "$out/etc/udev/rules.d/"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Software for Saleae logic analyzers",
         homepage: "https://www.saleae.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -131,7 +128,7 @@ cp Drivers/99-SaleaeLogic.rules "$out/etc/udev/rules.d/"
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bjornfor"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

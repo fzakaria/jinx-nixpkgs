@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["PBR_VERSION", 15, 7]], [["url", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["updateScript", 46, 12]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["env", 15, 3], ["src", 18, 3], ["outputs", 24, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["doCheck", 42, 3], ["pythonImportsCheck", 44, 3], ["passthru", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchgit: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["PBR_VERSION", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 46, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["env", 15, 3], ["src", 18, 3], ["outputs", 24, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["doCheck", 42, 3], ["pythonImportsCheck", 44, 3], ["passthru", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "git-review",
       version: "2.5.0",
       pyproject: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://opendev.org/opendev/git-review",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-RE5XAUS46Y/jtI0/csR59B9l1gYpHuwGQkbWqoTfxPk=",
@@ -48,11 +44,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["git_review"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tool to submit code to Gerrit",
         homepage: "https://opendev.org/opendev/git-review",
         changelog: nix.thunk(() => nix.str`https://docs.opendev.org/opendev/git-review/latest/releasenotes.html#relnotes-${nix.sel(finalAttrs, "version")}`),

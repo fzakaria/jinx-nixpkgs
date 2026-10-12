@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]], [["updateScript", 64, 12]], [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["postPatch", 49, 3], ["nativeBuildInputs", 53, 3], ["dontConfigure", 54, 3], ["dontBuild", 55, 3], ["installPhase", 57, 3], ["passthru", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { "acpica-tools": false, bc: false, coreutils: false, fetchFromGitHub: false, gawk: false, gnugrep: false, gnused: false, linuxPackages: false, lib: false, pciutils: false, powertop: false, makeWrapper: false, stdenv: false, unstableGitUpdater: false, "util-linux": false, xset: false, xxd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 64, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["postPatch", 49, 3], ["nativeBuildInputs", 53, 3], ["dontConfigure", 54, 3], ["dontBuild", 55, 3], ["installPhase", 57, 3], ["passthru", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
       xxd,
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "s0ix-selftest-tool",
       version: "0-unstable-2025-07-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intel",
           repo: "S0ixSelftestTool",
           rev: "2707d34bf8130feb21e5902efbdecbd2dc915148",
@@ -62,11 +59,11 @@ wrapProgram "$out/bin/s0ix-selftest-tool" --prefix PATH : ${deps}
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/intel/S0ixSelftestTool",
         description: "Tool for testing the S2idle path CPU Package C-state and S0ix failures",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

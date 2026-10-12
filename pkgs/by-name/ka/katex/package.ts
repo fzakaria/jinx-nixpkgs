@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["pname", 31, 26], ["version", 31, 32], ["src", 31, 40], ["pnpm", 32, 13], ["fetcherVersion", 33, 5], ["hash", 34, 5]], [["nativeBuildInputs", 71, 13]], [["mathml", 68, 7]], [["updateScript", 65, 5], ["tests", 67, 5]], [["changelog", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["pnpmDeps", 30, 3], ["nativeBuildInputs", 37, 3], ["installPhase", 45, 3], ["doInstallCheck", 61, 3], ["nativeInstallCheckInputs", 62, 3], ["passthru", 64, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pnpm_11: false, pnpmBuildHook: false, pnpmConfigHook: false, fetchPnpmDeps: false, nodejs: false, makeBinaryWrapper: false, "nix-update-script": false, versionCheckHook: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 31, 26], ["version", 31, 32], ["src", 31, 40], ["pnpm", 32, 13], ["fetcherVersion", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 71, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mathml", 68, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 65, 5], ["tests", 67, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["pnpmDeps", 30, 3], ["nativeBuildInputs", 37, 3], ["installPhase", 45, 3], ["doInstallCheck", 61, 3], ["nativeInstallCheckInputs", 62, 3], ["passthru", 64, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "katex",
       version: "0.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "katex",
           repo: "katex",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-3ymbUOq7rGXbUG5qE5FXwm2erxAF7eHusND6kKNtfpY=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -64,18 +58,18 @@ runHook postInstall
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           mathml: nix.thunk(() => nix.app(runCommand, "simple-mathml-output-test", nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "echo \"1+2\" | katex -F mathml --output test.html\ngrep -q \"<semantics><mrow><mn>1</mn><mo>+</mo><mn>2</mn></mrow>\" test.html\ntouch $out\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/KaTeX/KaTeX/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Render TeX to HTML",
         homepage: "https://katex.org/",

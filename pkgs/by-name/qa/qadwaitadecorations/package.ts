@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]], [["updateScript", 62, 12]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 47, 3], ["dontWrapQtApps", 54, 3], ["cmakeFlags", 56, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, cmake: false, qt5: false, qt6: false, wayland: false, "nix-update-script": false, useQt6: true, qt5ShadowsSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 47, 3], ["dontWrapQtApps", 54, 3], ["cmakeFlags", 56, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const qt = nix.thunk(() => (nix.asBool(useQt6) ? nix.force(qt6) : nix.force(qt5)));
   const qtVersion = nix.thunk(() => (nix.asBool(useQt6) ? "6" : "5"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "qadwaitadecorations",
       version: "0.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FedoraQt",
           repo: "QAdwaitaDecorations",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Fix build with Qt 6.10",
             url: "https://github.com/FedoraQt/QAdwaitaDecorations/commit/e6da80a440218b87e441c8a698014ef3962af98b.patch?full_index=1",
             hash: "sha256-7ZmceoOzUDHvvCX+8SwuX+DIi65d6hYIYfpikMiN0wM=",
@@ -58,11 +54,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DQT_PLUGINS_DIR=${nix.builtins.placeholder("out")}/${nix.sel(qt, "qtbase", "qtPluginPrefix")}`),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), useQt6, "-DUSE_QT6=true"), nix.app(nix.sel(lib, "optional"), qt5ShadowsSupport, "-DHAS_QT6_SUPPORT=true")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: nix.thunk(() => nix.str`Qt${qtVersion} Wayland decoration plugin using libadwaita style`),
         homepage: "https://github.com/FedoraQt/QAdwaitaDecorations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["rev-prefix", 85, 7], ["url", 86, 7]], [["home", 83, 5], ["updateScript", 84, 5]], [["homepage", 91, 5], ["description", 92, 5], ["mainProgram", 93, 5], ["longDescription", 95, 5], ["sourceProvenance", 116, 5], ["license", 117, 5], ["teams", 118, 5], ["platforms", 119, 5]], [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["src", 16, 3], ["installPhase", 21, 3], ["passthru", 82, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, coreutils: false, makeWrapper: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 85, 7], ["url", 86, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["home", 83, 5], ["updateScript", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 91, 5], ["description", 92, 5], ["mainProgram", 93, 5], ["longDescription", 95, 5], ["sourceProvenance", 116, 5], ["license", 117, 5], ["teams", 118, 5], ["platforms", 119, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["src", 16, 3], ["installPhase", 21, 3], ["passthru", 82, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ant",
       version: "1.10.18",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/ant/binaries/apache-ant-${nix.sel(finalAttrs, "version")}-bin.tar.bz2`),
           hash: "sha256-vBK+cMtcGwdMHnPYKj89pV88ZbigxzQqbrbR0CQmUoA=",
         })))),
@@ -87,16 +83,16 @@ EOF
 chmod +x $out/bin/ant
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         home: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/ant`),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "rev-prefix": "rel/",
             url: "https://gitbox.apache.org/repos/asf/ant",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://ant.apache.org/",
         description: "Java-based build tool",
         mainProgram: "ant",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]], [["src", 26, 26], ["version", 26, 30], ["pname", 27, 5], ["pyproject", 28, 5], ["sourceRoot", 30, 5], ["postPatch", 32, 5], ["nativeBuildInputs", 38, 5], ["buildInputs", 39, 5], ["dependencies", 40, 5], ["makeFlags", 42, 5], ["dontWrapQtApps", 44, 5], ["dontWrapPythonPrograms", 45, 5], ["postFixup", 47, 5]], [["homepage", 85, 5], ["changelog", 86, 5], ["description", 87, 5], ["license", 88, 5], ["maintainers", 92, 5], ["platforms", 96, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["wineasio-settings", 25, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 58, 3], ["dontConfigure", 62, 3], ["makeFlags", 64, 3], ["buildPhase", 66, 3], ["installPhase", 72, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, libjack2: false, "pkg-config": false, wineWow64Packages: false, python3: false, python3Packages: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 26, 26], ["version", 26, 30], ["pname", 27, 5], ["pyproject", 28, 5], ["sourceRoot", 30, 5], ["postPatch", 32, 5], ["nativeBuildInputs", 38, 5], ["buildInputs", 39, 5], ["dependencies", 40, 5], ["makeFlags", 42, 5], ["dontWrapQtApps", 44, 5], ["dontWrapPythonPrograms", 45, 5], ["postFixup", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 85, 5], ["changelog", 86, 5], ["description", 87, 5], ["license", 88, 5], ["maintainers", 92, 5], ["platforms", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["wineasio-settings", 25, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 58, 3], ["dontConfigure", 62, 3], ["makeFlags", 64, 3], ["buildPhase", 66, 3], ["installPhase", 72, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wineasio",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wineasio",
           repo: "wineasio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       "wineasio-settings": nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "wineasio-settings",
@@ -69,7 +66,7 @@ ln -s ${nix.sel(finalAttrs, "wineasio-settings")}/bin/wineasio-settings $out/bin
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/wineasio/wineasio",
         changelog: nix.thunk(() => nix.str`https://github.com/wineasio/wineasio/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "ASIO to JACK driver for WINE",

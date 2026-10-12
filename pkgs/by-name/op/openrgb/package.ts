@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["version", 92, 28], ["meta", 92, 36], ["pname", 93, 7], ["nativeBuildInputs", 94, 7], ["paths", 95, 7], ["postBuild", 96, 7]], [["withPlugins", 89, 12]], [["description", 121, 5], ["changelog", 122, 5], ["homepage", 123, 5], ["maintainers", 124, 5], ["license", 125, 5], ["platforms", 126, 5], ["mainProgram", 127, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["postPatch", 52, 3], ["postInstall", 59, 3], ["doInstallCheck", 71, 3], ["installCheckPhase", 72, 3], ["qmakeFlags", 85, 3], ["passthru", 89, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, libusb1: false, hidapi: false, "pkg-config": false, coreutils: false, makeBinaryWrapper: false, mbedtls: false, symlinkJoin: false, qt6Packages: false, autoAddDriverRunpath: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 92, 28], ["meta", 92, 36], ["pname", 93, 7], ["nativeBuildInputs", 94, 7], ["paths", 95, 7], ["postBuild", 96, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withPlugins", 89, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 121, 5], ["changelog", 122, 5], ["homepage", 123, 5], ["maintainers", 124, 5], ["license", 125, 5], ["platforms", 126, 5], ["mainProgram", 127, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["postPatch", 52, 3], ["postInstall", 59, 3], ["doInstallCheck", 71, 3], ["installCheckPhase", 72, 3], ["qmakeFlags", 85, 3], ["passthru", 89, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const qt6Packages = nix.arg($, "qt6Packages");
   const autoAddDriverRunpath = nix.arg($, "autoAddDriverRunpath");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "openrgb",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenRGB",
           repo: "OpenRGB",
           tag: nix.thunk(() => nix.str`release_${nix.sel(finalAttrs, "version")}`),
@@ -62,9 +58,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`QT_TOOL.lrelease.binary=${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(qt6Packages, "qttools")))}/bin/lrelease`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         withPlugins: (plugins) => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
             pname: nix.thunk(() => nix.add(nix.sel(finalAttrs, "pname"), "-with-plugins")),
@@ -94,7 +90,7 @@ fi
           }))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open source RGB lighting control",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/OpenRGB/OpenRGB/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://openrgb.org",

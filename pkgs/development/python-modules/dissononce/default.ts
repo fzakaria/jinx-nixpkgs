@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["homepage", 41, 5], ["license", 42, 5], ["description", 43, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, lib: false, setuptools: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false, cryptography: false, transitions: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 41, 5], ["license", 42, 5], ["description", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const cryptography = nix.arg($, "cryptography");
   const transitions = nix.arg($, "transitions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dissononce",
       version: "0.34.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tgalal",
           repo: "dissononce",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, writableTmpDirAsHomeHook]),
       pythonImportsCheck: nix.thunk(() => ["dissononce"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://pypi.org/project/dissononce/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Python implementation for Noise Protocol Framework",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["antora-lunr-extension-test", 43, 7]], [["run", 42, 11]], [["tests", 42, 5], ["updateScript", 46, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["longDescription", 54, 5], ["maintainers", 60, 5], ["platforms", 61, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["postPatch", 22, 3], ["postInstall", 34, 3], ["passthru", 41, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { antora: false, buildNpmPackage: false, fetchFromGitLab: false, lib: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["antora-lunr-extension-test", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["run", 42, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 42, 5], ["updateScript", 46, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["longDescription", 54, 5], ["maintainers", 60, 5], ["platforms", 61, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["postPatch", 22, 3], ["postInstall", 34, 3], ["passthru", 41, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "antora-lunr-extension";
       const version = "1.0.0-alpha.8";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "antora",
           repo: "antora-lunr-extension",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,15 +26,15 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace package.json --replace '\"_mocha\"' '\"\"'\n";
       const postInstall = "directory=\"$(mktemp --directory)\"\n\nmv \"$out/\"{.,}* \"$directory\"\nmv \"$directory/lib/node_modules/@antora/lunr-extension/\"{.,}* \"$out\"\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          run: nix.thunk(() => nix.app(nix.sel(antora, "tests", "run", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "antora-lunr-extension-test": true })))),
+          [nix.POS]: $pos[2],
+          run: nix.thunk(() => nix.app(nix.sel(antora, "tests", "run", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], "antora-lunr-extension-test": true })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Antora extension adding offline, full-text search powered by Lunr",
         homepage: "https://gitlab.com/antora/antora-lunr-extension",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -48,7 +43,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

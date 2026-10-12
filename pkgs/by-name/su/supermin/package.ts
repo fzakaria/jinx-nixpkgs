@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["homepage", 42, 5], ["description", 43, 5], ["maintainers", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["mainProgram", 47, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 32, 3], ["postPatch", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cpio: false, e2fsprogs: false, perl: false, "pkg-config": false, "ocaml-ng": false, glibc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["maintainers", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["mainProgram", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 32, 3], ["postPatch", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ocaml_ng = nix.arg($, "ocaml-ng");
   const glibc = nix.arg($, "glibc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "supermin",
       version: "5.3.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.libguestfs.org/supermin/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}-development/supermin-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-0oLIHccG7+pGZIGhOfmwso0sHqagofV912GmvBG5nOI=",
         })))),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isGnu")), nix.thunk(() => [glibc, nix.thunk(() => nix.sel(glibc, "static"))]))),
       postPatch: "patchShebangs src/bin2c.pl\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://libguestfs.org/supermin.1.html",
         description: "Tool for creating and building supermin appliances",
         maintainers: nix.thunk(() => (() => {

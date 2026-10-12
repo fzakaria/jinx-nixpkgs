@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sources", 183, 13], ["wrapper", 184, 5]], [["homepage", 188, 5], ["description", 189, 5], ["longDescription", 190, 5], ["license", 196, 5], ["maintainers", 201, 5], ["teams", 202, 5], ["platforms", 203, 5]], [["pname", 63, 35], ["version", 63, 41], ["src", 63, 49], ["nativeBuildInputs", 65, 3], ["buildInputs", 73, 3], ["cmakeFlags", 115, 3], ["outputs", 128, 3], ["hardeningDisable", 135, 3], ["strictDeps", 137, 3], ["postUnpack", 140, 3], ["postPatch", 166, 3], ["preConfigure", 176, 3], ["passthru", 182, 3], ["meta", 187, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, callPackage: false, cmake: false, "espeak-ng": false, ffmpeg: false, file: false, freetype: false, glib: false, gumbo: false, harfbuzz: false, jbig2dec: false, leptonica: false, libGL: false, libx11: false, libxau: false, libxcomposite: false, libxdmcp: false, libxfixes: false, libdrm: false, libffi: false, libjpeg: false, libusb1: false, libuvc: false, libvlc: false, libvncserver: false, libxcb: false, libxkbcommon: false, luajit: false, makeWrapper: false, libgbm: false, mupdf: false, openal: false, openjpeg: false, pcre2: false, "pkg-config": false, ruby: false, sqlite: false, stdenv: false, tesseract: false, valgrind: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, "libxcb-util": false, "libxcb-wm": false, xz: false, buildManPages: true, useBuiltinLua: true, useEspeak: true, useStaticLibuvc: true, useStaticOpenAL: true, useStaticSqlite: true, useTracy: true, sources: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sources", 183, 13], ["wrapper", 184, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 188, 5], ["description", 189, 5], ["longDescription", 190, 5], ["license", 196, 5], ["maintainers", 201, 5], ["teams", 202, 5], ["platforms", 203, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 63, 35], ["version", 63, 41], ["src", 63, 49], ["nativeBuildInputs", 65, 3], ["buildInputs", 73, 3], ["cmakeFlags", 115, 3], ["outputs", 128, 3], ["hardeningDisable", 135, 3], ["strictDeps", 137, 3], ["postUnpack", 140, 3], ["postPatch", 166, 3], ["preConfigure", 176, 3], ["passthru", 182, 3], ["meta", 187, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(sources, "letoram-arcan"));
       return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -138,12 +136,12 @@ chmod --recursive 744 ${destination}
       postPatch: "substituteInPlace ./src/platform/posix/paths.c \\\n  --replace-fail \"/usr/bin\" \"$out/bin\" \\\n  --replace-fail \"/usr/share\" \"$out/share\"\nsubstituteInPlace ./src/CMakeLists.txt \\\n  --replace-fail \"SETUID\" \"# SETUID\"\n",
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildManPages, "pushd doc\nruby docgen.rb mangen\npopd\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         sources: sources,
         wrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://arcan-fe.com/",
         description: "Combined Display Server, Multimedia Framework, Game Engine",
         longDescription: "Arcan is a portable and fast self-sufficient multimedia engine for\nadvanced visualization and analysis work in a wide range of applications\ne.g. game development, real-time streaming video, monitoring and\nsurveillance, up to and including desktop compositors and window managers.\n",

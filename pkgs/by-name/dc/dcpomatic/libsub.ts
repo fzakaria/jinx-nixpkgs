@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libsub.nix", [[["url", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 50, 5], ["homepage", 51, 5], ["downloadPage", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["__structuredAttrs", 46, 3], ["strictDeps", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, wafHook: false, python3: false, gitMinimal: false, "pkg-config": false, openssl: false, boost: false, fmt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libsub.nix", [["url", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/libsub.nix", [["description", 50, 5], ["homepage", 51, 5], ["downloadPage", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/libsub.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["__structuredAttrs", 46, 3], ["strictDeps", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const fmt = nix.arg($, "fmt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libsub",
       version: "1.6.64",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.carlh.net/git/libsub",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-5umGV7qzh0iYkWbnnSVAtENhI9nIk+AE7pZHbDZuArk=",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Subtitle handling library",
         homepage: "https://git.carlh.net/cgit/libsub",
         downloadPage: "https://git.carlh.net/cgit/libsub",

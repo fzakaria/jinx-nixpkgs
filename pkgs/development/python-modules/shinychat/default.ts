@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["providers", 57, 5]], [["doCheck", 118, 5]], [["pytest", 117, 18]], [["tests", 117, 12]], [["description", 122, 5], ["homepage", 123, 5], ["downloadPage", 124, 5], ["changelog", 125, 5], ["license", 126, 5], ["maintainers", 127, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["pythonRemoveDeps", 49, 3], ["dependencies", 52, 3], ["optional-dependencies", 56, 3], ["pythonImportsCheck", 69, 3], ["nativeCheckInputs", 74, 3], ["disabledTests", 83, 3], ["doCheck", 116, 3], ["passthru", 117, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, htmltools: false, anthropic: false, chatlas: false, "google-generativeai": false, "langchain-core": false, ollama: false, openai: false, pydantic: false, tokenizers: false, pillow: false, playwright: false, "pytest-playwright": false, pytestCheckHook: false, shiny: false, shinychat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["providers", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doCheck", 118, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pytest", 117, 18]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 117, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 122, 5], ["homepage", 123, 5], ["downloadPage", 124, 5], ["changelog", 125, 5], ["license", 126, 5], ["maintainers", 127, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["pythonRemoveDeps", 49, 3], ["dependencies", 52, 3], ["optional-dependencies", 56, 3], ["pythonImportsCheck", 69, 3], ["nativeCheckInputs", 74, 3], ["disabledTests", 83, 3], ["doCheck", 116, 3], ["passthru", 117, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "posit-dev",
           repo: "shinychat",
           tag: nix.thunk(() => nix.str`r/v${version}`),
@@ -48,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pythonRemoveDeps = nix.thunk(() => ["shiny"]);
       const dependencies = nix.thunk(() => [htmltools]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         providers: nix.thunk(() => [
           anthropic,
           chatlas,
@@ -88,14 +82,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          pytest: nix.thunk(() => nix.app(nix.sel(shinychat, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
+          [nix.POS]: $pos[3],
+          pytest: nix.thunk(() => nix.app(nix.sel(shinychat, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], doCheck: true })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Chat UI component for Shiny",
         homepage: "https://posit-dev.github.io/shinychat",
         downloadPage: "https://github.com/posit-dev/shinychat",
@@ -107,7 +101,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

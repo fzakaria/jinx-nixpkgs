@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 5], ["version", 20, 26], ["hash", 21, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, attrs: false, buildPythonPackage: false, fetchPypi: false, filelock: false, pytest: false, mypy: false, setuptools: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 26], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pytest-mypy",
       version: "1.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pytest_mypy",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-P1/K/3XIDczGtoz17MKOG75x6VMJRp63oov0CM5VwHQ=",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pytest_mypy"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Mypy static type checker plugin for Pytest",
         homepage: "https://github.com/dbader/pytest-mypy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

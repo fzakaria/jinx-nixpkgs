@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 39, 5], ["mainProgram", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5]], [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["unpackPhase", 24, 3], ["installPhase", 29, 3], ["postFixup", 33, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["unpackPhase", 24, 3], ["installPhase", 29, 3], ["postFixup", 33, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
     return [nix.thunk(() => nix.lookup(w, "TimeDate"))];
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "3.20",
       pname: "mb2md",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://batleth.sapienti-sat.org/projects/mb2md/mb2md-${nix.sel(finalAttrs, "version")}.pl.gz`),
           sha256: "0bvkky3c90738h3skd2f1b2yy5xzhl25cbh9w2dy97rs86ssjidg",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
   --set PERL5LIB "${nix.app(nix.sel(perlPackages, "makePerlPath"), perlDeps)}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "mbox to maildir tool",
         mainProgram: "mb2md",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

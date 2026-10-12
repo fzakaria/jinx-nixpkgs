@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["scion-freestanding-deployment", 57, 28]], [["tests", 56, 5], ["updateScript", 59, 5]], [["description", 63, 5], ["homepage", 64, 5], ["platforms", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["teams", 71, 5]], [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["__structuredAttrs", 21, 3], ["__darwinAllowLocalNetworking", 24, 3], ["vendorHash", 26, 3], ["excludedPackages", 28, 3], ["postInstall", 36, 3], ["doCheck", 46, 3], ["preCheck", 49, 3], ["tags", 53, 3], ["passthru", 55, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, nixosTests: false, ciMode: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["scion-freestanding-deployment", 57, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 56, 5], ["updateScript", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["platforms", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["teams", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["__structuredAttrs", 21, 3], ["__darwinAllowLocalNetworking", 24, 3], ["vendorHash", 26, 3], ["excludedPackages", 28, 3], ["postInstall", 36, 3], ["doCheck", 46, 3], ["preCheck", 49, 3], ["tags", 53, 3], ["passthru", 55, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const ciMode = nix.argOr($, "ciMode", () => true);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "scion",
       version: "0.15.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scionproto",
           repo: "scion",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,15 +39,15 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), ciMode, "export CI=42\n")),
       tags: nix.thunk(() => ["sqlite_mattn"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "scion-freestanding-deployment": nix.thunk(() => nix.attr(nixosTests, "scion-freestanding-deployment")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Future Internet architecture utilizing path-aware networking",
         homepage: "https://www.scion.org/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

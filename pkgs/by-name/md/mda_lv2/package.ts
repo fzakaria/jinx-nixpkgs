@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fftwSinglePrec: false, lv2: false, "pkg-config": false, wafHook: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const wafHook = nix.arg($, "wafHook");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mda-lv2",
       version: "1.2.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.drobilla.net/mda-lv2-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-zWYRcCSuBJzzrKg/npBKcCdyJOI6lp9yqcXQEKSYV9s=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, wafHook, python3]),
       buildInputs: nix.thunk(() => [fftwSinglePrec, lv2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://drobilla.net/software/mda-lv2.html",
         description: "LV2 port of the MDA plugins by Paul Kellett",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

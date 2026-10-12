@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["src", 41, 5], ["hash", 42, 5]], [["src", 46, 5], ["hash", 47, 5]], [["VICINAE_GIT_TAG", 51, 5], ["VICINAE_PROVENANCE", 52, 5], ["INSTALL_NODE_MODULES", 53, 5], ["USE_SYSTEM_CMARK_GFM", 54, 5], ["USE_SYSTEM_GLAZE", 55, 5], ["USE_SYSTEM_NUMEN", 56, 5], ["USE_SYSTEM_KF6", 57, 5], ["USE_SYSTEM_QT_KEYCHAIN", 58, 5], ["BUNDLE_SOULVER_CORE", 59, 5], ["CMAKE_INSTALL_PREFIX", 60, 5], ["CMAKE_INSTALL_DATAROOTDIR", 61, 5], ["CMAKE_INSTALL_BINDIR", 62, 5], ["CMAKE_INSTALL_LIBDIR", 63, 5]], [["updateScript", 147, 12]], [["description", 150, 5], ["homepage", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["platforms", 158, 5], ["mainProgram", 159, 5]], [["pname", 27, 3], ["version", 28, 3], ["__structuredAttrs", 30, 3], ["strictDeps", 31, 3], ["src", 33, 3], ["apiDeps", 40, 3], ["extensionManagerDeps", 45, 3], ["cmakeFlags", 50, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 78, 3], ["postPatch", 103, 3], ["qtWrapperArgs", 114, 3], ["postInstall", 124, 3], ["postFixup", 134, 3], ["doInstallCheck", 144, 3], ["nativeInstallCheckInputs", 145, 3], ["passthru", 147, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { "apple-sdk": false, cmake: false, "cmark-gfm": false, coreutils: false, fetchFromGitHub: false, fetchNpmDeps: false, glaze: false, kdePackages: false, lib: false, libqalculate: false, minizip: false, ninja: false, nodejs: false, npmHooks: false, numen: false, "pkg-config": false, qt6: false, stdenv: false, swift: false, wayland: false, libxml2: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 46, 5], ["hash", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["VICINAE_GIT_TAG", 51, 5], ["VICINAE_PROVENANCE", 52, 5], ["INSTALL_NODE_MODULES", 53, 5], ["USE_SYSTEM_CMARK_GFM", 54, 5], ["USE_SYSTEM_GLAZE", 55, 5], ["USE_SYSTEM_NUMEN", 56, 5], ["USE_SYSTEM_KF6", 57, 5], ["USE_SYSTEM_QT_KEYCHAIN", 58, 5], ["BUNDLE_SOULVER_CORE", 59, 5], ["CMAKE_INSTALL_PREFIX", 60, 5], ["CMAKE_INSTALL_DATAROOTDIR", 61, 5], ["CMAKE_INSTALL_BINDIR", 62, 5], ["CMAKE_INSTALL_LIBDIR", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 147, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 150, 5], ["homepage", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["platforms", 158, 5], ["mainProgram", 159, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["__structuredAttrs", 30, 3], ["strictDeps", 31, 3], ["src", 33, 3], ["apiDeps", 40, 3], ["extensionManagerDeps", 45, 3], ["cmakeFlags", 50, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 78, 3], ["postPatch", 103, 3], ["qtWrapperArgs", 114, 3], ["postInstall", 124, 3], ["postFixup", 134, 3], ["doInstallCheck", 144, 3], ["nativeInstallCheckInputs", 145, 3], ["passthru", 147, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,30 +30,30 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "vicinae",
       version: "0.29.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vicinaehq",
           repo: "vicinae",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-HuBu9NU+L2H/BW07H85E9A5/sT2ctOpGSBtB4IfteTk=",
         })))),
       apiDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/src/typescript/api`),
           hash: "sha256-4FEaBDJK9abcgz+vptuL4wQ8zhp+wpLbbR4Y79BVhEg=",
         })))),
       extensionManagerDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/src/typescript/extension-manager`),
           hash: "sha256-pEgqFgvdz7Bcc+LznCI+KlD1XEfUuWFWjS24MJ7sx3k=",
         })))),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "cmakeFeature")), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           VICINAE_GIT_TAG: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           VICINAE_PROVENANCE: "nix",
           INSTALL_NODE_MODULES: "OFF",
@@ -124,9 +118,9 @@ npmRoot=src/typescript/extension-manager npmDeps=${nix.sel(finalAttrs, "extensio
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -s ../Applications/Vicinae.app/Contents/MacOS/vicinae-cli \"$out/bin/vicinae\"\n"))),
       doInstallCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       nativeInstallCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [udevCheckHook]))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Native, fast, extensible launcher for the desktop",
         homepage: "https://github.com/vicinaehq/vicinae",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

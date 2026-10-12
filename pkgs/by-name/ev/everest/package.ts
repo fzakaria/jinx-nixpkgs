@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 13], ["fetchSubmodules", 25, 5], ["hash", 28, 5]], [["packages", 57, 9], ["targetPackages", 58, 9]], [["updateScript", 101, 12]], [["description", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["homepage", 107, 5], ["platforms", 108, 5], ["sourceProvenance", 109, 5]], [["pname", 19, 11], ["version", 19, 17], ["src", 21, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 33, 3], ["postPatch", 38, 3], ["dotnet-sdk", 48, 3], ["nugetDeps", 61, 3], ["dotnetRestoreFlags", 65, 3], ["linkNugetPackages", 68, 3], ["enableParallelBuilding", 71, 3], ["preBuild", 73, 3], ["installPath", 85, 3], ["postInstall", 87, 3], ["executables", 94, 3], ["dontPatchELF", 96, 3], ["dontStrip", 97, 3], ["dontPatchShebangs", 98, 3], ["dontAutoPatchelf", 99, 3], ["passthru", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchFromGitHub: false, buildDotnetModule: false, dotnetCorePackages: false, autoPatchelfHook: false, mono: false, icu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 13], ["fetchSubmodules", 25, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packages", 57, 9], ["targetPackages", 58, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 101, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["homepage", 107, 5], ["platforms", 108, 5], ["sourceProvenance", 109, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 11], ["version", 19, 17], ["src", 21, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 33, 3], ["postPatch", 38, 3], ["dotnet-sdk", 48, 3], ["nugetDeps", 61, 3], ["dotnetRestoreFlags", 65, 3], ["linkNugetPackages", 68, 3], ["enableParallelBuilding", 71, 3], ["preBuild", 73, 3], ["installPath", 85, 3], ["postInstall", 87, 3], ["executables", 94, 3], ["dontPatchELF", 96, 3], ["dontStrip", 97, 3], ["dontPatchShebangs", 98, 3], ["dontAutoPatchelf", 99, 3], ["passthru", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const rev = "082e21b0b6dd7ff7c96d65b2ca2c632f4fd8df75";
   const phome = "$out/lib/Celeste";
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "EverestAPI",
           repo: "Everest",
           rev: rev,
@@ -53,7 +49,7 @@ autoPatchelf lib-ext/piton/piton-linux_x64
               nix.thunk(() => nix.lookup(w, "sdk_8_0")),
             ])));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           packages: nix.thunk(() => nix.attr(from, "packages")),
           targetPackages: nix.thunk(() => nix.attr(from, "targetPackages")),
         };
@@ -84,9 +80,9 @@ cp ${phome}/piton-runtime.yaml ${phome}/EverestSplash
       dontStrip: true,
       dontPatchShebangs: true,
       dontAutoPatchelf: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Celeste mod loader (don't install; use celestegame instead)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

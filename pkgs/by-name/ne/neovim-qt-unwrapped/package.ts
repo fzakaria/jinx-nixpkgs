@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["platforms", 62, 27]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cmakeFlags", 24, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 40, 3], ["preCheck", 47, 3], ["doCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, qt6: false, fetchFromGitHub: false, cmake: false, doxygen: false, "msgpack-c": false, neovim: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["platforms", 62, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cmakeFlags", 24, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 40, 3], ["preCheck", 47, 3], ["doCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const neovim = nix.arg($, "neovim");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "neovim-qt-unwrapped",
       version: "0.2.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "equalsraf",
           repo: "neovim-qt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(neovim, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Neovim client library and GUI, in Qt5",
         homepage: "https://github.com/equalsraf/neovim-qt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

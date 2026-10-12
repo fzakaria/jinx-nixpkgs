@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["homepage", 68, 5], ["description", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 37, 3], ["dontUsePytestXdist", 47, 3], ["pythonImportsCheck", 49, 3], ["__darwinAllowLocalNetworking", 52, 3], ["disabledTests", 59, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, "pytest-rerunfailures": false, "pytest-xdist": false, setuptools: false, psutil: false, netcat: false, ps: false, "python-daemon": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 68, 5], ["description", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 37, 3], ["dontUsePytestXdist", 47, 3], ["pythonImportsCheck", 49, 3], ["__darwinAllowLocalNetworking", 52, 3], ["disabledTests", 59, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ClearcodeHQ",
           repo: "mirakuru",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const disabledTests = nix.thunk(() => nix.concat(["test_forgotten_stop"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_mirakuru_cleanup", "test_daemons_killing"]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/dbfixtures/mirakuru",
         description: "Process orchestration tool designed for functional and integration tests",
         changelog: nix.thunk(() => nix.str`https://github.com/ClearcodeHQ/mirakuru/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

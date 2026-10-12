@@ -2,10 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-portabled.nix", [[["pname", 35, 5], ["version", 36, 5], ["description", 37, 5], ["units", 38, 5]], [["machine", 47, 9]], [["name", 46, 3], ["nodes", 47, 3], ["testScript", 48, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-portabled.nix", [["pname", 35, 5], ["version", 36, 5], ["description", 37, 5], ["units", 38, 5]]);
-const pos$2 = nix.positions(here + "/systemd-portabled.nix", [["machine", 47, 9]]);
-const pos$3 = nix.positions(here + "/systemd-portabled.nix", [["name", 46, 3], ["nodes", 47, 3], ["testScript", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,16 +29,16 @@ Also=demo.socket
 `)));
   const demo_socket = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "demo.socket", "[Unit]\nDescription=demo socket\n\n[Socket]\nListenStream=/run/demo.sock\nSocketMode=0666\n\n[Install]\nWantedBy=sockets.target\n"));
   const demo_portable = nix.thunk(() => nix.app(nix.sel(pkgs, "portableService"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "demo",
       version: "1.0",
       description: "A demo \"Portable Service\" for a shell program built with nix",
       units: nix.thunk(() => [demo_service, demo_socket]),
     }))));
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     name: "systemd-portabled",
-    nodes: nix.thunk(() => ({ [nix.POS]: pos$2, machine: nix.thunk(() => ({})) })),
+    nodes: nix.thunk(() => ({ [nix.POS]: $pos[1], machine: nix.thunk(() => ({})) })),
     testScript: nix.thunk(() => nix.str`machine.succeed("portablectl")
 machine.wait_for_unit("systemd-portabled.service")
 machine.succeed("portablectl attach --now --runtime ${demo_portable}/demo_1.0.raw")

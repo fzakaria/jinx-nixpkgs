@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["updateScript", 101, 12]], [["description", 104, 5], ["mainProgram", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 34, 3], ["buildPhase", 48, 3], ["installPhase", 61, 3], ["fixupPhase", 90, 3], ["passthru", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, godot_4_7: false, "vulkan-headers": false, "vulkan-loader": false, libx11: false, libxcursor: false, libxext: false, libxfixes: false, libxi: false, libxinerama: false, libxrandr: false, libxrender: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 101, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 104, 5], ["mainProgram", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 34, 3], ["buildPhase", 48, 3], ["installPhase", 61, 3], ["fixupPhase", 90, 3], ["passthru", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const godot = godot_4_7;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "material-maker",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RodZill4",
           repo: "material-maker",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,11 +69,11 @@ patchelf \\
 runHook postFixup
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Procedural materials authoring tool",
         mainProgram: "material-maker",
         homepage: "https://www.materialmaker.org",

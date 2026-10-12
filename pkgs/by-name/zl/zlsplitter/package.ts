@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5], ["fetchSubmodules", 39, 5]], [["NIX_LDFLAGS", 71, 5], ["NIX_CFLAGS_COMPILE", 78, 5]], [["homepage", 120, 5], ["description", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["platforms", 126, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["env", 69, 3], ["cmakeFlags", 90, 3], ["installPhase", 100, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchFromGitHub: false, cmake: false, darwin: false, ninja: false, "pkg-config": false, writableTmpDirAsHomeHook: false, "alsa-lib": false, curl: false, expat: false, fontconfig: false, freetype: false, libGL: false, libxcursor: false, libxext: false, libxinerama: false, libxrandr: false, libepoxy: false, libjack2: false, libxkbcommon: false, lv2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5], ["fetchSubmodules", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 71, 5], ["NIX_CFLAGS_COMPILE", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 120, 5], ["description", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["platforms", 126, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["env", 69, 3], ["cmakeFlags", 90, 3], ["installPhase", 100, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const lv2 = nix.arg($, "lv2");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zlsplitter",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ZL-Audio",
           repo: "ZLSplitter",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
           libxkbcommon,
         ])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXext", "-lXcursor", "-lXinerama", "-lXrandr"]))),
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))),
         })))),
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isLinux")), "mkdir -p $out/lib/{lv2,vst3}\nmkdir -p $out/bin/\ncp -r \"ZLSplitter_artefacts/Release/LV2/ZL Splitter.lv2\" $out/lib/lv2/\ncp -r \"ZLSplitter_artefacts/Release/VST3/ZL Splitter.vst3\" $out/lib/vst3/\ninstall -Dm755 \"ZLSplitter_artefacts/Release/Standalone/ZL Splitter\" $out/bin/\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\ncp -r ZLSplitter_artefacts/Release/{AU,VST3} $out/\ncp -r ZLSplitter_artefacts/Release/Standalone/* $out/Applications/\n")), "runHook postInstall\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://zl-audio.github.io/plugins/zlsplitter/",
         description: "Versatile splitter plugin for VST3, LV2 and standalone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

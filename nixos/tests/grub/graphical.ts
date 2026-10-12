@@ -2,28 +2,20 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/graphical.nix", [[["maintainers", 6, 5]], [["nativeBuildInputs", 22, 60]], [["useBootLoader", 31, 22]], [["enable", 37, 9], ["splashImage", 38, 9]], [["timeout", 35, 19], ["grub", 36, 19]], [["loader", 35, 12]], [["virtualisation", 31, 7], ["boot", 35, 7]], [["machine", 12, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 12, 3], ["enableOCR", 42, 3], ["testScript", 44, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/graphical.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/graphical.nix", [["nativeBuildInputs", 22, 60]]);
-const pos$3 = nix.positions(here + "/graphical.nix", [["useBootLoader", 31, 22]]);
-const pos$4 = nix.positions(here + "/graphical.nix", [["enable", 37, 9], ["splashImage", 38, 9]]);
-const pos$5 = nix.positions(here + "/graphical.nix", [["timeout", 35, 19], ["grub", 36, 19]]);
-const pos$6 = nix.positions(here + "/graphical.nix", [["loader", 35, 12]]);
-const pos$7 = nix.positions(here + "/graphical.nix", [["virtualisation", 31, 7], ["boot", 35, 7]]);
-const pos$8 = nix.positions(here + "/graphical.nix", [["machine", 12, 9]]);
-const pos$9 = nix.positions(here + "/graphical.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 12, 3], ["enableOCR", 42, 3], ["testScript", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "grub-graphical",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "tomfitzhenry")),
           nix.thunk(() => nix.lookup(w, "rnhmjoj")),
@@ -31,12 +23,12 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const splash = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "grub-gfxterm-splash.png", nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "imagemagick"))]),
           })), nix.thunk(() => nix.str`magick -size 1024x768 xc:'#2d2d2d' \\
   -font ${nix.sel(pkgs, "dejavu_fonts", "minimal")}/share/fonts/truetype/DejaVuSans.ttf \\
@@ -45,14 +37,14 @@ export default nix.lambda((args) => (() => {
   -depth 8 -type TrueColor PNG24:$out
 `)));
         return {
-          [nix.POS]: pos$7,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, useBootLoader: true })),
+          [nix.POS]: $pos[6],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[2], useBootLoader: true })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               timeout: 30n,
-              grub: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, splashImage: splash })),
+              grub: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, splashImage: splash })),
             })),
           })),
         };

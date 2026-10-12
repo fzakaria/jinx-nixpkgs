@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 26], ["version", 22, 32], ["hash", 23, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 42, 3], ["disabledTests", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cssselect: false, fetchPypi: false, hatchling: false, jmespath: false, lxml: false, packaging: false, psutil: false, pytestCheckHook: false, sybil: false, w3lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 26], ["version", 22, 32], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 42, 3], ["disabledTests", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const sybil = nix.arg($, "sybil");
   const w3lib = nix.arg($, "w3lib");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "parsel",
       version: "1.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-WSX+CH6xb8QEp+2R4x4sHiqbIw2ktk802BNYwNDifog=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["parsel"]),
       disabledTests: nix.thunk(() => ["test_set_xpathfunc"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library to extract data from HTML and XML using XPath and CSS selectors",
         homepage: "https://github.com/scrapy/parsel",
         changelog: nix.thunk(() => nix.str`https://github.com/scrapy/parsel/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),

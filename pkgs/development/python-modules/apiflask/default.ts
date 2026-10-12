@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["async", 51, 5], ["dotenv", 52, 5], ["yaml", 53, 5]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 50, 3], ["nativeCheckInputs", 56, 3], ["pythonImportsCheck", 63, 3], ["disabledTests", 65, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, apispec: false, asgiref: false, buildPythonPackage: false, fetchFromGitHub: false, "flask-httpauth": false, "flask-marshmallow": false, "flask-sqlalchemy": false, flask: false, marshmallow: false, "marshmallow-dataclass": false, "openapi-spec-validator": false, pydantic: false, "pytest-cov-stub": false, pytestCheckHook: false, "python-dotenv": false, pyyaml: false, setuptools: false, webargs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["async", 51, 5], ["dotenv", 52, 5], ["yaml", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 50, 3], ["nativeCheckInputs", 56, 3], ["pythonImportsCheck", 63, 3], ["disabledTests", 65, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const webargs = nix.arg($, "webargs");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "apiflask",
       version: "3.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apiflask",
           repo: "apiflask",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         webargs,
       ], nix.sel(pydantic, "optional-dependencies", "email"))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         async: nix.thunk(() => [asgiref]),
         dotenv: nix.thunk(() => [python_dotenv]),
         yaml: nix.thunk(() => [pyyaml]),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["apiflask"]),
       disabledTests: nix.thunk(() => ["test_spec_with_dict_headers"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight Python web API framework",
         homepage: "https://github.com/apiflask/apiflask",
         changelog: nix.thunk(() => nix.str`https://github.com/apiflask/apiflask/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

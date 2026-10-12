@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["package", 35, 7], ["command", 36, 7]], [["version", 34, 5]], [["tests", 33, 12]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["mainProgram", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["makeFlags", 23, 3], ["installFlags", 31, 3], ["passthru", 33, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, openssl: false, testers: false, smartdns: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 35, 7], ["command", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 33, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["mainProgram", 51, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["makeFlags", 23, 3], ["installFlags", 31, 3], ["passthru", 33, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const smartdns = nix.arg($, "smartdns");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "smartdns",
       version: "48.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pymumu",
           repo: "smartdns",
           rev: nix.thunk(() => nix.str`Release${nix.sel(finalAttrs, "version")}`),
@@ -38,14 +33,14 @@ export default nix.lambda((args) => (() => {
       ]),
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`SYSCONFDIR=${nix.builtins.placeholder("out")}/etc`)]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: smartdns, command: "smartdns -v" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: smartdns, command: "smartdns -v" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Local DNS server to obtain the fastest website IP for the best Internet experience",
         longDescription: "SmartDNS is a local DNS server. SmartDNS accepts DNS query requests from local clients, obtains DNS query results from multiple upstream DNS servers, and returns the fastest access results to clients.\nAvoiding DNS pollution and improving network access speed, supports high-performance ad filtering.\nUnlike dnsmasq's all-servers, smartdns returns the fastest access resolution.\n",
         homepage: "https://github.com/pymumu/smartdns",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["homepage", 25, 5], ["changelog", 26, 5], ["platforms", 27, 5], ["maintainers", 28, 5], ["license", 29, 5], ["description", 30, 5], ["mainProgram", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["checkFlags", 18, 3], ["cargoHash", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { rustPlatform: false, lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 25, 5], ["changelog", 26, 5], ["platforms", 27, 5], ["maintainers", 28, 5], ["license", 29, 5], ["description", 30, 5], ["mainProgram", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["checkFlags", 18, 3], ["cargoHash", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kubetui",
       version: "1.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sarub0b0",
           repo: "kubetui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["--skip=workers::kube::store::tests::kubeconfigからstateを生成"]),
       cargoHash: "sha256-1FTckTIqBM4ckyB7YlgzM0GcoahMDnVBrAl1/P67TJ8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/sarub0b0/kubetui",
         changelog: nix.thunk(() => nix.str`https://github.com/sarub0b0/kubetui/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

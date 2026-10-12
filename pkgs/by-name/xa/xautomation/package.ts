@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libpng: false, libx11: false, libxext: false, libxi: false, libxtst: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libxtst = nix.arg($, "libxtst");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xautomation",
       version: "1.09",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.hoopajoo.net/static/projects/xautomation-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "03azv5wpg65h40ip2kk1kdh58vix4vy1r9bihgsq59jx2rhjr3zf",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libpng, libx11, libxext, libxi, libxtst]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.hoopajoo.net/projects/xautomation.html",
         description: "Control X from the command line for scripts, and do \"visual scraping\" to find things on the screen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 24, 5]], [["updateScript", 43, 12]], [["description", 46, 5], ["homepage", 47, 5], ["hydraPlatforms", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 54, 5], ["sourceProvenance", 57, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["dontFixup", 27, 3], ["installPhase", 29, 3], ["passthru", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { fetchzip: false, lib: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 43, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["hydraPlatforms", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 54, 5], ["sourceProvenance", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["dontFixup", 27, 3], ["installPhase", 29, 3], ["passthru", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "iterm2";
       const version = "3.6.10";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://iterm2.com/downloads/stable/iTerm2-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.zip`),
           hash: "sha256-igdExoh3d8EZBuKkqyNqF087jUISax07rSWG3eenUbw=",
         }))));
@@ -34,9 +31,9 @@ EOF
 chmod +x "$out/bin/iterm2"
 runHook postInstall
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Replacement for Terminal and the successor to iTerm",
         homepage: "https://www.iterm2.com/",
         hydraPlatforms: [],
@@ -52,7 +49,7 @@ runHook postInstall
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

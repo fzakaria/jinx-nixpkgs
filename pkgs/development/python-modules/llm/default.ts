@@ -2,15 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["passthru", 143, 60], ["meta", 143, 69]], [["owner", 176, 7], ["repo", 177, 7], ["tag", 178, 7], ["hash", 179, 7]], [["url", 187, 9], ["hash", 188, 9]], [["llm", 256, 70], ["plugin", 256, 74]], [["withPlugins", 253, 15], ["withAllPlugins", 253, 27], ["mkPluginTest", 255, 7], ["tests", 260, 7]], [["homepage", 264, 7], ["description", 265, 7], ["changelog", 266, 7], ["license", 267, 7], ["mainProgram", 268, 7], ["maintainers", 269, 7]], [["pname", 168, 5], ["version", 169, 5], ["pyproject", 170, 5], ["__structuredAttrs", 171, 5], ["build-system", 173, 5], ["src", 175, 5], ["patches", 182, 5], ["postPatch", 192, 5], ["dependencies", 197, 5], ["nativeCheckInputs", 213, 5], ["doCheck", 223, 5], ["preCheck", 227, 5], ["pytestFlags", 231, 5], ["enabledTestPaths", 235, 5], ["disabledTests", 239, 5], ["pythonImportsCheck", 250, 5], ["passthru", 252, 5], ["meta", 263, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, callPackage: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch2: false, pytestCheckHook: false, replaceVars: false, setuptools: false, "click-default-group": false, "condense-json": false, numpy: false, openai: false, pip: false, pluggy: false, puremagic: false, pydantic: false, python: false, "python-ulid": false, pyyaml: false, "sqlite-migrate": false, cogapp: false, "pytest-asyncio": false, "pytest-httpx": false, "pytest-recording": false, sqlite: false, "sqlite-utils": false, syrupy: false, "llm-echo": false }, ellipsis: false };
 const formals$2 = { args: { "llm-anthropic": true, "llm-cmd": true, "llm-command-r": true, "llm-deepseek": true, "llm-docs": true, "llm-echo": true, "llm-fragments-github": true, "llm-fragments-pypi": true, "llm-fragments-reader": true, "llm-fragments-symbex": true, "llm-gemini": true, "llm-gguf": true, "llm-git": true, "llm-github-copilot": true, "llm-grok": true, "llm-groq": true, "llm-hacker-news": true, "llm-jq": true, "llm-llama-server": true, "llm-lmstudio": true, "llm-mistral": true, "llm-ollama": true, "llm-openai-plugin": true, "llm-openrouter": true, "llm-pdf-to-images": true, "llm-perplexity": true, "llm-sentence-transformers": true, "llm-templates-fabric": true, "llm-templates-github": true, "llm-tools-datasette": true, "llm-tools-quickjs": true, "llm-tools-simpleeval": true, "llm-tools-sqlite": true, "llm-venice": true, "llm-video-frames": true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["passthru", 143, 60], ["meta", 143, 69]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 176, 7], ["repo", 177, 7], ["tag", 178, 7], ["hash", 179, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 187, 9], ["hash", 188, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["llm", 256, 70], ["plugin", 256, 74]]);
-const pos$5 = nix.positions(here + "/default.nix", [["withPlugins", 253, 15], ["withAllPlugins", 253, 27], ["mkPluginTest", 255, 7], ["tests", 260, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 264, 7], ["description", 265, 7], ["changelog", 266, 7], ["license", 267, 7], ["mainProgram", 268, 7], ["maintainers", 269, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 168, 5], ["version", 169, 5], ["pyproject", 170, 5], ["__structuredAttrs", 171, 5], ["build-system", 173, 5], ["src", 175, 5], ["patches", 182, 5], ["postPatch", 192, 5], ["dependencies", 197, 5], ["nativeCheckInputs", 213, 5], ["doCheck", 223, 5], ["preCheck", 227, 5], ["pytestFlags", 231, 5], ["enabledTestPaths", 235, 5], ["disabledTests", 239, 5], ["pythonImportsCheck", 250, 5], ["passthru", 252, 5], ["meta", 263, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -97,7 +91,7 @@ export default nix.lambda((args) => (() => {
         return nix.concat([nix.thunk(() => nix.sel(ps, "llm"))], nix.app(nix.sel(lib, "attrValues"), plugins));
       })()));
     return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(python, "name")}-${drvName}`), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         passthru: nix.thunk(() => nix.attr(llm, "passthru")),
         meta: nix.thunk(() => nix.attr(llm, "meta")),
       })), nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -111,14 +105,14 @@ ln -s ${python_environment}/bin/llm $out/bin/llm
   ${name} = true;
 `, withPluginsArgNames))))));
   const llm = nix.thunk(() => nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "llm",
       version: "0.31.1",
       pyproject: true,
       __structuredAttrs: true,
       "build-system": nix.thunk(() => [setuptools]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "simonw",
           repo: "llm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -128,7 +122,7 @@ ln -s ${python_environment}/bin/llm $out/bin/llm
         nix.path(here, "./001-disable-install-uninstall-commands.patch"),
         nix.path(here, "./do-not-commit-inside-content_hash-embeddings.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/simonw/llm/commit/67adad2c10be5c1898e3e1a664adb573f5d032cf.patch",
             hash: "sha256-7+sBQvef94ZTUrqNKVzHzjFADNj1KNzA2tbGs5btwNA=",
           })))),
@@ -168,16 +162,16 @@ ln -s ${python_environment}/bin/llm $out/bin/llm
       disabledTests: nix.thunk(() => ["test_gpt4o_mini_sync_and_async", "test_embed_multi_files_encoding"]),
       pythonImportsCheck: nix.thunk(() => ["llm"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         withPlugins: withPlugins,
         withAllPlugins: withAllPlugins,
         mkPluginTest: (plugin) => nix.attrsDyn({}, [
-          [nix.sel(plugin, "pname"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./mk-plugin-test.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, llm: llm, plugin: plugin }))))],
+          [nix.sel(plugin, "pname"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./mk-plugin-test.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], llm: llm, plugin: plugin }))))],
         ]),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "mergeAttrsList"), nix.thunk(() => nix.builtins.map((name) => nix.selOr(python, () => ({}), "pkgs", nix.key(nix.force(name)), "tests"), withPluginsArgNames)))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/simonw/llm",
         description: "Access large language models from the command-line",
         changelog: nix.thunk(() => nix.str`https://github.com/simonw/llm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

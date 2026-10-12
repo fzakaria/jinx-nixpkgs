@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5], ["fetchSubmodules", 35, 5]], [["pname", 38, 26], ["version", 38, 32], ["src", 38, 40], ["hash", 39, 5]], [["url", 45, 7], ["hash", 46, 7]], [["nixos", 121, 18]], [["tests", 121, 12]], [["changelog", 124, 5], ["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["mainProgram", 134, 5], ["platforms", 135, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 30, 3], ["cargoDeps", 37, 3], ["patches", 41, 3], ["postUnpack", 55, 3], ["cmakeFlags", 58, 3], ["failingTests", 61, 3], ["preConfigure", 69, 3], ["strictDeps", 77, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 88, 3], ["doInstallCheck", 99, 3], ["preInstallCheck", 102, 3], ["installCheckTarget", 105, 3], ["nativeInstallCheckInputs", 106, 3], ["versionCheckProgram", 111, 3], ["postInstall", 113, 3], ["passthru", 121, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, rustPlatform: false, rustc: false, cargo: false, installShellFiles: false, corrosion: false, libuuid: false, nixosTests: false, python3: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5], ["fetchSubmodules", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 38, 26], ["version", 38, 32], ["src", 38, 40], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 45, 7], ["hash", 46, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nixos", 121, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 121, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 124, 5], ["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["mainProgram", 134, 5], ["platforms", 135, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 30, 3], ["cargoDeps", 37, 3], ["patches", 41, 3], ["postUnpack", 55, 3], ["cmakeFlags", 58, 3], ["failingTests", 61, 3], ["preConfigure", 69, 3], ["strictDeps", 77, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 88, 3], ["doInstallCheck", 99, 3], ["preInstallCheck", 102, 3], ["installCheckTarget", 105, 3], ["nativeInstallCheckInputs", 106, 3], ["versionCheckProgram", 111, 3], ["postInstall", 113, 3], ["passthru", 121, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "taskwarrior",
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GothenburgBitFactory",
           repo: "taskwarrior",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +34,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -48,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/GothenburgBitFactory/taskwarrior/commit/c1958786deb9be8b245b4fc4c3efd0258cd70782.patch",
             hash: "sha256-i/9m/ipF+yc2iMNoNWH4i2myUOilyKNqP2A5zWkCJaQ=",
           })))),
@@ -77,14 +71,14 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       postInstall: "# Install vim and neovim plugin\nmkdir -p $out/share/vim-plugins\nmv $out/share/doc/task/scripts/vim $out/share/vim-plugins/task\nmkdir -p $out/share/nvim\nln -s $out/share/vim-plugins/task $out/share/nvim/site\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           nixos: nix.thunk(() => nix.sel(nixosTests, "taskchampion-sync-server")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/GothenburgBitFactory/taskwarrior/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Highly flexible command-line tool to manage TODO lists",
         homepage: "https://taskwarrior.org",

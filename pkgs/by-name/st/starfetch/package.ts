@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 18, 3], ["installPhase", 25, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 18, 3], ["installPhase", 25, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "starfetch",
       version: "0.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Haruno19",
           repo: "starfetch",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.add("substituteInPlace src/starfetch.cpp --replace-fail /usr/local/ $out/\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "substituteInPlace makefile --replace-warn g++ clang++\n"))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmkdir -p $out/share/starfetch\ncp starfetch $out/bin/\ncp -r res/* $out/share/starfetch/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CLI star constellations displayer",
         homepage: "https://github.com/Haruno19/starfetch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

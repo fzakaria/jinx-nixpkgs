@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 18, 26], ["version", 18, 32], ["hash", 19, 5]], [["USE_STATIC_REQUIREMENTS", 62, 7]], [["homepage", 70, 5], ["changelog", 71, 5], ["description", 72, 5], ["maintainers", 73, 5], ["license", 74, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["postPatch", 26, 3], ["propagatedBuildInputs", 41, 3], ["env", 62, 3], ["doCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3: false, fetchPypi: false, openssl: false, extraInputs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 18, 26], ["version", 18, 32], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["USE_STATIC_REQUIREMENTS", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["changelog", 71, 5], ["description", 72, 5], ["maintainers", 73, 5], ["license", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["postPatch", 26, 3], ["propagatedBuildInputs", 41, 3], ["env", 62, 3], ["doCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const extraInputs = nix.argOr($, "extraInputs", () => []);
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "salt",
       version: "3008.3",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-S/qZXs3hSRkWvJ/Qq+vzjTnqyiTB6Z4pxQRrl7h1TzA=",
@@ -60,10 +57,10 @@ substituteInPlace "tools/pkg/salt_build_backend.py" \\
           nix.thunk(() => nix.lookup(w, "tornado")),
         ], extraInputs);
       })()),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, USE_STATIC_REQUIREMENTS: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], USE_STATIC_REQUIREMENTS: "0" })),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://saltproject.io/",
         changelog: nix.thunk(() => nix.str`https://docs.saltproject.io/en/latest/topics/releases/${nix.sel(finalAttrs, "version")}.html`),
         description: "Portable, distributed, remote execution and configuration management system",

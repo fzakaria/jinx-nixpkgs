@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["varnish", 30, 64]], [["tests", 30, 12]], [["homepage", 33, 5], ["description", 34, 5], ["mainProgram", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["nativeBuildInputs", 23, 3], ["postInstall", 25, 3], ["passthru", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, makeWrapper: false, varnish: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["varnish", 30, 64]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 30, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["mainProgram", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["nativeBuildInputs", 23, 3], ["postInstall", 25, 3], ["passthru", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "prometheus_varnish_exporter";
       const version = "1.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jonnenauha",
           repo: "prometheus_varnish_exporter",
           rev: version,
@@ -33,14 +29,14 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${varnish}/bin"
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { [nix.POS]: pos$2, varnish: nix.thunk(() => nix.attr(from, "varnish")) };
+          return { [nix.POS]: $pos[1], varnish: nix.thunk(() => nix.attr(from, "varnish")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/jonnenauha/prometheus_varnish_exporter",
         description: "Varnish exporter for Prometheus",
         mainProgram: "prometheus_varnish_exporter",
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

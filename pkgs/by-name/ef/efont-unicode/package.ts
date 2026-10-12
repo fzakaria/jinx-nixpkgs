@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildPhase", 27, 3], ["installPhase", 45, 3], ["outputs", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libfaketime: false, mkfontscale: false, fonttosfnt: false, bdftopcf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildPhase", 27, 3], ["installPhase", 45, 3], ["outputs", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fonttosfnt = nix.arg($, "fonttosfnt");
   const bdftopcf = nix.arg($, "bdftopcf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "efont-unicode",
       version: "0.4.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://openlab.ring.gr.jp/efont/dist/unicode-bdf/efont-unicode-bdf-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-fT7SsYlV3dCQrf0IZfiNI1grj3ngDgr8IkWdg+f9m3M=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ndir=share/fonts/misc\ninstall -D -m 644 -t \"$out/$dir\" *.otb *.pcf.gz\ninstall -D -m 644 -t \"$bdf/$dir\" *.bdf\nmkfontdir \"$out/$dir\"\nmkfontdir \"$bdf/$dir\"\n\nrunHook postInstall\n",
       outputs: nix.thunk(() => ["out", "bdf"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "/efont/ Unicode bitmap font",
         homepage: "http://openlab.ring.gr.jp/efont/unicode/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

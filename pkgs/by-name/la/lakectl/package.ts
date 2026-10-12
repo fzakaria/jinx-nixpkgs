@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["updateScript", 54, 12]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["subPackages", 19, 3], ["proxyVendor", 20, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["preBuild", 29, 3], ["doInstallCheck", 33, 3], ["installCheckPhase", 37, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["subPackages", 19, 3], ["proxyVendor", 20, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["preBuild", 29, 3], ["doInstallCheck", 33, 3], ["installCheckPhase", 37, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lakectl",
       version: "1.88.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "treeverse",
           repo: "lakeFS",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,11 +48,11 @@ fi
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command line tool for LakeFS",
         homepage: "https://docs.lakefs.io/reference/cli.html",
         changelog: nix.thunk(() => nix.str`https://github.com/treeverse/lakeFS/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

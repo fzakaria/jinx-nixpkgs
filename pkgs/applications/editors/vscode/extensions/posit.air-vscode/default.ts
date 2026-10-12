@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 8, 5], ["publisher", 9, 5], ["version", 10, 5], ["hash", 11, 5]], [["changelog", 20, 5], ["description", 21, 5], ["downloadPage", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]], [["mktplcRef", 7, 3], ["patchPhase", 13, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, "air-formatter": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 8, 5], ["publisher", 9, 5], ["version", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 20, 5], ["description", 21, 5], ["downloadPage", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 7, 3], ["patchPhase", 13, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const air_formatter = nix.arg($, "air-formatter");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "air-vscode",
         publisher: "posit",
         version: "0.30.0",
@@ -27,7 +25,7 @@ ln -s "${nix.app(nix.sel(lib, "getExe"), air_formatter)}" bundled/bin/air
 runHook postPatch
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://marketplace.visualstudio.com/items/Posit.air-vscode/changelog",
         description: "A Visual Studio Code extension for Air, an R formatter and language server, written in Rust.",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=Posit.air-vscode",

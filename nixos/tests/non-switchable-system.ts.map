@@ -1,1 +1,1 @@
-{"version":3,"file":"non-switchable-system.ts","sources":["../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/non-switchable-system.nix"],"names":[],"mappings":";;;;;;;;;;;;eAAA;;;SAEA;;UACS;2BAEP;;mCAAmB;gDAAQ;eAAc;;;4BAEzC;;gCAAgB;;iCACd;;mCAAO;;;;gBAGI"}
+{"version":3,"file":"non-switchable-system.ts","sources":["../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/non-switchable-system.nix"],"names":[],"mappings":";;;;;;;eAAA;;;SAEA;;UACS;2BAEP;;mCAAmB;gDAAQ;eAAc;;;4BAEzC;;gCAAgB;;iCACd;;mCAAO;;;;gBAGI"}

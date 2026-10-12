@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 41, 3], ["disabledTests", 49, 3], ["disabledTestPaths", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "eth-hash": false, "eth-utils": false, hexbytes: false, rlp: false, sortedcontainers: false, hypothesis: false, pytestCheckHook: false, "pytest-xdist": false, pydantic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 41, 3], ["disabledTests", 49, 3], ["disabledTestPaths", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ethereum",
           repo: "py-trie",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/core/test_iter.py"]);
       const pythonImportsCheck = nix.thunk(() => ["trie"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library which implements the Ethereum Trie structure",
         homepage: "https://github.com/ethereum/py-trie",
         changelog: nix.thunk(() => nix.str`https://github.com/ethereum/py-trie/blob/v${version}/CHANGELOG.rst`),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

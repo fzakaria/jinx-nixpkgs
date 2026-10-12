@@ -2,26 +2,21 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/early-mount-options.nix", [["fsType", 7, 7], ["options", 8, 7], ["device", 14, 7]]);
-const pos$2 = nix.positions(here + "/early-mount-options.nix", [["/var", 6, 32]]);
-const pos$3 = nix.positions(here + "/early-mount-options.nix", [["fileSystems", 6, 20]]);
-const pos$4 = nix.positions(here + "/early-mount-options.nix", [["virtualisation", 6, 5]]);
-const pos$5 = nix.positions(here + "/early-mount-options.nix", [["machine", 5, 9]]);
-const pos$6 = nix.positions(here + "/early-mount-options.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 18, 3]]);
+const $pos = nix.positions(here + "/early-mount-options.nix", [[["fsType", 7, 7], ["options", 8, 7], ["device", 14, 7]], [["/var", 6, 32]], [["fileSystems", 6, 20]], [["virtualisation", 6, 5]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 18, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$6,
+  [nix.POS]: $pos[5],
   name: "early-mount-options",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     machine: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         fileSystems: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "/var": nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             fsType: "none",
             options: nix.thunk(() => ["bind", "nosuid", "nodev", "noexec"]),
             device: "/var",

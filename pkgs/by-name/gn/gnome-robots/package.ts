@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["pname", 35, 26], ["version", 35, 32], ["src", 35, 40], ["hash", 36, 5]], [["packageName", 74, 11]], [["command", 78, 11], ["supportedFeatures", 91, 11]], [["updateScript", 71, 5]], [["homepage", 101, 5], ["changelog", 102, 5], ["description", 103, 5], ["mainProgram", 104, 5], ["teams", 105, 5], ["license", 106, 5], ["platforms", 107, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 52, 3], ["preFixup", 64, 3], ["passthru", 70, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cargo: false, "desktop-file-utils": false, fetchurl: false, glib: false, gnome: false, gtk4: false, itstool: false, libadwaita: false, libglycin: false, "libglycin-gtk4": false, gst_all_1: false, meson: false, ninja: false, "pkg-config": false, rustc: false, rustPlatform: false, wrapGAppsHook4: false, "_experimental-update-script-combinators": false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 35, 26], ["version", 35, 32], ["src", 35, 40], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 74, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["command", 78, 11], ["supportedFeatures", 91, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 101, 5], ["changelog", 102, 5], ["description", 103, 5], ["mainProgram", 104, 5], ["teams", 105, 5], ["license", 106, 5], ["platforms", 107, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 52, 3], ["preFixup", 64, 3], ["passthru", 70, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,16 +29,16 @@ export default nix.lambda((args) => (() => {
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gnome-robots",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-robots/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-robots-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-YX5XTBX5Bhi4JJPJk51xdZatLOH/HeCq1cnDl2Yz03k=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -74,11 +68,11 @@ export default nix.lambda((args) => (() => {
       ]),
       preFixup: "# Seal GStreamer plug-ins so that we can notice when they are missing.\ngappsWrapperArgs+=(--set \"GST_PLUGIN_SYSTEM_PATH_1_0\" \"$GST_PLUGIN_SYSTEM_PATH_1_0\")\nunset GST_PLUGIN_SYSTEM_PATH_1_0\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => (() => {
-          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gnome-robots" }))));
+          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "gnome-robots" }))));
           const updateLockfile = nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             command: nix.thunk(() => [
               "sh",
               "-c",
@@ -92,7 +86,7 @@ update-source-version gnome-robots --ignore-same-version --source-key=cargoDeps.
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-robots",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-robots/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Avoid the robots and make them crash into each other",

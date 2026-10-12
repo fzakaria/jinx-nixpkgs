@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["dendrite", 59, 26]], [["extraArgs", 62, 5]], [["tests", 58, 12], ["updateScript", 61, 12]], [["homepage", 69, 5], ["mainProgram", 70, 5], ["description", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["platforms", 74, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["subPackages", 25, 3], ["nativeCheckInputs", 42, 3], ["postgresqlTestUserOptions", 47, 3], ["preCheck", 48, 3], ["doCheck", 56, 3], ["passthru", 58, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, nixosTests: false, postgresql: false, postgresqlTestHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["dendrite", 59, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 58, 12], ["updateScript", 61, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["mainProgram", 70, 5], ["description", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["platforms", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["subPackages", 25, 3], ["nativeCheckInputs", 42, 3], ["postgresqlTestUserOptions", 47, 3], ["preCheck", 48, 3], ["doCheck", 56, 3], ["passthru", 58, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlTestHook = nix.arg($, "postgresqlTestHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "matrix-dendrite",
       version: "0.15.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "element-hq",
           repo: "dendrite",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,15 +39,15 @@ export default nix.lambda((args) => (() => {
       preCheck: "export PGUSER=$(whoami)\n# temporarily disable this failing test\n# it passes in upstream CI and requires further investigation\nrm roomserver/internal/input/input_test.go\n",
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           dendrite: nix.thunk(() => nix.attr(nixosTests, "dendrite")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version-regex", "v(.+)"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version-regex", "v(.+)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://element-hq.github.io/dendrite",
         mainProgram: "dendrite",
         description: "Second-generation Matrix homeserver written in Go",

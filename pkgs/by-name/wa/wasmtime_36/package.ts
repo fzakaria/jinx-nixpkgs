@@ -2,22 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["variant", 7, 22]], [["extraArgs", 10, 7]], [["updateScript", 9, 5]], [["passthru", 8, 3]]]);
 const formals$1 = { args: { "nix-update-script": false, wasmtime: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["variant", 7, 22]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 10, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 9, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["passthru", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nix_update_script = nix.arg($, "nix-update-script");
   const wasmtime = nix.arg($, "wasmtime");
-  return nix.app(nix.sel(nix.app(nix.sel(wasmtime, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, variant: "lts-36" }))), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$4,
+  return nix.app(nix.sel(nix.app(nix.sel(wasmtime, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], variant: "lts-36" }))), "overrideAttrs"), (old) => ({
+      [nix.POS]: $pos[3],
       passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "^v(36\\.\\d+\\.\\d+)$"]),
           })))),
       })),

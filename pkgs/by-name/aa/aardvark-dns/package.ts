@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["podman", 21, 43]], [["tests", 21, 12]], [["changelog", 24, 5], ["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["teams", 28, 5], ["platforms", 29, 5], ["mainProgram", 30, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["passthru", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["podman", 21, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 21, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 24, 5], ["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["teams", 28, 5], ["platforms", 29, 5], ["mainProgram", 30, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["passthru", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "aardvark-dns",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "containers",
           repo: "aardvark-dns",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-nTcAuhfez2ub+4z9E2YGp5i+JJr9K/PpG22ZvMW5ni4=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, podman: nix.thunk(() => nix.attr(nixosTests, "podman")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], podman: nix.thunk(() => nix.attr(nixosTests, "podman")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/containers/aardvark-dns/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Authoritative dns server for A/AAAA container records",
         homepage: "https://github.com/containers/aardvark-dns",

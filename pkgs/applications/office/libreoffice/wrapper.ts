@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["unwrapped", 146, 15], ["libreoffice", 148, 7], ["kdeIntegration", 149, 27]], [["__structuredAttrs", 136, 5], ["strictDeps", 137, 5], ["meta", 139, 25], ["pname", 139, 30], ["version", 139, 36], ["paths", 140, 5], ["nativeBuildInputs", 141, 5], ["passthru", 145, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, unwrapped: false, makeWrapper: false, lndir: false, runCommand: false, "gsettings-desktop-schemas": false, "hicolor-icon-theme": false, dconf: false, librsvg: false, "gdk-pixbuf": false, coreutils: false, gnugrep: false, extraMakeWrapperArgs: true, dbusVerify: true, dbus: false, unixodbc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["unwrapped", 146, 15], ["libreoffice", 148, 7], ["kdeIntegration", 149, 27]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["__structuredAttrs", 136, 5], ["strictDeps", 137, 5], ["meta", 139, 25], ["pname", 139, 30], ["version", 139, 36], ["paths", 140, 5], ["nativeBuildInputs", 141, 5], ["passthru", 145, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -103,7 +102,7 @@ fi
         nix.thunk(() => nix.str`${nix.sel(unwrapped, "jdk", "home")}`),
       ])), nix.concat(["--inherit-argv0"], extraMakeWrapperArgs)))))))));
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(unwrapped, "name")}-wrapped`), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => nix.attr(unwrapped, "meta")),
@@ -112,7 +111,7 @@ fi
       paths: nix.thunk(() => [unwrapped]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, lndir]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         unwrapped: unwrapped,
         libreoffice: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "libreoffice: Use the unwrapped attributed, using libreoffice.libreoffice is deprecated.", unwrapped)),
         kdeIntegration: nix.thunk(() => nix.attr(unwrapped, "kdeIntegration")),

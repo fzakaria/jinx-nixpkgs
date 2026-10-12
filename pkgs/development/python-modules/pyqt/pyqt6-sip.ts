@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pyqt6-sip.nix", [[["pname", 14, 5], ["version", 15, 13], ["hash", 16, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["platforms", 28, 25], ["maintainers", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["doCheck", 21, 3], ["pythonImportsCheck", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, mesa: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pyqt6-sip.nix", [["pname", 14, 5], ["version", 15, 13], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/pyqt6-sip.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["platforms", 28, 25], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/pyqt6-sip.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["doCheck", 21, 3], ["pythonImportsCheck", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "13.10.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pyqt6_sip",
           version: version,
           hash: "sha256-RkrRVr9SZQDOa9BcrHqCKAr2MJl02BZzm0qaYnFW+v4=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python bindings for Qt5",
         homepage: "https://github.com/Python-SIP/sip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

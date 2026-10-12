@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["tokenizer", 59, 5]], [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["optional-dependencies", 58, 3], ["postPatch", 63, 3], ["nativeCheckInputs", 68, 3], ["pythonImportsCheck", 76, 3], ["disabledTests", 78, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, aiohttp: false, requests: false, "websocket-client": false, cryptography: false, certifi: false, typer: false, rich: false, httpx: false, "httpx-sse": false, pyyaml: false, tiktoken: false, pytestCheckHook: false, "pytest-asyncio": false, pydantic: false, tenacity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tokenizer", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["optional-dependencies", 58, 3], ["postPatch", 63, 3], ["nativeCheckInputs", 68, 3], ["pythonImportsCheck", 76, 3], ["disabledTests", 78, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dashscope",
           repo: "dashscope-sdk-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         httpx_sse,
         pyyaml,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, tokenizer: nix.thunk(() => [tiktoken]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], tokenizer: nix.thunk(() => [tiktoken]) }));
       const postPatch = nix.thunk(() => nix.str`substituteInPlace setup.py \\
   --replace-fail "version=get_version()," "version='${version}',"
 `);
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
         "TestWebSocketSyncRequest",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python SDK for dashscope",
         homepage: "https://github.com/dashscope/dashscope-sdk-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -85,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

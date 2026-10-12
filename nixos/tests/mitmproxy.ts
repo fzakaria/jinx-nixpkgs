@@ -2,17 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mitmproxy.nix", [[["maintainers", 12, 8]], [["certificateFiles", 17, 20]], [["pki", 17, 16]], [["autologinUser", 19, 22]], [["getty", 19, 16]], [["systemPackages", 21, 19]], [["security", 17, 7], ["services", 19, 7], ["environment", 21, 7]], [["machine", 14, 9]], [["name", 11, 3], ["meta", 12, 3], ["nodes", 14, 3], ["testScript", 78, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mitmproxy.nix", [["maintainers", 12, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/mitmproxy.nix", [["certificateFiles", 17, 20]]);
-const pos$3 = nix.positions(here + "/mitmproxy.nix", [["pki", 17, 16]]);
-const pos$4 = nix.positions(here + "/mitmproxy.nix", [["autologinUser", 19, 22]]);
-const pos$5 = nix.positions(here + "/mitmproxy.nix", [["getty", 19, 16]]);
-const pos$6 = nix.positions(here + "/mitmproxy.nix", [["systemPackages", 21, 19]]);
-const pos$7 = nix.positions(here + "/mitmproxy.nix", [["security", 17, 7], ["services", 19, 7], ["environment", 21, 7]]);
-const pos$8 = nix.positions(here + "/mitmproxy.nix", [["machine", 14, 9]]);
-const pos$9 = nix.positions(here + "/mitmproxy.nix", [["name", 11, 3], ["meta", 12, 3], ["nodes", 14, 3], ["testScript", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,29 +15,29 @@ cat ${nix.path(here, "./common/acme/server/ca.key.pem")} >> $out
 cat ${nix.path(here, "./common/acme/server/ca.cert.pem")} >> $out
 `)));
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "mitmproxy",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           security: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            pki: nix.thunk(() => ({ [nix.POS]: pos$2, certificateFiles: nix.thunk(() => [caCert]) })),
+            [nix.POS]: $pos[2],
+            pki: nix.thunk(() => ({ [nix.POS]: $pos[1], certificateFiles: nix.thunk(() => [caCert]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            getty: nix.thunk(() => ({ [nix.POS]: pos$4, autologinUser: "root" })),
+            [nix.POS]: $pos[4],
+            getty: nix.thunk(() => ({ [nix.POS]: $pos[3], autologinUser: "root" })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             systemPackages: nix.thunk(() => (() => {
               const counter = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "counter", nix.thunk(() => ({})), "from http.server import BaseHTTPRequestHandler, HTTPServer\n\ncounter = 0\n\n\nclass HTTPRequestHandler(BaseHTTPRequestHandler):\n    def do_POST(self):\n        match self.path:\n            case \"/counter\":\n                global counter\n                counter += 1\n                self.send_response(204)\n                self.end_headers()\n            case _:\n                self.send_response(404)\n                self.end_headers()\n\n    def do_GET(self):\n        match self.path:\n            case \"/counter\":\n                self.send_response(200)\n                self.send_header(\"Content-type\", \"text/plain\")\n                self.end_headers()\n                _ = self.wfile.write(str(counter).encode())\n            case \"/old\":\n                self.send_response(200)\n                self.send_header(\"Content-type\", \"text/plain\")\n                self.end_headers()\n                _ = self.wfile.write(\"fail\".encode())\n            case \"/new\":\n                self.send_response(200)\n                self.send_header(\"Content-type\", \"text/plain\")\n                self.end_headers()\n                _ = self.wfile.write(\"success\".encode())\n            case _:\n                self.send_response(404)\n                self.end_headers()\n\n\nserver_address = (\"\", 8000)\nserver = HTTPServer(server_address, HTTPRequestHandler)\nserver.serve_forever()\n"));
               return [

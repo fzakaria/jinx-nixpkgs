@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generated-package.nix", [[["url", 29, 5], ["sha256", 30, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 28, 3], ["isLibrary", 32, 3], ["isExecutable", 33, 3], ["libraryHaskellDepends", 34, 3], ["executableHaskellDepends", 45, 3], ["jailbreak", 58, 3], ["homepage", 59, 3], ["description", 60, 3], ["license", 61, 3], ["mainProgram", 62, 3]]]);
 const formals$1 = { args: { mkDerivation: false, base: false, bytestring: false, cmdargs: false, containers: false, directory: false, fetchzip: false, "file-embed": false, filepath: false, lib: false, megaparsec: false, mtl: false, "parser-combinators": false, "pretty-simple": false, process: false, "safe-exceptions": false, scientific: false, text: false, transformers: false, unix: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generated-package.nix", [["url", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/generated-package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 28, 3], ["isLibrary", 32, 3], ["isExecutable", 33, 3], ["libraryHaskellDepends", 34, 3], ["executableHaskellDepends", 45, 3], ["jailbreak", 58, 3], ["homepage", 59, 3], ["description", 60, 3], ["license", 61, 3], ["mainProgram", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const transformers = nix.arg($, "transformers");
   const unix = nix.arg($, "unix");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "nixfmt",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/nixos/nixfmt/archive/v1.5.0.tar.gz",
           sha256: "0y8kwlfs03c79nxn76ill9zx52vhxpdnibz88lpaq0dzfd2sd2v0",
         })))),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-with-expect.nix", [[["expect-script", 40, 26]], [["nativeBuildInputs", 36, 5], ["passthru", 40, 5]]]);
 const formals$1 = { args: { nano: false, expect: false, runCommand: false, writeScriptBin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-with-expect.nix", [["expect-script", 40, 26]]);
-const pos$2 = nix.positions(here + "/test-with-expect.nix", [["nativeBuildInputs", 36, 5], ["passthru", 40, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,9 +35,9 @@ sleep 1
 exit
 `)));
   return nix.app(runCommand, "nano-test-expect", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => [nano, expect]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, "expect-script": expect_script })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], "expect-script": expect_script })),
     })), nix.thunk(() => nix.str`expect -f ${expect_script}/bin/expect-script
 grep "Hello world!" file.txt
 touch $out

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 42, 5], ["sha256", 43, 5]], [["url", 47, 5], ["sha256", 48, 5]], [["description", 103, 5], ["homepage", 104, 5], ["maintainers", 105, 5], ["sourceProvenance", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["mainProgram", 109, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["plugins", 46, 3], ["runner", 51, 3], ["dontStrip", 83, 3], ["dontPatchELF", 84, 3], ["nativeBuildInputs", 86, 3], ["installPhase", 88, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, writeText: false, fetchurl: false, upx: false, libGL: false, libGLU: false, glib: false, gtk2: false, "alsa-lib": false, libsm: false, libx11: false, "gdk-pixbuf": false, pango: false, libxinerama: false, mpg123: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 42, 5], ["sha256", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 47, 5], ["sha256", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 103, 5], ["homepage", 104, 5], ["maintainers", 105, 5], ["sourceProvenance", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["mainProgram", 109, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["plugins", 46, 3], ["runner", 51, 3], ["dontStrip", 83, 3], ["dontPatchELF", 84, 3], ["nativeBuildInputs", 86, 3], ["installPhase", 88, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,16 +38,16 @@ export default nix.lambda((args) => (() => {
       libxinerama,
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kega-fusion",
       version: "3.63x",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.carpeludum.com/download/Fusion363x.tar.gz",
           sha256: "14s6czy20h5khyy7q95hd7k77v17ssafv9l6lafkiysvj2nmw94g",
         })))),
       plugins: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://www.carpeludum.com/download/PluginsLinux.tar.gz",
           sha256: "0d623cvh6n5ijj3wb64g93mxx2xbichsn7hj7brbb0ndw5cs70qj",
         })))),
@@ -100,7 +97,7 @@ substitute "$runner" "$out/bin/kega-fusion" --subst-var out
 chmod +x "$out/bin/kega-fusion"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sega SG1000, SC3000, SF7000, Master System, Game Gear, Genesis/Megadrive, SVP, Pico, SegaCD/MegaCD and 32X emulator",
         homepage: "https://www.carpeludum.com/kega-fusion/",
         maintainers: [],

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["isGutenprint", 69, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["configureFlags", 45, 3], ["preConfigure", 51, 3], ["enableParallelBuilding", 59, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, makeWrapper: false, "pkg-config": false, ijs: false, zlib: false, gimp: false, cupsSupport: true, cups: false, libusb1: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["isGutenprint", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["configureFlags", 45, 3], ["preConfigure", 51, 3], ["enableParallelBuilding", 59, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gutenprint",
       version: "5.3.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/gimp-print/gutenprint-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-9an0feKFMLGuIGnPvGR6mmQbruq+gJuw7ys+xblmjXA=",
         })))),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), cupsSupport, "sed -i \\\n  -e \"s,cups_conf_datadir=.*,cups_conf_datadir=\\\"$out/share/cups\\\",g\" \\\n  -e \"s,cups_conf_serverbin=.*,cups_conf_serverbin=\\\"$out/lib/cups\\\",g\" \\\n  -e \"s,cups_conf_serverroot=.*,cups_conf_serverroot=\\\"$out/etc/cups\\\",g\" \\\n  configure\n")),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Ghostscript and cups printer drivers",
         homepage: "https://sourceforge.net/projects/gimp-print/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

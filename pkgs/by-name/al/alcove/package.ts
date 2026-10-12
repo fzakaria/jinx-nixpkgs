@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["updateScript", 34, 12]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["sourceProvenance", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["src", 16, 3], ["sourceRoot", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3], ["passthru", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, "nix-update-script": false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 34, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["sourceProvenance", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["src", 16, 3], ["sourceRoot", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3], ["passthru", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "alcove",
       version: "1.7.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/henrikruscon/alcove-releases/releases/download/${nix.sel(finalAttrs, "version")}/Alcove.zip`),
           hash: "sha256-gzV/BdLt0cl490cPHPK5Q6S4HRaHI/e4zcOdnM+MVYg=",
         })))),
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -R ./Alcove.app $out/Applications\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Dynamic Island for your Mac",
         homepage: "https://tryalcove.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/henrikruscon/alcove-releases/releases/tag/${nix.sel(finalAttrs, "version")}`),

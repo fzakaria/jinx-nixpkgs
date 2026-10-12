@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]], [["homepage", 49, 5], ["description", 50, 5], ["mainProgram", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["disabled", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["propagatedBuildInputs", 28, 3], ["nativeCheckInputs", 33, 3], ["preCheck", 35, 3], ["disabledTestPaths", 39, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pythonAtLeast: false, decorator: false, ipython: false, isPyPy: false, setuptools: false, pytestCheckHook: false, "pytest-timeout": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 49, 5], ["description", 50, 5], ["mainProgram", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["disabled", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["propagatedBuildInputs", 28, 3], ["nativeCheckInputs", 33, 3], ["preCheck", 35, 3], ["disabledTestPaths", 39, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-46xgGO8FEm1EKvaAqthjAG7BnQIpBWGsiLixwLDPxyY=",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export HOME=$(mktemp -d)\n";
       const disabledTestPaths = nix.thunk(() => nix.concat(["manual_test.py"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ["tests/test_opts.py"]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/gotcha/ipdb",
         description: "IPython-enabled pdb",
         mainProgram: "ipdb3",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

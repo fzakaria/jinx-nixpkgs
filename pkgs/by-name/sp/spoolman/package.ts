@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["tag", 16, 7], ["hash", 17, 7]], [["version", 14, 5], ["src", 15, 5]], [["description", 100, 5], ["mainProgram", 101, 5]], [["pname", 24, 3], ["version", 25, 20], ["src", 25, 28], ["pyproject", 27, 3], ["nativeBuildInputs", 29, 3], ["pythonRelaxDeps", 35, 3], ["postPatch", 40, 3], ["propagatedBuildInputs", 56, 3], ["pythonImportsCheck", 79, 3], ["postInstall", 81, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { python312: false, lib: false, callPackage: false, writeShellScript: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["tag", 16, 7], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 14, 5], ["src", 15, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 100, 5], ["mainProgram", 101, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 20], ["src", 25, 28], ["pyproject", 27, 3], ["nativeBuildInputs", 29, 3], ["pythonRelaxDeps", 35, 3], ["postPatch", 40, 3], ["propagatedBuildInputs", 56, 3], ["pythonImportsCheck", 79, 3], ["postInstall", 81, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const hishel_0_1 = nix.thunk(() => nix.app(nix.sel(python, "pkgs", "hishel", "overrideAttrs"), (old) => (() => {
       const version = "0.1.5";
       const src = nix.thunk(() => nix.app(nix.sel(old, "src", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           tag: version,
           hash: "sha256-OyQR/ruowNk5z4ITRHcIJn1kc0xLZiofmxajf6hNR9k=",
         }))));
-      return { [nix.POS]: pos$2, version, src };
+      return { [nix.POS]: $pos[1], version, src };
     })()));
   return nix.app(nix.sel(python, "pkgs", "buildPythonPackage"), nix.thunk(() => (() => {
       const pname = "spoolman";
@@ -79,9 +76,9 @@ makeWrapper ${start_script} $out/bin/spoolman \\
 --prefix PATH : "${nix.sel(python, "pkgs", "alembic")}/bin"
 `;
       })());
-      const meta = nix.thunk(() => nix.update(nix.sel(common, "meta"), { [nix.POS]: pos$3, description: "Spoolman server", mainProgram: "spoolman" }));
+      const meta = nix.thunk(() => nix.update(nix.sel(common, "meta"), { [nix.POS]: $pos[2], description: "Spoolman server", mainProgram: "spoolman" }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

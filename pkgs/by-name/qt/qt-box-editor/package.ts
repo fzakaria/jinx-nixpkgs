@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 42, 5], ["mainProgram", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["postPatch", 34, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libsForQt5: false, leptonica: false, tesseract4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["mainProgram", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["postPatch", 34, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const leptonica = nix.arg($, "leptonica");
   const tesseract4 = nix.arg($, "tesseract4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "qt-box-editor",
       version: "unstable-2019-07-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zdenop",
           repo: "qt-box-editor",
           rev: "cba2929dabc6c715acd1a282ba161fee914c87f6",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "sed -i '/allheaders.h/a#include <leptonica/pix_internal.h>' src/TessTools.h\n\nsubstituteInPlace qt-box-editor.pro \\\n  --replace '-llept' '-lleptonica'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Editor of tesseract-ocr box files",
         mainProgram: "qt-box-editor-1.12rc1",
         homepage: "https://github.com/zdenop/qt-box-editor",

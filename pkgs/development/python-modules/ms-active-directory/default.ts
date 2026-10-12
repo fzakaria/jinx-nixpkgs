@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, dnspython: false, fetchFromGitHub: false, ldap3: false, pyasn1: false, pycryptodome: false, pytz: false, setuptools: false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zorn96",
           repo: "ms_active_directory",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["ms_active_directory"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python module for integrating with Microsoft Active Directory domains",
         homepage: "https://github.com/zorn96/ms_active_directory/",
         changelog: nix.thunk(() => nix.str`https://github.com/zorn96/ms_active_directory/releases/tag/v${version}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

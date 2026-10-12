@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pythonPaths", 26, 5], ["pythonPath", 34, 5], ["makeWrapperArgs", 37, 5]], [["description", 62, 5], ["mainProgram", 63, 5]], [["pname", 9, 3], ["version", 11, 38], ["src", 11, 46], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 18, 3], ["dontUnpack", 22, 3], ["dontConfigure", 23, 3], ["passthru", 25, 3], ["buildPhase", 44, 3], ["dontInstall", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, python3Packages: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pythonPaths", 26, 5], ["pythonPath", 34, 5], ["makeWrapperArgs", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["mainProgram", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 11, 38], ["src", 11, 46], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 18, 3], ["dontUnpack", 22, 3], ["dontConfigure", 23, 3], ["passthru", 25, 3], ["buildPhase", 44, 3], ["dontInstall", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(python3Packages, "optiland"));
       return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "optiland-python-env",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       dontConfigure: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pythonPaths: nix.thunk(() => nix.app(nix.sel(python3Packages, "requiredPythonModules"), nix.thunk(() => nix.concat([
             nix.thunk(() => nix.sel(python3Packages, "optiland")),
             nix.thunk(() => nix.sel(python3Packages, "python")),
@@ -50,7 +48,7 @@ done
 `),
       dontInstall: true,
       meta: nix.thunk(() => nix.update(nix.sel(python3Packages, "optiland", "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.add(nix.sel(python3Packages, "optiland", "meta", "description"), "; The GUI")),
         mainProgram: "optiland",
       })),

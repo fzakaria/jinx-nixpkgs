@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["lemurs", 35, 7], ["lemurs-wayland", 36, 7], ["lemurs-wayland-script", 37, 7], ["lemurs-xorg", 38, 7], ["lemurs-xorg-script", 39, 7]], [["tests", 33, 12]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 50, 5], ["mainProgram", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["buildInputs", 22, 3], ["postInstall", 26, 3], ["doInstallCheck", 30, 3], ["nativeInstallCheckInputs", 31, 3], ["passthru", 33, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, "linux-pam": false, rustPlatform: false, versionCheckHook: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lemurs", 35, 7], ["lemurs-wayland", 36, 7], ["lemurs-wayland-script", 37, 7], ["lemurs-xorg", 38, 7], ["lemurs-xorg-script", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 33, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 50, 5], ["mainProgram", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["buildInputs", 22, 3], ["postInstall", 26, 3], ["doInstallCheck", 30, 3], ["nativeInstallCheckInputs", 31, 3], ["passthru", 33, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lemurs",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coastalwhite",
           repo: "lemurs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,9 +30,9 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           lemurs: nix.thunk(() => nix.attr(nixosTests, "lemurs")),
           "lemurs-wayland": nix.thunk(() => nix.attr(nixosTests, "lemurs-wayland")),
           "lemurs-wayland-script": nix.thunk(() => nix.attr(nixosTests, "lemurs-wayland-script")),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Customizable TUI display/login manager written in Rust",
         homepage: "https://github.com/coastalwhite/lemurs",
         license: nix.thunk(() => (() => {

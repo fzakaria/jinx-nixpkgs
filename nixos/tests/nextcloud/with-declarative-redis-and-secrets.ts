@@ -2,36 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [[["system", 9, 52], ["pkgs", 9, 59]], [["maintainers", 17, 10]], [["password", 89, 21]], [["redis", 89, 15]], [["mode", 87, 13], ["text", 88, 13]], [["nextcloud-secrets.json", 86, 27]], [["systemPackages", 25, 23], ["etc", 86, 23]], [["apcu", 28, 15], ["redis", 29, 15], ["memcached", 30, 15]], [["enable", 33, 15], ["bendDomainToLocalhost", 34, 15], ["logLevel", 35, 15]], [["createLocally", 39, 22]], [["dbtype", 41, 15], ["dbname", 42, 15], ["dbuser", 43, 15], ["dbpassFile", 44, 15]], [["dbindex", 52, 17], ["timeout", 53, 17]], [["allow_local_remote_servers", 50, 15], ["redis", 51, 15]], [["caching", 27, 13], ["notify_push", 32, 13], ["extraAppsEnable", 37, 13], ["database", 39, 13], ["config", 40, 13], ["secretFile", 47, 13], ["settings", 49, 13], ["configureRedis", 57, 13]], [["enable", 61, 13], ["port", 62, 13], ["requirePass", 63, 13]], [["nextcloud", 60, 34]], [["servers", 60, 26]], [["enable", 72, 13]], [["nextcloud", 26, 20], ["redis", 60, 20], ["postgresql", 71, 20]], [["requires", 67, 13], ["after", 68, 13]], [["postStart", 74, 45]], [["nextcloud-setup", 66, 28], ["postgresql-setup", 74, 28]], [["services", 66, 19]], [["environment", 25, 11], ["services", 26, 11], ["systemd", 66, 11]], [["nextcloud", 22, 7]], [["extraTests", 95, 18]], [["name", 16, 13], ["meta", 17, 5], ["imports", 19, 5], ["nodes", 21, 5], ["test-helpers", 95, 5]]]);
 const formals$1 = { args: { name: false, pkgs: false, testBase: false, system: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["system", 9, 52], ["pkgs", 9, 59]]);
 const formals$2 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["maintainers", 17, 10]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["password", 89, 21]]);
-const pos$4 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["redis", 89, 15]]);
-const pos$5 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["mode", 87, 13], ["text", 88, 13]]);
-const pos$6 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["nextcloud-secrets.json", 86, 27]]);
-const pos$7 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["systemPackages", 25, 23], ["etc", 86, 23]]);
-const pos$8 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["apcu", 28, 15], ["redis", 29, 15], ["memcached", 30, 15]]);
-const pos$9 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["enable", 33, 15], ["bendDomainToLocalhost", 34, 15], ["logLevel", 35, 15]]);
-const pos$10 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["createLocally", 39, 22]]);
-const pos$11 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["dbtype", 41, 15], ["dbname", 42, 15], ["dbuser", 43, 15], ["dbpassFile", 44, 15]]);
-const pos$12 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["dbindex", 52, 17], ["timeout", 53, 17]]);
-const pos$13 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["allow_local_remote_servers", 50, 15], ["redis", 51, 15]]);
-const pos$14 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["caching", 27, 13], ["notify_push", 32, 13], ["extraAppsEnable", 37, 13], ["database", 39, 13], ["config", 40, 13], ["secretFile", 47, 13], ["settings", 49, 13], ["configureRedis", 57, 13]]);
-const pos$15 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["enable", 61, 13], ["port", 62, 13], ["requirePass", 63, 13]]);
-const pos$16 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["nextcloud", 60, 34]]);
-const pos$17 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["servers", 60, 26]]);
-const pos$18 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["enable", 72, 13]]);
-const pos$19 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["nextcloud", 26, 20], ["redis", 60, 20], ["postgresql", 71, 20]]);
-const pos$20 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["requires", 67, 13], ["after", 68, 13]]);
-const pos$21 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["postStart", 74, 45]]);
-const pos$22 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["nextcloud-setup", 66, 28], ["postgresql-setup", 74, 28]]);
-const pos$23 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["services", 66, 19]]);
-const pos$24 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["environment", 25, 11], ["services", 26, 11], ["systemd", 66, 11]]);
-const pos$25 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["nextcloud", 22, 7]]);
-const pos$26 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["extraTests", 95, 18]]);
-const pos$27 = nix.positions(here + "/with-declarative-redis-and-secrets.nix", [["name", 16, 13], ["meta", 17, 5], ["imports", 19, 5], ["nodes", 21, 5], ["test-helpers", 95, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,58 +13,58 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const testBase = nix.arg($, "testBase");
   const system = nix.arg($, "system");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, pkgs: pkgs })))), null);
   return nix.app(nix.lookup(w, "runTest"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       const lib = nix.arg($_1, "lib");
       const adminuser = nix.thunk(() => nix.attr(config, "adminuser"));
       return {
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         name: name,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           maintainers: nix.thunk(() => nix.sel(lib, "teams", "nextcloud", "members")),
         })),
         imports: nix.thunk(() => [testBase]),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           nextcloud: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const config_1 = nix.arg($_2, "config");
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
                 etc: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   "nextcloud-secrets.json": nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     mode: "0600",
                     text: nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-                        [nix.POS]: pos$4,
-                        redis: nix.thunk(() => ({ [nix.POS]: pos$3, password: "secret" })),
+                        [nix.POS]: $pos[3],
+                        redis: nix.thunk(() => ({ [nix.POS]: $pos[2], password: "secret" })),
                       })))),
                   })),
                 })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 nextcloud: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
-                  caching: nix.thunk(() => ({ [nix.POS]: pos$8, apcu: false, redis: true, memcached: false })),
+                  [nix.POS]: $pos[13],
+                  caching: nix.thunk(() => ({ [nix.POS]: $pos[7], apcu: false, redis: true, memcached: false })),
                   notify_push: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     enable: true,
                     bendDomainToLocalhost: true,
                     logLevel: "debug",
                   })),
                   extraAppsEnable: true,
-                  database: nix.thunk(() => ({ [nix.POS]: pos$10, createLocally: false })),
+                  database: nix.thunk(() => ({ [nix.POS]: $pos[9], createLocally: false })),
                   config: nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     dbtype: "pgsql",
                     dbname: "nextcloud",
                     dbuser: adminuser,
@@ -98,32 +72,32 @@ export default nix.lambda((args) => (() => {
                   })),
                   secretFile: "/etc/nextcloud-secrets.json",
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     allow_local_remote_servers: true,
-                    redis: nix.thunk(() => ({ [nix.POS]: pos$12, dbindex: 0n, timeout: 1.5 })),
+                    redis: nix.thunk(() => ({ [nix.POS]: $pos[11], dbindex: 0n, timeout: 1.5 })),
                   })),
                   configureRedis: true,
                 })),
                 redis: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   servers: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
-                    nextcloud: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true, port: 6379n, requirePass: "secret" })),
+                    [nix.POS]: $pos[15],
+                    nextcloud: nix.thunk(() => ({ [nix.POS]: $pos[14], enable: true, port: 6379n, requirePass: "secret" })),
                   })),
                 })),
-                postgresql: nix.thunk(() => ({ [nix.POS]: pos$18, enable: true })),
+                postgresql: nix.thunk(() => ({ [nix.POS]: $pos[17], enable: true })),
               })),
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   "nextcloud-setup": nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     requires: nix.thunk(() => ["postgresql.target"]),
                     after: nix.thunk(() => ["postgresql.target"]),
                   })),
                   "postgresql-setup": nix.thunk(() => ({
-                    [nix.POS]: pos$21,
+                    [nix.POS]: $pos[20],
                     postStart: nix.thunk(() => nix.str`password=$(cat ${nix.sel(config_1, "services", "nextcloud", "config", "dbpassFile")})
 ${nix.sel(config_1, "services", "postgresql", "package")}/bin/psql <<EOF
   CREATE ROLE ${adminuser} WITH LOGIN PASSWORD '$password' CREATEDB;
@@ -138,7 +112,7 @@ EOF
           })(), formals$3),
         })),
         "test-helpers": nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           extraTests: nix.thunk(() => nix.str`with subtest("non-empty redis cache"):
     # redis cache should not be empty
     assert nextcloud.succeed('redis-cli --pass secret --json KEYS "*" | jq length').strip() != "0", """

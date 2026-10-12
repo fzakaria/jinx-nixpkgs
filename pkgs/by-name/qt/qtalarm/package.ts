@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["updateScript", 55, 12]], [["name", 59, 7], ["exec", 60, 7], ["icon", 61, 7], ["desktopName", 62, 7], ["genericName", 63, 7], ["categories", 64, 7], ["terminal", 68, 7]], [["description", 72, 5], ["changelog", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["installPhase", 28, 3], ["nativeBuildInputs", 49, 3], ["passthru", 55, 3], ["desktopItems", 57, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, kdePackages: false, qt6: false, makeDesktopItem: false, "nix-update-script": false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 55, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 59, 7], ["exec", 60, 7], ["icon", 61, 7], ["desktopName", 62, 7], ["genericName", 63, 7], ["categories", 64, 7], ["terminal", 68, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 72, 5], ["changelog", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["installPhase", 28, 3], ["nativeBuildInputs", 49, 3], ["passthru", 55, 3], ["desktopItems", 57, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "qtalarm",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CountMurphy",
           repo: "QTalarm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,12 +37,12 @@ export default nix.lambda((args) => (() => {
         copyDesktopItems,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "QTalarm",
             exec: "qtalarm",
             icon: "qtalarm",
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Nifty alarm clock written in QT",
         changelog: nix.thunk(() => nix.str`https://github.com/CountMurphy/QTalarm/releases/tag/${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/CountMurphy/QTalarm",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 15, 5], ["hash", 19, 5]], [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]], [["homepage", 77, 5], ["description", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["outputs", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 37, 3], ["configureFlags", 39, 3], ["strictDeps", 44, 3], ["postPatch", 46, 3], ["postConfigure", 52, 3], ["installPhase", 57, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchpatch: false, installShellFiles: false, ncurses: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 15, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["description", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["outputs", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 37, 3], ["configureFlags", 39, 3], ["strictDeps", 44, 3], ["postPatch", 46, 3], ["postConfigure", 52, 3], ["installPhase", 57, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "elvis",
       version: "2.2_0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`http://www.the-little-red-haired-girl.org/pub/elvis/elvis-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`http://www.the-little-red-haired-girl.org/pub/elvis/old/elvis-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0000-resolve-stdio-getline-naming-conflict.patch",
             url: "https://github.com/mbert/elvis/commit/076cf4ad5cc993be0c6195ec0d5d57e5ad8ac1eb.patch",
             hash: "sha256-DCo2caiyE8zV5ss3O1AXy7oNlJ5AzFxdTeBx2Wtg83s=",
@@ -61,7 +58,7 @@ cp doc/* $out/share/doc/elvis-${nix.sel(finalAttrs, "version")}/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://elvis.the-little-red-haired-girl.org/",
         description: "Vi clone for Unix and other operating systems",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

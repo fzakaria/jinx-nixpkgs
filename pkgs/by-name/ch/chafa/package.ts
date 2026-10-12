@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5], ["mainProgram", 90, 5]], [["version", 22, 3], ["pname", 23, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["src", 28, 3], ["outputs", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 55, 3], ["patches", 62, 3], ["preConfigure", 64, 3], ["configureFlags", 69, 3], ["postInstall", 74, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, installShellFiles: false, autoconf: false, automake: false, libtool: false, "pkg-config": false, which: false, libavif: false, libjxl: false, librsvg: false, libxslt: false, libxml2: false, docbook_xml_dtd_412: false, docbook_xsl: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5], ["mainProgram", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 22, 3], ["pname", 23, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["src", 28, 3], ["outputs", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 55, 3], ["patches", 62, 3], ["preConfigure", 64, 3], ["configureFlags", 69, 3], ["postInstall", 74, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const docbook_xsl = nix.arg($, "docbook_xsl");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.18.3",
       pname: "chafa",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hpjansson",
           repo: "chafa",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "installShellCompletion --cmd chafa \\\n  --fish tools/completions/fish-completion.fish \\\n  --zsh tools/completions/zsh-completion.zsh\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Terminal graphics for the 21st century",
         homepage: "https://hpjansson.org/chafa/",
         changelog: nix.thunk(() => nix.str`https://github.com/hpjansson/chafa/releases/tag/${nix.sel(finalAttrs, "version")}`),

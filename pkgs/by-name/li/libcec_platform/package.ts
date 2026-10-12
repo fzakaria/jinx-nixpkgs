@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["name", 25, 7], ["url", 26, 7], ["includes", 27, 7], ["hash", 28, 7]], [["name", 32, 7], ["url", 33, 7], ["includes", 34, 7], ["hash", 35, 7]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["teams", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["patches", 22, 3], ["cmakeFlags", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["includes", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 32, 7], ["url", 33, 7], ["includes", 34, 7], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["teams", 46, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["patches", 22, 3], ["cmakeFlags", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "p8-platform",
       version: "2.1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Pulse-Eight",
           repo: "platform",
           rev: nix.thunk(() => nix.str`p8-platform-${nix.sel(finalAttrs, "version")}`),
@@ -30,14 +26,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "libcec-platform-fix-cmake4-1.patch",
             url: "https://github.com/Pulse-Eight/platform/commit/7350df98980b4e7036812b15812e3cb3c9353816.patch",
             includes: nix.thunk(() => ["CMakeLists.txt"]),
             hash: "sha256-YbxQxmXF2Iv67SjX/kMD9Df2nggBFX0fBFMyNdXXZtI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "libcec-platform-fix-cmake4-5.patch",
             url: "https://github.com/Pulse-Eight/platform/commit/d7faed1c696b1a6a67f114a63a0f4c085f0f9195.patch",
             includes: nix.thunk(() => ["CMakeLists.txt"]),
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DCMAKE_CXX_FLAGS='-std=c++11'")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Platform library for libcec and Kodi addons",
         homepage: "https://github.com/Pulse-Eight/platform",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

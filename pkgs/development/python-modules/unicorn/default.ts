@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["sourceRoot", 19, 3], ["prePatch", 21, 3], ["setupPyBuildFlags", 26, 3], ["build-system", 38, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 49, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, capstone: false, pytestCheckHook: false, "setuptools-scm": false, setuptools: false, unicorn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["sourceRoot", 19, 3], ["prePatch", 21, 3], ["setupPyBuildFlags", 26, 3], ["build-system", 38, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 49, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_i386"]);
       const pythonImportsCheck = nix.thunk(() => ["unicorn"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python bindings for Unicorn CPU emulator engine",
         homepage: "https://www.unicorn-engine.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -43,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         pyproject,

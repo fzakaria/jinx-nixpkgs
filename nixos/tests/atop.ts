@@ -2,48 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/atop.nix", [[["path", 9, 5], ["unit", 14, 5], ["version", 21, 5], ["atoprc", 29, 5], ["wrapper", 42, 5], ["atopService", 53, 5], ["atopRotateTimer", 74, 5], ["atopacctService", 75, 5], ["netatop", 99, 5], ["atopgpu", 113, 5]], [["timeout", 125, 5]], [["systemPackages", 132, 19]], [["environment", 132, 7]], [["machine", 131, 11]], [["name", 130, 5], ["nodes", 131, 5], ["testScript", 134, 5], ["meta", 146, 13]], [["enable", 152, 9]], [["atop", 151, 16]], [["programs", 151, 7]], [["machine", 150, 11]], [["name", 149, 5], ["nodes", 150, 5], ["testScript", 155, 5], ["meta", 167, 13]], [["enable", 174, 21]], [["enable", 175, 25]], [["enable", 176, 25]], [["enable", 173, 9], ["atopService", 174, 9], ["atopRotateTimer", 175, 9], ["atopacctService", 176, 9]], [["atop", 172, 16]], [["programs", 172, 7]], [["machine", 171, 11]], [["name", 170, 5], ["nodes", 171, 5], ["testScript", 179, 5], ["meta", 191, 13]], [["enable", 198, 17]], [["enable", 197, 9], ["netatop", 198, 9]], [["atop", 196, 16]], [["programs", 196, 7]], [["machine", 195, 11]], [["name", 194, 5], ["nodes", 195, 5], ["testScript", 201, 5], ["meta", 213, 13]], [["enable", 220, 17]], [["enable", 219, 9], ["atopgpu", 220, 9]], [["atop", 218, 16]], [["programs", 218, 7]], [["machine", 217, 11]], [["name", 216, 5], ["nodes", 217, 5], ["testScript", 223, 5], ["meta", 235, 13]], [["flags", 243, 11], ["interval", 244, 11]], [["enable", 246, 23]], [["enable", 247, 17]], [["enable", 248, 17]], [["enable", 241, 9], ["settings", 242, 9], ["setuidWrapper", 246, 9], ["netatop", 247, 9], ["atopgpu", 248, 9]], [["atop", 240, 16]], [["programs", 240, 7]], [["machine", 239, 11]], [["name", 238, 5], ["nodes", 239, 5], ["testScript", 251, 5], ["meta", 263, 13]], [["justThePackage", 129, 3], ["defaults", 148, 3], ["minimal", 169, 3], ["netatop", 193, 3], ["atopgpu", 215, 3], ["everything", 237, 3]]]);
 const formals$1 = { args: { pkgs: false, runTest: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/atop.nix", [["path", 9, 5], ["unit", 14, 5], ["version", 21, 5], ["atoprc", 29, 5], ["wrapper", 42, 5], ["atopService", 53, 5], ["atopRotateTimer", 74, 5], ["atopacctService", 75, 5], ["netatop", 99, 5], ["atopgpu", 113, 5]]);
-const pos$2 = nix.positions(here + "/atop.nix", [["timeout", 125, 5]]);
-const pos$3 = nix.positions(here + "/atop.nix", [["systemPackages", 132, 19]]);
-const pos$4 = nix.positions(here + "/atop.nix", [["environment", 132, 7]]);
-const pos$5 = nix.positions(here + "/atop.nix", [["machine", 131, 11]]);
-const pos$6 = nix.positions(here + "/atop.nix", [["name", 130, 5], ["nodes", 131, 5], ["testScript", 134, 5], ["meta", 146, 13]]);
-const pos$7 = nix.positions(here + "/atop.nix", [["enable", 152, 9]]);
-const pos$8 = nix.positions(here + "/atop.nix", [["atop", 151, 16]]);
-const pos$9 = nix.positions(here + "/atop.nix", [["programs", 151, 7]]);
-const pos$10 = nix.positions(here + "/atop.nix", [["machine", 150, 11]]);
-const pos$11 = nix.positions(here + "/atop.nix", [["name", 149, 5], ["nodes", 150, 5], ["testScript", 155, 5], ["meta", 167, 13]]);
-const pos$12 = nix.positions(here + "/atop.nix", [["enable", 174, 21]]);
-const pos$13 = nix.positions(here + "/atop.nix", [["enable", 175, 25]]);
-const pos$14 = nix.positions(here + "/atop.nix", [["enable", 176, 25]]);
-const pos$15 = nix.positions(here + "/atop.nix", [["enable", 173, 9], ["atopService", 174, 9], ["atopRotateTimer", 175, 9], ["atopacctService", 176, 9]]);
-const pos$16 = nix.positions(here + "/atop.nix", [["atop", 172, 16]]);
-const pos$17 = nix.positions(here + "/atop.nix", [["programs", 172, 7]]);
-const pos$18 = nix.positions(here + "/atop.nix", [["machine", 171, 11]]);
-const pos$19 = nix.positions(here + "/atop.nix", [["name", 170, 5], ["nodes", 171, 5], ["testScript", 179, 5], ["meta", 191, 13]]);
-const pos$20 = nix.positions(here + "/atop.nix", [["enable", 198, 17]]);
-const pos$21 = nix.positions(here + "/atop.nix", [["enable", 197, 9], ["netatop", 198, 9]]);
-const pos$22 = nix.positions(here + "/atop.nix", [["atop", 196, 16]]);
-const pos$23 = nix.positions(here + "/atop.nix", [["programs", 196, 7]]);
-const pos$24 = nix.positions(here + "/atop.nix", [["machine", 195, 11]]);
-const pos$25 = nix.positions(here + "/atop.nix", [["name", 194, 5], ["nodes", 195, 5], ["testScript", 201, 5], ["meta", 213, 13]]);
-const pos$26 = nix.positions(here + "/atop.nix", [["enable", 220, 17]]);
-const pos$27 = nix.positions(here + "/atop.nix", [["enable", 219, 9], ["atopgpu", 220, 9]]);
-const pos$28 = nix.positions(here + "/atop.nix", [["atop", 218, 16]]);
-const pos$29 = nix.positions(here + "/atop.nix", [["programs", 218, 7]]);
-const pos$30 = nix.positions(here + "/atop.nix", [["machine", 217, 11]]);
-const pos$31 = nix.positions(here + "/atop.nix", [["name", 216, 5], ["nodes", 217, 5], ["testScript", 223, 5], ["meta", 235, 13]]);
-const pos$32 = nix.positions(here + "/atop.nix", [["flags", 243, 11], ["interval", 244, 11]]);
-const pos$33 = nix.positions(here + "/atop.nix", [["enable", 246, 23]]);
-const pos$34 = nix.positions(here + "/atop.nix", [["enable", 247, 17]]);
-const pos$35 = nix.positions(here + "/atop.nix", [["enable", 248, 17]]);
-const pos$36 = nix.positions(here + "/atop.nix", [["enable", 241, 9], ["settings", 242, 9], ["setuidWrapper", 246, 9], ["netatop", 247, 9], ["atopgpu", 248, 9]]);
-const pos$37 = nix.positions(here + "/atop.nix", [["atop", 240, 16]]);
-const pos$38 = nix.positions(here + "/atop.nix", [["programs", 240, 7]]);
-const pos$39 = nix.positions(here + "/atop.nix", [["machine", 239, 11]]);
-const pos$40 = nix.positions(here + "/atop.nix", [["name", 238, 5], ["nodes", 239, 5], ["testScript", 251, 5], ["meta", 263, 13]]);
-const pos$41 = nix.positions(here + "/atop.nix", [["justThePackage", 129, 3], ["defaults", 148, 3], ["minimal", 169, 3], ["netatop", 193, 3], ["atopgpu", 215, 3], ["everything", 237, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -78,7 +38,7 @@ with subtest("binary should report the correct version"):
     const netatop = (present) => (nix.asBool(present) ? nix.add(nix.app(unit, "netatop.service", "active"), "with subtest(\"The netatop kernel module should be loaded\"):\n    out = machine.succeed(\"modprobe -n -v netatop\")\n    assert out == \"\", f\"Module should be loaded already, but modprobe would have done {out}.\"\n") : "with subtest(\"The netatop kernel module should be absent\"):\n    machine.fail(\"modprobe -n -v netatop\")\n");
     const atopgpu = (present) => (nix.asBool(present) ? nix.add(nix.app(unit, "atopgpu.service", "active"), nix.app(path, "atopgpud", "/run/current-system/sw/bin/atopgpud")) : nix.add(nix.app(unit, "atopgpu.service", "inactive"), "with subtest(\"atopgpud should not be present\"):\n    machine.fail(\"type -p atopgpud\")\n"));
     return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path,
       unit,
       version,
@@ -91,18 +51,18 @@ with subtest("binary should report the correct version"):
       atopgpu,
     };
   })());
-  const meta = nix.thunk(() => ({ [nix.POS]: pos$2, timeout: 600n }));
+  const meta = nix.thunk(() => ({ [nix.POS]: $pos[1], timeout: 600n }));
   return {
-    [nix.POS]: pos$41,
+    [nix.POS]: $pos[40],
     justThePackage: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "atop-justThePackage",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "atop"))]),
             })),
           })),
@@ -123,15 +83,15 @@ with subtest("binary should report the correct version"):
         meta: meta,
       })))),
     defaults: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         name: "atop-defaults",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             programs: nix.thunk(() => ({
-              [nix.POS]: pos$8,
-              atop: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+              [nix.POS]: $pos[7],
+              atop: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
             })),
           })),
         })),
@@ -151,20 +111,20 @@ with subtest("binary should report the correct version"):
         meta: meta,
       })))),
     minimal: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         name: "atop-minimal",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             programs: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               atop: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 enable: true,
-                atopService: nix.thunk(() => ({ [nix.POS]: pos$12, enable: false })),
-                atopRotateTimer: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
-                atopacctService: nix.thunk(() => ({ [nix.POS]: pos$14, enable: false })),
+                atopService: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: false })),
+                atopRotateTimer: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: false })),
+                atopacctService: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: false })),
               })),
             })),
           })),
@@ -185,18 +145,18 @@ with subtest("binary should report the correct version"):
         meta: meta,
       })))),
     netatop: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         name: "atop-netatop",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             programs: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               atop: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 enable: true,
-                netatop: nix.thunk(() => ({ [nix.POS]: pos$20, enable: true })),
+                netatop: nix.thunk(() => ({ [nix.POS]: $pos[19], enable: true })),
               })),
             })),
           })),
@@ -217,18 +177,18 @@ with subtest("binary should report the correct version"):
         meta: meta,
       })))),
     atopgpu: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         name: "atop-atopgpu",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             programs: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               atop: nix.thunk(() => ({
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 enable: true,
-                atopgpu: nix.thunk(() => ({ [nix.POS]: pos$26, enable: true })),
+                atopgpu: nix.thunk(() => ({ [nix.POS]: $pos[25], enable: true })),
               })),
             })),
           })),
@@ -249,21 +209,21 @@ with subtest("binary should report the correct version"):
         meta: meta,
       })))),
     everything: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$40,
+        [nix.POS]: $pos[39],
         name: "atop-everything",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             programs: nix.thunk(() => ({
-              [nix.POS]: pos$37,
+              [nix.POS]: $pos[36],
               atop: nix.thunk(() => ({
-                [nix.POS]: pos$36,
+                [nix.POS]: $pos[35],
                 enable: true,
-                settings: nix.thunk(() => ({ [nix.POS]: pos$32, flags: "faf1", interval: 2n })),
-                setuidWrapper: nix.thunk(() => ({ [nix.POS]: pos$33, enable: true })),
-                netatop: nix.thunk(() => ({ [nix.POS]: pos$34, enable: true })),
-                atopgpu: nix.thunk(() => ({ [nix.POS]: pos$35, enable: true })),
+                settings: nix.thunk(() => ({ [nix.POS]: $pos[31], flags: "faf1", interval: 2n })),
+                setuidWrapper: nix.thunk(() => ({ [nix.POS]: $pos[32], enable: true })),
+                netatop: nix.thunk(() => ({ [nix.POS]: $pos[33], enable: true })),
+                atopgpu: nix.thunk(() => ({ [nix.POS]: $pos[34], enable: true })),
               })),
             })),
           })),

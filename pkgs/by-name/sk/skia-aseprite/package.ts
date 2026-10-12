@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchgit", 25, 41]], [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]], [["updateScript", 126, 12]], [["description", 129, 5], ["homepage", 130, 5], ["downloadPage", 131, 5], ["license", 132, 5], ["maintainers", 133, 29], ["platforms", 134, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["postPatch", 49, 3], ["preConfigure", 56, 3], ["configurePhase", 66, 3], ["buildInputs", 72, 3], ["buildPhase", 87, 3], ["installPhase", 93, 3], ["passthru", 126, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { aseprite: false, clangStdenv: false, expat: false, cctools: false, fetchFromGitHub: false, fetchgit: false, fontconfig: false, gn: false, harfbuzzFull: false, lib: false, libglvnd: false, libjpeg: false, libpng: false, libwebp: false, libx11: false, libgbm: false, ninja: false, python3: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchgit", 25, 41]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 126, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 129, 5], ["homepage", 130, 5], ["downloadPage", 131, 5], ["license", 132, 5], ["maintainers", 133, 29], ["platforms", 134, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["postPatch", 49, 3], ["preConfigure", 56, 3], ["configurePhase", 66, 3], ["buildInputs", 72, 3], ["buildPhase", 87, 3], ["installPhase", 93, 3], ["passthru", 126, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const python3 = nix.arg($, "python3");
   const zlib = nix.arg($, "zlib");
-  const depSrcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchgit: fetchgit }))));
+  const depSrcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchgit: fetchgit }))));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "skia-aseprite",
       version: "m124-08a5439a6b",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "aseprite",
           repo: "skia",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,13 +59,13 @@ runHook postConfigure
       buildPhase: "runHook preBuild\nninja -C lib skia modules\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out\n\n# Glob will match all subdirs.\nshopt -s globstar\n\n# All these paths are used in some way when building Aseprite.\ncp -r --parents -t $out/ \\\n  include/codec/**/*.h \\\n  include/config/**/*.h \\\n  include/core/**/*.h \\\n  include/effects/**/*.h \\\n  include/gpu/**/*.h \\\n  include/private/**/*.h \\\n  include/utils/**/*.h \\\n  include/ports/**/*.h \\\n  include/sksl/**/*.h \\\n  lib/*.a \\\n  modules/skshaper/**/*.h \\\n  modules/skcms/**/*.h \\\n  modules/skunicode/**/*.h \\\n  src/core/*.h \\\n  src/gpu/**/*.h \\\n  src/image/*.h \\\n  src/sksl/**/*.h \\\n  src/base/**/*.h \\\n  third_party/externals/angle2/include \\\n  third_party/externals/icu/flutter/icudtl.dat\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.concat([nix.path(here, "./update.sh")], nix.builtins.attrNames(depSrcs))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(aseprite, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Complete 2D graphic library for drawing Text, Geometries, and Images (Aseprite's fork)",
         homepage: "https://skia.org/",
         downloadPage: "https://github.com/aseprite/skia",

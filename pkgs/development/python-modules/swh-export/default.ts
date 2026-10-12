@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 32, 5], ["group", 33, 5], ["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 40, 3], ["dependencies", 45, 3], ["preCheck", 59, 3], ["pythonImportsCheck", 64, 3], ["nativeCheckInputs", 66, 3], ["__darwinAllowLocalNetworking", 75, 3], ["disabledTests", 77, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitLab: false, setuptools: false, "setuptools-scm": false, boto3: false, click: false, luigi: false, tqdm: false, pyorc: false, plyvel: false, python: false, "types-requests": false, "swh-core": false, "swh-journal": false, "swh-model": false, "swh-storage": false, pytestCheckHook: false, "pytest-click": false, "pytest-mock": false, tzdata: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 32, 5], ["group", 33, 5], ["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 40, 3], ["dependencies", 45, 3], ["preCheck", 59, 3], ["pythonImportsCheck", 64, 3], ["nativeCheckInputs", 66, 3], ["__darwinAllowLocalNetworking", 75, 3], ["disabledTests", 77, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const tzdata = nix.arg($, "tzdata");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swh-export",
       version: "1.11.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.softwareheritage.org",
           group: "swh",
           owner: "devel",
@@ -81,7 +79,7 @@ export TZDIR=${tzdata}/${nix.sel(python, "sitePackages")}/tzdata/zoneinfo
         "test_parallel_journal_processor_masked_origin_visit_statuses",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Software Heritage dataset tools",
         homepage: "https://gitlab.softwareheritage.org/swh/devel/swh-export",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

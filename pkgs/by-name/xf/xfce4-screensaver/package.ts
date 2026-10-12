@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 41, 5], ["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["rev-prefix", 85, 40]], [["updateScript", 85, 12]], [["homepage", 88, 5], ["description", 89, 5], ["license", 90, 5], ["mainProgram", 91, 5], ["maintainers", 92, 5], ["teams", 93, 5], ["platforms", 94, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 62, 3], ["preFixup", 80, 3], ["passthru", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, docbook_xml_dtd_412: false, "docbook-xsl-ns": false, gettext: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, xmlto: false, "dbus-glib": false, garcon: false, glib: false, gtk3: false, libx11: false, libxscrnsaver: false, libxrandr: false, libwnck: false, libxfce4ui: false, libxfce4util: false, libxklavier: false, pam: false, python3: false, systemdLibs: false, xfconf: false, xfdesktop: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 41, 5], ["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 85, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 85, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 88, 5], ["description", 89, 5], ["license", 90, 5], ["mainProgram", 91, 5], ["maintainers", 92, 5], ["teams", 93, 5], ["platforms", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 62, 3], ["preFixup", 80, 3], ["passthru", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (pp) => [nix.thunk(() => nix.sel(pp, "pygobject3"))]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xfce4-screensaver",
       version: "4.20.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.xfce.org",
           owner: "apps",
           repo: "xfce4-screensaver",
@@ -85,11 +81,11 @@ export default nix.lambda((args) => (() => {
 gappsWrapperArgs+=(--prefix XDG_DATA_DIRS : "${xfdesktop}/share")
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "xfce4-screensaver-" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "xfce4-screensaver-" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.xfce.org/apps/xfce4-screensaver",
         description: "Screensaver for Xfce",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 75, 5], ["longDescription", 76, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["maintainers", 85, 5], ["license", 89, 5], ["platforms", 90, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postUnpack", 20, 3], ["patches", 22, 3], ["patchFlags", 26, 3], ["postPatch", 29, 3], ["outputs", 33, 3], ["buildInputs", 39, 3], ["makeFlags", 41, 3], ["doCheck", 52, 3], ["checkTarget", 53, 3], ["postInstall", 55, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, windows: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 75, 5], ["longDescription", 76, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["maintainers", 85, 5], ["license", 89, 5], ["platforms", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postUnpack", 20, 3], ["patches", 22, 3], ["patchFlags", 26, 3], ["postPatch", 29, 3], ["outputs", 33, 3], ["buildInputs", 39, 3], ["makeFlags", 41, 3], ["doCheck", 52, 3], ["checkTarget", 53, 3], ["postInstall", 55, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lmdb";
       const version = "0.9.36";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.openldap.org",
           owner: "openldap",
           repo: "openldap",
@@ -54,7 +52,7 @@ EOF
 ln -s lmdb.pc "$dev/lib/pkgconfig/liblmdb.pc"
 `));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightning memory-mapped database",
         longDescription: "LMDB is an ultra-fast, ultra-compact key-value embedded data store\ndeveloped by Symas for the OpenLDAP Project. It uses memory-mapped files,\nso it has the read performance of a pure in-memory database while still\noffering the persistence of standard disk-based databases, and is only\nlimited to the size of the virtual address space.\n",
         homepage: "https://symas.com/lmdb/",
@@ -70,7 +68,7 @@ ln -s lmdb.pc "$dev/lib/pkgconfig/liblmdb.pc"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 40, 5], ["mainProgram", 41, 5], ["longDescription", 42, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["version", 11, 3], ["pname", 12, 3], ["nativeBuildInputs", 14, 3], ["buildInputs", 19, 3], ["src", 21, 3], ["preBuild", 29, 3], ["enableParallelBuilding", 33, 3], ["preFixup", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, fetchFromGitLab: false, perl: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["mainProgram", 41, 5], ["longDescription", 42, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 11, 3], ["pname", 12, 3], ["nativeBuildInputs", 14, 3], ["buildInputs", 19, 3], ["src", 21, 3], ["preBuild", 29, 3], ["enableParallelBuilding", 33, 3], ["preFixup", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "3.7.8",
       pname: "taktuk",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, perl]),
       buildInputs: nix.thunk(() => [perl]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.inria.fr",
           owner: "taktuk",
           repo: "taktuk",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`substituteInPlace ./taktuk --replace-fail "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(buildPackages, "perl")))}" "/usr/bin/env perl"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Efficient, large scale, parallel remote execution of commands",
         mainProgram: "taktuk",
         longDescription: "TakTuk allows one to execute commands in parallel on a potentially large set\nof remote nodes (using ssh to connect to each node). It is typically used\ninside high performance computing clusters and grids. It uses an adaptive\nalgorithm to efficiently distribute the work and sets up an interconnection\nnetwork to transport commands and perform I/Os multiplexing. It doesn't\nrequire any specific software on the nodes thanks to a self-propagation\nalgorithm.",

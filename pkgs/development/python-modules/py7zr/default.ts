@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["pythonRelaxDeps", 54, 3], ["nativeCheckInputs", 60, 3], ["pytestFlags", 70, 3], ["pythonImportsCheck", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, brotli: false, inflate64: false, multivolumefile: false, psutil: false, pybcj: false, pycryptodomex: false, pyppmd: false, pyzstd: false, texttable: false, "py-cpuinfo": false, "pytest-benchmark": false, "pytest-httpserver": false, "pytest-remotedata": false, "pytest-timeout": false, pytestCheckHook: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["pythonRelaxDeps", 54, 3], ["nativeCheckInputs", 60, 3], ["pytestFlags", 70, 3], ["pythonImportsCheck", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "miurahr",
           repo: "py7zr",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--benchmark-disable"]);
       const pythonImportsCheck = nix.thunk(() => ["py7zr"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "7zip in Python 3 with ZStandard, PPMd, LZMA2, LZMA1, Delta, BCJ, BZip2",
         homepage: "https://github.com/miurahr/py7zr",
         changelog: nix.thunk(() => nix.str`https://github.com/miurahr/py7zr/blob/v${version}/docs/Changelog.rst#v${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}`),
@@ -80,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

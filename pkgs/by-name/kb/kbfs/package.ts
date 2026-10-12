@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 26, 5], ["description", 27, 5], ["maintainers", 28, 5], ["license", 35, 5]], [["pname", 8, 3], ["src", 10, 21], ["version", 10, 25], ["vendorHash", 10, 33], ["modRoot", 12, 3], ["subPackages", 13, 3], ["tags", 19, 3], ["ldflags", 20, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, keybase: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 26, 5], ["description", 27, 5], ["maintainers", 28, 5], ["license", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["src", 10, 21], ["version", 10, 25], ["vendorHash", 10, 33], ["modRoot", 12, 3], ["subPackages", 13, 3], ["tags", 19, 3], ["ldflags", 20, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const keybase = nix.arg($, "keybase");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kbfs",
       src: nix.thunk(() => nix.attr(keybase, "src")),
       version: nix.thunk(() => nix.attr(keybase, "version")),
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       tags: nix.thunk(() => ["production"]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://keybase.io/docs/kbfs",
         description: "Keybase filesystem",
         maintainers: nix.thunk(() => (() => {

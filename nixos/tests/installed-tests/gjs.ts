@@ -2,23 +2,21 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gjs.nix", [[["systemPackages", 8, 17]], [["environment", 8, 5]], [["tested", 4, 3], ["withX11", 5, 3], ["testConfig", 7, 3]]]);
 const formals$1 = { args: { pkgs: false, makeInstalledTest: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gjs.nix", [["systemPackages", 8, 17]]);
-const pos$2 = nix.positions(here + "/gjs.nix", [["environment", 8, 5]]);
-const pos$3 = nix.positions(here + "/gjs.nix", [["tested", 4, 3], ["withX11", 5, 3], ["testConfig", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
   return nix.app(makeInstalledTest, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       tested: nix.thunk(() => nix.sel(pkgs, "gjs")),
       withX11: true,
       testConfig: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gjs"))]),
         })),
       })),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 5], ["version", 21, 13], ["hash", 22, 5]], [["flacLibPath", 50, 7], ["oggLibPath", 51, 7], ["vorbisLibPath", 52, 7], ["vorbisFileLibPath", 53, 7], ["vorbisEncLibPath", 54, 7], ["opusLibPath", 55, 7], ["opusFileLibPath", 56, 7]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 15, 3], ["version", 16, 3], ["format", 17, 3], ["src", 19, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 32, 3], ["doCheck", 41, 3], ["patchFlags", 44, 3], ["patches", 48, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchPypi: false, buildPythonPackage: false, libvorbis: false, flac: false, libogg: false, libopus: false, opusfile: false, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 13], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["flacLibPath", 50, 7], ["oggLibPath", 51, 7], ["vorbisLibPath", 52, 7], ["vorbisFileLibPath", 53, 7], ["vorbisEncLibPath", 54, 7], ["opusLibPath", 55, 7], ["opusFileLibPath", 56, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["format", 17, 3], ["src", 19, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 32, 3], ["doCheck", 41, 3], ["patchFlags", 44, 3], ["patches", 48, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.14a1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "PyOgg",
           version: version,
           hash: "sha256-gpSzSqWckCAMRjDCzEpbhEByCRQejl0GnXpb41jpQmI=",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const patchFlags = nix.thunk(() => ["-p1", "--binary"]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./pyogg-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             flacLibPath: nix.thunk(() => nix.str`${nix.sel(flac, "out")}/lib/libFLAC${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             oggLibPath: nix.thunk(() => nix.str`${libogg}/lib/libogg${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             vorbisLibPath: nix.thunk(() => nix.str`${libvorbis}/lib/libvorbis${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Xiph.org's Ogg Vorbis, Opus and FLAC for Python",
         homepage: "https://github.com/Zuzu-Typ/PyOgg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

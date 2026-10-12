@@ -2,18 +2,17 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["timeout", 5, 8]], [["name", 4, 3], ["meta", 5, 3], ["dontUnpack", 7, 3], ["dontInstall", 8, 3], ["buildPhase", 10, 3], ["doCheck", 18, 3], ["checkPhase", 19, 3]]]);
 const formals$1 = { args: { stdenv: false, kamailio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["timeout", 5, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 4, 3], ["meta", 5, 3], ["dontUnpack", 7, 3], ["dontInstall", 8, 3], ["buildPhase", 10, 3], ["doCheck", 18, 3], ["checkPhase", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stdenv = nix.arg($, "stdenv");
   const kamailio = nix.arg($, "kamailio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "kamailio-bin-test",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 60n })),
       dontUnpack: true,
       dontInstall: true,
       buildPhase: nix.thunk(() => nix.str`mkdir $out

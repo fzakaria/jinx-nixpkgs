@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 29, 3], ["doCheck", 36, 3], ["cargoBuildFlags", 37, 3], ["postInstall", 42, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, libiconv: false, makeBinaryWrapper: false, "pkg-config": false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 29, 3], ["doCheck", 36, 3], ["cargoBuildFlags", 37, 3], ["postInstall", 42, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "proto",
       version: "0.63.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "moonrepo",
           repo: "proto",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["--bin proto", "--bin proto-shim"]),
       postInstall: "# proto looks up a proto-shim executable file in $PROTO_LOOKUP_DIR\nwrapProgram $out/bin/proto \\\n  --set PROTO_LOOKUP_DIR $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pluggable multi-language version manager",
         longDescription: "proto is a pluggable next-generation version manager for multiple programming languages. A unified toolchain.\n",
         homepage: "https://moonrepo.dev/proto",

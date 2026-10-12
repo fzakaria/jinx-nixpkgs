@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["platforms", 92, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["strictDeps", 58, 3], ["configureFlags", 60, 3], ["makeFlags", 68, 3], ["postPatch", 72, 3], ["preInstall", 84, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, bashNonInteractive: false, curl: false, db: false, gnused: false, libgeotiff: false, libtiff: false, libxt: false, libxpm: false, motif: false, pcre2: false, perl: false, proj: false, graphicsmagick: false, shapelib: false, libax25: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["platforms", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["strictDeps", 58, 3], ["configureFlags", 60, 3], ["makeFlags", 68, 3], ["postPatch", 72, 3], ["preInstall", 84, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const shapelib = nix.arg($, "shapelib");
   const libax25 = nix.arg($, "libax25");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xastir",
       version: "2.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xastir",
           repo: "xastir",
           tag: nix.thunk(() => nix.str`Release-${nix.sel(finalAttrs, "version")}`),
@@ -78,7 +76,7 @@ substituteInPlace configure.ac \\
 `),
       preInstall: "patchShebangs --host --update .\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Graphical APRS client",
         homepage: "https://github.com/xastir/xastir",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

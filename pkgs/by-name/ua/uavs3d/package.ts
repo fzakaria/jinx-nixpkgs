@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["package", 45, 54]], [["pkg-config", 45, 11]], [["updateScript", 44, 5], ["tests", 45, 5]], [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["pkgConfigModules", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cmakeFlags", 21, 3], ["outputs", 26, 3], ["nativeBuildInputs", 31, 3], ["postPatch", 36, 3], ["passthru", 43, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, cmake: false, stdenv: false, testers: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 45, 54]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 45, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 44, 5], ["tests", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["pkgConfigModules", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cmakeFlags", 21, 3], ["outputs", 26, 3], ["nativeBuildInputs", 31, 3], ["postPatch", 36, 3], ["passthru", 43, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "uavs3d",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "uavs3",
           repo: "uavs3d",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,18 +32,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \\\n    'cmake_minimum_required(VERSION 3.1)' \\\n    'cmake_minimum_required(VERSION 3.10)'\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/uavs3/uavs3d",
         description: "AVS3 decoder which supports AVS3-P2 baseline profile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/binary-file-toolkit.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["mvnHash", 17, 3], ["installPhase", 19, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, maven: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/binary-file-toolkit.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/binary-file-toolkit.nix", [["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/binary-file-toolkit.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["mvnHash", 17, 3], ["installPhase", 19, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const maven = nix.arg($, "maven");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "binary-file-toolkit",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "boricj",
           repo: "binary-file-toolkit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       mvnHash: "sha256-UrvPqh5zxhTQ6MJNJ7CSAA6dg5DX+Jdx6/wKr4/1brs=",
       installPhase: "runHook preInstall\n\nmkdir -p $out/\ncp dist/* $out/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Set of Java libraries for manipulating toolchain file formats",
         homepage: "https://github.com/boricj/binary-file-toolkit",
         changelog: "https://github.com/boricj/binary-file-toolkit/releases",

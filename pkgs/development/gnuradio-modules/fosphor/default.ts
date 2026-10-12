@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 35, 5], ["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["forceFetchGit", 40, 5], ["hash", 41, 5]], [["description", 92, 5], ["longDescription", 93, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]], [["pname", 28, 3], ["version", 29, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["disabled", 43, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 59, 3], ["cmakeFlags", 84, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, fetchFromGitea: false, gnuradio: false, cmake: false, "pkg-config": false, logLib: false, mpir: false, gmp: false, boost: false, libGL: false, "opencl-headers": false, "ocl-icd": false, freetype: false, fftwFloat: false, qt5: false, python: false, enableGLFW: true, glfw3: false, enablePNG: true, libpng: false, gnuradioOlder: false, gnuradioAtLeast: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 35, 5], ["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["forceFetchGit", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 92, 5], ["longDescription", 93, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["disabled", 43, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 59, 3], ["cmakeFlags", 84, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const gnuradioOlder = nix.arg($, "gnuradioOlder");
   const gnuradioAtLeast = nix.arg($, "gnuradioAtLeast");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gr-fosphor",
       version: "0-unstable-2024-03-23",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitea.osmocom.org",
           owner: "sdr",
           repo: "gr-fosphor",
@@ -71,7 +69,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_PNG", enablePNG)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GNU Radio block for RTSA-like spectrum visualization using OpenCL and OpenGL acceleration",
         longDescription: "You'll need to install an OpenCL ICD for it to work.\nSee https://nixos.org/manual/nixos/stable/#sec-gpu-accel-opencl\n",
         homepage: "https://projects.osmocom.org/projects/sdr/wiki/Fosphor",

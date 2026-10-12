@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["HAVE_UNIX98", 28, 7]], [["homepage", 55, 5], ["description", 56, 5], ["longDescription", 57, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["env", 28, 3], ["preConfigure", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["enableParallelBuilding", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoconf: false, automake: false, bison: false, libtool: false, "pkg-config": false, which: false, "alsa-lib": false, asio: false, libjack2: false, libgig: false, libsndfile: false, lv2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["HAVE_UNIX98", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["longDescription", 57, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["env", 28, 3], ["preConfigure", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["enableParallelBuilding", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,21 +23,21 @@ export default nix.lambda((args) => (() => {
   const libsndfile = nix.arg($, "libsndfile");
   const lv2 = nix.arg($, "lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "linuxsampler",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.linuxsampler.org/packages/linuxsampler-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-T7quk5N5JBiPqIziQd0vaCr8tLDbwS6otz6egY01OTE=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, HAVE_UNIX98: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], HAVE_UNIX98: "1" })),
       preConfigure: "make -f Makefile.svn\n",
       nativeBuildInputs: nix.thunk(() => [autoconf, automake, bison, libtool, pkg_config, which]),
       buildInputs: nix.thunk(() => [alsa_lib, asio, libjack2, libgig, libsndfile, lv2]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.linuxsampler.org",
         description: "Sampler backend",
         longDescription: "Includes sampler engine, audio and MIDI drivers, network layer\n(LSCP) API and native C++ API.\n\nLinuxSampler is licensed under the GNU GPL with the exception\nthat USAGE of the source code, libraries and applications FOR\nCOMMERCIAL HARDWARE OR SOFTWARE PRODUCTS IS NOT ALLOWED without\nprior written permission by the LinuxSampler authors. If you\nhave questions on the subject, that are not yet covered by the\nFAQ, please contact us.\n",

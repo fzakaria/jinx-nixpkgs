@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/python.nix", [[["pname", 12, 5], ["version", 13, 5], ["src", 14, 5], ["patches", 15, 5], ["meta", 16, 5], ["nativeBuildInputs", 17, 5], ["pyproject", 20, 3], ["build-system", 22, 3], ["dependencies", 27, 3], ["dontUseCmakeConfigure", 31, 3], ["pythonImportsCheck", 33, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, libxc: false, setuptools: false, cmake: false, numpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/python.nix", [["pname", 12, 5], ["version", 13, 5], ["src", 14, 5], ["patches", 15, 5], ["meta", 16, 5], ["nativeBuildInputs", 17, 5], ["pyproject", 20, 3], ["build-system", 22, 3], ["dependencies", 27, 3], ["dontUseCmakeConfigure", 31, 3], ["pythonImportsCheck", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const numpy = nix.arg($, "numpy");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.attr(libxc, "pname")),
       version: nix.thunk(() => nix.attr(libxc, "version")),
       src: nix.thunk(() => nix.attr(libxc, "src")),

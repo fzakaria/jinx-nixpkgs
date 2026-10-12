@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugin-interface.nix", [[["extraLibs", 15, 51]], [["name", 32, 5], ["pathsToLink", 33, 5], ["paths", 34, 5]], [["executable", 41, 9], ["preferLocalBuild", 42, 9], ["allowSubstitutes", 43, 9], ["src", 44, 9]], [["pname", 56, 5], ["configureFlags", 57, 5]], [["python3", 66, 17], ["src", 67, 31], ["version", 67, 35], ["withPlugins", 68, 9]], [["nativeBuildInputs", 64, 7], ["passthru", 65, 7]]]);
 const formals$1 = { args: { lib: false, python3: false, buildEnv: false, runCommandCC: false, stdenv: false, runCommand: false, vapoursynth: false, makeWrapper: false, withPlugins: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/plugin-interface.nix", [["extraLibs", 15, 51]]);
-const pos$2 = nix.positions(here + "/plugin-interface.nix", [["name", 32, 5], ["pathsToLink", 33, 5], ["paths", 34, 5]]);
-const pos$3 = nix.positions(here + "/plugin-interface.nix", [["executable", 41, 9], ["preferLocalBuild", 42, 9], ["allowSubstitutes", 43, 9], ["src", 44, 9]]);
-const pos$4 = nix.positions(here + "/plugin-interface.nix", [["pname", 56, 5], ["configureFlags", 57, 5]]);
-const pos$5 = nix.positions(here + "/plugin-interface.nix", [["python3", 66, 17], ["src", 67, 31], ["version", 67, 35], ["withPlugins", 68, 9]]);
-const pos$6 = nix.positions(here + "/plugin-interface.nix", [["nativeBuildInputs", 64, 7], ["passthru", 65, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const withPlugins = nix.arg($, "withPlugins");
   return (plugins) => (() => {
-    const pythonEnvironment = nix.thunk(() => nix.app(nix.sel(python3, "buildEnv", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, extraLibs: plugins }))));
+    const pythonEnvironment = nix.thunk(() => nix.app(nix.sel(python3, "buildEnv", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], extraLibs: plugins }))));
     const getRecursivePropagatedBuildInputs = (pkgs) => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.map((pkg) => (() => {
           const cleanPropagatedBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.sel(lib, "isDerivation")), nix.thunk(() => nix.sel(pkg, "propagatedBuildInputs"))));
           return nix.concat(cleanPropagatedBuildInputs, nix.app(getRecursivePropagatedBuildInputs, cleanPropagatedBuildInputs));
         })(), pkgs)));
     const deepPlugins = nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(plugins, nix.app(getRecursivePropagatedBuildInputs, plugins)))));
     const pluginsEnv = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "vapoursynth-plugins-env",
         pathsToLink: nix.thunk(() => ["/lib/vapoursynth"]),
         paths: deepPlugins,
       }))));
     const nixPlugins = nix.thunk(() => nix.app(runCommandCC, nix.thunk(() => nix.str`libvapoursynth-nix-plugins${ext}`), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         executable: true,
         preferLocalBuild: true,
         allowSubstitutes: false,
@@ -44,14 +39,14 @@ export default nix.lambda((args) => (() => {
       })), "$CC -x c -shared -fPIC - -o \"$out\" <<<\"$src\"\n"));
     const ext = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
     return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(vapoursynth, "overrideAttrs"), (previousAttrs) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "vapoursynth-with-plugins",
         configureFlags: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "configureFlags"), [nix.thunk(() => nix.str`--with-plugindir=${pluginsEnv}/lib/vapoursynth`)])),
       })) : nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(vapoursynth, "name")}-with-plugins`), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           python3: python3,
           src: nix.thunk(() => nix.attr(vapoursynth, "src")),
           version: nix.thunk(() => nix.attr(vapoursynth, "version")),

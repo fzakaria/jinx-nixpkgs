@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dont-install-skills.nix", [[["platforms", 49, 8]], [["pname", 11, 3], ["name", 12, 3], ["strictDeps", 14, 3], ["__structuredAttrs", 15, 3], ["src", 18, 3], ["dontUnpack", 19, 3], ["nativeBuildInputs", 21, 3], ["dontInstallAgentSkills", 23, 3], ["buildPhase", 26, 3], ["installCheckPhase", 36, 3], ["doInstallCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, installAgentSkills: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dont-install-skills.nix", [["platforms", 49, 8]]);
-const pos$2 = nix.positions(here + "/dont-install-skills.nix", [["pname", 11, 3], ["name", 12, 3], ["strictDeps", 14, 3], ["__structuredAttrs", 15, 3], ["src", 18, 3], ["dontUnpack", 19, 3], ["nativeBuildInputs", 21, 3], ["dontInstallAgentSkills", 23, 3], ["buildPhase", 26, 3], ["installCheckPhase", 36, 3], ["doInstallCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const installAgentSkills = nix.arg($, "installAgentSkills");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "test",
       name: "install-agent-skills--dont-install-skills",
       strictDeps: true,
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "runHook preInstallCheck\n\nif test -f $out/share/skills/$pname/test-skill/SKILL.md; then\n  exit 1\nfi\n\ntouch $out\n\nrunHook postInstallCheck\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })));

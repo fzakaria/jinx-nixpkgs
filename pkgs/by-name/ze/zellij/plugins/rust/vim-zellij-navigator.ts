@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vim-zellij-navigator.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 28, 5], ["homepage", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["depsBuildBuild", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, libiconv: false, pkgsBuildBuild: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/vim-zellij-navigator.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/vim-zellij-navigator.nix", [["description", 28, 5], ["homepage", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/vim-zellij-navigator.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["depsBuildBuild", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pkgsBuildBuild = nix.arg($, "pkgsBuildBuild");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vim-zellij-navigator",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hiasr",
           repo: "vim-zellij-navigator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-AbfgDhQEbm5qULw2HHxG5EMCYdML4VhHxJaAqP2g3u0=",
       depsBuildBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgsBuildBuild, "stdenv", "cc")), libiconv]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Seamless navigation between Zellij panes and Vim splits",
         homepage: "https://github.com/hiasr/vim-zellij-navigator",
         changelog: nix.thunk(() => nix.str`https://github.com/hiasr/vim-zellij-navigator/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

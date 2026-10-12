@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 100, 5], ["hash", 101, 5]], [["storeDir", 106, 26], ["driverLink", 107, 34]], [["url", 114, 7], ["hash", 115, 7], ["name", 116, 7]], [["pkg-config", 257, 11]], [["tests", 257, 5], ["updateScript", 258, 5]], [["description", 262, 5], ["mainProgram", 263, 5], ["homepage", 264, 5], ["license", 265, 5], ["pkgConfigModules", 266, 5], ["platforms", 279, 5], ["teams", 280, 5], ["broken", 281, 5]], [["pname", 85, 3], ["version", 86, 3], ["name", 87, 3], ["outputs", 89, 3], ["separateDebugInfo", 97, 3], ["src", 99, 3], ["patches", 104, 3], ["nativeBuildInputs", 120, 3], ["buildInputs", 140, 3], ["propagatedBuildInputs", 208, 3], ["cmakeFlags", 213, 3], ["postPatch", 245, 3], ["postFixup", 249, 3], ["requiredSystemFeatures", 254, 3], ["passthru", 256, 3], ["meta", 261, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchurl: false, perl: false, python3: false, ruby: false, "gi-docgen": false, bison: false, gperf: false, cmake: false, ninja: false, "pkg-config": false, gettext: false, "gobject-introspection": false, gnutls: false, libgcrypt: false, "libgpg-error": false, gtk4: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, libwebp: false, enchant: false, libx11: false, libxkbcommon: false, libavif: false, libepoxy: false, libjxl: false, "at-spi2-core": false, expat: false, libxml2: false, libsoup_3: false, libsecret: false, libxslt: false, harfbuzzFull: false, hyphen: false, icu: false, "libsysprof-capture": false, "libpthread-stubs": false, nettle: false, libtasn1: false, "p11-kit": false, libedit: false, readline: false, libGL: false, libGLU: false, libgbm: false, libintl: false, lcms2: false, libmanette: false, librice: false, geoclue2: false, flite: false, fontconfig: false, freetype: false, openssl: false, "openxr-loader": false, sqlite: false, gst_all_1: false, bubblewrap: false, libseccomp: false, libbacktrace: false, systemdLibs: false, "xdg-dbus-proxy": false, replaceVars: false, glib: false, unifdef: false, addDriverRunpath: false, enableGeoLocation: true, enableExperimental: true, withLibsecret: true, systemdSupport: true, testers: false, directoryListingUpdater: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 100, 5], ["hash", 101, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["storeDir", 106, 26], ["driverLink", 107, 34]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 114, 7], ["hash", 115, 7], ["name", 116, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 257, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 257, 5], ["updateScript", 258, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 262, 5], ["mainProgram", 263, 5], ["homepage", 264, 5], ["license", 265, 5], ["pkgConfigModules", 266, 5], ["platforms", 279, 5], ["teams", 280, 5], ["broken", 281, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 85, 3], ["version", 86, 3], ["name", 87, 3], ["outputs", 89, 3], ["separateDebugInfo", 97, 3], ["src", 99, 3], ["patches", 104, 3], ["nativeBuildInputs", 120, 3], ["buildInputs", 140, 3], ["propagatedBuildInputs", 208, 3], ["cmakeFlags", 213, 3], ["postPatch", 245, 3], ["postFixup", 249, 3], ["requiredSystemFeatures", 254, 3], ["passthru", 256, 3], ["meta", 261, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -90,25 +84,25 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const abiVersion = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(gtk4, "version")), "4.0")) ? "6.0" : "4.1"));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "webkitgtk",
       version: "2.54.1",
       name: nix.thunk(() => nix.str`webkitgtk-${nix.sel(finalAttrs, "version")}+abi=${abiVersion}`),
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       separateDebugInfo: nix.thunk(() => (nix.asBool(nix.sel(clangStdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(nix.sel(clangStdenv, "hostPlatform", "is32bit"))))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://webkitgtk.org/releases/webkitgtk-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-6gu7AtvbxZaHSk5601tmZFs+CiMr0OQIHeXtkusKOX0=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-bubblewrap-paths.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               storeDir: nix.thunk(() => nix.attr(nix.builtins, "storeDir")),
               driverLink: nix.thunk(() => nix.attr(addDriverRunpath, "driverLink")),
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://salsa.debian.org/webkit-team/webkit/-/raw/debian/2.44.1-1/debian/patches/fix-ftbfs-riscv64.patch",
               hash: "sha256-MgaSpXq9l6KCLQdQyel6bQFHG53l3GY277WePpYXdjA=",
               name: "fix_ftbfs_riscv64.patch",
@@ -189,15 +183,15 @@ export default nix.lambda((args) => (() => {
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Web content rendering engine, GTK port",
         mainProgram: "WebKitWebDriver",
         homepage: "https://webkitgtk.org/",

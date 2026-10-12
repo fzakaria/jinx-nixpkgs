@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["pname", 44, 7], ["version", 45, 7], ["src", 46, 7], ["patches", 47, 7], ["pnpm", 49, 5], ["fetcherVersion", 50, 5], ["hash", 51, 5]], [["vencord", 82, 15]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 87, 5]], [["name", 160, 5], ["desktopName", 161, 5], ["exec", 162, 5], ["icon", 163, 5], ["startupWMClass", 164, 5], ["genericName", 165, 5], ["comment", 166, 5], ["keywords", 167, 5], ["categories", 173, 5], ["mimeTypes", 178, 5]], [["pnpmDeps", 184, 26], ["updateScript", 185, 5]], [["description", 189, 5], ["homepage", 190, 5], ["changelog", 191, 5], ["license", 192, 5], ["maintainers", 193, 5], ["mainProgram", 199, 5], ["platforms", 200, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["pnpmDeps", 42, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 74, 3], ["patches", 80, 3], ["env", 86, 3], ["preBuild", 90, 3], ["buildPhase", 104, 3], ["postBuild", 118, 3], ["installPhase", 124, 3], ["postFixup", 144, 3], ["desktopItems", 159, 3], ["passthru", 183, 3], ["meta", 188, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, makeBinaryWrapper: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, vencord: false, electron_43: false, libicns: false, pipewire: false, libpulseaudio: false, autoPatchelfHook: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, nodejs: false, jq: false, "nix-update-script": false, withTTS: true, withMiddleClickScroll: true, withSystemVencord: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 44, 7], ["version", 45, 7], ["src", 46, 7], ["patches", 47, 7], ["pnpm", 49, 5], ["fetcherVersion", 50, 5], ["hash", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["vencord", 82, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 160, 5], ["desktopName", 161, 5], ["exec", 162, 5], ["icon", 163, 5], ["startupWMClass", 164, 5], ["genericName", 165, 5], ["comment", 166, 5], ["keywords", 167, 5], ["categories", 173, 5], ["mimeTypes", 178, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pnpmDeps", 184, 26], ["updateScript", 185, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 189, 5], ["homepage", 190, 5], ["changelog", 191, 5], ["license", 192, 5], ["maintainers", 193, 5], ["mainProgram", 199, 5], ["platforms", 200, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["pnpmDeps", 42, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 74, 3], ["patches", 80, 3], ["env", 86, 3], ["preBuild", 90, 3], ["buildPhase", 104, 3], ["postBuild", 118, 3], ["installPhase", 124, 3], ["postFixup", 144, 3], ["desktopItems", 159, 3], ["passthru", 183, 3], ["meta", 188, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,18 +32,18 @@ export default nix.lambda((args) => (() => {
   const withSystemVencord = nix.argOr($, "withSystemVencord", () => false);
   const electron = electron_43;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "vesktop",
       version: "1.6.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Vencord",
           repo: "Vesktop",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Y74FIqcY26Dizz+DoY+r8caOfX+4/VmiEbmhcOpMHqE=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -65,8 +58,8 @@ export default nix.lambda((args) => (() => {
           pipewire,
           nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))),
         ]))),
-      patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withSystemVencord, nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use_system_vencord.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, vencord: vencord })))))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withSystemVencord, nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use_system_vencord.patch"), nix.thunk(() => ({ [nix.POS]: $pos[2], vencord: vencord })))))),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       preBuild: nix.thunk(() => nix.str`# Validate electron version matches upstream package.json
 expectedMajor="$(jq -r '.devDependencies.electron | ltrimstr("^") | split(".") | .[0]' < package.json)"
 actualMajor="${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(electron, "version")))}"
@@ -103,7 +96,7 @@ popd
   --add-flags "\\\${NIXOS_OZONE_WL:+\\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeWrapper $out/Applications/Vesktop.app/Contents/MacOS/Vesktop $out/bin/vesktop\n"))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "vesktop",
             desktopName: "Vesktop",
             exec: "vesktop %U",
@@ -116,12 +109,12 @@ popd
             mimeTypes: nix.thunk(() => ["x-scheme-handler/discord"]),
           })))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pnpmDeps: nix.thunk(() => nix.attr(finalAttrs, "pnpmDeps")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Alternative Discord client with Vencord built-in",
         homepage: "https://github.com/Vencord/Vesktop",
         changelog: nix.thunk(() => nix.str`https://github.com/Vencord/Vesktop/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

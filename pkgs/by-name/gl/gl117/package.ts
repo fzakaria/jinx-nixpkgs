@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["maintainers", 41, 5], ["license", 42, 5], ["platforms", 43, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libGLU: false, libGL: false, SDL: false, libglut: false, SDL_mixer: false, autoconf: false, automake: false, libtool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["maintainers", 41, 5], ["license", 42, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gl-117",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/gl-117/gl-117/GL-117%20Source/gl-117-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1yvg1rp1yijv0b45cz085b29x5x0g5fkm654xdv5qwh2l6803gb4",
         })))),
       nativeBuildInputs: nix.thunk(() => [automake, autoconf]),
       buildInputs: nix.thunk(() => [libGLU, libGL, SDL, libglut, SDL_mixer, libtool]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Air combat simulator",
         mainProgram: "gl-117",
         homepage: "https://sourceforge.net/projects/gl-117",

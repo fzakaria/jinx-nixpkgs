@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 22, 5], ["hash", 23, 5]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 16, 3], ["version", 17, 3], ["__darwinAllowLocalNetworking", 19, 3], ["src", 21, 3], ["propagatedBuildInputs", 26, 3], ["doCheck", 35, 3], ["checkInputs", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, h2: false, h1: false, "mimic-happy-eyeballs": false, paf: false, tcpip: false, x509: false, "alcotest-lwt": false, "mirage-crypto-rng": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["__darwinAllowLocalNetworking", 19, 3], ["src", 21, 3], ["propagatedBuildInputs", 26, 3], ["doCheck", 35, 3], ["checkInputs", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const alcotest_lwt = nix.arg($, "alcotest-lwt");
   const mirage_crypto_rng = nix.arg($, "mirage-crypto-rng");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "http-mirage-client",
       version: "0.0.11",
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/robur-coop/http-mirage-client/releases/download/v${nix.sel(finalAttrs, "version")}/http-mirage-client-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-sNl/GvHATfLKymy5f91GUJkyjOgjpYIouuFntIzE+CM=",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest_lwt, mirage_crypto_rng]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "HTTP client for MirageOS",
         homepage: "https://github.com/robur-coop/http-mirage-client",
         changelog: nix.thunk(() => nix.str`https://github.com/robur-coop/http-mirage-client/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

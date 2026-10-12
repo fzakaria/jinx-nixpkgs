@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["TERMINFO", 38, 7]], [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["makeFlags", 37, 3], ["env", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fontconfig: false, harfbuzz: false, libx11: false, libxft: false, ncurses: false, gd: false, glib: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["TERMINFO", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["makeFlags", 37, 3], ["env", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "st-snazzy",
       version: "0.8.5-unstable-2024-09-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "siduck",
           repo: "st",
           rev: "a7582f96afdee6bf0793cd0d8f84b755fd6aabf6",
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fontconfig, harfbuzz, libx11, libxft, ncurses, gd, glib]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         TERMINFO: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/terminfo`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/siduck/st",
         description: "Snazzy terminal (suckless + beautiful)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["asgi", 34, 5]], [["homepage", 46, 5], ["description", 47, 5]], [["version", 16, 43], ["src", 16, 51], ["pname", 17, 3], ["pyproject", 18, 3], ["sourceRoot", 20, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, django: false, hatchling: false, "opentelemetry-api": false, "opentelemetry-instrumentation": false, "opentelemetry-instrumentation-asgi": false, "opentelemetry-instrumentation-wsgi": false, "opentelemetry-semantic-conventions": false, "opentelemetry-test-utils": false, "opentelemetry-util-http": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["asgi", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 46, 5], ["description", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 16, 43], ["src", 16, 51], ["pname", 17, 3], ["pyproject", 18, 3], ["sourceRoot", 20, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,18 +34,18 @@ export default nix.lambda((args) => (() => {
         opentelemetry_util_http,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         asgi: nix.thunk(() => [opentelemetry_instrumentation_asgi]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([opentelemetry_test_utils, pytestCheckHook], nix.sel(optional_dependencies, "asgi")));
       const pythonImportsCheck = nix.thunk(() => ["opentelemetry.instrumentation.django"]);
       const meta = nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-django",
         description: "OpenTelemetry Instrumentation for Django",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         src,
         pname,

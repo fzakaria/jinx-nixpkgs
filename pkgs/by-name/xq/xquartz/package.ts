@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fontDirectories", 148, 5]], [["stdenv", 155, 7], ["font-alias", 156, 7], ["mkfontscale", 157, 7], ["fontDirs", 158, 7]], [["pkgs", 298, 13]], [["platforms", 302, 5], ["maintainers", 303, 5], ["license", 304, 5]], [["pname", 220, 3], ["version", 221, 3], ["nativeBuildInputs", 223, 3], ["unpackPhase", 225, 3], ["dontBuild", 227, 3], ["installPhase", 229, 3], ["passthru", 297, 3], ["meta", 301, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildEnv: false, makeFontsConf: false, gnused: false, writeScript: false, "xorg-server": false, "tab-window-manager": false, libxpm: false, "font-alias": false, "font-util": false, "font-misc-misc": false, "font-cursor-misc": false, "font-bh-lucidatypewriter-75dpi": false, "font-bh-lucidatypewriter-100dpi": false, "font-bh-100dpi": false, "font-encodings": false, xwud: false, xwininfo: false, xwd: false, xvinfo: false, xset: false, xsetroot: false, xrefresh: false, xrdb: false, xrandr: false, xpr: false, xprop: false, xmodmap: false, xmessage: false, xlsclients: false, xlsatoms: false, xkill: false, xkbutils: false, xkbevd: false, xkbcomp: false, xinput: false, xinit: false, xhost: false, xgamma: false, xfs: false, xeyes: false, xev: false, xdriinfo: false, xdpyinfo: false, xdm: false, xcursorgen: false, xcmsdb: false, xclock: false, xbacklight: false, xauth: false, x11perf: false, smproxy: false, setxkbmap: false, sessreg: false, mkfontscale: false, makedepend: false, luit: false, lndir: false, iceauth: false, bdftopcf: false, bashInteractive: false, xterm: false, xcbuild: false, makeWrapper: false, "quartz-wm": false, fontconfig: false, xlsfonts: false, xfontsel: false, "ttf-bitstream-vera": false, freefont_ttf: false, liberation_ttf: false, shell: true, unfreeFonts: true, extraFontDirs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fontDirectories", 148, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["stdenv", 155, 7], ["font-alias", 156, 7], ["mkfontscale", 157, 7], ["fontDirs", 158, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkgs", 298, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["platforms", 302, 5], ["maintainers", 303, 5], ["license", 304, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 220, 3], ["version", 221, 3], ["nativeBuildInputs", 223, 3], ["unpackPhase", 225, 3], ["dontBuild", 227, 3], ["installPhase", 229, 3], ["passthru", 297, 3], ["meta", 301, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -119,11 +115,11 @@ sudo launchctl load -w /Library/LaunchDaemons/$daemonName
       font_bh_100dpi,
     ])), extraFontDirs)));
   const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fontDirectories: nix.thunk(() => nix.concat(fontDirs, ["/Library/Fonts", "~/Library/Fonts"])),
     }))));
   const fonts = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./system-fonts.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       stdenv: stdenv,
       "font-alias": font_alias,
       mkfontscale: mkfontscale,
@@ -184,7 +180,7 @@ sudo launchctl load -w /Library/LaunchDaemons/$daemonName
     xwud,
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xquartz",
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), xorg_server)),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -256,9 +252,9 @@ substituteInPlace $out/bin/font_cache \\
   --subst-var-by "FC_CACHE"        "${nix.sel(fontconfig, "bin")}/bin/fc-cache" \\
   --subst-var-by "FONTCONFIG_FILE" "$fontsConfPath"
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, pkgs: pkgs })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], pkgs: pkgs })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

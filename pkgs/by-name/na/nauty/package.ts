@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["sha256", 14, 5]], [["description", 39, 5], ["license", 40, 5], ["teams", 41, 5], ["platforms", 42, 5], ["changelog", 44, 5], ["homepage", 45, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["outputs", 17, 3], ["configureFlags", 22, 3], ["postInstall", 32, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["license", 40, 5], ["teams", 41, 5], ["platforms", 42, 5], ["changelog", 44, 5], ["homepage", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["outputs", 17, 3], ["configureFlags", 22, 3], ["postInstall", 32, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nauty",
       version: "2.9.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pallini.di.uniroma1.it/nauty${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.tar.gz`),
           sha256: "sha256-n8TtrgT4ig9Yg5hb47Oc9/iY/WzJbpa57iVFJ0PMG1s=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p \"$out/share/doc/nauty\" \"$dev/include/nauty\"\ncp [Rr][Ee][Aa][Dd]* COPYRIGHT This* [Cc]hange* \"$out/share/doc/nauty\"\ncp *.h \"$dev/include/nauty\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Programs for computing automorphism groups of graphs and digraphs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),

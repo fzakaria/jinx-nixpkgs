@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["NIX_CFLAGS_COMPILE", 61, 5]], [["CXXFLAGS", 65, 5]], [["NIX_LDFLAGS", 68, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 30, 3], ["strictDeps", 35, 3], ["__structuredAttrs", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 47, 3], ["preAutoreconf", 52, 3], ["postAutoreconf", 56, 3], ["env", 60, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "autoconf-archive": false, "ocaml-ng": false, "pkg-config": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CXXFLAGS", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 30, 3], ["strictDeps", 35, 3], ["__structuredAttrs", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 47, 3], ["preAutoreconf", 52, 3], ["postAutoreconf", 56, 3], ["env", 60, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const ocamlPackages = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_4_14"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mldonkey",
       version: "3.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ygrek",
           repo: "mldonkey",
           tag: nix.thunk(() => nix.str`release-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -50,11 +45,11 @@ export default nix.lambda((args) => (() => {
       preAutoreconf: "cd config\n",
       postAutoreconf: "cd ..\n",
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=incompatible-pointer-types -DPROTOTYPES=1",
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$3, CXXFLAGS: "-std=c++98" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$4, NIX_LDFLAGS: "-liconv" })))))),
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: $pos[2], CXXFLAGS: "-std=c++98" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_LDFLAGS: "-liconv" })))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Client for many p2p networks, with multiple frontends",
         homepage: "https://github.com/ygrek/mldonkey",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

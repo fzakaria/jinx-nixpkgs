@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 51, 3], ["disabledTestPaths", 61, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, matplotlib: false, "mplhep-data": false, numpy: false, uhi: false, hist: false, "pytest-benchmark": false, "pytest-mock": false, "pytest-mpl": false, pytestCheckHook: false, scipy: false, uproot: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 51, 3], ["disabledTestPaths", 61, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const uproot = nix.arg($, "uproot");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mplhep",
       version: "1.3.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scikit-hep",
           repo: "mplhep",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_inputs.py"]),
       pythonImportsCheck: nix.thunk(() => ["mplhep"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extended histogram plots on top of matplotlib and HEP compatible styling similar to current collaboration requirements (ROOT)",
         homepage: "https://github.com/scikit-hep/mplhep",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-hep/mplhep/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

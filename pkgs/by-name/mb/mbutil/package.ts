@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 31, 5], ["mainProgram", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["build-system", 21, 3], ["nativeCheckInputs", 23, 3], ["enabledTestPaths", 24, 3], ["disabledTests", 25, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["mainProgram", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["build-system", 21, 3], ["nativeCheckInputs", 23, 3], ["enabledTestPaths", 24, 3], ["disabledTests", 25, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mapbox",
           repo: "mbutil",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["test/test.py"]);
       const disabledTests = nix.thunk(() => ["test_utf8grid_disk_to_mbtiles"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Importer and exporter for MBTiles",
         mainProgram: "mb-util",
         homepage: "https://github.com/mapbox/mbutil",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

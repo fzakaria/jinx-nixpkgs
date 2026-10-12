@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 24, 5], ["license", 25, 5], ["homepage", 26, 5], ["teams", 27, 5]], [["pname", 10, 3], ["version", 12, 3], ["hash", 13, 3], ["configureFlags", 15, 3], ["depsBuildBuild", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { buildPecl: false, lib: false, imagemagick: false, "pkg-config": false, pcre2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 24, 5], ["license", 25, 5], ["homepage", 26, 5], ["teams", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 12, 3], ["hash", 13, 3], ["configureFlags", 15, 3], ["depsBuildBuild", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const pcre2 = nix.arg($, "pcre2");
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "imagick",
       version: "3.8.1",
       hash: "sha256-OjWHwKUkwX0NrZZzoWC5DNd26DaDhHThc7VJ7YZDUu4=",
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [pcre2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Imagick is a native php extension to create and modify images using the ImageMagick API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),
         homepage: "https://pecl.php.net/package/imagick",

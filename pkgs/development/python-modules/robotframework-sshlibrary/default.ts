@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["sha256", 17, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5]], [["version", 11, 3], ["format", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["doCheck", 21, 3], ["propagatedBuildInputs", 23, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, robotframework: false, paramiko: false, scp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 11, 3], ["format", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["doCheck", 21, 3], ["propagatedBuildInputs", 23, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "robotframework-sshlibrary";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "aedf8a02bcb7344404cf8575d0ada25d6c7dc2fcb65de2113c4e07c63d2446c2",
@@ -28,13 +26,13 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const propagatedBuildInputs = nix.thunk(() => [robotframework, paramiko, scp]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SSHLibrary is a Robot Framework test library for SSH and SFTP",
         homepage: "https://github.com/robotframework/SSHLibrary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         format,
         pname,

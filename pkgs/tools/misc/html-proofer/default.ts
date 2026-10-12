@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["updateScript", 15, 12]], [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["maintainers", 21, 5], ["platforms", 22, 5], ["mainProgram", 23, 5]], [["pname", 9, 3], ["version", 10, 3], ["ruby", 12, 11], ["gemdir", 13, 3], ["passthru", 15, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { bundlerEnv: false, ruby: false, lib: false, bundlerUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["updateScript", 15, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["maintainers", 21, 5], ["platforms", 22, 5], ["mainProgram", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["ruby", 12, 11], ["gemdir", 13, 3], ["passthru", 15, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
       const ruby_1 = ruby;
       const gemdir = nix.path(here, "./.");
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, pname)),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to validate HTML files",
         homepage: "https://github.com/gjtorikian/html-proofer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         mainProgram: "htmlproofer",
       }));
-      return { [nix.POS]: pos$3, pname, version, ruby: ruby_1, gemdir, passthru, meta };
+      return { [nix.POS]: $pos[2], pname, version, ruby: ruby_1, gemdir, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

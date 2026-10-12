@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["broken", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["description", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["configureFlags", 45, 3], ["installFlags", 51, 3], ["postInstall", 54, 3], ["enableParallelBuilding", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "gtk-doc": false, glib: false, intltool: false, "menu-cache": false, pango: false, "pkg-config": false, vala: false, gtk3: false, extraOnly: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["description", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["configureFlags", 45, 3], ["installFlags", 51, 3], ["postInstall", 54, 3], ["enableParallelBuilding", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => (nix.asBool(extraOnly) ? "libfm-extra" : "libfm")),
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxde",
           repo: "libfm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(optionalString, nix.thunk(() => !nix.asBool(extraOnly)), "rm $out/lib/libfm-extra.so $out/lib/libfm-extra.so.* $out/lib/libfm-extra.la $out/lib/pkgconfig/libfm-extra.pc\n")),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/lxde/libfm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

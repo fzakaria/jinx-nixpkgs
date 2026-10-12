@@ -2,14 +2,13 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nix-for-tests.nix", [[["aws-sdk-cpp", 18, 49]], [["withAWS", 20, 20]]]);
 const formals$1 = { args: { lib: true, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nix-for-tests.nix", [["aws-sdk-cpp", 18, 49]]);
-const pos$2 = nix.positions(here + "/nix-for-tests.nix", [["withAWS", 20, 20]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
   const pkgs = nix.arg($, "pkgs");
-  return nix.builtins.mapAttrs((attr) => (pkg) => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(pkg, "version")), "2.29pre")) ? nix.app(nix.sel(pkg, "overrideScope"), (finalScope) => (prevScope) => ({ [nix.POS]: pos$1, "aws-sdk-cpp": null })) : nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withAWS: false })))), nix.thunk(() => nix.sel(pkgs, "nixVersions")));
+  return nix.builtins.mapAttrs((attr) => (pkg) => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(pkg, "version")), "2.29pre")) ? nix.app(nix.sel(pkg, "overrideScope"), (finalScope) => (prevScope) => ({ [nix.POS]: $pos[0], "aws-sdk-cpp": null })) : nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], withAWS: false })))), nix.thunk(() => nix.sel(pkgs, "nixVersions")));
 })(), formals$1);
 //# sourceMappingURL=nix-for-tests.ts.map

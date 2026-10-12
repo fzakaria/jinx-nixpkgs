@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["NIX_CFLAGS_COMPILE", 28, 7]], [["description", 36, 5], ["license", 37, 5], ["homepage", 38, 5], ["maintainers", 39, 5], ["teams", 40, 5], ["broken", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["internalDeps", 21, 3], ["env", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["sourceRoot", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { buildPecl: false, lib: false, pcre2: false, fetchFromGitHub: false, php: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 36, 5], ["license", 37, 5], ["homepage", 38, 5], ["maintainers", 39, 5], ["teams", 40, 5], ["broken", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["internalDeps", 21, 3], ["env", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["sourceRoot", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "phalcon";
       const version = "5.10.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "phalcon",
           repo: "cphalcon",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,14 +28,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(php, "extensions", "pdo")),
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       }));
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [pcre2]);
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/build/phalcon`);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Phalcon is a full stack PHP framework offering low resource consumption and high performance",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://phalcon.io",
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(php, "version")), "8.5")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5], ["platforms", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["prePatch", 20, 3], ["buildInputs", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, libx11: false, xorgproto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5], ["platforms", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["prePatch", 20, 3], ["buildInputs", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xmagnify",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "amiloradovsky",
           repo: "magnify",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       prePatch: "substituteInPlace Makefile --replace-fail /usr $out\n# gcc15\nsubstituteInPlace main.c --replace-fail 'handler ()' 'handler (int sig)'\n",
       buildInputs: nix.thunk(() => [libx11, xorgproto]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tiny screen magnifier for X11",
         homepage: "https://gitlab.com/amiloradovsky/magnify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

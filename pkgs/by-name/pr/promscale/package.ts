@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["package", 45, 5], ["command", 46, 5]], [["version", 44, 18]], [["tests", 44, 12]], [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["preBuild", 28, 3], ["checkPhase", 33, 3], ["passthru", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, promscale: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 45, 5], ["command", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 44, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 44, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["preBuild", 28, 3], ["checkPhase", 33, 3], ["passthru", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const promscale = nix.arg($, "promscale");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "promscale",
       version: "0.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "timescale",
           repo: "promscale",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,14 +33,14 @@ export default nix.lambda((args) => (() => {
       preBuild: "# Without this build fails with\n# main module (github.com/timescale/promscale) does not contain package github.com/timescale/promscale/migration-tool/cmd/prom-migrator\nrm -r migration-tool\n",
       checkPhase: "runHook preCheck\n\n# some checks requires access to a docker daemon\nfor pkg in $(getGoDirs test | grep -Ev 'testhelpers|upgrade_tests|end_to_end_tests|util'); do\n  buildGoDir test $checkFlags \"$pkg\"\ndone\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: promscale, command: "promscale -version" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: promscale, command: "promscale -version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open-source analytical platform for Prometheus metrics",
         mainProgram: "promscale",
         homepage: "https://github.com/timescale/promscale",

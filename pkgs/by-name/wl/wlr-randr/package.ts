@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5], ["mainProgram", 49, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["depsBuildBuild", 34, 3], ["outputs", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, scdoc: false, wayland: false, "wayland-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5], ["mainProgram", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["depsBuildBuild", 34, 3], ["outputs", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wlr-randr",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "emersion",
           repo: "wlr-randr",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       depsBuildBuild: nix.thunk(() => [pkg_config]),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Xrandr clone for wlroots compositors",
         homepage: "https://gitlab.freedesktop.org/emersion/wlr-randr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

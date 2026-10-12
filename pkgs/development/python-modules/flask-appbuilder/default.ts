@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 33, 5], ["version", 34, 13], ["hash", 35, 5]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["broken", 83, 5]], [["pname", 28, 3], ["version", 29, 3], ["format", 30, 3], ["src", 32, 3], ["propagatedBuildInputs", 38, 3], ["postPatch", 62, 3], ["doCheck", 72, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, apispec: false, colorama: false, click: false, "email-validator": false, flask: false, "flask-babel": false, "flask-limiter": false, "flask-login": false, "flask-openid": false, "flask-sqlalchemy": false, "flask-wtf": false, "flask-jwt-extended": false, jsonschema: false, marshmallow: false, "marshmallow-sqlalchemy": false, "python-dateutil": false, prison: false, pyjwt: false, pyyaml: false, "sqlalchemy-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 33, 5], ["version", 34, 13], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["broken", 83, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["format", 30, 3], ["src", 32, 3], ["propagatedBuildInputs", 38, 3], ["postPatch", 62, 3], ["doCheck", 72, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.0.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "Flask-AppBuilder",
           version: version,
           hash: "sha256-9Xe5gqGuQLwhMjjO25PDnGfPIZmqHgBuCH6hs1B9VFA=",
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["flask_appbuilder"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Application development framework, built on top of Flask",
         homepage: "https://github.com/dpgaspar/flask-appbuilder/",
         changelog: nix.thunk(() => nix.str`https://github.com/dpgaspar/Flask-AppBuilder/blob/v${version}/CHANGELOG.rst`),
@@ -77,7 +75,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

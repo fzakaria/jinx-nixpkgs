@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 42, 5], ["mainProgram", 43, 5], ["homepage", 44, 5], ["platforms", 45, 5], ["license", 46, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["configureFlags", 20, 3], ["buildInputs", 27, 3], ["doCheck", 36, 3], ["dontDisableStatic", 37, 3], ["enableParallelBuilding", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, expat: false, zlib: false, boost: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["mainProgram", 43, 5], ["homepage", 44, 5], ["platforms", 45, 5], ["license", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["configureFlags", 20, 3], ["buildInputs", 27, 3], ["doCheck", 36, 3], ["dontDisableStatic", 37, 3], ["enableParallelBuilding", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "exempi";
       const version = "2.6.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://libopenraw.freedesktop.org/download/exempi-${version}.tar.bz2`),
           sha256: "sha256-dRO35Cw72QpY132TjGDS6Hxo+BZG58uLEtcf4zQ5HG8=",
         }))));
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const dontDisableStatic = doCheck;
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Implementation of XMP (Adobe's Extensible Metadata Platform)",
         mainProgram: "exempi",
         homepage: "https://libopenraw.freedesktop.org/exempi/",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "chunk",
       version: "2021-03-03",
       outputs: nix.thunk(() => ["out", "webfont"]),
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "theleagueof",
           repo: "chunk",
           rev: "12a243f3fb7c7a68844901023f7d95d6eaf14104",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Ultra-bold, ultra-awesome slab serif typeface",
         longDescription: "Chunk is an ultra-bold slab serif typeface that is reminiscent of old\nAmerican Western woodcuts, broadsides, and newspaper headlines. Used\nmainly for display, the fat block lettering is unreserved yet refined for\ncontemporary use.\n\nIn 2014, a new textured style was created by Tyler Finck called Chunk\nFive Print. It contains the same glyphs as the original.\n",
         homepage: "https://www.theleagueofmoveabletype.com/chunk",

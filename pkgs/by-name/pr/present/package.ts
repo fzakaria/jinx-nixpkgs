@@ -2,24 +2,21 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["mistune", 11, 7]], [["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 35, 3], ["doCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["mistune", 11, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 35, 3], ["doCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const python3Packages = nix.arg($, "python3Packages");
   const fetchPypi = nix.arg($, "fetchPypi");
-  const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (self) => (super$) => ({ [nix.POS]: pos$1, mistune: nix.thunk(() => nix.sel(self, "mistune_2")) })));
+  const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (self) => (super$) => ({ [nix.POS]: $pos[0], mistune: nix.thunk(() => nix.sel(self, "mistune_2")) })));
   return nix.app(nix.sel(pythonPackages, "buildPythonPackage"), nix.thunk(() => (() => {
       const pname = "present";
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           hash: "sha256-l9W5L4LD9qRo3rLBkgd2I/aDaj+ucib5UYg+X4RYg6c=",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["present"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Terminal-based presentation tool with colors and effects",
         homepage: "https://github.com/vinayak-mehta/present",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "present",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

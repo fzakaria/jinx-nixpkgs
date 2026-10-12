@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 19, 7], ["url", 20, 7], ["sha256", 21, 7]], [["url", 30, 5], ["sha256", 33, 5]], [["homepage", 88, 5], ["description", 89, 5], ["mainProgram", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["postPatch", 54, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 71, 3], ["makeFlags", 79, 3], ["installPhase", 81, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchurl: false, unzip: false, ldc: false, libGL: false, libGLU: false, SDL: false, SDL_mixer: false, bulletml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 19, 7], ["url", 20, 7], ["sha256", 21, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 5], ["sha256", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 88, 5], ["description", 89, 5], ["mainProgram", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["postPatch", 54, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 71, 3], ["makeFlags", 79, 3], ["installPhase", 81, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const SDL_mixer = nix.arg($, "SDL_mixer");
   const bulletml = nix.arg($, "bulletml");
   const debianPatch = (patchname) => (hash) => nix.app(fetchpatch, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`${patchname}.patch`),
       url: nix.thunk(() => nix.str`https://sources.debian.org/data/main/t/torus-trooper/0.22.dfsg1-14/debian/patches/${patchname}.patch`),
       sha256: hash,
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "torus-trooper",
       version: "0.22",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://abagames.sakura.ne.jp/windows/tt${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           sha256: "1yhki1fdp3fi4y2iq12vca69f6k38dqjaw9z4lwcxky5kbgb7jvg",
         })))),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["GDC=ldc2"]),
       installPhase: "install -Dm755 torus-trooper $out/bin/torus-trooper\nmkdir -p $out/share/games/torus-trooper\ncp -r barrage sounds images $out/share/games/torus-trooper/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.asahi-net.or.jp/~cs8k-cyu/windows/tt_e.html",
         description: "Fast-paced abstract scrolling shooter game",
         mainProgram: "torus-trooper",

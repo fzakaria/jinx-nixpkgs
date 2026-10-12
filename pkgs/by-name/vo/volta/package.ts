@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["updateScript", 49, 5]], [["description", 53, 5], ["longDescription", 54, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["buildInputs", 25, 3], ["postInstall", 27, 3], ["nativeCheckInputs", 38, 3], ["nativeInstallCheckInputs", 42, 3], ["doInstallCheck", 46, 3], ["passthru", 48, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, buildPackages: false, writableTmpDirAsHomeHook: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["longDescription", 54, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["buildInputs", 25, 3], ["postInstall", 27, 3], ["nativeCheckInputs", 38, 3], ["nativeInstallCheckInputs", 42, 3], ["doInstallCheck", 46, 3], ["passthru", 48, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "volta",
       version: "2.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "volta-cli",
           repo: "volta",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,11 +41,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Hassle-Free JavaScript Tool Manager",
         longDescription: "With Volta, you can select a Node engine once and then stop worrying\nabout it. You can switch between projects and stop having to manually\nswitch between Nodes. You can install npm package binaries in your\ntoolchain without having to periodically reinstall them or figure out why\nthey’ve stopped working.\n\nNote: Volta cannot be used on NixOS out of the box because it downloads\nNode binaries that assume shared libraries are in FHS standard locations.\n",
         homepage: "https://volta.sh/",

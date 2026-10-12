@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["description", 85, 5], ["mainProgram", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["cmakeFlags", 37, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 61, 3], ["doCheck", 73, 3], ["postCheck", 75, 3], ["installPhase", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, zlib: false, zstd: false, fetchFromGitHub: false, re2: false, "abseil-cpp": false, protobuf: false, capstone: false, gtest: false, "pkg-config": false, lit: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 85, 5], ["mainProgram", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["cmakeFlags", 37, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 61, 3], ["doCheck", 73, 3], ["postCheck", 75, 3], ["installPhase", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const lit = nix.arg($, "lit");
   const llvmPackages = nix.arg($, "llvmPackages");
   const demumble = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "nico",
       repo: "demumble",
       rev: "10e00fb708a3d24c1bb16682cac76925ffb76af5",
       hash: "sha256-JNSSvYE5bh/9RVLQXVNmWRKAzidg4ktmqLI7pcUATDs=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bloaty",
       version: "1.1-unstable-2026-05-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "google",
           repo: "bloaty",
           rev: "4a601b636e2347322d0371c8bf8ca5eaeaca4bac",
@@ -74,7 +71,7 @@ rm -rf tests/wasm
       postCheck: "# These lit tests need to be build seperatly.\n# See https://github.com/google/bloaty/blob/main/tests/README.md\ncmake --build . --target check-bloaty\n",
       installPhase: "install -Dm755 {.,$out/bin}/bloaty\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Size profiler for binaries",
         mainProgram: "bloaty",
         homepage: "https://github.com/google/bloaty",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["maintainers", 46, 5], ["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["__structuredAttrs", 21, 3], ["strictDeps", 22, 3], ["patches", 24, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["installFlags", 40, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, "pkg-config": false, qrtr: false, systemdLibs: false, lib: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["maintainers", 46, 5], ["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["__structuredAttrs", 21, 3], ["strictDeps", 22, 3], ["patches", 24, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["installFlags", 40, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qcom-diag",
       version: "unstable-2026-04-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linux-msm",
           repo: "diag",
           rev: "23c12c167e93215853af4e59c021551767f6fec8",
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ssid-null-deref.patch",
             url: "https://github.com/linux-msm/diag/commit/809dcac76b534f5908437bc096e3712be4cf26a8.patch",
             hash: "sha256-NCiUlwP5/SJ1Zp17+nADccSysAof5MfqEe1MRTuNB/c=",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [qrtr, systemdLibs]),
       installFlags: nix.thunk(() => ["prefix=/", "DESTDIR=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "matthewcroughan"))];

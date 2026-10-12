@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["updateScript", 50, 12]], [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 42, 3], ["passthru", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "desktop-file-utils": false, glib: false, gtk4: false, libadwaita: false, libgee: false, "libportal-gtk4": false, meson: false, ninja: false, "pkg-config": false, vala: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 50, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 42, 3], ["passthru", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "haguichi",
       version: "1.5.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ztefn",
           repo: "haguichi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,9 +44,9 @@ export default nix.lambda((args) => (() => {
         gtk4,
       ]),
       buildInputs: nix.thunk(() => [glib, gtk4, libadwaita, libgee, libportal_gtk4]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Graphical frontend for Hamachi on Linux",
         mainProgram: "haguichi",
         homepage: "https://haguichi.net/",

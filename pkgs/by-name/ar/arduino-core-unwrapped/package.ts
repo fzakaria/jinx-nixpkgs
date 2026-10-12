@@ -2,21 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchurl", 44, 13], ["optionalAttrs", 45, 19], ["system", 46, 35]], [["jar", 51, 7], ["file", 52, 7]], [["jar", 55, 7], ["file", 56, 7]], [["jar", 59, 7], ["file", 60, 7]], [["jar", 63, 7], ["file", 64, 7]], [["abiVersion", 67, 33]], [["owner", 109, 5], ["repo", 110, 5], ["rev", 111, 5], ["sha256", 112, 5]], [["linux64", 120, 9], ["linux32", 121, 9], ["linuxarm", 122, 9], ["linuxaarch64", 123, 9]], [["url", 117, 5], ["sha256", 118, 5]], [["linux64", 132, 9], ["linux32", 133, 9], ["linuxarm", 134, 9], ["linuxaarch64", 135, 9]], [["url", 129, 5], ["sha256", 130, 5]], [["description", 284, 5], ["mainProgram", 285, 5], ["homepage", 286, 5], ["license", 287, 5], ["sourceProvenance", 288, 5], ["platforms", 292, 5], ["maintainers", 299, 5]], [["pname", 104, 3], ["version", 106, 3], ["src", 108, 3], ["teensyduino_version", 115, 3], ["teensyduino_src", 116, 3], ["arduino_dist_src", 128, 3], ["nativeBuildInputs", 143, 3], ["buildInputs", 149, 3], ["downloadSrcList", 159, 3], ["downloadDstList", 160, 3], ["buildPhase", 162, 3], ["dynamicLibraryPath", 187, 3], ["javaPath", 188, 3], ["rpath", 191, 3], ["installPhase", 200, 3], ["dontStrip", 251, 3], ["dontPatchELF", 252, 3], ["preFixup", 254, 3], ["meta", 283, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchurl: false, jdk: false, ant: false, stripJavaArchivesHook: false, "libusb-compat-0_1": false, libusb1: false, unzip: false, zlib: false, ncurses: false, readline: false, withGui: true, gtk3: false, wrapGAppsHook3: false, withTeensyduino: true, upx: false, fontconfig: false, libxxf86vm: false, libxinerama: false, libxft: false, libxext: false, libx11: false, libsm: false, gcc: false, atk: false, glib: false, pango: false, "gdk-pixbuf": false, gtk2: false, libpng12: false, expat: false, freetype: false, cairo: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchurl", 44, 13], ["optionalAttrs", 45, 19], ["system", 46, 35]]);
-const pos$2 = nix.positions(here + "/package.nix", [["jar", 51, 7], ["file", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["jar", 55, 7], ["file", 56, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["jar", 59, 7], ["file", 60, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["jar", 63, 7], ["file", 64, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["abiVersion", 67, 33]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 109, 5], ["repo", 110, 5], ["rev", 111, 5], ["sha256", 112, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["linux64", 120, 9], ["linux32", 121, 9], ["linuxarm", 122, 9], ["linuxaarch64", 123, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["url", 117, 5], ["sha256", 118, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["linux64", 132, 9], ["linux32", 133, 9], ["linuxarm", 134, 9], ["linuxaarch64", 135, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["url", 129, 5], ["sha256", 130, 5]]);
 const formals$2 = { args: { jar: false, file: false }, ellipsis: false };
-const pos$12 = nix.positions(here + "/package.nix", [["description", 284, 5], ["mainProgram", 285, 5], ["homepage", 286, 5], ["license", 287, 5], ["sourceProvenance", 288, 5], ["platforms", 292, 5], ["maintainers", 299, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 104, 3], ["version", 106, 3], ["src", 108, 3], ["teensyduino_version", 115, 3], ["teensyduino_src", 116, 3], ["arduino_dist_src", 128, 3], ["nativeBuildInputs", 143, 3], ["buildInputs", 149, 3], ["downloadSrcList", 159, 3], ["downloadDstList", 160, 3], ["buildPhase", 162, 3], ["dynamicLibraryPath", 187, 3], ["javaPath", 188, 3], ["rpath", 191, 3], ["installPhase", 200, 3], ["dontStrip", 251, 3], ["dontPatchELF", 252, 3], ["preFixup", 254, 3], ["meta", 283, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,30 +48,30 @@ export default nix.lambda((args) => (() => {
   const externalDownloads = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./downloads.nix")), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fetchurl: fetchurl,
       optionalAttrs: nix.thunk(() => nix.attr(lib, "optionalAttrs")),
       system: nix.thunk(() => nix.attr(from, "system")),
     };
     })())));
   const patchelfInJars = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       jar: "share/arduino/lib/jssc-2.8.0-arduino4.jar",
       file: "libs/linux/libjSSC-2.8_aarch64.so",
     }))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.builtins.match("armv[67]l-linux", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"))), null)), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       jar: "share/arduino/lib/jssc-2.8.0-arduino4.jar",
       file: "libs/linux/libjSSC-2.8_armhf.so",
     }))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       jar: "share/arduino/lib/jssc-2.8.0-arduino4.jar",
       file: "libs/linux/libjSSC-2.8_x86_64.so",
     }))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       jar: "share/arduino/lib/jssc-2.8.0-arduino4.jar",
       file: "libs/linux/libjSSC-2.8_x86.so",
     })))))));
-  const ncurses5 = nix.thunk(() => nix.app(nix.sel(ncurses, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, abiVersion: "5" }))));
+  const ncurses5 = nix.thunk(() => nix.app(nix.sel(ncurses, "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], abiVersion: "5" }))));
   const teensy_libpath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [
       atk,
       cairo,
@@ -111,7 +99,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.add((nix.asBool(withTeensyduino) ? "teensyduino" : "arduino"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(withGui)), "-core")));
       const version = "1.8.19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "arduino",
           repo: "Arduino",
           rev: version,
@@ -119,10 +107,10 @@ export default nix.lambda((args) => (() => {
         }))));
       const teensyduino_version = "156";
       const teensyduino_src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           url: nix.thunk(() => nix.str`https://www.pjrc.com/teensy/td_${teensyduino_version}/TeensyduinoInstall.${teensy_architecture}`),
           sha256: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             linux64: "sha256-4DbhmmYrx+rCBpDrYFaC0A88Qv9UEeNlQAkFi3zAstk=",
             linux32: "sha256-DlRPOtDxmMPv2Qzhib7vNZdKNZCxmm9YmVNnwUKXK/E=",
             linuxarm: "sha256-d+DbpER/4lFPcPDFeMG5f3WaUGn8pFchdIDo7Hm0XWs=",
@@ -130,10 +118,10 @@ export default nix.lambda((args) => (() => {
           }, () => nix.builtins.throw(nix.thunk(() => nix.str`No arduino binaries for ${teensy_architecture}`)), nix.key(nix.force(teensy_architecture)))),
         }))));
       const arduino_dist_src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           url: nix.thunk(() => nix.str`https://downloads.arduino.cc/arduino-${version}-${teensy_architecture}.tar.xz`),
           sha256: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             linux64: "sha256-62i93B0cASC+L8oTUKA+40Uxzzf1GEeyEhC25wVFvJs=",
             linux32: "sha256-wSxtx3BqXMQCeWQDK8PHkWLlQqQM1Csao8bIk98FrFg=",
             linuxarm: "sha256-lJ/R1ePq7YtDk3bvloFcn8jswrJH+L63tvH5QpTqfXs=",
@@ -219,7 +207,7 @@ patchelf --debug \\
 `))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         description: "Open-source electronics prototyping platform",
         mainProgram: "arduino",
         homepage: "https://www.arduino.cc/",
@@ -249,7 +237,7 @@ patchelf --debug \\
         })()),
       }));
       return {
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         pname,
         version,
         src,

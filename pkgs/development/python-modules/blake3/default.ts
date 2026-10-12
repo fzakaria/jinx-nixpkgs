@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["lockFile", 30, 5]], [["extraArgs", 50, 5]], [["updateScript", 49, 12]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 63, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["cargoDeps", 29, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 37, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 47, 3], ["passthru", 49, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, libiconv: false, numpy: false, pytestCheckHook: false, rustPlatform: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lockFile", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extraArgs", 50, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 49, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 63, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["cargoDeps", 29, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 37, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 47, 3], ["passthru", 49, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oconnor663",
           repo: "blake3-py",
           tag: version,
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = nix.thunk(() => nix.str`ln -s '${nix.path(here, "./Cargo.lock")}' Cargo.lock
 `);
-      const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") }))));
+      const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") }))));
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])));
       const nativeBuildInputs = nix.thunk(() => (() => {
         const w = nix.withScope(rustPlatform, null);
@@ -46,11 +41,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, numpy]);
       const pythonImportsCheck = nix.thunk(() => ["blake3"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python bindings for the BLAKE3 cryptographic hash function",
         homepage: "https://github.com/oconnor663/blake3-py",
         changelog: nix.thunk(() => nix.str`https://github.com/oconnor663/blake3-py/releases/tag/${version}`),
@@ -67,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

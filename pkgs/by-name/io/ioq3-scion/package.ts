@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["NIX_CFLAGS_COMPILE", 22, 7]], [["description", 24, 5], ["homepage", 25, 5], ["maintainers", 26, 5], ["platforms", 27, 5], ["license", 28, 5]], [["pname", 9, 3], ["version", 10, 3], ["buildInputs", 11, 3], ["src", 15, 3], ["env", 22, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { ioquake3: false, fetchFromGitHub: false, "pan-bindings": false, libsodium: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["maintainers", 26, 5], ["platforms", 27, 5], ["license", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["buildInputs", 11, 3], ["src", 15, 3], ["env", 22, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const libsodium = nix.arg($, "libsodium");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(ioquake3, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ioq3-scion",
       version: "0-unstable-2024-12-14",
       buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [pan_bindings, libsodium])),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lschulz",
           repo: "ioq3-scion",
           rev: "a21c257b9ad1d897f6c31883511c3f422317aa0a",
           hash: "sha256-CBy3Av/mkFojXr0tAXPRWKwLeQJPebazXQ4wzKEmx0I=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "ioquake3 with support for path aware networking",
         homepage: "https://github.com/lschulz/ioq3-scion",
         maintainers: nix.thunk(() => (() => {

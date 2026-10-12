@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["buildInputs", 25, 3], ["makeFlags", 30, 3], ["installFlags", 32, 3], ["preInstall", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["buildInputs", 25, 3], ["makeFlags", 30, 3], ["installFlags", 32, 3], ["preInstall", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ytree",
       version: "2.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://han.de/~werner/ytree-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-yu7qwzTayDkhvYtletLUzyNMFdpP/H0V2tC9qZ5S8Zc=",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       preInstall: "mkdir -p $out/bin $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.han.de/~werner/ytree.html",
         description: "Curses-based file manager similar to DOS Xtree(TM)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

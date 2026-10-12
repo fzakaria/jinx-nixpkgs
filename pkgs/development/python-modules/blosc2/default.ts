@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 46, 7], ["repo", 47, 7], ["tag", 48, 7], ["hash", 49, 7]], [["name", 52, 7], ["owner", 53, 7], ["repo", 54, 7], ["rev", 55, 7], ["hash", 56, 7]], [["name", 59, 7], ["owner", 60, 7], ["repo", 61, 7], ["rev", 62, 7], ["hash", 63, 7]], [["name", 66, 7], ["owner", 67, 7], ["repo", 68, 7], ["rev", 69, 7], ["hash", 70, 7]], [["c-blosc2", 162, 12]], [["description", 165, 5], ["homepage", 166, 5], ["changelog", 167, 5], ["license", 168, 5], ["maintainers", 169, 5]], [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["srcs", 44, 3], ["sourceRoot", 73, 3], ["nativeBuildInputs", 75, 3], ["preUnpack", 82, 3], ["postUnpack", 94, 3], ["dontUseCmakeConfigure", 113, 3], ["build-system", 115, 3], ["buildInputs", 121, 3], ["dependencies", 123, 3], ["nativeCheckInputs", 133, 3], ["disabledTestMarks", 139, 3], ["disabledTests", 143, 3], ["disabledTestPaths", 154, 3], ["passthru", 162, 3], ["meta", 164, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, cmake: false, cython: false, ninja: false, "pkg-config": false, "scikit-build-core": false, "c-blosc2": false, msgpack: false, ndindex: false, numexpr: false, numpy: false, platformdirs: false, "py-cpuinfo": false, requests: false, psutil: false, pytestCheckHook: false, torch: false, runTorchTests: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 46, 7], ["repo", 47, 7], ["tag", 48, 7], ["hash", 49, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 52, 7], ["owner", 53, 7], ["repo", 54, 7], ["rev", 55, 7], ["hash", 56, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 59, 7], ["owner", 60, 7], ["repo", 61, 7], ["rev", 62, 7], ["hash", 63, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 66, 7], ["owner", 67, 7], ["repo", 68, 7], ["rev", 69, 7], ["hash", 70, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["c-blosc2", 162, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 165, 5], ["homepage", 166, 5], ["changelog", 167, 5], ["license", 168, 5], ["maintainers", 169, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["srcs", 44, 3], ["sourceRoot", 73, 3], ["nativeBuildInputs", 75, 3], ["preUnpack", 82, 3], ["postUnpack", 94, 3], ["dontUseCmakeConfigure", 113, 3], ["build-system", 115, 3], ["buildInputs", 121, 3], ["dependencies", 123, 3], ["nativeCheckInputs", 133, 3], ["disabledTestMarks", 139, 3], ["disabledTests", 143, 3], ["disabledTestPaths", 154, 3], ["passthru", 162, 3], ["meta", 164, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,14 +38,14 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const srcs = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "Blosc",
             repo: "python-blosc2",
             tag: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-z5g3OXSKKR/2yQ5n1hb+br009xaX8C7HxbDDLVfSYNw=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "miniexpr",
             owner: "Blosc",
             repo: "miniexpr",
@@ -59,7 +53,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-3YLdAZFYEtmENuQgDiitU3kw8JmW+V03zFSGXV3FwqE=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "sleef",
             owner: "shibatch",
             repo: "sleef",
@@ -67,7 +61,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-a0OB2gQI8RlR7liXdlOZo4xDl3f2p9thrCm8CwD2jRM=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "tinycc",
             owner: "Blosc",
             repo: "minicc",
@@ -116,9 +110,9 @@ fi
         "tests/ndarray/test_lazyexpr_fields.py",
         "tests/ndarray/test_reductions.py",
       ]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, "c-blosc2": c_blosc2 }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[4], "c-blosc2": c_blosc2 }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Python wrapper for the extremely fast Blosc2 compression library",
         homepage: "https://github.com/Blosc/python-blosc2",
         changelog: nix.thunk(() => nix.str`https://github.com/Blosc/python-blosc2/releases/tag/${nix.sel(nix.builtins.head(srcs), "name")}`),
@@ -129,7 +123,7 @@ fi
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

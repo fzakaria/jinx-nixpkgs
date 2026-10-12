@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 23, 7], ["url", 24, 7], ["hash", 25, 7]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["pname", 16, 3], ["format", 17, 3], ["src", 18, 23], ["version", 18, 27], ["meta", 18, 35], ["patches", 20, 3], ["nativeCheckInputs", 34, 3], ["propagatedBuildInputs", 36, 3], ["postPatch", 41, 3], ["postInstall", 51, 3], ["checkPhase", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchpatch: false, python: false, numba: false, ndtypes: false, xnd: false, libndtypes: false, libxnd: false, libgumath: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 23, 7], ["url", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["format", 17, 3], ["src", 18, 23], ["version", 18, 27], ["meta", 18, 35], ["patches", 20, 3], ["nativeCheckInputs", 34, 3], ["propagatedBuildInputs", 36, 3], ["postPatch", 41, 3], ["postInstall", 51, 3], ["checkPhase", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const libxnd = nix.arg($, "libxnd");
   const libgumath = nix.arg($, "libgumath");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gumath",
       format: "setuptools",
       src: nix.thunk(() => nix.attr(libgumath, "src")),
@@ -29,13 +27,13 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => nix.attr(libgumath, "meta")),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "remove-np-warnings-call.patch",
             url: "https://github.com/xnd-project/gumath/commit/83ab3aa3b07d55654b4e6e75e5ec6be8190fca97.patch",
             hash: "sha256-7lUXNVH5M+Go1iEu0bud03XI8cyGbdLNdLraMZplDaM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "remove-np-1.25-bartlett-test-assertion.patch",
             url: "https://github.com/xnd-project/gumath/commit/8741e31f2967ded08c96a7f0631e1e38fe813870.patch",
             hash: "sha256-flltk3RNPHalbcIV0BrkxWuhqqJBrycos7Fyv3P3mWg=",

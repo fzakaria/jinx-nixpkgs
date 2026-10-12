@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7]], [["homepage", 48, 7], ["changelog", 49, 7], ["description", 50, 7], ["longDescription", 51, 7], ["license", 56, 7], ["mainProgram", 57, 7], ["maintainers", 58, 7]], [["pname", 17, 5], ["version", 18, 5], ["pyproject", 19, 5], ["src", 21, 5], ["build-system", 28, 5], ["dependencies", 30, 5], ["nativeCheckInputs", 39, 5], ["disabledTestPaths", 41, 5], ["pythonImportsCheck", 45, 5], ["meta", 47, 5]]]);
 const formals$1 = { args: { lib: false, beautifulsoup4: false, buildPythonPackage: false, crayons: false, fetchFromGitHub: false, "poetry-core": false, pyxdg: false, pyyaml: false, requests: false, setuptools: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 48, 7], ["changelog", 49, 7], ["description", 50, 7], ["longDescription", 51, 7], ["license", 56, 7], ["mainProgram", 57, 7], ["maintainers", 58, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 5], ["pyproject", 19, 5], ["src", 21, 5], ["build-system", 28, 5], ["dependencies", 30, 5], ["nativeCheckInputs", 39, 5], ["disabledTestPaths", 41, 5], ["pythonImportsCheck", 45, 5], ["meta", 47, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const finalAttrs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     pname: "duden",
     version: "0.19.2",
     pyproject: true,
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "radomirbosak",
         repo: "duden",
         tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
     disabledTestPaths: nix.thunk(() => ["tests/test_online_attributes.py"]),
     pythonImportsCheck: nix.thunk(() => ["duden"]),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       homepage: "https://github.com/radomirbosak/duden",
       changelog: nix.thunk(() => nix.str`https://github.com/radomirbosak/duden/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
       description: "CLI for https://duden.de dictionary written in Python",

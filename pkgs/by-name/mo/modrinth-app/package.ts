@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 99, 7], ["longDescription", 100, 7], ["homepage", 101, 7], ["license", 102, 7], ["maintainers", 103, 7], ["mainProgram", 104, 7], ["platforms", 105, 7], ["broken", 106, 7]], [["pname", 37, 3], ["version", 38, 36], ["paths", 40, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["runtimeDependencies", 54, 3], ["postBuild", 83, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, addDriverRunpath: false, "alsa-lib": false, flite: false, glib: false, "glib-networking": false, "gsettings-desktop-schemas": false, jdk25: false, jdk17: false, jdk21: false, jdk8: false, jdks: true, libGL: false, libjack2: false, libpulseaudio: false, "modrinth-app-unwrapped": false, pipewire: false, symlinkJoin: false, udev: false, wrapGAppsHook3: false, libxxf86vm: false, libxrandr: false, libxext: false, libxcursor: false, libx11: false, xrandr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 99, 7], ["longDescription", 100, 7], ["homepage", 101, 7], ["license", 102, 7], ["maintainers", 103, 7], ["mainProgram", 104, 7], ["platforms", 105, 7], ["broken", 106, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 36], ["paths", 40, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["runtimeDependencies", 54, 3], ["postBuild", 83, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const xrandr = nix.arg($, "xrandr");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "modrinth-app",
       version: nix.thunk(() => nix.attr(modrinth_app_unwrapped, "version")),
       paths: nix.thunk(() => [modrinth_app_unwrapped]),
@@ -73,7 +72,7 @@ wrapGApp "$out/bin/ModrinthApp"
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(modrinth_app_unwrapped, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from, "description")),
         longDescription: nix.thunk(() => nix.attr(from, "longDescription")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

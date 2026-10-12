@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["0.3.0", 24, 9], ["0.2.1", 25, 9]], [["url", 21, 5], ["hash", 22, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 26]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 37, 3], ["strictDeps", 45, 3], ["buildPhase", 47, 19], ["installPhase", 47, 30], ["meta", 49, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, ocaml: false, findlib: false, ocamlbuild: false, topkg: false, astring: false, fmt: false, fpath: false, logs: false, rresult: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["0.3.0", 24, 9], ["0.2.1", 25, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 26]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 37, 3], ["strictDeps", 45, 3], ["buildPhase", 47, 19], ["installPhase", 47, 30], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const logs = nix.arg($, "logs");
   const rresult = nix.arg($, "rresult");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-bos`),
       version: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14")) ? "0.3.0" : "0.2.1")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://erratique.ch/software/bos/releases/bos-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "0.3.0": "sha256-CJ82ntAJZ+kticxfzYSMVr2rXAJzfaTUg1UL9Wtaebw=",
             "0.2.1": "sha256-2NYueGsQ1pfgRXIFqO7eqifrzJDxhV8Y3xkMrC49jzc=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Basic OS interaction for OCaml",
         homepage: "https://erratique.ch/software/bos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

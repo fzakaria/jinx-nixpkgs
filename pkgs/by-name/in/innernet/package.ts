@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["package", 51, 7], ["command", 52, 7]], [["package", 55, 7], ["command", 56, 7]], [["serverVersion", 50, 5], ["version", 54, 5]], [["tests", 49, 12]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["postInstall", 38, 3], ["passthru", 49, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, sqlite: false, installShellFiles: false, libiconv: false, innernet: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 51, 7], ["command", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 55, 7], ["command", 56, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["serverVersion", 50, 5], ["version", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 49, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["postInstall", 38, 3], ["passthru", 49, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const innernet = nix.arg($, "innernet");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "innernet",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tonarino",
           repo: "innernet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,15 +32,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([sqlite], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       postInstall: nix.thunk(() => nix.add("installManPage doc/innernet-server.8.gz\ninstallManPage doc/innernet.8.gz\ninstallShellCompletion doc/innernet.completions.{bash,fish,zsh}\ninstallShellCompletion doc/innernet-server.completions.{bash,fish,zsh}\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "find . -regex '.*\\.\\(target\\|service\\)' | xargs install -Dt $out/lib/systemd/system\nfind $out/lib/systemd/system -type f | xargs sed -i \"s|/usr/bin/innernet|$out/bin/innernet|\"\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          serverVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: innernet, command: "innernet-server --version" })))),
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: innernet, command: "innernet --version" })))),
+          [nix.POS]: $pos[3],
+          serverVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: innernet, command: "innernet-server --version" })))),
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: innernet, command: "innernet --version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Private network system that uses WireGuard under the hood",
         homepage: "https://github.com/tonarino/innernet",
         changelog: nix.thunk(() => nix.str`https://github.com/tonarino/innernet/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,62 +2,52 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/sources.nix", [["cp312", 6, 7], ["cp313", 7, 7]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["cp312", 11, 9], ["cp313", 12, 9]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["cp312", 15, 9], ["cp313", 16, 9]]);
-const pos$4 = nix.positions(here + "/sources.nix", [["cp312", 19, 9], ["cp313", 20, 9]]);
-const pos$5 = nix.positions(here + "/sources.nix", [["cu126", 10, 7], ["cu129", 14, 7], ["cu130", 18, 7]]);
-const pos$6 = nix.positions(here + "/sources.nix", [["platform", 4, 5], ["cpu", 5, 5], ["gpu", 9, 5]]);
-const pos$7 = nix.positions(here + "/sources.nix", [["cp312", 27, 7], ["cp313", 28, 7]]);
-const pos$8 = nix.positions(here + "/sources.nix", [["platform", 25, 5], ["cpu", 26, 5]]);
-const pos$9 = nix.positions(here + "/sources.nix", [["cp312", 34, 7], ["cp313", 35, 7]]);
-const pos$10 = nix.positions(here + "/sources.nix", [["platform", 32, 5], ["cpu", 33, 5]]);
-const pos$11 = nix.positions(here + "/sources.nix", [["version", 2, 3], ["x86_64-linux", 3, 3], ["aarch64-linux", 24, 3], ["aarch64-darwin", 31, 3]]);
+const $pos = nix.positions(here + "/sources.nix", [[["cp312", 6, 7], ["cp313", 7, 7]], [["cp312", 11, 9], ["cp313", 12, 9]], [["cp312", 15, 9], ["cp313", 16, 9]], [["cp312", 19, 9], ["cp313", 20, 9]], [["cu126", 10, 7], ["cu129", 14, 7], ["cu130", 18, 7]], [["platform", 4, 5], ["cpu", 5, 5], ["gpu", 9, 5]], [["cp312", 27, 7], ["cp313", 28, 7]], [["platform", 25, 5], ["cpu", 26, 5]], [["cp312", 34, 7], ["cp313", 35, 7]], [["platform", 32, 5], ["cpu", 33, 5]], [["version", 2, 3], ["x86_64-linux", 3, 3], ["aarch64-linux", 24, 3], ["aarch64-darwin", 31, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$11,
+  [nix.POS]: $pos[10],
   version: "3.3.0",
   "x86_64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     platform: "linux_x86_64",
     cpu: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       cp312: "sha256-PumW7ivy0rM+mGWHb7gv8Dy3uyJGzFqgAn7dapoGQOs=",
       cp313: "sha256-iImCdPXNXi9OuvVjHUwAkn2dWEZaCDh1wiS0D5k1zTk=",
     })),
     gpu: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       cu126: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cp312: "sha256-rYlNNuvnK3j3th+HltQPlyeLowA648E4qkUW2a8GBOU=",
         cp313: "sha256-hb1kDryNy72pjtNaj7SJIfL3hMsx9xMIbJ67hy2JDEU=",
       })),
       cu129: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         cp312: "sha256-Ukci896/PoTmk6Za1ZzZnO5NDeN7xMgfUMJK4Jj57J0=",
         cp313: "sha256-pkNs7L3AEqGARs4iM7n5eReMHj+ZJj8LGHefXmmQNTM=",
       })),
       cu130: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         cp312: "sha256-yD4wdgkwRm1FdvyGAPExwpomCc4M/PC2RugBpsCUWZ8=",
         cp313: "sha256-3zmZ4mbxhC8LL/+wT9ip43F8E0iwzHjP9tm8+hYcTBE=",
       })),
     })),
   })),
   "aarch64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     platform: "linux_aarch64",
     cpu: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       cp312: "sha256-1GeE+enBxjIc9BTulCvXBeC6HI0XRcPdf/20mb/HE3w=",
       cp313: "sha256-LfBVU8RHRDXAAFlfN623fOUJMWGFT5AWntKTyDaLlB4=",
     })),
   })),
   "aarch64-darwin": nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     platform: "macosx_11_0_arm64",
     cpu: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       cp312: "sha256-F6q2uQ2M7yzPiT9L6CzwXpBuIf6GxAo0/qZwGTfXeCs=",
       cp313: "sha256-tWeBNUsYBj9DqH89ViraWk+KQ3/iMSqxAy+omtWlTsA=",
     })),

@@ -2,2096 +2,548 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/elpa-devel-generated.nix", [[["url", 14, 9], ["sha256", 15, 9]], [["homepage", 19, 9], ["license", 20, 9]], [["pname", 10, 7], ["ename", 11, 7], ["version", 12, 7], ["src", 13, 7], ["packageRequires", 17, 7], ["meta", 18, 7]], [["url", 36, 9], ["sha256", 37, 9]], [["homepage", 41, 9], ["license", 42, 9]], [["pname", 32, 7], ["ename", 33, 7], ["version", 34, 7], ["src", 35, 7], ["packageRequires", 39, 7], ["meta", 40, 7]], [["url", 57, 9], ["sha256", 58, 9]], [["homepage", 62, 9], ["license", 63, 9]], [["pname", 53, 7], ["ename", 54, 7], ["version", 55, 7], ["src", 56, 7], ["packageRequires", 60, 7], ["meta", 61, 7]], [["url", 79, 9], ["sha256", 80, 9]], [["homepage", 84, 9], ["license", 85, 9]], [["pname", 75, 7], ["ename", 76, 7], ["version", 77, 7], ["src", 78, 7], ["packageRequires", 82, 7], ["meta", 83, 7]], [["url", 103, 9], ["sha256", 104, 9]], [["homepage", 112, 9], ["license", 113, 9]], [["pname", 99, 7], ["ename", 100, 7], ["version", 101, 7], ["src", 102, 7], ["packageRequires", 106, 7], ["meta", 111, 7]], [["url", 128, 9], ["sha256", 129, 9]], [["homepage", 133, 9], ["license", 134, 9]], [["pname", 124, 7], ["ename", 125, 7], ["version", 126, 7], ["src", 127, 7], ["packageRequires", 131, 7], ["meta", 132, 7]], [["url", 149, 9], ["sha256", 150, 9]], [["homepage", 154, 9], ["license", 155, 9]], [["pname", 145, 7], ["ename", 146, 7], ["version", 147, 7], ["src", 148, 7], ["packageRequires", 152, 7], ["meta", 153, 7]], [["url", 170, 9], ["sha256", 171, 9]], [["homepage", 175, 9], ["license", 176, 9]], [["pname", 166, 7], ["ename", 167, 7], ["version", 168, 7], ["src", 169, 7], ["packageRequires", 173, 7], ["meta", 174, 7]], [["url", 191, 9], ["sha256", 192, 9]], [["homepage", 196, 9], ["license", 197, 9]], [["pname", 187, 7], ["ename", 188, 7], ["version", 189, 7], ["src", 190, 7], ["packageRequires", 194, 7], ["meta", 195, 7]], [["url", 212, 9], ["sha256", 213, 9]], [["homepage", 217, 9], ["license", 218, 9]], [["pname", 208, 7], ["ename", 209, 7], ["version", 210, 7], ["src", 211, 7], ["packageRequires", 215, 7], ["meta", 216, 7]], [["url", 233, 9], ["sha256", 234, 9]], [["homepage", 238, 9], ["license", 239, 9]], [["pname", 229, 7], ["ename", 230, 7], ["version", 231, 7], ["src", 232, 7], ["packageRequires", 236, 7], ["meta", 237, 7]], [["url", 254, 9], ["sha256", 255, 9]], [["homepage", 259, 9], ["license", 260, 9]], [["pname", 250, 7], ["ename", 251, 7], ["version", 252, 7], ["src", 253, 7], ["packageRequires", 257, 7], ["meta", 258, 7]], [["url", 275, 9], ["sha256", 276, 9]], [["homepage", 280, 9], ["license", 281, 9]], [["pname", 271, 7], ["ename", 272, 7], ["version", 273, 7], ["src", 274, 7], ["packageRequires", 278, 7], ["meta", 279, 7]], [["url", 296, 9], ["sha256", 297, 9]], [["homepage", 301, 9], ["license", 302, 9]], [["pname", 292, 7], ["ename", 293, 7], ["version", 294, 7], ["src", 295, 7], ["packageRequires", 299, 7], ["meta", 300, 7]], [["url", 317, 9], ["sha256", 318, 9]], [["homepage", 322, 9], ["license", 323, 9]], [["pname", 313, 7], ["ename", 314, 7], ["version", 315, 7], ["src", 316, 7], ["packageRequires", 320, 7], ["meta", 321, 7]], [["url", 338, 9], ["sha256", 339, 9]], [["homepage", 343, 9], ["license", 344, 9]], [["pname", 334, 7], ["ename", 335, 7], ["version", 336, 7], ["src", 337, 7], ["packageRequires", 341, 7], ["meta", 342, 7]], [["url", 359, 9], ["sha256", 360, 9]], [["homepage", 364, 9], ["license", 365, 9]], [["pname", 355, 7], ["ename", 356, 7], ["version", 357, 7], ["src", 358, 7], ["packageRequires", 362, 7], ["meta", 363, 7]], [["url", 381, 9], ["sha256", 382, 9]], [["homepage", 386, 9], ["license", 387, 9]], [["pname", 377, 7], ["ename", 378, 7], ["version", 379, 7], ["src", 380, 7], ["packageRequires", 384, 7], ["meta", 385, 7]], [["url", 402, 9], ["sha256", 403, 9]], [["homepage", 407, 9], ["license", 408, 9]], [["pname", 398, 7], ["ename", 399, 7], ["version", 400, 7], ["src", 401, 7], ["packageRequires", 405, 7], ["meta", 406, 7]], [["url", 424, 9], ["sha256", 425, 9]], [["homepage", 429, 9], ["license", 430, 9]], [["pname", 420, 7], ["ename", 421, 7], ["version", 422, 7], ["src", 423, 7], ["packageRequires", 427, 7], ["meta", 428, 7]], [["url", 445, 9], ["sha256", 446, 9]], [["homepage", 450, 9], ["license", 451, 9]], [["pname", 441, 7], ["ename", 442, 7], ["version", 443, 7], ["src", 444, 7], ["packageRequires", 448, 7], ["meta", 449, 7]], [["url", 466, 9], ["sha256", 467, 9]], [["homepage", 471, 9], ["license", 472, 9]], [["pname", 462, 7], ["ename", 463, 7], ["version", 464, 7], ["src", 465, 7], ["packageRequires", 469, 7], ["meta", 470, 7]], [["url", 488, 9], ["sha256", 489, 9]], [["homepage", 493, 9], ["license", 494, 9]], [["pname", 484, 7], ["ename", 485, 7], ["version", 486, 7], ["src", 487, 7], ["packageRequires", 491, 7], ["meta", 492, 7]], [["url", 510, 9], ["sha256", 511, 9]], [["homepage", 515, 9], ["license", 516, 9]], [["pname", 506, 7], ["ename", 507, 7], ["version", 508, 7], ["src", 509, 7], ["packageRequires", 513, 7], ["meta", 514, 7]], [["url", 531, 9], ["sha256", 532, 9]], [["homepage", 536, 9], ["license", 537, 9]], [["pname", 527, 7], ["ename", 528, 7], ["version", 529, 7], ["src", 530, 7], ["packageRequires", 534, 7], ["meta", 535, 7]], [["url", 553, 9], ["sha256", 554, 9]], [["homepage", 558, 9], ["license", 559, 9]], [["pname", 549, 7], ["ename", 550, 7], ["version", 551, 7], ["src", 552, 7], ["packageRequires", 556, 7], ["meta", 557, 7]], [["url", 574, 9], ["sha256", 575, 9]], [["homepage", 579, 9], ["license", 580, 9]], [["pname", 570, 7], ["ename", 571, 7], ["version", 572, 7], ["src", 573, 7], ["packageRequires", 577, 7], ["meta", 578, 7]], [["url", 596, 9], ["sha256", 597, 9]], [["homepage", 601, 9], ["license", 602, 9]], [["pname", 592, 7], ["ename", 593, 7], ["version", 594, 7], ["src", 595, 7], ["packageRequires", 599, 7], ["meta", 600, 7]], [["url", 617, 9], ["sha256", 618, 9]], [["homepage", 622, 9], ["license", 623, 9]], [["pname", 613, 7], ["ename", 614, 7], ["version", 615, 7], ["src", 616, 7], ["packageRequires", 620, 7], ["meta", 621, 7]], [["url", 638, 9], ["sha256", 639, 9]], [["homepage", 643, 9], ["license", 644, 9]], [["pname", 634, 7], ["ename", 635, 7], ["version", 636, 7], ["src", 637, 7], ["packageRequires", 641, 7], ["meta", 642, 7]], [["url", 660, 9], ["sha256", 661, 9]], [["homepage", 665, 9], ["license", 666, 9]], [["pname", 656, 7], ["ename", 657, 7], ["version", 658, 7], ["src", 659, 7], ["packageRequires", 663, 7], ["meta", 664, 7]], [["url", 682, 9], ["sha256", 683, 9]], [["homepage", 687, 9], ["license", 688, 9]], [["pname", 678, 7], ["ename", 679, 7], ["version", 680, 7], ["src", 681, 7], ["packageRequires", 685, 7], ["meta", 686, 7]], [["url", 703, 9], ["sha256", 704, 9]], [["homepage", 708, 9], ["license", 709, 9]], [["pname", 699, 7], ["ename", 700, 7], ["version", 701, 7], ["src", 702, 7], ["packageRequires", 706, 7], ["meta", 707, 7]], [["url", 724, 9], ["sha256", 725, 9]], [["homepage", 729, 9], ["license", 730, 9]], [["pname", 720, 7], ["ename", 721, 7], ["version", 722, 7], ["src", 723, 7], ["packageRequires", 727, 7], ["meta", 728, 7]], [["url", 745, 9], ["sha256", 746, 9]], [["homepage", 750, 9], ["license", 751, 9]], [["pname", 741, 7], ["ename", 742, 7], ["version", 743, 7], ["src", 744, 7], ["packageRequires", 748, 7], ["meta", 749, 7]], [["url", 766, 9], ["sha256", 767, 9]], [["homepage", 771, 9], ["license", 772, 9]], [["pname", 762, 7], ["ename", 763, 7], ["version", 764, 7], ["src", 765, 7], ["packageRequires", 769, 7], ["meta", 770, 7]], [["url", 788, 9], ["sha256", 789, 9]], [["homepage", 793, 9], ["license", 794, 9]], [["pname", 784, 7], ["ename", 785, 7], ["version", 786, 7], ["src", 787, 7], ["packageRequires", 791, 7], ["meta", 792, 7]], [["url", 812, 9], ["sha256", 813, 9]], [["homepage", 821, 9], ["license", 822, 9]], [["pname", 808, 7], ["ename", 809, 7], ["version", 810, 7], ["src", 811, 7], ["packageRequires", 815, 7], ["meta", 820, 7]], [["url", 838, 9], ["sha256", 839, 9]], [["homepage", 843, 9], ["license", 844, 9]], [["pname", 834, 7], ["ename", 835, 7], ["version", 836, 7], ["src", 837, 7], ["packageRequires", 841, 7], ["meta", 842, 7]], [["url", 859, 9], ["sha256", 860, 9]], [["homepage", 864, 9], ["license", 865, 9]], [["pname", 855, 7], ["ename", 856, 7], ["version", 857, 7], ["src", 858, 7], ["packageRequires", 862, 7], ["meta", 863, 7]], [["url", 882, 9], ["sha256", 883, 9]], [["homepage", 890, 9], ["license", 891, 9]], [["pname", 878, 7], ["ename", 879, 7], ["version", 880, 7], ["src", 881, 7], ["packageRequires", 885, 7], ["meta", 889, 7]], [["url", 907, 9], ["sha256", 908, 9]], [["homepage", 912, 9], ["license", 913, 9]], [["pname", 903, 7], ["ename", 904, 7], ["version", 905, 7], ["src", 906, 7], ["packageRequires", 910, 7], ["meta", 911, 7]], [["url", 930, 9], ["sha256", 931, 9]], [["homepage", 938, 9], ["license", 939, 9]], [["pname", 926, 7], ["ename", 927, 7], ["version", 928, 7], ["src", 929, 7], ["packageRequires", 933, 7], ["meta", 937, 7]], [["url", 955, 9], ["sha256", 956, 9]], [["homepage", 960, 9], ["license", 961, 9]], [["pname", 951, 7], ["ename", 952, 7], ["version", 953, 7], ["src", 954, 7], ["packageRequires", 958, 7], ["meta", 959, 7]], [["url", 977, 9], ["sha256", 978, 9]], [["homepage", 982, 9], ["license", 983, 9]], [["pname", 973, 7], ["ename", 974, 7], ["version", 975, 7], ["src", 976, 7], ["packageRequires", 980, 7], ["meta", 981, 7]], [["url", 998, 9], ["sha256", 999, 9]], [["homepage", 1003, 9], ["license", 1004, 9]], [["pname", 994, 7], ["ename", 995, 7], ["version", 996, 7], ["src", 997, 7], ["packageRequires", 1001, 7], ["meta", 1002, 7]], [["url", 1020, 9], ["sha256", 1021, 9]], [["homepage", 1025, 9], ["license", 1026, 9]], [["pname", 1016, 7], ["ename", 1017, 7], ["version", 1018, 7], ["src", 1019, 7], ["packageRequires", 1023, 7], ["meta", 1024, 7]], [["url", 1043, 9], ["sha256", 1044, 9]], [["homepage", 1051, 9], ["license", 1052, 9]], [["pname", 1039, 7], ["ename", 1040, 7], ["version", 1041, 7], ["src", 1042, 7], ["packageRequires", 1046, 7], ["meta", 1050, 7]], [["url", 1067, 9], ["sha256", 1068, 9]], [["homepage", 1072, 9], ["license", 1073, 9]], [["pname", 1063, 7], ["ename", 1064, 7], ["version", 1065, 7], ["src", 1066, 7], ["packageRequires", 1070, 7], ["meta", 1071, 7]], [["url", 1089, 9], ["sha256", 1090, 9]], [["homepage", 1094, 9], ["license", 1095, 9]], [["pname", 1085, 7], ["ename", 1086, 7], ["version", 1087, 7], ["src", 1088, 7], ["packageRequires", 1092, 7], ["meta", 1093, 7]], [["url", 1111, 9], ["sha256", 1112, 9]], [["homepage", 1116, 9], ["license", 1117, 9]], [["pname", 1107, 7], ["ename", 1108, 7], ["version", 1109, 7], ["src", 1110, 7], ["packageRequires", 1114, 7], ["meta", 1115, 7]], [["url", 1132, 9], ["sha256", 1133, 9]], [["homepage", 1137, 9], ["license", 1138, 9]], [["pname", 1128, 7], ["ename", 1129, 7], ["version", 1130, 7], ["src", 1131, 7], ["packageRequires", 1135, 7], ["meta", 1136, 7]], [["url", 1153, 9], ["sha256", 1154, 9]], [["homepage", 1158, 9], ["license", 1159, 9]], [["pname", 1149, 7], ["ename", 1150, 7], ["version", 1151, 7], ["src", 1152, 7], ["packageRequires", 1156, 7], ["meta", 1157, 7]], [["url", 1174, 9], ["sha256", 1175, 9]], [["homepage", 1179, 9], ["license", 1180, 9]], [["pname", 1170, 7], ["ename", 1171, 7], ["version", 1172, 7], ["src", 1173, 7], ["packageRequires", 1177, 7], ["meta", 1178, 7]], [["url", 1196, 9], ["sha256", 1197, 9]], [["homepage", 1201, 9], ["license", 1202, 9]], [["pname", 1192, 7], ["ename", 1193, 7], ["version", 1194, 7], ["src", 1195, 7], ["packageRequires", 1199, 7], ["meta", 1200, 7]], [["url", 1217, 9], ["sha256", 1218, 9]], [["homepage", 1222, 9], ["license", 1223, 9]], [["pname", 1213, 7], ["ename", 1214, 7], ["version", 1215, 7], ["src", 1216, 7], ["packageRequires", 1220, 7], ["meta", 1221, 7]], [["url", 1238, 9], ["sha256", 1239, 9]], [["homepage", 1243, 9], ["license", 1244, 9]], [["pname", 1234, 7], ["ename", 1235, 7], ["version", 1236, 7], ["src", 1237, 7], ["packageRequires", 1241, 7], ["meta", 1242, 7]], [["url", 1259, 9], ["sha256", 1260, 9]], [["homepage", 1264, 9], ["license", 1265, 9]], [["pname", 1255, 7], ["ename", 1256, 7], ["version", 1257, 7], ["src", 1258, 7], ["packageRequires", 1262, 7], ["meta", 1263, 7]], [["url", 1281, 9], ["sha256", 1282, 9]], [["homepage", 1286, 9], ["license", 1287, 9]], [["pname", 1277, 7], ["ename", 1278, 7], ["version", 1279, 7], ["src", 1280, 7], ["packageRequires", 1284, 7], ["meta", 1285, 7]], [["url", 1302, 9], ["sha256", 1303, 9]], [["homepage", 1307, 9], ["license", 1308, 9]], [["pname", 1298, 7], ["ename", 1299, 7], ["version", 1300, 7], ["src", 1301, 7], ["packageRequires", 1305, 7], ["meta", 1306, 7]], [["url", 1324, 9], ["sha256", 1325, 9]], [["homepage", 1329, 9], ["license", 1330, 9]], [["pname", 1320, 7], ["ename", 1321, 7], ["version", 1322, 7], ["src", 1323, 7], ["packageRequires", 1327, 7], ["meta", 1328, 7]], [["url", 1347, 9], ["sha256", 1348, 9]], [["homepage", 1355, 9], ["license", 1356, 9]], [["pname", 1343, 7], ["ename", 1344, 7], ["version", 1345, 7], ["src", 1346, 7], ["packageRequires", 1350, 7], ["meta", 1354, 7]], [["url", 1373, 9], ["sha256", 1374, 9]], [["homepage", 1381, 9], ["license", 1382, 9]], [["pname", 1369, 7], ["ename", 1370, 7], ["version", 1371, 7], ["src", 1372, 7], ["packageRequires", 1376, 7], ["meta", 1380, 7]], [["url", 1397, 9], ["sha256", 1398, 9]], [["homepage", 1402, 9], ["license", 1403, 9]], [["pname", 1393, 7], ["ename", 1394, 7], ["version", 1395, 7], ["src", 1396, 7], ["packageRequires", 1400, 7], ["meta", 1401, 7]], [["url", 1419, 9], ["sha256", 1420, 9]], [["homepage", 1424, 9], ["license", 1425, 9]], [["pname", 1415, 7], ["ename", 1416, 7], ["version", 1417, 7], ["src", 1418, 7], ["packageRequires", 1422, 7], ["meta", 1423, 7]], [["url", 1442, 9], ["sha256", 1443, 9]], [["homepage", 1450, 9], ["license", 1451, 9]], [["pname", 1438, 7], ["ename", 1439, 7], ["version", 1440, 7], ["src", 1441, 7], ["packageRequires", 1445, 7], ["meta", 1449, 7]], [["url", 1468, 9], ["sha256", 1469, 9]], [["homepage", 1476, 9], ["license", 1477, 9]], [["pname", 1464, 7], ["ename", 1465, 7], ["version", 1466, 7], ["src", 1467, 7], ["packageRequires", 1471, 7], ["meta", 1475, 7]], [["url", 1493, 9], ["sha256", 1494, 9]], [["homepage", 1498, 9], ["license", 1499, 9]], [["pname", 1489, 7], ["ename", 1490, 7], ["version", 1491, 7], ["src", 1492, 7], ["packageRequires", 1496, 7], ["meta", 1497, 7]], [["url", 1514, 9], ["sha256", 1515, 9]], [["homepage", 1519, 9], ["license", 1520, 9]], [["pname", 1510, 7], ["ename", 1511, 7], ["version", 1512, 7], ["src", 1513, 7], ["packageRequires", 1517, 7], ["meta", 1518, 7]], [["url", 1535, 9], ["sha256", 1536, 9]], [["homepage", 1540, 9], ["license", 1541, 9]], [["pname", 1531, 7], ["ename", 1532, 7], ["version", 1533, 7], ["src", 1534, 7], ["packageRequires", 1538, 7], ["meta", 1539, 7]], [["url", 1556, 9], ["sha256", 1557, 9]], [["homepage", 1561, 9], ["license", 1562, 9]], [["pname", 1552, 7], ["ename", 1553, 7], ["version", 1554, 7], ["src", 1555, 7], ["packageRequires", 1559, 7], ["meta", 1560, 7]], [["url", 1578, 9], ["sha256", 1579, 9]], [["homepage", 1583, 9], ["license", 1584, 9]], [["pname", 1574, 7], ["ename", 1575, 7], ["version", 1576, 7], ["src", 1577, 7], ["packageRequires", 1581, 7], ["meta", 1582, 7]], [["url", 1601, 9], ["sha256", 1602, 9]], [["homepage", 1609, 9], ["license", 1610, 9]], [["pname", 1597, 7], ["ename", 1598, 7], ["version", 1599, 7], ["src", 1600, 7], ["packageRequires", 1604, 7], ["meta", 1608, 7]], [["url", 1626, 9], ["sha256", 1627, 9]], [["homepage", 1631, 9], ["license", 1632, 9]], [["pname", 1622, 7], ["ename", 1623, 7], ["version", 1624, 7], ["src", 1625, 7], ["packageRequires", 1629, 7], ["meta", 1630, 7]], [["url", 1648, 9], ["sha256", 1649, 9]], [["homepage", 1653, 9], ["license", 1654, 9]], [["pname", 1644, 7], ["ename", 1645, 7], ["version", 1646, 7], ["src", 1647, 7], ["packageRequires", 1651, 7], ["meta", 1652, 7]], [["url", 1669, 9], ["sha256", 1670, 9]], [["homepage", 1674, 9], ["license", 1675, 9]], [["pname", 1665, 7], ["ename", 1666, 7], ["version", 1667, 7], ["src", 1668, 7], ["packageRequires", 1672, 7], ["meta", 1673, 7]], [["url", 1691, 9], ["sha256", 1692, 9]], [["homepage", 1696, 9], ["license", 1697, 9]], [["pname", 1687, 7], ["ename", 1688, 7], ["version", 1689, 7], ["src", 1690, 7], ["packageRequires", 1694, 7], ["meta", 1695, 7]], [["url", 1713, 9], ["sha256", 1714, 9]], [["homepage", 1718, 9], ["license", 1719, 9]], [["pname", 1709, 7], ["ename", 1710, 7], ["version", 1711, 7], ["src", 1712, 7], ["packageRequires", 1716, 7], ["meta", 1717, 7]], [["url", 1736, 9], ["sha256", 1737, 9]], [["homepage", 1744, 9], ["license", 1745, 9]], [["pname", 1732, 7], ["ename", 1733, 7], ["version", 1734, 7], ["src", 1735, 7], ["packageRequires", 1739, 7], ["meta", 1743, 7]], [["url", 1760, 9], ["sha256", 1761, 9]], [["homepage", 1765, 9], ["license", 1766, 9]], [["pname", 1756, 7], ["ename", 1757, 7], ["version", 1758, 7], ["src", 1759, 7], ["packageRequires", 1763, 7], ["meta", 1764, 7]], [["url", 1781, 9], ["sha256", 1782, 9]], [["homepage", 1786, 9], ["license", 1787, 9]], [["pname", 1777, 7], ["ename", 1778, 7], ["version", 1779, 7], ["src", 1780, 7], ["packageRequires", 1784, 7], ["meta", 1785, 7]], [["url", 1802, 9], ["sha256", 1803, 9]], [["homepage", 1807, 9], ["license", 1808, 9]], [["pname", 1798, 7], ["ename", 1799, 7], ["version", 1800, 7], ["src", 1801, 7], ["packageRequires", 1805, 7], ["meta", 1806, 7]], [["url", 1823, 9], ["sha256", 1824, 9]], [["homepage", 1828, 9], ["license", 1829, 9]], [["pname", 1819, 7], ["ename", 1820, 7], ["version", 1821, 7], ["src", 1822, 7], ["packageRequires", 1826, 7], ["meta", 1827, 7]], [["url", 1844, 9], ["sha256", 1845, 9]], [["homepage", 1849, 9], ["license", 1850, 9]], [["pname", 1840, 7], ["ename", 1841, 7], ["version", 1842, 7], ["src", 1843, 7], ["packageRequires", 1847, 7], ["meta", 1848, 7]], [["url", 1865, 9], ["sha256", 1866, 9]], [["homepage", 1870, 9], ["license", 1871, 9]], [["pname", 1861, 7], ["ename", 1862, 7], ["version", 1863, 7], ["src", 1864, 7], ["packageRequires", 1868, 7], ["meta", 1869, 7]], [["url", 1887, 9], ["sha256", 1888, 9]], [["homepage", 1892, 9], ["license", 1893, 9]], [["pname", 1883, 7], ["ename", 1884, 7], ["version", 1885, 7], ["src", 1886, 7], ["packageRequires", 1890, 7], ["meta", 1891, 7]], [["url", 1908, 9], ["sha256", 1909, 9]], [["homepage", 1913, 9], ["license", 1914, 9]], [["pname", 1904, 7], ["ename", 1905, 7], ["version", 1906, 7], ["src", 1907, 7], ["packageRequires", 1911, 7], ["meta", 1912, 7]], [["url", 1929, 9], ["sha256", 1930, 9]], [["homepage", 1934, 9], ["license", 1935, 9]], [["pname", 1925, 7], ["ename", 1926, 7], ["version", 1927, 7], ["src", 1928, 7], ["packageRequires", 1932, 7], ["meta", 1933, 7]], [["url", 1950, 9], ["sha256", 1951, 9]], [["homepage", 1955, 9], ["license", 1956, 9]], [["pname", 1946, 7], ["ename", 1947, 7], ["version", 1948, 7], ["src", 1949, 7], ["packageRequires", 1953, 7], ["meta", 1954, 7]], [["url", 1971, 9], ["sha256", 1972, 9]], [["homepage", 1976, 9], ["license", 1977, 9]], [["pname", 1967, 7], ["ename", 1968, 7], ["version", 1969, 7], ["src", 1970, 7], ["packageRequires", 1974, 7], ["meta", 1975, 7]], [["url", 1993, 9], ["sha256", 1994, 9]], [["homepage", 1998, 9], ["license", 1999, 9]], [["pname", 1989, 7], ["ename", 1990, 7], ["version", 1991, 7], ["src", 1992, 7], ["packageRequires", 1996, 7], ["meta", 1997, 7]], [["url", 2015, 9], ["sha256", 2016, 9]], [["homepage", 2020, 9], ["license", 2021, 9]], [["pname", 2011, 7], ["ename", 2012, 7], ["version", 2013, 7], ["src", 2014, 7], ["packageRequires", 2018, 7], ["meta", 2019, 7]], [["url", 2036, 9], ["sha256", 2037, 9]], [["homepage", 2041, 9], ["license", 2042, 9]], [["pname", 2032, 7], ["ename", 2033, 7], ["version", 2034, 7], ["src", 2035, 7], ["packageRequires", 2039, 7], ["meta", 2040, 7]], [["url", 2058, 9], ["sha256", 2059, 9]], [["homepage", 2063, 9], ["license", 2064, 9]], [["pname", 2054, 7], ["ename", 2055, 7], ["version", 2056, 7], ["src", 2057, 7], ["packageRequires", 2061, 7], ["meta", 2062, 7]], [["url", 2080, 9], ["sha256", 2081, 9]], [["homepage", 2085, 9], ["license", 2086, 9]], [["pname", 2076, 7], ["ename", 2077, 7], ["version", 2078, 7], ["src", 2079, 7], ["packageRequires", 2083, 7], ["meta", 2084, 7]], [["url", 2103, 9], ["sha256", 2104, 9]], [["homepage", 2111, 9], ["license", 2112, 9]], [["pname", 2099, 7], ["ename", 2100, 7], ["version", 2101, 7], ["src", 2102, 7], ["packageRequires", 2106, 7], ["meta", 2110, 7]], [["url", 2127, 9], ["sha256", 2128, 9]], [["homepage", 2132, 9], ["license", 2133, 9]], [["pname", 2123, 7], ["ename", 2124, 7], ["version", 2125, 7], ["src", 2126, 7], ["packageRequires", 2130, 7], ["meta", 2131, 7]], [["url", 2149, 9], ["sha256", 2150, 9]], [["homepage", 2154, 9], ["license", 2155, 9]], [["pname", 2145, 7], ["ename", 2146, 7], ["version", 2147, 7], ["src", 2148, 7], ["packageRequires", 2152, 7], ["meta", 2153, 7]], [["url", 2171, 9], ["sha256", 2172, 9]], [["homepage", 2176, 9], ["license", 2177, 9]], [["pname", 2167, 7], ["ename", 2168, 7], ["version", 2169, 7], ["src", 2170, 7], ["packageRequires", 2174, 7], ["meta", 2175, 7]], [["url", 2193, 9], ["sha256", 2194, 9]], [["homepage", 2198, 9], ["license", 2199, 9]], [["pname", 2189, 7], ["ename", 2190, 7], ["version", 2191, 7], ["src", 2192, 7], ["packageRequires", 2196, 7], ["meta", 2197, 7]], [["url", 2215, 9], ["sha256", 2216, 9]], [["homepage", 2220, 9], ["license", 2221, 9]], [["pname", 2211, 7], ["ename", 2212, 7], ["version", 2213, 7], ["src", 2214, 7], ["packageRequires", 2218, 7], ["meta", 2219, 7]], [["url", 2237, 9], ["sha256", 2238, 9]], [["homepage", 2242, 9], ["license", 2243, 9]], [["pname", 2233, 7], ["ename", 2234, 7], ["version", 2235, 7], ["src", 2236, 7], ["packageRequires", 2240, 7], ["meta", 2241, 7]], [["url", 2259, 9], ["sha256", 2260, 9]], [["homepage", 2264, 9], ["license", 2265, 9]], [["pname", 2255, 7], ["ename", 2256, 7], ["version", 2257, 7], ["src", 2258, 7], ["packageRequires", 2262, 7], ["meta", 2263, 7]], [["url", 2281, 9], ["sha256", 2282, 9]], [["homepage", 2286, 9], ["license", 2287, 9]], [["pname", 2277, 7], ["ename", 2278, 7], ["version", 2279, 7], ["src", 2280, 7], ["packageRequires", 2284, 7], ["meta", 2285, 7]], [["url", 2303, 9], ["sha256", 2304, 9]], [["homepage", 2308, 9], ["license", 2309, 9]], [["pname", 2299, 7], ["ename", 2300, 7], ["version", 2301, 7], ["src", 2302, 7], ["packageRequires", 2306, 7], ["meta", 2307, 7]], [["url", 2324, 9], ["sha256", 2325, 9]], [["homepage", 2329, 9], ["license", 2330, 9]], [["pname", 2320, 7], ["ename", 2321, 7], ["version", 2322, 7], ["src", 2323, 7], ["packageRequires", 2327, 7], ["meta", 2328, 7]], [["url", 2346, 9], ["sha256", 2347, 9]], [["homepage", 2351, 9], ["license", 2352, 9]], [["pname", 2342, 7], ["ename", 2343, 7], ["version", 2344, 7], ["src", 2345, 7], ["packageRequires", 2349, 7], ["meta", 2350, 7]], [["url", 2367, 9], ["sha256", 2368, 9]], [["homepage", 2372, 9], ["license", 2373, 9]], [["pname", 2363, 7], ["ename", 2364, 7], ["version", 2365, 7], ["src", 2366, 7], ["packageRequires", 2370, 7], ["meta", 2371, 7]], [["url", 2389, 9], ["sha256", 2390, 9]], [["homepage", 2394, 9], ["license", 2395, 9]], [["pname", 2385, 7], ["ename", 2386, 7], ["version", 2387, 7], ["src", 2388, 7], ["packageRequires", 2392, 7], ["meta", 2393, 7]], [["url", 2413, 9], ["sha256", 2414, 9]], [["homepage", 2422, 9], ["license", 2423, 9]], [["pname", 2409, 7], ["ename", 2410, 7], ["version", 2411, 7], ["src", 2412, 7], ["packageRequires", 2416, 7], ["meta", 2421, 7]], [["url", 2439, 9], ["sha256", 2440, 9]], [["homepage", 2444, 9], ["license", 2445, 9]], [["pname", 2435, 7], ["ename", 2436, 7], ["version", 2437, 7], ["src", 2438, 7], ["packageRequires", 2442, 7], ["meta", 2443, 7]], [["url", 2460, 9], ["sha256", 2461, 9]], [["homepage", 2465, 9], ["license", 2466, 9]], [["pname", 2456, 7], ["ename", 2457, 7], ["version", 2458, 7], ["src", 2459, 7], ["packageRequires", 2463, 7], ["meta", 2464, 7]], [["url", 2481, 9], ["sha256", 2482, 9]], [["homepage", 2486, 9], ["license", 2487, 9]], [["pname", 2477, 7], ["ename", 2478, 7], ["version", 2479, 7], ["src", 2480, 7], ["packageRequires", 2484, 7], ["meta", 2485, 7]], [["url", 2503, 9], ["sha256", 2504, 9]], [["homepage", 2508, 9], ["license", 2509, 9]], [["pname", 2499, 7], ["ename", 2500, 7], ["version", 2501, 7], ["src", 2502, 7], ["packageRequires", 2506, 7], ["meta", 2507, 7]], [["url", 2524, 9], ["sha256", 2525, 9]], [["homepage", 2529, 9], ["license", 2530, 9]], [["pname", 2520, 7], ["ename", 2521, 7], ["version", 2522, 7], ["src", 2523, 7], ["packageRequires", 2527, 7], ["meta", 2528, 7]], [["url", 2545, 9], ["sha256", 2546, 9]], [["homepage", 2550, 9], ["license", 2551, 9]], [["pname", 2541, 7], ["ename", 2542, 7], ["version", 2543, 7], ["src", 2544, 7], ["packageRequires", 2548, 7], ["meta", 2549, 7]], [["url", 2566, 9], ["sha256", 2567, 9]], [["homepage", 2571, 9], ["license", 2572, 9]], [["pname", 2562, 7], ["ename", 2563, 7], ["version", 2564, 7], ["src", 2565, 7], ["packageRequires", 2569, 7], ["meta", 2570, 7]], [["url", 2588, 9], ["sha256", 2589, 9]], [["homepage", 2593, 9], ["license", 2594, 9]], [["pname", 2584, 7], ["ename", 2585, 7], ["version", 2586, 7], ["src", 2587, 7], ["packageRequires", 2591, 7], ["meta", 2592, 7]], [["url", 2609, 9], ["sha256", 2610, 9]], [["homepage", 2614, 9], ["license", 2615, 9]], [["pname", 2605, 7], ["ename", 2606, 7], ["version", 2607, 7], ["src", 2608, 7], ["packageRequires", 2612, 7], ["meta", 2613, 7]], [["url", 2631, 9], ["sha256", 2632, 9]], [["homepage", 2636, 9], ["license", 2637, 9]], [["pname", 2627, 7], ["ename", 2628, 7], ["version", 2629, 7], ["src", 2630, 7], ["packageRequires", 2634, 7], ["meta", 2635, 7]], [["url", 2653, 9], ["sha256", 2654, 9]], [["homepage", 2658, 9], ["license", 2659, 9]], [["pname", 2649, 7], ["ename", 2650, 7], ["version", 2651, 7], ["src", 2652, 7], ["packageRequires", 2656, 7], ["meta", 2657, 7]], [["url", 2674, 9], ["sha256", 2675, 9]], [["homepage", 2679, 9], ["license", 2680, 9]], [["pname", 2670, 7], ["ename", 2671, 7], ["version", 2672, 7], ["src", 2673, 7], ["packageRequires", 2677, 7], ["meta", 2678, 7]], [["url", 2695, 9], ["sha256", 2696, 9]], [["homepage", 2700, 9], ["license", 2701, 9]], [["pname", 2691, 7], ["ename", 2692, 7], ["version", 2693, 7], ["src", 2694, 7], ["packageRequires", 2698, 7], ["meta", 2699, 7]], [["url", 2716, 9], ["sha256", 2717, 9]], [["homepage", 2721, 9], ["license", 2722, 9]], [["pname", 2712, 7], ["ename", 2713, 7], ["version", 2714, 7], ["src", 2715, 7], ["packageRequires", 2719, 7], ["meta", 2720, 7]], [["url", 2737, 9], ["sha256", 2738, 9]], [["homepage", 2742, 9], ["license", 2743, 9]], [["pname", 2733, 7], ["ename", 2734, 7], ["version", 2735, 7], ["src", 2736, 7], ["packageRequires", 2740, 7], ["meta", 2741, 7]], [["url", 2758, 9], ["sha256", 2759, 9]], [["homepage", 2763, 9], ["license", 2764, 9]], [["pname", 2754, 7], ["ename", 2755, 7], ["version", 2756, 7], ["src", 2757, 7], ["packageRequires", 2761, 7], ["meta", 2762, 7]], [["url", 2779, 9], ["sha256", 2780, 9]], [["homepage", 2784, 9], ["license", 2785, 9]], [["pname", 2775, 7], ["ename", 2776, 7], ["version", 2777, 7], ["src", 2778, 7], ["packageRequires", 2782, 7], ["meta", 2783, 7]], [["url", 2800, 9], ["sha256", 2801, 9]], [["homepage", 2805, 9], ["license", 2806, 9]], [["pname", 2796, 7], ["ename", 2797, 7], ["version", 2798, 7], ["src", 2799, 7], ["packageRequires", 2803, 7], ["meta", 2804, 7]], [["url", 2822, 9], ["sha256", 2823, 9]], [["homepage", 2827, 9], ["license", 2828, 9]], [["pname", 2818, 7], ["ename", 2819, 7], ["version", 2820, 7], ["src", 2821, 7], ["packageRequires", 2825, 7], ["meta", 2826, 7]], [["url", 2843, 9], ["sha256", 2844, 9]], [["homepage", 2848, 9], ["license", 2849, 9]], [["pname", 2839, 7], ["ename", 2840, 7], ["version", 2841, 7], ["src", 2842, 7], ["packageRequires", 2846, 7], ["meta", 2847, 7]], [["url", 2864, 9], ["sha256", 2865, 9]], [["homepage", 2869, 9], ["license", 2870, 9]], [["pname", 2860, 7], ["ename", 2861, 7], ["version", 2862, 7], ["src", 2863, 7], ["packageRequires", 2867, 7], ["meta", 2868, 7]], [["url", 2886, 9], ["sha256", 2887, 9]], [["homepage", 2891, 9], ["license", 2892, 9]], [["pname", 2882, 7], ["ename", 2883, 7], ["version", 2884, 7], ["src", 2885, 7], ["packageRequires", 2889, 7], ["meta", 2890, 7]], [["url", 2908, 9], ["sha256", 2909, 9]], [["homepage", 2913, 9], ["license", 2914, 9]], [["pname", 2904, 7], ["ename", 2905, 7], ["version", 2906, 7], ["src", 2907, 7], ["packageRequires", 2911, 7], ["meta", 2912, 7]], [["url", 2931, 9], ["sha256", 2932, 9]], [["homepage", 2939, 9], ["license", 2940, 9]], [["pname", 2927, 7], ["ename", 2928, 7], ["version", 2929, 7], ["src", 2930, 7], ["packageRequires", 2934, 7], ["meta", 2938, 7]], [["url", 2957, 9], ["sha256", 2958, 9]], [["homepage", 2965, 9], ["license", 2966, 9]], [["pname", 2953, 7], ["ename", 2954, 7], ["version", 2955, 7], ["src", 2956, 7], ["packageRequires", 2960, 7], ["meta", 2964, 7]], [["url", 2981, 9], ["sha256", 2982, 9]], [["homepage", 2986, 9], ["license", 2987, 9]], [["pname", 2977, 7], ["ename", 2978, 7], ["version", 2979, 7], ["src", 2980, 7], ["packageRequires", 2984, 7], ["meta", 2985, 7]], [["url", 3002, 9], ["sha256", 3003, 9]], [["homepage", 3007, 9], ["license", 3008, 9]], [["pname", 2998, 7], ["ename", 2999, 7], ["version", 3000, 7], ["src", 3001, 7], ["packageRequires", 3005, 7], ["meta", 3006, 7]], [["url", 3024, 9], ["sha256", 3025, 9]], [["homepage", 3029, 9], ["license", 3030, 9]], [["pname", 3020, 7], ["ename", 3021, 7], ["version", 3022, 7], ["src", 3023, 7], ["packageRequires", 3027, 7], ["meta", 3028, 7]], [["url", 3052, 9], ["sha256", 3053, 9]], [["homepage", 3065, 9], ["license", 3066, 9]], [["pname", 3048, 7], ["ename", 3049, 7], ["version", 3050, 7], ["src", 3051, 7], ["packageRequires", 3055, 7], ["meta", 3064, 7]], [["url", 3081, 9], ["sha256", 3082, 9]], [["homepage", 3086, 9], ["license", 3087, 9]], [["pname", 3077, 7], ["ename", 3078, 7], ["version", 3079, 7], ["src", 3080, 7], ["packageRequires", 3084, 7], ["meta", 3085, 7]], [["url", 3104, 9], ["sha256", 3105, 9]], [["homepage", 3112, 9], ["license", 3113, 9]], [["pname", 3100, 7], ["ename", 3101, 7], ["version", 3102, 7], ["src", 3103, 7], ["packageRequires", 3107, 7], ["meta", 3111, 7]], [["url", 3128, 9], ["sha256", 3129, 9]], [["homepage", 3133, 9], ["license", 3134, 9]], [["pname", 3124, 7], ["ename", 3125, 7], ["version", 3126, 7], ["src", 3127, 7], ["packageRequires", 3131, 7], ["meta", 3132, 7]], [["url", 3149, 9], ["sha256", 3150, 9]], [["homepage", 3154, 9], ["license", 3155, 9]], [["pname", 3145, 7], ["ename", 3146, 7], ["version", 3147, 7], ["src", 3148, 7], ["packageRequires", 3152, 7], ["meta", 3153, 7]], [["url", 3174, 9], ["sha256", 3175, 9]], [["homepage", 3184, 9], ["license", 3185, 9]], [["pname", 3170, 7], ["ename", 3171, 7], ["version", 3172, 7], ["src", 3173, 7], ["packageRequires", 3177, 7], ["meta", 3183, 7]], [["url", 3200, 9], ["sha256", 3201, 9]], [["homepage", 3205, 9], ["license", 3206, 9]], [["pname", 3196, 7], ["ename", 3197, 7], ["version", 3198, 7], ["src", 3199, 7], ["packageRequires", 3203, 7], ["meta", 3204, 7]], [["url", 3226, 9], ["sha256", 3227, 9]], [["homepage", 3237, 9], ["license", 3238, 9]], [["pname", 3222, 7], ["ename", 3223, 7], ["version", 3224, 7], ["src", 3225, 7], ["packageRequires", 3229, 7], ["meta", 3236, 7]], [["url", 3253, 9], ["sha256", 3254, 9]], [["homepage", 3258, 9], ["license", 3259, 9]], [["pname", 3249, 7], ["ename", 3250, 7], ["version", 3251, 7], ["src", 3252, 7], ["packageRequires", 3256, 7], ["meta", 3257, 7]], [["url", 3274, 9], ["sha256", 3275, 9]], [["homepage", 3279, 9], ["license", 3280, 9]], [["pname", 3270, 7], ["ename", 3271, 7], ["version", 3272, 7], ["src", 3273, 7], ["packageRequires", 3277, 7], ["meta", 3278, 7]], [["url", 3295, 9], ["sha256", 3296, 9]], [["homepage", 3300, 9], ["license", 3301, 9]], [["pname", 3291, 7], ["ename", 3292, 7], ["version", 3293, 7], ["src", 3294, 7], ["packageRequires", 3298, 7], ["meta", 3299, 7]], [["url", 3317, 9], ["sha256", 3318, 9]], [["homepage", 3322, 9], ["license", 3323, 9]], [["pname", 3313, 7], ["ename", 3314, 7], ["version", 3315, 7], ["src", 3316, 7], ["packageRequires", 3320, 7], ["meta", 3321, 7]], [["url", 3341, 9], ["sha256", 3342, 9]], [["homepage", 3350, 9], ["license", 3351, 9]], [["pname", 3337, 7], ["ename", 3338, 7], ["version", 3339, 7], ["src", 3340, 7], ["packageRequires", 3344, 7], ["meta", 3349, 7]], [["url", 3373, 9], ["sha256", 3374, 9]], [["homepage", 3386, 9], ["license", 3387, 9]], [["pname", 3369, 7], ["ename", 3370, 7], ["version", 3371, 7], ["src", 3372, 7], ["packageRequires", 3376, 7], ["meta", 3385, 7]], [["url", 3405, 9], ["sha256", 3406, 9]], [["homepage", 3414, 9], ["license", 3415, 9]], [["pname", 3401, 7], ["ename", 3402, 7], ["version", 3403, 7], ["src", 3404, 7], ["packageRequires", 3408, 7], ["meta", 3413, 7]], [["url", 3430, 9], ["sha256", 3431, 9]], [["homepage", 3435, 9], ["license", 3436, 9]], [["pname", 3426, 7], ["ename", 3427, 7], ["version", 3428, 7], ["src", 3429, 7], ["packageRequires", 3433, 7], ["meta", 3434, 7]], [["url", 3451, 9], ["sha256", 3452, 9]], [["homepage", 3456, 9], ["license", 3457, 9]], [["pname", 3447, 7], ["ename", 3448, 7], ["version", 3449, 7], ["src", 3450, 7], ["packageRequires", 3454, 7], ["meta", 3455, 7]], [["url", 3472, 9], ["sha256", 3473, 9]], [["homepage", 3477, 9], ["license", 3478, 9]], [["pname", 3468, 7], ["ename", 3469, 7], ["version", 3470, 7], ["src", 3471, 7], ["packageRequires", 3475, 7], ["meta", 3476, 7]], [["url", 3494, 9], ["sha256", 3495, 9]], [["homepage", 3499, 9], ["license", 3500, 9]], [["pname", 3490, 7], ["ename", 3491, 7], ["version", 3492, 7], ["src", 3493, 7], ["packageRequires", 3497, 7], ["meta", 3498, 7]], [["url", 3517, 9], ["sha256", 3518, 9]], [["homepage", 3525, 9], ["license", 3526, 9]], [["pname", 3513, 7], ["ename", 3514, 7], ["version", 3515, 7], ["src", 3516, 7], ["packageRequires", 3520, 7], ["meta", 3524, 7]], [["url", 3541, 9], ["sha256", 3542, 9]], [["homepage", 3546, 9], ["license", 3547, 9]], [["pname", 3537, 7], ["ename", 3538, 7], ["version", 3539, 7], ["src", 3540, 7], ["packageRequires", 3544, 7], ["meta", 3545, 7]], [["url", 3566, 9], ["sha256", 3567, 9]], [["homepage", 3576, 9], ["license", 3577, 9]], [["pname", 3562, 7], ["ename", 3563, 7], ["version", 3564, 7], ["src", 3565, 7], ["packageRequires", 3569, 7], ["meta", 3575, 7]], [["url", 3592, 9], ["sha256", 3593, 9]], [["homepage", 3597, 9], ["license", 3598, 9]], [["pname", 3588, 7], ["ename", 3589, 7], ["version", 3590, 7], ["src", 3591, 7], ["packageRequires", 3595, 7], ["meta", 3596, 7]], [["url", 3613, 9], ["sha256", 3614, 9]], [["homepage", 3618, 9], ["license", 3619, 9]], [["pname", 3609, 7], ["ename", 3610, 7], ["version", 3611, 7], ["src", 3612, 7], ["packageRequires", 3616, 7], ["meta", 3617, 7]], [["url", 3634, 9], ["sha256", 3635, 9]], [["homepage", 3639, 9], ["license", 3640, 9]], [["pname", 3630, 7], ["ename", 3631, 7], ["version", 3632, 7], ["src", 3633, 7], ["packageRequires", 3637, 7], ["meta", 3638, 7]], [["url", 3657, 9], ["sha256", 3658, 9]], [["homepage", 3665, 9], ["license", 3666, 9]], [["pname", 3653, 7], ["ename", 3654, 7], ["version", 3655, 7], ["src", 3656, 7], ["packageRequires", 3660, 7], ["meta", 3664, 7]], [["url", 3682, 9], ["sha256", 3683, 9]], [["homepage", 3687, 9], ["license", 3688, 9]], [["pname", 3678, 7], ["ename", 3679, 7], ["version", 3680, 7], ["src", 3681, 7], ["packageRequires", 3685, 7], ["meta", 3686, 7]], [["url", 3703, 9], ["sha256", 3704, 9]], [["homepage", 3708, 9], ["license", 3709, 9]], [["pname", 3699, 7], ["ename", 3700, 7], ["version", 3701, 7], ["src", 3702, 7], ["packageRequires", 3706, 7], ["meta", 3707, 7]], [["url", 3725, 9], ["sha256", 3726, 9]], [["homepage", 3730, 9], ["license", 3731, 9]], [["pname", 3721, 7], ["ename", 3722, 7], ["version", 3723, 7], ["src", 3724, 7], ["packageRequires", 3728, 7], ["meta", 3729, 7]], [["url", 3746, 9], ["sha256", 3747, 9]], [["homepage", 3751, 9], ["license", 3752, 9]], [["pname", 3742, 7], ["ename", 3743, 7], ["version", 3744, 7], ["src", 3745, 7], ["packageRequires", 3749, 7], ["meta", 3750, 7]], [["url", 3767, 9], ["sha256", 3768, 9]], [["homepage", 3772, 9], ["license", 3773, 9]], [["pname", 3763, 7], ["ename", 3764, 7], ["version", 3765, 7], ["src", 3766, 7], ["packageRequires", 3770, 7], ["meta", 3771, 7]], [["url", 3789, 9], ["sha256", 3790, 9]], [["homepage", 3794, 9], ["license", 3795, 9]], [["pname", 3785, 7], ["ename", 3786, 7], ["version", 3787, 7], ["src", 3788, 7], ["packageRequires", 3792, 7], ["meta", 3793, 7]], [["url", 3812, 9], ["sha256", 3813, 9]], [["homepage", 3820, 9], ["license", 3821, 9]], [["pname", 3808, 7], ["ename", 3809, 7], ["version", 3810, 7], ["src", 3811, 7], ["packageRequires", 3815, 7], ["meta", 3819, 7]], [["url", 3836, 9], ["sha256", 3837, 9]], [["homepage", 3841, 9], ["license", 3842, 9]], [["pname", 3832, 7], ["ename", 3833, 7], ["version", 3834, 7], ["src", 3835, 7], ["packageRequires", 3839, 7], ["meta", 3840, 7]], [["url", 3858, 9], ["sha256", 3859, 9]], [["homepage", 3863, 9], ["license", 3864, 9]], [["pname", 3854, 7], ["ename", 3855, 7], ["version", 3856, 7], ["src", 3857, 7], ["packageRequires", 3861, 7], ["meta", 3862, 7]], [["url", 3879, 9], ["sha256", 3880, 9]], [["homepage", 3884, 9], ["license", 3885, 9]], [["pname", 3875, 7], ["ename", 3876, 7], ["version", 3877, 7], ["src", 3878, 7], ["packageRequires", 3882, 7], ["meta", 3883, 7]], [["url", 3900, 9], ["sha256", 3901, 9]], [["homepage", 3905, 9], ["license", 3906, 9]], [["pname", 3896, 7], ["ename", 3897, 7], ["version", 3898, 7], ["src", 3899, 7], ["packageRequires", 3903, 7], ["meta", 3904, 7]], [["url", 3921, 9], ["sha256", 3922, 9]], [["homepage", 3926, 9], ["license", 3927, 9]], [["pname", 3917, 7], ["ename", 3918, 7], ["version", 3919, 7], ["src", 3920, 7], ["packageRequires", 3924, 7], ["meta", 3925, 7]], [["url", 3943, 9], ["sha256", 3944, 9]], [["homepage", 3948, 9], ["license", 3949, 9]], [["pname", 3939, 7], ["ename", 3940, 7], ["version", 3941, 7], ["src", 3942, 7], ["packageRequires", 3946, 7], ["meta", 3947, 7]], [["url", 3964, 9], ["sha256", 3965, 9]], [["homepage", 3969, 9], ["license", 3970, 9]], [["pname", 3960, 7], ["ename", 3961, 7], ["version", 3962, 7], ["src", 3963, 7], ["packageRequires", 3967, 7], ["meta", 3968, 7]], [["url", 3987, 9], ["sha256", 3988, 9]], [["homepage", 3995, 9], ["license", 3996, 9]], [["pname", 3983, 7], ["ename", 3984, 7], ["version", 3985, 7], ["src", 3986, 7], ["packageRequires", 3990, 7], ["meta", 3994, 7]], [["url", 4012, 9], ["sha256", 4013, 9]], [["homepage", 4017, 9], ["license", 4018, 9]], [["pname", 4008, 7], ["ename", 4009, 7], ["version", 4010, 7], ["src", 4011, 7], ["packageRequires", 4015, 7], ["meta", 4016, 7]], [["url", 4033, 9], ["sha256", 4034, 9]], [["homepage", 4038, 9], ["license", 4039, 9]], [["pname", 4029, 7], ["ename", 4030, 7], ["version", 4031, 7], ["src", 4032, 7], ["packageRequires", 4036, 7], ["meta", 4037, 7]], [["url", 4054, 9], ["sha256", 4055, 9]], [["homepage", 4059, 9], ["license", 4060, 9]], [["pname", 4050, 7], ["ename", 4051, 7], ["version", 4052, 7], ["src", 4053, 7], ["packageRequires", 4057, 7], ["meta", 4058, 7]], [["url", 4075, 9], ["sha256", 4076, 9]], [["homepage", 4080, 9], ["license", 4081, 9]], [["pname", 4071, 7], ["ename", 4072, 7], ["version", 4073, 7], ["src", 4074, 7], ["packageRequires", 4078, 7], ["meta", 4079, 7]], [["url", 4096, 9], ["sha256", 4097, 9]], [["homepage", 4101, 9], ["license", 4102, 9]], [["pname", 4092, 7], ["ename", 4093, 7], ["version", 4094, 7], ["src", 4095, 7], ["packageRequires", 4099, 7], ["meta", 4100, 7]], [["url", 4118, 9], ["sha256", 4119, 9]], [["homepage", 4123, 9], ["license", 4124, 9]], [["pname", 4114, 7], ["ename", 4115, 7], ["version", 4116, 7], ["src", 4117, 7], ["packageRequires", 4121, 7], ["meta", 4122, 7]], [["url", 4140, 9], ["sha256", 4141, 9]], [["homepage", 4145, 9], ["license", 4146, 9]], [["pname", 4136, 7], ["ename", 4137, 7], ["version", 4138, 7], ["src", 4139, 7], ["packageRequires", 4143, 7], ["meta", 4144, 7]], [["url", 4162, 9], ["sha256", 4163, 9]], [["homepage", 4167, 9], ["license", 4168, 9]], [["pname", 4158, 7], ["ename", 4159, 7], ["version", 4160, 7], ["src", 4161, 7], ["packageRequires", 4165, 7], ["meta", 4166, 7]], [["url", 4183, 9], ["sha256", 4184, 9]], [["homepage", 4188, 9], ["license", 4189, 9]], [["pname", 4179, 7], ["ename", 4180, 7], ["version", 4181, 7], ["src", 4182, 7], ["packageRequires", 4186, 7], ["meta", 4187, 7]], [["url", 4204, 9], ["sha256", 4205, 9]], [["homepage", 4209, 9], ["license", 4210, 9]], [["pname", 4200, 7], ["ename", 4201, 7], ["version", 4202, 7], ["src", 4203, 7], ["packageRequires", 4207, 7], ["meta", 4208, 7]], [["url", 4226, 9], ["sha256", 4227, 9]], [["homepage", 4231, 9], ["license", 4232, 9]], [["pname", 4222, 7], ["ename", 4223, 7], ["version", 4224, 7], ["src", 4225, 7], ["packageRequires", 4229, 7], ["meta", 4230, 7]], [["url", 4249, 9], ["sha256", 4250, 9]], [["homepage", 4257, 9], ["license", 4258, 9]], [["pname", 4245, 7], ["ename", 4246, 7], ["version", 4247, 7], ["src", 4248, 7], ["packageRequires", 4252, 7], ["meta", 4256, 7]], [["url", 4273, 9], ["sha256", 4274, 9]], [["homepage", 4278, 9], ["license", 4279, 9]], [["pname", 4269, 7], ["ename", 4270, 7], ["version", 4271, 7], ["src", 4272, 7], ["packageRequires", 4276, 7], ["meta", 4277, 7]], [["url", 4294, 9], ["sha256", 4295, 9]], [["homepage", 4299, 9], ["license", 4300, 9]], [["pname", 4290, 7], ["ename", 4291, 7], ["version", 4292, 7], ["src", 4293, 7], ["packageRequires", 4297, 7], ["meta", 4298, 7]], [["url", 4318, 9], ["sha256", 4319, 9]], [["homepage", 4327, 9], ["license", 4328, 9]], [["pname", 4314, 7], ["ename", 4315, 7], ["version", 4316, 7], ["src", 4317, 7], ["packageRequires", 4321, 7], ["meta", 4326, 7]], [["url", 4343, 9], ["sha256", 4344, 9]], [["homepage", 4348, 9], ["license", 4349, 9]], [["pname", 4339, 7], ["ename", 4340, 7], ["version", 4341, 7], ["src", 4342, 7], ["packageRequires", 4346, 7], ["meta", 4347, 7]], [["url", 4364, 9], ["sha256", 4365, 9]], [["homepage", 4369, 9], ["license", 4370, 9]], [["pname", 4360, 7], ["ename", 4361, 7], ["version", 4362, 7], ["src", 4363, 7], ["packageRequires", 4367, 7], ["meta", 4368, 7]], [["url", 4387, 9], ["sha256", 4388, 9]], [["homepage", 4395, 9], ["license", 4396, 9]], [["pname", 4383, 7], ["ename", 4384, 7], ["version", 4385, 7], ["src", 4386, 7], ["packageRequires", 4390, 7], ["meta", 4394, 7]], [["url", 4413, 9], ["sha256", 4414, 9]], [["homepage", 4421, 9], ["license", 4422, 9]], [["pname", 4409, 7], ["ename", 4410, 7], ["version", 4411, 7], ["src", 4412, 7], ["packageRequires", 4416, 7], ["meta", 4420, 7]], [["url", 4437, 9], ["sha256", 4438, 9]], [["homepage", 4442, 9], ["license", 4443, 9]], [["pname", 4433, 7], ["ename", 4434, 7], ["version", 4435, 7], ["src", 4436, 7], ["packageRequires", 4440, 7], ["meta", 4441, 7]], [["url", 4460, 9], ["sha256", 4461, 9]], [["homepage", 4468, 9], ["license", 4469, 9]], [["pname", 4456, 7], ["ename", 4457, 7], ["version", 4458, 7], ["src", 4459, 7], ["packageRequires", 4463, 7], ["meta", 4467, 7]], [["url", 4484, 9], ["sha256", 4485, 9]], [["homepage", 4489, 9], ["license", 4490, 9]], [["pname", 4480, 7], ["ename", 4481, 7], ["version", 4482, 7], ["src", 4483, 7], ["packageRequires", 4487, 7], ["meta", 4488, 7]], [["url", 4505, 9], ["sha256", 4506, 9]], [["homepage", 4510, 9], ["license", 4511, 9]], [["pname", 4501, 7], ["ename", 4502, 7], ["version", 4503, 7], ["src", 4504, 7], ["packageRequires", 4508, 7], ["meta", 4509, 7]], [["url", 4528, 9], ["sha256", 4529, 9]], [["homepage", 4536, 9], ["license", 4537, 9]], [["pname", 4524, 7], ["ename", 4525, 7], ["version", 4526, 7], ["src", 4527, 7], ["packageRequires", 4531, 7], ["meta", 4535, 7]], [["url", 4552, 9], ["sha256", 4553, 9]], [["homepage", 4557, 9], ["license", 4558, 9]], [["pname", 4548, 7], ["ename", 4549, 7], ["version", 4550, 7], ["src", 4551, 7], ["packageRequires", 4555, 7], ["meta", 4556, 7]], [["url", 4573, 9], ["sha256", 4574, 9]], [["homepage", 4578, 9], ["license", 4579, 9]], [["pname", 4569, 7], ["ename", 4570, 7], ["version", 4571, 7], ["src", 4572, 7], ["packageRequires", 4576, 7], ["meta", 4577, 7]], [["url", 4594, 9], ["sha256", 4595, 9]], [["homepage", 4599, 9], ["license", 4600, 9]], [["pname", 4590, 7], ["ename", 4591, 7], ["version", 4592, 7], ["src", 4593, 7], ["packageRequires", 4597, 7], ["meta", 4598, 7]], [["url", 4615, 9], ["sha256", 4616, 9]], [["homepage", 4620, 9], ["license", 4621, 9]], [["pname", 4611, 7], ["ename", 4612, 7], ["version", 4613, 7], ["src", 4614, 7], ["packageRequires", 4618, 7], ["meta", 4619, 7]], [["url", 4636, 9], ["sha256", 4637, 9]], [["homepage", 4641, 9], ["license", 4642, 9]], [["pname", 4632, 7], ["ename", 4633, 7], ["version", 4634, 7], ["src", 4635, 7], ["packageRequires", 4639, 7], ["meta", 4640, 7]], [["url", 4657, 9], ["sha256", 4658, 9]], [["homepage", 4662, 9], ["license", 4663, 9]], [["pname", 4653, 7], ["ename", 4654, 7], ["version", 4655, 7], ["src", 4656, 7], ["packageRequires", 4660, 7], ["meta", 4661, 7]], [["url", 4679, 9], ["sha256", 4680, 9]], [["homepage", 4684, 9], ["license", 4685, 9]], [["pname", 4675, 7], ["ename", 4676, 7], ["version", 4677, 7], ["src", 4678, 7], ["packageRequires", 4682, 7], ["meta", 4683, 7]], [["url", 4701, 9], ["sha256", 4702, 9]], [["homepage", 4706, 9], ["license", 4707, 9]], [["pname", 4697, 7], ["ename", 4698, 7], ["version", 4699, 7], ["src", 4700, 7], ["packageRequires", 4704, 7], ["meta", 4705, 7]], [["url", 4722, 9], ["sha256", 4723, 9]], [["homepage", 4727, 9], ["license", 4728, 9]], [["pname", 4718, 7], ["ename", 4719, 7], ["version", 4720, 7], ["src", 4721, 7], ["packageRequires", 4725, 7], ["meta", 4726, 7]], [["url", 4743, 9], ["sha256", 4744, 9]], [["homepage", 4748, 9], ["license", 4749, 9]], [["pname", 4739, 7], ["ename", 4740, 7], ["version", 4741, 7], ["src", 4742, 7], ["packageRequires", 4746, 7], ["meta", 4747, 7]], [["url", 4764, 9], ["sha256", 4765, 9]], [["homepage", 4769, 9], ["license", 4770, 9]], [["pname", 4760, 7], ["ename", 4761, 7], ["version", 4762, 7], ["src", 4763, 7], ["packageRequires", 4767, 7], ["meta", 4768, 7]], [["url", 4785, 9], ["sha256", 4786, 9]], [["homepage", 4790, 9], ["license", 4791, 9]], [["pname", 4781, 7], ["ename", 4782, 7], ["version", 4783, 7], ["src", 4784, 7], ["packageRequires", 4788, 7], ["meta", 4789, 7]], [["url", 4807, 9], ["sha256", 4808, 9]], [["homepage", 4812, 9], ["license", 4813, 9]], [["pname", 4803, 7], ["ename", 4804, 7], ["version", 4805, 7], ["src", 4806, 7], ["packageRequires", 4810, 7], ["meta", 4811, 7]], [["url", 4828, 9], ["sha256", 4829, 9]], [["homepage", 4833, 9], ["license", 4834, 9]], [["pname", 4824, 7], ["ename", 4825, 7], ["version", 4826, 7], ["src", 4827, 7], ["packageRequires", 4831, 7], ["meta", 4832, 7]], [["url", 4850, 9], ["sha256", 4851, 9]], [["homepage", 4855, 9], ["license", 4856, 9]], [["pname", 4846, 7], ["ename", 4847, 7], ["version", 4848, 7], ["src", 4849, 7], ["packageRequires", 4853, 7], ["meta", 4854, 7]], [["url", 4871, 9], ["sha256", 4872, 9]], [["homepage", 4876, 9], ["license", 4877, 9]], [["pname", 4867, 7], ["ename", 4868, 7], ["version", 4869, 7], ["src", 4870, 7], ["packageRequires", 4874, 7], ["meta", 4875, 7]], [["url", 4892, 9], ["sha256", 4893, 9]], [["homepage", 4897, 9], ["license", 4898, 9]], [["pname", 4888, 7], ["ename", 4889, 7], ["version", 4890, 7], ["src", 4891, 7], ["packageRequires", 4895, 7], ["meta", 4896, 7]], [["url", 4913, 9], ["sha256", 4914, 9]], [["homepage", 4918, 9], ["license", 4919, 9]], [["pname", 4909, 7], ["ename", 4910, 7], ["version", 4911, 7], ["src", 4912, 7], ["packageRequires", 4916, 7], ["meta", 4917, 7]], [["url", 4934, 9], ["sha256", 4935, 9]], [["homepage", 4939, 9], ["license", 4940, 9]], [["pname", 4930, 7], ["ename", 4931, 7], ["version", 4932, 7], ["src", 4933, 7], ["packageRequires", 4937, 7], ["meta", 4938, 7]], [["url", 4957, 9], ["sha256", 4958, 9]], [["homepage", 4965, 9], ["license", 4966, 9]], [["pname", 4953, 7], ["ename", 4954, 7], ["version", 4955, 7], ["src", 4956, 7], ["packageRequires", 4960, 7], ["meta", 4964, 7]], [["url", 4982, 9], ["sha256", 4983, 9]], [["homepage", 4987, 9], ["license", 4988, 9]], [["pname", 4978, 7], ["ename", 4979, 7], ["version", 4980, 7], ["src", 4981, 7], ["packageRequires", 4985, 7], ["meta", 4986, 7]], [["url", 5005, 9], ["sha256", 5006, 9]], [["homepage", 5013, 9], ["license", 5014, 9]], [["pname", 5001, 7], ["ename", 5002, 7], ["version", 5003, 7], ["src", 5004, 7], ["packageRequires", 5008, 7], ["meta", 5012, 7]], [["url", 5031, 9], ["sha256", 5032, 9]], [["homepage", 5039, 9], ["license", 5040, 9]], [["pname", 5027, 7], ["ename", 5028, 7], ["version", 5029, 7], ["src", 5030, 7], ["packageRequires", 5034, 7], ["meta", 5038, 7]], [["url", 5055, 9], ["sha256", 5056, 9]], [["homepage", 5060, 9], ["license", 5061, 9]], [["pname", 5051, 7], ["ename", 5052, 7], ["version", 5053, 7], ["src", 5054, 7], ["packageRequires", 5058, 7], ["meta", 5059, 7]], [["url", 5076, 9], ["sha256", 5077, 9]], [["homepage", 5081, 9], ["license", 5082, 9]], [["pname", 5072, 7], ["ename", 5073, 7], ["version", 5074, 7], ["src", 5075, 7], ["packageRequires", 5079, 7], ["meta", 5080, 7]], [["url", 5097, 9], ["sha256", 5098, 9]], [["homepage", 5102, 9], ["license", 5103, 9]], [["pname", 5093, 7], ["ename", 5094, 7], ["version", 5095, 7], ["src", 5096, 7], ["packageRequires", 5100, 7], ["meta", 5101, 7]], [["url", 5119, 9], ["sha256", 5120, 9]], [["homepage", 5124, 9], ["license", 5125, 9]], [["pname", 5115, 7], ["ename", 5116, 7], ["version", 5117, 7], ["src", 5118, 7], ["packageRequires", 5122, 7], ["meta", 5123, 7]], [["url", 5141, 9], ["sha256", 5142, 9]], [["homepage", 5146, 9], ["license", 5147, 9]], [["pname", 5137, 7], ["ename", 5138, 7], ["version", 5139, 7], ["src", 5140, 7], ["packageRequires", 5144, 7], ["meta", 5145, 7]], [["url", 5163, 9], ["sha256", 5164, 9]], [["homepage", 5168, 9], ["license", 5169, 9]], [["pname", 5159, 7], ["ename", 5160, 7], ["version", 5161, 7], ["src", 5162, 7], ["packageRequires", 5166, 7], ["meta", 5167, 7]], [["url", 5185, 9], ["sha256", 5186, 9]], [["homepage", 5190, 9], ["license", 5191, 9]], [["pname", 5181, 7], ["ename", 5182, 7], ["version", 5183, 7], ["src", 5184, 7], ["packageRequires", 5188, 7], ["meta", 5189, 7]], [["url", 5206, 9], ["sha256", 5207, 9]], [["homepage", 5211, 9], ["license", 5212, 9]], [["pname", 5202, 7], ["ename", 5203, 7], ["version", 5204, 7], ["src", 5205, 7], ["packageRequires", 5209, 7], ["meta", 5210, 7]], [["url", 5227, 9], ["sha256", 5228, 9]], [["homepage", 5232, 9], ["license", 5233, 9]], [["pname", 5223, 7], ["ename", 5224, 7], ["version", 5225, 7], ["src", 5226, 7], ["packageRequires", 5230, 7], ["meta", 5231, 7]], [["url", 5248, 9], ["sha256", 5249, 9]], [["homepage", 5253, 9], ["license", 5254, 9]], [["pname", 5244, 7], ["ename", 5245, 7], ["version", 5246, 7], ["src", 5247, 7], ["packageRequires", 5251, 7], ["meta", 5252, 7]], [["url", 5269, 9], ["sha256", 5270, 9]], [["homepage", 5274, 9], ["license", 5275, 9]], [["pname", 5265, 7], ["ename", 5266, 7], ["version", 5267, 7], ["src", 5268, 7], ["packageRequires", 5272, 7], ["meta", 5273, 7]], [["url", 5291, 9], ["sha256", 5292, 9]], [["homepage", 5296, 9], ["license", 5297, 9]], [["pname", 5287, 7], ["ename", 5288, 7], ["version", 5289, 7], ["src", 5290, 7], ["packageRequires", 5294, 7], ["meta", 5295, 7]], [["url", 5313, 9], ["sha256", 5314, 9]], [["homepage", 5318, 9], ["license", 5319, 9]], [["pname", 5309, 7], ["ename", 5310, 7], ["version", 5311, 7], ["src", 5312, 7], ["packageRequires", 5316, 7], ["meta", 5317, 7]], [["url", 5334, 9], ["sha256", 5335, 9]], [["homepage", 5339, 9], ["license", 5340, 9]], [["pname", 5330, 7], ["ename", 5331, 7], ["version", 5332, 7], ["src", 5333, 7], ["packageRequires", 5337, 7], ["meta", 5338, 7]], [["url", 5355, 9], ["sha256", 5356, 9]], [["homepage", 5360, 9], ["license", 5361, 9]], [["pname", 5351, 7], ["ename", 5352, 7], ["version", 5353, 7], ["src", 5354, 7], ["packageRequires", 5358, 7], ["meta", 5359, 7]], [["url", 5376, 9], ["sha256", 5377, 9]], [["homepage", 5381, 9], ["license", 5382, 9]], [["pname", 5372, 7], ["ename", 5373, 7], ["version", 5374, 7], ["src", 5375, 7], ["packageRequires", 5379, 7], ["meta", 5380, 7]], [["url", 5399, 9], ["sha256", 5400, 9]], [["homepage", 5407, 9], ["license", 5408, 9]], [["pname", 5395, 7], ["ename", 5396, 7], ["version", 5397, 7], ["src", 5398, 7], ["packageRequires", 5402, 7], ["meta", 5406, 7]], [["url", 5423, 9], ["sha256", 5424, 9]], [["homepage", 5428, 9], ["license", 5429, 9]], [["pname", 5419, 7], ["ename", 5420, 7], ["version", 5421, 7], ["src", 5422, 7], ["packageRequires", 5426, 7], ["meta", 5427, 7]], [["url", 5446, 9], ["sha256", 5447, 9]], [["homepage", 5454, 9], ["license", 5455, 9]], [["pname", 5442, 7], ["ename", 5443, 7], ["version", 5444, 7], ["src", 5445, 7], ["packageRequires", 5449, 7], ["meta", 5453, 7]], [["url", 5472, 9], ["sha256", 5473, 9]], [["homepage", 5480, 9], ["license", 5481, 9]], [["pname", 5468, 7], ["ename", 5469, 7], ["version", 5470, 7], ["src", 5471, 7], ["packageRequires", 5475, 7], ["meta", 5479, 7]], [["url", 5496, 9], ["sha256", 5497, 9]], [["homepage", 5501, 9], ["license", 5502, 9]], [["pname", 5492, 7], ["ename", 5493, 7], ["version", 5494, 7], ["src", 5495, 7], ["packageRequires", 5499, 7], ["meta", 5500, 7]], [["url", 5517, 9], ["sha256", 5518, 9]], [["homepage", 5522, 9], ["license", 5523, 9]], [["pname", 5513, 7], ["ename", 5514, 7], ["version", 5515, 7], ["src", 5516, 7], ["packageRequires", 5520, 7], ["meta", 5521, 7]], [["url", 5538, 9], ["sha256", 5539, 9]], [["homepage", 5543, 9], ["license", 5544, 9]], [["pname", 5534, 7], ["ename", 5535, 7], ["version", 5536, 7], ["src", 5537, 7], ["packageRequires", 5541, 7], ["meta", 5542, 7]], [["url", 5561, 9], ["sha256", 5562, 9]], [["homepage", 5569, 9], ["license", 5570, 9]], [["pname", 5557, 7], ["ename", 5558, 7], ["version", 5559, 7], ["src", 5560, 7], ["packageRequires", 5564, 7], ["meta", 5568, 7]], [["url", 5589, 9], ["sha256", 5590, 9]], [["homepage", 5599, 9], ["license", 5600, 9]], [["pname", 5585, 7], ["ename", 5586, 7], ["version", 5587, 7], ["src", 5588, 7], ["packageRequires", 5592, 7], ["meta", 5598, 7]], [["url", 5615, 9], ["sha256", 5616, 9]], [["homepage", 5620, 9], ["license", 5621, 9]], [["pname", 5611, 7], ["ename", 5612, 7], ["version", 5613, 7], ["src", 5614, 7], ["packageRequires", 5618, 7], ["meta", 5619, 7]], [["url", 5640, 9], ["sha256", 5641, 9]], [["homepage", 5650, 9], ["license", 5651, 9]], [["pname", 5636, 7], ["ename", 5637, 7], ["version", 5638, 7], ["src", 5639, 7], ["packageRequires", 5643, 7], ["meta", 5649, 7]], [["url", 5667, 9], ["sha256", 5668, 9]], [["homepage", 5672, 9], ["license", 5673, 9]], [["pname", 5663, 7], ["ename", 5664, 7], ["version", 5665, 7], ["src", 5666, 7], ["packageRequires", 5670, 7], ["meta", 5671, 7]], [["url", 5689, 9], ["sha256", 5690, 9]], [["homepage", 5694, 9], ["license", 5695, 9]], [["pname", 5685, 7], ["ename", 5686, 7], ["version", 5687, 7], ["src", 5688, 7], ["packageRequires", 5692, 7], ["meta", 5693, 7]], [["url", 5710, 9], ["sha256", 5711, 9]], [["homepage", 5715, 9], ["license", 5716, 9]], [["pname", 5706, 7], ["ename", 5707, 7], ["version", 5708, 7], ["src", 5709, 7], ["packageRequires", 5713, 7], ["meta", 5714, 7]], [["url", 5731, 9], ["sha256", 5732, 9]], [["homepage", 5736, 9], ["license", 5737, 9]], [["pname", 5727, 7], ["ename", 5728, 7], ["version", 5729, 7], ["src", 5730, 7], ["packageRequires", 5734, 7], ["meta", 5735, 7]], [["url", 5752, 9], ["sha256", 5753, 9]], [["homepage", 5757, 9], ["license", 5758, 9]], [["pname", 5748, 7], ["ename", 5749, 7], ["version", 5750, 7], ["src", 5751, 7], ["packageRequires", 5755, 7], ["meta", 5756, 7]], [["url", 5773, 9], ["sha256", 5774, 9]], [["homepage", 5778, 9], ["license", 5779, 9]], [["pname", 5769, 7], ["ename", 5770, 7], ["version", 5771, 7], ["src", 5772, 7], ["packageRequires", 5776, 7], ["meta", 5777, 7]], [["url", 5794, 9], ["sha256", 5795, 9]], [["homepage", 5799, 9], ["license", 5800, 9]], [["pname", 5790, 7], ["ename", 5791, 7], ["version", 5792, 7], ["src", 5793, 7], ["packageRequires", 5797, 7], ["meta", 5798, 7]], [["url", 5815, 9], ["sha256", 5816, 9]], [["homepage", 5820, 9], ["license", 5821, 9]], [["pname", 5811, 7], ["ename", 5812, 7], ["version", 5813, 7], ["src", 5814, 7], ["packageRequires", 5818, 7], ["meta", 5819, 7]], [["url", 5837, 9], ["sha256", 5838, 9]], [["homepage", 5842, 9], ["license", 5843, 9]], [["pname", 5833, 7], ["ename", 5834, 7], ["version", 5835, 7], ["src", 5836, 7], ["packageRequires", 5840, 7], ["meta", 5841, 7]], [["url", 5858, 9], ["sha256", 5859, 9]], [["homepage", 5863, 9], ["license", 5864, 9]], [["pname", 5854, 7], ["ename", 5855, 7], ["version", 5856, 7], ["src", 5857, 7], ["packageRequires", 5861, 7], ["meta", 5862, 7]], [["url", 5880, 9], ["sha256", 5881, 9]], [["homepage", 5885, 9], ["license", 5886, 9]], [["pname", 5876, 7], ["ename", 5877, 7], ["version", 5878, 7], ["src", 5879, 7], ["packageRequires", 5883, 7], ["meta", 5884, 7]], [["url", 5901, 9], ["sha256", 5902, 9]], [["homepage", 5906, 9], ["license", 5907, 9]], [["pname", 5897, 7], ["ename", 5898, 7], ["version", 5899, 7], ["src", 5900, 7], ["packageRequires", 5904, 7], ["meta", 5905, 7]], [["url", 5922, 9], ["sha256", 5923, 9]], [["homepage", 5927, 9], ["license", 5928, 9]], [["pname", 5918, 7], ["ename", 5919, 7], ["version", 5920, 7], ["src", 5921, 7], ["packageRequires", 5925, 7], ["meta", 5926, 7]], [["url", 5943, 9], ["sha256", 5944, 9]], [["homepage", 5948, 9], ["license", 5949, 9]], [["pname", 5939, 7], ["ename", 5940, 7], ["version", 5941, 7], ["src", 5942, 7], ["packageRequires", 5946, 7], ["meta", 5947, 7]], [["url", 5965, 9], ["sha256", 5966, 9]], [["homepage", 5970, 9], ["license", 5971, 9]], [["pname", 5961, 7], ["ename", 5962, 7], ["version", 5963, 7], ["src", 5964, 7], ["packageRequires", 5968, 7], ["meta", 5969, 7]], [["url", 5986, 9], ["sha256", 5987, 9]], [["homepage", 5991, 9], ["license", 5992, 9]], [["pname", 5982, 7], ["ename", 5983, 7], ["version", 5984, 7], ["src", 5985, 7], ["packageRequires", 5989, 7], ["meta", 5990, 7]], [["url", 6007, 9], ["sha256", 6008, 9]], [["homepage", 6012, 9], ["license", 6013, 9]], [["pname", 6003, 7], ["ename", 6004, 7], ["version", 6005, 7], ["src", 6006, 7], ["packageRequires", 6010, 7], ["meta", 6011, 7]], [["url", 6028, 9], ["sha256", 6029, 9]], [["homepage", 6033, 9], ["license", 6034, 9]], [["pname", 6024, 7], ["ename", 6025, 7], ["version", 6026, 7], ["src", 6027, 7], ["packageRequires", 6031, 7], ["meta", 6032, 7]], [["url", 6050, 9], ["sha256", 6051, 9]], [["homepage", 6055, 9], ["license", 6056, 9]], [["pname", 6046, 7], ["ename", 6047, 7], ["version", 6048, 7], ["src", 6049, 7], ["packageRequires", 6053, 7], ["meta", 6054, 7]], [["url", 6071, 9], ["sha256", 6072, 9]], [["homepage", 6076, 9], ["license", 6077, 9]], [["pname", 6067, 7], ["ename", 6068, 7], ["version", 6069, 7], ["src", 6070, 7], ["packageRequires", 6074, 7], ["meta", 6075, 7]], [["url", 6093, 9], ["sha256", 6094, 9]], [["homepage", 6098, 9], ["license", 6099, 9]], [["pname", 6089, 7], ["ename", 6090, 7], ["version", 6091, 7], ["src", 6092, 7], ["packageRequires", 6096, 7], ["meta", 6097, 7]], [["url", 6114, 9], ["sha256", 6115, 9]], [["homepage", 6119, 9], ["license", 6120, 9]], [["pname", 6110, 7], ["ename", 6111, 7], ["version", 6112, 7], ["src", 6113, 7], ["packageRequires", 6117, 7], ["meta", 6118, 7]], [["url", 6135, 9], ["sha256", 6136, 9]], [["homepage", 6140, 9], ["license", 6141, 9]], [["pname", 6131, 7], ["ename", 6132, 7], ["version", 6133, 7], ["src", 6134, 7], ["packageRequires", 6138, 7], ["meta", 6139, 7]], [["url", 6158, 9], ["sha256", 6159, 9]], [["homepage", 6166, 9], ["license", 6167, 9]], [["pname", 6154, 7], ["ename", 6155, 7], ["version", 6156, 7], ["src", 6157, 7], ["packageRequires", 6161, 7], ["meta", 6165, 7]], [["url", 6182, 9], ["sha256", 6183, 9]], [["homepage", 6187, 9], ["license", 6188, 9]], [["pname", 6178, 7], ["ename", 6179, 7], ["version", 6180, 7], ["src", 6181, 7], ["packageRequires", 6185, 7], ["meta", 6186, 7]], [["url", 6205, 9], ["sha256", 6206, 9]], [["homepage", 6213, 9], ["license", 6214, 9]], [["pname", 6201, 7], ["ename", 6202, 7], ["version", 6203, 7], ["src", 6204, 7], ["packageRequires", 6208, 7], ["meta", 6212, 7]], [["url", 6230, 9], ["sha256", 6231, 9]], [["homepage", 6235, 9], ["license", 6236, 9]], [["pname", 6226, 7], ["ename", 6227, 7], ["version", 6228, 7], ["src", 6229, 7], ["packageRequires", 6233, 7], ["meta", 6234, 7]], [["url", 6251, 9], ["sha256", 6252, 9]], [["homepage", 6256, 9], ["license", 6257, 9]], [["pname", 6247, 7], ["ename", 6248, 7], ["version", 6249, 7], ["src", 6250, 7], ["packageRequires", 6254, 7], ["meta", 6255, 7]], [["url", 6272, 9], ["sha256", 6273, 9]], [["homepage", 6277, 9], ["license", 6278, 9]], [["pname", 6268, 7], ["ename", 6269, 7], ["version", 6270, 7], ["src", 6271, 7], ["packageRequires", 6275, 7], ["meta", 6276, 7]], [["url", 6293, 9], ["sha256", 6294, 9]], [["homepage", 6298, 9], ["license", 6299, 9]], [["pname", 6289, 7], ["ename", 6290, 7], ["version", 6291, 7], ["src", 6292, 7], ["packageRequires", 6296, 7], ["meta", 6297, 7]], [["url", 6314, 9], ["sha256", 6315, 9]], [["homepage", 6319, 9], ["license", 6320, 9]], [["pname", 6310, 7], ["ename", 6311, 7], ["version", 6312, 7], ["src", 6313, 7], ["packageRequires", 6317, 7], ["meta", 6318, 7]], [["url", 6336, 9], ["sha256", 6337, 9]], [["homepage", 6341, 9], ["license", 6342, 9]], [["pname", 6332, 7], ["ename", 6333, 7], ["version", 6334, 7], ["src", 6335, 7], ["packageRequires", 6339, 7], ["meta", 6340, 7]], [["url", 6357, 9], ["sha256", 6358, 9]], [["homepage", 6362, 9], ["license", 6363, 9]], [["pname", 6353, 7], ["ename", 6354, 7], ["version", 6355, 7], ["src", 6356, 7], ["packageRequires", 6360, 7], ["meta", 6361, 7]], [["url", 6378, 9], ["sha256", 6379, 9]], [["homepage", 6383, 9], ["license", 6384, 9]], [["pname", 6374, 7], ["ename", 6375, 7], ["version", 6376, 7], ["src", 6377, 7], ["packageRequires", 6381, 7], ["meta", 6382, 7]], [["url", 6399, 9], ["sha256", 6400, 9]], [["homepage", 6404, 9], ["license", 6405, 9]], [["pname", 6395, 7], ["ename", 6396, 7], ["version", 6397, 7], ["src", 6398, 7], ["packageRequires", 6402, 7], ["meta", 6403, 7]], [["url", 6420, 9], ["sha256", 6421, 9]], [["homepage", 6425, 9], ["license", 6426, 9]], [["pname", 6416, 7], ["ename", 6417, 7], ["version", 6418, 7], ["src", 6419, 7], ["packageRequires", 6423, 7], ["meta", 6424, 7]], [["url", 6443, 9], ["sha256", 6444, 9]], [["homepage", 6451, 9], ["license", 6452, 9]], [["pname", 6439, 7], ["ename", 6440, 7], ["version", 6441, 7], ["src", 6442, 7], ["packageRequires", 6446, 7], ["meta", 6450, 7]], [["url", 6467, 9], ["sha256", 6468, 9]], [["homepage", 6472, 9], ["license", 6473, 9]], [["pname", 6463, 7], ["ename", 6464, 7], ["version", 6465, 7], ["src", 6466, 7], ["packageRequires", 6470, 7], ["meta", 6471, 7]], [["url", 6488, 9], ["sha256", 6489, 9]], [["homepage", 6493, 9], ["license", 6494, 9]], [["pname", 6484, 7], ["ename", 6485, 7], ["version", 6486, 7], ["src", 6487, 7], ["packageRequires", 6491, 7], ["meta", 6492, 7]], [["url", 6509, 9], ["sha256", 6510, 9]], [["homepage", 6514, 9], ["license", 6515, 9]], [["pname", 6505, 7], ["ename", 6506, 7], ["version", 6507, 7], ["src", 6508, 7], ["packageRequires", 6512, 7], ["meta", 6513, 7]], [["url", 6530, 9], ["sha256", 6531, 9]], [["homepage", 6535, 9], ["license", 6536, 9]], [["pname", 6526, 7], ["ename", 6527, 7], ["version", 6528, 7], ["src", 6529, 7], ["packageRequires", 6533, 7], ["meta", 6534, 7]], [["url", 6551, 9], ["sha256", 6552, 9]], [["homepage", 6556, 9], ["license", 6557, 9]], [["pname", 6547, 7], ["ename", 6548, 7], ["version", 6549, 7], ["src", 6550, 7], ["packageRequires", 6554, 7], ["meta", 6555, 7]], [["url", 6572, 9], ["sha256", 6573, 9]], [["homepage", 6577, 9], ["license", 6578, 9]], [["pname", 6568, 7], ["ename", 6569, 7], ["version", 6570, 7], ["src", 6571, 7], ["packageRequires", 6575, 7], ["meta", 6576, 7]], [["url", 6593, 9], ["sha256", 6594, 9]], [["homepage", 6598, 9], ["license", 6599, 9]], [["pname", 6589, 7], ["ename", 6590, 7], ["version", 6591, 7], ["src", 6592, 7], ["packageRequires", 6596, 7], ["meta", 6597, 7]], [["url", 6614, 9], ["sha256", 6615, 9]], [["homepage", 6619, 9], ["license", 6620, 9]], [["pname", 6610, 7], ["ename", 6611, 7], ["version", 6612, 7], ["src", 6613, 7], ["packageRequires", 6617, 7], ["meta", 6618, 7]], [["url", 6635, 9], ["sha256", 6636, 9]], [["homepage", 6640, 9], ["license", 6641, 9]], [["pname", 6631, 7], ["ename", 6632, 7], ["version", 6633, 7], ["src", 6634, 7], ["packageRequires", 6638, 7], ["meta", 6639, 7]], [["url", 6656, 9], ["sha256", 6657, 9]], [["homepage", 6661, 9], ["license", 6662, 9]], [["pname", 6652, 7], ["ename", 6653, 7], ["version", 6654, 7], ["src", 6655, 7], ["packageRequires", 6659, 7], ["meta", 6660, 7]], [["url", 6677, 9], ["sha256", 6678, 9]], [["homepage", 6682, 9], ["license", 6683, 9]], [["pname", 6673, 7], ["ename", 6674, 7], ["version", 6675, 7], ["src", 6676, 7], ["packageRequires", 6680, 7], ["meta", 6681, 7]], [["url", 6698, 9], ["sha256", 6699, 9]], [["homepage", 6703, 9], ["license", 6704, 9]], [["pname", 6694, 7], ["ename", 6695, 7], ["version", 6696, 7], ["src", 6697, 7], ["packageRequires", 6701, 7], ["meta", 6702, 7]], [["url", 6719, 9], ["sha256", 6720, 9]], [["homepage", 6724, 9], ["license", 6725, 9]], [["pname", 6715, 7], ["ename", 6716, 7], ["version", 6717, 7], ["src", 6718, 7], ["packageRequires", 6722, 7], ["meta", 6723, 7]], [["url", 6741, 9], ["sha256", 6742, 9]], [["homepage", 6746, 9], ["license", 6747, 9]], [["pname", 6737, 7], ["ename", 6738, 7], ["version", 6739, 7], ["src", 6740, 7], ["packageRequires", 6744, 7], ["meta", 6745, 7]], [["url", 6762, 9], ["sha256", 6763, 9]], [["homepage", 6767, 9], ["license", 6768, 9]], [["pname", 6758, 7], ["ename", 6759, 7], ["version", 6760, 7], ["src", 6761, 7], ["packageRequires", 6765, 7], ["meta", 6766, 7]], [["url", 6784, 9], ["sha256", 6785, 9]], [["homepage", 6789, 9], ["license", 6790, 9]], [["pname", 6780, 7], ["ename", 6781, 7], ["version", 6782, 7], ["src", 6783, 7], ["packageRequires", 6787, 7], ["meta", 6788, 7]], [["url", 6806, 9], ["sha256", 6807, 9]], [["homepage", 6811, 9], ["license", 6812, 9]], [["pname", 6802, 7], ["ename", 6803, 7], ["version", 6804, 7], ["src", 6805, 7], ["packageRequires", 6809, 7], ["meta", 6810, 7]], [["url", 6827, 9], ["sha256", 6828, 9]], [["homepage", 6832, 9], ["license", 6833, 9]], [["pname", 6823, 7], ["ename", 6824, 7], ["version", 6825, 7], ["src", 6826, 7], ["packageRequires", 6830, 7], ["meta", 6831, 7]], [["url", 6849, 9], ["sha256", 6850, 9]], [["homepage", 6854, 9], ["license", 6855, 9]], [["pname", 6845, 7], ["ename", 6846, 7], ["version", 6847, 7], ["src", 6848, 7], ["packageRequires", 6852, 7], ["meta", 6853, 7]], [["url", 6872, 9], ["sha256", 6873, 9]], [["homepage", 6880, 9], ["license", 6881, 9]], [["pname", 6868, 7], ["ename", 6869, 7], ["version", 6870, 7], ["src", 6871, 7], ["packageRequires", 6875, 7], ["meta", 6879, 7]], [["url", 6898, 9], ["sha256", 6899, 9]], [["homepage", 6906, 9], ["license", 6907, 9]], [["pname", 6894, 7], ["ename", 6895, 7], ["version", 6896, 7], ["src", 6897, 7], ["packageRequires", 6901, 7], ["meta", 6905, 7]], [["url", 6923, 9], ["sha256", 6924, 9]], [["homepage", 6928, 9], ["license", 6929, 9]], [["pname", 6919, 7], ["ename", 6920, 7], ["version", 6921, 7], ["src", 6922, 7], ["packageRequires", 6926, 7], ["meta", 6927, 7]], [["url", 6947, 9], ["sha256", 6948, 9]], [["homepage", 6956, 9], ["license", 6957, 9]], [["pname", 6943, 7], ["ename", 6944, 7], ["version", 6945, 7], ["src", 6946, 7], ["packageRequires", 6950, 7], ["meta", 6955, 7]], [["url", 6974, 9], ["sha256", 6975, 9]], [["homepage", 6982, 9], ["license", 6983, 9]], [["pname", 6970, 7], ["ename", 6971, 7], ["version", 6972, 7], ["src", 6973, 7], ["packageRequires", 6977, 7], ["meta", 6981, 7]], [["url", 6998, 9], ["sha256", 6999, 9]], [["homepage", 7003, 9], ["license", 7004, 9]], [["pname", 6994, 7], ["ename", 6995, 7], ["version", 6996, 7], ["src", 6997, 7], ["packageRequires", 7001, 7], ["meta", 7002, 7]], [["url", 7021, 9], ["sha256", 7022, 9]], [["homepage", 7029, 9], ["license", 7030, 9]], [["pname", 7017, 7], ["ename", 7018, 7], ["version", 7019, 7], ["src", 7020, 7], ["packageRequires", 7024, 7], ["meta", 7028, 7]], [["url", 7046, 9], ["sha256", 7047, 9]], [["homepage", 7051, 9], ["license", 7052, 9]], [["pname", 7042, 7], ["ename", 7043, 7], ["version", 7044, 7], ["src", 7045, 7], ["packageRequires", 7049, 7], ["meta", 7050, 7]], [["url", 7068, 9], ["sha256", 7069, 9]], [["homepage", 7073, 9], ["license", 7074, 9]], [["pname", 7064, 7], ["ename", 7065, 7], ["version", 7066, 7], ["src", 7067, 7], ["packageRequires", 7071, 7], ["meta", 7072, 7]], [["url", 7090, 9], ["sha256", 7091, 9]], [["homepage", 7095, 9], ["license", 7096, 9]], [["pname", 7086, 7], ["ename", 7087, 7], ["version", 7088, 7], ["src", 7089, 7], ["packageRequires", 7093, 7], ["meta", 7094, 7]], [["url", 7111, 9], ["sha256", 7112, 9]], [["homepage", 7116, 9], ["license", 7117, 9]], [["pname", 7107, 7], ["ename", 7108, 7], ["version", 7109, 7], ["src", 7110, 7], ["packageRequires", 7114, 7], ["meta", 7115, 7]], [["url", 7132, 9], ["sha256", 7133, 9]], [["homepage", 7137, 9], ["license", 7138, 9]], [["pname", 7128, 7], ["ename", 7129, 7], ["version", 7130, 7], ["src", 7131, 7], ["packageRequires", 7135, 7], ["meta", 7136, 7]], [["url", 7154, 9], ["sha256", 7155, 9]], [["homepage", 7159, 9], ["license", 7160, 9]], [["pname", 7150, 7], ["ename", 7151, 7], ["version", 7152, 7], ["src", 7153, 7], ["packageRequires", 7157, 7], ["meta", 7158, 7]], [["url", 7175, 9], ["sha256", 7176, 9]], [["homepage", 7180, 9], ["license", 7181, 9]], [["pname", 7171, 7], ["ename", 7172, 7], ["version", 7173, 7], ["src", 7174, 7], ["packageRequires", 7178, 7], ["meta", 7179, 7]], [["url", 7196, 9], ["sha256", 7197, 9]], [["homepage", 7201, 9], ["license", 7202, 9]], [["pname", 7192, 7], ["ename", 7193, 7], ["version", 7194, 7], ["src", 7195, 7], ["packageRequires", 7199, 7], ["meta", 7200, 7]], [["url", 7218, 9], ["sha256", 7219, 9]], [["homepage", 7223, 9], ["license", 7224, 9]], [["pname", 7214, 7], ["ename", 7215, 7], ["version", 7216, 7], ["src", 7217, 7], ["packageRequires", 7221, 7], ["meta", 7222, 7]], [["url", 7239, 9], ["sha256", 7240, 9]], [["homepage", 7244, 9], ["license", 7245, 9]], [["pname", 7235, 7], ["ename", 7236, 7], ["version", 7237, 7], ["src", 7238, 7], ["packageRequires", 7242, 7], ["meta", 7243, 7]], [["url", 7261, 9], ["sha256", 7262, 9]], [["homepage", 7266, 9], ["license", 7267, 9]], [["pname", 7257, 7], ["ename", 7258, 7], ["version", 7259, 7], ["src", 7260, 7], ["packageRequires", 7264, 7], ["meta", 7265, 7]], [["url", 7282, 9], ["sha256", 7283, 9]], [["homepage", 7287, 9], ["license", 7288, 9]], [["pname", 7278, 7], ["ename", 7279, 7], ["version", 7280, 7], ["src", 7281, 7], ["packageRequires", 7285, 7], ["meta", 7286, 7]], [["url", 7303, 9], ["sha256", 7304, 9]], [["homepage", 7308, 9], ["license", 7309, 9]], [["pname", 7299, 7], ["ename", 7300, 7], ["version", 7301, 7], ["src", 7302, 7], ["packageRequires", 7306, 7], ["meta", 7307, 7]], [["url", 7324, 9], ["sha256", 7325, 9]], [["homepage", 7329, 9], ["license", 7330, 9]], [["pname", 7320, 7], ["ename", 7321, 7], ["version", 7322, 7], ["src", 7323, 7], ["packageRequires", 7327, 7], ["meta", 7328, 7]], [["url", 7345, 9], ["sha256", 7346, 9]], [["homepage", 7350, 9], ["license", 7351, 9]], [["pname", 7341, 7], ["ename", 7342, 7], ["version", 7343, 7], ["src", 7344, 7], ["packageRequires", 7348, 7], ["meta", 7349, 7]], [["url", 7367, 9], ["sha256", 7368, 9]], [["homepage", 7372, 9], ["license", 7373, 9]], [["pname", 7363, 7], ["ename", 7364, 7], ["version", 7365, 7], ["src", 7366, 7], ["packageRequires", 7370, 7], ["meta", 7371, 7]], [["url", 7388, 9], ["sha256", 7389, 9]], [["homepage", 7393, 9], ["license", 7394, 9]], [["pname", 7384, 7], ["ename", 7385, 7], ["version", 7386, 7], ["src", 7387, 7], ["packageRequires", 7391, 7], ["meta", 7392, 7]], [["url", 7410, 9], ["sha256", 7411, 9]], [["homepage", 7415, 9], ["license", 7416, 9]], [["pname", 7406, 7], ["ename", 7407, 7], ["version", 7408, 7], ["src", 7409, 7], ["packageRequires", 7413, 7], ["meta", 7414, 7]], [["url", 7431, 9], ["sha256", 7432, 9]], [["homepage", 7436, 9], ["license", 7437, 9]], [["pname", 7427, 7], ["ename", 7428, 7], ["version", 7429, 7], ["src", 7430, 7], ["packageRequires", 7434, 7], ["meta", 7435, 7]], [["url", 7452, 9], ["sha256", 7453, 9]], [["homepage", 7457, 9], ["license", 7458, 9]], [["pname", 7448, 7], ["ename", 7449, 7], ["version", 7450, 7], ["src", 7451, 7], ["packageRequires", 7455, 7], ["meta", 7456, 7]], [["url", 7473, 9], ["sha256", 7474, 9]], [["homepage", 7478, 9], ["license", 7479, 9]], [["pname", 7469, 7], ["ename", 7470, 7], ["version", 7471, 7], ["src", 7472, 7], ["packageRequires", 7476, 7], ["meta", 7477, 7]], [["url", 7495, 9], ["sha256", 7496, 9]], [["homepage", 7500, 9], ["license", 7501, 9]], [["pname", 7491, 7], ["ename", 7492, 7], ["version", 7493, 7], ["src", 7494, 7], ["packageRequires", 7498, 7], ["meta", 7499, 7]], [["url", 7517, 9], ["sha256", 7518, 9]], [["homepage", 7522, 9], ["license", 7523, 9]], [["pname", 7513, 7], ["ename", 7514, 7], ["version", 7515, 7], ["src", 7516, 7], ["packageRequires", 7520, 7], ["meta", 7521, 7]], [["url", 7539, 9], ["sha256", 7540, 9]], [["homepage", 7544, 9], ["license", 7545, 9]], [["pname", 7535, 7], ["ename", 7536, 7], ["version", 7537, 7], ["src", 7538, 7], ["packageRequires", 7542, 7], ["meta", 7543, 7]], [["url", 7560, 9], ["sha256", 7561, 9]], [["homepage", 7565, 9], ["license", 7566, 9]], [["pname", 7556, 7], ["ename", 7557, 7], ["version", 7558, 7], ["src", 7559, 7], ["packageRequires", 7563, 7], ["meta", 7564, 7]], [["url", 7581, 9], ["sha256", 7582, 9]], [["homepage", 7586, 9], ["license", 7587, 9]], [["pname", 7577, 7], ["ename", 7578, 7], ["version", 7579, 7], ["src", 7580, 7], ["packageRequires", 7584, 7], ["meta", 7585, 7]], [["url", 7602, 9], ["sha256", 7603, 9]], [["homepage", 7607, 9], ["license", 7608, 9]], [["pname", 7598, 7], ["ename", 7599, 7], ["version", 7600, 7], ["src", 7601, 7], ["packageRequires", 7605, 7], ["meta", 7606, 7]], [["url", 7623, 9], ["sha256", 7624, 9]], [["homepage", 7628, 9], ["license", 7629, 9]], [["pname", 7619, 7], ["ename", 7620, 7], ["version", 7621, 7], ["src", 7622, 7], ["packageRequires", 7626, 7], ["meta", 7627, 7]], [["url", 7644, 9], ["sha256", 7645, 9]], [["homepage", 7649, 9], ["license", 7650, 9]], [["pname", 7640, 7], ["ename", 7641, 7], ["version", 7642, 7], ["src", 7643, 7], ["packageRequires", 7647, 7], ["meta", 7648, 7]], [["url", 7665, 9], ["sha256", 7666, 9]], [["homepage", 7670, 9], ["license", 7671, 9]], [["pname", 7661, 7], ["ename", 7662, 7], ["version", 7663, 7], ["src", 7664, 7], ["packageRequires", 7668, 7], ["meta", 7669, 7]], [["url", 7686, 9], ["sha256", 7687, 9]], [["homepage", 7691, 9], ["license", 7692, 9]], [["pname", 7682, 7], ["ename", 7683, 7], ["version", 7684, 7], ["src", 7685, 7], ["packageRequires", 7689, 7], ["meta", 7690, 7]], [["url", 7707, 9], ["sha256", 7708, 9]], [["homepage", 7712, 9], ["license", 7713, 9]], [["pname", 7703, 7], ["ename", 7704, 7], ["version", 7705, 7], ["src", 7706, 7], ["packageRequires", 7710, 7], ["meta", 7711, 7]], [["url", 7728, 9], ["sha256", 7729, 9]], [["homepage", 7733, 9], ["license", 7734, 9]], [["pname", 7724, 7], ["ename", 7725, 7], ["version", 7726, 7], ["src", 7727, 7], ["packageRequires", 7731, 7], ["meta", 7732, 7]], [["url", 7750, 9], ["sha256", 7751, 9]], [["homepage", 7755, 9], ["license", 7756, 9]], [["pname", 7746, 7], ["ename", 7747, 7], ["version", 7748, 7], ["src", 7749, 7], ["packageRequires", 7753, 7], ["meta", 7754, 7]], [["url", 7772, 9], ["sha256", 7773, 9]], [["homepage", 7777, 9], ["license", 7778, 9]], [["pname", 7768, 7], ["ename", 7769, 7], ["version", 7770, 7], ["src", 7771, 7], ["packageRequires", 7775, 7], ["meta", 7776, 7]], [["url", 7794, 9], ["sha256", 7795, 9]], [["homepage", 7799, 9], ["license", 7800, 9]], [["pname", 7790, 7], ["ename", 7791, 7], ["version", 7792, 7], ["src", 7793, 7], ["packageRequires", 7797, 7], ["meta", 7798, 7]], [["url", 7815, 9], ["sha256", 7816, 9]], [["homepage", 7820, 9], ["license", 7821, 9]], [["pname", 7811, 7], ["ename", 7812, 7], ["version", 7813, 7], ["src", 7814, 7], ["packageRequires", 7818, 7], ["meta", 7819, 7]], [["url", 7836, 9], ["sha256", 7837, 9]], [["homepage", 7841, 9], ["license", 7842, 9]], [["pname", 7832, 7], ["ename", 7833, 7], ["version", 7834, 7], ["src", 7835, 7], ["packageRequires", 7839, 7], ["meta", 7840, 7]], [["url", 7857, 9], ["sha256", 7858, 9]], [["homepage", 7862, 9], ["license", 7863, 9]], [["pname", 7853, 7], ["ename", 7854, 7], ["version", 7855, 7], ["src", 7856, 7], ["packageRequires", 7860, 7], ["meta", 7861, 7]], [["url", 7880, 9], ["sha256", 7881, 9]], [["homepage", 7888, 9], ["license", 7889, 9]], [["pname", 7876, 7], ["ename", 7877, 7], ["version", 7878, 7], ["src", 7879, 7], ["packageRequires", 7883, 7], ["meta", 7887, 7]], [["url", 7905, 9], ["sha256", 7906, 9]], [["homepage", 7910, 9], ["license", 7911, 9]], [["pname", 7901, 7], ["ename", 7902, 7], ["version", 7903, 7], ["src", 7904, 7], ["packageRequires", 7908, 7], ["meta", 7909, 7]], [["url", 7927, 9], ["sha256", 7928, 9]], [["homepage", 7932, 9], ["license", 7933, 9]], [["pname", 7923, 7], ["ename", 7924, 7], ["version", 7925, 7], ["src", 7926, 7], ["packageRequires", 7930, 7], ["meta", 7931, 7]], [["url", 7948, 9], ["sha256", 7949, 9]], [["homepage", 7953, 9], ["license", 7954, 9]], [["pname", 7944, 7], ["ename", 7945, 7], ["version", 7946, 7], ["src", 7947, 7], ["packageRequires", 7951, 7], ["meta", 7952, 7]], [["url", 7969, 9], ["sha256", 7970, 9]], [["homepage", 7974, 9], ["license", 7975, 9]], [["pname", 7965, 7], ["ename", 7966, 7], ["version", 7967, 7], ["src", 7968, 7], ["packageRequires", 7972, 7], ["meta", 7973, 7]], [["url", 7991, 9], ["sha256", 7992, 9]], [["homepage", 7996, 9], ["license", 7997, 9]], [["pname", 7987, 7], ["ename", 7988, 7], ["version", 7989, 7], ["src", 7990, 7], ["packageRequires", 7994, 7], ["meta", 7995, 7]], [["url", 8012, 9], ["sha256", 8013, 9]], [["homepage", 8017, 9], ["license", 8018, 9]], [["pname", 8008, 7], ["ename", 8009, 7], ["version", 8010, 7], ["src", 8011, 7], ["packageRequires", 8015, 7], ["meta", 8016, 7]], [["url", 8033, 9], ["sha256", 8034, 9]], [["homepage", 8038, 9], ["license", 8039, 9]], [["pname", 8029, 7], ["ename", 8030, 7], ["version", 8031, 7], ["src", 8032, 7], ["packageRequires", 8036, 7], ["meta", 8037, 7]], [["url", 8054, 9], ["sha256", 8055, 9]], [["homepage", 8059, 9], ["license", 8060, 9]], [["pname", 8050, 7], ["ename", 8051, 7], ["version", 8052, 7], ["src", 8053, 7], ["packageRequires", 8057, 7], ["meta", 8058, 7]], [["url", 8075, 9], ["sha256", 8076, 9]], [["homepage", 8080, 9], ["license", 8081, 9]], [["pname", 8071, 7], ["ename", 8072, 7], ["version", 8073, 7], ["src", 8074, 7], ["packageRequires", 8078, 7], ["meta", 8079, 7]], [["url", 8096, 9], ["sha256", 8097, 9]], [["homepage", 8101, 9], ["license", 8102, 9]], [["pname", 8092, 7], ["ename", 8093, 7], ["version", 8094, 7], ["src", 8095, 7], ["packageRequires", 8099, 7], ["meta", 8100, 7]], [["url", 8117, 9], ["sha256", 8118, 9]], [["homepage", 8122, 9], ["license", 8123, 9]], [["pname", 8113, 7], ["ename", 8114, 7], ["version", 8115, 7], ["src", 8116, 7], ["packageRequires", 8120, 7], ["meta", 8121, 7]], [["url", 8141, 9], ["sha256", 8142, 9]], [["homepage", 8150, 9], ["license", 8151, 9]], [["pname", 8137, 7], ["ename", 8138, 7], ["version", 8139, 7], ["src", 8140, 7], ["packageRequires", 8144, 7], ["meta", 8149, 7]], [["url", 8168, 9], ["sha256", 8169, 9]], [["homepage", 8176, 9], ["license", 8177, 9]], [["pname", 8164, 7], ["ename", 8165, 7], ["version", 8166, 7], ["src", 8167, 7], ["packageRequires", 8171, 7], ["meta", 8175, 7]], [["url", 8194, 9], ["sha256", 8195, 9]], [["homepage", 8202, 9], ["license", 8203, 9]], [["pname", 8190, 7], ["ename", 8191, 7], ["version", 8192, 7], ["src", 8193, 7], ["packageRequires", 8197, 7], ["meta", 8201, 7]], [["url", 8220, 9], ["sha256", 8221, 9]], [["homepage", 8228, 9], ["license", 8229, 9]], [["pname", 8216, 7], ["ename", 8217, 7], ["version", 8218, 7], ["src", 8219, 7], ["packageRequires", 8223, 7], ["meta", 8227, 7]], [["url", 8247, 9], ["sha256", 8248, 9]], [["homepage", 8256, 9], ["license", 8257, 9]], [["pname", 8243, 7], ["ename", 8244, 7], ["version", 8245, 7], ["src", 8246, 7], ["packageRequires", 8250, 7], ["meta", 8255, 7]], [["url", 8275, 9], ["sha256", 8276, 9]], [["homepage", 8284, 9], ["license", 8285, 9]], [["pname", 8271, 7], ["ename", 8272, 7], ["version", 8273, 7], ["src", 8274, 7], ["packageRequires", 8278, 7], ["meta", 8283, 7]], [["url", 8302, 9], ["sha256", 8303, 9]], [["homepage", 8310, 9], ["license", 8311, 9]], [["pname", 8298, 7], ["ename", 8299, 7], ["version", 8300, 7], ["src", 8301, 7], ["packageRequires", 8305, 7], ["meta", 8309, 7]], [["url", 8328, 9], ["sha256", 8329, 9]], [["homepage", 8336, 9], ["license", 8337, 9]], [["pname", 8324, 7], ["ename", 8325, 7], ["version", 8326, 7], ["src", 8327, 7], ["packageRequires", 8331, 7], ["meta", 8335, 7]], [["url", 8354, 9], ["sha256", 8355, 9]], [["homepage", 8362, 9], ["license", 8363, 9]], [["pname", 8350, 7], ["ename", 8351, 7], ["version", 8352, 7], ["src", 8353, 7], ["packageRequires", 8357, 7], ["meta", 8361, 7]], [["url", 8378, 9], ["sha256", 8379, 9]], [["homepage", 8383, 9], ["license", 8384, 9]], [["pname", 8374, 7], ["ename", 8375, 7], ["version", 8376, 7], ["src", 8377, 7], ["packageRequires", 8381, 7], ["meta", 8382, 7]], [["url", 8399, 9], ["sha256", 8400, 9]], [["homepage", 8404, 9], ["license", 8405, 9]], [["pname", 8395, 7], ["ename", 8396, 7], ["version", 8397, 7], ["src", 8398, 7], ["packageRequires", 8402, 7], ["meta", 8403, 7]], [["url", 8421, 9], ["sha256", 8422, 9]], [["homepage", 8426, 9], ["license", 8427, 9]], [["pname", 8417, 7], ["ename", 8418, 7], ["version", 8419, 7], ["src", 8420, 7], ["packageRequires", 8424, 7], ["meta", 8425, 7]], [["url", 8442, 9], ["sha256", 8443, 9]], [["homepage", 8447, 9], ["license", 8448, 9]], [["pname", 8438, 7], ["ename", 8439, 7], ["version", 8440, 7], ["src", 8441, 7], ["packageRequires", 8445, 7], ["meta", 8446, 7]], [["url", 8464, 9], ["sha256", 8465, 9]], [["homepage", 8469, 9], ["license", 8470, 9]], [["pname", 8460, 7], ["ename", 8461, 7], ["version", 8462, 7], ["src", 8463, 7], ["packageRequires", 8467, 7], ["meta", 8468, 7]], [["url", 8485, 9], ["sha256", 8486, 9]], [["homepage", 8490, 9], ["license", 8491, 9]], [["pname", 8481, 7], ["ename", 8482, 7], ["version", 8483, 7], ["src", 8484, 7], ["packageRequires", 8488, 7], ["meta", 8489, 7]], [["url", 8506, 9], ["sha256", 8507, 9]], [["homepage", 8511, 9], ["license", 8512, 9]], [["pname", 8502, 7], ["ename", 8503, 7], ["version", 8504, 7], ["src", 8505, 7], ["packageRequires", 8509, 7], ["meta", 8510, 7]], [["url", 8527, 9], ["sha256", 8528, 9]], [["homepage", 8532, 9], ["license", 8533, 9]], [["pname", 8523, 7], ["ename", 8524, 7], ["version", 8525, 7], ["src", 8526, 7], ["packageRequires", 8530, 7], ["meta", 8531, 7]], [["url", 8551, 9], ["sha256", 8552, 9]], [["homepage", 8560, 9], ["license", 8561, 9]], [["pname", 8547, 7], ["ename", 8548, 7], ["version", 8549, 7], ["src", 8550, 7], ["packageRequires", 8554, 7], ["meta", 8559, 7]], [["url", 8577, 9], ["sha256", 8578, 9]], [["homepage", 8582, 9], ["license", 8583, 9]], [["pname", 8573, 7], ["ename", 8574, 7], ["version", 8575, 7], ["src", 8576, 7], ["packageRequires", 8580, 7], ["meta", 8581, 7]], [["url", 8599, 9], ["sha256", 8600, 9]], [["homepage", 8604, 9], ["license", 8605, 9]], [["pname", 8595, 7], ["ename", 8596, 7], ["version", 8597, 7], ["src", 8598, 7], ["packageRequires", 8602, 7], ["meta", 8603, 7]], [["url", 8620, 9], ["sha256", 8621, 9]], [["homepage", 8625, 9], ["license", 8626, 9]], [["pname", 8616, 7], ["ename", 8617, 7], ["version", 8618, 7], ["src", 8619, 7], ["packageRequires", 8623, 7], ["meta", 8624, 7]], [["url", 8641, 9], ["sha256", 8642, 9]], [["homepage", 8646, 9], ["license", 8647, 9]], [["pname", 8637, 7], ["ename", 8638, 7], ["version", 8639, 7], ["src", 8640, 7], ["packageRequires", 8644, 7], ["meta", 8645, 7]], [["url", 8662, 9], ["sha256", 8663, 9]], [["homepage", 8667, 9], ["license", 8668, 9]], [["pname", 8658, 7], ["ename", 8659, 7], ["version", 8660, 7], ["src", 8661, 7], ["packageRequires", 8665, 7], ["meta", 8666, 7]], [["url", 8683, 9], ["sha256", 8684, 9]], [["homepage", 8688, 9], ["license", 8689, 9]], [["pname", 8679, 7], ["ename", 8680, 7], ["version", 8681, 7], ["src", 8682, 7], ["packageRequires", 8686, 7], ["meta", 8687, 7]], [["url", 8704, 9], ["sha256", 8705, 9]], [["homepage", 8709, 9], ["license", 8710, 9]], [["pname", 8700, 7], ["ename", 8701, 7], ["version", 8702, 7], ["src", 8703, 7], ["packageRequires", 8707, 7], ["meta", 8708, 7]], [["url", 8725, 9], ["sha256", 8726, 9]], [["homepage", 8730, 9], ["license", 8731, 9]], [["pname", 8721, 7], ["ename", 8722, 7], ["version", 8723, 7], ["src", 8724, 7], ["packageRequires", 8728, 7], ["meta", 8729, 7]], [["url", 8746, 9], ["sha256", 8747, 9]], [["homepage", 8751, 9], ["license", 8752, 9]], [["pname", 8742, 7], ["ename", 8743, 7], ["version", 8744, 7], ["src", 8745, 7], ["packageRequires", 8749, 7], ["meta", 8750, 7]], [["url", 8767, 9], ["sha256", 8768, 9]], [["homepage", 8772, 9], ["license", 8773, 9]], [["pname", 8763, 7], ["ename", 8764, 7], ["version", 8765, 7], ["src", 8766, 7], ["packageRequires", 8770, 7], ["meta", 8771, 7]], [["url", 8788, 9], ["sha256", 8789, 9]], [["homepage", 8793, 9], ["license", 8794, 9]], [["pname", 8784, 7], ["ename", 8785, 7], ["version", 8786, 7], ["src", 8787, 7], ["packageRequires", 8791, 7], ["meta", 8792, 7]], [["url", 8809, 9], ["sha256", 8810, 9]], [["homepage", 8814, 9], ["license", 8815, 9]], [["pname", 8805, 7], ["ename", 8806, 7], ["version", 8807, 7], ["src", 8808, 7], ["packageRequires", 8812, 7], ["meta", 8813, 7]], [["url", 8830, 9], ["sha256", 8831, 9]], [["homepage", 8835, 9], ["license", 8836, 9]], [["pname", 8826, 7], ["ename", 8827, 7], ["version", 8828, 7], ["src", 8829, 7], ["packageRequires", 8833, 7], ["meta", 8834, 7]], [["url", 8851, 9], ["sha256", 8852, 9]], [["homepage", 8856, 9], ["license", 8857, 9]], [["pname", 8847, 7], ["ename", 8848, 7], ["version", 8849, 7], ["src", 8850, 7], ["packageRequires", 8854, 7], ["meta", 8855, 7]], [["url", 8872, 9], ["sha256", 8873, 9]], [["homepage", 8877, 9], ["license", 8878, 9]], [["pname", 8868, 7], ["ename", 8869, 7], ["version", 8870, 7], ["src", 8871, 7], ["packageRequires", 8875, 7], ["meta", 8876, 7]], [["url", 8893, 9], ["sha256", 8894, 9]], [["homepage", 8898, 9], ["license", 8899, 9]], [["pname", 8889, 7], ["ename", 8890, 7], ["version", 8891, 7], ["src", 8892, 7], ["packageRequires", 8896, 7], ["meta", 8897, 7]], [["url", 8915, 9], ["sha256", 8916, 9]], [["homepage", 8920, 9], ["license", 8921, 9]], [["pname", 8911, 7], ["ename", 8912, 7], ["version", 8913, 7], ["src", 8914, 7], ["packageRequires", 8918, 7], ["meta", 8919, 7]], [["url", 8936, 9], ["sha256", 8937, 9]], [["homepage", 8941, 9], ["license", 8942, 9]], [["pname", 8932, 7], ["ename", 8933, 7], ["version", 8934, 7], ["src", 8935, 7], ["packageRequires", 8939, 7], ["meta", 8940, 7]], [["url", 8957, 9], ["sha256", 8958, 9]], [["homepage", 8962, 9], ["license", 8963, 9]], [["pname", 8953, 7], ["ename", 8954, 7], ["version", 8955, 7], ["src", 8956, 7], ["packageRequires", 8960, 7], ["meta", 8961, 7]], [["url", 8978, 9], ["sha256", 8979, 9]], [["homepage", 8983, 9], ["license", 8984, 9]], [["pname", 8974, 7], ["ename", 8975, 7], ["version", 8976, 7], ["src", 8977, 7], ["packageRequires", 8981, 7], ["meta", 8982, 7]], [["url", 9000, 9], ["sha256", 9001, 9]], [["homepage", 9005, 9], ["license", 9006, 9]], [["pname", 8996, 7], ["ename", 8997, 7], ["version", 8998, 7], ["src", 8999, 7], ["packageRequires", 9003, 7], ["meta", 9004, 7]], [["url", 9021, 9], ["sha256", 9022, 9]], [["homepage", 9026, 9], ["license", 9027, 9]], [["pname", 9017, 7], ["ename", 9018, 7], ["version", 9019, 7], ["src", 9020, 7], ["packageRequires", 9024, 7], ["meta", 9025, 7]], [["url", 9043, 9], ["sha256", 9044, 9]], [["homepage", 9048, 9], ["license", 9049, 9]], [["pname", 9039, 7], ["ename", 9040, 7], ["version", 9041, 7], ["src", 9042, 7], ["packageRequires", 9046, 7], ["meta", 9047, 7]], [["url", 9065, 9], ["sha256", 9066, 9]], [["homepage", 9070, 9], ["license", 9071, 9]], [["pname", 9061, 7], ["ename", 9062, 7], ["version", 9063, 7], ["src", 9064, 7], ["packageRequires", 9068, 7], ["meta", 9069, 7]], [["url", 9086, 9], ["sha256", 9087, 9]], [["homepage", 9091, 9], ["license", 9092, 9]], [["pname", 9082, 7], ["ename", 9083, 7], ["version", 9084, 7], ["src", 9085, 7], ["packageRequires", 9089, 7], ["meta", 9090, 7]], [["url", 9107, 9], ["sha256", 9108, 9]], [["homepage", 9112, 9], ["license", 9113, 9]], [["pname", 9103, 7], ["ename", 9104, 7], ["version", 9105, 7], ["src", 9106, 7], ["packageRequires", 9110, 7], ["meta", 9111, 7]], [["url", 9129, 9], ["sha256", 9130, 9]], [["homepage", 9134, 9], ["license", 9135, 9]], [["pname", 9125, 7], ["ename", 9126, 7], ["version", 9127, 7], ["src", 9128, 7], ["packageRequires", 9132, 7], ["meta", 9133, 7]], [["url", 9150, 9], ["sha256", 9151, 9]], [["homepage", 9155, 9], ["license", 9156, 9]], [["pname", 9146, 7], ["ename", 9147, 7], ["version", 9148, 7], ["src", 9149, 7], ["packageRequires", 9153, 7], ["meta", 9154, 7]], [["url", 9171, 9], ["sha256", 9172, 9]], [["homepage", 9176, 9], ["license", 9177, 9]], [["pname", 9167, 7], ["ename", 9168, 7], ["version", 9169, 7], ["src", 9170, 7], ["packageRequires", 9174, 7], ["meta", 9175, 7]], [["url", 9192, 9], ["sha256", 9193, 9]], [["homepage", 9197, 9], ["license", 9198, 9]], [["pname", 9188, 7], ["ename", 9189, 7], ["version", 9190, 7], ["src", 9191, 7], ["packageRequires", 9195, 7], ["meta", 9196, 7]], [["url", 9214, 9], ["sha256", 9215, 9]], [["homepage", 9219, 9], ["license", 9220, 9]], [["pname", 9210, 7], ["ename", 9211, 7], ["version", 9212, 7], ["src", 9213, 7], ["packageRequires", 9217, 7], ["meta", 9218, 7]], [["url", 9235, 9], ["sha256", 9236, 9]], [["homepage", 9240, 9], ["license", 9241, 9]], [["pname", 9231, 7], ["ename", 9232, 7], ["version", 9233, 7], ["src", 9234, 7], ["packageRequires", 9238, 7], ["meta", 9239, 7]], [["url", 9258, 9], ["sha256", 9259, 9]], [["homepage", 9266, 9], ["license", 9267, 9]], [["pname", 9254, 7], ["ename", 9255, 7], ["version", 9256, 7], ["src", 9257, 7], ["packageRequires", 9261, 7], ["meta", 9265, 7]], [["url", 9282, 9], ["sha256", 9283, 9]], [["homepage", 9287, 9], ["license", 9288, 9]], [["pname", 9278, 7], ["ename", 9279, 7], ["version", 9280, 7], ["src", 9281, 7], ["packageRequires", 9285, 7], ["meta", 9286, 7]], [["url", 9304, 9], ["sha256", 9305, 9]], [["homepage", 9309, 9], ["license", 9310, 9]], [["pname", 9300, 7], ["ename", 9301, 7], ["version", 9302, 7], ["src", 9303, 7], ["packageRequires", 9307, 7], ["meta", 9308, 7]], [["url", 9325, 9], ["sha256", 9326, 9]], [["homepage", 9330, 9], ["license", 9331, 9]], [["pname", 9321, 7], ["ename", 9322, 7], ["version", 9323, 7], ["src", 9324, 7], ["packageRequires", 9328, 7], ["meta", 9329, 7]], [["url", 9346, 9], ["sha256", 9347, 9]], [["homepage", 9351, 9], ["license", 9352, 9]], [["pname", 9342, 7], ["ename", 9343, 7], ["version", 9344, 7], ["src", 9345, 7], ["packageRequires", 9349, 7], ["meta", 9350, 7]], [["url", 9367, 9], ["sha256", 9368, 9]], [["homepage", 9372, 9], ["license", 9373, 9]], [["pname", 9363, 7], ["ename", 9364, 7], ["version", 9365, 7], ["src", 9366, 7], ["packageRequires", 9370, 7], ["meta", 9371, 7]], [["url", 9389, 9], ["sha256", 9390, 9]], [["homepage", 9394, 9], ["license", 9395, 9]], [["pname", 9385, 7], ["ename", 9386, 7], ["version", 9387, 7], ["src", 9388, 7], ["packageRequires", 9392, 7], ["meta", 9393, 7]], [["url", 9410, 9], ["sha256", 9411, 9]], [["homepage", 9415, 9], ["license", 9416, 9]], [["pname", 9406, 7], ["ename", 9407, 7], ["version", 9408, 7], ["src", 9409, 7], ["packageRequires", 9413, 7], ["meta", 9414, 7]], [["url", 9432, 9], ["sha256", 9433, 9]], [["homepage", 9437, 9], ["license", 9438, 9]], [["pname", 9428, 7], ["ename", 9429, 7], ["version", 9430, 7], ["src", 9431, 7], ["packageRequires", 9435, 7], ["meta", 9436, 7]], [["url", 9454, 9], ["sha256", 9455, 9]], [["homepage", 9459, 9], ["license", 9460, 9]], [["pname", 9450, 7], ["ename", 9451, 7], ["version", 9452, 7], ["src", 9453, 7], ["packageRequires", 9457, 7], ["meta", 9458, 7]], [["url", 9476, 9], ["sha256", 9477, 9]], [["homepage", 9481, 9], ["license", 9482, 9]], [["pname", 9472, 7], ["ename", 9473, 7], ["version", 9474, 7], ["src", 9475, 7], ["packageRequires", 9479, 7], ["meta", 9480, 7]], [["url", 9497, 9], ["sha256", 9498, 9]], [["homepage", 9502, 9], ["license", 9503, 9]], [["pname", 9493, 7], ["ename", 9494, 7], ["version", 9495, 7], ["src", 9496, 7], ["packageRequires", 9500, 7], ["meta", 9501, 7]], [["url", 9518, 9], ["sha256", 9519, 9]], [["homepage", 9523, 9], ["license", 9524, 9]], [["pname", 9514, 7], ["ename", 9515, 7], ["version", 9516, 7], ["src", 9517, 7], ["packageRequires", 9521, 7], ["meta", 9522, 7]], [["url", 9540, 9], ["sha256", 9541, 9]], [["homepage", 9545, 9], ["license", 9546, 9]], [["pname", 9536, 7], ["ename", 9537, 7], ["version", 9538, 7], ["src", 9539, 7], ["packageRequires", 9543, 7], ["meta", 9544, 7]], [["url", 9563, 9], ["sha256", 9564, 9]], [["homepage", 9571, 9], ["license", 9572, 9]], [["pname", 9559, 7], ["ename", 9560, 7], ["version", 9561, 7], ["src", 9562, 7], ["packageRequires", 9566, 7], ["meta", 9570, 7]], [["url", 9587, 9], ["sha256", 9588, 9]], [["homepage", 9592, 9], ["license", 9593, 9]], [["pname", 9583, 7], ["ename", 9584, 7], ["version", 9585, 7], ["src", 9586, 7], ["packageRequires", 9590, 7], ["meta", 9591, 7]], [["url", 9608, 9], ["sha256", 9609, 9]], [["homepage", 9613, 9], ["license", 9614, 9]], [["pname", 9604, 7], ["ename", 9605, 7], ["version", 9606, 7], ["src", 9607, 7], ["packageRequires", 9611, 7], ["meta", 9612, 7]], [["url", 9631, 9], ["sha256", 9632, 9]], [["homepage", 9639, 9], ["license", 9640, 9]], [["pname", 9627, 7], ["ename", 9628, 7], ["version", 9629, 7], ["src", 9630, 7], ["packageRequires", 9634, 7], ["meta", 9638, 7]], [["url", 9655, 9], ["sha256", 9656, 9]], [["homepage", 9660, 9], ["license", 9661, 9]], [["pname", 9651, 7], ["ename", 9652, 7], ["version", 9653, 7], ["src", 9654, 7], ["packageRequires", 9658, 7], ["meta", 9659, 7]], [["url", 9677, 9], ["sha256", 9678, 9]], [["homepage", 9682, 9], ["license", 9683, 9]], [["pname", 9673, 7], ["ename", 9674, 7], ["version", 9675, 7], ["src", 9676, 7], ["packageRequires", 9680, 7], ["meta", 9681, 7]], [["url", 9698, 9], ["sha256", 9699, 9]], [["homepage", 9703, 9], ["license", 9704, 9]], [["pname", 9694, 7], ["ename", 9695, 7], ["version", 9696, 7], ["src", 9697, 7], ["packageRequires", 9701, 7], ["meta", 9702, 7]], [["url", 9720, 9], ["sha256", 9721, 9]], [["homepage", 9725, 9], ["license", 9726, 9]], [["pname", 9716, 7], ["ename", 9717, 7], ["version", 9718, 7], ["src", 9719, 7], ["packageRequires", 9723, 7], ["meta", 9724, 7]], [["url", 9741, 9], ["sha256", 9742, 9]], [["homepage", 9746, 9], ["license", 9747, 9]], [["pname", 9737, 7], ["ename", 9738, 7], ["version", 9739, 7], ["src", 9740, 7], ["packageRequires", 9744, 7], ["meta", 9745, 7]], [["url", 9762, 9], ["sha256", 9763, 9]], [["homepage", 9767, 9], ["license", 9768, 9]], [["pname", 9758, 7], ["ename", 9759, 7], ["version", 9760, 7], ["src", 9761, 7], ["packageRequires", 9765, 7], ["meta", 9766, 7]], [["url", 9783, 9], ["sha256", 9784, 9]], [["homepage", 9788, 9], ["license", 9789, 9]], [["pname", 9779, 7], ["ename", 9780, 7], ["version", 9781, 7], ["src", 9782, 7], ["packageRequires", 9786, 7], ["meta", 9787, 7]], [["url", 9804, 9], ["sha256", 9805, 9]], [["homepage", 9809, 9], ["license", 9810, 9]], [["pname", 9800, 7], ["ename", 9801, 7], ["version", 9802, 7], ["src", 9803, 7], ["packageRequires", 9807, 7], ["meta", 9808, 7]], [["url", 9826, 9], ["sha256", 9827, 9]], [["homepage", 9831, 9], ["license", 9832, 9]], [["pname", 9822, 7], ["ename", 9823, 7], ["version", 9824, 7], ["src", 9825, 7], ["packageRequires", 9829, 7], ["meta", 9830, 7]], [["url", 9847, 9], ["sha256", 9848, 9]], [["homepage", 9852, 9], ["license", 9853, 9]], [["pname", 9843, 7], ["ename", 9844, 7], ["version", 9845, 7], ["src", 9846, 7], ["packageRequires", 9850, 7], ["meta", 9851, 7]], [["url", 9868, 9], ["sha256", 9869, 9]], [["homepage", 9873, 9], ["license", 9874, 9]], [["pname", 9864, 7], ["ename", 9865, 7], ["version", 9866, 7], ["src", 9867, 7], ["packageRequires", 9871, 7], ["meta", 9872, 7]], [["url", 9891, 9], ["sha256", 9892, 9]], [["homepage", 9899, 9], ["license", 9900, 9]], [["pname", 9887, 7], ["ename", 9888, 7], ["version", 9889, 7], ["src", 9890, 7], ["packageRequires", 9894, 7], ["meta", 9898, 7]], [["url", 9915, 9], ["sha256", 9916, 9]], [["homepage", 9920, 9], ["license", 9921, 9]], [["pname", 9911, 7], ["ename", 9912, 7], ["version", 9913, 7], ["src", 9914, 7], ["packageRequires", 9918, 7], ["meta", 9919, 7]], [["url", 9936, 9], ["sha256", 9937, 9]], [["homepage", 9941, 9], ["license", 9942, 9]], [["pname", 9932, 7], ["ename", 9933, 7], ["version", 9934, 7], ["src", 9935, 7], ["packageRequires", 9939, 7], ["meta", 9940, 7]], [["url", 9957, 9], ["sha256", 9958, 9]], [["homepage", 9962, 9], ["license", 9963, 9]], [["pname", 9953, 7], ["ename", 9954, 7], ["version", 9955, 7], ["src", 9956, 7], ["packageRequires", 9960, 7], ["meta", 9961, 7]], [["url", 9979, 9], ["sha256", 9980, 9]], [["homepage", 9984, 9], ["license", 9985, 9]], [["pname", 9975, 7], ["ename", 9976, 7], ["version", 9977, 7], ["src", 9978, 7], ["packageRequires", 9982, 7], ["meta", 9983, 7]], [["url", 10000, 9], ["sha256", 10001, 9]], [["homepage", 10005, 9], ["license", 10006, 9]], [["pname", 9996, 7], ["ename", 9997, 7], ["version", 9998, 7], ["src", 9999, 7], ["packageRequires", 10003, 7], ["meta", 10004, 7]], [["url", 10021, 9], ["sha256", 10022, 9]], [["homepage", 10026, 9], ["license", 10027, 9]], [["pname", 10017, 7], ["ename", 10018, 7], ["version", 10019, 7], ["src", 10020, 7], ["packageRequires", 10024, 7], ["meta", 10025, 7]], [["url", 10042, 9], ["sha256", 10043, 9]], [["homepage", 10047, 9], ["license", 10048, 9]], [["pname", 10038, 7], ["ename", 10039, 7], ["version", 10040, 7], ["src", 10041, 7], ["packageRequires", 10045, 7], ["meta", 10046, 7]], [["url", 10067, 9], ["sha256", 10068, 9]], [["homepage", 10077, 9], ["license", 10078, 9]], [["pname", 10063, 7], ["ename", 10064, 7], ["version", 10065, 7], ["src", 10066, 7], ["packageRequires", 10070, 7], ["meta", 10076, 7]], [["url", 10093, 9], ["sha256", 10094, 9]], [["homepage", 10098, 9], ["license", 10099, 9]], [["pname", 10089, 7], ["ename", 10090, 7], ["version", 10091, 7], ["src", 10092, 7], ["packageRequires", 10096, 7], ["meta", 10097, 7]], [["url", 10115, 9], ["sha256", 10116, 9]], [["homepage", 10120, 9], ["license", 10121, 9]], [["pname", 10111, 7], ["ename", 10112, 7], ["version", 10113, 7], ["src", 10114, 7], ["packageRequires", 10118, 7], ["meta", 10119, 7]], [["url", 10138, 9], ["sha256", 10139, 9]], [["homepage", 10146, 9], ["license", 10147, 9]], [["pname", 10134, 7], ["ename", 10135, 7], ["version", 10136, 7], ["src", 10137, 7], ["packageRequires", 10141, 7], ["meta", 10145, 7]], [["url", 10163, 9], ["sha256", 10164, 9]], [["homepage", 10168, 9], ["license", 10169, 9]], [["pname", 10159, 7], ["ename", 10160, 7], ["version", 10161, 7], ["src", 10162, 7], ["packageRequires", 10166, 7], ["meta", 10167, 7]], [["url", 10185, 9], ["sha256", 10186, 9]], [["homepage", 10190, 9], ["license", 10191, 9]], [["pname", 10181, 7], ["ename", 10182, 7], ["version", 10183, 7], ["src", 10184, 7], ["packageRequires", 10188, 7], ["meta", 10189, 7]], [["url", 10206, 9], ["sha256", 10207, 9]], [["homepage", 10211, 9], ["license", 10212, 9]], [["pname", 10202, 7], ["ename", 10203, 7], ["version", 10204, 7], ["src", 10205, 7], ["packageRequires", 10209, 7], ["meta", 10210, 7]], [["url", 10227, 9], ["sha256", 10228, 9]], [["homepage", 10232, 9], ["license", 10233, 9]], [["pname", 10223, 7], ["ename", 10224, 7], ["version", 10225, 7], ["src", 10226, 7], ["packageRequires", 10230, 7], ["meta", 10231, 7]], [["url", 10249, 9], ["sha256", 10250, 9]], [["homepage", 10254, 9], ["license", 10255, 9]], [["pname", 10245, 7], ["ename", 10246, 7], ["version", 10247, 7], ["src", 10248, 7], ["packageRequires", 10252, 7], ["meta", 10253, 7]], [["url", 10270, 9], ["sha256", 10271, 9]], [["homepage", 10275, 9], ["license", 10276, 9]], [["pname", 10266, 7], ["ename", 10267, 7], ["version", 10268, 7], ["src", 10269, 7], ["packageRequires", 10273, 7], ["meta", 10274, 7]], [["url", 10291, 9], ["sha256", 10292, 9]], [["homepage", 10296, 9], ["license", 10297, 9]], [["pname", 10287, 7], ["ename", 10288, 7], ["version", 10289, 7], ["src", 10290, 7], ["packageRequires", 10294, 7], ["meta", 10295, 7]], [["url", 10313, 9], ["sha256", 10314, 9]], [["homepage", 10318, 9], ["license", 10319, 9]], [["pname", 10309, 7], ["ename", 10310, 7], ["version", 10311, 7], ["src", 10312, 7], ["packageRequires", 10316, 7], ["meta", 10317, 7]], [["url", 10335, 9], ["sha256", 10336, 9]], [["homepage", 10340, 9], ["license", 10341, 9]], [["pname", 10331, 7], ["ename", 10332, 7], ["version", 10333, 7], ["src", 10334, 7], ["packageRequires", 10338, 7], ["meta", 10339, 7]], [["url", 10356, 9], ["sha256", 10357, 9]], [["homepage", 10361, 9], ["license", 10362, 9]], [["pname", 10352, 7], ["ename", 10353, 7], ["version", 10354, 7], ["src", 10355, 7], ["packageRequires", 10359, 7], ["meta", 10360, 7]], [["url", 10377, 9], ["sha256", 10378, 9]], [["homepage", 10382, 9], ["license", 10383, 9]], [["pname", 10373, 7], ["ename", 10374, 7], ["version", 10375, 7], ["src", 10376, 7], ["packageRequires", 10380, 7], ["meta", 10381, 7]], [["url", 10399, 9], ["sha256", 10400, 9]], [["homepage", 10404, 9], ["license", 10405, 9]], [["pname", 10395, 7], ["ename", 10396, 7], ["version", 10397, 7], ["src", 10398, 7], ["packageRequires", 10402, 7], ["meta", 10403, 7]], [["url", 10422, 9], ["sha256", 10423, 9]], [["homepage", 10430, 9], ["license", 10431, 9]], [["pname", 10418, 7], ["ename", 10419, 7], ["version", 10420, 7], ["src", 10421, 7], ["packageRequires", 10425, 7], ["meta", 10429, 7]], [["url", 10446, 9], ["sha256", 10447, 9]], [["homepage", 10451, 9], ["license", 10452, 9]], [["pname", 10442, 7], ["ename", 10443, 7], ["version", 10444, 7], ["src", 10445, 7], ["packageRequires", 10449, 7], ["meta", 10450, 7]], [["url", 10468, 9], ["sha256", 10469, 9]], [["homepage", 10473, 9], ["license", 10474, 9]], [["pname", 10464, 7], ["ename", 10465, 7], ["version", 10466, 7], ["src", 10467, 7], ["packageRequires", 10471, 7], ["meta", 10472, 7]], [["url", 10489, 9], ["sha256", 10490, 9]], [["homepage", 10494, 9], ["license", 10495, 9]], [["pname", 10485, 7], ["ename", 10486, 7], ["version", 10487, 7], ["src", 10488, 7], ["packageRequires", 10492, 7], ["meta", 10493, 7]], [["url", 10510, 9], ["sha256", 10511, 9]], [["homepage", 10515, 9], ["license", 10516, 9]], [["pname", 10506, 7], ["ename", 10507, 7], ["version", 10508, 7], ["src", 10509, 7], ["packageRequires", 10513, 7], ["meta", 10514, 7]], [["url", 10533, 9], ["sha256", 10534, 9]], [["homepage", 10541, 9], ["license", 10542, 9]], [["pname", 10529, 7], ["ename", 10530, 7], ["version", 10531, 7], ["src", 10532, 7], ["packageRequires", 10536, 7], ["meta", 10540, 7]], [["url", 10557, 9], ["sha256", 10558, 9]], [["homepage", 10562, 9], ["license", 10563, 9]], [["pname", 10553, 7], ["ename", 10554, 7], ["version", 10555, 7], ["src", 10556, 7], ["packageRequires", 10560, 7], ["meta", 10561, 7]], [["url", 10578, 9], ["sha256", 10579, 9]], [["homepage", 10583, 9], ["license", 10584, 9]], [["pname", 10574, 7], ["ename", 10575, 7], ["version", 10576, 7], ["src", 10577, 7], ["packageRequires", 10581, 7], ["meta", 10582, 7]], [["url", 10600, 9], ["sha256", 10601, 9]], [["homepage", 10605, 9], ["license", 10606, 9]], [["pname", 10596, 7], ["ename", 10597, 7], ["version", 10598, 7], ["src", 10599, 7], ["packageRequires", 10603, 7], ["meta", 10604, 7]], [["url", 10623, 9], ["sha256", 10624, 9]], [["homepage", 10631, 9], ["license", 10632, 9]], [["pname", 10619, 7], ["ename", 10620, 7], ["version", 10621, 7], ["src", 10622, 7], ["packageRequires", 10626, 7], ["meta", 10630, 7]], [["url", 10647, 9], ["sha256", 10648, 9]], [["homepage", 10652, 9], ["license", 10653, 9]], [["pname", 10643, 7], ["ename", 10644, 7], ["version", 10645, 7], ["src", 10646, 7], ["packageRequires", 10650, 7], ["meta", 10651, 7]], [["url", 10669, 9], ["sha256", 10670, 9]], [["homepage", 10674, 9], ["license", 10675, 9]], [["pname", 10665, 7], ["ename", 10666, 7], ["version", 10667, 7], ["src", 10668, 7], ["packageRequires", 10672, 7], ["meta", 10673, 7]], [["url", 10692, 9], ["sha256", 10693, 9]], [["homepage", 10700, 9], ["license", 10701, 9]], [["pname", 10688, 7], ["ename", 10689, 7], ["version", 10690, 7], ["src", 10691, 7], ["packageRequires", 10695, 7], ["meta", 10699, 7]], [["url", 10716, 9], ["sha256", 10717, 9]], [["homepage", 10721, 9], ["license", 10722, 9]], [["pname", 10712, 7], ["ename", 10713, 7], ["version", 10714, 7], ["src", 10715, 7], ["packageRequires", 10719, 7], ["meta", 10720, 7]], [["url", 10737, 9], ["sha256", 10738, 9]], [["homepage", 10742, 9], ["license", 10743, 9]], [["pname", 10733, 7], ["ename", 10734, 7], ["version", 10735, 7], ["src", 10736, 7], ["packageRequires", 10740, 7], ["meta", 10741, 7]], [["url", 10758, 9], ["sha256", 10759, 9]], [["homepage", 10763, 9], ["license", 10764, 9]], [["pname", 10754, 7], ["ename", 10755, 7], ["version", 10756, 7], ["src", 10757, 7], ["packageRequires", 10761, 7], ["meta", 10762, 7]], [["url", 10779, 9], ["sha256", 10780, 9]], [["homepage", 10784, 9], ["license", 10785, 9]], [["pname", 10775, 7], ["ename", 10776, 7], ["version", 10777, 7], ["src", 10778, 7], ["packageRequires", 10782, 7], ["meta", 10783, 7]], [["url", 10800, 9], ["sha256", 10801, 9]], [["homepage", 10805, 9], ["license", 10806, 9]], [["pname", 10796, 7], ["ename", 10797, 7], ["version", 10798, 7], ["src", 10799, 7], ["packageRequires", 10803, 7], ["meta", 10804, 7]], [["url", 10821, 9], ["sha256", 10822, 9]], [["homepage", 10826, 9], ["license", 10827, 9]], [["pname", 10817, 7], ["ename", 10818, 7], ["version", 10819, 7], ["src", 10820, 7], ["packageRequires", 10824, 7], ["meta", 10825, 7]], [["url", 10842, 9], ["sha256", 10843, 9]], [["homepage", 10847, 9], ["license", 10848, 9]], [["pname", 10838, 7], ["ename", 10839, 7], ["version", 10840, 7], ["src", 10841, 7], ["packageRequires", 10845, 7], ["meta", 10846, 7]], [["url", 10864, 9], ["sha256", 10865, 9]], [["homepage", 10869, 9], ["license", 10870, 9]], [["pname", 10860, 7], ["ename", 10861, 7], ["version", 10862, 7], ["src", 10863, 7], ["packageRequires", 10867, 7], ["meta", 10868, 7]], [["url", 10885, 9], ["sha256", 10886, 9]], [["homepage", 10890, 9], ["license", 10891, 9]], [["pname", 10881, 7], ["ename", 10882, 7], ["version", 10883, 7], ["src", 10884, 7], ["packageRequires", 10888, 7], ["meta", 10889, 7]], [["url", 10907, 9], ["sha256", 10908, 9]], [["homepage", 10912, 9], ["license", 10913, 9]], [["pname", 10903, 7], ["ename", 10904, 7], ["version", 10905, 7], ["src", 10906, 7], ["packageRequires", 10910, 7], ["meta", 10911, 7]], [["url", 10928, 9], ["sha256", 10929, 9]], [["homepage", 10933, 9], ["license", 10934, 9]], [["pname", 10924, 7], ["ename", 10925, 7], ["version", 10926, 7], ["src", 10927, 7], ["packageRequires", 10931, 7], ["meta", 10932, 7]], [["url", 10949, 9], ["sha256", 10950, 9]], [["homepage", 10954, 9], ["license", 10955, 9]], [["pname", 10945, 7], ["ename", 10946, 7], ["version", 10947, 7], ["src", 10948, 7], ["packageRequires", 10952, 7], ["meta", 10953, 7]], [["url", 10971, 9], ["sha256", 10972, 9]], [["homepage", 10976, 9], ["license", 10977, 9]], [["pname", 10967, 7], ["ename", 10968, 7], ["version", 10969, 7], ["src", 10970, 7], ["packageRequires", 10974, 7], ["meta", 10975, 7]], [["url", 10992, 9], ["sha256", 10993, 9]], [["homepage", 10997, 9], ["license", 10998, 9]], [["pname", 10988, 7], ["ename", 10989, 7], ["version", 10990, 7], ["src", 10991, 7], ["packageRequires", 10995, 7], ["meta", 10996, 7]], [["url", 11013, 9], ["sha256", 11014, 9]], [["homepage", 11018, 9], ["license", 11019, 9]], [["pname", 11009, 7], ["ename", 11010, 7], ["version", 11011, 7], ["src", 11012, 7], ["packageRequires", 11016, 7], ["meta", 11017, 7]], [["url", 11035, 9], ["sha256", 11036, 9]], [["homepage", 11040, 9], ["license", 11041, 9]], [["pname", 11031, 7], ["ename", 11032, 7], ["version", 11033, 7], ["src", 11034, 7], ["packageRequires", 11038, 7], ["meta", 11039, 7]], [["url", 11058, 9], ["sha256", 11059, 9]], [["homepage", 11066, 9], ["license", 11067, 9]], [["pname", 11054, 7], ["ename", 11055, 7], ["version", 11056, 7], ["src", 11057, 7], ["packageRequires", 11061, 7], ["meta", 11065, 7]], [["url", 11082, 9], ["sha256", 11083, 9]], [["homepage", 11087, 9], ["license", 11088, 9]], [["pname", 11078, 7], ["ename", 11079, 7], ["version", 11080, 7], ["src", 11081, 7], ["packageRequires", 11085, 7], ["meta", 11086, 7]], [["url", 11103, 9], ["sha256", 11104, 9]], [["homepage", 11108, 9], ["license", 11109, 9]], [["pname", 11099, 7], ["ename", 11100, 7], ["version", 11101, 7], ["src", 11102, 7], ["packageRequires", 11106, 7], ["meta", 11107, 7]], [["url", 11124, 9], ["sha256", 11125, 9]], [["homepage", 11129, 9], ["license", 11130, 9]], [["pname", 11120, 7], ["ename", 11121, 7], ["version", 11122, 7], ["src", 11123, 7], ["packageRequires", 11127, 7], ["meta", 11128, 7]], [["url", 11145, 9], ["sha256", 11146, 9]], [["homepage", 11150, 9], ["license", 11151, 9]], [["pname", 11141, 7], ["ename", 11142, 7], ["version", 11143, 7], ["src", 11144, 7], ["packageRequires", 11148, 7], ["meta", 11149, 7]], [["url", 11166, 9], ["sha256", 11167, 9]], [["homepage", 11171, 9], ["license", 11172, 9]], [["pname", 11162, 7], ["ename", 11163, 7], ["version", 11164, 7], ["src", 11165, 7], ["packageRequires", 11169, 7], ["meta", 11170, 7]], [["url", 11188, 9], ["sha256", 11189, 9]], [["homepage", 11193, 9], ["license", 11194, 9]], [["pname", 11184, 7], ["ename", 11185, 7], ["version", 11186, 7], ["src", 11187, 7], ["packageRequires", 11191, 7], ["meta", 11192, 7]], [["url", 11211, 9], ["sha256", 11212, 9]], [["homepage", 11219, 9], ["license", 11220, 9]], [["pname", 11207, 7], ["ename", 11208, 7], ["version", 11209, 7], ["src", 11210, 7], ["packageRequires", 11214, 7], ["meta", 11218, 7]], [["url", 11235, 9], ["sha256", 11236, 9]], [["homepage", 11240, 9], ["license", 11241, 9]], [["pname", 11231, 7], ["ename", 11232, 7], ["version", 11233, 7], ["src", 11234, 7], ["packageRequires", 11238, 7], ["meta", 11239, 7]], [["url", 11256, 9], ["sha256", 11257, 9]], [["homepage", 11261, 9], ["license", 11262, 9]], [["pname", 11252, 7], ["ename", 11253, 7], ["version", 11254, 7], ["src", 11255, 7], ["packageRequires", 11259, 7], ["meta", 11260, 7]], [["url", 11277, 9], ["sha256", 11278, 9]], [["homepage", 11282, 9], ["license", 11283, 9]], [["pname", 11273, 7], ["ename", 11274, 7], ["version", 11275, 7], ["src", 11276, 7], ["packageRequires", 11280, 7], ["meta", 11281, 7]], [["url", 11298, 9], ["sha256", 11299, 9]], [["homepage", 11303, 9], ["license", 11304, 9]], [["pname", 11294, 7], ["ename", 11295, 7], ["version", 11296, 7], ["src", 11297, 7], ["packageRequires", 11301, 7], ["meta", 11302, 7]], [["url", 11320, 9], ["sha256", 11321, 9]], [["homepage", 11325, 9], ["license", 11326, 9]], [["pname", 11316, 7], ["ename", 11317, 7], ["version", 11318, 7], ["src", 11319, 7], ["packageRequires", 11323, 7], ["meta", 11324, 7]], [["url", 11342, 9], ["sha256", 11343, 9]], [["homepage", 11347, 9], ["license", 11348, 9]], [["pname", 11338, 7], ["ename", 11339, 7], ["version", 11340, 7], ["src", 11341, 7], ["packageRequires", 11345, 7], ["meta", 11346, 7]], [["url", 11363, 9], ["sha256", 11364, 9]], [["homepage", 11368, 9], ["license", 11369, 9]], [["pname", 11359, 7], ["ename", 11360, 7], ["version", 11361, 7], ["src", 11362, 7], ["packageRequires", 11366, 7], ["meta", 11367, 7]], [["url", 11385, 9], ["sha256", 11386, 9]], [["homepage", 11390, 9], ["license", 11391, 9]], [["pname", 11381, 7], ["ename", 11382, 7], ["version", 11383, 7], ["src", 11384, 7], ["packageRequires", 11388, 7], ["meta", 11389, 7]], [["url", 11407, 9], ["sha256", 11408, 9]], [["homepage", 11412, 9], ["license", 11413, 9]], [["pname", 11403, 7], ["ename", 11404, 7], ["version", 11405, 7], ["src", 11406, 7], ["packageRequires", 11410, 7], ["meta", 11411, 7]], [["a68-mode", 3, 3], ["ace-window", 24, 3], ["ack", 46, 3], ["activities", 67, 3], ["ada-mode", 89, 3], ["ada-ref-man", 117, 3], ["adaptive-wrap", 138, 3], ["adjust-parens", 159, 3], ["advice-patch", 180, 3], ["aggressive-completion", 201, 3], ["aggressive-indent", 222, 3], ["agitate", 243, 3], ["ahungry-theme", 264, 3], ["aircon-theme", 285, 3], ["all", 306, 3], ["altcaps", 327, 3], ["ampc", 348, 3], ["arbitools", 369, 3], ["ascii-art-to-unicode", 391, 3], ["assess", 412, 3], ["async", 434, 3], ["auctex", 455, 3], ["auctex-cont-latexmk", 476, 3], ["auctex-label-numbers", 498, 3], ["aumix-mode", 520, 3], ["auth-source-xoauth2-plugin", 541, 3], ["auto-correct", 563, 3], ["auto-overlays", 584, 3], ["autocrypt", 606, 3], ["autorevert-tail-truncate", 627, 3], ["avy", 648, 3], ["bbdb", 670, 3], ["beacon", 692, 3], ["beframe", 713, 3], ["bicep-ts-mode", 734, 3], ["bind-key", 755, 3], ["blist", 776, 3], ["bluetooth", 798, 3], ["bnf-mode", 826, 3], ["boxy", 848, 3], ["boxy-headings", 869, 3], ["breadcrumb", 895, 3], ["brief", 917, 3], ["buffer-env", 943, 3], ["buffer-expose", 965, 3], ["bufferlo", 987, 3], ["buframe", 1008, 3], ["bug-hunter", 1030, 3], ["buildbot", 1056, 3], ["calibre", 1077, 3], ["cape", 1099, 3], ["capf-autosuggest", 1121, 3], ["caps-lock", 1142, 3], ["captain", 1163, 3], ["chess", 1184, 3], ["cl-generic", 1206, 3], ["cl-lib", 1227, 3], ["clipboard-collector", 1248, 3], ["cm-mode", 1269, 3], ["cobol-mode", 1291, 3], ["code-cells", 1312, 3], ["colorful-mode", 1334, 3], ["comint-mime", 1360, 3], ["compact-docstrings", 1386, 3], ["company", 1407, 3], ["company-ebdb", 1429, 3], ["company-math", 1455, 3], ["company-statistics", 1481, 3], ["compat", 1503, 3], ["cond-star", 1524, 3], ["constants", 1545, 3], ["consult", 1566, 3], ["consult-denote", 1588, 3], ["consult-hoogle", 1614, 3], ["consult-recoll", 1636, 3], ["context-coloring", 1658, 3], ["corfu", 1679, 3], ["coterm", 1701, 3], ["counsel", 1723, 3], ["cperl-mode", 1749, 3], ["cpio-mode", 1770, 3], ["cpupower", 1791, 3], ["crdt", 1812, 3], ["crisp", 1833, 3], ["csharp-mode", 1854, 3], ["csv-mode", 1875, 3], ["cursor-undo", 1897, 3], ["cursory", 1918, 3], ["cus-abbrev", 1939, 3], ["cycle-quotes", 1960, 3], ["dape", 1981, 3], ["darkroom", 2003, 3], ["dash", 2025, 3], ["dbus-codegen", 2046, 3], ["debbugs", 2068, 3], ["delight", 2090, 3], ["denote", 2116, 3], ["denote-journal", 2137, 3], ["denote-markdown", 2159, 3], ["denote-menu", 2181, 3], ["denote-org", 2203, 3], ["denote-review", 2225, 3], ["denote-search", 2247, 3], ["denote-sequence", 2269, 3], ["denote-silo", 2291, 3], ["detached", 2313, 3], ["devdocs", 2334, 3], ["devicetree-ts-mode", 2356, 3], ["dicom", 2377, 3], ["dict-tree", 2399, 3], ["diff-hl", 2427, 3], ["diffview", 2449, 3], ["diminish", 2470, 3], ["dired-du", 2491, 3], ["dired-duplicates", 2513, 3], ["dired-git-info", 2534, 3], ["dired-preview", 2555, 3], ["dired-sidebar", 2576, 3], ["disk-usage", 2598, 3], ["dismal", 2619, 3], ["disproject", 2641, 3], ["djvu", 2663, 3], ["dmsg", 2684, 3], ["do-at-point", 2705, 3], ["doc-toc", 2726, 3], ["doc-view-follow", 2747, 3], ["docbook", 2768, 3], ["doric-themes", 2789, 3], ["drepl", 2810, 3], ["dts-mode", 2832, 3], ["easy-escape", 2853, 3], ["easy-kill", 2874, 3], ["ebdb", 2896, 3], ["ebdb-gnorb", 2918, 3], ["ebdb-i18n-chn", 2944, 3], ["ediprolog", 2970, 3], ["eev", 2991, 3], ["ef-themes", 3012, 3], ["eglot", 3034, 3], ["el-job", 3070, 3], ["el-search", 3091, 3], ["eldoc", 3117, 3], ["electric-spacing", 3138, 3], ["elisa", 3159, 3], ["elisp-benchmarks", 3189, 3], ["ellama", 3210, 3], ["emacs-gc-stats", 3242, 3], ["emacs-lisp-intro-es", 3263, 3], ["emacs-lisp-intro-nl", 3284, 3], ["embark", 3305, 3], ["embark-consult", 3327, 3], ["ement", 3355, 3], ["emms", 3391, 3], ["engrave-faces", 3419, 3], ["enwc", 3440, 3], ["epoch-view", 3461, 3], ["erc", 3482, 3], ["ergoemacs-mode", 3504, 3], ["ess", 3530, 3], ["excorporate", 3551, 3], ["expand-region", 3581, 3], ["expreg", 3602, 3], ["external-completion", 3623, 3], ["exwm", 3644, 3], ["f90-interface-browser", 3670, 3], ["ffs", 3692, 3], ["filechooser", 3713, 3], ["filladapt", 3735, 3], ["firefox-javascript-repl", 3756, 3], ["flylisp", 3777, 3], ["flymake", 3799, 3], ["flymake-clippy", 3825, 3], ["flymake-codespell", 3846, 3], ["flymake-harper", 3868, 3], ["flymake-proselint", 3889, 3], ["fontaine", 3910, 3], ["forgejo", 3931, 3], ["frame-tabs", 3953, 3], ["frog-menu", 3974, 3], ["fsm", 4000, 3], ["ftable", 4022, 3], ["futur", 4043, 3], ["gcmh", 4064, 3], ["ggtags", 4085, 3], ["gited", 4106, 3], ["gle-mode", 4128, 3], ["gnat-compiler", 4150, 3], ["gnome-c-style", 4172, 3], ["gnome-dark-style", 4193, 3], ["gnorb", 4214, 3], ["gnosis", 4236, 3], ["gnu-elpa", 4262, 3], ["gnu-elpa-keyring-update", 4283, 3], ["gnugo", 4304, 3], ["gnus-mock", 4332, 3], ["gpastel", 4353, 3], ["gpr-mode", 4374, 3], ["gpr-query", 4400, 3], ["graphql", 4426, 3], ["greader", 4447, 3], ["greenbar", 4473, 3], ["gtags-mode", 4494, 3], ["guess-language", 4515, 3], ["hcel", 4541, 3], ["heap", 4562, 3], ["hiddenquote", 4583, 3], ["highlight-escape-sequences", 4604, 3], ["hook-helpers", 4625, 3], ["html5-schema", 4646, 3], ["hugoista", 4667, 3], ["hydra", 4689, 3], ["hyperbole", 4711, 3], ["ibuffer-sidebar", 4732, 3], ["idlwave", 4753, 3], ["ilist", 4774, 3], ["indent-bars", 4795, 3], ["inspector", 4817, 3], ["ioccur", 4838, 3], ["isearch-mb", 4860, 3], ["iso-date", 4881, 3], ["iterators", 4902, 3], ["ivy", 4923, 3], ["ivy-avy", 4944, 3], ["ivy-explorer", 4970, 3], ["ivy-hydra", 4992, 3], ["ivy-posframe", 5018, 3], ["jami-bot", 5044, 3], ["jarchive", 5065, 3], ["javaimp", 5086, 3], ["jgraph-mode", 5107, 3], ["jinx", 5129, 3], ["jit-spell", 5151, 3], ["js2-mode", 5173, 3], ["json-mode", 5195, 3], ["jsonrpc", 5216, 3], ["jumpc", 5237, 3], ["keymap-popup", 5258, 3], ["kind-icon", 5279, 3], ["kiwix", 5301, 3], ["kmb", 5323, 3], ["kubed", 5344, 3], ["landmark", 5365, 3], ["latex-table-wizard", 5386, 3], ["leaf", 5412, 3], ["lentic", 5433, 3], ["lentic-server", 5459, 3], ["let-alist", 5485, 3], ["lex", 5506, 3], ["lin", 5527, 3], ["lisp-ts-mode", 5548, 3], ["listen", 5574, 3], ["literate-scratch", 5604, 3], ["llm", 5625, 3], ["lmc", 5655, 3], ["load-dir", 5677, 3], ["load-relative", 5699, 3], ["loc-changes", 5720, 3], ["loccur", 5741, 3], ["logos", 5762, 3], ["luwak", 5783, 3], ["lv", 5804, 3], ["m-buffer", 5825, 3], ["map", 5847, 3], ["marginalia", 5868, 3], ["markchars", 5890, 3], ["math-symbol-lists", 5911, 3], ["mathjax", 5932, 3], ["mathsheet", 5953, 3], ["matlab-mode", 5975, 3], ["mct", 5996, 3], ["memory-usage", 6017, 3], ["metar", 6038, 3], ["midi-kbd", 6060, 3], ["mines", 6081, 3], ["minibuffer-header", 6103, 3], ["minibuffer-line", 6124, 3], ["minimail", 6145, 3], ["minimap", 6171, 3], ["minuet", 6192, 3], ["mmm-mode", 6218, 3], ["mode-line-maker", 6240, 3], ["modus-themes", 6261, 3], ["mpdired", 6282, 3], ["multi-mode", 6303, 3], ["multishell", 6324, 3], ["muse", 6346, 3], ["myers", 6367, 3], ["nadvice", 6388, 3], ["nameless", 6409, 3], ["names", 6430, 3], ["nano-agenda", 6456, 3], ["nano-modeline", 6477, 3], ["nano-theme", 6498, 3], ["nftables-mode", 6519, 3], ["nhexl-mode", 6540, 3], ["nlinum", 6561, 3], ["notes-mode", 6582, 3], ["notmuch-indicator", 6603, 3], ["ntlm", 6624, 3], ["num3-mode", 6645, 3], ["oauth2", 6666, 3], ["ob-asymptote", 6687, 3], ["ob-haxe", 6708, 3], ["objed", 6729, 3], ["omn-mode", 6751, 3], ["on-screen", 6772, 3], ["orderless", 6794, 3], ["org", 6816, 3], ["org-contacts", 6837, 3], ["org-edna", 6859, 3], ["org-gnosis", 6885, 3], ["org-jami-bot", 6911, 3], ["org-mem", 6933, 3], ["org-modern", 6961, 3], ["org-notify", 6987, 3], ["org-real", 7008, 3], ["org-remark", 7034, 3], ["org-transclusion", 7056, 3], ["org-translate", 7078, 3], ["orgalist", 7100, 3], ["osc", 7121, 3], ["osm", 7142, 3], ["other-frame-window", 7164, 3], ["pabbrev", 7185, 3], ["paced", 7206, 3], ["package-x", 7228, 3], ["parsec", 7249, 3], ["parser-generator", 7271, 3], ["path-iterator", 7292, 3], ["peg", 7313, 3], ["perl-doc", 7334, 3], ["persist", 7355, 3], ["php-fill", 7377, 3], ["phpinspect", 7398, 3], ["phps-mode", 7420, 3], ["pinentry", 7441, 3], ["plz", 7462, 3], ["plz-event-source", 7483, 3], ["plz-media-type", 7505, 3], ["plz-see", 7527, 3], ["po-mode", 7549, 3], ["poke", 7570, 3], ["poke-mode", 7591, 3], ["poker", 7612, 3], ["polymode", 7633, 3], ["popper", 7654, 3], ["posframe", 7675, 3], ["pq", 7696, 3], ["prefixed-core", 7717, 3], ["preview-auto", 7738, 3], ["preview-tailor", 7760, 3], ["project", 7782, 3], ["psgml", 7804, 3], ["pspp-mode", 7825, 3], ["pulsar", 7846, 3], ["pyim", 7867, 3], ["pyim-basedict", 7893, 3], ["python", 7915, 3], ["qrencode", 7937, 3], ["quarter-plane", 7958, 3], ["queue", 7979, 3], ["rainbow-mode", 8001, 3], ["rbit", 8022, 3], ["rcirc-color", 8043, 3], ["rcirc-mentions", 8064, 3], ["rcirc-menu", 8085, 3], ["rcirc-sqlite", 8106, 3], ["realgud", 8127, 3], ["realgud-ipdb", 8155, 3], ["realgud-jdb", 8181, 3], ["realgud-lldb", 8207, 3], ["realgud-node-debug", 8233, 3], ["realgud-node-inspect", 8261, 3], ["realgud-pdbpp", 8289, 3], ["realgud-trepan-ni", 8315, 3], ["realgud-trepan-xpy", 8341, 3], ["rec-mode", 8367, 3], ["register-list", 8388, 3], ["relint", 8409, 3], ["repology", 8431, 3], ["rich-minority", 8452, 3], ["rnc-mode", 8474, 3], ["rt-liberation", 8495, 3], ["ruby-end", 8516, 3], ["rudel", 8537, 3], ["satchel", 8565, 3], ["scanner", 8587, 3], ["scroll-restore", 8609, 3], ["sed-mode", 8630, 3], ["sendai-theme", 8651, 3], ["seq", 8672, 3], ["setup", 8693, 3], ["shelisp", 8714, 3], ["shell-command-plus", 8735, 3], ["shell-quasiquote", 8756, 3], ["shen-mode", 8777, 3], ["shift-number", 8798, 3], ["show-font", 8819, 3], ["sisu-mode", 8840, 3], ["site-lisp", 8861, 3], ["sketch-mode", 8882, 3], ["slime-volleyball", 8903, 3], ["sm-c-mode", 8925, 3], ["smalltalk-mode", 8946, 3], ["smart-yank", 8967, 3], ["sml-mode", 8988, 3], ["so-long", 9010, 3], ["soap-client", 9031, 3], ["sokoban", 9053, 3], ["sotlisp", 9075, 3], ["spacious-padding", 9096, 3], ["speedrect", 9117, 3], ["spinner", 9139, 3], ["sql-beeline", 9160, 3], ["sql-cassandra", 9181, 3], ["sql-indent", 9202, 3], ["sql-smie", 9224, 3], ["srht", 9245, 3], ["ssh-deploy", 9271, 3], ["standard-themes", 9292, 3], ["stream", 9314, 3], ["substitute", 9335, 3], ["svg", 9356, 3], ["svg-clock", 9377, 3], ["svg-lib", 9399, 3], ["svg-tag-mode", 9420, 3], ["swiper", 9442, 3], ["switchy-window", 9464, 3], ["sxhkdrc-mode", 9486, 3], ["system-packages", 9507, 3], ["systemd", 9528, 3], ["tNFA", 9550, 3], ["tam", 9576, 3], ["taxy", 9597, 3], ["taxy-magit-section", 9618, 3], ["temp-buffer-browse", 9644, 3], ["tempel", 9665, 3], ["termint", 9687, 3], ["test-simple", 9708, 3], ["tex-item", 9730, 3], ["tex-parens", 9751, 3], ["theme-buffet", 9772, 3], ["timeout", 9793, 3], ["timerfunctions", 9814, 3], ["tiny", 9836, 3], ["tmr", 9857, 3], ["tomelr", 9878, 3], ["topspace", 9904, 3], ["track-changes", 9925, 3], ["tramp", 9946, 3], ["tramp-hlo", 9967, 3], ["tramp-nspawn", 9989, 3], ["tramp-theme", 10010, 3], ["transcribe", 10031, 3], ["transient", 10052, 3], ["transient-cycles", 10082, 3], ["tree-inspector", 10103, 3], ["trie", 10125, 3], ["triples", 10151, 3], ["truename-cache", 10173, 3], ["trust-manager", 10195, 3], ["ulisp-repl", 10216, 3], ["undo-tree", 10237, 3], ["uni-confusables", 10259, 3], ["uniquify-files", 10280, 3], ["urgrep", 10301, 3], ["url-http-ntlm", 10323, 3], ["url-http-oauth", 10345, 3], ["url-scgi", 10366, 3], ["use-package", 10387, 3], ["validate", 10409, 3], ["valign", 10435, 3], ["vc-backup", 10456, 3], ["vc-got", 10478, 3], ["vc-hgcmd", 10499, 3], ["vc-jj", 10520, 3], ["vcard", 10546, 3], ["vcl-mode", 10567, 3], ["vdiff", 10588, 3], ["vecdb", 10610, 3], ["verilog-mode", 10636, 3], ["vertico", 10657, 3], ["vertico-posframe", 10679, 3], ["vigenere", 10705, 3], ["visual-filename-abbrev", 10726, 3], ["visual-fill", 10747, 3], ["vlf", 10768, 3], ["vundo", 10789, 3], ["wcheck-mode", 10810, 3], ["wconf", 10831, 3], ["web-server", 10852, 3], ["webfeeder", 10874, 3], ["websocket", 10895, 3], ["which-key", 10917, 3], ["window-commander", 10938, 3], ["window-tool-bar", 10959, 3], ["windower", 10981, 3], ["windresize", 11002, 3], ["wisi", 11023, 3], ["wisitoken-grammar-mode", 11045, 3], ["with-command-redo", 11071, 3], ["wpuzzle", 11092, 3], ["wrap-search", 11113, 3], ["xclip", 11134, 3], ["xeft", 11155, 3], ["xelb", 11176, 3], ["xpm", 11198, 3], ["xr", 11224, 3], ["xref", 11245, 3], ["xref-union", 11266, 3], ["yaml", 11287, 3], ["yasnippet", 11308, 3], ["yasnippet-classic-snippets", 11330, 3], ["zones", 11352, 3], ["ztree", 11373, 3], ["zuul", 11395, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
 const formals$2 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 14, 9], ["sha256", 15, 9]]);
-const pos$2 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 19, 9], ["license", 20, 9]]);
-const pos$3 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10, 7], ["ename", 11, 7], ["version", 12, 7], ["src", 13, 7], ["packageRequires", 17, 7], ["meta", 18, 7]]);
 const formals$3 = { args: { avy: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$4 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 36, 9], ["sha256", 37, 9]]);
-const pos$5 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 41, 9], ["license", 42, 9]]);
-const pos$6 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 32, 7], ["ename", 33, 7], ["version", 34, 7], ["src", 35, 7], ["packageRequires", 39, 7], ["meta", 40, 7]]);
 const formals$4 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$7 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 57, 9], ["sha256", 58, 9]]);
-const pos$8 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 62, 9], ["license", 63, 9]]);
-const pos$9 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 53, 7], ["ename", 54, 7], ["version", 55, 7], ["src", 56, 7], ["packageRequires", 60, 7], ["meta", 61, 7]]);
 const formals$5 = { args: { elpaBuild: false, fetchurl: false, lib: false, persist: false }, ellipsis: false };
-const pos$10 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 79, 9], ["sha256", 80, 9]]);
-const pos$11 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 84, 9], ["license", 85, 9]]);
-const pos$12 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 75, 7], ["ename", 76, 7], ["version", 77, 7], ["src", 78, 7], ["packageRequires", 82, 7], ["meta", 83, 7]]);
 const formals$6 = { args: { elpaBuild: false, fetchurl: false, "gnat-compiler": false, lib: false, "uniquify-files": false, wisi: false }, ellipsis: false };
-const pos$13 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 103, 9], ["sha256", 104, 9]]);
-const pos$14 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 112, 9], ["license", 113, 9]]);
-const pos$15 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 99, 7], ["ename", 100, 7], ["version", 101, 7], ["src", 102, 7], ["packageRequires", 106, 7], ["meta", 111, 7]]);
 const formals$7 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$16 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 128, 9], ["sha256", 129, 9]]);
-const pos$17 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 133, 9], ["license", 134, 9]]);
-const pos$18 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 124, 7], ["ename", 125, 7], ["version", 126, 7], ["src", 127, 7], ["packageRequires", 131, 7], ["meta", 132, 7]]);
 const formals$8 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$19 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 149, 9], ["sha256", 150, 9]]);
-const pos$20 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 154, 9], ["license", 155, 9]]);
-const pos$21 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 145, 7], ["ename", 146, 7], ["version", 147, 7], ["src", 148, 7], ["packageRequires", 152, 7], ["meta", 153, 7]]);
 const formals$9 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$22 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 170, 9], ["sha256", 171, 9]]);
-const pos$23 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 175, 9], ["license", 176, 9]]);
-const pos$24 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 166, 7], ["ename", 167, 7], ["version", 168, 7], ["src", 169, 7], ["packageRequires", 173, 7], ["meta", 174, 7]]);
 const formals$10 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$25 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 191, 9], ["sha256", 192, 9]]);
-const pos$26 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 196, 9], ["license", 197, 9]]);
-const pos$27 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 187, 7], ["ename", 188, 7], ["version", 189, 7], ["src", 190, 7], ["packageRequires", 194, 7], ["meta", 195, 7]]);
 const formals$11 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$28 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 212, 9], ["sha256", 213, 9]]);
-const pos$29 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 217, 9], ["license", 218, 9]]);
-const pos$30 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 208, 7], ["ename", 209, 7], ["version", 210, 7], ["src", 211, 7], ["packageRequires", 215, 7], ["meta", 216, 7]]);
 const formals$12 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$31 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 233, 9], ["sha256", 234, 9]]);
-const pos$32 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 238, 9], ["license", 239, 9]]);
-const pos$33 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 229, 7], ["ename", 230, 7], ["version", 231, 7], ["src", 232, 7], ["packageRequires", 236, 7], ["meta", 237, 7]]);
 const formals$13 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$34 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 254, 9], ["sha256", 255, 9]]);
-const pos$35 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 259, 9], ["license", 260, 9]]);
-const pos$36 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 250, 7], ["ename", 251, 7], ["version", 252, 7], ["src", 253, 7], ["packageRequires", 257, 7], ["meta", 258, 7]]);
 const formals$14 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$37 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 275, 9], ["sha256", 276, 9]]);
-const pos$38 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 280, 9], ["license", 281, 9]]);
-const pos$39 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 271, 7], ["ename", 272, 7], ["version", 273, 7], ["src", 274, 7], ["packageRequires", 278, 7], ["meta", 279, 7]]);
 const formals$15 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$40 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 296, 9], ["sha256", 297, 9]]);
-const pos$41 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 301, 9], ["license", 302, 9]]);
-const pos$42 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 292, 7], ["ename", 293, 7], ["version", 294, 7], ["src", 295, 7], ["packageRequires", 299, 7], ["meta", 300, 7]]);
 const formals$16 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$43 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 317, 9], ["sha256", 318, 9]]);
-const pos$44 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 322, 9], ["license", 323, 9]]);
-const pos$45 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 313, 7], ["ename", 314, 7], ["version", 315, 7], ["src", 316, 7], ["packageRequires", 320, 7], ["meta", 321, 7]]);
 const formals$17 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$46 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 338, 9], ["sha256", 339, 9]]);
-const pos$47 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 343, 9], ["license", 344, 9]]);
-const pos$48 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 334, 7], ["ename", 335, 7], ["version", 336, 7], ["src", 337, 7], ["packageRequires", 341, 7], ["meta", 342, 7]]);
 const formals$18 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$49 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 359, 9], ["sha256", 360, 9]]);
-const pos$50 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 364, 9], ["license", 365, 9]]);
-const pos$51 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 355, 7], ["ename", 356, 7], ["version", 357, 7], ["src", 358, 7], ["packageRequires", 362, 7], ["meta", 363, 7]]);
 const formals$19 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$52 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 381, 9], ["sha256", 382, 9]]);
-const pos$53 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 386, 9], ["license", 387, 9]]);
-const pos$54 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 377, 7], ["ename", 378, 7], ["version", 379, 7], ["src", 380, 7], ["packageRequires", 384, 7], ["meta", 385, 7]]);
 const formals$20 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$55 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 402, 9], ["sha256", 403, 9]]);
-const pos$56 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 407, 9], ["license", 408, 9]]);
-const pos$57 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 398, 7], ["ename", 399, 7], ["version", 400, 7], ["src", 401, 7], ["packageRequires", 405, 7], ["meta", 406, 7]]);
 const formals$21 = { args: { elpaBuild: false, fetchurl: false, lib: false, "m-buffer": false }, ellipsis: false };
-const pos$58 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 424, 9], ["sha256", 425, 9]]);
-const pos$59 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 429, 9], ["license", 430, 9]]);
-const pos$60 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 420, 7], ["ename", 421, 7], ["version", 422, 7], ["src", 423, 7], ["packageRequires", 427, 7], ["meta", 428, 7]]);
 const formals$22 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$61 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 445, 9], ["sha256", 446, 9]]);
-const pos$62 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 450, 9], ["license", 451, 9]]);
-const pos$63 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 441, 7], ["ename", 442, 7], ["version", 443, 7], ["src", 444, 7], ["packageRequires", 448, 7], ["meta", 449, 7]]);
 const formals$23 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$64 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 466, 9], ["sha256", 467, 9]]);
-const pos$65 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 471, 9], ["license", 472, 9]]);
-const pos$66 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 462, 7], ["ename", 463, 7], ["version", 464, 7], ["src", 465, 7], ["packageRequires", 469, 7], ["meta", 470, 7]]);
 const formals$24 = { args: { auctex: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$67 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 488, 9], ["sha256", 489, 9]]);
-const pos$68 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 493, 9], ["license", 494, 9]]);
-const pos$69 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 484, 7], ["ename", 485, 7], ["version", 486, 7], ["src", 487, 7], ["packageRequires", 491, 7], ["meta", 492, 7]]);
 const formals$25 = { args: { auctex: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$70 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 510, 9], ["sha256", 511, 9]]);
-const pos$71 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 515, 9], ["license", 516, 9]]);
-const pos$72 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 506, 7], ["ename", 507, 7], ["version", 508, 7], ["src", 509, 7], ["packageRequires", 513, 7], ["meta", 514, 7]]);
 const formals$26 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$73 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 531, 9], ["sha256", 532, 9]]);
-const pos$74 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 536, 9], ["license", 537, 9]]);
-const pos$75 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 527, 7], ["ename", 528, 7], ["version", 529, 7], ["src", 530, 7], ["packageRequires", 534, 7], ["meta", 535, 7]]);
 const formals$27 = { args: { elpaBuild: false, fetchurl: false, lib: false, oauth2: false }, ellipsis: false };
-const pos$76 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 553, 9], ["sha256", 554, 9]]);
-const pos$77 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 558, 9], ["license", 559, 9]]);
-const pos$78 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 549, 7], ["ename", 550, 7], ["version", 551, 7], ["src", 552, 7], ["packageRequires", 556, 7], ["meta", 557, 7]]);
 const formals$28 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$79 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 574, 9], ["sha256", 575, 9]]);
-const pos$80 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 579, 9], ["license", 580, 9]]);
-const pos$81 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 570, 7], ["ename", 571, 7], ["version", 572, 7], ["src", 573, 7], ["packageRequires", 577, 7], ["meta", 578, 7]]);
 const formals$29 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$82 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 596, 9], ["sha256", 597, 9]]);
-const pos$83 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 601, 9], ["license", 602, 9]]);
-const pos$84 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 592, 7], ["ename", 593, 7], ["version", 594, 7], ["src", 595, 7], ["packageRequires", 599, 7], ["meta", 600, 7]]);
 const formals$30 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$85 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 617, 9], ["sha256", 618, 9]]);
-const pos$86 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 622, 9], ["license", 623, 9]]);
-const pos$87 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 613, 7], ["ename", 614, 7], ["version", 615, 7], ["src", 616, 7], ["packageRequires", 620, 7], ["meta", 621, 7]]);
 const formals$31 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$88 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 638, 9], ["sha256", 639, 9]]);
-const pos$89 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 643, 9], ["license", 644, 9]]);
-const pos$90 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 634, 7], ["ename", 635, 7], ["version", 636, 7], ["src", 637, 7], ["packageRequires", 641, 7], ["meta", 642, 7]]);
 const formals$32 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$91 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 660, 9], ["sha256", 661, 9]]);
-const pos$92 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 665, 9], ["license", 666, 9]]);
-const pos$93 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 656, 7], ["ename", 657, 7], ["version", 658, 7], ["src", 659, 7], ["packageRequires", 663, 7], ["meta", 664, 7]]);
 const formals$33 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$94 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 682, 9], ["sha256", 683, 9]]);
-const pos$95 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 687, 9], ["license", 688, 9]]);
-const pos$96 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 678, 7], ["ename", 679, 7], ["version", 680, 7], ["src", 681, 7], ["packageRequires", 685, 7], ["meta", 686, 7]]);
 const formals$34 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$97 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 703, 9], ["sha256", 704, 9]]);
-const pos$98 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 708, 9], ["license", 709, 9]]);
-const pos$99 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 699, 7], ["ename", 700, 7], ["version", 701, 7], ["src", 702, 7], ["packageRequires", 706, 7], ["meta", 707, 7]]);
 const formals$35 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$100 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 724, 9], ["sha256", 725, 9]]);
-const pos$101 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 729, 9], ["license", 730, 9]]);
-const pos$102 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 720, 7], ["ename", 721, 7], ["version", 722, 7], ["src", 723, 7], ["packageRequires", 727, 7], ["meta", 728, 7]]);
 const formals$36 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$103 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 745, 9], ["sha256", 746, 9]]);
-const pos$104 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 750, 9], ["license", 751, 9]]);
-const pos$105 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 741, 7], ["ename", 742, 7], ["version", 743, 7], ["src", 744, 7], ["packageRequires", 748, 7], ["meta", 749, 7]]);
 const formals$37 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$106 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 766, 9], ["sha256", 767, 9]]);
-const pos$107 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 771, 9], ["license", 772, 9]]);
-const pos$108 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 762, 7], ["ename", 763, 7], ["version", 764, 7], ["src", 765, 7], ["packageRequires", 769, 7], ["meta", 770, 7]]);
 const formals$38 = { args: { elpaBuild: false, fetchurl: false, ilist: false, lib: false }, ellipsis: false };
-const pos$109 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 788, 9], ["sha256", 789, 9]]);
-const pos$110 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 793, 9], ["license", 794, 9]]);
-const pos$111 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 784, 7], ["ename", 785, 7], ["version", 786, 7], ["src", 787, 7], ["packageRequires", 791, 7], ["meta", 792, 7]]);
 const formals$39 = { args: { compat: false, dash: false, elpaBuild: false, fetchurl: false, lib: false, transient: false }, ellipsis: false };
-const pos$112 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 812, 9], ["sha256", 813, 9]]);
-const pos$113 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 821, 9], ["license", 822, 9]]);
-const pos$114 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 808, 7], ["ename", 809, 7], ["version", 810, 7], ["src", 811, 7], ["packageRequires", 815, 7], ["meta", 820, 7]]);
 const formals$40 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$115 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 838, 9], ["sha256", 839, 9]]);
-const pos$116 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 843, 9], ["license", 844, 9]]);
-const pos$117 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 834, 7], ["ename", 835, 7], ["version", 836, 7], ["src", 837, 7], ["packageRequires", 841, 7], ["meta", 842, 7]]);
 const formals$41 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$118 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 859, 9], ["sha256", 860, 9]]);
-const pos$119 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 864, 9], ["license", 865, 9]]);
-const pos$120 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 855, 7], ["ename", 856, 7], ["version", 857, 7], ["src", 858, 7], ["packageRequires", 862, 7], ["meta", 863, 7]]);
 const formals$42 = { args: { boxy: false, elpaBuild: false, fetchurl: false, lib: false, org: false }, ellipsis: false };
-const pos$121 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 882, 9], ["sha256", 883, 9]]);
-const pos$122 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 890, 9], ["license", 891, 9]]);
-const pos$123 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 878, 7], ["ename", 879, 7], ["version", 880, 7], ["src", 881, 7], ["packageRequires", 885, 7], ["meta", 889, 7]]);
 const formals$43 = { args: { elpaBuild: false, fetchurl: false, lib: false, project: false }, ellipsis: false };
-const pos$124 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 907, 9], ["sha256", 908, 9]]);
-const pos$125 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 912, 9], ["license", 913, 9]]);
-const pos$126 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 903, 7], ["ename", 904, 7], ["version", 905, 7], ["src", 906, 7], ["packageRequires", 910, 7], ["meta", 911, 7]]);
 const formals$44 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false, nadvice: false }, ellipsis: false };
-const pos$127 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 930, 9], ["sha256", 931, 9]]);
-const pos$128 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 938, 9], ["license", 939, 9]]);
-const pos$129 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 926, 7], ["ename", 927, 7], ["version", 928, 7], ["src", 929, 7], ["packageRequires", 933, 7], ["meta", 937, 7]]);
 const formals$45 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$130 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 955, 9], ["sha256", 956, 9]]);
-const pos$131 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 960, 9], ["license", 961, 9]]);
-const pos$132 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 951, 7], ["ename", 952, 7], ["version", 953, 7], ["src", 954, 7], ["packageRequires", 958, 7], ["meta", 959, 7]]);
 const formals$46 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$133 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 977, 9], ["sha256", 978, 9]]);
-const pos$134 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 982, 9], ["license", 983, 9]]);
-const pos$135 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 973, 7], ["ename", 974, 7], ["version", 975, 7], ["src", 976, 7], ["packageRequires", 980, 7], ["meta", 981, 7]]);
 const formals$47 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$136 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 998, 9], ["sha256", 999, 9]]);
-const pos$137 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1003, 9], ["license", 1004, 9]]);
-const pos$138 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 994, 7], ["ename", 995, 7], ["version", 996, 7], ["src", 997, 7], ["packageRequires", 1001, 7], ["meta", 1002, 7]]);
 const formals$48 = { args: { elpaBuild: false, fetchurl: false, lib: false, timeout: false }, ellipsis: false };
-const pos$139 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1020, 9], ["sha256", 1021, 9]]);
-const pos$140 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1025, 9], ["license", 1026, 9]]);
-const pos$141 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1016, 7], ["ename", 1017, 7], ["version", 1018, 7], ["src", 1019, 7], ["packageRequires", 1023, 7], ["meta", 1024, 7]]);
 const formals$49 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false, seq: false }, ellipsis: false };
-const pos$142 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1043, 9], ["sha256", 1044, 9]]);
-const pos$143 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1051, 9], ["license", 1052, 9]]);
-const pos$144 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1039, 7], ["ename", 1040, 7], ["version", 1041, 7], ["src", 1042, 7], ["packageRequires", 1046, 7], ["meta", 1050, 7]]);
 const formals$50 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$145 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1067, 9], ["sha256", 1068, 9]]);
-const pos$146 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1072, 9], ["license", 1073, 9]]);
-const pos$147 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1063, 7], ["ename", 1064, 7], ["version", 1065, 7], ["src", 1066, 7], ["packageRequires", 1070, 7], ["meta", 1071, 7]]);
 const formals$51 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$148 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1089, 9], ["sha256", 1090, 9]]);
-const pos$149 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1094, 9], ["license", 1095, 9]]);
-const pos$150 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1085, 7], ["ename", 1086, 7], ["version", 1087, 7], ["src", 1088, 7], ["packageRequires", 1092, 7], ["meta", 1093, 7]]);
 const formals$52 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$151 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1111, 9], ["sha256", 1112, 9]]);
-const pos$152 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1116, 9], ["license", 1117, 9]]);
-const pos$153 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1107, 7], ["ename", 1108, 7], ["version", 1109, 7], ["src", 1110, 7], ["packageRequires", 1114, 7], ["meta", 1115, 7]]);
 const formals$53 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$154 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1132, 9], ["sha256", 1133, 9]]);
-const pos$155 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1137, 9], ["license", 1138, 9]]);
-const pos$156 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1128, 7], ["ename", 1129, 7], ["version", 1130, 7], ["src", 1131, 7], ["packageRequires", 1135, 7], ["meta", 1136, 7]]);
 const formals$54 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$157 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1153, 9], ["sha256", 1154, 9]]);
-const pos$158 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1158, 9], ["license", 1159, 9]]);
-const pos$159 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1149, 7], ["ename", 1150, 7], ["version", 1151, 7], ["src", 1152, 7], ["packageRequires", 1156, 7], ["meta", 1157, 7]]);
 const formals$55 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$160 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1174, 9], ["sha256", 1175, 9]]);
-const pos$161 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1179, 9], ["license", 1180, 9]]);
-const pos$162 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1170, 7], ["ename", 1171, 7], ["version", 1172, 7], ["src", 1173, 7], ["packageRequires", 1177, 7], ["meta", 1178, 7]]);
 const formals$56 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$163 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1196, 9], ["sha256", 1197, 9]]);
-const pos$164 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1201, 9], ["license", 1202, 9]]);
-const pos$165 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1192, 7], ["ename", 1193, 7], ["version", 1194, 7], ["src", 1195, 7], ["packageRequires", 1199, 7], ["meta", 1200, 7]]);
 const formals$57 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$166 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1217, 9], ["sha256", 1218, 9]]);
-const pos$167 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1222, 9], ["license", 1223, 9]]);
-const pos$168 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1213, 7], ["ename", 1214, 7], ["version", 1215, 7], ["src", 1216, 7], ["packageRequires", 1220, 7], ["meta", 1221, 7]]);
 const formals$58 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$169 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1238, 9], ["sha256", 1239, 9]]);
-const pos$170 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1243, 9], ["license", 1244, 9]]);
-const pos$171 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1234, 7], ["ename", 1235, 7], ["version", 1236, 7], ["src", 1237, 7], ["packageRequires", 1241, 7], ["meta", 1242, 7]]);
 const formals$59 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$172 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1259, 9], ["sha256", 1260, 9]]);
-const pos$173 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1264, 9], ["license", 1265, 9]]);
-const pos$174 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1255, 7], ["ename", 1256, 7], ["version", 1257, 7], ["src", 1258, 7], ["packageRequires", 1262, 7], ["meta", 1263, 7]]);
 const formals$60 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$175 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1281, 9], ["sha256", 1282, 9]]);
-const pos$176 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1286, 9], ["license", 1287, 9]]);
-const pos$177 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1277, 7], ["ename", 1278, 7], ["version", 1279, 7], ["src", 1280, 7], ["packageRequires", 1284, 7], ["meta", 1285, 7]]);
 const formals$61 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$178 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1302, 9], ["sha256", 1303, 9]]);
-const pos$179 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1307, 9], ["license", 1308, 9]]);
-const pos$180 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1298, 7], ["ename", 1299, 7], ["version", 1300, 7], ["src", 1301, 7], ["packageRequires", 1305, 7], ["meta", 1306, 7]]);
 const formals$62 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$181 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1324, 9], ["sha256", 1325, 9]]);
-const pos$182 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1329, 9], ["license", 1330, 9]]);
-const pos$183 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1320, 7], ["ename", 1321, 7], ["version", 1322, 7], ["src", 1323, 7], ["packageRequires", 1327, 7], ["meta", 1328, 7]]);
 const formals$63 = { args: { "cl-lib": true, compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$184 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1347, 9], ["sha256", 1348, 9]]);
-const pos$185 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1355, 9], ["license", 1356, 9]]);
-const pos$186 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1343, 7], ["ename", 1344, 7], ["version", 1345, 7], ["src", 1346, 7], ["packageRequires", 1350, 7], ["meta", 1354, 7]]);
 const formals$64 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false, mathjax: false }, ellipsis: false };
-const pos$187 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1373, 9], ["sha256", 1374, 9]]);
-const pos$188 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1381, 9], ["license", 1382, 9]]);
-const pos$189 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1369, 7], ["ename", 1370, 7], ["version", 1371, 7], ["src", 1372, 7], ["packageRequires", 1376, 7], ["meta", 1380, 7]]);
 const formals$65 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$190 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1397, 9], ["sha256", 1398, 9]]);
-const pos$191 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1402, 9], ["license", 1403, 9]]);
-const pos$192 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1393, 7], ["ename", 1394, 7], ["version", 1395, 7], ["src", 1396, 7], ["packageRequires", 1400, 7], ["meta", 1401, 7]]);
 const formals$66 = { args: { elpaBuild: false, fetchurl: false, lib: false, posframe: false }, ellipsis: false };
-const pos$193 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1419, 9], ["sha256", 1420, 9]]);
-const pos$194 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1424, 9], ["license", 1425, 9]]);
-const pos$195 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1415, 7], ["ename", 1416, 7], ["version", 1417, 7], ["src", 1418, 7], ["packageRequires", 1422, 7], ["meta", 1423, 7]]);
 const formals$67 = { args: { company: false, ebdb: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$196 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1442, 9], ["sha256", 1443, 9]]);
-const pos$197 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1450, 9], ["license", 1451, 9]]);
-const pos$198 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1438, 7], ["ename", 1439, 7], ["version", 1440, 7], ["src", 1441, 7], ["packageRequires", 1445, 7], ["meta", 1449, 7]]);
 const formals$68 = { args: { company: false, elpaBuild: false, fetchurl: false, lib: false, "math-symbol-lists": false }, ellipsis: false };
-const pos$199 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1468, 9], ["sha256", 1469, 9]]);
-const pos$200 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1476, 9], ["license", 1477, 9]]);
-const pos$201 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1464, 7], ["ename", 1465, 7], ["version", 1466, 7], ["src", 1467, 7], ["packageRequires", 1471, 7], ["meta", 1475, 7]]);
 const formals$69 = { args: { company: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$202 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1493, 9], ["sha256", 1494, 9]]);
-const pos$203 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1498, 9], ["license", 1499, 9]]);
-const pos$204 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1489, 7], ["ename", 1490, 7], ["version", 1491, 7], ["src", 1492, 7], ["packageRequires", 1496, 7], ["meta", 1497, 7]]);
 const formals$70 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$205 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1514, 9], ["sha256", 1515, 9]]);
-const pos$206 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1519, 9], ["license", 1520, 9]]);
-const pos$207 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1510, 7], ["ename", 1511, 7], ["version", 1512, 7], ["src", 1513, 7], ["packageRequires", 1517, 7], ["meta", 1518, 7]]);
 const formals$71 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$208 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1535, 9], ["sha256", 1536, 9]]);
-const pos$209 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1540, 9], ["license", 1541, 9]]);
-const pos$210 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1531, 7], ["ename", 1532, 7], ["version", 1533, 7], ["src", 1534, 7], ["packageRequires", 1538, 7], ["meta", 1539, 7]]);
 const formals$72 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$211 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1556, 9], ["sha256", 1557, 9]]);
-const pos$212 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1561, 9], ["license", 1562, 9]]);
-const pos$213 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1552, 7], ["ename", 1553, 7], ["version", 1554, 7], ["src", 1555, 7], ["packageRequires", 1559, 7], ["meta", 1560, 7]]);
 const formals$73 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$214 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1578, 9], ["sha256", 1579, 9]]);
-const pos$215 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1583, 9], ["license", 1584, 9]]);
-const pos$216 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1574, 7], ["ename", 1575, 7], ["version", 1576, 7], ["src", 1577, 7], ["packageRequires", 1581, 7], ["meta", 1582, 7]]);
 const formals$74 = { args: { consult: false, denote: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$217 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1601, 9], ["sha256", 1602, 9]]);
-const pos$218 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1609, 9], ["license", 1610, 9]]);
-const pos$219 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1597, 7], ["ename", 1598, 7], ["version", 1599, 7], ["src", 1600, 7], ["packageRequires", 1604, 7], ["meta", 1608, 7]]);
 const formals$75 = { args: { consult: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$220 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1626, 9], ["sha256", 1627, 9]]);
-const pos$221 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1631, 9], ["license", 1632, 9]]);
-const pos$222 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1622, 7], ["ename", 1623, 7], ["version", 1624, 7], ["src", 1625, 7], ["packageRequires", 1629, 7], ["meta", 1630, 7]]);
 const formals$76 = { args: { consult: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$223 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1648, 9], ["sha256", 1649, 9]]);
-const pos$224 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1653, 9], ["license", 1654, 9]]);
-const pos$225 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1644, 7], ["ename", 1645, 7], ["version", 1646, 7], ["src", 1647, 7], ["packageRequires", 1651, 7], ["meta", 1652, 7]]);
 const formals$77 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$226 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1669, 9], ["sha256", 1670, 9]]);
-const pos$227 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1674, 9], ["license", 1675, 9]]);
-const pos$228 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1665, 7], ["ename", 1666, 7], ["version", 1667, 7], ["src", 1668, 7], ["packageRequires", 1672, 7], ["meta", 1673, 7]]);
 const formals$78 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$229 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1691, 9], ["sha256", 1692, 9]]);
-const pos$230 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1696, 9], ["license", 1697, 9]]);
-const pos$231 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1687, 7], ["ename", 1688, 7], ["version", 1689, 7], ["src", 1690, 7], ["packageRequires", 1694, 7], ["meta", 1695, 7]]);
 const formals$79 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$232 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1713, 9], ["sha256", 1714, 9]]);
-const pos$233 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1718, 9], ["license", 1719, 9]]);
-const pos$234 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1709, 7], ["ename", 1710, 7], ["version", 1711, 7], ["src", 1712, 7], ["packageRequires", 1716, 7], ["meta", 1717, 7]]);
 const formals$80 = { args: { elpaBuild: false, fetchurl: false, ivy: false, lib: false, swiper: false }, ellipsis: false };
-const pos$235 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1736, 9], ["sha256", 1737, 9]]);
-const pos$236 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1744, 9], ["license", 1745, 9]]);
-const pos$237 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1732, 7], ["ename", 1733, 7], ["version", 1734, 7], ["src", 1735, 7], ["packageRequires", 1739, 7], ["meta", 1743, 7]]);
 const formals$81 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$238 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1760, 9], ["sha256", 1761, 9]]);
-const pos$239 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1765, 9], ["license", 1766, 9]]);
-const pos$240 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1756, 7], ["ename", 1757, 7], ["version", 1758, 7], ["src", 1759, 7], ["packageRequires", 1763, 7], ["meta", 1764, 7]]);
 const formals$82 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$241 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1781, 9], ["sha256", 1782, 9]]);
-const pos$242 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1786, 9], ["license", 1787, 9]]);
-const pos$243 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1777, 7], ["ename", 1778, 7], ["version", 1779, 7], ["src", 1780, 7], ["packageRequires", 1784, 7], ["meta", 1785, 7]]);
 const formals$83 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$244 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1802, 9], ["sha256", 1803, 9]]);
-const pos$245 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1807, 9], ["license", 1808, 9]]);
-const pos$246 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1798, 7], ["ename", 1799, 7], ["version", 1800, 7], ["src", 1801, 7], ["packageRequires", 1805, 7], ["meta", 1806, 7]]);
 const formals$84 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$247 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1823, 9], ["sha256", 1824, 9]]);
-const pos$248 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1828, 9], ["license", 1829, 9]]);
-const pos$249 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1819, 7], ["ename", 1820, 7], ["version", 1821, 7], ["src", 1822, 7], ["packageRequires", 1826, 7], ["meta", 1827, 7]]);
 const formals$85 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$250 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1844, 9], ["sha256", 1845, 9]]);
-const pos$251 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1849, 9], ["license", 1850, 9]]);
-const pos$252 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1840, 7], ["ename", 1841, 7], ["version", 1842, 7], ["src", 1843, 7], ["packageRequires", 1847, 7], ["meta", 1848, 7]]);
 const formals$86 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$253 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1865, 9], ["sha256", 1866, 9]]);
-const pos$254 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1870, 9], ["license", 1871, 9]]);
-const pos$255 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1861, 7], ["ename", 1862, 7], ["version", 1863, 7], ["src", 1864, 7], ["packageRequires", 1868, 7], ["meta", 1869, 7]]);
 const formals$87 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$256 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1887, 9], ["sha256", 1888, 9]]);
-const pos$257 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1892, 9], ["license", 1893, 9]]);
-const pos$258 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1883, 7], ["ename", 1884, 7], ["version", 1885, 7], ["src", 1886, 7], ["packageRequires", 1890, 7], ["meta", 1891, 7]]);
 const formals$88 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$259 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1908, 9], ["sha256", 1909, 9]]);
-const pos$260 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1913, 9], ["license", 1914, 9]]);
-const pos$261 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1904, 7], ["ename", 1905, 7], ["version", 1906, 7], ["src", 1907, 7], ["packageRequires", 1911, 7], ["meta", 1912, 7]]);
 const formals$89 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$262 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1929, 9], ["sha256", 1930, 9]]);
-const pos$263 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1934, 9], ["license", 1935, 9]]);
-const pos$264 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1925, 7], ["ename", 1926, 7], ["version", 1927, 7], ["src", 1928, 7], ["packageRequires", 1932, 7], ["meta", 1933, 7]]);
 const formals$90 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$265 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1950, 9], ["sha256", 1951, 9]]);
-const pos$266 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1955, 9], ["license", 1956, 9]]);
-const pos$267 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1946, 7], ["ename", 1947, 7], ["version", 1948, 7], ["src", 1949, 7], ["packageRequires", 1953, 7], ["meta", 1954, 7]]);
 const formals$91 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$268 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1971, 9], ["sha256", 1972, 9]]);
-const pos$269 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1976, 9], ["license", 1977, 9]]);
-const pos$270 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1967, 7], ["ename", 1968, 7], ["version", 1969, 7], ["src", 1970, 7], ["packageRequires", 1974, 7], ["meta", 1975, 7]]);
 const formals$92 = { args: { elpaBuild: false, fetchurl: false, jsonrpc: false, lib: false }, ellipsis: false };
-const pos$271 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 1993, 9], ["sha256", 1994, 9]]);
-const pos$272 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 1998, 9], ["license", 1999, 9]]);
-const pos$273 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 1989, 7], ["ename", 1990, 7], ["version", 1991, 7], ["src", 1992, 7], ["packageRequires", 1996, 7], ["meta", 1997, 7]]);
 const formals$93 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$274 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2015, 9], ["sha256", 2016, 9]]);
-const pos$275 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2020, 9], ["license", 2021, 9]]);
-const pos$276 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2011, 7], ["ename", 2012, 7], ["version", 2013, 7], ["src", 2014, 7], ["packageRequires", 2018, 7], ["meta", 2019, 7]]);
 const formals$94 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$277 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2036, 9], ["sha256", 2037, 9]]);
-const pos$278 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2041, 9], ["license", 2042, 9]]);
-const pos$279 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2032, 7], ["ename", 2033, 7], ["version", 2034, 7], ["src", 2035, 7], ["packageRequires", 2039, 7], ["meta", 2040, 7]]);
 const formals$95 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$280 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2058, 9], ["sha256", 2059, 9]]);
-const pos$281 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2063, 9], ["license", 2064, 9]]);
-const pos$282 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2054, 7], ["ename", 2055, 7], ["version", 2056, 7], ["src", 2057, 7], ["packageRequires", 2061, 7], ["meta", 2062, 7]]);
 const formals$96 = { args: { elpaBuild: false, fetchurl: false, lib: false, "soap-client": false }, ellipsis: false };
-const pos$283 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2080, 9], ["sha256", 2081, 9]]);
-const pos$284 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2085, 9], ["license", 2086, 9]]);
-const pos$285 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2076, 7], ["ename", 2077, 7], ["version", 2078, 7], ["src", 2079, 7], ["packageRequires", 2083, 7], ["meta", 2084, 7]]);
 const formals$97 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false, nadvice: false }, ellipsis: false };
-const pos$286 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2103, 9], ["sha256", 2104, 9]]);
-const pos$287 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2111, 9], ["license", 2112, 9]]);
-const pos$288 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2099, 7], ["ename", 2100, 7], ["version", 2101, 7], ["src", 2102, 7], ["packageRequires", 2106, 7], ["meta", 2110, 7]]);
 const formals$98 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$289 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2127, 9], ["sha256", 2128, 9]]);
-const pos$290 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2132, 9], ["license", 2133, 9]]);
-const pos$291 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2123, 7], ["ename", 2124, 7], ["version", 2125, 7], ["src", 2126, 7], ["packageRequires", 2130, 7], ["meta", 2131, 7]]);
 const formals$99 = { args: { denote: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$292 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2149, 9], ["sha256", 2150, 9]]);
-const pos$293 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2154, 9], ["license", 2155, 9]]);
-const pos$294 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2145, 7], ["ename", 2146, 7], ["version", 2147, 7], ["src", 2148, 7], ["packageRequires", 2152, 7], ["meta", 2153, 7]]);
 const formals$100 = { args: { denote: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$295 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2171, 9], ["sha256", 2172, 9]]);
-const pos$296 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2176, 9], ["license", 2177, 9]]);
-const pos$297 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2167, 7], ["ename", 2168, 7], ["version", 2169, 7], ["src", 2170, 7], ["packageRequires", 2174, 7], ["meta", 2175, 7]]);
 const formals$101 = { args: { denote: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$298 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2193, 9], ["sha256", 2194, 9]]);
-const pos$299 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2198, 9], ["license", 2199, 9]]);
-const pos$300 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2189, 7], ["ename", 2190, 7], ["version", 2191, 7], ["src", 2192, 7], ["packageRequires", 2196, 7], ["meta", 2197, 7]]);
 const formals$102 = { args: { denote: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$301 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2215, 9], ["sha256", 2216, 9]]);
-const pos$302 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2220, 9], ["license", 2221, 9]]);
-const pos$303 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2211, 7], ["ename", 2212, 7], ["version", 2213, 7], ["src", 2214, 7], ["packageRequires", 2218, 7], ["meta", 2219, 7]]);
 const formals$103 = { args: { denote: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$304 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2237, 9], ["sha256", 2238, 9]]);
-const pos$305 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2242, 9], ["license", 2243, 9]]);
-const pos$306 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2233, 7], ["ename", 2234, 7], ["version", 2235, 7], ["src", 2236, 7], ["packageRequires", 2240, 7], ["meta", 2241, 7]]);
 const formals$104 = { args: { denote: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$307 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2259, 9], ["sha256", 2260, 9]]);
-const pos$308 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2264, 9], ["license", 2265, 9]]);
-const pos$309 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2255, 7], ["ename", 2256, 7], ["version", 2257, 7], ["src", 2258, 7], ["packageRequires", 2262, 7], ["meta", 2263, 7]]);
 const formals$105 = { args: { denote: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$310 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2281, 9], ["sha256", 2282, 9]]);
-const pos$311 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2286, 9], ["license", 2287, 9]]);
-const pos$312 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2277, 7], ["ename", 2278, 7], ["version", 2279, 7], ["src", 2280, 7], ["packageRequires", 2284, 7], ["meta", 2285, 7]]);
 const formals$106 = { args: { denote: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$313 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2303, 9], ["sha256", 2304, 9]]);
-const pos$314 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2308, 9], ["license", 2309, 9]]);
-const pos$315 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2299, 7], ["ename", 2300, 7], ["version", 2301, 7], ["src", 2302, 7], ["packageRequires", 2306, 7], ["meta", 2307, 7]]);
 const formals$107 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$316 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2324, 9], ["sha256", 2325, 9]]);
-const pos$317 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2329, 9], ["license", 2330, 9]]);
-const pos$318 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2320, 7], ["ename", 2321, 7], ["version", 2322, 7], ["src", 2323, 7], ["packageRequires", 2327, 7], ["meta", 2328, 7]]);
 const formals$108 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$319 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2346, 9], ["sha256", 2347, 9]]);
-const pos$320 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2351, 9], ["license", 2352, 9]]);
-const pos$321 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2342, 7], ["ename", 2343, 7], ["version", 2344, 7], ["src", 2345, 7], ["packageRequires", 2349, 7], ["meta", 2350, 7]]);
 const formals$109 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$322 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2367, 9], ["sha256", 2368, 9]]);
-const pos$323 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2372, 9], ["license", 2373, 9]]);
-const pos$324 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2363, 7], ["ename", 2364, 7], ["version", 2365, 7], ["src", 2366, 7], ["packageRequires", 2370, 7], ["meta", 2371, 7]]);
 const formals$110 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$325 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2389, 9], ["sha256", 2390, 9]]);
-const pos$326 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2394, 9], ["license", 2395, 9]]);
-const pos$327 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2385, 7], ["ename", 2386, 7], ["version", 2387, 7], ["src", 2388, 7], ["packageRequires", 2392, 7], ["meta", 2393, 7]]);
 const formals$111 = { args: { elpaBuild: false, fetchurl: false, heap: false, lib: false, tNFA: false, trie: false }, ellipsis: false };
-const pos$328 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2413, 9], ["sha256", 2414, 9]]);
-const pos$329 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2422, 9], ["license", 2423, 9]]);
-const pos$330 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2409, 7], ["ename", 2410, 7], ["version", 2411, 7], ["src", 2412, 7], ["packageRequires", 2416, 7], ["meta", 2421, 7]]);
 const formals$112 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$331 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2439, 9], ["sha256", 2440, 9]]);
-const pos$332 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2444, 9], ["license", 2445, 9]]);
-const pos$333 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2435, 7], ["ename", 2436, 7], ["version", 2437, 7], ["src", 2438, 7], ["packageRequires", 2442, 7], ["meta", 2443, 7]]);
 const formals$113 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$334 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2460, 9], ["sha256", 2461, 9]]);
-const pos$335 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2465, 9], ["license", 2466, 9]]);
-const pos$336 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2456, 7], ["ename", 2457, 7], ["version", 2458, 7], ["src", 2459, 7], ["packageRequires", 2463, 7], ["meta", 2464, 7]]);
 const formals$114 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$337 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2481, 9], ["sha256", 2482, 9]]);
-const pos$338 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2486, 9], ["license", 2487, 9]]);
-const pos$339 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2477, 7], ["ename", 2478, 7], ["version", 2479, 7], ["src", 2480, 7], ["packageRequires", 2484, 7], ["meta", 2485, 7]]);
 const formals$115 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$340 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2503, 9], ["sha256", 2504, 9]]);
-const pos$341 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2508, 9], ["license", 2509, 9]]);
-const pos$342 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2499, 7], ["ename", 2500, 7], ["version", 2501, 7], ["src", 2502, 7], ["packageRequires", 2506, 7], ["meta", 2507, 7]]);
 const formals$116 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$343 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2524, 9], ["sha256", 2525, 9]]);
-const pos$344 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2529, 9], ["license", 2530, 9]]);
-const pos$345 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2520, 7], ["ename", 2521, 7], ["version", 2522, 7], ["src", 2523, 7], ["packageRequires", 2527, 7], ["meta", 2528, 7]]);
 const formals$117 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$346 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2545, 9], ["sha256", 2546, 9]]);
-const pos$347 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2550, 9], ["license", 2551, 9]]);
-const pos$348 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2541, 7], ["ename", 2542, 7], ["version", 2543, 7], ["src", 2544, 7], ["packageRequires", 2548, 7], ["meta", 2549, 7]]);
 const formals$118 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$349 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2566, 9], ["sha256", 2567, 9]]);
-const pos$350 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2571, 9], ["license", 2572, 9]]);
-const pos$351 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2562, 7], ["ename", 2563, 7], ["version", 2564, 7], ["src", 2565, 7], ["packageRequires", 2569, 7], ["meta", 2570, 7]]);
 const formals$119 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$352 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2588, 9], ["sha256", 2589, 9]]);
-const pos$353 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2593, 9], ["license", 2594, 9]]);
-const pos$354 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2584, 7], ["ename", 2585, 7], ["version", 2586, 7], ["src", 2587, 7], ["packageRequires", 2591, 7], ["meta", 2592, 7]]);
 const formals$120 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$355 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2609, 9], ["sha256", 2610, 9]]);
-const pos$356 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2614, 9], ["license", 2615, 9]]);
-const pos$357 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2605, 7], ["ename", 2606, 7], ["version", 2607, 7], ["src", 2608, 7], ["packageRequires", 2612, 7], ["meta", 2613, 7]]);
 const formals$121 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$358 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2631, 9], ["sha256", 2632, 9]]);
-const pos$359 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2636, 9], ["license", 2637, 9]]);
-const pos$360 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2627, 7], ["ename", 2628, 7], ["version", 2629, 7], ["src", 2630, 7], ["packageRequires", 2634, 7], ["meta", 2635, 7]]);
 const formals$122 = { args: { elpaBuild: false, fetchurl: false, lib: false, transient: false }, ellipsis: false };
-const pos$361 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2653, 9], ["sha256", 2654, 9]]);
-const pos$362 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2658, 9], ["license", 2659, 9]]);
-const pos$363 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2649, 7], ["ename", 2650, 7], ["version", 2651, 7], ["src", 2652, 7], ["packageRequires", 2656, 7], ["meta", 2657, 7]]);
 const formals$123 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$364 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2674, 9], ["sha256", 2675, 9]]);
-const pos$365 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2679, 9], ["license", 2680, 9]]);
-const pos$366 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2670, 7], ["ename", 2671, 7], ["version", 2672, 7], ["src", 2673, 7], ["packageRequires", 2677, 7], ["meta", 2678, 7]]);
 const formals$124 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$367 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2695, 9], ["sha256", 2696, 9]]);
-const pos$368 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2700, 9], ["license", 2701, 9]]);
-const pos$369 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2691, 7], ["ename", 2692, 7], ["version", 2693, 7], ["src", 2694, 7], ["packageRequires", 2698, 7], ["meta", 2699, 7]]);
 const formals$125 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$370 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2716, 9], ["sha256", 2717, 9]]);
-const pos$371 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2721, 9], ["license", 2722, 9]]);
-const pos$372 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2712, 7], ["ename", 2713, 7], ["version", 2714, 7], ["src", 2715, 7], ["packageRequires", 2719, 7], ["meta", 2720, 7]]);
 const formals$126 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$373 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2737, 9], ["sha256", 2738, 9]]);
-const pos$374 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2742, 9], ["license", 2743, 9]]);
-const pos$375 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2733, 7], ["ename", 2734, 7], ["version", 2735, 7], ["src", 2736, 7], ["packageRequires", 2740, 7], ["meta", 2741, 7]]);
 const formals$127 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$376 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2758, 9], ["sha256", 2759, 9]]);
-const pos$377 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2763, 9], ["license", 2764, 9]]);
-const pos$378 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2754, 7], ["ename", 2755, 7], ["version", 2756, 7], ["src", 2757, 7], ["packageRequires", 2761, 7], ["meta", 2762, 7]]);
 const formals$128 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$379 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2779, 9], ["sha256", 2780, 9]]);
-const pos$380 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2784, 9], ["license", 2785, 9]]);
-const pos$381 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2775, 7], ["ename", 2776, 7], ["version", 2777, 7], ["src", 2778, 7], ["packageRequires", 2782, 7], ["meta", 2783, 7]]);
 const formals$129 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$382 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2800, 9], ["sha256", 2801, 9]]);
-const pos$383 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2805, 9], ["license", 2806, 9]]);
-const pos$384 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2796, 7], ["ename", 2797, 7], ["version", 2798, 7], ["src", 2799, 7], ["packageRequires", 2803, 7], ["meta", 2804, 7]]);
 const formals$130 = { args: { "comint-mime": false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$385 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2822, 9], ["sha256", 2823, 9]]);
-const pos$386 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2827, 9], ["license", 2828, 9]]);
-const pos$387 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2818, 7], ["ename", 2819, 7], ["version", 2820, 7], ["src", 2821, 7], ["packageRequires", 2825, 7], ["meta", 2826, 7]]);
 const formals$131 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$388 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2843, 9], ["sha256", 2844, 9]]);
-const pos$389 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2848, 9], ["license", 2849, 9]]);
-const pos$390 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2839, 7], ["ename", 2840, 7], ["version", 2841, 7], ["src", 2842, 7], ["packageRequires", 2846, 7], ["meta", 2847, 7]]);
 const formals$132 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$391 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2864, 9], ["sha256", 2865, 9]]);
-const pos$392 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2869, 9], ["license", 2870, 9]]);
-const pos$393 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2860, 7], ["ename", 2861, 7], ["version", 2862, 7], ["src", 2863, 7], ["packageRequires", 2867, 7], ["meta", 2868, 7]]);
 const formals$133 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$394 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2886, 9], ["sha256", 2887, 9]]);
-const pos$395 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2891, 9], ["license", 2892, 9]]);
-const pos$396 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2882, 7], ["ename", 2883, 7], ["version", 2884, 7], ["src", 2885, 7], ["packageRequires", 2889, 7], ["meta", 2890, 7]]);
 const formals$134 = { args: { elpaBuild: false, fetchurl: false, lib: false, seq: false }, ellipsis: false };
-const pos$397 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2908, 9], ["sha256", 2909, 9]]);
-const pos$398 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2913, 9], ["license", 2914, 9]]);
-const pos$399 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2904, 7], ["ename", 2905, 7], ["version", 2906, 7], ["src", 2907, 7], ["packageRequires", 2911, 7], ["meta", 2912, 7]]);
 const formals$135 = { args: { ebdb: false, elpaBuild: false, fetchurl: false, gnorb: false, lib: false }, ellipsis: false };
-const pos$400 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2931, 9], ["sha256", 2932, 9]]);
-const pos$401 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2939, 9], ["license", 2940, 9]]);
-const pos$402 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2927, 7], ["ename", 2928, 7], ["version", 2929, 7], ["src", 2930, 7], ["packageRequires", 2934, 7], ["meta", 2938, 7]]);
 const formals$136 = { args: { ebdb: false, elpaBuild: false, fetchurl: false, lib: false, pyim: false }, ellipsis: false };
-const pos$403 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2957, 9], ["sha256", 2958, 9]]);
-const pos$404 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2965, 9], ["license", 2966, 9]]);
-const pos$405 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2953, 7], ["ename", 2954, 7], ["version", 2955, 7], ["src", 2956, 7], ["packageRequires", 2960, 7], ["meta", 2964, 7]]);
 const formals$137 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$406 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 2981, 9], ["sha256", 2982, 9]]);
-const pos$407 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 2986, 9], ["license", 2987, 9]]);
-const pos$408 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2977, 7], ["ename", 2978, 7], ["version", 2979, 7], ["src", 2980, 7], ["packageRequires", 2984, 7], ["meta", 2985, 7]]);
 const formals$138 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$409 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3002, 9], ["sha256", 3003, 9]]);
-const pos$410 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3007, 9], ["license", 3008, 9]]);
-const pos$411 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 2998, 7], ["ename", 2999, 7], ["version", 3000, 7], ["src", 3001, 7], ["packageRequires", 3005, 7], ["meta", 3006, 7]]);
 const formals$139 = { args: { elpaBuild: false, fetchurl: false, lib: false, "modus-themes": false }, ellipsis: false };
-const pos$412 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3024, 9], ["sha256", 3025, 9]]);
-const pos$413 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3029, 9], ["license", 3030, 9]]);
-const pos$414 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3020, 7], ["ename", 3021, 7], ["version", 3022, 7], ["src", 3023, 7], ["packageRequires", 3027, 7], ["meta", 3028, 7]]);
 const formals$140 = { args: { eldoc: false, elpaBuild: false, "external-completion": false, fetchurl: false, flymake: true, jsonrpc: false, lib: false, project: false, seq: false, xref: false }, ellipsis: false };
-const pos$415 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3052, 9], ["sha256", 3053, 9]]);
-const pos$416 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3065, 9], ["license", 3066, 9]]);
-const pos$417 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3048, 7], ["ename", 3049, 7], ["version", 3050, 7], ["src", 3051, 7], ["packageRequires", 3055, 7], ["meta", 3064, 7]]);
 const formals$141 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$418 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3081, 9], ["sha256", 3082, 9]]);
-const pos$419 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3086, 9], ["license", 3087, 9]]);
-const pos$420 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3077, 7], ["ename", 3078, 7], ["version", 3079, 7], ["src", 3080, 7], ["packageRequires", 3084, 7], ["meta", 3085, 7]]);
 const formals$142 = { args: { "cl-print": true, elpaBuild: false, fetchurl: false, lib: false, stream: false }, ellipsis: false };
-const pos$421 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3104, 9], ["sha256", 3105, 9]]);
-const pos$422 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3112, 9], ["license", 3113, 9]]);
-const pos$423 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3100, 7], ["ename", 3101, 7], ["version", 3102, 7], ["src", 3103, 7], ["packageRequires", 3107, 7], ["meta", 3111, 7]]);
 const formals$143 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$424 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3128, 9], ["sha256", 3129, 9]]);
-const pos$425 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3133, 9], ["license", 3134, 9]]);
-const pos$426 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3124, 7], ["ename", 3125, 7], ["version", 3126, 7], ["src", 3127, 7], ["packageRequires", 3131, 7], ["meta", 3132, 7]]);
 const formals$144 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$427 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3149, 9], ["sha256", 3150, 9]]);
-const pos$428 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3154, 9], ["license", 3155, 9]]);
-const pos$429 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3145, 7], ["ename", 3146, 7], ["version", 3147, 7], ["src", 3148, 7], ["packageRequires", 3152, 7], ["meta", 3153, 7]]);
 const formals$145 = { args: { async: false, ellama: false, elpaBuild: false, fetchurl: false, lib: false, llm: false, plz: false }, ellipsis: false };
-const pos$430 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3174, 9], ["sha256", 3175, 9]]);
-const pos$431 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3184, 9], ["license", 3185, 9]]);
-const pos$432 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3170, 7], ["ename", 3171, 7], ["version", 3172, 7], ["src", 3173, 7], ["packageRequires", 3177, 7], ["meta", 3183, 7]]);
 const formals$146 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$433 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3200, 9], ["sha256", 3201, 9]]);
-const pos$434 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3205, 9], ["license", 3206, 9]]);
-const pos$435 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3196, 7], ["ename", 3197, 7], ["version", 3198, 7], ["src", 3199, 7], ["packageRequires", 3203, 7], ["meta", 3204, 7]]);
 const formals$147 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false, llm: false, plz: false, transient: false, yaml: false }, ellipsis: false };
-const pos$436 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3226, 9], ["sha256", 3227, 9]]);
-const pos$437 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3237, 9], ["license", 3238, 9]]);
-const pos$438 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3222, 7], ["ename", 3223, 7], ["version", 3224, 7], ["src", 3225, 7], ["packageRequires", 3229, 7], ["meta", 3236, 7]]);
 const formals$148 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$439 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3253, 9], ["sha256", 3254, 9]]);
-const pos$440 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3258, 9], ["license", 3259, 9]]);
-const pos$441 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3249, 7], ["ename", 3250, 7], ["version", 3251, 7], ["src", 3252, 7], ["packageRequires", 3256, 7], ["meta", 3257, 7]]);
 const formals$149 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$442 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3274, 9], ["sha256", 3275, 9]]);
-const pos$443 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3279, 9], ["license", 3280, 9]]);
-const pos$444 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3270, 7], ["ename", 3271, 7], ["version", 3272, 7], ["src", 3273, 7], ["packageRequires", 3277, 7], ["meta", 3278, 7]]);
 const formals$150 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$445 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3295, 9], ["sha256", 3296, 9]]);
-const pos$446 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3300, 9], ["license", 3301, 9]]);
-const pos$447 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3291, 7], ["ename", 3292, 7], ["version", 3293, 7], ["src", 3294, 7], ["packageRequires", 3298, 7], ["meta", 3299, 7]]);
 const formals$151 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$448 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3317, 9], ["sha256", 3318, 9]]);
-const pos$449 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3322, 9], ["license", 3323, 9]]);
-const pos$450 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3313, 7], ["ename", 3314, 7], ["version", 3315, 7], ["src", 3316, 7], ["packageRequires", 3320, 7], ["meta", 3321, 7]]);
 const formals$152 = { args: { compat: false, consult: false, elpaBuild: false, embark: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$451 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3341, 9], ["sha256", 3342, 9]]);
-const pos$452 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3350, 9], ["license", 3351, 9]]);
-const pos$453 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3337, 7], ["ename", 3338, 7], ["version", 3339, 7], ["src", 3340, 7], ["packageRequires", 3344, 7], ["meta", 3349, 7]]);
 const formals$153 = { args: { elpaBuild: false, fetchurl: false, lib: false, map: false, persist: false, plz: false, "svg-lib": false, taxy: false, "taxy-magit-section": false, transient: false }, ellipsis: false };
-const pos$454 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3373, 9], ["sha256", 3374, 9]]);
-const pos$455 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3386, 9], ["license", 3387, 9]]);
-const pos$456 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3369, 7], ["ename", 3370, 7], ["version", 3371, 7], ["src", 3372, 7], ["packageRequires", 3376, 7], ["meta", 3385, 7]]);
 const formals$154 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false, nadvice: false, seq: false }, ellipsis: false };
-const pos$457 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3405, 9], ["sha256", 3406, 9]]);
-const pos$458 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3414, 9], ["license", 3415, 9]]);
-const pos$459 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3401, 7], ["ename", 3402, 7], ["version", 3403, 7], ["src", 3404, 7], ["packageRequires", 3408, 7], ["meta", 3413, 7]]);
 const formals$155 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$460 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3430, 9], ["sha256", 3431, 9]]);
-const pos$461 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3435, 9], ["license", 3436, 9]]);
-const pos$462 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3426, 7], ["ename", 3427, 7], ["version", 3428, 7], ["src", 3429, 7], ["packageRequires", 3433, 7], ["meta", 3434, 7]]);
 const formals$156 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$463 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3451, 9], ["sha256", 3452, 9]]);
-const pos$464 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3456, 9], ["license", 3457, 9]]);
-const pos$465 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3447, 7], ["ename", 3448, 7], ["version", 3449, 7], ["src", 3450, 7], ["packageRequires", 3454, 7], ["meta", 3455, 7]]);
 const formals$157 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$466 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3472, 9], ["sha256", 3473, 9]]);
-const pos$467 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3477, 9], ["license", 3478, 9]]);
-const pos$468 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3468, 7], ["ename", 3469, 7], ["version", 3470, 7], ["src", 3471, 7], ["packageRequires", 3475, 7], ["meta", 3476, 7]]);
 const formals$158 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$469 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3494, 9], ["sha256", 3495, 9]]);
-const pos$470 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3499, 9], ["license", 3500, 9]]);
-const pos$471 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3490, 7], ["ename", 3491, 7], ["version", 3492, 7], ["src", 3493, 7], ["packageRequires", 3497, 7], ["meta", 3498, 7]]);
 const formals$159 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false, nadvice: false }, ellipsis: false };
-const pos$472 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3517, 9], ["sha256", 3518, 9]]);
-const pos$473 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3525, 9], ["license", 3526, 9]]);
-const pos$474 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3513, 7], ["ename", 3514, 7], ["version", 3515, 7], ["src", 3516, 7], ["packageRequires", 3520, 7], ["meta", 3524, 7]]);
 const formals$160 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$475 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3541, 9], ["sha256", 3542, 9]]);
-const pos$476 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3546, 9], ["license", 3547, 9]]);
-const pos$477 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3537, 7], ["ename", 3538, 7], ["version", 3539, 7], ["src", 3540, 7], ["packageRequires", 3544, 7], ["meta", 3545, 7]]);
 const formals$161 = { args: { elpaBuild: false, fetchurl: false, fsm: false, lib: false, "soap-client": false, "url-http-ntlm": false, "url-http-oauth": false }, ellipsis: false };
-const pos$478 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3566, 9], ["sha256", 3567, 9]]);
-const pos$479 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3576, 9], ["license", 3577, 9]]);
-const pos$480 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3562, 7], ["ename", 3563, 7], ["version", 3564, 7], ["src", 3565, 7], ["packageRequires", 3569, 7], ["meta", 3575, 7]]);
 const formals$162 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$481 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3592, 9], ["sha256", 3593, 9]]);
-const pos$482 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3597, 9], ["license", 3598, 9]]);
-const pos$483 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3588, 7], ["ename", 3589, 7], ["version", 3590, 7], ["src", 3591, 7], ["packageRequires", 3595, 7], ["meta", 3596, 7]]);
 const formals$163 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$484 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3613, 9], ["sha256", 3614, 9]]);
-const pos$485 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3618, 9], ["license", 3619, 9]]);
-const pos$486 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3609, 7], ["ename", 3610, 7], ["version", 3611, 7], ["src", 3612, 7], ["packageRequires", 3616, 7], ["meta", 3617, 7]]);
 const formals$164 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$487 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3634, 9], ["sha256", 3635, 9]]);
-const pos$488 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3639, 9], ["license", 3640, 9]]);
-const pos$489 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3630, 7], ["ename", 3631, 7], ["version", 3632, 7], ["src", 3633, 7], ["packageRequires", 3637, 7], ["meta", 3638, 7]]);
 const formals$165 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false, xelb: false }, ellipsis: false };
-const pos$490 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3657, 9], ["sha256", 3658, 9]]);
-const pos$491 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3665, 9], ["license", 3666, 9]]);
-const pos$492 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3653, 7], ["ename", 3654, 7], ["version", 3655, 7], ["src", 3656, 7], ["packageRequires", 3660, 7], ["meta", 3664, 7]]);
 const formals$166 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$493 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3682, 9], ["sha256", 3683, 9]]);
-const pos$494 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3687, 9], ["license", 3688, 9]]);
-const pos$495 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3678, 7], ["ename", 3679, 7], ["version", 3680, 7], ["src", 3681, 7], ["packageRequires", 3685, 7], ["meta", 3686, 7]]);
 const formals$167 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$496 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3703, 9], ["sha256", 3704, 9]]);
-const pos$497 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3708, 9], ["license", 3709, 9]]);
-const pos$498 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3699, 7], ["ename", 3700, 7], ["version", 3701, 7], ["src", 3702, 7], ["packageRequires", 3706, 7], ["meta", 3707, 7]]);
 const formals$168 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$499 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3725, 9], ["sha256", 3726, 9]]);
-const pos$500 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3730, 9], ["license", 3731, 9]]);
-const pos$501 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3721, 7], ["ename", 3722, 7], ["version", 3723, 7], ["src", 3724, 7], ["packageRequires", 3728, 7], ["meta", 3729, 7]]);
 const formals$169 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$502 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3746, 9], ["sha256", 3747, 9]]);
-const pos$503 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3751, 9], ["license", 3752, 9]]);
-const pos$504 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3742, 7], ["ename", 3743, 7], ["version", 3744, 7], ["src", 3745, 7], ["packageRequires", 3749, 7], ["meta", 3750, 7]]);
 const formals$170 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$505 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3767, 9], ["sha256", 3768, 9]]);
-const pos$506 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3772, 9], ["license", 3773, 9]]);
-const pos$507 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3763, 7], ["ename", 3764, 7], ["version", 3765, 7], ["src", 3766, 7], ["packageRequires", 3770, 7], ["meta", 3771, 7]]);
 const formals$171 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$508 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3789, 9], ["sha256", 3790, 9]]);
-const pos$509 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3794, 9], ["license", 3795, 9]]);
-const pos$510 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3785, 7], ["ename", 3786, 7], ["version", 3787, 7], ["src", 3788, 7], ["packageRequires", 3792, 7], ["meta", 3793, 7]]);
 const formals$172 = { args: { eldoc: false, elpaBuild: false, fetchurl: false, lib: false, project: false }, ellipsis: false };
-const pos$511 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3812, 9], ["sha256", 3813, 9]]);
-const pos$512 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3820, 9], ["license", 3821, 9]]);
-const pos$513 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3808, 7], ["ename", 3809, 7], ["version", 3810, 7], ["src", 3811, 7], ["packageRequires", 3815, 7], ["meta", 3819, 7]]);
 const formals$173 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$514 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3836, 9], ["sha256", 3837, 9]]);
-const pos$515 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3841, 9], ["license", 3842, 9]]);
-const pos$516 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3832, 7], ["ename", 3833, 7], ["version", 3834, 7], ["src", 3835, 7], ["packageRequires", 3839, 7], ["meta", 3840, 7]]);
 const formals$174 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$517 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3858, 9], ["sha256", 3859, 9]]);
-const pos$518 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3863, 9], ["license", 3864, 9]]);
-const pos$519 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3854, 7], ["ename", 3855, 7], ["version", 3856, 7], ["src", 3857, 7], ["packageRequires", 3861, 7], ["meta", 3862, 7]]);
 const formals$175 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$520 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3879, 9], ["sha256", 3880, 9]]);
-const pos$521 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3884, 9], ["license", 3885, 9]]);
-const pos$522 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3875, 7], ["ename", 3876, 7], ["version", 3877, 7], ["src", 3878, 7], ["packageRequires", 3882, 7], ["meta", 3883, 7]]);
 const formals$176 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$523 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3900, 9], ["sha256", 3901, 9]]);
-const pos$524 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3905, 9], ["license", 3906, 9]]);
-const pos$525 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3896, 7], ["ename", 3897, 7], ["version", 3898, 7], ["src", 3899, 7], ["packageRequires", 3903, 7], ["meta", 3904, 7]]);
 const formals$177 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$526 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3921, 9], ["sha256", 3922, 9]]);
-const pos$527 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3926, 9], ["license", 3927, 9]]);
-const pos$528 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3917, 7], ["ename", 3918, 7], ["version", 3919, 7], ["src", 3920, 7], ["packageRequires", 3924, 7], ["meta", 3925, 7]]);
 const formals$178 = { args: { elpaBuild: false, fetchurl: false, "keymap-popup": false, lib: false }, ellipsis: false };
-const pos$529 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3943, 9], ["sha256", 3944, 9]]);
-const pos$530 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3948, 9], ["license", 3949, 9]]);
-const pos$531 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3939, 7], ["ename", 3940, 7], ["version", 3941, 7], ["src", 3942, 7], ["packageRequires", 3946, 7], ["meta", 3947, 7]]);
 const formals$179 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$532 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3964, 9], ["sha256", 3965, 9]]);
-const pos$533 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3969, 9], ["license", 3970, 9]]);
-const pos$534 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3960, 7], ["ename", 3961, 7], ["version", 3962, 7], ["src", 3963, 7], ["packageRequires", 3967, 7], ["meta", 3968, 7]]);
 const formals$180 = { args: { avy: false, elpaBuild: false, fetchurl: false, lib: false, posframe: false }, ellipsis: false };
-const pos$535 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 3987, 9], ["sha256", 3988, 9]]);
-const pos$536 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 3995, 9], ["license", 3996, 9]]);
-const pos$537 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 3983, 7], ["ename", 3984, 7], ["version", 3985, 7], ["src", 3986, 7], ["packageRequires", 3990, 7], ["meta", 3994, 7]]);
 const formals$181 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$538 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4012, 9], ["sha256", 4013, 9]]);
-const pos$539 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4017, 9], ["license", 4018, 9]]);
-const pos$540 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4008, 7], ["ename", 4009, 7], ["version", 4010, 7], ["src", 4011, 7], ["packageRequires", 4015, 7], ["meta", 4016, 7]]);
 const formals$182 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$541 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4033, 9], ["sha256", 4034, 9]]);
-const pos$542 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4038, 9], ["license", 4039, 9]]);
-const pos$543 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4029, 7], ["ename", 4030, 7], ["version", 4031, 7], ["src", 4032, 7], ["packageRequires", 4036, 7], ["meta", 4037, 7]]);
 const formals$183 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$544 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4054, 9], ["sha256", 4055, 9]]);
-const pos$545 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4059, 9], ["license", 4060, 9]]);
-const pos$546 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4050, 7], ["ename", 4051, 7], ["version", 4052, 7], ["src", 4053, 7], ["packageRequires", 4057, 7], ["meta", 4058, 7]]);
 const formals$184 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$547 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4075, 9], ["sha256", 4076, 9]]);
-const pos$548 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4080, 9], ["license", 4081, 9]]);
-const pos$549 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4071, 7], ["ename", 4072, 7], ["version", 4073, 7], ["src", 4074, 7], ["packageRequires", 4078, 7], ["meta", 4079, 7]]);
 const formals$185 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$550 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4096, 9], ["sha256", 4097, 9]]);
-const pos$551 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4101, 9], ["license", 4102, 9]]);
-const pos$552 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4092, 7], ["ename", 4093, 7], ["version", 4094, 7], ["src", 4095, 7], ["packageRequires", 4099, 7], ["meta", 4100, 7]]);
 const formals$186 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$553 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4118, 9], ["sha256", 4119, 9]]);
-const pos$554 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4123, 9], ["license", 4124, 9]]);
-const pos$555 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4114, 7], ["ename", 4115, 7], ["version", 4116, 7], ["src", 4117, 7], ["packageRequires", 4121, 7], ["meta", 4122, 7]]);
 const formals$187 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$556 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4140, 9], ["sha256", 4141, 9]]);
-const pos$557 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4145, 9], ["license", 4146, 9]]);
-const pos$558 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4136, 7], ["ename", 4137, 7], ["version", 4138, 7], ["src", 4139, 7], ["packageRequires", 4143, 7], ["meta", 4144, 7]]);
 const formals$188 = { args: { elpaBuild: false, fetchurl: false, lib: false, wisi: false }, ellipsis: false };
-const pos$559 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4162, 9], ["sha256", 4163, 9]]);
-const pos$560 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4167, 9], ["license", 4168, 9]]);
-const pos$561 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4158, 7], ["ename", 4159, 7], ["version", 4160, 7], ["src", 4161, 7], ["packageRequires", 4165, 7], ["meta", 4166, 7]]);
 const formals$189 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$562 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4183, 9], ["sha256", 4184, 9]]);
-const pos$563 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4188, 9], ["license", 4189, 9]]);
-const pos$564 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4179, 7], ["ename", 4180, 7], ["version", 4181, 7], ["src", 4182, 7], ["packageRequires", 4186, 7], ["meta", 4187, 7]]);
 const formals$190 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$565 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4204, 9], ["sha256", 4205, 9]]);
-const pos$566 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4209, 9], ["license", 4210, 9]]);
-const pos$567 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4200, 7], ["ename", 4201, 7], ["version", 4202, 7], ["src", 4203, 7], ["packageRequires", 4207, 7], ["meta", 4208, 7]]);
 const formals$191 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$568 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4226, 9], ["sha256", 4227, 9]]);
-const pos$569 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4231, 9], ["license", 4232, 9]]);
-const pos$570 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4222, 7], ["ename", 4223, 7], ["version", 4224, 7], ["src", 4225, 7], ["packageRequires", 4229, 7], ["meta", 4230, 7]]);
 const formals$192 = { args: { compat: false, elpaBuild: false, fetchurl: false, "keymap-popup": false, lib: false }, ellipsis: false };
-const pos$571 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4249, 9], ["sha256", 4250, 9]]);
-const pos$572 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4257, 9], ["license", 4258, 9]]);
-const pos$573 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4245, 7], ["ename", 4246, 7], ["version", 4247, 7], ["src", 4248, 7], ["packageRequires", 4252, 7], ["meta", 4256, 7]]);
 const formals$193 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$574 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4273, 9], ["sha256", 4274, 9]]);
-const pos$575 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4278, 9], ["license", 4279, 9]]);
-const pos$576 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4269, 7], ["ename", 4270, 7], ["version", 4271, 7], ["src", 4272, 7], ["packageRequires", 4276, 7], ["meta", 4277, 7]]);
 const formals$194 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$577 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4294, 9], ["sha256", 4295, 9]]);
-const pos$578 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4299, 9], ["license", 4300, 9]]);
-const pos$579 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4290, 7], ["ename", 4291, 7], ["version", 4292, 7], ["src", 4293, 7], ["packageRequires", 4297, 7], ["meta", 4298, 7]]);
 const formals$195 = { args: { "ascii-art-to-unicode": false, "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false, xpm: false }, ellipsis: false };
-const pos$580 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4318, 9], ["sha256", 4319, 9]]);
-const pos$581 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4327, 9], ["license", 4328, 9]]);
-const pos$582 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4314, 7], ["ename", 4315, 7], ["version", 4316, 7], ["src", 4317, 7], ["packageRequires", 4321, 7], ["meta", 4326, 7]]);
 const formals$196 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$583 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4343, 9], ["sha256", 4344, 9]]);
-const pos$584 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4348, 9], ["license", 4349, 9]]);
-const pos$585 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4339, 7], ["ename", 4340, 7], ["version", 4341, 7], ["src", 4342, 7], ["packageRequires", 4346, 7], ["meta", 4347, 7]]);
 const formals$197 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$586 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4364, 9], ["sha256", 4365, 9]]);
-const pos$587 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4369, 9], ["license", 4370, 9]]);
-const pos$588 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4360, 7], ["ename", 4361, 7], ["version", 4362, 7], ["src", 4363, 7], ["packageRequires", 4367, 7], ["meta", 4368, 7]]);
 const formals$198 = { args: { elpaBuild: false, fetchurl: false, "gnat-compiler": false, lib: false, wisi: false }, ellipsis: false };
-const pos$589 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4387, 9], ["sha256", 4388, 9]]);
-const pos$590 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4395, 9], ["license", 4396, 9]]);
-const pos$591 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4383, 7], ["ename", 4384, 7], ["version", 4385, 7], ["src", 4386, 7], ["packageRequires", 4390, 7], ["meta", 4394, 7]]);
 const formals$199 = { args: { elpaBuild: false, fetchurl: false, "gnat-compiler": false, lib: false, wisi: false }, ellipsis: false };
-const pos$592 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4413, 9], ["sha256", 4414, 9]]);
-const pos$593 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4421, 9], ["license", 4422, 9]]);
-const pos$594 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4409, 7], ["ename", 4410, 7], ["version", 4411, 7], ["src", 4412, 7], ["packageRequires", 4416, 7], ["meta", 4420, 7]]);
 const formals$200 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$595 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4437, 9], ["sha256", 4438, 9]]);
-const pos$596 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4442, 9], ["license", 4443, 9]]);
-const pos$597 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4433, 7], ["ename", 4434, 7], ["version", 4435, 7], ["src", 4436, 7], ["packageRequires", 4440, 7], ["meta", 4441, 7]]);
 const formals$201 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false, seq: false }, ellipsis: false };
-const pos$598 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4460, 9], ["sha256", 4461, 9]]);
-const pos$599 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4468, 9], ["license", 4469, 9]]);
-const pos$600 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4456, 7], ["ename", 4457, 7], ["version", 4458, 7], ["src", 4459, 7], ["packageRequires", 4463, 7], ["meta", 4467, 7]]);
 const formals$202 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$601 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4484, 9], ["sha256", 4485, 9]]);
-const pos$602 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4489, 9], ["license", 4490, 9]]);
-const pos$603 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4480, 7], ["ename", 4481, 7], ["version", 4482, 7], ["src", 4483, 7], ["packageRequires", 4487, 7], ["meta", 4488, 7]]);
 const formals$203 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$604 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4505, 9], ["sha256", 4506, 9]]);
-const pos$605 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4510, 9], ["license", 4511, 9]]);
-const pos$606 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4501, 7], ["ename", 4502, 7], ["version", 4503, 7], ["src", 4504, 7], ["packageRequires", 4508, 7], ["meta", 4509, 7]]);
 const formals$204 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false, nadvice: false }, ellipsis: false };
-const pos$607 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4528, 9], ["sha256", 4529, 9]]);
-const pos$608 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4536, 9], ["license", 4537, 9]]);
-const pos$609 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4524, 7], ["ename", 4525, 7], ["version", 4526, 7], ["src", 4527, 7], ["packageRequires", 4531, 7], ["meta", 4535, 7]]);
 const formals$205 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$610 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4552, 9], ["sha256", 4553, 9]]);
-const pos$611 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4557, 9], ["license", 4558, 9]]);
-const pos$612 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4548, 7], ["ename", 4549, 7], ["version", 4550, 7], ["src", 4551, 7], ["packageRequires", 4555, 7], ["meta", 4556, 7]]);
 const formals$206 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$613 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4573, 9], ["sha256", 4574, 9]]);
-const pos$614 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4578, 9], ["license", 4579, 9]]);
-const pos$615 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4569, 7], ["ename", 4570, 7], ["version", 4571, 7], ["src", 4572, 7], ["packageRequires", 4576, 7], ["meta", 4577, 7]]);
 const formals$207 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$616 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4594, 9], ["sha256", 4595, 9]]);
-const pos$617 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4599, 9], ["license", 4600, 9]]);
-const pos$618 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4590, 7], ["ename", 4591, 7], ["version", 4592, 7], ["src", 4593, 7], ["packageRequires", 4597, 7], ["meta", 4598, 7]]);
 const formals$208 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$619 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4615, 9], ["sha256", 4616, 9]]);
-const pos$620 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4620, 9], ["license", 4621, 9]]);
-const pos$621 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4611, 7], ["ename", 4612, 7], ["version", 4613, 7], ["src", 4614, 7], ["packageRequires", 4618, 7], ["meta", 4619, 7]]);
 const formals$209 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$622 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4636, 9], ["sha256", 4637, 9]]);
-const pos$623 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4641, 9], ["license", 4642, 9]]);
-const pos$624 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4632, 7], ["ename", 4633, 7], ["version", 4634, 7], ["src", 4635, 7], ["packageRequires", 4639, 7], ["meta", 4640, 7]]);
 const formals$210 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$625 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4657, 9], ["sha256", 4658, 9]]);
-const pos$626 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4662, 9], ["license", 4663, 9]]);
-const pos$627 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4653, 7], ["ename", 4654, 7], ["version", 4655, 7], ["src", 4656, 7], ["packageRequires", 4660, 7], ["meta", 4661, 7]]);
 const formals$211 = { args: { elpaBuild: false, fetchurl: false, lib: false, seq: false }, ellipsis: false };
-const pos$628 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4679, 9], ["sha256", 4680, 9]]);
-const pos$629 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4684, 9], ["license", 4685, 9]]);
-const pos$630 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4675, 7], ["ename", 4676, 7], ["version", 4677, 7], ["src", 4678, 7], ["packageRequires", 4682, 7], ["meta", 4683, 7]]);
 const formals$212 = { args: { elpaBuild: false, fetchurl: false, lib: false, lv: false }, ellipsis: false };
-const pos$631 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4701, 9], ["sha256", 4702, 9]]);
-const pos$632 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4706, 9], ["license", 4707, 9]]);
-const pos$633 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4697, 7], ["ename", 4698, 7], ["version", 4699, 7], ["src", 4700, 7], ["packageRequires", 4704, 7], ["meta", 4705, 7]]);
 const formals$213 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$634 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4722, 9], ["sha256", 4723, 9]]);
-const pos$635 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4727, 9], ["license", 4728, 9]]);
-const pos$636 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4718, 7], ["ename", 4719, 7], ["version", 4720, 7], ["src", 4721, 7], ["packageRequires", 4725, 7], ["meta", 4726, 7]]);
 const formals$214 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$637 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4743, 9], ["sha256", 4744, 9]]);
-const pos$638 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4748, 9], ["license", 4749, 9]]);
-const pos$639 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4739, 7], ["ename", 4740, 7], ["version", 4741, 7], ["src", 4742, 7], ["packageRequires", 4746, 7], ["meta", 4747, 7]]);
 const formals$215 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$640 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4764, 9], ["sha256", 4765, 9]]);
-const pos$641 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4769, 9], ["license", 4770, 9]]);
-const pos$642 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4760, 7], ["ename", 4761, 7], ["version", 4762, 7], ["src", 4763, 7], ["packageRequires", 4767, 7], ["meta", 4768, 7]]);
 const formals$216 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$643 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4785, 9], ["sha256", 4786, 9]]);
-const pos$644 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4790, 9], ["license", 4791, 9]]);
-const pos$645 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4781, 7], ["ename", 4782, 7], ["version", 4783, 7], ["src", 4784, 7], ["packageRequires", 4788, 7], ["meta", 4789, 7]]);
 const formals$217 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$646 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4807, 9], ["sha256", 4808, 9]]);
-const pos$647 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4812, 9], ["license", 4813, 9]]);
-const pos$648 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4803, 7], ["ename", 4804, 7], ["version", 4805, 7], ["src", 4806, 7], ["packageRequires", 4810, 7], ["meta", 4811, 7]]);
 const formals$218 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$649 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4828, 9], ["sha256", 4829, 9]]);
-const pos$650 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4833, 9], ["license", 4834, 9]]);
-const pos$651 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4824, 7], ["ename", 4825, 7], ["version", 4826, 7], ["src", 4827, 7], ["packageRequires", 4831, 7], ["meta", 4832, 7]]);
 const formals$219 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$652 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4850, 9], ["sha256", 4851, 9]]);
-const pos$653 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4855, 9], ["license", 4856, 9]]);
-const pos$654 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4846, 7], ["ename", 4847, 7], ["version", 4848, 7], ["src", 4849, 7], ["packageRequires", 4853, 7], ["meta", 4854, 7]]);
 const formals$220 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$655 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4871, 9], ["sha256", 4872, 9]]);
-const pos$656 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4876, 9], ["license", 4877, 9]]);
-const pos$657 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4867, 7], ["ename", 4868, 7], ["version", 4869, 7], ["src", 4870, 7], ["packageRequires", 4874, 7], ["meta", 4875, 7]]);
 const formals$221 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$658 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4892, 9], ["sha256", 4893, 9]]);
-const pos$659 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4897, 9], ["license", 4898, 9]]);
-const pos$660 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4888, 7], ["ename", 4889, 7], ["version", 4890, 7], ["src", 4891, 7], ["packageRequires", 4895, 7], ["meta", 4896, 7]]);
 const formals$222 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$661 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4913, 9], ["sha256", 4914, 9]]);
-const pos$662 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4918, 9], ["license", 4919, 9]]);
-const pos$663 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4909, 7], ["ename", 4910, 7], ["version", 4911, 7], ["src", 4912, 7], ["packageRequires", 4916, 7], ["meta", 4917, 7]]);
 const formals$223 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$664 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4934, 9], ["sha256", 4935, 9]]);
-const pos$665 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4939, 9], ["license", 4940, 9]]);
-const pos$666 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4930, 7], ["ename", 4931, 7], ["version", 4932, 7], ["src", 4933, 7], ["packageRequires", 4937, 7], ["meta", 4938, 7]]);
 const formals$224 = { args: { avy: false, elpaBuild: false, fetchurl: false, ivy: false, lib: false }, ellipsis: false };
-const pos$667 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4957, 9], ["sha256", 4958, 9]]);
-const pos$668 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4965, 9], ["license", 4966, 9]]);
-const pos$669 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4953, 7], ["ename", 4954, 7], ["version", 4955, 7], ["src", 4956, 7], ["packageRequires", 4960, 7], ["meta", 4964, 7]]);
 const formals$225 = { args: { elpaBuild: false, fetchurl: false, ivy: false, lib: false }, ellipsis: false };
-const pos$670 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 4982, 9], ["sha256", 4983, 9]]);
-const pos$671 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 4987, 9], ["license", 4988, 9]]);
-const pos$672 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 4978, 7], ["ename", 4979, 7], ["version", 4980, 7], ["src", 4981, 7], ["packageRequires", 4985, 7], ["meta", 4986, 7]]);
 const formals$226 = { args: { elpaBuild: false, fetchurl: false, hydra: false, ivy: false, lib: false }, ellipsis: false };
-const pos$673 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5005, 9], ["sha256", 5006, 9]]);
-const pos$674 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5013, 9], ["license", 5014, 9]]);
-const pos$675 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5001, 7], ["ename", 5002, 7], ["version", 5003, 7], ["src", 5004, 7], ["packageRequires", 5008, 7], ["meta", 5012, 7]]);
 const formals$227 = { args: { elpaBuild: false, fetchurl: false, ivy: false, lib: false, posframe: false }, ellipsis: false };
-const pos$676 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5031, 9], ["sha256", 5032, 9]]);
-const pos$677 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5039, 9], ["license", 5040, 9]]);
-const pos$678 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5027, 7], ["ename", 5028, 7], ["version", 5029, 7], ["src", 5030, 7], ["packageRequires", 5034, 7], ["meta", 5038, 7]]);
 const formals$228 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$679 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5055, 9], ["sha256", 5056, 9]]);
-const pos$680 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5060, 9], ["license", 5061, 9]]);
-const pos$681 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5051, 7], ["ename", 5052, 7], ["version", 5053, 7], ["src", 5054, 7], ["packageRequires", 5058, 7], ["meta", 5059, 7]]);
 const formals$229 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$682 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5076, 9], ["sha256", 5077, 9]]);
-const pos$683 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5081, 9], ["license", 5082, 9]]);
-const pos$684 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5072, 7], ["ename", 5073, 7], ["version", 5074, 7], ["src", 5075, 7], ["packageRequires", 5079, 7], ["meta", 5080, 7]]);
 const formals$230 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$685 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5097, 9], ["sha256", 5098, 9]]);
-const pos$686 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5102, 9], ["license", 5103, 9]]);
-const pos$687 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5093, 7], ["ename", 5094, 7], ["version", 5095, 7], ["src", 5096, 7], ["packageRequires", 5100, 7], ["meta", 5101, 7]]);
 const formals$231 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$688 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5119, 9], ["sha256", 5120, 9]]);
-const pos$689 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5124, 9], ["license", 5125, 9]]);
-const pos$690 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5115, 7], ["ename", 5116, 7], ["version", 5117, 7], ["src", 5118, 7], ["packageRequires", 5122, 7], ["meta", 5123, 7]]);
 const formals$232 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$691 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5141, 9], ["sha256", 5142, 9]]);
-const pos$692 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5146, 9], ["license", 5147, 9]]);
-const pos$693 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5137, 7], ["ename", 5138, 7], ["version", 5139, 7], ["src", 5140, 7], ["packageRequires", 5144, 7], ["meta", 5145, 7]]);
 const formals$233 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$694 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5163, 9], ["sha256", 5164, 9]]);
-const pos$695 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5168, 9], ["license", 5169, 9]]);
-const pos$696 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5159, 7], ["ename", 5160, 7], ["version", 5161, 7], ["src", 5162, 7], ["packageRequires", 5166, 7], ["meta", 5167, 7]]);
 const formals$234 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$697 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5185, 9], ["sha256", 5186, 9]]);
-const pos$698 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5190, 9], ["license", 5191, 9]]);
-const pos$699 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5181, 7], ["ename", 5182, 7], ["version", 5183, 7], ["src", 5184, 7], ["packageRequires", 5188, 7], ["meta", 5189, 7]]);
 const formals$235 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$700 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5206, 9], ["sha256", 5207, 9]]);
-const pos$701 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5211, 9], ["license", 5212, 9]]);
-const pos$702 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5202, 7], ["ename", 5203, 7], ["version", 5204, 7], ["src", 5205, 7], ["packageRequires", 5209, 7], ["meta", 5210, 7]]);
 const formals$236 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$703 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5227, 9], ["sha256", 5228, 9]]);
-const pos$704 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5232, 9], ["license", 5233, 9]]);
-const pos$705 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5223, 7], ["ename", 5224, 7], ["version", 5225, 7], ["src", 5226, 7], ["packageRequires", 5230, 7], ["meta", 5231, 7]]);
 const formals$237 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$706 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5248, 9], ["sha256", 5249, 9]]);
-const pos$707 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5253, 9], ["license", 5254, 9]]);
-const pos$708 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5244, 7], ["ename", 5245, 7], ["version", 5246, 7], ["src", 5247, 7], ["packageRequires", 5251, 7], ["meta", 5252, 7]]);
 const formals$238 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$709 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5269, 9], ["sha256", 5270, 9]]);
-const pos$710 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5274, 9], ["license", 5275, 9]]);
-const pos$711 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5265, 7], ["ename", 5266, 7], ["version", 5267, 7], ["src", 5268, 7], ["packageRequires", 5272, 7], ["meta", 5273, 7]]);
 const formals$239 = { args: { elpaBuild: false, fetchurl: false, lib: false, "svg-lib": false }, ellipsis: false };
-const pos$712 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5291, 9], ["sha256", 5292, 9]]);
-const pos$713 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5296, 9], ["license", 5297, 9]]);
-const pos$714 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5287, 7], ["ename", 5288, 7], ["version", 5289, 7], ["src", 5290, 7], ["packageRequires", 5294, 7], ["meta", 5295, 7]]);
 const formals$240 = { args: { elpaBuild: false, fetchurl: false, lib: false, request: false }, ellipsis: false };
-const pos$715 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5313, 9], ["sha256", 5314, 9]]);
-const pos$716 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5318, 9], ["license", 5319, 9]]);
-const pos$717 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5309, 7], ["ename", 5310, 7], ["version", 5311, 7], ["src", 5312, 7], ["packageRequires", 5316, 7], ["meta", 5317, 7]]);
 const formals$241 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$718 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5334, 9], ["sha256", 5335, 9]]);
-const pos$719 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5339, 9], ["license", 5340, 9]]);
-const pos$720 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5330, 7], ["ename", 5331, 7], ["version", 5332, 7], ["src", 5333, 7], ["packageRequires", 5337, 7], ["meta", 5338, 7]]);
 const formals$242 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$721 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5355, 9], ["sha256", 5356, 9]]);
-const pos$722 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5360, 9], ["license", 5361, 9]]);
-const pos$723 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5351, 7], ["ename", 5352, 7], ["version", 5353, 7], ["src", 5354, 7], ["packageRequires", 5358, 7], ["meta", 5359, 7]]);
 const formals$243 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$724 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5376, 9], ["sha256", 5377, 9]]);
-const pos$725 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5381, 9], ["license", 5382, 9]]);
-const pos$726 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5372, 7], ["ename", 5373, 7], ["version", 5374, 7], ["src", 5375, 7], ["packageRequires", 5379, 7], ["meta", 5380, 7]]);
 const formals$244 = { args: { auctex: false, elpaBuild: false, fetchurl: false, lib: false, transient: false }, ellipsis: false };
-const pos$727 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5399, 9], ["sha256", 5400, 9]]);
-const pos$728 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5407, 9], ["license", 5408, 9]]);
-const pos$729 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5395, 7], ["ename", 5396, 7], ["version", 5397, 7], ["src", 5398, 7], ["packageRequires", 5402, 7], ["meta", 5406, 7]]);
 const formals$245 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$730 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5423, 9], ["sha256", 5424, 9]]);
-const pos$731 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5428, 9], ["license", 5429, 9]]);
-const pos$732 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5419, 7], ["ename", 5420, 7], ["version", 5421, 7], ["src", 5422, 7], ["packageRequires", 5426, 7], ["meta", 5427, 7]]);
 const formals$246 = { args: { dash: false, elpaBuild: false, fetchurl: false, lib: false, "m-buffer": false }, ellipsis: false };
-const pos$733 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5446, 9], ["sha256", 5447, 9]]);
-const pos$734 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5454, 9], ["license", 5455, 9]]);
-const pos$735 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5442, 7], ["ename", 5443, 7], ["version", 5444, 7], ["src", 5445, 7], ["packageRequires", 5449, 7], ["meta", 5453, 7]]);
 const formals$247 = { args: { elpaBuild: false, fetchurl: false, lentic: false, lib: false, "web-server": false }, ellipsis: false };
-const pos$736 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5472, 9], ["sha256", 5473, 9]]);
-const pos$737 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5480, 9], ["license", 5481, 9]]);
-const pos$738 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5468, 7], ["ename", 5469, 7], ["version", 5470, 7], ["src", 5471, 7], ["packageRequires", 5475, 7], ["meta", 5479, 7]]);
 const formals$248 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$739 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5496, 9], ["sha256", 5497, 9]]);
-const pos$740 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5501, 9], ["license", 5502, 9]]);
-const pos$741 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5492, 7], ["ename", 5493, 7], ["version", 5494, 7], ["src", 5495, 7], ["packageRequires", 5499, 7], ["meta", 5500, 7]]);
 const formals$249 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$742 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5517, 9], ["sha256", 5518, 9]]);
-const pos$743 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5522, 9], ["license", 5523, 9]]);
-const pos$744 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5513, 7], ["ename", 5514, 7], ["version", 5515, 7], ["src", 5516, 7], ["packageRequires", 5520, 7], ["meta", 5521, 7]]);
 const formals$250 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$745 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5538, 9], ["sha256", 5539, 9]]);
-const pos$746 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5543, 9], ["license", 5544, 9]]);
-const pos$747 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5534, 7], ["ename", 5535, 7], ["version", 5536, 7], ["src", 5537, 7], ["packageRequires", 5541, 7], ["meta", 5542, 7]]);
 const formals$251 = { args: { compat: false, "cond-star": false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$748 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5561, 9], ["sha256", 5562, 9]]);
-const pos$749 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5569, 9], ["license", 5570, 9]]);
-const pos$750 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5557, 7], ["ename", 5558, 7], ["version", 5559, 7], ["src", 5560, 7], ["packageRequires", 5564, 7], ["meta", 5568, 7]]);
 const formals$252 = { args: { elpaBuild: false, fetchurl: false, lib: false, persist: false, taxy: false, "taxy-magit-section": false, transient: false }, ellipsis: false };
-const pos$751 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5589, 9], ["sha256", 5590, 9]]);
-const pos$752 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5599, 9], ["license", 5600, 9]]);
-const pos$753 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5585, 7], ["ename", 5586, 7], ["version", 5587, 7], ["src", 5588, 7], ["packageRequires", 5592, 7], ["meta", 5598, 7]]);
 const formals$253 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$754 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5615, 9], ["sha256", 5616, 9]]);
-const pos$755 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5620, 9], ["license", 5621, 9]]);
-const pos$756 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5611, 7], ["ename", 5612, 7], ["version", 5613, 7], ["src", 5614, 7], ["packageRequires", 5618, 7], ["meta", 5619, 7]]);
 const formals$254 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false, plz: false, "plz-event-source": false, "plz-media-type": false }, ellipsis: false };
-const pos$757 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5640, 9], ["sha256", 5641, 9]]);
-const pos$758 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5650, 9], ["license", 5651, 9]]);
-const pos$759 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5636, 7], ["ename", 5637, 7], ["version", 5638, 7], ["src", 5639, 7], ["packageRequires", 5643, 7], ["meta", 5649, 7]]);
 const formals$255 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$760 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5667, 9], ["sha256", 5668, 9]]);
-const pos$761 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5672, 9], ["license", 5673, 9]]);
-const pos$762 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5663, 7], ["ename", 5664, 7], ["version", 5665, 7], ["src", 5666, 7], ["packageRequires", 5670, 7], ["meta", 5671, 7]]);
 const formals$256 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$763 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5689, 9], ["sha256", 5690, 9]]);
-const pos$764 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5694, 9], ["license", 5695, 9]]);
-const pos$765 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5685, 7], ["ename", 5686, 7], ["version", 5687, 7], ["src", 5688, 7], ["packageRequires", 5692, 7], ["meta", 5693, 7]]);
 const formals$257 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$766 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5710, 9], ["sha256", 5711, 9]]);
-const pos$767 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5715, 9], ["license", 5716, 9]]);
-const pos$768 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5706, 7], ["ename", 5707, 7], ["version", 5708, 7], ["src", 5709, 7], ["packageRequires", 5713, 7], ["meta", 5714, 7]]);
 const formals$258 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$769 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5731, 9], ["sha256", 5732, 9]]);
-const pos$770 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5736, 9], ["license", 5737, 9]]);
-const pos$771 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5727, 7], ["ename", 5728, 7], ["version", 5729, 7], ["src", 5730, 7], ["packageRequires", 5734, 7], ["meta", 5735, 7]]);
 const formals$259 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$772 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5752, 9], ["sha256", 5753, 9]]);
-const pos$773 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5757, 9], ["license", 5758, 9]]);
-const pos$774 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5748, 7], ["ename", 5749, 7], ["version", 5750, 7], ["src", 5751, 7], ["packageRequires", 5755, 7], ["meta", 5756, 7]]);
 const formals$260 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$775 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5773, 9], ["sha256", 5774, 9]]);
-const pos$776 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5778, 9], ["license", 5779, 9]]);
-const pos$777 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5769, 7], ["ename", 5770, 7], ["version", 5771, 7], ["src", 5772, 7], ["packageRequires", 5776, 7], ["meta", 5777, 7]]);
 const formals$261 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$778 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5794, 9], ["sha256", 5795, 9]]);
-const pos$779 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5799, 9], ["license", 5800, 9]]);
-const pos$780 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5790, 7], ["ename", 5791, 7], ["version", 5792, 7], ["src", 5793, 7], ["packageRequires", 5797, 7], ["meta", 5798, 7]]);
 const formals$262 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$781 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5815, 9], ["sha256", 5816, 9]]);
-const pos$782 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5820, 9], ["license", 5821, 9]]);
-const pos$783 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5811, 7], ["ename", 5812, 7], ["version", 5813, 7], ["src", 5814, 7], ["packageRequires", 5818, 7], ["meta", 5819, 7]]);
 const formals$263 = { args: { elpaBuild: false, fetchurl: false, lib: false, seq: false }, ellipsis: false };
-const pos$784 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5837, 9], ["sha256", 5838, 9]]);
-const pos$785 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5842, 9], ["license", 5843, 9]]);
-const pos$786 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5833, 7], ["ename", 5834, 7], ["version", 5835, 7], ["src", 5836, 7], ["packageRequires", 5840, 7], ["meta", 5841, 7]]);
 const formals$264 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$787 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5858, 9], ["sha256", 5859, 9]]);
-const pos$788 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5863, 9], ["license", 5864, 9]]);
-const pos$789 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5854, 7], ["ename", 5855, 7], ["version", 5856, 7], ["src", 5857, 7], ["packageRequires", 5861, 7], ["meta", 5862, 7]]);
 const formals$265 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$790 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5880, 9], ["sha256", 5881, 9]]);
-const pos$791 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5885, 9], ["license", 5886, 9]]);
-const pos$792 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5876, 7], ["ename", 5877, 7], ["version", 5878, 7], ["src", 5879, 7], ["packageRequires", 5883, 7], ["meta", 5884, 7]]);
 const formals$266 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$793 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5901, 9], ["sha256", 5902, 9]]);
-const pos$794 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5906, 9], ["license", 5907, 9]]);
-const pos$795 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5897, 7], ["ename", 5898, 7], ["version", 5899, 7], ["src", 5900, 7], ["packageRequires", 5904, 7], ["meta", 5905, 7]]);
 const formals$267 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$796 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5922, 9], ["sha256", 5923, 9]]);
-const pos$797 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5927, 9], ["license", 5928, 9]]);
-const pos$798 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5918, 7], ["ename", 5919, 7], ["version", 5920, 7], ["src", 5921, 7], ["packageRequires", 5925, 7], ["meta", 5926, 7]]);
 const formals$268 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$799 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5943, 9], ["sha256", 5944, 9]]);
-const pos$800 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5948, 9], ["license", 5949, 9]]);
-const pos$801 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5939, 7], ["ename", 5940, 7], ["version", 5941, 7], ["src", 5942, 7], ["packageRequires", 5946, 7], ["meta", 5947, 7]]);
 const formals$269 = { args: { elpaBuild: false, fetchurl: false, lib: false, peg: false }, ellipsis: false };
-const pos$802 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5965, 9], ["sha256", 5966, 9]]);
-const pos$803 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5970, 9], ["license", 5971, 9]]);
-const pos$804 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5961, 7], ["ename", 5962, 7], ["version", 5963, 7], ["src", 5964, 7], ["packageRequires", 5968, 7], ["meta", 5969, 7]]);
 const formals$270 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$805 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 5986, 9], ["sha256", 5987, 9]]);
-const pos$806 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 5991, 9], ["license", 5992, 9]]);
-const pos$807 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 5982, 7], ["ename", 5983, 7], ["version", 5984, 7], ["src", 5985, 7], ["packageRequires", 5989, 7], ["meta", 5990, 7]]);
 const formals$271 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$808 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6007, 9], ["sha256", 6008, 9]]);
-const pos$809 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6012, 9], ["license", 6013, 9]]);
-const pos$810 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6003, 7], ["ename", 6004, 7], ["version", 6005, 7], ["src", 6006, 7], ["packageRequires", 6010, 7], ["meta", 6011, 7]]);
 const formals$272 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$811 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6028, 9], ["sha256", 6029, 9]]);
-const pos$812 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6033, 9], ["license", 6034, 9]]);
-const pos$813 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6024, 7], ["ename", 6025, 7], ["version", 6026, 7], ["src", 6027, 7], ["packageRequires", 6031, 7], ["meta", 6032, 7]]);
 const formals$273 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$814 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6050, 9], ["sha256", 6051, 9]]);
-const pos$815 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6055, 9], ["license", 6056, 9]]);
-const pos$816 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6046, 7], ["ename", 6047, 7], ["version", 6048, 7], ["src", 6049, 7], ["packageRequires", 6053, 7], ["meta", 6054, 7]]);
 const formals$274 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$817 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6071, 9], ["sha256", 6072, 9]]);
-const pos$818 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6076, 9], ["license", 6077, 9]]);
-const pos$819 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6067, 7], ["ename", 6068, 7], ["version", 6069, 7], ["src", 6070, 7], ["packageRequires", 6074, 7], ["meta", 6075, 7]]);
 const formals$275 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$820 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6093, 9], ["sha256", 6094, 9]]);
-const pos$821 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6098, 9], ["license", 6099, 9]]);
-const pos$822 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6089, 7], ["ename", 6090, 7], ["version", 6091, 7], ["src", 6092, 7], ["packageRequires", 6096, 7], ["meta", 6097, 7]]);
 const formals$276 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$823 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6114, 9], ["sha256", 6115, 9]]);
-const pos$824 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6119, 9], ["license", 6120, 9]]);
-const pos$825 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6110, 7], ["ename", 6111, 7], ["version", 6112, 7], ["src", 6113, 7], ["packageRequires", 6117, 7], ["meta", 6118, 7]]);
 const formals$277 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$826 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6135, 9], ["sha256", 6136, 9]]);
-const pos$827 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6140, 9], ["license", 6141, 9]]);
-const pos$828 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6131, 7], ["ename", 6132, 7], ["version", 6133, 7], ["src", 6134, 7], ["packageRequires", 6138, 7], ["meta", 6139, 7]]);
 const formals$278 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false, transient: false }, ellipsis: false };
-const pos$829 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6158, 9], ["sha256", 6159, 9]]);
-const pos$830 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6166, 9], ["license", 6167, 9]]);
-const pos$831 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6154, 7], ["ename", 6155, 7], ["version", 6156, 7], ["src", 6157, 7], ["packageRequires", 6161, 7], ["meta", 6165, 7]]);
 const formals$279 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$832 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6182, 9], ["sha256", 6183, 9]]);
-const pos$833 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6187, 9], ["license", 6188, 9]]);
-const pos$834 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6178, 7], ["ename", 6179, 7], ["version", 6180, 7], ["src", 6181, 7], ["packageRequires", 6185, 7], ["meta", 6186, 7]]);
 const formals$280 = { args: { dash: false, elpaBuild: false, fetchurl: false, lib: false, plz: false }, ellipsis: false };
-const pos$835 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6205, 9], ["sha256", 6206, 9]]);
-const pos$836 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6213, 9], ["license", 6214, 9]]);
-const pos$837 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6201, 7], ["ename", 6202, 7], ["version", 6203, 7], ["src", 6204, 7], ["packageRequires", 6208, 7], ["meta", 6212, 7]]);
 const formals$281 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$838 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6230, 9], ["sha256", 6231, 9]]);
-const pos$839 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6235, 9], ["license", 6236, 9]]);
-const pos$840 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6226, 7], ["ename", 6227, 7], ["version", 6228, 7], ["src", 6229, 7], ["packageRequires", 6233, 7], ["meta", 6234, 7]]);
 const formals$282 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$841 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6251, 9], ["sha256", 6252, 9]]);
-const pos$842 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6256, 9], ["license", 6257, 9]]);
-const pos$843 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6247, 7], ["ename", 6248, 7], ["version", 6249, 7], ["src", 6250, 7], ["packageRequires", 6254, 7], ["meta", 6255, 7]]);
 const formals$283 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$844 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6272, 9], ["sha256", 6273, 9]]);
-const pos$845 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6277, 9], ["license", 6278, 9]]);
-const pos$846 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6268, 7], ["ename", 6269, 7], ["version", 6270, 7], ["src", 6271, 7], ["packageRequires", 6275, 7], ["meta", 6276, 7]]);
 const formals$284 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$847 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6293, 9], ["sha256", 6294, 9]]);
-const pos$848 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6298, 9], ["license", 6299, 9]]);
-const pos$849 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6289, 7], ["ename", 6290, 7], ["version", 6291, 7], ["src", 6292, 7], ["packageRequires", 6296, 7], ["meta", 6297, 7]]);
 const formals$285 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$850 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6314, 9], ["sha256", 6315, 9]]);
-const pos$851 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6319, 9], ["license", 6320, 9]]);
-const pos$852 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6310, 7], ["ename", 6311, 7], ["version", 6312, 7], ["src", 6313, 7], ["packageRequires", 6317, 7], ["meta", 6318, 7]]);
 const formals$286 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$853 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6336, 9], ["sha256", 6337, 9]]);
-const pos$854 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6341, 9], ["license", 6342, 9]]);
-const pos$855 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6332, 7], ["ename", 6333, 7], ["version", 6334, 7], ["src", 6335, 7], ["packageRequires", 6339, 7], ["meta", 6340, 7]]);
 const formals$287 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$856 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6357, 9], ["sha256", 6358, 9]]);
-const pos$857 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6362, 9], ["license", 6363, 9]]);
-const pos$858 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6353, 7], ["ename", 6354, 7], ["version", 6355, 7], ["src", 6356, 7], ["packageRequires", 6360, 7], ["meta", 6361, 7]]);
 const formals$288 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$859 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6378, 9], ["sha256", 6379, 9]]);
-const pos$860 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6383, 9], ["license", 6384, 9]]);
-const pos$861 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6374, 7], ["ename", 6375, 7], ["version", 6376, 7], ["src", 6377, 7], ["packageRequires", 6381, 7], ["meta", 6382, 7]]);
 const formals$289 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$862 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6399, 9], ["sha256", 6400, 9]]);
-const pos$863 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6404, 9], ["license", 6405, 9]]);
-const pos$864 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6395, 7], ["ename", 6396, 7], ["version", 6397, 7], ["src", 6398, 7], ["packageRequires", 6402, 7], ["meta", 6403, 7]]);
 const formals$290 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$865 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6420, 9], ["sha256", 6421, 9]]);
-const pos$866 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6425, 9], ["license", 6426, 9]]);
-const pos$867 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6416, 7], ["ename", 6417, 7], ["version", 6418, 7], ["src", 6419, 7], ["packageRequires", 6423, 7], ["meta", 6424, 7]]);
 const formals$291 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false, nadvice: false }, ellipsis: false };
-const pos$868 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6443, 9], ["sha256", 6444, 9]]);
-const pos$869 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6451, 9], ["license", 6452, 9]]);
-const pos$870 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6439, 7], ["ename", 6440, 7], ["version", 6441, 7], ["src", 6442, 7], ["packageRequires", 6446, 7], ["meta", 6450, 7]]);
 const formals$292 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$871 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6467, 9], ["sha256", 6468, 9]]);
-const pos$872 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6472, 9], ["license", 6473, 9]]);
-const pos$873 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6463, 7], ["ename", 6464, 7], ["version", 6465, 7], ["src", 6466, 7], ["packageRequires", 6470, 7], ["meta", 6471, 7]]);
 const formals$293 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$874 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6488, 9], ["sha256", 6489, 9]]);
-const pos$875 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6493, 9], ["license", 6494, 9]]);
-const pos$876 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6484, 7], ["ename", 6485, 7], ["version", 6486, 7], ["src", 6487, 7], ["packageRequires", 6491, 7], ["meta", 6492, 7]]);
 const formals$294 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$877 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6509, 9], ["sha256", 6510, 9]]);
-const pos$878 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6514, 9], ["license", 6515, 9]]);
-const pos$879 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6505, 7], ["ename", 6506, 7], ["version", 6507, 7], ["src", 6508, 7], ["packageRequires", 6512, 7], ["meta", 6513, 7]]);
 const formals$295 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$880 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6530, 9], ["sha256", 6531, 9]]);
-const pos$881 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6535, 9], ["license", 6536, 9]]);
-const pos$882 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6526, 7], ["ename", 6527, 7], ["version", 6528, 7], ["src", 6529, 7], ["packageRequires", 6533, 7], ["meta", 6534, 7]]);
 const formals$296 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$883 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6551, 9], ["sha256", 6552, 9]]);
-const pos$884 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6556, 9], ["license", 6557, 9]]);
-const pos$885 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6547, 7], ["ename", 6548, 7], ["version", 6549, 7], ["src", 6550, 7], ["packageRequires", 6554, 7], ["meta", 6555, 7]]);
 const formals$297 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$886 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6572, 9], ["sha256", 6573, 9]]);
-const pos$887 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6577, 9], ["license", 6578, 9]]);
-const pos$888 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6568, 7], ["ename", 6569, 7], ["version", 6570, 7], ["src", 6571, 7], ["packageRequires", 6575, 7], ["meta", 6576, 7]]);
 const formals$298 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$889 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6593, 9], ["sha256", 6594, 9]]);
-const pos$890 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6598, 9], ["license", 6599, 9]]);
-const pos$891 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6589, 7], ["ename", 6590, 7], ["version", 6591, 7], ["src", 6592, 7], ["packageRequires", 6596, 7], ["meta", 6597, 7]]);
 const formals$299 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$892 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6614, 9], ["sha256", 6615, 9]]);
-const pos$893 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6619, 9], ["license", 6620, 9]]);
-const pos$894 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6610, 7], ["ename", 6611, 7], ["version", 6612, 7], ["src", 6613, 7], ["packageRequires", 6617, 7], ["meta", 6618, 7]]);
 const formals$300 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$895 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6635, 9], ["sha256", 6636, 9]]);
-const pos$896 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6640, 9], ["license", 6641, 9]]);
-const pos$897 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6631, 7], ["ename", 6632, 7], ["version", 6633, 7], ["src", 6634, 7], ["packageRequires", 6638, 7], ["meta", 6639, 7]]);
 const formals$301 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$898 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6656, 9], ["sha256", 6657, 9]]);
-const pos$899 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6661, 9], ["license", 6662, 9]]);
-const pos$900 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6652, 7], ["ename", 6653, 7], ["version", 6654, 7], ["src", 6655, 7], ["packageRequires", 6659, 7], ["meta", 6660, 7]]);
 const formals$302 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$901 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6677, 9], ["sha256", 6678, 9]]);
-const pos$902 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6682, 9], ["license", 6683, 9]]);
-const pos$903 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6673, 7], ["ename", 6674, 7], ["version", 6675, 7], ["src", 6676, 7], ["packageRequires", 6680, 7], ["meta", 6681, 7]]);
 const formals$303 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$904 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6698, 9], ["sha256", 6699, 9]]);
-const pos$905 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6703, 9], ["license", 6704, 9]]);
-const pos$906 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6694, 7], ["ename", 6695, 7], ["version", 6696, 7], ["src", 6697, 7], ["packageRequires", 6701, 7], ["meta", 6702, 7]]);
 const formals$304 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$907 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6719, 9], ["sha256", 6720, 9]]);
-const pos$908 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6724, 9], ["license", 6725, 9]]);
-const pos$909 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6715, 7], ["ename", 6716, 7], ["version", 6717, 7], ["src", 6718, 7], ["packageRequires", 6722, 7], ["meta", 6723, 7]]);
 const formals$305 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$910 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6741, 9], ["sha256", 6742, 9]]);
-const pos$911 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6746, 9], ["license", 6747, 9]]);
-const pos$912 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6737, 7], ["ename", 6738, 7], ["version", 6739, 7], ["src", 6740, 7], ["packageRequires", 6744, 7], ["meta", 6745, 7]]);
 const formals$306 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$913 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6762, 9], ["sha256", 6763, 9]]);
-const pos$914 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6767, 9], ["license", 6768, 9]]);
-const pos$915 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6758, 7], ["ename", 6759, 7], ["version", 6760, 7], ["src", 6761, 7], ["packageRequires", 6765, 7], ["meta", 6766, 7]]);
 const formals$307 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$916 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6784, 9], ["sha256", 6785, 9]]);
-const pos$917 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6789, 9], ["license", 6790, 9]]);
-const pos$918 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6780, 7], ["ename", 6781, 7], ["version", 6782, 7], ["src", 6783, 7], ["packageRequires", 6787, 7], ["meta", 6788, 7]]);
 const formals$308 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$919 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6806, 9], ["sha256", 6807, 9]]);
-const pos$920 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6811, 9], ["license", 6812, 9]]);
-const pos$921 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6802, 7], ["ename", 6803, 7], ["version", 6804, 7], ["src", 6805, 7], ["packageRequires", 6809, 7], ["meta", 6810, 7]]);
 const formals$309 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$922 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6827, 9], ["sha256", 6828, 9]]);
-const pos$923 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6832, 9], ["license", 6833, 9]]);
-const pos$924 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6823, 7], ["ename", 6824, 7], ["version", 6825, 7], ["src", 6826, 7], ["packageRequires", 6830, 7], ["meta", 6831, 7]]);
 const formals$310 = { args: { elpaBuild: false, fetchurl: false, lib: false, org: false }, ellipsis: false };
-const pos$925 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6849, 9], ["sha256", 6850, 9]]);
-const pos$926 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6854, 9], ["license", 6855, 9]]);
-const pos$927 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6845, 7], ["ename", 6846, 7], ["version", 6847, 7], ["src", 6848, 7], ["packageRequires", 6852, 7], ["meta", 6853, 7]]);
 const formals$311 = { args: { elpaBuild: false, fetchurl: false, lib: false, org: false, seq: false }, ellipsis: false };
-const pos$928 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6872, 9], ["sha256", 6873, 9]]);
-const pos$929 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6880, 9], ["license", 6881, 9]]);
-const pos$930 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6868, 7], ["ename", 6869, 7], ["version", 6870, 7], ["src", 6871, 7], ["packageRequires", 6875, 7], ["meta", 6879, 7]]);
 const formals$312 = { args: { compat: false, elpaBuild: false, emacsql: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$931 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6898, 9], ["sha256", 6899, 9]]);
-const pos$932 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6906, 9], ["license", 6907, 9]]);
-const pos$933 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6894, 7], ["ename", 6895, 7], ["version", 6896, 7], ["src", 6897, 7], ["packageRequires", 6901, 7], ["meta", 6905, 7]]);
 const formals$313 = { args: { elpaBuild: false, fetchurl: false, "jami-bot": false, lib: false }, ellipsis: false };
-const pos$934 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6923, 9], ["sha256", 6924, 9]]);
-const pos$935 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6928, 9], ["license", 6929, 9]]);
-const pos$936 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6919, 7], ["ename", 6920, 7], ["version", 6921, 7], ["src", 6922, 7], ["packageRequires", 6926, 7], ["meta", 6927, 7]]);
 const formals$314 = { args: { "el-job": false, elpaBuild: false, fetchurl: false, lib: false, llama: false, "truename-cache": false }, ellipsis: false };
-const pos$937 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6947, 9], ["sha256", 6948, 9]]);
-const pos$938 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6956, 9], ["license", 6957, 9]]);
-const pos$939 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6943, 7], ["ename", 6944, 7], ["version", 6945, 7], ["src", 6946, 7], ["packageRequires", 6950, 7], ["meta", 6955, 7]]);
 const formals$315 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false, org: false }, ellipsis: false };
-const pos$940 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6974, 9], ["sha256", 6975, 9]]);
-const pos$941 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 6982, 9], ["license", 6983, 9]]);
-const pos$942 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6970, 7], ["ename", 6971, 7], ["version", 6972, 7], ["src", 6973, 7], ["packageRequires", 6977, 7], ["meta", 6981, 7]]);
 const formals$316 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$943 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 6998, 9], ["sha256", 6999, 9]]);
-const pos$944 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7003, 9], ["license", 7004, 9]]);
-const pos$945 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 6994, 7], ["ename", 6995, 7], ["version", 6996, 7], ["src", 6997, 7], ["packageRequires", 7001, 7], ["meta", 7002, 7]]);
 const formals$317 = { args: { boxy: false, elpaBuild: false, fetchurl: false, lib: false, org: false }, ellipsis: false };
-const pos$946 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7021, 9], ["sha256", 7022, 9]]);
-const pos$947 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7029, 9], ["license", 7030, 9]]);
-const pos$948 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7017, 7], ["ename", 7018, 7], ["version", 7019, 7], ["src", 7020, 7], ["packageRequires", 7024, 7], ["meta", 7028, 7]]);
 const formals$318 = { args: { elpaBuild: false, fetchurl: false, lib: false, org: false }, ellipsis: false };
-const pos$949 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7046, 9], ["sha256", 7047, 9]]);
-const pos$950 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7051, 9], ["license", 7052, 9]]);
-const pos$951 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7042, 7], ["ename", 7043, 7], ["version", 7044, 7], ["src", 7045, 7], ["packageRequires", 7049, 7], ["meta", 7050, 7]]);
 const formals$319 = { args: { elpaBuild: false, fetchurl: false, lib: false, org: false }, ellipsis: false };
-const pos$952 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7068, 9], ["sha256", 7069, 9]]);
-const pos$953 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7073, 9], ["license", 7074, 9]]);
-const pos$954 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7064, 7], ["ename", 7065, 7], ["version", 7066, 7], ["src", 7067, 7], ["packageRequires", 7071, 7], ["meta", 7072, 7]]);
 const formals$320 = { args: { elpaBuild: false, fetchurl: false, lib: false, org: false }, ellipsis: false };
-const pos$955 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7090, 9], ["sha256", 7091, 9]]);
-const pos$956 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7095, 9], ["license", 7096, 9]]);
-const pos$957 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7086, 7], ["ename", 7087, 7], ["version", 7088, 7], ["src", 7089, 7], ["packageRequires", 7093, 7], ["meta", 7094, 7]]);
 const formals$321 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$958 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7111, 9], ["sha256", 7112, 9]]);
-const pos$959 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7116, 9], ["license", 7117, 9]]);
-const pos$960 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7107, 7], ["ename", 7108, 7], ["version", 7109, 7], ["src", 7110, 7], ["packageRequires", 7114, 7], ["meta", 7115, 7]]);
 const formals$322 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$961 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7132, 9], ["sha256", 7133, 9]]);
-const pos$962 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7137, 9], ["license", 7138, 9]]);
-const pos$963 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7128, 7], ["ename", 7129, 7], ["version", 7130, 7], ["src", 7131, 7], ["packageRequires", 7135, 7], ["meta", 7136, 7]]);
 const formals$323 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$964 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7154, 9], ["sha256", 7155, 9]]);
-const pos$965 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7159, 9], ["license", 7160, 9]]);
-const pos$966 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7150, 7], ["ename", 7151, 7], ["version", 7152, 7], ["src", 7153, 7], ["packageRequires", 7157, 7], ["meta", 7158, 7]]);
 const formals$324 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$967 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7175, 9], ["sha256", 7176, 9]]);
-const pos$968 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7180, 9], ["license", 7181, 9]]);
-const pos$969 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7171, 7], ["ename", 7172, 7], ["version", 7173, 7], ["src", 7174, 7], ["packageRequires", 7178, 7], ["meta", 7179, 7]]);
 const formals$325 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$970 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7196, 9], ["sha256", 7197, 9]]);
-const pos$971 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7201, 9], ["license", 7202, 9]]);
-const pos$972 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7192, 7], ["ename", 7193, 7], ["version", 7194, 7], ["src", 7195, 7], ["packageRequires", 7199, 7], ["meta", 7200, 7]]);
 const formals$326 = { args: { async: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$973 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7218, 9], ["sha256", 7219, 9]]);
-const pos$974 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7223, 9], ["license", 7224, 9]]);
-const pos$975 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7214, 7], ["ename", 7215, 7], ["version", 7216, 7], ["src", 7217, 7], ["packageRequires", 7221, 7], ["meta", 7222, 7]]);
 const formals$327 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$976 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7239, 9], ["sha256", 7240, 9]]);
-const pos$977 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7244, 9], ["license", 7245, 9]]);
-const pos$978 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7235, 7], ["ename", 7236, 7], ["version", 7237, 7], ["src", 7238, 7], ["packageRequires", 7242, 7], ["meta", 7243, 7]]);
 const formals$328 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$979 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7261, 9], ["sha256", 7262, 9]]);
-const pos$980 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7266, 9], ["license", 7267, 9]]);
-const pos$981 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7257, 7], ["ename", 7258, 7], ["version", 7259, 7], ["src", 7260, 7], ["packageRequires", 7264, 7], ["meta", 7265, 7]]);
 const formals$329 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$982 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7282, 9], ["sha256", 7283, 9]]);
-const pos$983 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7287, 9], ["license", 7288, 9]]);
-const pos$984 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7278, 7], ["ename", 7279, 7], ["version", 7280, 7], ["src", 7281, 7], ["packageRequires", 7285, 7], ["meta", 7286, 7]]);
 const formals$330 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$985 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7303, 9], ["sha256", 7304, 9]]);
-const pos$986 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7308, 9], ["license", 7309, 9]]);
-const pos$987 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7299, 7], ["ename", 7300, 7], ["version", 7301, 7], ["src", 7302, 7], ["packageRequires", 7306, 7], ["meta", 7307, 7]]);
 const formals$331 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$988 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7324, 9], ["sha256", 7325, 9]]);
-const pos$989 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7329, 9], ["license", 7330, 9]]);
-const pos$990 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7320, 7], ["ename", 7321, 7], ["version", 7322, 7], ["src", 7323, 7], ["packageRequires", 7327, 7], ["meta", 7328, 7]]);
 const formals$332 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$991 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7345, 9], ["sha256", 7346, 9]]);
-const pos$992 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7350, 9], ["license", 7351, 9]]);
-const pos$993 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7341, 7], ["ename", 7342, 7], ["version", 7343, 7], ["src", 7344, 7], ["packageRequires", 7348, 7], ["meta", 7349, 7]]);
 const formals$333 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$994 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7367, 9], ["sha256", 7368, 9]]);
-const pos$995 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7372, 9], ["license", 7373, 9]]);
-const pos$996 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7363, 7], ["ename", 7364, 7], ["version", 7365, 7], ["src", 7366, 7], ["packageRequires", 7370, 7], ["meta", 7371, 7]]);
 const formals$334 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$997 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7388, 9], ["sha256", 7389, 9]]);
-const pos$998 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7393, 9], ["license", 7394, 9]]);
-const pos$999 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7384, 7], ["ename", 7385, 7], ["version", 7386, 7], ["src", 7387, 7], ["packageRequires", 7391, 7], ["meta", 7392, 7]]);
 const formals$335 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1000 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7410, 9], ["sha256", 7411, 9]]);
-const pos$1001 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7415, 9], ["license", 7416, 9]]);
-const pos$1002 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7406, 7], ["ename", 7407, 7], ["version", 7408, 7], ["src", 7409, 7], ["packageRequires", 7413, 7], ["meta", 7414, 7]]);
 const formals$336 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1003 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7431, 9], ["sha256", 7432, 9]]);
-const pos$1004 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7436, 9], ["license", 7437, 9]]);
-const pos$1005 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7427, 7], ["ename", 7428, 7], ["version", 7429, 7], ["src", 7430, 7], ["packageRequires", 7434, 7], ["meta", 7435, 7]]);
 const formals$337 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1006 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7452, 9], ["sha256", 7453, 9]]);
-const pos$1007 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7457, 9], ["license", 7458, 9]]);
-const pos$1008 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7448, 7], ["ename", 7449, 7], ["version", 7450, 7], ["src", 7451, 7], ["packageRequires", 7455, 7], ["meta", 7456, 7]]);
 const formals$338 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1009 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7473, 9], ["sha256", 7474, 9]]);
-const pos$1010 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7478, 9], ["license", 7479, 9]]);
-const pos$1011 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7469, 7], ["ename", 7470, 7], ["version", 7471, 7], ["src", 7472, 7], ["packageRequires", 7476, 7], ["meta", 7477, 7]]);
 const formals$339 = { args: { elpaBuild: false, fetchurl: false, lib: false, "plz-media-type": false }, ellipsis: false };
-const pos$1012 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7495, 9], ["sha256", 7496, 9]]);
-const pos$1013 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7500, 9], ["license", 7501, 9]]);
-const pos$1014 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7491, 7], ["ename", 7492, 7], ["version", 7493, 7], ["src", 7494, 7], ["packageRequires", 7498, 7], ["meta", 7499, 7]]);
 const formals$340 = { args: { elpaBuild: false, fetchurl: false, lib: false, plz: false }, ellipsis: false };
-const pos$1015 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7517, 9], ["sha256", 7518, 9]]);
-const pos$1016 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7522, 9], ["license", 7523, 9]]);
-const pos$1017 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7513, 7], ["ename", 7514, 7], ["version", 7515, 7], ["src", 7516, 7], ["packageRequires", 7520, 7], ["meta", 7521, 7]]);
 const formals$341 = { args: { elpaBuild: false, fetchurl: false, lib: false, plz: false }, ellipsis: false };
-const pos$1018 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7539, 9], ["sha256", 7540, 9]]);
-const pos$1019 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7544, 9], ["license", 7545, 9]]);
-const pos$1020 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7535, 7], ["ename", 7536, 7], ["version", 7537, 7], ["src", 7538, 7], ["packageRequires", 7542, 7], ["meta", 7543, 7]]);
 const formals$342 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1021 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7560, 9], ["sha256", 7561, 9]]);
-const pos$1022 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7565, 9], ["license", 7566, 9]]);
-const pos$1023 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7556, 7], ["ename", 7557, 7], ["version", 7558, 7], ["src", 7559, 7], ["packageRequires", 7563, 7], ["meta", 7564, 7]]);
 const formals$343 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1024 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7581, 9], ["sha256", 7582, 9]]);
-const pos$1025 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7586, 9], ["license", 7587, 9]]);
-const pos$1026 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7577, 7], ["ename", 7578, 7], ["version", 7579, 7], ["src", 7580, 7], ["packageRequires", 7584, 7], ["meta", 7585, 7]]);
 const formals$344 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1027 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7602, 9], ["sha256", 7603, 9]]);
-const pos$1028 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7607, 9], ["license", 7608, 9]]);
-const pos$1029 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7598, 7], ["ename", 7599, 7], ["version", 7600, 7], ["src", 7601, 7], ["packageRequires", 7605, 7], ["meta", 7606, 7]]);
 const formals$345 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1030 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7623, 9], ["sha256", 7624, 9]]);
-const pos$1031 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7628, 9], ["license", 7629, 9]]);
-const pos$1032 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7619, 7], ["ename", 7620, 7], ["version", 7621, 7], ["src", 7622, 7], ["packageRequires", 7626, 7], ["meta", 7627, 7]]);
 const formals$346 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1033 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7644, 9], ["sha256", 7645, 9]]);
-const pos$1034 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7649, 9], ["license", 7650, 9]]);
-const pos$1035 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7640, 7], ["ename", 7641, 7], ["version", 7642, 7], ["src", 7643, 7], ["packageRequires", 7647, 7], ["meta", 7648, 7]]);
 const formals$347 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1036 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7665, 9], ["sha256", 7666, 9]]);
-const pos$1037 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7670, 9], ["license", 7671, 9]]);
-const pos$1038 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7661, 7], ["ename", 7662, 7], ["version", 7663, 7], ["src", 7664, 7], ["packageRequires", 7668, 7], ["meta", 7669, 7]]);
 const formals$348 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1039 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7686, 9], ["sha256", 7687, 9]]);
-const pos$1040 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7691, 9], ["license", 7692, 9]]);
-const pos$1041 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7682, 7], ["ename", 7683, 7], ["version", 7684, 7], ["src", 7685, 7], ["packageRequires", 7689, 7], ["meta", 7690, 7]]);
 const formals$349 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1042 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7707, 9], ["sha256", 7708, 9]]);
-const pos$1043 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7712, 9], ["license", 7713, 9]]);
-const pos$1044 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7703, 7], ["ename", 7704, 7], ["version", 7705, 7], ["src", 7706, 7], ["packageRequires", 7710, 7], ["meta", 7711, 7]]);
 const formals$350 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1045 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7728, 9], ["sha256", 7729, 9]]);
-const pos$1046 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7733, 9], ["license", 7734, 9]]);
-const pos$1047 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7724, 7], ["ename", 7725, 7], ["version", 7726, 7], ["src", 7727, 7], ["packageRequires", 7731, 7], ["meta", 7732, 7]]);
 const formals$351 = { args: { auctex: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1048 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7750, 9], ["sha256", 7751, 9]]);
-const pos$1049 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7755, 9], ["license", 7756, 9]]);
-const pos$1050 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7746, 7], ["ename", 7747, 7], ["version", 7748, 7], ["src", 7749, 7], ["packageRequires", 7753, 7], ["meta", 7754, 7]]);
 const formals$352 = { args: { auctex: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1051 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7772, 9], ["sha256", 7773, 9]]);
-const pos$1052 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7777, 9], ["license", 7778, 9]]);
-const pos$1053 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7768, 7], ["ename", 7769, 7], ["version", 7770, 7], ["src", 7771, 7], ["packageRequires", 7775, 7], ["meta", 7776, 7]]);
 const formals$353 = { args: { elpaBuild: false, fetchurl: false, lib: false, xref: false }, ellipsis: false };
-const pos$1054 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7794, 9], ["sha256", 7795, 9]]);
-const pos$1055 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7799, 9], ["license", 7800, 9]]);
-const pos$1056 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7790, 7], ["ename", 7791, 7], ["version", 7792, 7], ["src", 7793, 7], ["packageRequires", 7797, 7], ["meta", 7798, 7]]);
 const formals$354 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1057 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7815, 9], ["sha256", 7816, 9]]);
-const pos$1058 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7820, 9], ["license", 7821, 9]]);
-const pos$1059 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7811, 7], ["ename", 7812, 7], ["version", 7813, 7], ["src", 7814, 7], ["packageRequires", 7818, 7], ["meta", 7819, 7]]);
 const formals$355 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1060 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7836, 9], ["sha256", 7837, 9]]);
-const pos$1061 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7841, 9], ["license", 7842, 9]]);
-const pos$1062 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7832, 7], ["ename", 7833, 7], ["version", 7834, 7], ["src", 7835, 7], ["packageRequires", 7839, 7], ["meta", 7840, 7]]);
 const formals$356 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1063 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7857, 9], ["sha256", 7858, 9]]);
-const pos$1064 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7862, 9], ["license", 7863, 9]]);
-const pos$1065 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7853, 7], ["ename", 7854, 7], ["version", 7855, 7], ["src", 7856, 7], ["packageRequires", 7860, 7], ["meta", 7861, 7]]);
 const formals$357 = { args: { async: false, elpaBuild: false, fetchurl: false, lib: false, xr: false }, ellipsis: false };
-const pos$1066 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7880, 9], ["sha256", 7881, 9]]);
-const pos$1067 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7888, 9], ["license", 7889, 9]]);
-const pos$1068 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7876, 7], ["ename", 7877, 7], ["version", 7878, 7], ["src", 7879, 7], ["packageRequires", 7883, 7], ["meta", 7887, 7]]);
 const formals$358 = { args: { elpaBuild: false, fetchurl: false, lib: false, pyim: false }, ellipsis: false };
-const pos$1069 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7905, 9], ["sha256", 7906, 9]]);
-const pos$1070 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7910, 9], ["license", 7911, 9]]);
-const pos$1071 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7901, 7], ["ename", 7902, 7], ["version", 7903, 7], ["src", 7904, 7], ["packageRequires", 7908, 7], ["meta", 7909, 7]]);
 const formals$359 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1072 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7927, 9], ["sha256", 7928, 9]]);
-const pos$1073 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7932, 9], ["license", 7933, 9]]);
-const pos$1074 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7923, 7], ["ename", 7924, 7], ["version", 7925, 7], ["src", 7926, 7], ["packageRequires", 7930, 7], ["meta", 7931, 7]]);
 const formals$360 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1075 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7948, 9], ["sha256", 7949, 9]]);
-const pos$1076 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7953, 9], ["license", 7954, 9]]);
-const pos$1077 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7944, 7], ["ename", 7945, 7], ["version", 7946, 7], ["src", 7947, 7], ["packageRequires", 7951, 7], ["meta", 7952, 7]]);
 const formals$361 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1078 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7969, 9], ["sha256", 7970, 9]]);
-const pos$1079 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7974, 9], ["license", 7975, 9]]);
-const pos$1080 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7965, 7], ["ename", 7966, 7], ["version", 7967, 7], ["src", 7968, 7], ["packageRequires", 7972, 7], ["meta", 7973, 7]]);
 const formals$362 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1081 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 7991, 9], ["sha256", 7992, 9]]);
-const pos$1082 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 7996, 9], ["license", 7997, 9]]);
-const pos$1083 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 7987, 7], ["ename", 7988, 7], ["version", 7989, 7], ["src", 7990, 7], ["packageRequires", 7994, 7], ["meta", 7995, 7]]);
 const formals$363 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1084 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8012, 9], ["sha256", 8013, 9]]);
-const pos$1085 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8017, 9], ["license", 8018, 9]]);
-const pos$1086 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8008, 7], ["ename", 8009, 7], ["version", 8010, 7], ["src", 8011, 7], ["packageRequires", 8015, 7], ["meta", 8016, 7]]);
 const formals$364 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1087 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8033, 9], ["sha256", 8034, 9]]);
-const pos$1088 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8038, 9], ["license", 8039, 9]]);
-const pos$1089 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8029, 7], ["ename", 8030, 7], ["version", 8031, 7], ["src", 8032, 7], ["packageRequires", 8036, 7], ["meta", 8037, 7]]);
 const formals$365 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1090 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8054, 9], ["sha256", 8055, 9]]);
-const pos$1091 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8059, 9], ["license", 8060, 9]]);
-const pos$1092 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8050, 7], ["ename", 8051, 7], ["version", 8052, 7], ["src", 8053, 7], ["packageRequires", 8057, 7], ["meta", 8058, 7]]);
 const formals$366 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1093 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8075, 9], ["sha256", 8076, 9]]);
-const pos$1094 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8080, 9], ["license", 8081, 9]]);
-const pos$1095 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8071, 7], ["ename", 8072, 7], ["version", 8073, 7], ["src", 8074, 7], ["packageRequires", 8078, 7], ["meta", 8079, 7]]);
 const formals$367 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1096 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8096, 9], ["sha256", 8097, 9]]);
-const pos$1097 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8101, 9], ["license", 8102, 9]]);
-const pos$1098 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8092, 7], ["ename", 8093, 7], ["version", 8094, 7], ["src", 8095, 7], ["packageRequires", 8099, 7], ["meta", 8100, 7]]);
 const formals$368 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1099 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8117, 9], ["sha256", 8118, 9]]);
-const pos$1100 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8122, 9], ["license", 8123, 9]]);
-const pos$1101 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8113, 7], ["ename", 8114, 7], ["version", 8115, 7], ["src", 8116, 7], ["packageRequires", 8120, 7], ["meta", 8121, 7]]);
 const formals$369 = { args: { elpaBuild: false, fetchurl: false, lib: false, "load-relative": false, "loc-changes": false, "test-simple": false }, ellipsis: false };
-const pos$1102 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8141, 9], ["sha256", 8142, 9]]);
-const pos$1103 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8150, 9], ["license", 8151, 9]]);
-const pos$1104 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8137, 7], ["ename", 8138, 7], ["version", 8139, 7], ["src", 8140, 7], ["packageRequires", 8144, 7], ["meta", 8149, 7]]);
 const formals$370 = { args: { elpaBuild: false, fetchurl: false, lib: false, "load-relative": false, realgud: false }, ellipsis: false };
-const pos$1105 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8168, 9], ["sha256", 8169, 9]]);
-const pos$1106 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8176, 9], ["license", 8177, 9]]);
-const pos$1107 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8164, 7], ["ename", 8165, 7], ["version", 8166, 7], ["src", 8167, 7], ["packageRequires", 8171, 7], ["meta", 8175, 7]]);
 const formals$371 = { args: { elpaBuild: false, fetchurl: false, lib: false, "load-relative": false, realgud: false }, ellipsis: false };
-const pos$1108 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8194, 9], ["sha256", 8195, 9]]);
-const pos$1109 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8202, 9], ["license", 8203, 9]]);
-const pos$1110 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8190, 7], ["ename", 8191, 7], ["version", 8192, 7], ["src", 8193, 7], ["packageRequires", 8197, 7], ["meta", 8201, 7]]);
 const formals$372 = { args: { elpaBuild: false, fetchurl: false, lib: false, "load-relative": false, realgud: false }, ellipsis: false };
-const pos$1111 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8220, 9], ["sha256", 8221, 9]]);
-const pos$1112 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8228, 9], ["license", 8229, 9]]);
-const pos$1113 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8216, 7], ["ename", 8217, 7], ["version", 8218, 7], ["src", 8219, 7], ["packageRequires", 8223, 7], ["meta", 8227, 7]]);
 const formals$373 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false, "load-relative": false, realgud: false }, ellipsis: false };
-const pos$1114 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8247, 9], ["sha256", 8248, 9]]);
-const pos$1115 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8256, 9], ["license", 8257, 9]]);
-const pos$1116 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8243, 7], ["ename", 8244, 7], ["version", 8245, 7], ["src", 8246, 7], ["packageRequires", 8250, 7], ["meta", 8255, 7]]);
 const formals$374 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false, "load-relative": false, realgud: false }, ellipsis: false };
-const pos$1117 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8275, 9], ["sha256", 8276, 9]]);
-const pos$1118 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8284, 9], ["license", 8285, 9]]);
-const pos$1119 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8271, 7], ["ename", 8272, 7], ["version", 8273, 7], ["src", 8274, 7], ["packageRequires", 8278, 7], ["meta", 8283, 7]]);
 const formals$375 = { args: { elpaBuild: false, fetchurl: false, lib: false, "load-relative": false, realgud: false }, ellipsis: false };
-const pos$1120 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8302, 9], ["sha256", 8303, 9]]);
-const pos$1121 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8310, 9], ["license", 8311, 9]]);
-const pos$1122 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8298, 7], ["ename", 8299, 7], ["version", 8300, 7], ["src", 8301, 7], ["packageRequires", 8305, 7], ["meta", 8309, 7]]);
 const formals$376 = { args: { elpaBuild: false, fetchurl: false, lib: false, "load-relative": false, realgud: false }, ellipsis: false };
-const pos$1123 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8328, 9], ["sha256", 8329, 9]]);
-const pos$1124 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8336, 9], ["license", 8337, 9]]);
-const pos$1125 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8324, 7], ["ename", 8325, 7], ["version", 8326, 7], ["src", 8327, 7], ["packageRequires", 8331, 7], ["meta", 8335, 7]]);
 const formals$377 = { args: { elpaBuild: false, fetchurl: false, lib: false, "load-relative": false, realgud: false }, ellipsis: false };
-const pos$1126 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8354, 9], ["sha256", 8355, 9]]);
-const pos$1127 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8362, 9], ["license", 8363, 9]]);
-const pos$1128 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8350, 7], ["ename", 8351, 7], ["version", 8352, 7], ["src", 8353, 7], ["packageRequires", 8357, 7], ["meta", 8361, 7]]);
 const formals$378 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1129 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8378, 9], ["sha256", 8379, 9]]);
-const pos$1130 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8383, 9], ["license", 8384, 9]]);
-const pos$1131 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8374, 7], ["ename", 8375, 7], ["version", 8376, 7], ["src", 8377, 7], ["packageRequires", 8381, 7], ["meta", 8382, 7]]);
 const formals$379 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1132 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8399, 9], ["sha256", 8400, 9]]);
-const pos$1133 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8404, 9], ["license", 8405, 9]]);
-const pos$1134 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8395, 7], ["ename", 8396, 7], ["version", 8397, 7], ["src", 8398, 7], ["packageRequires", 8402, 7], ["meta", 8403, 7]]);
 const formals$380 = { args: { elpaBuild: false, fetchurl: false, lib: false, xr: false }, ellipsis: false };
-const pos$1135 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8421, 9], ["sha256", 8422, 9]]);
-const pos$1136 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8426, 9], ["license", 8427, 9]]);
-const pos$1137 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8417, 7], ["ename", 8418, 7], ["version", 8419, 7], ["src", 8420, 7], ["packageRequires", 8424, 7], ["meta", 8425, 7]]);
 const formals$381 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1138 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8442, 9], ["sha256", 8443, 9]]);
-const pos$1139 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8447, 9], ["license", 8448, 9]]);
-const pos$1140 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8438, 7], ["ename", 8439, 7], ["version", 8440, 7], ["src", 8441, 7], ["packageRequires", 8445, 7], ["meta", 8446, 7]]);
 const formals$382 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1141 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8464, 9], ["sha256", 8465, 9]]);
-const pos$1142 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8469, 9], ["license", 8470, 9]]);
-const pos$1143 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8460, 7], ["ename", 8461, 7], ["version", 8462, 7], ["src", 8463, 7], ["packageRequires", 8467, 7], ["meta", 8468, 7]]);
 const formals$383 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1144 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8485, 9], ["sha256", 8486, 9]]);
-const pos$1145 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8490, 9], ["license", 8491, 9]]);
-const pos$1146 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8481, 7], ["ename", 8482, 7], ["version", 8483, 7], ["src", 8484, 7], ["packageRequires", 8488, 7], ["meta", 8489, 7]]);
 const formals$384 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1147 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8506, 9], ["sha256", 8507, 9]]);
-const pos$1148 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8511, 9], ["license", 8512, 9]]);
-const pos$1149 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8502, 7], ["ename", 8503, 7], ["version", 8504, 7], ["src", 8505, 7], ["packageRequires", 8509, 7], ["meta", 8510, 7]]);
 const formals$385 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1150 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8527, 9], ["sha256", 8528, 9]]);
-const pos$1151 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8532, 9], ["license", 8533, 9]]);
-const pos$1152 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8523, 7], ["ename", 8524, 7], ["version", 8525, 7], ["src", 8526, 7], ["packageRequires", 8530, 7], ["meta", 8531, 7]]);
 const formals$386 = { args: { "cl-generic": false, "cl-lib": true, "cl-print": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1153 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8551, 9], ["sha256", 8552, 9]]);
-const pos$1154 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8560, 9], ["license", 8561, 9]]);
-const pos$1155 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8547, 7], ["ename", 8548, 7], ["version", 8549, 7], ["src", 8550, 7], ["packageRequires", 8554, 7], ["meta", 8559, 7]]);
 const formals$387 = { args: { elpaBuild: false, fetchurl: false, lib: false, project: false }, ellipsis: false };
-const pos$1156 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8577, 9], ["sha256", 8578, 9]]);
-const pos$1157 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8582, 9], ["license", 8583, 9]]);
-const pos$1158 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8573, 7], ["ename", 8574, 7], ["version", 8575, 7], ["src", 8576, 7], ["packageRequires", 8580, 7], ["meta", 8581, 7]]);
 const formals$388 = { args: { dash: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1159 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8599, 9], ["sha256", 8600, 9]]);
-const pos$1160 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8604, 9], ["license", 8605, 9]]);
-const pos$1161 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8595, 7], ["ename", 8596, 7], ["version", 8597, 7], ["src", 8598, 7], ["packageRequires", 8602, 7], ["meta", 8603, 7]]);
 const formals$389 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1162 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8620, 9], ["sha256", 8621, 9]]);
-const pos$1163 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8625, 9], ["license", 8626, 9]]);
-const pos$1164 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8616, 7], ["ename", 8617, 7], ["version", 8618, 7], ["src", 8619, 7], ["packageRequires", 8623, 7], ["meta", 8624, 7]]);
 const formals$390 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1165 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8641, 9], ["sha256", 8642, 9]]);
-const pos$1166 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8646, 9], ["license", 8647, 9]]);
-const pos$1167 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8637, 7], ["ename", 8638, 7], ["version", 8639, 7], ["src", 8640, 7], ["packageRequires", 8644, 7], ["meta", 8645, 7]]);
 const formals$391 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1168 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8662, 9], ["sha256", 8663, 9]]);
-const pos$1169 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8667, 9], ["license", 8668, 9]]);
-const pos$1170 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8658, 7], ["ename", 8659, 7], ["version", 8660, 7], ["src", 8661, 7], ["packageRequires", 8665, 7], ["meta", 8666, 7]]);
 const formals$392 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1171 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8683, 9], ["sha256", 8684, 9]]);
-const pos$1172 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8688, 9], ["license", 8689, 9]]);
-const pos$1173 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8679, 7], ["ename", 8680, 7], ["version", 8681, 7], ["src", 8682, 7], ["packageRequires", 8686, 7], ["meta", 8687, 7]]);
 const formals$393 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1174 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8704, 9], ["sha256", 8705, 9]]);
-const pos$1175 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8709, 9], ["license", 8710, 9]]);
-const pos$1176 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8700, 7], ["ename", 8701, 7], ["version", 8702, 7], ["src", 8703, 7], ["packageRequires", 8707, 7], ["meta", 8708, 7]]);
 const formals$394 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1177 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8725, 9], ["sha256", 8726, 9]]);
-const pos$1178 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8730, 9], ["license", 8731, 9]]);
-const pos$1179 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8721, 7], ["ename", 8722, 7], ["version", 8723, 7], ["src", 8724, 7], ["packageRequires", 8728, 7], ["meta", 8729, 7]]);
 const formals$395 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1180 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8746, 9], ["sha256", 8747, 9]]);
-const pos$1181 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8751, 9], ["license", 8752, 9]]);
-const pos$1182 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8742, 7], ["ename", 8743, 7], ["version", 8744, 7], ["src", 8745, 7], ["packageRequires", 8749, 7], ["meta", 8750, 7]]);
 const formals$396 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1183 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8767, 9], ["sha256", 8768, 9]]);
-const pos$1184 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8772, 9], ["license", 8773, 9]]);
-const pos$1185 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8763, 7], ["ename", 8764, 7], ["version", 8765, 7], ["src", 8766, 7], ["packageRequires", 8770, 7], ["meta", 8771, 7]]);
 const formals$397 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1186 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8788, 9], ["sha256", 8789, 9]]);
-const pos$1187 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8793, 9], ["license", 8794, 9]]);
-const pos$1188 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8784, 7], ["ename", 8785, 7], ["version", 8786, 7], ["src", 8787, 7], ["packageRequires", 8791, 7], ["meta", 8792, 7]]);
 const formals$398 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1189 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8809, 9], ["sha256", 8810, 9]]);
-const pos$1190 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8814, 9], ["license", 8815, 9]]);
-const pos$1191 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8805, 7], ["ename", 8806, 7], ["version", 8807, 7], ["src", 8808, 7], ["packageRequires", 8812, 7], ["meta", 8813, 7]]);
 const formals$399 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1192 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8830, 9], ["sha256", 8831, 9]]);
-const pos$1193 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8835, 9], ["license", 8836, 9]]);
-const pos$1194 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8826, 7], ["ename", 8827, 7], ["version", 8828, 7], ["src", 8829, 7], ["packageRequires", 8833, 7], ["meta", 8834, 7]]);
 const formals$400 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1195 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8851, 9], ["sha256", 8852, 9]]);
-const pos$1196 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8856, 9], ["license", 8857, 9]]);
-const pos$1197 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8847, 7], ["ename", 8848, 7], ["version", 8849, 7], ["src", 8850, 7], ["packageRequires", 8854, 7], ["meta", 8855, 7]]);
 const formals$401 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1198 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8872, 9], ["sha256", 8873, 9]]);
-const pos$1199 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8877, 9], ["license", 8878, 9]]);
-const pos$1200 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8868, 7], ["ename", 8869, 7], ["version", 8870, 7], ["src", 8871, 7], ["packageRequires", 8875, 7], ["meta", 8876, 7]]);
 const formals$402 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1201 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8893, 9], ["sha256", 8894, 9]]);
-const pos$1202 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8898, 9], ["license", 8899, 9]]);
-const pos$1203 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8889, 7], ["ename", 8890, 7], ["version", 8891, 7], ["src", 8892, 7], ["packageRequires", 8896, 7], ["meta", 8897, 7]]);
 const formals$403 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1204 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8915, 9], ["sha256", 8916, 9]]);
-const pos$1205 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8920, 9], ["license", 8921, 9]]);
-const pos$1206 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8911, 7], ["ename", 8912, 7], ["version", 8913, 7], ["src", 8914, 7], ["packageRequires", 8918, 7], ["meta", 8919, 7]]);
 const formals$404 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1207 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8936, 9], ["sha256", 8937, 9]]);
-const pos$1208 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8941, 9], ["license", 8942, 9]]);
-const pos$1209 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8932, 7], ["ename", 8933, 7], ["version", 8934, 7], ["src", 8935, 7], ["packageRequires", 8939, 7], ["meta", 8940, 7]]);
 const formals$405 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1210 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8957, 9], ["sha256", 8958, 9]]);
-const pos$1211 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8962, 9], ["license", 8963, 9]]);
-const pos$1212 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8953, 7], ["ename", 8954, 7], ["version", 8955, 7], ["src", 8956, 7], ["packageRequires", 8960, 7], ["meta", 8961, 7]]);
 const formals$406 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1213 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 8978, 9], ["sha256", 8979, 9]]);
-const pos$1214 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 8983, 9], ["license", 8984, 9]]);
-const pos$1215 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8974, 7], ["ename", 8975, 7], ["version", 8976, 7], ["src", 8977, 7], ["packageRequires", 8981, 7], ["meta", 8982, 7]]);
 const formals$407 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1216 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9000, 9], ["sha256", 9001, 9]]);
-const pos$1217 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9005, 9], ["license", 9006, 9]]);
-const pos$1218 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 8996, 7], ["ename", 8997, 7], ["version", 8998, 7], ["src", 8999, 7], ["packageRequires", 9003, 7], ["meta", 9004, 7]]);
 const formals$408 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1219 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9021, 9], ["sha256", 9022, 9]]);
-const pos$1220 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9026, 9], ["license", 9027, 9]]);
-const pos$1221 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9017, 7], ["ename", 9018, 7], ["version", 9019, 7], ["src", 9020, 7], ["packageRequires", 9024, 7], ["meta", 9025, 7]]);
 const formals$409 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1222 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9043, 9], ["sha256", 9044, 9]]);
-const pos$1223 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9048, 9], ["license", 9049, 9]]);
-const pos$1224 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9039, 7], ["ename", 9040, 7], ["version", 9041, 7], ["src", 9042, 7], ["packageRequires", 9046, 7], ["meta", 9047, 7]]);
 const formals$410 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1225 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9065, 9], ["sha256", 9066, 9]]);
-const pos$1226 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9070, 9], ["license", 9071, 9]]);
-const pos$1227 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9061, 7], ["ename", 9062, 7], ["version", 9063, 7], ["src", 9064, 7], ["packageRequires", 9068, 7], ["meta", 9069, 7]]);
 const formals$411 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1228 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9086, 9], ["sha256", 9087, 9]]);
-const pos$1229 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9091, 9], ["license", 9092, 9]]);
-const pos$1230 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9082, 7], ["ename", 9083, 7], ["version", 9084, 7], ["src", 9085, 7], ["packageRequires", 9089, 7], ["meta", 9090, 7]]);
 const formals$412 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1231 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9107, 9], ["sha256", 9108, 9]]);
-const pos$1232 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9112, 9], ["license", 9113, 9]]);
-const pos$1233 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9103, 7], ["ename", 9104, 7], ["version", 9105, 7], ["src", 9106, 7], ["packageRequires", 9110, 7], ["meta", 9111, 7]]);
 const formals$413 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1234 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9129, 9], ["sha256", 9130, 9]]);
-const pos$1235 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9134, 9], ["license", 9135, 9]]);
-const pos$1236 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9125, 7], ["ename", 9126, 7], ["version", 9127, 7], ["src", 9128, 7], ["packageRequires", 9132, 7], ["meta", 9133, 7]]);
 const formals$414 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1237 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9150, 9], ["sha256", 9151, 9]]);
-const pos$1238 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9155, 9], ["license", 9156, 9]]);
-const pos$1239 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9146, 7], ["ename", 9147, 7], ["version", 9148, 7], ["src", 9149, 7], ["packageRequires", 9153, 7], ["meta", 9154, 7]]);
 const formals$415 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1240 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9171, 9], ["sha256", 9172, 9]]);
-const pos$1241 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9176, 9], ["license", 9177, 9]]);
-const pos$1242 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9167, 7], ["ename", 9168, 7], ["version", 9169, 7], ["src", 9170, 7], ["packageRequires", 9174, 7], ["meta", 9175, 7]]);
 const formals$416 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1243 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9192, 9], ["sha256", 9193, 9]]);
-const pos$1244 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9197, 9], ["license", 9198, 9]]);
-const pos$1245 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9188, 7], ["ename", 9189, 7], ["version", 9190, 7], ["src", 9191, 7], ["packageRequires", 9195, 7], ["meta", 9196, 7]]);
 const formals$417 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1246 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9214, 9], ["sha256", 9215, 9]]);
-const pos$1247 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9219, 9], ["license", 9220, 9]]);
-const pos$1248 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9210, 7], ["ename", 9211, 7], ["version", 9212, 7], ["src", 9213, 7], ["packageRequires", 9217, 7], ["meta", 9218, 7]]);
 const formals$418 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1249 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9235, 9], ["sha256", 9236, 9]]);
-const pos$1250 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9240, 9], ["license", 9241, 9]]);
-const pos$1251 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9231, 7], ["ename", 9232, 7], ["version", 9233, 7], ["src", 9234, 7], ["packageRequires", 9238, 7], ["meta", 9239, 7]]);
 const formals$419 = { args: { elpaBuild: false, fetchurl: false, lib: false, plz: false, transient: false }, ellipsis: false };
-const pos$1252 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9258, 9], ["sha256", 9259, 9]]);
-const pos$1253 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9266, 9], ["license", 9267, 9]]);
-const pos$1254 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9254, 7], ["ename", 9255, 7], ["version", 9256, 7], ["src", 9257, 7], ["packageRequires", 9261, 7], ["meta", 9265, 7]]);
 const formals$420 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1255 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9282, 9], ["sha256", 9283, 9]]);
-const pos$1256 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9287, 9], ["license", 9288, 9]]);
-const pos$1257 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9278, 7], ["ename", 9279, 7], ["version", 9280, 7], ["src", 9281, 7], ["packageRequires", 9285, 7], ["meta", 9286, 7]]);
 const formals$421 = { args: { elpaBuild: false, fetchurl: false, lib: false, "modus-themes": false }, ellipsis: false };
-const pos$1258 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9304, 9], ["sha256", 9305, 9]]);
-const pos$1259 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9309, 9], ["license", 9310, 9]]);
-const pos$1260 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9300, 7], ["ename", 9301, 7], ["version", 9302, 7], ["src", 9303, 7], ["packageRequires", 9307, 7], ["meta", 9308, 7]]);
 const formals$422 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1261 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9325, 9], ["sha256", 9326, 9]]);
-const pos$1262 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9330, 9], ["license", 9331, 9]]);
-const pos$1263 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9321, 7], ["ename", 9322, 7], ["version", 9323, 7], ["src", 9324, 7], ["packageRequires", 9328, 7], ["meta", 9329, 7]]);
 const formals$423 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1264 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9346, 9], ["sha256", 9347, 9]]);
-const pos$1265 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9351, 9], ["license", 9352, 9]]);
-const pos$1266 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9342, 7], ["ename", 9343, 7], ["version", 9344, 7], ["src", 9345, 7], ["packageRequires", 9349, 7], ["meta", 9350, 7]]);
 const formals$424 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1267 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9367, 9], ["sha256", 9368, 9]]);
-const pos$1268 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9372, 9], ["license", 9373, 9]]);
-const pos$1269 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9363, 7], ["ename", 9364, 7], ["version", 9365, 7], ["src", 9366, 7], ["packageRequires", 9370, 7], ["meta", 9371, 7]]);
 const formals$425 = { args: { elpaBuild: false, fetchurl: false, lib: false, svg: false }, ellipsis: false };
-const pos$1270 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9389, 9], ["sha256", 9390, 9]]);
-const pos$1271 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9394, 9], ["license", 9395, 9]]);
-const pos$1272 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9385, 7], ["ename", 9386, 7], ["version", 9387, 7], ["src", 9388, 7], ["packageRequires", 9392, 7], ["meta", 9393, 7]]);
 const formals$426 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1273 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9410, 9], ["sha256", 9411, 9]]);
-const pos$1274 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9415, 9], ["license", 9416, 9]]);
-const pos$1275 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9406, 7], ["ename", 9407, 7], ["version", 9408, 7], ["src", 9409, 7], ["packageRequires", 9413, 7], ["meta", 9414, 7]]);
 const formals$427 = { args: { elpaBuild: false, fetchurl: false, lib: false, "svg-lib": false }, ellipsis: false };
-const pos$1276 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9432, 9], ["sha256", 9433, 9]]);
-const pos$1277 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9437, 9], ["license", 9438, 9]]);
-const pos$1278 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9428, 7], ["ename", 9429, 7], ["version", 9430, 7], ["src", 9431, 7], ["packageRequires", 9435, 7], ["meta", 9436, 7]]);
 const formals$428 = { args: { elpaBuild: false, fetchurl: false, ivy: false, lib: false }, ellipsis: false };
-const pos$1279 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9454, 9], ["sha256", 9455, 9]]);
-const pos$1280 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9459, 9], ["license", 9460, 9]]);
-const pos$1281 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9450, 7], ["ename", 9451, 7], ["version", 9452, 7], ["src", 9453, 7], ["packageRequires", 9457, 7], ["meta", 9458, 7]]);
 const formals$429 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1282 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9476, 9], ["sha256", 9477, 9]]);
-const pos$1283 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9481, 9], ["license", 9482, 9]]);
-const pos$1284 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9472, 7], ["ename", 9473, 7], ["version", 9474, 7], ["src", 9475, 7], ["packageRequires", 9479, 7], ["meta", 9480, 7]]);
 const formals$430 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1285 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9497, 9], ["sha256", 9498, 9]]);
-const pos$1286 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9502, 9], ["license", 9503, 9]]);
-const pos$1287 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9493, 7], ["ename", 9494, 7], ["version", 9495, 7], ["src", 9496, 7], ["packageRequires", 9500, 7], ["meta", 9501, 7]]);
 const formals$431 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1288 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9518, 9], ["sha256", 9519, 9]]);
-const pos$1289 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9523, 9], ["license", 9524, 9]]);
-const pos$1290 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9514, 7], ["ename", 9515, 7], ["version", 9516, 7], ["src", 9517, 7], ["packageRequires", 9521, 7], ["meta", 9522, 7]]);
 const formals$432 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1291 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9540, 9], ["sha256", 9541, 9]]);
-const pos$1292 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9545, 9], ["license", 9546, 9]]);
-const pos$1293 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9536, 7], ["ename", 9537, 7], ["version", 9538, 7], ["src", 9539, 7], ["packageRequires", 9543, 7], ["meta", 9544, 7]]);
 const formals$433 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false, queue: false }, ellipsis: false };
-const pos$1294 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9563, 9], ["sha256", 9564, 9]]);
-const pos$1295 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9571, 9], ["license", 9572, 9]]);
-const pos$1296 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9559, 7], ["ename", 9560, 7], ["version", 9561, 7], ["src", 9562, 7], ["packageRequires", 9566, 7], ["meta", 9570, 7]]);
 const formals$434 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1297 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9587, 9], ["sha256", 9588, 9]]);
-const pos$1298 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9592, 9], ["license", 9593, 9]]);
-const pos$1299 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9583, 7], ["ename", 9584, 7], ["version", 9585, 7], ["src", 9586, 7], ["packageRequires", 9590, 7], ["meta", 9591, 7]]);
 const formals$435 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1300 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9608, 9], ["sha256", 9609, 9]]);
-const pos$1301 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9613, 9], ["license", 9614, 9]]);
-const pos$1302 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9604, 7], ["ename", 9605, 7], ["version", 9606, 7], ["src", 9607, 7], ["packageRequires", 9611, 7], ["meta", 9612, 7]]);
 const formals$436 = { args: { elpaBuild: false, fetchurl: false, lib: false, "magit-section": false, taxy: false }, ellipsis: false };
-const pos$1303 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9631, 9], ["sha256", 9632, 9]]);
-const pos$1304 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9639, 9], ["license", 9640, 9]]);
-const pos$1305 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9627, 7], ["ename", 9628, 7], ["version", 9629, 7], ["src", 9630, 7], ["packageRequires", 9634, 7], ["meta", 9638, 7]]);
 const formals$437 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1306 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9655, 9], ["sha256", 9656, 9]]);
-const pos$1307 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9660, 9], ["license", 9661, 9]]);
-const pos$1308 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9651, 7], ["ename", 9652, 7], ["version", 9653, 7], ["src", 9654, 7], ["packageRequires", 9658, 7], ["meta", 9659, 7]]);
 const formals$438 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1309 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9677, 9], ["sha256", 9678, 9]]);
-const pos$1310 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9682, 9], ["license", 9683, 9]]);
-const pos$1311 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9673, 7], ["ename", 9674, 7], ["version", 9675, 7], ["src", 9676, 7], ["packageRequires", 9680, 7], ["meta", 9681, 7]]);
 const formals$439 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1312 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9698, 9], ["sha256", 9699, 9]]);
-const pos$1313 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9703, 9], ["license", 9704, 9]]);
-const pos$1314 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9694, 7], ["ename", 9695, 7], ["version", 9696, 7], ["src", 9697, 7], ["packageRequires", 9701, 7], ["meta", 9702, 7]]);
 const formals$440 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1315 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9720, 9], ["sha256", 9721, 9]]);
-const pos$1316 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9725, 9], ["license", 9726, 9]]);
-const pos$1317 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9716, 7], ["ename", 9717, 7], ["version", 9718, 7], ["src", 9719, 7], ["packageRequires", 9723, 7], ["meta", 9724, 7]]);
 const formals$441 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1318 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9741, 9], ["sha256", 9742, 9]]);
-const pos$1319 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9746, 9], ["license", 9747, 9]]);
-const pos$1320 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9737, 7], ["ename", 9738, 7], ["version", 9739, 7], ["src", 9740, 7], ["packageRequires", 9744, 7], ["meta", 9745, 7]]);
 const formals$442 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1321 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9762, 9], ["sha256", 9763, 9]]);
-const pos$1322 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9767, 9], ["license", 9768, 9]]);
-const pos$1323 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9758, 7], ["ename", 9759, 7], ["version", 9760, 7], ["src", 9761, 7], ["packageRequires", 9765, 7], ["meta", 9766, 7]]);
 const formals$443 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1324 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9783, 9], ["sha256", 9784, 9]]);
-const pos$1325 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9788, 9], ["license", 9789, 9]]);
-const pos$1326 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9779, 7], ["ename", 9780, 7], ["version", 9781, 7], ["src", 9782, 7], ["packageRequires", 9786, 7], ["meta", 9787, 7]]);
 const formals$444 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1327 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9804, 9], ["sha256", 9805, 9]]);
-const pos$1328 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9809, 9], ["license", 9810, 9]]);
-const pos$1329 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9800, 7], ["ename", 9801, 7], ["version", 9802, 7], ["src", 9803, 7], ["packageRequires", 9807, 7], ["meta", 9808, 7]]);
 const formals$445 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1330 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9826, 9], ["sha256", 9827, 9]]);
-const pos$1331 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9831, 9], ["license", 9832, 9]]);
-const pos$1332 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9822, 7], ["ename", 9823, 7], ["version", 9824, 7], ["src", 9825, 7], ["packageRequires", 9829, 7], ["meta", 9830, 7]]);
 const formals$446 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1333 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9847, 9], ["sha256", 9848, 9]]);
-const pos$1334 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9852, 9], ["license", 9853, 9]]);
-const pos$1335 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9843, 7], ["ename", 9844, 7], ["version", 9845, 7], ["src", 9846, 7], ["packageRequires", 9850, 7], ["meta", 9851, 7]]);
 const formals$447 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1336 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9868, 9], ["sha256", 9869, 9]]);
-const pos$1337 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9873, 9], ["license", 9874, 9]]);
-const pos$1338 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9864, 7], ["ename", 9865, 7], ["version", 9866, 7], ["src", 9867, 7], ["packageRequires", 9871, 7], ["meta", 9872, 7]]);
 const formals$448 = { args: { elpaBuild: false, fetchurl: false, lib: false, map: false, seq: false }, ellipsis: false };
-const pos$1339 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9891, 9], ["sha256", 9892, 9]]);
-const pos$1340 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9899, 9], ["license", 9900, 9]]);
-const pos$1341 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9887, 7], ["ename", 9888, 7], ["version", 9889, 7], ["src", 9890, 7], ["packageRequires", 9894, 7], ["meta", 9898, 7]]);
 const formals$449 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1342 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9915, 9], ["sha256", 9916, 9]]);
-const pos$1343 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9920, 9], ["license", 9921, 9]]);
-const pos$1344 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9911, 7], ["ename", 9912, 7], ["version", 9913, 7], ["src", 9914, 7], ["packageRequires", 9918, 7], ["meta", 9919, 7]]);
 const formals$450 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1345 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9936, 9], ["sha256", 9937, 9]]);
-const pos$1346 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9941, 9], ["license", 9942, 9]]);
-const pos$1347 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9932, 7], ["ename", 9933, 7], ["version", 9934, 7], ["src", 9935, 7], ["packageRequires", 9939, 7], ["meta", 9940, 7]]);
 const formals$451 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1348 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9957, 9], ["sha256", 9958, 9]]);
-const pos$1349 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9962, 9], ["license", 9963, 9]]);
-const pos$1350 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9953, 7], ["ename", 9954, 7], ["version", 9955, 7], ["src", 9956, 7], ["packageRequires", 9960, 7], ["meta", 9961, 7]]);
 const formals$452 = { args: { elpaBuild: false, fetchurl: false, lib: false, tramp: false }, ellipsis: false };
-const pos$1351 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 9979, 9], ["sha256", 9980, 9]]);
-const pos$1352 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 9984, 9], ["license", 9985, 9]]);
-const pos$1353 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9975, 7], ["ename", 9976, 7], ["version", 9977, 7], ["src", 9978, 7], ["packageRequires", 9982, 7], ["meta", 9983, 7]]);
 const formals$453 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1354 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10000, 9], ["sha256", 10001, 9]]);
-const pos$1355 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10005, 9], ["license", 10006, 9]]);
-const pos$1356 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 9996, 7], ["ename", 9997, 7], ["version", 9998, 7], ["src", 9999, 7], ["packageRequires", 10003, 7], ["meta", 10004, 7]]);
 const formals$454 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1357 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10021, 9], ["sha256", 10022, 9]]);
-const pos$1358 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10026, 9], ["license", 10027, 9]]);
-const pos$1359 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10017, 7], ["ename", 10018, 7], ["version", 10019, 7], ["src", 10020, 7], ["packageRequires", 10024, 7], ["meta", 10025, 7]]);
 const formals$455 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1360 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10042, 9], ["sha256", 10043, 9]]);
-const pos$1361 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10047, 9], ["license", 10048, 9]]);
-const pos$1362 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10038, 7], ["ename", 10039, 7], ["version", 10040, 7], ["src", 10041, 7], ["packageRequires", 10045, 7], ["meta", 10046, 7]]);
 const formals$456 = { args: { compat: false, "cond-let": false, elpaBuild: false, fetchurl: false, lib: false, llama: false, seq: false }, ellipsis: false };
-const pos$1363 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10067, 9], ["sha256", 10068, 9]]);
-const pos$1364 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10077, 9], ["license", 10078, 9]]);
-const pos$1365 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10063, 7], ["ename", 10064, 7], ["version", 10065, 7], ["src", 10066, 7], ["packageRequires", 10070, 7], ["meta", 10076, 7]]);
 const formals$457 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1366 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10093, 9], ["sha256", 10094, 9]]);
-const pos$1367 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10098, 9], ["license", 10099, 9]]);
-const pos$1368 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10089, 7], ["ename", 10090, 7], ["version", 10091, 7], ["src", 10092, 7], ["packageRequires", 10096, 7], ["meta", 10097, 7]]);
 const formals$458 = { args: { elpaBuild: false, fetchurl: false, lib: false, treeview: false }, ellipsis: false };
-const pos$1369 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10115, 9], ["sha256", 10116, 9]]);
-const pos$1370 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10120, 9], ["license", 10121, 9]]);
-const pos$1371 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10111, 7], ["ename", 10112, 7], ["version", 10113, 7], ["src", 10114, 7], ["packageRequires", 10118, 7], ["meta", 10119, 7]]);
 const formals$459 = { args: { elpaBuild: false, fetchurl: false, heap: false, lib: false, tNFA: false }, ellipsis: false };
-const pos$1372 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10138, 9], ["sha256", 10139, 9]]);
-const pos$1373 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10146, 9], ["license", 10147, 9]]);
-const pos$1374 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10134, 7], ["ename", 10135, 7], ["version", 10136, 7], ["src", 10137, 7], ["packageRequires", 10141, 7], ["meta", 10145, 7]]);
 const formals$460 = { args: { elpaBuild: false, fetchurl: false, lib: false, seq: false }, ellipsis: false };
-const pos$1375 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10163, 9], ["sha256", 10164, 9]]);
-const pos$1376 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10168, 9], ["license", 10169, 9]]);
-const pos$1377 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10159, 7], ["ename", 10160, 7], ["version", 10161, 7], ["src", 10162, 7], ["packageRequires", 10166, 7], ["meta", 10167, 7]]);
 const formals$461 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1378 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10185, 9], ["sha256", 10186, 9]]);
-const pos$1379 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10190, 9], ["license", 10191, 9]]);
-const pos$1380 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10181, 7], ["ename", 10182, 7], ["version", 10183, 7], ["src", 10184, 7], ["packageRequires", 10188, 7], ["meta", 10189, 7]]);
 const formals$462 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1381 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10206, 9], ["sha256", 10207, 9]]);
-const pos$1382 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10211, 9], ["license", 10212, 9]]);
-const pos$1383 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10202, 7], ["ename", 10203, 7], ["version", 10204, 7], ["src", 10205, 7], ["packageRequires", 10209, 7], ["meta", 10210, 7]]);
 const formals$463 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1384 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10227, 9], ["sha256", 10228, 9]]);
-const pos$1385 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10232, 9], ["license", 10233, 9]]);
-const pos$1386 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10223, 7], ["ename", 10224, 7], ["version", 10225, 7], ["src", 10226, 7], ["packageRequires", 10230, 7], ["meta", 10231, 7]]);
 const formals$464 = { args: { elpaBuild: false, fetchurl: false, lib: false, queue: false }, ellipsis: false };
-const pos$1387 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10249, 9], ["sha256", 10250, 9]]);
-const pos$1388 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10254, 9], ["license", 10255, 9]]);
-const pos$1389 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10245, 7], ["ename", 10246, 7], ["version", 10247, 7], ["src", 10248, 7], ["packageRequires", 10252, 7], ["meta", 10253, 7]]);
 const formals$465 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1390 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10270, 9], ["sha256", 10271, 9]]);
-const pos$1391 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10275, 9], ["license", 10276, 9]]);
-const pos$1392 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10266, 7], ["ename", 10267, 7], ["version", 10268, 7], ["src", 10269, 7], ["packageRequires", 10273, 7], ["meta", 10274, 7]]);
 const formals$466 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1393 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10291, 9], ["sha256", 10292, 9]]);
-const pos$1394 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10296, 9], ["license", 10297, 9]]);
-const pos$1395 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10287, 7], ["ename", 10288, 7], ["version", 10289, 7], ["src", 10290, 7], ["packageRequires", 10294, 7], ["meta", 10295, 7]]);
 const formals$467 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1396 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10313, 9], ["sha256", 10314, 9]]);
-const pos$1397 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10318, 9], ["license", 10319, 9]]);
-const pos$1398 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10309, 7], ["ename", 10310, 7], ["version", 10311, 7], ["src", 10312, 7], ["packageRequires", 10316, 7], ["meta", 10317, 7]]);
 const formals$468 = { args: { elpaBuild: false, fetchurl: false, lib: false, ntlm: true }, ellipsis: false };
-const pos$1399 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10335, 9], ["sha256", 10336, 9]]);
-const pos$1400 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10340, 9], ["license", 10341, 9]]);
-const pos$1401 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10331, 7], ["ename", 10332, 7], ["version", 10333, 7], ["src", 10334, 7], ["packageRequires", 10338, 7], ["meta", 10339, 7]]);
 const formals$469 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1402 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10356, 9], ["sha256", 10357, 9]]);
-const pos$1403 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10361, 9], ["license", 10362, 9]]);
-const pos$1404 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10352, 7], ["ename", 10353, 7], ["version", 10354, 7], ["src", 10355, 7], ["packageRequires", 10359, 7], ["meta", 10360, 7]]);
 const formals$470 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1405 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10377, 9], ["sha256", 10378, 9]]);
-const pos$1406 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10382, 9], ["license", 10383, 9]]);
-const pos$1407 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10373, 7], ["ename", 10374, 7], ["version", 10375, 7], ["src", 10376, 7], ["packageRequires", 10380, 7], ["meta", 10381, 7]]);
 const formals$471 = { args: { "bind-key": false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1408 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10399, 9], ["sha256", 10400, 9]]);
-const pos$1409 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10404, 9], ["license", 10405, 9]]);
-const pos$1410 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10395, 7], ["ename", 10396, 7], ["version", 10397, 7], ["src", 10398, 7], ["packageRequires", 10402, 7], ["meta", 10403, 7]]);
 const formals$472 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false, seq: false }, ellipsis: false };
-const pos$1411 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10422, 9], ["sha256", 10423, 9]]);
-const pos$1412 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10430, 9], ["license", 10431, 9]]);
-const pos$1413 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10418, 7], ["ename", 10419, 7], ["version", 10420, 7], ["src", 10421, 7], ["packageRequires", 10425, 7], ["meta", 10429, 7]]);
 const formals$473 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1414 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10446, 9], ["sha256", 10447, 9]]);
-const pos$1415 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10451, 9], ["license", 10452, 9]]);
-const pos$1416 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10442, 7], ["ename", 10443, 7], ["version", 10444, 7], ["src", 10445, 7], ["packageRequires", 10449, 7], ["meta", 10450, 7]]);
 const formals$474 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1417 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10468, 9], ["sha256", 10469, 9]]);
-const pos$1418 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10473, 9], ["license", 10474, 9]]);
-const pos$1419 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10464, 7], ["ename", 10465, 7], ["version", 10466, 7], ["src", 10467, 7], ["packageRequires", 10471, 7], ["meta", 10472, 7]]);
 const formals$475 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1420 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10489, 9], ["sha256", 10490, 9]]);
-const pos$1421 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10494, 9], ["license", 10495, 9]]);
-const pos$1422 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10485, 7], ["ename", 10486, 7], ["version", 10487, 7], ["src", 10488, 7], ["packageRequires", 10492, 7], ["meta", 10493, 7]]);
 const formals$476 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1423 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10510, 9], ["sha256", 10511, 9]]);
-const pos$1424 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10515, 9], ["license", 10516, 9]]);
-const pos$1425 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10506, 7], ["ename", 10507, 7], ["version", 10508, 7], ["src", 10509, 7], ["packageRequires", 10513, 7], ["meta", 10514, 7]]);
 const formals$477 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false, project: false }, ellipsis: false };
-const pos$1426 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10533, 9], ["sha256", 10534, 9]]);
-const pos$1427 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10541, 9], ["license", 10542, 9]]);
-const pos$1428 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10529, 7], ["ename", 10530, 7], ["version", 10531, 7], ["src", 10532, 7], ["packageRequires", 10536, 7], ["meta", 10540, 7]]);
 const formals$478 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1429 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10557, 9], ["sha256", 10558, 9]]);
-const pos$1430 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10562, 9], ["license", 10563, 9]]);
-const pos$1431 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10553, 7], ["ename", 10554, 7], ["version", 10555, 7], ["src", 10556, 7], ["packageRequires", 10560, 7], ["meta", 10561, 7]]);
 const formals$479 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1432 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10578, 9], ["sha256", 10579, 9]]);
-const pos$1433 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10583, 9], ["license", 10584, 9]]);
-const pos$1434 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10574, 7], ["ename", 10575, 7], ["version", 10576, 7], ["src", 10577, 7], ["packageRequires", 10581, 7], ["meta", 10582, 7]]);
 const formals$480 = { args: { elpaBuild: false, fetchurl: false, hydra: false, lib: false }, ellipsis: false };
-const pos$1435 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10600, 9], ["sha256", 10601, 9]]);
-const pos$1436 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10605, 9], ["license", 10606, 9]]);
-const pos$1437 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10596, 7], ["ename", 10597, 7], ["version", 10598, 7], ["src", 10599, 7], ["packageRequires", 10603, 7], ["meta", 10604, 7]]);
 const formals$481 = { args: { elpaBuild: false, fetchurl: false, lib: false, pg: false, plz: false }, ellipsis: false };
-const pos$1438 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10623, 9], ["sha256", 10624, 9]]);
-const pos$1439 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10631, 9], ["license", 10632, 9]]);
-const pos$1440 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10619, 7], ["ename", 10620, 7], ["version", 10621, 7], ["src", 10622, 7], ["packageRequires", 10626, 7], ["meta", 10630, 7]]);
 const formals$482 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1441 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10647, 9], ["sha256", 10648, 9]]);
-const pos$1442 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10652, 9], ["license", 10653, 9]]);
-const pos$1443 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10643, 7], ["ename", 10644, 7], ["version", 10645, 7], ["src", 10646, 7], ["packageRequires", 10650, 7], ["meta", 10651, 7]]);
 const formals$483 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1444 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10669, 9], ["sha256", 10670, 9]]);
-const pos$1445 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10674, 9], ["license", 10675, 9]]);
-const pos$1446 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10665, 7], ["ename", 10666, 7], ["version", 10667, 7], ["src", 10668, 7], ["packageRequires", 10672, 7], ["meta", 10673, 7]]);
 const formals$484 = { args: { elpaBuild: false, fetchurl: false, lib: false, posframe: false, vertico: false }, ellipsis: false };
-const pos$1447 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10692, 9], ["sha256", 10693, 9]]);
-const pos$1448 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10700, 9], ["license", 10701, 9]]);
-const pos$1449 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10688, 7], ["ename", 10689, 7], ["version", 10690, 7], ["src", 10691, 7], ["packageRequires", 10695, 7], ["meta", 10699, 7]]);
 const formals$485 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1450 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10716, 9], ["sha256", 10717, 9]]);
-const pos$1451 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10721, 9], ["license", 10722, 9]]);
-const pos$1452 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10712, 7], ["ename", 10713, 7], ["version", 10714, 7], ["src", 10715, 7], ["packageRequires", 10719, 7], ["meta", 10720, 7]]);
 const formals$486 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1453 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10737, 9], ["sha256", 10738, 9]]);
-const pos$1454 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10742, 9], ["license", 10743, 9]]);
-const pos$1455 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10733, 7], ["ename", 10734, 7], ["version", 10735, 7], ["src", 10736, 7], ["packageRequires", 10740, 7], ["meta", 10741, 7]]);
 const formals$487 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1456 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10758, 9], ["sha256", 10759, 9]]);
-const pos$1457 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10763, 9], ["license", 10764, 9]]);
-const pos$1458 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10754, 7], ["ename", 10755, 7], ["version", 10756, 7], ["src", 10757, 7], ["packageRequires", 10761, 7], ["meta", 10762, 7]]);
 const formals$488 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1459 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10779, 9], ["sha256", 10780, 9]]);
-const pos$1460 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10784, 9], ["license", 10785, 9]]);
-const pos$1461 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10775, 7], ["ename", 10776, 7], ["version", 10777, 7], ["src", 10778, 7], ["packageRequires", 10782, 7], ["meta", 10783, 7]]);
 const formals$489 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1462 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10800, 9], ["sha256", 10801, 9]]);
-const pos$1463 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10805, 9], ["license", 10806, 9]]);
-const pos$1464 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10796, 7], ["ename", 10797, 7], ["version", 10798, 7], ["src", 10799, 7], ["packageRequires", 10803, 7], ["meta", 10804, 7]]);
 const formals$490 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1465 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10821, 9], ["sha256", 10822, 9]]);
-const pos$1466 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10826, 9], ["license", 10827, 9]]);
-const pos$1467 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10817, 7], ["ename", 10818, 7], ["version", 10819, 7], ["src", 10820, 7], ["packageRequires", 10824, 7], ["meta", 10825, 7]]);
 const formals$491 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1468 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10842, 9], ["sha256", 10843, 9]]);
-const pos$1469 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10847, 9], ["license", 10848, 9]]);
-const pos$1470 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10838, 7], ["ename", 10839, 7], ["version", 10840, 7], ["src", 10841, 7], ["packageRequires", 10845, 7], ["meta", 10846, 7]]);
 const formals$492 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1471 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10864, 9], ["sha256", 10865, 9]]);
-const pos$1472 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10869, 9], ["license", 10870, 9]]);
-const pos$1473 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10860, 7], ["ename", 10861, 7], ["version", 10862, 7], ["src", 10863, 7], ["packageRequires", 10867, 7], ["meta", 10868, 7]]);
 const formals$493 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1474 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10885, 9], ["sha256", 10886, 9]]);
-const pos$1475 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10890, 9], ["license", 10891, 9]]);
-const pos$1476 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10881, 7], ["ename", 10882, 7], ["version", 10883, 7], ["src", 10884, 7], ["packageRequires", 10888, 7], ["meta", 10889, 7]]);
 const formals$494 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1477 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10907, 9], ["sha256", 10908, 9]]);
-const pos$1478 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10912, 9], ["license", 10913, 9]]);
-const pos$1479 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10903, 7], ["ename", 10904, 7], ["version", 10905, 7], ["src", 10906, 7], ["packageRequires", 10910, 7], ["meta", 10911, 7]]);
 const formals$495 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1480 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10928, 9], ["sha256", 10929, 9]]);
-const pos$1481 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10933, 9], ["license", 10934, 9]]);
-const pos$1482 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10924, 7], ["ename", 10925, 7], ["version", 10926, 7], ["src", 10927, 7], ["packageRequires", 10931, 7], ["meta", 10932, 7]]);
 const formals$496 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1483 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10949, 9], ["sha256", 10950, 9]]);
-const pos$1484 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10954, 9], ["license", 10955, 9]]);
-const pos$1485 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10945, 7], ["ename", 10946, 7], ["version", 10947, 7], ["src", 10948, 7], ["packageRequires", 10952, 7], ["meta", 10953, 7]]);
 const formals$497 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1486 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10971, 9], ["sha256", 10972, 9]]);
-const pos$1487 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10976, 9], ["license", 10977, 9]]);
-const pos$1488 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10967, 7], ["ename", 10968, 7], ["version", 10969, 7], ["src", 10970, 7], ["packageRequires", 10974, 7], ["meta", 10975, 7]]);
 const formals$498 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1489 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 10992, 9], ["sha256", 10993, 9]]);
-const pos$1490 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 10997, 9], ["license", 10998, 9]]);
-const pos$1491 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 10988, 7], ["ename", 10989, 7], ["version", 10990, 7], ["src", 10991, 7], ["packageRequires", 10995, 7], ["meta", 10996, 7]]);
 const formals$499 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1492 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11013, 9], ["sha256", 11014, 9]]);
-const pos$1493 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11018, 9], ["license", 11019, 9]]);
-const pos$1494 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11009, 7], ["ename", 11010, 7], ["version", 11011, 7], ["src", 11012, 7], ["packageRequires", 11016, 7], ["meta", 11017, 7]]);
 const formals$500 = { args: { elpaBuild: false, fetchurl: false, lib: false, seq: false }, ellipsis: false };
-const pos$1495 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11035, 9], ["sha256", 11036, 9]]);
-const pos$1496 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11040, 9], ["license", 11041, 9]]);
-const pos$1497 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11031, 7], ["ename", 11032, 7], ["version", 11033, 7], ["src", 11034, 7], ["packageRequires", 11038, 7], ["meta", 11039, 7]]);
 const formals$501 = { args: { elpaBuild: false, fetchurl: false, lib: false, "mmm-mode": false, wisi: false }, ellipsis: false };
-const pos$1498 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11058, 9], ["sha256", 11059, 9]]);
-const pos$1499 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11066, 9], ["license", 11067, 9]]);
-const pos$1500 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11054, 7], ["ename", 11055, 7], ["version", 11056, 7], ["src", 11057, 7], ["packageRequires", 11061, 7], ["meta", 11065, 7]]);
 const formals$502 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1501 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11082, 9], ["sha256", 11083, 9]]);
-const pos$1502 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11087, 9], ["license", 11088, 9]]);
-const pos$1503 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11078, 7], ["ename", 11079, 7], ["version", 11080, 7], ["src", 11081, 7], ["packageRequires", 11085, 7], ["meta", 11086, 7]]);
 const formals$503 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1504 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11103, 9], ["sha256", 11104, 9]]);
-const pos$1505 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11108, 9], ["license", 11109, 9]]);
-const pos$1506 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11099, 7], ["ename", 11100, 7], ["version", 11101, 7], ["src", 11102, 7], ["packageRequires", 11106, 7], ["meta", 11107, 7]]);
 const formals$504 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1507 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11124, 9], ["sha256", 11125, 9]]);
-const pos$1508 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11129, 9], ["license", 11130, 9]]);
-const pos$1509 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11120, 7], ["ename", 11121, 7], ["version", 11122, 7], ["src", 11123, 7], ["packageRequires", 11127, 7], ["meta", 11128, 7]]);
 const formals$505 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1510 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11145, 9], ["sha256", 11146, 9]]);
-const pos$1511 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11150, 9], ["license", 11151, 9]]);
-const pos$1512 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11141, 7], ["ename", 11142, 7], ["version", 11143, 7], ["src", 11144, 7], ["packageRequires", 11148, 7], ["meta", 11149, 7]]);
 const formals$506 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1513 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11166, 9], ["sha256", 11167, 9]]);
-const pos$1514 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11171, 9], ["license", 11172, 9]]);
-const pos$1515 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11162, 7], ["ename", 11163, 7], ["version", 11164, 7], ["src", 11165, 7], ["packageRequires", 11169, 7], ["meta", 11170, 7]]);
 const formals$507 = { args: { compat: false, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1516 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11188, 9], ["sha256", 11189, 9]]);
-const pos$1517 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11193, 9], ["license", 11194, 9]]);
-const pos$1518 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11184, 7], ["ename", 11185, 7], ["version", 11186, 7], ["src", 11187, 7], ["packageRequires", 11191, 7], ["meta", 11192, 7]]);
 const formals$508 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false, queue: false }, ellipsis: false };
-const pos$1519 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11211, 9], ["sha256", 11212, 9]]);
-const pos$1520 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11219, 9], ["license", 11220, 9]]);
-const pos$1521 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11207, 7], ["ename", 11208, 7], ["version", 11209, 7], ["src", 11210, 7], ["packageRequires", 11214, 7], ["meta", 11218, 7]]);
 const formals$509 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1522 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11235, 9], ["sha256", 11236, 9]]);
-const pos$1523 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11240, 9], ["license", 11241, 9]]);
-const pos$1524 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11231, 7], ["ename", 11232, 7], ["version", 11233, 7], ["src", 11234, 7], ["packageRequires", 11238, 7], ["meta", 11239, 7]]);
 const formals$510 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1525 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11256, 9], ["sha256", 11257, 9]]);
-const pos$1526 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11261, 9], ["license", 11262, 9]]);
-const pos$1527 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11252, 7], ["ename", 11253, 7], ["version", 11254, 7], ["src", 11255, 7], ["packageRequires", 11259, 7], ["meta", 11260, 7]]);
 const formals$511 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1528 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11277, 9], ["sha256", 11278, 9]]);
-const pos$1529 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11282, 9], ["license", 11283, 9]]);
-const pos$1530 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11273, 7], ["ename", 11274, 7], ["version", 11275, 7], ["src", 11276, 7], ["packageRequires", 11280, 7], ["meta", 11281, 7]]);
 const formals$512 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1531 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11298, 9], ["sha256", 11299, 9]]);
-const pos$1532 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11303, 9], ["license", 11304, 9]]);
-const pos$1533 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11294, 7], ["ename", 11295, 7], ["version", 11296, 7], ["src", 11297, 7], ["packageRequires", 11301, 7], ["meta", 11302, 7]]);
 const formals$513 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1534 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11320, 9], ["sha256", 11321, 9]]);
-const pos$1535 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11325, 9], ["license", 11326, 9]]);
-const pos$1536 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11316, 7], ["ename", 11317, 7], ["version", 11318, 7], ["src", 11319, 7], ["packageRequires", 11323, 7], ["meta", 11324, 7]]);
 const formals$514 = { args: { elpaBuild: false, fetchurl: false, lib: false, yasnippet: false }, ellipsis: false };
-const pos$1537 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11342, 9], ["sha256", 11343, 9]]);
-const pos$1538 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11347, 9], ["license", 11348, 9]]);
-const pos$1539 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11338, 7], ["ename", 11339, 7], ["version", 11340, 7], ["src", 11341, 7], ["packageRequires", 11345, 7], ["meta", 11346, 7]]);
 const formals$515 = { args: { elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1540 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11363, 9], ["sha256", 11364, 9]]);
-const pos$1541 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11368, 9], ["license", 11369, 9]]);
-const pos$1542 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11359, 7], ["ename", 11360, 7], ["version", 11361, 7], ["src", 11362, 7], ["packageRequires", 11366, 7], ["meta", 11367, 7]]);
 const formals$516 = { args: { "cl-lib": true, elpaBuild: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1543 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11385, 9], ["sha256", 11386, 9]]);
-const pos$1544 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11390, 9], ["license", 11391, 9]]);
-const pos$1545 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11381, 7], ["ename", 11382, 7], ["version", 11383, 7], ["src", 11384, 7], ["packageRequires", 11388, 7], ["meta", 11389, 7]]);
 const formals$517 = { args: { elpaBuild: false, fetchurl: false, lib: false, project: false }, ellipsis: false };
-const pos$1546 = nix.positions(here + "/elpa-devel-generated.nix", [["url", 11407, 9], ["sha256", 11408, 9]]);
-const pos$1547 = nix.positions(here + "/elpa-devel-generated.nix", [["homepage", 11412, 9], ["license", 11413, 9]]);
-const pos$1548 = nix.positions(here + "/elpa-devel-generated.nix", [["pname", 11403, 7], ["ename", 11404, 7], ["version", 11405, 7], ["src", 11406, 7], ["packageRequires", 11410, 7], ["meta", 11411, 7]]);
-const pos$1549 = nix.positions(here + "/elpa-devel-generated.nix", [["a68-mode", 3, 3], ["ace-window", 24, 3], ["ack", 46, 3], ["activities", 67, 3], ["ada-mode", 89, 3], ["ada-ref-man", 117, 3], ["adaptive-wrap", 138, 3], ["adjust-parens", 159, 3], ["advice-patch", 180, 3], ["aggressive-completion", 201, 3], ["aggressive-indent", 222, 3], ["agitate", 243, 3], ["ahungry-theme", 264, 3], ["aircon-theme", 285, 3], ["all", 306, 3], ["altcaps", 327, 3], ["ampc", 348, 3], ["arbitools", 369, 3], ["ascii-art-to-unicode", 391, 3], ["assess", 412, 3], ["async", 434, 3], ["auctex", 455, 3], ["auctex-cont-latexmk", 476, 3], ["auctex-label-numbers", 498, 3], ["aumix-mode", 520, 3], ["auth-source-xoauth2-plugin", 541, 3], ["auto-correct", 563, 3], ["auto-overlays", 584, 3], ["autocrypt", 606, 3], ["autorevert-tail-truncate", 627, 3], ["avy", 648, 3], ["bbdb", 670, 3], ["beacon", 692, 3], ["beframe", 713, 3], ["bicep-ts-mode", 734, 3], ["bind-key", 755, 3], ["blist", 776, 3], ["bluetooth", 798, 3], ["bnf-mode", 826, 3], ["boxy", 848, 3], ["boxy-headings", 869, 3], ["breadcrumb", 895, 3], ["brief", 917, 3], ["buffer-env", 943, 3], ["buffer-expose", 965, 3], ["bufferlo", 987, 3], ["buframe", 1008, 3], ["bug-hunter", 1030, 3], ["buildbot", 1056, 3], ["calibre", 1077, 3], ["cape", 1099, 3], ["capf-autosuggest", 1121, 3], ["caps-lock", 1142, 3], ["captain", 1163, 3], ["chess", 1184, 3], ["cl-generic", 1206, 3], ["cl-lib", 1227, 3], ["clipboard-collector", 1248, 3], ["cm-mode", 1269, 3], ["cobol-mode", 1291, 3], ["code-cells", 1312, 3], ["colorful-mode", 1334, 3], ["comint-mime", 1360, 3], ["compact-docstrings", 1386, 3], ["company", 1407, 3], ["company-ebdb", 1429, 3], ["company-math", 1455, 3], ["company-statistics", 1481, 3], ["compat", 1503, 3], ["cond-star", 1524, 3], ["constants", 1545, 3], ["consult", 1566, 3], ["consult-denote", 1588, 3], ["consult-hoogle", 1614, 3], ["consult-recoll", 1636, 3], ["context-coloring", 1658, 3], ["corfu", 1679, 3], ["coterm", 1701, 3], ["counsel", 1723, 3], ["cperl-mode", 1749, 3], ["cpio-mode", 1770, 3], ["cpupower", 1791, 3], ["crdt", 1812, 3], ["crisp", 1833, 3], ["csharp-mode", 1854, 3], ["csv-mode", 1875, 3], ["cursor-undo", 1897, 3], ["cursory", 1918, 3], ["cus-abbrev", 1939, 3], ["cycle-quotes", 1960, 3], ["dape", 1981, 3], ["darkroom", 2003, 3], ["dash", 2025, 3], ["dbus-codegen", 2046, 3], ["debbugs", 2068, 3], ["delight", 2090, 3], ["denote", 2116, 3], ["denote-journal", 2137, 3], ["denote-markdown", 2159, 3], ["denote-menu", 2181, 3], ["denote-org", 2203, 3], ["denote-review", 2225, 3], ["denote-search", 2247, 3], ["denote-sequence", 2269, 3], ["denote-silo", 2291, 3], ["detached", 2313, 3], ["devdocs", 2334, 3], ["devicetree-ts-mode", 2356, 3], ["dicom", 2377, 3], ["dict-tree", 2399, 3], ["diff-hl", 2427, 3], ["diffview", 2449, 3], ["diminish", 2470, 3], ["dired-du", 2491, 3], ["dired-duplicates", 2513, 3], ["dired-git-info", 2534, 3], ["dired-preview", 2555, 3], ["dired-sidebar", 2576, 3], ["disk-usage", 2598, 3], ["dismal", 2619, 3], ["disproject", 2641, 3], ["djvu", 2663, 3], ["dmsg", 2684, 3], ["do-at-point", 2705, 3], ["doc-toc", 2726, 3], ["doc-view-follow", 2747, 3], ["docbook", 2768, 3], ["doric-themes", 2789, 3], ["drepl", 2810, 3], ["dts-mode", 2832, 3], ["easy-escape", 2853, 3], ["easy-kill", 2874, 3], ["ebdb", 2896, 3], ["ebdb-gnorb", 2918, 3], ["ebdb-i18n-chn", 2944, 3], ["ediprolog", 2970, 3], ["eev", 2991, 3], ["ef-themes", 3012, 3], ["eglot", 3034, 3], ["el-job", 3070, 3], ["el-search", 3091, 3], ["eldoc", 3117, 3], ["electric-spacing", 3138, 3], ["elisa", 3159, 3], ["elisp-benchmarks", 3189, 3], ["ellama", 3210, 3], ["emacs-gc-stats", 3242, 3], ["emacs-lisp-intro-es", 3263, 3], ["emacs-lisp-intro-nl", 3284, 3], ["embark", 3305, 3], ["embark-consult", 3327, 3], ["ement", 3355, 3], ["emms", 3391, 3], ["engrave-faces", 3419, 3], ["enwc", 3440, 3], ["epoch-view", 3461, 3], ["erc", 3482, 3], ["ergoemacs-mode", 3504, 3], ["ess", 3530, 3], ["excorporate", 3551, 3], ["expand-region", 3581, 3], ["expreg", 3602, 3], ["external-completion", 3623, 3], ["exwm", 3644, 3], ["f90-interface-browser", 3670, 3], ["ffs", 3692, 3], ["filechooser", 3713, 3], ["filladapt", 3735, 3], ["firefox-javascript-repl", 3756, 3], ["flylisp", 3777, 3], ["flymake", 3799, 3], ["flymake-clippy", 3825, 3], ["flymake-codespell", 3846, 3], ["flymake-harper", 3868, 3], ["flymake-proselint", 3889, 3], ["fontaine", 3910, 3], ["forgejo", 3931, 3], ["frame-tabs", 3953, 3], ["frog-menu", 3974, 3], ["fsm", 4000, 3], ["ftable", 4022, 3], ["futur", 4043, 3], ["gcmh", 4064, 3], ["ggtags", 4085, 3], ["gited", 4106, 3], ["gle-mode", 4128, 3], ["gnat-compiler", 4150, 3], ["gnome-c-style", 4172, 3], ["gnome-dark-style", 4193, 3], ["gnorb", 4214, 3], ["gnosis", 4236, 3], ["gnu-elpa", 4262, 3], ["gnu-elpa-keyring-update", 4283, 3], ["gnugo", 4304, 3], ["gnus-mock", 4332, 3], ["gpastel", 4353, 3], ["gpr-mode", 4374, 3], ["gpr-query", 4400, 3], ["graphql", 4426, 3], ["greader", 4447, 3], ["greenbar", 4473, 3], ["gtags-mode", 4494, 3], ["guess-language", 4515, 3], ["hcel", 4541, 3], ["heap", 4562, 3], ["hiddenquote", 4583, 3], ["highlight-escape-sequences", 4604, 3], ["hook-helpers", 4625, 3], ["html5-schema", 4646, 3], ["hugoista", 4667, 3], ["hydra", 4689, 3], ["hyperbole", 4711, 3], ["ibuffer-sidebar", 4732, 3], ["idlwave", 4753, 3], ["ilist", 4774, 3], ["indent-bars", 4795, 3], ["inspector", 4817, 3], ["ioccur", 4838, 3], ["isearch-mb", 4860, 3], ["iso-date", 4881, 3], ["iterators", 4902, 3], ["ivy", 4923, 3], ["ivy-avy", 4944, 3], ["ivy-explorer", 4970, 3], ["ivy-hydra", 4992, 3], ["ivy-posframe", 5018, 3], ["jami-bot", 5044, 3], ["jarchive", 5065, 3], ["javaimp", 5086, 3], ["jgraph-mode", 5107, 3], ["jinx", 5129, 3], ["jit-spell", 5151, 3], ["js2-mode", 5173, 3], ["json-mode", 5195, 3], ["jsonrpc", 5216, 3], ["jumpc", 5237, 3], ["keymap-popup", 5258, 3], ["kind-icon", 5279, 3], ["kiwix", 5301, 3], ["kmb", 5323, 3], ["kubed", 5344, 3], ["landmark", 5365, 3], ["latex-table-wizard", 5386, 3], ["leaf", 5412, 3], ["lentic", 5433, 3], ["lentic-server", 5459, 3], ["let-alist", 5485, 3], ["lex", 5506, 3], ["lin", 5527, 3], ["lisp-ts-mode", 5548, 3], ["listen", 5574, 3], ["literate-scratch", 5604, 3], ["llm", 5625, 3], ["lmc", 5655, 3], ["load-dir", 5677, 3], ["load-relative", 5699, 3], ["loc-changes", 5720, 3], ["loccur", 5741, 3], ["logos", 5762, 3], ["luwak", 5783, 3], ["lv", 5804, 3], ["m-buffer", 5825, 3], ["map", 5847, 3], ["marginalia", 5868, 3], ["markchars", 5890, 3], ["math-symbol-lists", 5911, 3], ["mathjax", 5932, 3], ["mathsheet", 5953, 3], ["matlab-mode", 5975, 3], ["mct", 5996, 3], ["memory-usage", 6017, 3], ["metar", 6038, 3], ["midi-kbd", 6060, 3], ["mines", 6081, 3], ["minibuffer-header", 6103, 3], ["minibuffer-line", 6124, 3], ["minimail", 6145, 3], ["minimap", 6171, 3], ["minuet", 6192, 3], ["mmm-mode", 6218, 3], ["mode-line-maker", 6240, 3], ["modus-themes", 6261, 3], ["mpdired", 6282, 3], ["multi-mode", 6303, 3], ["multishell", 6324, 3], ["muse", 6346, 3], ["myers", 6367, 3], ["nadvice", 6388, 3], ["nameless", 6409, 3], ["names", 6430, 3], ["nano-agenda", 6456, 3], ["nano-modeline", 6477, 3], ["nano-theme", 6498, 3], ["nftables-mode", 6519, 3], ["nhexl-mode", 6540, 3], ["nlinum", 6561, 3], ["notes-mode", 6582, 3], ["notmuch-indicator", 6603, 3], ["ntlm", 6624, 3], ["num3-mode", 6645, 3], ["oauth2", 6666, 3], ["ob-asymptote", 6687, 3], ["ob-haxe", 6708, 3], ["objed", 6729, 3], ["omn-mode", 6751, 3], ["on-screen", 6772, 3], ["orderless", 6794, 3], ["org", 6816, 3], ["org-contacts", 6837, 3], ["org-edna", 6859, 3], ["org-gnosis", 6885, 3], ["org-jami-bot", 6911, 3], ["org-mem", 6933, 3], ["org-modern", 6961, 3], ["org-notify", 6987, 3], ["org-real", 7008, 3], ["org-remark", 7034, 3], ["org-transclusion", 7056, 3], ["org-translate", 7078, 3], ["orgalist", 7100, 3], ["osc", 7121, 3], ["osm", 7142, 3], ["other-frame-window", 7164, 3], ["pabbrev", 7185, 3], ["paced", 7206, 3], ["package-x", 7228, 3], ["parsec", 7249, 3], ["parser-generator", 7271, 3], ["path-iterator", 7292, 3], ["peg", 7313, 3], ["perl-doc", 7334, 3], ["persist", 7355, 3], ["php-fill", 7377, 3], ["phpinspect", 7398, 3], ["phps-mode", 7420, 3], ["pinentry", 7441, 3], ["plz", 7462, 3], ["plz-event-source", 7483, 3], ["plz-media-type", 7505, 3], ["plz-see", 7527, 3], ["po-mode", 7549, 3], ["poke", 7570, 3], ["poke-mode", 7591, 3], ["poker", 7612, 3], ["polymode", 7633, 3], ["popper", 7654, 3], ["posframe", 7675, 3], ["pq", 7696, 3], ["prefixed-core", 7717, 3], ["preview-auto", 7738, 3], ["preview-tailor", 7760, 3], ["project", 7782, 3], ["psgml", 7804, 3], ["pspp-mode", 7825, 3], ["pulsar", 7846, 3], ["pyim", 7867, 3], ["pyim-basedict", 7893, 3], ["python", 7915, 3], ["qrencode", 7937, 3], ["quarter-plane", 7958, 3], ["queue", 7979, 3], ["rainbow-mode", 8001, 3], ["rbit", 8022, 3], ["rcirc-color", 8043, 3], ["rcirc-mentions", 8064, 3], ["rcirc-menu", 8085, 3], ["rcirc-sqlite", 8106, 3], ["realgud", 8127, 3], ["realgud-ipdb", 8155, 3], ["realgud-jdb", 8181, 3], ["realgud-lldb", 8207, 3], ["realgud-node-debug", 8233, 3], ["realgud-node-inspect", 8261, 3], ["realgud-pdbpp", 8289, 3], ["realgud-trepan-ni", 8315, 3], ["realgud-trepan-xpy", 8341, 3], ["rec-mode", 8367, 3], ["register-list", 8388, 3], ["relint", 8409, 3], ["repology", 8431, 3], ["rich-minority", 8452, 3], ["rnc-mode", 8474, 3], ["rt-liberation", 8495, 3], ["ruby-end", 8516, 3], ["rudel", 8537, 3], ["satchel", 8565, 3], ["scanner", 8587, 3], ["scroll-restore", 8609, 3], ["sed-mode", 8630, 3], ["sendai-theme", 8651, 3], ["seq", 8672, 3], ["setup", 8693, 3], ["shelisp", 8714, 3], ["shell-command-plus", 8735, 3], ["shell-quasiquote", 8756, 3], ["shen-mode", 8777, 3], ["shift-number", 8798, 3], ["show-font", 8819, 3], ["sisu-mode", 8840, 3], ["site-lisp", 8861, 3], ["sketch-mode", 8882, 3], ["slime-volleyball", 8903, 3], ["sm-c-mode", 8925, 3], ["smalltalk-mode", 8946, 3], ["smart-yank", 8967, 3], ["sml-mode", 8988, 3], ["so-long", 9010, 3], ["soap-client", 9031, 3], ["sokoban", 9053, 3], ["sotlisp", 9075, 3], ["spacious-padding", 9096, 3], ["speedrect", 9117, 3], ["spinner", 9139, 3], ["sql-beeline", 9160, 3], ["sql-cassandra", 9181, 3], ["sql-indent", 9202, 3], ["sql-smie", 9224, 3], ["srht", 9245, 3], ["ssh-deploy", 9271, 3], ["standard-themes", 9292, 3], ["stream", 9314, 3], ["substitute", 9335, 3], ["svg", 9356, 3], ["svg-clock", 9377, 3], ["svg-lib", 9399, 3], ["svg-tag-mode", 9420, 3], ["swiper", 9442, 3], ["switchy-window", 9464, 3], ["sxhkdrc-mode", 9486, 3], ["system-packages", 9507, 3], ["systemd", 9528, 3], ["tNFA", 9550, 3], ["tam", 9576, 3], ["taxy", 9597, 3], ["taxy-magit-section", 9618, 3], ["temp-buffer-browse", 9644, 3], ["tempel", 9665, 3], ["termint", 9687, 3], ["test-simple", 9708, 3], ["tex-item", 9730, 3], ["tex-parens", 9751, 3], ["theme-buffet", 9772, 3], ["timeout", 9793, 3], ["timerfunctions", 9814, 3], ["tiny", 9836, 3], ["tmr", 9857, 3], ["tomelr", 9878, 3], ["topspace", 9904, 3], ["track-changes", 9925, 3], ["tramp", 9946, 3], ["tramp-hlo", 9967, 3], ["tramp-nspawn", 9989, 3], ["tramp-theme", 10010, 3], ["transcribe", 10031, 3], ["transient", 10052, 3], ["transient-cycles", 10082, 3], ["tree-inspector", 10103, 3], ["trie", 10125, 3], ["triples", 10151, 3], ["truename-cache", 10173, 3], ["trust-manager", 10195, 3], ["ulisp-repl", 10216, 3], ["undo-tree", 10237, 3], ["uni-confusables", 10259, 3], ["uniquify-files", 10280, 3], ["urgrep", 10301, 3], ["url-http-ntlm", 10323, 3], ["url-http-oauth", 10345, 3], ["url-scgi", 10366, 3], ["use-package", 10387, 3], ["validate", 10409, 3], ["valign", 10435, 3], ["vc-backup", 10456, 3], ["vc-got", 10478, 3], ["vc-hgcmd", 10499, 3], ["vc-jj", 10520, 3], ["vcard", 10546, 3], ["vcl-mode", 10567, 3], ["vdiff", 10588, 3], ["vecdb", 10610, 3], ["verilog-mode", 10636, 3], ["vertico", 10657, 3], ["vertico-posframe", 10679, 3], ["vigenere", 10705, 3], ["visual-filename-abbrev", 10726, 3], ["visual-fill", 10747, 3], ["vlf", 10768, 3], ["vundo", 10789, 3], ["wcheck-mode", 10810, 3], ["wconf", 10831, 3], ["web-server", 10852, 3], ["webfeeder", 10874, 3], ["websocket", 10895, 3], ["which-key", 10917, 3], ["window-commander", 10938, 3], ["window-tool-bar", 10959, 3], ["windower", 10981, 3], ["windresize", 11002, 3], ["wisi", 11023, 3], ["wisitoken-grammar-mode", 11045, 3], ["with-command-redo", 11071, 3], ["wpuzzle", 11092, 3], ["wrap-search", 11113, 3], ["xclip", 11134, 3], ["xeft", 11155, 3], ["xelb", 11176, 3], ["xpm", 11198, 3], ["xr", 11224, 3], ["xref", 11245, 3], ["xref-union", 11266, 3], ["yaml", 11287, 3], ["yasnippet", 11308, 3], ["yasnippet-classic-snippets", 11330, 3], ["zones", 11352, 3], ["ztree", 11373, 3], ["zuul", 11395, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    [nix.POS]: pos$1549,
+    [nix.POS]: $pos[1548],
     "a68-mode": nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const elpaBuild = nix.arg($_1, "elpaBuild");
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: "a68-mode",
             ename: "a68-mode",
             version: "1.3.0.20260710.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 url: "https://elpa.gnu.org/devel/a68-mode-1.3.0.20260710.2.tar",
                 sha256: "10qxsr316kv8317zfjwixj7pmsrqykycwf6pmw0wiv8w0vq0v9jr",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               homepage: "https://elpa.gnu.org/devel/a68-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2104,18 +556,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             pname: "ace-window",
             ename: "ace-window",
             version: "0.10.0.0.20220911.35841",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 url: "https://elpa.gnu.org/devel/ace-window-0.10.0.0.20220911.35841.tar",
                 sha256: "0xfc1pw7m4vg0xvj40djm7rxqr0405pby3rgl5vyd8ci5kpmmvhs",
               })))),
             packageRequires: nix.thunk(() => [avy]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               homepage: "https://elpa.gnu.org/devel/ace-window.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2127,18 +579,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             pname: "ack",
             ename: "ack",
             version: "1.11.0.20260429.83816",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 url: "https://elpa.gnu.org/devel/ack-1.11.0.20260429.83816.tar",
                 sha256: "106m586p8ynjbsf9yknsfjpgvss6wxivgshc5kg7l8fg61d7c0nd",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               homepage: "https://elpa.gnu.org/devel/ack.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2151,18 +603,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const persist = nix.arg($_1, "persist");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             pname: "activities",
             ename: "activities",
             version: "0.8pre0.20251118.85",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 url: "https://elpa.gnu.org/devel/activities-0.8pre0.20251118.85.tar",
                 sha256: "0v0s5vlfd2dv4shbmxqn37mcvfmfszdk0nwi1y184hwsp0bkvzqx",
               })))),
             packageRequires: nix.thunk(() => [persist]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               homepage: "https://elpa.gnu.org/devel/activities.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2177,18 +629,18 @@ export default nix.lambda((args) => (() => {
         const uniquify_files = nix.arg($_1, "uniquify-files");
         const wisi = nix.arg($_1, "wisi");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             pname: "ada-mode",
             ename: "ada-mode",
             version: "8.1.0.0.20231018.91522",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 url: "https://elpa.gnu.org/devel/ada-mode-8.1.0.0.20231018.91522.tar",
                 sha256: "07kd6dj1dbds68qmi4dh4w3fc8l18jyxrfbz4lxb5v9c59hk8c46",
               })))),
             packageRequires: nix.thunk(() => [gnat_compiler, uniquify_files, wisi]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               homepage: "https://elpa.gnu.org/devel/ada-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2200,18 +652,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             pname: "ada-ref-man",
             ename: "ada-ref-man",
             version: "2020.1.0.20201129.190419",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 url: "https://elpa.gnu.org/devel/ada-ref-man-2020.1.0.20201129.190419.tar",
                 sha256: "0a201fn9xs3vg52vri8aw2p56rsw428hk745m6hja6q5gn6rl0zw",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               homepage: "https://elpa.gnu.org/devel/ada-ref-man.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2223,18 +675,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             pname: "adaptive-wrap",
             ename: "adaptive-wrap",
             version: "0.9.0.20260322.173441",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 url: "https://elpa.gnu.org/devel/adaptive-wrap-0.9.0.20260322.173441.tar",
                 sha256: "1fr72sxvzs1jyqlxgfmk650pw3663n2kpdliqa980m3qmx4n1k30",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               homepage: "https://elpa.gnu.org/devel/adaptive-wrap.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2246,18 +698,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             pname: "adjust-parens",
             ename: "adjust-parens",
             version: "3.2.0.20240113.95404",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 url: "https://elpa.gnu.org/devel/adjust-parens-3.2.0.20240113.95404.tar",
                 sha256: "0l7s63dfpar2ddiydl43m6ipzc7qghv9k5hfcnj56aj6hs7ibcd2",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               homepage: "https://elpa.gnu.org/devel/adjust-parens.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2269,18 +721,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             pname: "advice-patch",
             ename: "advice-patch",
             version: "0.1.0.20201220.233221",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 url: "https://elpa.gnu.org/devel/advice-patch-0.1.0.20201220.233221.tar",
                 sha256: "1bca9s6cxpsyvyl0fxqa59x68rpdj44kxcaxmaa0lsy10vgib542",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               homepage: "https://elpa.gnu.org/devel/advice-patch.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2292,18 +744,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             pname: "aggressive-completion",
             ename: "aggressive-completion",
             version: "1.8.0.20260529.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 url: "https://elpa.gnu.org/devel/aggressive-completion-1.8.0.20260529.0.tar",
                 sha256: "0w567lldk16v5x80h7wm8vmz5947izxi842m3cwsx2hghpsp1rrq",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               homepage: "https://elpa.gnu.org/devel/aggressive-completion.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2315,18 +767,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             pname: "aggressive-indent",
             ename: "aggressive-indent",
             version: "1.10.0.0.20230112.100030",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 url: "https://elpa.gnu.org/devel/aggressive-indent-1.10.0.0.20230112.100030.tar",
                 sha256: "0vp49nz5n82pcds2hxqz0fy5zcmvcrpfd1zgsm1cwyph7vvx7djj",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               homepage: "https://elpa.gnu.org/devel/aggressive-indent.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2338,18 +790,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             pname: "agitate",
             ename: "agitate",
             version: "0.0.20260424.102016",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 url: "https://elpa.gnu.org/devel/agitate-0.0.20260424.102016.tar",
                 sha256: "1sgzy52irfd1p5nppqrlna05fhrscchmclr3wj9s5qh3wdpfwqv8",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               homepage: "https://elpa.gnu.org/devel/agitate.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2361,18 +813,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             pname: "ahungry-theme",
             ename: "ahungry-theme",
             version: "1.10.0.0.20211231.115425",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$37,
+                [nix.POS]: $pos[36],
                 url: "https://elpa.gnu.org/devel/ahungry-theme-1.10.0.0.20211231.115425.tar",
                 sha256: "0iddqqkv9i3d9yajhysl54av91i0gdngxqyn7vvapf1nz3pxzrvz",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$38,
+              [nix.POS]: $pos[37],
               homepage: "https://elpa.gnu.org/devel/ahungry-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2384,18 +836,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             pname: "aircon-theme",
             ename: "aircon-theme",
             version: "0.0.6.0.20260507.72645",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$40,
+                [nix.POS]: $pos[39],
                 url: "https://elpa.gnu.org/devel/aircon-theme-0.0.6.0.20260507.72645.tar",
                 sha256: "1cld1ns2q4vkxpmc69s6scnhgghi36ibmscg8zjwwhbbp31ah0ir",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$41,
+              [nix.POS]: $pos[40],
               homepage: "https://elpa.gnu.org/devel/aircon-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2407,18 +859,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$45,
+            [nix.POS]: $pos[44],
             pname: "all",
             ename: "all",
             version: "1.1.0.20240405.133638",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$43,
+                [nix.POS]: $pos[42],
                 url: "https://elpa.gnu.org/devel/all-1.1.0.20240405.133638.tar",
                 sha256: "0cybsyr7ksgslwdfnrz8cpymk34f9gz75ahz368rhg926qlxy95j",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$44,
+              [nix.POS]: $pos[43],
               homepage: "https://elpa.gnu.org/devel/all.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2430,18 +882,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$48,
+            [nix.POS]: $pos[47],
             pname: "altcaps",
             ename: "altcaps",
             version: "1.3.0.0.20260424.102117",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$46,
+                [nix.POS]: $pos[45],
                 url: "https://elpa.gnu.org/devel/altcaps-1.3.0.0.20260424.102117.tar",
                 sha256: "00bjfrm5hyp53779fg40yjaldlqdli4frl4dmf7371zvpd63184z",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$47,
+              [nix.POS]: $pos[46],
               homepage: "https://elpa.gnu.org/devel/altcaps.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2453,18 +905,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$51,
+            [nix.POS]: $pos[50],
             pname: "ampc",
             ename: "ampc",
             version: "0.2.0.20240220.181558",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$49,
+                [nix.POS]: $pos[48],
                 url: "https://elpa.gnu.org/devel/ampc-0.2.0.20240220.181558.tar",
                 sha256: "139gqhijy92qnprk25av550zd7165ilsnnmdx4v0v0fnwgxnya7h",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$50,
+              [nix.POS]: $pos[49],
               homepage: "https://elpa.gnu.org/devel/ampc.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2477,18 +929,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$54,
+            [nix.POS]: $pos[53],
             pname: "arbitools",
             ename: "arbitools",
             version: "0.977.0.20221212.221354",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$52,
+                [nix.POS]: $pos[51],
                 url: "https://elpa.gnu.org/devel/arbitools-0.977.0.20221212.221354.tar",
                 sha256: "0s9w9hfki33bnfgm7yyhhcl0kbpn1ahd5li7nfy409zcb5spz17h",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$53,
+              [nix.POS]: $pos[52],
               homepage: "https://elpa.gnu.org/devel/arbitools.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2500,18 +952,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$57,
+            [nix.POS]: $pos[56],
             pname: "ascii-art-to-unicode",
             ename: "ascii-art-to-unicode",
             version: "1.13.0.20230911.4520",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$55,
+                [nix.POS]: $pos[54],
                 url: "https://elpa.gnu.org/devel/ascii-art-to-unicode-1.13.0.20230911.4520.tar",
                 sha256: "10x2svbc9qkrcckwjfsd1rlcqbvapvrb80x8m0p2awffwisr165j",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$56,
+              [nix.POS]: $pos[55],
               homepage: "https://elpa.gnu.org/devel/ascii-art-to-unicode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2524,18 +976,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const m_buffer = nix.arg($_1, "m-buffer");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$60,
+            [nix.POS]: $pos[59],
             pname: "assess",
             ename: "assess",
             version: "0.7.0.20240303.95456",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$58,
+                [nix.POS]: $pos[57],
                 url: "https://elpa.gnu.org/devel/assess-0.7.0.20240303.95456.tar",
                 sha256: "0yqiqlgnhqvqc4w9s05csk2h2iwyv1m32wb121v6famfqaicgl12",
               })))),
             packageRequires: nix.thunk(() => [m_buffer]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$59,
+              [nix.POS]: $pos[58],
               homepage: "https://elpa.gnu.org/devel/assess.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2547,18 +999,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$63,
+            [nix.POS]: $pos[62],
             pname: "async",
             ename: "async",
             version: "1.9.9.0.20260729.33",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$61,
+                [nix.POS]: $pos[60],
                 url: "https://elpa.gnu.org/devel/async-1.9.9.0.20260729.33.tar",
                 sha256: "00jzb0s7wmdj9gxy3js3395n6mxb663wwp8nbspklf9bwig9qr1d",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$62,
+              [nix.POS]: $pos[61],
               homepage: "https://elpa.gnu.org/devel/async.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2570,18 +1022,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$66,
+            [nix.POS]: $pos[65],
             pname: "auctex",
             ename: "auctex",
             version: "14.1.2.0.20260911.81",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$64,
+                [nix.POS]: $pos[63],
                 url: "https://elpa.gnu.org/devel/auctex-14.1.2.0.20260911.81.tar",
                 sha256: "1wa9jhagw28q6ffcmjdcfknqs4xs7ymx77s8vpvkc3h2plvs4a6f",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$65,
+              [nix.POS]: $pos[64],
               homepage: "https://elpa.gnu.org/devel/auctex.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2594,18 +1046,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$69,
+            [nix.POS]: $pos[68],
             pname: "auctex-cont-latexmk",
             ename: "auctex-cont-latexmk",
             version: "0.3.0.20260617.10",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$67,
+                [nix.POS]: $pos[66],
                 url: "https://elpa.gnu.org/devel/auctex-cont-latexmk-0.3.0.20260617.10.tar",
                 sha256: "1dcppji0h1yd75iv6ihg7iyjzwf14l6h32cf7k4aiyb58d8x2ka6",
               })))),
             packageRequires: nix.thunk(() => [auctex]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$68,
+              [nix.POS]: $pos[67],
               homepage: "https://elpa.gnu.org/devel/auctex-cont-latexmk.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2618,18 +1070,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$72,
+            [nix.POS]: $pos[71],
             pname: "auctex-label-numbers",
             ename: "auctex-label-numbers",
             version: "0.3.0.20260714.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$70,
+                [nix.POS]: $pos[69],
                 url: "https://elpa.gnu.org/devel/auctex-label-numbers-0.3.0.20260714.1.tar",
                 sha256: "1bqw342873z0cpjg6lg3inscbjilwrgm0dgd9bhc7bb8mas7hkaj",
               })))),
             packageRequires: nix.thunk(() => [auctex]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$71,
+              [nix.POS]: $pos[70],
               homepage: "https://elpa.gnu.org/devel/auctex-label-numbers.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2641,18 +1093,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$75,
+            [nix.POS]: $pos[74],
             pname: "aumix-mode",
             ename: "aumix-mode",
             version: "7.0.20221221.74552",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$73,
+                [nix.POS]: $pos[72],
                 url: "https://elpa.gnu.org/devel/aumix-mode-7.0.20221221.74552.tar",
                 sha256: "0c3yhk8ir4adv3wy80iywbvl1sm86xssg0j0q4rym50pr4vqx60n",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$74,
+              [nix.POS]: $pos[73],
               homepage: "https://elpa.gnu.org/devel/aumix-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2665,18 +1117,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const oauth2 = nix.arg($_1, "oauth2");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$78,
+            [nix.POS]: $pos[77],
             pname: "auth-source-xoauth2-plugin",
             ename: "auth-source-xoauth2-plugin",
             version: "0.4.1.0.20260526.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$76,
+                [nix.POS]: $pos[75],
                 url: "https://elpa.gnu.org/devel/auth-source-xoauth2-plugin-0.4.1.0.20260526.0.tar",
                 sha256: "058src50y1rynyrsfcdlrswbmsmf41ic1aa0bfkqg19dgaag81qy",
               })))),
             packageRequires: nix.thunk(() => [oauth2]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$77,
+              [nix.POS]: $pos[76],
               homepage: "https://elpa.gnu.org/devel/auth-source-xoauth2-plugin.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2688,18 +1140,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$81,
+            [nix.POS]: $pos[80],
             pname: "auto-correct",
             ename: "auto-correct",
             version: "1.1.4.0.20221221.74656",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$79,
+                [nix.POS]: $pos[78],
                 url: "https://elpa.gnu.org/devel/auto-correct-1.1.4.0.20221221.74656.tar",
                 sha256: "10h6b5px4krcwjwhc475al9kcizijsz773zkcijrfi83283l35nc",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$80,
+              [nix.POS]: $pos[79],
               homepage: "https://elpa.gnu.org/devel/auto-correct.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2712,18 +1164,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$84,
+            [nix.POS]: $pos[83],
             pname: "auto-overlays",
             ename: "auto-overlays",
             version: "0.10.10.0.20201215.220815",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$82,
+                [nix.POS]: $pos[81],
                 url: "https://elpa.gnu.org/devel/auto-overlays-0.10.10.0.20201215.220815.tar",
                 sha256: "1gmsli1bil210867x642x4zvhqradl3d4pk4n5ky5g6xp1h36c7w",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$83,
+              [nix.POS]: $pos[82],
               homepage: "https://elpa.gnu.org/devel/auto-overlays.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2735,18 +1187,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$87,
+            [nix.POS]: $pos[86],
             pname: "autocrypt",
             ename: "autocrypt",
             version: "0.4.2.0.20260126.200740",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$85,
+                [nix.POS]: $pos[84],
                 url: "https://elpa.gnu.org/devel/autocrypt-0.4.2.0.20260126.200740.tar",
                 sha256: "15xqvi9j2jg1hya0gprif4wsxhwmi4l1fa0fpr7phzbjh0qhc90r",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$86,
+              [nix.POS]: $pos[85],
               homepage: "https://elpa.gnu.org/devel/autocrypt.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2758,18 +1210,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$90,
+            [nix.POS]: $pos[89],
             pname: "autorevert-tail-truncate",
             ename: "autorevert-tail-truncate",
             version: "1.0.1.0.20250209.105211",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$88,
+                [nix.POS]: $pos[87],
                 url: "https://elpa.gnu.org/devel/autorevert-tail-truncate-1.0.1.0.20250209.105211.tar",
                 sha256: "07nlbvlassaj0rcph1kwf2h9bxdkfk3s77q300aj6kp0k73a17rd",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$89,
+              [nix.POS]: $pos[88],
               homepage: "https://elpa.gnu.org/devel/autorevert-tail-truncate.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2782,18 +1234,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$93,
+            [nix.POS]: $pos[92],
             pname: "avy",
             ename: "avy",
             version: "0.5.0.0.20241101.125753",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$91,
+                [nix.POS]: $pos[90],
                 url: "https://elpa.gnu.org/devel/avy-0.5.0.0.20241101.125753.tar",
                 sha256: "0rg6jgq1iyhw7vwf8kv3mzjpwzbq44n5csv3lgd3hj8f72y4jpvb",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$92,
+              [nix.POS]: $pos[91],
               homepage: "https://elpa.gnu.org/devel/avy.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2806,18 +1258,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$96,
+            [nix.POS]: $pos[95],
             pname: "bbdb",
             ename: "bbdb",
             version: "3.2.2.4.0.20231023.5901",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$94,
+                [nix.POS]: $pos[93],
                 url: "https://elpa.gnu.org/devel/bbdb-3.2.2.4.0.20231023.5901.tar",
                 sha256: "16m5irp1y9crv13l2qncafys4fscwq2d28ig8hnx4g5bag9bi7j4",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$95,
+              [nix.POS]: $pos[94],
               homepage: "https://elpa.gnu.org/devel/bbdb.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2829,18 +1281,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$99,
+            [nix.POS]: $pos[98],
             pname: "beacon",
             ename: "beacon",
             version: "1.3.4.0.20220729.220057",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$97,
+                [nix.POS]: $pos[96],
                 url: "https://elpa.gnu.org/devel/beacon-1.3.4.0.20220729.220057.tar",
                 sha256: "1dpd3j2aip3zi3ivbszsgrifw43bryx01df868hmrxm1s0vvjhh6",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$98,
+              [nix.POS]: $pos[97],
               homepage: "https://elpa.gnu.org/devel/beacon.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2852,18 +1304,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$102,
+            [nix.POS]: $pos[101],
             pname: "beframe",
             ename: "beframe",
             version: "1.5.0.0.20260828.18",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$100,
+                [nix.POS]: $pos[99],
                 url: "https://elpa.gnu.org/devel/beframe-1.5.0.0.20260828.18.tar",
                 sha256: "0871lrhvys4f7f1wxag6g8i8x21a0zab75nzz4wabkha079i13kp",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$101,
+              [nix.POS]: $pos[100],
               homepage: "https://elpa.gnu.org/devel/beframe.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2875,18 +1327,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$105,
+            [nix.POS]: $pos[104],
             pname: "bicep-ts-mode",
             ename: "bicep-ts-mode",
             version: "0.1.4.0.20260825.88",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$103,
+                [nix.POS]: $pos[102],
                 url: "https://elpa.gnu.org/devel/bicep-ts-mode-0.1.4.0.20260825.88.tar",
                 sha256: "1dyy30m69isncwj1366944s5lvi85gq5604canmnbvizw4jay1y0",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$104,
+              [nix.POS]: $pos[103],
               homepage: "https://elpa.gnu.org/devel/bicep-ts-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2898,18 +1350,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$108,
+            [nix.POS]: $pos[107],
             pname: "bind-key",
             ename: "bind-key",
             version: "2.4.1.0.20260408.145602",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$106,
+                [nix.POS]: $pos[105],
                 url: "https://elpa.gnu.org/devel/bind-key-2.4.1.0.20260408.145602.tar",
                 sha256: "016cx0zc3y7l7wv2xv6c9kvpy5rf98ryaa1w6z9wagh5jbbcg4ac",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$107,
+              [nix.POS]: $pos[106],
               homepage: "https://elpa.gnu.org/devel/bind-key.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2922,18 +1374,18 @@ export default nix.lambda((args) => (() => {
         const ilist = nix.arg($_1, "ilist");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$111,
+            [nix.POS]: $pos[110],
             pname: "blist",
             ename: "blist",
             version: "0.6.0.20250210.24138",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$109,
+                [nix.POS]: $pos[108],
                 url: "https://elpa.gnu.org/devel/blist-0.6.0.20250210.24138.tar",
                 sha256: "1rf4y81i7jmgqdma1i5gvr767mi2z7qpil4w9sak7graqj79vzn6",
               })))),
             packageRequires: nix.thunk(() => [ilist]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$110,
+              [nix.POS]: $pos[109],
               homepage: "https://elpa.gnu.org/devel/blist.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2948,18 +1400,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$114,
+            [nix.POS]: $pos[113],
             pname: "bluetooth",
             ename: "bluetooth",
             version: "0.4.1.0.20241028.70437",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$112,
+                [nix.POS]: $pos[111],
                 url: "https://elpa.gnu.org/devel/bluetooth-0.4.1.0.20241028.70437.tar",
                 sha256: "0j4znabnbzdj2kskvma63svhiq2l3nahd7saqk2v2jc1xrzllfvm",
               })))),
             packageRequires: nix.thunk(() => [compat, dash, transient]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$113,
+              [nix.POS]: $pos[112],
               homepage: "https://elpa.gnu.org/devel/bluetooth.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2972,18 +1424,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$117,
+            [nix.POS]: $pos[116],
             pname: "bnf-mode",
             ename: "bnf-mode",
             version: "0.4.5.0.20240915.211838",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$115,
+                [nix.POS]: $pos[114],
                 url: "https://elpa.gnu.org/devel/bnf-mode-0.4.5.0.20240915.211838.tar",
                 sha256: "109lfqv767ka7k8klxlr66sfzih2ypy4y0gkkrw5q14pzdx0149x",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$116,
+              [nix.POS]: $pos[115],
               homepage: "https://elpa.gnu.org/devel/bnf-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2995,18 +1447,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$120,
+            [nix.POS]: $pos[119],
             pname: "boxy",
             ename: "boxy",
             version: "2.0.1.0.20260303.181733",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$118,
+                [nix.POS]: $pos[117],
                 url: "https://elpa.gnu.org/devel/boxy-2.0.1.0.20260303.181733.tar",
                 sha256: "14xpnidvwm5s8dcghim4pdwqdyys1as7rmd55kpmgyhjgcshjy3i",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$119,
+              [nix.POS]: $pos[118],
               homepage: "https://elpa.gnu.org/devel/boxy.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3020,18 +1472,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const org = nix.arg($_1, "org");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$123,
+            [nix.POS]: $pos[122],
             pname: "boxy-headings",
             ename: "boxy-headings",
             version: "2.1.11.0.20260303.182038",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$121,
+                [nix.POS]: $pos[120],
                 url: "https://elpa.gnu.org/devel/boxy-headings-2.1.11.0.20260303.182038.tar",
                 sha256: "0cv8s20y5im65yyvx3y63npnlj47nlpbilw1n8zzf129zq3bfp55",
               })))),
             packageRequires: nix.thunk(() => [boxy, org]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$122,
+              [nix.POS]: $pos[121],
               homepage: "https://elpa.gnu.org/devel/boxy-headings.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3044,18 +1496,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const project = nix.arg($_1, "project");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$126,
+            [nix.POS]: $pos[125],
             pname: "breadcrumb",
             ename: "breadcrumb",
             version: "1.0.1.0.20260804.20",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$124,
+                [nix.POS]: $pos[123],
                 url: "https://elpa.gnu.org/devel/breadcrumb-1.0.1.0.20260804.20.tar",
                 sha256: "18vf0w97sknwvck48n60v26m1hjl429s3534x83qzbm845bnzjwl",
               })))),
             packageRequires: nix.thunk(() => [project]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$125,
+              [nix.POS]: $pos[124],
               homepage: "https://elpa.gnu.org/devel/breadcrumb.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3069,18 +1521,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const nadvice = nix.arg($_1, "nadvice");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$129,
+            [nix.POS]: $pos[128],
             pname: "brief",
             ename: "brief",
             version: "5.92.0.20240823.62608",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$127,
+                [nix.POS]: $pos[126],
                 url: "https://elpa.gnu.org/devel/brief-5.92.0.20240823.62608.tar",
                 sha256: "0v2cdk4bs9xq7sn2a3qj3iaxmpmji5m9063cjhkhfd1crngv8a5a",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, nadvice]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$128,
+              [nix.POS]: $pos[127],
               homepage: "https://elpa.gnu.org/devel/brief.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3093,18 +1545,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$132,
+            [nix.POS]: $pos[131],
             pname: "buffer-env",
             ename: "buffer-env",
             version: "0.6.0.20260604.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$130,
+                [nix.POS]: $pos[129],
                 url: "https://elpa.gnu.org/devel/buffer-env-0.6.0.20260604.5.tar",
                 sha256: "0w0lbfqn3mn628w2mhcfgmsrzzl3915vsry84g64gfb1ga7r4ld3",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$131,
+              [nix.POS]: $pos[130],
               homepage: "https://elpa.gnu.org/devel/buffer-env.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3117,18 +1569,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$135,
+            [nix.POS]: $pos[134],
             pname: "buffer-expose",
             ename: "buffer-expose",
             version: "0.4.3.0.20190429.135558",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$133,
+                [nix.POS]: $pos[132],
                 url: "https://elpa.gnu.org/devel/buffer-expose-0.4.3.0.20190429.135558.tar",
                 sha256: "0f3a064i4a1ylb1ibqmz302h24kymir3zj1d225b7v6r89nam216",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$134,
+              [nix.POS]: $pos[133],
               homepage: "https://elpa.gnu.org/devel/buffer-expose.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3140,18 +1592,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$138,
+            [nix.POS]: $pos[137],
             pname: "bufferlo",
             ename: "bufferlo",
             version: "1.2.0.20260531.20",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$136,
+                [nix.POS]: $pos[135],
                 url: "https://elpa.gnu.org/devel/bufferlo-1.2.0.20260531.20.tar",
                 sha256: "04g5c2zar12k9b4jrka13zc8bd67kn4xhjsybhrjdz3fhphj5ivn",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$137,
+              [nix.POS]: $pos[136],
               homepage: "https://elpa.gnu.org/devel/bufferlo.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3164,18 +1616,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const timeout = nix.arg($_1, "timeout");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$141,
+            [nix.POS]: $pos[140],
             pname: "buframe",
             ename: "buframe",
             version: "0.3.0.20260415.112855",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$139,
+                [nix.POS]: $pos[138],
                 url: "https://elpa.gnu.org/devel/buframe-0.3.0.20260415.112855.tar",
                 sha256: "1fav3n1r5w0vyvkbblfbi9xnglhmi4bvp6ikixp3lmh8bpf7as2l",
               })))),
             packageRequires: nix.thunk(() => [timeout]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$140,
+              [nix.POS]: $pos[139],
               homepage: "https://elpa.gnu.org/devel/buframe.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3189,18 +1641,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$144,
+            [nix.POS]: $pos[143],
             pname: "bug-hunter",
             ename: "bug-hunter",
             version: "1.3.1.0.20201128.92354",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$142,
+                [nix.POS]: $pos[141],
                 url: "https://elpa.gnu.org/devel/bug-hunter-1.3.1.0.20201128.92354.tar",
                 sha256: "1bskf9csg49n4cisl57wv0sa74s6v3wffdxw80m3r2yr0kx01cfs",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, seq]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$143,
+              [nix.POS]: $pos[142],
               homepage: "https://elpa.gnu.org/devel/bug-hunter.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3212,18 +1664,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$147,
+            [nix.POS]: $pos[146],
             pname: "buildbot",
             ename: "buildbot",
             version: "0.0.1.0.20230726.134747",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$145,
+                [nix.POS]: $pos[144],
                 url: "https://elpa.gnu.org/devel/buildbot-0.0.1.0.20230726.134747.tar",
                 sha256: "1z27pfx3h1fad9wiazrkqgfdc1h06g2rlb3cq1zk83hilg64nnjd",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$146,
+              [nix.POS]: $pos[145],
               homepage: "https://elpa.gnu.org/devel/buildbot.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3236,18 +1688,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$150,
+            [nix.POS]: $pos[149],
             pname: "calibre",
             ename: "calibre",
             version: "1.5.2.0.20260313.14906",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$148,
+                [nix.POS]: $pos[147],
                 url: "https://elpa.gnu.org/devel/calibre-1.5.2.0.20260313.14906.tar",
                 sha256: "1g3dylaz0lly8sj9hqwspz2lgxvx2gagjdgs0q5q7k55chx5bmby",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$149,
+              [nix.POS]: $pos[148],
               homepage: "https://elpa.gnu.org/devel/calibre.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3260,18 +1712,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$153,
+            [nix.POS]: $pos[152],
             pname: "cape",
             ename: "cape",
             version: "2.9.0.20260905.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$151,
+                [nix.POS]: $pos[150],
                 url: "https://elpa.gnu.org/devel/cape-2.9.0.20260905.2.tar",
                 sha256: "084ydlrcd5gqpkv7bbjbmwsvbia6i64x017a8mdp8gyv2n490pri",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$152,
+              [nix.POS]: $pos[151],
               homepage: "https://elpa.gnu.org/devel/cape.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3283,18 +1735,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$156,
+            [nix.POS]: $pos[155],
             pname: "capf-autosuggest",
             ename: "capf-autosuggest",
             version: "0.3.0.20211123.104430",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$154,
+                [nix.POS]: $pos[153],
                 url: "https://elpa.gnu.org/devel/capf-autosuggest-0.3.0.20211123.104430.tar",
                 sha256: "0f16csl2ky8kys3wcv41zqh1l9976gc009pjy21kp6ck0pm0m3kg",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$155,
+              [nix.POS]: $pos[154],
               homepage: "https://elpa.gnu.org/devel/capf-autosuggest.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3306,18 +1758,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$159,
+            [nix.POS]: $pos[158],
             pname: "caps-lock",
             ename: "caps-lock",
             version: "1.0.0.20221221.74713",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$157,
+                [nix.POS]: $pos[156],
                 url: "https://elpa.gnu.org/devel/caps-lock-1.0.0.20221221.74713.tar",
                 sha256: "0f8n79yw9zs1cpa8nhqmvw95kj762lv8rzrkj30ybvj1612vl1z9",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$158,
+              [nix.POS]: $pos[157],
               homepage: "https://elpa.gnu.org/devel/caps-lock.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3329,18 +1781,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$162,
+            [nix.POS]: $pos[161],
             pname: "captain",
             ename: "captain",
             version: "1.0.3.0.20221221.74732",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$160,
+                [nix.POS]: $pos[159],
                 url: "https://elpa.gnu.org/devel/captain-1.0.3.0.20221221.74732.tar",
                 sha256: "0ay26xzbhrxgvslrwcc504k5s0kxk0c8rnps656xz1wl38fbvm5b",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$161,
+              [nix.POS]: $pos[160],
               homepage: "https://elpa.gnu.org/devel/captain.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3353,18 +1805,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$165,
+            [nix.POS]: $pos[164],
             pname: "chess",
             ename: "chess",
             version: "2.0.5.0.20220926.150547",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$163,
+                [nix.POS]: $pos[162],
                 url: "https://elpa.gnu.org/devel/chess-2.0.5.0.20220926.150547.tar",
                 sha256: "16md052m600mmy43fgpcpwl4jz5q67v9w2h3y234ild6sp1qanlj",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$164,
+              [nix.POS]: $pos[163],
               homepage: "https://elpa.gnu.org/devel/chess.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3376,18 +1828,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$168,
+            [nix.POS]: $pos[167],
             pname: "cl-generic",
             ename: "cl-generic",
             version: "0.3.0.20221221.74800",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$166,
+                [nix.POS]: $pos[165],
                 url: "https://elpa.gnu.org/devel/cl-generic-0.3.0.20221221.74800.tar",
                 sha256: "1yhjgcc3rnhi0kf2mgm7yii1pa9hzz0dnfkg393p456rl07q7vqq",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$167,
+              [nix.POS]: $pos[166],
               homepage: "https://elpa.gnu.org/devel/cl-generic.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3399,18 +1851,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$171,
+            [nix.POS]: $pos[170],
             pname: "cl-lib",
             ename: "cl-lib",
             version: "0.7.1.0.20221221.74809",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$169,
+                [nix.POS]: $pos[168],
                 url: "https://elpa.gnu.org/devel/cl-lib-0.7.1.0.20221221.74809.tar",
                 sha256: "1xig9cma7p5bplnqnxmwh1axxlf813ar69bzyvks09yhg04jikm1",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$170,
+              [nix.POS]: $pos[169],
               homepage: "https://elpa.gnu.org/devel/cl-lib.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3422,18 +1874,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$174,
+            [nix.POS]: $pos[173],
             pname: "clipboard-collector",
             ename: "clipboard-collector",
             version: "0.3.0.20190215.154741",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$172,
+                [nix.POS]: $pos[171],
                 url: "https://elpa.gnu.org/devel/clipboard-collector-0.3.0.20190215.154741.tar",
                 sha256: "03y1wivagbsl4f2qgmxcy43pbpvpxhd1d57ihpdvsl2illb6bwlq",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$173,
+              [nix.POS]: $pos[172],
               homepage: "https://elpa.gnu.org/devel/clipboard-collector.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3446,18 +1898,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$177,
+            [nix.POS]: $pos[176],
             pname: "cm-mode",
             ename: "cm-mode",
             version: "1.10.0.20260518.192037",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$175,
+                [nix.POS]: $pos[174],
                 url: "https://elpa.gnu.org/devel/cm-mode-1.10.0.20260518.192037.tar",
                 sha256: "17ck187x677s00lvk09lr76fgl9i0sx7p46dqhf033k70c46a4gj",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$176,
+              [nix.POS]: $pos[175],
               homepage: "https://elpa.gnu.org/devel/cm-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3469,18 +1921,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$180,
+            [nix.POS]: $pos[179],
             pname: "cobol-mode",
             ename: "cobol-mode",
             version: "1.1.0.20250810.203242",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$178,
+                [nix.POS]: $pos[177],
                 url: "https://elpa.gnu.org/devel/cobol-mode-1.1.0.20250810.203242.tar",
                 sha256: "16hkkrg551jsapnraf4vl19r53yl4ll3wdr49yxyy9qkiqvv2l25",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$179,
+              [nix.POS]: $pos[178],
               homepage: "https://elpa.gnu.org/devel/cobol-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3493,18 +1945,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$183,
+            [nix.POS]: $pos[182],
             pname: "code-cells",
             ename: "code-cells",
             version: "0.5.0.20250608.143915",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$181,
+                [nix.POS]: $pos[180],
                 url: "https://elpa.gnu.org/devel/code-cells-0.5.0.20250608.143915.tar",
                 sha256: "1chbb4sab9a73aj7a283g1qpsqbv6rvzfah4qqg5piykc2hk0yg0",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$182,
+              [nix.POS]: $pos[181],
               homepage: "https://elpa.gnu.org/devel/code-cells.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3518,18 +1970,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$186,
+            [nix.POS]: $pos[185],
             pname: "colorful-mode",
             ename: "colorful-mode",
             version: "1.2.5.0.20260804.18",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$184,
+                [nix.POS]: $pos[183],
                 url: "https://elpa.gnu.org/devel/colorful-mode-1.2.5.0.20260804.18.tar",
                 sha256: "1gggz1cp8wbq45r4fqzpxsw57dcdynn4nsb1cp8bvqylx7p9dk82",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$185,
+              [nix.POS]: $pos[184],
               homepage: "https://elpa.gnu.org/devel/colorful-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3543,18 +1995,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const mathjax = nix.arg($_1, "mathjax");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$189,
+            [nix.POS]: $pos[188],
             pname: "comint-mime",
             ename: "comint-mime",
             version: "0.7.0.20241116.123039",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$187,
+                [nix.POS]: $pos[186],
                 url: "https://elpa.gnu.org/devel/comint-mime-0.7.0.20241116.123039.tar",
                 sha256: "0sypcmpx5fyl92kkcaas3k877lwqvy02694riqp0rpm5rnpr182v",
               })))),
             packageRequires: nix.thunk(() => [compat, mathjax]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$188,
+              [nix.POS]: $pos[187],
               homepage: "https://elpa.gnu.org/devel/comint-mime.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3566,18 +2018,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$192,
+            [nix.POS]: $pos[191],
             pname: "compact-docstrings",
             ename: "compact-docstrings",
             version: "0.2.0.20220305.183958",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$190,
+                [nix.POS]: $pos[189],
                 url: "https://elpa.gnu.org/devel/compact-docstrings-0.2.0.20220305.183958.tar",
                 sha256: "024l45bxxkh6x7rd8qcmykxdhdj0yckcf7vzacl7ynzwm9ah7sry",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$191,
+              [nix.POS]: $pos[190],
               homepage: "https://elpa.gnu.org/devel/compact-docstrings.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3590,18 +2042,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const posframe = nix.arg($_1, "posframe");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$195,
+            [nix.POS]: $pos[194],
             pname: "company",
             ename: "company",
             version: "1.1.0.0.20260721.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$193,
+                [nix.POS]: $pos[192],
                 url: "https://elpa.gnu.org/devel/company-1.1.0.0.20260721.0.tar",
                 sha256: "0zidihc9vrv7nb5pfciik8xvlg5j6gg7kdmvlcwcmwq79r1vcy83",
               })))),
             packageRequires: nix.thunk(() => [posframe]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$194,
+              [nix.POS]: $pos[193],
               homepage: "https://elpa.gnu.org/devel/company.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3615,18 +2067,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$198,
+            [nix.POS]: $pos[197],
             pname: "company-ebdb",
             ename: "company-ebdb",
             version: "1.1.0.20221221.74915",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$196,
+                [nix.POS]: $pos[195],
                 url: "https://elpa.gnu.org/devel/company-ebdb-1.1.0.20221221.74915.tar",
                 sha256: "1qidrgcm2hdkrbh75rjfzxbmbyvxvyfy4m2kd6lgcx0v494lzvqw",
               })))),
             packageRequires: nix.thunk(() => [company, ebdb]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$197,
+              [nix.POS]: $pos[196],
               homepage: "https://elpa.gnu.org/devel/company-ebdb.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3640,18 +2092,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const math_symbol_lists = nix.arg($_1, "math-symbol-lists");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$201,
+            [nix.POS]: $pos[200],
             pname: "company-math",
             ename: "company-math",
             version: "1.5.1.0.20221227.132907",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$199,
+                [nix.POS]: $pos[198],
                 url: "https://elpa.gnu.org/devel/company-math-1.5.1.0.20221227.132907.tar",
                 sha256: "070kfw13aw1hfvkdxb83zic44301nawnl57saqwrg6lh0psxpyxv",
               })))),
             packageRequires: nix.thunk(() => [company, math_symbol_lists]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$200,
+              [nix.POS]: $pos[199],
               homepage: "https://elpa.gnu.org/devel/company-math.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3664,18 +2116,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$204,
+            [nix.POS]: $pos[203],
             pname: "company-statistics",
             ename: "company-statistics",
             version: "0.2.3.0.20250805.152437",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$202,
+                [nix.POS]: $pos[201],
                 url: "https://elpa.gnu.org/devel/company-statistics-0.2.3.0.20250805.152437.tar",
                 sha256: "0r23dakpkakwv294snzfq7s6g56m48d0j9ncnmkyhs37vg51x21x",
               })))),
             packageRequires: nix.thunk(() => [company]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$203,
+              [nix.POS]: $pos[202],
               homepage: "https://elpa.gnu.org/devel/company-statistics.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3687,18 +2139,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$207,
+            [nix.POS]: $pos[206],
             pname: "compat",
             ename: "compat",
             version: "31.0.0.2.0.20260909.7",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$205,
+                [nix.POS]: $pos[204],
                 url: "https://elpa.gnu.org/devel/compat-31.0.0.2.0.20260909.7.tar",
                 sha256: "19hb51wrkg3v49kd46h2xgcs12zajq0qyjp2pj341r68z11gwhjl",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$206,
+              [nix.POS]: $pos[205],
               homepage: "https://elpa.gnu.org/devel/compat.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3710,18 +2162,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$210,
+            [nix.POS]: $pos[209],
             pname: "cond-star",
             ename: "cond-star",
             version: "1.0.0.20260523.114724",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$208,
+                [nix.POS]: $pos[207],
                 url: "https://elpa.gnu.org/devel/cond-star-1.0.0.20260523.114724.tar",
                 sha256: "15gp54pkm50dq9141fknq4gy8ya6wrbr0nyzqax15rxz57gsf6cs",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$209,
+              [nix.POS]: $pos[208],
               homepage: "https://elpa.gnu.org/devel/cond-star.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3733,18 +2185,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$213,
+            [nix.POS]: $pos[212],
             pname: "constants",
             ename: "constants",
             version: "2.11.1.0.20240827.95043",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$211,
+                [nix.POS]: $pos[210],
                 url: "https://elpa.gnu.org/devel/constants-2.11.1.0.20240827.95043.tar",
                 sha256: "0ar6j385kifqyd01996li7ni1c1kwn11m80bssbc4agsrmk5kn02",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$212,
+              [nix.POS]: $pos[211],
               homepage: "https://elpa.gnu.org/devel/constants.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3757,18 +2209,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$216,
+            [nix.POS]: $pos[215],
             pname: "consult",
             ename: "consult",
             version: "3.8.0.20260910.16",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$214,
+                [nix.POS]: $pos[213],
                 url: "https://elpa.gnu.org/devel/consult-3.8.0.20260910.16.tar",
                 sha256: "0w6zaprkqkp4vmkr6wcysd63ykqigyalcls2jrap5n42diidx01y",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$215,
+              [nix.POS]: $pos[214],
               homepage: "https://elpa.gnu.org/devel/consult.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3782,18 +2234,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$219,
+            [nix.POS]: $pos[218],
             pname: "consult-denote",
             ename: "consult-denote",
             version: "0.5.1.0.20260704.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$217,
+                [nix.POS]: $pos[216],
                 url: "https://elpa.gnu.org/devel/consult-denote-0.5.1.0.20260704.0.tar",
                 sha256: "0bfy6gzznxg356s1nqrv5ma26rlb9njf12dbkma6glpr8l7gpavv",
               })))),
             packageRequires: nix.thunk(() => [consult, denote]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$218,
+              [nix.POS]: $pos[217],
               homepage: "https://elpa.gnu.org/devel/consult-denote.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3806,18 +2258,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$222,
+            [nix.POS]: $pos[221],
             pname: "consult-hoogle",
             ename: "consult-hoogle",
             version: "0.8.0.0.20260723.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$220,
+                [nix.POS]: $pos[219],
                 url: "https://elpa.gnu.org/devel/consult-hoogle-0.8.0.0.20260723.0.tar",
                 sha256: "1p7qrl977mp0h1naknrwcyhhdx6s20wqxshcyxs24wssg4828fhc",
               })))),
             packageRequires: nix.thunk(() => [consult]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$221,
+              [nix.POS]: $pos[220],
               homepage: "https://elpa.gnu.org/devel/consult-hoogle.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3830,18 +2282,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$225,
+            [nix.POS]: $pos[224],
             pname: "consult-recoll",
             ename: "consult-recoll",
             version: "1.0.0.0.20250223.210510",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$223,
+                [nix.POS]: $pos[222],
                 url: "https://elpa.gnu.org/devel/consult-recoll-1.0.0.0.20250223.210510.tar",
                 sha256: "1aivy3imjpkm5rbvcygyj8a42hmpkkld852jf4lkb42s4ifpf3i7",
               })))),
             packageRequires: nix.thunk(() => [consult]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$224,
+              [nix.POS]: $pos[223],
               homepage: "https://elpa.gnu.org/devel/consult-recoll.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3853,18 +2305,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$228,
+            [nix.POS]: $pos[227],
             pname: "context-coloring",
             ename: "context-coloring",
             version: "8.1.0.0.20240331.133753",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$226,
+                [nix.POS]: $pos[225],
                 url: "https://elpa.gnu.org/devel/context-coloring-8.1.0.0.20240331.133753.tar",
                 sha256: "1m8c7vccdb868n777rqi8mhjwfbm25q7hbx7x6y145mxmnqr1vgn",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$227,
+              [nix.POS]: $pos[226],
               homepage: "https://elpa.gnu.org/devel/context-coloring.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3877,18 +2329,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$231,
+            [nix.POS]: $pos[230],
             pname: "corfu",
             ename: "corfu",
             version: "2.15.0.20260905.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$229,
+                [nix.POS]: $pos[228],
                 url: "https://elpa.gnu.org/devel/corfu-2.15.0.20260905.2.tar",
                 sha256: "1jm2la1i7mrqnzqwrl1748vgvh311zn0cwjg893yhcs9z32nvmy5",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$230,
+              [nix.POS]: $pos[229],
               homepage: "https://elpa.gnu.org/devel/corfu.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3901,18 +2353,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$234,
+            [nix.POS]: $pos[233],
             pname: "coterm",
             ename: "coterm",
             version: "1.6.0.20221015.160420",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$232,
+                [nix.POS]: $pos[231],
                 url: "https://elpa.gnu.org/devel/coterm-1.6.0.20221015.160420.tar",
                 sha256: "1633q3vrqhjfv4ipirirgkpmal5j1rfh6jxkq3sm3qwlg8lgak4s",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$233,
+              [nix.POS]: $pos[232],
               homepage: "https://elpa.gnu.org/devel/coterm.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3926,18 +2378,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const swiper = nix.arg($_1, "swiper");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$237,
+            [nix.POS]: $pos[236],
             pname: "counsel",
             ename: "counsel",
             version: "0.15.1.0.20260214.101027",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$235,
+                [nix.POS]: $pos[234],
                 url: "https://elpa.gnu.org/devel/counsel-0.15.1.0.20260214.101027.tar",
                 sha256: "18p8sdlnva98vfzz8zdb9yp647r47q7gxxh2w1hqjvaw4802hxjv",
               })))),
             packageRequires: nix.thunk(() => [ivy, swiper]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$236,
+              [nix.POS]: $pos[235],
               homepage: "https://elpa.gnu.org/devel/counsel.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3949,18 +2401,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$240,
+            [nix.POS]: $pos[239],
             pname: "cperl-mode",
             ename: "cperl-mode",
             version: "33.0.0.0.20260828.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$238,
+                [nix.POS]: $pos[237],
                 url: "https://elpa.gnu.org/devel/cperl-mode-33.0.0.0.20260828.0.tar",
                 sha256: "1x93900axwv57ng48cck402gffc0zvd5yfwz3xl7qs8qwmr6dcjl",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$239,
+              [nix.POS]: $pos[238],
               homepage: "https://elpa.gnu.org/devel/cperl-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3972,18 +2424,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$243,
+            [nix.POS]: $pos[242],
             pname: "cpio-mode",
             ename: "cpio-mode",
             version: "0.17.0.20241101.133717",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$241,
+                [nix.POS]: $pos[240],
                 url: "https://elpa.gnu.org/devel/cpio-mode-0.17.0.20241101.133717.tar",
                 sha256: "0kf5h4x3yz69360vp3ikqxrg1nx4cxnlv01kgfpm5kcr94zdzyka",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$242,
+              [nix.POS]: $pos[241],
               homepage: "https://elpa.gnu.org/devel/cpio-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3995,18 +2447,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$246,
+            [nix.POS]: $pos[245],
             pname: "cpupower",
             ename: "cpupower",
             version: "1.0.5.0.20230704.131557",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$244,
+                [nix.POS]: $pos[243],
                 url: "https://elpa.gnu.org/devel/cpupower-1.0.5.0.20230704.131557.tar",
                 sha256: "1xls5wjxrx2a193piav0yp0sv1m7jv5zqk46hbxxhfakl3jg5zlq",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$245,
+              [nix.POS]: $pos[244],
               homepage: "https://elpa.gnu.org/devel/cpupower.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4018,18 +2470,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$249,
+            [nix.POS]: $pos[248],
             pname: "crdt",
             ename: "crdt",
             version: "0.3.5.0.20241129.104719",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$247,
+                [nix.POS]: $pos[246],
                 url: "https://elpa.gnu.org/devel/crdt-0.3.5.0.20241129.104719.tar",
                 sha256: "0aad3acn44av7c3cfdiyivqryvf3f330mm38w5hirv5v3zyx5arx",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$248,
+              [nix.POS]: $pos[247],
               homepage: "https://elpa.gnu.org/devel/crdt.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4041,18 +2493,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$252,
+            [nix.POS]: $pos[251],
             pname: "crisp",
             ename: "crisp",
             version: "1.3.6.0.20221221.74923",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$250,
+                [nix.POS]: $pos[249],
                 url: "https://elpa.gnu.org/devel/crisp-1.3.6.0.20221221.74923.tar",
                 sha256: "0kpw81h9n8qwrvmqan9bwj32d4vgsrmma4f0rig04bdx0mxmdzir",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$251,
+              [nix.POS]: $pos[250],
               homepage: "https://elpa.gnu.org/devel/crisp.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4064,18 +2516,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$255,
+            [nix.POS]: $pos[254],
             pname: "csharp-mode",
             ename: "csharp-mode",
             version: "2.0.0.0.20221205.181941",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$253,
+                [nix.POS]: $pos[252],
                 url: "https://elpa.gnu.org/devel/csharp-mode-2.0.0.0.20221205.181941.tar",
                 sha256: "1cmc6b7pwjalzipc2clis2si7d03r0glpgxj7qpvfdp26y1cjabv",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$254,
+              [nix.POS]: $pos[253],
               homepage: "https://elpa.gnu.org/devel/csharp-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4088,18 +2540,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$258,
+            [nix.POS]: $pos[257],
             pname: "csv-mode",
             ename: "csv-mode",
             version: "1.27.0.20260907.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$256,
+                [nix.POS]: $pos[255],
                 url: "https://elpa.gnu.org/devel/csv-mode-1.27.0.20260907.5.tar",
                 sha256: "0s66ydfafaff0r0fz7fn0df8z8v1g8pbi9c49wz1k9d25ac5hcyj",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$257,
+              [nix.POS]: $pos[256],
               homepage: "https://elpa.gnu.org/devel/csv-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4111,18 +2563,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$261,
+            [nix.POS]: $pos[260],
             pname: "cursor-undo",
             ename: "cursor-undo",
             version: "1.1.5.0.20240818.152228",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$259,
+                [nix.POS]: $pos[258],
                 url: "https://elpa.gnu.org/devel/cursor-undo-1.1.5.0.20240818.152228.tar",
                 sha256: "0hz6na9izpzbf50sq0bsy0q265g66ic67kc9zzhw0hqsfpym6b7f",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$260,
+              [nix.POS]: $pos[259],
               homepage: "https://elpa.gnu.org/devel/cursor-undo.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4134,18 +2586,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$264,
+            [nix.POS]: $pos[263],
             pname: "cursory",
             ename: "cursory",
             version: "1.2.0.0.20260701.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$262,
+                [nix.POS]: $pos[261],
                 url: "https://elpa.gnu.org/devel/cursory-1.2.0.0.20260701.4.tar",
                 sha256: "0087hsy0qzzlhj7zsasmc6x41w6gnh21sb0in7zyahy2x0qrqwi4",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$263,
+              [nix.POS]: $pos[262],
               homepage: "https://elpa.gnu.org/devel/cursory.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4157,18 +2609,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$267,
+            [nix.POS]: $pos[266],
             pname: "cus-abbrev",
             ename: "cus-abbrev",
             version: "0.1.0.20250307.190425",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$265,
+                [nix.POS]: $pos[264],
                 url: "https://elpa.gnu.org/devel/cus-abbrev-0.1.0.20250307.190425.tar",
                 sha256: "1xjfdxr2yy7s5xq0732bczczm6c9ypkr1jlyl2jg240p51gg4kp8",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$266,
+              [nix.POS]: $pos[265],
               homepage: "https://elpa.gnu.org/devel/cus-abbrev.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4180,18 +2632,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$270,
+            [nix.POS]: $pos[269],
             pname: "cycle-quotes",
             ename: "cycle-quotes",
             version: "0.1.0.20221221.75021",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$268,
+                [nix.POS]: $pos[267],
                 url: "https://elpa.gnu.org/devel/cycle-quotes-0.1.0.20221221.75021.tar",
                 sha256: "0igwwbhf1b6c67znik3zphdngddkgai146qcjlkgg1ihr4ajc3pc",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$269,
+              [nix.POS]: $pos[268],
               homepage: "https://elpa.gnu.org/devel/cycle-quotes.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4204,18 +2656,18 @@ export default nix.lambda((args) => (() => {
         const jsonrpc = nix.arg($_1, "jsonrpc");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$273,
+            [nix.POS]: $pos[272],
             pname: "dape",
             ename: "dape",
             version: "0.27.1.0.20260719.8",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$271,
+                [nix.POS]: $pos[270],
                 url: "https://elpa.gnu.org/devel/dape-0.27.1.0.20260719.8.tar",
                 sha256: "08y9z6l5qirz812v0wz1y3fklsqj9b0476scl2ziq8mvjdkv37bq",
               })))),
             packageRequires: nix.thunk(() => [jsonrpc]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$272,
+              [nix.POS]: $pos[271],
               homepage: "https://elpa.gnu.org/devel/dape.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4228,18 +2680,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$276,
+            [nix.POS]: $pos[275],
             pname: "darkroom",
             ename: "darkroom",
             version: "0.3.0.20200507.173652",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$274,
+                [nix.POS]: $pos[273],
                 url: "https://elpa.gnu.org/devel/darkroom-0.3.0.20200507.173652.tar",
                 sha256: "1j57wa2jhpjs6ynda73s0vv4dzyr9jg0lifv7nc8bv79lr4sjab2",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$275,
+              [nix.POS]: $pos[274],
               homepage: "https://elpa.gnu.org/devel/darkroom.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4251,18 +2703,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$279,
+            [nix.POS]: $pos[278],
             pname: "dash",
             ename: "dash",
             version: "2.20.0.0.20260810.9",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$277,
+                [nix.POS]: $pos[276],
                 url: "https://elpa.gnu.org/devel/dash-2.20.0.0.20260810.9.tar",
                 sha256: "0n7247cs8zsqxkf3b7my238sz3l1aqjkgxqy5q43xb91iflvr2b5",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$278,
+              [nix.POS]: $pos[277],
               homepage: "https://elpa.gnu.org/devel/dash.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4275,18 +2727,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$282,
+            [nix.POS]: $pos[281],
             pname: "dbus-codegen",
             ename: "dbus-codegen",
             version: "0.1.0.20220306.62546",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$280,
+                [nix.POS]: $pos[279],
                 url: "https://elpa.gnu.org/devel/dbus-codegen-0.1.0.20220306.62546.tar",
                 sha256: "1jg8ibxy79g93b3hl97bpgz90ny5q936k8bjcmxix7hn82wg7a9l",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$281,
+              [nix.POS]: $pos[280],
               homepage: "https://elpa.gnu.org/devel/dbus-codegen.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4299,18 +2751,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const soap_client = nix.arg($_1, "soap-client");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$285,
+            [nix.POS]: $pos[284],
             pname: "debbugs",
             ename: "debbugs",
             version: "0.47.0.20260824.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$283,
+                [nix.POS]: $pos[282],
                 url: "https://elpa.gnu.org/devel/debbugs-0.47.0.20260824.4.tar",
                 sha256: "1lgicrysj0dhymnlyffdkvi2jndyxbmj31mxs4v18prmp0zhcfcs",
               })))),
             packageRequires: nix.thunk(() => [soap_client]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$284,
+              [nix.POS]: $pos[283],
               homepage: "https://elpa.gnu.org/devel/debbugs.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4324,18 +2776,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const nadvice = nix.arg($_1, "nadvice");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$288,
+            [nix.POS]: $pos[287],
             pname: "delight",
             ename: "delight",
             version: "1.7.0.20200711.42851",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$286,
+                [nix.POS]: $pos[285],
                 url: "https://elpa.gnu.org/devel/delight-1.7.0.20200711.42851.tar",
                 sha256: "1v8yhii0s1rs1c2i7gs2rd98224qhpkybvrks8w5ghq4p3nxrrvw",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, nadvice]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$287,
+              [nix.POS]: $pos[286],
               homepage: "https://elpa.gnu.org/devel/delight.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4347,18 +2799,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$291,
+            [nix.POS]: $pos[290],
             pname: "denote",
             ename: "denote",
             version: "4.2.3.0.20260909.27",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$289,
+                [nix.POS]: $pos[288],
                 url: "https://elpa.gnu.org/devel/denote-4.2.3.0.20260909.27.tar",
                 sha256: "02axlax19wlcnhrj1k0dnr217ir3f99r4v53razrhknf0rfjygql",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$290,
+              [nix.POS]: $pos[289],
               homepage: "https://elpa.gnu.org/devel/denote.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4371,18 +2823,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$294,
+            [nix.POS]: $pos[293],
             pname: "denote-journal",
             ename: "denote-journal",
             version: "0.3.0.0.20260520.123338",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$292,
+                [nix.POS]: $pos[291],
                 url: "https://elpa.gnu.org/devel/denote-journal-0.3.0.0.20260520.123338.tar",
                 sha256: "11ad50v3p81vrana2dbnqi7xm07aly4iv03rw5kxblynjcarsd1i",
               })))),
             packageRequires: nix.thunk(() => [denote]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$293,
+              [nix.POS]: $pos[292],
               homepage: "https://elpa.gnu.org/devel/denote-journal.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4395,18 +2847,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$297,
+            [nix.POS]: $pos[296],
             pname: "denote-markdown",
             ename: "denote-markdown",
             version: "0.3.0.0.20260520.123211",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$295,
+                [nix.POS]: $pos[294],
                 url: "https://elpa.gnu.org/devel/denote-markdown-0.3.0.0.20260520.123211.tar",
                 sha256: "0bbf5cycmjl5p6cl81x5cjac98y97cr9jkwnrgi5sy5rgxqfpj8k",
               })))),
             packageRequires: nix.thunk(() => [denote]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$296,
+              [nix.POS]: $pos[295],
               homepage: "https://elpa.gnu.org/devel/denote-markdown.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4419,18 +2871,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$300,
+            [nix.POS]: $pos[299],
             pname: "denote-menu",
             ename: "denote-menu",
             version: "1.4.0.0.20250829.94810",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$298,
+                [nix.POS]: $pos[297],
                 url: "https://elpa.gnu.org/devel/denote-menu-1.4.0.0.20250829.94810.tar",
                 sha256: "1q0n6zrpilz20fj9b4fiianr68zpkdrfzh4nxhwim5z12dbkn3bb",
               })))),
             packageRequires: nix.thunk(() => [denote]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$299,
+              [nix.POS]: $pos[298],
               homepage: "https://elpa.gnu.org/devel/denote-menu.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4443,18 +2895,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$303,
+            [nix.POS]: $pos[302],
             pname: "denote-org",
             ename: "denote-org",
             version: "0.3.0.0.20260904.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$301,
+                [nix.POS]: $pos[300],
                 url: "https://elpa.gnu.org/devel/denote-org-0.3.0.0.20260904.5.tar",
                 sha256: "0mfza1g4s1qdyd248d2pqf8nln880bhypi01iakz1n4qhcsi1v0n",
               })))),
             packageRequires: nix.thunk(() => [denote]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$302,
+              [nix.POS]: $pos[301],
               homepage: "https://elpa.gnu.org/devel/denote-org.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4467,18 +2919,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$306,
+            [nix.POS]: $pos[305],
             pname: "denote-review",
             ename: "denote-review",
             version: "1.0.7.0.20260409.90040",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$304,
+                [nix.POS]: $pos[303],
                 url: "https://elpa.gnu.org/devel/denote-review-1.0.7.0.20260409.90040.tar",
                 sha256: "0lj6dl6dvsmrqqvy4462nz8vpigigz3lfp3xav24dvmc7wmjzm1m",
               })))),
             packageRequires: nix.thunk(() => [denote]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$305,
+              [nix.POS]: $pos[304],
               homepage: "https://elpa.gnu.org/devel/denote-review.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4491,18 +2943,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$309,
+            [nix.POS]: $pos[308],
             pname: "denote-search",
             ename: "denote-search",
             version: "1.0.3.0.20250501.205109",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$307,
+                [nix.POS]: $pos[306],
                 url: "https://elpa.gnu.org/devel/denote-search-1.0.3.0.20250501.205109.tar",
                 sha256: "0xpb39936fxldbv9d8i0122yvcapjvxkghv6d3ybxgm4wc8svbrn",
               })))),
             packageRequires: nix.thunk(() => [denote]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$308,
+              [nix.POS]: $pos[307],
               homepage: "https://elpa.gnu.org/devel/denote-search.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4515,18 +2967,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$312,
+            [nix.POS]: $pos[311],
             pname: "denote-sequence",
             ename: "denote-sequence",
             version: "0.3.3.0.20260523.202058",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$310,
+                [nix.POS]: $pos[309],
                 url: "https://elpa.gnu.org/devel/denote-sequence-0.3.3.0.20260523.202058.tar",
                 sha256: "1iyfm6y37waq2vfb210kdwkkrr8gv9l443b4wq768f1kj4bns2gg",
               })))),
             packageRequires: nix.thunk(() => [denote]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$311,
+              [nix.POS]: $pos[310],
               homepage: "https://elpa.gnu.org/devel/denote-sequence.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4539,18 +2991,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$315,
+            [nix.POS]: $pos[314],
             pname: "denote-silo",
             ename: "denote-silo",
             version: "0.3.2.0.20260705.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$313,
+                [nix.POS]: $pos[312],
                 url: "https://elpa.gnu.org/devel/denote-silo-0.3.2.0.20260705.4.tar",
                 sha256: "08zgg8jll6kdmzqrzx2j0q0g35sk6sfbp6qxd687sc8p9n9bx4yg",
               })))),
             packageRequires: nix.thunk(() => [denote]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$314,
+              [nix.POS]: $pos[313],
               homepage: "https://elpa.gnu.org/devel/denote-silo.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4562,18 +3014,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$318,
+            [nix.POS]: $pos[317],
             pname: "detached",
             ename: "detached",
             version: "0.10.1.0.20221129.143049",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$316,
+                [nix.POS]: $pos[315],
                 url: "https://elpa.gnu.org/devel/detached-0.10.1.0.20221129.143049.tar",
                 sha256: "0fidhqf1m599v939hv3xsqbkckgk2fm550i7lkh0p961a3v542i8",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$317,
+              [nix.POS]: $pos[316],
               homepage: "https://elpa.gnu.org/devel/detached.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4586,18 +3038,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$321,
+            [nix.POS]: $pos[320],
             pname: "devdocs",
             ename: "devdocs",
             version: "0.7.0.20251022.125547",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$319,
+                [nix.POS]: $pos[318],
                 url: "https://elpa.gnu.org/devel/devdocs-0.7.0.20251022.125547.tar",
                 sha256: "1sl9y7s5r8x8sq7yrgjp7w9p0cwhpm5ii7h941zc63qsgrifz0zy",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$320,
+              [nix.POS]: $pos[319],
               homepage: "https://elpa.gnu.org/devel/devdocs.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4609,18 +3061,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$324,
+            [nix.POS]: $pos[323],
             pname: "devicetree-ts-mode",
             ename: "devicetree-ts-mode",
             version: "0.3.0.20240117.132538",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$322,
+                [nix.POS]: $pos[321],
                 url: "https://elpa.gnu.org/devel/devicetree-ts-mode-0.3.0.20240117.132538.tar",
                 sha256: "12jfiv7j0k5sqjbz28nd5x34hpxp76lyl41fl7bvsgiyb06i0gnf",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$323,
+              [nix.POS]: $pos[322],
               homepage: "https://elpa.gnu.org/devel/devicetree-ts-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4633,18 +3085,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$327,
+            [nix.POS]: $pos[326],
             pname: "dicom",
             ename: "dicom",
             version: "1.6.0.20260821.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$325,
+                [nix.POS]: $pos[324],
                 url: "https://elpa.gnu.org/devel/dicom-1.6.0.20260821.0.tar",
                 sha256: "1sicw18rpym8v8d65nwfp52dphj73absb6gvx1nlz5zp1zmqy2b4",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$326,
+              [nix.POS]: $pos[325],
               homepage: "https://elpa.gnu.org/devel/dicom.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4659,18 +3111,18 @@ export default nix.lambda((args) => (() => {
         const tNFA = nix.arg($_1, "tNFA");
         const trie = nix.arg($_1, "trie");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$330,
+            [nix.POS]: $pos[329],
             pname: "dict-tree",
             ename: "dict-tree",
             version: "0.17.0.20231015.24654",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$328,
+                [nix.POS]: $pos[327],
                 url: "https://elpa.gnu.org/devel/dict-tree-0.17.0.20231015.24654.tar",
                 sha256: "0nij9pkscr6mdjmrq9dlqnks91sd21pn01bsgn4zk918zygnkggj",
               })))),
             packageRequires: nix.thunk(() => [heap, tNFA, trie]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$329,
+              [nix.POS]: $pos[328],
               homepage: "https://elpa.gnu.org/devel/dict-tree.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4683,18 +3135,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$333,
+            [nix.POS]: $pos[332],
             pname: "diff-hl",
             ename: "diff-hl",
             version: "1.11.1.0.20260909.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$331,
+                [nix.POS]: $pos[330],
                 url: "https://elpa.gnu.org/devel/diff-hl-1.11.1.0.20260909.3.tar",
                 sha256: "1y7nx4bwkap2jflk51aqkizvflnm7kl7b2gpspmvfmq95wrp2hwk",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$332,
+              [nix.POS]: $pos[331],
               homepage: "https://elpa.gnu.org/devel/diff-hl.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4706,18 +3158,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$336,
+            [nix.POS]: $pos[335],
             pname: "diffview",
             ename: "diffview",
             version: "1.0.0.20230224.111651",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$334,
+                [nix.POS]: $pos[333],
                 url: "https://elpa.gnu.org/devel/diffview-1.0.0.20230224.111651.tar",
                 sha256: "1shw58jk2dzr8sc9hhfjqjrmwqarvq989ic96zjmhajxvcqcz3ql",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$335,
+              [nix.POS]: $pos[334],
               homepage: "https://elpa.gnu.org/devel/diffview.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4729,18 +3181,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$339,
+            [nix.POS]: $pos[338],
             pname: "diminish",
             ename: "diminish",
             version: "0.47.0.20260904.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$337,
+                [nix.POS]: $pos[336],
                 url: "https://elpa.gnu.org/devel/diminish-0.47.0.20260904.0.tar",
                 sha256: "0i7hs6kk7mka04xyzjlri0gh9sl8xhadcwn46pb6jw3s15v4aixl",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$338,
+              [nix.POS]: $pos[337],
               homepage: "https://elpa.gnu.org/devel/diminish.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4753,18 +3205,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$342,
+            [nix.POS]: $pos[341],
             pname: "dired-du",
             ename: "dired-du",
             version: "0.5.2.0.20221221.75108",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$340,
+                [nix.POS]: $pos[339],
                 url: "https://elpa.gnu.org/devel/dired-du-0.5.2.0.20221221.75108.tar",
                 sha256: "0h31k45sx47vmk20sn77fzz86gbwiqxrryr091p5s05smrlsfxc2",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$341,
+              [nix.POS]: $pos[340],
               homepage: "https://elpa.gnu.org/devel/dired-du.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4776,18 +3228,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$345,
+            [nix.POS]: $pos[344],
             pname: "dired-duplicates",
             ename: "dired-duplicates",
             version: "0.4.0.20240328.201645",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$343,
+                [nix.POS]: $pos[342],
                 url: "https://elpa.gnu.org/devel/dired-duplicates-0.4.0.20240328.201645.tar",
                 sha256: "0122wxl2sql31s4h7rf7mxz6kv15m77q9bqmixxsgzhfghbia7k7",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$344,
+              [nix.POS]: $pos[343],
               homepage: "https://elpa.gnu.org/devel/dired-duplicates.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4799,18 +3251,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$348,
+            [nix.POS]: $pos[347],
             pname: "dired-git-info",
             ename: "dired-git-info",
             version: "0.3.1.0.20191229.192948",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$346,
+                [nix.POS]: $pos[345],
                 url: "https://elpa.gnu.org/devel/dired-git-info-0.3.1.0.20191229.192948.tar",
                 sha256: "0zq74nynra4cbyb81l3v9w0qrzz057z9abg6c6zjshlrq8kxv5kx",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$347,
+              [nix.POS]: $pos[346],
               homepage: "https://elpa.gnu.org/devel/dired-git-info.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4822,18 +3274,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$351,
+            [nix.POS]: $pos[350],
             pname: "dired-preview",
             ename: "dired-preview",
             version: "0.6.1.0.20260610.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$349,
+                [nix.POS]: $pos[348],
                 url: "https://elpa.gnu.org/devel/dired-preview-0.6.1.0.20260610.0.tar",
                 sha256: "061b09z60jjd8gggjln9nr5fb0r3rvip31mi8l7r9b1f49k8x730",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$350,
+              [nix.POS]: $pos[349],
               homepage: "https://elpa.gnu.org/devel/dired-preview.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4846,18 +3298,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$354,
+            [nix.POS]: $pos[353],
             pname: "dired-sidebar",
             ename: "dired-sidebar",
             version: "2.0.1.0.20260806.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$352,
+                [nix.POS]: $pos[351],
                 url: "https://elpa.gnu.org/devel/dired-sidebar-2.0.1.0.20260806.3.tar",
                 sha256: "0yps7am725ndcl1xbpcayw2b17xlbpgss5lmjsmjxbinsn6yfdav",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$353,
+              [nix.POS]: $pos[352],
               homepage: "https://elpa.gnu.org/devel/dired-sidebar.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4869,18 +3321,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$357,
+            [nix.POS]: $pos[356],
             pname: "disk-usage",
             ename: "disk-usage",
             version: "1.3.3.0.20230920.164444",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$355,
+                [nix.POS]: $pos[354],
                 url: "https://elpa.gnu.org/devel/disk-usage-1.3.3.0.20230920.164444.tar",
                 sha256: "06vd56yaaz9a6b46g4r6ccasc74pyqls9krj3bcrdayhj34w3mxy",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$356,
+              [nix.POS]: $pos[355],
               homepage: "https://elpa.gnu.org/devel/disk-usage.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4893,18 +3345,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$360,
+            [nix.POS]: $pos[359],
             pname: "dismal",
             ename: "dismal",
             version: "1.5.2.0.20221221.75154",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$358,
+                [nix.POS]: $pos[357],
                 url: "https://elpa.gnu.org/devel/dismal-1.5.2.0.20221221.75154.tar",
                 sha256: "0nyy9dkafkzxvx60d1bzrn2a1m3n53al3x17r3kf7d2b24gcljbd",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$359,
+              [nix.POS]: $pos[358],
               homepage: "https://elpa.gnu.org/devel/dismal.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4917,18 +3369,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$363,
+            [nix.POS]: $pos[362],
             pname: "disproject",
             ename: "disproject",
             version: "2.2.0.0.20260114.143840",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$361,
+                [nix.POS]: $pos[360],
                 url: "https://elpa.gnu.org/devel/disproject-2.2.0.0.20260114.143840.tar",
                 sha256: "17314yb73ral42gsb9ylr1r136jra406n17szcwbw10qliswi7k1",
               })))),
             packageRequires: nix.thunk(() => [transient]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$362,
+              [nix.POS]: $pos[361],
               homepage: "https://elpa.gnu.org/devel/disproject.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4940,18 +3392,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$366,
+            [nix.POS]: $pos[365],
             pname: "djvu",
             ename: "djvu",
             version: "1.1.2.0.20221221.75224",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$364,
+                [nix.POS]: $pos[363],
                 url: "https://elpa.gnu.org/devel/djvu-1.1.2.0.20221221.75224.tar",
                 sha256: "0iirmzaah0nix14jaj0hnszrdkdsh4wli8hb951l7iw7szkc5fsp",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$365,
+              [nix.POS]: $pos[364],
               homepage: "https://elpa.gnu.org/devel/djvu.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4963,18 +3415,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$369,
+            [nix.POS]: $pos[368],
             pname: "dmsg",
             ename: "dmsg",
             version: "0.3.0.20260515.181304",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$367,
+                [nix.POS]: $pos[366],
                 url: "https://elpa.gnu.org/devel/dmsg-0.3.0.20260515.181304.tar",
                 sha256: "0f95v15bcyclap8zcz5iyaf09wq63px29q12w0s6aza3j5sslz6p",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$368,
+              [nix.POS]: $pos[367],
               homepage: "https://elpa.gnu.org/devel/dmsg.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4986,18 +3438,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$372,
+            [nix.POS]: $pos[371],
             pname: "do-at-point",
             ename: "do-at-point",
             version: "0.2.0.0.20260502.162532",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$370,
+                [nix.POS]: $pos[369],
                 url: "https://elpa.gnu.org/devel/do-at-point-0.2.0.0.20260502.162532.tar",
                 sha256: "07mamgs1fhx9kkfliz9c9a3cdbxjbbydc8hr9zkjf8sy0gwy65da",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$371,
+              [nix.POS]: $pos[370],
               homepage: "https://elpa.gnu.org/devel/do-at-point.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5009,18 +3461,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$375,
+            [nix.POS]: $pos[374],
             pname: "doc-toc",
             ename: "doc-toc",
             version: "1.2.0.20230409.212954",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$373,
+                [nix.POS]: $pos[372],
                 url: "https://elpa.gnu.org/devel/doc-toc-1.2.0.20230409.212954.tar",
                 sha256: "1gcdkcb1ydgl24jmrnkg1a7kndl7kkvckwf12y5pj2l2idf9ifx8",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$374,
+              [nix.POS]: $pos[373],
               homepage: "https://elpa.gnu.org/devel/doc-toc.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5032,18 +3484,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$378,
+            [nix.POS]: $pos[377],
             pname: "doc-view-follow",
             ename: "doc-view-follow",
             version: "0.3.2.0.20260708.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$376,
+                [nix.POS]: $pos[375],
                 url: "https://elpa.gnu.org/devel/doc-view-follow-0.3.2.0.20260708.1.tar",
                 sha256: "0xyd9w7fqaj22dp43788gm5i7rzbhch2sh2mmarhyw4xp9a7j83w",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$377,
+              [nix.POS]: $pos[376],
               homepage: "https://elpa.gnu.org/devel/doc-view-follow.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5055,18 +3507,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$381,
+            [nix.POS]: $pos[380],
             pname: "docbook",
             ename: "docbook",
             version: "0.1.0.20221221.75233",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$379,
+                [nix.POS]: $pos[378],
                 url: "https://elpa.gnu.org/devel/docbook-0.1.0.20221221.75233.tar",
                 sha256: "0r7sjnbj4wgqa2vw57ac28gixw762km0cwas0qhclxizb95nsnz2",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$380,
+              [nix.POS]: $pos[379],
               homepage: "https://elpa.gnu.org/devel/docbook.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5078,18 +3530,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$384,
+            [nix.POS]: $pos[383],
             pname: "doric-themes",
             ename: "doric-themes",
             version: "1.3.0.0.20260904.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$382,
+                [nix.POS]: $pos[381],
                 url: "https://elpa.gnu.org/devel/doric-themes-1.3.0.0.20260904.0.tar",
                 sha256: "0imfb8g35rq9q6973k1mj2m9jvxk7yq3mh0c17d3h8vywznfvgns",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$383,
+              [nix.POS]: $pos[382],
               homepage: "https://elpa.gnu.org/devel/doric-themes.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5102,18 +3554,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$387,
+            [nix.POS]: $pos[386],
             pname: "drepl",
             ename: "drepl",
             version: "0.4.0.20260715.8",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$385,
+                [nix.POS]: $pos[384],
                 url: "https://elpa.gnu.org/devel/drepl-0.4.0.20260715.8.tar",
                 sha256: "01gbl3gqrlz2gimmjsk0nb6zyps8a89z96bwrxqfjph6w13d33gw",
               })))),
             packageRequires: nix.thunk(() => [comint_mime]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$386,
+              [nix.POS]: $pos[385],
               homepage: "https://elpa.gnu.org/devel/drepl.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5125,18 +3577,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$390,
+            [nix.POS]: $pos[389],
             pname: "dts-mode",
             ename: "dts-mode",
             version: "1.0.0.20221221.75311",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$388,
+                [nix.POS]: $pos[387],
                 url: "https://elpa.gnu.org/devel/dts-mode-1.0.0.20221221.75311.tar",
                 sha256: "1bpd6npx70rzh3mb5235g1ydh839bnjag70qp17r0wd2wkj6w0gj",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$389,
+              [nix.POS]: $pos[388],
               homepage: "https://elpa.gnu.org/devel/dts-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5148,18 +3600,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$393,
+            [nix.POS]: $pos[392],
             pname: "easy-escape",
             ename: "easy-escape",
             version: "0.2.1.0.20210917.85414",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$391,
+                [nix.POS]: $pos[390],
                 url: "https://elpa.gnu.org/devel/easy-escape-0.2.1.0.20210917.85414.tar",
                 sha256: "0hk9244g7hgnan7xd4451qjklfqh5hbkxjl60l32nr19ynw0ygif",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$392,
+              [nix.POS]: $pos[391],
               homepage: "https://elpa.gnu.org/devel/easy-escape.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5172,18 +3624,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$396,
+            [nix.POS]: $pos[395],
             pname: "easy-kill",
             ename: "easy-kill",
             version: "0.9.5.0.20260121.75216",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$394,
+                [nix.POS]: $pos[393],
                 url: "https://elpa.gnu.org/devel/easy-kill-0.9.5.0.20260121.75216.tar",
                 sha256: "1x0adprjak14b9s2rkmlmmxgaszw2nqsd527pgi9da46wa5x55zy",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$395,
+              [nix.POS]: $pos[394],
               homepage: "https://elpa.gnu.org/devel/easy-kill.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5196,18 +3648,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$399,
+            [nix.POS]: $pos[398],
             pname: "ebdb",
             ename: "ebdb",
             version: "0.8.22.0.20240305.123820",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$397,
+                [nix.POS]: $pos[396],
                 url: "https://elpa.gnu.org/devel/ebdb-0.8.22.0.20240305.123820.tar",
                 sha256: "0j6wflmslapq3wr5bg6ql7qamh9k9zzp1xzadkxq3i3124syanfs",
               })))),
             packageRequires: nix.thunk(() => [seq]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$398,
+              [nix.POS]: $pos[397],
               homepage: "https://elpa.gnu.org/devel/ebdb.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5221,18 +3673,18 @@ export default nix.lambda((args) => (() => {
         const gnorb = nix.arg($_1, "gnorb");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$402,
+            [nix.POS]: $pos[401],
             pname: "ebdb-gnorb",
             ename: "ebdb-gnorb",
             version: "1.0.2.0.20221221.75324",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$400,
+                [nix.POS]: $pos[399],
                 url: "https://elpa.gnu.org/devel/ebdb-gnorb-1.0.2.0.20221221.75324.tar",
                 sha256: "0lzsarv0pkdgkj19il0syk7yz6gcfkp0rl3i49rsqb3lpf5b6s5q",
               })))),
             packageRequires: nix.thunk(() => [ebdb, gnorb]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$401,
+              [nix.POS]: $pos[400],
               homepage: "https://elpa.gnu.org/devel/ebdb-gnorb.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5246,18 +3698,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const pyim = nix.arg($_1, "pyim");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$405,
+            [nix.POS]: $pos[404],
             pname: "ebdb-i18n-chn",
             ename: "ebdb-i18n-chn",
             version: "1.3.2.0.20221221.75334",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$403,
+                [nix.POS]: $pos[402],
                 url: "https://elpa.gnu.org/devel/ebdb-i18n-chn-1.3.2.0.20221221.75334.tar",
                 sha256: "16hna0z08903pkq957cgxk26ihq6j3fab775ickb24zfssjm3l61",
               })))),
             packageRequires: nix.thunk(() => [ebdb, pyim]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$404,
+              [nix.POS]: $pos[403],
               homepage: "https://elpa.gnu.org/devel/ebdb-i18n-chn.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5269,18 +3721,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$408,
+            [nix.POS]: $pos[407],
             pname: "ediprolog",
             ename: "ediprolog",
             version: "2.3.0.20241006.95158",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$406,
+                [nix.POS]: $pos[405],
                 url: "https://elpa.gnu.org/devel/ediprolog-2.3.0.20241006.95158.tar",
                 sha256: "1xwha4xn7hpb57vvlrhcm5z0r59wz82vrcdx13kp46zvmll0zcrd",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$407,
+              [nix.POS]: $pos[406],
               homepage: "https://elpa.gnu.org/devel/ediprolog.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5292,18 +3744,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$411,
+            [nix.POS]: $pos[410],
             pname: "eev",
             ename: "eev",
             version: "20260903.0.20260910.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$409,
+                [nix.POS]: $pos[408],
                 url: "https://elpa.gnu.org/devel/eev-20260903.0.20260910.3.tar",
                 sha256: "1xzqdgd1ni6dksxcpg8z5wlr1189ncc6q30ksdvl4ggxsff95smm",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$410,
+              [nix.POS]: $pos[409],
               homepage: "https://elpa.gnu.org/devel/eev.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5316,18 +3768,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const modus_themes = nix.arg($_1, "modus-themes");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$414,
+            [nix.POS]: $pos[413],
             pname: "ef-themes",
             ename: "ef-themes",
             version: "2.2.1.0.20260814.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$412,
+                [nix.POS]: $pos[411],
                 url: "https://elpa.gnu.org/devel/ef-themes-2.2.1.0.20260814.0.tar",
                 sha256: "055g6fci2afg9v6crc8sw1s3cx7c87dhy240z7286w1nzcn2m6wz",
               })))),
             packageRequires: nix.thunk(() => [modus_themes]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$413,
+              [nix.POS]: $pos[412],
               homepage: "https://elpa.gnu.org/devel/ef-themes.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5346,18 +3798,18 @@ export default nix.lambda((args) => (() => {
         const seq = nix.arg($_1, "seq");
         const xref = nix.arg($_1, "xref");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$417,
+            [nix.POS]: $pos[416],
             pname: "eglot",
             ename: "eglot",
             version: "1.24.0.20260912.20",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$415,
+                [nix.POS]: $pos[414],
                 url: "https://elpa.gnu.org/devel/eglot-1.24.0.20260912.20.tar",
                 sha256: "03973sk18jmpj0lpwlfhad7avn04bdivjknapm260zi7bj9mpvhh",
               })))),
             packageRequires: nix.thunk(() => [eldoc, external_completion, flymake, jsonrpc, project, seq, xref]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$416,
+              [nix.POS]: $pos[415],
               homepage: "https://elpa.gnu.org/devel/eglot.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5369,18 +3821,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$420,
+            [nix.POS]: $pos[419],
             pname: "el-job",
             ename: "el-job",
             version: "2.7.4.0.20260306.64315",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$418,
+                [nix.POS]: $pos[417],
                 url: "https://elpa.gnu.org/devel/el-job-2.7.4.0.20260306.64315.tar",
                 sha256: "0jpb2432h4i847ml5g59syd45vxar16p9wfidr8xf8ac7zddfkaf",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$419,
+              [nix.POS]: $pos[418],
               homepage: "https://elpa.gnu.org/devel/el-job.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5394,18 +3846,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const stream = nix.arg($_1, "stream");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$423,
+            [nix.POS]: $pos[422],
             pname: "el-search",
             ename: "el-search",
             version: "1.12.6.1.0.20250307.74553",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$421,
+                [nix.POS]: $pos[420],
                 url: "https://elpa.gnu.org/devel/el-search-1.12.6.1.0.20250307.74553.tar",
                 sha256: "053bzm8gz336krhivkp6sb6gbl7788mp8zx3xsfdwxdxrib72hf8",
               })))),
             packageRequires: nix.thunk(() => [cl_print, stream]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$422,
+              [nix.POS]: $pos[421],
               homepage: "https://elpa.gnu.org/devel/el-search.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5417,18 +3869,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$426,
+            [nix.POS]: $pos[425],
             pname: "eldoc",
             ename: "eldoc",
             version: "1.16.0.0.20260709.6",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$424,
+                [nix.POS]: $pos[423],
                 url: "https://elpa.gnu.org/devel/eldoc-1.16.0.0.20260709.6.tar",
                 sha256: "0i3bls6iq0lm03w09vrillqygx8xx9xpf2ixr8k2q3my4g8kszqx",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$425,
+              [nix.POS]: $pos[424],
               homepage: "https://elpa.gnu.org/devel/eldoc.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5440,18 +3892,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$429,
+            [nix.POS]: $pos[428],
             pname: "electric-spacing",
             ename: "electric-spacing",
             version: "5.0.0.20201201.154407",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$427,
+                [nix.POS]: $pos[426],
                 url: "https://elpa.gnu.org/devel/electric-spacing-5.0.0.20201201.154407.tar",
                 sha256: "0ywa68zwci0v6g9nc8czlhvf9872vl262nrxffahc5r7lp1hay8k",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$428,
+              [nix.POS]: $pos[427],
               homepage: "https://elpa.gnu.org/devel/electric-spacing.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5467,18 +3919,18 @@ export default nix.lambda((args) => (() => {
         const llm = nix.arg($_1, "llm");
         const plz = nix.arg($_1, "plz");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$432,
+            [nix.POS]: $pos[431],
             pname: "elisa",
             ename: "elisa",
             version: "1.1.7.0.20250202.204048",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$430,
+                [nix.POS]: $pos[429],
                 url: "https://elpa.gnu.org/devel/elisa-1.1.7.0.20250202.204048.tar",
                 sha256: "0bs2cb2i18afd1vnrfszdj9kxqmr678l01a8l4rz19yv7iril299",
               })))),
             packageRequires: nix.thunk(() => [async$, ellama, llm, plz]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$431,
+              [nix.POS]: $pos[430],
               homepage: "https://elpa.gnu.org/devel/elisa.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5490,18 +3942,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$435,
+            [nix.POS]: $pos[434],
             pname: "elisp-benchmarks",
             ename: "elisp-benchmarks",
             version: "1.16.0.20250424.171436",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$433,
+                [nix.POS]: $pos[432],
                 url: "https://elpa.gnu.org/devel/elisp-benchmarks-1.16.0.20250424.171436.tar",
                 sha256: "06ryqghnn904c7qjxdi5qy6fi4b6c73i6mlqh4sal6f7p2624k4i",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$434,
+              [nix.POS]: $pos[433],
               homepage: "https://elpa.gnu.org/devel/elisp-benchmarks.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5518,18 +3970,18 @@ export default nix.lambda((args) => (() => {
         const transient = nix.arg($_1, "transient");
         const yaml = nix.arg($_1, "yaml");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$438,
+            [nix.POS]: $pos[437],
             pname: "ellama",
             ename: "ellama",
             version: "1.32.1.0.20260812.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$436,
+                [nix.POS]: $pos[435],
                 url: "https://elpa.gnu.org/devel/ellama-1.32.1.0.20260812.1.tar",
                 sha256: "1k5y4ljkd4plfyji4a0rihzr7yf6zwdmnln2gjpykr3slq4cm87l",
               })))),
             packageRequires: nix.thunk(() => [compat, llm, plz, transient, yaml]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$437,
+              [nix.POS]: $pos[436],
               homepage: "https://elpa.gnu.org/devel/ellama.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5541,18 +3993,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$441,
+            [nix.POS]: $pos[440],
             pname: "emacs-gc-stats",
             ename: "emacs-gc-stats",
             version: "1.4.2.0.20231206.152254",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$439,
+                [nix.POS]: $pos[438],
                 url: "https://elpa.gnu.org/devel/emacs-gc-stats-1.4.2.0.20231206.152254.tar",
                 sha256: "08ivfm6m9y4i1w0xmjkbs6b2h7i5q1v2991rjs2w5s9d864yqg2l",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$440,
+              [nix.POS]: $pos[439],
               homepage: "https://elpa.gnu.org/devel/emacs-gc-stats.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5564,18 +4016,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$444,
+            [nix.POS]: $pos[443],
             pname: "emacs-lisp-intro-es",
             ename: "emacs-lisp-intro-es",
             version: "1.0.1.0.20260313.194210",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$442,
+                [nix.POS]: $pos[441],
                 url: "https://elpa.gnu.org/devel/emacs-lisp-intro-es-1.0.1.0.20260313.194210.tar",
                 sha256: "0jrrnrbmqwj233aif8vil4zkbmbw3hjfz8d7p9n4kjyg6k3kfj36",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$443,
+              [nix.POS]: $pos[442],
               homepage: "https://elpa.gnu.org/devel/emacs-lisp-intro-es.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5587,18 +4039,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$447,
+            [nix.POS]: $pos[446],
             pname: "emacs-lisp-intro-nl",
             ename: "emacs-lisp-intro-nl",
             version: "0.0.20260909.47",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$445,
+                [nix.POS]: $pos[444],
                 url: "https://elpa.gnu.org/devel/emacs-lisp-intro-nl-0.0.20260909.47.tar",
                 sha256: "0cydapq7bfssbfk6ii5ls8v136hj3hdwmlajccb8r3sb2981q09w",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$446,
+              [nix.POS]: $pos[445],
               homepage: "https://elpa.gnu.org/devel/emacs-lisp-intro-nl.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5611,18 +4063,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$450,
+            [nix.POS]: $pos[449],
             pname: "embark",
             ename: "embark",
             version: "1.2.0.20260812.23",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$448,
+                [nix.POS]: $pos[447],
                 url: "https://elpa.gnu.org/devel/embark-1.2.0.20260812.23.tar",
                 sha256: "09hy15vkw7s27w3prd87naqcgfw80jhfp1ifsfn0llcrkbyi8l7f",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$449,
+              [nix.POS]: $pos[448],
               homepage: "https://elpa.gnu.org/devel/embark.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5637,18 +4089,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$453,
+            [nix.POS]: $pos[452],
             pname: "embark-consult",
             ename: "embark-consult",
             version: "1.2.0.20260812.22",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$451,
+                [nix.POS]: $pos[450],
                 url: "https://elpa.gnu.org/devel/embark-consult-1.2.0.20260812.22.tar",
                 sha256: "1y8pc6v275sifvgz07j8r22fyp92bwvywxwzf4r4g9899d9gdvvp",
               })))),
             packageRequires: nix.thunk(() => [compat, consult, embark]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$452,
+              [nix.POS]: $pos[451],
               homepage: "https://elpa.gnu.org/devel/embark-consult.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5667,18 +4119,18 @@ export default nix.lambda((args) => (() => {
         const taxy_magit_section = nix.arg($_1, "taxy-magit-section");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$456,
+            [nix.POS]: $pos[455],
             pname: "ement",
             ename: "ement",
             version: "0.18pre0.20251117.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$454,
+                [nix.POS]: $pos[453],
                 url: "https://elpa.gnu.org/devel/ement-0.18pre0.20251117.1.tar",
                 sha256: "0d5cgm00qq6rclpq63jkn8677kkhbql79xg6isij39d7nhrkfyp1",
               })))),
             packageRequires: nix.thunk(() => [map, persist, plz, svg_lib, taxy, taxy_magit_section, transient]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$455,
+              [nix.POS]: $pos[454],
               homepage: "https://elpa.gnu.org/devel/ement.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5693,18 +4145,18 @@ export default nix.lambda((args) => (() => {
         const nadvice = nix.arg($_1, "nadvice");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$459,
+            [nix.POS]: $pos[458],
             pname: "emms",
             ename: "emms",
             version: "26.0.20260414.110541",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$457,
+                [nix.POS]: $pos[456],
                 url: "https://elpa.gnu.org/devel/emms-26.0.20260414.110541.tar",
                 sha256: "05vp80ybsl37bm0wpwdhdj7qlgw07cik544fwzczg8r49bd2s066",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, nadvice, seq]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$458,
+              [nix.POS]: $pos[457],
               homepage: "https://elpa.gnu.org/devel/emms.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5716,18 +4168,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$462,
+            [nix.POS]: $pos[461],
             pname: "engrave-faces",
             ename: "engrave-faces",
             version: "0.3.1.0.20240421.82802",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$460,
+                [nix.POS]: $pos[459],
                 url: "https://elpa.gnu.org/devel/engrave-faces-0.3.1.0.20240421.82802.tar",
                 sha256: "0dxj9m9jyvrqhv67m2kkh0akjc7l6h40fvsy20k721zq9xvc6zkl",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$461,
+              [nix.POS]: $pos[460],
               homepage: "https://elpa.gnu.org/devel/engrave-faces.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5739,18 +4191,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$465,
+            [nix.POS]: $pos[464],
             pname: "enwc",
             ename: "enwc",
             version: "2.0.0.20171007.121321",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$463,
+                [nix.POS]: $pos[462],
                 url: "https://elpa.gnu.org/devel/enwc-2.0.0.20171007.121321.tar",
                 sha256: "0c308kd1pinhb1lh2vi40bcnmvzydf1j7sqka9kajhxr0l4kjazb",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$464,
+              [nix.POS]: $pos[463],
               homepage: "https://elpa.gnu.org/devel/enwc.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5762,18 +4214,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$468,
+            [nix.POS]: $pos[467],
             pname: "epoch-view",
             ename: "epoch-view",
             version: "0.0.1.0.20221221.75416",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$466,
+                [nix.POS]: $pos[465],
                 url: "https://elpa.gnu.org/devel/epoch-view-0.0.1.0.20221221.75416.tar",
                 sha256: "0hd51d441c2w05rx10wpa0rbc94pjwwaqy5mxlgfwnx52jabz15h",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$467,
+              [nix.POS]: $pos[466],
               homepage: "https://elpa.gnu.org/devel/epoch-view.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5786,18 +4238,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$471,
+            [nix.POS]: $pos[470],
             pname: "erc",
             ename: "erc",
             version: "5.7snapshot0.20260821.27",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$469,
+                [nix.POS]: $pos[468],
                 url: "https://elpa.gnu.org/devel/erc-5.7snapshot0.20260821.27.tar",
                 sha256: "15v751rvawzvmkj89acqy33bzjf91b0dnxi4s5r4gmdqads99vv3",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$470,
+              [nix.POS]: $pos[469],
               homepage: "https://elpa.gnu.org/devel/erc.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5811,18 +4263,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const nadvice = nix.arg($_1, "nadvice");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$474,
+            [nix.POS]: $pos[473],
             pname: "ergoemacs-mode",
             ename: "ergoemacs-mode",
             version: "5.16.10.12.0.20260811.462",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$472,
+                [nix.POS]: $pos[471],
                 url: "https://elpa.gnu.org/devel/ergoemacs-mode-5.16.10.12.0.20260811.462.tar",
                 sha256: "09q7ilawb0apgf3h2z6fqchz5frpcx7v36hg9qiqin3bql33gdz0",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, nadvice]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$473,
+              [nix.POS]: $pos[472],
               homepage: "https://elpa.gnu.org/devel/ergoemacs-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5834,18 +4286,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$477,
+            [nix.POS]: $pos[476],
             pname: "ess",
             ename: "ess",
             version: "26.5.0.0.20260908.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$475,
+                [nix.POS]: $pos[474],
                 url: "https://elpa.gnu.org/devel/ess-26.5.0.0.20260908.5.tar",
                 sha256: "08yqhlxwlilnyvjwad58i19jxwf6i4n6qqxmz1dr2770w7mjxc3k",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$476,
+              [nix.POS]: $pos[475],
               homepage: "https://elpa.gnu.org/devel/ess.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5861,18 +4313,18 @@ export default nix.lambda((args) => (() => {
         const url_http_ntlm = nix.arg($_1, "url-http-ntlm");
         const url_http_oauth = nix.arg($_1, "url-http-oauth");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$480,
+            [nix.POS]: $pos[479],
             pname: "excorporate",
             ename: "excorporate",
             version: "1.1.3.0.20250627.211849",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$478,
+                [nix.POS]: $pos[477],
                 url: "https://elpa.gnu.org/devel/excorporate-1.1.3.0.20250627.211849.tar",
                 sha256: "16vj05282g69f3p6b3f9nfgnd6c8d6jan0srbfrxjiqmvlx51cxv",
               })))),
             packageRequires: nix.thunk(() => [fsm, soap_client, url_http_ntlm, url_http_oauth]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$479,
+              [nix.POS]: $pos[478],
               homepage: "https://elpa.gnu.org/devel/excorporate.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5884,18 +4336,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$483,
+            [nix.POS]: $pos[482],
             pname: "expand-region",
             ename: "expand-region",
             version: "1.0.0.0.20241217.184034",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$481,
+                [nix.POS]: $pos[480],
                 url: "https://elpa.gnu.org/devel/expand-region-1.0.0.0.20241217.184034.tar",
                 sha256: "1bh8109irsh2hpk70fg38d0rf8as32a39677gz1m7k7v4fvs3nv5",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$482,
+              [nix.POS]: $pos[481],
               homepage: "https://elpa.gnu.org/devel/expand-region.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5907,18 +4359,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$486,
+            [nix.POS]: $pos[485],
             pname: "expreg",
             ename: "expreg",
             version: "1.4.1.0.20260907.11",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$484,
+                [nix.POS]: $pos[483],
                 url: "https://elpa.gnu.org/devel/expreg-1.4.1.0.20260907.11.tar",
                 sha256: "0aw41vp4crjd3x2pm9phacjv2p7j7yq9jd56nkdncry0y83rn7hf",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$485,
+              [nix.POS]: $pos[484],
               homepage: "https://elpa.gnu.org/devel/expreg.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5930,18 +4382,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$489,
+            [nix.POS]: $pos[488],
             pname: "external-completion",
             ename: "external-completion",
             version: "0.1.0.20260501.92309",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$487,
+                [nix.POS]: $pos[486],
                 url: "https://elpa.gnu.org/devel/external-completion-0.1.0.20260501.92309.tar",
                 sha256: "1jdd1dixbyxfm8k1zcajajdi2r718vyqg1phxcp2mi61npwk9li0",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$488,
+              [nix.POS]: $pos[487],
               homepage: "https://elpa.gnu.org/devel/external-completion.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5955,18 +4407,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const xelb = nix.arg($_1, "xelb");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$492,
+            [nix.POS]: $pos[491],
             pname: "exwm",
             ename: "exwm",
             version: "0.35.0.20260718.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$490,
+                [nix.POS]: $pos[489],
                 url: "https://elpa.gnu.org/devel/exwm-0.35.0.20260718.3.tar",
                 sha256: "1kk9ggm9q32rz5dld2w2znpifwpjcncn7ih19rkw3bfd2q8bgirg",
               })))),
             packageRequires: nix.thunk(() => [compat, xelb]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$491,
+              [nix.POS]: $pos[490],
               homepage: "https://elpa.gnu.org/devel/exwm.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5979,18 +4431,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$495,
+            [nix.POS]: $pos[494],
             pname: "f90-interface-browser",
             ename: "f90-interface-browser",
             version: "1.1.0.20221221.75553",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$493,
+                [nix.POS]: $pos[492],
                 url: "https://elpa.gnu.org/devel/f90-interface-browser-1.1.0.20221221.75553.tar",
                 sha256: "0qv3v3ya8qdgwq0plcc3qbba4n66fqww3sawmqhzssksry39l1yj",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$494,
+              [nix.POS]: $pos[493],
               homepage: "https://elpa.gnu.org/devel/f90-interface-browser.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6002,18 +4454,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$498,
+            [nix.POS]: $pos[497],
             pname: "ffs",
             ename: "ffs",
             version: "0.2.3snapshot0.20260522.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$496,
+                [nix.POS]: $pos[495],
                 url: "https://elpa.gnu.org/devel/ffs-0.2.3snapshot0.20260522.1.tar",
                 sha256: "1csx6sxdi4aa68ajjbgfymb1y2l3n6w1ig566n1lhxkpn2mh5xji",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$497,
+              [nix.POS]: $pos[496],
               homepage: "https://elpa.gnu.org/devel/ffs.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6026,18 +4478,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$501,
+            [nix.POS]: $pos[500],
             pname: "filechooser",
             ename: "filechooser",
             version: "0.3.0.0.20260723.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$499,
+                [nix.POS]: $pos[498],
                 url: "https://elpa.gnu.org/devel/filechooser-0.3.0.0.20260723.0.tar",
                 sha256: "06asad7nazdghswwvm4fp45ba7jhhp9n7a7gnlkrpnd3wh0vlq32",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$500,
+              [nix.POS]: $pos[499],
               homepage: "https://elpa.gnu.org/devel/filechooser.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6049,18 +4501,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$504,
+            [nix.POS]: $pos[503],
             pname: "filladapt",
             ename: "filladapt",
             version: "2.12.2.0.20221221.75607",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$502,
+                [nix.POS]: $pos[501],
                 url: "https://elpa.gnu.org/devel/filladapt-2.12.2.0.20221221.75607.tar",
                 sha256: "11s9n8d4psjs4dbsx2w8hyir5hapz952da5nz3xihli8a0q93mhv",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$503,
+              [nix.POS]: $pos[502],
               homepage: "https://elpa.gnu.org/devel/filladapt.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6072,18 +4524,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$507,
+            [nix.POS]: $pos[506],
             pname: "firefox-javascript-repl",
             ename: "firefox-javascript-repl",
             version: "0.9.5.0.20230605.161924",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$505,
+                [nix.POS]: $pos[504],
                 url: "https://elpa.gnu.org/devel/firefox-javascript-repl-0.9.5.0.20230605.161924.tar",
                 sha256: "1nfkzx07j3hddai213lia9pixfrrdajrvg7fvlx5js8zxfpvcjx6",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$506,
+              [nix.POS]: $pos[505],
               homepage: "https://elpa.gnu.org/devel/firefox-javascript-repl.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6096,18 +4548,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$510,
+            [nix.POS]: $pos[509],
             pname: "flylisp",
             ename: "flylisp",
             version: "0.2.0.20221221.75619",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$508,
+                [nix.POS]: $pos[507],
                 url: "https://elpa.gnu.org/devel/flylisp-0.2.0.20221221.75619.tar",
                 sha256: "110hfk979c664y27qf5af54phm8i4iq5qqk5vygjwd7252nd7i4a",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$509,
+              [nix.POS]: $pos[508],
               homepage: "https://elpa.gnu.org/devel/flylisp.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6121,18 +4573,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const project = nix.arg($_1, "project");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$513,
+            [nix.POS]: $pos[512],
             pname: "flymake",
             ename: "flymake",
             version: "1.4.7.0.20260912.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$511,
+                [nix.POS]: $pos[510],
                 url: "https://elpa.gnu.org/devel/flymake-1.4.7.0.20260912.3.tar",
                 sha256: "1l75sh68cqinmjfn1g1415r8avw5dxk6lla6dxpyqb9lixpbkna0",
               })))),
             packageRequires: nix.thunk(() => [eldoc, project]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$512,
+              [nix.POS]: $pos[511],
               homepage: "https://elpa.gnu.org/devel/flymake.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6144,18 +4596,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$516,
+            [nix.POS]: $pos[515],
             pname: "flymake-clippy",
             ename: "flymake-clippy",
             version: "1.1.0.0.20250323.141048",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$514,
+                [nix.POS]: $pos[513],
                 url: "https://elpa.gnu.org/devel/flymake-clippy-1.1.0.0.20250323.141048.tar",
                 sha256: "04w4z16iny2z22wffzgrkijsxyjcd24p2ip5yx35wvk7np6r3hxk",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$515,
+              [nix.POS]: $pos[514],
               homepage: "https://elpa.gnu.org/devel/flymake-clippy.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6168,18 +4620,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$519,
+            [nix.POS]: $pos[518],
             pname: "flymake-codespell",
             ename: "flymake-codespell",
             version: "0.1.0.20231030.222337",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$517,
+                [nix.POS]: $pos[516],
                 url: "https://elpa.gnu.org/devel/flymake-codespell-0.1.0.20231030.222337.tar",
                 sha256: "1v3a2gg4myav4cs1vj4d5isxhbw9qvryk5r2dx3x19qqmmmm6djz",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$518,
+              [nix.POS]: $pos[517],
               homepage: "https://elpa.gnu.org/devel/flymake-codespell.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6191,18 +4643,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$522,
+            [nix.POS]: $pos[521],
             pname: "flymake-harper",
             ename: "flymake-harper",
             version: "0.1.1.0.20260821.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$520,
+                [nix.POS]: $pos[519],
                 url: "https://elpa.gnu.org/devel/flymake-harper-0.1.1.0.20260821.0.tar",
                 sha256: "071f6a648hg2zyrgj02l0igf20ms8v9ahsmra9g63vlrzmzhy9c0",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$521,
+              [nix.POS]: $pos[520],
               homepage: "https://elpa.gnu.org/devel/flymake-harper.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6214,18 +4666,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$525,
+            [nix.POS]: $pos[524],
             pname: "flymake-proselint",
             ename: "flymake-proselint",
             version: "0.3.0.0.20260906.12",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$523,
+                [nix.POS]: $pos[522],
                 url: "https://elpa.gnu.org/devel/flymake-proselint-0.3.0.0.20260906.12.tar",
                 sha256: "05gs7595sch4l484r4bka0yjr7mqr64317zrwh9ag9qk7bfwh5p0",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$524,
+              [nix.POS]: $pos[523],
               homepage: "https://elpa.gnu.org/devel/flymake-proselint.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6237,18 +4689,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$528,
+            [nix.POS]: $pos[527],
             pname: "fontaine",
             ename: "fontaine",
             version: "3.1.0.0.20260629.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$526,
+                [nix.POS]: $pos[525],
                 url: "https://elpa.gnu.org/devel/fontaine-3.1.0.0.20260629.0.tar",
                 sha256: "1d4jf8y02xp09c9gwa0rnp5c941rzpkpf9npk9zs07c6k1612j34",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$527,
+              [nix.POS]: $pos[526],
               homepage: "https://elpa.gnu.org/devel/fontaine.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6261,18 +4713,18 @@ export default nix.lambda((args) => (() => {
         const keymap_popup = nix.arg($_1, "keymap-popup");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$531,
+            [nix.POS]: $pos[530],
             pname: "forgejo",
             ename: "forgejo",
             version: "0.2.3.0.20260715.17",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$529,
+                [nix.POS]: $pos[528],
                 url: "https://elpa.gnu.org/devel/forgejo-0.2.3.0.20260715.17.tar",
                 sha256: "12vg44zkpr8s8i4wal2z3b6ii9gigdw674p10dx3zpj7zibjglry",
               })))),
             packageRequires: nix.thunk(() => [keymap_popup]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$530,
+              [nix.POS]: $pos[529],
               homepage: "https://elpa.gnu.org/devel/forgejo.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6284,18 +4736,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$534,
+            [nix.POS]: $pos[533],
             pname: "frame-tabs",
             ename: "frame-tabs",
             version: "1.1.0.20221221.75627",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$532,
+                [nix.POS]: $pos[531],
                 url: "https://elpa.gnu.org/devel/frame-tabs-1.1.0.20221221.75627.tar",
                 sha256: "08ql56h8h425ngs40m9zpy4ysxlxi74vanlkga42bskzax0ns2cm",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$533,
+              [nix.POS]: $pos[532],
               homepage: "https://elpa.gnu.org/devel/frame-tabs.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6309,18 +4761,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const posframe = nix.arg($_1, "posframe");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$537,
+            [nix.POS]: $pos[536],
             pname: "frog-menu",
             ename: "frog-menu",
             version: "0.2.11.0.20201115.95734",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$535,
+                [nix.POS]: $pos[534],
                 url: "https://elpa.gnu.org/devel/frog-menu-0.2.11.0.20201115.95734.tar",
                 sha256: "00ihlqq4bxgrp6hdf1b6xhnvp87ilys1ykp0l38cs5lv6a10wvqs",
               })))),
             packageRequires: nix.thunk(() => [avy, posframe]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$536,
+              [nix.POS]: $pos[535],
               homepage: "https://elpa.gnu.org/devel/frog-menu.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6333,18 +4785,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$540,
+            [nix.POS]: $pos[539],
             pname: "fsm",
             ename: "fsm",
             version: "0.2.1.0.20221212.223608",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$538,
+                [nix.POS]: $pos[537],
                 url: "https://elpa.gnu.org/devel/fsm-0.2.1.0.20221212.223608.tar",
                 sha256: "1zwl1b9sn4imxynada0vf8nxwm49lh8fahxfc35czlbn0w0jqm1k",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$539,
+              [nix.POS]: $pos[538],
               homepage: "https://elpa.gnu.org/devel/fsm.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6356,18 +4808,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$543,
+            [nix.POS]: $pos[542],
             pname: "ftable",
             ename: "ftable",
             version: "1.1.0.20230102.145125",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$541,
+                [nix.POS]: $pos[540],
                 url: "https://elpa.gnu.org/devel/ftable-1.1.0.20230102.145125.tar",
                 sha256: "0231qjah5s76g8dmnc5zpn6i6lysypf6jvvzmnyyv92lr8arzmfz",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$542,
+              [nix.POS]: $pos[541],
               homepage: "https://elpa.gnu.org/devel/ftable.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6379,18 +4831,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$546,
+            [nix.POS]: $pos[545],
             pname: "futur",
             ename: "futur",
             version: "2.0.0.20260822.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$544,
+                [nix.POS]: $pos[543],
                 url: "https://elpa.gnu.org/devel/futur-2.0.0.20260822.4.tar",
                 sha256: "1v1gamlig0flcj7chya18nv3vy9iyrph8gr53l6l5i5sf78xdi6h",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$545,
+              [nix.POS]: $pos[544],
               homepage: "https://elpa.gnu.org/devel/futur.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6402,18 +4854,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$549,
+            [nix.POS]: $pos[548],
             pname: "gcmh",
             ename: "gcmh",
             version: "0.2.1.0.20201116.225142",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$547,
+                [nix.POS]: $pos[546],
                 url: "https://elpa.gnu.org/devel/gcmh-0.2.1.0.20201116.225142.tar",
                 sha256: "0yb47avdy5f3a2g9cg2028h5agsqpddsbfsc6ncavnxnnyiccj8h",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$548,
+              [nix.POS]: $pos[547],
               homepage: "https://elpa.gnu.org/devel/gcmh.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6425,18 +4877,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$552,
+            [nix.POS]: $pos[551],
             pname: "ggtags",
             ename: "ggtags",
             version: "0.9.0.0.20230602.13355",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$550,
+                [nix.POS]: $pos[549],
                 url: "https://elpa.gnu.org/devel/ggtags-0.9.0.0.20230602.13355.tar",
                 sha256: "1krykf1hknczhdhh8rfj4vzcba87q5sjbv0p2y41mcvmmfnhharw",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$551,
+              [nix.POS]: $pos[550],
               homepage: "https://elpa.gnu.org/devel/ggtags.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6449,18 +4901,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$555,
+            [nix.POS]: $pos[554],
             pname: "gited",
             ename: "gited",
             version: "0.6.0.0.20221221.75709",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$553,
+                [nix.POS]: $pos[552],
                 url: "https://elpa.gnu.org/devel/gited-0.6.0.0.20221221.75709.tar",
                 sha256: "095679pq1lam42zran5qjk3zd4gf908vd5fkq9jppqlilcsqf7zb",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$554,
+              [nix.POS]: $pos[553],
               homepage: "https://elpa.gnu.org/devel/gited.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6473,18 +4925,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$558,
+            [nix.POS]: $pos[557],
             pname: "gle-mode",
             ename: "gle-mode",
             version: "1.1.0.20221221.75729",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$556,
+                [nix.POS]: $pos[555],
                 url: "https://elpa.gnu.org/devel/gle-mode-1.1.0.20221221.75729.tar",
                 sha256: "1bakvlx4bzz62hibwwm0hmhyzqqzy31xvsg6pw3lh2i028qd1ykx",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$557,
+              [nix.POS]: $pos[556],
               homepage: "https://elpa.gnu.org/devel/gle-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6497,18 +4949,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const wisi = nix.arg($_1, "wisi");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$561,
+            [nix.POS]: $pos[560],
             pname: "gnat-compiler",
             ename: "gnat-compiler",
             version: "1.0.3.0.20230915.165808",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$559,
+                [nix.POS]: $pos[558],
                 url: "https://elpa.gnu.org/devel/gnat-compiler-1.0.3.0.20230915.165808.tar",
                 sha256: "0rm0s33nl9dzghlfsprycr2na412z4vnfc69q2pc6nlazsliz6w0",
               })))),
             packageRequires: nix.thunk(() => [wisi]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$560,
+              [nix.POS]: $pos[559],
               homepage: "https://elpa.gnu.org/devel/gnat-compiler.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6520,18 +4972,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$564,
+            [nix.POS]: $pos[563],
             pname: "gnome-c-style",
             ename: "gnome-c-style",
             version: "0.1.0.20230924.235858",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$562,
+                [nix.POS]: $pos[561],
                 url: "https://elpa.gnu.org/devel/gnome-c-style-0.1.0.20230924.235858.tar",
                 sha256: "0gij2d1k40yhifr7ad3p465f5lg77cb441pl41mdc0g6v5gipnqf",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$563,
+              [nix.POS]: $pos[562],
               homepage: "https://elpa.gnu.org/devel/gnome-c-style.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6543,18 +4995,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$567,
+            [nix.POS]: $pos[566],
             pname: "gnome-dark-style",
             ename: "gnome-dark-style",
             version: "0.2.4.0.20260217.95837",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$565,
+                [nix.POS]: $pos[564],
                 url: "https://elpa.gnu.org/devel/gnome-dark-style-0.2.4.0.20260217.95837.tar",
                 sha256: "1pb86bww72vkm86424wqc2d1kvw2pkq4w3s9cr9r3pn9cqgn1r7h",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$566,
+              [nix.POS]: $pos[565],
               homepage: "https://elpa.gnu.org/devel/gnome-dark-style.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6567,18 +5019,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$570,
+            [nix.POS]: $pos[569],
             pname: "gnorb",
             ename: "gnorb",
             version: "1.6.11.0.20230108.110132",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$568,
+                [nix.POS]: $pos[567],
                 url: "https://elpa.gnu.org/devel/gnorb-1.6.11.0.20230108.110132.tar",
                 sha256: "0jha80xr8pbribp0ki40cydvi35as7v2c2xsy0anh65j9ciym5ag",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$569,
+              [nix.POS]: $pos[568],
               homepage: "https://elpa.gnu.org/devel/gnorb.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6592,18 +5044,18 @@ export default nix.lambda((args) => (() => {
         const keymap_popup = nix.arg($_1, "keymap-popup");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$573,
+            [nix.POS]: $pos[572],
             pname: "gnosis",
             ename: "gnosis",
             version: "0.10.6.0.20260707.26",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$571,
+                [nix.POS]: $pos[570],
                 url: "https://elpa.gnu.org/devel/gnosis-0.10.6.0.20260707.26.tar",
                 sha256: "1s3mf539ri3d7rq0b9w6f6kla2ybkxrzwkqzq2mi92vzvypjmbv0",
               })))),
             packageRequires: nix.thunk(() => [compat, keymap_popup]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$572,
+              [nix.POS]: $pos[571],
               homepage: "https://elpa.gnu.org/devel/gnosis.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6615,18 +5067,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$576,
+            [nix.POS]: $pos[575],
             pname: "gnu-elpa",
             ename: "gnu-elpa",
             version: "1.1.0.20221212.224322",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$574,
+                [nix.POS]: $pos[573],
                 url: "https://elpa.gnu.org/devel/gnu-elpa-1.1.0.20221212.224322.tar",
                 sha256: "0hk9ha7f0721wnsnjazpr970lfa4q03dhpxxffw9qcn1mlvh8qb8",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$575,
+              [nix.POS]: $pos[574],
               homepage: "https://elpa.gnu.org/devel/gnu-elpa.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6638,18 +5090,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$579,
+            [nix.POS]: $pos[578],
             pname: "gnu-elpa-keyring-update",
             ename: "gnu-elpa-keyring-update",
             version: "2025.10.1.0.20251008.190710",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$577,
+                [nix.POS]: $pos[576],
                 url: "https://elpa.gnu.org/devel/gnu-elpa-keyring-update-2025.10.1.0.20251008.190710.tar",
                 sha256: "0fvx7yh0n3glb8h2m9bb3an0q2pc34qpxcwz3ggsgp3fwsxf3k6f",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$578,
+              [nix.POS]: $pos[577],
               homepage: "https://elpa.gnu.org/devel/gnu-elpa-keyring-update.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6664,18 +5116,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const xpm = nix.arg($_1, "xpm");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$582,
+            [nix.POS]: $pos[581],
             pname: "gnugo",
             ename: "gnugo",
             version: "3.1.2.0.20250131.151403",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$580,
+                [nix.POS]: $pos[579],
                 url: "https://elpa.gnu.org/devel/gnugo-3.1.2.0.20250131.151403.tar",
                 sha256: "1afx15bab0zx5iykx9fjn0k32m8rj58n2998kgvpmnyxwl449v77",
               })))),
             packageRequires: nix.thunk(() => [ascii_art_to_unicode, cl_lib, xpm]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$581,
+              [nix.POS]: $pos[580],
               homepage: "https://elpa.gnu.org/devel/gnugo.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6687,18 +5139,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$585,
+            [nix.POS]: $pos[584],
             pname: "gnus-mock",
             ename: "gnus-mock",
             version: "0.5.0.20210503.105756",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$583,
+                [nix.POS]: $pos[582],
                 url: "https://elpa.gnu.org/devel/gnus-mock-0.5.0.20210503.105756.tar",
                 sha256: "1gpjbx9iabrx2b4qinw0chv44g2v1z2ivaiywjzr3vy3h3pp6fga",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$584,
+              [nix.POS]: $pos[583],
               homepage: "https://elpa.gnu.org/devel/gnus-mock.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6710,18 +5162,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$588,
+            [nix.POS]: $pos[587],
             pname: "gpastel",
             ename: "gpastel",
             version: "0.5.0.0.20231030.71342",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$586,
+                [nix.POS]: $pos[585],
                 url: "https://elpa.gnu.org/devel/gpastel-0.5.0.0.20231030.71342.tar",
                 sha256: "1d5pj1rk0xv2fww827yplpcll5hy8w9fkcm9c8wf4yi3l6igkmgz",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$587,
+              [nix.POS]: $pos[586],
               homepage: "https://elpa.gnu.org/devel/gpastel.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6735,18 +5187,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const wisi = nix.arg($_1, "wisi");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$591,
+            [nix.POS]: $pos[590],
             pname: "gpr-mode",
             ename: "gpr-mode",
             version: "1.0.5.0.20231115.90848",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$589,
+                [nix.POS]: $pos[588],
                 url: "https://elpa.gnu.org/devel/gpr-mode-1.0.5.0.20231115.90848.tar",
                 sha256: "1m768s196027zl402vmfvdzvdl3whbjg5lyfiwjx25d9gfx32351",
               })))),
             packageRequires: nix.thunk(() => [gnat_compiler, wisi]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$590,
+              [nix.POS]: $pos[589],
               homepage: "https://elpa.gnu.org/devel/gpr-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6760,18 +5212,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const wisi = nix.arg($_1, "wisi");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$594,
+            [nix.POS]: $pos[593],
             pname: "gpr-query",
             ename: "gpr-query",
             version: "1.0.4.0.20251001.94944",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$592,
+                [nix.POS]: $pos[591],
                 url: "https://elpa.gnu.org/devel/gpr-query-1.0.4.0.20251001.94944.tar",
                 sha256: "17cj6rks98nc40991nwzx8znbws1pkjhfsnznfhack76i8612hxi",
               })))),
             packageRequires: nix.thunk(() => [gnat_compiler, wisi]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$593,
+              [nix.POS]: $pos[592],
               homepage: "https://elpa.gnu.org/devel/gpr-query.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6783,18 +5235,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$597,
+            [nix.POS]: $pos[596],
             pname: "graphql",
             ename: "graphql",
             version: "0.1.2.0.20260206.151038",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$595,
+                [nix.POS]: $pos[594],
                 url: "https://elpa.gnu.org/devel/graphql-0.1.2.0.20260206.151038.tar",
                 sha256: "0rg729h0hkdzfwk8nvp0zfagsbwfzha1ami0mlx935qpvviwjymc",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$596,
+              [nix.POS]: $pos[595],
               homepage: "https://elpa.gnu.org/devel/graphql.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6808,18 +5260,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$600,
+            [nix.POS]: $pos[599],
             pname: "greader",
             ename: "greader",
             version: "0.19.5.0.20260627.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$598,
+                [nix.POS]: $pos[597],
                 url: "https://elpa.gnu.org/devel/greader-0.19.5.0.20260627.0.tar",
                 sha256: "1c37viwmwvhha7hra6zraim58yy3mf68ds738xky448ddbimrvl0",
               })))),
             packageRequires: nix.thunk(() => [compat, seq]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$599,
+              [nix.POS]: $pos[598],
               homepage: "https://elpa.gnu.org/devel/greader.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6831,18 +5283,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$603,
+            [nix.POS]: $pos[602],
             pname: "greenbar",
             ename: "greenbar",
             version: "1.2.260317.0.20260317.232500",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$601,
+                [nix.POS]: $pos[600],
                 url: "https://elpa.gnu.org/devel/greenbar-1.2.260317.0.20260317.232500.tar",
                 sha256: "1p1w71rylw22qwlc4rmj1qma5zzbxf7zwvwbywqxhcpdh5sw9rp0",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$602,
+              [nix.POS]: $pos[601],
               homepage: "https://elpa.gnu.org/devel/greenbar.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6854,18 +5306,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$606,
+            [nix.POS]: $pos[605],
             pname: "gtags-mode",
             ename: "gtags-mode",
             version: "1.9.5.0.20260413.115633",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$604,
+                [nix.POS]: $pos[603],
                 url: "https://elpa.gnu.org/devel/gtags-mode-1.9.5.0.20260413.115633.tar",
                 sha256: "00z5b4l05xn73wk50xw34qszv3kg0c6f586cplqwc83dnjhxwcwc",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$605,
+              [nix.POS]: $pos[604],
               homepage: "https://elpa.gnu.org/devel/gtags-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6879,18 +5331,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const nadvice = nix.arg($_1, "nadvice");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$609,
+            [nix.POS]: $pos[608],
             pname: "guess-language",
             ename: "guess-language",
             version: "0.0.1.0.20260625.150",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$607,
+                [nix.POS]: $pos[606],
                 url: "https://elpa.gnu.org/devel/guess-language-0.0.1.0.20260625.150.tar",
                 sha256: "0g3cvp1p1bpbf2h5vwrjcghj4bkhcpx00jqsivvrmyighpmgpxzs",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, nadvice]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$608,
+              [nix.POS]: $pos[607],
               homepage: "https://elpa.gnu.org/devel/guess-language.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6902,18 +5354,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$612,
+            [nix.POS]: $pos[611],
             pname: "hcel",
             ename: "hcel",
             version: "1.0.0.0.20221012.11633",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$610,
+                [nix.POS]: $pos[609],
                 url: "https://elpa.gnu.org/devel/hcel-1.0.0.0.20221012.11633.tar",
                 sha256: "03k08w10bvl6fz7nkmv2d7kksphxigw6cwfhfq0kkgxn4l8h37an",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$611,
+              [nix.POS]: $pos[610],
               homepage: "https://elpa.gnu.org/devel/hcel.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6925,18 +5377,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$615,
+            [nix.POS]: $pos[614],
             pname: "heap",
             ename: "heap",
             version: "0.5.0.20201214.121301",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$613,
+                [nix.POS]: $pos[612],
                 url: "https://elpa.gnu.org/devel/heap-0.5.0.20201214.121301.tar",
                 sha256: "0917bfrdiwwmdqmnpy2cg1dn7v5gyl7damwp6ld7sky6v3d113ya",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$614,
+              [nix.POS]: $pos[613],
               homepage: "https://elpa.gnu.org/devel/heap.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6948,18 +5400,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$618,
+            [nix.POS]: $pos[617],
             pname: "hiddenquote",
             ename: "hiddenquote",
             version: "1.2.0.20250305.95113",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$616,
+                [nix.POS]: $pos[615],
                 url: "https://elpa.gnu.org/devel/hiddenquote-1.2.0.20250305.95113.tar",
                 sha256: "114gvcz1p3s9ksnl2ljjv0h1ncn3ad0pfi1wnga9ab07h7l46jn5",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$617,
+              [nix.POS]: $pos[616],
               homepage: "https://elpa.gnu.org/devel/hiddenquote.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6971,18 +5423,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$621,
+            [nix.POS]: $pos[620],
             pname: "highlight-escape-sequences",
             ename: "highlight-escape-sequences",
             version: "0.4.0.20201214.173014",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$619,
+                [nix.POS]: $pos[618],
                 url: "https://elpa.gnu.org/devel/highlight-escape-sequences-0.4.0.20201214.173014.tar",
                 sha256: "13x8750r3zn9sqbsxliiipk6kfnpg7clmd49niyrh80x9nj4pf72",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$620,
+              [nix.POS]: $pos[619],
               homepage: "https://elpa.gnu.org/devel/highlight-escape-sequences.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6994,18 +5446,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$624,
+            [nix.POS]: $pos[623],
             pname: "hook-helpers",
             ename: "hook-helpers",
             version: "1.1.1.0.20201201.93957",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$622,
+                [nix.POS]: $pos[621],
                 url: "https://elpa.gnu.org/devel/hook-helpers-1.1.1.0.20201201.93957.tar",
                 sha256: "0x3358k5lglnb4yf27c2ybzlsw9jp4n4jh5sizczl9n8g1vxbgkb",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$623,
+              [nix.POS]: $pos[622],
               homepage: "https://elpa.gnu.org/devel/hook-helpers.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7017,18 +5469,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$627,
+            [nix.POS]: $pos[626],
             pname: "html5-schema",
             ename: "html5-schema",
             version: "0.1.0.20221221.80245",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$625,
+                [nix.POS]: $pos[624],
                 url: "https://elpa.gnu.org/devel/html5-schema-0.1.0.20221221.80245.tar",
                 sha256: "15f1nhsgpp0mv8mdrvv0jnscq0j23ggriw2d2dw26sr6lv93w2r4",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$626,
+              [nix.POS]: $pos[625],
               homepage: "https://elpa.gnu.org/devel/html5-schema.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7041,18 +5493,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$630,
+            [nix.POS]: $pos[629],
             pname: "hugoista",
             ename: "hugoista",
             version: "0.2.1.0.20250324.144142",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$628,
+                [nix.POS]: $pos[627],
                 url: "https://elpa.gnu.org/devel/hugoista-0.2.1.0.20250324.144142.tar",
                 sha256: "0kmm5zdy8jw1hzr11f9aahqsbnclr1qlphh6picpyh7x0sc2nl2z",
               })))),
             packageRequires: nix.thunk(() => [seq]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$629,
+              [nix.POS]: $pos[628],
               homepage: "https://elpa.gnu.org/devel/hugoista.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7065,18 +5517,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const lv = nix.arg($_1, "lv");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$633,
+            [nix.POS]: $pos[632],
             pname: "hydra",
             ename: "hydra",
             version: "0.15.0.0.20250316.223951",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$631,
+                [nix.POS]: $pos[630],
                 url: "https://elpa.gnu.org/devel/hydra-0.15.0.0.20250316.223951.tar",
                 sha256: "1zm3d5pcyblsq0r7aapwcankk80xls3821bvjf12cnzmapy9772a",
               })))),
             packageRequires: nix.thunk(() => [lv]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$632,
+              [nix.POS]: $pos[631],
               homepage: "https://elpa.gnu.org/devel/hydra.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7088,18 +5540,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$636,
+            [nix.POS]: $pos[635],
             pname: "hyperbole",
             ename: "hyperbole",
             version: "9.1.0.0.20260912.59",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$634,
+                [nix.POS]: $pos[633],
                 url: "https://elpa.gnu.org/devel/hyperbole-9.1.0.0.20260912.59.tar",
                 sha256: "19jsr9n2ybxzd0mnh3irvfh1zfl8winsb1vywn6qmhk5kzy8dqvf",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$635,
+              [nix.POS]: $pos[634],
               homepage: "https://elpa.gnu.org/devel/hyperbole.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7111,18 +5563,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$639,
+            [nix.POS]: $pos[638],
             pname: "ibuffer-sidebar",
             ename: "ibuffer-sidebar",
             version: "1.0.0.0.20260718.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$637,
+                [nix.POS]: $pos[636],
                 url: "https://elpa.gnu.org/devel/ibuffer-sidebar-1.0.0.0.20260718.2.tar",
                 sha256: "1l9wk75nqbl0n8k0zbqjvkd7fb2j6b2zsag62khk9zpya50gsap7",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$638,
+              [nix.POS]: $pos[637],
               homepage: "https://elpa.gnu.org/devel/ibuffer-sidebar.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7134,18 +5586,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$642,
+            [nix.POS]: $pos[641],
             pname: "idlwave",
             ename: "idlwave",
             version: "6.5.1.0.20240523.142720",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$640,
+                [nix.POS]: $pos[639],
                 url: "https://elpa.gnu.org/devel/idlwave-6.5.1.0.20240523.142720.tar",
                 sha256: "00i7kl0j7aacm7vyjgmm2kqhjjb3s70g69ka3sqhigm7s1hn3zk9",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$641,
+              [nix.POS]: $pos[640],
               homepage: "https://elpa.gnu.org/devel/idlwave.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7157,18 +5609,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$645,
+            [nix.POS]: $pos[644],
             pname: "ilist",
             ename: "ilist",
             version: "0.4.0.20240807.41050",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$643,
+                [nix.POS]: $pos[642],
                 url: "https://elpa.gnu.org/devel/ilist-0.4.0.20240807.41050.tar",
                 sha256: "1j9ihvkbribvach3z23qw1fcf03gm9ijhmh6mrcvagcy7gllz02n",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$644,
+              [nix.POS]: $pos[643],
               homepage: "https://elpa.gnu.org/devel/ilist.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7181,18 +5633,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$648,
+            [nix.POS]: $pos[647],
             pname: "indent-bars",
             ename: "indent-bars",
             version: "1.0.1.0.20260904.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$646,
+                [nix.POS]: $pos[645],
                 url: "https://elpa.gnu.org/devel/indent-bars-1.0.1.0.20260904.5.tar",
                 sha256: "02gyy6705a1r98iw8cm96igda3k8qr81zmvy3qkmx8f91167ghgq",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$647,
+              [nix.POS]: $pos[646],
               homepage: "https://elpa.gnu.org/devel/indent-bars.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7204,18 +5656,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$651,
+            [nix.POS]: $pos[650],
             pname: "inspector",
             ename: "inspector",
             version: "0.39.0.20251204.171741",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$649,
+                [nix.POS]: $pos[648],
                 url: "https://elpa.gnu.org/devel/inspector-0.39.0.20251204.171741.tar",
                 sha256: "0pp9rdk3r5i57nma5adiadmb5r18g72xjb2qlz23b4728znjqksv",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$650,
+              [nix.POS]: $pos[649],
               homepage: "https://elpa.gnu.org/devel/inspector.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7228,18 +5680,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$654,
+            [nix.POS]: $pos[653],
             pname: "ioccur",
             ename: "ioccur",
             version: "2.6.0.20211231.163129",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$652,
+                [nix.POS]: $pos[651],
                 url: "https://elpa.gnu.org/devel/ioccur-2.6.0.20211231.163129.tar",
                 sha256: "0v048d1p95km3jwgs6x805fjg6qfv5pjwdwia1wzl9liqai21v1c",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$653,
+              [nix.POS]: $pos[652],
               homepage: "https://elpa.gnu.org/devel/ioccur.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7251,18 +5703,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$657,
+            [nix.POS]: $pos[656],
             pname: "isearch-mb",
             ename: "isearch-mb",
             version: "0.8.0.20240310.84654",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$655,
+                [nix.POS]: $pos[654],
                 url: "https://elpa.gnu.org/devel/isearch-mb-0.8.0.20240310.84654.tar",
                 sha256: "1rb97ir8nbv7ici8isjcm4bfaxakd6a05yxv9as2wv9xl8fzfhwq",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$656,
+              [nix.POS]: $pos[655],
               homepage: "https://elpa.gnu.org/devel/isearch-mb.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7274,18 +5726,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$660,
+            [nix.POS]: $pos[659],
             pname: "iso-date",
             ename: "iso-date",
             version: "1.2.0.0.20260908.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$658,
+                [nix.POS]: $pos[657],
                 url: "https://elpa.gnu.org/devel/iso-date-1.2.0.0.20260908.1.tar",
                 sha256: "1fljljs1ncghq43qjkxbwp47ray6qs8sxjizn469jyrm8l1cj4hk",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$659,
+              [nix.POS]: $pos[658],
               homepage: "https://elpa.gnu.org/devel/iso-date.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7297,18 +5749,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$663,
+            [nix.POS]: $pos[662],
             pname: "iterators",
             ename: "iterators",
             version: "0.1.1.0.20221221.80300",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$661,
+                [nix.POS]: $pos[660],
                 url: "https://elpa.gnu.org/devel/iterators-0.1.1.0.20221221.80300.tar",
                 sha256: "10cx933rk7f92jk8q87b69ls3w823fwxnr7i6j0bxpzjx66q15yk",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$662,
+              [nix.POS]: $pos[661],
               homepage: "https://elpa.gnu.org/devel/iterators.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7320,18 +5772,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$666,
+            [nix.POS]: $pos[665],
             pname: "ivy",
             ename: "ivy",
             version: "0.15.1.0.20260413.210444",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$664,
+                [nix.POS]: $pos[663],
                 url: "https://elpa.gnu.org/devel/ivy-0.15.1.0.20260413.210444.tar",
                 sha256: "1840hsmdaqh4p5l4fbdb9gj95xaga8439zmp39adbvy6xkkqqbl4",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$665,
+              [nix.POS]: $pos[664],
               homepage: "https://elpa.gnu.org/devel/ivy.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7345,18 +5797,18 @@ export default nix.lambda((args) => (() => {
         const ivy = nix.arg($_1, "ivy");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$669,
+            [nix.POS]: $pos[668],
             pname: "ivy-avy",
             ename: "ivy-avy",
             version: "0.15.1.0.20260212.144350",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$667,
+                [nix.POS]: $pos[666],
                 url: "https://elpa.gnu.org/devel/ivy-avy-0.15.1.0.20260212.144350.tar",
                 sha256: "08fajvzrcgax467alz8gb6x8f6dch5npmgisjwa28pwi32chlqf5",
               })))),
             packageRequires: nix.thunk(() => [avy, ivy]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$668,
+              [nix.POS]: $pos[667],
               homepage: "https://elpa.gnu.org/devel/ivy-avy.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7369,18 +5821,18 @@ export default nix.lambda((args) => (() => {
         const ivy = nix.arg($_1, "ivy");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$672,
+            [nix.POS]: $pos[671],
             pname: "ivy-explorer",
             ename: "ivy-explorer",
             version: "0.3.2.0.20190909.192125",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$670,
+                [nix.POS]: $pos[669],
                 url: "https://elpa.gnu.org/devel/ivy-explorer-0.3.2.0.20190909.192125.tar",
                 sha256: "1jvahaswknvaia62cq8bz5lx55fb1c07zr63n7awcp0sajk3ph3z",
               })))),
             packageRequires: nix.thunk(() => [ivy]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$671,
+              [nix.POS]: $pos[670],
               homepage: "https://elpa.gnu.org/devel/ivy-explorer.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7394,18 +5846,18 @@ export default nix.lambda((args) => (() => {
         const ivy = nix.arg($_1, "ivy");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$675,
+            [nix.POS]: $pos[674],
             pname: "ivy-hydra",
             ename: "ivy-hydra",
             version: "0.15.1.0.20260213.120432",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$673,
+                [nix.POS]: $pos[672],
                 url: "https://elpa.gnu.org/devel/ivy-hydra-0.15.1.0.20260213.120432.tar",
                 sha256: "1b81brh6ys3ra19p1jacpmxxy37yfg712sy5ax81ijzqxfd8bzbx",
               })))),
             packageRequires: nix.thunk(() => [hydra, ivy]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$674,
+              [nix.POS]: $pos[673],
               homepage: "https://elpa.gnu.org/devel/ivy-hydra.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7419,18 +5871,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const posframe = nix.arg($_1, "posframe");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$678,
+            [nix.POS]: $pos[677],
             pname: "ivy-posframe",
             ename: "ivy-posframe",
             version: "0.6.4.0.20260127.5004",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$676,
+                [nix.POS]: $pos[675],
                 url: "https://elpa.gnu.org/devel/ivy-posframe-0.6.4.0.20260127.5004.tar",
                 sha256: "0fsn7gjg7dvhanlw5h7jp62zjjqdscjm8k64i52423pgj3rydbwz",
               })))),
             packageRequires: nix.thunk(() => [ivy, posframe]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$677,
+              [nix.POS]: $pos[676],
               homepage: "https://elpa.gnu.org/devel/ivy-posframe.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7442,18 +5894,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$681,
+            [nix.POS]: $pos[680],
             pname: "jami-bot",
             ename: "jami-bot",
             version: "0.0.4.0.20240204.184721",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$679,
+                [nix.POS]: $pos[678],
                 url: "https://elpa.gnu.org/devel/jami-bot-0.0.4.0.20240204.184721.tar",
                 sha256: "04zdnrah3jypkyx8dl0ns7cjcws5yv4d56ixaa94vjjjvyw9d8mv",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$680,
+              [nix.POS]: $pos[679],
               homepage: "https://elpa.gnu.org/devel/jami-bot.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7465,18 +5917,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$684,
+            [nix.POS]: $pos[683],
             pname: "jarchive",
             ename: "jarchive",
             version: "0.12.0.0.20260530.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$682,
+                [nix.POS]: $pos[681],
                 url: "https://elpa.gnu.org/devel/jarchive-0.12.0.0.20260530.1.tar",
                 sha256: "022msc0a39wl29j14sf4pfy1xc8p1bm8khx49f1qhlj3ppw3zr26",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$683,
+              [nix.POS]: $pos[682],
               homepage: "https://elpa.gnu.org/devel/jarchive.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7488,18 +5940,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$687,
+            [nix.POS]: $pos[686],
             pname: "javaimp",
             ename: "javaimp",
             version: "0.9.2.0.20260804.10",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$685,
+                [nix.POS]: $pos[684],
                 url: "https://elpa.gnu.org/devel/javaimp-0.9.2.0.20260804.10.tar",
                 sha256: "0ca9pjpi88f55x47xd7qa86w2d4fja2vm2sjvq4dnrx8mz1q64lg",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$686,
+              [nix.POS]: $pos[685],
               homepage: "https://elpa.gnu.org/devel/javaimp.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7512,18 +5964,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$690,
+            [nix.POS]: $pos[689],
             pname: "jgraph-mode",
             ename: "jgraph-mode",
             version: "1.1.0.20221221.80333",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$688,
+                [nix.POS]: $pos[687],
                 url: "https://elpa.gnu.org/devel/jgraph-mode-1.1.0.20221221.80333.tar",
                 sha256: "1ddmyxanfnqfmwx3ld25awm4qhwbzavla8xan261nyh4wwnm8hfq",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$689,
+              [nix.POS]: $pos[688],
               homepage: "https://elpa.gnu.org/devel/jgraph-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7536,18 +5988,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$693,
+            [nix.POS]: $pos[692],
             pname: "jinx",
             ename: "jinx",
             version: "2.10.0.20260813.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$691,
+                [nix.POS]: $pos[690],
                 url: "https://elpa.gnu.org/devel/jinx-2.10.0.20260813.1.tar",
                 sha256: "1yxnfs8q4nn9cx06hzyhrccdzd3mlicrnsfgrs8wfcsqpd0fzqz6",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$692,
+              [nix.POS]: $pos[691],
               homepage: "https://elpa.gnu.org/devel/jinx.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7560,18 +6012,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$696,
+            [nix.POS]: $pos[695],
             pname: "jit-spell",
             ename: "jit-spell",
             version: "0.5.0.20251012.84654",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$694,
+                [nix.POS]: $pos[693],
                 url: "https://elpa.gnu.org/devel/jit-spell-0.5.0.20251012.84654.tar",
                 sha256: "01df1pp16mbq793zcdgsfvk0smsnadcwwflmrazm1pv7jmk7qa9f",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$695,
+              [nix.POS]: $pos[694],
               homepage: "https://elpa.gnu.org/devel/jit-spell.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7584,18 +6036,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$699,
+            [nix.POS]: $pos[698],
             pname: "js2-mode",
             ename: "js2-mode",
             version: "20231224.0.20260627.14",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$697,
+                [nix.POS]: $pos[696],
                 url: "https://elpa.gnu.org/devel/js2-mode-20231224.0.20260627.14.tar",
                 sha256: "1cjccwswizryk0wn6ps40clmbjgf1h2amfw1hp6akmzsq4hs9abi",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$698,
+              [nix.POS]: $pos[697],
               homepage: "https://elpa.gnu.org/devel/js2-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7607,18 +6059,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$702,
+            [nix.POS]: $pos[701],
             pname: "json-mode",
             ename: "json-mode",
             version: "0.3.1.0.20251206.113703",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$700,
+                [nix.POS]: $pos[699],
                 url: "https://elpa.gnu.org/devel/json-mode-0.3.1.0.20251206.113703.tar",
                 sha256: "0gpfglyzvm7pv8z7qf3sycj6my6fm43vp7v8z5xc4hmw0axa0f0l",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$701,
+              [nix.POS]: $pos[700],
               homepage: "https://elpa.gnu.org/devel/json-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7630,18 +6082,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$705,
+            [nix.POS]: $pos[704],
             pname: "jsonrpc",
             ename: "jsonrpc",
             version: "1.0.29.0.20260623.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$703,
+                [nix.POS]: $pos[702],
                 url: "https://elpa.gnu.org/devel/jsonrpc-1.0.29.0.20260623.0.tar",
                 sha256: "08l1xicms32yagpv20yi0b626nkyc5xwaljq4fda7ygndkhlm5a2",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$704,
+              [nix.POS]: $pos[703],
               homepage: "https://elpa.gnu.org/devel/jsonrpc.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7653,18 +6105,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$708,
+            [nix.POS]: $pos[707],
             pname: "jumpc",
             ename: "jumpc",
             version: "3.1.0.20231015.14814",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$706,
+                [nix.POS]: $pos[705],
                 url: "https://elpa.gnu.org/devel/jumpc-3.1.0.20231015.14814.tar",
                 sha256: "1v8jxyvs0540w6rdsy96a49lb8nhrq4r66mmvc42j8lh7k4nggdw",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$707,
+              [nix.POS]: $pos[706],
               homepage: "https://elpa.gnu.org/devel/jumpc.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7676,18 +6128,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$711,
+            [nix.POS]: $pos[710],
             pname: "keymap-popup",
             ename: "keymap-popup",
             version: "0.4.3.0.20260904.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$709,
+                [nix.POS]: $pos[708],
                 url: "https://elpa.gnu.org/devel/keymap-popup-0.4.3.0.20260904.4.tar",
                 sha256: "18cgikxkg8s3w27hkcvblvfaxmbwjkx7rc81qngambl3ipgsay91",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$710,
+              [nix.POS]: $pos[709],
               homepage: "https://elpa.gnu.org/devel/keymap-popup.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7700,18 +6152,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const svg_lib = nix.arg($_1, "svg-lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$714,
+            [nix.POS]: $pos[713],
             pname: "kind-icon",
             ename: "kind-icon",
             version: "0.2.2.0.20250311.112658",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$712,
+                [nix.POS]: $pos[711],
                 url: "https://elpa.gnu.org/devel/kind-icon-0.2.2.0.20250311.112658.tar",
                 sha256: "07lnpxq6g8rlc0mbnbwya8jjp2d42xixwm1knz57ab0lm7vcbmap",
               })))),
             packageRequires: nix.thunk(() => [svg_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$713,
+              [nix.POS]: $pos[712],
               homepage: "https://elpa.gnu.org/devel/kind-icon.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7724,18 +6176,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const request = nix.arg($_1, "request");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$717,
+            [nix.POS]: $pos[716],
             pname: "kiwix",
             ename: "kiwix",
             version: "1.1.5.0.20260815.16",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$715,
+                [nix.POS]: $pos[714],
                 url: "https://elpa.gnu.org/devel/kiwix-1.1.5.0.20260815.16.tar",
                 sha256: "10s1654wjky8id5d1phddllw1a5xpr2z6713rcdqkhq29bkav5sf",
               })))),
             packageRequires: nix.thunk(() => [request]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$716,
+              [nix.POS]: $pos[715],
               homepage: "https://elpa.gnu.org/devel/kiwix.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7747,18 +6199,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$720,
+            [nix.POS]: $pos[719],
             pname: "kmb",
             ename: "kmb",
             version: "0.1.0.20221221.80420",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$718,
+                [nix.POS]: $pos[717],
                 url: "https://elpa.gnu.org/devel/kmb-0.1.0.20221221.80420.tar",
                 sha256: "00zqrfh1nqn01azmkd2gy3il48h1sddp6addj9yfq4kwd7ylhym5",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$719,
+              [nix.POS]: $pos[718],
               homepage: "https://elpa.gnu.org/devel/kmb.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7770,18 +6222,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$723,
+            [nix.POS]: $pos[722],
             pname: "kubed",
             ename: "kubed",
             version: "0.7.1.0.20260817.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$721,
+                [nix.POS]: $pos[720],
                 url: "https://elpa.gnu.org/devel/kubed-0.7.1.0.20260817.4.tar",
                 sha256: "080f0xymw8qhmw396089mcqmrpac44qx95ac5m8rcq1y4d0lk2yy",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$722,
+              [nix.POS]: $pos[721],
               homepage: "https://elpa.gnu.org/devel/kubed.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7793,18 +6245,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$726,
+            [nix.POS]: $pos[725],
             pname: "landmark",
             ename: "landmark",
             version: "1.0.0.20221221.80428",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$724,
+                [nix.POS]: $pos[723],
                 url: "https://elpa.gnu.org/devel/landmark-1.0.0.20221221.80428.tar",
                 sha256: "1rwiysmynp2z4bfynhf9k1zd3y5s6dyp2312vq1rhyifgdd8mivq",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$725,
+              [nix.POS]: $pos[724],
               homepage: "https://elpa.gnu.org/devel/landmark.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7818,18 +6270,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$729,
+            [nix.POS]: $pos[728],
             pname: "latex-table-wizard",
             ename: "latex-table-wizard",
             version: "1.6.0.0.20260503.212802",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$727,
+                [nix.POS]: $pos[726],
                 url: "https://elpa.gnu.org/devel/latex-table-wizard-1.6.0.0.20260503.212802.tar",
                 sha256: "0gsqgykvfg27c9gs83rjg8aaxm44a06r5d8ify7s7wcxpasdys1p",
               })))),
             packageRequires: nix.thunk(() => [auctex, transient]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$728,
+              [nix.POS]: $pos[727],
               homepage: "https://elpa.gnu.org/devel/latex-table-wizard.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7841,18 +6293,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$732,
+            [nix.POS]: $pos[731],
             pname: "leaf",
             ename: "leaf",
             version: "4.5.5.0.20260508.153103",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$730,
+                [nix.POS]: $pos[729],
                 url: "https://elpa.gnu.org/devel/leaf-4.5.5.0.20260508.153103.tar",
                 sha256: "0zps0wiyplsv8nghyjfvv8m20rn0bsx7dapdfbvx3bkiqbmf8crq",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$731,
+              [nix.POS]: $pos[730],
               homepage: "https://elpa.gnu.org/devel/leaf.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7866,18 +6318,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const m_buffer = nix.arg($_1, "m-buffer");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$735,
+            [nix.POS]: $pos[734],
             pname: "lentic",
             ename: "lentic",
             version: "0.12.0.20240303.95600",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$733,
+                [nix.POS]: $pos[732],
                 url: "https://elpa.gnu.org/devel/lentic-0.12.0.20240303.95600.tar",
                 sha256: "0w6fl0yzmh0gd3d5d5049zrx341x0jrj48g265jy4jywdvk621kv",
               })))),
             packageRequires: nix.thunk(() => [dash, m_buffer]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$734,
+              [nix.POS]: $pos[733],
               homepage: "https://elpa.gnu.org/devel/lentic.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7891,18 +6343,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const web_server = nix.arg($_1, "web-server");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$738,
+            [nix.POS]: $pos[737],
             pname: "lentic-server",
             ename: "lentic-server",
             version: "0.2.0.20240314.214448",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$736,
+                [nix.POS]: $pos[735],
                 url: "https://elpa.gnu.org/devel/lentic-server-0.2.0.20240314.214448.tar",
                 sha256: "1mg12bkwsqm4nwwwmpfx3dav583i96dsk5ap5hjiz2ggwwrmrq8h",
               })))),
             packageRequires: nix.thunk(() => [lentic, web_server]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$737,
+              [nix.POS]: $pos[736],
               homepage: "https://elpa.gnu.org/devel/lentic-server.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7914,18 +6366,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$741,
+            [nix.POS]: $pos[740],
             pname: "let-alist",
             ename: "let-alist",
             version: "1.0.6.0.20260523.93734",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$739,
+                [nix.POS]: $pos[738],
                 url: "https://elpa.gnu.org/devel/let-alist-1.0.6.0.20260523.93734.tar",
                 sha256: "0wqim4mjy59yy5ykjiy5kl91c0841yp071cdh11p7mz54liw8yrc",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$740,
+              [nix.POS]: $pos[739],
               homepage: "https://elpa.gnu.org/devel/let-alist.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7937,18 +6389,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$744,
+            [nix.POS]: $pos[743],
             pname: "lex",
             ename: "lex",
             version: "1.3.0.20260601.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$742,
+                [nix.POS]: $pos[741],
                 url: "https://elpa.gnu.org/devel/lex-1.3.0.20260601.0.tar",
                 sha256: "1c79jqc7292qhs542nfgqg7va20k02sldb3n75vjsbhp13q05d6w",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$743,
+              [nix.POS]: $pos[742],
               homepage: "https://elpa.gnu.org/devel/lex.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7960,18 +6412,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$747,
+            [nix.POS]: $pos[746],
             pname: "lin",
             ename: "lin",
             version: "2.0.0.0.20260424.102712",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$745,
+                [nix.POS]: $pos[744],
                 url: "https://elpa.gnu.org/devel/lin-2.0.0.0.20260424.102712.tar",
                 sha256: "11l840kmy06f59n1p2cac59fmdwqmwqyn1d7sx10k4xfx2i8f3pp",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$746,
+              [nix.POS]: $pos[745],
               homepage: "https://elpa.gnu.org/devel/lin.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7985,18 +6437,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$750,
+            [nix.POS]: $pos[749],
             pname: "lisp-ts-mode",
             ename: "lisp-ts-mode",
             version: "0.3.4.0.20260830.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$748,
+                [nix.POS]: $pos[747],
                 url: "https://elpa.gnu.org/devel/lisp-ts-mode-0.3.4.0.20260830.2.tar",
                 sha256: "157zhr5d3d7bxkxv0i32l1id6bywz8x2l8yfmvs5n67mbqkmsr10",
               })))),
             packageRequires: nix.thunk(() => [compat, cond_star]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$749,
+              [nix.POS]: $pos[748],
               homepage: "https://elpa.gnu.org/devel/lisp-ts-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8012,18 +6464,18 @@ export default nix.lambda((args) => (() => {
         const taxy_magit_section = nix.arg($_1, "taxy-magit-section");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$753,
+            [nix.POS]: $pos[752],
             pname: "listen",
             ename: "listen",
             version: "0.10.1.0.20260105.223313",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$751,
+                [nix.POS]: $pos[750],
                 url: "https://elpa.gnu.org/devel/listen-0.10.1.0.20260105.223313.tar",
                 sha256: "1aqjjyy6910kiga2di05mz182qr344pwp1iv23jlsm4r8zln6ydm",
               })))),
             packageRequires: nix.thunk(() => [persist, taxy, taxy_magit_section, transient]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$752,
+              [nix.POS]: $pos[751],
               homepage: "https://elpa.gnu.org/devel/listen.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8035,18 +6487,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$756,
+            [nix.POS]: $pos[755],
             pname: "literate-scratch",
             ename: "literate-scratch",
             version: "2.2.0.20250425.54453",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$754,
+                [nix.POS]: $pos[753],
                 url: "https://elpa.gnu.org/devel/literate-scratch-2.2.0.20250425.54453.tar",
                 sha256: "0wv9fmkv37j4gss36rd81wyp37cssmxvxpf98xf4yscj84vv742m",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$755,
+              [nix.POS]: $pos[754],
               homepage: "https://elpa.gnu.org/devel/literate-scratch.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8062,18 +6514,18 @@ export default nix.lambda((args) => (() => {
         const plz_event_source = nix.arg($_1, "plz-event-source");
         const plz_media_type = nix.arg($_1, "plz-media-type");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$759,
+            [nix.POS]: $pos[758],
             pname: "llm",
             ename: "llm",
             version: "0.32.1.0.20260906.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$757,
+                [nix.POS]: $pos[756],
                 url: "https://elpa.gnu.org/devel/llm-0.32.1.0.20260906.1.tar",
                 sha256: "0jhmyfd9ww6w4251qmr2rfwfbz6la0ja068d9i4a8sv8nafa35z6",
               })))),
             packageRequires: nix.thunk(() => [compat, plz, plz_event_source, plz_media_type]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$758,
+              [nix.POS]: $pos[757],
               homepage: "https://elpa.gnu.org/devel/llm.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8086,18 +6538,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$762,
+            [nix.POS]: $pos[761],
             pname: "lmc",
             ename: "lmc",
             version: "1.4.0.20230105.113402",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$760,
+                [nix.POS]: $pos[759],
                 url: "https://elpa.gnu.org/devel/lmc-1.4.0.20230105.113402.tar",
                 sha256: "0ldwr9gw0bkcj43w5x84qwq2gvv2nr53711wlh42zawh0dyhm8h7",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$761,
+              [nix.POS]: $pos[760],
               homepage: "https://elpa.gnu.org/devel/lmc.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8110,18 +6562,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$765,
+            [nix.POS]: $pos[764],
             pname: "load-dir",
             ename: "load-dir",
             version: "0.0.5.0.20221221.80456",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$763,
+                [nix.POS]: $pos[762],
                 url: "https://elpa.gnu.org/devel/load-dir-0.0.5.0.20221221.80456.tar",
                 sha256: "00ynwml6xf7341z1w0wz1afh9jc4v8ggc8izy8qcvdiawxc418iq",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$764,
+              [nix.POS]: $pos[763],
               homepage: "https://elpa.gnu.org/devel/load-dir.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8133,18 +6585,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$768,
+            [nix.POS]: $pos[767],
             pname: "load-relative",
             ename: "load-relative",
             version: "1.3.2.0.20230214.53224",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$766,
+                [nix.POS]: $pos[765],
                 url: "https://elpa.gnu.org/devel/load-relative-1.3.2.0.20230214.53224.tar",
                 sha256: "19pkb7xqyllll2pgyqs7bv0qfbv6n9i5qlx9rjzm4ws0c9j464zd",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$767,
+              [nix.POS]: $pos[766],
               homepage: "https://elpa.gnu.org/devel/load-relative.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8156,18 +6608,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$771,
+            [nix.POS]: $pos[770],
             pname: "loc-changes",
             ename: "loc-changes",
             version: "1.2.0.20201201.94106",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$769,
+                [nix.POS]: $pos[768],
                 url: "https://elpa.gnu.org/devel/loc-changes-1.2.0.20201201.94106.tar",
                 sha256: "1jrjqn5600l245vhr5h6zwg6g72k0n721ck94mji755bqd231yxs",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$770,
+              [nix.POS]: $pos[769],
               homepage: "https://elpa.gnu.org/devel/loc-changes.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8179,18 +6631,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$774,
+            [nix.POS]: $pos[773],
             pname: "loccur",
             ename: "loccur",
             version: "1.2.5.0.20240610.183057",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$772,
+                [nix.POS]: $pos[771],
                 url: "https://elpa.gnu.org/devel/loccur-1.2.5.0.20240610.183057.tar",
                 sha256: "1apir3ijix4pkrv8q30xxqbiwvj78vp3y68ffq18fcwiww0gkavf",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$773,
+              [nix.POS]: $pos[772],
               homepage: "https://elpa.gnu.org/devel/loccur.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8202,18 +6654,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$777,
+            [nix.POS]: $pos[776],
             pname: "logos",
             ename: "logos",
             version: "1.2.0.0.20260424.102714",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$775,
+                [nix.POS]: $pos[774],
                 url: "https://elpa.gnu.org/devel/logos-1.2.0.0.20260424.102714.tar",
                 sha256: "0wk6b064sl8kjnqn6ihcxaps6m7cpr4h78np3ls4w4018na90rmi",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$776,
+              [nix.POS]: $pos[775],
               homepage: "https://elpa.gnu.org/devel/logos.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8225,18 +6677,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$780,
+            [nix.POS]: $pos[779],
             pname: "luwak",
             ename: "luwak",
             version: "1.0.0.0.20221125.50733",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$778,
+                [nix.POS]: $pos[777],
                 url: "https://elpa.gnu.org/devel/luwak-1.0.0.0.20221125.50733.tar",
                 sha256: "0b4kxq5im8gvg1zg12b8ii62w0vsf3gacimwd603srfc5l1rbvcw",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$779,
+              [nix.POS]: $pos[778],
               homepage: "https://elpa.gnu.org/devel/luwak.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8248,18 +6700,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$783,
+            [nix.POS]: $pos[782],
             pname: "lv",
             ename: "lv",
             version: "0.15.0.0.20250316.223951",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$781,
+                [nix.POS]: $pos[780],
                 url: "https://elpa.gnu.org/devel/lv-0.15.0.0.20250316.223951.tar",
                 sha256: "1risk08xjfnam98fjqwfzki80m8rhdmm71h6xhc0glagzd8i15fk",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$782,
+              [nix.POS]: $pos[781],
               homepage: "https://elpa.gnu.org/devel/lv.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8272,18 +6724,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$786,
+            [nix.POS]: $pos[785],
             pname: "m-buffer",
             ename: "m-buffer",
             version: "0.16.1.0.20241215.171432",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$784,
+                [nix.POS]: $pos[783],
                 url: "https://elpa.gnu.org/devel/m-buffer-0.16.1.0.20241215.171432.tar",
                 sha256: "1cvygjcnhlicbjxchgc45yzmw1v07qyzhf4qbf6xgrkwv06clrd6",
               })))),
             packageRequires: nix.thunk(() => [seq]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$785,
+              [nix.POS]: $pos[784],
               homepage: "https://elpa.gnu.org/devel/m-buffer.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8295,18 +6747,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$789,
+            [nix.POS]: $pos[788],
             pname: "map",
             ename: "map",
             version: "3.3.1.0.20260420.130325",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$787,
+                [nix.POS]: $pos[786],
                 url: "https://elpa.gnu.org/devel/map-3.3.1.0.20260420.130325.tar",
                 sha256: "1khl72238fzf8jzk3ihq5yl3w8kipr4km5awh4zqhp03skr5kp86",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$788,
+              [nix.POS]: $pos[787],
               homepage: "https://elpa.gnu.org/devel/map.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8319,18 +6771,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$792,
+            [nix.POS]: $pos[791],
             pname: "marginalia",
             ename: "marginalia",
             version: "2.12.0.20260907.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$790,
+                [nix.POS]: $pos[789],
                 url: "https://elpa.gnu.org/devel/marginalia-2.12.0.20260907.2.tar",
                 sha256: "1qrv729saqg7yj4s3w0aaxa49phmmaz937f1c288lij0j8gydpxc",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$791,
+              [nix.POS]: $pos[790],
               homepage: "https://elpa.gnu.org/devel/marginalia.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8342,18 +6794,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$795,
+            [nix.POS]: $pos[794],
             pname: "markchars",
             ename: "markchars",
             version: "0.2.2.0.20221221.80510",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$793,
+                [nix.POS]: $pos[792],
                 url: "https://elpa.gnu.org/devel/markchars-0.2.2.0.20221221.80510.tar",
                 sha256: "0f1n1jzhksl5cl5c4n2arqhj2zkwzs8i4yzdz39y2b51x2gi2yav",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$794,
+              [nix.POS]: $pos[793],
               homepage: "https://elpa.gnu.org/devel/markchars.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8365,18 +6817,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$798,
+            [nix.POS]: $pos[797],
             pname: "math-symbol-lists",
             ename: "math-symbol-lists",
             version: "1.3.0.20220828.204754",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$796,
+                [nix.POS]: $pos[795],
                 url: "https://elpa.gnu.org/devel/math-symbol-lists-1.3.0.20220828.204754.tar",
                 sha256: "0q038qwcq7lg3a7n451gw80xlwv4hczz3432xcx00hxgvlh744yc",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$797,
+              [nix.POS]: $pos[796],
               homepage: "https://elpa.gnu.org/devel/math-symbol-lists.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8388,18 +6840,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$801,
+            [nix.POS]: $pos[800],
             pname: "mathjax",
             ename: "mathjax",
             version: "0.1.0.20251012.85017",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$799,
+                [nix.POS]: $pos[798],
                 url: "https://elpa.gnu.org/devel/mathjax-0.1.0.20251012.85017.tar",
                 sha256: "1yd547wvnp2f8pd6n9n52xk4h117301rix9x8lpxpabfhw0fxq2d",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$800,
+              [nix.POS]: $pos[799],
               homepage: "https://elpa.gnu.org/devel/mathjax.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8412,18 +6864,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const peg = nix.arg($_1, "peg");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$804,
+            [nix.POS]: $pos[803],
             pname: "mathsheet",
             ename: "mathsheet",
             version: "1.3.0.20250928.180349",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$802,
+                [nix.POS]: $pos[801],
                 url: "https://elpa.gnu.org/devel/mathsheet-1.3.0.20250928.180349.tar",
                 sha256: "0mkmfm3ck71pm75r5rii1l89a9m50hgw68n92ww1m016z2zrw6va",
               })))),
             packageRequires: nix.thunk(() => [peg]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$803,
+              [nix.POS]: $pos[802],
               homepage: "https://elpa.gnu.org/devel/mathsheet.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8435,18 +6887,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$807,
+            [nix.POS]: $pos[806],
             pname: "matlab-mode",
             ename: "matlab-mode",
             version: "8.2.0.0.20260428.134050",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$805,
+                [nix.POS]: $pos[804],
                 url: "https://elpa.gnu.org/devel/matlab-mode-8.2.0.0.20260428.134050.tar",
                 sha256: "0caab8wxwn55zk6cd20qm20z2nkwff8a1y3jrwfd41i1kx18mcg4",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$806,
+              [nix.POS]: $pos[805],
               homepage: "https://elpa.gnu.org/devel/matlab-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8458,18 +6910,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$810,
+            [nix.POS]: $pos[809],
             pname: "mct",
             ename: "mct",
             version: "1.1.1.0.20260903.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$808,
+                [nix.POS]: $pos[807],
                 url: "https://elpa.gnu.org/devel/mct-1.1.1.0.20260903.2.tar",
                 sha256: "007mcb7b44c3qjyy002q5j5k2q6yy86rd657w60zcljfmr6mvl3l",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$809,
+              [nix.POS]: $pos[808],
               homepage: "https://elpa.gnu.org/devel/mct.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8481,18 +6933,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$813,
+            [nix.POS]: $pos[812],
             pname: "memory-usage",
             ename: "memory-usage",
             version: "0.2.0.20201201.223908",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$811,
+                [nix.POS]: $pos[810],
                 url: "https://elpa.gnu.org/devel/memory-usage-0.2.0.20201201.223908.tar",
                 sha256: "1jybms0756sswwdq8gqc6kpp5m7y971v4yzcmhraykhf32rwf4rq",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$812,
+              [nix.POS]: $pos[811],
               homepage: "https://elpa.gnu.org/devel/memory-usage.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8505,18 +6957,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$816,
+            [nix.POS]: $pos[815],
             pname: "metar",
             ename: "metar",
             version: "0.3.0.20221221.80722",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$814,
+                [nix.POS]: $pos[813],
                 url: "https://elpa.gnu.org/devel/metar-0.3.0.20221221.80722.tar",
                 sha256: "08xcxx9wbjkqf6s1rbsp54f648r8n122k66nfd8ibv9qbd8qvmxq",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$815,
+              [nix.POS]: $pos[814],
               homepage: "https://elpa.gnu.org/devel/metar.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8528,18 +6980,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$819,
+            [nix.POS]: $pos[818],
             pname: "midi-kbd",
             ename: "midi-kbd",
             version: "0.2.0.20221221.80736",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$817,
+                [nix.POS]: $pos[816],
                 url: "https://elpa.gnu.org/devel/midi-kbd-0.2.0.20221221.80736.tar",
                 sha256: "0fz9r0y3qdnaq9wi00151xzqh3ygwcfw6yl32cs1vaaxv2czkjai",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$818,
+              [nix.POS]: $pos[817],
               homepage: "https://elpa.gnu.org/devel/midi-kbd.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8552,18 +7004,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$822,
+            [nix.POS]: $pos[821],
             pname: "mines",
             ename: "mines",
             version: "1.6.0.20201130.184335",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$820,
+                [nix.POS]: $pos[819],
                 url: "https://elpa.gnu.org/devel/mines-1.6.0.20201130.184335.tar",
                 sha256: "0vl93im89fg72wpcqdhg1x2l4iybznh6gjvpkr1i29y05fsx2aad",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$821,
+              [nix.POS]: $pos[820],
               homepage: "https://elpa.gnu.org/devel/mines.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8575,18 +7027,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$825,
+            [nix.POS]: $pos[824],
             pname: "minibuffer-header",
             ename: "minibuffer-header",
             version: "0.5.0.20220921.71345",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$823,
+                [nix.POS]: $pos[822],
                 url: "https://elpa.gnu.org/devel/minibuffer-header-0.5.0.20220921.71345.tar",
                 sha256: "1s77h5s2abpm75k57zcp1s525qs74sdm6vpzlkvqjz8lpn8zkkp0",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$824,
+              [nix.POS]: $pos[823],
               homepage: "https://elpa.gnu.org/devel/minibuffer-header.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8598,18 +7050,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$828,
+            [nix.POS]: $pos[827],
             pname: "minibuffer-line",
             ename: "minibuffer-line",
             version: "0.1.0.20221221.80745",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$826,
+                [nix.POS]: $pos[825],
                 url: "https://elpa.gnu.org/devel/minibuffer-line-0.1.0.20221221.80745.tar",
                 sha256: "10gl1lnihawv9dw2rzaydyh8cdgpqgj7y8jsr6hjgqv82hxqyccn",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$827,
+              [nix.POS]: $pos[826],
               homepage: "https://elpa.gnu.org/devel/minibuffer-line.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8623,18 +7075,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$831,
+            [nix.POS]: $pos[830],
             pname: "minimail",
             ename: "minimail",
             version: "0.5.0.20260513.113502",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$829,
+                [nix.POS]: $pos[828],
                 url: "https://elpa.gnu.org/devel/minimail-0.5.0.20260513.113502.tar",
                 sha256: "0b3npm8wsgl3nizvgvpb11i4kamg89js04nd52f28hb6f75mwjkh",
               })))),
             packageRequires: nix.thunk(() => [compat, transient]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$830,
+              [nix.POS]: $pos[829],
               homepage: "https://elpa.gnu.org/devel/minimail.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8646,18 +7098,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$834,
+            [nix.POS]: $pos[833],
             pname: "minimap",
             ename: "minimap",
             version: "1.4.0.20201201.162630",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$832,
+                [nix.POS]: $pos[831],
                 url: "https://elpa.gnu.org/devel/minimap-1.4.0.20201201.162630.tar",
                 sha256: "0h0ydmfinr82j0ifkgwjhc8blg6z2f5k0711fwrcbx8wrgrvfh5v",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$833,
+              [nix.POS]: $pos[832],
               homepage: "https://elpa.gnu.org/devel/minimap.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8671,18 +7123,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const plz = nix.arg($_1, "plz");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$837,
+            [nix.POS]: $pos[836],
             pname: "minuet",
             ename: "minuet",
             version: "0.10.0.0.20260825.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$835,
+                [nix.POS]: $pos[834],
                 url: "https://elpa.gnu.org/devel/minuet-0.10.0.0.20260825.1.tar",
                 sha256: "1h6fnnbb5ixjxi4bmd5aykcc15svjqqpsc5i34r5z2d03ni33xg0",
               })))),
             packageRequires: nix.thunk(() => [dash, plz]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$836,
+              [nix.POS]: $pos[835],
               homepage: "https://elpa.gnu.org/devel/minuet.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8695,18 +7147,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$840,
+            [nix.POS]: $pos[839],
             pname: "mmm-mode",
             ename: "mmm-mode",
             version: "0.5.11.0.20240222.42825",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$838,
+                [nix.POS]: $pos[837],
                 url: "https://elpa.gnu.org/devel/mmm-mode-0.5.11.0.20240222.42825.tar",
                 sha256: "037g19hdya14q7wivdcw8h7wyx8lb8pw5waya3ak435cyfmpg1a7",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$839,
+              [nix.POS]: $pos[838],
               homepage: "https://elpa.gnu.org/devel/mmm-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8718,18 +7170,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$843,
+            [nix.POS]: $pos[842],
             pname: "mode-line-maker",
             ename: "mode-line-maker",
             version: "0.2.2.0.20260722.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$841,
+                [nix.POS]: $pos[840],
                 url: "https://elpa.gnu.org/devel/mode-line-maker-0.2.2.0.20260722.0.tar",
                 sha256: "0wxwmj8bpzblr6mkdf4w0pvaxn033kykbf409lcyxy1x1k5cic13",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$842,
+              [nix.POS]: $pos[841],
               homepage: "https://elpa.gnu.org/devel/mode-line-maker.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8741,18 +7193,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$846,
+            [nix.POS]: $pos[845],
             pname: "modus-themes",
             ename: "modus-themes",
             version: "5.3.0.0.20260911.55",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$844,
+                [nix.POS]: $pos[843],
                 url: "https://elpa.gnu.org/devel/modus-themes-5.3.0.0.20260911.55.tar",
                 sha256: "1pyacpnrx6q0z84r65gs0739y7hvn41zb7a9lkl2a7m2nqshbkhy",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$845,
+              [nix.POS]: $pos[844],
               homepage: "https://elpa.gnu.org/devel/modus-themes.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8764,18 +7216,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$849,
+            [nix.POS]: $pos[848],
             pname: "mpdired",
             ename: "mpdired",
             version: "4pre0.20250502.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$847,
+                [nix.POS]: $pos[846],
                 url: "https://elpa.gnu.org/devel/mpdired-4pre0.20250502.1.tar",
                 sha256: "1hrp0q5dql57hd40q838vbdrlbbyd1g7kfvf5w3zvhziq0dj61gx",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$848,
+              [nix.POS]: $pos[847],
               homepage: "https://elpa.gnu.org/devel/mpdired.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8787,18 +7239,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$852,
+            [nix.POS]: $pos[851],
             pname: "multi-mode",
             ename: "multi-mode",
             version: "1.14.0.20240919.113013",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$850,
+                [nix.POS]: $pos[849],
                 url: "https://elpa.gnu.org/devel/multi-mode-1.14.0.20240919.113013.tar",
                 sha256: "0h99nppak4xr3difyh86ng1sv6k9d1ad41kvafaqbf69v4xs711m",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$851,
+              [nix.POS]: $pos[850],
               homepage: "https://elpa.gnu.org/devel/multi-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8811,18 +7263,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$855,
+            [nix.POS]: $pos[854],
             pname: "multishell",
             ename: "multishell",
             version: "1.1.10.0.20220605.120254",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$853,
+                [nix.POS]: $pos[852],
                 url: "https://elpa.gnu.org/devel/multishell-1.1.10.0.20220605.120254.tar",
                 sha256: "0pl45mwwgdf505sviyzacalq6kisq0pnh99i1cnclrmjkjy6yxz9",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$854,
+              [nix.POS]: $pos[853],
               homepage: "https://elpa.gnu.org/devel/multishell.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8834,18 +7286,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$858,
+            [nix.POS]: $pos[857],
             pname: "muse",
             ename: "muse",
             version: "3.20.2.0.20240209.184001",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$856,
+                [nix.POS]: $pos[855],
                 url: "https://elpa.gnu.org/devel/muse-3.20.2.0.20240209.184001.tar",
                 sha256: "1sn5siingpzg4y5wjc3ff2ln98gb7hhvwmhnvhmmqbnb8r459vs0",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$857,
+              [nix.POS]: $pos[856],
               homepage: "https://elpa.gnu.org/devel/muse.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8857,18 +7309,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$861,
+            [nix.POS]: $pos[860],
             pname: "myers",
             ename: "myers",
             version: "0.1.0.20221221.80834",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$859,
+                [nix.POS]: $pos[858],
                 url: "https://elpa.gnu.org/devel/myers-0.1.0.20221221.80834.tar",
                 sha256: "11nwn1nysr09r1701cd3wvkzn01s19l6lla0f33vqm66ahj9yldh",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$860,
+              [nix.POS]: $pos[859],
               homepage: "https://elpa.gnu.org/devel/myers.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8880,18 +7332,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$864,
+            [nix.POS]: $pos[863],
             pname: "nadvice",
             ename: "nadvice",
             version: "0.4.0.20241227.124457",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$862,
+                [nix.POS]: $pos[861],
                 url: "https://elpa.gnu.org/devel/nadvice-0.4.0.20241227.124457.tar",
                 sha256: "1bhv1111iyypw01jpsy9p3lci2gi1bkpgfz7447f6w7rr2s9rbdr",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$863,
+              [nix.POS]: $pos[862],
               homepage: "https://elpa.gnu.org/devel/nadvice.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8903,18 +7355,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$867,
+            [nix.POS]: $pos[866],
             pname: "nameless",
             ename: "nameless",
             version: "1.0.2.0.20230112.95905",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$865,
+                [nix.POS]: $pos[864],
                 url: "https://elpa.gnu.org/devel/nameless-1.0.2.0.20230112.95905.tar",
                 sha256: "1b44w8jkqqsi995a2daw05ks64njlgpkab6m3iy3lx3v8fggjahp",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$866,
+              [nix.POS]: $pos[865],
               homepage: "https://elpa.gnu.org/devel/nameless.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8928,18 +7380,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const nadvice = nix.arg($_1, "nadvice");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$870,
+            [nix.POS]: $pos[869],
             pname: "names",
             ename: "names",
             version: "20151201.0.0.20220425.173515",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$868,
+                [nix.POS]: $pos[867],
                 url: "https://elpa.gnu.org/devel/names-20151201.0.0.20220425.173515.tar",
                 sha256: "1s91v83jkwxjl1iqrmjy60rnnqcgzly0z8chp87f7i22fj5gjz4h",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, nadvice]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$869,
+              [nix.POS]: $pos[868],
               homepage: "https://elpa.gnu.org/devel/names.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8951,18 +7403,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$873,
+            [nix.POS]: $pos[872],
             pname: "nano-agenda",
             ename: "nano-agenda",
             version: "0.3.0.20230417.100538",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$871,
+                [nix.POS]: $pos[870],
                 url: "https://elpa.gnu.org/devel/nano-agenda-0.3.0.20230417.100538.tar",
                 sha256: "1fhpic6zimk81a7w6m9hl6iw0vniz3pl775sxyg167ysn5sqsl2y",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$872,
+              [nix.POS]: $pos[871],
               homepage: "https://elpa.gnu.org/devel/nano-agenda.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8974,18 +7426,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$876,
+            [nix.POS]: $pos[875],
             pname: "nano-modeline",
             ename: "nano-modeline",
             version: "1.1.0.0.20240429.102433",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$874,
+                [nix.POS]: $pos[873],
                 url: "https://elpa.gnu.org/devel/nano-modeline-1.1.0.0.20240429.102433.tar",
                 sha256: "0jlaqkrqn2x4fhlz57c94586xjqi1sb89p6py4j5r00669djwhrf",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$875,
+              [nix.POS]: $pos[874],
               homepage: "https://elpa.gnu.org/devel/nano-modeline.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8997,18 +7449,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$879,
+            [nix.POS]: $pos[878],
             pname: "nano-theme",
             ename: "nano-theme",
             version: "0.3.4.0.20250902.55900",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$877,
+                [nix.POS]: $pos[876],
                 url: "https://elpa.gnu.org/devel/nano-theme-0.3.4.0.20250902.55900.tar",
                 sha256: "0yz9k9v980vzxyylywvkphk6bbgkfgw8a40q5za83kb7g3gf7sx6",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$878,
+              [nix.POS]: $pos[877],
               homepage: "https://elpa.gnu.org/devel/nano-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9020,18 +7472,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$882,
+            [nix.POS]: $pos[881],
             pname: "nftables-mode",
             ename: "nftables-mode",
             version: "1.1.0.20221221.80909",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$880,
+                [nix.POS]: $pos[879],
                 url: "https://elpa.gnu.org/devel/nftables-mode-1.1.0.20221221.80909.tar",
                 sha256: "149qz88wlapln0b8d9mcmj630vyh2ha65hqb46yrf08fch992cpx",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$881,
+              [nix.POS]: $pos[880],
               homepage: "https://elpa.gnu.org/devel/nftables-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9043,18 +7495,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$885,
+            [nix.POS]: $pos[884],
             pname: "nhexl-mode",
             ename: "nhexl-mode",
             version: "1.5.0.20221215.152407",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$883,
+                [nix.POS]: $pos[882],
                 url: "https://elpa.gnu.org/devel/nhexl-mode-1.5.0.20221215.152407.tar",
                 sha256: "0bdw6lycm1hclz3qzckcpnssrd4i52051dzbs87f9sv6f6v31373",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$884,
+              [nix.POS]: $pos[883],
               homepage: "https://elpa.gnu.org/devel/nhexl-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9066,18 +7518,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$888,
+            [nix.POS]: $pos[887],
             pname: "nlinum",
             ename: "nlinum",
             version: "1.9.0.20221221.80940",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$886,
+                [nix.POS]: $pos[885],
                 url: "https://elpa.gnu.org/devel/nlinum-1.9.0.20221221.80940.tar",
                 sha256: "15kw7r8lz9nb5s0rzgdlj1s1kl1l6nxzr7kmwv5i7b1xhpnyn7xn",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$887,
+              [nix.POS]: $pos[886],
               homepage: "https://elpa.gnu.org/devel/nlinum.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9089,18 +7541,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$891,
+            [nix.POS]: $pos[890],
             pname: "notes-mode",
             ename: "notes-mode",
             version: "1.31.0.20240402.80928",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$889,
+                [nix.POS]: $pos[888],
                 url: "https://elpa.gnu.org/devel/notes-mode-1.31.0.20240402.80928.tar",
                 sha256: "1kiki1b6bx3nn1xgbnh0xnwnhx5wkn0zzlk6jfsks5npj2a4h88g",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$890,
+              [nix.POS]: $pos[889],
               homepage: "https://elpa.gnu.org/devel/notes-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9112,18 +7564,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$894,
+            [nix.POS]: $pos[893],
             pname: "notmuch-indicator",
             ename: "notmuch-indicator",
             version: "1.3.0.0.20260424.102728",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$892,
+                [nix.POS]: $pos[891],
                 url: "https://elpa.gnu.org/devel/notmuch-indicator-1.3.0.0.20260424.102728.tar",
                 sha256: "0iz3rzzb4rq7j5dwvyrdfyn2j1hag882204bc7fdldglwinic5zx",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$893,
+              [nix.POS]: $pos[892],
               homepage: "https://elpa.gnu.org/devel/notmuch-indicator.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9135,18 +7587,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$897,
+            [nix.POS]: $pos[896],
             pname: "ntlm",
             ename: "ntlm",
             version: "2.1.0.0.20260101.125434",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$895,
+                [nix.POS]: $pos[894],
                 url: "https://elpa.gnu.org/devel/ntlm-2.1.0.0.20260101.125434.tar",
                 sha256: "0pi2psl9d6jbc4pd3bx4ffmcmk1j3xrl6mk8xxakk5jsnkhlw535",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$896,
+              [nix.POS]: $pos[895],
               homepage: "https://elpa.gnu.org/devel/ntlm.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9158,18 +7610,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$900,
+            [nix.POS]: $pos[899],
             pname: "num3-mode",
             ename: "num3-mode",
             version: "1.5.0.20221221.81242",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$898,
+                [nix.POS]: $pos[897],
                 url: "https://elpa.gnu.org/devel/num3-mode-1.5.0.20221221.81242.tar",
                 sha256: "076m1lh9ma1wzavirmy7dq7nsl410n03yf7vq4ljxvbkw801sig7",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$899,
+              [nix.POS]: $pos[898],
               homepage: "https://elpa.gnu.org/devel/num3-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9181,18 +7633,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$903,
+            [nix.POS]: $pos[902],
             pname: "oauth2",
             ename: "oauth2",
             version: "0.19.1snapshot0.20260526.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$901,
+                [nix.POS]: $pos[900],
                 url: "https://elpa.gnu.org/devel/oauth2-0.19.1snapshot0.20260526.1.tar",
                 sha256: "0fxrg7ypj642mxdpn06g31ynlb96w64na99fakpdcf9wa0a5ir2s",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$902,
+              [nix.POS]: $pos[901],
               homepage: "https://elpa.gnu.org/devel/oauth2.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9204,18 +7656,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$906,
+            [nix.POS]: $pos[905],
             pname: "ob-asymptote",
             ename: "ob-asymptote",
             version: "1.0.2.0.20250511.114502",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$904,
+                [nix.POS]: $pos[903],
                 url: "https://elpa.gnu.org/devel/ob-asymptote-1.0.2.0.20250511.114502.tar",
                 sha256: "0hkfqgym36lmlbqq4a5aj031hz14isfsnjn6qhkgxg06pc1wlzcl",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$905,
+              [nix.POS]: $pos[904],
               homepage: "https://elpa.gnu.org/devel/ob-asymptote.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9227,18 +7679,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$909,
+            [nix.POS]: $pos[908],
             pname: "ob-haxe",
             ename: "ob-haxe",
             version: "1.0.0.20210211.73431",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$907,
+                [nix.POS]: $pos[906],
                 url: "https://elpa.gnu.org/devel/ob-haxe-1.0.0.20210211.73431.tar",
                 sha256: "148bly2nf0r64q2cfm0hd6i26bxaans7aj52nv4gb5qxsiqng0ly",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$908,
+              [nix.POS]: $pos[907],
               homepage: "https://elpa.gnu.org/devel/ob-haxe.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9251,18 +7703,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$912,
+            [nix.POS]: $pos[911],
             pname: "objed",
             ename: "objed",
             version: "0.8.3.0.20201002.84752",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$910,
+                [nix.POS]: $pos[909],
                 url: "https://elpa.gnu.org/devel/objed-0.8.3.0.20201002.84752.tar",
                 sha256: "1fjcl2gm4675l430rdr2lihsj13n24pi9zwjfqvsm4bnqbx9ywiz",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$911,
+              [nix.POS]: $pos[910],
               homepage: "https://elpa.gnu.org/devel/objed.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9274,18 +7726,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$915,
+            [nix.POS]: $pos[914],
             pname: "omn-mode",
             ename: "omn-mode",
             version: "1.3.0.20240326.173146",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$913,
+                [nix.POS]: $pos[912],
                 url: "https://elpa.gnu.org/devel/omn-mode-1.3.0.20240326.173146.tar",
                 sha256: "1iyh0xqm9aag92vj44l4ymrjc0gnn41gckk1l96605cfkwr5m6qa",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$914,
+              [nix.POS]: $pos[913],
               homepage: "https://elpa.gnu.org/devel/omn-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9298,18 +7750,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$918,
+            [nix.POS]: $pos[917],
             pname: "on-screen",
             ename: "on-screen",
             version: "1.3.3.0.20201127.191411",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$916,
+                [nix.POS]: $pos[915],
                 url: "https://elpa.gnu.org/devel/on-screen-1.3.3.0.20201127.191411.tar",
                 sha256: "1dak8rb89mkdpv3xc2h0kpn09i4l42iavslvkhy2vxj0qq6c1r9p",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$917,
+              [nix.POS]: $pos[916],
               homepage: "https://elpa.gnu.org/devel/on-screen.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9322,18 +7774,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$921,
+            [nix.POS]: $pos[920],
             pname: "orderless",
             ename: "orderless",
             version: "1.7.0.20260909.7",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$919,
+                [nix.POS]: $pos[918],
                 url: "https://elpa.gnu.org/devel/orderless-1.7.0.20260909.7.tar",
                 sha256: "15bmkp75nxdcd2qbji25lad1h2ljqzzp67wadw4788c4qwcxh4s3",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$920,
+              [nix.POS]: $pos[919],
               homepage: "https://elpa.gnu.org/devel/orderless.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9345,18 +7797,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$924,
+            [nix.POS]: $pos[923],
             pname: "org",
             ename: "org",
             version: "10.0pre0.20260912.549",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$922,
+                [nix.POS]: $pos[921],
                 url: "https://elpa.gnu.org/devel/org-10.0pre0.20260912.549.tar",
                 sha256: "0qr1b7argyzmfvn0ah3a6i91gxnhby3qxnwakghfv43kjwlvr4js",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$923,
+              [nix.POS]: $pos[922],
               homepage: "https://elpa.gnu.org/devel/org.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9369,18 +7821,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const org = nix.arg($_1, "org");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$927,
+            [nix.POS]: $pos[926],
             pname: "org-contacts",
             ename: "org-contacts",
             version: "1.3.0.20260905.13",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$925,
+                [nix.POS]: $pos[924],
                 url: "https://elpa.gnu.org/devel/org-contacts-1.3.0.20260905.13.tar",
                 sha256: "1wy1q9838kb31axyqsv1lwvkjlxsdlqamjw6s2igkh1i8gx4i57r",
               })))),
             packageRequires: nix.thunk(() => [org]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$926,
+              [nix.POS]: $pos[925],
               homepage: "https://elpa.gnu.org/devel/org-contacts.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9394,18 +7846,18 @@ export default nix.lambda((args) => (() => {
         const org = nix.arg($_1, "org");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$930,
+            [nix.POS]: $pos[929],
             pname: "org-edna",
             ename: "org-edna",
             version: "1.1.2.0.20200902.94459",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$928,
+                [nix.POS]: $pos[927],
                 url: "https://elpa.gnu.org/devel/org-edna-1.1.2.0.20200902.94459.tar",
                 sha256: "043pb34ai8rj515zgbw5nq5x3mkiyqcnk25787qc3mbddi9n9hwq",
               })))),
             packageRequires: nix.thunk(() => [org, seq]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$929,
+              [nix.POS]: $pos[928],
               homepage: "https://elpa.gnu.org/devel/org-edna.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9419,18 +7871,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$933,
+            [nix.POS]: $pos[932],
             pname: "org-gnosis",
             ename: "org-gnosis",
             version: "0.2.2.0.20260711.6",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$931,
+                [nix.POS]: $pos[930],
                 url: "https://elpa.gnu.org/devel/org-gnosis-0.2.2.0.20260711.6.tar",
                 sha256: "0zh6wl8qcxx1av1x8pp6756wcdqnwa2h2yv6i8742l8rqi5xfybg",
               })))),
             packageRequires: nix.thunk(() => [compat, emacsql]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$932,
+              [nix.POS]: $pos[931],
               homepage: "https://elpa.gnu.org/devel/org-gnosis.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9443,18 +7895,18 @@ export default nix.lambda((args) => (() => {
         const jami_bot = nix.arg($_1, "jami-bot");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$936,
+            [nix.POS]: $pos[935],
             pname: "org-jami-bot",
             ename: "org-jami-bot",
             version: "0.0.5.0.20240204.184749",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$934,
+                [nix.POS]: $pos[933],
                 url: "https://elpa.gnu.org/devel/org-jami-bot-0.0.5.0.20240204.184749.tar",
                 sha256: "1zl9xblhppqwddizf7s7l9d4qzcr8d6vgvjwmiw4wvb4lpyba9r4",
               })))),
             packageRequires: nix.thunk(() => [jami_bot]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$935,
+              [nix.POS]: $pos[934],
               homepage: "https://elpa.gnu.org/devel/org-jami-bot.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9469,18 +7921,18 @@ export default nix.lambda((args) => (() => {
         const llama = nix.arg($_1, "llama");
         const truename_cache = nix.arg($_1, "truename-cache");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$939,
+            [nix.POS]: $pos[938],
             pname: "org-mem",
             ename: "org-mem",
             version: "0.34.1.0.20260326.114557",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$937,
+                [nix.POS]: $pos[936],
                 url: "https://elpa.gnu.org/devel/org-mem-0.34.1.0.20260326.114557.tar",
                 sha256: "0nvklb0cpf6bddsi6x0fh3lj5dd0ndx28jyvhl9rc73dhwzwa2is",
               })))),
             packageRequires: nix.thunk(() => [el_job, llama, truename_cache]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$938,
+              [nix.POS]: $pos[937],
               homepage: "https://elpa.gnu.org/devel/org-mem.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9494,18 +7946,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const org = nix.arg($_1, "org");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$942,
+            [nix.POS]: $pos[941],
             pname: "org-modern",
             ename: "org-modern",
             version: "1.15.0.20260818.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$940,
+                [nix.POS]: $pos[939],
                 url: "https://elpa.gnu.org/devel/org-modern-1.15.0.20260818.3.tar",
                 sha256: "1n24h8ipgk8fwz92rrbdnadmbki307rybjh0minamw0m3f8j138b",
               })))),
             packageRequires: nix.thunk(() => [compat, org]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$941,
+              [nix.POS]: $pos[940],
               homepage: "https://elpa.gnu.org/devel/org-modern.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9517,18 +7969,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$945,
+            [nix.POS]: $pos[944],
             pname: "org-notify",
             ename: "org-notify",
             version: "0.1.2.0.20251219.195448",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$943,
+                [nix.POS]: $pos[942],
                 url: "https://elpa.gnu.org/devel/org-notify-0.1.2.0.20251219.195448.tar",
                 sha256: "0mxbqyc55506rhyqpv6phmms55c17axr10iqi7yzzl47vv4r5mzs",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$944,
+              [nix.POS]: $pos[943],
               homepage: "https://elpa.gnu.org/devel/org-notify.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9542,18 +7994,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const org = nix.arg($_1, "org");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$948,
+            [nix.POS]: $pos[947],
             pname: "org-real",
             ename: "org-real",
             version: "1.0.12.0.20260303.182338",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$946,
+                [nix.POS]: $pos[945],
                 url: "https://elpa.gnu.org/devel/org-real-1.0.12.0.20260303.182338.tar",
                 sha256: "1ghcvij06ipczqpxxpmglpmp2czzc47qq0b4n7s6sc1amx97ma5x",
               })))),
             packageRequires: nix.thunk(() => [boxy, org]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$947,
+              [nix.POS]: $pos[946],
               homepage: "https://elpa.gnu.org/devel/org-real.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9566,18 +8018,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const org = nix.arg($_1, "org");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$951,
+            [nix.POS]: $pos[950],
             pname: "org-remark",
             ename: "org-remark",
             version: "1.3.0.0.20260531.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$949,
+                [nix.POS]: $pos[948],
                 url: "https://elpa.gnu.org/devel/org-remark-1.3.0.0.20260531.4.tar",
                 sha256: "1k69ndpwk6mrlzdcv727fpfb73glis2dgxm48kdnbgz5167blydg",
               })))),
             packageRequires: nix.thunk(() => [org]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$950,
+              [nix.POS]: $pos[949],
               homepage: "https://elpa.gnu.org/devel/org-remark.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9590,18 +8042,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const org = nix.arg($_1, "org");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$954,
+            [nix.POS]: $pos[953],
             pname: "org-transclusion",
             ename: "org-transclusion",
             version: "1.4.0.0.20260417.100318",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$952,
+                [nix.POS]: $pos[951],
                 url: "https://elpa.gnu.org/devel/org-transclusion-1.4.0.0.20260417.100318.tar",
                 sha256: "1vbgvzqaxrih3r749w5hs724aph6xjiqzg6qf8zb5xz0iy2q20yh",
               })))),
             packageRequires: nix.thunk(() => [org]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$953,
+              [nix.POS]: $pos[952],
               homepage: "https://elpa.gnu.org/devel/org-transclusion.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9614,18 +8066,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const org = nix.arg($_1, "org");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$957,
+            [nix.POS]: $pos[956],
             pname: "org-translate",
             ename: "org-translate",
             version: "0.1.4.0.20220312.90634",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$955,
+                [nix.POS]: $pos[954],
                 url: "https://elpa.gnu.org/devel/org-translate-0.1.4.0.20220312.90634.tar",
                 sha256: "1fq0h0q5nh92dc9vgp7nmqyz2nl0byd2v6vl5k2lk3rlmbx7jnkz",
               })))),
             packageRequires: nix.thunk(() => [org]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$956,
+              [nix.POS]: $pos[955],
               homepage: "https://elpa.gnu.org/devel/org-translate.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9637,18 +8089,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$960,
+            [nix.POS]: $pos[959],
             pname: "orgalist",
             ename: "orgalist",
             version: "1.16.0.20240618.91747",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$958,
+                [nix.POS]: $pos[957],
                 url: "https://elpa.gnu.org/devel/orgalist-1.16.0.20240618.91747.tar",
                 sha256: "0kw1iasyg5j1kghwb952rah040qhybhycsmgk8y0rfk382ra3a1i",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$959,
+              [nix.POS]: $pos[958],
               homepage: "https://elpa.gnu.org/devel/orgalist.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9660,18 +8112,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$963,
+            [nix.POS]: $pos[962],
             pname: "osc",
             ename: "osc",
             version: "0.4.0.20221221.81343",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$961,
+                [nix.POS]: $pos[960],
                 url: "https://elpa.gnu.org/devel/osc-0.4.0.20221221.81343.tar",
                 sha256: "0mlyszhc2nbf5p4jnc6wlq8iipzmy9ymvbszq13myza410nd9xqh",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$962,
+              [nix.POS]: $pos[961],
               homepage: "https://elpa.gnu.org/devel/osc.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9684,18 +8136,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$966,
+            [nix.POS]: $pos[965],
             pname: "osm",
             ename: "osm",
             version: "2.5.0.20260811.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$964,
+                [nix.POS]: $pos[963],
                 url: "https://elpa.gnu.org/devel/osm-2.5.0.20260811.2.tar",
                 sha256: "02fpfdla0ywilwl13jff8ga3mmkngf5dxf0s84nw13jcdcafh47k",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$965,
+              [nix.POS]: $pos[964],
               homepage: "https://elpa.gnu.org/devel/osm.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9707,18 +8159,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$969,
+            [nix.POS]: $pos[968],
             pname: "other-frame-window",
             ename: "other-frame-window",
             version: "1.0.6.0.20221221.81352",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$967,
+                [nix.POS]: $pos[966],
                 url: "https://elpa.gnu.org/devel/other-frame-window-1.0.6.0.20221221.81352.tar",
                 sha256: "11fdg3nl1w4vm46477kwk6d6vz769q726iz5cwknbvjzj8an994s",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$968,
+              [nix.POS]: $pos[967],
               homepage: "https://elpa.gnu.org/devel/other-frame-window.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9730,18 +8182,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$972,
+            [nix.POS]: $pos[971],
             pname: "pabbrev",
             ename: "pabbrev",
             version: "4.3.0.0.20240617.162224",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$970,
+                [nix.POS]: $pos[969],
                 url: "https://elpa.gnu.org/devel/pabbrev-4.3.0.0.20240617.162224.tar",
                 sha256: "0wkizis0wb6syy2lzp1mi2cn5znzangi1w18jcn5ra8k8xj66yp4",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$971,
+              [nix.POS]: $pos[970],
               homepage: "https://elpa.gnu.org/devel/pabbrev.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9754,18 +8206,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$975,
+            [nix.POS]: $pos[974],
             pname: "paced",
             ename: "paced",
             version: "1.1.3.0.20190227.204125",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$973,
+                [nix.POS]: $pos[972],
                 url: "https://elpa.gnu.org/devel/paced-1.1.3.0.20190227.204125.tar",
                 sha256: "1ykjmv45kkfa569m8hpvya8a7wvkqrg9nbz28sbxmx79abm1bmmi",
               })))),
             packageRequires: nix.thunk(() => [async$]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$974,
+              [nix.POS]: $pos[973],
               homepage: "https://elpa.gnu.org/devel/paced.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9777,18 +8229,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$978,
+            [nix.POS]: $pos[977],
             pname: "package-x",
             ename: "package-x",
             version: "1.0.0.20260219.70820",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$976,
+                [nix.POS]: $pos[975],
                 url: "https://elpa.gnu.org/devel/package-x-1.0.0.20260219.70820.tar",
                 sha256: "09c2hjisggl8x23z3yq08rhy8k8rg6y1zqil81c7dapcjk1bcznq",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$977,
+              [nix.POS]: $pos[976],
               homepage: "https://elpa.gnu.org/devel/package-x.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9801,18 +8253,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$981,
+            [nix.POS]: $pos[980],
             pname: "parsec",
             ename: "parsec",
             version: "0.1.3.0.20180729.171626",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$979,
+                [nix.POS]: $pos[978],
                 url: "https://elpa.gnu.org/devel/parsec-0.1.3.0.20180729.171626.tar",
                 sha256: "0lhcj6cjgkq9ha85n0hqcm0ik7avfzw9f8zcklyivwn2bx80r7r7",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$980,
+              [nix.POS]: $pos[979],
               homepage: "https://elpa.gnu.org/devel/parsec.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9824,18 +8276,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$984,
+            [nix.POS]: $pos[983],
             pname: "parser-generator",
             ename: "parser-generator",
             version: "0.2.9.0.20260817.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$982,
+                [nix.POS]: $pos[981],
                 url: "https://elpa.gnu.org/devel/parser-generator-0.2.9.0.20260817.2.tar",
                 sha256: "1y2bwvvml4za0gl71pljgcaamkcqw6bqywc29midl5pmifs8fkik",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$983,
+              [nix.POS]: $pos[982],
               homepage: "https://elpa.gnu.org/devel/parser-generator.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9847,18 +8299,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$987,
+            [nix.POS]: $pos[986],
             pname: "path-iterator",
             ename: "path-iterator",
             version: "1.0.0.20221221.81414",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$985,
+                [nix.POS]: $pos[984],
                 url: "https://elpa.gnu.org/devel/path-iterator-1.0.0.20221221.81414.tar",
                 sha256: "1ln9l9x6bj1sp7shc2iafn11yji6lsgm4fm1ji1kfp3my1zhqc40",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$986,
+              [nix.POS]: $pos[985],
               homepage: "https://elpa.gnu.org/devel/path-iterator.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9870,18 +8322,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$990,
+            [nix.POS]: $pos[989],
             pname: "peg",
             ename: "peg",
             version: "1.0.2.0.20251217.104723",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$988,
+                [nix.POS]: $pos[987],
                 url: "https://elpa.gnu.org/devel/peg-1.0.2.0.20251217.104723.tar",
                 sha256: "02z92qqji7fkxaxrixdvf3bkv743bs2mki5x0mkv61g9vyq2rb1c",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$989,
+              [nix.POS]: $pos[988],
               homepage: "https://elpa.gnu.org/devel/peg.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9893,18 +8345,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$993,
+            [nix.POS]: $pos[992],
             pname: "perl-doc",
             ename: "perl-doc",
             version: "0.82.0.20250606.121940",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$991,
+                [nix.POS]: $pos[990],
                 url: "https://elpa.gnu.org/devel/perl-doc-0.82.0.20250606.121940.tar",
                 sha256: "0ymxvkwphqykq7qznxdlmsid4l7946vrll95b92n8f896wn8zlqa",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$992,
+              [nix.POS]: $pos[991],
               homepage: "https://elpa.gnu.org/devel/perl-doc.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9917,18 +8369,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$996,
+            [nix.POS]: $pos[995],
             pname: "persist",
             ename: "persist",
             version: "0.8.0.20251011.193839",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$994,
+                [nix.POS]: $pos[993],
                 url: "https://elpa.gnu.org/devel/persist-0.8.0.20251011.193839.tar",
                 sha256: "0pdvxdlwrk900hfwa1ik3wylb6h0fbr8f8jg38q6n0y93kndswxc",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$995,
+              [nix.POS]: $pos[994],
               homepage: "https://elpa.gnu.org/devel/persist.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9940,18 +8392,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$999,
+            [nix.POS]: $pos[998],
             pname: "php-fill",
             ename: "php-fill",
             version: "1.1.2.0.20260624.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$997,
+                [nix.POS]: $pos[996],
                 url: "https://elpa.gnu.org/devel/php-fill-1.1.2.0.20260624.0.tar",
                 sha256: "016gy8dmvavw75h5ccyfzmhg3z634yhifwgkvydw87qnlrfm452p",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$998,
+              [nix.POS]: $pos[997],
               homepage: "https://elpa.gnu.org/devel/php-fill.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9964,18 +8416,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1002,
+            [nix.POS]: $pos[1001],
             pname: "phpinspect",
             ename: "phpinspect",
             version: "3.0.1.0.20250605.141218",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1000,
+                [nix.POS]: $pos[999],
                 url: "https://elpa.gnu.org/devel/phpinspect-3.0.1.0.20250605.141218.tar",
                 sha256: "0j9c7nzddc7krfan42jh3zlqv469ddq864wiym79n5xvjafalbz1",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1001,
+              [nix.POS]: $pos[1000],
               homepage: "https://elpa.gnu.org/devel/phpinspect.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -9987,18 +8439,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1005,
+            [nix.POS]: $pos[1004],
             pname: "phps-mode",
             ename: "phps-mode",
             version: "0.4.52.0.20260817.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1003,
+                [nix.POS]: $pos[1002],
                 url: "https://elpa.gnu.org/devel/phps-mode-0.4.52.0.20260817.2.tar",
                 sha256: "00rsi6pmqm0k11ly6ymkqxxnsxl3ybp45d2v7f8wrp9b9rgrdarm",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1004,
+              [nix.POS]: $pos[1003],
               homepage: "https://elpa.gnu.org/devel/phps-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10010,18 +8462,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1008,
+            [nix.POS]: $pos[1007],
             pname: "pinentry",
             ename: "pinentry",
             version: "0.1.0.20250408.22039",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1006,
+                [nix.POS]: $pos[1005],
                 url: "https://elpa.gnu.org/devel/pinentry-0.1.0.20250408.22039.tar",
                 sha256: "10372ijcmwz48k03lbfw5s4lh2kmizhzfpd7in61zl12f2qv9rw7",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1007,
+              [nix.POS]: $pos[1006],
               homepage: "https://elpa.gnu.org/devel/pinentry.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10033,18 +8485,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1011,
+            [nix.POS]: $pos[1010],
             pname: "plz",
             ename: "plz",
             version: "0.10pre0.20250318.18",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1009,
+                [nix.POS]: $pos[1008],
                 url: "https://elpa.gnu.org/devel/plz-0.10pre0.20250318.18.tar",
                 sha256: "0lsaxls0dgj1hqm6fc03ns67k0wdp6jp688n9galiczk7zzllvpg",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1010,
+              [nix.POS]: $pos[1009],
               homepage: "https://elpa.gnu.org/devel/plz.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10057,18 +8509,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const plz_media_type = nix.arg($_1, "plz-media-type");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1014,
+            [nix.POS]: $pos[1013],
             pname: "plz-event-source",
             ename: "plz-event-source",
             version: "0.1.4pre0.20250413.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1012,
+                [nix.POS]: $pos[1011],
                 url: "https://elpa.gnu.org/devel/plz-event-source-0.1.4pre0.20250413.0.tar",
                 sha256: "12f9ava513hiwb9cighnnliq7nn3d1kfy2hjg6npl89nhii82g5f",
               })))),
             packageRequires: nix.thunk(() => [plz_media_type]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1013,
+              [nix.POS]: $pos[1012],
               homepage: "https://elpa.gnu.org/devel/plz-event-source.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10081,18 +8533,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const plz = nix.arg($_1, "plz");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1017,
+            [nix.POS]: $pos[1016],
             pname: "plz-media-type",
             ename: "plz-media-type",
             version: "0.2.5pre0.20250412.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1015,
+                [nix.POS]: $pos[1014],
                 url: "https://elpa.gnu.org/devel/plz-media-type-0.2.5pre0.20250412.0.tar",
                 sha256: "1agd1m6pxmqd7vkqvrv382fg76wx0kz9dxkbz0pwpf5p9dlpl6mm",
               })))),
             packageRequires: nix.thunk(() => [plz]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1016,
+              [nix.POS]: $pos[1015],
               homepage: "https://elpa.gnu.org/devel/plz-media-type.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10105,18 +8557,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const plz = nix.arg($_1, "plz");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1020,
+            [nix.POS]: $pos[1019],
             pname: "plz-see",
             ename: "plz-see",
             version: "0.1.0.20231101.73512",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1018,
+                [nix.POS]: $pos[1017],
                 url: "https://elpa.gnu.org/devel/plz-see-0.1.0.20231101.73512.tar",
                 sha256: "09ibjvd9wvndrygnfq0jic7m9bk6v490rk1k3b4qjvv5xfvsvvhq",
               })))),
             packageRequires: nix.thunk(() => [plz]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1019,
+              [nix.POS]: $pos[1018],
               homepage: "https://elpa.gnu.org/devel/plz-see.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10128,18 +8580,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1023,
+            [nix.POS]: $pos[1022],
             pname: "po-mode",
             ename: "po-mode",
             version: "2.32.0.20260217.95607",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1021,
+                [nix.POS]: $pos[1020],
                 url: "https://elpa.gnu.org/devel/po-mode-2.32.0.20260217.95607.tar",
                 sha256: "16dkn7k3kkrv1n7c9qnvpzbrywgq4cwgry7szcsgyglrf6dq89y9",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1022,
+              [nix.POS]: $pos[1021],
               homepage: "https://elpa.gnu.org/devel/po-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10151,18 +8603,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1026,
+            [nix.POS]: $pos[1025],
             pname: "poke",
             ename: "poke",
             version: "3.2.0.20230517.100500",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1024,
+                [nix.POS]: $pos[1023],
                 url: "https://elpa.gnu.org/devel/poke-3.2.0.20230517.100500.tar",
                 sha256: "0p12szh563vynl7h9j55v7373g43fhmsy03iibvnywaira4arw5l",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1025,
+              [nix.POS]: $pos[1024],
               homepage: "https://elpa.gnu.org/devel/poke.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10174,18 +8626,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1029,
+            [nix.POS]: $pos[1028],
             pname: "poke-mode",
             ename: "poke-mode",
             version: "3.1.0.20260809.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1027,
+                [nix.POS]: $pos[1026],
                 url: "https://elpa.gnu.org/devel/poke-mode-3.1.0.20260809.1.tar",
                 sha256: "0bgh8xwhwzwxfv055w3qvy4gz86vykgrlpns7mlsxzzx0g16v7kx",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1028,
+              [nix.POS]: $pos[1027],
               homepage: "https://elpa.gnu.org/devel/poke-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10197,18 +8649,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1032,
+            [nix.POS]: $pos[1031],
             pname: "poker",
             ename: "poker",
             version: "0.2.0.20221221.81510",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1030,
+                [nix.POS]: $pos[1029],
                 url: "https://elpa.gnu.org/devel/poker-0.2.0.20221221.81510.tar",
                 sha256: "14xc4jpkpy88drijp19znfhlyv61p2fx2l3zqsqbl3br2xwxy219",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1031,
+              [nix.POS]: $pos[1030],
               homepage: "https://elpa.gnu.org/devel/poker.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10220,18 +8672,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1035,
+            [nix.POS]: $pos[1034],
             pname: "polymode",
             ename: "polymode",
             version: "0.2.2.0.20260505.180301",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1033,
+                [nix.POS]: $pos[1032],
                 url: "https://elpa.gnu.org/devel/polymode-0.2.2.0.20260505.180301.tar",
                 sha256: "00h3hyaz8rkv9wyvn0afg63v4v5ghz6h6hk1rds54wi8mb1501nc",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1034,
+              [nix.POS]: $pos[1033],
               homepage: "https://elpa.gnu.org/devel/polymode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10243,18 +8695,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1038,
+            [nix.POS]: $pos[1037],
             pname: "popper",
             ename: "popper",
             version: "0.4.8.0.20260301.162208",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1036,
+                [nix.POS]: $pos[1035],
                 url: "https://elpa.gnu.org/devel/popper-0.4.8.0.20260301.162208.tar",
                 sha256: "01380z79d8gl9c1s14zjqcjwmclx7iimhi79vd9mqg2cjn7qn1rc",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1037,
+              [nix.POS]: $pos[1036],
               homepage: "https://elpa.gnu.org/devel/popper.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10266,18 +8718,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1041,
+            [nix.POS]: $pos[1040],
             pname: "posframe",
             ename: "posframe",
             version: "1.5.2.0.20260908.6",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1039,
+                [nix.POS]: $pos[1038],
                 url: "https://elpa.gnu.org/devel/posframe-1.5.2.0.20260908.6.tar",
                 sha256: "001pqajgzckg8rk97s1n37k1lifd7pd3452jziy1l0dmxxj0awzs",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1040,
+              [nix.POS]: $pos[1039],
               homepage: "https://elpa.gnu.org/devel/posframe.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10289,18 +8741,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1044,
+            [nix.POS]: $pos[1043],
             pname: "pq",
             ename: "pq",
             version: "0.2.0.20240911.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1042,
+                [nix.POS]: $pos[1041],
                 url: "https://elpa.gnu.org/devel/pq-0.2.0.20240911.1.tar",
                 sha256: "07033s0lrns0ibmpvm7n02xfp1dwzkrb08vlsv5fj3lx7v0dk5g6",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1043,
+              [nix.POS]: $pos[1042],
               homepage: "https://elpa.gnu.org/devel/pq.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10312,18 +8764,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1047,
+            [nix.POS]: $pos[1046],
             pname: "prefixed-core",
             ename: "prefixed-core",
             version: "0.0.20260406.215107",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1045,
+                [nix.POS]: $pos[1044],
                 url: "https://elpa.gnu.org/devel/prefixed-core-0.0.20260406.215107.tar",
                 sha256: "0dp14kl142l3bh2w2m9ncmym9h7vhcp5f51x0rn1vmy4x8wdmxfv",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1046,
+              [nix.POS]: $pos[1045],
               homepage: "https://elpa.gnu.org/devel/prefixed-core.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10336,18 +8788,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1050,
+            [nix.POS]: $pos[1049],
             pname: "preview-auto",
             ename: "preview-auto",
             version: "0.5.0.0.20260708.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1048,
+                [nix.POS]: $pos[1047],
                 url: "https://elpa.gnu.org/devel/preview-auto-0.5.0.0.20260708.0.tar",
                 sha256: "1f4y9mrv7g46cvzjiygn703nfc293zha0ivsbkbj6qd6r78hklpf",
               })))),
             packageRequires: nix.thunk(() => [auctex]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1049,
+              [nix.POS]: $pos[1048],
               homepage: "https://elpa.gnu.org/devel/preview-auto.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10360,18 +8812,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1053,
+            [nix.POS]: $pos[1052],
             pname: "preview-tailor",
             ename: "preview-tailor",
             version: "0.2.1.0.20251201.82034",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1051,
+                [nix.POS]: $pos[1050],
                 url: "https://elpa.gnu.org/devel/preview-tailor-0.2.1.0.20251201.82034.tar",
                 sha256: "10k29lpg36rcnlm4nbn4dgf7dlqfmb167l2rcccplzhf4w3i45n4",
               })))),
             packageRequires: nix.thunk(() => [auctex]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1052,
+              [nix.POS]: $pos[1051],
               homepage: "https://elpa.gnu.org/devel/preview-tailor.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10384,18 +8836,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const xref = nix.arg($_1, "xref");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1056,
+            [nix.POS]: $pos[1055],
             pname: "project",
             ename: "project",
             version: "0.12.0.0.20260716.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1054,
+                [nix.POS]: $pos[1053],
                 url: "https://elpa.gnu.org/devel/project-0.12.0.0.20260716.0.tar",
                 sha256: "0iaqw9ci3sbq3y3ry7r3pyv4ydlbx8b01p7chqq3b3h55vdi3i1d",
               })))),
             packageRequires: nix.thunk(() => [xref]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1055,
+              [nix.POS]: $pos[1054],
               homepage: "https://elpa.gnu.org/devel/project.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10407,18 +8859,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1059,
+            [nix.POS]: $pos[1058],
             pname: "psgml",
             ename: "psgml",
             version: "1.3.5.0.20221229.184738",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1057,
+                [nix.POS]: $pos[1056],
                 url: "https://elpa.gnu.org/devel/psgml-1.3.5.0.20221229.184738.tar",
                 sha256: "1zdfdzbadrbj6g4k2q7w5yvxvblpwn4mkihmnmag7jym66r4wmnb",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1058,
+              [nix.POS]: $pos[1057],
               homepage: "https://elpa.gnu.org/devel/psgml.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10430,18 +8882,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1062,
+            [nix.POS]: $pos[1061],
             pname: "pspp-mode",
             ename: "pspp-mode",
             version: "1.1.0.20221221.81719",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1060,
+                [nix.POS]: $pos[1059],
                 url: "https://elpa.gnu.org/devel/pspp-mode-1.1.0.20221221.81719.tar",
                 sha256: "010qckmc85wc4i7k1rmhffcdbpxpvs6p5qxdvr6g3ws00c1a3j4l",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1061,
+              [nix.POS]: $pos[1060],
               homepage: "https://elpa.gnu.org/devel/pspp-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10453,18 +8905,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1065,
+            [nix.POS]: $pos[1064],
             pname: "pulsar",
             ename: "pulsar",
             version: "1.4.1.0.20260904.7",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1063,
+                [nix.POS]: $pos[1062],
                 url: "https://elpa.gnu.org/devel/pulsar-1.4.1.0.20260904.7.tar",
                 sha256: "1sgdknjqkn8g4dk88dh74zdc36h227y5vgafi3jjwzyfr5i7h7ig",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1064,
+              [nix.POS]: $pos[1063],
               homepage: "https://elpa.gnu.org/devel/pulsar.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10478,18 +8930,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const xr = nix.arg($_1, "xr");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1068,
+            [nix.POS]: $pos[1067],
             pname: "pyim",
             ename: "pyim",
             version: "5.3.6.0.20251230.80953",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1066,
+                [nix.POS]: $pos[1065],
                 url: "https://elpa.gnu.org/devel/pyim-5.3.6.0.20251230.80953.tar",
                 sha256: "1208kcy1c4h07pcwhw9dkg35g417ras089ar3b2m5j3zzqkga5sv",
               })))),
             packageRequires: nix.thunk(() => [async$, xr]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1067,
+              [nix.POS]: $pos[1066],
               homepage: "https://elpa.gnu.org/devel/pyim.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10502,18 +8954,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const pyim = nix.arg($_1, "pyim");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1071,
+            [nix.POS]: $pos[1070],
             pname: "pyim-basedict",
             ename: "pyim-basedict",
             version: "0.5.5.0.20240923.73912",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1069,
+                [nix.POS]: $pos[1068],
                 url: "https://elpa.gnu.org/devel/pyim-basedict-0.5.5.0.20240923.73912.tar",
                 sha256: "01czkf0i4hg2fdd7m3qas5wvb6ziczsrlnyr7phr1vrgh7qfl6n2",
               })))),
             packageRequires: nix.thunk(() => [pyim]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1070,
+              [nix.POS]: $pos[1069],
               homepage: "https://elpa.gnu.org/devel/pyim-basedict.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10526,18 +8978,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1074,
+            [nix.POS]: $pos[1073],
             pname: "python",
             ename: "python",
             version: "0.30.0.20260724.47",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1072,
+                [nix.POS]: $pos[1071],
                 url: "https://elpa.gnu.org/devel/python-0.30.0.20260724.47.tar",
                 sha256: "1jxvsq7fgz21xi5cy5cp10srknk8ivvg8xagi5pi2gii0glc1rf2",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1073,
+              [nix.POS]: $pos[1072],
               homepage: "https://elpa.gnu.org/devel/python.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10549,18 +9001,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1077,
+            [nix.POS]: $pos[1076],
             pname: "qrencode",
             ename: "qrencode",
             version: "1.5beta4.0.20260906.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1075,
+                [nix.POS]: $pos[1074],
                 url: "https://elpa.gnu.org/devel/qrencode-1.5beta4.0.20260906.0.tar",
                 sha256: "0j2439ixyvv10lzzb84k428xn920k84alz41wsd0h515013s6lgs",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1076,
+              [nix.POS]: $pos[1075],
               homepage: "https://elpa.gnu.org/devel/qrencode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10572,18 +9024,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1080,
+            [nix.POS]: $pos[1079],
             pname: "quarter-plane",
             ename: "quarter-plane",
             version: "0.1.0.20221221.81727",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1078,
+                [nix.POS]: $pos[1077],
                 url: "https://elpa.gnu.org/devel/quarter-plane-0.1.0.20221221.81727.tar",
                 sha256: "1s0fl9sxjhv0sl5ikvkhdnddjg1n2hzw0a64xcvm8859dk77fmy8",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1079,
+              [nix.POS]: $pos[1078],
               homepage: "https://elpa.gnu.org/devel/quarter-plane.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10596,18 +9048,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1083,
+            [nix.POS]: $pos[1082],
             pname: "queue",
             ename: "queue",
             version: "0.2.0.20210306.173709",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1081,
+                [nix.POS]: $pos[1080],
                 url: "https://elpa.gnu.org/devel/queue-0.2.0.20210306.173709.tar",
                 sha256: "09iicl5fdpli6jnvdj0h8cwj7wqqmxnfzdd57vfjdq09v3sjkljs",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1082,
+              [nix.POS]: $pos[1081],
               homepage: "https://elpa.gnu.org/devel/queue.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10619,18 +9071,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1086,
+            [nix.POS]: $pos[1085],
             pname: "rainbow-mode",
             ename: "rainbow-mode",
             version: "1.0.7.0.20260905.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1084,
+                [nix.POS]: $pos[1083],
                 url: "https://elpa.gnu.org/devel/rainbow-mode-1.0.7.0.20260905.0.tar",
                 sha256: "0by49vn0arg6hbfcidyakwnmy5rc8kdifrf3247lvn7mgq5x7dj0",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1085,
+              [nix.POS]: $pos[1084],
               homepage: "https://elpa.gnu.org/devel/rainbow-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10642,18 +9094,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1089,
+            [nix.POS]: $pos[1088],
             pname: "rbit",
             ename: "rbit",
             version: "0.1.0.20201128.182847",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1087,
+                [nix.POS]: $pos[1086],
                 url: "https://elpa.gnu.org/devel/rbit-0.1.0.20201128.182847.tar",
                 sha256: "1ajjfkih0dji2mdsvcpdzmb32nv20niryl8x17ki1016302qfvdj",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1088,
+              [nix.POS]: $pos[1087],
               homepage: "https://elpa.gnu.org/devel/rbit.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10665,18 +9117,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1092,
+            [nix.POS]: $pos[1091],
             pname: "rcirc-color",
             ename: "rcirc-color",
             version: "0.4.5.0.20230414.195045",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1090,
+                [nix.POS]: $pos[1089],
                 url: "https://elpa.gnu.org/devel/rcirc-color-0.4.5.0.20230414.195045.tar",
                 sha256: "1amlzg7njbmk1kbb569ygx2az7vd7py89z9aq9cmf5rm15hjsm59",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1091,
+              [nix.POS]: $pos[1090],
               homepage: "https://elpa.gnu.org/devel/rcirc-color.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10688,18 +9140,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1095,
+            [nix.POS]: $pos[1094],
             pname: "rcirc-mentions",
             ename: "rcirc-mentions",
             version: "1.0.5.0.20250908.131006",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1093,
+                [nix.POS]: $pos[1092],
                 url: "https://elpa.gnu.org/devel/rcirc-mentions-1.0.5.0.20250908.131006.tar",
                 sha256: "04l93gigrw6jkrarwf2ckakpq0p2n3nr6iigzc7mhflj1kbx1wm0",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1094,
+              [nix.POS]: $pos[1093],
               homepage: "https://elpa.gnu.org/devel/rcirc-mentions.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10711,18 +9163,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1098,
+            [nix.POS]: $pos[1097],
             pname: "rcirc-menu",
             ename: "rcirc-menu",
             version: "1.1.0.20221221.81818",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1096,
+                [nix.POS]: $pos[1095],
                 url: "https://elpa.gnu.org/devel/rcirc-menu-1.1.0.20221221.81818.tar",
                 sha256: "0gd19rzqgqb9w5cfpr1rz719k5z1rfkn8480b0h1zkvgpgmdrzbx",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1097,
+              [nix.POS]: $pos[1096],
               homepage: "https://elpa.gnu.org/devel/rcirc-menu.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10734,18 +9186,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1101,
+            [nix.POS]: $pos[1100],
             pname: "rcirc-sqlite",
             ename: "rcirc-sqlite",
             version: "1.0.4.0.20241108.161537",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1099,
+                [nix.POS]: $pos[1098],
                 url: "https://elpa.gnu.org/devel/rcirc-sqlite-1.0.4.0.20241108.161537.tar",
                 sha256: "0x5pngsnmny2ppg3cgdp5g3nmds6ys3zvamaj8wr6n1qw6k5b4z1",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1100,
+              [nix.POS]: $pos[1099],
               homepage: "https://elpa.gnu.org/devel/rcirc-sqlite.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10760,18 +9212,18 @@ export default nix.lambda((args) => (() => {
         const loc_changes = nix.arg($_1, "loc-changes");
         const test_simple = nix.arg($_1, "test-simple");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1104,
+            [nix.POS]: $pos[1103],
             pname: "realgud",
             ename: "realgud",
             version: "1.6.0.0.20260821.16",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1102,
+                [nix.POS]: $pos[1101],
                 url: "https://elpa.gnu.org/devel/realgud-1.6.0.0.20260821.16.tar",
                 sha256: "189x6bia0faz3n53d7j6cqzh8czpq6x0g34v94qm8p09psk1apyc",
               })))),
             packageRequires: nix.thunk(() => [load_relative, loc_changes, test_simple]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1103,
+              [nix.POS]: $pos[1102],
               homepage: "https://elpa.gnu.org/devel/realgud.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10785,18 +9237,18 @@ export default nix.lambda((args) => (() => {
         const load_relative = nix.arg($_1, "load-relative");
         const realgud = nix.arg($_1, "realgud");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1107,
+            [nix.POS]: $pos[1106],
             pname: "realgud-ipdb",
             ename: "realgud-ipdb",
             version: "1.0.0.0.20231216.160636",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1105,
+                [nix.POS]: $pos[1104],
                 url: "https://elpa.gnu.org/devel/realgud-ipdb-1.0.0.0.20231216.160636.tar",
                 sha256: "1s08gngzq18bgxdc6qpsg7j9wjqq842wj5bki2l8jgyqpin6g3h5",
               })))),
             packageRequires: nix.thunk(() => [load_relative, realgud]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1106,
+              [nix.POS]: $pos[1105],
               homepage: "https://elpa.gnu.org/devel/realgud-ipdb.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10810,18 +9262,18 @@ export default nix.lambda((args) => (() => {
         const load_relative = nix.arg($_1, "load-relative");
         const realgud = nix.arg($_1, "realgud");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1110,
+            [nix.POS]: $pos[1109],
             pname: "realgud-jdb",
             ename: "realgud-jdb",
             version: "1.0.0.0.20260725.17",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1108,
+                [nix.POS]: $pos[1107],
                 url: "https://elpa.gnu.org/devel/realgud-jdb-1.0.0.0.20260725.17.tar",
                 sha256: "0c5maqj8cqgsrb1q41zamqs1k46yymmlk6hwym3rbhis3y829wld",
               })))),
             packageRequires: nix.thunk(() => [load_relative, realgud]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1109,
+              [nix.POS]: $pos[1108],
               homepage: "https://elpa.gnu.org/devel/realgud-jdb.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10835,18 +9287,18 @@ export default nix.lambda((args) => (() => {
         const load_relative = nix.arg($_1, "load-relative");
         const realgud = nix.arg($_1, "realgud");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1113,
+            [nix.POS]: $pos[1112],
             pname: "realgud-lldb",
             ename: "realgud-lldb",
             version: "1.0.2.0.20260105.115809",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1111,
+                [nix.POS]: $pos[1110],
                 url: "https://elpa.gnu.org/devel/realgud-lldb-1.0.2.0.20260105.115809.tar",
                 sha256: "0a2wcq67lxvq4033bal1rvha1f6x6day2db7z36hc3wqcd0l6zxa",
               })))),
             packageRequires: nix.thunk(() => [load_relative, realgud]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1112,
+              [nix.POS]: $pos[1111],
               homepage: "https://elpa.gnu.org/devel/realgud-lldb.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10861,18 +9313,18 @@ export default nix.lambda((args) => (() => {
         const load_relative = nix.arg($_1, "load-relative");
         const realgud = nix.arg($_1, "realgud");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1116,
+            [nix.POS]: $pos[1115],
             pname: "realgud-node-debug",
             ename: "realgud-node-debug",
             version: "1.0.0.0.20190525.123417",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1114,
+                [nix.POS]: $pos[1113],
                 url: "https://elpa.gnu.org/devel/realgud-node-debug-1.0.0.0.20190525.123417.tar",
                 sha256: "1s5zav3d0xdj0jggw3znfzb43d9jrnzaafk51wiachh7j673gjjv",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, load_relative, realgud]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1115,
+              [nix.POS]: $pos[1114],
               homepage: "https://elpa.gnu.org/devel/realgud-node-debug.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10887,18 +9339,18 @@ export default nix.lambda((args) => (() => {
         const load_relative = nix.arg($_1, "load-relative");
         const realgud = nix.arg($_1, "realgud");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1119,
+            [nix.POS]: $pos[1118],
             pname: "realgud-node-inspect",
             ename: "realgud-node-inspect",
             version: "1.0.0.0.20190526.154549",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1117,
+                [nix.POS]: $pos[1116],
                 url: "https://elpa.gnu.org/devel/realgud-node-inspect-1.0.0.0.20190526.154549.tar",
                 sha256: "0hss16d3avyisdxp1xhzjqn2kd9xc3vkqg4ynsgvxampzli78fw9",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, load_relative, realgud]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1118,
+              [nix.POS]: $pos[1117],
               homepage: "https://elpa.gnu.org/devel/realgud-node-inspect.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10912,18 +9364,18 @@ export default nix.lambda((args) => (() => {
         const load_relative = nix.arg($_1, "load-relative");
         const realgud = nix.arg($_1, "realgud");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1122,
+            [nix.POS]: $pos[1121],
             pname: "realgud-pdbpp",
             ename: "realgud-pdbpp",
             version: "1.0.0.0.20230322.184929",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1120,
+                [nix.POS]: $pos[1119],
                 url: "https://elpa.gnu.org/devel/realgud-pdbpp-1.0.0.0.20230322.184929.tar",
                 sha256: "0sfijb7zdasglizjmk16999p75hwcclc8nik8l0h07608w2zwdal",
               })))),
             packageRequires: nix.thunk(() => [load_relative, realgud]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1121,
+              [nix.POS]: $pos[1120],
               homepage: "https://elpa.gnu.org/devel/realgud-pdbpp.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10937,18 +9389,18 @@ export default nix.lambda((args) => (() => {
         const load_relative = nix.arg($_1, "load-relative");
         const realgud = nix.arg($_1, "realgud");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1125,
+            [nix.POS]: $pos[1124],
             pname: "realgud-trepan-ni",
             ename: "realgud-trepan-ni",
             version: "1.0.1.0.20210513.183733",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1123,
+                [nix.POS]: $pos[1122],
                 url: "https://elpa.gnu.org/devel/realgud-trepan-ni-1.0.1.0.20210513.183733.tar",
                 sha256: "0p7sc7g1nwg1hyvgx5mzs2qpjnrayp7brw720kzxfxnxdfj7p0gj",
               })))),
             packageRequires: nix.thunk(() => [load_relative, realgud]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1124,
+              [nix.POS]: $pos[1123],
               homepage: "https://elpa.gnu.org/devel/realgud-trepan-ni.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10962,18 +9414,18 @@ export default nix.lambda((args) => (() => {
         const load_relative = nix.arg($_1, "load-relative");
         const realgud = nix.arg($_1, "realgud");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1128,
+            [nix.POS]: $pos[1127],
             pname: "realgud-trepan-xpy",
             ename: "realgud-trepan-xpy",
             version: "1.0.1.0.20260725.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1126,
+                [nix.POS]: $pos[1125],
                 url: "https://elpa.gnu.org/devel/realgud-trepan-xpy-1.0.1.0.20260725.2.tar",
                 sha256: "16zwdaclbfgvqmmksrnqh8hpgvc55n4xaa9jpz1xms4yqrmgg5qz",
               })))),
             packageRequires: nix.thunk(() => [load_relative, realgud]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1127,
+              [nix.POS]: $pos[1126],
               homepage: "https://elpa.gnu.org/devel/realgud-trepan-xpy.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -10985,18 +9437,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1131,
+            [nix.POS]: $pos[1130],
             pname: "rec-mode",
             ename: "rec-mode",
             version: "1.9.4.0.20240830.70150",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1129,
+                [nix.POS]: $pos[1128],
                 url: "https://elpa.gnu.org/devel/rec-mode-1.9.4.0.20240830.70150.tar",
                 sha256: "0jdz5hf8ials41vi90jrklv1sh7f83l6h2g7z3csqah0lgb19xxk",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1130,
+              [nix.POS]: $pos[1129],
               homepage: "https://elpa.gnu.org/devel/rec-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11008,18 +9460,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1134,
+            [nix.POS]: $pos[1133],
             pname: "register-list",
             ename: "register-list",
             version: "0.1.0.20250213.102055",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1132,
+                [nix.POS]: $pos[1131],
                 url: "https://elpa.gnu.org/devel/register-list-0.1.0.20250213.102055.tar",
                 sha256: "1q0lcj1ranylqawvi9y0c6rc87bl7g6bdwd08hpnsjh3jzyzmvqk",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1133,
+              [nix.POS]: $pos[1132],
               homepage: "https://elpa.gnu.org/devel/register-list.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11032,18 +9484,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const xr = nix.arg($_1, "xr");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1137,
+            [nix.POS]: $pos[1136],
             pname: "relint",
             ename: "relint",
             version: "2.2.0.20260205.105130",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1135,
+                [nix.POS]: $pos[1134],
                 url: "https://elpa.gnu.org/devel/relint-2.2.0.20260205.105130.tar",
                 sha256: "06k83c8ldxrdh9ncq5f3s4r84l6j367bcivv4y1gr0g5yhf92dgf",
               })))),
             packageRequires: nix.thunk(() => [xr]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1136,
+              [nix.POS]: $pos[1135],
               homepage: "https://elpa.gnu.org/devel/relint.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11055,18 +9507,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1140,
+            [nix.POS]: $pos[1139],
             pname: "repology",
             ename: "repology",
             version: "1.2.4.0.20240108.130348",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1138,
+                [nix.POS]: $pos[1137],
                 url: "https://elpa.gnu.org/devel/repology-1.2.4.0.20240108.130348.tar",
                 sha256: "1ybr0zn647sb6gfqrm6ahdkx3q30j2b0gaab335nkc7jqx1ba565",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1139,
+              [nix.POS]: $pos[1138],
               homepage: "https://elpa.gnu.org/devel/repology.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11079,18 +9531,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1143,
+            [nix.POS]: $pos[1142],
             pname: "rich-minority",
             ename: "rich-minority",
             version: "1.0.3.0.20240924.201748",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1141,
+                [nix.POS]: $pos[1140],
                 url: "https://elpa.gnu.org/devel/rich-minority-1.0.3.0.20240924.201748.tar",
                 sha256: "1jywghc41c5i0y0f2vi32yykfbkh7kccs9h46idlfq7a2fq42z55",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1142,
+              [nix.POS]: $pos[1141],
               homepage: "https://elpa.gnu.org/devel/rich-minority.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11102,18 +9554,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1146,
+            [nix.POS]: $pos[1145],
             pname: "rnc-mode",
             ename: "rnc-mode",
             version: "0.4.0.20260610.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1144,
+                [nix.POS]: $pos[1143],
                 url: "https://elpa.gnu.org/devel/rnc-mode-0.4.0.20260610.0.tar",
                 sha256: "1yvkmcqykpvnfzpq2qra4dc14rviwhhvch2wb19iy781v6dryxj5",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1145,
+              [nix.POS]: $pos[1144],
               homepage: "https://elpa.gnu.org/devel/rnc-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11125,18 +9577,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1149,
+            [nix.POS]: $pos[1148],
             pname: "rt-liberation",
             ename: "rt-liberation",
             version: "7.0.20240306.83828",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1147,
+                [nix.POS]: $pos[1146],
                 url: "https://elpa.gnu.org/devel/rt-liberation-7.0.20240306.83828.tar",
                 sha256: "1gz0hiwl8qqf1adxwgr8ly98pymqjrl3jjfly5r182l3rwp82gsh",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1148,
+              [nix.POS]: $pos[1147],
               homepage: "https://elpa.gnu.org/devel/rt-liberation.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11148,18 +9600,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1152,
+            [nix.POS]: $pos[1151],
             pname: "ruby-end",
             ename: "ruby-end",
             version: "0.4.3.0.20230205.12506",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1150,
+                [nix.POS]: $pos[1149],
                 url: "https://elpa.gnu.org/devel/ruby-end-0.4.3.0.20230205.12506.tar",
                 sha256: "0cr18s311c986gwx12f6fmnqwyqb4fh7j6h8m2cgp767vn4aqwxl",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1151,
+              [nix.POS]: $pos[1150],
               homepage: "https://elpa.gnu.org/devel/ruby-end.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11174,18 +9626,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1155,
+            [nix.POS]: $pos[1154],
             pname: "rudel",
             ename: "rudel",
             version: "0.3.2.0.20221212.230154",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1153,
+                [nix.POS]: $pos[1152],
                 url: "https://elpa.gnu.org/devel/rudel-0.3.2.0.20221212.230154.tar",
                 sha256: "0lcdc0gdqkl4disr9rwn1dmziwaiwnsyhfwvf02vrgpabd7dq95w",
               })))),
             packageRequires: nix.thunk(() => [cl_generic, cl_lib, cl_print]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1154,
+              [nix.POS]: $pos[1153],
               homepage: "https://elpa.gnu.org/devel/rudel.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11198,18 +9650,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const project = nix.arg($_1, "project");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1158,
+            [nix.POS]: $pos[1157],
             pname: "satchel",
             ename: "satchel",
             version: "0.2.0.20220223.202624",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1156,
+                [nix.POS]: $pos[1155],
                 url: "https://elpa.gnu.org/devel/satchel-0.2.0.20220223.202624.tar",
                 sha256: "1x558csdfahlp459m4bb827yayrzgisaijzbpxbl1pjhq595585d",
               })))),
             packageRequires: nix.thunk(() => [project]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1157,
+              [nix.POS]: $pos[1156],
               homepage: "https://elpa.gnu.org/devel/satchel.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11222,18 +9674,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1161,
+            [nix.POS]: $pos[1160],
             pname: "scanner",
             ename: "scanner",
             version: "0.3.0.20250208.195044",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1159,
+                [nix.POS]: $pos[1158],
                 url: "https://elpa.gnu.org/devel/scanner-0.3.0.20250208.195044.tar",
                 sha256: "0fxq0lylgdzsk398q2658gsd3xlr8wd63wlpvnx0vakzj824x2cb",
               })))),
             packageRequires: nix.thunk(() => [dash]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1160,
+              [nix.POS]: $pos[1159],
               homepage: "https://elpa.gnu.org/devel/scanner.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11245,18 +9697,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1164,
+            [nix.POS]: $pos[1163],
             pname: "scroll-restore",
             ename: "scroll-restore",
             version: "1.0.0.20221221.81959",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1162,
+                [nix.POS]: $pos[1161],
                 url: "https://elpa.gnu.org/devel/scroll-restore-1.0.0.20221221.81959.tar",
                 sha256: "04xhshjm5fr5q85srmjhvm20l0zljgbdsy1f3g3lczgzqrwvyg9f",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1163,
+              [nix.POS]: $pos[1162],
               homepage: "https://elpa.gnu.org/devel/scroll-restore.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11268,18 +9720,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1167,
+            [nix.POS]: $pos[1166],
             pname: "sed-mode",
             ename: "sed-mode",
             version: "1.1.0.20230721.154631",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1165,
+                [nix.POS]: $pos[1164],
                 url: "https://elpa.gnu.org/devel/sed-mode-1.1.0.20230721.154631.tar",
                 sha256: "1gb7m8w5v0ay8mcm7alyixsnmndivd24467v58rkj0bpf7bmfa5v",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1166,
+              [nix.POS]: $pos[1165],
               homepage: "https://elpa.gnu.org/devel/sed-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11291,18 +9743,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1170,
+            [nix.POS]: $pos[1169],
             pname: "sendai-theme",
             ename: "sendai-theme",
             version: "0.1.1snapshot0.20260701.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1168,
+                [nix.POS]: $pos[1167],
                 url: "https://elpa.gnu.org/devel/sendai-theme-0.1.1snapshot0.20260701.2.tar",
                 sha256: "08xpcxs280mbipllcjl06hmrxmpdzrwkfzcrvq6n9k2dv62x1cki",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1169,
+              [nix.POS]: $pos[1168],
               homepage: "https://elpa.gnu.org/devel/sendai-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11314,18 +9766,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1173,
+            [nix.POS]: $pos[1172],
             pname: "seq",
             ename: "seq",
             version: "2.24.0.20240201.135317",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1171,
+                [nix.POS]: $pos[1170],
                 url: "https://elpa.gnu.org/devel/seq-2.24.0.20240201.135317.tar",
                 sha256: "0plr9pbvzd5cfivj90n0jm920hp2x1giy9889pr8x5bqqnba6j66",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1172,
+              [nix.POS]: $pos[1171],
               homepage: "https://elpa.gnu.org/devel/seq.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11337,18 +9789,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1176,
+            [nix.POS]: $pos[1175],
             pname: "setup",
             ename: "setup",
             version: "1.5.0.0.20251027.195908",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1174,
+                [nix.POS]: $pos[1173],
                 url: "https://elpa.gnu.org/devel/setup-1.5.0.0.20251027.195908.tar",
                 sha256: "1jpilrwlpprzsf9jmpqwac1zwkspja7qxa93aj2j0v8vzcj42fr6",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1175,
+              [nix.POS]: $pos[1174],
               homepage: "https://elpa.gnu.org/devel/setup.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11360,18 +9812,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1179,
+            [nix.POS]: $pos[1178],
             pname: "shelisp",
             ename: "shelisp",
             version: "1.0.0.0.20221212.230255",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1177,
+                [nix.POS]: $pos[1176],
                 url: "https://elpa.gnu.org/devel/shelisp-1.0.0.0.20221212.230255.tar",
                 sha256: "0kk24mkmm4imf7gsr7xihj3xf2y9mgy61gpyql0wms1vlmkl0mwk",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1178,
+              [nix.POS]: $pos[1177],
               homepage: "https://elpa.gnu.org/devel/shelisp.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11383,18 +9835,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1182,
+            [nix.POS]: $pos[1181],
             pname: "shell-command-plus",
             ename: "shell-command+",
             version: "2.5.0.0.20260516.144445",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1180,
+                [nix.POS]: $pos[1179],
                 url: "https://elpa.gnu.org/devel/shell-command+-2.5.0.0.20260516.144445.tar",
                 sha256: "1s6zwc08jgxjrbbdz7nbw4698vyd0z3zfqmkkkqx5ihklm1i1156",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1181,
+              [nix.POS]: $pos[1180],
               homepage: "https://elpa.gnu.org/devel/shell-command+.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11406,18 +9858,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1185,
+            [nix.POS]: $pos[1184],
             pname: "shell-quasiquote",
             ename: "shell-quasiquote",
             version: "0.0.20250316.162215",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1183,
+                [nix.POS]: $pos[1182],
                 url: "https://elpa.gnu.org/devel/shell-quasiquote-0.0.20250316.162215.tar",
                 sha256: "1f19k60y30vnp3dw62fn2wi94bkgdfx6nl8i50yx5nnw0cjp9f7l",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1184,
+              [nix.POS]: $pos[1183],
               homepage: "https://elpa.gnu.org/devel/shell-quasiquote.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11429,18 +9881,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1188,
+            [nix.POS]: $pos[1187],
             pname: "shen-mode",
             ename: "shen-mode",
             version: "0.1.0.20221221.82050",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1186,
+                [nix.POS]: $pos[1185],
                 url: "https://elpa.gnu.org/devel/shen-mode-0.1.0.20221221.82050.tar",
                 sha256: "17ygb1c0x52n3cnmvaacrcf7m6qdjxdqaw1pn7lg3899kl45dh3r",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1187,
+              [nix.POS]: $pos[1186],
               homepage: "https://elpa.gnu.org/devel/shen-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11452,18 +9904,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1191,
+            [nix.POS]: $pos[1190],
             pname: "shift-number",
             ename: "shift-number",
             version: "0.3.0.20260621.19",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1189,
+                [nix.POS]: $pos[1188],
                 url: "https://elpa.gnu.org/devel/shift-number-0.3.0.20260621.19.tar",
                 sha256: "08wc1kb8fvccfaw1c5n5cpmpxrjhzxaamsp9076lb59aa2ffgsz8",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1190,
+              [nix.POS]: $pos[1189],
               homepage: "https://elpa.gnu.org/devel/shift-number.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11475,18 +9927,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1194,
+            [nix.POS]: $pos[1193],
             pname: "show-font",
             ename: "show-font",
             version: "1.0.0.0.20260424.102736",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1192,
+                [nix.POS]: $pos[1191],
                 url: "https://elpa.gnu.org/devel/show-font-1.0.0.0.20260424.102736.tar",
                 sha256: "06kf0hivajpb7g7ba3sc8nkaz1pny6j1imsr5jqf1nawfyb24qrd",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1193,
+              [nix.POS]: $pos[1192],
               homepage: "https://elpa.gnu.org/devel/show-font.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11498,18 +9950,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1197,
+            [nix.POS]: $pos[1196],
             pname: "sisu-mode",
             ename: "sisu-mode",
             version: "7.1.8.0.20221221.82114",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1195,
+                [nix.POS]: $pos[1194],
                 url: "https://elpa.gnu.org/devel/sisu-mode-7.1.8.0.20221221.82114.tar",
                 sha256: "1cyynn3sk8wxfhiz5q0lqwq07kqy67s2rvjql62880in5m5r2jpa",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1196,
+              [nix.POS]: $pos[1195],
               homepage: "https://elpa.gnu.org/devel/sisu-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11521,18 +9973,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1200,
+            [nix.POS]: $pos[1199],
             pname: "site-lisp",
             ename: "site-lisp",
             version: "0.3.0.0.20260411.104225",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1198,
+                [nix.POS]: $pos[1197],
                 url: "https://elpa.gnu.org/devel/site-lisp-0.3.0.0.20260411.104225.tar",
                 sha256: "0vasl2ya4vfhprpbhnydkzjm07lsdlfgpsb3gdqzllpd77fmjnfx",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1199,
+              [nix.POS]: $pos[1198],
               homepage: "https://elpa.gnu.org/devel/site-lisp.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11544,18 +9996,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1203,
+            [nix.POS]: $pos[1202],
             pname: "sketch-mode",
             ename: "sketch-mode",
             version: "1.0.4.0.20230420.122954",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1201,
+                [nix.POS]: $pos[1200],
                 url: "https://elpa.gnu.org/devel/sketch-mode-1.0.4.0.20230420.122954.tar",
                 sha256: "0ssh1v49h94gvchpynvjcsw80swpcdw541zxxhxm5zi6gsnyhnjd",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1202,
+              [nix.POS]: $pos[1201],
               homepage: "https://elpa.gnu.org/devel/sketch-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11568,18 +10020,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1206,
+            [nix.POS]: $pos[1205],
             pname: "slime-volleyball",
             ename: "slime-volleyball",
             version: "1.2.0.0.20221221.82156",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1204,
+                [nix.POS]: $pos[1203],
                 url: "https://elpa.gnu.org/devel/slime-volleyball-1.2.0.0.20221221.82156.tar",
                 sha256: "015qpac86km7czpqr2f7xpjlkwbq9s4z9jl0dnr8b2bzh0iwqiik",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1205,
+              [nix.POS]: $pos[1204],
               homepage: "https://elpa.gnu.org/devel/slime-volleyball.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11591,18 +10043,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1209,
+            [nix.POS]: $pos[1208],
             pname: "sm-c-mode",
             ename: "sm-c-mode",
             version: "1.2.0.20240404.93144",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1207,
+                [nix.POS]: $pos[1206],
                 url: "https://elpa.gnu.org/devel/sm-c-mode-1.2.0.20240404.93144.tar",
                 sha256: "1xbkdvhxaffk6csav2ivbrqv85rkb4arnsslp2ji13alkm5hx1zx",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1208,
+              [nix.POS]: $pos[1207],
               homepage: "https://elpa.gnu.org/devel/sm-c-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11614,18 +10066,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1212,
+            [nix.POS]: $pos[1211],
             pname: "smalltalk-mode",
             ename: "smalltalk-mode",
             version: "4.0.0.20221221.82225",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1210,
+                [nix.POS]: $pos[1209],
                 url: "https://elpa.gnu.org/devel/smalltalk-mode-4.0.0.20221221.82225.tar",
                 sha256: "1qk0z1gddw7fidvj429ivjwnxb4f5g074r531nmpvmy2l7srchd9",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1211,
+              [nix.POS]: $pos[1210],
               homepage: "https://elpa.gnu.org/devel/smalltalk-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11637,18 +10089,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1215,
+            [nix.POS]: $pos[1214],
             pname: "smart-yank",
             ename: "smart-yank",
             version: "0.1.1.0.20221221.82231",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1213,
+                [nix.POS]: $pos[1212],
                 url: "https://elpa.gnu.org/devel/smart-yank-0.1.1.0.20221221.82231.tar",
                 sha256: "17w9ybfvdsnsy1vf1mg7a4428rna49i2yfifrp20srj8c0dapwzd",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1214,
+              [nix.POS]: $pos[1213],
               homepage: "https://elpa.gnu.org/devel/smart-yank.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11661,18 +10113,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1218,
+            [nix.POS]: $pos[1217],
             pname: "sml-mode",
             ename: "sml-mode",
             version: "6.12.0.20250404.173928",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1216,
+                [nix.POS]: $pos[1215],
                 url: "https://elpa.gnu.org/devel/sml-mode-6.12.0.20250404.173928.tar",
                 sha256: "05cdfdsnphxxww1mb05fzf18gray50s7k96m4nfpqcwlyzmbi947",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1217,
+              [nix.POS]: $pos[1216],
               homepage: "https://elpa.gnu.org/devel/sml-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11684,18 +10136,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1221,
+            [nix.POS]: $pos[1220],
             pname: "so-long",
             ename: "so-long",
             version: "1.1.2.0.20260816.24",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1219,
+                [nix.POS]: $pos[1218],
                 url: "https://elpa.gnu.org/devel/so-long-1.1.2.0.20260816.24.tar",
                 sha256: "1fnaglqs73x4q05hwc7xm9hv7w4k7544chqwcaa04g8qsjsb931w",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1220,
+              [nix.POS]: $pos[1219],
               homepage: "https://elpa.gnu.org/devel/so-long.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11708,18 +10160,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1224,
+            [nix.POS]: $pos[1223],
             pname: "soap-client",
             ename: "soap-client",
             version: "3.2.3.0.20260310.104821",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1222,
+                [nix.POS]: $pos[1221],
                 url: "https://elpa.gnu.org/devel/soap-client-3.2.3.0.20260310.104821.tar",
                 sha256: "0qz812kslvqx1bq6k4a3ccfc0d6prz845khq14rawm75pdaiwdaz",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1223,
+              [nix.POS]: $pos[1222],
               homepage: "https://elpa.gnu.org/devel/soap-client.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11732,18 +10184,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1227,
+            [nix.POS]: $pos[1226],
             pname: "sokoban",
             ename: "sokoban",
             version: "1.4.9.0.20220928.185052",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1225,
+                [nix.POS]: $pos[1224],
                 url: "https://elpa.gnu.org/devel/sokoban-1.4.9.0.20220928.185052.tar",
                 sha256: "1d3s1v81mvfjcq5bbf0338ldxgl2rymqb3vqqw7drbics4jq5fc0",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1226,
+              [nix.POS]: $pos[1225],
               homepage: "https://elpa.gnu.org/devel/sokoban.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11755,18 +10207,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1230,
+            [nix.POS]: $pos[1229],
             pname: "sotlisp",
             ename: "sotlisp",
             version: "1.6.2.0.20220909.50328",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1228,
+                [nix.POS]: $pos[1227],
                 url: "https://elpa.gnu.org/devel/sotlisp-1.6.2.0.20220909.50328.tar",
                 sha256: "1g48ahiwdipk4ckynqipsfradd1qafg59s10jkbpkp3wvfmxi5sf",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1229,
+              [nix.POS]: $pos[1228],
               homepage: "https://elpa.gnu.org/devel/sotlisp.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11778,18 +10230,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1233,
+            [nix.POS]: $pos[1232],
             pname: "spacious-padding",
             ename: "spacious-padding",
             version: "0.8.0.0.20260724.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1231,
+                [nix.POS]: $pos[1230],
                 url: "https://elpa.gnu.org/devel/spacious-padding-0.8.0.0.20260724.4.tar",
                 sha256: "0jdg8vmkzzibn8y3vql6sf6m2s03d2nh3w6bln6a9i9mb15j6sza",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1232,
+              [nix.POS]: $pos[1231],
               homepage: "https://elpa.gnu.org/devel/spacious-padding.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11802,18 +10254,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1236,
+            [nix.POS]: $pos[1235],
             pname: "speedrect",
             ename: "speedrect",
             version: "0.7.0.20241220.133155",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1234,
+                [nix.POS]: $pos[1233],
                 url: "https://elpa.gnu.org/devel/speedrect-0.7.0.20241220.133155.tar",
                 sha256: "10bcmxy5pcni1789fa67awv03q17d5b3ls47vxkn1p6diiha95jw",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1235,
+              [nix.POS]: $pos[1234],
               homepage: "https://elpa.gnu.org/devel/speedrect.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11825,18 +10277,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1239,
+            [nix.POS]: $pos[1238],
             pname: "spinner",
             ename: "spinner",
             version: "1.7.4.0.20220915.94959",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1237,
+                [nix.POS]: $pos[1236],
                 url: "https://elpa.gnu.org/devel/spinner-1.7.4.0.20220915.94959.tar",
                 sha256: "1110bxj7vgai0wgsqbd9917k72xmalyfy0rlwqp46azg02ljam6j",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1238,
+              [nix.POS]: $pos[1237],
               homepage: "https://elpa.gnu.org/devel/spinner.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11848,18 +10300,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1242,
+            [nix.POS]: $pos[1241],
             pname: "sql-beeline",
             ename: "sql-beeline",
             version: "0.2.0.20221221.82329",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1240,
+                [nix.POS]: $pos[1239],
                 url: "https://elpa.gnu.org/devel/sql-beeline-0.2.0.20221221.82329.tar",
                 sha256: "0qfw9q5isyjywlm2fyaazci24jza6h4s50i0zmjk35j6spyxwffs",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1241,
+              [nix.POS]: $pos[1240],
               homepage: "https://elpa.gnu.org/devel/sql-beeline.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11871,18 +10323,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1245,
+            [nix.POS]: $pos[1244],
             pname: "sql-cassandra",
             ename: "sql-cassandra",
             version: "0.2.2.0.20221221.82336",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1243,
+                [nix.POS]: $pos[1242],
                 url: "https://elpa.gnu.org/devel/sql-cassandra-0.2.2.0.20221221.82336.tar",
                 sha256: "1rl2bdjyglzssm00zdfqidd9j7jzizxaq60bclqa5dsz80zsd6aq",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1244,
+              [nix.POS]: $pos[1243],
               homepage: "https://elpa.gnu.org/devel/sql-cassandra.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11895,18 +10347,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1248,
+            [nix.POS]: $pos[1247],
             pname: "sql-indent",
             ename: "sql-indent",
             version: "1.7.0.20241109.2223",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1246,
+                [nix.POS]: $pos[1245],
                 url: "https://elpa.gnu.org/devel/sql-indent-1.7.0.20241109.2223.tar",
                 sha256: "0hrpal1di201x62hq2xhck0xhv2vnn972j6nb2mca9lxyvz6h625",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1247,
+              [nix.POS]: $pos[1246],
               homepage: "https://elpa.gnu.org/devel/sql-indent.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11918,18 +10370,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1251,
+            [nix.POS]: $pos[1250],
             pname: "sql-smie",
             ename: "sql-smie",
             version: "0.0.20221221.82351",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1249,
+                [nix.POS]: $pos[1248],
                 url: "https://elpa.gnu.org/devel/sql-smie-0.0.20221221.82351.tar",
                 sha256: "05jv2k9gswwwyi19da8d5f176lb81qmnf94dvghyzh272v9iwvkr",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1250,
+              [nix.POS]: $pos[1249],
               homepage: "https://elpa.gnu.org/devel/sql-smie.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11943,18 +10395,18 @@ export default nix.lambda((args) => (() => {
         const plz = nix.arg($_1, "plz");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1254,
+            [nix.POS]: $pos[1253],
             pname: "srht",
             ename: "srht",
             version: "0.4.0.20240506.104337",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1252,
+                [nix.POS]: $pos[1251],
                 url: "https://elpa.gnu.org/devel/srht-0.4.0.20240506.104337.tar",
                 sha256: "1fs6av8l3v4vvzxxhd20rzwrwh8dkk1d1x21jkjx8nczj2jydwb0",
               })))),
             packageRequires: nix.thunk(() => [plz, transient]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1253,
+              [nix.POS]: $pos[1252],
               homepage: "https://elpa.gnu.org/devel/srht.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11966,18 +10418,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1257,
+            [nix.POS]: $pos[1256],
             pname: "ssh-deploy",
             ename: "ssh-deploy",
             version: "3.1.16.0.20260817.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1255,
+                [nix.POS]: $pos[1254],
                 url: "https://elpa.gnu.org/devel/ssh-deploy-3.1.16.0.20260817.4.tar",
                 sha256: "1jhjh26hnighz9wlfb6yrwmn4hf9jln93vyhq31m3m9wdbmksqq2",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1256,
+              [nix.POS]: $pos[1255],
               homepage: "https://elpa.gnu.org/devel/ssh-deploy.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -11990,18 +10442,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const modus_themes = nix.arg($_1, "modus-themes");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1260,
+            [nix.POS]: $pos[1259],
             pname: "standard-themes",
             ename: "standard-themes",
             version: "3.0.2.0.20260424.102741",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1258,
+                [nix.POS]: $pos[1257],
                 url: "https://elpa.gnu.org/devel/standard-themes-3.0.2.0.20260424.102741.tar",
                 sha256: "1h3q71b4g89av2a9i1864mhkww75669051xs2qzp78aglqnm8dr6",
               })))),
             packageRequires: nix.thunk(() => [modus_themes]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1259,
+              [nix.POS]: $pos[1258],
               homepage: "https://elpa.gnu.org/devel/standard-themes.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12013,18 +10465,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1263,
+            [nix.POS]: $pos[1262],
             pname: "stream",
             ename: "stream",
             version: "2.4.0.0.20250102.122330",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1261,
+                [nix.POS]: $pos[1260],
                 url: "https://elpa.gnu.org/devel/stream-2.4.0.0.20250102.122330.tar",
                 sha256: "0p1cl4xl0yh3qw0r5zy37rapbzi0xav8wzhcrvm0scgsr7il5jm8",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1262,
+              [nix.POS]: $pos[1261],
               homepage: "https://elpa.gnu.org/devel/stream.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12036,18 +10488,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1266,
+            [nix.POS]: $pos[1265],
             pname: "substitute",
             ename: "substitute",
             version: "0.6.1.0.20260825.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1264,
+                [nix.POS]: $pos[1263],
                 url: "https://elpa.gnu.org/devel/substitute-0.6.1.0.20260825.3.tar",
                 sha256: "1j91c8sg9zqm0lzriv1i5n9msby1544flngd17r3isz4ph8079a7",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1265,
+              [nix.POS]: $pos[1264],
               homepage: "https://elpa.gnu.org/devel/substitute.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12059,18 +10511,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1269,
+            [nix.POS]: $pos[1268],
             pname: "svg",
             ename: "svg",
             version: "1.1.0.20260101.125434",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1267,
+                [nix.POS]: $pos[1266],
                 url: "https://elpa.gnu.org/devel/svg-1.1.0.20260101.125434.tar",
                 sha256: "1h1npvbwv5mgcqd1wg35hh6v1zkxl0bghgdp320p55hvzp18f2j2",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1268,
+              [nix.POS]: $pos[1267],
               homepage: "https://elpa.gnu.org/devel/svg.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12083,18 +10535,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const svg = nix.arg($_1, "svg");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1272,
+            [nix.POS]: $pos[1271],
             pname: "svg-clock",
             ename: "svg-clock",
             version: "1.2.0.20221221.82408",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1270,
+                [nix.POS]: $pos[1269],
                 url: "https://elpa.gnu.org/devel/svg-clock-1.2.0.20221221.82408.tar",
                 sha256: "15fshgjqv3995f2339rwvjw9vyiqz2lfs9h80gkmssha7fdfw3qx",
               })))),
             packageRequires: nix.thunk(() => [svg]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1271,
+              [nix.POS]: $pos[1270],
               homepage: "https://elpa.gnu.org/devel/svg-clock.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12106,18 +10558,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1275,
+            [nix.POS]: $pos[1274],
             pname: "svg-lib",
             ename: "svg-lib",
             version: "0.3.0.20250822.125859",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1273,
+                [nix.POS]: $pos[1272],
                 url: "https://elpa.gnu.org/devel/svg-lib-0.3.0.20250822.125859.tar",
                 sha256: "14ilvsml7j9xi9fkqhdxab6nmy979741fwxq72xpfl3j9ivymsrn",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1274,
+              [nix.POS]: $pos[1273],
               homepage: "https://elpa.gnu.org/devel/svg-lib.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12130,18 +10582,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const svg_lib = nix.arg($_1, "svg-lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1278,
+            [nix.POS]: $pos[1277],
             pname: "svg-tag-mode",
             ename: "svg-tag-mode",
             version: "0.3.3.0.20241021.134153",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1276,
+                [nix.POS]: $pos[1275],
                 url: "https://elpa.gnu.org/devel/svg-tag-mode-0.3.3.0.20241021.134153.tar",
                 sha256: "1zhmjpskaqsv2rl8lqbnb93b08d0xjk0d84ksjzwgr3bzmscpz5n",
               })))),
             packageRequires: nix.thunk(() => [svg_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1277,
+              [nix.POS]: $pos[1276],
               homepage: "https://elpa.gnu.org/devel/svg-tag-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12154,18 +10606,18 @@ export default nix.lambda((args) => (() => {
         const ivy = nix.arg($_1, "ivy");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1281,
+            [nix.POS]: $pos[1280],
             pname: "swiper",
             ename: "swiper",
             version: "0.15.1.0.20260212.144752",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1279,
+                [nix.POS]: $pos[1278],
                 url: "https://elpa.gnu.org/devel/swiper-0.15.1.0.20260212.144752.tar",
                 sha256: "1v1lhxmann8c5jd9qnskvzkfl3bpjd9d1lh8dw7v3d89f8xh9p11",
               })))),
             packageRequires: nix.thunk(() => [ivy]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1280,
+              [nix.POS]: $pos[1279],
               homepage: "https://elpa.gnu.org/devel/swiper.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12178,18 +10630,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1284,
+            [nix.POS]: $pos[1283],
             pname: "switchy-window",
             ename: "switchy-window",
             version: "1.4.0.20260208.102948",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1282,
+                [nix.POS]: $pos[1281],
                 url: "https://elpa.gnu.org/devel/switchy-window-1.4.0.20260208.102948.tar",
                 sha256: "1s70jnsbqa37arq4czmzbn4r2ba9s6k8k7iz2i6bz0pqmbdrmp84",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1283,
+              [nix.POS]: $pos[1282],
               homepage: "https://elpa.gnu.org/devel/switchy-window.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12201,18 +10653,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1287,
+            [nix.POS]: $pos[1286],
             pname: "sxhkdrc-mode",
             ename: "sxhkdrc-mode",
             version: "1.2.0.0.20260424.102746",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1285,
+                [nix.POS]: $pos[1284],
                 url: "https://elpa.gnu.org/devel/sxhkdrc-mode-1.2.0.0.20260424.102746.tar",
                 sha256: "1cr31122688fl5cyslqzawinaca7df64hxzqvszalzv32gimzm15",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1286,
+              [nix.POS]: $pos[1285],
               homepage: "https://elpa.gnu.org/devel/sxhkdrc-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12224,18 +10676,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1290,
+            [nix.POS]: $pos[1289],
             pname: "system-packages",
             ename: "system-packages",
             version: "1.1.2.0.20251213.72223",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1288,
+                [nix.POS]: $pos[1287],
                 url: "https://elpa.gnu.org/devel/system-packages-1.1.2.0.20251213.72223.tar",
                 sha256: "0rsppj8j5bs4b15s7vliv60vh8wqvwm3zmqq5jj219sbjrg5c8nz",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1289,
+              [nix.POS]: $pos[1288],
               homepage: "https://elpa.gnu.org/devel/system-packages.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12248,18 +10700,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1293,
+            [nix.POS]: $pos[1292],
             pname: "systemd",
             ename: "systemd",
             version: "0.0.20221221.82418",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1291,
+                [nix.POS]: $pos[1290],
                 url: "https://elpa.gnu.org/devel/systemd-0.0.20221221.82418.tar",
                 sha256: "1ir3y4w2x1cl24zy66yym5rlpffgrcs10x4sxhb2sgg5k4d88scn",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1292,
+              [nix.POS]: $pos[1291],
               homepage: "https://elpa.gnu.org/devel/systemd.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12273,18 +10725,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const queue = nix.arg($_1, "queue");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1296,
+            [nix.POS]: $pos[1295],
             pname: "tNFA",
             ename: "tNFA",
             version: "0.1.1.0.20240405.140856",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1294,
+                [nix.POS]: $pos[1293],
                 url: "https://elpa.gnu.org/devel/tNFA-0.1.1.0.20240405.140856.tar",
                 sha256: "0m2lh50bz56j5gdpjvan0sksgnlb3cszb28q69xni88hajacn4aw",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, queue]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1295,
+              [nix.POS]: $pos[1294],
               homepage: "https://elpa.gnu.org/devel/tNFA.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12296,18 +10748,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1299,
+            [nix.POS]: $pos[1298],
             pname: "tam",
             ename: "tam",
             version: "0.1.0.20230920.103516",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1297,
+                [nix.POS]: $pos[1296],
                 url: "https://elpa.gnu.org/devel/tam-0.1.0.20230920.103516.tar",
                 sha256: "01w1vwb1ajmbk90c79wc0dc367sy5b5qdf471zr0xinajfv47709",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1298,
+              [nix.POS]: $pos[1297],
               homepage: "https://elpa.gnu.org/devel/tam.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12319,18 +10771,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1302,
+            [nix.POS]: $pos[1301],
             pname: "taxy",
             ename: "taxy",
             version: "0.11pre0.20251129.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1300,
+                [nix.POS]: $pos[1299],
                 url: "https://elpa.gnu.org/devel/taxy-0.11pre0.20251129.2.tar",
                 sha256: "1y4k68h5z1xc7x0rc3lx1cyvbpniirqglr2gik08m1m1570r6w4x",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1301,
+              [nix.POS]: $pos[1300],
               homepage: "https://elpa.gnu.org/devel/taxy.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12344,18 +10796,18 @@ export default nix.lambda((args) => (() => {
         const magit_section = nix.arg($_1, "magit-section");
         const taxy = nix.arg($_1, "taxy");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1305,
+            [nix.POS]: $pos[1304],
             pname: "taxy-magit-section",
             ename: "taxy-magit-section",
             version: "0.14.3.0.20240923.174028",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1303,
+                [nix.POS]: $pos[1302],
                 url: "https://elpa.gnu.org/devel/taxy-magit-section-0.14.3.0.20240923.174028.tar",
                 sha256: "104vhlbr03sz1lrvqh3qs96a61d0kcjqqc71q84q400890an3gh9",
               })))),
             packageRequires: nix.thunk(() => [magit_section, taxy]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1304,
+              [nix.POS]: $pos[1303],
               homepage: "https://elpa.gnu.org/devel/taxy-magit-section.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12367,18 +10819,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1308,
+            [nix.POS]: $pos[1307],
             pname: "temp-buffer-browse",
             ename: "temp-buffer-browse",
             version: "1.5.0.20160804.124501",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1306,
+                [nix.POS]: $pos[1305],
                 url: "https://elpa.gnu.org/devel/temp-buffer-browse-1.5.0.20160804.124501.tar",
                 sha256: "0jw3fjbnbbrsz54hmg4rhcwrl0ag7h6873n2kdph3gjds29d8jxp",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1307,
+              [nix.POS]: $pos[1306],
               homepage: "https://elpa.gnu.org/devel/temp-buffer-browse.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12391,18 +10843,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1311,
+            [nix.POS]: $pos[1310],
             pname: "tempel",
             ename: "tempel",
             version: "1.14.0.20260814.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1309,
+                [nix.POS]: $pos[1308],
                 url: "https://elpa.gnu.org/devel/tempel-1.14.0.20260814.3.tar",
                 sha256: "0s0p192mpxihsqa3vxiidqk237p02sx192w61csxc05mjjbwhbx2",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1310,
+              [nix.POS]: $pos[1309],
               homepage: "https://elpa.gnu.org/devel/tempel.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12414,18 +10866,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1314,
+            [nix.POS]: $pos[1313],
             pname: "termint",
             ename: "termint",
             version: "0.2.3.0.20260804.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1312,
+                [nix.POS]: $pos[1311],
                 url: "https://elpa.gnu.org/devel/termint-0.2.3.0.20260804.2.tar",
                 sha256: "00sk5sshqlyrzx9ynvpq6fyjj1drkf6rh99ayhr76y3d23s71l75",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1313,
+              [nix.POS]: $pos[1312],
               homepage: "https://elpa.gnu.org/devel/termint.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12438,18 +10890,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1317,
+            [nix.POS]: $pos[1316],
             pname: "test-simple",
             ename: "test-simple",
             version: "1.3.2.0.20260118.164127",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1315,
+                [nix.POS]: $pos[1314],
                 url: "https://elpa.gnu.org/devel/test-simple-1.3.2.0.20260118.164127.tar",
                 sha256: "0plxxqm2qvnhr697x1ivdlawf8759aqg05im7zcja8bbc5mc16nv",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1316,
+              [nix.POS]: $pos[1315],
               homepage: "https://elpa.gnu.org/devel/test-simple.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12461,18 +10913,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1320,
+            [nix.POS]: $pos[1319],
             pname: "tex-item",
             ename: "tex-item",
             version: "0.1.0.20240617.174820",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1318,
+                [nix.POS]: $pos[1317],
                 url: "https://elpa.gnu.org/devel/tex-item-0.1.0.20240617.174820.tar",
                 sha256: "17b95npakxjzc03qrsxla5jhdzhq0clwdrx57f9ck94a0fnpji3x",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1319,
+              [nix.POS]: $pos[1318],
               homepage: "https://elpa.gnu.org/devel/tex-item.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12484,18 +10936,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1323,
+            [nix.POS]: $pos[1322],
             pname: "tex-parens",
             ename: "tex-parens",
             version: "0.7.0.20260727.10",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1321,
+                [nix.POS]: $pos[1320],
                 url: "https://elpa.gnu.org/devel/tex-parens-0.7.0.20260727.10.tar",
                 sha256: "1am5bnvjw20hlk1fwhp29cn7rlwk0n9rfdr5igf71m0sc0xbc6dd",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1322,
+              [nix.POS]: $pos[1321],
               homepage: "https://elpa.gnu.org/devel/tex-parens.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12507,18 +10959,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1326,
+            [nix.POS]: $pos[1325],
             pname: "theme-buffet",
             ename: "theme-buffet",
             version: "0.1.2.0.20240105.165329",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1324,
+                [nix.POS]: $pos[1323],
                 url: "https://elpa.gnu.org/devel/theme-buffet-0.1.2.0.20240105.165329.tar",
                 sha256: "1p1vmyl2cdm6vk45884jhrxjgd53mdch4wfkd1hx269v76zl58pa",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1325,
+              [nix.POS]: $pos[1324],
               homepage: "https://elpa.gnu.org/devel/theme-buffet.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12530,18 +10982,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1329,
+            [nix.POS]: $pos[1328],
             pname: "timeout",
             ename: "timeout",
             version: "2.1.6.0.20260504.161229",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1327,
+                [nix.POS]: $pos[1326],
                 url: "https://elpa.gnu.org/devel/timeout-2.1.6.0.20260504.161229.tar",
                 sha256: "00ygq747m4yhp1mjj083ai18av8jri76q33gp214skpac85dxdb5",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1328,
+              [nix.POS]: $pos[1327],
               homepage: "https://elpa.gnu.org/devel/timeout.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12554,18 +11006,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1332,
+            [nix.POS]: $pos[1331],
             pname: "timerfunctions",
             ename: "timerfunctions",
             version: "1.4.2.0.20221221.82440",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1330,
+                [nix.POS]: $pos[1329],
                 url: "https://elpa.gnu.org/devel/timerfunctions-1.4.2.0.20221221.82440.tar",
                 sha256: "08spli0dfi882wrjcxjgk3zl4g4b5rlrvpyjmkgkzq6ix5z7w80j",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1331,
+              [nix.POS]: $pos[1330],
               homepage: "https://elpa.gnu.org/devel/timerfunctions.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12577,18 +11029,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1335,
+            [nix.POS]: $pos[1334],
             pname: "tiny",
             ename: "tiny",
             version: "0.2.1.0.20220910.192941",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1333,
+                [nix.POS]: $pos[1332],
                 url: "https://elpa.gnu.org/devel/tiny-0.2.1.0.20220910.192941.tar",
                 sha256: "04ybgq2ppzjpindwgypsp4sb0hmzq5k7sg9niyp18dxkj0nv1l7n",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1334,
+              [nix.POS]: $pos[1333],
               homepage: "https://elpa.gnu.org/devel/tiny.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12600,18 +11052,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1338,
+            [nix.POS]: $pos[1337],
             pname: "tmr",
             ename: "tmr",
             version: "1.4.0.0.20260823.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1336,
+                [nix.POS]: $pos[1335],
                 url: "https://elpa.gnu.org/devel/tmr-1.4.0.0.20260823.2.tar",
                 sha256: "1lywrq0v5lfadd7ygrf70vyb4p55xi9zsdc78qjhln8ljaf996f1",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1337,
+              [nix.POS]: $pos[1336],
               homepage: "https://elpa.gnu.org/devel/tmr.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12625,18 +11077,18 @@ export default nix.lambda((args) => (() => {
         const map = nix.arg($_1, "map");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1341,
+            [nix.POS]: $pos[1340],
             pname: "tomelr",
             ename: "tomelr",
             version: "0.4.3.0.20220511.213722",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1339,
+                [nix.POS]: $pos[1338],
                 url: "https://elpa.gnu.org/devel/tomelr-0.4.3.0.20220511.213722.tar",
                 sha256: "0vjhbz8lfhk84kgm8vd9lfn9qx60g40j7n3kx7iadk0p4842fpaa",
               })))),
             packageRequires: nix.thunk(() => [map, seq]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1340,
+              [nix.POS]: $pos[1339],
               homepage: "https://elpa.gnu.org/devel/tomelr.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12648,18 +11100,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1344,
+            [nix.POS]: $pos[1343],
             pname: "topspace",
             ename: "topspace",
             version: "0.3.1.0.20230106.94110",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1342,
+                [nix.POS]: $pos[1341],
                 url: "https://elpa.gnu.org/devel/topspace-0.3.1.0.20230106.94110.tar",
                 sha256: "179k6d4v4lw66gpb2lmf1zcz6ww1fr3ys0x992wd1r7mvlc070s8",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1343,
+              [nix.POS]: $pos[1342],
               homepage: "https://elpa.gnu.org/devel/topspace.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12671,18 +11123,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1347,
+            [nix.POS]: $pos[1346],
             pname: "track-changes",
             ename: "track-changes",
             version: "1.5.0.20260101.125434",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1345,
+                [nix.POS]: $pos[1344],
                 url: "https://elpa.gnu.org/devel/track-changes-1.5.0.20260101.125434.tar",
                 sha256: "1mdjnchrg3rc4f331m4hv7y2n6s9f9qs629sx3rsp0rcirir8mh6",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1346,
+              [nix.POS]: $pos[1345],
               homepage: "https://elpa.gnu.org/devel/track-changes.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12694,18 +11146,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1350,
+            [nix.POS]: $pos[1349],
             pname: "tramp",
             ename: "tramp",
             version: "2.8.2.2.0.20260830.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1348,
+                [nix.POS]: $pos[1347],
                 url: "https://elpa.gnu.org/devel/tramp-2.8.2.2.0.20260830.0.tar",
                 sha256: "1nx5n6ywk5ly28vgwfdq9phbksvw3xhmr7n94k55m3km89f89pyr",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1349,
+              [nix.POS]: $pos[1348],
               homepage: "https://elpa.gnu.org/devel/tramp.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12718,18 +11170,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const tramp = nix.arg($_1, "tramp");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1353,
+            [nix.POS]: $pos[1352],
             pname: "tramp-hlo",
             ename: "tramp-hlo",
             version: "0.0.2.0.20251231.3054",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1351,
+                [nix.POS]: $pos[1350],
                 url: "https://elpa.gnu.org/devel/tramp-hlo-0.0.2.0.20251231.3054.tar",
                 sha256: "0gs9bb7w18ln46zi2h128rg3hv89cd2ixcg9i89s8d92ya4ff572",
               })))),
             packageRequires: nix.thunk(() => [tramp]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1352,
+              [nix.POS]: $pos[1351],
               homepage: "https://elpa.gnu.org/devel/tramp-hlo.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12741,18 +11193,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1356,
+            [nix.POS]: $pos[1355],
             pname: "tramp-nspawn",
             ename: "tramp-nspawn",
             version: "1.0.2.0.20240401.94952",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1354,
+                [nix.POS]: $pos[1353],
                 url: "https://elpa.gnu.org/devel/tramp-nspawn-1.0.2.0.20240401.94952.tar",
                 sha256: "0mahmy5r4chd83bwz2q8ac2m99iymwhgjzaxz2grzs24ajsrq1mb",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1355,
+              [nix.POS]: $pos[1354],
               homepage: "https://elpa.gnu.org/devel/tramp-nspawn.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12764,18 +11216,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1359,
+            [nix.POS]: $pos[1358],
             pname: "tramp-theme",
             ename: "tramp-theme",
             version: "0.3.0.20241214.144045",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1357,
+                [nix.POS]: $pos[1356],
                 url: "https://elpa.gnu.org/devel/tramp-theme-0.3.0.20241214.144045.tar",
                 sha256: "1fhd8pag716h7x71bz059wd6vqn4mz058yg0apfz68dlchma4zhk",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1358,
+              [nix.POS]: $pos[1357],
               homepage: "https://elpa.gnu.org/devel/tramp-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12787,18 +11239,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1362,
+            [nix.POS]: $pos[1361],
             pname: "transcribe",
             ename: "transcribe",
             version: "1.5.2.0.20221221.82457",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1360,
+                [nix.POS]: $pos[1359],
                 url: "https://elpa.gnu.org/devel/transcribe-1.5.2.0.20221221.82457.tar",
                 sha256: "12xw9vxzqfr3pis49apdzc5bg0n30wfx0xa9kycdbcpda88f3z6h",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1361,
+              [nix.POS]: $pos[1360],
               homepage: "https://elpa.gnu.org/devel/transcribe.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12814,18 +11266,18 @@ export default nix.lambda((args) => (() => {
         const llama = nix.arg($_1, "llama");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1365,
+            [nix.POS]: $pos[1364],
             pname: "transient",
             ename: "transient",
             version: "0.13.8.0.20260909.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1363,
+                [nix.POS]: $pos[1362],
                 url: "https://elpa.gnu.org/devel/transient-0.13.8.0.20260909.1.tar",
                 sha256: "12d0npxpnyhqr328a1a1kg8ccwkk34rk4gd2a9rsknid6f7hlb52",
               })))),
             packageRequires: nix.thunk(() => [compat, cond_let, llama, seq]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1364,
+              [nix.POS]: $pos[1363],
               homepage: "https://elpa.gnu.org/devel/transient.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12837,18 +11289,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1368,
+            [nix.POS]: $pos[1367],
             pname: "transient-cycles",
             ename: "transient-cycles",
             version: "2.1.0.20260625.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1366,
+                [nix.POS]: $pos[1365],
                 url: "https://elpa.gnu.org/devel/transient-cycles-2.1.0.20260625.0.tar",
                 sha256: "1jadhnszdnc9hj6992bpdmdrqcrig0r172dis8cwxksfrcb0qpgs",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1367,
+              [nix.POS]: $pos[1366],
               homepage: "https://elpa.gnu.org/devel/transient-cycles.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12861,18 +11313,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const treeview = nix.arg($_1, "treeview");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1371,
+            [nix.POS]: $pos[1370],
             pname: "tree-inspector",
             ename: "tree-inspector",
             version: "0.4.0.20240322.113138",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1369,
+                [nix.POS]: $pos[1368],
                 url: "https://elpa.gnu.org/devel/tree-inspector-0.4.0.20240322.113138.tar",
                 sha256: "15k30zdbr8cr88z00dn2jfnybrhkmp769pc361v9n4mdgapwmiap",
               })))),
             packageRequires: nix.thunk(() => [treeview]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1370,
+              [nix.POS]: $pos[1369],
               homepage: "https://elpa.gnu.org/devel/tree-inspector.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12886,18 +11338,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const tNFA = nix.arg($_1, "tNFA");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1374,
+            [nix.POS]: $pos[1373],
             pname: "trie",
             ename: "trie",
             version: "0.6.0.20231015.13107",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1372,
+                [nix.POS]: $pos[1371],
                 url: "https://elpa.gnu.org/devel/trie-0.6.0.20231015.13107.tar",
                 sha256: "0kwz7b7y90yq676r09h4w0wbrm61030sw6mqhrcq9130s107lbkx",
               })))),
             packageRequires: nix.thunk(() => [heap, tNFA]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1373,
+              [nix.POS]: $pos[1372],
               homepage: "https://elpa.gnu.org/devel/trie.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12910,18 +11362,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1377,
+            [nix.POS]: $pos[1376],
             pname: "triples",
             ename: "triples",
             version: "0.6.2.0.20260328.11006",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1375,
+                [nix.POS]: $pos[1374],
                 url: "https://elpa.gnu.org/devel/triples-0.6.2.0.20260328.11006.tar",
                 sha256: "18pbwmycy4d36ry7w572d2d2jqac3yf93ap5j77v4gnh84iv6zap",
               })))),
             packageRequires: nix.thunk(() => [seq]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1376,
+              [nix.POS]: $pos[1375],
               homepage: "https://elpa.gnu.org/devel/triples.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12934,18 +11386,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1380,
+            [nix.POS]: $pos[1379],
             pname: "truename-cache",
             ename: "truename-cache",
             version: "0.3.7.0.20260726.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1378,
+                [nix.POS]: $pos[1377],
                 url: "https://elpa.gnu.org/devel/truename-cache-0.3.7.0.20260726.2.tar",
                 sha256: "00ww8g4pq4784pyqgaxkpx7wmjmbf4bxvql43xjlsvnpwp7gl38r",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1379,
+              [nix.POS]: $pos[1378],
               homepage: "https://elpa.gnu.org/devel/truename-cache.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12957,18 +11409,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1383,
+            [nix.POS]: $pos[1382],
             pname: "trust-manager",
             ename: "trust-manager",
             version: "0.4.2.0.20260724.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1381,
+                [nix.POS]: $pos[1380],
                 url: "https://elpa.gnu.org/devel/trust-manager-0.4.2.0.20260724.0.tar",
                 sha256: "197gwy89si4yy775s8148qnfb1jiwknifhlgjwx6jlkgp1lwa4zw",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1382,
+              [nix.POS]: $pos[1381],
               homepage: "https://elpa.gnu.org/devel/trust-manager.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -12980,18 +11432,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1386,
+            [nix.POS]: $pos[1385],
             pname: "ulisp-repl",
             ename: "ulisp-repl",
             version: "1.0.3.0.20230604.111559",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1384,
+                [nix.POS]: $pos[1383],
                 url: "https://elpa.gnu.org/devel/ulisp-repl-1.0.3.0.20230604.111559.tar",
                 sha256: "0b6yvlwikgkkfqklrhbcs0p6y349b6700x78n77xf0kkgv7mca1i",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1385,
+              [nix.POS]: $pos[1384],
               homepage: "https://elpa.gnu.org/devel/ulisp-repl.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13004,18 +11456,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const queue = nix.arg($_1, "queue");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1389,
+            [nix.POS]: $pos[1388],
             pname: "undo-tree",
             ename: "undo-tree",
             version: "0.8.2.0.20220312.180415",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1387,
+                [nix.POS]: $pos[1386],
                 url: "https://elpa.gnu.org/devel/undo-tree-0.8.2.0.20220312.180415.tar",
                 sha256: "1gm5108p4qv7v4dqpxkd3zb2h5w8nsz0xjbxzxpkvykqp982g030",
               })))),
             packageRequires: nix.thunk(() => [queue]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1388,
+              [nix.POS]: $pos[1387],
               homepage: "https://elpa.gnu.org/devel/undo-tree.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13027,18 +11479,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1392,
+            [nix.POS]: $pos[1391],
             pname: "uni-confusables",
             ename: "uni-confusables",
             version: "0.3.0.20221212.230830",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1390,
+                [nix.POS]: $pos[1389],
                 url: "https://elpa.gnu.org/devel/uni-confusables-0.3.0.20221212.230830.tar",
                 sha256: "15kc12zih2d6lazcqgiaq9jc5zgznnhaywh7ibflwc6siqvwxzvg",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1391,
+              [nix.POS]: $pos[1390],
               homepage: "https://elpa.gnu.org/devel/uni-confusables.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13050,18 +11502,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1395,
+            [nix.POS]: $pos[1394],
             pname: "uniquify-files",
             ename: "uniquify-files",
             version: "1.0.4.0.20221221.82507",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1393,
+                [nix.POS]: $pos[1392],
                 url: "https://elpa.gnu.org/devel/uniquify-files-1.0.4.0.20221221.82507.tar",
                 sha256: "0zn7z3y7f7hw4144ssa398455091qrg238wp9fr53l2rxpdkdkwf",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1394,
+              [nix.POS]: $pos[1393],
               homepage: "https://elpa.gnu.org/devel/uniquify-files.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13074,18 +11526,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1398,
+            [nix.POS]: $pos[1397],
             pname: "urgrep",
             ename: "urgrep",
             version: "0.6.1snapshot0.20260619.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1396,
+                [nix.POS]: $pos[1395],
                 url: "https://elpa.gnu.org/devel/urgrep-0.6.1snapshot0.20260619.3.tar",
                 sha256: "0aks8nan0rjavz72s34c1d6wq4031z2wf2rbi73kr4sfq944yiss",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1397,
+              [nix.POS]: $pos[1396],
               homepage: "https://elpa.gnu.org/devel/urgrep.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13098,18 +11550,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const ntlm = nix.argOr($_1, "ntlm", () => null);
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1401,
+            [nix.POS]: $pos[1400],
             pname: "url-http-ntlm",
             ename: "url-http-ntlm",
             version: "2.0.6.0.20250626.205101",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1399,
+                [nix.POS]: $pos[1398],
                 url: "https://elpa.gnu.org/devel/url-http-ntlm-2.0.6.0.20250626.205101.tar",
                 sha256: "05zx6vyqh2jkipl4srnp01agxrjy0lzvgsjbisnjk56nx4lhnfs3",
               })))),
             packageRequires: nix.thunk(() => [ntlm]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1400,
+              [nix.POS]: $pos[1399],
               homepage: "https://elpa.gnu.org/devel/url-http-ntlm.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13121,18 +11573,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1404,
+            [nix.POS]: $pos[1403],
             pname: "url-http-oauth",
             ename: "url-http-oauth",
             version: "0.8.5.0.20251229.211304",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1402,
+                [nix.POS]: $pos[1401],
                 url: "https://elpa.gnu.org/devel/url-http-oauth-0.8.5.0.20251229.211304.tar",
                 sha256: "17r54w32j97x52yxwxgadwxkfbh3d7byhn3f752dvd1r6jksn415",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1403,
+              [nix.POS]: $pos[1402],
               homepage: "https://elpa.gnu.org/devel/url-http-oauth.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13144,18 +11596,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1407,
+            [nix.POS]: $pos[1406],
             pname: "url-scgi",
             ename: "url-scgi",
             version: "0.9.0.20231222.161107",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1405,
+                [nix.POS]: $pos[1404],
                 url: "https://elpa.gnu.org/devel/url-scgi-0.9.0.20231222.161107.tar",
                 sha256: "1dgi0r0igwsk3mx6b7mvd6xz7dmb545g2394s0wh9kkjhlkyd5b3",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1406,
+              [nix.POS]: $pos[1405],
               homepage: "https://elpa.gnu.org/devel/url-scgi.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13168,18 +11620,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1410,
+            [nix.POS]: $pos[1409],
             pname: "use-package",
             ename: "use-package",
             version: "2.4.6.0.20260912.42",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1408,
+                [nix.POS]: $pos[1407],
                 url: "https://elpa.gnu.org/devel/use-package-2.4.6.0.20260912.42.tar",
                 sha256: "19r77k9cbfp74zcdkx4is6qh4c4npwbsys5q4k1g8p7c7swdj7ap",
               })))),
             packageRequires: nix.thunk(() => [bind_key]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1409,
+              [nix.POS]: $pos[1408],
               homepage: "https://elpa.gnu.org/devel/use-package.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13193,18 +11645,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1413,
+            [nix.POS]: $pos[1412],
             pname: "validate",
             ename: "validate",
             version: "1.0.4.0.20180215.204244",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1411,
+                [nix.POS]: $pos[1410],
                 url: "https://elpa.gnu.org/devel/validate-1.0.4.0.20180215.204244.tar",
                 sha256: "1hayzx6x2xqfzg84ik5n5x84ixmwc0kc8h7f0796d4rfiljl4y3c",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, seq]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1412,
+              [nix.POS]: $pos[1411],
               homepage: "https://elpa.gnu.org/devel/validate.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13216,18 +11668,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1416,
+            [nix.POS]: $pos[1415],
             pname: "valign",
             ename: "valign",
             version: "3.1.1.0.20260416.235856",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1414,
+                [nix.POS]: $pos[1413],
                 url: "https://elpa.gnu.org/devel/valign-3.1.1.0.20260416.235856.tar",
                 sha256: "1apwa8sb1bpsrkk81q0z9qir71s5naiva16hn2vdjrn4cd1kzcdb",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1415,
+              [nix.POS]: $pos[1414],
               homepage: "https://elpa.gnu.org/devel/valign.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13240,18 +11692,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1419,
+            [nix.POS]: $pos[1418],
             pname: "vc-backup",
             ename: "vc-backup",
             version: "1.1.1.0.20251018.163124",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1417,
+                [nix.POS]: $pos[1416],
                 url: "https://elpa.gnu.org/devel/vc-backup-1.1.1.0.20251018.163124.tar",
                 sha256: "0nhlnhrkgg7bvqg80zp9m3pamdns5kyavf3hngygydd8qg2kgybw",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1418,
+              [nix.POS]: $pos[1417],
               homepage: "https://elpa.gnu.org/devel/vc-backup.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13263,18 +11715,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1422,
+            [nix.POS]: $pos[1421],
             pname: "vc-got",
             ename: "vc-got",
             version: "1.2.0.20250223.143804",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1420,
+                [nix.POS]: $pos[1419],
                 url: "https://elpa.gnu.org/devel/vc-got-1.2.0.20250223.143804.tar",
                 sha256: "18rph07s97jhnfc13kpfma82i7y5nkj9z697xxqxzzz8ijnqncnw",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1421,
+              [nix.POS]: $pos[1420],
               homepage: "https://elpa.gnu.org/devel/vc-got.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13286,18 +11738,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1425,
+            [nix.POS]: $pos[1424],
             pname: "vc-hgcmd",
             ename: "vc-hgcmd",
             version: "1.14.1.0.20230605.161947",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1423,
+                [nix.POS]: $pos[1422],
                 url: "https://elpa.gnu.org/devel/vc-hgcmd-1.14.1.0.20230605.161947.tar",
                 sha256: "1qrrbr7qgbsc00mrbslaa0k6n3dnighw5dq3mx1hlgz0flm623gi",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1424,
+              [nix.POS]: $pos[1423],
               homepage: "https://elpa.gnu.org/devel/vc-hgcmd.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13311,18 +11763,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const project = nix.arg($_1, "project");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1428,
+            [nix.POS]: $pos[1427],
             pname: "vc-jj",
             ename: "vc-jj",
             version: "0.5.0.20260727.66",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1426,
+                [nix.POS]: $pos[1425],
                 url: "https://elpa.gnu.org/devel/vc-jj-0.5.0.20260727.66.tar",
                 sha256: "010vg2kgbigyrv01dvkf1c3j432pcnghpl6yi9lam5p6mgg7b85m",
               })))),
             packageRequires: nix.thunk(() => [compat, project]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1427,
+              [nix.POS]: $pos[1426],
               homepage: "https://elpa.gnu.org/devel/vc-jj.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13334,18 +11786,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1431,
+            [nix.POS]: $pos[1430],
             pname: "vcard",
             ename: "vcard",
             version: "0.2.2.0.20230718.145809",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1429,
+                [nix.POS]: $pos[1428],
                 url: "https://elpa.gnu.org/devel/vcard-0.2.2.0.20230718.145809.tar",
                 sha256: "14rc6glk0wyfjymiv2h5db0cxpl7j8i7h3xlm5bhvgiab00vhk6x",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1430,
+              [nix.POS]: $pos[1429],
               homepage: "https://elpa.gnu.org/devel/vcard.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13357,18 +11809,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1434,
+            [nix.POS]: $pos[1433],
             pname: "vcl-mode",
             ename: "vcl-mode",
             version: "1.1.0.20201127.191542",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1432,
+                [nix.POS]: $pos[1431],
                 url: "https://elpa.gnu.org/devel/vcl-mode-1.1.0.20201127.191542.tar",
                 sha256: "1fjf37s5yfivjbagw7m83y7z5i3dfzqnhcaga7r092v9jvkabw51",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1433,
+              [nix.POS]: $pos[1432],
               homepage: "https://elpa.gnu.org/devel/vcl-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13381,18 +11833,18 @@ export default nix.lambda((args) => (() => {
         const hydra = nix.arg($_1, "hydra");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1437,
+            [nix.POS]: $pos[1436],
             pname: "vdiff",
             ename: "vdiff",
             version: "0.2.4.0.20230620.220116",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1435,
+                [nix.POS]: $pos[1434],
                 url: "https://elpa.gnu.org/devel/vdiff-0.2.4.0.20230620.220116.tar",
                 sha256: "1974s441i7hvz6jly2xzndrfpp94nidhkb6gjgfk9f5lml1z17n1",
               })))),
             packageRequires: nix.thunk(() => [hydra]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1436,
+              [nix.POS]: $pos[1435],
               homepage: "https://elpa.gnu.org/devel/vdiff.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13406,18 +11858,18 @@ export default nix.lambda((args) => (() => {
         const pg = nix.arg($_1, "pg");
         const plz = nix.arg($_1, "plz");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1440,
+            [nix.POS]: $pos[1439],
             pname: "vecdb",
             ename: "vecdb",
             version: "0.2.2.0.20251011.220856",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1438,
+                [nix.POS]: $pos[1437],
                 url: "https://elpa.gnu.org/devel/vecdb-0.2.2.0.20251011.220856.tar",
                 sha256: "1ybscf8cc5ybamiyp3a8xk1xcvwq0jyj6pwkjzj7skid01kx50yc",
               })))),
             packageRequires: nix.thunk(() => [pg, plz]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1439,
+              [nix.POS]: $pos[1438],
               homepage: "https://elpa.gnu.org/devel/vecdb.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13429,18 +11881,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1443,
+            [nix.POS]: $pos[1442],
             pname: "verilog-mode",
             ename: "verilog-mode",
             version: "2026.4.14.10117132.0.20260816.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1441,
+                [nix.POS]: $pos[1440],
                 url: "https://elpa.gnu.org/devel/verilog-mode-2026.4.14.10117132.0.20260816.1.tar",
                 sha256: "0hh06k0aa9f47y4ril1c6yifwilqzi74pfw9hnkmqiyzwj3r7sx7",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1442,
+              [nix.POS]: $pos[1441],
               homepage: "https://elpa.gnu.org/devel/verilog-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13453,18 +11905,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1446,
+            [nix.POS]: $pos[1445],
             pname: "vertico",
             ename: "vertico",
             version: "2.14.0.20260907.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1444,
+                [nix.POS]: $pos[1443],
                 url: "https://elpa.gnu.org/devel/vertico-2.14.0.20260907.4.tar",
                 sha256: "0303a89xngpggqdllsgxl2kp9avscck16nk57ffa8iy6m91rpfkk",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1445,
+              [nix.POS]: $pos[1444],
               homepage: "https://elpa.gnu.org/devel/vertico.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13478,18 +11930,18 @@ export default nix.lambda((args) => (() => {
         const posframe = nix.arg($_1, "posframe");
         const vertico = nix.arg($_1, "vertico");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1449,
+            [nix.POS]: $pos[1448],
             pname: "vertico-posframe",
             ename: "vertico-posframe",
             version: "0.9.2.0.20260906.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1447,
+                [nix.POS]: $pos[1446],
                 url: "https://elpa.gnu.org/devel/vertico-posframe-0.9.2.0.20260906.2.tar",
                 sha256: "0m95ysj942fh0ajzzbm4d06xzkb8mzx728l9gf6dfjbcagyl7a6j",
               })))),
             packageRequires: nix.thunk(() => [posframe, vertico]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1448,
+              [nix.POS]: $pos[1447],
               homepage: "https://elpa.gnu.org/devel/vertico-posframe.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13501,18 +11953,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1452,
+            [nix.POS]: $pos[1451],
             pname: "vigenere",
             ename: "vigenere",
             version: "1.0.0.20221221.82600",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1450,
+                [nix.POS]: $pos[1449],
                 url: "https://elpa.gnu.org/devel/vigenere-1.0.0.20221221.82600.tar",
                 sha256: "03zkmvx6cs5s0plbafb40pxs0rqx1vz12ql03zlx21h0zwgynqwf",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1451,
+              [nix.POS]: $pos[1450],
               homepage: "https://elpa.gnu.org/devel/vigenere.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13524,18 +11976,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1455,
+            [nix.POS]: $pos[1454],
             pname: "visual-filename-abbrev",
             ename: "visual-filename-abbrev",
             version: "1.3.0.20240721.74720",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1453,
+                [nix.POS]: $pos[1452],
                 url: "https://elpa.gnu.org/devel/visual-filename-abbrev-1.3.0.20240721.74720.tar",
                 sha256: "06pl6cn2lrxjvhdjmcw0lf7hh1p4lhii86imxa2cqiciyysfxm9c",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1454,
+              [nix.POS]: $pos[1453],
               homepage: "https://elpa.gnu.org/devel/visual-filename-abbrev.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13547,18 +11999,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1458,
+            [nix.POS]: $pos[1457],
             pname: "visual-fill",
             ename: "visual-fill",
             version: "0.2.0.20240424.95324",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1456,
+                [nix.POS]: $pos[1455],
                 url: "https://elpa.gnu.org/devel/visual-fill-0.2.0.20240424.95324.tar",
                 sha256: "1vgfa29gl4rh6gx08r1imlabznrlmx21p41ns62w9lxi6y8hzf8y",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1457,
+              [nix.POS]: $pos[1456],
               homepage: "https://elpa.gnu.org/devel/visual-fill.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13570,18 +12022,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1461,
+            [nix.POS]: $pos[1460],
             pname: "vlf",
             ename: "vlf",
             version: "1.7.2.0.20231016.224412",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1459,
+                [nix.POS]: $pos[1458],
                 url: "https://elpa.gnu.org/devel/vlf-1.7.2.0.20231016.224412.tar",
                 sha256: "1smcw9x38cl7pnxdzy8ycx6g80yb5k0qd7x1520wzbp1g31dsar1",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1460,
+              [nix.POS]: $pos[1459],
               homepage: "https://elpa.gnu.org/devel/vlf.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13593,18 +12045,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1464,
+            [nix.POS]: $pos[1463],
             pname: "vundo",
             ename: "vundo",
             version: "2.4.0.0.20260905.15",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1462,
+                [nix.POS]: $pos[1461],
                 url: "https://elpa.gnu.org/devel/vundo-2.4.0.0.20260905.15.tar",
                 sha256: "0llf0hsxj66rdwflpw06qfvm1pjcjkygf233982gjyk5iq7142qc",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1463,
+              [nix.POS]: $pos[1462],
               homepage: "https://elpa.gnu.org/devel/vundo.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13616,18 +12068,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1467,
+            [nix.POS]: $pos[1466],
             pname: "wcheck-mode",
             ename: "wcheck-mode",
             version: "2026.5.0.20260529.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1465,
+                [nix.POS]: $pos[1464],
                 url: "https://elpa.gnu.org/devel/wcheck-mode-2026.5.0.20260529.0.tar",
                 sha256: "07pyq411jvpkdgwhhj0snpqdiaxjlfb2wklqqankc4c2qmck7nmv",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1466,
+              [nix.POS]: $pos[1465],
               homepage: "https://elpa.gnu.org/devel/wcheck-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13639,18 +12091,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1470,
+            [nix.POS]: $pos[1469],
             pname: "wconf",
             ename: "wconf",
             version: "0.2.1.0.20201202.220257",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1468,
+                [nix.POS]: $pos[1467],
                 url: "https://elpa.gnu.org/devel/wconf-0.2.1.0.20201202.220257.tar",
                 sha256: "0nnf2jak4hjzj2m2v44ymnyvsgiyzz49nnz48j3cpiw7vpb79ibh",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1469,
+              [nix.POS]: $pos[1468],
               homepage: "https://elpa.gnu.org/devel/wconf.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13663,18 +12115,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1473,
+            [nix.POS]: $pos[1472],
             pname: "web-server",
             ename: "web-server",
             version: "0.1.2.0.20210811.22503",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1471,
+                [nix.POS]: $pos[1470],
                 url: "https://elpa.gnu.org/devel/web-server-0.1.2.0.20210811.22503.tar",
                 sha256: "1d2ij23gswvg41xgdg51m2prqn1f9lcwb2rb9rh3s9p6skj14y9b",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1472,
+              [nix.POS]: $pos[1471],
               homepage: "https://elpa.gnu.org/devel/web-server.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13686,18 +12138,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1476,
+            [nix.POS]: $pos[1475],
             pname: "webfeeder",
             ename: "webfeeder",
             version: "1.1.2.0.20210605.74155",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1474,
+                [nix.POS]: $pos[1473],
                 url: "https://elpa.gnu.org/devel/webfeeder-1.1.2.0.20210605.74155.tar",
                 sha256: "1xcaycimshijmyq071i5qch3idjfl3g4sws9ig97a9hx3m5wfi53",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1475,
+              [nix.POS]: $pos[1474],
               homepage: "https://elpa.gnu.org/devel/webfeeder.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13710,18 +12162,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1479,
+            [nix.POS]: $pos[1478],
             pname: "websocket",
             ename: "websocket",
             version: "1.16.0.20260228.205745",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1477,
+                [nix.POS]: $pos[1476],
                 url: "https://elpa.gnu.org/devel/websocket-1.16.0.20260228.205745.tar",
                 sha256: "1dlrd4fz8ir1jcla195nx9phhsk25495f35gs28drq9p3002b7kl",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1478,
+              [nix.POS]: $pos[1477],
               homepage: "https://elpa.gnu.org/devel/websocket.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13733,18 +12185,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1482,
+            [nix.POS]: $pos[1481],
             pname: "which-key",
             ename: "which-key",
             version: "3.6.1.0.20260101.125434",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1480,
+                [nix.POS]: $pos[1479],
                 url: "https://elpa.gnu.org/devel/which-key-3.6.1.0.20260101.125434.tar",
                 sha256: "0pifacbpkjyg6111msqa75w2xrfm7j8g3shnla1iygz2w923ga34",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1481,
+              [nix.POS]: $pos[1480],
               homepage: "https://elpa.gnu.org/devel/which-key.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13756,18 +12208,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1485,
+            [nix.POS]: $pos[1484],
             pname: "window-commander",
             ename: "window-commander",
             version: "3.0.2.0.20240314.125442",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1483,
+                [nix.POS]: $pos[1482],
                 url: "https://elpa.gnu.org/devel/window-commander-3.0.2.0.20240314.125442.tar",
                 sha256: "082fwi8basfddwvi5yjgvdbf0f7xh58kmbvshnpim143pyxzgi9q",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1484,
+              [nix.POS]: $pos[1483],
               homepage: "https://elpa.gnu.org/devel/window-commander.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13780,18 +12232,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1488,
+            [nix.POS]: $pos[1487],
             pname: "window-tool-bar",
             ename: "window-tool-bar",
             version: "0.3.0.20260101.125434",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1486,
+                [nix.POS]: $pos[1485],
                 url: "https://elpa.gnu.org/devel/window-tool-bar-0.3.0.20260101.125434.tar",
                 sha256: "1n8w2c017mzbpjikj0h8qxr6zf37vklnz5sw5zvjaji8k4dd1zxd",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1487,
+              [nix.POS]: $pos[1486],
               homepage: "https://elpa.gnu.org/devel/window-tool-bar.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13803,18 +12255,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1491,
+            [nix.POS]: $pos[1490],
             pname: "windower",
             ename: "windower",
             version: "0.0.1.0.20200212.91532",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1489,
+                [nix.POS]: $pos[1488],
                 url: "https://elpa.gnu.org/devel/windower-0.0.1.0.20200212.91532.tar",
                 sha256: "1s9kq9256x8chayqfcczxfcdb67pk6752xg7v6ixb9f3ad590ls2",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1490,
+              [nix.POS]: $pos[1489],
               homepage: "https://elpa.gnu.org/devel/windower.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13826,18 +12278,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1494,
+            [nix.POS]: $pos[1493],
             pname: "windresize",
             ename: "windresize",
             version: "0.1.0.20221221.82616",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1492,
+                [nix.POS]: $pos[1491],
                 url: "https://elpa.gnu.org/devel/windresize-0.1.0.20221221.82616.tar",
                 sha256: "0hgfyhz3jx4yhxspvh8zb4s852j8iwijrg7d4madr1p9rm2g3pjq",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1493,
+              [nix.POS]: $pos[1492],
               homepage: "https://elpa.gnu.org/devel/windresize.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13850,18 +12302,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1497,
+            [nix.POS]: $pos[1496],
             pname: "wisi",
             ename: "wisi",
             version: "4.3.2.0.20240313.173240",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1495,
+                [nix.POS]: $pos[1494],
                 url: "https://elpa.gnu.org/devel/wisi-4.3.2.0.20240313.173240.tar",
                 sha256: "01i5r77ndxy76gby6v4j25w4pf6kmqaxagya29b9gnrnw07m8n5b",
               })))),
             packageRequires: nix.thunk(() => [seq]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1496,
+              [nix.POS]: $pos[1495],
               homepage: "https://elpa.gnu.org/devel/wisi.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13875,18 +12327,18 @@ export default nix.lambda((args) => (() => {
         const mmm_mode = nix.arg($_1, "mmm-mode");
         const wisi = nix.arg($_1, "wisi");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1500,
+            [nix.POS]: $pos[1499],
             pname: "wisitoken-grammar-mode",
             ename: "wisitoken-grammar-mode",
             version: "1.3.0.0.20231023.83923",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1498,
+                [nix.POS]: $pos[1497],
                 url: "https://elpa.gnu.org/devel/wisitoken-grammar-mode-1.3.0.0.20231023.83923.tar",
                 sha256: "0ai5s1sgy0wk8hc84w7da65p30ldk514n2h6hqa71f9ia5jbd0j8",
               })))),
             packageRequires: nix.thunk(() => [mmm_mode, wisi]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1499,
+              [nix.POS]: $pos[1498],
               homepage: "https://elpa.gnu.org/devel/wisitoken-grammar-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13898,18 +12350,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1503,
+            [nix.POS]: $pos[1502],
             pname: "with-command-redo",
             ename: "with-command-redo",
             version: "0.2.0.20260710.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1501,
+                [nix.POS]: $pos[1500],
                 url: "https://elpa.gnu.org/devel/with-command-redo-0.2.0.20260710.0.tar",
                 sha256: "0zk18x8bplbishpxwy8r3m51i3kcai4crc6d4pipg927qdymry7z",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1502,
+              [nix.POS]: $pos[1501],
               homepage: "https://elpa.gnu.org/devel/with-command-redo.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13921,18 +12373,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1506,
+            [nix.POS]: $pos[1505],
             pname: "wpuzzle",
             ename: "wpuzzle",
             version: "1.1.0.20221221.82918",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1504,
+                [nix.POS]: $pos[1503],
                 url: "https://elpa.gnu.org/devel/wpuzzle-1.1.0.20221221.82918.tar",
                 sha256: "0ky8n0xjxsw4a684g3l8imbrfsvbc9nq1i8gi1y384qjvvjqxaxv",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1505,
+              [nix.POS]: $pos[1504],
               homepage: "https://elpa.gnu.org/devel/wpuzzle.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13944,18 +12396,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1509,
+            [nix.POS]: $pos[1508],
             pname: "wrap-search",
             ename: "wrap-search",
             version: "4.17.6.0.20240929.62253",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1507,
+                [nix.POS]: $pos[1506],
                 url: "https://elpa.gnu.org/devel/wrap-search-4.17.6.0.20240929.62253.tar",
                 sha256: "0y0pscf44blym8hkirbhrpcr9sjk2jdx7rfwvnfs9nnhq2a57ihm",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1508,
+              [nix.POS]: $pos[1507],
               homepage: "https://elpa.gnu.org/devel/wrap-search.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13967,18 +12419,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1512,
+            [nix.POS]: $pos[1511],
             pname: "xclip",
             ename: "xclip",
             version: "1.11.1.0.20240912.92814",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1510,
+                [nix.POS]: $pos[1509],
                 url: "https://elpa.gnu.org/devel/xclip-1.11.1.0.20240912.92814.tar",
                 sha256: "1w4sprqnhlrmwq2jccwxz1mc9jsm2hlmzwfb42jvraanybcbal4n",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1511,
+              [nix.POS]: $pos[1510],
               homepage: "https://elpa.gnu.org/devel/xclip.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -13990,18 +12442,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1515,
+            [nix.POS]: $pos[1514],
             pname: "xeft",
             ename: "xeft",
             version: "3.6.0.20250501.222827",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1513,
+                [nix.POS]: $pos[1512],
                 url: "https://elpa.gnu.org/devel/xeft-3.6.0.20250501.222827.tar",
                 sha256: "157384q5asxxibjz3g537cl0pa39z6scji53c3wnj8w3w1zm6jbm",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1514,
+              [nix.POS]: $pos[1513],
               homepage: "https://elpa.gnu.org/devel/xeft.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -14014,18 +12466,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1518,
+            [nix.POS]: $pos[1517],
             pname: "xelb",
             ename: "xelb",
             version: "0.23.0.20260627.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1516,
+                [nix.POS]: $pos[1515],
                 url: "https://elpa.gnu.org/devel/xelb-0.23.0.20260627.0.tar",
                 sha256: "0q5z5mvdfgc411nqxqf9qi8gw43pdf3yqsg48riv67w58nnx11bv",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1517,
+              [nix.POS]: $pos[1516],
               homepage: "https://elpa.gnu.org/devel/xelb.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -14039,18 +12491,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const queue = nix.arg($_1, "queue");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1521,
+            [nix.POS]: $pos[1520],
             pname: "xpm",
             ename: "xpm",
             version: "1.0.5.0.20230911.4618",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1519,
+                [nix.POS]: $pos[1518],
                 url: "https://elpa.gnu.org/devel/xpm-1.0.5.0.20230911.4618.tar",
                 sha256: "0ymby7wqz6bmn4kcl0if0ybhafba139pgmzifvk00bh7r0s5gsz9",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, queue]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1520,
+              [nix.POS]: $pos[1519],
               homepage: "https://elpa.gnu.org/devel/xpm.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -14062,18 +12514,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1524,
+            [nix.POS]: $pos[1523],
             pname: "xr",
             ename: "xr",
             version: "2.2.0.20260205.105100",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1522,
+                [nix.POS]: $pos[1521],
                 url: "https://elpa.gnu.org/devel/xr-2.2.0.20260205.105100.tar",
                 sha256: "0zxm42k85h5xycn9j3xxdr950506r4kkx30i0jppj08lkk7dkdnb",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1523,
+              [nix.POS]: $pos[1522],
               homepage: "https://elpa.gnu.org/devel/xr.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -14085,18 +12537,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1527,
+            [nix.POS]: $pos[1526],
             pname: "xref",
             ename: "xref",
             version: "1.7.0.0.20260906.47",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1525,
+                [nix.POS]: $pos[1524],
                 url: "https://elpa.gnu.org/devel/xref-1.7.0.0.20260906.47.tar",
                 sha256: "0kpnir8837rh3x1hlf2m6px9mp7b9b1w2xflqy4rcpqsny8ab3fq",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1526,
+              [nix.POS]: $pos[1525],
               homepage: "https://elpa.gnu.org/devel/xref.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -14108,18 +12560,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1530,
+            [nix.POS]: $pos[1529],
             pname: "xref-union",
             ename: "xref-union",
             version: "0.2.0.0.20260222.131318",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1528,
+                [nix.POS]: $pos[1527],
                 url: "https://elpa.gnu.org/devel/xref-union-0.2.0.0.20260222.131318.tar",
                 sha256: "143kmlnmpgkv52a7yya0sy4r51vi838fvcjwjiczczydwxam59iz",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1529,
+              [nix.POS]: $pos[1528],
               homepage: "https://elpa.gnu.org/devel/xref-union.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -14131,18 +12583,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1533,
+            [nix.POS]: $pos[1532],
             pname: "yaml",
             ename: "yaml",
             version: "1.2.4.0.20260605.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1531,
+                [nix.POS]: $pos[1530],
                 url: "https://elpa.gnu.org/devel/yaml-1.2.4.0.20260605.0.tar",
                 sha256: "10hmq703w380gj1bns32k7qz2d5rvvaxd3hyyz76iahfnd574569",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1532,
+              [nix.POS]: $pos[1531],
               homepage: "https://elpa.gnu.org/devel/yaml.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -14155,18 +12607,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1536,
+            [nix.POS]: $pos[1535],
             pname: "yasnippet",
             ename: "yasnippet",
             version: "0.14.3.0.20250604.12916",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1534,
+                [nix.POS]: $pos[1533],
                 url: "https://elpa.gnu.org/devel/yasnippet-0.14.3.0.20250604.12916.tar",
                 sha256: "0dx89kw6pvbj8dhf0cza660zcpd2las9add9dm5ak6x6x56sw3s8",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1535,
+              [nix.POS]: $pos[1534],
               homepage: "https://elpa.gnu.org/devel/yasnippet.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -14179,18 +12631,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const yasnippet = nix.arg($_1, "yasnippet");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1539,
+            [nix.POS]: $pos[1538],
             pname: "yasnippet-classic-snippets",
             ename: "yasnippet-classic-snippets",
             version: "1.0.2.0.20221221.83103",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1537,
+                [nix.POS]: $pos[1536],
                 url: "https://elpa.gnu.org/devel/yasnippet-classic-snippets-1.0.2.0.20221221.83103.tar",
                 sha256: "01066fmg42031naaqpy1ls8xw8k2hq02sib43smx20wdbqak6gx7",
               })))),
             packageRequires: nix.thunk(() => [yasnippet]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1538,
+              [nix.POS]: $pos[1537],
               homepage: "https://elpa.gnu.org/devel/yasnippet-classic-snippets.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -14202,18 +12654,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1542,
+            [nix.POS]: $pos[1541],
             pname: "zones",
             ename: "zones",
             version: "2023.6.11.0.20231018.110342",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1540,
+                [nix.POS]: $pos[1539],
                 url: "https://elpa.gnu.org/devel/zones-2023.6.11.0.20231018.110342.tar",
                 sha256: "0gyla7n7znzhxfdwb9jmxkijvidpxvqs9p68dbaiyk86daq2pxzm",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1541,
+              [nix.POS]: $pos[1540],
               homepage: "https://elpa.gnu.org/devel/zones.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -14226,18 +12678,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1545,
+            [nix.POS]: $pos[1544],
             pname: "ztree",
             ename: "ztree",
             version: "1.0.7.0.20260726.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1543,
+                [nix.POS]: $pos[1542],
                 url: "https://elpa.gnu.org/devel/ztree-1.0.7.0.20260726.0.tar",
                 sha256: "04qmaqcls4nlvg6kc88s74cr4823y9inl0k8c8rz0k4rsxz8adn4",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1544,
+              [nix.POS]: $pos[1543],
               homepage: "https://elpa.gnu.org/devel/ztree.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -14250,18 +12702,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const project = nix.arg($_1, "project");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            [nix.POS]: pos$1548,
+            [nix.POS]: $pos[1547],
             pname: "zuul",
             ename: "zuul",
             version: "0.4.0.0.20251119.102002",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1546,
+                [nix.POS]: $pos[1545],
                 url: "https://elpa.gnu.org/devel/zuul-0.4.0.0.20251119.102002.tar",
                 sha256: "00nnsm6m2xrhixjrhfj6z923pw12p1ip8galphni1k5pjx8vdcz5",
               })))),
             packageRequires: nix.thunk(() => [project]),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1547,
+              [nix.POS]: $pos[1546],
               homepage: "https://elpa.gnu.org/devel/zuul.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),

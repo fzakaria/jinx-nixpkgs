@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["updateScript", 33, 12]], [["description", 46, 5], ["homepage", 47, 5], ["sourceProvenance", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 24, 3], ["passthru", 33, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, writeScript: false, stdenv: false, qt5: false, fetchurl: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["sourceProvenance", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 24, 3], ["passthru", 33, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +17,18 @@ export default nix.lambda((args) => (() => {
       const pname = "synology-cloud-sync-decryption-tool";
       const version = "027";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://global.download.synology.com/download/Utility/SynologyCloudSyncDecryptionTool/${version}/Linux/x86_64/SynologyCloudSyncDecryptionTool-${version}_x64.tar.gz`),
           sha256: "sha256-EWxADvkfhnMwHIauJj3pH6SvSkkrc4cwAhsf1pWOOWQ=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook, nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))]);
       const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\ncp $NIX_BUILD_TOP/SynologyCloudSyncDecryptionTool $out/bin\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-synology-cloud-sync-decryption-tool", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl common-updater-scripts\n\nset -euo pipefail\n\nversion=\"$(curl -s https://www.synology.com/en-uk/releaseNote/SynologyCloudSyncDecryptionTool \\\n         | grep -oP '(?<=data-version=\")\\d+' \\\n         | head -1)\"\nupdate-source-version synology-cloud-sync-decryption-tool \"$version\"\n")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Desktop tool to decrypt data encrypted by Cloud Sync",
         homepage: "https://kb.synology.com/en-global/DSM/help/SynologyCloudSyncDecryptionTool/synologycloudsyncdecryptiontool",
         sourceProvenance: nix.thunk(() => (() => {
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "SynologyCloudSyncDecryptionTool",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

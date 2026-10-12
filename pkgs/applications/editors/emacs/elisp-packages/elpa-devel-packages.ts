@@ -2,10 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/elpa-devel-packages.nix", [[["fetchurl", 51, 23]], [["callPackage", 46, 9]]]);
 const formals$1 = { args: { lib: false, pkgs: false, buildPackages: false }, ellipsis: false };
 const formals$2 = { args: { generated: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/elpa-devel-packages.nix", [["fetchurl", 51, 23]]);
-const pos$2 = nix.positions(here + "/elpa-devel-packages.nix", [["callPackage", 46, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,8 +19,8 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const generated = nix.argOr($_1, "generated", () => nix.path(here, "./elpa-devel-generated.nix"));
         const imported = nix.thunk(() => nix.app(nix.builtins.import(generated), nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            callPackage: (pkgs_1) => (args_2) => nix.app(nix.sel(self, "callPackage"), pkgs_1, nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$1, fetchurl: fetchurl }))),
+            [nix.POS]: $pos[1],
+            callPackage: (pkgs_1) => (args_2) => nix.app(nix.sel(self, "callPackage"), pkgs_1, nix.thunk(() => nix.update(args_2, { [nix.POS]: $pos[0], fetchurl: fetchurl }))),
           }))));
         const super$ = imported;
         const commonOverrides = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./elpa-common-overrides.nix")), pkgs, lib, buildPackages));

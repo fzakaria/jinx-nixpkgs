@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cohttp.nix", [[["description", 45, 5]], [["pname", 16, 3], ["version", 18, 21], ["src", 18, 29], ["duneVersion", 20, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 23, 3], ["checkInputs", 31, 3], ["doCheck", 37, 3], ["postPatch", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, "ocaml-crunch": false, astring: false, cohttp: false, digestif: false, graphql: false, "ocplib-endian": false, alcotest: false, "cohttp-lwt-unix": false, "graphql-lwt": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cohttp.nix", [["description", 45, 5]]);
-const pos$2 = nix.positions(here + "/cohttp.nix", [["pname", 16, 3], ["version", 18, 21], ["src", 18, 29], ["duneVersion", 20, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 23, 3], ["checkInputs", 31, 3], ["doCheck", 37, 3], ["postPatch", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const cohttp_lwt_unix = nix.arg($, "cohttp-lwt-unix");
   const graphql_lwt = nix.arg($, "graphql-lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "graphql-cohttp",
       version: nix.thunk(() => nix.attr(graphql, "version")),
       src: nix.thunk(() => nix.attr(graphql, "src")),
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), nix.thunk(() => [alcotest, cohttp_lwt_unix, graphql_lwt]))),
       doCheck: true,
       postPatch: "substituteInPlace graphql-cohttp/src/graphql_websocket.ml \\\n  --replace-fail \"~flush:true ()\" \"~version:\\`HTTP_1_1 ()\"\n",
-      meta: nix.thunk(() => nix.update(nix.sel(graphql, "meta"), { [nix.POS]: pos$1, description: "Run GraphQL servers with “cohttp”" })),
+      meta: nix.thunk(() => nix.update(nix.sel(graphql, "meta"), { [nix.POS]: $pos[0], description: "Run GraphQL servers with “cohttp”" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=cohttp.ts.map

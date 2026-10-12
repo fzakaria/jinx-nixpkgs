@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]], [["updateScript", 74, 5]], [["homepage", 78, 5], ["description", 79, 5], ["longDescription", 80, 5], ["license", 89, 5], ["maintainers", 90, 5], ["teams", 91, 5], ["platforms", 92, 5]], [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["mesonFlags", 57, 3], ["postInstall", 69, 3], ["passthru", 73, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false, "pkg-config": false, gtk3: false, glib: false, intltool: false, "dbus-glib": false, libx11: false, libxscrnsaver: false, libxxf86vm: false, libxext: false, systemd: false, pantheon: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 78, 5], ["description", 79, 5], ["longDescription", 80, 5], ["license", 89, 5], ["maintainers", 90, 5], ["teams", 91, 5], ["platforms", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["mesonFlags", 57, 3], ["postInstall", 69, 3], ["passthru", 73, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.0";
       const outputs = nix.thunk(() => ["out", "man"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "the-cavalry",
           repo: "light-locker",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -55,11 +52,11 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`${nix.sel(glib, "dev")}/bin/glib-compile-schemas $out/share/glib-2.0/schemas
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/the-cavalry/light-locker",
         description: "Simple session-locker for LightDM",
         longDescription: "A simple locker (forked from gnome-screensaver) that aims to\nhave simple, sane, secure defaults and be well integrated with\nthe desktop while not carrying any desktop-specific\ndependencies.\n\nIt relies on LightDM for locking and unlocking your session via\nConsoleKit/UPower or logind/systemd.\n",
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         outputs,

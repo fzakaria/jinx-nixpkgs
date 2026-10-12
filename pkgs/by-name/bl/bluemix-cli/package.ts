@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 14, 9], ["url", 15, 9], ["sha256", 16, 9]], [["name", 20, 9], ["url", 21, 9], ["sha256", 22, 9]], [["description", 35, 5], ["homepage", 36, 5], ["downloadPage", 37, 5], ["sourceProvenance", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 44, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 25, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 14, 9], ["url", 15, 9], ["sha256", 16, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 20, 9], ["url", 21, 9], ["sha256", 22, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["downloadPage", 37, 5], ["sourceProvenance", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 25, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,19 +14,19 @@ export default nix.lambda((args) => (() => {
       const pname = "bluemix-cli";
       const version = "0.8.0";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`linux32-${version}.tar.gz`),
           url: nix.thunk(() => nix.str`https://clis.ng.bluemix.net/download/bluemix-cli/${version}/linux32`),
           sha256: "1ryngbjlw59x33rfd32bcz49r93a1q1g92jh7xmi9vydgqnzsifh",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`linux64-${version}.tar.gz`),
           url: nix.thunk(() => nix.str`https://clis.ng.bluemix.net/download/bluemix-cli/${version}/linux64`),
           sha256: "056zbaca430ldcn0s86vy40m5abvwpfrmvqybbr6fjwfv9zngywx",
         })))));
       const installPhase = "install -m755 -D -t $out/bin bin/ibmcloud bin/ibmcloud-analytics\ninstall -m755 -D -t $out/bin/cfcli bin/cfcli/cf\nln -sv $out/bin/ibmcloud $out/bin/bx\nln -sv $out/bin/ibmcloud $out/bin/bluemix\ninstall -D -t \"$out/share/bash-completion/completions\" bx/bash_autocomplete\ninstall -D -t \"$out/share/zsh/site-functions\" bx/zsh_autocomplete\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Administration CLI for IBM BlueMix",
         homepage: "https://console.bluemix.net/docs/cli/index.html",
         downloadPage: "https://console.bluemix.net/docs/cli/reference/bluemix_cli/download_cli.html#download_install",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         ]),
         platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
       }));
-      return { [nix.POS]: pos$4, pname, version, src, installPhase, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

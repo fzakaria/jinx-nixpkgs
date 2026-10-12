@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["pname", 17, 13], ["version", 17, 19], ["src", 17, 27]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5], ["sourceProvenance", 44, 5]], [["pname", 22, 11], ["version", 22, 17], ["src", 22, 25], ["extraInstallCommands", 24, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 17, 13], ["version", 17, 19], ["src", 17, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5], ["sourceProvenance", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 11], ["version", 22, 17], ["src", 22, 25], ["extraInstallCommands", 24, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const pname = "zoho-mail-desktop";
   const version = "1.10.3";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://downloads.zohocdn.com/zmail-desktop/linux/zoho-mail-desktop-lite-x64-v${version}.AppImage`),
       hash: "sha256-aUOEdjSkSgWx3wUZqYFJeZ+h0rToEGeP22iTYD8k6F4=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -38,7 +35,7 @@ substituteInPlace $out/share/applications/zoho-mail-desktop.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=${pname}'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Desktop client for Zoho Mail",
         homepage: "https://www.zoho.com/mail/desktop/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

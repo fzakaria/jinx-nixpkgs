@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 20, 9], ["aarch64-linux", 21, 9], ["aarch64-darwin", 22, 9]], [["url", 17, 5], ["sha256", 18, 5]], [["updateScript", 36, 12]], [["homepage", 39, 5], ["description", 40, 5], ["platforms", 41, 5], ["maintainers", 46, 5], ["license", 47, 5], ["sourceProvenance", 48, 5], ["mainProgram", 49, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["unpackPhase", 27, 3], ["postInstall", 32, 3], ["passthru", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 20, 9], ["aarch64-linux", 21, 9], ["aarch64-darwin", 22, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 36, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 39, 5], ["description", 40, 5], ["platforms", 41, 5], ["maintainers", 46, 5], ["license", 47, 5], ["sourceProvenance", 48, 5], ["mainProgram", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["unpackPhase", 27, 3], ["postInstall", 32, 3], ["passthru", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const arch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "aarch64" : "x86_64"));
   const platform = nix.thunk(() => nix.str`${os}-${arch}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "urbit",
       version: "4.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/urbit/vere/releases/download/vere-v${nix.sel(finalAttrs, "version")}/${platform}.tgz`),
           sha256: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "x86_64-linux": "1bm32airwqi6pkxlkd0hwrwd0gwm9x5y05dzgy27yxnbcrnyjcpk",
             "aarch64-linux": "126hw995xipbx9kb4ml8kn6xwkwd96q90cbr3q143ya2wl1sabya",
             "aarch64-darwin": "0dsapvlyfr2cb9c16b46bcnvq75by87ybys96zhf16k92z4rzrfv",
@@ -34,9 +30,9 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "mkdir src\ntar -C src -xf $src\n",
       postInstall: nix.thunk(() => nix.str`install -m755 -D src/vere-v${nix.sel(finalAttrs, "version")}-${platform} $out/bin/urbit
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update-bin.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update-bin.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://urbit.org",
         description: "Operating function",
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),

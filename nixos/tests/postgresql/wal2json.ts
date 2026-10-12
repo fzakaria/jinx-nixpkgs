@@ -2,16 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wal2json.nix", [[["maintainers", 14, 14]], [["wal_level", 22, 15], ["max_replication_slots", 23, 15], ["max_wal_senders", 24, 15], ["output_plugin_libraries", 25, 15]], [["package", 18, 21], ["enable", 19, 13], ["extensions", 20, 13], ["settings", 21, 13]], [["postgresql", 17, 20]], [["services", 17, 11]], [["machine", 16, 15]], [["name", 13, 9], ["meta", 14, 9], ["nodes", 16, 9], ["testScript", 30, 9]], [["makeTestFor", 49, 11], ["filter", 50, 3]]]);
 const formals$1 = { args: { runTest: false, genTests: false }, ellipsis: true };
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/wal2json.nix", [["maintainers", 14, 14]]);
-const pos$2 = nix.positions(here + "/wal2json.nix", [["wal_level", 22, 15], ["max_replication_slots", 23, 15], ["max_wal_senders", 24, 15], ["output_plugin_libraries", 25, 15]]);
-const pos$3 = nix.positions(here + "/wal2json.nix", [["package", 18, 21], ["enable", 19, 13], ["extensions", 20, 13], ["settings", 21, 13]]);
-const pos$4 = nix.positions(here + "/wal2json.nix", [["postgresql", 17, 20]]);
-const pos$5 = nix.positions(here + "/wal2json.nix", [["services", 17, 11]]);
-const pos$6 = nix.positions(here + "/wal2json.nix", [["machine", 16, 15]]);
-const pos$7 = nix.positions(here + "/wal2json.nix", [["name", 13, 9], ["meta", 14, 9], ["nodes", 16, 9], ["testScript", 30, 9]]);
-const pos$8 = nix.positions(here + "/wal2json.nix", [["makeTestFor", 49, 11], ["filter", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,23 +15,23 @@ export default nix.lambda((args) => (() => {
       const lib = nix.arg($_1, "lib");
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: nix.thunk(() => nix.str`wal2json-${nix.sel(package$, "name")}`),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "euank"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               postgresql: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 package: package$,
                 enable: true,
                 extensions: nix.thunk(() => (() => {
@@ -46,7 +39,7 @@ export default nix.lambda((args) => (() => {
                   return [nix.thunk(() => nix.lookup(w, "wal2json"))];
                 })()),
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   wal_level: "logical",
                   max_replication_slots: "10",
                   max_wal_senders: "10",
@@ -73,7 +66,7 @@ machine.succeed(
       };
     })(), formals$2));
   return nix.app(genTests, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       makeTestFor: makeTestFor,
       filter: (_) => (p) => !nix.asBool(nix.sel(p, "pkgs", "wal2json", "meta", "broken")),
     })));

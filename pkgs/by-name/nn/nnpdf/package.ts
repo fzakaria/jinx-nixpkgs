@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["cmakeFlags", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, apfel: false, gsl: false, lhapdf: false, libarchive: false, "yaml-cpp": false, python3: false, sqlite: false, swig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["cmakeFlags", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const swig = nix.arg($, "swig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nnpdf",
       version: "4.0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NNPDF",
           repo: "nnpdf",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => ["-DCOMPILE_filter=ON", "-DCOMPILE_evolvefit=ON"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open-source machine learning framework for global analyses of parton distributions",
         mainProgram: "evolven3fit",
         homepage: "https://docs.nnpdf.science/",

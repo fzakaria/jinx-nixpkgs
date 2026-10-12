@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 12, 3], ["version", 13, 3], ["duneVersion", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["propagatedBuildInputs", 23, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, ppx_cstruct: false, "stdlib-shims": false, cstruct: false, lwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["duneVersion", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["propagatedBuildInputs", 23, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const cstruct = nix.arg($, "cstruct");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mirage-profile",
       version: "0.9.1",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-profile/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-profile-v${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "0lh3591ad4v7nxpd410b75idmgdq668mqdilvkg4avrwqw1wzdib",
         })))),
       buildInputs: nix.thunk(() => [ppx_cstruct]),
       propagatedBuildInputs: nix.thunk(() => [cstruct, lwt, stdlib_shims]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collect runtime profiling information in CTF format",
         homepage: "https://github.com/mirage/mirage-profile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

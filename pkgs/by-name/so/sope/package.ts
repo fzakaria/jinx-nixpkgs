@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["GNUSTEP_CONFIG_FILE", 70, 5], ["NIX_CFLAGS_COMPILE", 71, 5]], [["description", 81, 5], ["license", 82, 5], ["homepage", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5], ["knownVulnerabilities", 86, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["preConfigure", 51, 3], ["configureFlags", 59, 3], ["env", 69, 3], ["postInstall", 75, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchFromGitHub: false, libxml2: false, openssl: false, openldap: false, mariadb: false, libmysqlclient: false, libpq: false, "gnustep-make": false, "gnustep-base": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GNUSTEP_CONFIG_FILE", 70, 5], ["NIX_CFLAGS_COMPILE", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 81, 5], ["license", 82, 5], ["homepage", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5], ["knownVulnerabilities", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["preConfigure", 51, 3], ["configureFlags", 59, 3], ["env", 69, 3], ["postInstall", 75, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sope";
       const version = "5.12.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Alinto",
           repo: "sope",
           rev: nix.thunk(() => nix.str`SOPE-${version}`),
@@ -42,13 +39,13 @@ EOF
 `);
       const configureFlags = nix.thunk(() => nix.concat(["--prefix=", "--disable-debug", "--enable-xml", "--with-ssl=ssl"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(openldap, null)), "--enable-openldap"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(mariadb, null)), "--enable-mysql"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(libpq, null)), "--enable-postgresql")))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         GNUSTEP_CONFIG_FILE: "/build/GNUstep.conf",
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types -Wno-error=int-conversion",
       }));
       const postInstall = "mkdir -p $out/share/GNUstep/Makefiles\nfind /build/Makefiles -mindepth 1 -maxdepth 1 -not -type l -exec cp -r '{}' $out/share/GNUstep/Makefiles \\;\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Extensive set of frameworks which form a complete Web application server environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
         homepage: "https://github.com/Alinto/sope",
@@ -60,7 +57,7 @@ EOF
         knownVulnerabilities: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

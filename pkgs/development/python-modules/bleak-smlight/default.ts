@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 41, 3], ["nativeCheckInputs", 43, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { "bluetooth-data-tools": false, buildPythonPackage: false, cython: false, fetchFromGitHub: false, habluetooth: false, lib: false, "poetry-core": false, pysmlight: false, "pytest-asyncio": false, "pytest-codspeed": false, "pytest-cov-stub": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 41, 3], ["nativeCheckInputs", 43, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bleak-smlight",
       version: "1.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bluetooth-devices",
           repo: "bleak-smlight",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["bleak_smlight"]),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_codspeed, pytest_cov_stub, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/bluetooth-devices/bleak-smlight/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Bleak backend for SMLIGHT SLZB Bluetooth proxies",
         homepage: "https://github.com/bluetooth-devices/bleak-smlight",

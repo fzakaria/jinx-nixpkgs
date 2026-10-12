@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]], [["anthropic", 76, 5], ["aws", 77, 5], ["community", 79, 5], ["deepseek", 80, 5], ["fireworks", 81, 5], ["google-genai", 82, 5], ["groq", 84, 5], ["huggingface", 85, 5], ["mistralai", 86, 5], ["ollama", 87, 5], ["openai", 88, 5], ["perplexity", 89, 5], ["xai", 91, 5]], [["rev-prefix", 152, 7], ["ignoredVersions", 153, 7]], [["skipBulkUpdate", 150, 5], ["updateScript", 151, 5]], [["description", 160, 5], ["homepage", 161, 5], ["changelog", 162, 5], ["license", 163, 5], ["maintainers", 164, 5]], [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["__structuredAttrs", 51, 3], ["src", 53, 3], ["sourceRoot", 60, 3], ["postPatch", 62, 3], ["build-system", 67, 3], ["dependencies", 69, 3], ["optional-dependencies", 75, 3], ["nativeCheckInputs", 94, 3], ["pytestFlags", 107, 3], ["enabledTestPaths", 112, 3], ["disabledTests", 118, 3], ["disabledTestPaths", 136, 3], ["pythonImportsCheck", 147, 3], ["passthru", 149, 3], ["__darwinAllowLocalNetworking", 157, 3], ["meta", 159, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "langchain-core": false, langgraph: false, pydantic: false, "langchain-anthropic": false, "langchain-aws": false, "langchain-community": false, "langchain-deepseek": false, "langchain-fireworks": false, "langchain-google-genai": false, "langchain-groq": false, "langchain-huggingface": false, "langchain-mistralai": false, "langchain-ollama": false, "langchain-openai": false, "langchain-perplexity": false, "langchain-xai": false, runtimeShell: false, blockbuster: false, "langchain-tests": false, "pytest-asyncio": false, "pytest-mock": false, "pytest-socket": false, "pytest-xdist": false, pytestCheckHook: false, syrupy: false, toml: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["anthropic", 76, 5], ["aws", 77, 5], ["community", 79, 5], ["deepseek", 80, 5], ["fireworks", 81, 5], ["google-genai", 82, 5], ["groq", 84, 5], ["huggingface", 85, 5], ["mistralai", 86, 5], ["ollama", 87, 5], ["openai", 88, 5], ["perplexity", 89, 5], ["xai", 91, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev-prefix", 152, 7], ["ignoredVersions", 153, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 150, 5], ["updateScript", 151, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 160, 5], ["homepage", 161, 5], ["changelog", 162, 5], ["license", 163, 5], ["maintainers", 164, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["__structuredAttrs", 51, 3], ["src", 53, 3], ["sourceRoot", 60, 3], ["postPatch", 62, 3], ["build-system", 67, 3], ["dependencies", 69, 3], ["optional-dependencies", 75, 3], ["nativeCheckInputs", 94, 3], ["pytestFlags", 107, 3], ["enabledTestPaths", 112, 3], ["disabledTests", 118, 3], ["disabledTestPaths", 136, 3], ["pythonImportsCheck", 147, 3], ["passthru", 149, 3], ["__darwinAllowLocalNetworking", 157, 3], ["meta", 159, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,13 +39,13 @@ export default nix.lambda((args) => (() => {
   const toml = nix.arg($, "toml");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "langchain",
       version: "1.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "langchain-ai",
           repo: "langchain",
           tag: nix.thunk(() => nix.str`langchain==${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +58,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [langchain_core, langgraph, pydantic]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         anthropic: nix.thunk(() => [langchain_anthropic]),
         aws: nix.thunk(() => [langchain_aws]),
         community: nix.thunk(() => [langchain_community]),
@@ -108,13 +103,17 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["langchain"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         skipBulkUpdate: true,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "langchain==", ignoredVersions: "a|b|dev|rc" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
+            [nix.POS]: $pos[2],
+            "rev-prefix": "langchain==",
+            ignoredVersions: "a|b|dev|rc",
+          })))),
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Building applications with LLMs through composability",
         homepage: "https://github.com/langchain-ai/langchain",
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langchain/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

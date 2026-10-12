@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 7], ["sha256", 28, 7]], [["url", 31, 7], ["sha256", 32, 7]], [["aarch64-darwin", 26, 5], ["x86_64-linux", 30, 5]], [["homepage", 39, 5], ["description", 40, 5], ["platforms", 41, 5], ["sourceProvenance", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5]], [["pname", 52, 7], ["version", 53, 7], ["src", 54, 7], ["meta", 55, 7], ["nativeBuildInputs", 58, 5], ["sourceRoot", 63, 5], ["installPhase", 65, 5], ["dontCheckForBrokenSymlinks", 75, 5]], [["pname", 80, 7], ["version", 81, 7], ["src", 82, 7], ["meta", 83, 7], ["nativeBuildInputs", 86, 5], ["buildInputs", 90, 5], ["installPhase", 105, 5], ["dontCheckForBrokenSymlinks", 122, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, undmg: false, autoPatchelfHook: false, "alsa-lib": false, ncurses5: false, libxxf86vm: false, libxtst: false, libxrender: false, libxrandr: false, libxi: false, libxft: false, libxext: false, libxcursor: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 7], ["sha256", 28, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 7], ["sha256", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-darwin", 26, 5], ["x86_64-linux", 30, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 39, 5], ["description", 40, 5], ["platforms", 41, 5], ["sourceProvenance", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 52, 7], ["version", 53, 7], ["src", 54, 7], ["meta", 55, 7], ["nativeBuildInputs", 58, 5], ["sourceRoot", 63, 5], ["installPhase", 65, 5], ["dontCheckForBrokenSymlinks", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 80, 7], ["version", 81, 7], ["src", 82, 7], ["meta", 83, 7], ["nativeBuildInputs", 86, 5], ["buildInputs", 90, 5], ["installPhase", 105, 5], ["dontCheckForBrokenSymlinks", 122, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,21 +27,21 @@ export default nix.lambda((args) => (() => {
   const pname = "scilab-bin";
   const version = "6.1.1";
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://www.utc.fr/~mottelet/scilab/download/${version}/scilab-${version}-accelerate-arm64.dmg`),
         sha256: "sha256-L4dxD8R8bY5nd+4oDs5Yk0LlNsFykLnAM+oN/O87SRI=",
       })))),
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://www.scilab.org/download/${version}/scilab-${version}.bin.linux-x86_64.tar.gz`),
         sha256: "sha256-PuGnz2YdAhriavwnuf5Qyy0cnCeRHlWC6dQzfr7bLHk=",
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     homepage: "http://www.scilab.org/",
     description: "Scientific software package for numerical computations (Matlab lookalike)",
     platforms: nix.thunk(() => ["aarch64-darwin", "x86_64-linux"]),
@@ -58,7 +53,7 @@ export default nix.lambda((args) => (() => {
     mainProgram: "scilab",
   }));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -69,7 +64,7 @@ export default nix.lambda((args) => (() => {
       dontCheckForBrokenSymlinks: true,
     }))));
   const linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,

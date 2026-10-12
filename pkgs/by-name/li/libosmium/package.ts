@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["changelog", 46, 5], ["maintainers", 50, 5], ["teams", 51, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["cmakeFlags", 36, 3], ["doCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, protozero: false, expat: false, zlib: false, bzip2: false, boost: false, lz4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["changelog", 46, 5], ["maintainers", 50, 5], ["teams", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["cmakeFlags", 36, 3], ["doCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const lz4 = nix.arg($, "lz4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libosmium",
       version: "2.23.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "osmcode",
           repo: "libosmium",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "INSTALL_GDALCPP", true))]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast and flexible C++ library for working with OpenStreetMap data",
         homepage: "https://osmcode.org/libosmium/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]], [["pkg-config", 130, 5]], [["tests", 129, 12]], [["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["teams", 137, 5], ["platforms", 138, 5], ["pkgConfigModules", 139, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["outputs", 49, 3], ["postPatch", 54, 3], ["strictDeps", 73, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 84, 3], ["propagatedBuildInputs", 106, 3], ["checkInputs", 111, 3], ["cmakeFlags", 117, 3], ["postInstall", 122, 3], ["doCheck", 127, 3], ["passthru", 129, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, nixosTests: false, testers: false, cmake: false, "cmake-extras": false, "pkg-config": false, wrapQtAppsHook: false, "gsettings-qt": false, gtest: false, libqtdbustest: false, libqtdbusmock: false, libuuid: false, "lomiri-api": false, "lomiri-app-launch": false, "lomiri-url-dispatcher": false, "lttng-ust": false, mir_2_15: false, "process-cpp": false, qtbase: false, qtdeclarative: false, qtsensors: false, valgrind: false, protobuf: false, glm: false, boost: false, "properties-cpp": false, glib: false, validatePkgConfig: false, wayland: false, xwayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg-config", 130, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 129, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["teams", 137, 5], ["platforms", 138, 5], ["pkgConfigModules", 139, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["outputs", 49, 3], ["postPatch", 54, 3], ["strictDeps", 73, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 84, 3], ["propagatedBuildInputs", 106, 3], ["checkInputs", 111, 3], ["cmakeFlags", 117, 3], ["postInstall", 122, 3], ["doCheck", 127, 3], ["passthru", 129, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const xwayland = nix.arg($, "xwayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "qtmir-debian-upstream",
       version: "0.8.0-unstable-2026-03-11",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/qtmir",
           rev: "57d9e9763933a5d6ca696676ebdde934529a71fe",
@@ -90,14 +86,14 @@ export default nix.lambda((args) => (() => {
       postInstall: "glib-compile-schemas $out/share/glib-2.0/schemas\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => nix.update(nix.sel(nixosTests, "lomiri"), {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "QPA plugin to make Qt a Mir server",
         homepage: "https://gitlab.com/ubports/development/core/qtmir",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

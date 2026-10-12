@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5], ["platforms", 51, 5]], [["pname", 10, 3], ["version", 11, 3], ["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["mvnHash", 25, 3], ["mvnParameters", 26, 3], ["nativeBuildInputs", 28, 3], ["installPhase", 32, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, maven: false, fetchFromGitHub: false, makeBinaryWrapper: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["mvnHash", 25, 3], ["mvnParameters", 26, 3], ["nativeBuildInputs", 28, 3], ["installPhase", 32, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "opendataloader-pdf",
       version: "2.4.7",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "opendataloader-project",
           repo: "opendataloader-pdf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/${nix.sel(finalAttr
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PDF Parser for AI-ready data",
         homepage: "https://github.com/opendataloader-project/opendataloader-pdf",
         changelog: nix.thunk(() => nix.str`https://github.com/opendataloader-project/opendataloader-pdf/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

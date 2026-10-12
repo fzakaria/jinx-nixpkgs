@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["version", 69, 26], ["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["mainProgram", 75, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 40, 3], ["configurePhase", 53, 3], ["buildInputs", 62, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libx11: false, libxscrnsaver: false, libxext: false, gnulib: false, autoconf: false, automake: false, libtool: false, gettext: false, "pkg-config": false, git: false, perl: false, texinfo: false, help2man: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 69, 26], ["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["mainProgram", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 40, 3], ["configurePhase", 53, 3], ["buildInputs", 62, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const help2man = nix.arg($, "help2man");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xprintidle-ng",
       version: "0-unstable-2015-09-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "taktoa",
           repo: "xprintidle-ng",
           rev: "9083ba284d9222541ce7da8dc87d5a27ef5cc592",
@@ -59,7 +57,7 @@ runHook postConfigure
 `),
       buildInputs: nix.thunk(() => [libx11, libxscrnsaver, libxext]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version: nix.thunk(() => nix.attr(finalAttrs, "version")),
         description: "Command-line tool to print idle time from libXss",
         homepage: "https://github.com/taktoa/xprintidle-ng",

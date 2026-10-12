@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["nativeBuildInputs", 32, 5], ["preBuild", 37, 5]], [["pname", 41, 13], ["version", 41, 19], ["src", 42, 5], ["pnpm", 43, 5], ["fetcherVersion", 44, 5], ["hash", 45, 5]], [["NUXT_TELEMETRY_DISABLED", 49, 7], ["CGO_ENABLED", 68, 7]], [["homebox", 93, 28]], [["tests", 92, 5]], [["mainProgram", 98, 5], ["homepage", 99, 5], ["description", 100, 5], ["maintainers", 101, 5], ["license", 105, 5], ["platforms", 109, 5]], [["pname", 25, 11], ["version", 25, 17], ["src", 25, 25], ["vendorHash", 27, 3], ["modRoot", 28, 3], ["overrideModAttrs", 31, 3], ["pnpmDeps", 40, 3], ["pnpmRoot", 47, 3], ["env", 49, 3], ["preBuild", 51, 3], ["nativeBuildInputs", 62, 3], ["doCheck", 69, 3], ["tags", 71, 3], ["ldflags", 75, 3], ["installPhase", 82, 3], ["passthru", 91, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, nodejs: false, go: false, git: false, cacert: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 32, 5], ["preBuild", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 41, 13], ["version", 41, 19], ["src", 42, 5], ["pnpm", 43, 5], ["fetcherVersion", 44, 5], ["hash", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NUXT_TELEMETRY_DISABLED", 49, 7], ["CGO_ENABLED", 68, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homebox", 93, 28]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 92, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["mainProgram", 98, 5], ["homepage", 99, 5], ["description", 100, 5], ["maintainers", 101, 5], ["license", 105, 5], ["platforms", 109, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 25, 11], ["version", 25, 17], ["src", 25, 25], ["vendorHash", 27, 3], ["modRoot", 28, 3], ["overrideModAttrs", 31, 3], ["pnpmDeps", 40, 3], ["pnpmRoot", 47, 3], ["env", 49, 3], ["preBuild", 51, 3], ["nativeBuildInputs", 62, 3], ["doCheck", 69, 3], ["tags", 71, 3], ["ldflags", 75, 3], ["installPhase", 82, 3], ["passthru", 91, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,26 +21,26 @@ export default nix.lambda((args) => (() => {
   const pname = "homebox";
   const version = "0.26.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "sysadminsmedia",
       repo: "homebox",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-JUhRpUWbydy28Xw7j6oCKJLBmaOxcruWAdkqm+hvouY=",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       src: src,
       vendorHash: "sha256-peQaPSbxGn8MnbZPqCi5ptW+dMh9l4W1hB6HqBLTqh4=",
       modRoot: "backend",
       overrideModAttrs: (_) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         nativeBuildInputs: nix.thunk(() => [go, git, cacert]),
         preBuild: "",
       }),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: pname,
           version: version,
           src: nix.thunk(() => nix.str`${src}/frontend`),
@@ -56,7 +49,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-oHS2uMWyuqpiK7yWznmZ2mgxPJpWsyOZL2wz6zBu0cc=",
         })))),
       pnpmRoot: "../frontend",
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NUXT_TELEMETRY_DISABLED: 1n, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NUXT_TELEMETRY_DISABLED: 1n, CGO_ENABLED: 0n })),
       preBuild: "pushd ../frontend\n\npnpm build\n\npopd\n\nmkdir -p ./app/api/static/public\ncp -r ../frontend/.output/public/* ./app/api/static/public\n",
       nativeBuildInputs: nix.thunk(() => [pnpmConfigHook, pnpm_10, nodejs]),
       doCheck: false,
@@ -70,11 +63,14 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp -r $GOPATH/bin/api $out/bin/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, homebox: nix.thunk(() => nix.attr(nixosTests, "homebox")) })),
+        [nix.POS]: $pos[5],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[4],
+          homebox: nix.thunk(() => nix.attr(nixosTests, "homebox")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         mainProgram: "api",
         homepage: "https://homebox.software/",
         description: "Inventory and organization system built for the Home User",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 34, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchgit: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 34, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "qmake2cmake",
       version: "1.0.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://codereview.qt-project.org/qt/qmake2cmake",
           rev: "2ae9ac3a5a657f58d7eea0824ead217e495d048b",
           hash: "sha256-LLP/sdFNsBYrz9gAh76QymtK71T+ZyknTGJiHGJnanU=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         writableTmpDirAsHomeHook,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to convert qmake .pro files to CMakeLists.txt",
         homepage: "https://wiki.qt.io/Qmake2cmake",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

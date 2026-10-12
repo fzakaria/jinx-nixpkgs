@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 17, 5], ["url", 18, 5], ["hash", 19, 5]], [["name", 23, 5], ["url", 24, 5], ["hash", 25, 5]], [["name", 54, 7], ["desktopName", 55, 7], ["exec", 56, 7], ["icon", 57, 7], ["comment", 58, 7], ["categories", 59, 7], ["terminal", 64, 7]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["srcIcon", 22, 3], ["dontUnpack", 28, 3], ["nativeBuildInputs", 30, 3], ["installPhase", 37, 3], ["desktopItems", 52, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, godot3: false, libicns: false, copyDesktopItems: false, makeDesktopItem: false, requireFile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 17, 5], ["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 23, 5], ["url", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 54, 7], ["desktopName", 55, 7], ["exec", 56, 7], ["icon", 57, 7], ["comment", 58, 7], ["categories", 59, 7], ["terminal", 64, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["srcIcon", 22, 3], ["dontUnpack", 28, 3], ["nativeBuildInputs", 30, 3], ["installPhase", 37, 3], ["desktopItems", 52, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const requireFile = nix.arg($, "requireFile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "brotato",
       version: "1.1.13.2",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "Brotato.pck",
           url: "https://store.epicgames.com/en-US/p/brotato-ed4097",
           hash: "sha256-/k/rnypHS3Gtj5nHb1cnx1JvCiJAKe+1JxlXolWksS0=",
         })))),
       srcIcon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "brotato.icns",
           url: "https://shared.fastly.steamstatic.com/community_assets/images/apps/1942280/c096e6b30bcb9749183fe5d1b78f77de7ae89383.icns",
           hash: "sha256-6ZZ1kqdOjqwIByrX1Bqrhy2yMaShlsbsEhuDBTK77gw=",
@@ -53,7 +49,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "brotato",
             desktopName: "Brotato",
             exec: "brotato",
@@ -64,7 +60,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Only potato capable of handling 6 weapons at the same time",
         homepage: "https://www.blobfishgames.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

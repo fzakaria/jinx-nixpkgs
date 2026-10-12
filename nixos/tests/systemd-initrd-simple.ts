@@ -2,42 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-initrd-simple.nix", [[["initrdBackdoor", 6, 13]], [["enable", 7, 25]], [["systemd", 7, 17]], [["initrd", 7, 10]], [["autoResize", 8, 36]], [["/", 8, 32]], [["fileSystems", 8, 20]], [["testing", 6, 5], ["boot", 7, 5], ["virtualisation", 8, 5]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 11, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-initrd-simple.nix", [["initrdBackdoor", 6, 13]]);
-const pos$2 = nix.positions(here + "/systemd-initrd-simple.nix", [["enable", 7, 25]]);
-const pos$3 = nix.positions(here + "/systemd-initrd-simple.nix", [["systemd", 7, 17]]);
-const pos$4 = nix.positions(here + "/systemd-initrd-simple.nix", [["initrd", 7, 10]]);
-const pos$5 = nix.positions(here + "/systemd-initrd-simple.nix", [["autoResize", 8, 36]]);
-const pos$6 = nix.positions(here + "/systemd-initrd-simple.nix", [["/", 8, 32]]);
-const pos$7 = nix.positions(here + "/systemd-initrd-simple.nix", [["fileSystems", 8, 20]]);
-const pos$8 = nix.positions(here + "/systemd-initrd-simple.nix", [["testing", 6, 5], ["boot", 7, 5], ["virtualisation", 8, 5]]);
-const pos$9 = nix.positions(here + "/systemd-initrd-simple.nix", [["machine", 5, 9]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/systemd-initrd-simple.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "systemd-initrd-simple",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        testing: nix.thunk(() => ({ [nix.POS]: pos$1, initrdBackdoor: true })),
+        [nix.POS]: $pos[7],
+        testing: nix.thunk(() => ({ [nix.POS]: $pos[0], initrdBackdoor: true })),
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           initrd: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            systemd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            systemd: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
         })),
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           fileSystems: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            "/": nix.thunk(() => ({ [nix.POS]: pos$5, autoResize: true })),
+            [nix.POS]: $pos[5],
+            "/": nix.thunk(() => ({ [nix.POS]: $pos[4], autoResize: true })),
           })),
         })),
       })),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["updateScript", 53, 5]], [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 41, 3], ["pyproject", 45, 3], ["dontWrapGApps", 46, 3], ["preFixup", 48, 3], ["passthru", 52, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { cmake: false, "pkg-config": false, wrapGAppsHook3: false, "gobject-introspection": false, python3Packages: false, libnotify: false, intltool: false, "adwaita-icon-theme": false, "gdk-pixbuf": false, libappindicator: false, fetchurl: false, lib: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 41, 3], ["pyproject", 45, 3], ["dontWrapGApps", 46, 3], ["preFixup", 48, 3], ["passthru", 52, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gcdemu",
       version: "3.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/cdemu/gcdemu-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-zBRZxbT+J85pMTYaTRxrV3ua61m6KYU6aStpeghYdvY=",
         })))),
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-gcdemu", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\n# Fetch the latest version from the SourceForge RSS feed for gcdemu\nnewVersion=\"$(curl -s \"https://sourceforge.net/projects/cdemu/rss?path=/gcdemu\" | pcre2grep -o1 'gcdemu-([0-9.]+)\\.tar\\.xz' | head -n 1)\"\n\nupdate-source-version gcdemu \"$newVersion\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Suite of tools for emulating optical drives and discs",
         longDescription: "CDEmu consists of:\n\n- a kernel module implementing a virtual drive-controller\n- libmirage which is a software library for interpreting optical disc images\n- a daemon which emulates the functionality of an optical drive+disc\n- textmode and GTK clients for controlling the emulator\n- an image analyzer to view the structure of image files\n\nOptical media emulated by CDemu can be mounted within Linux. Automounting is also allowed.\n",
         homepage: "https://cdemu.sourceforge.io/",

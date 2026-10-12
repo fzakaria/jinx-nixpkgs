@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["owner", 66, 9], ["repo", 67, 9], ["rev", 68, 9], ["hash", 69, 9]], [["hostap", 65, 7]], [["hardcodeZeroVersion", 74, 48]], [["updateScript", 74, 12]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5], ["platforms", 82, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["strictDeps", 36, 3], ["__structuredAttrs", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["patches", 62, 3], ["passthru", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, networkmanager: false, libnl: false, openssl: false, git: false, SDL2: false, SDL2_ttf: false, SDL2_image: false, libwebp: false, libtiff: false, ffmpeg: false, polkit: false, libxml2: false, libx11: false, libGL: false, libdrm: false, unstableGitUpdater: false, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 66, 9], ["repo", 67, 9], ["rev", 68, 9], ["hash", 69, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["hostap", 65, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 74, 48]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 74, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5], ["platforms", 82, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["strictDeps", 36, 3], ["__structuredAttrs", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["patches", 62, 3], ["passthru", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "vanilla-wiiu",
       version: "0-unstable-2026-09-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vanilla-wiiu",
           repo: "vanilla",
           rev: "786e70914ff5edcc6e989fcb237fb04f78eb3151",
@@ -68,9 +62,9 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./fix-sdl2-include.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./override-drc-hostap.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             hostap: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 owner: "vanilla-wiiu",
                 repo: "drc-hostap",
                 rev: "a2f705daa143791180754100194c91714f7e8801",
@@ -79,11 +73,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Software clone of the Wii U gamepad",
         homepage: "https://github.com/vanilla-wiiu/vanilla",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

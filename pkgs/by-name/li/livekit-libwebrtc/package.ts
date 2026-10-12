@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64", 46, 5], ["i686", 47, 5], ["arm", 48, 5], ["aarch64", 49, 5]], [["url", 61, 5], ["hash", 62, 5]], [["brotli", 66, 7], ["fontconfig", 67, 7], ["freetype", 68, 7], ["harfbuzz", 69, 7], ["icu", 70, 7], ["jsoncpp", 71, 7], ["libpng", 72, 7], ["libwebp", 73, 7], ["libxml2", 74, 7], ["libxslt", 75, 7], ["minizip", 76, 7], ["ffmpeg_8", 77, 7]], [["url", 91, 7], ["hash", 92, 7]], [["url", 96, 7], ["hash", 97, 7]], [["url", 101, 7], ["hash", 102, 7]], [["url", 106, 7], ["hash", 107, 7], ["stripLen", 108, 7], ["extraPrefix", 109, 7]], [["url", 113, 7], ["hash", 114, 7], ["stripLen", 115, 7], ["extraPrefix", 116, 7]], [["updateScript", 345, 12]], [["description", 348, 5], ["homepage", 349, 5], ["license", 350, 5], ["maintainers", 351, 5], ["platforms", 355, 5]], [["pname", 82, 3], ["version", 83, 3], ["gclientDeps", 85, 3], ["sourceRoot", 86, 3], ["patches", 88, 3], ["postPatch", 131, 3], ["outputs", 193, 3], ["nativeBuildInputs", 198, 3], ["buildInputs", 215, 3], ["preConfigure", 237, 3], ["gnFlags", 245, 3], ["ninjaFlags", 286, 3], ["postBuild", 300, 3], ["installPhase", 310, 3], ["postFixup", 336, 3], ["passthru", 345, 3], ["meta", 347, 3]]]);
 const formals$1 = { args: { stdenv: false, clang: false, gclient2nix: false, lib: false, gn: false, fetchurl: false, fetchpatch: false, xcbuild: false, python3: false, ninja: false, git: false, cpio: false, "pkg-config": false, glib: false, "alsa-lib": false, pulseaudio: false, nasm: false, brotli: false, fontconfig: false, freetype: false, harfbuzz: false, icu: false, jsoncpp: false, libpng: false, libwebp: false, libxml2: false, libxslt: false, minizip: false, ffmpeg_8: false, libepoxy: false, libgbm: false, libGL: false, libxcomposite: false, libxdamage: false, libxext: false, libxfixes: false, libxrandr: false, libxtst: false, pipewire: false, libx11: false, libxi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64", 46, 5], ["i686", 47, 5], ["arm", 48, 5], ["aarch64", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 61, 5], ["hash", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["brotli", 66, 7], ["fontconfig", 67, 7], ["freetype", 68, 7], ["harfbuzz", 69, 7], ["icu", 70, 7], ["jsoncpp", 71, 7], ["libpng", 72, 7], ["libwebp", 73, 7], ["libxml2", 74, 7], ["libxslt", 75, 7], ["minizip", 76, 7], ["ffmpeg_8", 77, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 91, 7], ["hash", 92, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 96, 7], ["hash", 97, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 101, 7], ["hash", 102, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 106, 7], ["hash", 107, 7], ["stripLen", 108, 7], ["extraPrefix", 109, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 113, 7], ["hash", 114, 7], ["stripLen", 115, 7], ["extraPrefix", 116, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["updateScript", 345, 12]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 348, 5], ["homepage", 349, 5], ["license", 350, 5], ["maintainers", 351, 5], ["platforms", 355, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 82, 3], ["version", 83, 3], ["gclientDeps", 85, 3], ["sourceRoot", 86, 3], ["patches", 88, 3], ["postPatch", 131, 3], ["outputs", 193, 3], ["nativeBuildInputs", 198, 3], ["buildInputs", 215, 3], ["preConfigure", 237, 3], ["gnFlags", 245, 3], ["ninjaFlags", 286, 3], ["postBuild", 300, 3], ["installPhase", 310, 3], ["postFixup", 336, 3], ["passthru", 345, 3], ["meta", 347, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,17 +48,17 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const libx11 = nix.arg($, "libx11");
   const libxi = nix.arg($, "libxi");
-  const platformMap = nix.thunk(() => ({ [nix.POS]: pos$1, x86_64: "x64", i686: "x86", arm: "arm", aarch64: "arm64" }));
+  const platformMap = nix.thunk(() => ({ [nix.POS]: $pos[0], x86_64: "x64", i686: "x86", arm: "arm", aarch64: "arm64" }));
   const cpuName = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"));
   const gnArch = nix.thunk(() => nix.selOr(platformMap, () => "unsupported", nix.key(nix.str`${cpuName}`)));
   const gnOs = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "linux" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mac" : nix.builtins.throw(nix.thunk(() => nix.str`unknown platform ${nix.sel(stdenv, "hostPlatform", "config")}`)))));
   const boringSslSymbols = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://raw.githubusercontent.com/livekit/rust-sdks/refs/tags/webrtc-dac8015-6/webrtc-sys/libwebrtc/boringssl_prefix_symbols.txt",
       hash: "sha256-dAweArv8zjsFPENEKi9mNBQkt4y+hh3rCqG6QZjRC20=",
     }))));
   const gnSystemLibraries = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mkSystemLibraries.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       brotli: brotli,
       fontconfig: fontconfig,
       freetype: freetype,
@@ -83,36 +73,36 @@ export default nix.lambda((args) => (() => {
       ffmpeg_8: ffmpeg_8,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "livekit-libwebrtc",
       version: "137-unstable-2026-03-12",
       gclientDeps: nix.thunk(() => nix.app(nix.sel(gclient2nix, "importGclientDeps"), nix.path(here, "./sources.json"))),
       sourceRoot: "src",
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://raw.githubusercontent.com/livekit/rust-sdks/a4343fe9d88fcc96f8e88959c90d509abbd0307b/webrtc-sys/libwebrtc/patches/add_licenses.patch",
             hash: "sha256-9A4KyRW1K3eoQxsTbPX0vOnj66TCs2Fxjpsu5wO8mGI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://raw.githubusercontent.com/livekit/rust-sdks/a4343fe9d88fcc96f8e88959c90d509abbd0307b/webrtc-sys/libwebrtc/patches/ssl_verify_callback_with_native_handle.patch",
             hash: "sha256-RBvRcJzoKItpEbqpe07YZe1D1ZVGS12EnDSISldGy+0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://raw.githubusercontent.com/livekit/rust-sdks/a4343fe9d88fcc96f8e88959c90d509abbd0307b/webrtc-sys/libwebrtc/patches/add_deps.patch",
             hash: "sha256-DwRtGdU5sppmiFsVuyhJoVCQrRl5JFmZJfxgUPhYXBg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://raw.githubusercontent.com/livekit/rust-sdks/a4343fe9d88fcc96f8e88959c90d509abbd0307b/webrtc-sys/libwebrtc/patches/force_gcc.patch",
             hash: "sha256-1d73Pi1HkbunjYvp1NskUNE4xXbCmnh++rC6NrCJHbY=",
             stripLen: 1n,
             extraPrefix: "build/",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: "https://raw.githubusercontent.com/livekit/rust-sdks/a4343fe9d88fcc96f8e88959c90d509abbd0307b/webrtc-sys/libwebrtc/patches/david_disable_gun_source_macro.patch",
             hash: "sha256-RCZpeeSQHaxkL3dY2oFFXDjYeU0KHw7idQFONGge8+0=",
             stripLen: 1n,
@@ -265,9 +255,9 @@ python3 "../../tools_webrtc/libs/generate_licenses.py" \\
 `)),
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n\nmkdir -p $out/lib\nmkdir -p $dev/include\n\ninstall -m0644 obj/webrtc.ninja obj/modules/desktop_capture/desktop_capture.ninja args.gn LICENSE.md $dev\n\npushd ../..\nfind . -name \"*.h\" -print | cpio -pd $dev/include\nfind . -name \"*.inc\" -print | cpio -pd $dev/include\npopd\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -m0644 libwebrtc.so libthird_party_boringssl.so $out/lib\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install -m0644 WebRTC.framework/Versions/A/WebRTC $out/lib/libwebrtc.dylib\ninstall -m0644 libthird_party_boringssl.dylib $out/lib\n")), "ln -s $out/lib $dev/lib\n\nrunHook postInstall\n")),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "boringssl=\"$out/lib/libthird_party_boringssl.dylib\"\nwebrtc=\"$out/lib/libwebrtc.dylib\"\n\ninstall_name_tool -id \"$boringssl\" \"$boringssl\"\ninstall_name_tool -id \"$webrtc\" \"$webrtc\"\ninstall_name_tool -change @rpath/libthird_party_boringssl.dylib \"$boringssl\" \"$webrtc\"\n")),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$9, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[8], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "WebRTC library used by livekit",
         homepage: "https://github.com/livekit/rust-sdks/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

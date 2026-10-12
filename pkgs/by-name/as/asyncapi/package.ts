@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["PUPPETEER_SKIP_DOWNLOAD", 21, 7]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["env", 21, 3], ["postPatch", 23, 3], ["doInstallCheck", 40, 3], ["nativeInstallCheckInputs", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PUPPETEER_SKIP_DOWNLOAD", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["env", 21, 3], ["postPatch", 23, 3], ["doInstallCheck", 40, 3], ["nativeInstallCheckInputs", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,23 +12,23 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "asyncapi",
       version: "6.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "asyncapi",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-SMjxuMI2PL8NG4MaC8jLMMzNAt6Bry1zeZYj7FZMEnY=",
         })))),
       npmDepsHash: "sha256-BqLXJX3rkaY+bKaR8sYAUSe1LgkugsAZ3iFCBuCseeo=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_DOWNLOAD: "true" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PUPPETEER_SKIP_DOWNLOAD: "true" })),
       postPatch: "# The build script fetches AsyncAPI examples from the internet.\n# Replace with a no-op since the CLI works without bundled examples.\nmkdir -p assets/examples\necho '[]' > assets/examples/examples.json\nsubstituteInPlace package.json \\\n  --replace-fail \"node scripts/fetch-asyncapi-example.js && \" \"\"\n\n# The logger tries to create a logs directory relative to __dirname,\n# which ends up inside the read-only Nix store. Use a writable path instead.\nsubstituteInPlace src/utils/logger.ts \\\n  --replace-fail \"path.join(__dirname, config.has('log.dir') ? config.get('log.dir') : 'logs')\" \\\n    \"path.join(process.env.XDG_STATE_HOME || path.join(require('os').homedir(), '.local', 'state'), 'asyncapi', 'logs')\" \\\n  --replace-fail \"fs.mkdirSync(logDir)\" \\\n    \"fs.mkdirSync(logDir, { recursive: true })\"\n",
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI to work with your AsyncAPI files. You can validate them and in the future use a generator and even bootstrap a new file",
         homepage: "https://www.asyncapi.com/tools/cli",
         changelog: nix.thunk(() => nix.str`https://github.com/asyncapi/cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

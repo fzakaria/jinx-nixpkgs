@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/storage-blobs.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["AZURE_SDK_DISABLE_AUTO_VCPKG", 40, 5]], [["extraArgs", 57, 5]], [["updateScript", 56, 12]], [["description", 66, 7], ["changelog", 67, 7]], [["pname", 11, 3], ["version", 12, 3], ["outputs", 13, 3], ["src", 18, 3], ["sourceRoot", 24, 3], ["postPatch", 26, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 37, 3], ["env", 39, 3], ["cmakeFlags", 43, 3], ["postInstall", 48, 3], ["doCheck", 54, 3], ["passthru", 56, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, "storage-common": false, "nix-update-script": false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/storage-blobs.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/storage-blobs.nix", [["AZURE_SDK_DISABLE_AUTO_VCPKG", 40, 5]]);
-const pos$3 = nix.positions(here + "/storage-blobs.nix", [["extraArgs", 57, 5]]);
-const pos$4 = nix.positions(here + "/storage-blobs.nix", [["updateScript", 56, 12]]);
-const pos$5 = nix.positions(here + "/storage-blobs.nix", [["description", 66, 7], ["changelog", 67, 7]]);
-const pos$6 = nix.positions(here + "/storage-blobs.nix", [["pname", 11, 3], ["version", 12, 3], ["outputs", 13, 3], ["src", 18, 3], ["sourceRoot", 24, 3], ["postPatch", 26, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 37, 3], ["env", 39, 3], ["cmakeFlags", 43, 3], ["postInstall", 48, 3], ["doCheck", 54, 3], ["passthru", 56, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "azure-sdk-for-cpp-storage-blobs",
       version: "12.16.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Azure",
           repo: "azure-sdk-for-cpp",
           tag: nix.thunk(() => nix.str`azure-storage-blobs_${nix.sel(finalAttrs, "version")}`),
@@ -36,19 +31,19 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       propagatedBuildInputs: nix.thunk(() => [storage_common]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, AZURE_SDK_DISABLE_AUTO_VCPKG: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], AZURE_SDK_DISABLE_AUTO_VCPKG: 1n })),
       cmakeFlags: nix.thunk(() => ["-DBUILD_SHARED_LIBS=ON", "-DWARNINGS_AS_ERRORS=OFF"]),
       postInstall: "moveToOutput \"share\" \"$dev\"\nmoveToOutput \"share/$(basename \"$sourceRoot\")-cpp/copyright\" \"$out\"\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "azure-storage-blobs_(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Azure Storage Blobs Client Library for C++",
         changelog: "https://github.com/Azure/azure-sdk-for-cpp/blob/main/sdk/storage/azure-storage-blobs/CHANGELOG.md",
       })),

@@ -2,22 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/webhook.nix", [[["port", 15, 18]], [["port", 16, 19]], [["host", 15, 13], ["guest", 16, 13]], [["forwardPorts", 13, 24]], [["execute-command", 25, 15], ["response-message", 26, 15]], [["echo", 24, 13]], [["echoTemplate", 30, 13]], [["WEBHOOK_MESSAGE", 38, 23]], [["enable", 20, 11], ["port", 21, 11], ["openFirewall", 22, 11], ["hooks", 23, 11], ["hooksTemplated", 29, 11], ["environment", 38, 11]], [["webhook", 19, 18]], [["virtualisation", 13, 9], ["services", 19, 9]], [["webhookMachine", 10, 5]], [["name", 7, 3], ["nodes", 9, 3], ["extraPythonPackages", 43, 3], ["testScript", 48, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/webhook.nix", [["port", 15, 18]]);
-const pos$2 = nix.positions(here + "/webhook.nix", [["port", 16, 19]]);
-const pos$3 = nix.positions(here + "/webhook.nix", [["host", 15, 13], ["guest", 16, 13]]);
-const pos$4 = nix.positions(here + "/webhook.nix", [["forwardPorts", 13, 24]]);
-const pos$5 = nix.positions(here + "/webhook.nix", [["execute-command", 25, 15], ["response-message", 26, 15]]);
-const pos$6 = nix.positions(here + "/webhook.nix", [["echo", 24, 13]]);
-const pos$7 = nix.positions(here + "/webhook.nix", [["echoTemplate", 30, 13]]);
-const pos$8 = nix.positions(here + "/webhook.nix", [["WEBHOOK_MESSAGE", 38, 23]]);
-const pos$9 = nix.positions(here + "/webhook.nix", [["enable", 20, 11], ["port", 21, 11], ["openFirewall", 22, 11], ["hooks", 23, 11], ["hooksTemplated", 29, 11], ["environment", 38, 11]]);
-const pos$10 = nix.positions(here + "/webhook.nix", [["webhook", 19, 18]]);
-const pos$11 = nix.positions(here + "/webhook.nix", [["virtualisation", 13, 9], ["services", 19, 9]]);
-const pos$12 = nix.positions(here + "/webhook.nix", [["webhookMachine", 10, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/webhook.nix", [["name", 7, 3], ["nodes", 9, 3], ["extraPythonPackages", 43, 3], ["testScript", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,45 +13,45 @@ export default nix.lambda((args) => (() => {
   const forwardedPort = 19000n;
   const internalPort = 9000n;
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "webhook",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       webhookMachine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                host: nix.thunk(() => ({ [nix.POS]: pos$1, port: forwardedPort })),
-                guest: nix.thunk(() => ({ [nix.POS]: pos$2, port: internalPort })),
+                [nix.POS]: $pos[2],
+                host: nix.thunk(() => ({ [nix.POS]: $pos[0], port: forwardedPort })),
+                guest: nix.thunk(() => ({ [nix.POS]: $pos[1], port: internalPort })),
               })),
             ]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             webhook: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               port: internalPort,
               openFirewall: true,
               hooks: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 echo: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   "execute-command": "echo",
                   "response-message": "Webhook is reachable!",
                 })),
               })),
               hooksTemplated: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 echoTemplate: "{\n  \"id\": \"echo-template\",\n  \"execute-command\": \"echo\",\n  \"response-message\": \"{{ getenv \"WEBHOOK_MESSAGE\" }}\"\n}\n",
               })),
-              environment: nix.thunk(() => ({ [nix.POS]: pos$8, WEBHOOK_MESSAGE: "Templates are working!" })),
+              environment: nix.thunk(() => ({ [nix.POS]: $pos[7], WEBHOOK_MESSAGE: "Templates are working!" })),
             })),
           })),
         };

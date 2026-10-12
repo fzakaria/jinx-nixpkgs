@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["url", 25, 7], ["sha256", 26, 7]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["propagatedBuildInputs", 30, 3], ["doCheck", 36, 3], ["nativeCheckInputs", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, lib: false, "graphql-core": false, promise: false, fetchpatch: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 25, 7], ["sha256", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["propagatedBuildInputs", 30, 3], ["doCheck", 36, 3], ["nativeCheckInputs", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "graphql-python",
           repo: "graphql-server-core",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/graphql-python/graphql-server-core/commit/865ee9d5602f352c958f6f7e15adbe9abe216784.patch",
             sha256: "03p44p4j8rys7mgamh2h9ibbnac2cqwvp5f5hrl2avj2hh0l6j46",
           })))),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Core package for using GraphQL in a custom server easily",
         homepage: "https://github.com/graphql-python/graphql-server-core",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

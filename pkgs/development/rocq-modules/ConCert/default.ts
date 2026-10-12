@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 24, 35], ["out", 24, 40]], [["hash", 30, 19]], [["hash", 31, 19]], [["1.0.1", 30, 11], ["1.0.0", 31, 11]], [["description", 50, 5], ["maintainers", 51, 5], ["license", 52, 5]], [["pname", 16, 3], ["repo", 17, 3], ["owner", 18, 3], ["domain", 19, 3], ["version", 21, 11], ["defaultVersion", 22, 3], ["release", 30, 3], ["releaseRev", 32, 3], ["propagatedBuildInputs", 34, 3], ["postPatch", 43, 3], ["buildPhase", 45, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, which: false, coq: false, "metarocq-erasure": false, bignums: false, QuickChick: false, stdpp: false, TypedExtraction: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 24, 35], ["out", 24, 40]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 30, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 31, 19]]);
-const pos$4 = nix.positions(here + "/default.nix", [["1.0.1", 30, 11], ["1.0.0", 31, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 50, 5], ["maintainers", 51, 5], ["license", 52, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["repo", 17, 3], ["owner", 18, 3], ["domain", 19, 3], ["version", 21, 11], ["defaultVersion", 22, 3], ["release", 30, 3], ["releaseRev", 32, 3], ["propagatedBuildInputs", 34, 3], ["postPatch", 43, 3], ["buildPhase", 45, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,24 +19,24 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const w = nix.withScope(lib, null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ConCert",
       repo: "ConCert",
       owner: "AU-COBRA",
       domain: "github.com",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[0], case: case$_1, out: out });
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [nix.thunk(() => nix.app(case$, "9.1", "1.0.1"))]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "1.0.1": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-HqbgUnGcZHkeG6qLf4qp/JT5oTPmdfOn1IJqnrloM2U=",
         })),
         "1.0.0": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-R+kWOZtR7T2LVQnHmLGDmGpLO0S76fPRWJpsO9nWqLE=",
         })),
       })),
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs ./extraction/process-extraction-examples.sh",
       buildPhase: "make core\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "A framework for smart contract verification in Rocq",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);

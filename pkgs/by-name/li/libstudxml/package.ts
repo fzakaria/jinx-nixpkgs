@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 18, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["postInstall", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, build2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 18, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["postInstall", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const build2 = nix.arg($, "build2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libstudxml",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.codesynthesis.com/libstudxml/libstudxml.git",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-WMqO03ShZ5h3gqe3VQmdxE6JT4799kfdDbsqHVBzReI=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [build2]),
       postInstall: "chmod +x \"$out\"/lib/*\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Streaming XML pull parser and streaming XML serializer implementation for modern, standard C++",
         homepage: "https://www.codesynthesis.com/projects/libstudxml/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

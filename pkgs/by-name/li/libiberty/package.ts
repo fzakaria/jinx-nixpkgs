@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 42, 5], ["license", 43, 5], ["description", 44, 5], ["maintainers", 45, 5], ["platforms", 48, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 20], ["outputs", 18, 3], ["postUnpack", 23, 3], ["postPatch", 27, 3], ["strictDeps", 31, 3], ["configureFlags", 33, 3], ["postInstall", 35, 3], ["__structuredAttrs", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, staticBuild: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["license", 43, 5], ["description", 44, 5], ["maintainers", 45, 5], ["platforms", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 20], ["outputs", 18, 3], ["postUnpack", 23, 3], ["postPatch", 27, 3], ["strictDeps", 31, 3], ["configureFlags", 33, 3], ["postInstall", 35, 3], ["__structuredAttrs", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from_1 = nix.thunk(() => nix.sel(gcc, "cc"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "libiberty",
       version: nix.thunk(() => nix.str`${nix.sel(gcc, "cc", "version")}`),
       src: nix.thunk(() => nix.attr(from_1, "src")),
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(staticBuild)), "cp pic/libiberty.a $out/lib*/libiberty.a\n")),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://gcc.gnu.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),
         description: "Collection of subroutines used by various GNU programs",

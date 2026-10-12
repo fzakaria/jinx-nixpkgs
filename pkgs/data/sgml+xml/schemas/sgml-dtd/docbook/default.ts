@@ -2,29 +2,26 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 6, 5], ["hash", 7, 5]], [["version", 10, 5], ["hash", 11, 5]], [["version", 14, 5], ["hash", 15, 5]], [["docbook_sgml_dtd_31", 5, 3], ["docbook_sgml_dtd_41", 9, 3], ["docbook_sgml_dtd_45", 13, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 6, 5], ["hash", 7, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 10, 5], ["hash", 11, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 14, 5], ["hash", 15, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["docbook_sgml_dtd_31", 5, 3], ["docbook_sgml_dtd_41", 9, 3], ["docbook_sgml_dtd_45", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     docbook_sgml_dtd_31: nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: "3.1",
           hash: "sha256-ICYdJ3G5oFKr+j2PqxqmK+BXkaAQKBxWb5Bzvw5kRTg=",
         })))), nix.thunk(() => ({})))),
     docbook_sgml_dtd_41: nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: "4.1",
           hash: "sha256-3qr88KNndpLnrUQSwOQcHbPp2mzc2z3TKyzB+cl9YxE=",
         })))), nix.thunk(() => ({})))),
     docbook_sgml_dtd_45: nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: "4.5",
           hash: "sha256-gEPlFOgMbBnLFGtdN5N9EwW/Or+bAJfDbff3D2Ec30M=",
         })))), nix.thunk(() => ({})))),

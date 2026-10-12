@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["graph", 47, 5], ["junit", 48, 5], ["sarif", 49, 5], ["full", 53, 5]], [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 56, 3], ["preCheck", 63, 3], ["disabledTests", 67, 3], ["disabledTestPaths", 72, 3], ["pythonImportsCheck", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, "aws-sam-translator": false, buildPythonPackage: false, defusedxml: false, fetchFromGitHub: false, "jschema-to-python": false, jsonpatch: false, "junit-xml": false, mock: false, networkx: false, pydot: false, pytestCheckHook: false, pyyaml: false, regex: false, "sarif-om": false, setuptools: false, sympy: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["graph", 47, 5], ["junit", 48, 5], ["sarif", 49, 5], ["full", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 56, 3], ["preCheck", 63, 3], ["disabledTests", 67, 3], ["disabledTestPaths", 72, 3], ["pythonImportsCheck", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.43.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aws-cloudformation",
           repo: "cfn-lint",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         graph: nix.thunk(() => [pydot]),
         junit: nix.thunk(() => [junit_xml]),
         sarif: nix.thunk(() => [jschema_to_python, sarif_om]),
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["cfnlint"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Checks cloudformation for practices and behaviour that could potentially be improved",
         mainProgram: "cfn-lint",
         homepage: "https://github.com/aws-cloudformation/cfn-lint",
@@ -77,7 +74,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

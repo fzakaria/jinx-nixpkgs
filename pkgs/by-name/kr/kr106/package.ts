@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["fetchSubmodules", 27, 5], ["hash", 28, 5]], [["NIX_LDFLAGS", 53, 7]], [["updateScript", 79, 5]], [["description", 83, 5], ["homepage", 84, 5], ["downloadPage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5], ["mainProgram", 90, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["cmakeFlags", 48, 3], ["env", 53, 3], ["installPhase", 61, 3], ["__structuredAttrs", 73, 3], ["strictDeps", 74, 3], ["doInstallCheck", 76, 3], ["passthru", 78, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, "alsa-lib": false, freetype: false, fontconfig: false, libGL: false, libx11: false, libxcursor: false, libxext: false, libxinerama: false, libxrandr: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["fetchSubmodules", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["downloadPage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5], ["mainProgram", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["cmakeFlags", 48, 3], ["env", 53, 3], ["installPhase", 61, 3], ["__structuredAttrs", 73, 3], ["strictDeps", 74, 3], ["doInstallCheck", 76, 3], ["passthru", 78, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "kr106",
       version: "2.5.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kayrockscreenprinting",
           repo: "ultramaster_kr106",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "KR106_COPY_AFTER_BUILD", false)),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXext", "-lXcursor", "-lXinerama", "-lXrandr"]))),
       })),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\ncp -r KR106_artefacts/Release/LV2  $out/lib/lv2\ncp -r KR106_artefacts/Release/VST3 $out/lib/vst3\ncp -r KR106_artefacts/Release/CLAP $out/lib/clap\ninstall -Dm755 \"KR106_artefacts/Release/Standalone/Ultramaster KR-106\" $out/bin/kr106\n\nrunHook postInstall\n",
@@ -62,11 +58,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Synthesizer plugin emulating the Roland Juno-6, Juno-60 and Juno-106",
         homepage: "https://kayrock.org/kr106",
         downloadPage: "https://github.com/kayrockscreenprinting/ultramaster_kr106",

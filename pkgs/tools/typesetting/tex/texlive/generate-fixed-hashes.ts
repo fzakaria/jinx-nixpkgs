@@ -2,16 +2,10 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generate-fixed-hashes.nix", [[["tlType", 26, 51]], [["tlType", 27, 49]], [["tlType", 28, 55]], [["tlType", 29, 47]], [["buildInputs", 37, 7], ["fod", 38, 15]], [["unformatted", 69, 9], ["nativeBuildInputs", 70, 9]], [["newHashes", 64, 3], ["fixedHashesNix", 66, 3]]]);
 const formals$1 = { args: { pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generate-fixed-hashes.nix", [["tlType", 26, 51]]);
-const pos$2 = nix.positions(here + "/generate-fixed-hashes.nix", [["tlType", 27, 49]]);
-const pos$3 = nix.positions(here + "/generate-fixed-hashes.nix", [["tlType", 28, 55]]);
-const pos$4 = nix.positions(here + "/generate-fixed-hashes.nix", [["tlType", 29, 47]]);
-const pos$5 = nix.positions(here + "/generate-fixed-hashes.nix", [["buildInputs", 37, 7], ["fod", 38, 15]]);
 const formals$2 = { args: { tlType: false }, ellipsis: true };
 const formals$3 = { args: { pname: false, revision: false, extraRevision: true }, ellipsis: true };
-const pos$6 = nix.positions(here + "/generate-fixed-hashes.nix", [["unformatted", 69, 9], ["nativeBuildInputs", 70, 9]]);
-const pos$7 = nix.positions(here + "/generate-fixed-hashes.nix", [["newHashes", 64, 3], ["fixedHashesNix", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,10 +24,10 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(from, "optionalString"));
   const sort = nix.thunk(() => nix.attr(from, "sort"));
   const strings = nix.thunk(() => nix.attr(from, "strings"));
-  const getFods = (drv) => nix.concat(nix.app(optional, nix.thunk(() => nix.app(isDerivation, nix.thunk(() => nix.sel(drv, "tex")))), nix.thunk(() => nix.update(nix.sel(drv, "tex"), { [nix.POS]: pos$1, tlType: "run" }))), nix.concat(nix.app(optional, nix.thunk(() => nix.has(drv, "texdoc")), nix.thunk(() => nix.update(nix.sel(drv, "texdoc"), { [nix.POS]: pos$2, tlType: "doc" }))), nix.concat(nix.app(optional, nix.thunk(() => nix.has(drv, "texsource")), nix.thunk(() => nix.update(nix.sel(drv, "texsource"), { [nix.POS]: pos$3, tlType: "source" }))), nix.app(optional, nix.thunk(() => nix.has(drv, "tlpkg")), nix.thunk(() => nix.update(nix.sel(drv, "tlpkg"), { [nix.POS]: pos$4, tlType: "tlpkg" }))))));
+  const getFods = (drv) => nix.concat(nix.app(optional, nix.thunk(() => nix.app(isDerivation, nix.thunk(() => nix.sel(drv, "tex")))), nix.thunk(() => nix.update(nix.sel(drv, "tex"), { [nix.POS]: $pos[0], tlType: "run" }))), nix.concat(nix.app(optional, nix.thunk(() => nix.has(drv, "texdoc")), nix.thunk(() => nix.update(nix.sel(drv, "texdoc"), { [nix.POS]: $pos[1], tlType: "doc" }))), nix.concat(nix.app(optional, nix.thunk(() => nix.has(drv, "texsource")), nix.thunk(() => nix.update(nix.sel(drv, "texsource"), { [nix.POS]: $pos[2], tlType: "source" }))), nix.app(optional, nix.thunk(() => nix.has(drv, "tlpkg")), nix.thunk(() => nix.update(nix.sel(drv, "tlpkg"), { [nix.POS]: $pos[3], tlType: "tlpkg" }))))));
   const sorted = nix.thunk(() => nix.app(sort, (a) => (b) => nix.lt(nix.sel(a, "pname"), nix.sel(b, "pname")), nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.sel(texlive, "pkgs"))))));
   const fods = nix.thunk(() => nix.app(concatMap, getFods, sorted));
-  const computeHash = (fod) => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(fod, "pname")}-${nix.sel(fod, "tlType")}-fixed-hash`), nix.thunk(() => ({ [nix.POS]: pos$5, buildInputs: nix.thunk(() => [nix$]), fod: fod })), "echo -n \"$(nix-hash --base32 --type sha256 \"$fod\")\" >\"$out\"");
+  const computeHash = (fod) => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(fod, "pname")}-${nix.sel(fod, "tlType")}-fixed-hash`), nix.thunk(() => ({ [nix.POS]: $pos[4], buildInputs: nix.thunk(() => [nix$]), fod: fod })), "echo -n \"$(nix-hash --base32 --type sha256 \"$fod\")\" >\"$out\"");
   const hash = (fod) => nix.selOr(fod, () => nix.builtins.readFile(nix.thunk(() => nix.app(computeHash, fod))), "outputHash");
   const hashes = (fods_1) => nix.app(concatMapStrings, nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
@@ -53,10 +47,10 @@ export default nix.lambda((args) => (() => {
 `));
   })(), formals$3);
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     newHashes: nix.thunk(() => nix.builtins.map(computeHash, nix.thunk(() => nix.app(filter, (fod) => !nix.asBool(nix.has(fod, "outputHash")), fods)))),
     fixedHashesNix: nix.thunk(() => nix.app(runCommand, "fixed-hashes.nix", nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         unformatted: nix.thunk(() => nix.app(writeText, "fixed-hashes.nix", nix.thunk(() => nix.str`{${nix.app(concatMapStrings, hashLine, sorted)}}`))),
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nixfmt"))]),
       })), "cat \"$unformatted\" | nixfmt > \"$out\"\n")),

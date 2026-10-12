@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/1compat.nix", [[["description", 39, 5], ["priority", 40, 5]], [["pname", 10, 3], ["version", 11, 19], ["outputs", 11, 27], ["builder", 13, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gnupg: false, coreutils: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/1compat.nix", [["description", 39, 5], ["priority", 40, 5]]);
-const pos$2 = nix.positions(here + "/1compat.nix", [["pname", 10, 3], ["version", 11, 19], ["outputs", 11, 27], ["builder", 13, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "gnupg1compat",
       version: nix.thunk(() => nix.attr(gnupg, "version")),
       outputs: nix.thunk(() => nix.attr(gnupg, "outputs")),
@@ -35,7 +34,7 @@ for f in \${!outputBin}/bin/*2; do
 done
 `)))),
       meta: nix.thunk(() => nix.update(nix.sel(gnupg, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.add(nix.sel(gnupg, "meta", "description"), " with symbolic links for gpg and gpgv")),
         priority: nix.thunk(() => nix.neg(1n)),
       })),

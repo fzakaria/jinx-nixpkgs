@@ -2,14 +2,13 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/default.nix", [["AEXML", 5, 5], ["ArtifactBundleGen", 6, 5], ["JSONUtilities", 7, 5], ["PathKit", 8, 5], ["Rainbow", 9, 5], ["Spectre", 10, 5], ["SwiftCLI", 11, 5], ["Version", 12, 5], ["XcodeProj", 13, 5], ["Yams", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["workspaceStateFile", 3, 3], ["hashes", 4, 3]]);
+const $pos = nix.positions(here + "/default.nix", [[["AEXML", 5, 5], ["ArtifactBundleGen", 6, 5], ["JSONUtilities", 7, 5], ["PathKit", 8, 5], ["Rainbow", 9, 5], ["Spectre", 10, 5], ["SwiftCLI", 11, 5], ["Version", 12, 5], ["XcodeProj", 13, 5], ["Yams", 14, 5]], [["workspaceStateFile", 3, 3], ["hashes", 4, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$2,
+  [nix.POS]: $pos[1],
   workspaceStateFile: nix.path(here, "./workspace-state.json"),
   hashes: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     AEXML: "sha256-6KvO8zT667Td+4qOeYzHbd51hDzFJFrxcVyYr2h5igc=",
     ArtifactBundleGen: "sha256-mSXJiRGFIm2RtzBG8l6s4RJ2BzSbPZKUZIqWM4vDIhc=",
     JSONUtilities: "sha256-jl8XfgoB5IX0qwwDtzcWgK0u3SNG2HfrPoEb2a6/mlA=",

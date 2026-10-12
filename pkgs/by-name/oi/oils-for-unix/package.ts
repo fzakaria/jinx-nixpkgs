@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 12, 5], ["paths", 13, 5]], [["url", 24, 5], ["hash", 25, 5]], [["NIX_CFLAGS_COMPILE", 57, 7]], [["description", 67, 5], ["homepage", 68, 5], ["longDescription", 69, 5], ["license", 74, 5], ["platforms", 76, 5], ["maintainers", 77, 5], ["changelog", 81, 5]], [["shellPath", 91, 20]], [["mainProgram", 93, 13]], [["name", 89, 11], ["paths", 90, 11], ["passthru", 91, 11], ["meta", 92, 11]], [["osh", 98, 7], ["ysh", 99, 7]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 28, 3], ["preInstall", 32, 3], ["buildPhase", 36, 3], ["installPhase", 44, 3], ["strictDeps", 52, 3], ["buildInputs", 53, 3], ["env", 57, 3], ["configureFlags", 58, 3], ["meta", 66, 3], ["passthru", 84, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, symlinkJoin: false, withReadline: true, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 12, 5], ["paths", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 57, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["longDescription", 69, 5], ["license", 74, 5], ["platforms", 76, 5], ["maintainers", 77, 5], ["changelog", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["shellPath", 91, 20]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mainProgram", 93, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 89, 11], ["paths", 90, 11], ["passthru", 91, 11], ["meta", 92, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["osh", 98, 7], ["ysh", 99, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 28, 3], ["preInstall", 32, 3], ["buildPhase", 36, 3], ["installPhase", 44, 3], ["strictDeps", 52, 3], ["buildInputs", 53, 3], ["env", 57, 3], ["configureFlags", 58, 3], ["meta", 66, 3], ["passthru", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const withReadline = nix.argOr($, "withReadline", () => true);
   const readline = nix.arg($, "readline");
   const readline_all = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "readline-all",
       paths: nix.thunk(() => [readline, nix.thunk(() => nix.sel(readline, "dev"))]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "oils-for-unix",
       version: "0.38.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://oils.pub/download/oils-for-unix-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ozRTcigZtV7lUr/X88K6uPGUDe9V1ci0avFs6VvfiAM=",
         })))),
@@ -42,12 +34,12 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withReadline, readline)),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=incompatible-function-pointer-types")),
       })),
       configureFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`--datarootdir=${nix.builtins.placeholder("out")}`)], nix.app(nix.sel(lib, "optionals"), withReadline, nix.thunk(() => ["--with-readline", nix.thunk(() => nix.str`--readline=${readline_all}`)])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Unix shell with JSON-compatible structured data. It's our upgrade path from bash to a better language and runtime",
         homepage: "https://www.oils.pub/",
         longDescription: "This package installs both `osh` and `ysh`. To use one as a login shell,\nselect one of `pkgs.oils-for-unix.osh`, `pkgs.oils-for-unix.ysh`.\n",
@@ -64,14 +56,14 @@ export default nix.lambda((args) => (() => {
       })),
       passthru: nix.thunk(() => (() => {
         const mkShell = (shellName) => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: nix.thunk(() => nix.str`oils-for-unix-${shellName}-${nix.sel(finalAttrs, "version")}`),
             paths: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
-            passthru: nix.thunk(() => ({ [nix.POS]: pos$5, shellPath: nix.thunk(() => nix.str`/bin/${shellName}`) })),
-            meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "meta"), { [nix.POS]: pos$6, mainProgram: shellName })),
+            passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], shellPath: nix.thunk(() => nix.str`/bin/${shellName}`) })),
+            meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "meta"), { [nix.POS]: $pos[5], mainProgram: shellName })),
           })));
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           osh: nix.thunk(() => nix.app(mkShell, "osh")),
           ysh: nix.thunk(() => nix.app(mkShell, "ysh")),
         };

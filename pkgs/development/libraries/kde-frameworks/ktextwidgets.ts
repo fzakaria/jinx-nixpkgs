@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ktextwidgets.nix", [[["pname", 18, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 31, 3]]]);
 const formals$1 = { args: { mkDerivation: false, cmake: false, "extra-cmake-modules": false, qttools: false, kcompletion: false, kconfig: false, kconfigwidgets: false, ki18n: false, kiconthemes: false, kservice: false, kwindowsystem: false, qtbase: false, sonnet: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ktextwidgets.nix", [["pname", 18, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const sonnet = nix.arg($, "sonnet");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "ktextwidgets",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules]),
       buildInputs: nix.thunk(() => [kcompletion, kconfig, kconfigwidgets, kiconthemes, kservice, kwindowsystem]),

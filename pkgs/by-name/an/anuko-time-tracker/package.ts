@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["anuko-time-tracker", 33, 26]], [["tests", 32, 12]], [["description", 37, 5], ["license", 38, 5], ["homepage", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 17, 3], ["dontBuild", 25, 3], ["installPhase", 27, 3], ["passthru", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, nixosTests: false, php: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["anuko-time-tracker", 33, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 32, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 37, 5], ["license", 38, 5], ["homepage", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 17, 3], ["dontBuild", 25, 3], ["installPhase", 27, 3], ["passthru", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const php = nix.arg($, "php");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "anuko-time-tracker",
       version: "1.22.19.5806",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "anuko",
           repo: "timetracker",
           rev: "43a19fcb51a21f6e3169084ac81308a6ef751e63",
@@ -30,14 +26,14 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "mkdir $out/\ncp -R ./* $out\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "anuko-time-tracker": nix.thunk(() => nix.attr(nixosTests, "anuko-time-tracker")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple, easy to use, open source time tracking system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "sspl")),
         homepage: "https://github.com/anuko/timetracker/",

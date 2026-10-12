@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 7], ["repo", 45, 7], ["rev", 46, 7], ["hash", 47, 7]], [["rev-prefix", 50, 7], ["ignoredVersions", 51, 7]], [["version", 42, 5], ["src", 43, 5], ["updateScript", 49, 5]], [["owner", 57, 7], ["repo", 58, 7], ["rev", 59, 7], ["hash", 60, 7]], [["tagFormat", 63, 7], ["tagPrefix", 64, 7]], [["version", 55, 5], ["src", 56, 5], ["updateScript", 62, 5]], [["updateScript", 115, 12]], [["description", 118, 5], ["longDescription", 119, 5], ["homepage", 131, 5], ["license", 132, 5], ["maintainers", 133, 5], ["platforms", 137, 5]], [["pname", 70, 3], ["version", 71, 26], ["src", 71, 34], ["nativeBuildInputs", 73, 3], ["buildInputs", 84, 3], ["enableParallelBuilding", 113, 3], ["passthru", 115, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false, unstableGitUpdater: false, cctools: false, "pkg-config": false, zlib: false, "ffmpeg-headless": false, freetype: false, libjpeg_turbo: false, libpng: false, libmad: false, faad2: false, libogg: false, libvorbis: false, libtheora: false, a52dec: false, nghttp2: false, openjpeg: false, libcaca: false, mesa_glu: false, xvidcore: false, openssl: false, jack2: false, "alsa-lib": false, pulseaudio: false, SDL2: false, curl: false, libxv: false, libx11: false, xorgproto: false, withFullDeps: true, withFfmpeg: true, releaseChannel: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 7], ["repo", 45, 7], ["rev", 46, 7], ["hash", 47, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 50, 7], ["ignoredVersions", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 42, 5], ["src", 43, 5], ["updateScript", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 57, 7], ["repo", 58, 7], ["rev", 59, 7], ["hash", 60, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tagFormat", 63, 7], ["tagPrefix", 64, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 55, 5], ["src", 56, 5], ["updateScript", 62, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 115, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 118, 5], ["longDescription", 119, 5], ["homepage", 131, 5], ["license", 132, 5], ["maintainers", 133, 5], ["platforms", 137, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 70, 3], ["version", 71, 26], ["src", 71, 34], ["nativeBuildInputs", 73, 3], ["buildInputs", 84, 3], ["enableParallelBuilding", 113, 3], ["passthru", 115, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,30 +45,30 @@ export default nix.lambda((args) => (() => {
   const stable = nix.thunk(() => (() => {
     const version = "26.07.0";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "gpac",
         repo: "gpac",
         rev: nix.thunk(() => nix.str`v${version}`),
         hash: "sha256-L4GKXCFsKVxWXZJJeiAegXJySoS9+/V+/cuzEJEse+I=",
       }))));
-    const updateScript = nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v", ignoredVersions: "^(abi|test)" }))));
-    return { [nix.POS]: pos$3, version, src, updateScript };
+    const updateScript = nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v", ignoredVersions: "^(abi|test)" }))));
+    return { [nix.POS]: $pos[2], version, src, updateScript };
   })());
   const unstable = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     version: "26.07.0-unstable-2026-08-04",
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         owner: "gpac",
         repo: "gpac",
         rev: "014bb6de5136e9466f6339486901db4d46570784",
         hash: "sha256-Uj3+CH2xkw504A2LUmruQ5vdQXhGqKY7Lx1Yp5263J0=",
       })))),
-    updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, tagFormat: "v*", tagPrefix: "v" })))),
+    updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], tagFormat: "v*", tagPrefix: "v" })))),
   }));
   const channelToUse = nix.thunk(() => (nix.asBool(nix.eq(releaseChannel, "unstable")) ? nix.force(unstable) : nix.force(stable)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "gpac",
       version: nix.thunk(() => nix.attr(channelToUse, "version")),
       src: nix.thunk(() => nix.attr(channelToUse, "src")),
@@ -108,11 +100,11 @@ export default nix.lambda((args) => (() => {
         ])))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.sel(channelToUse, "updateScript")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Open Source multimedia framework for research and academic purposes",
         longDescription: "GPAC is an Open Source multimedia framework for research and academic purposes.\nThe project covers different aspects of multimedia, with a focus on presentation\ntechnologies (graphics, animation and interactivity) and on multimedia packaging\nformats such as MP4.\n\nGPAC provides three sets of tools based on a core library called libgpac:\n\nA multimedia player, called Osmo4 / MP4Client,\nA multimedia packager, called MP4Box,\nAnd some server tools included in MP4Box and MP42TS applications.\n",
         homepage: "https://gpac.wp.imt.fr",

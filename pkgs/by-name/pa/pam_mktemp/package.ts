@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["name", 21, 7], ["url", 22, 7], ["hash", 23, 7]], [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]], [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["patchFlags", 32, 3], ["dontConfigure", 34, 3], ["buildInputs", 36, 3], ["makeFlags", 41, 3], ["enableParallelBuilding", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, pam: false, e2fsprogs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 21, 7], ["url", 22, 7], ["hash", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["patchFlags", 32, 3], ["dontConfigure", 34, 3], ["buildInputs", 36, 3], ["makeFlags", 41, 3], ["enableParallelBuilding", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,23 +14,23 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const e2fsprogs = nix.arg($, "e2fsprogs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pam_mktemp",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://openwall.com/pam/modules/pam_mktemp/pam_mktemp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Zs+AwYQ5yjRW25ZALy7qwUsaBQPMHRvn8rFtXwefPz0=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "inherit_private_prefix_from_home.patch",
             url: "https://git.altlinux.org/gears/p/pam_mktemp.git?p=pam_mktemp.git;a=commitdiff_plain;h=3d2e8ad6da6a44c047bf7a8afa1e1bb2a6e36a55",
             hash: "sha256-xe44fi2xH9jqlStlIR4QPB0KS7spflRdOsvNPEmxJpU",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "allow_private_prefix_to_be_stricter.patch",
             url: "https://git.altlinux.org/gears/p/pam_mktemp.git?p=pam_mktemp.git;a=commitdiff_plain;h=bb2cee0c695d22310e5364c30d74bccb0dbf3205",
             hash: "sha256-TouysUVlNnl+m7lJ2VKPxUTYD2om1Jh5FEJ6NHMAI4U=",
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.openwall.com/pam/",
         description: "PAM for login service to provide per-user private directories",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),

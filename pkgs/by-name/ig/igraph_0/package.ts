@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 42]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["outputs", 42, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 61, 3], ["cmakeFlags", 74, 3], ["doCheck", 89, 3], ["postInstall", 91, 3], ["postFixup", 96, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, arpack: false, bison: false, blas: false, cmake: false, flex: false, fop: false, glpk: false, gmp: false, "hal-hardware-analyzer": false, lapack: false, libxml2: false, libxslt: false, llvmPackages: false, "pkg-config": false, plfit: false, python3: false, sourceHighlight: false, xmlto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 42]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["outputs", 42, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 61, 3], ["cmakeFlags", 74, 3], ["doCheck", 89, 3], ["postInstall", 91, 3], ["postFixup", 96, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const xmlto = nix.arg($, "xmlto");
   nix.assert_((nix.asBool((nix.asBool(nix.eq(nix.sel(blas, "isILP64"), nix.sel(lapack, "isILP64"))) && nix.asBool(nix.eq(nix.sel(blas, "isILP64"), nix.sel(arpack, "isILP64"))))) && nix.asBool(!nix.asBool(nix.sel(blas, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ig/igraph_0/package.nix:25:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "igraph",
       version: "0.10.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "igraph",
           repo: "igraph",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -79,7 +77,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hal_hardware_analyzer, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C library for complex network analysis and graph theory",
         homepage: "https://igraph.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/igraph/igraph/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

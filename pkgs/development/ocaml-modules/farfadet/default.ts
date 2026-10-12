@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 26], ["broken", 41, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["propagatedBuildInputs", 29, 3], ["strictDeps", 31, 3], ["buildPhase", 33, 19], ["installPhase", 33, 30], ["meta", 35, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, ocaml: false, findlib: false, ocamlbuild: false, topkg: false, faraday: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 26], ["broken", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["propagatedBuildInputs", 29, 3], ["strictDeps", 31, 3], ["buildPhase", 33, 19], ["installPhase", 33, 30], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-farfadet`);
       const version = "0.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/oklm-wsh/Farfadet/releases/download/v${version}/farfadet-${version}.tbz`),
           sha256: "0nlafnp0pwx0n4aszpsk6nvcvqi9im306p4jhx70si7k3xprlr2j",
         }))));
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Printf-like for Faraday library",
         homepage: "https://github.com/oklm-wsh/Farfadet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

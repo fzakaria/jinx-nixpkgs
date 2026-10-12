@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 5], ["version", 19, 26], ["hash", 20, 5]], [["description", 52, 5], ["changelog", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["doCheck", 31, 3], ["pythonImportsCheck", 33, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, pyserial: false, srp: false, lib: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 26], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 5], ["changelog", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["doCheck", 31, 3], ["pythonImportsCheck", 33, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "digi-xbee",
       version: "1.5.0",
       __structuredAttrs: true,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "digi_xbee",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-amUrhHIpeRHuShD0cxb2sbbRTpJQZ9/b8otsa1Bo+bI=",
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
         "digi.xbee.xsocket",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library to interact with Digi International's XBee radio frequency modules",
         changelog: nix.thunk(() => nix.str`https://github.com/digidotcom/xbee-python/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),
         homepage: "https://github.com/digidotcom/xbee-python",

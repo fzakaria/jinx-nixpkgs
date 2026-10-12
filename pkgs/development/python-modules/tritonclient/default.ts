@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["aarch64-linux", 27, 9], ["x86_64-linux", 28, 9]], [["aarch64-linux", 31, 9], ["x86_64-linux", 32, 9]], [["pname", 36, 15], ["version", 36, 21], ["format", 36, 29], ["python", 37, 7], ["dist", 38, 7], ["platform", 39, 7], ["hash", 42, 7]], [["http", 56, 7], ["grpc", 60, 7]], [["optional-dependencies", 55, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 22, 11], ["version", 22, 17], ["format", 22, 25], ["src", 24, 3], ["propagatedBuildInputs", 46, 3], ["pythonImportsCheck", 52, 3], ["passthru", 54, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, numpy: false, "python-rapidjson": false, urllib3: false, aiohttp: false, geventhttpclient: false, grpcio: false, packaging: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["aarch64-linux", 27, 9], ["x86_64-linux", 28, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aarch64-linux", 31, 9], ["x86_64-linux", 32, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 36, 15], ["version", 36, 21], ["format", 36, 29], ["python", 37, 7], ["dist", 38, 7], ["platform", 39, 7], ["hash", 42, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["http", 56, 7], ["grpc", 60, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["optional-dependencies", 55, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 22, 11], ["version", 22, 17], ["format", 22, 25], ["src", 24, 3], ["propagatedBuildInputs", 46, 3], ["pythonImportsCheck", 52, 3], ["passthru", 54, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,17 +27,17 @@ export default nix.lambda((args) => (() => {
       const format_1 = format;
       const src = nix.thunk(() => (() => {
         const platforms = nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           "aarch64-linux": "manylinux2014_aarch64",
           "x86_64-linux": "manylinux1_x86_64",
         }));
         const hashes = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "aarch64-linux": "sha256-RkHdD4yPvo85Fqts07XFsgiMUCFXWiWuHQqfGDznJGk=",
           "x86_64-linux": "sha256-7h98H/ipZk56193fhhaSR62Mnis4Wakn/ZhOrhWa4vc=",
         }));
         return nix.app(fetchPypi, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: pname_1,
             version: version_1,
             format: format_1,
@@ -56,15 +50,15 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [numpy, python_rapidjson, urllib3]);
       const pythonImportsCheck = nix.thunk(() => ["tritonclient"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "optional-dependencies": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           http: nix.thunk(() => [aiohttp, geventhttpclient]),
           grpc: nix.thunk(() => [grpcio, packaging]),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Triton Python client",
         homepage: "https://github.com/triton-inference-server/client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -75,7 +69,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: pname_1,
         version: version_1,
         format: format_1,

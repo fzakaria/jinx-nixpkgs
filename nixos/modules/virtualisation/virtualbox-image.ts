@@ -2,49 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/virtualbox-image.nix", [[["sinceRelease", 16, 7], ["from", 17, 7], ["to", 21, 7]], [["sinceRelease", 27, 7], ["from", 28, 7], ["to", 33, 7]], [["type", 43, 9], ["default", 44, 9], ["description", 45, 9]], [["type", 50, 9], ["default", 51, 9], ["description", 52, 9]], [["type", 57, 9], ["default", 58, 9], ["description", 59, 9]], [["type", 64, 9], ["default", 65, 9], ["description", 66, 9]], [["audio", 80, 11], ["rtcuseutc", 81, 11], ["usb", 82, 11]], [["type", 71, 9], ["example", 79, 9], ["description", 84, 9]], [["type", 91, 9], ["example", 99, 9], ["default", 105, 9], ["description", 106, 9]], [["label", 119, 11], ["mountPoint", 120, 11], ["size", 121, 11]], [["type", 127, 17], ["description", 128, 17]], [["type", 131, 17], ["default", 132, 17], ["description", 133, 17]], [["type", 136, 17], ["description", 137, 17]], [["size", 126, 15], ["label", 130, 15], ["mountPoint", 135, 15]], [["options", 125, 13]], [["description", 113, 9], ["default", 117, 9], ["example", 118, 9], ["type", 123, 9]], [["type", 144, 9], ["default", 145, 9], ["example", 146, 9], ["description", 156, 9]], [["name", 170, 11], ["add", 171, 11], ["portcount", 172, 11], ["bootable", 173, 11], ["hostiocache", 174, 11]], [["name", 177, 11], ["add", 178, 11], ["portcount", 179, 11], ["bootable", 180, 11], ["hostiocache", 181, 11]], [["type", 161, 9], ["example", 169, 9], ["default", 176, 9], ["description", 183, 9]], [["baseImageFreeSpace", 42, 7], ["memorySize", 49, 7], ["vmDerivationName", 56, 7], ["vmName", 63, 7], ["params", 70, 7], ["exportParams", 90, 7], ["extraDisk", 112, 7], ["postExportCommands", 143, 7], ["storageController", 160, 7]], [["virtualbox", 41, 5]], [["enable", 302, 37]], [["guest", 302, 31]], [["diskSize", 196, 20], ["virtualbox", 302, 20]], [["acpi", 200, 9], ["vram", 201, 9], ["nictype1", 202, 9], ["nic1", 203, 9], ["audiocontroller", 204, 9], ["audio", 205, 9], ["audioout", 206, 9], ["graphicscontroller", 207, 9], ["rtcuseutc", 208, 9], ["usb", 209, 9], ["usbehci", 210, 9], ["mouse", 211, 9]], [["pae", 213, 69]], [["params", 198, 16]], [["tags", 216, 18]], [["name", 220, 7], ["baseName", 221, 7], ["pkgs", 223, 15], ["lib", 223, 20], ["config", 223, 24], ["partitionTableType", 224, 7], ["diskSize", 225, 39], ["additionalSpace", 226, 7], ["postVM", 228, 7]], [["image", 218, 18], ["virtualBoxOVA", 219, 18]], [["nixos", 216, 12], ["build", 218, 12]], [["extension", 217, 11]], [["device", 279, 9], ["autoResize", 280, 9], ["fsType", 281, 9]], [["/", 278, 7]], [["device", 286, 9], ["autoResize", 287, 9], ["fsType", 288, 9]], [["device", 293, 22]], [["grub", 293, 17]], [["growPartition", 292, 10], ["loader", 293, 10]], [["device", 297, 9], ["size", 298, 9]], [["virtualisation", 196, 5], ["virtualbox", 198, 5], ["system", 216, 5], ["image", 217, 5], ["fileSystems", 277, 5], ["boot", 292, 5], ["swapDevices", 295, 5]], [["imports", 12, 3], ["options", 40, 3], ["config", 193, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/virtualbox-image.nix", [["sinceRelease", 16, 7], ["from", 17, 7], ["to", 21, 7]]);
-const pos$2 = nix.positions(here + "/virtualbox-image.nix", [["sinceRelease", 27, 7], ["from", 28, 7], ["to", 33, 7]]);
-const pos$3 = nix.positions(here + "/virtualbox-image.nix", [["type", 43, 9], ["default", 44, 9], ["description", 45, 9]]);
-const pos$4 = nix.positions(here + "/virtualbox-image.nix", [["type", 50, 9], ["default", 51, 9], ["description", 52, 9]]);
-const pos$5 = nix.positions(here + "/virtualbox-image.nix", [["type", 57, 9], ["default", 58, 9], ["description", 59, 9]]);
-const pos$6 = nix.positions(here + "/virtualbox-image.nix", [["type", 64, 9], ["default", 65, 9], ["description", 66, 9]]);
-const pos$7 = nix.positions(here + "/virtualbox-image.nix", [["audio", 80, 11], ["rtcuseutc", 81, 11], ["usb", 82, 11]]);
-const pos$8 = nix.positions(here + "/virtualbox-image.nix", [["type", 71, 9], ["example", 79, 9], ["description", 84, 9]]);
-const pos$9 = nix.positions(here + "/virtualbox-image.nix", [["type", 91, 9], ["example", 99, 9], ["default", 105, 9], ["description", 106, 9]]);
-const pos$10 = nix.positions(here + "/virtualbox-image.nix", [["label", 119, 11], ["mountPoint", 120, 11], ["size", 121, 11]]);
-const pos$11 = nix.positions(here + "/virtualbox-image.nix", [["type", 127, 17], ["description", 128, 17]]);
-const pos$12 = nix.positions(here + "/virtualbox-image.nix", [["type", 131, 17], ["default", 132, 17], ["description", 133, 17]]);
-const pos$13 = nix.positions(here + "/virtualbox-image.nix", [["type", 136, 17], ["description", 137, 17]]);
-const pos$14 = nix.positions(here + "/virtualbox-image.nix", [["size", 126, 15], ["label", 130, 15], ["mountPoint", 135, 15]]);
-const pos$15 = nix.positions(here + "/virtualbox-image.nix", [["options", 125, 13]]);
-const pos$16 = nix.positions(here + "/virtualbox-image.nix", [["description", 113, 9], ["default", 117, 9], ["example", 118, 9], ["type", 123, 9]]);
-const pos$17 = nix.positions(here + "/virtualbox-image.nix", [["type", 144, 9], ["default", 145, 9], ["example", 146, 9], ["description", 156, 9]]);
-const pos$18 = nix.positions(here + "/virtualbox-image.nix", [["name", 170, 11], ["add", 171, 11], ["portcount", 172, 11], ["bootable", 173, 11], ["hostiocache", 174, 11]]);
-const pos$19 = nix.positions(here + "/virtualbox-image.nix", [["name", 177, 11], ["add", 178, 11], ["portcount", 179, 11], ["bootable", 180, 11], ["hostiocache", 181, 11]]);
-const pos$20 = nix.positions(here + "/virtualbox-image.nix", [["type", 161, 9], ["example", 169, 9], ["default", 176, 9], ["description", 183, 9]]);
-const pos$21 = nix.positions(here + "/virtualbox-image.nix", [["baseImageFreeSpace", 42, 7], ["memorySize", 49, 7], ["vmDerivationName", 56, 7], ["vmName", 63, 7], ["params", 70, 7], ["exportParams", 90, 7], ["extraDisk", 112, 7], ["postExportCommands", 143, 7], ["storageController", 160, 7]]);
-const pos$22 = nix.positions(here + "/virtualbox-image.nix", [["virtualbox", 41, 5]]);
-const pos$23 = nix.positions(here + "/virtualbox-image.nix", [["enable", 302, 37]]);
-const pos$24 = nix.positions(here + "/virtualbox-image.nix", [["guest", 302, 31]]);
-const pos$25 = nix.positions(here + "/virtualbox-image.nix", [["diskSize", 196, 20], ["virtualbox", 302, 20]]);
-const pos$26 = nix.positions(here + "/virtualbox-image.nix", [["acpi", 200, 9], ["vram", 201, 9], ["nictype1", 202, 9], ["nic1", 203, 9], ["audiocontroller", 204, 9], ["audio", 205, 9], ["audioout", 206, 9], ["graphicscontroller", 207, 9], ["rtcuseutc", 208, 9], ["usb", 209, 9], ["usbehci", 210, 9], ["mouse", 211, 9]]);
-const pos$27 = nix.positions(here + "/virtualbox-image.nix", [["pae", 213, 69]]);
-const pos$28 = nix.positions(here + "/virtualbox-image.nix", [["params", 198, 16]]);
-const pos$29 = nix.positions(here + "/virtualbox-image.nix", [["tags", 216, 18]]);
-const pos$30 = nix.positions(here + "/virtualbox-image.nix", [["name", 220, 7], ["baseName", 221, 7], ["pkgs", 223, 15], ["lib", 223, 20], ["config", 223, 24], ["partitionTableType", 224, 7], ["diskSize", 225, 39], ["additionalSpace", 226, 7], ["postVM", 228, 7]]);
-const pos$31 = nix.positions(here + "/virtualbox-image.nix", [["image", 218, 18], ["virtualBoxOVA", 219, 18]]);
-const pos$32 = nix.positions(here + "/virtualbox-image.nix", [["nixos", 216, 12], ["build", 218, 12]]);
-const pos$33 = nix.positions(here + "/virtualbox-image.nix", [["extension", 217, 11]]);
-const pos$34 = nix.positions(here + "/virtualbox-image.nix", [["device", 279, 9], ["autoResize", 280, 9], ["fsType", 281, 9]]);
-const pos$35 = nix.positions(here + "/virtualbox-image.nix", [["/", 278, 7]]);
-const pos$36 = nix.positions(here + "/virtualbox-image.nix", [["device", 286, 9], ["autoResize", 287, 9], ["fsType", 288, 9]]);
-const pos$37 = nix.positions(here + "/virtualbox-image.nix", [["device", 293, 22]]);
-const pos$38 = nix.positions(here + "/virtualbox-image.nix", [["grub", 293, 17]]);
-const pos$39 = nix.positions(here + "/virtualbox-image.nix", [["growPartition", 292, 10], ["loader", 293, 10]]);
-const pos$40 = nix.positions(here + "/virtualbox-image.nix", [["device", 297, 9], ["size", 298, 9]]);
-const pos$41 = nix.positions(here + "/virtualbox-image.nix", [["virtualisation", 196, 5], ["virtualbox", 198, 5], ["system", 216, 5], ["image", 217, 5], ["fileSystems", 277, 5], ["boot", 292, 5], ["swapDevices", 295, 5]]);
-const pos$42 = nix.positions(here + "/virtualbox-image.nix", [["imports", 12, 3], ["options", 40, 3], ["config", 193, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,53 +12,53 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "virtualbox"));
   return {
-    [nix.POS]: pos$42,
+    [nix.POS]: $pos[41],
     imports: nix.thunk(() => [
       nix.path(here, "./disk-size-option.nix"),
       nix.path(here, "../image/file-options.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sinceRelease: 2411n,
           from: nix.thunk(() => ["virtualbox", "baseImageSize"]),
           to: nix.thunk(() => ["virtualisation", "diskSize"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           sinceRelease: 2505n,
           from: nix.thunk(() => ["virtualisation", "virtualbox", "vmFileName"]),
           to: nix.thunk(() => ["image", "fileName"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       virtualbox: nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         baseImageFreeSpace: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             type: nix.thunk(() => nix.sel(lib, "types", "int")),
             default: nix.thunk(() => nix.mul(30n, 1024n)),
             description: "Free space in the VirtualBox base image in MiB.\n",
           })))),
         memorySize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             type: nix.thunk(() => nix.sel(lib, "types", "int")),
             default: 1536n,
             description: "The amount of RAM the VirtualBox appliance can use in MiB.\n",
           })))),
         vmDerivationName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.str`nixos-ova-${nix.sel(config, "system", "nixos", "label")}-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}`),
             description: "The name of the derivation for the VirtualBox appliance.\n",
           })))),
         vmName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.str`${nix.sel(config, "system", "nixos", "distroName")} ${nix.sel(config, "system", "nixos", "label")} (${nix.sel(pkgs, "stdenv", "hostPlatform", "system")})`),
             description: "The name of the VirtualBox appliance.\n",
           })))),
         params: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -109,11 +68,11 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                   ]))));
             })()),
-            example: nix.thunk(() => ({ [nix.POS]: pos$7, audio: "alsa", rtcuseutc: "on", usb: "off" })),
+            example: nix.thunk(() => ({ [nix.POS]: $pos[6], audio: "alsa", rtcuseutc: "on", usb: "off" })),
             description: "Parameters passed to the Virtualbox appliance.\n\nRun `VBoxManage modifyvm --help` to see more options.\n",
           })))),
         exportParams: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -128,32 +87,32 @@ export default nix.lambda((args) => (() => {
             description: "Parameters passed to the Virtualbox export command.\n\nRun `VBoxManage export --help` to see more options.\n",
           })))),
         extraDisk: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             description: "Optional extra disk/hdd configuration.\nThe disk will be an 'ext4' partition on a separate file.\n",
             default: null,
             example: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               label: "storage",
               mountPoint: "/home/demo/storage",
               size: nix.thunk(() => nix.mul(100n, 1024n)),
             })),
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   options: nix.thunk(() => ({
-                    [nix.POS]: pos$14,
+                    [nix.POS]: $pos[13],
                     size: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        [nix.POS]: pos$11,
+                        [nix.POS]: $pos[10],
                         type: nix.thunk(() => nix.sel(lib, "types", "int")),
                         description: "Size in MiB",
                       })))),
                     label: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        [nix.POS]: pos$12,
+                        [nix.POS]: $pos[11],
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "vm-extra-storage",
                         description: "Label for the disk partition",
                       })))),
                     mountPoint: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        [nix.POS]: pos$13,
+                        [nix.POS]: $pos[12],
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "Path where to mount this disk.",
                       })))),
@@ -161,7 +120,7 @@ export default nix.lambda((args) => (() => {
                 })))))),
           })))),
         postExportCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             default: "",
             example: nix.thunk(() => nix.str`${nix.sel(pkgs, "cot")}/bin/cot edit-hardware "$fn" \\
@@ -176,7 +135,7 @@ export default nix.lambda((args) => (() => {
             description: "Extra commands to run after exporting the OVA to `$fn`.\n",
           })))),
         storageController: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -187,7 +146,7 @@ export default nix.lambda((args) => (() => {
                   ]))));
             })()),
             example: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               name: "SCSI",
               add: "scsi",
               portcount: 16n,
@@ -195,7 +154,7 @@ export default nix.lambda((args) => (() => {
               hostiocache: "on",
             })),
             default: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               name: "SATA",
               add: "sata",
               portcount: 4n,
@@ -207,20 +166,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$41,
+      [nix.POS]: $pos[40],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         diskSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 1490n, nix.thunk(() => nix.mul(50n, 1024n)))),
         virtualbox: nix.thunk(() => ({
-          [nix.POS]: pos$24,
-          guest: nix.thunk(() => ({ [nix.POS]: pos$23, enable: true })),
+          [nix.POS]: $pos[23],
+          guest: nix.thunk(() => ({ [nix.POS]: $pos[22], enable: true })),
         })),
       })),
       virtualbox: nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         params: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 acpi: "on",
                 vram: 32n,
                 nictype1: "virtio",
@@ -234,19 +193,19 @@ export default nix.lambda((args) => (() => {
                 usbehci: "on",
                 mouse: "usbtablet",
               })))),
-            nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(pkgs, "stdenv", "hostPlatform", "system"), "i686-linux")), nix.thunk(() => ({ [nix.POS]: pos$27, pae: "on" })))),
+            nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(pkgs, "stdenv", "hostPlatform", "system"), "i686-linux")), nix.thunk(() => ({ [nix.POS]: $pos[26], pae: "on" })))),
           ]))),
       })),
       system: nix.thunk(() => ({
-        [nix.POS]: pos$32,
-        nixos: nix.thunk(() => ({ [nix.POS]: pos$29, tags: nix.thunk(() => ["virtualbox"]) })),
+        [nix.POS]: $pos[31],
+        nixos: nix.thunk(() => ({ [nix.POS]: $pos[28], tags: nix.thunk(() => ["virtualbox"]) })),
         build: nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           image: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "system", "build", "virtualBoxOVA")))),
           virtualBoxOVA: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "virtualisation"));
               return {
-              [nix.POS]: pos$30,
+              [nix.POS]: $pos[29],
               name: nix.thunk(() => nix.sel(cfg, "vmDerivationName")),
               baseName: nix.thunk(() => nix.sel(config, "image", "baseName")),
               pkgs: pkgs,
@@ -303,32 +262,32 @@ echo "file ova $fn" >> $out/nix-support/hydra-build-products
             })()))),
         })),
       })),
-      image: nix.thunk(() => ({ [nix.POS]: pos$33, extension: "ova" })),
+      image: nix.thunk(() => ({ [nix.POS]: $pos[32], extension: "ova" })),
       fileSystems: nix.thunk(() => nix.update({
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         "/": nix.thunk(() => ({
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           device: "/dev/disk/by-label/nixos",
           autoResize: true,
           fsType: "ext4",
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraDisk"), null)), nix.thunk(() => nix.attrsDyn({}, [
           [nix.sel(cfg, "extraDisk", "mountPoint"), nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             device: nix.thunk(() => nix.add("/dev/disk/by-label/", nix.sel(cfg, "extraDisk", "label"))),
             autoResize: true,
             fsType: "ext4",
           }))],
         ]))))),
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         growPartition: true,
         loader: nix.thunk(() => ({
-          [nix.POS]: pos$38,
-          grub: nix.thunk(() => ({ [nix.POS]: pos$37, device: "/dev/sda" })),
+          [nix.POS]: $pos[37],
+          grub: nix.thunk(() => ({ [nix.POS]: $pos[36], device: "/dev/sda" })),
         })),
       })),
-      swapDevices: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$40, device: "/var/swap", size: 2048n }))]),
+      swapDevices: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[39], device: "/var/swap", size: 2048n }))]),
     })),
   };
 })(), formals$1);

@@ -2,21 +2,20 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 14, 5], ["license", 15, 5]], [["releaseName", 4, 3], ["outputs", 6, 3], ["xcodeHash", 11, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { lib: false, mkAppleDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 14, 5], ["license", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["releaseName", 4, 3], ["outputs", 6, 3], ["xcodeHash", 11, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const mkAppleDerivation = nix.arg($, "mkAppleDerivation");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       releaseName: "basic_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-gT7kP/w23d5kGKgNPYS9ydCbeVaLwriMJj0BPIHgQ4U=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Basic commands for Darwin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       })),

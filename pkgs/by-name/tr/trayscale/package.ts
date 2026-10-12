@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["subPackages", 28, 3], ["ldflags", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["doCheck", 50, 3], ["postInstall", 52, 3], ["preFixup", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGo127Module: false, fetchFromGitHub: false, "pkg-config": false, wrapGAppsHook4: false, tailscale: false, gtk4: false, "gobject-introspection": false, libadwaita: false, desktopToDarwinBundle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["subPackages", 28, 3], ["ldflags", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["doCheck", 50, 3], ["postInstall", 52, 3], ["preFixup", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "trayscale",
       version: "0.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DeedleFake",
           repo: "trayscale",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix PATH : "${tailscale}/bin")
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/DeedleFake/trayscale/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Unofficial GUI wrapper around the Tailscale CLI client",
         homepage: "https://github.com/DeedleFake/trayscale",

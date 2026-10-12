@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["name", 44, 7], ["exec", 45, 7], ["icon", 46, 7], ["comment", 47, 7], ["desktopName", 48, 7], ["genericName", 49, 7], ["categories", 50, 7]], [["pname", 55, 13], ["data", 56, 5]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["longDescription", 97, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 109, 5], ["platforms", 110, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 35, 3], ["desktopItems", 42, 3], ["mitmCache", 54, 3], ["__darwinAllowLocalNetworking", 59, 3], ["doCheck", 61, 3], ["nativeCheckInputs", 63, 3], ["installPhase", 67, 3], ["doInstallCheck", 87, 3], ["nativeInstallCheckInputs", 88, 3], ["versionCheckProgramArg", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, jdk: false, gradle_9: false, jre: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, z3: false, cvc5: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 44, 7], ["exec", 45, 7], ["icon", 46, 7], ["comment", 47, 7], ["desktopName", 48, 7], ["genericName", 49, 7], ["categories", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 55, 13], ["data", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["longDescription", 97, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 109, 5], ["platforms", 110, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 35, 3], ["desktopItems", 42, 3], ["mitmCache", 54, 3], ["__darwinAllowLocalNetworking", 59, 3], ["doCheck", 61, 3], ["nativeCheckInputs", 63, 3], ["installPhase", 67, 3], ["doInstallCheck", 87, 3], ["nativeInstallCheckInputs", 88, 3], ["versionCheckProgramArg", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "key";
       const version = "3.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KeYProject",
           repo: "key",
           tag: nix.thunk(() => nix.str`KeY-${version}`),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [jdk, gradle, makeWrapper, copyDesktopItems]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "KeY",
             exec: nix.thunk(() => nix.sel(meta, "mainProgram")),
             icon: "key",
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
             categories: nix.thunk(() => ["Science"]),
           })))),
       ]);
-      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, data: nix.path(here, "./deps.json") }))));
+      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, data: nix.path(here, "./deps.json") }))));
       const __darwinAllowLocalNetworking = true;
       const doCheck = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux"));
       const nativeCheckInputs = nix.thunk(() => [z3]);
@@ -69,7 +65,7 @@ runHook postInstall
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const versionCheckProgramArg = "--show-properties";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Java formal verification tool",
         homepage: "https://www.key-project.org",
         changelog: "https://keyproject.github.io/key-docs/changelog/",
@@ -86,7 +82,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(jdk, "meta", "platforms")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

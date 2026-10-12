@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-bootstrap-tools.nix", [[["name", 10, 3], ["system", 12, 33], ["builder", 14, 3], ["args", 16, 3], ["PATH", 23, 3], ["tools", 25, 3], ["buildCommand", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "apple-sdk": false, bootstrapTools: false, hello: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-bootstrap-tools.nix", [["name", 10, 3], ["system", 12, 33], ["builder", 14, 3], ["args", 16, 3], ["PATH", 23, 3], ["tools", 25, 3], ["buildCommand", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.builtins.derivation, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
       return nix.attrsDyn({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "test-bootstrap-tools",
       system: nix.thunk(() => nix.attr(from, "system")),
       builder: nix.thunk(() => nix.str`${bootstrapTools}/bin/bash`),

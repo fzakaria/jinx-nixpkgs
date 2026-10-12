@@ -2,92 +2,73 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mk-mods.nix", [[["type", 5, 5]], [["value", 4, 11]], [["mkiffalse", 10, 13]], [["value", 10, 7]], [["mkiftrue", 13, 13]], [["value", 13, 7]], [["mkdefault", 16, 13]], [["value", 16, 7]], [["mkdefault", 19, 13]], [["value", 19, 7]], [["mkmerge", 22, 13]], [["value", 22, 7]], [["mkbefore", 27, 13]], [["value", 27, 7]], [["foo", 32, 11], ["bar", 33, 11]], [["baz", 38, 13]], [["foo", 36, 11], ["bar", 37, 11]], [["nested", 30, 13]], [["value", 30, 7]], [["options", 4, 3], ["config", 8, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mk-mods.nix", [["type", 5, 5]]);
-const pos$2 = nix.positions(here + "/mk-mods.nix", [["value", 4, 11]]);
-const pos$3 = nix.positions(here + "/mk-mods.nix", [["mkiffalse", 10, 13]]);
-const pos$4 = nix.positions(here + "/mk-mods.nix", [["value", 10, 7]]);
-const pos$5 = nix.positions(here + "/mk-mods.nix", [["mkiftrue", 13, 13]]);
-const pos$6 = nix.positions(here + "/mk-mods.nix", [["value", 13, 7]]);
-const pos$7 = nix.positions(here + "/mk-mods.nix", [["mkdefault", 16, 13]]);
-const pos$8 = nix.positions(here + "/mk-mods.nix", [["value", 16, 7]]);
-const pos$9 = nix.positions(here + "/mk-mods.nix", [["mkdefault", 19, 13]]);
-const pos$10 = nix.positions(here + "/mk-mods.nix", [["value", 19, 7]]);
-const pos$11 = nix.positions(here + "/mk-mods.nix", [["mkmerge", 22, 13]]);
-const pos$12 = nix.positions(here + "/mk-mods.nix", [["value", 22, 7]]);
-const pos$13 = nix.positions(here + "/mk-mods.nix", [["mkbefore", 27, 13]]);
-const pos$14 = nix.positions(here + "/mk-mods.nix", [["value", 27, 7]]);
-const pos$15 = nix.positions(here + "/mk-mods.nix", [["foo", 32, 11], ["bar", 33, 11]]);
-const pos$16 = nix.positions(here + "/mk-mods.nix", [["baz", 38, 13]]);
-const pos$17 = nix.positions(here + "/mk-mods.nix", [["foo", 36, 11], ["bar", 37, 11]]);
-const pos$18 = nix.positions(here + "/mk-mods.nix", [["nested", 30, 13]]);
-const pos$19 = nix.positions(here + "/mk-mods.nix", [["value", 30, 7]]);
-const pos$20 = nix.positions(here + "/mk-mods.nix", [["options", 4, 3], ["config", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "anything")) })))),
+      [nix.POS]: $pos[1],
+      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[0], type: nix.thunk(() => nix.sel(lib, "types", "anything")) })))),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           value: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             mkiffalse: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), false, nix.thunk(() => ({})))),
           })),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           value: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             mkiftrue: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, nix.thunk(() => ({})))),
           })),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           value: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             mkdefault: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 0n)),
           })),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$10,
-          value: nix.thunk(() => ({ [nix.POS]: pos$9, mkdefault: 1n })),
+          [nix.POS]: $pos[9],
+          value: nix.thunk(() => ({ [nix.POS]: $pos[8], mkdefault: 1n })),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           value: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             mkmerge: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [nix.thunk(() => ({}))]))),
           })),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           value: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             mkbefore: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), true)),
           })),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           value: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             nested: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   foo: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 0n)),
                   bar: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), false, 0n)),
                 })),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, nix.thunk(() => ({
-                    [nix.POS]: pos$17,
+                    [nix.POS]: $pos[16],
                     foo: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 1n)))),
                     bar: nix.thunk(() => ({
-                      [nix.POS]: pos$16,
+                      [nix.POS]: $pos[15],
                       baz: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "baz")),
                     })),
                   })))),

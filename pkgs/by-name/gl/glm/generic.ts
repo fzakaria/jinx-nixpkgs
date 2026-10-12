@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["NIX_CFLAGS_COMPILE", 28, 7]], [["changelog", 58, 5], ["description", 59, 5], ["longDescription", 60, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["broken", 70, 5], ["maintainers", 71, 5]], [["pname", 12, 3], ["version", 13, 11], ["src", 13, 19], ["outputs", 15, 3], ["patches", 20, 3], ["nativeBuildInputs", 26, 3], ["env", 28, 3], ["cmakeFlags", 38, 3], ["doCheck", 44, 3], ["postInstall", 46, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, version: false, src: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["NIX_CFLAGS_COMPILE", 28, 7]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["changelog", 58, 5], ["description", 59, 5], ["longDescription", 60, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["broken", 70, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["pname", 12, 3], ["version", 13, 11], ["src", 13, 19], ["outputs", 15, 3], ["patches", 20, 3], ["nativeBuildInputs", 26, 3], ["env", 28, 3], ["cmakeFlags", 38, 3], ["doCheck", 44, 3], ["postInstall", 46, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.path(here, "./1001-glm-Fix-packing-on-BE.patch")])));
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "11")))) ? "-fno-ipa-modref" : (nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? "-Wno-error" : ""))),
       }));
       const cmakeFlags = nix.thunk(() => [
@@ -42,7 +40,7 @@ cp -rv ../doc/api $doc/share/doc/glm/html
 cp -v ../doc/manual.pdf $doc/share/doc/glm
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/g-truc/glm/releases/tag/${nix.sel(src_1, "tag")}`),
         description: "OpenGL Mathematics library for C++",
         longDescription: "OpenGL Mathematics (GLM) is a header only C++ mathematics library for\ngraphics software based on the OpenGL Shading Language (GLSL)\nspecification and released under the MIT license.\n",
@@ -56,7 +54,7 @@ cp -v ../doc/manual.pdf $doc/share/doc/glm
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version: version_1,
         src: src_1,

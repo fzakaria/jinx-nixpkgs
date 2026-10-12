@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["CXXFLAGS", 49, 5]], [["description", 69, 5], ["longDescription", 70, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 82, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["npmDepsHash", 25, 3], ["makeCacheWritable", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["env", 41, 3], ["postInstall", 52, 3], ["nativeInstallCheckInputs", 56, 3], ["doInstallCheck", 65, 3], ["versionCheckProgram", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "balena-compose-parser": false, buildNpmPackage: false, fetchFromGitHub: false, versionCheckHook: false, "node-gyp": false, python3: false, udev: false, xcbuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["longDescription", 70, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["npmDepsHash", 25, 3], ["makeCacheWritable", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["env", 41, 3], ["postInstall", 52, 3], ["nativeInstallCheckInputs", 56, 3], ["doInstallCheck", 65, 3], ["versionCheckProgram", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const xcbuild = nix.arg($, "xcbuild");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "balena-cli",
       version: "25.2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "balena-io",
           repo: "balena-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +32,14 @@ export default nix.lambda((args) => (() => {
       makeCacheWritable: true,
       nativeBuildInputs: nix.thunk(() => nix.concat([node_gyp, python3], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcbuild])))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [udev]))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=c++20" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-std=c++20" })),
       postInstall: nix.thunk(() => nix.str`cp ${nix.app(nix.sel(lib, "getExe"), balena_compose_parser)} $out/lib/node_modules/balena-cli/node_modules/@balena/compose-parser/bin/
 `),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/balena`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command line interface for balenaCloud or openBalena",
         longDescription: "The balena CLI is a Command Line Interface for balenaCloud or openBalena. It is a software\ntool available for Windows, macOS and Linux, used through a command prompt / terminal window.\nIt can be used interactively or invoked in scripts. The balena CLI builds on the balena API\nand the balena SDK, and can also be directly imported in Node.js applications.\n",
         homepage: "https://github.com/balena-io/balena-cli",

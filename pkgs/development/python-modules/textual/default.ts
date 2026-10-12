@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["syntax", 67, 5]], [["description", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["license", 121, 5], ["maintainers", 122, 5]], [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["build-system", 51, 3], ["pythonRelaxDeps", 53, 3], ["dependencies", 56, 3], ["optional-dependencies", 66, 3], ["nativeCheckInputs", 82, 3], ["disabledTestPaths", 94, 3], ["disabledTests", 99, 3], ["pytestFlags", 107, 3], ["pythonImportsCheck", 113, 3], ["__darwinAllowLocalNetworking", 115, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, "markdown-it-py": false, platformdirs: false, rich: false, "typing-extensions": false, "mdit-py-plugins": false, "tree-sitter": false, "tree-sitter-c-sharp": false, "tree-sitter-html": false, "tree-sitter-javascript": false, "tree-sitter-make": false, "tree-sitter-markdown": false, "tree-sitter-python": false, "tree-sitter-rust": false, "tree-sitter-sql": false, "tree-sitter-yaml": false, "tree-sitter-zeek": false, jinja2: false, "pytest-aiohttp": false, "pytest-xdist": false, pytestCheckHook: false, syrupy: false, "time-machine": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["syntax", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["license", 121, 5], ["maintainers", 122, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["build-system", 51, 3], ["pythonRelaxDeps", 53, 3], ["dependencies", 56, 3], ["optional-dependencies", 66, 3], ["nativeCheckInputs", 82, 3], ["disabledTestPaths", 94, 3], ["disabledTests", 99, 3], ["pytestFlags", 107, 3], ["pythonImportsCheck", 113, 3], ["__darwinAllowLocalNetworking", 115, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const syrupy = nix.arg($, "syrupy");
   const time_machine = nix.arg($, "time-machine");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "textual",
       version: "8.2.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Textualize",
           repo: "textual",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["rich"]),
       dependencies: nix.thunk(() => nix.concat([markdown_it_py, mdit_py_plugins, platformdirs, rich, typing_extensions], nix.concat(nix.sel(markdown_it_py, "optional-dependencies", "plugins"), nix.sel(markdown_it_py, "optional-dependencies", "linkify")))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         syntax: nix.thunk(() => [
           tree_sitter,
           tree_sitter_c_sharp,
@@ -85,7 +82,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["textual"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "TUI framework for Python inspired by modern web development",
         homepage: "https://github.com/Textualize/textual",
         changelog: nix.thunk(() => nix.str`https://github.com/Textualize/textual/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

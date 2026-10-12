@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 7], ["hash", 24, 7]], [["url", 27, 7], ["hash", 28, 7]], [["elgato-stream-deck", 22, 5], ["xkeys", 26, 5]], [["x86_64-linux", 36, 5], ["aarch64-linux", 37, 5], ["armv7l-linux", 38, 5]], [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["updateScript", 56, 12]], [["src", 102, 13], ["missingHashes", 102, 17], ["hash", 103, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 107, 5], ["SKIP_LAUNCH_CHECK", 108, 5], ["ELECTRON", 109, 5]], [["description", 163, 5], ["longDescription", 164, 5], ["homepage", 165, 5], ["license", 166, 5], ["maintainers", 167, 5], ["mainProgram", 168, 5], ["platforms", 169, 5]], [["pname", 43, 3], ["version", 44, 3], ["__structuredAttrs", 46, 3], ["strictDeps", 47, 3], ["src", 49, 3], ["passthru", 56, 3], ["postPatch", 58, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 91, 3], ["missingHashes", 99, 3], ["offlineCache", 101, 3], ["env", 106, 3], ["configurePhase", 113, 3], ["buildPhase", 118, 3], ["preInstall", 137, 3], ["installPhase", 143, 3], ["meta", 162, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchurl: false, nodejs_26: false, git: false, python3: false, udev: false, "yarn-berry_4": false, libusb1: false, "dart-sass": false, electron: false, makeWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["elgato-stream-deck", 22, 5], ["xkeys", 26, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 36, 5], ["aarch64-linux", 37, 5], ["armv7l-linux", 38, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 56, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["src", 102, 13], ["missingHashes", 102, 17], ["hash", 103, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 107, 5], ["SKIP_LAUNCH_CHECK", 108, 5], ["ELECTRON", 109, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 163, 5], ["longDescription", 164, 5], ["homepage", 165, 5], ["license", 166, 5], ["maintainers", 167, 5], ["mainProgram", 168, 5], ["platforms", 169, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["__structuredAttrs", 46, 3], ["strictDeps", 47, 3], ["src", 49, 3], ["passthru", 56, 3], ["postPatch", 58, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 91, 3], ["missingHashes", 99, 3], ["offlineCache", 101, 3], ["env", 106, 3], ["configurePhase", 113, 3], ["buildPhase", 118, 3], ["preInstall", 137, 3], ["installPhase", 143, 3], ["meta", 162, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,21 +23,21 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const yarn_berry = yarn_berry_4;
   const builtinSurfaces = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "elgato-stream-deck": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "https://s4.bitfocus.io/developer-module-builds/surface/elgato-stream-deck/v1.4.6-c7ea9961c73fc6bf184b563d03c64b5607312d8d/elgato-stream-deck-v1.4.6.tgz",
         hash: "sha256-0zYgn2ao2yhy3CSlHbdqfV9YWWwUiQ5kibDjT4uqOn8=",
       })))),
     xkeys: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "https://s4.bitfocus.io/developer-module-builds/surface/xkeys/v1.0.2-876f00ee194faa57ec14468b7019bbaa516a9e6d/xkeys-v1.0.2.tgz",
         hash: "sha256-LYJD0Wb90hIIs8AIiZoqLxxKtMWko9rryPSds9ZYCac=",
       })))),
   }));
   const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
   const platform = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "x86_64-linux": "linux-x64",
       "aarch64-linux": "linux-arm64",
       "armv7l-linux": "linux-armv7l",
@@ -57,14 +48,14 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const strictDeps = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "bitfocus",
           repo: "companion",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-Q5XQ/r4YYYqLk6YaSlBZqcqEH8nFmpqyzMf7/fMWX74=",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const postPatch = nix.thunk(() => nix.str`# patch out git calls to generate version strings.
@@ -100,13 +91,13 @@ substituteInPlace companion/lib/Instance/Environment.ts \\
       const buildInputs = nix.thunk(() => [libusb1, dart_sass, nodejs_26, electron, udev]);
       const missingHashes = nix.path(here, "./missing-hashes.json");
       const offlineCache = nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           src: src,
           missingHashes: missingHashes,
           hash: "sha256-Fuh/D3FVtm08h7pW+LHgrEiyN9vmCjy+WekfpIz/Xc4=",
         }))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         ELECTRON_SKIP_BINARY_DOWNLOAD: 1n,
         SKIP_LAUNCH_CHECK: true,
         ELECTRON: 0n,
@@ -143,7 +134,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs_26)} $out/bin/bitfocus-comp
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Program for controlling Stream Deck devices",
         longDescription: "Bitfocus Companion enables the Elgato Stream Deck and other controllers to be a professional shotbox surface for an increasing amount of different presentation switchers, video playback software and broadcast equipment.",
         homepage: "https://bitfocus.io/companion",
@@ -156,7 +147,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version,
         __structuredAttrs,

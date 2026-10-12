@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 10, 3], ["version", 11, 41], ["src", 11, 49], ["nativeBuildInputs", 13, 3], ["nativeInstallCheckInputs", 14, 3], ["dontConfigure", 16, 3], ["doInstallCheck", 17, 3], ["postPatch", 19, 3], ["buildPhase", 27, 3], ["installPhase", 37, 3], ["installCheckPhase", 46, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, linuxPackages_latest: false, python3: false, man: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 41], ["src", 11, 49], ["nativeBuildInputs", 13, 3], ["nativeInstallCheckInputs", 14, 3], ["dontConfigure", 16, 3], ["doInstallCheck", 17, 3], ["postPatch", 19, 3], ["buildPhase", 27, 3], ["installPhase", 37, 3], ["installCheckPhase", 46, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(linuxPackages_latest, "kernel"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "linux-manual",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/share/man\"\ncp -r output/man \"$out/share/man/man9\"\n\nrunHook postInstall\n",
       installCheckPhase: "runHook preInstallCheck\n\n# Check for well‐known man page\nman -M \"$out/share/man\" -P cat 9 kmalloc >/dev/null\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://kernel.org/",
         description: "Linux kernel API manual pages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

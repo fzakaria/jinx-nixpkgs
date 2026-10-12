@@ -2,54 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zwave-js.nix", [[["maintainers", 5, 8]], [["S0_Legacy", 14, 24]], [["securityKeys", 14, 11]], [["mode", 12, 9], ["text", 13, 9]], [["zwavejs/secrets.json", 11, 23]], [["etc", 11, 19]], [["enable", 18, 9], ["serialPort", 19, 9], ["extraFlags", 20, 9], ["secretsConfigFile", 21, 9]], [["zwave-js", 17, 16]], [["environment", 11, 7], ["services", 17, 7]], [["machine", 8, 5]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/zwave-js.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/zwave-js.nix", [["S0_Legacy", 14, 24]]);
-const pos$3 = nix.positions(here + "/zwave-js.nix", [["securityKeys", 14, 11]]);
-const pos$4 = nix.positions(here + "/zwave-js.nix", [["mode", 12, 9], ["text", 13, 9]]);
-const pos$5 = nix.positions(here + "/zwave-js.nix", [["zwavejs/secrets.json", 11, 23]]);
-const pos$6 = nix.positions(here + "/zwave-js.nix", [["etc", 11, 19]]);
-const pos$7 = nix.positions(here + "/zwave-js.nix", [["enable", 18, 9], ["serialPort", 19, 9], ["extraFlags", 20, 9], ["secretsConfigFile", 21, 9]]);
-const pos$8 = nix.positions(here + "/zwave-js.nix", [["zwave-js", 17, 16]]);
-const pos$9 = nix.positions(here + "/zwave-js.nix", [["environment", 11, 7], ["services", 17, 7]]);
-const pos$10 = nix.positions(here + "/zwave-js.nix", [["machine", 8, 5]]);
-const pos$11 = nix.positions(here + "/zwave-js.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "zwave-js",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "graham33"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "zwavejs/secrets.json": nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               mode: "0400",
               text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-                  [nix.POS]: pos$3,
-                  securityKeys: nix.thunk(() => ({ [nix.POS]: pos$2, S0_Legacy: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" })),
+                  [nix.POS]: $pos[2],
+                  securityKeys: nix.thunk(() => ({ [nix.POS]: $pos[1], S0_Legacy: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" })),
                 })))),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           "zwave-js": nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             enable: true,
             serialPort: "/dev/null",
             extraFlags: nix.thunk(() => ["--mock-driver"]),

@@ -2,29 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["src", 40, 52], ["version", 40, 56], ["python3", 40, 64]], [["url", 57, 36], ["hash", 57, 40]], [["pname", 59, 60]], [["azWithExtension", 60, 19]], [["updateScript", 59, 13], ["tests", 60, 13]], [["description", 64, 21], ["platforms", 65, 38], ["maintainers", 65, 48], ["homepage", 66, 13], ["changelog", 67, 13], ["license", 68, 13], ["sourceProvenance", 69, 13]], [["format", 56, 11], ["src", 57, 11], ["passthru", 58, 11], ["meta", 63, 11]], [["updateScript", 115, 49]], [["passthru", 115, 40]], [["mkAzExtension", 118, 13], ["python3Packages", 119, 5]], [["name", 124, 5], ["dontUnpack", 125, 5], ["installPhase", 126, 5]], [["withExtensions", 398, 57]], [["withImmutableConfig", 413, 39]], [["azWithExtensions", 400, 9], ["azWithMutableConfig", 411, 9], ["extensions-tool", 422, 29]], [["mainProgram", 440, 18]], [["src", 432, 13], ["nativeBuildInputs", 433, 13], ["meta", 440, 13]], [["extensions", 397, 15], ["withExtensions", 398, 7], ["tests", 399, 7], ["generate-extensions", 425, 7], ["extensions-tool", 429, 7]], [["homepage", 464, 7], ["description", 465, 7], ["downloadPage", 466, 7], ["longDescription", 467, 7], ["changelog", 485, 7], ["sourceProvenance", 486, 7], ["license", 487, 7], ["mainProgram", 488, 7], ["maintainers", 489, 7], ["platforms", 490, 7]], [["pname", 145, 5], ["version", 146, 13], ["src", 146, 21], ["format", 147, 5], ["sourceRoot", 149, 5], ["nativeBuildInputs", 151, 5], ["propagatedBuildInputs", 159, 5], ["postInstall", 286, 5], ["postFixup", 309, 5], ["doInstallCheck", 322, 5], ["installCheckPhase", 323, 5], ["pythonImportsCheck", 331, 5], ["passthru", 396, 5], ["meta", 463, 5]]]);
 const formals$1 = { args: { lib: false, callPackage: false, callPackages: false, stdenvNoCC: false, fetchurl: false, fetchFromGitHub: false, runCommand: false, installShellFiles: false, python3: false, writeShellScriptBin: false, black: false, isort: false, mypy: false, makeWrapper: false, withImmutableConfig: true, withExtensions: true, "azure-cli": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 40, 52], ["version", 40, 56], ["python3", 40, 64]]);
 const formals$2 = { args: { pname: false, version: false, url: false, hash: false, description: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/package.nix", [["url", 57, 36], ["hash", 57, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 59, 60]]);
-const pos$5 = nix.positions(here + "/package.nix", [["azWithExtension", 60, 19]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 59, 13], ["tests", 60, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 64, 21], ["platforms", 65, 38], ["maintainers", 65, 48], ["homepage", 66, 13], ["changelog", 67, 13], ["license", 68, 13], ["sourceProvenance", 69, 13]]);
-const pos$8 = nix.positions(here + "/package.nix", [["format", 56, 11], ["src", 57, 11], ["passthru", 58, 11], ["meta", 63, 11]]);
 const formals$3 = { args: { pname: false }, ellipsis: false };
-const pos$9 = nix.positions(here + "/package.nix", [["updateScript", 115, 49]]);
-const pos$10 = nix.positions(here + "/package.nix", [["passthru", 115, 40]]);
-const pos$11 = nix.positions(here + "/package.nix", [["mkAzExtension", 118, 13], ["python3Packages", 119, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["name", 124, 5], ["dontUnpack", 125, 5], ["installPhase", 126, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["withExtensions", 398, 57]]);
-const pos$14 = nix.positions(here + "/package.nix", [["withImmutableConfig", 413, 39]]);
-const pos$15 = nix.positions(here + "/package.nix", [["azWithExtensions", 400, 9], ["azWithMutableConfig", 411, 9], ["extensions-tool", 422, 29]]);
-const pos$16 = nix.positions(here + "/package.nix", [["mainProgram", 440, 18]]);
-const pos$17 = nix.positions(here + "/package.nix", [["src", 432, 13], ["nativeBuildInputs", 433, 13], ["meta", 440, 13]]);
-const pos$18 = nix.positions(here + "/package.nix", [["extensions", 397, 15], ["withExtensions", 398, 7], ["tests", 399, 7], ["generate-extensions", 425, 7], ["extensions-tool", 429, 7]]);
-const pos$19 = nix.positions(here + "/package.nix", [["homepage", 464, 7], ["description", 465, 7], ["downloadPage", 466, 7], ["longDescription", 467, 7], ["changelog", 485, 7], ["sourceProvenance", 486, 7], ["license", 487, 7], ["mainProgram", 488, 7], ["maintainers", 489, 7], ["platforms", 490, 7]]);
-const pos$20 = nix.positions(here + "/package.nix", [["pname", 145, 5], ["version", 146, 13], ["src", 146, 21], ["format", 147, 5], ["sourceRoot", 149, 5], ["nativeBuildInputs", 151, 5], ["propagatedBuildInputs", 159, 5], ["postInstall", 286, 5], ["postFixup", 309, 5], ["doInstallCheck", 322, 5], ["installCheckPhase", 323, 5], ["pythonImportsCheck", 331, 5], ["passthru", 396, 5], ["meta", 463, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,14 +28,14 @@ export default nix.lambda((args) => (() => {
   const azure_cli = nix.arg($, "azure-cli");
   const version = "2.91.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`azure-cli-${version}-src`),
       owner: "Azure",
       repo: "azure-cli",
       tag: nix.thunk(() => nix.str`azure-cli-${version}`),
       hash: "sha256-wZG9yWDgAk+7wNBUU5bmmkna2f8TmH+Fo7NX0UbPcCQ=",
     }))));
-  const py = nix.thunk(() => nix.app(callPackage, nix.path(here, "./python-packages.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version, python3: python3 }))));
+  const py = nix.thunk(() => nix.app(callPackage, nix.path(here, "./python-packages.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], src: src, version: version, python3: python3 }))));
   const mkAzExtension = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const args_2 = args_1;
@@ -64,21 +45,21 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const description = nix.arg($_1, "description");
     const self = nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "buildPythonPackage"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         format: "wheel",
-        src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$3, url: url, hash: hash })))),
+        src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[2], url: url, hash: hash })))),
         passthru: nix.thunk(() => nix.update({
-          [nix.POS]: pos$6,
-          updateScript: nix.thunk(() => nix.app(extensionUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname })))),
+          [nix.POS]: $pos[5],
+          updateScript: nix.thunk(() => nix.app(extensionUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[3], pname: pname })))),
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             azWithExtension: nix.thunk(() => nix.app(testAzWithExts, nix.thunk(() => [self]))),
           })),
         }, nix.selOr(args_2, () => ({}), "passthru"))),
         meta: nix.thunk(() => nix.update((() => {
           const from = nix.thunk(() => nix.sel(azure_cli, "meta"));
           return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           description: description,
           platforms: nix.thunk(() => nix.attr(from, "platforms")),
           maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
@@ -116,17 +97,17 @@ done
 `));
   })();
   const extensions_generated = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (ext) => nix.app(mkAzExtension, nix.thunk(() => nix.update(ext, {
-        [nix.POS]: pos$10,
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$9, updateScript: [] })),
+        [nix.POS]: $pos[9],
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[8], updateScript: [] })),
       }))), nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./extensions-generated.json")))))));
   const extensions_manual = nix.thunk(() => nix.app(callPackages, nix.path(here, "./extensions-manual.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       mkAzExtension: mkAzExtension,
       python3Packages: nix.thunk(() => nix.sel(python3, "pkgs")),
     }))));
   const extensions = nix.thunk(() => nix.update(extensions_generated, extensions_manual));
   const extensionDir = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       name: "azure-cli-extensions",
       dontUnpack: true,
       installPhase: nix.thunk(() => (() => {
@@ -330,11 +311,11 @@ done
           "azure.storage.common",
         ]);
         const passthru = nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           extensions: extensions,
-          withExtensions: (extensions_1) => nix.app(nix.sel(azure_cli, "override"), nix.thunk(() => ({ [nix.POS]: pos$13, withExtensions: extensions_1 }))),
+          withExtensions: (extensions_1) => nix.app(nix.sel(azure_cli, "override"), nix.thunk(() => ({ [nix.POS]: $pos[12], withExtensions: extensions_1 }))),
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             azWithExtensions: nix.thunk(() => nix.app(testAzWithExts, nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(azure_cli, "extensions")), null);
                 return [
@@ -344,7 +325,7 @@ done
                 ];
               })()))),
             azWithMutableConfig: nix.thunk(() => (() => {
-              const az = nix.thunk(() => nix.app(nix.sel(azure_cli, "override"), nix.thunk(() => ({ [nix.POS]: pos$14, withImmutableConfig: false }))));
+              const az = nix.thunk(() => nix.app(nix.sel(azure_cli, "override"), nix.thunk(() => ({ [nix.POS]: $pos[13], withImmutableConfig: false }))));
               return nix.app(runCommand, "test-az-with-immutable-config", nix.thunk(() => ({})), nix.thunk(() => nix.str`export HOME=$TMPDIR
 ${nix.app(nix.sel(lib, "getExe"), az)} --version || exit 1
 touch $out
@@ -355,10 +336,10 @@ touch $out
           "generate-extensions": nix.thunk(() => nix.app(writeShellScriptBin, nix.thunk(() => nix.str`${pname}-update-extensions`), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(azure_cli, "extensions-tool")))} --cli-version ${nix.sel(azure_cli, "version")} --commit
 `))),
           "extensions-tool": nix.thunk(() => nix.app(runCommand, "azure-cli-extensions-tool", nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               src: nix.path(here, "./extensions-tool.py"),
               nativeBuildInputs: nix.thunk(() => [black, isort, makeWrapper, mypy, python3]),
-              meta: nix.thunk(() => ({ [nix.POS]: pos$16, mainProgram: "extensions-tool" })),
+              meta: nix.thunk(() => ({ [nix.POS]: $pos[15], mainProgram: "extensions-tool" })),
             })), nix.thunk(() => nix.str`black --check --diff $src
 isort --profile=black --check --diff $src
 
@@ -377,7 +358,7 @@ wrapProgram $out/bin/extensions-tool \\
 `))),
         }));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           homepage: "https://github.com/Azure/azure-cli",
           description: "Next generation multi-platform command line experience for Azure",
           downloadPage: nix.thunk(() => nix.str`https://github.com/Azure/azure-cli/releases/tag/azure-cli-${version_1}`),
@@ -393,7 +374,7 @@ wrapProgram $out/bin/extensions-tool \\
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
         return {
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           pname,
           version: version_1,
           src: src_1,

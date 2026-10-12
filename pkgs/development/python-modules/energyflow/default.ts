@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["all", 51, 5], ["archs", 56, 5], ["generation", 60, 5]], [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 44, 3], ["optional-dependencies", 50, 3], ["nativeCheckInputs", 63, 3], ["disabledTests", 70, 3], ["pythonImportsCheck", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, h5py: false, numpy: false, wasserstein: false, igraph: false, "scikit-learn": false, tensorflow: false, pot: false, pytestCheckHook: false, "tf-keras": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 51, 5], ["archs", 56, 5], ["generation", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 44, 3], ["optional-dependencies", 50, 3], ["nativeCheckInputs", 63, 3], ["disabledTests", 70, 3], ["pythonImportsCheck", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const tf_keras = nix.arg($, "tf-keras");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "energyflow",
       version: "1.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pkomiske",
           repo: "EnergyFlow",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [h5py, numpy, wasserstein]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [igraph, scikit_learn, tensorflow]),
         archs: nix.thunk(() => [scikit_learn, tensorflow]),
         generation: nix.thunk(() => [igraph]),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_emd_byhand_1_1", "test_emd_return_flow", "test_emde"])))),
       pythonImportsCheck: nix.thunk(() => ["energyflow"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python package for the EnergyFlow suite of tools",
         homepage: "https://energyflow.network/",
         changelog: nix.thunk(() => nix.str`https://github.com/thaler-lab/EnergyFlow/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

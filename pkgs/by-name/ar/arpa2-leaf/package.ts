@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["rev-prefix", 41, 40]], [["updateScript", 41, 12]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["teams", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, gitUpdater: false, cmake: false, arpa2cm: false, quickder: false, quickmem: false, "quick-sasl": false, lillydap: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 41, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 41, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["teams", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const lillydap = nix.arg($, "lillydap");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "arpa2-leaf",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arpa2",
           repo: "leaf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [arpa2cm, quickder, quickmem, quick_sasl, lillydap]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "LDAP Extended Attribute Filter",
         homepage: "https://gitlab.com/arpa2/leaf",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/arpa2/leaf/-/blob/v${nix.sel(finalAttrs, "version")}/CHANGES`),

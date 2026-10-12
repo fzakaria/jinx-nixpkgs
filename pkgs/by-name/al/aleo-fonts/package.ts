@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 19, 3], ["nativeBuildInputs", 24, 3], ["preInstall", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 19, 3], ["nativeBuildInputs", 24, 3], ["preInstall", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aleo-fonts",
       version: "2.0.0-unstable-2023-06-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AlessioLaiso",
           repo: "aleo",
           rev: "ce875e48d9983031648e87f38b7a269f4fbf5eb5",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       preInstall: "rm -r fonts/old",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Slab serif typeface designed by Alessio Laiso",
         homepage: "https://github.com/AlessioLaiso/aleo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["tests", 37, 12]], [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["nativeCheckInputs", 29, 3], ["pythonImportsCheck", 35, 3], ["passthru", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, llm: false, "llm-echo": false, "pytest-asyncio": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 37, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["nativeCheckInputs", 29, 3], ["pythonImportsCheck", 35, 3], ["passthru", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "simonw",
           repo: "llm-echo",
           tag: version,
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytestCheckHook, writableTmpDirAsHomeHook]);
       const pythonImportsCheck = nix.thunk(() => ["llm_echo"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => nix.app(nix.sel(llm, "mkPluginTest"), llm_echo)),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Debug plugin for LLM",
         homepage: "https://github.com/simonw/llm-echo",
         changelog: nix.thunk(() => nix.str`https://github.com/simonw/llm-echo/releases/tag/${version}/CHANGELOG.md`),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

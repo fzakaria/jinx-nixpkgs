@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 54, 5], ["hash", 55, 5]], [["installed-tests", 168, 7]], [["packageName", 172, 7], ["versionPolicy", 173, 7]], [["tests", 167, 5], ["updateScript", 171, 5]], [["description", 178, 5], ["homepage", 179, 5], ["license", 180, 5], ["mainProgram", 181, 5], ["teams", 182, 5], ["platforms", 183, 42], ["badPlatforms", 183, 52]], [["pname", 44, 3], ["version", 45, 3], ["outputs", 47, 3], ["src", 53, 3], ["patches", 58, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 90, 3], ["nativeCheckInputs", 97, 3], ["checkInputs", 101, 3], ["propagatedBuildInputs", 103, 3], ["mesonFlags", 107, 3], ["doCheck", 115, 3], ["strictDeps", 117, 3], ["postPatch", 119, 3], ["preCheck", 128, 3], ["postInstall", 142, 3], ["postFixup", 149, 3], ["checkPhase", 155, 3], ["separateDebugInfo", 164, 3], ["passthru", 166, 3], ["meta", 177, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, meson: false, mesonEmulatorHook: false, ninja: false, "pkg-config": false, gnome: false, gtk3: false, atk: false, "gobject-introspection": false, spidermonkey_140: false, pango: false, cairo: false, readline: false, "libsysprof-capture": false, glib: false, libxml2: false, dbus: false, "gdk-pixbuf": false, harfbuzz: false, makeWrapper: false, which: false, "xvfb-run": false, nixosTests: false, installTests: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["installed-tests", 168, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 172, 7], ["versionPolicy", 173, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 167, 5], ["updateScript", 171, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 178, 5], ["homepage", 179, 5], ["license", 180, 5], ["mainProgram", 181, 5], ["teams", 182, 5], ["platforms", 183, 42], ["badPlatforms", 183, 52]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["outputs", 47, 3], ["src", 53, 3], ["patches", 58, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 90, 3], ["nativeCheckInputs", 97, 3], ["checkInputs", 101, 3], ["propagatedBuildInputs", 103, 3], ["mesonFlags", 107, 3], ["doCheck", 115, 3], ["strictDeps", 117, 3], ["postPatch", 119, 3], ["preCheck", 128, 3], ["postInstall", 142, 3], ["postFixup", 149, 3], ["checkPhase", 155, 3], ["separateDebugInfo", 164, 3], ["passthru", 166, 3], ["meta", 177, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,12 +43,12 @@ export default nix.lambda((args) => (() => {
     gobject_introspection,
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gjs",
       version: "1.88.1",
       outputs: nix.thunk(() => ["out", "dev", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gjs/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gjs-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-dnurgOZl1nLLAFY8JfCzkqnsjCmW7R1EVMaYtMLwo9k=",
         })))),
@@ -97,17 +92,17 @@ mv "$installedTests/share/glib-2.0" "$installedTestsSchemaDatadir"
       checkPhase: "runHook preCheck\nGTK_A11Y=none \\\nHOME=$(mktemp -d) \\\nxvfb-run -s '-screen 0 800x600x24' \\\n  meson test --print-errorlogs\nrunHook postCheck\n",
       separateDebugInfo: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "installed-tests": nix.thunk(() => nix.sel(nixosTests, "installed-tests", "gjs")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gjs", versionPolicy: "odd-unstable" })))),
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "gjs", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(gobject_introspection, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "JavaScript bindings for GNOME",
         homepage: "https://gitlab.gnome.org/GNOME/gjs/blob/master/doc/Home.md",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

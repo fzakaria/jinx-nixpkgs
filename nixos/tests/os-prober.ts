@@ -2,32 +2,16 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/os-prober.nix", [[["createRootFS", 8, 7], ["extraPackages", 22, 7], ["postInstall", 30, 7]], [["enable", 43, 9], ["useOSProber", 44, 9], ["device", 45, 9], ["forceInstall", 47, 9]], [["grub", 42, 19]], [["zfs", 57, 33]], [["loader", 42, 12], ["supportedFilesystems", 57, 12]], [["substituters", 50, 9], ["hashed-mirrors", 51, 9], ["connect-timeout", 52, 9]], [["settings", 49, 11]], [["enable", 55, 21]], [["boot", 42, 7], ["nix", 49, 7], ["documentation", 55, 7]], [["options", 83, 31]], [["memorySize", 81, 26], ["qemu", 83, 26]], [["zfsSupport", 136, 44]], [["zfsSupport", 137, 48]], [["extraDependencies", 89, 18]], [["imports", 77, 11], ["virtualisation", 81, 11], ["system", 89, 11]], [["machine", 72, 11]], [["name", 70, 5], ["nodes", 72, 5], ["testScript", 146, 5]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/os-prober.nix", [["createRootFS", 8, 7], ["extraPackages", 22, 7], ["postInstall", 30, 7]]);
-const pos$2 = nix.positions(here + "/os-prober.nix", [["enable", 43, 9], ["useOSProber", 44, 9], ["device", 45, 9], ["forceInstall", 47, 9]]);
-const pos$3 = nix.positions(here + "/os-prober.nix", [["grub", 42, 19]]);
-const pos$4 = nix.positions(here + "/os-prober.nix", [["zfs", 57, 33]]);
-const pos$5 = nix.positions(here + "/os-prober.nix", [["loader", 42, 12], ["supportedFilesystems", 57, 12]]);
-const pos$6 = nix.positions(here + "/os-prober.nix", [["substituters", 50, 9], ["hashed-mirrors", 51, 9], ["connect-timeout", 52, 9]]);
-const pos$7 = nix.positions(here + "/os-prober.nix", [["settings", 49, 11]]);
-const pos$8 = nix.positions(here + "/os-prober.nix", [["enable", 55, 21]]);
-const pos$9 = nix.positions(here + "/os-prober.nix", [["boot", 42, 7], ["nix", 49, 7], ["documentation", 55, 7]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/os-prober.nix", [["options", 83, 31]]);
-const pos$11 = nix.positions(here + "/os-prober.nix", [["memorySize", 81, 26], ["qemu", 83, 26]]);
-const pos$12 = nix.positions(here + "/os-prober.nix", [["zfsSupport", 136, 44]]);
-const pos$13 = nix.positions(here + "/os-prober.nix", [["zfsSupport", 137, 48]]);
-const pos$14 = nix.positions(here + "/os-prober.nix", [["extraDependencies", 89, 18]]);
-const pos$15 = nix.positions(here + "/os-prober.nix", [["imports", 77, 11], ["virtualisation", 81, 11], ["system", 89, 11]]);
-const pos$16 = nix.positions(here + "/os-prober.nix", [["machine", 72, 11]]);
-const pos$17 = nix.positions(here + "/os-prober.nix", [["name", 70, 5], ["nodes", 72, 5], ["testScript", 146, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     const debianImage = nix.thunk(() => nix.app(nix.sel(pkgs, "vmTools", "diskImageFuns", "debian11i386"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         createRootFS: nix.thunk(() => (() => {
           const w = nix.withScope(pkgs, null);
           return nix.str`${nix.lookup(w, "parted")}/bin/parted --script /dev/vda mklabel msdos
@@ -49,31 +33,31 @@ mkdir /mnt/proc /mnt/dev /mnt/sys
       }))));
     const zfsSupport = false;
     const simpleConfig = nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         loader: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           grub: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             enable: true,
             useOSProber: true,
             device: "/dev/vda",
             forceInstall: true,
           })),
         })),
-        supportedFilesystems: nix.thunk(() => ({ [nix.POS]: pos$4, zfs: zfsSupport })),
+        supportedFilesystems: nix.thunk(() => ({ [nix.POS]: $pos[3], zfs: zfsSupport })),
       })),
       nix: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         settings: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
           "hashed-mirrors": null,
           "connect-timeout": 1n,
         })),
       })),
-      documentation: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
+      documentation: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: false })),
     }));
     const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "configuration.nix", nix.thunk(() => nix.str`{config, pkgs, lib, ...}: ({
 imports =
@@ -83,32 +67,32 @@ imports =
 } // lib.importJSON ${nix.app(nix.sel(pkgs, "writeText"), "simpleConfig.json", nix.thunk(() => nix.builtins.toJSON(simpleConfig)))})
 `)));
     return {
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       name: "os-prober",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return nix.update(simpleConfig, {
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             imports: nix.thunk(() => [
               nix.path(here, "../modules/profiles/installation-device.nix"),
               nix.path(here, "../modules/profiles/base.nix"),
             ]),
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               memorySize: 1300n,
               qemu: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 options: nix.thunk(() => [
                   nix.thunk(() => nix.str`-drive index=2,file=${debianImage}/disk-image.qcow2,read-only,if=virtio`),
                 ]),
               })),
             })),
             system: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               extraDependencies: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs_1, null);
                 return [
@@ -146,8 +130,8 @@ imports =
                   nix.thunk(() => nix.lookup(w, "shellcheck-minimal")),
                   nix.thunk(() => nix.sel(nix.lookup(w, "systemdMinimal"), "out")),
                   nix.thunk(() => nix.lookup(w, "curl")),
-                  nix.thunk(() => nix.app(nix.sel(pkgs_1, "grub2", "override"), nix.thunk(() => ({ [nix.POS]: pos$12, zfsSupport: zfsSupport })))),
-                  nix.thunk(() => nix.app(nix.sel(pkgs_1, "grub2_efi", "override"), nix.thunk(() => ({ [nix.POS]: pos$13, zfsSupport: zfsSupport })))),
+                  nix.thunk(() => nix.app(nix.sel(pkgs_1, "grub2", "override"), nix.thunk(() => ({ [nix.POS]: $pos[11], zfsSupport: zfsSupport })))),
+                  nix.thunk(() => nix.app(nix.sel(pkgs_1, "grub2_efi", "override"), nix.thunk(() => ({ [nix.POS]: $pos[12], zfsSupport: zfsSupport })))),
                   nix.thunk(() => nix.sel(pkgs_1, "nixos-artwork", "wallpapers", "simple-dark-gray-bootloader")),
                   nix.thunk(() => nix.sel(pkgs_1, "perlPackages", "FileCopyRecursive")),
                   nix.thunk(() => nix.sel(pkgs_1, "perlPackages", "XMLSAX")),

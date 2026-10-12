@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 39, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aresponses: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, syrupy: false, yarl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 39, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "klaasnicolaas",
           repo: "python-p1monitor",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [aresponses, pytest_asyncio, pytest_cov_stub, pytestCheckHook, syrupy]);
       const pythonImportsCheck = nix.thunk(() => ["p1monitor"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Module for interacting with the P1 Monitor",
         homepage: "https://github.com/klaasnicolaas/python-p1monitor",
         changelog: nix.thunk(() => nix.str`https://github.com/klaasnicolaas/python-p1monitor/releases/tag/v${version}`),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

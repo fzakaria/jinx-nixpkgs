@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["updateScript", 77, 5]], [["homepage", 81, 5], ["description", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["teams", 85, 5], ["mainProgram", 86, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 47, 3], ["mesonFlags", 63, 3], ["postPatch", 68, 3], ["passthru", 76, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, sassc: false, vala: false, wrapGAppsHook4: false, appstream: false, dbus: false, flatpak: false, glib: false, granite7: false, gtk4: false, "json-glib": false, libadwaita: false, libgee: false, "libportal-gtk4": false, libsoup_3: false, libxml2: false, polkit: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 77, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 81, 5], ["description", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["teams", 85, 5], ["mainProgram", 86, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 47, 3], ["mesonFlags", 63, 3], ["postPatch", 68, 3], ["passthru", 76, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "appcenter";
       const version = "8.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "appcenter",
           tag: version,
@@ -62,11 +59,11 @@ export default nix.lambda((args) => (() => {
       const mesonFlags = nix.thunk(() => ["-Dpayments=false", "-Dcurated=false"]);
       const postPatch = "# Since we do not build libxml2 with legacy support,\n# we cannot use compressed appstream metadata.\n# https://gitlab.gnome.org/GNOME/libxml2/-/commit/f7f14537727bf6845d0eea08cd1fdc30accc2a53\nsubstituteInPlace src/Core/FlatpakBackend.vala \\\n  --replace-fail \".xml.gz\" \".xml\"\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/elementary/appcenter",
         description: "Open, pay-what-you-want app store for indie developers, designed for elementary OS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "io.elementary.appcenter",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

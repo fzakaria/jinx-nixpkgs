@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["SHARP_FORCE_GLOBAL_LIBVIPS", 106, 5], ["ELECTRON_SKIP_BINARY_DOWNLOAD", 107, 5], ["DEBUG", 109, 5]], [["name", 114, 7], ["desktopName", 115, 7], ["exec", 116, 7], ["icon", 117, 7], ["type", 118, 7], ["comment", 119, 7], ["categories", 120, 7], ["mimeTypes", 121, 7]], [["updateScript", 158, 12]], [["description", 161, 5], ["homepage", 162, 5], ["changelog", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["mainProgram", 166, 5], ["platforms", 167, 5]], [["pname", 21, 3], ["version", 22, 3], ["nodejs", 24, 11], ["src", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 51, 3], ["npmDepsHash", 61, 3], ["postConfigure", 63, 3], ["buildInputs", 96, 3], ["makeCacheWritable", 101, 3], ["npmBuildScript", 103, 3], ["env", 105, 3], ["desktopItems", 112, 3], ["installPhase", 125, 3], ["passthru", 158, 3], ["meta", 160, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false, "nix-update-script": false, electron: false, python3: false, nodejs: false, vips: false, gitMinimal: false, removeReferencesTo: false, xcodebuild: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["SHARP_FORCE_GLOBAL_LIBVIPS", 106, 5], ["ELECTRON_SKIP_BINARY_DOWNLOAD", 107, 5], ["DEBUG", 109, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 114, 7], ["desktopName", 115, 7], ["exec", 116, 7], ["icon", 117, 7], ["type", 118, 7], ["comment", 119, 7], ["categories", 120, 7], ["mimeTypes", 121, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 158, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 161, 5], ["homepage", 162, 5], ["changelog", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["mainProgram", 166, 5], ["platforms", 167, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["nodejs", 24, 11], ["src", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 51, 3], ["npmDepsHash", 61, 3], ["postConfigure", 63, 3], ["buildInputs", 96, 3], ["makeCacheWritable", 101, 3], ["npmBuildScript", 103, 3], ["env", 105, 3], ["desktopItems", 112, 3], ["installPhase", 125, 3], ["passthru", 158, 3], ["meta", 160, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const xcodebuild = nix.arg($, "xcodebuild");
   const zip = nix.arg($, "zip");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "musicfree-desktop",
       version: "0.0.8",
       nodejs: nodejs,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "maotoumao",
           repo: "MusicFreeDesktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,14 +74,14 @@ rm -r Electron.app
       makeCacheWritable: true,
       npmBuildScript: "package",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         SHARP_FORCE_GLOBAL_LIBVIPS: "1",
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         DEBUG: "electron-forge:*,electron-packager,@electron/get:*",
       })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "musicfree-desktop",
             desktopName: "MusicFree",
             exec: "MusicFree %U",
@@ -121,9 +116,9 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Customizable music player with plugin support",
         homepage: "https://musicfree.catcat.work",
         changelog: nix.thunk(() => nix.str`https://github.com/maotoumao/MusicFreeDesktop/blob/${nix.sel(finalAttrs, "src", "tag")}/changelog.md`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 32, 3], ["nativeCheckInputs", 34, 3], ["pytestFlags", 42, 3], ["pythonImportsCheck", 47, 3], ["__darwinAllowLocalNetworking", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, httpx: false, pyjwt: false, "pytest-asyncio": false, "pytest-httpx": false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, "time-machine": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 32, 3], ["nativeCheckInputs", 34, 3], ["pytestFlags", 42, 3], ["pythonImportsCheck", 47, 3], ["__darwinAllowLocalNetworking", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.23.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Colin-b",
           repo: "httpx_auth",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["httpx_auth"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Authentication classes to be used with httpx",
         homepage: "https://github.com/Colin-b/httpx_auth",
         changelog: nix.thunk(() => nix.str`https://github.com/Colin-b/httpx_auth/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["message", 33, 11], ["name", 39, 11], ["sha256", 40, 11]], [["url", 48, 11], ["sha256", 49, 11]], [["description", 92, 5], ["longDescription", 93, 5], ["homepage", 96, 5], ["license", 97, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["installPhase", 58, 3], ["buildInputs", 78, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libvorbis: false, libogg: false, libtheora: false, SDL: false, libxft: false, SDL_image: false, zlib: false, libx11: false, libpng: false, openal: false, runtimeShell: false, requireFile: false, commercialVersion: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["message", 33, 11], ["name", 39, 11], ["sha256", 40, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 48, 11], ["sha256", 49, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 92, 5], ["longDescription", 93, 5], ["homepage", 96, 5], ["license", 97, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["installPhase", 58, 3], ["buildInputs", 78, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         const commercialName = nix.thunk(() => nix.str`${pname}-${version}_${postfix}.tar.gz`);
         const demoUrl = nix.thunk(() => nix.str`http://www.andyetitmoves.net/demo/${pname}Demo-${version}_${postfix}.tar.gz`);
         return (nix.asBool(commercialVersion) ? nix.app(requireFile, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             message: nix.thunk(() => nix.str`We cannot download the commercial version automatically, as you require a license.
 Once you bought a license, you need to add your downloaded version to the nix store.
 You can do this by using "nix-prefetch-url file:///$PWD/${commercialName}" in the
@@ -43,7 +40,7 @@ directory where you saved it.
             name: commercialName,
             sha256: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? "15wvzmmidvykwjrbnq70h5jrvnjx1hcrm0357qj85q4aqbzavh01" : "1v8z16qa9ka8sf7qq45knsxj87s6sipvv3a7xq11pb5xk08fb2ql")),
           }))) : nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: demoUrl,
             sha256: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? "0f14vrrbq05hsbdajrb5y9za65fpng1lc8f0adb4aaz27x7sh525" : "0mg41ya0b27blq3b5498kwl4rj46dj21rcd7qd0rw1kyvr7sx4v4")),
           }))));
@@ -79,13 +76,13 @@ chmod +x $out/bin/$binName
         openal,
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Physics/Gravity Platform game",
         longDescription: "And Yet It Moves is an award-winning physics-based platform game in which players rotate the game world at will to solve challenging puzzles. Tilting the world turns walls into floors, slides into platforms, and stacks of rocks into dangerous hazards.\n",
         homepage: "http://www.andyetitmoves.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
-      return { [nix.POS]: pos$4, pname, version, src, installPhase, buildInputs, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, installPhase, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

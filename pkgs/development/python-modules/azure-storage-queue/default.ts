@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 5], ["version", 19, 13], ["hash", 20, 5]], [["aio", 33, 5]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["optional-dependencies", 32, 3], ["doCheck", 37, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, "azure-core": false, buildPythonPackage: false, cryptography: false, fetchPypi: false, isodate: false, setuptools: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 13], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aio", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["optional-dependencies", 32, 3], ["doCheck", 37, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "12.17.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "azure_storage_queue",
           version: version,
           hash: "sha256-brEIqIVUvjcf6y66lxX6Dj97rKez8AwZ7EF/x85bODQ=",
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [azure_core, cryptography, isodate, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         aio: nix.thunk(() => nix.concat([azure_core], nix.sel(azure_core, "optional-dependencies", "aio"))),
       }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["azure.storage.queue"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Client library for Microsoft Azure Storage services containing the queue service APIs",
         homepage: "https://github.com/Azure/azure-sdk-for-python",
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/azure-sdk-for-python/blob/azure-storage-queue_${version}/sdk/storage/azure-storage-queue/CHANGELOG.md`),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

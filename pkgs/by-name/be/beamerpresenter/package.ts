@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 92, 5], ["maintainers", 93, 5], ["mainProgram", 97, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["dontWrapGApps", 42, 3], ["buildInputs", 44, 3], ["cmakeFlags", 68, 3], ["preFixup", 81, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, wrapGAppsHook3: false, gst_all_1: false, zlib: false, qt6: false, qt6Packages: false, freetype: false, gumbo: false, jbig2dec: false, mupdf: false, openjpeg: false, usePoppler: true, useMupdf: true, useExternalRenderer: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 92, 5], ["maintainers", 93, 5], ["mainProgram", 97, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["dontWrapGApps", 42, 3], ["buildInputs", 44, 3], ["cmakeFlags", 68, 3], ["preFixup", 81, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const useMupdf = nix.argOr($, "useMupdf", () => true);
   const useExternalRenderer = nix.argOr($, "useExternalRenderer", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "beamerpresenter",
       version: "0.2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "beamerpresenter",
           repo: "BeamerPresenter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modular multi screen pdf presentation viewer",
         homepage: "https://github.com/beamerpresenter/BeamerPresenter",
         license: nix.thunk(() => (() => {

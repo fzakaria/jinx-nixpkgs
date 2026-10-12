@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["can-run-hello-world", 60, 18]], [["tests", 60, 12]], [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["longDescription", 66, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["preConfigure", 48, 3], ["doCheck", 52, 3], ["preCheck", 56, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, callPackage: false, "pkg-config": false, libGL: false, libxcursor: false, libxext: false, libxi: false, libx11: false, libxrandr: false, libxscrnsaver: false, libxtst: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["can-run-hello-world", 60, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 60, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["longDescription", 66, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["preConfigure", 48, 3], ["doCheck", 52, 3], ["preCheck", 56, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxscrnsaver = nix.arg($, "libxscrnsaver");
   const libxtst = nix.arg($, "libxtst");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lobster",
       version: "2026.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aardappel",
           repo: "lobster",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,14 +38,14 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       preCheck: "ln -s ../../bin/lobster lobster\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "can-run-hello-world": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-can-run-hello-world.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://strlen.com/lobster/",
         description: "Lobster programming language",
         mainProgram: "lobster",

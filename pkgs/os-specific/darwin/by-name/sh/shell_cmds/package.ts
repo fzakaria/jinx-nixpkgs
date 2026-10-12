@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["NIX_CFLAGS_COMPILE", 42, 7]], [["description", 65, 5], ["license", 66, 5]], [["releaseName", 20, 3], ["outputs", 22, 3], ["xcodeHash", 27, 3], ["postPatch", 29, 3], ["env", 42, 3], ["depsBuildBuild", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["postInstall", 59, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, bison: false, clang: false, libedit: false, libresolv: false, libsbuf: false, libutil: false, libxo: false, mkAppleDerivation: false, "pkg-config": false, sourceRelease: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 42, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["license", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["releaseName", 20, 3], ["outputs", 22, 3], ["xcodeHash", 27, 3], ["postPatch", 29, 3], ["env", 42, 3], ["depsBuildBuild", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["postInstall", 59, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const sourceRelease = nix.arg($, "sourceRelease");
   const launchd = nix.thunk(() => nix.app(sourceRelease, "launchd"));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       releaseName: "shell_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-sbgPFMMXgUp+F1IRLiaFto+PsfMHBd23KQ1sQK7tP7A=",
       postPatch: "# Fix `mktemp` templates\nsubstituteInPlace sh/mkbuiltins \\\n  --replace-fail '-t ka' '-t ka.XXXXXX'\nsubstituteInPlace sh/mktokens \\\n  --replace-fail '-t ka' '-t ka.XXXXXX'\n\n# Update `/etc/locate.rc` paths to point to the store.\nfor path in locate/locate/locate.updatedb.8 locate/locate/locate.rc locate/locate/updatedb.sh; do\n  substituteInPlace $path --replace-fail '/etc/locate.rc' \"$out/etc/locate.rc\"\ndone\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${launchd}/liblaunch`),
       })),
       depsBuildBuild: nix.thunk(() => [clang]),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libedit, libresolv, libsbuf, libutil, libxo]),
       postInstall: "# Patch the shebangs to use `sh` from shell_cmds.\nHOST_PATH=\"$out/bin\" patchShebangs --host \"$out/bin\" \"$out/libexec\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Darwin shell commands and the Almquist shell",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

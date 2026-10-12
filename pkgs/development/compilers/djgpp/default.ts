@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["fetchurl", 20, 38], ["fetchFromGitHub", 20, 47]], [["NIX_CFLAGS_COMPILE", 49, 7]], [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 29, 3], ["patchPhase", 31, 3], ["env", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 55, 3], ["hardeningDisable", 66, 3], ["dontStrip", 70, 3], ["buildPhase", 72, 3], ["postInstall", 91, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { bison: false, buildPackages: false, curl: false, fetchFromGitHub: false, fetchurl: false, file: false, flex: false, targetArchitecture: true, lib: false, makeWrapper: false, perl: false, stdenv: false, texinfo: false, unzip: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["fetchurl", 20, 38], ["fetchFromGitHub", 20, 47]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 49, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 29, 3], ["patchPhase", 31, 3], ["env", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 55, 3], ["hardeningDisable", 66, 3], ["dontStrip", 70, 3], ["buildPhase", 72, 3], ["postInstall", 91, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const unzip = nix.arg($, "unzip");
   const which = nix.arg($, "which");
-  const s = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
+  const s = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
   nix.assert_(nix.app(nix.sel(lib, "elem"), targetArchitecture, nix.thunk(() => ["i586", "i686"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/djgpp/default.nix:22:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "djgpp";
@@ -38,7 +35,7 @@ done
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(targetArchitecture, "i686")), nix.thunk(() => nix.str`sed -i 's/i586/i686/g' setenv/setenv script/${version}
 sed -i '/Building DXE tools./a sed -i "s/i586/i686/g" src/makefile.def src/dxe/makefile.dxe' script/${version}
 `))), "runHook postPatch\n"));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu89" }));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const buildInputs = nix.thunk(() => [bison, curl, file, flex, perl, texinfo, unzip, which]);
       const hardeningDisable = nix.thunk(() => ["format"]);
@@ -69,7 +66,7 @@ for f in dxegen dxe3gen; do
 done
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Complete 32-bit GNU-based development system for Intel x86 PCs running DOS",
         homepage: "https://www.delorie.com/djgpp/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -80,7 +77,7 @@ done
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

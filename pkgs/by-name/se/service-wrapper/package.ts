@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["shell", 21, 26], ["coreutils", 22, 17]], [["src", 18, 7], ["isExecutable", 19, 7], ["replacements", 20, 7]], [["description", 27, 7], ["mainProgram", 28, 7], ["license", 29, 7], ["platforms", 30, 7], ["maintainers", 31, 7]], [["pname", 15, 13], ["version", 15, 19], ["script", 17, 5], ["meta", 26, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, runCommand: false, replaceVarsWith: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["shell", 21, 26], ["coreutils", 22, 17]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 18, 7], ["isExecutable", 19, 7], ["replacements", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 27, 7], ["mainProgram", 28, 7], ["license", 29, 7], ["platforms", 30, 7], ["maintainers", 31, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 13], ["version", 15, 19], ["script", 17, 5], ["meta", 26, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const pname = "service-wrapper";
   const version = "19.04";
   return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       script: nix.thunk(() => nix.app(replaceVarsWith, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.path(here, "./service-wrapper.sh"),
           isExecutable: true,
           replacements: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             shell: nix.thunk(() => nix.attr(stdenv, "shell")),
             coreutils: coreutils,
           })),
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Convenient wrapper for the systemctl commands, borrow from Ubuntu",
         mainProgram: "service",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

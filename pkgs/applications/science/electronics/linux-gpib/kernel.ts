@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kernel.nix", [[["fetchurl", 11, 13], ["lib", 11, 22], ["pname", 12, 5]], [["postPatch", 16, 5], ["buildInputs", 20, 5], ["makeFlags", 22, 5], ["installFlags", 27, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, kernel: false, pahole: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/kernel.nix", [["fetchurl", 11, 13], ["lib", 11, 22], ["pname", 12, 5]]);
-const pos$2 = nix.positions(here + "/kernel.nix", [["postPatch", 16, 5], ["buildInputs", 20, 5], ["makeFlags", 22, 5], ["installFlags", 27, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,8 +12,8 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const kernel = nix.arg($, "kernel");
   const pahole = nix.arg($, "pahole");
-  return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl, lib: lib, pname: "linux-gpib-kernel" }))), {
-      [nix.POS]: pos$2,
+  return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, lib: lib, pname: "linux-gpib-kernel" }))), {
+      [nix.POS]: $pos[1],
       postPatch: "sed -i 's@/sbin/depmod -A@@g' Makefile\n",
       buildInputs: nix.thunk(() => nix.concat([pahole], nix.sel(kernel, "moduleBuildDependencies"))),
       makeFlags: nix.thunk(() => [

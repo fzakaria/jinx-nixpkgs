@@ -2,34 +2,29 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/oh-my-zsh.nix", [[["enable", 11, 17]], [["enable", 10, 9], ["ohMyZsh", 11, 9]], [["zsh", 9, 16]], [["programs", 9, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 15, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/oh-my-zsh.nix", [["enable", 11, 17]]);
-const pos$2 = nix.positions(here + "/oh-my-zsh.nix", [["enable", 10, 9], ["ohMyZsh", 11, 9]]);
-const pos$3 = nix.positions(here + "/oh-my-zsh.nix", [["zsh", 9, 16]]);
-const pos$4 = nix.positions(here + "/oh-my-zsh.nix", [["programs", 9, 7]]);
-const pos$5 = nix.positions(here + "/oh-my-zsh.nix", [["machine", 5, 9]]);
-const pos$6 = nix.positions(here + "/oh-my-zsh.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "oh-my-zsh",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             zsh: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
-              ohMyZsh: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+              ohMyZsh: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
             })),
           })),
         };

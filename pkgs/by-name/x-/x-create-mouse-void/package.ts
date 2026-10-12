@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["homepage", 29, 5], ["description", 30, 5], ["platforms", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["mainProgram", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, libx11: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["platforms", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["mainProgram", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "x-create-mouse-void";
       const version = "0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cas--",
           repo: "XCreateMouseVoid",
           rev: version,
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libx11]);
       const installPhase = "runHook preInstall\nmkdir -pv $out/bin\ncp -a XCreateMouseVoid $out/bin/x-create-mouse-void\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/cas--/XCreateMouseVoid",
         description: "Creates an undecorated black window and prevents the mouse from entering that window",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
         mainProgram: "x-create-mouse-void",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildInputs, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, buildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

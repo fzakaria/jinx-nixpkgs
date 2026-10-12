@@ -2,38 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["maintainers", 14, 7]], [["net.ipv4.ip_forward", 19, 28]], [["sysctl", 19, 21]], [["kernel", 19, 14]], [["address", 23, 13], ["prefixLength", 24, 13]], [["addresses", 21, 41]], [["ipv4", 21, 36]], [["eth1", 21, 31]], [["rejectPackets", 27, 29], ["allowedTCPPorts", 28, 29], ["allowedUDPPorts", 29, 29]], [["useDHCP", 20, 20], ["interfaces", 21, 20], ["firewall", 27, 20]], [["enable", 31, 11], ["package", 32, 11], ["encryptionMethod", 33, 11], ["password", 34, 11], ["localAddress", 35, 11], ["port", 36, 11], ["fastOpen", 37, 11], ["mode", 38, 11]], [["plugin", 41, 19], ["pluginOpts", 42, 11]], [["root", 47, 27]], [["/", 47, 23]], [["locations", 47, 13]], [["server", 46, 24]], [["enable", 45, 11], ["virtualHosts", 46, 11]], [["shadowsocks", 30, 18], ["nginx", 44, 18]], [["boot", 19, 9], ["networking", 20, 9], ["services", 30, 9]], [["address", 56, 13], ["prefixLength", 57, 13]], [["addresses", 54, 41]], [["ipv4", 54, 36]], [["eth1", 54, 31]], [["useDHCP", 53, 20], ["interfaces", 54, 20]], [["description", 61, 11], ["after", 62, 11], ["wantedBy", 63, 11], ["path", 64, 11], ["script", 65, 11]], [["shadowsocks-client", 60, 26]], [["services", 60, 17]], [["networking", 53, 9], ["systemd", 60, 9]], [["server", 18, 7], ["client", 52, 7]], [["name", 12, 13], ["meta", 13, 5], ["nodes", 17, 5], ["testScript", 81, 5]]]);
 const formals$1 = { args: { name: false, package: false, plugin: true, pluginOpts: true }, ellipsis: false };
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/common.nix", [["maintainers", 14, 7]]);
-const pos$2 = nix.positions(here + "/common.nix", [["net.ipv4.ip_forward", 19, 28]]);
-const pos$3 = nix.positions(here + "/common.nix", [["sysctl", 19, 21]]);
-const pos$4 = nix.positions(here + "/common.nix", [["kernel", 19, 14]]);
-const pos$5 = nix.positions(here + "/common.nix", [["address", 23, 13], ["prefixLength", 24, 13]]);
-const pos$6 = nix.positions(here + "/common.nix", [["addresses", 21, 41]]);
-const pos$7 = nix.positions(here + "/common.nix", [["ipv4", 21, 36]]);
-const pos$8 = nix.positions(here + "/common.nix", [["eth1", 21, 31]]);
-const pos$9 = nix.positions(here + "/common.nix", [["rejectPackets", 27, 29], ["allowedTCPPorts", 28, 29], ["allowedUDPPorts", 29, 29]]);
-const pos$10 = nix.positions(here + "/common.nix", [["useDHCP", 20, 20], ["interfaces", 21, 20], ["firewall", 27, 20]]);
-const pos$11 = nix.positions(here + "/common.nix", [["enable", 31, 11], ["package", 32, 11], ["encryptionMethod", 33, 11], ["password", 34, 11], ["localAddress", 35, 11], ["port", 36, 11], ["fastOpen", 37, 11], ["mode", 38, 11]]);
-const pos$12 = nix.positions(here + "/common.nix", [["plugin", 41, 19], ["pluginOpts", 42, 11]]);
-const pos$13 = nix.positions(here + "/common.nix", [["root", 47, 27]]);
-const pos$14 = nix.positions(here + "/common.nix", [["/", 47, 23]]);
-const pos$15 = nix.positions(here + "/common.nix", [["locations", 47, 13]]);
-const pos$16 = nix.positions(here + "/common.nix", [["server", 46, 24]]);
-const pos$17 = nix.positions(here + "/common.nix", [["enable", 45, 11], ["virtualHosts", 46, 11]]);
-const pos$18 = nix.positions(here + "/common.nix", [["shadowsocks", 30, 18], ["nginx", 44, 18]]);
-const pos$19 = nix.positions(here + "/common.nix", [["boot", 19, 9], ["networking", 20, 9], ["services", 30, 9]]);
-const pos$20 = nix.positions(here + "/common.nix", [["address", 56, 13], ["prefixLength", 57, 13]]);
-const pos$21 = nix.positions(here + "/common.nix", [["addresses", 54, 41]]);
-const pos$22 = nix.positions(here + "/common.nix", [["ipv4", 54, 36]]);
-const pos$23 = nix.positions(here + "/common.nix", [["eth1", 54, 31]]);
-const pos$24 = nix.positions(here + "/common.nix", [["useDHCP", 53, 20], ["interfaces", 54, 20]]);
-const pos$25 = nix.positions(here + "/common.nix", [["description", 61, 11], ["after", 62, 11], ["wantedBy", 63, 11], ["path", 64, 11], ["script", 65, 11]]);
-const pos$26 = nix.positions(here + "/common.nix", [["shadowsocks-client", 60, 26]]);
-const pos$27 = nix.positions(here + "/common.nix", [["services", 60, 17]]);
-const pos$28 = nix.positions(here + "/common.nix", [["networking", 53, 9], ["systemd", 60, 9]]);
-const pos$29 = nix.positions(here + "/common.nix", [["server", 18, 7], ["client", 52, 7]]);
-const pos$30 = nix.positions(here + "/common.nix", [["name", 12, 13], ["meta", 13, 5], ["nodes", 17, 5], ["testScript", 81, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,52 +17,52 @@ export default nix.lambda((args) => (() => {
       const pkgs = nix.arg($_1, "pkgs");
       const lib = nix.arg($_1, "lib");
       return {
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         name: name,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "hmenke"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           server: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             boot: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               kernel: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                sysctl: nix.thunk(() => ({ [nix.POS]: pos$2, "net.ipv4.ip_forward": "1" })),
+                [nix.POS]: $pos[2],
+                sysctl: nix.thunk(() => ({ [nix.POS]: $pos[1], "net.ipv4.ip_forward": "1" })),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               useDHCP: false,
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$5, address: "192.168.0.1", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[4], address: "192.168.0.1", prefixLength: 24n })),
                     ]),
                   })),
                 })),
               })),
               firewall: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 rejectPackets: true,
                 allowedTCPPorts: nix.thunk(() => [8488n]),
                 allowedUDPPorts: nix.thunk(() => [8488n]),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               shadowsocks: nix.thunk(() => nix.update({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 enable: true,
                 package: package$,
                 encryptionMethod: "chacha20-ietf-poly1305",
@@ -101,21 +72,21 @@ export default nix.lambda((args) => (() => {
                 fastOpen: false,
                 mode: "tcp_and_udp",
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(plugin, null)), nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   plugin: plugin,
                   pluginOpts: nix.thunk(() => nix.str`server;${pluginOpts}`),
                 }))))),
               nginx: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 enable: true,
                 virtualHosts: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   server: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     locations: nix.thunk(() => ({
-                      [nix.POS]: pos$14,
+                      [nix.POS]: $pos[13],
                       "/": nix.thunk(() => ({
-                        [nix.POS]: pos$13,
+                        [nix.POS]: $pos[12],
                         root: nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "index.html", "It works!")),
                       })),
                     })),
@@ -125,29 +96,29 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           client: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               useDHCP: false,
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$21,
+                    [nix.POS]: $pos[20],
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$20, address: "192.168.0.2", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[19], address: "192.168.0.2", prefixLength: 24n })),
                     ]),
                   })),
                 })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 "shadowsocks-client": nix.thunk(() => ({
-                  [nix.POS]: pos$25,
+                  [nix.POS]: $pos[24],
                   description: "connect to shadowsocks",
                   after: nix.thunk(() => ["network.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),

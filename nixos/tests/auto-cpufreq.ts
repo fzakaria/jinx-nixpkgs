@@ -2,29 +2,23 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/auto-cpufreq.nix", [["turbo", 15, 13]]);
-const pos$2 = nix.positions(here + "/auto-cpufreq.nix", [["charger", 14, 11]]);
-const pos$3 = nix.positions(here + "/auto-cpufreq.nix", [["enable", 12, 9], ["settings", 13, 9]]);
-const pos$4 = nix.positions(here + "/auto-cpufreq.nix", [["auto-cpufreq", 11, 16]]);
-const pos$5 = nix.positions(here + "/auto-cpufreq.nix", [["services", 11, 7]]);
-const pos$6 = nix.positions(here + "/auto-cpufreq.nix", [["machine", 5, 5]]);
-const pos$7 = nix.positions(here + "/auto-cpufreq.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 22, 3]]);
+const $pos = nix.positions(here + "/auto-cpufreq.nix", [[["turbo", 15, 13]], [["charger", 14, 11]], [["enable", 12, 9], ["settings", 13, 9]], [["auto-cpufreq", 11, 16]], [["services", 11, 7]], [["machine", 5, 5]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 22, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$7,
+  [nix.POS]: $pos[6],
   name: "auto-cpufreq-server",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     machine: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "auto-cpufreq": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           enable: true,
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            charger: nix.thunk(() => ({ [nix.POS]: pos$1, turbo: "auto" })),
+            [nix.POS]: $pos[1],
+            charger: nix.thunk(() => ({ [nix.POS]: $pos[0], turbo: "auto" })),
           })),
         })),
       })),

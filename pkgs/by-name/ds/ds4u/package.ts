@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["name", 77, 7], ["desktopName", 78, 7], ["comment", 79, 7], ["exec", 80, 7], ["icon", 81, 7], ["terminal", 82, 7], ["type", 83, 7], ["categories", 84, 7], ["keywords", 89, 7]], [["updateScript", 98, 12]], [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["mainProgram", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]], [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["cargoHash", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["appendRunpaths", 58, 3], ["udevRules", 60, 3], ["preInstall", 65, 3], ["nativeInstallCheckInputs", 72, 3], ["doInstallCheck", 73, 3], ["desktopItems", 75, 3], ["passthru", 98, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitea: false, rustPlatform: false, "pkg-config": false, systemd: false, hidapi: false, openssl: false, libxkbcommon: false, "alsa-lib": false, "vulkan-loader": false, wayland: false, libx11: false, libxcursor: false, libxi: false, copyDesktopItems: false, makeDesktopItem: false, autoPatchelfHook: false, udevCheckHook: false, writeText: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 77, 7], ["desktopName", 78, 7], ["comment", 79, 7], ["exec", 80, 7], ["icon", 81, 7], ["terminal", 82, 7], ["type", 83, 7], ["categories", 84, 7], ["keywords", 89, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 98, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["mainProgram", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["cargoHash", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["appendRunpaths", 58, 3], ["udevRules", 60, 3], ["preInstall", 65, 3], ["nativeInstallCheckInputs", 72, 3], ["doInstallCheck", 73, 3], ["desktopItems", 75, 3], ["passthru", 98, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ds4u",
       version: "0.1.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.yokai.digital",
           owner: "deadYokai",
           repo: "ds4u",
@@ -71,7 +67,7 @@ install -Dm644 ${nix.sel(finalAttrs, "udevRules")} -D $out/lib/udev/rules.d/70-d
       doInstallCheck: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ds4u",
             desktopName: "DS4U",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -84,11 +80,11 @@ install -Dm644 ${nix.sel(finalAttrs, "udevRules")} -D $out/lib/udev/rules.d/70-d
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "DualSense controller manager for Linux",
         homepage: "https://git.yokai.digital/deadYokai/ds4u",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

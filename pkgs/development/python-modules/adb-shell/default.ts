@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["async", 42, 5], ["usb", 46, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["disabled", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 41, 3], ["doCheck", 49, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, pythonOlder: false, aiofiles: false, "async-timeout": false, buildPythonPackage: false, setuptools: false, cryptography: false, fetchFromGitHub: false, isPy3k: false, libusb1: false, mock: false, pyasn1: false, pycryptodome: false, pytestCheckHook: false, rsa: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["async", 42, 5], ["usb", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["disabled", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 41, 3], ["doCheck", 49, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const rsa = nix.arg($, "rsa");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "adb-shell",
       version: "0.4.4",
       pyproject: true,
       disabled: nix.thunk(() => !nix.asBool(isPy3k)),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JeffLIrion",
           repo: "adb_shell",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [cryptography, pyasn1, rsa]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         async: nix.thunk(() => [aiofiles, async_timeout]),
         usb: nix.thunk(() => [libusb1]),
       })),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([mock, pycryptodome, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pythonImportsCheck: nix.thunk(() => ["adb_shell"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python implementation of ADB with shell and FileSync functionality",
         homepage: "https://github.com/JeffLIrion/adb_shell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

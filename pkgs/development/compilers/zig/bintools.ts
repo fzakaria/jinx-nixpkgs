@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bintools.nix", [[["isZig", 21, 7], ["targetPrefix", 22, 15]], [["pname", 15, 5], ["version", 16, 19], ["meta", 16, 27], ["nativeBuildInputs", 18, 5], ["passthru", 20, 5], ["zig", 25, 13]]]);
 const formals$1 = { args: { lib: false, stdenv: false, zig: false, runCommand: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bintools.nix", [["isZig", 21, 7], ["targetPrefix", 22, 15]]);
-const pos$2 = nix.positions(here + "/bintools.nix", [["pname", 15, 5], ["version", 16, 19], ["meta", 16, 27], ["nativeBuildInputs", 18, 5], ["passthru", 20, 5], ["zig", 25, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const targetPrefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "targetPlatform"))), nix.thunk(() => nix.str`${nix.sel(stdenv, "targetPlatform", "config")}-`)));
   return nix.app(runCommand, nix.thunk(() => nix.str`zig-bintools-${nix.sel(zig, "version")}`), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "zig-bintools",
       version: nix.thunk(() => nix.attr(zig, "version")),
       meta: nix.thunk(() => nix.attr(zig, "meta")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, isZig: true, targetPrefix: targetPrefix })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], isZig: true, targetPrefix: targetPrefix })),
       zig: zig,
     })), "mkdir -p $out/bin\nfor tool in ar objcopy ranlib ld.lld; do\n  makeWrapper \"$zig/bin/zig\" \"$out/bin/$tool\" \\\n    --add-flags \"$tool\" \\\n    --run \"export ZIG_GLOBAL_CACHE_DIR=\\$TMPDIR/zig-cache\"\ndone\n\nln -s $out/bin/ld.lld $out/bin/ld\n");
 })(), formals$1);

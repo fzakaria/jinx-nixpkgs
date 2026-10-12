@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["updateScript", 167, 12]], [["homepage", 170, 5], ["description", 171, 5], ["longDescription", 172, 5], ["license", 183, 5], ["maintainers", 184, 5], ["platforms", 185, 5], ["broken", 186, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["patches", 60, 3], ["dontConfigure", 67, 3], ["enableParallelBuilding", 69, 3], ["buildPhase", 71, 3], ["installPhase", 106, 3], ["passthru", 167, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, "alsa-lib": false, fetchFromGitHub: false, gtk3: false, gtksourceview3: false, libGL: false, libGLU: false, libx11: false, libxv: false, libao: false, libicns: false, libpulseaudio: false, openal: false, installShellFiles: false, "pkg-config": false, runtimeShell: false, stdenv: false, udev: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 167, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 170, 5], ["description", 171, 5], ["longDescription", 172, 5], ["license", 183, 5], ["maintainers", 184, 5], ["platforms", 185, 5], ["broken", 186, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["patches", 60, 3], ["dontConfigure", 67, 3], ["enableParallelBuilding", 69, 3], ["buildPhase", 71, 3], ["installPhase", 106, 3], ["passthru", 167, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "higan",
       version: "115-unstable-2025-08-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "higan-emu",
           repo: "higan",
           rev: "8f4df010715298455b92cfc0821ea833770a8b5a",
@@ -96,11 +93,11 @@ chmod +x $out/bin/higan-init.sh
 `;
       })()), "\nrunHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/higan-emu/higan",
         description: "Open-source, cycle-accurate multi-system emulator",
         longDescription: "higan is a multi-system emulator, originally developed by Near, with an\nuncompromising focus on accuracy and code readability.\n\nIt currently emulates the following systems: Famicom, Famicom Disk System,\nSuper Famicom, Super Game Boy, Game Boy, Game Boy Color, Game Boy Advance,\nGame Boy Player, SG-1000, SC-3000, Master System, Game Gear, Mega Drive,\nMega CD, PC Engine, SuperGrafx, MSX, MSX2, ColecoVision, Neo Geo Pocket,\nNeo Geo Pocket Color, WonderSwan, WonderSwan Color, SwanCrystal, Pocket\nChallenge V2.\n",

@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/all-plugins.nix", [[["discourse-bbcode-color", 6, 3], ["discourse-docs", 7, 3], ["discourse-events", 8, 3], ["discourse-ldap-auth", 9, 3], ["discourse-prometheus", 10, 3], ["discourse-saved-searches", 11, 3], ["discourse-yearly-review", 12, 3]]]);
 const formals$1 = { args: { mkDiscoursePlugin: false, newScope: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/all-plugins.nix", [["discourse-bbcode-color", 6, 3], ["discourse-docs", 7, 3], ["discourse-events", 8, 3], ["discourse-ldap-auth", 9, 3], ["discourse-prometheus", 10, 3], ["discourse-saved-searches", 11, 3], ["discourse-yearly-review", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const newScope = nix.arg($, "newScope");
   const callPackage = nix.thunk(() => nix.app(newScope, args_1));
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "discourse-bbcode-color": nix.thunk(() => nix.app(callPackage, nix.path(here, "./discourse-bbcode-color"), nix.thunk(() => ({})))),
     "discourse-docs": nix.thunk(() => nix.app(callPackage, nix.path(here, "./discourse-docs"), nix.thunk(() => ({})))),
     "discourse-events": nix.thunk(() => nix.app(callPackage, nix.path(here, "./discourse-events"), nix.thunk(() => ({})))),

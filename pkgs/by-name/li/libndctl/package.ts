@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["outputs", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["mesonFlags", 61, 3], ["postPatch", 70, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, asciidoctor: false, iniparser: false, json_c: false, keyutils: false, kmod: false, udev: false, "util-linux": false, libtracefs: false, libtraceevent: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["outputs", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["mesonFlags", 61, 3], ["postPatch", 70, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libtracefs = nix.arg($, "libtracefs");
   const libtraceevent = nix.arg($, "libtraceevent");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libndctl",
       version: "83",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pmem",
           repo: "ndctl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +61,7 @@ substituteInPlace git-version-gen --replace-fail /bin/sh ${nix.sel(stdenv, "shel
 echo "m4_define([GIT_VERSION], [${nix.sel(finalAttrs, "version")}])" > version.m4;
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tools for managing the Linux Non-Volatile Memory Device sub-system",
         homepage: "https://github.com/pmem/ndctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

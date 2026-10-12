@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cross.nix", [[["nativeBuildInputs", 12, 5], ["expectedArch", 19, 5]]]);
 const formals$1 = { args: { stdenv: false, runCommand: false, makeBinaryWrapper: false, binutils: false, lib: false, expectedArch: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cross.nix", [["nativeBuildInputs", 12, 5], ["expectedArch", 19, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const expectedArch = nix.argOr($, "expectedArch", () => nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"));
   return nix.app(runCommand, "make-binary-wrapper-test-cross", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, binutils]),
       expectedArch: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["_"]), nix.thunk(() => ["-"]), expectedArch)),
     })), "touch prog\nchmod +x prog\nmakeWrapper prog $out\nread -r _ arch < <($READELF --file-header $out | grep Machine:)\nif [[ ${arch,,} != *\"${expectedArch,,}\"* ]]; then\n  echo \"expected $expectedArch, got $arch\"\n  exit 1\nfi\n");

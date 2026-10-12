@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 20, 3], ["src", 21, 33], ["version", 21, 37], ["pyproject", 22, 3], ["preBuild", 24, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 40, 3], ["pythonImportsCheck", 50, 3], ["__darwinAllowLocalNetworking", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, gitMinimal: false, writableTmpDirAsHomeHook: false, "hatch-nodejs-version": false, hatchling: false, "jupyterlab-git-core": false, "jupyter-server": false, jupytext: false, nbdime: false, "pytest-asyncio": false, "pytest-jupyter": false, "pytest-tornasync": false, pytestCheckHook: false, traitlets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["src", 21, 33], ["version", 21, 37], ["pyproject", 22, 3], ["preBuild", 24, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 40, 3], ["pythonImportsCheck", 50, 3], ["__darwinAllowLocalNetworking", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["jupyterlab_git"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Jupyter lab extension for version control with Git",
         homepage: "https://github.com/jupyterlab/jupyterlab-git",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyterlab/jupyterlab-git/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -54,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         src,
         version,

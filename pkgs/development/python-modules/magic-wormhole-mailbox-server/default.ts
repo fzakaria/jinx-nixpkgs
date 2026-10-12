@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["magic-wormhole-mailbox-server", 50, 26]], [["tests", 49, 12]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["pythonImportsCheck", 37, 3], ["nativeCheckInputs", 39, 3], ["disabledTestPaths", 44, 3], ["passthru", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, attrs: false, twisted: false, autobahn: false, treq: false, nixosTests: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["magic-wormhole-mailbox-server", 50, 26]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 49, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["pythonImportsCheck", 37, 3], ["nativeCheckInputs", 39, 3], ["disabledTestPaths", 44, 3], ["passthru", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "magic-wormhole-mailbox-server",
       version: "0.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "magic-wormhole",
           repo: "magic-wormhole-mailbox-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,14 +36,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, treq]),
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["src/wormhole_mailbox_server/test/test_web.py"]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "magic-wormhole-mailbox-server": nix.thunk(() => nix.attr(nixosTests, "magic-wormhole-mailbox-server")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Securely transfer data between computers",
         homepage: "https://github.com/magic-wormhole/magic-wormhole-mailbox-server",
         changelog: nix.thunk(() => nix.str`https://github.com/magic-wormhole/magic-wormhole-mailbox-server/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS.md`),

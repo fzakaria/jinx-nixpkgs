@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 7], ["hash", 18, 7]], [["url", 21, 7], ["hash", 22, 7]], [["url", 25, 7], ["hash", 26, 7]], [["x86_64-linux", 16, 5], ["aarch64-linux", 20, 5], ["aarch64-darwin", 24, 5]], [["homepage", 63, 5], ["description", 64, 5], ["longDescription", 65, 5], ["maintainers", 69, 5], ["teams", 70, 5], ["license", 71, 5], ["sourceProvenance", 72, 5]], [["jetbrains-libdbm", 32, 11], ["fsnotifier", 32, 28], ["pname", 34, 3], ["wmClass", 36, 3], ["product", 37, 3], ["version", 40, 3], ["buildNumber", 41, 3], ["src", 44, 3], ["jdk", 47, 3], ["extraWrapperArgs", 53, 3], ["buildInputs", 57, 3], ["meta", 62, 3]], [["postFixup", 80, 5]]]);
 const formals$1 = { args: { fetchurl: false, fsnotifier: false, jetbrains: false, "jetbrains-libdbm": false, lib: false, libgcc: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 16, 5], ["aarch64-linux", 20, 5], ["aarch64-darwin", 24, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["longDescription", 65, 5], ["maintainers", 69, 5], ["teams", 70, 5], ["license", 71, 5], ["sourceProvenance", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["jetbrains-libdbm", 32, 11], ["fsnotifier", 32, 28], ["pname", 34, 3], ["wmClass", 36, 3], ["product", 37, 3], ["version", 40, 3], ["buildNumber", 41, 3], ["src", 44, 3], ["jdk", 47, 3], ["extraWrapperArgs", 53, 3], ["buildInputs", 57, 3], ["meta", 62, 3]]);
-const pos$7 = nix.positions(here + "/package.nix", [["postFixup", 80, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,25 +16,25 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const urls = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://download.jetbrains.com/go/goland-2026.2.2.1.tar.gz",
       hash: "sha256-ENJ699YXT798jpTQQVpFwTvlhvXbQlwQMQxE3zXxVHE=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://download.jetbrains.com/go/goland-2026.2.2.1-aarch64.tar.gz",
       hash: "sha256-JxQLaXRb5nOKWQ/ZrpBoDotiauahIZy+VuuqZnxYfy0=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://download.jetbrains.com/go/goland-2026.2.2.1-aarch64.dmg",
       hash: "sha256-xTTNC4J1rRHtR+wZkZsDQX1x+BdYbhHb6ehOh/ToCMY=",
     })),
   }));
   return nix.app(nix.sel(nix.app(nix.sel(jetbrains, "mkJetBrainsProduct"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       "jetbrains-libdbm": jetbrains_libdbm,
       fsnotifier: fsnotifier,
       pname: "goland",
@@ -53,7 +47,7 @@ export default nix.lambda((args) => (() => {
       extraWrapperArgs: nix.thunk(() => ["--prefix CGO_CPPFLAGS \" \" \"-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0\""]),
       buildInputs: nix.thunk(() => [libgcc]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.jetbrains.com/go/",
         description: "Go IDE from JetBrains",
         longDescription: "Goland is a commercial IDE by JetBrains aimed at providing an ergonomic environment for Go development.\nThe IDE extends the IntelliJ platform with the coding assistance and tool integrations specific for the Go language.\n",
@@ -66,7 +60,7 @@ export default nix.lambda((args) => (() => {
         sourceProvenance: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))] : [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))])),
       })),
     }))), "overrideAttrs"), (attrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       postFixup: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postFixup"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "interp=\"$(cat $NIX_CC/nix-support/dynamic-linker)\"\npatchelf --set-interpreter $interp $out/goland/plugins/go-plugin/lib/dlv/linux/dlv\nchmod +x $out/goland/plugins/go-plugin/lib/dlv/linux/dlv\n"))),
     }));
 })(), formals$1);

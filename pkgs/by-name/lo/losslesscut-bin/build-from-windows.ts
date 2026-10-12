@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-from-windows.nix", [[["url", 16, 5], ["hash", 17, 13]], [["platforms", 40, 5], ["mainProgram", 41, 5]], [["pname", 13, 11], ["version", 13, 17], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["unpackPhase", 22, 3], ["sourceRoot", 28, 3], ["installPhase", 30, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, p7zip: false, pname: false, version: false, hash: false, metaCommon: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-from-windows.nix", [["url", 16, 5], ["hash", 17, 13]]);
-const pos$2 = nix.positions(here + "/build-from-windows.nix", [["platforms", 40, 5], ["mainProgram", 41, 5]]);
-const pos$3 = nix.positions(here + "/build-from-windows.nix", [["pname", 13, 11], ["version", 13, 17], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["unpackPhase", 22, 3], ["sourceRoot", 28, 3], ["installPhase", 30, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const hash = nix.arg($, "hash");
   const metaCommon = nix.argOr($, "metaCommon", () => ({}));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mifi/lossless-cut/releases/download/v${version}/LosslessCut-win-x64.7z`),
           hash: hash,
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: "LosslessCut-win-x64",
       installPhase: "runHook preInstall\nmkdir -p \"$out/bin\" \"$out/libexec\"\ncd ..\nmv \"$sourceRoot\" \"$out/libexec\"\nln -s \"$out/libexec/$(basename \"$sourceRoot\")/LosslessCut.exe\" \"$out/bin/LosslessCut.exe\"\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(metaCommon, {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "windows")),
         mainProgram: "LosslessCut.exe",
       })),

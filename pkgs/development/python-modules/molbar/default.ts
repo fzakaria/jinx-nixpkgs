@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["pyproject", 32, 3], ["nativeBuildInputs", 34, 3], ["pythonRelaxDeps", 38, 3], ["build-system", 40, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 59, 3], ["dontUseCmakeConfigure", 61, 3], ["doCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, gfortran: false, fetchgit: false, cmake: false, ninja: false, networkx: false, numpy: false, pandas: false, scipy: false, tqdm: false, joblib: false, numba: false, ase: false, "scikit-build": false, dscribe: false, pyyaml: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["pyproject", 32, 3], ["nativeBuildInputs", 34, 3], ["pythonRelaxDeps", 38, 3], ["build-system", 40, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 59, 3], ["dontUseCmakeConfigure", 61, 3], ["doCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "MolBar";
       const version = "1.1.3";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.rwth-aachen.de/bannwarthlab/molbar",
           rev: nix.thunk(() => nix.str`release_v${version}`),
           hash: "sha256-wHvsj1/BJpfbSKEB7Fk8PkH6laN/VMKoluZo+4bprlo=",
@@ -45,14 +43,14 @@ export default nix.lambda((args) => (() => {
       const dontUseCmakeConfigure = true;
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unique molecular identifiers for molecular barcoding",
         homepage: "https://git.rwth-aachen.de/bannwarthlab/molbar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sheepforce"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

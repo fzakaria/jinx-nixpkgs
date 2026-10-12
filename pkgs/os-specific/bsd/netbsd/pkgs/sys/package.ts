@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["lib", 20, 7], ["mkDerivation", 21, 7], ["include", 22, 7], ["bsdSetupHook", 23, 7], ["netbsdSetupHook", 24, 7], ["makeMinimal", 25, 7], ["install", 26, 7], ["tsort", 27, 7], ["lorder", 28, 7], ["statHook", 29, 7], ["uudecode", 30, 7], ["config", 31, 7], ["genassym", 32, 7], ["defaultMakeFlags", 33, 7]], [["pname", 40, 5], ["installPhase", 41, 5], ["noCC", 42, 5], ["dontBuild", 43, 5]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, include: false, bsdSetupHook: false, netbsdSetupHook: false, makeMinimal: false, install: false, tsort: false, lorder: false, statHook: false, uudecode: false, config: false, genassym: false, defaultMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["lib", 20, 7], ["mkDerivation", 21, 7], ["include", 22, 7], ["bsdSetupHook", 23, 7], ["netbsdSetupHook", 24, 7], ["makeMinimal", 25, 7], ["install", 26, 7], ["tsort", 27, 7], ["lorder", 28, 7], ["statHook", 29, 7], ["uudecode", 30, 7], ["config", 31, 7], ["genassym", 32, 7], ["defaultMakeFlags", 33, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 40, 5], ["installPhase", 41, 5], ["noCC", 42, 5], ["dontBuild", 43, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const genassym = nix.arg($, "genassym");
   const defaultMakeFlags = nix.arg($, "defaultMakeFlags");
   const base = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       lib: lib,
       mkDerivation: mkDerivation,
       include: include,
@@ -40,7 +39,7 @@ export default nix.lambda((args) => (() => {
       defaultMakeFlags: defaultMakeFlags,
     }))));
   return nix.app(mkDerivation, nix.thunk(() => nix.update(base, {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "sys",
       installPhase: null,
       noCC: false,

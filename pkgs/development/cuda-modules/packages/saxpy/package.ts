@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["requiredSystemFeatures", 40, 5], ["doInstallCheck", 41, 5], ["postInstallCheck", 42, 5]], [["gpuCheck", 39, 12]], [["description", 48, 5], ["license", 49, 5], ["teams", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5]], [["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["name", 17, 3], ["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["cmakeFlags", 34, 3], ["passthru", 39, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { backendStdenv: false, cmake: false, cccl: false, cuda_cudart: false, cuda_nvcc: false, cudaNamePrefix: false, flags: false, lib: false, libcublas: false, saxpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["requiredSystemFeatures", 40, 5], ["doInstallCheck", 41, 5], ["postInstallCheck", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gpuCheck", 39, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["license", 49, 5], ["teams", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["name", 17, 3], ["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["cmakeFlags", 34, 3], ["passthru", 39, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const libcublas = nix.arg($, "libcublas");
   const saxpy = nix.arg($, "saxpy");
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       __structuredAttrs: true,
       strictDeps: true,
       name: nix.thunk(() => nix.str`${cudaNamePrefix}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
@@ -35,9 +32,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_CUDA_ARCHITECTURES", nix.thunk(() => nix.sel(flags, "cmakeCudaArchitecturesString")))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         gpuCheck: nix.thunk(() => nix.app(nix.sel(saxpy, "overrideAttrs"), (_) => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doInstallCheck: true,
             postInstallCheck: nix.thunk(() => nix.str`$out/bin/${nix.selOr(saxpy, () => nix.app(nix.sel(lib, "getName"), saxpy), "meta", "mainProgram")}
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
           }))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple (Single-precision AX Plus Y) FindCUDAToolkit.cmake example for testing cross-compilation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "cuda"))]),

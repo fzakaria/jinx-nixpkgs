@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["NIX_CFLAGS_COMPILE", 31, 7]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["postPatch", 22, 3], ["env", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["dontWrapQtApps", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, qtbase: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 31, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["postPatch", 22, 3], ["env", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["dontWrapQtApps", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.0";
       const pname = "qjson";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flavio",
           repo: "qjson",
           rev: version,
@@ -27,20 +24,20 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "substituteInPlace CMakeLists.txt --replace-fail \\\n  \"CMAKE_MINIMUM_REQUIRED(VERSION 2.8.8)\" \\\n  \"CMAKE_MINIMUM_REQUIRED(VERSION 3.10)\"\nsubstituteInPlace CMakeLists.txt --replace-fail \\\n  \"cmake_policy(SET CMP0020 OLD)\" \\\n  \"\"\n";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-register")),
       }));
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const buildInputs = nix.thunk(() => [qtbase]);
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight data-interchange format",
         homepage: "https://qjson.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version,
         pname,
         src,

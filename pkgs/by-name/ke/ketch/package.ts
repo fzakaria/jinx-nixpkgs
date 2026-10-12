@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["updateScript", 39, 12]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 49, 5]], [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["preCheck", 31, 3], ["doInstallCheck", 35, 3], ["nativeInstallCheckInputs", 36, 3], ["versionCheckProgramArg", 37, 3], ["passthru", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 39, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["preCheck", 31, 3], ["doInstallCheck", 35, 3], ["nativeInstallCheckInputs", 36, 3], ["versionCheckProgramArg", 37, 3], ["passthru", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ketch",
       version: "0.18.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "1broseidon",
           repo: "ketch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast, stateless CLI for web search and scrape. Built for AI agents.",
         homepage: "https://chain.sh/ketch/",
         changelog: nix.thunk(() => nix.str`https://github.com/1broseidon/ketch/releases/tag/v${nix.sel(finalAttrs, "version")}`),

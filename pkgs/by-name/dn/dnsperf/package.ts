@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["url", 44, 7], ["hash", 45, 7]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["strictDeps", 37, 3], ["patches", 39, 3], ["doCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, fetchFromCodeberg: false, fetchpatch: false, ldns: false, libck: false, nghttp2: false, openssl: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["strictDeps", 37, 3], ["patches", 39, 3], ["doCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dnsperf",
       version: "2.16.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DNS-OARC",
           repo: "dnsperf",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,14 +33,14 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://gitlab.alpinelinux.org/alpine/aports/-/raw/5bd92b8f86a0bf15dddf8fa180adf14344d6cc15/testing/dnsperf/musl-perf_strerror_r.patch",
               hash: "sha256-yTJHXkti/xSklmVfAV45lEsOiHy7oL1phImNTNtcPkM=",
             })))),
         ]))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tools for DNS benchmaring",
         homepage: "https://www.dns-oarc.net/tools/dnsperf",
         changelog: nix.thunk(() => nix.str`https://github.com/DNS-OARC/dnsperf/releases/tag/v${nix.sel(finalAttrs, "version")}`),

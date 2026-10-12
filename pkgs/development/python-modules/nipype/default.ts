@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]], [["data", 107, 5], ["duecredit", 108, 5], ["profiler", 109, 5], ["pybids", 110, 5], ["ssh", 111, 5], ["xvfbwrapper", 112, 5]], [["description", 138, 5], ["homepage", 139, 5], ["downloadPage", 140, 5], ["changelog", 141, 5], ["mainProgram", 142, 5], ["license", 143, 5], ["maintainers", 144, 5]], [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["__structuredAttrs", 57, 3], ["src", 59, 3], ["postPatch", 66, 3], ["build-system", 80, 3], ["dependencies", 85, 3], ["optional-dependencies", 106, 3], ["nativeCheckInputs", 115, 3], ["doCheck", 129, 3], ["pythonImportsCheck", 131, 3], ["meta", 137, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "hatch-vcs": false, acres: false, click: false, "python-dateutil": false, etelemetry: false, filelock: false, looseversion: false, lxml: false, networkx: false, nibabel: false, numpy: false, packaging: false, prov: false, puremagic: false, pybids: false, pydot: false, rdflib: false, scipy: false, simplejson: false, traits: false, datalad: false, duecredit: false, paramiko: false, psutil: false, xvfbwrapper: false, bash: false, glibcLocales: false, pandas: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-doctestplus": false, "pytest-env": false, "pytest-timeout": false, "pytest-xdist": false, sphinx: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["data", 107, 5], ["duecredit", 108, 5], ["profiler", 109, 5], ["pybids", 110, 5], ["ssh", 111, 5], ["xvfbwrapper", 112, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 138, 5], ["homepage", 139, 5], ["downloadPage", 140, 5], ["changelog", 141, 5], ["mainProgram", 142, 5], ["license", 143, 5], ["maintainers", 144, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["__structuredAttrs", 57, 3], ["src", 59, 3], ["postPatch", 66, 3], ["build-system", 80, 3], ["dependencies", 85, 3], ["optional-dependencies", 106, 3], ["nativeCheckInputs", 115, 3], ["doCheck", 129, 3], ["pythonImportsCheck", 131, 3], ["meta", 137, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,13 +49,13 @@ export default nix.lambda((args) => (() => {
   const sphinx = nix.arg($, "sphinx");
   const which = nix.arg($, "which");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nipype",
       version: "1.11.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nipy",
           repo: "nipype",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -91,7 +88,7 @@ substituteInPlace nipype/pipeline/engine/tests/test_nodes.py \\
         traits,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         data: nix.thunk(() => [datalad]),
         duecredit: nix.thunk(() => [duecredit]),
         profiler: nix.thunk(() => [psutil]),
@@ -114,7 +111,7 @@ substituteInPlace nipype/pipeline/engine/tests/test_nodes.py \\
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       pythonImportsCheck: nix.thunk(() => ["nipype", "nipype.algorithms", "nipype.interfaces"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Neuroimaging in Python: Pipelines and Interfaces",
         homepage: "https://nipy.org/nipype",
         downloadPage: "https://github.com/nipy/nipype",

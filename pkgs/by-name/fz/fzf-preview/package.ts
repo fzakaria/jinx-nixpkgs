@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["description", 72, 5], ["longDescription", 74, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["mainProgram", 87, 5], ["platforms", 88, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["installPhase", 39, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { atool: false, bat: false, catdoc: false, chafa: false, exiftool: false, eza: false, fetchFromGitHub: false, ffmpegthumbnailer: false, file: false, glow: false, gnumeric: false, jq: false, lib: false, libcdio: false, makeWrapper: false, mediainfo: false, odt2txt: false, openssl: false, p7zip: false, "poppler-utils": false, stdenv: false, w3m: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 72, 5], ["longDescription", 74, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["mainProgram", 87, 5], ["platforms", 88, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["installPhase", 39, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const w3m = nix.arg($, "w3m");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fzf-preview",
       version: "0-unstable-2026-02-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "semi710",
           repo: "fzf-preview",
           rev: "5e5a5a5c4258fa86300cb56224e31416ff7401b5",
@@ -72,7 +70,7 @@ wrapProgram $out/bin/fzf-preview \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple fzf preview script for previewing any filetype in fzf's preview window",
         longDescription: "fzf-preview is a lightweight Bash script designed to enhance the user experience\nwith fzf (fuzzy finder) by providing instant previews of files directly in the\nfzf preview pane. It supports a wide variety of filetypes—including images and\ntext—and delivers relevant file information in the terminal. The script aims to\nbe simple, fast, and highly compatible, making it a useful tool for anyone\nleveraging fzf for file navigation or search.\n",
         homepage: "https://github.com/semi710/fzf-preview",

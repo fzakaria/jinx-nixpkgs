@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["ayatana-indicator-session", 82, 7]], [["startup", 88, 7], ["lomiri", 89, 7]], [["ayatana-indicators", 81, 5], ["tests", 87, 5], ["updateScript", 91, 5]], [["description", 95, 5], ["longDescription", 96, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["nativeCheckInputs", 65, 3], ["checkInputs", 67, 3], ["cmakeFlags", 69, 3], ["doCheck", 75, 3], ["enableParallelChecking", 78, 3], ["passthru", 80, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gitUpdater: false, nixosTests: false, cmake: false, dbus: false, glib: false, "gnome-settings-daemon": false, "gsettings-desktop-schemas": false, gtest: false, intltool: false, "libayatana-common": false, librda: false, "lomiri-qt6": false, "mate-settings-daemon": false, "pkg-config": false, systemdLibs: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ayatana-indicator-session", 82, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["startup", 88, 7], ["lomiri", 89, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ayatana-indicators", 81, 5], ["tests", 87, 5], ["updateScript", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 95, 5], ["longDescription", 96, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["nativeCheckInputs", 65, 3], ["checkInputs", 67, 3], ["cmakeFlags", 69, 3], ["doCheck", 75, 3], ["enableParallelChecking", 78, 3], ["passthru", 80, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ayatana-indicator-session",
       version: "26.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AyatanaIndicators",
           repo: "ayatana-indicator-session",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,20 +60,20 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       enableParallelChecking: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "ayatana-indicators": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "ayatana-indicator-session": nix.thunk(() => ["ayatana", "lomiri"]),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           startup: nix.thunk(() => nix.sel(nixosTests, "ayatana-indicators")),
           lomiri: nix.thunk(() => nix.sel(nixosTests, "lomiri", "desktop-ayatana-indicator-session")),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Ayatana Indicator showing session management, status and user switching",
         longDescription: "This Ayatana Indicator is designed to be placed on the right side of a\npanel and give the user easy control for\n- changing their instant message status,\n- switching to another user,\n- starting a guest session, or\n- controlling the status of their own session.\n",
         homepage: "https://github.com/AyatanaIndicators/ayatana-indicator-session",

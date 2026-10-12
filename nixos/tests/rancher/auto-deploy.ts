@@ -2,57 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/auto-deploy.nix", [[["name", 17, 5], ["paths", 18, 5]], [["name", 24, 5], ["tag", 25, 5], ["compressor", 26, 5], ["copyToRoot", 27, 5]], [["k3s", 31, 7], ["rke2", 32, 7]], [["name", 41, 11], ["version", 42, 11]], [["repository", 48, 13], ["tag", 49, 13]], [["restartPolicy", 45, 11], ["runCommand", 46, 11], ["image", 47, 11]], [["name", 56, 13], ["namespace", 57, 13]], [["name", 64, 21], ["image", 65, 21], ["command", 66, 21], ["args", 67, 21]], [["containers", 62, 17], ["restartPolicy", 73, 17]], [["spec", 61, 15]], [["template", 60, 13]], [["apiVersion", 53, 11], ["kind", 54, 11], ["metadata", 55, 11], ["spec", 59, 11]], [["nativeBuildInputs", 39, 9], ["chart", 40, 9], ["values", 44, 9], ["job", 52, 9], ["passAsFile", 78, 9]], [["repository", 99, 9], ["tag", 100, 9]], [["runCommand", 97, 7], ["image", 98, 7]], [["package", 95, 5], ["values", 96, 5]], [["enable", 107, 27]], [["sshBackdoor", 107, 15]], [["KUBECONFIG", 117, 36]], [["systemPackages", 112, 19], ["sessionVariables", 117, 19]], [["k3s", 127, 13], ["rke2", 128, 13]], [["name", 139, 24]], [["apiVersion", 137, 15], ["kind", 138, 15], ["metadata", 139, 15]], [["enable", 135, 13], ["content", 136, 13]], [["name", 148, 24]], [["apiVersion", 146, 15], ["kind", 147, 15], ["metadata", 148, 15]], [["target", 144, 13], ["content", 145, 13]], [["name", 155, 22]], [["name", 160, 21], ["image", 161, 21], ["command", 162, 21]], [["containers", 158, 17], ["restartPolicy", 165, 17]], [["spec", 157, 24]], [["template", 157, 15]], [["apiVersion", 153, 13], ["kind", 154, 13], ["metadata", 155, 13], ["spec", 156, 13]], [["content", 152, 26]], [["manifest-absent", 134, 11], ["manifest-present", 143, 11], ["manifest-hello", 152, 11]], [["enable", 175, 13]], [["values", 181, 13]], [["name", 200, 26]], [["apiVersion", 198, 17], ["kind", 199, 17], ["metadata", 200, 17]], [["valuesContent", 206, 17], ["targetNamespace", 213, 17], ["timeout", 215, 17]], [["spec", 204, 15]], [["extraDeploy", 196, 13], ["extraFieldDefinitions", 203, 13]], [["chart-hello", 172, 11], ["chart-disabled", 174, 11], ["chart-values-file", 178, 11], ["chart-advanced", 194, 11]], [["enable", 122, 9], ["role", 123, 9], ["package", 124, 9], ["disable", 125, 9], ["images", 131, 9], ["manifests", 133, 9], ["autoDeployCharts", 170, 9]], [["environment", 112, 7], ["virtualisation", 119, 7], ["services", 121, 7]], [["machine", 109, 9]], [["k3s", 276, 13], ["rke2", 279, 13]], [["maintainers", 294, 8]], [["name", 106, 3], ["interactive", 107, 3], ["nodes", 109, 3], ["testScript", 223, 3], ["meta", 294, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, rancherDistro: false, rancherPackage: false, serviceName: false, disabledComponents: false, coreImages: false, vmResources: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/auto-deploy.nix", [["name", 17, 5], ["paths", 18, 5]]);
-const pos$2 = nix.positions(here + "/auto-deploy.nix", [["name", 24, 5], ["tag", 25, 5], ["compressor", 26, 5], ["copyToRoot", 27, 5]]);
-const pos$3 = nix.positions(here + "/auto-deploy.nix", [["k3s", 31, 7], ["rke2", 32, 7]]);
-const pos$4 = nix.positions(here + "/auto-deploy.nix", [["name", 41, 11], ["version", 42, 11]]);
-const pos$5 = nix.positions(here + "/auto-deploy.nix", [["repository", 48, 13], ["tag", 49, 13]]);
-const pos$6 = nix.positions(here + "/auto-deploy.nix", [["restartPolicy", 45, 11], ["runCommand", 46, 11], ["image", 47, 11]]);
-const pos$7 = nix.positions(here + "/auto-deploy.nix", [["name", 56, 13], ["namespace", 57, 13]]);
-const pos$8 = nix.positions(here + "/auto-deploy.nix", [["name", 64, 21], ["image", 65, 21], ["command", 66, 21], ["args", 67, 21]]);
-const pos$9 = nix.positions(here + "/auto-deploy.nix", [["containers", 62, 17], ["restartPolicy", 73, 17]]);
-const pos$10 = nix.positions(here + "/auto-deploy.nix", [["spec", 61, 15]]);
-const pos$11 = nix.positions(here + "/auto-deploy.nix", [["template", 60, 13]]);
-const pos$12 = nix.positions(here + "/auto-deploy.nix", [["apiVersion", 53, 11], ["kind", 54, 11], ["metadata", 55, 11], ["spec", 59, 11]]);
-const pos$13 = nix.positions(here + "/auto-deploy.nix", [["nativeBuildInputs", 39, 9], ["chart", 40, 9], ["values", 44, 9], ["job", 52, 9], ["passAsFile", 78, 9]]);
-const pos$14 = nix.positions(here + "/auto-deploy.nix", [["repository", 99, 9], ["tag", 100, 9]]);
-const pos$15 = nix.positions(here + "/auto-deploy.nix", [["runCommand", 97, 7], ["image", 98, 7]]);
-const pos$16 = nix.positions(here + "/auto-deploy.nix", [["package", 95, 5], ["values", 96, 5]]);
-const pos$17 = nix.positions(here + "/auto-deploy.nix", [["enable", 107, 27]]);
-const pos$18 = nix.positions(here + "/auto-deploy.nix", [["sshBackdoor", 107, 15]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/auto-deploy.nix", [["KUBECONFIG", 117, 36]]);
-const pos$20 = nix.positions(here + "/auto-deploy.nix", [["systemPackages", 112, 19], ["sessionVariables", 117, 19]]);
-const pos$21 = nix.positions(here + "/auto-deploy.nix", [["k3s", 127, 13], ["rke2", 128, 13]]);
-const pos$22 = nix.positions(here + "/auto-deploy.nix", [["name", 139, 24]]);
-const pos$23 = nix.positions(here + "/auto-deploy.nix", [["apiVersion", 137, 15], ["kind", 138, 15], ["metadata", 139, 15]]);
-const pos$24 = nix.positions(here + "/auto-deploy.nix", [["enable", 135, 13], ["content", 136, 13]]);
-const pos$25 = nix.positions(here + "/auto-deploy.nix", [["name", 148, 24]]);
-const pos$26 = nix.positions(here + "/auto-deploy.nix", [["apiVersion", 146, 15], ["kind", 147, 15], ["metadata", 148, 15]]);
-const pos$27 = nix.positions(here + "/auto-deploy.nix", [["target", 144, 13], ["content", 145, 13]]);
-const pos$28 = nix.positions(here + "/auto-deploy.nix", [["name", 155, 22]]);
-const pos$29 = nix.positions(here + "/auto-deploy.nix", [["name", 160, 21], ["image", 161, 21], ["command", 162, 21]]);
-const pos$30 = nix.positions(here + "/auto-deploy.nix", [["containers", 158, 17], ["restartPolicy", 165, 17]]);
-const pos$31 = nix.positions(here + "/auto-deploy.nix", [["spec", 157, 24]]);
-const pos$32 = nix.positions(here + "/auto-deploy.nix", [["template", 157, 15]]);
-const pos$33 = nix.positions(here + "/auto-deploy.nix", [["apiVersion", 153, 13], ["kind", 154, 13], ["metadata", 155, 13], ["spec", 156, 13]]);
-const pos$34 = nix.positions(here + "/auto-deploy.nix", [["content", 152, 26]]);
-const pos$35 = nix.positions(here + "/auto-deploy.nix", [["manifest-absent", 134, 11], ["manifest-present", 143, 11], ["manifest-hello", 152, 11]]);
-const pos$36 = nix.positions(here + "/auto-deploy.nix", [["enable", 175, 13]]);
-const pos$37 = nix.positions(here + "/auto-deploy.nix", [["values", 181, 13]]);
-const pos$38 = nix.positions(here + "/auto-deploy.nix", [["name", 200, 26]]);
-const pos$39 = nix.positions(here + "/auto-deploy.nix", [["apiVersion", 198, 17], ["kind", 199, 17], ["metadata", 200, 17]]);
-const pos$40 = nix.positions(here + "/auto-deploy.nix", [["valuesContent", 206, 17], ["targetNamespace", 213, 17], ["timeout", 215, 17]]);
-const pos$41 = nix.positions(here + "/auto-deploy.nix", [["spec", 204, 15]]);
-const pos$42 = nix.positions(here + "/auto-deploy.nix", [["extraDeploy", 196, 13], ["extraFieldDefinitions", 203, 13]]);
-const pos$43 = nix.positions(here + "/auto-deploy.nix", [["chart-hello", 172, 11], ["chart-disabled", 174, 11], ["chart-values-file", 178, 11], ["chart-advanced", 194, 11]]);
-const pos$44 = nix.positions(here + "/auto-deploy.nix", [["enable", 122, 9], ["role", 123, 9], ["package", 124, 9], ["disable", 125, 9], ["images", 131, 9], ["manifests", 133, 9], ["autoDeployCharts", 170, 9]]);
-const pos$45 = nix.positions(here + "/auto-deploy.nix", [["environment", 112, 7], ["virtualisation", 119, 7], ["services", 121, 7]]);
-const pos$46 = nix.positions(here + "/auto-deploy.nix", [["machine", 109, 9]]);
-const pos$47 = nix.positions(here + "/auto-deploy.nix", [["k3s", 276, 13], ["rke2", 279, 13]]);
-const pos$48 = nix.positions(here + "/auto-deploy.nix", [["maintainers", 294, 8]]);
-const pos$49 = nix.positions(here + "/auto-deploy.nix", [["name", 106, 3], ["interactive", 107, 3], ["nodes", 109, 3], ["testScript", 223, 3], ["meta", 294, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const coreImages = nix.arg($, "coreImages");
   const vmResources = nix.arg($, "vmResources");
   const testImageEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`${rancherDistro}-test-image-env`),
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
@@ -76,45 +28,45 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   const testImage = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "test.local/test",
       tag: "local",
       compressor: "zstd",
       copyToRoot: testImageEnv,
     }))));
-  const manifestFormat = nix.thunk(() => nix.sel({ [nix.POS]: pos$3, k3s: "yaml", rke2: "json" }, nix.key(nix.force(rancherDistro))));
+  const manifestFormat = nix.thunk(() => nix.sel({ [nix.POS]: $pos[2], k3s: "yaml", rke2: "json" }, nix.key(nix.force(rancherDistro))));
   const testChartPackage = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${rancherDistro}-test-chart.tgz`), nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "kubernetes-helm"))]),
       chart: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: nix.thunk(() => nix.str`${rancherDistro}-test-chart`),
           version: "0.1.0",
         })))),
       values: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           restartPolicy: "Never",
           runCommand: "",
-          image: nix.thunk(() => ({ [nix.POS]: pos$5, repository: "foo", tag: "1.0.0" })),
+          image: nix.thunk(() => ({ [nix.POS]: $pos[4], repository: "foo", tag: "1.0.0" })),
         })))),
       job: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           apiVersion: "batch/v1",
           kind: "Job",
           metadata: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "{{ .Release.Name }}",
             namespace: "{{ .Release.Namespace }}",
           })),
           spec: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             template: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               spec: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 containers: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$8,
+                    [nix.POS]: $pos[7],
                     name: "test",
                     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}",
                     command: nix.thunk(() => ["sh"]),
@@ -129,34 +81,34 @@ export default nix.lambda((args) => (() => {
       passAsFile: nix.thunk(() => ["values", "chart", "job"]),
     })), "mkdir -p chart/templates\ncp \"$chartPath\" chart/Chart.yaml\ncp \"$valuesPath\" chart/values.yaml\ncp \"$jobPath\" chart/templates/job.json\n\nhelm package chart\nmv ./*.tgz $out\n"));
   const testChart = nix.thunk(() => ({
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     package: testChartPackage,
     values: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       runCommand: "hello",
       image: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         repository: nix.thunk(() => nix.sel(testImage, "imageName")),
         tag: nix.thunk(() => nix.sel(testImage, "imageTag")),
       })),
     })),
   }));
   return {
-    [nix.POS]: pos$49,
+    [nix.POS]: $pos[48],
     name: nix.thunk(() => nix.str`${nix.sel(rancherPackage, "name")}-auto-deploy`),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$18,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
+      [nix.POS]: $pos[17],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[16], enable: true })),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$46,
+      [nix.POS]: $pos[45],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$45,
+          [nix.POS]: $pos[44],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -166,61 +118,61 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             sessionVariables: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               KUBECONFIG: nix.thunk(() => nix.str`/etc/rancher/${rancherDistro}/${rancherDistro}.yaml`),
             })),
           })),
           virtualisation: vmResources,
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.force(rancherDistro), nix.thunk(() => ({
-              [nix.POS]: pos$44,
+              [nix.POS]: $pos[43],
               enable: true,
               role: "server",
               package: rancherPackage,
               disable: nix.thunk(() => nix.sel({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 k3s: nix.thunk(() => nix.app(nix.sel(lib, "remove"), "traefik", disabledComponents)),
                 rke2: nix.thunk(() => nix.app(nix.sel(lib, "remove"), "rke2-ingress-nginx", disabledComponents)),
               }, nix.key(nix.force(rancherDistro)))),
               images: nix.thunk(() => nix.concat(coreImages, nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(rancherDistro, "k3s")), nix.thunk(() => nix.sel(rancherPackage, "airgap-images"))), [testImage]))),
               manifests: nix.thunk(() => ({
-                [nix.POS]: pos$35,
+                [nix.POS]: $pos[34],
                 "manifest-absent": nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   enable: false,
                   content: nix.thunk(() => ({
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     apiVersion: "v1",
                     kind: "Namespace",
-                    metadata: nix.thunk(() => ({ [nix.POS]: pos$22, name: "absent" })),
+                    metadata: nix.thunk(() => ({ [nix.POS]: $pos[21], name: "absent" })),
                   })),
                 })),
                 "manifest-present": nix.thunk(() => ({
-                  [nix.POS]: pos$27,
+                  [nix.POS]: $pos[26],
                   target: nix.thunk(() => nix.str`foo-namespace.${manifestFormat}`),
                   content: nix.thunk(() => ({
-                    [nix.POS]: pos$26,
+                    [nix.POS]: $pos[25],
                     apiVersion: "v1",
                     kind: "Namespace",
-                    metadata: nix.thunk(() => ({ [nix.POS]: pos$25, name: "foo" })),
+                    metadata: nix.thunk(() => ({ [nix.POS]: $pos[24], name: "foo" })),
                   })),
                 })),
                 "manifest-hello": nix.thunk(() => ({
-                  [nix.POS]: pos$34,
+                  [nix.POS]: $pos[33],
                   content: nix.thunk(() => ({
-                    [nix.POS]: pos$33,
+                    [nix.POS]: $pos[32],
                     apiVersion: "batch/v1",
                     kind: "Job",
-                    metadata: nix.thunk(() => ({ [nix.POS]: pos$28, name: "manifest-hello" })),
+                    metadata: nix.thunk(() => ({ [nix.POS]: $pos[27], name: "manifest-hello" })),
                     spec: nix.thunk(() => ({
-                      [nix.POS]: pos$32,
+                      [nix.POS]: $pos[31],
                       template: nix.thunk(() => ({
-                        [nix.POS]: pos$31,
+                        [nix.POS]: $pos[30],
                         spec: nix.thunk(() => ({
-                          [nix.POS]: pos$30,
+                          [nix.POS]: $pos[29],
                           containers: nix.thunk(() => [
                             nix.thunk(() => ({
-                              [nix.POS]: pos$29,
+                              [nix.POS]: $pos[28],
                               name: "hello",
                               image: nix.thunk(() => nix.str`${nix.sel(testImage, "imageName")}:${nix.sel(testImage, "imageTag")}`),
                               command: nix.thunk(() => ["hello"]),
@@ -234,27 +186,27 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               autoDeployCharts: nix.thunk(() => ({
-                [nix.POS]: pos$43,
+                [nix.POS]: $pos[42],
                 "chart-hello": testChart,
-                "chart-disabled": nix.thunk(() => nix.update(testChart, { [nix.POS]: pos$36, enable: false })),
+                "chart-disabled": nix.thunk(() => nix.update(testChart, { [nix.POS]: $pos[35], enable: false })),
                 "chart-values-file": nix.thunk(() => nix.update(testChart, {
-                  [nix.POS]: pos$37,
+                  [nix.POS]: $pos[36],
                   values: nix.thunk(() => nix.add(nix.path("", "/."), nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.builtins.toFile(nix.thunk(() => nix.str`${rancherDistro}-test-chart-values.yaml`), "runCommand: \"echo 'Hello, file!'\"\nimage:\n  repository: test.local/test\n  tag: local\n"))))),
                 })),
                 "chart-advanced": nix.thunk(() => nix.update(testChart, {
-                  [nix.POS]: pos$42,
+                  [nix.POS]: $pos[41],
                   extraDeploy: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$39,
+                      [nix.POS]: $pos[38],
                       apiVersion: "v1",
                       kind: "Namespace",
-                      metadata: nix.thunk(() => ({ [nix.POS]: pos$38, name: "test" })),
+                      metadata: nix.thunk(() => ({ [nix.POS]: $pos[37], name: "test" })),
                     })),
                   ]),
                   extraFieldDefinitions: nix.thunk(() => ({
-                    [nix.POS]: pos$41,
+                    [nix.POS]: $pos[40],
                     spec: nix.thunk(() => ({
-                      [nix.POS]: pos$40,
+                      [nix.POS]: $pos[39],
                       valuesContent: nix.thunk(() => nix.str`runCommand: "echo 'advanced hello'"
 image:
   repository: ${nix.sel(testImage, "imageName")}
@@ -321,13 +273,13 @@ with subtest("Output of chart test jobs"):
 
 with subtest("Deployment of bundled reverse proxy"):
   ${nix.sel({
-      [nix.POS]: pos$47,
+      [nix.POS]: $pos[46],
       k3s: "machine.wait_until_succeeds(\"kubectl -n kube-system rollout status deployment traefik\")\n",
       rke2: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(rancherPackage, "version")), "1.36")) ? "machine.wait_until_succeeds(\"kubectl -n kube-system rollout status daemonset rke2-traefik\")\n" : "machine.wait_until_succeeds(\"kubectl -n kube-system rollout status daemonset rke2-ingress-nginx-controller\")\n")),
     }, nix.key(nix.force(rancherDistro)))}
 `),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$48,
+      [nix.POS]: $pos[47],
       maintainers: nix.thunk(() => nix.concat(nix.sel(lib, "teams", "k3s", "members"), nix.sel(pkgs, "rke2", "meta", "maintainers"))),
     })),
   };

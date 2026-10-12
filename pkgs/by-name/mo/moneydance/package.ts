@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableJavaFX", 13, 5]], [["url", 21, 5], ["hash", 24, 5]], [["makeWrapper", 33, 46]], [["jdk", 75, 13]], [["homepage", 79, 5], ["changelog", 80, 5], ["description", 83, 5], ["sourceProvenance", 84, 5], ["license", 85, 5], ["platforms", 90, 5], ["maintainers", 91, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["dontWrapGApps", 36, 3], ["installPhase", 38, 3], ["postFixup", 55, 3], ["passthru", 74, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, fetchzip: false, makeWrapper: false, openjdk25: false, wrapGAppsHook3: false, jvmFlags: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableJavaFX", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["makeWrapper", 33, 46]]);
-const pos$4 = nix.positions(here + "/package.nix", [["jdk", 75, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 79, 5], ["changelog", 80, 5], ["description", 83, 5], ["sourceProvenance", 84, 5], ["license", 85, 5], ["platforms", 90, 5], ["maintainers", 91, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["dontWrapGApps", 36, 3], ["installPhase", 38, 3], ["postFixup", 55, 3], ["passthru", 74, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const openjdk25 = nix.arg($, "openjdk25");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const jvmFlags = nix.argOr($, "jvmFlags", () => []);
-  const jdk = nix.thunk(() => nix.app(nix.sel(openjdk25, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
+  const jdk = nix.thunk(() => nix.app(nix.sel(openjdk25, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableJavaFX: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "moneydance",
       version: "2024.4_5253",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://infinitekind.com/stabledl/${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["_"]), nix.thunk(() => ["."]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/moneydance-linux.tar.gz`),
           hash: "sha256-xOdkuaN17ss9tTSXgU//s6cBm2jGEgP9eTtvW0k3VWQ=",
         })))),
       nativeBuildInputs: nix.thunk(() => [
         makeWrapper,
         nix.thunk(() => nix.app(nix.sel(buildPackages, "wrapGAppsHook3", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             makeWrapper: nix.thunk(() => nix.sel(buildPackages, "makeShellWrapper")),
           })))),
       ]),
@@ -54,9 +49,9 @@ makeWrapper ${jdk}/bin/java $out/bin/moneydance \\
   --add-flags ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), finalJvmFlags)))}
 `;
       })()),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, jdk: jdk })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], jdk: jdk })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://infinitekind.com/moneydance",
         changelog: nix.thunk(() => nix.str`https://infinitekind.com/stabledl/${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["_"]), nix.thunk(() => ["."]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/changelog-stable.txt`),
         description: "Easy to use and full-featured personal finance app that doesn't compromise your privacy",

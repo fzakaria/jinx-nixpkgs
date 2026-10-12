@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/xray-lib.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["CGO_ENABLED", 19, 7]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["vendorHash", 17, 3], ["env", 19, 3], ["buildPhase", 21, 3], ["installPhase", 30, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/xray-lib.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/xray-lib.nix", [["CGO_ENABLED", 19, 7]]);
-const pos$3 = nix.positions(here + "/xray-lib.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["vendorHash", 17, 3], ["env", 19, 3], ["buildPhase", 21, 3], ["installPhase", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +13,18 @@ export default nix.lambda((args) => (() => {
       const pname = "amnezia-xray";
       const version = "1.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "amnezia-vpn",
           repo: "amnezia-xray-bindings",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-lvU3bDzd5kgYl5DjdglnQzgjPwhtczxWu6LyxeVvVXE=",
         }))));
       const vendorHash = "sha256-L05GHzj9lyFAm9JgR8ZDQf+2auumug6PcoD1F4ozk3E=";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 1n }));
       const buildPhase = "runHook preBuild\n\nmkdir -p build\ngo build -buildmode=c-archive -trimpath -ldflags=\"-w -s\" -o build/amnezia_xray.a .\n\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\n\ninstall -Dm444 build/amnezia_xray.a $out/lib/libamnezia_xray.a\ninstall -Dm444 build/amnezia_xray.h -t $out/include/\n\nrunHook postInstall\n";
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

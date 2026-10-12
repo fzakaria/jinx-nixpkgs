@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["CXXFLAGS", 104, 7]], [["url", 139, 7], ["rev", 140, 7], ["sha256", 141, 7], ["name", 142, 7]], [["updateScript", 136, 5], ["assets", 138, 5], ["bundledLibraries", 148, 5]], [["description", 184, 5], ["mainProgram", 185, 5], ["longDescription", 186, 5], ["homepage", 191, 5], ["license", 192, 5], ["maintainers", 193, 5], ["platforms", 198, 5], ["changelog", 199, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 67, 3], ["cmakeFlags", 93, 3], ["env", 104, 3], ["postInstall", 111, 3], ["preFixup", 124, 3], ["passthru", 135, 3], ["meta", 183, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchsvn: false, cmake: false, "pkg-config": false, makeWrapper: false, SDL2: false, glew: false, openal: false, libvorbis: false, libogg: false, curl: false, freetype: false, libjpeg: false, libpng: false, libx11: false, harfbuzz: false, mcpp: false, wiiuse: false, angelscript: false, libopenglrecorder: false, sqlite: false, libsamplerate: false, libsquish: false, shaderc: false, "nix-update-script": false, serverOnly: true, nameSuffix: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 104, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 139, 7], ["rev", 140, 7], ["sha256", 141, 7], ["name", 142, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 136, 5], ["assets", 138, 5], ["bundledLibraries", 148, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 184, 5], ["mainProgram", 185, 5], ["longDescription", 186, 5], ["homepage", 191, 5], ["license", 192, 5], ["maintainers", 193, 5], ["platforms", 198, 5], ["changelog", 199, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 67, 3], ["cmakeFlags", 93, 3], ["env", 104, 3], ["postInstall", 111, 3], ["preFixup", 124, 3], ["passthru", 135, 3], ["meta", 183, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const serverOnly = nix.argOr($, "serverOnly", () => false);
   const nameSuffix = nix.argOr($, "nameSuffix", () => "");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`supertuxkart${nameSuffix}`),
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "supertuxkart",
           repo: "stk-code",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -84,7 +79,7 @@ substituteInPlace CMakeLists.txt \\
         "-DOpenGL_GL_PREFERENCE=GLVND",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-include cstdio", "-include stdexcept"]))),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "app=$out/Applications/SuperTuxKart.app\n\nmkdir -p \"$out\"/{bin,Applications}\nmv \"$out/supertuxkart.app\" \"$app\"\n\ncp \"$app/Contents/MacOS/supertuxkart\" \\\n  \"$out/bin/supertuxkart\"\nln -sfn \"$out/share/supertuxkart/data\" \\\n  \"$app/Contents/Resources/data\"\n")),
@@ -93,10 +88,10 @@ substituteInPlace CMakeLists.txt \\
   --set-default SUPERTUXKART_DATADIR "$out/share/supertuxkart"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# patch the copy inside the app bundle so launching via Finder works.\ncp $out/bin/supertuxkart \\\n  $out/Applications/SuperTuxKart.app/Contents/MacOS/supertuxkart\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         assets: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://svn.code.sf.net/p/supertuxkart/code/stk-assets",
             rev: "18621",
             sha256: "sha256-iqQSezGu0tecA53qhrtYA77SLj28WUUCcL4ZCJbK5C8=",
@@ -115,7 +110,7 @@ substituteInPlace CMakeLists.txt \\
         ]),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "3D open-source arcade racer",
         mainProgram: "supertuxkart",
         longDescription: "Karts. Nitro. Action! SuperTuxKart is a 3D open-source arcade racer\nwith a variety of characters, tracks, and modes to play.\nIt aims to be more fun than realistic, and provides an enjoyable experience for all ages.\n",

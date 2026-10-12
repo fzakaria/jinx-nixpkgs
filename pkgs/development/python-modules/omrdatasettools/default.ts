@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 23, 3], ["version", 24, 3], ["format", 25, 3], ["src", 27, 3], ["propagatedBuildInputs", 32, 3], ["nativeCheckInputs", 49, 3], ["disabledTestPaths", 51, 3], ["disabledTests", 56, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, h5py: false, ipython: false, lxml: false, mung: false, muscima: false, numpy: false, pillow: false, pytestCheckHook: false, "scikit-image": false, "sphinx-rtd-theme": false, sympy: false, pandas: false, pyhamcrest: false, tqdm: false, twine: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["format", 25, 3], ["src", 27, 3], ["propagatedBuildInputs", 32, 3], ["nativeCheckInputs", 49, 3], ["disabledTestPaths", 51, 3], ["disabledTests", 56, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-kUUcbti29uDnSEvCubMAUnptlaZGpEsW2IBGSAGnGyQ=",
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
         "test_render_node_masks_semantic_segmentation_of_nodes",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of datasets used for Optical Music Recognition",
         homepage: "https://github.com/apacha/OMR-Datasets",
         changelog: nix.thunk(() => nix.str`https://github.com/apacha/OMR-Datasets/blob/${version}/CHANGES.md`),
@@ -75,7 +73,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

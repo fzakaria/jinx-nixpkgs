@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["format", 13, 13], ["version", 13, 20], ["pname", 14, 5], ["hash", 15, 5]], [["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5], ["platforms", 23, 5]], [["pname", 8, 3], ["version", 9, 3], ["format", 10, 3], ["src", 12, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["format", 13, 13], ["version", 13, 20], ["pname", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5], ["platforms", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["format", 10, 3], ["src", 12, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +15,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.1";
       const format = "wheel";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           format: format,
           version: version,
           pname: "unix_ar",
           hash: "sha256-Kstxi8Ewi/gOW52iYU2CQswv475M2LL9Rxm84Ymq/PE=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "AR file handling for Python (including .deb files)",
         homepage: "https://github.com/getninjas/unix_ar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return nix.concat(nix.lookup(w_1, "linux"), nix.lookup(w_1, "darwin"));
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, format, src, meta };
+      return { [nix.POS]: $pos[2], pname, version, format, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

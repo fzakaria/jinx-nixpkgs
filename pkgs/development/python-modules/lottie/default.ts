@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 13], ["version", 14, 19], ["hash", 15, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["pythonImportsCheck", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, distutils: false, fetchPypi: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 13], ["version", 14, 19], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["pythonImportsCheck", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-hTBKwVLNBCyf6YpSe10TajHG/iqs2FnOHFgYm7lG0Sc=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [distutils]);
       const pythonImportsCheck = nix.thunk(() => ["lottie"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Framework to work with lottie files and telegram animated stickers (tgs)",
         homepage: "https://gitlab.com/mattbas/python-lottie/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

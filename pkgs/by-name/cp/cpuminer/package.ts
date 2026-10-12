@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["configureFlags", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, curl: false, jansson: false, perl: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["configureFlags", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cpuminer",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pooler",
           repo: "cpuminer",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-build-on-aarch64.patch",
             url: "https://github.com/pooler/cpuminer/commit/5f02105940edb61144c09a7eb960bba04a10d5b7.patch",
             hash: "sha256-lGAcwDcXgcJBFhasSEdQIEIY7pp6x/PEXHBsVwAOqhc=",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl, jansson]),
       configureFlags: nix.thunk(() => ["CFLAGS=-O3"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/pooler/cpuminer",
         description: "CPU miner for Litecoin and Bitcoin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

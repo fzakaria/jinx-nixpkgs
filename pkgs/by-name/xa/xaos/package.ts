@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["QMAKE_LRELEASE", 38, 5], ["DEFINES", 40, 5]], [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]], [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 35, 3], ["env", 37, 3], ["postPatch", 46, 3], ["desktopItems", 57, 3], ["postInstall", 59, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, qt6: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["QMAKE_LRELEASE", 38, 5], ["DEFINES", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 35, 3], ["env", 37, 3], ["postPatch", 46, 3], ["desktopItems", 57, 3], ["postInstall", 59, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const datapath = "$out/share/XaoS";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xaos",
       version: "4.3.8",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xaos-project",
           repo: "XaoS",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [copyDesktopItems])))),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtbase"))]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         QMAKE_LRELEASE: "lrelease",
         DEFINES: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["USE_OPENGL", "USE_FLOAT128"]))),
       })),
@@ -53,7 +50,7 @@ cp -r tutorial examples catalogs "${datapath}"
 install -D "xdg/xaos.png" "$out/share/icons/xaos.png"
 `),
       meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "src", "meta"), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Real-time interactive fractal zoomer",
         mainProgram: "xaos",
         homepage: "https://xaos-project.github.io/",

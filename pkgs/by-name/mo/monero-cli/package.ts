@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]], [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 109, 5], ["badPlatforms", 115, 5], ["maintainers", 117, 5], ["mainProgram", 121, 5], ["broken", 123, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["patches", 50, 3], ["postPatch", 54, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 68, 3], ["cmakeFlags", 86, 3], ["outputs", 99, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, boost186: false, libsodium: false, openssl: false, python3: false, randomx: false, rapidjson: false, readline: false, unbound: false, zeromq: false, trezorSupport: true, hidapi: false, libusb1: false, protobuf_21: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 109, 5], ["badPlatforms", 115, 5], ["maintainers", 117, 5], ["mainProgram", 121, 5], ["broken", 123, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["patches", 50, 3], ["postPatch", 54, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 68, 3], ["cmakeFlags", 86, 3], ["outputs", 99, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,14 +27,14 @@ export default nix.lambda((args) => (() => {
   const protobuf_21 = nix.arg($, "protobuf_21");
   const udev = nix.arg($, "udev");
   const supercop = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "monero-project",
       repo: "supercop",
       rev: "633500ad8c8759995049ccd022107d1fa8a1bbc9",
       hash: "sha256-26UmESotSWnQ21VbAYEappLpkEMyl0jiuCaezRYd/sE=",
     }))));
   const trezor_common = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "trezor",
       repo: "trezor-common",
       rev: "bff7fdfe436c727982cc553bdfb29a9021b423b0",
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const pname = "monero-cli";
       const version = "0.18.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "monero-project",
           repo: "monero",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -72,7 +68,7 @@ cp -r . $source
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DBoost_USE_MULTITHREADED=OFF"), nix.app(nix.sel(lib, "optionals"), trezorSupport, nix.thunk(() => ["-DUSE_DEVICE_TREZOR=ON"])))));
       const outputs = nix.thunk(() => ["out", "source"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Private, secure, untraceable currency",
         homepage: "https://getmonero.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -92,7 +88,7 @@ cp -r . $source
         broken: nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

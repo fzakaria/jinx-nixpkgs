@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["brotli", 74, 5], ["cli", 75, 5], ["http2", 80, 5], ["socks", 81, 5], ["ws", 82, 5], ["zstd", 83, 5]], [["doCheck", 98, 38]], [["httpx2", 125, 13]], [["tests", 124, 12]], [["description", 132, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["maintainers", 136, 5]], [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["src", 49, 3], ["postPatch", 56, 3], ["build-system", 60, 3], ["dependencies", 66, 3], ["optional-dependencies", 73, 3], ["pythonImportsCheck", 86, 3], ["preCheck", 90, 3], ["nativeCheckInputs", 94, 3], ["pytestFlags", 105, 3], ["disabledTests", 107, 3], ["passthru", 124, 3], ["__darwinAllowLocalNetworking", 128, 3], ["__structuredAttrs", 129, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchFromGitHub: false, isPyPy: false, pythonOlder: false, hatchling: false, "hatch-fancy-pypi-readme": false, "uv-dynamic-versioning": false, anyio: false, certifi: false, httpcore2: false, idna: false, brotli: false, brotlicffi: false, click: false, h2: false, pygments: false, rich: false, socksio: false, wsproto: false, zstandard: false, chardet: false, pytestCheckHook: false, "pytest-trio": false, starlette: false, trustme: false, uvicorn: false, websockets: false, httpx2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["brotli", 74, 5], ["cli", 75, 5], ["http2", 80, 5], ["socks", 81, 5], ["ws", 82, 5], ["zstd", 83, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doCheck", 98, 38]]);
-const pos$4 = nix.positions(here + "/default.nix", [["httpx2", 125, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 124, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 132, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["maintainers", 136, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["src", 49, 3], ["postPatch", 56, 3], ["build-system", 60, 3], ["dependencies", 66, 3], ["optional-dependencies", 73, 3], ["pythonImportsCheck", 86, 3], ["preCheck", 90, 3], ["nativeCheckInputs", 94, 3], ["pytestFlags", 105, 3], ["disabledTests", 107, 3], ["passthru", 124, 3], ["__darwinAllowLocalNetworking", 128, 3], ["__structuredAttrs", 129, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const websockets = nix.arg($, "websockets");
   const httpx2 = nix.arg($, "httpx2");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "httpx2",
       version: "2.9.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pydantic",
           repo: "httpx2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +53,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_fancy_pypi_readme, uv_dynamic_versioning]),
       dependencies: nix.thunk(() => [anyio, certifi, httpcore2, idna]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         brotli: nix.thunk(() => (nix.asBool(isPyPy) ? [brotlicffi] : [brotli])),
         cli: nix.thunk(() => [click, pygments, rich]),
         http2: nix.thunk(() => [h2]),
@@ -73,7 +67,7 @@ export default nix.lambda((args) => (() => {
         chardet,
         pytestCheckHook,
         pytest_trio,
-        nix.thunk(() => nix.app(nix.sel(starlette, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: false })))),
+        nix.thunk(() => nix.app(nix.sel(starlette, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], doCheck: false })))),
         trustme,
         uvicorn,
         websockets,
@@ -89,13 +83,13 @@ export default nix.lambda((args) => (() => {
         "test_response_decode_text_using_autodetect",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_keepalive_ping"])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, httpx2: httpx2 })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], httpx2: httpx2 })),
       })),
       __darwinAllowLocalNetworking: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "A next generation HTTP client for Python",
         homepage: "https://github.com/pydantic/httpx2",
         changelog: nix.thunk(() => nix.str`https://github.com/pydantic/httpx2/blob/${nix.sel(finalAttrs, "src", "tag")}/src/httpx2/CHANGELOG.md`),

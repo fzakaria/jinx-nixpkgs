@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["rev-prefix", 83, 5], ["odd-unstable", 84, 5]], [["updateScript", 82, 12]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["teams", 92, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["preFixup", 58, 3], ["postFixup", 75, 3], ["configureFlags", 79, 3], ["enableParallelBuilding", 80, 3], ["passthru", 82, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gettext: false, "pkg-config": false, "xfce4-dev-tools": false, wrapGAppsNoGuiHook: false, ffmpegthumbnailer: false, "gdk-pixbuf": false, glib: false, freetype: false, libgepub: false, libgsf: false, libheif: false, libjxl: false, libopenraw: false, librsvg: false, poppler: false, gst_all_1: false, "webp-pixbuf-loader": false, libxfce4util: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 83, 5], ["odd-unstable", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 82, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["teams", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["preFixup", 58, 3], ["postFixup", 75, 3], ["configureFlags", 79, 3], ["enableParallelBuilding", 80, 3], ["passthru", 82, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libxfce4util = nix.arg($, "libxfce4util");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tumbler",
       version: "4.20.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.xfce.org",
           owner: "xfce",
           repo: "tumbler",
@@ -74,11 +70,11 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-maintainer-mode"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "tumbler-", "odd-unstable": true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "tumbler-", "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "D-Bus thumbnailer service",
         homepage: "https://gitlab.xfce.org/xfce/tumbler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

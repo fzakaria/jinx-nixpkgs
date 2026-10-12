@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 50, 7], ["changelog", 51, 7], ["platforms", 52, 7], ["maintainers", 53, 7], ["license", 54, 7], ["description", 56, 5], ["mainProgram", 57, 5]], [["pname", 9, 3], ["version", 11, 5], ["src", 12, 5], ["patches", 13, 5], ["postPatch", 14, 5], ["pyproject", 17, 3], ["dependencies", 19, 3], ["makeFlags", 23, 3], ["installTargets", 25, 3], ["makeWrapperArgs", 30, 3], ["postInstall", 32, 3], ["checkPhase", 37, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, tlp: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 50, 7], ["changelog", 51, 7], ["platforms", 52, 7], ["maintainers", 53, 7], ["license", 54, 7], ["description", 56, 5], ["mainProgram", 57, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 11, 5], ["src", 12, 5], ["patches", 13, 5], ["postPatch", 14, 5], ["pyproject", 17, 3], ["dependencies", 19, 3], ["makeFlags", 23, 3], ["installTargets", 25, 3], ["makeWrapperArgs", 30, 3], ["postInstall", 32, 3], ["checkPhase", 37, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const tlp = nix.arg($, "tlp");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "tlp-pd",
       version: nix.thunk(() => nix.attr(tlp, "version")),
       src: nix.thunk(() => nix.attr(tlp, "src")),
@@ -36,7 +35,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(tlp, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 27, 27], ["license", 27, 36], ["description", 28, 5], ["downloadPage", 29, 5], ["sourceProvenance", 30, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontUnpack", 12, 3], ["dontBuild", 15, 3], ["installPhase", 17, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, buildGhidraExtension: false, ghidra: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 27, 27], ["license", 27, 36], ["description", 28, 5], ["downloadPage", 29, 5], ["sourceProvenance", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontUnpack", 12, 3], ["dontBuild", 15, 3], ["installPhase", 17, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const buildGhidraExtension = nix.arg($, "buildGhidraExtension");
   const ghidra = nix.arg($, "ghidra");
   return nix.app(buildGhidraExtension, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "machinelearning",
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), ghidra)),
       src: nix.thunk(() => nix.str`${ghidra}/lib/ghidra/Extensions/Ghidra/${nix.sel(ghidra, "distroPrefix")}_MachineLearning.zip`),
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ghidra, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Finds functions using ML",

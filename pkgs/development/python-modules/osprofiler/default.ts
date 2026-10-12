@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 30, 13], ["version", 30, 19], ["hash", 31, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5], ["teams", 65, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 47, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, ddt: false, docutils: false, elasticsearch: false, fetchPypi: false, netaddr: false, "opentelemetry-exporter-otlp": false, "opentelemetry-sdk": false, "oslo-concurrency": false, "oslo-config": false, "oslo-serialization": false, "oslo-utils": false, prettytable: false, pymongo: false, redis: false, requests: false, setuptools: false, stestrCheckHook: false, webob: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 30, 13], ["version", 30, 19], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5], ["teams", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 47, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-bgjffu9q/A0tAngT1A5DyyKPDrPrNEHWFJXCgA6/oyA=",
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["osprofiler"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OpenStack Library to profile request between all involved services",
         homepage: "https://opendev.org/openstack/osprofiler/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -70,7 +68,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fcitx5-configtool.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["cmakeFlags", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "extra-cmake-modules": false, "pkg-config": false, fcitx5: false, "fcitx5-qt": false, qtbase: false, qtsvg: false, qtwayland: false, qtdeclarative: false, kitemviews: false, kwidgetsaddons: false, kcmutils: false, kcoreaddons: false, kdeclarative: false, kirigami: true, isocodes: false, "xkeyboard-config": false, libxkbfile: false, libplasma: true, wrapQtAppsHook: false, kcmSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fcitx5-configtool.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/fcitx5-configtool.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]]);
-const pos$3 = nix.positions(here + "/fcitx5-configtool.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["cmakeFlags", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fcitx5-configtool";
       const version = "5.1.16";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fcitx",
           repo: pname,
           rev: version,
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
         libxkbfile,
       ], nix.app(nix.sel(lib, "optionals"), kcmSupport, nix.thunk(() => [qtdeclarative, kcoreaddons, kdeclarative, kcmutils, libplasma, kirigami]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Configuration Tool for Fcitx5",
         homepage: "https://github.com/fcitx/fcitx5-configtool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -73,7 +71,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "fcitx5-config-qt",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

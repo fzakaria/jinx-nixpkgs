@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["platforms", 226, 8]], [["pname", 22, 3], ["path", 23, 3], ["extraPaths", 24, 3], ["preBuild", 172, 3], ["setupHooks", 182, 3], ["postInstall", 188, 3], ["nativeBuildInputs", 192, 3], ["buildInputs", 200, 3], ["makeFlags", 205, 3], ["preIncludes", 212, 3], ["meta", 226, 3], ["alwaysKeepStatic", 228, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkDerivation: false, versionData: false, bsdSetupHook: false, freebsdSetupHook: false, makeMinimal: false, "boot-install": false, which: false, "freebsd-lib": false, expat: false, zlib: false, extraSrc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["platforms", 226, 8]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["path", 23, 3], ["extraPaths", 24, 3], ["preBuild", 172, 3], ["setupHooks", 182, 3], ["postInstall", 188, 3], ["nativeBuildInputs", 192, 3], ["buildInputs", 200, 3], ["makeFlags", 205, 3], ["preIncludes", 212, 3], ["meta", 226, 3], ["alwaysKeepStatic", 228, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const extraSrc = nix.argOr($, "extraSrc", () => []);
   const mkBsdMachine = nix.thunk(() => nix.attr(freebsd_lib, "mkBsdMachine"));
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "compat",
       path: "tools/build",
       extraPaths: nix.thunk(() => nix.concat(["lib/libc/db", "lib/libc/stdlib", "lib/libc/gen", "lib/libc/locale"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["lib/libc/string", "lib/libutil"])), nix.concat([
@@ -147,7 +146,7 @@ cp ../../sys/${nix.app(mkBsdMachine, stdenv)}/include/elf.h ../../sys/sys/${nix.
       ]),
       preIncludes: nix.thunk(() => nix.add(nix.add("mkdir -p $out/{0,1}-include\ncp --no-preserve=mode -r cross-build/include/common/* $out/0-include\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "cp --no-preserve=mode -r cross-build/include/linux/* $out/1-include\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "cp --no-preserve=mode -r cross-build/include/darwin/* $out/1-include\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
       alwaysKeepStatic: true,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 16, 5], ["owner", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["ldflags", 24, 3], ["nativeBuildInputs", 30, 3], ["nativeCheckInputs", 32, 3], ["postInstall", 34, 3], ["doInstallCheck", 39, 3], ["installCheckPhase", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, openssh: false, makeWrapper: false, ps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 16, 5], ["owner", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["ldflags", 24, 3], ["nativeBuildInputs", 30, 3], ["nativeCheckInputs", 32, 3], ["postInstall", 34, 3], ["doInstallCheck", 39, 3], ["installCheckPhase", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const ps = nix.arg($, "ps");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "assh",
       version: "2.17.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "assh",
           owner: "moul",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "$out/bin/assh --help > /dev/null\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Advanced SSH config - Regex, aliases, gateways, includes and dynamic hosts",
         homepage: "https://github.com/moul/assh",
         changelog: nix.thunk(() => nix.str`https://github.com/moul/assh/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

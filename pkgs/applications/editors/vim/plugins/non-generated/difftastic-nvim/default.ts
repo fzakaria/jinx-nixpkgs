@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["RUSTFLAGS", 26, 9]], [["pname", 20, 5], ["version", 21, 13], ["src", 21, 21], ["cargoHash", 22, 5], ["postInstall", 23, 5], ["env", 26, 5]], [["attrPath", 45, 7]], [["updateScript", 44, 5], ["difftastic-nvim-lib", 49, 13]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 59, 5]], [["pname", 30, 3], ["version", 31, 11], ["src", 31, 19], ["dependencies", 32, 3], ["postPatch", 36, 3], ["passthru", 43, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { vimPlugins: false, lib: false, vimUtils: false, rustPlatform: false, stdenv: false, "nix-update-script": false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["RUSTFLAGS", 26, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 13], ["src", 21, 21], ["cargoHash", 22, 5], ["postInstall", 23, 5], ["env", 26, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["attrPath", 45, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 44, 5], ["difftastic-nvim-lib", 49, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 59, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 11], ["src", 31, 19], ["dependencies", 32, 3], ["postPatch", 36, 3], ["passthru", 43, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "0.1.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "clabby",
       repo: "difftastic.nvim",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-x5rm54LdloowVFPtNGs/N6dAqcVe3tHH7eJjPvxdqzk=",
     }))));
   const difftastic_nvim_lib = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "difftastic-nvim-lib",
       version: version,
       src: src,
@@ -37,12 +31,12 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`ln -s $out/lib/libdifftastic_nvim${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")} $out/lib/difftastic_nvim.so
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-C link-arg=-undefined -C link-arg=dynamic_lookup")),
       })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "difftastic-nvim",
       version: version,
       src: src,
@@ -53,12 +47,15 @@ export default nix.lambda((args) => (() => {
   "release_dir = '${difftastic_nvim_lib}/lib'"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vimPlugins.difftastic-nvim.difftastic-nvim-lib" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
+            [nix.POS]: $pos[3],
+            attrPath: "vimPlugins.difftastic-nvim.difftastic-nvim-lib",
+          })))),
         "difftastic-nvim-lib": difftastic_nvim_lib,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Neovim plugin that displays difftastic's structural diffs in a side-by-side view with syntax highlighting",
         homepage: "https://github.com/clabby/difftastic.nvim/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["cmakeFlags", 21, 3], ["postPatch", 25, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["cmakeFlags", 21, 3], ["postPatch", 25, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cjson",
       version: "1.7.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DaveGamble",
           repo: "cJSON",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_CUSTOM_COMPILER_FLAGS", false)))),
       postPatch: nix.thunk(() => nix.add("substituteInPlace CMakeLists.txt --replace -std=c89 -std=c99\n", "substituteInPlace CMakeLists.txt \\\n  --replace-fail \\\n    'cmake_minimum_required(VERSION 3.0)' \\\n    'cmake_minimum_required(VERSION 3.10)'\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/DaveGamble/cJSON",
         description: "Ultralightweight JSON parser in ANSI C",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 12, 5], ["owner", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["platforms", 25, 5], ["mainProgram", 26, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 17, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 12, 5], ["owner", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["platforms", 25, 5], ["mainProgram", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 17, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "undaemonize",
       version: "0-unstable-2017-07-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "undaemonize",
           owner: "nickstenning",
           rev: "a181cfd900851543ee1f85fe8f76bc8916b446d4",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "install -D undaemonize $out/bin/undaemonize\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tiny helper utility to force programs which insist on daemonizing themselves to run in the foreground",
         homepage: "https://github.com/nickstenning/undaemonize",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

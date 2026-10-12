@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]], [["homepage", 59, 5], ["description", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["license", 63, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["cmakeFlags", 46, 3], ["installPhase", 52, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libGL: false, libx11: false, libxext: false, libxrandr: false, libxinerama: false, libxcursor: false, freetype: false, "alsa-lib": false, cmake: false, "pkg-config": false, "gcc-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["license", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["cmakeFlags", 46, 3], ["installPhase", 52, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const gcc_unwrapped = nix.arg($, "gcc-unwrapped");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "delayarchitect",
       version: "0-unstable-2022-01-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jpcima",
           repo: "DelayArchitect",
           rev: "5abf4dfb7f92ba604d591a2c388d2d69a9055fe3",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/lib/vst3\ncd DelayArchitect_artefacts/Release\ncp -r VST3/Delay\\ Architect.vst3 $out/lib/vst3\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jpcima/DelayArchitect",
         description: "Visual, musical editor for delay effects",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "magnetophon"))]),

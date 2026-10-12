@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 17, 5], ["buildInputs", 19, 5], ["nativeBuildInputs", 24, 5], ["buildCommand", 28, 5], ["disallowedReferences", 44, 5]], [["name", 54, 5], ["nativeBuildInputs", 56, 5], ["autoPatchelfFlags", 60, 5], ["dontUnpack", 62, 5], ["installPhase", 66, 5], ["disallowedReferences", 72, 5]], [["platforms", 87, 8]], [["lib-check", 89, 13], ["lib-check-autopatchelfed", 89, 23]], [["name", 79, 3], ["buildCommand", 81, 3], ["meta", 87, 3], ["passthru", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, tests: false, autoPatchelfHook: false, patchelf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 17, 5], ["buildInputs", 19, 5], ["nativeBuildInputs", 24, 5], ["buildCommand", 28, 5], ["disallowedReferences", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 54, 5], ["nativeBuildInputs", 56, 5], ["autoPatchelfFlags", 60, 5], ["dontUnpack", 62, 5], ["installPhase", 66, 5], ["disallowedReferences", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["platforms", 87, 8]]);
-const pos$4 = nix.positions(here + "/default.nix", [["lib-check", 89, 13], ["lib-check-autopatchelfed", 89, 23]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 79, 3], ["buildCommand", 81, 3], ["meta", 87, 3], ["passthru", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const foo = nix.thunk(() => nix.sel(tests, "stdenv-inputs", "foo"));
   const bar = nix.thunk(() => nix.sel(tests, "stdenv-inputs", "bar"));
   const lib_check = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "lib-check-bundle",
       buildInputs: nix.thunk(() => [foo, bar]),
       nativeBuildInputs: nix.thunk(() => [patchelf]),
@@ -43,7 +39,7 @@ $out/bin/lib-check
       ]),
     }))));
   const lib_check_autopatchelfed = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "lib-check-autopatchelfed",
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       autoPatchelfFlags: nix.thunk(() => ["--preserve-origin"]),
@@ -54,18 +50,18 @@ cp -R ${lib_check}/* $out
       disallowedReferences: nix.thunk(() => [lib_check, "out"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "auto-patchelf-hook-preserve-origin",
       buildCommand: nix.thunk(() => nix.str`# Ensure the binary still works
 ${lib_check_autopatchelfed}/bin/lib-check
 touch $out
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "lib-check": lib_check,
         "lib-check-autopatchelfed": lib_check_autopatchelfed,
       })),

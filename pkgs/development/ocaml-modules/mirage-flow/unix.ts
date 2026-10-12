@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unix.nix", [[["description", 32, 5]], [["pname", 13, 3], ["version", 15, 25], ["src", 15, 33], ["propagatedBuildInputs", 17, 3], ["doCheck", 25, 3], ["checkInputs", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, fmt: false, logs: false, "mirage-flow": false, lwt: false, cstruct: false, alcotest: false, "mirage-flow-combinators": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unix.nix", [["description", 32, 5]]);
-const pos$2 = nix.positions(here + "/unix.nix", [["pname", 13, 3], ["version", 15, 25], ["src", 15, 33], ["propagatedBuildInputs", 17, 3], ["doCheck", 25, 3], ["checkInputs", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const mirage_flow_combinators = nix.arg($, "mirage-flow-combinators");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mirage-flow-unix",
       version: nix.thunk(() => nix.attr(mirage_flow, "version")),
       src: nix.thunk(() => nix.attr(mirage_flow, "src")),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, mirage_flow_combinators]),
       meta: nix.thunk(() => nix.update(nix.sel(mirage_flow, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Flow implementations and combinators for MirageOS on Unix",
       })),
     })));

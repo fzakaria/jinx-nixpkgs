@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 26], ["version", 20, 32], ["hash", 21, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 32, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, numpy: false, scipy: false, matplotlib: false, unittestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 26], ["version", 20, 32], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 32, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const matplotlib = nix.arg($, "matplotlib");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "baycomp",
       version: "1.0.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-MrJa17FtWyUd259hEKMtezlTuYcJbaHSXvJ3k10l2uw=",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [unittestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["baycomp"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for Bayesian comparison of classifiers",
         homepage: "https://github.com/janezd/baycomp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

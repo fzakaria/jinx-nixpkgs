@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["local.php", 82, 11], ["plugins.local.php", 83, 11]], [["pname", 88, 9], ["postInstall", 90, 9]], [["dokuwiki", 104, 28]], [["combine", 60, 5], ["tests", 103, 5]], [["cpeParts", 113, 17]], [["description", 109, 5], ["license", 110, 5], ["homepage", 111, 5], ["platforms", 112, 5], ["identifiers", 113, 5], ["maintainers", 114, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["preload", 21, 3], ["phpLocalConfig", 35, 3], ["phpPluginsLocalConfig", 41, 3], ["installPhase", 47, 3], ["passthru", 59, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, writeText: false, nixosTests: false, dokuwiki: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
 const formals$2 = { args: { basePackage: true, plugins: true, templates: true, localConfig: true, pluginsConfig: true, aclConfig: true, extraConfigs: true, pname: true }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["local.php", 82, 11], ["plugins.local.php", 83, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 88, 9], ["postInstall", 90, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["dokuwiki", 104, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["combine", 60, 5], ["tests", 103, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["cpeParts", 113, 17]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 109, 5], ["license", 110, 5], ["homepage", 111, 5], ["platforms", 112, 5], ["identifiers", 113, 5], ["maintainers", 114, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["preload", 21, 3], ["phpLocalConfig", 35, 3], ["phpPluginsLocalConfig", 41, 3], ["installPhase", 47, 3], ["passthru", 59, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const dokuwiki = nix.arg($, "dokuwiki");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "dokuwiki",
       version: "2026-07-14c",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dokuwiki",
           repo: "dokuwiki",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +39,7 @@ cp ${nix.sel(finalAttrs, "phpPluginsLocalConfig")} $out/share/dokuwiki/conf/plug
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         combine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const basePackage = nix.argOr($_1, "basePackage", () => nix.force(dokuwiki));
@@ -59,12 +52,12 @@ runHook postInstall
           const pname = nix.argOr($_1, "pname", () => (p) => nix.str`${nix.sel(p, "pname")}-combined`);
           const isNotEmpty = (x) => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.builtins.elem(x, nix.thunk(() => [null, ""])))));
           const configs = nix.thunk(() => nix.update({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "local.php": localConfig,
             "plugins.local.php": pluginsConfig,
           }, extraConfigs));
           return nix.app(nix.sel(basePackage, "overrideAttrs"), (prev) => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pname: nix.thunk(() => (nix.asBool(nix.builtins.isFunction(pname)) ? nix.app(pname, prev) : nix.force(pname))),
               postInstall: nix.thunk(() => nix.add(nix.selOr(prev, () => "", "postInstall"), nix.str`${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (tpl) => nix.str`cp -r ${nix.builtins.toString(tpl)} $out/share/dokuwiki/lib/tpl/${nix.sel(tpl, "name")}`, templates)}
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (plugin) => nix.str`cp -r ${nix.builtins.toString(plugin)} $out/share/dokuwiki/lib/plugins/${nix.sel(plugin, "name")}`, plugins)}
@@ -74,18 +67,18 @@ ${nix.app(isNotEmpty, aclConfig, nix.thunk(() => nix.str`ln -sf ${aclConfig} $ou
             }));
         })(), formals$2),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           dokuwiki: nix.thunk(() => nix.attr(nixosTests, "dokuwiki")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Simple to use and highly versatile Open Source wiki software that doesn't require a database",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         homepage: "https://www.dokuwiki.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "dokuwiki", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
         maintainers: nix.thunk(() => (() => {

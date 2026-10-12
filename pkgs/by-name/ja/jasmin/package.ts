@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["minimal-module", 52, 5]], [["tests", 51, 12]], [["description", 56, 5], ["downloadPage", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildPhase", 35, 3], ["installPhase", 41, 3], ["passthru", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, ant: false, jdk8: false, makeWrapper: false, stripJavaArchivesHook: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["minimal-module", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 51, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 56, 5], ["downloadPage", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildPhase", 35, 3], ["installPhase", 41, 3], ["passthru", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const jdk = jdk8;
   const jre = nix.thunk(() => nix.sel(jdk8, "jre"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jasmin",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/jasmin/jasmin-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-6qEMaM7Gggb9EC6exxE3OezNeQEIoblabow+k/IORJ0=",
         })))),
@@ -42,14 +38,14 @@ makeWrapper ${jre}/bin/java $out/bin/jasmin \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "minimal-module": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-assemble-hello-world"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Assembler for the Java Virtual Machine",
         downloadPage: "https://sourceforge.net/projects/jasmin/files/latest/download",
         homepage: "https://jasmin.sourceforge.net/",

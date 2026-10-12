@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kwayland.nix", [[["url", 20, 7], ["hash", 21, 7]], [["platforms", 41, 8]], [["pname", 16, 3], ["patches", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 36, 3], ["outputs", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { mkDerivation: false, lib: false, cmake: false, "pkg-config": false, "extra-cmake-modules": false, "wayland-scanner": false, kdePackages: false, qtbase: false, wayland: false, "wayland-protocols": false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/kwayland.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$2 = nix.positions(here + "/kwayland.nix", [["platforms", 41, 8]]);
-const pos$3 = nix.positions(here + "/kwayland.nix", [["pname", 16, 3], ["patches", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 36, 3], ["outputs", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kwayland",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://invent.kde.org/plasma/kwayland/-/commit/0954a179d4ef72597efea44a91071eb9a55a385f.diff",
             hash: "sha256-TB9ZIYV58E41rA8mP5MXjIKZUOdH/rZfOYsgUlV+QLk=",
           })))),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [qtbase]),
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "freebsd"))),
       })),
     })));

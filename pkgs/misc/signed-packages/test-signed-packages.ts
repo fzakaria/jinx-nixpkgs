@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-signed-packages.nix", [[["purpose", 18, 7], ["commonName", 19, 7], ["notBefore", 20, 7], ["lifetimeDays", 21, 7]], [["signingKey", 25, 7]], [["description", 29, 7], ["license", 30, 7], ["platforms", 31, 30], ["teams", 32, 7]], [["name", 13, 5], ["signingKey", 15, 5], ["certificateParams", 17, 5], ["passthru", 24, 5], ["meta", 28, 5]], [["uefiSigningKey", 10, 11], ["uefiCertificate", 12, 3]]]);
 const formals$1 = { args: { lib: false, mkSignedPackages: false, autopen: false, uefiSigningKey: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-signed-packages.nix", [["purpose", 18, 7], ["commonName", 19, 7], ["notBefore", 20, 7], ["lifetimeDays", 21, 7]]);
-const pos$2 = nix.positions(here + "/test-signed-packages.nix", [["signingKey", 25, 7]]);
-const pos$3 = nix.positions(here + "/test-signed-packages.nix", [["description", 29, 7], ["license", 30, 7], ["platforms", 31, 30], ["teams", 32, 7]]);
-const pos$4 = nix.positions(here + "/test-signed-packages.nix", [["name", 13, 5], ["signingKey", 15, 5], ["certificateParams", 17, 5], ["passthru", 24, 5], ["meta", 28, 5]]);
-const pos$5 = nix.positions(here + "/test-signed-packages.nix", [["uefiSigningKey", 10, 11], ["uefiCertificate", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,24 +12,24 @@ export default nix.lambda((args) => (() => {
   const autopen = nix.arg($, "autopen");
   const uefiSigningKey = nix.argOr($, "uefiSigningKey", () => nix.sel(autopen, "testSigningKey"));
   return nix.app(mkSignedPackages, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       uefiSigningKey: uefiSigningKey,
       uefiCertificate: nix.thunk(() => nix.app(nix.sel(autopen, "x509", "mkSelfSignedCertificate"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: "insecure-test-uefi-certificate",
           signingKey: uefiSigningKey,
           certificateParams: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             purpose: "code-signing",
             commonName: "INSECURE TEST CERTIFICATE, DO NOT TRUST",
             notBefore: "1970-01-01T00:00:00Z",
             lifetimeDays: 1n,
           })),
-          passthru: nix.thunk(() => ({ [nix.POS]: pos$2, signingKey: uefiSigningKey })),
+          passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], signingKey: uefiSigningKey })),
           meta: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(autopen, "meta"));
             return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             description: "Insecure test UEFI Secure Boot certificate",
             license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             platforms: nix.thunk(() => nix.attr(from, "platforms")),

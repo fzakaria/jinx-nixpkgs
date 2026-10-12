@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["vendorHash", 17, 3], ["doCheck", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["vendorHash", 17, 3], ["doCheck", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "git-who",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sinclairtarget",
           repo: "git-who",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-e2P7szjtAn4EFTy+eGi/9cYf/Raw/7O+PbYEOD8i3Hs=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Git blame for file trees",
         homepage: "https://github.com/sinclairtarget/git-who",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

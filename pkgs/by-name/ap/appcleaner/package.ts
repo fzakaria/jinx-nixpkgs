@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["sourceProvenance", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontUnpack", 15, 3], ["nativeBuildInputs", 17, 3], ["installPhase", 19, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["sourceProvenance", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontUnpack", 15, 3], ["nativeBuildInputs", 17, 3], ["installPhase", 19, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "appcleaner",
       version: "3.6.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://freemacsoft.net/downloads/AppCleaner_${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-4BL3KUQkc8IOfM4zSwAYJSHktmcupoGzSTGxgP6z1r4=",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\nunzip -d $out/Applications $src\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Uninstall unwanted apps",
         homepage: "https://freemacsoft.net/appcleaner",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

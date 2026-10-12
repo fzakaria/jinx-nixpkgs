@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["name", 19, 7], ["url", 20, 7], ["hash", 21, 7]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["mainProgram", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["enableParallelBuilding", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 19, 7], ["url", 20, 7], ["hash", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["mainProgram", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["enableParallelBuilding", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bonnie++",
       version: "2.00a",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.coker.com.au/bonnie++/bonnie++-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-qNM7vYG8frVZzlv25YS5tT+uo5zPtK6S5Y8nJX5Gjw4=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "bonnie++-2.00a-gcc11.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/app-benchmarks/bonnie++/files/bonnie++-2.00a-gcc11.patch?id=d0f29755e969c805fbd6240905e3925671340666",
             hash: "sha256-/cIC4HYQco5Nv1UoTELl2OGD5hdWhbz3L0+GjN/vcdE=",
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Hard drive and file system benchmark suite",
         homepage: "http://www.coker.com.au/bonnie++/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

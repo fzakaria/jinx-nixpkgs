@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["updateScript", 63, 12]], [["description", 66, 5], ["longDescription", 67, 5], ["license", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["doCheck", 35, 3], ["nativeCheckInputs", 37, 3], ["postPatch", 42, 3], ["buildFlags", 47, 3], ["installPhase", 51, 3], ["passthru", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, python3Packages: false, "pkg-config": false, libedit: false, cppcheck: false, coreutils: false, asciidoctor: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["longDescription", 67, 5], ["license", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["doCheck", 35, 3], ["nativeCheckInputs", 37, 3], ["postPatch", 42, 3], ["buildFlags", 47, 3], ["installPhase", 51, 3], ["passthru", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const asciidoctor = nix.arg($, "asciidoctor");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "open-adventure",
       version: "1.22",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "esr",
           repo: "open-adventure",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,11 +43,11 @@ substituteInPlace tests/tapview --replace-fail "/bin/echo" ${nix.app(nix.sel(lib
       buildFlags: nix.thunk(() => ["advent.6"]),
       installPhase: "runHook preInstall\n\nmkdir -vp \"$out/bin\" \"$out/share/man/man6\" \"$out/share/applications/\" \"$out/share/icons/hicolor/scalable/apps\"\ninstall -m 555 ./advent $out/bin\ninstall -m 444 ./advent.6 $out/share/man/man6\ninstall -m 444 ./advent.desktop $out/share/applications\ninstall -m 444 ./advent.svg $out/share/icons/hicolor/scalable/apps\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Forward-port of the Crowther/Woods Adventure 2.5 game from 1995",
         longDescription: "This code is a forward-port of the Crowther/Woods Adventure 2.5 game\nfrom 1995, last version in the main line of Colossal Cave Adventure\ndevelopment written by Crowther and Woods. The authors have given\npermission and encouragement to this release.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

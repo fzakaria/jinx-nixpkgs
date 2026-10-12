@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 31, 5], ["longDescription", 32, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["doCheck", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, lzip: false, texinfo: false, libpng: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["longDescription", 32, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["doCheck", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ocrad",
       version: "0.29",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/ocrad/ocrad-${nix.sel(finalAttrs, "version")}.tar.lz`),
           hash: "sha256-ESAMxrC3uhaISnLcy1jvaU96omzSsgQeVVWA8GTS2ek=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [texinfo, libpng]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Optical character recognition (OCR) program & library",
         longDescription: "GNU Ocrad is an OCR (Optical Character Recognition) program based on\na feature extraction method.  It reads images in pbm (bitmap), pgm\n(greyscale) or ppm (color) formats and produces text in byte (8-bit)\nor UTF-8 formats.\n\nAlso includes a layout analyser able to separate the columns or\nblocks of text normally found on printed pages.\n\nOcrad can be used as a stand-alone console application, or as a\nbackend to other programs.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

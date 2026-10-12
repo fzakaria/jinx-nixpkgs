@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["branchName", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["name", 31, 7], ["path", 32, 7], ["filter", 33, 7]], [["pname", 27, 5], ["version", 28, 13], ["src", 30, 5], ["postPatch", 36, 5], ["installPhase", 42, 5]], [["driverPath", 78, 12]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 88, 5], ["sourceProvenance", 89, 5]], [["src", 50, 11], ["pname", 50, 15], ["version", 50, 21], ["buildInputs", 52, 3], ["nativeBuildInputs", 58, 3], ["installPhase", 63, 3], ["postFixup", 70, 3], ["passthru", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, fetchgit: false, lib: false, "libfprint-tod": false, openssl: false, patchelfUnstable: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["branchName", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 31, 7], ["path", 32, 7], ["filter", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 5], ["version", 28, 13], ["src", 30, 5], ["postPatch", 36, 5], ["installPhase", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["driverPath", 78, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 88, 5], ["sourceProvenance", 89, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["src", 50, 11], ["pname", 50, 15], ["version", 50, 21], ["buildInputs", 52, 3], ["nativeBuildInputs", 58, 3], ["installPhase", 63, 3], ["postFixup", 70, 3], ["passthru", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pname = "libfprint-2-tod1-broadcom-cv3plus";
   const version = "6.3.299-6.3.040.0";
   const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "git://git.launchpad.net/~oem-solutions-engineers/pc-enablement/+git/libfprint-2-tod1-broadcom-cv3plus/",
       branchName: "ubuntu/latest",
       rev: "ac7a8ab2318216e603c8c23b279bbad28a301d3",
@@ -31,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const wrapperLibName = "wrapper-lib.so";
   const wrapperLibSource = "wrapper-lib.c";
   const wrapperLib = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`${pname}-wrapper-lib`),
       version: version,
       src: nix.thunk(() => nix.builtins.path(nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${pname}-wrapper-lib-source`),
           path: nix.path(here, "./."),
           filter: (path) => (type) => nix.eq(nix.builtins.baseNameOf(path), wrapperLibSource),
@@ -50,7 +45,7 @@ runHook postInstall
 `),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       src: src,
       pname: pname,
       version: version,
@@ -63,9 +58,9 @@ patchelf \\
   --add-needed ${wrapperLibName} \\
   "$out/lib/libfprint-2/tod-1/libfprint-2-tod-1-broadcom-cv3plus.so"
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, driverPath: "/lib/libfprint-2/tod-1" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], driverPath: "/lib/libfprint-2/tod-1" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Broadcom driver module for libfprint-2-tod Touch OEM Driver for Dell ControlVault v3+",
         homepage: "https://git.launchpad.net/~oem-solutions-engineers/pc-enablement/+git/libfprint-2-tod1-broadcom-cv3plus/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

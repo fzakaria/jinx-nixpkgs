@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/src.nix", [[["domain", 13, 7], ["repo", 14, 7], ["group", 15, 7], ["owner", 16, 7], ["rev", 17, 7], ["sha256", 18, 7]], [["url", 26, 11], ["hash", 27, 11]], [["url", 33, 9], ["hash", 34, 9]], [["pname", 10, 5], ["version", 11, 13], ["stdenv", 11, 21], ["src", 12, 5], ["patches", 20, 5]], [["domain", 40, 5], ["repo", 41, 5], ["group", 42, 5], ["owner", 43, 5], ["rev", 45, 5], ["sha256", 46, 5]], [["version", 8, 3], ["src", 9, 3], ["sample_documents", 39, 3]]]);
 const formals$1 = { args: { fetchFromGitLab: false, srcOnly: false, fetchpatch: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/src.nix", [["domain", 13, 7], ["repo", 14, 7], ["group", 15, 7], ["owner", 16, 7], ["rev", 17, 7], ["sha256", 18, 7]]);
-const pos$2 = nix.positions(here + "/src.nix", [["url", 26, 11], ["hash", 27, 11]]);
-const pos$3 = nix.positions(here + "/src.nix", [["url", 33, 9], ["hash", 34, 9]]);
-const pos$4 = nix.positions(here + "/src.nix", [["pname", 10, 5], ["version", 11, 13], ["stdenv", 11, 21], ["src", 12, 5], ["patches", 20, 5]]);
-const pos$5 = nix.positions(here + "/src.nix", [["domain", 40, 5], ["repo", 41, 5], ["group", 42, 5], ["owner", 43, 5], ["rev", 45, 5], ["sha256", 46, 5]]);
-const pos$6 = nix.positions(here + "/src.nix", [["version", 8, 3], ["src", 9, 3], ["sample_documents", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +14,12 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const version = "2.2.5";
     const src = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "paperwork-patched-src",
         version: version,
         stdenv: stdenv,
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             domain: "gitlab.gnome.org",
             repo: "paperwork",
             group: "World",
@@ -36,20 +31,20 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => (() => {
             nix.assert_(nix.eq(version, "2.2.5"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/office/paperwork/src.nix:24:9");
             return nix.app(fetchpatch, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 url: "https://gitlab.gnome.org/World/OpenPaperwork/paperwork/-/commit/b8e2633ace0f3d9d57e68c27db8f594b8a5ddd7e.patch",
                 hash: "sha256-VUT86kF0ZHLGK457ZrrIBMeiZqg/rPRpbkBA/ua9rU8=",
               })));
           })()),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://gitlab.gnome.org/World/OpenPaperwork/paperwork/-/commit/ab244d9c483b23f53e2548b73236d7fe4b94cb3f.patch",
               hash: "sha256-Wd6OK0BdyTcjLy1NhkLp9N2oOcQWB6geEPOlYDTBsHw=",
             })))),
         ]),
       }))));
     const sample_documents = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         domain: "gitlab.gnome.org",
         repo: "paperwork-test-documents",
         group: "World",
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
         rev: "2.1",
         sha256: "0m79fgc1ycsj0q0alqgr0axn16klz1sfs2km1h83zn3kysqcs6xr",
       }))));
-    return { [nix.POS]: pos$6, version, src, sample_documents };
+    return { [nix.POS]: $pos[5], version, src, sample_documents };
   })();
 })(), formals$1);
 //# sourceMappingURL=src.ts.map

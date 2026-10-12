@@ -2,9 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/configuration-ghc-9.14.x.nix", [[["name", 129, 9], ["url", 130, 9], ["hash", 131, 9], ["relative", 132, 9]], [["array", 20, 3], ["base", 21, 3], ["binary", 22, 3], ["bytestring", 23, 3], ["Cabal", 24, 3], ["Cabal-syntax", 25, 3], ["containers", 26, 3], ["deepseq", 27, 3], ["directory", 28, 3], ["exceptions", 29, 3], ["file-io", 30, 3], ["filepath", 31, 3], ["ghc-bignum", 32, 3], ["ghc-boot", 33, 3], ["ghc-boot-th", 34, 3], ["ghc-compact", 35, 3], ["ghc-experimental", 36, 3], ["ghc-heap", 37, 3], ["ghc-internal", 38, 3], ["ghc-platform", 39, 3], ["ghc-prim", 40, 3], ["ghc-toolchain", 41, 3], ["ghci", 42, 3], ["haddock-api", 43, 3], ["haddock-library", 44, 3], ["haskeline", 45, 3], ["hpc", 46, 3], ["integer-gmp", 47, 3], ["mtl", 48, 3], ["os-string", 49, 3], ["parsec", 50, 3], ["pretty", 51, 3], ["process", 52, 3], ["rts", 53, 3], ["semaphore-compat", 54, 3], ["stm", 55, 3], ["system-cxx-std-lib", 56, 3], ["template-haskell", 57, 3], ["template-haskell-lift", 58, 3], ["template-haskell-quasiquoter", 59, 3], ["terminfo", 61, 3], ["text", 66, 3], ["time", 67, 3], ["transformers", 68, 3], ["unix", 69, 3], ["xhtml", 70, 3], ["Win32", 71, 3], ["scrod", 77, 3], ["ghc-exactprint", 83, 3], ["hedgehog", 84, 3], ["hie-bios", 85, 3], ["lifted-async", 86, 3], ["parallel", 87, 3], ["tagged", 88, 3], ["unordered-containers", 89, 3], ["HTTP", 90, 3], ["primitive", 96, 3], ["splitmix", 97, 3], ["boring", 100, 3], ["indexed-traversable", 102, 3], ["indexed-traversable-instances", 104, 3], ["these", 106, 3], ["semialign", 108, 3], ["time-compat", 110, 3], ["uuid-types", 112, 3], ["quickcheck-instances", 114, 3], ["text-iso8601", 116, 3], ["aeson", 117, 3], ["feed", 120, 3], ["cborg", 123, 3], ["serialise", 124, 3], ["newtype-generics", 138, 3], ["haskell-debugger-view", 141, 3], ["haskell-debugger", 142, 3], ["ghc-exactprint_1_14_0_0", 144, 3], ["mono-traversable", 159, 3], ["blaze-markup", 163, 3], ["blaze-html", 165, 3]]]);
 const formals$1 = { args: { pkgs: false, haskellLib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/configuration-ghc-9.14.x.nix", [["name", 129, 9], ["url", 130, 9], ["hash", 131, 9], ["relative", 132, 9]]);
-const pos$2 = nix.positions(here + "/configuration-ghc-9.14.x.nix", [["array", 20, 3], ["base", 21, 3], ["binary", 22, 3], ["bytestring", 23, 3], ["Cabal", 24, 3], ["Cabal-syntax", 25, 3], ["containers", 26, 3], ["deepseq", 27, 3], ["directory", 28, 3], ["exceptions", 29, 3], ["file-io", 30, 3], ["filepath", 31, 3], ["ghc-bignum", 32, 3], ["ghc-boot", 33, 3], ["ghc-boot-th", 34, 3], ["ghc-compact", 35, 3], ["ghc-experimental", 36, 3], ["ghc-heap", 37, 3], ["ghc-internal", 38, 3], ["ghc-platform", 39, 3], ["ghc-prim", 40, 3], ["ghc-toolchain", 41, 3], ["ghci", 42, 3], ["haddock-api", 43, 3], ["haddock-library", 44, 3], ["haskeline", 45, 3], ["hpc", 46, 3], ["integer-gmp", 47, 3], ["mtl", 48, 3], ["os-string", 49, 3], ["parsec", 50, 3], ["pretty", 51, 3], ["process", 52, 3], ["rts", 53, 3], ["semaphore-compat", 54, 3], ["stm", 55, 3], ["system-cxx-std-lib", 56, 3], ["template-haskell", 57, 3], ["template-haskell-lift", 58, 3], ["template-haskell-quasiquoter", 59, 3], ["terminfo", 61, 3], ["text", 66, 3], ["time", 67, 3], ["transformers", 68, 3], ["unix", 69, 3], ["xhtml", 70, 3], ["Win32", 71, 3], ["scrod", 77, 3], ["ghc-exactprint", 83, 3], ["hedgehog", 84, 3], ["hie-bios", 85, 3], ["lifted-async", 86, 3], ["parallel", 87, 3], ["tagged", 88, 3], ["unordered-containers", 89, 3], ["HTTP", 90, 3], ["primitive", 96, 3], ["splitmix", 97, 3], ["boring", 100, 3], ["indexed-traversable", 102, 3], ["indexed-traversable-instances", 104, 3], ["these", 106, 3], ["semialign", 108, 3], ["time-compat", 110, 3], ["uuid-types", 112, 3], ["quickcheck-instances", 114, 3], ["text-iso8601", 116, 3], ["aeson", 117, 3], ["feed", 120, 3], ["cborg", 123, 3], ["serialise", 124, 3], ["newtype-generics", 138, 3], ["haskell-debugger-view", 141, 3], ["haskell-debugger", 142, 3], ["ghc-exactprint_1_14_0_0", 144, 3], ["mono-traversable", 159, 3], ["blaze-markup", 163, 3], ["blaze-html", 165, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
     const warnAfterVersion = (ver) => (pkg) => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), ver, nix.thunk(() => nix.sel(super$, nix.key(nix.sel(pkg, "pname")), "version")))), nix.thunk(() => nix.str`override for haskell.packages.ghc912.${nix.sel(pkg, "pname")} may no longer be needed`), pkg);
     const w = nix.withScope(haskellLib, null);
     return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       array: null,
       base: null,
       binary: null,
@@ -88,7 +87,7 @@ export default nix.lambda((args) => (() => {
       cborg: nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(super$, "cborg")))),
       serialise: nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.app(nix.lookup(w, "appendPatches"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 name: "serialise-no-old-time.patch",
                 url: "https://github.com/well-typed/cborg/commit/308afc2795062f847171463958e5e1bbd9c03381.patch",
                 hash: "sha256-Gutu9c+houcwAvq2Z+ZQUQbNK+u+OCJRZfKBtx8/V4c=",

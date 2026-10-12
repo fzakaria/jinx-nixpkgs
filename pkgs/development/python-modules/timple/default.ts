@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["updateScript", 52, 12]], [["changelog", 55, 5], ["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 41, 3], ["disabledTests", 43, 3], ["disabledTestPaths", 47, 3], ["passthru", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "nix-update-script": false, setuptools: false, matplotlib: false, numpy: false, pytestCheckHook: false, pandas: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 52, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 55, 5], ["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 41, 3], ["disabledTests", 43, 3], ["disabledTestPaths", 47, 3], ["passthru", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "theOehrly",
           repo: "timple",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_mpl_default_functionality"]);
       const disabledTestPaths = nix.thunk(() => ["timple/tests/test_timple.py"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/theOehrly/timple/releases/tag/v${version}`),
         description: "Extended functionality for plotting timedelta-like values with Matplotlib",
         homepage: "https://github.com/theOehrly/timple",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

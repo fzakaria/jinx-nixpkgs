@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 16, 8]], [["pname", 8, 3], ["extraBuildInputs", 10, 3], ["qtWrapperArgs", 15, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qtdeclarative: false, qtsvg: false, libkmahjongg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 16, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["extraBuildInputs", 10, 3], ["qtWrapperArgs", 15, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const libkmahjongg = nix.arg($, "libkmahjongg");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kmahjongg",
       extraBuildInputs: nix.thunk(() => [qtdeclarative, qtsvg]),
       qtWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--prefix XDG_DATA_DIRS : ${libkmahjongg}/share`)]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kmahjongg" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "kmahjongg" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

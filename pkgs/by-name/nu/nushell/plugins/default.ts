@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["dbus", 9, 51]], [["bson", 8, 3], ["dbus", 9, 3], ["desktop_notifications", 10, 3], ["formats", 11, 3], ["gstat", 12, 3], ["hcl", 13, 3], ["highlight", 14, 3], ["net", 15, 3], ["polars", 16, 3], ["query", 17, 3], ["skim", 18, 3], ["units", 19, 3]], [["semver", 22, 3]]]);
 const formals$1 = { args: { lib: false, config: false, callPackage: false, dbus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["dbus", 9, 51]]);
-const pos$2 = nix.positions(here + "/default.nix", [["bson", 8, 3], ["dbus", 9, 3], ["desktop_notifications", 10, 3], ["formats", 11, 3], ["gstat", 12, 3], ["hcl", 13, 3], ["highlight", 14, 3], ["net", 15, 3], ["polars", 16, 3], ["query", 17, 3], ["skim", 18, 3], ["units", 19, 3]]);
-const pos$3 = nix.positions(here + "/default.nix", [["semver", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const dbus = nix.arg($, "dbus");
   return nix.update({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     bson: nix.thunk(() => nix.app(callPackage, nix.path(here, "./bson/package.nix"), nix.thunk(() => ({})))),
-    dbus: nix.thunk(() => nix.app(callPackage, nix.path(here, "./dbus/package.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, dbus: dbus })))),
+    dbus: nix.thunk(() => nix.app(callPackage, nix.path(here, "./dbus/package.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], dbus: dbus })))),
     desktop_notifications: nix.thunk(() => nix.app(callPackage, nix.path(here, "./desktop_notifications/package.nix"), nix.thunk(() => ({})))),
     formats: nix.thunk(() => nix.app(callPackage, nix.path(here, "./formats/package.nix"), nix.thunk(() => ({})))),
     gstat: nix.thunk(() => nix.app(callPackage, nix.path(here, "./gstat/package.nix"), nix.thunk(() => ({})))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
     skim: nix.thunk(() => nix.app(callPackage, nix.path(here, "./skim/package.nix"), nix.thunk(() => ({})))),
     units: nix.thunk(() => nix.app(callPackage, nix.path(here, "./units/package.nix"), nix.thunk(() => ({})))),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       semver: nix.thunk(() => nix.builtins.throw("nushellPlugins.semver is EOL as starting with 0.114.0, nushell natively supports semver values.")),
     }))));
 })(), formals$1);

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["teams", 39, 5]], [["pname", 10, 3], ["version", 11, 40], ["format", 12, 3], ["src", 14, 3], ["preUnpack", 17, 3], ["propagatedBuildInputs", 21, 3], ["pythonImportsCheck", 26, 3], ["doCheck", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "home-assistant-chip-wheels": false, aenum: false, dacite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["teams", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 40], ["format", 12, 3], ["src", 14, 3], ["preUnpack", 17, 3], ["propagatedBuildInputs", 21, 3], ["pythonImportsCheck", 26, 3], ["doCheck", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["chip.clusters", "chip.clusters.ClusterObjects", "chip.tlv"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python-base APIs and tools for CHIP",
         homepage: "https://github.com/home-assistant-libs/chip-wheels",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/chip-wheels/releases/tag/${version}`),
@@ -31,7 +30,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "home-assistant"))]),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         format,

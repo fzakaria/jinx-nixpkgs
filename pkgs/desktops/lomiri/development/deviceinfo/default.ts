@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["pkg-config", 60, 11]], [["tests", 60, 5], ["updateScript", 61, 5]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["teams", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5], ["pkgConfigModules", 72, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["postPatch", 31, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["checkInputs", 49, 3], ["cmakeFlags", 53, 3], ["doCheck", 57, 3], ["passthru", 59, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, testers: false, cmake: false, "pkg-config": false, "cmake-extras": false, gtest: false, "yaml-cpp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg-config", 60, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 60, 5], ["updateScript", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["teams", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5], ["pkgConfigModules", 72, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["postPatch", 31, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["checkInputs", 49, 3], ["cmakeFlags", 53, 3], ["doCheck", 57, 3], ["passthru", 59, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const yaml_cpp = nix.arg($, "yaml-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "deviceinfo",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/deviceinfo",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,15 +39,15 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library to detect and configure devices",
         homepage: "https://gitlab.com/ubports/development/core/deviceinfo",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/deviceinfo/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

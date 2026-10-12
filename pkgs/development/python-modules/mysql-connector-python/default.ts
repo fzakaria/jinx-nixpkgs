@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 63, 5], ["longDescription", 64, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["setupPyBuildFlags", 17, 3], ["src", 25, 3], ["sourceRoot", 32, 3], ["patches", 34, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 45, 3], ["propagatedBuildInputs", 52, 3], ["pythonImportsCheck", 57, 3], ["doCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, dnspython: false, fetchFromGitHub: false, protobuf: false, mysql84: false, openssl: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 63, 5], ["longDescription", 64, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["setupPyBuildFlags", 17, 3], ["src", 25, 3], ["sourceRoot", 32, 3], ["patches", 34, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 45, 3], ["propagatedBuildInputs", 52, 3], ["pythonImportsCheck", 57, 3], ["doCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "zstd")))}/lib:${nix.app(nix.sel(lib, "getLib"), mysql84)}/lib`),
       ]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mysql",
           repo: "mysql-connector-python",
           tag: version,
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["mysql"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MySQL driver",
         longDescription: "A MySQL driver that does not depend on MySQL C client libraries and\nimplements the DB API v2.0 specification.\n",
         homepage: "https://github.com/mysql/mysql-connector-python",
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

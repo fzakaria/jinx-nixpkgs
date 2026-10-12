@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["hardeningDisable", 20, 3], ["cmakeFlags", 21, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchgit: false, "pkg-config": false, libubox: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["hardeningDisable", 20, 3], ["cmakeFlags", 21, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libubox = nix.arg($, "libubox");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "uci",
       version: "0-unstable-2025-10-12",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.openwrt.org/project/uci.git",
           rev: "57c1e8cd2c051d755ca861a9ab38a8049d2e3f95",
           hash: "sha256-/Ian7WoBvm9nmniHdVTEIyRW1BPTmOe3O0v59aDaXc0=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libubox]),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OpenWrt Unified Configuration Interface",
         mainProgram: "uci",
         homepage: "https://git.openwrt.org/?p=project/uci.git;a=summary",

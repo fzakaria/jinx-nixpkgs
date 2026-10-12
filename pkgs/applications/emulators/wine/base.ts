@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/base.nix", [[["darwinSuffixSalt", 79, 7], ["mingwGccsSuffixSalts", 80, 7]], [["license", 82, 10]], [["name", 77, 5], ["substitutions", 78, 5], ["meta", 82, 5]], [["builder", 114, 45]], [["postBuild", 116, 5]], [["NIX_LDFLAGS", 288, 9], ["NIX_CFLAGS_COMPILE", 303, 9]], [["wine", 362, 38]], [["pkgArches", 361, 15], ["tests", 362, 7], ["updateScript", 363, 7]], [["version", 366, 15], ["homepage", 367, 7], ["license", 368, 7], ["sourceProvenance", 369, 7], ["description", 373, 7], ["badPlatforms", 376, 15], ["platforms", 376, 28], ["maintainers", 377, 7], ["mainProgram", 385, 15]], [["version", 128, 13], ["src", 128, 21], ["pname", 130, 5], ["strictDeps", 133, 5], ["nativeBuildInputs", 135, 5], ["buildInputs", 155, 5], ["patches", 260, 13], ["prePatch", 262, 5], ["configureFlags", 276, 5], ["env", 288, 5], ["dontPatchELF", 307, 5], ["doCheck", 312, 5], ["postInstall", 314, 5], ["enableParallelBuilding", 349, 5], ["hardeningDisable", 353, 5], ["passthru", 360, 5], ["meta", 365, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, pkgArches: false, makeSetupHook: false, pname: false, version: false, src: false, mingwGccs: false, monos: false, geckos: false, platforms: false, bison: false, flex: false, fontforge: false, gettext: false, makeWrapper: false, "pkg-config": false, nixosTests: false, pnameSuffix: true, patches: false, moltenvk: false, buildScript: true, configureFlags: true, mainProgram: true, useStaging: true, autoconf: false, hexdump: false, perl: false, python3: false, gitMinimal: false, gettextSupport: true, fontconfigSupport: true, alsaSupport: true, gtkSupport: true, openglSupport: true, tlsSupport: true, gstreamerSupport: true, cupsSupport: true, dbusSupport: true, openclSupport: true, cairoSupport: true, odbcSupport: true, netapiSupport: true, cursesSupport: true, vaSupport: true, pcapSupport: true, v4lSupport: true, saneSupport: true, gphoto2Support: true, krb5Support: true, pulseaudioSupport: true, udevSupport: true, xineramaSupport: true, vulkanSupport: true, sdlSupport: true, usbSupport: true, mingwSupport: true, waylandSupport: true, x11Support: true, ffmpegSupport: true, embedInstallers: true, smartcardSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/base.nix", [["darwinSuffixSalt", 79, 7], ["mingwGccsSuffixSalts", 80, 7]]);
-const pos$2 = nix.positions(here + "/base.nix", [["license", 82, 10]]);
-const pos$3 = nix.positions(here + "/base.nix", [["name", 77, 5], ["substitutions", 78, 5], ["meta", 82, 5]]);
-const pos$4 = nix.positions(here + "/base.nix", [["builder", 114, 45]]);
-const pos$5 = nix.positions(here + "/base.nix", [["postBuild", 116, 5]]);
-const pos$6 = nix.positions(here + "/base.nix", [["NIX_LDFLAGS", 288, 9], ["NIX_CFLAGS_COMPILE", 303, 9]]);
-const pos$7 = nix.positions(here + "/base.nix", [["wine", 362, 38]]);
-const pos$8 = nix.positions(here + "/base.nix", [["pkgArches", 361, 15], ["tests", 362, 7], ["updateScript", 363, 7]]);
-const pos$9 = nix.positions(here + "/base.nix", [["version", 366, 15], ["homepage", 367, 7], ["license", 368, 7], ["sourceProvenance", 369, 7], ["description", 373, 7], ["badPlatforms", 376, 15], ["platforms", 376, 28], ["maintainers", 377, 7], ["mainProgram", 385, 15]]);
-const pos$10 = nix.positions(here + "/base.nix", [["version", 128, 13], ["src", 128, 21], ["pname", 130, 5], ["strictDeps", 133, 5], ["nativeBuildInputs", 135, 5], ["buildInputs", 155, 5], ["patches", 260, 13], ["prePatch", 262, 5], ["configureFlags", 276, 5], ["env", 288, 5], ["dontPatchELF", 307, 5], ["doCheck", 312, 5], ["postInstall", 314, 5], ["enableParallelBuilding", 349, 5], ["hardeningDisable", 353, 5], ["passthru", 360, 5], ["meta", 365, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -82,20 +73,23 @@ export default nix.lambda((args) => (() => {
   const prevConfigFlags = configureFlags;
   const toBuildInputs = (pkgArches_1) => (archPkgs) => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.builtins.map(archPkgs, pkgArches_1)));
   const setupHookDarwin = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "darwin-mingw-hook",
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         darwinSuffixSalt: nix.thunk(() => nix.sel(stdenv, "cc", "suffixSalt")),
         mingwGccsSuffixSalts: nix.thunk(() => nix.builtins.map((gcc) => nix.sel(gcc, "suffixSalt"), mingwGccs)),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })), nix.path(here, "./setup-hook-darwin.sh")));
   const badPlatforms = nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.asBool(mingwSupport)) || nix.asBool(alsaSupport))) || nix.asBool(cairoSupport))) || nix.asBool(dbusSupport))) || nix.asBool(fontconfigSupport))) || nix.asBool(gtkSupport))) || nix.asBool(netapiSupport))) || nix.asBool(pulseaudioSupport))) || nix.asBool(udevSupport))) || nix.asBool(v4lSupport))) || nix.asBool(vaSupport))) || nix.asBool(waylandSupport))) || nix.asBool(x11Support))) || nix.asBool(xineramaSupport))), "x86_64-darwin"));
   const stagingPatches = nix.thunk(() => nix.selOr(src, () => null, "staging"));
   nix.assert_((!nix.asBool(useStaging) || nix.asBool((nix.asBool(!nix.eq(stagingPatches, null)) && nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), version), nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(stagingPatches, "version")))))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/emulators/wine/base.nix:107:1");
-  return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(buildScript, null)), nix.thunk(() => ({ [nix.POS]: pos$4, builder: buildScript }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+  return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(buildScript, null)), nix.thunk(() => ({ [nix.POS]: $pos[3], builder: buildScript }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
+        [nix.POS]: $pos[4],
         postBuild: nix.thunk(() => nix.str`# The Wine preloader must _not_ be linked to any system libraries, but \`NIX_LDFLAGS\` will link
 # to libintl, libiconv, and CoreFoundation no matter what. Delete the one that was built and
 # rebuild it with empty NIX_LDFLAGS.
@@ -106,7 +100,7 @@ for preloader in wine-preloader wine64-preloader; do
 done
 `),
       }))), {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       version: version,
       src: src,
       pname: nix.thunk(() => nix.add(prevName, pnameSuffix)),
@@ -177,7 +171,7 @@ python3 ./staging/patchinstall.py DESTDIR="$PWD" --all ${nix.app(nix.sel(lib, "c
 `)),
       configureFlags: nix.thunk(() => nix.concat(prevConfigFlags, nix.concat(nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => ["--with-wayland"])), nix.concat(nix.app(nix.sel(lib, "optionals"), vulkanSupport, nix.thunk(() => ["--with-vulkan"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(!nix.asBool(xineramaSupport)))) || nix.asBool(!nix.asBool(x11Support)))), nix.thunk(() => ["--without-x"])), nix.app(nix.sel(lib, "optionals"), smartcardSupport, nix.thunk(() => ["--with-pcsclite"]))))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.builtins.map((path) => nix.add("-rpath ", path), nix.thunk(() => nix.concat(nix.builtins.map((x) => nix.str`${nix.app(nix.sel(lib, "getLib"), x)}/lib`, nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(stdenv, "cc", "cc"))], nix.sel(finalAttrs, "buildInputs")))), nix.concat(nix.app(nix.sel(lib, "optionals"), pulseaudioSupport, nix.thunk(() => nix.builtins.map((x) => nix.str`${nix.app(nix.sel(lib, "getLib"), x)}/lib/pulseaudio`, nix.thunk(() => nix.app(toBuildInputs, pkgArches, (pkgs) => [nix.thunk(() => nix.sel(pkgs, "libpulseaudio"))]))))), nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => nix.builtins.map((x) => nix.str`${nix.app(nix.sel(lib, "getLib"), x)}/share/wayland-protocols`, nix.thunk(() => nix.app(toBuildInputs, pkgArches, (pkgs) => [nix.thunk(() => nix.sel(pkgs, "wayland-protocols"))])))))))))))),
         NIX_CFLAGS_COMPILE: "",
       })),
@@ -214,13 +208,13 @@ done
       enableParallelBuilding: true,
       hardeningDisable: nix.thunk(() => nix.concat(["bindnow", "stackclashprotection"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "fortify"), nix.app(nix.sel(lib, "optional"), mingwSupport, "format")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pkgArches: pkgArches,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$7, wine: nix.thunk(() => nix.attr(nixosTests, "wine")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[6], wine: nix.thunk(() => nix.attr(nixosTests, "wine")) })),
         updateScript: nix.thunk(() => nix.selOr(src, () => null, "updateScript")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         version: version,
         homepage: "https://www.winehq.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

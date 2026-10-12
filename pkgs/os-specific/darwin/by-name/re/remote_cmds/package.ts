@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 37, 8]], [["releaseName", 10, 3], ["outputs", 12, 3], ["xcodeHash", 17, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, libedit: false, mkAppleDerivation: false, ncurses: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 37, 8]]);
-const pos$2 = nix.positions(here + "/package.nix", [["releaseName", 10, 3], ["outputs", 12, 3], ["xcodeHash", 17, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       releaseName: "remote_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-SdeF6Jp+KuVTUawJdvpw53qr3gIPEhVzqgQxAau19C0=",
       postPatch: "# Avoid a conflict with the definition in SDK’s headers.\nsed -e '/MAXPKTSIZE/d' -i tftpd/tftp-utils.h\n\n# Avoid a conflict with libedit when building statically\nfor file in tftpd/tftp-file.c tftpd/tftp-file.h tftp/tftp.c tftpd/tftpd.c; do\n  substituteInPlace $file \\\n    --replace-fail read_init read_init_tftpd\ndone\n",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libedit, ncurses]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Remote commands for Darwin" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "Remote commands for Darwin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

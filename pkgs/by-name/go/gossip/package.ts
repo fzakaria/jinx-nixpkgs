@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["RUSTFLAGS", 47, 7], ["NIX_CFLAGS_COMPILE", 50, 7]], [["name", 113, 7], ["exec", 114, 7], ["icon", 115, 7], ["comment", 116, 7], ["desktopName", 117, 7], ["categories", 118, 7], ["startupWMClass", 123, 7], ["mimeTypes", 124, 7]], [["updateScript", 128, 12]], [["broken", 132, 5], ["description", 133, 5], ["downloadPage", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["mainProgram", 137, 5], ["maintainers", 138, 5], ["platforms", 139, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoHash", 38, 3], ["postPatch", 40, 3], ["env", 47, 3], ["buildFeatures", 53, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 69, 3], ["doCheck", 87, 3], ["postInstall", 89, 3], ["postFixup", 96, 3], ["desktopItems", 111, 3], ["passthru", 128, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, SDL2: false, ffmpeg_6: false, fontconfig: false, git: false, lib: false, libGL: false, libxkbcommon: false, makeDesktopItem: false, copyDesktopItems: false, openssl: false, "pkg-config": false, rustPlatform: false, stdenv: false, wayland: false, "wayland-scanner": false, "nix-update-script": false, libx11: false, libxcb: false, libxcursor: false, libxi: false, libxrandr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 47, 7], ["NIX_CFLAGS_COMPILE", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 113, 7], ["exec", 114, 7], ["icon", 115, 7], ["comment", 116, 7], ["desktopName", 117, 7], ["categories", 118, 7], ["startupWMClass", 123, 7], ["mimeTypes", 124, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 128, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["broken", 132, 5], ["description", 133, 5], ["downloadPage", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["mainProgram", 137, 5], ["maintainers", 138, 5], ["platforms", 139, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoHash", 38, 3], ["postPatch", 40, 3], ["env", 47, 3], ["buildFeatures", 53, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 69, 3], ["doCheck", 87, 3], ["postInstall", 89, 3], ["postFixup", 96, 3], ["desktopItems", 111, 3], ["passthru", 128, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libxrandr = nix.arg($, "libxrandr");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gossip",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mikedilger",
           repo: "gossip",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-rE7SErOhl2fcmvLairq+mvdnbDIk1aPo3eYqwRx5kkA=",
       postPatch: "substituteInPlace $cargoDepsCopy/*/sdl2-sys-0.37.0/SDL/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.0.0)\" \"cmake_minimum_required(VERSION 3.0.0...3.5)\" \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.4)\" \"cmake_minimum_required(VERSION 3.4...3.5)\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RUSTFLAGS: "--cfg tokio_unstable",
         NIX_CFLAGS_COMPILE: "-std=gnu17",
       })),
@@ -72,7 +67,7 @@ patchelf $out/bin/gossip \\
 `))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "Gossip",
             exec: "gossip",
             icon: "gossip",
@@ -84,11 +79,11 @@ patchelf $out/bin/gossip \\
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Desktop client for nostr, an open social media protocol",
         downloadPage: nix.thunk(() => nix.str`https://github.com/mikedilger/gossip/releases/tag/${nix.sel(finalAttrs, "version")}`),

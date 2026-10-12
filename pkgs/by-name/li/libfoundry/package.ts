@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 50, 5], ["hash", 51, 5]], [["packageName", 112, 5], ["attrPath", 113, 5]], [["updateScript", 111, 12]], [["description", 117, 5], ["mainProgram", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["license", 121, 5], ["teams", 122, 5], ["platforms", 123, 5]], [["pname", 40, 3], ["version", 41, 3], ["outputs", 43, 3], ["src", 49, 3], ["patches", 54, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 67, 3], ["propagatedBuildInputs", 92, 3], ["strictDeps", 99, 3], ["mesonFlags", 101, 3], ["postFixup", 106, 3], ["passthru", 111, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, cmark: false, "editorconfig-core-c": false, fetchurl: false, flatpak: false, "gi-docgen": false, glib: false, gnome: false, "gobject-introspection": false, gom: false, gtk4: false, gtksourceview5: false, "json-glib": false, libadwaita: false, libdex: false, libgit2: false, libpanel: false, libpeas2: false, libsecret: false, libsoup_3: false, libspelling: false, libssh2: false, "libsysprof-capture": false, libxml2: false, libyaml: false, meson: false, ninja: false, "pkg-config": false, readline: false, "template-glib": false, "vte-gtk4": false, webkitgtk_6_0: false, wrapGAppsNoGuiHook: false, withGtk: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 112, 5], ["attrPath", 113, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 111, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 117, 5], ["mainProgram", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["license", 121, 5], ["teams", 122, 5], ["platforms", 123, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["outputs", 43, 3], ["src", 49, 3], ["patches", 54, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 67, 3], ["propagatedBuildInputs", 92, 3], ["strictDeps", 99, 3], ["mesonFlags", 101, 3], ["postFixup", 106, 3], ["passthru", 111, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,12 +43,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsNoGuiHook = nix.arg($, "wrapGAppsNoGuiHook");
   const withGtk = nix.argOr($, "withGtk", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`libfoundry${nix.app(nix.sel(lib, "optionalString"), withGtk, "-gtk")}`),
       version: "1.1.1",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/foundry/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/foundry-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-RtsNZENsMTYRyv37TKDVzsK5e+fXpfG+fujQFQ1PJcg=",
         })))),
@@ -89,11 +85,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "foundry", attrPath: "libfoundry" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "foundry", attrPath: "libfoundry" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command line tool and library that can be used to build developer tools",
         mainProgram: "foundry",
         homepage: "https://gitlab.gnome.org/GNOME/foundry",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-vms.nix", [[["_file", 10, 5], ["imports", 11, 5]], [["system", 14, 35], ["config", 14, 42]], [["system", 17, 13], ["pkgs", 17, 20]], [["nodes", 22, 15], ["name", 23, 7], ["testScript", 24, 7]], [["nativeBuildInputs", 28, 37]]]);
 const formals$1 = { args: { system: true, config: true, nixpkgs: false, networkExpr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-vms.nix", [["_file", 10, 5], ["imports", 11, 5]]);
-const pos$2 = nix.positions(here + "/build-vms.nix", [["system", 14, 35], ["config", 14, 42]]);
-const pos$3 = nix.positions(here + "/build-vms.nix", [["system", 17, 13], ["pkgs", 17, 20]]);
-const pos$4 = nix.positions(here + "/build-vms.nix", [["nodes", 22, 15], ["name", 23, 7], ["testScript", 24, 7]]);
-const pos$5 = nix.positions(here + "/build-vms.nix", [["nativeBuildInputs", 28, 37]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,20 +12,20 @@ export default nix.lambda((args) => (() => {
   const nixpkgs = nix.arg($, "nixpkgs");
   const networkExpr = nix.arg($, "networkExpr");
   const nodes = nix.thunk(() => nix.builtins.mapAttrs((vm) => (module) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       _file: nix.thunk(() => nix.str`${networkExpr}@node-${vm}`),
       imports: nix.thunk(() => [module]),
     }), nix.thunk(() => nix.builtins.import(networkExpr))));
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, config: config }))));
-  const testing = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${nix.sel(pkgs, "path")}/nixos/lib/testing-python.nix`)), nix.thunk(() => ({ [nix.POS]: pos$3, system: system, pkgs: pkgs }))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, config: config }))));
+  const testing = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${nix.sel(pkgs, "path")}/nixos/lib/testing-python.nix`)), nix.thunk(() => ({ [nix.POS]: $pos[2], system: system, pkgs: pkgs }))));
   const interactiveDriver = nix.thunk(() => nix.sel(nix.app(nix.sel(testing, "makeTest"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       nodes: nodes,
       name: "network",
       testScript: "start_all(); join_all();",
     }))), "test", "driverInteractive"));
   return nix.app(nix.sel(pkgs, "runCommand"), "nixos-build-vms", nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeWrapper"))]),
     })), nix.thunk(() => nix.str`mkdir -p $out/bin
 ln -s ${interactiveDriver}/bin/nixos-test-driver $out/bin/nixos-test-driver

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["hash", 35, 5]], [["emulator", 47, 7]], [["updateScript", 172, 5]], [["homepage", 186, 5], ["description", 187, 5], ["license", 188, 5], ["maintainers", 189, 5], ["platforms", 190, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["patches", 44, 3], ["postPatch", 51, 3], ["preConfigure", 56, 3], ["buildInputs", 135, 3], ["buildFlags", 151, 3], ["makeFlags", 153, 3], ["postInstall", 159, 3], ["doInstallCheck", 169, 3], ["passthru", 171, 3], ["meta", 185, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchzip: false, jam: false, unzip: false, libx11: false, libxxf86vm: false, libxrandr: false, libxinerama: false, libxrender: false, libxext: false, libtiff: false, libjpeg: false, libpng: false, libxscrnsaver: false, writeText: false, libxdmcp: false, libxau: false, lib: false, openssl: false, buildPackages: false, replaceVars: false, udevCheckHook: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["emulator", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 172, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 186, 5], ["description", 187, 5], ["license", 188, 5], ["maintainers", 189, 5], ["platforms", 190, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["patches", 44, 3], ["postPatch", 51, 3], ["preConfigure", 56, 3], ["buildInputs", 135, 3], ["buildFlags", 151, 3], ["makeFlags", 153, 3], ["postInstall", 159, 3], ["doInstallCheck", 169, 3], ["passthru", 171, 3], ["meta", 185, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,13 +34,13 @@ export default nix.lambda((args) => (() => {
       const pname = "argyllcms";
       const version = "3.4.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.argyllcms.com/Argyll_V${version}_src.zip`),
           hash: "sha256-QVugWtAk8xBn+/fRFqCoi072Q2q8OlB0LRhavrHC5MI=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [jam, udevCheckHook, unzip]);
       const patches = nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => nix.app(replaceVars, nix.path(here, "./jam-cross.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             emulator: nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)),
           }))))));
       const postPatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "substituteInPlace Jambase \\\n  --replace \"-m64\" \"\"\n"));
@@ -139,7 +135,7 @@ export AR="$AR rusc"
       const postInstall = "rm -v $out/bin/License.txt\nmkdir -p $out/etc/udev/rules.d\nsed -i '/udev-acl/d' usb/55-Argyll.rules\ncp -v usb/55-Argyll.rules $out/etc/udev/rules.d/\n\nsed -i -e 's/^CREATED .*/CREATED \"'\"$(date -d @$SOURCE_DATE_EPOCH)\"'\"/g' $out/share/argyllcms/RefMediumGamut.gam\n\n";
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-argyllcms", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -152,7 +148,7 @@ update-source-version ${pname} "$new_version"
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.argyllcms.com/",
         description: "Color management system (compatible with ICC)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -160,7 +156,7 @@ update-source-version ${pname} "$new_version"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,22 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/containers-custom-pkgs.nix", [[["name", 7, 9]], [["hello", 6, 7]], [["maintainers", 16, 5]], [["assertion", 28, 13], ["message", 29, 13]], [["pkgs", 38, 21]], [["extraDependencies", 39, 20]], [["enable", 41, 17]], [["nixpkgs", 38, 13], ["system", 39, 13], ["nix", 41, 13]], [["autoStart", 34, 9], ["config", 35, 9]], [["test", 33, 18]], [["assertions", 22, 7], ["containers", 33, 7]], [["machine", 19, 9]], [["name", 14, 3], ["meta", 15, 3], ["nodes", 19, 3], ["testScript", 47, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/containers-custom-pkgs.nix", [["name", 7, 9]]);
-const pos$2 = nix.positions(here + "/containers-custom-pkgs.nix", [["hello", 6, 7]]);
-const pos$3 = nix.positions(here + "/containers-custom-pkgs.nix", [["maintainers", 16, 5]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/containers-custom-pkgs.nix", [["assertion", 28, 13], ["message", 29, 13]]);
 const formals$3 = { args: { pkgs: false, config: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/containers-custom-pkgs.nix", [["pkgs", 38, 21]]);
-const pos$6 = nix.positions(here + "/containers-custom-pkgs.nix", [["extraDependencies", 39, 20]]);
-const pos$7 = nix.positions(here + "/containers-custom-pkgs.nix", [["enable", 41, 17]]);
-const pos$8 = nix.positions(here + "/containers-custom-pkgs.nix", [["nixpkgs", 38, 13], ["system", 39, 13], ["nix", 41, 13]]);
-const pos$9 = nix.positions(here + "/containers-custom-pkgs.nix", [["autoStart", 34, 9], ["config", 35, 9]]);
-const pos$10 = nix.positions(here + "/containers-custom-pkgs.nix", [["test", 33, 18]]);
-const pos$11 = nix.positions(here + "/containers-custom-pkgs.nix", [["assertions", 22, 7], ["containers", 33, 7]]);
-const pos$12 = nix.positions(here + "/containers-custom-pkgs.nix", [["machine", 19, 9]]);
-const pos$13 = nix.positions(here + "/containers-custom-pkgs.nix", [["name", 14, 3], ["meta", 15, 3], ["nodes", 19, 3], ["testScript", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,54 +13,54 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const customPkgs = nix.thunk(() => nix.app(nix.sel(pkgs, "appendOverlays"), nix.thunk(() => [
       (self) => (super$) => ({
-        [nix.POS]: pos$2,
-        hello: nix.thunk(() => nix.app(nix.sel(super$, "hello", "overrideAttrs"), (old) => ({ [nix.POS]: pos$1, name: "custom-hello" }))),
+        [nix.POS]: $pos[1],
+        hello: nix.thunk(() => nix.app(nix.sel(super$, "hello", "overrideAttrs"), (old) => ({ [nix.POS]: $pos[0], name: "custom-hello" }))),
       }),
     ])));
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "containers-custom-pkgs",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "erikarvstedt"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           assertions: nix.thunk(() => (() => {
             const helloName = nix.thunk(() => nix.sel(nix.builtins.head(nix.thunk(() => nix.sel(config, "containers", "test", "config", "system", "extraDependencies"))), "name"));
             return [
               nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 assertion: nix.thunk(() => nix.eq(helloName, "custom-hello")),
                 message: nix.thunk(() => nix.str`Unexpected value: ${helloName}`),
               })),
             ];
           })()),
           containers: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             test: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               autoStart: true,
               config: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$3);
                 const pkgs_1 = nix.arg($_2, "pkgs");
                 const config_1 = nix.arg($_2, "config");
                 return {
-                  [nix.POS]: pos$8,
-                  nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$5, pkgs: customPkgs })),
+                  [nix.POS]: $pos[7],
+                  nixpkgs: nix.thunk(() => ({ [nix.POS]: $pos[4], pkgs: customPkgs })),
                   system: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     extraDependencies: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "hello"))]),
                   })),
-                  nix: nix.thunk(() => ({ [nix.POS]: pos$7, enable: false })),
+                  nix: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: false })),
                 };
               })(), formals$3),
             })),

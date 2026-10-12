@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["platforms", 43, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["postPatch", 21, 3], ["outputs", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["configureFlags", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, "pkg-config": false, fftw: false, withFftw3: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["postPatch", 21, 3], ["outputs", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["configureFlags", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "speexdsp";
       const version = "1.2.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.xiph.org/releases/speex/${pname}-${version}.tar.gz`),
           sha256: "sha256-jHdzQ+SmOZVpxyq8OKlbJNtWiCyD29tsZCSl9K61TT0=",
         }))));
@@ -31,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withFftw3, nix.thunk(() => [fftw])));
       const configureFlags = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withFftw3, nix.thunk(() => ["--with-fft=gpl-fftw3"])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), "--disable-neon")));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.speex.org/",
         description: "Open Source/Free Software patent-free audio compression format designed for speech",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

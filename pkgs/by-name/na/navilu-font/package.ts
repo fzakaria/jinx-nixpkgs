@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 30, 7], ["license", 31, 7], ["platforms", 32, 7]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["dontConfigure", 21, 3], ["preBuild", 23, 3], ["installPhase", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, fontforge: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 7], ["license", 31, 7], ["platforms", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["dontConfigure", 21, 3], ["preBuild", 23, 3], ["installPhase", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "navilu-font";
       const version = "1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aravindavk",
           repo: "Navilu",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,13 +26,13 @@ export default nix.lambda((args) => (() => {
       const preBuild = "patchShebangs generate.pe";
       const installPhase = "install -Dm444 -t $out/share/fonts/truetype/ Navilu.ttf";
       const meta = nix.thunk(() => nix.update(nix.sel(src, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Kannada handwriting font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

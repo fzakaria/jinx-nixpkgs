@@ -2,23 +2,22 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/imex.nix", [[["description", 13, 5], ["homepage", 14, 5]], [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["allowFHSReferences", 8, 3], ["buildInputs", 10, 3], ["meta", 12, 3]]]);
 const formals$1 = { args: { buildRedist: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/imex.nix", [["description", 13, 5], ["homepage", 14, 5]]);
-const pos$2 = nix.positions(here + "/imex.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["allowFHSReferences", 8, 3], ["buildInputs", 10, 3], ["meta", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "imex",
       outputs: nix.thunk(() => ["out"]),
       allowFHSReferences: true,
       buildInputs: nix.thunk(() => [zlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Service which supports GPU memory export and import (NVLink P2P) and shared memory operations across OS domains in an NVLink multi-node deployment",
         homepage: "https://docs.nvidia.com/multi-node-nvlink-systems/imex-guide",
       })),

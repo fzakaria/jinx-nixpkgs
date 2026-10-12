@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["0.9.10", 11, 5], ["0.9.11", 12, 5]], [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["url", 41, 7], ["hash", 42, 7]], [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]], [["name", 55, 7], ["url", 56, 7], ["sha256", 57, 7]], [["name", 60, 7], ["url", 61, 7], ["hash", 62, 7]], [["PREFIX", 77, 5], ["LIBDIRNAME", 78, 5], ["CFLAGS", 79, 5]], [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5], ["mainProgram", 105, 5]], [["pname", 17, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 29, 3], ["patches", 35, 3], ["postPatch", 68, 3], ["env", 76, 3], ["nativeCheckInputs", 91, 3], ["doCheck", 93, 3], ["__structuredAttrs", 95, 3], ["strictDeps", 96, 3], ["enableParallelBuilding", 97, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, perl: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["0.9.10", 11, 5], ["0.9.11", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 55, 7], ["url", 56, 7], ["sha256", 57, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 60, 7], ["url", 61, 7], ["hash", 62, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["PREFIX", 77, 5], ["LIBDIRNAME", 78, 5], ["CFLAGS", 79, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5], ["mainProgram", 105, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 29, 3], ["patches", 35, 3], ["postPatch", 68, 3], ["env", 76, 3], ["nativeCheckInputs", 91, 3], ["doCheck", 93, 3], ["__structuredAttrs", 95, 3], ["strictDeps", 96, 3], ["enableParallelBuilding", 97, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const coreutils = nix.arg($, "coreutils");
   const hashes = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "0.9.10": "sha256-DYRuQmIhQu0CNEboBAtHOr/NnWxoXecuPMSR/UQ/VIQ=",
     "0.9.11": "sha256-a0TjHYzwbkRQyvr9Sj/DqjgLBnE1Z8kjsTQxTfGqLjE=",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "libfaketime",
       version: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "0.9.10" : "0.9.11")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "wolfcw",
           repo: "libfaketime",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,25 +32,25 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./nix-store-date.patch")], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://github.com/wolfcw/libfaketime/commit/dbe865dfdba0145d993d70b7fd4ec88b2f47554b.patch",
               hash: "sha256-pn9MInefa4ZKuOorGEpi/sDQOQamCakjdYOkFSNA2VQ=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "libfaketime-silence-unused-variable-warning.patch",
               url: "https://github.com/wolfcw/libfaketime/commit/712733e5f01e45372f3160cfdbcfd91520cb093d.patch",
               hash: "sha256-Gu13gFhgvkncj8aowAnSRbHbUCctF5sakbX4uRwdy+A=",
             })))),
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "0001-libfaketime.c-wrap-timespec_get-in-TIME_UTC-macro.patch",
               url: "https://github.com/wolfcw/libfaketime/commit/e0e6b79568d36a8fd2b3c41f7214769221182128.patch",
               sha256: "sha256-KwwP76v0DXNW73p/YBvwUOPdKMAcVdbQSKexD/uFOYo=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: "LFS64.patch",
               url: "https://github.com/wolfcw/libfaketime/commit/f32986867addc9d22b0fab29c1c927f079d44ac1.patch",
               hash: "sha256-fIXuxxcV9J2IcgwcwSrMo4maObkH9WYv1DC/wdtbq/g=",
@@ -72,7 +64,7 @@ substituteInPlace src/faketime.c \\
   --replace-fail @DATE_CMD@ ${nix.app(nix.sel(lib, "getExe'"), coreutils, "date")}
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         PREFIX: nix.thunk(() => nix.builtins.placeholder("out")),
         LIBDIRNAME: "/lib",
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=cast-function-type", "-Wno-error=format-truncation"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")))), nix.thunk(() => ["-DFORCE_PTHREAD_NONVER"])))))),
@@ -83,7 +75,7 @@ substituteInPlace src/faketime.c \\
       strictDeps: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Report faked system time to programs without having to change the system-wide time",
         homepage: "https://github.com/wolfcw/libfaketime/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

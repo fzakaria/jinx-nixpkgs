@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 22, 7], ["mainProgram", 23, 7], ["longDescription", 24, 7], ["homepage", 25, 7], ["license", 26, 7], ["platforms", 27, 7], ["broken", 28, 7], ["maintainers", 30, 5]], [["pname", 13, 17], ["version", 13, 23], ["src", 13, 31], ["preInstall", 14, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, vimUtils: false, tup: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 22, 7], ["mainProgram", 23, 7], ["longDescription", 24, 7], ["homepage", 25, 7], ["license", 26, 7], ["platforms", 27, 7], ["broken", 28, 7], ["maintainers", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 13, 17], ["version", 13, 23], ["src", 13, 31], ["preInstall", 14, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const tup = nix.arg($, "tup");
   const ftdetect = nix.thunk(() => nix.builtins.toFile("tup.vim", "au BufNewFile,BufRead Tupfile,*.tup setf tup\n"));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(tup, "pname")),
       version: nix.thunk(() => nix.attr(tup, "version")),
       src: nix.thunk(() => nix.attr(tup, "src")),
@@ -25,7 +24,7 @@ cd vim-plugin
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(tup, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from, "description")),
         mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),
         longDescription: nix.thunk(() => nix.attr(from, "longDescription")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 37, 5], ["description", 38, 5], ["mainProgram", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["postPatch", 24, 3], ["installPhase", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["mainProgram", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["postPatch", 24, 3], ["installPhase", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pond",
       version: "0-unstable-2025-01-03",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alice-lefebvre",
           repo: "pond",
           rev: "6f7620940d896a1717e764da0b4b41c96362ac8d",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile \\\n  --replace-fail \"gcc\" \"$CC\" \\\n  --replace-fail \"-lcurses\" \"-lncurses\"\n",
       installPhase: "runHook preInstall;\ninstall -m555 -Dt $out/bin bin/pond\nrunHook postInstall;\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.com/alice-lefebvre/pond",
         description: "Software that simulates a little pond",
         mainProgram: "pond",

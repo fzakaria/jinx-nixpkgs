@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 32, 5], ["sourceProvenance", 33, 5]], [["pname", 9, 3], ["version", 10, 3], ["outputHash", 13, 3], ["outputHashMode", 14, 3], ["__structuredAttrs", 16, 3], ["builder", 17, 3], ["nativeBuildInputs", 19, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, curl: false, "unrar-wrapper": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 32, 5], ["sourceProvenance", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["outputHash", 13, 3], ["outputHashMode", 14, 3], ["__structuredAttrs", 16, 3], ["builder", 17, 3], ["nativeBuildInputs", 19, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const unrar_wrapper = nix.arg($, "unrar-wrapper");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "facetimehd-calibration",
       version: "5.1.5769",
       outputHash: "sha256-KQBIlpa68wjQNgBiEnLtl6iEYseNrTlSdq9wiNni16k=",
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       builder: nix.path(here, "./builder.sh"),
       nativeBuildInputs: nix.thunk(() => [curl, unrar_wrapper]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "facetimehd calibration",
         homepage: "https://support.apple.com/kb/DL1837",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

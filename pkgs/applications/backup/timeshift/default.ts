@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 30, 7], ["longDescription", 31, 7]], [["meta", 29, 5]]]);
 const formals$1 = { args: { callPackage: false, "btrfs-progs": false, coreutils: false, cron: false, debianutils: false, grubPackage: false, mount: false, psmisc: false, rsync: false, "timeshift-unwrapped": false, umount: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 30, 7], ["longDescription", 31, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["meta", 29, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,9 +30,9 @@ export default nix.lambda((args) => (() => {
       rsync,
       umount,
     ])), "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.sel(oldAttrs, "meta", "description")),
         longDescription: nix.thunk(() => nix.add(nix.sel(oldAttrs, "meta", "longDescription"), "This package comes with runtime dependencies of command utilities provided by rsync, coreutils, mount, umount, psmisc, cron and btrfs.\nIf you want to use the commands provided by the system, use timeshift-minimal instead.\n")),
       })),

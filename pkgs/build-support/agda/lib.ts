@@ -2,14 +2,14 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lib.nix", [[["interfaceFile", 12, 3], ["isUnbrokenAgdaPackage", 24, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lib.nix", [["interfaceFile", 12, 3], ["isUnbrokenAgdaPackage", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     interfaceFile: (agdaVersion) => (agdaFile) => nix.add(nix.add(nix.add(nix.add("_build/", agdaVersion), "/agda/"), nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.builtins.match("(.*\\.)l?agda(\\.(md|org|rst|tex|typ))?", agdaFile)))), "agdai"),
     isUnbrokenAgdaPackage: (pkg) => (() => {
       const r = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => (nix.asBool(nix.selOr(pkg, () => false, "isAgdaDerivation")) && nix.asBool(!nix.asBool(nix.sel(pkg, "meta", "broken")))))));

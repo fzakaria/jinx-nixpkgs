@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["extraArgs", 63, 5]], [["updateScript", 62, 12]], [["homepage", 70, 5], ["changelog", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 81, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 28, 3], ["strictDeps", 34, 3], ["__structuredAttrs", 35, 3], ["postPatch", 37, 3], ["qmakeFlags", 47, 3], ["installPhase", 49, 3], ["passthru", 62, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, libGLU: false, "nix-update-script": false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["changelog", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 28, 3], ["strictDeps", 34, 3], ["__structuredAttrs", 35, 3], ["postPatch", 37, 3], ["qmakeFlags", 47, 3], ["installPhase", 49, 3], ["passthru", 62, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "oscar",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CrimsonNape",
           repo: "oscar-sql",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,14 +48,14 @@ substituteInPlace Building/Linux/OSCAR20.desktop \\
       qmakeFlags: nix.thunk(() => ["OSCAR_QT.pro"]),
       installPhase: "runHook preInstall\ninstall -Dm755 oscar/OSCAR20 -t \"$out/bin\"\n# help browser was removed 'temporarily' in https://gitlab.com/pholy/OSCAR-code/-/commit/57c3e4c33ccdd2d0eddedbc24c0e4f2969da3841\n# install -Dm644 oscar/Help/* -t \"$out/share/OSCAR20/Help\"\ninstall -Dm644 oscar/Html/* -t \"$out/share/OSCAR20/Html\"\ninstall -Dm644 oscar/Translations/* -t \"$out/share/OSCAR20/Translations\"\ninstall -Dm644 Building/Linux/OSCAR20.png -t \"$out/share/icons/hicolor/48x48/apps\"\ninstall -Dm644 Building/Linux/OSCAR20.svg -t \"$out/share/icons/hicolor/scalable/apps\"\ninstall -Dm644 Building/Linux/OSCAR20.desktop -t \"$out/share/applications\"\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.sleepfiles.com/OSCAR/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/CrimsonNape/oscar-sql/-/raw/${nix.sel(finalAttrs, "src", "tag")}/Htmldocs/release_notes.html`),
         description: "Software for reviewing and exploring data produced by CPAP and related machines used in the treatment of sleep apnea",

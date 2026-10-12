@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["updateScript", 25, 12]], [["description", 28, 5], ["mainProgram", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["preBuild", 21, 3], ["passthru", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 25, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 28, 5], ["mainProgram", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["preBuild", 21, 3], ["passthru", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lv_font_conv";
       const version = "1.5.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lvgl",
           repo: "lv_font_conv",
           rev: version,
@@ -27,18 +24,27 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-nNMcOL3uu77e4qLoWGhtBgNQXxeEU+kUuKAc25a8fUc=";
       const preBuild = "patchShebangs support/build_web.js\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Converts TTF/WOFF fonts to compact bitmap format",
         mainProgram: "lv_font_conv",
         homepage: "https://lvgl.io/tools/fontconverter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { [nix.POS]: pos$4, pname, version, src, npmDepsHash, preBuild, passthru, meta };
+      return {
+        [nix.POS]: $pos[3],
+        pname,
+        version,
+        src,
+        npmDepsHash,
+        preBuild,
+        passthru,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

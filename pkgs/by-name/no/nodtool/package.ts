@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["updateScript", 81, 5]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 92, 5], ["platforms", 93, 5], ["mainProgram", 94, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["cargoBuildFlags", 30, 3], ["cargoTestFlags", 37, 3], ["installPhase", 44, 3], ["__structuredAttrs", 72, 3], ["nativeInstallCheckInputs", 74, 3], ["versionCheckProgramArg", 77, 3], ["doInstallCheck", 78, 3], ["passthru", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, cmake: false, git: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 92, 5], ["platforms", 93, 5], ["mainProgram", 94, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["cargoBuildFlags", 30, 3], ["cargoTestFlags", 37, 3], ["installPhase", 44, 3], ["__structuredAttrs", 72, 3], ["nativeInstallCheckInputs", 74, 3], ["versionCheckProgramArg", 77, 3], ["doInstallCheck", 78, 3], ["passthru", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nodtool",
       version: "2.0.0-alpha.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "encounter",
           repo: "nod",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,11 +61,11 @@ runHook postInstall
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GameCube/Wii disc image CLI tool and C library",
         homepage: "https://github.com/encounter/nod",
         changelog: nix.thunk(() => nix.str`https://github.com/encounter/nod/releases/tag/v${nix.sel(finalAttrs, "version")}`),

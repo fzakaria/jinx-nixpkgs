@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["docs", 54, 5], ["grpc", 59, 5]], [["changelog", 71, 5], ["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["optional-dependencies", 53, 3], ["doCheck", 66, 3], ["pythonImportsCheck", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, click: false, deprecation: false, distro: false, fetchFromGitHub: false, grpcio: false, hightime: false, nitypes: false, numpy: false, "poetry-core": false, protobuf: false, "python-decouple": false, requests: false, "sphinx-rtd-theme": false, sphinx: false, toml: false, "typing-extensions": false, tzlocal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["docs", 54, 5], ["grpc", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 71, 5], ["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["optional-dependencies", 53, 3], ["doCheck", 66, 3], ["pythonImportsCheck", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ni",
           repo: "nidaqmx-python",
           tag: version,
@@ -54,14 +51,14 @@ export default nix.lambda((args) => (() => {
         tzlocal,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [distro]))));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         docs: nix.thunk(() => [sphinx, sphinx_rtd_theme, toml]),
         grpc: nix.thunk(() => [grpcio, protobuf]),
       }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["nidaqmx"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/ni/nidaqmx-python/releases/tag/${nix.sel(src, "tag")}`),
         description: "API for interacting with the NI-DAQmx driver",
         homepage: "https://github.com/ni/nidaqmx-python",
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

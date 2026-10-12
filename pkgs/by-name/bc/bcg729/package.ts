@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 13, 5], ["owner", 14, 5], ["group", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["sha256", 18, 5]], [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 21, 3], ["postPatch", 23, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 13, 5], ["owner", 14, 5], ["group", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 21, 3], ["postPatch", 23, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bcg729",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.linphone.org",
           owner: "public",
           group: "BC",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail '\\$'{exec_prefix}/'$'{CMAKE_INSTALL_LIBDIR} '$'{CMAKE_INSTALL_FULL_LIBDIR}\n\n# cmake 4 compatibility, upstream has patches but they don't backport cleanly\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.1)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Opensource implementation of both encoder and decoder of the ITU G729 Annex A/B speech codec",
         homepage: "https://linphone.org/technical-corner/bcg729",
         changelog: nix.thunk(() => nix.str`https://gitlab.linphone.org/BC/public/bcg729/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

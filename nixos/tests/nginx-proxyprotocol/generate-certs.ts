@@ -2,9 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generate-certs.nix", [[["postPatch", 17, 9]], [["buildInputs", 15, 5]]]);
 const formals$1 = { args: { pkgs: true, minica: true, runCommandCC: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generate-certs.nix", [["postPatch", 17, 9]]);
-const pos$2 = nix.positions(here + "/generate-certs.nix", [["buildInputs", 15, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const domain = nix.thunk(() => nix.sel(conf, "domain"));
   const domainSanitized = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "replaceStrings"), nix.thunk(() => ["*"]), nix.thunk(() => ["_"]), domain));
   return nix.app(runCommandCC, "generate-tests-certs", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(minica, "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             postPatch: "sed -i 's_NotAfter: time.Now().AddDate(2, 0, 30),_NotAfter: time.Now().AddDate(20, 0, 0),_' main.go\n",
           }))),
       ]),

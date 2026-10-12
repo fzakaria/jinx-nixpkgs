@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 29, 3], ["dependencies", 33, 3], ["postPatch", 45, 3], ["pythonImportsCheck", 53, 3], ["nativeCheckInputs", 58, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, versionCheckHook: false, hatchling: false, cryptography: false, jsonschema: false, pyparsing: false, pyyaml: false, typer: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 29, 3], ["dependencies", 33, 3], ["postPatch", 45, 3], ["pythonImportsCheck", 53, 3], ["nativeCheckInputs", 58, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const typer = nix.arg($, "typer");
   const zip = nix.arg($, "zip");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swi-tools",
       version: "1.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aristanetworks",
           repo: "swi-tools",
           rev: "6db86f5983426d272e541a61e0add79b3fec5b1e",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["switools", "switools.verify"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, zip, versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Scripts for operating on an Arista SWI or SWIX",
         homepage: "https://github.com/aristanetworks/swi-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

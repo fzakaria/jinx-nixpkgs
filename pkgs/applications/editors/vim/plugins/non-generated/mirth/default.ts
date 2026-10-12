@@ -2,23 +2,22 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 9, 7], ["license", 10, 7], ["platforms", 11, 7], ["description", 13, 5]], [["pname", 4, 3], ["version", 5, 19], ["src", 6, 3], ["meta", 7, 3]]]);
 const formals$1 = { args: { vimUtils: false, mirth: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 9, 7], ["license", 10, 7], ["platforms", 11, 7], ["description", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 4, 3], ["version", 5, 19], ["src", 6, 3], ["meta", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const vimUtils = nix.arg($, "vimUtils");
   const mirth = nix.arg($, "mirth");
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mirth",
       version: nix.thunk(() => nix.attr(mirth, "version")),
       src: nix.thunk(() => nix.sel(mirth, "vim")),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mirth, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

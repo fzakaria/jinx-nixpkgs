@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["nativeBuildInputs", 83, 45]], [["terminfo", 83, 5], ["updateScript", 99, 5]], [["homepage", 106, 5], ["downloadPage", 107, 5], ["description", 108, 5], ["longDescription", 109, 5], ["changelog", 121, 5], ["license", 122, 5], ["platforms", 123, 5], ["mainProgram", 124, 5], ["maintainers", 125, 5]], [["pname", 28, 3], ["version", 29, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["outputs", 34, 3], ["src", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["configureFlags", 61, 3], ["enableParallelBuilding", 71, 3], ["postInstall", 73, 3], ["nativeInstallCheckInputs", 78, 3], ["versionCheckProgramArg", 79, 3], ["doInstallCheck", 80, 3], ["passthru", 82, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, bison: false, libevent: false, ncurses: false, "pkg-config": false, runCommand: false, jemalloc: false, withSystemd: true, systemdLibs: false, withUtf8proc: true, utf8proc: false, withUtempter: true, libutempter: false, withSixel: true, versionCheckHook: false, "common-updater-scripts": false, writeShellScript: false, curl: false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 83, 45]]);
-const pos$3 = nix.positions(here + "/package.nix", [["terminfo", 83, 5], ["updateScript", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 106, 5], ["downloadPage", 107, 5], ["description", 108, 5], ["longDescription", 109, 5], ["changelog", 121, 5], ["license", 122, 5], ["platforms", 123, 5], ["mainProgram", 124, 5], ["maintainers", 125, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["outputs", 34, 3], ["src", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["configureFlags", 61, 3], ["enableParallelBuilding", 71, 3], ["postInstall", 73, 3], ["nativeInstallCheckInputs", 78, 3], ["versionCheckProgramArg", 79, 3], ["doInstallCheck", 80, 3], ["passthru", 82, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const jq = nix.arg($, "jq");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tmux",
       version: "3.7c",
       strictDeps: true,
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tmux",
           repo: "tmux",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,8 +54,8 @@ echo "${nix.sel(finalAttrs, "passthru", "terminfo")}" >> $out/nix-support/propag
       versionCheckProgramArg: "-V",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        terminfo: nix.thunk(() => nix.app(runCommand, "tmux-terminfo", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [ncurses]) })), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`mkdir -p $out/share/terminfo/74
+        [nix.POS]: $pos[2],
+        terminfo: nix.thunk(() => nix.app(runCommand, "tmux-terminfo", nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [ncurses]) })), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`mkdir -p $out/share/terminfo/74
 cp -v ${ncurses}/share/terminfo/74/tmux $out/share/terminfo/74
 # macOS ships an old version (5.7) of ncurses which does not include tmux-256color so we need to provide it from our ncurses.
 # However, due to a bug in ncurses 5.7, we need to first patch the terminfo before we can use it with macOS.
@@ -73,7 +69,7 @@ ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-versio
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://tmux.github.io/",
         downloadPage: "https://github.com/tmux/tmux",
         description: "Terminal multiplexer",

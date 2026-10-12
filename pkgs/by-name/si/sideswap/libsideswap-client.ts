@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libsideswap-client.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["cargoBuildFlags", 42, 3], ["doCheck", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, systemd: false, protobuf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libsideswap-client.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/libsideswap-client.nix", [["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/libsideswap-client.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["cargoBuildFlags", 42, 3], ["doCheck", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libsideswap-client",
       version: "0-unstable-2026-02-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sideswap-io",
           repo: "sideswap_rust",
           rev: "9b0eea90b18007621eb15282d0064976dfedfa91",
@@ -38,7 +36,7 @@ substituteInPlace sideswap_client/build.rs \\
       cargoBuildFlags: nix.thunk(() => ["--package", "sideswap_client"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Rust library for Sideswap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

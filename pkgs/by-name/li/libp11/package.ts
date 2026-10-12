@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["nativeBuildInputs", 50, 51]], [["default-pkcs11-module", 49, 11]], [["openssl", 47, 13], ["tests", 49, 5]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["configureFlags", 25, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["enableParallelBuilding", 44, 3], ["passthru", 46, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, libtool: false, "pkg-config": false, openssl: false, "p11-kit": false, runCommand: false, libp11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 50, 51]]);
-const pos$3 = nix.positions(here + "/package.nix", [["default-pkcs11-module", 49, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["openssl", 47, 13], ["tests", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["configureFlags", 25, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["enableParallelBuilding", 44, 3], ["passthru", 46, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libp11";
       const version = "0.4.21";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenSC",
           repo: "libp11",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -41,12 +36,12 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [openssl]);
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         openssl: openssl,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "default-pkcs11-module": nix.thunk(() => nix.app(runCommand, "libp11-default-pkcs11-module", nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getBin"), openssl))]),
             })), nix.thunk(() => nix.str`# The default module path is baked into both the engine and the provider.
 grep -q "${nix.app(nix.sel(lib, "getLib"), p11_kit)}/lib/p11-kit-proxy.so" ${libp11}/lib/engines/pkcs11.so
@@ -73,14 +68,14 @@ touch $out
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Small layer on top of PKCS#11 API to make PKCS#11 implementations easier",
         homepage: "https://github.com/OpenSC/libp11",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

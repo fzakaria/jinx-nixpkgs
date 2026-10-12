@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 38, 5], ["hash", 39, 5]], [["updateScript", 50, 12]], [["url", 57, 7], ["hash", 58, 7]], [["description", 114, 5], ["homepage", 115, 5], ["downloadPage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["platforms", 119, 5], ["maintainers", 120, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 42, 3], ["passthru", 50, 3], ["ymExe", 52, 3], ["buildPhase", 61, 3], ["config", 67, 3], ["installPhase", 88, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { fetchurl: false, stdenvNoCC: false, lib: false, makeWrapper: false, p7zip: false, asar: false, jq: false, python3: false, electron: false, fetchFromGitHub: false, electronArguments: true, trayEnabled: true, trayStyle: true, trayAlways: true, devTools: true, vibeAnimationMaxFps: true, customTitleBar: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 50, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 57, 7], ["hash", 58, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 114, 5], ["homepage", 115, 5], ["downloadPage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["platforms", 119, 5], ["maintainers", 120, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 42, 3], ["passthru", 50, 3], ["ymExe", 52, 3], ["buildPhase", 61, 3], ["config", 67, 3], ["installPhase", 88, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,18 +30,18 @@ export default nix.lambda((args) => (() => {
       const pname = "yandex-music";
       const version = "5.63.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cucumber-sp",
           repo: "yandex-music-linux",
           rev: "066a6c7f503304d2181db04c5ed379a80f9137b8",
           hash: "sha256-z+gmUG0/7ykF42+OlFGZC268Tj8+vpfgZRYrW4otpfM=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [p7zip, asar, jq, python3, makeWrapper]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
       const ymExe = nix.thunk(() => (() => {
         const ym_info = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./ym_info.json")))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.sel(ym_info, "exe_link")),
             hash: nix.thunk(() => nix.sel(ym_info, "exe_hash")),
           })));
@@ -82,7 +78,7 @@ install -Dm644 "$src/templates/desktop" "$out/share/applications/yandex-music.de
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Personal recommendations, selections for any occasion and new music",
         homepage: "https://music.yandex.ru/",
         downloadPage: "https://music.yandex.ru/download/",
@@ -95,7 +91,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

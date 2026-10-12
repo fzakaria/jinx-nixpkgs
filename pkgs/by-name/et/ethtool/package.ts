@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["updateScript", 30, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["enableParallelBuilding", 27, 3], ["passthru", 29, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libmnl: false, "pkg-config": false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["enableParallelBuilding", 27, 3], ["passthru", 29, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ethtool",
       version: "7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kernel/software/network/ethtool/ethtool-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-TXjCbtwCVbyS9LmVtf1mEI11/5Zu1GlPYCWm03C8JJY=",
         })))),
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libmnl]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-ethtool", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\n# Expect the text in format of '<a href=\"ethtool-VER.tar.xz\">...</a>'\n# The page always lists versions newest to oldest. Pick the first one.\nnew_version=\"$(curl -s https://mirrors.edge.kernel.org/pub/software/network/ethtool/ |\n    pcre2grep -o1 '<a href=\"ethtool-([0-9.]+)[.]tar[.]xz\">' |\n    head -n1)\"\nupdate-source-version ethtool \"$new_version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utility for controlling network drivers and hardware",
         homepage: "https://www.kernel.org/pub/software/network/ethtool/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

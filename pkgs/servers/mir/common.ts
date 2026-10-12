@@ -2,22 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["owner", 69, 7], ["repo", 70, 7], ["rev", 71, 7], ["hash", 72, 15]], [["NIX_CFLAGS_COMPILE", 245, 9]], [["pkg-config", 271, 9]], [["miriway", 273, 61], ["miracle-wm", 273, 69]], [["tests", 270, 7], ["providedSessions", 274, 7]], [["installPhase", 290, 13]], [["common-updater-scripts", 300, 13]], [["common-updater-scripts", 298, 11], ["genericUpdater", 299, 11]], [["rev-prefix", 304, 13], ["ignoredVersions", 305, 13]], [["updateScript", 286, 7]], [["broken", 310, 15], ["description", 311, 7], ["homepage", 312, 7], ["changelog", 313, 7], ["license", 314, 7], ["maintainers", 315, 7], ["platforms", 320, 7], ["pkgConfigModules", 321, 7]], [["pname", 65, 5], ["version", 66, 13], ["src", 68, 5], ["patches", 75, 13], ["postPatch", 77, 5], ["strictDeps", 126, 5], ["nativeBuildInputs", 128, 5], ["buildInputs", 150, 5], ["nativeCheckInputs", 186, 5], ["checkInputs", 198, 5], ["cmakeFlags", 204, 5], ["env", 245, 5], ["doCheck", 252, 5], ["disabledTests", 254, 5], ["preCheck", 259, 5], ["outputs", 264, 5], ["passthru", 269, 5], ["meta", 309, 5]], [["src", 349, 7], ["sourceRoot", 350, 7], ["hash", 351, 7]], [["cargoDeps", 348, 5]]]);
 const formals$1 = { args: { stdenv: false, rustPlatform: false, lib: false, "common-updater-scripts": false, fetchFromGitHub: false, genericUpdater: false, gitUpdater: false, nixosTests: false, testers: false, cargo: false, cmake: false, ctestCheckHook: false, "pkg-config": false, python3: false, boost: false, "egl-wayland": false, freetype: false, glib: false, glm: false, libapparmor: false, "libdisplay-info": false, libdrm: false, libepoxy: false, libevdev: false, libglvnd: false, libinput: false, libuuid: false, libxcb: false, libxkbcommon: false, libxmlxx: false, "yaml-cpp": false, "lttng-ust": false, libgbm: false, mesa: false, nettle: false, pixman: false, udev: false, wayland: false, "wayland-scanner": false, libxcursor: false, libx11: false, xorgproto: false, xwayland: false, dbus: false, "gobject-introspection": false, gtest: false, umockdev: false, wlcs: false, validatePkgConfig: false }, ellipsis: false };
 const formals$2 = { args: { version: false, pinned: true, broken: true, hash: false, cargoHash: true, patches: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["owner", 69, 7], ["repo", 70, 7], ["rev", 71, 7], ["hash", 72, 15]]);
-const pos$2 = nix.positions(here + "/common.nix", [["NIX_CFLAGS_COMPILE", 245, 9]]);
-const pos$3 = nix.positions(here + "/common.nix", [["pkg-config", 271, 9]]);
-const pos$4 = nix.positions(here + "/common.nix", [["miriway", 273, 61], ["miracle-wm", 273, 69]]);
-const pos$5 = nix.positions(here + "/common.nix", [["tests", 270, 7], ["providedSessions", 274, 7]]);
-const pos$6 = nix.positions(here + "/common.nix", [["installPhase", 290, 13]]);
-const pos$7 = nix.positions(here + "/common.nix", [["common-updater-scripts", 300, 13]]);
-const pos$8 = nix.positions(here + "/common.nix", [["common-updater-scripts", 298, 11], ["genericUpdater", 299, 11]]);
-const pos$9 = nix.positions(here + "/common.nix", [["rev-prefix", 304, 13], ["ignoredVersions", 305, 13]]);
-const pos$10 = nix.positions(here + "/common.nix", [["updateScript", 286, 7]]);
-const pos$11 = nix.positions(here + "/common.nix", [["broken", 310, 15], ["description", 311, 7], ["homepage", 312, 7], ["changelog", 313, 7], ["license", 314, 7], ["maintainers", 315, 7], ["platforms", 320, 7], ["pkgConfigModules", 321, 7]]);
-const pos$12 = nix.positions(here + "/common.nix", [["pname", 65, 5], ["version", 66, 13], ["src", 68, 5], ["patches", 75, 13], ["postPatch", 77, 5], ["strictDeps", 126, 5], ["nativeBuildInputs", 128, 5], ["buildInputs", 150, 5], ["nativeCheckInputs", 186, 5], ["checkInputs", 198, 5], ["cmakeFlags", 204, 5], ["env", 245, 5], ["doCheck", 252, 5], ["disabledTests", 254, 5], ["preCheck", 259, 5], ["outputs", 264, 5], ["passthru", 269, 5], ["meta", 309, 5]]);
-const pos$13 = nix.positions(here + "/common.nix", [["src", 349, 7], ["sourceRoot", 350, 7], ["hash", 351, 7]]);
-const pos$14 = nix.positions(here + "/common.nix", [["cargoDeps", 348, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -79,11 +66,11 @@ export default nix.lambda((args) => (() => {
     const cargoHash = nix.argOr($_1, "cargoHash", () => null);
     const patches = nix.argOr($_1, "patches", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pname: "mir",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "canonical",
             repo: "mir",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -169,7 +156,7 @@ substituteInPlace src/platform/graphics/CMakeLists.txt \\
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "MIR_COMPILER_QUIRKS", nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), ";", nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionOlder"), version, "2.22.0")), nix.thunk(() => ["test_touchspot_controller.cpp:array-bounds"]))))))),
         ]),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionOlder"), version, "2.20.0")), nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=deprecated-declarations"]))))),
         })),
         doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
@@ -177,32 +164,32 @@ substituteInPlace src/platform/graphics/CMakeLists.txt \\
         preCheck: "export HOME=$TMP # shader cache\nexport XDG_RUNTIME_DIR=$TMP\n",
         outputs: nix.thunk(() => ["out", "dev"]),
         passthru: nix.thunk(() => nix.update({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           tests: nix.thunk(() => nix.update({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(pinned)), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               miriway: nix.thunk(() => nix.attr(nixosTests, "miriway")),
               "miracle-wm": nix.thunk(() => nix.attr(nixosTests, "miracle-wm")),
             }))))),
           providedSessions: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionOlder"), version, "2.16.0")), nix.thunk(() => ["mir-shell"]))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(pinned)), nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             updateScript: nix.thunk(() => (() => {
               const cusWithFlag = nix.thunk(() => nix.app(nix.sel(common_updater_scripts, "overrideAttrs"), (oa) => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   installPhase: nix.thunk(() => nix.add(nix.sel(oa, "installPhase"), "wrapProgram $out/bin/update-source-version \\\n  --add-flag '--file=pkgs/servers/mir/default.nix'\n")),
                 })));
               return nix.app(nix.sel(gitUpdater, "override"), nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   "common-updater-scripts": cusWithFlag,
-                  genericUpdater: nix.thunk(() => nix.app(nix.sel(genericUpdater, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, "common-updater-scripts": cusWithFlag })))),
-                })), nix.thunk(() => ({ [nix.POS]: pos$9, "rev-prefix": "v", ignoredVersions: "-(dev|rc)$" })));
+                  genericUpdater: nix.thunk(() => nix.app(nix.sel(genericUpdater, "override"), nix.thunk(() => ({ [nix.POS]: $pos[6], "common-updater-scripts": cusWithFlag })))),
+                })), nix.thunk(() => ({ [nix.POS]: $pos[8], "rev-prefix": "v", ignoredVersions: "-(dev|rc)$" })));
             })()),
           }))))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           broken: broken,
           description: "Display server and Wayland compositor developed by Canonical",
           homepage: "https://mir-server.io",
@@ -225,9 +212,9 @@ substituteInPlace src/platform/graphics/CMakeLists.txt \\
           ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionOlder"), version, "2.17.0")), nix.thunk(() => ["mircookie"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionAtLeast"), version, "2.17.0")), nix.thunk(() => ["mirserver-internal"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "strings", "versionAtLeast"), version, "2.17.0")) && nix.asBool(nix.app(nix.sel(lib, "strings", "versionOlder"), version, "2.26.0")))), nix.thunk(() => ["mircommon-internal"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionOlder"), version, "2.25.0")), nix.thunk(() => ["mir-renderer-gl-dev", "mirrenderer"]))))))),
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionAtLeast"), version, "2.22.0")), nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               src: nix.thunk(() => nix.sel(finalAttrs, "src")),
               sourceRoot: nix.thunk(() => nix.sel(finalAttrs, "src", "name")),
               hash: cargoHash,

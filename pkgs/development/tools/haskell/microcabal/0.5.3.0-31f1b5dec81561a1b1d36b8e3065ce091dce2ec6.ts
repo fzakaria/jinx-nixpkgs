@@ -2,12 +2,12 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/0.5.3.0-31f1b5dec81561a1b1d36b8e3065ce091dce2ec6.nix", [["version", 4, 3], ["rev", 5, 3], ["hash", 6, 3]]);
+const $pos = nix.positions(here + "/0.5.3.0-31f1b5dec81561a1b1d36b8e3065ce091dce2ec6.nix", [[["version", 4, 3], ["rev", 5, 3], ["hash", 6, 3]]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => (() => {
     const version = nix.thunk(() => nix.str`0.5.3.0-${rev}`);
     const rev = "31f1b5dec81561a1b1d36b8e3065ce091dce2ec6";
     const hash = "sha256-/oTcWGA43KQwniQKyZEPOlpmoRusDjb+k29GWc8wZzw=";
-    return { [nix.POS]: pos$1, version, rev, hash };
+    return { [nix.POS]: $pos[0], version, rev, hash };
   })())));
 //# sourceMappingURL=0.5.3.0-31f1b5dec81561a1b1d36b8e3065ce091dce2ec6.ts.map

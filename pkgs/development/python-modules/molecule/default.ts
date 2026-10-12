@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 30, 13], ["version", 30, 19], ["hash", 31, 5]], [["package", 60, 7], ["command", 61, 7]], [["nativeBuildInputs", 65, 9]], [["version", 58, 18]], [["tests", 58, 12]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 39, 3], ["pythonImportsCheck", 53, 3], ["doCheck", 56, 3], ["passthru", 58, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, "ansible-compat": false, "ansible-core": false, buildPythonPackage: false, "click-help-colors": false, enrich: false, fetchPypi: false, jsonschema: false, molecule: false, packaging: false, pluggy: false, rich: false, setuptools: false, "setuptools-scm": false, testers: false, wcmatch: false, withPlugins: true, writableTmpDirAsHomeHook: false, "molecule-plugins": false, yamllint: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 30, 13], ["version", 30, 19], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["package", 60, 7], ["command", 61, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 65, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 58, 18]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 58, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 39, 3], ["pythonImportsCheck", 53, 3], ["doCheck", 56, 3], ["passthru", 58, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-GHDF9UQkA9d7WVPTRDgiZaUh60lIiFJgwMrAhKo97AI=",
@@ -59,21 +53,21 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["molecule"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: molecule,
               command: nix.thunk(() => nix.str`PY_COLORS=0 ${pname} --version`),
             }))), "overrideAttrs"), (old) => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [writableTmpDirAsHomeHook])),
             }))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Aids in the development and testing of Ansible roles",
         homepage: "https://github.com/ansible-community/molecule",
         changelog: nix.thunk(() => nix.str`https://github.com/ansible/molecule/releases/tag/v${version}`),
@@ -82,7 +76,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "molecule",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

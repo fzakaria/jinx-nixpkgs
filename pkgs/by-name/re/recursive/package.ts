@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["platforms", 26, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["platforms", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,20 +14,20 @@ export default nix.lambda((args) => (() => {
       const pname = "recursive";
       const version = "1.085";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/arrowtype/recursive/releases/download/v${version}/ArrowType-Recursive-${version}.zip`),
           sha256: "sha256-hnGnKnRoQN8vFStW8TjLrrTL1dWsthUEWxfaGF0b0vM=",
         }))));
       const installPhase = "install -D -t $out/share/fonts/opentype/ $(find $src -type f -name '*.otf')\ninstall -D -t $out/share/fonts/truetype/ $(find $src -type f -name '*.ttf')\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://recursive.design/",
         description: "Variable font family for code & UI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "eadwu"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

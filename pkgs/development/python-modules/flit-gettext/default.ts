@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["msgfmt", 35, 7]], [["scm", 47, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 39, 3], ["propagatedBuildInputs", 44, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 58, 3], ["disabledTestPaths", 63, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, "flit-scm": false, wheel: false, "flit-core": false, gettext: false, build: false, pytestCheckHook: false, "pytest-cov-stub": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["msgfmt", 35, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["scm", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 39, 3], ["propagatedBuildInputs", 44, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 58, 3], ["disabledTestPaths", 63, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "codingjoe",
           repo: "flit-gettext",
           rev: version,
@@ -35,19 +31,19 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./msgfmt-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             msgfmt: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), gettext, "msgfmt")),
           })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [flit_scm, wheel]);
       const propagatedBuildInputs = nix.thunk(() => [flit_core]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, scm: nix.thunk(() => [flit_scm]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[2], scm: nix.thunk(() => [flit_scm]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([build, pytestCheckHook, pytest_cov_stub, wheel], nix.sel(optional_dependencies, "scm")));
       const disabledTests = nix.thunk(() => ["test_compile_gettext_translations__no_gettext"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_core.py", "tests/test_scm.py"]);
       const pythonImportsCheck = nix.thunk(() => ["flit_gettext"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Compiling gettext i18n messages during project bundling",
         homepage: "https://github.com/codingjoe/flit-gettext",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

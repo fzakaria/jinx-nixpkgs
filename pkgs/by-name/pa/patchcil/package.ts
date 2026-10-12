@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["updateScript", 58, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5], ["platforms", 67, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["projectFile", 24, 3], ["nugetDeps", 25, 3], ["dotnet-sdk", 27, 3], ["dotnet-runtime", 28, 3], ["selfContainedBuild", 30, 3], ["dotnetFlags", 31, 3], ["preFixup", 50, 3], ["executables", 55, 3], ["passthru", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDotnetModule: false, dotnetCorePackages: false, stdenv: false, "nix-update-script": false, aot: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5], ["platforms", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["projectFile", 24, 3], ["nugetDeps", 25, 3], ["dotnet-sdk", 27, 3], ["dotnet-runtime", 28, 3], ["selfContainedBuild", 30, 3], ["dotnetFlags", 31, 3], ["preFixup", 50, 3], ["executables", 55, 3], ["passthru", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "patchcil";
       const version = "0.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GGG-KILLER",
           repo: "patchcil",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,11 +50,11 @@ export default nix.lambda((args) => (() => {
       const preFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), aot, "# Remove debug symbols as they shouldn't have anything in them.\nrm $out/lib/patchcil/patchcil.dbg\n"));
       const executables = nix.thunk(() => ["patchcil"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Small utility to modify the library paths from PInvoke in .NET assemblies",
         homepage: "https://github.com/GGG-KILLER/patchcil",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["online", 40, 5]], [["mealie", 57, 28], ["tandoor-recipes", 57, 35]], [["tests", 56, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 53, 3], ["passthru", 55, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, beautifulsoup4: false, extruct: false, isodate: false, "language-tags": false, regex: false, requests: false, pytestCheckHook: false, responses: false, setuptools: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["online", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mealie", 57, 28], ["tandoor-recipes", 57, 35]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 56, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 53, 3], ["passthru", 55, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "recipe-scrapers",
       version: "15.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hhursev",
           repo: "recipe-scrapers",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,20 +34,20 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [beautifulsoup4, extruct, isodate, language_tags, regex]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, online: nix.thunk(() => [requests]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], online: nix.thunk(() => [requests]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, responses]),
       disabledTests: nix.thunk(() => ["test_instructions"]),
       pythonImportsCheck: nix.thunk(() => ["recipe_scrapers"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           mealie: nix.thunk(() => nix.attr(nixosTests, "mealie")),
           "tandoor-recipes": nix.thunk(() => nix.attr(nixosTests, "tandoor-recipes")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python package for scraping recipes data",
         homepage: "https://github.com/hhursev/recipe-scrapers",
         changelog: nix.thunk(() => nix.str`https://github.com/hhursev/recipe-scrapers/releases/tag/${nix.sel(finalAttrs, "version")}`),

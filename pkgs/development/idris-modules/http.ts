@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/http.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]], [["pname", 10, 3], ["version", 11, 3], ["idrisDeps", 13, 3], ["src", 19, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { "build-idris-package": false, fetchFromGitHub: false, contrib: false, lightyear: false, bytes: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/http.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/http.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]]);
-const pos$3 = nix.positions(here + "/http.nix", [["pname", 10, 3], ["version", 11, 3], ["idrisDeps", 13, 3], ["src", 19, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const bytes = nix.arg($, "bytes");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "http",
       version: "2018-02-25",
       idrisDeps: nix.thunk(() => [contrib, lightyear, bytes]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "uwap",
           repo: "idris-http",
           rev: "dc4a31543f87c0bc44cbaa98192f0303cd8dd82e",
           sha256: "1abrwi5ikymff4g7a0g5wskycvhpnn895z1z1bz9r71ks554ypl8",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "HTTP library for idris",
         homepage: "https://github.com/uwap/idris-http",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

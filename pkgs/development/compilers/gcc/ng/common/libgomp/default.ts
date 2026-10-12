@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["src", 16, 47]], [["isGNU", 90, 5]], [["homepage", 94, 5]], [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["outputs", 46, 3], ["postUnpack", 51, 3], ["preAutoreconf", 56, 3], ["patches", 61, 3], ["enableParallelBuilding", 65, 3], ["nativeBuildInputs", 67, 3], ["configurePlatforms", 71, 3], ["configureFlags", 76, 3], ["preConfigure", 82, 3], ["doCheck", 87, 3], ["passthru", 89, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gcc_meta: false, release_version: false, version: false, getVersionFile: false, monorepoSrc: true, autoreconfHook269: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["src", 16, 47]]);
-const pos$2 = nix.positions(here + "/default.nix", [["isGNU", 90, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 94, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["outputs", 46, 3], ["postUnpack", 51, 3], ["preAutoreconf", 56, 3], ["patches", 61, 3], ["enableParallelBuilding", 65, 3], ["nativeBuildInputs", 67, 3], ["configurePlatforms", 71, 3], ["configureFlags", 76, 3], ["preConfigure", 82, 3], ["doCheck", 87, 3], ["passthru", 89, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,10 +17,10 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook269 = nix.arg($, "autoreconfHook269");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libgomp",
       version: version,
-      src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`libgomp-src-${version}`), nix.thunk(() => ({ [nix.POS]: pos$1, src: monorepoSrc })), nix.thunk(() => nix.add("runPhase unpackPhase\n\nmkdir -p \"$out/gcc\"\ncp gcc/BASE-VER \"$out/gcc\"\ncp gcc/DATESTAMP \"$out/gcc\"\n\ncp -r libgomp \"$out\"\ncp -r include \"$out\"\n\ncp -r config \"$out\"\ncp -r multilib.am \"$out\"\ncp -r libtool.m4 \"$out\"\n\ncp config.guess \"$out\"\ncp config.rpath \"$out\"\ncp config.sub \"$out\"\ncp config-ml.in \"$out\"\ncp ltmain.sh \"$out\"\ncp install-sh \"$out\"\ncp mkinstalldirs \"$out\"\n\n", "if [[ -f MD5SUMS ]]; then cp MD5SUMS \"$out\"; fi\n")))),
+      src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`libgomp-src-${version}`), nix.thunk(() => ({ [nix.POS]: $pos[0], src: monorepoSrc })), nix.thunk(() => nix.add("runPhase unpackPhase\n\nmkdir -p \"$out/gcc\"\ncp gcc/BASE-VER \"$out/gcc\"\ncp gcc/DATESTAMP \"$out/gcc\"\n\ncp -r libgomp \"$out\"\ncp -r include \"$out\"\n\ncp -r config \"$out\"\ncp -r multilib.am \"$out\"\ncp -r libtool.m4 \"$out\"\n\ncp config.guess \"$out\"\ncp config.rpath \"$out\"\ncp config.sub \"$out\"\ncp config-ml.in \"$out\"\ncp ltmain.sh \"$out\"\ncp install-sh \"$out\"\ncp mkinstalldirs \"$out\"\n\n", "if [[ -f MD5SUMS ]]; then cp MD5SUMS \"$out\"; fi\n")))),
       outputs: nix.thunk(() => ["out", "dev"]),
       postUnpack: "mkdir -p ./build\nbuildRoot=$(readlink -e \"./build\")\n",
       preAutoreconf: "sourceRoot=$(readlink -e \"./libgomp\")\ncd $sourceRoot\n",
@@ -38,8 +35,8 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "cd \"$buildRoot\"\nconfigureScript=$sourceRoot/configure\n",
       doCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, isGNU: true })),
-      meta: nix.thunk(() => nix.update(gcc_meta, { [nix.POS]: pos$3, homepage: "https://gcc.gnu.org/" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], isGNU: true })),
+      meta: nix.thunk(() => nix.update(gcc_meta, { [nix.POS]: $pos[2], homepage: "https://gcc.gnu.org/" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

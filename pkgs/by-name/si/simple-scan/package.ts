@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["hash", 33, 5]], [["packageName", 65, 7]], [["updateScript", 64, 5]], [["description", 70, 5], ["mainProgram", 71, 5], ["longDescription", 72, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["teams", 83, 5], ["platforms", 84, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 48, 3], ["doCheck", 61, 3], ["passthru", 63, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, gettext: false, itstool: false, wrapGAppsHook4: false, cairo: false, "gdk-pixbuf": false, colord: false, glib: false, libadwaita: false, gtk4: false, gusb: false, packagekit: false, libwebp: false, libxml2: false, "sane-backends": false, vala: false, gnome: false, "gobject-introspection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 65, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 70, 5], ["mainProgram", 71, 5], ["longDescription", 72, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["teams", 83, 5], ["platforms", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 48, 3], ["doCheck", 61, 3], ["passthru", 63, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const gnome = nix.arg($, "gnome");
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "simple-scan",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/simple-scan/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/simple-scan-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-zDK1Ya4icYLTGpRGZjLjEXI3VuOskFOMPH4qLJqqSgk=",
         })))),
@@ -68,11 +64,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "simple-scan" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "simple-scan" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple scanning utility",
         mainProgram: "simple-scan",
         longDescription: "A really easy way to scan both documents and photos. You can crop out the\nbad parts of a photo and rotate it if it is the wrong way round. You can\nprint your scans, export them to pdf, or save them in a range of image\nformats. Basically a frontend for SANE - which is the same backend as\nXSANE uses. This means that all existing scanners will work and the\ninterface is well tested.\n",

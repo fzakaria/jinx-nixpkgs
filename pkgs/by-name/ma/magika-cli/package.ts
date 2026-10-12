@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["OPENSSL_NO_VENDOR", 43, 5], ["ORT_STRATEGY", 44, 5], ["ORT_LIB_LOCATION", 45, 5], ["ORT_PREFER_DYNAMIC_LINK", 49, 5]], [["nativeBuildInputs", 69, 15]], [["assertion", 60, 9], ["expected", 63, 9], ["actual", 66, 9]], [["mime", 59, 7]], [["extraArgs", 80, 7]], [["tests", 58, 5], ["updateScript", 79, 5]], [["description", 85, 5], ["homepage", 86, 5], ["downloadPage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["mainProgram", 93, 5], ["platforms", 94, 5], ["broken", 98, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["cargoRoot", 30, 3], ["buildAndTestSubdir", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["env", 42, 3], ["doInstallCheck", 52, 3], ["nativeInstallCheckInputs", 53, 3], ["passthru", 57, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, openssl: false, onnxruntime: false, versionCheckHook: false, runCommand: false, writeText: false, testers: false, "nix-update-script": false, "magika-cli": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 43, 5], ["ORT_STRATEGY", 44, 5], ["ORT_LIB_LOCATION", 45, 5], ["ORT_PREFER_DYNAMIC_LINK", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 69, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["assertion", 60, 9], ["expected", 63, 9], ["actual", 66, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mime", 59, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 80, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 58, 5], ["updateScript", 79, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["downloadPage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["mainProgram", 93, 5], ["platforms", 94, 5], ["broken", 98, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["cargoRoot", 30, 3], ["buildAndTestSubdir", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["env", 42, 3], ["doInstallCheck", 52, 3], ["nativeInstallCheckInputs", 53, 3], ["passthru", 57, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const magika_cli = nix.arg($, "magika-cli");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "magika-cli",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "magika",
           tag: nix.thunk(() => nix.str`cli/v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl, onnxruntime]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OPENSSL_NO_VENDOR: "true",
         ORT_STRATEGY: "system",
         ORT_LIB_LOCATION: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), onnxruntime)}/lib`),
@@ -54,24 +46,24 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           mime: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               assertion: "magika detects the correct language from content even when the file extension is wrong",
               expected: nix.thunk(() => nix.app(writeText, "expected", "application/x-rust\n")),
-              actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [magika_cli]) })), nix.thunk(() => nix.str`magika --format '%m' '${nix.path(here, "./test.md")}' >>"$out"
+              actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({ [nix.POS]: $pos[2], nativeBuildInputs: nix.thunk(() => [magika_cli]) })), nix.thunk(() => nix.str`magika --format '%m' '${nix.path(here, "./test.md")}' >>"$out"
 `))),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             extraArgs: nix.thunk(() => ["--version-regex=^cli/v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Determines file content types using AI",
         homepage: "https://securityresearch.google/magika/",
         downloadPage: "https://github.com/google/magika",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 28, 3], ["disabledTests", 40, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, setuptools: false, "typing-extensions": false, pytestCheckHook: false, "pytest-cov-stub": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 28, 3], ["disabledTests", 40, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "typed-argparse",
       version: "0.3.1-unstable-2025-05-09",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "typed-argparse",
           repo: "typed-argparse",
           rev: "989887701c5b4e8c835fac60d6124a9efa557e6f",
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["typed_argparse"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Type-safe Python argument parsing",
         homepage: "https://typed-argparse.github.io/typed-argparse/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

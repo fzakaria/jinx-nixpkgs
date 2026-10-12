@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tflint-ruleset-google.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["homepage", 39, 5], ["description", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5], ["license", 43, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["preCheck", 21, 3], ["subPackages", 25, 3], ["postInstall", 27, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tflint-ruleset-google.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/tflint-ruleset-google.nix", [["homepage", 39, 5], ["description", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5], ["license", 43, 5]]);
-const pos$3 = nix.positions(here + "/tflint-ruleset-google.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["preCheck", 21, 3], ["subPackages", 25, 3], ["postInstall", 27, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tflint-ruleset-google";
       const version = "0.40.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "terraform-linters",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +33,7 @@ mv $out/bin/${pname} $out/github.com/terraform-linters/${pname}/${version}/
 ln -s $out/github.com/terraform-linters/${pname}/${version}/${pname} $out/
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/terraform-linters/tflint-ruleset-google",
         description: "TFLint ruleset plugin for Terraform Google Provider",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -46,7 +44,7 @@ ln -s $out/github.com/terraform-linters/${pname}/${version}/${pname} $out/
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

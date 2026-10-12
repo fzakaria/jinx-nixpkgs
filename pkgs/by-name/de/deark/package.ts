@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 43, 5], ["downloadPage", 44, 5], ["license", 46, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5], ["platforms", 70, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["postBuild", 23, 3], ["installPhase", 27, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, stdenv: false, lib: false, help2man: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 43, 5], ["downloadPage", 44, 5], ["license", 46, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5], ["platforms", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["postBuild", 23, 3], ["installPhase", 27, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "deark";
       const version = "1.7.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jsummers",
           repo: "deark",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const postBuild = "make man\n";
       const installPhase = "runHook preInstall\n\ninstall -Dm755 deark $out/bin/deark\ninstallManPage deark.1\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utility for file format and metadata analysis, data extraction, decompression, and image format decoding",
         longDescription: "Deark is a portable command-line utility that can decode certain\ntypes of files, and either convert them to a more-modern or\nmore-readable format, or extract embedded files from them.\n",
         homepage: "https://entropymine.com/deark/",
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

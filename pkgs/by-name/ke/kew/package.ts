@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["updateScript", 99, 5]], [["description", 103, 5], ["homepage", 104, 5], ["platforms", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["mainProgram", 112, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 59, 3], ["runtimeDependencies", 73, 3], ["enableParallelBuilding", 84, 3], ["makeFlags", 86, 3], ["installFlags", 90, 3], ["nativeInstallCheckInputs", 94, 3], ["doInstallCheck", 96, 3], ["passthru", 98, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, "alsa-lib": false, autoPatchelfHook: false, chafa: false, curl: false, faad2: false, fetchFromGitHub: false, fftwFloat: false, "gdk-pixbuf": false, glib: false, libogg: false, libopus: false, libjack2: false, libpulseaudio: false, libvorbis: false, "nix-update-script": false, opusfile: false, "pkg-config": false, taglib: false, versionCheckHook: false, withALSA: true, withJACK: true, withPulseaudio: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 99, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["platforms", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["mainProgram", 112, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 59, 3], ["runtimeDependencies", 73, 3], ["enableParallelBuilding", 84, 3], ["makeFlags", 86, 3], ["installFlags", 90, 3], ["nativeInstallCheckInputs", 94, 3], ["doInstallCheck", 96, 3], ["passthru", 98, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const withPulseaudio = nix.argOr($, "withPulseaudio", () => nix.selOr(config, () => nix.sel(stdenv, "hostPlatform", "isLinux"), "pulseaudio"));
   const uppercaseFirst = (x) => nix.add(nix.app(nix.sel(lib, "toUpper"), nix.thunk(() => nix.app(nix.sel(lib, "substring"), 0n, 1n, x))), nix.app(nix.sel(lib, "substring"), 1n, nix.thunk(() => nix.sub(nix.app(nix.sel(lib, "strings", "stringLength"), x), 1n)), x));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kew",
       version: "4.3.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ravachol",
           repo: "kew",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,11 +71,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command-line music player for Linux",
         homepage: "https://github.com/ravachol/kew",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]], [["NIX_CFLAGS_COMPILE", 52, 7]], [["homepage", 66, 5], ["description", 67, 5], ["longDescription", 68, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["strictDeps", 49, 3], ["enableParallelBuilding", 50, 3], ["env", 52, 3], ["configureFlags", 55, 3], ["setupHook", 57, 3], ["nativeInstallCheckInputs", 59, 3], ["doInstallCheck", 62, 3], ["versionCheckProgram", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, gdbm: false, gmp: false, libffi: false, "pkg-config": false, readline: false, texinfo: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 52, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["longDescription", 68, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["strictDeps", 49, 3], ["enableParallelBuilding", 50, 3], ["env", 52, 3], ["configureFlags", 55, 3], ["setupHook", 57, 3], ["nativeInstallCheckInputs", 59, 3], ["doInstallCheck", 62, 3], ["versionCheckProgram", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "librep",
       version: "0.92.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SawfishWM",
           repo: "librep",
           tag: nix.thunk(() => nix.str`librep-${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-implicit-int",
             url: "https://github.com/SawfishWM/librep/commit/48f557ab34d47a7a1fd9e8425542f720be40946e.patch",
             hash: "sha256-MbFBNCgjEU1/QnjOe3uCWKVhpxo/E8c9q2TT3+CwPfY=",
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["CFLAGS=-std=gnu89"]))),
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/SawfishWM/librep",
         description: "Fast, lightweight, and versatile Lisp environment",
         longDescription: "librep is a Lisp system for UNIX, comprising an interpreter, a byte-code\ncompiler, and a virtual machine. It can serve as an application extension\nlanguage but is also suitable for standalone scripts.\n",

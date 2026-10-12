@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 107, 5], ["repo", 108, 5], ["tag", 109, 5], ["hash", 110, 5]], [["package", 291, 9], ["moduleNames", 292, 9]], [["mpv", 288, 28], ["pkg-config", 290, 7]], [["luaEnv", 277, 7], ["lua", 278, 7], ["vapoursynthSupport", 283, 7], ["vapoursynth", 284, 7], ["tests", 287, 5]], [["homepage", 298, 5], ["description", 299, 5], ["longDescription", 300, 5], ["changelog", 304, 5], ["license", 305, 5], ["mainProgram", 309, 5], ["maintainers", 310, 5], ["platforms", 315, 5]], [["pname", 96, 3], ["version", 97, 3], ["outputs", 99, 3], ["src", 106, 3], ["postPatch", 113, 3], ["mesonFlags", 131, 3], ["mesonAutoFeatures", 145, 3], ["nativeBuildInputs", 147, 3], ["buildInputs", 161, 3], ["postBuild", 222, 3], ["postInstall", 228, 3], ["postFixup", 260, 3], ["nativeInstallCheckInputs", 265, 3], ["doInstallCheck", 268, 3], ["dontVersionCheck", 272, 3], ["passthru", 274, 3], ["meta", 297, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, addDriverRunpath: false, "alsa-lib": false, bash: false, buildPackages: false, config: false, docutils: false, fetchFromGitHub: false, ffmpeg: false, freefont_ttf: false, freetype: false, lcms2: false, libGL: false, libx11: false, libxscrnsaver: false, libxext: false, libxpresent: false, libxrandr: false, libarchive: false, libass: false, libbluray: false, libcaca: false, libcdio: false, "libcdio-paranoia": false, libdrm: false, "libdisplay-info": false, libdvdnav: false, libjack2: false, libplacebo: false, "libpthread-stubs": false, libpulseaudio: false, libsixel: false, libuchardet: false, libva: false, libvdpau: false, libxkbcommon: false, lua: false, makeBinaryWrapper: false, libgbm: false, meson: false, mujs: false, ninja: false, nixosTests: false, "nv-codec-headers-11": false, "openal-soft": false, pipewire: false, "pkg-config": false, python3: false, rubberband: false, shaderc: false, stdenv: false, swift: false, testers: false, vapoursynth: false, "vulkan-headers": false, "vulkan-loader": false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, zimg: false, alsaSupport: true, archiveSupport: true, bluraySupport: true, cacaSupport: true, cddaSupport: true, cmsSupport: true, drmSupport: true, dvbinSupport: true, dvdnavSupport: true, jackaudioSupport: true, javascriptSupport: true, openalSupport: true, pipewireSupport: true, pulseSupport: true, rubberbandSupport: true, sdl2Support: true, sixelSupport: true, vaapiSupport: true, vapoursynthSupport: true, vdpauSupport: true, vulkanSupport: true, waylandSupport: true, x11Support: true, zimgSupport: true, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 107, 5], ["repo", 108, 5], ["tag", 109, 5], ["hash", 110, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 291, 9], ["moduleNames", 292, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mpv", 288, 28], ["pkg-config", 290, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["luaEnv", 277, 7], ["lua", 278, 7], ["vapoursynthSupport", 283, 7], ["vapoursynth", 284, 7], ["tests", 287, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 298, 5], ["description", 299, 5], ["longDescription", 300, 5], ["changelog", 304, 5], ["license", 305, 5], ["mainProgram", 309, 5], ["maintainers", 310, 5], ["platforms", 315, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 96, 3], ["version", 97, 3], ["outputs", 99, 3], ["src", 106, 3], ["postPatch", 113, 3], ["mesonFlags", 131, 3], ["mesonAutoFeatures", 145, 3], ["nativeBuildInputs", 147, 3], ["buildInputs", 161, 3], ["postBuild", 222, 3], ["postInstall", 228, 3], ["postFixup", 260, 3], ["nativeInstallCheckInputs", 265, 3], ["doInstallCheck", 268, 3], ["dontVersionCheck", 272, 3], ["passthru", 274, 3], ["meta", 297, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -103,12 +98,12 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "luasocket"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mpv",
       version: "0.41.0",
       outputs: nix.thunk(() => ["out", "dev", "doc", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mpv-player",
           repo: "mpv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -162,23 +157,23 @@ popd
       doInstallCheck: true,
       dontVersionCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         luaEnv: luaEnv,
         lua: lua,
         vapoursynthSupport: vapoursynthSupport,
         vapoursynth: vapoursynth,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           mpv: nix.thunk(() => nix.attr(nixosTests, "mpv")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["mpv"]),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://mpv.io",
         description: "General-purpose media player, fork of MPlayer and mplayer2",
         longDescription: "mpv is a free and open-source general-purpose video player, based on the\nMPlayer and mplayer2 projects, with great improvements above both.\n",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["vm", 77, 11]], [["rev-prefix", 78, 33]], [["tests", 77, 5], ["updateScript", 78, 5]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["teams", 86, 5], ["mainProgram", 87, 5], ["platforms", 88, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["cmakeFlags", 61, 3], ["doCheck", 68, 3], ["postInstall", 70, 3], ["passthru", 76, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, nixosTests: false, cmake: false, gettext: false, "libreoffice-unwrapped": false, "lomiri-content-hub": false, "lomiri-ui-toolkit": false, "pkg-config": false, poppler: false, qtbase: false, qtdeclarative: false, qtsystems: false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["vm", 77, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev-prefix", 78, 33]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 77, 5], ["updateScript", 78, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["teams", 86, 5], ["mainProgram", 87, 5], ["platforms", 88, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["cmakeFlags", 61, 3], ["doCheck", 68, 3], ["postInstall", 70, 3], ["passthru", 76, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const qtsystems = nix.arg($, "qtsystems");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lomiri-docviewer-app",
       version: "3.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/apps/lomiri-docviewer-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,15 +60,15 @@ substituteInPlace data/CMakeLists.txt \\
       doCheck: false,
       postInstall: "mkdir -p $out/share/lomiri-app-launch/splash\n\nln -s $out/share/{lomiri-docviewer-app/docviewer-app-splash.svg,lomiri-app-launch/splash/lomiri-docviewer-app.svg}\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           vm: nix.thunk(() => nix.sel(nixosTests, "lomiri-docviewer-app")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Document Viewer application for Ubuntu Touch devices",
         homepage: "https://gitlab.com/ubports/development/apps/lomiri-docviewer-app",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/apps/lomiri-docviewer-app/-/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["NIX_CFLAGS_COMPILE", 32, 7]], [["homepage", 55, 5], ["description", 56, 5], ["mainProgram", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["env", 32, 3], ["patches", 38, 3], ["postPatch", 42, 3], ["installPhase", 46, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gfortran: false, arpack: false, spooles: false, blas: false, lapack: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["mainProgram", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["env", 32, 3], ["patches", 38, 3], ["postPatch", 42, 3], ["installPhase", 46, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const lapack = nix.arg($, "lapack");
   nix.assert_((nix.asBool((nix.asBool(nix.eq(nix.sel(blas, "isILP64"), nix.sel(lapack, "isILP64"))) && nix.asBool(nix.eq(nix.sel(blas, "isILP64"), nix.sel(arpack, "isILP64"))))) && nix.asBool(!nix.asBool(nix.sel(blas, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ca/calculix-ccx/package.nix:12:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "calculix-ccx",
       version: "2.23",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.dhondt.de/ccx_${nix.sel(finalAttrs, "version")}.src.tar.bz2`),
           hash: "sha256-nIg4XBD7BPXcbE6YAnpRvr3YruOSDgUZDWwd0INX1uc=",
         })))),
       nativeBuildInputs: nix.thunk(() => [gfortran]),
       buildInputs: nix.thunk(() => [arpack, spooles, blas, lapack]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${spooles}/include/spooles`),
             "-std=legacy",
@@ -47,7 +44,7 @@ install -Dm0755 ccx_${nix.sel(finalAttrs, "version")} $out/bin/ccx
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.calculix.de",
         description: "Three-dimensional structural finite element program",
         mainProgram: "ccx",

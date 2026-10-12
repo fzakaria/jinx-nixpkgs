@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["NIX_CFLAGS_COMPILE", 41, 7]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["postPatch", 23, 3], ["env", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bison: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["postPatch", 23, 3], ["env", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ispell",
       version: "3.4.06",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.cs.hmc.edu/~geoff/tars/ispell-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-F8kWM9TIB1rMUDFjoWRj/FSrHHRTKArTnNPbdceD66Y=",
         })))),
@@ -41,9 +38,9 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(st
 #define HAS_RENAME
 EOF
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Interactive spell-checking program for Unix",
         homepage: "https://www.cs.hmc.edu/~geoff/ispell.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

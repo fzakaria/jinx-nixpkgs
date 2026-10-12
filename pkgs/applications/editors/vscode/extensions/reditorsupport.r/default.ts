@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 15, 5], ["publisher", 16, 5], ["version", 17, 5], ["hash", 18, 5]], [["changelog", 33, 5], ["description", 34, 5], ["downloadPage", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["mktplcRef", 14, 3], ["nativeBuildInputs", 20, 3], ["postInstall", 24, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, jq: false, moreutils: false, languageserver: true, R: false, radian: false, rPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 15, 5], ["publisher", 16, 5], ["version", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 33, 5], ["description", 34, 5], ["downloadPage", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 14, 3], ["nativeBuildInputs", 20, 3], ["postInstall", 24, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,9 +16,9 @@ export default nix.lambda((args) => (() => {
   const radian = nix.arg($, "radian");
   const rPackages = nix.arg($, "rPackages");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "r",
         publisher: "reditorsupport",
         version: "2.8.8",
@@ -35,7 +33,7 @@ jq '.contributes.configuration.properties."r.rterm.linux".default = "${nix.app(n
 jq '.contributes.configuration.properties."r.libPaths".default = [ "${languageserver}/library" ]' package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://marketplace.visualstudio.com/items/REditorSupport.r/changelog",
         description: "Visual Studio Code extension for the R programming language",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=REditorSupport.r",

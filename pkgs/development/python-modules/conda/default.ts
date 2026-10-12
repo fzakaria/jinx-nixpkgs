@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 35, 13], ["version", 35, 19], ["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["__structuredAttrs", 29, 3], ["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 42, 3], ["pythonRelaxDeps", 47, 3], ["dependencies", 49, 3], ["patches", 66, 3], ["makeWrapperArgs", 68, 3], ["pythonImportsCheck", 82, 3], ["pythonRemoveDeps", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, stdenv: false, fetchFromGitHub: false, hatchling: false, "hatch-vcs": false, archspec: false, "conda-libmamba-solver": false, "conda-package-handling": false, distro: false, frozendict: false, jsonpatch: false, packaging: false, platformdirs: false, pluggy: false, pycosat: false, requests: false, "ruamel-yaml": false, tqdm: false, truststore: false, defaultEnvPath: true, defaultPkgPath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 35, 13], ["version", 35, 19], ["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["__structuredAttrs", 29, 3], ["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 42, 3], ["pythonRelaxDeps", 47, 3], ["dependencies", 49, 3], ["patches", 66, 3], ["makeWrapperArgs", 68, 3], ["pythonImportsCheck", 82, 3], ["pythonRemoveDeps", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.5.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           owner: "conda",
@@ -78,14 +76,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["conda"]);
       const pythonRemoveDeps = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))), nix.thunk(() => ["menuinst"])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OS-agnostic, system-level binary package manager",
         homepage: "https://github.com/conda/conda",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ericthemagician"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         __structuredAttrs,
         pname,
         version,

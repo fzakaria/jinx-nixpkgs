@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 5], ["version", 24, 13], ["hash", 25, 5]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 32, 3], ["disabledTests", 43, 3], ["disabledTestPaths", 48, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, django: false, faker: false, fetchPypi: false, flask: false, "flask-sqlalchemy": false, mongoengine: false, pytestCheckHook: false, mongomock: false, sqlalchemy: false, "sqlalchemy-utils": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 5], ["version", 24, 13], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 32, 3], ["disabledTests", 43, 3], ["disabledTestPaths", 48, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "factory_boy",
           version: version,
           hash: "sha256-hmhi0iYSjfrH8rQWAofomdr1TyYSd4Mn3QPQ4ssePQM=",
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["examples/flask_alchemy/test_demoapp.py"]);
       const pythonImportsCheck = nix.thunk(() => ["factory"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python package to create factories for complex objects",
         homepage: "https://github.com/rbarrois/factory_boy",
         changelog: nix.thunk(() => nix.str`https://github.com/FactoryBoy/factory_boy/blob/${version}/docs/changelog.rst`),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

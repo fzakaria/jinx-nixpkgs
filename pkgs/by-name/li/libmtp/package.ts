@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["homepage", 67, 5], ["description", 68, 5], ["longDescription", 69, 5], ["platforms", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 40, 3], ["propagatedBuildInputs", 42, 3], ["preConfigure", 44, 3], ["configureFlags", 49, 3], ["configurePlatforms", 51, 3], ["makeFlags", 56, 3], ["enableParallelBuilding", 62, 3], ["doInstallCheck", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { stdenv: false, autoconf: false, automake: false, fetchFromGitHub: false, gettext: false, lib: false, libiconv: false, libtool: false, libusb1: false, "pkg-config": false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["longDescription", 69, 5], ["platforms", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 40, 3], ["propagatedBuildInputs", 42, 3], ["preConfigure", 44, 3], ["configureFlags", 49, 3], ["configurePlatforms", 51, 3], ["makeFlags", 56, 3], ["enableParallelBuilding", 62, 3], ["doInstallCheck", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libmtp",
       version: "1.1.23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libmtp",
           repo: "libmtp",
           rev: nix.thunk(() => nix.str`libmtp-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/libmtp/libmtp",
         description: "Implementation of Microsoft's Media Transfer Protocol",
         longDescription: "libmtp is an implementation of Microsoft's Media Transfer Protocol (MTP)\nin the form of a library suitable primarily for POSIX compliant operating\nsystems. We implement MTP Basic, the stuff proposed for standardization.\n",

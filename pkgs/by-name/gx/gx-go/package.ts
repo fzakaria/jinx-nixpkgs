@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["doInstallCheck", 28, 3], ["nativeInstallCheckInputs", 29, 3], ["preVersionCheck", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["doInstallCheck", 28, 3], ["nativeInstallCheckInputs", 29, 3], ["preVersionCheck", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gx-go",
       version: "1.9.0-unstable-2020-03-03",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "whyrusleeping",
           repo: "gx-go",
           rev: "9c30fadeac4aee8346d28c36d6bd5063da3d189a",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       preVersionCheck: "export version=\"1.9.0\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for importing go packages into gx",
         mainProgram: "gx-go",
         homepage: "https://github.com/whyrusleeping/gx-go",

@@ -2,10 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/postgresqlTestExtension.nix", [[["name", 17, 5], ["dontUnpack", 18, 5], ["doCheck", 19, 5], ["nativeCheckInputs", 20, 5], ["postgresqlTestUserOptions", 24, 5], ["sql", 25, 5], ["checkPhase", 39, 5], ["installPhase", 46, 5], ["__structuredAttrs", 47, 5]]]);
 const formals$1 = { args: { lib: false, postgresql: false, postgresqlTestHook: false, stdenvNoCC: false }, ellipsis: false };
 const formals$2 = { args: { asserts: true, finalPackage: false, sql: false, withPackages: true }, ellipsis: true };
 const formals$3 = { args: { query: false, expected: false, description: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/postgresqlTestExtension.nix", [["name", 17, 5], ["dontUnpack", 18, 5], ["doCheck", 19, 5], ["nativeCheckInputs", 20, 5], ["postgresqlTestUserOptions", 24, 5], ["sql", 25, 5], ["checkPhase", 39, 5], ["installPhase", 46, 5], ["__structuredAttrs", 47, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
     const sql = nix.arg($_1, "sql");
     const withPackages = nix.argOr($_1, "withPackages", () => []);
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.str`${nix.sel(finalPackage, "name")}-test-extension`),
         dontUnpack: true,
         doCheck: true,

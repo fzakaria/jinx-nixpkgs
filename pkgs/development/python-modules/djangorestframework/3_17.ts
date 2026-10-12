@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/3_17.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["complete", 47, 5]], [["changelog", 73, 5], ["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 58, 3], ["disabledTests", 65, 3], ["pythonImportsCheck", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonOlder: false, setuptools: false, django: false, coreapi: false, coreschema: false, "django-guardian": false, inflection: false, psycopg2: false, pygments: false, pyyaml: false, pytestCheckHook: false, "pytest-django": false, pytz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/3_17.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/3_17.nix", [["complete", 47, 5]]);
-const pos$3 = nix.positions(here + "/3_17.nix", [["changelog", 73, 5], ["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5]]);
-const pos$4 = nix.positions(here + "/3_17.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 58, 3], ["disabledTests", 65, 3], ["pythonImportsCheck", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pytest_django = nix.arg($, "pytest-django");
   const pytz = nix.arg($, "pytz");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "djangorestframework",
       version: "3.17.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "encode",
           repo: "django-rest-framework",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,14 +38,14 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [django]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         complete: nix.thunk(() => [coreapi, coreschema, django_guardian, inflection, psycopg2, pygments, pyyaml]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_django, pytestCheckHook, pytz], nix.sel(finalAttrs, "passthru", "optional-dependencies", "complete"))),
       disabledTests: nix.thunk(() => ["test_urlpatterns"]),
       pythonImportsCheck: nix.thunk(() => ["rest_framework"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/encode/django-rest-framework/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Web APIs for Django, made easy",
         homepage: "https://www.django-rest-framework.org/",

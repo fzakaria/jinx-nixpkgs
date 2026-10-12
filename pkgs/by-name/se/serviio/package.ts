@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 22, 5], ["description", 23, 5], ["longDescription", 24, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 22, 5], ["description", 23, 5], ["longDescription", 24, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
       const pname = "serviio";
       const version = "2.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.serviio.org/releases/${pname}-${version}-linux.tar.gz`),
           sha256: "sha256-ssi2fKbAMizr5eLAMng+G25ui3v98zCNWzMg7uLgGas=",
         }))));
       const installPhase = "mkdir -p $out\ncp -R config legal lib library plugins LICENCE.txt NOTICE.txt README.txt RELEASE_NOTES.txt $out\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://serviio.org",
         description: "UPnP Media Streaming Server",
         longDescription: "Serviio is a free media server. It allows you to stream your media files (music, video or images)\nto any DLNA-certified renderer device (e.g. a TV set, Bluray player, games console) on your home network.\n",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "thpham"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

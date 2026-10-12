@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 62, 5], ["repo", 63, 5], ["tag", 64, 5], ["hash", 65, 5], ["fetchSubmodules", 66, 5], ["leaveDotGit", 67, 5], ["postFetch", 68, 5]], [["package", 187, 9], ["command", 188, 9], ["version", 189, 30]], [["version", 186, 7]], [["extraArgs", 193, 7]], [["tests", 185, 5], ["updateScript", 192, 5]], [["homepage", 201, 5], ["description", 202, 5], ["mainProgram", 203, 5], ["branch", 204, 5], ["license", 205, 5], ["platforms", 206, 5], ["maintainers", 207, 5]], [["pname", 58, 3], ["version", 59, 3], ["src", 61, 3], ["postPatch", 76, 3], ["strictDeps", 81, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 93, 3], ["cmakeFlags", 138, 3], ["preConfigure", 156, 3], ["qtWrapperArgs", 161, 3], ["doInstallCheck", 165, 3], ["postInstall", 167, 3], ["dontWrapGApps", 178, 3], ["preFixup", 180, 3], ["passthru", 184, 3], ["meta", 200, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, qt6: false, wrapGAppsHook3: false, "re-plistbuddy": false, bzip2: false, cubeb: false, curl: false, enet: false, ffmpeg: false, fmt: false, glslang: false, gtest: false, hidapi: false, libxdmcp: false, libpulseaudio: false, libspng: false, libusb1: false, lz4: false, lzo: false, miniupnpc: false, "minizip-ng": false, openal: false, pugixml: false, sdl3: false, sfml: false, xxhash: false, xz: false, "zlib-ng": false, "alsa-lib": false, bluez: false, libGL: false, libxext: false, libxrandr: false, libevdev: false, udev: false, "vulkan-loader": false, moltenvk: false, testers: false, "nix-update-script": false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 62, 5], ["repo", 63, 5], ["tag", 64, 5], ["hash", 65, 5], ["fetchSubmodules", 66, 5], ["leaveDotGit", 67, 5], ["postFetch", 68, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 187, 9], ["command", 188, 9], ["version", 189, 30]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 186, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 193, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 185, 5], ["updateScript", 192, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 201, 5], ["description", 202, 5], ["mainProgram", 203, 5], ["branch", 204, 5], ["license", 205, 5], ["platforms", 206, 5], ["maintainers", 207, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 58, 3], ["version", 59, 3], ["src", 61, 3], ["postPatch", 76, 3], ["strictDeps", 81, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 93, 3], ["cmakeFlags", 138, 3], ["preConfigure", 156, 3], ["qtWrapperArgs", 161, 3], ["doInstallCheck", 165, 3], ["postInstall", 167, 3], ["dontWrapGApps", 178, 3], ["preFixup", 180, 3], ["passthru", 184, 3], ["meta", 200, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,11 +52,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "dolphin-emu",
       version: "2609",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dolphin-emu",
           repo: "dolphin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -128,23 +122,23 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), xvfb_run)} dolphin-emu --version`),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex", "([0-9]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://dolphin-emu.org",
         description: "Gamecube/Wii/Triforce emulator for x86_64 and ARMv8",
         mainProgram: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "Dolphin" : "dolphin-emu")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["updateScript", 122, 5]], [["description", 126, 5], ["longDescription", 127, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["teams", 142, 5], ["mainProgram", 143, 5], ["platforms", 144, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["pythonRelaxDeps", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["postInstall", 63, 3], ["nativeCheckInputs", 85, 3], ["disabledTests", 98, 3], ["disabledTestPaths", 105, 3], ["dontWrapGApps", 115, 3], ["preFixup", 117, 3], ["passthru", 121, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, glib: false, "gobject-introspection": false, wrapGAppsHook4: false, gitMinimal: false, gtksourceview5: false, libadwaita: false, python3Packages: false, "nix-update-script": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 122, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 126, 5], ["longDescription", 127, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["teams", 142, 5], ["mainProgram", 143, 5], ["platforms", 144, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["pythonRelaxDeps", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["postInstall", 63, 3], ["nativeCheckInputs", 85, 3], ["disabledTests", 98, 3], ["disabledTestPaths", 105, 3], ["dontWrapGApps", 115, 3], ["preFixup", 117, 3], ["passthru", 121, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gaphor",
       version: "3.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gaphor",
           repo: "gaphor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -98,11 +95,11 @@ substituteInPlace $out/share/dbus-1/services/org.gaphor.Gaphor.service \\
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "UML and SysML modeling tool",
         longDescription: "Gaphor is a UML, SysML, RAAML, and C4 modeling application. It\nis designed to be easy to use, while still being powerful.\nGaphor implements a fully-compliant UML 2 data model, so it is\nmuch more than a picture drawing tool. You can use Gaphor to\nquickly visualize different aspects of a system as well as\ncreate complete, highly complex models.\n\nGaphor provides four modeling languages: UML, SysML, RAAML and C4 and\nmakes them accessible to beginners.\n",
         homepage: "https://gaphor.org/",

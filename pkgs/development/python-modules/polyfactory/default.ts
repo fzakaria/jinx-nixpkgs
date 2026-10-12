@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["homepage", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5], ["changelog", 95, 5], ["description", 96, 5], ["license", 97, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 52, 3], ["disabledTestPaths", 57, 3], ["enabledTestPaths", 62, 3], ["disabledTests", 66, 3], ["pythonImportsCheck", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, hatchling: false, aiosqlite: false, "email-validator": false, faker: false, hypothesis: false, msgspec: false, pydantic: false, pymongo: false, sqlalchemy: false, "typing-extensions": false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5], ["changelog", 95, 5], ["description", 96, 5], ["license", 97, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 52, 3], ["disabledTestPaths", 57, 3], ["enabledTestPaths", 62, 3], ["disabledTests", 66, 3], ["pythonImportsCheck", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "polyfactory",
       version: "3.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "litestar-org",
           repo: "polyfactory",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["polyfactory"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://polyfactory.litestar.dev/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         maintainers: nix.thunk(() => (() => {

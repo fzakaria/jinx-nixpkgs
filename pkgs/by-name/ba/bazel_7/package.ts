@@ -2,26 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 56, 5], ["hash", 57, 5]], [["url", 113, 11], ["hash", 114, 11]], [["url", 118, 11], ["hash", 119, 11]], [["url", 123, 11], ["hash", 124, 11]], [["url", 129, 11], ["hash", 130, 11]], [["sourceProvenance", 157, 10]], [["name", 108, 5], ["src", 110, 5], ["nativeBuildInputs", 133, 5], ["buildInputs", 134, 5], ["dontUnpack", 139, 5], ["dontPatch", 140, 5], ["dontBuild", 141, 5], ["dontStrip", 142, 5], ["installPhase", 143, 5], ["postFixup", 152, 5], ["meta", 157, 5]], [["pname", 161, 5], ["version", 162, 13], ["targetPkgs", 163, 5], ["runScript", 164, 5]], [["name", 176, 7], ["src", 177, 15], ["version", 177, 19], ["sourceRoot", 178, 7], ["patches", 179, 7], ["patchFlags", 185, 7], ["nativeBuildInputs", 189, 7], ["configurePhase", 195, 7], ["dontFixup", 205, 7], ["buildPhase", 206, 7], ["installPhase", 241, 7], ["outputHashMode", 246, 7], ["outputHash", 247, 7], ["outputHashAlgo", 257, 7]], [["name", 264, 5], ["runtimeInputs", 265, 5], ["text", 266, 5]], [["name", 277, 5], ["src", 278, 5], ["nativeBuildInputs", 279, 5], ["buildPhase", 280, 5]], [["name", 295, 5], ["text", 296, 5]], [["strictActionEnvPatch", 384, 7]], [["bazelSystemBazelRCPath", 390, 7]], [["url", 395, 7], ["hash", 396, 7]], [["homepage", 537, 5], ["description", 538, 5], ["sourceProvenance", 539, 5], ["license", 543, 5], ["teams", 544, 5], ["mainProgram", 545, 5], ["platforms", 546, 13]], [["NIX_CFLAGS_COMPILE", 732, 7]], [["bazelDeps", 739, 13], ["bazelFhs", 739, 23], ["bazelBootstrap", 739, 32]], [["pname", 312, 3], ["version", 313, 11], ["src", 313, 19], ["sourceRoot", 314, 11], ["patches", 316, 3], ["postPatch", 402, 3], ["meta", 536, 3], ["__darwinAllowLocalNetworking", 550, 3], ["buildInputs", 552, 3], ["nativeBuildInputs", 560, 3], ["preBuildPhases", 578, 3], ["preBuildPhase", 579, 3], ["buildPhase", 589, 3], ["installPhase", 620, 3], ["installCheckPhase", 656, 3], ["postFixup", 709, 3], ["dontStrip", 721, 3], ["dontPatchELF", 722, 3], ["env", 732, 3], ["passthru", 734, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, makeWrapper: false, writeTextFile: false, replaceVars: false, fetchpatch: false, writeShellApplication: false, makeBinaryWrapper: false, autoPatchelfHook: false, buildFHSEnv: false, bazel_7: false, bazel_self: true, runtimeShell: false, zip: false, unzip: false, bash: false, coreutils: false, which: false, gawk: false, gnused: false, gnutar: false, gnugrep: false, gzip: false, findutils: false, diffutils: false, gnupatch: false, file: false, installShellFiles: false, lndir: false, python3: false, cctools: false, libtool: false, darwin: false, jdk21_headless: false, buildJdk: true, runJdk: true, enableNixHacks: true, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 56, 5], ["hash", 57, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 113, 11], ["hash", 114, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 118, 11], ["hash", 119, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 123, 11], ["hash", 124, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 129, 11], ["hash", 130, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["sourceProvenance", 157, 10]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 108, 5], ["src", 110, 5], ["nativeBuildInputs", 133, 5], ["buildInputs", 134, 5], ["dontUnpack", 139, 5], ["dontPatch", 140, 5], ["dontBuild", 141, 5], ["dontStrip", 142, 5], ["installPhase", 143, 5], ["postFixup", 152, 5], ["meta", 157, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 161, 5], ["version", 162, 13], ["targetPkgs", 163, 5], ["runScript", 164, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 176, 7], ["src", 177, 15], ["version", 177, 19], ["sourceRoot", 178, 7], ["patches", 179, 7], ["patchFlags", 185, 7], ["nativeBuildInputs", 189, 7], ["configurePhase", 195, 7], ["dontFixup", 205, 7], ["buildPhase", 206, 7], ["installPhase", 241, 7], ["outputHashMode", 246, 7], ["outputHash", 247, 7], ["outputHashAlgo", 257, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 264, 5], ["runtimeInputs", 265, 5], ["text", 266, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 277, 5], ["src", 278, 5], ["nativeBuildInputs", 279, 5], ["buildPhase", 280, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["name", 295, 5], ["text", 296, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["strictActionEnvPatch", 384, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["bazelSystemBazelRCPath", 390, 7]]);
-const pos$15 = nix.positions(here + "/package.nix", [["url", 395, 7], ["hash", 396, 7]]);
-const pos$16 = nix.positions(here + "/package.nix", [["homepage", 537, 5], ["description", 538, 5], ["sourceProvenance", 539, 5], ["license", 543, 5], ["teams", 544, 5], ["mainProgram", 545, 5], ["platforms", 546, 13]]);
-const pos$17 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 732, 7]]);
-const pos$18 = nix.positions(here + "/package.nix", [["bazelDeps", 739, 13], ["bazelFhs", 739, 23], ["bazelBootstrap", 739, 32]]);
-const pos$19 = nix.positions(here + "/package.nix", [["pname", 312, 3], ["version", 313, 11], ["src", 313, 19], ["sourceRoot", 314, 11], ["patches", 316, 3], ["postPatch", 402, 3], ["meta", 536, 3], ["__darwinAllowLocalNetworking", 550, 3], ["buildInputs", 552, 3], ["nativeBuildInputs", 560, 3], ["preBuildPhases", 578, 3], ["preBuildPhase", 579, 3], ["buildPhase", 589, 3], ["installPhase", 620, 3], ["installCheckPhase", 656, 3], ["postFixup", 709, 3], ["dontStrip", 721, 3], ["dontPatchELF", 722, 3], ["env", 732, 3], ["passthru", 734, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -66,7 +48,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => "7.6.0");
   const sourceRoot = ".";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/bazelbuild/bazel/releases/download/${version}/bazel-${version}-dist.zip`),
       hash: "sha256-eQKNB38G8ziDuorzoj5Rne/DZQL22meVLrdK0z7B2FI=",
     }))));
@@ -91,19 +73,19 @@ export default nix.lambda((args) => (() => {
   const bazelBootstrap = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const name = "bazelBootstrap";
       const src_1 = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/bazelbuild/bazel/releases/download/${version}/bazel_nojdk-${version}-linux-x86_64`),
           hash: "sha256-94KFvsS7fInXFTQZPzMq6DxnHQrRktljwACyAz8adSw=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/bazelbuild/bazel/releases/download/${version}/bazel_nojdk-${version}-linux-arm64`),
           hash: "sha256-wfuZLSHa77wr0A4ZLF5DqH7qyOljYNXM2a5imoS+nGQ",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-darwin")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://github.com/bazelbuild/bazel/releases/download/${version}/bazel-${version}-darwin-x86_64`),
           hash: "sha256-qAb9s6R5+EbqVfWHUT7sk1sOrbDEPv4EhgXH7nC46Zw=",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`https://github.com/bazelbuild/bazel/releases/download/${version}/bazel-${version}-darwin-arm64`),
           hash: "sha256-4bRp4OvkRIvhpZ2r/eFJdwrByECHy3rncDEM1tClFYo=",
         })))))));
@@ -118,14 +100,14 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nativeBuildInputs)}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
           return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name,
         src: src_1,
         nativeBuildInputs,
@@ -140,7 +122,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   const bazelFhs = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "bazel",
       version: version,
       targetPkgs: (_) => [bazelBootstrap],
@@ -149,7 +131,7 @@ export default nix.lambda((args) => (() => {
   const bazelDeps = nix.thunk(() => (() => {
     const bazelForDeps = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(bazelBootstrap) : nix.force(bazelFhs)));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         name: "bazelDeps",
         src: src,
         version: version,
@@ -200,7 +182,7 @@ runHook postBuild
   })());
   const defaultShellPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), defaultShellUtils));
   const bashWithDefaultShellUtilsSh = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       name: "bash",
       runtimeInputs: defaultShellUtils,
       text: nix.thunk(() => nix.str`if [[ "$PATH" == "/no-such-path" ]]; then
@@ -210,7 +192,7 @@ exec ${bash}/bin/bash "$@"
 `),
     }))));
   const bashWithDefaultShellUtils = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       name: "bash",
       src: bashWithDefaultShellUtilsSh,
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
@@ -227,7 +209,7 @@ exec ${bash}/bin/bash "$@"
     return (nix.asBool((nix.asBool(isDarwin) && nix.asBool(isAarch64))) ? "arm64" : nix.sel(nix.lookup(w, "parsed"), "cpu", "name"));
   })());
   const bazelRC = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       name: "bazel-rc",
       text: nix.thunk(() => nix.str`startup --server_javabase=${runJdk}
 
@@ -251,10 +233,10 @@ try-import /etc/bazel.bazelrc
         nix.path(here, "./darwin_sleep.patch"),
         nix.path(here, "./xcode_locator.patch"),
         nix.path(here, "./trim-last-argument-to-gcc-if-empty.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./strict_action_env.patch"), nix.thunk(() => ({ [nix.POS]: pos$13, strictActionEnvPatch: defaultShellPath })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./bazel_rc.patch"), nix.thunk(() => ({ [nix.POS]: pos$14, bazelSystemBazelRCPath: bazelRC })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./strict_action_env.patch"), nix.thunk(() => ({ [nix.POS]: $pos[12], strictActionEnvPatch: defaultShellPath })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./bazel_rc.patch"), nix.thunk(() => ({ [nix.POS]: $pos[13], bazelSystemBazelRCPath: bazelRC })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             url: "https://github.com/bazelbuild/bazel/commit/1d206cac050b6c7d9ce65403e6a9909a49bfe4bc.patch",
             hash: "sha256-Tg5o1Va7dd5hvXbWhZiog+VtuiqngqbbYOkCafVudDs=",
           })))),
@@ -380,7 +362,7 @@ patchShebangs . >/dev/null
         return nix.add(nix.add("function sedVerbose() {\n  local path=$1; shift;\n  sed -i\".bak-nix\" \"$path\" \"$@\"\n  diff -U0 \"$path.bak-nix\" \"$path\" | sed \"s/^/  /\" || true\n  rm -f \"$path.bak-nix\"\n}\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), darwinPatches)), genericPatches);
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         homepage: "https://github.com/bazelbuild/bazel/",
         description: "Build tool that builds code quickly and reliably",
         sourceProvenance: nix.thunk(() => (() => {
@@ -539,17 +521,17 @@ echo "${bazelRC}" >> $out/nix-support/depends
       const dontStrip = true;
       const dontPatchELF = true;
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-fno-define-target-os-macros")),
       }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         bazelDeps: bazelDeps,
         bazelFhs: bazelFhs,
         bazelBootstrap: bazelBootstrap,
       }));
       return {
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         pname,
         version: version_1,
         src: src_1,

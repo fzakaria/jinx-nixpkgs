@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 7], ["hash", 30, 7]], [["name", 42, 7], ["exec", 43, 7], ["icon", 44, 7], ["desktopName", 45, 7], ["comment", 46, 7], ["categories", 47, 7]], [["updateScript", 78, 12]], [["description", 89, 5], ["longDescription", 90, 5], ["homepage", 95, 5], ["license", 96, 5], ["platforms", 97, 5], ["sourceProvenance", 98, 5], ["maintainers", 99, 5], ["mainProgram", 102, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 24, 3], ["nativeBuildInputs", 33, 3], ["desktopItems", 40, 3], ["installPhase", 51, 3], ["passthru", 78, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, copyDesktopItems: false, jdk17: false, makeDesktopItem: false, makeWrapper: false, unzip: false, "xdg-utils": false, imagemagick: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 42, 7], ["exec", 43, 7], ["icon", 44, 7], ["desktopName", 45, 7], ["comment", 46, 7], ["categories", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 78, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 89, 5], ["longDescription", 90, 5], ["homepage", 95, 5], ["license", 96, 5], ["platforms", 97, 5], ["sourceProvenance", 98, 5], ["maintainers", 99, 5], ["mainProgram", 102, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 24, 3], ["nativeBuildInputs", 33, 3], ["desktopItems", 40, 3], ["installPhase", 51, 3], ["passthru", 78, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const java = jdk17;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "irpf",
       version: "2026-1.5",
       src: nix.thunk(() => (() => {
         const year = nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version"))))));
         return nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://downloadirpf.receita.fazenda.gov.br/irpf/${year}/irpf/arquivos/IRPF${nix.sel(finalAttrs, "version")}.zip`),
             hash: "sha256-/y0XE+i+Sug/2TfqQuPQesYaDVn41v3hkikU/hmxxNE=",
           })));
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip, makeWrapper, copyDesktopItems, imagemagick]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "irpf",
             exec: "irpf",
             icon: "rfb",
@@ -73,11 +69,11 @@ unzip -j lib/ppgd-icones-4.0.jar icones/rfb.png -d $out/share/icons/hicolor/32x3
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-irpf", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pup common-updater-scripts\n\nset -eu -o pipefail\n#parses the html with the install links for the containers that contain the instalation files of type 'file archive, gets the version number of each version, and sorts to get the latest one on the website\nversion=\"$(curl -s https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/download/pgd/dirpf | pup '.rfb_container .rfb_ositem:parent-of(.fa-file-archive) attr{href}' | grep -oP \"IRPF\\K(\\d+)-[\\d.]+\\d\" | sort -r |  head -1)\"\nupdate-source-version irpf \"$version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Brazilian government application for reporting income tax",
         longDescription: "Brazilian government application for reporting income tax.\n\nIRFP - Imposto de Renda Pessoa Física - Receita Federal do Brasil.\n",
         homepage: "https://www.gov.br/receitafederal/pt-br",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["name", 24, 7], ["url", 25, 7], ["sha256", 26, 7]], [["name", 29, 7], ["url", 30, 7], ["sha256", 31, 7]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, fetchFromGitHub: false, fetchpatch: false, qmake: false, "pkg-config": false, gtk2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 24, 7], ["url", 25, 7], ["sha256", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 29, 7], ["url", 30, 7], ["sha256", 31, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const gtk2 = nix.arg($, "gtk2");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "qtstyleplugins",
       version: "5.0.0-unstable-2017-03-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qt",
           repo: "qtstyleplugins",
           rev: "335dbece103e2cbf6c7cf819ab6672c2956b17b3",
@@ -34,19 +30,19 @@ export default nix.lambda((args) => (() => {
             const name = "0001-fix-build-against-Qt-5.15.patch";
             const url = nix.thunk(() => nix.str`https://aur.archlinux.org/cgit/aur.git/plain/${name}?h=qt5-styleplugins`);
             const sha256 = "j0CgfutqFawy11IqFnlrkfMsMD01NjX/MkfVEVxj1QM=";
-            return { [nix.POS]: pos$2, name, url, sha256 };
+            return { [nix.POS]: $pos[1], name, url, sha256 };
           })()))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => (() => {
             const name = "0002-fix-gtk2-background.patch";
             const url = nix.thunk(() => nix.str`https://aur.archlinux.org/cgit/aur.git/plain/${name}?h=qt5-styleplugins`);
             const sha256 = "qUOkNckrSUEzXY1PUZKfbiCjhNyB5ZBw2IN/j32GKM4=";
-            return { [nix.POS]: pos$3, name, url, sha256 };
+            return { [nix.POS]: $pos[2], name, url, sha256 };
           })()))),
       ]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, qmake]),
       buildInputs: nix.thunk(() => [gtk2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Additional style plugins for Qt5, including BB10, GTK, Cleanlooks, Motif, Plastique",
         homepage: "http://blog.qt.io/blog/2012/10/30/cleaning-up-styles-in-qt5-and-adding-fusion/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -2,58 +2,13 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/release-haskell.nix", [[["supportedSystems", 19, 13]], [["packages", 129, 15]], [["haskell", 129, 7]], [["compiler", 217, 15]], [["haskell", 218, 13]], [["agda", 221, 9], ["kmonad", 224, 11], ["xmonad", 225, 11], ["xmonad-xdg-autostart", 226, 11]], [["elm", 349, 11], ["elm-format", 350, 11]], [["compiler", 368, 21]], [["hello", 376, 17], ["lens", 377, 17], ["random", 378, 17]], [["haskell", 368, 13], ["haskellPackages", 374, 13]], [["hello", 397, 17], ["lens", 398, 17], ["random", 399, 17], ["QuickCheck", 400, 17], ["cabal2nix", 401, 17], ["terminfo", 402, 17], ["xhtml", 403, 17], ["postgrest", 404, 17]], [["hello", 410, 17], ["lens", 411, 17], ["random", 412, 17], ["QuickCheck", 413, 17], ["cabal2nix", 414, 17], ["terminfo", 415, 17], ["xhtml", 416, 17], ["postgrest", 417, 17]], [["ghc948", 408, 44]], [["native-bignum", 408, 30]], [["packages", 408, 21]], [["haskellPackages", 395, 13], ["haskell", 408, 13]], [["ghc", 432, 19], ["hello", 433, 19], ["microlens", 434, 19]], [["ghc", 440, 19], ["hello", 441, 19], ["microlens", 442, 19], ["miso", 443, 19], ["reflex-dom", 444, 19]], [["ghc", 450, 19], ["hello", 451, 19], ["microlens", 452, 19]], [["ghc912", 438, 32], ["ghcHEAD", 448, 32]], [["packages", 438, 23]], [["haskellPackages", 430, 15], ["haskell", 438, 15]], [["ghc", 459, 13], ["microlens", 461, 13]], [["ghc912", 457, 33]], [["packages", 457, 24]], [["haskell", 457, 16]], [["ghc948", 470, 15]], [["compiler", 467, 19]], [["haskell", 467, 11]], [["ghc948", 480, 15]], [["compiler", 477, 19]], [["haskell", 477, 11]], [["ghc", 494, 19], ["hello", 495, 19], ["th-orphans", 496, 19]], [["haskellPackages", 492, 15]], [["ghcjs", 423, 9], ["ucrt64", 457, 9], ["riscv64", 465, 9], ["aarch64-multiplatform", 475, 9]], [["haskellPackages", 216, 7], ["haskell", 217, 7], ["tests", 218, 7], ["nixosTests", 220, 7], ["agdaPackages", 230, 7], ["agda", 234, 9], ["alex", 235, 9], ["arion", 236, 9], ["aws-spend-summary", 237, 9], ["bench", 238, 9], ["blucontrol", 239, 9], ["cabal-install", 240, 9], ["cabal2nix", 241, 9], ["cachix", 242, 9], ["changelog-d", 244, 9], ["client-ip-echo", 245, 9], ["cornelis", 246, 9], ["codd", 247, 9], ["darcs", 248, 9], ["dconf2nix", 249, 9], ["dhall", 250, 9], ["dhall-bash", 251, 9], ["dhall-docs", 252, 9], ["dhall-lsp-server", 253, 9], ["dhall-json", 254, 9], ["dhall-nix", 255, 9], ["dhall-nixpkgs", 256, 9], ["dhall-yaml", 257, 9], ["diagrams-builder", 258, 9], ["echidna", 259, 9], ["elm2nix", 260, 9], ["fffuu", 261, 9], ["futhark", 262, 9], ["ghcid", 263, 9], ["git-annex", 264, 9], ["git-brunch", 265, 9], ["gitit", 266, 9], ["glirc", 267, 9], ["hadolint", 268, 9], ["happy", 269, 9], ["haskell-ci", 270, 9], ["haskell-language-server", 271, 9], ["hci", 272, 9], ["hercules-ci-agent", 273, 9], ["hinit", 274, 9], ["hedgewars", 275, 9], ["hledger", 276, 9], ["hledger-check-fancyassertions", 277, 9], ["hledger-iadd", 278, 9], ["hledger-interest", 279, 9], ["hledger-ui", 280, 9], ["hledger-web", 281, 9], ["hlint", 282, 9], ["hpack", 283, 9], ["hscolour", 284, 9], ["hugs", 285, 9], ["icepeak", 286, 9], ["ihaskell", 287, 9], ["jacinda", 288, 9], ["jl", 289, 9], ["json2yaml", 290, 9], ["koka", 291, 9], ["krank", 292, 9], ["lambdabot", 293, 9], ["lhs2tex", 294, 9], ["madlang", 295, 9], ["matterhorn", 296, 9], ["mkjson", 297, 9], ["mueval", 298, 9], ["naproche", 299, 9], ["niv", 300, 9], ["nix-delegate", 301, 9], ["nix-deploy", 302, 9], ["nix-diff", 303, 9], ["nix-output-monitor", 304, 9], ["nix-script", 305, 9], ["nix-tree", 306, 9], ["nixfmt", 307, 9], ["nota", 308, 9], ["nvfetcher", 309, 9], ["oama", 310, 9], ["ormolu", 311, 9], ["pakcs", 312, 9], ["pandoc", 313, 9], ["place-cursor-at", 314, 9], ["pinboard-notes-backup", 315, 9], ["pretty-simple", 316, 9], ["purenix", 317, 9], ["shake", 318, 9], ["shellcheck", 319, 9], ["shellcheck-minimal", 320, 9], ["sourceAndTags", 321, 9], ["spacecookie", 322, 9], ["spago-legacy", 323, 9], ["specup", 324, 9], ["splot", 325, 9], ["stack", 326, 9], ["stack2nix", 327, 9], ["stutter", 328, 9], ["stylish-haskell", 329, 9], ["taffybar", 330, 9], ["tamarin-prover", 331, 9], ["termonad", 332, 9], ["tldr-hs", 333, 9], ["tweet-hs", 334, 9], ["update-nix-fetchgit", 335, 9], ["uusi", 336, 9], ["uqm", 337, 9], ["uuagc", 338, 9], ["vaultenv", 339, 9], ["xmobar", 340, 9], ["xmonadctl", 341, 9], ["xmonad-with-packages", 342, 9], ["yi", 343, 9], ["elmPackages", 347, 7], ["pkgsMusl", 355, 7], ["pkgsStatic", 386, 7], ["pkgsCross", 422, 7]], [["cabal-install", 509, 7], ["Cabal_3_10_3_0", 516, 7], ["Cabal_3_12_1_0", 520, 7], ["Cabal_3_14_2_0", 521, 7], ["Cabal_3_16_1_0", 522, 7], ["cabal2nix", 523, 7], ["cabal2nix-unstable", 524, 7], ["funcmp", 525, 7], ["haskell-debugger", 526, 7], ["haskell-language-server", 529, 7], ["hoogle", 530, 7], ["hlint", 531, 7], ["hpack", 534, 7], ["hsdns", 535, 7], ["iserv-proxy", 536, 7], ["jailbreak-cabal", 537, 7], ["language-nix", 538, 7], ["nix-paths", 539, 7], ["titlecase", 540, 7], ["ghc-lib", 541, 7], ["ghc-lib-parser", 542, 7], ["ghc-lib-parser-ex", 543, 7], ["ghc-source-gen", 544, 7], ["ghc-tags", 547, 7], ["hashable", 550, 7], ["primitive", 551, 7], ["scrod", 552, 7], ["semaphore-compat", 555, 7], ["weeder", 560, 7], ["ghc-compat", 565, 7], ["MicroCabal", 568, 7], ["array", 573, 7], ["containers", 578, 7], ["exceptions", 581, 7], ["filepath", 584, 7], ["mtl", 587, 7], ["os-string", 590, 7], ["parsec", 593, 7], ["terminfo", 596, 7], ["time", 599, 7], ["transformers", 602, 7], ["hscolour", 607, 7], ["random", 610, 7]], [["description", 618, 11], ["teams", 622, 11]], [["name", 616, 9], ["meta", 617, 9], ["constituents", 624, 9]], [["description", 657, 11], ["teams", 658, 11]], [["name", 655, 9], ["meta", 656, 9], ["constituents", 660, 9]], [["description", 668, 11], ["maintainers", 669, 11]], [["name", 666, 9], ["meta", 667, 9], ["constituents", 673, 9]], [["description", 682, 11], ["maintainers", 683, 11]], [["name", 680, 9], ["meta", 681, 9], ["constituents", 688, 9]], [["mergeable", 615, 7], ["maintained", 654, 7], ["muslGHCs", 665, 7], ["staticHaskellPackages", 679, 7]]]);
 const formals$1 = { args: { supportedSystems: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/release-haskell.nix", [["supportedSystems", 19, 13]]);
-const pos$2 = nix.positions(here + "/release-haskell.nix", [["packages", 129, 15]]);
-const pos$3 = nix.positions(here + "/release-haskell.nix", [["haskell", 129, 7]]);
-const pos$4 = nix.positions(here + "/release-haskell.nix", [["compiler", 217, 15]]);
-const pos$5 = nix.positions(here + "/release-haskell.nix", [["haskell", 218, 13]]);
-const pos$6 = nix.positions(here + "/release-haskell.nix", [["agda", 221, 9], ["kmonad", 224, 11], ["xmonad", 225, 11], ["xmonad-xdg-autostart", 226, 11]]);
-const pos$7 = nix.positions(here + "/release-haskell.nix", [["elm", 349, 11], ["elm-format", 350, 11]]);
-const pos$8 = nix.positions(here + "/release-haskell.nix", [["compiler", 368, 21]]);
-const pos$9 = nix.positions(here + "/release-haskell.nix", [["hello", 376, 17], ["lens", 377, 17], ["random", 378, 17]]);
-const pos$10 = nix.positions(here + "/release-haskell.nix", [["haskell", 368, 13], ["haskellPackages", 374, 13]]);
-const pos$11 = nix.positions(here + "/release-haskell.nix", [["hello", 397, 17], ["lens", 398, 17], ["random", 399, 17], ["QuickCheck", 400, 17], ["cabal2nix", 401, 17], ["terminfo", 402, 17], ["xhtml", 403, 17], ["postgrest", 404, 17]]);
-const pos$12 = nix.positions(here + "/release-haskell.nix", [["hello", 410, 17], ["lens", 411, 17], ["random", 412, 17], ["QuickCheck", 413, 17], ["cabal2nix", 414, 17], ["terminfo", 415, 17], ["xhtml", 416, 17], ["postgrest", 417, 17]]);
-const pos$13 = nix.positions(here + "/release-haskell.nix", [["ghc948", 408, 44]]);
-const pos$14 = nix.positions(here + "/release-haskell.nix", [["native-bignum", 408, 30]]);
-const pos$15 = nix.positions(here + "/release-haskell.nix", [["packages", 408, 21]]);
-const pos$16 = nix.positions(here + "/release-haskell.nix", [["haskellPackages", 395, 13], ["haskell", 408, 13]]);
-const pos$17 = nix.positions(here + "/release-haskell.nix", [["ghc", 432, 19], ["hello", 433, 19], ["microlens", 434, 19]]);
-const pos$18 = nix.positions(here + "/release-haskell.nix", [["ghc", 440, 19], ["hello", 441, 19], ["microlens", 442, 19], ["miso", 443, 19], ["reflex-dom", 444, 19]]);
-const pos$19 = nix.positions(here + "/release-haskell.nix", [["ghc", 450, 19], ["hello", 451, 19], ["microlens", 452, 19]]);
-const pos$20 = nix.positions(here + "/release-haskell.nix", [["ghc912", 438, 32], ["ghcHEAD", 448, 32]]);
-const pos$21 = nix.positions(here + "/release-haskell.nix", [["packages", 438, 23]]);
-const pos$22 = nix.positions(here + "/release-haskell.nix", [["haskellPackages", 430, 15], ["haskell", 438, 15]]);
-const pos$23 = nix.positions(here + "/release-haskell.nix", [["ghc", 459, 13], ["microlens", 461, 13]]);
-const pos$24 = nix.positions(here + "/release-haskell.nix", [["ghc912", 457, 33]]);
-const pos$25 = nix.positions(here + "/release-haskell.nix", [["packages", 457, 24]]);
-const pos$26 = nix.positions(here + "/release-haskell.nix", [["haskell", 457, 16]]);
-const pos$27 = nix.positions(here + "/release-haskell.nix", [["ghc948", 470, 15]]);
-const pos$28 = nix.positions(here + "/release-haskell.nix", [["compiler", 467, 19]]);
-const pos$29 = nix.positions(here + "/release-haskell.nix", [["haskell", 467, 11]]);
-const pos$30 = nix.positions(here + "/release-haskell.nix", [["ghc948", 480, 15]]);
-const pos$31 = nix.positions(here + "/release-haskell.nix", [["compiler", 477, 19]]);
-const pos$32 = nix.positions(here + "/release-haskell.nix", [["haskell", 477, 11]]);
-const pos$33 = nix.positions(here + "/release-haskell.nix", [["ghc", 494, 19], ["hello", 495, 19], ["th-orphans", 496, 19]]);
-const pos$34 = nix.positions(here + "/release-haskell.nix", [["haskellPackages", 492, 15]]);
-const pos$35 = nix.positions(here + "/release-haskell.nix", [["ghcjs", 423, 9], ["ucrt64", 457, 9], ["riscv64", 465, 9], ["aarch64-multiplatform", 475, 9]]);
-const pos$36 = nix.positions(here + "/release-haskell.nix", [["haskellPackages", 216, 7], ["haskell", 217, 7], ["tests", 218, 7], ["nixosTests", 220, 7], ["agdaPackages", 230, 7], ["agda", 234, 9], ["alex", 235, 9], ["arion", 236, 9], ["aws-spend-summary", 237, 9], ["bench", 238, 9], ["blucontrol", 239, 9], ["cabal-install", 240, 9], ["cabal2nix", 241, 9], ["cachix", 242, 9], ["changelog-d", 244, 9], ["client-ip-echo", 245, 9], ["cornelis", 246, 9], ["codd", 247, 9], ["darcs", 248, 9], ["dconf2nix", 249, 9], ["dhall", 250, 9], ["dhall-bash", 251, 9], ["dhall-docs", 252, 9], ["dhall-lsp-server", 253, 9], ["dhall-json", 254, 9], ["dhall-nix", 255, 9], ["dhall-nixpkgs", 256, 9], ["dhall-yaml", 257, 9], ["diagrams-builder", 258, 9], ["echidna", 259, 9], ["elm2nix", 260, 9], ["fffuu", 261, 9], ["futhark", 262, 9], ["ghcid", 263, 9], ["git-annex", 264, 9], ["git-brunch", 265, 9], ["gitit", 266, 9], ["glirc", 267, 9], ["hadolint", 268, 9], ["happy", 269, 9], ["haskell-ci", 270, 9], ["haskell-language-server", 271, 9], ["hci", 272, 9], ["hercules-ci-agent", 273, 9], ["hinit", 274, 9], ["hedgewars", 275, 9], ["hledger", 276, 9], ["hledger-check-fancyassertions", 277, 9], ["hledger-iadd", 278, 9], ["hledger-interest", 279, 9], ["hledger-ui", 280, 9], ["hledger-web", 281, 9], ["hlint", 282, 9], ["hpack", 283, 9], ["hscolour", 284, 9], ["hugs", 285, 9], ["icepeak", 286, 9], ["ihaskell", 287, 9], ["jacinda", 288, 9], ["jl", 289, 9], ["json2yaml", 290, 9], ["koka", 291, 9], ["krank", 292, 9], ["lambdabot", 293, 9], ["lhs2tex", 294, 9], ["madlang", 295, 9], ["matterhorn", 296, 9], ["mkjson", 297, 9], ["mueval", 298, 9], ["naproche", 299, 9], ["niv", 300, 9], ["nix-delegate", 301, 9], ["nix-deploy", 302, 9], ["nix-diff", 303, 9], ["nix-output-monitor", 304, 9], ["nix-script", 305, 9], ["nix-tree", 306, 9], ["nixfmt", 307, 9], ["nota", 308, 9], ["nvfetcher", 309, 9], ["oama", 310, 9], ["ormolu", 311, 9], ["pakcs", 312, 9], ["pandoc", 313, 9], ["place-cursor-at", 314, 9], ["pinboard-notes-backup", 315, 9], ["pretty-simple", 316, 9], ["purenix", 317, 9], ["shake", 318, 9], ["shellcheck", 319, 9], ["shellcheck-minimal", 320, 9], ["sourceAndTags", 321, 9], ["spacecookie", 322, 9], ["spago-legacy", 323, 9], ["specup", 324, 9], ["splot", 325, 9], ["stack", 326, 9], ["stack2nix", 327, 9], ["stutter", 328, 9], ["stylish-haskell", 329, 9], ["taffybar", 330, 9], ["tamarin-prover", 331, 9], ["termonad", 332, 9], ["tldr-hs", 333, 9], ["tweet-hs", 334, 9], ["update-nix-fetchgit", 335, 9], ["uusi", 336, 9], ["uqm", 337, 9], ["uuagc", 338, 9], ["vaultenv", 339, 9], ["xmobar", 340, 9], ["xmonadctl", 341, 9], ["xmonad-with-packages", 342, 9], ["yi", 343, 9], ["elmPackages", 347, 7], ["pkgsMusl", 355, 7], ["pkgsStatic", 386, 7], ["pkgsCross", 422, 7]]);
-const pos$37 = nix.positions(here + "/release-haskell.nix", [["cabal-install", 509, 7], ["Cabal_3_10_3_0", 516, 7], ["Cabal_3_12_1_0", 520, 7], ["Cabal_3_14_2_0", 521, 7], ["Cabal_3_16_1_0", 522, 7], ["cabal2nix", 523, 7], ["cabal2nix-unstable", 524, 7], ["funcmp", 525, 7], ["haskell-debugger", 526, 7], ["haskell-language-server", 529, 7], ["hoogle", 530, 7], ["hlint", 531, 7], ["hpack", 534, 7], ["hsdns", 535, 7], ["iserv-proxy", 536, 7], ["jailbreak-cabal", 537, 7], ["language-nix", 538, 7], ["nix-paths", 539, 7], ["titlecase", 540, 7], ["ghc-lib", 541, 7], ["ghc-lib-parser", 542, 7], ["ghc-lib-parser-ex", 543, 7], ["ghc-source-gen", 544, 7], ["ghc-tags", 547, 7], ["hashable", 550, 7], ["primitive", 551, 7], ["scrod", 552, 7], ["semaphore-compat", 555, 7], ["weeder", 560, 7], ["ghc-compat", 565, 7], ["MicroCabal", 568, 7], ["array", 573, 7], ["containers", 578, 7], ["exceptions", 581, 7], ["filepath", 584, 7], ["mtl", 587, 7], ["os-string", 590, 7], ["parsec", 593, 7], ["terminfo", 596, 7], ["time", 599, 7], ["transformers", 602, 7], ["hscolour", 607, 7], ["random", 610, 7]]);
-const pos$38 = nix.positions(here + "/release-haskell.nix", [["description", 618, 11], ["teams", 622, 11]]);
-const pos$39 = nix.positions(here + "/release-haskell.nix", [["name", 616, 9], ["meta", 617, 9], ["constituents", 624, 9]]);
-const pos$40 = nix.positions(here + "/release-haskell.nix", [["description", 657, 11], ["teams", 658, 11]]);
-const pos$41 = nix.positions(here + "/release-haskell.nix", [["name", 655, 9], ["meta", 656, 9], ["constituents", 660, 9]]);
-const pos$42 = nix.positions(here + "/release-haskell.nix", [["description", 668, 11], ["maintainers", 669, 11]]);
-const pos$43 = nix.positions(here + "/release-haskell.nix", [["name", 666, 9], ["meta", 667, 9], ["constituents", 673, 9]]);
-const pos$44 = nix.positions(here + "/release-haskell.nix", [["description", 682, 11], ["maintainers", 683, 11]]);
-const pos$45 = nix.positions(here + "/release-haskell.nix", [["name", 680, 9], ["meta", 681, 9], ["constituents", 688, 9]]);
-const pos$46 = nix.positions(here + "/release-haskell.nix", [["mergeable", 615, 7], ["maintained", 654, 7], ["muslGHCs", 665, 7], ["staticHaskellPackages", 679, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const supportedSystems = nix.argOr($, "supportedSystems", () => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./release-supported-systems.json")))));
-  const releaseLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, supportedSystems: supportedSystems }))));
+  const releaseLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], supportedSystems: supportedSystems }))));
   const lib = nix.thunk(() => nix.attr(releaseLib, "lib"));
   const mapTestOn = nix.thunk(() => nix.attr(releaseLib, "mapTestOn"));
   const packagePlatforms = nix.thunk(() => nix.attr(releaseLib, "packagePlatforms"));
@@ -72,9 +27,9 @@ export default nix.lambda((args) => (() => {
   })());
   const compilerPlatforms = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.app(packagePlatforms, v), nix.thunk(() => nix.sel(pkgs, "haskell", "packages"))));
   const versionedCompilerJobs = (config) => nix.app(mapTestOn, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       haskell: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         packages: nix.thunk(() => (() => {
           const onlyConfigJobs = (ghc) => (jobs_1) => (() => {
             const configFilteredJobset = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (jobName) => (platforms) => nix.app(nix.sel(lib, "elem"), ghc, nix.thunk(() => nix.selOr(config, () => [], nix.key(nix.str`${jobName}`)))), jobs_1));
@@ -91,20 +46,20 @@ export default nix.lambda((args) => (() => {
   const removePlatforms = (platformsToRemove) => (packageSet) => nix.app(nix.sel(lib, "mapAttrsRecursive"), (_) => (val) => (nix.asBool(nix.app(nix.sel(lib, "isList"), val)) ? nix.app(nix.sel(lib, "subtractLists"), platformsToRemove, val) : nix.force(val)), packageSet);
   const jobs = nix.thunk(() => nix.app(recursiveUpdateMany, nix.thunk(() => [
       nix.thunk(() => nix.app(mapTestOn, nix.thunk(() => ({
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           haskellPackages: nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "haskellPackages")))),
           haskell: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             compiler: nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "haskell", "compiler")))),
           })),
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             haskell: nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "tests", "haskell")))),
           })),
           nixosTests: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "nixosTests"))));
             return {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             agda: nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "nixosTests", "agda")))),
             kmonad: nix.thunk(() => nix.attr(from, "kmonad")),
             xmonad: nix.thunk(() => nix.attr(from, "xmonad")),
@@ -224,21 +179,21 @@ export default nix.lambda((args) => (() => {
           elmPackages: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(pkgsPlatforms, "elmPackages"));
             return {
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             elm: nix.thunk(() => nix.attr(from, "elm")),
             "elm-format": nix.thunk(() => nix.attr(from, "elm-format")),
           };
           })()),
           pkgsMusl: nix.thunk(() => nix.app(removePlatforms, nix.thunk(() => ["aarch64-linux", "aarch64-darwin"]), nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               haskell: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 compiler: nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (_) => !nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "microhs", name)), nix.thunk(() => nix.sel(pkgs, "pkgsMusl", "haskell", "compiler")))))),
               })),
               haskellPackages: nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsMusl", "haskellPackages"))));
                 return {
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 hello: nix.thunk(() => nix.attr(from, "hello")),
                 lens: nix.thunk(() => nix.attr(from, "lens")),
                 random: nix.thunk(() => nix.attr(from, "random")),
@@ -246,11 +201,11 @@ export default nix.lambda((args) => (() => {
               })()),
             })))),
           pkgsStatic: nix.thunk(() => nix.app(removePlatforms, nix.thunk(() => ["aarch64-linux", "aarch64-darwin"]), nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               haskellPackages: nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsStatic", "haskellPackages"))));
                 return {
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 hello: nix.thunk(() => nix.attr(from, "hello")),
                 lens: nix.thunk(() => nix.attr(from, "lens")),
                 random: nix.thunk(() => nix.attr(from, "random")),
@@ -262,15 +217,15 @@ export default nix.lambda((args) => (() => {
               };
               })()),
               haskell: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 packages: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   "native-bignum": nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     ghc948: nix.thunk(() => (() => {
                       const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsStatic", "haskell", "packages", "native-bignum", "ghc948"))));
                       return {
-                      [nix.POS]: pos$12,
+                      [nix.POS]: $pos[11],
                       hello: nix.thunk(() => nix.attr(from, "hello")),
                       lens: nix.thunk(() => nix.attr(from, "lens")),
                       random: nix.thunk(() => nix.attr(from, "random")),
@@ -286,26 +241,26 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           pkgsCross: nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             ghcjs: nix.thunk(() => nix.app(removePlatforms, nix.thunk(() => ["aarch64-linux"]), nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 haskellPackages: nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsCross", "ghcjs", "haskellPackages"))));
                   return {
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   ghc: nix.thunk(() => nix.attr(from, "ghc")),
                   hello: nix.thunk(() => nix.attr(from, "hello")),
                   microlens: nix.thunk(() => nix.attr(from, "microlens")),
                 };
                 })()),
                 haskell: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   packages: nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     ghc912: nix.thunk(() => (() => {
                       const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsCross", "ghcjs", "haskell", "packages", "ghc912"))));
                       return {
-                      [nix.POS]: pos$18,
+                      [nix.POS]: $pos[17],
                       ghc: nix.thunk(() => nix.attr(from, "ghc")),
                       hello: nix.thunk(() => nix.attr(from, "hello")),
                       microlens: nix.thunk(() => nix.attr(from, "microlens")),
@@ -316,7 +271,7 @@ export default nix.lambda((args) => (() => {
                     ghcHEAD: nix.thunk(() => (() => {
                       const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsCross", "ghcjs", "haskell", "packages", "ghcHEAD"))));
                       return {
-                      [nix.POS]: pos$19,
+                      [nix.POS]: $pos[18],
                       ghc: nix.thunk(() => nix.attr(from, "ghc")),
                       hello: nix.thunk(() => nix.attr(from, "hello")),
                       microlens: nix.thunk(() => nix.attr(from, "microlens")),
@@ -326,15 +281,15 @@ export default nix.lambda((args) => (() => {
                 })),
               })))),
             ucrt64: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               haskell: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 packages: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   ghc912: nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsCross", "ucrt64", "haskell", "packages", "ghc912"))));
                     return {
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     ghc: nix.thunk(() => nix.attr(from, "ghc")),
                     microlens: nix.thunk(() => nix.attr(from, "microlens")),
                   };
@@ -343,30 +298,30 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             riscv64: nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               haskell: nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 compiler: nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsCross", "riscv64", "haskell", "compiler"))));
-                  return { [nix.POS]: pos$27, ghc948: nix.thunk(() => nix.attr(from, "ghc948")) };
+                  return { [nix.POS]: $pos[26], ghc948: nix.thunk(() => nix.attr(from, "ghc948")) };
                 })()),
               })),
             })),
             "aarch64-multiplatform": nix.thunk(() => nix.update({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               haskell: nix.thunk(() => ({
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 compiler: nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsCross", "aarch64-multiplatform", "haskell", "compiler"))));
-                  return { [nix.POS]: pos$30, ghc948: nix.thunk(() => nix.attr(from, "ghc948")) };
+                  return { [nix.POS]: $pos[29], ghc948: nix.thunk(() => nix.attr(from, "ghc948")) };
                 })()),
               })),
             }, nix.app(removePlatforms, nix.thunk(() => ["aarch64-darwin", "aarch64-linux"]), nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 haskellPackages: nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "pkgsCross", "aarch64-multiplatform", "haskellPackages"))));
                   return {
-                  [nix.POS]: pos$33,
+                  [nix.POS]: $pos[32],
                   ghc: nix.thunk(() => nix.attr(from, "ghc")),
                   hello: nix.thunk(() => nix.attr(from, "hello")),
                   "th-orphans": nix.thunk(() => nix.attr(from, "th-orphans")),
@@ -376,7 +331,7 @@ export default nix.lambda((args) => (() => {
           })),
         })))),
       nix.thunk(() => nix.app(versionedCompilerJobs, nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           "cabal-install": nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => [nix.thunk(() => nix.sel(compilerNames, "ghc948"))]), released)),
           Cabal_3_10_3_0: nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => [nix.thunk(() => nix.sel(compilerNames, "ghc9123"))]), released)),
           Cabal_3_12_1_0: released,
@@ -422,12 +377,12 @@ export default nix.lambda((args) => (() => {
           random: nix.thunk(() => [nix.thunk(() => nix.sel(compilerNames, "microhs"))]),
         })))),
       nix.thunk(() => ({
-        [nix.POS]: pos$46,
+        [nix.POS]: $pos[45],
         mergeable: nix.thunk(() => nix.app(nix.sel(pkgs, "releaseTools", "aggregate"), nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             name: "haskell-updates-mergeable",
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$38,
+              [nix.POS]: $pos[37],
               description: "Critical haskell packages that should work at all times,\nserves as minimum requirement for an update merge\n",
               teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "haskell"))]),
             })),
@@ -457,20 +412,20 @@ export default nix.lambda((args) => (() => {
               ]))),
           })))),
         maintained: nix.thunk(() => nix.app(nix.sel(pkgs, "releaseTools", "aggregate"), nix.thunk(() => ({
-            [nix.POS]: pos$41,
+            [nix.POS]: $pos[40],
             name: "maintained-haskell-packages",
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$40,
+              [nix.POS]: $pos[39],
               description: "Aggregate jobset of all haskell packages with a maintainer",
               teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "haskell"))]),
             })),
             constituents: nix.thunk(() => nix.app(accumulateDerivations, nix.thunk(() => nix.builtins.map((name) => nix.sel(jobs, "haskellPackages", nix.key(nix.str`${name}`)), nix.thunk(() => nix.app(maintainedPkgNames, nix.thunk(() => nix.sel(pkgs, "haskellPackages")))))))),
           })))),
         muslGHCs: nix.thunk(() => nix.app(nix.sel(pkgs, "releaseTools", "aggregate"), nix.thunk(() => ({
-            [nix.POS]: pos$43,
+            [nix.POS]: $pos[42],
             name: "haskell-pkgsMusl-ghcs",
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$42,
+              [nix.POS]: $pos[41],
               description: "GHCs built with musl",
               maintainers: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -483,10 +438,10 @@ export default nix.lambda((args) => (() => {
               ]))),
           })))),
         staticHaskellPackages: nix.thunk(() => nix.app(nix.sel(pkgs, "releaseTools", "aggregate"), nix.thunk(() => ({
-            [nix.POS]: pos$45,
+            [nix.POS]: $pos[44],
             name: "static-haskell-packages",
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$44,
+              [nix.POS]: $pos[43],
               description: "Static haskell builds using the pkgsStatic infrastructure",
               maintainers: nix.thunk(() => [
                 nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 11, 5], ["gemdir", 12, 5]], [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["updateScript", 34, 12]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["installPhase", 28, 3], ["passthru", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bundlerEnv: false, bundlerUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 11, 5], ["gemdir", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 34, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["installPhase", 28, 3], ["passthru", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const bundlerEnv = nix.arg($, "bundlerEnv");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
-  const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({ [nix.POS]: pos$1, name: "cewl-ruby-env", gemdir: nix.path(here, "./.") }))));
+  const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({ [nix.POS]: $pos[0], name: "cewl-ruby-env", gemdir: nix.path(here, "./.") }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cewl",
       version: "6.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "digininja",
           repo: "CeWL",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(rubyEnv, "wrappedRuby"))]),
       installPhase: "mkdir -p $out/bin\ncp *.rb $out/bin/\nmv $out/bin/cewl.rb $out/bin/cewl\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "cewl")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Custom wordlist generator",
         homepage: "https://digi.ninja/projects/cewl.php/",
         changelog: nix.thunk(() => nix.str`https://github.com/digininja/CeWL/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

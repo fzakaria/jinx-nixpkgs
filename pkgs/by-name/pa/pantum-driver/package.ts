@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["i686-linux", 17, 7], ["x86_64-linux", 18, 7]], [["url", 27, 5], ["hash", 30, 5]], [["description", 60, 5], ["homepage", 61, 5], ["sourceProvenance", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 68, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 38, 3], ["installPhase", 43, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, libusb1: false, cups: false, dpkg: false, libjpeg8: false, makeWrapper: false, autoPatchelfHook: false, enablePtqpdf: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["i686-linux", 17, 7], ["x86_64-linux", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["sourceProvenance", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 38, 3], ["installPhase", 43, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const enablePtqpdf = nix.argOr($, "enablePtqpdf", () => false);
-  const architecture = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "i686-linux": "i386", "x86_64-linux": "amd64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const architecture = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], "i686-linux": "i386", "x86_64-linux": "amd64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "pantum-driver";
       const version = "1.1.167";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/osguot/pantum-universal-driver/releases/download/release/Pantum.Linux.Driver.V${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.zip`),
           hash: "sha256-0RyCgU00ZwGwcUhCkod971noVB7G10xnbH64/AdIFMA=",
         }))));
@@ -41,7 +38,7 @@ cp -r usr/share $out/
 cp Resources/locale/en_US.UTF-8/* $out/share/doc/pantum/
 `, nix.app(nix.sel(lib, "optionalString"), enablePtqpdf, "cp -r opt/pantum/* $out/\nln -s $out/lib/libqpdf.so* $out/lib/libqpdf.so\nln -s $out/lib/libqpdf.so $out/lib/libqpdf.so.21\n")));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pantum universal driver",
         homepage: "https://global.pantum.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -56,7 +53,7 @@ cp Resources/locale/en_US.UTF-8/* $out/share/doc/pantum/
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

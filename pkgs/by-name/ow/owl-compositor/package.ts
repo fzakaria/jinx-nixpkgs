@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 67, 7], ["NIX_LDFLAGS", 72, 7]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5], ["mainProgram", 90, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 30, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 51, 3], ["preConfigure", 59, 3], ["configureScript", 64, 3], ["env", 67, 3], ["installPhase", 74, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchFromGitHub: false, "gnustep-back": false, wrapGNUstepAppsHook: false, libxkbcommon: false, makeWrapper: false, wayland: false, "wayland-scanner": false, darwin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 67, 7], ["NIX_LDFLAGS", 72, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5], ["mainProgram", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 30, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 51, 3], ["preConfigure", 59, 3], ["configureScript", 64, 3], ["env", 67, 3], ["installPhase", 74, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const stdenv = clangStdenv;
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "owl-compositor",
       version: "0-unstable-2021-11-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "owl-compositor",
           repo: "owl",
           rev: "91abf02613cd2ddb97be58b5b6703240320233a0",
@@ -46,7 +43,7 @@ cp ${nix.path(here, "./mac/OwlPreferences.nib")} build/Owl.app/Contents/Resource
       preConfigure: "mkdir -p build\ncd build\n",
       configureScript: "../configure",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "-fobjc-runtime=gnustep-2.0")),
         NIX_LDFLAGS: "-lm",
       })),
@@ -59,7 +56,7 @@ makeWrapper $out/{Applications/Owl.app${nix.app(nix.sel(lib, "optionalString"), 
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Portable Wayland compositor in Objective-C",
         homepage: "https://github.com/owl-compositor/owl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

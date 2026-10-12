@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["uselibtirpc", 75, 9], ["szipSupport", 76, 9], ["szip", 77, 17]], [["mpiSupport", 85, 11], ["mpi", 86, 19], ["szipSupport", 87, 11], ["libaec", 88, 19]], [["cppSupport", 91, 11]], [["apiVersion", 94, 11]], [["hdf5", 102, 9]], [["enableWX", 111, 11], ["enableXWin", 112, 11]], [["owner", 121, 5], ["repo", 122, 5], ["tag", 123, 5], ["hash", 124, 5], ["fetchSubmodules", 125, 5]], [["url", 130, 7], ["includes", 131, 7], ["hash", 132, 7]], [["hdf4", 226, 5], ["hdf5", 227, 5], ["netcdf", 228, 5], ["plplot", 229, 5], ["python", 230, 5], ["enableMPI", 232, 7], ["mpi", 233, 7], ["useHdf5v110Api", 234, 7], ["enableSzip", 235, 7], ["enableWX", 236, 7], ["enableXWin", 237, 7]], [["description", 242, 5], ["longDescription", 243, 5], ["homepage", 248, 5], ["license", 249, 5], ["maintainers", 250, 5], ["platforms", 251, 5], ["mainProgram", 252, 5]], [["pname", 117, 3], ["version", 118, 3], ["src", 120, 3], ["patches", 128, 3], ["postPatch", 136, 3], ["nativeBuildInputs", 144, 3], ["buildInputs", 146, 3], ["propagatedBuildInputs", 181, 3], ["cmakeFlags", 185, 3], ["doCheck", 205, 3], ["preCheck", 211, 3], ["passthru", 225, 3], ["meta", 241, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, wrapGAppsHook3: false, readline: false, ncurses: false, zlib: false, gsl: false, openmp: false, graphicsmagick: false, fftw: false, fftwFloat: false, fftwLongDouble: false, proj: false, shapelib: false, expat: false, udunits: false, eigen: false, pslib: false, libpng: false, plplot: false, libtiff: false, libgeotiff: false, libjpeg: false, qhull: false, enableGRIB: true, eccodes: false, enableGLPK: true, glpk: false, enableLibtirpc: true, python3: false, enableMPI: true, mpi: false, enableSzip: true, szip: false, libaec: false, enableHDF4: true, hdf4: false, "hdf4-forced": true, enableHDF5: true, useHdf5v110Api: true, hdf5: false, "hdf5-forced": true, enableNetCDF: true, netcdf: false, "netcdf-forced": true, "plplot-forced": true, enableWX: true, wxwidgets_3_2: false, enableXWin: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["uselibtirpc", 75, 9], ["szipSupport", 76, 9], ["szip", 77, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mpiSupport", 85, 11], ["mpi", 86, 19], ["szipSupport", 87, 11], ["libaec", 88, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cppSupport", 91, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["apiVersion", 94, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hdf5", 102, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["enableWX", 111, 11], ["enableXWin", 112, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["owner", 121, 5], ["repo", 122, 5], ["tag", 123, 5], ["hash", 124, 5], ["fetchSubmodules", 125, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["url", 130, 7], ["includes", 131, 7], ["hash", 132, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["hdf4", 226, 5], ["hdf5", 227, 5], ["netcdf", 228, 5], ["plplot", 229, 5], ["python", 230, 5], ["enableMPI", 232, 7], ["mpi", 233, 7], ["useHdf5v110Api", 234, 7], ["enableSzip", 235, 7], ["enableWX", 236, 7], ["enableXWin", 237, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["description", 242, 5], ["longDescription", 243, 5], ["homepage", 248, 5], ["license", 249, 5], ["maintainers", 250, 5], ["platforms", 251, 5], ["mainProgram", 252, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 117, 3], ["version", 118, 3], ["src", 120, 3], ["patches", 128, 3], ["postPatch", 136, 3], ["nativeBuildInputs", 144, 3], ["buildInputs", 146, 3], ["propagatedBuildInputs", 181, 3], ["cmakeFlags", 185, 3], ["doCheck", 205, 3], ["preCheck", 211, 3], ["passthru", 225, 3], ["meta", 241, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -70,27 +60,27 @@ export default nix.lambda((args) => (() => {
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   const enableXWin = nix.argOr($, "enableXWin", () => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))));
   const hdf4_custom = nix.thunk(() => (nix.asBool(!nix.eq(hdf4_forced, null)) ? nix.force(hdf4_forced) : nix.app(nix.sel(hdf4, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       uselibtirpc: enableLibtirpc,
       szipSupport: enableSzip,
       szip: szip,
     })))));
   const hdf5_custom = nix.thunk(() => (nix.asBool(!nix.eq(hdf5_forced, null)) ? nix.force(hdf5_forced) : nix.app(nix.sel(hdf5, "override"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       mpiSupport: enableMPI,
       mpi: mpi,
       szipSupport: enableSzip,
       libaec: libaec,
-    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), enableMPI, nix.thunk(() => ({ [nix.POS]: pos$3, cppSupport: false }))), nix.app(nix.sel(lib, "optionalAttrs"), useHdf5v110Api, nix.thunk(() => ({ [nix.POS]: pos$4, apiVersion: "v110" })))))))));
-  const netcdf_custom = nix.thunk(() => (nix.asBool(!nix.eq(netcdf_forced, null)) ? nix.force(netcdf_forced) : nix.app(nix.sel(netcdf, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, hdf5: hdf5_custom })))));
+    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), enableMPI, nix.thunk(() => ({ [nix.POS]: $pos[2], cppSupport: false }))), nix.app(nix.sel(lib, "optionalAttrs"), useHdf5v110Api, nix.thunk(() => ({ [nix.POS]: $pos[3], apiVersion: "v110" })))))))));
+  const netcdf_custom = nix.thunk(() => (nix.asBool(!nix.eq(netcdf_forced, null)) ? nix.force(netcdf_forced) : nix.app(nix.sel(netcdf, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], hdf5: hdf5_custom })))));
   const enablePlplotDrivers = nix.thunk(() => (nix.asBool(enableWX) || nix.asBool(enableXWin)));
-  const plplot_with_drivers = nix.thunk(() => (nix.asBool(!nix.eq(plplot_forced, null)) ? nix.force(plplot_forced) : nix.app(nix.sel(plplot, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, enableWX: enableWX, enableXWin: enableXWin })))));
+  const plplot_with_drivers = nix.thunk(() => (nix.asBool(!nix.eq(plplot_forced, null)) ? nix.force(plplot_forced) : nix.app(nix.sel(plplot, "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], enableWX: enableWX, enableXWin: enableXWin })))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "gnudatalanguage",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "gnudatalanguage",
           repo: "gdl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -99,7 +89,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: "https://github.com/gnudatalanguage/gdl/commit/b648a63c5070f38e90167f858a79ba6f01dad1d3.patch?full_index=1",
             includes: nix.thunk(() => ["CMakeLists.txt"]),
             hash: "sha256-lYtAstI21Up4RArf6pXnjiTwJ3Omoisw43Ih1H2Wc0s=",
@@ -163,7 +153,7 @@ echo -e 'set(VERSION "${nix.sel(finalAttrs, "version")}")\\n\\nconfigure_file(\$
         ]))}'")
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         hdf4: hdf4_custom,
         hdf5: hdf5_custom,
         netcdf: netcdf_custom,
@@ -177,7 +167,7 @@ echo -e 'set(VERSION "${nix.sel(finalAttrs, "version")}")\\n\\nconfigure_file(\$
         enableXWin: enableXWin,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Free incremental compiler of IDL",
         longDescription: "GDL (GNU Data Language) is a free/libre/open source incremental compiler\ncompatible with IDL (Interactive Data Language) and to some extent with PV-WAVE.\nGDL is aimed as a drop-in replacement for IDL.\n",
         homepage: "https://github.com/gnudatalanguage/gdl",

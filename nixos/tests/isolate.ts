@@ -2,37 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/isolate.nix", [[["maintainers", 4, 8]], [["enable", 10, 9]], [["isolate", 9, 16]], [["security", 9, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 14, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/isolate.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/isolate.nix", [["enable", 10, 9]]);
-const pos$3 = nix.positions(here + "/isolate.nix", [["isolate", 9, 16]]);
-const pos$4 = nix.positions(here + "/isolate.nix", [["security", 9, 7]]);
-const pos$5 = nix.positions(here + "/isolate.nix", [["machine", 6, 9]]);
-const pos$6 = nix.positions(here + "/isolate.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "isolate",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "virchau13"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           security: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            isolate: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            isolate: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
         };
       })(), formals$2),

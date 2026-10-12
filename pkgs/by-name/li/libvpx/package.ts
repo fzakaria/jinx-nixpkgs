@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 142, 5], ["repo", 143, 5], ["rev", 144, 5], ["hash", 145, 5]], [["NIX_LDFLAGS", 252, 7]], [["withVpx", 262, 32]], [["gst-plugins-good", 261, 25], ["ffmpeg", 262, 5]], [["tests", 260, 12]], [["description", 266, 5], ["homepage", 267, 5], ["changelog", 268, 5], ["license", 269, 5], ["maintainers", 270, 5], ["platforms", 271, 5]], [["pname", 138, 3], ["version", 139, 3], ["src", 141, 3], ["postPatch", 148, 3], ["outputs", 164, 3], ["setOutputFlags", 169, 3], ["configurePlatforms", 171, 3], ["configureFlags", 172, 3], ["nativeBuildInputs", 240, 3], ["buildInputs", 245, 3], ["env", 252, 3], ["enableParallelBuilding", 256, 3], ["postInstall", 258, 3], ["passthru", 260, 3], ["meta", 265, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, perl: false, yasm: false, vp8DecoderSupport: true, vp8EncoderSupport: true, vp9DecoderSupport: true, vp9EncoderSupport: true, extraWarningsSupport: true, werrorSupport: true, debugSupport: true, gprofSupport: true, gcovSupport: true, sizeLimitSupport: true, optimizationsSupport: true, runtimeCpuDetectSupport: true, thumbSupport: true, examplesSupport: true, debugLibsSupport: true, postprocSupport: true, multithreadSupport: true, internalStatsSupport: true, spatialResamplingSupport: true, realtimeOnlySupport: true, ontheflyBitpackingSupport: true, errorConcealmentSupport: true, smallSupport: true, postprocVisualizerSupport: true, unitTestsSupport: true, curl: true, coreutils: true, webmIOSupport: true, libyuvSupport: true, decodePerfTestsSupport: true, encodePerfTestsSupport: true, multiResEncodingSupport: true, temporalDenoisingSupport: true, coefficientRangeCheckingSupport: true, vp9HighbitdepthSupport: true, experimentalSpatialSvcSupport: true, experimentalFpMbStatsSupport: true, experimentalEmulateHardwareSupport: true, ffmpeg: false, gst_all_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 142, 5], ["repo", 143, 5], ["rev", 144, 5], ["hash", 145, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 252, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withVpx", 262, 32]]);
-const pos$4 = nix.positions(here + "/package.nix", [["gst-plugins-good", 261, 25], ["ffmpeg", 262, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 260, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 266, 5], ["homepage", 267, 5], ["changelog", 268, 5], ["license", 269, 5], ["maintainers", 270, 5], ["platforms", 271, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 138, 3], ["version", 139, 3], ["src", 141, 3], ["postPatch", 148, 3], ["outputs", 164, 3], ["setOutputFlags", 169, 3], ["configurePlatforms", 171, 3], ["configureFlags", 172, 3], ["nativeBuildInputs", 240, 3], ["buildInputs", 245, 3], ["env", 252, 3], ["enableParallelBuilding", 256, 3], ["postInstall", 258, 3], ["passthru", 260, 3], ["meta", 265, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -79,11 +73,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(vp9HighbitdepthSupport) || nix.asBool((nix.asBool(vp9DecoderSupport) || nix.asBool(vp9EncoderSupport)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libvpx/package.nix:134:1");
   nix.assert_((!nix.asBool(isCygwin) || nix.asBool((nix.asBool((nix.asBool(unitTestsSupport) && nix.asBool(webmIOSupport))) && nix.asBool(libyuvSupport)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libvpx/package.nix:135:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "libvpx",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "webmproject",
           repo: "libvpx",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -151,21 +145,21 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [perl, yasm]),
       buildInputs: nix.thunk(() => nix.concat([], nix.app(optionals, unitTestsSupport, nix.thunk(() => [coreutils, curl])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lpthread"]))),
       })),
       enableParallelBuilding: true,
       postInstall: "moveToOutput bin \"$bin\" ",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "gst-plugins-good": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-good")),
-          ffmpeg: nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withVpx: true })))),
+          ffmpeg: nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], withVpx: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "WebM VP8/VP9 codec SDK",
         homepage: "https://www.webmproject.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/webmproject/libvpx/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["LC_ALL", 103, 7]], [["description", 184, 5], ["mainProgram", 185, 5], ["longDescription", 186, 5], ["homepage", 191, 5], ["changelog", 192, 5], ["license", 193, 5], ["maintainers", 194, 5]], [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["pythonRelaxDeps", 54, 3], ["build-system", 58, 3], ["nativeBuildInputs", 62, 3], ["dependencies", 67, 3], ["nativeCheckInputs", 87, 3], ["env", 103, 3], ["pytestFlags", 105, 3], ["disabledTestPaths", 110, 3], ["disabledTests", 132, 3], ["postInstall", 172, 3], ["pythonImportsCheck", 179, 3], ["__darwinAllowLocalNetworking", 181, 3], ["meta", 183, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, botocore: false, buildPythonPackage: false, cryptography: false, cssselect: false, defusedxml: false, fetchFromGitHub: false, glibcLocales: false, hatchling: false, httpx: false, installShellFiles: false, itemadapter: false, itemloaders: false, jmespath: false, lxml: false, packaging: false, parsel: false, pexpect: false, protego: false, pydispatcher: false, pyftpdlib: false, pyopenssl: false, "pytest-asyncio": false, "pytest-twisted": false, "pytest-xdist": false, pytestCheckHook: false, pythonAtLeast: false, queuelib: false, "service-identity": false, setuptools: false, sybil: false, testfixtures: false, tldextract: false, twisted: false, uvloop: false, w3lib: false, "zope-interface": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["LC_ALL", 103, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 184, 5], ["mainProgram", 185, 5], ["longDescription", 186, 5], ["homepage", 191, 5], ["changelog", 192, 5], ["license", 193, 5], ["maintainers", 194, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["pythonRelaxDeps", 54, 3], ["build-system", 58, 3], ["nativeBuildInputs", 62, 3], ["dependencies", 67, 3], ["nativeCheckInputs", 87, 3], ["env", 103, 3], ["pytestFlags", 105, 3], ["disabledTestPaths", 110, 3], ["disabledTests", 132, 3], ["postInstall", 172, 3], ["pythonImportsCheck", 179, 3], ["__darwinAllowLocalNetworking", 181, 3], ["meta", 183, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.17.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scrapy",
           repo: "scrapy",
           tag: version,
@@ -96,7 +93,7 @@ export default nix.lambda((args) => (() => {
         testfixtures,
         uvloop,
       ]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], LC_ALL: "en_US.UTF-8" }));
       const pytestFlags = nix.thunk(() => ["-Wignore::DeprecationWarning"]);
       const disabledTestPaths = nix.thunk(() => nix.concat([
         "tests/test_utils_display.py",
@@ -141,7 +138,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["scrapy"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "High-level web crawling and web scraping framework",
         mainProgram: "scrapy",
         longDescription: "Scrapy is a fast high-level web crawling and web scraping framework, used to crawl\nwebsites and extract structured data from their pages. It can be used for a wide\nrange of purposes, from data mining to monitoring and automated testing.\n",
@@ -154,7 +151,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

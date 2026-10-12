@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["homepage", 94, 5], ["description", 95, 5], ["license", 96, 5], ["platforms", 97, 5], ["teams", 98, 5]], [["pname", 24, 3], ["version", 25, 3], ["outputs", 26, 3], ["src", 31, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 59, 3], ["mesonFlags", 68, 3], ["nativeInstallCheckInputs", 75, 3], ["doCheck", 81, 3], ["doInstallCheck", 83, 3], ["installCheckPhase", 85, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, "pkg-config": false, meson: false, python3: false, ninja: false, gusb: false, pixman: false, glib: false, "gobject-introspection": false, cairo: false, libgudev: false, udevCheckHook: false, "gtk-doc": false, "docbook-xsl-nons": false, docbook_xml_dtd_43: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 94, 5], ["description", 95, 5], ["license", 96, 5], ["platforms", 97, 5], ["teams", 98, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["outputs", 26, 3], ["src", 31, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 59, 3], ["mesonFlags", 68, 3], ["nativeInstallCheckInputs", 75, 3], ["doCheck", 81, 3], ["doInstallCheck", 83, 3], ["installCheckPhase", 85, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const docbook_xml_dtd_43 = nix.arg($, "docbook_xml_dtd_43");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libfprint",
       version: "1.94.100",
       outputs: nix.thunk(() => ["out", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "libfprint",
           repo: "libfprint",
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\nninjaCheckPhase\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://fprint.freedesktop.org/",
         description: "Library designed to make it easy to add support for consumer fingerprint readers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

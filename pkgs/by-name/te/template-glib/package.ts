@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["packageName", 63, 7], ["versionPolicy", 64, 7]], [["updateScript", 62, 5]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["teams", 72, 5], ["platforms", 73, 5]], [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 46, 3], ["mesonFlags", 50, 3], ["doCheck", 54, 3], ["postFixup", 56, 3], ["passthru", 61, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, "gi-docgen": false, glib: false, "gobject-introspection": false, flex: false, bison: false, vala: false, gettext: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 63, 7], ["versionPolicy", 64, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["teams", 72, 5], ["platforms", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 46, 3], ["mesonFlags", 50, 3], ["doCheck", 54, 3], ["postFixup", 56, 3], ["passthru", 61, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "template-glib",
       version: "3.40.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/template-glib/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/template-glib-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-5TPsL2wkzG32asVayCT63RtKX0M6EcvzprJYFcDPz9U=",
         })))),
@@ -52,15 +48,15 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput share/doc/template-glib-1.0 \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packageName: "template-glib",
             versionPolicy: "odd-unstable",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library for template expansion which supports calling into GObject Introspection from templates",
         homepage: "https://gitlab.gnome.org/GNOME/template-glib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

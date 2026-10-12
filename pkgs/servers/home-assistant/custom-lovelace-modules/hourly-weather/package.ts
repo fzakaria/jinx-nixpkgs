@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["CYPRESS_INSTALL_BINARY", 20, 7]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["env", 20, 3], ["installPhase", 22, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CYPRESS_INSTALL_BINARY", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["env", 20, 3], ["installPhase", 22, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
       const pname = "hourly-weather";
       const version = "7.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "decompil3d",
           repo: "lovelace-hourly-weather",
           rev: version,
           hash: "sha256-Iy2PbGUe6ygMI6HzmlgLhK5jtnME5U5zIxt+6+sw0aY=",
         }))));
       const npmDepsHash = "sha256-+tBcLc8YDvyfqyATy9NBblmqgZUsErNk0+mleqEEOdU=";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CYPRESS_INSTALL_BINARY: "0" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], CYPRESS_INSTALL_BINARY: "0" }));
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp dist/hourly-weather.js $out\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Hourly weather card for Home Assistant. Visualize upcoming weather conditions as a colored horizontal bar",
         homepage: "https://github.com/decompil3d/lovelace-hourly-weather",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +34,16 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { [nix.POS]: pos$4, pname, version, src, npmDepsHash, env, installPhase, meta };
+      return {
+        [nix.POS]: $pos[3],
+        pname,
+        version,
+        src,
+        npmDepsHash,
+        env,
+        installPhase,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

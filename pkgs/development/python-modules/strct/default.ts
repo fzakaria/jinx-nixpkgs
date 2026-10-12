@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["name", 26, 7], ["url", 27, 7], ["includes", 28, 7], ["hash", 29, 7]], [["RELEASING_PROCESS", 34, 7]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["env", 34, 3], ["nativeBuildInputs", 36, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 44, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch: false, buildPythonPackage: false, setuptools_80: false, pytestCheckHook: false, "pytest-cov-stub": false, sortedcontainers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 26, 7], ["url", 27, 7], ["includes", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["RELEASING_PROCESS", 34, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["env", 34, 3], ["nativeBuildInputs", 36, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 44, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.35";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "shaypal5",
           repo: "strct",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,14 +28,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "support-setuptools-82.patch",
             url: "https://github.com/shaypal5/strct/commit/5005a939b590cd992d985128a2c1dba230a7fe41.patch",
             includes: nix.thunk(() => ["setup.py"]),
             hash: "sha256-0vRRst79G6JZZ+IzBR7rr85nOo0qY0ikVBz4Lvauwbc=",
           })))),
       ]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, RELEASING_PROCESS: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], RELEASING_PROCESS: "1" }));
       const nativeBuildInputs = nix.thunk(() => [setuptools_80]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub, sortedcontainers]);
       const pythonImportsCheck = nix.thunk(() => [
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
         "strct.sortedlists",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Small pure-python package for data structure related utility functions",
         homepage: "https://github.com/shaypal5/strct",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -61,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

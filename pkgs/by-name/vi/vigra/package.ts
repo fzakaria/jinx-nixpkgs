@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["apiVersion", 45, 7]], [["doCheck", 76, 9]], [["check", 75, 7]], [["tests", 74, 5], ["updateScript", 79, 5]], [["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 94, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["strictDeps", 35, 3], ["__structuredAttrs", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 40, 3], ["postPatch", 57, 3], ["cmakeFlags", 62, 3], ["enableParallelBuilding", 71, 3], ["passthru", 73, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, boost: false, cmake: false, fftw: false, fftwSinglePrec: false, hdf5: false, libaec: false, libjpeg: false, libpng: false, libtiff: false, openexr: false, python3: false, writeShellScript: false, jq: false, "nix-update": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["apiVersion", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["doCheck", 76, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["check", 75, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 74, 5], ["updateScript", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 94, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["strictDeps", 35, 3], ["__structuredAttrs", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 40, 3], ["postPatch", 57, 3], ["cmakeFlags", 62, 3], ["enableParallelBuilding", 71, 3], ["passthru", 73, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +29,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "numpy"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "vigra",
       version: "1.12.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ukoethe",
           repo: "vigra",
           tag: nix.thunk(() => nix.str`Version-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -52,7 +46,7 @@ export default nix.lambda((args) => (() => {
         boost,
         fftw,
         fftwSinglePrec,
-        nix.thunk(() => nix.app(nix.sel(hdf5, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, apiVersion: "v110" })))),
+        nix.thunk(() => nix.app(nix.sel(hdf5, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], apiVersion: "v110" })))),
         libaec,
         libjpeg,
         libpng,
@@ -67,11 +61,11 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")), nix.thunk(() => ["-DCMAKE_CXX_FLAGS=-fPIC", "-DCMAKE_C_FLAGS=-fPIC"])))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           check: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (previousAttrs) => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
             }))),
         })),
@@ -80,7 +74,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} vigra --version $latestVersion
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Novel computer vision C++ library with customizable algorithms and data structures",
         mainProgram: "vigra-config",
         homepage: "https://ukoethe.github.io/vigra/",

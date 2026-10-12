@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 13], ["version", 14, 19], ["sha256", 15, 5]], [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 13], ["version", 14, 19], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,20 +16,20 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.7";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "d27160cb35c096f0072df57307233d01b117a451236e136604a8e51be6f106c0",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [requests]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pythonic interface to the RabbitMQ Management HTTP API",
         homepage: "https://github.com/deslum/pyrabbit2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 36, 5], ["version", 37, 5], ["targetPkgs", 38, 5]], [["version", 62, 31], ["meta", 62, 39], ["pname", 63, 3], ["paths", 65, 3], ["nativeBuildInputs", 69, 3], ["postBuild", 71, 3]]]);
 const formals$1 = { args: { lib: false, makeWrapper: false, "olympus-unwrapped": false, symlinkJoin: false, buildFHSEnv: false, writeShellScript: false, celesteWrapper: true, loennWrapper: true, miniinstallerWrapper: true, skipHandlerCheck: true, finderHints: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 36, 5], ["version", 37, 5], ["targetPkgs", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 62, 31], ["meta", 62, 39], ["pname", 63, 3], ["paths", 65, 3], ["nativeBuildInputs", 69, 3], ["postBuild", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const finderHints = nix.argOr($, "finderHints", () => []);
   const wrapper_to_env = (wrapper) => (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), wrapper)) ? nix.app(nix.sel(lib, "getExe"), wrapper) : (nix.asBool(!nix.eq(wrapper, null)) ? nix.force(wrapper) : ""));
   const miniinstaller_fhs = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "olympus-miniinstaller-fhs",
       version: "1.0.0",
       targetPkgs: (pkgs) => (() => {
@@ -36,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const miniinstaller_wrapper = nix.thunk(() => (nix.asBool(nix.eq(miniinstallerWrapper, null)) ? nix.app(writeShellScript, "miniinstaller-wrapper", nix.thunk(() => nix.str`exec ${nix.app(nix.sel(lib, "getExe"), miniinstaller_fhs)} -c "$@"`)) : nix.app(wrapper_to_env, miniinstallerWrapper)));
   const finderHints$ = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isList"), finderHints)) ? nix.app(nix.sel(lib, "concatMapStringsSep"), ":", (hint) => nix.str`${hint}`, finderHints) : nix.str`${finderHints}`));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(olympus_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(olympus_unwrapped, "meta")),
       pname: "olympus",

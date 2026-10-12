@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["url", 36, 5], ["hash", 37, 5]], [["NIX_CFLAGS_COMPILE", 67, 7]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 40, 3], ["patches", 52, 3], ["buildInputs", 56, 3], ["enableParallelBuilding", 60, 3], ["makeFlags", 62, 3], ["env", 67, 3], ["setupHook", 69, 3], ["postInstall", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gmp: false, withEmacsSupport: true, withContrib: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 67, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 40, 3], ["patches", 52, 3], ["buildInputs", 56, 3], ["enableParallelBuilding", 60, 3], ["makeFlags", 62, 3], ["env", 67, 3], ["setupHook", 69, 3], ["postInstall", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const withContrib = nix.argOr($, "withContrib", () => true);
   const versionPkg = "0.4.2";
   const contrib = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`mirror://sourceforge/ats2-lang/ATS2-Postiats-contrib-${versionPkg}.tgz`),
       hash: "sha256-m0hfBLsaNiLaIktcioK+ZtWUsWht3IDSJ6CzgJmS06c=",
     }))));
@@ -32,7 +28,7 @@ tar -xzf "${contrib}" --strip-components 1 -C $contribDir ;
       const pname = "ats2";
       const version = versionPkg;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://sourceforge/ats2-lang/ATS2-Postiats-gmp-${version}.tgz`),
           hash: "sha256-UWgDjFojPBYgykrCrJyYvVWY+Gc5d4aRGjTWjc528AM=",
         }))));
@@ -45,7 +41,7 @@ tar -xzf "${contrib}" --strip-components 1 -C $contribDir ;
         nix.thunk(() => nix.str`CCOMP=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       }));
       const setupHook = nix.thunk(() => (() => {
@@ -54,7 +50,7 @@ tar -xzf "${contrib}" --strip-components 1 -C $contribDir ;
       })());
       const postInstall = nix.thunk(() => nix.add(postInstallContrib, postInstallEmacs));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Functional programming language with dependent types",
         homepage: "http://www.ats-lang.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -68,7 +64,7 @@ tar -xzf "${contrib}" --strip-components 1 -C $contribDir ;
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

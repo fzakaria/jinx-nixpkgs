@@ -2,37 +2,32 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/installation-cd-minimal-combined.nix", [[["configurationName", 6, 12]], [["configurationName", 12, 16]], [["imports", 11, 7], ["isoImage", 12, 7]], [["configuration", 8, 32]], [["latest_kernel", 8, 18]], [["imports", 4, 3], ["isoImage", 6, 3], ["specialisation", 8, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/installation-cd-minimal-combined.nix", [["configurationName", 6, 12]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/installation-cd-minimal-combined.nix", [["configurationName", 12, 16]]);
-const pos$3 = nix.positions(here + "/installation-cd-minimal-combined.nix", [["imports", 11, 7], ["isoImage", 12, 7]]);
-const pos$4 = nix.positions(here + "/installation-cd-minimal-combined.nix", [["configuration", 8, 32]]);
-const pos$5 = nix.positions(here + "/installation-cd-minimal-combined.nix", [["latest_kernel", 8, 18]]);
-const pos$6 = nix.positions(here + "/installation-cd-minimal-combined.nix", [["imports", 4, 3], ["isoImage", 6, 3], ["specialisation", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     imports: nix.thunk(() => [nix.path(here, "./installation-cd-minimal.nix")]),
     isoImage: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       configurationName: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "(Linux LTS)")),
     })),
     specialisation: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       latest_kernel: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         configuration: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
           return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             imports: nix.thunk(() => [nix.path(here, "./latest-kernel.nix")]),
             isoImage: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               configurationName: nix.thunk(() => nix.str`(Linux ${nix.sel(config, "boot", "kernelPackages", "kernel", "version")})`),
             })),
           };

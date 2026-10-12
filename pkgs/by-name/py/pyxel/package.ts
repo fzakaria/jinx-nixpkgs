@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["src", 28, 7], ["pname", 29, 7], ["version", 30, 7], ["cargoRoot", 31, 7], ["hash", 33, 5]], [["NIX_CFLAGS_COMPILE", 53, 7]], [["changelog", 69, 5], ["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5], ["platforms", 78, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["cargoRoot", 24, 3], ["cargoDeps", 26, 3], ["buildAndTestSubdir", 36, 3], ["maturinBuildFlags", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["env", 53, 3], ["preBuild", 55, 3], ["doCheck", 61, 3], ["pythonImportsCheck", 63, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, cargo: false, fetchFromGitHub: false, fetchpatch: false, rustPlatform: false, rustc: false, SDL2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 28, 7], ["pname", 29, 7], ["version", 30, 7], ["cargoRoot", 31, 7], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 69, 5], ["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5], ["platforms", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["cargoRoot", 24, 3], ["cargoDeps", 26, 3], ["buildAndTestSubdir", 36, 3], ["maturinBuildFlags", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["env", 53, 3], ["preBuild", 55, 3], ["doCheck", 61, 3], ["pythonImportsCheck", 63, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pyxel",
       version: "2.9.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kitao",
           repo: "pyxel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoRoot: "crates",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -51,14 +47,14 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [SDL2]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2)}/include/SDL2`),
       })),
       preBuild: "# logic taken from Makefile\ncp LICENSE README.md python/pyxel/\n",
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pyxel", "pyxel.pyxel_binding"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/kitao/pyxel/tree/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Retro game engine for Python",
         homepage: "https://github.com/kitao/pyxel",

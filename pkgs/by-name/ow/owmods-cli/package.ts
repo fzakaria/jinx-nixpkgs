@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["ZSTD_SYS_USE_PKG_CONFIG", 45, 5]], [["updateScript", 60, 12]], [["description", 63, 5], ["homepage", 64, 5], ["downloadPage", 65, 5], ["changelog", 66, 5], ["mainProgram", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["env", 44, 3], ["buildAndTestSubdir", 48, 3], ["postInstall", 50, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "nix-update-script": false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, installShellFiles: false, zstd: false, libsoup_3: false, makeWrapper: false, mono: false, wrapWithMono: true, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ZSTD_SYS_USE_PKG_CONFIG", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["downloadPage", 65, 5], ["changelog", 66, 5], ["mainProgram", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["env", 44, 3], ["buildAndTestSubdir", 48, 3], ["postInstall", 50, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wrapWithMono = nix.argOr($, "wrapWithMono", () => true);
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "owmods-cli",
       version: "0.15.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ow-mods",
           repo: "ow-mod-man",
           rev: nix.thunk(() => nix.str`cli_v${nix.sel(finalAttrs, "version")}`),
@@ -38,16 +34,16 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-oYTz7Dzdv9prHzDSSjX9PozzKToMXRW6qs8Y2dfYQ8A=",
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, installShellFiles], nix.app(nix.sel(lib, "optional"), wrapWithMono, makeWrapper))),
       buildInputs: nix.thunk(() => nix.concat([zstd, libsoup_3], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [openssl])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ZSTD_SYS_USE_PKG_CONFIG: true })),
       buildAndTestSubdir: "owmods_cli",
       postInstall: nix.thunk(() => nix.add("cargo xtask dist_cli\ninstallManPage dist/cli/man/*\ninstallShellCompletion --cmd owmods \\\ndist/cli/completions/owmods.{bash,fish,zsh}\n", nix.app(nix.sel(lib, "optionalString"), wrapWithMono, nix.thunk(() => nix.str`wrapProgram $out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")} --prefix PATH : '${mono}/bin'
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CLI version of the mod manager for Outer Wilds Mod Loader",
         homepage: "https://github.com/ow-mods/ow-mod-man/tree/main/owmods_cli",
         downloadPage: nix.thunk(() => nix.str`https://github.com/ow-mods/ow-mod-man/releases/tag/cli_v${nix.sel(finalAttrs, "version")}`),

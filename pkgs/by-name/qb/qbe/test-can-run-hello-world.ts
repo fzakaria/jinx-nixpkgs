@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-can-run-hello-world.nix", [[["timeout", 27, 8]], [["name", 26, 3], ["meta", 27, 3], ["buildCommand", 28, 3]]]);
 const formals$1 = { args: { stdenv: false, writeText: false, qbe: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-can-run-hello-world.nix", [["timeout", 27, 8]]);
-const pos$2 = nix.positions(here + "/test-can-run-hello-world.nix", [["name", 26, 3], ["meta", 27, 3], ["buildCommand", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const qbe = nix.arg($, "qbe");
   const helloWorld = nix.thunk(() => nix.app(writeText, "hello-world.ssa", "function w $add(w %a, w %b) {        # Define a function add\n@start\n  %c =w add %a, %b                   # Adds the 2 arguments\n  ret %c                             # Return the result\n}\nexport function w $main() {          # Main function\n@start\n  %r =w call $add(w 1, w 1)          # Call add(1, 1)\n  call $printf(l $fmt, w %r, ...)    # Show the result\n  ret 0\n}\ndata $fmt = { b \"One and one make %d!\\n\", b 0 }\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "qbe-test-can-run-hello-world",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 10n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 10n })),
       buildCommand: nix.thunk(() => nix.str`${qbe}/bin/qbe -o asm.s ${helloWorld}
 cc -o out asm.s
 ./out | grep 'One and one make 2!'

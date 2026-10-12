@@ -2,13 +2,12 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/emacs2nix.nix", [["owner", 5, 5], ["repo", 6, 5], ["rev", 7, 5], ["hash", 8, 5], ["fetchSubmodules", 9, 5]]);
-const pos$2 = nix.positions(here + "/emacs2nix.nix", [["packages", 14, 3], ["EMACS2NIX", 19, 3], ["shellHook", 21, 3]]);
+const $pos = nix.positions(here + "/emacs2nix.nix", [[["owner", 5, 5], ["repo", 6, 5], ["rev", 7, 5], ["hash", 8, 5], ["fetchSubmodules", 9, 5]], [["packages", 14, 3], ["EMACS2NIX", 19, 3], ["shellHook", 21, 3]]]);
 
 export default nix.thunk(() => (() => {
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../..")), nix.thunk(() => ({}))));
   const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "nix-community",
       repo: "emacs2nix",
       rev: "9458961fc433a6c4cd91e7763f0aa1ef15f7b4aa",
@@ -16,7 +15,7 @@ export default nix.thunk(() => (() => {
       fetchSubmodules: true,
     }))));
   return nix.app(nix.sel(pkgs, "mkShell"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       packages: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "bash")),
         nix.thunk(() => nix.sel(pkgs, "nixfmt")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["description", 37, 5], ["license", 38, 5], ["homepage", 39, 5], ["maintainers", 40, 5], ["platforms", 44, 5], ["broken", 45, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["strictDeps", 33, 3], ["createFindlibDestdir", 35, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, ocaml: false, findlib: false, curl: false, lwt: false, lwt_ppx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 37, 5], ["license", 38, 5], ["homepage", 39, 5], ["maintainers", 40, 5], ["platforms", 44, 5], ["broken", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["strictDeps", 33, 3], ["createFindlibDestdir", 35, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ocurl";
       const version = "0.9.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ygrek/ocurl/releases/download/${version}/ocurl-${version}.tar.gz`),
           sha256: "sha256-4DWXGMh02s1VwLWW5d7h0jtMOUubWmBPGm1hghfWd2M=",
         }))));
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const createFindlibDestdir = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OCaml bindings to libcurl (deprecated)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://ygrek.org/p/ocurl/",
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.04")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

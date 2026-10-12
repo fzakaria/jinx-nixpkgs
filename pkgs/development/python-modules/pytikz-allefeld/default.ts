@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["dependencies", 26, 3], ["pythonImportsCheck", 32, 3], ["nativeCheckInputs", 34, 3], ["checkPhase", 35, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, setuptools: false, pymupdf: false, numpy: false, ipython: false, texliveSmall: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["dependencies", 26, 3], ["pythonImportsCheck", 32, 3], ["nativeCheckInputs", 34, 3], ["checkPhase", 35, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const ipython = nix.arg($, "ipython");
   const texliveSmall = nix.arg($, "texliveSmall");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pytikz-allefeld",
       version: "unstable-2022-11-01",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "allefeld",
           repo: "pytikz",
           rev: "f878ebd6ce5a647b1076228b48181b147a61abc1",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [texliveSmall]),
       checkPhase: "runHook preCheck\npython -c 'if 1:\n  from tikz import *\n  pic = Picture()\n  pic.draw(line([(0, 0), (1, 1)]))\n  print(pic.code())\n  pic.write_image(\"test.pdf\")\n'\ntest -s test.pdf\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/allefeld/pytikz",
         description: "Python interface to TikZ",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

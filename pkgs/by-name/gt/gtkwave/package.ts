@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["sha256", 28, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 74, 5]], [["pname", 20, 3], ["version", 21, 3], ["strictDeps", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["configureFlags", 50, 3], ["postFixup", 57, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { bzip2: false, fetchurl: false, glib: false, gperf: false, gtk3: false, "gtk-mac-integration": false, judy: false, lib: false, "pkg-config": false, stdenv: false, tcl: false, tk: false, wrapGAppsHook3: false, xz: false, desktopToDarwinBundle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["strictDeps", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["configureFlags", 50, 3], ["postFixup", 57, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gtkwave",
       version: "3.3.128",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/gtkwave/gtkwave-gtk3-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-gX4Zf8GAj4qsNUPCwvloPLATaMkRkrjq5a9YBw7x0fg=",
         })))),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mv $out/bin/.gtkwave-wrapped $out/Applications/GTKWave.app/Contents/MacOS/.gtkwave-wrapped\nmakeWrapper $out/Applications/GTKWave.app/Contents/MacOS/.gtkwave-wrapped $out/Applications/GTKWave.app/Contents/MacOS/GTKWave \\\n  --inherit-argv0 \\\n  \"${gappsWrapperArgs[@]}\"\nln -sf $out/Applications/GTKWave.app/Contents/MacOS/GTKWave $out/bin/gtkwave\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "VCD/Waveform viewer for Unix and Win32",
         homepage: "https://gtkwave.sourceforge.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

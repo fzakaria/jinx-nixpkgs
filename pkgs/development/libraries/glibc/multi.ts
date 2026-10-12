@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/multi.nix", [[["libgcc", 22, 7]], [["outputs", 15, 5], ["passthru", 21, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, glibc: false, glibc32: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/multi.nix", [["libgcc", 22, 7]]);
-const pos$2 = nix.positions(here + "/multi.nix", [["outputs", 15, 5], ["passthru", 21, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const nameVersion = nix.thunk(() => nix.builtins.parseDrvName(nix.thunk(() => nix.sel(glibc, "name"))));
   const glibc64 = glibc;
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(nameVersion, "name")}-multi-${nix.sel(nameVersion, "version")}`), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       outputs: nix.thunk(() => ["out", "bin", "dev", "static"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         libgcc: nix.thunk(() => nix.app(nix.sel(lib, "lists", "filter"), (x) => !nix.eq(x, null), nix.thunk(() => [
             nix.thunk(() => nix.selOr(glibc64, () => null, "libgcc")),
             nix.thunk(() => nix.selOr(glibc32, () => null, "libgcc")),

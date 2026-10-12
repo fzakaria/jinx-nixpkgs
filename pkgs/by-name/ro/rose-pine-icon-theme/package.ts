@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["dontBuild", 24, 3], ["installPhase", 26, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["dontBuild", 24, 3], ["installPhase", 26, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rose-pine-icon-theme",
       version: "unstable-2022-09-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rose-pine",
           repo: "gtk",
           rev: "7a4c40989fd42fd8d4a797f460c79fc4a085c304",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/icons\nmv icons/rose-pine-icons $out/share/icons/rose-pine\nmv icons/rose-pine-dawn-icons $out/share/icons/rose-pine-dawn\nmv icons/rose-pine-moon-icons $out/share/icons/rose-pine-moon\n\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache $theme\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Rosé Pine icon theme for GTK",
         homepage: "https://github.com/rose-pine/gtk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

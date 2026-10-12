@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]], [["homepage", 34, 5], ["description", 35, 5], ["changelog", 36, 5], ["platforms", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedNativeBuildInputs", 19, 3], ["propagatedBuildInputs", 21, 3], ["nativeCheckInputs", 28, 3], ["checkPhase", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, cffi: false, pytest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 34, 5], ["description", 35, 5], ["changelog", 36, 5], ["platforms", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedNativeBuildInputs", 19, 3], ["propagatedBuildInputs", 21, 3], ["nativeCheckInputs", 28, 3], ["checkPhase", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-oPklCB54aHn33ewTiSlXgx38T0RzLure5OzGuFwsLNo=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest]);
       const checkPhase = "pytest\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/zopieux/pycmarkgfm",
         description: "Bindings to GitHub's Flavored Markdown (cmark-gfm), with enhanced support for task lists",
         changelog: nix.thunk(() => nix.str`https://github.com/zopieux/pycmarkgfm/raw/v${version}/CHANGELOG.md`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

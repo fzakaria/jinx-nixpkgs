@@ -2,14 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tinyauth.nix", [[["maintainers", 8, 8]], [["APPURL", 14, 9], ["SERVER_PORT", 15, 9], ["ANALYTICS_ENABLED", 16, 9]], [["enable", 12, 7], ["settings", 13, 7], ["environmentFile", 19, 7]], [["tinyauth", 11, 14]], [["services", 11, 5]], [["machine", 10, 9]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 25, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tinyauth.nix", [["maintainers", 8, 8]]);
-const pos$2 = nix.positions(here + "/tinyauth.nix", [["APPURL", 14, 9], ["SERVER_PORT", 15, 9], ["ANALYTICS_ENABLED", 16, 9]]);
-const pos$3 = nix.positions(here + "/tinyauth.nix", [["enable", 12, 7], ["settings", 13, 7], ["environmentFile", 19, 7]]);
-const pos$4 = nix.positions(here + "/tinyauth.nix", [["tinyauth", 11, 14]]);
-const pos$5 = nix.positions(here + "/tinyauth.nix", [["services", 11, 5]]);
-const pos$6 = nix.positions(here + "/tinyauth.nix", [["machine", 10, 9]]);
-const pos$7 = nix.positions(here + "/tinyauth.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,26 +11,26 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const port = 3001n;
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "tinyauth",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "shaunren"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           tinyauth: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               APPURL: "http://auth.example.com",
               SERVER_PORT: port,
               ANALYTICS_ENABLED: false,

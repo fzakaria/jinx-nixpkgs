@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 18, 26], ["version", 18, 32], ["sha256", 19, 5]], [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 63, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 23, 3], ["build-system", 27, 3], ["dependencies", 31, 3], ["postInstall", 35, 3], ["doCheck", 51, 3], ["pythonImportsCheck", 52, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { python3Packages: false, fetchPypi: false, lib: false, flac: false, lame: false, "opus-tools": false, "vorbis-tools": false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 18, 26], ["version", 18, 32], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 23, 3], ["build-system", 27, 3], ["dependencies", 31, 3], ["postInstall", 35, 3], ["doCheck", 51, 3], ["pythonImportsCheck", 52, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const vorbis_tools = nix.arg($, "vorbis-tools");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "flac2all",
       version: "5.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "sha256-UGrkCQcpNzWH2hIRd1oTDryUeDumgHKuuxsbC87xaUI=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["flac2all_pkg.vorbis", "flac2all_pkg.mp3"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Multi process, clustered, FLAC to multi codec audio converter with tagging support",
         mainProgram: "flac2all",
         homepage: "https://github.com/ZivaVatra/flac2all",

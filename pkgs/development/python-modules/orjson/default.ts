@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["pname", 48, 13], ["version", 48, 19], ["src", 48, 27], ["hash", 49, 5]], [["falcon", 75, 7], ["fastapi", 76, 7], ["gradio", 77, 7], ["mashumaro", 78, 7], ["ufolib2", 79, 7]], [["tests", 73, 12]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["platforms", 91, 5], ["maintainers", 92, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["cargoDeps", 47, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 60, 3], ["nativeCheckInputs", 62, 3], ["pythonImportsCheck", 71, 3], ["passthru", 73, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, cffi: false, libiconv: false, numpy: false, psutil: false, pytestCheckHook: false, "python-dateutil": false, pytz: false, xxhash: false, falcon: false, fastapi: false, gradio: false, mashumaro: false, ufolib2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 48, 13], ["version", 48, 19], ["src", 48, 27], ["hash", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["falcon", 75, 7], ["fastapi", 76, 7], ["gradio", 77, 7], ["mashumaro", 78, 7], ["ufolib2", 79, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 73, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["platforms", 91, 5], ["maintainers", 92, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["cargoDeps", 47, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 60, 3], ["nativeCheckInputs", 62, 3], ["pythonImportsCheck", 71, 3], ["passthru", 73, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.11.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ijl",
           repo: "orjson",
           tag: version,
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => [nix.path(here, "./cross-arch-compat.patch")])));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -60,9 +55,9 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [numpy, psutil, pytestCheckHook, python_dateutil, pytz, xxhash]);
       const pythonImportsCheck = nix.thunk(() => ["orjson"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           falcon: falcon,
           fastapi: fastapi,
           gradio: gradio,
@@ -71,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy",
         homepage: "https://github.com/ijl/orjson",
         changelog: nix.thunk(() => nix.str`https://github.com/ijl/orjson/blob/${version}/CHANGELOG.md`),
@@ -89,7 +84,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

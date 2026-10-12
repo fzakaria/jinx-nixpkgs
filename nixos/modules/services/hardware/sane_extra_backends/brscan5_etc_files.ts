@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/brscan5_etc_files.nix", [[["description", 77, 5], ["homepage", 78, 5], ["platforms", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["name", 52, 3], ["version", 53, 3], ["src", 54, 3], ["nativeBuildInputs", 56, 3], ["dontConfigure", 58, 3], ["buildPhase", 60, 3], ["dontInstall", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, brscan5: false, netDevices: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/brscan5_etc_files.nix", [["description", 77, 5], ["homepage", 78, 5], ["platforms", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$2 = nix.positions(here + "/brscan5_etc_files.nix", [["name", 52, 3], ["version", 53, 3], ["src", 54, 3], ["nativeBuildInputs", 56, 3], ["dontConfigure", 58, 3], ["buildPhase", 60, 3], ["dontInstall", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ model="${nix.sel(nd, "model")}" \\
 ${(nix.asBool((nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "nodename", nd)) && nix.asBool(!nix.eq(nix.sel(nd, "nodename"), null)))) ? nix.str`nodename="${nix.sel(nd, "nodename")}"` : nix.str`ip="${nix.sel(nd, "ip")}"`)}`;
   const addAllNetDev = (xs) => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map(addNetDev, xs)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "brscan5-etc-files",
       version: "1.2.6-0",
       src: nix.thunk(() => nix.str`${brscan5}/opt/brother/scanner/brscan5`),
@@ -38,7 +37,7 @@ mv -T "$TARGET_DIR" "$out/etc/opt/brother/scanner/brscan5"
 `),
       dontInstall: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Brother brscan5 sane backend driver etc files",
         homepage: "https://www.brother.com",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontend.nix", [[["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]], [["changelog", 27, 5], ["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 36]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["doCheck", 22, 3], ["pythonImportsCheck", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "music-assistant": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontend.nix", [["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/frontend.nix", [["changelog", 27, 5], ["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 36]]);
-const pos$3 = nix.positions(here + "/frontend.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["doCheck", 22, 3], ["pythonImportsCheck", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.17.297";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "music_assistant_frontend",
           version: version,
           hash: "sha256-8HRtB4+PCgp7WxABQt6DuVq15FQzVBNsrWTRoEfjAxg=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(music_assistant, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/music-assistant/frontend/releases/tag/${version}`),
         description: "Music Assistant frontend",
         homepage: "https://github.com/music-assistant/frontend",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

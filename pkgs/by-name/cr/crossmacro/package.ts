@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["updateScript", 131, 12]], [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["platforms", 138, 5], ["mainProgram", 139, 5], ["maintainers", 140, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["projectFile", 42, 3], ["nugetDeps", 43, 3], ["dotnet-sdk", 45, 3], ["dotnet-runtime", 46, 3], ["executables", 48, 3], ["buildType", 49, 3], ["selfContainedBuild", 50, 3], ["dotnetFlags", 52, 3], ["buildInputs", 63, 3], ["runtimeDeps", 65, 3], ["nativeBuildInputs", 87, 3], ["postInstall", 93, 3], ["postFixup", 109, 3], ["passthru", 131, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, dotnetCorePackages: false, fetchFromGitHub: false, installShellFiles: false, clang: false, autoPatchelfHook: false, "nix-update-script": false, fontconfig: false, freetype: false, expat: false, libx11: false, libice: false, libsm: false, libxi: false, libxcursor: false, libxext: false, libxrandr: false, libxtst: false, libglvnd: false, wayland: false, libxkbcommon: false, glib: false, icu: false, openssl: false, zlib: false, pipewire: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 131, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["platforms", 138, 5], ["mainProgram", 139, 5], ["maintainers", 140, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["projectFile", 42, 3], ["nugetDeps", 43, 3], ["dotnet-sdk", 45, 3], ["dotnet-runtime", 46, 3], ["executables", 48, 3], ["buildType", 49, 3], ["selfContainedBuild", 50, 3], ["dotnetFlags", 52, 3], ["buildInputs", 63, 3], ["runtimeDeps", 65, 3], ["nativeBuildInputs", 87, 3], ["postInstall", 93, 3], ["postFixup", 109, 3], ["passthru", 131, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "crossmacro";
       const version = "1.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alper-han",
           repo: "CrossMacro",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -90,11 +87,11 @@ export default nix.lambda((args) => (() => {
       const postInstall = "installManPage docs/man/crossmacro.1\n\ninstall -Dm644 scripts/assets/CrossMacro.desktop $out/share/applications/crossmacro.desktop\nsubstituteInPlace $out/share/applications/crossmacro.desktop \\\n  --replace-fail \"Exec=crossmacro\" \"Exec=$out/lib/crossmacro/CrossMacro.UI\"\n\nfor size in 16 32 48 64 128 256 512; do\n  install -Dm644 src/CrossMacro.UI/Assets/icons/${size}x${size}/apps/crossmacro.png \\\n    $out/share/icons/hicolor/${size}x${size}/apps/crossmacro.png\ndone\n\ninstall -Dm644 scripts/assets/io.github.alper-han.CrossMacro.metainfo.xml \\\n  $out/share/metainfo/io.github.alper-han.CrossMacro.metainfo.xml\n";
       const postFixup = "# Align wrapper and ELF paths so KWin's strict /proc/<pid>/exe check grants Wayland permissions.\n# Move the real ELF binary to .CrossMacro.UI-wrapped\nmv $out/lib/crossmacro/CrossMacro.UI \\\n   $out/lib/crossmacro/.CrossMacro.UI-wrapped\n\n# Move the buildDotnetModule wrapper from bin/ into lib/ so\n# its path matches what KWin resolves after unwrapping.\nmv $out/bin/CrossMacro.UI $out/lib/crossmacro/CrossMacro.UI\n\n# Update the wrapper's exec target to the renamed binary\nsubstituteInPlace $out/lib/crossmacro/CrossMacro.UI \\\n  --replace-fail \\\n    \"\\\"$out/lib/crossmacro/CrossMacro.UI\\\"\" \\\n    \"\\\"$out/lib/crossmacro/.CrossMacro.UI-wrapped\\\"\"\n\n# Point bin/ entries at the lib/ wrapper\nrm -f $out/bin/crossmacro\nln -s $out/lib/crossmacro/CrossMacro.UI $out/bin/CrossMacro.UI\nln -s $out/bin/CrossMacro.UI $out/bin/crossmacro\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross-platform mouse and keyboard macro recorder and player",
         homepage: "https://github.com/alper-han/CrossMacro",
         changelog: nix.thunk(() => nix.str`https://github.com/alper-han/CrossMacro/releases/tag/v${version}`),
@@ -107,7 +104,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

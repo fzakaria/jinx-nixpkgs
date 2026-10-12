@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["pkg-config", 39, 11]], [["updateScript", 31, 5], ["tests", 39, 5]], [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["pkgConfigModules", 54, 5], ["platforms", 55, 5]], [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["src", 19, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["passthru", 30, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, xorgproto: false, writeScript: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 39, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 31, 5], ["tests", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["pkgConfigModules", 54, 5], ["platforms", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["src", 19, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["passthru", 30, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libxshmfence",
       version: "1.3.3",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/lib/libxshmfence-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-1KTfCWq6lv6gLAKe46ROEaR+t/chPBpym+g+hew/3hA=",
         })))),
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [xorgproto]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname ${nix.sel(finalAttrs, "pname")} \\
@@ -41,12 +37,12 @@ version="$(list-directory-versions --pname ${nix.sel(finalAttrs, "pname")} \\
 update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Shared memory 'SyncFence' synchronization primitive library",
         longDescription: "This library offers a CPU-based synchronization primitive compatible with the X SyncFence\nobjects that can be shared between processes using file descriptor passing.\nThere are two underlying implementations:\n- On Linux, the library uses futexes\n- On other systems, the library uses posix mutexes and condition variables.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/lib/libxshmfence",

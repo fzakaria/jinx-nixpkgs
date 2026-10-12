@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["homepage", 29, 5], ["license", 30, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, kodi: false, libcec_platform: false, tinyxml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 29, 5], ["license", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kodi-platform";
       const version = "20250416";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xbmc",
           repo: "kodi-platform",
           rev: nix.thunk(() => nix.str`kodiplatform-${version}`),
@@ -29,11 +27,19 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const buildInputs = nix.thunk(() => [kodi, libcec_platform, tinyxml]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/xbmc/kodi-platform",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return {
+        [nix.POS]: $pos[2],
+        pname,
+        version,
+        src,
+        nativeBuildInputs,
+        buildInputs,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

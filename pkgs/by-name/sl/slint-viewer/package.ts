@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 26, 26], ["version", 26, 32], ["hash", 27, 5]], [["updateScript", 63, 12]], [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoHash", 30, 3], ["buildInputs", 32, 3], ["buildFeatures", 39, 3], ["nativeBuildInputs", 41, 3], ["runtimeDependencies", 49, 3], ["doCheck", 59, 3], ["doInstallCheck", 60, 3], ["nativeInstallCheckInputs", 61, 3], ["passthru", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchCrate: false, fontconfig: false, libGL: false, libx11: false, libxcursor: false, libxi: false, libxkbcommon: false, "pkg-config": false, qt6: false, wayland: false, autoPatchelfHook: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 26, 26], ["version", 26, 32], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoHash", 30, 3], ["buildInputs", 32, 3], ["buildFeatures", 39, 3], ["nativeBuildInputs", 41, 3], ["runtimeDependencies", 49, 3], ["doCheck", 59, 3], ["doInstallCheck", 60, 3], ["nativeInstallCheckInputs", 61, 3], ["passthru", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "slint-viewer",
       version: "1.18.1",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-MlYBkJl8MupzpTfyjmlLlfpYqFWHg3lll7x87leB5iY=",
@@ -50,11 +47,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Viewer for .slint files from the Slint Project",
         mainProgram: "slint-viewer",
         homepage: "https://crates.io/crates/slint-viewer",

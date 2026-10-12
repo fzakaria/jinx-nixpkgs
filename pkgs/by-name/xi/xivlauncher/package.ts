@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 13], ["hash", 31, 5], ["fetchSubmodules", 32, 5]], [["packages", 58, 9], ["targetPackages", 59, 9]], [["extraPkgs", 83, 13], ["extraProfile", 84, 13]], [["name", 113, 7], ["exec", 114, 7], ["icon", 115, 7], ["desktopName", 116, 7], ["comment", 117, 7], ["categories", 118, 7], ["startupWMClass", 119, 7]], [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 132, 5], ["mainProgram", 133, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["projectFile", 49, 3], ["nugetDeps", 50, 3], ["dotnet-sdk", 53, 3], ["dotnetFlags", 63, 3], ["postPatch", 68, 3], ["postInstall", 73, 3], ["postFixup", 78, 3], ["executables", 101, 3], ["runtimeDeps", 103, 3], ["desktopItems", 111, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false, sdl3: false, libdecor: false, libsecret: false, glib: false, gnutls: false, aria2: false, steam: false, gst_all_1: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, useSteamRun: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 13], ["hash", 31, 5], ["fetchSubmodules", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packages", 58, 9], ["targetPackages", 59, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraPkgs", 83, 13], ["extraProfile", 84, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 113, 7], ["exec", 114, 7], ["icon", 115, 7], ["desktopName", 116, 7], ["comment", 117, 7], ["categories", 118, 7], ["startupWMClass", 119, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 132, 5], ["mainProgram", 133, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["projectFile", 49, 3], ["nugetDeps", 50, 3], ["dotnet-sdk", 53, 3], ["dotnetFlags", 63, 3], ["postPatch", 68, 3], ["postInstall", 73, 3], ["postFixup", 78, 3], ["executables", 101, 3], ["runtimeDeps", 103, 3], ["desktopItems", 111, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "XIVLauncher";
       const version = rev;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "goatcorp",
           repo: "XIVLauncher.Core",
           rev: rev,
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const dotnet_sdk = nix.thunk(() => (() => {
         const w_1 = nix.withScope(dotnetCorePackages, null);
         return nix.update(nix.lookup(w_1, "sdk_10_0"), {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           packages: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w_1, "sdk_9_0")), "packages")),
           targetPackages: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w_1, "sdk_9_0")), "targetPackages")),
         });
@@ -69,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "mkdir -p $out/share/pixmaps\ncp src/XIVLauncher.Core/Resources/logo.png $out/share/pixmaps/xivlauncher.png\n";
       const postFixup = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), useSteamRun, nix.thunk(() => (() => {
           const steam_run = nix.thunk(() => nix.sel(nix.app(nix.sel(steam, "override"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               extraPkgs: (pkgs) => [nix.thunk(() => nix.sel(pkgs, "libunwind"))],
               extraProfile: "unset TZ\n",
             }))), "run"));
@@ -85,7 +80,7 @@ echo ${aria2} >> $out/nix-support/depends
       const runtimeDeps = nix.thunk(() => [sdl3, libdecor, libsecret, glib, gnutls]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "xivlauncher",
             exec: "XIVLauncher.Core",
             icon: "xivlauncher",
@@ -96,7 +91,7 @@ echo ${aria2} >> $out/nix-support/depends
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Custom launcher for FFXIV",
         homepage: "https://github.com/goatcorp/XIVLauncher.Core",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -112,7 +107,7 @@ echo ${aria2} >> $out/nix-support/depends
         mainProgram: "XIVLauncher.Core",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

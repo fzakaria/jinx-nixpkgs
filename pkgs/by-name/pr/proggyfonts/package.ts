@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["dontConfigure", 23, 3], ["dontBuild", 24, 3], ["preInstall", 26, 3], ["postInstall", 37, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, mkfontscale: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["dontConfigure", 23, 3], ["dontBuild", 24, 3], ["preInstall", 26, 3], ["postInstall", 37, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const mkfontscale = nix.arg($, "mkfontscale");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "proggyfonts",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20150801042353/http://kaictl.net/software/proggyfonts-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-SsLzZdR5icVJNbr5rcCPbagPPtWghbqs2Jxmrtufsa4=",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "rm Speedy.pcf # duplicated as Speedy11.pcf\n\n# compress pcf fonts\nfor f in *.pcf; do\n  gzip -n -9 -c \"$f\" > \"$f\".gz\ndone\n\nrm *.pcf\n",
       postInstall: "install -D -m 644 Licence.txt -t \"$out/share/doc/$name\"\n\nmkfontscale \"$out/share/fonts/truetype\"\nmkfontdir   \"$out/share/fonts/misc\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/bluescan/proggyfonts",
         description: "Set of fixed-width screen fonts that are designed for code listings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

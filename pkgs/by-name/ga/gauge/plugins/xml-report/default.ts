@@ -2,22 +2,21 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 13, 5], ["homepage", 14, 5], ["license", 15, 5], ["maintainers", 16, 5], ["sourceProvenance", 17, 5], ["platforms", 18, 5]], [["pname", 6, 3], ["data", 7, 3], ["repo", 9, 3], ["releasePrefix", 10, 3], ["meta", 12, 3]]]);
 const formals$1 = { args: { lib: false, makeGaugePlugin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 13, 5], ["homepage", 14, 5], ["license", 15, 5], ["maintainers", 16, 5], ["sourceProvenance", 17, 5], ["platforms", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 6, 3], ["data", 7, 3], ["repo", 9, 3], ["releasePrefix", 10, 3], ["meta", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const makeGaugePlugin = nix.arg($, "makeGaugePlugin");
   return nix.app(makeGaugePlugin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "xml-report",
       data: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./data.json"))),
       repo: "getgauge/xml-report",
       releasePrefix: "xml-report-",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "XML report generation plugin for Gauge",
         homepage: "https://github.com/getgauge/xml-report/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

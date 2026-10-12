@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["hash", 74, 5]], [["azure", 141, 5], ["gdrive", 142, 5], ["gs", 143, 5], ["hdfs", 144, 5], ["oss", 145, 5], ["s3", 146, 5], ["ssh", 147, 5], ["ssh_gssapi", 148, 5], ["webdav", 149, 5], ["webhdfs", 150, 5], ["webhdfs_kerberos", 151, 5]], [["description", 163, 5], ["homepage", 164, 5], ["changelog", 165, 5], ["license", 166, 5], ["maintainers", 167, 5], ["mainProgram", 171, 5]], [["pname", 66, 3], ["version", 67, 3], ["pyproject", 68, 3], ["src", 70, 3], ["pythonRelaxDeps", 77, 3], ["postPatch", 82, 3], ["build-system", 89, 3], ["dependencies", 91, 3], ["optional-dependencies", 140, 3], ["doCheck", 155, 3], ["pythonImportsCheck", 157, 3], ["meta", 162, 3]]]);
 const formals$1 = { args: { lib: false, attrs: false, buildPythonPackage: false, celery: false, colorama: false, configobj: false, dulwich: false, distro: false, dpath: false, "dvc-azure": false, "dvc-data": false, "dvc-gdrive": false, "dvc-gs": false, "dvc-hdfs": false, "dvc-http": false, "dvc-oss": false, "dvc-render": false, "dvc-s3": false, "dvc-ssh": false, "dvc-studio-client": false, "dvc-task": false, "dvc-webdav": false, "dvc-webhdfs": false, fetchFromGitHub: false, "flatten-dict": false, "flufl-lock": false, fsspec: false, funcy: false, grandalf: false, gto: false, "hydra-core": false, "importlib-metadata": false, "importlib-resources": false, "iterative-telemetry": false, kombu: false, networkx: false, omegaconf: false, packaging: false, pathspec: false, platformdirs: false, psutil: false, pydot: false, pygtrie: false, pyparsing: false, requests: false, rich: false, "ruamel-yaml": false, scmrepo: false, "setuptools-scm": false, shortuuid: false, shtab: false, tabulate: false, tomlkit: false, tqdm: false, "typing-extensions": false, voluptuous: false, "zc-lockfile": false, enableGoogle: true, enableAWS: true, enableAzure: true, enableSSH: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["hash", 74, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["azure", 141, 5], ["gdrive", 142, 5], ["gs", 143, 5], ["hdfs", 144, 5], ["oss", 145, 5], ["s3", 146, 5], ["ssh", 147, 5], ["ssh_gssapi", 148, 5], ["webdav", 149, 5], ["webhdfs", 150, 5], ["webhdfs_kerberos", 151, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 163, 5], ["homepage", 164, 5], ["changelog", 165, 5], ["license", 166, 5], ["maintainers", 167, 5], ["mainProgram", 171, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 66, 3], ["version", 67, 3], ["pyproject", 68, 3], ["src", 70, 3], ["pythonRelaxDeps", 77, 3], ["postPatch", 82, 3], ["build-system", 89, 3], ["dependencies", 91, 3], ["optional-dependencies", 140, 3], ["doCheck", 155, 3], ["pythonImportsCheck", 157, 3], ["meta", 162, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -72,12 +69,12 @@ export default nix.lambda((args) => (() => {
   const enableAzure = nix.argOr($, "enableAzure", () => false);
   const enableSSH = nix.argOr($, "enableSSH", () => false);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dvc",
       version: "3.67.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "treeverse",
           repo: "dvc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -131,7 +128,7 @@ export default nix.lambda((args) => (() => {
         zc_lockfile,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), enableGoogle, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "gs"))), nix.concat(nix.app(nix.sel(lib, "optionals"), enableAWS, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "s3"))), nix.concat(nix.app(nix.sel(lib, "optionals"), enableAzure, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "azure"))), nix.app(nix.sel(lib, "optionals"), enableSSH, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "ssh")))))))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         azure: nix.thunk(() => [dvc_azure]),
         gdrive: nix.thunk(() => [dvc_gdrive]),
         gs: nix.thunk(() => [dvc_gs]),
@@ -147,7 +144,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["dvc", "dvc.api"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Version Control System for Machine Learning Projects",
         homepage: "https://dvc.org",
         changelog: nix.thunk(() => nix.str`https://github.com/treeverse/dvc/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

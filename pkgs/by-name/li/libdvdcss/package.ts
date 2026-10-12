@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["homepage", 27, 5], ["changelog", 28, 5], ["description", 29, 5], ["license", 30, 5], ["platforms", 31, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 21, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["changelog", 28, 5], ["description", 29, 5], ["license", 30, 5], ["platforms", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 21, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libdvdcss",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "code.videolan.org",
           owner: "videolan",
           repo: "libdvdcss",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.videolan.org/developers/libdvdcss.html",
         changelog: nix.thunk(() => nix.str`https://code.videolan.org/videolan/libdvdcss/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "Library for decrypting DVDs",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jsoo.nix", [[["description", 25, 5]], [["pname", 10, 3], ["version", 11, 20], ["src", 11, 28], ["minimalOCamlVersion", 13, 3], ["propagatedBuildInputs", 15, 3], ["doCheck", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, gitlab: false, cohttp: false, "cohttp-lwt-jsoo": false, "js_of_ocaml-lwt": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/jsoo.nix", [["description", 25, 5]]);
-const pos$2 = nix.positions(here + "/jsoo.nix", [["pname", 10, 3], ["version", 11, 20], ["src", 11, 28], ["minimalOCamlVersion", 13, 3], ["propagatedBuildInputs", 15, 3], ["doCheck", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const cohttp_lwt_jsoo = nix.arg($, "cohttp-lwt-jsoo");
   const js_of_ocaml_lwt = nix.arg($, "js_of_ocaml-lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "gitlab-jsoo",
       version: nix.thunk(() => nix.attr(gitlab, "version")),
       src: nix.thunk(() => nix.attr(gitlab, "src")),
       minimalOCamlVersion: "4.08",
       propagatedBuildInputs: nix.thunk(() => [gitlab, cohttp, cohttp_lwt_jsoo, js_of_ocaml_lwt]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(gitlab, "meta"), { [nix.POS]: pos$1, description: "Gitlab APIv4 JavaScript library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(gitlab, "meta"), { [nix.POS]: $pos[0], description: "Gitlab APIv4 JavaScript library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=jsoo.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]], [["LIBGIT2_NO_VENDOR", 21, 7]], [["description", 31, 5], ["mainProgram", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 19, 3], ["env", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { fetchCrate: false, lib: false, libgit2: false, openssl: false, "pkg-config": false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBGIT2_NO_VENDOR", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 31, 5], ["mainProgram", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 19, 3], ["env", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "spr",
       version: "1.3.7",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-YmmPxsDoV1sYmqY0Jfqm3xTPmu7WWuIUQyOaICu3stM=",
         })))),
       cargoHash: "sha256-cQsxRrs/pBe/xmqpp5vi1VRJo8jCAufYJrMigxs/tWY=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LIBGIT2_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libgit2, openssl]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Submit pull requests for individual, amendable, rebaseable commits to GitHub",
         mainProgram: "spr",
         homepage: "https://github.com/spacedentist/spr",

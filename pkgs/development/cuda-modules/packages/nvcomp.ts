@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nvcomp.nix", [[["message", 21, 7], ["assertion", 24, 7]], [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 33, 5], ["changelog", 34, 5]], [["redistName", 7, 3], ["pname", 8, 3], ["outputs", 10, 3], ["platformAssertions", 19, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { backendStdenv: false, buildRedist: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nvcomp.nix", [["message", 21, 7], ["assertion", 24, 7]]);
-const pos$2 = nix.positions(here + "/nvcomp.nix", [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 33, 5], ["changelog", 34, 5]]);
-const pos$3 = nix.positions(here + "/nvcomp.nix", [["redistName", 7, 3], ["pname", 8, 3], ["outputs", 10, 3], ["platformAssertions", 19, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,19 +11,19 @@ export default nix.lambda((args) => (() => {
   const buildRedist = nix.arg($, "buildRedist");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       redistName: "nvcomp",
       pname: "nvcomp",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static"]),
       platformAssertions: nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           message: nix.thunk(() => nix.add("nvCOMP supports CUDA compute capabilities 7.0 and newer", nix.str` (found ${nix.builtins.toJSON(nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities")))})`)),
           assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), "7.0")), nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities")))),
         })),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High-speed data compression and decompression library optimized for NVIDIA GPUs",
         longDescription: "NVIDIA nvCOMP is a high-speed data compression and decompression library optimized for NVIDIA GPUs.\n",
         homepage: "https://developer.nvidia.com/nvcomp",

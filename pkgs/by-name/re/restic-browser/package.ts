@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["name", 31, 5], ["src", 32, 26], ["hash", 33, 5]], [["updateScript", 61, 12]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5], ["platforms", 70, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["npmDeps", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 47, 3], ["cargoRoot", 53, 3], ["buildAndTestSubdir", 54, 3], ["postInstall", 56, 3], ["passthru", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, fetchNpmDeps: false, "cargo-tauri": false, nodejs: false, npmHooks: false, "pkg-config": false, wrapGAppsHook3: false, webkitgtk_4_1: false, dbus: false, "nix-update-script": false, restic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 31, 5], ["src", 32, 26], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 61, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5], ["platforms", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["npmDeps", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 47, 3], ["cargoRoot", 53, 3], ["buildAndTestSubdir", 54, 3], ["postInstall", 56, 3], ["passthru", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const restic = nix.arg($, "restic");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "restic-browser",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emuell",
           repo: "restic-browser",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-/EgSr46mJV84s/MG/3nUnU6XQ8RtEWiWo0gFtegblEQ=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps-${nix.sel(finalAttrs, "version")}`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-uyn5cXMKm7+LLuF+n94pBTypLiPvfAs5INDEtd9cHs0=",
@@ -55,11 +51,11 @@ export default nix.lambda((args) => (() => {
 ln -s $out/Applications/Restic-Browser.app/Contents/MacOS/Restic-Browser $out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GUI to browse and restore restic backup repositories",
         homepage: "https://github.com/emuell/restic-browser",
         changelog: nix.thunk(() => nix.str`https://github.com/emuell/restic-browser/releases/tag/v${nix.sel(finalAttrs, "version")}`),

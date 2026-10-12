@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["build-system", 30, 3], ["doCheck", 33, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["build-system", 30, 3], ["doCheck", 33, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "valentinmk",
           repo: "asynccmd",
           tag: version,
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "deprecation-python-38.patch",
             url: "https://github.com/valentinmk/asynccmd/commit/12afa60ac07db17e96755e266061f2c88cb545ff.patch",
             hash: "sha256-zhdxEDWn78QTTXkj80VrZpLwfYxIBcBvxjgU+Uaa2lA=",
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["asynccmd"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Asyncio implementation of Cmd Python library",
         homepage: "https://github.com/valentinmk/asynccmd",
         changelog: nix.thunk(() => nix.str`https://github.com/valentinmk/asynccmd/releases/tag/${version}`),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

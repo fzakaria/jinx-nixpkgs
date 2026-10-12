@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hash", 43, 7]], [["version", 41, 5], ["src", 42, 5]], [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]], [["src", 65, 26], ["hash", 66, 5]], [["wagtail", 105, 18]], [["tests", 105, 12]], [["description", 110, 5], ["mainProgram", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]], [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["src", 52, 3], ["nativeBuildInputs", 59, 3], ["npmDeps", 64, 3], ["preBuild", 69, 3], ["build-system", 75, 3], ["dependencies", 79, 3], ["doCheck", 103, 3], ["passthru", 105, 3], ["pythonImportsCheck", 107, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchNpmDeps: false, nodejs: false, npmHooks: false, setuptools: false, anyascii: false, beautifulsoup4: false, django: false, "django-filter": false, "django-modelcluster": false, "django-taggit": false, "django-tasks": false, "django-treebeard": false, djangorestframework: false, "draftjs-exporter": false, laces: false, modelsearch: false, openpyxl: false, permissionedforms: false, pillow: false, requests: false, telepath: false, willow: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hash", 43, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 41, 5], ["src", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["src", 65, 26], ["hash", 66, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["wagtail", 105, 18]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 105, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 110, 5], ["mainProgram", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["src", 52, 3], ["nativeBuildInputs", 59, 3], ["npmDeps", 64, 3], ["preBuild", 69, 3], ["build-system", 75, 3], ["dependencies", 79, 3], ["doCheck", 103, 3], ["passthru", 105, 3], ["pythonImportsCheck", 107, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,20 +34,20 @@ export default nix.lambda((args) => (() => {
   const willow = nix.arg($, "willow");
   const callPackage = nix.arg($, "callPackage");
   const django_treebeard$ = nix.thunk(() => nix.app(nix.sel(django_treebeard, "overridePythonAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "5.3.1",
       src: nix.thunk(() => nix.app(nix.sel(old, "src", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256-s2s/cN1daeST9YxvjwJSH4mbT/gg5/J3n4F6g+S15Rc=",
         })))),
     })));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "wagtail",
       version: "7.4.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "wagtail",
           repo: "wagtail",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), nodejs]),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-Z2VOMqsNIBybJpfYxAq2dkmS2vwd8Yuhu7MCFyqNxdI=",
         })))),
@@ -90,15 +83,15 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(willow, "optional-dependencies", "heif"))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           wagtail: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       })),
       pythonImportsCheck: nix.thunk(() => ["wagtail"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Django content management system focused on flexibility and user experience",
         mainProgram: "wagtail",
         homepage: "https://github.com/wagtail/wagtail",

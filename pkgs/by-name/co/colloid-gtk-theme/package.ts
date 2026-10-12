@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 61, 7], ["repo", 62, 7], ["tag", 63, 7], ["hash", 64, 7]], [["description", 94, 7], ["homepage", 95, 7], ["license", 96, 7], ["platforms", 97, 7], ["maintainers", 98, 7]], [["pname", 57, 13], ["version", 58, 5], ["src", 60, 5], ["nativeBuildInputs", 67, 5], ["postPatch", 72, 5], ["installPhase", 78, 5], ["meta", 93, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, jdupes: false, sassc: false, themeVariants: true, colorVariants: true, sizeVariants: true, tweaks: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 61, 7], ["repo", 62, 7], ["tag", 63, 7], ["hash", 64, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 94, 7], ["homepage", 95, 7], ["license", 96, 7], ["platforms", 97, 7], ["maintainers", 98, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 57, 13], ["version", 58, 5], ["src", 60, 5], ["nativeBuildInputs", 67, 5], ["postPatch", 72, 5], ["installPhase", 78, 5], ["meta", 93, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +40,11 @@ export default nix.lambda((args) => (() => {
       "normal",
       "float",
     ]), tweaks, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: "2026-08-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vinceliuice",
           repo: "colloid-gtk-theme",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,7 +66,7 @@ jdupes --quiet --link-soft --recurse $out/share
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modern and clean Gtk theme",
         homepage: "https://github.com/vinceliuice/Colloid-gtk-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

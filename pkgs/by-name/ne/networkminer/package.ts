@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 7], ["hash", 25, 7]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5], ["mainProgram", 85, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["dotnet-sdk", 28, 3], ["nativeBuildInputs", 30, 3], ["postPatch", 35, 3], ["nugetDeps", 47, 3], ["buildPhase", 49, 3], ["installPhase", 57, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchzip: false, dos2unix: false, msbuild: false, gtk2: false, mono: false, dotnetCorePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5], ["mainProgram", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["dotnet-sdk", 28, 3], ["nativeBuildInputs", 30, 3], ["postPatch", 35, 3], ["nugetDeps", 47, 3], ["buildPhase", 49, 3], ["installPhase", 57, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => (() => {
         const version$ = nix.thunk(() => nix.app(nix.sel(lib, "replaceString"), ".", "-", version));
         return nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://archive.org/download/network-miner-${version$}-source/NetworkMiner_${version$}_source.zip`),
             hash: "sha256-BdjSsFSpt3U7IUurY1dmprzq8wNdPNZyXGKeIGETr7Q=",
           })));
@@ -50,7 +48,7 @@ install -D NetworkMiner/networkminericon-96x96.png $out/share/icons/hicolor/96x9
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open Source Network Forensic Analysis Tool (NFAT)",
         homepage: "https://www.netresec.com/?page=NetworkMiner",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -62,7 +60,7 @@ runHook postInstall
         mainProgram: "NetworkMiner",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

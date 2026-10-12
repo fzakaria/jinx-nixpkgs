@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 11], ["repo", 46, 11], ["rev", 47, 19], ["hash", 47, 23]], [["version", 59, 19], ["src", 60, 11], ["extraBuildInputs", 61, 11]], [["version", 79, 11], ["src", 80, 11], ["extraBuildInputs", 81, 11], ["extraNativeBuildInputs", 96, 11]], [["version", 106, 11], ["src", 107, 11], ["extraBuildInputs", 108, 11]], [["enableHttp", 180, 29]], [["dedicated", 244, 13]], [["armagetronad", 255, 19]], [["dedicated", 254, 13], ["tests", 255, 13]], [["mainProgram", 259, 17], ["homepage", 260, 9], ["description", 261, 9], ["maintainers", 262, 9], ["license", 263, 9], ["platforms", 264, 9]], [["pname", 146, 7], ["version", 147, 32], ["src", 147, 40], ["postPatch", 149, 7], ["enableParallelBuilding", 152, 7], ["enableParallelInstalling", 153, 7], ["preConfigure", 155, 7], ["configureFlags", 166, 7], ["buildInputs", 179, 7], ["nativeBuildInputs", 185, 7], ["nativeInstallCheckInputs", 195, 7], ["postInstall", 201, 7], ["doInstallCheck", 207, 7], ["installCheckPhase", 209, 7], ["passthru", 235, 7], ["meta", 258, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoconf: false, automake: false, gnum4: false, "pkg-config": false, bison: false, python3: false, which: false, boost: false, curl: false, ftgl: false, freetype: false, glew: false, SDL: false, SDL_image: false, SDL_mixer: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, libGL: false, libGLU: false, libpng: false, libx11: false, libxml2: false, protobuf: false, "xvfb-run": false, gnugrep: false, nixosTests: false, dedicatedServer: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 11], ["repo", 46, 11], ["rev", 47, 19], ["hash", 47, 23]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 59, 19], ["src", 60, 11], ["extraBuildInputs", 61, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 79, 11], ["src", 80, 11], ["extraBuildInputs", 81, 11], ["extraNativeBuildInputs", 96, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 106, 11], ["src", 107, 11], ["extraBuildInputs", 108, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["enableHttp", 180, 29]]);
-const pos$6 = nix.positions(here + "/package.nix", [["dedicated", 244, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["armagetronad", 255, 19]]);
-const pos$8 = nix.positions(here + "/package.nix", [["dedicated", 254, 13], ["tests", 255, 13]]);
-const pos$9 = nix.positions(here + "/package.nix", [["mainProgram", 259, 17], ["homepage", 260, 9], ["description", 261, 9], ["maintainers", 262, 9], ["license", 263, 9], ["platforms", 264, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 146, 7], ["version", 147, 32], ["src", 147, 40], ["postPatch", 149, 7], ["enableParallelBuilding", 152, 7], ["enableParallelInstalling", 153, 7], ["preConfigure", 155, 7], ["configureFlags", 166, 7], ["buildInputs", 179, 7], ["nativeBuildInputs", 185, 7], ["nativeInstallCheckInputs", 195, 7], ["postInstall", 201, 7], ["doInstallCheck", 207, 7], ["installCheckPhase", 209, 7], ["passthru", 235, 7], ["meta", 258, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const unstableVersionMajor = "0.4";
   const srcs = nix.thunk(() => (() => {
     const fetchArmagetron = (rev) => (hash) => nix.app(fetchFromGitLab, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "armagetronad",
         repo: "armagetronad",
         rev: rev,
@@ -63,7 +54,7 @@ export default nix.lambda((args) => (() => {
         const rev = nix.thunk(() => nix.str`v${version}`);
         const hash = "sha256-xoUb0AAhaiAYA88Sn5/CfofMjGkYDLsCPVKwzHGz1XA=";
         return (dedicatedServer_1) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: version,
           src: nix.thunk(() => nix.app(fetchArmagetron, rev, hash)),
           extraBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(dedicatedServer_1)), nix.thunk(() => [libGL, libGLU, libx11, libpng, SDL, SDL_image, SDL_mixer]))),
@@ -73,7 +64,7 @@ export default nix.lambda((args) => (() => {
         const rev = "16da4a669d4c4d269132a903228918c2a8b87b08";
         const hash = "sha256-nTTJwxnTYP3kBxSMNpcYaKfMVGF6U/pYa2r10d8YdCE=";
         return (dedicatedServer_1) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.str`${unstableVersionMajor}-${nix.app(nix.sel(lib, "substring"), 0n, 8n, rev)}`),
           src: nix.thunk(() => nix.app(fetchArmagetron, rev, hash)),
           extraBuildInputs: nix.thunk(() => nix.concat([protobuf, boost], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(dedicatedServer_1)), nix.thunk(() => [glew, ftgl, freetype, libGL, libGLU, libx11, SDL2, SDL2_image, SDL2_mixer])))),
@@ -84,7 +75,7 @@ export default nix.lambda((args) => (() => {
         const rev = "b74df624eae13e919b4b04f9b18043bce9d04431";
         const hash = "sha256-tjEcgyYxaGgHiIH8y9xYM7HEpgZa7DEWIVqK8r0dmaY=";
         return (dedicatedServer_1) => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.str`${latestVersionMajor}-sty+ct+ap-${nix.app(nix.sel(lib, "substring"), 0n, 8n, rev)}`),
           src: nix.thunk(() => nix.app(fetchArmagetron, rev, hash)),
           extraBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(dedicatedServer_1)), nix.thunk(() => [libGL, libGLU, libx11, libpng, SDL, SDL_image, SDL_mixer]))),
@@ -101,7 +92,7 @@ export default nix.lambda((args) => (() => {
     const minorVersionPart = (parts) => (sep) => (expectedSize) => (nix.asBool(nix.gt(nix.app(nix.sel(lib, "length"), parts), expectedSize)) ? nix.add(sep, nix.app(nix.sel(lib, "concatStringsSep"), sep, nix.thunk(() => nix.app(nix.sel(lib, "lists", "drop"), expectedSize, parts)))) : "");
     const minorVersion = nix.thunk(() => nix.add(nix.add(nix.app(minorVersionPart, splitVersion, ".", 2n), nix.app(minorVersionPart, versionParts, "-", 1n)), "-nixpkgs"));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname: mainProgram,
         version: nix.thunk(() => nix.attr(resolvedParams, "version")),
         src: nix.thunk(() => nix.attr(resolvedParams, "src")),
@@ -128,7 +119,7 @@ echo "Bootstrapping version: $(<major_version)$(<minor_version)" >&2
           "--disable-sysinstall",
         ], nix.concat(nix.app(nix.sel(lib, "optional"), dedicatedServer_1, "--enable-dedicated"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(dedicatedServer_1)), "--enable-music")))),
         buildInputs: nix.thunk(() => nix.concat([
-          nix.thunk(() => nix.app(nix.sel(libxml2, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, enableHttp: true })))),
+          nix.thunk(() => nix.app(nix.sel(libxml2, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], enableHttp: true })))),
           curl,
         ], nix.selOr(resolvedParams, () => [], "extraBuildInputs"))),
         nativeBuildInputs: nix.thunk(() => nix.concat([autoconf, automake, gnum4, pkg_config, which, python3], nix.selOr(resolvedParams, () => [], "extraNativeBuildInputs"))),
@@ -160,18 +151,18 @@ else
 fi
 `),
         passthru: nix.thunk(() => (nix.asBool(dedicatedServer_1) ? {} : (nix.asBool(!nix.eq(nix.sel(resolvedParams, "version"), nix.sel(nix.app(nix.sel(srcs, nix.key(latestVersionMajor)), dedicatedServer_1), "version"))) ? {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           dedicated: nix.thunk(() => nix.app(mkArmagetron, fn, true)),
         } : nix.update(nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.app(mkArmagetron, value, dedicatedServer_1), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => !nix.eq(nix.sel(nix.app(value, dedicatedServer_1), "version"), nix.sel(nix.app(nix.sel(srcs, nix.key(latestVersionMajor)), dedicatedServer_1), "version")), srcs))), {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           dedicated: nix.thunk(() => nix.app(mkArmagetron, fn, true)),
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             armagetronad: nix.thunk(() => nix.sel(nixosTests, "armagetronad")),
           })),
         })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           mainProgram: mainProgram,
           homepage: "https://www.armagetronad.org",
           description: "Multiplayer networked arcade racing game in 3D similar to Tron",

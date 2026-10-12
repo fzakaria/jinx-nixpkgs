@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["packageName", 26, 7]], [["updateScript", 25, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5], ["teams", 36, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["passthru", 24, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, meson: false, ninja: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 25, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5], ["teams", 36, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["passthru", 24, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "adwaita-fonts",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/adwaita-fonts/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/adwaita-fonts-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-TJJ/v+7BxQOAG6UQwslOAFTILFIs97oNO+XU1B/PXIY=",
         })))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "adwaita-fonts" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "adwaita-fonts" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Adwaita Sans, a variation of Inter, and Adwaita Mono, Iosevka customized to match Inter",
         homepage: "https://gitlab.gnome.org/GNOME/adwaita-fonts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

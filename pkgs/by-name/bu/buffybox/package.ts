@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["fetchSubmodules", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]], [["PKG_CONFIG_SYSTEMD_SYSTEMD_SYSTEM_UNIT_DIR", 67, 7]], [["updateScript", 71, 12]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["mesonFlags", 30, 3], ["patches", 34, 3], ["depsBuildBuild", 49, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 60, 3], ["env", 67, 3], ["strictDeps", 69, 3], ["passthru", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { fetchFromGitLab: false, fetchpatch: false, inih: false, lib: false, libdrm: false, libinput: false, libxkbcommon: false, meson: false, ninja: false, "pkg-config": false, scdoc: false, stdenv: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["fetchSubmodules", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PKG_CONFIG_SYSTEMD_SYSTEMD_SYSTEM_UNIT_DIR", 67, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 71, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["mesonFlags", 30, 3], ["patches", 34, 3], ["depsBuildBuild", 49, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 60, 3], ["env", 67, 3], ["strictDeps", 69, 3], ["passthru", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "buffybox",
       version: "3.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.postmarketos.org",
           owner: "postmarketOS",
           repo: "buffybox",
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "systemd", true))]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-32-bit-build",
             url: "https://gitlab.postmarketos.org/postmarketOS/buffybox/-/merge_requests/87.patch",
             hash: "sha256-GUk+YrG07hL+0w70qvymPzHGTmUXdfzG4Cy35gg/Asw=",
@@ -51,16 +46,16 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, scdoc]),
       buildInputs: nix.thunk(() => [inih, libdrm, libinput, libxkbcommon]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         PKG_CONFIG_SYSTEMD_SYSTEMD_SYSTEM_UNIT_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/system`),
       })),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Suite of graphical applications for the terminal",
         homepage: "https://gitlab.postmarketos.org/postmarketOS/buffybox",
         changelog: "https://gitlab.postmarketos.org/postmarketOS/buffybox/-/blob/main/CHANGELOG.md",

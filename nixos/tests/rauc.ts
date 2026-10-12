@@ -2,42 +2,20 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rauc.nix", [[["snakeOilPrivateKey", 21, 21]], [["compatible", 35, 44], ["version", 36, 13]], [["format", 38, 18]], [["filename", 39, 24]], [["update", 34, 11], ["bundle", 38, 11], ["image.rauc", 39, 11]], [["name", 43, 9], ["runtimeInputs", 44, 9], ["text", 50, 9]], [["systemPackages", 84, 19]], [["enable", 91, 16]], [["enable", 92, 19]], [["bootname", 101, 26]], [["enable", 99, 17], ["device", 100, 17], ["settings", 101, 17]], [["rauc", 96, 11]], [["path", 111, 13], ["use-bundle-signing-time", 112, 13], ["check-purpose", 113, 13]], [["system-info", 116, 13], ["bootloader-custom-backend", 122, 13]], [["keyring", 110, 11], ["handlers", 115, 11]], [["enable", 90, 9], ["client", 91, 9], ["mark-good", 92, 9], ["compatible", 93, 9], ["bootloader", 94, 9], ["slots", 95, 9], ["settings", 109, 9]], [["rauc", 89, 16]], [["postDeviceCommands", 151, 9], ["postMountCommands", 162, 9]], [["initrd", 150, 12]], [["emptyDiskImages", 193, 9]], [["environment", 84, 7], ["services", 89, 7], ["boot", 150, 7], ["virtualisation", 192, 7]], [["machine", 6, 9]], [["name", 4, 3], ["nodes", 6, 3], ["testScript", 200, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false, lib: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/rauc.nix", [["snakeOilPrivateKey", 21, 21]]);
-const pos$2 = nix.positions(here + "/rauc.nix", [["compatible", 35, 44], ["version", 36, 13]]);
-const pos$3 = nix.positions(here + "/rauc.nix", [["format", 38, 18]]);
-const pos$4 = nix.positions(here + "/rauc.nix", [["filename", 39, 24]]);
-const pos$5 = nix.positions(here + "/rauc.nix", [["update", 34, 11], ["bundle", 38, 11], ["image.rauc", 39, 11]]);
-const pos$6 = nix.positions(here + "/rauc.nix", [["name", 43, 9], ["runtimeInputs", 44, 9], ["text", 50, 9]]);
-const pos$7 = nix.positions(here + "/rauc.nix", [["systemPackages", 84, 19]]);
-const pos$8 = nix.positions(here + "/rauc.nix", [["enable", 91, 16]]);
-const pos$9 = nix.positions(here + "/rauc.nix", [["enable", 92, 19]]);
-const pos$10 = nix.positions(here + "/rauc.nix", [["bootname", 101, 26]]);
-const pos$11 = nix.positions(here + "/rauc.nix", [["enable", 99, 17], ["device", 100, 17], ["settings", 101, 17]]);
-const pos$12 = nix.positions(here + "/rauc.nix", [["rauc", 96, 11]]);
-const pos$13 = nix.positions(here + "/rauc.nix", [["path", 111, 13], ["use-bundle-signing-time", 112, 13], ["check-purpose", 113, 13]]);
-const pos$14 = nix.positions(here + "/rauc.nix", [["system-info", 116, 13], ["bootloader-custom-backend", 122, 13]]);
-const pos$15 = nix.positions(here + "/rauc.nix", [["keyring", 110, 11], ["handlers", 115, 11]]);
-const pos$16 = nix.positions(here + "/rauc.nix", [["enable", 90, 9], ["client", 91, 9], ["mark-good", 92, 9], ["compatible", 93, 9], ["bootloader", 94, 9], ["slots", 95, 9], ["settings", 109, 9]]);
-const pos$17 = nix.positions(here + "/rauc.nix", [["rauc", 89, 16]]);
-const pos$18 = nix.positions(here + "/rauc.nix", [["postDeviceCommands", 151, 9], ["postMountCommands", 162, 9]]);
-const pos$19 = nix.positions(here + "/rauc.nix", [["initrd", 150, 12]]);
-const pos$20 = nix.positions(here + "/rauc.nix", [["emptyDiskImages", 193, 9]]);
-const pos$21 = nix.positions(here + "/rauc.nix", [["environment", 84, 7], ["services", 89, 7], ["boot", 150, 7], ["virtualisation", 192, 7]]);
-const pos$22 = nix.positions(here + "/rauc.nix", [["machine", 6, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$23 = nix.positions(here + "/rauc.nix", [["name", 4, 3], ["nodes", 6, 3], ["testScript", 200, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: "rauc",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
@@ -45,7 +23,7 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")), pkgs_1));
         const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
-        const snakeOilRaucCert = nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "rauc.crt", nix.thunk(() => ({ [nix.POS]: pos$1, snakeOilPrivateKey: snakeOilPrivateKey })), nix.thunk(() => nix.str`${nix.app(nix.sel(lib_1, "getExe"), nix.thunk(() => nix.sel(pkgs_1, "openssl")))} req -x509 -key $snakeOilPrivateKey -out $out -days 3650 \\
+        const snakeOilRaucCert = nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "rauc.crt", nix.thunk(() => ({ [nix.POS]: $pos[0], snakeOilPrivateKey: snakeOilPrivateKey })), nix.thunk(() => nix.str`${nix.app(nix.sel(lib_1, "getExe"), nix.thunk(() => nix.sel(pkgs_1, "openssl")))} req -x509 -key $snakeOilPrivateKey -out $out -days 3650 \\
   -addext subjectKeyIdentifier=hash \\
   -addext authorityKeyIdentifier=keyid:always,issuer:always \\
   -addext basicConstraints=CA:FALSE \\
@@ -53,20 +31,20 @@ export default nix.lambda((args) => (() => {
   -subj "/OU=Smoke Test/OU=RAUC/CN=NixOS/"
 `)));
         const raucManifest = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "manifest.raucm", nix.thunk(() => nix.app(nix.sel(lib_1, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               update: nix.thunk(() => (() => {
                 const from_1 = nix.thunk(() => nix.sel(config, "services", "rauc"));
                 return {
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 compatible: nix.thunk(() => nix.attr(from_1, "compatible")),
                 version: "@VERSION@",
               };
               })()),
-              bundle: nix.thunk(() => ({ [nix.POS]: pos$3, format: "verity" })),
-              "image.rauc": nix.thunk(() => ({ [nix.POS]: pos$4, filename: "rauc.img" })),
+              bundle: nix.thunk(() => ({ [nix.POS]: $pos[2], format: "verity" })),
+              "image.rauc": nix.thunk(() => ({ [nix.POS]: $pos[3], filename: "rauc.img" })),
             }))))));
         const rauc_mkimg = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeShellApplication"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "rauc-mkimg",
             runtimeInputs: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
@@ -105,45 +83,45 @@ fi
 exec rauc install "$bundle"
 `)));
         return {
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "jq")), rauc_do_update];
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             rauc: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               enable: true,
-              client: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
-              "mark-good": nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+              client: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true })),
+              "mark-good": nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true })),
               compatible: "nix/widget/smoketest",
               bootloader: "custom",
               slots: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 rauc: nix.thunk(() => (() => {
                   const slot = (ab) => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     enable: true,
                     device: nix.thunk(() => nix.str`/dev/vd${nix.app(nix.sel(lib_1, "replaceStrings"), nix.thunk(() => ["a", "b"]), nix.thunk(() => ["b", "c"]), ab)}`),
-                    settings: nix.thunk(() => ({ [nix.POS]: pos$10, bootname: ab })),
+                    settings: nix.thunk(() => ({ [nix.POS]: $pos[9], bootname: ab })),
                   });
                   return [nix.thunk(() => nix.app(slot, "a")), nix.thunk(() => nix.app(slot, "b"))];
                 })()),
               })),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 keyring: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   path: nix.thunk(() => nix.builtins.toString(snakeOilRaucCert)),
                   "use-bundle-signing-time": true,
                   "check-purpose": "codesign",
                 })),
                 handlers: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   "system-info": nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeShellScript"), "rauc-sysinfo.sh", "echo \"RAUC_SYSTEM_SERIAL=nixos\"\necho \"RAUC_SYSTEM_VARIANT=nix/widget/smoketest\"\n")))),
                   "bootloader-custom-backend": nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeShellScript"), "rauc-backend.sh", "case \"$1\" in\n  get-primary)\n    cat /rauc.current || exit $?\n    ;;\n  set-primary)\n    echo \"$2\" > /rauc.current\n    ;;\n  get-state)\n    cat \"/rauc.$2.status\" || echo bad\n    ;;\n  set-state)\n    echo \"$3\" > \"/rauc.$2.status\"\n    ;;\n  get-current)\n    cat /rauc.booted\n    ;;\n  *)\n    exit 1\n    ;;\nesac\n")))),
                 })),
@@ -151,9 +129,9 @@ exec rauc install "$bundle"
             })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               postDeviceCommands: nix.thunk(() => nix.str`ensure_ext4() {
   x="$(echo "$1" | tr ab bc)"
   if [ "$(blkid -t TYPE=ext4 -l -o device "/dev/vd$x")" != "/dev/vd$x" ]; then
@@ -166,7 +144,7 @@ ensure_ext4 b
               postMountCommands: "# Keep track of the current RAUC partition and the booted one.\nif [ ! -f /mnt-root/rauc.current ]; then\n  echo a > /mnt-root/rauc.current\nfi\ncat /mnt-root/rauc.current > /mnt-root/rauc.booted\n\n# Initialize test rauc partitions using a custom backend for the test.\ninit_ab() {\n  mkdir -p \"/mnt-root/rauc_$1\"\n  umount \"/mnt-root/rauc_$1\"\n  mount -t ext4 \"/dev/vd$(echo \"$1\" | tr ab bc)\" \"/mnt-root/rauc_$1\" || exit $?\n  if [ -d \"/mnt-root/rauc_$1\" ] && [ ! -f \"/mnt-root/rauc_$1/label\" ]; then\n    echo \"$1\" > \"/mnt-root/rauc_$1/label\"\n  fi\n  echo bad > \"/mnt-root/rauc.$1.status\"\n  umount \"/mnt-root/rauc_$1\"\n  rm -rf \"/mnt-root/rauc_$1\"\n}\ninit_ab a\ninit_ab b\n\n# Mount the RAUC boot directory.\nmkdir -p /mnt-root/rauc\nbooted=\"/dev/vd$(tr ab bc < /mnt-root/rauc.booted)\"\necho \"Mounting $booted to /rauc\" | tee /dev/stderr\nmount \"$booted\" /mnt-root/rauc | tee /dev/stderr\n",
             })),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$20, emptyDiskImages: nix.thunk(() => [256n, 256n]) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[19], emptyDiskImages: nix.thunk(() => [256n, 256n]) })),
         };
       })(), formals$2),
     })),

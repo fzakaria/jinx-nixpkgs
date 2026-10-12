@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 29, 5], ["description", 30, 5], ["sourceProvenance", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 16, 3], ["installPhase", 18, 3], ["nativeBuildInputs", 22, 3], ["fixupPhase", 24, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, patchelf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["sourceProvenance", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 16, 3], ["installPhase", 18, 3], ["nativeBuildInputs", 22, 3], ["fixupPhase", 24, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mlc";
       const version = "3.9a";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloadmirror.intel.com/736634/mlc_v${version}.tgz`),
           sha256: "EDa5V56qCPQxgCu4eddYiWDrk7vkYS0jisnG004L+jQ=",
         }))));
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [patchelf]);
       const fixupPhase = "patchelf --set-interpreter \"$(cat $NIX_CC/nix-support/dynamic-linker)\" $out/bin/mlc\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://software.intel.com/content/www/us/en/develop/articles/intelr-memory-latency-checker.html",
         description: "Intel Memory Latency Checker",
         sourceProvenance: nix.thunk(() => (() => {
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mlc",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["stripRoot", 13, 5], ["hash", 14, 5]], [["description", 27, 5], ["longDescription", 28, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 17, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["stripRoot", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["longDescription", 28, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 17, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cardo",
       version: "1.04",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://scholarsfonts.net/cardo104.zip",
           stripRoot: false,
           hash: "sha256-NU6/H5f0JBlVo3L3uUcl7IvNxPMXD8UQY9k5o2YA5Vo=",
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fonts/truetype\nmv *.ttf $out/share/fonts/truetype\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Large Unicode font specifically designed for the needs of classicists, Biblical scholars, medievalists, and linguists",
         longDescription: "Cardo is a large Unicode font specifically designed for the needs of\nclassicists, Biblical scholars, medievalists, and linguists. It also\nworks well for general typesetting in situations where a high-quality Old\nStyle font is appropriate. Its large character set supports many modern\nlanguages as well as those needed by scholars. Cardo also contains\nfeatures that are required for high-quality typography such as ligatures,\ntext figures (also known as old style numerals), true small capitals and\na variety of punctuation and space characters.\n",
         homepage: "http://scholarsfonts.net/cardofnt.html",

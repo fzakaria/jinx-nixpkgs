@@ -2,161 +2,27 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/lomiri.nix", [["r", 14, 5], ["g", 15, 5], ["b", 16, 5]]);
+const $pos = nix.positions(here + "/lomiri.nix", [[["r", 14, 5], ["g", 15, 5], ["b", 16, 5]], [["Color", 34, 9], ["Bold", 35, 9], ["Transparency", 36, 9]], [["Background", 40, 11], ["Foreground", 41, 11], ["Color2", 42, 11], ["Color2Intense", 43, 11]], [["colorScheme", 49, 13], ["fontSize", 50, 13], ["fontStyle", 51, 13]], [["General", 48, 11]], [["mode", 57, 9], ["user", 58, 9], ["group", 59, 9]], [["d", 63, 21]], [["d", 64, 38]], [["argument", 65, 63]], [["L", 65, 61]], [["argument", 66, 62]], [["L", 66, 60]], [["ghostscriptSupport", 74, 35]], [["nativeBuildInputs", 73, 9]], [["background-picture-uri", 84, 9]], [["background-picture-uri", 87, 9]], [["picture-uri", 91, 9]], [["com/lomiri/shell", 83, 7], ["com/lomiri/shell/greeter", 86, 7], ["org/gnome/desktop/background", 90, 7]], [["settings", 82, 5]], [["memorySize", 109, 22]], [["description", 112, 17], ["password", 112, 29]], [["users", 111, 13]], [["enable", 116, 9], ["user", 117, 17]], [["auto", 115, 35]], [["displayManager", 115, 20]], [["packages", 121, 13]], [["enable", 124, 24]], [["ydotool", 124, 16]], [["enable", 126, 38]], [["lomiri", 126, 31]], [["defaultSession", 127, 31]], [["desktopManager", 126, 16], ["displayManager", 127, 16]], [["source", 130, 32]], [["LOMIRI_RUNNING_IN_VM", 132, 11]], [["etc", 130, 9], ["variables", 131, 9]], [["pkgs", 138, 69], ["lib", 138, 74], ["config", 138, 78]], [["10-lomiri-test-setup", 138, 9]], [["settings", 137, 24]], [["tmpfiles", 137, 15]], [["imports", 104, 7], ["virtualisation", 109, 7], ["users", 111, 7], ["test-support", 115, 7], ["fonts", 121, 7], ["programs", 124, 7], ["services", 126, 7], ["environment", 129, 7], ["systemd", 137, 7]], [["maintainers", 319, 11]], [["config", 324, 71], ["pkgs", 324, 78], ["lib", 324, 83]], [["databases", 325, 42]], [["user", 325, 37]], [["profiles", 325, 28]], [["dconf", 325, 22]], [["programs", 325, 13]], [["machine", 322, 15]], [["name", 316, 9], ["meta", 318, 9], ["nodes", 322, 9], ["enableOCR", 330, 9], ["testScript", 332, 9]], [["name", 382, 15], ["left", 383, 15], ["ocr", 384, 15], ["extraCheck", 385, 15], ["titleOcr", 386, 15]], [["name", 379, 11], ["value", 380, 11]], [["maintainers", 400, 9]], [["config", 405, 69], ["pkgs", 405, 76], ["lib", 405, 81]], [["enable", 407, 44]], [["auto", 407, 39]], [["displayManager", 407, 24]], [["enable", 412, 48]], [["icewm", 412, 42]], [["enable", 415, 29]], [["lomiri", 415, 22]], [["enable", 414, 13], ["greeters", 415, 13]], [["lightdm", 413, 43]], [["enable", 410, 28], ["windowManager", 412, 28], ["displayManager", 413, 28]], [["enable", 411, 42]], [["lomiri", 411, 35]], [["defaultSession", 417, 35]], [["xserver", 410, 20], ["desktopManager", 411, 20], ["displayManager", 417, 20]], [["databases", 419, 40]], [["user", 419, 35]], [["profiles", 419, 26]], [["dconf", 419, 20]], [["test-support", 407, 11], ["services", 410, 11], ["programs", 419, 11]], [["machine", 403, 13]], [["name", 397, 7], ["meta", 399, 7], ["nodes", 403, 7], ["enableOCR", 424, 7], ["testScript", 426, 7]], [["maintainers", 452, 9]], [["config", 457, 69], ["pkgs", 457, 76], ["lib", 457, 81]], [["family", 462, 24]], [["family", 463, 22]], [["family", 464, 24]], [["family", 465, 29]], [["normal", 462, 17], ["bold", 463, 17], ["italic", 464, 17], ["bold_italic", 465, 17], ["size", 466, 17]], [["foreground", 470, 19], ["background", 471, 19]], [["green", 474, 19]], [["primary", 469, 17], ["normal", 473, 17]], [["font", 461, 15], ["colors", 468, 15]], [["source", 460, 48]], [["xdg/alacritty/alacritty.toml", 460, 17]], [["name", 482, 17], ["paths", 484, 17], ["nativeBuildInputs", 486, 17], ["postBuild", 488, 17], ["meta", 494, 37]], [["etc", 460, 13], ["systemPackages", 479, 13]], [["databases", 499, 40]], [["user", 499, 35]], [["profiles", 499, 26]], [["dconf", 499, 20]], [["environment", 458, 11], ["programs", 499, 11]], [["machine", 455, 13]], [["name", 449, 7], ["meta", 451, 7], ["nodes", 455, 7], ["enableOCR", 504, 7], ["testScript", 506, 7]], [["maintainers", 573, 9]], [["config", 578, 69], ["pkgs", 578, 76], ["lib", 578, 81]], [["extraGroups", 581, 13]], [["users", 579, 17]], [["LOMIRI_CONTENT_HUB_LOGGING_LEVEL", 587, 15]], [["variables", 585, 13], ["systemPackages", 590, 13]], [["databases", 596, 40]], [["user", 596, 35]], [["profiles", 596, 26]], [["dconf", 596, 20]], [["users", 579, 11], ["environment", 584, 11], ["programs", 596, 11]], [["machine", 576, 13]], [["name", 570, 7], ["meta", 572, 7], ["nodes", 576, 7], ["enableOCR", 601, 7], ["testScript", 603, 7]], [["maintainers", 707, 11]], [["config", 712, 71], ["pkgs", 712, 78], ["lib", 712, 83]], [["password", 715, 15]], [["users", 713, 19]], [["enable", 719, 46]], [["auto", 719, 41]], [["displayManager", 719, 26]], [["layout", 721, 34]], [["xkb", 721, 30]], [["xserver", 721, 22]], [["databases", 728, 42]], [["user", 728, 37]], [["profiles", 728, 28]], [["dconf", 728, 22]], [["users", 713, 13], ["test-support", 719, 13], ["services", 721, 13], ["programs", 728, 13]], [["machine", 710, 15]], [["name", 704, 9], ["meta", 706, 9], ["nodes", 710, 9], ["enableOCR", 733, 9], ["testScript", 735, 9]], [["greeter", 394, 3], ["desktop-basics", 446, 3], ["desktop-appinteractions", 567, 3], ["keymap", 696, 3]], [["name", 804, 7], ["left", 805, 7], ["ocr", 806, 7]], [["name", 809, 7], ["left", 810, 7], ["ocr", 811, 7]], [["name", 814, 7], ["left", 815, 7], ["ocr", 816, 7]], [["name", 822, 7], ["left", 823, 7], ["ocr", 824, 7]], [["name", 830, 7], ["left", 831, 7], ["ocr", 832, 7]], [["name", 839, 7], ["left", 840, 7], ["ocr", 841, 7]], [["name", 847, 7], ["left", 848, 7], ["ocr", 849, 7], ["extraCheck", 850, 7]], [["titles", 792, 3], ["details", 801, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, config: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/lomiri.nix", [["Color", 34, 9], ["Bold", 35, 9], ["Transparency", 36, 9]]);
-const pos$3 = nix.positions(here + "/lomiri.nix", [["Background", 40, 11], ["Foreground", 41, 11], ["Color2", 42, 11], ["Color2Intense", 43, 11]]);
-const pos$4 = nix.positions(here + "/lomiri.nix", [["colorScheme", 49, 13], ["fontSize", 50, 13], ["fontStyle", 51, 13]]);
-const pos$5 = nix.positions(here + "/lomiri.nix", [["General", 48, 11]]);
-const pos$6 = nix.positions(here + "/lomiri.nix", [["mode", 57, 9], ["user", 58, 9], ["group", 59, 9]]);
-const pos$7 = nix.positions(here + "/lomiri.nix", [["d", 63, 21]]);
-const pos$8 = nix.positions(here + "/lomiri.nix", [["d", 64, 38]]);
-const pos$9 = nix.positions(here + "/lomiri.nix", [["argument", 65, 63]]);
-const pos$10 = nix.positions(here + "/lomiri.nix", [["L", 65, 61]]);
-const pos$11 = nix.positions(here + "/lomiri.nix", [["argument", 66, 62]]);
-const pos$12 = nix.positions(here + "/lomiri.nix", [["L", 66, 60]]);
-const pos$13 = nix.positions(here + "/lomiri.nix", [["ghostscriptSupport", 74, 35]]);
-const pos$14 = nix.positions(here + "/lomiri.nix", [["nativeBuildInputs", 73, 9]]);
-const pos$15 = nix.positions(here + "/lomiri.nix", [["background-picture-uri", 84, 9]]);
-const pos$16 = nix.positions(here + "/lomiri.nix", [["background-picture-uri", 87, 9]]);
-const pos$17 = nix.positions(here + "/lomiri.nix", [["picture-uri", 91, 9]]);
-const pos$18 = nix.positions(here + "/lomiri.nix", [["com/lomiri/shell", 83, 7], ["com/lomiri/shell/greeter", 86, 7], ["org/gnome/desktop/background", 90, 7]]);
-const pos$19 = nix.positions(here + "/lomiri.nix", [["settings", 82, 5]]);
 const formals$2 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$20 = nix.positions(here + "/lomiri.nix", [["memorySize", 109, 22]]);
-const pos$21 = nix.positions(here + "/lomiri.nix", [["description", 112, 17], ["password", 112, 29]]);
-const pos$22 = nix.positions(here + "/lomiri.nix", [["users", 111, 13]]);
-const pos$23 = nix.positions(here + "/lomiri.nix", [["enable", 116, 9], ["user", 117, 17]]);
-const pos$24 = nix.positions(here + "/lomiri.nix", [["auto", 115, 35]]);
-const pos$25 = nix.positions(here + "/lomiri.nix", [["displayManager", 115, 20]]);
-const pos$26 = nix.positions(here + "/lomiri.nix", [["packages", 121, 13]]);
-const pos$27 = nix.positions(here + "/lomiri.nix", [["enable", 124, 24]]);
-const pos$28 = nix.positions(here + "/lomiri.nix", [["ydotool", 124, 16]]);
-const pos$29 = nix.positions(here + "/lomiri.nix", [["enable", 126, 38]]);
-const pos$30 = nix.positions(here + "/lomiri.nix", [["lomiri", 126, 31]]);
-const pos$31 = nix.positions(here + "/lomiri.nix", [["defaultSession", 127, 31]]);
-const pos$32 = nix.positions(here + "/lomiri.nix", [["desktopManager", 126, 16], ["displayManager", 127, 16]]);
-const pos$33 = nix.positions(here + "/lomiri.nix", [["source", 130, 32]]);
-const pos$34 = nix.positions(here + "/lomiri.nix", [["LOMIRI_RUNNING_IN_VM", 132, 11]]);
-const pos$35 = nix.positions(here + "/lomiri.nix", [["etc", 130, 9], ["variables", 131, 9]]);
-const pos$36 = nix.positions(here + "/lomiri.nix", [["pkgs", 138, 69], ["lib", 138, 74], ["config", 138, 78]]);
-const pos$37 = nix.positions(here + "/lomiri.nix", [["10-lomiri-test-setup", 138, 9]]);
-const pos$38 = nix.positions(here + "/lomiri.nix", [["settings", 137, 24]]);
-const pos$39 = nix.positions(here + "/lomiri.nix", [["tmpfiles", 137, 15]]);
-const pos$40 = nix.positions(here + "/lomiri.nix", [["imports", 104, 7], ["virtualisation", 109, 7], ["users", 111, 7], ["test-support", 115, 7], ["fonts", 121, 7], ["programs", 124, 7], ["services", 126, 7], ["environment", 129, 7], ["systemd", 137, 7]]);
 const formals$3 = { args: { name: false, left: false, ocr: false, extraCheck: true, titleOcr: false }, ellipsis: false };
 const formals$4 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$41 = nix.positions(here + "/lomiri.nix", [["maintainers", 319, 11]]);
 const formals$5 = { args: { config: false }, ellipsis: true };
-const pos$42 = nix.positions(here + "/lomiri.nix", [["config", 324, 71], ["pkgs", 324, 78], ["lib", 324, 83]]);
-const pos$43 = nix.positions(here + "/lomiri.nix", [["databases", 325, 42]]);
-const pos$44 = nix.positions(here + "/lomiri.nix", [["user", 325, 37]]);
-const pos$45 = nix.positions(here + "/lomiri.nix", [["profiles", 325, 28]]);
-const pos$46 = nix.positions(here + "/lomiri.nix", [["dconf", 325, 22]]);
-const pos$47 = nix.positions(here + "/lomiri.nix", [["programs", 325, 13]]);
-const pos$48 = nix.positions(here + "/lomiri.nix", [["machine", 322, 15]]);
 const formals$6 = { args: { nodes: false }, ellipsis: true };
-const pos$49 = nix.positions(here + "/lomiri.nix", [["name", 316, 9], ["meta", 318, 9], ["nodes", 322, 9], ["enableOCR", 330, 9], ["testScript", 332, 9]]);
 const formals$7 = { args: { titles: false, details: false }, ellipsis: false };
 const formals$8 = { args: { name: false, left: false, ocr: false, extraCheck: true }, ellipsis: false };
-const pos$50 = nix.positions(here + "/lomiri.nix", [["name", 382, 15], ["left", 383, 15], ["ocr", 384, 15], ["extraCheck", 385, 15], ["titleOcr", 386, 15]]);
-const pos$51 = nix.positions(here + "/lomiri.nix", [["name", 379, 11], ["value", 380, 11]]);
 const formals$9 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$52 = nix.positions(here + "/lomiri.nix", [["maintainers", 400, 9]]);
 const formals$10 = { args: { config: false }, ellipsis: true };
-const pos$53 = nix.positions(here + "/lomiri.nix", [["config", 405, 69], ["pkgs", 405, 76], ["lib", 405, 81]]);
-const pos$54 = nix.positions(here + "/lomiri.nix", [["enable", 407, 44]]);
-const pos$55 = nix.positions(here + "/lomiri.nix", [["auto", 407, 39]]);
-const pos$56 = nix.positions(here + "/lomiri.nix", [["displayManager", 407, 24]]);
-const pos$57 = nix.positions(here + "/lomiri.nix", [["enable", 412, 48]]);
-const pos$58 = nix.positions(here + "/lomiri.nix", [["icewm", 412, 42]]);
-const pos$59 = nix.positions(here + "/lomiri.nix", [["enable", 415, 29]]);
-const pos$60 = nix.positions(here + "/lomiri.nix", [["lomiri", 415, 22]]);
-const pos$61 = nix.positions(here + "/lomiri.nix", [["enable", 414, 13], ["greeters", 415, 13]]);
-const pos$62 = nix.positions(here + "/lomiri.nix", [["lightdm", 413, 43]]);
-const pos$63 = nix.positions(here + "/lomiri.nix", [["enable", 410, 28], ["windowManager", 412, 28], ["displayManager", 413, 28]]);
-const pos$64 = nix.positions(here + "/lomiri.nix", [["enable", 411, 42]]);
-const pos$65 = nix.positions(here + "/lomiri.nix", [["lomiri", 411, 35]]);
-const pos$66 = nix.positions(here + "/lomiri.nix", [["defaultSession", 417, 35]]);
-const pos$67 = nix.positions(here + "/lomiri.nix", [["xserver", 410, 20], ["desktopManager", 411, 20], ["displayManager", 417, 20]]);
-const pos$68 = nix.positions(here + "/lomiri.nix", [["databases", 419, 40]]);
-const pos$69 = nix.positions(here + "/lomiri.nix", [["user", 419, 35]]);
-const pos$70 = nix.positions(here + "/lomiri.nix", [["profiles", 419, 26]]);
-const pos$71 = nix.positions(here + "/lomiri.nix", [["dconf", 419, 20]]);
-const pos$72 = nix.positions(here + "/lomiri.nix", [["test-support", 407, 11], ["services", 410, 11], ["programs", 419, 11]]);
-const pos$73 = nix.positions(here + "/lomiri.nix", [["machine", 403, 13]]);
 const formals$11 = { args: { nodes: false }, ellipsis: true };
-const pos$74 = nix.positions(here + "/lomiri.nix", [["name", 397, 7], ["meta", 399, 7], ["nodes", 403, 7], ["enableOCR", 424, 7], ["testScript", 426, 7]]);
 const formals$12 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$75 = nix.positions(here + "/lomiri.nix", [["maintainers", 452, 9]]);
 const formals$13 = { args: { config: false }, ellipsis: true };
-const pos$76 = nix.positions(here + "/lomiri.nix", [["config", 457, 69], ["pkgs", 457, 76], ["lib", 457, 81]]);
-const pos$77 = nix.positions(here + "/lomiri.nix", [["family", 462, 24]]);
-const pos$78 = nix.positions(here + "/lomiri.nix", [["family", 463, 22]]);
-const pos$79 = nix.positions(here + "/lomiri.nix", [["family", 464, 24]]);
-const pos$80 = nix.positions(here + "/lomiri.nix", [["family", 465, 29]]);
-const pos$81 = nix.positions(here + "/lomiri.nix", [["normal", 462, 17], ["bold", 463, 17], ["italic", 464, 17], ["bold_italic", 465, 17], ["size", 466, 17]]);
-const pos$82 = nix.positions(here + "/lomiri.nix", [["foreground", 470, 19], ["background", 471, 19]]);
-const pos$83 = nix.positions(here + "/lomiri.nix", [["green", 474, 19]]);
-const pos$84 = nix.positions(here + "/lomiri.nix", [["primary", 469, 17], ["normal", 473, 17]]);
-const pos$85 = nix.positions(here + "/lomiri.nix", [["font", 461, 15], ["colors", 468, 15]]);
-const pos$86 = nix.positions(here + "/lomiri.nix", [["source", 460, 48]]);
-const pos$87 = nix.positions(here + "/lomiri.nix", [["xdg/alacritty/alacritty.toml", 460, 17]]);
-const pos$88 = nix.positions(here + "/lomiri.nix", [["name", 482, 17], ["paths", 484, 17], ["nativeBuildInputs", 486, 17], ["postBuild", 488, 17], ["meta", 494, 37]]);
-const pos$89 = nix.positions(here + "/lomiri.nix", [["etc", 460, 13], ["systemPackages", 479, 13]]);
-const pos$90 = nix.positions(here + "/lomiri.nix", [["databases", 499, 40]]);
-const pos$91 = nix.positions(here + "/lomiri.nix", [["user", 499, 35]]);
-const pos$92 = nix.positions(here + "/lomiri.nix", [["profiles", 499, 26]]);
-const pos$93 = nix.positions(here + "/lomiri.nix", [["dconf", 499, 20]]);
-const pos$94 = nix.positions(here + "/lomiri.nix", [["environment", 458, 11], ["programs", 499, 11]]);
-const pos$95 = nix.positions(here + "/lomiri.nix", [["machine", 455, 13]]);
 const formals$14 = { args: { nodes: false }, ellipsis: true };
-const pos$96 = nix.positions(here + "/lomiri.nix", [["name", 449, 7], ["meta", 451, 7], ["nodes", 455, 7], ["enableOCR", 504, 7], ["testScript", 506, 7]]);
 const formals$15 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$97 = nix.positions(here + "/lomiri.nix", [["maintainers", 573, 9]]);
 const formals$16 = { args: { config: false }, ellipsis: true };
-const pos$98 = nix.positions(here + "/lomiri.nix", [["config", 578, 69], ["pkgs", 578, 76], ["lib", 578, 81]]);
-const pos$99 = nix.positions(here + "/lomiri.nix", [["extraGroups", 581, 13]]);
-const pos$100 = nix.positions(here + "/lomiri.nix", [["users", 579, 17]]);
-const pos$101 = nix.positions(here + "/lomiri.nix", [["LOMIRI_CONTENT_HUB_LOGGING_LEVEL", 587, 15]]);
-const pos$102 = nix.positions(here + "/lomiri.nix", [["variables", 585, 13], ["systemPackages", 590, 13]]);
-const pos$103 = nix.positions(here + "/lomiri.nix", [["databases", 596, 40]]);
-const pos$104 = nix.positions(here + "/lomiri.nix", [["user", 596, 35]]);
-const pos$105 = nix.positions(here + "/lomiri.nix", [["profiles", 596, 26]]);
-const pos$106 = nix.positions(here + "/lomiri.nix", [["dconf", 596, 20]]);
-const pos$107 = nix.positions(here + "/lomiri.nix", [["users", 579, 11], ["environment", 584, 11], ["programs", 596, 11]]);
-const pos$108 = nix.positions(here + "/lomiri.nix", [["machine", 576, 13]]);
 const formals$17 = { args: { nodes: false }, ellipsis: true };
-const pos$109 = nix.positions(here + "/lomiri.nix", [["name", 570, 7], ["meta", 572, 7], ["nodes", 576, 7], ["enableOCR", 601, 7], ["testScript", 603, 7]]);
 const formals$18 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$110 = nix.positions(here + "/lomiri.nix", [["maintainers", 707, 11]]);
 const formals$19 = { args: { config: false }, ellipsis: true };
-const pos$111 = nix.positions(here + "/lomiri.nix", [["config", 712, 71], ["pkgs", 712, 78], ["lib", 712, 83]]);
-const pos$112 = nix.positions(here + "/lomiri.nix", [["password", 715, 15]]);
-const pos$113 = nix.positions(here + "/lomiri.nix", [["users", 713, 19]]);
-const pos$114 = nix.positions(here + "/lomiri.nix", [["enable", 719, 46]]);
-const pos$115 = nix.positions(here + "/lomiri.nix", [["auto", 719, 41]]);
-const pos$116 = nix.positions(here + "/lomiri.nix", [["displayManager", 719, 26]]);
-const pos$117 = nix.positions(here + "/lomiri.nix", [["layout", 721, 34]]);
-const pos$118 = nix.positions(here + "/lomiri.nix", [["xkb", 721, 30]]);
-const pos$119 = nix.positions(here + "/lomiri.nix", [["xserver", 721, 22]]);
-const pos$120 = nix.positions(here + "/lomiri.nix", [["databases", 728, 42]]);
-const pos$121 = nix.positions(here + "/lomiri.nix", [["user", 728, 37]]);
-const pos$122 = nix.positions(here + "/lomiri.nix", [["profiles", 728, 28]]);
-const pos$123 = nix.positions(here + "/lomiri.nix", [["dconf", 728, 22]]);
-const pos$124 = nix.positions(here + "/lomiri.nix", [["users", 713, 13], ["test-support", 719, 13], ["services", 721, 13], ["programs", 728, 13]]);
-const pos$125 = nix.positions(here + "/lomiri.nix", [["machine", 710, 15]]);
 const formals$20 = { args: { nodes: false }, ellipsis: true };
-const pos$126 = nix.positions(here + "/lomiri.nix", [["name", 704, 9], ["meta", 706, 9], ["nodes", 710, 9], ["enableOCR", 733, 9], ["testScript", 735, 9]]);
-const pos$127 = nix.positions(here + "/lomiri.nix", [["greeter", 394, 3], ["desktop-basics", 446, 3], ["desktop-appinteractions", 567, 3], ["keymap", 696, 3]]);
-const pos$128 = nix.positions(here + "/lomiri.nix", [["name", 804, 7], ["left", 805, 7], ["ocr", 806, 7]]);
-const pos$129 = nix.positions(here + "/lomiri.nix", [["name", 809, 7], ["left", 810, 7], ["ocr", 811, 7]]);
-const pos$130 = nix.positions(here + "/lomiri.nix", [["name", 814, 7], ["left", 815, 7], ["ocr", 816, 7]]);
-const pos$131 = nix.positions(here + "/lomiri.nix", [["name", 822, 7], ["left", 823, 7], ["ocr", 824, 7]]);
-const pos$132 = nix.positions(here + "/lomiri.nix", [["name", 830, 7], ["left", 831, 7], ["ocr", 832, 7]]);
-const pos$133 = nix.positions(here + "/lomiri.nix", [["name", 839, 7], ["left", 840, 7], ["ocr", 841, 7]]);
-const pos$134 = nix.positions(here + "/lomiri.nix", [["name", 847, 7], ["left", 848, 7], ["ocr", 849, 7], ["extraCheck", 850, 7]]);
-const pos$135 = nix.positions(here + "/lomiri.nix", [["titles", 792, 3], ["details", 801, 3]]);
 
 export default nix.thunk(() => (() => {
   const makeTest = nix.thunk(() => nix.builtins.import(nix.path(here, "./make-test-python.nix")));
@@ -165,7 +31,7 @@ export default nix.thunk(() => (() => {
   const password = "foobar";
   const wallpaperName = "wallpaper.jpg";
   const wallpaperText = "Lorem ipsum";
-  const terminalTextColour = nix.thunk(() => ({ [nix.POS]: pos$1, r: 91n, g: 113n, b: 102n }));
+  const terminalTextColour = nix.thunk(() => ({ [nix.POS]: $pos[0], r: 91n, g: 113n, b: 102n }));
   const terminalTextColourString = (lib) => (() => {
     const toHex = (component) => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.lt(component, 16n)), "0"), nix.app(nix.sel(lib, "trivial", "toHexString"), component));
     return nix.str`#${nix.app(toHex, nix.thunk(() => nix.sel(terminalTextColour, "r")))}${nix.app(toHex, nix.thunk(() => nix.sel(terminalTextColour, "g")))}${nix.app(toHex, nix.thunk(() => nix.sel(terminalTextColour, "b")))}`;
@@ -177,62 +43,62 @@ export default nix.thunk(() => (() => {
     const config = nix.arg($, "config");
     const white = "255, 255, 255";
     const foreground = nix.thunk(() => nix.str`${nix.builtins.toString(nix.thunk(() => nix.sel(terminalTextColour, "r")))}, ${nix.builtins.toString(nix.thunk(() => nix.sel(terminalTextColour, "g")))}, ${nix.builtins.toString(nix.thunk(() => nix.sel(terminalTextColour, "b")))}`);
-    const colorSection = (color) => ({ [nix.POS]: pos$2, Color: color, Bold: true, Transparency: false });
+    const colorSection = (color) => ({ [nix.POS]: $pos[1], Color: color, Bold: true, Transparency: false });
     const terminalColors = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "customized.colorscheme", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           Background: nix.thunk(() => nix.app(colorSection, white)),
           Foreground: nix.thunk(() => nix.app(colorSection, foreground)),
           Color2: nix.thunk(() => nix.app(colorSection, foreground)),
           Color2Intense: nix.thunk(() => nix.app(colorSection, foreground)),
         }))))));
     const terminalConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "terminal.ubports.conf", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           General: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             colorScheme: "customized",
             fontSize: "16",
             fontStyle: "Inconsolata",
           })),
         }))))));
     const confBase = nix.thunk(() => nix.str`${nix.sel(config, "users", "users", nix.key(user), "home")}/.config`);
-    const userDirArgs = nix.thunk(() => ({ [nix.POS]: pos$6, mode: "0700", user: user, group: "users" }));
+    const userDirArgs = nix.thunk(() => ({ [nix.POS]: $pos[5], mode: "0700", user: user, group: "users" }));
     return nix.attrsDyn({}, [
-      [nix.str`${confBase}`, nix.thunk(() => ({ [nix.POS]: pos$7, d: userDirArgs }))],
-      [nix.str`${confBase}/terminal.ubports`, nix.thunk(() => ({ [nix.POS]: pos$8, d: userDirArgs }))],
+      [nix.str`${confBase}`, nix.thunk(() => ({ [nix.POS]: $pos[6], d: userDirArgs }))],
+      [nix.str`${confBase}/terminal.ubports`, nix.thunk(() => ({ [nix.POS]: $pos[7], d: userDirArgs }))],
       [nix.str`${confBase}/terminal.ubports/customized.colorscheme`, nix.thunk(() => ({
-        [nix.POS]: pos$10,
-        L: nix.thunk(() => ({ [nix.POS]: pos$9, argument: nix.thunk(() => nix.str`${terminalColors}`) })),
+        [nix.POS]: $pos[9],
+        L: nix.thunk(() => ({ [nix.POS]: $pos[8], argument: nix.thunk(() => nix.str`${terminalColors}`) })),
       }))],
       [nix.str`${confBase}/terminal.ubports/terminal.ubports.conf`, nix.thunk(() => ({
-        [nix.POS]: pos$12,
-        L: nix.thunk(() => ({ [nix.POS]: pos$11, argument: nix.thunk(() => nix.str`${terminalConfig}`) })),
+        [nix.POS]: $pos[11],
+        L: nix.thunk(() => ({ [nix.POS]: $pos[10], argument: nix.thunk(() => nix.str`${terminalConfig}`) })),
       }))],
     ]);
   })(), formals$1);
   const wallpaperFile = (pkgs) => nix.app(nix.sel(pkgs, "runCommand"), wallpaperName, nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       nativeBuildInputs: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "imagemagick"), "override"), nix.thunk(() => ({ [nix.POS]: pos$13, ghostscriptSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "imagemagick"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[12], ghostscriptSupport: true })))),
         ];
       })()),
     })), nix.thunk(() => nix.str`magick -size 640x480 canvas:black -pointsize 30 -fill white -annotate +100+100 '${wallpaperText}' $out
 `));
   const lomiriWallpaperDconfSettings = (pkgs) => ({
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     settings: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       "com/lomiri/shell": nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         "background-picture-uri": nix.thunk(() => nix.str`file://${nix.app(wallpaperFile, pkgs)}`),
       })),
       "com/lomiri/shell/greeter": nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         "background-picture-uri": nix.thunk(() => nix.str`file://${nix.app(wallpaperFile, pkgs)}`),
       })),
       "org/gnome/desktop/background": nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         "picture-uri": nix.thunk(() => nix.str`file://${nix.app(wallpaperFile, pkgs)}`),
       })),
     })),
@@ -243,55 +109,55 @@ export default nix.thunk(() => (() => {
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$40,
+      [nix.POS]: $pos[39],
       imports: nix.thunk(() => [
         nix.path(here, "./common/auto.nix"),
         nix.path(here, "./common/user-account.nix"),
       ]),
-      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$20, memorySize: 2047n })),
+      virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[19], memorySize: 2047n })),
       users: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         users: nix.thunk(() => nix.attrsDyn({}, [
-          [user, nix.thunk(() => ({ [nix.POS]: pos$21, description: description, password: password }))],
+          [user, nix.thunk(() => ({ [nix.POS]: $pos[20], description: description, password: password }))],
         ])),
       })),
       "test-support": nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         displayManager: nix.thunk(() => ({
-          [nix.POS]: pos$24,
-          auto: nix.thunk(() => ({ [nix.POS]: pos$23, enable: true, user: user })),
+          [nix.POS]: $pos[23],
+          auto: nix.thunk(() => ({ [nix.POS]: $pos[22], enable: true, user: user })),
         })),
       })),
       fonts: nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "inconsolata"))]),
       })),
       programs: nix.thunk(() => ({
-        [nix.POS]: pos$28,
-        ydotool: nix.thunk(() => ({ [nix.POS]: pos$27, enable: true })),
+        [nix.POS]: $pos[27],
+        ydotool: nix.thunk(() => ({ [nix.POS]: $pos[26], enable: true })),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         desktopManager: nix.thunk(() => ({
-          [nix.POS]: pos$30,
-          lomiri: nix.thunk(() => ({ [nix.POS]: pos$29, enable: true })),
+          [nix.POS]: $pos[29],
+          lomiri: nix.thunk(() => ({ [nix.POS]: $pos[28], enable: true })),
         })),
-        displayManager: nix.thunk(() => ({ [nix.POS]: pos$31, defaultSession: "lomiri" })),
+        displayManager: nix.thunk(() => ({ [nix.POS]: $pos[30], defaultSession: "lomiri" })),
       })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         etc: nix.thunk(() => nix.attrsDyn({}, [
-          [nix.str`${wallpaperName}`, nix.thunk(() => ({ [nix.POS]: pos$33, source: nix.thunk(() => nix.app(wallpaperFile, pkgs)) }))],
+          [nix.str`${wallpaperName}`, nix.thunk(() => ({ [nix.POS]: $pos[32], source: nix.thunk(() => nix.app(wallpaperFile, pkgs)) }))],
         ])),
-        variables: nix.thunk(() => ({ [nix.POS]: pos$34, LOMIRI_RUNNING_IN_VM: "1" })),
+        variables: nix.thunk(() => ({ [nix.POS]: $pos[33], LOMIRI_RUNNING_IN_VM: "1" })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         tmpfiles: nix.thunk(() => ({
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$37,
-            "10-lomiri-test-setup": nix.thunk(() => nix.app(terminalOcrTmpfilesSetup, nix.thunk(() => ({ [nix.POS]: pos$36, pkgs: pkgs, lib: lib, config: config })))),
+            [nix.POS]: $pos[36],
+            "10-lomiri-test-setup": nix.thunk(() => nix.app(terminalOcrTmpfilesSetup, nix.thunk(() => ({ [nix.POS]: $pos[35], pkgs: pkgs, lib: lib, config: config })))),
           })),
         })),
       })),
@@ -468,27 +334,27 @@ def open_starter() -> None:
         const pkgs = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$49,
+          [nix.POS]: $pos[48],
           name: nix.thunk(() => nix.str`lomiri-desktop-ayatana-indicator-${name}`),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$41,
+            [nix.POS]: $pos[40],
             maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
           })),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$48,
+            [nix.POS]: $pos[47],
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$5);
               const config = nix.arg($_2, "config");
-              return nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), nix.thunk(() => nix.app(sharedMachineConfig, nix.thunk(() => ({ [nix.POS]: pos$42, config: config, pkgs: pkgs, lib: lib })))), nix.thunk(() => ({
-                  [nix.POS]: pos$47,
+              return nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), nix.thunk(() => nix.app(sharedMachineConfig, nix.thunk(() => ({ [nix.POS]: $pos[41], config: config, pkgs: pkgs, lib: lib })))), nix.thunk(() => ({
+                  [nix.POS]: $pos[46],
                   programs: nix.thunk(() => ({
-                    [nix.POS]: pos$46,
+                    [nix.POS]: $pos[45],
                     dconf: nix.thunk(() => ({
-                      [nix.POS]: pos$45,
+                      [nix.POS]: $pos[44],
                       profiles: nix.thunk(() => ({
-                        [nix.POS]: pos$44,
+                        [nix.POS]: $pos[43],
                         user: nix.thunk(() => ({
-                          [nix.POS]: pos$43,
+                          [nix.POS]: $pos[42],
                           databases: nix.thunk(() => [nix.thunk(() => nix.app(lomiriWallpaperDconfSettings, pkgs))]),
                         })),
                       })),
@@ -539,10 +405,10 @@ with subtest("ayatana indicator session works"):
           const ocr = nix.arg($_1, "ocr");
           const extraCheck = nix.argOr($_1, "extraCheck", () => null);
           return {
-            [nix.POS]: pos$51,
+            [nix.POS]: $pos[50],
             name: nix.thunk(() => nix.str`desktop-ayatana-indicator-${name}`),
             value: nix.thunk(() => nix.app(makeIndicatorTest, nix.thunk(() => ({
-                [nix.POS]: pos$50,
+                [nix.POS]: $pos[49],
                 name: name,
                 left: left,
                 ocr: ocr,
@@ -553,70 +419,70 @@ with subtest("ayatana indicator session works"):
         })(), formals$8), details)));
   })(), formals$7);
   return nix.update({
-    [nix.POS]: pos$127,
+    [nix.POS]: $pos[126],
     greeter: nix.thunk(() => nix.app(makeTest, nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$9);
         const pkgs = nix.arg($, "pkgs");
         const lib = nix.arg($, "lib");
         return {
-          [nix.POS]: pos$74,
+          [nix.POS]: $pos[73],
           name: "lomiri-greeter",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$52,
+            [nix.POS]: $pos[51],
             maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
           })),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$73,
+            [nix.POS]: $pos[72],
             machine: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$10);
               const config = nix.arg($_1, "config");
-              return nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), nix.thunk(() => nix.app(sharedMachineConfig, nix.thunk(() => ({ [nix.POS]: pos$53, config: config, pkgs: pkgs, lib: lib })))), nix.thunk(() => ({
-                  [nix.POS]: pos$72,
+              return nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), nix.thunk(() => nix.app(sharedMachineConfig, nix.thunk(() => ({ [nix.POS]: $pos[52], config: config, pkgs: pkgs, lib: lib })))), nix.thunk(() => ({
+                  [nix.POS]: $pos[71],
                   "test-support": nix.thunk(() => ({
-                    [nix.POS]: pos$56,
+                    [nix.POS]: $pos[55],
                     displayManager: nix.thunk(() => ({
-                      [nix.POS]: pos$55,
-                      auto: nix.thunk(() => ({ [nix.POS]: pos$54, enable: false })),
+                      [nix.POS]: $pos[54],
+                      auto: nix.thunk(() => ({ [nix.POS]: $pos[53], enable: false })),
                     })),
                   })),
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$67,
+                    [nix.POS]: $pos[66],
                     xserver: nix.thunk(() => ({
-                      [nix.POS]: pos$63,
+                      [nix.POS]: $pos[62],
                       enable: true,
                       windowManager: nix.thunk(() => ({
-                        [nix.POS]: pos$58,
-                        icewm: nix.thunk(() => ({ [nix.POS]: pos$57, enable: true })),
+                        [nix.POS]: $pos[57],
+                        icewm: nix.thunk(() => ({ [nix.POS]: $pos[56], enable: true })),
                       })),
                       displayManager: nix.thunk(() => ({
-                        [nix.POS]: pos$62,
+                        [nix.POS]: $pos[61],
                         lightdm: nix.thunk(() => ({
-                          [nix.POS]: pos$61,
+                          [nix.POS]: $pos[60],
                           enable: true,
                           greeters: nix.thunk(() => ({
-                            [nix.POS]: pos$60,
-                            lomiri: nix.thunk(() => ({ [nix.POS]: pos$59, enable: true })),
+                            [nix.POS]: $pos[59],
+                            lomiri: nix.thunk(() => ({ [nix.POS]: $pos[58], enable: true })),
                           })),
                         })),
                       })),
                     })),
                     desktopManager: nix.thunk(() => ({
-                      [nix.POS]: pos$65,
-                      lomiri: nix.thunk(() => ({ [nix.POS]: pos$64, enable: false })),
+                      [nix.POS]: $pos[64],
+                      lomiri: nix.thunk(() => ({ [nix.POS]: $pos[63], enable: false })),
                     })),
                     displayManager: nix.thunk(() => ({
-                      [nix.POS]: pos$66,
+                      [nix.POS]: $pos[65],
                       defaultSession: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "none+icewm")),
                     })),
                   })),
                   programs: nix.thunk(() => ({
-                    [nix.POS]: pos$71,
+                    [nix.POS]: $pos[70],
                     dconf: nix.thunk(() => ({
-                      [nix.POS]: pos$70,
+                      [nix.POS]: $pos[69],
                       profiles: nix.thunk(() => ({
-                        [nix.POS]: pos$69,
+                        [nix.POS]: $pos[68],
                         user: nix.thunk(() => ({
-                          [nix.POS]: pos$68,
+                          [nix.POS]: $pos[67],
                           databases: nix.thunk(() => [nix.thunk(() => nix.app(lomiriWallpaperDconfSettings, pkgs))]),
                         })),
                       })),
@@ -650,39 +516,39 @@ with subtest("lomiri greeter works"):
         const pkgs = nix.arg($, "pkgs");
         const lib = nix.arg($, "lib");
         return {
-          [nix.POS]: pos$96,
+          [nix.POS]: $pos[95],
           name: "lomiri-desktop-basics",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$75,
+            [nix.POS]: $pos[74],
             maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
           })),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$95,
+            [nix.POS]: $pos[94],
             machine: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$13);
               const config = nix.arg($_1, "config");
-              return nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), nix.thunk(() => nix.app(sharedMachineConfig, nix.thunk(() => ({ [nix.POS]: pos$76, config: config, pkgs: pkgs, lib: lib })))), nix.thunk(() => ({
-                  [nix.POS]: pos$94,
+              return nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), nix.thunk(() => nix.app(sharedMachineConfig, nix.thunk(() => ({ [nix.POS]: $pos[75], config: config, pkgs: pkgs, lib: lib })))), nix.thunk(() => ({
+                  [nix.POS]: $pos[93],
                   environment: nix.thunk(() => ({
-                    [nix.POS]: pos$89,
+                    [nix.POS]: $pos[88],
                     etc: nix.thunk(() => ({
-                      [nix.POS]: pos$87,
+                      [nix.POS]: $pos[86],
                       "xdg/alacritty/alacritty.toml": nix.thunk(() => ({
-                        [nix.POS]: pos$86,
+                        [nix.POS]: $pos[85],
                         source: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))), "generate"), "alacritty.toml", nix.thunk(() => ({
-                            [nix.POS]: pos$85,
+                            [nix.POS]: $pos[84],
                             font: nix.thunk(() => (() => {
-                              const normal = nix.thunk(() => ({ [nix.POS]: pos$77, family: "Inconsolata" }));
-                              const bold = nix.thunk(() => ({ [nix.POS]: pos$78, family: nix.thunk(() => nix.sel(normal, "family")) }));
-                              const italic = nix.thunk(() => ({ [nix.POS]: pos$79, family: nix.thunk(() => nix.sel(normal, "family")) }));
-                              const bold_italic = nix.thunk(() => ({ [nix.POS]: pos$80, family: nix.thunk(() => nix.sel(normal, "family")) }));
+                              const normal = nix.thunk(() => ({ [nix.POS]: $pos[76], family: "Inconsolata" }));
+                              const bold = nix.thunk(() => ({ [nix.POS]: $pos[77], family: nix.thunk(() => nix.sel(normal, "family")) }));
+                              const italic = nix.thunk(() => ({ [nix.POS]: $pos[78], family: nix.thunk(() => nix.sel(normal, "family")) }));
+                              const bold_italic = nix.thunk(() => ({ [nix.POS]: $pos[79], family: nix.thunk(() => nix.sel(normal, "family")) }));
                               const size = 16n;
-                              return { [nix.POS]: pos$81, normal, bold, italic, bold_italic, size };
+                              return { [nix.POS]: $pos[80], normal, bold, italic, bold_italic, size };
                             })()),
                             colors: nix.thunk(() => (() => {
-                              const primary = nix.thunk(() => ({ [nix.POS]: pos$82, foreground: "0x000000", background: "0xffffff" }));
-                              const normal = nix.thunk(() => ({ [nix.POS]: pos$83, green: nix.thunk(() => nix.sel(primary, "foreground")) }));
-                              return { [nix.POS]: pos$84, primary, normal };
+                              const primary = nix.thunk(() => ({ [nix.POS]: $pos[81], foreground: "0x000000", background: "0xffffff" }));
+                              const normal = nix.thunk(() => ({ [nix.POS]: $pos[82], green: nix.thunk(() => nix.sel(primary, "foreground")) }));
+                              return { [nix.POS]: $pos[83], primary, normal };
                             })()),
                           })))),
                       })),
@@ -691,7 +557,7 @@ with subtest("lomiri greeter works"):
                       const w = nix.withScope(pkgs, null);
                       return [
                         nix.thunk(() => nix.app(nix.lookup(w, "symlinkJoin"), nix.thunk(() => ({
-                            [nix.POS]: pos$88,
+                            [nix.POS]: $pos[87],
                             name: nix.thunk(() => nix.str`x11-${nix.sel(nix.lookup(w, "alacritty"), "name")}`),
                             paths: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "alacritty"))]),
                             nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "makeWrapper"))]),
@@ -702,13 +568,13 @@ with subtest("lomiri greeter works"):
                     })()),
                   })),
                   programs: nix.thunk(() => ({
-                    [nix.POS]: pos$93,
+                    [nix.POS]: $pos[92],
                     dconf: nix.thunk(() => ({
-                      [nix.POS]: pos$92,
+                      [nix.POS]: $pos[91],
                       profiles: nix.thunk(() => ({
-                        [nix.POS]: pos$91,
+                        [nix.POS]: $pos[90],
                         user: nix.thunk(() => ({
-                          [nix.POS]: pos$90,
+                          [nix.POS]: $pos[89],
                           databases: nix.thunk(() => [nix.thunk(() => nix.app(lomiriWallpaperDconfSettings, pkgs))]),
                         })),
                       })),
@@ -783,28 +649,28 @@ with subtest("system settings open"):
         const pkgs = nix.arg($, "pkgs");
         const lib = nix.arg($, "lib");
         return {
-          [nix.POS]: pos$109,
+          [nix.POS]: $pos[108],
           name: "lomiri-desktop-appinteractions",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$97,
+            [nix.POS]: $pos[96],
             maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
           })),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$108,
+            [nix.POS]: $pos[107],
             machine: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$16);
               const config = nix.arg($_1, "config");
-              return nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), nix.thunk(() => nix.app(sharedMachineConfig, nix.thunk(() => ({ [nix.POS]: pos$98, config: config, pkgs: pkgs, lib: lib })))), nix.thunk(() => ({
-                  [nix.POS]: pos$107,
+              return nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), nix.thunk(() => nix.app(sharedMachineConfig, nix.thunk(() => ({ [nix.POS]: $pos[97], config: config, pkgs: pkgs, lib: lib })))), nix.thunk(() => ({
+                  [nix.POS]: $pos[106],
                   users: nix.thunk(() => ({
-                    [nix.POS]: pos$100,
+                    [nix.POS]: $pos[99],
                     users: nix.thunk(() => nix.attrsDyn({}, [
-                      [user, nix.thunk(() => ({ [nix.POS]: pos$99, extraGroups: nix.thunk(() => ["wheel"]) }))],
+                      [user, nix.thunk(() => ({ [nix.POS]: $pos[98], extraGroups: nix.thunk(() => ["wheel"]) }))],
                     ])),
                   })),
                   environment: nix.thunk(() => ({
-                    [nix.POS]: pos$102,
-                    variables: nix.thunk(() => ({ [nix.POS]: pos$101, LOMIRI_CONTENT_HUB_LOGGING_LEVEL: "2" })),
+                    [nix.POS]: $pos[101],
+                    variables: nix.thunk(() => ({ [nix.POS]: $pos[100], LOMIRI_CONTENT_HUB_LOGGING_LEVEL: "2" })),
                     systemPackages: nix.thunk(() => (() => {
                       const w = nix.withScope(pkgs, null);
                       return [
@@ -813,13 +679,13 @@ with subtest("system settings open"):
                     })()),
                   })),
                   programs: nix.thunk(() => ({
-                    [nix.POS]: pos$106,
+                    [nix.POS]: $pos[105],
                     dconf: nix.thunk(() => ({
-                      [nix.POS]: pos$105,
+                      [nix.POS]: $pos[104],
                       profiles: nix.thunk(() => ({
-                        [nix.POS]: pos$104,
+                        [nix.POS]: $pos[103],
                         user: nix.thunk(() => ({
-                          [nix.POS]: pos$103,
+                          [nix.POS]: $pos[102],
                           databases: nix.thunk(() => [nix.thunk(() => nix.app(lomiriWallpaperDconfSettings, pkgs))]),
                         })),
                       })),
@@ -929,53 +795,53 @@ with subtest("system settings open"):
           const pkgs = nix.arg($, "pkgs");
           const lib = nix.arg($, "lib");
           return {
-            [nix.POS]: pos$126,
+            [nix.POS]: $pos[125],
             name: "lomiri-keymap",
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$110,
+              [nix.POS]: $pos[109],
               maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
             })),
             nodes: nix.thunk(() => ({
-              [nix.POS]: pos$125,
+              [nix.POS]: $pos[124],
               machine: nix.lambda((args_1) => (() => {
                 const $_1 = nix.formals(args_1, formals$19);
                 const config = nix.arg($_1, "config");
-                return nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), nix.thunk(() => nix.app(sharedMachineConfig, nix.thunk(() => ({ [nix.POS]: pos$111, config: config, pkgs: pkgs, lib: lib })))), nix.thunk(() => ({
-                    [nix.POS]: pos$124,
+                return nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), nix.thunk(() => nix.app(sharedMachineConfig, nix.thunk(() => ({ [nix.POS]: $pos[110], config: config, pkgs: pkgs, lib: lib })))), nix.thunk(() => ({
+                    [nix.POS]: $pos[123],
                     users: nix.thunk(() => ({
-                      [nix.POS]: pos$113,
+                      [nix.POS]: $pos[112],
                       users: nix.thunk(() => nix.attrsDyn({}, [
                         [user, nix.thunk(() => ({
-                          [nix.POS]: pos$112,
+                          [nix.POS]: $pos[111],
                           password: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), pwOutput)),
                         }))],
                       ])),
                     })),
                     "test-support": nix.thunk(() => ({
-                      [nix.POS]: pos$116,
+                      [nix.POS]: $pos[115],
                       displayManager: nix.thunk(() => ({
-                        [nix.POS]: pos$115,
-                        auto: nix.thunk(() => ({ [nix.POS]: pos$114, enable: false })),
+                        [nix.POS]: $pos[114],
+                        auto: nix.thunk(() => ({ [nix.POS]: $pos[113], enable: false })),
                       })),
                     })),
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$119,
+                      [nix.POS]: $pos[118],
                       xserver: nix.thunk(() => ({
-                        [nix.POS]: pos$118,
+                        [nix.POS]: $pos[117],
                         xkb: nix.thunk(() => ({
-                          [nix.POS]: pos$117,
+                          [nix.POS]: $pos[116],
                           layout: nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), ",", nix.thunk(() => ["de", "us"]))),
                         })),
                       })),
                     })),
                     programs: nix.thunk(() => ({
-                      [nix.POS]: pos$123,
+                      [nix.POS]: $pos[122],
                       dconf: nix.thunk(() => ({
-                        [nix.POS]: pos$122,
+                        [nix.POS]: $pos[121],
                         profiles: nix.thunk(() => ({
-                          [nix.POS]: pos$121,
+                          [nix.POS]: $pos[120],
                           user: nix.thunk(() => ({
-                            [nix.POS]: pos$120,
+                            [nix.POS]: $pos[119],
                             databases: nix.thunk(() => [nix.thunk(() => nix.app(lomiriWallpaperDconfSettings, pkgs))]),
                           })),
                         })),
@@ -1042,47 +908,47 @@ with subtest("lomiri session keymap works"):
         })(), formals$18));
     })()),
   }, nix.app(makeIndicatorTests, nix.thunk(() => ({
-      [nix.POS]: pos$135,
+      [nix.POS]: $pos[134],
       titles: nix.thunk(() => ["Notifications", "Rotation", "Battery", "Sound", "Time", "Date", "System"]),
       details: nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$128,
+          [nix.POS]: $pos[127],
           name: "display",
           left: 6n,
           ocr: nix.thunk(() => ["Lock"]),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$129,
+          [nix.POS]: $pos[128],
           name: "bluetooth",
           left: 5n,
           ocr: nix.thunk(() => ["Bluetooth"]),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$130,
+          [nix.POS]: $pos[129],
           name: "network",
           left: 4n,
           ocr: nix.thunk(() => ["Flight", "Wi-Fi"]),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$131,
+          [nix.POS]: $pos[130],
           name: "sound",
           left: 3n,
           ocr: nix.thunk(() => ["Silent", "Volume"]),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$132,
+          [nix.POS]: $pos[131],
           name: "power",
           left: 2n,
           ocr: nix.thunk(() => ["Keep screen", "screen on", "Battery settings"]),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$133,
+          [nix.POS]: $pos[132],
           name: "datetime",
           left: 1n,
           ocr: nix.thunk(() => ["Time", "Date"]),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$134,
+          [nix.POS]: $pos[133],
           name: "session",
           left: 0n,
           ocr: nix.thunk(() => ["Log Out"]),

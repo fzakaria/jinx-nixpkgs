@@ -2,19 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/teams.nix", [[["type", 17, 11]], [["type", 20, 11]], [["type", 23, 11], ["default", 24, 11]], [["type", 27, 11], ["default", 28, 11]], [["type", 31, 11], ["default", 32, 11]], [["type", 35, 11], ["default", 36, 11]], [["type", 39, 11], ["default", 40, 11]], [["shortName", 16, 9], ["scope", 19, 9], ["enableFeatureFreezePing", 22, 9], ["members", 26, 9], ["github", 30, 9], ["githubId", 34, 9], ["githubMaintainers", 38, 9]], [["options", 15, 7]], [["_file", 59, 15], ["config", 60, 15]], [["prefix", 55, 19], ["modules", 56, 11]]]);
 const formals$1 = { args: { pkgs: true, lib: true }, ellipsis: false };
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/teams.nix", [["type", 17, 11]]);
-const pos$2 = nix.positions(here + "/teams.nix", [["type", 20, 11]]);
-const pos$3 = nix.positions(here + "/teams.nix", [["type", 23, 11], ["default", 24, 11]]);
-const pos$4 = nix.positions(here + "/teams.nix", [["type", 27, 11], ["default", 28, 11]]);
-const pos$5 = nix.positions(here + "/teams.nix", [["type", 31, 11], ["default", 32, 11]]);
-const pos$6 = nix.positions(here + "/teams.nix", [["type", 35, 11], ["default", 36, 11]]);
-const pos$7 = nix.positions(here + "/teams.nix", [["type", 39, 11], ["default", 40, 11]]);
-const pos$8 = nix.positions(here + "/teams.nix", [["shortName", 16, 9], ["scope", 19, 9], ["enableFeatureFreezePing", 22, 9], ["members", 26, 9], ["github", 30, 9], ["githubId", 34, 9], ["githubMaintainers", 38, 9]]);
-const pos$9 = nix.positions(here + "/teams.nix", [["options", 15, 7]]);
-const pos$10 = nix.positions(here + "/teams.nix", [["_file", 59, 15], ["config", 60, 15]]);
-const pos$11 = nix.positions(here + "/teams.nix", [["prefix", 55, 19], ["modules", 56, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,25 +15,33 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const config = nix.arg($_1, "config");
     return {
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       options: nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        shortName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(types, "str")) })))),
-        scope: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$2, type: nix.thunk(() => nix.sel(types, "str")) })))),
+        [nix.POS]: $pos[7],
+        shortName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[0], type: nix.thunk(() => nix.sel(types, "str")) })))),
+        scope: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[1], type: nix.thunk(() => nix.sel(types, "str")) })))),
         enableFeatureFreezePing: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
           })))),
         members: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.path(here, "./maintainer-module.nix"))))),
             default: [],
           })))),
-        github: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$5, type: nix.thunk(() => nix.sel(types, "str")), default: "" })))),
-        githubId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$6, type: nix.thunk(() => nix.sel(types, "int")), default: 0n })))),
+        github: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
+            [nix.POS]: $pos[4],
+            type: nix.thunk(() => nix.sel(types, "str")),
+            default: "",
+          })))),
+        githubId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
+            [nix.POS]: $pos[5],
+            type: nix.thunk(() => nix.sel(types, "int")),
+            default: 0n,
+          })))),
         githubMaintainers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.path(here, "./maintainer-module.nix"))))),
             default: [],
           })))),
@@ -53,12 +51,12 @@ export default nix.lambda((args) => (() => {
   const checkTeam = (team) => (uncheckedAttrs) => (() => {
     const prefix = nix.thunk(() => ["lib", "maintainer-team", team]);
     const checkedAttrs = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "modules", "evalModules"), nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         prefix: prefix,
         modules: nix.thunk(() => [
           teamModule,
           nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             _file: nix.thunk(() => nix.builtins.toString(nix.path(here, "../../maintainers/team-list.nix"))),
             config: uncheckedAttrs,
           })),

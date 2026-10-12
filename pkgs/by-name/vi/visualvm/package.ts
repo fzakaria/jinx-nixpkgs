@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 19, 5]], [["name", 24, 7], ["exec", 25, 7], ["comment", 26, 7], ["desktopName", 27, 7], ["genericName", 28, 7], ["categories", 29, 7]], [["description", 53, 5], ["mainProgram", 54, 5], ["longDescription", 55, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 67, 5], ["maintainers", 68, 5]], [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["desktopItems", 22, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 38, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchzip: false, lib: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, jdk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 7], ["exec", 25, 7], ["comment", 26, 7], ["desktopName", 27, 7], ["genericName", 28, 7], ["categories", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["longDescription", 55, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 67, 5], ["maintainers", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["desktopItems", 22, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 38, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const jdk = nix.arg($, "jdk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "2.2.1",
       pname: "visualvm",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/visualvm/visualvm.src/releases/download/${nix.sel(finalAttrs, "version")}/visualvm_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           sha256: "sha256-4Ub14FKOp2toMMuIaWJZ2pvE34UJ4m++Psoh8KdCe2M=",
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "visualvm",
             exec: "visualvm",
             comment: "Java Troubleshooting Tool",
@@ -51,7 +48,7 @@ cp -r . $out
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Visual interface for viewing information about Java applications",
         mainProgram: "visualvm",
         longDescription: "VisualVM is a visual tool integrating several commandline JDK\ntools and lightweight profiling capabilities. Designed for both\nproduction and development time use, it further enhances the\ncapability of monitoring and performance analysis for the Java\nSE platform.\n",

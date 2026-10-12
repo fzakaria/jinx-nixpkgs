@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sparseCheckout", 15, 5], ["hash", 16, 5]], [["extraArgs", 34, 5]], [["updateScript", 33, 12]], [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["sourceRoot", 18, 3], ["processUserFiles", 19, 3], ["passthru", 33, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, "anki-utils": false, fetchFromGitHub: false, python3: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sparseCheckout", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 33, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["sourceRoot", 18, 3], ["processUserFiles", 19, 3], ["passthru", 33, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(anki_utils, "buildAnkiAddon"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "local-audio-yomichan",
       version: "0-unstable-2025-12-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yomidevs",
           repo: "local-audio-yomichan",
           rev: "2cbabbc75b4195b75033adf059d2a5ff037f60a6",
@@ -43,11 +39,11 @@ ${nix.app(nix.sel(lib, "getExe"), python3)} -c \\
    db_utils.init_db()"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Run a local audio server for Yomitan",
         longDescription: "This add-on must be configured with an audio collection.\n\nExample:\n\n```nix\npkgs.ankiAddons.local-audio-yomichan.withConfig {\n  userFiles =\n    let\n      audio-collection =\n        pkgs.runCommand \"local-yomichan-audio-collection\"\n          {\n            outputHashMode = \"recursive\";\n            outputHash = \"sha256-NxbcXh2SDPfCd+ZHAWT5JdxRecNbT4Xpo0pxX5/DOfo=\";\n\n            src = pkgs.requireFile {\n              name = \"local-yomichan-audio-collection-2023-06-11-opus.tar.xz\";\n              url = \"https://github.com/yomidevs/local-audio-yomichan?tab=readme-ov-file#steps\";\n              sha256 = \"1xsxp8iggklv77rj972mqaa1i8f9hvr3ir0r2mwfqcdz4q120hr1\";\n            };\n          }\n          ''\n            mkdir -p $out\n            cd $out\n            tar -xf \"$src\"\n          '';\n    in\n    \"${audio-collection}/user_files\";\n}\n```\n",
         homepage: "https://github.com/yomidevs/local-audio-yomichan",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 20, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, jdk11: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 20, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const jdk11 = nix.arg($, "jdk11");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "apache-directory-server",
       version: "2.0.0.AM26",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/directory/apacheds/dist/${nix.sel(finalAttrs, "version")}/apacheds-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-36kDvfSy5rt/3+nivEFTepnIKf6sX0NTgPRm28M+1v4=",
         })))),
@@ -31,7 +29,7 @@ makeWrapper ${jdk11}/bin/java $out/bin/apache-directory-server \\
   --add-flags "-classpath $classpath org.apache.directory.server.UberjarMain"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extensible and embeddable directory server",
         mainProgram: "apache-directory-server",
         homepage: "https://directory.apache.org/apacheds/",

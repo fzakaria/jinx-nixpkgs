@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["curlOpts", 14, 5], ["hash", 15, 5]], [["homepage", 21, 5], ["description", 22, 5], ["maintainers", 23, 5], ["license", 24, 5], ["platforms", 25, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["curlOpts", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 21, 5], ["description", 22, 5], ["maintainers", 23, 5], ["license", 24, 5], ["platforms", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "andagii",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://www.i18nguy.com/unicode/andagii.zip",
           curlOpts: "--user-agent 'Mozilla/5.0'",
           hash: "sha256-U7wC55G8jIvMMyPcEiJQ700A7nkWdgWK1LM0F/wgDCg=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.i18nguy.com/unicode/unicode-font.html",
         description: "Unicode Plane 1 Osmanya script font",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

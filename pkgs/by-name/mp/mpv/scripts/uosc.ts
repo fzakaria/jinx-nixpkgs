@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/uosc.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["updateScript", 21, 12], ["fontDirectories", 32, 12], ["extraWrapperArgs", 33, 12]], [["pname", 26, 5], ["version", 27, 26], ["src", 27, 34], ["vendorHash", 28, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 11, 3], ["version", 12, 3], ["scriptPath", 13, 3], ["src", 15, 3], ["passthru", 21, 3], ["nativeBuildInputs", 23, 3], ["tools", 25, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, gitUpdater: false, buildLua: false, buildGoModule: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/uosc.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/uosc.nix", [["updateScript", 21, 12], ["fontDirectories", 32, 12], ["extraWrapperArgs", 33, 12]]);
-const pos$3 = nix.positions(here + "/uosc.nix", [["pname", 26, 5], ["version", 27, 26], ["src", 27, 34], ["vendorHash", 28, 5]]);
-const pos$4 = nix.positions(here + "/uosc.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$5 = nix.positions(here + "/uosc.nix", [["pname", 11, 3], ["version", 12, 3], ["scriptPath", 13, 3], ["src", 15, 3], ["passthru", 21, 3], ["nativeBuildInputs", 23, 3], ["tools", 25, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(buildLua, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "uosc",
       version: "5.13.0",
       scriptPath: "src/uosc",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tomasklaen",
           repo: "uosc",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-5fHihGI2rodEByqTRs3NasmLUBjG3VY9l/YnKDCKSt8=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         fontDirectories: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/fonts`)]),
         extraWrapperArgs: nix.thunk(() => [
@@ -41,14 +37,14 @@ export default nix.lambda((args) => (() => {
       })),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       tools: nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "uosc-bin",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           vendorHash: "sha256-oRXChHeVQj6nXvKOVV125sM8wD33Dxxv0r/S7sl6SxQ=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Feature-rich minimalist proximity-based UI for MPV player",
         homepage: "https://github.com/tomasklaen/uosc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

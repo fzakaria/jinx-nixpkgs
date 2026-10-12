@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["broken", 61, 5], ["description", 62, 5], ["license", 63, 5], ["homepage", 64, 5], ["platforms", 65, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 27, 3], ["postPatch", 32, 3], ["configurePhase", 34, 3], ["buildPhase", 45, 3], ["installPhase", 51, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, groff: false, ncurses: false, bzip2: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 61, 5], ["description", 62, 5], ["license", 63, 5], ["homepage", 64, 5], ["platforms", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 27, 3], ["postPatch", 32, 3], ["configurePhase", 34, 3], ["buildPhase", 45, 3], ["installPhase", 51, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "splat",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.qsl.net/kd2bd/splat-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-ObCzFOLpJ73wDR7aS5hl79EouoUDBfmHrsBJxP1Yopw=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n./build all\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dt $out/bin splat\nfind utils -type f -executable -exec install -Dt $out/bin {} \\;\ninstall -Dt $out/share/man/man1 docs/english/man/*.1\ninstall -Dt $out/share/man/es/man1 docs/spanish/man/*.1\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "RF Signal Propagation, Loss, And Terrain analysis tool for the electromagnetic spectrum between 20 MHz and 20 GHz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

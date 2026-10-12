@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["PBR_VERSION", 36, 7]], [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["downloadPage", 83, 5], ["license", 84, 5], ["teams", 85, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["build-system", 31, 3], ["env", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 45, 3], ["sphinxBuilders", 52, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 58, 3], ["nativeInstallCheckInputs", 67, 3], ["doInstallCheck", 68, 3], ["postInstall", 70, 3], ["pythonImportsCheck", 75, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pbr: false, setuptools: false, installShellFiles: false, "python-keystoneclient": false, stestrCheckHook: false, versionCheckHook: false, hacking: false, keystoneauth1: false, stestr: false, openstacksdk: false, sphinxHook: false, openstackdocstheme: false, "sphinxcontrib-apidoc": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["PBR_VERSION", 36, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["downloadPage", 83, 5], ["license", 84, 5], ["teams", 85, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["build-system", 31, 3], ["env", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 45, 3], ["sphinxBuilders", 52, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 58, 3], ["nativeInstallCheckInputs", 67, 3], ["doInstallCheck", 68, 3], ["postInstall", 70, 3], ["pythonImportsCheck", 75, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,17 +24,17 @@ export default nix.lambda((args) => (() => {
   const openstackdocstheme = nix.arg($, "openstackdocstheme");
   const sphinxcontrib_apidoc = nix.arg($, "sphinxcontrib-apidoc");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "python-swiftclient",
       version: "4.10.0",
       pyproject: true,
       "build-system": nix.thunk(() => [pbr, setuptools]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "openstack",
           repo: "python-swiftclient",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "installShellCompletion --cmd swift --bash tools/swift.bash_completion\ninstallManPage doc/manpages/*\n",
       pythonImportsCheck: nix.thunk(() => ["swiftclient"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Client library for OpenStack Swift API",
         mainProgram: "swift",
         homepage: "https://docs.openstack.org/python-swiftclient/latest/",

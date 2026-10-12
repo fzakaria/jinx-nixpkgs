@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 12, 13], ["version", 12, 19], ["sha256", 13, 5]], [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]], [["pname", 7, 3], ["version", 8, 3], ["format", 9, 3], ["src", 11, 3], ["doCheck", 17, 3], ["pythonImportsCheck", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 12, 13], ["version", 12, 19], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 3], ["format", 9, 3], ["src", 11, 3], ["doCheck", 17, 3], ["pythonImportsCheck", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.6";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "2fe02c9305f53168441948f4a03dfbfa2eacc73db30db4a93309083cb0e250a5",
@@ -25,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["banal"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Commons of banal micro-functions for Python",
         homepage: "https://github.com/pudo/banal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

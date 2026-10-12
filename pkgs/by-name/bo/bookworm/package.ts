@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["description", 101, 5], ["mainProgram", 102, 5], ["longDescription", 103, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 51, 3], ["postPatch", 66, 3], ["preFixup", 78, 3], ["postFixup", 95, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, appstream: false, coreutils: false, curl: false, "desktop-file-utils": false, glib: false, gnugrep: false, "gobject-introspection": false, gtk3: false, html2text: false, libgee: false, libxml2: false, meson: false, ninja: false, pantheon: false, "pkg-config": false, poppler: false, "poppler-utils": false, python3: false, sqlite: false, unar: false, unzip: false, vala: false, webkitgtk_4_1: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 101, 5], ["mainProgram", 102, 5], ["longDescription", 103, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 51, 3], ["postPatch", 66, 3], ["preFixup", 78, 3], ["postFixup", 95, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bookworm",
       version: "1.1.2-unstable-2026-05-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "babluboy",
           repo: "bookworm",
           rev: "fa06f1b80bb2372c1f20b0cfb21dc88eed410e29",
@@ -70,7 +68,7 @@ export default nix.lambda((args) => (() => {
 `),
       postFixup: "patchShebangs $out/share/bookworm/scripts/mobi_lib/*.py\npatchShebangs $out/share/bookworm/scripts/tasks/*.sh\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple, focused eBook reader",
         mainProgram: "com.github.babluboy.bookworm",
         longDescription: "Read the books you love without having to worry about different format complexities like epub, pdf, mobi, cbr, etc.\n",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["hash", 34, 5]], [["extraArgs", 83, 47]], [["package", 85, 50]], [["version", 85, 18]], [["updateScript", 83, 12], ["tests", 85, 12]], [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["sourceProvenance", 92, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 101, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 38, 3], ["sourceRoot", 40, 3], ["installPhase", 42, 3], ["passthru", 83, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "nix-update-script": false, testers: false, jre: false, makeWrapper: false, mysqlSupport: true, mysql_jdbc: false, postgresqlSupport: true, postgresql_jdbc: false, redshiftSupport: true, redshift_jdbc: false, liquibase_redshift_extension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 83, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 85, 50]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 85, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 83, 12], ["tests", 85, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["sourceProvenance", 92, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 101, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 38, 3], ["sourceRoot", 40, 3], ["installPhase", 42, 3], ["passthru", 83, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const liquibase_redshift_extension = nix.arg($, "liquibase_redshift_extension");
   const extraJars = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), mysqlSupport, mysql_jdbc), nix.concat(nix.app(nix.sel(lib, "optional"), postgresqlSupport, postgresql_jdbc), nix.app(nix.sel(lib, "optionals"), redshiftSupport, nix.thunk(() => [redshift_jdbc, liquibase_redshift_extension])))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "liquibase",
       version: "5.0.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/liquibase/liquibase/releases/download/v${nix.sel(finalAttrs, "version")}/liquibase-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-uwhjjXDd3Wr4zKbgMxSFdvghS1mWgxsfiGTrNSj0z84=",
         })))),
@@ -76,18 +70,18 @@ chmod +x $out/bin/liquibase
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Version Control for your database",
         mainProgram: "liquibase",
         homepage: "https://www.liquibase.org/",

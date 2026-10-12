@@ -2,37 +2,31 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/declare-submoduleWith-shorthand.nix", [[["type", 4, 5], ["default", 5, 5]], [["config", 3, 15]], [["options", 3, 7]], [["modules", 11, 7], ["shorthandOnlyDefinesConfig", 12, 7]], [["type", 10, 5], ["default", 14, 5]], [["submodule", 9, 11]], [["options", 9, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/declare-submoduleWith-shorthand.nix", [["type", 4, 5], ["default", 5, 5]]);
-const pos$2 = nix.positions(here + "/declare-submoduleWith-shorthand.nix", [["config", 3, 15]]);
-const pos$3 = nix.positions(here + "/declare-submoduleWith-shorthand.nix", [["options", 3, 7]]);
-const pos$4 = nix.positions(here + "/declare-submoduleWith-shorthand.nix", [["modules", 11, 7], ["shorthandOnlyDefinesConfig", 12, 7]]);
-const pos$5 = nix.positions(here + "/declare-submoduleWith-shorthand.nix", [["type", 10, 5], ["default", 14, 5]]);
-const pos$6 = nix.positions(here + "/declare-submoduleWith-shorthand.nix", [["submodule", 9, 11]]);
-const pos$7 = nix.positions(here + "/declare-submoduleWith-shorthand.nix", [["options", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const sub = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           default: false,
         })))),
     })),
   }));
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       submodule: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               modules: nix.thunk(() => [sub]),
               shorthandOnlyDefinesConfig: true,
             })))),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["networkmanagerapplet", 35, 15]], [["updateScript", 60, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["teams", 68, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["strictDeps", 57, 3], ["passthru", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false, "pkg-config": false, replaceVars: false, vala: false, libadwaita: false, libgee: false, gettext: false, granite7: false, gtk4: false, networkmanager: false, networkmanagerapplet: false, "libnma-gtk4": false, switchboard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["networkmanagerapplet", 35, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["teams", 68, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["strictDeps", 57, 3], ["passthru", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,24 +29,24 @@ export default nix.lambda((args) => (() => {
       const pname = "switchboard-plug-network";
       const version = "8.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "switchboard-plug-network",
           rev: version,
           hash: "sha256-H43mRPEujs6A4Bk2uC3mP91Hp5I8gojaagoXUT/5eW8=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, networkmanagerapplet: networkmanagerapplet })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], networkmanagerapplet: networkmanagerapplet })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [gettext, meson, ninja, pkg_config, vala]);
       const buildInputs = nix.thunk(() => [granite7, gtk4, libadwaita, libgee, networkmanager, libnma_gtk4, switchboard]);
       const strictDeps = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Switchboard Networking Plug",
         homepage: "https://github.com/elementary/switchboard-plug-network",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

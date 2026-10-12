@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["NIX_CFLAGS_COMPILE", 39, 7]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["makeFlags", 37, 3], ["env", 39, 3], ["hardeningDisable", 50, 3], ["installPhase", 52, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, SDL2: false, SDL2_net: false, glew: false, lua5_4: false, desktopToDarwinBundle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["makeFlags", 37, 3], ["env", 39, 3], ["hardeningDisable", 50, 3], ["installPhase", 52, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const lua5_4 = nix.arg($, "lua5_4");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cadzinho",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zecruel",
           repo: "CadZinho",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, SDL2_net, glew, lua5_4]),
       makeFlags: nix.thunk(() => ["CC:=$(CC)"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), SDL2)}/include/SDL2`),
             nix.thunk(() => nix.str`-I${nix.sel(SDL2_net, "dev")}/include/SDL2`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       installPhase: "runHook preInstall\ninstall -Dm755 cadzinho -t $out/bin\ninstall -Dm644 lang/*.lua -t $out/share/cadzinho/lang\ncp -r linux/CadZinho/share/* $out/share\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Minimalist computer aided design (CAD) software",
         homepage: "https://github.com/zecruel/CadZinho",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

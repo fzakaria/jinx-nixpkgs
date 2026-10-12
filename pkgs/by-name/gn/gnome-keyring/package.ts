@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 5], ["hash", 37, 5]], [["packageName", 115, 7]], [["updateScript", 114, 5]], [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["teams", 129, 5], ["platforms", 130, 5]], [["pname", 27, 3], ["version", 28, 3], ["outputs", 30, 3], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 62, 3], ["mesonFlags", 67, 3], ["doCheck", 79, 3], ["strictDeps", 80, 3], ["checkPhase", 82, 3], ["postFixup", 93, 3], ["passthru", 113, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, dbus: false, libgcrypt: false, pam: false, python3: false, glib: false, libxslt: false, gettext: false, gcr_3: false, libcap_ng: false, libselinux: false, "p11-kit": false, wrapGAppsNoGuiHook: false, "docbook-xsl-nons": false, docbook_xml_dtd_43: false, gnome: false, useWrappedDaemon: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 115, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 114, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["teams", 129, 5], ["platforms", 130, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["outputs", 30, 3], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 62, 3], ["mesonFlags", 67, 3], ["doCheck", 79, 3], ["strictDeps", 80, 3], ["checkPhase", 82, 3], ["postFixup", 93, 3], ["passthru", 113, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const gnome = nix.arg($, "gnome");
   const useWrappedDaemon = nix.argOr($, "useWrappedDaemon", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-keyring",
       version: "50.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-keyring/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-keyring-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-y9cgYsU8lwK8LEczmRrV8FHKaCiCswkFooKbzxqOzHw=",
         })))),
@@ -74,11 +70,11 @@ runHook preCheck
 `),
       postFixup: nix.thunk(() => nix.add("for f in \"$out\"/etc/xdg/autostart/*.desktop; do\n  [ -e \"$f\" ] || continue\n  substituteInPlace \"$f\" \\\n    --replace-fail \"OnlyShowIn=\" \"#OnlyShowIn=\"\ndone\n", nix.app(nix.sel(lib, "optionalString"), useWrappedDaemon, "files=($out/etc/xdg/autostart/* $out/share/dbus-1/services/*)\n\nfor file in ${files[*]}; do\n  substituteInPlace $file \\\n    --replace \"$out/bin/gnome-keyring-daemon\" \"/run/wrappers/bin/gnome-keyring-daemon\"\ndone\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-keyring" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-keyring" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Collection of components in GNOME that store secrets, passwords, keys, certificates and make them available to applications",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-keyring",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-keyring/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

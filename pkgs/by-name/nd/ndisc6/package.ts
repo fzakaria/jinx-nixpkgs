@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["homepage", 40, 5], ["description", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["license", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["nativeBuildInputs", 20, 3], ["configureFlags", 22, 3], ["installFlags", 28, 3], ["nativeInstallCheckInputs", 33, 3], ["doInstallCheck", 34, 3], ["__structuredAttrs", 36, 3], ["strictDeps", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["license", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["nativeBuildInputs", 20, 3], ["configureFlags", 22, 3], ["installFlags", 28, 3], ["nativeInstallCheckInputs", 33, 3], ["doInstallCheck", 34, 3], ["__structuredAttrs", 36, 3], ["strictDeps", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ndisc6",
       version: "1.0.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.remlab.net/files/ndisc6/ndisc6-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Hy+y3BFydwqloJ05c4pE2LdTzF4uJeMGynhoL5/qC08=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.remlab.net/ndisc6/",
         description: "Small collection of useful tools for IPv6 networking",
         maintainers: nix.thunk(() => (() => {

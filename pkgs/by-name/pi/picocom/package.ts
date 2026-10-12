@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["lrzsz", 26, 47]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["makeFlags", 39, 3], ["enableParallelBuilding", 45, 3], ["installPhase", 47, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, replaceVars: false, "pkg-config": false, "go-md2man": false, installShellFiles: false, linenoise: false, lrzsz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lrzsz", 26, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["makeFlags", 39, 3], ["enableParallelBuilding", 45, 3], ["installPhase", 47, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const linenoise = nix.arg($, "linenoise");
   const lrzsz = nix.arg($, "lrzsz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "picocom",
       version: "2024-07",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wsakernel",
           repo: "picocom",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./use-system-linenoise.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./lrzsz-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, lrzsz: lrzsz })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./lrzsz-path.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], lrzsz: lrzsz })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, go_md2man, installShellFiles]),
       buildInputs: nix.thunk(() => [linenoise]),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\n\ninstall -Dm555 -t $out/bin picocom\ninstallManPage picocom.1\ninstallShellCompletion --bash bash_completion/picocom\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Minimal dumb-terminal emulation program",
         homepage: "https://gitlab.com/wsakernel/picocom",
         changelog: "https://gitlab.com/wsakernel/picocom/-/releases",

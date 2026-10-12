@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["name", 77, 7], ["exec", 78, 7], ["icon", 79, 7], ["desktopName", 80, 7], ["comment", 81, 7]], [["mainProgram", 88, 5], ["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5], ["broken", 95, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["cargoHash", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["buildAndTestSubdir", 68, 3], ["postInstall", 70, 3], ["desktopItems", 75, 3], ["doCheck", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, expat: false, fontconfig: false, freetype: false, libGL: false, udev: false, libxkbcommon: false, wayland: false, "vulkan-loader": false, libxrandr: false, libxi: false, libxcursor: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 77, 7], ["exec", 78, 7], ["icon", 79, 7], ["desktopName", 80, 7], ["comment", 81, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 88, 5], ["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5], ["broken", 95, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["cargoHash", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["buildAndTestSubdir", 68, 3], ["postInstall", 70, 3], ["desktopItems", 75, 3], ["doCheck", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const pname = "liana";
       const version = "15.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wizardsardine",
           repo: "liana",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -66,7 +63,7 @@ wrapProgram $out/bin/liana-gui --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Liana",
             exec: "liana-gui",
             icon: "liana",
@@ -76,7 +73,7 @@ wrapProgram $out/bin/liana-gui --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib
       ]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: "liana-gui",
         description: "Bitcoin wallet leveraging on-chain timelocks for safety and recovery",
         homepage: "https://wizardsardine.com/liana",
@@ -90,7 +87,7 @@ wrapProgram $out/bin/liana-gui --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,10 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/sources.nix", [["version", 4, 3], ["amd64_url", 5, 3], ["arm64_url", 6, 3], ["loongarch64_url", 7, 3], ["amd64_hash", 8, 3], ["arm64_hash", 9, 3], ["loongarch64_hash", 10, 3]]);
+const $pos = nix.positions(here + "/sources.nix", [[["version", 4, 3], ["amd64_url", 5, 3], ["arm64_url", 6, 3], ["loongarch64_url", 7, 3], ["amd64_hash", 8, 3], ["arm64_hash", 9, 3], ["loongarch64_hash", 10, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$1,
+  [nix.POS]: $pos[0],
   version: "1.0.0.5",
   amd64_url: "https://archive2.kylinos.cn/DEB/KYLIN_DEB/pool/all/com.xunlei.download_1.0.0.5_amd64.deb",
   arm64_url: "https://archive2.kylinos.cn/DEB/KYLIN_DEB/pool/all/com.xunlei.download_1.0.0.5_arm64.deb",

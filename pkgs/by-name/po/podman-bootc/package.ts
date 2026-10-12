@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["maintainers", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["mainProgram", 74, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["vendorHash", 26, 3], ["tags", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["doCheck", 46, 3], ["postInstall", 48, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, buildPackages: false, fetchFromGitHub: false, installShellFiles: false, libisoburn: false, libvirt: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["maintainers", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["mainProgram", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["vendorHash", 26, 3], ["tags", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["doCheck", 46, 3], ["postInstall", 48, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "podman-bootc",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bootc-dev",
           repo: "podman-bootc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +52,7 @@ installShellCompletion --cmd podman-bootc \\
 `));
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Streamlining podman+bootc interactions",
         homepage: "https://github.com/bootc-dev/podman-bootc",
         changelog: nix.thunk(() => nix.str`https://github.com/bootc-dev/podman-bootc/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

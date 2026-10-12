@@ -2,53 +2,45 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/opentabletdriver.nix", [[["maintainers", 8, 5]], [["user", 18, 40]], [["auto", 18, 35]], [["displayManager", 18, 20]], [["enable", 19, 33]], [["opentabletdriver", 19, 16]], [["imports", 14, 7], ["test-support", 18, 7], ["hardware", 19, 7]], [["machine", 11, 9]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/opentabletdriver.nix", [["maintainers", 8, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/opentabletdriver.nix", [["user", 18, 40]]);
-const pos$3 = nix.positions(here + "/opentabletdriver.nix", [["auto", 18, 35]]);
-const pos$4 = nix.positions(here + "/opentabletdriver.nix", [["displayManager", 18, 20]]);
-const pos$5 = nix.positions(here + "/opentabletdriver.nix", [["enable", 19, 33]]);
-const pos$6 = nix.positions(here + "/opentabletdriver.nix", [["opentabletdriver", 19, 16]]);
-const pos$7 = nix.positions(here + "/opentabletdriver.nix", [["imports", 14, 7], ["test-support", 18, 7], ["hardware", 19, 7]]);
-const pos$8 = nix.positions(here + "/opentabletdriver.nix", [["machine", 11, 9]]);
-const pos$9 = nix.positions(here + "/opentabletdriver.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const testUser = "alice";
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "opentabletdriver",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "thiagokokada"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           imports: nix.thunk(() => [
             nix.path(here, "./common/user-account.nix"),
             nix.path(here, "./common/x11.nix"),
           ]),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$2, user: testUser })),
+              [nix.POS]: $pos[2],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[1], user: testUser })),
             })),
           })),
           hardware: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            opentabletdriver: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+            [nix.POS]: $pos[5],
+            opentabletdriver: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
           })),
         };
       })(), formals$2),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 59, 5], ["sourceProvenance", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["sourceRoot", 34, 3], ["unpackCmd", 35, 3], ["dontConfigure", 37, 3], ["dontBuild", 38, 3], ["installPhase", 40, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, dpkg: false, autoPatchelfHook: false, cups: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 59, 5], ["sourceProvenance", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["sourceRoot", 34, 3], ["unpackCmd", 35, 3], ["dontConfigure", 37, 3], ["dontBuild", 38, 3], ["installPhase", 40, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fxlinuxprint";
       const version = "1.1.2-1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/NixOS/nixpkgs/files/12232817/fxlinuxpdf112119031.zip",
           sha256: "1mv07ch6ysk9bknfmjqsgxb803sj6vfin29s9knaqv17jvgyh0n3",
         }))));
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "mkdir -p $out\nmv etc $out\nmv usr/lib $out\n\nmkdir -p $out/share/cups/model\nmv usr/share/ppd/FujiXerox/* $out/share/cups/model\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fuji Xerox Linux Printer Driver",
         longDescription: "DocuPrint P365/368 d\nDocuPrint CM315/318 z\nDocuPrint CP315/318 dw\nApeosPort-VI C2271/C3370/C3371/C4471/C5571/C6671/C7771\nDocuCentre-VI C2271/C3370/C3371/C4471/C5571/C6671/C7771\nDocuPrint 3205 d/3208 d/3505 d/3508 d/4405 d/4408 d\n",
         homepage: "https://onlinesupport.fujixerox.com",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

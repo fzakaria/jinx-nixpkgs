@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jtds.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["platforms", 30, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 17, 3], ["installPhase", 19, 3], ["nativeBuildInputs", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/jtds.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/jtds.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["platforms", 30, 5]]);
-const pos$3 = nix.positions(here + "/jtds.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 17, 3], ["installPhase", 19, 3], ["nativeBuildInputs", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jtds";
       const version = "1.3.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/jtds/${version}/${pname}-${version}-dist.zip`),
           sha256: "sha256-eV0P8QdjfuHXzYssH8yHhynuH0Clg7MAece2Up3S9M0",
         }))));
@@ -25,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const installPhase = "mkdir -p $out/share/java\ncp jtds-*.jar $out/share/java/jtds-jdbc.jar\n";
       const nativeBuildInputs = nix.thunk(() => [unzip]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pure Java (type 4) JDBC 3.0 driver for Microsoft SQL Server",
         homepage: "https://jtds.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

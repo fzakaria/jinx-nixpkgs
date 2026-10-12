@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]], [["CXXFLAGS", 101, 7]], [["grass", 163, 39]], [["grass", 163, 5]], [["tests", 162, 12]], [["description", 167, 5], ["homepage", 168, 5], ["license", 169, 5], ["maintainers", 170, 5], ["teams", 171, 5], ["platforms", 172, 5], ["mainProgram", 173, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 69, 3], ["strictDeps", 96, 3], ["env", 101, 3], ["configureFlags", 103, 3], ["makeFlags", 137, 3], ["postConfigure", 143, 3], ["postInstall", 151, 3], ["enableParallelBuilding", 160, 3], ["passthru", 162, 3], ["meta", 166, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromGitHub: false, makeWrapper: false, wrapGAppsHook3: false, withOpenGL: true, bison: false, blas: false, cairo: false, ffmpeg: false, fftw: false, flex: false, freetype: false, gdal: false, geos: false, lapack: false, libGLU: false, libiconv: false, libpng: false, libsvm: false, libtiff: false, libxml2: false, llvmPackages: false, netcdf: false, pdal: false, "pkg-config": false, libpq: false, proj: false, python3Packages: false, readline: false, sqlite: false, wxwidgets_3_2: false, zlib: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 101, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["grass", 163, 39]]);
-const pos$4 = nix.positions(here + "/package.nix", [["grass", 163, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 162, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 167, 5], ["homepage", 168, 5], ["license", 169, 5], ["maintainers", 170, 5], ["teams", 171, 5], ["platforms", 172, 5], ["mainProgram", 173, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 69, 3], ["strictDeps", 96, 3], ["env", 101, 3], ["configureFlags", 103, 3], ["makeFlags", 137, 3], ["postConfigure", 143, 3], ["postInstall", 151, 3], ["enableParallelBuilding", 160, 3], ["passthru", 162, 3], ["meta", 166, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "grass",
       version: "8.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OSGeo",
           repo: "grass",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -91,7 +85,7 @@ export default nix.lambda((args) => (() => {
         zstd,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), withOpenGL, nix.thunk(() => [libGLU])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "openmp"))])))))),
       strictDeps: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=gnu++17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-std=gnu++17" })),
       configureFlags: nix.thunk(() => nix.concat([
         "--with-blas",
         "--with-cairo-ldflags=-lfontconfig",
@@ -127,17 +121,17 @@ ln -s $out/grass*/include $out/include
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           grass: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               grass: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "GIS software suite used for geospatial data management and analysis, image processing, graphics and maps production, spatial modeling, and visualization",
         homepage: "https://grass.osgeo.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

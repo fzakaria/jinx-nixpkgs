@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["postPatch", 26, 3], ["installPhase", 30, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, fetchFromGitHub: false, gawk: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["postPatch", 26, 3], ["installPhase", 30, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lynis",
       version: "3.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CISOfy",
           repo: "lynis",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +37,7 @@ installShellCompletion --bash --name lynis.bash \\
   extras/bash_completion.d/lynis
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Security auditing tool for Linux, macOS, and UNIX-based systems",
         mainProgram: "lynis",
         homepage: "https://cisofy.com/lynis/",

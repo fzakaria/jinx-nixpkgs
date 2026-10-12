@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 47, 9], ["extension", 48, 9], ["sha256", 49, 9]], [["url", 53, 9], ["extension", 54, 9], ["sha256", 55, 9]], [["description", 77, 5], ["homepage", 78, 5], ["sourceProvenance", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 85, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 60, 3], ["installPhase", 61, 3], ["postInstall", 69, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, libglut: false, libxmu: false, libxi: false, libx11: false, libice: false, libGLU: false, libGL: false, libsm: false, libxext: false, glibc: false, lua: false, luabind: false, glfw: false, libgccjit: false, dialog: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 47, 9], ["extension", 48, 9], ["sha256", 49, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 53, 9], ["extension", 54, 9], ["sha256", 55, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["sourceProvenance", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 60, 3], ["installPhase", 61, 3], ["postInstall", 69, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,12 +46,12 @@ export default nix.lambda((args) => (() => {
       const pname = "iceSL";
       const version = "2.4.1";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://icesl.loria.fr/assets/other/download.php?build=${version}&os=amd64`),
           extension: "zip",
           sha256: "0rrnkqkhlsjclif5cjbf17qz64vs95ja49xarxjvq54wb4jhbs4l",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://icesl.loria.fr/assets/other/download.php?build=${version}&os=i386`),
           extension: "zip",
           sha256: "0n2yyxzw0arkc70f0qli4n5chdlh9vc7aqizk4v7825mcglhwlyh",
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
 makeWrapper $out/oldbin/IceSL-slicer $out/bin/icesl --prefix PATH : ${dialog}/bin
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GPU-accelerated procedural modeler and slicer for 3D printing",
         homepage: "https://icesl.loria.fr/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -82,7 +79,7 @@ makeWrapper $out/oldbin/IceSL-slicer $out/bin/icesl --prefix PATH : ${dialog}/bi
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

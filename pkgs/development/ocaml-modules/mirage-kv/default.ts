@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["hash", 20, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 13, 3], ["version", 14, 3], ["minimalOCamlVersion", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 30, 3], ["checkInputs", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, fmt: false, lwt: false, optint: false, ptime: false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["minimalOCamlVersion", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 30, 3], ["checkInputs", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const ptime = nix.arg($, "ptime");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mirage-kv",
       version: "6.1.1",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-kv/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-kv-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-fNXNlaDpb5zUA2rTwi5h1j4v4LQmovxG+Am6u+1guPQ=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MirageOS signatures for key/value devices",
         homepage: "https://github.com/mirage/mirage-kv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

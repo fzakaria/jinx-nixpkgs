@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["postPatch", 23, 3], ["dontConfigure", 27, 3], ["dontBuild", 29, 3], ["installPhase", 31, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["postPatch", 23, 3], ["dontConfigure", 27, 3], ["dontBuild", 29, 3], ["installPhase", 31, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "triehash",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "julian-klode",
           repo: "triehash",
           rev: "debian/0.3-3",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\ninstall -d $out/bin $out/share/doc/triehash/ $out/share/triehash/\ninstall triehash.pl $out/bin/triehash\ninstall README.md $out/share/doc/triehash/\ncp -r tests/ $out/share/triehash/tests/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/julian-klode/triehash",
         description: "Order-preserving minimal perfect hash function generator",
         license: nix.thunk(() => (() => {

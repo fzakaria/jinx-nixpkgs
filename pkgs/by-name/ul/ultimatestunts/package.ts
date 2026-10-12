@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 22, 5]], [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["postPatch", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, SDL: false, libGLU: false, libGL: false, SDL_image: false, freealut: false, openal: false, libvorbis: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["postPatch", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libvorbis = nix.arg($, "libvorbis");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ultimate-stunts",
       version: "0.7.7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/ultimatestunts/ultimatestunts-srcdata-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.tar.gz`),
           sha256: "sha256-/MBuSi/yxcG9k3ZwrNsHkUDzzg798AV462VZog67JtM=",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL, libGLU, libGL, SDL_image, freealut, openal, libvorbis]),
       postPatch: "sed -e '1i#include <unistd.h>' -i $(find . -name '*.c' -o -name '*.cpp')\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.ultimatestunts.nl/",
         description: "Remake of the popular racing DOS-game Stunts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

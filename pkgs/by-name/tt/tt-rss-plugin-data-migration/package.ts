@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["description", 26, 5], ["license", 28, 5], ["homepage", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 17, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["license", 28, 5], ["homepage", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 17, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tt-rss-plugin-data-migration",
       version: "0-unstable-2023-11-01",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.tt-rss.org/fox/ttrss-data-migration.git",
           rev: "e13d5f97b4887ce7b57b3d76228d838dec15963d",
           hash: "sha256-xnbR5IQ0h7ilxchNj55ROZdq1L7MIAwv3/00k09WTTs=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -D init.php $out/data_migration/init.php\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Plugin for TT-RSS to exports and imports *all* articles of a specific user via neutral format (JSON files in a ZIP archive)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         homepage: "https://git.tt-rss.org/fox/ttrss-data-migration.git/",

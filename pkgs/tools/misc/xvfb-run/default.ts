@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["updateScript", 76, 5]], [["description", 80, 5], ["homepage", 81, 5], ["platforms", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["strictDeps", 38, 3], ["dontUnpack", 40, 3], ["dontBuild", 41, 3], ["dontConfigure", 42, 3], ["installPhase", 44, 3], ["doInstallCheck", 66, 3], ["installCheckPhase", 67, 3], ["passthru", 75, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, makeWrapper: false, xvfb: false, getopt: false, xauth: false, "util-linux": false, which: false, fontsConf: false, gawk: false, coreutils: false, installShellFiles: false, xterm: false, bashNonInteractive: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 76, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["platforms", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["strictDeps", 38, 3], ["dontUnpack", 40, 3], ["dontBuild", 41, 3], ["dontConfigure", 42, 3], ["installPhase", 44, 3], ["doInstallCheck", 66, 3], ["installCheckPhase", 67, 3], ["passthru", 75, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const xterm = nix.arg($, "xterm");
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xvfb-run",
       version: "1+g87f6705",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "archlinux",
           repo: "svntogit-packages",
           rev: "87f67054c49b32511893acd22be94c47ecd44b4a",
@@ -59,9 +56,9 @@ wrapProgram $out/bin/xvfb-run \\
   $out/bin/xvfb-run ${nix.app(nix.sel(lib, "getBin"), xterm)}/bin/xterm -e true
 )
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Convenience script to run a virtualized X-Server",
         homepage: "https://github.com/archlinux/svntogit-packages",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),

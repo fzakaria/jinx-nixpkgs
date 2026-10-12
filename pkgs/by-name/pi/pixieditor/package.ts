@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["id", 34, 5], ["name", 35, 5]], [["PixiEditorApiUrl", 40, 7], ["PixiEditorApiKey", 41, 7], ["AnalyticsUrl", 42, 7]], [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5], ["fetchSubmodules", 56, 5]], [["SingleMainWindow", 148, 19]], [["name", 120, 7], ["type", 121, 7], ["desktopName", 122, 7], ["genericName", 123, 7], ["comment", 124, 7], ["icon", 125, 7], ["exec", 126, 7], ["tryExec", 127, 7], ["startupWMClass", 128, 7], ["terminal", 129, 7], ["categories", 130, 7], ["keywords", 136, 7], ["mimeTypes", 145, 7], ["extraConfig", 148, 7]], [["updateScript", 166, 5]], [["description", 170, 5], ["longDescription", 171, 5], ["homepage", 175, 5], ["changelog", 176, 5], ["mainProgram", 177, 5], ["license", 178, 5], ["maintainers", 179, 5], ["platforms", 182, 5], ["badPlatforms", 188, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["postPatch", 59, 3], ["nativeBuildInputs", 75, 3], ["nugetDeps", 82, 3], ["linkNugetPackages", 83, 3], ["dotnet-sdk", 85, 3], ["dotnet-runtime", 86, 3], ["dotnetFlags", 87, 3], ["buildType", 91, 3], ["projectFile", 92, 3], ["executables", 103, 3], ["runtimeDeps", 105, 3], ["desktopItems", 118, 3], ["postInstall", 152, 3], ["postFixup", 161, 3], ["passthru", 165, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, writeText: false, fetchFromGitHub: false, dotnetCorePackages: false, buildDotnetModule: false, "ffmpeg-headless": false, "vulkan-loader": false, openssl: false, libGL: false, libx11: false, libice: false, libsm: false, libxi: false, libxcursor: false, libxext: false, libxrandr: false, makeDesktopItem: false, copyDesktopItems: false, desktopToDarwinBundle: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["id", 34, 5], ["name", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PixiEditorApiUrl", 40, 7], ["PixiEditorApiKey", 41, 7], ["AnalyticsUrl", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5], ["fetchSubmodules", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["SingleMainWindow", 148, 19]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 120, 7], ["type", 121, 7], ["desktopName", 122, 7], ["genericName", 123, 7], ["comment", 124, 7], ["icon", 125, 7], ["exec", 126, 7], ["tryExec", 127, 7], ["startupWMClass", 128, 7], ["terminal", 129, 7], ["categories", 130, 7], ["keywords", 136, 7], ["mimeTypes", 145, 7], ["extraConfig", 148, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 166, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 170, 5], ["longDescription", 171, 5], ["homepage", 175, 5], ["changelog", 176, 5], ["mainProgram", 177, 5], ["license", 178, 5], ["maintainers", 179, 5], ["platforms", 182, 5], ["badPlatforms", 188, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["postPatch", 59, 3], ["nativeBuildInputs", 75, 3], ["nugetDeps", 82, 3], ["linkNugetPackages", 83, 3], ["dotnet-sdk", 85, 3], ["dotnet-runtime", 86, 3], ["dotnetFlags", 87, 3], ["buildType", 91, 3], ["projectFile", 92, 3], ["executables", 103, 3], ["runtimeDeps", 105, 3], ["desktopItems", 118, 3], ["postInstall", 152, 3], ["postFixup", 161, 3], ["passthru", 165, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,19 +29,19 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchNupkg = nix.thunk(() => nix.attr(dotnetCorePackages, "fetchNupkg"));
-  const buildInfo = nix.thunk(() => ({ [nix.POS]: pos$1, id: "NixOS", name: "for NixOS" }));
+  const buildInfo = nix.thunk(() => ({ [nix.POS]: $pos[0], id: "NixOS", name: "for NixOS" }));
   const appSettings = nix.thunk(() => nix.app(writeText, "appsettings.json", nix.thunk(() => nix.app(nix.sel(lib, "strings", "toJSON"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PixiEditorApiUrl: "https://auth.pixieditor.net",
         PixiEditorApiKey: "waIvElX0fPqaxnyD7Rh1SSEvdq8qfKUs",
         AnalyticsUrl: "https://api.pixieditor.net/analytics/",
       }))))));
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "pixieditor",
       version: "2.1.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "PixiEditor",
           repo: "PixiEditor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -99,7 +92,7 @@ cp src/nuget.config .
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "pixieditor",
             type: "Application",
             desktopName: "PixiEditor",
@@ -113,7 +106,7 @@ cp src/nuget.config .
             categories: nix.thunk(() => ["Graphics", "2DGraphics", "RasterGraphics", "VectorGraphics"]),
             keywords: nix.thunk(() => ["editor", "image", "2d", "graphics", "design", "vector", "raster"]),
             mimeTypes: nix.thunk(() => ["application/x-pixieditor"]),
-            extraConfig: nix.thunk(() => ({ [nix.POS]: pos$4, SingleMainWindow: "true" })),
+            extraConfig: nix.thunk(() => ({ [nix.POS]: $pos[3], SingleMainWindow: "true" })),
           })))),
       ]),
       postInstall: nix.thunk(() => nix.str`install -Dm644 ${appSettings} $out/lib/pixieditor/appsettings.json;
@@ -125,11 +118,11 @@ install -Dm644 src/PixiEditor/Images/PixiEditorLogo.svg \\
 `),
       postFixup: "mv $out/bin/PixiEditor.Desktop $out/bin/pixieditor\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Universal editor for all your 2D needs",
         longDescription: "PixiEditor is a universal 2D platform that aims to provide you with tools and features for all your 2D needs.\nCreate beautiful sprites for your games, animations, edit images, create logos. All packed in an eye-friendly dark theme\n",
         homepage: "https://pixieditor.net/",

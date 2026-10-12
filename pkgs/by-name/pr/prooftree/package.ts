@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 28, 5], ["mainProgram", 29, 5], ["longDescription", 30, 5], ["homepage", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5], ["license", 50, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["prefixKey", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocamlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["mainProgram", 29, 5], ["longDescription", 30, 5], ["homepage", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5], ["license", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["prefixKey", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ocamlPackages = nix.arg($, "ocamlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "prooftree",
       version: "0.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://askra.de/software/prooftree/releases/prooftree-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-nekV2UnjibOk4h0jZ1jV7W5pE/hXWb3fUoLTJb3Jzc0=",
         })))),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       })()),
       prefixKey: "--prefix ",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Program for proof-tree visualization",
         mainProgram: "prooftree",
         longDescription: "Prooftree is a program for proof-tree visualization during interactive\nproof development in a theorem prover. It is currently being developed\nfor Coq and Proof General. Prooftree helps against getting lost between\ndifferent subgoals in interactive proof development. It clearly shows\nwhere the current subgoal comes from and thus helps in developing the\nright plan for solving it.\n\nProoftree uses different colors for the already proven subgoals, the\ncurrent branch in the proof and the still open subgoals. Sequent texts\nare not displayed in the proof tree itself, but they are shown as a\ntool-tip when the mouse rests over a sequent symbol. Long proof commands\nare abbreviated in the tree display, but show up in full length as\ntool-tip. Both, sequents and proof commands, can be shown in the display\nbelow the tree (on single click) or in a separate window (on double or\nshift-click).\n",

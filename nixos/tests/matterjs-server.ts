@@ -2,35 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/matterjs-server.nix", [[["maintainers", 5, 8]], [["enable", 7, 42]], [["matterjs-server", 7, 26]], [["services", 7, 17]], [["machine", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 9, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/matterjs-server.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/matterjs-server.nix", [["enable", 7, 42]]);
-const pos$3 = nix.positions(here + "/matterjs-server.nix", [["matterjs-server", 7, 26]]);
-const pos$4 = nix.positions(here + "/matterjs-server.nix", [["services", 7, 17]]);
-const pos$5 = nix.positions(here + "/matterjs-server.nix", [["machine", 7, 9]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/matterjs-server.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "matterjs-server",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "kranzes"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          "matterjs-server": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          "matterjs-server": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
       })),
     })),

@@ -2,58 +2,40 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-bpf.nix", [[["maintainers", 5, 5]], [["vlans", 9, 22]], [["enable", 13, 18]], [["address", 16, 13], ["prefixLength", 17, 13]], [["addresses", 14, 30]], [["ipv4", 14, 25]], [["eth1", 14, 20]], [["useNetworkd", 11, 9], ["useDHCP", 12, 9], ["firewall", 13, 9], ["interfaces", 14, 9]], [["virtualisation", 9, 7], ["networking", 10, 7]], [["vlans", 24, 22]], [["enable", 28, 18]], [["address", 31, 13], ["prefixLength", 32, 13]], [["addresses", 29, 30]], [["ipv4", 29, 25]], [["eth1", 29, 20]], [["useNetworkd", 26, 9], ["useDHCP", 27, 9], ["firewall", 28, 9], ["interfaces", 29, 9]], [["virtualisation", 24, 7], ["networking", 25, 7]], [["node1", 8, 5], ["node2", 23, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 7, 3], ["testScript", 39, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-bpf.nix", [["maintainers", 5, 5]]);
-const pos$2 = nix.positions(here + "/systemd-bpf.nix", [["vlans", 9, 22]]);
-const pos$3 = nix.positions(here + "/systemd-bpf.nix", [["enable", 13, 18]]);
-const pos$4 = nix.positions(here + "/systemd-bpf.nix", [["address", 16, 13], ["prefixLength", 17, 13]]);
-const pos$5 = nix.positions(here + "/systemd-bpf.nix", [["addresses", 14, 30]]);
-const pos$6 = nix.positions(here + "/systemd-bpf.nix", [["ipv4", 14, 25]]);
-const pos$7 = nix.positions(here + "/systemd-bpf.nix", [["eth1", 14, 20]]);
-const pos$8 = nix.positions(here + "/systemd-bpf.nix", [["useNetworkd", 11, 9], ["useDHCP", 12, 9], ["firewall", 13, 9], ["interfaces", 14, 9]]);
-const pos$9 = nix.positions(here + "/systemd-bpf.nix", [["virtualisation", 9, 7], ["networking", 10, 7]]);
-const pos$10 = nix.positions(here + "/systemd-bpf.nix", [["vlans", 24, 22]]);
-const pos$11 = nix.positions(here + "/systemd-bpf.nix", [["enable", 28, 18]]);
-const pos$12 = nix.positions(here + "/systemd-bpf.nix", [["address", 31, 13], ["prefixLength", 32, 13]]);
-const pos$13 = nix.positions(here + "/systemd-bpf.nix", [["addresses", 29, 30]]);
-const pos$14 = nix.positions(here + "/systemd-bpf.nix", [["ipv4", 29, 25]]);
-const pos$15 = nix.positions(here + "/systemd-bpf.nix", [["eth1", 29, 20]]);
-const pos$16 = nix.positions(here + "/systemd-bpf.nix", [["useNetworkd", 26, 9], ["useDHCP", 27, 9], ["firewall", 28, 9], ["interfaces", 29, 9]]);
-const pos$17 = nix.positions(here + "/systemd-bpf.nix", [["virtualisation", 24, 7], ["networking", 25, 7]]);
-const pos$18 = nix.positions(here + "/systemd-bpf.nix", [["node1", 8, 5], ["node2", 23, 5]]);
-const pos$19 = nix.positions(here + "/systemd-bpf.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 7, 3], ["testScript", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "systemd-bpf",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "veehaitch"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       node1: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: $pos[8],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           useNetworkd: true,
           useDHCP: false,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$4, address: "192.168.1.1", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[3], address: "192.168.1.1", prefixLength: 24n })),
                 ]),
               })),
             })),
@@ -61,21 +43,21 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       node2: nix.thunk(() => ({
-        [nix.POS]: pos$17,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$10, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: $pos[16],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[9], vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           useNetworkd: true,
           useDHCP: false,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$11, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: false })),
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$12, address: "192.168.1.2", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[11], address: "192.168.1.2", prefixLength: 24n })),
                 ]),
               })),
             })),

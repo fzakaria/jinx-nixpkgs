@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 24, 5], ["hash", 25, 5]], [["odd-unstable", 56, 5], ["rev-prefix", 57, 5]], [["updateScript", 55, 12]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 68, 5], ["teams", 69, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["configureFlags", 43, 3], ["dontDropIconThemeCache", 47, 3], ["postInstall", 49, 3], ["enableParallelBuilding", 53, 3], ["passthru", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, gettext: false, "mate-icon-theme": false, gtk3: false, "gdk-pixbuf": false, librsvg: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["odd-unstable", 56, 5], ["rev-prefix", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 55, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 68, 5], ["teams", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["configureFlags", 43, 3], ["dontDropIconThemeCache", 47, 3], ["postInstall", 49, 3], ["enableParallelBuilding", 53, 3], ["passthru", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mate-themes",
       version: "3.22.26-unstable-2026-06-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mate-desktop",
           repo: "mate-themes",
           rev: "3eba5d520b9ae1c64ef6c42ac442a7a97d38f7c7",
@@ -41,11 +37,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "gtk-update-icon-cache \"$out\"/share/icons/ContrastHigh\n",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "odd-unstable": true, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "odd-unstable": true, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Set of themes from MATE",
         homepage: "https://mate-desktop.org",
         license: nix.thunk(() => (() => {

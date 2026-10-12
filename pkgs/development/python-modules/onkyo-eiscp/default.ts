@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["sha256", 16, 5]], [["description", 25, 5], ["mainProgram", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, docopt: false, netifaces: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 25, 5], ["mainProgram", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.7";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "761abb16c654a1136763b927d094174d41f282809e44ea32cd47e199dd79d9c9",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [docopt, netifaces]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Control Onkyo receivers over ethernet",
         mainProgram: "onkyo",
         homepage: "https://github.com/miracle2k/onkyo-eiscp",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "peterhoeg"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

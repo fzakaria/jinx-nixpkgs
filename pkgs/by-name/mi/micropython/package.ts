@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5], ["postFetch", 30, 5]], [["url", 42, 7], ["stripLen", 43, 7], ["extraPrefix", 44, 7], ["hash", 45, 7]], [["url", 53, 7], ["hash", 54, 7]], [["x86_64-linux", 63, 11], ["i686-linux", 64, 11], ["aarch64-linux", 65, 11], ["armv7l-linux", 66, 11], ["armv6l-linux", 67, 11], ["riscv64-linux", 68, 11], ["powerpc64le-linux", 69, 11], ["aarch64-darwin", 70, 11]], [["description", 145, 5], ["homepage", 146, 5], ["platforms", 147, 5], ["license", 148, 5], ["maintainers", 149, 5], ["mainProgram", 153, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 35, 3], ["postPatch", 58, 3], ["depsBuildBuild", 77, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 87, 3], ["makeFlags", 92, 3], ["preBuild", 103, 3], ["enableParallelBuilding", 114, 3], ["doCheck", 116, 3], ["__darwinAllowLocalNetworking", 118, 3], ["skippedTests", 120, 3], ["checkPhase", 129, 3], ["installPhase", 137, 3], ["meta", 144, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, python3: false, libffi: false, readline: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5], ["postFetch", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 42, 7], ["stripLen", 43, 7], ["extraPrefix", 44, 7], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 53, 7], ["hash", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 63, 11], ["i686-linux", 64, 11], ["aarch64-linux", 65, 11], ["armv7l-linux", 66, 11], ["armv6l-linux", 67, 11], ["riscv64-linux", 68, 11], ["powerpc64le-linux", 69, 11], ["aarch64-darwin", 70, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 145, 5], ["homepage", 146, 5], ["platforms", 147, 5], ["license", 148, 5], ["maintainers", 149, 5], ["mainProgram", 153, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 35, 3], ["postPatch", 58, 3], ["depsBuildBuild", 77, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 87, 3], ["makeFlags", 92, 3], ["preBuild", 103, 3], ["enableParallelBuilding", 114, 3], ["doCheck", 116, 3], ["__darwinAllowLocalNetworking", 118, 3], ["skippedTests", 120, 3], ["checkPhase", 129, 3], ["installPhase", 137, 3], ["meta", 144, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "micropython";
       const version = "1.27.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "micropython",
           repo: "micropython",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://raw.githubusercontent.com/openwrt/openwrt/52b6c9247997e51a97f13bb9e94749bc34e2d52e/package/libs/mbedtls/patches/100-fix-gcc14-build.patch",
             stripLen: 1n,
             extraPrefix: "lib/mbedtls/",
@@ -44,7 +39,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-cross-compilation.patch"),
         nix.path(here, "./fix-mpy-cross-path.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/dpgeorge/micropython/commit/570744d06c5ba9dba59b4c3f432ca4f0abd396b6.patch",
             hash: "sha256-j8xr4oqmrsYumJvyA71bx+/dg2HiUxSxdjKUR/2sclI=",
           })))),
@@ -52,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = nix.thunk(() => nix.str`# Fix cross-compilation by replacing uname and pkg-config
 substituteInPlace ports/unix/Makefile \\
   --subst-var-by UNAME_S "${nix.selOr({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "x86_64-linux": "Linux",
         "i686-linux": "Linux",
         "aarch64-linux": "Linux",
@@ -92,7 +87,7 @@ runHook postCheck
 `);
       const installPhase = "runHook preInstall\nmkdir -p $out/bin\ninstall -Dm755 ports/unix/build-standard/micropython -t $out/bin\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Lean and efficient Python implementation for microcontrollers and constrained systems",
         homepage: "https://micropython.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -107,7 +102,7 @@ runHook postCheck
         mainProgram: "micropython",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

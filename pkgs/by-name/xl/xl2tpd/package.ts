@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["NIX_CFLAGS_COMPILE", 28, 7]], [["homepage", 31, 5], ["description", 32, 5], ["platforms", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["postPatch", 22, 3], ["makeFlags", 26, 3], ["env", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libpcap: false, ppp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["description", 32, 5], ["platforms", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["postPatch", 22, 3], ["makeFlags", 26, 3], ["env", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const ppp = nix.arg($, "ppp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xl2tpd",
       version: "1.3.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xelerance",
           repo: "xl2tpd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
 `),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types -std=gnu17",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),
         description: "Layer 2 Tunnelling Protocol Daemon (RFC 2661)",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

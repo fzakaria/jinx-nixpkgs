@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 36, 5], ["maintainers", 37, 5], ["description", 38, 5], ["mainProgram", 39, 5], ["license", 40, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["outputs", 16, 3], ["buildInputs", 20, 3], ["preConfigure", 22, 3], ["doCheck", 25, 3], ["installPhase", 27, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 36, 5], ["maintainers", 37, 5], ["description", 38, 5], ["mainProgram", 39, 5], ["license", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["outputs", 16, 3], ["buildInputs", 20, 3], ["preConfigure", 22, 3], ["doCheck", 25, 3], ["installPhase", 27, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pflogsumm";
       const version = "1.1.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://jimsun.linxnet.com/downloads/pflogsumm-${version}.tar.gz`),
           sha256: "0hkim9s5f1yg5sfs5048jydhy3sbxafls496wcjk0cggxb113py4",
         }))));
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const installPhase = "mkdir -p \"$out/bin\"\nmv \"pflogsumm.pl\" \"$out/bin/pflogsumm\"\n\nmkdir -p \"$out/share/man/man1\"\nmv \"pflogsumm.1\" \"$out/share/man/man1\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://jimsun.linxnet.com/postfix_contrib.html",
         maintainers: [],
         description: "Postfix activity overview",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

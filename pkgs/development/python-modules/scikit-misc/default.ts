@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 40, 3], ["build-system", 46, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 55, 3], ["preCheck", 58, 3], ["pytestFlags", 62, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, gfortran: false, git: false, "meson-python": false, "pkg-config": false, numpy: false, setuptools: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 40, 3], ["build-system", 46, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 55, 3], ["preCheck", 58, 3], ["pytestFlags", 62, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "has2k1",
           repo: "scikit-misc",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +48,7 @@ substituteInPlace pyproject.toml \\
       const pytestFlags = nix.thunk(() => ["--pyargs", "skmisc"]);
       const pythonImportsCheck = nix.thunk(() => ["skmisc"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Miscellaneous tools for scientific computing",
         homepage: "https://github.com/has2k1/scikit-misc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -60,7 +58,7 @@ substituteInPlace pyproject.toml \\
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["hardcodeZeroVersion", 43, 7]], [["updateScript", 42, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5], ["platforms", 53, 5], ["broken", 55, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["doCheck", 39, 3], ["passthru", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, boost: false, cmake: false, fetchFromGitHub: false, ninja: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5], ["platforms", 53, 5], ["broken", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["doCheck", 39, 3], ["passthru", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nihstro",
       version: "0-unstable-2024-05-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "neobrain",
           repo: "nihstro",
           rev: "f4d8659decbfe5d234f04134b5002b82dc515a44",
@@ -35,11 +31,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost]),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "3DS shader assembler and disassembler",
         homepage: "https://github.com/neobrain/nihstro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["teams", 47, 5]], [["pname", 11, 3], ["namespace", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["propagatedBuildInputs", 28, 3], ["postPatch", 33, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildKodiAddon: false, fetchFromGitHub: false, kodi: false, inputstreamhelper: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["teams", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["namespace", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["propagatedBuildInputs", 28, 3], ["postPatch", 33, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "plugin.video.sendtokodi";
       const version = "0.9.924";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "firsttris",
           repo: "plugin.video.sendtokodi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +34,7 @@ echo "${nix.app(nix.sel(lib, "strings", "getVersion"), nix.thunk(() => nix.sel(k
 ln -s ${nix.sel(kodi, "pythonPackages", "yt-dlp")}/${nix.sel(kodi, "pythonPackages", "python", "sitePackages")}/yt_dlp lib/
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/firsttris/plugin.video.sendtokodi",
         description: "Plays various stream sites on Kodi using yt-dlp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -44,7 +42,7 @@ ln -s ${nix.sel(kodi, "pythonPackages", "yt-dlp")}/${nix.sel(kodi, "pythonPackag
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         namespace,
         version,

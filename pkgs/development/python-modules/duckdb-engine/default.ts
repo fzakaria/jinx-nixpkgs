@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 32, 5], ["owner", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["preCheck", 45, 3], ["nativeCheckInputs", 49, 3], ["checkInputs", 51, 3], ["disabledTestPaths", 65, 3], ["disabledTestMarks", 70, 3], ["disabledTests", 74, 3], ["pythonImportsCheck", 94, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, duckdb: false, sqlalchemy: false, fsspec: false, hypothesis: false, pandas: false, pyarrow: false, "pytest-remotedata": false, pytestCheckHook: false, pythonAtLeast: false, pythonOlder: false, snapshottest: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 32, 5], ["owner", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["preCheck", 45, 3], ["nativeCheckInputs", 49, 3], ["checkInputs", 51, 3], ["disabledTestPaths", 65, 3], ["disabledTestMarks", 70, 3], ["disabledTests", 74, 3], ["pythonImportsCheck", 94, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.17.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "duckdb_engine",
           owner: "Mause",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["duckdb_engine"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SQLAlchemy driver for duckdb",
         homepage: "https://github.com/Mause/duckdb_engine",
         changelog: nix.thunk(() => nix.str`https://github.com/Mause/duckdb_engine/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -71,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

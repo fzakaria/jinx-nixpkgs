@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["url", 40, 7], ["revert", 41, 7], ["hash", 42, 7]], [["PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR", 94, 5], ["PKG_CONFIG_UDEV_UDEVDIR", 95, 5]], [["description", 99, 5], ["mainProgram", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 104, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 36, 3], ["depsBuildBuild", 46, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 63, 3], ["preCheck", 68, 3], ["nativeCheckInputs", 72, 3], ["postPatch", 83, 3], ["mesonFlags", 87, 3], ["doInstallCheck", 91, 3], ["env", 93, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, meson: false, ninja: false, "pkg-config": false, fetchFromGitLab: false, fetchpatch: false, python3: false, umockdev: false, "gobject-introspection": false, dbus: false, asciidoc: false, libxml2: false, libxslt: false, docbook_xml_dtd_45: false, "docbook-xsl-nons": false, glib: false, systemd: false, polkit: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 40, 7], ["revert", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR", 94, 5], ["PKG_CONFIG_UDEV_UDEVDIR", 95, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 99, 5], ["mainProgram", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 104, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 36, 3], ["depsBuildBuild", 46, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 63, 3], ["preCheck", 68, 3], ["nativeCheckInputs", 72, 3], ["postPatch", 83, 3], ["mesonFlags", 87, 3], ["doInstallCheck", 91, 3], ["env", 93, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const polkit = nix.arg($, "polkit");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bolt",
       version: "0.9.8",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "bolt",
           repo: "bolt",
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.freedesktop.org/bolt/bolt/-/commit/c2f1d5c40ad71b20507e02faa11037b395fac2f8.diff",
             revert: true,
             hash: "sha256-6w7ll65W/CydrWAVi/qgzhrQeDv1PWWShulLxoglF+I=",
@@ -81,12 +77,12 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Dlocalstatedir=/var"]),
       doInstallCheck: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/system`),
         PKG_CONFIG_UDEV_UDEVDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/udev`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Thunderbolt 3 device management daemon",
         mainProgram: "boltctl",
         homepage: "https://gitlab.freedesktop.org/bolt/bolt",

@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["hash", 30, 7]], [["description", 34, 7], ["homepage", 35, 7], ["license", 36, 7], ["platforms", 37, 7]], [["pname", 24, 5], ["version", 25, 5], ["src", 26, 5], ["nativeBuildInputs", 32, 5], ["meta", 33, 5]], [["owner", 45, 7], ["repo", 46, 7], ["rev", 47, 7], ["hash", 48, 7]], [["description", 57, 7], ["homepage", 58, 7], ["license", 59, 7], ["platforms", 60, 7]], [["pname", 41, 5], ["version", 42, 5], ["src", 44, 5], ["patches", 51, 5], ["nativeBuildInputs", 53, 5], ["cmakeBuildDir", 54, 5], ["meta", 56, 5]], [["owner", 68, 7], ["repo", 69, 7], ["rev", 70, 7], ["hash", 71, 7]], [["description", 75, 7], ["homepage", 76, 7], ["license", 77, 7], ["platforms", 81, 7]], [["pname", 64, 5], ["version", 65, 5], ["src", 67, 5], ["nativeBuildInputs", 73, 5], ["meta", 74, 5]], [["owner", 90, 5], ["repo", 91, 5], ["tag", 92, 5], ["hash", 93, 5]], [["version", 156, 26], ["package", 157, 5], ["command", 158, 5]], [["version", 155, 18]], [["tests", 155, 12]], [["description", 162, 5], ["homepage", 163, 5], ["changelog", 164, 5], ["license", 165, 5], ["mainProgram", 166, 5], ["maintainers", 167, 5], ["platforms", 168, 5]], [["pname", 86, 3], ["version", 87, 3], ["src", 89, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 103, 3], ["postPatch", 117, 3], ["cmakeFlags", 127, 3], ["postFixup", 143, 3], ["passthru", 155, 3], ["meta", 161, 3]]]);
 const formals$1 = { args: { bison: false, boost: false, callPackage: false, cmake: false, croaring: false, fetchFromGitHub: false, flex: false, icu: false, lib: false, libstemmer: false, manticoresearch: false, "mariadb-connector-c": false, nlohmann_json: false, "pkg-config": false, re2: false, stdenv: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["hash", 30, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 7], ["homepage", 35, 7], ["license", 36, 7], ["platforms", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 5], ["version", 25, 5], ["src", 26, 5], ["nativeBuildInputs", 32, 5], ["meta", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 45, 7], ["repo", 46, 7], ["rev", 47, 7], ["hash", 48, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 57, 7], ["homepage", 58, 7], ["license", 59, 7], ["platforms", 60, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 41, 5], ["version", 42, 5], ["src", 44, 5], ["patches", 51, 5], ["nativeBuildInputs", 53, 5], ["cmakeBuildDir", 54, 5], ["meta", 56, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 68, 7], ["repo", 69, 7], ["rev", 70, 7], ["hash", 71, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 75, 7], ["homepage", 76, 7], ["license", 77, 7], ["platforms", 81, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 64, 5], ["version", 65, 5], ["src", 67, 5], ["nativeBuildInputs", 73, 5], ["meta", 74, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["owner", 90, 5], ["repo", 91, 5], ["tag", 92, 5], ["hash", 93, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["version", 156, 26], ["package", 157, 5], ["command", 158, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["version", 155, 18]]);
-const pos$13 = nix.positions(here + "/package.nix", [["tests", 155, 12]]);
-const pos$14 = nix.positions(here + "/package.nix", [["description", 162, 5], ["homepage", 163, 5], ["changelog", 164, 5], ["license", 165, 5], ["mainProgram", 166, 5], ["maintainers", 167, 5], ["platforms", 168, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pname", 86, 3], ["version", 87, 3], ["src", 89, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 103, 3], ["postPatch", 117, 3], ["cmakeFlags", 127, 3], ["postFixup", 143, 3], ["passthru", 155, 3], ["meta", 161, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const columnar = nix.thunk(() => nix.app(callPackage, nix.path(here, "./columnar.nix"), nix.thunk(() => ({}))));
   const uni_algo = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "uni-algo",
       version: "0.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "manticoresoftware",
           repo: "uni-algo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unicode Algorithms Implementation for C/C++",
         homepage: "https://github.com/manticoresoftware/uni-algo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -60,11 +46,11 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   const cctz = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "manticore-cctz",
       version: "0-unstable-2024-05-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "manticoresoftware",
           repo: "cctz",
           rev: "cf11f758e2532161c9e21c3ec2461b0fafb15853",
@@ -74,7 +60,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       cmakeBuildDir: "build_dir",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Library for translating between absolute and civil times using the rules of a time zone",
         homepage: "https://github.com/manticoresoftware/cctz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -82,11 +68,11 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const xxhash = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "manticore-xxhash",
       version: "0.8.2-unstable-2024-07-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "manticoresoftware",
           repo: "xxHash",
           rev: "72997b0070a031c063f86a308aec77ae742706d3",
@@ -94,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Extremely fast non-cryptographic hash algorithm",
         homepage: "https://github.com/manticoresoftware/xxhash",
         license: nix.thunk(() => (() => {
@@ -108,11 +94,11 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "manticoresearch",
       version: "15.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           owner: "manticoresoftware",
           repo: "manticoresearch",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -165,11 +151,11 @@ mkdir $out/share/manticore/modules
 cp ${columnar}/share/manticore/modules/* $out/share/manticore/modules
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: manticoresearch,
               command: "searchd --version",
@@ -177,7 +163,7 @@ cp ${columnar}/share/manticore/modules/* $out/share/manticore/modules
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "Easy to use open source fast database for search",
         homepage: "https://manticoresearch.com",
         changelog: nix.thunk(() => nix.str`https://github.com/manticoresoftware/manticoresearch/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 41, 5], ["homepage", 42, 5], ["platforms", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["qmakeFlags", 34, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { mkDerivation: false, lib: false, fetchurl: false, qtbase: false, qtsvg: false, qttools: false, qmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 41, 5], ["homepage", 42, 5], ["platforms", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["qmakeFlags", 34, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qt5ct";
       const version = "1.9";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/qt5ct/qt5ct-${version}.tar.bz2`),
           sha256: "sha256-3BDmk51CO5JZgc5n/rsaAVtvYcAiqcx+bIte/qRYi/8=",
         }))));
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`LIBDIR=${nix.builtins.placeholder("out")}/lib`),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Qt5 Configuration Tool",
         homepage: "https://sourceforge.net/projects/qt5ct/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "qt5ct",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

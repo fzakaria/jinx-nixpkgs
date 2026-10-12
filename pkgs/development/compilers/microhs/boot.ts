@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/boot.nix", [[["isMhs", 37, 5], ["usesHugs", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 13, 5], ["patches", 14, 5], ["postPatch", 15, 5], ["meta", 16, 5], ["nativeBuildInputs", 19, 3], ["dontBuild", 21, 3], ["installPhase", 23, 3], ["passthru", 36, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, hugs: false, makeWrapper: false, "microhs-src": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/boot.nix", [["isMhs", 37, 5], ["usesHugs", 38, 5]]);
-const pos$2 = nix.positions(here + "/boot.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 13, 5], ["patches", 14, 5], ["postPatch", 15, 5], ["meta", 16, 5], ["nativeBuildInputs", 19, 3], ["dontBuild", 21, 3], ["installPhase", 23, 3], ["passthru", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const microhs_src = nix.arg($, "microhs-src");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "microhs",
       version: nix.thunk(() => nix.str`${nix.sel(microhs_src, "version")}-hugs`),
       src: nix.thunk(() => nix.attr(microhs_src, "src")),
@@ -33,7 +32,7 @@ makeWrapper ${hugs}/bin/runhugs "$out/bin/mhs" \\
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, isMhs: true, usesHugs: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], isMhs: true, usesHugs: true })),
     })));
 })(), formals$1);
 //# sourceMappingURL=boot.ts.map

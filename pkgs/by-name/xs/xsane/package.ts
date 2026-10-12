@@ -2,32 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["group", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["name", 37, 19], ["hash", 37, 24], ["url", 38, 11]], [["name", 43, 9], ["hash", 44, 9]], [["name", 47, 9], ["hash", 48, 9]], [["name", 51, 9], ["hash", 52, 9]], [["name", 55, 9], ["hash", 56, 9]], [["name", 59, 9], ["hash", 60, 9]], [["name", 63, 9], ["hash", 64, 9]], [["name", 67, 9], ["hash", 68, 9]], [["name", 71, 9], ["hash", 72, 9]], [["name", 75, 9], ["hash", 76, 9]], [["name", 79, 9], ["hash", 80, 9]], [["name", 83, 9], ["hash", 84, 9]], [["name", 87, 9], ["hash", 88, 9]], [["name", 91, 9], ["hash", 92, 9]], [["name", 95, 9], ["hash", 96, 9]], [["name", 99, 9], ["hash", 100, 9]], [["name", 103, 9], ["hash", 104, 9]], [["name", 107, 9], ["hash", 108, 9]], [["name", 111, 9], ["hash", 112, 9]], [["name", 115, 9], ["hash", 116, 9]], [["updateScript", 137, 12]], [["homepage", 140, 5], ["description", 141, 5], ["mainProgram", 142, 5], ["license", 143, 5], ["platforms", 144, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 32, 3], ["preConfigure", 120, 3], ["nativeBuildInputs", 125, 3], ["buildInputs", 127, 3], ["passthru", 137, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "sane-backends": false, "sane-frontends": false, libx11: false, gtk2: false, "pkg-config": false, libpng: false, "libusb-compat-0_1": false, gimpSupport: true, gimp: false, "nix-update-script": false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["group", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
 const formals$2 = { args: { name: false, hash: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["name", 37, 19], ["hash", 37, 24], ["url", 38, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 43, 9], ["hash", 44, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 47, 9], ["hash", 48, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 51, 9], ["hash", 52, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 55, 9], ["hash", 56, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 59, 9], ["hash", 60, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 63, 9], ["hash", 64, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 67, 9], ["hash", 68, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 71, 9], ["hash", 72, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 75, 9], ["hash", 76, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["name", 79, 9], ["hash", 80, 9]]);
-const pos$13 = nix.positions(here + "/package.nix", [["name", 83, 9], ["hash", 84, 9]]);
-const pos$14 = nix.positions(here + "/package.nix", [["name", 87, 9], ["hash", 88, 9]]);
-const pos$15 = nix.positions(here + "/package.nix", [["name", 91, 9], ["hash", 92, 9]]);
-const pos$16 = nix.positions(here + "/package.nix", [["name", 95, 9], ["hash", 96, 9]]);
-const pos$17 = nix.positions(here + "/package.nix", [["name", 99, 9], ["hash", 100, 9]]);
-const pos$18 = nix.positions(here + "/package.nix", [["name", 103, 9], ["hash", 104, 9]]);
-const pos$19 = nix.positions(here + "/package.nix", [["name", 107, 9], ["hash", 108, 9]]);
-const pos$20 = nix.positions(here + "/package.nix", [["name", 111, 9], ["hash", 112, 9]]);
-const pos$21 = nix.positions(here + "/package.nix", [["name", 115, 9], ["hash", 116, 9]]);
-const pos$22 = nix.positions(here + "/package.nix", [["updateScript", 137, 12]]);
-const pos$23 = nix.positions(here + "/package.nix", [["homepage", 140, 5], ["description", 141, 5], ["mainProgram", 142, 5], ["license", 143, 5], ["platforms", 144, 5]]);
-const pos$24 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 32, 3], ["preConfigure", 120, 3], ["nativeBuildInputs", 125, 3], ["buildInputs", 127, 3], ["passthru", 137, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       pname: "xsane",
       version: "0.999",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "frontend",
           group: "sane-project",
           repo: "xsane",
@@ -63,7 +40,7 @@ export default nix.lambda((args) => (() => {
           const name = nix.arg($_1, "name");
           const hash = nix.arg($_1, "hash");
           return nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: name,
               hash: hash,
               url: nix.thunk(() => nix.str`https://src.fedoraproject.org/rpms/xsane/raw/67c7f6591398ab46f71ba4f0eb33cb0539e56a4b/f/${name}`),
@@ -71,97 +48,97 @@ export default nix.lambda((args) => (() => {
         })(), formals$2);
         return nix.builtins.map(fetchFedoraPatch, nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "0001-Follow-new-convention-for-registering-gimp-plugin.patch",
               hash: "sha256-yOY7URyc8HEHHynvdcZAV1Pri31N/rJ0ddPavOF5zLw=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "0001-replace-gtk_timeout-with-g_timeout.patch",
               hash: "sha256-OMeukfbpagK05HI2R/2Gxrvk2nfrDK8ZmLmw0a6o10k=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "xsane-0.995-close-fds.patch",
               hash: "sha256-qE7larHpBEikz6OaOQmmi9jl6iQxy/QM7iDg9QrVV1o=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: "xsane-0.995-xdg-open.patch",
               hash: "sha256-/kHwwuDC2naGEp4NALfaJ0pJe+9kYhV4TX1eGeARvq8=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               name: "xsane-0.996-no-eula.patch",
               hash: "sha256-CYmp1zFg11PUPz9um2W7XF6pzCzafKSEn2nvPiUSxNo=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               name: "xsane-0.997-ipv6.patch",
               hash: "sha256-D3xH++DHxyTKMxgatU+PNCVN1u5ajPc3gQxvzhMYIdM=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               name: "xsane-0.997-off-root-build.patch",
               hash: "sha256-2LXQfMbvqP+TAhAmxRe6pBqNlSX4tVjhDkBHIfX9HcA=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               name: "xsane-0.998-desktop-file.patch",
               hash: "sha256-3xEj6IaOk/FS8pv+/yaNjZpIoB+0Oei0QB9mD4/owkM=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               name: "xsane-0.998-libpng.patch",
               hash: "sha256-0z292+Waa2g0PCQpUebdWprl9VDyBOY0XgqMJaIcRb8=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               name: "xsane-0.998-preview-selection.patch",
               hash: "sha256-TZ8vRA+0qPY2Rqz0VNHjgkj3YPob/BW+zBoVqxnUhb8=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               name: "xsane-0.998-wmclass.patch",
               hash: "sha256-RubFOs+hsZS+GdxF0yvLSy4v+Fi6vb9G6zfwWZcUlkY=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               name: "xsane-0.999-lcms2.patch",
               hash: "sha256-eiAxa1lhFrinqBvlIhH+NP7WBKk0Plf2S+OVTcpxXac=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               name: "xsane-0.999-man-page.patch",
               hash: "sha256-4g0w4x9boAIOA6s5eTzKMh2mkkRKtF1TZ9KgHNTDaAg=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               name: "xsane-0.999-no-file-selected.patch",
               hash: "sha256-e/QKtvsIwU5yy0SJKAEAmhmCoxWqV6FHmAW41SbW/eI=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               name: "xsane-0.999-pdf-no-high-bpp.patch",
               hash: "sha256-o3LmOvgERuB9CQ8RL2Nd40h1ePuuuGMSK1GN68QlJ6s=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               name: "xsane-0.999-signal-handling.patch",
               hash: "sha256-JU9BJ6UIDa1FsuPaQKsxcjxvsJkwgmuopIqCVWY3LQ0=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               name: "xsane-0.999-snprintf-update.patch",
               hash: "sha256-bSTeoIOLeJ4PEsBHR+ZUQLPmrc0D6aQzyJGlLVhXt8o=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               name: "xsane-configure-c99.patch",
               hash: "sha256-ukaNGgzCGiQwbOzSguAqBIKOUzXofSC3lct812U/8gY=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               name: "xsane-gcc15-c23.patch",
               hash: "sha256-a1ZkVufpbwqL/bCFE2w44PoR42chl8aoRqeOP6L74Uw=",
             })),
@@ -171,11 +148,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([libpng, libusb_compat_0_1, sane_backends, sane_frontends, libx11, gtk2], nix.app(nix.sel(lib, "optional"), gimpSupport, gimp))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         homepage: "http://www.sane-project.org/",
         description: "Graphical scanning frontend for sane",
         mainProgram: "xsane",

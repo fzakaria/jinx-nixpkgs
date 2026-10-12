@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["extraArgs", 21, 5]], [["updateScript", 20, 12]], [["changelog", 29, 7], ["homepage", 30, 7], ["license", 31, 7], ["maintainers", 32, 7], ["description", 34, 5]], [["domain", 10, 3], ["version", 11, 20], ["src", 11, 28], ["owner", 12, 24], ["dependencies", 14, 3], ["passthru", 20, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { buildHomeAssistantComponent: false, "ha-mcp": false, "nix-update-script": false, "ruamel-yaml": false, "voluptuous-openapi": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["extraArgs", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 20, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 29, 7], ["homepage", 30, 7], ["license", 31, 7], ["maintainers", 32, 7], ["description", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["domain", 10, 3], ["version", 11, 20], ["src", 11, 28], ["owner", 12, 24], ["dependencies", 14, 3], ["passthru", 20, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,23 +15,23 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildHomeAssistantComponent, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(ha_mcp, "src"));
       return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       domain: "ha_mcp_tools",
       version: nix.thunk(() => nix.attr(ha_mcp, "version")),
       src: nix.thunk(() => nix.attr(ha_mcp, "src")),
       owner: nix.thunk(() => nix.attr(from, "owner")),
       dependencies: nix.thunk(() => [ha_mcp, ruamel_yaml, voluptuous_openapi]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             extraArgs: nix.thunk(() => ["--use-github-releases", "--version-regex=^v([0-9]+\\.[0-9]+\\.[0-9]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(ha_mcp, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.attr(from_1, "changelog")),
         homepage: nix.thunk(() => nix.attr(from_1, "homepage")),
         license: nix.thunk(() => nix.attr(from_1, "license")),

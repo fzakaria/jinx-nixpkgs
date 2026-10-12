@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 24, 5], ["longDescription", 25, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["postInstall", 19, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["longDescription", 25, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["postInstall", 19, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "encode-sans",
       version: "1.002",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/impallari/Encode-Sans/archive/11162b46892d20f55bd42a00b48cbf06b5871f75.zip",
           hash: "sha256-TPAUc5msAUgJZHibjgYaS2TOuzKFy0rje9ZQTXE6s+w=",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`install -Dm644 README.md FONTLOG.txt -t $out/share/doc/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Versatile sans serif font family",
         longDescription: "The Encode Sans family is a versatile workhorse. Featuring a huge range of\nweights and widths, it's ready for all kind of typographic challenges. It\nalso includes Tabular and Old Style figures, as well as full set of Small\nCaps and other Open Type features.\n\nDesigned by Pablo Impallari and Andres Torresi.\n",
         homepage: "https://github.com/impallari/Encode-Sans",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 5], ["version", 17, 13], ["sha256", 18, 5]], [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 48, 5], ["license", 49, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["disabled", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 21, 3], ["nativeCheckInputs", 23, 3], ["checkPhase", 25, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, isPy3k: false, twisted: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 13], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 48, 5], ["license", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["disabled", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 21, 3], ["nativeCheckInputs", 23, 3], ["checkPhase", 25, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = isPy3k;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "Nevow",
           version: version,
           sha256: "afb6ba85a5351953578c018fcdb9dfbd62f29a8d46c58bc9652bc000a27223f3",
@@ -29,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [twisted]);
       const checkPhase = "trial formless nevow\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Nevow, a web application construction kit for Python",
         longDescription: "Nevow - Pronounced as the French \"nouveau\", or \"noo-voh\", Nevow\nis a web application construction kit written in Python.  It is\ndesigned to allow the programmer to express as much of the view\nlogic as desired in Python, and includes a pure Python XML\nexpression syntax named stan to facilitate this.  However it\nalso provides rich support for designer-edited templates, using\na very small XML attribute language to provide bi-directional\ntemplate manipulation capability.\n\nNevow also includes formless, a declarative syntax for\nspecifying the types of method parameters and exposing these\nmethods to the web.  Forms can be rendered automatically, and\nform posts will be validated and input coerced, rendering error\npages if appropriate.  Once a form post has validated\nsuccessfully, the method will be called with the coerced values.\n",
         homepage: "https://github.com/twisted/nevow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

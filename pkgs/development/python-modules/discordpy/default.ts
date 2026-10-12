@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["speed", 39, 5], ["voice", 44, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["optional-dependencies", 38, 3], ["postPatch", 47, 3], ["doCheck", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, aiohttp: false, "audioop-lts": false, buildPythonPackage: false, fetchFromGitHub: false, ffmpeg: false, libopus: false, pynacl: false, setuptools: false, withVoice: true, aiodns: false, brotli: false, orjson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["speed", 39, 5], ["voice", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["optional-dependencies", 38, 3], ["postPatch", 47, 3], ["doCheck", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const brotli = nix.arg($, "brotli");
   const orjson = nix.arg($, "orjson");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "discord.py",
       version: "2.6.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Rapptz",
           repo: "discord.py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => nix.concat([aiohttp, audioop_lts], nix.app(nix.sel(lib, "optionals"), withVoice, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "voice"))))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         speed: nix.thunk(() => [aiodns, brotli, orjson]),
         voice: nix.thunk(() => [pynacl]),
       })),
@@ -60,7 +57,7 @@ substituteInPlace "discord/player.py" \\
         "discord.ext.tasks",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python wrapper for the Discord API",
         homepage: "https://discordpy.rtfd.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/Rapptz/discord.py/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/whats_new.rst`),

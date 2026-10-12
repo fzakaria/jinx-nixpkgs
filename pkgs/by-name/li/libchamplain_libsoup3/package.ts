@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["sha256", 34, 5]], [["packageName", 70, 7], ["attrPath", 71, 7], ["versionPolicy", 72, 7]], [["updateScript", 69, 5]], [["homepage", 77, 5], ["license", 78, 5], ["description", 80, 5], ["longDescription", 82, 5], ["teams", 90, 5], ["platforms", 94, 5]], [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 50, 3], ["propagatedBuildInputs", 55, 3], ["mesonFlags", 62, 3], ["passthru", 68, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, meson: false, ninja: false, vala: false, "gtk-doc": false, docbook_xsl: false, docbook_xml_dtd_412: false, "pkg-config": false, glib: false, gtk3: false, cairo: false, sqlite: false, gnome: false, "clutter-gtk": false, libsoup_3: false, "gobject-introspection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 70, 7], ["attrPath", 71, 7], ["versionPolicy", 72, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["license", 78, 5], ["description", 80, 5], ["longDescription", 82, 5], ["teams", 90, 5], ["platforms", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 50, 3], ["propagatedBuildInputs", 55, 3], ["mesonFlags", 62, 3], ["passthru", 68, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.21";
       const outputs = nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ["devdoc"]))));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/${pname}/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${pname}-${version}.tar.xz`),
           sha256: "qRXNFyoMUpRMVXn8tGg/ioeMVxv16SglS12v78cn5ac=",
         }))));
@@ -47,16 +43,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "libsoup3", true)),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packageName: "libchamplain",
             attrPath: "libchamplain_libsoup3",
             versionPolicy: "odd-unstable",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/libchamplain",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
         description: "C library providing a ClutterActor to display maps",
@@ -68,7 +64,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         outputs,

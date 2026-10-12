@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 27, 3], ["disabledTestPaths", 32, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pygobject3: false, dbus: false, hatchling: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 27, 3], ["disabledTestPaths", 32, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dasbus",
       version: "unstable-11-10-2022",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rhinstaller",
           repo: "dasbus",
           rev: "64b6b4d9e37cd7e0cbf4a7bf75faa7cdbd01086d",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [dbus, pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => ["tests/lib_dbus.py", "tests/test_dbus.py", "tests/test_unix.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/rhinstaller/dasbus",
         description: "DBus library in Python3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

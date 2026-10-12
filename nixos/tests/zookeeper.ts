@@ -2,44 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zookeeper.nix", [[["maintainers", 10, 5]], [["enable", 20, 11]], [["zookeeper", 19, 18]], [["allowedTCPPorts", 23, 29]], [["firewall", 23, 20]], [["services", 19, 9], ["networking", 23, 9]], [["server", 16, 5]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 15, 3], ["testScript", 27, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/zookeeper.nix", [["maintainers", 10, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/zookeeper.nix", [["enable", 20, 11]]);
-const pos$3 = nix.positions(here + "/zookeeper.nix", [["zookeeper", 19, 18]]);
-const pos$4 = nix.positions(here + "/zookeeper.nix", [["allowedTCPPorts", 23, 29]]);
-const pos$5 = nix.positions(here + "/zookeeper.nix", [["firewall", 23, 20]]);
-const pos$6 = nix.positions(here + "/zookeeper.nix", [["services", 19, 9], ["networking", 23, 9]]);
-const pos$7 = nix.positions(here + "/zookeeper.nix", [["server", 16, 5]]);
-const pos$8 = nix.positions(here + "/zookeeper.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 15, 3], ["testScript", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const perlEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "perl", "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "NetZooKeeper"))]));
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "zookeeper",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ztzg"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            zookeeper: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            zookeeper: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [2181n]) })),
+            [nix.POS]: $pos[4],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[3], allowedTCPPorts: nix.thunk(() => [2181n]) })),
           })),
         };
       })(), formals$2),

@@ -2,26 +2,24 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 7, 5], ["publisher", 8, 5], ["version", 9, 5], ["hash", 10, 5]], [["description", 14, 5], ["license", 15, 5], ["downloadPage", 16, 5], ["maintainers", 17, 5]], [["mktplcRef", 6, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 7, 5], ["publisher", 8, 5], ["version", 9, 5], ["hash", 10, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 14, 5], ["license", 15, 5], ["downloadPage", 16, 5], ["maintainers", 17, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 6, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "blueprint-gtk",
         publisher: "bodil",
         version: "0.2.0",
         hash: "sha256-A4H/o/HsjQKKee46VZJsjY7EB+1iOm4RWxHKcRLmkEY=",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Gtk Blueprint language support",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=bodil.blueprint-gtk",

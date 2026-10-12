@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 20, 5], ["description", 21, 5], ["license", 22, 5], ["teams", 23, 5]], [["pname", 8, 3], ["namespace", 9, 3], ["version", 10, 3], ["src", 12, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, buildKodiAddon: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 20, 5], ["description", 21, 5], ["license", 22, 5], ["teams", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["namespace", 9, 3], ["version", 10, 3], ["src", 12, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +15,20 @@ export default nix.lambda((args) => (() => {
       const namespace = "resource.font.robotocjksc";
       const version = "0.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jurialmunkey",
           repo: namespace,
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-s/h/KKlGYGMvf7RdI9ONk4S+NCzlaDX5w3CdNfbC2KE=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jurialmunkey/resource.font.robotocjksc",
         description: "Roboto CJKSC fonts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
-      return { [nix.POS]: pos$3, pname, namespace, version, src, meta };
+      return { [nix.POS]: $pos[2], pname, namespace, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["homepage", 44, 5], ["description", 45, 5], ["mainProgram", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["postPatch", 23, 3], ["installPhase", 34, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, sfml_2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["mainProgram", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["postPatch", 23, 3], ["installPhase", 34, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const sfml_2 = nix.arg($, "sfml_2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "antsimulator",
       version: "3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "johnBuffer",
           repo: "AntSimulator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/main.cpp \\\n  --replace-fail \"res/\" \"$out/opt/antsimulator/\"\n\nsubstituteInPlace include/simulation/config.hpp \\\n  --replace-fail \"res/\" \"$out/opt/antsimulator/\"\n\nsubstituteInPlace include/render/colony_renderer.hpp \\\n  --replace-fail \"res/\" \"$out/opt/antsimulator/\"\n",
       installPhase: "runHook preInstall\n\ninstall -Dm644 -t $out/opt/antsimulator res/*\ninstall -Dm755 ./AntSimulator $out/bin/antsimulator\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/johnBuffer/AntSimulator",
         description: "Simple Ants simulator",
         mainProgram: "antsimulator",

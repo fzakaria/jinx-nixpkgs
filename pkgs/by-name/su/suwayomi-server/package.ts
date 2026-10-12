@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["suwayomi-server-with-auth", 39, 5], ["suwayomi-server-without-auth", 40, 5]], [["tests", 38, 12]], [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 50, 5], ["downloadPage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["sourceProvenance", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["dontUnpack", 27, 3], ["buildPhase", 29, 3], ["passthru", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, makeWrapper: false, jdk21_headless: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["suwayomi-server-with-auth", 39, 5], ["suwayomi-server-without-auth", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 50, 5], ["downloadPage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["sourceProvenance", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["dontUnpack", 27, 3], ["buildPhase", 29, 3], ["passthru", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const jdk = jdk21_headless;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "suwayomi-server",
       version: "2.1.1867",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Suwayomi/Suwayomi-Server/releases/download/v${nix.sel(finalAttrs, "version")}/Suwayomi-Server-v${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-UeMHwlgeThoAKZGrPjp3UDyLB0xCaVmHqYSnOC0Kxa8=",
         })))),
@@ -37,15 +33,15 @@ makeWrapper ${jdk}/bin/java $out/bin/tachidesk-server \\
 runHook postBuild
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "suwayomi-server-with-auth": nix.thunk(() => nix.sel(nixosTests, "suwayomi-server", "with-auth")),
           "suwayomi-server-without-auth": nix.thunk(() => nix.sel(nixosTests, "suwayomi-server", "without-auth")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Free and open source manga reader server that runs extensions built for Mihon (Tachiyomi)",
         longDescription: "Suwayomi is an independent Mihon (Tachiyomi) compatible software and is not a Fork of Mihon (Tachiyomi).\n\nSuwayomi-Server is as multi-platform as you can get. Any platform that runs java and/or has a modern browser can run it. This includes Windows, Linux, macOS, chrome OS, etc.\n",
         homepage: "https://github.com/Suwayomi/Suwayomi-Server",

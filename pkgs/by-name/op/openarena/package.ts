@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 27, 5], ["url", 28, 5], ["hash", 29, 5]], [["name", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["url", 48, 7], ["hash", 49, 7]], [["name", 98, 7], ["exec", 99, 7], ["icon", 100, 7], ["comment", 101, 7], ["desktopName", 102, 7], ["categories", 103, 7]], [["openarena", 110, 43]], [["tests", 110, 12]], [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["mainProgram", 116, 5], ["maintainers", 117, 5], ["platforms", 120, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 44, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 61, 3], ["enableParallelBuilding", 73, 3], ["preConfigure", 75, 3], ["installTargets", 79, 3], ["installFlags", 80, 3], ["preInstall", 82, 3], ["postInstall", 86, 3], ["desktopItems", 96, 3], ["passthru", 110, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, fetchFromGitHub: false, stdenv: false, fetchpatch: false, copyDesktopItems: false, curl: false, makeBinaryWrapper: false, "pkg-config": false, which: false, freetype: false, libglvnd: false, libjpeg: false, libogg: false, libvorbis: false, libxmp: false, openal: false, SDL2: false, speex: false, makeDesktopItem: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 27, 5], ["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 48, 7], ["hash", 49, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 98, 7], ["exec", 99, 7], ["icon", 100, 7], ["comment", 101, 7], ["desktopName", 102, 7], ["categories", 103, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["openarena", 110, 43]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 110, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["mainProgram", 116, 5], ["maintainers", 117, 5], ["platforms", 120, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 44, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 61, 3], ["enableParallelBuilding", 73, 3], ["preConfigure", 75, 3], ["installTargets", 79, 3], ["installFlags", 80, 3], ["preInstall", 82, 3], ["postInstall", 86, 3], ["desktopItems", 96, 3], ["passthru", 110, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,17 +29,17 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nixosTests = nix.arg($, "nixosTests");
   const openarena_maps = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "openarena-maps",
       url: "https://download.tuxfamily.org/openarena/rel/088/openarena-0.8.8.zip",
       hash: "sha256-Rup1n14k9sKcyVFYzFqPYV+BEBCnUNwpnFsnyGrhl20=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "openarena",
       version: "0-unstable-2023-03-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "openarena-source",
           owner: "OpenArena",
           repo: "engine",
@@ -55,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/OpenArena/engine/commit/f2b424bd332e90a1e2592edd21c62bdb8cd05214.patch",
             hash: "sha256-legiXLtZAeG2t1esiBa37qkAgxPJVM7JLhjpxGUmWCo=",
           })))),
@@ -78,7 +71,7 @@ ln -s ${openarena_maps}/missionpack $out/share/openarena/missionpack
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "OpenArena",
             exec: "openarena",
             icon: "openarena",
@@ -88,14 +81,14 @@ ln -s ${openarena_maps}/missionpack $out/share/openarena/missionpack
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           openarena: nix.thunk(() => nix.attr(nixosTests, "openarena")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Fast-paced 3D first-person shooter, similar to id Software Inc.'s Quake III Arena",
         homepage: "http://openarena.ws/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

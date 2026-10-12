@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["celery", 47, 5], ["commands", 48, 5]], [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 46, 3], ["preCheck", 51, 3], ["enabledTestPaths", 55, 3], ["pythonImportsCheck", 57, 3], ["nativeCheckInputs", 61, 3], ["__darwinAllowLocalNetworking", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { asgiref: false, buildPythonPackage: false, fetchFromGitHub: false, lib: false, setuptools: false, django: false, "django-allauth": false, "crispy-bootstrap5": false, "django-environ": false, "django-extensions": false, "django-ipware": false, "django-ninja": false, "django-redis": false, djangorestframework: false, structlog: false, celery: false, "factory-boy": false, "pytest-asyncio": false, "pytest-django": false, "pytest-mock": false, redisTestHook: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["celery", 47, 5], ["commands", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 46, 3], ["preCheck", 51, 3], ["enabledTestPaths", 55, 3], ["pythonImportsCheck", 57, 3], ["nativeCheckInputs", 61, 3], ["__darwinAllowLocalNetworking", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const redisTestHook = nix.arg($, "redisTestHook");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "django-structlog",
       version: "10.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jrobichaud",
           repo: "django-structlog",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [asgiref, django, structlog, django_ipware]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         celery: nix.thunk(() => [celery]),
         commands: nix.thunk(() => [django_extensions]),
       })),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Structured Logging for Django",
         homepage: "https://github.com/jrobichaud/django-structlog",
         changelog: nix.thunk(() => nix.str`https://github.com/jrobichaud/django-structlog/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/changelog.rst`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["all", 28, 5], ["raster", 35, 5], ["color", 41, 5]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["optional-dependencies", 27, 3], ["doCheck", 48, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cairosvg: false, fetchFromGitHub: false, "imageio-ffmpeg": false, imageio: false, numpy: false, pwkit: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 28, 5], ["raster", 35, 5], ["color", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["optional-dependencies", 27, 3], ["doCheck", 48, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pwkit = nix.arg($, "pwkit");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "drawsvg",
       version: "2.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cduck",
           repo: "drawsvg",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [cairosvg, imageio, imageio_ffmpeg, numpy, pwkit]),
         raster: nix.thunk(() => [cairosvg, imageio, imageio_ffmpeg, numpy]),
         color: nix.thunk(() => [numpy, pwkit]),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["drawsvg"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Programmatically generate SVG (vector) images, animations, and interactive Jupyter widgets",
         homepage: "https://github.com/cduck/drawsvg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

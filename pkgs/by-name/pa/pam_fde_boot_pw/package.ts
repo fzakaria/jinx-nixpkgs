@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["mesonFlags", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false, meson: false, ninja: false, "pkg-config": false, pam: false, keyutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["mesonFlags", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const keyutils = nix.arg($, "keyutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pam_fde_boot_pw",
       version: "0-unstable-2025-02-14",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~kennylevinsen",
           repo: "pam_fde_boot_pw",
           rev: "49bf498fd8d13f73e4a24221818a8a5d2af20088",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "pam-mod-dir", nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/security`))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PAM module for leveraging disk encryption password in the PAM session",
         longDescription: "pam_fde_boot_pw transfers a password from the kernel keyring (for example,\nthe passphrase used to unlock an encrypted disk) into the PAM session.\nThis enables user-space keyrings, such as gnome-keyring, to be\nautomatically unlocked.\n",
         homepage: "https://git.sr.ht/~kennylevinsen/pam_fde_boot_pw",

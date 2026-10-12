@@ -2,12 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/elpa.nix", [[["lib", 13, 7], ["stdenv", 14, 7], ["emacs", 15, 7], ["texinfo", 16, 7]], [["homepage", 54, 9]], [["elpa2nix", 36, 7], ["dontUnpack", 38, 15], ["installPhase", 40, 7], ["meta", 53, 7]], [["constructDrv", 23, 3], ["extendDrvArgs", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, emacs: false, texinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/elpa.nix", [["lib", 13, 7], ["stdenv", 14, 7], ["emacs", 15, 7], ["texinfo", 16, 7]]);
 const formals$2 = { args: { pname: false, dontUnpack: true, meta: true }, ellipsis: true };
-const pos$2 = nix.positions(here + "/elpa.nix", [["homepage", 54, 9]]);
-const pos$3 = nix.positions(here + "/elpa.nix", [["elpa2nix", 36, 7], ["dontUnpack", 38, 15], ["installPhase", 40, 7], ["meta", 53, 7]]);
-const pos$4 = nix.positions(here + "/elpa.nix", [["constructDrv", 23, 3], ["extendDrvArgs", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const emacs = nix.arg($, "emacs");
   const texinfo = nix.arg($, "texinfo");
-  const genericBuild = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, stdenv: stdenv, emacs: emacs, texinfo: texinfo }))));
+  const genericBuild = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv, emacs: emacs, texinfo: texinfo }))));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       constructDrv: genericBuild,
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
         const dontUnpack = nix.argOr($_1, "dontUnpack", () => true);
         const meta = nix.argOr($_1, "meta", () => ({}));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           elpa2nix: nix.thunk(() => nix.selOr(args_2, () => nix.path(here, "./elpa2nix.el"), "elpa2nix")),
           dontUnpack: dontUnpack,
           installPhase: nix.thunk(() => nix.selOr(args_2, () => nix.str`runHook preInstall
@@ -40,7 +37,7 @@ emacs --batch -Q -l "$elpa2nix" \\
 runHook postInstall
 `, "installPhase")),
           meta: nix.thunk(() => nix.update({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             homepage: nix.thunk(() => nix.selOr(args_2, () => nix.str`https://elpa.gnu.org/packages/${pname}.html`, "src", "meta", "homepage")),
           }, meta)),
         };

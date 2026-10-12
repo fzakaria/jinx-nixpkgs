@@ -2,67 +2,26 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frp.nix", [[["name", 5, 5], ["text", 6, 5]], [["name", 9, 5], ["text", 10, 5]], [["maintainers", 16, 8]], [["enable", 25, 18]], [["useNetworkd", 23, 9], ["useDHCP", 24, 9], ["firewall", 25, 9]], [["Address", 30, 23]], [["name", 29, 9], ["networkConfig", 30, 9]], [["01-eth1", 28, 32]], [["networks", 28, 23]], [["network", 28, 15]], [["method", 43, 16], ["token", 44, 16]], [["bindPort", 41, 11], ["vhostHTTPPort", 42, 11], ["auth", 43, 11]], [["enable", 34, 9], ["role", 35, 9], ["environmentFiles", 36, 9], ["settings", 40, 9]], [["server", 33, 30]], [["instances", 33, 20]], [["frp", 33, 16]], [["networking", 22, 7], ["systemd", 28, 7], ["services", 33, 7]], [["useNetworkd", 51, 9], ["useDHCP", 52, 9]], [["Address", 57, 23]], [["name", 56, 9], ["networkConfig", 57, 9]], [["01-eth1", 55, 32]], [["networks", 55, 23]], [["network", 55, 15]], [["index", 71, 17]], [["/", 70, 25]], [["documentRoot", 69, 15], ["locations", 70, 15]], [["port", 77, 19]], [["index", 80, 17]], [["/", 79, 25]], [["documentRoot", 75, 15], ["listen", 76, 15], ["locations", 79, 15]], [["test-appication", 68, 13], ["test-range", 74, 13]], [["enable", 61, 9], ["adminAddr", 62, 9], ["virtualHosts", 63, 9], ["phpPackage", 84, 9], ["enablePHP", 85, 9]], [["method", 94, 16], ["token", 95, 16]], [["name", 98, 15], ["type", 99, 15], ["localPort", 100, 15], ["customDomains", 101, 15]], [["serverAddr", 92, 11], ["serverPort", 93, 11], ["auth", 94, 11], ["proxies", 96, 11]], [["enable", 89, 9], ["role", 90, 9], ["settings", 91, 9], ["extraConfig", 105, 9]], [["client", 88, 30]], [["instances", 88, 20]], [["httpd", 60, 16], ["frp", 88, 16]], [["networking", 50, 7], ["systemd", 55, 7], ["services", 60, 7]], [["frps", 21, 5], ["frpc", 49, 5]], [["name", 15, 3], ["meta", 16, 3], ["nodes", 20, 3], ["testScript", 118, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/frp.nix", [["name", 5, 5], ["text", 6, 5]]);
-const pos$2 = nix.positions(here + "/frp.nix", [["name", 9, 5], ["text", 10, 5]]);
-const pos$3 = nix.positions(here + "/frp.nix", [["maintainers", 16, 8]]);
-const pos$4 = nix.positions(here + "/frp.nix", [["enable", 25, 18]]);
-const pos$5 = nix.positions(here + "/frp.nix", [["useNetworkd", 23, 9], ["useDHCP", 24, 9], ["firewall", 25, 9]]);
-const pos$6 = nix.positions(here + "/frp.nix", [["Address", 30, 23]]);
-const pos$7 = nix.positions(here + "/frp.nix", [["name", 29, 9], ["networkConfig", 30, 9]]);
-const pos$8 = nix.positions(here + "/frp.nix", [["01-eth1", 28, 32]]);
-const pos$9 = nix.positions(here + "/frp.nix", [["networks", 28, 23]]);
-const pos$10 = nix.positions(here + "/frp.nix", [["network", 28, 15]]);
-const pos$11 = nix.positions(here + "/frp.nix", [["method", 43, 16], ["token", 44, 16]]);
-const pos$12 = nix.positions(here + "/frp.nix", [["bindPort", 41, 11], ["vhostHTTPPort", 42, 11], ["auth", 43, 11]]);
-const pos$13 = nix.positions(here + "/frp.nix", [["enable", 34, 9], ["role", 35, 9], ["environmentFiles", 36, 9], ["settings", 40, 9]]);
-const pos$14 = nix.positions(here + "/frp.nix", [["server", 33, 30]]);
-const pos$15 = nix.positions(here + "/frp.nix", [["instances", 33, 20]]);
-const pos$16 = nix.positions(here + "/frp.nix", [["frp", 33, 16]]);
-const pos$17 = nix.positions(here + "/frp.nix", [["networking", 22, 7], ["systemd", 28, 7], ["services", 33, 7]]);
-const pos$18 = nix.positions(here + "/frp.nix", [["useNetworkd", 51, 9], ["useDHCP", 52, 9]]);
-const pos$19 = nix.positions(here + "/frp.nix", [["Address", 57, 23]]);
-const pos$20 = nix.positions(here + "/frp.nix", [["name", 56, 9], ["networkConfig", 57, 9]]);
-const pos$21 = nix.positions(here + "/frp.nix", [["01-eth1", 55, 32]]);
-const pos$22 = nix.positions(here + "/frp.nix", [["networks", 55, 23]]);
-const pos$23 = nix.positions(here + "/frp.nix", [["network", 55, 15]]);
-const pos$24 = nix.positions(here + "/frp.nix", [["index", 71, 17]]);
-const pos$25 = nix.positions(here + "/frp.nix", [["/", 70, 25]]);
-const pos$26 = nix.positions(here + "/frp.nix", [["documentRoot", 69, 15], ["locations", 70, 15]]);
-const pos$27 = nix.positions(here + "/frp.nix", [["port", 77, 19]]);
-const pos$28 = nix.positions(here + "/frp.nix", [["index", 80, 17]]);
-const pos$29 = nix.positions(here + "/frp.nix", [["/", 79, 25]]);
-const pos$30 = nix.positions(here + "/frp.nix", [["documentRoot", 75, 15], ["listen", 76, 15], ["locations", 79, 15]]);
-const pos$31 = nix.positions(here + "/frp.nix", [["test-appication", 68, 13], ["test-range", 74, 13]]);
-const pos$32 = nix.positions(here + "/frp.nix", [["enable", 61, 9], ["adminAddr", 62, 9], ["virtualHosts", 63, 9], ["phpPackage", 84, 9], ["enablePHP", 85, 9]]);
-const pos$33 = nix.positions(here + "/frp.nix", [["method", 94, 16], ["token", 95, 16]]);
-const pos$34 = nix.positions(here + "/frp.nix", [["name", 98, 15], ["type", 99, 15], ["localPort", 100, 15], ["customDomains", 101, 15]]);
-const pos$35 = nix.positions(here + "/frp.nix", [["serverAddr", 92, 11], ["serverPort", 93, 11], ["auth", 94, 11], ["proxies", 96, 11]]);
-const pos$36 = nix.positions(here + "/frp.nix", [["enable", 89, 9], ["role", 90, 9], ["settings", 91, 9], ["extraConfig", 105, 9]]);
-const pos$37 = nix.positions(here + "/frp.nix", [["client", 88, 30]]);
-const pos$38 = nix.positions(here + "/frp.nix", [["instances", 88, 20]]);
-const pos$39 = nix.positions(here + "/frp.nix", [["httpd", 60, 16], ["frp", 88, 16]]);
-const pos$40 = nix.positions(here + "/frp.nix", [["networking", 50, 7], ["systemd", 55, 7], ["services", 60, 7]]);
-const pos$41 = nix.positions(here + "/frp.nix", [["frps", 21, 5], ["frpc", 49, 5]]);
-const pos$42 = nix.positions(here + "/frp.nix", [["name", 15, 3], ["meta", 16, 3], ["nodes", 20, 3], ["testScript", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const token = "1234";
-  const dummyFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({ [nix.POS]: pos$1, name: "secrets", text: "dummy=value" }))));
+  const dummyFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({ [nix.POS]: $pos[0], name: "secrets", text: "dummy=value" }))));
   const secretFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "secrets",
       text: nix.thunk(() => nix.str`token=${token}`),
     }))));
   const portRange = 6003n;
   return {
-    [nix.POS]: pos$42,
+    [nix.POS]: $pos[41],
     name: "frp",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -72,37 +31,37 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$41,
+      [nix.POS]: $pos[40],
       frps: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           useNetworkd: true,
           useDHCP: false,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: false })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           network: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             networks: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               "01-eth1": nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 name: "eth1",
-                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$6, Address: "10.0.0.1/24" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[5], Address: "10.0.0.1/24" })),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           frp: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             instances: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               server: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 enable: true,
                 role: "server",
                 environmentFiles: nix.thunk(() => [
@@ -110,10 +69,10 @@ export default nix.lambda((args) => (() => {
                   nix.thunk(() => nix.builtins.toPath(secretFile)),
                 ]),
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   bindPort: 7000n,
                   vhostHTTPPort: 80n,
-                  auth: nix.thunk(() => ({ [nix.POS]: pos$11, method: "token", token: "{{ .Envs.token }}" })),
+                  auth: nix.thunk(() => ({ [nix.POS]: $pos[10], method: "token", token: "{{ .Envs.token }}" })),
                 })),
               })),
             })),
@@ -121,47 +80,47 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       frpc: nix.thunk(() => ({
-        [nix.POS]: pos$40,
-        networking: nix.thunk(() => ({ [nix.POS]: pos$18, useNetworkd: true, useDHCP: false })),
+        [nix.POS]: $pos[39],
+        networking: nix.thunk(() => ({ [nix.POS]: $pos[17], useNetworkd: true, useDHCP: false })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           network: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             networks: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               "01-eth1": nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 name: "eth1",
-                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$19, Address: "10.0.0.2/24" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[18], Address: "10.0.0.2/24" })),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           httpd: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             enable: true,
             adminAddr: "admin@example.com",
             virtualHosts: nix.thunk(() => (() => {
               const testdir = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "web/index.php", "<?php phpinfo();"));
               return {
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 "test-appication": nix.thunk(() => ({
-                  [nix.POS]: pos$26,
+                  [nix.POS]: $pos[25],
                   documentRoot: nix.thunk(() => nix.str`${testdir}/web`),
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$25,
-                    "/": nix.thunk(() => ({ [nix.POS]: pos$24, index: "index.php index.html" })),
+                    [nix.POS]: $pos[24],
+                    "/": nix.thunk(() => ({ [nix.POS]: $pos[23], index: "index.php index.html" })),
                   })),
                 })),
                 "test-range": nix.thunk(() => ({
-                  [nix.POS]: pos$30,
+                  [nix.POS]: $pos[29],
                   documentRoot: nix.thunk(() => nix.str`${testdir}/web`),
-                  listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$27, port: portRange }))]),
+                  listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[26], port: portRange }))]),
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$29,
-                    "/": nix.thunk(() => ({ [nix.POS]: pos$28, index: "index.php index.html" })),
+                    [nix.POS]: $pos[28],
+                    "/": nix.thunk(() => ({ [nix.POS]: $pos[27], index: "index.php index.html" })),
                   })),
                 })),
               };
@@ -170,21 +129,21 @@ export default nix.lambda((args) => (() => {
             enablePHP: true,
           })),
           frp: nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             instances: nix.thunk(() => ({
-              [nix.POS]: pos$37,
+              [nix.POS]: $pos[36],
               client: nix.thunk(() => ({
-                [nix.POS]: pos$36,
+                [nix.POS]: $pos[35],
                 enable: true,
                 role: "client",
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$35,
+                  [nix.POS]: $pos[34],
                   serverAddr: "10.0.0.1",
                   serverPort: 7000n,
-                  auth: nix.thunk(() => ({ [nix.POS]: pos$33, method: "token", token: token })),
+                  auth: nix.thunk(() => ({ [nix.POS]: $pos[32], method: "token", token: token })),
                   proxies: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$34,
+                      [nix.POS]: $pos[33],
                       name: "web",
                       type: "http",
                       localPort: 80n,

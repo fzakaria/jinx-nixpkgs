@@ -2,35 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tinyproxy.nix", [[["Listen", 11, 11], ["Port", 12, 11]], [["enable", 9, 9], ["settings", 10, 9]], [["tinyproxy", 8, 16]], [["services", 8, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 17, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tinyproxy.nix", [["Listen", 11, 11], ["Port", 12, 11]]);
-const pos$2 = nix.positions(here + "/tinyproxy.nix", [["enable", 9, 9], ["settings", 10, 9]]);
-const pos$3 = nix.positions(here + "/tinyproxy.nix", [["tinyproxy", 8, 16]]);
-const pos$4 = nix.positions(here + "/tinyproxy.nix", [["services", 8, 7]]);
-const pos$5 = nix.positions(here + "/tinyproxy.nix", [["machine", 5, 9]]);
-const pos$6 = nix.positions(here + "/tinyproxy.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "tinyproxy",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             tinyproxy: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$1, Listen: "127.0.0.1", Port: 8080n })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[0], Listen: "127.0.0.1", Port: 8080n })),
             })),
           })),
         };

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 33, 5], ["mainProgram", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["makeWrapperArgs", 22, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, scribus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 33, 5], ["mainProgram", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["makeWrapperArgs", 22, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const scribus = nix.arg($, "scribus");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sla2pdf",
       version: "0.0.1-unstable-2023-05-17",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sla2pdf-team",
           repo: "sla2pdf",
           rev: "1524e6ca490da71eb201ff13bf32ef7206b0e4ef",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [scribus]))}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Convert Scribus SLA files to PDF from the command line",
         homepage: "https://github.com/sla2pdf-team/sla2pdf",
         license: nix.thunk(() => (() => {

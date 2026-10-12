@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 25, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, jre: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 25, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kotlin",
       version: "2.4.20",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/JetBrains/kotlin/releases/download/v${nix.sel(finalAttrs, "version")}/kotlin-compiler-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-WenKdMeQTvLBIrEhFJN2c8zOaN6CCmY/DtZsz4eZ4Lc=",
         })))),
@@ -40,7 +38,7 @@ if [ -f $out/LICENSE ]; then
 fi
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "General purpose programming language",
         longDescription: "Kotlin is a statically typed language that targets the JVM and JavaScript.\nIt is a general-purpose language intended for industry use.\nIt is developed by a team at JetBrains although it is an OSS language\nand has external contributors.\n",
         homepage: "https://kotlinlang.org/",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 93, 5], ["paths", 94, 5], ["postBuild", 95, 5]], [["name", 101, 5], ["paths", 102, 5], ["postBuild", 103, 5]], [["name", 117, 5], ["sha256", 118, 5], ["message", 120, 5]], [["icaroot", 142, 12]], [["license", 463, 5], ["description", 464, 5], ["sourceProvenance", 465, 5], ["platforms", 466, 5], ["maintainers", 467, 5], ["homepage", 471, 5]], [["pname", 113, 3], ["version", 114, 3], ["src", 116, 3], ["dontBuild", 136, 3], ["dontConfigure", 137, 3], ["strictDeps", 138, 3], ["__structuredAttrs", 139, 3], ["sourceRoot", 140, 3], ["preferLocalBuild", 141, 3], ["passthru", 142, 3], ["nativeBuildInputs", 144, 3], ["buildInputs", 154, 3], ["runtimeDependencies", 208, 3], ["installPhase", 228, 3], ["dontAutoPatchelf", 454, 3], ["postFixup", 455, 3], ["meta", 462, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, requireFile: false, makeWrapper: false, autoPatchelfHook: false, wrapGAppsHook3: false, "alsa-lib": false, atk: false, cacert: false, cairo: false, dconf: false, enchant: false, file: false, fontconfig: false, freetype: false, fuse3: false, "gdk-pixbuf": false, glib: false, "glib-networking": false, gst_all_1: false, gtk3: false, harfbuzzFull: false, heimdal: false, hyphen: false, krb5: false, lcms2: false, libGL: false, libappindicator: false, "libcanberra-gtk3": false, libcap: false, libcxx: false, libfaketime: false, libgbm: false, libinput: false, libjpeg8: false, libjson: false, libmanette: false, libnotify: false, libpulseaudio: false, libredirect: false, libseccomp: false, libsecret: false, libsoup_3: false, libvorbis: false, libxml2_13: false, libxslt: false, llvmPackages: false, more: false, nspr: false, nss: false, opencv4: false, pango: false, pcsclite: false, "sane-backends": false, speex: false, symlinkJoin: false, systemd: false, tzdata: false, which: false, woff2: false, webkitgtk_4_1: false, libxtst: false, libxscrnsaver: false, libxrender: false, libxmu: false, libxinerama: false, libxfixes: false, libxext: false, libxaw: false, libx11: false, xprop: false, xdpyinfo: false, libxcb: false, zlib: false, extraCerts: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 93, 5], ["paths", 94, 5], ["postBuild", 95, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 101, 5], ["paths", 102, 5], ["postBuild", 103, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 117, 5], ["sha256", 118, 5], ["message", 120, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["icaroot", 142, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["license", 463, 5], ["description", 464, 5], ["sourceProvenance", 465, 5], ["platforms", 466, 5], ["maintainers", 467, 5], ["homepage", 471, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 113, 3], ["version", 114, 3], ["src", 116, 3], ["dontBuild", 136, 3], ["dontConfigure", 137, 3], ["strictDeps", 138, 3], ["__structuredAttrs", 139, 3], ["sourceRoot", 140, 3], ["preferLocalBuild", 141, 3], ["passthru", 142, 3], ["nativeBuildInputs", 144, 3], ["buildInputs", 154, 3], ["runtimeDependencies", 208, 3], ["installPhase", 228, 3], ["dontAutoPatchelf", 454, 3], ["postFixup", 455, 3], ["meta", 462, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -97,13 +92,13 @@ export default nix.lambda((args) => (() => {
   ]);
   const gstPluginPath = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPathOutput"), "lib", "lib/gstreamer-1.0", gstPackages));
   const fuse3$ = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "fuse3-backwards-compat",
       paths: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getLib"), fuse3))]),
       postBuild: "ln -sf $out/lib/libfuse3.so.3.* $out/lib/libfuse3.so.3\n",
     }))));
   const opencv4$ = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "opencv4-compat",
       paths: nix.thunk(() => [opencv4]),
       postBuild: nix.thunk(() => nix.str`for so in ${opencv4}/lib/*.so; do
@@ -112,7 +107,7 @@ done
 `),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "citrix-workspace",
       version: "26.08.0.153",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => (() => {
@@ -131,7 +126,7 @@ installation:
 
 nix-prefetch-url file://$PWD/${name}
 `);
-          return { [nix.POS]: pos$3, name, sha256, message };
+          return { [nix.POS]: $pos[2], name, sha256, message };
         })()))),
       dontBuild: true,
       dontConfigure: true,
@@ -140,7 +135,7 @@ nix-prefetch-url file://$PWD/${name}
       sourceRoot: ".",
       preferLocalBuild: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         icaroot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/opt/citrix-icaclient`),
       })),
       nativeBuildInputs: nix.thunk(() => [
@@ -395,7 +390,7 @@ runHook postInstall
       dontAutoPatchelf: true,
       postFixup: "addAutoPatchelfSearchPath \"$out/opt/citrix-icaclient/lib\"\nautoPatchelf -- \"$out\"\n\n$out/opt/citrix-icaclient/util/ctx_rehash\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         description: "Citrix Workspace",
         sourceProvenance: nix.thunk(() => (() => {

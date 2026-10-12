@@ -2,24 +2,20 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/virtualbox.nix", [["enable", 9, 41]]);
-const pos$2 = nix.positions(here + "/virtualbox.nix", [["host", 9, 36]]);
-const pos$3 = nix.positions(here + "/virtualbox.nix", [["virtualbox", 9, 25]]);
-const pos$4 = nix.positions(here + "/virtualbox.nix", [["warnings", 8, 10], ["virtualisation", 9, 10]]);
-const pos$5 = nix.positions(here + "/virtualbox.nix", [["config", 8, 3]]);
+const $pos = nix.positions(here + "/virtualbox.nix", [[["enable", 9, 41]], [["host", 9, 36]], [["virtualbox", 9, 25]], [["warnings", 8, 10], ["virtualisation", 9, 10]], [["config", 8, 3]]]);
 
 export default nix.thunk(() => (() => {
   const msg = nix.thunk(() => nix.add(nix.add("Importing <nixpkgs/nixos/modules/programs/virtualbox.nix> is ", "deprecated, please use `virtualisation.virtualbox.host.enable = true' "), "instead."));
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     config: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       warnings: nix.thunk(() => [msg]),
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         virtualbox: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          host: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+          [nix.POS]: $pos[1],
+          host: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         })),
       })),
     })),

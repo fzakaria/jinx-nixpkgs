@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/orbit.nix", [[["pname", 6, 5], ["version", 7, 5], ["url", 8, 5], ["sha256", 9, 5], ["additionalBuildInputs", 11, 5], ["description", 13, 5]]]);
 const formals$1 = { args: { callPackage: false, zlib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/orbit.nix", [["pname", 6, 5], ["version", 7, 5], ["url", 8, 5], ["sha256", 9, 5], ["additionalBuildInputs", 11, 5], ["description", 13, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const additionalBuildInputs = nix.thunk(() => [zlib]);
       const description = "LV2 time event manipulation plugin bundle";
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname,
         version,
         url,

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ruby-version.nix", [[["major", 8, 7], ["minor", 9, 7], ["tiny", 10, 7], ["tail", 11, 7], ["patchLevel", 15, 5], ["majMin", 52, 5], ["majMinTiny", 53, 5], ["libDir", 57, 5], ["gitTag", 68, 5], ["__toString", 80, 5]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ruby-version.nix", [["major", 8, 7], ["minor", 9, 7], ["tiny", 10, 7], ["tail", 11, 7], ["patchLevel", 15, 5], ["majMin", 52, 5], ["majMinTiny", 53, 5], ["libDir", 57, 5], ["gitTag", 68, 5], ["__toString", 80, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
     })());
     const __toString = (self) => nix.add(nix.sel(self, "majMinTiny"), (nix.asBool(!nix.eq(nix.sel(self, "patchLevel"), null)) ? nix.str`-p${nix.sel(self, "patchLevel")}` : nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(self, "tail"), "")), nix.thunk(() => nix.str`-${nix.sel(self, "tail")}`))));
     return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       major: major_1,
       minor: minor_1,
       tiny: tiny_1,

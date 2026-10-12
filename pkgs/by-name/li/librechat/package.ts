@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["extraArgs", 81, 7]], [["librechat", 87, 28]], [["updateScript", 80, 5], ["tests", 86, 5]], [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["mainProgram", 100, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["npmDepsFetcherVersion", 36, 3], ["npmDepsHash", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["npmBuildScript", 48, 3], ["npmPruneFlags", 49, 3], ["makeWrapperArgs", 51, 3], ["postConfigure", 59, 3], ["preInstall", 63, 3], ["preFixup", 72, 3], ["passthru", 79, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "pkg-config": false, "node-gyp": false, vips: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 81, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["librechat", 87, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 80, 5], ["tests", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["mainProgram", 100, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["npmDepsFetcherVersion", 36, 3], ["npmDepsHash", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["npmBuildScript", 48, 3], ["npmPruneFlags", 49, 3], ["makeWrapperArgs", 51, 3], ["postConfigure", 59, 3], ["preInstall", 63, 3], ["preFixup", 72, 3], ["passthru", 79, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "librechat",
       version: "0.8.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "danny-avila",
           repo: "LibreChat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,18 +41,18 @@ export default nix.lambda((args) => (() => {
       preInstall: "# not sure why this is something npm pack tries to keep\nrm -rf ./packages/data-schemas/node_modules/winston-transport/.nyc_output\n",
       preFixup: "mkdir -p $out/lib/node_modules/LibreChat/packages/api\ncp -R packages/api/dist/. $out/lib/node_modules/LibreChat/packages/api\nmkdir -p $out/lib/node_modules/LibreChat/packages/client\ncp -R packages/client/dist/. $out/lib/node_modules/LibreChat/packages/client\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "^v(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           librechat: nix.thunk(() => nix.attr(nixosTests, "librechat")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open-source app for all your AI conversations, fully customizable and compatible with any AI provider",
         homepage: "https://github.com/danny-avila/LibreChat",
         changelog: nix.thunk(() => nix.str`https://www.librechat.ai/changelog/${nix.sel(finalAttrs, "src", "tag")}`),

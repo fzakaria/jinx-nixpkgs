@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 16, 13], ["pname", 17, 5], ["hash", 18, 5]], [["changelog", 37, 5], ["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 21, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["doCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "poetry-core": false, requests: false, "requests-toolbelt": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 16, 13], ["pname", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 37, 5], ["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 21, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["doCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "aws_request_signer",
           hash: "sha256-DVorDO0wz94Fhduax7VsQZ5B5SnBfsHQoLoW4m6Ce+U=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [requests, requests_toolbelt]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/iksteen/aws-request-signer/releases/tag/${version}`),
         description: "Python library to sign AWS requests using AWS Signature V4",
         homepage: "https://github.com/iksteen/aws-request-signer",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

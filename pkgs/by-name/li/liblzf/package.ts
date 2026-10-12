@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["pname", 25, 28], ["version", 25, 34], ["debianRevision", 26, 7], ["patch", 27, 7], ["hash", 28, 7]], [["name", 35, 17], ["url", 36, 9], ["hash", 37, 9]], [["package", 67, 7], ["version", 68, 7], ["versionCheck", 69, 7]], [["name", 73, 7], ["buildInputs", 74, 7], ["script", 75, 7]], [["name", 99, 7], ["stdenv", 100, 15], ["nativeBuildInputs", 101, 7], ["buildInputs", 102, 7], ["script", 107, 7]], [["pkgConfigTest", 66, 5], ["exeTest", 72, 5], ["shlibTest", 98, 5]], [["tests", 65, 12]], [["changelog", 120, 5], ["description", 123, 5], ["downloadPage", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["mainProgram", 130, 5], ["maintainers", 131, 5], ["platforms", 134, 5], ["pkgConfigModules", 135, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["nativeBuildInputs", 42, 3], ["preConfigure", 50, 3], ["postInstall", 54, 3], ["outputs", 60, 3], ["passthru", 65, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchDebianPatch: false, fetchpatch: false, fetchurl: false, "pkg-config": false, testers: false, validatePkgConfig: false, autoconf: false, automake: false, libtool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 25, 28], ["version", 25, 34], ["debianRevision", 26, 7], ["patch", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 35, 17], ["url", 36, 9], ["hash", 37, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 67, 7], ["version", 68, 7], ["versionCheck", 69, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 73, 7], ["buildInputs", 74, 7], ["script", 75, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 99, 7], ["stdenv", 100, 15], ["nativeBuildInputs", 101, 7], ["buildInputs", 102, 7], ["script", 107, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pkgConfigTest", 66, 5], ["exeTest", 72, 5], ["shlibTest", 98, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 65, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["changelog", 120, 5], ["description", 123, 5], ["downloadPage", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["mainProgram", 130, 5], ["maintainers", 131, 5], ["platforms", 134, 5], ["pkgConfigModules", 135, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["nativeBuildInputs", 42, 3], ["preConfigure", 50, 3], ["postInstall", 54, 3], ["outputs", 60, 3], ["passthru", 65, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "liblzf",
       version: "3.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dist.schmorp.de/liblzf/liblzf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-nF3gH3ucyuQMP2GdJqer7JmGwGw20mDBec7dBLiftGo=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "4",
@@ -48,7 +39,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (() => {
           const name = "liblzf-3.6-autoconf-20140314.patch";
           return nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: name,
               url: nix.thunk(() => nix.str`https://src.fedoraproject.org/rpms/liblzf/raw/53da654eead51a24ac81a28e1b1c531eb1afab28/f/${name}`),
               hash: "sha256-rkhI8w0HV3fGiDfHiXBzrnxqGDE/Yo5ntePrsscMiyg=",
@@ -60,23 +51,23 @@ export default nix.lambda((args) => (() => {
       postInstall: "pushd $out/bin\nln -s lzf unlzf\npopd\n",
       outputs: nix.thunk(() => ["out", "dev"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pkgConfigTest: nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}.0`),
               versionCheck: true,
             })))),
           exeTest: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-exe-test`),
               buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "lzf -h 2> /dev/null\n\necho \"LZFLZFLZFLZFLZFLZFLZFLZF\" > test.txt\n\n# unlzf writes to filename minus \".lzf\"\ncp test.txt test.txt.orig\n\nlzf test.txt\nunlzf test.txt.lzf\n\n# Compare results\nif ! cmp -s test.txt test.txt.orig; then\n  echo \"Executable test failed: files don't match\"\n  exit 1\nfi\n\necho \"Decompressed output matches test string (lzf & unlzf)\"\n\ntouch $out\n",
             })))),
           shlibTest: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-shlib-test`),
               stdenv: stdenv,
               nativeBuildInputs: nix.thunk(() => [pkg_config]),
@@ -96,7 +87,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         changelog: nix.thunk(() => nix.add("http://cvs.schmorp.de/liblzf/Changes?pathrev=rel-", nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version"))))),
         description: "Small data compression library",
         downloadPage: "http://dist.schmorp.de/liblzf/",

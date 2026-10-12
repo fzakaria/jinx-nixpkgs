@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["runtimeDeps", 44, 13]], [["mainProgram", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["npmDepsHash", 28, 3], ["dontNpmBuild", 29, 3], ["postPatch", 31, 3], ["postFixup", 38, 3], ["passthru", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, flac2mp3: false, ffmpeg: false, sox: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["runtimeDeps", 44, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["npmDepsHash", 28, 3], ["dontNpmBuild", 29, 3], ["postPatch", 31, 3], ["postFixup", 38, 3], ["passthru", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const sox = nix.arg($, "sox");
   const runtimeDeps = nix.thunk(() => [ffmpeg, flac2mp3, sox]);
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "red-trul",
       version: "2.3.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lfence",
           repo: "red-trul",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,9 +31,9 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/red-trul \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "runtimeDeps")))}
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, runtimeDeps: runtimeDeps })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], runtimeDeps: runtimeDeps })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: "red-trul",
         description: "Lightweight utility to transcode FLAC releases",
         homepage: "https://github.com/lfence/red-trul",

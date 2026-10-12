@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]], [["viz", 44, 5], ["align", 48, 5]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 30, 3], ["dependencies", 36, 3], ["optional-dependencies", 43, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 56, 3], ["disabledTestPaths", 59, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { stdenv: false, buildPythonPackage: false, lib: false, pythonAtLeast: false, fetchPypi: false, "poetry-core": false, setuptools: false, "setuptools-scm": false, ipykernel: false, networkx: false, numpy: false, packaging: false, pint: false, pydantic: false, pytestCheckHook: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["viz", 44, 5], ["align", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 30, 3], ["dependencies", 36, 3], ["optional-dependencies", 43, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 56, 3], ["disabledTestPaths", 59, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.51.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-hVjzBN8IzkAJWOaubWMuQ+9hzMpGPJ6N9PJltKYZXnk=",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core, setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [numpy, packaging, pint, pydantic]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         viz: nix.thunk(() => [ipykernel]),
         align: nix.thunk(() => [networkx, scipy]),
       }));
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         "qcelemental/tests/test_zqcschema.py",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Periodic table, physical constants and molecule parsing for quantum chemistry",
         homepage: "https://github.com/MolSSI/QCElemental",
         changelog: nix.thunk(() => nix.str`https://github.com/MolSSI/QCElemental/blob/v${version}/docs/changelog.rst`),
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

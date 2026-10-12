@@ -2,61 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 86, 5], ["repo", 87, 5], ["rev", 88, 5], ["hash", 89, 5]], [["withZlibCompat", 92, 33]], [["zlib", 95, 7], ["enableJemalloc", 96, 7]], [["cmakeFlags", 99, 9], ["buildInputs", 100, 9], ["hardeningDisable", 103, 9]], [["owner", 115, 5], ["repo", 116, 5], ["tag", 117, 5], ["hash", 118, 5]], [["varName", 127, 9], ["modules", 128, 9]], [["name", 132, 11], ["linkLibs", 133, 11]], [["pkgConfig", 126, 7], ["libraries", 130, 7]], [["varName", 139, 9], ["modules", 140, 9]], [["name", 144, 11], ["linkLibs", 145, 11]], [["pkgConfig", 138, 7], ["libraries", 142, 7], ["extraLines", 148, 7]], [["findPackage", 155, 27]], [["name", 160, 11], ["target", 161, 11]], [["findPackage", 157, 7], ["libraries", 158, 7]], [["findPackage", 165, 30]], [["varName", 168, 9], ["modules", 169, 9]], [["name", 173, 11], ["target", 174, 11]], [["pkgConfig", 167, 7], ["libraries", 171, 7]], [["varName", 180, 9], ["modules", 181, 9]], [["name", 185, 11], ["target", 186, 11]], [["pkgConfig", 179, 7], ["libraries", 183, 7]], [["varName", 192, 9], ["modules", 193, 9]], [["name", 197, 11], ["target", 198, 11]], [["pkgConfig", 191, 7], ["libraries", 195, 7]], [["name", 206, 11], ["linkLibs", 207, 11]], [["findPackage", 203, 7], ["libraries", 204, 7]], [["name", 215, 11], ["target", 216, 11]], [["findPackage", 212, 7], ["libraries", 213, 7]], [["name", 224, 11], ["linkLibs", 225, 11]], [["name", 228, 11], ["linkLibs", 229, 11]], [["findPackage", 221, 7], ["libraries", 222, 7]], [["varName", 235, 9], ["modules", 236, 9]], [["name", 240, 11], ["target", 241, 11]], [["pkgConfig", 234, 7], ["libraries", 238, 7]], [["varName", 247, 9], ["modules", 248, 9]], [["name", 252, 11], ["linkLibs", 253, 11], ["compileDefs", 254, 11]], [["pkgConfig", 246, 7], ["libraries", 250, 7]], [["name", 258, 48]], [["libraries", 258, 32]], [["name", 259, 44]], [["libraries", 259, 28]], [["name", 260, 44]], [["libraries", 260, 28]], [["name", 261, 45]], [["libraries", 261, 29]], [["findPackage", 262, 31]], [["findPackage", 263, 32]], [["kvrocks", 336, 37]], [["kvrocks", 339, 44]], [["kvrocks", 338, 28], ["hook", 339, 7]], [["hook", 336, 5], ["tests", 337, 5]], [["description", 344, 5], ["homepage", 345, 5], ["license", 346, 5], ["maintainers", 347, 5], ["platforms", 348, 5], ["mainProgram", 349, 5]], [["pname", 111, 3], ["version", 112, 3], ["src", 114, 3], ["__structuredAttrs", 121, 3], ["postPatch", 123, 3], ["strictDeps", 274, 3], ["nativeBuildInputs", 276, 3], ["buildInputs", 284, 3], ["preConfigure", 309, 3], ["cmakeFlags", 319, 3], ["installPhase", 327, 3], ["passthru", 335, 3], ["meta", 343, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false, stdenv: false, fetchFromGitHub: false, nixosTests: false, cmake: false, ninja: false, "pkg-config": false, cpptrace: false, "fast-float": false, fmt: false, gtest: false, "hat-trie": false, jemalloc: false, jsoncons: false, libevent: false, lz4: false, onetbb: false, openssl: false, pegtl: false, "range-v3": false, rocksdb: false, snappy: false, "span-lite": false, spdlog: false, xxhash: false, "zlib-ng": false, zstd: false }, ellipsis: false };
 const formals$2 = { args: { findPackage: true, pkgConfig: true, libraries: true, extraLines: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 86, 5], ["repo", 87, 5], ["rev", 88, 5], ["hash", 89, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["withZlibCompat", 92, 33]]);
-const pos$3 = nix.positions(here + "/package.nix", [["zlib", 95, 7], ["enableJemalloc", 96, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["cmakeFlags", 99, 9], ["buildInputs", 100, 9], ["hardeningDisable", 103, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 115, 5], ["repo", 116, 5], ["tag", 117, 5], ["hash", 118, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["varName", 127, 9], ["modules", 128, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 132, 11], ["linkLibs", 133, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pkgConfig", 126, 7], ["libraries", 130, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["varName", 139, 9], ["modules", 140, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 144, 11], ["linkLibs", 145, 11]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pkgConfig", 138, 7], ["libraries", 142, 7], ["extraLines", 148, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["findPackage", 155, 27]]);
-const pos$13 = nix.positions(here + "/package.nix", [["name", 160, 11], ["target", 161, 11]]);
-const pos$14 = nix.positions(here + "/package.nix", [["findPackage", 157, 7], ["libraries", 158, 7]]);
-const pos$15 = nix.positions(here + "/package.nix", [["findPackage", 165, 30]]);
-const pos$16 = nix.positions(here + "/package.nix", [["varName", 168, 9], ["modules", 169, 9]]);
-const pos$17 = nix.positions(here + "/package.nix", [["name", 173, 11], ["target", 174, 11]]);
-const pos$18 = nix.positions(here + "/package.nix", [["pkgConfig", 167, 7], ["libraries", 171, 7]]);
-const pos$19 = nix.positions(here + "/package.nix", [["varName", 180, 9], ["modules", 181, 9]]);
-const pos$20 = nix.positions(here + "/package.nix", [["name", 185, 11], ["target", 186, 11]]);
-const pos$21 = nix.positions(here + "/package.nix", [["pkgConfig", 179, 7], ["libraries", 183, 7]]);
-const pos$22 = nix.positions(here + "/package.nix", [["varName", 192, 9], ["modules", 193, 9]]);
-const pos$23 = nix.positions(here + "/package.nix", [["name", 197, 11], ["target", 198, 11]]);
-const pos$24 = nix.positions(here + "/package.nix", [["pkgConfig", 191, 7], ["libraries", 195, 7]]);
-const pos$25 = nix.positions(here + "/package.nix", [["name", 206, 11], ["linkLibs", 207, 11]]);
-const pos$26 = nix.positions(here + "/package.nix", [["findPackage", 203, 7], ["libraries", 204, 7]]);
-const pos$27 = nix.positions(here + "/package.nix", [["name", 215, 11], ["target", 216, 11]]);
-const pos$28 = nix.positions(here + "/package.nix", [["findPackage", 212, 7], ["libraries", 213, 7]]);
-const pos$29 = nix.positions(here + "/package.nix", [["name", 224, 11], ["linkLibs", 225, 11]]);
-const pos$30 = nix.positions(here + "/package.nix", [["name", 228, 11], ["linkLibs", 229, 11]]);
-const pos$31 = nix.positions(here + "/package.nix", [["findPackage", 221, 7], ["libraries", 222, 7]]);
-const pos$32 = nix.positions(here + "/package.nix", [["varName", 235, 9], ["modules", 236, 9]]);
-const pos$33 = nix.positions(here + "/package.nix", [["name", 240, 11], ["target", 241, 11]]);
-const pos$34 = nix.positions(here + "/package.nix", [["pkgConfig", 234, 7], ["libraries", 238, 7]]);
-const pos$35 = nix.positions(here + "/package.nix", [["varName", 247, 9], ["modules", 248, 9]]);
-const pos$36 = nix.positions(here + "/package.nix", [["name", 252, 11], ["linkLibs", 253, 11], ["compileDefs", 254, 11]]);
-const pos$37 = nix.positions(here + "/package.nix", [["pkgConfig", 246, 7], ["libraries", 250, 7]]);
-const pos$38 = nix.positions(here + "/package.nix", [["name", 258, 48]]);
-const pos$39 = nix.positions(here + "/package.nix", [["libraries", 258, 32]]);
-const pos$40 = nix.positions(here + "/package.nix", [["name", 259, 44]]);
-const pos$41 = nix.positions(here + "/package.nix", [["libraries", 259, 28]]);
-const pos$42 = nix.positions(here + "/package.nix", [["name", 260, 44]]);
-const pos$43 = nix.positions(here + "/package.nix", [["libraries", 260, 28]]);
-const pos$44 = nix.positions(here + "/package.nix", [["name", 261, 45]]);
-const pos$45 = nix.positions(here + "/package.nix", [["libraries", 261, 29]]);
-const pos$46 = nix.positions(here + "/package.nix", [["findPackage", 262, 31]]);
-const pos$47 = nix.positions(here + "/package.nix", [["findPackage", 263, 32]]);
-const pos$48 = nix.positions(here + "/package.nix", [["kvrocks", 336, 37]]);
-const pos$49 = nix.positions(here + "/package.nix", [["kvrocks", 339, 44]]);
-const pos$50 = nix.positions(here + "/package.nix", [["kvrocks", 338, 28], ["hook", 339, 7]]);
-const pos$51 = nix.positions(here + "/package.nix", [["hook", 336, 5], ["tests", 337, 5]]);
-const pos$52 = nix.positions(here + "/package.nix", [["description", 344, 5], ["homepage", 345, 5], ["license", 346, 5], ["maintainers", 347, 5], ["platforms", 348, 5], ["mainProgram", 349, 5]]);
-const pos$53 = nix.positions(here + "/package.nix", [["pname", 111, 3], ["version", 112, 3], ["src", 114, 3], ["__structuredAttrs", 121, 3], ["postPatch", 123, 3], ["strictDeps", 274, 3], ["nativeBuildInputs", 276, 3], ["buildInputs", 284, 3], ["preConfigure", 309, 3], ["cmakeFlags", 319, 3], ["installPhase", 327, 3], ["passthru", 335, 3], ["meta", 343, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -105,25 +53,25 @@ EOF
 `;
   })(), formals$2);
   const luajit_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "RocksLabs",
       repo: "LuaJIT",
       rev: "02dfcc34e93e57ac96e566d123c66ee01e650299",
       hash: "sha256-HINP9nahXHTManDMAAJBOUlSSxv5JZhlHs96HHkE7qE=",
     }))));
-  const zlib_ng$ = nix.thunk(() => nix.app(nix.sel(zlib_ng, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withZlibCompat: true }))));
-  const rocksdb$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(rocksdb, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, zlib: zlib_ng$, enableJemalloc: true }))), "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$4,
+  const zlib_ng$ = nix.thunk(() => nix.app(nix.sel(zlib_ng, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], withZlibCompat: true }))));
+  const rocksdb$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(rocksdb, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], zlib: zlib_ng$, enableJemalloc: true }))), "overrideAttrs"), (oldAttrs) => ({
+      [nix.POS]: $pos[3],
       cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "cmakeFlags"), [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_TBB", true))])),
       buildInputs: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "buildInputs"), [onetbb])),
       hardeningDisable: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "hardeningDisable"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["libcxxhardeningfast"])))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$53,
+      [nix.POS]: $pos[52],
       pname: "kvrocks",
       version: "2.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "apache",
           repo: "kvrocks",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -132,22 +80,26 @@ EOF
       __structuredAttrs: true,
       postPatch: nix.thunk(() => nix.str`# Replace FetchContent-based cmake files with system library finders
 ${nix.app(mkCmakeFile, "rocksdb", nix.thunk(() => ({
-          [nix.POS]: pos$8,
-          pkgConfig: nix.thunk(() => ({ [nix.POS]: pos$6, varName: "ROCKSDB", modules: "rocksdb" })),
+          [nix.POS]: $pos[7],
+          pkgConfig: nix.thunk(() => ({ [nix.POS]: $pos[5], varName: "ROCKSDB", modules: "rocksdb" })),
           libraries: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               name: "rocksdb_with_headers",
               linkLibs: "PkgConfig::ROCKSDB",
             })),
           ]),
         })))}
 ${nix.app(mkCmakeFile, "libevent", nix.thunk(() => ({
-          [nix.POS]: pos$11,
-          pkgConfig: nix.thunk(() => ({ [nix.POS]: pos$9, varName: "LIBEVENT", modules: "libevent libevent_pthreads" })),
+          [nix.POS]: $pos[10],
+          pkgConfig: nix.thunk(() => ({
+            [nix.POS]: $pos[8],
+            varName: "LIBEVENT",
+            modules: "libevent libevent_pthreads",
+          })),
           libraries: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               name: "event_with_headers",
               linkLibs: "PkgConfig::LIBEVENT",
             })),
@@ -159,73 +111,73 @@ ${nix.app(mkCmakeFile, "libevent", nix.thunk(() => ({
             "endif()",
           ]),
         })))}
-${nix.app(mkCmakeFile, "fmt", nix.thunk(() => ({ [nix.POS]: pos$12, findPackage: "fmt" })))}
+${nix.app(mkCmakeFile, "fmt", nix.thunk(() => ({ [nix.POS]: $pos[11], findPackage: "fmt" })))}
 ${nix.app(mkCmakeFile, "fast_float", nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           findPackage: "FastFloat",
           libraries: nix.thunk(() => [
-            nix.thunk(() => ({ [nix.POS]: pos$13, name: "fast_float", target: "FastFloat::fast_float" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[12], name: "fast_float", target: "FastFloat::fast_float" })),
           ]),
         })))}
-${nix.app(mkCmakeFile, "spdlog", nix.thunk(() => ({ [nix.POS]: pos$15, findPackage: "spdlog" })))}
+${nix.app(mkCmakeFile, "spdlog", nix.thunk(() => ({ [nix.POS]: $pos[14], findPackage: "spdlog" })))}
 ${nix.app(mkCmakeFile, "snappy", nix.thunk(() => ({
-          [nix.POS]: pos$18,
-          pkgConfig: nix.thunk(() => ({ [nix.POS]: pos$16, varName: "SNAPPY", modules: "snappy" })),
+          [nix.POS]: $pos[17],
+          pkgConfig: nix.thunk(() => ({ [nix.POS]: $pos[15], varName: "SNAPPY", modules: "snappy" })),
           libraries: nix.thunk(() => [
-            nix.thunk(() => ({ [nix.POS]: pos$17, name: "snappy", target: "PkgConfig::SNAPPY" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[16], name: "snappy", target: "PkgConfig::SNAPPY" })),
           ]),
         })))}
 ${nix.app(mkCmakeFile, "lz4", nix.thunk(() => ({
-          [nix.POS]: pos$21,
-          pkgConfig: nix.thunk(() => ({ [nix.POS]: pos$19, varName: "LZ4", modules: "liblz4" })),
+          [nix.POS]: $pos[20],
+          pkgConfig: nix.thunk(() => ({ [nix.POS]: $pos[18], varName: "LZ4", modules: "liblz4" })),
           libraries: nix.thunk(() => [
-            nix.thunk(() => ({ [nix.POS]: pos$20, name: "lz4", target: "PkgConfig::LZ4" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[19], name: "lz4", target: "PkgConfig::LZ4" })),
           ]),
         })))}
 ${nix.app(mkCmakeFile, "zstd", nix.thunk(() => ({
-          [nix.POS]: pos$24,
-          pkgConfig: nix.thunk(() => ({ [nix.POS]: pos$22, varName: "ZSTD", modules: "libzstd" })),
+          [nix.POS]: $pos[23],
+          pkgConfig: nix.thunk(() => ({ [nix.POS]: $pos[21], varName: "ZSTD", modules: "libzstd" })),
           libraries: nix.thunk(() => [
-            nix.thunk(() => ({ [nix.POS]: pos$23, name: "zstd", target: "PkgConfig::ZSTD" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[22], name: "zstd", target: "PkgConfig::ZSTD" })),
           ]),
         })))}
 ${nix.app(mkCmakeFile, "zlib", nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           findPackage: "ZLIB",
           libraries: nix.thunk(() => [
-            nix.thunk(() => ({ [nix.POS]: pos$25, name: "zlib_with_headers", linkLibs: "ZLIB::ZLIB" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[24], name: "zlib_with_headers", linkLibs: "ZLIB::ZLIB" })),
           ]),
         })))}
 ${nix.app(mkCmakeFile, "tbb", nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           findPackage: "TBB",
-          libraries: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$27, name: "tbb", target: "TBB::tbb" }))]),
+          libraries: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[26], name: "tbb", target: "TBB::tbb" }))]),
         })))}
 ${nix.app(mkCmakeFile, "gtest", nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           findPackage: "GTest",
           libraries: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               name: "gtest_main",
               linkLibs: "GTest::gtest_main GTest::gtest",
             })),
-            nix.thunk(() => ({ [nix.POS]: pos$30, name: "gmock", linkLibs: "GTest::gmock GTest::gtest" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[29], name: "gmock", linkLibs: "GTest::gmock GTest::gtest" })),
           ]),
         })))}
 ${nix.app(mkCmakeFile, "xxhash", nix.thunk(() => ({
-          [nix.POS]: pos$34,
-          pkgConfig: nix.thunk(() => ({ [nix.POS]: pos$32, varName: "XXHASH", modules: "libxxhash" })),
+          [nix.POS]: $pos[33],
+          pkgConfig: nix.thunk(() => ({ [nix.POS]: $pos[31], varName: "XXHASH", modules: "libxxhash" })),
           libraries: nix.thunk(() => [
-            nix.thunk(() => ({ [nix.POS]: pos$33, name: "xxhash", target: "PkgConfig::XXHASH" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[32], name: "xxhash", target: "PkgConfig::XXHASH" })),
           ]),
         })))}
 ${nix.app(mkCmakeFile, "jemalloc", nix.thunk(() => ({
-          [nix.POS]: pos$37,
-          pkgConfig: nix.thunk(() => ({ [nix.POS]: pos$35, varName: "JEMALLOC", modules: "jemalloc" })),
+          [nix.POS]: $pos[36],
+          pkgConfig: nix.thunk(() => ({ [nix.POS]: $pos[34], varName: "JEMALLOC", modules: "jemalloc" })),
           libraries: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$36,
+              [nix.POS]: $pos[35],
               name: "jemalloc",
               linkLibs: "PkgConfig::JEMALLOC",
               compileDefs: "ENABLE_JEMALLOC",
@@ -233,23 +185,23 @@ ${nix.app(mkCmakeFile, "jemalloc", nix.thunk(() => ({
           ]),
         })))}
 ${nix.app(mkCmakeFile, "jsoncons", nix.thunk(() => ({
-          [nix.POS]: pos$39,
-          libraries: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$38, name: "jsoncons" }))]),
+          [nix.POS]: $pos[38],
+          libraries: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[37], name: "jsoncons" }))]),
         })))}
 ${nix.app(mkCmakeFile, "span", nix.thunk(() => ({
-          [nix.POS]: pos$41,
-          libraries: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$40, name: "span-lite" }))]),
+          [nix.POS]: $pos[40],
+          libraries: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[39], name: "span-lite" }))]),
         })))}
 ${nix.app(mkCmakeFile, "trie", nix.thunk(() => ({
-          [nix.POS]: pos$43,
-          libraries: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$42, name: "tsl_hat_trie" }))]),
+          [nix.POS]: $pos[42],
+          libraries: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[41], name: "tsl_hat_trie" }))]),
         })))}
 ${nix.app(mkCmakeFile, "pegtl", nix.thunk(() => ({
-          [nix.POS]: pos$45,
-          libraries: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$44, name: "pegtl" }))]),
+          [nix.POS]: $pos[44],
+          libraries: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[43], name: "pegtl" }))]),
         })))}
-${nix.app(mkCmakeFile, "rangev3", nix.thunk(() => ({ [nix.POS]: pos$46, findPackage: "range-v3" })))}
-${nix.app(mkCmakeFile, "cpptrace", nix.thunk(() => ({ [nix.POS]: pos$47, findPackage: "cpptrace" })))}
+${nix.app(mkCmakeFile, "rangev3", nix.thunk(() => ({ [nix.POS]: $pos[45], findPackage: "range-v3" })))}
+${nix.app(mkCmakeFile, "cpptrace", nix.thunk(() => ({ [nix.POS]: $pos[46], findPackage: "cpptrace" })))}
 
 # Remove static linking flags and git requirement
 substituteInPlace CMakeLists.txt \\
@@ -300,22 +252,22 @@ cmakeFlagsArray+=("-DFETCHCONTENT_SOURCE_DIR_LUAJIT=$TMPDIR/luajit")
       ]),
       installPhase: "runHook preInstall\ninstall -Dm755 kvrocks -t $out/bin\ninstall -Dm755 kvrocks2redis -t $out/bin\ninstall -Dm644 $src/kvrocks.conf -t $out/etc\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$51,
+        [nix.POS]: $pos[50],
         hook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hook.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$48,
+            [nix.POS]: $pos[47],
             kvrocks: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$50,
+          [nix.POS]: $pos[49],
           kvrocks: nix.thunk(() => nix.attr(nixosTests, "kvrocks")),
           hook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hook-test.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$49,
+              [nix.POS]: $pos[48],
               kvrocks: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$52,
+        [nix.POS]: $pos[51],
         description: "Distributed key value NoSQL database that uses RocksDB as storage engine and is compatible with Redis protocol",
         homepage: "https://kvrocks.apache.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/elm-format.nix", [[["url", 27, 5], ["sha256", 28, 5], ["rev", 29, 5], ["fetchSubmodules", 30, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 26, 3], ["isLibrary", 32, 3], ["isExecutable", 33, 3], ["executableHaskellDepends", 34, 3], ["testHaskellDepends", 45, 3], ["doHaddock", 64, 3], ["homepage", 65, 3], ["description", 66, 3], ["license", 67, 3], ["mainProgram", 68, 3]]]);
 const formals$1 = { args: { mkDerivation: false, aeson: false, "ansi-wl-pprint": false, "avh4-lib": false, base: false, bytestring: false, "elm-format-lib": false, "elm-format-test-lib": false, fetchgit: false, hspec: false, lib: false, "optparse-applicative": false, QuickCheck: false, "quickcheck-io": false, relude: false, tasty: false, "tasty-hspec": false, "tasty-hunit": false, "tasty-quickcheck": false, text: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/elm-format.nix", [["url", 27, 5], ["sha256", 28, 5], ["rev", 29, 5], ["fetchSubmodules", 30, 5]]);
-const pos$2 = nix.positions(here + "/elm-format.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 26, 3], ["isLibrary", 32, 3], ["isExecutable", 33, 3], ["executableHaskellDepends", 34, 3], ["testHaskellDepends", 45, 3], ["doHaddock", 64, 3], ["homepage", 65, 3], ["description", 66, 3], ["license", 67, 3], ["mainProgram", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const tasty_quickcheck = nix.arg($, "tasty-quickcheck");
   const text = nix.arg($, "text");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "elm-format",
       version: "0.8.8",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/avh4/elm-format",
           sha256: "13i1wgva6p9zsx1a7sfb3skc0rv187isb920chkhljyh48c12k8l",
           rev: "4c5bfea5f47b38c1fd7ffa431c51c328a3ae5ba6",

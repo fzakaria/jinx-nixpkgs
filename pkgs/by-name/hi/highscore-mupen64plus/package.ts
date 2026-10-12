@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["hardcodeZeroVersion", 42, 5]], [["updateScript", 41, 12]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 33], ["platforms", 50, 32], ["broken", 50, 42]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["passthru", 41, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, libhighscore: false, mupen64plus: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 41, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 33], ["platforms", 50, 32], ["broken", 50, 42]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["passthru", 41, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const mupen64plus = nix.arg($, "mupen64plus");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "highscore-mupen64plus",
       version: "0-unstable-2026-04-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "highscore-emu",
           repo: "mupen64plus-highscore",
           rev: "9654f94da5ab382e4257c26c9a26cbab4fe6b43f",
@@ -38,14 +34,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [libhighscore, mupen64plus]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libhighscore, "meta"));
         const from_1 = nix.thunk(() => nix.sel(mupen64plus, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Port of Mupen64Plus to Highscore",
         homepage: "https://github.com/highscore-emu/mupen64plus-highscore",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 23, 27], ["license", 23, 36], ["description", 25, 5], ["mainProgram", 26, 5], ["longDescription", 27, 5], ["platforms", 36, 5]], [["version", 8, 20], ["src", 8, 28], ["pname", 10, 3], ["postPatch", 12, 3], ["makeFlags", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, kernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 23, 27], ["license", 23, 36], ["description", 25, 5], ["mainProgram", 26, 5], ["longDescription", 27, 5], ["platforms", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 8, 20], ["src", 8, 28], ["pname", 10, 3], ["postPatch", 12, 3], ["makeFlags", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const kernel = nix.arg($, "kernel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(kernel, "version")),
       src: nix.thunk(() => nix.attr(kernel, "src")),
       pname: "freefall",
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kernel, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Free-fall protection for spinning HP/Dell laptop hard drives",

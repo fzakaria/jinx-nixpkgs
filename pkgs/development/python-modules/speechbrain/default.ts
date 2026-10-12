@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 54, 3], ["doCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "huggingface-hub": false, hyperpyyaml: false, joblib: false, numpy: false, packaging: false, requests: false, scipy: false, sentencepiece: false, soundfile: false, torch: false, torchaudio: false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 54, 3], ["doCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const torchaudio = nix.arg($, "torchaudio");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "speechbrain",
       version: "1.1.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "speechbrain",
           repo: "speechbrain",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["speechbrain"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PyTorch-based Speech Toolkit",
         homepage: "https://speechbrain.github.io",
         changelog: nix.thunk(() => nix.str`https://github.com/speechbrain/speechbrain/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

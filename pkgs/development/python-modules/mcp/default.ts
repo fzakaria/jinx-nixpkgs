@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["cli", 87, 5], ["rich", 91, 5], ["ws", 94, 5]], [["changelog", 161, 5], ["description", 162, 5], ["homepage", 163, 5], ["license", 164, 5], ["maintainers", 165, 5]], [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["__structuredAttrs", 47, 3], ["src", 49, 3], ["postPatch", 58, 3], ["build-system", 63, 3], ["pythonRelaxDeps", 68, 3], ["dependencies", 72, 3], ["optional-dependencies", 86, 3], ["pythonImportsCheck", 99, 3], ["nativeCheckInputs", 101, 3], ["pytestFlags", 112, 3], ["disabledTests", 116, 3], ["__darwinAllowLocalNetworking", 158, 3], ["meta", 160, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "uv-dynamic-versioning": false, anyio: false, httpx: false, "httpx-sse": false, jsonschema: false, pydantic: false, "pydantic-settings": false, pyjwt: false, "python-multipart": false, "sse-starlette": false, starlette: false, uvicorn: false, "python-dotenv": false, typer: false, rich: false, websockets: false, "dirty-equals": false, "inline-snapshot": false, "pytest-asyncio": false, "pytest-examples": false, "pytest-xdist": false, pytestCheckHook: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cli", 87, 5], ["rich", 91, 5], ["ws", 94, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 161, 5], ["description", 162, 5], ["homepage", 163, 5], ["license", 164, 5], ["maintainers", 165, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["__structuredAttrs", 47, 3], ["src", 49, 3], ["postPatch", 58, 3], ["build-system", 63, 3], ["pythonRelaxDeps", 68, 3], ["dependencies", 72, 3], ["optional-dependencies", 86, 3], ["pythonImportsCheck", 99, 3], ["nativeCheckInputs", 101, 3], ["pytestFlags", 112, 3], ["disabledTests", 116, 3], ["__darwinAllowLocalNetworking", 158, 3], ["meta", 160, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mcp",
       version: "1.29.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "modelcontextprotocol",
           repo: "python-sdk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
         uvicorn,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cli: nix.thunk(() => [python_dotenv, typer]),
         rich: nix.thunk(() => [rich]),
         ws: nix.thunk(() => [websockets]),
@@ -102,7 +99,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/modelcontextprotocol/python-sdk/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Official Python SDK for Model Context Protocol servers and clients",
         homepage: "https://github.com/modelcontextprotocol/python-sdk",

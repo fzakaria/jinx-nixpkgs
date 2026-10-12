@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 46, 5], ["hash", 47, 5]], [["NIX_CFLAGS_COMPILE", 104, 7]], [["packageName", 108, 7]], [["updateScript", 107, 5]], [["homepage", 113, 5], ["changelog", 114, 5], ["description", 115, 5], ["mainProgram", 116, 5], ["maintainers", 117, 5], ["license", 118, 5], ["platforms", 119, 5]], [["pname", 36, 3], ["version", 37, 3], ["outputs", 39, 3], ["src", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 67, 3], ["propagatedBuildInputs", 82, 3], ["preFixup", 89, 3], ["env", 104, 3], ["passthru", 106, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gettext: false, fetchurl: false, wrapGAppsHook3: false, "gnome-video-effects": false, "libcanberra-gtk3": false, "pkg-config": false, gtk3: false, glib: false, "clutter-gtk": false, "clutter-gst": false, gst_all_1: false, itstool: false, vala: false, docbook_xml_dtd_43: false, "docbook-xsl-nons": false, "appstream-glib": false, libxslt: false, "gtk-doc": false, "adwaita-icon-theme": false, librsvg: false, totem: false, "gdk-pixbuf": false, gnome: false, "gnome-desktop": false, libxml2: false, meson: false, ninja: false, dbus: false, pipewire: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 104, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 108, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 107, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 113, 5], ["changelog", 114, 5], ["description", 115, 5], ["mainProgram", 116, 5], ["maintainers", 117, 5], ["license", 118, 5], ["platforms", 119, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["outputs", 39, 3], ["src", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 67, 3], ["propagatedBuildInputs", 82, 3], ["preFixup", 89, 3], ["env", 104, 3], ["passthru", 106, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const pipewire = nix.arg($, "pipewire");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cheese",
       version: "44.1",
       outputs: nix.thunk(() => ["out", "man", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/cheese/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/cheese-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-XyGFxMmeVN3yuLr2DIKBmVDlSVLhMuhjmHXz7cv49o4=",
         })))),
@@ -100,15 +95,15 @@ export default nix.lambda((args) => (() => {
 )
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "cheese" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "cheese" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.gnome.org/GNOME/cheese",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/cheese/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Take photos and videos with your webcam, with fun graphical effects",

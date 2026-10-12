@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["tests", 51, 5], ["phpPackage", 52, 5]], [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]], [["pname", 14, 3], ["version", 15, 3], ["patches", 17, 3], ["src", 21, 3], ["vendorHash", 28, 3], ["postInstall", 30, 3], ["passthru", 50, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, dataDir: true, fetchFromGitHub: false, mariadb: false, nixosTests: false, php84: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 51, 5], ["phpPackage", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["patches", 17, 3], ["src", 21, 3], ["vendorHash", 28, 3], ["postInstall", 30, 3], ["passthru", 50, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const php84 = nix.arg($, "php84");
   const php = php84;
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "snipe-it",
       version: "8.7.2",
       patches: nix.thunk(() => [
         nix.path(here, "./0001-Fix-backup-restoration-when-using-a-unix-socket.patch"),
       ]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grokability",
           repo: "snipe-it",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,12 +48,12 @@ chmod +x $snipe_it_out/artisan
 substituteInPlace $snipe_it_out/config/database.php --replace-fail "env('DB_DUMP_PATH', '/usr/local/bin')" "env('DB_DUMP_PATH', '${mariadb}/bin')"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => nix.sel(nixosTests, "snipe-it")),
         phpPackage: php,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free open source IT asset/license management system",
         longDescription: "Snipe-IT was made for IT asset management, to enable IT departments to track\nwho has which laptop, when it was purchased, which software licenses and accessories\nare available, and so on.\nDetails for snipe-it can be found on the official website at https://snipeitapp.com/.\n",
         homepage: "https://snipeitapp.com/",

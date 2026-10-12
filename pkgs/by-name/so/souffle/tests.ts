@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["timeout", 12, 12]], [["name", 11, 15], ["meta", 12, 7], ["buildCommand", 13, 7]], [["name", 23, 5], ["commands", 24, 5]], [["name", 28, 5], ["commands", 29, 5]], [["name", 36, 5], ["commands", 37, 5]], [["interpret", 22, 3], ["compile-in-one-step", 27, 3], ["compile-in-two-steps", 35, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, souffle: false, runCommand: false }, ellipsis: false };
 const formals$2 = { args: { name: false, commands: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["timeout", 12, 12]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["name", 11, 15], ["meta", 12, 7], ["buildCommand", 13, 7]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["name", 23, 5], ["commands", 24, 5]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["name", 28, 5], ["commands", 29, 5]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["name", 36, 5], ["commands", 37, 5]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["interpret", 22, 3], ["compile-in-one-step", 27, 3], ["compile-in-two-steps", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,9 +17,9 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const commands = nix.arg($_1, "commands");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: name,
-        meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 60n })),
         buildCommand: nix.thunk(() => nix.str`echo -e '.decl A(X: number)\\n.output A\\nA(1).' > A.dl
 ${commands}
 [ "$(cat A.csv)" = "1" ]
@@ -33,21 +28,21 @@ touch $out
       })));
   })(), formals$2);
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     interpret: nix.thunk(() => nix.app(simpleTest, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "souffle-test-interpret",
         commands: nix.thunk(() => nix.str`${souffle}/bin/souffle A.dl`),
       })))),
     "compile-in-one-step": nix.thunk(() => nix.app(simpleTest, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "souffle-test-compile-in-one-step",
         commands: nix.thunk(() => nix.str`${souffle}/bin/souffle -o A A.dl
 ./A
 `),
       })))),
     "compile-in-two-steps": nix.thunk(() => nix.app(simpleTest, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "souffle-test-compile-in-two-steps",
         commands: nix.thunk(() => nix.str`${souffle}/bin/souffle -g A.cpp A.dl
 ${souffle}/bin/souffle-compile.py A.cpp -o A

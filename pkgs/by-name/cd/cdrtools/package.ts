@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["NIX_CFLAGS_COMPILE", 26, 7]], [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["maintainers", 70, 5], ["platforms", 71, 5], ["hydraPlatforms", 75, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 21, 3], ["env", 26, 3], ["postPatch", 38, 3], ["dontConfigure", 49, 3], ["makeFlags", 51, 3], ["enableParallelBuilding", 58, 3], ["hardeningDisable", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, m4: false, acl: false, libcap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["maintainers", 70, 5], ["platforms", 71, 5], ["hydraPlatforms", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 21, 3], ["env", 26, 3], ["postPatch", 38, 3], ["dontConfigure", 49, 3], ["makeFlags", 51, 3], ["enableParallelBuilding", 58, 3], ["hardeningDisable", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const acl = nix.arg($, "acl");
   const libcap = nix.arg($, "libcap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cdrtools",
       version: "3.02a09",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/cdrtools/cdrtools-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-qihDj0WO8/MUt58gKdsnZ52uHV/+FWm23ld0JRGRXoE=",
         })))),
       nativeBuildInputs: nix.thunk(() => [m4]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [acl, libcap]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             "-Wno-error=implicit-int",
             "-Wno-error=implicit-function-declaration",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: false,
       hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), "fortify")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://cdrtools.sourceforge.net/private/cdrecord.html",
         description: "Highly portable CD/DVD/BluRay command line recording software",
         license: nix.thunk(() => (() => {

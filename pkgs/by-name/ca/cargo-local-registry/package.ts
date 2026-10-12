@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["updateScript", 46, 12]], [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 57, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["doCheck", 40, 3], ["doInstallCheck", 42, 3], ["nativeInstallCheckInputs", 43, 3], ["versionCheckProgramArg", 44, 3], ["passthru", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, curl: false, "pkg-config": false, libgit2: false, openssl: false, zlib: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 46, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["doCheck", 40, 3], ["doInstallCheck", 42, 3], ["nativeInstallCheckInputs", 43, 3], ["versionCheckProgramArg", 44, 3], ["passthru", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cargo-local-registry",
       version: "0.2.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dhovart",
           repo: "cargo-local-registry",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cargo subcommand to manage local registries",
         mainProgram: "cargo-local-registry",
         homepage: "https://github.com/dhovart/cargo-local-registry",

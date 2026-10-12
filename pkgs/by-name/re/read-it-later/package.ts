@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["pname", 35, 13], ["version", 35, 19], ["src", 35, 27], ["hash", 36, 5]], [["updateScript", 59, 12]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoDeps", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 51, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, rustPlatform: false, meson: false, ninja: false, "pkg-config": false, rustc: false, cargo: false, wrapGAppsHook4: false, "desktop-file-utils": false, libxml2: false, libadwaita: false, openssl: false, libsoup_3: false, webkitgtk_6_0: false, sqlite: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 35, 13], ["version", 35, 19], ["src", 35, 27], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoDeps", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 51, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "read-it-later";
       const version = "0.6.3";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "read-it-later",
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-m4s5oW8JlRogPVriJ+WHhEmf1asmZoC8f5zgPW0Crpc=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -60,11 +56,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [libadwaita, openssl, libsoup_3, webkitgtk_6_0, sqlite]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple Wallabag client with basic features to manage articles",
         homepage: "https://gitlab.gnome.org/World/read-it-later",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/read-it-later/-/releases/${nix.sel(src, "tag")}`),
@@ -77,7 +73,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

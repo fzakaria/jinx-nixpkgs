@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["moduleNames", 82, 9], ["package", 83, 9]], [["cmake-config", 81, 7], ["musl", 85, 7]], [["tests", 80, 5], ["updateScript", 88, 5]], [["description", 92, 5], ["longDescription", 93, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 32, 3], ["cmakeFlags", 38, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 59, 3], ["nativeCheckInputs", 63, 3], ["__darwinAllowLocalNetworking", 67, 3], ["doCheck", 69, 3], ["postFixup", 74, 3], ["passthru", 79, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, gfortran: false, bison: false, flex: false, bzip2: false, xz: false, zlib: false, mpi: false, mpiCheckPhaseHook: false, withPtScotch: true, testers: false, pkgsMusl: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["moduleNames", 82, 9], ["package", 83, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cmake-config", 81, 7], ["musl", 85, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 80, 5], ["updateScript", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 92, 5], ["longDescription", 93, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 32, 3], ["cmakeFlags", 38, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 59, 3], ["nativeCheckInputs", 63, 3], ["__darwinAllowLocalNetworking", 67, 3], ["doCheck", 69, 3], ["postFixup", 74, 3], ["passthru", 79, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pkgsMusl = nix.argOr($, "pkgsMusl", () => ({}));
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "scotch",
       version: "7.0.12",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.inria.fr",
           owner: "scotch",
           repo: "scotch",
@@ -55,11 +50,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postFixup: "mkdir -p $dev/include/scotch\nmv $dev/include/{*metis,metisf}.h $dev/include/scotch\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               moduleNames: nix.thunk(() => ["SCOTCH"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
@@ -68,7 +63,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Graph and mesh/hypergraph partitioning, graph clustering, and sparse matrix ordering",
         longDescription: "Scotch is a software package for graph and mesh/hypergraph partitioning, graph clustering,\nand sparse matrix ordering.\n",
         homepage: "http://www.labri.fr/perso/pelegrin/scotch",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 7], ["repo", 22, 7], ["rev", 23, 7], ["hash", 24, 7]], [["version", 17, 13], ["src", 20, 5], ["vendorHash", 27, 5], ["ldflags", 29, 5], ["tags", 34, 5], ["nativeBuildInputs", 36, 5], ["doCheck", 38, 5]], [["pname", 43, 7], ["subPackages", 45, 7]], [["git", 95, 15]], [["homepage", 99, 7], ["description", 100, 7], ["platforms", 101, 7], ["teams", 102, 7], ["license", 103, 7]], [["pname", 58, 5], ["subPackages", 60, 5], ["dontStrip", 65, 5], ["preConfigure", 67, 5], ["doInstallCheck", 85, 5], ["installCheckPhase", 86, 5], ["outputs", 92, 5], ["passthru", 94, 5], ["meta", 98, 5]]]);
 const formals$1 = { args: { lib: false, callPackage: false, fetchFromGitLab: false, buildGoModule: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 7], ["repo", 22, 7], ["rev", 23, 7], ["hash", 24, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 17, 13], ["src", 20, 5], ["vendorHash", 27, 5], ["ldflags", 29, 5], ["tags", 34, 5], ["nativeBuildInputs", 36, 5], ["doCheck", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 43, 7], ["subPackages", 45, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["git", 95, 15]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 99, 7], ["description", 100, 7], ["platforms", 101, 7], ["teams", 102, 7], ["license", 103, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 58, 5], ["subPackages", 60, 5], ["dontStrip", 65, 5], ["preConfigure", 67, 5], ["doInstallCheck", 85, 5], ["installCheckPhase", 86, 5], ["outputs", 92, 5], ["passthru", 94, 5], ["meta", 98, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,10 +17,10 @@ export default nix.lambda((args) => (() => {
   const gitaly_package = nix.thunk(() => nix.str`gitlab.com/gitlab-org/gitaly/${package_version}`);
   const git = nix.thunk(() => nix.app(callPackage, nix.path(here, "./git.nix"), nix.thunk(() => ({}))));
   const commonOpts = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: version,
     src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "gitlab-org",
         repo: "gitaly",
         rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
     doCheck: false,
   }));
   const auxBins = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => nix.update({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gitaly-aux",
       subPackages: nix.thunk(() => [
         "cmd/gitaly-hooks",
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
     }, commonOpts))));
   return nix.app(buildGoModule, nix.thunk(() => nix.update({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gitaly",
       subPackages: nix.thunk(() => ["cmd/gitaly", "cmd/gitaly-backup"]),
       dontStrip: true,
@@ -77,9 +72,9 @@ HOME=/build PAGER=cat ${git}/bin/git config -l
 runHook postInstallCheck
 `),
       outputs: nix.thunk(() => ["out"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, git: git })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], git: git })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.com/gitlab-org/gitaly",
         description: "Git RPC service for handling all the git calls made by GitLab",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

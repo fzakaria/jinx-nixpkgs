@@ -2,50 +2,41 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/basic.nix", [[["maintainers", 6, 5]], [["useBootLoader", 12, 22]], [["password", 17, 21]], [["alice", 17, 15]], [["enable", 16, 9], ["users", 17, 9], ["extraConfig", 20, 9]], [["timeout", 14, 19], ["grub", 15, 19]], [["loader", 14, 12]], [["virtualisation", 12, 7], ["boot", 14, 7]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 24, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/basic.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/basic.nix", [["useBootLoader", 12, 22]]);
-const pos$3 = nix.positions(here + "/basic.nix", [["password", 17, 21]]);
-const pos$4 = nix.positions(here + "/basic.nix", [["alice", 17, 15]]);
-const pos$5 = nix.positions(here + "/basic.nix", [["enable", 16, 9], ["users", 17, 9], ["extraConfig", 20, 9]]);
-const pos$6 = nix.positions(here + "/basic.nix", [["timeout", 14, 19], ["grub", 15, 19]]);
-const pos$7 = nix.positions(here + "/basic.nix", [["loader", 14, 12]]);
-const pos$8 = nix.positions(here + "/basic.nix", [["virtualisation", 12, 7], ["boot", 14, 7]]);
-const pos$9 = nix.positions(here + "/basic.nix", [["machine", 9, 9]]);
-const pos$10 = nix.positions(here + "/basic.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "grub",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "rnhmjoj"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$8,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, useBootLoader: true })),
+          [nix.POS]: $pos[7],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], useBootLoader: true })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               timeout: null,
               grub: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 enable: true,
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
-                  alice: nix.thunk(() => ({ [nix.POS]: pos$3, password: "supersecret" })),
+                  [nix.POS]: $pos[3],
+                  alice: nix.thunk(() => ({ [nix.POS]: $pos[2], password: "supersecret" })),
                 })),
                 extraConfig: "serial; terminal_output serial",
               })),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["rev-prefix", 25, 5]], [["updateScript", 24, 12]], [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["buildInputs", 22, 3], ["passthru", 24, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, gitUpdater: false, rustPlatform: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 24, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["buildInputs", 22, 3], ["passthru", 24, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cargo-docset",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Robzz",
           repo: "cargo-docset",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-MHSvrZXh9RLuiLEc4IHPvtIKjdRjFhtmumPs4EuJtz0=",
       buildInputs: nix.thunk(() => [sqlite]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cargo subcommand to generate a Dash/Zeal docset for your Rust packages",
         mainProgram: "cargo-docset",
         homepage: "https://github.com/Robzz/cargo-docset",

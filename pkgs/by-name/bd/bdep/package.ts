@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["description", 44, 5], ["mainProgram", 45, 5], ["longDescription", 47, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 23, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 32, 3], ["build2ConfigureFlags", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, build2: false, fetchurl: false, libbpkg: false, libbutl: false, libodb: false, "libodb-sqlite": false, enableShared: true, enableStatic: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["mainProgram", 45, 5], ["longDescription", 47, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 23, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 32, 3], ["build2ConfigureFlags", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const enableStatic = nix.argOr($, "enableStatic", () => !nix.asBool(enableShared));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bdep",
       version: "0.18.0",
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pkg.cppget.org/1/alpha/build2/bdep-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-7pfGiIelaHQydpZqd6KiF7gwCqC9oJspig87BrKz6QU=",
         })))),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`config.bin.lib=${nix.app(nix.sel(build2, "configSharedStatic"), enableShared, enableStatic)}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Build2 project dependency manager",
         mainProgram: "bdep",
         longDescription: "The build2 project dependency manager is used to manage the dependencies\nof a project during development.\n",

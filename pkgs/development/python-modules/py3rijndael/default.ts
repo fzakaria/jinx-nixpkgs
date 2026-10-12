@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["pname", 13, 11], ["version", 13, 17], ["format", 14, 3], ["src", 16, 3], ["nativeCheckInputs", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 11], ["version", 13, 17], ["format", 14, 3], ["src", 16, 3], ["nativeCheckInputs", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const pname = "py3rijndael";
   const version = "0.3.3";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-tmVaPr/zoQVA6u0EnoeI7qOsk9a3GzpqwrACJLvs6ag=",
         })))),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Rijndael algorithm library",
         homepage: "https://github.com/meyt/py3rijndael",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

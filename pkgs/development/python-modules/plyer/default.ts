@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["sha256", 22, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]], [["broken", 86, 5], ["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["teams", 90, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 49, 3], ["build-system", 59, 3], ["propagatedBuildInputs", 63, 3], ["nativeCheckInputs", 65, 3], ["enabledTestPaths", 70, 3], ["disabledTests", 71, 3], ["preCheck", 79, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, keyring: false, pytestCheckHook: false, setuptools: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["broken", 86, 5], ["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["teams", 90, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 49, 3], ["build-system", 59, 3], ["propagatedBuildInputs", 63, 3], ["nativeCheckInputs", 65, 3], ["enabledTestPaths", 70, 3], ["disabledTests", 71, 3], ["preCheck", 79, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kivy",
           repo: "plyer",
           tag: version,
@@ -35,25 +29,25 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-plyer-Use-unittest-mock.patch",
             url: "https://github.com/kivy/plyer/commit/c9e73f395e2b51d46ada68119abfae2973591c00.patch",
             hash: "sha256-rWak2GOGnsw+GhEtdob9h1c39aa6Z1yU7vH9kdGjHO0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "0002-plyer-Remove-whitespace-error-during-self.assertEqual-function-call.patch",
             url: "https://github.com/kivy/plyer/commit/8393c61dfd3a7aa0362d3bf530ba9ca052878c1a.patch",
             hash: "sha256-omjpQJQ+vZ6T12vL6LvKOuRSihiHfLdEZ1pDat8VuiM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "0003-plyer-Replace obj.__doc__-with-getdoc-obj-to-automatically-remove-new-lines.patch",
             url: "https://github.com/kivy/plyer/commit/675750f31e9f98cd5de2df732afe34648f343d3e.patch",
             hash: "sha256-Lb7MbbcIjwbfnR8U6t9j0c+bqU7kK3/xEt13pSF8G6M=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "0004-plyer-Remove-newline-and-indentation-comparisons-during-self.assertEqual-function-call.patch",
             url: "https://github.com/kivy/plyer/commit/31e96f689771cd43f0a925463a59fcbc49f58e46.patch",
             hash: "sha256-ZYYftI4w+21Q6oKm1wku7NJg3xfkIpkjN+PvZY0YjyY=",
@@ -68,7 +62,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "mkdir -p $HOME/.config/ $HOME/Pictures\n";
       const pythonImportsCheck = nix.thunk(() => ["plyer"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Plyer is a platform-independent api to use features commonly found on various platforms",
         homepage: "https://github.com/kivy/plyer",
@@ -76,7 +70,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

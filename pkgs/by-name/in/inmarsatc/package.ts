@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["extraArgs", 25, 5]], [["updateScript", 24, 12]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["passthru", 24, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 24, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["passthru", 24, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "inmarsatc",
       version: "0-unstable-2023-07-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cropinghigh",
           repo: "inmarsatc",
           rev: "cda1242e79981d71cd8608e971c8dbc691942b10",
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [cmake]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C++ library with functions to receive Inmarsat-C signals",
         homepage: "https://github.com/cropinghigh/inmarsatc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

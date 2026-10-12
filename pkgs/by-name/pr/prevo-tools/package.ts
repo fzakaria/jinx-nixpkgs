@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["url", 28, 7], ["hash", 29, 7]], [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5], ["platforms", 63, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["postInstall", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, "pkg-config": false, glib: false, expat: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5], ["platforms", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["postInstall", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const expat = nix.arg($, "expat");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "prevo-tools",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bpeel",
           repo: "prevodb",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/bpeel/prevodb/commit/38474b47d0ab8ef5451997b87493f0677b8b8358.patch",
             hash: "sha256-mGHwnN4TT3jiandaN+6uNttKMg0OjV9yKLSuVn3F0CA=",
           })))),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, expat]),
       postInstall: "installShellCompletion --bash src/prevo-completion\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI tools for the offline version of the Esperanto dictionary Reta Vortaro",
         longDescription: "PReVo is the \"portable\" ReVo, i.e., the offline version\nof the Esperanto dictionary Reta Vortaro.\n\nThis package provides the command line application prevo to query a local\nReVo database, as well as the command line tool revodb to create such a\ndatabase for this application or for the Android app of the same name.\n",
         homepage: "https://github.com/bpeel/prevodb",

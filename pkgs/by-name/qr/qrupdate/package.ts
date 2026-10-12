@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cmakeFlags", 24, 3], ["postPatch", 46, 3], ["doCheck", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 64, 3], ["nativeCheckInputs", 69, 3], ["disabledTests", 73, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, lapack: false, which: false, gfortran: false, blas: false, ctestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cmakeFlags", 24, 3], ["postPatch", 46, 3], ["doCheck", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 64, 3], ["nativeCheckInputs", 69, 3], ["disabledTests", 73, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const blas = nix.arg($, "blas");
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "qrupdate",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mpimd-csc",
           repo: "qrupdate-ng",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [ctestCheckHook]),
       disabledTests: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => ["test_tchshx"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), nix.thunk(() => ["test_tch1dn"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for fast updating of qr and cholesky decompositions",
         homepage: "https://github.com/mpimd-csc/qrupdate-ng",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cases", 20, 9], ["out", 24, 17]], [["hash", 39, 19]], [["hash", 40, 19]], [["0.1.0", 39, 11], ["0.1.1", 40, 11]], [["description", 57, 5], ["maintainers", 58, 5], ["license", 59, 5]], [["pname", 11, 3], ["repo", 12, 3], ["owner", 13, 3], ["domain", 14, 3], ["version", 16, 11], ["defaultVersion", 17, 3], ["release", 39, 3], ["releaseRev", 42, 3], ["propagatedBuildInputs", 44, 3], ["postPatch", 49, 3], ["mlPlugin", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, which: false, coq: false, metacoq: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cases", 20, 9], ["out", 24, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 39, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 40, 19]]);
-const pos$4 = nix.positions(here + "/default.nix", [["0.1.0", 39, 11], ["0.1.1", 40, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 57, 5], ["maintainers", 58, 5], ["license", 59, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["repo", 12, 3], ["owner", 13, 3], ["domain", 14, 3], ["version", 16, 11], ["defaultVersion", 17, 3], ["release", 39, 3], ["releaseRev", 42, 3], ["propagatedBuildInputs", 44, 3], ["postPatch", 49, 3], ["mlPlugin", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const metacoq = nix.arg($, "metacoq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "RustExtraction",
       repo: "coq-rust-extraction",
       owner: "AU-COBRA",
       domain: "github.com",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
+        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: $pos[0], cases: nix.thunk(() => [coq_1, mc]), out: out });
         const from = nix.thunk(() => nix.sel(lib, "versions"));
         const range = nix.thunk(() => nix.attr(from, "range"));
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
@@ -38,13 +33,13 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "0.1.0": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256:+Of/DP2Vjsa7ASKswjlvqqhcmDhC9WrozridedNZQkY=",
         })),
         "0.1.1": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256:CPZ5J9knJ1aYoQ7RQN8YFSpxqJXjgQaxIA4F8G6X4tM=",
         })),
       })),
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs ./process_extraction.sh\npatchShebangs ./tests/process-extraction-examples.sh\n",
       mlPlugin: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Framework for extracting Coq programs to Rust",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["urwid", 40, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 25, 3], ["build-system", 30, 3], ["dependencies", 34, 3], ["optional-dependencies", 39, 3], ["pythonRelaxDeps", 43, 3], ["nativeCheckInputs", 45, 3], ["disabledTestPaths", 50, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pillow: false, requests: false, urwid: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["urwid", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 25, 3], ["build-system", 30, 3], ["dependencies", 34, 3], ["optional-dependencies", 39, 3], ["pythonRelaxDeps", 43, 3], ["nativeCheckInputs", 45, 3], ["disabledTestPaths", 50, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AnonymouX47",
           repo: "term-image",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,13 +29,13 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace pyproject.toml \\\n  --replace-fail '\"error\"' '#\"error\"'\n";
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [requests, pillow]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, urwid: nix.thunk(() => [urwid]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], urwid: nix.thunk(() => [urwid]) }));
       const pythonRelaxDeps = nix.thunk(() => ["pillow"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "urwid")));
       const disabledTestPaths = nix.thunk(() => ["tests/test_image/test_url.py"]);
       const pythonImportsCheck = nix.thunk(() => ["term_image"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Display images in the terminal with python",
         homepage: "https://github.com/AnonymouX47/term-image",
         changelog: nix.thunk(() => nix.str`https://github.com/AnonymouX47/term-image/releases/tag/v${version}`),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

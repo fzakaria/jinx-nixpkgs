@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 19, 13], ["pname", 20, 5], ["hash", 21, 5]], [["sage", 36, 13]], [["tests", 35, 12]], [["description", 40, 5], ["homepage", 41, 5], ["teams", 42, 5], ["license", 43, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["build-system", 26, 3], ["propagatedBuildInputs", 31, 3], ["pythonImportsCheck", 33, 3], ["passthru", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, "pkg-config": false, "meson-python": false, cython: false, sage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 19, 13], ["pname", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sage", 36, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 35, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["teams", 42, 5], ["license", 43, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["build-system", 26, 3], ["propagatedBuildInputs", 31, 3], ["pythonImportsCheck", 33, 3], ["passthru", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "memory_allocator",
           hash: "sha256-Z108kQGduYyXRB3nPVxkiCHlroE/P1TNCYY9R0tI/iY=",
@@ -32,16 +28,19 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [meson_python, cython]);
       const propagatedBuildInputs = nix.thunk(() => [cython]);
       const pythonImportsCheck = nix.thunk(() => ["memory_allocator"]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) }));
+      const passthru = nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], sage: sage })),
+      }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Extension class to allocate memory easily with cython",
         homepage: "https://github.com/sagemath/memory_allocator/",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

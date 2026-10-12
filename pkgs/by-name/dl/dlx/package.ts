@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["homepage", 35, 5], ["description", 36, 5], ["license", 37, 5], ["platforms", 38, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["preBuild", 16, 3], ["hardeningDisable", 24, 3], ["installPhase", 26, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 35, 5], ["description", 36, 5], ["license", 37, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["preBuild", 16, 3], ["hardeningDisable", 24, 3], ["installPhase", 26, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dlx",
       version: "0-unstable-2012-07-08",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.davidviner.com/zip/dlx/dlx.zip",
           hash: "sha256-r4FlMbfsGH50V502EfqzRwAqVv4vpdyH3zFlZW2kCBQ=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       installPhase: "mkdir -p $out/include/dlx $out/share/dlx/{examples,doc} $out/bin\nmv masm mon dasm $out/bin/\nmv *.i auto.a $out/include/dlx/\nmv *.a *.m $out/share/dlx/examples/\nmv README.txt MANUAL.TXT $out/share/dlx/doc/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.davidviner.com/dlx.html?name=DLX+Simulator",
         description: "DLX simulator written in C",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

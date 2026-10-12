@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 52, 5], ["longDescription", 53, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["outputs", 30, 3], ["build-system", 35, 3], ["nativeBuildInputs", 39, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, sphinxHook: false, "sphinx-rtd-theme": false, hypothesis: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 5], ["longDescription", 53, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["outputs", 30, 3], ["build-system", 35, 3], ["nativeBuildInputs", 39, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const hypothesis = nix.arg($, "hypothesis");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mutagen",
       version: "1.48.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "quodlibet",
           repo: "mutagen",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [hypothesis, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["mutagen"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python module for handling audio metadata",
         longDescription: "Mutagen is a Python module to handle audio metadata. It supports\nASF, FLAC, MP4, Monkey's Audio, MP3, Musepack, Ogg Opus, Ogg FLAC,\nOgg Speex, Ogg Theora, Ogg Vorbis, True Audio, WavPack, OptimFROG,\nand AIFF audio files. All versions of ID3v2 are supported, and all\nstandard ID3v2.4 frames are parsed. It can read Xing headers to\naccurately calculate the bitrate and length of MP3s. ID3 and APEv2\ntags can be edited regardless of audio format. It can also\nmanipulate Ogg streams on an individual packet/page level.\n",
         homepage: "https://mutagen.readthedocs.io",

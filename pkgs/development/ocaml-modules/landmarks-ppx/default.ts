@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 20, 5], ["longDescription", 21, 5]], [["pname", 8, 3], ["minimalOCamlVersion", 10, 3], ["src", 12, 23], ["version", 12, 27], ["buildInputs", 14, 3], ["propagatedBuildInputs", 15, 3], ["doCheck", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, landmarks: false, ppxlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 20, 5], ["longDescription", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["minimalOCamlVersion", 10, 3], ["src", 12, 23], ["version", 12, 27], ["buildInputs", 14, 3], ["propagatedBuildInputs", 15, 3], ["doCheck", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const landmarks = nix.arg($, "landmarks");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "landmarks-ppx",
       minimalOCamlVersion: "5.3",
       src: nix.thunk(() => nix.attr(landmarks, "src")),
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [landmarks]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(landmarks, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Preprocessor instrumenting code using the landmarks library",
         longDescription: "Automatically or semi-automatically instrument your code using\nlandmarks library.\n",
       })),

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 21, 47]], [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["FORCE_CUDA", 52, 5]], [["TORCH_CUDA_ARCH_LIST", 55, 5]], [["libraries", 65, 39]], [["rotations-cuda", 64, 18]], [["tests", 64, 12]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["build-system", 37, 3], ["dependencies", 43, 3], ["buildInputs", 47, 3], ["env", 51, 3], ["preBuild", 58, 3], ["pythonImportsCheck", 62, 3], ["passthru", 64, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cudaPackages: false, ninja: false, setuptools: false, iopath: false, torch: false, config: false, cudaSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 21, 47]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["FORCE_CUDA", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["TORCH_CUDA_ARCH_LIST", 55, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["libraries", 65, 39]]);
-const pos$6 = nix.positions(here + "/default.nix", [["rotations-cuda", 64, 18]]);
-const pos$7 = nix.positions(here + "/default.nix", [["tests", 64, 12]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["build-system", 37, 3], ["dependencies", 43, 3], ["buildInputs", 47, 3], ["env", 51, 3], ["preBuild", 58, 3], ["pythonImportsCheck", 62, 3], ["passthru", 64, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   nix.assert_((!nix.asBool(cudaSupport) || nix.asBool(nix.sel(torch, "cudaSupport"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/pytorch3d/default.nix:19:1");
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: $pos[8],
       pname: "pytorch3d",
       version: "0.7.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "facebookresearch",
           repo: "pytorch3d",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,24 +34,24 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [ninja, setuptools, torch]),
       dependencies: nix.thunk(() => [iopath, torch]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getOutput"), "cxxdev", torch))]),
-      env: nix.thunk(() => nix.update({ [nix.POS]: pos$3, FORCE_CUDA: cudaSupport }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+      env: nix.thunk(() => nix.update({ [nix.POS]: $pos[2], FORCE_CUDA: cudaSupport }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
+          [nix.POS]: $pos[3],
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.sel(torch, "cudaCapabilities")))}`),
         }))))),
       preBuild: "export MAX_JOBS=$NIX_BUILD_CORES\n",
       pythonImportsCheck: nix.thunk(() => ["pytorch3d"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "rotations-cuda": nix.thunk(() => nix.app(nix.sel(cudaPackages, "writeGpuTestPython"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               libraries: (ps) => [nix.thunk(() => nix.sel(ps, "pytorch3d"))],
             })), "import pytorch3d.transforms as p3dt\n\nM = p3dt.random_rotations(n=10, device=\"cuda\")\nassert \"cuda\" in M.device.type\nangles = p3dt.matrix_to_euler_angles(M, \"XYZ\")\nassert \"cuda\" in angles.device.type\nassert angles.shape == (10, 3), angles.shape\nprint(angles)\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "FAIR's library of reusable components for deep learning with 3D data",
         homepage: "https://github.com/facebookresearch/pytorch3d",
         changelog: nix.thunk(() => nix.str`https://github.com/facebookresearch/pytorch3d/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

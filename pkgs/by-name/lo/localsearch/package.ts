@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 54, 5], ["hash", 55, 5]], [["packageName", 131, 41]], [["updateScript", 131, 5]], [["homepage", 135, 5], ["description", 136, 5], ["teams", 137, 5], ["license", 138, 5], ["platforms", 139, 5], ["mainProgram", 140, 5]], [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["patches", 58, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 82, 3], ["mesonFlags", 116, 3], ["postInstall", 126, 3], ["passthru", 130, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, asciidoc: false, "docbook-xsl-nons": false, docbook_xml_dtd_45: false, gettext: false, itstool: false, libxslt: false, gexiv2_0_16: false, tinysparql: false, meson: false, mesonEmulatorHook: false, ninja: false, "pkg-config": false, vala: false, wrapGAppsNoGuiHook: false, bzip2: false, dbus: false, exempi: false, ffmpeg: false, giflib: false, glib: false, "gobject-introspection": false, gnome: false, icu: false, "json-glib": false, libcue: false, libgsf: false, libgxps: false, libjpeg: false, libosinfo: false, libpng: false, libseccomp: false, libtiff: false, libuuid: false, libwebp: false, libxml2: false, libzip: false, poppler: false, systemd: false, taglib: false, upower: false, "totem-pl-parser": false, e2fsprogs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 131, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 131, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 135, 5], ["description", 136, 5], ["teams", 137, 5], ["license", 138, 5], ["platforms", 139, 5], ["mainProgram", 140, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["patches", 58, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 82, 3], ["mesonFlags", 116, 3], ["postInstall", 126, 3], ["passthru", 130, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,11 +53,11 @@ export default nix.lambda((args) => (() => {
   const totem_pl_parser = nix.arg($, "totem-pl-parser");
   const e2fsprogs = nix.arg($, "e2fsprogs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "localsearch",
       version: "3.11.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/localsearch/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/localsearch-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ezmmwoqKzysXLxWy+17nx6N2TER8L0oUyqI5t+vmGUI=",
         })))),
@@ -113,11 +109,11 @@ export default nix.lambda((args) => (() => {
         ])))),
       postInstall: "glib-compile-schemas \"$out/share/glib-2.0/schemas\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "localsearch" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "localsearch" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/localsearch",
         description: "Desktop-neutral user information store, search tool and indexer",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),

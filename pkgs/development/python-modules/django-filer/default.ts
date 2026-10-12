@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["heif", 38, 5]], [["changelog", 53, 5], ["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["optional-dependencies", 37, 3], ["checkInputs", 41, 3], ["checkPhase", 46, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, django: false, pytestCheckHook: false, "django-polymorphic": false, setuptools: false, python: false, "easy-thumbnails": false, "pillow-heif": false, "django-app-helper": false, distutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["heif", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 53, 5], ["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["optional-dependencies", 37, 3], ["checkInputs", 41, 3], ["checkPhase", 46, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "django-cms",
           repo: "django-filer",
           tag: version,
@@ -35,14 +32,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => nix.concat([django, django_polymorphic, easy_thumbnails], nix.sel(easy_thumbnails, "optional-dependencies", "svg")));
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, heif: nix.thunk(() => [pillow_heif]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], heif: nix.thunk(() => [pillow_heif]) }));
       const checkInputs = nix.thunk(() => [distutils, django_app_helper]);
       const checkPhase = nix.thunk(() => nix.str`runHook preCheck
 ${nix.sel(python, "interpreter")} tests/settings.py
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/django-cms/django-filer/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
         description: "File management application for Django",
         homepage: "https://github.com/django-cms/django-filer",
@@ -50,7 +47,7 @@ runHook postCheck
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

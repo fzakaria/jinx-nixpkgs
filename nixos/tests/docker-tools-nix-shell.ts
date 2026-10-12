@@ -2,14 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/docker-tools-nix-shell.nix", [[["maintainers", 9, 5]], [["enable", 21, 18]], [["diskSize", 20, 11], ["docker", 21, 11]], [["virtualisation", 19, 9]], [["docker", 16, 5]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 15, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/docker-tools-nix-shell.nix", [["maintainers", 9, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/docker-tools-nix-shell.nix", [["enable", 21, 18]]);
-const pos$3 = nix.positions(here + "/docker-tools-nix-shell.nix", [["diskSize", 20, 11], ["docker", 21, 11]]);
-const pos$4 = nix.positions(here + "/docker-tools-nix-shell.nix", [["virtualisation", 19, 9]]);
-const pos$5 = nix.positions(here + "/docker-tools-nix-shell.nix", [["docker", 16, 5]]);
-const pos$6 = nix.positions(here + "/docker-tools-nix-shell.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 15, 3], ["testScript", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(config, "node", "pkgs", "dockerTools"));
   const examples = nix.thunk(() => nix.attr(from, "examples"));
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "docker-tools-nix-shell",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "infinisil")),
           nix.thunk(() => nix.lookup(w, "roberth")),
@@ -31,15 +26,15 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       docker: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             diskSize: 8000n,
-            docker: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            docker: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
         };
       })(), formals$2),

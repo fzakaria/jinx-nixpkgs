@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["tag", 12, 5], ["hash", 13, 5]], [["homepage", 19, 5], ["description", 20, 5], ["license", 21, 5], ["maintainers", 22, 5], ["mainProgram", 23, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["makeFlags", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, fetchgit: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["tag", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 19, 5], ["description", 20, 5], ["license", 21, 5], ["maintainers", 22, 5], ["mainProgram", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["makeFlags", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "webdump",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.codemadness.org/webdump",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-XaqnFaCfTlzTkuMXrt1sQRCnO29yD1aCj/owmVAqDXU=",
         })))),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.codemadness.org/git/webdump",
         description: "HTML to plain-text converter for webpages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -2,43 +2,37 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/netboot-minimal.nix", [[["enable", 11, 21]], [["man", 11, 17]], [["enableRedistributableFirmware", 12, 12]], [["extraDependencies", 13, 10]], [["enable", 14, 29]], [["networkmanager", 14, 14]], [["imports", 6, 3], ["documentation", 11, 3], ["hardware", 12, 3], ["system", 13, 3], ["networking", 14, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/netboot-minimal.nix", [["enable", 11, 21]]);
-const pos$2 = nix.positions(here + "/netboot-minimal.nix", [["man", 11, 17]]);
-const pos$3 = nix.positions(here + "/netboot-minimal.nix", [["enableRedistributableFirmware", 12, 12]]);
-const pos$4 = nix.positions(here + "/netboot-minimal.nix", [["extraDependencies", 13, 10]]);
-const pos$5 = nix.positions(here + "/netboot-minimal.nix", [["enable", 14, 29]]);
-const pos$6 = nix.positions(here + "/netboot-minimal.nix", [["networkmanager", 14, 14]]);
-const pos$7 = nix.positions(here + "/netboot-minimal.nix", [["imports", 6, 3], ["documentation", 11, 3], ["hardware", 12, 3], ["system", 13, 3], ["networking", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     imports: nix.thunk(() => [
       nix.path(here, "./netboot-base.nix"),
       nix.path(here, "../../profiles/minimal.nix"),
     ]),
     documentation: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       man: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 500n, true)),
       })),
     })),
     hardware: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       enableRedistributableFirmware: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 70n, false)),
     })),
     system: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       extraDependencies: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 70n, [])),
     })),
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       networkmanager: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 500n, false)),
       })),
     })),

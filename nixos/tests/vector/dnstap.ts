@@ -2,75 +2,12 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dnstap.nix", [[["maintainers", 8, 8]], [["allowedTCPPorts", 14, 29]], [["firewall", 14, 20]], [["type", 22, 17], ["address", 23, 17]], [["vector_dnstap_source", 21, 15]], [["type", 29, 17], ["inputs", 30, 17], ["endpoint", 33, 17], ["database", 34, 17], ["table", 35, 17], ["date_time_best_effort", 36, 17]], [["clickhouse", 28, 15]], [["sources", 20, 13], ["sinks", 27, 13]], [["enable", 17, 11], ["settings", 19, 11]], [["enable", 42, 29]], [["vector", 16, 18], ["clickhouse", 42, 18]], [["networking", 14, 9], ["services", 16, 9]], [["name", 67, 11], ["paths", 68, 11]], [["allowedUDPPorts", 74, 29]], [["firewall", 74, 20]], [["type", 82, 17], ["multithreaded", 83, 17], ["mode", 84, 17], ["lowercase_hostnames", 85, 17], ["socket_file_mode", 86, 17], ["socket_path", 87, 17]], [["dnstap", 81, 15]], [["type", 93, 17], ["inputs", 94, 17], ["address", 95, 17]], [["vector_dnstap_sink", 92, 15]], [["sources", 80, 13], ["sinks", 91, 13]], [["enable", 77, 11], ["settings", 79, 11]], [["listen", 110, 15], ["automatic-acl", 114, 15]], [["storage", 117, 15], ["dnssec-signing", 118, 15], ["zonefile-sync", 122, 15], ["zonefile-load", 123, 15], ["journal-content", 124, 15], ["global-module", 125, 15]], [["default", 116, 22]], [["file", 128, 29]], [["example.com", 128, 15]], [["id", 133, 17], ["sink", 134, 17]], [["server", 109, 13], ["template", 116, 13], ["zone", 127, 13], ["mod-dnstap", 131, 13]], [["enable", 107, 11], ["settings", 108, 11]], [["vector", 76, 18], ["knot", 106, 18]], [["RuntimeDirectory", 102, 11], ["RuntimeDirectoryMode", 103, 11]], [["serviceConfig", 101, 33]], [["ReadWritePaths", 145, 13], ["SupplementaryGroups", 146, 13]], [["after", 141, 11], ["wants", 142, 11], ["serviceConfig", 143, 11]], [["vector", 101, 26], ["knot", 140, 26]], [["services", 101, 17]], [["networking", 74, 9], ["services", 76, 9], ["systemd", 101, 9]], [["allowedUDPPorts", 159, 29]], [["firewall", 159, 20]], [["type", 167, 17], ["multithreaded", 168, 17], ["mode", 169, 17], ["lowercase_hostnames", 170, 17], ["socket_file_mode", 171, 17], ["socket_path", 172, 17]], [["dnstap", 166, 15]], [["codec", 182, 19]], [["type", 178, 17], ["inputs", 179, 17], ["path", 180, 17], ["encoding", 181, 17]], [["type", 187, 17], ["inputs", 188, 17], ["address", 189, 17]], [["file", 177, 15], ["vector_dnstap_sink", 186, 15]], [["sources", 165, 13], ["sinks", 176, 13]], [["enable", 162, 11], ["settings", 164, 11]], [["interface", 206, 15], ["access-control", 210, 15], ["domain-insecure", 215, 15], ["private-domain", 216, 15], ["local-zone", 218, 15], ["local-data", 219, 15]], [["name", 226, 17], ["forward-addr", 227, 17]], [["dnstap-enable", 235, 15], ["dnstap-socket-path", 236, 15], ["dnstap-send-identity", 237, 15], ["dnstap-send-version", 238, 15], ["dnstap-log-client-query-messages", 239, 15], ["dnstap-log-client-response-messages", 240, 15]], [["server", 205, 13], ["forward-zone", 224, 13], ["dnstap", 234, 13]], [["enable", 201, 11], ["enableRootTrustAnchor", 202, 11], ["package", 203, 11], ["settings", 204, 11]], [["vector", 161, 18], ["unbound", 200, 18]], [["RuntimeDirectory", 196, 11], ["RuntimeDirectoryMode", 197, 11]], [["serviceConfig", 195, 33]], [["ReadWritePaths", 250, 13], ["SupplementaryGroups", 251, 13]], [["after", 246, 11], ["wants", 247, 11], ["serviceConfig", 248, 11]], [["vector", 195, 26], ["unbound", 245, 26]], [["services", 195, 17]], [["networking", 159, 9], ["services", 161, 9], ["systemd", 195, 9]], [["systemPackages", 259, 21]], [["environment", 259, 9]], [["clickhouse", 11, 5], ["knot", 45, 5], ["unbound", 151, 5], ["dnsclient", 256, 5]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 263, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/dnstap.nix", [["maintainers", 8, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/dnstap.nix", [["allowedTCPPorts", 14, 29]]);
-const pos$3 = nix.positions(here + "/dnstap.nix", [["firewall", 14, 20]]);
-const pos$4 = nix.positions(here + "/dnstap.nix", [["type", 22, 17], ["address", 23, 17]]);
-const pos$5 = nix.positions(here + "/dnstap.nix", [["vector_dnstap_source", 21, 15]]);
-const pos$6 = nix.positions(here + "/dnstap.nix", [["type", 29, 17], ["inputs", 30, 17], ["endpoint", 33, 17], ["database", 34, 17], ["table", 35, 17], ["date_time_best_effort", 36, 17]]);
-const pos$7 = nix.positions(here + "/dnstap.nix", [["clickhouse", 28, 15]]);
-const pos$8 = nix.positions(here + "/dnstap.nix", [["sources", 20, 13], ["sinks", 27, 13]]);
-const pos$9 = nix.positions(here + "/dnstap.nix", [["enable", 17, 11], ["settings", 19, 11]]);
-const pos$10 = nix.positions(here + "/dnstap.nix", [["enable", 42, 29]]);
-const pos$11 = nix.positions(here + "/dnstap.nix", [["vector", 16, 18], ["clickhouse", 42, 18]]);
-const pos$12 = nix.positions(here + "/dnstap.nix", [["networking", 14, 9], ["services", 16, 9]]);
 const formals$3 = { args: { config: false, nodes: false, pkgs: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/dnstap.nix", [["name", 67, 11], ["paths", 68, 11]]);
-const pos$14 = nix.positions(here + "/dnstap.nix", [["allowedUDPPorts", 74, 29]]);
-const pos$15 = nix.positions(here + "/dnstap.nix", [["firewall", 74, 20]]);
-const pos$16 = nix.positions(here + "/dnstap.nix", [["type", 82, 17], ["multithreaded", 83, 17], ["mode", 84, 17], ["lowercase_hostnames", 85, 17], ["socket_file_mode", 86, 17], ["socket_path", 87, 17]]);
-const pos$17 = nix.positions(here + "/dnstap.nix", [["dnstap", 81, 15]]);
-const pos$18 = nix.positions(here + "/dnstap.nix", [["type", 93, 17], ["inputs", 94, 17], ["address", 95, 17]]);
-const pos$19 = nix.positions(here + "/dnstap.nix", [["vector_dnstap_sink", 92, 15]]);
-const pos$20 = nix.positions(here + "/dnstap.nix", [["sources", 80, 13], ["sinks", 91, 13]]);
-const pos$21 = nix.positions(here + "/dnstap.nix", [["enable", 77, 11], ["settings", 79, 11]]);
-const pos$22 = nix.positions(here + "/dnstap.nix", [["listen", 110, 15], ["automatic-acl", 114, 15]]);
-const pos$23 = nix.positions(here + "/dnstap.nix", [["storage", 117, 15], ["dnssec-signing", 118, 15], ["zonefile-sync", 122, 15], ["zonefile-load", 123, 15], ["journal-content", 124, 15], ["global-module", 125, 15]]);
-const pos$24 = nix.positions(here + "/dnstap.nix", [["default", 116, 22]]);
-const pos$25 = nix.positions(here + "/dnstap.nix", [["file", 128, 29]]);
-const pos$26 = nix.positions(here + "/dnstap.nix", [["example.com", 128, 15]]);
-const pos$27 = nix.positions(here + "/dnstap.nix", [["id", 133, 17], ["sink", 134, 17]]);
-const pos$28 = nix.positions(here + "/dnstap.nix", [["server", 109, 13], ["template", 116, 13], ["zone", 127, 13], ["mod-dnstap", 131, 13]]);
-const pos$29 = nix.positions(here + "/dnstap.nix", [["enable", 107, 11], ["settings", 108, 11]]);
-const pos$30 = nix.positions(here + "/dnstap.nix", [["vector", 76, 18], ["knot", 106, 18]]);
-const pos$31 = nix.positions(here + "/dnstap.nix", [["RuntimeDirectory", 102, 11], ["RuntimeDirectoryMode", 103, 11]]);
-const pos$32 = nix.positions(here + "/dnstap.nix", [["serviceConfig", 101, 33]]);
-const pos$33 = nix.positions(here + "/dnstap.nix", [["ReadWritePaths", 145, 13], ["SupplementaryGroups", 146, 13]]);
-const pos$34 = nix.positions(here + "/dnstap.nix", [["after", 141, 11], ["wants", 142, 11], ["serviceConfig", 143, 11]]);
-const pos$35 = nix.positions(here + "/dnstap.nix", [["vector", 101, 26], ["knot", 140, 26]]);
-const pos$36 = nix.positions(here + "/dnstap.nix", [["services", 101, 17]]);
-const pos$37 = nix.positions(here + "/dnstap.nix", [["networking", 74, 9], ["services", 76, 9], ["systemd", 101, 9]]);
 const formals$4 = { args: { config: false, nodes: false, pkgs: false }, ellipsis: true };
-const pos$38 = nix.positions(here + "/dnstap.nix", [["allowedUDPPorts", 159, 29]]);
-const pos$39 = nix.positions(here + "/dnstap.nix", [["firewall", 159, 20]]);
-const pos$40 = nix.positions(here + "/dnstap.nix", [["type", 167, 17], ["multithreaded", 168, 17], ["mode", 169, 17], ["lowercase_hostnames", 170, 17], ["socket_file_mode", 171, 17], ["socket_path", 172, 17]]);
-const pos$41 = nix.positions(here + "/dnstap.nix", [["dnstap", 166, 15]]);
-const pos$42 = nix.positions(here + "/dnstap.nix", [["codec", 182, 19]]);
-const pos$43 = nix.positions(here + "/dnstap.nix", [["type", 178, 17], ["inputs", 179, 17], ["path", 180, 17], ["encoding", 181, 17]]);
-const pos$44 = nix.positions(here + "/dnstap.nix", [["type", 187, 17], ["inputs", 188, 17], ["address", 189, 17]]);
-const pos$45 = nix.positions(here + "/dnstap.nix", [["file", 177, 15], ["vector_dnstap_sink", 186, 15]]);
-const pos$46 = nix.positions(here + "/dnstap.nix", [["sources", 165, 13], ["sinks", 176, 13]]);
-const pos$47 = nix.positions(here + "/dnstap.nix", [["enable", 162, 11], ["settings", 164, 11]]);
-const pos$48 = nix.positions(here + "/dnstap.nix", [["interface", 206, 15], ["access-control", 210, 15], ["domain-insecure", 215, 15], ["private-domain", 216, 15], ["local-zone", 218, 15], ["local-data", 219, 15]]);
-const pos$49 = nix.positions(here + "/dnstap.nix", [["name", 226, 17], ["forward-addr", 227, 17]]);
-const pos$50 = nix.positions(here + "/dnstap.nix", [["dnstap-enable", 235, 15], ["dnstap-socket-path", 236, 15], ["dnstap-send-identity", 237, 15], ["dnstap-send-version", 238, 15], ["dnstap-log-client-query-messages", 239, 15], ["dnstap-log-client-response-messages", 240, 15]]);
-const pos$51 = nix.positions(here + "/dnstap.nix", [["server", 205, 13], ["forward-zone", 224, 13], ["dnstap", 234, 13]]);
-const pos$52 = nix.positions(here + "/dnstap.nix", [["enable", 201, 11], ["enableRootTrustAnchor", 202, 11], ["package", 203, 11], ["settings", 204, 11]]);
-const pos$53 = nix.positions(here + "/dnstap.nix", [["vector", 161, 18], ["unbound", 200, 18]]);
-const pos$54 = nix.positions(here + "/dnstap.nix", [["RuntimeDirectory", 196, 11], ["RuntimeDirectoryMode", 197, 11]]);
-const pos$55 = nix.positions(here + "/dnstap.nix", [["serviceConfig", 195, 33]]);
-const pos$56 = nix.positions(here + "/dnstap.nix", [["ReadWritePaths", 250, 13], ["SupplementaryGroups", 251, 13]]);
-const pos$57 = nix.positions(here + "/dnstap.nix", [["after", 246, 11], ["wants", 247, 11], ["serviceConfig", 248, 11]]);
-const pos$58 = nix.positions(here + "/dnstap.nix", [["vector", 195, 26], ["unbound", 245, 26]]);
-const pos$59 = nix.positions(here + "/dnstap.nix", [["services", 195, 17]]);
-const pos$60 = nix.positions(here + "/dnstap.nix", [["networking", 159, 9], ["services", 161, 9], ["systemd", 195, 9]]);
 const formals$5 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$61 = nix.positions(here + "/dnstap.nix", [["systemPackages", 259, 21]]);
-const pos$62 = nix.positions(here + "/dnstap.nix", [["environment", 259, 9]]);
-const pos$63 = nix.positions(here + "/dnstap.nix", [["clickhouse", 11, 5], ["knot", 45, 5], ["unbound", 151, 5], ["dnsclient", 256, 5]]);
-const pos$64 = nix.positions(here + "/dnstap.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 263, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -78,39 +15,39 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const dnstapSocket = "/var/run/vector/dnstap.sock";
   return {
-    [nix.POS]: pos$64,
+    [nix.POS]: $pos[63],
     name: "vector-dnstap",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "happysalada"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$63,
+      [nix.POS]: $pos[62],
       clickhouse: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [6000n]) })),
+            [nix.POS]: $pos[2],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], allowedTCPPorts: nix.thunk(() => [6000n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             vector: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 sources: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
-                  vector_dnstap_source: nix.thunk(() => ({ [nix.POS]: pos$4, type: "vector", address: "[::]:6000" })),
+                  [nix.POS]: $pos[4],
+                  vector_dnstap_source: nix.thunk(() => ({ [nix.POS]: $pos[3], type: "vector", address: "[::]:6000" })),
                 })),
                 sinks: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   clickhouse: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     type: "clickhouse",
                     inputs: nix.thunk(() => ["vector_dnstap_source"]),
                     endpoint: "http://localhost:8123",
@@ -121,7 +58,7 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
             })),
-            clickhouse: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+            clickhouse: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
           })),
         };
       })(), formals$2),
@@ -131,24 +68,28 @@ export default nix.lambda((args) => (() => {
         const nodes = nix.arg($_1, "nodes");
         const pkgs_1 = nix.arg($_1, "pkgs");
         const exampleZone = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeTextDir"), "example.com.zone", "@ SOA ns.example.com. noc.example.com. 2019031301 86400 7200 3600000 172800\n@       NS      ns1\n@       NS      ns2\nns1     A       192.168.0.1\nns1     AAAA    fd00::1\nns2     A       192.168.0.2\nns2     AAAA    fd00::2\nwww     A       192.0.2.1\nwww     AAAA    2001:DB8::1\nsub     NS      ns.example.com.\n"));
-        const knotZonesEnv = nix.thunk(() => nix.app(nix.sel(pkgs_1, "buildEnv"), nix.thunk(() => ({ [nix.POS]: pos$13, name: "knot-zones", paths: nix.thunk(() => [exampleZone]) }))));
+        const knotZonesEnv = nix.thunk(() => nix.app(nix.sel(pkgs_1, "buildEnv"), nix.thunk(() => ({
+            [nix.POS]: $pos[12],
+            name: "knot-zones",
+            paths: nix.thunk(() => [exampleZone]),
+          }))));
         return {
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$15,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedUDPPorts: nix.thunk(() => [53n]) })),
+            [nix.POS]: $pos[14],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[13], allowedUDPPorts: nix.thunk(() => [53n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             vector: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 sources: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   dnstap: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     type: "dnstap",
                     multithreaded: true,
                     mode: "unix",
@@ -158,9 +99,9 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 sinks: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   vector_dnstap_sink: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
+                    [nix.POS]: $pos[17],
                     type: "vector",
                     inputs: nix.thunk(() => ["dnstap"]),
                     address: "clickhouse:6000",
@@ -169,19 +110,19 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             knot: nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 server: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   listen: nix.thunk(() => ["0.0.0.0@53", "::@53"]),
                   "automatic-acl": true,
                 })),
                 template: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   default: nix.thunk(() => ({
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     storage: knotZonesEnv,
                     "dnssec-signing": false,
                     "zonefile-sync": nix.thunk(() => nix.neg(1n)),
@@ -191,12 +132,12 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 zone: nix.thunk(() => ({
-                  [nix.POS]: pos$26,
-                  "example.com": nix.thunk(() => ({ [nix.POS]: pos$25, file: "example.com.zone" })),
+                  [nix.POS]: $pos[25],
+                  "example.com": nix.thunk(() => ({ [nix.POS]: $pos[24], file: "example.com.zone" })),
                 })),
                 "mod-dnstap": nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$27,
+                    [nix.POS]: $pos[26],
                     id: "capture_all",
                     sink: nix.thunk(() => nix.str`unix:${dnstapSocket}`),
                   })),
@@ -205,19 +146,23 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               vector: nix.thunk(() => ({
-                [nix.POS]: pos$32,
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$31, RuntimeDirectory: "vector", RuntimeDirectoryMode: "0770" })),
+                [nix.POS]: $pos[31],
+                serviceConfig: nix.thunk(() => ({
+                  [nix.POS]: $pos[30],
+                  RuntimeDirectory: "vector",
+                  RuntimeDirectoryMode: "0770",
+                })),
               })),
               knot: nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 after: nix.thunk(() => ["vector.service"]),
                 wants: nix.thunk(() => ["vector.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$33,
+                  [nix.POS]: $pos[32],
                   ReadWritePaths: nix.thunk(() => ["/var/run/vector"]),
                   SupplementaryGroups: nix.thunk(() => ["vector"]),
                 })),
@@ -232,22 +177,22 @@ export default nix.lambda((args) => (() => {
         const nodes = nix.arg($_1, "nodes");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$60,
+          [nix.POS]: $pos[59],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$39,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$38, allowedUDPPorts: nix.thunk(() => [53n]) })),
+            [nix.POS]: $pos[38],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[37], allowedUDPPorts: nix.thunk(() => [53n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$53,
+            [nix.POS]: $pos[52],
             vector: nix.thunk(() => ({
-              [nix.POS]: pos$47,
+              [nix.POS]: $pos[46],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$46,
+                [nix.POS]: $pos[45],
                 sources: nix.thunk(() => ({
-                  [nix.POS]: pos$41,
+                  [nix.POS]: $pos[40],
                   dnstap: nix.thunk(() => ({
-                    [nix.POS]: pos$40,
+                    [nix.POS]: $pos[39],
                     type: "dnstap",
                     multithreaded: true,
                     mode: "unix",
@@ -257,16 +202,16 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 sinks: nix.thunk(() => ({
-                  [nix.POS]: pos$45,
+                  [nix.POS]: $pos[44],
                   file: nix.thunk(() => ({
-                    [nix.POS]: pos$43,
+                    [nix.POS]: $pos[42],
                     type: "file",
                     inputs: nix.thunk(() => ["dnstap"]),
                     path: "/var/lib/vector/logs.log",
-                    encoding: nix.thunk(() => ({ [nix.POS]: pos$42, codec: "json" })),
+                    encoding: nix.thunk(() => ({ [nix.POS]: $pos[41], codec: "json" })),
                   })),
                   vector_dnstap_sink: nix.thunk(() => ({
-                    [nix.POS]: pos$44,
+                    [nix.POS]: $pos[43],
                     type: "vector",
                     inputs: nix.thunk(() => ["dnstap"]),
                     address: "clickhouse:6000",
@@ -275,14 +220,14 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             unbound: nix.thunk(() => ({
-              [nix.POS]: pos$52,
+              [nix.POS]: $pos[51],
               enable: true,
               enableRootTrustAnchor: false,
               package: nix.thunk(() => nix.sel(pkgs_1, "unbound-full")),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$51,
+                [nix.POS]: $pos[50],
                 server: nix.thunk(() => ({
-                  [nix.POS]: pos$48,
+                  [nix.POS]: $pos[47],
                   interface: nix.thunk(() => ["0.0.0.0", "::"]),
                   "access-control": nix.thunk(() => ["192.168.0.0/24 allow", "::/0 allow"]),
                   "domain-insecure": "local",
@@ -292,7 +237,7 @@ export default nix.lambda((args) => (() => {
                 })),
                 "forward-zone": nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$49,
+                    [nix.POS]: $pos[48],
                     name: "example.com.",
                     "forward-addr": nix.thunk(() => [
                       nix.thunk(() => nix.sel(nodes, "knot", "networking", "primaryIPv6Address")),
@@ -301,7 +246,7 @@ export default nix.lambda((args) => (() => {
                   })),
                 ]),
                 dnstap: nix.thunk(() => ({
-                  [nix.POS]: pos$50,
+                  [nix.POS]: $pos[49],
                   "dnstap-enable": "yes",
                   "dnstap-socket-path": nix.thunk(() => nix.str`${dnstapSocket}`),
                   "dnstap-send-identity": "yes",
@@ -313,19 +258,23 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$59,
+            [nix.POS]: $pos[58],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$58,
+              [nix.POS]: $pos[57],
               vector: nix.thunk(() => ({
-                [nix.POS]: pos$55,
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$54, RuntimeDirectory: "vector", RuntimeDirectoryMode: "0770" })),
+                [nix.POS]: $pos[54],
+                serviceConfig: nix.thunk(() => ({
+                  [nix.POS]: $pos[53],
+                  RuntimeDirectory: "vector",
+                  RuntimeDirectoryMode: "0770",
+                })),
               })),
               unbound: nix.thunk(() => ({
-                [nix.POS]: pos$57,
+                [nix.POS]: $pos[56],
                 after: nix.thunk(() => ["vector.service"]),
                 wants: nix.thunk(() => ["vector.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$56,
+                  [nix.POS]: $pos[55],
                   ReadWritePaths: nix.thunk(() => ["/var/run/vector"]),
                   SupplementaryGroups: nix.thunk(() => ["vector"]),
                 })),
@@ -339,9 +288,9 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$62,
+          [nix.POS]: $pos[61],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$61,
+            [nix.POS]: $pos[60],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "dig"))]),
           })),
         };

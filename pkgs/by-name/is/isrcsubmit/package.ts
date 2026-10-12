@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["extraArgs", 43, 5]], [["updateScript", 42, 12]], [["description", 47, 5], ["license", 48, 5], ["homepage", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 40, 3], ["passthru", 42, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, "nix-update-script": false, withKeyring: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 42, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 47, 5], ["license", 48, 5], ["homepage", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 40, 3], ["passthru", 42, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const withKeyring = nix.argOr($, "withKeyring", () => true);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "isrcsubmit",
       version: "2.1.0-unstable-2023-08-10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JonnyJD",
           repo: "musicbrainz-isrcsubmit",
           rev: "8f4c3b9f9b8f983443d58fba381baaa3a74edad7",
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["isrcsubmit"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Script to submit ISRCs from disc to MusicBrainz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         homepage: "http://jonnyjd.github.io/musicbrainz-isrcsubmit/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["TIANGOLO_BUILD_PACKAGE", 44, 7]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["env", 44, 3], ["build-system", 46, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 55, 3], ["disabledTests", 64, 3], ["pythonImportsCheck", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "pdm-backend": false, "annotated-doc": false, click: false, rich: false, shellingham: false, "pytest-xdist": false, pytest9_0CheckHook: false, writableTmpDirAsHomeHook: false, procps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["TIANGOLO_BUILD_PACKAGE", 44, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["env", 44, 3], ["build-system", 46, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 55, 3], ["disabledTests", 64, 3], ["pythonImportsCheck", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,21 +25,21 @@ export default nix.lambda((args) => (() => {
       const version = "0.25.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fastapi",
           repo: "typer",
           tag: version,
           hash: "sha256-HIvXseuR7zUXFuTWzntDfHhAp8BcFjxo35gn0i4+03w=",
         }))));
       const postPatch = "for f in $(find tests -type f -print); do\n  # replace `sys.executable -m coverage run` with `sys.executable`\n  sed -z -i 's/\"-m\",\\n\\?\\s*\"coverage\",\\n\\?\\s*\"run\",//g' \"$f\"\ndone\n";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, TIANGOLO_BUILD_PACKAGE: "typer" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], TIANGOLO_BUILD_PACKAGE: "typer" }));
       const build_system = nix.thunk(() => [pdm_backend]);
       const dependencies = nix.thunk(() => [annotated_doc, click, rich, shellingham]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_xdist, pytest9_0CheckHook, writableTmpDirAsHomeHook], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [procps]))));
       const disabledTests = nix.thunk(() => nix.concat(["test_scripts", "test_show_completion", "test_install_completion"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_install_completion"]))));
       const pythonImportsCheck = nix.thunk(() => ["typer"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for building CLI applications",
         homepage: "https://typer.tiangolo.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/tiangolo/typer/releases/tag/${version}`),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

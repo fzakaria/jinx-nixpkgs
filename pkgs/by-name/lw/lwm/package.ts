@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["dontConfigure", 30, 3], ["preBuild", 32, 3], ["installPhase", 37, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, imake: false, libx11: false, libsm: false, libxext: false, libice: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["dontConfigure", 30, 3], ["preBuild", 32, 3], ["installPhase", 37, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const libice = nix.arg($, "libice");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lwm",
       version: "1.2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.jfc.org.uk/files/lwm/lwm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1bcdr173f0gl61fyl43p3gr145angci7lvjqb8rl00y9f9amvh3y",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "sed -i 's|^LOCAL_LIBRARIES.*|& $(ICELIB)|' Imakefile\nxmkmf\n",
       installPhase: "install -dm755 $out/bin $out/share/man/man1\ninstall -m755 lwm $out/bin/lwm\ninstall -m644 lwm.man $out/share/man/man1/lwm.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight Window Manager",
         longDescription: "lwm is a window manager for X that tries to keep out of your face. There\nare no icons, no button bars, no icon docks, no root menus, no nothing: if\nyou want all that, then other programs can provide it. There's no\nconfigurability either: if you want that, you want a different window\nmanager; one that helps your operating system in its evil conquest of your\ndisc space and its annexation of your physical memory.\n",
         homepage: "http://www.jfc.org.uk/software/lwm.html",

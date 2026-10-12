@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["dontBuild", 31, 3], ["installPhase", 33, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, curl: false, jq: false, coreutils: false, gnugrep: false, gnused: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["dontBuild", 31, 3], ["installPhase", 33, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gnused = nix.arg($, "gnused");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "slack-cli",
       version: "0.18.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rockymadden",
           repo: "slack-cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +47,7 @@ WRAPPER
 chmod +x "$out/bin/slack"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/rockymadden/slack-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],

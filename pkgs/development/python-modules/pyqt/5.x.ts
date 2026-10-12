@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/5.x.nix", [[["pname", 33, 5], ["version", 34, 13], ["hash", 35, 5]], [["NIX_CFLAGS_COMPILE", 108, 46]], [["sip", 165, 13], ["pyqt5-sip", 165, 17], ["multimediaEnabled", 166, 5], ["WebSocketsEnabled", 167, 5], ["connectivityEnabled", 168, 5], ["locationEnabled", 169, 5], ["serialPortEnabled", 170, 5], ["toolsEnabled", 171, 5]], [["description", 194, 5], ["homepage", 195, 5], ["license", 196, 5], ["platforms", 197, 25]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["patches", 38, 3], ["postPatch", 46, 3], ["enableParallelBuilding", 96, 3], ["postUnpack", 103, 3], ["env", 108, 3], ["outputs", 110, 3], ["dontWrapQtApps", 115, 3], ["nativeBuildInputs", 117, 3], ["buildInputs", 144, 3], ["propagatedBuildInputs", 159, 3], ["passthru", 164, 3], ["dontConfigure", 174, 3], ["doCheck", 177, 3], ["pythonImportsCheck", 179, 3], ["meta", 193, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, setuptools: false, fetchPypi: false, "pkg-config": false, dbus: false, lndir: false, "dbus-python": false, sip: false, "pyqt5-sip": false, "pyqt-builder": false, libsForQt5: false, mesa: false, enableVerbose: true, withConnectivity: true, withMultimedia: true, withWebSockets: true, withLocation: true, withSerialPort: true, withTools: true, pkgsBuildTarget: false, dbusSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/5.x.nix", [["pname", 33, 5], ["version", 34, 13], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/5.x.nix", [["NIX_CFLAGS_COMPILE", 108, 46]]);
-const pos$3 = nix.positions(here + "/5.x.nix", [["sip", 165, 13], ["pyqt5-sip", 165, 17], ["multimediaEnabled", 166, 5], ["WebSocketsEnabled", 167, 5], ["connectivityEnabled", 168, 5], ["locationEnabled", 169, 5], ["serialPortEnabled", 170, 5], ["toolsEnabled", 171, 5]]);
-const pos$4 = nix.positions(here + "/5.x.nix", [["description", 194, 5], ["homepage", 195, 5], ["license", 196, 5], ["platforms", 197, 25]]);
-const pos$5 = nix.positions(here + "/5.x.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["patches", 38, 3], ["postPatch", 46, 3], ["enableParallelBuilding", 96, 3], ["postUnpack", 103, 3], ["env", 108, 3], ["outputs", 110, 3], ["dontWrapQtApps", 115, 3], ["nativeBuildInputs", 117, 3], ["buildInputs", 144, 3], ["propagatedBuildInputs", 159, 3], ["passthru", 164, 3], ["dontConfigure", 174, 3], ["doCheck", 177, 3], ["pythonImportsCheck", 179, 3], ["meta", 193, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.15.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "PyQt5",
           version: version,
           hash: "sha256-1Gt4BLGxCk/5F1P4ET5bVYDStEYvMiYoji2ESXM0iYo=",
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = nix.thunk(() => nix.add(nix.add(nix.add(nix.add("cat >> pyproject.toml <<EOF\n", nix.app(nix.sel(lib, "optionalString"), enableVerbose, "[tool.sip.project]\nverbose = true\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), "minimum-macos-version = \"11.0\"\n")), "EOF\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), "rm config-tests/cfgtest_QtCore.cpp\nrm config-tests/cfgtest_QtGui.cpp\nrm config-tests/cfgtest_QtNetwork.cpp\nrm config-tests/cfgtest_QtPrintSupport.cpp\n")));
       const enableParallelBuilding = true;
       const postUnpack = "export MAKEFLAGS+=\"${enableParallelBuilding:+-j$NIX_BUILD_CORES}\"\n";
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(enableVerbose)), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-w" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(enableVerbose)), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-w" }))));
       const outputs = nix.thunk(() => ["out", "dev"]);
       const dontWrapQtApps = true;
       const nativeBuildInputs = nix.thunk(() => nix.concat([pkg_config], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qmake"))])), nix.concat([setuptools, lndir, sip], (() => {
@@ -73,7 +69,7 @@ export default nix.lambda((args) => (() => {
       })());
       const propagatedBuildInputs = nix.thunk(() => [dbus_python, pyqt5_sip]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         sip: sip,
         "pyqt5-sip": pyqt5_sip,
         multimediaEnabled: withMultimedia,
@@ -89,7 +85,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python bindings for Qt5",
         homepage: "https://riverbankcomputing.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -97,7 +93,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

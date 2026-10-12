@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 33, 5], ["hash", 37, 5]], [["url", 43, 7], ["hash", 44, 7]], [["url", 49, 5], ["hash", 50, 5]], [["updateScript", 63, 12]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5], ["platforms", 95, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 40, 3], ["model", 48, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 57, 3], ["postInstall", 59, 3], ["passthru", 63, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchzip: false, autoreconfHook: false, writeScript: false, fetchpatch: false, modelUrl: true, modelHash: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 33, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 43, 7], ["hash", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 49, 5], ["hash", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5], ["platforms", 95, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 40, 3], ["model", 48, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 57, 3], ["postInstall", 59, 3], ["passthru", 63, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const model_url = nix.thunk(() => (nix.asBool(nix.eq(modelUrl, "")) ? nix.str`https://media.xiph.org/rnnoise/models/rnnoise_data-${default_model_version}.tar.gz` : nix.force(modelUrl)));
   const model_hash = nix.thunk(() => (nix.asBool(nix.eq(modelHash, "")) ? nix.sel(modelVersionJSON, "hash") : nix.force(modelHash)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rnnoise",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://gitlab.xiph.org/xiph/rnnoise/-/archive/v${nix.sel(finalAttrs, "version")}/rnnoise-v${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://github.com/xiph/rnnoise/archive/v${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -39,18 +34,18 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/xiph/rnnoise/commit/372f7b4b76cde4ca1ec4605353dd17898a99de38.patch",
             hash: "sha256-Dzikb59hjVxd1XIEj/Je4evxtGORkaNcqE+zxOJMSvs=",
           })))),
       ]),
-      model: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$3, url: model_url, hash: model_hash })))),
+      model: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[2], url: model_url, hash: model_hash })))),
       postPatch: nix.thunk(() => nix.str`tar xvomf ${nix.sel(finalAttrs, "model")}
 `),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       postInstall: "install -Dt $out/bin examples/.libs/rnnoise_demo\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-rnnoise.sh", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq common-updater-scripts nix nix-prefetch findutils moreutils
 
@@ -77,7 +72,7 @@ jq --arg version "$model_version" \\
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Recurrent neural network for audio noise reduction",
         homepage: "https://people.xiph.org/~jm/demo/rnnoise/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["doInstallCheck", 24, 3], ["deleteVendor", 26, 3], ["vendorHash", 27, 3], ["postPatch", 29, 3], ["buildPhase", 34, 3], ["installPhase", 42, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, runtimeShell: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["doInstallCheck", 24, 3], ["deleteVendor", 26, 3], ["vendorHash", 27, 3], ["postPatch", 29, 3], ["buildPhase", 34, 3], ["installPhase", 42, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xe-guest-utilities",
       version: "10.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xenserver",
           repo: "xe-guest-utilities",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nmake RELEASE=nixpkgs\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dt \"$out\"/bin build/stage/usr/{,s}bin/*\ninstall -Dt \"$out\"/etc/udev/rules.d build/stage/etc/udev/rules.d/*\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "XenServer guest utilities",
         homepage: "https://github.com/xenserver/xe-guest-utilities",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

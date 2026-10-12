@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["url", 25, 7], ["hash", 26, 7]], [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["nativeBuildInputs", 30, 3], ["configureFlags", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, autoreconfHook: false, fetchFromGitHub: false, fetchpatch: false, openssl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["nativeBuildInputs", 30, 3], ["configureFlags", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ike-scan",
       version: "1.9.5-unstable-2024-09-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "royhills",
           repo: "ike-scan",
           rev: "c74c01fd22d9a3aae3d8ba9a0bd2eb1a2146ac6f",
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/royhills/ike-scan/pull/15/commits/d864811de08dcddd65ac9b8d0f2acf5d7ddb9dea.patch",
             hash: "sha256-VVJZSTZfDV0qHuxdNoZV1NXJYCEMtB0bO1oi2hLCeXE=",
           })))),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, openssl]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-openssl=${nix.sel(openssl, "dev")}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to discover, fingerprint and test IPsec VPN servers",
         longDescription: "ike-scan is a command-line tool that uses the IKE protocol to discover,\nfingerprint and test IPsec VPN servers.\n",
         homepage: "https://github.com/royhills/ike-scan",

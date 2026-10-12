@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 48, 3], ["wafConfigureFlags", 53, 3], ["outputs", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, wafHook: false, python3: false, asciidoc: false, docbook_xml_dtd_45: false, docbook_xsl: false, libxml2: false, libxslt: false, curl: false, libevent: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 48, 3], ["wafConfigureFlags", 53, 3], ["outputs", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libevent = nix.arg($, "libevent");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "saldl",
       version: "41",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "saldl",
           repo: "saldl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "update-waf-to-2-0-24.patch",
             url: "https://github.com/saldl/saldl/commit/360c29d6c8cee5f7e608af42237928be429c3407.patch",
             hash: "sha256-RBMnsUtd0BaZe/EXypDCK4gpUU0dgucWmOcJRn5/iTA=",
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ]),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI downloader optimized for speed and early preview",
         homepage: "https://saldl.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 26], ["version", 19, 32], ["hash", 20, 5]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["pythonRelaxDeps", 23, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 40, 3], ["doCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, beautifulsoup4: false, buildPythonPackage: false, fetchPypi: false, pillow: false, hatchling: false, requests: false, rich: false, "uv-dynamic-versioning": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 26], ["version", 19, 32], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["pythonRelaxDeps", 23, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 40, 3], ["doCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const rich = nix.arg($, "rich");
   const uv_dynamic_versioning = nix.arg($, "uv-dynamic-versioning");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "getjump",
       version: "2.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-AX8WffzcqBYqo8DzXXbhfqOMd7U5VpWx4MTKhUXLJeQ=",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["getjump"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Get and save images from jump web viewer",
         homepage: "https://github.com/eggplants/getjump",
         changelog: nix.thunk(() => nix.str`https://github.com/eggplants/getjump/releases/tag/v${nix.sel(finalAttrs, "version")}`),

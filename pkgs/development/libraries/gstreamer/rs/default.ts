@@ -2,18 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["file", 51, 5], ["gopbuffer", 52, 5], ["inter", 53, 5], ["originalbuffer", 54, 5], ["streamgrouper", 55, 5], ["sodium", 56, 5], ["threadshare", 57, 5], ["aws", 60, 5], ["deepgram", 61, 5], ["hlsmultivariantsink", 62, 5], ["hlssink3", 63, 5], ["icecast", 64, 5], ["mpegtslive", 65, 5], ["ndi", 66, 5], ["onvif", 67, 5], ["quinn", 68, 5], ["raptorq", 69, 5], ["reqwest", 70, 5], ["rtp", 71, 5], ["rtsp", 72, 5], ["webrtc", 73, 5], ["webrtchttp", 77, 5], ["audiofx", 83, 5], ["audioparsers", 84, 5], ["claxon", 85, 5], ["csound", 86, 5], ["demucs", 87, 5], ["elevenlabs", 88, 5], ["lewton", 89, 5], ["speechmatics", 90, 5], ["spotify", 91, 5], ["whisper", 92, 5], ["cdg", 95, 5], ["closedcaption", 96, 5], ["dav1d", 97, 5], ["ffv1", 98, 5], ["gif", 99, 5], ["gtk4", 100, 5], ["hsv", 101, 5], ["png", 102, 5], ["rav1e", 103, 5], ["skia", 104, 5], ["videofx", 105, 5], ["vvdec", 107, 5], ["webp", 108, 5], ["flavors", 111, 5], ["isobmff", 112, 5], ["textaccumulate", 115, 5], ["textahead", 116, 5], ["json", 117, 5], ["regex", 118, 5], ["textwrap", 119, 5], ["fallbackswitch", 122, 5], ["livesync", 123, 5], ["togglerecord", 124, 5], ["tracers", 125, 5], ["uriplaylistbin", 126, 5], ["debugseimetainserter", 127, 5], ["analytics", 130, 5], ["burn", 131, 5]], [["name", 197, 5], ["text", 198, 5]], [["domain", 222, 5], ["owner", 223, 5], ["repo", 224, 5], ["rev", 225, 5], ["hash", 226, 5]], [["src", 230, 26], ["name", 231, 5], ["hash", 232, 5]], [["NIX_CFLAGS_LINK", 279, 58]], [["package", 340, 7], ["versionCheck", 341, 7]], [["pkg-config", 339, 11]], [["extraArgs", 346, 7]], [["tests", 339, 5], ["updateScript", 343, 5]], [["description", 354, 5], ["mainProgram", 355, 5], ["homepage", 356, 5], ["license", 357, 5], ["platforms", 363, 5], ["maintainers", 364, 5], ["pkgConfigModules", 365, 5]], [["pname", 213, 3], ["version", 214, 3], ["outputs", 216, 3], ["src", 221, 3], ["cargoDeps", 229, 3], ["postConfigure", 235, 3], ["patches", 243, 3], ["postPatch", 247, 3], ["__structuredAttrs", 251, 3], ["strictDeps", 252, 3], ["nativeBuildInputs", 254, 3], ["env", 279, 3], ["buildInputs", 281, 3], ["checkInputs", 291, 3], ["mesonFlags", 297, 3], ["mesonAutoFeatures", 304, 3], ["doCheck", 306, 3], ["preConfigure", 309, 3], ["mesonCheckFlags", 313, 3], ["__darwinAllowLocalNetworking", 316, 3], ["preCheck", 319, 3], ["postInstall", 326, 3], ["doInstallCheck", 330, 3], ["installCheckPhase", 332, 3], ["passthru", 338, 3], ["meta", 353, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, rustPlatform: false, meson: false, ninja: false, python3: false, "pkg-config": false, rustc: false, cargo: false, "cargo-c": false, lld: false, nasm: false, cmake: false, libGL: false, gstreamer: false, "gst-plugins-base": false, "gst-plugins-good": false, "gst-plugins-bad": false, "gst-plugins-ugly": false, gtk4: false, cairo: false, csound: false, dav1d: false, libsodium: false, libwebp: false, openssl: false, pango: false, jq: false, writeTextFile: false, validatePkgConfig: false, testers: false, "nix-update-script": false, plugins: true, withGtkPlugins: true, enableDocumentation: true, hotdoc: false, "apple-sdk_gstreamer": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["file", 51, 5], ["gopbuffer", 52, 5], ["inter", 53, 5], ["originalbuffer", 54, 5], ["streamgrouper", 55, 5], ["sodium", 56, 5], ["threadshare", 57, 5], ["aws", 60, 5], ["deepgram", 61, 5], ["hlsmultivariantsink", 62, 5], ["hlssink3", 63, 5], ["icecast", 64, 5], ["mpegtslive", 65, 5], ["ndi", 66, 5], ["onvif", 67, 5], ["quinn", 68, 5], ["raptorq", 69, 5], ["reqwest", 70, 5], ["rtp", 71, 5], ["rtsp", 72, 5], ["webrtc", 73, 5], ["webrtchttp", 77, 5], ["audiofx", 83, 5], ["audioparsers", 84, 5], ["claxon", 85, 5], ["csound", 86, 5], ["demucs", 87, 5], ["elevenlabs", 88, 5], ["lewton", 89, 5], ["speechmatics", 90, 5], ["spotify", 91, 5], ["whisper", 92, 5], ["cdg", 95, 5], ["closedcaption", 96, 5], ["dav1d", 97, 5], ["ffv1", 98, 5], ["gif", 99, 5], ["gtk4", 100, 5], ["hsv", 101, 5], ["png", 102, 5], ["rav1e", 103, 5], ["skia", 104, 5], ["videofx", 105, 5], ["vvdec", 107, 5], ["webp", 108, 5], ["flavors", 111, 5], ["isobmff", 112, 5], ["textaccumulate", 115, 5], ["textahead", 116, 5], ["json", 117, 5], ["regex", 118, 5], ["textwrap", 119, 5], ["fallbackswitch", 122, 5], ["livesync", 123, 5], ["togglerecord", 124, 5], ["tracers", 125, 5], ["uriplaylistbin", 126, 5], ["debugseimetainserter", 127, 5], ["analytics", 130, 5], ["burn", 131, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 197, 5], ["text", 198, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["domain", 222, 5], ["owner", 223, 5], ["repo", 224, 5], ["rev", 225, 5], ["hash", 226, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["src", 230, 26], ["name", 231, 5], ["hash", 232, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_LINK", 279, 58]]);
-const pos$6 = nix.positions(here + "/default.nix", [["package", 340, 7], ["versionCheck", 341, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pkg-config", 339, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["extraArgs", 346, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["tests", 339, 5], ["updateScript", 343, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["description", 354, 5], ["mainProgram", 355, 5], ["homepage", 356, 5], ["license", 357, 5], ["platforms", 363, 5], ["maintainers", 364, 5], ["pkgConfigModules", 365, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 213, 3], ["version", 214, 3], ["outputs", 216, 3], ["src", 221, 3], ["cargoDeps", 229, 3], ["postConfigure", 235, 3], ["patches", 243, 3], ["postPatch", 247, 3], ["__structuredAttrs", 251, 3], ["strictDeps", 252, 3], ["nativeBuildInputs", 254, 3], ["env", 279, 3], ["buildInputs", 281, 3], ["checkInputs", 291, 3], ["mesonFlags", 297, 3], ["mesonAutoFeatures", 304, 3], ["doCheck", 306, 3], ["preConfigure", 309, 3], ["mesonCheckFlags", 313, 3], ["__darwinAllowLocalNetworking", 316, 3], ["preCheck", 319, 3], ["postInstall", 326, 3], ["doInstallCheck", 330, 3], ["installCheckPhase", 332, 3], ["passthru", 338, 3], ["meta", 353, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,7 +46,7 @@ export default nix.lambda((args) => (() => {
   const hotdoc = nix.arg($, "hotdoc");
   const apple_sdk_gstreamer = nix.arg($, "apple-sdk_gstreamer");
   const validPlugins = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     file: [],
     gopbuffer: [],
     inter: [],
@@ -139,19 +129,19 @@ export default nix.lambda((args) => (() => {
   const pkgConfigNames = nix.thunk(() => nix.builtins.map(pkgConfigName, selectedPlugins));
   const invalidPlugins = nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), validPlugins)), selectedPlugins));
   const validPluginFile = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "known-plugin-names.txt",
       text: nix.thunk(() => nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), validPlugins)))),
     }))));
   const requiresBindgen = nix.thunk(() => (nix.asBool(!nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))) || nix.asBool(nix.app(nix.sel(lib, "elem"), "whisper", selectedPlugins))));
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.eq(invalidPlugins, [])), nix.thunk(() => nix.str`Invalid gst-plugins-rs plugin${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.gt(nix.app(nix.sel(lib, "length"), invalidPlugins), 1n)), "s")}: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", invalidPlugins)}`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/libraries/gstreamer/rs/default.nix:207:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "gst-plugins-rs",
       version: "0.15.3",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           domain: "gitlab.freedesktop.org",
           owner: "gstreamer",
           repo: "gst-plugins-rs",
@@ -159,7 +149,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-DO5Dk9xjqWTI4ORzlHYPc/O/tyHfSyh7+YCzES5ZiHs=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           name: nix.thunk(() => nix.str`gst-plugins-rs-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-EHikshVeaBzyx9+GBIkOPii63T12BobWdW6nTBLzwU8=",
@@ -188,7 +178,7 @@ diff -u ${validPluginFile} valid-plugin-names.txt
         nasm,
         validatePkgConfig,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), requiresBindgen, nix.thunk(() => [cmake, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [lld])), nix.app(nix.sel(lib, "optionals"), enableDocumentation, nix.thunk(() => [hotdoc])))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_LINK: "-fuse-ld=lld" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[4], NIX_CFLAGS_LINK: "-fuse-ld=lld" })))),
       buildInputs: nix.thunk(() => nix.concat([gstreamer, gst_plugins_base, libGL], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_gstreamer])), nix.app(nix.sel(lib, "concatMap"), (plugin) => nix.app(nix.sel(lib, "getAttr"), plugin, validPlugins), selectedPlugins)))),
       checkInputs: nix.thunk(() => [gst_plugins_good, gst_plugins_bad, gst_plugins_ugly]),
       mesonFlags: nix.thunk(() => nix.concat(nix.builtins.map((plugin) => nix.app(nix.sel(lib, "mesonEnable"), plugin, true), selectedPlugins), [
@@ -211,22 +201,22 @@ export GST_PLUGIN_SCANNER="${nix.app(nix.sel(lib, "getLib"), gstreamer)}/libexec
       doInstallCheck: nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "elem"), "webp", selectedPlugins)) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isElf")))),
       installCheckPhase: "runHook preInstallCheck\nreadelf -a $out/lib/gstreamer-1.0/libgstrswebp.so | grep -F 'Shared library: [libwebpdemux.so'\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             extraArgs: nix.thunk(() => ["--version-regex", "([0-9.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "GStreamer plugins written in Rust",
         mainProgram: "gst-webrtc-signalling-server",
         homepage: "https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs",

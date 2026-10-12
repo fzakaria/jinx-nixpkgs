@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]], [["pname", 17, 3], ["version", 18, 20], ["__structuredAttrs", 19, 3], ["src", 21, 20], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 25, 3], ["doCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, charon: false, menhir: false, menhirLib: false, ppx_deriving: false, visitors: false, zarith: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 20], ["__structuredAttrs", 19, 3], ["src", 21, 20], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 25, 3], ["doCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const visitors = nix.arg($, "visitors");
   const zarith = nix.arg($, "zarith");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "name_matcher_parser",
       version: nix.thunk(() => nix.attr(charon, "version")),
       __structuredAttrs: true,
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [menhirLib, ppx_deriving, visitors, zarith]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Parser to define name matchers",
         homepage: "https://github.com/AeneasVerif/charon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

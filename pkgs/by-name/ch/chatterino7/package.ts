@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableAvifSupport", 9, 3]], [["owner", 17, 9], ["repo", 18, 9], ["tag", 19, 9], ["hash", 20, 9], ["fetchSubmodules", 21, 9], ["leaveDotGit", 22, 9], ["postFetch", 23, 9]], [["rev-prefix", 30, 9], ["ignoredVersions", 31, 9]], [["updateScript", 29, 16]], [["description", 35, 9], ["mainProgram", 36, 9], ["longDescription", 37, 9], ["homepage", 43, 9], ["changelog", 44, 9], ["license", 45, 9], ["platforms", 46, 9], ["maintainers", 47, 9]], [["pname", 13, 7], ["version", 14, 7], ["src", 16, 7], ["passthru", 29, 7], ["meta", 34, 7]]]);
 const formals$1 = { args: { lib: false, chatterino2: false, fetchFromGitHub: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableAvifSupport", 9, 3]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 17, 9], ["repo", 18, 9], ["tag", 19, 9], ["hash", 20, 9], ["fetchSubmodules", 21, 9], ["leaveDotGit", 22, 9], ["postFetch", 23, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 30, 9], ["ignoredVersions", 31, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 29, 16]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 35, 9], ["mainProgram", 36, 9], ["longDescription", 37, 9], ["homepage", 43, 9], ["changelog", 44, 9], ["license", 45, 9], ["platforms", 46, 9], ["maintainers", 47, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 7], ["version", 14, 7], ["src", 16, 7], ["passthru", 29, 7], ["meta", 34, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const chatterino2 = nix.arg($, "chatterino2");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitUpdater = nix.arg($, "gitUpdater");
-  return nix.app(nix.sel(nix.app(nix.sel(chatterino2, "buildChatterino"), nix.thunk(() => ({ [nix.POS]: pos$1, enableAvifSupport: true }))), "overrideAttrs"), (finalAttrs) => (_) => ({
-      [nix.POS]: pos$6,
+  return nix.app(nix.sel(nix.app(nix.sel(chatterino2, "buildChatterino"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableAvifSupport: true }))), "overrideAttrs"), (finalAttrs) => (_) => ({
+      [nix.POS]: $pos[5],
       pname: "chatterino7",
       version: "7.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "SevenTV",
           repo: "chatterino7",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,11 +26,11 @@ export default nix.lambda((args) => (() => {
           postFetch: "git -C $out rev-parse --short HEAD > $out/GIT_HASH\nfind \"$out\" -name .git -print0 | xargs -0 rm -rf\n",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v", ignoredVersions: "beta" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v", ignoredVersions: "beta" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Chat client for Twitch chat",
         mainProgram: "chatterino",
         longDescription: "Chatterino is a chat client for Twitch chat. It aims to be an\nimproved/extended version of the Twitch web chat. Chatterino 7 is\na fork of Chatterino 2, which contains additional 7TV features\nnot found in Chatterino 2.\n",

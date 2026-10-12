@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pk.nix", [[["description", 32, 5]], [["pname", 13, 3], ["version", 15, 27], ["src", 15, 35], ["buildInputs", 17, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 24, 3], ["checkInputs", 25, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, ohex: false, ounit2: false, randomconv: false, "mirage-crypto": false, "mirage-crypto-rng": false, zarith: false, gmp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pk.nix", [["description", 32, 5]]);
-const pos$2 = nix.positions(here + "/pk.nix", [["pname", 13, 3], ["version", 15, 27], ["src", 15, 35], ["buildInputs", 17, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 24, 3], ["checkInputs", 25, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const zarith = nix.arg($, "zarith");
   const gmp = nix.arg($, "gmp");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mirage-crypto-pk",
       version: nix.thunk(() => nix.attr(mirage_crypto, "version")),
       src: nix.thunk(() => nix.attr(mirage_crypto, "src")),
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [ohex, ounit2, randomconv]),
       meta: nix.thunk(() => nix.update(nix.sel(mirage_crypto, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Simple public-key cryptography for the modern age",
       })),
     })));

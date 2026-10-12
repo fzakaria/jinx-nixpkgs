@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchurl", 16, 38]], [["fetchurl", 17, 50]], [["url", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["deps", 103, 13], ["updateScript", 104, 5]], [["description", 112, 5], ["downloadPage", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["mainProgram", 116, 5], ["maintainers", 117, 5], ["platforms", 118, 5], ["sourceProvenance", 119, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 29, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 64, 3], ["buildPhase", 71, 3], ["doCheck", 77, 11], ["checkPhase", 79, 3], ["installPhase", 85, 3], ["passthru", 102, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchsvn: false, jdk: false, jre: false, ant: false, makeWrapper: false, stripJavaArchivesHook: false, doCheck: true, withExamples: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchurl", 16, 38]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fetchurl", 17, 50]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["deps", 103, 13], ["updateScript", 104, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 112, 5], ["downloadPage", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["mainProgram", 116, 5], ["maintainers", 117, 5], ["platforms", 118, 5], ["sourceProvenance", 119, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 29, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 64, 3], ["buildPhase", 71, 3], ["doCheck", 77, 11], ["checkPhase", 79, 3], ["installPhase", 85, 3], ["passthru", 102, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   const doCheck = nix.argOr($, "doCheck", () => true);
   const withExamples = nix.argOr($, "withExamples", () => false);
-  const deps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl }))));
-  const testInputs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./testinputs.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, fetchurl: fetchurl }))));
+  const deps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
+  const testInputs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./testinputs.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], fetchurl: fetchurl }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mkgmap",
       version: "4924",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://svn.mkgmap.org.uk/mkgmap/mkgmap/trunk",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-4DGGAWgyIvK5pcopwlO4YDGDc73lOsL0Ljy/kFUY2As=",
@@ -80,7 +75,7 @@ ${nix.app(nix.sel(lib, "optionalString"), withExamples, "mkdir -p $out/share/mkg
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         deps: deps,
         updateScript: nix.thunk(() => [
           nix.path(here, "./update.sh"),
@@ -89,7 +84,7 @@ runHook postInstall
         ]),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Create maps for Garmin GPS devices from OpenStreetMap (OSM) data",
         downloadPage: "https://www.mkgmap.org.uk/download/mkgmap.html",
         homepage: "https://www.mkgmap.org.uk/",

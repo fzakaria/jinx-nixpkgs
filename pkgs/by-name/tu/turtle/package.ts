@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["postInstall", 48, 3], ["dontWrapGApps", 54, 3], ["dontWrapPythonPrograms", 58, 3], ["postFixup", 60, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitLab: false, "gobject-introspection": false, wrapGAppsHook4: false, installShellFiles: false, libadwaita: false, meld: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["postInstall", 48, 3], ["dontWrapGApps", 54, 3], ["dontWrapPythonPrograms", 58, 3], ["postFixup", 60, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const meld = nix.arg($, "meld");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "turtle",
       version: "0.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "philippun1",
           repo: "turtle",
@@ -64,7 +62,7 @@ substituteInPlace $out/share/nautilus-python/extensions/turtle_nautilus_compare.
   --replace-fail 'Popen(["meld"' 'Popen(["${nix.app(nix.sel(lib, "getExe"), meld)}"'
 `)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Graphical interface for version control intended to run on gnome and nautilus",
         homepage: "https://gitlab.gnome.org/philippun1/turtle",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

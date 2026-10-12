@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["buildInputs", 30, 3], ["buildFlags", 37, 3], ["installFlags", 42, 3], ["installTargets", 46, 3], ["postInstall", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, parted: false, systemdLibs: false, "argp-standalone": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["buildInputs", 30, 3], ["buildFlags", 37, 3], ["installFlags", 42, 3], ["installTargets", 46, 3], ["postInstall", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const argp_standalone = nix.arg($, "argp-standalone");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "f3",
       version: "10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AltraMayor",
           repo: "f3",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => nix.concat(["install"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install-extra"))),
       postInstall: "install -Dm555 -t $out/bin scripts/{f3write.h2w,log-f3wr}\ninstall -Dm444 -t $out/share/doc/f3 LICENSE README.rst\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fight Flash Fraud",
         homepage: "https://fight-flash-fraud.readthedocs.io/en/stable/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["NIX_LDFLAGS", 46, 5]], [["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 22, 3], ["outputs", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 39, 3], ["mesonFlags", 41, 3], ["env", 45, 3], ["postFixup", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libxext: false, libx11: false, xorgproto: false, mesa: false, meson: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 22, 3], ["outputs", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 39, 3], ["mesonFlags", 41, 3], ["env", 45, 3], ["postFixup", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libvdpau",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/vdpau/libvdpau/-/archive/${nix.sel(finalAttrs, "version")}/libvdpau-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-pdUKQrjCiP68BxUatkOsjeBqGERpZcckH4m06BCCGRM=",
         })))),
@@ -37,10 +34,10 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.str`-Dmoduledir=${nix.sel(mesa, "driverLink")}/lib/vdpau`),
         ]))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lX11" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-lX11" })))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isElf")), "patchelf $out/lib/libvdpau.so --add-rpath $out/lib\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.freedesktop.org/wiki/Software/VDPAU/",
         description: "Library to use the Video Decode and Presentation API for Unix (VDPAU)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

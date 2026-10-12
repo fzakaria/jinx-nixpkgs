@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["url", 27, 5], ["odd-unstable", 28, 5], ["rev-prefix", 29, 5]], [["updateScript", 26, 12]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 39, 5], ["teams", 40, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["passthru", 26, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, meson: false, ninja: false, gettext: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 5], ["odd-unstable", 28, 5], ["rev-prefix", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 26, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 39, 5], ["teams", 40, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["passthru", 26, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,26 +15,26 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mate-backgrounds",
       version: "1.28.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mate-backgrounds-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "UNGv0CSGvQesIqWmtu+jAxFI8NSKguSI2QmtVwA6aUM=",
         })))),
       nativeBuildInputs: nix.thunk(() => [gettext, meson, ninja]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.mate-desktop.org/mate-backgrounds",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Background images and data for MATE",
         homepage: "https://mate-desktop.org",
         license: nix.thunk(() => (() => {

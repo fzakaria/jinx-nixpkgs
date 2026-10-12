@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["buildPhase", 26, 3], ["installPhase", 32, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, makeWrapper: false, jre: false, gradle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["buildPhase", 26, 3], ["installPhase", 32, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const gradle = nix.arg($, "gradle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "crossfire-gridarta",
       version: "2025-04",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.code.sf.net/p/gridarta/gridarta",
           rev: "9ff39a63071fc76141117eac97a27c07d312cfb5",
           hash: "sha256-UotvRJey0SXhKjyKo0L7MiDtqvsBOUcT0315fkAKwb0=",
@@ -40,7 +38,7 @@ makeWrapper ${jre}/bin/java $out/bin/crossfire-gridarta \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Map and archetype editor for the Crossfire free MMORPG",
         homepage: "http://crossfire.real-time.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

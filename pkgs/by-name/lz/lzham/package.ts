@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 36, 5], ["mainProgram", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["cmakeFlags", 21, 3], ["postPatch", 25, 3], ["postInstall", 30, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["mainProgram", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["cmakeFlags", 21, 3], ["postPatch", 25, 3], ["postInstall", 30, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lzham",
       version: "1.0-unstable-2023-05-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "richgel999",
           repo: "lzham_codec_devel",
           rev: "d09fc6676a0313c3814457fbc76351a68f653092",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace {./,lzhamcomp/,lzhamdecomp/,lzhamdll/,lzhamtest/}CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       postInstall: "mkdir -p $out/bin\ncp lzhamtest/lzhamtest $out/bin/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lossless data compression codec with LZMA-like ratios but 1.5x-8x faster decompression speed",
         mainProgram: "lzhamtest",
         homepage: "https://github.com/richgel999/lzham_codec",

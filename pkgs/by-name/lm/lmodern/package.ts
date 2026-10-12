@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 8, 5], ["hash", 9, 5]], [["description", 25, 5]], [["pname", 4, 3], ["version", 5, 3], ["src", 7, 3], ["installPhase", 12, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 8, 5], ["hash", 9, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 4, 3], ["version", 5, 3], ["src", 7, 3], ["installPhase", 12, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
       const pname = "lmodern";
       const version = "2.005";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/l/lmodern/lmodern_${version}.orig.tar.gz`),
           hash: "sha256-xlUuZt6rjW0pX4t6PKWAHkkv3PisGCj7ZwatZPAUNxk=",
         }))));
       const installPhase = "runHook preInstall\n\nmkdir -p $out/texmf-dist/\nmkdir -p $out/share/fonts/\n\ncp -r * $out/texmf-dist/\ncp -r fonts/{opentype,type1} $out/share/fonts/\n\nrunHook postInstall\n";
-      const meta = nix.thunk(() => ({ [nix.POS]: pos$2, description: "Latin Modern font" }));
-      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
+      const meta = nix.thunk(() => ({ [nix.POS]: $pos[1], description: "Latin Modern font" }));
+      return { [nix.POS]: $pos[2], pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

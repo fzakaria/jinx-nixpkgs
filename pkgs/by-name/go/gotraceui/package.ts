@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["sha256", 25, 5]], [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]], [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["vendorHash", 36, 3], ["subPackages", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["ldflags", 52, 3], ["postInstall", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "pkg-config": false, buildGoModule: false, libGL: false, libx11: false, libxcb: false, libxcursor: false, libxfixes: false, libxkbcommon: false, "vulkan-headers": false, wayland: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["vendorHash", 36, 3], ["subPackages", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["ldflags", 52, 3], ["postInstall", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gotraceui",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dominikh",
           repo: "gotraceui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "switch-to-gio-fork.patch",
             url: "https://github.com/dominikh/gotraceui/commit/00289f5f4c1da3e13babd2389e533b069cd18e3c.diff",
             hash: "sha256-dxsVMjyKkRG4Q6mONlJAohWJ8YTu8KN7ynPVycJhcs8=",
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-X gioui.org/app.ID=co.honnef.Gotraceui"]),
       postInstall: "cp -r share $out/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Efficient frontend for Go execution traces",
         mainProgram: "gotraceui",
         homepage: "https://github.com/dominikh/gotraceui",

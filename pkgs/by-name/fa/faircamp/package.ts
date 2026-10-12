@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["package", 49, 37]], [["wav", 48, 5], ["version", 49, 5]], [["tests", 47, 12]], [["description", 53, 5], ["mainProgram", 54, 5], ["longDescription", 55, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["buildFeatures", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["postInstall", 42, 3], ["passthru", 47, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromCodeberg: false, makeWrapper: false, "pkg-config": false, glib: false, libopus: false, vips: false, ffmpeg: false, callPackage: false, testers: false, faircamp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 49, 37]]);
-const pos$3 = nix.positions(here + "/package.nix", [["wav", 48, 5], ["version", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 47, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["longDescription", 55, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["buildFeatures", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["postInstall", 42, 3], ["passthru", 47, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const faircamp = nix.arg($, "faircamp");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "faircamp",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "simonrepp",
           repo: "faircamp",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,15 +38,15 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           wav: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-wav.nix"), nix.thunk(() => ({})))),
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: faircamp })))),
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: faircamp })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Self-hostable, statically generated bandcamp alternative",
         mainProgram: "faircamp",
         longDescription: "Faircamp takes a directory on your disk - your Catalog - and from it\nproduces a fancy-looking (and technically simple and completely static)\nwebsite, which presents your music in a way similar to how popular\ncommercial service bandcamp does it.\n\nYou can upload the files faircamp generates to any webspace - no database\nand no programming language support (PHP or such) is required. If your\nwebspace supports SSH access, faircamp can be configured to upload your\nwebsite for you automatically, otherwise you can use FTP or whichever\nmeans you prefer to do that manually.\n",

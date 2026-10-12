@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["updateScript", 60, 12]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["teams", 69, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 26, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 42, 3], ["postPatch", 48, 3], ["doCheck", 58, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, "gobject-introspection": false, meson: false, ninja: false, "pkg-config": false, vala: false, glib: false, libgee: false, libxml2: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["teams", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 26, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 42, 3], ["postPatch", 48, 3], ["doCheck", 58, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gxml",
       version: "0.20.4",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "gxml",
@@ -46,11 +43,11 @@ substituteInPlace gxml/gxml.pc.in \\
 `),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Provides a GObject API for manipulating XML and a Serializable framework from GObject to XML",
         homepage: "https://gitlab.gnome.org/GNOME/gxml",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gxml/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

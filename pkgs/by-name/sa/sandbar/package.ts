@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["badPlatforms", 44, 5], ["mainProgram", 45, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["makeFlags", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pixman: false, fcft: false, "pkg-config": false, "wayland-protocols": false, "wayland-scanner": false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["badPlatforms", 44, 5], ["mainProgram", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["makeFlags", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sandbar",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kolunmi",
           repo: "sandbar",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [wayland_scanner, wayland_protocols, wayland, pixman, fcft]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/kolunmi/sandbar",
         description: "DWM-like bar for the river wayland compositor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

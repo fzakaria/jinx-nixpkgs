@@ -2,68 +2,49 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/pppd.nix", [["text", 3, 5], ["mode", 4, 5]]);
+const $pos = nix.positions(here + "/pppd.nix", [[["text", 3, 5], ["mode", 4, 5]], [["maintainers", 12, 5]], [["ExecStart", 30, 15]], [["restartTriggers", 24, 13], ["after", 28, 13], ["serviceConfig", 29, 13], ["wantedBy", 32, 13]], [["pppoe-server", 23, 28]], [["services", 23, 19]], [["text", 35, 40]], [["ppp/pppoe-server-options", 35, 13], ["ppp/chap-secrets", 44, 13]], [["etc", 34, 23]], [["systemd", 23, 11], ["environment", 34, 11]], [["config", 19, 9]], [["config", 54, 13]], [["test", 53, 17]], [["enable", 52, 11], ["peers", 53, 11]], [["pppd", 51, 18]], [["ppp/chap-secrets", 64, 25]], [["etc", 64, 21]], [["services", 51, 9], ["environment", 64, 9]], [["server", 16, 5], ["client", 48, 5]], [["name", 9, 3], ["meta", 11, 3], ["nodes", 15, 3], ["testScript", 68, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/pppd.nix", [["maintainers", 12, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/pppd.nix", [["ExecStart", 30, 15]]);
-const pos$4 = nix.positions(here + "/pppd.nix", [["restartTriggers", 24, 13], ["after", 28, 13], ["serviceConfig", 29, 13], ["wantedBy", 32, 13]]);
-const pos$5 = nix.positions(here + "/pppd.nix", [["pppoe-server", 23, 28]]);
-const pos$6 = nix.positions(here + "/pppd.nix", [["services", 23, 19]]);
-const pos$7 = nix.positions(here + "/pppd.nix", [["text", 35, 40]]);
-const pos$8 = nix.positions(here + "/pppd.nix", [["ppp/pppoe-server-options", 35, 13], ["ppp/chap-secrets", 44, 13]]);
-const pos$9 = nix.positions(here + "/pppd.nix", [["etc", 34, 23]]);
-const pos$10 = nix.positions(here + "/pppd.nix", [["systemd", 23, 11], ["environment", 34, 11]]);
-const pos$11 = nix.positions(here + "/pppd.nix", [["config", 19, 9]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$12 = nix.positions(here + "/pppd.nix", [["config", 54, 13]]);
-const pos$13 = nix.positions(here + "/pppd.nix", [["test", 53, 17]]);
-const pos$14 = nix.positions(here + "/pppd.nix", [["enable", 52, 11], ["peers", 53, 11]]);
-const pos$15 = nix.positions(here + "/pppd.nix", [["pppd", 51, 18]]);
-const pos$16 = nix.positions(here + "/pppd.nix", [["ppp/chap-secrets", 64, 25]]);
-const pos$17 = nix.positions(here + "/pppd.nix", [["etc", 64, 21]]);
-const pos$18 = nix.positions(here + "/pppd.nix", [["services", 51, 9], ["environment", 64, 9]]);
-const pos$19 = nix.positions(here + "/pppd.nix", [["server", 16, 5], ["client", 48, 5]]);
-const pos$20 = nix.positions(here + "/pppd.nix", [["name", 9, 3], ["meta", 11, 3], ["nodes", 15, 3], ["testScript", 68, 3]]);
 
 export default nix.thunk(() => (() => {
-  const chap_secrets = nix.thunk(() => ({ [nix.POS]: pos$1, text: "\"flynn\" * \"reindeerflotilla\" *", mode: "0640" }));
+  const chap_secrets = nix.thunk(() => ({ [nix.POS]: $pos[0], text: "\"flynn\" * \"reindeerflotilla\" *", mode: "0640" }));
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       name: "pppd",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "stv0g"))]),
         };
       })()),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             config: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   "pppoe-server": nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     restartTriggers: nix.thunk(() => [
                       nix.thunk(() => nix.sel(config, "environment", "etc", "ppp/pppoe-server-options", "source")),
                       nix.thunk(() => nix.sel(config, "environment", "etc", "ppp/chap-secrets", "source")),
                     ]),
                     after: nix.thunk(() => ["network.target"]),
                     serviceConfig: nix.thunk(() => ({
-                      [nix.POS]: pos$3,
+                      [nix.POS]: $pos[2],
                       ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "rp-pppoe")}/sbin/pppoe-server -F -O /etc/ppp/pppoe-server-options -q ${nix.sel(pkgs_1, "ppp")}/sbin/pppd -I eth1 -L 192.0.2.1 -R 192.0.2.2`),
                     })),
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -71,11 +52,11 @@ export default nix.thunk(() => (() => {
                 })),
               })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 etc: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   "ppp/pppoe-server-options": nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     text: "lcp-echo-interval 10\nlcp-echo-failure 2\nplugin pppoe.so\nrequire-chap\nnobsdcomp\nnoccp\nnovj\n",
                   })),
                   "ppp/chap-secrets": chap_secrets,
@@ -89,24 +70,24 @@ export default nix.thunk(() => (() => {
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               pppd: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 enable: true,
                 peers: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   test: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     config: "plugin pppoe.so eth1\nname \"flynn\"\nnoipdefault\npersist\nnoauth\ndebug\n",
                   })),
                 })),
               })),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$17,
-              etc: nix.thunk(() => ({ [nix.POS]: pos$16, "ppp/chap-secrets": chap_secrets })),
+              [nix.POS]: $pos[16],
+              etc: nix.thunk(() => ({ [nix.POS]: $pos[15], "ppp/chap-secrets": chap_secrets })),
             })),
           };
         })(), formals$3),

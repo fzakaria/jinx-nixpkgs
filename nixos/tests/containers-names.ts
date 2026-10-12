@@ -2,56 +2,48 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/containers-names.nix", [[["maintainers", 5, 5]], [["kernelPackages", 13, 12]], [["enable", 23, 19]], [["nix", 23, 15]], [["autoStart", 18, 13], ["privateNetwork", 19, 13], ["hostAddress", 20, 13], ["localAddress", 21, 13], ["config", 22, 13]], [["first", 29, 11], ["second", 30, 11], ["really-long-name", 31, 11], ["really-long-long-name-2", 32, 11]], [["boot", 13, 7], ["containers", 15, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 36, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/containers-names.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/containers-names.nix", [["kernelPackages", 13, 12]]);
-const pos$3 = nix.positions(here + "/containers-names.nix", [["enable", 23, 19]]);
-const pos$4 = nix.positions(here + "/containers-names.nix", [["nix", 23, 15]]);
-const pos$5 = nix.positions(here + "/containers-names.nix", [["autoStart", 18, 13], ["privateNetwork", 19, 13], ["hostAddress", 20, 13], ["localAddress", 21, 13], ["config", 22, 13]]);
-const pos$6 = nix.positions(here + "/containers-names.nix", [["first", 29, 11], ["second", 30, 11], ["really-long-name", 31, 11], ["really-long-long-name-2", 32, 11]]);
-const pos$7 = nix.positions(here + "/containers-names.nix", [["boot", 13, 7], ["containers", 15, 7]]);
-const pos$8 = nix.positions(here + "/containers-names.nix", [["machine", 8, 9]]);
-const pos$9 = nix.positions(here + "/containers-names.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "containers-names",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "patryk27"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
           })),
           containers: nix.thunk(() => (() => {
             const container = (subnet) => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               autoStart: true,
               privateNetwork: true,
               hostAddress: nix.thunk(() => nix.str`192.168.${subnet}.1`),
               localAddress: nix.thunk(() => nix.str`192.168.${subnet}.2`),
               config: nix.thunk(() => ({
-                [nix.POS]: pos$4,
-                nix: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+                [nix.POS]: $pos[3],
+                nix: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
               })),
             });
             return {
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               first: nix.thunk(() => nix.app(container, "1")),
               second: nix.thunk(() => nix.app(container, "2")),
               "really-long-name": nix.thunk(() => nix.app(container, "3")),

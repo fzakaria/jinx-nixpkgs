@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["DESTDIR", 23, 7]], [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 8, 3], ["version", 9, 3], ["strictDeps", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["dontBuild", 21, 3], ["env", 23, 3], ["meta", 25, 3], ["platforms", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["DESTDIR", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["strictDeps", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["dontBuild", 21, 3], ["env", 23, 3], ["meta", 25, 3], ["platforms", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,22 +11,25 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gershwin-system",
       version: "0-unstable-2026-08-19",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gershwin-desktop",
           repo: "gershwin-system",
           rev: "a29ac743fea4388d580467e1998d7bf4c06b1de2",
           hash: "sha256-T/1iGevtrkIfoUVDu645UTujd+lhUxOuGiYfCYlaCYw=",
         })))),
       dontBuild: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, DESTDIR: nix.thunk(() => nix.builtins.placeholder("out")) })),
+      env: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        DESTDIR: nix.thunk(() => nix.builtins.placeholder("out")),
+      })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/gershwin-desktop/gershwin-system",
         description: "Gershwin Desktop configuration defaults and scaffolding files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["homepage", 34, 35], ["platforms", 35, 5]], [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["checkInputs", 23, 3], ["doCheck", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDunePackage: false, lwt: false, ounit2: false, fileutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["homepage", 34, 35], ["platforms", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["checkInputs", 23, 3], ["doCheck", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ounit2 = nix.arg($, "ounit2");
   const fileutils = nix.arg($, "fileutils");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "2.6",
       pname: "inotify",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "whitequark",
           repo: "ocaml-inotify",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bindings for Linux’s filesystem monitoring interface, inotify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

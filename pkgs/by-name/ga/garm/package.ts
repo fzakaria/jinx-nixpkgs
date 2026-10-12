@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["postFetch", 24, 5]], [["pname", 57, 7], ["version", 58, 28], ["src", 59, 7], ["npmDepsHash", 60, 7], ["installPhase", 61, 7]], [["extraArgs", 69, 7]], [["garm-incus", 76, 28]], [["webapp", 56, 5], ["updateScript", 68, 5], ["tests", 75, 5]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["vendorHash", 29, 3], ["subPackages", 31, 3], ["postPatch", 36, 3], ["ldflags", 40, 3], ["nativeBuildInputs", 45, 3], ["postInstall", 47, 3], ["passthru", 55, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, buildNpmPackage: false, fetchFromGitHub: false, installShellFiles: false, "nix-update-script": false, "npm-lockfile-fix": false, stdenv: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["postFetch", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 57, 7], ["version", 58, 28], ["src", 59, 7], ["npmDepsHash", 60, 7], ["installPhase", 61, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 69, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["garm-incus", 76, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["webapp", 56, 5], ["updateScript", 68, 5], ["tests", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["vendorHash", 29, 3], ["subPackages", 31, 3], ["postPatch", 36, 3], ["ldflags", 40, 3], ["nativeBuildInputs", 45, 3], ["postInstall", 47, 3], ["passthru", 55, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "garm",
       version: "0.2.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cloudbase",
           repo: "garm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,23 +41,23 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "export HOME=$(mktemp -d)\nfor shell in bash fish zsh; do\n  $out/bin/garm-cli completion $shell > \"garm-cli.$shell\"\ndone\ninstallShellCompletion --cmd garm-cli garm-cli.{bash,fish,zsh}\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         webapp: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: "garm-webapp",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/webapp`),
             npmDepsHash: "sha256-tWMkfK4k+kOv0OEyxNkxNln08fXEyQdNmpetKm55wFE=",
             installPhase: "runHook preInstall\ncp -r build $out\nrunHook postInstall\n",
           })))),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "webapp"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--subpackage", "webapp"]) })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "garm-incus": nix.thunk(() => nix.attr(nixosTests, "garm-incus")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Multi-cloud, auto-scaling manager for GitHub Actions & Gitea self-hosted runners with pluggable providers",
         homepage: "https://github.com/cloudbase/garm",
         changelog: nix.thunk(() => nix.str`https://github.com/cloudbase/garm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

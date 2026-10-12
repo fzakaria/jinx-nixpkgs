@@ -2,13 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["pname", 22, 26], ["version", 22, 32], ["src", 22, 40], ["diskImage", 24, 7], ["diskImageFormat", 25, 7], ["memSize", 26, 7]], [["__structuredAttrs", 31, 71]], [["pname", 34, 23], ["version", 34, 29], ["src", 34, 37], ["diskImage", 36, 7], ["diskImageFormat", 37, 7], ["memSize", 38, 7]], [["enableParallelBuilding", 45, 7]], [["diskImage", 53, 9], ["diskImageFormat", 54, 9], ["memSize", 55, 9]], [["buildPatchelfInVM", 19, 3], ["buildPatchelfInDebian", 20, 3], ["buildHelloInVM", 30, 3], ["buildStructuredAttrsHelloInVM", 31, 3], ["buildHelloInFedora", 32, 3], ["buildPcmanrmInVM", 42, 3], ["checkPerlInstalledInDebian", 50, 3], ["testFedora42Image", 67, 3], ["testFedora43Image", 68, 3], ["testRocky9Image", 69, 3], ["testRocky10Image", 70, 3], ["testAlma9Image", 71, 3], ["testAlma10Image", 72, 3], ["testOracle9Image", 73, 3], ["testAmazon2023Image", 74, 3], ["testDebian11i386Image", 77, 3], ["testDebian11x86_64Image", 78, 3], ["testDebian12i386Image", 79, 3], ["testDebian12x86_64Image", 80, 3], ["testDebian13i386Image", 81, 3], ["testDebian13x86_64Image", 82, 3], ["testUbuntu2204i386Image", 83, 3], ["testUbuntu2204x86_64Image", 84, 3], ["testUbuntu2404x86_64Image", 85, 3], ["testUbuntu2604x86_64Image", 86, 3]]]);
 const formals$1 = { args: { hello: false, patchelf: false, pcmanfm: false, runCommand: false, stdenv: false, vmTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test.nix", [["pname", 22, 26], ["version", 22, 32], ["src", 22, 40], ["diskImage", 24, 7], ["diskImageFormat", 25, 7], ["memSize", 26, 7]]);
-const pos$2 = nix.positions(here + "/test.nix", [["__structuredAttrs", 31, 71]]);
-const pos$3 = nix.positions(here + "/test.nix", [["pname", 34, 23], ["version", 34, 29], ["src", 34, 37], ["diskImage", 36, 7], ["diskImageFormat", 37, 7], ["memSize", 38, 7]]);
-const pos$4 = nix.positions(here + "/test.nix", [["enableParallelBuilding", 45, 7]]);
-const pos$5 = nix.positions(here + "/test.nix", [["diskImage", 53, 9], ["diskImageFormat", 54, 9], ["memSize", 55, 9]]);
-const pos$6 = nix.positions(here + "/test.nix", [["buildPatchelfInVM", 19, 3], ["buildPatchelfInDebian", 20, 3], ["buildHelloInVM", 30, 3], ["buildStructuredAttrsHelloInVM", 31, 3], ["buildHelloInFedora", 32, 3], ["buildPcmanrmInVM", 42, 3], ["checkPerlInstalledInDebian", 50, 3], ["testFedora42Image", 67, 3], ["testFedora43Image", 68, 3], ["testRocky9Image", 69, 3], ["testRocky10Image", 70, 3], ["testAlma9Image", 71, 3], ["testAlma10Image", 72, 3], ["testOracle9Image", 73, 3], ["testAmazon2023Image", 74, 3], ["testDebian11i386Image", 77, 3], ["testDebian11x86_64Image", 78, 3], ["testDebian12i386Image", 79, 3], ["testDebian12x86_64Image", 80, 3], ["testDebian13i386Image", 81, 3], ["testDebian13x86_64Image", 82, 3], ["testUbuntu2204i386Image", 83, 3], ["testUbuntu2204x86_64Image", 84, 3], ["testUbuntu2404x86_64Image", 85, 3], ["testUbuntu2604x86_64Image", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,10 +18,10 @@ export default nix.lambda((args) => (() => {
   const runInLinuxImage = nix.thunk(() => nix.attr(vmTools, "runInLinuxImage"));
   const runInLinuxVM = nix.thunk(() => nix.attr(vmTools, "runInLinuxVM"));
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     buildPatchelfInVM: nix.thunk(() => nix.app(runInLinuxVM, patchelf)),
     buildPatchelfInDebian: nix.thunk(() => nix.app(runInLinuxImage, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(patchelf, "pname")),
           version: nix.thunk(() => nix.attr(patchelf, "version")),
           src: nix.thunk(() => nix.attr(patchelf, "src")),
@@ -35,9 +30,9 @@ export default nix.lambda((args) => (() => {
           memSize: 512n,
         })))))),
     buildHelloInVM: nix.thunk(() => nix.app(runInLinuxVM, hello)),
-    buildStructuredAttrsHelloInVM: nix.thunk(() => nix.app(runInLinuxVM, nix.thunk(() => nix.app(nix.sel(hello, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, __structuredAttrs: true })))))),
+    buildStructuredAttrsHelloInVM: nix.thunk(() => nix.app(runInLinuxVM, nix.thunk(() => nix.app(nix.sel(hello, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], __structuredAttrs: true })))))),
     buildHelloInFedora: nix.thunk(() => nix.app(runInLinuxImage, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(hello, "pname")),
           version: nix.thunk(() => nix.attr(hello, "version")),
           src: nix.thunk(() => nix.attr(hello, "src")),
@@ -45,9 +40,9 @@ export default nix.lambda((args) => (() => {
           diskImageFormat: "qcow2",
           memSize: 512n,
         })))))),
-    buildPcmanrmInVM: nix.thunk(() => nix.app(runInLinuxVM, nix.thunk(() => nix.app(nix.sel(pcmanfm, "overrideAttrs"), (old) => ({ [nix.POS]: pos$4, enableParallelBuilding: false }))))),
+    buildPcmanrmInVM: nix.thunk(() => nix.app(runInLinuxVM, nix.thunk(() => nix.app(nix.sel(pcmanfm, "overrideAttrs"), (old) => ({ [nix.POS]: $pos[3], enableParallelBuilding: false }))))),
     checkPerlInstalledInDebian: nix.thunk(() => nix.app(runInLinuxImage, nix.thunk(() => nix.app(runCommand, "check-perl", nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           diskImage: nix.thunk(() => nix.sel(diskImages, "debian13x86_64")),
           diskImageFormat: "qcow2",
           memSize: 512n,

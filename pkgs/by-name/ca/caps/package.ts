@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 10, 5], ["sha256", 11, 5]], [["description", 23, 5], ["longDescription", 24, 5], ["homepage", 33, 5], ["license", 34, 5], ["platforms", 35, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["configurePhase", 14, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 10, 5], ["sha256", 11, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["longDescription", 24, 5], ["homepage", 33, 5], ["license", 34, 5], ["platforms", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["configurePhase", 14, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "caps",
       version: "0.9.26",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.quitte.de/dsp/caps_${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1jcq9y51vdnk93q27r566y9qmddvadhr4ddnvkiypaq5rrdnqjg7",
         })))),
       configurePhase: "runHook preConfigure\n\necho \"PREFIX = $out\" > defines.make\n\nrunHook postConfigure\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Selection of LADSPA plugins implementing classic effects",
         longDescription: "The C* Audio Plugin Suite is a selection of classic effects,\nunique filters and signal generators.  The digital guitarist\nfinds in CAPS a range of processors recreating key aspects of\nthe formation of tone in traditional electronic instrument\namplification.  Beyond sound quality, central design\nconsiderations are latency-free realtime operation, modesty of\nresource demands and meaningful control interfaces.\n",
         homepage: "http://www.quitte.de/dsp/caps.html",

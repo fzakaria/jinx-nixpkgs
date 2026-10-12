@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 37, 12]], [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["sourceProvenance", 46, 5], ["mainProgram", 47, 5]], [["pname", 12, 3], ["version", 13, 20], ["src", 15, 3], ["strictDeps", 17, 3], ["__structuredAttrs", 18, 3], ["nativeBuildInputs", 20, 3], ["sourceRoot", 24, 3], ["installPhase", 26, 3], ["passthru", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 37, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["sourceProvenance", 46, 5], ["mainProgram", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 20], ["src", 15, 3], ["strictDeps", 17, 3], ["__structuredAttrs", 18, 3], ["nativeBuildInputs", 20, 3], ["sourceRoot", 24, 3], ["installPhase", 26, 3], ["passthru", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const source = nix.thunk(() => nix.builtins.import(nix.path(here, "./source.nix")));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "chatgpt",
       version: nix.thunk(() => nix.attr(source, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(source, "src")))),
@@ -24,9 +22,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\nmkdir -p \"$out/bin\"\ncp -a ChatGPT.app \"$out/Applications\"\nln -s \"$out/Applications/ChatGPT.app/Contents/MacOS/ChatGPT\" \"$out/bin/ChatGPT\"\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Desktop application for ChatGPT",
         homepage: "https://openai.com/chatgpt/desktop/",
         changelog: "https://help.openai.com/en/articles/9703738-macos-app-release-notes",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["name", 28, 7], ["exec", 29, 7], ["icon", 30, 7], ["comment", 31, 7], ["desktopName", 32, 7], ["categories", 33, 7]], [["src", 52, 32], ["nativeBuildInputs", 53, 11]], [["supportedFeatures", 63, 11]], [["pubspecSource", 49, 5], ["updateScript", 58, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5], ["platforms", 75, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["pubspecLock", 24, 3], ["desktopItems", 26, 3], ["nativeBuildInputs", 37, 3], ["preBuild", 39, 3], ["postInstall", 44, 3], ["passthru", 48, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, flutter344: false, makeDesktopItem: false, copyDesktopItems: false, fetchFromGitHub: false, runCommand: false, "yq-go": false, "nix-update-script": false, "_experimental-update-script-combinators": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 28, 7], ["exec", 29, 7], ["icon", 30, 7], ["comment", 31, 7], ["desktopName", 32, 7], ["categories", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 52, 32], ["nativeBuildInputs", 53, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["supportedFeatures", 63, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pubspecSource", 49, 5], ["updateScript", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5], ["platforms", 75, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["pubspecLock", 24, 3], ["desktopItems", 26, 3], ["nativeBuildInputs", 37, 3], ["preBuild", 39, 3], ["postInstall", 44, 3], ["passthru", 48, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   return nix.app(nix.sel(flutter344, "buildFlutterApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "tts-mod-vault",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "markomijic",
           repo: "TTS-Mod-Vault",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +30,7 @@ export default nix.lambda((args) => (() => {
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "tts_mod_vault",
             exec: "tts_mod_vault",
             icon: "tts_mod_vault",
@@ -49,19 +43,19 @@ export default nix.lambda((args) => (() => {
       preBuild: "echo 'SUPABASE_URL=https://pdrmmvvtindfbpxlcdps.supabase.co' > .env\necho 'SUPABASE_PUBLISHABLE_KEY=sb_publishable_CF6qzs1W8zd_hcVWHSCdVw__2SRB60p' >> .env\n",
       postInstall: "install -m 444 -D assets/icon/tts_mod_vault_icon.png $out/share/icons/tts_mod_vault.png\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             nativeBuildInputs: nix.thunk(() => [yq_go]),
           })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "tts-mod-vault.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$4, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "tts-mod-vault.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: $pos[3], supportedFeatures: [] })),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Download and backup assets for your Tabletop Simulator mods",
         homepage: "https://github.com/markomijic/TTS-Mod-Vault",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

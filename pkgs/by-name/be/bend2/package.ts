@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 24, 5], ["paths", 25, 5]], [["url", 38, 5], ["hash", 39, 5]], [["updateScript", 94, 12]], [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["mainProgram", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["sourceRoot", 42, 3], ["__structuredAttrs", 44, 3], ["strictDeps", 45, 3], ["nativeBuildInputs", 47, 3], ["dontBuild", 49, 3], ["makeWrapperArgs", 51, 3], ["installPhase", 80, 3], ["nativeInstallCheckInputs", 90, 3], ["doInstallCheck", 91, 3], ["passthru", 94, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, bun: false, llvmPackages: false, makeWrapper: false, symlinkJoin: false, versionCheckHook: false, config: false, cudaSupport: true, cudaPackages: false, addDriverRunpath: false, "apple-sdk_15": false, writeShellScript: false, curl: false, jq: false, "nix-update": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 24, 5], ["paths", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 94, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["mainProgram", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["sourceRoot", 42, 3], ["__structuredAttrs", 44, 3], ["strictDeps", 45, 3], ["nativeBuildInputs", 47, 3], ["dontBuild", 49, 3], ["makeWrapperArgs", 51, 3], ["installPhase", 80, 3], ["nativeInstallCheckInputs", 90, 3], ["doInstallCheck", 91, 3], ["passthru", 94, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const nix_update = nix.arg($, "nix-update");
   const cuda = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "bend2-cuda",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(cudaPackages, null);
@@ -41,11 +37,11 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bend2",
       version: "2.0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://bend-lang.com/dl/${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-TbcOd84bECfx0OFd7gJZIfp5SptBWt1DUOx8ZKzyd1s=",
         })))),
@@ -88,14 +84,14 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-bend2", nix.thunk(() => nix.str`set -euo pipefail
 version=$(${nix.app(nix.sel(lib, "getExe"), curl)} -fsSL https://bend-lang.com/dl/latest.json | ${nix.app(nix.sel(lib, "getExe"), jq)} -r .ver)
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} bend2 --version "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Dependently typed, affine language that verifies proofs and runs on CPU threads and GPUs",
         homepage: "https://bend-lang.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/import.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 65, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["nativeCheckInputs", 31, 3], ["disabledTests", 37, 3], ["postInstall", 41, 3], ["postCheck", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, python3Packages: false, gnupg: false, pass: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/import.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/import.nix", [["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 65, 5]]);
-const pos$3 = nix.positions(here + "/import.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["nativeCheckInputs", 31, 3], ["disabledTests", 37, 3], ["postInstall", 41, 3], ["postCheck", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/roddhjav/${pname}/releases/download/v${version}/${pname}-${version}.tar.gz`),
           hash: "sha256-+wrff3OxPkAGu1Mn4Kl0KN4FmvIAb+MnaERcD5ScDNc=",
         }))));
@@ -49,7 +47,7 @@ cp -r share $out/
 `);
       const postCheck = "$out/bin/pimport --list-exporters --list-importers\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pass extension for importing data from existing password managers",
         mainProgram: "pimport",
         homepage: "https://github.com/roddhjav/pass-import",
@@ -65,7 +63,7 @@ cp -r share $out/
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

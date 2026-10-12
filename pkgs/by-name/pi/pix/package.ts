@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]], [["gtkSupport", 66, 44]], [["description", 107, 5], ["mainProgram", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["platforms", 111, 5], ["teams", 112, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 59, 3], ["postPatch", 84, 3], ["mesonFlags", 95, 3], ["preFixup", 97, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "pkg-config": false, meson: false, ninja: false, brasero: false, colord: false, exiv2: false, libheif: false, libjpeg: false, libjxl: false, libtiff: false, gst_all_1: false, libraw: false, libsecret: false, glib: false, gtk3: false, "gsettings-desktop-schemas": false, librsvg: false, libwebp: false, libx11: false, lcms2: false, bison: false, flex: false, wrapGAppsHook3: false, "shared-mime-info": false, python3: false, "desktop-file-utils": false, itstool: false, xapp: false, "xapp-symbolic-icons": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gtkSupport", 66, 44]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 107, 5], ["mainProgram", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["platforms", 111, 5], ["teams", 112, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 59, 3], ["postPatch", 84, 3], ["mesonFlags", 95, 3], ["preFixup", 97, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const xapp = nix.arg($, "xapp");
   const xapp_symbolic_icons = nix.arg($, "xapp-symbolic-icons");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pix",
       version: "3.4.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "pix",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
         glib,
         gsettings_desktop_schemas,
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], gtkSupport: true })))),
         nix.thunk(() => nix.sel(gst_all_1, "gst-libav")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-bad")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-ugly")),
@@ -93,7 +90,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix XDG_DATA_DIRS : "${nix.app(nix.sel(lib, "makeSearchPath"), "share", nix.thunk(() => [shared_mime_info, xapp_symbolic_icons]))}")
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Generic image viewer from Linux Mint",
         mainProgram: "pix",
         homepage: "https://github.com/linuxmint/pix",

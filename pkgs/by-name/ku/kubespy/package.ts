@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["sha256", 16, 5]], [["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["nativeBuildInputs", 21, 3], ["doCheck", 23, 3], ["ldflags", 25, 3], ["postInstall", 30, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["nativeBuildInputs", 21, 3], ["doCheck", 23, 3], ["ldflags", 25, 3], ["postInstall", 30, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kubespy",
       version: "0.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           owner: "pulumi",
           repo: "kubespy",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "for shell in bash fish zsh; do\n  $out/bin/kubespy completion $shell > kubespy.$shell\n  installShellCompletion kubespy.$shell\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to observe Kubernetes resources in real time",
         mainProgram: "kubespy",
         homepage: "https://github.com/pulumi/kubespy",

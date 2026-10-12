@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 26], ["broken", 35, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["buildInputs", 19, 3], ["buildPhase", 25, 19], ["installPhase", 25, 30], ["propagatedBuildInputs", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, ocaml: false, findlib: false, ocamlbuild: false, topkg: false, brr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 26], ["broken", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["buildInputs", 19, 3], ["buildPhase", 25, 19], ["installPhase", 25, 30], ["propagatedBuildInputs", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-note`);
       const version = "0.0.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://erratique.ch/software/note/releases/note-${version}.tbz`),
           hash: "sha256-ZZOvCnyz7UWzFtGFI1uC0ZApzyylgZYM/HYIXGVXY2k=",
         }))));
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://erratique.ch/software/note",
         description: "OCaml module for functional reactive programming",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

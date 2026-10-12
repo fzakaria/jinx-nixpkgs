@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["updateScript", 73, 5]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["mainProgram", 81, 5], ["teams", 82, 5], ["platforms", 83, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 45, 3], ["dependencies", 52, 3], ["runtimeDeps", 57, 3], ["dontWrapGApps", 63, 3], ["preFixup", 65, 3], ["passthru", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, "blueprint-compiler": false, "gobject-introspection": false, wrapGAppsHook4: false, "desktop-file-utils": false, libadwaita: false, libglycin: false, "libglycin-gtk4": false, "libva-utils": false, ffmpeg: false, "gst-thumbnailers": false, "glycin-loaders": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["mainProgram", 81, 5], ["teams", 82, 5], ["platforms", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 45, 3], ["dependencies", 52, 3], ["runtimeDeps", 57, 3], ["dontWrapGApps", 63, 3], ["preFixup", 65, 3], ["passthru", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const glycin_loaders = nix.arg($, "glycin-loaders");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "constrict",
       version: "26.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "Constrict",
@@ -60,11 +57,11 @@ export default nix.lambda((args) => (() => {
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Compresses your videos to your chosen file size",
         homepage: "https://gitlab.gnome.org/World/Constrict",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/Constrict/-/releases/${nix.sel(finalAttrs, "src", "tag")}`),

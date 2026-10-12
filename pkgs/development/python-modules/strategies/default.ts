@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 5], ["version", 20, 26], ["sha256", 21, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["pyproject", 15, 3], ["src", 18, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["doCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, multipledispatch: false, toolz: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 26], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["pyproject", 15, 3], ["src", 18, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["doCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const toolz = nix.arg($, "toolz");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "strategies",
       version: "0.2.3",
       __structuredAttrs: true,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "strategies",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "02i4ydrs9k61p8iv2vl2akks8p9gc88rw8031wlwb1zqsyjmb328",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [multipledispatch, toolz]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for control flow programming",
         homepage: "https://github.com/logpy/strategies",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

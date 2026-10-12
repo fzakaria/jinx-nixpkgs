@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["updateScript", 66, 5]], [["description", 70, 5], ["homepage", 71, 5], ["maintainers", 72, 5], ["license", 73, 5], ["platforms", 74, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["dontBuild", 28, 3], ["installPhase", 30, 3], ["passthru", 65, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, coreutils: false, fswatch: false, gitMinimal: false, gnugrep: false, gnused: false, makeBinaryWrapper: false, "inotify-tools": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["maintainers", 72, 5], ["license", 73, 5], ["platforms", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["dontBuild", 28, 3], ["installPhase", 30, 3], ["passthru", 65, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const inotify_tools = nix.arg($, "inotify-tools");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "git-sync",
       version: "0-unstable-2025-06-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "simonthum",
           repo: "git-sync",
           rev: "15af8a43cb4d8354f0b7e7c8d27e09587a9a3994",
@@ -57,11 +54,11 @@ runHook postInstall
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Script to automatically synchronize a git repository",
         homepage: "https://github.com/simonthum/git-sync",
         maintainers: nix.thunk(() => (() => {

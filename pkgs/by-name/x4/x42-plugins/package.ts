@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["description", 67, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["license", 72, 5], ["platforms", 73, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["unpackPhase", 47, 3], ["makeFlags", 53, 3], ["patchPhase", 58, 3], ["enableParallelBuilding", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libltc: false, libsndfile: false, libsamplerate: false, ftgl: false, freefont_ttf: false, libjack2: false, libGLU: false, lv2: false, cairo: false, pango: false, fftwFloat: false, "zita-convolver": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["license", 72, 5], ["platforms", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["unpackPhase", 47, 3], ["makeFlags", 53, 3], ["patchPhase", 58, 3], ["enableParallelBuilding", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "x42-plugins";
       const version = "20260908";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gareus.org/misc/x42-plugins/${pname}-${version}.tar.xz`),
           hash: "sha256-1dRqzDnrH+Zocx+XfVciIsmQy+5FQdMkncNFdfj7tcA=",
         }))));
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const patchPhase = "patchShebangs ./stepseq.lv2/gridgen.sh\npatchShebangs ./matrixmixer.lv2/genttl.sh\npatchShebangs ./matrixmixer.lv2/genhead.sh\n";
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of LV2 plugins by Robin Gareus",
         homepage: "https://github.com/x42/x42-plugins",
         maintainers: nix.thunk(() => (() => {
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

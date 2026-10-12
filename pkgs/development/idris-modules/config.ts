@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/config.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 11, 3], ["version", 12, 3], ["idrisDeps", 14, 3], ["src", 21, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { "build-idris-package": false, fetchFromGitHub: false, effects: false, containers: false, lightyear: false, test: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/config.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/config.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/config.nix", [["pname", 11, 3], ["version", 12, 3], ["idrisDeps", 14, 3], ["src", 21, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const test = nix.arg($, "test");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "config",
       version: "2017-11-06",
       idrisDeps: nix.thunk(() => [effects, containers, lightyear, test]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "benclifford",
           repo: "idris-config",
           rev: "92f98652f5cb06a76c47809f16c661ec6cf11048",
           sha256: "1w2w2l4drvkf8mdzh3lwn6l5lnkbxlx9p22s7spw82n5s4wib6c9",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Parsers for various configuration files written in Idris",
         homepage: "https://github.com/benclifford/idris-config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

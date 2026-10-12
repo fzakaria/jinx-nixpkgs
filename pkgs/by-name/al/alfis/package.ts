@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5], ["mainProgram", 80, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoHash", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["buildNoDefaultFeatures", 43, 3], ["buildFeatures", 44, 3], ["checkFlags", 46, 3], ["postInstall", 52, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, makeWrapper: false, fontconfig: false, libGL: false, libx11: false, libxcursor: false, libxi: false, libxkbcommon: false, libxrandr: false, wayland: false, "xdg-utils": false, zenity: false, withGui: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5], ["mainProgram", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoHash", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["buildNoDefaultFeatures", 43, 3], ["buildFeatures", 44, 3], ["checkFlags", 46, 3], ["postInstall", 52, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const zenity = nix.arg($, "zenity");
   const withGui = nix.argOr($, "withGui", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "alfis",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Revertron",
           repo: "Alfis",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
   --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, libx11, libxcursor, libxi, libxkbcommon, libxrandr, wayland]))}
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Alternative Free Identity System",
         homepage: "https://alfis.name",
         changelog: nix.thunk(() => nix.str`https://github.com/Revertron/Alfis/releases/tag/v${nix.sel(finalAttrs, "version")}`),

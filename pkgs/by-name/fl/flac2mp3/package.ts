@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["url", 32, 7], ["hash", 33, 7]], [["runtimeDeps", 58, 13]], [["mainProgram", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["installPhase", 41, 3], ["postFixup", 51, 3], ["passthru", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, makeWrapper: false, perl: false, perlPackages: false, flac: false, lame: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["runtimeDeps", 58, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["installPhase", 41, 3], ["postFixup", 51, 3], ["passthru", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const lame = nix.arg($, "lame");
   const runtimeDeps = nix.thunk(() => [flac, lame]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "flac2mp3",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "robinbowes",
           repo: "flac2mp3",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/sktt/flac2mp3/commit/c81cb6f300445f2383562991b35d8622197635d7.patch",
             hash: "sha256-vLXo+PfRQ97cNQnMoBrxA7K35C1EdedXXSL8wmWpPOs=",
           })))),
@@ -46,9 +42,9 @@ export default nix.lambda((args) => (() => {
   --prefix PERL5LIB : "$out/lib" \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "runtimeDeps")))}
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, runtimeDeps: runtimeDeps })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], runtimeDeps: runtimeDeps })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mainProgram: "flac2mp3",
         description: "Tool to convert audio files from flac to mp3 format including the copying of tags",
         homepage: "https://github.com/robinbowes/flac2mp3",

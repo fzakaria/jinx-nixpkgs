@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["mainProgram", 32, 5]], [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["cargoHash", 20, 3], ["doCheck", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["mainProgram", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["cargoHash", 20, 3], ["doCheck", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "1.1.1";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kittysay",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "uncenter",
           repo: "kittysay",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-7bAPKZAiX/p5xvIbGBBf8O1rksnizIJfMkUwhkpouAA=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cowsay, but with a cute kitty :3",
         homepage: "https://github.com/uncenter/kittysay",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5], ["fetchSubmodules", 16, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["mainProgram", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["preBuild", 19, 3], ["installPhase", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5], ["fetchSubmodules", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["mainProgram", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["preBuild", 19, 3], ["installPhase", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nstool",
       version: "1.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jakcron",
           repo: "nstool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "make deps\n",
       installPhase: "mkdir -p $out/bin\ncp -v bin/nstool $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "General purpose reading/extraction tool for Nintendo Switch file formats",
         homepage: "https://github.com/jakcron/nstool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["nar-serve", 22, 43]], [["tests", 22, 12]], [["description", 25, 5], ["mainProgram", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["doCheck", 20, 3], ["passthru", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nar-serve", 22, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 22, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 25, 5], ["mainProgram", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["doCheck", 20, 3], ["passthru", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nar-serve",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "numtide",
           repo: "nar-serve",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,14 +25,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-82uMrkvqsUaSvEi0mlGBOAP9JCLABsHsHsikrrCknWY=",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "nar-serve": nix.thunk(() => nix.attr(nixosTests, "nar-serve")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Serve NAR file contents via HTTP",
         mainProgram: "nar-serve",
         homepage: "https://github.com/numtide/nar-serve",

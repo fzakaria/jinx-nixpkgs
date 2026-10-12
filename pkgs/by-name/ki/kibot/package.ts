@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 18, 5], ["paths", 19, 5]], [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["extraArgs", 76, 5]], [["updateScript", 75, 12]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["pythonPath", 41, 3], ["buildInputs", 55, 3], ["patches", 57, 3], ["postFixup", 61, 3], ["postInstall", 70, 3], ["passthru", 75, 3], ["__structuredAttrs", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, kicad: false, "interactive-html-bom-inti-cmnb": false, symlinkJoin: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 18, 5], ["paths", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 75, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["pythonPath", 41, 3], ["buildInputs", 55, 3], ["patches", 57, 3], ["postFixup", 61, 3], ["postInstall", 70, 3], ["passthru", 75, 3], ["__structuredAttrs", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const libraries = nix.thunk(() => nix.sel(kicad, "libraries"));
   const template_dir = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "KiCad_template_dir",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(libraries, null);
@@ -33,12 +28,12 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kibot",
       version: "1.9.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "INTI-CMNB",
           repo: "KiBot",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,15 +70,15 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "find $out -name '*.pyc' -delete\nfind $out -name '__pycache__' -type d -exec rm -r {} +\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex=v(\\d.\\d.\\d)"]),
           })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tool for generating fabrication and documentation files for KiCad",
         homepage: "https://github.com/INTI-CMNB/KiBot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

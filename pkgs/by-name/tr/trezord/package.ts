@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["fetchSubmodules", 20, 5], ["hash", 21, 5]], [["url", 29, 7], ["hash", 30, 7]], [["url", 34, 7], ["hash", 35, 7]], [["trezord", 47, 43]], [["tests", 47, 12]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 60, 5]], [["pname", 12, 3], ["version", 13, 3], ["commit", 14, 3], ["src", 16, 3], ["vendorHash", 24, 3], ["patches", 26, 3], ["propagatedBuildInputs", 39, 3], ["ldflags", 41, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, fetchpatch: false, "trezor-udev-rules": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["fetchSubmodules", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["trezord", 47, 43]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 47, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 60, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["commit", 14, 3], ["src", 16, 3], ["vendorHash", 24, 3], ["patches", 26, 3], ["propagatedBuildInputs", 39, 3], ["ldflags", 41, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.33";
       const commit = "2680d5e";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trezor",
           repo: "trezord-go",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,12 +29,12 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-wXgAmZEXdM4FcMCQbAs+ydXshCAMu7nl/yVv/3sqaXE=";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/trezor/trezord-go/commit/616473d53a8ae49f1099e36ab05a2981a08fa606.patch",
             hash: "sha256-yKTwgqWr4L6XEPV85A6D1wpRdpef8hkIbl4LrRmOyuo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/trezor/trezord-go/commit/8ca9600d176bebf6cd2ad93ee9525a04059ee735.patch",
             hash: "sha256-jW+x/FBFEIlRGTDHWF2Oj+05KmFLtFDGJwfYFx7yTv4=",
           })))),
@@ -48,11 +42,14 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [trezor_udev_rules])));
       const ldflags = nix.thunk(() => ["-s", "-w", nix.thunk(() => nix.str`-X main.githash=${commit}`)]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, trezord: nix.thunk(() => nix.attr(nixosTests, "trezord")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[3],
+          trezord: nix.thunk(() => nix.attr(nixosTests, "trezord")),
+        })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Trezor Communication Daemon aka Trezor Bridge",
         homepage: "https://trezor.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "trezord-go",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         commit,

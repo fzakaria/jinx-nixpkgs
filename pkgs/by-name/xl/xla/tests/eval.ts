@@ -2,76 +2,56 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/eval.nix", [[["allowUnfree", 8, 7], ["allowUnfreePredicate", 9, 7], ["cudaSupport", 10, 7]], [["config", 7, 5]], [["allowUnfree", 13, 36]], [["config", 13, 29]], [["cudaSupport", 14, 29]], [["cudaSupport", 15, 31]], [["cudaSupport", 16, 53]], [["allowUnfree", 21, 9], ["cudaCapabilities", 22, 9], ["cudaForwardCompat", 23, 9]], [["config", 20, 7]], [["cudaSupport", 26, 9]], [["cudaPackages", 32, 29]], [["outputHash", 35, 7], ["outputHashAlgo", 36, 7]], [["deps", 34, 5]], [["xla", 40, 5], ["cudaSupport", 41, 5], ["cudaPackages", 42, 5]], [["overrideLinkageSentinel", 60, 7]], [["postInstall", 58, 5], ["passthru", 59, 5]], [["xla", 64, 5], ["cudaSupport", 65, 5]], [["postInstall", 67, 39]], [["xla", 69, 5], ["cudaSupport", 70, 5]], [["default", 132, 5], ["noForward", 133, 5], ["override", 134, 5]], [["cpuChecks", 122, 3], ["cpuTesters", 123, 3], ["cpuDrvPath", 126, 3], ["cudaDrvPath", 127, 3], ["unfreeRejected", 128, 3], ["capabilitiesAndOverrideLinkage", 129, 3], ["cudaDepsDrvPath", 130, 3], ["cudaConfigureChecks", 131, 3]]]);
 const formals$1 = { args: { nixpkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/eval.nix", [["allowUnfree", 8, 7], ["allowUnfreePredicate", 9, 7], ["cudaSupport", 10, 7]]);
-const pos$2 = nix.positions(here + "/eval.nix", [["config", 7, 5]]);
-const pos$3 = nix.positions(here + "/eval.nix", [["allowUnfree", 13, 36]]);
-const pos$4 = nix.positions(here + "/eval.nix", [["config", 13, 29]]);
-const pos$5 = nix.positions(here + "/eval.nix", [["cudaSupport", 14, 29]]);
-const pos$6 = nix.positions(here + "/eval.nix", [["cudaSupport", 15, 31]]);
-const pos$7 = nix.positions(here + "/eval.nix", [["cudaSupport", 16, 53]]);
-const pos$8 = nix.positions(here + "/eval.nix", [["allowUnfree", 21, 9], ["cudaCapabilities", 22, 9], ["cudaForwardCompat", 23, 9]]);
-const pos$9 = nix.positions(here + "/eval.nix", [["config", 20, 7]]);
-const pos$10 = nix.positions(here + "/eval.nix", [["cudaSupport", 26, 9]]);
-const pos$11 = nix.positions(here + "/eval.nix", [["cudaPackages", 32, 29]]);
-const pos$12 = nix.positions(here + "/eval.nix", [["outputHash", 35, 7], ["outputHashAlgo", 36, 7]]);
-const pos$13 = nix.positions(here + "/eval.nix", [["deps", 34, 5]]);
-const pos$14 = nix.positions(here + "/eval.nix", [["xla", 40, 5], ["cudaSupport", 41, 5], ["cudaPackages", 42, 5]]);
-const pos$15 = nix.positions(here + "/eval.nix", [["overrideLinkageSentinel", 60, 7]]);
-const pos$16 = nix.positions(here + "/eval.nix", [["postInstall", 58, 5], ["passthru", 59, 5]]);
-const pos$17 = nix.positions(here + "/eval.nix", [["xla", 64, 5], ["cudaSupport", 65, 5]]);
-const pos$18 = nix.positions(here + "/eval.nix", [["postInstall", 67, 39]]);
-const pos$19 = nix.positions(here + "/eval.nix", [["xla", 69, 5], ["cudaSupport", 70, 5]]);
-const pos$20 = nix.positions(here + "/eval.nix", [["default", 132, 5], ["noForward", 133, 5], ["override", 134, 5]]);
-const pos$21 = nix.positions(here + "/eval.nix", [["cpuChecks", 122, 3], ["cpuTesters", 123, 3], ["cpuDrvPath", 126, 3], ["cudaDrvPath", 127, 3], ["unfreeRejected", 128, 3], ["capabilitiesAndOverrideLinkage", 129, 3], ["cudaDepsDrvPath", 130, 3], ["cudaConfigureChecks", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.arg($, "nixpkgs");
   const free = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       config: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         allowUnfree: false,
         allowUnfreePredicate: (_) => false,
         cudaSupport: false,
       })),
     }))));
   const unfree = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      [nix.POS]: pos$4,
-      config: nix.thunk(() => ({ [nix.POS]: pos$3, allowUnfree: true })),
+      [nix.POS]: $pos[3],
+      config: nix.thunk(() => ({ [nix.POS]: $pos[2], allowUnfree: true })),
     }))));
-  const cpu = nix.thunk(() => nix.app(nix.sel(free, "xla", "override"), nix.thunk(() => ({ [nix.POS]: pos$5, cudaSupport: false }))));
-  const gpu = nix.thunk(() => nix.app(nix.sel(unfree, "xla", "override"), nix.thunk(() => ({ [nix.POS]: pos$6, cudaSupport: true }))));
-  const rejected = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.sel(nix.app(nix.sel(free, "xla", "override"), nix.thunk(() => ({ [nix.POS]: pos$7, cudaSupport: true }))), "drvPath"))));
+  const cpu = nix.thunk(() => nix.app(nix.sel(free, "xla", "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], cudaSupport: false }))));
+  const gpu = nix.thunk(() => nix.app(nix.sel(unfree, "xla", "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], cudaSupport: true }))));
+  const rejected = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.sel(nix.app(nix.sel(free, "xla", "override"), nix.thunk(() => ({ [nix.POS]: $pos[6], cudaSupport: true }))), "drvPath"))));
   const configured = (capabilities) => (forwardCompat) => nix.app(nix.sel(nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       config: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         allowUnfree: true,
         cudaCapabilities: capabilities,
         cudaForwardCompat: forwardCompat,
       })),
-    }))), "xla", "override"), nix.thunk(() => ({ [nix.POS]: pos$10, cudaSupport: true })));
+    }))), "xla", "override"), nix.thunk(() => ({ [nix.POS]: $pos[9], cudaSupport: true })));
   const forward = nix.thunk(() => nix.app(configured, nix.thunk(() => ["8.0", "8.9"]), true));
   const noForward = nix.thunk(() => nix.app(configured, nix.thunk(() => ["8.0", "8.9"]), false));
   const ordered = nix.thunk(() => nix.app(configured, nix.thunk(() => ["9.0", "8.0"]), true));
   const accelerated = nix.thunk(() => nix.app(configured, nix.thunk(() => ["9.0a"]), true));
   const familyRejected = (forwardCompat) => nix.builtins.tryEval(nix.thunk(() => nix.sel(nix.app(configured, nix.thunk(() => ["10.0f"]), forwardCompat), "drvPath")));
   const selected = nix.thunk(() => nix.app(nix.sel(gpu, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       cudaPackages: nix.thunk(() => nix.sel(unfree, "cudaPackages_12_8")),
     }))));
   const selectedWithHash = nix.thunk(() => nix.app(nix.sel(selected, "overrideAttrs"), (previousAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       deps: nix.thunk(() => nix.app(nix.sel(previousAttrs, "deps", "overrideAttrs"), nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           outputHash: nix.thunk(() => nix.sel(unfree, "lib", "fakeHash")),
           outputHashAlgo: "sha256",
         })))),
     })));
   const selectedExpected = nix.thunk(() => nix.app(nix.sel(unfree, "callPackage"), nix.path(here, "./default.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       xla: selectedWithHash,
       cudaSupport: true,
       cudaPackages: nix.thunk(() => nix.sel(unfree, "cudaPackages_12_8")),
@@ -81,13 +61,13 @@ export default nix.lambda((args) => (() => {
   const containsPath = (path) => (text) => nix.app(nix.sel(unfree, "lib", "hasInfix"), nix.thunk(() => nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.builtins.toString(path)))), nix.thunk(() => nix.builtins.unsafeDiscardStringContext(text)));
   const hasCompiledDefault = (root) => (package$) => nix.app(nix.sel(unfree, "lib", "hasInfix"), nix.thunk(() => nix.str`opts.set_xla_gpu_cuda_data_dir("${nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.builtins.toString(root)))}");`), nix.thunk(() => nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.sel(package$, "postConfigure")))));
   const overridden = nix.thunk(() => nix.app(nix.sel(cpu, "overrideAttrs"), (previousAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       postInstall: nix.thunk(() => nix.add(nix.selOr(previousAttrs, () => "", "postInstall"), "touch \"$out/override-linkage-test\"")),
-      passthru: nix.thunk(() => nix.update(nix.sel(previousAttrs, "passthru"), { [nix.POS]: pos$15, overrideLinkageSentinel: true })),
+      passthru: nix.thunk(() => nix.update(nix.sel(previousAttrs, "passthru"), { [nix.POS]: $pos[14], overrideLinkageSentinel: true })),
     })));
-  const expected = nix.thunk(() => nix.app(nix.sel(unfree, "callPackage"), nix.path(here, "./default.nix"), nix.thunk(() => ({ [nix.POS]: pos$17, xla: overridden, cudaSupport: false }))));
-  const gpuOverridden = nix.thunk(() => nix.app(nix.sel(gpu, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$18, postInstall: "touch \"$out/override-linkage-test\"" }))));
-  const gpuExpected = nix.thunk(() => nix.app(nix.sel(unfree, "callPackage"), nix.path(here, "./default.nix"), nix.thunk(() => ({ [nix.POS]: pos$19, xla: gpuOverridden, cudaSupport: true }))));
+  const expected = nix.thunk(() => nix.app(nix.sel(unfree, "callPackage"), nix.path(here, "./default.nix"), nix.thunk(() => ({ [nix.POS]: $pos[16], xla: overridden, cudaSupport: false }))));
+  const gpuOverridden = nix.thunk(() => nix.app(nix.sel(gpu, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[17], postInstall: "touch \"$out/override-linkage-test\"" }))));
+  const gpuExpected = nix.thunk(() => nix.app(nix.sel(unfree, "callPackage"), nix.path(here, "./default.nix"), nix.thunk(() => ({ [nix.POS]: $pos[18], xla: gpuOverridden, cudaSupport: true }))));
   nix.assert_(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.sel(cpu, "drvPath"))), "success"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/xl/xla/tests/eval.nix:73:1");
   nix.assert_(!nix.asBool(nix.sel(rejected, "success")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/xl/xla/tests/eval.nix:74:1");
   nix.assert_(nix.builtins.all((license) => nix.sel(license, "free"), nix.thunk(() => nix.sel(cpu, "meta", "license"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/xl/xla/tests/eval.nix:75:1");
@@ -135,7 +115,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.eq(nix.sel(gpuOverridden, "tests", "cuda", "nccl", "drvPath"), nix.sel(gpuExpected, "tests", "cuda", "nccl", "drvPath")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/xl/xla/tests/eval.nix:119:1");
   nix.assert_(nix.eq(nix.sel(gpuOverridden, "tests", "cuda", "hlo", "drvPath"), nix.sel(gpuExpected, "tests", "cuda", "hlo", "drvPath")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/xl/xla/tests/eval.nix:120:1");
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     cpuChecks: nix.thunk(() => nix.builtins.mapAttrs((_) => (check) => nix.sel(check, "drvPath"), nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(cpu, "tests")), nix.thunk(() => ["cuda"]))))),
     cpuTesters: nix.thunk(() => nix.builtins.mapAttrs((_) => (tester) => nix.sel(tester, "meta", "mainProgram"), nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(cpu, "testers")), nix.thunk(() => ["cuda"]))))),
     cpuDrvPath: nix.thunk(() => nix.sel(cpu, "drvPath")),
@@ -144,7 +124,7 @@ export default nix.lambda((args) => (() => {
     capabilitiesAndOverrideLinkage: true,
     cudaDepsDrvPath: nix.thunk(() => nix.sel(gpu, "deps", "drvPath")),
     cudaConfigureChecks: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       default: nix.thunk(() => nix.sel(gpu, "tests", "cuda", "configure", "drvPath")),
       noForward: nix.thunk(() => nix.sel(noForward, "tests", "cuda", "configure", "drvPath")),
       override: nix.thunk(() => nix.sel(gpu, "tests", "cuda", "configureOverride", "drvPath")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]], [["docFiles", 41, 9], ["noiseFiles", 51, 9]], [["broken", 84, 5], ["description", 85, 5], ["mainProgram", 86, 5], ["longDescription", 87, 5], ["homepage", 93, 5], ["license", 94, 5], ["platforms", 95, 5], ["maintainers", 96, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 22, 3], ["nativeBuildInputs", 28, 3], ["enableParallelBuilding", 29, 3], ["makeFlags", 31, 3], ["installPhase", 36, 3], ["postFixup", 78, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bmake: false, cleanPackaging: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["docFiles", 41, 9], ["noiseFiles", 51, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["broken", 84, 5], ["description", 85, 5], ["mainProgram", 86, 5], ["longDescription", 87, 5], ["homepage", 93, 5], ["license", 94, 5], ["platforms", 95, 5], ["maintainers", 96, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 22, 3], ["nativeBuildInputs", 28, 3], ["enableParallelBuilding", 29, 3], ["makeFlags", 31, 3], ["installPhase", 36, 3], ["postFixup", 78, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const bmake = nix.arg($, "bmake");
   const cleanPackaging = nix.arg($, "cleanPackaging");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kgt",
       version: "2023-06-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "katef",
           repo: "kgt",
           rev: "dc881796aa691f1fddb1d01ec77216b34fe8134d",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 
 ${nix.app(nix.sel(cleanPackaging, "commonFileActions"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           docFiles: nix.thunk(() => ["README.md", "LICENCE", "examples", "man", "examples", "doc"]),
           noiseFiles: nix.thunk(() => [
             "build/src",
@@ -64,7 +61,7 @@ runHook postInstall
       postFixup: nix.thunk(() => nix.str`${nix.sel(cleanPackaging, "checkForRemainingFiles")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "BNF wrangling and railroad diagrams",
         mainProgram: "kgt",

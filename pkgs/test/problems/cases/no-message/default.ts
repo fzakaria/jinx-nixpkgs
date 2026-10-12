@@ -2,39 +2,33 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["package", 10, 11], ["handler", 11, 11]], [["matchers", 8, 16]], [["checkMeta", 7, 7], ["problems", 8, 7]], [["system", 4, 5], ["overlays", 5, 5], ["config", 6, 5]], [["removal", 21, 17]], [["description", 20, 8], ["problems", 21, 8]], [["pname", 18, 3], ["version", 19, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { nixpkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["package", 10, 11], ["handler", 11, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["matchers", 8, 16]]);
-const pos$3 = nix.positions(here + "/default.nix", [["checkMeta", 7, 7], ["problems", 8, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["system", 4, 5], ["overlays", 5, 5], ["config", 6, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["removal", 21, 17]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 20, 8], ["problems", 21, 8]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.arg($, "nixpkgs");
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       system: "x86_64-linux",
       overlays: [],
       config: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         checkMeta: true,
         problems: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          matchers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, package: "a", handler: "error" }))]),
+          [nix.POS]: $pos[1],
+          matchers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[0], package: "a", handler: "error" }))]),
         })),
       })),
     }))));
   return nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "a",
       version: "0",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Some package",
-        problems: nix.thunk(() => ({ [nix.POS]: pos$5, removal: nix.thunk(() => ({})) })),
+        problems: nix.thunk(() => ({ [nix.POS]: $pos[4], removal: nix.thunk(() => ({})) })),
       })),
     })));
 })(), formals$1);

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["url", 34, 7], ["hash", 35, 7]], [["withExamples", 50, 48]], [["examples", 50, 18]], [["tests", 50, 12]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 17, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["patches", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 40, 3], ["cmakeFlags", 48, 3], ["passthru", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, imgui: false, SDL2: false, libxext: false, imnodes: false, withExamples: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withExamples", 50, 48]]);
-const pos$4 = nix.positions(here + "/package.nix", [["examples", 50, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 50, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 17, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["patches", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 40, 3], ["cmakeFlags", 48, 3], ["passthru", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const imnodes = nix.arg($, "imnodes");
   const withExamples = nix.argOr($, "withExamples", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "imnodes",
       version: "0.5-unstable-2025-06-25",
       outputs: nix.thunk(() => ["out", "dev"]),
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Nelarius",
           repo: "imnodes",
           rev: "b2ec254ce576ac3d42dfb7aef61deadbff8e7211",
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/Nelarius/imnodes/commit/ff20336fcd82ce07c39fabd76d5bc9fa0a08b3bc.patch",
             hash: "sha256-JHOUjwMofDwt2kg6SLPFZmuQC4bOfjGa3qHFr5MdPIE=",
           })))),
@@ -50,14 +44,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "IMNODES_EXAMPLES", withExamples)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          examples: nix.thunk(() => nix.app(nix.sel(imnodes, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withExamples: true })))),
+          [nix.POS]: $pos[3],
+          examples: nix.thunk(() => nix.app(nix.sel(imnodes, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], withExamples: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Small, dependency-free node editor for dear imgui",
         homepage: "https://github.com/Nelarius/imnodes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

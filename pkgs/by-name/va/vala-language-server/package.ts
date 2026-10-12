@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["updateScript", 30, 5]], [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["passthru", 29, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 44, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false, "pkg-config": false, scdoc: false, "gnome-builder": false, glib: false, libgee: false, "json-glib": false, "jsonrpc-glib": false, vala: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["passthru", 29, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 44, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,24 +22,24 @@ export default nix.lambda((args) => (() => {
   const jsonrpc_glib = nix.arg($, "jsonrpc-glib");
   const vala = nix.arg($, "vala");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vala-language-server",
       version: "0.48.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vala-lang",
           repo: "vala-language-server",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-Vl5DjKBdpk03aPD+0xGoTwD9Slg1rREorqZGX5o10cY=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => nix.concat([meson, ninja, pkg_config, scdoc], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [gnome_builder])))),
       buildInputs: nix.thunk(() => [glib, libgee, json_glib, jsonrpc_glib, vala]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Code Intelligence for Vala & Genie",
         mainProgram: "vala-language-server",
         homepage: "https://github.com/vala-lang/vala-language-server",

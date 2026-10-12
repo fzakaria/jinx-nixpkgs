@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 73, 5], ["mainProgram", 78, 5], ["platforms", 79, 5]], [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["buildFeatures", 40, 3], ["postFixup", 42, 3], ["doInstallCheck", 52, 3], ["installCheckPhase", 53, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, fetchFromGitHub: false, rustPlatform: false, installShellFiles: false, "pkg-config": false, withPCRE2: true, pcre2: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 73, 5], ["mainProgram", 78, 5], ["platforms", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["buildFeatures", 40, 3], ["postFixup", 42, 3], ["doInstallCheck", 52, 3], ["installCheckPhase", 53, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const canRunRg = nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages));
   const rg = nix.thunk(() => nix.str`${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)} $out/bin/rg${nix.sel(stdenv, "hostPlatform", "extensions", "executable")}`);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ripgrep",
       version: "15.2.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BurntSushi",
           repo: "ripgrep",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +51,7 @@ ${rg} -N 'cd' "$file"
 `, nix.app(nix.sel(lib, "optionalString"), withPCRE2, nix.thunk(() => nix.str`echo '(a(aa)aa)' | ${rg} -P '\\((a*|(?R))*\\)'
 `)))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utility that combines the usability of The Silver Searcher with the raw speed of grep",
         homepage: "https://github.com/BurntSushi/ripgrep",
         changelog: nix.thunk(() => nix.str`https://github.com/BurntSushi/ripgrep/releases/tag/${nix.sel(finalAttrs, "version")}`),

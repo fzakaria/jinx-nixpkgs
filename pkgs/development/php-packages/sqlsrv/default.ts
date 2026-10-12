@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 17, 5], ["license", 18, 5], ["homepage", 19, 5], ["teams", 20, 5]], [["pname", 9, 3], ["version", 11, 3], ["sha256", 12, 3], ["buildInputs", 14, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { stdenv: false, buildPecl: false, lib: false, unixodbc: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 17, 5], ["license", 18, 5], ["homepage", 19, 5], ["teams", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 11, 3], ["sha256", 12, 3], ["buildInputs", 14, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const unixodbc = nix.arg($, "unixodbc");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "sqlsrv",
       version: "5.13.0",
       sha256: "sha256-MdbCg1oFp7btDw3bZ1VsqRRlKlelccJokfAtitmbflw=",
       buildInputs: nix.thunk(() => nix.concat([unixodbc], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Microsoft Drivers for PHP for SQL Server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/Microsoft/msphpsql",

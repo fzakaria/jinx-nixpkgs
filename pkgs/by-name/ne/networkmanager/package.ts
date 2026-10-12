@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 89, 5], ["hash", 90, 5]], [["ethtool", 161, 9], ["gnused", 162, 9], ["runtimeShell", 164, 15]], [["name", 174, 7], ["url", 175, 7], ["hash", 176, 7]], [["odd-unstable", 270, 7], ["url", 271, 7]], [["updateScript", 269, 5], ["tests", 273, 5]], [["cpeParts", 290, 17]], [["homepage", 277, 5], ["description", 278, 5], ["license", 279, 5], ["changelog", 280, 5], ["maintainers", 281, 5], ["teams", 284, 5], ["platforms", 285, 5], ["badPlatforms", 286, 5], ["identifiers", 290, 5]], [["pname", 85, 3], ["version", 86, 3], ["src", 88, 3], ["outputs", 93, 3], ["hardeningDisable", 103, 3], ["mesonFlags", 108, 3], ["patches", 158, 3], ["nativeBuildInputs", 180, 3], ["buildInputs", 206, 3], ["propagatedBuildInputs", 231, 3], ["nativeInstallCheckInputs", 235, 3], ["doCheck", 237, 3], ["postPatch", 239, 3], ["preBuild", 252, 3], ["postFixup", 261, 3], ["doInstallCheck", 266, 3], ["passthru", 268, 3], ["meta", 276, 3]]]);
 const formals$1 = { args: { fetchurl: false, fetchpatch: false, gitUpdater: false, lib: false, nixosTests: false, replaceVars: false, stdenv: false, bpftools: false, clang: false, elfutils: false, gettext: false, gnused: false, meson: false, mesonEmulatorHook: false, ninja: false, perl: false, "pkg-config": false, vala: false, runtimeShell: false, buildPackages: false, audit: false, curl: false, dbus: false, gnutls: false, "gobject-introspection": false, jansson: false, libbpf: false, libnvme: false, libpsl: false, libselinux: false, libuuid: false, polkit: false, readline: false, slang: false, systemdMinimal: false, udev: false, withSystemd: true, bluez5: false, dhcpcd: false, dnsmasq: false, ethtool: false, iptables: false, kmod: false, libndp: false, modemmanager: false, "mobile-broadband-provider-info": false, newt: false, nftables: false, openresolv: false, ppp: false, docbook_xml_dtd_412: false, docbook_xml_dtd_42: false, docbook_xml_dtd_43: false, docbook_xsl: false, "gtk-doc": false, libxslt: false, python3: false, udevCheckHook: false, withNbft: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 89, 5], ["hash", 90, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ethtool", 161, 9], ["gnused", 162, 9], ["runtimeShell", 164, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 174, 7], ["url", 175, 7], ["hash", 176, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["odd-unstable", 270, 7], ["url", 271, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 269, 5], ["tests", 273, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["cpeParts", 290, 17]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 277, 5], ["description", 278, 5], ["license", 279, 5], ["changelog", 280, 5], ["maintainers", 281, 5], ["teams", 284, 5], ["platforms", 285, 5], ["badPlatforms", 286, 5], ["identifiers", 290, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 85, 3], ["version", 86, 3], ["src", 88, 3], ["outputs", 93, 3], ["hardeningDisable", 103, 3], ["mesonFlags", 108, 3], ["patches", 158, 3], ["nativeBuildInputs", 180, 3], ["buildInputs", 206, 3], ["propagatedBuildInputs", 231, 3], ["nativeInstallCheckInputs", 235, 3], ["doCheck", 237, 3], ["postPatch", 239, 3], ["preBuild", 252, 3], ["postFixup", 261, 3], ["doInstallCheck", 266, 3], ["passthru", 268, 3], ["meta", 276, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -80,11 +73,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "pygobject3"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "networkmanager",
       version: "1.58.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/releases/${nix.sel(finalAttrs, "version")}/downloads/NetworkManager-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Jihkz9GYEj0+Xb6Rk3RBuX7pBZ1tcS4aW/uxxUZo0U0=",
         })))),
@@ -123,14 +116,14 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             ethtool: ethtool,
             gnused: gnused,
             runtimeShell: runtimeShell,
           })))),
         nix.path(here, "./fix-install-paths.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "0001-networkmanager-bpf-Detect-ELF-ABI-version-on-ppc64.patch",
             url: "https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/commit/3c28325b9c63386e5313ce006267144e7f63417a.patch",
             hash: "sha256-SlyeykqL7Y11jEF+5l4aRXY2znHaSBhwV5lcmf88PGc=",
@@ -195,16 +188,16 @@ cp -r ${nix.sel(buildPackages, "networkmanager", "man")} $man
 `))),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "odd-unstable": true,
             url: "https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git",
           })))),
         tests: nix.thunk(() => nix.sel(nixosTests, "networking", "networkmanager")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://networkmanager.dev",
         description: "Network configuration and management tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -219,7 +212,7 @@ cp -r ${nix.sel(buildPackages, "networkmanager", "man")} $man
           nix.thunk(() => nix.sel(lib, "systems", "inspect", "platformPatterns", "isStatic")),
         ]),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gnome", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

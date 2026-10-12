@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 30, 26], ["version", 30, 32], ["hash", 31, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 46, 3], ["versionCheckProgramArg", 55, 3], ["pythonImportsCheck", 57, 3], ["__darwinAllowLocalNetworking", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pythonOlder: false, hatchling: false, "bittensor-core": false, "eth-account": false, qrcode: false, rich: false, typer: false, "typing-extensions": false, websockets: false, cryptography: false, hypothesis: false, "pytest-asyncio": false, pytestCheckHook: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 30, 26], ["version", 30, 32], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 46, 3], ["versionCheckProgramArg", 55, 3], ["pythonImportsCheck", 57, 3], ["__darwinAllowLocalNetworking", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bittensor",
       version: "11.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-gQFk+1/iw1MP/fZ8DRiOWmGIOEHPmHTZy0G5qh7P5ps=",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["bittensor"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python SDK and command line client for the Bittensor chain",
         homepage: "https://github.com/RaoFoundation/subtensor",
         changelog: nix.thunk(() => nix.str`https://pypi.org/project/bittensor/${nix.sel(finalAttrs, "version")}/`),

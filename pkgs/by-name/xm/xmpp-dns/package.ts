@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 26, 5], ["homepage", 27, 5], ["changelog", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5], ["mainProgram", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["nativeBuildInputs", 22, 3], ["postInstall", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitLab: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["homepage", 27, 5], ["changelog", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5], ["mainProgram", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["nativeBuildInputs", 22, 3], ["postInstall", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xmpp-dns",
       version: "0.6.4",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "mdosch",
           repo: "xmpp-dns",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "installManPage man/xmpp-dns.1",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CLI tool to check XMPP SRV records",
         homepage: "https://salsa.debian.org/mdosch/xmpp-dns",
         changelog: nix.thunk(() => nix.str`https://salsa.debian.org/mdosch/xmpp-dns/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

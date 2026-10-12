@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 36, 5], ["hash", 37, 5]], [["description", 76, 5], ["homepage", 77, 5], ["maintainers", 78, 5], ["license", 79, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["propagatedBuildInputs", 44, 3], ["doCheck", 67, 3], ["checkInputs", 68, 3], ["__darwinAllowLocalNetworking", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, "pkg-config": false, cstruct: false, "cstruct-lwt": false, "mirage-net": false, "mirage-mtime": false, "mirage-crypto-rng": false, "mirage-sleep": false, macaddr: false, "macaddr-cstruct": false, fmt: false, lwt: false, "lwt-dllist": false, logs: false, duration: false, randomconv: false, ethernet: false, alcotest: false, "mirage-flow": false, "mirage-vnetif": false, "pcap-format": false, arp: false, "ipaddr-cstruct": false, lru: false, metrics: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["maintainers", 78, 5], ["license", 79, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["propagatedBuildInputs", 44, 3], ["doCheck", 67, 3], ["checkInputs", 68, 3], ["__darwinAllowLocalNetworking", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tcpip";
       const version = "9.0.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-${pname}/releases/download/v${version}/${pname}-${version}.tbz`),
           hash: "sha256-+sB86YaBHPXj1xNz2StjHMMPvvVI1tohsJFyEtz5CwM=",
         }))));
@@ -71,14 +69,14 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [alcotest, mirage_vnetif, pcap_format]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OCaml TCP/IP networking stack, used in MirageOS",
         homepage: "https://github.com/mirage/mirage-tcpip",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

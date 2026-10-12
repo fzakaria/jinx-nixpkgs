@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/scripts.nix", [[["maintainers", 32, 26]], [["meta", 32, 21], ["preferLocalBuild", 33, 21]], [["scriptName-is-valid", 29, 15]], [["maintainers", 58, 28]], [["meta", 58, 23], ["preferLocalBuild", 59, 23]], [["single-main-in-script-dir", 55, 17]], [["tests", 25, 11]], [["passthru", 24, 9]], [["callPackage", 87, 24], ["directory", 88, 9]], [["acompressor", 98, 7], ["autocrop", 99, 7], ["autodeint", 100, 7], ["autoload", 101, 7], ["smart-copy-paste-2", 104, 7], ["smartskip", 105, 7], ["blacklistExtensions", 108, 7], ["crop", 109, 7], ["encode", 110, 7], ["seekTo", 111, 7], ["mpv-cheatsheet", 113, 5], ["youtube-quality", 114, 5]]]);
 const formals$1 = { args: { lib: false, config: false, newScope: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/scripts.nix", [["maintainers", 32, 26]]);
-const pos$2 = nix.positions(here + "/scripts.nix", [["meta", 32, 21], ["preferLocalBuild", 33, 21]]);
-const pos$3 = nix.positions(here + "/scripts.nix", [["scriptName-is-valid", 29, 15]]);
-const pos$4 = nix.positions(here + "/scripts.nix", [["maintainers", 58, 28]]);
-const pos$5 = nix.positions(here + "/scripts.nix", [["meta", 58, 23], ["preferLocalBuild", 59, 23]]);
-const pos$6 = nix.positions(here + "/scripts.nix", [["single-main-in-script-dir", 55, 17]]);
-const pos$7 = nix.positions(here + "/scripts.nix", [["tests", 25, 11]]);
-const pos$8 = nix.positions(here + "/scripts.nix", [["passthru", 24, 9]]);
-const pos$9 = nix.positions(here + "/scripts.nix", [["callPackage", 87, 24], ["directory", 88, 9]]);
-const pos$10 = nix.positions(here + "/scripts.nix", [["acompressor", 98, 7], ["autocrop", 99, 7], ["autodeint", 100, 7], ["autoload", 101, 7], ["smart-copy-paste-2", 104, 7], ["smartskip", 105, 7], ["blacklistExtensions", 108, 7], ["crop", 109, 7], ["encode", 110, 7], ["seekTo", 111, 7], ["mpv-cheatsheet", 113, 5], ["youtube-quality", 114, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,17 +18,17 @@ export default nix.lambda((args) => (() => {
     const scriptPath = nix.thunk(() => nix.str`share/mpv/scripts/${scriptName}`);
     const fullScriptPath = nix.thunk(() => nix.str`${drv}/${scriptPath}`);
     return nix.app(nix.sel(drv, "overrideAttrs"), (old) => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         passthru: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru"), {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           tests: nix.thunk(() => nix.app(unionOfDisjoints, nix.thunk(() => [
               nix.thunk(() => nix.selOr(old, () => ({}), "passthru", "tests")),
               nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 "scriptName-is-valid": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`mpvScripts.${name}.passthru.tests.scriptName-is-valid`), nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     meta: nix.thunk(() => ({
-                      [nix.POS]: pos$1,
+                      [nix.POS]: $pos[0],
                       maintainers: nix.thunk(() => (() => {
                         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
                         return [nix.thunk(() => nix.lookup(w, "nicoo"))];
@@ -53,11 +44,11 @@ fi
 `))),
               })),
               nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "any"), (s) => nix.app(nix.sel(lib, "hasSuffix"), s, nix.thunk(() => nix.sel(drv, "passthru", "scriptName"))), nix.thunk(() => [".js", ".lua", ".so"])))), nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   "single-main-in-script-dir": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`mpvScripts.${name}.passthru.tests.single-main-in-script-dir`), nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       meta: nix.thunk(() => ({
-                        [nix.POS]: pos$4,
+                        [nix.POS]: $pos[3],
                         maintainers: nix.thunk(() => (() => {
                           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
                           return [nix.thunk(() => nix.lookup(w, "nicoo"))];
@@ -85,7 +76,7 @@ fi
       }));
   })());
   const scope = (self) => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       callPackage: nix.thunk(() => nix.attr(self, "callPackage")),
       directory: nix.path(here, "./scripts"),
     })), nix.thunk(() => [
@@ -98,7 +89,7 @@ fi
     const from_1 = nix.thunk(() => nix.sel(self, "eisa01"));
     const from_2 = nix.thunk(() => nix.sel(self, "occivink"));
     return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     acompressor: nix.thunk(() => nix.attr(from, "acompressor")),
     autocrop: nix.thunk(() => nix.attr(from, "autocrop")),
     autodeint: nix.thunk(() => nix.attr(from, "autodeint")),

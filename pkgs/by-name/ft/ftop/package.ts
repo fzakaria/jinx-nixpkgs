@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 30, 5], ["mainProgram", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["longDescription", 34, 5], ["platforms", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["patches", 19, 3], ["patchFlags", 23, 3], ["postPatch", 25, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["mainProgram", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["longDescription", 34, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["patches", 19, 3], ["patchFlags", 23, 3], ["postPatch", 25, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ftop",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/ftop/ftop-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "3a705f4f291384344cd32c3dd5f5f6a7cd7cea7624c83cb7e923966dbcd47f82",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       patchFlags: nix.thunk(() => ["-p0"]),
       postPatch: "substituteInPlace configure --replace \"curses\" \"ncurses\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Show progress of open files and file systems",
         mainProgram: "ftop",
         homepage: "https://code.google.com/archive/p/ftop/",

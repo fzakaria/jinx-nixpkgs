@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["name", 92, 9], ["dontUnpack", 93, 9], ["strictDeps", 94, 9], ["__structuredAttrs", 95, 9], ["nativeBuildInputs", 96, 9], ["configurePhase", 99, 9], ["buildPhase", 115, 9], ["dontInstall", 141, 9], ["dontFixup", 142, 9], ["outputHash", 143, 9], ["outputHashMode", 144, 9]], [["SCIPPNEUTRON_DATA_DIR", 86, 5]], [["description", 159, 5], ["homepage", 160, 5], ["changelog", 161, 5], ["license", 162, 5], ["maintainers", 163, 5]], [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["__structuredAttrs", 43, 3], ["src", 45, 3], ["build-system", 52, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 71, 3], ["env", 84, 3], ["preCheck", 150, 3], ["pythonImportsCheck", 154, 3], ["meta", 158, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, "email-validator": false, h5py: false, "lazy-loader": false, mpltoolbox: false, numpy: false, plopp: false, pydantic: false, "python-dateutil": false, scipp: false, scippnexus: false, scipy: false, pytestCheckHook: false, anywidget: false, pooch: false, hypothesis: false, ipykernel: false, ipympl: false, psutil: false, "pytest-xdist": false, pythreejs: false, sciline: false, stdenvNoCC: false, curl: false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 92, 9], ["dontUnpack", 93, 9], ["strictDeps", 94, 9], ["__structuredAttrs", 95, 9], ["nativeBuildInputs", 96, 9], ["configurePhase", 99, 9], ["buildPhase", 115, 9], ["dontInstall", 141, 9], ["dontFixup", 142, 9], ["outputHash", 143, 9], ["outputHashMode", 144, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["SCIPPNEUTRON_DATA_DIR", 86, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 159, 5], ["homepage", 160, 5], ["changelog", 161, 5], ["license", 162, 5], ["maintainers", 163, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["__structuredAttrs", 43, 3], ["src", 45, 3], ["build-system", 52, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 71, 3], ["env", 84, 3], ["preCheck", 150, 3], ["pythonImportsCheck", 154, 3], ["meta", 158, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const cacert = nix.arg($, "cacert");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "scippneutron",
       version: "26.7.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scipp",
           repo: "scippneutron",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -80,11 +76,11 @@ export default nix.lambda((args) => (() => {
         sciline,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         SCIPPNEUTRON_DATA_DIR: nix.thunk(() => (() => {
           const _version = "5";
           return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "plopp-test-data",
               dontUnpack: true,
               strictDeps: true,
@@ -135,7 +131,7 @@ mkdir -p $out/${_version}
       preCheck: "rm tests/masking_tool_test.py\n",
       pythonImportsCheck: nix.thunk(() => ["scippneutron"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Neutron scattering toolkit built using scipp for Data Reduction. Not facility or instrument specific",
         homepage: "https://scipp.github.io/scippneutron",
         changelog: nix.thunk(() => nix.str`https://github.com/scipp/scippneutron/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

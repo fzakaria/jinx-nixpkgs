@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["typeddep", 12, 9]], [["packageOverrides", 16, 15], ["self", 17, 7]]]);
 const formals$1 = { args: { interpreter: false, writeText: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["typeddep", 12, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["packageOverrides", 16, 15], ["self", 17, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const python = nix.thunk(() => (() => {
     const packageOverrides = (self) => (super$) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       typeddep: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./typeddep"), nix.thunk(() => ({})))),
     });
-    return nix.app(nix.sel(interpreter, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, packageOverrides: packageOverrides, self: python })));
+    return nix.app(nix.sel(interpreter, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageOverrides: packageOverrides, self: python })));
   })());
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (ps) => [
       nix.thunk(() => nix.sel(ps, "typeddep")),

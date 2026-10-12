@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["progress", 57, 5]], [["homepage", 114, 5], ["description", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 47, 3], ["optional-dependencies", 56, 3], ["nativeCheckInputs", 63, 3], ["disabledTestPaths", 70, 3], ["disabledTests", 77, 3], ["pythonImportsCheck", 111, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, jax: false, jaxlib: false, numpy: false, optax: false, scipy: false, "typing-extensions": false, "jax-tap": false, tqdm: false, chex: false, "pytest-xdist": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["progress", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 114, 5], ["description", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 47, 3], ["optional-dependencies", 56, 3], ["nativeCheckInputs", 63, 3], ["disabledTestPaths", 70, 3], ["disabledTests", 77, 3], ["pythonImportsCheck", 111, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "blackjax",
       version: "1.7.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "blackjax-devs",
           repo: "blackjax",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [jax, jaxlib, numpy, optax, scipy, typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, progress: nix.thunk(() => [jax_tap, tqdm]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], progress: nix.thunk(() => [jax_tap, tqdm]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([chex, pytestCheckHook, pytest_xdist], nix.sel(finalAttrs, "passthru", "optional-dependencies", "progress"))),
       disabledTestPaths: nix.thunk(() => ["tests/test_benchmarks.py", "tests/mcmc/test_integrators.py"]),
       disabledTests: nix.thunk(() => nix.concat([
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["blackjax"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://blackjax-devs.github.io/blackjax",
         description: "Sampling library designed for ease of use, speed and modularity",
         changelog: nix.thunk(() => nix.str`https://github.com/blackjax-devs/blackjax/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

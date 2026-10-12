@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 43, 5], ["homepage", 44, 5], ["platforms", 45, 5], ["license", 46, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 38, 3], ["enableParallelBuilding", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libwpg: false, libwpd: false, lcms2: false, "pkg-config": false, librevenge: false, icu: false, boost: false, cppunit: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["platforms", 45, 5], ["license", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 38, 3], ["enableParallelBuilding", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const cppunit = nix.arg($, "cppunit");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libcdr",
       version: "0.1.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dev-www.libreoffice.org/src/libcdr-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-97tqvdfyJoIPKIqT3Y0HdZgzwCUNniAq+Q+bMSxGZaM=",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library providing ability to interpret and import Corel Draw drawings into various applications",
         homepage: "https://wiki.documentfoundation.org/DLP/Libraries/libcdr",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

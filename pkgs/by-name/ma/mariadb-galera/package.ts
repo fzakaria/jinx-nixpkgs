@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]], [["mariadb-galera", 47, 26]], [["tests", 46, 12]], [["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 61, 5], ["broken", 62, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["preConfigure", 35, 3], ["postInstall", 40, 3], ["passthru", 46, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, asio_1_32_0: false, boost: false, check: false, openssl: false, cmake: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mariadb-galera", 47, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 46, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 61, 5], ["broken", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["preConfigure", 35, 3], ["postInstall", 40, 3], ["passthru", 46, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mariadb-galera",
       version: "26.4.27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mariadb-corporation",
           repo: "galera",
           tag: nix.thunk(() => nix.str`release_${nix.sel(finalAttrs, "version")}`),
@@ -37,14 +33,14 @@ export default nix.lambda((args) => (() => {
       preConfigure: "# make sure bundled asio cannot be used, but leave behind license, because it gets installed\nrm -r asio/{asio,asio.hpp}\n",
       postInstall: "# for backwards compatibility\nmkdir $out/lib/galera\nln -s $out/lib/libgalera_smm.so $out/lib/galera/libgalera_smm.so\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "mariadb-galera": nix.thunk(() => nix.attr(nixosTests, "mariadb-galera")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Galera 3 wsrep provider library",
         mainProgram: "garbd",
         homepage: "https://galeracluster.com/",

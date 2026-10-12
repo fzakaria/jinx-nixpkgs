@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 14, 5], ["text", 15, 5]], [["description", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["nativeBuildInputs", 11, 3], ["src", 13, 3], ["dontConfigure", 21, 3], ["dontUnpack", 22, 3], ["dontBuild", 23, 3], ["dontFixup", 24, 3], ["installPhase", 26, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, udevCheckHook: false, writeTextFile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 14, 5], ["text", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["nativeBuildInputs", 11, 3], ["src", 13, 3], ["dontConfigure", 21, 3], ["dontUnpack", 22, 3], ["dontBuild", 23, 3], ["dontFixup", 24, 3], ["installPhase", 26, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const writeTextFile = nix.arg($, "writeTextFile");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "keychron-udev-rules",
       version: "0-unstable-2026-01-07",
       nativeBuildInputs: nix.thunk(() => [udevCheckHook]),
       src: nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "69-keychron.rules",
           text: "KERNEL==\"hidraw*\", SUBSYSTEM==\"hidraw\", ATTRS{idVendor}==\"3434\", MODE=\"0660\", TAG+=\"uaccess\"\nKERNEL==\"event*\", SUBSYSTEM==\"input\", ENV{ID_VENDOR_ID}==\"3434\", ENV{ID_INPUT_JOYSTICK}==\"*?\", ENV{ID_INPUT_JOYSTICK}=\"\"\n",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "runHook preInstall\ninstall -Dm644 $src $out/lib/udev/rules.d/69-keychron.rules\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Keychron Keyboard Udev Rules, fixes issues with keyboard detection on Linux & permissions on Keychron Launcher",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["extension", 19, 5], ["sha256", 20, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["prePatch", 32, 3], ["pythonNamespaces", 37, 3], ["doCheck", 40, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, msrestazure: false, "azure-common": false, "azure-mgmt-core": false, "azure-mgmt-nspkg": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["extension", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["prePatch", 32, 3], ["pythonNamespaces", 37, 3], ["doCheck", 40, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           extension: "zip",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["azure.mgmt.commerce"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "This is the Microsoft Azure Commerce Management Client Library",
         homepage: "https://github.com/Azure/azure-sdk-for-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

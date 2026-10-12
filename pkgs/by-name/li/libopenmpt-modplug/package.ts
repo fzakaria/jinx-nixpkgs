@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["src", 19, 3], ["enableParallelBuilding", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["configureFlags", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, autoreconfHook: false, "pkg-config": false, libopenmpt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["src", 19, 3], ["enableParallelBuilding", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["configureFlags", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libopenmpt = nix.arg($, "libopenmpt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libopenmpt-modplug",
       version: "0.8.9.0-openmpt1",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://lib.openmpt.org/files/libopenmpt-modplug/libopenmpt-modplug-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-7M4aDuz9sLWCTKuJwnDc5ZWWKVosF8KwQyFez018T/c=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libopenmpt]),
       configureFlags: nix.thunk(() => ["--enable-libmodplug"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Libmodplug emulation layer based on libopenmpt",
         homepage: "https://lib.openmpt.org/libopenmpt/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

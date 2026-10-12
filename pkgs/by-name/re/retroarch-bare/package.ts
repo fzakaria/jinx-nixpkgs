@@ -2,15 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 65, 5], ["repo", 66, 5], ["hash", 67, 5], ["rev", 68, 5]], [["rev-prefix", 155, 7]], [["assets_directory", 173, 11], ["joypad_autoconfig_dir", 174, 11], ["libretro_info_path", 175, 11]], [["lib", 164, 11], ["libretro", 165, 11], ["makeBinaryWrapper", 166, 11], ["retroarch-bare", 167, 11], ["writeText", 168, 11], ["symlinkJoin", 169, 11], ["cores", 170, 11], ["settings", 172, 9]], [["tests", 153, 5], ["updateScript", 154, 5], ["wrapper", 157, 5]], [["homepage", 182, 5], ["description", 183, 5], ["license", 184, 5], ["platforms", 185, 5], ["changelog", 186, 5], ["maintainers", 187, 5], ["teams", 190, 5], ["mainProgram", 191, 5], ["broken", 196, 5]], [["pname", 61, 3], ["version", 62, 3], ["src", 64, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 79, 3], ["enableParallelBuilding", 115, 3], ["configureFlags", 117, 3], ["postInstall", 133, 3], ["preFixup", 147, 3], ["passthru", 152, 3], ["meta", 181, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "alsa-lib": false, dbus: false, fetchFromGitHub: false, ffmpeg_7: false, flac: false, freetype: false, gamemode: false, gitUpdater: false, libdrm: false, libGL: false, libGLU: false, libpulseaudio: false, libv4l: false, libx11: false, libxdmcp: false, libxext: false, libxkbcommon: false, libxml2: false, libxxf86vm: false, makeBinaryWrapper: false, mbedtls: false, libgbm: false, nixosTests: false, nvidia_cg_toolkit: false, pipewire: false, "pkg-config": false, python3: false, qt6: false, SDL2: false, "spirv-tools": false, udev: false, "vulkan-loader": false, wayland: false, "wayland-scanner": false, wrapGAppsHook3: false, zlib: false, libretro: false, "libretro-core-info": false, "retroarch-assets": false, "retroarch-bare": false, "retroarch-joypad-autoconfig": false, writeText: false, symlinkJoin: false, enableNvidiaCgToolkit: true, withGamemode: true, withVulkan: true, withWayland: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 65, 5], ["repo", 66, 5], ["hash", 67, 5], ["rev", 68, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 155, 7]]);
 const formals$2 = { args: { cores: true, settings: true }, ellipsis: false };
-const pos$3 = nix.positions(here + "/package.nix", [["assets_directory", 173, 11], ["joypad_autoconfig_dir", 174, 11], ["libretro_info_path", 175, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["lib", 164, 11], ["libretro", 165, 11], ["makeBinaryWrapper", 166, 11], ["retroarch-bare", 167, 11], ["writeText", 168, 11], ["symlinkJoin", 169, 11], ["cores", 170, 11], ["settings", 172, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 153, 5], ["updateScript", 154, 5], ["wrapper", 157, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 182, 5], ["description", 183, 5], ["license", 184, 5], ["platforms", 185, 5], ["changelog", 186, 5], ["maintainers", 187, 5], ["teams", 190, 5], ["mainProgram", 191, 5], ["broken", 196, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 61, 3], ["version", 62, 3], ["src", 64, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 79, 3], ["enableParallelBuilding", 115, 3], ["configureFlags", 117, 3], ["postInstall", 133, 3], ["preFixup", 147, 3], ["passthru", 152, 3], ["meta", 181, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,11 +59,11 @@ export default nix.lambda((args) => (() => {
   const withWayland = nix.argOr($, "withWayland", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const runtimeLibs = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withVulkan, vulkan_loader), nix.app(nix.sel(lib, "optional"), withGamemode, nix.thunk(() => nix.app(nix.sel(lib, "getLib"), gamemode)))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "retroarch-bare",
       version: "1.22.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "RetroArch",
           hash: "sha256-+3jgoh6OVbPzW5/nCvpB1CRgkMTBxLkYMm6UV16/cfU=",
@@ -120,15 +114,15 @@ export default nix.lambda((args) => (() => {
 `))), "mkdir -p $out/share/icons/hicolor/scalable\nmv $out/share/{pixmaps,icons/hicolor/scalable/apps}\n")),
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableNvidiaCgToolkit)), "rm $out/bin/retroarch-cg2glsl\nrm $out/share/man/man6/retroarch-cg2glsl.6*\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => nix.sel(nixosTests, "retroarch")),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
         wrapper: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const cores = nix.argOr($_1, "cores", () => []);
           const settings = nix.argOr($_1, "settings", () => ({}));
           return nix.app(nix.builtins.import(nix.path(here, "./wrapper.nix")), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               lib: lib,
               libretro: libretro,
               makeBinaryWrapper: makeBinaryWrapper,
@@ -137,7 +131,7 @@ export default nix.lambda((args) => (() => {
               symlinkJoin: symlinkJoin,
               cores: cores,
               settings: nix.thunk(() => nix.update({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 assets_directory: nix.thunk(() => nix.str`${retroarch_assets}/share/retroarch/assets`),
                 joypad_autoconfig_dir: nix.thunk(() => nix.str`${retroarch_joypad_autoconfig}/share/libretro/autoconfig`),
                 libretro_info_path: nix.thunk(() => nix.str`${libretro_core_info}/share/retroarch/cores`),
@@ -146,7 +140,7 @@ export default nix.lambda((args) => (() => {
         })(), formals$2),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://libretro.com",
         description: "Multi-platform emulator frontend for libretro cores",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

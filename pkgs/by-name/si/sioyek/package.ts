@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["branch", 77, 5], ["tagPrefix", 78, 5]], [["updateScript", 76, 12]], [["homepage", 82, 5], ["description", 83, 5], ["mainProgram", 84, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 96, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 41, 3], ["qmakeFlags", 47, 3], ["postPatch", 49, 3], ["postInstall", 58, 3], ["passthru", 76, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, installShellFiles: false, fetchFromGitHub: false, freetype: false, unstableGitUpdater: false, gumbo: false, harfbuzz: false, jbig2dec: false, mujs: false, mupdf: false, openjpeg: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["branch", 77, 5], ["tagPrefix", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 76, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 82, 5], ["description", 83, 5], ["mainProgram", 84, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 41, 3], ["qmakeFlags", 47, 3], ["postPatch", 49, 3], ["postInstall", 58, 3], ["passthru", 76, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const openjpeg = nix.arg($, "openjpeg");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sioyek",
       version: "2.0.0-unstable-2026-09-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ahrm",
           repo: "sioyek",
           rev: "f4609bfbfd53aaa9bb0ca70744df54ebf768fddf",
@@ -55,11 +51,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pdf_viewer_build_config.pro \\\n  --replace-fail \"-lmupdf-threads\" \"-lgumbo -lharfbuzz -lfreetype -ljbig2dec -ljpeg -lopenjp2\" \\\n  --replace-fail \"-lmupdf-third\" \"\"\nsubstituteInPlace pdf_viewer/main.cpp \\\n  --replace-fail \"/usr/share/sioyek\" \"$out/share\" \\\n  --replace-fail \"/etc/sioyek\" \"$out/etc\"\n",
       postInstall: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "cp -r pdf_viewer/shaders sioyek.app/Contents/MacOS/shaders\ncp pdf_viewer/{prefs,prefs_user,keys,keys_user}.config tutorial.pdf sioyek.app/Contents/MacOS/\n\nmkdir -p $out/Applications $out/bin\ncp -r sioyek.app $out/Applications\nln -s $out/Applications/sioyek.app/Contents/MacOS/sioyek $out/bin/sioyek\n" : "install -Dm644 tutorial.pdf $out/share/tutorial.pdf\ncp -r pdf_viewer/shaders $out/share/\ninstall -Dm644 -t $out/etc/ pdf_viewer/{keys,prefs}.config\ninstallManPage resources/sioyek.1\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, branch: "development", tagPrefix: "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], branch: "development", tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://sioyek.info/",
         description: "PDF viewer designed for research papers and technical books",
         mainProgram: "sioyek",

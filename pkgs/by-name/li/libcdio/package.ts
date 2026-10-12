@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["NIX_CFLAGS_COMPILE", 29, 5]], [["pkg-config", 91, 11]], [["tests", 91, 5], ["updateScript", 92, 5]], [["description", 96, 5], ["longDescription", 97, 5], ["homepage", 103, 5], ["license", 104, 5], ["pkgConfigModules", 105, 5], ["platforms", 112, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["env", 28, 3], ["postPatch", 32, 3], ["configureFlags", 50, 3], ["preConfigure", 57, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 70, 3], ["enableParallelBuilding", 76, 3], ["doCheck", 78, 3], ["outputs", 80, 3], ["passthru", 90, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, autoreconfHook: false, testers: false, texinfo: false, libcddb: false, "pkg-config": false, ncurses: false, help2man: false, libiconv: false, withMan: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 91, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 91, 5], ["updateScript", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 96, 5], ["longDescription", 97, 5], ["homepage", 103, 5], ["license", 104, 5], ["pkgConfigModules", 105, 5], ["platforms", 112, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["env", 28, 3], ["postPatch", 32, 3], ["configureFlags", 50, 3], ["preConfigure", 57, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 70, 3], ["enableParallelBuilding", 76, 3], ["doCheck", 78, 3], ["outputs", 80, 3], ["passthru", 90, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const withMan = nix.argOr($, "withMan", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libcdio",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libcdio",
           repo: "libcdio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-NZj6sMIhBORh2ZBs/WGI4BYri1REog4ovUug1t5p8Y8=",
         })))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is32bit")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-D_LARGEFILE64_SOURCE" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is32bit")), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-D_LARGEFILE64_SOURCE" })))),
       postPatch: nix.thunk(() => nix.add(nix.str`patchShebangs .
 echo "
 @set UPDATED 1 January 1970
@@ -56,15 +51,15 @@ echo "
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       outputs: nix.thunk(() => nix.concat(["out", "lib", "dev", "info"], nix.app(nix.sel(lib, "optionals"), withMan, nix.thunk(() => ["man"])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Library for OS-independent CD-ROM and CD image access",
         longDescription: "GNU libcdio is a library for OS-independent CD-ROM and\nCD image access.  It includes a library for working with\nISO-9660 filesystems (libiso9660), as well as utility\nprograms such as an audio CD player and an extractor.\n",
         homepage: "https://www.gnu.org/software/libcdio/",

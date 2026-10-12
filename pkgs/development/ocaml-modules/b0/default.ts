@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 53, 5], ["platforms", 54, 26], ["license", 55, 5], ["maintainers", 56, 5], ["broken", 57, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["buildPhase", 35, 19], ["installPhase", 35, 30], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocaml: false, findlib: false, topkg: false, ocamlbuild: false, cmdliner: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 53, 5], ["platforms", 54, 26], ["license", 55, 5], ["maintainers", 56, 5], ["broken", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["buildPhase", 35, 19], ["installPhase", 35, 30], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ocamlbuild = nix.arg($, "ocamlbuild");
   const cmdliner = nix.arg($, "cmdliner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-b0`),
       version: "0.0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://erratique.ch/software/b0/releases/b0-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-FscuTlKqZ7fGJk0+aln6lvNtF7Ghph64A4ZVqCUE9ZM=",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Software construction and deployment kit",
         longDescription: "WARNING this package is unstable and work in progress, do not depend on\nit.\nB0 describes software construction and deployments using modular and\ncustomizable definitions written in OCaml. B0 describes:\n* Build environments.\n* Software configuration, build and testing.\n* Source and binary deployments.\n* Software life-cycle procedures.\nB0 also provides the B00 build library which provides arbitrary build\nabstraction with reliable and efficient incremental rebuilds. The B00\nlibrary can be – and has been – used on its own to devise domain specific\nbuild systems.\n",
         homepage: "https://erratique.ch/software/b0",

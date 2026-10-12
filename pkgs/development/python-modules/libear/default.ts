@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 35, 5]], [["pname", 10, 3], ["version", 11, 29], ["pyproject", 13, 3], ["src", 15, 3], ["dontUnpack", 17, 3], ["installPhase", 19, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, llvmPackages: false, buildPythonPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 29], ["pyproject", 13, 3], ["src", 15, 3], ["dontUnpack", 17, 3], ["installPhase", 19, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "LIBPATH=\"$(toPythonPath \"$out\")/libear\"\nmkdir -p \"$LIBPATH\"\n\ninstall -t \"$LIBPATH\" $src/*\n";
       const pythonImportsCheck = nix.thunk(() => ["libear"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Hooks into build systems to listen to which files are opened",
         homepage: nix.thunk(() => nix.str`https://github.com/llvm/llvm-project/tree/llvmorg-${version}/clang/tools/scan-build-py/lib/libear`),
         license: nix.thunk(() => (() => {
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         pyproject,

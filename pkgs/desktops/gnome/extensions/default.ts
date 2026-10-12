@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["uuid", 24, 11], ["name", 25, 11], ["description", 26, 11], ["link", 27, 11], ["pname", 28, 11], ["version", 30, 64], ["sha256", 30, 72], ["metadata", 30, 79]], [["callPackage", 78, 73]], [["unite-shell", 87, 9], ["arc-menu", 88, 9], ["clock-override", 90, 9], ["drop-down-terminal", 91, 9], ["icon-hider", 92, 9], ["mediaplayer", 93, 9], ["no-title-bar", 94, 9], ["nohotcorner", 95, 9], ["pano", 96, 9], ["pidgin-im-integration", 97, 9], ["remove-dropdown-arrows", 98, 9], ["sound-output-device-chooser", 99, 9], ["taskwhisperer", 100, 9], ["tilingnome", 101, 9], ["topicons-plus", 102, 9], ["window-corner-preview", 103, 9]], [["buildShellExtension", 107, 42]], [["gnome48Extensions", 69, 3], ["gnome49Extensions", 70, 3], ["gnome50Extensions", 71, 3], ["gnomeExtensions", 74, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, config: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["uuid", 24, 11], ["name", 25, 11], ["description", 26, 11], ["link", 27, 11], ["pname", 28, 11], ["version", 30, 64], ["sha256", 30, 72], ["metadata", 30, 79]]);
-const pos$2 = nix.positions(here + "/default.nix", [["callPackage", 78, 73]]);
-const pos$3 = nix.positions(here + "/default.nix", [["unite-shell", 87, 9], ["arc-menu", 88, 9], ["clock-override", 90, 9], ["drop-down-terminal", 91, 9], ["icon-hider", 92, 9], ["mediaplayer", 93, 9], ["no-title-bar", 94, 9], ["nohotcorner", 95, 9], ["pano", 96, 9], ["pidgin-im-integration", 97, 9], ["remove-dropdown-arrows", 98, 9], ["sound-output-device-chooser", 99, 9], ["taskwhisperer", 100, 9], ["tilingnome", 101, 9], ["topicons-plus", 102, 9], ["window-corner-preview", 103, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["buildShellExtension", 107, 42]]);
-const pos$5 = nix.positions(here + "/default.nix", [["gnome48Extensions", 69, 3], ["gnome49Extensions", 70, 3], ["gnome50Extensions", 71, 3], ["gnomeExtensions", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.builtins.map, (extension) => (() => {
           const from = nix.thunk(() => nix.sel(extension, "shell_version_map", nix.key(nix.force(shell_version))));
           return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           uuid: nix.thunk(() => nix.attr(extension, "uuid")),
           name: nix.thunk(() => nix.attr(extension, "name")),
           description: nix.thunk(() => nix.attr(extension, "description")),
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
     const gnome50Extensions = nix.thunk(() => nix.app(mapUuidNames, nix.thunk(() => nix.app(produceExtensionsList, "50"))));
     const gnomeExtensions = nix.thunk(() => nix.app(nix.sel(lib, "trivial", "pipe"), nix.thunk(() => nix.update(gnome48Extensions, nix.update(gnome49Extensions, gnome50Extensions))), nix.thunk(() => [
         nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensionOverrides.nix"), nix.thunk(() => ({})))),
-        (extensions) => nix.update(extensions, nix.app(nix.builtins.import(nix.path(here, "./manuallyPackaged.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, callPackage: callPackage })))),
+        (extensions) => nix.update(extensions, nix.app(nix.builtins.import(nix.path(here, "./manuallyPackaged.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], callPackage: callPackage })))),
         nix.thunk(() => nix.sel(lib, "attrValues")),
         mapReadableNames,
         (extensions) => nix.update(extensions, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "unite-shell": nix.thunk(() => nix.sel(gnomeExtensions, "unite")),
             "arc-menu": nix.thunk(() => nix.sel(gnomeExtensions, "arcmenu")),
             "clock-override": nix.thunk(() => nix.builtins.throw("'gnomeExtensions.clock-override' has been removed due to lack of upstream maintenance")),
@@ -72,11 +68,11 @@ export default nix.lambda((args) => (() => {
             "topicons-plus": nix.thunk(() => nix.builtins.throw("'gnomeExtensions.topicons-plus' has been removed due to lack of upstream maintenance")),
             "window-corner-preview": nix.thunk(() => nix.builtins.throw("'gnomeExtensions.window-corner-preview' has been removed due to lack of upstream maintenance")),
           })))),
-        (extensions) => nix.update(extensions, { [nix.POS]: pos$4, buildShellExtension: buildShellExtension }),
+        (extensions) => nix.update(extensions, { [nix.POS]: $pos[3], buildShellExtension: buildShellExtension }),
         nix.thunk(() => nix.sel(lib, "recurseIntoAttrs")),
       ])));
     return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       gnome48Extensions,
       gnome49Extensions,
       gnome50Extensions,

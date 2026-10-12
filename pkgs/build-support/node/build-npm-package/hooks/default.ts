@@ -2,17 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nodeSrc", 20, 7], ["nodeGyp", 21, 7], ["npmArch", 22, 7], ["npmPlatform", 23, 7], ["diff", 27, 7], ["jq", 28, 7], ["prefetchNpmDeps", 29, 7], ["nodeVersion", 31, 7], ["nodeVersionMajor", 32, 7]], [["license", 34, 10]], [["name", 18, 5], ["substitutions", 19, 5], ["meta", 34, 5]], [["license", 39, 10]], [["name", 38, 5], ["meta", 39, 5]], [["nodejs", 49, 17]], [["jq", 53, 7]], [["license", 55, 10]], [["name", 43, 5], ["propagatedBuildInputs", 44, 5], ["substitutions", 52, 5], ["meta", 55, 5]], [["npmConfigHook", 17, 3], ["npmBuildHook", 37, 3], ["npmInstallHook", 42, 3]]]);
 const formals$1 = { args: { lib: false, srcOnly: false, stdenv: false, makeSetupHook: false, makeWrapper: false, nodejs: false, jq: false, "prefetch-npm-deps": false, diffutils: false, installShellFiles: false, nodejsInstallManuals: false, nodejsInstallExecutables: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["nodeSrc", 20, 7], ["nodeGyp", 21, 7], ["npmArch", 22, 7], ["npmPlatform", 23, 7], ["diff", 27, 7], ["jq", 28, 7], ["prefetchNpmDeps", 29, 7], ["nodeVersion", 31, 7], ["nodeVersionMajor", 32, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 34, 10]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 18, 5], ["substitutions", 19, 5], ["meta", 34, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["license", 39, 10]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 38, 5], ["meta", 39, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["nodejs", 49, 17]]);
-const pos$7 = nix.positions(here + "/default.nix", [["jq", 53, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["license", 55, 10]]);
-const pos$9 = nix.positions(here + "/default.nix", [["name", 43, 5], ["propagatedBuildInputs", 44, 5], ["substitutions", 52, 5], ["meta", 55, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["npmConfigHook", 17, 3], ["npmBuildHook", 37, 3], ["npmInstallHook", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const nodejsInstallManuals = nix.arg($, "nodejsInstallManuals");
   const nodejsInstallExecutables = nix.arg($, "nodejsInstallExecutables");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     npmConfigHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "npm-config-hook",
         substitutions: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           nodeSrc: nix.thunk(() => nix.app(srcOnly, nodejs)),
           nodeGyp: nix.thunk(() => nix.str`${nodejs}/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js`),
           npmArch: nix.thunk(() => nix.sel(stdenv, "targetPlatform", "node", "arch")),
@@ -45,24 +36,33 @@ export default nix.lambda((args) => (() => {
           nodeVersion: nix.thunk(() => nix.sel(nodejs, "version")),
           nodeVersionMajor: nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(nodejs, "version")))),
         })),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+        })),
       })), nix.path(here, "./npm-config-hook.sh"))),
     npmBuildHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "npm-build-hook",
-        meta: nix.thunk(() => ({ [nix.POS]: pos$4, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[3],
+          license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+        })),
       })), nix.path(here, "./npm-build-hook.sh"))),
     npmInstallHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         name: "npm-install-hook",
         propagatedBuildInputs: nix.thunk(() => [
           installShellFiles,
           makeWrapper,
           nodejsInstallManuals,
-          nix.thunk(() => nix.app(nix.sel(nodejsInstallExecutables, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, nodejs: nodejs })))),
+          nix.thunk(() => nix.app(nix.sel(nodejsInstallExecutables, "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], nodejs: nodejs })))),
         ]),
-        substitutions: nix.thunk(() => ({ [nix.POS]: pos$7, jq: nix.thunk(() => nix.str`${jq}/bin/jq`) })),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$8, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        substitutions: nix.thunk(() => ({ [nix.POS]: $pos[6], jq: nix.thunk(() => nix.str`${jq}/bin/jq`) })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[7],
+          license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+        })),
       })), nix.path(here, "./npm-install-hook.sh"))),
   };
 })(), formals$1);

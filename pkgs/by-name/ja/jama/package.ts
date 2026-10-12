@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 31, 5], ["description", 32, 5], ["platforms", 33, 5], ["license", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["propagatedBuildInputs", 19, 3], ["unpackPhase", 21, 3], ["installPhase", 25, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, tnt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["description", 32, 5], ["platforms", 33, 5], ["license", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["propagatedBuildInputs", 19, 3], ["unpackPhase", 21, 3], ["installPhase", 25, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jama";
       const version = "1.2.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://math.nist.gov/tnt/jama125.zip",
           sha256: "031ns526fvi2nv7jzzv02i7i5sjcyr0gj884i3an67qhsx8vyckl",
         }))));
@@ -29,14 +27,14 @@ unzip "$src"
 `);
       const installPhase = "mkdir -p $out/include\ncp *.h $out/include\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://math.nist.gov/tnt/",
         description: "JAMA/C++ Linear Algebra Package: Java-like matrix C++ templates",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

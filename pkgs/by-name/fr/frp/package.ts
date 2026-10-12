@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["frp", 36, 11]], [["tests", 36, 5], ["web", 37, 13]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["doCheck", 23, 3], ["subPackages", 25, 3], ["preBuild", 30, 3], ["passthru", 35, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { buildGoModule: false, callPackage: false, lib: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["frp", 36, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 36, 5], ["web", 37, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["doCheck", 23, 3], ["subPackages", 25, 3], ["preBuild", 30, 3], ["passthru", 35, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const web = nix.thunk(() => nix.app(callPackage, nix.path(here, "./dashboard.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "frp",
       version: "0.71.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fatedier",
           repo: "frp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
 cp -r ${nix.sel(web, "frps")} web/frps/dist
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, frp: nix.thunk(() => nix.sel(nixosTests, "frp")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], frp: nix.thunk(() => nix.sel(nixosTests, "frp")) })),
         web: web,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast reverse proxy",
         longDescription: "frp is a fast reverse proxy to help you expose a local server behind a\nNAT or firewall to the Internet. As of now, it supports TCP and UDP, as\nwell as HTTP and HTTPS protocols, where requests can be forwarded to\ninternal services by domain name. frp also has a P2P connect mode.\n",
         homepage: "https://github.com/fatedier/frp",

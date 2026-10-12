@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 30, 13], ["pname", 31, 5], ["hash", 32, 5]], [["pandas", 59, 5], ["polars", 60, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["mainProgram", 76, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__darwinAllowLocalNetworking", 27, 3], ["src", 29, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 41, 3], ["dependencies", 47, 3], ["optional-dependencies", 58, 3], ["nativeCheckInputs", 63, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "openapi-spec-validator": false, orjson: false, pandas: false, "poetry-core": false, polars: false, prance: false, pyarrow: false, "pytest-mock": false, pytestCheckHook: false, "python-dateutil": false, pyyaml: false, requests: false, tqdm: false, typer: false, "websocket-client": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 30, 13], ["pname", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pandas", 59, 5], ["polars", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["mainProgram", 76, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__darwinAllowLocalNetworking", 27, 3], ["src", 29, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 41, 3], ["dependencies", 47, 3], ["optional-dependencies", 58, 3], ["nativeCheckInputs", 63, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const __darwinAllowLocalNetworking = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "coinmetrics_api_client",
           hash: "sha256-01qVVuV+Cc17ooGe51+367gFOTSxYhWDm9xnOKkMeho=",
@@ -52,14 +49,14 @@ export default nix.lambda((args) => (() => {
         websocket_client,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pandas: nix.thunk(() => [pandas]),
         polars: nix.thunk(() => [polars]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, pytest_mock], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["coinmetrics.api_client"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Coin Metrics API v4 client library",
         homepage: "https://coinmetrics.github.io/api-client-python/site/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "coinmetrics",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

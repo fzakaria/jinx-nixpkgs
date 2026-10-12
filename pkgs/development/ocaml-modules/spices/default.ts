@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 28, 5], ["homepage", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["doCheck", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, colors: false, tty: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 28, 5], ["homepage", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["doCheck", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.2";
       const minimalOCamlVersion = "5.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/leostera/minttea/releases/download/${version}/minttea-${version}.tbz`),
           hash: "sha256-0eB7OuxcPdv9bf2aIQEeir44mQfx5W2AJj7Vb4pGtLI=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [colors, tty]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Declarative styles for TUI applications",
         homepage: "https://github.com/leostera/minttea",
         changelog: nix.thunk(() => nix.str`https://github.com/leostera/minttea/blob/${version}/CHANGES.md`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         minimalOCamlVersion,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["updateScript", 59, 12]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5], ["platforms", 72, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["__structuredAttrs", 30, 3], ["cargoHash", 32, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["postFixup", 48, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, expat: false, fontconfig: false, freetype: false, libGL: false, libxkbcommon: false, wayland: false, libx11: false, libxcursor: false, libxi: false, libxrandr: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5], ["platforms", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["__structuredAttrs", 30, 3], ["cargoHash", 32, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["postFixup", 48, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pinentry-egui",
       version: "0-unstable-2026-07-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dsociative",
           repo: "pinentry-egui",
           rev: "c81bf237048f5b296488751467bb2975982d05af",
@@ -55,11 +52,11 @@ export default nix.lambda((args) => (() => {
   --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, libxkbcommon, wayland]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Modern, native Wayland pinentry implementation for GPG using egui",
         homepage: "https://github.com/dsociative/pinentry-egui",
         license: nix.thunk(() => (() => {

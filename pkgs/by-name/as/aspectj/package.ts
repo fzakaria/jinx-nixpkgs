@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["sourceProvenance", 54, 5]], [["pname", 13, 3], ["version", 14, 11], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["dontUnpack", 23, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["sourceProvenance", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 11], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["dontUnpack", 23, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const version = "1.9.24";
   const versionSnakeCase = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aspectj",
       version: version,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/eclipse/org.aspectj/releases/download/V${versionSnakeCase}/aspectj-${version}.jar`),
           hash: "sha256-p+UOtuP8hNymfvmL/SPg99YrhU7m5GDudtLISqL5TWQ=",
         })))),
@@ -48,7 +46,7 @@ chmod u+x $out/bin/aj-runtime-env
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.eclipse.org/aspectj/",
         description: "Seamless aspect-oriented extension to the Java programming language",
         license: nix.thunk(() => nix.sel(lib, "licenses", "epl10")),

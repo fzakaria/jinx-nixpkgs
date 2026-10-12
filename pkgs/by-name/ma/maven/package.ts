@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["overrideMavenAttrs", 48, 11]], [["maven", 57, 21]], [["maven", 63, 9]], [["package", 72, 11], ["command", 73, 11]], [["version", 71, 9]], [["buildMaven", 62, 7], ["mkBuildMavenPackage", 66, 15], ["buildMavenPackage", 68, 7], ["tests", 70, 7]], [["homepage", 82, 5], ["description", 83, 5], ["longDescription", 84, 5], ["changelog", 90, 5], ["sourceProvenance", 91, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5], ["teams", 101, 5], ["platforms", 102, 33]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 19, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 23, 3], ["passthru", 37, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, fetchurl: false, jdk_headless: false, makeWrapper: false, stdenvNoCC: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["overrideMavenAttrs", 48, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["maven", 57, 21]]);
-const pos$4 = nix.positions(here + "/package.nix", [["maven", 63, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 72, 11], ["command", 73, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 71, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["buildMaven", 62, 7], ["mkBuildMavenPackage", 66, 15], ["buildMavenPackage", 68, 7], ["tests", 70, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 82, 5], ["description", 83, 5], ["longDescription", 84, 5], ["changelog", 90, 5], ["sourceProvenance", 91, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5], ["teams", 101, 5], ["platforms", 102, 33]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 19, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 23, 3], ["passthru", 37, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "maven",
       version: "3.9.16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/maven/maven-3/${nix.sel(finalAttrs, "version")}/binaries/apache-maven-${nix.sel(finalAttrs, "version")}-bin.tar.gz`),
           hash: "sha256-gP/KIq7Z6LlxOiMvM5T9gdfyAyLfde/bKwR9vT46I7s=",
         })))),
@@ -50,23 +42,23 @@ runHook postInstall
           const drv = nix.thunk(() => nix.app(mavenRecipe, mavenArgs));
           const overrideWith = (newArgs) => nix.update(mavenArgs, (nix.asBool(nix.app(nix.sel(lib, "isFunction"), newArgs)) ? nix.app(newArgs, mavenArgs) : nix.force(newArgs)));
           return nix.update(drv, {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             overrideMavenAttrs: (newArgs) => nix.app(makeOverridableMavenPackage, mavenRecipe, nix.thunk(() => nix.app(overrideWith, newArgs))),
           });
         })();
-        const mkBuildMavenPackage = (maven) => nix.app(makeOverridableMavenPackage, nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-maven-package.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, maven: maven })))));
+        const mkBuildMavenPackage = (maven) => nix.app(makeOverridableMavenPackage, nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-maven-package.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], maven: maven })))));
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           buildMaven: nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-maven.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               maven: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           mkBuildMavenPackage: mkBuildMavenPackage,
           buildMavenPackage: nix.thunk(() => nix.app(mkBuildMavenPackage, nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 command: "env MAVEN_OPTS=\"-Dmaven.repo.local=$TMPDIR/m2\" \\\n  mvn --version\n",
               })))),
@@ -76,7 +68,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jdk_headless, "meta"));
         return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://maven.apache.org/",
         description: "Build automation tool (used primarily for Java projects)",
         longDescription: "Apache Maven is a software project management and comprehension\ntool. Based on the concept of a project object model (POM), Maven can\nmanage a project's build, reporting and documentation from a central piece\nof information.\n",

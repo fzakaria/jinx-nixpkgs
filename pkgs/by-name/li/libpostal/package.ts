@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5], ["stripRoot", 15, 5]], [["url", 18, 5], ["hash", 19, 5], ["stripRoot", 20, 5]], [["url", 23, 5], ["hash", 24, 5], ["stripRoot", 25, 5]], [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["NIX_CFLAGS_COMPILE", 47, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["configureFlags", 41, 3], ["env", 46, 3], ["postBuild", 50, 3], ["doCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchzip: false, autoreconfHook: false, withData: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5], ["stripRoot", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5], ["stripRoot", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5], ["stripRoot", 25, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 47, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["configureFlags", 41, 3], ["env", 46, 3], ["postBuild", 50, 3], ["doCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,29 +15,29 @@ export default nix.lambda((args) => (() => {
   const withData = nix.argOr($, "withData", () => false);
   const releases = "https://github.com/openvenues/libpostal/releases";
   const assets_base = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`${releases}/download/v1.0.0/libpostal_data.tar.gz`),
       hash: "sha256-FpGCkkRhVzyr08YcO0/iixxw0RK+3Of0sv/DH3GbbME=",
       stripRoot: false,
     }))));
   const assets_parser = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`${releases}/download/v1.0.0/parser.tar.gz`),
       hash: "sha256-OHETb3e0GtVS2b4DgklKDlrE/8gxF7XZ3FwmCTqZbqQ=",
       stripRoot: false,
     }))));
   const assets_language_classifier = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`${releases}/download/v1.0.0/language_classifier.tar.gz`),
       hash: "sha256-/Gn931Nx4UDBaiFUgGqC/NJUIKQ5aZT/+OYSlcfXva8=",
       stripRoot: false,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "libpostal",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "openvenues",
           repo: "libpostal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       configureFlags: nix.thunk(() => nix.concat(["--disable-data-download"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["--disable-sse2"])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_COMPILE: "-Wno-incompatible-pointer-types" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], NIX_CFLAGS_COMPILE: "-Wno-incompatible-pointer-types" })),
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withData, nix.thunk(() => nix.str`mkdir -p $out/share/libpostal
 ln -s ${assets_language_classifier}/language_classifier $out/share/libpostal/language_classifier
 ln -s ${assets_base}/transliteration                    $out/share/libpostal/transliteration
@@ -61,7 +55,7 @@ ln -s ${assets_parser}/address_parser                   $out/share/libpostal/add
 `))),
       doCheck: withData,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "C library for parsing/normalizing street addresses around the world. Powered by statistical NLP and open geo data",
         homepage: "https://github.com/openvenues/libpostal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

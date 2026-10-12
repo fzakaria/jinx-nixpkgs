@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["postPatch", 37, 3], ["doInstallCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, cmake: false, libsForQt5: false, fftw: false, libusb1: false, libglvnd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["postPatch", 37, 3], ["doInstallCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "openhantek6022";
       const version = "3.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenHantek",
           repo: "OpenHantek6022",
           rev: version,
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Fix up install paths & checks\nsed -i 's#if(EXISTS \".*\")#if(1)#g' CMakeLists.txt\nsed -i 's#/lib/udev#lib/udev#g' CMakeLists.txt\nsed -i 's#/usr/share#share#g' CMakeLists.txt\n";
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free software for Hantek and compatible (Voltcraft/Darkwire/Protek/Acetech) USB digital signal oscilloscopes",
         mainProgram: "OpenHantek",
         homepage: "https://github.com/OpenHantek/OpenHantek6022",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(libsForQt5, "qtbase", "meta", "platforms")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

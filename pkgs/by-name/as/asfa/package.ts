@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]], [["pname", 21, 3], ["version", 22, 11], ["src", 22, 19], ["cargoHash", 24, 3], ["outputs", 26, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 33, 3], ["doCheck", 40, 3], ["postInstall", 42, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, stdenv: false, help2man: false, openssl: false, "pkg-config": false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 11], ["src", 22, 19], ["cargoHash", 24, 3], ["outputs", 26, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 33, 3], ["doCheck", 40, 3], ["postInstall", 42, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const version = "0.10.0-1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "obreitwi",
       repo: "asfa",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-ARdUlACxmbjmOTuNW2oiVUcfd5agR4rcp9aMQYUAYsw=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "asfa",
       version: version,
       src: src,
@@ -50,7 +48,7 @@ done
 installManPage man/man1/*.1
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Avoid sending file attachments by uploading them via SSH to a remote site and sharing a publicly-accessible URL with non-guessable (hash-based) prefix instead",
         homepage: "https://github.com/obreitwi/asfa",
         changelog: nix.thunk(() => nix.str`https://github.com/obreitwi/asfa/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),

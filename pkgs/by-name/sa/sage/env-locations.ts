@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/env-locations.nix", [[["name", 20, 3], ["destination", 21, 3], ["text", 22, 3]]]);
 const formals$1 = { args: { writeTextFile: false, pari_data: false, pari: false, singular: false, maxima: false, graphs: false, elliptic_curves: false, polytopes_db: false, gap: false, combinatorial_designs: false, mathjax: false, three: false, cysignals: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/env-locations.nix", [["name", 20, 3], ["destination", 21, 3], ["text", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +43,7 @@ export MATHJAX_DIR="${mathjax}/lib/node_modules/mathjax"
 export THREEJS_DIR="${three}/lib/node_modules/three"
 export SAGE_INCLUDE_DIRECTORIES="${cysignals}/${nix.sel(cysignals, "pythonModule", "sitePackages")}"
 `);
-      return { [nix.POS]: pos$1, name, destination, text };
+      return { [nix.POS]: $pos[0], name, destination, text };
     })()));
 })(), formals$1);
 //# sourceMappingURL=env-locations.ts.map

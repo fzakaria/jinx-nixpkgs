@@ -2,55 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gvisor.nix", [[["maintainers", 7, 5]], [["enable", 15, 11], ["extraOptions", 16, 11]], [["docker", 14, 24]], [["enable", 20, 18]], [["address", 24, 15], ["prefixLength", 25, 15]], [["addresses", 22, 32]], [["ipv4", 22, 27]], [["eth1", 22, 22]], [["dhcpcd", 20, 11], ["defaultGateway", 21, 11], ["interfaces", 22, 11]], [["virtualisation", 14, 9], ["networking", 19, 9]], [["gvisor", 11, 5]], [["name", 5, 3], ["meta", 6, 3], ["nodes", 10, 3], ["testScript", 32, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gvisor.nix", [["maintainers", 7, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/gvisor.nix", [["enable", 15, 11], ["extraOptions", 16, 11]]);
-const pos$3 = nix.positions(here + "/gvisor.nix", [["docker", 14, 24]]);
-const pos$4 = nix.positions(here + "/gvisor.nix", [["enable", 20, 18]]);
-const pos$5 = nix.positions(here + "/gvisor.nix", [["address", 24, 15], ["prefixLength", 25, 15]]);
-const pos$6 = nix.positions(here + "/gvisor.nix", [["addresses", 22, 32]]);
-const pos$7 = nix.positions(here + "/gvisor.nix", [["ipv4", 22, 27]]);
-const pos$8 = nix.positions(here + "/gvisor.nix", [["eth1", 22, 22]]);
-const pos$9 = nix.positions(here + "/gvisor.nix", [["dhcpcd", 20, 11], ["defaultGateway", 21, 11], ["interfaces", 22, 11]]);
-const pos$10 = nix.positions(here + "/gvisor.nix", [["virtualisation", 14, 9], ["networking", 19, 9]]);
-const pos$11 = nix.positions(here + "/gvisor.nix", [["gvisor", 11, 5]]);
-const pos$12 = nix.positions(here + "/gvisor.nix", [["name", 5, 3], ["meta", 6, 3], ["nodes", 10, 3], ["testScript", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "gvisor",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       gvisor: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             docker: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               extraOptions: nix.thunk(() => nix.str`--add-runtime runsc=${nix.sel(pkgs_1, "gvisor")}/bin/runsc`),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
+            [nix.POS]: $pos[8],
+            dhcpcd: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: false })),
             defaultGateway: "192.168.1.1",
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   addresses: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$5, address: "192.168.1.2", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[4], address: "192.168.1.2", prefixLength: 24n })),
                     ]))),
                 })),
               })),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["sha256", 36, 5]], [["PKG_CONFIG_BASH_COMPLETION_COMPLETIONSDIR", 94, 7]], [["package", 96, 50]], [["version", 96, 18]], [["url", 99, 5], ["rev-prefix", 100, 5], ["odd-unstable", 101, 5]], [["tests", 96, 12], ["updateScript", 98, 12]], [["homepage", 105, 5], ["description", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5], ["mainProgram", 110, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 65, 3], ["postInstall", 77, 3], ["env", 94, 3], ["passthru", 96, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, testers: false, fetchurl: false, "pkg-config": false, makeWrapper: false, autoreconfHook: false, "bash-completion": false, OVMF: false, qemu: false, ocamlPackages: false, perl: false, cpio: false, getopt: false, libosinfo: false, pcre2: false, libxml2: false, json_c: false, glib: false, "libguestfs-with-appliance": false, cdrkit: false, nbdkit: false, withWindowsGuestSupport: true, pkgsCross: false, "virtio-win": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_BASH_COMPLETION_COMPLETIONSDIR", 94, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 96, 50]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 96, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 99, 5], ["rev-prefix", 100, 5], ["odd-unstable", 101, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 96, 12], ["updateScript", 98, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 105, 5], ["description", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5], ["mainProgram", 110, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 65, 3], ["postInstall", 77, 3], ["env", 94, 3], ["passthru", 96, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const virtio_win = nix.arg($, "virtio-win");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "virt-v2v",
       version: "2.8.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.libguestfs.org/virt-v2v/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}-stable/virt-v2v-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-RJPwtI6GHN+W+Pw8jdEAgQMbR42aGqTYW2rPtAYBPYM=",
         })))),
@@ -89,27 +82,27 @@ done
 ln -s "${nix.sel(pkgsCross, "mingwW64", "rhsrvany")}/bin/" $out/share/virt-tools
 `)))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_BASH_COMPLETION_COMPLETIONSDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/bash-completion/completions`),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/libguestfs/guestfs-tools",
             "rev-prefix": "v",
             "odd-unstable": true,
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/libguestfs/virt-v2v",
         description: "Convert guests from foreign hypervisors to run on KVM",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

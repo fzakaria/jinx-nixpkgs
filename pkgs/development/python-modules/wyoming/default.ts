@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["http", 37, 5], ["zeroconf", 42, 5]], [["wyoming-faster-whisper", 54, 13], ["wyoming-openwakeword", 54, 36], ["wyoming-piper", 54, 57]], [["tests", 53, 12]], [["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["optional-dependencies", 36, 3], ["pythonImportsCheck", 45, 3], ["nativeCheckInputs", 47, 3], ["passthru", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, flask: false, "swagger-ui-py": false, zeroconf: false, "pytest-asyncio": false, pytestCheckHook: false, "wyoming-faster-whisper": false, "wyoming-openwakeword": false, "wyoming-piper": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["http", 37, 5], ["zeroconf", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["wyoming-faster-whisper", 54, 13], ["wyoming-openwakeword", 54, 36], ["wyoming-piper", 54, 57]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 53, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["optional-dependencies", 36, 3], ["pythonImportsCheck", 45, 3], ["nativeCheckInputs", 47, 3], ["passthru", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.10.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OHF-Voice",
           repo: "wyoming",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,23 +32,23 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         http: nix.thunk(() => nix.concat([flask, swagger_ui_py], nix.sel(flask, "optional-dependencies", "async"))),
         zeroconf: nix.thunk(() => [zeroconf]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["wyoming"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_asyncio, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "wyoming-faster-whisper": wyoming_faster_whisper,
           "wyoming-openwakeword": wyoming_openwakeword,
           "wyoming-piper": wyoming_piper,
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/OHF-Voice/wyoming/releases/tag/${nix.sel(src, "tag")}`),
         description: "Protocol for Rhasspy Voice Assistant",
         homepage: "https://github.com/OHF-Voice/wyoming",
@@ -64,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

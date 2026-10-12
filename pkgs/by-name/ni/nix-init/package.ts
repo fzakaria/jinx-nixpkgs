@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["lib", 24, 13], ["writeText", 24, 17]], [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["GEN_ARTIFACTS", 82, 5], ["LIBGIT2_NO_VENDOR", 83, 5], ["LIBSQLITE3_SYS_USE_PKG_CONFIG", 84, 5], ["NIX", 85, 5], ["NURL", 86, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 87, 5]], [["updateScript", 93, 12]], [["description", 96, 5], ["mainProgram", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["cargoHash", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["buildNoDefaultFeatures", 57, 3], ["checkFlags", 59, 3], ["postPatch", 65, 3], ["preBuild", 70, 3], ["postInstall", 76, 3], ["env", 81, 3], ["nativeInstallCheckInputs", 90, 3], ["doInstallCheck", 91, 3], ["passthru", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, writeText: false, rustPlatform: false, fetchFromGitHub: false, curl: false, installShellFiles: false, "pkg-config": false, bzip2: false, libgit2: false, openssl: false, sqlite: false, zlib: false, zstd: false, "spdx-license-list-data": false, nix: false, nurl: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["lib", 24, 13], ["writeText", 24, 17]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GEN_ARTIFACTS", 82, 5], ["LIBGIT2_NO_VENDOR", 83, 5], ["LIBSQLITE3_SYS_USE_PKG_CONFIG", 84, 5], ["NIX", 85, 5], ["NURL", 86, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 93, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 96, 5], ["mainProgram", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["cargoHash", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["buildNoDefaultFeatures", 57, 3], ["checkFlags", 59, 3], ["postPatch", 65, 3], ["preBuild", 70, 3], ["postInstall", 76, 3], ["env", 81, 3], ["nativeInstallCheckInputs", 90, 3], ["doInstallCheck", 91, 3], ["passthru", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const nurl = nix.arg($, "nurl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
-  const get_nix_license = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./get_nix_license.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, writeText: writeText }))));
+  const get_nix_license = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./get_nix_license.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, writeText: writeText }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nix-init",
       version: "0.3.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "nix-community",
           repo: "nix-init",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +51,7 @@ ln -s ${get_nix_license} data/get_nix_license.rs
 `),
       postInstall: "installManPage artifacts/nix-init.1\ninstallShellCompletion artifacts/nix-init.{bash,fish} --zsh artifacts/_nix-init\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         GEN_ARTIFACTS: "artifacts",
         LIBGIT2_NO_VENDOR: true,
         LIBSQLITE3_SYS_USE_PKG_CONFIG: true,
@@ -67,11 +62,11 @@ ln -s ${get_nix_license} data/get_nix_license.rs
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Command line tool to generate Nix packages from URLs",
         mainProgram: "nix-init",
         homepage: "https://github.com/nix-community/nix-init",

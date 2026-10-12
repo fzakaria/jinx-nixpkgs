@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["scripts", 19, 12]], [["platforms", 26, 28], ["description", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontUnpack", 17, 3], ["passthru", 19, 3], ["installPhase", 21, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, weechat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["scripts", 19, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["platforms", 26, 28], ["description", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontUnpack", 17, 3], ["passthru", 19, 3], ["installPhase", 21, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,21 +12,21 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const weechat = nix.arg($, "weechat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "weechat-go",
       version: "2.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/weechat/scripts/raw/414cff3ee605ba204b607742430a21443c035b08/python/go.py",
           sha256: "0bnbfpj1qg4yzwbikh1aw5ajc8l44lkb0y0m6mz8grpf5bxk5cwm",
         })))),
       dontUnpack: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, scripts: nix.thunk(() => ["go.py"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], scripts: nix.thunk(() => ["go.py"]) })),
       installPhase: "install -D $src $out/share/go.py\n",
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(weechat, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "WeeChat script to quickly jump to different buffers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

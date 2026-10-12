@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/extensions.nix", [[["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7]], [["description", 41, 7], ["homepage", 42, 7], ["license", 43, 7], ["maintainers", 44, 7], ["platforms", 45, 7]], [["pname", 15, 5], ["version", 16, 5], ["strictDeps", 18, 5], ["__structuredAttrs", 19, 5], ["src", 21, 5], ["preferLocalBuild", 28, 5], ["installPhase", 30, 5], ["meta", 40, 5]], [["pdflatex", 57, 5], ["lualatex", 58, 5]], [["applytransforms", 12, 3], ["hexmap", 14, 3], ["inkcut", 48, 3], ["inkstitch", 54, 3], ["silhouette", 55, 3], ["textext", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, runCommand: false, inkcut: false, callPackage: false, texliveBasic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/extensions.nix", [["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/extensions.nix", [["description", 41, 7], ["homepage", 42, 7], ["license", 43, 7], ["maintainers", 44, 7], ["platforms", 45, 7]]);
-const pos$3 = nix.positions(here + "/extensions.nix", [["pname", 15, 5], ["version", 16, 5], ["strictDeps", 18, 5], ["__structuredAttrs", 19, 5], ["src", 21, 5], ["preferLocalBuild", 28, 5], ["installPhase", 30, 5], ["meta", 40, 5]]);
-const pos$4 = nix.positions(here + "/extensions.nix", [["pdflatex", 57, 5], ["lualatex", 58, 5]]);
-const pos$5 = nix.positions(here + "/extensions.nix", [["applytransforms", 12, 3], ["hexmap", 14, 3], ["inkcut", 48, 3], ["inkstitch", 54, 3], ["silhouette", 55, 3], ["textext", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const texliveBasic = nix.arg($, "texliveBasic");
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     applytransforms: nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensions/applytransforms"), nix.thunk(() => ({})))),
     hexmap: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "hexmap",
         version: "3.0pre2",
         strictDeps: true,
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "lifelike",
             repo: "hexmapextension",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
         preferLocalBuild: true,
         installPhase: "runHook preInstall\n\nmkdir -p \"$out/share/inkscape/extensions\"\ncp -p *.inx *.py \"$out/share/inkscape/extensions/\"\nfind \"$out/share/inkscape/extensions/\" -name \"*.py\" -exec chmod +x {} \\;\n\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "This is an extension for creating hex grids in Inkscape. It can also be used to make brick patterns of staggered rectangles",
           homepage: "https://github.com/lifelike/hexmapextension",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -50,7 +46,7 @@ cp ${inkcut}/share/inkscape/extensions/* $out/share/inkscape/extensions
 `))),
     inkstitch: nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensions/inkstitch"), nix.thunk(() => ({})))),
     silhouette: nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensions/silhouette"), nix.thunk(() => ({})))),
-    textext: nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensions/textext"), nix.thunk(() => ({ [nix.POS]: pos$4, pdflatex: texliveBasic, lualatex: texliveBasic })))),
+    textext: nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensions/textext"), nix.thunk(() => ({ [nix.POS]: $pos[3], pdflatex: texliveBasic, lualatex: texliveBasic })))),
   };
 })(), formals$1);
 //# sourceMappingURL=extensions.ts.map

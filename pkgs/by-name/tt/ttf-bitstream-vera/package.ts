@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["packageName", 24, 5]], [["updateScript", 23, 12]], [["description", 28, 5], ["downloadPage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["passthru", 23, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, installFonts: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 23, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 28, 5], ["downloadPage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["passthru", 23, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,23 +13,23 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ttf-bitstream-vera",
       version: "1.10",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/ttf-bitstream-vera/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/ttf-bitstream-vera-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-21sn33u7MYA269t1rNPpjxvW62YI+3CmfUeM0kPReNw=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "ttf-bitstream-vera" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "ttf-bitstream-vera" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Typeface superfamily based on Bitstream Prima",
         downloadPage: "https://download.gnome.org/sources/ttf-bitstream-vera/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bitstreamVera")),

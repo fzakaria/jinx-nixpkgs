@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 35, 5]], [["pname", 15, 3], ["minimalOCamlVersion", 17, 3], ["version", 19, 25], ["src", 19, 33], ["propagatedBuildInputs", 21, 3], ["doCheck", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, callPackage: false, "ffmpeg-base": true, "ffmpeg-avutil": false, "ffmpeg-avcodec": false, "ffmpeg-avfilter": false, "ffmpeg-swscale": false, "ffmpeg-swresample": false, "ffmpeg-av": false, "ffmpeg-avdevice": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["minimalOCamlVersion", 17, 3], ["version", 19, 25], ["src", 19, 33], ["propagatedBuildInputs", 21, 3], ["doCheck", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_av = nix.arg($, "ffmpeg-av");
   const ffmpeg_avdevice = nix.arg($, "ffmpeg-avdevice");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ffmpeg",
       minimalOCamlVersion: "4.12",
       version: nix.thunk(() => nix.attr(ffmpeg_base, "version")),
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
         ffmpeg_avdevice,
       ]),
       doCheck: false,
-      meta: nix.thunk(() => nix.update(nix.sel(ffmpeg_base, "meta"), { [nix.POS]: pos$1, description: "Bindings for the ffmpeg libraries" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ffmpeg_base, "meta"), { [nix.POS]: $pos[0], description: "Bindings for the ffmpeg libraries" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 26, 5], ["hash", 27, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 20, 3], ["version", 21, 3], ["minimalOCamlVersion", 23, 3], ["src", 25, 3], ["propagatedBuildInputs", 30, 3], ["doCheck", 44, 3], ["checkInputs", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, alcotest: false, "domain-name": false, duration: false, gmap: false, ipaddr: false, logs: false, lru: false, metrics: false, ptime: false, fmt: false, base64: false, ohex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["minimalOCamlVersion", 23, 3], ["src", 25, 3], ["propagatedBuildInputs", 30, 3], ["doCheck", 44, 3], ["checkInputs", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const base64 = nix.arg($, "base64");
   const ohex = nix.arg($, "ohex");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dns",
       version: "10.2.6",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-dns/releases/download/v${nix.sel(finalAttrs, "version")}/dns-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-TD3yY91FlvhWNhX+NkTi+tWXi2aiaMPvNSCD1/7g/8g=",
         })))),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Domain Name System (DNS) library",
         homepage: "https://github.com/mirage/ocaml-dns",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

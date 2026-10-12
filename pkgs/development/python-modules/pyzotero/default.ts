@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 62, 5], ["homepage", 63, 5], ["downloadPage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "uv-build": false, bibtexparser: false, feedparser: false, httpx: false, whenever: false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, "python-dateutil": false, pytz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["downloadPage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const python_dateutil = nix.arg($, "python-dateutil");
   const pytz = nix.arg($, "pytz");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pyzotero",
       version: "1.13.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "urschrei",
           repo: "pyzotero",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_cov_stub, pytestCheckHook, python_dateutil, pytz]),
       pythonImportsCheck: nix.thunk(() => ["pyzotero"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python client for the Zotero API",
         homepage: "https://pyzotero.readthedocs.io/en/latest/",
         downloadPage: "https://pyzotero.readthedocs.io/en/latest/",

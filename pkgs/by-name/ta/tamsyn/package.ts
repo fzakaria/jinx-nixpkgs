@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 55, 5], ["downloadPage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["unpackPhase", 26, 3], ["postBuild", 30, 3], ["installPhase", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fontforge: false, mkfontscale: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 55, 5], ["downloadPage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["unpackPhase", 26, 3], ["postBuild", 30, 3], ["installPhase", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const mkfontscale = nix.arg($, "mkfontscale");
   const version = "1.11";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tamsyn-font",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.fial.com/~scott/tamsyn-font/download/tamsyn-font-${version}.tar.gz`),
           sha256: "0kpjzdj8sv5871b8827mjgj9dswk75h94jj5iia2bds18ih1pglp",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "# convert pcf fonts to otb\nfor i in *.pcf; do\n  name=$(basename \"$i\" .pcf)\n  fontforge -lang=ff -c \"Open(\\\"$i\\\"); Generate(\\\"$name.otb\\\")\"\ndone\n\n# compress pcf fonts\ngzip -n -9 *.pcf\n",
       installPhase: "install -m 644 -D *.otb *.pcf.gz -t \"$out/share/fonts/misc\"\ninstall -m 644 -D *.psf.gz -t \"$out/share/consolefonts\"\nmkfontdir \"$out/share/fonts/misc\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Monospace bitmap font aimed at programmers",
         longDescription: "Tamsyn is a monospace bitmap font, primarily aimed at\nprogrammers. It was derived from Gilles Boccon-Gibod's MonteCarlo. Tamsyn\nfont was further inspired by Gohufont, Terminus, Dina, Proggy, Fixedsys, and\nConsolas.\n",
         homepage: "http://www.fial.com/~scott/tamsyn-font/",

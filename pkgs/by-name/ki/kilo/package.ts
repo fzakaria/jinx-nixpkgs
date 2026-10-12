@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 28, 5], ["version", 29, 26], ["src", 29, 34], ["impureEnvVars", 31, 5], ["nativeBuildInputs", 36, 5], ["dontConfigure", 41, 5], ["buildPhase", 43, 5], ["installPhase", 60, 5], ["dontFixup", 69, 5], ["outputHash", 71, 5], ["outputHashAlgo", 72, 5], ["outputHashMode", 73, 5]], [["KILO_CHANNEL", 107, 7], ["KILO_VERSION", 108, 7], ["MODELS_DEV_API_JSON", 109, 7]], [["config", 167, 7], ["tui", 168, 7]], [["extraArgs", 171, 7]], [["jsonschema", 166, 5], ["updateScript", 170, 5]], [["description", 179, 5], ["homepage", 180, 5], ["changelog", 181, 5], ["downloadPage", 182, 5], ["license", 183, 5], ["maintainers", 184, 5], ["sourceProvenance", 187, 5], ["mainProgram", 188, 5], ["platforms", 189, 5], ["broken", 195, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["node_modules", 27, 3], ["nativeBuildInputs", 76, 3], ["strictDeps", 84, 3], ["__structuredAttrs", 85, 3], ["postPatch", 87, 3], ["configurePhase", 97, 3], ["env", 107, 3], ["buildPhase", 111, 3], ["installPhase", 121, 3], ["postInstall", 145, 3], ["nativeInstallCheckInputs", 151, 3], ["doInstallCheck", 155, 3], ["versionCheckKeepEnvironment", 156, 3], ["versionCheckProgram", 162, 3], ["versionCheckProgramArg", 163, 3], ["passthru", 165, 3], ["meta", 178, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, bun: false, fetchFromGitHub: false, installShellFiles: false, makeBinaryWrapper: false, "models-dev": false, "nix-update-script": false, ripgrep: false, sysctl: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 5], ["version", 29, 26], ["src", 29, 34], ["impureEnvVars", 31, 5], ["nativeBuildInputs", 36, 5], ["dontConfigure", 41, 5], ["buildPhase", 43, 5], ["installPhase", 60, 5], ["dontFixup", 69, 5], ["outputHash", 71, 5], ["outputHashAlgo", 72, 5], ["outputHashMode", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["KILO_CHANNEL", 107, 7], ["KILO_VERSION", 108, 7], ["MODELS_DEV_API_JSON", 109, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["config", 167, 7], ["tui", 168, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 171, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["jsonschema", 166, 5], ["updateScript", 170, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 179, 5], ["homepage", 180, 5], ["changelog", 181, 5], ["downloadPage", 182, 5], ["license", 183, 5], ["maintainers", 184, 5], ["sourceProvenance", 187, 5], ["mainProgram", 188, 5], ["platforms", 189, 5], ["broken", 195, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["node_modules", 27, 3], ["nativeBuildInputs", 76, 3], ["strictDeps", 84, 3], ["__structuredAttrs", 85, 3], ["postPatch", 87, 3], ["configurePhase", 97, 3], ["env", 107, 3], ["buildPhase", 111, 3], ["installPhase", 121, 3], ["postInstall", 145, 3], ["nativeInstallCheckInputs", 151, 3], ["doInstallCheck", 155, 3], ["versionCheckKeepEnvironment", 156, 3], ["versionCheckProgram", 162, 3], ["versionCheckProgramArg", 163, 3], ["passthru", 165, 3], ["meta", 178, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "kilo",
       version: "7.3.40",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Kilo-Org",
           repo: "kilocode",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Jw2C8C7dFPwOGp8tg6ewcRXdVsJEDDFSe+xuF86Xwfc=",
         })))),
       node_modules: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -71,7 +64,7 @@ patchShebangs packages/*/node_modules
 runHook postConfigure
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         KILO_CHANNEL: "latest",
         KILO_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         MODELS_DEV_API_JSON: nix.thunk(() => nix.str`${models_dev}/dist/_api.json`),
@@ -97,19 +90,19 @@ runHook postInstall
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/kilo`),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         jsonschema: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           config: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/kilocode/config.json`),
           tui: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/kilocode/tui.json`),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--subpackage", "node_modules"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Terminal User Interface for Kilo Code",
         homepage: "https://github.com/Kilo-Org/kilocode",
         changelog: nix.thunk(() => nix.str`https://github.com/Kilo-Org/kilocode/releases/tag/v${nix.sel(finalAttrs, "version")}`),

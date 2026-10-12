@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5]], [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["buildInputs", 18, 3], ["src", 22, 3], ["vendorHash", 29, 3], ["postInstall", 31, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, kubectl: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["buildInputs", 18, 3], ["src", 22, 3], ["vendorHash", 29, 3], ["postInstall", 31, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "litmusctl",
       version: "1.27.0",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       buildInputs: nix.thunk(() => [kubectl]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "litmuschaos",
           repo: "litmusctl",
           rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-Lkvc8dBr/nvKczx83/KXKLe5FskGpI/17GIrl2y/E1I=",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd litmusctl \\\n  --bash <($out/bin/litmusctl completion bash) \\\n  --fish <($out/bin/litmusctl completion fish) \\\n  --zsh <($out/bin/litmusctl completion zsh)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command-Line tool to manage Litmuschaos's agent plane",
         homepage: "https://github.com/litmuschaos/litmusctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["pname", 17, 3], ["version", 18, 23], ["src", 18, 31], ["pyproject", 19, 3], ["dontBuild", 21, 3], ["dontInstall", 22, 3], ["nativeCheckInputs", 24, 3], ["preCheck", 36, 3], ["disabledTests", 40, 3], ["__darwinAllowLocalNetworking", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, flaky: false, ipykernel: false, ipyparallel: false, "pre-commit": false, "pytest-asyncio": false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-timeout": false, trio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["pname", 17, 3], ["version", 18, 23], ["src", 18, 31], ["pyproject", 19, 3], ["dontBuild", 21, 3], ["dontInstall", 22, 3], ["nativeCheckInputs", 24, 3], ["preCheck", 36, 3], ["disabledTests", 40, 3], ["__darwinAllowLocalNetworking", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const pytest_timeout = nix.arg($, "pytest-timeout");
   const trio = nix.arg($, "trio");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "ipykernel-tests",
       version: nix.thunk(() => nix.attr(ipykernel, "version")),
       src: nix.thunk(() => nix.attr(ipykernel, "src")),

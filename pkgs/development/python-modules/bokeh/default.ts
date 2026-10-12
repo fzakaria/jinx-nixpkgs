@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 51, 13], ["version", 51, 19], ["hash", 52, 5]], [["node_bin", 57, 7], ["npm_bin", 58, 7]], [["description", 118, 5], ["mainProgram", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["maintainers", 122, 5]], [["pname", 45, 3], ["version", 47, 3], ["pyproject", 48, 3], ["src", 50, 3], ["patches", 55, 3], ["postPatch", 62, 3], ["build-system", 68, 3], ["nativeCheckInputs", 74, 3], ["dependencies", 100, 3], ["doCheck", 113, 3], ["pythonImportsCheck", 115, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, replaceVars: false, colorama: false, contourpy: false, jinja2: false, numpy: false, nodejs: false, packaging: false, pandas: false, pillow: false, tornado: false, pytestCheckHook: false, pyyaml: false, setuptools: false, xyzservices: false, beautifulsoup4: false, channels: false, click: false, colorcet: false, firefox: false, geckodriver: false, isort: false, json5: false, narwhals: false, nbconvert: false, networkx: false, psutil: false, pygments: false, pygraphviz: false, pytest: false, "pytest-asyncio": false, "pytest-xdist": false, "pytest-timeout": false, requests: false, scipy: false, selenium: false, toml: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 51, 13], ["version", 51, 19], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["node_bin", 57, 7], ["npm_bin", 58, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 118, 5], ["mainProgram", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["maintainers", 122, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 45, 3], ["version", 47, 3], ["pyproject", 48, 3], ["src", 50, 3], ["patches", 55, 3], ["postPatch", 62, 3], ["build-system", 68, 3], ["nativeCheckInputs", 74, 3], ["dependencies", 100, 3], ["doCheck", 113, 3], ["pythonImportsCheck", 115, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,14 +52,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-jn3KzCHVOQVYG1QyitJwWVT3LymX+Z/DMsHejaU6o8w=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-nodejs-npmjs-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             node_bin: nix.thunk(() => nix.str`${nodejs}/bin/node`),
             npm_bin: nix.thunk(() => nix.str`${nodejs}/bin/npm`),
           })))),
@@ -112,7 +109,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["bokeh"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Statistical and novel interactive HTML plots for Python",
         mainProgram: "bokeh",
         homepage: "https://github.com/bokeh/bokeh",
@@ -120,7 +117,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

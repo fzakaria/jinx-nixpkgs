@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 26, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, curl: false, bash: false, jq: false, "youtube-dl": false, zenity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 26, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kodi-cli";
       const version = "1.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nawar",
           repo: "kodi-cli",
           rev: version,
@@ -36,14 +34,22 @@ cp -a playlist_to_kodi $out/bin
 wrapProgram $out/bin/playlist_to_kodi --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, bash, zenity, jq, youtube_dl]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/nawar/kodi-cli",
         description: "Kodi/XBMC bash script to send Kodi commands using JSON RPC. It also allows sending YouTube videos to Kodi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "pstn"))]),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return {
+        [nix.POS]: $pos[2],
+        pname,
+        version,
+        src,
+        nativeBuildInputs,
+        installPhase,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

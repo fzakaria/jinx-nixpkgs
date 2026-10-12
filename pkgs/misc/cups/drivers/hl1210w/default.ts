@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["url", 24, 5], ["sha256", 25, 5]], [["homepage", 99, 5], ["description", 100, 5], ["sourceProvenance", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["downloadPage", 104, 5]], [["pname", 29, 3], ["version", 30, 11], ["srcs", 32, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["dontUnpack", 43, 3], ["installPhase", 45, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pkgsi686Linux: false, fetchurl: false, cups: false, dpkg: false, gnused: false, makeWrapper: false, ghostscript: false, file: false, a2ps: false, coreutils: false, gawk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 99, 5], ["description", 100, 5], ["sourceProvenance", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["downloadPage", 104, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 11], ["srcs", 32, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["dontUnpack", 43, 3], ["installPhase", 45, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const version = "3.0.1-1";
   const cupsdeb = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf101546/hl1210wcupswrapper-${version}.i386.deb`),
       sha256: "0395mnw6c7qpjgjch9in5q9p2fjdqvz9bwfwp6q1hzhs08ryk7w0",
     }))));
   const lprdeb = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf101547/hl1210wlpr-${version}.i386.deb`),
       sha256: "1sl3g2cd4a2gygryrr27ax3qaa65cbirz3kzskd8afkwqpmjyv7j",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cups-brother-hl1210W",
       version: version,
       srcs: nix.thunk(() => [lprdeb, cupsdeb]),
@@ -74,7 +71,7 @@ wrapProgram $out/opt/brother/Printers/HL1210W/cupswrapper/brother_lpdwrapper_HL1
   --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnused, coreutils, gawk]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.brother.com/",
         description: "Brother HL1210W printer driver",
         sourceProvenance: nix.thunk(() => (() => {

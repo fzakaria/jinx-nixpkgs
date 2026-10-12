@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]], [["CXXFLAGS", 42, 5], ["LUA_LIB", 43, 5], ["PCAPLIB", 44, 5]], [["package", 50, 5], ["command", 51, 5]], [["version", 49, 18]], [["tests", 49, 12]], [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["postPatch", 31, 3], ["configureFlags", 36, 3], ["env", 41, 3], ["enableParallelBuilding", 47, 3], ["passthru", 49, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, libpcap: false, lua5_1: false, json_c: false, testers: false, tracebox: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 42, 5], ["LUA_LIB", 43, 5], ["PCAPLIB", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 50, 5], ["command", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 49, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 49, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["postPatch", 31, 3], ["configureFlags", 36, 3], ["env", 41, 3], ["enableParallelBuilding", 47, 3], ["passthru", 49, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const tracebox = nix.arg($, "tracebox");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "tracebox",
       version: "0.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tracebox",
           repo: "tracebox",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,21 +35,21 @@ export default nix.lambda((args) => (() => {
 `),
       configureFlags: nix.thunk(() => ["--with-lua=yes", "--with-libpcap=yes"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: "-std=c++14",
         LUA_LIB: "-llua",
         PCAPLIB: "-lpcap",
       })),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: tracebox, command: "tracebox -V" })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: tracebox, command: "tracebox -V" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "http://www.tracebox.org/",
         description: "Middlebox detection tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

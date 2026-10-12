@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 52, 5], ["repo", 53, 5], ["rev", 54, 5], ["hash", 55, 5]], [["NIX_LDFLAGS", 70, 5]], [["MACOSX_DEPLOYMENT_TARGET", 73, 5]], [["homepage", 105, 5], ["description", 106, 5], ["mainProgram", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 113, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 63, 3], ["env", 69, 3], ["preBuild", 78, 3], ["installPhase", 82, 3], ["dontPatchELF", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, fetchFromGitHub: false, "pkg-config": false, lua5_5: false, fpc: false, portaudio: false, freetype: false, libpng: false, SDL2: false, SDL2_image: false, SDL2_gfx: false, SDL2_mixer: false, SDL2_net: false, SDL2_ttf: false, ffmpeg: false, sqlite: false, zlib: false, libx11: false, libGLU: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 52, 5], ["repo", 53, 5], ["rev", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["MACOSX_DEPLOYMENT_TARGET", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 105, 5], ["description", 106, 5], ["mainProgram", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 113, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 63, 3], ["env", 69, 3], ["preBuild", 78, 3], ["installPhase", 82, 3], ["dontPatchELF", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,11 +44,11 @@ export default nix.lambda((args) => (() => {
     ffmpeg,
   ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libx11, libGLU, libGL]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ultrastardx",
       version: "2026.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "UltraStar-Deluxe",
           repo: "USDX",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,15 +57,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => nix.concat([fpc, libpng], sharedLibs)),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (x) => nix.str`-rpath ${nix.app(nix.sel(lib, "getLib"), x)}/lib`, sharedLibs)),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, MACOSX_DEPLOYMENT_TARGET: "10.13" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[2], MACOSX_DEPLOYMENT_TARGET: "10.13" }))))),
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`export PFLAGS_EXTRA="-FD${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools")))}/bin -XR$SDKROOT $PFLAGS_EXTRA"
 `))),
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "make macos-app\nmkdir -p \"$out/Applications\" \"$out/bin\"\ncp -R UltraStarDeluxe.app \"$out/Applications/\"\nln -s \"$out/Applications/UltraStarDeluxe.app/Contents/MacOS/ultrastardx\" \\\n      \"$out/bin/ultrastardx\"\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "make install\ninstall -Dm644 dists/ultrastardx.desktop \\\n  \"$out/share/applications/ultrastardx.desktop\"\n")), "runHook postInstall\n")),
       dontPatchELF: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://usdx.eu/",
         description: "Free and open source karaoke game",
         mainProgram: "ultrastardx",

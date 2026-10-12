@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["homepage", 58, 5], ["description", 59, 5], ["mainProgram", 60, 5], ["longDescription", 61, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["enableParallelBuilding", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["makeFlags", 36, 3], ["patches", 42, 3], ["postPatch", 46, 3], ["postInstall", 51, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gtk3: false, rgbds: false, SDL2: false, wrapGAppsHook3: false, glib: false, "gdk-pixbuf": false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["description", 59, 5], ["mainProgram", 60, 5], ["longDescription", 61, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["enableParallelBuilding", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["makeFlags", 36, 3], ["patches", 42, 3], ["postPatch", 46, 3], ["postInstall", 51, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sameboy",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LIJI32",
           repo: "SameBoy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "substituteInPlace $out/share/thumbnailers/sameboy.thumbnailer \\\n  --replace-fail \"TryExec=sameboy-thumbnailer\" \"TryExec=$out/bin/sameboy-thumbnailer\" \\\n  --replace-fail \"Exec=sameboy-thumbnailer\" \"Exec=$out/bin/sameboy-thumbnailer\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://sameboy.github.io",
         description: "Game Boy, Game Boy Color, and Super Game Boy emulator",
         mainProgram: "sameboy",

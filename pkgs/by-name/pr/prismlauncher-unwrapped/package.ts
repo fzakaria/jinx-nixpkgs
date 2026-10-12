@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["updateScript", 92, 5]], [["product", 113, 7]], [["cpeParts", 112, 17]], [["description", 96, 5], ["longDescription", 97, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 110, 5], ["platforms", 111, 5], ["identifiers", 112, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postUnpack", 40, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 60, 3], ["cmakeFlags", 72, 3], ["doCheck", 87, 3], ["dontWrapQtApps", 89, 3], ["passthru", 91, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, cmark: false, gamemode: false, jdk17: false, kdePackages: false, libarchive: false, ninja: false, "nix-update-script": false, qrencode: false, stripJavaArchivesHook: false, tomlplusplus: false, "vulkan-headers": false, zlib: false, msaClientID: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["product", 113, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["cpeParts", 112, 17]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 96, 5], ["longDescription", 97, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 110, 5], ["platforms", 111, 5], ["identifiers", 112, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postUnpack", 40, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 60, 3], ["cmakeFlags", 72, 3], ["doCheck", 87, 3], ["dontWrapQtApps", 89, 3], ["passthru", 91, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const msaClientID = nix.argOr($, "msaClientID", () => null);
   const libnbtplusplus = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "PrismLauncher",
       repo: "libnbtplusplus",
       rev: "3538933614059f0f44388a2b16f3db25ce42285b",
       hash: "sha256-6/8clF2yNhfonV16cfIkxVIzuB9i9ThxoLMxAo/fDuY=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "prismlauncher-unwrapped",
       version: "11.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "PrismLauncher",
           repo: "PrismLauncher",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -85,11 +79,11 @@ ln -s ${libnbtplusplus} source/libraries/libnbtplusplus
       doCheck: true,
       dontWrapQtApps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Free, open source launcher for Minecraft",
         longDescription: "Allows you to have multiple, separate instances of Minecraft (each with\ntheir own mods, texture packs, saves, etc) and helps you manage them and\ntheir associated options with a simple interface.\n",
         homepage: "https://prismlauncher.org/",
@@ -106,8 +100,8 @@ ln -s ${libnbtplusplus} source/libraries/libnbtplusplus
         mainProgram: "prismlauncher",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "prismlauncher", nix.thunk(() => nix.sel(finalAttrs, "version"))), { [nix.POS]: pos$4, product: "prism_launcher" })),
+          [nix.POS]: $pos[4],
+          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "prismlauncher", nix.thunk(() => nix.sel(finalAttrs, "version"))), { [nix.POS]: $pos[3], product: "prism_launcher" })),
         })),
       })),
     }));

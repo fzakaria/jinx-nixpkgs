@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["updateScript", 32, 12]], [["description", 35, 5], ["longDescription", 36, 5], ["homepage", 62, 5], ["downloadPage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 19, 3], ["passthru", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 32, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 35, 5], ["longDescription", 36, 5], ["homepage", 62, 5], ["downloadPage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 19, 3], ["passthru", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rime-wanxiang",
       version: "18.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "amzxyz",
           repo: "rime-wanxiang",
           tag: nix.thunk(() => nix.add("v", nix.sel(finalAttrs, "version"))),
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nrm -rf README.md .git* custom LICENSE\n\nmv default.yaml wanxiang_suggested_default.yaml\n\nmkdir -p $out/share\ncp -r . $out/share/rime-data\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Feature-rich pinyin schema for Rime",
         longDescription: "万象拼音 is a quanpin and shuangpin input schema for Rime based on\n[万象 dictionaries and grammar models](https://github.com/amzxyz/RIME-LMDG),\nsupporting traditional shuangpin as well as tonal schemata such as 自然龙 and\n龙码.\n\nThis package is built from the upstream repository snapshots, and includes\nall the auxiliary encodings.\n\nThe schema requires to work the grammar model `wanxiang-lts-zh-hans.gram`.\nHowever, this file is\n[released](https://github.com/amzxyz/RIME-LMDG/releases/tag/LTS) by\ncarelessly overriding the old versions\n(see the [discussion](https://github.com/amzxyz/RIME-LMDG/issues/22)). So\nwe can't pack it into Nixpkgs, which demands reproducibility. You have to\ndownload it yourself and place it in the user directory of Rime.\n\nThe upstream `default.yaml` is included as\n`wanxiang_suggested_default.yaml`. To enable it, please modify your\n`default.custom.yaml` as such:\n\n```yaml\npatch:\n  __include: wanxiang_suggested_default:/\n```\n",
         homepage: "https://github.com/amzxyz/rime-wanxiang",

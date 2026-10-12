@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["propagatedBuildInputs", 35, 3], ["makeFlags", 38, 3], ["doCheck", 39, 3], ["dontStrip", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitea: false, guile: false, libgcrypt: false, autoreconfHook: false, "pkg-config": false, texinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["propagatedBuildInputs", 35, 3], ["makeFlags", 38, 3], ["doCheck", 39, 3], ["dontStrip", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "guile-gcrypt",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "notabug.org",
           owner: "cwebber",
           repo: "guile-gcrypt",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       dontStrip: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bindings to Libgcrypt for GNU Guile",
         homepage: "https://notabug.org/cwebber/guile-gcrypt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

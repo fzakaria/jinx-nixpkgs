@@ -2,84 +2,35 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["buildInputs", 5, 5]], [["enable", 13, 9], ["bypassBootstrapWarning", 14, 9]], [["scion", 12, 16]], [["useNetworkd", 17, 9], ["useDHCP", 18, 9]], [["Address", 22, 23]], [["name", 21, 9], ["networkConfig", 22, 9]], [["01-eth1", 20, 32]], [["networks", 20, 23]], [["network", 20, 15]], [["source", 25, 31]], [["source", 26, 27]], [["source", 27, 39]], [["text", 28, 34]], [["text", 29, 34]], [["scion/topology.json", 25, 9], ["scion/crypto/as", 26, 9], ["scion/certs/ISD42-B1-S1.trc", 27, 9], ["scion/keys/master0.key", 28, 9], ["scion/keys/master1.key", 29, 9]], [["etc", 24, 19], ["systemPackages", 31, 19]], [["services", 12, 7], ["networking", 16, 7], ["systemd", 20, 7], ["environment", 24, 7]], [["imports", 41, 7]], [["imports", 44, 7]], [["imports", 47, 7]], [["address", 53, 11], ["prefixLength", 54, 11]], [["addresses", 51, 39]], [["ipv4", 51, 34]], [["lo", 51, 29]], [["interfaces", 51, 18]], [["src_ipv4", 61, 13]], [["tunnel", 60, 11]], [["Nets", 67, 15]], [["42-ffaa:1:5", 66, 13]], [["ASes", 65, 11], ["ConfigVersion", 72, 11]], [["enable", 58, 9], ["config", 59, 9], ["trafficConfig", 64, 9]], [["scion-ip-gateway", 57, 22]], [["scion", 57, 16]], [["imports", 50, 7], ["networking", 51, 7], ["services", 57, 7]], [["address", 80, 11], ["prefixLength", 81, 11]], [["addresses", 78, 39]], [["ipv4", 78, 34]], [["lo", 78, 29]], [["interfaces", 78, 18]], [["src_ipv4", 88, 13]], [["tunnel", 87, 11]], [["Nets", 94, 15]], [["42-ffaa:1:4", 93, 13]], [["ASes", 92, 11], ["ConfigVersion", 99, 11]], [["enable", 85, 9], ["config", 86, 9], ["trafficConfig", 91, 9]], [["scion-ip-gateway", 84, 22]], [["scion", 84, 16]], [["imports", 77, 7], ["networking", 78, 7], ["services", 84, 7]], [["scion01", 40, 5], ["scion02", 43, 5], ["scion03", 46, 5], ["scion04", 49, 5], ["scion05", 76, 5]], [["name", 38, 3], ["nodes", 39, 3], ["testScript", 104, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["buildInputs", 5, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["enable", 13, 9], ["bypassBootstrapWarning", 14, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["scion", 12, 16]]);
-const pos$4 = nix.positions(here + "/default.nix", [["useNetworkd", 17, 9], ["useDHCP", 18, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["Address", 22, 23]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 21, 9], ["networkConfig", 22, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["01-eth1", 20, 32]]);
-const pos$8 = nix.positions(here + "/default.nix", [["networks", 20, 23]]);
-const pos$9 = nix.positions(here + "/default.nix", [["network", 20, 15]]);
-const pos$10 = nix.positions(here + "/default.nix", [["source", 25, 31]]);
-const pos$11 = nix.positions(here + "/default.nix", [["source", 26, 27]]);
-const pos$12 = nix.positions(here + "/default.nix", [["source", 27, 39]]);
-const pos$13 = nix.positions(here + "/default.nix", [["text", 28, 34]]);
-const pos$14 = nix.positions(here + "/default.nix", [["text", 29, 34]]);
-const pos$15 = nix.positions(here + "/default.nix", [["scion/topology.json", 25, 9], ["scion/crypto/as", 26, 9], ["scion/certs/ISD42-B1-S1.trc", 27, 9], ["scion/keys/master0.key", 28, 9], ["scion/keys/master1.key", 29, 9]]);
-const pos$16 = nix.positions(here + "/default.nix", [["etc", 24, 19], ["systemPackages", 31, 19]]);
-const pos$17 = nix.positions(here + "/default.nix", [["services", 12, 7], ["networking", 16, 7], ["systemd", 20, 7], ["environment", 24, 7]]);
-const pos$18 = nix.positions(here + "/default.nix", [["imports", 41, 7]]);
-const pos$19 = nix.positions(here + "/default.nix", [["imports", 44, 7]]);
-const pos$20 = nix.positions(here + "/default.nix", [["imports", 47, 7]]);
-const pos$21 = nix.positions(here + "/default.nix", [["address", 53, 11], ["prefixLength", 54, 11]]);
-const pos$22 = nix.positions(here + "/default.nix", [["addresses", 51, 39]]);
-const pos$23 = nix.positions(here + "/default.nix", [["ipv4", 51, 34]]);
-const pos$24 = nix.positions(here + "/default.nix", [["lo", 51, 29]]);
-const pos$25 = nix.positions(here + "/default.nix", [["interfaces", 51, 18]]);
-const pos$26 = nix.positions(here + "/default.nix", [["src_ipv4", 61, 13]]);
-const pos$27 = nix.positions(here + "/default.nix", [["tunnel", 60, 11]]);
-const pos$28 = nix.positions(here + "/default.nix", [["Nets", 67, 15]]);
-const pos$29 = nix.positions(here + "/default.nix", [["42-ffaa:1:5", 66, 13]]);
-const pos$30 = nix.positions(here + "/default.nix", [["ASes", 65, 11], ["ConfigVersion", 72, 11]]);
-const pos$31 = nix.positions(here + "/default.nix", [["enable", 58, 9], ["config", 59, 9], ["trafficConfig", 64, 9]]);
-const pos$32 = nix.positions(here + "/default.nix", [["scion-ip-gateway", 57, 22]]);
-const pos$33 = nix.positions(here + "/default.nix", [["scion", 57, 16]]);
-const pos$34 = nix.positions(here + "/default.nix", [["imports", 50, 7], ["networking", 51, 7], ["services", 57, 7]]);
-const pos$35 = nix.positions(here + "/default.nix", [["address", 80, 11], ["prefixLength", 81, 11]]);
-const pos$36 = nix.positions(here + "/default.nix", [["addresses", 78, 39]]);
-const pos$37 = nix.positions(here + "/default.nix", [["ipv4", 78, 34]]);
-const pos$38 = nix.positions(here + "/default.nix", [["lo", 78, 29]]);
-const pos$39 = nix.positions(here + "/default.nix", [["interfaces", 78, 18]]);
-const pos$40 = nix.positions(here + "/default.nix", [["src_ipv4", 88, 13]]);
-const pos$41 = nix.positions(here + "/default.nix", [["tunnel", 87, 11]]);
-const pos$42 = nix.positions(here + "/default.nix", [["Nets", 94, 15]]);
-const pos$43 = nix.positions(here + "/default.nix", [["42-ffaa:1:4", 93, 13]]);
-const pos$44 = nix.positions(here + "/default.nix", [["ASes", 92, 11], ["ConfigVersion", 99, 11]]);
-const pos$45 = nix.positions(here + "/default.nix", [["enable", 85, 9], ["config", 86, 9], ["trafficConfig", 91, 9]]);
-const pos$46 = nix.positions(here + "/default.nix", [["scion-ip-gateway", 84, 22]]);
-const pos$47 = nix.positions(here + "/default.nix", [["scion", 84, 16]]);
-const pos$48 = nix.positions(here + "/default.nix", [["imports", 77, 7], ["networking", 78, 7], ["services", 84, 7]]);
-const pos$49 = nix.positions(here + "/default.nix", [["scion01", 40, 5], ["scion02", 43, 5], ["scion03", 46, 5], ["scion04", 49, 5], ["scion05", 76, 5]]);
-const pos$50 = nix.positions(here + "/default.nix", [["name", 38, 3], ["nodes", 39, 3], ["testScript", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const trust_root_configuration_keys = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "generate-trc-keys.sh", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "scion"))]),
     })), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./bootstrap.sh")))));
   const imports = (hostId) => [
     nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        scion: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, bypassBootstrapWarning: true })),
+        [nix.POS]: $pos[2],
+        scion: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, bypassBootstrapWarning: true })),
       })),
-      networking: nix.thunk(() => ({ [nix.POS]: pos$4, useNetworkd: true, useDHCP: false })),
+      networking: nix.thunk(() => ({ [nix.POS]: $pos[3], useNetworkd: true, useDHCP: false })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         network: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           networks: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             "01-eth1": nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: "eth1",
               networkConfig: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 Address: nix.thunk(() => nix.str`192.168.1.${nix.builtins.toString(hostId)}/24`),
               })),
             })),
@@ -87,27 +38,27 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         etc: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           "scion/topology.json": nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             source: nix.thunk(() => nix.add(nix.path(here, "./topology"), nix.str`${nix.builtins.toString(hostId)}.json`)),
           })),
           "scion/crypto/as": nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             source: nix.thunk(() => nix.add(trust_root_configuration_keys, nix.str`/AS${nix.builtins.toString(hostId)}`)),
           })),
           "scion/certs/ISD42-B1-S1.trc": nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             source: nix.thunk(() => nix.add(trust_root_configuration_keys, "/ISD42-B1-S1.trc")),
           })),
           "scion/keys/master0.key": nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             text: nix.thunk(() => nix.str`U${nix.builtins.toString(hostId)}v4k23ZXjGDwDofg/Eevw==`),
           })),
           "scion/keys/master1.key": nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             text: nix.thunk(() => nix.str`dBMko${nix.builtins.toString(hostId)}qMS8DfrN/zP2OUdA==`),
           })),
         })),
@@ -116,47 +67,47 @@ export default nix.lambda((args) => (() => {
     })),
   ];
   return {
-    [nix.POS]: pos$50,
+    [nix.POS]: $pos[49],
     name: "scion-test",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$49,
-      scion01: nix.thunk(() => ({ [nix.POS]: pos$18, imports: nix.thunk(() => nix.app(imports, 1n)) })),
-      scion02: nix.thunk(() => ({ [nix.POS]: pos$19, imports: nix.thunk(() => nix.app(imports, 2n)) })),
-      scion03: nix.thunk(() => ({ [nix.POS]: pos$20, imports: nix.thunk(() => nix.app(imports, 3n)) })),
+      [nix.POS]: $pos[48],
+      scion01: nix.thunk(() => ({ [nix.POS]: $pos[17], imports: nix.thunk(() => nix.app(imports, 1n)) })),
+      scion02: nix.thunk(() => ({ [nix.POS]: $pos[18], imports: nix.thunk(() => nix.app(imports, 2n)) })),
+      scion03: nix.thunk(() => ({ [nix.POS]: $pos[19], imports: nix.thunk(() => nix.app(imports, 3n)) })),
       scion04: nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         imports: nix.thunk(() => nix.app(imports, 4n)),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             lo: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$21, address: "172.16.1.1", prefixLength: 32n })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[20], address: "172.16.1.1", prefixLength: 32n })),
                 ]),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           scion: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             "scion-ip-gateway": nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               enable: true,
               config: nix.thunk(() => ({
-                [nix.POS]: pos$27,
-                tunnel: nix.thunk(() => ({ [nix.POS]: pos$26, src_ipv4: "172.16.1.1" })),
+                [nix.POS]: $pos[26],
+                tunnel: nix.thunk(() => ({ [nix.POS]: $pos[25], src_ipv4: "172.16.1.1" })),
               })),
               trafficConfig: nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 ASes: nix.thunk(() => ({
-                  [nix.POS]: pos$29,
-                  "42-ffaa:1:5": nix.thunk(() => ({ [nix.POS]: pos$28, Nets: nix.thunk(() => ["172.16.100.0/24"]) })),
+                  [nix.POS]: $pos[28],
+                  "42-ffaa:1:5": nix.thunk(() => ({ [nix.POS]: $pos[27], Nets: nix.thunk(() => ["172.16.100.0/24"]) })),
                 })),
                 ConfigVersion: 9001n,
               })),
@@ -165,39 +116,39 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       scion05: nix.thunk(() => ({
-        [nix.POS]: pos$48,
+        [nix.POS]: $pos[47],
         imports: nix.thunk(() => nix.app(imports, 5n)),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             lo: nix.thunk(() => ({
-              [nix.POS]: pos$37,
+              [nix.POS]: $pos[36],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$36,
+                [nix.POS]: $pos[35],
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$35, address: "172.16.100.1", prefixLength: 32n })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[34], address: "172.16.100.1", prefixLength: 32n })),
                 ]),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$47,
+          [nix.POS]: $pos[46],
           scion: nix.thunk(() => ({
-            [nix.POS]: pos$46,
+            [nix.POS]: $pos[45],
             "scion-ip-gateway": nix.thunk(() => ({
-              [nix.POS]: pos$45,
+              [nix.POS]: $pos[44],
               enable: true,
               config: nix.thunk(() => ({
-                [nix.POS]: pos$41,
-                tunnel: nix.thunk(() => ({ [nix.POS]: pos$40, src_ipv4: "172.16.100.1" })),
+                [nix.POS]: $pos[40],
+                tunnel: nix.thunk(() => ({ [nix.POS]: $pos[39], src_ipv4: "172.16.100.1" })),
               })),
               trafficConfig: nix.thunk(() => ({
-                [nix.POS]: pos$44,
+                [nix.POS]: $pos[43],
                 ASes: nix.thunk(() => ({
-                  [nix.POS]: pos$43,
-                  "42-ffaa:1:4": nix.thunk(() => ({ [nix.POS]: pos$42, Nets: nix.thunk(() => ["172.16.1.0/24"]) })),
+                  [nix.POS]: $pos[42],
+                  "42-ffaa:1:4": nix.thunk(() => ({ [nix.POS]: $pos[41], Nets: nix.thunk(() => ["172.16.1.0/24"]) })),
                 })),
                 ConfigVersion: 9001n,
               })),

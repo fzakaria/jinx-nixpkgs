@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["message", 25, 9], ["name", 26, 9], ["sha256", 27, 9]], [["description", 91, 5], ["longDescription", 92, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]], [["pname", 12, 3], ["version", 13, 3], ["goBuyItNow", 15, 3], ["src", 22, 3], ["ld_preload", 32, 3], ["libPath", 34, 3], ["buildCommand", 46, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, requireFile: false, SDL: false, libpulseaudio: false, "alsa-lib": false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["message", 25, 9], ["name", 26, 9], ["sha256", 27, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 91, 5], ["longDescription", 92, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["goBuyItNow", 15, 3], ["src", 22, 3], ["ld_preload", 32, 3], ["libPath", 34, 3], ["buildCommand", 46, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ You can do this by using "nix-prefetch-url file://$PWD/vessel-${version}-bin" in
 directory where you saved it.
 `);
       const src = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")) ? nix.app(requireFile, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           message: goBuyItNow,
           name: nix.thunk(() => nix.str`vessel-${version}-bin`),
           sha256: "1vpwcrjiln2mx43h7ib3jnccyr3chk7a5x2bw9kb4lw8ycygvg96",
@@ -78,7 +76,7 @@ EOW
 chmod +x $out/bin/Vessel
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fluid physics based puzzle game",
         longDescription: "Living liquid machines have overrun this world of unstoppable progress,\nand it is the role of their inventor, Arkwright, to stop the chaos they are\ncausing. Vessel is a game about a man with the power to bring ordinary matter\nto life, and all the consequences that ensue.\n",
         homepage: "http://www.strangeloopgames.com",
@@ -89,7 +87,7 @@ chmod +x $out/bin/Vessel
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         goBuyItNow,

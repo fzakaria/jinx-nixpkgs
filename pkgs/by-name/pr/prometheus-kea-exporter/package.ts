@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["kea", 33, 26]], [["tests", 32, 12]], [["changelog", 37, 5], ["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 25, 3], ["nativeInstallCheckInputs", 31, 3], ["passthru", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, nixosTests: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["kea", 33, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 32, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 37, 5], ["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 25, 3], ["nativeInstallCheckInputs", 31, 3], ["passthru", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "kea-exporter",
       version: "0.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mweinelt",
           repo: "kea-exporter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
       })()),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, kea: nix.thunk(() => nix.attr(nixosTests, "kea")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], kea: nix.thunk(() => nix.attr(nixosTests, "kea")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/mweinelt/kea-exporter/blob/v${nix.sel(finalAttrs, "version")}/HISTORY`),
         description: "Export Kea Metrics in the Prometheus Exposition Format",
         mainProgram: "kea-exporter",

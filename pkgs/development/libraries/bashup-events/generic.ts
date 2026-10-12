@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["inputs", 62, 7], ["interpreter", 63, 7], ["scripts", 64, 7], ["keep", 65, 15]], [["fake", 67, 55]], [["events", 61, 5]], [["branch", 79, 13], ["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 39, 3], ["version", 41, 11], ["src", 42, 11], ["installPhase", 44, 3], ["doCheck", 50, 11], ["nativeCheckInputs", 51, 3], ["checkPhase", 53, 3], ["solutions", 60, 3], ["doInstallCheck", 70, 11], ["nativeInstallCheckInputs", 71, 3], ["installCheckPhase", 72, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, resholve: false, bash: false, doCheck: true, doInstallCheck: true, variant: false, version: false, branch: false, src: false, fake: true, keep: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["inputs", 62, 7], ["interpreter", 63, 7], ["scripts", 64, 7], ["keep", 65, 15]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["fake", 67, 55]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["events", 61, 5]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["branch", 79, 13], ["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["pname", 39, 3], ["version", 41, 11], ["src", 42, 11], ["installPhase", 44, 3], ["doCheck", 50, 11], ["nativeCheckInputs", 51, 3], ["checkPhase", 53, 3], ["solutions", 60, 3], ["doInstallCheck", 70, 11], ["nativeInstallCheckInputs", 71, 3], ["installCheckPhase", 72, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +32,7 @@ exit 1 # fail if emitting event didn't exit clean
 EOF
 `;
   return nix.app(nix.sel(resholve, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`bashup-events${variant}-unstable`),
       version: version,
       src: src,
@@ -49,14 +45,14 @@ ${bash}/bin/bash ./bashup.events
 runHook postCheck
 `),
       solutions: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         events: nix.thunk(() => nix.update({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           inputs: [],
           interpreter: "none",
           scripts: nix.thunk(() => ["bin/bashup.events"]),
           keep: keep,
-        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "isAttrs"), fake)), nix.thunk(() => ({ [nix.POS]: pos$2, fake: fake }))))),
+        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "isAttrs"), fake)), nix.thunk(() => ({ [nix.POS]: $pos[1], fake: fake }))))),
       })),
       doInstallCheck: doInstallCheck,
       nativeInstallCheckInputs: nix.thunk(() => [bash]),
@@ -65,7 +61,7 @@ ${nix.app(installCheck, nix.thunk(() => nix.str`${bash}/bin/bash`))}
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         branch: branch,
         description: "Event listener/callback API for creating extensible bash programs",
         mainProgram: "bashup.events",

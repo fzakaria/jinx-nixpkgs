@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["__structuredAttrs", 14, 3], ["build-system", 16, 3], ["src", 18, 3], ["nativeCheckInputs", 25, 3], ["pythonImportsCheck", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, setuptools: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["__structuredAttrs", 14, 3], ["build-system", 16, 3], ["src", 18, 3], ["nativeCheckInputs", 25, 3], ["pythonImportsCheck", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "base58check",
       version: "1.0.2",
       pyproject: true,
       __structuredAttrs: true,
       "build-system": nix.thunk(() => [setuptools]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "joeblackwaslike",
           repo: "base58check",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["base58check"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Implementation of the Base58Check encoding scheme",
         homepage: "https://github.com/joeblackwaslike/base58check",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

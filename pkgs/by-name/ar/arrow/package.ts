@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["type", 36, 7], ["name", 37, 7], ["exec", 38, 7], ["icon", 39, 7], ["terminal", 40, 7], ["comment", 41, 7], ["desktopName", 42, 7], ["categories", 43, 7]], [["updateScript", 67, 12]], [["homepage", 95, 5], ["description", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["desktopItems", 34, 3], ["nativeBuildInputs", 47, 3], ["runtimeDependencies", 54, 3], ["passthru", 67, 3], ["buildPhase", 69, 3], ["installPhase", 80, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, godot_4_4: false, "alsa-lib": false, libGL: false, libpulseaudio: false, libx11: false, libxcursor: false, libxext: false, libxi: false, libxrandr: false, udev: false, "vulkan-loader": false, autoPatchelfHook: false, writableTmpDirAsHomeHook: false, makeDesktopItem: false, copyDesktopItems: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["type", 36, 7], ["name", 37, 7], ["exec", 38, 7], ["icon", 39, 7], ["terminal", 40, 7], ["comment", 41, 7], ["desktopName", 42, 7], ["categories", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 67, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["description", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["desktopItems", 34, 3], ["nativeBuildInputs", 47, 3], ["runtimeDependencies", 54, 3], ["passthru", 67, 3], ["buildPhase", 69, 3], ["installPhase", 80, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "arrow",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mhgolkar",
           repo: "Arrow",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             type: "Application",
             name: "Arrow",
             exec: "Arrow",
@@ -68,7 +64,7 @@ export default nix.lambda((args) => (() => {
           vulkan_loader,
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
@@ -82,7 +78,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\ninstall -D -m 755 -t $out/libexec ./build/Arrow\ninstall -D -m 644 -t $out/libexec ./build/Arrow.pck\n\ninstall -d -m 755 $out/bin\nln -s $out/libexec/Arrow $out/bin/Arrow\n\ninstall -vD icon.svg $out/share/icons/hicolor/scalable/apps/Arrow.svg\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://mhgolkar.github.io/Arrow/",
         description: "Game Narrative Design Tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

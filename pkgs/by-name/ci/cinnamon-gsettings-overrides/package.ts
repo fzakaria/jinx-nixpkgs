@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["preferLocalBuild", 58, 45]]]);
 const formals$1 = { args: { lib: false, runCommand: false, glib: false, "gnome-terminal": false, gtk3: false, "gsettings-desktop-schemas": false, extraGSettingsOverrides: true, extraGSettingsOverridePackages: true, "mint-artwork": false, muffin: false, nemo: false, xapp: false, "cinnamon-desktop": false, "cinnamon-session": false, "cinnamon-settings-daemon": false, cinnamon: false, bulky: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["preferLocalBuild", 58, 45]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,7 +48,7 @@ unified-menu=false
 
 ${extraGSettingsOverrides}
 `);
-  return nix.app(runCommand, "cinnamon-gsettings-overrides", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`data_dir="$out/share/gsettings-schemas/nixos-gsettings-overrides"
+  return nix.app(runCommand, "cinnamon-gsettings-overrides", nix.thunk(() => ({ [nix.POS]: $pos[0], preferLocalBuild: true })), nix.thunk(() => nix.str`data_dir="$out/share/gsettings-schemas/nixos-gsettings-overrides"
 schema_dir="$data_dir/glib-2.0/schemas"
 
 mkdir -p "$schema_dir"

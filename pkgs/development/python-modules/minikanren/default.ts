@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 51, 3], ["pytestFlags", 57, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, cons: false, etuples: false, "logical-unification": false, multipledispatch: false, toolz: false, "typing-extensions": false, py: false, "pytest-html": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 51, 3], ["pytestFlags", 57, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pytest_html = nix.arg($, "pytest-html");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "minikanren",
       version: "1.0.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pythological",
           repo: "kanren",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--html=testing-report.html", "--self-contained-html"]),
       pythonImportsCheck: nix.thunk(() => ["kanren"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Relational programming in Python",
         homepage: "https://github.com/pythological/kanren",
         changelog: nix.thunk(() => nix.str`https://github.com/pythological/kanren/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

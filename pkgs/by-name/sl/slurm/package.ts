@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 53, 5], ["hash", 54, 5]], [["name", 138, 9], ["paths", 139, 9]], [["slurm", 180, 18]], [["tests", 180, 12]], [["homepage", 183, 5], ["description", 184, 5], ["platforms", 185, 5], ["license", 186, 5], ["maintainers", 187, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 49, 3], ["outputs", 57, 3], ["prePatch", 62, 3], ["hardeningDisable", 81, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 89, 3], ["configureFlags", 122, 3], ["preConfigure", 151, 3], ["postConfigure", 158, 3], ["postBuild", 162, 3], ["postInstall", 167, 3], ["enableParallelBuilding", 178, 3], ["passthru", 180, 3], ["meta", 182, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, runCommand: false, config: false, "pkg-config": false, libtool: false, curl: false, python3: false, munge: false, perl: false, pam: false, shadow: false, coreutils: false, dbus: false, libbpf: false, ncurses: false, libmysqlclient: false, lua: false, hwloc: false, numactl: false, readline: false, freeipmi: false, xauth: false, lz4: false, "rdma-core": false, nixosTests: false, pmix: false, libjwt: false, libyaml: false, json_c: false, llhttp: false, enableX11: true, enablePAM: true, enableNVML: true, cudaPackages: false, symlinkJoin: false, "s2n-tls": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 53, 5], ["hash", 54, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 138, 9], ["paths", 139, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["slurm", 180, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 180, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 183, 5], ["description", 184, 5], ["platforms", 185, 5], ["license", 186, 5], ["maintainers", 187, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 49, 3], ["outputs", 57, 3], ["prePatch", 62, 3], ["hardeningDisable", 81, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 89, 3], ["configureFlags", 122, 3], ["preConfigure", 151, 3], ["postConfigure", 158, 3], ["postBuild", 162, 3], ["postInstall", 167, 3], ["enableParallelBuilding", 178, 3], ["passthru", 180, 3], ["meta", 182, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const s2n_tls = nix.arg($, "s2n-tls");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "slurm",
       version: "26-05-4-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SchedMD",
           repo: "slurm",
           tag: nix.thunk(() => nix.str`slurm-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -120,7 +115,7 @@ ln -s ${nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cuda
         nix.thunk(() => nix.str`--with-bpf=${libbpf}`),
         "--enable-slurmrestd",
         nix.thunk(() => nix.str`--with-s2n=${nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: nix.thunk(() => nix.sel(s2n_tls, "name")),
             paths: nix.thunk(() => [s2n_tls, nix.thunk(() => nix.app(nix.sel(lib, "getDev"), s2n_tls))]),
           })))}`),
@@ -132,11 +127,11 @@ ln -s ${nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cuda
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), enablePAM, "export LIBRARY_PATH=\"$PWD/src/api/.libs:${LIBRARY_PATH:+:$LIBRARY_PATH}\"\nmkdir -p $out/lib/security\nmake -C contribs/pam install\nmake -C contribs/pam_slurm_adopt install\n"), "rm -f $out/lib/*.la $out/lib/slurm/*.la $out/lib/security/*.la\n")),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, slurm: nix.thunk(() => nix.sel(nixosTests, "slurm")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], slurm: nix.thunk(() => nix.sel(nixosTests, "slurm")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "http://www.schedmd.com/",
         description: "Simple Linux Utility for Resource Management",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

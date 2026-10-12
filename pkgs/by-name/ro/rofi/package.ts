@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["unwrapped", 30, 12]], [["priority", 59, 5]], [["pname", 15, 3], ["version", 16, 28], ["paths", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["preferLocalBuild", 29, 3], ["passthru", 30, 3], ["dontWrapGApps", 32, 3], ["postBuild", 34, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { symlinkJoin: false, lib: false, "rofi-unwrapped": false, makeWrapper: false, wrapGAppsHook3: false, "gdk-pixbuf": false, "hicolor-icon-theme": false, theme: true, plugins: true, "symlink-dmenu": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["unwrapped", 30, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["priority", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 28], ["paths", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["preferLocalBuild", 29, 3], ["passthru", 30, 3], ["dontWrapGApps", 32, 3], ["postBuild", 34, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const plugins = nix.argOr($, "plugins", () => []);
   const symlink_dmenu = nix.argOr($, "symlink-dmenu", () => false);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rofi",
       version: nix.thunk(() => nix.attr(rofi_unwrapped, "version")),
       paths: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(rofi_unwrapped, "out"))], nix.app(nix.sel(lib, "forEach"), plugins, (p) => nix.sel(p, "out")))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [gdk_pixbuf]),
       preferLocalBuild: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, unwrapped: rofi_unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], unwrapped: rofi_unwrapped })),
       dontWrapGApps: true,
       postBuild: nix.thunk(() => nix.str`rm -rf $out/bin
 mkdir $out/bin
@@ -49,7 +47,7 @@ makeWrapper ${rofi_unwrapped}/bin/rofi-theme-selector $out/bin/rofi-theme-select
   --prefix XDG_DATA_DIRS : $out/share
 `),
       meta: nix.thunk(() => nix.update(nix.sel(rofi_unwrapped, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         priority: nix.thunk(() => nix.sub(nix.selOr(rofi_unwrapped, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
       })),
     })));

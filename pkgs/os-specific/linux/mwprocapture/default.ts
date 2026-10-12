@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 25, 5], ["sha256", 26, 5]], [["NIX_CFLAGS_COMPILE", 45, 7]], [["homepage", 69, 5], ["description", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5], ["broken", 74, 5]], [["pname", 20, 3], ["subVersion", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["preConfigure", 31, 3], ["hardeningDisable", 36, 3], ["makeFlags", 41, 3], ["env", 45, 3], ["postInstall", 47, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, kernel: false, "alsa-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 45, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 69, 5], ["description", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5], ["broken", 74, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["subVersion", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["preConfigure", 31, 3], ["hardeningDisable", 36, 3], ["makeFlags", 41, 3], ["env", 45, 3], ["postInstall", 47, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const subVersion = "1.3.4418";
       const version = nix.thunk(() => nix.str`${subVersion}-${nix.sel(kernel, "version")}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.magewell.com/files/drivers/ProCaptureForLinux_${subVersion}.tar.gz`),
           sha256: "sha256-ZUqJkARhaMo9aZOtUMEdiHEbEq10lJO6MkGjEDnfx1g=",
         }))));
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const makeFlags = nix.thunk(() => [
         nix.thunk(() => nix.str`KERNELDIR=${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`),
       ]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-fallthrough" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=implicit-fallthrough" }));
       const postInstall = nix.thunk(() => nix.str`cd ../
 mkdir -p $out/bin
 cp bin/mwcap-control_${bits} $out/bin/mwcap-control
@@ -57,7 +54,7 @@ patchelf \\
   "$out"/bin/mwcap-info
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.magewell.com/",
         description: "Linux driver for the Magewell Pro Capture family",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
@@ -69,7 +66,7 @@ patchelf \\
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(kernel, "version")), "6.15")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         subVersion,
         version,

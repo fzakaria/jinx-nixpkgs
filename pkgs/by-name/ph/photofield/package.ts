@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["src", 25, 13], ["version", 25, 17], ["pname", 26, 5], ["sourceRoot", 28, 5], ["npmDepsHash", 30, 5], ["installPhase", 32, 5]], [["package", 75, 7], ["command", 76, 7]], [["version", 74, 11]], [["updateScript", 73, 5], ["tests", 74, 5]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5]], [["pname", 40, 3], ["version", 41, 11], ["src", 41, 19], ["vendorHash", 43, 3], ["preBuild", 45, 3], ["ldflags", 49, 3], ["tags", 56, 3], ["doCheck", 58, 3], ["nativeBuildInputs", 60, 3], ["postInstall", 62, 3], ["passthru", 72, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, buildNpmPackage: false, makeWrapper: false, exiftool: false, ffmpeg: false, testers: false, photofield: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 25, 13], ["version", 25, 17], ["pname", 26, 5], ["sourceRoot", 28, 5], ["npmDepsHash", 30, 5], ["installPhase", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 75, 7], ["command", 76, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 74, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 73, 5], ["tests", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 11], ["src", 41, 19], ["vendorHash", 43, 3], ["preBuild", 45, 3], ["ldflags", 49, 3], ["tags", 56, 3], ["doCheck", 58, 3], ["nativeBuildInputs", 60, 3], ["postInstall", 62, 3], ["passthru", 72, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "0.18.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "SmilyOrg",
       repo: "photofield",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-ZPEkvh+wVudDz7h+5V8I90myyi4ksTU5B5ffI7DrCL0=",
     }))));
   const webui = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: src,
       version: version,
       pname: "photofield-ui",
@@ -41,7 +35,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/share\nmv dist $out/share/photofield-ui\n",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "photofield",
       version: version,
       src: src,
@@ -61,15 +55,15 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [exiftool, ffmpeg]))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: photofield, command: "photofield -version" })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: photofield, command: "photofield -version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Experimental fast photo viewer",
         homepage: "https://github.com/SmilyOrg/photofield",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

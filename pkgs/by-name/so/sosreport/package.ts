@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["patches", 22, 3], ["nativeBuildInputs", 26, 3], ["dependencies", 30, 3], ["doCheck", 38, 3], ["preCheck", 40, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, gettext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["patches", 22, 3], ["nativeBuildInputs", 26, 3], ["dependencies", 30, 3], ["doCheck", 38, 3], ["preCheck", 40, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.11.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sosreport",
           repo: "sos",
           tag: version,
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export PYTHONPATH=$PWD/tests:$PYTHONPATH\n";
       const pythonImportsCheck = nix.thunk(() => ["sos"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unified tool for collecting system logs and other debug information",
         homepage: "https://github.com/sosreport/sos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

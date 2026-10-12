@@ -2,37 +2,31 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/strMatching-merge.nix", [[["type", 6, 9]], [["sm", 5, 15]], [["options", 5, 7]], [["type", 11, 9]], [["sm", 10, 15]], [["options", 10, 7]], [["imports", 3, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/strMatching-merge.nix", [["type", 6, 9]]);
-const pos$2 = nix.positions(here + "/strMatching-merge.nix", [["sm", 5, 15]]);
-const pos$3 = nix.positions(here + "/strMatching-merge.nix", [["options", 5, 7]]);
-const pos$4 = nix.positions(here + "/strMatching-merge.nix", [["type", 11, 9]]);
-const pos$5 = nix.positions(here + "/strMatching-merge.nix", [["sm", 10, 15]]);
-const pos$6 = nix.positions(here + "/strMatching-merge.nix", [["options", 10, 7]]);
-const pos$7 = nix.positions(here + "/strMatching-merge.nix", [["imports", 3, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         options: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           sm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "\\(.*\\)")),
             })))),
         })),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         options: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           sm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "\\(.*\\)")),
             })))),
         })),

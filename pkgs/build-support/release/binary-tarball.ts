@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/binary-tarball.nix", [[["doCheck", 26, 5], ["showBuildStats", 28, 5], ["prefix", 30, 5], ["postPhases", 32, 5]], [["description", 80, 9]], [["name", 39, 7], ["postHook", 41, 7], ["doDist", 62, 7], ["distPhase", 64, 7], ["finalPhase", 69, 7], ["meta", 79, 7]]]);
 const formals$1 = { args: { src: false, lib: false, stdenv: false, name: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/binary-tarball.nix", [["doCheck", 26, 5], ["showBuildStats", 28, 5], ["prefix", 30, 5], ["postPhases", 32, 5]]);
-const pos$2 = nix.positions(here + "/binary-tarball.nix", [["description", 80, 9]]);
-const pos$3 = nix.positions(here + "/binary-tarball.nix", [["name", 39, 7], ["postHook", 41, 7], ["doDist", 62, 7], ["distPhase", 64, 7], ["finalPhase", 69, 7], ["meta", 79, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const name = nix.argOr($, "name", () => "binary-tarball");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       doCheck: true,
       showBuildStats: true,
       prefix: "/usr/local",
       postPhases: nix.thunk(() => ["finalPhase"]),
     }, nix.update(args_1, {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.add(name, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(src, "version")), nix.thunk(() => nix.str`-${nix.sel(src, "version")}`)))),
       postHook: nix.thunk(() => nix.str`mkdir -p $out/nix-support
 echo "$system" > $out/nix-support/system
@@ -45,7 +43,7 @@ prefix=$TMPDIR/inst$prefix
       doDist: true,
       distPhase: "mkdir -p $out/tarballs\ntar cvfj $out/tarballs/${releaseName:-binary-dist}.tar.bz2 -C $TMPDIR/inst .\n",
       finalPhase: "for i in $out/tarballs/*; do\n    echo \"file binary-dist $i\" >> $out/nix-support/hydra-build-products\ndone\n\n# Propagate the release name of the source tarball.  This is\n# to get nice package names in channels.\ntest -n \"$releaseName\" && (echo \"$releaseName\" >> $out/nix-support/hydra-release-name)\n",
-      meta: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_1, "meta")), nix.thunk(() => nix.sel(args_1, "meta"))), { [nix.POS]: pos$2, description: "Build of a generic binary distribution" })),
+      meta: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_1, "meta")), nix.thunk(() => nix.sel(args_1, "meta"))), { [nix.POS]: $pos[1], description: "Build of a generic binary distribution" })),
     }))));
 })(), formals$1);
 //# sourceMappingURL=binary-tarball.ts.map

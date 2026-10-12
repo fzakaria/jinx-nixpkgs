@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 41, 3], ["dependencies", 45, 3], ["dontWrapGApps", 50, 3], ["preFixup", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromCodeberg: false, python3Packages: false, wrapGAppsHook4: false, "gobject-introspection": false, libadwaita: false, meson: false, ninja: false, "pkg-config": false, "desktop-file-utils": false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 41, 3], ["dependencies", 45, 3], ["dontWrapGApps", 50, 3], ["preFixup", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "censor",
       version: "0.10.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "censor",
           repo: "Censor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PDF document redaction for the GNOME desktop",
         homepage: "https://codeberg.org/censor/Censor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

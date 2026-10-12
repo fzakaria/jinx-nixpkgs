@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["mainProgram", 65, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["postFixup", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, makeWrapper: false, "alsa-lib": false, fontconfig: false, mesa_glu: false, libxcursor: false, libxinerama: false, libxrandr: false, xinput: false, libxi: false, libxext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["mainProgram", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["postFixup", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bonzomatic",
       version: "2023-06-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Gargaj",
           repo: "bonzomatic",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
   --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "getLib"), alsa_lib)}/lib"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Live shader coding tool and Shader Showdown workhorse",
         homepage: "https://github.com/gargaj/bonzomatic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["homepage", 37, 5], ["maintainers", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["postPatch", 18, 3], ["makeFlags", 25, 3], ["hardeningDisable", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["homepage", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["postPatch", 18, 3], ["makeFlags", 25, 3], ["hardeningDisable", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libevdevc",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hugegreenbug",
           repo: "libevdevc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ substituteInPlace include/module.mk \\
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)", "LIBDIR=/lib"]),
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ChromiumOS libevdev. Renamed to avoid conflicts with the standard libevdev found in Linux distros",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

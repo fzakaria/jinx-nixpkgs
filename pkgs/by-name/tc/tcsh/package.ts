@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["shellPath", 30, 12]], [["homepage", 33, 5], ["description", 34, 5], ["mainProgram", 35, 5], ["longDescription", 36, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 19, 3], ["depsBuildBuild", 21, 3], ["buildInputs", 25, 3], ["passthru", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libxcrypt: false, ncurses: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["shellPath", 30, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["mainProgram", 35, 5], ["longDescription", 36, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 19, 3], ["depsBuildBuild", 21, 3], ["buildInputs", 25, 3], ["passthru", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tcsh",
       version: "6.24.16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://tcsh/tcsh-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-QgjPRjD7ZNkdgZh/hU+VcKWg6KABqSgn3vN9Dtjzc2Q=",
         })))),
       strictDeps: true,
       depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]),
       buildInputs: nix.thunk(() => [libxcrypt, ncurses]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, shellPath: "/bin/tcsh" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], shellPath: "/bin/tcsh" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.tcsh.org/",
         description: "Enhanced version of the Berkeley UNIX C shell (csh)",
         mainProgram: "tcsh",

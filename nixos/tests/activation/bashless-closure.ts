@@ -2,16 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bashless-closure.nix", [[["device", 16, 9], ["fsType", 17, 9]], [["/", 15, 19]], [["stateVersion", 20, 14]], [["imports", 13, 7], ["fileSystems", 15, 7], ["system", 20, 7]], [["closure", 33, 27]], [["name", 29, 5], ["__structuredAttrs", 31, 5], ["exportReferencesGraph", 33, 5], ["preferLocalBuild", 35, 5], ["nativeBuildInputs", 37, 5], ["buildCommand", 41, 5]], [["name", 56, 5], ["preferLocalBuild", 58, 5], ["nativeBuildInputs", 60, 5], ["buildCommand", 65, 5]], [["toplevel", 26, 21], ["machine", 28, 3], ["initrd", 55, 3]]]);
 const formals$1 = { args: { nixos: false, stdenvNoCC: false, jq: false, zstd: false, cpio: false }, ellipsis: false };
 const formals$2 = { args: { lib: false, modulesPath: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/bashless-closure.nix", [["device", 16, 9], ["fsType", 17, 9]]);
-const pos$2 = nix.positions(here + "/bashless-closure.nix", [["/", 15, 19]]);
-const pos$3 = nix.positions(here + "/bashless-closure.nix", [["stateVersion", 20, 14]]);
-const pos$4 = nix.positions(here + "/bashless-closure.nix", [["imports", 13, 7], ["fileSystems", 15, 7], ["system", 20, 7]]);
-const pos$5 = nix.positions(here + "/bashless-closure.nix", [["closure", 33, 27]]);
-const pos$6 = nix.positions(here + "/bashless-closure.nix", [["name", 29, 5], ["__structuredAttrs", 31, 5], ["exportReferencesGraph", 33, 5], ["preferLocalBuild", 35, 5], ["nativeBuildInputs", 37, 5], ["buildCommand", 41, 5]]);
-const pos$7 = nix.positions(here + "/bashless-closure.nix", [["name", 56, 5], ["preferLocalBuild", 58, 5], ["nativeBuildInputs", 60, 5], ["buildCommand", 65, 5]]);
-const pos$8 = nix.positions(here + "/bashless-closure.nix", [["toplevel", 26, 21], ["machine", 28, 3], ["initrd", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,27 +18,27 @@ export default nix.lambda((args) => (() => {
       const lib = nix.arg($_1, "lib");
       const modulesPath = nix.arg($_1, "modulesPath");
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         imports: nix.thunk(() => [nix.thunk(() => nix.str`${modulesPath}/profiles/bashless.nix`)]),
         fileSystems: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          "/": nix.thunk(() => ({ [nix.POS]: pos$1, device: "/dev/disk/by-partlabel/root", fsType: "ext4" })),
+          [nix.POS]: $pos[1],
+          "/": nix.thunk(() => ({ [nix.POS]: $pos[0], device: "/dev/disk/by-partlabel/root", fsType: "ext4" })),
         })),
         system: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
         })),
       };
     })(), formals$2)));
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     toplevel: nix.thunk(() => nix.attr(machine, "toplevel")),
     machine: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "bashless-closure-machine",
         __structuredAttrs: true,
         exportReferencesGraph: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           closure: nix.thunk(() => [nix.thunk(() => nix.sel(machine, "toplevel"))]),
         })),
         preferLocalBuild: true,
@@ -53,7 +46,7 @@ export default nix.lambda((args) => (() => {
         buildCommand: "set +e\njq -r '.closure[].path' < \"$NIX_ATTRS_JSON_FILE\" | grep bash\n\nexit_code=$?\nif [ $exit_code -eq 0 ]; then\n    echo \"Error: toplevel contains bash\"\n    exit 1\nfi\n\ntouch $out\n",
       })))),
     initrd: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: "bashless-closure-initrd",
         preferLocalBuild: true,
         nativeBuildInputs: nix.thunk(() => [zstd, cpio]),

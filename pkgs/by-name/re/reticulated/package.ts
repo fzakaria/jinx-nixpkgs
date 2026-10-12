@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["updateScript", 54, 12]], [["changelog", 57, 5], ["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5], ["platforms", 63, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["build-system", 26, 3], ["dependencies", 30, 3], ["postInstall", 38, 3], ["postFixup", 43, 3], ["pythonImportsCheck", 49, 3], ["doCheck", 52, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 57, 5], ["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5], ["platforms", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["build-system", 26, 3], ["dependencies", 30, 3], ["postInstall", 38, 3], ["postFixup", 43, 3], ["pythonImportsCheck", 49, 3], ["doCheck", 52, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "reticulated",
       version: "1.0.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RFnexus",
           repo: "reticulated",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,11 +46,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["sim"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/RFnexus/reticulated/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Reticulum Network Stack Simulator",
         homepage: "https://github.com/RFnexus/reticulated",

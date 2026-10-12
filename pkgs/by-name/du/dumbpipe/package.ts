@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["updateScript", 39, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["__darwinAllowLocalNetworking", 21, 3], ["sandboxProfile", 26, 3], ["checkFlags", 30, 3], ["passthru", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["__darwinAllowLocalNetworking", 21, 3], ["sandboxProfile", 26, 3], ["checkFlags", 30, 3], ["passthru", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dumbpipe",
       version: "0.39.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "n0-computer",
           repo: "dumbpipe",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
         "--skip=unix_socket_tests::unix_socket_roundtrip",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Connect A to B - Send Data",
         homepage: "https://www.dumbpipe.dev/",
         license: nix.thunk(() => (() => {

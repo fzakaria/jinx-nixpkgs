@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["VERSION", 30, 7]], [["package", 51, 7], ["command", 52, 7], ["version", 53, 7]], [["version", 50, 11]], [["name", 56, 7], ["runtimeInputs", 58, 7], ["text", 62, 7]], [["ui", 49, 5], ["tests", 50, 5], ["updateScript", 55, 5]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["cargoHash", 28, 3], ["env", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["postInstall", 41, 3], ["doCheck", 46, 3], ["passthru", 48, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, ncurses: false, sqlite: false, testers: false, "moonfire-nvr": false, "nix-update": false, writeShellApplication: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["VERSION", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 51, 7], ["command", 52, 7], ["version", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 50, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 56, 7], ["runtimeInputs", 58, 7], ["text", 62, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["ui", 49, 5], ["tests", 50, 5], ["updateScript", 55, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["cargoHash", 28, 3], ["env", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["postInstall", 41, 3], ["doCheck", 46, 3], ["passthru", 48, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const writeShellApplication = nix.arg($, "writeShellApplication");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "moonfire-nvr",
       version: "0.7.33",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scottlamb",
           repo: "moonfire-nvr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +32,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/server`),
       cargoHash: "sha256-5caBXqy95K/ljrKL4/TKBQpi9cTCmu45ZhRShD1Zg3c=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         VERSION: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
@@ -49,26 +42,26 @@ ln -s ${nix.sel(moonfire_nvr, "ui")} $out/lib/ui
 `),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         ui: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ui.nix"), nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: moonfire_nvr,
               command: "moonfire-nvr --version",
               version: nix.thunk(() => nix.str`Version: v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "update-moonfire-nvr",
               runtimeInputs: nix.thunk(() => [nix_update]),
               text: "set -euo pipefail\n\nnix-update moonfire-nvr\nnix-update moonfire-nvr.ui --version=skip\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Moonfire NVR, a security camera network video recorder",
         homepage: "https://github.com/scottlamb/moonfire-nvr",
         changelog: nix.thunk(() => nix.str`https://github.com/scottlamb/moonfire-nvr/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

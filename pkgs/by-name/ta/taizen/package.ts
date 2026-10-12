@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 32, 5], ["homepage", 33, 5], ["maintainers", 34, 5], ["license", 35, 5], ["mainProgram", 36, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, fetchpatch2: false, "pkg-config": false, ncurses: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["maintainers", 34, 5], ["license", 35, 5], ["mainProgram", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "taizen",
       version: "0-unstable-2024-11-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oppiliappan",
           repo: "taizen",
           rev: "e57f10845d32d51e78c5bbadf9c40780a0fa2481",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [ncurses, openssl]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Curses-based mediawiki browser",
         homepage: "https://github.com/oppiliappan/taizen",
         maintainers: nix.thunk(() => (() => {

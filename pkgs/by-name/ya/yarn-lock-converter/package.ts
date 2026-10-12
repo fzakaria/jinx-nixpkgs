@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["src", 24, 26], ["hash", 25, 5]], [["package", 54, 7]], [["version", 53, 11]], [["tests", 53, 5], ["updateScript", 56, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["offlineCache", 23, 3], ["nativeBuildInputs", 28, 3], ["installPhase", 35, 3], ["passthru", 52, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nodejs: false, testers: false, "yarn-lock-converter": false, "yarn-berry_3": false, makeBinaryWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 24, 26], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 53, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 53, 5], ["updateScript", 56, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["offlineCache", 23, 3], ["nativeBuildInputs", 28, 3], ["installPhase", 35, 3], ["passthru", 52, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "yarn-lock-converter",
       version: "0.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vht",
           repo: "yarn-lock-converter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-AFetTjQZwXjlgLFE9YWHt82j3y8Ej25HYLed3tw/IxU=",
         })))),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_3, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-dpZJYiRJzd6QbrRJccXpEkkNgtbBJ669lY5UQmcy8Yg=",
         })))),
@@ -60,15 +54,15 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/yarn-lock-conver
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: yarn_lock_converter })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: yarn_lock_converter })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Converts modern Yarn v2+ yarn.lock files into a Yarn v1 format",
         homepage: "https://github.com/VHT/yarn-lock-converter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

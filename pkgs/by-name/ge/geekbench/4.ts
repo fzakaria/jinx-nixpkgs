@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/4.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 51, 5], ["homepage", 52, 5], ["sourceProvenance", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["dontConfigure", 21, 3], ["dontBuild", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["installPhase", 30, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, addDriverRunpath: false, makeWrapper: false, "ocl-icd": false, "vulkan-loader": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/4.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/4.nix", [["description", 51, 5], ["homepage", 52, 5], ["sourceProvenance", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5]]);
-const pos$3 = nix.positions(here + "/4.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["dontConfigure", 21, 3], ["dontBuild", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["installPhase", 30, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "geekbench";
       const version = "4.4.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://cdn.geekbench.com/Geekbench-${version}-Linux.tar.gz`),
           sha256: "sha256-KVsBE0ueWewmoVY/vzxX2sKhRTzityPNR+wmTwZBWiI=",
         }))));
@@ -46,7 +44,7 @@ done
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cross-platform benchmark",
         homepage: "https://geekbench.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -59,7 +57,7 @@ runHook postInstall
         mainProgram: "geekbench4",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

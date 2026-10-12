@@ -2,46 +2,39 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ladybird.nix", [[["maintainers", 5, 5]], [["enable", 15, 24]], [["xserver", 15, 16]], [["enable", 16, 25]], [["ladybird", 16, 16]], [["imports", 11, 7], ["services", 15, 7], ["programs", 16, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["enableOCR", 19, 3], ["testScript", 21, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ladybird.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/ladybird.nix", [["enable", 15, 24]]);
-const pos$3 = nix.positions(here + "/ladybird.nix", [["xserver", 15, 16]]);
-const pos$4 = nix.positions(here + "/ladybird.nix", [["enable", 16, 25]]);
-const pos$5 = nix.positions(here + "/ladybird.nix", [["ladybird", 16, 16]]);
-const pos$6 = nix.positions(here + "/ladybird.nix", [["imports", 11, 7], ["services", 15, 7], ["programs", 16, 7]]);
-const pos$7 = nix.positions(here + "/ladybird.nix", [["machine", 8, 9]]);
-const pos$8 = nix.positions(here + "/ladybird.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["enableOCR", 19, 3], ["testScript", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "ladybird",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "fgaz"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            xserver: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            ladybird: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+            [nix.POS]: $pos[4],
+            ladybird: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
           })),
         };
       })(), formals$2),

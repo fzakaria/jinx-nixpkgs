@@ -2,10 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-composer-vendor.nix", [[["name", 32, 7], ["dontPatchShebangs", 35, 15], ["buildInputs", 38, 9], ["strictDeps", 39, 9], ["doCheck", 40, 9], ["nativeBuildInputs", 43, 7], ["configurePhase", 50, 7], ["buildPhase", 57, 7], ["checkPhase", 64, 7], ["installPhase", 71, 7], ["installCheckPhase", 78, 7], ["outputHashMode", 85, 7], ["outputHashAlgo", 86, 7], ["outputHash", 88, 7]], [["constructDrv", 92, 3], ["extendDrvArgs", 93, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, php: false }, ellipsis: false };
 const formals$2 = { args: { php: true, composer: true, composerLock: true, vendorHash: true, composerNoDev: true, composerNoPlugins: true, composerNoScripts: true, composerStrictValidation: true, buildInputs: true, nativeBuildInputs: true, dontPatchShebangs: true, strictDeps: true, doCheck: true, doInstallCheck: true, dontCheckForBrokenSymlinks: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-composer-vendor.nix", [["name", 32, 7], ["dontPatchShebangs", 35, 15], ["buildInputs", 38, 9], ["strictDeps", 39, 9], ["doCheck", 40, 9], ["nativeBuildInputs", 43, 7], ["configurePhase", 50, 7], ["buildPhase", 57, 7], ["checkPhase", 64, 7], ["installPhase", 71, 7], ["installCheckPhase", 78, 7], ["outputHashMode", 85, 7], ["outputHashAlgo", 86, 7], ["outputHash", 88, 7]]);
-const pos$2 = nix.positions(here + "/build-composer-vendor.nix", [["constructDrv", 92, 3], ["extendDrvArgs", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +34,7 @@ export default nix.lambda((args) => (() => {
     nix.assert_((nix.asBool(nix.has(args_2, "version")) || nix.asBool(nix.builtins.throw("mkComposerVendor expects version argument."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/php/builders/v2/build-composer-vendor.nix:29:5");
     nix.assert_((nix.asBool(nix.has(args_2, "src")) || nix.asBool(nix.builtins.throw("mkComposerVendor expects src argument."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/php/builders/v2/build-composer-vendor.nix:30:5");
     return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`${nix.sel(args_2, "pname")}-composer-vendor-${nix.sel(args_2, "version")}`),
       dontPatchShebangs: dontPatchShebangs,
       buildInputs: buildInputs,
@@ -57,7 +56,7 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       extendDrvArgs: mkComposerVendorOverride,
     })));

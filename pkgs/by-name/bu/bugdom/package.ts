@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5], ["platforms", 81, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 23, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 38, 3], ["cmakeFlags", 43, 3], ["installPhase", 49, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, SDL2: false, libGL: false, cmake: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5], ["platforms", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 23, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 38, 3], ["cmakeFlags", 43, 3], ["installPhase", 49, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bugdom",
       version: "1.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jorio",
           repo: "bugdom",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +41,7 @@ sed -i '/plutil/d' CMakeLists.txt
         ]))),
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n\n", (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p $out/{bin,Applications}\nmv {,$out/Applications/}Bugdom.app\nmakeWrapper $out/{Applications/Bugdom.app/Contents/MacOS,bin}/Bugdom\n" : "mkdir -p $out/share/bugdom\nmv Data $out/share/bugdom\ninstall -Dm755 {.,$out/bin}/Bugdom\nwrapProgram $out/bin/Bugdom --run \"cd $out/share/bugdom\"\ninstall -Dm644 $src/packaging/io.jor.bugdom.desktop $out/share/applications/io.jor.bugdom.desktop\ninstall -Dm644 $src/packaging/io.jor.bugdom.png -t $out/share/icons/hicolor/512x512/apps\n")), "\nrunHook postInstall\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Port of Bugdom, a 1999 Macintosh game by Pangea Software, for modern operating systems",
         homepage: "https://github.com/jorio/Bugdom",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),

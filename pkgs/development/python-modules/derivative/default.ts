@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 45, 5], ["license", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, "poetry-core": false, numpy: false, scipy: false, "scikit-learn": false, "spectral-derivatives": false, "importlib-metadata": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 45, 5], ["license", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "andgoldschmidt",
           repo: "derivative",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy, scipy, scikit_learn, spectral_derivatives, importlib_metadata]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Numerical differentiation of noisy time series data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://derivative.readthedocs.io/en/latest/",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

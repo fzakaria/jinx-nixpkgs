@@ -2,25 +2,22 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["displayName", 20, 9], ["argv", 21, 9], ["language", 26, 9], ["logo32", 27, 9], ["logo64", 28, 9]], [["definition", 19, 7], ["updateScript", 32, 14]], [["description", 35, 7], ["homepage", 36, 7], ["license", 37, 7], ["maintainers", 38, 7], ["platforms", 42, 7]], [["pname", 14, 5], ["gemdir", 15, 5], ["exes", 16, 5], ["passthru", 18, 5], ["meta", 34, 5]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["displayName", 20, 9], ["argv", 21, 9], ["language", 26, 9], ["logo32", 27, 9], ["logo64", 28, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["definition", 19, 7], ["updateScript", 32, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 35, 7], ["homepage", 36, 7], ["license", 37, 7], ["maintainers", 38, 7], ["platforms", 42, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 5], ["gemdir", 15, 5], ["exes", 16, 5], ["passthru", 18, 5], ["meta", 34, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const bundlerApp = nix.arg($, "bundlerApp");
   const self = nix.thunk(() => nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "iruby",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["iruby"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         definition: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           displayName: "IRuby",
           argv: nix.thunk(() => [nix.thunk(() => nix.str`${self}/bin/iruby`), "kernel", "{connection_file}"]),
           language: "ruby",
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Ruby kernel for Jupyter",
         homepage: "https://github.com/SciRuby/iruby",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

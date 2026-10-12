@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 38, 5], ["description", 39, 5]], [["version", 16, 43], ["src", 16, 51], ["pname", 17, 3], ["pyproject", 18, 3], ["sourceRoot", 20, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 26, 3], ["pytestFlags", 33, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, hatchling: false, "opentelemetry-api": false, "opentelemetry-instrumentation": false, "opentelemetry-semantic-conventions": false, "opentelemetry-instrumentation-botocore": false, "opentelemetry-test-utils": false, pytestCheckHook: false, requests: false, "pytest-benchmark": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 38, 5], ["description", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 16, 43], ["src", 16, 51], ["pname", 17, 3], ["pyproject", 18, 3], ["sourceRoot", 20, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 26, 3], ["pytestFlags", 33, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const pytest_benchmark = nix.arg($, "pytest-benchmark");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "src")),
       pname: "opentelemetry-propagator-aws-xray",
@@ -32,7 +31,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--benchmark-disable"]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.propagators.aws"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/propagator/opentelemetry-propagator-aws-xray",
         description: "AWS X-Ray Propagator for OpenTelemetry",
       })),

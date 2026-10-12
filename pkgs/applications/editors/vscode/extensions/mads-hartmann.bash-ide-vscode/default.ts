@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["publisher", 12, 5], ["name", 13, 5], ["version", 14, 5], ["hash", 15, 5]], [["license", 29, 5], ["maintainers", 30, 5]], [["mktplcRef", 11, 3], ["nativeBuildInputs", 17, 3], ["postInstall", 21, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, jq: false, moreutils: false, shfmt: false, shellcheck: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["publisher", 12, 5], ["name", 13, 5], ["version", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 29, 5], ["maintainers", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 11, 3], ["nativeBuildInputs", 17, 3], ["postInstall", 21, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const shfmt = nix.arg($, "shfmt");
   const shellcheck = nix.arg($, "shellcheck");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         publisher: "mads-hartmann",
         name: "bash-ide-vscode",
         version: "1.43.0",
@@ -32,7 +30,7 @@ jq -e '
 ' package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kamadorueda"))]),
       })),

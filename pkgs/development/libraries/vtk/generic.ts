@@ -2,21 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["mpi", 108, 15], ["mpiSupport", 108, 19], ["cppSupport", 109, 7]], [["useMinimalFeatures", 116, 45]], [["withMaterialX", 120, 34]], [["mpi", 101, 7], ["mpiSupport", 102, 7], ["python3Packages", 103, 7], ["pythonSupport", 104, 7], ["hdf5", 107, 5], ["netcdf", 111, 5], ["catalyst", 112, 5], ["adios2", 113, 5], ["cgns", 114, 5], ["viskores", 115, 5], ["gdal", 116, 5], ["pdal", 117, 5], ["openusd", 120, 5]], [["url", 143, 5], ["hash", 144, 5]], [["mpi", 249, 63]], [["pname", 242, 28], ["version", 242, 34], ["meta", 242, 42], ["dependencies", 243, 7]], [["vtk", 329, 9]], [["moduleNames", 335, 9], ["package", 337, 9], ["nativeBuildInputs", 339, 9]], [["cmake-config", 334, 7]], [["pythonSupport", 323, 7], ["mpiSupport", 324, 7], ["vtkPackages", 327, 5], ["tests", 333, 5]], [["description", 349, 5], ["homepage", 350, 5], ["changelog", 351, 5], ["license", 352, 5], ["maintainers", 353, 5], ["platforms", 354, 5]], [["pname", 125, 3], ["version", 126, 11], ["patches", 126, 19], ["postPatch", 131, 3], ["src", 142, 3], ["nativeBuildInputs", 147, 3], ["buildInputs", 159, 3], ["propagatedBuildInputs", 190, 3], ["cmakeFlags", 253, 3], ["pythonImportsCheck", 306, 3], ["dontWrapQtApps", 308, 3], ["postFixup", 310, 3], ["passthru", 321, 3], ["requiredSystemFeatures", 346, 3], ["meta", 348, 3]]]);
 const formals$1 = { args: { version: false, sourceSha256: false, patches: true }, ellipsis: false };
 const formals$2 = { args: { lib: false, newScope: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, tk: false, mpi: false, python3Packages: false, catalyst: false, cli11: false, boost: false, eigen: false, verdict: false, "double-conversion": false, lz4: false, xz: false, zlib: false, pugixml: false, expat: false, jsoncpp: false, libxml2: false, exprtk: false, utf8cpp: false, libarchive: false, nlohmann_json: false, openturns: false, openslide: false, onnxruntime: false, cgns: false, adios2: false, liblas: false, gdal: false, pdal: false, alembic: false, imath: false, openvdb: false, "c-blosc": false, unixodbc: false, libpq: false, libmysqlclient: false, ffmpeg: false, libjpeg: false, libpng: false, libtiff: false, proj: false, sqlite: false, libogg: false, libharu: false, libtheora: false, hdf5: false, netcdf: false, "opencascade-occt": false, openusd: false, onetbb: false, llvmPackages: false, viskores: false, freetype: false, fontconfig: false, libx11: false, libxfixes: false, libxrender: false, libxcursor: false, gl2ps: false, libGL: false, qt6: false, withQt6: true, mpiSupport: true, pythonSupport: true, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["mpi", 108, 15], ["mpiSupport", 108, 19], ["cppSupport", 109, 7]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["useMinimalFeatures", 116, 45]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["withMaterialX", 120, 34]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["mpi", 101, 7], ["mpiSupport", 102, 7], ["python3Packages", 103, 7], ["pythonSupport", 104, 7], ["hdf5", 107, 5], ["netcdf", 111, 5], ["catalyst", 112, 5], ["adios2", 113, 5], ["cgns", 114, 5], ["viskores", 115, 5], ["gdal", 116, 5], ["pdal", 117, 5], ["openusd", 120, 5]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["url", 143, 5], ["hash", 144, 5]]);
-const pos$6 = nix.positions(here + "/generic.nix", [["mpi", 249, 63]]);
-const pos$7 = nix.positions(here + "/generic.nix", [["pname", 242, 28], ["version", 242, 34], ["meta", 242, 42], ["dependencies", 243, 7]]);
-const pos$8 = nix.positions(here + "/generic.nix", [["vtk", 329, 9]]);
-const pos$9 = nix.positions(here + "/generic.nix", [["moduleNames", 335, 9], ["package", 337, 9], ["nativeBuildInputs", 339, 9]]);
-const pos$10 = nix.positions(here + "/generic.nix", [["cmake-config", 334, 7]]);
-const pos$11 = nix.positions(here + "/generic.nix", [["pythonSupport", 323, 7], ["mpiSupport", 324, 7], ["vtkPackages", 327, 5], ["tests", 333, 5]]);
-const pos$12 = nix.positions(here + "/generic.nix", [["description", 349, 5], ["homepage", 350, 5], ["changelog", 351, 5], ["license", 352, 5], ["maintainers", 353, 5], ["platforms", 354, 5]]);
-const pos$13 = nix.positions(here + "/generic.nix", [["pname", 125, 3], ["version", 126, 11], ["patches", 126, 19], ["postPatch", 131, 3], ["src", 142, 3], ["nativeBuildInputs", 147, 3], ["buildInputs", 159, 3], ["propagatedBuildInputs", 190, 3], ["cmakeFlags", 253, 3], ["pythonImportsCheck", 306, 3], ["dontWrapQtApps", 308, 3], ["postFixup", 310, 3], ["passthru", 321, 3], ["requiredSystemFeatures", 346, 3], ["meta", 348, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -97,13 +85,13 @@ export default nix.lambda((args) => (() => {
     const pythonSupport = nix.argOr($_1, "pythonSupport", () => false);
     const testers = nix.arg($_1, "testers");
     const vtkPackages = nix.thunk(() => nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mpi: mpi,
         mpiSupport: mpiSupport,
         python3Packages: python3Packages,
         pythonSupport: pythonSupport,
         hdf5: nix.thunk(() => nix.app(nix.sel(hdf5, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             mpi: mpi,
             mpiSupport: mpiSupport,
             cppSupport: nix.thunk(() => !nix.asBool(mpiSupport)),
@@ -113,19 +101,19 @@ export default nix.lambda((args) => (() => {
         adios2: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.sel(adios2, "override")), nix.thunk(() => ({})))),
         cgns: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.sel(cgns, "override")), nix.thunk(() => ({})))),
         viskores: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.sel(viskores, "override")), nix.thunk(() => ({})))),
-        gdal: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.sel(gdal, "override")), nix.thunk(() => ({ [nix.POS]: pos$2, useMinimalFeatures: true })))),
+        gdal: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.sel(gdal, "override")), nix.thunk(() => ({ [nix.POS]: $pos[1], useMinimalFeatures: true })))),
         pdal: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.sel(pdal, "override")), nix.thunk(() => ({})))),
-        openusd: nix.thunk(() => nix.app(nix.sel(openusd, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withMaterialX: false })))),
+        openusd: nix.thunk(() => nix.app(nix.sel(openusd, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], withMaterialX: false })))),
       })));
     const vtkBool = (feature) => (bool) => nix.app(nix.sel(lib, "cmakeFeature"), feature, nix.thunk(() => nix.str`${(nix.asBool(bool) ? "YES" : "NO")}`));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         pname: "vtk",
         version: version,
         patches: patches,
         postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "9.6")), "substituteInPlace ThirdParty/pegtl/vtk.module Common/DataModel/vtk.module IO/MotionFX/vtk.module \\\n  --replace-fail \\\n    \"VTK::pegtl\" \\\n    \"VTK::vtkpegtl\"\nsubstituteInPlace ThirdParty/pegtl/vtkpegtl/CMakeLists.txt \\\n  --replace-fail \\\n    \"target_compile_features(pegtl\" \\\n    \"target_compile_features(vtkpegtl\"\n")),
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: nix.thunk(() => nix.str`https://www.vtk.org/files/release/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/VTK-${nix.sel(finalAttrs, "version")}.tar.gz`),
             hash: sourceSha256,
           })))),
@@ -182,7 +170,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(vtkPackages, "viskores")),
         ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "openmp"))])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libx11, gl2ps])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "9.6.0")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => [libxcursor])), nix.concat(nix.app(nix.sel(lib, "optionals"), withQt6, nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qttools"))])), nix.app(nix.sel(lib, "optionals"), pythonSupport, nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(python3Packages, "mkPythonMetaPackage"), nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
                 version: nix.thunk(() => nix.attr(finalAttrs, "version")),
                 meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
@@ -191,7 +179,7 @@ export default nix.lambda((args) => (() => {
                   return nix.concat([
                     nix.thunk(() => nix.lookup(w, "numpy")),
                     nix.thunk(() => nix.lookup(w, "matplotlib")),
-                  ], nix.app(nix.sel(lib, "optional"), mpiSupport, nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "mpi4py"), "override"), nix.thunk(() => ({ [nix.POS]: pos$6, mpi: mpi }))))));
+                  ], nix.app(nix.sel(lib, "optional"), mpiSupport, nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "mpi4py"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], mpi: mpi }))))));
                 })()),
               })))),
           ])))))))))),
@@ -235,14 +223,17 @@ export default nix.lambda((args) => (() => {
         postFixup: nix.thunk(() => nix.add("rm -rf $out/lib/cmake/vtk/patches\nrm $out/lib/cmake/vtk/Find{EXPAT,Freetype,utf8cpp,LibXml2,FontConfig,TBB}.cmake\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`patchelf --add-rpath ${nix.app(nix.sel(lib, "getLib"), libGL)}/lib $out/lib/libvtkglad.so
 `)))),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           pythonSupport: pythonSupport,
           mpiSupport: mpiSupport,
-          vtkPackages: nix.thunk(() => nix.app(nix.sel(vtkPackages, "overrideScope"), (final) => (prev) => ({ [nix.POS]: pos$8, vtk: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) }))),
+          vtkPackages: nix.thunk(() => nix.app(nix.sel(vtkPackages, "overrideScope"), (final) => (prev) => ({
+              [nix.POS]: $pos[7],
+              vtk: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
+            }))),
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 moduleNames: nix.thunk(() => ["VTK"]),
                 package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withQt6, nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]))),
@@ -251,7 +242,7 @@ export default nix.lambda((args) => (() => {
         })),
         requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           description: "Open source libraries for 3D computer graphics, image processing and visualization",
           homepage: "https://www.vtk.org/",
           changelog: nix.thunk(() => nix.str`https://docs.vtk.org/en/latest/release_details/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.html`),

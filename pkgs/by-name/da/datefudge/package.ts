@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 21, 3], ["postPatch", 23, 3], ["installFlags", 31, 3], ["postInstall", 33, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, makeWrapper: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 21, 3], ["postPatch", 23, 3], ["installFlags", 31, 3], ["postInstall", 33, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "datefudge",
       version: "1.27",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://salsa.debian.org/debian/datefudge.git",
           rev: nix.thunk(() => nix.str`debian/${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-BN/Ct1FRZjvpkRCPpRlXmjeRvrNnuJBXwwI1P2HCisc=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/datefudge --prefix PATH : ${coreutils}/bin
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fake the system date",
         longDescription: "datefudge is a small utility that pretends that the system time is\ndifferent by pre-loading a small library which modifies the time,\ngettimeofday and clock_gettime system calls.\n",
         homepage: "https://packages.qa.debian.org/d/datefudge.html",

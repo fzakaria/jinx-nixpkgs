@@ -2,13 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["url", 31, 5], ["hash", 32, 13]], [["nixos", 74, 11]], [["jre", 73, 13], ["tests", 74, 5], ["updateScript", 75, 5]], [["homepage", 82, 5], ["description", 83, 5], ["license", 84, 5], ["sourceProvenance", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]], [["version", 27, 3], ["pname", 28, 3], ["src", 30, 3], ["strictDeps", 35, 3], ["__structuredAttrs", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 39, 3], ["installPhase", 48, 3], ["passthru", 72, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { kafkaVersion: false, scalaVersion: false, hash: false }, ellipsis: false };
 const formals$2 = { args: { lib: false, stdenv: false, fetchurl: false, jdk17_headless: false, makeWrapper: false, bash: false, coreutils: false, gnugrep: false, gnused: false, ps: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["url", 31, 5], ["hash", 32, 13]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["nixos", 74, 11]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["jre", 73, 13], ["tests", 74, 5], ["updateScript", 75, 5]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["homepage", 82, 5], ["description", 83, 5], ["license", 84, 5], ["sourceProvenance", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["version", 27, 3], ["pname", 28, 3], ["src", 30, 3], ["strictDeps", 35, 3], ["__structuredAttrs", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 39, 3], ["installPhase", 48, 3], ["passthru", 72, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
         const version = nix.thunk(() => nix.str`${scalaVersion}-${kafkaVersion}`);
         const pname = "apache-kafka";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`mirror://apache/kafka/${kafkaVersion}/kafka_${version}.tgz`),
             hash: hash,
           }))));
@@ -66,16 +62,16 @@ done
 chmod +x $out/bin\\/*
 `);
         const passthru = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           jre: jre,
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             nixos: nix.thunk(() => nix.sel(nixosTests, "kafka", "base", nix.key(nix.add("kafka_", series)))),
           })),
           updateScript: nix.thunk(() => [nix.path(here, "./update.sh"), seriesFile]),
         }));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           homepage: "https://kafka.apache.org",
           description: "High-throughput distributed messaging system",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -84,7 +80,7 @@ chmod +x $out/bin\\/*
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         }));
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version,
           pname,
           src,

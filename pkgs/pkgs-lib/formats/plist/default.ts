@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 40, 15]], [["escape", 45, 70]], [["type", 27, 7], ["generate", 45, 7]], [["format", 22, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { escape: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 40, 15]]);
-const pos$2 = nix.positions(here + "/default.nix", [["escape", 45, 70]]);
-const pos$3 = nix.positions(here + "/default.nix", [["type", 27, 7], ["generate", 45, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["format", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const from_1 = nix.thunk(() => nix.sel(lib, "generators"));
   const toPlist = nix.thunk(() => nix.attr(from_1, "toPlist"));
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const escape = nix.argOr($_1, "escape", () => true);
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         type: nix.thunk(() => (() => {
           const valueType = nix.thunk(() => nix.update(nix.app(nullOr, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [
                 bool,
@@ -41,10 +38,10 @@ export default nix.lambda((args) => (() => {
                 path,
                 nix.thunk(() => nix.app(attrsOf, valueType)),
                 nix.thunk(() => nix.app(listOf, valueType)),
-              ])))), { [nix.POS]: pos$1, description: "Property list (plist) value" }));
+              ])))), { [nix.POS]: $pos[0], description: "Property list (plist) value" }));
           return nix.force(valueType);
         })()),
-        generate: (name) => (value) => nix.app(nix.sel(pkgs, "writeText"), name, nix.thunk(() => nix.app(toPlist, nix.thunk(() => ({ [nix.POS]: pos$2, escape: escape })), value))),
+        generate: (name) => (value) => nix.app(nix.sel(pkgs, "writeText"), name, nix.thunk(() => nix.app(toPlist, nix.thunk(() => ({ [nix.POS]: $pos[1], escape: escape })), value))),
       };
     })(), formals$2),
   };

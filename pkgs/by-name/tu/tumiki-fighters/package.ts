@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 18, 7], ["url", 19, 7], ["sha256", 20, 7]], [["url", 29, 5], ["sha256", 32, 5]], [["homepage", 93, 5], ["description", 94, 5], ["mainProgram", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 98, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["postPatch", 52, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 77, 3], ["makeFlags", 84, 3], ["installPhase", 86, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchurl: false, unzip: false, ldc: false, libGL: false, SDL: false, SDL_mixer: false, bulletml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 18, 7], ["url", 19, 7], ["sha256", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 5], ["sha256", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 93, 5], ["description", 94, 5], ["mainProgram", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 98, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["postPatch", 52, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 77, 3], ["makeFlags", 84, 3], ["installPhase", 86, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const SDL_mixer = nix.arg($, "SDL_mixer");
   const bulletml = nix.arg($, "bulletml");
   const debianPatch = (patchname) => (hash) => nix.app(fetchpatch, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`${patchname}.patch`),
       url: nix.thunk(() => nix.str`https://sources.debian.org/data/main/t/tumiki-fighters/0.2.dfsg1-10/debian/patches/${patchname}.patch`),
       sha256: hash,
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tumiki-fighters",
       version: "0.21",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://abagames.sakura.ne.jp/windows/tf${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           sha256: "0djykfc1r8ysapklm621h89ana1c4qzc1m5nr9bqw4iccnmvwk3p",
         })))),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["GDC=ldc2"]),
       installPhase: "install -Dm755 tumiki-fighters $out/bin/tumiki-fighters\nmkdir -p $out/share/games/tumiki-fighters\ncp -r barrage sounds enemy field stage tumiki $out/share/games/tumiki-fighters/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.asahi-net.or.jp/~cs8k-cyu/windows/tf_e.html",
         description: "Sticky 2D shooter",
         mainProgram: "tumiki-fighters",

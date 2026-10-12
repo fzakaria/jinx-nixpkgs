@@ -2,39 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/radicle-ci-broker.nix", [[["alias", 12, 26]], [["preferredSeeds", 11, 9], ["node", 12, 9]], [["maintainers", 19, 8]], [["source", 23, 33]], [["dev.radicle.node.secret", 23, 7]], [["credentials", 22, 20]], [["openFirewall", 29, 12]], [["alias", 32, 14]], [["preferredSeeds", 31, 9], ["node", 32, 9]], [["native", 36, 35]], [["instances", 36, 25]], [["native", 36, 18]], [["HasFile", 45, 23]], [["And", 44, 19]], [["adapter", 41, 15], ["filters", 42, 15]], [["triggers", 39, 20]], [["enable", 38, 11], ["settings", 39, 11]], [["adapters", 36, 9], ["broker", 37, 9]], [["enable", 27, 7], ["publicKey", 28, 7], ["node", 29, 7], ["settings", 30, 7], ["ci", 35, 7]], [["radicle", 26, 14]], [["virtualisation", 22, 5], ["services", 26, 5]], [["text", 60, 35]], [["gitconfig", 60, 23]], [["etc", 60, 19], ["systemPackages", 68, 19]], [["environment", 60, 7]], [["seed", 21, 9], ["alice", 57, 9]], [["enable", 75, 27]], [["graphics", 76, 39]], [["virtualisation", 76, 24]], [["sshBackdoor", 75, 15], ["defaults", 76, 15]], [["name", 18, 3], ["meta", 19, 3], ["nodes", 21, 3], ["interactive", 75, 3], ["testScript", 78, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/radicle-ci-broker.nix", [["alias", 12, 26]]);
-const pos$2 = nix.positions(here + "/radicle-ci-broker.nix", [["preferredSeeds", 11, 9], ["node", 12, 9]]);
-const pos$3 = nix.positions(here + "/radicle-ci-broker.nix", [["maintainers", 19, 8]]);
-const pos$4 = nix.positions(here + "/radicle-ci-broker.nix", [["source", 23, 33]]);
-const pos$5 = nix.positions(here + "/radicle-ci-broker.nix", [["dev.radicle.node.secret", 23, 7]]);
-const pos$6 = nix.positions(here + "/radicle-ci-broker.nix", [["credentials", 22, 20]]);
-const pos$7 = nix.positions(here + "/radicle-ci-broker.nix", [["openFirewall", 29, 12]]);
-const pos$8 = nix.positions(here + "/radicle-ci-broker.nix", [["alias", 32, 14]]);
-const pos$9 = nix.positions(here + "/radicle-ci-broker.nix", [["preferredSeeds", 31, 9], ["node", 32, 9]]);
-const pos$10 = nix.positions(here + "/radicle-ci-broker.nix", [["native", 36, 35]]);
-const pos$11 = nix.positions(here + "/radicle-ci-broker.nix", [["instances", 36, 25]]);
-const pos$12 = nix.positions(here + "/radicle-ci-broker.nix", [["native", 36, 18]]);
-const pos$13 = nix.positions(here + "/radicle-ci-broker.nix", [["HasFile", 45, 23]]);
-const pos$14 = nix.positions(here + "/radicle-ci-broker.nix", [["And", 44, 19]]);
-const pos$15 = nix.positions(here + "/radicle-ci-broker.nix", [["adapter", 41, 15], ["filters", 42, 15]]);
-const pos$16 = nix.positions(here + "/radicle-ci-broker.nix", [["triggers", 39, 20]]);
-const pos$17 = nix.positions(here + "/radicle-ci-broker.nix", [["enable", 38, 11], ["settings", 39, 11]]);
-const pos$18 = nix.positions(here + "/radicle-ci-broker.nix", [["adapters", 36, 9], ["broker", 37, 9]]);
-const pos$19 = nix.positions(here + "/radicle-ci-broker.nix", [["enable", 27, 7], ["publicKey", 28, 7], ["node", 29, 7], ["settings", 30, 7], ["ci", 35, 7]]);
-const pos$20 = nix.positions(here + "/radicle-ci-broker.nix", [["radicle", 26, 14]]);
-const pos$21 = nix.positions(here + "/radicle-ci-broker.nix", [["virtualisation", 22, 5], ["services", 26, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$22 = nix.positions(here + "/radicle-ci-broker.nix", [["text", 60, 35]]);
-const pos$23 = nix.positions(here + "/radicle-ci-broker.nix", [["gitconfig", 60, 23]]);
-const pos$24 = nix.positions(here + "/radicle-ci-broker.nix", [["etc", 60, 19], ["systemPackages", 68, 19]]);
-const pos$25 = nix.positions(here + "/radicle-ci-broker.nix", [["environment", 60, 7]]);
-const pos$26 = nix.positions(here + "/radicle-ci-broker.nix", [["seed", 21, 9], ["alice", 57, 9]]);
-const pos$27 = nix.positions(here + "/radicle-ci-broker.nix", [["enable", 75, 27]]);
-const pos$28 = nix.positions(here + "/radicle-ci-broker.nix", [["graphics", 76, 39]]);
-const pos$29 = nix.positions(here + "/radicle-ci-broker.nix", [["virtualisation", 76, 24]]);
-const pos$30 = nix.positions(here + "/radicle-ci-broker.nix", [["sshBackdoor", 75, 15], ["defaults", 76, 15]]);
-const pos$31 = nix.positions(here + "/radicle-ci-broker.nix", [["name", 18, 3], ["meta", 19, 3], ["nodes", 21, 3], ["interactive", 75, 3], ["testScript", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,66 +13,66 @@ export default nix.lambda((args) => (() => {
   const seed_nid = "z6MkhwX7wBkHQvcLazu2KDFK6UifGkLcoxNm2iA38fPH9LwU";
   const seed_ssh_keys = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")), pkgs));
   const radicleConfig = (alias) => nix.app(nix.sel(pkgs, "writeText"), "config.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         preferredSeeds: nix.thunk(() => [nix.thunk(() => nix.str`${seed_nid}@seed:8776`)]),
-        node: nix.thunk(() => ({ [nix.POS]: pos$1, alias: alias })),
+        node: nix.thunk(() => ({ [nix.POS]: $pos[0], alias: alias })),
       })))));
   return {
-    [nix.POS]: pos$31,
+    [nix.POS]: $pos[30],
     name: "radicle-ci-broker",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "radicle", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       seed: nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           credentials: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "dev.radicle.node.secret": nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               source: nix.thunk(() => nix.str`${nix.sel(seed_ssh_keys, "snakeOilEd25519PrivateKey")}`),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           radicle: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             enable: true,
             publicKey: nix.thunk(() => nix.sel(seed_ssh_keys, "snakeOilEd25519PublicKey")),
-            node: nix.thunk(() => ({ [nix.POS]: pos$7, openFirewall: true })),
+            node: nix.thunk(() => ({ [nix.POS]: $pos[6], openFirewall: true })),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               preferredSeeds: [],
-              node: nix.thunk(() => ({ [nix.POS]: pos$8, alias: "seed" })),
+              node: nix.thunk(() => ({ [nix.POS]: $pos[7], alias: "seed" })),
             })),
             ci: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               adapters: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 native: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
-                  instances: nix.thunk(() => ({ [nix.POS]: pos$10, native: nix.thunk(() => ({})) })),
+                  [nix.POS]: $pos[10],
+                  instances: nix.thunk(() => ({ [nix.POS]: $pos[9], native: nix.thunk(() => ({})) })),
                 })),
               })),
               broker: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 enable: true,
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   triggers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$15,
+                      [nix.POS]: $pos[14],
                       adapter: "native",
                       filters: nix.thunk(() => [
                         nix.thunk(() => ({
-                          [nix.POS]: pos$14,
+                          [nix.POS]: $pos[13],
                           And: nix.thunk(() => [
-                            nix.thunk(() => ({ [nix.POS]: pos$13, HasFile: ".radicle/native.yaml" })),
+                            nix.thunk(() => ({ [nix.POS]: $pos[12], HasFile: ".radicle/native.yaml" })),
                             "DefaultBranch",
                           ]),
                         })),
@@ -119,13 +89,13 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               gitconfig: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 text: "[init]\n  defaultBranch = main\n[user]\n  email = root@alice\n  name = alice\n",
               })),
             })),
@@ -142,11 +112,11 @@ export default nix.lambda((args) => (() => {
       })(), formals$2),
     })),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$30,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$27, enable: true })),
+      [nix.POS]: $pos[29],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[26], enable: true })),
       defaults: nix.thunk(() => ({
-        [nix.POS]: pos$29,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$28, graphics: false })),
+        [nix.POS]: $pos[28],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[27], graphics: false })),
       })),
     })),
     testScript: nix.thunk(() => nix.str`import json

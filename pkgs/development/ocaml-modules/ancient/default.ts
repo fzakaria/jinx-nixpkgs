@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 20, 5], ["longDescription", 21, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 7, 3], ["version", 8, 3], ["minimalOCamlVersion", 10, 3], ["src", 12, 3], ["doCheck", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 20, 5], ["longDescription", 21, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 3], ["minimalOCamlVersion", 10, 3], ["src", 12, 3], ["doCheck", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ancient",
       version: "0.10.0",
       minimalOCamlVersion: "4.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/OCamlPro/ocaml-ancient/releases/download/${nix.sel(finalAttrs, "version")}/ancient-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-XeVUPrdg7QSV7V0Tz8Mkj5jvzKtYD9DON+tt9kkuCHM=",
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Use data structures larger than available memory",
         longDescription: "This module allows you to use in-memory data structures which are\nlarger than available memory and so are kept in swap.  If you try this\nin normal OCaml code, you'll find that the machine quickly descends\ninto thrashing as the garbage collector repeatedly iterates over\nswapped memory structures.  This module lets you break that\nlimitation.  Of course the module doesn't work by magic :-) If your\nprogram tries to access these large structures, they still need to be\nswapped back in, but it is suitable for large, sparsely accessed\nstructures.\n\nSecondly, this module allows you to share those structures between\nprocesses.  In this mode, the structures are backed by a disk file,\nand any process that has read/write access that disk file can map that\nfile in and see the structures.\n",
         homepage: "https://github.com/OCamlPro/ocaml-ancient",

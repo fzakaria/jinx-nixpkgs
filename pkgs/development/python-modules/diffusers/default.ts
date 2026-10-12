@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["flax", 76, 5], ["torch", 81, 5], ["training", 85, 5]], [["doCheck", 165, 59]], [["pytest", 165, 18]], [["tests", 165, 12]], [["description", 168, 5], ["mainProgram", 169, 5], ["homepage", 170, 5], ["changelog", 171, 5], ["license", 172, 5], ["maintainers", 173, 5]], [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["src", 51, 3], ["build-system", 58, 3], ["pythonRelaxDeps", 60, 3], ["dependencies", 64, 3], ["optional-dependencies", 75, 3], ["pythonImportsCheck", 95, 3], ["doCheck", 98, 3], ["nativeCheckInputs", 100, 3], ["preCheck", 113, 3], ["enabledTestPaths", 141, 3], ["disabledTests", 143, 3], ["passthru", 165, 3], ["meta", 167, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, filelock: false, "huggingface-hub": false, "importlib-metadata": false, numpy: false, pillow: false, regex: false, requests: false, safetensors: false, accelerate: false, datasets: false, flax: false, jax: false, jaxlib: false, jinja2: false, peft: false, protobuf: false, tensorboard: false, torch: false, writeText: false, parameterized: false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, "requests-mock": false, scipy: false, sentencepiece: false, torchsde: false, transformers: false, pythonAtLeast: false, diffusers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["flax", 76, 5], ["torch", 81, 5], ["training", 85, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doCheck", 165, 59]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pytest", 165, 18]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 165, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 168, 5], ["mainProgram", 169, 5], ["homepage", 170, 5], ["changelog", 171, 5], ["license", 172, 5], ["maintainers", 173, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["src", 51, 3], ["build-system", 58, 3], ["pythonRelaxDeps", 60, 3], ["dependencies", 64, 3], ["optional-dependencies", 75, 3], ["pythonImportsCheck", 95, 3], ["doCheck", 98, 3], ["nativeCheckInputs", 100, 3], ["preCheck", 113, 3], ["enabledTestPaths", 141, 3], ["disabledTests", 143, 3], ["passthru", 165, 3], ["meta", 167, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.38.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "huggingface",
           repo: "diffusers",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -71,7 +65,7 @@ export default nix.lambda((args) => (() => {
         safetensors,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         flax: nix.thunk(() => [flax, jax, jaxlib]),
         torch: nix.thunk(() => [accelerate, torch]),
         training: nix.thunk(() => [accelerate, datasets, jinja2, peft, protobuf, tensorboard]),
@@ -108,14 +102,14 @@ cat ${conftestSkipNetworkErrors} >> tests/conftest.py
         "test_wrong_adapter_name_raises_error",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ["test_from_save_pretrained_dynamo"]))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          pytest: nix.thunk(() => nix.app(nix.sel(diffusers, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
+          [nix.POS]: $pos[3],
+          pytest: nix.thunk(() => nix.app(nix.sel(diffusers, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], doCheck: true })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "State-of-the-art diffusion models for image and audio generation in PyTorch",
         mainProgram: "diffusers-cli",
         homepage: "https://github.com/huggingface/diffusers",
@@ -127,7 +121,7 @@ cat ${conftestSkipNetworkErrors} >> tests/conftest.py
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

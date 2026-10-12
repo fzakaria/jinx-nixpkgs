@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["updateScript", 66, 12]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["postPatch", 50, 3], ["postInstall", 58, 3], ["passthru", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "nix-update-script": false, installShellFiles: false, "pkg-config": false, scdoc: false, wrapGAppsHook4: false, "at-spi2-atk": false, glib: false, gtk4: false, "gtk4-layer-shell": false, libadwaita: false, librsvg: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 66, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["postPatch", 50, 3], ["postInstall", 58, 3], ["passthru", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wleave",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AMNatty",
           repo: "wleave",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/config.rs \\\n  --replace-fail \"/etc/wleave\" \"$out/etc/wleave\"\n\nsubstituteInPlace layout.json \\\n  --replace-fail \"/usr/share/wleave\" \"$out/share/wleave\"\n",
       postInstall: "install -Dm644 -t \"$out/etc/wleave\" {\"style.css\",\"layout.json\"}\ninstall -Dm644 -t \"$out/share/wleave/icons\" icons/*\n\n# Man pages are currently broken due to upstream scdoc syntax errors.\n# Disable generation until upstream fixes them.\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wayland-native logout script written in GTK4",
         homepage: "https://github.com/AMNatty/wleave",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

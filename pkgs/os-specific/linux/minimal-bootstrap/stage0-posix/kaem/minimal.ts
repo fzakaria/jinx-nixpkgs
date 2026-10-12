@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/minimal.nix", [[["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["teams", 23, 5], ["platforms", 24, 13]], [["version", 11, 11], ["pname", 12, 3], ["builder", 13, 3], ["args", 14, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, derivationWithMeta: false, src: false, hex0: false, version: false, platforms: false, stage0Arch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/minimal.nix", [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["teams", 23, 5], ["platforms", 24, 13]]);
-const pos$2 = nix.positions(here + "/minimal.nix", [["version", 11, 11], ["pname", 12, 3], ["builder", 13, 3], ["args", 14, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const platforms = nix.arg($, "platforms");
   const stage0Arch = nix.arg($, "stage0Arch");
   return nix.app(derivationWithMeta, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: version,
       pname: "kaem-minimal",
       builder: hex0,
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.builtins.placeholder("out")),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "First stage minimal scriptable build tool for bootstrapping",
         homepage: "https://github.com/oriansj/stage0-posix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

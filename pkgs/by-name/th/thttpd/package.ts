@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["NIX_CFLAGS_COMPILE", 24, 7]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["prePatch", 17, 3], ["env", 24, 3], ["buildInputs", 29, 3], ["preInstall", 33, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libxcrypt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["prePatch", 17, 3], ["env", 24, 3], ["buildInputs", 29, 3], ["preInstall", 33, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,23 +12,23 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "thttpd",
       version: "2.29",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://acme.com/software/thttpd/thttpd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "15x3h4b49wgfywn82i3wwbf38mdns94mbi4ma9xiwsrjv93rzh4r",
         })))),
       prePatch: "sed -i -e 's/getline/getlineX/' extras/htpasswd.c\nsed -i -e 's/chmod 2755/chmod 755/' extras/Makefile.in\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-int", "-Wno-error=implicit-function-declaration"]))),
       })),
       buildInputs: nix.thunk(() => [libxcrypt]),
       preInstall: "mkdir -p \"$out/man/man1\"\nsed -i -e 's/-o bin -g bin *//' Makefile\nsed -i -e '/chgrp/d' extras/Makefile\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tiny/turbo/throttling HTTP server",
         homepage: "http://www.acme.com/software/thttpd/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

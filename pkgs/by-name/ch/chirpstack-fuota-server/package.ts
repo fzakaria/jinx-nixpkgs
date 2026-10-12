@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["tagPrefix", 36, 5]], [["updateScript", 35, 12]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["nativeInstallCheckInputs", 27, 3], ["doInstallCheck", 29, 3], ["versionCheckProgramArg", 30, 3], ["checkFlags", 31, 3], ["passthru", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tagPrefix", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 35, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["nativeInstallCheckInputs", 27, 3], ["doInstallCheck", 29, 3], ["versionCheckProgramArg", 30, 3], ["checkFlags", 31, 3], ["passthru", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "chirpstack-fuota-server",
       version: "3.0.0-test.4-unstable-2025-08-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chirpstack",
           repo: "chirpstack-fuota-server",
           rev: "0d3ce7d8d50ab8d8747d2099a2a607b0ec4e86cb",
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       checkFlags: nix.thunk(() => ["-skip=TestStorage"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "FUOTA server which can be used together with ChirpStack Application Server",
         homepage: "https://www.chirpstack.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

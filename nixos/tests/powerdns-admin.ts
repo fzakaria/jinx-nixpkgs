@@ -2,69 +2,25 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/powerdns-admin.nix", [[["system", 5, 33], ["config", 5, 40]], [["system", 8, 49], ["pkgs", 8, 56]], [["maintainers", 26, 9]], [["enable", 38, 17], ["secretKeyFile", 39, 17], ["saltFile", 40, 17]], [["powerdns-admin", 37, 24]], [["text", 43, 55]], [["text", 44, 53]], [["powerdns-admin/secret", 43, 31], ["powerdns-admin/salt", 44, 31]], [["etc", 43, 27], ["systemPackages", 45, 27]], [["services", 37, 15], ["environment", 43, 15]], [["server", 32, 13]], [["name", 24, 7], ["meta", 25, 7], ["nodes", 32, 7], ["testScript", 53, 7]], [["config", 63, 11]], [["powerdnsadmin.*", 81, 17]], [["name", 79, 15], ["ensurePermissions", 80, 15]], [["enable", 74, 11], ["package", 75, 11], ["ensureDatabases", 76, 11], ["ensureUsers", 77, 11]], [["powerdns-admin", 62, 18], ["mysql", 73, 18]], [["BindPaths", 70, 25]], [["after", 69, 11], ["serviceConfig", 70, 11]], [["powerdns-admin", 68, 26]], [["services", 68, 17]], [["services", 62, 9], ["systemd", 68, 9]], [["config", 89, 11]], [["name", 104, 15], ["ensureDBOwnership", 105, 15]], [["enable", 100, 11], ["ensureDatabases", 101, 11], ["ensureUsers", 102, 11]], [["powerdns-admin", 88, 18], ["postgresql", 99, 18]], [["BindPaths", 96, 25]], [["after", 95, 11], ["serviceConfig", 96, 11]], [["powerdns-admin", 94, 26]], [["services", 94, 17]], [["services", 88, 9], ["systemd", 94, 9]], [["mysql", 61, 7], ["postgresql", 87, 7]], [["extraArgs", 113, 33]], [["powerdns-admin", 113, 18]], [["testScript", 117, 22]], [["build", 117, 16]], [["services", 113, 9], ["system", 117, 9]], [["extraArgs", 145, 33]], [["powerdns-admin", 145, 18]], [["testScript", 149, 22]], [["build", 149, 16]], [["services", 145, 9], ["system", 149, 9]], [["tcp", 112, 7], ["unix", 144, 7]], [["backend", 60, 5], ["listen", 111, 5]], [["postgresql", 158, 3], ["mysql", 162, 3], ["unix-listener", 166, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/powerdns-admin.nix", [["system", 5, 33], ["config", 5, 40]]);
-const pos$2 = nix.positions(here + "/powerdns-admin.nix", [["system", 8, 49], ["pkgs", 8, 56]]);
-const pos$3 = nix.positions(here + "/powerdns-admin.nix", [["maintainers", 26, 9]]);
 const formals$2 = { args: { pkgs: false, config: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/powerdns-admin.nix", [["enable", 38, 17], ["secretKeyFile", 39, 17], ["saltFile", 40, 17]]);
-const pos$5 = nix.positions(here + "/powerdns-admin.nix", [["powerdns-admin", 37, 24]]);
-const pos$6 = nix.positions(here + "/powerdns-admin.nix", [["text", 43, 55]]);
-const pos$7 = nix.positions(here + "/powerdns-admin.nix", [["text", 44, 53]]);
-const pos$8 = nix.positions(here + "/powerdns-admin.nix", [["powerdns-admin/secret", 43, 31], ["powerdns-admin/salt", 44, 31]]);
-const pos$9 = nix.positions(here + "/powerdns-admin.nix", [["etc", 43, 27], ["systemPackages", 45, 27]]);
-const pos$10 = nix.positions(here + "/powerdns-admin.nix", [["services", 37, 15], ["environment", 43, 15]]);
-const pos$11 = nix.positions(here + "/powerdns-admin.nix", [["server", 32, 13]]);
-const pos$12 = nix.positions(here + "/powerdns-admin.nix", [["name", 24, 7], ["meta", 25, 7], ["nodes", 32, 7], ["testScript", 53, 7]]);
-const pos$13 = nix.positions(here + "/powerdns-admin.nix", [["config", 63, 11]]);
-const pos$14 = nix.positions(here + "/powerdns-admin.nix", [["powerdnsadmin.*", 81, 17]]);
-const pos$15 = nix.positions(here + "/powerdns-admin.nix", [["name", 79, 15], ["ensurePermissions", 80, 15]]);
-const pos$16 = nix.positions(here + "/powerdns-admin.nix", [["enable", 74, 11], ["package", 75, 11], ["ensureDatabases", 76, 11], ["ensureUsers", 77, 11]]);
-const pos$17 = nix.positions(here + "/powerdns-admin.nix", [["powerdns-admin", 62, 18], ["mysql", 73, 18]]);
-const pos$18 = nix.positions(here + "/powerdns-admin.nix", [["BindPaths", 70, 25]]);
-const pos$19 = nix.positions(here + "/powerdns-admin.nix", [["after", 69, 11], ["serviceConfig", 70, 11]]);
-const pos$20 = nix.positions(here + "/powerdns-admin.nix", [["powerdns-admin", 68, 26]]);
-const pos$21 = nix.positions(here + "/powerdns-admin.nix", [["services", 68, 17]]);
-const pos$22 = nix.positions(here + "/powerdns-admin.nix", [["services", 62, 9], ["systemd", 68, 9]]);
-const pos$23 = nix.positions(here + "/powerdns-admin.nix", [["config", 89, 11]]);
-const pos$24 = nix.positions(here + "/powerdns-admin.nix", [["name", 104, 15], ["ensureDBOwnership", 105, 15]]);
-const pos$25 = nix.positions(here + "/powerdns-admin.nix", [["enable", 100, 11], ["ensureDatabases", 101, 11], ["ensureUsers", 102, 11]]);
-const pos$26 = nix.positions(here + "/powerdns-admin.nix", [["powerdns-admin", 88, 18], ["postgresql", 99, 18]]);
-const pos$27 = nix.positions(here + "/powerdns-admin.nix", [["BindPaths", 96, 25]]);
-const pos$28 = nix.positions(here + "/powerdns-admin.nix", [["after", 95, 11], ["serviceConfig", 96, 11]]);
-const pos$29 = nix.positions(here + "/powerdns-admin.nix", [["powerdns-admin", 94, 26]]);
-const pos$30 = nix.positions(here + "/powerdns-admin.nix", [["services", 94, 17]]);
-const pos$31 = nix.positions(here + "/powerdns-admin.nix", [["services", 88, 9], ["systemd", 94, 9]]);
-const pos$32 = nix.positions(here + "/powerdns-admin.nix", [["mysql", 61, 7], ["postgresql", 87, 7]]);
-const pos$33 = nix.positions(here + "/powerdns-admin.nix", [["extraArgs", 113, 33]]);
-const pos$34 = nix.positions(here + "/powerdns-admin.nix", [["powerdns-admin", 113, 18]]);
-const pos$35 = nix.positions(here + "/powerdns-admin.nix", [["testScript", 117, 22]]);
-const pos$36 = nix.positions(here + "/powerdns-admin.nix", [["build", 117, 16]]);
-const pos$37 = nix.positions(here + "/powerdns-admin.nix", [["services", 113, 9], ["system", 117, 9]]);
-const pos$38 = nix.positions(here + "/powerdns-admin.nix", [["extraArgs", 145, 33]]);
-const pos$39 = nix.positions(here + "/powerdns-admin.nix", [["powerdns-admin", 145, 18]]);
-const pos$40 = nix.positions(here + "/powerdns-admin.nix", [["testScript", 149, 22]]);
-const pos$41 = nix.positions(here + "/powerdns-admin.nix", [["build", 149, 16]]);
-const pos$42 = nix.positions(here + "/powerdns-admin.nix", [["services", 145, 9], ["system", 149, 9]]);
-const pos$43 = nix.positions(here + "/powerdns-admin.nix", [["tcp", 112, 7], ["unix", 144, 7]]);
-const pos$44 = nix.positions(here + "/powerdns-admin.nix", [["backend", 60, 5], ["listen", 111, 5]]);
-const pos$45 = nix.positions(here + "/powerdns-admin.nix", [["postgresql", 158, 3], ["mysql", 162, 3], ["unix-listener", 166, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const defaultConfig = "import cachelib\n\nBIND_ADDRESS = '127.0.0.1'\nPORT = 8000\nCAPTCHA_ENABLE = False\nSESSION_TYPE = 'cachelib'\nSESSION_CACHELIB = cachelib.simple.SimpleCache()\n";
   const makeAppTest = (name) => (configs) => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       name: nix.thunk(() => nix.str`powerdns-admin-${name}`),
       meta: nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           maintainers: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "Flakebi")),
             nix.thunk(() => nix.lookup(w_2, "zhaofengli")),
@@ -72,29 +28,29 @@ export default nix.lambda((args) => (() => {
         };
       })()),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           const config_1 = nix.arg($_1, "config");
           return nix.app(nix.lookup(w_1, "mkMerge"), nix.thunk(() => nix.concat([
               nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   "powerdns-admin": nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     enable: true,
                     secretKeyFile: "/etc/powerdns-admin/secret",
                     saltFile: "/etc/powerdns-admin/salt",
                   })),
                 })),
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   etc: nix.thunk(() => ({
-                    [nix.POS]: pos$8,
-                    "powerdns-admin/secret": nix.thunk(() => ({ [nix.POS]: pos$6, text: "secret key" })),
-                    "powerdns-admin/salt": nix.thunk(() => ({ [nix.POS]: pos$7, text: "salt" })),
+                    [nix.POS]: $pos[7],
+                    "powerdns-admin/secret": nix.thunk(() => ({ [nix.POS]: $pos[5], text: "secret key" })),
+                    "powerdns-admin/salt": nix.thunk(() => ({ [nix.POS]: $pos[6], text: "salt" })),
                   })),
                   systemPackages: nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeShellScriptBin"), "run-test", nix.thunk(() => nix.sel(config_1, "system", "build", "testScript")))),
@@ -107,106 +63,106 @@ export default nix.lambda((args) => (() => {
       testScript: "server.wait_for_unit(\"powerdns-admin.service\")\nserver.wait_until_succeeds(\"run-test\", timeout=10)\n",
     })));
   const matrix = nix.thunk(() => ({
-    [nix.POS]: pos$44,
+    [nix.POS]: $pos[43],
     backend: nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       mysql: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           "powerdns-admin": nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             config: nix.thunk(() => nix.str`${defaultConfig}
 SQLALCHEMY_DATABASE_URI = 'mysql://powerdnsadmin@/powerdnsadmin?unix_socket=/run/mysqld/mysqld.sock'
 `),
           })),
           mysql: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             enable: true,
             package: nix.thunk(() => nix.sel(pkgs, "mariadb")),
             ensureDatabases: nix.thunk(() => ["powerdnsadmin"]),
             ensureUsers: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 name: "powerdnsadmin",
-                ensurePermissions: nix.thunk(() => ({ [nix.POS]: pos$14, "powerdnsadmin.*": "ALL PRIVILEGES" })),
+                ensurePermissions: nix.thunk(() => ({ [nix.POS]: $pos[13], "powerdnsadmin.*": "ALL PRIVILEGES" })),
               })),
             ]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             "powerdns-admin": nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               after: nix.thunk(() => ["mysql.service"]),
-              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$18, BindPaths: "/run/mysqld" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[17], BindPaths: "/run/mysqld" })),
             })),
           })),
         })),
       })),
       postgresql: nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           "powerdns-admin": nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             config: nix.thunk(() => nix.str`${defaultConfig}
 SQLALCHEMY_DATABASE_URI = 'postgresql://powerdnsadmin@/powerdnsadmin?host=/run/postgresql'
 `),
           })),
           postgresql: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             enable: true,
             ensureDatabases: nix.thunk(() => ["powerdnsadmin"]),
             ensureUsers: nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$24, name: "powerdnsadmin", ensureDBOwnership: true })),
+              nix.thunk(() => ({ [nix.POS]: $pos[23], name: "powerdnsadmin", ensureDBOwnership: true })),
             ]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             "powerdns-admin": nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               after: nix.thunk(() => ["postgresql.target"]),
-              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$27, BindPaths: "/run/postgresql" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[26], BindPaths: "/run/postgresql" })),
             })),
           })),
         })),
       })),
     })),
     listen: nix.thunk(() => ({
-      [nix.POS]: pos$43,
+      [nix.POS]: $pos[42],
       tcp: nix.thunk(() => ({
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$34,
-          "powerdns-admin": nix.thunk(() => ({ [nix.POS]: pos$33, extraArgs: nix.thunk(() => ["-b", "127.0.0.1:8000"]) })),
+          [nix.POS]: $pos[33],
+          "powerdns-admin": nix.thunk(() => ({ [nix.POS]: $pos[32], extraArgs: nix.thunk(() => ["-b", "127.0.0.1:8000"]) })),
         })),
         system: nix.thunk(() => ({
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           build: nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             testScript: "set -euxo pipefail\ncurl -sSf http://127.0.0.1:8000/\n\n# Create account to check that the database migrations ran\ncsrf_token=\"$(curl -sSfc session http://127.0.0.1:8000/register | grep _csrf_token | cut -d\\\" -f6)\"\n# Outputs 'Redirecting' if successful\ncurl -sSfb session http://127.0.0.1:8000/register \\\n  -F \"_csrf_token=$csrf_token\" \\\n  -F \"firstname=first\" \\\n  -F \"lastname=last\" \\\n  -F \"email=a@example.com\" \\\n  -F \"username=user\" \\\n  -F \"password=password\" \\\n  -F \"rpassword=password\" | grep Redirecting\n\n# Login\n# Outputs 'Redirecting' if successful\ncurl -sSf -b session -c session http://127.0.0.1:8000/login \\\n  -F \"_csrf_token=$csrf_token\" \\\n  -F \"username=user\" \\\n  -F \"password=password\" | grep Redirecting\n\n# Check that we are logged in, this redirects to /admin/setting/pdns if we are\ncurl -sSf -b session -c session http://127.0.0.1:8000/dashboard/ | grep /admin/setting\n",
           })),
         })),
       })),
       unix: nix.thunk(() => ({
-        [nix.POS]: pos$42,
+        [nix.POS]: $pos[41],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           "powerdns-admin": nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             extraArgs: nix.thunk(() => ["-b", "unix:/run/powerdns-admin/http.sock"]),
           })),
         })),
         system: nix.thunk(() => ({
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           build: nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             testScript: "curl -sSf --unix-socket /run/powerdns-admin/http.sock http://somehost/\n",
           })),
         })),
@@ -215,7 +171,7 @@ SQLALCHEMY_DATABASE_URI = 'postgresql://powerdnsadmin@/powerdnsadmin?host=/run/p
   }));
   const w_2 = nix.withScope(matrix, w_1);
   return {
-    [nix.POS]: pos$45,
+    [nix.POS]: $pos[44],
     postgresql: nix.thunk(() => nix.app(makeAppTest, "postgresql", nix.thunk(() => [
         nix.thunk(() => nix.sel(nix.lookup(w_2, "backend"), "postgresql")),
         nix.thunk(() => nix.sel(nix.lookup(w_2, "listen"), "tcp")),

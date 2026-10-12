@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 13], ["version", 21, 19], ["sha256", 22, 5]], [["sage", 44, 13]], [["tests", 43, 12]], [["description", 48, 5], ["homepage", 49, 5], ["teams", 50, 5], ["license", 51, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["propagatedBuildInputs", 34, 3], ["doCheck", 39, 3], ["pythonImportsCheck", 41, 3], ["passthru", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, "meson-python": false, cython: false, "pkg-config": false, primecount: false, cysignals: false, sage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 13], ["version", 21, 19], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sage", 44, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 43, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["teams", 50, 5], ["license", 51, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["propagatedBuildInputs", 34, 3], ["doCheck", 39, 3], ["pythonImportsCheck", 41, 3], ["passthru", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "sha256-iIcGq2XMCJ+5g95GOTYN3ccouqTZh3p62LEW9kVlCzk=",
@@ -36,16 +32,19 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [cysignals]);
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["primecountpy"]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) }));
+      const passthru = nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], sage: sage })),
+      }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cython interface for C++ primecount library",
         homepage: "https://github.com/dimpase/primecountpy/",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

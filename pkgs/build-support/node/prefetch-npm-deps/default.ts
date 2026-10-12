@@ -2,49 +2,11 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["src", 24, 7], ["filter", 25, 7]], [["lockFile", 33, 15]], [["name", 55, 13], ["src", 57, 21], ["buildCommand", 59, 13]], [["name", 83, 41], ["src", 83, 46]], [["name", 76, 15], ["hash", 77, 15], ["forceGitDeps", 78, 15], ["forceEmptyCache", 79, 15], ["npmRegistryOverridesString", 80, 15], ["src", 83, 13]], [["url", 91, 13], ["hash", 92, 13]], [["name", 88, 11], ["src", 90, 11], ["hash", 95, 11]], [["url", 102, 13], ["hash", 103, 13]], [["name", 99, 11], ["src", 101, 11], ["hash", 106, 11]], [["url", 113, 13], ["hash", 114, 13]], [["name", 110, 11], ["src", 112, 11], ["hash", 117, 11]], [["url", 124, 13], ["hash", 125, 13]], [["name", 121, 11], ["src", 123, 11], ["hash", 128, 11]], [["url", 135, 13], ["hash", 136, 13]], [["name", 132, 11], ["src", 134, 11], ["hash", 139, 11]], [["url", 147, 13], ["hash", 148, 13]], [["name", 144, 11], ["src", 146, 11], ["hash", 151, 11], ["forceEmptyCache", 153, 11]], [["url", 161, 13], ["hash", 162, 13]], [["name", 158, 11], ["src", 160, 11], ["hash", 165, 11], ["forceGitDeps", 167, 11]], [["url", 175, 13], ["hash", 176, 13]], [["name", 172, 11], ["src", 174, 11], ["hash", 179, 11]], [["url", 187, 13], ["postFetch", 188, 13], ["hash", 189, 13]], [["broken.link", 193, 13]], [["name", 184, 11], ["src", 186, 11], ["npmRegistryOverridesString", 192, 11], ["hash", 196, 11]], [["url", 204, 13], ["hash", 205, 13]], [["name", 201, 11], ["src", 203, 11], ["hash", 208, 11]], [["url", 214, 13], ["hash", 215, 13]], [["name", 211, 11], ["src", 213, 11], ["hash", 218, 11]], [["lockfileV1", 87, 9], ["lockfileV2", 98, 9], ["hashPrecedence", 109, 9], ["hostedGitDeps", 120, 9], ["linkDependencies", 131, 9], ["emptyCache", 143, 9], ["etherpadLite1818", 157, 9], ["jitsiMeet9111", 171, 9], ["npmRegistryOverrides", 183, 9], ["fileDependenciesV1", 200, 9], ["fileDependenciesV3", 210, 9]], [["tests", 50, 14]], [["description", 223, 7], ["mainProgram", 224, 7], ["maintainers", 225, 7], ["license", 226, 7]], [["pname", 20, 5], ["version", 21, 5], ["src", 23, 5], ["cargoLock", 33, 5], ["nativeBuildInputs", 35, 5], ["buildInputs", 39, 5], ["postInstall", 41, 5], ["passthru", 50, 5], ["meta", 222, 5]], [["outputHash", 250, 13]], [["outputHash", 254, 13], ["outputHashAlgo", 255, 13]], [["FORCE_GIT_DEPS", 258, 56]], [["FORCE_EMPTY_CACHE", 259, 62]], [["NIX_NPM_REGISTRY_OVERRIDES", 300, 11], ["NPM_FETCHER_VERSION", 303, 11], ["SSL_CERT_FILE", 317, 11]], [["name", 264, 17], ["nativeBuildInputs", 266, 9], ["buildPhase", 268, 9], ["dontInstall", 293, 9], ["impureEnvVars", 297, 9], ["env", 299, 9], ["outputHashMode", 333, 9]], [["prefetch-npm-deps", 19, 3], ["fetchNpmDeps", 230, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, rustPlatform: false, makeWrapper: false, "pkg-config": false, curl: false, gnutar: false, gzip: false, testers: false, fetchurl: false, cacert: false, "prefetch-npm-deps": false, fetchNpmDeps: false, config: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["src", 24, 7], ["filter", 25, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lockFile", 33, 15]]);
 const formals$2 = { args: { name: false, src: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/default.nix", [["name", 55, 13], ["src", 57, 21], ["buildCommand", 59, 13]]);
 const formals$3 = { args: { name: false, src: false, hash: false, forceGitDeps: true, forceEmptyCache: true, npmRegistryOverridesString: true }, ellipsis: false };
-const pos$4 = nix.positions(here + "/default.nix", [["name", 83, 41], ["src", 83, 46]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 76, 15], ["hash", 77, 15], ["forceGitDeps", 78, 15], ["forceEmptyCache", 79, 15], ["npmRegistryOverridesString", 80, 15], ["src", 83, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["url", 91, 13], ["hash", 92, 13]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 88, 11], ["src", 90, 11], ["hash", 95, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["url", 102, 13], ["hash", 103, 13]]);
-const pos$9 = nix.positions(here + "/default.nix", [["name", 99, 11], ["src", 101, 11], ["hash", 106, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["url", 113, 13], ["hash", 114, 13]]);
-const pos$11 = nix.positions(here + "/default.nix", [["name", 110, 11], ["src", 112, 11], ["hash", 117, 11]]);
-const pos$12 = nix.positions(here + "/default.nix", [["url", 124, 13], ["hash", 125, 13]]);
-const pos$13 = nix.positions(here + "/default.nix", [["name", 121, 11], ["src", 123, 11], ["hash", 128, 11]]);
-const pos$14 = nix.positions(here + "/default.nix", [["url", 135, 13], ["hash", 136, 13]]);
-const pos$15 = nix.positions(here + "/default.nix", [["name", 132, 11], ["src", 134, 11], ["hash", 139, 11]]);
-const pos$16 = nix.positions(here + "/default.nix", [["url", 147, 13], ["hash", 148, 13]]);
-const pos$17 = nix.positions(here + "/default.nix", [["name", 144, 11], ["src", 146, 11], ["hash", 151, 11], ["forceEmptyCache", 153, 11]]);
-const pos$18 = nix.positions(here + "/default.nix", [["url", 161, 13], ["hash", 162, 13]]);
-const pos$19 = nix.positions(here + "/default.nix", [["name", 158, 11], ["src", 160, 11], ["hash", 165, 11], ["forceGitDeps", 167, 11]]);
-const pos$20 = nix.positions(here + "/default.nix", [["url", 175, 13], ["hash", 176, 13]]);
-const pos$21 = nix.positions(here + "/default.nix", [["name", 172, 11], ["src", 174, 11], ["hash", 179, 11]]);
-const pos$22 = nix.positions(here + "/default.nix", [["url", 187, 13], ["postFetch", 188, 13], ["hash", 189, 13]]);
-const pos$23 = nix.positions(here + "/default.nix", [["broken.link", 193, 13]]);
-const pos$24 = nix.positions(here + "/default.nix", [["name", 184, 11], ["src", 186, 11], ["npmRegistryOverridesString", 192, 11], ["hash", 196, 11]]);
-const pos$25 = nix.positions(here + "/default.nix", [["url", 204, 13], ["hash", 205, 13]]);
-const pos$26 = nix.positions(here + "/default.nix", [["name", 201, 11], ["src", 203, 11], ["hash", 208, 11]]);
-const pos$27 = nix.positions(here + "/default.nix", [["url", 214, 13], ["hash", 215, 13]]);
-const pos$28 = nix.positions(here + "/default.nix", [["name", 211, 11], ["src", 213, 11], ["hash", 218, 11]]);
-const pos$29 = nix.positions(here + "/default.nix", [["lockfileV1", 87, 9], ["lockfileV2", 98, 9], ["hashPrecedence", 109, 9], ["hostedGitDeps", 120, 9], ["linkDependencies", 131, 9], ["emptyCache", 143, 9], ["etherpadLite1818", 157, 9], ["jitsiMeet9111", 171, 9], ["npmRegistryOverrides", 183, 9], ["fileDependenciesV1", 200, 9], ["fileDependenciesV3", 210, 9]]);
-const pos$30 = nix.positions(here + "/default.nix", [["tests", 50, 14]]);
-const pos$31 = nix.positions(here + "/default.nix", [["description", 223, 7], ["mainProgram", 224, 7], ["maintainers", 225, 7], ["license", 226, 7]]);
-const pos$32 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 5], ["src", 23, 5], ["cargoLock", 33, 5], ["nativeBuildInputs", 35, 5], ["buildInputs", 39, 5], ["postInstall", 41, 5], ["passthru", 50, 5], ["meta", 222, 5]]);
 const formals$4 = { args: { name: true, hash: true, forceGitDeps: true, forceEmptyCache: true, nativeBuildInputs: true, npmRegistryOverridesString: true, fetcherVersion: true }, ellipsis: true };
-const pos$33 = nix.positions(here + "/default.nix", [["outputHash", 250, 13]]);
-const pos$34 = nix.positions(here + "/default.nix", [["outputHash", 254, 13], ["outputHashAlgo", 255, 13]]);
-const pos$35 = nix.positions(here + "/default.nix", [["FORCE_GIT_DEPS", 258, 56]]);
-const pos$36 = nix.positions(here + "/default.nix", [["FORCE_EMPTY_CACHE", 259, 62]]);
-const pos$37 = nix.positions(here + "/default.nix", [["NIX_NPM_REGISTRY_OVERRIDES", 300, 11], ["NPM_FETCHER_VERSION", 303, 11], ["SSL_CERT_FILE", 317, 11]]);
-const pos$38 = nix.positions(here + "/default.nix", [["name", 264, 17], ["nativeBuildInputs", 266, 9], ["buildPhase", 268, 9], ["dontInstall", 293, 9], ["impureEnvVars", 297, 9], ["env", 299, 9], ["outputHashMode", 333, 9]]);
-const pos$39 = nix.positions(here + "/default.nix", [["prefetch-npm-deps", 19, 3], ["fetchNpmDeps", 230, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -63,33 +25,33 @@ export default nix.lambda((args) => (() => {
   const fetchNpmDeps = nix.arg($, "fetchNpmDeps");
   const config = nix.arg($, "config");
   return {
-    [nix.POS]: pos$39,
+    [nix.POS]: $pos[38],
     "prefetch-npm-deps": nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         pname: "prefetch-npm-deps",
         version: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "importTOML"), nix.path(here, "./Cargo.toml")), "package", "version")),
         src: nix.thunk(() => nix.app(nix.sel(lib, "cleanSourceWith"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             src: nix.path(here, "./."),
             filter: (name) => (type) => (() => {
               const name$ = nix.thunk(() => nix.builtins.baseNameOf(name));
               return (nix.asBool(!nix.eq(name$, "default.nix")) && nix.asBool(!nix.eq(name$, "target")));
             })(),
           })))),
-        cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+        cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") })),
         nativeBuildInputs: nix.thunk(() => [makeWrapper, pkg_config]),
         buildInputs: nix.thunk(() => [curl]),
         postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/prefetch-npm-deps" --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnutar, gzip]))}
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           tests: nix.thunk(() => (() => {
             const makeTestSrc = nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$2);
               const name = nix.arg($_1, "name");
               const src = nix.arg($_1, "src");
               return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   name: nix.thunk(() => nix.str`${name}-src`),
                   src: src,
                   buildCommand: "mkdir -p $out\ncp $src $out/package-lock.json\n",
@@ -104,72 +66,72 @@ export default nix.lambda((args) => (() => {
               const forceEmptyCache = nix.argOr($_1, "forceEmptyCache", () => false);
               const npmRegistryOverridesString = nix.argOr($_1, "npmRegistryOverridesString", () => "{}");
               return nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchNpmDeps, nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   name: name,
                   hash: hash,
                   forceGitDeps: forceGitDeps,
                   forceEmptyCache: forceEmptyCache,
                   npmRegistryOverridesString: npmRegistryOverridesString,
-                  src: nix.thunk(() => nix.app(makeTestSrc, nix.thunk(() => ({ [nix.POS]: pos$4, name: name, src: src })))),
+                  src: nix.thunk(() => nix.app(makeTestSrc, nix.thunk(() => ({ [nix.POS]: $pos[3], name: name, src: src })))),
                 })));
             })(), formals$3);
             return {
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               lockfileV1: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   name: "lockfile-v1",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      [nix.POS]: pos$6,
+                      [nix.POS]: $pos[5],
                       url: "https://raw.githubusercontent.com/jellyfin/jellyfin-web/v10.8.4/package-lock.json",
                       hash: "sha256-uQmc+S+V1co1Rfc4d82PpeXjmd1UqdsG492ADQFcZGA=",
                     })))),
                   hash: "sha256-wca1QvxUw3OrLStfYN9Co6oVBR1LbfcNUKlDqvObps4=",
                 })))),
               lockfileV2: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   name: "lockfile-v2",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      [nix.POS]: pos$8,
+                      [nix.POS]: $pos[7],
                       url: "https://raw.githubusercontent.com/jesec/flood/v4.7.0/package-lock.json",
                       hash: "sha256-qS29tq5QPnGxV+PU40VgMAtdwVLtLyyhG2z9GMeYtC4=",
                     })))),
                   hash: "sha256-tuEfyePwlOy2/mOPdXbqJskO6IowvAP4DWg8xSZwbJw=",
                 })))),
               hashPrecedence: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   name: "hash-precedence",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      [nix.POS]: pos$10,
+                      [nix.POS]: $pos[9],
                       url: "https://raw.githubusercontent.com/matrix-org/matrix-appservice-irc/0.34.0/package-lock.json",
                       hash: "sha256-1+0AQw9EmbHiMPA/H8OP8XenhrkhLRYBRhmd1cNPFjk=",
                     })))),
                   hash: "sha256-oItUls7AXcCECuyA+crQO6B0kv4toIr8pBubNwB7kAM=",
                 })))),
               hostedGitDeps: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   name: "hosted-git-deps",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      [nix.POS]: pos$12,
+                      [nix.POS]: $pos[11],
                       url: "https://cyberchaos.dev/yuka/trainsearch/-/raw/e3cba6427e8ecfd843d0f697251ddaf5e53c2327/package-lock.json",
                       hash: "sha256-X9mCwPqV5yP0S2GonNvpYnLSLJMd/SUIked+hMRxDpA=",
                     })))),
                   hash: "sha256-tEdElWJ+KBTxBobzXBpPopQSwK2usGW/it1+yfbVzBw=",
                 })))),
               linkDependencies: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   name: "link-dependencies",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      [nix.POS]: pos$14,
+                      [nix.POS]: $pos[13],
                       url: "https://raw.githubusercontent.com/evcc-io/evcc/0.106.3/package-lock.json",
                       hash: "sha256-6ZTBMyuyPP/63gpQugggHhKVup6OB4hZ2rmSvPJ0yEs=",
                     })))),
                   hash: "sha256-VzQhArHoznYSXUT7l9HkJV4yoSOmoP8eYTLel1QwmB4=",
                 })))),
               emptyCache: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   name: "empty-cache",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      [nix.POS]: pos$16,
+                      [nix.POS]: $pos[15],
                       url: "https://raw.githubusercontent.com/bufbuild/protobuf-es/v1.2.1/package-lock.json",
                       hash: "sha256-UdBUEb4YRHsbvyjymIyjemJEiaI9KQRirqt+SFSK0wA=",
                     })))),
@@ -177,10 +139,10 @@ export default nix.lambda((args) => (() => {
                   forceEmptyCache: true,
                 })))),
               etherpadLite1818: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   name: "etherpad-lite-1.8.18",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      [nix.POS]: pos$18,
+                      [nix.POS]: $pos[17],
                       url: "https://raw.githubusercontent.com/ether/etherpad-lite/1.8.18/src/package-lock.json",
                       hash: "sha256-1fGNxYJi1I4cXK/jinNG+Y6tPEOhP3QAqWOBEQttS9E=",
                     })))),
@@ -188,42 +150,42 @@ export default nix.lambda((args) => (() => {
                   forceGitDeps: true,
                 })))),
               jitsiMeet9111: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   name: "jitsi-meet-9111",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      [nix.POS]: pos$20,
+                      [nix.POS]: $pos[19],
                       url: "https://raw.githubusercontent.com/jitsi/jitsi-meet/stable/jitsi-meet_9111/package-lock.json",
                       hash: "sha256-NU+eQD4WZ4BMur8uX79uk8wUPsZvIT02KhPWHTmaihk=",
                     })))),
                   hash: "sha256-FhxlJ0HdJMPiWe7+n1HaGLWOr/2HJEPwiS65uqXZM8Y=",
                 })))),
               npmRegistryOverrides: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   name: "npm-registry-overrides",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      [nix.POS]: pos$22,
+                      [nix.POS]: $pos[21],
                       url: "https://cyberchaos.dev/yuka/trainsearch/-/raw/e3cba6427e8ecfd843d0f697251ddaf5e53c2327/package-lock.json",
                       postFetch: "sed -i 's/registry.npmjs.org/broken.link/' $out",
                       hash: "sha256-Qo24ei1d9Ql4zCLjQJ04zVgS4qhBUpew9NZrhrsBds4=",
                     })))),
-                  npmRegistryOverridesString: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$23, "broken.link": "https://registry.npmjs.org" })))),
+                  npmRegistryOverridesString: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[22], "broken.link": "https://registry.npmjs.org" })))),
                   hash: "sha256-QGObVDd9qVtf/U78+ayP6RHVWsU+HXhg70BFblQ1PZs=",
                 })))),
               fileDependenciesV1: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  [nix.POS]: pos$26,
+                  [nix.POS]: $pos[25],
                   name: "file-dependencies-lockfile-v1",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      [nix.POS]: pos$25,
+                      [nix.POS]: $pos[24],
                       url: "https://raw.githubusercontent.com/elbywan/wretch/970b19e0fcc3dd219b9f3fc247d8f34cc01979c6/package-lock.json",
                       hash: "sha256-3vTMxc9M2TeiclUFYbG5eTzavSAXjAzz6N5v/1VM4Bc=",
                     })))),
                   hash: "sha256-4wTohTVWF49iQvdaUxNhwplfTVb53yFnAaUVA2xIXrc=",
                 })))),
               fileDependenciesV3: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  [nix.POS]: pos$28,
+                  [nix.POS]: $pos[27],
                   name: "file-dependencies-lockfile-v3",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      [nix.POS]: pos$27,
+                      [nix.POS]: $pos[26],
                       url: "https://raw.githubusercontent.com/alam00000/bentopdf/146e3f07d4111e309d0b29bb949e78e44454be3b/package-lock.json",
                       hash: "sha256-9Ea5ctJYbClxStYNhSfSpsO/P99/4CQK58PLK5e6PoQ=",
                     })))),
@@ -233,7 +195,7 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           description: "Prefetch dependencies from npm (for use with `fetchNpmDeps`)",
           mainProgram: "prefetch-npm-deps",
           maintainers: nix.thunk(() => (() => {
@@ -253,11 +215,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
       const npmRegistryOverridesString = nix.argOr($_1, "npmRegistryOverridesString", () => nix.sel(config, "npmRegistryOverridesString"));
       const fetcherVersion = nix.argOr($_1, "fetcherVersion", () => 1n);
-      const hash_ = nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? { [nix.POS]: pos$33, outputHash: hash } : { [nix.POS]: pos$34, outputHash: "", outputHashAlgo: "sha256" }));
-      const forceGitDeps_ = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), forceGitDeps, nix.thunk(() => ({ [nix.POS]: pos$35, FORCE_GIT_DEPS: true }))));
-      const forceEmptyCache_ = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), forceEmptyCache, nix.thunk(() => ({ [nix.POS]: pos$36, FORCE_EMPTY_CACHE: true }))));
+      const hash_ = nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? { [nix.POS]: $pos[32], outputHash: hash } : { [nix.POS]: $pos[33], outputHash: "", outputHashAlgo: "sha256" }));
+      const forceGitDeps_ = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), forceGitDeps, nix.thunk(() => ({ [nix.POS]: $pos[34], FORCE_GIT_DEPS: true }))));
+      const forceEmptyCache_ = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), forceEmptyCache, nix.thunk(() => ({ [nix.POS]: $pos[35], FORCE_EMPTY_CACHE: true }))));
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update(args_2, nix.update({
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           name: name,
           nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, [prefetch_npm_deps])),
           buildPhase: nix.thunk(() => nix.str`runHook preBuild
@@ -286,7 +248,7 @@ runHook postBuild
           dontInstall: true,
           impureEnvVars: nix.thunk(() => nix.concat(nix.sel(lib, "fetchers", "proxyImpureEnvVars"), ["NIX_NPM_TOKENS"])),
           env: nix.thunk(() => nix.update({
-            [nix.POS]: pos$37,
+            [nix.POS]: $pos[36],
             NIX_NPM_REGISTRY_OVERRIDES: npmRegistryOverridesString,
             NPM_FETCHER_VERSION: nix.thunk(() => (() => {
               const validFetcherVersions = nix.thunk(() => [1n, 2n]);

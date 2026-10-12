@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5]], [["version", 8, 3], ["pname", 9, 3], ["src", 11, 3], ["outputs", 16, 3], ["configureFlags", 21, 3], ["postPatch", 23, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 8, 3], ["pname", 9, 3], ["src", 11, 3], ["outputs", 16, 3], ["configureFlags", 21, 3], ["postPatch", 23, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.10",
       pname: "libircclient",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/libircclient/libircclient/${nix.sel(finalAttrs, "version")}/libircclient-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0b9wa0h3xc31wpqlvgxgnvqp5wgx3kwsf5s9432m5cj8ycx6zcmv",
         })))),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-shared"]),
       postPatch: "substituteInPlace src/Makefile.in \\\n  --replace \"@prefix@/include\" \"@prefix@/include/libircclient\" \\\n  --replace \"@libdir@\"         \"@prefix@/lib\" \\\n  --replace \"cp \"              \"install \"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small but extremely powerful library which implements the client IRC protocol",
         homepage: "http://www.ulduzsoft.com/libircclient/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

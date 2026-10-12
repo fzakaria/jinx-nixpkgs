@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["description", 195, 5], ["homepage", 196, 5], ["changelog", 197, 5], ["license", 198, 5], ["maintainers", 199, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["build-system", 48, 3], ["dependencies", 52, 3], ["disabledTests", 71, 3], ["enabledTestPaths", 171, 3], ["disabledTestPaths", 175, 3], ["nativeCheckInputs", 184, 3], ["pythonImportsCheck", 192, 3], ["meta", 194, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "google-generativeai": false, "huggingface-hub": false, joblib: false, networkx: false, numpy: false, "opt-einsum": false, pandas: false, pyparsing: false, "pyro-ppl": false, "scikit-base": false, "scikit-learn": false, scipy: false, statsmodels: false, torch: false, tqdm: false, xgboost: false, jsonschema: false, pytestCheckHook: false, "pytest-cov-stub": false, mock: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 195, 5], ["homepage", 196, 5], ["changelog", 197, 5], ["license", 198, 5], ["maintainers", 199, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["build-system", 48, 3], ["dependencies", 52, 3], ["disabledTests", 71, 3], ["enabledTestPaths", 171, 3], ["disabledTestPaths", 175, 3], ["nativeCheckInputs", 184, 3], ["pythonImportsCheck", 192, 3], ["meta", 194, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const mock = nix.arg($, "mock");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pgmpy",
       version: "1.1.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pgmpy",
           repo: "pgmpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -152,7 +150,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [jsonschema, pytestCheckHook, pytest_cov_stub, mock, writableTmpDirAsHomeHook]),
       pythonImportsCheck: nix.thunk(() => ["pgmpy"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python Library for learning (Structure and Parameter), inference (Probabilistic and Causal), and simulations in Bayesian Networks",
         homepage: "https://github.com/pgmpy/pgmpy",
         changelog: nix.thunk(() => nix.str`https://github.com/pgmpy/pgmpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

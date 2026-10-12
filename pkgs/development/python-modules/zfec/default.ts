@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 26], ["version", 17, 32], ["hash", 18, 5]], [["homepage", 37, 5], ["description", 38, 5], ["longDescription", 39, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 23, 3], ["nativeCheckInputs", 25, 3], ["checkPhase", 30, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hypothesis: false, pyutil: false, setuptools: false, twisted: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 26], ["version", 17, 32], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["description", 38, 5], ["longDescription", 39, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 23, 3], ["nativeCheckInputs", 25, 3], ["checkPhase", 30, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const twisted = nix.arg($, "twisted");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zfec",
       version: "1.6.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-xaGGHCU7USaYwuczrk2D9eLW6myIG32+ETNLaU51WgA=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "trial zfec\n",
       pythonImportsCheck: nix.thunk(() => ["zfec"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/tahoe-lafs/zfec",
         description: "Fast erasure codec which can be used with the command-line, C, Python, or Haskell",
         longDescription: "Fast, portable, programmable erasure coding a.k.a. \"forward\nerror correction\": the generation of redundant blocks of\ninformation such that if some blocks are lost then the\noriginal data can be recovered from the remaining blocks. The\nzfec package includes command-line tools, C API, Python API,\nand Haskell API.\n",

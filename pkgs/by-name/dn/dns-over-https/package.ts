@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["updateScript", 30, 12]], [["homepage", 33, 5], ["changelog", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["ldflags", 20, 3], ["subPackages", 25, 3], ["passthru", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 30, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["changelog", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["ldflags", 20, 3], ["subPackages", 25, 3], ["passthru", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dns-over-https",
       version: "2.3.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "m13253",
           repo: "dns-over-https",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-w", "-s"]),
       subPackages: nix.thunk(() => ["doh-client", "doh-server"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/m13253/dns-over-https",
         changelog: nix.thunk(() => nix.str`https://github.com/m13253/dns-over-https/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "High performance DNS over HTTPS client & server",

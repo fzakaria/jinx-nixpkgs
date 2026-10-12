@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/devd.nix", [[["mainProgram", 51, 8]], [["path", 9, 3], ["outputs", 11, 3], ["buildInputs", 18, 3], ["extraNativeBuildInputs", 22, 3], ["clangFixup", 27, 3], ["MK_TESTS", 29, 3], ["MK_AUTOFS", 30, 3], ["MK_ACPI", 31, 3], ["MK_SOUND", 32, 3], ["MK_BLUETOOTH", 33, 3], ["MK_HYPERV", 34, 3], ["MK_USB", 35, 3], ["MK_ZFS", 36, 3], ["postPatch", 38, 3], ["NIX_CFLAGS_COMPILE", 42, 3], ["postInstall", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, libutil: false, flex: false, byacc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/devd.nix", [["mainProgram", 51, 8]]);
-const pos$2 = nix.positions(here + "/devd.nix", [["path", 9, 3], ["outputs", 11, 3], ["buildInputs", 18, 3], ["extraNativeBuildInputs", 22, 3], ["clangFixup", 27, 3], ["MK_TESTS", 29, 3], ["MK_AUTOFS", 30, 3], ["MK_ACPI", 31, 3], ["MK_SOUND", 32, 3], ["MK_BLUETOOTH", 33, 3], ["MK_HYPERV", 34, 3], ["MK_USB", 35, 3], ["MK_ZFS", 36, 3], ["postPatch", 38, 3], ["NIX_CFLAGS_COMPILE", 42, 3], ["postInstall", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const byacc = nix.arg($, "byacc");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "sbin/devd",
       outputs: nix.thunk(() => ["out", "etc", "man", "debug"]),
       buildInputs: nix.thunk(() => [libutil]),
@@ -31,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace $BSDSRCDIR/sbin/devd/Makefile --replace-fail /etc $etc/etc\n",
       NIX_CFLAGS_COMPILE: nix.thunk(() => ["-Wno-c++20-extensions", "-Wno-nullability-completeness"]),
       postInstall: "make $makeFlags installconfig\n",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "devd" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "devd" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=devd.ts.map

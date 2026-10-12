@@ -2,43 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/photoprism.nix", [[["maintainers", 4, 8]], [["enable", 10, 9], ["port", 11, 9], ["originalsPath", 12, 9], ["passwordFile", 13, 9]], [["photoprism", 9, 16]], [["text", 16, 35]], [["photoprism-password", 16, 13]], [["etc", 16, 9], ["extraInit", 17, 9]], [["services", 9, 7], ["environment", 15, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 23, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/photoprism.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/photoprism.nix", [["enable", 10, 9], ["port", 11, 9], ["originalsPath", 12, 9], ["passwordFile", 13, 9]]);
-const pos$3 = nix.positions(here + "/photoprism.nix", [["photoprism", 9, 16]]);
-const pos$4 = nix.positions(here + "/photoprism.nix", [["text", 16, 35]]);
-const pos$5 = nix.positions(here + "/photoprism.nix", [["photoprism-password", 16, 13]]);
-const pos$6 = nix.positions(here + "/photoprism.nix", [["etc", 16, 9], ["extraInit", 17, 9]]);
-const pos$7 = nix.positions(here + "/photoprism.nix", [["services", 9, 7], ["environment", 15, 7]]);
-const pos$8 = nix.positions(here + "/photoprism.nix", [["machine", 6, 9]]);
-const pos$9 = nix.positions(here + "/photoprism.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "photoprism",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "stunkymonkey"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             photoprism: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               port: 8080n,
               originalsPath: "/media/photos/",
@@ -46,10 +38,10 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              "photoprism-password": nix.thunk(() => ({ [nix.POS]: pos$4, text: "secret" })),
+              [nix.POS]: $pos[4],
+              "photoprism-password": nix.thunk(() => ({ [nix.POS]: $pos[3], text: "secret" })),
             })),
             extraInit: "mkdir -p /media/photos\n",
           })),

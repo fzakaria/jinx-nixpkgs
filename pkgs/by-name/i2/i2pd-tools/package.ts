@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 22, 3], ["installPhase", 28, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, boost: false, fetchFromGitHub: false, openssl: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 22, 3], ["installPhase", 28, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "i2pd-tools",
       version: "2.58.0-unstable-2026-04-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PurpleI2P",
           repo: "i2pd-tools",
           rev: "34944bbd5d0bab34694b1f57edba4b5a783f8b7b",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib, openssl, boost]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nfor bin in \\\n    routerinfo keygen vain keyinfo regaddr \\\n    regaddr_3ld regaddralias x25519 famtool autoconf_i2pd \\\n    verifyhost offlinekeys b33address i2pbase64;\ndo\n  install -Dm755 $bin -t $out/bin\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Toolsuite to work with keys and eepsites",
         homepage: "https://github.com/PurpleI2P/i2pd-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

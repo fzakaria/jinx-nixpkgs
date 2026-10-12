@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["did", 11, 5], ["tag", 12, 5], ["hash", 13, 5]], [["description", 19, 5], ["homepage", 20, 5], ["changelog", 21, 5], ["license", 22, 5], ["maintainers", 23, 5], ["mainProgram", 24, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["cargoHash", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromTangled: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["did", 11, 5], ["tag", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 19, 5], ["homepage", 20, 5], ["changelog", 21, 5], ["license", 22, 5], ["maintainers", 23, 5], ["mainProgram", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["cargoHash", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromTangled = nix.arg($, "fetchFromTangled");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cargo-features-manager",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchFromTangled, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           did: "did:plc:ecwggpjedavt2waazmc4nuft",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-bfBSnC2qk19w6G81NdplPuiZvS1PRUNjCP8ozwuoTac=",
         })))),
       cargoHash: "sha256-MwfeVPmS4KE1vJ9aEUXZpT+AbPaOP8Rs65vSFarKal0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "TUI-like cli tool to manage the features of your rust-projects dependencies",
         homepage: "https://tangled.org/tobinio.dev/cargo-features-manager",
         changelog: nix.thunk(() => nix.str`https://tangled.org/tobinio.dev/cargo-features-manager/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["url", 32, 7], ["hash", 33, 7]], [["NIX_CFLAGS_COMPILE", 63, 7]], [["name", 66, 5], ["exec", 67, 5], ["desktopName", 68, 5], ["genericName", 69, 5], ["comment", 70, 5], ["categories", 71, 5]], [["homepage", 83, 5], ["description", 84, 5], ["longDescription", 85, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["env", 63, 3], ["desktopItems", 65, 3], ["installPhase", 78, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, makeDesktopItem: false, copyDesktopItems: false, cmake: false, boost: false, cups: false, fmt: false, libvorbis: false, libsndfile: false, minizip: false, gtest: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 63, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 66, 5], ["exec", 67, 5], ["desktopName", 68, 5], ["genericName", 69, 5], ["comment", 70, 5], ["categories", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 83, 5], ["description", 84, 5], ["longDescription", 85, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["env", 63, 3], ["desktopItems", 65, 3], ["installPhase", 78, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lsd2dsl",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nongeneric",
           repo: "lsd2dsl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/nongeneric/lsd2dsl/commit/bbda5be1b76a4a44804483d00c07d79783eceb6b.patch",
             hash: "sha256-7is83D1cMBArXVLe5TP7D7lUcwnTMeXjkJ+cbaH5JQk=",
           })))),
@@ -58,9 +53,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qt5compat")),
         nix.thunk(() => nix.sel(qt6, "qtwebengine")),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-int-conversion" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-int-conversion" })),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "lsd2dsl",
             exec: "lsd2dsl-qtgui",
             desktopName: "lsd2dsl",
@@ -70,7 +65,7 @@ export default nix.lambda((args) => (() => {
           })))))),
       installPhase: "install -Dm755 console/lsd2dsl gui/lsd2dsl-qtgui -t $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://rcebits.com/lsd2dsl/",
         description: "Lingvo dictionaries decompiler",
         longDescription: "A decompiler for ABBYY Lingvo’s proprietary dictionaries.\n",

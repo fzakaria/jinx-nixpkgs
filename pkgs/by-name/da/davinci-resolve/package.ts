@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["firstname", 110, 15], ["lastname", 111, 15], ["email", 112, 15], ["phone", 113, 15], ["country", 114, 15], ["street", 115, 15], ["state", 116, 15], ["city", 117, 15], ["product", 118, 15]], [["outputHashMode", 77, 13], ["outputHashAlgo", 78, 13], ["outputHash", 79, 13], ["impureEnvVars", 85, 13], ["nativeBuildInputs", 87, 13], ["SSL_CERT_FILE", 93, 13], ["REFERID", 96, 13], ["DOWNLOADSURL", 97, 13], ["SITEURL", 98, 13], ["PRODUCT", 99, 13], ["VERSION", 100, 13], ["USERAGENT", 102, 13], ["REQJSON", 109, 13]], [["name", 214, 11], ["desktopName", 215, 11], ["genericName", 216, 11], ["exec", 217, 11], ["icon", 218, 11], ["comment", 219, 11], ["categories", 220, 11], ["startupWMClass", 226, 11]], [["name", 229, 11], ["desktopName", 230, 11], ["exec", 231, 11], ["icon", 232, 11], ["mimeTypes", 233, 11], ["categories", 237, 11]], [["name", 243, 11], ["desktopName", 244, 11], ["exec", 245, 11], ["icon", 246, 11], ["categories", 247, 11]], [["name", 253, 11], ["desktopName", 254, 11], ["exec", 255, 11], ["icon", 256, 11], ["categories", 257, 11]], [["name", 260, 11], ["desktopName", 261, 11], ["exec", 262, 11], ["icon", 263, 11], ["categories", 264, 11]], [["name", 271, 9], ["desktopName", 272, 9], ["exec", 273, 9], ["icon", 274, 9], ["comment", 275, 9], ["categories", 276, 9]], [["pname", 58, 7], ["version", 59, 7], ["nativeBuildInputs", 61, 7], ["buildInputs", 69, 7], ["src", 74, 7], ["sourceRoot", 158, 7], ["installPhase", 160, 7], ["dontStrip", 195, 7], ["postFixup", 197, 7], ["desktopItems", 212, 7]], [["blackmagicraw-player", 375, 9], ["blackmagicraw-speedtest", 376, 9], ["davinci-control-panels-setup", 377, 9], ["davinci-fairlight-studio-utility", 379, 9]], [["davinci-remote-monitor", 383, 9]], [["davinci", 421, 13]], [["name", 425, 7], ["runtimeInputs", 426, 7], ["text", 431, 7]], [["updateScript", 424, 5]], [["description", 450, 5], ["homepage", 451, 5], ["license", 452, 5], ["maintainers", 453, 5], ["platforms", 459, 5], ["sourceProvenance", 460, 5], ["mainProgram", 461, 5]], [["pname", 285, 21], ["version", 285, 27], ["targetPkgs", 287, 3], ["extraPreBwrapCmds", 344, 3], ["extraBwrapArgs", 349, 3], ["runScript", 354, 3], ["extraInstallCommands", 365, 3], ["passthru", 420, 3], ["meta", 449, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, cacert: false, curl: false, runCommandLocal: false, unzip: false, appimageTools: false, addDriverRunpath: false, dbus: false, libGLU: false, "xkeyboard-config": false, "libxcb-util": false, "libxcb-wm": false, "libxcb-render-util": false, "libxcb-keysyms": false, "libxcb-image": false, libxxf86vm: false, libxt: false, libxtst: false, libxrender: false, libxrandr: false, libxi: false, libxinerama: false, libxfixes: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, libsm: false, libice: false, libxcb: false, buildFHSEnv: false, bash: false, writeText: false, writeShellScript: false, "ocl-icd": false, xkeyboard_config: false, glib: false, libarchive: false, "libxcrypt-legacy": false, python3: false, aprutil: false, makeDesktopItem: false, copyDesktopItems: false, jq: false, studioVariant: true, "common-updater-scripts": false, writeShellApplication: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["firstname", 110, 15], ["lastname", 111, 15], ["email", 112, 15], ["phone", 113, 15], ["country", 114, 15], ["street", 115, 15], ["state", 116, 15], ["city", 117, 15], ["product", 118, 15]]);
-const pos$2 = nix.positions(here + "/package.nix", [["outputHashMode", 77, 13], ["outputHashAlgo", 78, 13], ["outputHash", 79, 13], ["impureEnvVars", 85, 13], ["nativeBuildInputs", 87, 13], ["SSL_CERT_FILE", 93, 13], ["REFERID", 96, 13], ["DOWNLOADSURL", 97, 13], ["SITEURL", 98, 13], ["PRODUCT", 99, 13], ["VERSION", 100, 13], ["USERAGENT", 102, 13], ["REQJSON", 109, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 214, 11], ["desktopName", 215, 11], ["genericName", 216, 11], ["exec", 217, 11], ["icon", 218, 11], ["comment", 219, 11], ["categories", 220, 11], ["startupWMClass", 226, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 229, 11], ["desktopName", 230, 11], ["exec", 231, 11], ["icon", 232, 11], ["mimeTypes", 233, 11], ["categories", 237, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 243, 11], ["desktopName", 244, 11], ["exec", 245, 11], ["icon", 246, 11], ["categories", 247, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 253, 11], ["desktopName", 254, 11], ["exec", 255, 11], ["icon", 256, 11], ["categories", 257, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 260, 11], ["desktopName", 261, 11], ["exec", 262, 11], ["icon", 263, 11], ["categories", 264, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 271, 9], ["desktopName", 272, 9], ["exec", 273, 9], ["icon", 274, 9], ["comment", 275, 9], ["categories", 276, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 58, 7], ["version", 59, 7], ["nativeBuildInputs", 61, 7], ["buildInputs", 69, 7], ["src", 74, 7], ["sourceRoot", 158, 7], ["installPhase", 160, 7], ["dontStrip", 195, 7], ["postFixup", 197, 7], ["desktopItems", 212, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["blackmagicraw-player", 375, 9], ["blackmagicraw-speedtest", 376, 9], ["davinci-control-panels-setup", 377, 9], ["davinci-fairlight-studio-utility", 379, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["davinci-remote-monitor", 383, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["davinci", 421, 13]]);
-const pos$13 = nix.positions(here + "/package.nix", [["name", 425, 7], ["runtimeInputs", 426, 7], ["text", 431, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["updateScript", 424, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["description", 450, 5], ["homepage", 451, 5], ["license", 452, 5], ["maintainers", 453, 5], ["platforms", 459, 5], ["sourceProvenance", 460, 5], ["mainProgram", 461, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 285, 21], ["version", 285, 27], ["targetPkgs", 287, 3], ["extraPreBwrapCmds", 344, 3], ["extraBwrapArgs", 349, 3], ["runScript", 354, 3], ["extraInstallCommands", 365, 3], ["passthru", 420, 3], ["meta", 449, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -100,7 +85,7 @@ export default nix.lambda((args) => (() => {
               "Safari/537.36",
             ])));
           const REQJSON = nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               firstname: "NixOS",
               lastname: "Linux",
               email: "someone@nixos.org",
@@ -112,7 +97,7 @@ export default nix.lambda((args) => (() => {
               product: PRODUCT,
             }))));
           return {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             outputHashMode,
             outputHashAlgo,
             outputHash,
@@ -165,7 +150,7 @@ runHook postInstall
       const postFixup = "for program in $out/bin/*; do\n  isELF \"$program\" || continue\n  addDriverRunpath \"$program\"\ndone\n\nfor program in $out/libs/*; do\n  isELF \"$program\" || continue\n  if [[ \"$program\" != *\"libcudnn_cnn_infer\"* ]];then\n    echo $program\n    addDriverRunpath \"$program\"\n  fi\ndone\n";
       const desktopItems = nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: nix.thunk(() => nix.str`davinci-resolve${nix.app(nix.sel(lib, "optionalString"), studioVariant, "-studio")}`),
             desktopName: nix.thunk(() => nix.str`Davinci Resolve${nix.app(nix.sel(lib, "optionalString"), studioVariant, " Studio")}`),
             genericName: "Video Editor",
@@ -176,7 +161,7 @@ runHook postInstall
             startupWMClass: "resolve",
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "blackmagicraw-player",
             desktopName: "Blackmagic RAW Player",
             exec: "blackmagicraw-player %f",
@@ -185,7 +170,7 @@ runHook postInstall
             categories: nix.thunk(() => ["Video", "AudioVideo"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "blackmagicraw-speedtest",
             desktopName: "Blackmagic RAW Speed Test",
             exec: "blackmagicraw-speedtest",
@@ -193,7 +178,7 @@ runHook postInstall
             categories: nix.thunk(() => ["Video", "AudioVideo"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "davinci-control-panels-setup",
             desktopName: "DaVinci Control Panels Setup",
             exec: "davinci-control-panels-setup",
@@ -201,7 +186,7 @@ runHook postInstall
             categories: nix.thunk(() => ["Settings"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "davinci-fairlight-studio-utility",
             desktopName: "Fairlight Studio Utility",
             exec: "davinci-fairlight-studio-utility",
@@ -209,7 +194,7 @@ runHook postInstall
             categories: nix.thunk(() => ["AudioVideo", "Audio"]),
           })))),
       ], nix.app(nix.sel(lib, "optional"), studioVariant, nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "davinci-remote-monitor",
             desktopName: "DaVinci Remote Monitor",
             exec: "davinci-remote-monitor",
@@ -218,7 +203,7 @@ runHook postInstall
             categories: nix.thunk(() => ["AudioVideo", "Video"]),
           })))))));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         nativeBuildInputs,
@@ -232,7 +217,7 @@ runHook postInstall
       };
     })())));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: nix.thunk(() => nix.attr(davinci, "pname")),
       version: nix.thunk(() => nix.attr(davinci, "version")),
       targetPkgs: (pkgs) => (() => {
@@ -312,13 +297,13 @@ fi
         const mkWrapper = (name) => (bin) => nix.app(writeShellScript, name, nix.thunk(() => nix.str`exec "$(dirname "$0")/${execName}" ${bin} "$@"
 `));
         const wrappers = nix.thunk(() => nix.update({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           "blackmagicraw-player": nix.thunk(() => nix.str`${davinci}/BlackmagicRAWPlayer/BlackmagicRAWPlayer`),
           "blackmagicraw-speedtest": nix.thunk(() => nix.str`${davinci}/BlackmagicRAWSpeedTest/BlackmagicRAWSpeedTest`),
           "davinci-control-panels-setup": nix.thunk(() => nix.str`"${davinci}/DaVinci Control Panels Setup/DaVinci Control Panels Setup"`),
           "davinci-fairlight-studio-utility": nix.thunk(() => nix.str`"${davinci}/Fairlight Studio Utility/Fairlight Studio Utility"`),
         }, nix.app(nix.sel(lib, "optionalAttrs"), studioVariant, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             "davinci-remote-monitor": nix.thunk(() => nix.str`"${davinci}/bin/DaVinci Remote Monitor"`),
           })))));
         return nix.str`# Desktop files
@@ -350,10 +335,10 @@ ln -s ${davinci}/lib/udev/rules.d/99-ResolveKeyboardHID.rules $out/lib/udev/rule
 ln -s ${davinci}/lib/udev/rules.d/99-DavinciPanel.rules $out/lib/udev/rules.d/
 `;
       })()),
-      passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$12, davinci: davinci }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(studioVariant)), nix.thunk(() => ({
-          [nix.POS]: pos$14,
+      passthru: nix.thunk(() => nix.update({ [nix.POS]: $pos[11], davinci: davinci }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(studioVariant)), nix.thunk(() => ({
+          [nix.POS]: $pos[13],
           updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 name: "update-davinci-resolve",
                 runtimeInputs: nix.thunk(() => [curl, jq, common_updater_scripts]),
                 text: nix.thunk(() => nix.str`set -o errexit
@@ -373,7 +358,7 @@ update-source-version davinci-resolve-studio "$latestStudioLinuxVersion" --sourc
               })))))),
         }))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         description: "Professional video editing, color, effects and audio post-processing",
         homepage: "https://www.blackmagicdesign.com/products/davinciresolve",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

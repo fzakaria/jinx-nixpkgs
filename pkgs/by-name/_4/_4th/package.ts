@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["outputs", 16, 3], ["dontConfigure", 21, 3], ["preBuild", 23, 3], ["makeFlags", 28, 3], ["preInstall", 34, 3], ["installFlags", 41, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["outputs", 16, 3], ["dontConfigure", 21, 3], ["preBuild", 23, 3], ["makeFlags", 28, 3], ["preInstall", 34, 3], ["installFlags", 41, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "4th",
       version: "3.64.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://sourceforge.net/projects/forth-4th/files/4th-${nix.sel(finalAttrs, "version")}/4th-${nix.sel(finalAttrs, "version")}-unix.tar.gz`),
           hash: "sha256-ufQiuRDPmcYzFSQf16cuZSrOEbH3itq7yZYo87zPs1g=",
         })))),
@@ -39,7 +37,7 @@ make -C sources clean
         nix.thunk(() => nix.str`MANDIR=${nix.builtins.placeholder("man")}/share/man`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://thebeez.home.xs4all.nl/4tH/index.html",
         description: "Portable Forth compiler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

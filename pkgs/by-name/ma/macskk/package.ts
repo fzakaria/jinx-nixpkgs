@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["updateScript", 49, 12]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["sourceProvenance", 58, 5], ["mainProgram", 59, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["unpackPhase", 28, 3], ["installPhase", 38, 3], ["passthru", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, _7zz: false, cpio: false, xar: false, darwin: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 49, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["sourceProvenance", 58, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["unpackPhase", 28, 3], ["installPhase", 38, 3], ["passthru", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "macskk",
       version: "2.14.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mtgto/macSKK/releases/download/${nix.sel(finalAttrs, "version")}/macSKK-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-fjvrH/sd6A0d4ye7L/YMb+j4G6yxIZkxY4CN6z/n5JE=",
         })))),
@@ -38,11 +35,11 @@ runHook postUnpack
 `),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out\"/Library/Input\\ Methods\nmkdir -p \"$out/bin\"\ncp -a \"Library/Input Methods/macSKK.app\" \"$out/Library/Input Methods/\"\nln -s \"$out/Library/Input Methods/macSKK.app/Contents/MacOS/macSKK\" \"$out/bin/macSKK\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Yet Another macOS SKK Input Method",
         homepage: "https://github.com/mtgto/macSKK",
         changelog: nix.thunk(() => nix.str`https://github.com/mtgto/macSKK/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

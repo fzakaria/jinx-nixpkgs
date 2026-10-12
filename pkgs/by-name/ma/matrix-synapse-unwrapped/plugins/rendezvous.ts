@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rendezvous.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["pname", 27, 7], ["version", 28, 7], ["src", 29, 7], ["postPatch", 30, 7], ["hash", 32, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["cargoDeps", 25, 3], ["nativeBuildInputs", 35, 3], ["buildAndTestSubdir", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, "setuptools-rust": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rendezvous.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/rendezvous.nix", [["pname", 27, 7], ["version", 28, 7], ["src", 29, 7], ["postPatch", 30, 7], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/rendezvous.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$4 = nix.positions(here + "/rendezvous.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["cargoDeps", 25, 3], ["nativeBuildInputs", 35, 3], ["buildAndTestSubdir", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.12";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "matrix-org",
           repo: "rust-http-rendezvous-server",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = nix.thunk(() => nix.str`cp ${nix.path(here, "./rendezvous-Cargo.lock")} Cargo.lock
 `);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const buildAndTestSubdir = "synapse";
       const pythonImportsCheck = nix.thunk(() => ["matrix_http_rendezvous_synapse"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Implementation of MSC3886: Simple rendezvous capability",
         homepage: "https://github.com/matrix-org/rust-http-rendezvous-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

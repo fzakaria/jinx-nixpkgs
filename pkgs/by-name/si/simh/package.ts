@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["NIX_CFLAGS_COMPILE", 36, 7]], [["homepage", 65, 5], ["description", 66, 5], ["longDescription", 67, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["dontConfigure", 31, 3], ["env", 36, 3], ["makeFlags", 38, 3], ["preInstall", 44, 3], ["installPhase", 49, 3], ["postInstall", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, SDL2: false, SDL2_ttf: false, libpcap: false, vde2: false, pcre2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["description", 66, 5], ["longDescription", 67, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["dontConfigure", 31, 3], ["env", 36, 3], ["makeFlags", 38, 3], ["preInstall", 44, 3], ["installPhase", 49, 3], ["postInstall", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "simh";
       const version = "3.11-1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "simh",
           repo: "simh",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [SDL2, SDL2_ttf, libpcap, vde2, pcre2]);
       const dontConfigure = true;
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fcommon"]))),
       }));
       const makeFlags = nix.thunk(() => [
@@ -53,7 +50,7 @@ runHook postInstall
 `);
       const postInstall = "(cd $out/bin; for i in *; do ln -s $i simh-$i; done)\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://simh.trailing-edge.com/",
         description: "Collection of simulators of historic hardware",
         longDescription: "SimH (History Simulator) is a collection of simulators for historically\nsignificant or just plain interesting computer hardware and software from\nthe past. The goal of the project is to create highly portable system\nsimulators and to publish them as freeware on the Internet, with freely\navailable copies of significant or representative software.\n",
@@ -68,7 +65,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

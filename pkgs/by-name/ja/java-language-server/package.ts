@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 29, 5], ["hash", 30, 5]], [["dontConfigure", 33, 21]], [["description", 70, 5], ["mainProgram", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["mvnFetchExtraArgs", 33, 3], ["mvnJdk", 34, 3], ["mvnHash", 35, 3], ["nativeBuildInputs", 37, 3], ["dontConfigure", 42, 3], ["preBuild", 43, 3], ["doCheck", 55, 3], ["installPhase", 57, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, jdk25_headless: false, maven: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["dontConfigure", 33, 21]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 70, 5], ["mainProgram", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["mvnFetchExtraArgs", 33, 3], ["mvnJdk", 34, 3], ["mvnHash", 35, 3], ["nativeBuildInputs", 37, 3], ["dontConfigure", 42, 3], ["preBuild", 43, 3], ["doCheck", 55, 3], ["installPhase", 57, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const platform = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "linux" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mac" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")) ? "windows" : nix.builtins.throw("unsupported platform")))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "java-language-server",
       version: "0.2.49",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "georgewfraser",
           repo: "java-language-server",
           rev: "58daaa29a0e2fe22764283607da6801cf8b493b9",
           hash: "sha256-rHtnsZxcZKq1IGZJXE8nkv2iyS09kuNlqaVsRWpMwjM=",
         })))),
-      mvnFetchExtraArgs: nix.thunk(() => ({ [nix.POS]: pos$2, dontConfigure: true })),
+      mvnFetchExtraArgs: nix.thunk(() => ({ [nix.POS]: $pos[1], dontConfigure: true })),
       mvnJdk: jdk25_headless,
       mvnHash: "sha256-mSjz5OM/tMZuiX4kmB1DprvQuIP4EzeDpAr4oQ5T11s=",
       nativeBuildInputs: nix.thunk(() => [jdk25_headless, makeWrapper]),
@@ -53,7 +50,7 @@ makeWrapper $out/share/java/java-language-server/lang_server_${platform}.sh $out
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Java language server based on v3.0 of the protocol and implemented using the Java compiler API",
         mainProgram: "java-language-server",
         homepage: "https://github.com/georgewfraser/java-language-server",

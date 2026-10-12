@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]], [["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["build-system", 20, 3], ["pythonImportsCheck", 22, 3], ["checkPhase", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["build-system", 20, 3], ["pythonImportsCheck", 22, 3], ["checkPhase", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bsdiff4",
       version: "1.2.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-KrV9AaeLOeKeWszJz+rUEwmC3tncy8QmG9DpxR1rdR0=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["bsdiff4"]),
       checkPhase: "mv bsdiff4 _bsdiff4\npython -c 'import bsdiff4; bsdiff4.test()'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Binary diff and patch using the BSDIFF4-format",
         homepage: "https://github.com/ilanschnell/bsdiff4",
         changelog: nix.thunk(() => nix.str`https://github.com/ilanschnell/bsdiff4/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.txt`),

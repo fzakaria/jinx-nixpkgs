@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["name", 68, 7], ["src", 69, 7], ["buildPhase", 70, 7]], [["unpackPhase", 122, 7], ["postPatch", 125, 7], ["hash", 128, 7]], [["npmDeps", 121, 5], ["npmRoot", 131, 5]], [["variant", 136, 7], ["withFonts", 137, 7]], [["libreoffice", 135, 5], ["updateScript", 140, 5]], [["changelog", 144, 5], ["description", 145, 5], ["homepage", 146, 5], ["license", 147, 5], ["mainProgram", 148, 5], ["platforms", 149, 5], ["teams", 150, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 29, 3], ["__structuredAttrs", 36, 3], ["strictDeps", 37, 3], ["patches", 39, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 79, 3], ["preConfigure", 95, 3], ["configureFlags", 102, 3], ["enableParallelBuilding", 113, 3], ["postInstall", 115, 3], ["env", 120, 3], ["passthru", 134, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, cairo: false, cppunit: false, fetchFromGitHub: false, fetchNpmDeps: false, lib: false, libcap: false, libpng: false, "libreoffice-collabora": false, nodejs: false, npmHooks: false, pam: false, pango: false, pixman: false, "pkg-config": false, poco: false, python3: false, rsync: false, stdenv: false, zstd: false, kdePackages: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 68, 7], ["src", 69, 7], ["buildPhase", 70, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["unpackPhase", 122, 7], ["postPatch", 125, 7], ["hash", 128, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["npmDeps", 121, 5], ["npmRoot", 131, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["variant", 136, 7], ["withFonts", 137, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["libreoffice", 135, 5], ["updateScript", 140, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 144, 5], ["description", 145, 5], ["homepage", 146, 5], ["license", 147, 5], ["mainProgram", 148, 5], ["platforms", 149, 5], ["teams", 150, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 29, 3], ["__structuredAttrs", 36, 3], ["strictDeps", 37, 3], ["patches", 39, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 79, 3], ["preConfigure", 95, 3], ["configureFlags", 102, 3], ["enableParallelBuilding", 113, 3], ["postInstall", 115, 3], ["env", 120, 3], ["passthru", 134, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "collabora-desktop",
       version: "25.04.9.2-2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CollaboraOnline",
           repo: "online",
           tag: nix.thunk(() => nix.str`coda-${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +63,7 @@ substituteInPlace browser/css/spreadsheet.css \\
         nix.thunk(() => nix.sel(python3, "pkgs", "polib")),
         rsync,
         nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "qtlibexec",
             src: nix.thunk(() => nix.sel(kdePackages, "qtbase")),
             buildPhase: nix.thunk(() => nix.str`mkdir -p $out
@@ -109,9 +102,9 @@ ln -s ${nix.sel(kdePackages, "qtbase")}/libexec $out/bin
 python3 scripts/insert-coda-license.py $out/LICENSE.html CODA-THIRDPARTYLICENSES.html
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             unpackPhase: "true",
             postPatch: nix.thunk(() => nix.str`cp ${nix.path(here, "./package-lock.json")} package-lock.json
 `),
@@ -120,12 +113,12 @@ python3 scripts/insert-coda-license.py $out/LICENSE.html CODA-THIRDPARTYLICENSES
         npmRoot: "browser",
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        libreoffice: nix.thunk(() => nix.app(nix.sel(libreoffice_collabora, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, variant: "collabora-coda", withFonts: true })))),
+        [nix.POS]: $pos[5],
+        libreoffice: nix.thunk(() => nix.app(nix.sel(libreoffice_collabora, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], variant: "collabora-coda", withFonts: true })))),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: "https://www.collaboraonline.com/blog/",
         description: "Collaborative Office for desktop, based on LibreOffice technology",
         homepage: "https://www.collaboraonline.com/collabora-office/",

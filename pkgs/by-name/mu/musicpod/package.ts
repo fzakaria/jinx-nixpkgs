@@ -2,19 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["pname", 35, 9], ["version", 36, 17], ["src", 36, 25], ["passthru", 37, 23], ["postPatch", 39, 9], ["installPhase", 44, 9]], [["pname", 56, 9], ["version", 57, 17], ["src", 57, 25], ["passthru", 58, 23], ["postPatch", 60, 9], ["installPhase", 68, 9]], [["media_kit_libs_linux", 32, 5], ["media_kit_video", 53, 5]], [["nativeBuildInputs", 106, 11], ["src", 107, 32]], [["supportedFeatures", 117, 11]], [["command", 121, 9], ["supportedFeatures", 128, 9]], [["pubspecSource", 103, 5], ["updateScript", 112, 5]], [["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["mainProgram", 137, 5], ["maintainers", 138, 5], ["platforms", 139, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["customSourceBuilders", 30, 3], ["postPatch", 78, 3], ["pubspecLock", 83, 3], ["gitHashes", 85, 3], ["buildInputs", 87, 3], ["runtimeDependencies", 94, 3], ["postInstall", 96, 3], ["passthru", 102, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, flutter341: false, fetchFromGitHub: false, "alsa-lib": false, mimalloc: false, "mpv-unwrapped": false, libass: false, libnotify: false, pulseaudio: false, runCommand: false, "_experimental-update-script-combinators": false, "yq-go": false, "nix-update-script": false, dart: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
 const formals$2 = { args: { version: false, src: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 35, 9], ["version", 36, 17], ["src", 36, 25], ["passthru", 37, 23], ["postPatch", 39, 9], ["installPhase", 44, 9]]);
 const formals$3 = { args: { version: false, src: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 56, 9], ["version", 57, 17], ["src", 57, 25], ["passthru", 58, 23], ["postPatch", 60, 9], ["installPhase", 68, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["media_kit_libs_linux", 32, 5], ["media_kit_video", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 106, 11], ["src", 107, 32]]);
-const pos$6 = nix.positions(here + "/package.nix", [["supportedFeatures", 117, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["command", 121, 9], ["supportedFeatures", 128, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pubspecSource", 103, 5], ["updateScript", 112, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["mainProgram", 137, 5], ["maintainers", 138, 5], ["platforms", 139, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["customSourceBuilders", 30, 3], ["postPatch", 78, 3], ["pubspecLock", 83, 3], ["gitHashes", 85, 3], ["buildInputs", 87, 3], ["runtimeDependencies", 94, 3], ["postInstall", 96, 3], ["passthru", 102, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,24 +25,24 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const dart = nix.arg($, "dart");
   return nix.app(nix.sel(flutter341, "buildFlutterApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "musicpod",
       version: "2.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubuntu-flutter-community",
           repo: "musicpod",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-riBBJXeSsCi3i0+aKnGElIbhQdvkpvIqMdu4FB3veFU=",
         })))),
       customSourceBuilders: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         media_kit_libs_linux: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const version = nix.arg($_1, "version");
           const src = nix.arg($_1, "src");
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pname: "media_kit_libs_linux",
               version: version,
               src: src,
@@ -67,7 +58,7 @@ sed -i '/set(PLUGIN_NAME "media_kit_libs_linux_plugin")/i add_custom_target("MIM
           const version = nix.arg($_1, "version");
           const src = nix.arg($_1, "src");
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pname: "media_kit_video",
               version: version,
               src: src,
@@ -92,17 +83,17 @@ install -Dm644 snap/gui/musicpod.desktop -t $out/share/applications
 install -Dm644 snap/gui/musicpod.png -t $out/share/icons/hicolor/256x256/apps
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             nativeBuildInputs: nix.thunk(() => [yq_go]),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "musicpod.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$6, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "musicpod.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: $pos[5], supportedFeatures: [] })),
             nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               command: nix.thunk(() => [
                 nix.thunk(() => nix.sel(dart, "fetchGitHashesScript")),
                 "--input",
@@ -115,7 +106,7 @@ install -Dm644 snap/gui/musicpod.png -t $out/share/icons/hicolor/256x256/apps
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Music, radio, television and podcast player",
         homepage: "https://github.com/ubuntu-flutter-community/musicpod",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["LIBGIT2_NO_VENDOR", 38, 5], ["LIBZ_SYS_STATIC", 39, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 40, 5]], [["updateScript", 49, 12]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 59, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["env", 37, 3], ["nativeInstallCheckInputs", 43, 3], ["doInstallCheck", 46, 3], ["versionCheckProgram", 47, 3], ["passthru", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, libgit2: false, libz: false, zstd: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBGIT2_NO_VENDOR", 38, 5], ["LIBZ_SYS_STATIC", 39, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 49, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["env", 37, 3], ["nativeInstallCheckInputs", 43, 3], ["doInstallCheck", 46, 3], ["versionCheckProgram", 47, 3], ["passthru", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "smeagol",
       version: "0.5.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AustinWise",
           repo: "smeagol",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libgit2, libz, zstd]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LIBGIT2_NO_VENDOR: "1",
         LIBZ_SYS_STATIC: "0",
         ZSTD_SYS_USE_PKG_CONFIG: "1",
@@ -45,11 +41,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/smeagol-wiki`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Locally hosted wiki",
         homepage: "https://smeagol.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/AustinWise/smeagol/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

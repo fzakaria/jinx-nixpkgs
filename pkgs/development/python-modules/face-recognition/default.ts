@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 5], ["version", 26, 13], ["hash", 27, 5]], [["license", 44, 5], ["homepage", 45, 5], ["maintainers", 46, 5], ["description", 47, 5]], [["pname", 20, 3], ["version", 21, 3], ["format", 22, 3], ["src", 24, 3], ["propagatedBuildInputs", 30, 3], ["nativeCheckInputs", 38, 3], ["doCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, lib: false, click: false, dlib: false, "face-recognition-models": false, numpy: false, pillow: false, pytestCheckHook: false, config: false, cudaSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 5], ["version", 26, 13], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 44, 5], ["homepage", 45, 5], ["maintainers", 46, 5], ["description", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["format", 22, 3], ["src", 24, 3], ["propagatedBuildInputs", 30, 3], ["nativeCheckInputs", 38, 3], ["doCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "face_recognition",
           version: version,
           hash: "sha256-Xl790WhqpWavDTzBMTsTHksZdleo/9A2aebT+tknBew=",
@@ -34,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(config, "cudaSupport")));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/ageitgey/face_recognition",
         maintainers: [],
         description: "World's simplest facial recognition api for Python and the command line",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

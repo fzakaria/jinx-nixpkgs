@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["package", 33, 7], ["command", 34, 7]], [["litestream", 31, 26], ["version", 32, 5]], [["tests", 30, 12]], [["description", 39, 5], ["mainProgram", 40, 5], ["license", 41, 5], ["homepage", 42, 5], ["maintainers", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["ldflags", 19, 3], ["vendorHash", 25, 3], ["__darwinAllowLocalNetworking", 28, 3], ["passthru", 30, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false, nixosTests: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 33, 7], ["command", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["litestream", 31, 26], ["version", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 30, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["license", 41, 5], ["homepage", 42, 5], ["maintainers", 43, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["ldflags", 19, 3], ["vendorHash", 25, 3], ["__darwinAllowLocalNetworking", 28, 3], ["passthru", 30, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "litestream",
       version: "0.5.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "benbjohnson",
           repo: "litestream",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,19 +31,19 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-IbnLypkKqtm+wceNXakdeML66fHNmuBRi+cWSFmUKWk=",
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           litestream: nix.thunk(() => nix.attr(nixosTests, "litestream")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "litestream version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Streaming replication for SQLite",
         mainProgram: "litestream",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pname", 36, 7], ["version", 37, 7], ["src", 38, 7], ["pnpmWorkspaces", 39, 7], ["pnpm", 41, 5], ["fetcherVersion", 42, 5], ["hash", 43, 5]], [["package", 78, 43]], [["version", 78, 11]], [["updateScript", 77, 5], ["tests", 78, 5]], [["changelog", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]], [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["src", 21, 3], ["pnpmWorkspaces", 28, 3], ["pnpmDeps", 34, 3], ["nativeBuildInputs", 46, 3], ["buildPhase", 53, 3], ["installPhase", 61, 3], ["passthru", 76, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpm_11: false, pnpmConfigHook: false, nodejs: false, makeBinaryWrapper: false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 36, 7], ["version", 37, 7], ["src", 38, 7], ["pnpmWorkspaces", 39, 7], ["pnpm", 41, 5], ["fetcherVersion", 42, 5], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 78, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 78, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 77, 5], ["tests", 78, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["src", 21, 3], ["pnpmWorkspaces", 28, 3], ["pnpmDeps", 34, 3], ["nativeBuildInputs", 46, 3], ["buildPhase", 53, 3], ["installPhase", 61, 3], ["passthru", 76, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "pyright",
       version: "1.1.414",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Microsoft",
           repo: "pyright",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       pnpmWorkspaces: nix.thunk(() => ["pyright-root", "pyright-internal", "pyright"]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -63,18 +57,18 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} "$out/bin/pyright-langser
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/Microsoft/pyright/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Type checker for the Python language",
         homepage: "https://github.com/Microsoft/pyright",

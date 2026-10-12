@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 65, 5], ["longDescription", 66, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["patchPhase", 35, 3], ["preConfigure", 44, 3], ["preBuild", 49, 3], ["postInstall", 54, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gcc: false, flex: false, bison: false, texinfo: false, openjdk8_headless: false, beamPackages: false, makeWrapper: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["longDescription", 66, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["patchPhase", 35, 3], ["preConfigure", 44, 3], ["preBuild", 49, 3], ["postInstall", 54, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mercury";
       const version = "22.01.9";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dl.mercurylang.org/release/mercury-srcdist-${version}.tar.gz`),
           sha256: "sha256-WCY52JUw3WU5w68BuEH2guZVTDylwJvhJOeJ18pLK1g=",
         }))));
@@ -50,7 +48,7 @@ for e in $(ls $out/bin) ; do
 done
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pure logic programming language",
         longDescription: "Mercury is a logic/functional programming language which combines the\nclarity and expressiveness of declarative programming with advanced\nstatic analysis and error detection features.  Its highly optimized\nexecution algorithm delivers efficiency far in excess of existing logic\nprogramming systems, and close to conventional programming systems.\nMercury addresses the problems of large-scale program development,\nallowing modularity, separate compilation, and numerous optimization/time\ntrade-offs.\n",
         homepage: "https://mercurylang.org/",
@@ -63,7 +61,7 @@ done
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

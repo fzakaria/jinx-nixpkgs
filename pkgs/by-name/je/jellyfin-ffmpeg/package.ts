@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["version", 12, 11], ["source", 13, 3], ["buildFfplay", 19, 3], ["buildFfprobe", 20, 3], ["withFrei0r", 24, 3], ["withRav1e", 25, 3], ["withSamba", 26, 3], ["withSdl2", 27, 3], ["withWhisper", 28, 3]], [["license", 46, 26], ["mainProgram", 46, 34], ["changelog", 47, 7], ["description", 48, 7], ["homepage", 49, 7], ["maintainers", 50, 7], ["pkgConfigModules", 54, 7]], [["pname", 31, 5], ["configureFlags", 33, 5], ["postPatch", 37, 5], ["meta", 45, 5]]]);
 const formals$1 = { args: { "ffmpeg_8-full": false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 12, 11], ["source", 13, 3], ["buildFfplay", 19, 3], ["buildFfprobe", 20, 3], ["withFrei0r", 24, 3], ["withRav1e", 25, 3], ["withSamba", 26, 3], ["withSdl2", 27, 3], ["withWhisper", 28, 3]]);
-const pos$3 = nix.positions(here + "/package.nix", [["license", 46, 26], ["mainProgram", 46, 34], ["changelog", 47, 7], ["description", 48, 7], ["homepage", 49, 7], ["maintainers", 50, 7], ["pkgConfigModules", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 5], ["configureFlags", 33, 5], ["postPatch", 37, 5], ["meta", 45, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "8.1.2-5";
   return nix.app(nix.sel(nix.app(nix.sel(ffmpeg_8_full, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: version,
       source: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jellyfin",
           repo: "jellyfin-ffmpeg",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       withSdl2: false,
       withWhisper: false,
     }))), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jellyfin-ffmpeg",
       configureFlags: nix.thunk(() => nix.concat(nix.sel(old, "configureFlags"), ["--extra-version=Jellyfin"])),
       postPatch: nix.thunk(() => nix.str`for file in $(cat debian/patches/series); do
@@ -44,7 +41,7 @@ ${nix.selOr(old, () => "", "postPatch")}
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(old, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         license: nix.thunk(() => nix.attr(from, "license")),
         mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),
         changelog: nix.thunk(() => nix.str`https://github.com/jellyfin/jellyfin-ffmpeg/releases/tag/v${version}`),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/4.x.nix", [[["url", 44, 7], ["sha256", 45, 7]], [["url", 57, 7], ["hash", 58, 7]], [["url", 63, 7], ["hash", 64, 7]], [["packageName", 122, 7], ["attrPath", 123, 7], ["versionPolicy", 124, 7], ["freeze", 125, 7]], [["pkg-config", 129, 18]], [["updateScript", 121, 5], ["tests", 129, 12]], [["description", 132, 5], ["homepage", 133, 5], ["pkgConfigModules", 134, 5], ["platforms", 135, 5], ["license", 136, 5], ["teams", 137, 5]], [["pname", 28, 3], ["version", 29, 3], ["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["outputs", 34, 3], ["src", 39, 3], ["patches", 48, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 79, 3], ["propagatedBuildInputs", 88, 3], ["nativeCheckInputs", 95, 3], ["postPatch", 100, 3], ["doCheck", 107, 3], ["checkPhase", 109, 3], ["passthru", 120, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch2: false, meson: false, ninja: false, "pkg-config": false, atk: false, cairo: false, glib: false, gtk3: false, pango: false, fribidi: false, vala: false, libxml2: false, perl: false, gettext: false, gnome: false, "gobject-introspection": false, dbus: false, "xvfb-run": false, "shared-mime-info": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/4.x.nix", [["url", 44, 7], ["sha256", 45, 7]]);
-const pos$2 = nix.positions(here + "/4.x.nix", [["url", 57, 7], ["hash", 58, 7]]);
-const pos$3 = nix.positions(here + "/4.x.nix", [["url", 63, 7], ["hash", 64, 7]]);
-const pos$4 = nix.positions(here + "/4.x.nix", [["packageName", 122, 7], ["attrPath", 123, 7], ["versionPolicy", 124, 7], ["freeze", 125, 7]]);
-const pos$5 = nix.positions(here + "/4.x.nix", [["pkg-config", 129, 18]]);
-const pos$6 = nix.positions(here + "/4.x.nix", [["updateScript", 121, 5], ["tests", 129, 12]]);
-const pos$7 = nix.positions(here + "/4.x.nix", [["description", 132, 5], ["homepage", 133, 5], ["pkgConfigModules", 134, 5], ["platforms", 135, 5], ["license", 136, 5], ["teams", 137, 5]]);
-const pos$8 = nix.positions(here + "/4.x.nix", [["pname", 28, 3], ["version", 29, 3], ["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["outputs", 34, 3], ["src", 39, 3], ["patches", 48, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 79, 3], ["propagatedBuildInputs", 88, 3], ["nativeCheckInputs", 95, 3], ["postPatch", 100, 3], ["doCheck", 107, 3], ["checkPhase", 109, 3], ["passthru", 120, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "gtksourceview",
       version: "4.8.4",
       __structuredAttrs: true,
@@ -48,7 +41,7 @@ export default nix.lambda((args) => (() => {
         const pname = nix.thunk(() => nix.attr(finalAttrs, "pname"));
         const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`mirror://gnome/sources/gtksourceview/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gtksourceview-${version}.tar.xz`),
             sha256: "fsnRj7KD0fhKOj7/O3pysJoQycAGWXs/uru1lYQgqH0=",
           })));
@@ -56,12 +49,12 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./4.x-nix_share_path.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.gnome.org/GNOME/gtksourceview/-/commit/685b3bd08869c2aefe33fad696a7f5f2dc831016.patch",
             hash: "sha256-yeYXJ2l/QS857C4UXOnMFyh0JsptA0TQt0lfD7wN5ic=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.gnome.org/GNOME/gtksourceview/-/commit/1dbbb01da98140e0b2d5d0c6c2df29247650ed83.patch",
             hash: "sha256-6HxLKQyI5DDvmKhmldQlwVPV62RfFa2gwWbcHA2cICs=",
           })))),
@@ -91,21 +84,21 @@ xvfb-run -s '-screen 0 800x600x24' dbus-run-session \\
 runHook postCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             packageName: "gtksourceview",
             attrPath: "gtksourceview4",
             versionPolicy: "odd-unstable",
             freeze: true,
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Source code editing widget for GTK",
         homepage: "https://gitlab.gnome.org/GNOME/gtksourceview",
         pkgConfigModules: nix.thunk(() => ["gtksourceview-4"]),

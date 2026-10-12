@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["mainProgram", 65, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["makeFlags", 46, 3], ["enableParallelBuilding", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, expat: false, ffmpeg: false, freetype: false, libarchive: false, libjpeg: false, libGLU: false, sfml_2: false, zlib: false, openal: false, fontconfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["mainProgram", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["makeFlags", 46, 3], ["enableParallelBuilding", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const openal = nix.arg($, "openal");
   const fontconfig = nix.arg($, "fontconfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "attract-mode",
       version: "2.7.0-unstable-2024-08-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mickelson",
           repo: "attract",
           rev: "6ed3a1e32a519608c0b495295cc4c18ceea6b461",
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["USE_FONTCONFIG=0"])))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Frontend for arcade cabinets and media PCs",
         homepage: "http://attractmode.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

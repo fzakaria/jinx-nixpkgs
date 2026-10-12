@@ -2,8 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/epub.nix", [[["nativeBuildInputs", 11, 5], ["epub", 16, 5], ["__structuredAttrs", 40, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, docbook_xsl_ns: false, libxslt: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/epub.nix", [["nativeBuildInputs", 11, 5], ["epub", 16, 5], ["__structuredAttrs", 40, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const libxslt = nix.arg($, "libxslt");
   const zip = nix.arg($, "zip");
   return nix.app(runCommand, "manual.epub", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [libxslt, zip]),
       epub: nix.thunk(() => nix.str`<book xmlns="http://docbook.org/ns/docbook"
       xmlns:xlink="http://www.w3.org/1999/xlink"

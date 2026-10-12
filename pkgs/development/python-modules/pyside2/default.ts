@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["NIX_CFLAGS_COMPILE", 53, 7]], [["description", 96, 5], ["license", 97, 5], ["homepage", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5], ["broken", 101, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["postPatch", 36, 3], ["cmakeFlags", 48, 3], ["env", 53, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 67, 3], ["propagatedBuildInputs", 85, 3], ["dontWrapQtApps", 87, 3], ["postInstall", 89, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { python: false, fetchurl: false, lib: false, stdenv: false, cmake: false, ninja: false, qt5: false, shiboken2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 53, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 96, 5], ["license", 97, 5], ["homepage", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5], ["broken", 101, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["postPatch", 36, 3], ["cmakeFlags", 48, 3], ["env", 53, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 67, 3], ["propagatedBuildInputs", 85, 3], ["dontWrapQtApps", 87, 3], ["postInstall", 89, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pyside2";
       const version = "5.15.17";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.qt.io/official_releases/QtForPython/pyside2/PySide2-${version}-src/pyside-setup-opensource-src-${version}.tar.xz`),
           hash: "sha256-hKSzKPamAjW4cXrVIriKe2AAWSYMV6IYntAFEJ8kxSc=",
         }))));
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DPYTHON_EXECUTABLE=${nix.sel(python, "interpreter")}`),
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(qt5, "qtdeclarative", "dev")}/include/QtQuick/${nix.sel(qt5, "qtdeclarative", "version")}/QtQuick`),
       }));
       const nativeBuildInputs = nix.thunk(() => [
@@ -90,7 +87,7 @@ ${nix.sel(python, "pythonOnBuildForHost", "interpreter")} setup.py egg_info --bu
 cp -r PySide2.egg-info $out/${nix.sel(python, "sitePackages")}/
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "LGPL-licensed Python bindings for Qt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         homepage: "https://wiki.qt.io/Qt_for_Python",
@@ -99,7 +96,7 @@ cp -r PySide2.egg-info $out/${nix.sel(python, "sitePackages")}/
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

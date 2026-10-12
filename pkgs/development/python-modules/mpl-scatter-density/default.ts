@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["MPLBACKEND", 49, 7]], [["homepage", 60, 5], ["description", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 41, 3], ["env", 49, 3], ["disabledTests", 51, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, pytestCheckHook: false, fetchFromGitHub: false, "setuptools-scm": false, setuptools: false, "fast-histogram": false, matplotlib: false, numpy: false, wheel: false, "pytest-mpl": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["MPLBACKEND", 49, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 60, 5], ["description", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 41, 3], ["env", 49, 3], ["disabledTests", 51, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "astrofrog",
           repo: "mpl-scatter-density",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,13 +35,13 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [matplotlib, numpy, fast_histogram]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_mpl, writableTmpDirAsHomeHook]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         MPLBACKEND: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "agg")),
       }));
       const disabledTests = nix.thunk(() => ["test_default_dpi"]);
       const pythonImportsCheck = nix.thunk(() => ["mpl_scatter_density"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/astrofrog/mpl-scatter-density",
         description: "Fast scatter density plots for Matplotlib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

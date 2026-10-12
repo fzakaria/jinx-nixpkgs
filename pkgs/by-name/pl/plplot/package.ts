@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["enableWX", 40, 7], ["enableXWin", 41, 7], ["libx11", 42, 7], ["libX11", 45, 5]], [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["license", 60, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["passthru", 38, 3], ["cmakeFlags", 48, 3], ["doCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, "pkg-config": false, enableWX: true, wxwidgets_3_2: false, enableXWin: true, libx11: false, enablePNG: true, cairo: false, pango: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enableWX", 40, 7], ["enableXWin", 41, 7], ["libx11", 42, 7], ["libX11", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["license", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["passthru", 38, 3], ["cmakeFlags", 48, 3], ["doCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const cairo = nix.arg($, "cairo");
   const pango = nix.arg($, "pango");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "plplot",
       version: "5.15.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/plplot/plplot/${nix.sel(finalAttrs, "version")}%20Source/plplot-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0ywccb6bs1389zjfmc9zwdvdsvlpm7vg957whh6b5a96yvcf8bdr",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), enableWX, wxwidgets_3_2), nix.concat(nix.app(nix.sel(lib, "optional"), enableXWin, libx11), nix.app(nix.sel(lib, "optionals"), enablePNG, nix.thunk(() => [cairo, pango]))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         enableWX: enableWX,
         enableXWin: enableXWin,
         libx11: libx11,
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DBUILD_TEST=ON"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross-platform scientific graphics plotting library",
         mainProgram: "pltek",
         homepage: "https://plplot.org",

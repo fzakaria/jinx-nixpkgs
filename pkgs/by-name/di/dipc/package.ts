@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 42, 5], ["mainProgram", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["patches", 22, 3], ["nativeInstallCheckInputs", 32, 3], ["doInstallCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, fetchpatch: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 42, 5], ["mainProgram", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["patches", 22, 3], ["nativeInstallCheckInputs", 32, 3], ["doInstallCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dipc",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "doprz",
           repo: "dipc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-BCJXROjsaztzv6HWi1+i2GYCoeEgdXbYrEjpEdUvGFg=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "kanagawa-theme",
             url: "https://github.com/doprz/dipc/commit/e5a7d851117ccef1250f2a7999ab05dfd9538c53.patch",
             hash: "sha256-OteBFaRT+HdDtWNe5nLaoIgNjapzNOdZfAttOA7G+2E=",
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Convert your favorite images and wallpapers with your favorite color palettes/themes",
         homepage: "https://github.com/doprz/dipc",
         license: nix.thunk(() => (() => {

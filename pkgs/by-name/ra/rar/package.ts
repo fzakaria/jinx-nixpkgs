@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 7], ["hash", 17, 7]], [["url", 20, 7], ["hash", 21, 7]], [["x86_64-linux", 15, 5], ["aarch64-darwin", 19, 5]], [["updateScript", 62, 12]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["sourceProvenance", 71, 5]], [["pname", 26, 3], ["version", 27, 11], ["src", 29, 3], ["dontBuild", 33, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 37, 3], ["postPatch", 43, 3], ["installPhase", 50, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, installShellFiles: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 7], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 15, 5], ["aarch64-darwin", 19, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["sourceProvenance", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 11], ["src", 29, 3], ["dontBuild", 33, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 37, 3], ["postPatch", 43, 3], ["installPhase", 50, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const version = "7.23";
   const downloadVersion = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), version));
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://www.rarlab.com/rar/rarlinux-x64-${downloadVersion}.tar.gz`),
       hash: "sha256-dZtLaqDZ93ExiCFilRGT86DlS/YOHY3EJVqjCKzKtYg=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://www.rarlab.com/rar/rarmacos-arm-${downloadVersion}.tar.gz`),
       hash: "sha256-aLOTwAB1jUd/3kPJVf91QvEvdvP16HzdqSMVL8eRvU0=",
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rar",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))))),
@@ -49,9 +44,9 @@ mv rar.txt rar.1.pod
 pod2man -c "RAR User's Manual" -n "RAR" -r "rar ${version}" -s 1 rar.1.pod > rar.1
 `),
       installPhase: "runHook preInstall\n\ninstall -Dm755 {rar,unrar} -t \"$out/bin\"\ninstall -Dm755 default.sfx -t \"$out/lib\"\ninstall -Dm644 {acknow.txt,license.txt} -t \"$out/share/doc/rar\"\ninstall -Dm644 rarfiles.lst -t \"$out/etc\"\ninstallManPage rar.1\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Utility for RAR archives",
         homepage: "https://www.rarlab.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

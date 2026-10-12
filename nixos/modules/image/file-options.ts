@@ -2,14 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/file-options.nix", [[["type", 10, 7], ["default", 11, 7], ["defaultText", 12, 7], ["description", 13, 7]], [["type", 19, 7], ["description", 20, 7]], [["type", 31, 7], ["default", 32, 7], ["defaultText", 33, 7], ["description", 34, 7]], [["type", 41, 7], ["default", 42, 7], ["defaultText", 43, 7], ["description", 44, 7]], [["baseName", 9, 5], ["extension", 18, 5], ["fileName", 30, 5], ["filePath", 40, 5]], [["image", 8, 11]], [["options", 8, 3]]]);
 const formals$1 = { args: { lib: false, config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/file-options.nix", [["type", 10, 7], ["default", 11, 7], ["defaultText", 12, 7], ["description", 13, 7]]);
-const pos$2 = nix.positions(here + "/file-options.nix", [["type", 19, 7], ["description", 20, 7]]);
-const pos$3 = nix.positions(here + "/file-options.nix", [["type", 31, 7], ["default", 32, 7], ["defaultText", 33, 7], ["description", 34, 7]]);
-const pos$4 = nix.positions(here + "/file-options.nix", [["type", 41, 7], ["default", 42, 7], ["defaultText", 43, 7], ["description", 44, 7]]);
-const pos$5 = nix.positions(here + "/file-options.nix", [["baseName", 9, 5], ["extension", 18, 5], ["fileName", 30, 5], ["filePath", 40, 5]]);
-const pos$6 = nix.positions(here + "/file-options.nix", [["image", 8, 11]]);
-const pos$7 = nix.positions(here + "/file-options.nix", [["options", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,32 +11,32 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       image: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         baseName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.str`nixos-image-${nix.sel(config, "system", "nixos", "label")}-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}`),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "nixos-image-${config.system.nixos.label}-${pkgs.stdenv.hostPlatform.system}")),
             description: "Basename of the image filename without any extension (e.g. `image_1`).\n",
           })))),
         extension: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Extension of the image filename (e.g. `raw`).\n",
           })))),
         fileName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.str`${nix.sel(config, "image", "baseName")}.${nix.sel(config, "image", "extension")}`),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "${config.image.baseName}.${config.image.extension}")),
             description: "Filename of the image including all extensions (e.g `image_1.raw` or\n`image_1.raw.zst`).\n",
           })))),
         filePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.sel(config, "image", "fileName")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.image.fileName")),

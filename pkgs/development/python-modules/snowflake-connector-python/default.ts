@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["boto", 76, 5], ["pandas", 80, 5], ["secure-local-storage", 84, 5]], [["description", 151, 5], ["homepage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["pythonRelaxDeps", 71, 3], ["optional-dependencies", 75, 3], ["preCheck", 87, 3], ["nativeCheckInputs", 91, 3], ["disabledTestPaths", 102, 3], ["disabledTests", 135, 3], ["__darwinAllowLocalNetworking", 143, 3], ["pythonImportsCheck", 145, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { lib: false, aioboto3: false, aiohttp: false, asn1crypto: false, buildPythonPackage: false, boto3: false, botocore: false, certifi: false, "charset-normalizer": false, cryptography: false, cython: false, fetchFromGitHub: false, filelock: false, idna: false, keyring: false, numpy: false, packaging: false, pandas: false, platformdirs: false, pyarrow: false, pyjwt: false, pyopenssl: false, "pytest-asyncio": false, "pytest-xdist": false, pytestCheckHook: false, pytz: false, requests: false, responses: false, setuptools: false, sortedcontainers: false, tomlkit: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["boto", 76, 5], ["pandas", 80, 5], ["secure-local-storage", 84, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 151, 5], ["homepage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["pythonRelaxDeps", 71, 3], ["optional-dependencies", 75, 3], ["preCheck", 87, 3], ["nativeCheckInputs", 91, 3], ["disabledTestPaths", 102, 3], ["disabledTests", 135, 3], ["__darwinAllowLocalNetworking", 143, 3], ["pythonImportsCheck", 145, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "snowflakedb",
           repo: "snowflake-connector-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -73,7 +70,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonRelaxDeps = nix.thunk(() => ["pyopenssl"]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         boto: nix.thunk(() => [boto3, botocore]),
         pandas: nix.thunk(() => [pandas, pyarrow]),
         "secure-local-storage": nix.thunk(() => [keyring]),
@@ -120,7 +117,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["snowflake", "snowflake.connector"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Snowflake Connector for Python",
         homepage: "https://github.com/snowflakedb/snowflake-connector-python",
         changelog: nix.thunk(() => nix.str`https://github.com/snowflakedb/snowflake-connector-python/blob/${nix.sel(src, "tag")}/DESCRIPTION.md`),
@@ -128,7 +125,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

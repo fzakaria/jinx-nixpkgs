@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cli.nix", [[["fetchFromGitHub", 13, 49]], [["jool", 48, 26]], [["tests", 47, 12]], [["homepage", 52, 5], ["description", 53, 5], ["platforms", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 22, 3], ["outputs", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["makeFlags", 38, 3], ["prePatch", 43, 3], ["passthru", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nixosTests: false, autoreconfHook: false, "pkg-config": false, libnl: false, iptables: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cli.nix", [["fetchFromGitHub", 13, 49]]);
-const pos$2 = nix.positions(here + "/cli.nix", [["jool", 48, 26]]);
-const pos$3 = nix.positions(here + "/cli.nix", [["tests", 47, 12]]);
-const pos$4 = nix.positions(here + "/cli.nix", [["homepage", 52, 5], ["description", 53, 5], ["platforms", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$5 = nix.positions(here + "/cli.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 22, 3], ["outputs", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["makeFlags", 38, 3], ["prePatch", 43, 3], ["passthru", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libnl = nix.arg($, "libnl");
   const iptables = nix.arg($, "iptables");
-  const sourceAttrs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./source.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchFromGitHub: fetchFromGitHub }))));
+  const sourceAttrs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./source.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jool-cli",
       version: nix.thunk(() => nix.sel(sourceAttrs, "version")),
       src: nix.thunk(() => nix.sel(sourceAttrs, "src")),
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["-C", "src/usr"]),
       prePatch: "sed -e 's%^XTABLES_SO_DIR = .*%XTABLES_SO_DIR = '\"$out\"'/lib/xtables%g' -i src/usr/iptables/Makefile\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, jool: nix.thunk(() => nix.attr(nixosTests, "jool")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], jool: nix.thunk(() => nix.attr(nixosTests, "jool")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.jool.mx/",
         description: "Fairly compliant SIIT and Stateful NAT64 for Linux - CLI tools",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

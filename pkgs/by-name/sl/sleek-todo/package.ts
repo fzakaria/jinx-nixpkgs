@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-darwin", 16, 5], ["aarch64-linux", 17, 5], ["x86_64-linux", 18, 5]], [["aarch64-darwin", 29, 9], ["aarch64-linux", 30, 9], ["x86_64-linux", 31, 9]], [["url", 26, 5], ["sha256", 27, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5], ["platforms", 42, 5]], [["pname", 52, 7], ["version", 53, 7], ["src", 54, 7], ["meta", 55, 7], ["sourceRoot", 58, 5], ["nativeBuildInputs", 59, 5], ["installPhase", 61, 5]], [["pname", 71, 7], ["version", 72, 7], ["src", 73, 7], ["meta", 74, 7], ["nativeBuildInputs", 76, 5], ["extraInstallCommands", 77, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, undmg: false, appimageTools: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-darwin", 16, 5], ["aarch64-linux", 17, 5], ["x86_64-linux", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aarch64-darwin", 29, 9], ["aarch64-linux", 30, 9], ["x86_64-linux", 31, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 26, 5], ["sha256", 27, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5], ["platforms", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 52, 7], ["version", 53, 7], ["src", 54, 7], ["meta", 55, 7], ["sourceRoot", 58, 5], ["nativeBuildInputs", 59, 5], ["installPhase", 61, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 71, 7], ["version", 72, 7], ["src", 73, 7], ["meta", 74, 7], ["nativeBuildInputs", 76, 5], ["extraInstallCommands", 77, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const pname = "sleek-todo";
   const version = "2.0.28";
   const suffixMap = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-darwin": "mac-arm64.dmg",
     "aarch64-linux": "linux-arm64.AppImage",
     "x86_64-linux": "linux-x86_64.AppImage",
   }));
   const suffix = nix.thunk(() => nix.selOr(suffixMap, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://github.com/ransome1/sleek/releases/download/v${version}/sleek-${version}-${suffix}`),
       sha256: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "aarch64-darwin": "sha256-+xqn/Ffm5p4NbWmvrCp2ViG/CGtRRXcw0gE8Cs19N2Y=",
         "aarch64-linux": "sha256-ujeXAJlB1sElk7bRlZ7dbTurKzD3IGRpHxsVNmUU5Ro=",
         "x86_64-linux": "sha256-VzZwONKFl/7l6HXn387UfTllrU+x14X9vK6FN3buimU=",
       }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     description: "Todo manager based on todo.txt syntax",
     homepage: "https://github.com/ransome1/sleek",
     license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -59,7 +54,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [undmg]),
       installPhase: "runHook preInstall\nmkdir -p $out/Applications\ncp -r *.app $out/Applications/\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(appimageTools, "wrapType2"), (finalAttr) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,

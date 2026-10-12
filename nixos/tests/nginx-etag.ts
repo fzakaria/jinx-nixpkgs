@@ -2,75 +2,57 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nginx-etag.nix", [[["enable", 9, 29]], [["firewall", 9, 20]], [["root", 12, 11]], [["server", 11, 37]], [["enable", 10, 24], ["virtualHosts", 11, 24]], [["nginx", 10, 18]], [["root", 27, 13]], [["server", 26, 39]], [["virtualHosts", 26, 26]], [["nginx", 26, 20]], [["services", 26, 11]], [["configuration", 25, 36]], [["pass-checks", 25, 24]], [["networking", 9, 9], ["services", 10, 9], ["specialisation", 25, 9]], [["libraries", 52, 19]], [["systemPackages", 47, 21]], [["environment", 47, 9]], [["server", 6, 5], ["client", 44, 5]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 90, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nginx-etag.nix", [["enable", 9, 29]]);
-const pos$2 = nix.positions(here + "/nginx-etag.nix", [["firewall", 9, 20]]);
-const pos$3 = nix.positions(here + "/nginx-etag.nix", [["root", 12, 11]]);
-const pos$4 = nix.positions(here + "/nginx-etag.nix", [["server", 11, 37]]);
-const pos$5 = nix.positions(here + "/nginx-etag.nix", [["enable", 10, 24], ["virtualHosts", 11, 24]]);
-const pos$6 = nix.positions(here + "/nginx-etag.nix", [["nginx", 10, 18]]);
-const pos$7 = nix.positions(here + "/nginx-etag.nix", [["root", 27, 13]]);
-const pos$8 = nix.positions(here + "/nginx-etag.nix", [["server", 26, 39]]);
-const pos$9 = nix.positions(here + "/nginx-etag.nix", [["virtualHosts", 26, 26]]);
-const pos$10 = nix.positions(here + "/nginx-etag.nix", [["nginx", 26, 20]]);
-const pos$11 = nix.positions(here + "/nginx-etag.nix", [["services", 26, 11]]);
-const pos$12 = nix.positions(here + "/nginx-etag.nix", [["configuration", 25, 36]]);
-const pos$13 = nix.positions(here + "/nginx-etag.nix", [["pass-checks", 25, 24]]);
-const pos$14 = nix.positions(here + "/nginx-etag.nix", [["networking", 9, 9], ["services", 10, 9], ["specialisation", 25, 9]]);
 const formals$3 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/nginx-etag.nix", [["libraries", 52, 19]]);
-const pos$16 = nix.positions(here + "/nginx-etag.nix", [["systemPackages", 47, 21]]);
-const pos$17 = nix.positions(here + "/nginx-etag.nix", [["environment", 47, 9]]);
-const pos$18 = nix.positions(here + "/nginx-etag.nix", [["server", 6, 5], ["client", 44, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/nginx-etag.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "nginx-etag",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
+            [nix.POS]: $pos[1],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: false })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 server: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   root: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), "testdir", nix.thunk(() => ({})), "mkdir \"$out\"\ncat > \"$out/test.js\" <<EOF\ndocument.getElementById('foobar').setAttribute('foo', 'bar');\nEOF\ncat > \"$out/index.html\" <<EOF\n<!DOCTYPE html>\n<div id=\"foobar\">test</div>\n<script src=\"test.js\"></script>\nEOF\n")),
                 })),
               })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             "pass-checks": nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   nginx: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     virtualHosts: nix.thunk(() => ({
-                      [nix.POS]: pos$8,
+                      [nix.POS]: $pos[7],
                       server: nix.thunk(() => ({
-                        [nix.POS]: pos$7,
+                        [nix.POS]: $pos[6],
                         root: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), "testdir2", nix.thunk(() => ({})), "mkdir \"$out\"\ncat > \"$out/test.js\" <<EOF\ndocument.getElementById('foobar').setAttribute('foo', 'yay');\nEOF\ncat > \"$out/index.html\" <<EOF\n<!DOCTYPE html>\n<div id=\"foobar\">test</div>\n<script src=\"test.js\"></script>\nEOF\n")))),
                       })),
                     })),
@@ -86,12 +68,12 @@ export default nix.lambda((args) => (() => {
         const pkgs = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             systemPackages: nix.thunk(() => (() => {
               const testRunner = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "test-runner", nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "selenium"))]),
                 })), "import os\nimport shutil\nimport time\n\nfrom selenium.webdriver import Firefox\nfrom selenium.webdriver.firefox.options import Options\nfrom selenium.webdriver.firefox.service import Service\n\nservice = Service(shutil.which(\"geckodriver\"))\n\noptions = Options()\noptions.add_argument('--headless')\ndriver = Firefox(options=options, service=service)\n\ndriver.implicitly_wait(20)\ndriver.get('http://server/')\ndriver.find_element('xpath', '//div[@foo=\"bar\"]')\nopen('/tmp/passed_stage1', 'w')\n\nwhile not os.path.exists('/tmp/proceed'):\n    time.sleep(0.5)\n\ndriver.get('http://server/')\ndriver.find_element('xpath', '//div[@foo=\"yay\"]')\nopen('/tmp/passed', 'w')\n"));
               return [

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["pkg-config", 27, 18]], [["tests", 27, 12]], [["homepage", 30, 5], ["description", 31, 5], ["maintainers", 32, 5], ["license", 33, 5], ["pkgConfigModules", 34, 5], ["platforms", 35, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["configureFlags", 18, 3], ["outputs", 20, 3], ["passthru", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, testers: false, static: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 27, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 27, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 30, 5], ["description", 31, 5], ["maintainers", 32, 5], ["license", 33, 5], ["pkgConfigModules", 34, 5], ["platforms", 35, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["configureFlags", 18, 3], ["outputs", 20, 3], ["passthru", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,25 +13,25 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const static$ = nix.argOr($, "static", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libjpeg",
       version: "10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.ijg.org/files/jpegsrc.v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-i56qEyQmkOvQPhcoqx7fl6gaeO1ug2JNSTZV8xrJWrU=",
         })))),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), static$, "--enable-static --disable-shared")),
       outputs: nix.thunk(() => ["bin", "dev", "out", "man"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.ijg.org/",
         description: "Library that implements the JPEG image file format",
         maintainers: nix.thunk(() => (() => {

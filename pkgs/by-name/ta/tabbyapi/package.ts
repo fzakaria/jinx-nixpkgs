@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["dev", 65, 5], ["extras", 68, 5]], [["extraArgs", 91, 40]], [["cudaSupport", 90, 5], ["updateScript", 91, 5]], [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["mainProgram", 102, 5], ["maintainers", 103, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["pythonRelaxDeps", 26, 3], ["dependencies", 30, 3], ["postPatch", 60, 3], ["optional-dependencies", 64, 3], ["postInstall", 74, 3], ["postFixup", 83, 3], ["passthru", 89, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, "nix-update-script": false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["dev", 65, 5], ["extras", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 91, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["cudaSupport", 90, 5], ["updateScript", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["mainProgram", 102, 5], ["maintainers", 103, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["pythonRelaxDeps", 26, 3], ["dependencies", 30, 3], ["postPatch", 60, 3], ["optional-dependencies", 64, 3], ["postInstall", 74, 3], ["postFixup", 83, 3], ["passthru", 89, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tabbyapi",
       version: "0-unstable-2026-09-28",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "theroyallab",
           repo: "tabbyAPI",
           rev: "be74bf0a00bcb3a518e6feb7606f150c189be637",
@@ -68,7 +63,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           dev: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "ruff"))]),
           extras: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "infinity-emb")),
@@ -88,12 +83,12 @@ cp -r sampler_overrides $out/share/tabbyapi/
   --add-flags "$out/${nix.sel(python3Packages, "python", "sitePackages")}/main.py"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         cudaSupport: nix.thunk(() => nix.sel(python3Packages, "torch", "cudaSupport")),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Official API server for Exllama",
         homepage: "https://github.com/theroyallab/tabbyAPI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

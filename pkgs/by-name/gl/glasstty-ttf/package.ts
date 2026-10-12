@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 7], ["sha256", 13, 7]], [["maintainers", 16, 7], ["homepage", 17, 7], ["license", 18, 7], ["platforms", 19, 7], ["description", 20, 7]], [["pname", 8, 5], ["version", 9, 5], ["src", 11, 5], ["meta", 15, 5]]]);
 const formals$1 = { args: { runCommand: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 7], ["sha256", 13, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["maintainers", 16, 7], ["homepage", 17, 7], ["license", 18, 7], ["platforms", 19, 7], ["description", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 5], ["version", 9, 5], ["src", 11, 5], ["meta", 15, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,16 +11,16 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lib = nix.arg($, "lib");
   return nix.app(runCommand, "glasstty-ttf", nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "glasstty-ttf",
       version: "0-unstable-2018-08-07",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/svofski/glasstty/raw/2c47ac1a0065f8b12d9732257993833d8227e3e5/Glass_TTY_VT220.ttf",
           sha256: "sha256-2NYJaSWNr1Seuqdd7nLjA7tAMs/SAvl3uAe3uDoLLO4=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "pkharvey"))]),
         homepage: "https://github.com/svofski/glasstty",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

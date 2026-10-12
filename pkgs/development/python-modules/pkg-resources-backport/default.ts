@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 33, 5], ["version", 34, 26], ["hash", 35, 5]], [["updateScript", 69, 12]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 61, 3], ["disabledTests", 63, 3], ["passthru", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, build: false, buildPythonPackage: false, fetchPypi: false, filelock: false, ini2toml: false, "jaraco-envs": false, "jaraco-path": false, "jaraco-test": false, "nix-update-script": false, packaging: false, pip: false, "pyproject-hooks": false, "pytest-subprocess": false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, setuptools: false, "tomli-w": false, virtualenv: false, wheel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 33, 5], ["version", 34, 26], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 69, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 61, 3], ["disabledTests", 63, 3], ["passthru", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const virtualenv = nix.arg($, "virtualenv");
   const wheel = nix.arg($, "wheel");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pkg-resources-backport",
       version: "1.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pkg_resources_backport",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-M4wkI+YhPIEPP8LN+yi6q87ikZRDpritDjdirWyuPzw=",
@@ -70,11 +67,11 @@ export default nix.lambda((args) => (() => {
         "test_interop_pkg_resources_iter_entry_points",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Snapshot of last pkg_resources module from setuptools",
         homepage: "https://pypi.org/project/pkg-resources-backport",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

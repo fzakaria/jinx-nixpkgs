@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5], ["fetchSubmodules", 28, 5]], [["WITHOUT_PYTESTS", 52, 7]], [["extraArgs", 84, 5]], [["updateScript", 83, 12]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 31, 3], ["build-system", 37, 3], ["dependencies", 41, 3], ["pythonImportsCheck", 47, 3], ["env", 52, 3], ["nativeCheckInputs", 54, 3], ["disabledTests", 66, 3], ["passthru", 83, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, coreutils: false, fetchFromGitHub: false, "nix-update-script": false, python3Packages: false, "debian-devscripts": false, dpkg: false, gitMinimal: false, gitSetupHook: false, man: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5], ["fetchSubmodules", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["WITHOUT_PYTESTS", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 83, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 31, 3], ["build-system", 37, 3], ["dependencies", 41, 3], ["pythonImportsCheck", 47, 3], ["env", 52, 3], ["nativeCheckInputs", 54, 3], ["disabledTests", 66, 3], ["passthru", 83, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const gitSetupHook = nix.arg($, "gitSetupHook");
   const man = nix.arg($, "man");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "git-buildpackage",
       version: "0.9.39",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "agx",
           repo: "git-buildpackage",
           tag: nix.thunk(() => nix.str`debian/${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       pythonImportsCheck: nix.thunk(() => ["gbp"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, WITHOUT_PYTESTS: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], WITHOUT_PYTESTS: true })),
       nativeCheckInputs: nix.thunk(() => nix.concat([debian_devscripts, dpkg, gitMinimal, gitSetupHook, man], (() => {
         const w_1 = nix.withScope(python3Packages, null);
         return [
@@ -63,14 +58,14 @@ export default nix.lambda((args) => (() => {
         "tests.doctests.test_GitRepository.test_repo",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests.doctests.test_GitRepository.test_create_noperm"])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "debian/(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Suite to help with maintaining Debian packages in Git repositories",
         homepage: "https://honk.sigxcpu.org/piki/projects/git-buildpackage/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

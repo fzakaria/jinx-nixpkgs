@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["description", 65, 5], ["homepage", 66, 5], ["sourceProvenance", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]], [["pname", 21, 3], ["version", 25, 3], ["src", 27, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 36, 3], ["installPhase", 41, 3], ["dontWrapQtApps", 47, 3], ["fixupPhase", 48, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, dpkg: false, fetchurl: false, qt6: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["sourceProvenance", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 25, 3], ["src", 27, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 36, 3], ["installPhase", 41, 3], ["dontWrapQtApps", 47, 3], ["fixupPhase", 48, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "oda-file-converter";
       const version = "27.1.0.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.opendesign.com/guestfiles/get?filename=ODAFileConverter_QT6_lnxX64_8.3dll_27.1.deb",
           hash: "sha256-xxNjzVR1gXevR6NlFU8YDcUKHitSoTGZT9pUHBOjZ2Y=",
         }))));
@@ -50,7 +48,7 @@ substituteInPlace $out/share/applications/ODAFileConverter_*.desktop \\
   --replace-fail '/usr/bin/ODAFileConverter' 'ODAFileConverter'
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "For converting between different versions of .dwg and .dxf",
         homepage: "https://www.opendesign.com/guestfiles/oda_file_converter",
         sourceProvenance: nix.thunk(() => (() => {
@@ -69,7 +67,7 @@ substituteInPlace $out/share/applications/ODAFileConverter_*.desktop \\
         mainProgram: "ODAFileConverter",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

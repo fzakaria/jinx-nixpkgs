@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]], [["homepage", 41, 5], ["description", 42, 5], ["mainProgram", 43, 5], ["longDescription", 44, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["build-system", 25, 3], ["nativeCheckInputs", 29, 3], ["unittestFlagsArray", 33, 3], ["propagatedBuildInputs", 35, 3], ["nativeBuildInputs", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, postgresql: false, unittestCheckHook: false, "uv-build": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 41, 5], ["description", 42, 5], ["mainProgram", 43, 5], ["longDescription", 44, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["build-system", 25, 3], ["nativeCheckInputs", 29, 3], ["unittestFlagsArray", 33, 3], ["propagatedBuildInputs", 35, 3], ["nativeBuildInputs", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   const uv_build = nix.arg($, "uv-build");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pgsanity",
       version: "0.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Po/DPQpk54w1gWOL9aArN6I8dmMb7uRYxuRMI6MIDKU=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [postgresql]),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getDev"), postgresql))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/markdrago/pgsanity",
         description: "Checks the syntax of Postgresql SQL files",
         mainProgram: "pgsanity",

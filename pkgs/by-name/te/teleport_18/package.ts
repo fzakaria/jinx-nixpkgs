@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 10, 3], ["hash", 11, 3], ["vendorHash", 12, 3], ["pnpmHash", 13, 3], ["cargoHash", 14, 3], ["wasm-bindgen-cli", 16, 3], ["buildGoModule", 17, 3], ["withRdpClient", 18, 11], ["extPatches", 18, 25]]]);
 const formals$1 = { args: { buildTeleport: false, buildGoModule: false, "wasm-bindgen-cli_0_2_122": false, withRdpClient: true, extPatches: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 10, 3], ["hash", 11, 3], ["vendorHash", 12, 3], ["pnpmHash", 13, 3], ["cargoHash", 14, 3], ["wasm-bindgen-cli", 16, 3], ["buildGoModule", 17, 3], ["withRdpClient", 18, 11], ["extPatches", 18, 25]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const withRdpClient = nix.argOr($, "withRdpClient", () => true);
   const extPatches = nix.argOr($, "extPatches", () => []);
   return nix.app(buildTeleport, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "18.10.0",
       hash: "sha256-df2VEtMTsnB72WIQj7iButC3b/U7tpv2e6dQEZm5zVA=",
       vendorHash: "sha256-5uTZuWOSgL4319iUg8QuIqY4rACr4xBUHzdLXyG6Xo0=",

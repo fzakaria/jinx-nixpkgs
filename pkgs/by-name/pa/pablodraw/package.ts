@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["name", 50, 7], ["exec", 51, 7], ["comment", 52, 7], ["type", 53, 7], ["icon", 54, 7], ["desktopName", 55, 7], ["terminal", 56, 7], ["categories", 57, 7]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5], ["platforms", 75, 5], ["broken", 76, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["projectFile", 25, 3], ["executables", 27, 3], ["dotnet-sdk", 29, 3], ["nugetDeps", 31, 3], ["dotnetFlags", 33, 3], ["nativeBuildInputs", 38, 3], ["runtimeDeps", 43, 3], ["desktopItems", 48, 3], ["postInstall", 61, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false, wrapGAppsHook3: false, copyDesktopItems: false, gtk3: false, libnotify: false, makeDesktopItem: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 50, 7], ["exec", 51, 7], ["comment", 52, 7], ["type", 53, 7], ["icon", 54, 7], ["desktopName", 55, 7], ["terminal", 56, 7], ["categories", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5], ["platforms", 75, 5], ["broken", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["projectFile", 25, 3], ["executables", 27, 3], ["dotnet-sdk", 29, 3], ["nugetDeps", 31, 3], ["dotnetFlags", 33, 3], ["nativeBuildInputs", 38, 3], ["runtimeDeps", 43, 3], ["desktopItems", 48, 3], ["postInstall", 61, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pablodraw";
       const version = "3.1.14-beta";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cwensley",
           repo: "pablodraw",
           tag: version,
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const runtimeDeps = nix.thunk(() => [gtk3, libnotify]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "PabloDraw",
             exec: "PabloDraw",
             comment: "An Ansi/Ascii text and RIPscrip vector graphic art editor/viewer",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "install -Dm644 Assets/PabloDraw-512.png $out/share/icons/hicolor/512x512/apps/pablodraw.png\ninstall -Dm644 Assets/PabloDraw-64.png $out/share/icons/hicolor/64x64/apps/pablodraw.png\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Ansi/Ascii text and RIPscrip vector graphic art editor/viewer with multi-user capabilities",
         homepage: "https://picoe.ca/products/pablodraw",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

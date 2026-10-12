@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["updateScript", 58, 12]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 71, 5], ["mainProgram", 72, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["cargoHash", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["postInstall", 53, 3], ["passthru", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, makeWrapper: false, rustPlatform: false, "marked-man": false, coreutils: false, "vulkan-loader": false, wayland: false, "pkg-config": false, udev: false, libv4l: false, dbus: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 58, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 71, 5], ["mainProgram", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["cargoHash", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["postInstall", 53, 3], ["passthru", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wluma",
       version: "4.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "max-baz",
           repo: "wluma",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,11 +50,11 @@ substituteInPlace wluma.service --replace-fail \\
   --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [wayland]))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Automatic brightness adjustment based on screen contents and ALS",
         homepage: "https://github.com/max-baz/wluma",
         changelog: nix.thunk(() => nix.str`https://github.com/max-baz/wluma/releases/tag/${nix.sel(finalAttrs, "version")}`),

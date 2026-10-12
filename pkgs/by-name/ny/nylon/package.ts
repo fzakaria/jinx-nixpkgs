@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 11, 28], ["paths", 12, 5]], [["url", 22, 5], ["sha256", 23, 5]], [["NIX_CFLAGS_COMPILE", 33, 7]], [["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["mainProgram", 40, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 21, 3], ["patches", 26, 3], ["configureFlags", 28, 3], ["buildInputs", 30, 3], ["env", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libevent: false, buildEnv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 11, 28], ["paths", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 33, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["mainProgram", 40, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 21, 3], ["patches", 26, 3], ["configureFlags", 28, 3], ["buildInputs", 30, 3], ["env", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libevent_comb = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(libevent, "out"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.attr(from, "name")),
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(libevent, "dev")),
@@ -28,20 +24,20 @@ export default nix.lambda((args) => (() => {
     };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nylon",
       version: "1.21",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://monkey.org/~marius/nylon/nylon-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "34c132b005c025c1a5079aae9210855c80f50dc51dde719298e1113ad73408a4",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./configure-use-solib.patch")]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-libevent=${libevent_comb}`)]),
       buildInputs: nix.thunk(() => [libevent]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Proxy server, supporting SOCKS 4 and 5, as well as a mirror mode",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),
         maintainers: nix.thunk(() => (() => {

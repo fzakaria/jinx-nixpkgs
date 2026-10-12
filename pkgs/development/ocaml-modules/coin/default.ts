@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5], ["mainProgram", 24, 5]], [["pname", 8, 3], ["version", 9, 3], ["minimalOCamlVersion", 10, 3], ["src", 12, 3], ["doCheck", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5], ["mainProgram", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["minimalOCamlVersion", 10, 3], ["src", 12, 3], ["doCheck", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lib = nix.arg($, "lib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "coin",
       version: "0.1.5",
       minimalOCamlVersion: "4.06",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/coin/releases/download/v${nix.sel(finalAttrs, "version")}/coin-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-z2WzQ7zUFmZJTUqygTHguud6+NAcp36WubHbILXGR9g=",
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library to normalize an KOI8-{U,R} input to Unicode",
         homepage: "https://github.com/mirage/coin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

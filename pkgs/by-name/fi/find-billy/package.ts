@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["updateScript", 69, 12]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 79, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["postPatch", 34, 3], ["buildPhase", 41, 3], ["installPhase", 60, 3], ["passthru", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromCodeberg: false, godot_4: false, makeWrapper: false, just: false, inkscape: false, imagemagick: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 69, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["postPatch", 34, 3], ["buildPhase", 41, 3], ["installPhase", 60, 3], ["passthru", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "find-billy",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "annaaurora",
           repo: "Find-Billy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,11 +49,11 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\njust build-icons\ninstall -D find-billy.desktop -t $out/share/applications\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "2 dimensional Pixel Art Jump & Run",
         homepage: "https://codeberg.org/annaaurora/Find-Billy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

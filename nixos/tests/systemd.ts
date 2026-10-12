@@ -2,67 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd.nix", [[["device", 22, 11], ["fsType", 23, 11], ["autoFormat", 24, 11], ["noCheck", 25, 11], ["options", 26, 11]], [["/test-x-initrd-mount", 21, 9]], [["emptyDiskImages", 13, 22], ["fileSystems", 20, 22]], [["text", 97, 69]], [["systemd/system-preset/10-testservice.preset", 97, 23]], [["systemPackages", 18, 19], ["etc", 97, 19]], [["DefaultEnvironment", 31, 9], ["WatchdogDevice", 32, 9], ["RuntimeWatchdogSec", 33, 9], ["RebootWatchdogSec", 34, 9], ["KExecWatchdogSec", 35, 9]], [["Manager", 30, 24]], [["DefaultEnvironment", 37, 37]], [["Manager", 37, 29]], [["Type", 89, 23]], [["description", 87, 9], ["wantedBy", 88, 9], ["serviceConfig", 89, 9], ["script", 90, 9]], [["testservice2", 86, 29]], [["settings", 37, 20], ["services", 86, 20]], [["source", 41, 74]], [["/etc/systemd/system-shutdown/test", 41, 38]], [["contents", 41, 29], ["storePaths", 57, 29]], [["description", 60, 9], ["startAt", 62, 9], ["script", 63, 9]], [["Type", 69, 23]], [["description", 67, 9], ["wantedBy", 68, 9], ["serviceConfig", 69, 9], ["script", 70, 9]], [["Type", 78, 23]], [["description", 76, 9], ["wantedBy", 77, 9], ["serviceConfig", 78, 9], ["script", 79, 9]], [["oncalendar-test", 59, 24], ["testDependency1", 66, 24], ["testservice1", 75, 24]], [["settings", 30, 15], ["user", 37, 15], ["shutdownRamfs", 41, 15], ["services", 59, 15]], [["Storage", 38, 42]], [["Journal", 38, 34]], [["settings", 38, 25]], [["journald", 38, 16]], [["user", 39, 40]], [["auto", 39, 35]], [["displayManager", 39, 20]], [["imports", 8, 7], ["virtualisation", 13, 7], ["environment", 18, 7], ["systemd", 30, 7], ["services", 38, 7], ["test-support", 39, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 102, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd.nix", [["device", 22, 11], ["fsType", 23, 11], ["autoFormat", 24, 11], ["noCheck", 25, 11], ["options", 26, 11]]);
-const pos$2 = nix.positions(here + "/systemd.nix", [["/test-x-initrd-mount", 21, 9]]);
-const pos$3 = nix.positions(here + "/systemd.nix", [["emptyDiskImages", 13, 22], ["fileSystems", 20, 22]]);
-const pos$4 = nix.positions(here + "/systemd.nix", [["text", 97, 69]]);
-const pos$5 = nix.positions(here + "/systemd.nix", [["systemd/system-preset/10-testservice.preset", 97, 23]]);
-const pos$6 = nix.positions(here + "/systemd.nix", [["systemPackages", 18, 19], ["etc", 97, 19]]);
-const pos$7 = nix.positions(here + "/systemd.nix", [["DefaultEnvironment", 31, 9], ["WatchdogDevice", 32, 9], ["RuntimeWatchdogSec", 33, 9], ["RebootWatchdogSec", 34, 9], ["KExecWatchdogSec", 35, 9]]);
-const pos$8 = nix.positions(here + "/systemd.nix", [["Manager", 30, 24]]);
-const pos$9 = nix.positions(here + "/systemd.nix", [["DefaultEnvironment", 37, 37]]);
-const pos$10 = nix.positions(here + "/systemd.nix", [["Manager", 37, 29]]);
-const pos$11 = nix.positions(here + "/systemd.nix", [["Type", 89, 23]]);
-const pos$12 = nix.positions(here + "/systemd.nix", [["description", 87, 9], ["wantedBy", 88, 9], ["serviceConfig", 89, 9], ["script", 90, 9]]);
-const pos$13 = nix.positions(here + "/systemd.nix", [["testservice2", 86, 29]]);
-const pos$14 = nix.positions(here + "/systemd.nix", [["settings", 37, 20], ["services", 86, 20]]);
-const pos$15 = nix.positions(here + "/systemd.nix", [["source", 41, 74]]);
-const pos$16 = nix.positions(here + "/systemd.nix", [["/etc/systemd/system-shutdown/test", 41, 38]]);
-const pos$17 = nix.positions(here + "/systemd.nix", [["contents", 41, 29], ["storePaths", 57, 29]]);
-const pos$18 = nix.positions(here + "/systemd.nix", [["description", 60, 9], ["startAt", 62, 9], ["script", 63, 9]]);
-const pos$19 = nix.positions(here + "/systemd.nix", [["Type", 69, 23]]);
-const pos$20 = nix.positions(here + "/systemd.nix", [["description", 67, 9], ["wantedBy", 68, 9], ["serviceConfig", 69, 9], ["script", 70, 9]]);
-const pos$21 = nix.positions(here + "/systemd.nix", [["Type", 78, 23]]);
-const pos$22 = nix.positions(here + "/systemd.nix", [["description", 76, 9], ["wantedBy", 77, 9], ["serviceConfig", 78, 9], ["script", 79, 9]]);
-const pos$23 = nix.positions(here + "/systemd.nix", [["oncalendar-test", 59, 24], ["testDependency1", 66, 24], ["testservice1", 75, 24]]);
-const pos$24 = nix.positions(here + "/systemd.nix", [["settings", 30, 15], ["user", 37, 15], ["shutdownRamfs", 41, 15], ["services", 59, 15]]);
-const pos$25 = nix.positions(here + "/systemd.nix", [["Storage", 38, 42]]);
-const pos$26 = nix.positions(here + "/systemd.nix", [["Journal", 38, 34]]);
-const pos$27 = nix.positions(here + "/systemd.nix", [["settings", 38, 25]]);
-const pos$28 = nix.positions(here + "/systemd.nix", [["journald", 38, 16]]);
-const pos$29 = nix.positions(here + "/systemd.nix", [["user", 39, 40]]);
-const pos$30 = nix.positions(here + "/systemd.nix", [["auto", 39, 35]]);
-const pos$31 = nix.positions(here + "/systemd.nix", [["displayManager", 39, 20]]);
-const pos$32 = nix.positions(here + "/systemd.nix", [["imports", 8, 7], ["virtualisation", 13, 7], ["environment", 18, 7], ["systemd", 30, 7], ["services", 38, 7], ["test-support", 39, 7]]);
-const pos$33 = nix.positions(here + "/systemd.nix", [["machine", 5, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$34 = nix.positions(here + "/systemd.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$34,
+    [nix.POS]: $pos[33],
     name: "systemd",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$33,
+      [nix.POS]: $pos[32],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           imports: nix.thunk(() => [nix.path(here, "common/user-account.nix"), nix.path(here, "common/x11.nix")]),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             emptyDiskImages: nix.thunk(() => [512n, 512n]),
             fileSystems: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               "/test-x-initrd-mount": nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 device: "/dev/vdb",
                 fsType: "ext2",
                 autoFormat: true,
@@ -72,23 +39,23 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cryptsetup"))]),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               "systemd/system-preset/10-testservice.preset": nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 text: nix.thunk(() => nix.str`disable ${nix.sel(config, "systemd", "services", "testservice1", "name")}
 `),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               Manager: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 DefaultEnvironment: "XXX_SYSTEM=foo",
                 WatchdogDevice: "/dev/watchdog",
                 RuntimeWatchdogSec: "30s",
@@ -97,28 +64,28 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             user: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                Manager: nix.thunk(() => ({ [nix.POS]: pos$9, DefaultEnvironment: "\"XXX_USER=bar\"" })),
+                [nix.POS]: $pos[9],
+                Manager: nix.thunk(() => ({ [nix.POS]: $pos[8], DefaultEnvironment: "\"XXX_USER=bar\"" })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 testservice2: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   description: "Test Service 2",
                   wantedBy: nix.thunk(() => ["default.target"]),
-                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$11, Type: "oneshot" })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[10], Type: "oneshot" })),
                   script: "if [ \"$XXX_USER\" = bar ]; then\n  touch \"$HOME/user_conf_read\"\nfi\n",
                 })),
               })),
             })),
             shutdownRamfs: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               contents: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 "/etc/systemd/system-shutdown/test": nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "test.shutdown", nix.thunk(() => nix.str`PATH=${nix.app(nix.sel(lib_1, "makeBinPath"), nix.thunk(() => (() => {
                         const w = nix.withScope(pkgs, null);
                         return [
@@ -136,46 +103,46 @@ umount /tmp/shared
               storePaths: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "util-linux")}/bin`)]),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               "oncalendar-test": nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 description: "calendar test",
                 startAt: "Wed 10:00 Asia/Tokyo",
                 script: "true",
               })),
               testDependency1: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 description: "Test Dependency 1",
                 wantedBy: nix.thunk(() => [
                   nix.thunk(() => nix.sel(config, "systemd", "services", "testservice1", "name")),
                 ]),
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$19, Type: "oneshot" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[18], Type: "oneshot" })),
                 script: "true\n",
               })),
               testservice1: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 description: "Test Service 1",
                 wantedBy: nix.thunk(() => [nix.thunk(() => nix.sel(config, "systemd", "targets", "multi-user", "name"))]),
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$21, Type: "oneshot" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[20], Type: "oneshot" })),
                 script: "if [ \"$XXX_SYSTEM\" = foo ]; then\n  touch /system_conf_read\nfi\n",
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             journald: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$26,
-                Journal: nix.thunk(() => ({ [nix.POS]: pos$25, Storage: "volatile" })),
+                [nix.POS]: $pos[25],
+                Journal: nix.thunk(() => ({ [nix.POS]: $pos[24], Storage: "volatile" })),
               })),
             })),
           })),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$31,
+            [nix.POS]: $pos[30],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$30,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$29, user: "alice" })),
+              [nix.POS]: $pos[29],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[28], user: "alice" })),
             })),
           })),
         };

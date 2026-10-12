@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["nativeCheckInputs", 32, 3], ["doCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, "pkg-config": false, autoreconfHook: false, glib: false, python3: false, check: false, libxcrypt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["nativeCheckInputs", 32, 3], ["doCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const check = nix.arg($, "check");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libsigrokdecode",
       version: "0.5.3-unstable-2024-10-01",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://sigrok.org/libsigrokdecode",
           rev: "71f451443029322d57376214c330b518efd84f88",
           hash: "sha256-aW0llB/rziJxLW3OZU1VhxeM3MDWsaMVVgvDKZzdiIY=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [check]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Protocol decoding library for the sigrok signal analysis software suite",
         homepage: "https://sigrok.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

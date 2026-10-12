@@ -2,37 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 11], ["repo", 29, 11], ["rev", 30, 11], ["sha256", 31, 11]], [["extraArgs", 70, 11]], [["updateScript", 69, 18]], [["description", 77, 19], ["license", 77, 31], ["longDescription", 78, 11], ["homepage", 82, 11], ["maintainers", 83, 11], ["platforms", 87, 11]], [["pname", 24, 9], ["version", 25, 9], ["src", 27, 9], ["nativeBuildInputs", 34, 9], ["strictDeps", 36, 9], ["buildPhase", 38, 9], ["installPhase", 50, 9], ["doInstallCheck", 62, 9], ["installCheckPhase", 63, 9], ["passthru", 69, 9], ["meta", 76, 9]], [["name", 22, 7], ["value", 23, 7]], [["name", 95, 7], ["description", 96, 7], ["license", 97, 7]], [["name", 100, 7], ["description", 101, 7], ["license", 102, 7]], [["name", 105, 7], ["description", 106, 7], ["license", 107, 7]], [["name", 110, 7], ["description", 111, 7], ["license", 112, 7]], [["name", 115, 7], ["description", 116, 7], ["license", 117, 7]], [["name", 120, 7], ["description", 121, 7], ["license", 122, 7]], [["name", 125, 7], ["description", 126, 7], ["license", 127, 7]], [["name", 130, 7], ["description", 131, 7], ["license", 132, 7]], [["name", 135, 7], ["description", 136, 7], ["license", 137, 7]], [["name", 140, 7], ["description", 141, 7], ["license", 142, 7]], [["name", 145, 7], ["description", 146, 7], ["license", 147, 7]], [["name", 150, 7], ["description", 151, 7], ["license", 152, 7]], [["name", 155, 7], ["description", 156, 7], ["license", 157, 7]], [["name", 160, 7], ["description", 161, 7], ["license", 162, 7]], [["name", 165, 7], ["description", 166, 7], ["files", 167, 7], ["license", 171, 7]], [["name", 174, 7], ["description", 175, 7], ["license", 176, 7]], [["name", 179, 7], ["description", 180, 7], ["license", 181, 7]], [["name", 184, 7], ["description", 185, 7], ["license", 188, 7]], [["name", 191, 7], ["description", 192, 7], ["license", 193, 7]], [["name", 196, 7], ["description", 197, 7], ["license", 198, 7]], [["name", 201, 7], ["description", 202, 7], ["license", 203, 7]], [["name", 206, 7], ["description", 207, 7], ["license", 208, 7]], [["name", 211, 7], ["description", 212, 7], ["license", 213, 7]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, "nix-update-script": false, nkf: false, skktools: false, useUtf8: true }, ellipsis: false };
 const formals$2 = { args: { name: false, description: false, license: false, files: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 11], ["repo", 29, 11], ["rev", 30, 11], ["sha256", 31, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 70, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 69, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 77, 19], ["license", 77, 31], ["longDescription", 78, 11], ["homepage", 82, 11], ["maintainers", 83, 11], ["platforms", 87, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 24, 9], ["version", 25, 9], ["src", 27, 9], ["nativeBuildInputs", 34, 9], ["strictDeps", 36, 9], ["buildPhase", 38, 9], ["installPhase", 50, 9], ["doInstallCheck", 62, 9], ["installCheckPhase", 63, 9], ["passthru", 69, 9], ["meta", 76, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 22, 7], ["value", 23, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 95, 7], ["description", 96, 7], ["license", 97, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["name", 100, 7], ["description", 101, 7], ["license", 102, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["name", 105, 7], ["description", 106, 7], ["license", 107, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 110, 7], ["description", 111, 7], ["license", 112, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["name", 115, 7], ["description", 116, 7], ["license", 117, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["name", 120, 7], ["description", 121, 7], ["license", 122, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["name", 125, 7], ["description", 126, 7], ["license", 127, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["name", 130, 7], ["description", 131, 7], ["license", 132, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["name", 135, 7], ["description", 136, 7], ["license", 137, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["name", 140, 7], ["description", 141, 7], ["license", 142, 7]]);
-const pos$17 = nix.positions(here + "/default.nix", [["name", 145, 7], ["description", 146, 7], ["license", 147, 7]]);
-const pos$18 = nix.positions(here + "/default.nix", [["name", 150, 7], ["description", 151, 7], ["license", 152, 7]]);
-const pos$19 = nix.positions(here + "/default.nix", [["name", 155, 7], ["description", 156, 7], ["license", 157, 7]]);
-const pos$20 = nix.positions(here + "/default.nix", [["name", 160, 7], ["description", 161, 7], ["license", 162, 7]]);
-const pos$21 = nix.positions(here + "/default.nix", [["name", 165, 7], ["description", 166, 7], ["files", 167, 7], ["license", 171, 7]]);
-const pos$22 = nix.positions(here + "/default.nix", [["name", 174, 7], ["description", 175, 7], ["license", 176, 7]]);
-const pos$23 = nix.positions(here + "/default.nix", [["name", 179, 7], ["description", 180, 7], ["license", 181, 7]]);
-const pos$24 = nix.positions(here + "/default.nix", [["name", 184, 7], ["description", 185, 7], ["license", 188, 7]]);
-const pos$25 = nix.positions(here + "/default.nix", [["name", 191, 7], ["description", 192, 7], ["license", 193, 7]]);
-const pos$26 = nix.positions(here + "/default.nix", [["name", 196, 7], ["description", 197, 7], ["license", 198, 7]]);
-const pos$27 = nix.positions(here + "/default.nix", [["name", 201, 7], ["description", 202, 7], ["license", 203, 7]]);
-const pos$28 = nix.positions(here + "/default.nix", [["name", 206, 7], ["description", 207, 7], ["license", 208, 7]]);
-const pos$29 = nix.positions(here + "/default.nix", [["name", 211, 7], ["description", 212, 7], ["license", 213, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,14 +23,14 @@ export default nix.lambda((args) => (() => {
     const license = nix.arg($_1, "license");
     const files = nix.argOr($_1, "files", () => [nix.thunk(() => nix.str`SKK-JISYO.${name}`)]);
     return {
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: nix.thunk(() => nix.app(nix.sel(lib, "toLower"), nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), name)))),
       value: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: nix.thunk(() => nix.add("skk-jisyo-", nix.app(nix.sel(lib, "toLower"), name))),
           version: "0-unstable-2026-04-11",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "skk-dev",
               repo: "dict",
               rev: "0a164e6b990c5eb5b59eb7d8789f08865dc2f644",
@@ -80,11 +52,11 @@ ${skktools}/bin/skkdic-count /dev/null | grep "$emptydict"
 ${skktools}/bin/skkdic-count $out/share/skk/* | grep -v "$emptydict"
 `),
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version", "branch"]) })))),
+            [nix.POS]: $pos[2],
+            updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version", "branch"]) })))),
           })),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             description: description,
             license: license,
             longDescription: "This package provides a kana-to-kanji conversion dictionary for the\nSKK Japanese input method.\n",
@@ -103,140 +75,140 @@ ${skktools}/bin/skkdic-count $out/share/skk/* | grep -v "$emptydict"
   })(), formals$2);
   return nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map(mkDictNameValue, nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           name: "L",
           description: "Standard SKK dictionary",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           name: "S",
           description: "Small SKK dictionary",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           name: "M",
           description: "Medium sized SKK dictionary",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           name: "ML",
           description: "Medium to large sized SKK dictionary",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           name: "jinmei",
           description: "SKK dictionary for names",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           name: "fullname",
           description: "SKK dictionary for celebrities",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           name: "geo",
           description: "SKK dictionary for locations",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           name: "propernoun",
           description: "SKK dictionary for proper nouns",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           name: "station",
           description: "SKK dictionary for stations",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           name: "law",
           description: "SKK dictionary for legal terms",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           name: "okinawa",
           description: "SKK dictionary for the Okinawan language",
           license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           name: "china_taiwan",
           description: "SKK dictionary for Chinese & Taiwanese locations",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           name: "assoc",
           description: "SKK dictionary for abbreviated input",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           name: "edict",
           description: "SKK dictionary for English to Japanese translation",
           license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-30")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           name: "zipcode",
           description: "SKK dictionary for Japanese zipcodes",
           files: nix.thunk(() => ["zipcode/SKK-JISYO.zipcode", "zipcode/SKK-JISYO.office.zipcode"]),
           license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           name: "JIS2",
           description: "SKK dictionary for JIS level 2 kanjis",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           name: "JIS3_4",
           description: "SKK dictionary for JIS level 3 and 4 kanjis",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           name: "JIS2004",
           description: "A complementary SKK dictionary for JIS3_4 with JIS X 0213:2004 additions\"\n",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           name: "itaiji",
           description: "SKK dictionary for variant kanjis",
           license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           name: "itaiji.JIS3_4",
           description: "SKK dictionary for JIS level 3 and 4 variant kanjis",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           name: "mazegaki",
           description: "SKK dictionary for mazegaki",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           name: "emoji",
           description: "SKK dictionary for emojis",
           license: nix.thunk(() => nix.sel(lib, "licenses", "unicode-dfs-2016")),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           name: "pinyin",
           description: "SKK dictionary for pinyin to simplified Chinese input",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl1Plus")),

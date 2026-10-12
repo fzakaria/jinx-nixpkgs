@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["updateScript", 43, 12]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5], ["sourceProvenance", 57, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 17, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["unpackCmd", 24, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["passthru", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { fetchurl: false, libarchive: false, lib: false, stdenvNoCC: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 43, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5], ["sourceProvenance", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 17, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["unpackCmd", 24, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["passthru", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "omniwm",
       version: "0.7.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/OmniNull/OmniWM/releases/download/v${nix.sel(finalAttrs, "version")}/OmniWM-v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-HxSF4dFmgxaX6M7bnBF1d/WUn+AN7q6Fcr7W1sWOtOI=",
         })))),
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [libarchive]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications/OmniWM.app\"\ncp -r . \"$out/Applications/OmniWM.app\"\n\n# Symlink executables to bin\nmkdir -p \"$out/bin\"\nln -s \"$out/Applications/OmniWM.app/Contents/MacOS/OmniWM\" \"$out/bin/OmniWM\"\nln -s \"$out/Applications/OmniWM.app/Contents/MacOS/omniwmctl\" \"$out/bin/omniwmctl\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "MacOS Niri and Hyprland inspired tiling window manager",
         homepage: "https://github.com/OmniNull/OmniWM",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

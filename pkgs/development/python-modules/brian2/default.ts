@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["disabled", 25, 3], ["src", 27, 3], ["patches", 32, 3], ["postPatch", 36, 3], ["build-system", 44, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 58, 3], ["checkPhase", 63, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, cython: false, jinja2: false, numpy: false, pyparsing: false, setuptools: false, sympy: false, pytest: false, pythonOlder: false, "pytest-xdist": false, "setuptools-scm": false, python: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["disabled", 25, 3], ["src", 27, 3], ["patches", 32, 3], ["postPatch", 36, 3], ["build-system", 44, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 58, 3], ["checkPhase", 63, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-wdIdewkhkjYkGddvyHH+q5/wuz0A6SZdjNQIbMLhG08=",
@@ -47,7 +45,7 @@ cd $HOME && ${nix.sel(python, "interpreter")} -c "import brian2;assert brian2.te
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Clock-driven simulator for spiking neural networks",
         homepage: "https://briansimulator.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill21")),
@@ -57,7 +55,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

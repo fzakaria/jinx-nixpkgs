@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 12, 5], ["sha256", 13, 5], ["rev", 14, 5], ["fetchSubmodules", 15, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["isLibrary", 17, 3], ["isExecutable", 18, 3], ["libraryHaskellDepends", 19, 3], ["homepage", 23, 3], ["description", 24, 3], ["license", 25, 3]]]);
 const formals$1 = { args: { mkDerivation: false, "ansi-terminal": false, base: false, fetchgit: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 12, 5], ["sha256", 13, 5], ["rev", 14, 5], ["fetchSubmodules", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["isLibrary", 17, 3], ["isExecutable", 18, 3], ["libraryHaskellDepends", 19, 3], ["homepage", 23, 3], ["description", 24, 3], ["license", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const lib = nix.arg($, "lib");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ansi-wl-pprint",
       version: "0.6.8.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/ekmett/ansi-wl-pprint",
           sha256: "00pgxgkramz6y1bgdlm00rsh6gd6mdaqllh6riax2rc2sa35kip4",
           rev: "d16e2f6896d76b87b72af7220c2e93ba15c53280",

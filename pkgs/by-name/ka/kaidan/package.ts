@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["qt6Support", 42, 44]], [["kaidan", 73, 18]], [["updateScript", 72, 12], ["tests", 73, 12]], [["description", 76, 5], ["mainProgram", 77, 5], ["longDescription", 78, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 94, 5], ["teams", 95, 5], ["platforms", 96, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["cmakeFlags", 64, 3], ["postInstall", 68, 3], ["passthru", 72, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "nix-update-script": false, nixosTests: false, cmake: false, kdePackages: false, "pkg-config": false, writableTmpDirAsHomeHook: false, gst_all_1: false, kdsingleapplication: false, qxmpp: false, "zxing-cpp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["qt6Support", 42, 44]]);
-const pos$3 = nix.positions(here + "/package.nix", [["kaidan", 73, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 72, 12], ["tests", 73, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 76, 5], ["mainProgram", 77, 5], ["longDescription", 78, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 94, 5], ["teams", 95, 5], ["platforms", 96, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["cmakeFlags", 64, 3], ["postInstall", 68, 3], ["passthru", 72, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const qxmpp = nix.arg($, "qxmpp");
   const zxing_cpp = nix.arg($, "zxing-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kaidan",
       version: "0.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "invent.kde.org",
           owner: "network",
           repo: "kaidan",
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
         writableTmpDirAsHomeHook,
       ]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, qt6Support: true })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], qt6Support: true })))),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-bad")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
         nix.thunk(() => nix.sel(gst_all_1, "gstreamer")),
@@ -69,12 +64,12 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DBUILD_TESTING=ON"]),
       postInstall: "qtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, kaidan: nix.thunk(() => nix.sel(nixosTests, "kaidan")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], kaidan: nix.thunk(() => nix.sel(nixosTests, "kaidan")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "User-friendly and modern chat app, using XMPP",
         mainProgram: "kaidan",
         longDescription: "Kaidan is a user-friendly and modern chat app for every device. It uses\nthe open communication protocol XMPP (Jabber). Unlike other chat apps,\nyou are not dependent on one specific service provider.\n\nKaidan does not have all basic features yet and has still some\nstability issues. Current features include audio messages, video\nmessages, and file sharing.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["pname", 12, 3], ["version", 13, 3], ["minimalOCamlVersion", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 29, 3], ["checkInputs", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDunePackage: false, ocaml: false, "camlp-streams": false, markup: false, ounit2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["minimalOCamlVersion", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 29, 3], ["checkInputs", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const markup = nix.arg($, "markup");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lambdasoup",
       version: "1.1.1",
       minimalOCamlVersion: "4.03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aantron",
           repo: "lambdasoup",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Functional HTML scraping and rewriting with CSS in OCaml",
         homepage: "https://aantron.github.io/lambdasoup/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

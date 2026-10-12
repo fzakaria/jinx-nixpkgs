@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["extraArgs", 26, 5]], [["updateScript", 24, 12]], [["description", 30, 5], ["mainProgram", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 12, 3], ["version", 13, 21], ["src", 13, 29], ["cargoHash", 13, 33], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["buildAndTestSubdir", 18, 3], ["checkFlags", 20, 3], ["passthru", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, rustPlatform: false, openssl: false, nushell: false, "pkg-config": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["extraArgs", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 24, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 30, 5], ["mainProgram", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 21], ["src", 13, 29], ["cargoHash", 13, 33], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["buildAndTestSubdir", 18, 3], ["checkFlags", 20, 3], ["passthru", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nu_plugin_polars",
       version: nix.thunk(() => nix.attr(nushell, "version")),
       src: nix.thunk(() => nix.attr(nushell, "src")),
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: "crates/nu_plugin_polars",
       checkFlags: nix.thunk(() => ["--skip=dataframe::command::core::to_repr::test::test_examples"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$1, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
+        [nix.POS]: $pos[1],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[0], extraArgs: nix.thunk(() => ["--version=skip"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Nushell dataframe plugin commands based on polars",
         mainProgram: "nu_plugin_polars",
         homepage: nix.thunk(() => nix.str`https://github.com/nushell/nushell/tree/${nix.sel(finalAttrs, "version")}/crates/nu_plugin_polars`),

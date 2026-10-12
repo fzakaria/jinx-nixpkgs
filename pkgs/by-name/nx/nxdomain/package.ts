@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 13, 26], ["version", 13, 32], ["sha256", 14, 5]], [["homepage", 30, 5], ["description", 31, 5], ["mainProgram", 32, 5], ["platforms", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 17, 3], ["dependencies", 19, 3], ["nativeCheckInputs", 21, 3], ["postCheck", 23, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 13, 26], ["version", 13, 32], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 30, 5], ["description", 31, 5], ["mainProgram", 32, 5], ["platforms", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 17, 3], ["dependencies", 19, 3], ["nativeCheckInputs", 21, 3], ["postCheck", 23, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nxdomain",
       version: "1.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "0va7nkbdjgzrf7fnbxkh1140pbc62wyj86rdrrh5wmg3phiziqkb",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postCheck: "echo example.org > simple.list\npython -m nxdomain --format dnsmasq --out dnsmasq.conf --simple ./simple.list\ngrep -q 'address=/example.org/' dnsmasq.conf\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/zopieux/nxdomain",
         description: "Domain (ad) block list creator",
         mainProgram: "nxdomain",

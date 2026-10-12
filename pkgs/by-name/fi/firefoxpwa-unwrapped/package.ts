@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["FFPWA_EXECUTABLES", 47, 5], ["FFPWA_SYSDATA", 48, 5]], [["firefoxpwa", 94, 11]], [["tests", 94, 5], ["binaryName", 95, 5], ["applicationName", 96, 5], ["gtk3", 97, 30], ["withALSA", 102, 7], ["withFFmpeg", 103, 7], ["withGSSAPI", 104, 7], ["withJACK", 105, 7], ["withPipewire", 106, 7], ["withSndio", 107, 7]], [["description", 112, 5], ["longDescription", 113, 5], ["homepage", 139, 5], ["changelog", 140, 5], ["license", 141, 5], ["platforms", 142, 5], ["maintainers", 143, 5], ["mainProgram", 147, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 28, 3], ["buildFeatures", 29, 3], ["cargoHash", 31, 3], ["preConfigure", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["env", 46, 3], ["completions", 50, 3], ["postInstall", 52, 3], ["passthru", 93, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { firefoxRuntime: true, lib: false, fetchFromGitHub: false, installShellFiles: false, makeWrapper: false, rustPlatform: false, "firefox-unwrapped": false, nixosTests: false, openssl: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["FFPWA_EXECUTABLES", 47, 5], ["FFPWA_SYSDATA", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["firefoxpwa", 94, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 94, 5], ["binaryName", 95, 5], ["applicationName", 96, 5], ["gtk3", 97, 30], ["withALSA", 102, 7], ["withFFmpeg", 103, 7], ["withGSSAPI", 104, 7], ["withJACK", 105, 7], ["withPipewire", 106, 7], ["withSndio", 107, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 112, 5], ["longDescription", 113, 5], ["homepage", 139, 5], ["changelog", 140, 5], ["license", 141, 5], ["platforms", 142, 5], ["maintainers", 143, 5], ["mainProgram", 147, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 28, 3], ["buildFeatures", 29, 3], ["cargoHash", 31, 3], ["preConfigure", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["env", 46, 3], ["completions", 50, 3], ["postInstall", 52, 3], ["passthru", 93, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "firefoxpwa-unwrapped",
       version: "2.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "filips123",
           repo: "PWAsForFirefox",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +39,7 @@ sed -i $'s;DISTRIBUTION_VERSION = \\'0.0.0\\';DISTRIBUTION_VERSION = \\'${nix.se
       nativeBuildInputs: nix.thunk(() => [installShellFiles, makeWrapper, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         FFPWA_EXECUTABLES: "",
         FFPWA_SYSDATA: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/firefoxpwa`),
       })),
@@ -89,9 +84,9 @@ wrapProgram $out/bin/firefoxpwa-connector \\
 mkdir $out/lib/firefoxpwa
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           firefoxpwa: nix.thunk(() => nix.sel(nixosTests, "firefoxpwa")),
         })),
         binaryName: "firefoxpwa",
@@ -105,7 +100,7 @@ mkdir $out/lib/firefoxpwa
         withSndio: nix.thunk(() => nix.attr(firefoxRuntime, "withSndio")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tool to install, manage and use Progressive Web Apps (PWAs) in Mozilla Firefox (native component)",
         longDescription: "Progressive Web Apps (PWAs) are web apps that use web APIs and features along\nwith progressive enhancement strategy to bring a native app-like user experience\nto cross-platform web applications. Although Firefox supports many of Progressive\nWeb App APIs, it does not support functionality to install them as a standalone\nsystem app with an app-like experience.\n\nThis project creates a custom modified Firefox runtime to allow websites to be\ninstalled as standalone apps and provides a console tool and browser extension\nto install, manage and use them.\n\nThis package contains only the native part of the PWAsForFirefox project. You\nshould also install the browser extension if you haven't already. You can download\nit from the [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/pwas-for-firefox/)\nwebsite.\n\nTo install the package on NixOS, you need to add the following options:\n\n```\nprograms.firefox.nativeMessagingHosts.packages = [ pkgs.firefoxpwa ];\nenvironment.systemPackages = [ pkgs.firefoxpwa ];\n```\n\nAs it needs to be both in the `PATH` and in the `nativeMessagingHosts` to make it\npossible for the extension to detect and use it.\n",
         homepage: "https://pwasforfirefox.filips.si/",

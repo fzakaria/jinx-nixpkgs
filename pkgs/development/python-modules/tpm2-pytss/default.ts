@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 31, 13], ["pname", 32, 5], ["hash", 33, 5]], [["crossPrefix", 48, 7]], [["homepage", 87, 5], ["changelog", 88, 5], ["description", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 26, 3], ["version", 27, 3], ["format", 28, 3], ["src", 30, 3], ["patches", 36, 3], ["hardeningDisable", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 65, 3], ["propagatedBuildInputs", 67, 3], ["nativeCheckInputs", 74, 3], ["preCheck", 80, 3], ["pythonImportsCheck", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, replaceVars: false, buildPythonPackage: false, fetchPypi: false, fetchpatch: false, fetchpatch2: false, asn1crypto: false, cffi: false, cryptography: false, pkgconfig: false, "pkg-config": false, pytestCheckHook: false, pyyaml: false, "setuptools-scm": false, "tpm2-tss": false, "tpm2-tools": false, swtpm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 31, 13], ["pname", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["crossPrefix", 48, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 87, 5], ["changelog", 88, 5], ["description", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["format", 28, 3], ["src", 30, 3], ["patches", 36, 3], ["hardeningDisable", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 65, 3], ["propagatedBuildInputs", 67, 3], ["nativeCheckInputs", 74, 3], ["preCheck", 80, 3], ["pythonImportsCheck", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "tpm2_pytss",
           hash: "sha256-wZPPGQi0gvk8SqRkEykg/jo31LnYAuJnl0/y3+N9RDM=",
         }))));
       const patches = nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optionals"), isCross, nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./cross.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               crossPrefix: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "config")),
             })))),
         ]))));
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
 `);
       const pythonImportsCheck = nix.thunk(() => ["tpm2_pytss"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/tpm2-software/tpm2-pytss",
         changelog: nix.thunk(() => nix.str`https://github.com/tpm2-software/tpm2-pytss/blob/${version}/CHANGELOG.md`),
         description: "TPM2 TSS Python bindings for Enhanced System API (ESYS)",
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5], ["fetchSubmodules", 34, 5]], [["description", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 25, 3], ["version", 27, 3], ["src", 29, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 54, 3], ["cmakeFlags", 59, 3], ["postPatch", 64, 3], ["doCheck", 69, 3], ["nativeCheckInputs", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, check: false, cmake: false, "pkg-config": false, libtoxcore: false, "filter-audio": false, dbus: false, libvpx: false, libx11: false, openal: false, freetype: false, libv4l: false, libxrender: false, fontconfig: false, libxext: false, libxft: false, libsodium: false, libopus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5], ["fetchSubmodules", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 27, 3], ["src", 29, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 54, 3], ["cmakeFlags", 59, 3], ["postPatch", 64, 3], ["doCheck", 69, 3], ["nativeCheckInputs", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "utox";
       const version = "0.18.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "uTox",
           repo: "uTox",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
       const nativeCheckInputs = nix.thunk(() => [check]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight Tox client",
         mainProgram: "utox",
         homepage: "https://github.com/uTox/uTox",
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

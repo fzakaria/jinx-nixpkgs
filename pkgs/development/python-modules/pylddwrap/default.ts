@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["ldd_bin", 27, 7]], [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["badPlatforms", 63, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postInstall", 33, 3], ["build-system", 37, 3], ["propagatedBuildInputs", 39, 3], ["nativeCheckInputs", 44, 3], ["disabledTests", 47, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, icontract: false, pytestCheckHook: false, replaceVars: false, setuptools: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ldd_bin", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["badPlatforms", 63, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postInstall", 33, 3], ["build-system", 37, 3], ["propagatedBuildInputs", 39, 3], ["nativeCheckInputs", 44, 3], ["disabledTests", 47, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Parquery",
           repo: "pylddwrap",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./replace_env_with_placeholder.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             ldd_bin: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "bintools", "libc_bin")}/bin/ldd`),
           })))),
       ]);
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["TestAgainstMockLdd", "TestMain"]);
       const pythonImportsCheck = nix.thunk(() => ["lddwrap"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python wrapper around ldd *nix utility to determine shared libraries of a program",
         mainProgram: "pylddwrap",
         homepage: "https://github.com/Parquery/pylddwrap",
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         badPlatforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

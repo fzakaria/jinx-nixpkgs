@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5], ["homepage", 41, 5], ["mainProgram", 42, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["installPhase", 21, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bash: false, curl: false, xsel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5], ["homepage", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["installPhase", 21, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const xsel = nix.arg($, "xsel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "imgurbash2",
       version: "3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ram-on",
           repo: "imgurbash2",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +33,7 @@ cat imgurbash2 >> $out/bin/imgurbash2
 chmod +x $out/bin/imgurbash2
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Shell script that uploads images to imgur",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

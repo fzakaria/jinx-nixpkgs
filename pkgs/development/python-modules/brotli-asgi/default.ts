@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["pythonImportsCheck", 36, 3], ["nativeCheckInputs", 38, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, starlette: false, brotli: false, httpx: false, requests: false, mypy: false, brotlipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["pythonImportsCheck", 36, 3], ["nativeCheckInputs", 38, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const mypy = nix.arg($, "mypy");
   const brotlipy = nix.arg($, "brotlipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "brotli-asgi",
       version: "1.6.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fullonic",
           repo: "brotli-asgi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["brotli_asgi"]),
       nativeCheckInputs: nix.thunk(() => [httpx, requests, mypy, brotlipy]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Compression AGSI middleware using brotli",
         homepage: "https://github.com/fullonic/brotli-asgi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

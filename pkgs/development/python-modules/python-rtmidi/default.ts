@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 24, 5], ["version", 25, 13], ["hash", 26, 5]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, alabaster: false, "alsa-lib": false, buildPythonPackage: false, cython: false, fetchPypi: false, flake8: false, libjack2: false, "meson-python": false, ninja: false, "pkg-config": false, tox: false, wheel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 24, 5], ["version", 25, 13], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "python_rtmidi",
           version: version,
           hash: "sha256-f5reaLBorgkADstWKulSHaOiNDYa1USeg/xzRUTQBPo=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [tox, flake8, alabaster]);
       const pythonImportsCheck = nix.thunk(() => ["rtmidi"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python binding for the RtMidi C++ library implemented using Cython",
         homepage: "https://github.com/SpotlightKid/python-rtmidi",
         changelog: nix.thunk(() => nix.str`https://github.com/SpotlightKid/python-rtmidi/blob/${version}/CHANGELOG.md`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

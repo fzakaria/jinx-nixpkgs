@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["url", 21, 7], ["sha256", 22, 7]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["mainProgram", 38, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, "gdk-pixbuf": false, popt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 7], ["sha256", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["mainProgram", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const popt = nix.arg($, "popt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "icon-slicer",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://freedesktop.org/software/icon-slicer/releases/icon-slicer-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0kdnc08k2rs8llfg7xgvnrsk60x59pv5fqz6kn2ifnn2s1nj3w05",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://aur.archlinux.org/cgit/aur.git/plain/hotspotfix.patch?h=icon-slicer",
             sha256: "1l1dc1x5p4hys02arkmq3x6b1xdi510969d25g928zr4gf4an03h",
           })))),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [popt, pkg_config]),
       buildInputs: nix.thunk(() => [gdk_pixbuf]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utility for generating icon themes and libxcursor cursor themes",
         homepage: "https://www.freedesktop.org/wiki/Software/icon-slicer/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

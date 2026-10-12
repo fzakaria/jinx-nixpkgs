@@ -2,9 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/directory-listing-updater.nix", [[["pname", 23, 5], ["version", 24, 5], ["attrPath", 25, 5], ["allowedVersions", 26, 5], ["ignoredVersions", 27, 5], ["rev-prefix", 28, 5], ["rev-suffix", 29, 5], ["odd-unstable", 30, 5], ["patchlevel-unstable", 31, 5], ["versionLister", 33, 3]]]);
 const formals$1 = { args: { lib: false, genericUpdater: false, "common-updater-scripts": false }, ellipsis: false };
 const formals$2 = { args: { pname: true, version: true, attrPath: true, allowedVersions: true, ignoredVersions: true, "rev-prefix": true, "rev-suffix": true, "odd-unstable": true, "patchlevel-unstable": true, url: true, extraRegex: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/directory-listing-updater.nix", [["pname", 23, 5], ["version", 24, 5], ["attrPath", 25, 5], ["allowedVersions", 26, 5], ["ignoredVersions", 27, 5], ["rev-prefix", 28, 5], ["rev-suffix", 29, 5], ["odd-unstable", 30, 5], ["patchlevel-unstable", 31, 5], ["versionLister", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
     const url = nix.argOr($_1, "url", () => null);
     const extraRegex = nix.argOr($_1, "extraRegex", () => null);
     return nix.app(genericUpdater, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: pname,
         version: version,
         attrPath: attrPath,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["url", 18, 5]], [["updateScript", 17, 12]], [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["platforms", 25, 5], ["teams", 26, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 17, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, httpTwoLevelsUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 18, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 17, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["platforms", 25, 5], ["teams", 26, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 17, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,26 +15,26 @@ export default nix.lambda((args) => (() => {
       const pname = "xfwm4-themes";
       const version = "4.10.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xfce/src/art/${pname}/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${pname}-${version}.tar.bz2`),
           sha256: "sha256-MhTV8A6XA7XoyefDKH1gbe3scoXOtNXbMy6TraZv1XU=",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(httpTwoLevelsUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://archive.xfce.org/src/art/${pname}`),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.xfce.org/",
         description: "Themes for Xfce",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "xfce"))]),
       }));
-      return { [nix.POS]: pos$5, pname, version, src, passthru, meta };
+      return { [nix.POS]: $pos[4], pname, version, src, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 104, 7], ["hash", 112, 7]], [["x86_64-linux", 103, 5]], [["id", 120, 9], ["version", 121, 9], ["about", 122, 9]], [["Global", 119, 7]], [["name", 157, 7], ["exec", 158, 7], ["icon", 159, 7], ["desktopName", 160, 7], ["genericName", 161, 7], ["comment", 162, 7], ["categories", 163, 7], ["mimeTypes", 168, 7]], [["pname", 286, 15], ["version", 286, 21], ["meta", 286, 29], ["baseUrl", 287, 7], ["name", 288, 7]], [["sources", 284, 13], ["updateScript", 285, 5]], [["description", 293, 5], ["mainProgram", 294, 5], ["homepage", 295, 5], ["platforms", 296, 5], ["maintainers", 297, 5], ["license", 306, 5], ["sourceProvenance", 312, 5]], [["pname", 128, 3], ["version", 129, 11], ["src", 131, 3], ["nativeBuildInputs", 135, 3], ["buildInputs", 142, 3], ["patchelfFlags", 150, 3], ["preferLocalBuild", 152, 3], ["allowSubstitutes", 153, 3], ["desktopItems", 155, 3], ["buildPhase", 179, 3], ["installPhase", 274, 3], ["passthru", 283, 3], ["meta", 292, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false, writeText: false, wrapGAppsHook3: false, autoPatchelfHook: false, patchelfUnstable: false, callPackage: false, atk: false, cairo: false, dbus: false, "dbus-glib": false, fontconfig: false, freetype: false, "gdk-pixbuf": false, glib: false, gtk3: false, libxcb: false, libx11: false, libxext: false, libxrender: false, libxt: false, libxtst: false, libgbm: false, pango: false, pciutils: false, zlib: false, libnotifySupport: true, libnotify: false, waylandSupport: true, libxkbcommon: false, libdrm: false, libGL: false, mediaSupport: true, ffmpeg_7: false, audioSupport: true, pipewireSupport: true, pipewire: false, pulseaudioSupport: true, libpulseaudio: false, apulse: false, "alsa-lib": false, libvaSupport: true, libva: false, extraPrefs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 104, 7], ["hash", 112, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 103, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["id", 120, 9], ["version", 121, 9], ["about", 122, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["Global", 119, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 157, 7], ["exec", 158, 7], ["icon", 159, 7], ["desktopName", 160, 7], ["genericName", 161, 7], ["comment", 162, 7], ["categories", 163, 7], ["mimeTypes", 168, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 286, 15], ["version", 286, 21], ["meta", 286, 29], ["baseUrl", 287, 7], ["name", 288, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["sources", 284, 13], ["updateScript", 285, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 293, 5], ["mainProgram", 294, 5], ["homepage", 295, 5], ["platforms", 296, 5], ["maintainers", 297, 5], ["license", 306, 5], ["sourceProvenance", 312, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 128, 3], ["version", 129, 11], ["src", 131, 3], ["nativeBuildInputs", 135, 3], ["buildInputs", 142, 3], ["patchelfFlags", 150, 3], ["preferLocalBuild", 152, 3], ["allowSubstitutes", 153, 3], ["desktopItems", 155, 3], ["buildPhase", 179, 3], ["installPhase", 274, 3], ["passthru", 283, 3], ["meta", 292, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -89,9 +81,9 @@ export default nix.lambda((args) => (() => {
     ], nix.concat(nix.app(nix.sel(lib, "optionals"), libnotifySupport, nix.thunk(() => [libnotify])), nix.concat(nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [libxkbcommon, libdrm, libGL])), nix.concat(nix.app(nix.sel(lib, "optionals"), pipewireSupport, nix.thunk(() => [pipewire])), nix.concat(nix.app(nix.sel(lib, "optionals"), pulseaudioSupport, nix.thunk(() => [libpulseaudio])), nix.concat(nix.app(nix.sel(lib, "optionals"), libvaSupport, nix.thunk(() => [libva])), nix.app(nix.sel(lib, "optionals"), mediaSupport, nix.thunk(() => [ffmpeg_7])))))))))));
   const version = "15.0.24";
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`https://cdn.mullvad.net/browser/${version}/mullvad-browser-linux-x86_64-${version}.tar.xz`),
           nix.thunk(() => nix.str`https://github.com/mullvad/mullvad-browser/releases/download/${version}/mullvad-browser-linux-x86_64-${version}.tar.xz`),
@@ -104,9 +96,9 @@ export default nix.lambda((args) => (() => {
       })))),
   }));
   const distributionIni = nix.thunk(() => nix.app(writeText, "distribution.ini", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         Global: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           id: "nixos",
           version: "1.0",
           about: "Mullvad Browser for NixOS",
@@ -129,7 +121,7 @@ export default nix.lambda((args) => (() => {
       const allowSubstitutes = false;
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "mullvad-browser",
             exec: "mullvad-browser %U",
             icon: "mullvad-browser",
@@ -237,10 +229,10 @@ install -Dvm644 ${distributionIni} $out/share/mullvad-browser/distribution/distr
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         sources: sources,
         updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             pname: pname,
             version: version_1,
             meta: meta,
@@ -249,7 +241,7 @@ runHook postInstall
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Privacy-focused browser made in a collaboration between The Tor Project and Mullvad",
         mainProgram: "mullvad-browser",
         homepage: "https://mullvad.net/en/browser",
@@ -278,7 +270,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version: version_1,
         src,

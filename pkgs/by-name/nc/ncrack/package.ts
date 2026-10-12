@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["name", 25, 7], ["url", 26, 7], ["sha256", 27, 7]], [["url", 31, 7], ["hash", 32, 7]], [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["postPatch", 36, 3], ["configureFlags", 42, 3], ["buildInputs", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, openssl: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["sha256", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["postPatch", 36, 3], ["configureFlags", 42, 3], ["buildInputs", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ncrack",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nmap",
           repo: "ncrack",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,13 +26,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fno-common.patch",
             url: "https://github.com/nmap/ncrack/commit/cc4103267bab6017a4da9d41156d0c1075012eba.patch",
             sha256: "06nlfvc7p108f8ppbcgwmj4iwmjy95xhc1sawa8c78lrx22r7gy3",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://src.fedoraproject.org/rpms/ncrack/raw/425a54633e220b6bafca37554e5585e2c6b48082/f/ncrack-0.7-fedora-c99.patch",
             hash: "sha256-kPYLPJ04dFI+WZQBecuTHXdTZhc40FDQkt35Jrddoyw=",
           })))),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--without-zlib-version-check"]),
       buildInputs: nix.thunk(() => [openssl, zlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Network authentication tool",
         mainProgram: "ncrack",
         homepage: "https://nmap.org/ncrack/",

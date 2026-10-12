@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]], [["abinit", 93, 5], ["ase", 94, 5], ["electronic_structure", 95, 5], ["mlp", 98, 5], ["numba", 102, 5], ["vis", 103, 5]], [["description", 154, 5], ["homepage", 155, 5], ["changelog", 156, 5], ["license", 157, 5], ["maintainers", 158, 5]], [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["disabled", 54, 3], ["src", 56, 3], ["build-system", 63, 3], ["nativeBuildInputs", 65, 3], ["dependencies", 70, 3], ["optional-dependencies", 92, 3], ["pythonImportsCheck", 106, 3], ["nativeCheckInputs", 108, 3], ["preCheck", 116, 3], ["disabledTests", 126, 3], ["disabledTestPaths", 143, 3], ["meta", 153, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, pythonAtLeast: false, fetchFromGitHub: false, setuptools: false, cython: false, glibcLocales: false, bibtexparser: false, joblib: false, matplotlib: false, monty: false, networkx: false, numpy: false, orjson: false, palettable: false, pandas: false, plotly: false, pybtex: false, requests: false, "ruamel-yaml": false, scipy: false, spglib: false, sympy: false, tabulate: false, tqdm: false, uncertainties: false, netcdf4: false, ase: false, numba: false, vtk: false, addBinToPathHook: false, moyopy: false, "pytest-xdist": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["abinit", 93, 5], ["ase", 94, 5], ["electronic_structure", 95, 5], ["mlp", 98, 5], ["numba", 102, 5], ["vis", 103, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 154, 5], ["homepage", 155, 5], ["changelog", 156, 5], ["license", 157, 5], ["maintainers", 158, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["disabled", 54, 3], ["src", 56, 3], ["build-system", 63, 3], ["nativeBuildInputs", 65, 3], ["dependencies", 70, 3], ["optional-dependencies", 92, 3], ["pythonImportsCheck", 106, 3], ["nativeCheckInputs", 108, 3], ["preCheck", 116, 3], ["disabledTests", 126, 3], ["disabledTestPaths", 143, 3], ["meta", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.13"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "materialsproject",
           repo: "pymatgen",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -81,7 +78,7 @@ export default nix.lambda((args) => (() => {
         uncertainties,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         abinit: nix.thunk(() => [netcdf4]),
         ase: nix.thunk(() => [ase]),
         electronic_structure: [],
@@ -100,7 +97,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_mean_field"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_timer_10_2_7", "test_timer"])))));
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/cli/test_pmg_plot.py", "tests/io/abinit/test_abitimer.py"])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Robust materials analysis code that defines core object representations for structures and molecules",
         homepage: "https://pymatgen.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/materialsproject/pymatgen/releases/tag/${nix.sel(src, "tag")}`),
@@ -111,7 +108,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

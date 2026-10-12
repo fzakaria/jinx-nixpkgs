@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["homepage", 42, 5], ["description", 43, 5], ["maintainers", 44, 5], ["sourceProvenance", 45, 5], ["license", 46, 5], ["platforms", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["postPatch", 24, 3], ["installPhase", 29, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, jre: false, makeWrapper: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["maintainers", 44, 5], ["sourceProvenance", 45, 5], ["license", 46, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["postPatch", 24, 3], ["installPhase", 29, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dex2jar",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/pxb1988/dex2jar/releases/download/v${nix.sel(finalAttrs, "version")}/dex-tools-v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-7nxF6zwdJHSmFF2NRH5lGnNqItlmS209O+WlqBfdojo=",
         })))),
@@ -37,7 +35,7 @@ for i in $f/*.sh; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/pxb1988/dex2jar",
         description: "Tools to work with android .dex and java .class files",
         maintainers: nix.thunk(() => (() => {

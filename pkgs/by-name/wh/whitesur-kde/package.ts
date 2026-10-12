@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["updateScript", 69, 12]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["installPhase", 57, 3], ["passthru", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 69, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["installPhase", 57, 3], ["passthru", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "whitesur-kde";
       const version = "2024-11-18";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vinceliuice",
           repo: "whitesur-kde",
           rev: version,
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
       const postPatch = "patchShebangs install.sh sddm/install.sh\n\nsubstituteInPlace install.sh \\\n  --replace-fail '[ \"$UID\" -eq \"$ROOT_UID\" ]' true \\\n  --replace-fail /usr $out \\\n  --replace-fail '\"$HOME\"/.Xresources' $out/doc/.Xresources\n\nsubstituteInPlace sddm/install.sh \\\n  --replace-fail '[ \"$UID\" -eq \"$ROOT_UID\" ]' true \\\n  --replace-fail /usr $out \\\n  --replace-fail 'REO_DIR=\"$(cd $(dirname $0) && pwd)\"' 'REO_DIR=sddm'\n\nsubstituteInPlace sddm/*/Main.qml \\\n  --replace-fail /usr $out\n";
       const installPhase = "runHook preInstall\n\nmkdir -p $out/doc\nname= ./install.sh\n\nmkdir -p $out/share/sddm/themes\nsddm/install.sh\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "MacOS big sur like theme for KDE Plasma desktop",
         homepage: "https://github.com/vinceliuice/WhiteSur-kde",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "romildo"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

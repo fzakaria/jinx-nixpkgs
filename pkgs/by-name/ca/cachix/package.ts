@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["mainProgram", 11, 28]]]);
 const formals$1 = { args: { lib: false, haskell: false, haskellPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["mainProgram", 11, 28]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const compose = nix.thunk(() => nix.attr(from, "compose"));
   return nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(haskellPackages, "cachix")), nix.thunk(() => [
       nix.thunk(() => nix.sel(compose, "justStaticExecutables")),
-      nix.thunk(() => nix.app(nix.sel(compose, "overrideCabal"), nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "cachix" })))),
+      nix.thunk(() => nix.app(nix.sel(compose, "overrideCabal"), nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "cachix" })))),
       nix.thunk(() => nix.sel(lib, "getBin")),
     ]));
 })(), formals$1);

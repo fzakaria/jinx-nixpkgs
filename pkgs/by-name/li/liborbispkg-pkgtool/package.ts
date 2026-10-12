@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["mainProgram", 28, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["projectFile", 17, 3], ["postFixup", 19, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["mainProgram", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["projectFile", 17, 3], ["postFixup", 19, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildDotnetModule = nix.arg($, "buildDotnetModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "liborbispkg-pkgtool",
       version: "0.3-unstable-2025-11-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenOrbis",
           repo: "LibOrbisPkg",
           rev: "c1caa3ba25097fe602c0d842a0357bf7037b0838",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       projectFile: "PkgTool.Core/PkgTool.Core.csproj",
       postFixup: "mv $out/bin/PkgTool.Core $out/bin/pkgtool\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CLI for creating, inspecting, and modifying PS4 PKG, SFO, PFS, and related filetypes",
         homepage: "https://github.com/OpenOrbis/LibOrbisPkg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/xdg-desktop-portal.nix", [[["GI_TYPELIB_PATH", 13, 7], ["LD_PRELOAD", 19, 7], ["XDP_TEST_IN_CI", 20, 7]], [["variables", 12, 17], ["systemPackages", 22, 17]], [["enable", 28, 7], ["enableDemoAgent", 29, 7]], [["geoclue2", 27, 14]], [["provider", 31, 14]], [["environment", 12, 5], ["services", 27, 5], ["location", 31, 5]], [["tested", 9, 3], ["testConfig", 11, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, makeInstalledTest: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/xdg-desktop-portal.nix", [["GI_TYPELIB_PATH", 13, 7], ["LD_PRELOAD", 19, 7], ["XDP_TEST_IN_CI", 20, 7]]);
-const pos$2 = nix.positions(here + "/xdg-desktop-portal.nix", [["variables", 12, 17], ["systemPackages", 22, 17]]);
-const pos$3 = nix.positions(here + "/xdg-desktop-portal.nix", [["enable", 28, 7], ["enableDemoAgent", 29, 7]]);
-const pos$4 = nix.positions(here + "/xdg-desktop-portal.nix", [["geoclue2", 27, 14]]);
-const pos$5 = nix.positions(here + "/xdg-desktop-portal.nix", [["provider", 31, 14]]);
-const pos$6 = nix.positions(here + "/xdg-desktop-portal.nix", [["environment", 12, 5], ["services", 27, 5], ["location", 31, 5]]);
-const pos$7 = nix.positions(here + "/xdg-desktop-portal.nix", [["tested", 9, 3], ["testConfig", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
   return nix.app(makeInstalledTest, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       tested: nix.thunk(() => nix.sel(pkgs, "xdg-desktop-portal")),
       testConfig: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           variables: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             GI_TYPELIB_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "lib/girepository-1.0", nix.thunk(() => [
                 nix.thunk(() => nix.sel(pkgs, "glib", "out")),
                 nix.thunk(() => nix.sel(pkgs, "umockdev", "out")),
@@ -42,10 +36,10 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          geoclue2: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, enableDemoAgent: true })),
+          [nix.POS]: $pos[3],
+          geoclue2: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true, enableDemoAgent: true })),
         })),
-        location: nix.thunk(() => ({ [nix.POS]: pos$5, provider: "geoclue2" })),
+        location: nix.thunk(() => ({ [nix.POS]: $pos[4], provider: "geoclue2" })),
       })),
     })));
 })(), formals$1);

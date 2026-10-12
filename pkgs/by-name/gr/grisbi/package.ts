@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["updateScript", 41, 12]], [["description", 44, 5], ["mainProgram", 45, 5], ["longDescription", 46, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, gtk3: false, "pkg-config": false, libgsf: false, libofx: false, autoreconfHook: false, intltool: false, wrapGAppsHook3: false, "adwaita-icon-theme": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 41, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["mainProgram", 45, 5], ["longDescription", 46, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const adwaita_icon_theme = nix.arg($, "adwaita-icon-theme");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "grisbi",
       version: "3.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grisbi",
           repo: "grisbi",
           tag: nix.thunk(() => nix.str`upstream_version_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook3, intltool, autoreconfHook]),
       buildInputs: nix.thunk(() => [gtk3, libgsf, libofx, adwaita_icon_theme]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Personal accounting application",
         mainProgram: "grisbi",
         longDescription: "Grisbi is an application written by French developers, so it perfectly\nrespects French accounting rules. Grisbi can manage multiple accounts,\ncurrencies and users. It manages third party, expenditure and receipt\ncategories, budgetary lines, financial years, budget estimates, bankcard\nmanagement and other information that make Grisbi adapted for\nassociations.\n",

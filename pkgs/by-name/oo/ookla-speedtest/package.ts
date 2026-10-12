@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 7], ["sha256", 16, 7]], [["url", 19, 7], ["sha256", 20, 7]], [["url", 23, 7], ["sha256", 24, 7]], [["url", 27, 7], ["sha256", 28, 7]], [["url", 31, 7], ["sha256", 32, 7]], [["x86_64-linux", 14, 5], ["i686-linux", 18, 5], ["aarch64-linux", 22, 5], ["armv7l-linux", 26, 5], ["aarch64-darwin", 30, 5]], [["description", 59, 5], ["homepage", 60, 5], ["sourceProvenance", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["mainProgram", 65, 5]], [["pname", 38, 11], ["version", 38, 17], ["src", 40, 3], ["sourceRoot", 43, 3], ["dontBuild", 45, 3], ["dontConfigure", 46, 3], ["installPhase", 48, 3], ["outputs", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 7], ["sha256", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 7], ["sha256", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 23, 7], ["sha256", 24, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 27, 7], ["sha256", 28, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 31, 7], ["sha256", 32, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["x86_64-linux", 14, 5], ["i686-linux", 18, 5], ["aarch64-linux", 22, 5], ["armv7l-linux", 26, 5], ["aarch64-darwin", 30, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["sourceProvenance", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["mainProgram", 65, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 38, 11], ["version", 38, 17], ["src", 40, 3], ["sourceRoot", 43, 3], ["dontBuild", 45, 3], ["dontConfigure", 46, 3], ["installPhase", 48, 3], ["outputs", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,35 +14,35 @@ export default nix.lambda((args) => (() => {
   const pname = "ookla-speedtest";
   const version = "1.2.0";
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://install.speedtest.net/app/cli/${pname}-${version}-linux-x86_64.tgz`),
         sha256: "sha256-VpBZbFT/m+1j+jcy+BigXbwtsZrTbtaPIcpfZNXP7rc=",
       })))),
     "i686-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://install.speedtest.net/app/cli/${pname}-${version}-linux-i386.tgz`),
         sha256: "sha256-n/fhjbrn7g4DxmEIRFovts7qbIb2ZILhOS9ViBt3L+g=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://install.speedtest.net/app/cli/${pname}-${version}-linux-aarch64.tgz`),
         sha256: "sha256-OVPSMdo3g+K/iQS23XJ2fFxuUz4WPTdC/QQ3r/pDG9M=",
       })))),
     "armv7l-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         url: nix.thunk(() => nix.str`https://install.speedtest.net/app/cli/${pname}-${version}-linux-armhf.tgz`),
         sha256: "sha256-5F/N672KGFVTU1Uz3QMtaxC8jGTu5BObEUe5wJg10I0=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         url: nix.thunk(() => nix.str`https://install.speedtest.net/app/cli/${pname}-${version}-macosx-universal.tgz`),
         sha256: "sha256-yfgZIUnryI+GmZmM7Ksc4UQUQEWQfs5vU89Qh39N5m8=",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -59,7 +52,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "install -D speedtest $out/bin/speedtest\ninstall -D speedtest.5 $man/share/man/man5/speedtest.5\n",
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Command line internet speedtest tool by Ookla",
         homepage: "https://www.speedtest.net/apps/cli",
         sourceProvenance: nix.thunk(() => (() => {

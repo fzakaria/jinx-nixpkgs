@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 64], ["sha256", 26, 68]], [["updateScript", 42, 12]], [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]], [["pname", 24, 3], ["version", 25, 3], ["srcs", 26, 3], ["sourceRoot", 28, 3], ["installPhase", 30, 3], ["passthru", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false, variants: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 64], ["sha256", 26, 68]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 42, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["srcs", 26, 3], ["sourceRoot", 28, 3], ["installPhase", 30, 3], ["passthru", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +18,13 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(!nix.eq(unknownVariants, [])) ? nix.builtins.throw(nix.thunk(() => nix.str`Unknown variant(s): ${nix.app(nix.sel(lib, "concatStringsSep"), unknownVariants)}`)) : nix.force(variants));
   })()));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xcursor-pro",
       version: "2.0.2",
       srcs: nix.thunk(() => nix.builtins.map((variant) => nix.app(fetchurl, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(sources, nix.key(nix.force(variant))));
             return {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.attr(from, "url")),
             sha256: nix.thunk(() => nix.attr(from, "sha256")),
           };
@@ -43,9 +40,9 @@ done
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/ful1e5/XCursor-pro",
         description: "Modern XCursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

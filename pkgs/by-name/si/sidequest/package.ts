@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 48, 7], ["hash", 49, 7]], [["name", 59, 9], ["exec", 60, 9], ["icon", 61, 9], ["desktopName", 62, 9], ["genericName", 63, 9], ["categories", 64, 9]], [["pname", 45, 13], ["version", 45, 19], ["src", 47, 5], ["nativeBuildInputs", 52, 5], ["desktopItems", 57, 5], ["installPhase", 71, 5], ["postFixup", 84, 5]], [["description", 143, 5], ["homepage", 144, 5], ["downloadPage", 145, 5], ["sourceProvenance", 146, 5], ["license", 147, 5], ["maintainers", 148, 5], ["platforms", 152, 5], ["mainProgram", 153, 5], ["knownVulnerabilities", 154, 5]], [["pname", 124, 11], ["version", 124, 17], ["targetPkgs", 126, 3], ["extraInstallCommands", 136, 3], ["runScript", 140, 3], ["meta", 142, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, buildFHSEnv: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, "alsa-lib": false, "at-spi2-atk": false, cairo: false, cups: false, dbus: false, expat: false, "gdk-pixbuf": false, glib: false, gtk3: false, libgbm: false, libGL: false, nss: false, nspr: false, libdrm: false, libxrandr: false, libxfixes: false, libxext: false, libxdamage: false, libxcomposite: false, libx11: false, libxkbfile: false, libxcb: false, libxkbcommon: false, libxshmfence: false, pango: false, systemd: false, icu: false, openssl: false, zlib: false, bintools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 48, 7], ["hash", 49, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 59, 9], ["exec", 60, 9], ["icon", 61, 9], ["desktopName", 62, 9], ["genericName", 63, 9], ["categories", 64, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 45, 13], ["version", 45, 19], ["src", 47, 5], ["nativeBuildInputs", 52, 5], ["desktopItems", 57, 5], ["installPhase", 71, 5], ["postFixup", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 143, 5], ["homepage", 144, 5], ["downloadPage", 145, 5], ["sourceProvenance", 146, 5], ["license", 147, 5], ["maintainers", 148, 5], ["platforms", 152, 5], ["mainProgram", 153, 5], ["knownVulnerabilities", 154, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 124, 11], ["version", 124, 17], ["targetPkgs", 126, 3], ["extraInstallCommands", 136, 3], ["runScript", 140, 3], ["meta", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,18 +47,18 @@ export default nix.lambda((args) => (() => {
   const pname = "sidequest";
   const version = "0.10.42";
   const sidequest = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/SideQuestVR/SideQuest/releases/download/v${version}/SideQuest-${version}.tar.xz`),
           hash: "sha256-YZp7OAjUOXepVv5dPhh9Q2HicUKjSOGfhrWyMKy2gME=",
         })))),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "sidequest",
             exec: "sidequest",
             icon: "sidequest",
@@ -108,7 +104,7 @@ export default nix.lambda((args) => (() => {
 `),
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       targetPkgs: (pkgs) => [sidequest, icu, openssl, zlib, libxkbcommon, libxshmfence],
@@ -116,7 +112,7 @@ export default nix.lambda((args) => (() => {
 `),
       runScript: "sidequest",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open app store and side-loading tool for Android-based VR devices such as the Oculus Go, Oculus Quest or Moverio BT 300",
         homepage: "https://github.com/SideQuestVR/SideQuest",
         downloadPage: "https://github.com/SideQuestVR/SideQuest/releases",

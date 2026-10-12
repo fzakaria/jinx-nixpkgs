@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nixos-option.nix", [[["result", 22, 9], ["active", 23, 9]], [["result", 30, 13], ["active", 31, 13]], [["result", 35, 13], ["active", 36, 13]], [["result", 40, 13], ["active", 41, 13]], [["result", 45, 21], ["active", 46, 13]], [["multiline", 103, 40]]]);
 const formals$1 = { args: { nixos: false, path: false, recursive: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nixos-option.nix", [["result", 22, 9], ["active", 23, 9]]);
 const formals$2 = { args: { result: false, active: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/nixos-option.nix", [["result", 30, 13], ["active", 31, 13]]);
-const pos$3 = nix.positions(here + "/nixos-option.nix", [["result", 35, 13], ["active", 36, 13]]);
-const pos$4 = nix.positions(here + "/nixos-option.nix", [["result", 40, 13], ["active", 41, 13]]);
-const pos$5 = nix.positions(here + "/nixos-option.nix", [["result", 45, 21], ["active", 46, 13]]);
-const pos$6 = nix.positions(here + "/nixos-option.nix", [["multiline", 103, 40]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,25 +15,25 @@ export default nix.lambda((args) => (() => {
   const lib = nix.thunk(() => nix.attr(from, "lib"));
   const path$ = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isString"), path)) ? (nix.asBool(nix.eq(path, "")) ? [] : nix.app(readOption, path)) : nix.force(path)));
   const flatMapSlices = (predStart) => (predEnd) => (f) => (list) => (() => {
-    const empty = nix.thunk(() => ({ [nix.POS]: pos$1, result: [], active: [] }));
+    const empty = nix.thunk(() => ({ [nix.POS]: $pos[0], result: [], active: [] }));
     const op = nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const result = nix.arg($_1, "result");
       const active = nix.arg($_1, "active");
       return (x) => (nix.asBool((nix.asBool(nix.app(predStart, x)) && nix.asBool(nix.app(predEnd, x)))) ? {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         result: nix.thunk(() => nix.concat(result, nix.concat(active, nix.app(f, nix.thunk(() => [x]))))),
         active: [],
       } : (nix.asBool(nix.app(predStart, x)) ? {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         result: nix.thunk(() => nix.concat(result, active)),
         active: nix.thunk(() => [x]),
       } : (nix.asBool(nix.app(predEnd, x)) ? {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         result: nix.thunk(() => nix.concat(result, nix.app(f, nix.thunk(() => nix.concat(active, [x]))))),
         active: [],
       } : {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         result: result,
         active: nix.thunk(() => nix.concat(active, [x])),
       })));
@@ -66,7 +61,7 @@ export default nix.lambda((args) => (() => {
     const into = (opt) => (part) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isOption"), opt)) && nix.asBool(nix.eq(nix.sel(opt, "type", "descriptionClass"), "composite")))) ? nix.app(nix.sel(opt, "type", "getSubOptions"), []) : (nix.asBool(nix.app(nix.sel(lib, "isOption"), opt)) ? nix.builtins.throw(nix.thunk(() => nix.str`Trying to access '${part}' inside ${nix.sel(opt, "type", "name")} option while traversing option path '${nix.app(nix.sel(lib, "showOption"), path_1)}'`)) : (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isAttrs"), opt)) && nix.asBool(nix.app(nix.sel(lib, "hasAttr"), part, opt)))) ? nix.sel(opt, nix.key(nix.force(part))) : nix.builtins.throw(nix.thunk(() => nix.str`Found neither an attrset nor supported option type near '${part}' while traversing option path '${nix.app(nix.sel(lib, "showOption"), path_1)}'`)))));
     return nix.app(nix.sel(lib, "foldl"), into, root, path_1);
   })();
-  const toPretty = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ [nix.POS]: pos$6, multiline: true }))));
+  const toPretty = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ [nix.POS]: $pos[5], multiline: true }))));
   const safeToPretty = (x) => (() => {
     const e = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.app(toPretty, x))));
     return (nix.asBool(nix.sel(e, "success")) ? nix.sel(e, "value") : "\u001b[1;31m«error»\u001b[m");

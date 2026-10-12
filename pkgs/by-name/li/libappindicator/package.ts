@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]], [["pkg-config", 81, 18]], [["tests", 81, 12]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["pkgConfigModules", 90, 5], ["platforms", 92, 5], ["maintainers", 93, 5], ["broken", 95, 5]], [["pname", 22, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 34, 3], ["nativeBuildInputs", 40, 3], ["propagatedBuildInputs", 48, 3], ["buildInputs", 53, 3], ["preAutoreconf", 63, 3], ["configureFlags", 67, 3], ["doCheck", 74, 3], ["installFlags", 76, 3], ["passthru", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchgit: false, lib: false, "pkg-config": false, autoreconfHook: false, glib: false, "dbus-glib": false, gtk3: false, libindicator: false, "libdbusmenu-gtk3": false, "gtk-doc": false, vala: false, "gobject-introspection": false, monoSupport: true, mono: false, "gtk-sharp-3_0": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 81, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 81, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["pkgConfigModules", 90, 5], ["platforms", 92, 5], ["maintainers", 93, 5], ["broken", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 34, 3], ["nativeBuildInputs", 40, 3], ["propagatedBuildInputs", 48, 3], ["buildInputs", 53, 3], ["preAutoreconf", 63, 3], ["configureFlags", 67, 3], ["doCheck", 74, 3], ["installFlags", 76, 3], ["passthru", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const gtk_sharp_3_0 = nix.arg($, "gtk-sharp-3_0");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => (() => {
         const postfix = nix.thunk(() => (nix.asBool(monoSupport) ? "sharp" : "gtk3"));
         return nix.str`libappindicator-${postfix}`;
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
       version: "12.10.1+20.10.20200706.1",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.launchpad.net/ubuntu/+source/libappindicator",
           rev: "fe25e53bc7e39cd59ad6b3270cd7a6a9c78c4f44",
           sha256: "0xjvbl4gn7ra2fs6gn2g9s787kzb5cg9hv79iqsz949rxh4iw32d",
@@ -58,14 +54,14 @@ export default nix.lambda((args) => (() => {
         "localstatedir=${TMPDIR}",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library to allow applications to export a menu into the Unity Menu bar",
         homepage: "https://launchpad.net/libappindicator",
         license: nix.thunk(() => (() => {

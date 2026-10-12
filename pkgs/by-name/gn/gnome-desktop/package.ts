@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 5], ["sha256", 43, 5]], [["bubblewrap_bin", 48, 7], ["storeDir", 49, 26]], [["packageName", 101, 7]], [["updateScript", 100, 5]], [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 112, 5], ["badPlatforms", 113, 5], ["teams", 114, 5]], [["pname", 32, 3], ["version", 33, 3], ["outputs", 35, 3], ["src", 41, 3], ["patches", 46, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 66, 3], ["propagatedBuildInputs", 84, 3], ["mesonFlags", 88, 3], ["separateDebugInfo", 97, 3], ["passthru", 99, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, replaceVars: false, "pkg-config": false, libxslt: false, ninja: false, gnome: false, gtk3: false, gtk4: false, glib: false, gettext: false, libxml2: false, xkeyboard_config: false, libxkbcommon: false, isocodes: false, meson: false, wayland: false, libseccomp: false, systemdLibs: false, udev: false, bubblewrap: false, "gobject-introspection": false, "gtk-doc": false, "docbook-xsl-nons": false, "gsettings-desktop-schemas": false, withSystemd: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 5], ["sha256", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["bubblewrap_bin", 48, 7], ["storeDir", 49, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 101, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 112, 5], ["badPlatforms", 113, 5], ["teams", 114, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["outputs", 35, 3], ["src", 41, 3], ["patches", 46, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 66, 3], ["propagatedBuildInputs", 84, 3], ["mesonFlags", 88, 3], ["separateDebugInfo", 97, 3], ["passthru", 99, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,18 +35,18 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const withSystemd = nix.argOr($, "withSystemd", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdLibs));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gnome-desktop",
       version: "44.5",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-desktop/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-desktop-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-IOCZWm46A+jBAmxaJ7w/Reaf/MOSrXQ9yrYQelQdIy8=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./bubblewrap-paths.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               bubblewrap_bin: nix.thunk(() => nix.str`${bubblewrap}/bin/bwrap`),
               storeDir: nix.thunk(() => nix.attr(nix.builtins, "storeDir")),
             })))),
@@ -77,11 +72,11 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), nix.thunk(() => ["-Dudev=disabled"])))),
       separateDebugInfo: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gnome-desktop" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "gnome-desktop" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Library with common API for various GNOME modules",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-desktop",
         license: nix.thunk(() => (() => {

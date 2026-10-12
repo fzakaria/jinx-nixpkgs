@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["BUILD_SPIN_EXAMPLES", 43, 5], ["VERGEN_GIT_SHA", 47, 5], ["VERGEN_GIT_COMMIT_DATE", 48, 5], ["VERGEN_GIT_COMMIT_TIMESTAMP", 49, 5], ["VERGEN_GIT_BRANCH", 50, 5]], [["HOST_CFLAGS", 55, 5]], [["package", 75, 9]], [["version", 74, 7]], [["tests", 73, 5], ["updateScript", 78, 5]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["env", 41, 3], ["doCheck", 63, 3], ["postInstall", 65, 3], ["passthru", 72, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, protobuf: false, openssl: false, zlib: false, stdenv: false, installShellFiles: false, testers: false, "nix-update-script": false, "fermyon-spin": false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["BUILD_SPIN_EXAMPLES", 43, 5], ["VERGEN_GIT_SHA", 47, 5], ["VERGEN_GIT_COMMIT_DATE", 48, 5], ["VERGEN_GIT_COMMIT_TIMESTAMP", 49, 5], ["VERGEN_GIT_BRANCH", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["HOST_CFLAGS", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 75, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 74, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 73, 5], ["updateScript", 78, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["env", 41, 3], ["doCheck", 63, 3], ["postInstall", 65, 3], ["passthru", 72, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const fermyon_spin = nix.arg($, "fermyon-spin");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "fermyon-spin",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "spinframework",
           repo: "spin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,14 +35,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, protobuf, installShellFiles]),
       buildInputs: nix.thunk(() => [openssl, zlib]),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         BUILD_SPIN_EXAMPLES: "0",
         VERGEN_GIT_SHA: "c0b3726a",
         VERGEN_GIT_COMMIT_DATE: "2026-08-25",
         VERGEN_GIT_COMMIT_TIMESTAMP: "2026-08-25T21:29:56Z",
         VERGEN_GIT_BRANCH: "main",
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl")) && nix.asBool(nix.sel(stdenv, "buildPlatform", "isLinux")))), nix.thunk(() => nix.attrsDyn({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           HOST_CFLAGS: nix.thunk(() => nix.str`-L${nix.sel(buildPackages, "glibc", "static")}/lib`),
         }, [
           [nix.str`CARGO_TARGET_${nix.sel(stdenv, "hostPlatform", "rust", "cargoEnvVarTarget")}_RUSTFLAGS`, "-C relocation-model=static -C link-arg=-no-pie"],
@@ -57,18 +50,18 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd spin \\\n  --bash <(COMPLETE=bash $out/bin/spin) \\\n  --fish <(COMPLETE=fish $out/bin/spin) \\\n  --zsh <(COMPLETE=zsh $out/bin/spin)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Framework for building, deploying, and running fast, secure, and composable cloud microservices with WebAssembly",
         homepage: "https://github.com/spinframework/spin",
         changelog: nix.thunk(() => nix.str`https://github.com/spinframework/spin/releases/tag/v${nix.sel(finalAttrs, "version")}`),

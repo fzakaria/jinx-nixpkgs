@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["description", 121, 5], ["mainProgram", 122, 5], ["longDescription", 123, 5], ["homepage", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["platforms", 141, 5]], [["pname", 32, 3], ["version", 33, 3], ["firmwareVersion", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 52, 3], ["strictDeps", 59, 3], ["postUnpack", 61, 3], ["buildPhase", 69, 3], ["installPhase", 95, 3], ["nativeInstallCheckInputs", 116, 3], ["versionCheckProgramArg", 117, 3], ["doInstallCheck", 118, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "gcc-arm-embedded-13": false, "pkg-config": false, meson: false, ninja: false, hidapi: false, libftdi1: false, libusb1: false, libgpiod_1: false, versionCheckHook: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 121, 5], ["mainProgram", 122, 5], ["longDescription", 123, 5], ["homepage", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["platforms", 141, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["firmwareVersion", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 52, 3], ["strictDeps", 59, 3], ["postUnpack", 61, 3], ["buildPhase", 69, 3], ["installPhase", 95, 3], ["nativeInstallCheckInputs", 116, 3], ["versionCheckProgramArg", 117, 3], ["doInstallCheck", 118, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const libopencm3Src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "libopencm3",
       repo: "libopencm3",
       rev: "8a96a9d95a8e5c187a53652540b25a8f4d73a432",
       hash: "sha256-PylP95hpPeg3rqfelHW9qz+pi/qOP60RfvkurxbkWDs=",
     }))));
   const ctxlinkWinc1500Src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "sidprice",
       repo: "ctxlink_winc1500",
       rev: "debeab9516e33622439f727a68bddabcdf52c528",
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const firmwareVersion = nix.thunk(() => nix.str`v${version}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "blackmagic-debug",
           repo: "blackmagic",
           rev: firmwareVersion,
@@ -64,7 +60,7 @@ cp -r ${ctxlinkWinc1500Src}/* $sourceRoot/deps/winc1500/
       const versionCheckProgramArg = "--help";
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "In-application debugger for ARM Cortex microcontrollers",
         mainProgram: "blackmagic",
         longDescription: "The Black Magic Probe is a modern, in-application debugging tool\nfor embedded microprocessors. It allows you to see what is going\non \"inside\" an application running on an embedded microprocessor\nwhile it executes.\n\nThis package builds the firmware for all supported platforms,\nplacing them in separate directories under the firmware\ndirectory.  It also places the FTDI version of the blackmagic\nexecutable in the bin directory.\n",
@@ -81,7 +77,7 @@ cp -r ${ctxlinkWinc1500Src}/* $sourceRoot/deps/winc1500/
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         firmwareVersion,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["pyqt5", 40, 5], ["pyqt6", 41, 5], ["pyside6", 42, 5]], [["optional-dependencies", 39, 12]], [["changelog", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["pythonRelaxDeps", 34, 3], ["passthru", 39, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, pyqtgraph: false, numpy: false, pyqt5: false, pyqt6: false, pyside6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pyqt5", 40, 5], ["pyqt6", 41, 5], ["pyside6", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["optional-dependencies", 39, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["pythonRelaxDeps", 34, 3], ["passthru", 39, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "domarm-comat",
           repo: "pglive",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,9 +31,9 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pyqtgraph, numpy]);
       const pythonRelaxDeps = nix.thunk(() => ["numpy", "pyqtgraph"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "optional-dependencies": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pyqt5: nix.thunk(() => [pyqt5]),
           pyqt6: nix.thunk(() => [pyqt6]),
           pyside6: nix.thunk(() => [pyside6]),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       }));
       const pythonImportsCheck = nix.thunk(() => ["pglive"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/domarm-comat/pglive/releases/tag/${nix.sel(src, "tag")}`),
         description: "Live plot for PyqtGraph",
         homepage: "https://github.com/domarm-comat/pglive",
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

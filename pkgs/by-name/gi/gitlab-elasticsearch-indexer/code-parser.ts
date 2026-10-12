@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/code-parser.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["preInstall", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, rustPlatform: false, "pkg-config": false, openssl: false, clang: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/code-parser.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/code-parser.nix", [["description", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/code-parser.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["preInstall", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const clang = nix.arg($, "clang");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gitlab-code-parser",
       version: "0.22.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gitlab-org",
           repo: "rust/gitlab-code-parser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(openssl, "dev"))]),
       preInstall: "mkdir -p $out/include\ncp crates/parser-c-bindings/target/include/parser-c-bindings.h $out/include\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "A single, efficient and extensible static code‑analysis library",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/gitlab-org/rust/gitlab-code-parser/-/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md?ref_type=tags`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

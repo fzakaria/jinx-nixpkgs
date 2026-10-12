@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 26, 5], ["license", 27, 5], ["platforms", 28, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, nss: false, nspr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["license", 27, 5], ["platforms", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const nss = nix.arg($, "nss");
   const nspr = nix.arg($, "nspr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "svrcore",
       version: "4.0.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://mozilla/directory/svrcore/releases/${nix.sel(finalAttrs, "version")}/src/svrcore-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0n3alg6bxml8952fb6h0bi0l29farvq21q6k20gy2ba90m3znwj7",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [nss, nspr]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Secure PIN handling using NSS crypto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl11")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

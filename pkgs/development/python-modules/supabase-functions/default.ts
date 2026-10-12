@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["maintainers", 57, 5], ["license", 58, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["postPatch", 40, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, httpx: false, lib: false, pyjwt: false, "pytest-asyncio": false, pytestCheckHook: false, strenum: false, "uv-build": false, yarl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["maintainers", 57, 5], ["license", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["postPatch", 40, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const uv_build = nix.arg($, "uv-build");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "supabase-functions",
       version: "2.29.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "supabase",
           repo: "supabase-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pyjwt, pytest_asyncio]),
       pythonImportsCheck: nix.thunk(() => ["supabase_functions"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Client library for Supabase Functions",
         homepage: "https://github.com/supabase/supabase-py",
         changelog: nix.thunk(() => nix.str`https://github.com/supabase/supabase-py/blob/v${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

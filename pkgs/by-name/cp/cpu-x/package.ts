@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["description", 98, 5], ["mainProgram", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["platforms", 102, 5], ["maintainers", 103, 5]], [["pname", 35, 3], ["version", 36, 3], ["strictDeps", 38, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["postPatch", 48, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 62, 3], ["preFixup", 87, 3], ["nativeInstallCheckInputs", 94, 3], ["doInstallCheck", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, gtk3: false, ncurses: false, libcpuid: false, pciutils: false, procps: false, wrapGAppsHook3: false, nasm: false, "opencl-headers": false, "ocl-icd": false, "vulkan-headers": false, "vulkan-loader": false, glfw: false, libxdmcp: false, "util-linux": false, libselinux: false, libsepol: false, libthai: false, libdatrie: false, libxkbcommon: false, libepoxy: false, dbus: false, "at-spi2-core": false, libxtst: false, gtkmm3: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 98, 5], ["mainProgram", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["platforms", 102, 5], ["maintainers", 103, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["strictDeps", 38, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["postPatch", 48, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 62, 3], ["preFixup", 87, 3], ["nativeInstallCheckInputs", 94, 3], ["doInstallCheck", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,13 +38,13 @@ export default nix.lambda((args) => (() => {
   const gtkmm3 = nix.arg($, "gtkmm3");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cpu-x",
       version: "5.4.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TheTumultuousUnicornOfDarkness",
           repo: "CPU-X",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +84,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free software that gathers information on CPU, motherboard and more",
         mainProgram: "cpu-x",
         homepage: "https://thetumultuousunicornofdarkness.github.io/CPU-X",

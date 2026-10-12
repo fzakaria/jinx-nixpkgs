@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["teams", 56, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 47, 3], ["doCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, ftfy: false, packaging: false, regex: false, setuptools_80: false, torch: false, torchvision: false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["teams", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 47, 3], ["doCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rom1504",
           repo: "CLIP",
           tag: version,
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "setuptools-comp.patch",
             url: "https://github.com/rom1504/CLIP/pull/10/commits/8137d899035d889623f6b0a0a0faae88c549dc50.patch",
             hash: "sha256-CIcuDk4QH+0g8YEa6TbKGjIcKJQqFviymVH68sKmsyk=",
@@ -45,14 +42,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["clip"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Contrastive Language-Image Pretraining",
         homepage: "https://github.com/rom1504/CLIP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "tts"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,69 +2,47 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-initrd-swraid.nix", [[["emptyDiskImages", 10, 9], ["useBootLoader", 14, 9], ["mountHostNixStore", 16, 9], ["useEFIBoot", 17, 9]], [["enable", 19, 32]], [["canTouchEfiVariables", 20, 23]], [["systemd-boot", 19, 19], ["efi", 20, 19]], [["enable", 26, 19]], [["enable", 32, 11], ["emergencyAccess", 33, 11]], [["systemd", 31, 9], ["kernelModules", 35, 9]], [["loader", 19, 12], ["swraid", 26, 12], ["initrd", 30, 12]], [["text", 27, 36]], [["mdadm.conf", 27, 23]], [["systemPackages", 22, 19], ["etc", 27, 19]], [["rootDevice", 38, 63]], [["virtualisation", 38, 48]], [["configuration", 38, 34]], [["enable", 41, 73]], [["systemd", 41, 65]], [["initrd", 41, 58]], [["boot", 41, 53]], [["configuration", 41, 39]], [["boot-swraid", 38, 22], ["build-old-initrd", 41, 22]], [["virtualisation", 9, 7], ["boot", 19, 7], ["environment", 22, 7], ["specialisation", 38, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 44, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-initrd-swraid.nix", [["emptyDiskImages", 10, 9], ["useBootLoader", 14, 9], ["mountHostNixStore", 16, 9], ["useEFIBoot", 17, 9]]);
-const pos$2 = nix.positions(here + "/systemd-initrd-swraid.nix", [["enable", 19, 32]]);
-const pos$3 = nix.positions(here + "/systemd-initrd-swraid.nix", [["canTouchEfiVariables", 20, 23]]);
-const pos$4 = nix.positions(here + "/systemd-initrd-swraid.nix", [["systemd-boot", 19, 19], ["efi", 20, 19]]);
-const pos$5 = nix.positions(here + "/systemd-initrd-swraid.nix", [["enable", 26, 19]]);
-const pos$6 = nix.positions(here + "/systemd-initrd-swraid.nix", [["enable", 32, 11], ["emergencyAccess", 33, 11]]);
-const pos$7 = nix.positions(here + "/systemd-initrd-swraid.nix", [["systemd", 31, 9], ["kernelModules", 35, 9]]);
-const pos$8 = nix.positions(here + "/systemd-initrd-swraid.nix", [["loader", 19, 12], ["swraid", 26, 12], ["initrd", 30, 12]]);
-const pos$9 = nix.positions(here + "/systemd-initrd-swraid.nix", [["text", 27, 36]]);
-const pos$10 = nix.positions(here + "/systemd-initrd-swraid.nix", [["mdadm.conf", 27, 23]]);
-const pos$11 = nix.positions(here + "/systemd-initrd-swraid.nix", [["systemPackages", 22, 19], ["etc", 27, 19]]);
-const pos$12 = nix.positions(here + "/systemd-initrd-swraid.nix", [["rootDevice", 38, 63]]);
-const pos$13 = nix.positions(here + "/systemd-initrd-swraid.nix", [["virtualisation", 38, 48]]);
-const pos$14 = nix.positions(here + "/systemd-initrd-swraid.nix", [["configuration", 38, 34]]);
-const pos$15 = nix.positions(here + "/systemd-initrd-swraid.nix", [["enable", 41, 73]]);
-const pos$16 = nix.positions(here + "/systemd-initrd-swraid.nix", [["systemd", 41, 65]]);
-const pos$17 = nix.positions(here + "/systemd-initrd-swraid.nix", [["initrd", 41, 58]]);
-const pos$18 = nix.positions(here + "/systemd-initrd-swraid.nix", [["boot", 41, 53]]);
-const pos$19 = nix.positions(here + "/systemd-initrd-swraid.nix", [["configuration", 41, 39]]);
-const pos$20 = nix.positions(here + "/systemd-initrd-swraid.nix", [["boot-swraid", 38, 22], ["build-old-initrd", 41, 22]]);
-const pos$21 = nix.positions(here + "/systemd-initrd-swraid.nix", [["virtualisation", 9, 7], ["boot", 19, 7], ["environment", 22, 7], ["specialisation", 38, 7]]);
-const pos$22 = nix.positions(here + "/systemd-initrd-swraid.nix", [["machine", 5, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$23 = nix.positions(here + "/systemd-initrd-swraid.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: "systemd-initrd-swraid",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             emptyDiskImages: nix.thunk(() => [512n, 512n]),
             useBootLoader: true,
             mountHostNixStore: true,
             useEFIBoot: true,
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
-              efi: nix.thunk(() => ({ [nix.POS]: pos$3, canTouchEfiVariables: true })),
+              [nix.POS]: $pos[3],
+              "systemd-boot": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
+              efi: nix.thunk(() => ({ [nix.POS]: $pos[2], canTouchEfiVariables: true })),
             })),
-            swraid: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+            swraid: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              systemd: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true, emergencyAccess: true })),
+              [nix.POS]: $pos[6],
+              systemd: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true, emergencyAccess: true })),
               kernelModules: nix.thunk(() => ["raid0"]),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -73,29 +51,29 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$10,
-              "mdadm.conf": nix.thunk(() => ({ [nix.POS]: pos$9, text: "MAILADDR test@example.com\n" })),
+              [nix.POS]: $pos[9],
+              "mdadm.conf": nix.thunk(() => ({ [nix.POS]: $pos[8], text: "MAILADDR test@example.com\n" })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             "boot-swraid": nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$13,
-                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$12, rootDevice: "/dev/disk/by-label/testraid" })),
+                [nix.POS]: $pos[12],
+                virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[11], rootDevice: "/dev/disk/by-label/testraid" })),
               })),
             })),
             "build-old-initrd": nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 boot: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   initrd: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     systemd: nix.thunk(() => ({
-                      [nix.POS]: pos$15,
+                      [nix.POS]: $pos[14],
                       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                     })),
                   })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["pythonRelaxDeps", 21, 3], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 27, 3], ["doCheck", 51, 3], ["pythonImportsCheck", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["pythonRelaxDeps", 21, 3], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 27, 3], ["doCheck", 51, 3], ["pythonImportsCheck", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ghunt",
       version: "2.3.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mxrch",
           repo: "ghunt",
           rev: "e8b0669cabb410dc40fb76b8d5d386a3a83fe08c",
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["ghunt"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Offensive Google framework",
         mainProgram: "ghunt",
         homepage: "https://github.com/mxrch/ghunt",

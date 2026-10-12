@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["homepage", 95, 5], ["description", 96, 5], ["longDescription", 97, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["platforms", 125, 5], ["mainProgram", 126, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["outputs", 44, 3], ["depsBuildBuild", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 61, 3], ["strictDeps", 84, 3], ["mesonBuildType", 86, 3], ["mesonFlags", 88, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, "alsa-lib": false, bison: false, fcft: false, flex: false, json_c: false, libmpdclient: false, libyaml: false, meson: false, ninja: false, pipewire: false, pixman: false, "pkg-config": false, pulseaudio: false, scdoc: false, tllist: false, udev: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, "libxcb-util": false, "libxcb-cursor": false, "libxcb-errors": false, "libxcb-wm": false, waylandSupport: true, x11Support: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["description", 96, 5], ["longDescription", 97, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["platforms", 125, 5], ["mainProgram", 126, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["outputs", 44, 3], ["depsBuildBuild", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 61, 3], ["strictDeps", 84, 3], ["mesonBuildType", 86, 3], ["mesonFlags", 88, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const x11Support = nix.argOr($, "x11Support", () => true);
   nix.assert_((nix.asBool(x11Support) || nix.asBool(waylandSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ya/yambar/package.nix:32:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "yambar",
       version: "1.11.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dnkl",
           repo: "yambar",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,7 +70,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "backend-wayland", waylandSupport)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://codeberg.org/dnkl/yambar",
         description: "Modular status panel for X11 and Wayland",
         longDescription: "yambar is a lightweight and configurable status panel (bar, for short) for\nX11 and Wayland, that goes to great lengths to be both CPU and battery\nefficient - polling is only done when absolutely necessary.\n\nIt has a number of modules that provide information in the form of tags.\nFor example, the clock module has a date tag that contains the current\ndate.\n\nThe modules do not know how to present the information though. This is\ninstead done by particles. And the user, you, decides which particles (and\nthus how to present the data) to use.\n\nFurthermore, each particle can have a decoration - a background color or a\ngraphical underline, for example.\n\nThere is no support for images or icons. use an icon font (e.g. Font\nAwesome, or Material Icons) if you want a graphical representation.\n\nThere are a number of modules and particles builtin. More can be added as\nplugins. You can even write your own!\n\nTo summarize: a bar displays information provided by modules, using\nparticles and decorations. How is configured by you.\n",

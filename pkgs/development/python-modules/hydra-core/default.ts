@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["antlr_jar", 42, 7]], [["name", 46, 7], ["url", 47, 7], ["hash", 48, 7]], [["description", 148, 5], ["homepage", 149, 5], ["changelog", 150, 5], ["license", 151, 5], ["maintainers", 152, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["postPatch", 52, 3], ["build-system", 58, 3], ["nativeBuildInputs", 62, 3], ["pythonRelaxDeps", 64, 3], ["dependencies", 68, 3], ["nativeCheckInputs", 74, 3], ["pytestFlags", 76, 3], ["disabledTests", 81, 3], ["disabledTestPaths", 126, 3], ["pythonImportsCheck", 141, 3], ["meta", 147, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, replaceVars: false, antlr4: false, fetchpatch: false, jre_headless: false, "antlr4-python3-runtime": false, omegaconf: false, packaging: false, pytest8_3CheckHook: false, pythonAtLeast: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["antlr_jar", 42, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 46, 7], ["url", 47, 7], ["hash", 48, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 148, 5], ["homepage", 149, 5], ["changelog", 150, 5], ["license", 151, 5], ["maintainers", 152, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["postPatch", 52, 3], ["build-system", 58, 3], ["nativeBuildInputs", 62, 3], ["pythonRelaxDeps", 64, 3], ["dependencies", 68, 3], ["nativeCheckInputs", 74, 3], ["pytestFlags", 76, 3], ["disabledTests", 81, 3], ["disabledTestPaths", 126, 3], ["pythonImportsCheck", 141, 3], ["meta", 147, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pytest8_3CheckHook = nix.arg($, "pytest8_3CheckHook");
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hydra-core",
       version: "1.3.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebookresearch",
           repo: "hydra",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +35,11 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./antlr4.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             antlr_jar: nix.thunk(() => nix.str`${nix.sel(antlr4, "out")}/share/java/antlr-${nix.sel(antlr4, "version")}-complete.jar`),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "setuptools-67.5.0-test-compatibility.patch",
             url: "https://github.com/facebookresearch/hydra/commit/25873841ed8159ab25a0c652781c75cc4a9d6e08.patch",
             hash: "sha256-oUfHlJP653o3RDtknfb8HaaF4fpebdR/OcbKHzJFK/Q=",
@@ -98,7 +94,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["hydra", "hydra.version"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Framework for configuring complex applications",
         homepage: "https://hydra.cc",
         changelog: nix.thunk(() => nix.str`https://github.com/facebookresearch/hydra/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS.md`),

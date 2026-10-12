@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["ASYNC_TEST_TIMEOUT", 38, 7]], [["distributed", 52, 7], ["jupyter-server", 53, 7], ["jupyterlab", 54, 7], ["matplotlib", 55, 7], ["mitmproxy", 56, 7], ["pytest-tornado", 57, 7], ["pytest-tornasync", 58, 7], ["pyzmq", 59, 7], ["sockjs-tornado", 60, 7], ["urllib3", 61, 7]], [["tests", 50, 12]], [["changelog", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["nativeCheckInputs", 35, 3], ["env", 38, 3], ["disabledTestPaths", 40, 3], ["pythonImportsCheck", 46, 3], ["__darwinAllowLocalNetworking", 48, 3], ["passthru", 50, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pytestCheckHook: false, distributed: false, "jupyter-server": false, jupyterlab: false, matplotlib: false, mitmproxy: false, "pytest-tornado": false, "pytest-tornasync": false, pyzmq: false, "sockjs-tornado": false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ASYNC_TEST_TIMEOUT", 38, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["distributed", 52, 7], ["jupyter-server", 53, 7], ["jupyterlab", 54, 7], ["matplotlib", 55, 7], ["mitmproxy", 56, 7], ["pytest-tornado", 57, 7], ["pytest-tornasync", 58, 7], ["pyzmq", 59, 7], ["sockjs-tornado", 60, 7], ["urllib3", 61, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 50, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["changelog", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["nativeCheckInputs", 35, 3], ["env", 38, 3], ["disabledTestPaths", 40, 3], ["pythonImportsCheck", 46, 3], ["__darwinAllowLocalNetworking", 48, 3], ["passthru", 50, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const sockjs_tornado = nix.arg($, "sockjs-tornado");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tornado",
       version: "6.5.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tornadoweb",
           repo: "tornado",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,14 +36,14 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ASYNC_TEST_TIMEOUT: 30n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ASYNC_TEST_TIMEOUT: 30n })),
       disabledTestPaths: nix.thunk(() => ["maint/test"]),
       pythonImportsCheck: nix.thunk(() => ["tornado"]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           distributed: distributed,
           "jupyter-server": jupyter_server,
           jupyterlab: jupyterlab,
@@ -62,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://www.tornadoweb.org/en/stable/releases/${nix.sel(finalAttrs, "src", "tag")}.html`),
         description: "Web framework and asynchronous networking library",
         homepage: "https://www.tornadoweb.org/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["description", 34, 5], ["mainProgram", 35, 5], ["longDescription", 36, 5], ["homepage", 40, 5], ["maintainers", 41, 5], ["license", 42, 5], ["platforms", 43, 5]], [["pname", 7, 3], ["version", 8, 3], ["pyproject", 9, 3], ["src", 11, 3], ["build-system", 18, 3], ["dependencies", 22, 3], ["postInstall", 28, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromCodeberg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["mainProgram", 35, 5], ["longDescription", 36, 5], ["homepage", 40, 5], ["maintainers", 41, 5], ["license", 42, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["pyproject", 9, 3], ["src", 11, 3], ["build-system", 18, 3], ["dependencies", 22, 3], ["postInstall", 28, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "joystickwake",
       version: "0.5.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "forestix",
           repo: "joystickwake",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
 ln -s $out/${nix.sel(python3, "sitePackages")}/etc $out/etc
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Joystick-aware screen waker",
         mainProgram: "joystickwake",
         longDescription: "Linux gamers often find themselves unexpectedly staring at a blank screen, because their display server fails to recognize game controllers as input devices, allowing the screen blanker to activate during gameplay.\nThis program works around the problem by temporarily disabling screen blankers when joystick activity is detected.\n",

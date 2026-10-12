@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5], ["mainProgram", 48, 5]], [["pname", 10, 3], ["version", 11, 3], ["rev", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["doCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, "pkg-config": false, libappindicator: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5], ["mainProgram", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["rev", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["doCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.5-unstable-2021-05-20";
       const rev = "da47887f050cf0f22d9348cb4493df9ffda2a229";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ssbc",
           repo: "systrayhelper",
           rev: rev,
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libappindicator]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Systray utility written in go, using json over stdio for control and events",
         homepage: "https://github.com/ssbc/systrayhelper",
         maintainers: nix.thunk(() => (() => {
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "systrayhelper",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         rev,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["platforms", 33, 8]], [["path", 10, 3], ["libcMinimal", 12, 3], ["outputs", 14, 3], ["SHLIBINSTALLDIR", 20, 3], ["NIX_CFLAGS_COMPILE_BEFORE", 24, 3], ["extraPaths", 26, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenvLibcMinimal: false, mkDerivation: false, libcMinimal: false, librt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["platforms", 33, 8]]);
-const pos$2 = nix.positions(here + "/package.nix", [["path", 10, 3], ["libcMinimal", 12, 3], ["outputs", 14, 3], ["SHLIBINSTALLDIR", 20, 3], ["NIX_CFLAGS_COMPILE_BEFORE", 24, 3], ["extraPaths", 26, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const libcMinimal = nix.arg($, "libcMinimal");
   const librt = nix.arg($, "librt");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "lib/libpthread",
       libcMinimal: true,
       outputs: nix.thunk(() => ["out", "dev", "man"]),
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
         "sys",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
     })));

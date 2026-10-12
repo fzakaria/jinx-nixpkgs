@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 46, 3], ["nativeCheckInputs", 48, 3], ["pytestFlags", 53, 3], ["disabledTests", 58, 3], ["disabledTestPaths", 63, 3], ["__darwinAllowLocalNetworking", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "pdm-backend": false, anyio: false, httpx: false, "httpx-ws": false, msgspec: false, "typing-extensions": false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 46, 3], ["nativeCheckInputs", 48, 3], ["pytestFlags", 53, 3], ["disabledTests", 58, 3], ["disabledTestPaths", 63, 3], ["__darwinAllowLocalNetworking", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lmstudio",
       version: "1.6.0b1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lmstudio-ai",
           repo: "lmstudio-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "LM Studio Python SDK",
         homepage: "https://github.com/lmstudio-ai/lmstudio-python",
         changelog: nix.thunk(() => nix.str`https://github.com/lmstudio-ai/lmstudio-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

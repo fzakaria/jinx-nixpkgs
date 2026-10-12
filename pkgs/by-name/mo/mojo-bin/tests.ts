@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["nativeBuildInputs", 61, 59]], [["version", 9, 3], ["hello-world", 15, 3], ["cuda-codegen", 32, 3], ["driver-runpath", 61, 3], ["no-gpu", 74, 3], ["tooling", 88, 3], ["formatter", 102, 3]]]);
 const formals$1 = { args: { finalPackage: false, patchelf: false, runCommand: false, shell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["nativeBuildInputs", 61, 59]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["version", 9, 3], ["hello-world", 15, 3], ["cuda-codegen", 32, 3], ["driver-runpath", 61, 3], ["no-gpu", 74, 3], ["tooling", 88, 3], ["formatter", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const shell = nix.arg($, "shell");
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: nix.thunk(() => nix.app(runCommand, "mojo-bin-version", nix.thunk(() => ({})), nix.thunk(() => nix.str`export HOME=$TMPDIR
 ${finalPackage}/bin/mojo --version | grep -F '${nix.sel(finalPackage, "version")}'
 touch $out
@@ -60,7 +59,7 @@ grep -F '%tid.x' "$ptx"
 
 touch $out
 `))),
-    "driver-runpath": nix.thunk(() => nix.app(runCommand, "mojo-bin-driver-runpath", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [patchelf]) })), nix.thunk(() => nix.str`elfCount=0
+    "driver-runpath": nix.thunk(() => nix.app(runCommand, "mojo-bin-driver-runpath", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [patchelf]) })), nix.thunk(() => nix.str`elfCount=0
 find ${finalPackage} -type f -print0 > files
 while IFS= read -r -d "" file; do
   if rpath=$(patchelf --print-rpath "$file" 2>/dev/null); then

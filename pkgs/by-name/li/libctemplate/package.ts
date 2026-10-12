@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 56, 5], ["license", 57, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["nativeBuildInputs", 34, 3], ["postPatch", 41, 3], ["preConfigure", 45, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, python3: false, autoconf: false, automake: false, libtool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 56, 5], ["license", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["nativeBuildInputs", 34, 3], ["postPatch", 41, 3], ["preConfigure", 45, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ctemplate",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OlafvdSpek",
           repo: "ctemplate",
           rev: nix.thunk(() => nix.str`ctemplate-${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "c++20-std-allocator-const-pointer-typedef.patch",
             url: "https://github.com/OlafvdSpek/ctemplate/commit/5aa5a00e74ea8a1ea22d6a9760b4b420687fa4e5.patch",
             hash: "sha256-Yqp7MOOdH/W09OQ2JkyAlert1UMoA/GS+6PT9WKVVEo=",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs .\n",
       preConfigure: "./autogen.sh\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple but powerful template language for C++",
         longDescription: "CTemplate is a simple but powerful template language for C++. It\nemphasizes separating logic from presentation: it is impossible to\nembed application logic in this template language.\n",
         homepage: "https://github.com/OlafvdSpek/ctemplate",

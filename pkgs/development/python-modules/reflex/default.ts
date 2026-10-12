@@ -2,40 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 83, 15], ["version", 83, 21], ["src", 83, 29], ["pyproject", 84, 7], ["sourceRoot", 85, 7], ["postPatch", 87, 7], ["build-system", 93, 7], ["pythonRelaxDeps", 100, 7], ["preBuild", 102, 7], ["dependencies", 107, 27], ["doCheck", 110, 7], ["meta", 112, 7]], [["owner", 123, 5], ["repo", 124, 5], ["tag", 125, 5], ["hash", 126, 5]], [["dependencies", 337, 26]], [["sourceRoot", 340, 34], ["dependencies", 341, 34]], [["dependencies", 343, 21]], [["dependencies", 349, 26]], [["dependencies", 354, 32]], [["dependencies", 362, 32]], [["dependencies", 371, 38]], [["dependencies", 378, 34]], [["dependencies", 382, 36]], [["dependencies", 400, 34]], [["dependencies", 404, 36]], [["dependencies", 413, 34]], [["dependencies", 417, 34]], [["dependencies", 424, 33]], [["dependencies", 431, 40]], [["dependencies", 438, 36]], [["dependencies", 445, 34]], [["dependencies", 450, 23]], [["dependencies", 457, 28]], [["dependencies", 464, 21]], [["dependencies", 470, 24]], [["dependencies", 476, 28]], [["hatch-reflex-pyi", 337, 9], ["reflex-integrations-docs", 340, 9], ["reflex-base", 343, 9], ["reflex-build-sdk", 349, 9], ["reflex-components-code", 354, 9], ["reflex-components-core", 362, 9], ["reflex-components-dataeditor", 371, 9], ["reflex-components-gridjs", 378, 9], ["reflex-components-internal", 382, 9], ["reflex-components-lucide", 400, 9], ["reflex-components-markdown", 404, 9], ["reflex-components-moment", 413, 9], ["reflex-components-plotly", 417, 9], ["reflex-components-radix", 424, 9], ["reflex-components-react-player", 431, 9], ["reflex-components-recharts", 438, 9], ["reflex-components-sonner", 445, 9], ["reflex-docgen", 450, 9], ["reflex-hosting-cli", 457, 9], ["reflex-otel", 464, 9], ["reflex-release", 470, 9], ["reflex-site-shared", 476, 9]], [["pname", 507, 17], ["workspace", 507, 23], ["version", 508, 30], ["src", 508, 38], ["workspaces", 509, 39], ["subPkgs", 509, 50]], [["pname", 516, 9], ["doCheck", 517, 9], ["doInstallCheck", 518, 9], ["dontCheckPythonMetadata", 519, 9]], [["reflex-no-checks", 515, 7]], [["workspaces", 330, 5], ["buildSubPackage", 503, 13], ["subPkgs", 504, 5], ["tests", 513, 5]], [["changelog", 526, 5], ["mainProgram", 527, 5]], [["pname", 118, 3], ["version", 119, 3], ["pyproject", 120, 3], ["src", 122, 3], ["build-system", 129, 3], ["pythonRelaxDeps", 134, 3], ["postPatch", 143, 3], ["nativeBuildInputs", 153, 3], ["dependencies", 157, 3], ["nativeCheckInputs", 195, 3], ["versionCheckProgramArg", 222, 3], ["disabledTests", 224, 3], ["disabledTestPaths", 252, 3], ["__darwinAllowLocalNetworking", 291, 3], ["pythonImportsCheck", 293, 3], ["passthru", 328, 3], ["meta", 525, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "uv-dynamic-versioning": false, requests: false, click: false, granian: false, httpx: false, packaging: false, platformdirs: false, psutil: false, "python-multipart": false, "python-socketio": false, redis: false, rich: false, starlette: false, "typing-extensions": false, wrapt: false, aiohttp: false, griffelib: false, mistletoe: false, "opentelemetry-api": false, "opentelemetry-instrumentation": false, "opentelemetry-instrumentation-asgi": false, pyyaml: false, tomli: false, towncrier: false, "typing-inspection": false, tzdata: false, "email-validator": false, "ruff-format": false, attrs: false, typer: false, numpy: false, openai: false, "opentelemetry-sdk": false, pandas: false, pillow: false, playwright: false, plotly: false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, "python-dotenv": false, ruff: false, "starlette-admin": false, uvicorn: false, gitMinimal: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, "nodejs-slim": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
 const formals$2 = { args: { pname: false, version: false, src: false, workspace: false, workspaces: false, subPkgs: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 83, 15], ["version", 83, 21], ["src", 83, 29], ["pyproject", 84, 7], ["sourceRoot", 85, 7], ["postPatch", 87, 7], ["build-system", 93, 7], ["pythonRelaxDeps", 100, 7], ["preBuild", 102, 7], ["dependencies", 107, 27], ["doCheck", 110, 7], ["meta", 112, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 123, 5], ["repo", 124, 5], ["tag", 125, 5], ["hash", 126, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["dependencies", 337, 26]]);
-const pos$5 = nix.positions(here + "/default.nix", [["sourceRoot", 340, 34], ["dependencies", 341, 34]]);
-const pos$6 = nix.positions(here + "/default.nix", [["dependencies", 343, 21]]);
-const pos$7 = nix.positions(here + "/default.nix", [["dependencies", 349, 26]]);
-const pos$8 = nix.positions(here + "/default.nix", [["dependencies", 354, 32]]);
-const pos$9 = nix.positions(here + "/default.nix", [["dependencies", 362, 32]]);
-const pos$10 = nix.positions(here + "/default.nix", [["dependencies", 371, 38]]);
-const pos$11 = nix.positions(here + "/default.nix", [["dependencies", 378, 34]]);
-const pos$12 = nix.positions(here + "/default.nix", [["dependencies", 382, 36]]);
-const pos$13 = nix.positions(here + "/default.nix", [["dependencies", 400, 34]]);
-const pos$14 = nix.positions(here + "/default.nix", [["dependencies", 404, 36]]);
-const pos$15 = nix.positions(here + "/default.nix", [["dependencies", 413, 34]]);
-const pos$16 = nix.positions(here + "/default.nix", [["dependencies", 417, 34]]);
-const pos$17 = nix.positions(here + "/default.nix", [["dependencies", 424, 33]]);
-const pos$18 = nix.positions(here + "/default.nix", [["dependencies", 431, 40]]);
-const pos$19 = nix.positions(here + "/default.nix", [["dependencies", 438, 36]]);
-const pos$20 = nix.positions(here + "/default.nix", [["dependencies", 445, 34]]);
-const pos$21 = nix.positions(here + "/default.nix", [["dependencies", 450, 23]]);
-const pos$22 = nix.positions(here + "/default.nix", [["dependencies", 457, 28]]);
-const pos$23 = nix.positions(here + "/default.nix", [["dependencies", 464, 21]]);
-const pos$24 = nix.positions(here + "/default.nix", [["dependencies", 470, 24]]);
-const pos$25 = nix.positions(here + "/default.nix", [["dependencies", 476, 28]]);
-const pos$26 = nix.positions(here + "/default.nix", [["hatch-reflex-pyi", 337, 9], ["reflex-integrations-docs", 340, 9], ["reflex-base", 343, 9], ["reflex-build-sdk", 349, 9], ["reflex-components-code", 354, 9], ["reflex-components-core", 362, 9], ["reflex-components-dataeditor", 371, 9], ["reflex-components-gridjs", 378, 9], ["reflex-components-internal", 382, 9], ["reflex-components-lucide", 400, 9], ["reflex-components-markdown", 404, 9], ["reflex-components-moment", 413, 9], ["reflex-components-plotly", 417, 9], ["reflex-components-radix", 424, 9], ["reflex-components-react-player", 431, 9], ["reflex-components-recharts", 438, 9], ["reflex-components-sonner", 445, 9], ["reflex-docgen", 450, 9], ["reflex-hosting-cli", 457, 9], ["reflex-otel", 464, 9], ["reflex-release", 470, 9], ["reflex-site-shared", 476, 9]]);
-const pos$27 = nix.positions(here + "/default.nix", [["pname", 507, 17], ["workspace", 507, 23], ["version", 508, 30], ["src", 508, 38], ["workspaces", 509, 39], ["subPkgs", 509, 50]]);
-const pos$28 = nix.positions(here + "/default.nix", [["pname", 516, 9], ["doCheck", 517, 9], ["doInstallCheck", 518, 9], ["dontCheckPythonMetadata", 519, 9]]);
-const pos$29 = nix.positions(here + "/default.nix", [["reflex-no-checks", 515, 7]]);
-const pos$30 = nix.positions(here + "/default.nix", [["workspaces", 330, 5], ["buildSubPackage", 503, 13], ["subPkgs", 504, 5], ["tests", 513, 5]]);
-const pos$31 = nix.positions(here + "/default.nix", [["changelog", 526, 5], ["mainProgram", 527, 5]]);
-const pos$32 = nix.positions(here + "/default.nix", [["pname", 118, 3], ["version", 119, 3], ["pyproject", 120, 3], ["src", 122, 3], ["build-system", 129, 3], ["pythonRelaxDeps", 134, 3], ["postPatch", 143, 3], ["nativeBuildInputs", 153, 3], ["dependencies", 157, 3], ["nativeCheckInputs", 195, 3], ["versionCheckProgramArg", 222, 3], ["disabledTests", 224, 3], ["disabledTestPaths", 252, 3], ["__darwinAllowLocalNetworking", 291, 3], ["pythonImportsCheck", 293, 3], ["passthru", 328, 3], ["meta", 525, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -92,7 +61,7 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nodejs_slim = nix.arg($, "nodejs-slim");
   const metaCommon = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Web apps in pure Python",
     homepage: "https://github.com/reflex-dev/reflex",
     license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -110,7 +79,7 @@ export default nix.lambda((args) => (() => {
     const workspaces = nix.arg($_1, "workspaces");
     const subPkgs = nix.arg($_1, "subPkgs");
     return nix.app(buildPythonPackage, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: pname,
         version: version,
         src: src,
@@ -126,12 +95,12 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       pname: "reflex",
       version: "0.9.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "reflex-dev",
           repo: "reflex",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -281,28 +250,28 @@ export default nix.lambda((args) => (() => {
         "reflex.vars",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         workspaces: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(finalAttrs, "passthru"));
           const subPkgs = nix.thunk(() => nix.attr(from, "subPkgs"));
           return {
-            [nix.POS]: pos$26,
-            "hatch-reflex-pyi": nix.thunk(() => ({ [nix.POS]: pos$4, dependencies: nix.thunk(() => [hatchling]) })),
+            [nix.POS]: $pos[25],
+            "hatch-reflex-pyi": nix.thunk(() => ({ [nix.POS]: $pos[3], dependencies: nix.thunk(() => [hatchling]) })),
             "reflex-integrations-docs": nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/packages/integrations-docs`),
               dependencies: [],
             })),
             "reflex-base": nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               dependencies: nix.thunk(() => [packaging, platformdirs, rich, typing_extensions]),
             })),
             "reflex-build-sdk": nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               dependencies: nix.thunk(() => [aiohttp, httpx, platformdirs]),
             })),
             "reflex-components-code": nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               dependencies: nix.thunk(() => [
                 nix.thunk(() => nix.sel(subPkgs, "reflex-base")),
                 nix.thunk(() => nix.sel(subPkgs, "reflex-components-core")),
@@ -313,7 +282,7 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             "reflex-components-core": nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               dependencies: nix.thunk(() => [
                 python_multipart,
                 nix.thunk(() => nix.sel(subPkgs, "reflex-base")),
@@ -325,7 +294,7 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             "reflex-components-dataeditor": nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               dependencies: nix.thunk(() => [
                 nix.thunk(() => nix.sel(subPkgs, "reflex-base")),
                 nix.thunk(() => nix.sel(subPkgs, "reflex-components-core")),
@@ -335,11 +304,11 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             "reflex-components-gridjs": nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(subPkgs, "reflex-base")), ruff]),
             })),
             "reflex-components-internal": nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               dependencies: nix.thunk(() => [
                 nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 nix.thunk(() => nix.sel(subPkgs, "reflex-base")),
@@ -360,11 +329,11 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             "reflex-components-lucide": nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(subPkgs, "reflex-base")), ruff]),
             })),
             "reflex-components-markdown": nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               dependencies: nix.thunk(() => [
                 nix.thunk(() => nix.sel(subPkgs, "reflex-base")),
                 nix.thunk(() => nix.sel(subPkgs, "reflex-components-code")),
@@ -376,11 +345,11 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             "reflex-components-moment": nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(subPkgs, "reflex-base")), ruff]),
             })),
             "reflex-components-plotly": nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               dependencies: nix.thunk(() => [
                 nix.thunk(() => nix.sel(subPkgs, "reflex-base")),
                 nix.thunk(() => nix.sel(subPkgs, "reflex-components-core")),
@@ -390,7 +359,7 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             "reflex-components-radix": nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               dependencies: nix.thunk(() => [
                 nix.thunk(() => nix.sel(subPkgs, "reflex-base")),
                 nix.thunk(() => nix.sel(subPkgs, "reflex-components-core")),
@@ -400,7 +369,7 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             "reflex-components-react-player": nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               dependencies: nix.thunk(() => [
                 nix.thunk(() => nix.sel(subPkgs, "reflex-base")),
                 nix.thunk(() => nix.sel(subPkgs, "reflex-components-core")),
@@ -410,7 +379,7 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             "reflex-components-recharts": nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               dependencies: nix.thunk(() => [
                 nix.thunk(() => nix.sel(subPkgs, "reflex-base")),
                 nix.thunk(() => nix.sel(subPkgs, "reflex-components-core")),
@@ -420,7 +389,7 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             "reflex-components-sonner": nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               dependencies: nix.thunk(() => [
                 nix.thunk(() => nix.sel(subPkgs, "reflex-base")),
                 nix.thunk(() => nix.sel(subPkgs, "reflex-components-lucide")),
@@ -428,7 +397,7 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             "reflex-docgen": nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               dependencies: nix.thunk(() => [
                 griffelib,
                 mistletoe,
@@ -438,11 +407,11 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             "reflex-hosting-cli": nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               dependencies: nix.thunk(() => [click, httpx, packaging, platformdirs, rich]),
             })),
             "reflex-otel": nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               dependencies: nix.thunk(() => [
                 opentelemetry_api,
                 opentelemetry_instrumentation,
@@ -451,11 +420,11 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             "reflex-release": nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               dependencies: nix.thunk(() => [packaging, tomli, towncrier, tzdata]),
             })),
             "reflex-site-shared": nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               dependencies: nix.thunk(() => [
                 email_validator,
                 httpx,
@@ -488,7 +457,7 @@ export default nix.lambda((args) => (() => {
         subPkgs: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs")), nix.thunk(() => nix.sel(finalAttrs, "passthru", "workspaces")), (pname) => (workspace) => nix.app(nix.sel(finalAttrs, "passthru", "buildSubPackage"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(finalAttrs, "passthru"));
               return {
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               pname: pname,
               workspace: workspace,
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -498,9 +467,9 @@ export default nix.lambda((args) => (() => {
             };
             })())))),
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           "reflex-no-checks": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (old) => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               pname: nix.thunk(() => nix.str`${nix.sel(old, "pname")}-sans-check-phase`),
               doCheck: false,
               doInstallCheck: false,
@@ -509,7 +478,7 @@ export default nix.lambda((args) => (() => {
         }, nix.sel(finalAttrs, "passthru", "subPkgs"))),
       })),
       meta: nix.thunk(() => nix.update(metaCommon, {
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         changelog: nix.thunk(() => nix.str`https://github.com/reflex-dev/reflex/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         mainProgram: "reflex",
       })),

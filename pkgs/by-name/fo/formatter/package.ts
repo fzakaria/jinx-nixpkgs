@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]], [["ext4", 37, 7], ["exfat", 38, 7], ["fat", 39, 7], ["ntfs", 40, 7], ["hfsplus", 41, 7]], [["updateScript", 67, 5]], [["description", 71, 5], ["homepage", 72, 5], ["maintainers", 73, 5], ["teams", 74, 5], ["platforms", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 54, 3], ["postPatch", 61, 3], ["passthru", 66, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false, vala: false, "pkg-config": false, pantheon: false, python3: false, replaceVars: false, glib: false, gtk3: false, dosfstools: false, e2fsprogs: false, exfat: false, hfsprogs: false, ntfs3g: false, libgee: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ext4", 37, 7], ["exfat", 38, 7], ["fat", 39, 7], ["ntfs", 40, 7], ["hfsplus", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["maintainers", 73, 5], ["teams", 74, 5], ["platforms", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 54, 3], ["postPatch", 61, 3], ["passthru", 66, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const libgee = nix.arg($, "libgee");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "formatter",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Djaler",
           repo: "Formatter",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             ext4: nix.thunk(() => nix.str`${e2fsprogs}/bin/mkfs.ext4`),
             exfat: nix.thunk(() => nix.str`${exfat}/bin/mkfs.exfat`),
             fat: nix.thunk(() => nix.str`${dosfstools}/bin/mkfs.fat`),
@@ -56,11 +52,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gtk3, libgee, nix.thunk(() => nix.sel(pantheon, "granite"))]),
       postPatch: "chmod +x meson/post_install.py\npatchShebangs meson/post_install.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple formatter designed for elementary OS",
         homepage: "https://github.com/Djaler/Formatter",
         maintainers: nix.thunk(() => (() => {

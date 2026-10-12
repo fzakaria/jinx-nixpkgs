@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["updateScript", 41, 12]], [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 57, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["enableParallelBuilding", 39, 3], ["passthru", 41, 3], ["installPhase", 43, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, "pkg-config": false, nlohmann_json: false, spdlog: false, argparse: false, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 41, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["enableParallelBuilding", 39, 3], ["passthru", 41, 3], ["installPhase", 43, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const argparse = nix.arg($, "argparse");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "d2hs",
       version: "4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "neboer",
           repo: "DNS2HostsSyncer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,12 +33,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nlohmann_json, spdlog, argparse, curl]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       installPhase: "runHook preInstall\ninstall -Dm755 ./d2hs $out/bin/d2hs\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/Neboer/DNS2HostsSyncer",
         description: "Small tool for periodically syncing dns records to hosts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

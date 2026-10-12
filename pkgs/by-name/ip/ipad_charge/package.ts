@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 13, 5], ["rev", 14, 5], ["repo", 15, 5], ["owner", 16, 5]], [["homepage", 39, 35], ["description", 40, 5], ["longDescription", 41, 5], ["license", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["doInstallCheck", 21, 3], ["postPatch", 23, 3], ["enableParallelBuilding", 32, 3], ["preInstall", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libusb1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 13, 5], ["rev", 14, 5], ["repo", 15, 5], ["owner", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 39, 35], ["description", 40, 5], ["longDescription", 41, 5], ["license", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["doInstallCheck", 21, 3], ["postPatch", 23, 3], ["enableParallelBuilding", 32, 3], ["preInstall", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ipad_charge",
       version: "2015-02-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sha256: "0f40hqx1dbqpwrhyf42h5982jwqv8j5zp5hwwakz6600hyqvnnz7",
           rev: "bb24e1c3a79016cfdffb9d28189485766d655ec6",
           repo: "ipad_charge",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Apple device USB charging utility for Linux",
         longDescription: "USB charging control utility used to enable/disable charging of an Apple\ndevice connected to USB port. For a list of supported devices, see\nhttps://github.com/mkorenkov/ipad_charge#supported-devices.\n",

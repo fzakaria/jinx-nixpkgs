@@ -2,10 +2,9 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["fetchSubmodules", 14, 5], ["hash", 15, 5]], [["pname", 19, 3], ["version", 20, 11], ["src", 20, 19], ["passthru", 21, 17], ["postPatch", 23, 3], ["installPhase", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
 const formals$2 = { args: { version: false, src: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["fetchSubmodules", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 11], ["src", 20, 19], ["passthru", 21, 17], ["postPatch", 23, 3], ["installPhase", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const src = nix.arg($_1, "src");
     const sentry_native = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "getsentry",
         repo: "sentry-native",
         tag: "0.9.1",
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-1jyJGiIrX0TsRDzAeg3IuE1Vf5STAaG8JVxdbmPMXGQ=",
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "sentry_flutter",
         version: version,
         src: src,

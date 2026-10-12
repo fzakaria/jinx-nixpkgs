@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["homepage", 36, 5], ["description", 37, 5], ["changelog", 38, 5], ["longDescription", 39, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["hardeningDisable", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, flex: false, autoreconfHook: false, automake: false, "autoconf-archive": false, libtool: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 36, 5], ["description", 37, 5], ["changelog", 38, 5], ["longDescription", 39, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["hardeningDisable", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "detox",
       version: "3.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dharple",
           repo: "detox",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [flex, autoreconfHook, automake, autoconf_archive, libtool, pkg_config]),
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/dharple/detox",
         description: "Utility designed to clean up filenames",
         changelog: nix.thunk(() => nix.str`https://github.com/dharple/detox/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

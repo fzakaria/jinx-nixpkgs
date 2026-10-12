@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["homepage", 33, 5], ["description", 34, 5], ["longDescription", 35, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["ldflags", 25, 3], ["buildInputs", 29, 3], ["tags", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, stdenv: false, libpcap: false, withPcap: true, withRawsocket: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["longDescription", 35, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["ldflags", 25, 3], ["buildInputs", 29, 3], ["tags", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const withPcap = nix.argOr($, "withPcap", () => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))) && nix.asBool(!nix.asBool(withRawsocket))));
   const withRawsocket = nix.argOr($, "withRawsocket", () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(withPcap))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "phantomsocks",
       version: "0-unstable-2025-08-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "macronut",
           repo: "phantomsocks",
           rev: "c52f1bde25ed5df07eb4cd010a3d508c5cf023e0",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withPcap, libpcap)),
       tags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withPcap, "pcap"), nix.app(nix.sel(lib, "optional"), withRawsocket, "rawsocket"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/macronut/phantomsocks",
         description: "Cross-platform proxy client/server for Linux/Windows/macOS",
         longDescription: "A cross-platform proxy tool that could be used to modify TCP packets\nto implement TCB desync to bypass detection and censoring.\n",

@@ -2,70 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/caddy.nix", [[["maintainers", 6, 8]], [["enable", 14, 24], ["extraConfig", 15, 24], ["enableReload", 28, 24]], [["caddy", 14, 18]], [["extraConfig", 31, 26]], [["caddy", 31, 20]], [["services", 31, 11]], [["configuration", 30, 38]], [["http://localhost:8080", 38, 13], ["http://localhost:8081", 39, 13]], [["virtualHosts", 37, 26]], [["caddy", 37, 20]], [["services", 37, 11]], [["configuration", 36, 41]], [["http://localhost:8080 http://localhost:8081", 44, 13]], [["virtualHosts", 43, 26]], [["caddy", 43, 20]], [["services", 43, 11]], [["configuration", 42, 43]], [["body", 55, 23], ["handler", 56, 23], ["status_code", 57, 23]], [["handle", 53, 19]], [["listen", 50, 15], ["routes", 51, 15]], [["default", 49, 31]], [["servers", 49, 23]], [["http", 49, 18]], [["apps", 49, 13]], [["settings", 48, 26]], [["caddy", 48, 20]], [["services", 48, 11]], [["configuration", 47, 30]], [["configFile", 66, 26]], [["caddy", 66, 20]], [["services", 66, 11]], [["configuration", 65, 45]], [["config-reload", 30, 24], ["multiple-configs", 36, 24], ["multiple-hostnames", 42, 24], ["rfc42", 47, 24], ["explicit-config-file", 65, 24]], [["services", 14, 9], ["specialisation", 30, 9]], [["webserver", 11, 5]], [["name", 4, 3], ["meta", 6, 3], ["nodes", 10, 3], ["testScript", 75, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/caddy.nix", [["maintainers", 6, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/caddy.nix", [["enable", 14, 24], ["extraConfig", 15, 24], ["enableReload", 28, 24]]);
-const pos$3 = nix.positions(here + "/caddy.nix", [["caddy", 14, 18]]);
-const pos$4 = nix.positions(here + "/caddy.nix", [["extraConfig", 31, 26]]);
-const pos$5 = nix.positions(here + "/caddy.nix", [["caddy", 31, 20]]);
-const pos$6 = nix.positions(here + "/caddy.nix", [["services", 31, 11]]);
-const pos$7 = nix.positions(here + "/caddy.nix", [["configuration", 30, 38]]);
-const pos$8 = nix.positions(here + "/caddy.nix", [["http://localhost:8080", 38, 13], ["http://localhost:8081", 39, 13]]);
-const pos$9 = nix.positions(here + "/caddy.nix", [["virtualHosts", 37, 26]]);
-const pos$10 = nix.positions(here + "/caddy.nix", [["caddy", 37, 20]]);
-const pos$11 = nix.positions(here + "/caddy.nix", [["services", 37, 11]]);
-const pos$12 = nix.positions(here + "/caddy.nix", [["configuration", 36, 41]]);
-const pos$13 = nix.positions(here + "/caddy.nix", [["http://localhost:8080 http://localhost:8081", 44, 13]]);
-const pos$14 = nix.positions(here + "/caddy.nix", [["virtualHosts", 43, 26]]);
-const pos$15 = nix.positions(here + "/caddy.nix", [["caddy", 43, 20]]);
-const pos$16 = nix.positions(here + "/caddy.nix", [["services", 43, 11]]);
-const pos$17 = nix.positions(here + "/caddy.nix", [["configuration", 42, 43]]);
-const pos$18 = nix.positions(here + "/caddy.nix", [["body", 55, 23], ["handler", 56, 23], ["status_code", 57, 23]]);
-const pos$19 = nix.positions(here + "/caddy.nix", [["handle", 53, 19]]);
-const pos$20 = nix.positions(here + "/caddy.nix", [["listen", 50, 15], ["routes", 51, 15]]);
-const pos$21 = nix.positions(here + "/caddy.nix", [["default", 49, 31]]);
-const pos$22 = nix.positions(here + "/caddy.nix", [["servers", 49, 23]]);
-const pos$23 = nix.positions(here + "/caddy.nix", [["http", 49, 18]]);
-const pos$24 = nix.positions(here + "/caddy.nix", [["apps", 49, 13]]);
-const pos$25 = nix.positions(here + "/caddy.nix", [["settings", 48, 26]]);
-const pos$26 = nix.positions(here + "/caddy.nix", [["caddy", 48, 20]]);
-const pos$27 = nix.positions(here + "/caddy.nix", [["services", 48, 11]]);
-const pos$28 = nix.positions(here + "/caddy.nix", [["configuration", 47, 30]]);
-const pos$29 = nix.positions(here + "/caddy.nix", [["configFile", 66, 26]]);
-const pos$30 = nix.positions(here + "/caddy.nix", [["caddy", 66, 20]]);
-const pos$31 = nix.positions(here + "/caddy.nix", [["services", 66, 11]]);
-const pos$32 = nix.positions(here + "/caddy.nix", [["configuration", 65, 45]]);
-const pos$33 = nix.positions(here + "/caddy.nix", [["config-reload", 30, 24], ["multiple-configs", 36, 24], ["multiple-hostnames", 42, 24], ["rfc42", 47, 24], ["explicit-config-file", 65, 24]]);
-const pos$34 = nix.positions(here + "/caddy.nix", [["services", 14, 9], ["specialisation", 30, 9]]);
-const pos$35 = nix.positions(here + "/caddy.nix", [["webserver", 11, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$36 = nix.positions(here + "/caddy.nix", [["name", 4, 3], ["meta", 6, 3], ["nodes", 10, 3], ["testScript", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     name: "caddy",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "stepbrobd"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       webserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             caddy: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               extraConfig: nix.thunk(() => nix.str`http://localhost {
   encode gzip
@@ -78,27 +43,27 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             "config-reload": nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
-                  caddy: nix.thunk(() => ({ [nix.POS]: pos$4, extraConfig: "http://localhost:8080 {\n}\n" })),
+                  [nix.POS]: $pos[4],
+                  caddy: nix.thunk(() => ({ [nix.POS]: $pos[3], extraConfig: "http://localhost:8080 {\n}\n" })),
                 })),
               })),
             })),
             "multiple-configs": nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   caddy: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     virtualHosts: nix.thunk(() => ({
-                      [nix.POS]: pos$8,
+                      [nix.POS]: $pos[7],
                       "http://localhost:8080": nix.thunk(() => ({})),
                       "http://localhost:8081": nix.thunk(() => ({})),
                     })),
@@ -107,15 +72,15 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "multiple-hostnames": nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   caddy: nix.thunk(() => ({
-                    [nix.POS]: pos$14,
+                    [nix.POS]: $pos[13],
                     virtualHosts: nix.thunk(() => ({
-                      [nix.POS]: pos$13,
+                      [nix.POS]: $pos[12],
                       "http://localhost:8080 http://localhost:8081": nix.thunk(() => ({})),
                     })),
                   })),
@@ -123,30 +88,30 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             rfc42: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$26,
+                  [nix.POS]: $pos[25],
                   caddy: nix.thunk(() => ({
-                    [nix.POS]: pos$25,
+                    [nix.POS]: $pos[24],
                     settings: nix.thunk(() => ({
-                      [nix.POS]: pos$24,
+                      [nix.POS]: $pos[23],
                       apps: nix.thunk(() => ({
-                        [nix.POS]: pos$23,
+                        [nix.POS]: $pos[22],
                         http: nix.thunk(() => ({
-                          [nix.POS]: pos$22,
+                          [nix.POS]: $pos[21],
                           servers: nix.thunk(() => ({
-                            [nix.POS]: pos$21,
+                            [nix.POS]: $pos[20],
                             default: nix.thunk(() => ({
-                              [nix.POS]: pos$20,
+                              [nix.POS]: $pos[19],
                               listen: nix.thunk(() => [":80"]),
                               routes: nix.thunk(() => [
                                 nix.thunk(() => ({
-                                  [nix.POS]: pos$19,
+                                  [nix.POS]: $pos[18],
                                   handle: nix.thunk(() => [
                                     nix.thunk(() => ({
-                                      [nix.POS]: pos$18,
+                                      [nix.POS]: $pos[17],
                                       body: "hello world",
                                       handler: "static_response",
                                       status_code: 200n,
@@ -164,13 +129,13 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "explicit-config-file": nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$30,
+                  [nix.POS]: $pos[29],
                   caddy: nix.thunk(() => ({
-                    [nix.POS]: pos$29,
+                    [nix.POS]: $pos[28],
                     configFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "Caddyfile", "localhost:80\n\nrespond \"hello world\"\n")),
                   })),
                 })),

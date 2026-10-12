@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 12, 15], ["hash", 12, 20], ["url", 13, 7]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]], [["pname", 17, 3], ["version", 18, 11], ["srcs", 20, 3], ["dontUnpack", 26, 3], ["dontConfigure", 27, 3], ["dontBuild", 28, 3], ["installPhase", 30, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 12, 15], ["hash", 12, 20], ["url", 13, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 11], ["srcs", 20, 3], ["dontUnpack", 26, 3], ["dontConfigure", 27, 3], ["dontBuild", 28, 3], ["installPhase", 30, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "4.2.1";
   const relArtifact = (name) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: name,
       hash: hash,
       url: nix.thunk(() => nix.str`https://github.com/IdreesInc/Monocraft/releases/download/v${version}/${name}`),
     })));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "monocraft",
       version: version,
       srcs: nix.thunk(() => [
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\nfor src in \"${srcs[@]}\"\ndo\n  install -Dm644 --target $out/share/fonts/truetype $src\ndone\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Programming font based on the typeface used in Minecraft",
         homepage: "https://github.com/IdreesInc/Monocraft",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/parallel-n64-next.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["NIX_CFLAGS_COMPILE", 50, 7]], [["updateScript", 65, 12]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["teams", 71, 5], ["maintainers", 72, 5], ["badPlatforms", 75, 5]], [["core", 17, 3], ["version", 18, 3], ["src", 20, 3], ["extraNativeBuildInputs", 27, 3], ["extraBuildInputs", 31, 3], ["makefile", 37, 3], ["makeFlags", 39, 3], ["env", 50, 3], ["postPatch", 52, 3], ["preInstall", 57, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "pkg-config": false, libGLU: false, libGL: false, libpng: false, libretro: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/parallel-n64-next.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/parallel-n64-next.nix", [["NIX_CFLAGS_COMPILE", 50, 7]]);
-const pos$3 = nix.positions(here + "/parallel-n64-next.nix", [["updateScript", 65, 12]]);
-const pos$4 = nix.positions(here + "/parallel-n64-next.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["teams", 71, 5], ["maintainers", 72, 5], ["badPlatforms", 75, 5]]);
-const pos$5 = nix.positions(here + "/parallel-n64-next.nix", [["core", 17, 3], ["version", 18, 3], ["src", 20, 3], ["extraNativeBuildInputs", 27, 3], ["extraBuildInputs", 31, 3], ["makefile", 37, 3], ["makeFlags", 39, 3], ["env", 50, 3], ["postPatch", 52, 3], ["preInstall", 57, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libretro = nix.arg($, "libretro");
   const reformatVersion = (v) => nix.str`v${nix.app(nix.sel(lib, "versions", "majorMinor"), v)}-${nix.app(nix.sel(lib, "versions", "patch"), v)}`;
   return nix.app(nix.sel(libretro, "mkLibretroCore"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       core: "parallel-n64-next",
       version: "2.28.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "parallel-launcher",
           repo: "parallel-n64",
           tag: nix.thunk(() => nix.app(reformatVersion, nix.thunk(() => nix.sel(finalAttrs, "version")))),
@@ -42,16 +38,16 @@ export default nix.lambda((args) => (() => {
         "SYSTEM_ZLIB=1",
         nix.thunk(() => nix.str`ARCH=${nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")}`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), "sed -i -e '1 i\\CPUFLAGS += -DARM_FIX -DNO_ASM -DARM_ASM -DDONT_WANT_ARM_OPTIMIZATIONS -DARM64' Makefile \\\n&& sed -i -e 's,CPUFLAGS  :=,,g' Makefile\n")),
       preInstall: nix.thunk(() => (() => {
         const suffix = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
         return nix.str`mv parallel_n64_libretro${suffix} parallel_n64_next_libretro${suffix}
 `;
       })()),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.thunk(() => ({})) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.thunk(() => ({})) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fork of libretro's parallel-n64 core designed to be used with Parallel Launcher",
         homepage: "https://gitlab.com/parallel-launcher/parallel-n64",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

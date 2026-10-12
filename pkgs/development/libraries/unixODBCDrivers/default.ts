@@ -2,35 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["withUnixODBC", 42, 5], ["withLibiodbc", 43, 5]], [["owner", 53, 7], ["repo", 54, 7], ["rev", 55, 7], ["hash", 56, 7], ["fetchSubmodules", 59, 7]], [["name", 71, 9], ["url", 72, 9], ["hash", 73, 9]], [["NIX_CFLAGS_COMPILE", 98, 7]], [["fancyName", 105, 7], ["driver", 106, 7]], [["description", 110, 7], ["homepage", 111, 7], ["license", 112, 7], ["platforms", 113, 7]], [["pname", 49, 5], ["version", 50, 5], ["src", 52, 5], ["patches", 62, 5], ["nativeBuildInputs", 77, 5], ["buildInputs", 78, 5], ["cmakeFlags", 86, 5], ["buildFlags", 95, 5], ["env", 97, 5], ["installTargets", 101, 5], ["passthru", 104, 5], ["meta", 109, 5]], [["url", 122, 7], ["hash", 123, 7]], [["name", 129, 9], ["url", 130, 9], ["hash", 131, 9]], [["fancyName", 157, 7], ["driver", 158, 7]], [["description", 162, 7], ["homepage", 163, 7], ["changelog", 164, 7], ["license", 165, 7], ["platforms", 166, 7], ["maintainers", 167, 7]], [["pname", 118, 5], ["version", 119, 5], ["src", 121, 5], ["patches", 126, 5], ["buildInputs", 135, 5], ["configureFlags", 142, 5], ["installTargets", 147, 5], ["postInstall", 150, 5], ["passthru", 156, 5], ["meta", 161, 5]], [["url", 180, 7], ["sha256", 181, 7]], [["fancyName", 213, 7], ["driver", 214, 7]], [["broken", 218, 7], ["description", 219, 7], ["homepage", 220, 7], ["sourceProvenance", 221, 7], ["license", 222, 7], ["platforms", 223, 7], ["maintainers", 224, 7]], [["pname", 172, 5], ["version", 173, 5], ["versionMajor", 175, 5], ["versionMinor", 176, 5], ["versionAdditional", 177, 5], ["src", 179, 5], ["nativeBuildInputs", 184, 5], ["unpackPhase", 189, 5], ["buildPhase", 190, 5], ["installPhase", 192, 5], ["postFixup", 198, 5], ["passthru", 212, 5], ["meta", 217, 5]], [["x86_64-linux", 240, 11], ["aarch64-linux", 241, 11], ["aarch64-darwin", 242, 11]], [["x86_64-linux", 247, 11], ["aarch64-linux", 248, 11], ["aarch64-darwin", 249, 11]], [["url", 238, 7], ["hash", 245, 7]], [["fancyName", 306, 7], ["driver", 307, 7]], [["description", 316, 7], ["homepage", 317, 7], ["sourceProvenance", 318, 7], ["platforms", 319, 7], ["license", 320, 7], ["maintainers", 321, 7]], [["pname", 229, 5], ["version", 230, 5], ["versionMajor", 232, 5], ["versionMinor", 233, 5], ["versionAdditional", 234, 5], ["versionSuffix", 235, 5], ["src", 237, 5], ["nativeBuildInputs", 254, 5], ["unpackPhase", 266, 5], ["installPhase", 270, 5], ["fixupPhase", 284, 5], ["postFixup", 291, 5], ["passthru", 305, 5], ["meta", 315, 5]], [["url", 330, 7], ["sha256", 331, 7]], [["fancyName", 356, 7], ["driver", 357, 7]], [["broken", 361, 7], ["description", 362, 7], ["homepage", 363, 7], ["sourceProvenance", 364, 7], ["license", 365, 7], ["platforms", 366, 7], ["maintainers", 367, 7]], [["pname", 326, 5], ["version", 327, 5], ["src", 329, 5], ["nativeBuildInputs", 334, 5], ["unpackPhase", 336, 5], ["installPhase", 344, 5], ["dontPatchELF", 350, 5], ["buildInputs", 352, 5], ["passthru", 355, 5], ["meta", 360, 5]], [["psql", 41, 3], ["duckdb", 46, 3], ["mariadb", 48, 3], ["sqlite", 117, 3], ["msodbcsql17", 171, 3], ["msodbcsql18", 228, 3], ["redshift", 325, 3]], [["mysql", 372, 3]]]);
 const formals$1 = { args: { config: false, fetchpatch: false, fetchurl: false, stdenv: false, unixodbc: false, cmake: false, mariadb: false, sqlite: false, zlib: false, libxml2: false, dpkg: false, lib: false, openssl: false, libkrb5: false, libuuid: false, patchelf: false, libiconv: false, fixDarwinDylibNames: false, fetchFromGitHub: false, psqlodbc: false, "duckdb-odbc": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["withUnixODBC", 42, 5], ["withLibiodbc", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 53, 7], ["repo", 54, 7], ["rev", 55, 7], ["hash", 56, 7], ["fetchSubmodules", 59, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 71, 9], ["url", 72, 9], ["hash", 73, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 98, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["fancyName", 105, 7], ["driver", 106, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 110, 7], ["homepage", 111, 7], ["license", 112, 7], ["platforms", 113, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 49, 5], ["version", 50, 5], ["src", 52, 5], ["patches", 62, 5], ["nativeBuildInputs", 77, 5], ["buildInputs", 78, 5], ["cmakeFlags", 86, 5], ["buildFlags", 95, 5], ["env", 97, 5], ["installTargets", 101, 5], ["passthru", 104, 5], ["meta", 109, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["url", 122, 7], ["hash", 123, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["name", 129, 9], ["url", 130, 9], ["hash", 131, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["fancyName", 157, 7], ["driver", 158, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["description", 162, 7], ["homepage", 163, 7], ["changelog", 164, 7], ["license", 165, 7], ["platforms", 166, 7], ["maintainers", 167, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["pname", 118, 5], ["version", 119, 5], ["src", 121, 5], ["patches", 126, 5], ["buildInputs", 135, 5], ["configureFlags", 142, 5], ["installTargets", 147, 5], ["postInstall", 150, 5], ["passthru", 156, 5], ["meta", 161, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["url", 180, 7], ["sha256", 181, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["fancyName", 213, 7], ["driver", 214, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["broken", 218, 7], ["description", 219, 7], ["homepage", 220, 7], ["sourceProvenance", 221, 7], ["license", 222, 7], ["platforms", 223, 7], ["maintainers", 224, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["pname", 172, 5], ["version", 173, 5], ["versionMajor", 175, 5], ["versionMinor", 176, 5], ["versionAdditional", 177, 5], ["src", 179, 5], ["nativeBuildInputs", 184, 5], ["unpackPhase", 189, 5], ["buildPhase", 190, 5], ["installPhase", 192, 5], ["postFixup", 198, 5], ["passthru", 212, 5], ["meta", 217, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["x86_64-linux", 240, 11], ["aarch64-linux", 241, 11], ["aarch64-darwin", 242, 11]]);
-const pos$18 = nix.positions(here + "/default.nix", [["x86_64-linux", 247, 11], ["aarch64-linux", 248, 11], ["aarch64-darwin", 249, 11]]);
-const pos$19 = nix.positions(here + "/default.nix", [["url", 238, 7], ["hash", 245, 7]]);
-const pos$20 = nix.positions(here + "/default.nix", [["fancyName", 306, 7], ["driver", 307, 7]]);
-const pos$21 = nix.positions(here + "/default.nix", [["description", 316, 7], ["homepage", 317, 7], ["sourceProvenance", 318, 7], ["platforms", 319, 7], ["license", 320, 7], ["maintainers", 321, 7]]);
-const pos$22 = nix.positions(here + "/default.nix", [["pname", 229, 5], ["version", 230, 5], ["versionMajor", 232, 5], ["versionMinor", 233, 5], ["versionAdditional", 234, 5], ["versionSuffix", 235, 5], ["src", 237, 5], ["nativeBuildInputs", 254, 5], ["unpackPhase", 266, 5], ["installPhase", 270, 5], ["fixupPhase", 284, 5], ["postFixup", 291, 5], ["passthru", 305, 5], ["meta", 315, 5]]);
-const pos$23 = nix.positions(here + "/default.nix", [["url", 330, 7], ["sha256", 331, 7]]);
-const pos$24 = nix.positions(here + "/default.nix", [["fancyName", 356, 7], ["driver", 357, 7]]);
-const pos$25 = nix.positions(here + "/default.nix", [["broken", 361, 7], ["description", 362, 7], ["homepage", 363, 7], ["sourceProvenance", 364, 7], ["license", 365, 7], ["platforms", 366, 7], ["maintainers", 367, 7]]);
-const pos$26 = nix.positions(here + "/default.nix", [["pname", 326, 5], ["version", 327, 5], ["src", 329, 5], ["nativeBuildInputs", 334, 5], ["unpackPhase", 336, 5], ["installPhase", 344, 5], ["dontPatchELF", 350, 5], ["buildInputs", 352, 5], ["passthru", 355, 5], ["meta", 360, 5]]);
-const pos$27 = nix.positions(here + "/default.nix", [["psql", 41, 3], ["duckdb", 46, 3], ["mariadb", 48, 3], ["sqlite", 117, 3], ["msodbcsql17", 171, 3], ["msodbcsql18", 228, 3], ["redshift", 325, 3]]);
-const pos$28 = nix.positions(here + "/default.nix", [["mysql", 372, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,14 +29,14 @@ export default nix.lambda((args) => (() => {
   const psqlodbc = nix.arg($, "psqlodbc");
   const duckdb_odbc = nix.arg($, "duckdb-odbc");
   return nix.update({
-    [nix.POS]: pos$27,
-    psql: nix.thunk(() => nix.app(nix.sel(psqlodbc, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withUnixODBC: true, withLibiodbc: false })))),
+    [nix.POS]: $pos[26],
+    psql: nix.thunk(() => nix.app(nix.sel(psqlodbc, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withUnixODBC: true, withLibiodbc: false })))),
     duckdb: duckdb_odbc,
     mariadb: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
         const pname = "mariadb-connector-odbc";
         const version = "3.2.6";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "mariadb-corporation",
             repo: "mariadb-connector-odbc",
             rev: version,
@@ -74,7 +47,7 @@ export default nix.lambda((args) => (() => {
           nix.path(here, "./mariadb-connector-odbc-unistd.patch"),
           nix.path(here, "./mariadb-connector-odbc-musl.patch"),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "mariadb-connector-odbc-add-include-cstdint-gcc15.patch",
               url: "https://github.com/mariadb-corporation/mariadb-connector-odbc/commit/a3ced654db2ef93de0a818f2d66171f6084e5f2d.patch",
               hash: "sha256-GZITSryfRdAgNxZehasoBModGNZo575Dd5aokwNWzpY=",
@@ -91,24 +64,24 @@ export default nix.lambda((args) => (() => {
         ]);
         const buildFlags = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? ["maodbc"] : null));
         const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
           }))));
         const installTargets = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? ["install/fast"] : null));
         const passthru = nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           fancyName: "MariaDB",
           driver: nix.thunk(() => nix.str`lib/libmaodbc${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
         }));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           description: "MariaDB ODBC database driver",
           homepage: "https://downloads.mariadb.org/connector-odbc/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
           platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
         }));
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pname,
           version,
           src,
@@ -127,13 +100,13 @@ export default nix.lambda((args) => (() => {
         const pname = "sqlite-connector-odbc";
         const version = "0.99991";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: nix.thunk(() => nix.str`http://www.ch-werner.de/sqliteodbc/sqliteodbc-${version}.tar.gz`),
             hash: "sha256-TZStuNPN4fqUoorrDfzHvnMUW8383z1eIlQ02zHcilw=",
           }))));
         const patches = nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               name: "sqlite-connector-odbc-fix-incompatible-pointer-compilation-error.patch",
               url: "https://src.fedoraproject.org/rpms/sqliteodbc/raw/e3d93f5909c884fd8846b36b71ba67a3ad65da2a/f/sqliteodbc-0.99991-Fix-incompatible-pointer-compilation-error.patch",
               hash: "sha256-IAZDujEkAyU40sKa4GC+upURNt7vplCDAx91Eeny+bU=",
@@ -146,9 +119,9 @@ export default nix.lambda((args) => (() => {
         ]);
         const installTargets = nix.thunk(() => ["install-3"]);
         const postInstall = "mkdir -p \"$out/lib\"\nmv \"$out\"/*.* \"$out/lib\"\n";
-        const passthru = nix.thunk(() => ({ [nix.POS]: pos$10, fancyName: "SQLite", driver: "lib/libsqlite3odbc.so" }));
+        const passthru = nix.thunk(() => ({ [nix.POS]: $pos[9], fancyName: "SQLite", driver: "lib/libsqlite3odbc.so" }));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           description: "ODBC driver for SQLite",
           homepage: "http://www.ch-werner.de/sqliteodbc",
           changelog: "http://www.ch-werner.de/sqliteodbc/html/index.html#changelog",
@@ -157,7 +130,7 @@ export default nix.lambda((args) => (() => {
           maintainers: [],
         }));
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           pname,
           version,
           src,
@@ -177,7 +150,7 @@ export default nix.lambda((args) => (() => {
         const versionMinor = "7";
         const versionAdditional = "1.1";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             url: nix.thunk(() => nix.str`https://packages.microsoft.com/debian/10/prod/pool/main/m/msodbcsql17/msodbcsql${versionMajor}_${version}_amd64.deb`),
             sha256: "0vwirnp56jibm3qf0kmi4jnz1w7xfhnsfr8imr0c9hg6av4sk3a6",
           }))));
@@ -198,12 +171,12 @@ cp -r opt/microsoft/msodbcsql${versionMajor}/lib64 opt/microsoft/msodbcsql${vers
   $out/lib/libmsodbcsql-${versionMajor}.${versionMinor}.so.${versionAdditional}
 `);
         const passthru = nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           fancyName: nix.thunk(() => nix.str`ODBC Driver ${versionMajor} for SQL Server`),
           driver: nix.thunk(() => nix.str`lib/libmsodbcsql-${versionMajor}.${versionMinor}.so.${versionAdditional}`),
         }));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
           description: nix.thunk(() => nix.str`ODBC Driver ${versionMajor} for SQL Server`),
           homepage: "https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-2017",
@@ -219,7 +192,7 @@ cp -r opt/microsoft/msodbcsql${versionMajor}/lib64 opt/microsoft/msodbcsql${vers
           })()),
         }));
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           pname,
           version,
           versionMajor,
@@ -236,7 +209,7 @@ cp -r opt/microsoft/msodbcsql${versionMajor}/lib64 opt/microsoft/msodbcsql${vers
         };
       })()))),
     msodbcsql18: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         pname: nix.thunk(() => nix.str`msodbcsql${nix.sel(finalAttrs, "versionMajor")}`),
         version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "versionMajor")}.${nix.sel(finalAttrs, "versionMinor")}.${nix.sel(finalAttrs, "versionAdditional")}${nix.sel(finalAttrs, "versionSuffix")}`),
         versionMajor: "18",
@@ -244,15 +217,15 @@ cp -r opt/microsoft/msodbcsql${versionMajor}/lib64 opt/microsoft/msodbcsql${vers
         versionAdditional: "1.1",
         versionSuffix: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "-1")),
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             url: nix.thunk(() => nix.selOr({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               "x86_64-linux": nix.thunk(() => nix.str`https://packages.microsoft.com/debian/11/prod/pool/main/m/msodbcsql${nix.sel(finalAttrs, "versionMajor")}/msodbcsql${nix.sel(finalAttrs, "versionMajor")}_${nix.sel(finalAttrs, "version")}_amd64.deb`),
               "aarch64-linux": nix.thunk(() => nix.str`https://packages.microsoft.com/debian/11/prod/pool/main/m/msodbcsql${nix.sel(finalAttrs, "versionMajor")}/msodbcsql${nix.sel(finalAttrs, "versionMajor")}_${nix.sel(finalAttrs, "version")}_arm64.deb`),
               "aarch64-darwin": nix.thunk(() => nix.str`https://download.microsoft.com/download/6/4/0/64006503-51e3-44f0-a6cd-a9b757d0d61b/msodbcsql${nix.sel(finalAttrs, "versionMajor")}-${nix.sel(finalAttrs, "version")}-arm64.tar.gz`),
             }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system")))),
             hash: nix.thunk(() => nix.selOr({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               "x86_64-linux": "sha256:1f0rmh1aynf1sqmjclbsyh2wz5jby0fixrwz71zp6impxpwvil52",
               "aarch64-linux": "sha256:0zphnbvkqdbkcv6lvv63p7pyl68h5bs2dy6vv44wm6bi89svms4a",
               "aarch64-darwin": "sha256:116xl8r2apr5b48jnq6myj9fwqs88yccw5176yfyzh4534fznj5x",
@@ -279,12 +252,12 @@ cp -r opt/microsoft/msodbcsql${nix.sel(finalAttrs, "versionMajor")}/lib64 opt/mi
   $out/${nix.sel(finalAttrs, "passthru", "driver")}
 `))),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           fancyName: nix.thunk(() => nix.str`ODBC Driver ${nix.sel(finalAttrs, "versionMajor")} for SQL Server`),
           driver: nix.thunk(() => nix.str`lib/libmsodbcsql${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`.${nix.sel(finalAttrs, "versionMajor")}.dylib` : nix.str`-${nix.sel(finalAttrs, "versionMajor")}.${nix.sel(finalAttrs, "versionMinor")}.so.${nix.sel(finalAttrs, "versionAdditional")}`)}`),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           description: nix.thunk(() => nix.sel(finalAttrs, "passthru", "fancyName")),
           homepage: "https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver16",
           sourceProvenance: nix.thunk(() => (() => {
@@ -303,7 +276,7 @@ cp -r opt/microsoft/msodbcsql${nix.sel(finalAttrs, "versionMajor")}/lib64 opt/mi
         const pname = "redshift-odbc";
         const version = "1.4.49.1000";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             url: nix.thunk(() => nix.str`https://s3.amazonaws.com/redshift-downloads/drivers/odbc/${version}/AmazonRedshiftODBC-64-bit-${version}-1.x86_64.deb`),
             sha256: "sha256-r5HvsZjB7+x+ClxtWoONkE1/NAbz90NbHfzxC6tf7jA=",
           }))));
@@ -316,12 +289,12 @@ patchelf --set-rpath ${unixodbc}/lib/ $out/lib/libamazonredshiftodbc64.so
         const dontPatchELF = true;
         const buildInputs = nix.thunk(() => [unixodbc]);
         const passthru = nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           fancyName: "Amazon Redshift (x64)",
           driver: "lib/libamazonredshiftodbc64.so",
         }));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
           description: "Amazon Redshift ODBC driver",
           homepage: "https://docs.aws.amazon.com/redshift/latest/mgmt/configure-odbc-connection.html",
@@ -337,7 +310,7 @@ patchelf --set-rpath ${unixodbc}/lib/ $out/lib/libamazonredshiftodbc64.so
           })()),
         }));
         return {
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           pname,
           version,
           src,
@@ -351,7 +324,7 @@ patchelf --set-rpath ${unixodbc}/lib/ $out/lib/libamazonredshiftodbc64.so
         };
       })()))),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       mysql: nix.thunk(() => nix.builtins.throw("unixodbcDrivers.mysql has been removed because it has been marked as broken since 2016.")),
     }))));
 })(), formals$1);

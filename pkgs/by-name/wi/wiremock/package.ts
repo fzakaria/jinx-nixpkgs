@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["command", 34, 7], ["package", 35, 7]], [["version", 33, 11]], [["url", 38, 7], ["ignoredVersions", 39, 7]], [["tests", 33, 5], ["updateScript", 37, 5]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["maintainers", 47, 5], ["mainProgram", 51, 5], ["platforms", 52, 5], ["sourceProvenance", 53, 5], ["license", 54, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["dontUnpack", 20, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 24, 3], ["passthru", 32, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { fetchurl: false, gitUpdater: false, jre: false, lib: false, makeWrapper: false, stdenvNoCC: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["command", 34, 7], ["package", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 33, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 38, 7], ["ignoredVersions", 39, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 33, 5], ["updateScript", 37, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["maintainers", 47, 5], ["mainProgram", 51, 5], ["platforms", 52, 5], ["sourceProvenance", 53, 5], ["license", 54, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["dontUnpack", 20, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 24, 3], ["passthru", 32, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "wiremock",
       version: "3.13.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://maven/org/wiremock/wiremock-standalone/${nix.sel(finalAttrs, "version")}/wiremock-standalone-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-0Jexm9SDxQOEebE6XHHp+vjy9RBlhPDBIKd3CrC9s2c=",
         })))),
@@ -38,23 +32,23 @@ makeWrapper ${jre}/bin/java $out/bin/${nix.sel(finalAttrs, "meta", "mainProgram"
   --add-flags "-jar $out/share/wiremock/wiremock.jar"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} --version`),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/wiremock/wiremock.git",
             ignoredVersions: "(alpha|beta|rc).*",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Flexible tool for building mock APIs",
         homepage: "https://wiremock.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/wiremock/wiremock/releases/tag/${nix.sel(finalAttrs, "version")}`),

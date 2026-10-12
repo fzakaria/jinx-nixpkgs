@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 313, 7], ["description", 314, 7], ["platforms", 315, 7], ["license", 316, 7], ["maintainers", 317, 7], ["broken", 318, 7], ["mainProgram", 321, 5]], [["pname", 63, 3], ["version", 64, 30], ["runScript", 66, 3], ["multiArch", 69, 3], ["targetPkgs", 71, 3], ["multiPkgs", 200, 3], ["extraInstallCommands", 296, 3], ["unshareIpc", 304, 3], ["unsharePid", 309, 3], ["meta", 311, 3]]]);
 const formals$1 = { args: { lib: false, buildFHSEnv: false, "lutris-unwrapped": false, extraPkgs: true, extraLibraries: true, steamSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 313, 7], ["description", 314, 7], ["platforms", 315, 7], ["license", 316, 7], ["maintainers", 317, 7], ["broken", 318, 7], ["mainProgram", 321, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 63, 3], ["version", 64, 30], ["runScript", 66, 3], ["multiArch", 69, 3], ["targetPkgs", 71, 3], ["multiPkgs", 200, 3], ["extraInstallCommands", 296, 3], ["unshareIpc", 304, 3], ["unsharePid", 309, 3], ["meta", 311, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -74,7 +73,7 @@ export default nix.lambda((args) => (() => {
     ];
   })();
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "lutris",
       version: nix.thunk(() => nix.attr(lutris_unwrapped, "version")),
       runScript: "lutris",
@@ -242,7 +241,7 @@ ln -sf ${lutris_unwrapped}/share/icons $out/share
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(lutris_unwrapped, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: nix.thunk(() => nix.attr(from, "description")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

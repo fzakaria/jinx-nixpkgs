@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5]], [["pname", 8, 3], ["version", 9, 3], ["strictDeps", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["dontBuild", 26, 3], ["dontWrapQtApps", 28, 3], ["installPhase", 30, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["strictDeps", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["dontBuild", 26, 3], ["dontWrapQtApps", 28, 3], ["installPhase", 30, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kwin-effect-geometry-change",
       version: "1.5",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "peterfajdiga",
           repo: "kwin4_effect_geometry_change",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       installPhase: "runHook preInstall\n\nkpackagetool6 --type=KWin/Effect --install=./package --packageroot=$out/share/kwin/effects\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "KWin animation for windows moved or resized by programs or scripts",
         homepage: "https://github.com/peterfajdiga/kwin4_effect_geometry_change",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

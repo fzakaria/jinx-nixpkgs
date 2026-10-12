@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["packageName", 45, 7], ["versionPolicy", 46, 7]], [["updateScript", 44, 5]], [["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["teams", 54, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["doCheck", 41, 3], ["passthru", 43, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, glib: false, "gobject-introspection": false, gnome: false, webkitgtk_4_1: false, libsoup_3: false, libxml2: false, libarchive: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 45, 7], ["versionPolicy", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["teams", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["doCheck", 41, 3], ["passthru", 43, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libgepub";
       const version = "0.7.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgepub/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libgepub-${version}.tar.xz`),
           sha256: "WlZpWqipEy1nwHkqQPJSzgpI2dAytOGops6YrxT9Xhs=",
         }))));
@@ -36,18 +32,18 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [glib, webkitgtk_4_1, libsoup_3, libxml2, libarchive]);
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, versionPolicy: "none" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: pname, versionPolicy: "none" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GObject based library for handling and rendering epub documents",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

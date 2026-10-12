@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 13], ["hash", 24, 13]], [["toolName", 21, 11], ["src", 22, 11]], [["x86_64-linux", 20, 9]], [["variants", 19, 7], ["updateScript", 29, 7]], [["description", 38, 7], ["homepage", 43, 7], ["license", 44, 7], ["maintainers", 45, 7], ["platforms", 48, 7], ["sourceProvenance", 49, 7]], [["steamDisplayName", 12, 13], ["src", 13, 78], ["toolName", 13, 82], ["pname", 15, 5], ["version", 16, 5], ["passthru", 18, 5], ["meta", 37, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, writeScript: false, "proton-ge-bin": false, steamDisplayName: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 13], ["hash", 24, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["toolName", 21, 11], ["src", 22, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 20, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["variants", 19, 7], ["updateScript", 29, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 38, 7], ["homepage", 43, 7], ["license", 44, 7], ["maintainers", 45, 7], ["platforms", 48, 7], ["sourceProvenance", 49, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["steamDisplayName", 12, 13], ["src", 13, 78], ["toolName", 13, 82], ["pname", 15, 5], ["version", 16, 5], ["passthru", 18, 5], ["meta", 37, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,21 +16,21 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(proton_ge_bin, "overrideAttrs"), (finalAttrs) => (_) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "passthru", "variants", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
       return {
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       steamDisplayName: steamDisplayName,
       src: nix.thunk(() => nix.attr(from, "src")),
       toolName: nix.thunk(() => nix.attr(from, "toolName")),
       pname: "dwproton-bin",
       version: "dwproton-11.0-13",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         variants: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "x86_64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             toolName: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-x86_64`),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 url: nix.thunk(() => nix.str`https://dawn.wine/dawn-winery/dwproton/releases/download/${nix.sel(finalAttrs, "version")}/${nix.sel(finalAttrs, "version")}-x86_64.tar.xz`),
                 hash: "sha256-INbvpKk01gMyt72Z2jlJvov5k4LZztpFuiYgVkGBc1I=",
               })))),
@@ -44,7 +39,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(writeScript, "update-dwproton", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl jq common-updater-scripts\nversion=$(curl -sL \"https://dawn.wine/api/v1/repos/dawn-winery/dwproton/tags?page=1\\&limit=1\" | jq -r .[0].name)\nupdate-source-version dwproton-bin \"$version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Dawn Winery's custom Proton fork with fixes for various games.\n\n(This is intended for use in the `programs.steam.extraCompatPackages` option only.)\n",
         homepage: "https://dawn.wine/dawn-winery/dwproton",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

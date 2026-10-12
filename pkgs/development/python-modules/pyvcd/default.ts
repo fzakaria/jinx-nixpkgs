@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]], [["description", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["version", 11, 3], ["format", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["propagatedBuildInputs", 22, 3], ["nativeCheckInputs", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "setuptools-scm": false, six: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 11, 3], ["format", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["propagatedBuildInputs", 22, 3], ["nativeCheckInputs", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "pyvcd";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-3GJ16Vp5SbgjYIarLm0Dr+3nNEEkPsUQnJ6okHfz1pY=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [six]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python package for writing Value Change Dump (VCD) files",
         homepage: "https://github.com/SanDisk-Open-Source/pyvcd",
         changelog: nix.thunk(() => nix.str`https://github.com/SanDisk-Open-Source/pyvcd/blob/${version}/CHANGELOG.rst`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         format,
         pname,

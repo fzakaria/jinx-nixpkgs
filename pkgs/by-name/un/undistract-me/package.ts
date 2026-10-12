@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["url", 30, 7], ["sha256", 31, 7]], [["url", 42, 7], ["sha256", 43, 7]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["strictDeps", 47, 3], ["postPatch", 52, 3], ["installPhase", 68, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, fetchpatch: false, coreutils: false, gnused: false, libnotify: false, pulseaudio: false, "sound-theme-freedesktop": false, xprop: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["sha256", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 42, 7], ["sha256", 43, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["strictDeps", 47, 3], ["postPatch", 52, 3], ["installPhase", 68, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const sound_theme_freedesktop = nix.arg($, "sound-theme-freedesktop");
   const xprop = nix.arg($, "xprop");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "undistract-me",
       version: "0-unstable-2020-08-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jml",
           repo: "undistract-me",
           rev: "2f8ac25c6ad8efcf160d2b480825b1cbb6772aab",
@@ -34,12 +30,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/jml/undistract-me/commit/2356ebbe8bf2bcb4b95af1ae2bcdc786ce7cc6e8.patch",
             sha256: "sha256-Ij3OXTOnIQsYhKVmqjChhN1q4ASZ7waOkfQTTp5XfPo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/jml/undistract-me/commit/3f4ceaf5a4eba8e3cb02236c48247f87e3d1124f.patch",
             sha256: "sha256-9AK9Jp3TXJ75Y+jwZXlwQ6j54FW1rOBddoktrm0VX68=",
           })))),
@@ -61,7 +57,7 @@ done
 `),
       installPhase: "mkdir -p \"$out/share/undistract-me\" \"$out/etc/profile.d\" \"$out/share/licenses/undistract-me\"\ncp long-running.bash \"$out/share/undistract-me\"\ncp preexec.bash \"$out/share/undistract-me\"\ncp undistract-me.sh \"$out/etc/profile.d\"\ncp LICENSE \"$out/share/licenses/undistract-me\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Notifies you when long-running terminal commands complete",
         homepage: "https://github.com/jml/undistract-me",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

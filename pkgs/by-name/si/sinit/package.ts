@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5], ["tag", 17, 5]], [["description", 36, 5], ["mainProgram", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5], ["homepage", 41, 5], ["downloadPage", 42, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["makeFlags", 22, 3], ["preConfigure", 23, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, rcinit: true, rcshutdown: true, rcreboot: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5], ["tag", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["mainProgram", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5], ["homepage", 41, 5], ["downloadPage", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["makeFlags", 22, 3], ["preConfigure", 23, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rcshutdown = nix.argOr($, "rcshutdown", () => "/etc/rc.d/rc.shutdown");
   const rcreboot = nix.argOr($, "rcreboot", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sinit",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.suckless.org/sinit/",
           hash: "sha256-VtXkgixgElKKOT26uKN9feXDVjjtSgTWvcgk5o5MLmw=",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       preConfigure: nix.thunk(() => nix.add(nix.add(nix.add("", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(rcinit, null)), nix.thunk(() => nix.str`sed -re 's@(rcinitcmd[^"]*")[^"]*"@\\1${rcinit}"@' -i config.def.h; `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(rcshutdown, null)), nix.thunk(() => nix.str`sed -re 's@(rc(reboot|poweroff)cmd[^"]*")[^"]*"@\\1${rcshutdown}"@' -i config.def.h; `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(rcreboot, null)), nix.thunk(() => nix.str`sed -re 's@(rc(reboot)cmd[^"]*")[^"]*"@\\1${rcreboot}"@' -i config.def.h; `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Very minimal Linux init implementation from suckless.org",
         mainProgram: "sinit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

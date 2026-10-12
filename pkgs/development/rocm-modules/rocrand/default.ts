@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["sparseCheckout", 34, 5], ["hash", 38, 5]], [["finalAttrs", 89, 54]], [["updateScript", 89, 12]], [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["teams", 95, 5], ["platforms", 96, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 30, 3], ["sourceRoot", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["cmakeFlags", 56, 3], ["postInstall", 74, 3], ["passthru", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, "rocm-cmake": false, clr: false, gtest: false, gbenchmark: false, buildTests: true, buildBenchmarks: true, gpuTargets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["sparseCheckout", 34, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["finalAttrs", 89, 54]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 89, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["teams", 95, 5], ["platforms", 96, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 30, 3], ["sourceRoot", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["cmakeFlags", 56, 3], ["postInstall", 74, 3], ["passthru", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const buildBenchmarks = nix.argOr($, "buildBenchmarks", () => false);
   const gpuTargets = nix.argOr($, "gpuTargets", () => nix.selOr(clr, () => [], "localGpuTargets"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`rocrand${nix.sel(clr, "gpuArchSuffix")}`),
       version: "7.2.3",
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["test"])), nix.app(nix.sel(lib, "optionals"), buildBenchmarks, nix.thunk(() => ["benchmark"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -49,11 +45,11 @@ export default nix.lambda((args) => (() => {
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["-DBUILD_TEST=ON"])), nix.app(nix.sel(lib, "optionals"), buildBenchmarks, nix.thunk(() => ["-DBUILD_BENCHMARK=ON"])))))),
       postInstall: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), buildTests, "mkdir -p $test/bin\nmv $out/bin/test_* $test/bin\n"), nix.app(nix.sel(lib, "optionalString"), buildBenchmarks, "mkdir -p $benchmark/bin\nmv $out/bin/benchmark_* $benchmark/bin\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(buildTests) || nix.asBool(buildBenchmarks))), "rm -r $out/bin/rocRAND\n# Fail if bin/ isn't actually empty\nrmdir $out/bin\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Generate pseudo-random and quasi-random numbers",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocrand",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

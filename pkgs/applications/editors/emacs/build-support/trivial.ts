@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/trivial.nix", [[["buildPhase", 13, 7], ["installPhase", 32, 7]], [["constructDrv", 6, 3], ["extendDrvArgs", 7, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/trivial.nix", [["buildPhase", 13, 7], ["installPhase", 32, 7]]);
-const pos$2 = nix.positions(here + "/trivial.nix", [["constructDrv", 6, 3], ["extendDrvArgs", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       constructDrv: nix.thunk(() => nix.app(callPackage, nix.path(here, "./generic.nix"), envargs)),
       extendDrvArgs: (finalAttrs) => (args_1) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         buildPhase: nix.thunk(() => nix.selOr(args_1, () => nix.str`runHook preBuild
 
 # This is modified from stdenv buildPhase. foundMakefile is used in stdenv checkPhase.

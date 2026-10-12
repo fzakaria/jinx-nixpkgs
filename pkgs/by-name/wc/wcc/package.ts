@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["fetchSubmodules", 25, 5]], [["lockFile", 28, 46]], [["url", 46, 7], ["hash", 47, 7]], [["url", 51, 7], ["hash", 52, 7]], [["NIX_CFLAGS_COMPILE", 66, 7]], [["homepage", 95, 5], ["description", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["maintainers", 102, 5], ["mainProgram", 105, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["patches", 43, 3], ["postPatch", 56, 3], ["env", 66, 3], ["installFlags", 68, 3], ["preInstall", 70, 3], ["postInstall", 74, 3], ["postFixup", 81, 3], ["enableParallelBuilding", 86, 3], ["doInstallCheck", 88, 3], ["nativeInstallCheckInputs", 90, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, fetchpatch2: false, cargo: false, capstone: false, libbfd: false, libelf: false, libiberty: false, readline: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["fetchSubmodules", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lockFile", 28, 46]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 46, 7], ["hash", 47, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 51, 7], ["hash", 52, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 66, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["description", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["maintainers", 102, 5], ["mainProgram", 105, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["patches", 43, 3], ["postPatch", 56, 3], ["env", 66, 3], ["installFlags", 68, 3], ["preInstall", 70, 3], ["postInstall", 74, 3], ["postFixup", 81, 3], ["enableParallelBuilding", 86, 3], ["doInstallCheck", 88, 3], ["nativeInstallCheckInputs", 90, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,28 +20,28 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "wcc",
       version: "0.0.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "endrazine",
           repo: "wcc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-cg8rf8R3xYNJTJhrDfIdVAUR/OOd6JjB0NYHRosUzvU=",
           fetchSubmodules: true,
         })))),
-      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })))),
+      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") })))),
       nativeBuildInputs: nix.thunk(() => [cargo, nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook"))]),
       buildInputs: nix.thunk(() => [capstone, libbfd, libelf, libiberty, readline]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/endrazine/wcc/commit/4bea2dac8b49d82e4f72e42027d74fc654380f7b.patch?full_index=1",
             hash: "sha256-RK0ue8hdK/G+njwGmWpaewclRHprO8aBdZ9vBGQIQOc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/endrazine/wcc/commit/3dfd28cb53b4766032e1113cf508bf2f5dce87d5.patch?full_index=1",
             hash: "sha256-7RsU3XJvJ2gvNsB1O/pvOrmd+3/wNfoOZj0JVlgJA8o=",
           })))),
@@ -61,7 +55,7 @@ sed -i -e '/stropts.h>/d' src/wsh/include/libwitch/wsh.h
 sed -i '/wsh-static/d' src/wsh/Makefile
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
@@ -72,7 +66,7 @@ sed -i '/wsh-static/d' src/wsh/Makefile
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/endrazine/wcc",
         description: "Witchcraft compiler collection: tools to convert and script ELF files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,61 +2,48 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/perses.nix", [[["maintainers", 6, 8]], [["enable", 9, 25]], [["prometheus", 9, 14]], [["allowedTCPPorts", 10, 25]], [["firewall", 10, 16]], [["services", 9, 5], ["networking", 10, 5]], [["memorySize", 17, 20]], [["folders", 22, 29]], [["provisioning", 22, 16]], [["enable", 20, 7], ["settings", 22, 7]], [["perses", 19, 14]], [["virtualisation", 17, 5], ["services", 19, 5]], [["prometheus", 8, 9], ["machine", 13, 9]], [["name", 4, 3], ["meta", 6, 3], ["nodes", 8, 3], ["testScript", 47, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/perses.nix", [["maintainers", 6, 8]]);
-const pos$2 = nix.positions(here + "/perses.nix", [["enable", 9, 25]]);
-const pos$3 = nix.positions(here + "/perses.nix", [["prometheus", 9, 14]]);
-const pos$4 = nix.positions(here + "/perses.nix", [["allowedTCPPorts", 10, 25]]);
-const pos$5 = nix.positions(here + "/perses.nix", [["firewall", 10, 16]]);
-const pos$6 = nix.positions(here + "/perses.nix", [["services", 9, 5], ["networking", 10, 5]]);
-const pos$7 = nix.positions(here + "/perses.nix", [["memorySize", 17, 20]]);
-const pos$8 = nix.positions(here + "/perses.nix", [["folders", 22, 29]]);
-const pos$9 = nix.positions(here + "/perses.nix", [["provisioning", 22, 16]]);
-const pos$10 = nix.positions(here + "/perses.nix", [["enable", 20, 7], ["settings", 22, 7]]);
-const pos$11 = nix.positions(here + "/perses.nix", [["perses", 19, 14]]);
-const pos$12 = nix.positions(here + "/perses.nix", [["virtualisation", 17, 5], ["services", 19, 5]]);
-const pos$13 = nix.positions(here + "/perses.nix", [["prometheus", 8, 9], ["machine", 13, 9]]);
-const pos$14 = nix.positions(here + "/perses.nix", [["name", 4, 3], ["meta", 6, 3], ["nodes", 8, 3], ["testScript", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "perses",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "fooker"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       prometheus: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          prometheus: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          prometheus: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [9090n]) })),
+          [nix.POS]: $pos[4],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[3], allowedTCPPorts: nix.thunk(() => [9090n]) })),
         })),
       })),
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$12,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$7, memorySize: 2048n })),
+        [nix.POS]: $pos[11],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[6], memorySize: 2048n })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           perses: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               provisioning: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 folders: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "perses-test-provision-project.yaml", "kind: \"Project\"\nmetadata:\n  name: \"my-project\"\n")),
                   nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "perses-test-provision-datasource.yaml", "kind: \"Datasource\"\nmetadata:\n  name: \"my-prometheus\"\n  project: \"my-project\"\nspec:\n  default: true\n  plugin:\n    kind: \"PrometheusDatasource\"\n    spec:\n      proxy:\n        kind: \"HTTPProxy\"\n        spec:\n          url: \"http://prometheus:9090/\"\n")),

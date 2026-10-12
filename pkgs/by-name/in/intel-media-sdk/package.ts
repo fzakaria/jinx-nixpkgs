@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]], [["description", 65, 5], ["homepage", 66, 5], ["mainProgram", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["knownVulnerabilities", 73, 5], ["platforms", 83, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["cmakeFlags", 56, 3], ["doCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, gtest: false, libdrm: false, libpciaccess: false, libva: false, libx11: false, libxau: false, libxdmcp: false, "libpthread-stubs": false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["mainProgram", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["knownVulnerabilities", 73, 5], ["platforms", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["cmakeFlags", 56, 3], ["doCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "intel-media-sdk";
       const version = "23.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Intel-Media-SDK",
           repo: "MediaSDK",
           rev: nix.thunk(() => nix.str`intel-mediasdk-${version}`),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./nixos-search-onevplrt-in-run-opengl-driver-lib.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "include-cstdint-explicitly.patch",
             url: "https://github.com/Intel-Media-SDK/MediaSDK/commit/a4f37707c1bfdd5612d3de4623ffb2d21e8c1356.patch",
             hash: "sha256-OPwGzcMTctJvHcKn5bHqV8Ivj4P7+E4K9WOKgECqf04=",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const cmakeFlags = nix.thunk(() => ["-DBUILD_SAMPLES=OFF", "-DBUILD_TESTS=OFF", "-DUSE_SYSTEM_GTEST=ON"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Intel Media SDK",
         homepage: "https://github.com/Intel-Media-SDK/MediaSDK",
         mainProgram: "mfx-tracer-config",
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

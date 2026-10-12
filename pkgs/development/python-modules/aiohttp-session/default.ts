@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["aioredis", 36, 5], ["aiomcache", 37, 5], ["pycrypto", 38, 5], ["secure", 39, 5], ["pynacl", 40, 5]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["optional-dependencies", 35, 3], ["doCheck", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, aiohttp: false, aiomcache: false, cryptography: false, pynacl: false, redis: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aioredis", 36, 5], ["aiomcache", 37, 5], ["pycrypto", 38, 5], ["secure", 39, 5], ["pynacl", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["optional-dependencies", 35, 3], ["doCheck", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.12.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aio-libs",
           repo: "aiohttp-session",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [aiohttp]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         aioredis: nix.thunk(() => [redis]),
         aiomcache: nix.thunk(() => [aiomcache]),
         pycrypto: nix.thunk(() => [cryptography]),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["aiohttp_session"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Web sessions for aiohttp.web",
         homepage: "https://github.com/aio-libs/aiohttp-session",
         changelog: nix.thunk(() => nix.str`https://github.com/aio-libs/aiohttp-session/blob/${nix.sel(src, "rev")}/CHANGES.txt`),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

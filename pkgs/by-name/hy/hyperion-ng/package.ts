@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5], ["fetchSubmodules", 37, 5]], [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 100, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["buildInputs", 40, 3], ["nativeBuildInputs", 61, 3], ["patchPhase", 68, 3], ["cmakeFlags", 73, 3], ["doCheck", 87, 3], ["checkPhase", 88, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, gitMinimal: false, libsForQt5: false, perl: false, flatbuffers: false, protobuf: false, mbedtls: false, "alsa-lib": false, hidapi: false, libcec: false, libftdi1: false, libusb1: false, libx11: false, libxcb: false, libxrandr: false, python3: false, withRPiDispmanx: true, libraspberrypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5], ["fetchSubmodules", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 100, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["buildInputs", 40, 3], ["nativeBuildInputs", 61, 3], ["patchPhase", 68, 3], ["cmakeFlags", 73, 3], ["doCheck", 87, 3], ["checkPhase", 88, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hyperion.ng";
       const version = "2.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hyperion-project",
           repo: "hyperion.ng",
           rev: version,
@@ -72,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const checkPhase = "cd ../ && ./test/testrunner.sh && cd -\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Opensource Bias or Ambient Lighting implementation",
         homepage: "https://github.com/hyperion-project/hyperion.ng",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -86,7 +84,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

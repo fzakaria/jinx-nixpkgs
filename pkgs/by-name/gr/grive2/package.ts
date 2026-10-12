@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]], [["version", 17, 3], ["pname", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 52, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, yajl: false, cmake: false, libgcrypt: false, curl: false, expat: false, boost: false, libiberty: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 17, 3], ["pname", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 52, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const libiberty = nix.arg($, "libiberty");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "0.5.3",
       pname: "grive2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vitalif",
           repo: "grive2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-12.patch",
             url: "https://github.com/vitalif/grive2/commit/3cf1c058a3e61deb370dde36024a106a213ab2c6.patch",
             hash: "sha256-v2Pb6Qvgml/fYzh/VCjOvEVnFYMkOHqROvLLe61DmKA=",
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [libgcrypt, yajl, curl, expat, boost, libiberty]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Console Google Drive client",
         homepage: "https://github.com/vitalif/grive2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

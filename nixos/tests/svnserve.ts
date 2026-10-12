@@ -2,70 +2,48 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/svnserve.nix", [[["vlans", 7, 22]], [["allowedTCPPorts", 12, 18]], [["useNetworkd", 10, 9], ["useDHCP", 11, 9], ["firewall", 12, 9]], [["Address", 17, 23]], [["name", 16, 9], ["networkConfig", 17, 9]], [["01-eth1", 15, 32]], [["networks", 15, 23]], [["network", 15, 15]], [["enable", 20, 25]], [["svnserve", 20, 16]], [["systemPackages", 22, 19]], [["virtualisation", 7, 7], ["networking", 9, 7], ["systemd", 15, 7], ["services", 20, 7], ["environment", 22, 7]], [["vlans", 28, 24]], [["useNetworkd", 31, 11], ["useDHCP", 32, 11]], [["Address", 37, 25]], [["name", 36, 11], ["networkConfig", 37, 11]], [["01-eth1", 35, 34]], [["networks", 35, 25]], [["network", 35, 17]], [["systemPackages", 40, 21]], [["virtualisation", 28, 9], ["networking", 30, 9], ["systemd", 35, 9], ["environment", 40, 9]], [["server", 6, 5], ["client", 25, 5]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 44, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/svnserve.nix", [["vlans", 7, 22]]);
-const pos$2 = nix.positions(here + "/svnserve.nix", [["allowedTCPPorts", 12, 18]]);
-const pos$3 = nix.positions(here + "/svnserve.nix", [["useNetworkd", 10, 9], ["useDHCP", 11, 9], ["firewall", 12, 9]]);
-const pos$4 = nix.positions(here + "/svnserve.nix", [["Address", 17, 23]]);
-const pos$5 = nix.positions(here + "/svnserve.nix", [["name", 16, 9], ["networkConfig", 17, 9]]);
-const pos$6 = nix.positions(here + "/svnserve.nix", [["01-eth1", 15, 32]]);
-const pos$7 = nix.positions(here + "/svnserve.nix", [["networks", 15, 23]]);
-const pos$8 = nix.positions(here + "/svnserve.nix", [["network", 15, 15]]);
-const pos$9 = nix.positions(here + "/svnserve.nix", [["enable", 20, 25]]);
-const pos$10 = nix.positions(here + "/svnserve.nix", [["svnserve", 20, 16]]);
-const pos$11 = nix.positions(here + "/svnserve.nix", [["systemPackages", 22, 19]]);
-const pos$12 = nix.positions(here + "/svnserve.nix", [["virtualisation", 7, 7], ["networking", 9, 7], ["systemd", 15, 7], ["services", 20, 7], ["environment", 22, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/svnserve.nix", [["vlans", 28, 24]]);
-const pos$14 = nix.positions(here + "/svnserve.nix", [["useNetworkd", 31, 11], ["useDHCP", 32, 11]]);
-const pos$15 = nix.positions(here + "/svnserve.nix", [["Address", 37, 25]]);
-const pos$16 = nix.positions(here + "/svnserve.nix", [["name", 36, 11], ["networkConfig", 37, 11]]);
-const pos$17 = nix.positions(here + "/svnserve.nix", [["01-eth1", 35, 34]]);
-const pos$18 = nix.positions(here + "/svnserve.nix", [["networks", 35, 25]]);
-const pos$19 = nix.positions(here + "/svnserve.nix", [["network", 35, 17]]);
-const pos$20 = nix.positions(here + "/svnserve.nix", [["systemPackages", 40, 21]]);
-const pos$21 = nix.positions(here + "/svnserve.nix", [["virtualisation", 28, 9], ["networking", 30, 9], ["systemd", 35, 9], ["environment", 40, 9]]);
-const pos$22 = nix.positions(here + "/svnserve.nix", [["server", 6, 5], ["client", 25, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$23 = nix.positions(here + "/svnserve.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: "svnserve",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$12,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: $pos[11],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           useNetworkd: true,
           useDHCP: false,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [3690n]) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], allowedTCPPorts: nix.thunk(() => [3690n]) })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           network: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             networks: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               "01-eth1": nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 name: "eth1",
-                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$4, Address: "10.0.0.1/24" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[3], Address: "10.0.0.1/24" })),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$10,
-          svnserve: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+          [nix.POS]: $pos[9],
+          svnserve: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "subversion"))]),
         })),
       })),
@@ -73,25 +51,25 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$21,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$13, vlans: nix.thunk(() => [1n]) })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$14, useNetworkd: true, useDHCP: false })),
+          [nix.POS]: $pos[20],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[12], vlans: nix.thunk(() => [1n]) })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[13], useNetworkd: true, useDHCP: false })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             network: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               networks: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 "01-eth1": nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   name: "eth1",
-                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$15, Address: "10.0.0.2/24" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[14], Address: "10.0.0.2/24" })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "subversion"))]),
           })),
         };

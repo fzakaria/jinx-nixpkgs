@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 26, 26], ["version", 26, 32], ["hash", 27, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["pythonRelaxDeps", 30, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["doCheck", 51, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, buildPythonPackage: false, fetchPypi: false, flask: false, "flask-cors": false, "flask-marshmallow": false, "flask-sqlalchemy": false, marshmallow: false, "marshmallow-sqlalchemy": false, openpyxl: false, roadlib: false, setuptools: false, sqlalchemy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 26, 26], ["version", 26, 32], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["pythonRelaxDeps", 30, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["doCheck", 51, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const sqlalchemy = nix.arg($, "sqlalchemy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "roadrecon",
       version: "2.0.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-wzr0J6tGhsZdjTDeIeSzCRTquiw4iZ8FxqFEl1fC2iU=",
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["roadtools.roadrecon"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Azure AD recon",
         homepage: "https://pypi.org/project/roadrecon/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

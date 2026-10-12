@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["extraArgs", 38, 5]], [["updateScript", 37, 12]], [["changelog", 42, 5], ["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["cargoBuildFlags", 27, 3], ["cargoTestFlags", 32, 3], ["passthru", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, "nix-update-script": false, openssl: false, "pkg-config": false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 37, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 42, 5], ["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["cargoBuildFlags", 27, 3], ["cargoTestFlags", 32, 3], ["passthru", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cargo-guppy",
       version: "0.19.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "guppy-rs",
           repo: "guppy",
           tag: nix.thunk(() => nix.str`guppy-${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +30,14 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["-p", "cargo-guppy"]),
       cargoTestFlags: nix.thunk(() => ["-p", "cargo-guppy"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version-regex=guppy-(.*)"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            extraArgs: nix.thunk(() => ["--version-regex=guppy-(.*)"]),
+          })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/guppy-rs/guppy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Command-line frontend for guppy",
         homepage: "https://github.com/guppy-rs/guppy/tree/main/cargo-guppy",

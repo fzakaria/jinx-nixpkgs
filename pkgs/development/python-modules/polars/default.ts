@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["disableInitExecTls", 32, 11]], [["jemalloc", 28, 9]], [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["pname", 62, 26], ["version", 62, 32], ["src", 62, 40], ["hash", 63, 5]], [["ZSTD_SYS_USE_PKG_CONFIG", 90, 5], ["RUSTC_BOOTSTRAP", 94, 5], ["RUSTFLAGS", 96, 5], ["RUST_BACKTRACE", 101, 5]], [["nativeBuildInputs", 126, 9]], [["nativeBuildInputs", 143, 9], ["failureHook", 149, 9]], [["pname", 160, 5], ["version", 162, 26], ["src", 162, 34], ["requiredSystemFeatures", 164, 5], ["sourceRoot", 166, 5], ["postPatch", 167, 5], ["dontConfigure", 177, 5], ["dontBuild", 178, 5], ["doCheck", 180, 5], ["checkPhase", 181, 5], ["nativeBuildInputs", 182, 5], ["nativeCheckInputs", 216, 5], ["pytestFlags", 223, 5], ["disabledTests", 228, 5], ["disabledTestPaths", 272, 5], ["installPhase", 286, 5]], [["dynloading-1", 123, 18], ["dynloading-2", 140, 18], ["pytest", 159, 18]], [["tests", 123, 12]], [["description", 290, 5], ["homepage", 291, 5], ["changelog", 292, 5], ["license", 293, 5], ["maintainers", 294, 5], ["mainProgram", 298, 5], ["platforms", 299, 5]], [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["src", 54, 3], ["cargoDeps", 61, 3], ["requiredSystemFeatures", 66, 3], ["build-system", 68, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 84, 3], ["env", 89, 3], ["dontUseCmakeConfigure", 104, 3], ["maturinBuildFlags", 106, 3], ["preBuild", 112, 3], ["dontCheckRuntimeDeps", 117, 3], ["pythonImportsCheck", 119, 3], ["passthru", 123, 3], ["meta", 289, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, build: false, buildPythonPackage: false, cargo: false, cmake: false, fetchFromGitHub: false, "pkg-config": false, pkgs: false, pytestCheckHook: false, "pytest-codspeed": true, "pytest-cov-stub": false, "pytest-xdist": false, "pytest-benchmark": false, rustc: false, rustPlatform: false, runCommand: false, setuptools: false, mimalloc: false, jemalloc: false, "rust-jemalloc-sys": false, polarsMemoryAllocator: true, polarsJemalloc: true, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["disableInitExecTls", 32, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["jemalloc", 28, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 62, 26], ["version", 62, 32], ["src", 62, 40], ["hash", 63, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["ZSTD_SYS_USE_PKG_CONFIG", 90, 5], ["RUSTC_BOOTSTRAP", 94, 5], ["RUSTFLAGS", 96, 5], ["RUST_BACKTRACE", 101, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 126, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 143, 9], ["failureHook", 149, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 160, 5], ["version", 162, 26], ["src", 162, 34], ["requiredSystemFeatures", 164, 5], ["sourceRoot", 166, 5], ["postPatch", 167, 5], ["dontConfigure", 177, 5], ["dontBuild", 178, 5], ["doCheck", 180, 5], ["checkPhase", 181, 5], ["nativeBuildInputs", 182, 5], ["nativeCheckInputs", 216, 5], ["pytestFlags", 223, 5], ["disabledTests", 228, 5], ["disabledTestPaths", 272, 5], ["installPhase", 286, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["dynloading-1", 123, 18], ["dynloading-2", 140, 18], ["pytest", 159, 18]]);
-const pos$10 = nix.positions(here + "/default.nix", [["tests", 123, 12]]);
-const pos$11 = nix.positions(here + "/default.nix", [["description", 290, 5], ["homepage", 291, 5], ["changelog", 292, 5], ["license", 293, 5], ["maintainers", 294, 5], ["mainProgram", 298, 5], ["platforms", 299, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["src", 54, 3], ["cargoDeps", 61, 3], ["requiredSystemFeatures", 66, 3], ["build-system", 68, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 84, 3], ["env", 89, 3], ["dontUseCmakeConfigure", 104, 3], ["maturinBuildFlags", 106, 3], ["preBuild", 112, 3], ["dontCheckRuntimeDeps", 117, 3], ["pythonImportsCheck", 119, 3], ["passthru", 123, 3], ["meta", 289, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,8 +31,8 @@ export default nix.lambda((args) => (() => {
   const polarsMemoryAllocator = nix.argOr($, "polarsMemoryAllocator", () => nix.force(mimalloc));
   const polarsJemalloc = nix.argOr($, "polarsJemalloc", () => (() => {
     const jemalloc$ = nix.thunk(() => nix.app(nix.sel(rust_jemalloc_sys, "override"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        jemalloc: nix.thunk(() => nix.app(nix.sel(jemalloc, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, disableInitExecTls: true })))),
+        [nix.POS]: $pos[1],
+        jemalloc: nix.thunk(() => nix.app(nix.sel(jemalloc, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], disableInitExecTls: true })))),
       }))));
     nix.assert_(nix.builtins.elem("--disable-initial-exec-tls", nix.thunk(() => nix.sel(jemalloc$, "configureFlags"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/polars/default.nix:36:5");
     return nix.force(jemalloc$);
@@ -52,19 +41,19 @@ export default nix.lambda((args) => (() => {
   const rust_jemalloc_sys_1 = nix.thunk(() => nix.builtins.throw("polars: use polarsMemoryAllocator over rust-jemalloc-sys"));
   const jemalloc_1 = nix.thunk(() => nix.builtins.throw("polars: use polarsMemoryAllocator over jemalloc"));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "polars",
       version: "1.42.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "pola-rs",
           repo: "polars",
           tag: nix.thunk(() => nix.str`py-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-xHO+3mgwKvRRQZiAnThwkKFDvfe3ehkifBPINi101Ws=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -87,7 +76,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.selOr(pkgs, () => nix.sel(pkgs, "zstd"), "__splicedPackages", "zstd")),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         ZSTD_SYS_USE_PKG_CONFIG: true,
         RUSTC_BOOTSTRAP: true,
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(polarsMemoryAllocator, "pname"), "mimalloc")), nix.thunk(() => ["--cfg allocator=\"mimalloc\""]))))),
@@ -99,11 +88,11 @@ export default nix.lambda((args) => (() => {
       dontCheckRuntimeDeps: true,
       pythonImportsCheck: nix.thunk(() => ["polars"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           "dynloading-1": nix.thunk(() => nix.app(runCommand, "polars-dynloading-1", nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (ps) => [
                     nix.thunk(() => nix.sel(ps, "pyarrow")),
@@ -112,7 +101,7 @@ export default nix.lambda((args) => (() => {
               ]),
             })), "((LD_DEBUG=libs python) |& tee $out | tail) << \\EOF\nimport pyarrow\nimport polars\nEOF\ntouch $out\n")),
           "dynloading-2": nix.thunk(() => nix.app(runCommand, "polars-dynloading-2", nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (ps) => [
                     nix.thunk(() => nix.sel(ps, "pyarrow")),
@@ -122,7 +111,7 @@ export default nix.lambda((args) => (() => {
               failureHook: "sed \"s/^/    /\" $out >&2\n",
             })), "((LD_DEBUG=libs python) |& tee $out | tail) << \\EOF\nimport polars\nimport pyarrow\nEOF\n")),
           pytest: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-pytest`),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -206,7 +195,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Dataframes powered by a multithreaded, vectorized query engine, written in Rust",
         homepage: "https://github.com/pola-rs/polars",
         changelog: nix.thunk(() => nix.str`https://github.com/pola-rs/polars/releases/tag/py-${nix.sel(finalAttrs, "version")}`),

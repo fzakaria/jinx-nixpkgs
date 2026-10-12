@@ -2,29 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["scripts", 100, 9], ["interpreter", 104, 9], ["inputs", 105, 9]], [["libressl", 98, 7]], [["version", 114, 14]], [["pname", 85, 5], ["version", 86, 5], ["src", 88, 5], ["setSourceRoot", 89, 5], ["installPhase", 91, 5], ["solutions", 97, 5], ["passthru", 114, 5]], [["aliases", 133, 11]], [["fix", 132, 9], ["scripts", 135, 9], ["interpreter", 139, 9], ["inputs", 140, 9], ["execer", 146, 9]], [["scripts", 158, 9], ["interpreter", 159, 9], ["inputs", 160, 9]], [["openssl", 131, 7], ["profile", 157, 7]], [["pname", 117, 5], ["version", 118, 5], ["src", 120, 5], ["setSourceRoot", 121, 5], ["installPhase", 123, 5], ["solutions", 130, 5], ["postResholve", 163, 5]], [["external", 183, 11]], [["scripts", 179, 9], ["interpreter", 180, 9], ["inputs", 181, 9], ["fake", 182, 9]], [["pname", 169, 5], ["version", 170, 5], ["src", 172, 5], ["setSourceRoot", 173, 5], ["installPhase", 175, 5]], [["drvs", 219, 7]], [["name", 193, 5], ["src", 194, 5], ["dontBuild", 196, 5], ["installPhase", 198, 5], ["doCheck", 203, 5], ["buildInputs", 204, 5], ["nativeCheckInputs", 205, 5], ["RESHOLVE_PATH", 212, 5], ["PKG_FILE", 214, 5], ["PKG_FINDUTILS", 215, 5], ["PKG_GETTEXT", 216, 5], ["PKG_COREUTILS", 217, 5], ["RESHOLVE_LORE", 218, 5], ["PKG_PARSED", 221, 5], ["INTERP", 224, 5], ["checkPhase", 226, 5]], [["inputs", 254, 9], ["interpreter", 255, 9]], [["inputs", 264, 9], ["interpreter", 265, 9]], [["inputs", 274, 9], ["interpreter", 275, 9]], [["mount", 304, 11]], [["inputs", 285, 9], ["interpreter", 299, 9], ["execer", 300, 9], ["fix", 303, 9]], [["module1", 84, 3], ["module2", 116, 3], ["module3", 168, 3], ["cli", 192, 3], ["resholvedScript", 251, 3], ["resholvedScriptBin", 261, 3], ["resholvedScriptBinNone", 271, 3], ["loreOverrides", 282, 3], ["aaxtomp3", 328, 11], ["bashup-events32", 329, 11], ["bats", 330, 11], ["git-ftp", 331, 11], ["lesspipe", 332, 11], ["locate-dominating-file", 333, 11], ["mons", 334, 11], ["msmtp", 335, 11], ["nix-direnv", 336, 11], ["pdf2odt", 337, 11], ["shunit2", 341, 11], ["xdg-utils", 342, 11], ["yadm", 343, 11]], [["arch-install-scripts", 346, 11], ["dgoss", 347, 11], ["unix-privesc-check", 348, 11], ["wgnord", 349, 11], ["wsl-vpnkit", 350, 11], ["zxfer", 351, 11]], [["s0ix-selftest-tool", 357, 15]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, resholve: false, shunit2: false, coreutils: false, gnused: false, gnugrep: false, findutils: false, jq: false, bash: false, bats: false, libressl: false, openssl: false, file: false, gettext: false, rSrc: false, runDemo: true, binlore: false, sqlite: false, unixtools: false, gawk: false, rlwrap: false, gnutar: false, bc: false, systemd: false, esh: false, getconf: false, libarchive: false, locale: false, mount: false, ncurses: false, "nixos-install-tools": false, procps: false, ps: false, aaxtomp3: false, "arch-install-scripts": false, "bashup-events32": false, dgoss: false, "git-ftp": false, lesspipe: false, "locate-dominating-file": false, mons: false, msmtp: false, "nix-direnv": false, pdf2odt: false, pdfmm: false, "s0ix-selftest-tool": false, "unix-privesc-check": false, wgnord: false, "wsl-vpnkit": false, "xdg-utils": false, yadm: false, zxfer: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test.nix", [["scripts", 100, 9], ["interpreter", 104, 9], ["inputs", 105, 9]]);
-const pos$2 = nix.positions(here + "/test.nix", [["libressl", 98, 7]]);
-const pos$3 = nix.positions(here + "/test.nix", [["version", 114, 14]]);
-const pos$4 = nix.positions(here + "/test.nix", [["pname", 85, 5], ["version", 86, 5], ["src", 88, 5], ["setSourceRoot", 89, 5], ["installPhase", 91, 5], ["solutions", 97, 5], ["passthru", 114, 5]]);
-const pos$5 = nix.positions(here + "/test.nix", [["aliases", 133, 11]]);
-const pos$6 = nix.positions(here + "/test.nix", [["fix", 132, 9], ["scripts", 135, 9], ["interpreter", 139, 9], ["inputs", 140, 9], ["execer", 146, 9]]);
-const pos$7 = nix.positions(here + "/test.nix", [["scripts", 158, 9], ["interpreter", 159, 9], ["inputs", 160, 9]]);
-const pos$8 = nix.positions(here + "/test.nix", [["openssl", 131, 7], ["profile", 157, 7]]);
-const pos$9 = nix.positions(here + "/test.nix", [["pname", 117, 5], ["version", 118, 5], ["src", 120, 5], ["setSourceRoot", 121, 5], ["installPhase", 123, 5], ["solutions", 130, 5], ["postResholve", 163, 5]]);
-const pos$10 = nix.positions(here + "/test.nix", [["external", 183, 11]]);
-const pos$11 = nix.positions(here + "/test.nix", [["scripts", 179, 9], ["interpreter", 180, 9], ["inputs", 181, 9], ["fake", 182, 9]]);
-const pos$12 = nix.positions(here + "/test.nix", [["pname", 169, 5], ["version", 170, 5], ["src", 172, 5], ["setSourceRoot", 173, 5], ["installPhase", 175, 5]]);
-const pos$13 = nix.positions(here + "/test.nix", [["drvs", 219, 7]]);
-const pos$14 = nix.positions(here + "/test.nix", [["name", 193, 5], ["src", 194, 5], ["dontBuild", 196, 5], ["installPhase", 198, 5], ["doCheck", 203, 5], ["buildInputs", 204, 5], ["nativeCheckInputs", 205, 5], ["RESHOLVE_PATH", 212, 5], ["PKG_FILE", 214, 5], ["PKG_FINDUTILS", 215, 5], ["PKG_GETTEXT", 216, 5], ["PKG_COREUTILS", 217, 5], ["RESHOLVE_LORE", 218, 5], ["PKG_PARSED", 221, 5], ["INTERP", 224, 5], ["checkPhase", 226, 5]]);
-const pos$15 = nix.positions(here + "/test.nix", [["inputs", 254, 9], ["interpreter", 255, 9]]);
-const pos$16 = nix.positions(here + "/test.nix", [["inputs", 264, 9], ["interpreter", 265, 9]]);
-const pos$17 = nix.positions(here + "/test.nix", [["inputs", 274, 9], ["interpreter", 275, 9]]);
-const pos$18 = nix.positions(here + "/test.nix", [["mount", 304, 11]]);
-const pos$19 = nix.positions(here + "/test.nix", [["inputs", 285, 9], ["interpreter", 299, 9], ["execer", 300, 9], ["fix", 303, 9]]);
-const pos$20 = nix.positions(here + "/test.nix", [["module1", 84, 3], ["module2", 116, 3], ["module3", 168, 3], ["cli", 192, 3], ["resholvedScript", 251, 3], ["resholvedScriptBin", 261, 3], ["resholvedScriptBinNone", 271, 3], ["loreOverrides", 282, 3], ["aaxtomp3", 328, 11], ["bashup-events32", 329, 11], ["bats", 330, 11], ["git-ftp", 331, 11], ["lesspipe", 332, 11], ["locate-dominating-file", 333, 11], ["mons", 334, 11], ["msmtp", 335, 11], ["nix-direnv", 336, 11], ["pdf2odt", 337, 11], ["shunit2", 341, 11], ["xdg-utils", 342, 11], ["yadm", 343, 11]]);
-const pos$21 = nix.positions(here + "/test.nix", [["arch-install-scripts", 346, 11], ["dgoss", 347, 11], ["unix-privesc-check", 348, 11], ["wgnord", 349, 11], ["wsl-vpnkit", 350, 11], ["zxfer", 351, 11]]);
-const pos$22 = nix.positions(here + "/test.nix", [["s0ix-selftest-tool", 357, 15]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -97,35 +76,35 @@ export default nix.lambda((args) => (() => {
   ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [systemd]))));
   return nix.update((() => {
     const module1 = nix.thunk(() => nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "testmod1",
         version: "unreleased",
         src: rSrc,
         setSourceRoot: "sourceRoot=$(echo */tests/nix/libressl)",
         installPhase: "mkdir -p $out/{bin,submodule}\ninstall libressl.sh $out/bin/libressl.sh\ninstall submodule/helper.sh $out/submodule/helper.sh\n",
         solutions: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           libressl: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             scripts: nix.thunk(() => ["bin/libressl.sh", "submodule/helper.sh"]),
             interpreter: "none",
             inputs: nix.thunk(() => [jq, module2, nix.thunk(() => nix.sel(libressl, "bin"))]),
           })),
         })),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$3, version: nix.thunk(() => nix.sel(finalAttrs, "version")) })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], version: nix.thunk(() => nix.sel(finalAttrs, "version")) })),
       })));
     const module2 = nix.thunk(() => nix.app(nix.sel(resholve, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: "testmod2",
         version: "unreleased",
         src: rSrc,
         setSourceRoot: "sourceRoot=$(echo */tests/nix/openssl)",
         installPhase: "mkdir -p $out/bin $out/libexec\ninstall openssl.sh $out/bin/openssl.sh\ninstall libexec.sh $out/libexec/invokeme\ninstall profile $out/profile\n",
         solutions: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           openssl: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            fix: nix.thunk(() => ({ [nix.POS]: pos$5, aliases: true })),
+            [nix.POS]: $pos[5],
+            fix: nix.thunk(() => ({ [nix.POS]: $pos[4], aliases: true })),
             scripts: nix.thunk(() => ["bin/openssl.sh", "libexec/invokeme"]),
             interpreter: "none",
             inputs: nix.thunk(() => [
@@ -140,7 +119,7 @@ export default nix.lambda((args) => (() => {
             ]),
           })),
           profile: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             scripts: nix.thunk(() => ["profile"]),
             interpreter: "none",
             inputs: [],
@@ -149,7 +128,7 @@ export default nix.lambda((args) => (() => {
         postResholve: "echo \"not a load-bearing test, just prove we exist\"\n",
       }))));
     const module3 = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pname: "testmod3",
         version: "unreleased",
         src: rSrc,
@@ -157,16 +136,16 @@ export default nix.lambda((args) => (() => {
         installPhase: nix.thunk(() => nix.str`mkdir -p $out/bin
 install conjure.sh $out/bin/conjure.sh
 ${nix.app(nix.sel(resholve, "phraseSolution"), "conjure", nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             scripts: nix.thunk(() => ["bin/conjure.sh"]),
             interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
             inputs: nix.thunk(() => [module1]),
-            fake: nix.thunk(() => ({ [nix.POS]: pos$10, external: nix.thunk(() => ["jq", "openssl"]) })),
+            fake: nix.thunk(() => ({ [nix.POS]: $pos[9], external: nix.thunk(() => ["jq", "openssl"]) })),
           })))}
 `),
       }))));
     const cli = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         name: "resholve-test",
         src: rSrc,
         dontBuild: true,
@@ -180,7 +159,7 @@ ${nix.app(nix.sel(resholve, "phraseSolution"), "conjure", nix.thunk(() => ({
         PKG_GETTEXT: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gettext]))}`),
         PKG_COREUTILS: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils]))}`),
         RESHOLVE_LORE: nix.thunk(() => nix.str`${nix.app(nix.sel(binlore, "collect"), nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             drvs: nix.thunk(() => nix.concat(default_packages, nix.concat([coreutils], parsed_packages))),
           })))}`),
         PKG_PARSED: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "makeBinPath"), parsed_packages)}`),
@@ -200,22 +179,22 @@ fi
 `, nix.app(nix.sel(lib, "optionalString"), runDemo, "printf \"\\033[33m============================= resholve demo ===================================\\033[0m\\n\" > demo.ansi\nif ./demo &>> demo.ansi; then\n  cat demo.ansi\nelse\n  cat demo.ansi && exit 1\nfi\n"))),
       }))));
     const resholvedScript = nix.thunk(() => nix.app(nix.sel(resholve, "writeScript"), "resholved-script", nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         inputs: nix.thunk(() => [file]),
         interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
       })), "echo \"Hello\"\nfile .\n"));
     const resholvedScriptBin = nix.thunk(() => nix.app(nix.sel(resholve, "writeScriptBin"), "resholved-script-bin", nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         inputs: nix.thunk(() => [file]),
         interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
       })), "echo \"Hello\"\nfile .\n"));
-    const resholvedScriptBinNone = nix.thunk(() => nix.app(nix.sel(resholve, "writeScriptBin"), "resholved-script-bin", nix.thunk(() => ({ [nix.POS]: pos$17, inputs: nix.thunk(() => [file]), interpreter: "none" })), "echo \"Hello\"\nfile .\n"));
+    const resholvedScriptBinNone = nix.thunk(() => nix.app(nix.sel(resholve, "writeScriptBin"), "resholved-script-bin", nix.thunk(() => ({ [nix.POS]: $pos[16], inputs: nix.thunk(() => [file]), interpreter: "none" })), "echo \"Hello\"\nfile .\n"));
     const loreOverrides = nix.thunk(() => nix.app(nix.sel(resholve, "writeScriptBin"), "verify-overrides", nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         inputs: nix.thunk(() => nix.concat([coreutils, esh, getconf, libarchive, locale, mount, ncurses, procps, ps], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nixos_install_tools])))),
         interpreter: "none",
         execer: nix.thunk(() => [nix.thunk(() => nix.str`cannot:${esh}/bin/esh`)]),
-        fix: nix.thunk(() => ({ [nix.POS]: pos$18, mount: true })),
+        fix: nix.thunk(() => ({ [nix.POS]: $pos[17], mount: true })),
       })), nix.thunk(() => nix.add("env b2sum fake args\nb2sum fake args\nesh fake args\ngetconf fake args\nbsdtar fake args\nlocale fake args\nmount fake args\nreset fake args\ntput fake args\ntset fake args\nps fake args\ntop fake args\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "nixos-generate-config fake args\n")))));
     const aaxtomp3_1 = aaxtomp3;
     const bashup_events32_1 = bashup_events32;
@@ -231,7 +210,7 @@ fi
     const xdg_utils_1 = xdg_utils;
     const yadm_1 = yadm;
     return {
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       module1,
       module2,
       module3,
@@ -255,13 +234,13 @@ fi
       yadm: yadm_1,
     };
   })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       "arch-install-scripts": arch_install_scripts,
       dgoss: dgoss,
       "unix-privesc-check": unix_privesc_check,
       wgnord: wgnord,
       "wsl-vpnkit": wsl_vpnkit,
       zxfer: zxfer,
-    }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))))), nix.thunk(() => ({ [nix.POS]: pos$22, "s0ix-selftest-tool": s0ix_selftest_tool })))));
+    }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))))), nix.thunk(() => ({ [nix.POS]: $pos[21], "s0ix-selftest-tool": s0ix_selftest_tool })))));
 })(), formals$1);
 //# sourceMappingURL=test.ts.map

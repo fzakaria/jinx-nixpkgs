@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]], [["pname", 19, 13], ["version", 19, 19], ["src", 19, 27]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]], [["pname", 23, 11], ["version", 23, 17], ["src", 23, 25], ["nativeBuildInputs", 25, 3], ["extraInstallCommands", 27, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 19, 13], ["version", 19, 19], ["src", 19, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 11], ["version", 23, 17], ["src", 23, 25], ["nativeBuildInputs", 25, 3], ["extraInstallCommands", 27, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const pname = "altus";
   const version = "5.8.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`altus-${version}.AppImage`),
       url: nix.thunk(() => nix.str`https://github.com/amanharwara/altus/releases/download/${version}/Altus-${version}.AppImage`),
       hash: "sha256-FSyXs9thTQ5T5bvCfg/+QXBZMIOyoijAw0dUsvLRGH8=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -37,7 +34,7 @@ wrapProgram "$out/bin/altus" \\
   --add-flags "\\\${NIXOS_OZONE_WL:+\\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Client for WhatsApp Web with themes, notifications and multiple accounts support",
         homepage: "https://github.com/amanharwara/altus",
         changelog: nix.thunk(() => nix.str`https://github.com/amanharwara/altus/releases/tag/v${version}`),

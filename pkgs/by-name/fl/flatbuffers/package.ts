@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 34, 5], ["longDescription", 35, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5], ["platforms", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["cmakeFlags", 25, 3], ["doCheck", 30, 3], ["checkTarget", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["longDescription", 35, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5], ["platforms", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["cmakeFlags", 25, 3], ["doCheck", 30, 3], ["checkTarget", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "flatbuffers";
       const version = "25.12.19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "flatbuffers",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
       const checkTarget = "test";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Memory Efficient Serialization Library",
         longDescription: "FlatBuffers is an efficient cross platform serialization library for\ngames and other memory constrained apps. It allows you to directly\naccess serialized data without unpacking/parsing it first, while still\nhaving great forwards/backwards compatibility.\n",
         homepage: "https://google.github.io/flatbuffers/",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

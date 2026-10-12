@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["name", 45, 5], ["runtimeInputs", 46, 5], ["text", 52, 5]], [["updateScript", 44, 12]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["sourceProvenance", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["dontPatch", 25, 3], ["dontConfigure", 26, 3], ["dontBuild", 27, 3], ["dontFixup", 28, 3], ["dontUnpack", 29, 3], ["nativeBuildInputs", 31, 3], ["sourceRoot", 33, 3], ["installPhase", 35, 3], ["passthru", 44, 3], ["nativeInstallCheckInputs", 59, 3], ["versionCheckProgram", 60, 3], ["versionCheckProgramArg", 65, 3], ["doInstallCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, unzip: false, writeShellApplication: false, curl: false, cacert: false, gnugrep: false, "common-updater-scripts": false, versionCheckHook: false, writeShellScript: false, "re-plistbuddy": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 45, 5], ["runtimeInputs", 46, 5], ["text", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 44, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["sourceProvenance", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["dontPatch", 25, 3], ["dontConfigure", 26, 3], ["dontBuild", 27, 3], ["dontFixup", 28, 3], ["dontUnpack", 29, 3], ["nativeBuildInputs", 31, 3], ["sourceRoot", 33, 3], ["installPhase", 35, 3], ["passthru", 44, 3], ["nativeInstallCheckInputs", 59, 3], ["versionCheckProgram", 60, 3], ["versionCheckProgramArg", 65, 3], ["doInstallCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const re_plistbuddy = nix.arg($, "re-plistbuddy");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rapidapi",
       version: "4.5.5-4005005001",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://cdn-builds.paw.cloud/paw/RapidAPI-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-1UR7Lj/4fdhwYIvlWjso8tGDO+0sH8XkiysXN2i6/78=",
         })))),
@@ -41,9 +37,9 @@ export default nix.lambda((args) => (() => {
       sourceRoot: "RapidAPI.app",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\nunzip -d $out/Applications $src\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "rapidapi-update-script",
               runtimeInputs: nix.thunk(() => [curl, cacert, gnugrep, common_updater_scripts]),
               text: "url=\"https://paw.cloud/download\"\nversion=$(curl -Ls -o /dev/null -w \"%{url_effective}\" \"$url\" | grep -oP '\\d+\\.\\d+\\.\\d+-\\d+')\nupdate-source-version rapidapi \"$version\"\n",
@@ -59,7 +55,7 @@ echo $marketing_version-$build_version
       ]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Full-featured HTTP client that lets you test and describe the APIs you build or consume",
         homepage: "https://paw.cloud",
         changelog: nix.thunk(() => nix.str`https://paw.cloud/updates/${nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", nix.thunk(() => nix.sel(finalAttrs, "version")))))}`),

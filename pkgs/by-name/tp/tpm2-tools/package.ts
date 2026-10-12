@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["preFixup", 41, 3], ["doCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, pandoc: false, "pkg-config": false, makeWrapper: false, curl: false, openssl: false, "tpm2-tss": false, libuuid: false, abrmdSupport: true, "tpm2-abrmd": true, buildPackages: false, enableManpages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["preFixup", 41, 3], ["doCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const enableManpages = nix.argOr($, "enableManpages", () => nix.sel(buildPackages, "pandoc", "compiler", "bootstrapAvailable"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tpm2-tools",
       version: "5.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/tpm2-software/tpm2-tools/releases/download/${nix.sel(finalAttrs, "version")}/tpm2-tools-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-HLcxhcroFLThXHwtCyJkLWQPr0h3X0FWof2S7fhL73M=",
         })))),
@@ -42,7 +40,7 @@ wrapProgram $out/bin/tss2 --suffix LD_LIBRARY_PATH : "${ldLibraryPath}"
       })()),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line tools that provide access to a TPM 2.0 compatible device",
         homepage: "https://github.com/tpm2-software/tpm2-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

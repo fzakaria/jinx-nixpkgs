@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 24, 5], ["mainProgram", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["platforms", 28, 5], ["maintainers", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["makeFlags", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, unixtools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["mainProgram", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["platforms", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["makeFlags", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unixtools = nix.arg($, "unixtools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fusee-nano",
       version: "0.5.3-unstable-2023-05-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DavidBuchanan314",
           repo: "fusee-nano",
           rev: "2979d34f470d02f34594d8d59be1f5c7bf4bf73f",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(unixtools, "xxd"))]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)/bin"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Minimalist re-implementation of the Fusée Gelée exploit",
         mainProgram: "fusee-nano",
         homepage: "https://github.com/DavidBuchanan314/fusee-nano",

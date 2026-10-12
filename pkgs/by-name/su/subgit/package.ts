@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 15, 5], ["longDescription", 16, 5], ["homepage", 17, 5], ["license", 18, 5], ["platforms", 19, 5]], [["url", 34, 5], ["sha256", 35, 5]], [["pname", 11, 3], ["version", 12, 3], ["meta", 14, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 27, 3], ["src", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, makeWrapper: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 15, 5], ["longDescription", 16, 5], ["homepage", 17, 5], ["license", 18, 5], ["platforms", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 5], ["sha256", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["meta", 14, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 27, 3], ["src", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "subgit";
       const version = "3.3.18";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Tool for a smooth, stress-free SVN to Git migration",
         longDescription: "Create writable Git mirror of a local or remote Subversion repository and use both Subversion and Git as long as you like. You may also do a fast one-time import from Subversion to Git.",
         homepage: "https://subgit.com",
@@ -32,11 +30,19 @@ cp -r bin lib $out;
 wrapProgram $out/bin/subgit --set JAVA_HOME ${jre};
 `);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://subgit.com/download/subgit-${version}.zip`),
           sha256: "sha256-u4lgbX62bhgv/419if+jykCVkuN5SJ4OBhqF2Nl9Qe4=",
         }))));
-      return { [nix.POS]: pos$3, pname, version, meta, nativeBuildInputs, installPhase, src };
+      return {
+        [nix.POS]: $pos[2],
+        pname,
+        version,
+        meta,
+        nativeBuildInputs,
+        installPhase,
+        src,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

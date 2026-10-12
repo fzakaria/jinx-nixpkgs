@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5], ["sourceProvenance", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5], ["sourceProvenance", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mousecape",
       version: "1813",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/alexzielenski/Mousecape/releases/download/${nix.sel(finalAttrs, "version")}/Mousecape_${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-VjbvrXfsRFpbTJfIHFvyCxRdDcGNv0zzLToWn7lyLM8=",
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications/Mousecape.app\ncp -R . $out/Applications/Mousecape.app/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cursor manager for macOS built using private, nonintrusive CoreGraphics APIs",
         homepage: "https://github.com/alexzielenski/Mousecape",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

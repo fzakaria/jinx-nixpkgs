@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["strictDeps", 17, 3], ["postPatch", 19, 3], ["installPhase", 24, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["strictDeps", 17, 3], ["postPatch", 19, 3], ["installPhase", 24, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "blobtools",
       version: "0-unstable-2012-10-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AndroidRoot",
           repo: "BlobTools",
           rev: "6186e33baa10ce6f1c738d7b91eb5153743105af",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\ninstall -Dm555 {blobpack,blobunpack} -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/AndroidRoot/BlobTools",
         description: "Tools for modifying ASUS Transformer firmware",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

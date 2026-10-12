@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 7], ["hash", 18, 7]], [["url", 21, 7], ["hash", 22, 7]], [["url", 25, 7], ["hash", 26, 7]], [["x86_64-linux", 16, 5], ["aarch64-linux", 20, 5], ["riscv64-linux", 24, 5]], [["description", 73, 5], ["homepage", 74, 5], ["sourceProvenance", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 81, 5], ["mainProgram", 82, 5]], [["version", 32, 11], ["pname", 33, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["strictDeps", 40, 3], ["dontConfigure", 42, 3], ["dontBuild", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["installPhase", 52, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, addDriverRunpath: false, makeWrapper: false, "ocl-icd": false, "vulkan-loader": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 16, 5], ["aarch64-linux", 20, 5], ["riscv64-linux", 24, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["sourceProvenance", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 81, 5], ["mainProgram", 82, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 32, 11], ["pname", 33, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["strictDeps", 40, 3], ["dontConfigure", 42, 3], ["dontBuild", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["installPhase", 52, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,26 +19,26 @@ export default nix.lambda((args) => (() => {
   const processor = nix.thunk(() => nix.attr(from, "processor"));
   const version = "7.0.0";
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://cdn.geekbench.com/Geekbench-${version}-Linux.tar.gz`),
       hash: "sha256-lhoArArEMv+mh0dk6GxZ0uCY//ZbWzmLuTgb9/xGyBs=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://cdn.geekbench.com/Geekbench-${version}-LinuxARMPreview.tar.gz`),
       hash: "sha256-R2/o8XatHnZZr6fKuKW4jMx442ulLfiUe6K2D1zey5w=",
     })),
     "riscv64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://cdn.geekbench.com/Geekbench-${version}-LinuxRISCVPreview.tar.gz`),
       hash: "sha256-AKESobr64A9bgMIb12ej2k+t6c2cEO9BBwv0uGHcBRw=",
     })),
   }));
   const geekbench_avx2 = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), "geekbench_avx2"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: version,
       pname: "geekbench",
       __structuredAttrs: true,
@@ -72,7 +67,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cross-platform benchmark",
         homepage: "https://geekbench.com/",
         sourceProvenance: nix.thunk(() => (() => {

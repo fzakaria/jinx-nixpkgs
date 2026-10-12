@@ -2,57 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sddm.nix", [[["enable", 11, 44]], [["icewm", 11, 38]], [["enable", 8, 24], ["windowManager", 11, 24]], [["enable", 9, 36]], [["sddm", 9, 31], ["defaultSession", 10, 31]], [["xserver", 8, 16], ["displayManager", 9, 16]], [["imports", 7, 7], ["services", 8, 7]], [["machine", 6, 11]], [["name", 4, 5], ["nodes", 6, 5], ["enableOCR", 14, 5], ["testScript", 16, 5]], [["maintainers", 38, 9]], [["enable", 52, 46]], [["icewm", 52, 40]], [["enable", 43, 26], ["windowManager", 52, 26]], [["enable", 45, 16]], [["enable", 47, 13], ["user", 48, 13]], [["sddm", 45, 11], ["autoLogin", 46, 11], ["defaultSession", 51, 33]], [["xserver", 43, 18], ["displayManager", 44, 18]], [["imports", 42, 9], ["services", 43, 9]], [["machine", 41, 13]], [["name", 36, 7], ["meta", 37, 7], ["nodes", 41, 7], ["testScript", 55, 7]], [["default", 3, 3], ["autoLogin", 33, 3]]]);
 const formals$1 = { args: { runTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sddm.nix", [["enable", 11, 44]]);
-const pos$2 = nix.positions(here + "/sddm.nix", [["icewm", 11, 38]]);
-const pos$3 = nix.positions(here + "/sddm.nix", [["enable", 8, 24], ["windowManager", 11, 24]]);
-const pos$4 = nix.positions(here + "/sddm.nix", [["enable", 9, 36]]);
-const pos$5 = nix.positions(here + "/sddm.nix", [["sddm", 9, 31], ["defaultSession", 10, 31]]);
-const pos$6 = nix.positions(here + "/sddm.nix", [["xserver", 8, 16], ["displayManager", 9, 16]]);
-const pos$7 = nix.positions(here + "/sddm.nix", [["imports", 7, 7], ["services", 8, 7]]);
-const pos$8 = nix.positions(here + "/sddm.nix", [["machine", 6, 11]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/sddm.nix", [["name", 4, 5], ["nodes", 6, 5], ["enableOCR", 14, 5], ["testScript", 16, 5]]);
 const formals$3 = { args: { lib: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/sddm.nix", [["maintainers", 38, 9]]);
-const pos$11 = nix.positions(here + "/sddm.nix", [["enable", 52, 46]]);
-const pos$12 = nix.positions(here + "/sddm.nix", [["icewm", 52, 40]]);
-const pos$13 = nix.positions(here + "/sddm.nix", [["enable", 43, 26], ["windowManager", 52, 26]]);
-const pos$14 = nix.positions(here + "/sddm.nix", [["enable", 45, 16]]);
-const pos$15 = nix.positions(here + "/sddm.nix", [["enable", 47, 13], ["user", 48, 13]]);
-const pos$16 = nix.positions(here + "/sddm.nix", [["sddm", 45, 11], ["autoLogin", 46, 11], ["defaultSession", 51, 33]]);
-const pos$17 = nix.positions(here + "/sddm.nix", [["xserver", 43, 18], ["displayManager", 44, 18]]);
-const pos$18 = nix.positions(here + "/sddm.nix", [["imports", 42, 9], ["services", 43, 9]]);
-const pos$19 = nix.positions(here + "/sddm.nix", [["machine", 41, 13]]);
-const pos$20 = nix.positions(here + "/sddm.nix", [["name", 36, 7], ["meta", 37, 7], ["nodes", 41, 7], ["testScript", 55, 7]]);
-const pos$21 = nix.positions(here + "/sddm.nix", [["default", 3, 3], ["autoLogin", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTest = nix.arg($, "runTest");
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     default: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         name: "sddm",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               xserver: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 enable: true,
                 windowManager: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
-                  icewm: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+                  [nix.POS]: $pos[1],
+                  icewm: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
                 })),
               })),
               displayManager: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                sddm: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+                [nix.POS]: $pos[4],
+                sddm: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
                 defaultSession: "none+icewm",
               })),
             })),
@@ -78,28 +58,28 @@ machine.wait_for_window("^IceWM ")
         const $_1 = nix.formals(args_1, formals$3);
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           name: "sddm-autologin",
-          meta: nix.thunk(() => ({ [nix.POS]: pos$10, maintainers: [] })),
+          meta: nix.thunk(() => ({ [nix.POS]: $pos[9], maintainers: [] })),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             machine: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 xserver: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   enable: true,
                   windowManager: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
-                    icewm: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
+                    [nix.POS]: $pos[11],
+                    icewm: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: true })),
                   })),
                 })),
                 displayManager: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
-                  sddm: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
-                  autoLogin: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true, user: "alice" })),
+                  [nix.POS]: $pos[15],
+                  sddm: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: true })),
+                  autoLogin: nix.thunk(() => ({ [nix.POS]: $pos[14], enable: true, user: "alice" })),
                   defaultSession: "none+icewm",
                 })),
               })),

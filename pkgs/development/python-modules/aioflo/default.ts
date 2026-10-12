@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["__darwinAllowLocalNetworking", 29, 3], ["nativeCheckInputs", 31, 3], ["pythonImportsCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aresponses: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, "pytest-aiohttp": false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["__darwinAllowLocalNetworking", 29, 3], ["nativeCheckInputs", 31, 3], ["pythonImportsCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aioflo",
       version: "2026.09.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bachya",
           repo: "aioflo",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aresponses, pytest_aiohttp, pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["aioflo"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for Flo by Moen Smart Water Detectors",
         homepage: "https://github.com/bachya/aioflo",
         changelog: nix.thunk(() => nix.str`https://github.com/bachya/aioflo/releases/tag/${nix.sel(finalAttrs, "version")}`),

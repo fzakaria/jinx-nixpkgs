@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["icecast", 44, 26]], [["tests", 43, 12]], [["description", 48, 5], ["mainProgram", 49, 5], ["longDescription", 51, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["passthru", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, curl: false, libigloo: false, libkate: false, libopus: false, libtheora: false, libvorbis: false, libxml2: false, libxslt: false, rhash: false, speex: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["icecast", 44, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 43, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 48, 5], ["mainProgram", 49, 5], ["longDescription", 51, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["passthru", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const speex = nix.arg($, "speex");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "icecast",
       version: "2.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.xiph.org/releases/icecast/icecast-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-2aoHx0Ka7BnZUP9v1CXDcfdxWM00/yIPwZGywYbGfHo=",
         })))),
@@ -49,11 +45,14 @@ export default nix.lambda((args) => (() => {
         speex,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, icecast: nix.thunk(() => nix.attr(nixosTests, "icecast")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          icecast: nix.thunk(() => nix.attr(nixosTests, "icecast")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Server software for streaming multimedia",
         mainProgram: "icecast",
         longDescription: "Icecast is a streaming media server which currently supports\nOgg (Vorbis and Theora), Opus, WebM and MP3 audio streams.\nIt can be used to create an Internet radio station or a privately\nrunning jukebox and many things in between. It is very versatile\nin that new formats can be added relatively easily and supports\nopen standards for communication and interaction.\n",

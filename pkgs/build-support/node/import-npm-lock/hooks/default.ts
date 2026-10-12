@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nodeSrc", 12, 7], ["nodeGyp", 13, 7], ["canonicalizeSymlinksScript", 14, 7], ["storePrefix", 15, 7]], [["license", 17, 10]], [["name", 10, 5], ["substitutions", 11, 5], ["meta", 17, 5]], [["nodejs", 23, 7], ["script", 24, 7], ["storePrefix", 25, 7]], [["license", 27, 10]], [["name", 21, 5], ["substitutions", 22, 5], ["meta", 27, 5]], [["npmConfigHook", 9, 3], ["linkNodeModulesHook", 20, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false, makeSetupHook: false, srcOnly: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["nodeSrc", 12, 7], ["nodeGyp", 13, 7], ["canonicalizeSymlinksScript", 14, 7], ["storePrefix", 15, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 17, 10]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 10, 5], ["substitutions", 11, 5], ["meta", 17, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["nodejs", 23, 7], ["script", 24, 7], ["storePrefix", 25, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["license", 27, 10]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 21, 5], ["substitutions", 22, 5], ["meta", 27, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["npmConfigHook", 9, 3], ["linkNodeModulesHook", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,29 +13,35 @@ export default nix.lambda((args) => (() => {
   const srcOnly = nix.arg($, "srcOnly");
   const nodejs = nix.arg($, "nodejs");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     npmConfigHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "npm-config-hook",
         substitutions: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           nodeSrc: nix.thunk(() => nix.app(srcOnly, nodejs)),
           nodeGyp: nix.thunk(() => nix.str`${nodejs}/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js`),
           canonicalizeSymlinksScript: nix.path(here, "./canonicalize-symlinks.js"),
           storePrefix: nix.thunk(() => nix.builtins.storeDir),
         })),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+        })),
       })), nix.path(here, "./npm-config-hook.sh"))),
     linkNodeModulesHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "node-modules-hook.sh",
         substitutions: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           nodejs: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nodejs)),
           script: nix.path(here, "./link-node-modules.js"),
           storePrefix: nix.thunk(() => nix.builtins.storeDir),
         })),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[4],
+          license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+        })),
       })), nix.path(here, "./link-node-modules-hook.sh"))),
   };
 })(), formals$1);

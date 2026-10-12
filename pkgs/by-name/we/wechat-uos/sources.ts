@@ -2,26 +2,23 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/sources.nix", [["url", 6, 5], ["hash", 7, 5]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["url", 10, 5], ["hash", 11, 5]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$4 = nix.positions(here + "/sources.nix", [["version", 4, 3], ["x86_64-linux", 5, 3], ["aarch64-linux", 9, 3], ["loongarch64-linux", 13, 3]]);
+const $pos = nix.positions(here + "/sources.nix", [[["url", 6, 5], ["hash", 7, 5]], [["url", 10, 5], ["hash", 11, 5]], [["url", 14, 5], ["hash", 15, 5]], [["version", 4, 3], ["x86_64-linux", 5, 3], ["aarch64-linux", 9, 3], ["loongarch64-linux", 13, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$4,
+  [nix.POS]: $pos[3],
   version: "4.1.1.7",
   "x86_64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     url: "https://pro-store-packages.uniontech.com/appstore/pool/appstore/c/com.tencent.wechat/com.tencent.wechat_4.1.1.7_amd64.deb",
     hash: "sha256-ifhWU6TzpsIXKuuQBnGRJKvZ5hWs+JZuoD362utJ89w=",
   })),
   "aarch64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     url: "https://pro-store-packages.uniontech.com/appstore/pool/appstore/c/com.tencent.wechat/com.tencent.wechat_4.1.1.7_arm64.deb",
     hash: "sha256-OLCxbsiWRs4ZMjAashsxes0UeC5SNlT4Sj1xTRqRzUo=",
   })),
   "loongarch64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     url: "https://pro-store-packages.uniontech.com/appstore/pool/appstore/c/com.tencent.wechat/com.tencent.wechat_4.1.1.7_loongarch64.deb",
     hash: "sha256-MbJlpZ0opo3SodsDm/Hj9bt2j81w7ixEJA3VehALYe4=",
   })),

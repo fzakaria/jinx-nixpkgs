@@ -2,42 +2,19 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/appliance-repart-image-verity-store.nix", [[["maintainers", 8, 8]], [["enable", 53, 20]], [["fileSystems", 21, 22], ["directBoot", 53, 9], ["mountHostNixStore", 54, 9], ["useEFIBoot", 55, 9]], [["fsType", 24, 11], ["options", 25, 11]], [["/", 23, 9]], [["enable", 33, 11], ["ukiPath", 35, 11]], [["Type", 44, 15], ["Format", 45, 15], ["SizeMinBytes", 46, 15]], [["repartConfig", 43, 13]], [["enable", 30, 9], ["verityStore", 32, 9], ["name", 38, 9], ["partitions", 40, 9]], [["repart", 29, 13]], [["enable", 59, 21]], [["grub", 59, 16]], [["enable", 60, 24]], [["systemd", 60, 16]], [["loader", 59, 9], ["initrd", 60, 9]], [["id", 63, 20]], [["usrbinenv", 68, 32]], [["image", 63, 14], ["activationScripts", 68, 14]], [["imports", 19, 7], ["virtualisation", 21, 7], ["fileSystems", 22, 7], ["image", 29, 7], ["boot", 58, 7], ["system", 63, 7]], [["version", 72, 18]], [["image", 72, 12]], [["system", 72, 5]], [["machine", 71, 9], ["without-version", 75, 9]], [["name", 6, 3], ["meta", 8, 3], ["defaults", 13, 3], ["nodes", 71, 3], ["testScript", 77, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["maintainers", 8, 8]]);
 const formals$2 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["enable", 53, 20]]);
-const pos$3 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["fileSystems", 21, 22], ["directBoot", 53, 9], ["mountHostNixStore", 54, 9], ["useEFIBoot", 55, 9]]);
-const pos$4 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["fsType", 24, 11], ["options", 25, 11]]);
-const pos$5 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["/", 23, 9]]);
-const pos$6 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["enable", 33, 11], ["ukiPath", 35, 11]]);
-const pos$7 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["Type", 44, 15], ["Format", 45, 15], ["SizeMinBytes", 46, 15]]);
-const pos$8 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["repartConfig", 43, 13]]);
-const pos$9 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["enable", 30, 9], ["verityStore", 32, 9], ["name", 38, 9], ["partitions", 40, 9]]);
-const pos$10 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["repart", 29, 13]]);
-const pos$11 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["enable", 59, 21]]);
-const pos$12 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["grub", 59, 16]]);
-const pos$13 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["enable", 60, 24]]);
-const pos$14 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["systemd", 60, 16]]);
-const pos$15 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["loader", 59, 9], ["initrd", 60, 9]]);
-const pos$16 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["id", 63, 20]]);
-const pos$17 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["usrbinenv", 68, 32]]);
-const pos$18 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["image", 63, 14], ["activationScripts", 68, 14]]);
-const pos$19 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["imports", 19, 7], ["virtualisation", 21, 7], ["fileSystems", 22, 7], ["image", 29, 7], ["boot", 58, 7], ["system", 63, 7]]);
-const pos$20 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["version", 72, 18]]);
-const pos$21 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["image", 72, 12]]);
-const pos$22 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["system", 72, 5]]);
-const pos$23 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["machine", 71, 9], ["without-version", 75, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$24 = nix.positions(here + "/appliance-repart-image-verity-store.nix", [["name", 6, 3], ["meta", 8, 3], ["defaults", 13, 3], ["nodes", 71, 3], ["testScript", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$24,
+    [nix.POS]: $pos[23],
     name: "appliance-repart-image-verity-store",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -53,35 +30,35 @@ export default nix.lambda((args) => (() => {
       const from = nix.thunk(() => nix.sel(config, "image", "repart", "verityStore"));
       const partitionIds = nix.thunk(() => nix.attr(from, "partitionIds"));
       return {
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         imports: nix.thunk(() => [nix.path(here, "../modules/image/repart.nix")]),
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           fileSystems: nix.thunk(() => nix.app(nix.sel(lib_1, "mkVMOverride"), nix.thunk(() => ({})))),
-          directBoot: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+          directBoot: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
           mountHostNixStore: false,
           useEFIBoot: true,
         })),
         fileSystems: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          "/": nix.thunk(() => ({ [nix.POS]: pos$4, fsType: "tmpfs", options: nix.thunk(() => ["mode=0755"]) })),
+          [nix.POS]: $pos[4],
+          "/": nix.thunk(() => ({ [nix.POS]: $pos[3], fsType: "tmpfs", options: nix.thunk(() => ["mode=0755"]) })),
         })),
         image: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           repart: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             enable: true,
             verityStore: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               ukiPath: nix.thunk(() => nix.str`/EFI/BOOT/BOOT${nix.app(nix.sel(lib_1, "toUpper"), nix.thunk(() => nix.sel(config, "nixpkgs", "hostPlatform", "efiArch")))}.EFI`),
             })),
             name: "appliance-verity-store-image",
             partitions: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(partitionIds, "esp"), nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 repartConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   Type: "esp",
                   Format: "vfat",
                   SizeMinBytes: nix.thunk(() => (nix.asBool(nix.sel(config, "nixpkgs", "hostPlatform", "isx86_64")) ? "64M" : "96M")),
@@ -91,33 +68,33 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           loader: nix.thunk(() => ({
-            [nix.POS]: pos$12,
-            grub: nix.thunk(() => ({ [nix.POS]: pos$11, enable: false })),
+            [nix.POS]: $pos[11],
+            grub: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: false })),
           })),
           initrd: nix.thunk(() => ({
-            [nix.POS]: pos$14,
-            systemd: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
+            [nix.POS]: $pos[13],
+            systemd: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true })),
           })),
         })),
         system: nix.thunk(() => ({
-          [nix.POS]: pos$18,
-          image: nix.thunk(() => ({ [nix.POS]: pos$16, id: "nixos-appliance" })),
+          [nix.POS]: $pos[17],
+          image: nix.thunk(() => ({ [nix.POS]: $pos[15], id: "nixos-appliance" })),
           activationScripts: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             usrbinenv: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "")),
           })),
         })),
       };
     })(), formals$2),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         system: nix.thunk(() => ({
-          [nix.POS]: pos$21,
-          image: nix.thunk(() => ({ [nix.POS]: pos$20, version: "1" })),
+          [nix.POS]: $pos[20],
+          image: nix.thunk(() => ({ [nix.POS]: $pos[19], version: "1" })),
         })),
       })),
       "without-version": nix.thunk(() => ({})),

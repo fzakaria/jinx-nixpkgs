@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["name", 60, 7], ["desktopName", 61, 7], ["comment", 62, 7], ["exec", 63, 7], ["icon", 64, 7], ["mimeTypes", 65, 7]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5], ["platforms", 89, 5], ["sourceProvenance", 90, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["dontUnpack", 19, 3], ["dontConfigure", 20, 3], ["nativeBuildInputs", 22, 3], ["postPatch", 29, 3], ["buildPhase", 36, 3], ["installPhase", 46, 3], ["desktopItems", 58, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, msitools: false, icoutils: false, imagemagick: false, wine64: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 60, 7], ["desktopName", 61, 7], ["comment", 62, 7], ["exec", 63, 7], ["icon", 64, 7], ["mimeTypes", 65, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5], ["platforms", 89, 5], ["sourceProvenance", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["dontUnpack", 19, 3], ["dontConfigure", 20, 3], ["nativeBuildInputs", 22, 3], ["postPatch", 29, 3], ["buildPhase", 36, 3], ["installPhase", 46, 3], ["desktopItems", 58, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ltspice",
       version: "26.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ltspice.analog.com/download/${nix.sel(finalAttrs, "version")}/LTspice64.msi`),
           hash: "sha256-IQxrgX5kcwhBGWlSzWj9HmkMlzwCou+EsE8k92qU9EY=",
         })))),
@@ -40,7 +37,7 @@ substituteInPlace ./ltspice.sh \\
       installPhase: "runHook preInstall\nmkdir -p $out\ninstall -Dm644 ltspice.png $out/share/icons/hicolor/256x256/apps/ltspice.png\n\ninstall -m755 -d $out/libexec/ltspice\ninstall -m755 *.exe $out/libexec/ltspice\ninstall -m655 *.zip $out/libexec/ltspice\n\ninstall -Dm755 ltspice.sh $out/bin/ltspice\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ltspice",
             desktopName: "LTspice",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -62,7 +59,7 @@ substituteInPlace ./ltspice.sh \\
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "SPICE simulator, schematic capture and waveform viewer",
         homepage: "https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html",
         changelog: "https://ltspice.analog.com/download/updates.txt",

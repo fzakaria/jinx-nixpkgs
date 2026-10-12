@@ -2,16 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 152, 9], ["url", 153, 9], ["includes", 158, 9], ["hash", 159, 9]], [["name", 169, 9], ["url", 170, 9], ["hash", 171, 9]], [["name", 174, 9], ["url", 175, 9], ["hash", 176, 9], ["includes", 177, 9]], [["name", 183, 9], ["url", 184, 9], ["hash", 185, 9], ["includes", 186, 9]], [["name", 194, 9], ["url", 195, 9], ["hash", 196, 9]], [["name", 202, 9], ["url", 203, 9], ["hash", 204, 9]], [["isGNU", 493, 5], ["threadModel", 494, 13]], [["homepage", 498, 5]], [["pname", 103, 3], ["version", 104, 11], ["src", 106, 3], ["outputs", 108, 3], ["strictDeps", 113, 3], ["depsBuildBuild", 115, 3], ["nativeBuildInputs", 120, 3], ["buildInputs", 128, 3], ["patches", 134, 3], ["autoreconfFlags", 209, 3], ["postUnpack", 211, 3], ["postPatch", 216, 3], ["enableParallelBuilding", 304, 3], ["preConfigure", 306, 3], ["topLevelConfigureFlags", 407, 3], ["configurePlatforms", 463, 3], ["configureFlags", 468, 3], ["postConfigure", 480, 3], ["makeFlags", 484, 3], ["postInstall", 486, 3], ["doCheck", 490, 3], ["passthru", 492, 3], ["meta", 497, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gcc_meta: false, release_version: false, version: false, getVersionFile: false, monorepoSrc: true, fetchpatch: false, autoreconfHook269: false, buildGccPackages: false, buildPackages: false, which: false, python3: false, threads: true, enableShared: true, __defaultEnableShared: true, __haveLinkableLibc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 152, 9], ["url", 153, 9], ["includes", 158, 9], ["hash", 159, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 169, 9], ["url", 170, 9], ["hash", 171, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 174, 9], ["url", 175, 9], ["hash", 176, 9], ["includes", 177, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 183, 9], ["url", 184, 9], ["hash", 185, 9], ["includes", 186, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 194, 9], ["url", 195, 9], ["hash", 196, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 202, 9], ["url", 203, 9], ["hash", 204, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["isGNU", 493, 5], ["threadModel", 494, 13]]);
-const pos$8 = nix.positions(here + "/default.nix", [["homepage", 498, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 103, 3], ["version", 104, 11], ["src", 106, 3], ["outputs", 108, 3], ["strictDeps", 113, 3], ["depsBuildBuild", 115, 3], ["nativeBuildInputs", 120, 3], ["buildInputs", 128, 3], ["patches", 134, 3], ["autoreconfFlags", 209, 3], ["postUnpack", 211, 3], ["postPatch", 216, 3], ["enableParallelBuilding", 304, 3], ["preConfigure", 306, 3], ["topLevelConfigureFlags", 407, 3], ["configurePlatforms", 463, 3], ["configureFlags", 468, 3], ["postConfigure", 480, 3], ["makeFlags", 484, 3], ["postInstall", 486, 3], ["doCheck", 490, 3], ["passthru", 492, 3], ["meta", 497, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const threadModel = nix.thunk(() => nix.selOr(threads, () => nix.selOr(libc, () => "single", "threadModel"), "threadModel"));
   nix.assert_((!nix.asBool(enableShared) || nix.asBool(__defaultEnableShared)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/gcc/ng/common/libgcc/default.nix:100:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: nix.thunk(() => nix.add("libgcc", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(libc, null)), "-no-libc"))),
       version: version,
       src: monorepoSrc,
@@ -52,7 +44,7 @@ export default nix.lambda((args) => (() => {
           nix.path(here, "./darwin-fix-reexport.patch"),
           nix.thunk(() => nix.app(getVersionFile, "libgcc/darwin-detection.patch")),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               name: "darwin-aarch64-support.patch",
               url: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), release_version, "16")) ? "https://raw.githubusercontent.com/Homebrew/homebrew-core/70e2a9e1d072fa3bc34cf41d97f4b65bede2b01e/Patches/gcc/gcc-16.1.0.diff" : "https://raw.githubusercontent.com/Homebrew/homebrew-core/70e2a9e1d072fa3bc34cf41d97f4b65bede2b01e/Patches/gcc/gcc-15.3.0.diff")),
               includes: nix.thunk(() => ["libgcc/*"]),
@@ -60,20 +52,20 @@ export default nix.lambda((args) => (() => {
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), release_version, "16")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "delete-MACHMODE_H.patch",
               url: "https://github.com/gcc-mirror/gcc/commit/493aae4b034d62054d5e7e54dc06cd9a8be54e29.diff",
               hash: "sha256-oEk0lnI96RlpALWpb7J+GnrtgQsFVqDO57I/zjiqqTk=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "custom-threading-model.patch",
               url: "https://github.com/gcc-mirror/gcc/commit/e5d853bbe9b05d6a00d98ad236f01937303e40c4.diff",
               hash: "sha256-92LIttIXdh12/lRhivb2JTPpqUmGBRn+uKmR5pzuveo=",
               includes: nix.thunk(() => ["config/*", "libgcc/configure.ac"]),
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "no-pie-cflags.patch",
               url: "https://github.com/gcc-mirror/gcc/commit/77144dd3b6736e0166156bb509590d924375a4f1.diff",
               hash: "sha256-QlxlTkWAK1dB7JiU5wz2iOW24gj3bFaeBpwb90oWwns=",
@@ -85,14 +77,14 @@ export default nix.lambda((args) => (() => {
               ]),
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "no-target-system-root.patch",
               url: "https://github.com/gcc-mirror/gcc/commit/9947930b7ae923010c5061fd8fa6b1ec4f22f161.diff",
               hash: "sha256-BZmpHpJuuyDmQMwpQhSgCZO0Rg7kXt8rTiJAT+e0sUw=",
             })))),
         ])), [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "regular-libdir-includedir.patch",
             url: "https://inbox.sourceware.org/gcc-patches/20250717174911.1536129-1-git@JohnEricson.me/raw",
             hash: "sha256-Cn7rvg1FI7H/26GzSe4pv5VW/gvwbwGqivAqEeawkwk=",
@@ -219,8 +211,8 @@ NIX_CFLAGS_COMPILE+=' -isystem ${nix.sel(stdenv, "cc", "cc")}/lib/gcc/${nix.sel(
       makeFlags: nix.thunk(() => ["MULTIBUILDTOP:=../"]),
       postInstall: "install -c -m 644 gthr-default.h \"$dev/include\"\n",
       doCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, isGNU: true, threadModel: threadModel })),
-      meta: nix.thunk(() => nix.update(gcc_meta, { [nix.POS]: pos$8, homepage: "https://gcc.gnu.org/" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[6], isGNU: true, threadModel: threadModel })),
+      meta: nix.thunk(() => nix.update(gcc_meta, { [nix.POS]: $pos[7], homepage: "https://gcc.gnu.org/" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

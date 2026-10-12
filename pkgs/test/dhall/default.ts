@@ -2,15 +2,15 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["buildDhallUrl", 4, 3], ["generateDhallDirectoryPackage", 5, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["buildDhallUrl", 4, 3], ["generateDhallDirectoryPackage", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildDhallUrl: nix.thunk(() => nix.app(callPackage, nix.path(here, "./buildDhallUrl"), nix.thunk(() => ({})))),
       generateDhallDirectoryPackage: nix.thunk(() => nix.app(callPackage, nix.path(here, "./generateDhallDirectoryPackage"), nix.thunk(() => ({})))),
     })));

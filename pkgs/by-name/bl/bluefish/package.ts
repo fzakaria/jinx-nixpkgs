@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["NIX_CFLAGS_COMPILE", 38, 7]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["env", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, wrapGAppsHook3: false, "pkg-config": false, gtk3: false, libxml2: false, enchant: false, gucharmap: false, python3: false, "adwaita-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["env", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,22 +19,22 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const adwaita_icon_theme = nix.arg($, "adwaita-icon-theme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bluefish",
       version: "2.4.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/bluefish/bluefish-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-smQfn/gDNxngLFGcXdtL2tvX/3PvJS6Sh9USxHcDd8U=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [adwaita_icon_theme, gtk3, libxml2, enchant, gucharmap, python3]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Powerful editor targeted towards programmers and webdevelopers",
         homepage: "https://bluefish.openoffice.nl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/eio.nix", [[["description", 27, 5]], [["pname", 11, 3], ["version", 12, 17], ["src", 12, 25], ["propagatedBuildInputs", 14, 3], ["checkInputs", 19, 3], ["doCheck", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { alcotest: false, base64: false, buildDunePackage: false, eio: false, eio_main: false, pgx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/eio.nix", [["description", 27, 5]]);
-const pos$2 = nix.positions(here + "/eio.nix", [["pname", 11, 3], ["version", 12, 17], ["src", 12, 25], ["propagatedBuildInputs", 14, 3], ["checkInputs", 19, 3], ["doCheck", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const eio_main = nix.arg($, "eio_main");
   const pgx = nix.arg($, "pgx");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "pgx_eio",
       version: nix.thunk(() => nix.attr(pgx, "version")),
       src: nix.thunk(() => nix.attr(pgx, "src")),
       propagatedBuildInputs: nix.thunk(() => [eio, pgx]),
       checkInputs: nix.thunk(() => [alcotest, base64, eio_main]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(pgx, "meta"), { [nix.POS]: pos$1, description: "Pgx using Eio for IO" })),
+      meta: nix.thunk(() => nix.update(nix.sel(pgx, "meta"), { [nix.POS]: $pos[0], description: "Pgx using Eio for IO" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=eio.ts.map

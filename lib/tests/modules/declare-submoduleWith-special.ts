@@ -2,45 +2,37 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/declare-submoduleWith-special.nix", [[["default", 10, 15]], [["foo", 9, 21]], [["options", 9, 13]], [["foo", 16, 9]], [["lib", 15, 19]], [["modules", 5, 7], ["specialArgs", 15, 7]], [["type", 4, 5], ["default", 19, 5]], [["submodule", 3, 11]], [["options", 3, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/declare-submoduleWith-special.nix", [["default", 10, 15]]);
-const pos$2 = nix.positions(here + "/declare-submoduleWith-special.nix", [["foo", 9, 21]]);
-const pos$3 = nix.positions(here + "/declare-submoduleWith-special.nix", [["options", 9, 13]]);
-const pos$4 = nix.positions(here + "/declare-submoduleWith-special.nix", [["foo", 16, 9]]);
-const pos$5 = nix.positions(here + "/declare-submoduleWith-special.nix", [["lib", 15, 19]]);
-const pos$6 = nix.positions(here + "/declare-submoduleWith-special.nix", [["modules", 5, 7], ["specialArgs", 15, 7]]);
-const pos$7 = nix.positions(here + "/declare-submoduleWith-special.nix", [["type", 4, 5], ["default", 19, 5]]);
-const pos$8 = nix.positions(here + "/declare-submoduleWith-special.nix", [["submodule", 3, 11]]);
-const pos$9 = nix.positions(here + "/declare-submoduleWith-special.nix", [["options", 3, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       submodule: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               modules: nix.thunk(() => [
                 nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$2);
                   const lib_1 = nix.arg($_1, "lib");
                   return {
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     options: nix.thunk(() => ({
-                      [nix.POS]: pos$2,
-                      foo: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, default: nix.thunk(() => nix.sel(lib_1, "foo")) })))),
+                      [nix.POS]: $pos[1],
+                      foo: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[0], default: nix.thunk(() => nix.sel(lib_1, "foo")) })))),
                     })),
                   };
                 })(), formals$2),
               ]),
               specialArgs: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                lib: nix.thunk(() => nix.update(lib, { [nix.POS]: pos$4, foo: "foo" })),
+                [nix.POS]: $pos[4],
+                lib: nix.thunk(() => nix.update(lib, { [nix.POS]: $pos[3], foo: "foo" })),
               })),
             })))),
           default: nix.thunk(() => ({})),

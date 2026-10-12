@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["mysqlSupport", 16, 13], ["postgresSupport", 16, 26]], [["url", 29, 5], ["sha256", 30, 5]], [["packageName", 44, 7], ["versionPolicy", 45, 7]], [["updateScript", 43, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 38, 3], ["enableParallelBuilding", 40, 3], ["passthru", 42, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, glibmm_2_4: false, libgda5: false, libxml2: false, gnome: false, mysqlSupport: true, postgresSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["mysqlSupport", 16, 13], ["postgresSupport", 16, 26]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 5], ["sha256", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 44, 7], ["versionPolicy", 45, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 38, 3], ["enableParallelBuilding", 40, 3], ["passthru", 42, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const mysqlSupport = nix.argOr($, "mysqlSupport", () => false);
   const postgresSupport = nix.argOr($, "postgresSupport", () => false);
   const gda = nix.thunk(() => nix.app(nix.sel(libgda5, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       mysqlSupport: mysqlSupport,
       postgresSupport: postgresSupport,
     }))));
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.99.11";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgdamm/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libgdamm-${version}.tar.xz`),
           sha256: "1fyh15b3f8hmwbswalxk1g4l04yvvybksn5nm7gznn5jl5q010p9",
         }))));
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [gda]);
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: pname, versionPolicy: "none" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: pname, versionPolicy: "none" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "C++ bindings for libgda",
         homepage: "https://www.gnome-db.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         outputs,

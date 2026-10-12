@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["maintainers", 48, 5], ["license", 49, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 34, 3], ["disabledTestPaths", 38, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["maintainers", 48, 5], ["license", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 34, 3], ["disabledTestPaths", 38, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "awscurl",
       version: "0.44",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "okigan",
           repo: "awscurl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       })()),
       disabledTestPaths: nix.thunk(() => ["tests/integration_test.py", "tests/tls_test.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Curl like tool with AWS request signing",
         homepage: "https://github.com/okigan/awscurl",
         changelog: nix.thunk(() => nix.str`https://github.com/okigan/awscurl/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

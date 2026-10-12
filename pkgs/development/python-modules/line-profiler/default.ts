@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 5], ["version", 23, 13], ["hash", 24, 5]], [["ipython", 34, 5]], [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5]], [["pname", 15, 3], ["version", 16, 3], ["format", 17, 3], ["disabled", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 37, 3], ["dontUseCmakeConfigure", 43, 3], ["preBuild", 45, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, cython: false, isPyPy: false, ipython: false, "scikit-build": false, cmake: false, pytestCheckHook: false, ubelt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 5], ["version", 23, 13], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ipython", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["format", 17, 3], ["disabled", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 37, 3], ["dontUseCmakeConfigure", 43, 3], ["preBuild", 45, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,20 +23,20 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "line_profiler",
           version: version,
           hash: "sha256-qA8K+wW6DSddnd3F/5fqtjdHEWf/Pmbcx9E1dVBZOYw=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [cython, cmake, scikit_build]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, ipython: nix.thunk(() => [ipython]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], ipython: nix.thunk(() => [ipython]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, ubelt], nix.sel(optional_dependencies, "ipython")));
       const dontUseCmakeConfigure = true;
       const preBuild = "rm -f _line_profiler.c\n";
       const preCheck = "rm -r line_profiler\nexport PATH=$out/bin:$PATH\n";
       const pythonImportsCheck = nix.thunk(() => ["line_profiler"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Line-by-line profiler",
         mainProgram: "kernprof",
         homepage: "https://github.com/pyutils/line_profiler",
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

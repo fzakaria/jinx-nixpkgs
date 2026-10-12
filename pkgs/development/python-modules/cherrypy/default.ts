@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 32, 13], ["version", 32, 19], ["hash", 33, 5]], [["json", 112, 5], ["memcached_session", 113, 5], ["routes_dispatcher", 114, 5], ["ssl", 115, 5], ["xcgi", 117, 5]], [["description", 123, 5], ["mainProgram", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["maintainers", 128, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 36, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 52, 3], ["preCheck", 62, 3], ["pytestFlags", 66, 3], ["disabledTests", 71, 3], ["disabledTestPaths", 103, 3], ["__darwinAllowLocalNetworking", 107, 3], ["pythonImportsCheck", 109, 3], ["optional-dependencies", 111, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, cheroot: false, fetchPypi: false, "jaraco-collections": false, "more-itertools": false, objgraph: false, path: false, portend: false, pyopenssl: false, "pytest-cov-stub": false, "pytest-forked": false, "pytest-services": false, pytestCheckHook: false, "python-memcached": false, pythonAtLeast: false, "requests-toolbelt": false, routes: false, "setuptools-scm": false, simplejson: false, "zc-lockfile": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 32, 13], ["version", 32, 19], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["json", 112, 5], ["memcached_session", 113, 5], ["routes_dispatcher", 114, 5], ["ssl", 115, 5], ["xcgi", 117, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 123, 5], ["mainProgram", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["maintainers", 128, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 36, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 52, 3], ["preCheck", 62, 3], ["pytestFlags", 66, 3], ["disabledTests", 71, 3], ["disabledTestPaths", 103, 3], ["__darwinAllowLocalNetworking", 107, 3], ["pythonImportsCheck", 109, 3], ["optional-dependencies", 111, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "18.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-bHDnjuETAOiyHAdnxUKuaxAqScrFz9Tj4xPXu5B8WJE=",
@@ -88,7 +85,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["cherrypy"]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         json: nix.thunk(() => [simplejson]),
         memcached_session: nix.thunk(() => [python_memcached]),
         routes_dispatcher: nix.thunk(() => [routes]),
@@ -96,7 +93,7 @@ export default nix.lambda((args) => (() => {
         xcgi: [],
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Object-oriented HTTP framework",
         mainProgram: "cherryd",
         homepage: "https://cherrypy.dev/",
@@ -105,7 +102,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

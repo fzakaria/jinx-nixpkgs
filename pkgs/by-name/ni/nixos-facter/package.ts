@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 7], ["repo", 20, 7], ["rev", 21, 7], ["hash", 22, 7]], [["src", 18, 5]], [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["CGO_ENABLED", 39, 7]], [["facter", 67, 26], ["debug-nvd", 68, 5], ["debug-nix-diff", 69, 5]], [["tests", 66, 12]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5], ["platforms", 78, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["vendorHash", 37, 3], ["env", 39, 3], ["buildInputs", 41, 3], ["nativeBuildInputs", 46, 3], ["postInstall", 53, 3], ["ldflags", 58, 3], ["passthru", 66, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, callPackage: false, fetchFromGitHub: false, hwinfo: false, libusb1: false, gcc: false, "pkg-config": false, makeWrapper: false, nixosTests: false, stdenv: false, systemdMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 7], ["repo", 20, 7], ["rev", 21, 7], ["hash", 22, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 18, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 39, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["facter", 67, 26], ["debug-nvd", 68, 5], ["debug-nix-diff", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 66, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5], ["platforms", 78, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["vendorHash", 37, 3], ["env", 39, 3], ["buildInputs", 41, 3], ["nativeBuildInputs", 46, 3], ["postInstall", 53, 3], ["ldflags", 58, 3], ["passthru", 66, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,9 +20,9 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const systemdMinimal = nix.arg($, "systemdMinimal");
   const hwinfoOverride = nix.thunk(() => nix.app(nix.sel(hwinfo, "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nix-community",
           repo: "hwinfo",
           rev: "bfeab0b4e38b200c7a62a44d4d01601a86fe1091",
@@ -37,18 +30,18 @@ export default nix.lambda((args) => (() => {
         })))),
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "nixos-facter",
       version: "0.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "nix-community",
           repo: "nixos-facter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-w4tFIouJQLf/JeY7wvvSLbxQv73Bbs11a8EAu6iXwKU=",
         })))),
       vendorHash: "sha256-5duwAxAgbPZIbbgzZE2m574TF/0+jF/TvTKI4YBH6jM=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], CGO_ENABLED: 1n })),
       buildInputs: nix.thunk(() => [libusb1, hwinfoOverride]),
       nativeBuildInputs: nix.thunk(() => [gcc, pkg_config, makeWrapper]),
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/nixos-facter" \\
@@ -62,16 +55,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/numtide/nixos-facter/pkg/build.System=${nix.sel(stdenv, "hostPlatform", "system")}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           facter: nix.thunk(() => nix.attr(nixosTests, "facter")),
           "debug-nvd": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-debug-nvd.nix"), nix.thunk(() => ({})))),
           "debug-nix-diff": nix.thunk(() => nix.sel(nixosTests, "facter", "nodes", "machine", "hardware", "facter", "debug", "nix-diff")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Declarative hardware configuration for NixOS",
         homepage: "https://github.com/nix-community/nixos-facter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

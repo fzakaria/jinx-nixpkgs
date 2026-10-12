@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 13], ["repo", 19, 13], ["rev", 20, 13], ["hash", 21, 13]], [["version", 16, 11], ["src", 17, 11], ["vendorHash", 23, 11]], [["buildGoModule", 11, 5]], [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["ESBUILD_BINARY_PATH", 51, 7]], [["updateScript", 60, 12]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 41, 3], ["npmDepsHash", 45, 3], ["nodejs", 47, 3], ["npmFlags", 49, 3], ["env", 51, 3], ["preBuild", 54, 3], ["npmBuildScript", 58, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, esbuild: false, buildGoModule: false, nodejs_22: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 13], ["repo", 19, 13], ["rev", 20, 13], ["hash", 21, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 16, 11], ["src", 17, 11], ["vendorHash", 23, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["buildGoModule", 11, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ESBUILD_BINARY_PATH", 51, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 41, 3], ["npmDepsHash", 45, 3], ["nodejs", 47, 3], ["npmFlags", 49, 3], ["env", 51, 3], ["preBuild", 54, 3], ["npmBuildScript", 58, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,26 +14,26 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const nodejs_22 = nix.arg($, "nodejs_22");
   const esbuild$ = nix.thunk(() => nix.app(nix.sel(esbuild, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       buildGoModule: (args_1) => nix.app(buildGoModule, nix.thunk(() => nix.update(args_1, (() => {
           const version = "0.24.0";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "evanw",
               repo: "esbuild",
               rev: nix.thunk(() => nix.str`v${version}`),
               hash: "sha256-czQJqLz6rRgyh9usuhDTmgwMC6oL5UzpwNFQ3PKpKck=",
             }))));
           const vendorHash = "sha256-+BfxCyg0KkDQpHt/wycy/8CTG6YBA/VJvJFhhzUnSiQ=";
-          return { [nix.POS]: pos$2, version, src, vendorHash };
+          return { [nix.POS]: $pos[1], version, src, vendorHash };
         })()))),
     }))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "fauna-shell",
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "fauna",
           repo: "fauna-shell",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,14 +45,14 @@ export default nix.lambda((args) => (() => {
       nodejs: nodejs_22,
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         ESBUILD_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), esbuild$)),
       })),
       preBuild: "npm rebuild cpu-features\n",
       npmBuildScript: "build:app",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Interactive shell for FaunaDB",
         homepage: "https://github.com/fauna/fauna-shell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

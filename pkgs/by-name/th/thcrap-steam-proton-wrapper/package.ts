@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5], ["mainProgram", 52, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 24, 3], ["postFixup", 33, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, bash: false, subversion: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5], ["mainProgram", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 24, 3], ["postFixup", 33, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const subversion = nix.arg($, "subversion");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "thcrap-proton",
       version: "0-unstable-2026-02-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nerusuki",
           repo: "thcrap-steam-proton-wrapper",
           rev: "a5edfe44ead2df2e6bca54bd738ae0dc3284e679",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash, subversion]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Wrapper script for launching the official Touhou games on Steam with patches through Proton on GNU/Linux",
         homepage: "https://github.com/nerusuki/thcrap-steam-proton-wrapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

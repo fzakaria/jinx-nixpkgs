@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 31, 3], ["preCheck", 36, 3], ["disabledTests", 40, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, django: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, pytestCheckHook: false, "pytest-django": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 31, 3], ["preCheck", 36, 3], ["disabledTests", 40, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_django = nix.arg($, "pytest-django");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "django-formtools",
       version: "2.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jazzband",
           repo: "django-formtools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.concat(["TestStorage"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(django, "version")), "6.1")), nix.thunk(() => ["test_manipulated_cookie"])))),
       pythonImportsCheck: nix.thunk(() => ["formtools"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High-level abstractions for Django forms",
         homepage: "https://github.com/jazzband/django-formtools",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-formtools/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/changelog.rst`),

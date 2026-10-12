@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["nativeBuildInputs", 30, 3], ["postInstall", 32, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitea: false, buildGoModule: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["nativeBuildInputs", 30, 3], ["postInstall", 32, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zs",
       version: "0.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.mills.io",
           owner: "prologic",
           repo: "zs",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd zs \\\n  --bash <($out/bin/zs completion bash) \\\n  --fish <($out/bin/zs completion fish) \\\n  --zsh <($out/bin/zs completion zsh)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extremely minimal static site generator written in Go",
         homepage: "https://git.mills.io/prologic/zs",
         changelog: nix.thunk(() => nix.str`https://git.mills.io/prologic/zs/releases/tag/${nix.sel(finalAttrs, "version")}`),

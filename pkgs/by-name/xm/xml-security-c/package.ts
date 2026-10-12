@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["CXXFLAGS", 32, 7]], [["updateScript", 45, 12]], [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["enableParallelBuilding", 24, 3], ["configureFlags", 26, 3], ["env", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["passthru", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, autoreconfHook: false, "pkg-config": false, xalanc: false, xercesc: false, openssl: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 45, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["enableParallelBuilding", 24, 3], ["configureFlags", 26, 3], ["env", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["passthru", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xml-security-c",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Shibboleth",
           repo: "cpp-xml-security",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,15 +29,15 @@ export default nix.lambda((args) => (() => {
         })))),
       enableParallelBuilding: true,
       configureFlags: nix.thunk(() => ["--with-openssl", "--with-xerces", "--with-xalan"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=gnu++17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-std=gnu++17" })),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [xalanc, xercesc, openssl]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://shibboleth.atlassian.net/wiki/spaces/DEV/pages/3726671873/Santuario",
         description: "C++ Implementation of W3C security standards for XML",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

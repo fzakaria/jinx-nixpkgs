@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["PBR_VERSION", 48, 7]], [["description", 103, 5], ["mainProgram", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["teams", 107, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["env", 48, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 61, 3], ["checkPhase", 69, 3], ["pythonImportsCheck", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, bash: false, coreutils: false, debtcollector: false, eventlet: false, fasteners: false, fixtures: false, "iana-etc": false, libredirect: false, "oslo-config": false, "oslo-i18n": false, "oslo-utils": false, oslotest: false, pbr: false, pythonAtLeast: false, setuptools: false, stdenv: false, stestr: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PBR_VERSION", 48, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 103, 5], ["mainProgram", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["teams", 107, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["env", 48, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 61, 3], ["checkPhase", 69, 3], ["pythonImportsCheck", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openstack",
           repo: "oslo.concurrency",
           tag: version,
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
 substituteInPlace pyproject.toml \\
   --replace-fail '"oslo_concurrency"' '"oslo_concurrency", "oslo_concurrency.fixture", "oslo_concurrency.tests"'
 `);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PBR_VERSION: version }));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [debtcollector, fasteners, oslo_config, oslo_i18n, oslo_utils, pbr]);
       const nativeCheckInputs = nix.thunk(() => [
@@ -85,7 +82,7 @@ runHook postCheck
       })());
       const pythonImportsCheck = nix.thunk(() => ["oslo_concurrency"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Oslo Concurrency library",
         mainProgram: "lockutils-wrapper",
         homepage: "https://github.com/openstack/oslo.concurrency",
@@ -93,7 +90,7 @@ runHook postCheck
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

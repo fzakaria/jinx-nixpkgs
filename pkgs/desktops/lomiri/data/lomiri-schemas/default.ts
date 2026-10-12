@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["pkg-config", 47, 11]], [["tests", 47, 5], ["updateScript", 48, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["teams", 56, 5], ["platforms", 57, 5], ["pkgConfigModules", 58, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["cmakeFlags", 41, 3], ["passthru", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitLab: false, gitUpdater: false, testers: false, cmake: false, "cmake-extras": false, glib: false, intltool: false, "pkg-config": false, validatePkgConfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg-config", 47, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 47, 5], ["updateScript", 48, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["teams", 56, 5], ["platforms", 57, 5], ["pkgConfigModules", 58, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["cmakeFlags", 41, 3], ["passthru", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lomiri-schemas",
       version: "0.1.13",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-schemas",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,15 +37,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "GSETTINGS_COMPILE", true)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GSettings / AccountsService schema files for Lomiri",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-schemas",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-schemas/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

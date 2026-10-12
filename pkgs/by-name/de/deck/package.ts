@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["CGO_ENABLED", 23, 7]], [["updateScript", 40, 12]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["mainProgram", 46, 5], ["maintainers", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["env", 23, 3], ["ldflags", 25, 3], ["proxyVendor", 30, 3], ["vendorHash", 31, 3], ["postInstall", 33, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { buildGoModule: false, stdenv: false, lib: false, installShellFiles: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 40, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["mainProgram", 46, 5], ["maintainers", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["env", 23, 3], ["ldflags", 25, 3], ["proxyVendor", 30, 3], ["vendorHash", 31, 3], ["postInstall", 33, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "deck",
       version: "1.68.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Kong",
           repo: "deck",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-2j4EEdZnOIXf++cnshvRZ6iVNZzARJkVRKEd/1IdK28=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         nix.thunk(() => nix.str`-s -w -X github.com/kong/deck/cmd.VERSION=${nix.sel(finalAttrs, "version")}`),
         nix.thunk(() => nix.str`-X github.com/kong/deck/cmd.COMMIT=${nix.sel(finalAttrs, "src", "rev")}`),
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-9q0XSJP5iJCwMlWcieucC/bGBIuIZmza4Fk+KD1FLv0=",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd deck \\\n  --bash <($out/bin/deck completion bash) \\\n  --fish <($out/bin/deck completion fish) \\\n  --zsh <($out/bin/deck completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Configuration management and drift detection tool for Kong",
         homepage: "https://github.com/Kong/deck",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

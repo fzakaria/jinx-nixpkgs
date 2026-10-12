@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 12, 5], ["exec", 13, 5], ["icon", 14, 5], ["desktopName", 15, 5], ["genericName", 16, 5], ["categories", 17, 5], ["startupNotify", 22, 5]], [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 26, 3], ["version", 27, 24], ["src", 27, 32], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["dontBuild", 40, 3], ["dontConfigure", 41, 3], ["installPhase", 43, 3], ["preFixup", 50, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pulseaudio: false, makeDesktopItem: false, qt5: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 12, 5], ["exec", 13, 5], ["icon", 14, 5], ["desktopName", 15, 5], ["genericName", 16, 5], ["categories", 17, 5], ["startupNotify", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 24], ["src", 27, 32], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["dontBuild", 40, 3], ["dontConfigure", 41, 3], ["installPhase", 43, 3], ["preFixup", 50, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const qt5 = nix.arg($, "qt5");
   const python3 = nix.arg($, "python3");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "qpaeq",
       exec: "@out@/bin/qpaeq",
       icon: "audio-volume-high",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       startupNotify: false,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "qpaeq",
       version: nix.thunk(() => nix.attr(pulseaudio, "version")),
       src: nix.thunk(() => nix.attr(pulseaudio, "src")),
@@ -49,7 +47,7 @@ runHook postInstall
 `),
       preFixup: "sed \"s|,sip|,PyQt5.sip|g\" -i $out/bin/qpaeq\nwrapQtApp $out/bin/qpaeq\nsed \"s|@out@|$out|g\" -i $out/share/applications/qpaeq.desktop\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Equalizer interface for pulseaudio's equalizer sinks",
         mainProgram: "qpaeq",
         homepage: "http://www.pulseaudio.org/",

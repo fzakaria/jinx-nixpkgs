@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patchPhase", 18, 3], ["installPhase", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patchPhase", 18, 3], ["installPhase", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "icingaweb2-theme-snow";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Mikesch-mp",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const patchPhase = "# Module info contains some fancy ascii art which breaks the module list\n\nawk -i inplace 'BEGIN {empty=0;write=1;}{if ($0 == \"\"){empty++;};if(empty==2){write=0};if (write==1){print $0}}' module.info\n";
       const installPhase = "mkdir -p \"$out\"\ncp -r * \"$out\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Snow theme for Icingaweb 2",
         homepage: "https://github.com/Mikesch-mp/icingaweb2-theme-snow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: [],
       }));
-      return { [nix.POS]: pos$3, pname, version, src, patchPhase, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, patchPhase, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

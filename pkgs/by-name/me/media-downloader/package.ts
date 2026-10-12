@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["qtWrapperArgs", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { aria2: false, cmake: false, extraPackages: true, fetchFromGitHub: false, ffmpeg: false, lib: false, python3: false, qt6: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["qtWrapperArgs", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "media-downloader",
       version: "5.6.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mhogomchungu",
           repo: "media-downloader",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), extraPackages)}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Qt/C++ GUI front end for yt-dlp and others",
         longDescription: "Media Downloader is a GUI front end to yt-dlp, youtube-dl, gallery-dl,\nlux, you-get, svtplay-dl, aria2c, wget and safari books.\n\nRead https://github.com/mhogomchungu/media-downloader/wiki/Extensions\nfor further information. Note that adding these packages to extraPackages\ndoesn't work, because the author doesn't intend to support custom\ninstallation of them. These packages will be downloaded from original\nsource when executing the application for the first time.\n",
         homepage: "https://github.com/mhogomchungu/media-downloader",

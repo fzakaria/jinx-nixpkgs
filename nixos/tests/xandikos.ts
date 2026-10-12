@@ -2,64 +2,46 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/xandikos.nix", [[["maintainers", 6, 8]], [["allowedTCPPorts", 11, 27]], [["firewall", 11, 18]], [["enable", 12, 25]], [["xandikos", 12, 16]], [["networking", 11, 7], ["services", 12, 7]], [["allowedTCPPorts", 15, 27]], [["firewall", 15, 18]], [["enable", 19, 25], ["address", 20, 25], ["port", 21, 25], ["routePrefix", 22, 25], ["extraOptions", 23, 25]], [["xandikos", 31, 21]], [["proxyPass", 33, 13]], [["/xandikos/", 32, 21]], [["serverName", 30, 11], ["basicAuth", 31, 11], ["locations", 32, 11]], [["xandikos", 29, 22]], [["enable", 27, 9], ["recommendedProxySettings", 28, 9], ["virtualHosts", 29, 9]], [["xandikos", 19, 16], ["nginx", 26, 16]], [["networking", 15, 7], ["services", 19, 7]], [["xandikos_client", 9, 5], ["xandikos_default", 10, 5], ["xandikos_proxy", 14, 5]], [["name", 4, 3], ["meta", 6, 3], ["nodes", 8, 3], ["testScript", 40, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/xandikos.nix", [["maintainers", 6, 8]]);
-const pos$2 = nix.positions(here + "/xandikos.nix", [["allowedTCPPorts", 11, 27]]);
-const pos$3 = nix.positions(here + "/xandikos.nix", [["firewall", 11, 18]]);
-const pos$4 = nix.positions(here + "/xandikos.nix", [["enable", 12, 25]]);
-const pos$5 = nix.positions(here + "/xandikos.nix", [["xandikos", 12, 16]]);
-const pos$6 = nix.positions(here + "/xandikos.nix", [["networking", 11, 7], ["services", 12, 7]]);
-const pos$7 = nix.positions(here + "/xandikos.nix", [["allowedTCPPorts", 15, 27]]);
-const pos$8 = nix.positions(here + "/xandikos.nix", [["firewall", 15, 18]]);
-const pos$9 = nix.positions(here + "/xandikos.nix", [["enable", 19, 25], ["address", 20, 25], ["port", 21, 25], ["routePrefix", 22, 25], ["extraOptions", 23, 25]]);
-const pos$10 = nix.positions(here + "/xandikos.nix", [["xandikos", 31, 21]]);
-const pos$11 = nix.positions(here + "/xandikos.nix", [["proxyPass", 33, 13]]);
-const pos$12 = nix.positions(here + "/xandikos.nix", [["/xandikos/", 32, 21]]);
-const pos$13 = nix.positions(here + "/xandikos.nix", [["serverName", 30, 11], ["basicAuth", 31, 11], ["locations", 32, 11]]);
-const pos$14 = nix.positions(here + "/xandikos.nix", [["xandikos", 29, 22]]);
-const pos$15 = nix.positions(here + "/xandikos.nix", [["enable", 27, 9], ["recommendedProxySettings", 28, 9], ["virtualHosts", 29, 9]]);
-const pos$16 = nix.positions(here + "/xandikos.nix", [["xandikos", 19, 16], ["nginx", 26, 16]]);
-const pos$17 = nix.positions(here + "/xandikos.nix", [["networking", 15, 7], ["services", 19, 7]]);
-const pos$18 = nix.positions(here + "/xandikos.nix", [["xandikos_client", 9, 5], ["xandikos_default", 10, 5], ["xandikos_proxy", 14, 5]]);
-const pos$19 = nix.positions(here + "/xandikos.nix", [["name", 4, 3], ["meta", 6, 3], ["nodes", 8, 3], ["testScript", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "xandikos",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "_0x4A6F"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       xandikos_client: nix.thunk(() => ({})),
       xandikos_default: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [8080n]) })),
+          [nix.POS]: $pos[2],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], allowedTCPPorts: nix.thunk(() => [8080n]) })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          xandikos: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+          [nix.POS]: $pos[4],
+          xandikos: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
         })),
       })),
       xandikos_proxy: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$8,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$7, allowedTCPPorts: nix.thunk(() => [80n, 8080n]) })),
+          [nix.POS]: $pos[7],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[6], allowedTCPPorts: nix.thunk(() => [80n, 8080n]) })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           xandikos: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             enable: true,
             address: "localhost",
             port: 8080n,
@@ -67,18 +49,18 @@ export default nix.lambda((args) => (() => {
             extraOptions: nix.thunk(() => ["--defaults"]),
           })),
           nginx: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             enable: true,
             recommendedProxySettings: true,
             virtualHosts: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               xandikos: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 serverName: "xandikos.local",
-                basicAuth: nix.thunk(() => ({ [nix.POS]: pos$10, xandikos: "snakeOilPassword" })),
+                basicAuth: nix.thunk(() => ({ [nix.POS]: $pos[9], xandikos: "snakeOilPassword" })),
                 locations: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
-                  "/xandikos/": nix.thunk(() => ({ [nix.POS]: pos$11, proxyPass: "http://localhost:8080/xandikos-prefix/" })),
+                  [nix.POS]: $pos[11],
+                  "/xandikos/": nix.thunk(() => ({ [nix.POS]: $pos[10], proxyPass: "http://localhost:8080/xandikos-prefix/" })),
                 })),
               })),
             })),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 7], ["hash", 43, 7]], [["name", 57, 9], ["url", 58, 9], ["hash", 59, 9]], [["name", 62, 9], ["url", 63, 9], ["hash", 64, 9]], [["lua", 154, 15], ["finalPackage", 155, 28]], [["description", 159, 7], ["homepage", 160, 7], ["license", 161, 7], ["platforms", 162, 7], ["maintainers", 163, 7], ["mainProgram", 168, 7]], [["pname", 38, 5], ["version", 39, 5], ["src", 41, 5], ["outputs", 46, 5], ["patches", 52, 5], ["postPatch", 69, 5], ["preConfigure", 80, 5], ["nativeBuildInputs", 84, 5], ["buildInputs", 92, 5], ["mesonFlags", 114, 5], ["postInstall", 127, 5], ["__darwinAllowLocalNetworking", 135, 5], ["doInstallCheck", 136, 5], ["nativeInstallCheckInputs", 137, 5], ["installCheckInputs", 144, 5], ["installCheckPhase", 147, 5], ["strictDeps", 151, 5], ["passthru", 153, 5], ["meta", 158, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, runCommand: false, "pkg-config": false, meson: false, ninja: false, makeWrapper: false, "knot-dns": false, luajitPackages: false, libuv: false, gnutls: false, lmdb: false, jemalloc: false, systemdMinimal: false, libcap_ng: false, "dns-root-data": false, nghttp2: false, "ngtcp2-gnutls": false, fstrm: false, protobufc: false, cmocka: false, which: false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 7], ["hash", 43, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 57, 9], ["url", 58, 9], ["hash", 59, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 62, 9], ["url", 63, 9], ["hash", 64, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["lua", 154, 15], ["finalPackage", 155, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 159, 7], ["homepage", 160, 7], ["license", 161, 7], ["platforms", 162, 7], ["maintainers", 163, 7], ["mainProgram", 168, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 38, 5], ["version", 39, 5], ["src", 41, 5], ["outputs", 46, 5], ["patches", 52, 5], ["postPatch", 69, 5], ["preConfigure", 80, 5], ["nativeBuildInputs", 84, 5], ["buildInputs", 92, 5], ["mesonFlags", 114, 5], ["postInstall", 127, 5], ["__darwinAllowLocalNetworking", 135, 5], ["doInstallCheck", 136, 5], ["nativeInstallCheckInputs", 137, 5], ["installCheckInputs", 144, 5], ["installCheckPhase", 147, 5], ["strictDeps", 151, 5], ["passthru", 153, 5], ["meta", 158, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const lua = luajitPackages;
   const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "knot-resolver_6",
       version: "6.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://knot-resolver.nic.cz/release/knot-resolver-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-hFmbv4iezHiSrqvAiHUzVdYzJjVOWZK1Ol7IIwYiTuY=",
         })))),
@@ -54,13 +49,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./paths.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "logging-level-regression.patch",
             url: "https://gitlab.nic.cz/knot/knot-resolver/-/commit/ec5b6d9f1a0defa5f817bf2d1c53a5df2f2a5e99.diff",
             hash: "sha256-Bde8mIFUjf8aVBFh2TeWZMiw94VGMXkfd1+SvhzhvLo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "musl-build-regression.patch",
             url: "https://gitlab.nic.cz/knot/knot-resolver/-/commit/8c4bd515a0c0da5fbff85038322a2b9f2d077dfd.diff",
             hash: "sha256-+fHQ2pmUGTLiCP+OKb5PobFfQ2nwdEGm+IXbSpK35Ik=",
@@ -94,12 +89,12 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "meson test --print-errorlogs --no-suite snowflake\n",
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         lua: lua,
         finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Caching validating DNS resolver, from .cz domain registry",
         homepage: "https://knot-resolver.cz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

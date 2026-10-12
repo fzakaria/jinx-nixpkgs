@@ -2,50 +2,41 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sfxr-qt.nix", [[["maintainers", 5, 5]], [["enable", 15, 24]], [["enable", 18, 9], ["systemWide", 19, 9]], [["enable", 21, 25]], [["xserver", 15, 16], ["pulseaudio", 17, 16], ["pipewire", 21, 16]], [["kernelModules", 16, 12]], [["systemPackages", 22, 19]], [["imports", 11, 7], ["services", 15, 7], ["boot", 16, 7], ["environment", 22, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["enableOCR", 25, 3], ["testScript", 27, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sfxr-qt.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/sfxr-qt.nix", [["enable", 15, 24]]);
-const pos$3 = nix.positions(here + "/sfxr-qt.nix", [["enable", 18, 9], ["systemWide", 19, 9]]);
-const pos$4 = nix.positions(here + "/sfxr-qt.nix", [["enable", 21, 25]]);
-const pos$5 = nix.positions(here + "/sfxr-qt.nix", [["xserver", 15, 16], ["pulseaudio", 17, 16], ["pipewire", 21, 16]]);
-const pos$6 = nix.positions(here + "/sfxr-qt.nix", [["kernelModules", 16, 12]]);
-const pos$7 = nix.positions(here + "/sfxr-qt.nix", [["systemPackages", 22, 19]]);
-const pos$8 = nix.positions(here + "/sfxr-qt.nix", [["imports", 11, 7], ["services", 15, 7], ["boot", 16, 7], ["environment", 22, 7]]);
-const pos$9 = nix.positions(here + "/sfxr-qt.nix", [["machine", 8, 9]]);
-const pos$10 = nix.positions(here + "/sfxr-qt.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["enableOCR", 25, 3], ["testScript", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "sfxr-qt",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "fgaz"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
-            pulseaudio: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, systemWide: true })),
-            pipewire: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
+            [nix.POS]: $pos[4],
+            xserver: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
+            pulseaudio: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true, systemWide: true })),
+            pipewire: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: false })),
           })),
-          boot: nix.thunk(() => ({ [nix.POS]: pos$6, kernelModules: nix.thunk(() => ["snd-dummy"]) })),
+          boot: nix.thunk(() => ({ [nix.POS]: $pos[5], kernelModules: nix.thunk(() => ["snd-dummy"]) })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "sfxr-qt"))]),
           })),
         };

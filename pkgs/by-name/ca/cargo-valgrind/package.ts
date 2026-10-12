@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]], [["updateScript", 23, 5]], [["description", 42, 5], ["mainProgram", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 49, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["passthru", 22, 3], ["nativeBuildInputs", 26, 3], ["postInstall", 31, 3], ["checkFlags", 35, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, makeWrapper: false, valgrind: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["mainProgram", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["passthru", 22, 3], ["nativeBuildInputs", 26, 3], ["postInstall", 31, 3], ["checkFlags", 35, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const valgrind = nix.arg($, "valgrind");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cargo-valgrind",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jfrimmel",
           repo: "cargo-valgrind",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-tH1RF3Uw9KkykgbPtXNY88uTvQ0f++aCP95Sd6Zexc8=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, valgrind]),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
         "--skip=empty_tests_not_leak_in_release_mode",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cargo subcommand \"valgrind\": runs valgrind and collects its output in a helpful manner",
         mainProgram: "cargo-valgrind",
         homepage: "https://github.com/jfrimmel/cargo-valgrind",

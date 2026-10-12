@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 7], ["hash", 15, 7]], [["url", 18, 7], ["hash", 19, 7]], [["url", 22, 7], ["hash", 23, 7]], [["core", 13, 5], ["small", 17, 5], ["full", 21, 5]], [["dict-type", 49, 7], ["updateScript", 50, 7]], [["description", 54, 7], ["homepage", 55, 7], ["changelog", 56, 7], ["license", 57, 7], ["maintainers", 58, 7], ["platforms", 59, 7], ["hydraPlatforms", 61, 7]], [["pname", 32, 13], ["version", 32, 19], ["src", 34, 5], ["dontConfigure", 36, 5], ["dontBuild", 38, 5], ["installPhase", 40, 5], ["passthru", 48, 5], ["meta", 53, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, "dict-type": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 18, 7], ["hash", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["core", 13, 5], ["small", 17, 5], ["full", 21, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["dict-type", 49, 7], ["updateScript", 50, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 54, 7], ["homepage", 55, 7], ["changelog", 56, 7], ["license", 57, 7], ["maintainers", 58, 7], ["platforms", 59, 7], ["hydraPlatforms", 61, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 32, 13], ["version", 32, 19], ["src", 34, 5], ["dontConfigure", 36, 5], ["dontBuild", 38, 5], ["installPhase", 40, 5], ["passthru", 48, 5], ["meta", 53, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,25 +14,25 @@ export default nix.lambda((args) => (() => {
   const pname = "sudachidict";
   const version = "20260428";
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     core: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/WorksApplications/SudachiDict/releases/download/v${version}/sudachi-dictionary-${version}-core.zip`),
         hash: "sha256-CTsSxUa+daLpoNDr4kIVhzAM6E1k3ZwvAhE7Lccm4YM=",
       })))),
     small: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/WorksApplications/SudachiDict/releases/download/v${version}/sudachi-dictionary-${version}-small.zip`),
         hash: "sha256-okLmQST77Iz/MkdcuhZ+Q+SDlgcM0bXTR4KNKqPHIlg=",
       })))),
     full: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://github.com/WorksApplications/SudachiDict/releases/download/v${version}/sudachi-dictionary-${version}-full.zip`),
         hash: "sha256-XG7zusuqDYl5q6OERDLwd9M7N7iZEvIgIuCkEhVMZiw=",
       })))),
   }));
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: dict-type`), nix.thunk(() => ["core", "full", "small"]), nix.thunk(() => [dict_type]), nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.sel(srcs, nix.key(nix.force(dict_type)))),
@@ -51,12 +45,12 @@ install -Dm644 system_${dict_type}.dic $out/share/system.dic
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "dict-type": dict_type,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Lexicon for Sudachi",
         homepage: "https://github.com/WorksApplications/SudachiDict",
         changelog: nix.thunk(() => nix.str`https://github.com/WorksApplications/SudachiDict/releases/tag/v${version}`),

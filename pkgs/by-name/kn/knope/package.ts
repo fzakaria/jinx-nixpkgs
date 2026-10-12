@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["LIBGIT2_NO_VENDOR", 29, 7]], [["extraArgs", 38, 5]], [["updateScript", 37, 12]], [["changelog", 45, 5], ["description", 46, 5], ["homepage", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["license", 50, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["env", 29, 3], ["nativeCheckInputs", 31, 3], ["nativeInstallCheckInputs", 32, 3], ["__structuredAttrs", 34, 3], ["doInstallCheck", 35, 3], ["passthru", 37, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, git: false, lib: false, libgit2: false, "nix-update-script": false, "pkg-config": false, rustPlatform: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBGIT2_NO_VENDOR", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 37, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 45, 5], ["description", 46, 5], ["homepage", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["license", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["env", 29, 3], ["nativeCheckInputs", 31, 3], ["nativeInstallCheckInputs", 32, 3], ["__structuredAttrs", 34, 3], ["doInstallCheck", 35, 3], ["passthru", 37, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "knope",
       version: "0.23.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "knope-dev",
           repo: "knope",
           tag: nix.thunk(() => nix.str`knope/v${nix.sel(finalAttrs, "version")}`),
@@ -34,20 +29,20 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-vjjwoBHgmjzMVDyscfde/fRwm7QWFTuD9EX1+OowUm8=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libgit2]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LIBGIT2_NO_VENDOR: 1n })),
       nativeCheckInputs: nix.thunk(() => [git]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       __structuredAttrs: true,
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "knope/v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/knope-dev/knope/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Automation for changelogs and releases using conventional commits and/or changesets",
         homepage: "https://knope.tech/",

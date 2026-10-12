@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 22, 5], ["hash", 23, 5]], [["DJANGO_SETTINGS_MODULE", 35, 7]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 30, 3], ["env", 35, 3], ["enabledTestPaths", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, django: false, pytestCheckHook: false, "pytest-django": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["DJANGO_SETTINGS_MODULE", 35, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 30, 3], ["env", 35, 3], ["enabledTestPaths", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_django = nix.arg($, "pytest-django");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "django-crossdomainmedia",
       version: "0.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stefanw",
           repo: "django-crossdomainmedia",
           rev: "45af45a82e2630d99381758c7660fe9bdad06d2d",
@@ -32,10 +29,10 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [django]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_django]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], DJANGO_SETTINGS_MODULE: "tests.settings" })),
       enabledTestPaths: nix.thunk(() => ["tests/tests.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Django application to retrieve user's IP address",
         homepage: "https://github.com/stefanw/django-crossdomainmedia",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

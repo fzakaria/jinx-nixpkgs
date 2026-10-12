@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["sha256", 29, 5]], [["NIX_CFLAGS_COMPILE", 36, 7]], [["description", 63, 5], ["license", 64, 5], ["homepage", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 32, 3], ["env", 36, 3], ["buildInputs", 38, 3], ["makeFlags", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false, libjpeg: false, libx11: false, libxt: false, "alsa-lib": false, aalib: false, libxft: false, xorgproto: false, libv4l: false, libfs: false, libxaw: false, libxpm: false, libxext: false, libsm: false, libice: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["license", 64, 5], ["homepage", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 32, 3], ["env", 36, 3], ["buildInputs", 38, 3], ["makeFlags", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,17 +27,17 @@ export default nix.lambda((args) => (() => {
   const libice = nix.arg($, "libice");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xawtv",
       version: "3.107",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://linuxtv.org/downloads/xawtv/xawtv-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "055p0wia0xsj073l8mg4ifa6m81dmv6p45qyh99brramq5iylfy5",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./0001-Fix-build-for-glibc-2.32.patch")]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       buildInputs: nix.thunk(() => [
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`resdir=${nix.builtins.placeholder("out")}/share/X11`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "TV application for Linux with apps and tools such as a teletext browser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         homepage: "https://www.kraxel.org/blog/linux/xawtv/",

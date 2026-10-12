@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["pname", 37, 26], ["version", 37, 32], ["src", 37, 40], ["pnpm", 38, 13], ["fetcherVersion", 39, 5], ["hash", 40, 5]], [["updateScript", 53, 12]], [["description", 56, 5], ["changelog", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 33, 3], ["npmDeps", 35, 3], ["pnpmDeps", 36, 3], ["npmConfigHook", 42, 3], ["dontNpmInstall", 44, 3], ["installPhase", 45, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_11: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 37, 26], ["version", 37, 32], ["src", 37, 40], ["pnpm", 38, 13], ["fetcherVersion", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 56, 5], ["changelog", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 33, 3], ["npmDeps", 35, 3], ["pnpmDeps", 36, 3], ["npmConfigHook", 42, 3], ["dontNpmInstall", 44, 3], ["installPhase", 45, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_11;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nezha-theme-user",
       version: "2.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hamster1963",
           repo: "nezha-dash-v2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +35,7 @@ substituteInPlace src/components/Footer.tsx \\
       nativeBuildInputs: nix.thunk(() => [pnpm]),
       npmDeps: null,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -51,11 +47,11 @@ substituteInPlace src/components/Footer.tsx \\
       dontNpmInstall: true,
       installPhase: "runHook preInstall\n\ncp -r dist $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Nezha monitoring user frontend based on next.js",
         changelog: nix.thunk(() => nix.str`https://github.com/hamster1963/nezha-dash-v2/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/hamster1963/nezha-dash-v2",

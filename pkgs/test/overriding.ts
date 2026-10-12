@@ -2,123 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/overriding.nix", [[["entangled", 25, 17], ["overrideAttrs", 26, 17]], [["passthru", 24, 15]], [["entangled", 37, 15], ["overrideAttrs", 38, 15]], [["passthru", 36, 13]], [["pname", 45, 55]], [["pname", 48, 21]], [["expr", 53, 9], ["expected", 54, 9]], [["expr", 57, 9], ["expected", 58, 9]], [["pname", 61, 44]], [["expr", 61, 9], ["expected", 62, 9]], [["pname", 67, 39]], [["pname", 68, 13]], [["name", 65, 9], ["expr", 66, 9], ["expected", 70, 9]], [["__structuredAttrs", 76, 15], ["pname", 77, 36], ["version", 77, 42], ["src", 77, 50], ["allowedRequisites", 78, 15]], [["expr", 73, 9], ["expected", 80, 9]], [["repeatedOverrides-pname", 52, 7], ["repeatedOverrides-entangled-pname", 56, 7], ["overriding-using-only-attrset", 60, 7], ["overriding-using-only-attrset-no-final-attrs", 64, 7], ["structuredAttrs-allowedRequisites-nullability", 72, 7]], [["greeting", 102, 15]], [["preferLocalBuild", 100, 21], ["allowSubstitute", 100, 38], ["passthru", 101, 13]], [["constructDrv", 87, 9], ["excludeDrvArgNames", 88, 9], ["extendDrvArgs", 91, 9]], [["pname", 108, 30], ["version", 108, 36], ["src", 108, 44], ["specialArg", 109, 9]], [["foo", 119, 13], ["bar", 120, 13]], [["passthru", 118, 11]], [["specialArg", 128, 11]], [["expr", 134, 9], ["expected", 135, 9]], [["expr", 138, 9], ["expected", 139, 9]], [["expr", 142, 9], ["expected", 143, 9]], [["expr", 146, 9], ["expected", 147, 9]], [["extendMkDerivation-helloLocal-imp-arguments", 133, 7], ["extendMkDerivation-helloLocal-plain-equivalence", 137, 7], ["extendMkDerivation-helloLocal-finalAttrs", 141, 7], ["extendMkDerivation-helloLocal-specialArg", 145, 7]], [["url", 184, 9], ["sha256", 185, 9]], [["outputHash", 192, 13], ["outputHashAlgo", 193, 13]], [["outputHash", 197, 11], ["outputHashAlgo", 198, 11]], [["expr", 190, 9], ["expected", 196, 9]], [["hash", 203, 52]], [["outputHash", 204, 13], ["outputHashAlgo", 205, 13]], [["outputHash", 209, 11], ["outputHashAlgo", 210, 11]], [["expr", 202, 9], ["expected", 208, 9]], [["hash", 215, 52]], [["outputHash", 216, 13], ["outputHashAlgo", 217, 13]], [["outputHash", 221, 11], ["outputHashAlgo", 222, 11]], [["expr", 214, 9], ["expected", 220, 9]], [["test-fetchgit-hash-compat", 189, 7], ["test-fetchgit-overrideAttrs-hash", 201, 7], ["test-fetchurl-overrideAttrs-hash-empty", 213, 7]], [["url", 232, 9], ["sha256", 233, 9]], [["outputHash", 240, 13], ["outputHashAlgo", 241, 13]], [["outputHash", 245, 11], ["outputHashAlgo", 246, 11]], [["expr", 238, 9], ["expected", 244, 9]], [["hash", 251, 52]], [["outputHash", 252, 13], ["outputHashAlgo", 253, 13]], [["outputHash", 257, 11], ["outputHashAlgo", 258, 11]], [["expr", 250, 9], ["expected", 256, 9]], [["hash", 263, 52]], [["outputHash", 264, 13], ["outputHashAlgo", 265, 13]], [["outputHash", 269, 11], ["outputHashAlgo", 270, 11]], [["expr", 262, 9], ["expected", 268, 9]], [["test-fetchurl-hash-compat", 237, 7], ["test-fetchurl-overrideAttrs-hash", 249, 7], ["test-fetchurl-overrideAttrs-hash-empty", 261, 7]], [["url", 279, 9], ["rev", 280, 9], ["hash", 281, 9]], [["url", 285, 9], ["rev", 286, 9], ["hash", 287, 9]], [["rev", 290, 9], ["hash", 291, 9]], [["expr", 296, 9], ["expected", 297, 9]], [["expr", 301, 9], ["expected", 302, 9]], [["expr", 306, 9], ["expected", 310, 9]], [["expr", 317, 9], ["expected", 321, 9]], [["hash-outputHash-equivalence", 295, 7], ["hash-overridability-outputHash", 300, 7], ["hash-overridability-drvPath", 305, 7], ["hash-overridability-outPath", 316, 7]], [["owner", 335, 11], ["repo", 336, 11], ["rev", 337, 11], ["hash", 338, 11]], [["description", 344, 11], ["homepage", 345, 11], ["license", 346, 11], ["maintainers", 347, 11]], [["pname", 331, 9], ["version", 332, 9], ["src", 334, 9], ["vendorHash", 341, 9], ["meta", 343, 9]], [["owner", 356, 11], ["repo", 357, 11], ["rev", 358, 11], ["hash", 359, 11]], [["description", 365, 11], ["homepage", 366, 11], ["license", 367, 11], ["maintainers", 368, 11]], [["pname", 352, 9], ["version", 353, 9], ["src", 355, 9], ["vendorHash", 362, 9], ["meta", 364, 9]], [["owner", 377, 41], ["repo", 377, 47], ["rev", 378, 13], ["hash", 379, 13]], [["version", 374, 11], ["src", 376, 11], ["vendorHash", 382, 11]], [["FOO", 391, 17]], [["overrideModAttrs", 389, 13]], [["passthru", 388, 11]], [["vendorHash", 398, 46]], [["drvPath", 413, 17], ["name", 414, 17], ["outPath", 415, 17]], [["drvPath", 405, 15], ["name", 406, 15], ["pname", 407, 15], ["version", 408, 15], ["vendorHash", 409, 15], ["goModules", 411, 13]], [["expr", 421, 11], ["expected", 422, 11]], [["expr", 425, 9], ["expected", 426, 9]], [["expr", 429, 9], ["expected", 430, 9]], [["buildGoModule-overrideAttrs", 401, 7], ["buildGoModule-goModules-overrideAttrs", 424, 7], ["buildGoModule-goModules-overrideAttrs-vendored", 428, 7]], [["pname", 442, 11], ["version", 443, 11], ["pyproject", 444, 11], ["src", 445, 11]], [["stdenv", 451, 11]], [["buildPythonPackage", 450, 9]], [["stdenv", 456, 11]], [["buildPythonPackage", 455, 9]], [["stdenv", 461, 11]], [["buildPythonPackage", 460, 9]], [["overridePythonAttrsFlag", 468, 11]], [["overridePythonAttrsFlag", 474, 13], ["overridePythonAttrsFlagP1", 475, 13]], [["FOO", 482, 13], ["BAR", 483, 13]], [["expr", 489, 9], ["expected", 490, 9]], [["expr", 493, 9], ["expected", 494, 9]], [["expr", 497, 9], ["expected", 498, 9]], [["expr", 502, 9], ["expected", 503, 9]], [["expr", 506, 9], ["expected", 507, 9]], [["overridePythonAttrsFlag", 510, 52]], [["expr", 510, 9], ["expected", 511, 9]], [["overridePythonAttrsFlag", 516, 13], ["overridePythonAttrsFlagP1", 517, 13]], [["overridePythonAttrsFlag", 521, 11], ["overridePythonAttrsFlagP1", 522, 11]], [["expr", 514, 9], ["expected", 520, 9]], [["FOO", 528, 13], ["BAR", 529, 13]], [["FOO", 533, 11], ["BAR", 534, 11]], [["expr", 526, 9], ["expected", 532, 9]], [["expr", 538, 9], ["expected", 539, 9]], [["expr", 542, 9], ["expected", 543, 9]], [["a", 547, 52]], [["b", 548, 58]], [["c", 549, 52]], [["d", 550, 58]], [["expr", 546, 9], ["expected", 553, 9]], [["buildPythonPackage-override-gccStdenv", 488, 7], ["buildPythonPackage-override-clangStdenv", 492, 7], ["buildPythonPackage-override-libcxxStdenv", 496, 7], ["overridePythonAttrs", 501, 7], ["overridePythonAttrs-nested", 505, 7], ["overridePythonAttrs-plain", 509, 7], ["overridePythonAttrs-finalAttrs", 513, 7], ["overrideAttrs-overridePythonAttrs-test-overrideAttrs", 525, 7], ["overrideAttrs-overridePythonAttrs-test-overridePythonAttrs", 537, 7], ["overrideAttrs-overridePythonAttrs-test-commutation", 541, 7], ["chain-of-overrides", 545, 7]], [["tests", 564, 61]], [["tests", 563, 13], ["failures", 564, 5]], [["__structuredAttrs", 560, 3], ["name", 561, 3], ["passthru", 562, 3], ["testResults", 566, 3], ["buildCommand", 567, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/overriding.nix", [["entangled", 25, 17], ["overrideAttrs", 26, 17]]);
-const pos$2 = nix.positions(here + "/overriding.nix", [["passthru", 24, 15]]);
-const pos$3 = nix.positions(here + "/overriding.nix", [["entangled", 37, 15], ["overrideAttrs", 38, 15]]);
-const pos$4 = nix.positions(here + "/overriding.nix", [["passthru", 36, 13]]);
-const pos$5 = nix.positions(here + "/overriding.nix", [["pname", 45, 55]]);
-const pos$6 = nix.positions(here + "/overriding.nix", [["pname", 48, 21]]);
-const pos$7 = nix.positions(here + "/overriding.nix", [["expr", 53, 9], ["expected", 54, 9]]);
-const pos$8 = nix.positions(here + "/overriding.nix", [["expr", 57, 9], ["expected", 58, 9]]);
-const pos$9 = nix.positions(here + "/overriding.nix", [["pname", 61, 44]]);
-const pos$10 = nix.positions(here + "/overriding.nix", [["expr", 61, 9], ["expected", 62, 9]]);
-const pos$11 = nix.positions(here + "/overriding.nix", [["pname", 67, 39]]);
-const pos$12 = nix.positions(here + "/overriding.nix", [["pname", 68, 13]]);
-const pos$13 = nix.positions(here + "/overriding.nix", [["name", 65, 9], ["expr", 66, 9], ["expected", 70, 9]]);
-const pos$14 = nix.positions(here + "/overriding.nix", [["__structuredAttrs", 76, 15], ["pname", 77, 36], ["version", 77, 42], ["src", 77, 50], ["allowedRequisites", 78, 15]]);
-const pos$15 = nix.positions(here + "/overriding.nix", [["expr", 73, 9], ["expected", 80, 9]]);
-const pos$16 = nix.positions(here + "/overriding.nix", [["repeatedOverrides-pname", 52, 7], ["repeatedOverrides-entangled-pname", 56, 7], ["overriding-using-only-attrset", 60, 7], ["overriding-using-only-attrset-no-final-attrs", 64, 7], ["structuredAttrs-allowedRequisites-nullability", 72, 7]]);
 const formals$2 = { args: { preferLocalBuild: true, allowSubstitute: true, specialArg: true }, ellipsis: true };
-const pos$17 = nix.positions(here + "/overriding.nix", [["greeting", 102, 15]]);
-const pos$18 = nix.positions(here + "/overriding.nix", [["preferLocalBuild", 100, 21], ["allowSubstitute", 100, 38], ["passthru", 101, 13]]);
-const pos$19 = nix.positions(here + "/overriding.nix", [["constructDrv", 87, 9], ["excludeDrvArgNames", 88, 9], ["extendDrvArgs", 91, 9]]);
-const pos$20 = nix.positions(here + "/overriding.nix", [["pname", 108, 30], ["version", 108, 36], ["src", 108, 44], ["specialArg", 109, 9]]);
-const pos$21 = nix.positions(here + "/overriding.nix", [["foo", 119, 13], ["bar", 120, 13]]);
-const pos$22 = nix.positions(here + "/overriding.nix", [["passthru", 118, 11]]);
-const pos$23 = nix.positions(here + "/overriding.nix", [["specialArg", 128, 11]]);
-const pos$24 = nix.positions(here + "/overriding.nix", [["expr", 134, 9], ["expected", 135, 9]]);
-const pos$25 = nix.positions(here + "/overriding.nix", [["expr", 138, 9], ["expected", 139, 9]]);
-const pos$26 = nix.positions(here + "/overriding.nix", [["expr", 142, 9], ["expected", 143, 9]]);
-const pos$27 = nix.positions(here + "/overriding.nix", [["expr", 146, 9], ["expected", 147, 9]]);
-const pos$28 = nix.positions(here + "/overriding.nix", [["extendMkDerivation-helloLocal-imp-arguments", 133, 7], ["extendMkDerivation-helloLocal-plain-equivalence", 137, 7], ["extendMkDerivation-helloLocal-finalAttrs", 141, 7], ["extendMkDerivation-helloLocal-specialArg", 145, 7]]);
-const pos$29 = nix.positions(here + "/overriding.nix", [["url", 184, 9], ["sha256", 185, 9]]);
-const pos$30 = nix.positions(here + "/overriding.nix", [["outputHash", 192, 13], ["outputHashAlgo", 193, 13]]);
-const pos$31 = nix.positions(here + "/overriding.nix", [["outputHash", 197, 11], ["outputHashAlgo", 198, 11]]);
-const pos$32 = nix.positions(here + "/overriding.nix", [["expr", 190, 9], ["expected", 196, 9]]);
-const pos$33 = nix.positions(here + "/overriding.nix", [["hash", 203, 52]]);
-const pos$34 = nix.positions(here + "/overriding.nix", [["outputHash", 204, 13], ["outputHashAlgo", 205, 13]]);
-const pos$35 = nix.positions(here + "/overriding.nix", [["outputHash", 209, 11], ["outputHashAlgo", 210, 11]]);
-const pos$36 = nix.positions(here + "/overriding.nix", [["expr", 202, 9], ["expected", 208, 9]]);
-const pos$37 = nix.positions(here + "/overriding.nix", [["hash", 215, 52]]);
-const pos$38 = nix.positions(here + "/overriding.nix", [["outputHash", 216, 13], ["outputHashAlgo", 217, 13]]);
-const pos$39 = nix.positions(here + "/overriding.nix", [["outputHash", 221, 11], ["outputHashAlgo", 222, 11]]);
-const pos$40 = nix.positions(here + "/overriding.nix", [["expr", 214, 9], ["expected", 220, 9]]);
-const pos$41 = nix.positions(here + "/overriding.nix", [["test-fetchgit-hash-compat", 189, 7], ["test-fetchgit-overrideAttrs-hash", 201, 7], ["test-fetchurl-overrideAttrs-hash-empty", 213, 7]]);
-const pos$42 = nix.positions(here + "/overriding.nix", [["url", 232, 9], ["sha256", 233, 9]]);
-const pos$43 = nix.positions(here + "/overriding.nix", [["outputHash", 240, 13], ["outputHashAlgo", 241, 13]]);
-const pos$44 = nix.positions(here + "/overriding.nix", [["outputHash", 245, 11], ["outputHashAlgo", 246, 11]]);
-const pos$45 = nix.positions(here + "/overriding.nix", [["expr", 238, 9], ["expected", 244, 9]]);
-const pos$46 = nix.positions(here + "/overriding.nix", [["hash", 251, 52]]);
-const pos$47 = nix.positions(here + "/overriding.nix", [["outputHash", 252, 13], ["outputHashAlgo", 253, 13]]);
-const pos$48 = nix.positions(here + "/overriding.nix", [["outputHash", 257, 11], ["outputHashAlgo", 258, 11]]);
-const pos$49 = nix.positions(here + "/overriding.nix", [["expr", 250, 9], ["expected", 256, 9]]);
-const pos$50 = nix.positions(here + "/overriding.nix", [["hash", 263, 52]]);
-const pos$51 = nix.positions(here + "/overriding.nix", [["outputHash", 264, 13], ["outputHashAlgo", 265, 13]]);
-const pos$52 = nix.positions(here + "/overriding.nix", [["outputHash", 269, 11], ["outputHashAlgo", 270, 11]]);
-const pos$53 = nix.positions(here + "/overriding.nix", [["expr", 262, 9], ["expected", 268, 9]]);
-const pos$54 = nix.positions(here + "/overriding.nix", [["test-fetchurl-hash-compat", 237, 7], ["test-fetchurl-overrideAttrs-hash", 249, 7], ["test-fetchurl-overrideAttrs-hash-empty", 261, 7]]);
-const pos$55 = nix.positions(here + "/overriding.nix", [["url", 279, 9], ["rev", 280, 9], ["hash", 281, 9]]);
-const pos$56 = nix.positions(here + "/overriding.nix", [["url", 285, 9], ["rev", 286, 9], ["hash", 287, 9]]);
-const pos$57 = nix.positions(here + "/overriding.nix", [["rev", 290, 9], ["hash", 291, 9]]);
-const pos$58 = nix.positions(here + "/overriding.nix", [["expr", 296, 9], ["expected", 297, 9]]);
-const pos$59 = nix.positions(here + "/overriding.nix", [["expr", 301, 9], ["expected", 302, 9]]);
-const pos$60 = nix.positions(here + "/overriding.nix", [["expr", 306, 9], ["expected", 310, 9]]);
-const pos$61 = nix.positions(here + "/overriding.nix", [["expr", 317, 9], ["expected", 321, 9]]);
-const pos$62 = nix.positions(here + "/overriding.nix", [["hash-outputHash-equivalence", 295, 7], ["hash-overridability-outputHash", 300, 7], ["hash-overridability-drvPath", 305, 7], ["hash-overridability-outPath", 316, 7]]);
-const pos$63 = nix.positions(here + "/overriding.nix", [["owner", 335, 11], ["repo", 336, 11], ["rev", 337, 11], ["hash", 338, 11]]);
-const pos$64 = nix.positions(here + "/overriding.nix", [["description", 344, 11], ["homepage", 345, 11], ["license", 346, 11], ["maintainers", 347, 11]]);
-const pos$65 = nix.positions(here + "/overriding.nix", [["pname", 331, 9], ["version", 332, 9], ["src", 334, 9], ["vendorHash", 341, 9], ["meta", 343, 9]]);
-const pos$66 = nix.positions(here + "/overriding.nix", [["owner", 356, 11], ["repo", 357, 11], ["rev", 358, 11], ["hash", 359, 11]]);
-const pos$67 = nix.positions(here + "/overriding.nix", [["description", 365, 11], ["homepage", 366, 11], ["license", 367, 11], ["maintainers", 368, 11]]);
-const pos$68 = nix.positions(here + "/overriding.nix", [["pname", 352, 9], ["version", 353, 9], ["src", 355, 9], ["vendorHash", 362, 9], ["meta", 364, 9]]);
-const pos$69 = nix.positions(here + "/overriding.nix", [["owner", 377, 41], ["repo", 377, 47], ["rev", 378, 13], ["hash", 379, 13]]);
-const pos$70 = nix.positions(here + "/overriding.nix", [["version", 374, 11], ["src", 376, 11], ["vendorHash", 382, 11]]);
-const pos$71 = nix.positions(here + "/overriding.nix", [["FOO", 391, 17]]);
-const pos$72 = nix.positions(here + "/overriding.nix", [["overrideModAttrs", 389, 13]]);
-const pos$73 = nix.positions(here + "/overriding.nix", [["passthru", 388, 11]]);
-const pos$74 = nix.positions(here + "/overriding.nix", [["vendorHash", 398, 46]]);
-const pos$75 = nix.positions(here + "/overriding.nix", [["drvPath", 413, 17], ["name", 414, 17], ["outPath", 415, 17]]);
-const pos$76 = nix.positions(here + "/overriding.nix", [["drvPath", 405, 15], ["name", 406, 15], ["pname", 407, 15], ["version", 408, 15], ["vendorHash", 409, 15], ["goModules", 411, 13]]);
-const pos$77 = nix.positions(here + "/overriding.nix", [["expr", 421, 11], ["expected", 422, 11]]);
-const pos$78 = nix.positions(here + "/overriding.nix", [["expr", 425, 9], ["expected", 426, 9]]);
-const pos$79 = nix.positions(here + "/overriding.nix", [["expr", 429, 9], ["expected", 430, 9]]);
-const pos$80 = nix.positions(here + "/overriding.nix", [["buildGoModule-overrideAttrs", 401, 7], ["buildGoModule-goModules-overrideAttrs", 424, 7], ["buildGoModule-goModules-overrideAttrs-vendored", 428, 7]]);
 const formals$3 = { args: { buildPythonPackage: false, emptyDirectory: false }, ellipsis: false };
-const pos$81 = nix.positions(here + "/overriding.nix", [["pname", 442, 11], ["version", 443, 11], ["pyproject", 444, 11], ["src", 445, 11]]);
-const pos$82 = nix.positions(here + "/overriding.nix", [["stdenv", 451, 11]]);
-const pos$83 = nix.positions(here + "/overriding.nix", [["buildPythonPackage", 450, 9]]);
-const pos$84 = nix.positions(here + "/overriding.nix", [["stdenv", 456, 11]]);
-const pos$85 = nix.positions(here + "/overriding.nix", [["buildPythonPackage", 455, 9]]);
-const pos$86 = nix.positions(here + "/overriding.nix", [["stdenv", 461, 11]]);
-const pos$87 = nix.positions(here + "/overriding.nix", [["buildPythonPackage", 460, 9]]);
-const pos$88 = nix.positions(here + "/overriding.nix", [["overridePythonAttrsFlag", 468, 11]]);
-const pos$89 = nix.positions(here + "/overriding.nix", [["overridePythonAttrsFlag", 474, 13], ["overridePythonAttrsFlagP1", 475, 13]]);
-const pos$90 = nix.positions(here + "/overriding.nix", [["FOO", 482, 13], ["BAR", 483, 13]]);
-const pos$91 = nix.positions(here + "/overriding.nix", [["expr", 489, 9], ["expected", 490, 9]]);
-const pos$92 = nix.positions(here + "/overriding.nix", [["expr", 493, 9], ["expected", 494, 9]]);
-const pos$93 = nix.positions(here + "/overriding.nix", [["expr", 497, 9], ["expected", 498, 9]]);
-const pos$94 = nix.positions(here + "/overriding.nix", [["expr", 502, 9], ["expected", 503, 9]]);
-const pos$95 = nix.positions(here + "/overriding.nix", [["expr", 506, 9], ["expected", 507, 9]]);
-const pos$96 = nix.positions(here + "/overriding.nix", [["overridePythonAttrsFlag", 510, 52]]);
-const pos$97 = nix.positions(here + "/overriding.nix", [["expr", 510, 9], ["expected", 511, 9]]);
-const pos$98 = nix.positions(here + "/overriding.nix", [["overridePythonAttrsFlag", 516, 13], ["overridePythonAttrsFlagP1", 517, 13]]);
-const pos$99 = nix.positions(here + "/overriding.nix", [["overridePythonAttrsFlag", 521, 11], ["overridePythonAttrsFlagP1", 522, 11]]);
-const pos$100 = nix.positions(here + "/overriding.nix", [["expr", 514, 9], ["expected", 520, 9]]);
-const pos$101 = nix.positions(here + "/overriding.nix", [["FOO", 528, 13], ["BAR", 529, 13]]);
-const pos$102 = nix.positions(here + "/overriding.nix", [["FOO", 533, 11], ["BAR", 534, 11]]);
-const pos$103 = nix.positions(here + "/overriding.nix", [["expr", 526, 9], ["expected", 532, 9]]);
-const pos$104 = nix.positions(here + "/overriding.nix", [["expr", 538, 9], ["expected", 539, 9]]);
-const pos$105 = nix.positions(here + "/overriding.nix", [["expr", 542, 9], ["expected", 543, 9]]);
-const pos$106 = nix.positions(here + "/overriding.nix", [["a", 547, 52]]);
-const pos$107 = nix.positions(here + "/overriding.nix", [["b", 548, 58]]);
-const pos$108 = nix.positions(here + "/overriding.nix", [["c", 549, 52]]);
-const pos$109 = nix.positions(here + "/overriding.nix", [["d", 550, 58]]);
-const pos$110 = nix.positions(here + "/overriding.nix", [["expr", 546, 9], ["expected", 553, 9]]);
-const pos$111 = nix.positions(here + "/overriding.nix", [["buildPythonPackage-override-gccStdenv", 488, 7], ["buildPythonPackage-override-clangStdenv", 492, 7], ["buildPythonPackage-override-libcxxStdenv", 496, 7], ["overridePythonAttrs", 501, 7], ["overridePythonAttrs-nested", 505, 7], ["overridePythonAttrs-plain", 509, 7], ["overridePythonAttrs-finalAttrs", 513, 7], ["overrideAttrs-overridePythonAttrs-test-overrideAttrs", 525, 7], ["overrideAttrs-overridePythonAttrs-test-overridePythonAttrs", 537, 7], ["overrideAttrs-overridePythonAttrs-test-commutation", 541, 7], ["chain-of-overrides", 545, 7]]);
-const pos$112 = nix.positions(here + "/overriding.nix", [["tests", 564, 61]]);
-const pos$113 = nix.positions(here + "/overriding.nix", [["tests", 563, 13], ["failures", 564, 5]]);
-const pos$114 = nix.positions(here + "/overriding.nix", [["__structuredAttrs", 560, 3], ["name", 561, 3], ["passthru", 562, 3], ["testResults", 566, 3], ["buildCommand", 567, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -128,59 +15,59 @@ export default nix.lambda((args) => (() => {
   const tests = nix.thunk(() => nix.update(tests_stdenv, nix.update(test_extendMkDerivation, nix.update(tests_fetchgit, nix.update(tests_fetchhg, nix.update(tests_fetchurl, nix.update(tests_go, tests_python)))))));
   const tests_stdenv = nix.thunk(() => (() => {
     const addEntangled = (origOverrideAttrs) => (f) => nix.app(origOverrideAttrs, nix.thunk(() => nix.app(nix.sel(lib, "composeExtensions"), f, (self) => (super$) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           passthru: nix.thunk(() => nix.update(nix.sel(super$, "passthru"), {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             entangled: nix.thunk(() => nix.app(nix.sel(super$, "passthru", "entangled", "overrideAttrs"), f)),
             overrideAttrs: nix.thunk(() => nix.app(addEntangled, nix.thunk(() => nix.sel(self, "overrideAttrs")))),
           })),
         }))));
     const entangle = (pkg1) => (pkg2) => nix.app(nix.sel(pkg1, "overrideAttrs"), (self) => (super$) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         passthru: nix.thunk(() => nix.update(nix.sel(super$, "passthru"), {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           entangled: pkg2,
           overrideAttrs: nix.thunk(() => nix.app(addEntangled, nix.thunk(() => nix.sel(self, "overrideAttrs")))),
         })),
       }));
     const example = nix.thunk(() => nix.app(entangle, nix.thunk(() => nix.sel(pkgs, "hello")), nix.thunk(() => nix.sel(pkgs, "figlet"))));
     const overrides1 = nix.thunk(() => nix.app(nix.sel(example, "overrideAttrs"), (_) => (super$) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: nix.thunk(() => nix.str`a-better-${nix.sel(super$, "pname")}`),
       })));
     const repeatedOverrides = nix.thunk(() => nix.app(nix.sel(overrides1, "overrideAttrs"), (_) => (super$) => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: nix.thunk(() => nix.str`${nix.sel(super$, "pname")}-with-blackjack`),
       })));
     return {
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       "repeatedOverrides-pname": nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         expr: nix.thunk(() => nix.sel(repeatedOverrides, "pname")),
         expected: "a-better-hello-with-blackjack",
       })),
       "repeatedOverrides-entangled-pname": nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         expr: nix.thunk(() => nix.sel(repeatedOverrides, "entangled", "pname")),
         expected: "a-better-figlet-with-blackjack",
       })),
       "overriding-using-only-attrset": nix.thunk(() => ({
-        [nix.POS]: pos$10,
-        expr: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "hello", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$9, pname: "hello-overriden" }))), "pname")),
+        [nix.POS]: $pos[9],
+        expr: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "hello", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[8], pname: "hello-overriden" }))), "pname")),
         expected: "hello-overriden",
       })),
       "overriding-using-only-attrset-no-final-attrs": nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         name: "overriding-using-only-attrset-no-final-attrs",
-        expr: nix.thunk(() => nix.sel(nix.app(nix.sel(nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({ [nix.POS]: pos$11, pname: "hello-no-final-attrs" }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$12, pname: "hello-no-final-attrs-overridden" }))), "pname")),
+        expr: nix.thunk(() => nix.sel(nix.app(nix.sel(nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({ [nix.POS]: $pos[10], pname: "hello-no-final-attrs" }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[11], pname: "hello-no-final-attrs-overridden" }))), "pname")),
         expected: "hello-no-final-attrs-overridden",
       })),
       "structuredAttrs-allowedRequisites-nullability": nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         expr: nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), nix.thunk(() => nix.builtins.storeDir), nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(pkgs, "hello"));
               return {
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               __structuredAttrs: true,
               pname: nix.thunk(() => nix.attr(from, "pname")),
               version: nix.thunk(() => nix.attr(from, "version")),
@@ -194,7 +81,7 @@ export default nix.lambda((args) => (() => {
   })());
   const test_extendMkDerivation = nix.thunk(() => (() => {
     const mkLocalDerivation = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         constructDrv: nix.thunk(() => nix.sel(pkgs, "stdenv", "mkDerivation")),
         excludeDrvArgNames: nix.thunk(() => ["specialArg"]),
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -204,11 +91,11 @@ export default nix.lambda((args) => (() => {
           const allowSubstitute = nix.argOr($_1, "allowSubstitute", () => false);
           const specialArg = nix.argOr($_1, "specialArg", () => (_) => false);
           return {
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             preferLocalBuild: preferLocalBuild,
             allowSubstitute: allowSubstitute,
             passthru: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "passthru"), {
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               greeting: nix.thunk(() => (nix.asBool(nix.app(specialArg, "Hi!")) ? "Hi!" : "Hello!")),
             })),
           };
@@ -217,7 +104,7 @@ export default nix.lambda((args) => (() => {
     const helloLocalPlainAttrs = nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "hello"));
       return {
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -226,36 +113,36 @@ export default nix.lambda((args) => (() => {
     })());
     const helloLocalPlain = nix.thunk(() => nix.app(mkLocalDerivation, helloLocalPlainAttrs));
     const helloLocal = nix.thunk(() => nix.app(mkLocalDerivation, (finalAttrs) => nix.update(helloLocalPlainAttrs, {
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         passthru: nix.thunk(() => nix.update(nix.selOr(pkgs, () => ({}), "hello", "passthru"), {
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           foo: "a",
           bar: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "passthru", "foo")}b`),
         })),
       })));
     const hiLocal = nix.thunk(() => nix.app(mkLocalDerivation, nix.thunk(() => nix.update(helloLocalPlainAttrs, {
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         specialArg: (s) => nix.eq(nix.app(nix.sel(lib, "stringLength"), s), 3n),
       }))));
     return {
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       "extendMkDerivation-helloLocal-imp-arguments": nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         expr: nix.thunk(() => nix.sel(helloLocal, "preferLocalBuild")),
         expected: true,
       })),
       "extendMkDerivation-helloLocal-plain-equivalence": nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         expr: nix.thunk(() => nix.sel(helloLocal, "drvPath")),
         expected: nix.thunk(() => nix.sel(helloLocalPlain, "drvPath")),
       })),
       "extendMkDerivation-helloLocal-finalAttrs": nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         expr: nix.thunk(() => nix.sel(helloLocal, "bar")),
         expected: "ab",
       })),
       "extendMkDerivation-helloLocal-specialArg": nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         expr: nix.thunk(() => nix.sel(hiLocal, "greeting")),
         expected: "Hi!",
       })),
@@ -272,45 +159,45 @@ export default nix.lambda((args) => (() => {
     const fakeSha256_1 = nix.thunk(() => nix.app(genNonzeroFakeHash, nix.thunk(() => nix.sel(lib, "fakeSha256")), "1"));
     const fakeHash_2 = nix.thunk(() => nix.app(genNonzeroFakeHash, nix.thunk(() => nix.sel(lib, "fakeHash")), "B"));
     const src_with_sha256 = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchgit"), nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         url: "https://example.com/source.git",
         sha256: fakeSha256_1,
       }))));
     return {
-      [nix.POS]: pos$41,
+      [nix.POS]: $pos[40],
       "test-fetchgit-hash-compat": nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         expr: nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           outputHash: nix.thunk(() => nix.attr(src_with_sha256, "outputHash")),
           outputHashAlgo: nix.thunk(() => nix.attr(src_with_sha256, "outputHashAlgo")),
         })),
-        expected: nix.thunk(() => ({ [nix.POS]: pos$31, outputHash: fakeSha256_1, outputHashAlgo: "sha256" })),
+        expected: nix.thunk(() => ({ [nix.POS]: $pos[30], outputHash: fakeSha256_1, outputHashAlgo: "sha256" })),
       })),
       "test-fetchgit-overrideAttrs-hash": nix.thunk(() => ({
-        [nix.POS]: pos$36,
+        [nix.POS]: $pos[35],
         expr: nix.thunk(() => (() => {
-          const from = nix.thunk(() => nix.app(nix.sel(src_with_sha256, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$33, hash: fakeHash_2 }))));
+          const from = nix.thunk(() => nix.app(nix.sel(src_with_sha256, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[32], hash: fakeHash_2 }))));
           return {
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           outputHash: nix.thunk(() => nix.attr(from, "outputHash")),
           outputHashAlgo: nix.thunk(() => nix.attr(from, "outputHashAlgo")),
         };
         })()),
-        expected: nix.thunk(() => ({ [nix.POS]: pos$35, outputHash: fakeHash_2, outputHashAlgo: null })),
+        expected: nix.thunk(() => ({ [nix.POS]: $pos[34], outputHash: fakeHash_2, outputHashAlgo: null })),
       })),
       "test-fetchurl-overrideAttrs-hash-empty": nix.thunk(() => ({
-        [nix.POS]: pos$40,
+        [nix.POS]: $pos[39],
         expr: nix.thunk(() => (() => {
-          const from = nix.thunk(() => nix.app(nix.sel(src_with_sha256, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$37, hash: "" }))));
+          const from = nix.thunk(() => nix.app(nix.sel(src_with_sha256, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[36], hash: "" }))));
           return {
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           outputHash: nix.thunk(() => nix.attr(from, "outputHash")),
           outputHashAlgo: nix.thunk(() => nix.attr(from, "outputHashAlgo")),
         };
         })()),
         expected: nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           outputHash: nix.thunk(() => nix.sel(lib, "fakeHash")),
           outputHashAlgo: null,
         })),
@@ -321,45 +208,45 @@ export default nix.lambda((args) => (() => {
     const fakeSha256_1 = nix.thunk(() => nix.app(genNonzeroFakeHash, nix.thunk(() => nix.sel(lib, "fakeSha256")), "1"));
     const fakeHash_2 = nix.thunk(() => nix.app(genNonzeroFakeHash, nix.thunk(() => nix.sel(lib, "fakeHash")), "B"));
     const src_with_sha256 = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-        [nix.POS]: pos$42,
+        [nix.POS]: $pos[41],
         url: "https://example.com/source.tar.gz",
         sha256: fakeSha256_1,
       }))));
     return {
-      [nix.POS]: pos$54,
+      [nix.POS]: $pos[53],
       "test-fetchurl-hash-compat": nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         expr: nix.thunk(() => ({
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           outputHash: nix.thunk(() => nix.attr(src_with_sha256, "outputHash")),
           outputHashAlgo: nix.thunk(() => nix.attr(src_with_sha256, "outputHashAlgo")),
         })),
-        expected: nix.thunk(() => ({ [nix.POS]: pos$44, outputHash: fakeSha256_1, outputHashAlgo: "sha256" })),
+        expected: nix.thunk(() => ({ [nix.POS]: $pos[43], outputHash: fakeSha256_1, outputHashAlgo: "sha256" })),
       })),
       "test-fetchurl-overrideAttrs-hash": nix.thunk(() => ({
-        [nix.POS]: pos$49,
+        [nix.POS]: $pos[48],
         expr: nix.thunk(() => (() => {
-          const from = nix.thunk(() => nix.app(nix.sel(src_with_sha256, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$46, hash: fakeHash_2 }))));
+          const from = nix.thunk(() => nix.app(nix.sel(src_with_sha256, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[45], hash: fakeHash_2 }))));
           return {
-          [nix.POS]: pos$47,
+          [nix.POS]: $pos[46],
           outputHash: nix.thunk(() => nix.attr(from, "outputHash")),
           outputHashAlgo: nix.thunk(() => nix.attr(from, "outputHashAlgo")),
         };
         })()),
-        expected: nix.thunk(() => ({ [nix.POS]: pos$48, outputHash: fakeHash_2, outputHashAlgo: null })),
+        expected: nix.thunk(() => ({ [nix.POS]: $pos[47], outputHash: fakeHash_2, outputHashAlgo: null })),
       })),
       "test-fetchurl-overrideAttrs-hash-empty": nix.thunk(() => ({
-        [nix.POS]: pos$53,
+        [nix.POS]: $pos[52],
         expr: nix.thunk(() => (() => {
-          const from = nix.thunk(() => nix.app(nix.sel(src_with_sha256, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$50, hash: "" }))));
+          const from = nix.thunk(() => nix.app(nix.sel(src_with_sha256, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[49], hash: "" }))));
           return {
-          [nix.POS]: pos$51,
+          [nix.POS]: $pos[50],
           outputHash: nix.thunk(() => nix.attr(from, "outputHash")),
           outputHashAlgo: nix.thunk(() => nix.attr(from, "outputHashAlgo")),
         };
         })()),
         expected: nix.thunk(() => ({
-          [nix.POS]: pos$52,
+          [nix.POS]: $pos[51],
           outputHash: nix.thunk(() => nix.sel(lib, "fakeHash")),
           outputHashAlgo: null,
         })),
@@ -369,33 +256,33 @@ export default nix.lambda((args) => (() => {
   const tests_fetchhg = nix.thunk(() => (() => {
     const ruamel_0_18_14_hash = "sha256-HDkPPp1xI3uoGYlS9mwPp1ZjG2gKvx6vog0Blj6tBuI=";
     const ruamel_0_18_14_src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchhg"), nix.thunk(() => ({
-        [nix.POS]: pos$55,
+        [nix.POS]: $pos[54],
         url: "http://hg.code.sf.net/p/ruamel-yaml/code",
         rev: "0.18.14",
         hash: ruamel_0_18_14_hash,
       }))));
     const ruamel_0_17_21_hash = "sha256-6PV0NyPQfd+4RBqoj5vJaOHShx+TJVHD2IamRinU0VU=";
     const ruamel_0_17_21_src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchhg"), nix.thunk(() => ({
-        [nix.POS]: pos$56,
+        [nix.POS]: $pos[55],
         url: "http://hg.code.sf.net/p/ruamel-yaml/code",
         rev: "0.17.21",
         hash: ruamel_0_17_21_hash,
       }))));
-    const ruamel_0_17_21_src_by_overriding = nix.thunk(() => nix.app(nix.sel(ruamel_0_18_14_src, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$57, rev: "0.17.21", hash: ruamel_0_17_21_hash }))));
+    const ruamel_0_17_21_src_by_overriding = nix.thunk(() => nix.app(nix.sel(ruamel_0_18_14_src, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[56], rev: "0.17.21", hash: ruamel_0_17_21_hash }))));
     return {
-      [nix.POS]: pos$62,
+      [nix.POS]: $pos[61],
       "hash-outputHash-equivalence": nix.thunk(() => ({
-        [nix.POS]: pos$58,
+        [nix.POS]: $pos[57],
         expr: nix.thunk(() => nix.sel(ruamel_0_17_21_src, "outputHash")),
         expected: ruamel_0_17_21_hash,
       })),
       "hash-overridability-outputHash": nix.thunk(() => ({
-        [nix.POS]: pos$59,
+        [nix.POS]: $pos[58],
         expr: nix.thunk(() => nix.sel(ruamel_0_17_21_src_by_overriding, "outputHash")),
         expected: ruamel_0_17_21_hash,
       })),
       "hash-overridability-drvPath": nix.thunk(() => ({
-        [nix.POS]: pos$60,
+        [nix.POS]: $pos[59],
         expr: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "isString"), nix.thunk(() => nix.sel(ruamel_0_17_21_src_by_overriding, "drvPath")))),
           nix.thunk(() => nix.sel(ruamel_0_17_21_src_by_overriding, "drvPath")),
@@ -403,7 +290,7 @@ export default nix.lambda((args) => (() => {
         expected: nix.thunk(() => [true, nix.thunk(() => nix.sel(ruamel_0_17_21_src, "drvPath"))]),
       })),
       "hash-overridability-outPath": nix.thunk(() => ({
-        [nix.POS]: pos$61,
+        [nix.POS]: $pos[60],
         expr: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "isString"), nix.thunk(() => nix.sel(ruamel_0_17_21_src_by_overriding, "outPath")))),
           nix.thunk(() => nix.sel(ruamel_0_17_21_src_by_overriding, "outPath")),
@@ -417,7 +304,7 @@ export default nix.lambda((args) => (() => {
         const pname = "pet";
         const version = "0.3.4";
         const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-            [nix.POS]: pos$63,
+            [nix.POS]: $pos[62],
             owner: "knqyf263",
             repo: "pet",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -425,7 +312,7 @@ export default nix.lambda((args) => (() => {
           }))));
         const vendorHash = "sha256-ciBIR+a1oaYH+H1PcC8cD8ncfJczk1IiJ8iYNM+R6aA=";
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$64,
+          [nix.POS]: $pos[63],
           description: "Simple command-line snippet manager, written in Go",
           homepage: "https://github.com/knqyf263/pet",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -434,13 +321,13 @@ export default nix.lambda((args) => (() => {
             return [nix.thunk(() => nix.lookup(w, "kalbasit"))];
           })()),
         }));
-        return { [nix.POS]: pos$65, pname, version, src, vendorHash, meta };
+        return { [nix.POS]: $pos[64], pname, version, src, vendorHash, meta };
       })())));
     const pet_0_4_0 = nix.thunk(() => nix.app(nix.sel(pkgs, "buildGoModule"), nix.thunk(() => (() => {
         const pname = "pet";
         const version = "0.4.0";
         const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-            [nix.POS]: pos$66,
+            [nix.POS]: $pos[65],
             owner: "knqyf263",
             repo: "pet",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -448,7 +335,7 @@ export default nix.lambda((args) => (() => {
           }))));
         const vendorHash = "sha256-dUvp7FEW09V0xMuhewPGw3TuAic/sD7xyXEYviZ2Ivs=";
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$67,
+          [nix.POS]: $pos[66],
           description: "Simple command-line snippet manager, written in Go",
           homepage: "https://github.com/knqyf263/pet",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -457,15 +344,15 @@ export default nix.lambda((args) => (() => {
             return [nix.thunk(() => nix.lookup(w, "kalbasit"))];
           })()),
         }));
-        return { [nix.POS]: pos$68, pname, version, src, vendorHash, meta };
+        return { [nix.POS]: $pos[67], pname, version, src, vendorHash, meta };
       })())));
     const pet_0_4_0_overridden = nix.thunk(() => nix.app(nix.sel(pet_0_3_4, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-        [nix.POS]: pos$70,
+        [nix.POS]: $pos[69],
         version: "0.4.0",
         src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(previousAttrs, "src"));
             return {
-            [nix.POS]: pos$69,
+            [nix.POS]: $pos[68],
             owner: nix.thunk(() => nix.attr(from, "owner")),
             repo: nix.thunk(() => nix.attr(from, "repo")),
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -475,18 +362,18 @@ export default nix.lambda((args) => (() => {
         vendorHash: "sha256-dUvp7FEW09V0xMuhewPGw3TuAic/sD7xyXEYviZ2Ivs=",
       })));
     const pet_foo = nix.thunk(() => nix.app(nix.sel(pet_0_3_4, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-        [nix.POS]: pos$73,
+        [nix.POS]: $pos[72],
         passthru: nix.thunk(() => nix.update(nix.sel(previousAttrs, "passthru"), {
-          [nix.POS]: pos$72,
-          overrideModAttrs: nix.thunk(() => nix.app(nix.sel(lib, "composeExtensions"), nix.thunk(() => nix.sel(previousAttrs, "passthru", "overrideModAttrs")), (finalModAttrs) => (previousModAttrs) => ({ [nix.POS]: pos$71, FOO: "foo" }))),
+          [nix.POS]: $pos[71],
+          overrideModAttrs: nix.thunk(() => nix.app(nix.sel(lib, "composeExtensions"), nix.thunk(() => nix.sel(previousAttrs, "passthru", "overrideModAttrs")), (finalModAttrs) => (previousModAttrs) => ({ [nix.POS]: $pos[70], FOO: "foo" }))),
         })),
       })));
-    const pet_vendored = nix.thunk(() => nix.app(nix.sel(pet_foo, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$74, vendorHash: null }))));
+    const pet_vendored = nix.thunk(() => nix.app(nix.sel(pet_foo, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[73], vendorHash: null }))));
     return {
-      [nix.POS]: pos$80,
+      [nix.POS]: $pos[79],
       "buildGoModule-overrideAttrs": nix.thunk(() => (() => {
         const getComparingAttrs = (p) => ({
-          [nix.POS]: pos$76,
+          [nix.POS]: $pos[75],
           drvPath: nix.thunk(() => nix.attr(p, "drvPath")),
           name: nix.thunk(() => nix.attr(p, "name")),
           pname: nix.thunk(() => nix.attr(p, "pname")),
@@ -495,7 +382,7 @@ export default nix.lambda((args) => (() => {
           goModules: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(p, "goModules"));
             return {
-            [nix.POS]: pos$75,
+            [nix.POS]: $pos[74],
             drvPath: nix.thunk(() => nix.attr(from, "drvPath")),
             name: nix.thunk(() => nix.attr(from, "name")),
             outPath: nix.thunk(() => nix.attr(from, "outPath")),
@@ -503,18 +390,18 @@ export default nix.lambda((args) => (() => {
           })()),
         });
         return {
-          [nix.POS]: pos$77,
+          [nix.POS]: $pos[76],
           expr: nix.thunk(() => nix.app(getComparingAttrs, pet_0_4_0_overridden)),
           expected: nix.thunk(() => nix.app(getComparingAttrs, pet_0_4_0)),
         };
       })()),
       "buildGoModule-goModules-overrideAttrs": nix.thunk(() => ({
-        [nix.POS]: pos$78,
+        [nix.POS]: $pos[77],
         expr: nix.thunk(() => nix.sel(pet_foo, "goModules", "FOO")),
         expected: "foo",
       })),
       "buildGoModule-goModules-overrideAttrs-vendored": nix.thunk(() => ({
-        [nix.POS]: pos$79,
+        [nix.POS]: $pos[78],
         expr: nix.thunk(() => nix.app(nix.sel(lib, "isString"), nix.thunk(() => nix.sel(pet_vendored, "drvPath")))),
         expected: true,
       })),
@@ -526,7 +413,7 @@ export default nix.lambda((args) => (() => {
         const buildPythonPackage = nix.arg($_1, "buildPythonPackage");
         const emptyDirectory = nix.arg($_1, "emptyDirectory");
         return nix.app(buildPythonPackage, nix.thunk(() => ({
-            [nix.POS]: pos$81,
+            [nix.POS]: $pos[80],
             pname: "python-package-stub",
             version: "0.1.0",
             pyproject: true,
@@ -534,123 +421,123 @@ export default nix.lambda((args) => (() => {
           })));
       })(), formals$3), nix.thunk(() => ({}))));
     const package_stub_gcc = nix.thunk(() => nix.app(nix.sel(package_stub, "override"), (previousArgs) => ({
-        [nix.POS]: pos$83,
-        buildPythonPackage: nix.thunk(() => nix.app(nix.sel(previousArgs, "buildPythonPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$82, stdenv: nix.thunk(() => nix.sel(pkgs, "gccStdenv")) })))),
+        [nix.POS]: $pos[82],
+        buildPythonPackage: nix.thunk(() => nix.app(nix.sel(previousArgs, "buildPythonPackage", "override"), nix.thunk(() => ({ [nix.POS]: $pos[81], stdenv: nix.thunk(() => nix.sel(pkgs, "gccStdenv")) })))),
       })));
     const package_stub_clang = nix.thunk(() => nix.app(nix.sel(package_stub_gcc, "override"), (previousArgs) => ({
-        [nix.POS]: pos$85,
-        buildPythonPackage: nix.thunk(() => nix.app(nix.sel(previousArgs, "buildPythonPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$84, stdenv: nix.thunk(() => nix.sel(pkgs, "clangStdenv")) })))),
+        [nix.POS]: $pos[84],
+        buildPythonPackage: nix.thunk(() => nix.app(nix.sel(previousArgs, "buildPythonPackage", "override"), nix.thunk(() => ({ [nix.POS]: $pos[83], stdenv: nix.thunk(() => nix.sel(pkgs, "clangStdenv")) })))),
       })));
     const package_stub_libcxx = nix.thunk(() => nix.app(nix.sel(package_stub_clang, "override"), (previousArgs) => ({
-        [nix.POS]: pos$87,
-        buildPythonPackage: nix.thunk(() => nix.app(nix.sel(previousArgs, "buildPythonPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$86, stdenv: nix.thunk(() => nix.sel(pkgs, "libcxxStdenv")) })))),
+        [nix.POS]: $pos[86],
+        buildPythonPackage: nix.thunk(() => nix.app(nix.sel(previousArgs, "buildPythonPackage", "override"), nix.thunk(() => ({ [nix.POS]: $pos[85], stdenv: nix.thunk(() => nix.sel(pkgs, "libcxxStdenv")) })))),
       })));
     const applyOverridePythonAttrs = (p) => nix.app(nix.sel(p, "overridePythonAttrs"), (previousAttrs) => ({
-        [nix.POS]: pos$88,
+        [nix.POS]: $pos[87],
         overridePythonAttrsFlag: nix.thunk(() => nix.add(nix.selOr(previousAttrs, () => 0n, "overridePythonAttrsFlag"), 1n)),
       }));
     const applyOverridePythonAttrsFP = (p) => nix.app(nix.sel(p, "overridePythonAttrs"), (finalAttrs) => (previousAttrs) => ({
-        [nix.POS]: pos$89,
+        [nix.POS]: $pos[88],
         overridePythonAttrsFlag: nix.thunk(() => nix.add(nix.selOr(previousAttrs, () => 0n, "overridePythonAttrsFlag"), 1n)),
         overridePythonAttrsFlagP1: nix.thunk(() => nix.add(nix.sel(finalAttrs, "overridePythonAttrsFlag"), 1n)),
       }));
     const overrideAttrsFooBar = (drv) => nix.app(nix.sel(drv, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-        [nix.POS]: pos$90,
+        [nix.POS]: $pos[89],
         FOO: "a",
         BAR: nix.thunk(() => nix.sel(finalAttrs, "FOO")),
       }));
     return {
-      [nix.POS]: pos$111,
+      [nix.POS]: $pos[110],
       "buildPythonPackage-override-gccStdenv": nix.thunk(() => ({
-        [nix.POS]: pos$91,
+        [nix.POS]: $pos[90],
         expr: nix.thunk(() => nix.sel(package_stub_gcc, "stdenv")),
         expected: nix.thunk(() => nix.sel(pkgs, "gccStdenv")),
       })),
       "buildPythonPackage-override-clangStdenv": nix.thunk(() => ({
-        [nix.POS]: pos$92,
+        [nix.POS]: $pos[91],
         expr: nix.thunk(() => nix.sel(package_stub_clang, "stdenv")),
         expected: nix.thunk(() => nix.sel(pkgs, "clangStdenv")),
       })),
       "buildPythonPackage-override-libcxxStdenv": nix.thunk(() => ({
-        [nix.POS]: pos$93,
+        [nix.POS]: $pos[92],
         expr: nix.thunk(() => nix.sel(package_stub_libcxx, "stdenv")),
         expected: nix.thunk(() => nix.sel(pkgs, "libcxxStdenv")),
       })),
       overridePythonAttrs: nix.thunk(() => ({
-        [nix.POS]: pos$94,
+        [nix.POS]: $pos[93],
         expr: nix.thunk(() => nix.sel(nix.app(applyOverridePythonAttrs, package_stub), "overridePythonAttrsFlag")),
         expected: 1n,
       })),
       "overridePythonAttrs-nested": nix.thunk(() => ({
-        [nix.POS]: pos$95,
+        [nix.POS]: $pos[94],
         expr: nix.thunk(() => nix.sel(nix.app(applyOverridePythonAttrs, nix.thunk(() => nix.app(applyOverridePythonAttrs, package_stub))), "overridePythonAttrsFlag")),
         expected: 2n,
       })),
       "overridePythonAttrs-plain": nix.thunk(() => ({
-        [nix.POS]: pos$97,
-        expr: nix.thunk(() => nix.sel(nix.app(nix.sel(package_stub, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$96, overridePythonAttrsFlag: 0n }))), "overridePythonAttrsFlag")),
+        [nix.POS]: $pos[96],
+        expr: nix.thunk(() => nix.sel(nix.app(nix.sel(package_stub, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[95], overridePythonAttrsFlag: 0n }))), "overridePythonAttrsFlag")),
         expected: 0n,
       })),
       "overridePythonAttrs-finalAttrs": nix.thunk(() => ({
-        [nix.POS]: pos$100,
+        [nix.POS]: $pos[99],
         expr: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.app(applyOverridePythonAttrsFP, package_stub));
           return {
-          [nix.POS]: pos$98,
+          [nix.POS]: $pos[97],
           overridePythonAttrsFlag: nix.thunk(() => nix.attr(from, "overridePythonAttrsFlag")),
           overridePythonAttrsFlagP1: nix.thunk(() => nix.attr(from, "overridePythonAttrsFlagP1")),
         };
         })()),
         expected: nix.thunk(() => ({
-          [nix.POS]: pos$99,
+          [nix.POS]: $pos[98],
           overridePythonAttrsFlag: 1n,
           overridePythonAttrsFlagP1: 2n,
         })),
       })),
       "overrideAttrs-overridePythonAttrs-test-overrideAttrs": nix.thunk(() => ({
-        [nix.POS]: pos$103,
+        [nix.POS]: $pos[102],
         expr: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.app(applyOverridePythonAttrs, nix.thunk(() => nix.app(overrideAttrsFooBar, package_stub))));
           return {
-          [nix.POS]: pos$101,
+          [nix.POS]: $pos[100],
           FOO: nix.thunk(() => nix.attr(from, "FOO")),
           BAR: nix.thunk(() => nix.attr(from, "BAR")),
         };
         })()),
-        expected: nix.thunk(() => ({ [nix.POS]: pos$102, FOO: "a", BAR: "a" })),
+        expected: nix.thunk(() => ({ [nix.POS]: $pos[101], FOO: "a", BAR: "a" })),
       })),
       "overrideAttrs-overridePythonAttrs-test-overridePythonAttrs": nix.thunk(() => ({
-        [nix.POS]: pos$104,
+        [nix.POS]: $pos[103],
         expr: nix.thunk(() => nix.has(nix.app(applyOverridePythonAttrs, nix.thunk(() => nix.app(overrideAttrsFooBar, package_stub))), "overridePythonAttrsFlag")),
         expected: true,
       })),
       "overrideAttrs-overridePythonAttrs-test-commutation": nix.thunk(() => ({
-        [nix.POS]: pos$105,
+        [nix.POS]: $pos[104],
         expr: nix.thunk(() => nix.app(overrideAttrsFooBar, nix.thunk(() => nix.app(applyOverridePythonAttrs, package_stub)))),
         expected: nix.thunk(() => nix.app(applyOverridePythonAttrs, nix.thunk(() => nix.app(overrideAttrsFooBar, package_stub)))),
       })),
       "chain-of-overrides": nix.thunk(() => (() => {
         const expr = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), package_stub, nix.thunk(() => [
-            (p) => nix.app(nix.sel(p, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$106, a: nix.thunk(() => nix.attr(expected, "a")) }))),
-            (p) => nix.app(nix.sel(p, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$107, b: nix.thunk(() => nix.attr(expected, "b")) }))),
-            (p) => nix.app(nix.sel(p, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$108, c: nix.thunk(() => nix.attr(expected, "c")) }))),
-            (p) => nix.app(nix.sel(p, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$109, d: nix.thunk(() => nix.attr(expected, "d")) }))),
+            (p) => nix.app(nix.sel(p, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[105], a: nix.thunk(() => nix.attr(expected, "a")) }))),
+            (p) => nix.app(nix.sel(p, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[106], b: nix.thunk(() => nix.attr(expected, "b")) }))),
+            (p) => nix.app(nix.sel(p, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[107], c: nix.thunk(() => nix.attr(expected, "c")) }))),
+            (p) => nix.app(nix.sel(p, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[108], d: nix.thunk(() => nix.attr(expected, "d")) }))),
             nix.thunk(() => nix.app(nix.builtins.intersectAttrs, expected)),
           ])));
         const expected = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => ["a", "b", "c", "d"]), nix.thunk(() => nix.sel(lib, "id"))));
-        return { [nix.POS]: pos$110, expr, expected };
+        return { [nix.POS]: $pos[109], expr, expected };
       })()),
     };
   })());
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$114,
+      [nix.POS]: $pos[113],
       __structuredAttrs: true,
       name: "test-overriding",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$113,
+        [nix.POS]: $pos[112],
         tests: tests,
         failures: nix.thunk(() => nix.app(nix.sel(lib, "runTests"), nix.thunk(() => nix.update(nix.sel(finalAttrs, "passthru", "tests"), {
-            [nix.POS]: pos$112,
+            [nix.POS]: $pos[111],
             tests: nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), tests)),
           })))),
       })),

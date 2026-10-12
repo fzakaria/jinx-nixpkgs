@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 4, 5], ["longDescription", 5, 5]]]);
 const formals$1 = { args: { gitFull: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 4, 5], ["longDescription", 5, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const gitFull = nix.arg($, "gitFull");
   const lib = nix.arg($, "lib");
   return (nix.asBool(nix.has(gitFull, "doc")) ? nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       description: "Additional documentation for Git",
       longDescription: "This package contains additional documentation (HTML and text files) that\nare referenced in the man pages of Git.\n",
     })), nix.thunk(() => nix.sel(gitFull, "doc"))) : nix.builtins.throw("'git-doc' can't be evaluated as 'gitFull doesn't expose a 'doc' attribute"));

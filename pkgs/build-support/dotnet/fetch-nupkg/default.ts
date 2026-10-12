@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 26, 9], ["url", 31, 11], ["sha256", 32, 11], ["hash", 33, 11], ["version", 34, 11]], [["sourceProvenance", 80, 9]], [["pname", 23, 15], ["version", 23, 21], ["src", 25, 7], ["nativeBuildInputs", 38, 7], ["unpackPhase", 44, 7], ["prePatch", 53, 7], ["installPhase", 62, 7], ["preFixup", 73, 7], ["createInstallableNugetSource", 77, 7], ["meta", 79, 7]]]);
 const formals$1 = { args: { symlinkJoin: false, fetchurl: false, stdenvNoCC: false, lib: false, unzip: false, patchNupkgs: false, nugetPackageHook: false, callPackage: false, overrides: true }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, sha256: true, hash: true, url: true, installable: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 26, 9], ["url", 31, 11], ["sha256", 32, 11], ["hash", 33, 11], ["version", 34, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sourceProvenance", 80, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 15], ["version", 23, 21], ["src", 25, 7], ["nativeBuildInputs", 38, 7], ["unpackPhase", 44, 7], ["prePatch", 53, 7], ["installPhase", 62, 7], ["preFixup", 73, 7], ["createInstallableNugetSource", 77, 7], ["meta", 79, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
           const pname_1 = pname;
           const version_1 = version;
           const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               name: nix.thunk(() => nix.str`${pname_1}.${version_1}.nupkg`),
               url: url,
               sha256: sha256,
@@ -53,7 +51,7 @@ runHook postInstall
           const preFixup = "patch-nupkgs $out/share/nuget/packages\n";
           const createInstallableNugetSource = installable;
           const meta = nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             sourceProvenance: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
               return [
@@ -63,7 +61,7 @@ runHook postInstall
             })()),
           }));
           return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: pname_1,
             version: version_1,
             src,

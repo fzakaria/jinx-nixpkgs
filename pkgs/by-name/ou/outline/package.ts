@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 28, 11], ["substitutions", 29, 11]], [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5], ["postFetch", 24, 5]], [["src", 48, 26], ["missingHashes", 48, 30], ["hash", 49, 5]], [["basic-functionality", 85, 7]], [["tests", 84, 5], ["updateScript", 87, 5], ["offlineCache", 89, 26]], [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 103, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["missingHashes", 39, 3], ["nativeBuildInputs", 41, 3], ["offlineCache", 47, 3], ["buildPhase", 52, 3], ["installPhase", 60, 3], ["passthru", 83, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, substitute: false, makeWrapper: false, nodejs: false, nixosTests: false, "yarn-berry_4": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 28, 11], ["substitutions", 29, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5], ["postFetch", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 48, 26], ["missingHashes", 48, 30], ["hash", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["basic-functionality", 85, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 84, 5], ["updateScript", 87, 5], ["offlineCache", 89, 26]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 103, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["missingHashes", 39, 3], ["nativeBuildInputs", 41, 3], ["offlineCache", 47, 3], ["buildPhase", 52, 3], ["installPhase", 60, 3], ["passthru", 83, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const yarn_berry_4 = nix.arg($, "yarn-berry_4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "outline",
       version: "1.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "outline",
           repo: "outline",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-xFNWxsNrihrcdFqrl1I9RYuIlHufoFtl8IFJhquhJfI=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -50,7 +44,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         yarn_berry_4,
       ]),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-rgqRRWZdy938rPuTV+E1pWfJ6O1w6Z3F84qlGUZgorM=",
@@ -78,16 +72,16 @@ makeWrapper ${nodejs}/bin/node $out/bin/outline-server \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "basic-functionality": nix.thunk(() => nix.sel(nixosTests, "outline")),
         })),
         updateScript: nix.path(here, "./update.sh"),
         offlineCache: nix.thunk(() => nix.attr(finalAttrs, "offlineCache")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Fastest wiki and knowledge base for growing teams. Beautiful, feature rich, and markdown compatible",
         homepage: "https://www.getoutline.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/outline/outline/releases/v${nix.sel(finalAttrs, "version")}`),

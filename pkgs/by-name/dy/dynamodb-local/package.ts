@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["modules", 18, 5], ["jdk", 25, 5]], [["url", 33, 5], ["hash", 34, 5]], [["package", 55, 7]], [["version", 54, 11]], [["tests", 54, 5], ["updateScript", 57, 5]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5], ["platforms", 91, 5], ["sourceProvenance", 92, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["sourceRoot", 37, 3], ["nativeBuildInputs", 39, 3], ["installPhase", 41, 3], ["passthru", 53, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, jdk_headless: false, jre_minimal: false, makeBinaryWrapper: false, curl: false, jq: false, yq: false, "dynamodb-local": false, testers: false, "common-updater-scripts": false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["modules", 18, 5], ["jdk", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 55, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 54, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 54, 5], ["updateScript", 57, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5], ["platforms", 91, 5], ["sourceProvenance", 92, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["sourceRoot", 37, 3], ["nativeBuildInputs", 39, 3], ["installPhase", 41, 3], ["passthru", 53, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const writeShellScript = nix.arg($, "writeShellScript");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       modules: nix.thunk(() => ["java.logging", "java.xml", "java.desktop", "java.management", "java.naming"]),
       jdk: jdk_headless,
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "dynamodb-local",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://d1ni2b6xgvw0s0.cloudfront.net/v2.x/dynamodb_local_2025-03-13.tar.gz",
           hash: "sha256-mAXZX+L17+z9f3/sMq+O+zLcg7YKGKL72BhhTtS2xuw=",
         })))),
@@ -53,10 +47,10 @@ makeBinaryWrapper ${jre}/bin/java $out/bin/dynamodb-local \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: dynamodb_local })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: dynamodb_local })))),
         })),
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-dynamodb-local", nix.thunk(() => nix.str`set -o errexit
 export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, jq, yq, common_updater_scripts]))}:$PATH"
@@ -76,7 +70,7 @@ update-source-version "dynamodb-local" "$NEW_VERSION" "$NIX_HASH" "$DOWNLOAD_URL
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "DynamoDB Local is a small client-side database and server that mimics the DynamoDB service",
         homepage: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

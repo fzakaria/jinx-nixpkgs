@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["extraWrapperArgs", 6, 3]]]);
 const formals$1 = { args: { calamares: false, "calamares-nixos-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["extraWrapperArgs", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const calamares = nix.arg($, "calamares");
   const calamares_nixos_extensions = nix.arg($, "calamares-nixos-extensions");
   return nix.app(nix.sel(calamares, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       extraWrapperArgs: nix.thunk(() => [
         nix.thunk(() => nix.str`--prefix XDG_DATA_DIRS : ${calamares_nixos_extensions}/share`),
         nix.thunk(() => nix.str`--prefix XDG_CONFIG_DIRS : ${calamares_nixos_extensions}/etc`),

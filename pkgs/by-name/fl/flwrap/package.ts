@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["mainProgram", 38, 5]], [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["configureFlags", 28, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fltk_1_3: false, libjpeg: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["mainProgram", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["configureFlags", 28, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.3.6",
       pname: "flwrap",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/fldigi/flwrap-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-g1V7bOcgVHpD+Ndn02Nj4I3rGItuQ2qLGlrZZshfGP8=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`FLTK_CONFIG=${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), fltk_1_3)), "fltk-config")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Digital modem file transfer program",
         homepage: "https://sourceforge.net/projects/fldigi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

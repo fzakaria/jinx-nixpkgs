@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 32, 5], ["description", 33, 5]], [["version", 11, 43], ["src", 11, 51], ["pname", 12, 3], ["pyproject", 13, 3], ["sourceRoot", 15, 3], ["build-system", 17, 3], ["dependencies", 19, 3], ["nativeCheckInputs", 24, 3], ["pythonImportsCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, hatchling: false, "opentelemetry-instrumentation": false, "opentelemetry-instrumentation-dbapi": false, "opentelemetry-test-utils": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 32, 5], ["description", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 11, 43], ["src", 11, 51], ["pname", 12, 3], ["pyproject", 13, 3], ["sourceRoot", 15, 3], ["build-system", 17, 3], ["dependencies", 19, 3], ["nativeCheckInputs", 24, 3], ["pythonImportsCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const opentelemetry_test_utils = nix.arg($, "opentelemetry-test-utils");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "src")),
       pname: "opentelemetry-instrumentation-sqlite3",
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [opentelemetry_test_utils, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.instrumentation.sqlite3"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-sqlite3",
         description: "OpenTelemetry SQLite3 instrumentation",
       })),

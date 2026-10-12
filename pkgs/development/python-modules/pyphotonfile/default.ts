@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["maintainers", 29, 5], ["license", 30, 5], ["description", 31, 5], ["homepage", 32, 5]], [["pname", 12, 3], ["format", 13, 3], ["version", 14, 11], ["propagatedBuildInputs", 16, 3], ["src", 21, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pillow: false, numpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["maintainers", 29, 5], ["license", 30, 5], ["description", 31, 5], ["homepage", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["format", 13, 3], ["version", 14, 11], ["propagatedBuildInputs", 16, 3], ["src", 21, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const version = "0.2.1";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pyphotonfile",
       format: "setuptools",
       version: version,
       propagatedBuildInputs: nix.thunk(() => [pillow, numpy]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cab404",
           repo: "pyphotonfile",
           rev: "b7ee92a0071007bb1d6a5984262651beec26543d",
           sha256: "sha256-iB5ky4fPX8ZnvXlDpggqS/345k2x/mPC4cIgb9M0f/c=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "cab404"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         description: "Library for reading and writing files for the Anycubic Photon 3D-Printer",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 5], ["version", 20, 13], ["hash", 21, 5]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["buildInputs", 29, 3], ["dependencies", 31, 3], ["doCheck", 39, 3], ["checkPhase", 40, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pytest: false, coverage: false, hatchling: false, "hatch-fancy-pypi-readme": false, toml: false, tomli: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 13], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["buildInputs", 29, 3], ["dependencies", 31, 3], ["doCheck", 39, 3], ["checkPhase", 40, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pytest_cov",
           version: version,
           hash: "sha256-MGdPK19jUaoJcCqcjDZPagHCeq4ME2augBYWDR78VrI=",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "# allow to find the module helper during the test run\nexport PYTHONPATH=$PYTHONPATH:$PWD/tests\npy.test tests\n";
       const pythonImportsCheck = nix.thunk(() => ["pytest_cov"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Plugin for coverage reporting with support for both centralised and distributed testing, including subprocesses and multiprocessing",
         homepage: "https://github.com/pytest-dev/pytest-cov",
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-cov/blob/v${version}/CHANGELOG.rst`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

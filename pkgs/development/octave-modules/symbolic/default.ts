@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["fontDirectories", 39, 54]], [["FONTCONFIG_FILE", 39, 20]], [["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["description", 47, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["propagatedBuildInputs", 31, 3], ["nativeOctavePkgTestInputs", 33, 3], ["octavePkgTestEnv", 39, 3], ["__structuredAttrs", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { buildOctavePackage: false, lib: false, fetchFromGitHub: false, python: false, gnuplot: false, writableTmpDirAsHomeHook: false, makeFontsConf: false, texinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fontDirectories", 39, 54]]);
-const pos$3 = nix.positions(here + "/default.nix", [["FONTCONFIG_FILE", 39, 20]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["description", 47, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["propagatedBuildInputs", 31, 3], ["nativeOctavePkgTestInputs", 33, 3], ["octavePkgTestEnv", 39, 3], ["__structuredAttrs", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(ps, "mpmath")),
     ]));
   return nix.app(buildOctavePackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "symbolic",
       version: "3.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cbm755",
           repo: "octsympy",
           rev: "0206197f77f6663720a0510c761110abeb2041cd",
@@ -37,12 +33,12 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [pythonEnv]),
       nativeOctavePkgTestInputs: nix.thunk(() => [gnuplot, writableTmpDirAsHomeHook, texinfo]),
       octavePkgTestEnv: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))),
+        [nix.POS]: $pos[2],
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[1], fontDirectories: [] })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gnu-octave.github.io/packages/symbolic/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {

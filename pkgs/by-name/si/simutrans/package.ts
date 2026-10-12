@@ -2,24 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["sha256", 36, 5]], [["pakName", 40, 69]], [["srcPath", 42, 7], ["sha256", 43, 7]], [["srcPath", 47, 7], ["sha256", 48, 7]], [["srcPath", 52, 7], ["sha256", 53, 7]], [["srcPath", 56, 7], ["sha256", 57, 7]], [["url", 61, 7], ["sha256", 62, 7]], [["url", 65, 7], ["sha256", 68, 7]], [["pak64", 41, 5], ["pak64.japan", 45, 5], ["pak128", 51, 5], ["pak128.britain", 55, 5], ["pak128.cs", 59, 5], ["pak128.german", 64, 5]], [["url", 93, 36], ["sha256", 93, 40]], [["name", 88, 7], ["dontUnpack", 89, 7], ["preferLocalBuild", 90, 7], ["installPhase", 91, 7]], [["hydraPlatforms", 130, 9]], [["meta", 129, 16], ["binaries", 132, 16]], [["pname", 117, 26], ["version", 117, 32], ["paths", 118, 7], ["postBuild", 119, 7], ["passthru", 129, 7]], [["description", 196, 7], ["mainProgram", 197, 7], ["longDescription", 198, 7], ["homepage", 205, 7], ["license", 206, 7], ["maintainers", 210, 7], ["platforms", 211, 7]], [["pname", 136, 5], ["version", 137, 13], ["src", 139, 5], ["sourceRoot", 141, 5], ["nativeBuildInputs", 143, 5], ["buildInputs", 147, 5], ["configurePhase", 155, 5], ["enableParallelBuilding", 185, 5], ["installPhase", 187, 5], ["meta", 195, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, unzip: false, zlib: false, libpng: false, bzip2: false, SDL: false, SDL_mixer: false, buildEnv: false, config: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pakName", 40, 69]]);
-const pos$3 = nix.positions(here + "/package.nix", [["srcPath", 42, 7], ["sha256", 43, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["srcPath", 47, 7], ["sha256", 48, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["srcPath", 52, 7], ["sha256", 53, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["srcPath", 56, 7], ["sha256", 57, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 61, 7], ["sha256", 62, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 65, 7], ["sha256", 68, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pak64", 41, 5], ["pak64.japan", 45, 5], ["pak128", 51, 5], ["pak128.britain", 55, 5], ["pak128.cs", 59, 5], ["pak128.german", 64, 5]]);
 const formals$2 = { args: { sha256: false, pakName: false, srcPath: true, url: true }, ellipsis: false };
-const pos$10 = nix.positions(here + "/package.nix", [["url", 93, 36], ["sha256", 93, 40]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 88, 7], ["dontUnpack", 89, 7], ["preferLocalBuild", 90, 7], ["installPhase", 91, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["hydraPlatforms", 130, 9]]);
-const pos$13 = nix.positions(here + "/package.nix", [["meta", 129, 16], ["binaries", 132, 16]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 117, 26], ["version", 117, 32], ["paths", 118, 7], ["postBuild", 119, 7], ["passthru", 129, 7]]);
-const pos$15 = nix.positions(here + "/package.nix", [["description", 196, 7], ["mainProgram", 197, 7], ["longDescription", 198, 7], ["homepage", 205, 7], ["license", 206, 7], ["maintainers", 210, 7], ["platforms", 211, 7]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 136, 5], ["version", 137, 13], ["src", 139, 5], ["sourceRoot", 141, 5], ["nativeBuildInputs", 143, 5], ["buildInputs", 147, 5], ["configurePhase", 155, 5], ["enableParallelBuilding", 185, 5], ["installPhase", 187, 5], ["meta", 195, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,39 +29,39 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.str`${ver1}.${ver2}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(ver3, "")), nix.thunk(() => nix.str`.${ver3}`))}`);
   const ver_dash = nix.thunk(() => nix.str`${ver1}-${ver2}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(ver3, "")), nix.thunk(() => nix.str`-${ver3}`))}`);
   const binary_src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`mirror://sourceforge/simutrans/simutrans/${ver_dash}/simutrans-src-${ver_dash}.zip`),
       sha256: "1f463r6kr5ig0zd3mncc74k93xbjywsq3d06j5r17831jyc9bzb9",
     }))));
-  const pakSpec = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (pakName) => (attrs) => nix.app(mkPak, nix.thunk(() => nix.update(attrs, { [nix.POS]: pos$2, pakName: pakName }))), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+  const pakSpec = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (pakName) => (attrs) => nix.app(mkPak, nix.thunk(() => nix.update(attrs, { [nix.POS]: $pos[1], pakName: pakName }))), nix.thunk(() => ({
+      [nix.POS]: $pos[8],
       pak64: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         srcPath: nix.thunk(() => nix.str`${ver_dash}/simupak64-${ver_dash}`),
         sha256: "1k335kh8dhm1hdn5iwn3sdgnrlpk0rqxmmgqgqcwsi09cmw45m5c",
       })),
       "pak64.japan": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         srcPath: "120-0/simupak64.japan-120-0-1",
         sha256: "14swy3h4ij74bgaw7scyvmivfb5fmp21nixmhlpk3mav3wr3167i",
       })),
       pak128: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         srcPath: "pak128%20for%20ST%20120.4.1%20%282.8.1%2C%20priority%20signals%20%2B%20bugfix%29/pak128",
         sha256: "0z01y7r0rz7q79vr17bbnkgcbjjrimphy1dwb1pgbiv4klz7j5xw",
       })),
       "pak128.britain": nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         srcPath: "pak128.Britain%20for%20120-1/pak128.Britain.1.18-120-3",
         sha256: "1kyb0s54kysvdr0zdln9106yx75d71j4lbw3v87k3i440cj3r1d3",
       })),
       "pak128.cs": nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         url: "mirror://sourceforge/simutrans/Pak128.CS/pak128.cz_v.0.2.1.zip",
         sha256: "008d8x1s0vxsq78rkczlnf57pv1n5hi1v5nbd1l5w3yls7lk11sc",
       })),
       "pak128.german": nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         url: nix.thunk(() => nix.add("mirror://sourceforge/simutrans/PAK128.german/", "pak128.german_1.2_for_ST_121.0/PAK128.german_1.2_for_ST_121-0.zip")),
         sha256: "1cv1rzl1a3i5dvk476zq094wawk9hhdh2f0y4xrdny5gn17mb2xi",
       })),
@@ -88,12 +73,12 @@ export default nix.lambda((args) => (() => {
     const srcPath = nix.argOr($_1, "srcPath", () => null);
     const url = nix.argOr($_1, "url", () => nix.str`mirror://sourceforge/simutrans/${pakName}/${srcPath}.zip`);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         name: nix.thunk(() => nix.str`simutrans-${pakName}`),
         dontUnpack: true,
         preferLocalBuild: true,
         installPhase: nix.thunk(() => (() => {
-          const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$10, url: url, sha256: sha256 }))));
+          const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[9], url: url, sha256: sha256 }))));
           return nix.str`mkdir -p "$out/share/simutrans/${pakName}"
 cd "$out/share/simutrans/${pakName}"
 "${unzip}/bin/unzip" "${src}"
@@ -110,7 +95,7 @@ rmdir -p "$toStrip"
       })));
   })(), formals$2);
   const withPaks = (paks) => nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: nix.thunk(() => nix.attr(binaries, "pname")),
       version: nix.thunk(() => nix.attr(binaries, "version")),
       paths: nix.thunk(() => nix.concat([binaries], paks)),
@@ -123,13 +108,13 @@ EOF
 chmod +x "$out/bin/simutrans"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$13,
-        meta: nix.thunk(() => nix.update(nix.sel(binaries, "meta"), { [nix.POS]: pos$12, hydraPlatforms: [] })),
+        [nix.POS]: $pos[12],
+        meta: nix.thunk(() => nix.update(nix.sel(binaries, "meta"), { [nix.POS]: $pos[11], hydraPlatforms: [] })),
         binaries: binaries,
       })),
     })));
   const binaries = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "simutrans",
       version: version,
       src: binary_src,
@@ -156,7 +141,7 @@ export CFLAGS+=-O2
       enableParallelBuilding: true,
       installPhase: "mkdir -p $out/share/\nmv simutrans $out/share/\n\nmkdir -p $out/bin/\nmv build/default/sim $out/bin/simutrans\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         description: "Simulation game in which the player strives to run a successful transport system",
         mainProgram: "simutrans",
         longDescription: "Simutrans is a cross-platform simulation game in which the\nplayer strives to run a successful transport system by\ntransporting goods, passengers, and mail between\nplaces. Simutrans is an open source remake of Transport Tycoon.\n",

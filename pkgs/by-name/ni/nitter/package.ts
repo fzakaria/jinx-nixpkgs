@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 7], ["repo", 17, 7], ["rev", 18, 7], ["hash", 19, 7]], [["version", 26, 30], ["rev", 27, 34], ["url", 28, 9]], [["nitter", 43, 38]], [["tests", 43, 7], ["updateScript", 44, 7]], [["homepage", 48, 7], ["description", 49, 7], ["license", 50, 7], ["maintainers", 51, 7], ["mainProgram", 55, 7]], [["pname", 12, 5], ["version", 13, 5], ["src", 15, 5], ["lockFile", 22, 5], ["patches", 24, 5], ["postBuild", 32, 5], ["postInstall", 37, 5], ["passthru", 42, 5], ["meta", 47, 5]]]);
 const formals$1 = { args: { lib: false, buildNimPackage: false, fetchFromGitHub: false, nixosTests: false, replaceVars: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 7], ["repo", 17, 7], ["rev", 18, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 26, 30], ["rev", 27, 34], ["url", 28, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nitter", 43, 38]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 43, 7], ["updateScript", 44, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 48, 7], ["description", 49, 7], ["license", 50, 7], ["maintainers", 51, 7], ["mainProgram", 55, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 5], ["version", 13, 5], ["src", 15, 5], ["lockFile", 22, 5], ["patches", 24, 5], ["postBuild", 32, 5], ["postInstall", 37, 5], ["passthru", 42, 5], ["meta", 47, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildNimPackage, (finalAttrs) => (prevAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nitter",
       version: "0-unstable-2026-07-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zedeus",
           repo: "nitter",
           rev: "3bc78801b39f0a98f1a424da3f60c4aa60c7025a",
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./nitter-version.patch"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(finalAttrs, "src"));
             return {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             rev: nix.thunk(() => nix.attr(from, "rev")),
             url: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["archive", ".tar.gz"]), nix.thunk(() => ["commit", ""]), nix.thunk(() => nix.sel(finalAttrs, "src", "url")))),
@@ -46,12 +41,12 @@ nim compile ${nix.builtins.toString(nix.thunk(() => nix.sel(finalAttrs, "nimFlag
 `),
       postInstall: "mkdir -p $out/share/nitter\ncp -r public $out/share/nitter/public\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, nitter: nix.thunk(() => nix.attr(nixosTests, "nitter")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], nitter: nix.thunk(() => nix.attr(nixosTests, "nitter")) })),
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/zedeus/nitter",
         description: "Alternative Twitter front-end",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

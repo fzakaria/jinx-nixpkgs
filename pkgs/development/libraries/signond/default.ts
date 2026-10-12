@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["homepage", 37, 5], ["description", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["preConfigure", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, qmake: false, qtbase: false, wrapQtAppsHook: false, doxygen: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["description", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["preConfigure", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   const doxygen = nix.arg($, "doxygen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "signond",
       version: "8.61-unstable-2023-11-24",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nicolasfella",
           repo: "signond",
           rev: "c8ad98249af541514ff7a81634d3295e712f1a39",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [qtbase]),
       preConfigure: "substituteInPlace src/signond/signond.pro \\\n  --replace \"/etc\" \"@out@/etc\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.com/accounts-sso/signond",
         description: "Signon Daemon for Qt",
         maintainers: [],

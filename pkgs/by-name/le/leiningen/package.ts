@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["url", 21, 5], ["hash", 22, 5]], [["JARNAME", 25, 7]], [["homepage", 66, 5], ["description", 67, 5], ["sourceProvenance", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["jarsrc", 20, 3], ["env", 25, 3], ["dontUnpack", 27, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 30, 3], ["installPhase", 35, 3], ["fixupPhase", 45, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, coreutils: false, jdk: false, rlwrap: false, gnupg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["JARNAME", 25, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["sourceProvenance", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["jarsrc", 20, 3], ["env", 25, 3], ["dontUnpack", 27, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 30, 3], ["installPhase", 35, 3], ["fixupPhase", 45, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const rlwrap = nix.arg($, "rlwrap");
   const gnupg = nix.arg($, "gnupg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "leiningen",
       version: "2.12.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://codeberg.org/leiningen/leiningen/raw/tag/${nix.sel(finalAttrs, "version")}/bin/lein-pkg`),
           hash: "sha256-EqnF46JHFhnKPWSnRi+SD99xOuiVnrT81iV8IzMrWqQ=",
         })))),
       jarsrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://codeberg.org/leiningen/leiningen/releases/download/${nix.sel(finalAttrs, "version")}/leiningen-${nix.sel(finalAttrs, "version")}-standalone.jar`),
           hash: "sha256-tyGlc69jF4TyfMtS5xnm0Sh9nTlRrVbTFtOPfs+oGqI=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         JARNAME: nix.thunk(() => nix.str`leiningen-${nix.sel(finalAttrs, "version")}-standalone.jar`),
       })),
       dontUnpack: true,
@@ -55,7 +51,7 @@ wrapProgram $out/bin/lein \\
 runHook postFixup
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://leiningen.org/",
         description: "Project automation for Clojure",
         sourceProvenance: nix.thunk(() => (() => {

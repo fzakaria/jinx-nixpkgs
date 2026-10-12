@@ -2,25 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [[["maintainers", 16, 8]], [["enable", 19, 22]], [["sysusers", 19, 13]], [["enable", 20, 24]], [["overlay", 20, 16]], [["etc", 20, 12]], [["enable", 21, 25]], [["systemd", 21, 17]], [["initrd", 21, 10]], [["hashedPasswordFile", 28, 7], ["initialHashedPassword", 29, 7]], [["isSystemUser", 36, 7], ["group", 37, 7], ["initialPassword", 38, 7], ["initialHashedPassword", 39, 7]], [["isSystemUser", 44, 7], ["group", 45, 7], ["initialPassword", 46, 7], ["initialHashedPassword", 47, 7], ["hashedPasswordFile", 48, 7]], [["root", 27, 17], ["alice", 35, 17], ["bob", 43, 17]], [["test", 32, 18]], [["mutableUsers", 23, 11], ["users", 27, 11], ["groups", 32, 11]], [["systemd", 19, 5], ["system", 20, 5], ["boot", 21, 5], ["users", 23, 5]], [["machine", 18, 9]], [["name", 14, 3], ["meta", 16, 3], ["nodes", 18, 3], ["testScript", 52, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["maintainers", 16, 8]]);
-const pos$2 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["enable", 19, 22]]);
-const pos$3 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["sysusers", 19, 13]]);
-const pos$4 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["enable", 20, 24]]);
-const pos$5 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["overlay", 20, 16]]);
-const pos$6 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["etc", 20, 12]]);
-const pos$7 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["enable", 21, 25]]);
-const pos$8 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["systemd", 21, 17]]);
-const pos$9 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["initrd", 21, 10]]);
-const pos$10 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["hashedPasswordFile", 28, 7], ["initialHashedPassword", 29, 7]]);
-const pos$11 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["isSystemUser", 36, 7], ["group", 37, 7], ["initialPassword", 38, 7], ["initialHashedPassword", 39, 7]]);
-const pos$12 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["isSystemUser", 44, 7], ["group", 45, 7], ["initialPassword", 46, 7], ["initialHashedPassword", 47, 7], ["hashedPasswordFile", 48, 7]]);
-const pos$13 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["root", 27, 17], ["alice", 35, 17], ["bob", 43, 17]]);
-const pos$14 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["test", 32, 18]]);
-const pos$15 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["mutableUsers", 23, 11], ["users", 27, 11], ["groups", 32, 11]]);
-const pos$16 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["systemd", 19, 5], ["system", 20, 5], ["boot", 21, 5], ["users", 23, 5]]);
-const pos$17 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["machine", 18, 9]]);
-const pos$18 = nix.positions(here + "/systemd-sysusers-password-option-override-ordering.nix", [["name", 14, 3], ["meta", 16, 3], ["nodes", 18, 3], ["testScript", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,56 +14,56 @@ export default nix.lambda((args) => (() => {
   const hashedPassword1 = "$y$j9T$s8TyQJtNImvobhGM5Nlez0$3E8/O8EVGuA4sr1OQmrzi8GrRcy/AEhj454JjAn72A2";
   const hashedPasswordFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "hashed-password", hashedPassword1));
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "systemd-sysusers-password-option-override-ordering",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "fidgetingbits"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          sysusers: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          sysusers: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
         system: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            overlay: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+            [nix.POS]: $pos[4],
+            overlay: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
           })),
         })),
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           initrd: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            systemd: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            [nix.POS]: $pos[7],
+            systemd: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
           })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           mutableUsers: true,
           users: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             root: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               hashedPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), null)),
               initialHashedPassword: password,
             })),
             alice: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               isSystemUser: true,
               group: "test",
               initialPassword: password,
               initialHashedPassword: hashedPassword,
             })),
             bob: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               isSystemUser: true,
               group: "test",
               initialPassword: password,
@@ -88,7 +71,7 @@ export default nix.lambda((args) => (() => {
               hashedPasswordFile: nix.thunk(() => nix.sel(hashedPasswordFile, "outPath")),
             })),
           })),
-          groups: nix.thunk(() => ({ [nix.POS]: pos$14, test: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: $pos[13], test: nix.thunk(() => ({})) })),
         })),
       })),
     })),

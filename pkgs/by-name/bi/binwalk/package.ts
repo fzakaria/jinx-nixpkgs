@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["platforms", 134, 5], ["maintainers", 135, 5], ["mainProgram", 139, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["cargoHash", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 59, 3], ["dontUseCargoParallelTests", 72, 3], ["checkFlags", 75, 3], ["nativeInstallCheckInputs", 96, 3], ["doInstallCheck", 97, 3], ["versionCheckProgramArg", 98, 3], ["postInstall", 100, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { bzip2: false, cabextract: false, dmg2img: false, dtc: false, dumpifs: false, enableUnfree: true, fetchFromGitHub: false, fontconfig: false, gnutar: false, jefferson: false, lib: false, lzfse: false, lzo: false, lzop: false, lz4: false, openssl_3_5: false, "pkg-config": false, python3: false, rustPlatform: false, sasquatch: false, sleuthkit: false, srec2bin: false, stdenv: false, ubi_reader: false, ucl: false, "uefi-firmware-parser": false, unrar: false, unyaffs: false, unzip: false, versionCheckHook: false, "vmlinux-to-elf": false, xz: false, zlib: false, zstd: false, p7zip: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["platforms", 134, 5], ["maintainers", 135, 5], ["mainProgram", 139, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["cargoHash", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 59, 3], ["dontUseCargoParallelTests", 72, 3], ["checkFlags", 75, 3], ["nativeInstallCheckInputs", 96, 3], ["doInstallCheck", 97, 3], ["versionCheckProgramArg", 98, 3], ["postInstall", 100, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const p7zip = nix.arg($, "p7zip");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "binwalk",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ReFirmLabs",
           repo: "binwalk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -106,7 +104,7 @@ export default nix.lambda((args) => (() => {
         ], nix.app(nix.sel(lib, "optionals"), enableUnfree, nix.thunk(() => [dumpifs, unrar])))))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Firmware Analysis Tool",
         homepage: "https://github.com/ReFirmLabs/binwalk",
         changelog: nix.thunk(() => nix.str`https://github.com/ReFirmLabs/binwalk/releases/tag/v${nix.sel(finalAttrs, "version")}`),

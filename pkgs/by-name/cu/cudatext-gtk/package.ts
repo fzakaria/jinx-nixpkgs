@@ -2,12 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["widgetset", 3, 21]]]);
 const formals$1 = { args: { cudatext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["widgetset", 3, 21]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const cudatext = nix.arg($, "cudatext");
-  return nix.app(nix.sel(cudatext, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, widgetset: "gtk3" })));
+  return nix.app(nix.sel(cudatext, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], widgetset: "gtk3" })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

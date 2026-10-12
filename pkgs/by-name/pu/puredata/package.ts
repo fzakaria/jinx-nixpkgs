@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["url", 32, 7], ["hash", 33, 7]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5], ["changelog", 83, 5], ["broken", 85, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 26, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["configureFlags", 55, 3], ["postInstall", 71, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, autoreconfHook: false, gettext: false, makeWrapper: false, "alsa-lib": false, libjack2: false, tk: false, fftw: false, portaudio: false, portmidi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5], ["changelog", 83, 5], ["broken", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 26, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["configureFlags", 55, 3], ["postInstall", 71, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const portaudio = nix.arg($, "portaudio");
   const portmidi = nix.arg($, "portmidi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "puredata",
       version: "0.55-2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://msp.ucsd.edu/Software/pd-${nix.sel(finalAttrs, "version")}.src.tar.gz`),
           hash: "sha256-EIKX+NHdGQ346LtKSsNIeSrM9wT5ogUtk8uoybi7Wls=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./expose-error.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/pure-data/pure-data/commit/95e4105bc1044cbbcbbbcc369480a77c298d7475.patch",
             hash: "sha256-zFB9m8Nw80X9+a64Uft4tNRA4BHsVr8zxLqAof0jJEI=",
           })))),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/pd-gui --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [tk]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Real-time graphical programming environment for audio, video, and graphical processing",
         homepage: "http://puredata.info",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/install-manpage.nix", [[["platforms", 10, 10]], [["nativeBuildInputs", 9, 5], ["meta", 10, 5]]]);
 const formals$1 = { args: { lib: false, installShellFiles: false, runCommandLocal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/install-manpage.nix", [["platforms", 10, 10]]);
-const pos$2 = nix.positions(here + "/install-manpage.nix", [["nativeBuildInputs", 9, 5], ["meta", 10, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   return nix.app(runCommandLocal, "install-shell-files--install-manpage", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })), "mkdir -p doc\necho foo > doc/foo.1\necho bar > doc/bar.2.gz\necho baz > doc/baz.3\necho buzz > --name.1\n\ninstallManPage doc/*\ninstallManPage -- --name.1\n\ncmp doc/foo.1 $out/share/man/man1/foo.1\ncmp doc/bar.2.gz $out/share/man/man2/bar.2.gz\ncmp doc/baz.3 $out/share/man/man3/baz.3\ncmp -- --name.1 $out/share/man/man1/--name.1\n");

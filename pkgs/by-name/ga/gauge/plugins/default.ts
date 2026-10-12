@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["makeGaugePlugin", 8, 5], ["testGaugePlugins", 9, 5], ["dotnet", 10, 5], ["html-report", 11, 5], ["java", 12, 5], ["js", 13, 5], ["ruby", 14, 5], ["go", 15, 5], ["screenshot", 16, 5], ["xml-report", 17, 5]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["makeGaugePlugin", 8, 5], ["testGaugePlugins", 9, 5], ["dotnet", 10, 5], ["html-report", 11, 5], ["java", 12, 5], ["js", 13, 5], ["ruby", 14, 5], ["go", 15, 5], ["screenshot", 16, 5], ["xml-report", 17, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(pkgs, "newScope")), (final) => (() => {
       const callPackage = nix.thunk(() => nix.attr(final, "callPackage"));
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         makeGaugePlugin: nix.thunk(() => nix.app(callPackage, nix.path(here, "./make-gauge-plugin.nix"), nix.thunk(() => ({})))),
         testGaugePlugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-gauge-plugins.nix"), nix.thunk(() => ({})))),
         dotnet: nix.thunk(() => nix.app(callPackage, nix.path(here, "./dotnet"), nix.thunk(() => ({})))),

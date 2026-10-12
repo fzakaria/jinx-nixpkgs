@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cstruct.nix", [[["description", 22, 5]], [["pname", 8, 3], ["version", 10, 21], ["src", 10, 29], ["duneVersion", 12, 3], ["propagatedBuildInputs", 14, 3], ["doCheck", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, macaddr: false, cstruct: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cstruct.nix", [["description", 22, 5]]);
-const pos$2 = nix.positions(here + "/cstruct.nix", [["pname", 8, 3], ["version", 10, 21], ["src", 10, 29], ["duneVersion", 12, 3], ["propagatedBuildInputs", 14, 3], ["doCheck", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const macaddr = nix.arg($, "macaddr");
   const cstruct = nix.arg($, "cstruct");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "macaddr-cstruct",
       version: nix.thunk(() => nix.attr(macaddr, "version")),
       src: nix.thunk(() => nix.attr(macaddr, "src")),
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [macaddr, cstruct]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(macaddr, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Library for manipulation of MAC address representations using Cstructs",
       })),
     })));

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pybind11-2.13.6.nix", [[["out", 25, 7], ["pythonInterpreter", 26, 7], ["pythonIncludeDir", 27, 7], ["pythonSitePackages", 28, 7]], [["license", 30, 10]], [["name", 23, 5], ["substitutions", 24, 5], ["meta", 30, 5]], [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["name", 51, 7], ["url", 52, 7], ["includes", 53, 7], ["hash", 54, 7]], [["name", 57, 7], ["url", 58, 7], ["hash", 59, 7]], [["homepage", 130, 5], ["changelog", 131, 5], ["description", 132, 5], ["mainProgram", 133, 5], ["longDescription", 134, 5], ["license", 139, 5], ["maintainers", 140, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["build-system", 63, 3], ["propagatedNativeBuildInputs", 69, 3], ["dontUseCmakeBuildDir", 71, 3], ["preConfigure", 74, 3], ["cmakeFlags", 80, 3], ["postBuild", 87, 3], ["postInstall", 92, 3], ["nativeCheckInputs", 99, 3], ["disabledTestPaths", 105, 3], ["disabledTests", 117, 3], ["postCheck", 123, 3], ["hardeningDisable", 127, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, ninja: false, setuptools: false, boost: false, eigen: false, python: false, catch2: false, numpy: false, pytestCheckHook: false, makeSetupHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pybind11-2.13.6.nix", [["out", 25, 7], ["pythonInterpreter", 26, 7], ["pythonIncludeDir", 27, 7], ["pythonSitePackages", 28, 7]]);
-const pos$2 = nix.positions(here + "/pybind11-2.13.6.nix", [["license", 30, 10]]);
-const pos$3 = nix.positions(here + "/pybind11-2.13.6.nix", [["name", 23, 5], ["substitutions", 24, 5], ["meta", 30, 5]]);
-const pos$4 = nix.positions(here + "/pybind11-2.13.6.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$5 = nix.positions(here + "/pybind11-2.13.6.nix", [["name", 51, 7], ["url", 52, 7], ["includes", 53, 7], ["hash", 54, 7]]);
-const pos$6 = nix.positions(here + "/pybind11-2.13.6.nix", [["name", 57, 7], ["url", 58, 7], ["hash", 59, 7]]);
-const pos$7 = nix.positions(here + "/pybind11-2.13.6.nix", [["homepage", 130, 5], ["changelog", 131, 5], ["description", 132, 5], ["mainProgram", 133, 5], ["longDescription", 134, 5], ["license", 139, 5], ["maintainers", 140, 5]]);
-const pos$8 = nix.positions(here + "/pybind11-2.13.6.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["build-system", 63, 3], ["propagatedNativeBuildInputs", 69, 3], ["dontUseCmakeBuildDir", 71, 3], ["preConfigure", 74, 3], ["cmakeFlags", 80, 3], ["postBuild", 87, 3], ["postInstall", 92, 3], ["nativeCheckInputs", 99, 3], ["disabledTestPaths", 105, 3], ["disabledTests", 117, 3], ["postCheck", 123, 3], ["hardeningDisable", 127, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,24 +23,27 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const setupHook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "pybind11-setup-hook",
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         out: nix.thunk(() => nix.builtins.placeholder("out")),
         pythonInterpreter: nix.thunk(() => nix.sel(python, "pythonOnBuildForHost", "interpreter")),
         pythonIncludeDir: nix.thunk(() => nix.str`${python}/include/python${nix.sel(python, "pythonVersion")}`),
         pythonSitePackages: nix.thunk(() => nix.str`${python}/${nix.sel(python, "sitePackages")}`),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })), nix.path(here, "./pybind11-setup-hook.sh")));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "pybind11",
       version: "2.13.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "pybind",
           repo: "pybind11",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,14 +52,14 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./pybind11.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "pybind11-python314-fopen.patch",
             url: "https://github.com/pybind/pybind11/commit/3bd75bddf966ca32fec6e7d7ffc25630431e8815.patch",
             includes: nix.thunk(() => ["include/pybind11/eval.h"]),
             hash: "sha256-98gdGDUQFM/0el6j+fqyBppOfrjub4Cyxlu7wc7S8SQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "pybind11-python314-unhashable-message.patch",
             url: "https://github.com/pybind/pybind11/commit/236b32f5c53665c1b1ea3d70f4a776287dadf863.patch",
             hash: "sha256-zCapiTpNuPyYepOYmHCRjEFOn8z0UmlT2PmgX59XzM8=",
@@ -96,7 +92,7 @@ ln -sf $out/include/pybind11 $out/include/${nix.sel(python, "libPrefix")}/pybind
       postCheck: "make cpptest\n",
       hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), "fortify")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/pybind/pybind11",
         changelog: nix.thunk(() => nix.str`https://github.com/pybind/pybind11/blob/${nix.sel(finalAttrs, "src", "rev")}/docs/changelog.rst`),
         description: "Seamless operability between C++11 and Python",

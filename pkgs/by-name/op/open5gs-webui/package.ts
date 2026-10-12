@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 7, 3], ["src", 8, 21], ["version", 8, 25], ["meta", 8, 33], ["sourceRoot", 10, 3], ["npmDepsHash", 12, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, open5gs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["src", 8, 21], ["version", 8, 25], ["meta", 8, 33], ["sourceRoot", 10, 3], ["npmDepsHash", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const open5gs = nix.arg($, "open5gs");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.str`${nix.sel(open5gs, "pname")}-webui`),
       src: nix.thunk(() => nix.attr(open5gs, "src")),
       version: nix.thunk(() => nix.attr(open5gs, "version")),

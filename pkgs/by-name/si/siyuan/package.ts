@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 29, 5], ["aarch64-linux", 30, 5], ["aarch64-darwin", 31, 5]], [["linux", 39, 5], ["linux-arm64", 40, 5], ["darwin-arm64", 41, 5]], [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5]], [["pandoc_path", 65, 9]], [["CGO_ENABLED", 88, 9]], [["name", 58, 5], ["src", 59, 26], ["sourceRoot", 60, 5], ["vendorHash", 61, 5], ["patches", 63, 5], ["modPostBuild", 72, 5], ["ldflags", 79, 5], ["tags", 83, 5], ["env", 88, 5], ["doCheck", 94, 5]], [["pname", 114, 7], ["version", 115, 7], ["src", 116, 7], ["sourceRoot", 117, 7], ["pnpm", 119, 13], ["fetcherVersion", 120, 5], ["hash", 121, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 126, 7]], [["name", 201, 5], ["desktopName", 202, 5], ["comment", 203, 5], ["icon", 204, 5], ["exec", 205, 5], ["categories", 206, 5]], [["extraArgs", 213, 7]], [["pname", 226, 7], ["doCheck", 227, 7], ["checkPhase", 228, 7], ["installPhase", 233, 7]], [["kernel", 225, 11]], [["kernel", 210, 5], ["updateScript", 212, 5], ["tests", 225, 5]], [["description", 238, 5], ["homepage", 239, 5], ["license", 240, 5], ["mainProgram", 241, 5], ["maintainers", 242, 5], ["platforms", 247, 5]], [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["kernel", 57, 3], ["nativeBuildInputs", 97, 3], ["pnpmDeps", 112, 3], ["sourceRoot", 124, 3], ["env", 126, 3], ["postConfigure", 128, 3], ["postBuild", 155, 3], ["installPhase", 167, 3], ["desktopItems", 200, 3], ["passthru", 209, 3], ["meta", 237, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildGoModule: false, replaceVars: false, pandoc: false, nodejs: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpmBuildHook: false, electron: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, "nix-update-script": false, "xdg-utils": false, zip: false, darwin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 29, 5], ["aarch64-linux", 30, 5], ["aarch64-darwin", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["linux", 39, 5], ["linux-arm64", 40, 5], ["darwin-arm64", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pandoc_path", 65, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 88, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 58, 5], ["src", 59, 26], ["sourceRoot", 60, 5], ["vendorHash", 61, 5], ["patches", 63, 5], ["modPostBuild", 72, 5], ["ldflags", 79, 5], ["tags", 83, 5], ["env", 88, 5], ["doCheck", 94, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 114, 7], ["version", 115, 7], ["src", 116, 7], ["sourceRoot", 117, 7], ["pnpm", 119, 13], ["fetcherVersion", 120, 5], ["hash", 121, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 126, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 201, 5], ["desktopName", 202, 5], ["comment", 203, 5], ["icon", 204, 5], ["exec", 205, 5], ["categories", 206, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["extraArgs", 213, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 226, 7], ["doCheck", 227, 7], ["checkPhase", 228, 7], ["installPhase", 233, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["kernel", 225, 11]]);
-const pos$13 = nix.positions(here + "/package.nix", [["kernel", 210, 5], ["updateScript", 212, 5], ["tests", 225, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["description", 238, 5], ["homepage", 239, 5], ["license", 240, 5], ["mainProgram", 241, 5], ["maintainers", 242, 5], ["platforms", 247, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["kernel", 57, 3], ["nativeBuildInputs", 97, 3], ["pnpmDeps", 112, 3], ["sourceRoot", 124, 3], ["env", 126, 3], ["postConfigure", 128, 3], ["postBuild", 155, 3], ["installPhase", 167, 3], ["desktopItems", 200, 3], ["passthru", 209, 3], ["meta", 237, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,51 +32,51 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const pnpm = pnpm_11;
   const platformIds = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "linux",
     "aarch64-linux": "linux-arm64",
     "aarch64-darwin": "darwin-arm64",
   }));
   const platformId = nix.thunk(() => nix.selOr(platformIds, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${system}`)), nix.key(nix.force(system))));
   const pandocArchives = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     linux: "pandoc-linux-amd64.zip",
     "linux-arm64": "pandoc-linux-arm64.zip",
     "darwin-arm64": "pandoc-darwin-arm64.zip",
   }));
   const pandocArchive = nix.thunk(() => nix.sel(pandocArchives, nix.key(nix.force(platformId))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "siyuan",
       version: "3.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "siyuan-note",
           repo: "siyuan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-MzsfeAWApHLDt4+aC9/O+5Dl8OD8p0l+/8tb2ZZyTos=",
         })))),
       kernel: nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-kernel`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/kernel`),
           vendorHash: "sha256-x8saxKDLeZdEbTBjNXnOBU9zkliZXm6D92Mom8CUCbs=",
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./set-pandoc-path.patch"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 pandoc_path: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), pandoc)),
               })))),
           ]),
           modPostBuild: "chmod +w vendor/github.com/88250/gulu\nsubstituteInPlace vendor/github.com/88250/gulu/file.go \\\n    --replace-fail \"os.Chmod(dest, sourceinfo.Mode())\" \"os.Chmod(dest, 0644)\"\n",
           ldflags: nix.thunk(() => ["-s", "-X 'github.com/siyuan-note/siyuan/kernel/util.Mode=prod'"]),
           tags: nix.thunk(() => ["fts5", "sqlcipher"]),
-          env: nix.thunk(() => ({ [nix.POS]: pos$5, CGO_ENABLED: "1" })),
+          env: nix.thunk(() => ({ [nix.POS]: $pos[4], CGO_ENABLED: "1" })),
           doCheck: false,
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([nodejs, pnpmConfigHook, pnpm, zip], nix.concat(nix.app(nix.sel(lib, "optionals"), isLinux, nix.thunk(() => [pnpmBuildHook, makeWrapper, copyDesktopItems])), nix.app(nix.sel(lib, "optionals"), isDarwin, nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook"))]))))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -100,7 +86,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-ACWwXIwuiLp/e+1dwlClzAi8ZC6oEQc3ETFK/WvVnGk=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/app`),
-      env: nix.thunk(() => ({ [nix.POS]: pos$8, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[7], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       postConfigure: nix.thunk(() => nix.str`# Remove the prebuilt pandoc archives; we provide our own built from the
 # Nix pandoc binary below, and keep pandoc-resources for the kernel.
 rm -f pandoc/pandoc-*.zip
@@ -160,7 +146,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/siyuan \\
 install -Dm644 src/assets/icon.svg $out/share/icons/hicolor/scalable/apps/siyuan.svg
 `))), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optional"), isLinux, nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             name: "siyuan",
             desktopName: "SiYuan",
             comment: "Refactor your thinking",
@@ -169,16 +155,16 @@ install -Dm644 src/assets/icon.svg $out/share/icons/hicolor/scalable/apps/siyuan
             categories: nix.thunk(() => ["Utility"]),
           })))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         kernel: nix.thunk(() => nix.sel(finalAttrs, "kernel")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             extraArgs: nix.thunk(() => ["--version-regex", "^v(\\d+\\.\\d+\\.\\d+)$", "--subpackage=kernel"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           kernel: nix.thunk(() => nix.app(nix.sel(finalAttrs, "kernel", "overrideAttrs"), nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-kernel-test`),
               doCheck: true,
               checkPhase: "runHook preCheck\ngo test -vet=off -tags=fts5,sqlcipher ./...\nrunHook postCheck\n",
@@ -187,7 +173,7 @@ install -Dm644 src/assets/icon.svg $out/share/icons/hicolor/scalable/apps/siyuan
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "Privacy-first personal knowledge management system that supports complete offline usage, as well as end-to-end encrypted data sync",
         homepage: "https://b3log.org/siyuan/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

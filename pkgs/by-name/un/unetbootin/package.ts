@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["setSourceRoot", 25, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 35, 3], ["postPatch", 38, 3], ["preConfigure", 55, 3], ["installPhase", 60, 3], ["qtWrapperArgs", 70, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, coreutils: false, fetchFromGitHub: false, mtools: false, p7zip: false, qt5: false, syslinux: false, "util-linux": false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["setSourceRoot", 25, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 35, 3], ["postPatch", 38, 3], ["preConfigure", 55, 3], ["installPhase", 60, 3], ["qtWrapperArgs", 70, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "unetbootin",
       version: "702",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "unetbootin",
           repo: "unetbootin",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +57,7 @@ substituteInPlace unetbootin.desktop \\
         "--set QT_X11_NO_MITSHM 1",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to create bootable live USB drives from ISO images",
         homepage: "https://unetbootin.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

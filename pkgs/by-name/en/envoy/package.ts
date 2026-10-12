@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["x86_64-linux", 57, 9], ["aarch64-linux", 58, 9]], [["owner", 73, 7], ["repo", 74, 7], ["hash", 75, 24], ["rev", 75, 29]], [["src", 72, 5], ["patches", 79, 5], ["postPatch", 92, 5]], [["CARGO_BAZEL_REPIN", 142, 9]], [["sha256", 141, 5], ["env", 142, 5], ["dontUseCmakeConfigure", 143, 5], ["dontUseGnConfigure", 144, 5], ["postPatch", 145, 5], ["preInstall", 154, 5]], [["dontUseCmakeConfigure", 243, 5], ["dontUseGnConfigure", 244, 5], ["dontUseNinjaInstall", 245, 5], ["bazel", 246, 5], ["preConfigure", 247, 5], ["installPhase", 278, 5]], [["nativeBuildInputs", 346, 11]], [["envoy", 339, 5], ["pomerium", 341, 5], ["deps-store-free", 343, 5]], [["tests", 338, 12]], [["homepage", 377, 5], ["changelog", 378, 5], ["description", 379, 5], ["mainProgram", 380, 5], ["license", 381, 5], ["maintainers", 382, 5], ["platforms", 383, 5]], [["pname", 67, 3], ["version", 68, 20], ["bazel", 69, 3], ["src", 71, 3], ["postPatch", 99, 3], ["nativeBuildInputs", 127, 3], ["buildInputs", 138, 3], ["fetchAttrs", 140, 3], ["buildAttrs", 242, 3], ["removeRulesCC", 283, 3], ["removeLocalConfigCc", 284, 3], ["removeLocal", 285, 3], ["bazelTargets", 286, 3], ["bazelFlags", 287, 3], ["bazelBuildFlags", 290, 3], ["bazelFetchFlags", 325, 3], ["requiredSystemFeatures", 336, 3], ["passthru", 338, 3], ["meta", 376, 3]]]);
 const formals$1 = { args: { lib: false, bazel_7: false, "bazel-gazelle": false, buildBazelPackage: false, fetchFromGitHub: false, applyPatches: false, stdenv: false, cacert: false, cargo: false, rustc: false, rustPlatform: false, cmake: false, gn: false, openjdk11_headless: false, ninja: false, patchelf: false, python312: false, linuxHeaders: false, nixosTests: false, runCommandLocal: false, gnutar: false, gnugrep: false, envoy: false, git: false, wasmRuntime: true, depsHash: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 57, 9], ["aarch64-linux", 58, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 73, 7], ["repo", 74, 7], ["hash", 75, 24], ["rev", 75, 29]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 72, 5], ["patches", 79, 5], ["postPatch", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["CARGO_BAZEL_REPIN", 142, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["sha256", 141, 5], ["env", 142, 5], ["dontUseCmakeConfigure", 143, 5], ["dontUseGnConfigure", 144, 5], ["postPatch", 145, 5], ["preInstall", 154, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["dontUseCmakeConfigure", 243, 5], ["dontUseGnConfigure", 244, 5], ["dontUseNinjaInstall", 245, 5], ["bazel", 246, 5], ["preConfigure", 247, 5], ["installPhase", 278, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 346, 11]]);
-const pos$9 = nix.positions(here + "/package.nix", [["envoy", 339, 5], ["pomerium", 341, 5], ["deps-store-free", 343, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["tests", 338, 12]]);
-const pos$11 = nix.positions(here + "/package.nix", [["homepage", 377, 5], ["changelog", 378, 5], ["description", 379, 5], ["mainProgram", 380, 5], ["license", 381, 5], ["maintainers", 382, 5], ["platforms", 383, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 67, 3], ["version", 68, 20], ["bazel", 69, 3], ["src", 71, 3], ["postPatch", 99, 3], ["nativeBuildInputs", 127, 3], ["buildInputs", 138, 3], ["fetchAttrs", 140, 3], ["buildAttrs", 242, 3], ["removeRulesCC", 283, 3], ["removeLocalConfigCc", 284, 3], ["removeLocal", 285, 3], ["bazelTargets", 286, 3], ["bazelFlags", 287, 3], ["bazelBuildFlags", 290, 3], ["bazelFetchFlags", 325, 3], ["requiredSystemFeatures", 336, 3], ["passthru", 338, 3], ["meta", 376, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const wasmRuntime = nix.argOr($, "wasmRuntime", () => "wasmtime");
   const depsHash = nix.argOr($, "depsHash", () => null);
   const srcVer = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "1.36.10",
     rev: "053a8989382dd91542ecf0cef8f379b9cb761cdd",
     hash: "sha256-6bGXZfU2JutiriefwBudt46BrJRnwEqQCjYVRjUgyaY=",
   }));
   const depsHash$ = nix.thunk(() => (nix.asBool(!nix.eq(depsHash, null)) ? nix.force(depsHash) : nix.selOr({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "x86_64-linux": "sha256-EUPWZ8N8wXtnOle8WMLfdxQEdCnTv1JJSbgG39UOoMc=",
     "aarch64-linux": "sha256-WltewtSjwvmYfZQwYAslCCoBdLY1MyO9jnMC/bCzVeg=",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system")))));
@@ -62,9 +51,9 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.attr(srcVer, "version"));
       const bazel = bazel_7;
       const src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               owner: "envoyproxy",
               repo: "envoy",
               hash: nix.thunk(() => nix.attr(srcVer, "hash")),
@@ -110,9 +99,9 @@ mv bazel/nix/rules_rust.patch bazel/rules_rust.patch
       const nativeBuildInputs = nix.thunk(() => [cmake, python3, gn, jdk, ninja, patchelf, cacert, git]);
       const buildInputs = nix.thunk(() => [linuxHeaders]);
       const fetchAttrs = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         sha256: depsHash$,
-        env: nix.thunk(() => ({ [nix.POS]: pos$5, CARGO_BAZEL_REPIN: true })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[4], CARGO_BAZEL_REPIN: true })),
         dontUseCmakeConfigure: true,
         dontUseGnConfigure: true,
         postPatch: nix.thunk(() => nix.str`${postPatch}
@@ -211,7 +200,7 @@ rm -rf $bazelOut/external/cargo_bazel_bootstrap $bazelOut/external/dynamic_modul
 `),
       }));
       const buildAttrs = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         dontUseCmakeConfigure: true,
         dontUseGnConfigure: true,
         dontUseNinjaInstall: true,
@@ -277,12 +266,12 @@ cp $bazelOut/external/Cargo.Bazel.lock source/extensions/dynamic_modules/sdk/rus
       ]);
       const requiredSystemFeatures = nix.thunk(() => ["big-parallel"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           envoy: nix.thunk(() => nix.sel(nixosTests, "envoy")),
           pomerium: nix.thunk(() => nix.sel(nixosTests, "pomerium")),
-          "deps-store-free": nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.str`${nix.sel(envoy, "name")}-deps-store-free-test`), nix.thunk(() => ({ [nix.POS]: pos$8, nativeBuildInputs: nix.thunk(() => [gnutar, gnugrep]) })), nix.thunk(() => nix.str`touch $out
+          "deps-store-free": nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.str`${nix.sel(envoy, "name")}-deps-store-free-test`), nix.thunk(() => ({ [nix.POS]: $pos[7], nativeBuildInputs: nix.thunk(() => [gnutar, gnugrep]) })), nix.thunk(() => nix.str`touch $out
 tar -xf ${nix.sel(envoy, "deps")}
 grep -r /nix/store external && status=$? || status=$?
 case $status in
@@ -307,7 +296,7 @@ esac
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         homepage: "https://envoyproxy.io",
         changelog: nix.thunk(() => nix.str`https://github.com/envoyproxy/envoy/releases/tag/v${version}`),
         description: "Cloud-native edge and service proxy",
@@ -320,7 +309,7 @@ esac
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
       return {
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pname,
         version,
         bazel,

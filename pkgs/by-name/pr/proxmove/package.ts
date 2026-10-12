@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["dependencies", 23, 3], ["preBuild", 27, 3], ["checkPhase", 32, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["dependencies", 23, 3], ["preBuild", 27, 3], ["checkPhase", 32, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ossobv",
           repo: "proxmove",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +37,7 @@ $out/bin/${pname} --version
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Proxmox VM migrator: migrates VMs between different Proxmox VE clusters",
         mainProgram: "proxmove",
         homepage: "https://github.com/ossobv/proxmove",
@@ -51,7 +49,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

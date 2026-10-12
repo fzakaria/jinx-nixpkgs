@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["easytier", 55, 36], ["easytier-modular", 55, 45]], [["formats", 61, 56], ["bash", 61, 64], ["iproute2", 61, 69]], [["package", 63, 14]], [["imports", 60, 5], ["easytier", 63, 5]], [["default", 59, 21]], [["tests", 55, 5], ["updateScript", 56, 5], ["services", 59, 12]], [["homepage", 67, 5], ["changelog", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["mainProgram", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["nativeBuildInputs", 31, 3], ["buildNoDefaultFeatures", 38, 3], ["buildFeatures", 39, 3], ["postInstall", 41, 3], ["doCheck", 52, 3], ["passthru", 54, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, protobuf: false, nixosTests: false, "nix-update-script": false, installShellFiles: false, mold: false, withQuic: true, formats: false, bash: false, iproute2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["easytier", 55, 36], ["easytier-modular", 55, 45]]);
-const pos$3 = nix.positions(here + "/package.nix", [["formats", 61, 56], ["bash", 61, 64], ["iproute2", 61, 69]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 63, 14]]);
-const pos$5 = nix.positions(here + "/package.nix", [["imports", 60, 5], ["easytier", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["default", 59, 21]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 55, 5], ["updateScript", 56, 5], ["services", 59, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["changelog", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["mainProgram", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["nativeBuildInputs", 31, 3], ["buildNoDefaultFeatures", 38, 3], ["buildFeatures", 39, 3], ["postInstall", 41, 3], ["doCheck", 52, 3], ["passthru", 54, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const iproute2 = nix.arg($, "iproute2");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "easytier",
       version: "2.6.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "EasyTier",
           repo: "EasyTier",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,29 +43,29 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd easytier-cli \\\n  --bash <($out/bin/easytier-cli gen-autocomplete bash) \\\n  --fish <($out/bin/easytier-cli gen-autocomplete fish) \\\n  --zsh <($out/bin/easytier-cli gen-autocomplete zsh)\ninstallShellCompletion --cmd easytier-core \\\n  --bash <($out/bin/easytier-core --gen-autocomplete bash) \\\n  --fish <($out/bin/easytier-core --gen-autocomplete fish) \\\n  --zsh <($out/bin/easytier-core --gen-autocomplete zsh)\n")),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           easytier: nix.thunk(() => nix.attr(nixosTests, "easytier")),
           "easytier-modular": nix.thunk(() => nix.attr(nixosTests, "easytier-modular")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           default: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             imports: nix.thunk(() => [
-              nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, formats: formats, bash: bash, iproute2: iproute2 })))),
+              nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], formats: formats, bash: bash, iproute2: iproute2 })))),
             ]),
             easytier: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })),
           })),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://github.com/EasyTier/EasyTier",
         changelog: nix.thunk(() => nix.str`https://github.com/EasyTier/EasyTier/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Simple, decentralized mesh VPN with WireGuard support",

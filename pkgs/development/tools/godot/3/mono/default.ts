@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["python3Packages", 13, 5]], [["scons", 12, 3]], [["name", 31, 11], ["sourceFile", 32, 11]], [["make-deps", 54, 9]], [["pname", 18, 7], ["godotBuildDescription", 20, 7], ["nativeBuildInputs", 22, 7], ["glue", 27, 7], ["buildInputs", 29, 7], ["sconsFlags", 36, 7], ["postConfigure", 41, 7], ["installedGodotShortcutFileName", 50, 7], ["installedGodotShortcutDisplayName", 51, 7], ["passthru", 53, 7]]]);
 const formals$1 = { args: { godot3: false, callPackage: false, mkNugetDeps: false, mono: false, "dotnet-sdk": false, scons: false, python311Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["python3Packages", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["scons", 12, 3]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 31, 11], ["sourceFile", 32, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["make-deps", 54, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 18, 7], ["godotBuildDescription", 20, 7], ["nativeBuildInputs", 22, 7], ["glue", 27, 7], ["buildInputs", 29, 7], ["sconsFlags", 36, 7], ["postConfigure", 41, 7], ["installedGodotShortcutFileName", 50, 7], ["installedGodotShortcutDisplayName", 51, 7], ["passthru", 53, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,23 +15,23 @@ export default nix.lambda((args) => (() => {
   const scons = nix.arg($, "scons");
   const python311Packages = nix.arg($, "python311Packages");
   return nix.app(nix.sel(nix.app(nix.sel(godot3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      scons: nix.thunk(() => nix.app(nix.sel(scons, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python3Packages: python311Packages })))),
+      [nix.POS]: $pos[1],
+      scons: nix.thunk(() => nix.app(nix.sel(scons, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], python3Packages: python311Packages })))),
     }))), "overrideAttrs"), (self) => (base) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "godot3-mono",
       godotBuildDescription: "mono build",
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(base, "nativeBuildInputs"), [mono, dotnet_sdk])),
       glue: nix.thunk(() => nix.app(callPackage, nix.path(here, "./glue.nix"), nix.thunk(() => ({})))),
       buildInputs: nix.thunk(() => nix.concat(nix.sel(base, "buildInputs"), [
-        nix.thunk(() => nix.app(mkNugetDeps, nix.thunk(() => ({ [nix.POS]: pos$3, name: "deps", sourceFile: nix.path(here, "./deps.json") })))),
+        nix.thunk(() => nix.app(mkNugetDeps, nix.thunk(() => ({ [nix.POS]: $pos[2], name: "deps", sourceFile: nix.path(here, "./deps.json") })))),
       ])),
       sconsFlags: nix.thunk(() => nix.concat(nix.sel(base, "sconsFlags"), ["module_mono_enabled=true", nix.thunk(() => nix.str`mono_prefix=${mono}`)])),
       postConfigure: "echo \"Setting up buildhome.\"\nmkdir buildhome\nexport HOME=\"$PWD\"/buildhome\n\necho \"Overlaying godot glue.\"\ncp -R --no-preserve=mode \"$glue\"/. .\n",
       installedGodotShortcutFileName: "org.godotengine.GodotMono3.desktop",
       installedGodotShortcutDisplayName: "Godot Engine (Mono) 3",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "make-deps": nix.thunk(() => nix.app(callPackage, nix.path(here, "./make-deps.nix"), nix.thunk(() => ({})))),
       })),
     }));

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 19, 5], ["owner", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["aio", 30, 5]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["optional-dependencies", 29, 3], ["nativeCheckInputs", 33, 3], ["enabledTestPaths", 35, 3], ["disabledTests", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, requests: false, httpx: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 19, 5], ["owner", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aio", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["optional-dependencies", 29, 3], ["nativeCheckInputs", 33, 3], ["enabledTestPaths", 35, 3], ["disabledTests", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const httpx = nix.arg($, "httpx");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "telegraph",
       version: "2.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "telegraph",
           owner: "python273",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,13 +29,13 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [requests]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, aio: nix.thunk(() => [httpx]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], aio: nix.thunk(() => [httpx]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       enabledTestPaths: nix.thunk(() => ["tests/"]),
       disabledTests: nix.thunk(() => ["test_get_page"]),
       pythonImportsCheck: nix.thunk(() => ["telegraph"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Telegraph API wrapper",
         homepage: "https://github.com/python273/telegraph",
         changelog: nix.thunk(() => nix.str`https://github.com/python273/telegraph/releases/tag/v${nix.sel(finalAttrs, "version")}`),

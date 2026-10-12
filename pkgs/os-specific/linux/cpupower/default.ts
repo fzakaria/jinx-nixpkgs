@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["bin", 35, 5], ["sbin", 36, 5], ["man", 37, 5], ["include", 38, 5], ["lib", 39, 5], ["libexec", 40, 5], ["locale", 41, 5], ["doc", 42, 5], ["conf", 43, 5], ["bash_completion_", 44, 5], ["unit", 45, 5]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["platforms", 55, 5]], [["pname", 12, 3], ["version", 13, 20], ["src", 13, 28], ["patches", 13, 32], ["nativeBuildInputs", 15, 3], ["buildInputs", 19, 3], ["postPatch", 21, 3], ["makeFlags", 28, 3], ["installFlags", 34, 3], ["enableParallelBuilding", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, kernel: false, pciutils: false, gettext: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["bin", 35, 5], ["sbin", 36, 5], ["man", 37, 5], ["include", 38, 5], ["lib", 39, 5], ["libexec", 40, 5], ["locale", 41, 5], ["doc", 42, 5], ["conf", 43, 5], ["bash_completion_", 44, 5], ["unit", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["platforms", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 20], ["src", 13, 28], ["patches", 13, 32], ["nativeBuildInputs", 15, 3], ["buildInputs", 19, 3], ["postPatch", 21, 3], ["makeFlags", 28, 3], ["installFlags", 34, 3], ["enableParallelBuilding", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cpupower",
       version: nix.thunk(() => nix.attr(kernel, "version")),
       src: nix.thunk(() => nix.attr(kernel, "src")),
@@ -35,7 +33,7 @@ sed -i 's,/usr/bin/install,${nix.sel(buildPackages, "coreutils")}/bin/install,' 
         nix.thunk(() => nix.str`LD=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ]),
       installFlags: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`${n}dir=${nix.builtins.placeholder("out")}/${v}`, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           bin: "bin",
           sbin: "sbin",
           man: "share/man",
@@ -50,7 +48,7 @@ sed -i 's,/usr/bin/install,${nix.sel(buildPackages, "coreutils")}/bin/install,' 
         })))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to examine and tune power saving features",
         homepage: "https://www.kernel.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

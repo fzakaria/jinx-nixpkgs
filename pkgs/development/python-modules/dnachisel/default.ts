@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["homepage", 63, 5], ["description", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 41, 3], ["disabledTests", 49, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, biopython: false, buildPythonPackage: false, docopt: false, fetchFromGitHub: false, flametree: false, "genome-collector": false, matplotlib: false, numpy: false, "primer3-py": false, proglog: false, pytestCheckHook: false, "python-codon-tables": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 63, 5], ["description", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 41, 3], ["disabledTests", 49, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.16";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Edinburgh-Genome-Foundry",
           repo: "DnaChisel",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["dnachisel"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/Edinburgh-Genome-Foundry/DnaChisel",
         description: "Optimize DNA sequences under constraints",
         changelog: nix.thunk(() => nix.str`https://github.com/Edinburgh-Genome-Foundry/DnaChisel/releases/tag/${nix.sel(src, "tag")}`),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

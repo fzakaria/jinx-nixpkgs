@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["python", 8, 3], ["buildbot-pkg", 10, 3], ["buildbot-worker", 12, 3], ["buildbot", 14, 3], ["buildbot-plugins", 16, 3], ["buildbot-ui", 18, 3], ["buildbot-full", 20, 3]]]);
 const formals$1 = { args: { lib: false, newScope: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["python", 8, 3], ["buildbot-pkg", 10, 3], ["buildbot-worker", 12, 3], ["buildbot", 14, 3], ["buildbot-plugins", 16, 3], ["buildbot-ui", 18, 3], ["buildbot-full", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const newScope = nix.arg($, "newScope");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(lib, "makeScope"), (self) => nix.app(newScope, nix.thunk(() => nix.update(nix.sel(self, "python", "pkgs"), self))), (self) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       python: python3,
       "buildbot-pkg": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkg.nix"), nix.thunk(() => ({})))),
       "buildbot-worker": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./worker.nix"), nix.thunk(() => ({})))),

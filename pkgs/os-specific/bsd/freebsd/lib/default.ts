@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["x86_64", 13, 7], ["aarch64", 14, 7], ["i486", 15, 7], ["i586", 16, 7], ["i686", 17, 7], ["armv6l", 18, 7], ["armv7l", 19, 7], ["powerpc", 20, 7], ["powerpc64", 21, 7], ["powerpc64le", 22, 7], ["riscv64", 23, 7]], [["x86_64", 30, 7], ["aarch64", 31, 7], ["i486", 32, 7], ["i586", 33, 7], ["i686", 34, 7], ["armv6l", 35, 7], ["armv7l", 36, 7], ["powerpc", 37, 7], ["powerpc64", 38, 7], ["powerpc64le", 39, 7], ["riscv64", 40, 7]], [["x86_64", 47, 7], ["aarch64", 48, 7], ["i486", 49, 7], ["i586", 50, 7], ["i686", 51, 7], ["armv6l", 52, 7], ["armv7l", 53, 7], ["powerpc", 54, 7], ["powerpc64", 55, 7], ["powerpc64le", 56, 7], ["riscv64", 57, 7]], [["version", 8, 11], ["mkBsdArch", 10, 3], ["mkBsdCpuArch", 27, 3], ["mkBsdMachine", 44, 3], ["install-wrapper", 61, 3], ["filterPatches", 67, 3]]]);
 const formals$1 = { args: { version: false, lib: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["x86_64", 13, 7], ["aarch64", 14, 7], ["i486", 15, 7], ["i586", 16, 7], ["i686", 17, 7], ["armv6l", 18, 7], ["armv7l", 19, 7], ["powerpc", 20, 7], ["powerpc64", 21, 7], ["powerpc64le", 22, 7], ["riscv64", 23, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["x86_64", 30, 7], ["aarch64", 31, 7], ["i486", 32, 7], ["i586", 33, 7], ["i686", 34, 7], ["armv6l", 35, 7], ["armv7l", 36, 7], ["powerpc", 37, 7], ["powerpc64", 38, 7], ["powerpc64le", 39, 7], ["riscv64", 40, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["x86_64", 47, 7], ["aarch64", 48, 7], ["i486", 49, 7], ["i586", 50, 7], ["i686", 51, 7], ["armv6l", 52, 7], ["armv7l", 53, 7], ["powerpc", 54, 7], ["powerpc64", 55, 7], ["powerpc64le", 56, 7], ["riscv64", 57, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 8, 11], ["mkBsdArch", 10, 3], ["mkBsdCpuArch", 27, 3], ["mkBsdMachine", 44, 3], ["install-wrapper", 61, 3], ["filterPatches", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const writeText = nix.arg($, "writeText");
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     version: version,
     mkBsdArch: (stdenv$) => nix.selOr({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       x86_64: "amd64",
       aarch64: "aarch64",
       i486: "i386",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       riscv64: "riscv64",
     }, () => nix.sel(stdenv$, "hostPlatform", "parsed", "cpu", "name"), nix.key(nix.sel(stdenv$, "hostPlatform", "parsed", "cpu", "name"))),
     mkBsdCpuArch: (stdenv$) => nix.selOr({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       x86_64: "amd64",
       aarch64: "aarch64",
       i486: "i386",
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       riscv64: "riscv",
     }, () => nix.sel(stdenv$, "hostPlatform", "parsed", "cpu", "name"), nix.key(nix.sel(stdenv$, "hostPlatform", "parsed", "cpu", "name"))),
     mkBsdMachine: (stdenv$) => nix.selOr({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       x86_64: "amd64",
       aarch64: "arm64",
       i486: "i386",

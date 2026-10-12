@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 23, 5], ["runtimeInputs", 24, 5], ["text", 27, 5]], [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]], [["withBlk", 84, 7], ["withGpu", 85, 7], ["withNet", 86, 7]], [["updateScript", 96, 5]], [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 107, 28], ["mainProgram", 108, 5]], [["pname", 54, 3], ["version", 55, 3], ["src", 57, 3], ["cargoHash", 64, 3], ["postPatch", 66, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 82, 3], ["postFixup", 91, 3], ["passthru", 95, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, libkrun: false, passt: false, dhcpcd: false, socat: false, systemd: false, udev: false, "pkg-config": false, fex: false, writeShellApplication: false, coreutils: false, makeBinaryWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 23, 5], ["runtimeInputs", 24, 5], ["text", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withBlk", 84, 7], ["withGpu", 85, 7], ["withNet", 86, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 107, 28], ["mainProgram", 108, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 54, 3], ["version", 55, 3], ["src", 57, 3], ["cargoHash", 64, 3], ["postPatch", 66, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 82, 3], ["postFixup", 91, 3], ["passthru", 95, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   const initScript = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "muvm-init",
       runtimeInputs: nix.thunk(() => [coreutils]),
       text: "if [[ -f /etc/NIXOS ]]; then\n  ln -s /run/muvm-host/run/current-system /run/current-system\n  if [[ -d /run/muvm-host/run/opengl-driver ]]; then\n     ln -s /run/muvm-host/run/opengl-driver /run/opengl-driver\n  fi\nfi\n",
@@ -43,11 +38,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`--execute-pre=${nix.app(nix.sel(lib, "getExe"), initScript)}`),
     ])));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "muvm",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "AsahiLinux",
           repo: "muvm",
           tag: nix.thunk(() => nix.str`muvm-${nix.sel(finalAttrs, "version")}`),
@@ -65,19 +60,19 @@ export default nix.lambda((args) => (() => {
         pkg_config,
       ]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(libkrun, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withBlk: true, withGpu: true, withNet: true })))),
+        nix.thunk(() => nix.app(nix.sel(libkrun, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], withBlk: true, withGpu: true, withNet: true })))),
         udev,
       ]),
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/muvm ${wrapArgs}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libkrun, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Run programs from your system in a microVM",
         homepage: "https://github.com/AsahiLinux/muvm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

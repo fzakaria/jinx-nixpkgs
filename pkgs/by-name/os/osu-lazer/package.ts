@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["desktopName", 91, 7], ["name", 92, 7], ["exec", 93, 7], ["icon", 94, 7], ["comment", 95, 7], ["type", 96, 7], ["categories", 97, 7]], [["extraArgs", 102, 5]], [["updateScript", 101, 12]], [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["maintainers", 116, 5], ["platforms", 121, 5], ["mainProgram", 125, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["projectFile", 35, 3], ["nugetDeps", 36, 3], ["dotnet-sdk", 38, 3], ["dotnet-runtime", 39, 3], ["nativeBuildInputs", 41, 3], ["runtimeDeps", 46, 3], ["executables", 70, 3], ["fixupPhase", 72, 3], ["desktopItems", 89, 3], ["passthru", 101, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false, ffmpeg: false, "alsa-lib": false, SDL2: false, sdl3: false, "lttng-ust": false, numactl: false, libglvnd: false, libxi: false, udev: false, "vulkan-loader": false, "nix-update-script": false, nativeWayland: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["desktopName", 91, 7], ["name", 92, 7], ["exec", 93, 7], ["icon", 94, 7], ["comment", 95, 7], ["type", 96, 7], ["categories", 97, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 101, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["maintainers", 116, 5], ["platforms", 121, 5], ["mainProgram", 125, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["projectFile", 35, 3], ["nugetDeps", 36, 3], ["dotnet-sdk", 38, 3], ["dotnet-runtime", 39, 3], ["nativeBuildInputs", 41, 3], ["runtimeDeps", 46, 3], ["executables", 70, 3], ["fixupPhase", 72, 3], ["desktopItems", 89, 3], ["passthru", 101, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nativeWayland = nix.argOr($, "nativeWayland", () => false);
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "osu-lazer",
       version: "2026.1005.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ppy",
           repo: "osu",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-lazer`),
@@ -78,7 +73,7 @@ runHook postFixup
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             desktopName: "osu!",
             name: "osu",
             exec: "osu!",
@@ -89,11 +84,14 @@ runHook postFixup
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version-regex=(.*)-lazer"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
+            [nix.POS]: $pos[2],
+            extraArgs: nix.thunk(() => ["--version-regex=(.*)-lazer"]),
+          })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Rhythm is just a *click* away (no score submission or multiplayer, see osu-lazer-bin)",
         homepage: "https://osu.ppy.sh",
         changelog: nix.thunk(() => nix.str`https://osu.ppy.sh/home/changelog/lazer/${nix.sel(finalAttrs, "version")}`),

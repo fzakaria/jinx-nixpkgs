@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["sparseCheckout", 36, 5], ["hash", 40, 5]], [["finalAttrs", 91, 54]], [["updateScript", 91, 12]], [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["teams", 97, 5], ["platforms", 98, 5]], [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 32, 3], ["sourceRoot", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 50, 3], ["cmakeFlags", 60, 3], ["postInstall", 78, 3], ["passthru", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, "rocm-cmake": false, rocprim: false, clr: false, gtest: false, gbenchmark: false, buildTests: true, buildBenchmarks: true, gpuTargets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["sparseCheckout", 36, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["finalAttrs", 91, 54]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 91, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["teams", 97, 5], ["platforms", 98, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 32, 3], ["sourceRoot", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 50, 3], ["cmakeFlags", 60, 3], ["postInstall", 78, 3], ["passthru", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const buildBenchmarks = nix.argOr($, "buildBenchmarks", () => false);
   const gpuTargets = nix.argOr($, "gpuTargets", () => nix.selOr(clr, () => [], "localGpuTargets"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hipcub",
       version: "7.2.3",
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["test"])), nix.app(nix.sel(lib, "optionals"), buildBenchmarks, nix.thunk(() => ["benchmark"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["-DBUILD_TEST=ON"])), nix.app(nix.sel(lib, "optionals"), buildBenchmarks, nix.thunk(() => ["-DBUILD_BENCHMARK=ON"])))))),
       postInstall: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), buildTests, "mkdir -p $test/bin\nmv $out/bin/test_* $test/bin\n"), nix.app(nix.sel(lib, "optionalString"), buildBenchmarks, "mkdir -p $benchmark/bin\nmv $out/bin/benchmark_* $benchmark/bin\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(buildTests) || nix.asBool(buildBenchmarks))), "rmdir $out/bin\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Thin wrapper library on top of rocPRIM or CUB",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipcub",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

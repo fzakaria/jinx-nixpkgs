@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["extras", 51, 5]], [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 50, 3], ["pythonImportsCheck", 66, 3], ["preCheck", 74, 3], ["nativeCheckInputs", 78, 3], ["pytestFlags", 86, 3], ["disabledTests", 88, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pytestCheckHook: false, fetchFromGitHub: false, graphviz: false, ipywidgets: false, matplotlib: false, ninja: false, notebook: false, numpy: false, "opt-einsum": false, pandas: false, pillow: false, "pyro-api": false, "scikit-learn": false, scipy: false, seaborn: false, setuptools: false, torch: false, torchvision: false, tqdm: false, wget: false, "pytest-xdist": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extras", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 50, 3], ["pythonImportsCheck", 66, 3], ["preCheck", 74, 3], ["nativeCheckInputs", 78, 3], ["pytestFlags", 86, 3], ["disabledTests", 88, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const wget = nix.arg($, "wget");
   const pytest_xdist = nix.arg($, "pytest-xdist");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyro-ppl",
       version: "1.9.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyro-ppl",
           repo: "pyro",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [numpy, opt_einsum, pyro_api, torch, tqdm]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         extras: nix.thunk(() => [
           notebook,
           ipywidgets,
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--stage=unit"]),
       disabledTests: nix.thunk(() => ["test_stable_with_log_prob_param_fit"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for probabilistic modeling and inference",
         homepage: "http://pyro.ai",
         changelog: nix.thunk(() => nix.str`https://github.com/pyro-ppl/pyro/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

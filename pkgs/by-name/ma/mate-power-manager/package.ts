@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["sha256", 34, 5]], [["url", 73, 5], ["odd-unstable", 74, 5], ["rev-prefix", 75, 5]], [["updateScript", 72, 12]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["platforms", 85, 5], ["maintainers", 86, 5], ["teams", 87, 5]], [["pname", 25, 3], ["version", 26, 3], ["outputs", 27, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["configureFlags", 59, 3], ["postPatch", 64, 3], ["enableParallelBuilding", 70, 3], ["passthru", 72, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gettext: false, glib: false, itstool: false, libxml2: false, "mate-desktop": false, "mate-panel": false, libnotify: false, "libcanberra-gtk3": false, libsecret: false, "dbus-glib": false, upower: false, gtk3: false, libtool: false, polkit: false, wrapGAppsHook3: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 73, 5], ["odd-unstable", 74, 5], ["rev-prefix", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 72, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["platforms", 85, 5], ["maintainers", 86, 5], ["teams", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["outputs", 27, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["configureFlags", 59, 3], ["postPatch", 64, 3], ["enableParallelBuilding", 70, 3], ["passthru", 72, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mate-power-manager",
       version: "1.28.1",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mate-power-manager-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "jr3LdLYH6Ggza6moFGze+Pl7zlNcKwyzv2UMWPce7iE=",
         })))),
@@ -60,16 +56,16 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Fixes polkit popup after `nixos-rebuild switch`.\nsubstituteInPlace src/gpm-brightness.c \\\n  --replace-fail 'SBINDIR \"/mate-power-backlight-helper' '\"/run/current-system/sw/bin/mate-power-backlight-helper'\n",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.mate-desktop.org/mate-power-manager",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "MATE Power Manager",
         homepage: "https://mate-desktop.org",
         license: nix.thunk(() => (() => {

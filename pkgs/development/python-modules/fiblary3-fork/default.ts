@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 13], ["version", 23, 19], ["sha256", 24, 5]], [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 18, 3], ["version", 19, 3], ["format", 20, 3], ["src", 22, 3], ["propagatedBuildInputs", 27, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fixtures: false, jsonpatch: false, netaddr: false, prettytable: false, "python-dateutil": false, pytestCheckHook: false, requests: false, "requests-mock": false, six: false, testtools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 13], ["version", 23, 19], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["format", 20, 3], ["src", 22, 3], ["propagatedBuildInputs", 27, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.12";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "001wqh7gx2dv3sf7a5xsbppz9r88f5qwrp05jzjsjcm6cbcvmsz0",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [fixtures, pytestCheckHook, requests_mock, testtools]);
       const pythonImportsCheck = nix.thunk(() => ["fiblary3"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/graham33/fiblary",
         description: "Fibaro Home Center API Python Library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

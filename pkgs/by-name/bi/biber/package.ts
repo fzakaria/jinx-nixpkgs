@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 21, 7], ["url", 22, 7], ["hash", 23, 7]], [["description", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]], [["pname", 14, 25], ["version", 14, 31], ["src", 16, 3], ["patches", 19, 3], ["buildInputs", 27, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, perlPackages: false, texlive: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 21, 7], ["url", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 25], ["version", 14, 31], ["src", 16, 3], ["patches", 19, 3], ["buildInputs", 27, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const texlive = nix.arg($, "texlive");
   const biberSource = nix.thunk(() => nix.sel(texlive, "pkgs", "biber", "texsource"));
   return nix.app(nix.sel(perlPackages, "buildPerlModule"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.attr(biberSource, "pname")),
       version: nix.thunk(() => nix.attr(biberSource, "version")),
       src: nix.thunk(() => nix.str`${biberSource}/source/bibtex/biber/biblatex-biber.tar.gz`),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is32bit")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               name: "biber-skip-64bit-only-tests.patch",
               url: "https://raw.githubusercontent.com/gentoo/gentoo/65871ad2d20b8ab39caf25a0aaec3ab95fbcf511/dev-tex/biber/files/biber-2.16-disable-64bit-only-tests.patch",
               hash: "sha256-6Tbp62uZuFPoSKZrXerObg+gcSyLwC66IAcvcP+KcHM=",
@@ -76,7 +74,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Backend for BibLaTeX",
         license: nix.thunk(() => nix.sel(biberSource, "meta", "license")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

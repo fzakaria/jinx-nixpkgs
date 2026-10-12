@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 26, 5], ["sha256", 27, 5]], [["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["broken", 73, 5], ["platforms", 74, 26]], [["name", 21, 3], ["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 30, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["createFindlibDestdir", 52, 3], ["preConfigure", 54, 3], ["postInstall", 63, 3], ["makeFlags", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, automake: false, ocaml: false, autoconf: false, gnum4: false, "pkg-config": false, freetype: false, lablgtk: false, unzip: false, cairo: false, findlib: false, "gdk-pixbuf": false, gtk2: false, pango: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["broken", 73, 5], ["platforms", 74, 26]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 21, 3], ["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 30, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["createFindlibDestdir", 52, 3], ["preConfigure", 54, 3], ["postInstall", 63, 3], ["makeFlags", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const gtk2 = nix.arg($, "gtk2");
   const pango = nix.arg($, "pango");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "ocaml-cairo",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://cgit.freedesktop.org/cairo-ocaml/snapshot/cairo-ocaml-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "0l4p9bp6kclr570mxma8wafibr1g5fsjj8h10yr4b507g0hmlh0l",
         })))),
@@ -55,7 +53,7 @@ cp ${lablgtk}/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib/lablgtk2/gaux.ml .
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://cairographics.org/cairo-ocaml",
         description: "Ocaml bindings for cairo library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

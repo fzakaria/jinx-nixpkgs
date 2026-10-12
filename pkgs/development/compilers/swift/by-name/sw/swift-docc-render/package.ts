@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 47], ["hash", 37, 51]], [["name", 43, 5], ["src", 44, 26], ["hash", 45, 55]], [["description", 56, 5], ["homepage", 57, 5], ["platforms", 58, 5], ["license", 59, 5], ["teams", 60, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 34, 3], ["nodejs", 40, 3], ["npmDeps", 42, 3], ["installPhase", 48, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, fetchNpmDeps: false, nodejs_22: false, fetchpatch2: false, swift_release: false, swift_sources: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 47], ["hash", 37, 51]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 43, 5], ["src", 44, 26], ["hash", 45, 55]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["platforms", 58, 5], ["license", 59, 5], ["teams", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 34, 3], ["nodejs", 40, 3], ["npmDeps", 42, 3], ["installPhase", 48, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const swift_release = nix.arg($, "swift_release");
   const swift_sources = nix.arg($, "swift_sources");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "swift-docc-render",
       version: nix.thunk(() => nix.str`${swift_release}-unstable-2025-09-16`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-docc-render"));
           return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "swiftlang",
           repo: "swift-docc-render",
           rev: nix.thunk(() => nix.attr(from, "rev")),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-docc-render", "npmDeps"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: nix.thunk(() => nix.attr(from, "hash")),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()))),
       installPhase: "runHook preInstall\nmkdir -p \"$out\"\ncp -rv dist \"$out/dist\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Web renderer for Swift DocC documentation",
         homepage: "https://github.com/swiftlang/swift-docc-render",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), nix.sel(lib, "platforms", "linux"))),

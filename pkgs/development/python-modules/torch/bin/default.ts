@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cudaPackages", 42, 53]], [["rocmSupport", 173, 22], ["cudaSupport", 173, 34]], [["tests", 172, 12], ["cudaPackages", 178, 13], ["triton", 178, 26], ["cudaSupport", 179, 5], ["rocmSupport", 180, 5], ["cudaCapabilities", 181, 5]], [["message", 211, 9], ["kind", 216, 9]], [["unsupported-cuda-version", 210, 7]], [["description", 185, 5], ["homepage", 186, 5], ["changelog", 187, 5], ["license", 193, 5], ["sourceProvenance", 198, 5], ["platforms", 199, 5], ["hydraPlatforms", 204, 5], ["maintainers", 205, 5], ["problems", 209, 5]], [["version", 45, 11], ["__structuredAttrs", 46, 3], ["pname", 48, 3], ["format", 51, 3], ["outputs", 53, 3], ["cudaPropagateToOutput", 59, 3], ["disabled", 62, 3], ["src", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 72, 3], ["autoPatchelfIgnoreMissingDeps", 95, 3], ["pythonRemoveDeps", 103, 3], ["dependencies", 111, 3], ["postInstall", 130, 3], ["postFixup", 135, 3], ["extraRunpaths", 152, 3], ["postPhases", 155, 3], ["postPatchelfPhase", 156, 3], ["dontStrip", 168, 3], ["pythonImportsCheck", 170, 3], ["passthru", 172, 3], ["meta", 184, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python: false, buildPythonPackage: false, isPyPy: false, fetchurl: false, addDriverRunpath: false, autoAddDriverRunpath: false, autoPatchelfHook: false, cudaPackages: false, filelock: false, fsspec: false, jinja2: false, networkx: false, numpy: false, pyyaml: false, requests: false, setuptools: false, sympy: false, "typing-extensions": false, "cuda-bindings": false, triton: false, config: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cudaPackages", 42, 53]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rocmSupport", 173, 22], ["cudaSupport", 173, 34]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 172, 12], ["cudaPackages", 178, 13], ["triton", 178, 26], ["cudaSupport", 179, 5], ["rocmSupport", 180, 5], ["cudaCapabilities", 181, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["message", 211, 9], ["kind", 216, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["unsupported-cuda-version", 210, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 185, 5], ["homepage", 186, 5], ["changelog", 187, 5], ["license", 193, 5], ["sourceProvenance", 198, 5], ["platforms", 199, 5], ["hydraPlatforms", 204, 5], ["maintainers", 205, 5], ["problems", 209, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 45, 11], ["__structuredAttrs", 46, 3], ["pname", 48, 3], ["format", 51, 3], ["outputs", 53, 3], ["cudaPropagateToOutput", 59, 3], ["disabled", 62, 3], ["src", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 72, 3], ["autoPatchelfIgnoreMissingDeps", 95, 3], ["pythonRemoveDeps", 103, 3], ["dependencies", 111, 3], ["postInstall", 130, 3], ["postFixup", 135, 3], ["extraRunpaths", 152, 3], ["postPhases", 155, 3], ["postPatchelfPhase", 156, 3], ["dontStrip", 168, 3], ["pythonImportsCheck", 170, 3], ["passthru", 172, 3], ["meta", 184, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,9 +35,9 @@ export default nix.lambda((args) => (() => {
   const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./binary-hashes.nix")), version));
   const unsupported = nix.thunk(() => nix.builtins.throw("Unsupported system"));
   const version = "2.13.0";
-  const cuda_bindings$ = nix.thunk(() => nix.app(nix.sel(cuda_bindings, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cudaPackages: cudaPackages }))));
+  const cuda_bindings$ = nix.thunk(() => nix.app(nix.sel(cuda_bindings, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], cudaPackages: cudaPackages }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: version,
       __structuredAttrs: true,
       pname: "torch",
@@ -113,9 +107,9 @@ mkdir -p "$cxxdev"
       dontStrip: true,
       pythonImportsCheck: nix.thunk(() => ["torch"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "../tests"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             rocmSupport: nix.thunk(() => nix.attr(config, "rocmSupport")),
             cudaSupport: nix.thunk(() => nix.attr(config, "cudaSupport")),
           })))),
@@ -126,7 +120,7 @@ mkdir -p "$cxxdev"
         cudaCapabilities: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.sel(cudaPackages, "flags", "cudaCapabilities")))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "PyTorch: Tensors and Dynamic neural networks in Python with strong GPU acceleration",
         homepage: "https://pytorch.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/pytorch/pytorch/releases/tag/v${version}`),
@@ -152,9 +146,9 @@ mkdir -p "$cxxdev"
           ];
         })()),
         problems: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cuda_bindings$, "version")), "13.0.3")), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "unsupported-cuda-version": nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               message: nix.thunk(() => nix.str`The cudaPackages used by torch-bin is too old,
 the minimum required cuda-bindings version is 13.0.3, but the current used one is ${nix.sel(cuda_bindings$, "version")}.
 Please override cudaPackages of torch-bin with a more recent version.

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["cppe", 74, 5]], [["description", 156, 5], ["homepage", 157, 5], ["changelog", 158, 5], ["license", 159, 5], ["maintainers", 160, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 49, 3], ["dontUseCmakeConfigure", 53, 3], ["preConfigure", 55, 3], ["buildInputs", 60, 3], ["dependencies", 67, 3], ["optional-dependencies", 73, 3], ["nativeCheckInputs", 77, 3], ["pythonImportsCheck", 82, 3], ["preCheck", 83, 3], ["disabledTests", 91, 3], ["disabledTestPaths", 148, 3], ["meta", 155, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, setuptools: false, blas: false, libcint: false, libxc: false, xcfun: false, h5py: false, numpy: false, scipy: false, cppe: false, "pytest-xdist": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cppe", 74, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 156, 5], ["homepage", 157, 5], ["changelog", 158, 5], ["license", 159, 5], ["maintainers", 160, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 49, 3], ["dontUseCmakeConfigure", 53, 3], ["preConfigure", 55, 3], ["buildInputs", 60, 3], ["dependencies", 67, 3], ["optional-dependencies", 73, 3], ["nativeCheckInputs", 77, 3], ["pythonImportsCheck", 82, 3], ["preCheck", 83, 3], ["disabledTests", 91, 3], ["disabledTestPaths", 148, 3], ["meta", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyscf",
       version: "2.14.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyscf",
           repo: "pyscf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +44,7 @@ PYSCF_INC_DIR="${libcint}:${libxc}:${xcfun}";
 `),
       buildInputs: nix.thunk(() => [blas, libcint, libxc, xcfun]),
       dependencies: nix.thunk(() => [h5py, numpy, scipy]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cppe: nix.thunk(() => [cppe]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], cppe: nix.thunk(() => [cppe]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_xdist, pytestCheckHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "cppe"))),
       pythonImportsCheck: nix.thunk(() => ["pyscf"]),
       preCheck: "echo 'pbc_tools_pbc_fft_engine = \"NUMPY\"' > pyscf/pyscf_config.py\nulimit -s 20000\nexport PYSCF_CONFIG_FILE=$(pwd)/pyscf/pyscf_config.py\n",
@@ -104,7 +101,7 @@ PYSCF_INC_DIR="${libcint}:${libxc}:${xcfun}";
         "pyscf/pbc/tdscf",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python-based simulations of chemistry framework",
         homepage: "https://github.com/pyscf/pyscf",
         changelog: nix.thunk(() => nix.str`https://github.com/pyscf/pyscf/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG`),

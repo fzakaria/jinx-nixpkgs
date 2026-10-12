@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 15], ["repo", 28, 15], ["rev", 29, 15], ["hash", 30, 15]], [["version", 25, 21], ["src", 26, 13], ["vendorHash", 32, 13]], [["buildGoModule", 20, 7]], [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["src", 49, 26], ["hash", 50, 5]], [["ESBUILD_BINARY_PATH", 63, 7]], [["updateScript", 65, 12]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["yarnOfflineCache", 48, 3], ["yarnBuildScript", 53, 3], ["nativeBuildInputs", 55, 3], ["env", 63, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, fetchYarnDeps: false, yarnConfigHook: false, yarnBuildHook: false, yarnInstallHook: false, nodejs: false, "nix-update-script": false, esbuild: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 15], ["repo", 28, 15], ["rev", 29, 15], ["hash", 30, 15]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 25, 21], ["src", 26, 13], ["vendorHash", 32, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["buildGoModule", 20, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["src", 49, 26], ["hash", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["ESBUILD_BINARY_PATH", 63, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["yarnOfflineCache", 48, 3], ["yarnBuildScript", 53, 3], ["nativeBuildInputs", 55, 3], ["env", 63, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const esbuild$ = nix.thunk(() => (() => {
     const version = "0.8.29";
     return nix.app(nix.sel(esbuild, "override"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         buildGoModule: (args_1) => nix.app(buildGoModule, nix.thunk(() => nix.update(args_1, {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             version: version,
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 owner: "evanw",
                 repo: "esbuild",
                 rev: nix.thunk(() => nix.str`v${version}`),
@@ -45,33 +37,33 @@ export default nix.lambda((args) => (() => {
       })));
   })());
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "coc-solargraph",
       version: "1.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "neoclide",
           repo: "coc-solargraph",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-AUulj0tcgkXrQS9k1zhB0LKWJxvIlVtxSQK+nYGm73s=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-FPxvwqx7TfJBM+O8TY64swJVYlWIbCvVbzVJYthHjO0=",
         })))),
       yarnBuildScript: "prepare",
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, yarnInstallHook, nodejs, esbuild$]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         ESBUILD_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), esbuild$)),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Solargraph extension for coc.nvim",
         homepage: "https://github.com/neoclide/coc-solargraph",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

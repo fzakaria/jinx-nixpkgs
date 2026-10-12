@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["platform", 47, 7], ["hash", 48, 7]], [["platform", 51, 7], ["hash", 52, 7]], [["platform", 55, 7], ["hash", 56, 7]], [["x86_64-linux", 46, 5], ["aarch64-linux", 50, 5], ["aarch64-darwin", 54, 5]], [["url", 72, 7], ["hash", 73, 24]], [["name", 138, 7], ["desktopName", 139, 7], ["comment", 140, 7], ["exec", 141, 7], ["icon", 142, 7], ["categories", 143, 7], ["mimeTypes", 144, 7], ["startupWMClass", 145, 7]], [["buildId", 186, 5], ["updateScript", 187, 5]], [["description", 191, 5], ["homepage", 192, 5], ["changelog", 193, 5], ["downloadPage", 194, 5], ["license", 195, 5], ["sourceProvenance", 196, 5], ["platforms", 197, 5], ["mainProgram", 198, 5], ["maintainers", 199, 5]], [["pname", 61, 3], ["version", 62, 3], ["src", 64, 3], ["__structuredAttrs", 76, 3], ["strictDeps", 77, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 92, 3], ["runtimeDependencies", 120, 3], ["appendRunpaths", 131, 3], ["dontWrapGApps", 134, 3], ["desktopItems", 136, 3], ["installPhase", 149, 3], ["dontFixup", 174, 3], ["postFixup", 178, 3], ["passthru", 184, 3], ["meta", 190, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "alsa-lib": false, asar: false, "at-spi2-atk": false, "at-spi2-core": false, atk: false, autoPatchelfHook: false, cairo: false, copyDesktopItems: false, cups: false, dbus: false, expat: false, glib: false, "gsettings-desktop-schemas": false, gtk3: false, libGL: false, libgbm: false, libnotify: false, libpulseaudio: false, libsecret: false, libx11: false, libxcb: false, libxcomposite: false, libxdamage: false, libxext: false, libxfixes: false, libxkbcommon: false, libxrandr: false, makeDesktopItem: false, makeShellWrapper: false, makeWrapper: false, nspr: false, nss: false, pango: false, pipewire: false, systemd: false, unzip: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["platform", 47, 7], ["hash", 48, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["platform", 51, 7], ["hash", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["platform", 55, 7], ["hash", 56, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 46, 5], ["aarch64-linux", 50, 5], ["aarch64-darwin", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 72, 7], ["hash", 73, 24]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 138, 7], ["desktopName", 139, 7], ["comment", 140, 7], ["exec", 141, 7], ["icon", 142, 7], ["categories", 143, 7], ["mimeTypes", 144, 7], ["startupWMClass", 145, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["buildId", 186, 5], ["updateScript", 187, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 191, 5], ["homepage", 192, 5], ["changelog", 193, 5], ["downloadPage", 194, 5], ["license", 195, 5], ["sourceProvenance", 196, 5], ["platforms", 197, 5], ["mainProgram", 198, 5], ["maintainers", 199, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 61, 3], ["version", 62, 3], ["src", 64, 3], ["__structuredAttrs", 76, 3], ["strictDeps", 77, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 92, 3], ["runtimeDependencies", 120, 3], ["appendRunpaths", 131, 3], ["dontWrapGApps", 134, 3], ["desktopItems", 136, 3], ["installPhase", 149, 3], ["dontFixup", 174, 3], ["postFixup", 178, 3], ["passthru", 184, 3], ["meta", 190, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,32 +48,32 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       platform: "linux-x64",
       hash: "sha256-/C4q9JpFrv7pVYvOVqqku94A1WDTVDV68bg0qd1DzTM=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       platform: "linux-arm",
       hash: "sha256-cgSbIH0cF5qFJKTc8TxPhtjLulmdhF/cRX3g9/ES6Rg=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       platform: "darwin-arm",
       hash: "sha256-0XWhNL4ssGNB2jJs4OqLgu3PaDaRBwP5hRKAMa1kP5w=",
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "antigravity-hub",
       version: "2.12.2",
       src: nix.thunk(() => (() => {
         const source = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
         const ext = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "zip" : "tar.gz"));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: nix.thunk(() => nix.str`https://storage.googleapis.com/antigravity-public/antigravity-hub/${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "passthru", "buildId")}/${nix.sel(source, "platform")}/Antigravity.${ext}`),
             hash: nix.thunk(() => nix.attr(source, "hash")),
           })));
@@ -120,7 +112,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: "antigravity-hub",
               desktopName: "Antigravity",
               comment: "Manage multiple autonomous agents across independent projects",
@@ -135,12 +127,12 @@ export default nix.lambda((args) => (() => {
       dontFixup: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       postFixup: "makeShellWrapper $out/share/antigravity/antigravity $out/bin/antigravity \\\n  \"${gappsWrapperArgs[@]}\" \\\n  --add-flags \"\\${NIXOS_OZONE_WL:+\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations}}\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         buildId: "6298742303883264",
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Desktop environment for managing multiple autonomous agents across independent projects",
         homepage: "https://antigravity.google",
         changelog: "https://antigravity.google/changelog",

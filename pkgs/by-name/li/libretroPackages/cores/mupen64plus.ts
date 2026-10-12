@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mupen64plus.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5]], [["core", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 26, 3], ["extraNativeBuildInputs", 44, 3], ["extraBuildInputs", 47, 3], ["makefile", 53, 3], ["makeFlags", 54, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, libGL: false, libGLU: false, libpng: false, mkLibretroCore: false, nasm: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mupen64plus.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/mupen64plus.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/mupen64plus.nix", [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/mupen64plus.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$5 = nix.positions(here + "/mupen64plus.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5]]);
-const pos$6 = nix.positions(here + "/mupen64plus.nix", [["core", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 26, 3], ["extraNativeBuildInputs", 44, 3], ["extraBuildInputs", 47, 3], ["makefile", 53, 3], ["makeFlags", 54, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nasm = nix.arg($, "nasm");
   const libx11 = nix.arg($, "libx11");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       core: "mupen64plus-next",
       version: "0-unstable-2026-09-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "mupen64plus-libretro-nx",
           rev: "6752836de8b224febfd5708444755b77712ac939",
@@ -35,19 +30,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "minizip-avoid_trying_to_compile_problematic_code.patch",
             url: "https://github.com/libretro/mupen64plus-libretro-nx/commit/2b05477dd9cd99e7f9425f58cb544f454fc0d813.patch?full_index=1",
             hash: "sha256-Q0yymeS6taeFRt6BH6IX5q1SDUMh2Zn3mFpdJguyk9M=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "EmuThread-align_with_co_create()_and_pthread_create().patch",
             url: "https://github.com/libretro/mupen64plus-libretro-nx/commit/26dfd670ffdd5ed6a03e6704dc73f82c13d81dd9.patch?full_index=1",
             hash: "sha256-BraCR/b8DTmVAWrUxiXp9nxBYvTpTW9OQAt8TP1eusI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "Fix_compilation_of_bundled_libzlib.patch",
             url: "https://github.com/libretro/mupen64plus-libretro-nx/commit/3c3e7fbc70b8f533c09c964cf468ba5e8d61351c.patch?full_index=1",
             hash: "sha256-PCJLNYhhccnWLcnPaHL6tz+5qdjogJRYfzZIh3r+Vlk=",
@@ -64,7 +59,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`WITH_DYNAREC=${nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Libretro port of Mupen64 Plus",
         homepage: "https://github.com/libretro/mupen64plus-libretro-nx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

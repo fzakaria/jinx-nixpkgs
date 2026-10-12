@@ -2,32 +2,28 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/srcs.nix", [[["url", 7, 7], ["sha256", 8, 7]], [["version", 5, 5], ["src", 6, 5]], [["url", 14, 7], ["sha256", 15, 7]], [["version", 12, 5], ["src", 13, 5]], [["mxu11x0_4", 4, 3], ["mxu11x0_5", 11, 3]]]);
 const formals$1 = { args: { fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/srcs.nix", [["url", 7, 7], ["sha256", 8, 7]]);
-const pos$2 = nix.positions(here + "/srcs.nix", [["version", 5, 5], ["src", 6, 5]]);
-const pos$3 = nix.positions(here + "/srcs.nix", [["url", 14, 7], ["sha256", 15, 7]]);
-const pos$4 = nix.positions(here + "/srcs.nix", [["version", 12, 5], ["src", 13, 5]]);
-const pos$5 = nix.positions(here + "/srcs.nix", [["mxu11x0_4", 4, 3], ["mxu11x0_5", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchurl = nix.arg($, "fetchurl");
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     mxu11x0_4: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.moxa.com/getmedia/b152d8c2-b9d6-4bc7-b0f4-420633b4bc2d/moxa-uport-1100-series-linux-kernel-4.x-driver-v4.1.tgz",
           sha256: "sha256-cM3imuMG483ZinFazVa8V4Id0kUGlHaezDHnYtSSb28=",
         })))),
     })),
     mxu11x0_5: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://www.moxa.com/getmedia/57dfa4c1-8a2a-4da6-84c1-a36944ead74d/moxa-uport-1100-series-linux-kernel-5.x-driver-v5.1.tgz",
           sha256: "sha256-P1YMlyAhS955CSBiZ/tyu5m6ds2PiFMcHmyrdTjloPs=",
         })))),

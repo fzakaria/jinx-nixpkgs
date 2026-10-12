@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["rev", 28, 5], ["hash", 29, 5]], [["nixos-etc", 62, 7]], [["tests", 60, 5]], [["homepage", 67, 5], ["description", 68, 5], ["mainProgram", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["version", 16, 3], ["pname", 17, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["patches", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["postUnpack", 40, 3], ["postConfigure", 50, 3], ["nativeInstallCheckInputs", 56, 3], ["doInstallCheck", 57, 3], ["passthru", 59, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoreconfHook: false, po4a: false, libcap: false, getopt: false, gnused: false, coreutils: false, versionCheckHook: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nixos-etc", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["mainProgram", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 16, 3], ["pname", 17, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["patches", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["postUnpack", 40, 3], ["postConfigure", 50, 3], ["nativeInstallCheckInputs", 56, 3], ["doInstallCheck", 57, 3], ["passthru", 59, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "1.38.1",
       pname: "fakeroot",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "clint",
           repo: "fakeroot",
@@ -51,14 +47,14 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "nixos-etc": nix.thunk(() => nix.sel(nixosTests, "etc", "test-etc-fakeroot")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://salsa.debian.org/clint/fakeroot",
         description: "Give a fake root environment through LD_PRELOAD",
         mainProgram: "fakeroot",

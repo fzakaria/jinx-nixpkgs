@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["NIX_CFLAGS_COMPILE", 64, 7]], [["package", 90, 9], ["command", 91, 9]], [["package", 94, 9], ["moduleNames", 95, 9]], [["version", 89, 7], ["pkg-config", 93, 7]], [["tests", 88, 5], ["updateScript", 102, 5]], [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 112, 5], ["platforms", 113, 5], ["mainProgram", 114, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["nativeBuildInputs", 31, 3], ["cmakeFlags", 39, 3], ["doCheck", 48, 3], ["checkPhase", 50, 3], ["postInstall", 56, 3], ["env", 64, 3], ["postFixup", 76, 3], ["__darwinAllowLocalNetworking", 85, 3], ["passthru", 87, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmakeMinimal: false, fetchFromGitHub: false, ninja: false, "rust-bindgen": false, testers: false, "aws-lc": false, "nix-update-script": false, useSharedLibraries: true, withRustBindings: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 64, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 90, 9], ["command", 91, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 94, 9], ["moduleNames", 95, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 89, 7], ["pkg-config", 93, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 88, 5], ["updateScript", 102, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 112, 5], ["platforms", 113, 5], ["mainProgram", 114, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["nativeBuildInputs", 31, 3], ["cmakeFlags", 39, 3], ["doCheck", 48, 3], ["checkPhase", 50, 3], ["postInstall", 56, 3], ["env", 64, 3], ["postFixup", 76, 3], ["__darwinAllowLocalNetworking", 85, 3], ["passthru", 87, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const useSharedLibraries = nix.argOr($, "useSharedLibraries", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const withRustBindings = nix.argOr($, "withRustBindings", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "aws-lc",
       version: "5.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aws",
           repo: "aws-lc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,18 +43,18 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\nninja run_minimal_tests\nrunHook postCheck\n",
       postInstall: nix.thunk(() => nix.add("moveToOutput lib/crypto/cmake \"$dev\"\nmoveToOutput lib/ssl/cmake \"$dev\"\n", nix.app(nix.sel(lib, "optionalString"), withRustBindings, "moveToOutput share/rust \"$dev\"\n"))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-error=stringop-overflow"]))))),
       })),
       postFixup: "for f in $out/lib/{crypto,ssl}/cmake/*/*-targets.cmake; do\n  substituteInPlace \"$f\" \\\n    --replace-fail \\\n      'INTERFACE_INCLUDE_DIRECTORIES \"\\$<\\$<BOOL:1>:>;${_IMPORT_PREFIX}/include\"' \\\n      'INTERFACE_INCLUDE_DIRECTORIES \"\"'\ndone\n",
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: aws_lc, command: "bssl version" })))),
+          [nix.POS]: $pos[4],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: aws_lc, command: "bssl version" })))),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: aws_lc,
               moduleNames: nix.thunk(() => ["libcrypto", "libssl", "openssl"]),
             })))),
@@ -69,7 +62,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "General-purpose cryptographic library maintained by the AWS Cryptography team for AWS and their customers",
         homepage: "https://github.com/aws/aws-lc",
         license: nix.thunk(() => [

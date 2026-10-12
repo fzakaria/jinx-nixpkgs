@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 15, 5], ["hash", 19, 5]], [["NIX_CFLAGS_COMPILE", 37, 7]], [["homepage", 40, 5], ["downloadPage", 41, 5], ["description", 42, 5], ["longDescription", 43, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 10, 3], ["version", 11, 3], ["srcName", 12, 3], ["src", 14, 3], ["preConfigure", 22, 3], ["buildInputs", 24, 3], ["configureFlags", 29, 3], ["env", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false, gpm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 15, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["downloadPage", 41, 5], ["description", 42, 5], ["longDescription", 43, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["srcName", 12, 3], ["src", 14, 3], ["preConfigure", 22, 3], ["buildInputs", 24, 3], ["configureFlags", 29, 3], ["env", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "41";
       const srcName = nix.thunk(() => nix.str`joe-3.1${pname}${version}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://www.mirbsd.org/MirOS/dist/jupp/${srcName}.tgz`),
             nix.thunk(() => nix.str`https://mbsd.evolvis.org/MirOS/dist/jupp/${srcName}.tgz`),
@@ -36,9 +33,9 @@ export default nix.lambda((args) => (() => {
         "--enable-termcap",
         "--enable-termidx",
       ]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.mirbsd.org/jupp.htm",
         downloadPage: "https://www.mirbsd.org/MirOS/dist/jupp/",
         description: "Portable fork of Joe's editor",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         srcName,

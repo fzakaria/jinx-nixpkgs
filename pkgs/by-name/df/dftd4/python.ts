@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/python.nix", [[["pname", 14, 5], ["version", 15, 5], ["src", 16, 5], ["meta", 17, 5], ["pyproject", 20, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 24, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["preConfigure", 39, 3], ["pythonImportsCheck", 43, 3], ["doCheck", 44, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, "meson-python": false, ninja: false, setuptools: false, "pkg-config": false, dftd4: false, cffi: false, numpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/python.nix", [["pname", 14, 5], ["version", 15, 5], ["src", 16, 5], ["meta", 17, 5], ["pyproject", 20, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 24, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["preConfigure", 39, 3], ["pythonImportsCheck", 43, 3], ["doCheck", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const cffi = nix.arg($, "cffi");
   const numpy = nix.arg($, "numpy");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.attr(dftd4, "pname")),
       version: nix.thunk(() => nix.attr(dftd4, "version")),
       src: nix.thunk(() => nix.attr(dftd4, "src")),

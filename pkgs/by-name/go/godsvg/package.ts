@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["x86_64-linux", 31, 11], ["aarch64-darwin", 32, 11]], [["extraArgs", 71, 47]], [["updateScript", 71, 12]], [["homepage", 74, 5], ["description", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildPhase", 26, 3], ["installPhase", 50, 3], ["passthru", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { godot_4_6: false, makeWrapper: false, stdenv: false, lib: false, fetchFromGitHub: false, "nix-update-script": false, enableWayland: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 31, 11], ["aarch64-darwin", 32, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 71, 47]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 71, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["description", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildPhase", 26, 3], ["installPhase", 50, 3], ["passthru", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const enableWayland = nix.argOr($, "enableWayland", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "godsvg",
       version: "1.0-alpha17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MewPurPur",
           repo: "GodSVG",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [godot_4_6, makeWrapper]),
       buildPhase: nix.thunk(() => (() => {
-        const preset = nix.thunk(() => nix.selOr({ [nix.POS]: pos$2, "x86_64-linux": "Linux", "aarch64-darwin": "macOS" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+        const preset = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[1], "x86_64-linux": "Linux", "aarch64-darwin": "macOS" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
         return nix.str`runHook preBuild
 
 # Cannot create file \`/homeless-shelter/.config/godot_4_5/projects/...\`
@@ -62,11 +57,11 @@ install -Dm444 ./no_export/distribution/com.godsvg.GodSVG.desktop $out/share/app
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.godsvg.com/",
         description: "A vector graphics application for structured SVG editing",
         changelog: nix.thunk(() => nix.str`https://www.godsvg.com/article/${nix.app(nix.sel(lib, "replaceString"), ".", "-", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),

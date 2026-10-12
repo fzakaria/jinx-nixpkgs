@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcompiler_rt.nix", [[["path", 9, 3], ["extraPaths", 10, 3], ["buildInputs", 14, 3], ["preBuild", 21, 3], ["noLibc", 28, 3], ["alwaysKeepStatic", 30, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, mkDerivation: false, include: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcompiler_rt.nix", [["path", 9, 3], ["extraPaths", 10, 3], ["buildInputs", 14, 3], ["preBuild", 21, 3], ["noLibc", 28, 3], ["alwaysKeepStatic", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const include = nix.arg($, "include");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "lib/libcompiler_rt",
       extraPaths: nix.thunk(() => ["contrib/llvm-project/compiler-rt"]),
       buildInputs: nix.thunk(() => [include]),

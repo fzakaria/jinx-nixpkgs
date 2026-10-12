@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 17, 5], ["license", 18, 5], ["maintainers", 19, 5], ["mainProgram", 20, 5]], [["pname", 4, 3], ["version", 5, 3], ["pyproject", 6, 3], ["src", 8, 3], ["build-system", 10, 3], ["nativeCheckInputs", 12, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 17, 5], ["license", 18, 5], ["maintainers", 19, 5], ["mainProgram", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 4, 3], ["version", 5, 3], ["pyproject", 6, 3], ["src", 8, 3], ["build-system", 10, 3], ["nativeCheckInputs", 12, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "nixos-render-docs-redirects",
       version: "0.0",
       pyproject: true,
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w_1, "pytestCheckHook"))];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Redirects manipulation for nixos manuals",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

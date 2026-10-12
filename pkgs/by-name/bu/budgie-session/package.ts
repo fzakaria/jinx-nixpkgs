@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]], [["gsettings", 50, 7], ["dbusLaunch", 51, 7], ["bash", 52, 7]], [["updateScript", 102, 5]], [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["teams", 110, 5], ["platforms", 111, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["outputs", 43, 3], ["patches", 48, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 70, 3], ["postPatch", 84, 3], ["preFixup", 92, 3], ["separateDebugInfo", 99, 3], ["passthru", 101, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, meson: false, ninja: false, "pkg-config": false, "adwaita-icon-theme": false, glib: false, gtk3: false, "gsettings-desktop-schemas": false, "gnome-desktop": false, "gnome-settings-daemon": false, dbus: false, "json-glib": false, libice: false, xmlto: false, docbook_xsl: false, docbook_xml_dtd_412: false, python3: false, libxslt: false, gettext: false, makeWrapper: false, "nix-update-script": false, systemd: false, xtrans: false, libepoxy: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gsettings", 50, 7], ["dbusLaunch", 51, 7], ["bash", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["teams", 110, 5], ["platforms", 111, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["outputs", 43, 3], ["patches", 48, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 70, 3], ["postPatch", 84, 3], ["preFixup", 92, 3], ["separateDebugInfo", 99, 3], ["passthru", 101, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const libepoxy = nix.arg($, "libepoxy");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "budgie-session",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BuddiesOfBudgie",
           repo: "budgie-session",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             gsettings: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), glib, "gsettings")),
             dbusLaunch: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), dbus, "dbus-launch")),
             bash: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), bash)),
@@ -93,11 +89,11 @@ export default nix.lambda((args) => (() => {
 `),
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Session manager for Budgie",
         homepage: "https://github.com/BuddiesOfBudgie/budgie-session",
         changelog: nix.thunk(() => nix.str`https://github.com/BuddiesOfBudgie/budgie-session/releases/tag/v${nix.sel(finalAttrs, "version")}`),

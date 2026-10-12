@@ -2,54 +2,45 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/charliecloud.nix", [[["maintainers", 17, 5], ["broken", 18, 5]], [["systemPackages", 25, 21]], [["enable", 26, 31]], [["docker", 26, 24]], [["isNormalUser", 28, 11], ["extraGroups", 29, 11]], [["alice", 27, 21]], [["users", 27, 15]], [["environment", 25, 9], ["virtualisation", 26, 9], ["users", 27, 9]], [["host", 22, 5]], [["name", 15, 3], ["meta", 16, 3], ["nodes", 21, 3], ["testScript", 34, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/charliecloud.nix", [["maintainers", 17, 5], ["broken", 18, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/charliecloud.nix", [["systemPackages", 25, 21]]);
-const pos$3 = nix.positions(here + "/charliecloud.nix", [["enable", 26, 31]]);
-const pos$4 = nix.positions(here + "/charliecloud.nix", [["docker", 26, 24]]);
-const pos$5 = nix.positions(here + "/charliecloud.nix", [["isNormalUser", 28, 11], ["extraGroups", 29, 11]]);
-const pos$6 = nix.positions(here + "/charliecloud.nix", [["alice", 27, 21]]);
-const pos$7 = nix.positions(here + "/charliecloud.nix", [["users", 27, 15]]);
-const pos$8 = nix.positions(here + "/charliecloud.nix", [["environment", 25, 9], ["virtualisation", 26, 9], ["users", 27, 9]]);
-const pos$9 = nix.positions(here + "/charliecloud.nix", [["host", 22, 5]]);
-const pos$10 = nix.positions(here + "/charliecloud.nix", [["name", 15, 3], ["meta", 16, 3], ["nodes", 21, 3], ["testScript", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const dockerfile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "Dockerfile", "FROM nix\nRUN mkdir /home /tmp\nRUN touch /etc/passwd /etc/group\nCMD [\"true\"]\n"));
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "charliecloud",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "bzizou"))]),
         broken: true,
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       host: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "charliecloud"))]),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            docker: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[3],
+            docker: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               alice: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 isNormalUser: true,
                 extraGroups: nix.thunk(() => ["docker"]),
               })),

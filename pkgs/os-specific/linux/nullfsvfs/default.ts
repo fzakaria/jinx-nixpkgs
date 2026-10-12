@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["hardeningDisable", 19, 3], ["enableParallelBuilding", 21, 3], ["nativeBuildInputs", 23, 3], ["makeFlags", 25, 3], ["prePatch", 29, 3], ["installPhase", 34, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["hardeningDisable", 19, 3], ["enableParallelBuilding", 21, 3], ["nativeBuildInputs", 23, 3], ["makeFlags", 25, 3], ["prePatch", 29, 3], ["installPhase", 34, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nullfsvfs";
       const version = "0.27";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "abbbi",
           repo: "nullfsvfs",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +35,7 @@ install -p -m 644 nullfsvfs.ko $out/lib/modules/${nix.sel(kernel, "modDirVersion
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Virtual black hole file system that behaves like /dev/null",
         homepage: "https://github.com/abbbi/nullfsvfs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -48,7 +46,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

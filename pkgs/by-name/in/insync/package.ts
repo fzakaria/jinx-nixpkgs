@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 29, 7], ["hash", 33, 7]], [["pname", 25, 5], ["version", 26, 13], ["src", 28, 5], ["nativeBuildInputs", 36, 5], ["buildInputs", 42, 5], ["installPhase", 51, 5], ["dontStrip", 64, 5]], [["platforms", 105, 5], ["sourceProvenance", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["homepage", 109, 5], ["description", 110, 5], ["longDescription", 111, 5], ["mainProgram", 119, 5]], [["pname", 69, 11], ["version", 69, 17], ["targetPkgs", 71, 3], ["extraInstallCommands", 80, 3], ["runScript", 84, 3], ["unshareUser", 95, 3], ["unshareIpc", 96, 3], ["unsharePid", 97, 3], ["unshareNet", 98, 3], ["unshareUts", 99, 3], ["unshareCgroup", 100, 3], ["dieWithParent", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, writeShellScript: false, buildFHSEnv: false, stdenvNoCC: false, fetchurl: false, autoPatchelfHook: false, dpkg: false, nss: false, "alsa-lib": false, lz4: false, libgcrypt: false, xkeyboard_config: false, libthai: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 29, 7], ["hash", 33, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 25, 5], ["version", 26, 13], ["src", 28, 5], ["nativeBuildInputs", 36, 5], ["buildInputs", 42, 5], ["installPhase", 51, 5], ["dontStrip", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["platforms", 105, 5], ["sourceProvenance", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["homepage", 109, 5], ["description", 110, 5], ["longDescription", 111, 5], ["mainProgram", 119, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 69, 11], ["version", 69, 17], ["targetPkgs", 71, 3], ["extraInstallCommands", 80, 3], ["runScript", 84, 3], ["unshareUser", 95, 3], ["unshareIpc", 96, 3], ["unsharePid", 97, 3], ["unshareNet", 98, 3], ["unshareUts", 99, 3], ["unshareCgroup", 100, 3], ["dieWithParent", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const web_archive_id = "20260301163242";
   const debian_dist = "forky_amd64";
   const insync_pkg = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${pname}-pkg`),
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.str`https://web.archive.org/web/${web_archive_id}/${nix.builtins.elemAt(urls, 0n)}`),
           ]);
           const hash = "sha256-EeTp49so038/bEJ9P1ubPiSj7dKhGHtHmkV0ExMCmj0=";
-          return { [nix.POS]: pos$1, urls, hash };
+          return { [nix.POS]: $pos[0], urls, hash };
         })()))),
       nativeBuildInputs: nix.thunk(() => [dpkg, autoPatchelfHook, nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))]),
       buildInputs: nix.thunk(() => nix.concat([alsa_lib, nss, lz4, libgcrypt, libthai], [nix.thunk(() => nix.sel(qt5, "qtvirtualkeyboard"))])),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       targetPkgs: (pkgs) => (() => {
@@ -75,7 +72,7 @@ exec /usr/lib/insync/insync "$@"
       unshareCgroup: false,
       dieWithParent: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         platforms: nix.thunk(() => ["x86_64-linux"]),
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

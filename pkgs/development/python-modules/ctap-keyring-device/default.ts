@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 26], ["version", 22, 15], ["hash", 23, 7]], [["version", 19, 5], ["src", 20, 5], ["postPatch", 25, 5], ["build-system", 29, 5], ["dependencies", 30, 5], ["nativeCheckInputs", 31, 5]], [["version", 43, 13], ["pname", 43, 21], ["hash", 44, 5]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["postPatch", 48, 3], ["pythonRemoveDeps", 53, 3], ["build-system", 58, 3], ["dependencies", 60, 3], ["pythonImportsCheck", 66, 3], ["nativeCheckInputs", 68, 3], ["disabledTests", 70, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "setuptools-scm": false, six: false, fido2: false, keyring: false, cryptography: false, pytestCheckHook: false, unittestCheckHook: false, mock: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 26], ["version", 22, 15], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 19, 5], ["src", 20, 5], ["postPatch", 25, 5], ["build-system", 29, 5], ["dependencies", 30, 5], ["nativeCheckInputs", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 43, 13], ["pname", 43, 21], ["hash", 44, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["postPatch", 48, 3], ["pythonRemoveDeps", 53, 3], ["build-system", 58, 3], ["dependencies", 60, 3], ["pythonImportsCheck", 66, 3], ["nativeCheckInputs", 68, 3], ["disabledTests", 70, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const fido2_0 = nix.thunk(() => nix.app(nix.sel(fido2, "overridePythonAttrs"), (oldAttrs) => (() => {
       const version = "0.9.3";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(oldAttrs, "pname")),
           version: version,
           hash: "sha256-tF6JphCc/Lfxu1E3dqotZAjpXEgi+DolORi5RAg0Zuw=",
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => nix.concat(nix.sel(oldAttrs, "dependencies"), [six]));
       const nativeCheckInputs = nix.thunk(() => [unittestCheckHook, mock]);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version,
         src,
         postPatch,
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: version,
           pname: pname,
           hash: "sha256-pEJkuz0wxKt2PkowmLE2YC+HPYa2ZiENK7FAW14Ec/Y=",
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["touch_id_ctap_user_verifier", "windows_hello_ctap_user_verifier"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CTAP (client-to-authenticator-protocol) device backed by python's keyring library",
         homepage: "https://github.com/dany74q/ctap-keyring-device",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -72,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

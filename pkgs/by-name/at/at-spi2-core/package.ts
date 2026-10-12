@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 41, 5], ["hash", 42, 5]], [["packageName", 104, 7], ["versionPolicy", 105, 7]], [["updateScript", 103, 5]], [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["teams", 127, 5], ["platforms", 128, 5]], [["pname", 31, 3], ["version", 32, 3], ["outputs", 34, 3], ["separateDebugInfo", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 57, 3], ["propagatedBuildInputs", 73, 3], ["doCheck", 79, 3], ["mesonFlags", 81, 3], ["passthru", 102, 3], ["postFixup", 109, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, buildPackages: false, withDconf: true, withIntrospection: true, "gsettings-desktop-schemas": false, makeWrapper: false, python3: false, dbus: false, glib: false, dconf: false, libx11: false, libxml2: false, libxtst: false, libxi: false, libxext: false, gnome: false, systemdLibs: false, systemdSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 104, 7], ["versionPolicy", 105, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 103, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["teams", 127, 5], ["platforms", 128, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["outputs", 34, 3], ["separateDebugInfo", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 57, 3], ["propagatedBuildInputs", 73, 3], ["doCheck", 79, 3], ["mesonFlags", 81, 3], ["passthru", 102, 3], ["postFixup", 109, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const systemdSupport = nix.argOr($, "systemdSupport", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdLibs));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "at-spi2-core",
       version: "2.60.6",
       outputs: nix.thunk(() => ["out", "dev"]),
       separateDebugInfo: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/at-spi2-core/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/at-spi2-core-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-qJtkqLIXqAQr3w41y/q2Kc7uNWQNunXfV4r96ap4nVc=",
         })))),
@@ -56,8 +52,12 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "gtk2_atk_adaptor", false)),
         ]))))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "at-spi2-core", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            packageName: "at-spi2-core",
+            versionPolicy: "odd-unstable",
+          })))),
       })),
       postFixup: nix.thunk(() => nix.str`busLauncherWrapperArgs=(
   # Prefer dbus-daemon and dbus-broker-launch from system locations.
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram "$out/libexec/at-spi-bus-launcher" "\${busLauncherWrapperArgs[@]}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Assistive Technology Service Provider Interface protocol definitions and daemon for D-Bus",
         homepage: "https://gitlab.gnome.org/GNOME/at-spi2-core",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -2,9 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/importApply-function.nix", [[["value", 4, 3]]]);
 const formals$1 = { args: { foo: false }, ellipsis: false };
 const formals$2 = { args: { lib: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/importApply-function.nix", [["value", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const lib = nix.arg($_1, "lib");
     const config = nix.arg($_1, "config");
-    return { [nix.POS]: pos$1, value: foo };
+    return { [nix.POS]: $pos[0], value: foo };
   })(), formals$2);
 })(), formals$1);
 //# sourceMappingURL=importApply-function.ts.map

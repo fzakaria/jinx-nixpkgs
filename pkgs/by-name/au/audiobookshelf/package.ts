@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["stdenv", 23, 7], ["ffmpeg-full", 24, 7], ["nunicode", 25, 7], ["getopt", 26, 7]], [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["src", 51, 60], ["version", 51, 64], ["nodejs", 51, 72]], [["basic", 70, 11]], [["extraArgs", 71, 40]], [["tests", 70, 5], ["updateScript", 71, 5]], [["homepage", 75, 5], ["description", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 84, 5], ["mainProgram", 85, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["npmDepsHash", 41, 3], ["nodejs", 43, 11], ["buildInputs", 45, 3], ["nativeBuildInputs", 46, 3], ["dontNpmBuild", 48, 3], ["npmInstallFlags", 49, 3], ["client", 51, 3], ["installPhase", 53, 3], ["passthru", 69, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildNpmPackage: false, callPackage: false, nodejs_24: false, "ffmpeg_8-full": false, nunicode: false, "util-linux": false, python3: false, getopt: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["stdenv", 23, 7], ["ffmpeg-full", 24, 7], ["nunicode", 25, 7], ["getopt", 26, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 51, 60], ["version", 51, 64], ["nodejs", 51, 72]]);
-const pos$4 = nix.positions(here + "/package.nix", [["basic", 70, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 71, 40]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 70, 5], ["updateScript", 71, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 75, 5], ["description", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 84, 5], ["mainProgram", 85, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["npmDepsHash", 41, 3], ["nodejs", 43, 11], ["buildInputs", 45, 3], ["nativeBuildInputs", 46, 3], ["dontNpmBuild", 48, 3], ["npmInstallFlags", 49, 3], ["client", 51, 3], ["installPhase", 53, 3], ["passthru", 69, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_full = ffmpeg_8_full;
   const nodejs = nodejs_24;
   const wrapper = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wrapper.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       stdenv: stdenv,
       "ffmpeg-full": ffmpeg_full,
       nunicode: nunicode,
       getopt: getopt,
     }))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "audiobookshelf",
       version: "2.37.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "advplyr",
           repo: "audiobookshelf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +47,7 @@ export default nix.lambda((args) => (() => {
       dontNpmBuild: true,
       npmInstallFlags: nix.thunk(() => ["--only-production"]),
       client: nix.thunk(() => nix.app(callPackage, nix.path(here, "./client.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           nodejs: nix.thunk(() => nix.attr(finalAttrs, "nodejs")),
@@ -74,15 +67,15 @@ chmod +x $out/bin/audiobookshelf
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           basic: nix.thunk(() => nix.sel(nixosTests, "audiobookshelf")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--subpackage=client"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[4], extraArgs: nix.thunk(() => ["--subpackage=client"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://www.audiobookshelf.org/",
         description: "Self-hosted audiobook and podcast server",
         changelog: nix.thunk(() => nix.str`https://github.com/advplyr/audiobookshelf/releases/tag/v${nix.sel(finalAttrs, "version")}`),

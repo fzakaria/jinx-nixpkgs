@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["sha256", 12, 5]], [["NIX_CFLAGS_COMPILE", 32, 5]], [["description", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["license", 42, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["patches", 14, 3], ["makeFlags", 21, 3], ["preBuild", 26, 3], ["env", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["sha256", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["license", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["patches", 14, 3], ["makeFlags", 21, 3], ["preBuild", 26, 3], ["env", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libx86",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.codon.org.uk/~mjg59/libx86/downloads/libx86-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0j6h6bc02c6qi0q7c1ncraz4d1hkm5936r35rfsp4x1jrc233wav",
         })))),
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat(["DESTDIR=$(out)"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686"))), "BACKEND=x86emu"))),
       preBuild: "sed -i lrmi.c -e 's@defined(__i386__)@(defined(__i386__) || defined(__x86_64__))@'\nsed -e s@/usr@@ -i Makefile\n",
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Real-mode x86 code emulator",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

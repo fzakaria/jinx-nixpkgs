@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]], [["skipBulkUpdate", 36, 12]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 23, 3], ["nativeCheckInputs", 28, 3], ["doCheck", 31, 3], ["pythonImportsCheck", 33, 3], ["passthru", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cymem: false, cython: false, fetchPypi: false, murmurhash: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 36, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 23, 3], ["nativeCheckInputs", 28, 3], ["doCheck", 31, 3], ["pythonImportsCheck", 33, 3], ["passthru", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.13";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-119xi7/ZfpkveCfg+n+vapG92cki1bqktQ1icxOWy4k=",
@@ -32,16 +29,16 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["preshed"]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], skipBulkUpdate: true }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cython hash tables that assume keys are pre-hashed",
         homepage: "https://github.com/explosion/preshed",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

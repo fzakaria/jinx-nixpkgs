@@ -2,672 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/grammar-sources.nix", [[["version", 11, 5], ["url", 12, 5], ["hash", 13, 5]], [["maintainers", 22, 7]], [["version", 17, 5], ["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5], ["meta", 21, 5]], [["license", 33, 7], ["maintainers", 34, 7]], [["version", 29, 5], ["url", 30, 5], ["hash", 31, 5], ["meta", 32, 5], ["excludeBrokenTreeSitterJson", 39, 5]], [["license", 48, 7], ["maintainers", 49, 7]], [["version", 43, 5], ["url", 44, 5], ["rev", 45, 5], ["hash", 46, 5], ["meta", 47, 5]], [["license", 61, 7], ["maintainers", 62, 7]], [["version", 56, 5], ["url", 57, 5], ["rev", 58, 5], ["hash", 59, 5], ["meta", 60, 5]], [["license", 74, 7], ["maintainers", 75, 7]], [["version", 69, 5], ["url", 70, 5], ["rev", 71, 5], ["hash", 72, 5], ["meta", 73, 5]], [["license", 86, 7], ["maintainers", 87, 7]], [["version", 82, 5], ["url", 83, 5], ["hash", 84, 5], ["meta", 85, 5]], [["license", 98, 7]], [["version", 94, 5], ["url", 95, 5], ["hash", 96, 5], ["meta", 97, 5]], [["license", 108, 10]], [["version", 103, 5], ["url", 104, 5], ["rev", 105, 5], ["hash", 106, 5], ["excludeBrokenTreeSitterJson", 107, 5], ["meta", 108, 5]], [["license", 117, 7], ["maintainers", 118, 7]], [["version", 112, 5], ["url", 113, 5], ["rev", 114, 5], ["hash", 115, 5], ["meta", 116, 5]], [["license", 129, 7]], [["version", 125, 5], ["url", 126, 5], ["hash", 127, 5], ["meta", 128, 5], ["excludeBrokenTreeSitterJson", 133, 5]], [["license", 142, 7]], [["version", 137, 5], ["url", 138, 5], ["rev", 139, 5], ["hash", 140, 5], ["meta", 141, 5]], [["license", 151, 7], ["maintainers", 152, 7]], [["version", 147, 5], ["url", 148, 5], ["hash", 149, 5], ["meta", 150, 5]], [["license", 163, 7]], [["version", 159, 5], ["url", 160, 5], ["hash", 161, 5], ["meta", 162, 5]], [["license", 172, 7], ["maintainers", 173, 7]], [["version", 168, 5], ["url", 169, 5], ["hash", 170, 5], ["meta", 171, 5]], [["license", 185, 7], ["maintainers", 186, 7]], [["version", 180, 5], ["url", 181, 5], ["rev", 182, 5], ["hash", 183, 5], ["meta", 184, 5]], [["license", 197, 7]], [["version", 193, 5], ["url", 194, 5], ["hash", 195, 5], ["meta", 196, 5]], [["version", 202, 5], ["url", 203, 5], ["hash", 204, 5]], [["license", 212, 7]], [["version", 208, 5], ["url", 209, 5], ["hash", 210, 5], ["meta", 211, 5]], [["license", 221, 10]], [["version", 217, 5], ["url", 218, 5], ["hash", 219, 5], ["excludeBrokenTreeSitterJson", 220, 5], ["meta", 221, 5]], [["license", 230, 7], ["maintainers", 231, 7]], [["version", 225, 5], ["url", 226, 5], ["rev", 227, 5], ["hash", 228, 5], ["meta", 229, 5]], [["license", 243, 7], ["maintainers", 244, 7]], [["version", 238, 5], ["url", 239, 5], ["rev", 240, 5], ["hash", 241, 5], ["meta", 242, 5]], [["license", 256, 7], ["maintainers", 257, 7]], [["version", 251, 5], ["url", 252, 5], ["rev", 253, 5], ["hash", 254, 5], ["meta", 255, 5]], [["license", 269, 7], ["maintainers", 270, 7]], [["version", 264, 5], ["url", 265, 5], ["rev", 266, 5], ["hash", 267, 5], ["meta", 268, 5]], [["license", 281, 10]], [["version", 277, 5], ["url", 278, 5], ["rev", 279, 5], ["hash", 280, 5], ["meta", 281, 5]], [["license", 290, 7], ["maintainers", 291, 7]], [["version", 285, 5], ["url", 286, 5], ["rev", 287, 5], ["hash", 288, 5], ["meta", 289, 5]], [["license", 303, 7], ["maintainers", 304, 7]], [["version", 298, 5], ["url", 299, 5], ["rev", 300, 5], ["hash", 301, 5], ["meta", 302, 5]], [["license", 316, 7]], [["version", 311, 5], ["url", 312, 5], ["rev", 313, 5], ["hash", 314, 5], ["meta", 315, 5]], [["license", 325, 7]], [["version", 321, 5], ["url", 322, 5], ["hash", 323, 5], ["meta", 324, 5]], [["license", 334, 7]], [["version", 330, 5], ["url", 331, 5], ["hash", 332, 5], ["meta", 333, 5]], [["license", 343, 7]], [["version", 339, 5], ["url", 340, 5], ["hash", 341, 5], ["meta", 342, 5]], [["license", 353, 10]], [["version", 348, 5], ["url", 349, 5], ["rev", 350, 5], ["hash", 351, 5], ["excludeBrokenTreeSitterJson", 352, 5], ["meta", 353, 5]], [["license", 362, 7], ["maintainers", 363, 7]], [["version", 357, 5], ["url", 358, 5], ["rev", 359, 5], ["hash", 360, 5], ["meta", 361, 5]], [["license", 374, 7]], [["version", 370, 5], ["url", 371, 5], ["hash", 372, 5], ["meta", 373, 5]], [["license", 384, 7]], [["version", 379, 5], ["url", 380, 5], ["rev", 381, 5], ["hash", 382, 5], ["meta", 383, 5]], [["license", 393, 7]], [["version", 389, 5], ["url", 390, 5], ["hash", 391, 5], ["meta", 392, 5]], [["license", 402, 7], ["maintainers", 403, 7]], [["version", 398, 5], ["url", 399, 5], ["hash", 400, 5], ["meta", 401, 5]], [["license", 414, 7]], [["version", 410, 5], ["url", 411, 5], ["hash", 412, 5], ["meta", 413, 5]], [["license", 423, 7]], [["version", 419, 5], ["url", 420, 5], ["hash", 421, 5], ["meta", 422, 5]], [["license", 433, 7], ["maintainers", 434, 7]], [["version", 428, 5], ["url", 429, 5], ["rev", 430, 5], ["hash", 431, 5], ["meta", 432, 5]], [["license", 445, 10]], [["version", 441, 5], ["url", 442, 5], ["rev", 443, 5], ["hash", 444, 5], ["meta", 445, 5]], [["license", 454, 7], ["maintainers", 455, 7]], [["version", 449, 5], ["url", 450, 5], ["rev", 451, 5], ["hash", 452, 5], ["meta", 453, 5]], [["license", 467, 7]], [["version", 462, 5], ["url", 463, 5], ["rev", 464, 5], ["hash", 465, 5], ["meta", 466, 5]], [["license", 476, 7], ["maintainers", 477, 7]], [["version", 472, 5], ["url", 473, 5], ["hash", 474, 5], ["meta", 475, 5]], [["license", 489, 7], ["maintainers", 490, 7]], [["version", 484, 5], ["url", 485, 5], ["rev", 486, 5], ["hash", 487, 5], ["meta", 488, 5]], [["license", 501, 7]], [["version", 497, 5], ["url", 498, 5], ["hash", 499, 5], ["meta", 500, 5]], [["license", 511, 7], ["maintainers", 512, 7]], [["version", 506, 5], ["url", 507, 5], ["rev", 508, 5], ["hash", 509, 5], ["meta", 510, 5]], [["license", 523, 7], ["maintainers", 524, 7]], [["version", 519, 5], ["url", 520, 5], ["hash", 521, 5], ["meta", 522, 5]], [["license", 536, 7], ["maintainers", 537, 7]], [["version", 531, 5], ["url", 532, 5], ["rev", 533, 5], ["hash", 534, 5], ["meta", 535, 5]], [["license", 548, 7]], [["version", 544, 5], ["url", 545, 5], ["hash", 546, 5], ["meta", 547, 5]], [["license", 558, 7]], [["version", 553, 5], ["url", 554, 5], ["rev", 555, 5], ["hash", 556, 5], ["meta", 557, 5]], [["license", 567, 10]], [["version", 563, 5], ["url", 564, 5], ["rev", 565, 5], ["hash", 566, 5], ["meta", 567, 5]], [["license", 575, 10]], [["version", 571, 5], ["url", 572, 5], ["hash", 573, 5], ["excludeBrokenTreeSitterJson", 574, 5], ["meta", 575, 5]], [["license", 584, 7], ["maintainers", 585, 7]], [["version", 579, 5], ["url", 580, 5], ["rev", 581, 5], ["hash", 582, 5], ["meta", 583, 5]], [["license", 597, 7], ["maintainers", 598, 7]], [["version", 592, 5], ["url", 593, 5], ["rev", 594, 5], ["hash", 595, 5], ["meta", 596, 5]], [["license", 610, 7], ["maintainers", 611, 7]], [["version", 605, 5], ["url", 606, 5], ["rev", 607, 5], ["hash", 608, 5], ["meta", 609, 5]], [["license", 623, 7]], [["version", 618, 5], ["url", 619, 5], ["rev", 620, 5], ["hash", 621, 5], ["meta", 622, 5]], [["license", 633, 10]], [["version", 628, 5], ["url", 629, 5], ["rev", 630, 5], ["hash", 631, 5], ["location", 632, 5], ["meta", 633, 5]], [["license", 642, 7], ["maintainers", 643, 7]], [["version", 637, 5], ["url", 638, 5], ["rev", 639, 5], ["hash", 640, 5], ["meta", 641, 5]], [["license", 654, 7]], [["version", 650, 5], ["url", 651, 5], ["hash", 652, 5], ["meta", 653, 5]], [["license", 662, 10]], [["version", 659, 5], ["url", 660, 5], ["hash", 661, 5], ["meta", 662, 5]], [["license", 670, 7]], [["version", 666, 5], ["url", 667, 5], ["hash", 668, 5], ["meta", 669, 5]], [["license", 679, 7]], [["version", 675, 5], ["url", 676, 5], ["hash", 677, 5], ["meta", 678, 5]], [["license", 688, 7]], [["version", 684, 5], ["url", 685, 5], ["hash", 686, 5], ["meta", 687, 5]], [["license", 698, 7], ["maintainers", 699, 7]], [["version", 693, 5], ["url", 694, 5], ["rev", 695, 5], ["hash", 696, 5], ["meta", 697, 5]], [["license", 710, 10]], [["version", 706, 5], ["url", 707, 5], ["rev", 708, 5], ["hash", 709, 5], ["meta", 710, 5]], [["license", 718, 7]], [["version", 714, 5], ["url", 715, 5], ["hash", 716, 5], ["meta", 717, 5]], [["license", 727, 7]], [["version", 723, 5], ["url", 724, 5], ["hash", 725, 5], ["meta", 726, 5]], [["license", 737, 7], ["maintainers", 738, 7]], [["version", 732, 5], ["url", 733, 5], ["rev", 734, 5], ["hash", 735, 5], ["meta", 736, 5]], [["license", 750, 7]], [["version", 745, 5], ["url", 746, 5], ["rev", 747, 5], ["hash", 748, 5], ["meta", 749, 5]], [["license", 760, 7]], [["version", 755, 5], ["url", 756, 5], ["rev", 757, 5], ["hash", 758, 5], ["meta", 759, 5]], [["license", 770, 7], ["maintainers", 771, 7]], [["version", 765, 5], ["url", 766, 5], ["rev", 767, 5], ["hash", 768, 5], ["meta", 769, 5]], [["license", 783, 7], ["maintainers", 784, 7]], [["version", 778, 5], ["url", 779, 5], ["rev", 780, 5], ["hash", 781, 5], ["meta", 782, 5]], [["license", 795, 7]], [["version", 791, 5], ["url", 792, 5], ["hash", 793, 5], ["meta", 794, 5]], [["license", 804, 10]], [["version", 800, 5], ["url", 801, 5], ["rev", 802, 5], ["hash", 803, 5], ["meta", 804, 5]], [["license", 813, 7], ["maintainers", 814, 7]], [["version", 808, 5], ["url", 809, 5], ["rev", 810, 5], ["hash", 811, 5], ["meta", 812, 5]], [["license", 825, 7]], [["version", 821, 5], ["url", 822, 5], ["hash", 823, 5], ["meta", 824, 5]], [["license", 834, 10]], [["version", 830, 5], ["url", 831, 5], ["rev", 832, 5], ["hash", 833, 5], ["meta", 834, 5]], [["license", 843, 7], ["maintainers", 844, 7]], [["version", 838, 5], ["url", 839, 5], ["rev", 840, 5], ["hash", 841, 5], ["meta", 842, 5]], [["license", 856, 7], ["maintainers", 857, 7]], [["version", 851, 5], ["url", 852, 5], ["rev", 853, 5], ["hash", 854, 5], ["meta", 855, 5], ["excludeBrokenTreeSitterJson", 862, 5]], [["license", 871, 7], ["maintainers", 872, 7]], [["version", 866, 5], ["url", 867, 5], ["rev", 868, 5], ["hash", 869, 5], ["meta", 870, 5]], [["license", 883, 7]], [["version", 879, 5], ["url", 880, 5], ["hash", 881, 5], ["meta", 882, 5]], [["license", 892, 7]], [["version", 888, 5], ["url", 889, 5], ["hash", 890, 5], ["meta", 891, 5]], [["license", 902, 7], ["maintainers", 903, 7]], [["version", 897, 5], ["url", 898, 5], ["rev", 899, 5], ["hash", 900, 5], ["meta", 901, 5]], [["license", 915, 7], ["maintainers", 916, 7]], [["version", 910, 5], ["url", 911, 5], ["rev", 912, 5], ["hash", 913, 5], ["meta", 914, 5]], [["license", 928, 7], ["maintainers", 929, 7]], [["version", 923, 5], ["url", 924, 5], ["rev", 925, 5], ["hash", 926, 5], ["meta", 927, 5]], [["license", 945, 7], ["maintainers", 946, 7]], [["version", 936, 5], ["url", 937, 5], ["hash", 938, 5], ["postPatch", 939, 5], ["meta", 944, 5]], [["license", 958, 7], ["maintainers", 959, 7]], [["version", 953, 5], ["url", 954, 5], ["rev", 955, 5], ["hash", 956, 5], ["meta", 957, 5]], [["license", 970, 7], ["maintainers", 971, 7]], [["version", 966, 5], ["url", 967, 5], ["hash", 968, 5], ["meta", 969, 5]], [["license", 983, 7], ["maintainers", 984, 7]], [["version", 978, 5], ["url", 979, 5], ["rev", 980, 5], ["hash", 981, 5], ["meta", 982, 5]], [["license", 995, 7]], [["version", 991, 5], ["url", 992, 5], ["hash", 993, 5], ["meta", 994, 5]], [["license", 1004, 7]], [["version", 1000, 5], ["url", 1001, 5], ["hash", 1002, 5], ["meta", 1003, 5], ["excludeBrokenTreeSitterJson", 1008, 5]], [["license", 1016, 10]], [["version", 1012, 5], ["url", 1013, 5], ["rev", 1014, 5], ["hash", 1015, 5], ["meta", 1016, 5]], [["license", 1024, 10]], [["version", 1020, 5], ["url", 1021, 5], ["rev", 1022, 5], ["hash", 1023, 5], ["meta", 1024, 5]], [["license", 1032, 7]], [["version", 1028, 5], ["url", 1029, 5], ["hash", 1030, 5], ["meta", 1031, 5]], [["license", 1042, 7], ["maintainers", 1043, 7]], [["version", 1037, 5], ["url", 1038, 5], ["rev", 1039, 5], ["hash", 1040, 5], ["meta", 1041, 5]], [["license", 1055, 10]], [["version", 1050, 5], ["url", 1051, 5], ["rev", 1052, 5], ["hash", 1053, 5], ["excludeBrokenTreeSitterJson", 1054, 5], ["meta", 1055, 5]], [["license", 1063, 7]], [["version", 1059, 5], ["url", 1060, 5], ["hash", 1061, 5], ["meta", 1062, 5]], [["license", 1071, 10]], [["version", 1068, 5], ["url", 1069, 5], ["hash", 1070, 5], ["meta", 1071, 5]], [["license", 1080, 7], ["maintainers", 1081, 7]], [["version", 1075, 5], ["url", 1076, 5], ["rev", 1077, 5], ["hash", 1078, 5], ["meta", 1079, 5]], [["license", 1094, 7], ["maintainers", 1095, 7]], [["version", 1088, 5], ["url", 1089, 5], ["rev", 1090, 5], ["hash", 1091, 5], ["location", 1092, 5], ["meta", 1093, 5]], [["license", 1107, 7]], [["language", 1102, 5], ["version", 1103, 5], ["url", 1104, 5], ["hash", 1105, 5], ["meta", 1106, 5]], [["license", 1116, 7]], [["version", 1112, 5], ["url", 1113, 5], ["hash", 1114, 5], ["meta", 1115, 5]], [["license", 1126, 7], ["maintainers", 1127, 7]], [["version", 1121, 5], ["url", 1122, 5], ["rev", 1123, 5], ["hash", 1124, 5], ["meta", 1125, 5]], [["license", 1139, 7]], [["version", 1134, 5], ["url", 1135, 5], ["rev", 1136, 5], ["hash", 1137, 5], ["meta", 1138, 5]], [["license", 1149, 7], ["maintainers", 1150, 7]], [["version", 1144, 5], ["url", 1145, 5], ["rev", 1146, 5], ["hash", 1147, 5], ["meta", 1148, 5]], [["license", 1162, 7]], [["version", 1157, 5], ["url", 1158, 5], ["rev", 1159, 5], ["hash", 1160, 5], ["meta", 1161, 5]], [["license", 1172, 7], ["maintainers", 1173, 7]], [["version", 1167, 5], ["url", 1168, 5], ["rev", 1169, 5], ["hash", 1170, 5], ["meta", 1171, 5], ["excludeBrokenTreeSitterJson", 1178, 5]], [["license", 1187, 7], ["maintainers", 1188, 7]], [["version", 1182, 5], ["url", 1183, 5], ["rev", 1184, 5], ["hash", 1185, 5], ["meta", 1186, 5]], [["license", 1200, 7], ["maintainers", 1201, 7]], [["version", 1195, 5], ["url", 1196, 5], ["rev", 1197, 5], ["hash", 1198, 5], ["meta", 1199, 5]], [["license", 1212, 7]], [["version", 1208, 5], ["url", 1209, 5], ["hash", 1210, 5], ["meta", 1211, 5]], [["license", 1222, 10]], [["version", 1217, 5], ["url", 1218, 5], ["rev", 1219, 5], ["hash", 1220, 5], ["excludeBrokenTreeSitterJson", 1221, 5], ["meta", 1222, 5]], [["license", 1231, 7], ["maintainers", 1232, 7]], [["version", 1226, 5], ["url", 1227, 5], ["rev", 1228, 5], ["hash", 1229, 5], ["meta", 1230, 5]], [["license", 1242, 10]], [["version", 1239, 5], ["url", 1240, 5], ["hash", 1241, 5], ["meta", 1242, 5]], [["license", 1250, 7]], [["version", 1246, 5], ["url", 1247, 5], ["hash", 1248, 5], ["meta", 1249, 5]], [["license", 1259, 10]], [["version", 1255, 5], ["url", 1256, 5], ["rev", 1257, 5], ["hash", 1258, 5], ["meta", 1259, 5]], [["license", 1267, 7]], [["version", 1263, 5], ["url", 1264, 5], ["hash", 1265, 5], ["meta", 1266, 5]], [["license", 1277, 7]], [["version", 1272, 5], ["url", 1273, 5], ["rev", 1274, 5], ["hash", 1275, 5], ["meta", 1276, 5]], [["license", 1287, 7], ["maintainers", 1288, 7]], [["version", 1282, 5], ["url", 1283, 5], ["rev", 1284, 5], ["hash", 1285, 5], ["meta", 1286, 5]], [["license", 1300, 7], ["maintainers", 1301, 7]], [["version", 1295, 5], ["url", 1296, 5], ["rev", 1297, 5], ["hash", 1298, 5], ["meta", 1299, 5]], [["license", 1313, 7], ["maintainers", 1314, 7]], [["version", 1308, 5], ["url", 1309, 5], ["rev", 1310, 5], ["hash", 1311, 5], ["meta", 1312, 5]], [["license", 1326, 7], ["maintainers", 1327, 7]], [["version", 1321, 5], ["url", 1322, 5], ["rev", 1323, 5], ["hash", 1324, 5], ["meta", 1325, 5]], [["license", 1338, 7]], [["version", 1334, 5], ["url", 1335, 5], ["hash", 1336, 5], ["meta", 1337, 5]], [["license", 1348, 7], ["maintainers", 1349, 7]], [["version", 1343, 5], ["url", 1344, 5], ["rev", 1345, 5], ["hash", 1346, 5], ["meta", 1347, 5]], [["license", 1360, 7]], [["version", 1356, 5], ["url", 1357, 5], ["hash", 1358, 5], ["meta", 1359, 5]], [["license", 1369, 7], ["maintainers", 1370, 7]], [["version", 1365, 5], ["url", 1366, 5], ["hash", 1367, 5], ["meta", 1368, 5]], [["license", 1381, 7]], [["version", 1377, 5], ["url", 1378, 5], ["hash", 1379, 5], ["meta", 1380, 5]], [["license", 1391, 7], ["maintainers", 1392, 7]], [["version", 1386, 5], ["url", 1387, 5], ["rev", 1388, 5], ["hash", 1389, 5], ["meta", 1390, 5]], [["license", 1404, 7], ["maintainers", 1405, 7]], [["version", 1399, 5], ["url", 1400, 5], ["rev", 1401, 5], ["hash", 1402, 5], ["meta", 1403, 5]], [["license", 1417, 7], ["maintainers", 1418, 7]], [["version", 1412, 5], ["url", 1413, 5], ["rev", 1414, 5], ["hash", 1415, 5], ["meta", 1416, 5]], [["license", 1429, 7], ["maintainers", 1430, 7]], [["version", 1425, 5], ["url", 1426, 5], ["hash", 1427, 5], ["meta", 1428, 5]], [["license", 1442, 7]], [["version", 1437, 5], ["url", 1438, 5], ["rev", 1439, 5], ["hash", 1440, 5], ["meta", 1441, 5], ["excludeBrokenTreeSitterJson", 1446, 5]], [["license", 1454, 7]], [["version", 1450, 5], ["url", 1451, 5], ["hash", 1452, 5], ["meta", 1453, 5]], [["license", 1463, 7]], [["version", 1459, 5], ["url", 1460, 5], ["hash", 1461, 5], ["meta", 1462, 5]], [["license", 1473, 7], ["maintainers", 1474, 7]], [["version", 1468, 5], ["url", 1469, 5], ["rev", 1470, 5], ["hash", 1471, 5], ["meta", 1472, 5]], [["license", 1485, 7], ["maintainers", 1486, 7]], [["version", 1481, 5], ["url", 1482, 5], ["hash", 1483, 5], ["meta", 1484, 5]], [["license", 1498, 10]], [["version", 1493, 5], ["url", 1494, 5], ["rev", 1495, 5], ["hash", 1496, 5], ["excludeBrokenTreeSitterJson", 1497, 5], ["meta", 1498, 5]], [["license", 1507, 10]], [["version", 1502, 5], ["url", 1503, 5], ["rev", 1504, 5], ["hash", 1505, 5], ["excludeBrokenTreeSitterJson", 1506, 5], ["meta", 1507, 5]], [["license", 1516, 7], ["maintainers", 1517, 7]], [["version", 1511, 5], ["url", 1512, 5], ["rev", 1513, 5], ["hash", 1514, 5], ["meta", 1515, 5]], [["license", 1528, 7]], [["version", 1524, 5], ["url", 1525, 5], ["hash", 1526, 5], ["meta", 1527, 5]], [["license", 1537, 7]], [["version", 1533, 5], ["url", 1534, 5], ["hash", 1535, 5], ["meta", 1536, 5]], [["license", 1546, 7]], [["version", 1542, 5], ["url", 1543, 5], ["hash", 1544, 5], ["meta", 1545, 5]], [["license", 1556, 7]], [["version", 1551, 5], ["url", 1552, 5], ["rev", 1553, 5], ["hash", 1554, 5], ["meta", 1555, 5]], [["license", 1565, 7]], [["version", 1561, 5], ["url", 1562, 5], ["hash", 1563, 5], ["meta", 1564, 5]], [["license", 1575, 7], ["maintainers", 1576, 7]], [["version", 1570, 5], ["url", 1571, 5], ["rev", 1572, 5], ["hash", 1573, 5], ["meta", 1574, 5]], [["license", 1586, 10]], [["version", 1583, 5], ["url", 1584, 5], ["hash", 1585, 5], ["meta", 1586, 5]], [["license", 1593, 10]], [["version", 1590, 5], ["url", 1591, 5], ["hash", 1592, 5], ["meta", 1593, 5]], [["license", 1601, 7]], [["version", 1597, 5], ["url", 1598, 5], ["hash", 1599, 5], ["meta", 1600, 5]], [["license", 1611, 10]], [["version", 1606, 5], ["url", 1607, 5], ["rev", 1608, 5], ["hash", 1609, 5], ["excludeBrokenTreeSitterJson", 1610, 5], ["meta", 1611, 5]], [["license", 1620, 7]], [["version", 1615, 5], ["url", 1616, 5], ["rev", 1617, 5], ["hash", 1618, 5], ["meta", 1619, 5]], [["license", 1629, 7]], [["version", 1625, 5], ["url", 1626, 5], ["hash", 1627, 5], ["meta", 1628, 5]], [["license", 1639, 7], ["maintainers", 1640, 7]], [["version", 1634, 5], ["url", 1635, 5], ["rev", 1636, 5], ["hash", 1637, 5], ["meta", 1638, 5]], [["license", 1652, 7]], [["version", 1647, 5], ["url", 1648, 5], ["hash", 1649, 5], ["generate", 1650, 5], ["meta", 1651, 5]], [["license", 1662, 7], ["maintainers", 1663, 7]], [["version", 1657, 5], ["url", 1658, 5], ["rev", 1659, 5], ["hash", 1660, 5], ["meta", 1661, 5]], [["license", 1675, 7], ["maintainers", 1676, 7]], [["version", 1670, 5], ["url", 1671, 5], ["rev", 1672, 5], ["hash", 1673, 5], ["meta", 1674, 5]], [["license", 1688, 7], ["maintainers", 1689, 7]], [["version", 1683, 5], ["url", 1684, 5], ["rev", 1685, 5], ["hash", 1686, 5], ["meta", 1687, 5]], [["license", 1701, 7]], [["version", 1696, 5], ["url", 1697, 5], ["rev", 1698, 5], ["hash", 1699, 5], ["meta", 1700, 5]], [["license", 1709, 10]], [["version", 1706, 5], ["url", 1707, 5], ["hash", 1708, 5], ["meta", 1709, 5]], [["license", 1717, 7], ["maintainers", 1718, 7]], [["version", 1713, 5], ["url", 1714, 5], ["hash", 1715, 5], ["meta", 1716, 5]], [["license", 1730, 7]], [["version", 1725, 5], ["url", 1726, 5], ["rev", 1727, 5], ["hash", 1728, 5], ["meta", 1729, 5]], [["license", 1740, 7], ["maintainers", 1741, 7]], [["version", 1735, 5], ["url", 1736, 5], ["rev", 1737, 5], ["hash", 1738, 5], ["meta", 1739, 5]], [["license", 1753, 7], ["maintainers", 1754, 7]], [["version", 1748, 5], ["url", 1749, 5], ["rev", 1750, 5], ["hash", 1751, 5], ["meta", 1752, 5]], [["license", 1766, 7], ["maintainers", 1767, 7]], [["version", 1761, 5], ["url", 1762, 5], ["rev", 1763, 5], ["hash", 1764, 5], ["meta", 1765, 5]], [["license", 1779, 7]], [["version", 1774, 5], ["url", 1775, 5], ["rev", 1776, 5], ["hash", 1777, 5], ["meta", 1778, 5]], [["license", 1787, 10]], [["version", 1784, 5], ["url", 1785, 5], ["hash", 1786, 5], ["meta", 1787, 5]], [["license", 1794, 10]], [["version", 1791, 5], ["url", 1792, 5], ["hash", 1793, 5], ["meta", 1794, 5]], [["license", 1803, 7], ["maintainers", 1804, 7]], [["version", 1798, 5], ["url", 1799, 5], ["rev", 1800, 5], ["hash", 1801, 5], ["meta", 1802, 5]], [["license", 1816, 7], ["maintainers", 1817, 7]], [["version", 1811, 5], ["url", 1812, 5], ["rev", 1813, 5], ["hash", 1814, 5], ["meta", 1815, 5]], [["license", 1829, 7]], [["version", 1824, 5], ["url", 1825, 5], ["rev", 1826, 5], ["hash", 1827, 5], ["meta", 1828, 5]], [["license", 1839, 7], ["maintainers", 1840, 7]], [["version", 1834, 5], ["url", 1835, 5], ["rev", 1836, 5], ["hash", 1837, 5], ["meta", 1838, 5]], [["license", 1852, 7]], [["version", 1847, 5], ["url", 1848, 5], ["hash", 1849, 5], ["location", 1850, 5], ["meta", 1851, 5]], [["license", 1863, 7]], [["language", 1857, 5], ["version", 1858, 5], ["url", 1859, 5], ["hash", 1860, 5], ["location", 1861, 5], ["meta", 1862, 5]], [["license", 1873, 7], ["maintainers", 1874, 7]], [["version", 1868, 5], ["url", 1869, 5], ["rev", 1870, 5], ["hash", 1871, 5], ["meta", 1872, 5]], [["license", 1886, 7], ["maintainers", 1887, 7]], [["version", 1881, 5], ["url", 1882, 5], ["rev", 1883, 5], ["hash", 1884, 5], ["meta", 1885, 5]], [["license", 1899, 7], ["maintainers", 1900, 7]], [["version", 1894, 5], ["url", 1895, 5], ["rev", 1896, 5], ["hash", 1897, 5], ["meta", 1898, 5]], [["license", 1912, 7], ["maintainers", 1913, 7]], [["version", 1907, 5], ["url", 1908, 5], ["rev", 1909, 5], ["hash", 1910, 5], ["meta", 1911, 5]], [["maintainers", 1925, 7]], [["version", 1920, 5], ["url", 1921, 5], ["rev", 1922, 5], ["hash", 1923, 5], ["meta", 1924, 5]], [["license", 1937, 7], ["maintainers", 1938, 7]], [["version", 1932, 5], ["url", 1933, 5], ["rev", 1934, 5], ["hash", 1935, 5], ["meta", 1936, 5]], [["license", 1949, 10]], [["version", 1945, 5], ["url", 1946, 5], ["rev", 1947, 5], ["hash", 1948, 5], ["meta", 1949, 5]], [["license", 1957, 7]], [["version", 1953, 5], ["url", 1954, 5], ["hash", 1955, 5], ["meta", 1956, 5], ["excludeBrokenTreeSitterJson", 1961, 5]], [["license", 1970, 7], ["maintainers", 1971, 7]], [["version", 1965, 5], ["url", 1966, 5], ["rev", 1967, 5], ["hash", 1968, 5], ["meta", 1969, 5]], [["license", 1982, 7]], [["version", 1978, 5], ["url", 1979, 5], ["hash", 1980, 5], ["meta", 1981, 5]], [["license", 1992, 7], ["maintainers", 1993, 7]], [["version", 1987, 5], ["url", 1988, 5], ["rev", 1989, 5], ["hash", 1990, 5], ["meta", 1991, 5]], [["license", 2005, 7]], [["version", 2000, 5], ["url", 2001, 5], ["rev", 2002, 5], ["hash", 2003, 5], ["meta", 2004, 5]], [["broken", 2015, 7], ["license", 2016, 7]], [["version", 2010, 5], ["url", 2011, 5], ["hash", 2012, 5], ["meta", 2013, 5]], [["version", 2021, 5], ["url", 2022, 5], ["hash", 2023, 5]], [["license", 2032, 7]], [["version", 2027, 5], ["url", 2028, 5], ["rev", 2029, 5], ["hash", 2030, 5], ["meta", 2031, 5]], [["license", 2041, 7], ["maintainers", 2042, 7]], [["version", 2037, 5], ["url", 2038, 5], ["hash", 2039, 5], ["meta", 2040, 5]], [["license", 2053, 7]], [["version", 2049, 5], ["url", 2050, 5], ["hash", 2051, 5], ["meta", 2052, 5]], [["license", 2063, 7]], [["language", 2058, 5], ["version", 2059, 5], ["url", 2060, 5], ["hash", 2061, 5], ["meta", 2062, 5]], [["license", 2072, 7], ["maintainers", 2073, 7]], [["version", 2068, 5], ["url", 2069, 5], ["hash", 2070, 5], ["meta", 2071, 5]], [["license", 2085, 7], ["maintainers", 2086, 7]], [["version", 2080, 5], ["url", 2081, 5], ["rev", 2082, 5], ["hash", 2083, 5], ["meta", 2084, 5]], [["license", 2098, 7], ["maintainers", 2099, 7]], [["version", 2093, 5], ["url", 2094, 5], ["rev", 2095, 5], ["hash", 2096, 5], ["meta", 2097, 5]], [["license", 2111, 7]], [["version", 2106, 5], ["url", 2107, 5], ["rev", 2108, 5], ["hash", 2109, 5], ["meta", 2110, 5], ["excludeBrokenTreeSitterJson", 2114, 5]], [["license", 2123, 7], ["maintainers", 2124, 7]], [["version", 2118, 5], ["url", 2119, 5], ["rev", 2120, 5], ["hash", 2121, 5], ["meta", 2122, 5]], [["license", 2136, 7], ["maintainers", 2137, 7]], [["version", 2131, 5], ["url", 2132, 5], ["rev", 2133, 5], ["hash", 2134, 5], ["meta", 2135, 5]], [["license", 2148, 7], ["maintainers", 2149, 7]], [["version", 2144, 5], ["url", 2145, 5], ["hash", 2146, 5], ["meta", 2147, 5]], [["license", 2160, 7]], [["version", 2156, 5], ["url", 2157, 5], ["hash", 2158, 5], ["meta", 2159, 5]], [["license", 2169, 7], ["maintainers", 2170, 7]], [["version", 2165, 5], ["url", 2166, 5], ["hash", 2167, 5], ["meta", 2168, 5]], [["license", 2182, 7], ["maintainers", 2183, 7]], [["version", 2177, 5], ["url", 2178, 5], ["rev", 2179, 5], ["hash", 2180, 5], ["meta", 2181, 5]], [["license", 2195, 7], ["maintainers", 2196, 7]], [["version", 2190, 5], ["url", 2191, 5], ["rev", 2192, 5], ["hash", 2193, 5], ["meta", 2194, 5]], [["license", 2208, 10]], [["version", 2203, 5], ["url", 2204, 5], ["rev", 2205, 5], ["hash", 2206, 5], ["excludeBrokenTreeSitterJson", 2207, 5], ["meta", 2208, 5]], [["license", 2216, 7]], [["version", 2212, 5], ["url", 2213, 5], ["hash", 2214, 5], ["meta", 2215, 5]], [["license", 2225, 7], ["maintainers", 2226, 7]], [["version", 2221, 5], ["url", 2222, 5], ["hash", 2223, 5], ["meta", 2224, 5]], [["license", 2237, 7]], [["version", 2233, 5], ["url", 2234, 5], ["hash", 2235, 5], ["meta", 2236, 5]], [["license", 2246, 7]], [["version", 2242, 5], ["url", 2243, 5], ["hash", 2244, 5], ["meta", 2245, 5]], [["license", 2255, 7], ["maintainers", 2256, 7]], [["version", 2251, 5], ["url", 2252, 5], ["hash", 2253, 5], ["meta", 2254, 5]], [["license", 2268, 7], ["maintainers", 2269, 7]], [["version", 2263, 5], ["url", 2264, 5], ["rev", 2265, 5], ["hash", 2266, 5], ["meta", 2267, 5]], [["license", 2279, 10]], [["version", 2276, 5], ["url", 2277, 5], ["hash", 2278, 5], ["meta", 2279, 5]], [["license", 2288, 7]], [["version", 2283, 5], ["url", 2284, 5], ["rev", 2285, 5], ["hash", 2286, 5], ["meta", 2287, 5]], [["license", 2298, 7], ["maintainers", 2299, 7]], [["version", 2293, 5], ["url", 2294, 5], ["rev", 2295, 5], ["hash", 2296, 5], ["meta", 2297, 5]], [["license", 2311, 7], ["maintainers", 2312, 7]], [["version", 2306, 5], ["url", 2307, 5], ["hash", 2308, 5], ["location", 2309, 5], ["meta", 2310, 5]], [["license", 2324, 7], ["maintainers", 2325, 7]], [["version", 2319, 5], ["url", 2320, 5], ["rev", 2321, 5], ["hash", 2322, 5], ["meta", 2323, 5]], [["license", 2338, 7], ["maintainers", 2339, 7]], [["version", 2332, 5], ["url", 2333, 5], ["rev", 2334, 5], ["hash", 2335, 5], ["meta", 2337, 5]], [["license", 2350, 7], ["maintainers", 2351, 7]], [["version", 2346, 5], ["url", 2347, 5], ["hash", 2348, 5], ["meta", 2349, 5]], [["license", 2362, 7], ["maintainers", 2363, 7]], [["version", 2358, 5], ["url", 2359, 5], ["hash", 2360, 5], ["meta", 2361, 5]], [["license", 2374, 7]], [["version", 2370, 5], ["url", 2371, 5], ["hash", 2372, 5], ["meta", 2373, 5]], [["license", 2384, 7], ["maintainers", 2385, 7]], [["version", 2379, 5], ["url", 2380, 5], ["rev", 2381, 5], ["hash", 2382, 5], ["meta", 2383, 5]], [["license", 2397, 7], ["maintainers", 2398, 7]], [["version", 2392, 5], ["url", 2393, 5], ["rev", 2394, 5], ["hash", 2395, 5], ["meta", 2396, 5]], [["license", 2410, 7]], [["version", 2405, 5], ["url", 2406, 5], ["rev", 2407, 5], ["hash", 2408, 5], ["meta", 2409, 5]], [["license", 2419, 10]], [["version", 2415, 5], ["url", 2416, 5], ["rev", 2417, 5], ["hash", 2418, 5], ["meta", 2419, 5]], [["license", 2428, 7], ["maintainers", 2429, 7]], [["version", 2423, 5], ["url", 2424, 5], ["rev", 2425, 5], ["hash", 2426, 5], ["meta", 2427, 5]], [["license", 2440, 10]], [["version", 2436, 5], ["url", 2437, 5], ["rev", 2438, 5], ["hash", 2439, 5], ["meta", 2440, 5]], [["license", 2449, 7]], [["version", 2444, 5], ["url", 2445, 5], ["rev", 2446, 5], ["hash", 2447, 5], ["meta", 2448, 5]], [["license", 2458, 7], ["maintainers", 2459, 7]], [["version", 2454, 5], ["url", 2455, 5], ["hash", 2456, 5], ["meta", 2457, 5]], [["license", 2470, 7]], [["version", 2466, 5], ["url", 2467, 5], ["hash", 2468, 5], ["meta", 2469, 5]], [["license", 2479, 7]], [["version", 2475, 5], ["url", 2476, 5], ["hash", 2477, 5], ["meta", 2478, 5]], [["version", 2484, 5], ["url", 2485, 5], ["hash", 2486, 5]], [["license", 2494, 7], ["maintainers", 2495, 7]], [["version", 2490, 5], ["url", 2491, 5], ["hash", 2492, 5], ["meta", 2493, 5]], [["license", 2506, 7]], [["version", 2502, 5], ["url", 2503, 5], ["hash", 2504, 5], ["meta", 2505, 5]], [["license", 2516, 7], ["maintainers", 2517, 7]], [["version", 2511, 5], ["url", 2512, 5], ["rev", 2513, 5], ["hash", 2514, 5], ["meta", 2515, 5], ["excludeBrokenTreeSitterJson", 2522, 5]], [["license", 2530, 7]], [["version", 2526, 5], ["url", 2527, 5], ["hash", 2528, 5], ["meta", 2529, 5]], [["license", 2540, 7], ["maintainers", 2541, 7]], [["version", 2535, 5], ["url", 2536, 5], ["rev", 2537, 5], ["hash", 2538, 5], ["meta", 2539, 5]], [["license", 2552, 7], ["maintainers", 2553, 7]], [["version", 2548, 5], ["url", 2549, 5], ["hash", 2550, 5], ["meta", 2551, 5]], [["license", 2568, 7]], [["version", 2564, 5], ["url", 2565, 5], ["hash", 2566, 5], ["meta", 2567, 5]], [["license", 2578, 7]], [["version", 2573, 5], ["url", 2574, 5], ["rev", 2575, 5], ["hash", 2576, 5], ["meta", 2577, 5]], [["license", 2586, 10]], [["version", 2583, 5], ["url", 2584, 5], ["hash", 2585, 5], ["meta", 2586, 5]], [["license", 2595, 7], ["maintainers", 2596, 7]], [["version", 2590, 5], ["url", 2591, 5], ["rev", 2592, 5], ["hash", 2593, 5], ["meta", 2594, 5]], [["license", 2608, 10]], [["version", 2603, 5], ["url", 2604, 5], ["rev", 2605, 5], ["hash", 2606, 5], ["location", 2607, 5], ["meta", 2608, 5]], [["license", 2617, 7]], [["version", 2612, 5], ["url", 2613, 5], ["rev", 2614, 5], ["hash", 2615, 5], ["meta", 2616, 5]], [["license", 2626, 7], ["maintainers", 2627, 7]], [["version", 2622, 5], ["url", 2623, 5], ["hash", 2624, 5], ["meta", 2625, 5]], [["license", 2637, 10]], [["version", 2634, 5], ["url", 2635, 5], ["hash", 2636, 5], ["meta", 2637, 5]], [["license", 2645, 7], ["maintainers", 2646, 7]], [["version", 2641, 5], ["url", 2642, 5], ["hash", 2643, 5], ["meta", 2644, 5]], [["license", 2658, 7], ["maintainers", 2659, 7]], [["version", 2653, 5], ["url", 2654, 5], ["rev", 2655, 5], ["hash", 2656, 5], ["meta", 2657, 5]], [["owner", 2668, 7], ["repo", 2669, 7], ["rev", 2670, 7], ["hash", 2671, 7], ["postFetch", 2672, 7]], [["license", 2677, 10]], [["version", 2666, 5], ["src", 2667, 5], ["meta", 2677, 5]], [["license", 2684, 10]], [["version", 2681, 5], ["url", 2682, 5], ["hash", 2683, 5], ["meta", 2684, 5]], [["license", 2692, 7]], [["version", 2688, 5], ["url", 2689, 5], ["hash", 2690, 5], ["meta", 2691, 5]], [["license", 2701, 7]], [["version", 2697, 5], ["url", 2698, 5], ["hash", 2699, 5], ["meta", 2700, 5]], [["license", 2710, 7]], [["version", 2706, 5], ["url", 2707, 5], ["hash", 2708, 5], ["meta", 2709, 5]], [["license", 2720, 7], ["maintainers", 2721, 7]], [["version", 2715, 5], ["url", 2716, 5], ["rev", 2717, 5], ["hash", 2718, 5], ["meta", 2719, 5]], [["license", 2732, 7]], [["version", 2728, 5], ["url", 2729, 5], ["hash", 2730, 5], ["meta", 2731, 5]], [["license", 2741, 10]], [["version", 2737, 5], ["url", 2738, 5], ["rev", 2739, 5], ["hash", 2740, 5], ["meta", 2741, 5]], [["license", 2750, 7]], [["version", 2745, 5], ["url", 2746, 5], ["rev", 2747, 5], ["hash", 2748, 5], ["meta", 2749, 5]], [["license", 2759, 7]], [["version", 2755, 5], ["url", 2756, 5], ["hash", 2757, 5], ["meta", 2758, 5]], [["license", 2767, 10]], [["version", 2764, 5], ["url", 2765, 5], ["hash", 2766, 5], ["meta", 2767, 5]], [["license", 2776, 7], ["maintainers", 2777, 7]], [["version", 2771, 5], ["url", 2772, 5], ["rev", 2773, 5], ["hash", 2774, 5], ["meta", 2775, 5]], [["license", 2789, 7]], [["version", 2784, 5], ["url", 2785, 5], ["rev", 2786, 5], ["hash", 2787, 5], ["meta", 2788, 5]], [["license", 2798, 10]], [["version", 2794, 5], ["url", 2795, 5], ["rev", 2796, 5], ["hash", 2797, 5], ["meta", 2798, 5]], [["license", 2807, 7], ["maintainers", 2808, 7]], [["version", 2802, 5], ["url", 2803, 5], ["rev", 2804, 5], ["hash", 2805, 5], ["meta", 2806, 5]], [["license", 2819, 7]], [["version", 2815, 5], ["url", 2816, 5], ["hash", 2817, 5], ["meta", 2818, 5]], [["license", 2828, 7]], [["version", 2824, 5], ["url", 2825, 5], ["hash", 2826, 5], ["meta", 2827, 5]], [["license", 2838, 7], ["maintainers", 2839, 7]], [["version", 2833, 5], ["url", 2834, 5], ["rev", 2835, 5], ["hash", 2836, 5], ["meta", 2837, 5]], [["license", 2850, 7]], [["version", 2846, 5], ["url", 2847, 5], ["hash", 2848, 5], ["meta", 2849, 5]], [["license", 2859, 7], ["maintainers", 2860, 7]], [["version", 2855, 5], ["url", 2856, 5], ["hash", 2857, 5], ["meta", 2858, 5]], [["license", 2872, 7], ["maintainers", 2873, 7]], [["version", 2867, 5], ["url", 2868, 5], ["rev", 2869, 5], ["hash", 2870, 5], ["meta", 2871, 5]], [["license", 2885, 7]], [["version", 2880, 5], ["url", 2881, 5], ["rev", 2882, 5], ["hash", 2883, 5], ["meta", 2884, 5]], [["license", 2895, 7], ["maintainers", 2896, 7]], [["version", 2890, 5], ["url", 2891, 5], ["rev", 2892, 5], ["hash", 2893, 5], ["meta", 2894, 5]], [["license", 2908, 7]], [["version", 2903, 5], ["url", 2904, 5], ["hash", 2905, 5], ["generate", 2906, 5], ["meta", 2907, 5]], [["license", 2917, 7], ["maintainers", 2918, 7]], [["version", 2913, 5], ["url", 2914, 5], ["hash", 2915, 5], ["meta", 2916, 5]], [["license", 2928, 10]], [["version", 2925, 5], ["url", 2926, 5], ["hash", 2927, 5], ["meta", 2928, 5]], [["license", 2937, 7], ["maintainers", 2938, 7]], [["version", 2932, 5], ["url", 2933, 5], ["rev", 2934, 5], ["hash", 2935, 5], ["meta", 2936, 5], ["excludeBrokenTreeSitterJson", 2943, 5]], [["license", 2950, 10]], [["version", 2947, 5], ["url", 2948, 5], ["hash", 2949, 5], ["meta", 2950, 5]], [["license", 2959, 10]], [["version", 2954, 5], ["url", 2955, 5], ["hash", 2956, 5], ["location", 2957, 5], ["excludeBrokenTreeSitterJson", 2958, 5], ["meta", 2959, 5]], [["license", 2973, 7]], [["version", 2969, 5], ["url", 2970, 5], ["hash", 2971, 5], ["meta", 2972, 5]], [["license", 2982, 7]], [["version", 2978, 5], ["url", 2979, 5], ["hash", 2980, 5], ["meta", 2981, 5]], [["license", 2991, 7]], [["version", 2987, 5], ["url", 2988, 5], ["hash", 2989, 5], ["meta", 2990, 5]], [["license", 3001, 7], ["maintainers", 3002, 7]], [["version", 2996, 5], ["url", 2997, 5], ["rev", 2998, 5], ["hash", 2999, 5], ["meta", 3000, 5]], [["license", 3013, 7], ["maintainers", 3014, 7]], [["version", 3009, 5], ["url", 3010, 5], ["hash", 3011, 5], ["meta", 3012, 5]], [["license", 3024, 10]], [["version", 3021, 5], ["url", 3022, 5], ["hash", 3023, 5], ["meta", 3024, 5]], [["maintainers", 3032, 7]], [["version", 3028, 5], ["url", 3029, 5], ["hash", 3030, 5], ["meta", 3031, 5]], [["license", 3044, 7], ["maintainers", 3045, 7]], [["version", 3039, 5], ["url", 3040, 5], ["rev", 3041, 5], ["hash", 3042, 5], ["meta", 3043, 5]], [["license", 3057, 7], ["maintainers", 3058, 7]], [["version", 3052, 5], ["url", 3053, 5], ["rev", 3054, 5], ["hash", 3055, 5], ["meta", 3056, 5], ["excludeBrokenTreeSitterJson", 3063, 5]], [["license", 3071, 7]], [["version", 3067, 5], ["url", 3068, 5], ["hash", 3069, 5], ["meta", 3070, 5]], [["license", 3081, 7], ["maintainers", 3082, 7]], [["version", 3076, 5], ["url", 3077, 5], ["rev", 3078, 5], ["hash", 3079, 5], ["meta", 3080, 5]], [["license", 3094, 7], ["maintainers", 3095, 7]], [["version", 3089, 5], ["url", 3090, 5], ["rev", 3091, 5], ["hash", 3092, 5], ["meta", 3093, 5]], [["license", 3106, 7], ["maintainers", 3107, 7]], [["version", 3102, 5], ["url", 3103, 5], ["hash", 3104, 5], ["meta", 3105, 5]], [["license", 3119, 7]], [["version", 3114, 5], ["url", 3115, 5], ["rev", 3116, 5], ["hash", 3117, 5], ["meta", 3118, 5]], [["license", 3128, 7]], [["version", 3124, 5], ["url", 3125, 5], ["hash", 3126, 5], ["meta", 3127, 5]], [["license", 3138, 7], ["maintainers", 3139, 7]], [["version", 3133, 5], ["url", 3134, 5], ["rev", 3135, 5], ["hash", 3136, 5], ["meta", 3137, 5]], [["license", 3151, 7], ["maintainers", 3152, 7]], [["version", 3146, 5], ["url", 3147, 5], ["rev", 3148, 5], ["hash", 3149, 5], ["meta", 3150, 5]], [["license", 3164, 7]], [["version", 3159, 5], ["url", 3160, 5], ["rev", 3161, 5], ["hash", 3162, 5], ["meta", 3163, 5]], [["url", 3173, 9], ["hash", 3174, 9]], [["license", 3181, 7]], [["patches", 3171, 5], ["version", 3177, 5], ["url", 3178, 5], ["hash", 3179, 5], ["meta", 3180, 5]], [["license", 3191, 7]], [["version", 3186, 5], ["url", 3187, 5], ["rev", 3188, 5], ["hash", 3189, 5], ["meta", 3190, 5]], [["license", 3201, 10]], [["version", 3196, 5], ["url", 3197, 5], ["rev", 3198, 5], ["hash", 3199, 5], ["location", 3200, 5], ["meta", 3201, 5]], [["license", 3210, 7]], [["version", 3205, 5], ["url", 3206, 5], ["rev", 3207, 5], ["hash", 3208, 5], ["meta", 3209, 5]], [["license", 3218, 10]], [["version", 3215, 5], ["url", 3216, 5], ["hash", 3217, 5], ["meta", 3218, 5]], [["license", 3227, 7]], [["version", 3222, 5], ["url", 3223, 5], ["rev", 3224, 5], ["hash", 3225, 5], ["meta", 3226, 5]], [["license", 3236, 7]], [["version", 3232, 5], ["url", 3233, 5], ["hash", 3234, 5], ["meta", 3235, 5]], [["license", 3246, 7]], [["version", 3241, 5], ["url", 3242, 5], ["rev", 3243, 5], ["hash", 3244, 5], ["meta", 3245, 5]], [["license", 3255, 7]], [["version", 3251, 5], ["url", 3252, 5], ["hash", 3253, 5], ["meta", 3254, 5]], [["license", 3264, 7]], [["version", 3260, 5], ["url", 3261, 5], ["hash", 3262, 5], ["meta", 3263, 5]], [["license", 3274, 7], ["maintainers", 3275, 7]], [["version", 3269, 5], ["url", 3270, 5], ["rev", 3271, 5], ["hash", 3272, 5], ["meta", 3273, 5]], [["license", 3286, 7]], [["version", 3282, 5], ["url", 3283, 5], ["hash", 3284, 5], ["meta", 3285, 5]], [["license", 3295, 7]], [["version", 3291, 5], ["url", 3292, 5], ["hash", 3293, 5], ["meta", 3294, 5]], [["license", 3305, 7], ["maintainers", 3306, 7]], [["version", 3300, 5], ["url", 3301, 5], ["rev", 3302, 5], ["hash", 3303, 5], ["meta", 3304, 5]], [["license", 3318, 7], ["maintainers", 3319, 7]], [["version", 3313, 5], ["url", 3314, 5], ["rev", 3315, 5], ["hash", 3316, 5], ["meta", 3317, 5]], [["license", 3331, 7], ["maintainers", 3332, 7]], [["version", 3326, 5], ["url", 3327, 5], ["rev", 3328, 5], ["hash", 3329, 5], ["meta", 3330, 5]], [["license", 3344, 7], ["maintainers", 3345, 7]], [["version", 3339, 5], ["url", 3340, 5], ["hash", 3341, 5], ["location", 3342, 5], ["meta", 3343, 5]], [["license", 3357, 7], ["maintainers", 3358, 7]], [["version", 3352, 5], ["url", 3353, 5], ["rev", 3354, 5], ["hash", 3355, 5], ["meta", 3356, 5]], [["license", 3369, 7], ["maintainers", 3370, 7]], [["version", 3365, 5], ["url", 3366, 5], ["hash", 3367, 5], ["meta", 3368, 5]], [["license", 3382, 7], ["maintainers", 3383, 7]], [["version", 3377, 5], ["url", 3378, 5], ["rev", 3379, 5], ["hash", 3380, 5], ["meta", 3381, 5]], [["license", 3394, 7]], [["version", 3390, 5], ["url", 3391, 5], ["hash", 3392, 5], ["meta", 3393, 5]], [["license", 3404, 7], ["maintainers", 3405, 7]], [["version", 3399, 5], ["url", 3400, 5], ["rev", 3401, 5], ["hash", 3402, 5], ["meta", 3403, 5]], [["license", 3417, 7], ["maintainers", 3418, 7]], [["version", 3412, 5], ["url", 3413, 5], ["rev", 3414, 5], ["hash", 3415, 5], ["meta", 3416, 5]], [["license", 3430, 7]], [["version", 3425, 5], ["url", 3426, 5], ["rev", 3427, 5], ["hash", 3428, 5], ["meta", 3429, 5]], [["license", 3441, 7], ["maintainers", 3442, 7]], [["version", 3435, 5], ["url", 3436, 5], ["rev", 3438, 5], ["hash", 3439, 5], ["meta", 3440, 5], ["excludeBrokenTreeSitterJson", 3447, 5]], [["license", 3457, 7], ["maintainers", 3461, 7]], [["version", 3451, 5], ["url", 3452, 5], ["rev", 3453, 5], ["hash", 3454, 5], ["location", 3455, 5], ["meta", 3456, 5]], [["license", 3474, 7], ["maintainers", 3478, 7]], [["version", 3468, 5], ["url", 3469, 5], ["rev", 3470, 5], ["hash", 3471, 5], ["location", 3472, 5], ["meta", 3473, 5]], [["license", 3490, 7], ["maintainers", 3491, 7]], [["version", 3485, 5], ["url", 3486, 5], ["rev", 3487, 5], ["hash", 3488, 5], ["meta", 3489, 5]], [["license", 3503, 7], ["maintainers", 3504, 7]], [["version", 3498, 5], ["url", 3499, 5], ["rev", 3500, 5], ["hash", 3501, 5], ["meta", 3502, 5]], [["license", 3516, 7]], [["version", 3511, 5], ["url", 3512, 5], ["rev", 3513, 5], ["hash", 3514, 5], ["meta", 3515, 5]], [["license", 3524, 10]], [["version", 3521, 5], ["url", 3522, 5], ["hash", 3523, 5], ["meta", 3524, 5]], [["license", 3532, 7]], [["version", 3528, 5], ["url", 3529, 5], ["hash", 3530, 5], ["meta", 3531, 5]], [["license", 3543, 7], ["maintainers", 3544, 7]], [["version", 3537, 5], ["url", 3538, 5], ["hash", 3539, 5], ["excludeBrokenTreeSitterJson", 3541, 5], ["meta", 3542, 5]], [["license", 3556, 7], ["maintainers", 3557, 7]], [["version", 3551, 5], ["url", 3552, 5], ["rev", 3553, 5], ["hash", 3554, 5], ["meta", 3555, 5]], [["license", 3568, 7], ["maintainers", 3569, 7]], [["version", 3564, 5], ["url", 3565, 5], ["hash", 3566, 5], ["meta", 3567, 5]], [["license", 3581, 7], ["maintainers", 3582, 7]], [["version", 3576, 5], ["url", 3577, 5], ["rev", 3578, 5], ["hash", 3579, 5], ["meta", 3580, 5]], [["license", 3594, 7], ["maintainers", 3595, 7]], [["version", 3589, 5], ["url", 3590, 5], ["rev", 3591, 5], ["hash", 3592, 5], ["meta", 3593, 5]], [["license", 3606, 7]], [["version", 3602, 5], ["url", 3603, 5], ["hash", 3604, 5], ["meta", 3605, 5]], [["license", 3616, 7]], [["version", 3611, 5], ["url", 3612, 5], ["rev", 3613, 5], ["hash", 3614, 5], ["meta", 3615, 5]], [["license", 3626, 7], ["maintainers", 3627, 7]], [["version", 3621, 5], ["url", 3622, 5], ["rev", 3623, 5], ["hash", 3624, 5], ["meta", 3625, 5]], [["license", 3641, 7], ["maintainers", 3642, 7]], [["version", 3634, 5], ["url", 3635, 5], ["rev", 3636, 5], ["hash", 3637, 5], ["excludeBrokenTreeSitterJson", 3639, 5], ["meta", 3640, 5]], [["license", 3654, 7]], [["version", 3649, 5], ["url", 3650, 5], ["rev", 3651, 5], ["hash", 3652, 5], ["meta", 3653, 5]], [["ada", 10, 3], ["adl", 16, 3], ["agda", 28, 3], ["alloy", 42, 3], ["amber", 55, 3], ["astro", 68, 3], ["awk", 81, 3], ["bash", 93, 3], ["basic", 102, 3], ["bass", 111, 3], ["beancount", 124, 3], ["bibtex", 136, 3], ["bicep", 146, 3], ["bitbake", 158, 3], ["blade", 167, 3], ["blueprint", 179, 3], ["bqn", 192, 3], ["c", 201, 3], ["c-sharp", 207, 3], ["c3", 216, 3], ["caddyfile", 224, 3], ["cairo", 237, 3], ["capnp", 250, 3], ["cel", 263, 3], ["chuck", 276, 3], ["circom", 284, 3], ["clarity", 297, 3], ["clojure", 310, 3], ["cmake", 320, 3], ["comment", 329, 3], ["commonlisp", 338, 3], ["concerto", 347, 3], ["cpon", 356, 3], ["cpp", 369, 3], ["crystal", 378, 3], ["css", 388, 3], ["csv", 397, 3], ["cuda", 409, 3], ["cue", 418, 3], ["cylc", 427, 3], ["cython", 440, 3], ["d", 448, 3], ["dart", 461, 3], ["dbml", 471, 3], ["debian", 483, 3], ["devicetree", 496, 3], ["dhall", 505, 3], ["diff", 518, 3], ["djot", 530, 3], ["dockerfile", 543, 3], ["dot", 552, 3], ["doxyfile", 562, 3], ["drools", 570, 3], ["dtd", 578, 3], ["dune", 591, 3], ["dunstrc", 604, 3], ["earthfile", 617, 3], ["ebnf", 627, 3], ["edoc", 636, 3], ["eex", 649, 3], ["eiffel", 658, 3], ["elisp", 665, 3], ["elixir", 674, 3], ["elm", 683, 3], ["elvish", 692, 3], ["embedded-perl", 705, 3], ["embedded-template", 713, 3], ["erlang", 722, 3], ["esdl", 731, 3], ["factor", 744, 3], ["fennel", 754, 3], ["fga", 764, 3], ["fidl", 777, 3], ["fish", 790, 3], ["flatbuffers", 799, 3], ["forth", 807, 3], ["fortran", 820, 3], ["freebasic", 829, 3], ["fsharp", 837, 3], ["fstar", 850, 3], ["gas", 865, 3], ["gdscript", 878, 3], ["gemini", 887, 3], ["gherkin", 896, 3], ["ghostty", 909, 3], ["git-config", 922, 3], ["git-rebase", 935, 3], ["gitattributes", 952, 3], ["gitcommit", 965, 3], ["gitignore", 977, 3], ["gleam", 990, 3], ["glimmer", 999, 3], ["glimmer-javascript", 1011, 3], ["glimmer-typescript", 1019, 3], ["glsl", 1027, 3], ["gn", 1036, 3], ["gnuplot", 1049, 3], ["go", 1058, 3], ["go-format-string", 1067, 3], ["go-template", 1074, 3], ["go-template-helm", 1087, 3], ["godot-resource", 1101, 3], ["gomod", 1111, 3], ["gotmpl", 1120, 3], ["gowork", 1133, 3], ["gpr", 1143, 3], ["graphql", 1156, 3], ["gren", 1166, 3], ["groovy", 1181, 3], ["hare", 1194, 3], ["haskell", 1207, 3], ["haskell-literate", 1216, 3], ["haskell-persistent", 1225, 3], ["haxe", 1238, 3], ["hcl", 1245, 3], ["hdl", 1254, 3], ["heex", 1262, 3], ["hjson", 1271, 3], ["hledger", 1281, 3], ["hocon", 1294, 3], ["hoon", 1307, 3], ["hosts", 1320, 3], ["html", 1333, 3], ["htmldjango", 1342, 3], ["http", 1355, 3], ["hurl", 1364, 3], ["hyprlang", 1376, 3], ["iex", 1385, 3], ["ini", 1398, 3], ["ink", 1411, 3], ["inko", 1424, 3], ["janet-simple", 1436, 3], ["java", 1449, 3], ["javascript", 1458, 3], ["jinja2", 1467, 3], ["jjdescription", 1480, 3], ["jjrevset", 1492, 3], ["jjtemplate", 1501, 3], ["jq", 1510, 3], ["jsdoc", 1523, 3], ["json", 1532, 3], ["json5", 1541, 3], ["jsonnet", 1550, 3], ["julia", 1560, 3], ["just", 1569, 3], ["kcl", 1582, 3], ["kconfig", 1589, 3], ["kdl", 1596, 3], ["klog", 1605, 3], ["koka", 1614, 3], ["kotlin", 1624, 3], ["koto", 1633, 3], ["latex", 1646, 3], ["ld", 1656, 3], ["ldif", 1669, 3], ["lean", 1682, 3], ["ledger", 1695, 3], ["less", 1705, 3], ["linkerscript", 1712, 3], ["llvm", 1724, 3], ["llvm-mir", 1734, 3], ["log", 1747, 3], ["lpf", 1760, 3], ["lua", 1773, 3], ["lua-format-string", 1783, 3], ["luap", 1790, 3], ["luau", 1797, 3], ["mail", 1810, 3], ["make", 1823, 3], ["markdoc", 1833, 3], ["markdown", 1846, 3], ["markdown-inline", 1856, 3], ["matlab", 1867, 3], ["mermaid", 1880, 3], ["meson", 1893, 3], ["mojo", 1906, 3], ["move", 1919, 3], ["nasm", 1931, 3], ["nearley", 1944, 3], ["netlinx", 1952, 3], ["nginx", 1964, 3], ["nickel", 1977, 3], ["nim", 1986, 3], ["nix", 1999, 3], ["norg", 2009, 3], ["norg-meta", 2020, 3], ["nu", 2026, 3], ["objc", 2036, 3], ["ocaml", 2048, 3], ["ocaml-interface", 2057, 3], ["ocamllex", 2067, 3], ["odin", 2079, 3], ["ohm", 2092, 3], ["opam", 2105, 3], ["opencl", 2117, 3], ["openscad", 2130, 3], ["org", 2143, 3], ["org-nvim", 2155, 3], ["pascal", 2164, 3], ["passwd", 2176, 3], ["pem", 2189, 3], ["penrose", 2202, 3], ["perl", 2211, 3], ["pest", 2220, 3], ["pgn", 2232, 3], ["php", 2241, 3], ["phpdoc", 2250, 3], ["php-only", 2262, 3], ["picat", 2275, 3], ["pioasm", 2282, 3], ["pkl", 2292, 3], ["plank", 2305, 3], ["po", 2318, 3], ["pod", 2331, 3], ["ponylang", 2345, 3], ["powershell", 2357, 3], ["prisma", 2369, 3], ["prolog", 2378, 3], ["properties", 2391, 3], ["proto", 2404, 3], ["proverif", 2414, 3], ["prql", 2422, 3], ["ptx", 2435, 3], ["pug", 2443, 3], ["purescript", 2453, 3], ["python", 2465, 3], ["ql", 2474, 3], ["ql-dbscheme", 2483, 3], ["qmljs", 2489, 3], ["query", 2501, 3], ["quint", 2510, 3], ["r", 2525, 3], ["razor", 2534, 3], ["readline", 2547, 3], ["regex", 2559, 3], ["rego", 2572, 3], ["requirements", 2582, 3], ["rescript", 2589, 3], ["ripple", 2602, 3], ["river", 2611, 3], ["robot", 2621, 3], ["robots-txt", 2633, 3], ["rocq", 2640, 3], ["ron", 2652, 3], ["rpmspec", 2665, 3], ["rshtml", 2680, 3], ["rst", 2687, 3], ["ruby", 2696, 3], ["rust", 2705, 3], ["rust-format-args", 2714, 3], ["scala", 2727, 3], ["scfg", 2736, 3], ["scheme", 2744, 3], ["scss", 2754, 3], ["shellcheckrc", 2763, 3], ["slang", 2770, 3], ["slint", 2783, 3], ["slisp", 2793, 3], ["smali", 2801, 3], ["smithy", 2814, 3], ["sml", 2823, 3], ["snakemake", 2832, 3], ["solidity", 2845, 3], ["sourcepawn", 2854, 3], ["spade", 2866, 3], ["sparql", 2879, 3], ["spicedb", 2889, 3], ["sql", 2902, 3], ["sshclientconfig", 2912, 3], ["ssh-client-config", 2924, 3], ["strace", 2931, 3], ["strictdoc", 2946, 3], ["styx", 2953, 3], ["supercollider", 2968, 3], ["surface", 2977, 3], ["svelte", 2986, 3], ["sway", 2995, 3], ["swift", 3008, 3], ["systemverilog", 3020, 3], ["t32", 3027, 3], ["tablegen", 3038, 3], ["tact", 3051, 3], ["talon", 3066, 3], ["task", 3075, 3], ["tcl", 3088, 3], ["teal", 3101, 3], ["templ", 3113, 3], ["tera", 3123, 3], ["textproto", 3132, 3], ["thrift", 3145, 3], ["tiger", 3158, 3], ["tlaplus", 3168, 3], ["todotxt", 3185, 3], ["tolk", 3195, 3], ["toml", 3204, 3], ["tql", 3214, 3], ["tsq", 3221, 3], ["tsx", 3231, 3], ["turtle", 3240, 3], ["twig", 3250, 3], ["typescript", 3259, 3], ["typespec", 3268, 3], ["typst", 3281, 3], ["uiua", 3290, 3], ["ungrammar", 3299, 3], ["unison", 3312, 3], ["uxntal", 3325, 3], ["v", 3338, 3], ["vala", 3351, 3], ["vcl", 3364, 3], ["vento", 3376, 3], ["verilog", 3389, 3], ["vhdl", 3398, 3], ["vhs", 3411, 3], ["vim", 3424, 3], ["vue", 3434, 3], ["wast", 3450, 3], ["wat", 3467, 3], ["werk", 3484, 3], ["wesl", 3497, 3], ["wgsl", 3510, 3], ["wikitext", 3520, 3], ["wing", 3527, 3], ["wit", 3536, 3], ["wren", 3550, 3], ["xit", 3563, 3], ["xml", 3575, 3], ["xtc", 3588, 3], ["yaml", 3601, 3], ["yang", 3610, 3], ["yara", 3620, 3], ["yuck", 3633, 3], ["zig", 3648, 3]]]);
 const formals$1 = { args: { fetchpatch: false, fetchFromGitLab: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/grammar-sources.nix", [["version", 11, 5], ["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/grammar-sources.nix", [["maintainers", 22, 7]]);
-const pos$3 = nix.positions(here + "/grammar-sources.nix", [["version", 17, 5], ["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5], ["meta", 21, 5]]);
-const pos$4 = nix.positions(here + "/grammar-sources.nix", [["license", 33, 7], ["maintainers", 34, 7]]);
-const pos$5 = nix.positions(here + "/grammar-sources.nix", [["version", 29, 5], ["url", 30, 5], ["hash", 31, 5], ["meta", 32, 5], ["excludeBrokenTreeSitterJson", 39, 5]]);
-const pos$6 = nix.positions(here + "/grammar-sources.nix", [["license", 48, 7], ["maintainers", 49, 7]]);
-const pos$7 = nix.positions(here + "/grammar-sources.nix", [["version", 43, 5], ["url", 44, 5], ["rev", 45, 5], ["hash", 46, 5], ["meta", 47, 5]]);
-const pos$8 = nix.positions(here + "/grammar-sources.nix", [["license", 61, 7], ["maintainers", 62, 7]]);
-const pos$9 = nix.positions(here + "/grammar-sources.nix", [["version", 56, 5], ["url", 57, 5], ["rev", 58, 5], ["hash", 59, 5], ["meta", 60, 5]]);
-const pos$10 = nix.positions(here + "/grammar-sources.nix", [["license", 74, 7], ["maintainers", 75, 7]]);
-const pos$11 = nix.positions(here + "/grammar-sources.nix", [["version", 69, 5], ["url", 70, 5], ["rev", 71, 5], ["hash", 72, 5], ["meta", 73, 5]]);
-const pos$12 = nix.positions(here + "/grammar-sources.nix", [["license", 86, 7], ["maintainers", 87, 7]]);
-const pos$13 = nix.positions(here + "/grammar-sources.nix", [["version", 82, 5], ["url", 83, 5], ["hash", 84, 5], ["meta", 85, 5]]);
-const pos$14 = nix.positions(here + "/grammar-sources.nix", [["license", 98, 7]]);
-const pos$15 = nix.positions(here + "/grammar-sources.nix", [["version", 94, 5], ["url", 95, 5], ["hash", 96, 5], ["meta", 97, 5]]);
-const pos$16 = nix.positions(here + "/grammar-sources.nix", [["license", 108, 10]]);
-const pos$17 = nix.positions(here + "/grammar-sources.nix", [["version", 103, 5], ["url", 104, 5], ["rev", 105, 5], ["hash", 106, 5], ["excludeBrokenTreeSitterJson", 107, 5], ["meta", 108, 5]]);
-const pos$18 = nix.positions(here + "/grammar-sources.nix", [["license", 117, 7], ["maintainers", 118, 7]]);
-const pos$19 = nix.positions(here + "/grammar-sources.nix", [["version", 112, 5], ["url", 113, 5], ["rev", 114, 5], ["hash", 115, 5], ["meta", 116, 5]]);
-const pos$20 = nix.positions(here + "/grammar-sources.nix", [["license", 129, 7]]);
-const pos$21 = nix.positions(here + "/grammar-sources.nix", [["version", 125, 5], ["url", 126, 5], ["hash", 127, 5], ["meta", 128, 5], ["excludeBrokenTreeSitterJson", 133, 5]]);
-const pos$22 = nix.positions(here + "/grammar-sources.nix", [["license", 142, 7]]);
-const pos$23 = nix.positions(here + "/grammar-sources.nix", [["version", 137, 5], ["url", 138, 5], ["rev", 139, 5], ["hash", 140, 5], ["meta", 141, 5]]);
-const pos$24 = nix.positions(here + "/grammar-sources.nix", [["license", 151, 7], ["maintainers", 152, 7]]);
-const pos$25 = nix.positions(here + "/grammar-sources.nix", [["version", 147, 5], ["url", 148, 5], ["hash", 149, 5], ["meta", 150, 5]]);
-const pos$26 = nix.positions(here + "/grammar-sources.nix", [["license", 163, 7]]);
-const pos$27 = nix.positions(here + "/grammar-sources.nix", [["version", 159, 5], ["url", 160, 5], ["hash", 161, 5], ["meta", 162, 5]]);
-const pos$28 = nix.positions(here + "/grammar-sources.nix", [["license", 172, 7], ["maintainers", 173, 7]]);
-const pos$29 = nix.positions(here + "/grammar-sources.nix", [["version", 168, 5], ["url", 169, 5], ["hash", 170, 5], ["meta", 171, 5]]);
-const pos$30 = nix.positions(here + "/grammar-sources.nix", [["license", 185, 7], ["maintainers", 186, 7]]);
-const pos$31 = nix.positions(here + "/grammar-sources.nix", [["version", 180, 5], ["url", 181, 5], ["rev", 182, 5], ["hash", 183, 5], ["meta", 184, 5]]);
-const pos$32 = nix.positions(here + "/grammar-sources.nix", [["license", 197, 7]]);
-const pos$33 = nix.positions(here + "/grammar-sources.nix", [["version", 193, 5], ["url", 194, 5], ["hash", 195, 5], ["meta", 196, 5]]);
-const pos$34 = nix.positions(here + "/grammar-sources.nix", [["version", 202, 5], ["url", 203, 5], ["hash", 204, 5]]);
-const pos$35 = nix.positions(here + "/grammar-sources.nix", [["license", 212, 7]]);
-const pos$36 = nix.positions(here + "/grammar-sources.nix", [["version", 208, 5], ["url", 209, 5], ["hash", 210, 5], ["meta", 211, 5]]);
-const pos$37 = nix.positions(here + "/grammar-sources.nix", [["license", 221, 10]]);
-const pos$38 = nix.positions(here + "/grammar-sources.nix", [["version", 217, 5], ["url", 218, 5], ["hash", 219, 5], ["excludeBrokenTreeSitterJson", 220, 5], ["meta", 221, 5]]);
-const pos$39 = nix.positions(here + "/grammar-sources.nix", [["license", 230, 7], ["maintainers", 231, 7]]);
-const pos$40 = nix.positions(here + "/grammar-sources.nix", [["version", 225, 5], ["url", 226, 5], ["rev", 227, 5], ["hash", 228, 5], ["meta", 229, 5]]);
-const pos$41 = nix.positions(here + "/grammar-sources.nix", [["license", 243, 7], ["maintainers", 244, 7]]);
-const pos$42 = nix.positions(here + "/grammar-sources.nix", [["version", 238, 5], ["url", 239, 5], ["rev", 240, 5], ["hash", 241, 5], ["meta", 242, 5]]);
-const pos$43 = nix.positions(here + "/grammar-sources.nix", [["license", 256, 7], ["maintainers", 257, 7]]);
-const pos$44 = nix.positions(here + "/grammar-sources.nix", [["version", 251, 5], ["url", 252, 5], ["rev", 253, 5], ["hash", 254, 5], ["meta", 255, 5]]);
-const pos$45 = nix.positions(here + "/grammar-sources.nix", [["license", 269, 7], ["maintainers", 270, 7]]);
-const pos$46 = nix.positions(here + "/grammar-sources.nix", [["version", 264, 5], ["url", 265, 5], ["rev", 266, 5], ["hash", 267, 5], ["meta", 268, 5]]);
-const pos$47 = nix.positions(here + "/grammar-sources.nix", [["license", 281, 10]]);
-const pos$48 = nix.positions(here + "/grammar-sources.nix", [["version", 277, 5], ["url", 278, 5], ["rev", 279, 5], ["hash", 280, 5], ["meta", 281, 5]]);
-const pos$49 = nix.positions(here + "/grammar-sources.nix", [["license", 290, 7], ["maintainers", 291, 7]]);
-const pos$50 = nix.positions(here + "/grammar-sources.nix", [["version", 285, 5], ["url", 286, 5], ["rev", 287, 5], ["hash", 288, 5], ["meta", 289, 5]]);
-const pos$51 = nix.positions(here + "/grammar-sources.nix", [["license", 303, 7], ["maintainers", 304, 7]]);
-const pos$52 = nix.positions(here + "/grammar-sources.nix", [["version", 298, 5], ["url", 299, 5], ["rev", 300, 5], ["hash", 301, 5], ["meta", 302, 5]]);
-const pos$53 = nix.positions(here + "/grammar-sources.nix", [["license", 316, 7]]);
-const pos$54 = nix.positions(here + "/grammar-sources.nix", [["version", 311, 5], ["url", 312, 5], ["rev", 313, 5], ["hash", 314, 5], ["meta", 315, 5]]);
-const pos$55 = nix.positions(here + "/grammar-sources.nix", [["license", 325, 7]]);
-const pos$56 = nix.positions(here + "/grammar-sources.nix", [["version", 321, 5], ["url", 322, 5], ["hash", 323, 5], ["meta", 324, 5]]);
-const pos$57 = nix.positions(here + "/grammar-sources.nix", [["license", 334, 7]]);
-const pos$58 = nix.positions(here + "/grammar-sources.nix", [["version", 330, 5], ["url", 331, 5], ["hash", 332, 5], ["meta", 333, 5]]);
-const pos$59 = nix.positions(here + "/grammar-sources.nix", [["license", 343, 7]]);
-const pos$60 = nix.positions(here + "/grammar-sources.nix", [["version", 339, 5], ["url", 340, 5], ["hash", 341, 5], ["meta", 342, 5]]);
-const pos$61 = nix.positions(here + "/grammar-sources.nix", [["license", 353, 10]]);
-const pos$62 = nix.positions(here + "/grammar-sources.nix", [["version", 348, 5], ["url", 349, 5], ["rev", 350, 5], ["hash", 351, 5], ["excludeBrokenTreeSitterJson", 352, 5], ["meta", 353, 5]]);
-const pos$63 = nix.positions(here + "/grammar-sources.nix", [["license", 362, 7], ["maintainers", 363, 7]]);
-const pos$64 = nix.positions(here + "/grammar-sources.nix", [["version", 357, 5], ["url", 358, 5], ["rev", 359, 5], ["hash", 360, 5], ["meta", 361, 5]]);
-const pos$65 = nix.positions(here + "/grammar-sources.nix", [["license", 374, 7]]);
-const pos$66 = nix.positions(here + "/grammar-sources.nix", [["version", 370, 5], ["url", 371, 5], ["hash", 372, 5], ["meta", 373, 5]]);
-const pos$67 = nix.positions(here + "/grammar-sources.nix", [["license", 384, 7]]);
-const pos$68 = nix.positions(here + "/grammar-sources.nix", [["version", 379, 5], ["url", 380, 5], ["rev", 381, 5], ["hash", 382, 5], ["meta", 383, 5]]);
-const pos$69 = nix.positions(here + "/grammar-sources.nix", [["license", 393, 7]]);
-const pos$70 = nix.positions(here + "/grammar-sources.nix", [["version", 389, 5], ["url", 390, 5], ["hash", 391, 5], ["meta", 392, 5]]);
-const pos$71 = nix.positions(here + "/grammar-sources.nix", [["license", 402, 7], ["maintainers", 403, 7]]);
-const pos$72 = nix.positions(here + "/grammar-sources.nix", [["version", 398, 5], ["url", 399, 5], ["hash", 400, 5], ["meta", 401, 5]]);
-const pos$73 = nix.positions(here + "/grammar-sources.nix", [["license", 414, 7]]);
-const pos$74 = nix.positions(here + "/grammar-sources.nix", [["version", 410, 5], ["url", 411, 5], ["hash", 412, 5], ["meta", 413, 5]]);
-const pos$75 = nix.positions(here + "/grammar-sources.nix", [["license", 423, 7]]);
-const pos$76 = nix.positions(here + "/grammar-sources.nix", [["version", 419, 5], ["url", 420, 5], ["hash", 421, 5], ["meta", 422, 5]]);
-const pos$77 = nix.positions(here + "/grammar-sources.nix", [["license", 433, 7], ["maintainers", 434, 7]]);
-const pos$78 = nix.positions(here + "/grammar-sources.nix", [["version", 428, 5], ["url", 429, 5], ["rev", 430, 5], ["hash", 431, 5], ["meta", 432, 5]]);
-const pos$79 = nix.positions(here + "/grammar-sources.nix", [["license", 445, 10]]);
-const pos$80 = nix.positions(here + "/grammar-sources.nix", [["version", 441, 5], ["url", 442, 5], ["rev", 443, 5], ["hash", 444, 5], ["meta", 445, 5]]);
-const pos$81 = nix.positions(here + "/grammar-sources.nix", [["license", 454, 7], ["maintainers", 455, 7]]);
-const pos$82 = nix.positions(here + "/grammar-sources.nix", [["version", 449, 5], ["url", 450, 5], ["rev", 451, 5], ["hash", 452, 5], ["meta", 453, 5]]);
-const pos$83 = nix.positions(here + "/grammar-sources.nix", [["license", 467, 7]]);
-const pos$84 = nix.positions(here + "/grammar-sources.nix", [["version", 462, 5], ["url", 463, 5], ["rev", 464, 5], ["hash", 465, 5], ["meta", 466, 5]]);
-const pos$85 = nix.positions(here + "/grammar-sources.nix", [["license", 476, 7], ["maintainers", 477, 7]]);
-const pos$86 = nix.positions(here + "/grammar-sources.nix", [["version", 472, 5], ["url", 473, 5], ["hash", 474, 5], ["meta", 475, 5]]);
-const pos$87 = nix.positions(here + "/grammar-sources.nix", [["license", 489, 7], ["maintainers", 490, 7]]);
-const pos$88 = nix.positions(here + "/grammar-sources.nix", [["version", 484, 5], ["url", 485, 5], ["rev", 486, 5], ["hash", 487, 5], ["meta", 488, 5]]);
-const pos$89 = nix.positions(here + "/grammar-sources.nix", [["license", 501, 7]]);
-const pos$90 = nix.positions(here + "/grammar-sources.nix", [["version", 497, 5], ["url", 498, 5], ["hash", 499, 5], ["meta", 500, 5]]);
-const pos$91 = nix.positions(here + "/grammar-sources.nix", [["license", 511, 7], ["maintainers", 512, 7]]);
-const pos$92 = nix.positions(here + "/grammar-sources.nix", [["version", 506, 5], ["url", 507, 5], ["rev", 508, 5], ["hash", 509, 5], ["meta", 510, 5]]);
-const pos$93 = nix.positions(here + "/grammar-sources.nix", [["license", 523, 7], ["maintainers", 524, 7]]);
-const pos$94 = nix.positions(here + "/grammar-sources.nix", [["version", 519, 5], ["url", 520, 5], ["hash", 521, 5], ["meta", 522, 5]]);
-const pos$95 = nix.positions(here + "/grammar-sources.nix", [["license", 536, 7], ["maintainers", 537, 7]]);
-const pos$96 = nix.positions(here + "/grammar-sources.nix", [["version", 531, 5], ["url", 532, 5], ["rev", 533, 5], ["hash", 534, 5], ["meta", 535, 5]]);
-const pos$97 = nix.positions(here + "/grammar-sources.nix", [["license", 548, 7]]);
-const pos$98 = nix.positions(here + "/grammar-sources.nix", [["version", 544, 5], ["url", 545, 5], ["hash", 546, 5], ["meta", 547, 5]]);
-const pos$99 = nix.positions(here + "/grammar-sources.nix", [["license", 558, 7]]);
-const pos$100 = nix.positions(here + "/grammar-sources.nix", [["version", 553, 5], ["url", 554, 5], ["rev", 555, 5], ["hash", 556, 5], ["meta", 557, 5]]);
-const pos$101 = nix.positions(here + "/grammar-sources.nix", [["license", 567, 10]]);
-const pos$102 = nix.positions(here + "/grammar-sources.nix", [["version", 563, 5], ["url", 564, 5], ["rev", 565, 5], ["hash", 566, 5], ["meta", 567, 5]]);
-const pos$103 = nix.positions(here + "/grammar-sources.nix", [["license", 575, 10]]);
-const pos$104 = nix.positions(here + "/grammar-sources.nix", [["version", 571, 5], ["url", 572, 5], ["hash", 573, 5], ["excludeBrokenTreeSitterJson", 574, 5], ["meta", 575, 5]]);
-const pos$105 = nix.positions(here + "/grammar-sources.nix", [["license", 584, 7], ["maintainers", 585, 7]]);
-const pos$106 = nix.positions(here + "/grammar-sources.nix", [["version", 579, 5], ["url", 580, 5], ["rev", 581, 5], ["hash", 582, 5], ["meta", 583, 5]]);
-const pos$107 = nix.positions(here + "/grammar-sources.nix", [["license", 597, 7], ["maintainers", 598, 7]]);
-const pos$108 = nix.positions(here + "/grammar-sources.nix", [["version", 592, 5], ["url", 593, 5], ["rev", 594, 5], ["hash", 595, 5], ["meta", 596, 5]]);
-const pos$109 = nix.positions(here + "/grammar-sources.nix", [["license", 610, 7], ["maintainers", 611, 7]]);
-const pos$110 = nix.positions(here + "/grammar-sources.nix", [["version", 605, 5], ["url", 606, 5], ["rev", 607, 5], ["hash", 608, 5], ["meta", 609, 5]]);
-const pos$111 = nix.positions(here + "/grammar-sources.nix", [["license", 623, 7]]);
-const pos$112 = nix.positions(here + "/grammar-sources.nix", [["version", 618, 5], ["url", 619, 5], ["rev", 620, 5], ["hash", 621, 5], ["meta", 622, 5]]);
-const pos$113 = nix.positions(here + "/grammar-sources.nix", [["license", 633, 10]]);
-const pos$114 = nix.positions(here + "/grammar-sources.nix", [["version", 628, 5], ["url", 629, 5], ["rev", 630, 5], ["hash", 631, 5], ["location", 632, 5], ["meta", 633, 5]]);
-const pos$115 = nix.positions(here + "/grammar-sources.nix", [["license", 642, 7], ["maintainers", 643, 7]]);
-const pos$116 = nix.positions(here + "/grammar-sources.nix", [["version", 637, 5], ["url", 638, 5], ["rev", 639, 5], ["hash", 640, 5], ["meta", 641, 5]]);
-const pos$117 = nix.positions(here + "/grammar-sources.nix", [["license", 654, 7]]);
-const pos$118 = nix.positions(here + "/grammar-sources.nix", [["version", 650, 5], ["url", 651, 5], ["hash", 652, 5], ["meta", 653, 5]]);
-const pos$119 = nix.positions(here + "/grammar-sources.nix", [["license", 662, 10]]);
-const pos$120 = nix.positions(here + "/grammar-sources.nix", [["version", 659, 5], ["url", 660, 5], ["hash", 661, 5], ["meta", 662, 5]]);
-const pos$121 = nix.positions(here + "/grammar-sources.nix", [["license", 670, 7]]);
-const pos$122 = nix.positions(here + "/grammar-sources.nix", [["version", 666, 5], ["url", 667, 5], ["hash", 668, 5], ["meta", 669, 5]]);
-const pos$123 = nix.positions(here + "/grammar-sources.nix", [["license", 679, 7]]);
-const pos$124 = nix.positions(here + "/grammar-sources.nix", [["version", 675, 5], ["url", 676, 5], ["hash", 677, 5], ["meta", 678, 5]]);
-const pos$125 = nix.positions(here + "/grammar-sources.nix", [["license", 688, 7]]);
-const pos$126 = nix.positions(here + "/grammar-sources.nix", [["version", 684, 5], ["url", 685, 5], ["hash", 686, 5], ["meta", 687, 5]]);
-const pos$127 = nix.positions(here + "/grammar-sources.nix", [["license", 698, 7], ["maintainers", 699, 7]]);
-const pos$128 = nix.positions(here + "/grammar-sources.nix", [["version", 693, 5], ["url", 694, 5], ["rev", 695, 5], ["hash", 696, 5], ["meta", 697, 5]]);
-const pos$129 = nix.positions(here + "/grammar-sources.nix", [["license", 710, 10]]);
-const pos$130 = nix.positions(here + "/grammar-sources.nix", [["version", 706, 5], ["url", 707, 5], ["rev", 708, 5], ["hash", 709, 5], ["meta", 710, 5]]);
-const pos$131 = nix.positions(here + "/grammar-sources.nix", [["license", 718, 7]]);
-const pos$132 = nix.positions(here + "/grammar-sources.nix", [["version", 714, 5], ["url", 715, 5], ["hash", 716, 5], ["meta", 717, 5]]);
-const pos$133 = nix.positions(here + "/grammar-sources.nix", [["license", 727, 7]]);
-const pos$134 = nix.positions(here + "/grammar-sources.nix", [["version", 723, 5], ["url", 724, 5], ["hash", 725, 5], ["meta", 726, 5]]);
-const pos$135 = nix.positions(here + "/grammar-sources.nix", [["license", 737, 7], ["maintainers", 738, 7]]);
-const pos$136 = nix.positions(here + "/grammar-sources.nix", [["version", 732, 5], ["url", 733, 5], ["rev", 734, 5], ["hash", 735, 5], ["meta", 736, 5]]);
-const pos$137 = nix.positions(here + "/grammar-sources.nix", [["license", 750, 7]]);
-const pos$138 = nix.positions(here + "/grammar-sources.nix", [["version", 745, 5], ["url", 746, 5], ["rev", 747, 5], ["hash", 748, 5], ["meta", 749, 5]]);
-const pos$139 = nix.positions(here + "/grammar-sources.nix", [["license", 760, 7]]);
-const pos$140 = nix.positions(here + "/grammar-sources.nix", [["version", 755, 5], ["url", 756, 5], ["rev", 757, 5], ["hash", 758, 5], ["meta", 759, 5]]);
-const pos$141 = nix.positions(here + "/grammar-sources.nix", [["license", 770, 7], ["maintainers", 771, 7]]);
-const pos$142 = nix.positions(here + "/grammar-sources.nix", [["version", 765, 5], ["url", 766, 5], ["rev", 767, 5], ["hash", 768, 5], ["meta", 769, 5]]);
-const pos$143 = nix.positions(here + "/grammar-sources.nix", [["license", 783, 7], ["maintainers", 784, 7]]);
-const pos$144 = nix.positions(here + "/grammar-sources.nix", [["version", 778, 5], ["url", 779, 5], ["rev", 780, 5], ["hash", 781, 5], ["meta", 782, 5]]);
-const pos$145 = nix.positions(here + "/grammar-sources.nix", [["license", 795, 7]]);
-const pos$146 = nix.positions(here + "/grammar-sources.nix", [["version", 791, 5], ["url", 792, 5], ["hash", 793, 5], ["meta", 794, 5]]);
-const pos$147 = nix.positions(here + "/grammar-sources.nix", [["license", 804, 10]]);
-const pos$148 = nix.positions(here + "/grammar-sources.nix", [["version", 800, 5], ["url", 801, 5], ["rev", 802, 5], ["hash", 803, 5], ["meta", 804, 5]]);
-const pos$149 = nix.positions(here + "/grammar-sources.nix", [["license", 813, 7], ["maintainers", 814, 7]]);
-const pos$150 = nix.positions(here + "/grammar-sources.nix", [["version", 808, 5], ["url", 809, 5], ["rev", 810, 5], ["hash", 811, 5], ["meta", 812, 5]]);
-const pos$151 = nix.positions(here + "/grammar-sources.nix", [["license", 825, 7]]);
-const pos$152 = nix.positions(here + "/grammar-sources.nix", [["version", 821, 5], ["url", 822, 5], ["hash", 823, 5], ["meta", 824, 5]]);
-const pos$153 = nix.positions(here + "/grammar-sources.nix", [["license", 834, 10]]);
-const pos$154 = nix.positions(here + "/grammar-sources.nix", [["version", 830, 5], ["url", 831, 5], ["rev", 832, 5], ["hash", 833, 5], ["meta", 834, 5]]);
-const pos$155 = nix.positions(here + "/grammar-sources.nix", [["license", 843, 7], ["maintainers", 844, 7]]);
-const pos$156 = nix.positions(here + "/grammar-sources.nix", [["version", 838, 5], ["url", 839, 5], ["rev", 840, 5], ["hash", 841, 5], ["meta", 842, 5]]);
-const pos$157 = nix.positions(here + "/grammar-sources.nix", [["license", 856, 7], ["maintainers", 857, 7]]);
-const pos$158 = nix.positions(here + "/grammar-sources.nix", [["version", 851, 5], ["url", 852, 5], ["rev", 853, 5], ["hash", 854, 5], ["meta", 855, 5], ["excludeBrokenTreeSitterJson", 862, 5]]);
-const pos$159 = nix.positions(here + "/grammar-sources.nix", [["license", 871, 7], ["maintainers", 872, 7]]);
-const pos$160 = nix.positions(here + "/grammar-sources.nix", [["version", 866, 5], ["url", 867, 5], ["rev", 868, 5], ["hash", 869, 5], ["meta", 870, 5]]);
-const pos$161 = nix.positions(here + "/grammar-sources.nix", [["license", 883, 7]]);
-const pos$162 = nix.positions(here + "/grammar-sources.nix", [["version", 879, 5], ["url", 880, 5], ["hash", 881, 5], ["meta", 882, 5]]);
-const pos$163 = nix.positions(here + "/grammar-sources.nix", [["license", 892, 7]]);
-const pos$164 = nix.positions(here + "/grammar-sources.nix", [["version", 888, 5], ["url", 889, 5], ["hash", 890, 5], ["meta", 891, 5]]);
-const pos$165 = nix.positions(here + "/grammar-sources.nix", [["license", 902, 7], ["maintainers", 903, 7]]);
-const pos$166 = nix.positions(here + "/grammar-sources.nix", [["version", 897, 5], ["url", 898, 5], ["rev", 899, 5], ["hash", 900, 5], ["meta", 901, 5]]);
-const pos$167 = nix.positions(here + "/grammar-sources.nix", [["license", 915, 7], ["maintainers", 916, 7]]);
-const pos$168 = nix.positions(here + "/grammar-sources.nix", [["version", 910, 5], ["url", 911, 5], ["rev", 912, 5], ["hash", 913, 5], ["meta", 914, 5]]);
-const pos$169 = nix.positions(here + "/grammar-sources.nix", [["license", 928, 7], ["maintainers", 929, 7]]);
-const pos$170 = nix.positions(here + "/grammar-sources.nix", [["version", 923, 5], ["url", 924, 5], ["rev", 925, 5], ["hash", 926, 5], ["meta", 927, 5]]);
-const pos$171 = nix.positions(here + "/grammar-sources.nix", [["license", 945, 7], ["maintainers", 946, 7]]);
-const pos$172 = nix.positions(here + "/grammar-sources.nix", [["version", 936, 5], ["url", 937, 5], ["hash", 938, 5], ["postPatch", 939, 5], ["meta", 944, 5]]);
-const pos$173 = nix.positions(here + "/grammar-sources.nix", [["license", 958, 7], ["maintainers", 959, 7]]);
-const pos$174 = nix.positions(here + "/grammar-sources.nix", [["version", 953, 5], ["url", 954, 5], ["rev", 955, 5], ["hash", 956, 5], ["meta", 957, 5]]);
-const pos$175 = nix.positions(here + "/grammar-sources.nix", [["license", 970, 7], ["maintainers", 971, 7]]);
-const pos$176 = nix.positions(here + "/grammar-sources.nix", [["version", 966, 5], ["url", 967, 5], ["hash", 968, 5], ["meta", 969, 5]]);
-const pos$177 = nix.positions(here + "/grammar-sources.nix", [["license", 983, 7], ["maintainers", 984, 7]]);
-const pos$178 = nix.positions(here + "/grammar-sources.nix", [["version", 978, 5], ["url", 979, 5], ["rev", 980, 5], ["hash", 981, 5], ["meta", 982, 5]]);
-const pos$179 = nix.positions(here + "/grammar-sources.nix", [["license", 995, 7]]);
-const pos$180 = nix.positions(here + "/grammar-sources.nix", [["version", 991, 5], ["url", 992, 5], ["hash", 993, 5], ["meta", 994, 5]]);
-const pos$181 = nix.positions(here + "/grammar-sources.nix", [["license", 1004, 7]]);
-const pos$182 = nix.positions(here + "/grammar-sources.nix", [["version", 1000, 5], ["url", 1001, 5], ["hash", 1002, 5], ["meta", 1003, 5], ["excludeBrokenTreeSitterJson", 1008, 5]]);
-const pos$183 = nix.positions(here + "/grammar-sources.nix", [["license", 1016, 10]]);
-const pos$184 = nix.positions(here + "/grammar-sources.nix", [["version", 1012, 5], ["url", 1013, 5], ["rev", 1014, 5], ["hash", 1015, 5], ["meta", 1016, 5]]);
-const pos$185 = nix.positions(here + "/grammar-sources.nix", [["license", 1024, 10]]);
-const pos$186 = nix.positions(here + "/grammar-sources.nix", [["version", 1020, 5], ["url", 1021, 5], ["rev", 1022, 5], ["hash", 1023, 5], ["meta", 1024, 5]]);
-const pos$187 = nix.positions(here + "/grammar-sources.nix", [["license", 1032, 7]]);
-const pos$188 = nix.positions(here + "/grammar-sources.nix", [["version", 1028, 5], ["url", 1029, 5], ["hash", 1030, 5], ["meta", 1031, 5]]);
-const pos$189 = nix.positions(here + "/grammar-sources.nix", [["license", 1042, 7], ["maintainers", 1043, 7]]);
-const pos$190 = nix.positions(here + "/grammar-sources.nix", [["version", 1037, 5], ["url", 1038, 5], ["rev", 1039, 5], ["hash", 1040, 5], ["meta", 1041, 5]]);
-const pos$191 = nix.positions(here + "/grammar-sources.nix", [["license", 1055, 10]]);
-const pos$192 = nix.positions(here + "/grammar-sources.nix", [["version", 1050, 5], ["url", 1051, 5], ["rev", 1052, 5], ["hash", 1053, 5], ["excludeBrokenTreeSitterJson", 1054, 5], ["meta", 1055, 5]]);
-const pos$193 = nix.positions(here + "/grammar-sources.nix", [["license", 1063, 7]]);
-const pos$194 = nix.positions(here + "/grammar-sources.nix", [["version", 1059, 5], ["url", 1060, 5], ["hash", 1061, 5], ["meta", 1062, 5]]);
-const pos$195 = nix.positions(here + "/grammar-sources.nix", [["license", 1071, 10]]);
-const pos$196 = nix.positions(here + "/grammar-sources.nix", [["version", 1068, 5], ["url", 1069, 5], ["hash", 1070, 5], ["meta", 1071, 5]]);
-const pos$197 = nix.positions(here + "/grammar-sources.nix", [["license", 1080, 7], ["maintainers", 1081, 7]]);
-const pos$198 = nix.positions(here + "/grammar-sources.nix", [["version", 1075, 5], ["url", 1076, 5], ["rev", 1077, 5], ["hash", 1078, 5], ["meta", 1079, 5]]);
-const pos$199 = nix.positions(here + "/grammar-sources.nix", [["license", 1094, 7], ["maintainers", 1095, 7]]);
-const pos$200 = nix.positions(here + "/grammar-sources.nix", [["version", 1088, 5], ["url", 1089, 5], ["rev", 1090, 5], ["hash", 1091, 5], ["location", 1092, 5], ["meta", 1093, 5]]);
-const pos$201 = nix.positions(here + "/grammar-sources.nix", [["license", 1107, 7]]);
-const pos$202 = nix.positions(here + "/grammar-sources.nix", [["language", 1102, 5], ["version", 1103, 5], ["url", 1104, 5], ["hash", 1105, 5], ["meta", 1106, 5]]);
-const pos$203 = nix.positions(here + "/grammar-sources.nix", [["license", 1116, 7]]);
-const pos$204 = nix.positions(here + "/grammar-sources.nix", [["version", 1112, 5], ["url", 1113, 5], ["hash", 1114, 5], ["meta", 1115, 5]]);
-const pos$205 = nix.positions(here + "/grammar-sources.nix", [["license", 1126, 7], ["maintainers", 1127, 7]]);
-const pos$206 = nix.positions(here + "/grammar-sources.nix", [["version", 1121, 5], ["url", 1122, 5], ["rev", 1123, 5], ["hash", 1124, 5], ["meta", 1125, 5]]);
-const pos$207 = nix.positions(here + "/grammar-sources.nix", [["license", 1139, 7]]);
-const pos$208 = nix.positions(here + "/grammar-sources.nix", [["version", 1134, 5], ["url", 1135, 5], ["rev", 1136, 5], ["hash", 1137, 5], ["meta", 1138, 5]]);
-const pos$209 = nix.positions(here + "/grammar-sources.nix", [["license", 1149, 7], ["maintainers", 1150, 7]]);
-const pos$210 = nix.positions(here + "/grammar-sources.nix", [["version", 1144, 5], ["url", 1145, 5], ["rev", 1146, 5], ["hash", 1147, 5], ["meta", 1148, 5]]);
-const pos$211 = nix.positions(here + "/grammar-sources.nix", [["license", 1162, 7]]);
-const pos$212 = nix.positions(here + "/grammar-sources.nix", [["version", 1157, 5], ["url", 1158, 5], ["rev", 1159, 5], ["hash", 1160, 5], ["meta", 1161, 5]]);
-const pos$213 = nix.positions(here + "/grammar-sources.nix", [["license", 1172, 7], ["maintainers", 1173, 7]]);
-const pos$214 = nix.positions(here + "/grammar-sources.nix", [["version", 1167, 5], ["url", 1168, 5], ["rev", 1169, 5], ["hash", 1170, 5], ["meta", 1171, 5], ["excludeBrokenTreeSitterJson", 1178, 5]]);
-const pos$215 = nix.positions(here + "/grammar-sources.nix", [["license", 1187, 7], ["maintainers", 1188, 7]]);
-const pos$216 = nix.positions(here + "/grammar-sources.nix", [["version", 1182, 5], ["url", 1183, 5], ["rev", 1184, 5], ["hash", 1185, 5], ["meta", 1186, 5]]);
-const pos$217 = nix.positions(here + "/grammar-sources.nix", [["license", 1200, 7], ["maintainers", 1201, 7]]);
-const pos$218 = nix.positions(here + "/grammar-sources.nix", [["version", 1195, 5], ["url", 1196, 5], ["rev", 1197, 5], ["hash", 1198, 5], ["meta", 1199, 5]]);
-const pos$219 = nix.positions(here + "/grammar-sources.nix", [["license", 1212, 7]]);
-const pos$220 = nix.positions(here + "/grammar-sources.nix", [["version", 1208, 5], ["url", 1209, 5], ["hash", 1210, 5], ["meta", 1211, 5]]);
-const pos$221 = nix.positions(here + "/grammar-sources.nix", [["license", 1222, 10]]);
-const pos$222 = nix.positions(here + "/grammar-sources.nix", [["version", 1217, 5], ["url", 1218, 5], ["rev", 1219, 5], ["hash", 1220, 5], ["excludeBrokenTreeSitterJson", 1221, 5], ["meta", 1222, 5]]);
-const pos$223 = nix.positions(here + "/grammar-sources.nix", [["license", 1231, 7], ["maintainers", 1232, 7]]);
-const pos$224 = nix.positions(here + "/grammar-sources.nix", [["version", 1226, 5], ["url", 1227, 5], ["rev", 1228, 5], ["hash", 1229, 5], ["meta", 1230, 5]]);
-const pos$225 = nix.positions(here + "/grammar-sources.nix", [["license", 1242, 10]]);
-const pos$226 = nix.positions(here + "/grammar-sources.nix", [["version", 1239, 5], ["url", 1240, 5], ["hash", 1241, 5], ["meta", 1242, 5]]);
-const pos$227 = nix.positions(here + "/grammar-sources.nix", [["license", 1250, 7]]);
-const pos$228 = nix.positions(here + "/grammar-sources.nix", [["version", 1246, 5], ["url", 1247, 5], ["hash", 1248, 5], ["meta", 1249, 5]]);
-const pos$229 = nix.positions(here + "/grammar-sources.nix", [["license", 1259, 10]]);
-const pos$230 = nix.positions(here + "/grammar-sources.nix", [["version", 1255, 5], ["url", 1256, 5], ["rev", 1257, 5], ["hash", 1258, 5], ["meta", 1259, 5]]);
-const pos$231 = nix.positions(here + "/grammar-sources.nix", [["license", 1267, 7]]);
-const pos$232 = nix.positions(here + "/grammar-sources.nix", [["version", 1263, 5], ["url", 1264, 5], ["hash", 1265, 5], ["meta", 1266, 5]]);
-const pos$233 = nix.positions(here + "/grammar-sources.nix", [["license", 1277, 7]]);
-const pos$234 = nix.positions(here + "/grammar-sources.nix", [["version", 1272, 5], ["url", 1273, 5], ["rev", 1274, 5], ["hash", 1275, 5], ["meta", 1276, 5]]);
-const pos$235 = nix.positions(here + "/grammar-sources.nix", [["license", 1287, 7], ["maintainers", 1288, 7]]);
-const pos$236 = nix.positions(here + "/grammar-sources.nix", [["version", 1282, 5], ["url", 1283, 5], ["rev", 1284, 5], ["hash", 1285, 5], ["meta", 1286, 5]]);
-const pos$237 = nix.positions(here + "/grammar-sources.nix", [["license", 1300, 7], ["maintainers", 1301, 7]]);
-const pos$238 = nix.positions(here + "/grammar-sources.nix", [["version", 1295, 5], ["url", 1296, 5], ["rev", 1297, 5], ["hash", 1298, 5], ["meta", 1299, 5]]);
-const pos$239 = nix.positions(here + "/grammar-sources.nix", [["license", 1313, 7], ["maintainers", 1314, 7]]);
-const pos$240 = nix.positions(here + "/grammar-sources.nix", [["version", 1308, 5], ["url", 1309, 5], ["rev", 1310, 5], ["hash", 1311, 5], ["meta", 1312, 5]]);
-const pos$241 = nix.positions(here + "/grammar-sources.nix", [["license", 1326, 7], ["maintainers", 1327, 7]]);
-const pos$242 = nix.positions(here + "/grammar-sources.nix", [["version", 1321, 5], ["url", 1322, 5], ["rev", 1323, 5], ["hash", 1324, 5], ["meta", 1325, 5]]);
-const pos$243 = nix.positions(here + "/grammar-sources.nix", [["license", 1338, 7]]);
-const pos$244 = nix.positions(here + "/grammar-sources.nix", [["version", 1334, 5], ["url", 1335, 5], ["hash", 1336, 5], ["meta", 1337, 5]]);
-const pos$245 = nix.positions(here + "/grammar-sources.nix", [["license", 1348, 7], ["maintainers", 1349, 7]]);
-const pos$246 = nix.positions(here + "/grammar-sources.nix", [["version", 1343, 5], ["url", 1344, 5], ["rev", 1345, 5], ["hash", 1346, 5], ["meta", 1347, 5]]);
-const pos$247 = nix.positions(here + "/grammar-sources.nix", [["license", 1360, 7]]);
-const pos$248 = nix.positions(here + "/grammar-sources.nix", [["version", 1356, 5], ["url", 1357, 5], ["hash", 1358, 5], ["meta", 1359, 5]]);
-const pos$249 = nix.positions(here + "/grammar-sources.nix", [["license", 1369, 7], ["maintainers", 1370, 7]]);
-const pos$250 = nix.positions(here + "/grammar-sources.nix", [["version", 1365, 5], ["url", 1366, 5], ["hash", 1367, 5], ["meta", 1368, 5]]);
-const pos$251 = nix.positions(here + "/grammar-sources.nix", [["license", 1381, 7]]);
-const pos$252 = nix.positions(here + "/grammar-sources.nix", [["version", 1377, 5], ["url", 1378, 5], ["hash", 1379, 5], ["meta", 1380, 5]]);
-const pos$253 = nix.positions(here + "/grammar-sources.nix", [["license", 1391, 7], ["maintainers", 1392, 7]]);
-const pos$254 = nix.positions(here + "/grammar-sources.nix", [["version", 1386, 5], ["url", 1387, 5], ["rev", 1388, 5], ["hash", 1389, 5], ["meta", 1390, 5]]);
-const pos$255 = nix.positions(here + "/grammar-sources.nix", [["license", 1404, 7], ["maintainers", 1405, 7]]);
-const pos$256 = nix.positions(here + "/grammar-sources.nix", [["version", 1399, 5], ["url", 1400, 5], ["rev", 1401, 5], ["hash", 1402, 5], ["meta", 1403, 5]]);
-const pos$257 = nix.positions(here + "/grammar-sources.nix", [["license", 1417, 7], ["maintainers", 1418, 7]]);
-const pos$258 = nix.positions(here + "/grammar-sources.nix", [["version", 1412, 5], ["url", 1413, 5], ["rev", 1414, 5], ["hash", 1415, 5], ["meta", 1416, 5]]);
-const pos$259 = nix.positions(here + "/grammar-sources.nix", [["license", 1429, 7], ["maintainers", 1430, 7]]);
-const pos$260 = nix.positions(here + "/grammar-sources.nix", [["version", 1425, 5], ["url", 1426, 5], ["hash", 1427, 5], ["meta", 1428, 5]]);
-const pos$261 = nix.positions(here + "/grammar-sources.nix", [["license", 1442, 7]]);
-const pos$262 = nix.positions(here + "/grammar-sources.nix", [["version", 1437, 5], ["url", 1438, 5], ["rev", 1439, 5], ["hash", 1440, 5], ["meta", 1441, 5], ["excludeBrokenTreeSitterJson", 1446, 5]]);
-const pos$263 = nix.positions(here + "/grammar-sources.nix", [["license", 1454, 7]]);
-const pos$264 = nix.positions(here + "/grammar-sources.nix", [["version", 1450, 5], ["url", 1451, 5], ["hash", 1452, 5], ["meta", 1453, 5]]);
-const pos$265 = nix.positions(here + "/grammar-sources.nix", [["license", 1463, 7]]);
-const pos$266 = nix.positions(here + "/grammar-sources.nix", [["version", 1459, 5], ["url", 1460, 5], ["hash", 1461, 5], ["meta", 1462, 5]]);
-const pos$267 = nix.positions(here + "/grammar-sources.nix", [["license", 1473, 7], ["maintainers", 1474, 7]]);
-const pos$268 = nix.positions(here + "/grammar-sources.nix", [["version", 1468, 5], ["url", 1469, 5], ["rev", 1470, 5], ["hash", 1471, 5], ["meta", 1472, 5]]);
-const pos$269 = nix.positions(here + "/grammar-sources.nix", [["license", 1485, 7], ["maintainers", 1486, 7]]);
-const pos$270 = nix.positions(here + "/grammar-sources.nix", [["version", 1481, 5], ["url", 1482, 5], ["hash", 1483, 5], ["meta", 1484, 5]]);
-const pos$271 = nix.positions(here + "/grammar-sources.nix", [["license", 1498, 10]]);
-const pos$272 = nix.positions(here + "/grammar-sources.nix", [["version", 1493, 5], ["url", 1494, 5], ["rev", 1495, 5], ["hash", 1496, 5], ["excludeBrokenTreeSitterJson", 1497, 5], ["meta", 1498, 5]]);
-const pos$273 = nix.positions(here + "/grammar-sources.nix", [["license", 1507, 10]]);
-const pos$274 = nix.positions(here + "/grammar-sources.nix", [["version", 1502, 5], ["url", 1503, 5], ["rev", 1504, 5], ["hash", 1505, 5], ["excludeBrokenTreeSitterJson", 1506, 5], ["meta", 1507, 5]]);
-const pos$275 = nix.positions(here + "/grammar-sources.nix", [["license", 1516, 7], ["maintainers", 1517, 7]]);
-const pos$276 = nix.positions(here + "/grammar-sources.nix", [["version", 1511, 5], ["url", 1512, 5], ["rev", 1513, 5], ["hash", 1514, 5], ["meta", 1515, 5]]);
-const pos$277 = nix.positions(here + "/grammar-sources.nix", [["license", 1528, 7]]);
-const pos$278 = nix.positions(here + "/grammar-sources.nix", [["version", 1524, 5], ["url", 1525, 5], ["hash", 1526, 5], ["meta", 1527, 5]]);
-const pos$279 = nix.positions(here + "/grammar-sources.nix", [["license", 1537, 7]]);
-const pos$280 = nix.positions(here + "/grammar-sources.nix", [["version", 1533, 5], ["url", 1534, 5], ["hash", 1535, 5], ["meta", 1536, 5]]);
-const pos$281 = nix.positions(here + "/grammar-sources.nix", [["license", 1546, 7]]);
-const pos$282 = nix.positions(here + "/grammar-sources.nix", [["version", 1542, 5], ["url", 1543, 5], ["hash", 1544, 5], ["meta", 1545, 5]]);
-const pos$283 = nix.positions(here + "/grammar-sources.nix", [["license", 1556, 7]]);
-const pos$284 = nix.positions(here + "/grammar-sources.nix", [["version", 1551, 5], ["url", 1552, 5], ["rev", 1553, 5], ["hash", 1554, 5], ["meta", 1555, 5]]);
-const pos$285 = nix.positions(here + "/grammar-sources.nix", [["license", 1565, 7]]);
-const pos$286 = nix.positions(here + "/grammar-sources.nix", [["version", 1561, 5], ["url", 1562, 5], ["hash", 1563, 5], ["meta", 1564, 5]]);
-const pos$287 = nix.positions(here + "/grammar-sources.nix", [["license", 1575, 7], ["maintainers", 1576, 7]]);
-const pos$288 = nix.positions(here + "/grammar-sources.nix", [["version", 1570, 5], ["url", 1571, 5], ["rev", 1572, 5], ["hash", 1573, 5], ["meta", 1574, 5]]);
-const pos$289 = nix.positions(here + "/grammar-sources.nix", [["license", 1586, 10]]);
-const pos$290 = nix.positions(here + "/grammar-sources.nix", [["version", 1583, 5], ["url", 1584, 5], ["hash", 1585, 5], ["meta", 1586, 5]]);
-const pos$291 = nix.positions(here + "/grammar-sources.nix", [["license", 1593, 10]]);
-const pos$292 = nix.positions(here + "/grammar-sources.nix", [["version", 1590, 5], ["url", 1591, 5], ["hash", 1592, 5], ["meta", 1593, 5]]);
-const pos$293 = nix.positions(here + "/grammar-sources.nix", [["license", 1601, 7]]);
-const pos$294 = nix.positions(here + "/grammar-sources.nix", [["version", 1597, 5], ["url", 1598, 5], ["hash", 1599, 5], ["meta", 1600, 5]]);
-const pos$295 = nix.positions(here + "/grammar-sources.nix", [["license", 1611, 10]]);
-const pos$296 = nix.positions(here + "/grammar-sources.nix", [["version", 1606, 5], ["url", 1607, 5], ["rev", 1608, 5], ["hash", 1609, 5], ["excludeBrokenTreeSitterJson", 1610, 5], ["meta", 1611, 5]]);
-const pos$297 = nix.positions(here + "/grammar-sources.nix", [["license", 1620, 7]]);
-const pos$298 = nix.positions(here + "/grammar-sources.nix", [["version", 1615, 5], ["url", 1616, 5], ["rev", 1617, 5], ["hash", 1618, 5], ["meta", 1619, 5]]);
-const pos$299 = nix.positions(here + "/grammar-sources.nix", [["license", 1629, 7]]);
-const pos$300 = nix.positions(here + "/grammar-sources.nix", [["version", 1625, 5], ["url", 1626, 5], ["hash", 1627, 5], ["meta", 1628, 5]]);
-const pos$301 = nix.positions(here + "/grammar-sources.nix", [["license", 1639, 7], ["maintainers", 1640, 7]]);
-const pos$302 = nix.positions(here + "/grammar-sources.nix", [["version", 1634, 5], ["url", 1635, 5], ["rev", 1636, 5], ["hash", 1637, 5], ["meta", 1638, 5]]);
-const pos$303 = nix.positions(here + "/grammar-sources.nix", [["license", 1652, 7]]);
-const pos$304 = nix.positions(here + "/grammar-sources.nix", [["version", 1647, 5], ["url", 1648, 5], ["hash", 1649, 5], ["generate", 1650, 5], ["meta", 1651, 5]]);
-const pos$305 = nix.positions(here + "/grammar-sources.nix", [["license", 1662, 7], ["maintainers", 1663, 7]]);
-const pos$306 = nix.positions(here + "/grammar-sources.nix", [["version", 1657, 5], ["url", 1658, 5], ["rev", 1659, 5], ["hash", 1660, 5], ["meta", 1661, 5]]);
-const pos$307 = nix.positions(here + "/grammar-sources.nix", [["license", 1675, 7], ["maintainers", 1676, 7]]);
-const pos$308 = nix.positions(here + "/grammar-sources.nix", [["version", 1670, 5], ["url", 1671, 5], ["rev", 1672, 5], ["hash", 1673, 5], ["meta", 1674, 5]]);
-const pos$309 = nix.positions(here + "/grammar-sources.nix", [["license", 1688, 7], ["maintainers", 1689, 7]]);
-const pos$310 = nix.positions(here + "/grammar-sources.nix", [["version", 1683, 5], ["url", 1684, 5], ["rev", 1685, 5], ["hash", 1686, 5], ["meta", 1687, 5]]);
-const pos$311 = nix.positions(here + "/grammar-sources.nix", [["license", 1701, 7]]);
-const pos$312 = nix.positions(here + "/grammar-sources.nix", [["version", 1696, 5], ["url", 1697, 5], ["rev", 1698, 5], ["hash", 1699, 5], ["meta", 1700, 5]]);
-const pos$313 = nix.positions(here + "/grammar-sources.nix", [["license", 1709, 10]]);
-const pos$314 = nix.positions(here + "/grammar-sources.nix", [["version", 1706, 5], ["url", 1707, 5], ["hash", 1708, 5], ["meta", 1709, 5]]);
-const pos$315 = nix.positions(here + "/grammar-sources.nix", [["license", 1717, 7], ["maintainers", 1718, 7]]);
-const pos$316 = nix.positions(here + "/grammar-sources.nix", [["version", 1713, 5], ["url", 1714, 5], ["hash", 1715, 5], ["meta", 1716, 5]]);
-const pos$317 = nix.positions(here + "/grammar-sources.nix", [["license", 1730, 7]]);
-const pos$318 = nix.positions(here + "/grammar-sources.nix", [["version", 1725, 5], ["url", 1726, 5], ["rev", 1727, 5], ["hash", 1728, 5], ["meta", 1729, 5]]);
-const pos$319 = nix.positions(here + "/grammar-sources.nix", [["license", 1740, 7], ["maintainers", 1741, 7]]);
-const pos$320 = nix.positions(here + "/grammar-sources.nix", [["version", 1735, 5], ["url", 1736, 5], ["rev", 1737, 5], ["hash", 1738, 5], ["meta", 1739, 5]]);
-const pos$321 = nix.positions(here + "/grammar-sources.nix", [["license", 1753, 7], ["maintainers", 1754, 7]]);
-const pos$322 = nix.positions(here + "/grammar-sources.nix", [["version", 1748, 5], ["url", 1749, 5], ["rev", 1750, 5], ["hash", 1751, 5], ["meta", 1752, 5]]);
-const pos$323 = nix.positions(here + "/grammar-sources.nix", [["license", 1766, 7], ["maintainers", 1767, 7]]);
-const pos$324 = nix.positions(here + "/grammar-sources.nix", [["version", 1761, 5], ["url", 1762, 5], ["rev", 1763, 5], ["hash", 1764, 5], ["meta", 1765, 5]]);
-const pos$325 = nix.positions(here + "/grammar-sources.nix", [["license", 1779, 7]]);
-const pos$326 = nix.positions(here + "/grammar-sources.nix", [["version", 1774, 5], ["url", 1775, 5], ["rev", 1776, 5], ["hash", 1777, 5], ["meta", 1778, 5]]);
-const pos$327 = nix.positions(here + "/grammar-sources.nix", [["license", 1787, 10]]);
-const pos$328 = nix.positions(here + "/grammar-sources.nix", [["version", 1784, 5], ["url", 1785, 5], ["hash", 1786, 5], ["meta", 1787, 5]]);
-const pos$329 = nix.positions(here + "/grammar-sources.nix", [["license", 1794, 10]]);
-const pos$330 = nix.positions(here + "/grammar-sources.nix", [["version", 1791, 5], ["url", 1792, 5], ["hash", 1793, 5], ["meta", 1794, 5]]);
-const pos$331 = nix.positions(here + "/grammar-sources.nix", [["license", 1803, 7], ["maintainers", 1804, 7]]);
-const pos$332 = nix.positions(here + "/grammar-sources.nix", [["version", 1798, 5], ["url", 1799, 5], ["rev", 1800, 5], ["hash", 1801, 5], ["meta", 1802, 5]]);
-const pos$333 = nix.positions(here + "/grammar-sources.nix", [["license", 1816, 7], ["maintainers", 1817, 7]]);
-const pos$334 = nix.positions(here + "/grammar-sources.nix", [["version", 1811, 5], ["url", 1812, 5], ["rev", 1813, 5], ["hash", 1814, 5], ["meta", 1815, 5]]);
-const pos$335 = nix.positions(here + "/grammar-sources.nix", [["license", 1829, 7]]);
-const pos$336 = nix.positions(here + "/grammar-sources.nix", [["version", 1824, 5], ["url", 1825, 5], ["rev", 1826, 5], ["hash", 1827, 5], ["meta", 1828, 5]]);
-const pos$337 = nix.positions(here + "/grammar-sources.nix", [["license", 1839, 7], ["maintainers", 1840, 7]]);
-const pos$338 = nix.positions(here + "/grammar-sources.nix", [["version", 1834, 5], ["url", 1835, 5], ["rev", 1836, 5], ["hash", 1837, 5], ["meta", 1838, 5]]);
-const pos$339 = nix.positions(here + "/grammar-sources.nix", [["license", 1852, 7]]);
-const pos$340 = nix.positions(here + "/grammar-sources.nix", [["version", 1847, 5], ["url", 1848, 5], ["hash", 1849, 5], ["location", 1850, 5], ["meta", 1851, 5]]);
-const pos$341 = nix.positions(here + "/grammar-sources.nix", [["license", 1863, 7]]);
-const pos$342 = nix.positions(here + "/grammar-sources.nix", [["language", 1857, 5], ["version", 1858, 5], ["url", 1859, 5], ["hash", 1860, 5], ["location", 1861, 5], ["meta", 1862, 5]]);
-const pos$343 = nix.positions(here + "/grammar-sources.nix", [["license", 1873, 7], ["maintainers", 1874, 7]]);
-const pos$344 = nix.positions(here + "/grammar-sources.nix", [["version", 1868, 5], ["url", 1869, 5], ["rev", 1870, 5], ["hash", 1871, 5], ["meta", 1872, 5]]);
-const pos$345 = nix.positions(here + "/grammar-sources.nix", [["license", 1886, 7], ["maintainers", 1887, 7]]);
-const pos$346 = nix.positions(here + "/grammar-sources.nix", [["version", 1881, 5], ["url", 1882, 5], ["rev", 1883, 5], ["hash", 1884, 5], ["meta", 1885, 5]]);
-const pos$347 = nix.positions(here + "/grammar-sources.nix", [["license", 1899, 7], ["maintainers", 1900, 7]]);
-const pos$348 = nix.positions(here + "/grammar-sources.nix", [["version", 1894, 5], ["url", 1895, 5], ["rev", 1896, 5], ["hash", 1897, 5], ["meta", 1898, 5]]);
-const pos$349 = nix.positions(here + "/grammar-sources.nix", [["license", 1912, 7], ["maintainers", 1913, 7]]);
-const pos$350 = nix.positions(here + "/grammar-sources.nix", [["version", 1907, 5], ["url", 1908, 5], ["rev", 1909, 5], ["hash", 1910, 5], ["meta", 1911, 5]]);
-const pos$351 = nix.positions(here + "/grammar-sources.nix", [["maintainers", 1925, 7]]);
-const pos$352 = nix.positions(here + "/grammar-sources.nix", [["version", 1920, 5], ["url", 1921, 5], ["rev", 1922, 5], ["hash", 1923, 5], ["meta", 1924, 5]]);
-const pos$353 = nix.positions(here + "/grammar-sources.nix", [["license", 1937, 7], ["maintainers", 1938, 7]]);
-const pos$354 = nix.positions(here + "/grammar-sources.nix", [["version", 1932, 5], ["url", 1933, 5], ["rev", 1934, 5], ["hash", 1935, 5], ["meta", 1936, 5]]);
-const pos$355 = nix.positions(here + "/grammar-sources.nix", [["license", 1949, 10]]);
-const pos$356 = nix.positions(here + "/grammar-sources.nix", [["version", 1945, 5], ["url", 1946, 5], ["rev", 1947, 5], ["hash", 1948, 5], ["meta", 1949, 5]]);
-const pos$357 = nix.positions(here + "/grammar-sources.nix", [["license", 1957, 7]]);
-const pos$358 = nix.positions(here + "/grammar-sources.nix", [["version", 1953, 5], ["url", 1954, 5], ["hash", 1955, 5], ["meta", 1956, 5], ["excludeBrokenTreeSitterJson", 1961, 5]]);
-const pos$359 = nix.positions(here + "/grammar-sources.nix", [["license", 1970, 7], ["maintainers", 1971, 7]]);
-const pos$360 = nix.positions(here + "/grammar-sources.nix", [["version", 1965, 5], ["url", 1966, 5], ["rev", 1967, 5], ["hash", 1968, 5], ["meta", 1969, 5]]);
-const pos$361 = nix.positions(here + "/grammar-sources.nix", [["license", 1982, 7]]);
-const pos$362 = nix.positions(here + "/grammar-sources.nix", [["version", 1978, 5], ["url", 1979, 5], ["hash", 1980, 5], ["meta", 1981, 5]]);
-const pos$363 = nix.positions(here + "/grammar-sources.nix", [["license", 1992, 7], ["maintainers", 1993, 7]]);
-const pos$364 = nix.positions(here + "/grammar-sources.nix", [["version", 1987, 5], ["url", 1988, 5], ["rev", 1989, 5], ["hash", 1990, 5], ["meta", 1991, 5]]);
-const pos$365 = nix.positions(here + "/grammar-sources.nix", [["license", 2005, 7]]);
-const pos$366 = nix.positions(here + "/grammar-sources.nix", [["version", 2000, 5], ["url", 2001, 5], ["rev", 2002, 5], ["hash", 2003, 5], ["meta", 2004, 5]]);
-const pos$367 = nix.positions(here + "/grammar-sources.nix", [["broken", 2015, 7], ["license", 2016, 7]]);
-const pos$368 = nix.positions(here + "/grammar-sources.nix", [["version", 2010, 5], ["url", 2011, 5], ["hash", 2012, 5], ["meta", 2013, 5]]);
-const pos$369 = nix.positions(here + "/grammar-sources.nix", [["version", 2021, 5], ["url", 2022, 5], ["hash", 2023, 5]]);
-const pos$370 = nix.positions(here + "/grammar-sources.nix", [["license", 2032, 7]]);
-const pos$371 = nix.positions(here + "/grammar-sources.nix", [["version", 2027, 5], ["url", 2028, 5], ["rev", 2029, 5], ["hash", 2030, 5], ["meta", 2031, 5]]);
-const pos$372 = nix.positions(here + "/grammar-sources.nix", [["license", 2041, 7], ["maintainers", 2042, 7]]);
-const pos$373 = nix.positions(here + "/grammar-sources.nix", [["version", 2037, 5], ["url", 2038, 5], ["hash", 2039, 5], ["meta", 2040, 5]]);
-const pos$374 = nix.positions(here + "/grammar-sources.nix", [["license", 2053, 7]]);
-const pos$375 = nix.positions(here + "/grammar-sources.nix", [["version", 2049, 5], ["url", 2050, 5], ["hash", 2051, 5], ["meta", 2052, 5]]);
-const pos$376 = nix.positions(here + "/grammar-sources.nix", [["license", 2063, 7]]);
-const pos$377 = nix.positions(here + "/grammar-sources.nix", [["language", 2058, 5], ["version", 2059, 5], ["url", 2060, 5], ["hash", 2061, 5], ["meta", 2062, 5]]);
-const pos$378 = nix.positions(here + "/grammar-sources.nix", [["license", 2072, 7], ["maintainers", 2073, 7]]);
-const pos$379 = nix.positions(here + "/grammar-sources.nix", [["version", 2068, 5], ["url", 2069, 5], ["hash", 2070, 5], ["meta", 2071, 5]]);
-const pos$380 = nix.positions(here + "/grammar-sources.nix", [["license", 2085, 7], ["maintainers", 2086, 7]]);
-const pos$381 = nix.positions(here + "/grammar-sources.nix", [["version", 2080, 5], ["url", 2081, 5], ["rev", 2082, 5], ["hash", 2083, 5], ["meta", 2084, 5]]);
-const pos$382 = nix.positions(here + "/grammar-sources.nix", [["license", 2098, 7], ["maintainers", 2099, 7]]);
-const pos$383 = nix.positions(here + "/grammar-sources.nix", [["version", 2093, 5], ["url", 2094, 5], ["rev", 2095, 5], ["hash", 2096, 5], ["meta", 2097, 5]]);
-const pos$384 = nix.positions(here + "/grammar-sources.nix", [["license", 2111, 7]]);
-const pos$385 = nix.positions(here + "/grammar-sources.nix", [["version", 2106, 5], ["url", 2107, 5], ["rev", 2108, 5], ["hash", 2109, 5], ["meta", 2110, 5], ["excludeBrokenTreeSitterJson", 2114, 5]]);
-const pos$386 = nix.positions(here + "/grammar-sources.nix", [["license", 2123, 7], ["maintainers", 2124, 7]]);
-const pos$387 = nix.positions(here + "/grammar-sources.nix", [["version", 2118, 5], ["url", 2119, 5], ["rev", 2120, 5], ["hash", 2121, 5], ["meta", 2122, 5]]);
-const pos$388 = nix.positions(here + "/grammar-sources.nix", [["license", 2136, 7], ["maintainers", 2137, 7]]);
-const pos$389 = nix.positions(here + "/grammar-sources.nix", [["version", 2131, 5], ["url", 2132, 5], ["rev", 2133, 5], ["hash", 2134, 5], ["meta", 2135, 5]]);
-const pos$390 = nix.positions(here + "/grammar-sources.nix", [["license", 2148, 7], ["maintainers", 2149, 7]]);
-const pos$391 = nix.positions(here + "/grammar-sources.nix", [["version", 2144, 5], ["url", 2145, 5], ["hash", 2146, 5], ["meta", 2147, 5]]);
-const pos$392 = nix.positions(here + "/grammar-sources.nix", [["license", 2160, 7]]);
-const pos$393 = nix.positions(here + "/grammar-sources.nix", [["version", 2156, 5], ["url", 2157, 5], ["hash", 2158, 5], ["meta", 2159, 5]]);
-const pos$394 = nix.positions(here + "/grammar-sources.nix", [["license", 2169, 7], ["maintainers", 2170, 7]]);
-const pos$395 = nix.positions(here + "/grammar-sources.nix", [["version", 2165, 5], ["url", 2166, 5], ["hash", 2167, 5], ["meta", 2168, 5]]);
-const pos$396 = nix.positions(here + "/grammar-sources.nix", [["license", 2182, 7], ["maintainers", 2183, 7]]);
-const pos$397 = nix.positions(here + "/grammar-sources.nix", [["version", 2177, 5], ["url", 2178, 5], ["rev", 2179, 5], ["hash", 2180, 5], ["meta", 2181, 5]]);
-const pos$398 = nix.positions(here + "/grammar-sources.nix", [["license", 2195, 7], ["maintainers", 2196, 7]]);
-const pos$399 = nix.positions(here + "/grammar-sources.nix", [["version", 2190, 5], ["url", 2191, 5], ["rev", 2192, 5], ["hash", 2193, 5], ["meta", 2194, 5]]);
-const pos$400 = nix.positions(here + "/grammar-sources.nix", [["license", 2208, 10]]);
-const pos$401 = nix.positions(here + "/grammar-sources.nix", [["version", 2203, 5], ["url", 2204, 5], ["rev", 2205, 5], ["hash", 2206, 5], ["excludeBrokenTreeSitterJson", 2207, 5], ["meta", 2208, 5]]);
-const pos$402 = nix.positions(here + "/grammar-sources.nix", [["license", 2216, 7]]);
-const pos$403 = nix.positions(here + "/grammar-sources.nix", [["version", 2212, 5], ["url", 2213, 5], ["hash", 2214, 5], ["meta", 2215, 5]]);
-const pos$404 = nix.positions(here + "/grammar-sources.nix", [["license", 2225, 7], ["maintainers", 2226, 7]]);
-const pos$405 = nix.positions(here + "/grammar-sources.nix", [["version", 2221, 5], ["url", 2222, 5], ["hash", 2223, 5], ["meta", 2224, 5]]);
-const pos$406 = nix.positions(here + "/grammar-sources.nix", [["license", 2237, 7]]);
-const pos$407 = nix.positions(here + "/grammar-sources.nix", [["version", 2233, 5], ["url", 2234, 5], ["hash", 2235, 5], ["meta", 2236, 5]]);
-const pos$408 = nix.positions(here + "/grammar-sources.nix", [["license", 2246, 7]]);
-const pos$409 = nix.positions(here + "/grammar-sources.nix", [["version", 2242, 5], ["url", 2243, 5], ["hash", 2244, 5], ["meta", 2245, 5]]);
-const pos$410 = nix.positions(here + "/grammar-sources.nix", [["license", 2255, 7], ["maintainers", 2256, 7]]);
-const pos$411 = nix.positions(here + "/grammar-sources.nix", [["version", 2251, 5], ["url", 2252, 5], ["hash", 2253, 5], ["meta", 2254, 5]]);
-const pos$412 = nix.positions(here + "/grammar-sources.nix", [["license", 2268, 7], ["maintainers", 2269, 7]]);
-const pos$413 = nix.positions(here + "/grammar-sources.nix", [["version", 2263, 5], ["url", 2264, 5], ["rev", 2265, 5], ["hash", 2266, 5], ["meta", 2267, 5]]);
-const pos$414 = nix.positions(here + "/grammar-sources.nix", [["license", 2279, 10]]);
-const pos$415 = nix.positions(here + "/grammar-sources.nix", [["version", 2276, 5], ["url", 2277, 5], ["hash", 2278, 5], ["meta", 2279, 5]]);
-const pos$416 = nix.positions(here + "/grammar-sources.nix", [["license", 2288, 7]]);
-const pos$417 = nix.positions(here + "/grammar-sources.nix", [["version", 2283, 5], ["url", 2284, 5], ["rev", 2285, 5], ["hash", 2286, 5], ["meta", 2287, 5]]);
-const pos$418 = nix.positions(here + "/grammar-sources.nix", [["license", 2298, 7], ["maintainers", 2299, 7]]);
-const pos$419 = nix.positions(here + "/grammar-sources.nix", [["version", 2293, 5], ["url", 2294, 5], ["rev", 2295, 5], ["hash", 2296, 5], ["meta", 2297, 5]]);
-const pos$420 = nix.positions(here + "/grammar-sources.nix", [["license", 2311, 7], ["maintainers", 2312, 7]]);
-const pos$421 = nix.positions(here + "/grammar-sources.nix", [["version", 2306, 5], ["url", 2307, 5], ["hash", 2308, 5], ["location", 2309, 5], ["meta", 2310, 5]]);
-const pos$422 = nix.positions(here + "/grammar-sources.nix", [["license", 2324, 7], ["maintainers", 2325, 7]]);
-const pos$423 = nix.positions(here + "/grammar-sources.nix", [["version", 2319, 5], ["url", 2320, 5], ["rev", 2321, 5], ["hash", 2322, 5], ["meta", 2323, 5]]);
-const pos$424 = nix.positions(here + "/grammar-sources.nix", [["license", 2338, 7], ["maintainers", 2339, 7]]);
-const pos$425 = nix.positions(here + "/grammar-sources.nix", [["version", 2332, 5], ["url", 2333, 5], ["rev", 2334, 5], ["hash", 2335, 5], ["meta", 2337, 5]]);
-const pos$426 = nix.positions(here + "/grammar-sources.nix", [["license", 2350, 7], ["maintainers", 2351, 7]]);
-const pos$427 = nix.positions(here + "/grammar-sources.nix", [["version", 2346, 5], ["url", 2347, 5], ["hash", 2348, 5], ["meta", 2349, 5]]);
-const pos$428 = nix.positions(here + "/grammar-sources.nix", [["license", 2362, 7], ["maintainers", 2363, 7]]);
-const pos$429 = nix.positions(here + "/grammar-sources.nix", [["version", 2358, 5], ["url", 2359, 5], ["hash", 2360, 5], ["meta", 2361, 5]]);
-const pos$430 = nix.positions(here + "/grammar-sources.nix", [["license", 2374, 7]]);
-const pos$431 = nix.positions(here + "/grammar-sources.nix", [["version", 2370, 5], ["url", 2371, 5], ["hash", 2372, 5], ["meta", 2373, 5]]);
-const pos$432 = nix.positions(here + "/grammar-sources.nix", [["license", 2384, 7], ["maintainers", 2385, 7]]);
-const pos$433 = nix.positions(here + "/grammar-sources.nix", [["version", 2379, 5], ["url", 2380, 5], ["rev", 2381, 5], ["hash", 2382, 5], ["meta", 2383, 5]]);
-const pos$434 = nix.positions(here + "/grammar-sources.nix", [["license", 2397, 7], ["maintainers", 2398, 7]]);
-const pos$435 = nix.positions(here + "/grammar-sources.nix", [["version", 2392, 5], ["url", 2393, 5], ["rev", 2394, 5], ["hash", 2395, 5], ["meta", 2396, 5]]);
-const pos$436 = nix.positions(here + "/grammar-sources.nix", [["license", 2410, 7]]);
-const pos$437 = nix.positions(here + "/grammar-sources.nix", [["version", 2405, 5], ["url", 2406, 5], ["rev", 2407, 5], ["hash", 2408, 5], ["meta", 2409, 5]]);
-const pos$438 = nix.positions(here + "/grammar-sources.nix", [["license", 2419, 10]]);
-const pos$439 = nix.positions(here + "/grammar-sources.nix", [["version", 2415, 5], ["url", 2416, 5], ["rev", 2417, 5], ["hash", 2418, 5], ["meta", 2419, 5]]);
-const pos$440 = nix.positions(here + "/grammar-sources.nix", [["license", 2428, 7], ["maintainers", 2429, 7]]);
-const pos$441 = nix.positions(here + "/grammar-sources.nix", [["version", 2423, 5], ["url", 2424, 5], ["rev", 2425, 5], ["hash", 2426, 5], ["meta", 2427, 5]]);
-const pos$442 = nix.positions(here + "/grammar-sources.nix", [["license", 2440, 10]]);
-const pos$443 = nix.positions(here + "/grammar-sources.nix", [["version", 2436, 5], ["url", 2437, 5], ["rev", 2438, 5], ["hash", 2439, 5], ["meta", 2440, 5]]);
-const pos$444 = nix.positions(here + "/grammar-sources.nix", [["license", 2449, 7]]);
-const pos$445 = nix.positions(here + "/grammar-sources.nix", [["version", 2444, 5], ["url", 2445, 5], ["rev", 2446, 5], ["hash", 2447, 5], ["meta", 2448, 5]]);
-const pos$446 = nix.positions(here + "/grammar-sources.nix", [["license", 2458, 7], ["maintainers", 2459, 7]]);
-const pos$447 = nix.positions(here + "/grammar-sources.nix", [["version", 2454, 5], ["url", 2455, 5], ["hash", 2456, 5], ["meta", 2457, 5]]);
-const pos$448 = nix.positions(here + "/grammar-sources.nix", [["license", 2470, 7]]);
-const pos$449 = nix.positions(here + "/grammar-sources.nix", [["version", 2466, 5], ["url", 2467, 5], ["hash", 2468, 5], ["meta", 2469, 5]]);
-const pos$450 = nix.positions(here + "/grammar-sources.nix", [["license", 2479, 7]]);
-const pos$451 = nix.positions(here + "/grammar-sources.nix", [["version", 2475, 5], ["url", 2476, 5], ["hash", 2477, 5], ["meta", 2478, 5]]);
-const pos$452 = nix.positions(here + "/grammar-sources.nix", [["version", 2484, 5], ["url", 2485, 5], ["hash", 2486, 5]]);
-const pos$453 = nix.positions(here + "/grammar-sources.nix", [["license", 2494, 7], ["maintainers", 2495, 7]]);
-const pos$454 = nix.positions(here + "/grammar-sources.nix", [["version", 2490, 5], ["url", 2491, 5], ["hash", 2492, 5], ["meta", 2493, 5]]);
-const pos$455 = nix.positions(here + "/grammar-sources.nix", [["license", 2506, 7]]);
-const pos$456 = nix.positions(here + "/grammar-sources.nix", [["version", 2502, 5], ["url", 2503, 5], ["hash", 2504, 5], ["meta", 2505, 5]]);
-const pos$457 = nix.positions(here + "/grammar-sources.nix", [["license", 2516, 7], ["maintainers", 2517, 7]]);
-const pos$458 = nix.positions(here + "/grammar-sources.nix", [["version", 2511, 5], ["url", 2512, 5], ["rev", 2513, 5], ["hash", 2514, 5], ["meta", 2515, 5], ["excludeBrokenTreeSitterJson", 2522, 5]]);
-const pos$459 = nix.positions(here + "/grammar-sources.nix", [["license", 2530, 7]]);
-const pos$460 = nix.positions(here + "/grammar-sources.nix", [["version", 2526, 5], ["url", 2527, 5], ["hash", 2528, 5], ["meta", 2529, 5]]);
-const pos$461 = nix.positions(here + "/grammar-sources.nix", [["license", 2540, 7], ["maintainers", 2541, 7]]);
-const pos$462 = nix.positions(here + "/grammar-sources.nix", [["version", 2535, 5], ["url", 2536, 5], ["rev", 2537, 5], ["hash", 2538, 5], ["meta", 2539, 5]]);
-const pos$463 = nix.positions(here + "/grammar-sources.nix", [["license", 2552, 7], ["maintainers", 2553, 7]]);
-const pos$464 = nix.positions(here + "/grammar-sources.nix", [["version", 2548, 5], ["url", 2549, 5], ["hash", 2550, 5], ["meta", 2551, 5]]);
-const pos$465 = nix.positions(here + "/grammar-sources.nix", [["license", 2568, 7]]);
-const pos$466 = nix.positions(here + "/grammar-sources.nix", [["version", 2564, 5], ["url", 2565, 5], ["hash", 2566, 5], ["meta", 2567, 5]]);
-const pos$467 = nix.positions(here + "/grammar-sources.nix", [["license", 2578, 7]]);
-const pos$468 = nix.positions(here + "/grammar-sources.nix", [["version", 2573, 5], ["url", 2574, 5], ["rev", 2575, 5], ["hash", 2576, 5], ["meta", 2577, 5]]);
-const pos$469 = nix.positions(here + "/grammar-sources.nix", [["license", 2586, 10]]);
-const pos$470 = nix.positions(here + "/grammar-sources.nix", [["version", 2583, 5], ["url", 2584, 5], ["hash", 2585, 5], ["meta", 2586, 5]]);
-const pos$471 = nix.positions(here + "/grammar-sources.nix", [["license", 2595, 7], ["maintainers", 2596, 7]]);
-const pos$472 = nix.positions(here + "/grammar-sources.nix", [["version", 2590, 5], ["url", 2591, 5], ["rev", 2592, 5], ["hash", 2593, 5], ["meta", 2594, 5]]);
-const pos$473 = nix.positions(here + "/grammar-sources.nix", [["license", 2608, 10]]);
-const pos$474 = nix.positions(here + "/grammar-sources.nix", [["version", 2603, 5], ["url", 2604, 5], ["rev", 2605, 5], ["hash", 2606, 5], ["location", 2607, 5], ["meta", 2608, 5]]);
-const pos$475 = nix.positions(here + "/grammar-sources.nix", [["license", 2617, 7]]);
-const pos$476 = nix.positions(here + "/grammar-sources.nix", [["version", 2612, 5], ["url", 2613, 5], ["rev", 2614, 5], ["hash", 2615, 5], ["meta", 2616, 5]]);
-const pos$477 = nix.positions(here + "/grammar-sources.nix", [["license", 2626, 7], ["maintainers", 2627, 7]]);
-const pos$478 = nix.positions(here + "/grammar-sources.nix", [["version", 2622, 5], ["url", 2623, 5], ["hash", 2624, 5], ["meta", 2625, 5]]);
-const pos$479 = nix.positions(here + "/grammar-sources.nix", [["license", 2637, 10]]);
-const pos$480 = nix.positions(here + "/grammar-sources.nix", [["version", 2634, 5], ["url", 2635, 5], ["hash", 2636, 5], ["meta", 2637, 5]]);
-const pos$481 = nix.positions(here + "/grammar-sources.nix", [["license", 2645, 7], ["maintainers", 2646, 7]]);
-const pos$482 = nix.positions(here + "/grammar-sources.nix", [["version", 2641, 5], ["url", 2642, 5], ["hash", 2643, 5], ["meta", 2644, 5]]);
-const pos$483 = nix.positions(here + "/grammar-sources.nix", [["license", 2658, 7], ["maintainers", 2659, 7]]);
-const pos$484 = nix.positions(here + "/grammar-sources.nix", [["version", 2653, 5], ["url", 2654, 5], ["rev", 2655, 5], ["hash", 2656, 5], ["meta", 2657, 5]]);
-const pos$485 = nix.positions(here + "/grammar-sources.nix", [["owner", 2668, 7], ["repo", 2669, 7], ["rev", 2670, 7], ["hash", 2671, 7], ["postFetch", 2672, 7]]);
-const pos$486 = nix.positions(here + "/grammar-sources.nix", [["license", 2677, 10]]);
-const pos$487 = nix.positions(here + "/grammar-sources.nix", [["version", 2666, 5], ["src", 2667, 5], ["meta", 2677, 5]]);
-const pos$488 = nix.positions(here + "/grammar-sources.nix", [["license", 2684, 10]]);
-const pos$489 = nix.positions(here + "/grammar-sources.nix", [["version", 2681, 5], ["url", 2682, 5], ["hash", 2683, 5], ["meta", 2684, 5]]);
-const pos$490 = nix.positions(here + "/grammar-sources.nix", [["license", 2692, 7]]);
-const pos$491 = nix.positions(here + "/grammar-sources.nix", [["version", 2688, 5], ["url", 2689, 5], ["hash", 2690, 5], ["meta", 2691, 5]]);
-const pos$492 = nix.positions(here + "/grammar-sources.nix", [["license", 2701, 7]]);
-const pos$493 = nix.positions(here + "/grammar-sources.nix", [["version", 2697, 5], ["url", 2698, 5], ["hash", 2699, 5], ["meta", 2700, 5]]);
-const pos$494 = nix.positions(here + "/grammar-sources.nix", [["license", 2710, 7]]);
-const pos$495 = nix.positions(here + "/grammar-sources.nix", [["version", 2706, 5], ["url", 2707, 5], ["hash", 2708, 5], ["meta", 2709, 5]]);
-const pos$496 = nix.positions(here + "/grammar-sources.nix", [["license", 2720, 7], ["maintainers", 2721, 7]]);
-const pos$497 = nix.positions(here + "/grammar-sources.nix", [["version", 2715, 5], ["url", 2716, 5], ["rev", 2717, 5], ["hash", 2718, 5], ["meta", 2719, 5]]);
-const pos$498 = nix.positions(here + "/grammar-sources.nix", [["license", 2732, 7]]);
-const pos$499 = nix.positions(here + "/grammar-sources.nix", [["version", 2728, 5], ["url", 2729, 5], ["hash", 2730, 5], ["meta", 2731, 5]]);
-const pos$500 = nix.positions(here + "/grammar-sources.nix", [["license", 2741, 10]]);
-const pos$501 = nix.positions(here + "/grammar-sources.nix", [["version", 2737, 5], ["url", 2738, 5], ["rev", 2739, 5], ["hash", 2740, 5], ["meta", 2741, 5]]);
-const pos$502 = nix.positions(here + "/grammar-sources.nix", [["license", 2750, 7]]);
-const pos$503 = nix.positions(here + "/grammar-sources.nix", [["version", 2745, 5], ["url", 2746, 5], ["rev", 2747, 5], ["hash", 2748, 5], ["meta", 2749, 5]]);
-const pos$504 = nix.positions(here + "/grammar-sources.nix", [["license", 2759, 7]]);
-const pos$505 = nix.positions(here + "/grammar-sources.nix", [["version", 2755, 5], ["url", 2756, 5], ["hash", 2757, 5], ["meta", 2758, 5]]);
-const pos$506 = nix.positions(here + "/grammar-sources.nix", [["license", 2767, 10]]);
-const pos$507 = nix.positions(here + "/grammar-sources.nix", [["version", 2764, 5], ["url", 2765, 5], ["hash", 2766, 5], ["meta", 2767, 5]]);
-const pos$508 = nix.positions(here + "/grammar-sources.nix", [["license", 2776, 7], ["maintainers", 2777, 7]]);
-const pos$509 = nix.positions(here + "/grammar-sources.nix", [["version", 2771, 5], ["url", 2772, 5], ["rev", 2773, 5], ["hash", 2774, 5], ["meta", 2775, 5]]);
-const pos$510 = nix.positions(here + "/grammar-sources.nix", [["license", 2789, 7]]);
-const pos$511 = nix.positions(here + "/grammar-sources.nix", [["version", 2784, 5], ["url", 2785, 5], ["rev", 2786, 5], ["hash", 2787, 5], ["meta", 2788, 5]]);
-const pos$512 = nix.positions(here + "/grammar-sources.nix", [["license", 2798, 10]]);
-const pos$513 = nix.positions(here + "/grammar-sources.nix", [["version", 2794, 5], ["url", 2795, 5], ["rev", 2796, 5], ["hash", 2797, 5], ["meta", 2798, 5]]);
-const pos$514 = nix.positions(here + "/grammar-sources.nix", [["license", 2807, 7], ["maintainers", 2808, 7]]);
-const pos$515 = nix.positions(here + "/grammar-sources.nix", [["version", 2802, 5], ["url", 2803, 5], ["rev", 2804, 5], ["hash", 2805, 5], ["meta", 2806, 5]]);
-const pos$516 = nix.positions(here + "/grammar-sources.nix", [["license", 2819, 7]]);
-const pos$517 = nix.positions(here + "/grammar-sources.nix", [["version", 2815, 5], ["url", 2816, 5], ["hash", 2817, 5], ["meta", 2818, 5]]);
-const pos$518 = nix.positions(here + "/grammar-sources.nix", [["license", 2828, 7]]);
-const pos$519 = nix.positions(here + "/grammar-sources.nix", [["version", 2824, 5], ["url", 2825, 5], ["hash", 2826, 5], ["meta", 2827, 5]]);
-const pos$520 = nix.positions(here + "/grammar-sources.nix", [["license", 2838, 7], ["maintainers", 2839, 7]]);
-const pos$521 = nix.positions(here + "/grammar-sources.nix", [["version", 2833, 5], ["url", 2834, 5], ["rev", 2835, 5], ["hash", 2836, 5], ["meta", 2837, 5]]);
-const pos$522 = nix.positions(here + "/grammar-sources.nix", [["license", 2850, 7]]);
-const pos$523 = nix.positions(here + "/grammar-sources.nix", [["version", 2846, 5], ["url", 2847, 5], ["hash", 2848, 5], ["meta", 2849, 5]]);
-const pos$524 = nix.positions(here + "/grammar-sources.nix", [["license", 2859, 7], ["maintainers", 2860, 7]]);
-const pos$525 = nix.positions(here + "/grammar-sources.nix", [["version", 2855, 5], ["url", 2856, 5], ["hash", 2857, 5], ["meta", 2858, 5]]);
-const pos$526 = nix.positions(here + "/grammar-sources.nix", [["license", 2872, 7], ["maintainers", 2873, 7]]);
-const pos$527 = nix.positions(here + "/grammar-sources.nix", [["version", 2867, 5], ["url", 2868, 5], ["rev", 2869, 5], ["hash", 2870, 5], ["meta", 2871, 5]]);
-const pos$528 = nix.positions(here + "/grammar-sources.nix", [["license", 2885, 7]]);
-const pos$529 = nix.positions(here + "/grammar-sources.nix", [["version", 2880, 5], ["url", 2881, 5], ["rev", 2882, 5], ["hash", 2883, 5], ["meta", 2884, 5]]);
-const pos$530 = nix.positions(here + "/grammar-sources.nix", [["license", 2895, 7], ["maintainers", 2896, 7]]);
-const pos$531 = nix.positions(here + "/grammar-sources.nix", [["version", 2890, 5], ["url", 2891, 5], ["rev", 2892, 5], ["hash", 2893, 5], ["meta", 2894, 5]]);
-const pos$532 = nix.positions(here + "/grammar-sources.nix", [["license", 2908, 7]]);
-const pos$533 = nix.positions(here + "/grammar-sources.nix", [["version", 2903, 5], ["url", 2904, 5], ["hash", 2905, 5], ["generate", 2906, 5], ["meta", 2907, 5]]);
-const pos$534 = nix.positions(here + "/grammar-sources.nix", [["license", 2917, 7], ["maintainers", 2918, 7]]);
-const pos$535 = nix.positions(here + "/grammar-sources.nix", [["version", 2913, 5], ["url", 2914, 5], ["hash", 2915, 5], ["meta", 2916, 5]]);
-const pos$536 = nix.positions(here + "/grammar-sources.nix", [["license", 2928, 10]]);
-const pos$537 = nix.positions(here + "/grammar-sources.nix", [["version", 2925, 5], ["url", 2926, 5], ["hash", 2927, 5], ["meta", 2928, 5]]);
-const pos$538 = nix.positions(here + "/grammar-sources.nix", [["license", 2937, 7], ["maintainers", 2938, 7]]);
-const pos$539 = nix.positions(here + "/grammar-sources.nix", [["version", 2932, 5], ["url", 2933, 5], ["rev", 2934, 5], ["hash", 2935, 5], ["meta", 2936, 5], ["excludeBrokenTreeSitterJson", 2943, 5]]);
-const pos$540 = nix.positions(here + "/grammar-sources.nix", [["license", 2950, 10]]);
-const pos$541 = nix.positions(here + "/grammar-sources.nix", [["version", 2947, 5], ["url", 2948, 5], ["hash", 2949, 5], ["meta", 2950, 5]]);
-const pos$542 = nix.positions(here + "/grammar-sources.nix", [["license", 2959, 10]]);
-const pos$543 = nix.positions(here + "/grammar-sources.nix", [["version", 2954, 5], ["url", 2955, 5], ["hash", 2956, 5], ["location", 2957, 5], ["excludeBrokenTreeSitterJson", 2958, 5], ["meta", 2959, 5]]);
-const pos$544 = nix.positions(here + "/grammar-sources.nix", [["license", 2973, 7]]);
-const pos$545 = nix.positions(here + "/grammar-sources.nix", [["version", 2969, 5], ["url", 2970, 5], ["hash", 2971, 5], ["meta", 2972, 5]]);
-const pos$546 = nix.positions(here + "/grammar-sources.nix", [["license", 2982, 7]]);
-const pos$547 = nix.positions(here + "/grammar-sources.nix", [["version", 2978, 5], ["url", 2979, 5], ["hash", 2980, 5], ["meta", 2981, 5]]);
-const pos$548 = nix.positions(here + "/grammar-sources.nix", [["license", 2991, 7]]);
-const pos$549 = nix.positions(here + "/grammar-sources.nix", [["version", 2987, 5], ["url", 2988, 5], ["hash", 2989, 5], ["meta", 2990, 5]]);
-const pos$550 = nix.positions(here + "/grammar-sources.nix", [["license", 3001, 7], ["maintainers", 3002, 7]]);
-const pos$551 = nix.positions(here + "/grammar-sources.nix", [["version", 2996, 5], ["url", 2997, 5], ["rev", 2998, 5], ["hash", 2999, 5], ["meta", 3000, 5]]);
-const pos$552 = nix.positions(here + "/grammar-sources.nix", [["license", 3013, 7], ["maintainers", 3014, 7]]);
-const pos$553 = nix.positions(here + "/grammar-sources.nix", [["version", 3009, 5], ["url", 3010, 5], ["hash", 3011, 5], ["meta", 3012, 5]]);
-const pos$554 = nix.positions(here + "/grammar-sources.nix", [["license", 3024, 10]]);
-const pos$555 = nix.positions(here + "/grammar-sources.nix", [["version", 3021, 5], ["url", 3022, 5], ["hash", 3023, 5], ["meta", 3024, 5]]);
-const pos$556 = nix.positions(here + "/grammar-sources.nix", [["maintainers", 3032, 7]]);
-const pos$557 = nix.positions(here + "/grammar-sources.nix", [["version", 3028, 5], ["url", 3029, 5], ["hash", 3030, 5], ["meta", 3031, 5]]);
-const pos$558 = nix.positions(here + "/grammar-sources.nix", [["license", 3044, 7], ["maintainers", 3045, 7]]);
-const pos$559 = nix.positions(here + "/grammar-sources.nix", [["version", 3039, 5], ["url", 3040, 5], ["rev", 3041, 5], ["hash", 3042, 5], ["meta", 3043, 5]]);
-const pos$560 = nix.positions(here + "/grammar-sources.nix", [["license", 3057, 7], ["maintainers", 3058, 7]]);
-const pos$561 = nix.positions(here + "/grammar-sources.nix", [["version", 3052, 5], ["url", 3053, 5], ["rev", 3054, 5], ["hash", 3055, 5], ["meta", 3056, 5], ["excludeBrokenTreeSitterJson", 3063, 5]]);
-const pos$562 = nix.positions(here + "/grammar-sources.nix", [["license", 3071, 7]]);
-const pos$563 = nix.positions(here + "/grammar-sources.nix", [["version", 3067, 5], ["url", 3068, 5], ["hash", 3069, 5], ["meta", 3070, 5]]);
-const pos$564 = nix.positions(here + "/grammar-sources.nix", [["license", 3081, 7], ["maintainers", 3082, 7]]);
-const pos$565 = nix.positions(here + "/grammar-sources.nix", [["version", 3076, 5], ["url", 3077, 5], ["rev", 3078, 5], ["hash", 3079, 5], ["meta", 3080, 5]]);
-const pos$566 = nix.positions(here + "/grammar-sources.nix", [["license", 3094, 7], ["maintainers", 3095, 7]]);
-const pos$567 = nix.positions(here + "/grammar-sources.nix", [["version", 3089, 5], ["url", 3090, 5], ["rev", 3091, 5], ["hash", 3092, 5], ["meta", 3093, 5]]);
-const pos$568 = nix.positions(here + "/grammar-sources.nix", [["license", 3106, 7], ["maintainers", 3107, 7]]);
-const pos$569 = nix.positions(here + "/grammar-sources.nix", [["version", 3102, 5], ["url", 3103, 5], ["hash", 3104, 5], ["meta", 3105, 5]]);
-const pos$570 = nix.positions(here + "/grammar-sources.nix", [["license", 3119, 7]]);
-const pos$571 = nix.positions(here + "/grammar-sources.nix", [["version", 3114, 5], ["url", 3115, 5], ["rev", 3116, 5], ["hash", 3117, 5], ["meta", 3118, 5]]);
-const pos$572 = nix.positions(here + "/grammar-sources.nix", [["license", 3128, 7]]);
-const pos$573 = nix.positions(here + "/grammar-sources.nix", [["version", 3124, 5], ["url", 3125, 5], ["hash", 3126, 5], ["meta", 3127, 5]]);
-const pos$574 = nix.positions(here + "/grammar-sources.nix", [["license", 3138, 7], ["maintainers", 3139, 7]]);
-const pos$575 = nix.positions(here + "/grammar-sources.nix", [["version", 3133, 5], ["url", 3134, 5], ["rev", 3135, 5], ["hash", 3136, 5], ["meta", 3137, 5]]);
-const pos$576 = nix.positions(here + "/grammar-sources.nix", [["license", 3151, 7], ["maintainers", 3152, 7]]);
-const pos$577 = nix.positions(here + "/grammar-sources.nix", [["version", 3146, 5], ["url", 3147, 5], ["rev", 3148, 5], ["hash", 3149, 5], ["meta", 3150, 5]]);
-const pos$578 = nix.positions(here + "/grammar-sources.nix", [["license", 3164, 7]]);
-const pos$579 = nix.positions(here + "/grammar-sources.nix", [["version", 3159, 5], ["url", 3160, 5], ["rev", 3161, 5], ["hash", 3162, 5], ["meta", 3163, 5]]);
-const pos$580 = nix.positions(here + "/grammar-sources.nix", [["url", 3173, 9], ["hash", 3174, 9]]);
-const pos$581 = nix.positions(here + "/grammar-sources.nix", [["license", 3181, 7]]);
-const pos$582 = nix.positions(here + "/grammar-sources.nix", [["patches", 3171, 5], ["version", 3177, 5], ["url", 3178, 5], ["hash", 3179, 5], ["meta", 3180, 5]]);
-const pos$583 = nix.positions(here + "/grammar-sources.nix", [["license", 3191, 7]]);
-const pos$584 = nix.positions(here + "/grammar-sources.nix", [["version", 3186, 5], ["url", 3187, 5], ["rev", 3188, 5], ["hash", 3189, 5], ["meta", 3190, 5]]);
-const pos$585 = nix.positions(here + "/grammar-sources.nix", [["license", 3201, 10]]);
-const pos$586 = nix.positions(here + "/grammar-sources.nix", [["version", 3196, 5], ["url", 3197, 5], ["rev", 3198, 5], ["hash", 3199, 5], ["location", 3200, 5], ["meta", 3201, 5]]);
-const pos$587 = nix.positions(here + "/grammar-sources.nix", [["license", 3210, 7]]);
-const pos$588 = nix.positions(here + "/grammar-sources.nix", [["version", 3205, 5], ["url", 3206, 5], ["rev", 3207, 5], ["hash", 3208, 5], ["meta", 3209, 5]]);
-const pos$589 = nix.positions(here + "/grammar-sources.nix", [["license", 3218, 10]]);
-const pos$590 = nix.positions(here + "/grammar-sources.nix", [["version", 3215, 5], ["url", 3216, 5], ["hash", 3217, 5], ["meta", 3218, 5]]);
-const pos$591 = nix.positions(here + "/grammar-sources.nix", [["license", 3227, 7]]);
-const pos$592 = nix.positions(here + "/grammar-sources.nix", [["version", 3222, 5], ["url", 3223, 5], ["rev", 3224, 5], ["hash", 3225, 5], ["meta", 3226, 5]]);
-const pos$593 = nix.positions(here + "/grammar-sources.nix", [["license", 3236, 7]]);
-const pos$594 = nix.positions(here + "/grammar-sources.nix", [["version", 3232, 5], ["url", 3233, 5], ["hash", 3234, 5], ["meta", 3235, 5]]);
-const pos$595 = nix.positions(here + "/grammar-sources.nix", [["license", 3246, 7]]);
-const pos$596 = nix.positions(here + "/grammar-sources.nix", [["version", 3241, 5], ["url", 3242, 5], ["rev", 3243, 5], ["hash", 3244, 5], ["meta", 3245, 5]]);
-const pos$597 = nix.positions(here + "/grammar-sources.nix", [["license", 3255, 7]]);
-const pos$598 = nix.positions(here + "/grammar-sources.nix", [["version", 3251, 5], ["url", 3252, 5], ["hash", 3253, 5], ["meta", 3254, 5]]);
-const pos$599 = nix.positions(here + "/grammar-sources.nix", [["license", 3264, 7]]);
-const pos$600 = nix.positions(here + "/grammar-sources.nix", [["version", 3260, 5], ["url", 3261, 5], ["hash", 3262, 5], ["meta", 3263, 5]]);
-const pos$601 = nix.positions(here + "/grammar-sources.nix", [["license", 3274, 7], ["maintainers", 3275, 7]]);
-const pos$602 = nix.positions(here + "/grammar-sources.nix", [["version", 3269, 5], ["url", 3270, 5], ["rev", 3271, 5], ["hash", 3272, 5], ["meta", 3273, 5]]);
-const pos$603 = nix.positions(here + "/grammar-sources.nix", [["license", 3286, 7]]);
-const pos$604 = nix.positions(here + "/grammar-sources.nix", [["version", 3282, 5], ["url", 3283, 5], ["hash", 3284, 5], ["meta", 3285, 5]]);
-const pos$605 = nix.positions(here + "/grammar-sources.nix", [["license", 3295, 7]]);
-const pos$606 = nix.positions(here + "/grammar-sources.nix", [["version", 3291, 5], ["url", 3292, 5], ["hash", 3293, 5], ["meta", 3294, 5]]);
-const pos$607 = nix.positions(here + "/grammar-sources.nix", [["license", 3305, 7], ["maintainers", 3306, 7]]);
-const pos$608 = nix.positions(here + "/grammar-sources.nix", [["version", 3300, 5], ["url", 3301, 5], ["rev", 3302, 5], ["hash", 3303, 5], ["meta", 3304, 5]]);
-const pos$609 = nix.positions(here + "/grammar-sources.nix", [["license", 3318, 7], ["maintainers", 3319, 7]]);
-const pos$610 = nix.positions(here + "/grammar-sources.nix", [["version", 3313, 5], ["url", 3314, 5], ["rev", 3315, 5], ["hash", 3316, 5], ["meta", 3317, 5]]);
-const pos$611 = nix.positions(here + "/grammar-sources.nix", [["license", 3331, 7], ["maintainers", 3332, 7]]);
-const pos$612 = nix.positions(here + "/grammar-sources.nix", [["version", 3326, 5], ["url", 3327, 5], ["rev", 3328, 5], ["hash", 3329, 5], ["meta", 3330, 5]]);
-const pos$613 = nix.positions(here + "/grammar-sources.nix", [["license", 3344, 7], ["maintainers", 3345, 7]]);
-const pos$614 = nix.positions(here + "/grammar-sources.nix", [["version", 3339, 5], ["url", 3340, 5], ["hash", 3341, 5], ["location", 3342, 5], ["meta", 3343, 5]]);
-const pos$615 = nix.positions(here + "/grammar-sources.nix", [["license", 3357, 7], ["maintainers", 3358, 7]]);
-const pos$616 = nix.positions(here + "/grammar-sources.nix", [["version", 3352, 5], ["url", 3353, 5], ["rev", 3354, 5], ["hash", 3355, 5], ["meta", 3356, 5]]);
-const pos$617 = nix.positions(here + "/grammar-sources.nix", [["license", 3369, 7], ["maintainers", 3370, 7]]);
-const pos$618 = nix.positions(here + "/grammar-sources.nix", [["version", 3365, 5], ["url", 3366, 5], ["hash", 3367, 5], ["meta", 3368, 5]]);
-const pos$619 = nix.positions(here + "/grammar-sources.nix", [["license", 3382, 7], ["maintainers", 3383, 7]]);
-const pos$620 = nix.positions(here + "/grammar-sources.nix", [["version", 3377, 5], ["url", 3378, 5], ["rev", 3379, 5], ["hash", 3380, 5], ["meta", 3381, 5]]);
-const pos$621 = nix.positions(here + "/grammar-sources.nix", [["license", 3394, 7]]);
-const pos$622 = nix.positions(here + "/grammar-sources.nix", [["version", 3390, 5], ["url", 3391, 5], ["hash", 3392, 5], ["meta", 3393, 5]]);
-const pos$623 = nix.positions(here + "/grammar-sources.nix", [["license", 3404, 7], ["maintainers", 3405, 7]]);
-const pos$624 = nix.positions(here + "/grammar-sources.nix", [["version", 3399, 5], ["url", 3400, 5], ["rev", 3401, 5], ["hash", 3402, 5], ["meta", 3403, 5]]);
-const pos$625 = nix.positions(here + "/grammar-sources.nix", [["license", 3417, 7], ["maintainers", 3418, 7]]);
-const pos$626 = nix.positions(here + "/grammar-sources.nix", [["version", 3412, 5], ["url", 3413, 5], ["rev", 3414, 5], ["hash", 3415, 5], ["meta", 3416, 5]]);
-const pos$627 = nix.positions(here + "/grammar-sources.nix", [["license", 3430, 7]]);
-const pos$628 = nix.positions(here + "/grammar-sources.nix", [["version", 3425, 5], ["url", 3426, 5], ["rev", 3427, 5], ["hash", 3428, 5], ["meta", 3429, 5]]);
-const pos$629 = nix.positions(here + "/grammar-sources.nix", [["license", 3441, 7], ["maintainers", 3442, 7]]);
-const pos$630 = nix.positions(here + "/grammar-sources.nix", [["version", 3435, 5], ["url", 3436, 5], ["rev", 3438, 5], ["hash", 3439, 5], ["meta", 3440, 5], ["excludeBrokenTreeSitterJson", 3447, 5]]);
-const pos$631 = nix.positions(here + "/grammar-sources.nix", [["license", 3457, 7], ["maintainers", 3461, 7]]);
-const pos$632 = nix.positions(here + "/grammar-sources.nix", [["version", 3451, 5], ["url", 3452, 5], ["rev", 3453, 5], ["hash", 3454, 5], ["location", 3455, 5], ["meta", 3456, 5]]);
-const pos$633 = nix.positions(here + "/grammar-sources.nix", [["license", 3474, 7], ["maintainers", 3478, 7]]);
-const pos$634 = nix.positions(here + "/grammar-sources.nix", [["version", 3468, 5], ["url", 3469, 5], ["rev", 3470, 5], ["hash", 3471, 5], ["location", 3472, 5], ["meta", 3473, 5]]);
-const pos$635 = nix.positions(here + "/grammar-sources.nix", [["license", 3490, 7], ["maintainers", 3491, 7]]);
-const pos$636 = nix.positions(here + "/grammar-sources.nix", [["version", 3485, 5], ["url", 3486, 5], ["rev", 3487, 5], ["hash", 3488, 5], ["meta", 3489, 5]]);
-const pos$637 = nix.positions(here + "/grammar-sources.nix", [["license", 3503, 7], ["maintainers", 3504, 7]]);
-const pos$638 = nix.positions(here + "/grammar-sources.nix", [["version", 3498, 5], ["url", 3499, 5], ["rev", 3500, 5], ["hash", 3501, 5], ["meta", 3502, 5]]);
-const pos$639 = nix.positions(here + "/grammar-sources.nix", [["license", 3516, 7]]);
-const pos$640 = nix.positions(here + "/grammar-sources.nix", [["version", 3511, 5], ["url", 3512, 5], ["rev", 3513, 5], ["hash", 3514, 5], ["meta", 3515, 5]]);
-const pos$641 = nix.positions(here + "/grammar-sources.nix", [["license", 3524, 10]]);
-const pos$642 = nix.positions(here + "/grammar-sources.nix", [["version", 3521, 5], ["url", 3522, 5], ["hash", 3523, 5], ["meta", 3524, 5]]);
-const pos$643 = nix.positions(here + "/grammar-sources.nix", [["license", 3532, 7]]);
-const pos$644 = nix.positions(here + "/grammar-sources.nix", [["version", 3528, 5], ["url", 3529, 5], ["hash", 3530, 5], ["meta", 3531, 5]]);
-const pos$645 = nix.positions(here + "/grammar-sources.nix", [["license", 3543, 7], ["maintainers", 3544, 7]]);
-const pos$646 = nix.positions(here + "/grammar-sources.nix", [["version", 3537, 5], ["url", 3538, 5], ["hash", 3539, 5], ["excludeBrokenTreeSitterJson", 3541, 5], ["meta", 3542, 5]]);
-const pos$647 = nix.positions(here + "/grammar-sources.nix", [["license", 3556, 7], ["maintainers", 3557, 7]]);
-const pos$648 = nix.positions(here + "/grammar-sources.nix", [["version", 3551, 5], ["url", 3552, 5], ["rev", 3553, 5], ["hash", 3554, 5], ["meta", 3555, 5]]);
-const pos$649 = nix.positions(here + "/grammar-sources.nix", [["license", 3568, 7], ["maintainers", 3569, 7]]);
-const pos$650 = nix.positions(here + "/grammar-sources.nix", [["version", 3564, 5], ["url", 3565, 5], ["hash", 3566, 5], ["meta", 3567, 5]]);
-const pos$651 = nix.positions(here + "/grammar-sources.nix", [["license", 3581, 7], ["maintainers", 3582, 7]]);
-const pos$652 = nix.positions(here + "/grammar-sources.nix", [["version", 3576, 5], ["url", 3577, 5], ["rev", 3578, 5], ["hash", 3579, 5], ["meta", 3580, 5]]);
-const pos$653 = nix.positions(here + "/grammar-sources.nix", [["license", 3594, 7], ["maintainers", 3595, 7]]);
-const pos$654 = nix.positions(here + "/grammar-sources.nix", [["version", 3589, 5], ["url", 3590, 5], ["rev", 3591, 5], ["hash", 3592, 5], ["meta", 3593, 5]]);
-const pos$655 = nix.positions(here + "/grammar-sources.nix", [["license", 3606, 7]]);
-const pos$656 = nix.positions(here + "/grammar-sources.nix", [["version", 3602, 5], ["url", 3603, 5], ["hash", 3604, 5], ["meta", 3605, 5]]);
-const pos$657 = nix.positions(here + "/grammar-sources.nix", [["license", 3616, 7]]);
-const pos$658 = nix.positions(here + "/grammar-sources.nix", [["version", 3611, 5], ["url", 3612, 5], ["rev", 3613, 5], ["hash", 3614, 5], ["meta", 3615, 5]]);
-const pos$659 = nix.positions(here + "/grammar-sources.nix", [["license", 3626, 7], ["maintainers", 3627, 7]]);
-const pos$660 = nix.positions(here + "/grammar-sources.nix", [["version", 3621, 5], ["url", 3622, 5], ["rev", 3623, 5], ["hash", 3624, 5], ["meta", 3625, 5]]);
-const pos$661 = nix.positions(here + "/grammar-sources.nix", [["license", 3641, 7], ["maintainers", 3642, 7]]);
-const pos$662 = nix.positions(here + "/grammar-sources.nix", [["version", 3634, 5], ["url", 3635, 5], ["rev", 3636, 5], ["hash", 3637, 5], ["excludeBrokenTreeSitterJson", 3639, 5], ["meta", 3640, 5]]);
-const pos$663 = nix.positions(here + "/grammar-sources.nix", [["license", 3654, 7]]);
-const pos$664 = nix.positions(here + "/grammar-sources.nix", [["version", 3649, 5], ["url", 3650, 5], ["rev", 3651, 5], ["hash", 3652, 5], ["meta", 3653, 5]]);
-const pos$665 = nix.positions(here + "/grammar-sources.nix", [["ada", 10, 3], ["adl", 16, 3], ["agda", 28, 3], ["alloy", 42, 3], ["amber", 55, 3], ["astro", 68, 3], ["awk", 81, 3], ["bash", 93, 3], ["basic", 102, 3], ["bass", 111, 3], ["beancount", 124, 3], ["bibtex", 136, 3], ["bicep", 146, 3], ["bitbake", 158, 3], ["blade", 167, 3], ["blueprint", 179, 3], ["bqn", 192, 3], ["c", 201, 3], ["c-sharp", 207, 3], ["c3", 216, 3], ["caddyfile", 224, 3], ["cairo", 237, 3], ["capnp", 250, 3], ["cel", 263, 3], ["chuck", 276, 3], ["circom", 284, 3], ["clarity", 297, 3], ["clojure", 310, 3], ["cmake", 320, 3], ["comment", 329, 3], ["commonlisp", 338, 3], ["concerto", 347, 3], ["cpon", 356, 3], ["cpp", 369, 3], ["crystal", 378, 3], ["css", 388, 3], ["csv", 397, 3], ["cuda", 409, 3], ["cue", 418, 3], ["cylc", 427, 3], ["cython", 440, 3], ["d", 448, 3], ["dart", 461, 3], ["dbml", 471, 3], ["debian", 483, 3], ["devicetree", 496, 3], ["dhall", 505, 3], ["diff", 518, 3], ["djot", 530, 3], ["dockerfile", 543, 3], ["dot", 552, 3], ["doxyfile", 562, 3], ["drools", 570, 3], ["dtd", 578, 3], ["dune", 591, 3], ["dunstrc", 604, 3], ["earthfile", 617, 3], ["ebnf", 627, 3], ["edoc", 636, 3], ["eex", 649, 3], ["eiffel", 658, 3], ["elisp", 665, 3], ["elixir", 674, 3], ["elm", 683, 3], ["elvish", 692, 3], ["embedded-perl", 705, 3], ["embedded-template", 713, 3], ["erlang", 722, 3], ["esdl", 731, 3], ["factor", 744, 3], ["fennel", 754, 3], ["fga", 764, 3], ["fidl", 777, 3], ["fish", 790, 3], ["flatbuffers", 799, 3], ["forth", 807, 3], ["fortran", 820, 3], ["freebasic", 829, 3], ["fsharp", 837, 3], ["fstar", 850, 3], ["gas", 865, 3], ["gdscript", 878, 3], ["gemini", 887, 3], ["gherkin", 896, 3], ["ghostty", 909, 3], ["git-config", 922, 3], ["git-rebase", 935, 3], ["gitattributes", 952, 3], ["gitcommit", 965, 3], ["gitignore", 977, 3], ["gleam", 990, 3], ["glimmer", 999, 3], ["glimmer-javascript", 1011, 3], ["glimmer-typescript", 1019, 3], ["glsl", 1027, 3], ["gn", 1036, 3], ["gnuplot", 1049, 3], ["go", 1058, 3], ["go-format-string", 1067, 3], ["go-template", 1074, 3], ["go-template-helm", 1087, 3], ["godot-resource", 1101, 3], ["gomod", 1111, 3], ["gotmpl", 1120, 3], ["gowork", 1133, 3], ["gpr", 1143, 3], ["graphql", 1156, 3], ["gren", 1166, 3], ["groovy", 1181, 3], ["hare", 1194, 3], ["haskell", 1207, 3], ["haskell-literate", 1216, 3], ["haskell-persistent", 1225, 3], ["haxe", 1238, 3], ["hcl", 1245, 3], ["hdl", 1254, 3], ["heex", 1262, 3], ["hjson", 1271, 3], ["hledger", 1281, 3], ["hocon", 1294, 3], ["hoon", 1307, 3], ["hosts", 1320, 3], ["html", 1333, 3], ["htmldjango", 1342, 3], ["http", 1355, 3], ["hurl", 1364, 3], ["hyprlang", 1376, 3], ["iex", 1385, 3], ["ini", 1398, 3], ["ink", 1411, 3], ["inko", 1424, 3], ["janet-simple", 1436, 3], ["java", 1449, 3], ["javascript", 1458, 3], ["jinja2", 1467, 3], ["jjdescription", 1480, 3], ["jjrevset", 1492, 3], ["jjtemplate", 1501, 3], ["jq", 1510, 3], ["jsdoc", 1523, 3], ["json", 1532, 3], ["json5", 1541, 3], ["jsonnet", 1550, 3], ["julia", 1560, 3], ["just", 1569, 3], ["kcl", 1582, 3], ["kconfig", 1589, 3], ["kdl", 1596, 3], ["klog", 1605, 3], ["koka", 1614, 3], ["kotlin", 1624, 3], ["koto", 1633, 3], ["latex", 1646, 3], ["ld", 1656, 3], ["ldif", 1669, 3], ["lean", 1682, 3], ["ledger", 1695, 3], ["less", 1705, 3], ["linkerscript", 1712, 3], ["llvm", 1724, 3], ["llvm-mir", 1734, 3], ["log", 1747, 3], ["lpf", 1760, 3], ["lua", 1773, 3], ["lua-format-string", 1783, 3], ["luap", 1790, 3], ["luau", 1797, 3], ["mail", 1810, 3], ["make", 1823, 3], ["markdoc", 1833, 3], ["markdown", 1846, 3], ["markdown-inline", 1856, 3], ["matlab", 1867, 3], ["mermaid", 1880, 3], ["meson", 1893, 3], ["mojo", 1906, 3], ["move", 1919, 3], ["nasm", 1931, 3], ["nearley", 1944, 3], ["netlinx", 1952, 3], ["nginx", 1964, 3], ["nickel", 1977, 3], ["nim", 1986, 3], ["nix", 1999, 3], ["norg", 2009, 3], ["norg-meta", 2020, 3], ["nu", 2026, 3], ["objc", 2036, 3], ["ocaml", 2048, 3], ["ocaml-interface", 2057, 3], ["ocamllex", 2067, 3], ["odin", 2079, 3], ["ohm", 2092, 3], ["opam", 2105, 3], ["opencl", 2117, 3], ["openscad", 2130, 3], ["org", 2143, 3], ["org-nvim", 2155, 3], ["pascal", 2164, 3], ["passwd", 2176, 3], ["pem", 2189, 3], ["penrose", 2202, 3], ["perl", 2211, 3], ["pest", 2220, 3], ["pgn", 2232, 3], ["php", 2241, 3], ["phpdoc", 2250, 3], ["php-only", 2262, 3], ["picat", 2275, 3], ["pioasm", 2282, 3], ["pkl", 2292, 3], ["plank", 2305, 3], ["po", 2318, 3], ["pod", 2331, 3], ["ponylang", 2345, 3], ["powershell", 2357, 3], ["prisma", 2369, 3], ["prolog", 2378, 3], ["properties", 2391, 3], ["proto", 2404, 3], ["proverif", 2414, 3], ["prql", 2422, 3], ["ptx", 2435, 3], ["pug", 2443, 3], ["purescript", 2453, 3], ["python", 2465, 3], ["ql", 2474, 3], ["ql-dbscheme", 2483, 3], ["qmljs", 2489, 3], ["query", 2501, 3], ["quint", 2510, 3], ["r", 2525, 3], ["razor", 2534, 3], ["readline", 2547, 3], ["regex", 2559, 3], ["rego", 2572, 3], ["requirements", 2582, 3], ["rescript", 2589, 3], ["ripple", 2602, 3], ["river", 2611, 3], ["robot", 2621, 3], ["robots-txt", 2633, 3], ["rocq", 2640, 3], ["ron", 2652, 3], ["rpmspec", 2665, 3], ["rshtml", 2680, 3], ["rst", 2687, 3], ["ruby", 2696, 3], ["rust", 2705, 3], ["rust-format-args", 2714, 3], ["scala", 2727, 3], ["scfg", 2736, 3], ["scheme", 2744, 3], ["scss", 2754, 3], ["shellcheckrc", 2763, 3], ["slang", 2770, 3], ["slint", 2783, 3], ["slisp", 2793, 3], ["smali", 2801, 3], ["smithy", 2814, 3], ["sml", 2823, 3], ["snakemake", 2832, 3], ["solidity", 2845, 3], ["sourcepawn", 2854, 3], ["spade", 2866, 3], ["sparql", 2879, 3], ["spicedb", 2889, 3], ["sql", 2902, 3], ["sshclientconfig", 2912, 3], ["ssh-client-config", 2924, 3], ["strace", 2931, 3], ["strictdoc", 2946, 3], ["styx", 2953, 3], ["supercollider", 2968, 3], ["surface", 2977, 3], ["svelte", 2986, 3], ["sway", 2995, 3], ["swift", 3008, 3], ["systemverilog", 3020, 3], ["t32", 3027, 3], ["tablegen", 3038, 3], ["tact", 3051, 3], ["talon", 3066, 3], ["task", 3075, 3], ["tcl", 3088, 3], ["teal", 3101, 3], ["templ", 3113, 3], ["tera", 3123, 3], ["textproto", 3132, 3], ["thrift", 3145, 3], ["tiger", 3158, 3], ["tlaplus", 3168, 3], ["todotxt", 3185, 3], ["tolk", 3195, 3], ["toml", 3204, 3], ["tql", 3214, 3], ["tsq", 3221, 3], ["tsx", 3231, 3], ["turtle", 3240, 3], ["twig", 3250, 3], ["typescript", 3259, 3], ["typespec", 3268, 3], ["typst", 3281, 3], ["uiua", 3290, 3], ["ungrammar", 3299, 3], ["unison", 3312, 3], ["uxntal", 3325, 3], ["v", 3338, 3], ["vala", 3351, 3], ["vcl", 3364, 3], ["vento", 3376, 3], ["verilog", 3389, 3], ["vhdl", 3398, 3], ["vhs", 3411, 3], ["vim", 3424, 3], ["vue", 3434, 3], ["wast", 3450, 3], ["wat", 3467, 3], ["werk", 3484, 3], ["wesl", 3497, 3], ["wgsl", 3510, 3], ["wikitext", 3520, 3], ["wing", 3527, 3], ["wit", 3536, 3], ["wren", 3550, 3], ["xit", 3563, 3], ["xml", 3575, 3], ["xtc", 3588, 3], ["yaml", 3601, 3], ["yang", 3610, 3], ["yara", 3620, 3], ["yuck", 3633, 3], ["zig", 3648, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -676,21 +12,21 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return {
-    [nix.POS]: pos$665,
+    [nix.POS]: $pos[664],
     ada: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "0.9.0",
       url: "github:briot/tree-sitter-ada/0a4c27dc1308a9d2742de22e5fcfc0c137b3d3f3",
       hash: "sha256-K5JJjDQwHuHZ6oQaLwJHYJxmFpR+4ENEeiZO2Q0gsk4=",
     })),
     adl: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0-unstable-2024-04-03",
       url: "github:adl-lang/tree-sitter-adl",
       rev: "2787d04beadfbe154d3f2da6e98dc45a1b134bbf",
       hash: "sha256-gYEtTjjy8qClYg4+ZnKwNUWMxKTc3sUXQdsVCwB7H6w=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "aciceri"))];
@@ -698,12 +34,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     agda: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "1.3.3",
       url: "github:tree-sitter/tree-sitter-agda",
       hash: "sha256-kE35Y4quEnBdub1Wd7sdws7yhR6UFhyhk6Gw2CkI0Ng=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -713,13 +49,13 @@ export default nix.lambda((args) => (() => {
       excludeBrokenTreeSitterJson: true,
     })),
     alloy: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: "0-unstable-2024-11-29",
       url: "github:mattsre/tree-sitter-alloy",
       rev: "58d462b1cdb077682b130caa324f3822aeb00b8e",
       hash: "sha256-yDYGtM/vlZqeOy2O+scGHc6Dae0H/cXyC6Gu0inwJNA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -728,13 +64,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     amber: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       version: "0-unstable-2025-11-26",
       url: "github:amber-lang/tree-sitter-amber",
       rev: "107c6d4a420fb0c5962b62ebd9347b7eb0015957",
       hash: "sha256-vEEjHg/qRFfgA8AEWP7hp28/rxBCjPTvxLSMnvlXyi8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -743,13 +79,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     astro: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       version: "0-unstable-2025-04-23",
       url: "github:virchau13/tree-sitter-astro",
       rev: "213f6e6973d9b456c6e50e86f19f66877e7ef0ee",
       hash: "sha256-TpXs3jbYn39EHxTdtSfR7wLA1L8v9uyK/ATPp5v4WqE=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -758,12 +94,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     awk: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       version: "0.7.2",
       url: "github:Beaglefoot/tree-sitter-awk",
       hash: "sha256-MDfAtG6ZC0KttJ5bdW71Jgts+SAJitRnwu8xQ26N9K0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -772,29 +108,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     bash: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       version: "0.25.1",
       url: "github:tree-sitter/tree-sitter-bash",
       hash: "sha256-ONQ1Ljk3aRWjElSWD2crCFZraZoRj3b3/VELz1789GE=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$14, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[13],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     basic: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       version: "0-unstable-2025-11-11",
       url: "github:Ra77a3l3-jar/tree-sitter-basic",
       rev: "a98449c11d6c688b54c1ca132148a62d7e586a2a",
       hash: "sha256-4wJLK+yZjBELTzTnB/9Xb70uGodetEyjVDtFshviQyA=",
       excludeBrokenTreeSitterJson: true,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$16, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[15],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     bass: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       version: "0-unstable-2024-05-03",
       url: "github:vito/tree-sitter-bass",
       rev: "28dc7059722be090d04cd751aed915b2fee2f89a",
       hash: "sha256-NKu60BbTKLsYQRtfEoqGQUKERJFnmZNVJE6HBz/BRIM=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -803,28 +145,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     beancount: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       version: "2.5.1",
       url: "github:polarmutex/tree-sitter-beancount",
       hash: "sha256-UJ8bswQJB7UYspNKLWaEXMOR4XlKVHfd7rvV5iaA5Tw=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$20, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[19],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
       excludeBrokenTreeSitterJson: true,
     })),
     bibtex: nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       version: "0-unstable-2025-04-19",
       url: "github:latex-lsp/tree-sitter-bibtex",
       rev: "8d04ed27b3bc7929f14b7df9236797dab9f3fa66",
       hash: "sha256-UOXGWm8k9YP0GUwvNEuIxeiXqJo4Jf9uBt+/oYaYUl4=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$22, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[21],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     bicep: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       version: "1.1.0",
       url: "github:tree-sitter-grammars/tree-sitter-bicep",
       hash: "sha256-+qvhJgYqs8aj/Kmojr7lmjbXmskwVvbYBn4ia9wOv3k=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -833,19 +181,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     bitbake: nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       version: "1.1.0",
       url: "github:tree-sitter-grammars/tree-sitter-bitbake",
       hash: "sha256-PSI1XVDGwDk5GjHjvCJfmBDfYM2Gmm1KR4h5KxBR1d0=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$26, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[25],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     blade: nix.thunk(() => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       version: "0.12.3",
       url: "github:EmranMR/tree-sitter-blade",
       hash: "sha256-3/gY68F+xOF5Fv6rK9cEIJCVDzg/3ap1/gzkEacGuy4=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -854,13 +205,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     blueprint: nix.thunk(() => ({
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       version: "0-unstable-2026-04-18",
       url: "github:smrtrfszm/tree-sitter-blueprint",
       rev: "f2b043912ffbfcf4e9e8d09709b86ab39a4b78ea",
       hash: "sha256-tcy4FIQ/59PeSHIXX8YmbBX5lK0acKahePT2/xKzYyM=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -869,44 +220,50 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     bqn: nix.thunk(() => ({
-      [nix.POS]: pos$33,
+      [nix.POS]: $pos[32],
       version: "0.3.2",
       url: "github:shnarazk/tree-sitter-bqn",
       hash: "sha256-/FsA5GeFhWYFl1L9pF+sQfDSyihTnweEdz2k8mtLqnY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
       })),
     })),
     c: nix.thunk(() => ({
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       version: "0.24.2",
       url: "github:tree-sitter/tree-sitter-c",
       hash: "sha256-Juuf57GQI7OAP6O03KtSzyKJAoXtGKjyYJ+sTM1A4mU=",
     })),
     "c-sharp": nix.thunk(() => ({
-      [nix.POS]: pos$36,
+      [nix.POS]: $pos[35],
       version: "0.23.5",
       url: "github:tree-sitter/tree-sitter-c-sharp",
       hash: "sha256-N5AAlwQFGGi47cj0m7Te08bA486gwY6NBOx4Qcy4lpo=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$35, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[34],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     c3: nix.thunk(() => ({
-      [nix.POS]: pos$38,
+      [nix.POS]: $pos[37],
       version: "0.11.0",
       url: "github:c3lang/tree-sitter-c3",
       hash: "sha256-EADHh63Sf4VlffQX3gH/9kodiws4lQsG+cyMwg1dFp8=",
       excludeBrokenTreeSitterJson: true,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$37, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[36],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     caddyfile: nix.thunk(() => ({
-      [nix.POS]: pos$40,
+      [nix.POS]: $pos[39],
       version: "0-unstable-2026-04-06",
       url: "github:caddyserver/tree-sitter-caddyfile",
       rev: "6e62b4e297c955f050a6542a8d24df2f223a90e8",
       hash: "sha256-a/ioYTQBFueZTtzoDre7UD6h5NluZ8gQc+8yTrj2Goc=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -915,13 +272,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     cairo: nix.thunk(() => ({
-      [nix.POS]: pos$42,
+      [nix.POS]: $pos[41],
       version: "0-unstable-2026-07-23",
       url: "github:starkware-libs/tree-sitter-cairo",
       rev: "638b096f276196e0e201970f39f665c2e4613b0d",
       hash: "sha256-96ez0mUvbnKqs/ciI4sg7FryXd7w+FXxTI07fmPpZwo=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$41,
+        [nix.POS]: $pos[40],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -930,13 +287,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     capnp: nix.thunk(() => ({
-      [nix.POS]: pos$44,
+      [nix.POS]: $pos[43],
       version: "1.5.0-unstable-2024-04-20",
       url: "github:amaanq/tree-sitter-capnp",
       rev: "7b0883c03e5edd34ef7bcf703194204299d7099f",
       hash: "sha256-WKrZuOMxmdGlvUI9y8JgwCNMdJ8MULucMhkmW8JCiXM=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$43,
+        [nix.POS]: $pos[42],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -945,13 +302,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     cel: nix.thunk(() => ({
-      [nix.POS]: pos$46,
+      [nix.POS]: $pos[45],
       version: "0-unstable-2026-03-04",
       url: "github:bufbuild/tree-sitter-cel",
       rev: "fd2e8efaa07e71e46dcc1d5c4c85556a742d8c36",
       hash: "sha256-f/Gpsp+Se3lSguz89vWDf3gGaefnwpHCp4Bzfz6y29I=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -960,21 +317,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     chuck: nix.thunk(() => ({
-      [nix.POS]: pos$48,
+      [nix.POS]: $pos[47],
       version: "0-unstable-2026-03-27",
       url: "github:tymbalodeon/tree-sitter-chuck",
       rev: "68fb7bdba480915d87177feaa5593a666c0bb602",
       hash: "sha256-yd+RWeY+gHtTkRaxYxXSv27yWupjZtnIDxbsUAMa9eg=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$47, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[46],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     circom: nix.thunk(() => ({
-      [nix.POS]: pos$50,
+      [nix.POS]: $pos[49],
       version: "0-unstable-2024-09-09",
       url: "github:Decurity/tree-sitter-circom",
       rev: "02150524228b1e6afef96949f2d6b7cc0aaf999e",
       hash: "sha256-wosqwiDkK1rytGWMJApz1M42Sme9OaWXC0rmj7vM4g8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$49,
+        [nix.POS]: $pos[48],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -983,13 +343,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     clarity: nix.thunk(() => ({
-      [nix.POS]: pos$52,
+      [nix.POS]: $pos[51],
       version: "0.0.5-unstable-2025-11-17",
       url: "github:xlittlerag/tree-sitter-clarity",
       rev: "cbb3ffe8688aca558286fd45ed46857a1f3207bb",
       hash: "sha256-iylkAIBEpMPzRYHXyFQKMIEZJbqij/8tLdq9z/UPgN8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$51,
+        [nix.POS]: $pos[50],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -998,54 +358,66 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     clojure: nix.thunk(() => ({
-      [nix.POS]: pos$54,
+      [nix.POS]: $pos[53],
       version: "0.0.13-unstable-2025-08-26",
       url: "github:sogaiu/tree-sitter-clojure",
       rev: "e43eff80d17cf34852dcd92ca5e6986d23a7040f",
       hash: "sha256-jokekIuuQLx5UtuPs4XAI+euispeFCwSQByVKVelrC4=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$53, license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[52],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
+      })),
     })),
     cmake: nix.thunk(() => ({
-      [nix.POS]: pos$56,
+      [nix.POS]: $pos[55],
       version: "0.7.5",
       url: "github:uyha/tree-sitter-cmake",
       hash: "sha256-3WAADzMe4Rfd35M1CZd7wc/hE9ydD+vTKaxtcMsjSWM=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$55, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[54],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     comment: nix.thunk(() => ({
-      [nix.POS]: pos$58,
+      [nix.POS]: $pos[57],
       version: "0.3.0",
       url: "github:stsewd/tree-sitter-comment",
       hash: "sha256-O9BBcsMfIfDDzvm2eWuOhgLclUNdgZ/GsQd0kuFFFPQ=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$57, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[56],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     commonlisp: nix.thunk(() => ({
-      [nix.POS]: pos$60,
+      [nix.POS]: $pos[59],
       version: "0.4.1",
       url: "github:tree-sitter-grammars/tree-sitter-commonlisp",
       hash: "sha256-wHVdRiorBgxQ+gG+m/duv9nt5COxz6XK0AcKQ5FX43U=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$59, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[58],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     concerto: nix.thunk(() => ({
-      [nix.POS]: pos$62,
+      [nix.POS]: $pos[61],
       version: "0-unstable-2026-03-19",
       url: "github:accordproject/concerto-tree-sitter",
       rev: "920ba23ea93af56b19dfc38fcddf80b3ddc62685",
       hash: "sha256-WD+YEdwZJg4F4wNvUGDIMsL68QUt5AMypfC22lmLB+8=",
       excludeBrokenTreeSitterJson: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$61,
+        [nix.POS]: $pos[60],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
     })),
     cpon: nix.thunk(() => ({
-      [nix.POS]: pos$64,
+      [nix.POS]: $pos[63],
       version: "0-unstable-2023-06-06",
       url: "github:fvacek/tree-sitter-cpon",
       rev: "d42786f6295db7046372c042b208b8094940e9cd",
       hash: "sha256-5Va7cnbumCQDNAhrYe2dCBhFmgZUQ6dCy4VjB4+JaTs=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$63,
+        [nix.POS]: $pos[62],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1054,34 +426,43 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     cpp: nix.thunk(() => ({
-      [nix.POS]: pos$66,
+      [nix.POS]: $pos[65],
       version: "0.23.4",
       url: "github:tree-sitter/tree-sitter-cpp",
       hash: "sha256-tP5Tu747V8QMCEBYwOEmMQUm8OjojpJdlRmjcJTbe2k=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$65, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[64],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     crystal: nix.thunk(() => ({
-      [nix.POS]: pos$68,
+      [nix.POS]: $pos[67],
       version: "0-unstable-2025-10-12",
       url: "github:crystal-lang-tools/tree-sitter-crystal",
       rev: "50ca9e6fcfb16a2cbcad59203cfd8ad650e25c49",
       hash: "sha256-xmQrplDxoJ8GhcTyCOuEGn4wwMM3/9M6tyM1dgRGARU=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$67, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[66],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     css: nix.thunk(() => ({
-      [nix.POS]: pos$70,
+      [nix.POS]: $pos[69],
       version: "0.25.0",
       url: "github:tree-sitter/tree-sitter-css",
       hash: "sha256-jFsnEyS+FThk7L48FzAdSp5fNPSLvM8hTL/VC5FMlOE=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$69, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[68],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     csv: nix.thunk(() => ({
-      [nix.POS]: pos$72,
+      [nix.POS]: $pos[71],
       version: "1.0.0",
       url: "github:weartist/rainbow-csv-tree-sitter",
       hash: "sha256-caWf6cIx0CcDP2u84ncfdTSlWvhVawnYAIW4m5bzRQY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$71,
+        [nix.POS]: $pos[70],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1090,27 +471,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     cuda: nix.thunk(() => ({
-      [nix.POS]: pos$74,
+      [nix.POS]: $pos[73],
       version: "0.21.2",
       url: "github:tree-sitter-grammars/tree-sitter-cuda",
       hash: "sha256-s2qrZx5fEu/I6xE2paX/Nlmgvo6T27qqvy1cI8iznAA=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$73, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[72],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     cue: nix.thunk(() => ({
-      [nix.POS]: pos$76,
+      [nix.POS]: $pos[75],
       version: "0.1.0",
       url: "github:eonpatapon/tree-sitter-cue",
       hash: "sha256-ujSBOwOnjsKuFhHtt4zvj90VcQsak8mEcWYJ0e5/mKc=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$75, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[74],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     cylc: nix.thunk(() => ({
-      [nix.POS]: pos$78,
+      [nix.POS]: $pos[77],
       version: "0.2.0-unstable-2025-09-08",
       url: "github:elliotfontaine/tree-sitter-cylc",
       rev: "6d1d81137112299324b526477ce1db989ab58fb8",
       hash: "sha256-jgQCTM36S8UwSyT4LAfcX4DUIl2OYVMeQdDg3zRrw00=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$77,
+        [nix.POS]: $pos[76],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1119,21 +506,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     cython: nix.thunk(() => ({
-      [nix.POS]: pos$80,
+      [nix.POS]: $pos[79],
       version: "0-unstable-2024-12-21",
       url: "github:b0o/tree-sitter-cython",
       rev: "62f44f5e7e41dde03c5f0a05f035e293bcf2bcf8",
       hash: "sha256-TFMVjzKWZBN1JISq5RTbXDTkqnttLKxckvwhf3WBQX0=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$79, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[78],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     d: nix.thunk(() => ({
-      [nix.POS]: pos$82,
+      [nix.POS]: $pos[81],
       version: "0.8.2-unstable-2025-06-29",
       url: "github:gdamore/tree-sitter-d",
       rev: "fb028c8f14f4188286c2eef143f105def6fbf24f",
       hash: "sha256-Xi8out5j4L5pAArA9zmLA7aGhma++G+AaVLgFW+TEAo=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$81,
+        [nix.POS]: $pos[80],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1142,20 +532,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     dart: nix.thunk(() => ({
-      [nix.POS]: pos$84,
+      [nix.POS]: $pos[83],
       version: "0-unstable-2026-03-14",
       url: "github:usernobody14/tree-sitter-dart",
       rev: "0fc19c3a57b1109802af41d2b8f60d8835c5da3a",
       hash: "sha256-yK4XfjVPABFHf8MjoDge6bmapcybhdIF+49rlXFP+pw=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$83, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[82],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     dbml: nix.thunk(() => ({
-      [nix.POS]: pos$86,
+      [nix.POS]: $pos[85],
       version: "0.1.0",
       url: "github:dynamotn/tree-sitter-dbml",
       hash: "sha256-IxxUW6YYxP1hkwA9NEojEEE3c8pwvAI6juX8aF7NfMw=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$85,
+        [nix.POS]: $pos[84],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1164,13 +557,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     debian: nix.thunk(() => ({
-      [nix.POS]: pos$88,
+      [nix.POS]: $pos[87],
       version: "0-unstable-2025-04-01",
       url: "gitlab:MggMuggins/tree-sitter-debian",
       rev: "9b3f4b78c45aab8a2f25a5f9e7bbc00995bc3dde",
       hash: "sha256-VjWoF5oI+K101xKvF+MDsy1+eCkkUytn39PHKqOCkjo=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$87,
+        [nix.POS]: $pos[86],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1179,20 +572,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     devicetree: nix.thunk(() => ({
-      [nix.POS]: pos$90,
+      [nix.POS]: $pos[89],
       version: "0.15.0",
       url: "github:joelspadin/tree-sitter-devicetree",
       hash: "sha256-iMmr4zSm6B7goevHE03DMj9scW4ldXS7CV74sKeqGD4=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$89, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[88],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     dhall: nix.thunk(() => ({
-      [nix.POS]: pos$92,
+      [nix.POS]: $pos[91],
       version: "1.0.0-unstable-2025-04-13",
       url: "github:jbellerb/tree-sitter-dhall",
       rev: "62013259b26ac210d5de1abf64cf1b047ef88000",
       hash: "sha256-4xbz7DDUlLGgLW5V6Yyvo7dkE9MOk3mCQEBTYyRbNuM=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$91,
+        [nix.POS]: $pos[90],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1201,12 +597,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     diff: nix.thunk(() => ({
-      [nix.POS]: pos$94,
+      [nix.POS]: $pos[93],
       version: "0.2.0",
       url: "github:the-mikedavis/tree-sitter-diff",
       hash: "sha256-5HCBFE/99DJ9AYWSk18WRF3RGQpgpYAYA37bT54F0DI=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$93,
+        [nix.POS]: $pos[92],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1215,13 +611,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     djot: nix.thunk(() => ({
-      [nix.POS]: pos$96,
+      [nix.POS]: $pos[95],
       version: "0-unstable-2025-09-15",
       url: "codeberg:treeman/tree-sitter-djot",
       rev: "74fac1f53c6d52aeac104b6874e5506be6d0cfe6",
       hash: "sha256-HfEZHNhxEbH07gDzLPdl6n2Pf//o8tbJvwE+tesJDC8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$95,
+        [nix.POS]: $pos[94],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1230,50 +626,56 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     dockerfile: nix.thunk(() => ({
-      [nix.POS]: pos$98,
+      [nix.POS]: $pos[97],
       version: "0.2.0",
       url: "github:camdencheek/tree-sitter-dockerfile",
       hash: "sha256-4J1bA0y3YSriFTkYt81VftVtlQk790qmMlG/S3FNPCY=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$97, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[96],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     dot: nix.thunk(() => ({
-      [nix.POS]: pos$100,
+      [nix.POS]: $pos[99],
       version: "0-unstable-2025-10-21",
       url: "github:rydesun/tree-sitter-dot",
       rev: "80327abbba6f47530edeb0df9f11bd5d5c93c14d",
       hash: "sha256-sepmaKnpbj/bgMBa06ksQFOMPtcCqGaINiJqFBJN/0Y=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$99, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[98],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })),
     doxyfile: nix.thunk(() => ({
-      [nix.POS]: pos$102,
+      [nix.POS]: $pos[101],
       version: "0-unstable-2025-08-14",
       url: "github:tingerrr/tree-sitter-doxyfile",
       rev: "18e44c6da639632a4e42264c7193df34be915f34",
       hash: "sha256-/u1BHMJkj3FkTUwNiB6d8aQIBnnENsBzagXnQa9Dcls=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$101,
+        [nix.POS]: $pos[100],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     drools: nix.thunk(() => ({
-      [nix.POS]: pos$104,
+      [nix.POS]: $pos[103],
       version: "0.1.0",
       url: "github:iByteABit256/tree-sitter-drools",
       hash: "sha256-TuIJbr5URQJOChsb0OuiLO3A0mUyoZ0zMU4dzquhL58=",
       excludeBrokenTreeSitterJson: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$103,
+        [nix.POS]: $pos[102],
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
       })),
     })),
     dtd: nix.thunk(() => ({
-      [nix.POS]: pos$106,
+      [nix.POS]: $pos[105],
       version: "0.7.0-unstable-2026-01-21",
       url: "github:tree-sitter-grammars/tree-sitter-xml",
       rev: "5000ae8f22d11fbe93939b05c1e37cf21117162d",
       hash: "sha256-QN+jQx1CrTbYpmM9mLUfjWcymGsa0Th7LVgk4thnQXU=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$105,
+        [nix.POS]: $pos[104],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1282,13 +684,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     dune: nix.thunk(() => ({
-      [nix.POS]: pos$108,
+      [nix.POS]: $pos[107],
       version: "0-unstable-2026-05-21",
       url: "github:tmcgilchrist/tree-sitter-dune",
       rev: "dd00f0d232e5f081b583966a414994338614b35b",
       hash: "sha256-yJYuK1uPgN2DH8SIq67prQ1eEazPeBQNlPgGdkEjjHg=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$107,
+        [nix.POS]: $pos[106],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1297,13 +699,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     dunstrc: nix.thunk(() => ({
-      [nix.POS]: pos$110,
+      [nix.POS]: $pos[109],
       version: "0-unstable-2025-05-04",
       url: "github:rotmh/tree-sitter-dunstrc",
       rev: "9cb9d5cc51cf5e2a47bb2a0e2f2e519ff11c1431",
       hash: "sha256-yfjOly1NvdNIFc3zzFb8XSCA+IW9uIzjtQRhf4/NQzY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$109,
+        [nix.POS]: $pos[108],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1312,36 +714,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     earthfile: nix.thunk(() => ({
-      [nix.POS]: pos$112,
+      [nix.POS]: $pos[111],
       version: "0.6.0-unstable-2025-10-27",
       url: "github:glehmann/tree-sitter-earthfile",
       rev: "5baef88717ad0156fd29a8b12d0d8245bb1096a8",
       hash: "sha256-eeXzc+thSPey7r59QkJd5jgchZRhSwT5isSljYLBQ8k=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$111,
+        [nix.POS]: $pos[110],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     ebnf: nix.thunk(() => ({
-      [nix.POS]: pos$114,
+      [nix.POS]: $pos[113],
       version: "0.1.1-unstable-2023-02-06",
       url: "github:RubixDev/ebnf",
       rev: "8e635b0b723c620774dfb8abf382a7f531894b40",
       hash: "sha256-Cch6WCYq9bsWGypzDGapxBLJ0ZB432uAl6YjEjBJ5yg=",
       location: "crates/tree-sitter-ebnf",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$113,
+        [nix.POS]: $pos[112],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     edoc: nix.thunk(() => ({
-      [nix.POS]: pos$116,
+      [nix.POS]: $pos[115],
       version: "0-unstable-2022-11-23",
       url: "github:the-mikedavis/tree-sitter-edoc",
       rev: "74774af7b45dd9cefbf9510328fc6ff2374afc50",
       hash: "sha256-ALGr1vI/R2gAgjHfwORYMP/+CeIejnSGqC9Db+GD5uM=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$115,
+        [nix.POS]: $pos[114],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1350,22 +752,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     eex: nix.thunk(() => ({
-      [nix.POS]: pos$118,
+      [nix.POS]: $pos[117],
       version: "0.1.0",
       url: "github:connorlay/tree-sitter-eex",
       hash: "sha256-UPq62MkfGFh9m/UskoB9uBDIYOcotITCJXDyrbg/wKY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$117,
+        [nix.POS]: $pos[116],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     eiffel: nix.thunk(() => ({
-      [nix.POS]: pos$120,
+      [nix.POS]: $pos[119],
       version: "1.0.0",
       url: "github:imustafin/tree-sitter-eiffel",
       hash: "sha256-DeZZT+xlb+oWdTKXvf4W/siL8q/ESDVtpCOXUO/yeao=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$119,
+        [nix.POS]: $pos[118],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
@@ -1374,39 +776,39 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`github:wilfred/tree-sitter-elisp?ref=${version}`);
       const hash = "sha256-ixZKsQtRk5ykR6miQ5JicI3xn/Bp9t4WGAIoNTC/gbY=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$121,
+        [nix.POS]: $pos[120],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { [nix.POS]: pos$122, version, url, hash, meta };
+      return { [nix.POS]: $pos[121], version, url, hash, meta };
     })()),
     elixir: nix.thunk(() => ({
-      [nix.POS]: pos$124,
+      [nix.POS]: $pos[123],
       version: "0.3.5",
       url: "github:elixir-lang/tree-sitter-elixir",
       hash: "sha256-C5/+t49pcFh45GqLZRjRs/sH8Ej+dklR/brad+snsyQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$123,
+        [nix.POS]: $pos[122],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
     })),
     elm: nix.thunk(() => ({
-      [nix.POS]: pos$126,
+      [nix.POS]: $pos[125],
       version: "5.9.4",
       url: "github:elm-tooling/tree-sitter-elm",
       hash: "sha256-HFfpwThgWdd+pz8Ub042pKDKyFcuokHRGljhZ2xZFQU=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$125,
+        [nix.POS]: $pos[124],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     elvish: nix.thunk(() => ({
-      [nix.POS]: pos$128,
+      [nix.POS]: $pos[127],
       version: "0-unstable-2023-07-17",
       url: "github:ckafi/tree-sitter-elvish",
       rev: "5e7210d945425b77f82cbaebc5af4dd3e1ad40f5",
       hash: "sha256-POuQA2Ihi+qDYQ5Pv7hBAzHpPu/FcnuYscW4ItDOCZg=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$127,
+        [nix.POS]: $pos[126],
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1415,23 +817,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     "embedded-perl": nix.thunk(() => ({
-      [nix.POS]: pos$130,
+      [nix.POS]: $pos[129],
       version: "0-unstable-2026-03-18",
       url: "github:jobindex-open/tree-sitter-embedded-perl",
       rev: "5557a53f1f59a67cbd54c25bacd0c56d43158818",
       hash: "sha256-4I14D3FY/GTOyESIywrRz298G1+I6DxwdSz84cI7Bqc=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$129,
+        [nix.POS]: $pos[128],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     "embedded-template": nix.thunk(() => ({
-      [nix.POS]: pos$132,
+      [nix.POS]: $pos[131],
       version: "0.25.0",
       url: "github:tree-sitter/tree-sitter-embedded-template",
       hash: "sha256-nBQain0Lc21jOgQFfvkyq615ZmT8qdMxtqIoUcOcO3A=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$131,
+        [nix.POS]: $pos[130],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
@@ -1440,19 +842,19 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`github:WhatsApp/tree-sitter-erlang?ref=${version}`);
       const hash = "sha256-FH8DNE03k95ZsRwaiXHkaU9/cdWrWALCEdChN5ZPdog=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$133,
+        [nix.POS]: $pos[132],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
-      return { [nix.POS]: pos$134, version, url, hash, meta };
+      return { [nix.POS]: $pos[133], version, url, hash, meta };
     })()),
     esdl: nix.thunk(() => ({
-      [nix.POS]: pos$136,
+      [nix.POS]: $pos[135],
       version: "0-unstable-2024-03-28",
       url: "github:greym0uth/tree-sitter-esdl",
       rev: "7e6692b2e2b4f73b03f1371e8d8b83f23bc1c6c8",
       hash: "sha256-8vBpWfRl0yd0Tcsgq+wzcrajGbNJMc7qSq+YH/8A0cU=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$135,
+        [nix.POS]: $pos[134],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1461,35 +863,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     factor: nix.thunk(() => ({
-      [nix.POS]: pos$138,
+      [nix.POS]: $pos[137],
       version: "0-unstable-2025-01-12",
       url: "github:erochest/tree-sitter-factor",
       rev: "554d8b705df61864eb41a0ecf3741e94eb9f0c54",
       hash: "sha256-Z60ySUrBAiNm5s3iH/6jkjsKX5mPAW8bgid+5m2MzJM=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$137,
+        [nix.POS]: $pos[136],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     fennel: nix.thunk(() => ({
-      [nix.POS]: pos$140,
+      [nix.POS]: $pos[139],
       version: "1.1.0-unstable-2026-01-21",
       url: "github:alexmozaidze/tree-sitter-fennel",
       rev: "3f0f6b24d599e92460b969aabc4f4c5a914d15a0",
       hash: "sha256-jk9Misdfdso/h/lK/o9FTorK6DbNJPrZs/aw+3r/H1M=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$139,
+        [nix.POS]: $pos[138],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     fga: nix.thunk(() => ({
-      [nix.POS]: pos$142,
+      [nix.POS]: $pos[141],
       version: "0-unstable-2026-03-19",
       url: "github:matoous/tree-sitter-fga",
       rev: "ce72d1c484ba133a18e966d67be66bce85695451",
       hash: "sha256-8op8IFKh3dZY02Yiehvqz1XyeOw9qSoe0f31M4yzw1U=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$141,
+        [nix.POS]: $pos[140],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1498,13 +900,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     fidl: nix.thunk(() => ({
-      [nix.POS]: pos$144,
+      [nix.POS]: $pos[143],
       version: "0-unstable-2024-02-27",
       url: "github:google/tree-sitter-fidl",
       rev: "0a8910f293268e27ff554357c229ba172b0eaed2",
       hash: "sha256-QFAkxQo2w/+OR7nZn9ldBk2yHOd23kzciAcQvIZ5hrY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$143,
+        [nix.POS]: $pos[142],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1517,30 +919,30 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`github:ram02z/tree-sitter-fish?ref=${version}`);
       const hash = "sha256-n6eGMdbW1Rsn5XbszLSSSG3F8jh+loYnPEiabNY+jfk=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$145,
+        [nix.POS]: $pos[144],
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
       }));
-      return { [nix.POS]: pos$146, version, url, hash, meta };
+      return { [nix.POS]: $pos[145], version, url, hash, meta };
     })()),
     flatbuffers: nix.thunk(() => ({
-      [nix.POS]: pos$148,
+      [nix.POS]: $pos[147],
       version: "0-unstable-2024-10-23",
       url: "github:yuanchenxi95/tree-sitter-flatbuffers",
       rev: "95e6f9ef101ea97e870bf6eebc0bd1fdfbaf5490",
       hash: "sha256-rxCgEpZ9NXjhq7ByJLtl/3Oy73dPv1EGG95k3eGOUVE=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$147,
+        [nix.POS]: $pos[146],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     forth: nix.thunk(() => ({
-      [nix.POS]: pos$150,
+      [nix.POS]: $pos[149],
       version: "0-unstable-2025-12-01",
       url: "github:alexanderbrevig/tree-sitter-forth",
       rev: "360ef13f8c609ec6d2e80782af69958b84e36cd0",
       hash: "sha256-d7X1Ubd9tKMQgNHlH+sQxmcsgLWB4mxR5CIdyKkLnM8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$149,
+        [nix.POS]: $pos[148],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1549,34 +951,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     fortran: nix.thunk(() => ({
-      [nix.POS]: pos$152,
+      [nix.POS]: $pos[151],
       version: "0.5.1",
       url: "github:stadelmanma/tree-sitter-fortran",
       hash: "sha256-6l+cfLVbs8geKIYhnfuZDac8uzmNHOZf2rFANdl4tDs=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$151,
+        [nix.POS]: $pos[150],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     freebasic: nix.thunk(() => ({
-      [nix.POS]: pos$154,
+      [nix.POS]: $pos[153],
       version: "0-unstable-2025-11-11",
       url: "github:Ra77a3l3-jar/tree-sitter-freebasic",
       rev: "dbf696adb4c0b9c020074e75043c90592981ee7f",
       hash: "sha256-9JDf9Tj6K55JRTNfw9U7wR3/idQ8eBoQRCOQnLm3hbs=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$153,
+        [nix.POS]: $pos[152],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     fsharp: nix.thunk(() => ({
-      [nix.POS]: pos$156,
+      [nix.POS]: $pos[155],
       version: "0.3.12-unstable-2026-09-12",
       url: "github:ionide/tree-sitter-fsharp",
       rev: "aefd0c8741bdf3aeb827a228aa4a996a6536697e",
       hash: "sha256-mFZaHFq1hdJfCKfxgmiHwX1BXYl0r46ncZ6dDPo2aII=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$155,
+        [nix.POS]: $pos[154],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1585,13 +987,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     fstar: nix.thunk(() => ({
-      [nix.POS]: pos$158,
+      [nix.POS]: $pos[157],
       version: "0-unstable-2026-03-14",
       url: "github:sei40kr/tree-sitter-fstar",
       rev: "cdb06d462e0ee727c313f3e07c71bc2d288e0f89",
       hash: "sha256-kGFP+MbZ10qS13n8pcI6YhIS6xWjDtuqZSeIiPSO7pM=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$157,
+        [nix.POS]: $pos[156],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1601,13 +1003,13 @@ export default nix.lambda((args) => (() => {
       excludeBrokenTreeSitterJson: true,
     })),
     gas: nix.thunk(() => ({
-      [nix.POS]: pos$160,
+      [nix.POS]: $pos[159],
       version: "0.0.1-unstable-2023-09-15",
       url: "github:sirius94/tree-sitter-gas",
       rev: "60f443646b20edee3b7bf18f3a4fb91dc214259a",
       hash: "sha256-HyLNnmK4jud2Ndkc+5MY9MlASh/ehPA/eQATsCVGcUw=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$159,
+        [nix.POS]: $pos[158],
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1616,12 +1018,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     gdscript: nix.thunk(() => ({
-      [nix.POS]: pos$162,
+      [nix.POS]: $pos[161],
       version: "6.1.0",
       url: "github:prestonknopp/tree-sitter-gdscript",
       hash: "sha256-QT28TQBt20lMScfF4zb2RJhlPFNekjocOWbvQ2a2yuM=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$161,
+        [nix.POS]: $pos[160],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
@@ -1630,19 +1032,19 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`github:blessanabraham/tree-sitter-gemini?ref=${version}`);
       const hash = "sha256-grWpLh5ozSUct5sSI8M8qnWy72b7ruRuhOpoyswvJuU=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$163,
+        [nix.POS]: $pos[162],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { [nix.POS]: pos$164, version, url, hash, meta };
+      return { [nix.POS]: $pos[163], version, url, hash, meta };
     })()),
     gherkin: nix.thunk(() => ({
-      [nix.POS]: pos$166,
+      [nix.POS]: $pos[165],
       version: "0-unstable-2024-07-04",
       url: "github:SamyAB/tree-sitter-gherkin",
       rev: "43873ee8de16476635b48d52c46f5b6407cb5c09",
       hash: "sha256-6Ywu4HPfgpKsuZ6wo2b1CA3Z+lD+/3XEyJi2l2Q66+Y=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$165,
+        [nix.POS]: $pos[164],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1651,13 +1053,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     ghostty: nix.thunk(() => ({
-      [nix.POS]: pos$168,
+      [nix.POS]: $pos[167],
       version: "1.3.1-unstable-2026-08-23",
       url: "github:bezhermoso/tree-sitter-ghostty",
       rev: "a2075c3761a41449bb4faf69794c902dfef6d70e",
       hash: "sha256-p1zAClid50miSiBHur9NvCCUWjgiDvrhN75sREkRLHs=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$167,
+        [nix.POS]: $pos[166],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1666,13 +1068,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     "git-config": nix.thunk(() => ({
-      [nix.POS]: pos$170,
+      [nix.POS]: $pos[169],
       version: "0-unstable-2025-05-11",
       url: "github:the-mikedavis/tree-sitter-git-config",
       rev: "0fbc9f99d5a28865f9de8427fb0672d66f9d83a5",
       hash: "sha256-u1NrtCap+CvhSW4q7xrwiUPGuCspjk9sHKkXQcEXc2E=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$169,
+        [nix.POS]: $pos[168],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1681,13 +1083,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     "git-rebase": nix.thunk(() => ({
-      [nix.POS]: pos$172,
+      [nix.POS]: $pos[171],
       version: "1.0.0",
       url: "github:the-mikedavis/tree-sitter-git-rebase",
       hash: "sha256-EV/Ecfzu3jZ5BQynRxn8NJ+lfi9i5ixs+u1e72uZBJA=",
       postPatch: "# The funding url is empty, which will result in failing tests for the python package\n# tree-sitter-grammars.tree-sitter.git-rebase.\njq 'del(.metadata.links.funding)' tree-sitter.json > tree-sitter.json.tmp && mv tree-sitter.json.tmp tree-sitter.json\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$171,
+        [nix.POS]: $pos[170],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1696,13 +1098,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     gitattributes: nix.thunk(() => ({
-      [nix.POS]: pos$174,
+      [nix.POS]: $pos[173],
       version: "0.1.6-unstable-2025-08-17",
       url: "github:tree-sitter-grammars/tree-sitter-gitattributes",
       rev: "1b7af09d45b579f9f288453b95ad555f1f431645",
       hash: "sha256-eHDcJgHpWemOYtKACVhl5Muri1W1Igrjm/p0rAbvrNY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$173,
+        [nix.POS]: $pos[172],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1711,12 +1113,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     gitcommit: nix.thunk(() => ({
-      [nix.POS]: pos$176,
+      [nix.POS]: $pos[175],
       version: "0.5.0",
       url: "github:gbprod/tree-sitter-gitcommit",
       hash: "sha256-ttULjFU9slnPcT4bCjOozGkaKAOxMW5Oa2/caVNeEsA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$175,
+        [nix.POS]: $pos[174],
         license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1725,13 +1127,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     gitignore: nix.thunk(() => ({
-      [nix.POS]: pos$178,
+      [nix.POS]: $pos[177],
       version: "0-unstable-2022-05-04",
       url: "github:shunsambongi/tree-sitter-gitignore",
       rev: "f4685bf11ac466dd278449bcfe5fd014e94aa504",
       hash: "sha256-MjoY1tlVZgN6JqoTjhhg0zSdHzc8yplMr8824sfIKp8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$177,
+        [nix.POS]: $pos[176],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1740,66 +1142,66 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     gleam: nix.thunk(() => ({
-      [nix.POS]: pos$180,
+      [nix.POS]: $pos[179],
       version: "1.1.0",
       url: "github:gleam-lang/tree-sitter-gleam",
       hash: "sha256-GIikbo8N2bmUa8wddpAgTHeejCInoEY8HxGDbuYq/zQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$179,
+        [nix.POS]: $pos[178],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
     })),
     glimmer: nix.thunk(() => ({
-      [nix.POS]: pos$182,
+      [nix.POS]: $pos[181],
       version: "1.6.0",
       url: "github:ember-tooling/tree-sitter-glimmer?ref=v1.6.0-tree-sitter-glimmer",
       hash: "sha256-AW+jd1Kl3krTgnPc8NoXfSM91fOan/wIB/mo/feWj74=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$181,
+        [nix.POS]: $pos[180],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
       excludeBrokenTreeSitterJson: true,
     })),
     "glimmer-javascript": nix.thunk(() => ({
-      [nix.POS]: pos$184,
+      [nix.POS]: $pos[183],
       version: "0-unstable-2026-05-14",
       url: "github:ember-tooling/tree-sitter-glimmer-javascript",
       rev: "d9cf7a2f1dad3c6b660148eaf77e955d418fdb8b",
       hash: "sha256-gvs85PiyNov10Ar0JytOzjmJQVOeVx74ZQSbV+XUKa4=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$183,
+        [nix.POS]: $pos[182],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     "glimmer-typescript": nix.thunk(() => ({
-      [nix.POS]: pos$186,
+      [nix.POS]: $pos[185],
       version: "0-unstable-2025-04-01",
       url: "github:ember-tooling/tree-sitter-glimmer-typescript",
       rev: "12d98944c1d5077b957cbdb90d663a7c4d50118c",
       hash: "sha256-3cJI6vcbU62kUIhphprNeAl9RyY9TThrzVeArdLfxnI=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$185,
+        [nix.POS]: $pos[184],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     glsl: nix.thunk(() => ({
-      [nix.POS]: pos$188,
+      [nix.POS]: $pos[187],
       version: "0.2.0",
       url: "github:tree-sitter-grammars/tree-sitter-glsl",
       hash: "sha256-S0Yr/RQE4uLpazphTKLUoHgPEOUbOBDGCkkRXemsHjQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$187,
+        [nix.POS]: $pos[186],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     gn: nix.thunk(() => ({
-      [nix.POS]: pos$190,
+      [nix.POS]: $pos[189],
       version: "0-unstable-2023-12-10",
       url: "github:willcassella/tree-sitter-gn",
       rev: "fbaa7b3d52b958e3ac06e15416e1785138bde063",
       hash: "sha256-3OLlUL21YcdOZcnroPMwvMVJgu8bsGHldTnZh8y6q9M=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$189,
+        [nix.POS]: $pos[188],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1808,45 +1210,45 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     gnuplot: nix.thunk(() => ({
-      [nix.POS]: pos$192,
+      [nix.POS]: $pos[191],
       version: "0-unstable-2026-01-29",
       url: "codeberg:maribu/tree-sitter-gnuplot",
       rev: "21a3a3929facb964b3592daeb69119294ff84cf2",
       hash: "sha256-2Z0CDtLOZ7LWffFboxO+tE0VWEkzNNodFMXr5PHQkoo=",
       excludeBrokenTreeSitterJson: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$191,
+        [nix.POS]: $pos[190],
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
       })),
     })),
     go: nix.thunk(() => ({
-      [nix.POS]: pos$194,
+      [nix.POS]: $pos[193],
       version: "0.25.0",
       url: "github:tree-sitter/tree-sitter-go",
       hash: "sha256-y7bTET8ypPczPnMVlCaiZuswcA7vFrDOc2jlbfVk5Sk=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$193,
+        [nix.POS]: $pos[192],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     "go-format-string": nix.thunk(() => ({
-      [nix.POS]: pos$196,
+      [nix.POS]: $pos[195],
       version: "1.1.0",
       url: "codeberg:kpbaks/tree-sitter-go-format-string",
       hash: "sha256-Em9uodgqj1TXyZieLuwrYouth5r4UvZoBFSSbzAqJE0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$195,
+        [nix.POS]: $pos[194],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     "go-template": nix.thunk(() => ({
-      [nix.POS]: pos$198,
+      [nix.POS]: $pos[197],
       version: "0-unstable-2026-03-21",
       url: "github:ngalaiko/tree-sitter-go-template",
       rev: "aa71f63de226c5592dfbfc1f29949522d7c95fac",
       hash: "sha256-QSzUyRDGdBH9TaG3YCHnJp12WcR8kdbsZFIk8I+JW1Y=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$197,
+        [nix.POS]: $pos[196],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1855,14 +1257,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     "go-template-helm": nix.thunk(() => ({
-      [nix.POS]: pos$200,
+      [nix.POS]: $pos[199],
       version: "0-unstable-2026-03-21",
       url: "github:ngalaiko/tree-sitter-go-template",
       rev: "aa71f63de226c5592dfbfc1f29949522d7c95fac",
       hash: "sha256-QSzUyRDGdBH9TaG3YCHnJp12WcR8kdbsZFIk8I+JW1Y=",
       location: "dialects/helm",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$199,
+        [nix.POS]: $pos[198],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1871,34 +1273,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     "godot-resource": nix.thunk(() => ({
-      [nix.POS]: pos$202,
+      [nix.POS]: $pos[201],
       language: "godot_resource",
       version: "0.7.0",
       url: "github:prestonknopp/tree-sitter-godot-resource",
       hash: "sha256-+tUMLqtak9ToY+UUnIiqngDs6diG8crW8Ac0mbk7FMo=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$201,
+        [nix.POS]: $pos[200],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     gomod: nix.thunk(() => ({
-      [nix.POS]: pos$204,
+      [nix.POS]: $pos[203],
       version: "1.1.0",
       url: "github:camdencheek/tree-sitter-go-mod",
       hash: "sha256-C3pPBgm68mmaPmstyIpIvvDHsx29yZ0ZX/QoUqwjb+0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$203,
+        [nix.POS]: $pos[202],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     gotmpl: nix.thunk(() => ({
-      [nix.POS]: pos$206,
+      [nix.POS]: $pos[205],
       version: "0-unstable-2026-03-21",
       url: "github:ngalaiko/tree-sitter-go-template",
       rev: "aa71f63de226c5592dfbfc1f29949522d7c95fac",
       hash: "sha256-QSzUyRDGdBH9TaG3YCHnJp12WcR8kdbsZFIk8I+JW1Y=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$205,
+        [nix.POS]: $pos[204],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1907,24 +1309,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     gowork: nix.thunk(() => ({
-      [nix.POS]: pos$208,
+      [nix.POS]: $pos[207],
       version: "0-unstable-2022-10-04",
       url: "github:omertuc/tree-sitter-go-work",
       rev: "949a8a470559543857a62102c84700d291fc984c",
       hash: "sha256-Tode7W05xaOKKD5QOp3rayFgLEOiMJUeGpVsIrizxto=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$207,
+        [nix.POS]: $pos[206],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     gpr: nix.thunk(() => ({
-      [nix.POS]: pos$210,
+      [nix.POS]: $pos[209],
       version: "0-unstable-2024-08-13",
       url: "github:brownts/tree-sitter-gpr",
       rev: "cea857d3c18d1385d1f5b66cd09ea1e44173945c",
       hash: "sha256-tqff8Aaj9uebJeNYuNdaDBllsj/mwRStWhhY3zB8xlU=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$209,
+        [nix.POS]: $pos[208],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1933,24 +1335,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     graphql: nix.thunk(() => ({
-      [nix.POS]: pos$212,
+      [nix.POS]: $pos[211],
       version: "0-unstable-2021-05-10",
       url: "github:bkegley/tree-sitter-graphql",
       rev: "5e66e961eee421786bdda8495ed1db045e06b5fe",
       hash: "sha256-NvE9Rpdp4sALqKSRWJpqxwl6obmqnIIdvrL1nK5peXc=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$211,
+        [nix.POS]: $pos[210],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     gren: nix.thunk(() => ({
-      [nix.POS]: pos$214,
+      [nix.POS]: $pos[213],
       version: "2.0.0-unstable-2026-03-31",
       url: "github:MaeBrooks/tree-sitter-gren",
       rev: "cecd8ce9b18f1803d37682f33b6224978fd04d31",
       hash: "sha256-E96GzFmQDEb3Uq6sEThxqpRwqEH+JwE/hJ0xM1r2VjI=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$213,
+        [nix.POS]: $pos[212],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1960,13 +1362,13 @@ export default nix.lambda((args) => (() => {
       excludeBrokenTreeSitterJson: true,
     })),
     groovy: nix.thunk(() => ({
-      [nix.POS]: pos$216,
+      [nix.POS]: $pos[215],
       version: "0-unstable-2026-04-11",
       url: "github:murtaza64/tree-sitter-groovy",
       rev: "deb0dcf8c4544f07564060f6e9b9f6e4b0bfc27d",
       hash: "sha256-x7PawYYtgsduh60KNnS4LgB7SvoBV9aOJ9cHNsLBBhc=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$215,
+        [nix.POS]: $pos[214],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1975,13 +1377,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     hare: nix.thunk(() => ({
-      [nix.POS]: pos$218,
+      [nix.POS]: $pos[217],
       version: "0-unstable-2025-10-07",
       url: "github:tree-sitter-grammars/tree-sitter-hare",
       rev: "eed7ddf6a66b596906aa8ca3d40521b8278adc6f",
       hash: "sha256-qXLRb+5SgfBrOXta10P04ErV5z8eSM/J0Od5pk06OCc=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$217,
+        [nix.POS]: $pos[216],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1990,35 +1392,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     haskell: nix.thunk(() => ({
-      [nix.POS]: pos$220,
+      [nix.POS]: $pos[219],
       version: "0.24.1",
       url: "github:tree-sitter/tree-sitter-haskell",
       hash: "sha256-R4KAAaBoDUGuQtR2U+0xdB9iLclWBrm+/blqsCX5ZjQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$219,
+        [nix.POS]: $pos[218],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     "haskell-literate": nix.thunk(() => ({
-      [nix.POS]: pos$222,
+      [nix.POS]: $pos[221],
       version: "0-unstable-2025-10-30",
       url: "github:LaurentRDC/tree-sitter-haskell-literate",
       rev: "8ad7bd1b1595f4cc1a4ccc775d4a3c460f43a596",
       hash: "sha256-P9FTcMwPU1AvH55ly0XydCSVOP0Mfi6jQ0Yg6Muraqk=",
       excludeBrokenTreeSitterJson: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$221,
+        [nix.POS]: $pos[220],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     "haskell-persistent": nix.thunk(() => ({
-      [nix.POS]: pos$224,
+      [nix.POS]: $pos[223],
       version: "0-unstable-2023-09-19",
       url: "github:MercuryTechnologies/tree-sitter-haskell-persistent",
       rev: "577259b4068b2c281c9ebf94c109bd50a74d5857",
       hash: "sha256-ASdkBQ57GfpLF8NXgDzJMB/Marz9p1q03TZkwMgF/eQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$223,
+        [nix.POS]: $pos[222],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2027,65 +1429,65 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     haxe: nix.thunk(() => ({
-      [nix.POS]: pos$226,
+      [nix.POS]: $pos[225],
       version: "0.13.0",
       url: "github:vantreeseba/tree-sitter-haxe",
       hash: "sha256-MHZemYMpfbo1AdVUQv3j6eVWntZKi6K7UtRCPGk2kvE=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$225,
+        [nix.POS]: $pos[224],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     hcl: nix.thunk(() => ({
-      [nix.POS]: pos$228,
+      [nix.POS]: $pos[227],
       version: "1.2.0",
       url: "github:tree-sitter-grammars/tree-sitter-hcl",
       hash: "sha256-Kq0KtkF6xtZcN2s8KzYGyguJH2iOTlA2WRytZ+KGTUE=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$227,
+        [nix.POS]: $pos[226],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
     })),
     hdl: nix.thunk(() => ({
-      [nix.POS]: pos$230,
+      [nix.POS]: $pos[229],
       version: "0-unstable-2025-09-09",
       url: "github:quantonganh/tree-sitter-hdl",
       rev: "2199fdf1d302100a53002ea2cf540999119836a0",
       hash: "sha256-aurnBP9R03QN1cDTKpZbp1VX3HCYjleRkSQs6m1aCxA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$229,
+        [nix.POS]: $pos[228],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     heex: nix.thunk(() => ({
-      [nix.POS]: pos$232,
+      [nix.POS]: $pos[231],
       version: "0.9.0",
       url: "github:phoenixframework/tree-sitter-heex",
       hash: "sha256-1p2drpkA+5o+WSH5cv+zPVx30lNhQ9bqX5JHA0YSS2Y=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$231,
+        [nix.POS]: $pos[230],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     hjson: nix.thunk(() => ({
-      [nix.POS]: pos$234,
+      [nix.POS]: $pos[233],
       version: "0-unstable-2021-08-02",
       url: "github:winston0410/tree-sitter-hjson",
       rev: "02fa3b79b3ff9a296066da6277adfc3f26cbc9e0",
       hash: "sha256-NsTf3DR3gHVMYZDmTNvThB5bJcDwTcJ1+3eJhvsiDn8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$233,
+        [nix.POS]: $pos[232],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     hledger: nix.thunk(() => ({
-      [nix.POS]: pos$236,
+      [nix.POS]: $pos[235],
       version: "0-unstable-2026-03-11",
       url: "github:chrislloyd/tree-sitter-hledger",
       rev: "8ee65478cb941a8cdaa798ffa73bb4437d4c4d07",
       hash: "sha256-92k6/0tcHGMp164VVZDtDiBopKCD+4tfBXGFLSOrUdQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$235,
+        [nix.POS]: $pos[234],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2094,13 +1496,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     hocon: nix.thunk(() => ({
-      [nix.POS]: pos$238,
+      [nix.POS]: $pos[237],
       version: "0-unstable-2022-11-07",
       url: "github:antosha417/tree-sitter-hocon",
       rev: "c390f10519ae69fdb03b3e5764f5592fb6924bcc",
       hash: "sha256-9Zo3YYoo9mJ4Buyj7ofSrlZURrwstBo0vgzeTq1jMGw=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$237,
+        [nix.POS]: $pos[236],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2109,13 +1511,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     hoon: nix.thunk(() => ({
-      [nix.POS]: pos$240,
+      [nix.POS]: $pos[239],
       version: "0.0.3-unstable-2024-12-17",
       url: "github:urbit-pilled/tree-sitter-hoon",
       rev: "1545137aadcc63660c47db9ad98d02fa602655d0",
       hash: "sha256-RkSPoscrinmuSTWHzXkRNaiqECDXpKAbQ4z7a6Tpvek=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$239,
+        [nix.POS]: $pos[238],
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2124,13 +1526,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     hosts: nix.thunk(() => ({
-      [nix.POS]: pos$242,
+      [nix.POS]: $pos[241],
       version: "0-unstable-2022-12-01",
       url: "github:ath3/tree-sitter-hosts",
       rev: "301b9379ce7dfc8bdbe2c2699a6887dcb73953f9",
       hash: "sha256-f8ldDZD0I/D8IC566bZ4YgQE/b0maTE3BfzuzPfy92k=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$241,
+        [nix.POS]: $pos[240],
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2139,23 +1541,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     html: nix.thunk(() => ({
-      [nix.POS]: pos$244,
+      [nix.POS]: $pos[243],
       version: "0.23.2",
       url: "github:tree-sitter/tree-sitter-html",
       hash: "sha256-Pd5Me1twLGOrRB3pSMVX9M8VKenTK0896aoLznjNkGo=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$243,
+        [nix.POS]: $pos[242],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     htmldjango: nix.thunk(() => ({
-      [nix.POS]: pos$246,
+      [nix.POS]: $pos[245],
       version: "1.0.0-unstable-2025-04-16",
       url: "github:interdependence/tree-sitter-htmldjango",
       rev: "3a643167ad9afac5d61e092f08ff5b054576fadf",
       hash: "sha256-sQV7olTaQ68wixzvKV44myVvDUXXjBZh9N3jvDFUSvE=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$245,
+        [nix.POS]: $pos[244],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2164,22 +1566,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     http: nix.thunk(() => ({
-      [nix.POS]: pos$248,
+      [nix.POS]: $pos[247],
       version: "3.0.0",
       url: "github:rest-nvim/tree-sitter-http?ref=v3.0",
       hash: "sha256-pg7QmnfhuCmyuq6HupCJl4H/rcxDeUn563LoL+Wd2Uw=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$247,
+        [nix.POS]: $pos[246],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     hurl: nix.thunk(() => ({
-      [nix.POS]: pos$250,
+      [nix.POS]: $pos[249],
       version: "1.7.0",
       url: "github:pfeiferj/tree-sitter-hurl",
       hash: "sha256-sQjjx3DGfi0l8/XNOIoyFYAcDpaQOkD4Ics3g6vkgjM=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$249,
+        [nix.POS]: $pos[248],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2188,23 +1590,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     hyprlang: nix.thunk(() => ({
-      [nix.POS]: pos$252,
+      [nix.POS]: $pos[251],
       version: "3.1.0",
       url: "github:tree-sitter-grammars/tree-sitter-hyprlang",
       hash: "sha256-pNAN5TF01Bnqfcsoa0IllchCCBph9/SowzIoMyQcN5w=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$251,
+        [nix.POS]: $pos[250],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     iex: nix.thunk(() => ({
-      [nix.POS]: pos$254,
+      [nix.POS]: $pos[253],
       version: "0-unstable-2022-01-08",
       url: "github:elixir-lang/tree-sitter-iex",
       rev: "39f20bb51f502e32058684e893c0c0b00bb2332c",
       hash: "sha256-YRVxMz9VqZ00bG0tQ/IDxf/8UkK3/OYZTIMxsQfknII=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$253,
+        [nix.POS]: $pos[252],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2213,13 +1615,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     ini: nix.thunk(() => ({
-      [nix.POS]: pos$256,
+      [nix.POS]: $pos[255],
       version: "1.4.0-unstable-2025-12-08",
       url: "github:justinmk/tree-sitter-ini",
       rev: "e4018b5176132b4f3c5d6e61cea383f42288d0f5",
       hash: "sha256-8WCyIaApsLPOybe+cntF4ISyQKN41L2IRAATd9KmzL0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$255,
+        [nix.POS]: $pos[254],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2228,13 +1630,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     ink: nix.thunk(() => ({
-      [nix.POS]: pos$258,
+      [nix.POS]: $pos[257],
       version: "0.1.1-unstable-2025-02-05",
       url: "github:rhizoome/tree-sitter-ink",
       rev: "3bafa20b888b97a505164fa9ee3812c331b2b809",
       hash: "sha256-i+e+eaiAzTx2n9A0mlQ1SStGTbcS4LQJfmK8uNpzNiI=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$257,
+        [nix.POS]: $pos[256],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2243,12 +1645,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     inko: nix.thunk(() => ({
-      [nix.POS]: pos$260,
+      [nix.POS]: $pos[259],
       version: "0.5.1",
       url: "github:inko-lang/tree-sitter-inko",
       hash: "sha256-bt/T6O/7of8r9DrA6DU8pM4vWlBCgWWzw89GZbDyJnw=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$259,
+        [nix.POS]: $pos[258],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2257,45 +1659,45 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     "janet-simple": nix.thunk(() => ({
-      [nix.POS]: pos$262,
+      [nix.POS]: $pos[261],
       version: "0.0.7-unstable-2026-02-10",
       url: "github:sogaiu/tree-sitter-janet-simple",
       rev: "d183186995204314700be3e9e0a48053ea16b350",
       hash: "sha256-zETOH+HpHyiCdOiggRy7VVjOv/WVRDb4qQ+kN9r2Frc=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$261,
+        [nix.POS]: $pos[260],
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
       })),
       excludeBrokenTreeSitterJson: true,
     })),
     java: nix.thunk(() => ({
-      [nix.POS]: pos$264,
+      [nix.POS]: $pos[263],
       version: "0.23.5",
       url: "github:tree-sitter/tree-sitter-java",
       hash: "sha256-OvEO1BLZLjP3jt4gar18kiXderksFKO0WFXDQqGLRIY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$263,
+        [nix.POS]: $pos[262],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     javascript: nix.thunk(() => ({
-      [nix.POS]: pos$266,
+      [nix.POS]: $pos[265],
       version: "0.25.0",
       url: "github:tree-sitter/tree-sitter-javascript",
       hash: "sha256-2Jj/SUG+k8lHlGSuPZvHjJojvQFgDiZHZzH8xLu7suE=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$265,
+        [nix.POS]: $pos[264],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     jinja2: nix.thunk(() => ({
-      [nix.POS]: pos$268,
+      [nix.POS]: $pos[267],
       version: "0-unstable-2023-02-09",
       url: "github:varpeti/tree-sitter-jinja2",
       rev: "a533cd3c33aea6acb0f9bf9a56f35dcfe6a8eb53",
       hash: "sha256-ksHel/kkWk4cyCx/+k8IfqjnID8i744WsZi9+AVSNpw=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$267,
+        [nix.POS]: $pos[266],
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2304,12 +1706,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     jjdescription: nix.thunk(() => ({
-      [nix.POS]: pos$270,
+      [nix.POS]: $pos[269],
       version: "1.0.3",
       url: "github:ribru17/tree-sitter-jjdescription",
       hash: "sha256-3v/SiIQIR8ptUnzzRVTaqcznw3kXqdWlS2Ua/f6npDU=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$269,
+        [nix.POS]: $pos[268],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2318,37 +1720,37 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     jjrevset: nix.thunk(() => ({
-      [nix.POS]: pos$272,
+      [nix.POS]: $pos[271],
       version: "0-unstable-2025-07-09",
       url: "github:bryceberger/tree-sitter-jjrevset",
       rev: "d9af23944b884ec528b505f41d81923bb3136a51",
       hash: "sha256-815IDF/V+blItEjW1ljUeV/it/8w532tm4k295z+ago=",
       excludeBrokenTreeSitterJson: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$271,
+        [nix.POS]: $pos[270],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     jjtemplate: nix.thunk(() => ({
-      [nix.POS]: pos$274,
+      [nix.POS]: $pos[273],
       version: "0-unstable-2025-07-09",
       url: "github:bryceberger/tree-sitter-jjtemplate",
       rev: "4313eda8ac31c60e550e3ad5841b100a0a686715",
       hash: "sha256-8rEatsR1vKBOlYYnGW88uwV0xLXGa+/rMAwiUeAuofk=",
       excludeBrokenTreeSitterJson: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$273,
+        [nix.POS]: $pos[272],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     jq: nix.thunk(() => ({
-      [nix.POS]: pos$276,
+      [nix.POS]: $pos[275],
       version: "0-unstable-2025-05-10",
       url: "github:flurie/tree-sitter-jq",
       rev: "c204e36d2c3c6fce1f57950b12cabcc24e5cc4d9",
       hash: "sha256-WEsiDsZEFTGC3s0awYE8rN/fsRML7CePKOXUbL+Fujc=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$275,
+        [nix.POS]: $pos[274],
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2357,64 +1759,64 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     jsdoc: nix.thunk(() => ({
-      [nix.POS]: pos$278,
+      [nix.POS]: $pos[277],
       version: "0.25.0",
       url: "github:tree-sitter/tree-sitter-jsdoc",
       hash: "sha256-xjLC56NiOwwb5BJ2DLiG3rknMR3rrcYrPuHI24NVL+M=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$277,
+        [nix.POS]: $pos[276],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     json: nix.thunk(() => ({
-      [nix.POS]: pos$280,
+      [nix.POS]: $pos[279],
       version: "0.24.8",
       url: "github:tree-sitter/tree-sitter-json",
       hash: "sha256-DNZC2cTy1C8OaMOpEHM6NoRtOIbLaBf0CLXXWCKODlw=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$279,
+        [nix.POS]: $pos[278],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     json5: nix.thunk(() => ({
-      [nix.POS]: pos$282,
+      [nix.POS]: $pos[281],
       version: "0.1.0",
       url: "github:joakker/tree-sitter-json5",
       hash: "sha256-QfzqRUe9Ji/QXBHHOJHuftIJKOONtmS1ml391QDKfTI=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$281,
+        [nix.POS]: $pos[280],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     jsonnet: nix.thunk(() => ({
-      [nix.POS]: pos$284,
+      [nix.POS]: $pos[283],
       version: "0-unstable-2024-08-15",
       url: "github:sourcegraph/tree-sitter-jsonnet",
       rev: "ddd075f1939aed8147b7aa67f042eda3fce22790",
       hash: "sha256-ODGRkirfUG8DqV6ZcGRjKeCyEtsU0r+ICK0kCG6Xza0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$283,
+        [nix.POS]: $pos[282],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     julia: nix.thunk(() => ({
-      [nix.POS]: pos$286,
+      [nix.POS]: $pos[285],
       version: "0.25.0",
       url: "github:tree-sitter/tree-sitter-julia",
       hash: "sha256-Jk2jby7vWWSdnUU8s8zIIfyXFt7keWPJPyTyxPBrqBw=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$285,
+        [nix.POS]: $pos[284],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     just: nix.thunk(() => ({
-      [nix.POS]: pos$288,
+      [nix.POS]: $pos[287],
       version: "0.2.0",
       url: "github:casey/tree-sitter-just",
       rev: "5685543a6e64f66335e25518c9ae8ffa1dae3d01",
       hash: "sha256-lrW5E+HIqrDSWZ4+KOjIc80/wYm/WV9ZOfdLXxPIbX4=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$287,
+        [nix.POS]: $pos[286],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2423,55 +1825,55 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     kcl: nix.thunk(() => ({
-      [nix.POS]: pos$290,
+      [nix.POS]: $pos[289],
       version: "0.0.2",
       url: "github:KittyCAD/tree-sitter-kcl",
       hash: "sha256-oxyC6YPSf14YmZ7t/htMPU8BqUagylMCKCmJ5ky5ZII=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$289,
+        [nix.POS]: $pos[288],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     kconfig: nix.thunk(() => ({
-      [nix.POS]: pos$292,
+      [nix.POS]: $pos[291],
       version: "1.3.0",
       url: "github:tree-sitter-grammars/tree-sitter-kconfig",
       hash: "sha256-ypjfe1IM3vxfoLWtsDUf+2WzjHkUjy8pc4xxKP4tUL4=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$291,
+        [nix.POS]: $pos[290],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     kdl: nix.thunk(() => ({
-      [nix.POS]: pos$294,
+      [nix.POS]: $pos[293],
       version: "1.1.0",
       url: "github:tree-sitter-grammars/tree-sitter-kdl",
       hash: "sha256-+oJqfbBDbrNS7E+x/QCX9m6FVf0NLw4qWH9n54joJYA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$293,
+        [nix.POS]: $pos[292],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     klog: nix.thunk(() => ({
-      [nix.POS]: pos$296,
+      [nix.POS]: $pos[295],
       version: "0-unstable-2026-01-10",
       url: "github:Ansimorph/tree-sitter-klog",
       rev: "0b215fe75bdeb8368546e3cee36aca8c19212d06",
       hash: "sha256-L0FJpQsiMvPxZOGvp5kfStTPRc5Zgr8xMUj06Yp6VGU=",
       excludeBrokenTreeSitterJson: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$295,
+        [nix.POS]: $pos[294],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     koka: nix.thunk(() => ({
-      [nix.POS]: pos$298,
+      [nix.POS]: $pos[297],
       version: "0-unstable-2025-07-26",
       url: "github:mtoohey31/tree-sitter-koka",
       rev: "6dce132911ac375ac1a3591c868c47a2a84b30aa",
       hash: "sha256-QXKfXg1qs3HNvjk1J8Kzm6uwR0frXXEONlJQPCqioNA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$297,
+        [nix.POS]: $pos[296],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
@@ -2480,19 +1882,19 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`github:fwcd/tree-sitter-kotlin?ref=${version}`);
       const hash = "sha256-kze1kF8naH2qQou58MKMhzmMXk0ouzcP6i3F61kOYi8=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$299,
+        [nix.POS]: $pos[298],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { [nix.POS]: pos$300, version, url, hash, meta };
+      return { [nix.POS]: $pos[299], version, url, hash, meta };
     })()),
     koto: nix.thunk(() => ({
-      [nix.POS]: pos$302,
+      [nix.POS]: $pos[301],
       version: "0.16.0-unstable-2025-11-17",
       url: "github:koto-lang/tree-sitter-koto",
       rev: "f8b3f62c0eed185dca1559789e78759d4bee60e5",
       hash: "sha256-vv5HMDXMcSi91loIppsx/5Hu6jJ7/cedtTyahOBP780=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$301,
+        [nix.POS]: $pos[300],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2501,24 +1903,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     latex: nix.thunk(() => ({
-      [nix.POS]: pos$304,
+      [nix.POS]: $pos[303],
       version: "0.6.0",
       url: "github:latex-lsp/tree-sitter-latex",
       hash: "sha256-nb1pOSHawLIw7/gaepuq2EN0a/F7/un4Xt5VCnDzvWs=",
       generate: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$303,
+        [nix.POS]: $pos[302],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     ld: nix.thunk(() => ({
-      [nix.POS]: pos$306,
+      [nix.POS]: $pos[305],
       version: "0-unstable-2024-04-12",
       url: "github:mtoohey31/tree-sitter-ld",
       rev: "0e9695ae0ede47b8744a8e2ad44d4d40c5d4e4c9",
       hash: "sha256-U+yqSO+vo1RAZrCqCojhY4HwjcjirZU/HgWDCdw3YGw=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$305,
+        [nix.POS]: $pos[304],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2527,13 +1929,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     ldif: nix.thunk(() => ({
-      [nix.POS]: pos$308,
+      [nix.POS]: $pos[307],
       version: "0-unstable-2023-05-27",
       url: "github:kepet19/tree-sitter-ldif",
       rev: "0a917207f65ba3e3acfa9cda16142ee39c4c1aaa",
       hash: "sha256-xivgajrM0sqbEcX+ZN0h5C+s7KJVJanrvxRQ/j1VNIQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$307,
+        [nix.POS]: $pos[306],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2542,13 +1944,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     lean: nix.thunk(() => ({
-      [nix.POS]: pos$310,
+      [nix.POS]: $pos[309],
       version: "0-unstable-2024-12-25",
       url: "github:Julian/tree-sitter-lean",
       rev: "efe6b87145608d12f5996bd7f0cf6095a0e82261",
       hash: "sha256-MF+LRzhDw3V/l/h11ZTyWCUCm3b+g0oyOdaCZMVlJc4=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$309,
+        [nix.POS]: $pos[308],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2557,33 +1959,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     ledger: nix.thunk(() => ({
-      [nix.POS]: pos$312,
+      [nix.POS]: $pos[311],
       version: "0-unstable-2026-03-20",
       url: "github:cbarrete/tree-sitter-ledger",
       rev: "22a1ab8195c1f6e808679f803007756fe7638c6f",
       hash: "sha256-62xgcEavI5RKi77sbEnx9f3hA4faFeUCw0/uec8Nx3k=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$311,
+        [nix.POS]: $pos[310],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     less: nix.thunk(() => ({
-      [nix.POS]: pos$314,
+      [nix.POS]: $pos[313],
       version: "1.0.0-d",
       url: "github:jimliang/tree-sitter-less",
       hash: "sha256-v2pE5CM6XxqQUooLR5r3qaPbDo/3tqQVMx2jWGGxfGo=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$313,
+        [nix.POS]: $pos[312],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     linkerscript: nix.thunk(() => ({
-      [nix.POS]: pos$316,
+      [nix.POS]: $pos[315],
       version: "1.0.0",
       url: "github:tree-sitter-grammars/tree-sitter-linkerscript",
       hash: "sha256-Do8MIcl5DJo00V4wqIbdVC0to+2YYwfy08QWqSLMkQA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$315,
+        [nix.POS]: $pos[314],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2592,24 +1994,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     llvm: nix.thunk(() => ({
-      [nix.POS]: pos$318,
+      [nix.POS]: $pos[317],
       version: "1.1.0-unstable-2025-08-22",
       url: "github:benwilliamgraham/tree-sitter-llvm",
       rev: "2914786ae6774d4c4e25a230f4afe16aa68fe1c1",
       hash: "sha256-jBSotMFsBUcgQrWH5p8EiywG00+v9QqePcUTI6ZqAkw=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$317,
+        [nix.POS]: $pos[316],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     "llvm-mir": nix.thunk(() => ({
-      [nix.POS]: pos$320,
+      [nix.POS]: $pos[319],
       version: "0-unstable-2024-10-03",
       url: "github:Flakebi/tree-sitter-llvm-mir",
       rev: "d166ff8c5950f80b0a476956e7a0ad2f27c12505",
       hash: "sha256-ivslvFNr3550Grko9xbHPtA63XNc+twFfZQFhBmPaME=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$319,
+        [nix.POS]: $pos[318],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2618,13 +2020,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     log: nix.thunk(() => ({
-      [nix.POS]: pos$322,
+      [nix.POS]: $pos[321],
       version: "0-unstable-2023-11-26",
       url: "github:Tudyx/tree-sitter-log",
       rev: "62cfe307e942af3417171243b599cc7deac5eab9",
       hash: "sha256-lvN2it+pNyYvGIqtRI+zUZwPrj/3SLMZX9zordYg3IU=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$321,
+        [nix.POS]: $pos[320],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2633,13 +2035,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     lpf: nix.thunk(() => ({
-      [nix.POS]: pos$324,
+      [nix.POS]: $pos[323],
       version: "0-unstable-2023-10-13",
       url: "gitlab:TheZoq2/tree-sitter-lpf",
       rev: "db7372e60c722ca7f12ab359e57e6bf7611ab126",
       hash: "sha256-Y+W4Ceb0+gUJbBC9ziy672not6zc8JVIGTWYsPmWk7c=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$323,
+        [nix.POS]: $pos[322],
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2648,44 +2050,44 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     lua: nix.thunk(() => ({
-      [nix.POS]: pos$326,
+      [nix.POS]: $pos[325],
       version: "0.5.0-unstable-2026-02-26",
       url: "github:tree-sitter-grammars/tree-sitter-lua",
       rev: "10fe0054734eec83049514ea2e718b2a56acd0c9",
       hash: "sha256-VzaaN5pj7jMAb/u1fyyH6XmLI+yJpsTlkwpLReTlFNY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$325,
+        [nix.POS]: $pos[324],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     "lua-format-string": nix.thunk(() => ({
-      [nix.POS]: pos$328,
+      [nix.POS]: $pos[327],
       version: "0.1.0",
       url: "codeberg:kpbaks/tree-sitter-lua-format-string",
       hash: "sha256-fP1c2F/nn4BsmO1u0JAGbECQfv0J9TCZWqiwu6W+JvM=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$327,
+        [nix.POS]: $pos[326],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     luap: nix.thunk(() => ({
-      [nix.POS]: pos$330,
+      [nix.POS]: $pos[329],
       version: "1.0.1",
       url: "github:tree-sitter-grammars/tree-sitter-luap",
       hash: "sha256-SW2ubK5317GUc1dQLkhoaisMgctLOwr6TPVYSQh02vE=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$329,
+        [nix.POS]: $pos[328],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     luau: nix.thunk(() => ({
-      [nix.POS]: pos$332,
+      [nix.POS]: $pos[331],
       version: "0-unstable-2025-12-08",
       url: "github:polychromatist/tree-sitter-luau",
       rev: "71b03e66b2c8dd04e0133c9b998a54a58f239ca4",
       hash: "sha256-aXoq9NvJDzQLSuyanFL8dQepxTyK/k5y0APAJn1DZKI=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$331,
+        [nix.POS]: $pos[330],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2694,13 +2096,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     mail: nix.thunk(() => ({
-      [nix.POS]: pos$334,
+      [nix.POS]: $pos[333],
       version: "0-unstable-2026-03-08",
       url: "github:ficcdaf/tree-sitter-mail",
       rev: "5eddbfdbec4c893182c79047499901c196332e78",
       hash: "sha256-ax9MlBuat3SmYJE5lkuTSula0A/RKoHljSqi9UZ2wO8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$333,
+        [nix.POS]: $pos[332],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2709,24 +2111,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     make: nix.thunk(() => ({
-      [nix.POS]: pos$336,
+      [nix.POS]: $pos[335],
       version: "1.1.1-unstable-2026-02-26",
       url: "github:tree-sitter-grammars/tree-sitter-make",
       rev: "70613f3d812cbabbd7f38d104d60a409c4008b43",
       hash: "sha256-gyshhqVYiL0qSsMp38BM20FYc4uPgr2de5/DWsAJZGc=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$335,
+        [nix.POS]: $pos[334],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     markdoc: nix.thunk(() => ({
-      [nix.POS]: pos$338,
+      [nix.POS]: $pos[337],
       version: "0-unstable-2024-10-06",
       url: "github:markdoc-extra/tree-sitter-markdoc",
       rev: "e4211fe541a13350275e4684de79adfebe9a91f8",
       hash: "sha256-WFFrpvulhT9Z0L+zAgZQGIzcg3YxkcJpLfNeqpf3afI=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$337,
+        [nix.POS]: $pos[336],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2735,36 +2137,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     markdown: nix.thunk(() => ({
-      [nix.POS]: pos$340,
+      [nix.POS]: $pos[339],
       version: "0.5.3",
       url: "github:tree-sitter-grammars/tree-sitter-markdown",
       hash: "sha256-WUVN7+lzDI+VC5PuJjhHiS4JpVr1x0Ic30i2tVrI6W8=",
       location: "tree-sitter-markdown",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$339,
+        [nix.POS]: $pos[338],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     "markdown-inline": nix.thunk(() => ({
-      [nix.POS]: pos$342,
+      [nix.POS]: $pos[341],
       language: "markdown_inline",
       version: "0.5.3",
       url: "github:tree-sitter-grammars/tree-sitter-markdown",
       hash: "sha256-WUVN7+lzDI+VC5PuJjhHiS4JpVr1x0Ic30i2tVrI6W8=",
       location: "tree-sitter-markdown-inline",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$341,
+        [nix.POS]: $pos[340],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     matlab: nix.thunk(() => ({
-      [nix.POS]: pos$344,
+      [nix.POS]: $pos[343],
       version: "1.3.0-unstable-2026-03-04",
       url: "github:acristoffers/tree-sitter-matlab",
       rev: "c2390a59016f74e7d5f75ef09510768b4f30217e",
       hash: "sha256-WgyWvItbysSqeD/LdBr233NYlKF1HaxIDtHIr6BQOjw=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$343,
+        [nix.POS]: $pos[342],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2773,13 +2175,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     mermaid: nix.thunk(() => ({
-      [nix.POS]: pos$346,
+      [nix.POS]: $pos[345],
       version: "0-unstable-2024-04-22",
       url: "github:monaqa/tree-sitter-mermaid",
       rev: "90ae195b31933ceb9d079abfa8a3ad0a36fee4cc",
       hash: "sha256-Tt1bPqpL59FQzuI8CPljBmQoAfJPUkVC9Xe1GcfXzfE=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$345,
+        [nix.POS]: $pos[344],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2788,13 +2190,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     meson: nix.thunk(() => ({
-      [nix.POS]: pos$348,
+      [nix.POS]: $pos[347],
       version: "1.3.0-unstable-2026-06-29",
       url: "github:tree-sitter-grammars/tree-sitter-meson",
       rev: "aa8d472034956f94f51f2ef2cbfec4cc07efbfde",
       hash: "sha256-UJREw7mQqJTKcD2owKJ4GZkkch/KGTIy9/+Fdl3W3ik=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$347,
+        [nix.POS]: $pos[346],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2803,13 +2205,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     mojo: nix.thunk(() => ({
-      [nix.POS]: pos$350,
+      [nix.POS]: $pos[349],
       version: "0-unstable-2025-12-25",
       url: "github:lsh/tree-sitter-mojo",
       rev: "03966fb3f209bea86844aab3bd0f2158a5a8bb8d",
       hash: "sha256-Ofc8Z1q0Rxb3q4iYMtnKanUdnpGetE8A8sl+Sr1t3PA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$349,
+        [nix.POS]: $pos[348],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2818,13 +2220,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     move: nix.thunk(() => ({
-      [nix.POS]: pos$352,
+      [nix.POS]: $pos[351],
       version: "0-unstable-2025-06-17",
       url: "github:tzakian/tree-sitter-move",
       rev: "640ee15e4a7b0d09a4bc95dcc71336c28d97999b",
       hash: "sha256-rLIyJZEjMRo8am+ivKCwAESvv6jFtTPYJuuebN3T5Es=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$351,
+        [nix.POS]: $pos[350],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "aciceri"))];
@@ -2832,13 +2234,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     nasm: nix.thunk(() => ({
-      [nix.POS]: pos$354,
+      [nix.POS]: $pos[353],
       version: "0-unstable-2024-11-23",
       url: "github:naclsn/tree-sitter-nasm",
       rev: "d1b3638d017f2a8585e26dcfc66fe1df94185e30",
       hash: "sha256-38yRvaSkHZ7iRmHlXdCssJtd/RQRfBB437HzBwWv2mg=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$353,
+        [nix.POS]: $pos[352],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2847,35 +2249,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     nearley: nix.thunk(() => ({
-      [nix.POS]: pos$356,
+      [nix.POS]: $pos[355],
       version: "0-unstable-2025-09-24",
       url: "github:mi2ebi/tree-sitter-nearley",
       rev: "12d01113e194c8e83f6341aab8c2a5f21db9cac9",
       hash: "sha256-Uhr1DbUK7svhJX1JCtBvKhwO4jgxQLvFPL3mc/zWAy8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$355,
+        [nix.POS]: $pos[354],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     netlinx: nix.thunk(() => ({
-      [nix.POS]: pos$358,
+      [nix.POS]: $pos[357],
       version: "1.0.4",
       url: "github:norgate-av/tree-sitter-netlinx",
       hash: "sha256-WCzt5cglAQ9/1VRP/TJ0EjeLXrF9erIGMButRV7iAic=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$357,
+        [nix.POS]: $pos[356],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
       excludeBrokenTreeSitterJson: true,
     })),
     nginx: nix.thunk(() => ({
-      [nix.POS]: pos$360,
+      [nix.POS]: $pos[359],
       version: "1.0.1-unstable-2026-01-02",
       url: "github:opa-oz/tree-sitter-nginx",
       rev: "47ade644d754cce57974aac44d2c9450e823d4f4",
       hash: "sha256-exbjYJouZYcxC3suV7byqSEwu2r8hHj/wehPpf5Aecc=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$359,
+        [nix.POS]: $pos[358],
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2884,23 +2286,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     nickel: nix.thunk(() => ({
-      [nix.POS]: pos$362,
+      [nix.POS]: $pos[361],
       version: "0.5.0",
       url: "github:nickel-lang/tree-sitter-nickel",
       hash: "sha256-2la/9XxL2dN+rzTotgDXQFz9ktDXQ3Og9svX5Din2zo=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$361,
+        [nix.POS]: $pos[360],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     nim: nix.thunk(() => ({
-      [nix.POS]: pos$364,
+      [nix.POS]: $pos[363],
       version: "0.6.2-unstable-2026-07-03",
       url: "github:alaviss/tree-sitter-nim",
       rev: "ac72ba30d16edf0be021588a9301ede4accd6cf4",
       hash: "sha256-1jr8tKdKvKTKCUSEvC+vRGw+W1Rl3WMbv0ZS3u7H1GA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$363,
+        [nix.POS]: $pos[362],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2909,51 +2311,51 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     nix: nix.thunk(() => ({
-      [nix.POS]: pos$366,
+      [nix.POS]: $pos[365],
       version: "0.3.0-unstable-2025-12-03",
       url: "github:nix-community/tree-sitter-nix",
       rev: "eabf96807ea4ab6d6c7f09b671a88cd483542840",
       hash: "sha256-cSiBd0XkSR8l1CF2vkThWUtMxqATwuxCNO5oy2kyOZY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$365,
+        [nix.POS]: $pos[364],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     norg: nix.thunk(() => ({
-      [nix.POS]: pos$368,
+      [nix.POS]: $pos[367],
       version: "0.2.6",
       url: "github:nvim-neorg/tree-sitter-norg",
       hash: "sha256-z3h5qMuNKnpQgV62xZ02F5vWEq4VEnm5lxwEnIFu+Rw=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$367,
+        [nix.POS]: $pos[366],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWasi")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     "norg-meta": nix.thunk(() => ({
-      [nix.POS]: pos$369,
+      [nix.POS]: $pos[368],
       version: "0.1.0",
       url: "github:nvim-neorg/tree-sitter-norg-meta",
       hash: "sha256-8qSdwHlfnjFuQF4zNdLtU2/tzDRhDZbo9K54Xxgn5+8=",
     })),
     nu: nix.thunk(() => ({
-      [nix.POS]: pos$371,
+      [nix.POS]: $pos[370],
       version: "0-unstable-2026-07-01",
       url: "github:nushell/tree-sitter-nu",
       rev: "d694570aa26b53d0d642460a0430e8aa07dcbea0",
       hash: "sha256-eWHAcV8bPCnL9y4PtPn6cJRylGQ2KMxCUoUGwDVigkg=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$370,
+        [nix.POS]: $pos[369],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     objc: nix.thunk(() => ({
-      [nix.POS]: pos$373,
+      [nix.POS]: $pos[372],
       version: "3.0.2",
       url: "github:tree-sitter-grammars/tree-sitter-objc",
       hash: "sha256-aK8Cf8F05NzlXnYS47jPjSyouaajsr1H+vRg2aXsPrs=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$372,
+        [nix.POS]: $pos[371],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2962,33 +2364,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     ocaml: nix.thunk(() => ({
-      [nix.POS]: pos$375,
+      [nix.POS]: $pos[374],
       version: "0.25.0",
       url: "github:tree-sitter/tree-sitter-ocaml",
       hash: "sha256-fRC7sd/INCESwYCiRsuOJkOnqWnNUpjwrNoEzlaOscA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$374,
+        [nix.POS]: $pos[373],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     "ocaml-interface": nix.thunk(() => ({
-      [nix.POS]: pos$377,
+      [nix.POS]: $pos[376],
       language: "ocaml_interface",
       version: "0.24.2",
       url: "github:tree-sitter/tree-sitter-ocaml",
       hash: "sha256-fRC7sd/INCESwYCiRsuOJkOnqWnNUpjwrNoEzlaOscA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$376,
+        [nix.POS]: $pos[375],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     ocamllex: nix.thunk(() => ({
-      [nix.POS]: pos$379,
+      [nix.POS]: $pos[378],
       version: "0.25.0",
       url: "github:314eter/tree-sitter-ocamllex",
       hash: "sha256-mqp/qHr1zWMJinlMJ0HNAKuFUQ4NqQiLzKx0DoN4wGI=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$378,
+        [nix.POS]: $pos[377],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2997,13 +2399,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     odin: nix.thunk(() => ({
-      [nix.POS]: pos$381,
+      [nix.POS]: $pos[380],
       version: "1.3.0-unstable-2025-01-12",
       url: "github:tree-sitter-grammars/tree-sitter-odin",
       rev: "d2ca8efb4487e156a60d5bd6db2598b872629403",
       hash: "sha256-aPeaGERAP1Fav2QAjZy1zXciCuUTQYrsqXaSQsYG0oU=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$380,
+        [nix.POS]: $pos[379],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3012,13 +2414,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     ohm: nix.thunk(() => ({
-      [nix.POS]: pos$383,
+      [nix.POS]: $pos[382],
       version: "0-unstable-2025-12-12",
       url: "github:novusnota/tree-sitter-ohm",
       rev: "a1de3e748a185a335b446613aaeff1eb10e83cdf",
       hash: "sha256-phH6FHdP9ycVXSzsON0/IyEuqkR65/8cNxJcTOBr3JE=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$382,
+        [nix.POS]: $pos[381],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3027,25 +2429,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     opam: nix.thunk(() => ({
-      [nix.POS]: pos$385,
+      [nix.POS]: $pos[384],
       version: "0-unstable-2026-04-05",
       url: "github:tmcgilchrist/tree-sitter-opam",
       rev: "8869773f9cef795cc02da3b98cfafcaf9febc6b0",
       hash: "sha256-q/BLM4d3H+dw93CbFLtynCJ1K4I4hJ9XBM4yaG2Z5Rk=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$384,
+        [nix.POS]: $pos[383],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
       excludeBrokenTreeSitterJson: true,
     })),
     opencl: nix.thunk(() => ({
-      [nix.POS]: pos$387,
+      [nix.POS]: $pos[386],
       version: "0-unstable-2023-03-30",
       url: "github:lefp/tree-sitter-opencl",
       rev: "8e1d24a57066b3cd1bb9685bbc1ca9de5c1b78fb",
       hash: "sha256-tymKOBQbbXAI4bUDSOnZaMoyhFuDwSInvqgGq0eTDl8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$386,
+        [nix.POS]: $pos[385],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3054,13 +2456,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     openscad: nix.thunk(() => ({
-      [nix.POS]: pos$389,
+      [nix.POS]: $pos[388],
       version: "0.7.0-unstable-2025-11-25",
       url: "github:openscad/tree-sitter-openscad",
       rev: "09ed1478aa98a11df06367e91f2d310e334e39fb",
       hash: "sha256-tRBUGfcEdEnym1mrpPs7YdWvbBgeLQoZLgb47XtoGd8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$388,
+        [nix.POS]: $pos[387],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3069,12 +2471,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     org: nix.thunk(() => ({
-      [nix.POS]: pos$391,
+      [nix.POS]: $pos[390],
       version: "2.0.4",
       url: "github:nvim-orgmode/tree-sitter-org",
       hash: "sha256-76ImC8GMW+yAKG++AHryUi+MYTmtJ5ogygC+bgNMErA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$390,
+        [nix.POS]: $pos[389],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3083,22 +2485,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     "org-nvim": nix.thunk(() => ({
-      [nix.POS]: pos$393,
+      [nix.POS]: $pos[392],
       version: "2.0.4",
       url: "github:nvim-orgmode/tree-sitter-org",
       hash: "sha256-76ImC8GMW+yAKG++AHryUi+MYTmtJ5ogygC+bgNMErA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$392,
+        [nix.POS]: $pos[391],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     pascal: nix.thunk(() => ({
-      [nix.POS]: pos$395,
+      [nix.POS]: $pos[394],
       version: "0.10.2",
       url: "github:Isopod/tree-sitter-pascal",
       hash: "sha256-jqpY3g19YzX5T2rD4EFUAs594XrUdmk5DjkgGO6MC2g=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$394,
+        [nix.POS]: $pos[393],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3107,13 +2509,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     passwd: nix.thunk(() => ({
-      [nix.POS]: pos$397,
+      [nix.POS]: $pos[396],
       version: "0-unstable-2022-12-01",
       url: "github:ath3/tree-sitter-passwd",
       rev: "20239395eacdc2e0923a7e5683ad3605aee7b716",
       hash: "sha256-3UfuyJeblQBKjqZvLYyO3GoCvYJp+DvBwQGkR3pFQQ4=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$396,
+        [nix.POS]: $pos[395],
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3122,13 +2524,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     pem: nix.thunk(() => ({
-      [nix.POS]: pos$399,
+      [nix.POS]: $pos[398],
       version: "0-unstable-2025-08-17",
       url: "github:tree-sitter-grammars/tree-sitter-pem",
       rev: "e525b177a229b1154fd81bc0691f943028d9e685",
       hash: "sha256-2fhqFGLdQ5eugv405osviYUcAPMdm1N0VfGoVuI84Qk=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$398,
+        [nix.POS]: $pos[397],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3137,34 +2539,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     penrose: nix.thunk(() => ({
-      [nix.POS]: pos$401,
+      [nix.POS]: $pos[400],
       version: "0-unstable-2026-01-25",
       url: "github:klukaszek/tree-sitter-penrose",
       rev: "d9368ff7f743b2ac2145a3342db13b1ad950cba5",
       hash: "sha256-E/tpautC1I3w2+p2xrnd2CjdHVvNooX7yW84gUXlyrg=",
       excludeBrokenTreeSitterJson: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$400,
+        [nix.POS]: $pos[399],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     perl: nix.thunk(() => ({
-      [nix.POS]: pos$403,
+      [nix.POS]: $pos[402],
       version: "1.1.1",
       url: "github:ganezdragon/tree-sitter-perl",
       hash: "sha256-1RnL1dFbTWalqIYg8oGNzwvZxOFPPKwj86Rc3ErfYMU=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$402,
+        [nix.POS]: $pos[401],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     pest: nix.thunk(() => ({
-      [nix.POS]: pos$405,
+      [nix.POS]: $pos[404],
       version: "0.1.0",
       url: "github:pest-parser/tree-sitter-pest",
       hash: "sha256-S5qg/LLPlMmNtRTTi7vW8y/c+zcId7ADmMqIt0gqJBo=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$404,
+        [nix.POS]: $pos[403],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3173,32 +2575,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     pgn: nix.thunk(() => ({
-      [nix.POS]: pos$407,
+      [nix.POS]: $pos[406],
       version: "1.4.3",
       url: "github:rolandwalker/tree-sitter-pgn",
       hash: "sha256-7N0irNJt/tiKywUSZAIVt/E1urNXDMG+hYvu+EPpfXA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$406,
+        [nix.POS]: $pos[405],
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
       })),
     })),
     php: nix.thunk(() => ({
-      [nix.POS]: pos$409,
+      [nix.POS]: $pos[408],
       version: "0.24.2",
       url: "github:tree-sitter/tree-sitter-php",
       hash: "sha256-jI7yzcoHS/tNxUqJI4aD1rdEZV3jMn1GZD0J+81Dyf0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$408,
+        [nix.POS]: $pos[407],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     phpdoc: nix.thunk(() => ({
-      [nix.POS]: pos$411,
+      [nix.POS]: $pos[410],
       version: "0.1.8",
       url: "github:claytonrcarter/tree-sitter-phpdoc",
       hash: "sha256-X+ElKI0ZMLCmxEanKsDRL/1KzGZfBrG7zITsT+jSrtQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$410,
+        [nix.POS]: $pos[409],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3207,13 +2609,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     "php-only": nix.thunk(() => ({
-      [nix.POS]: pos$413,
+      [nix.POS]: $pos[412],
       version: "0.25.1-unstable-2026-10-06",
       url: "github:tree-sitter/tree-sitter-php",
       rev: "58d5643086ae60e93a3746cca648363ee97c8761",
       hash: "sha256-L8c2OkkwryR5wpqYS++Zn8ZJ85wr//dvH2oe1PJcE8o=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$412,
+        [nix.POS]: $pos[411],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3222,34 +2624,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     picat: nix.thunk(() => ({
-      [nix.POS]: pos$415,
+      [nix.POS]: $pos[414],
       version: "0.1.0",
       url: "github:dlr-ft/tree-sitter-picat",
       hash: "sha256-xMiQQHC2GsH9MQJDQkSeAaFr5g7tix0CVn3JvgwxauQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$414,
+        [nix.POS]: $pos[413],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     pioasm: nix.thunk(() => ({
-      [nix.POS]: pos$417,
+      [nix.POS]: $pos[416],
       version: "0-unstable-2024-10-12",
       url: "github:leo60228/tree-sitter-pioasm",
       rev: "afece58efdb30440bddd151ef1347fa8d6f744a9",
       hash: "sha256-rUuolF/jPJGiqunD6SLUJ0x/MTIJ+mJ1QSBCasUw5T8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$416,
+        [nix.POS]: $pos[415],
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
       })),
     })),
     pkl: nix.thunk(() => ({
-      [nix.POS]: pos$419,
+      [nix.POS]: $pos[418],
       version: "0.21.0-unstable-2026-10-01",
       url: "github:apple/tree-sitter-pkl",
       rev: "c837eff683d62f3cb5e6309b44c257640f202d4b",
       hash: "sha256-wV0UzT1GB/sWlDTGK7Sij/eIBYIu4vM7O5zKf/Qde8g=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$418,
+        [nix.POS]: $pos[417],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3258,13 +2660,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     plank: nix.thunk(() => ({
-      [nix.POS]: pos$421,
+      [nix.POS]: $pos[420],
       version: "0.1.1",
       url: "github:plankevm/plank-monorepo",
       hash: "sha256-4r/hYPlVIKzq1/50mivs6CJjObAS5Iq1inwRe1bFlzE=",
       location: "plank-tree-sitter",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$420,
+        [nix.POS]: $pos[419],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3273,13 +2675,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     po: nix.thunk(() => ({
-      [nix.POS]: pos$423,
+      [nix.POS]: $pos[422],
       version: "0-unstable-2024-04-20",
       url: "github:erasin/tree-sitter-po",
       rev: "bd860a0f57f697162bf28e576674be9c1500db5e",
       hash: "sha256-/St0VxDTAF872ZlBph1TukRoO0PBIOMT0D11DZ6nSLQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$422,
+        [nix.POS]: $pos[421],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3288,13 +2690,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     pod: nix.thunk(() => ({
-      [nix.POS]: pos$425,
+      [nix.POS]: $pos[424],
       version: "1.0.0-unstable-2026-03-23",
       url: "github:tree-sitter-perl/tree-sitter-pod/release",
       rev: "3f15a3f11b422753fbf985190dceacb4bbf80ecf",
       hash: "sha256-Yu6sK+tGtFVgAZUE3pfoMLzMNwxQQuQu/ZtrM45tNHs=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$424,
+        [nix.POS]: $pos[423],
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3303,12 +2705,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     ponylang: nix.thunk(() => ({
-      [nix.POS]: pos$427,
+      [nix.POS]: $pos[426],
       version: "0.0.2",
       url: "github:mfelsche/tree-sitter-ponylang",
       hash: "sha256-/Qyr6TPmYPVQuWUmkb/77k94DK7nzlAA3hjSjeF6MeI=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$426,
+        [nix.POS]: $pos[425],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3317,12 +2719,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     powershell: nix.thunk(() => ({
-      [nix.POS]: pos$429,
+      [nix.POS]: $pos[428],
       version: "0.26.5",
       url: "github:airbus-cert/tree-sitter-powershell",
       hash: "sha256-U/SdC2d5BOmxCCPlLSbOERogrZKfOGRWwbRuBa6C0pU=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$428,
+        [nix.POS]: $pos[427],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3331,23 +2733,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     prisma: nix.thunk(() => ({
-      [nix.POS]: pos$431,
+      [nix.POS]: $pos[430],
       version: "1.6.0",
       url: "github:victorhqc/tree-sitter-prisma",
       hash: "sha256-VE9HUG0z6oPVlA8no011vwYI2HxufJEuXXnCGbCgI4Q=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$430,
+        [nix.POS]: $pos[429],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     prolog: nix.thunk(() => ({
-      [nix.POS]: pos$433,
+      [nix.POS]: $pos[432],
       version: "3.0.2-unstable-2025-03-23",
       url: "codeberg:foxy/tree-sitter-prolog",
       rev: "d8d415f6a1cf80ca138524bcc395810b176d40fa",
       hash: "sha256-SEqqmkfV/wsr1ObcBN5My29RY9TWfxnQlsnEEIZyR18=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$432,
+        [nix.POS]: $pos[431],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3356,13 +2758,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     properties: nix.thunk(() => ({
-      [nix.POS]: pos$435,
+      [nix.POS]: $pos[434],
       version: "0.3.0-unstable-2025-07-14",
       url: "github:tree-sitter-grammars/tree-sitter-properties",
       rev: "6310671b24d4e04b803577b1c675d765cbd5773b",
       hash: "sha256-LRutvpXXVK7z+xrnLQVvLY+VRg8IB/VK572PNgvsQfc=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$434,
+        [nix.POS]: $pos[433],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3371,35 +2773,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     proto: nix.thunk(() => ({
-      [nix.POS]: pos$437,
+      [nix.POS]: $pos[436],
       version: "0-unstable-2026-03-15",
       url: "github:coder3101/tree-sitter-proto",
       rev: "d65a18ce7c2242801f702770114ad08056c7f8c9",
       hash: "sha256-bgrL4IK9sUB5tGoIBdNLGudbFf2OhQYdw0Ub1gM0NL0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$436,
+        [nix.POS]: $pos[435],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     proverif: nix.thunk(() => ({
-      [nix.POS]: pos$439,
+      [nix.POS]: $pos[438],
       version: "0-unstable-2026-02-28",
       url: "codeberg:maribu/tree-sitter-proverif",
       rev: "7741807092c4009c1fe4c3648da60ca72b1b80f1",
       hash: "sha256-fMtGQsEbZHNIamrz3hoGvCJn5Dtu0oHhuLmMxOjFhGU=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$438,
+        [nix.POS]: $pos[437],
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
       })),
     })),
     prql: nix.thunk(() => ({
-      [nix.POS]: pos$441,
+      [nix.POS]: $pos[440],
       version: "0-unstable-2023-07-28",
       url: "github:PRQL/tree-sitter-prql",
       rev: "09e158cd3650581c0af4c49c2e5b10c4834c8646",
       hash: "sha256-bdT7LZ2x7BdUqLJRq4ENJTaIFnciac7l2dCxOSB09CI=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$440,
+        [nix.POS]: $pos[439],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3408,34 +2810,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     ptx: nix.thunk(() => ({
-      [nix.POS]: pos$443,
+      [nix.POS]: $pos[442],
       version: "0-unstable-2026-01-02",
       url: "codeberg:jer-gremlin/tree-sitter-ptx",
       rev: "3dfa6758d4c15832d051f933101992b9e01d6611",
       hash: "sha256-h2a+ievbZGAYFVl3aZxM4/zTn92/fnfxelHWKfnXoP8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$442,
+        [nix.POS]: $pos[441],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     pug: nix.thunk(() => ({
-      [nix.POS]: pos$445,
+      [nix.POS]: $pos[444],
       version: "0-unstable-2024-11-17",
       url: "github:zealot128/tree-sitter-pug",
       rev: "13e9195370172c86a8b88184cc358b23b677cc46",
       hash: "sha256-Yk1oBv9Flz+QX5tyFZwx0y67I5qgbnLhwYuAvLi9eV8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$444,
+        [nix.POS]: $pos[443],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     purescript: nix.thunk(() => ({
-      [nix.POS]: pos$447,
+      [nix.POS]: $pos[446],
       version: "0.3.0",
       url: "github:postsolar/tree-sitter-purescript",
       hash: "sha256-tONS2Eai/eVDecn6ow4nN9F7++UjY6OAKezeCco8hYU=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$446,
+        [nix.POS]: $pos[445],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3444,27 +2846,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     python: nix.thunk(() => ({
-      [nix.POS]: pos$449,
+      [nix.POS]: $pos[448],
       version: "0.25.0",
       url: "github:tree-sitter/tree-sitter-python",
       hash: "sha256-F5XH21PjPpbwYylgKdwD3MZ5o0amDt4xf/e5UikPcxY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$448,
+        [nix.POS]: $pos[447],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     ql: nix.thunk(() => ({
-      [nix.POS]: pos$451,
+      [nix.POS]: $pos[450],
       version: "0.23.1",
       url: "github:tree-sitter/tree-sitter-ql",
       hash: "sha256-mJ/bj09mT1WTaiKoXiRXDM7dkenf5hv2ArXieeTVe6I=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$450,
+        [nix.POS]: $pos[449],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     "ql-dbscheme": nix.thunk(() => ({
-      [nix.POS]: pos$452,
+      [nix.POS]: $pos[451],
       version: "0.23.1",
       url: "github:tree-sitter/tree-sitter-ql-dbscheme",
       hash: "sha256-lXHm+I3zzCUOR/HjnhQM3Ga+yZr2F2WN28SmpT9Q6nE=",
@@ -3474,33 +2876,33 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`github:yuja/tree-sitter-qmljs?ref=${version}`);
       const hash = "sha256-Yn3/adOETfPHBVCIVfI5qXUwC2wQr14pbhK2aUtdCiY=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$453,
+        [nix.POS]: $pos[452],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "jaredmontoya"))];
         })()),
       }));
-      return { [nix.POS]: pos$454, version, url, hash, meta };
+      return { [nix.POS]: $pos[453], version, url, hash, meta };
     })()),
     query: nix.thunk(() => ({
-      [nix.POS]: pos$456,
+      [nix.POS]: $pos[455],
       version: "0.8.0",
       url: "github:tree-sitter-grammars/tree-sitter-query",
       hash: "sha256-0y8TbbZKMstjIVFEtq+9Fz44ueRup0ngNcJPJEQB/NQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$455,
+        [nix.POS]: $pos[454],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
     })),
     quint: nix.thunk(() => ({
-      [nix.POS]: pos$458,
+      [nix.POS]: $pos[457],
       version: "0-unstable-2025-04-09",
       url: "github:gruhn/tree-sitter-quint/release",
       rev: "e413b1b57849a0097478548b25fcae2f3d0171d1",
       hash: "sha256-WVSRFaj+X/S4DgyA6nWmRO+99iWG9Tr5hVrj53VB8E4=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$457,
+        [nix.POS]: $pos[456],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3510,23 +2912,23 @@ export default nix.lambda((args) => (() => {
       excludeBrokenTreeSitterJson: true,
     })),
     r: nix.thunk(() => ({
-      [nix.POS]: pos$460,
+      [nix.POS]: $pos[459],
       version: "1.3.0",
       url: "github:r-lib/tree-sitter-r",
       hash: "sha256-KSmrEe1W7gAowfVz9wVqfgm7p1ekMiLLrjdPuMX0Rb8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$459,
+        [nix.POS]: $pos[458],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     razor: nix.thunk(() => ({
-      [nix.POS]: pos$462,
+      [nix.POS]: $pos[461],
       version: "0-unstable-2026-04-20",
       url: "github:tris203/tree-sitter-razor",
       rev: "a3399c26610817c6d32c7643793caf3729cfb6d2",
       hash: "sha256-hH3qIp5IKwOyxiQXlS2NnuTbt/ssNMEV8PaL1xDMi+g=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$461,
+        [nix.POS]: $pos[460],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3535,12 +2937,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     readline: nix.thunk(() => ({
-      [nix.POS]: pos$464,
+      [nix.POS]: $pos[463],
       version: "1.1.1",
       url: "github:tree-sitter-grammars/tree-sitter-readline",
       hash: "sha256-cbQnAPtgMnA41CTI9OyY8WYvdlJOC9g0ZMbitNSvtmI=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$463,
+        [nix.POS]: $pos[462],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3549,44 +2951,44 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     regex: nix.thunk(() => ({
-      [nix.POS]: pos$466,
+      [nix.POS]: $pos[465],
       version: "0.25.0",
       url: "github:tree-sitter/tree-sitter-regex",
       hash: "sha256-bR0K6SR19QuQwDUic+CJ69VQTSGqry5a5IOpPTVJFlo=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$465,
+        [nix.POS]: $pos[464],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     rego: nix.thunk(() => ({
-      [nix.POS]: pos$468,
+      [nix.POS]: $pos[467],
       version: "0-unstable-2026-01-14",
       url: "github:FallenAngel97/tree-sitter-rego",
       rev: "ddd39af81fe8b0288102a7cb97959dfce723e0f3",
       hash: "sha256-I6jZ5jsJUAdjQti/lj4d11+GRSHjbN/hoGYO7ezGKv8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$467,
+        [nix.POS]: $pos[466],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     requirements: nix.thunk(() => ({
-      [nix.POS]: pos$470,
+      [nix.POS]: $pos[469],
       version: "0.6.1",
       url: "github:tree-sitter-grammars/tree-sitter-requirements",
       hash: "sha256-jLG+DcdVfC2Rj8SYL3WTBWreOLJWwtxpPxzyvJl77d4=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$469,
+        [nix.POS]: $pos[468],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     rescript: nix.thunk(() => ({
-      [nix.POS]: pos$472,
+      [nix.POS]: $pos[471],
       version: "6.0.0-unstable-2026-09-25",
       url: "github:rescript-lang/tree-sitter-rescript",
       rev: "90643a6302057b969c51e1bf235b8ecf1da49232",
       hash: "sha256-k510+GOLhputcgoo3l8JyoaI9IAtDw+aEKoPjMjRyWI=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$471,
+        [nix.POS]: $pos[470],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3595,35 +2997,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     ripple: nix.thunk(() => ({
-      [nix.POS]: pos$474,
+      [nix.POS]: $pos[473],
       version: "0-unstable-2025-11-15",
       url: "github:Ripple-TS/ripple",
       rev: "49762f0a63de0d1845fcd2e6632639c095995336",
       hash: "sha256-ohUhJXdo9UPKhSCxuFXGJE1vl8/QNApQkIrbiszVCbM=",
       location: "packages/tree-sitter",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$473,
+        [nix.POS]: $pos[472],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     river: nix.thunk(() => ({
-      [nix.POS]: pos$476,
+      [nix.POS]: $pos[475],
       version: "0-unstable-2023-11-22",
       url: "github:grafana/tree-sitter-river",
       rev: "eafcdc5147f985fea120feb670f1df7babb2f79e",
       hash: "sha256-fhuIO++hLr5DqqwgFXgg8QGmcheTpYaYLMo7117rjyk=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$475,
+        [nix.POS]: $pos[474],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
     })),
     robot: nix.thunk(() => ({
-      [nix.POS]: pos$478,
+      [nix.POS]: $pos[477],
       version: "1.5.0",
       url: "github:Hubro/tree-sitter-robot",
       hash: "sha256-LRVkqtEAYO3jHQTGTgO6I4ZNlYRrMRK8+FCd0expFK0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$477,
+        [nix.POS]: $pos[476],
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3632,22 +3034,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     "robots-txt": nix.thunk(() => ({
-      [nix.POS]: pos$480,
+      [nix.POS]: $pos[479],
       version: "1.0.1",
       url: "github:opa-oz/tree-sitter-robots-txt",
       hash: "sha256-fQq5agJ/xHsWxEJAydGxED4Z0bmREfXJ1t/EspBkYC8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$479,
+        [nix.POS]: $pos[478],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     rocq: nix.thunk(() => ({
-      [nix.POS]: pos$482,
+      [nix.POS]: $pos[481],
       version: "0.2.0",
       url: "github:aruzdh/tree-sitter-rocq",
       hash: "sha256-RZ7BGoBrHi+2Sn727L/6LEt/jh4+WphFIh1DP4Ul1Jo=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$481,
+        [nix.POS]: $pos[480],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3656,13 +3058,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     ron: nix.thunk(() => ({
-      [nix.POS]: pos$484,
+      [nix.POS]: $pos[483],
       version: "0.2.0-unstable-2024-05-05",
       url: "github:tree-sitter-grammars/tree-sitter-ron",
       rev: "78938553b93075e638035f624973083451b29055",
       hash: "sha256-Sp0g6AWKHNjyUmL5k3RIU+5KtfICfg3o/DH77XRRyI0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$483,
+        [nix.POS]: $pos[482],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3671,10 +3073,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     rpmspec: nix.thunk(() => ({
-      [nix.POS]: pos$487,
+      [nix.POS]: $pos[486],
       version: "0-unstable-2025-08-11",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$485,
+          [nix.POS]: $pos[484],
           owner: "cryptomilk",
           repo: "tree-sitter-rpmspec",
           rev: "d0275cd1316d9b7a2e0fae028ce95a5a18741e1d",
@@ -3682,58 +3084,58 @@ export default nix.lambda((args) => (() => {
           postFetch: "# ensure that case-insensitive folders are not merged on Darwin\nrm -rf $out/bindings/swift\n",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$486,
+        [nix.POS]: $pos[485],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     rshtml: nix.thunk(() => ({
-      [nix.POS]: pos$489,
+      [nix.POS]: $pos[488],
       version: "0.1.6",
       url: "github:rshtml/tree-sitter-rshtml",
       hash: "sha256-7RzjvJEMhtWDRnaoLki7FjTK9Y7+ZECE5gIqGUlx6DE=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$488,
+        [nix.POS]: $pos[487],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     rst: nix.thunk(() => ({
-      [nix.POS]: pos$491,
+      [nix.POS]: $pos[490],
       version: "0.2.0",
       url: "github:stsewd/tree-sitter-rst",
       hash: "sha256-EYUn60fU2hMizL+4PITtzJFJKdBktoPjMsYJ1R70LdM=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$490,
+        [nix.POS]: $pos[489],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     ruby: nix.thunk(() => ({
-      [nix.POS]: pos$493,
+      [nix.POS]: $pos[492],
       version: "0.23.1",
       url: "github:tree-sitter/tree-sitter-ruby",
       hash: "sha256-iu3MVJl0Qr/Ba+aOttmEzMiVY6EouGi5wGOx5ofROzA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$492,
+        [nix.POS]: $pos[491],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     rust: nix.thunk(() => ({
-      [nix.POS]: pos$495,
+      [nix.POS]: $pos[494],
       version: "0.24.2",
       url: "github:tree-sitter/tree-sitter-rust",
       hash: "sha256-Ls6tB6IxXDQDWwx0BJ7RgbheelC4MH8z97E7wwhkDcY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$494,
+        [nix.POS]: $pos[493],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     "rust-format-args": nix.thunk(() => ({
-      [nix.POS]: pos$497,
+      [nix.POS]: $pos[496],
       version: "0-unstable-2025-07-14",
       url: "github:nik-rev/tree-sitter-rust-format-args",
       rev: "3cf8431a4951656bcf24ae06689fbd094fce0187",
       hash: "sha256-lt4vs14DZXCxlpG7awmrZ5Ml5Sr0kKEn5Y26xrlM/ww=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$496,
+        [nix.POS]: $pos[495],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3742,65 +3144,65 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     scala: nix.thunk(() => ({
-      [nix.POS]: pos$499,
+      [nix.POS]: $pos[498],
       version: "0.26.2",
       url: "github:tree-sitter/tree-sitter-scala",
       hash: "sha256-PRyNcsiGeGfKtHvbLaGtiog/P8QEs117rqoBZZOXbeE=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$498,
+        [nix.POS]: $pos[497],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     scfg: nix.thunk(() => ({
-      [nix.POS]: pos$501,
+      [nix.POS]: $pos[500],
       version: "0-unstable-2025-10-29",
       url: "github:rockorager/tree-sitter-scfg",
       rev: "d850fd470445d73de318a21d734d1e09e29b773c",
       hash: "sha256-AnyOcQFA3N6AFZiG7eLS1xCm1qX6hko9lFV4oV9p/E8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$500,
+        [nix.POS]: $pos[499],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     scheme: nix.thunk(() => ({
-      [nix.POS]: pos$503,
+      [nix.POS]: $pos[502],
       version: "0.24.7-1-unstable-2026-03-17",
       url: "github:6cdh/tree-sitter-scheme",
       rev: "c6cb7c7d7a04b3f5d999c28e2e9c0c31b2d50ece",
       hash: "sha256-aFonUd15PJkQmz5lDJthtd1rU+8OXNknHDlgqH2s+OA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$502,
+        [nix.POS]: $pos[501],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     scss: nix.thunk(() => ({
-      [nix.POS]: pos$505,
+      [nix.POS]: $pos[504],
       version: "1.0.0",
       url: "github:serenadeai/tree-sitter-scss",
       hash: "sha256-BFtMT6eccBWUyq6b8UXRAbB1R1XD3CrrFf1DM3aUI5c=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$504,
+        [nix.POS]: $pos[503],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     shellcheckrc: nix.thunk(() => ({
-      [nix.POS]: pos$507,
+      [nix.POS]: $pos[506],
       version: "0.1.0",
       url: "codeberg:kpbaks/tree-sitter-shellcheckrc",
       hash: "sha256-f7hko5qYClgft2vvw95w/yU21r/pN5LkqaGJ/aAq8bM=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$506,
+        [nix.POS]: $pos[505],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     slang: nix.thunk(() => ({
-      [nix.POS]: pos$509,
+      [nix.POS]: $pos[508],
       version: "0.3.1-unstable-2025-09-01",
       url: "github:tree-sitter-grammars/tree-sitter-slang",
       rev: "1dbcc4abc7b3cdd663eb03d93031167d6ed19f56",
       hash: "sha256-UsZpXEJwbKn5M9dqbAv5eJgsCdNbsllbFWtNnDPvtoE=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$508,
+        [nix.POS]: $pos[507],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3809,35 +3211,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     slint: nix.thunk(() => ({
-      [nix.POS]: pos$511,
+      [nix.POS]: $pos[510],
       version: "0-unstable-2026-04-17",
       url: "github:slint-ui/tree-sitter-slint",
       rev: "68b25244cec6eb9d7f8f790ef781c29c822d8f84",
       hash: "sha256-ugdB7gN3zTAGLm9Jk2hjuuZWxIYxEWYXW72qLpXM+1Q=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$510,
+        [nix.POS]: $pos[509],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     slisp: nix.thunk(() => ({
-      [nix.POS]: pos$513,
+      [nix.POS]: $pos[512],
       version: "0-unstable-2025-09-15",
       url: "github:xenogenics/tree-sitter-slisp",
       rev: "29f9c6707ce9dfc2fc915d175ec720b207f179f3",
       hash: "sha256-ciolUtCf2e7VXmSIR8Zk4fQAGCeHoIQekYi2LVq7Hpg=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$512,
+        [nix.POS]: $pos[511],
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
       })),
     })),
     smali: nix.thunk(() => ({
-      [nix.POS]: pos$515,
+      [nix.POS]: $pos[514],
       version: "1.0.0-unstable-2024-05-05",
       url: "github:amaanq/tree-sitter-smali",
       rev: "fdfa6a1febc43c7467aa7e937b87b607956f2346",
       hash: "sha256-S0U6Xuntz16DrpYwSqMQu8Cu7UuD/JufHUxIHv826yw=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$514,
+        [nix.POS]: $pos[513],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3846,33 +3248,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     smithy: nix.thunk(() => ({
-      [nix.POS]: pos$517,
+      [nix.POS]: $pos[516],
       version: "0.2.0",
       url: "github:indoorvivants/tree-sitter-smithy",
       hash: "sha256-3cqT6+e0uqAtd92M55qSbza1eph8gklGlEGyO9R170w=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$516,
+        [nix.POS]: $pos[515],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     sml: nix.thunk(() => ({
-      [nix.POS]: pos$519,
+      [nix.POS]: $pos[518],
       version: "0.23.0",
       url: "github:MatthewFluet/tree-sitter-sml",
       hash: "sha256-hqsyHFcSmvyR50TKtOcidwABW+P31qisgSOtWTWM0tE=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$518,
+        [nix.POS]: $pos[517],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     snakemake: nix.thunk(() => ({
-      [nix.POS]: pos$521,
+      [nix.POS]: $pos[520],
       version: "2.0.0-unstable-2025-09-18",
       url: "github:osthomas/tree-sitter-snakemake",
       rev: "68010430c3e51c0e84c1ce21c6551df0e2469f51",
       hash: "sha256-jcMNh+pHjYEvTdShp3o6UlgXRM2AuZMp4KE0uXfNMqY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$520,
+        [nix.POS]: $pos[519],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3881,22 +3283,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     solidity: nix.thunk(() => ({
-      [nix.POS]: pos$523,
+      [nix.POS]: $pos[522],
       version: "1.2.13",
       url: "github:JoranHonig/tree-sitter-solidity",
       hash: "sha256-b+DHy7BkkMg88kLhirtCzjF3dHlCFkXea65aGC18fW0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$522,
+        [nix.POS]: $pos[521],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     sourcepawn: nix.thunk(() => ({
-      [nix.POS]: pos$525,
+      [nix.POS]: $pos[524],
       version: "0.8.0",
       url: "github:nilshelmig/tree-sitter-sourcepawn",
       hash: "sha256-FmVOiJDOGDgw/Uju1PZZkG7hsy/6u3XTRUCycpbZ7M8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$524,
+        [nix.POS]: $pos[523],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3905,13 +3307,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     spade: nix.thunk(() => ({
-      [nix.POS]: pos$527,
+      [nix.POS]: $pos[526],
       version: "0-unstable-2025-12-08",
       url: "gitlab:spade-lang/tree-sitter-spade",
       rev: "6569cd11cc9362e277845ce24111735059b145ee",
       hash: "sha256-h7rlrtV1NHjFPITR1cvYCblkUmbUudem4Ll6Z7qBFqE=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$526,
+        [nix.POS]: $pos[525],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3920,24 +3322,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     sparql: nix.thunk(() => ({
-      [nix.POS]: pos$529,
+      [nix.POS]: $pos[528],
       version: "0.1.0-unstable-2025-10-15",
       url: "github:GordianDziwis/tree-sitter-sparql",
       rev: "1ef52d35a73a2a5f2e433ecfd1c751c1360a923b",
       hash: "sha256-9DaV12dkcwF7/jWc4QaTQaHcKu5zO5evWlXGNZMdRqc=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$528,
+        [nix.POS]: $pos[527],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     spicedb: nix.thunk(() => ({
-      [nix.POS]: pos$531,
+      [nix.POS]: $pos[530],
       version: "0-unstable-2024-02-08",
       url: "github:jzelinskie/tree-sitter-spicedb",
       rev: "a4e4645651f86d6684c15dfa9931b7841dc52a66",
       hash: "sha256-dEpPkEohBB3qU1Vma/1VePkGGst4nA2RKgun7NiO2OA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$530,
+        [nix.POS]: $pos[529],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3946,13 +3348,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     sql: nix.thunk(() => ({
-      [nix.POS]: pos$533,
+      [nix.POS]: $pos[532],
       version: "0.3.11",
       url: "github:derekstride/tree-sitter-sql",
       hash: "sha256-efeDAUgCwV9UBXbLyZ1a4Rwcvr/+wke8IzkxRUQnddM=",
       generate: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$532,
+        [nix.POS]: $pos[531],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
@@ -3961,33 +3363,33 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`github:metio/tree-sitter-ssh-client-config?ref=${version}`);
       const hash = "sha256-PhNHsWjqTmchRH+noVQcwCFNNyA6/RvPiwDDquBuQFo=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$534,
+        [nix.POS]: $pos[533],
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "aciceri"))];
         })()),
       }));
-      return { [nix.POS]: pos$535, version, url, hash, meta };
+      return { [nix.POS]: $pos[534], version, url, hash, meta };
     })()),
     "ssh-client-config": nix.thunk(() => (() => {
       const version = "2026.8.20";
       const url = nix.thunk(() => nix.str`github:metio/tree-sitter-ssh-client-config?ref=${version}`);
       const hash = "sha256-uwiDL2Rc2kW7TiRqtjmAocceLJOFT/9yDtR4c1IU7PI=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$536,
+        [nix.POS]: $pos[535],
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
       }));
-      return { [nix.POS]: pos$537, version, url, hash, meta };
+      return { [nix.POS]: $pos[536], version, url, hash, meta };
     })()),
     strace: nix.thunk(() => ({
-      [nix.POS]: pos$539,
+      [nix.POS]: $pos[538],
       version: "0-unstable-2025-12-21",
       url: "github:sigmaSd/tree-sitter-strace",
       rev: "ac874ddfcc08d689fee1f4533789e06d88388f29",
       hash: "sha256-BGCbpw85+NNQMF+emS2hllbIeTmiFvveFzlK5lKaD5U=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$538,
+        [nix.POS]: $pos[537],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3997,12 +3399,12 @@ export default nix.lambda((args) => (() => {
       excludeBrokenTreeSitterJson: true,
     })),
     strictdoc: nix.thunk(() => ({
-      [nix.POS]: pos$541,
+      [nix.POS]: $pos[540],
       version: "0.2.0",
       url: "github:manueldiagostino/tree-sitter-strictdoc",
       hash: "sha256-sIbh8mYWrGhaXtRxe/FYIT1aD8WAKfQYJJbhWhz9jEs=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$540,
+        [nix.POS]: $pos[539],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
@@ -4013,7 +3415,7 @@ export default nix.lambda((args) => (() => {
       const location = "crates/tree-sitter-styx";
       const excludeBrokenTreeSitterJson = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$542,
+        [nix.POS]: $pos[541],
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "OR"), nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
             return [
@@ -4023,7 +3425,7 @@ export default nix.lambda((args) => (() => {
           })()))),
       }));
       return {
-        [nix.POS]: pos$543,
+        [nix.POS]: $pos[542],
         version,
         url,
         hash,
@@ -4033,43 +3435,43 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     supercollider: nix.thunk(() => ({
-      [nix.POS]: pos$545,
+      [nix.POS]: $pos[544],
       version: "0.3.2",
       url: "github:madskjeldgaard/tree-sitter-supercollider",
       hash: "sha256-drn1S4gNm6fOSUTCa/CrAqCWoUn16y1hpaZBCPpyaNE=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$544,
+        [nix.POS]: $pos[543],
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
       })),
     })),
     surface: nix.thunk(() => ({
-      [nix.POS]: pos$547,
+      [nix.POS]: $pos[546],
       version: "0.2.0",
       url: "github:connorlay/tree-sitter-surface",
       hash: "sha256-Hur6lae+9nk8pWL531K52fEsCAv14X5gmYKD9UULW4g=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$546,
+        [nix.POS]: $pos[545],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     svelte: nix.thunk(() => ({
-      [nix.POS]: pos$549,
+      [nix.POS]: $pos[548],
       version: "0.11.0",
       url: "github:Himujjal/tree-sitter-svelte",
       hash: "sha256-novNVlLVHYIfjmC7W+F/1F0RxW6dd27/DwQ3n5UO6c4=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$548,
+        [nix.POS]: $pos[547],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     sway: nix.thunk(() => ({
-      [nix.POS]: pos$551,
+      [nix.POS]: $pos[550],
       version: "1.0.0-unstable-2025-09-02",
       url: "github:FuelLabs/tree-sitter-sway",
       rev: "9b7845ce06ecb38b040c3940970b4fd0adc331d1",
       hash: "sha256-+BRw4OFQb7FljdKCj5mruK0L9wsZ+1UDTykVLS9wjoY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$550,
+        [nix.POS]: $pos[549],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4082,32 +3484,32 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`github:alex-pinkus/tree-sitter-swift/${version}-with-generated-files`);
       const hash = "sha256-cnC1qVvtkgHSsYsMi9sbH8VGwGckRMTZpMQsdisU3AI=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$552,
+        [nix.POS]: $pos[551],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "aciceri"))];
         })()),
       }));
-      return { [nix.POS]: pos$553, version, url, hash, meta };
+      return { [nix.POS]: $pos[552], version, url, hash, meta };
     })()),
     systemverilog: nix.thunk(() => ({
-      [nix.POS]: pos$555,
+      [nix.POS]: $pos[554],
       version: "0.4.0",
       url: "github:gmlarumbe/tree-sitter-systemverilog",
       hash: "sha256-ig4mpzN/bvnD5e5MN11a7YkONDeJ3R8kz/AbS0GDreI=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$554,
+        [nix.POS]: $pos[553],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     t32: nix.thunk(() => ({
-      [nix.POS]: pos$557,
+      [nix.POS]: $pos[556],
       version: "9.0.2",
       url: "github:xasc/tree-sitter-t32",
       hash: "sha256-hs0JHC4SOC4LvBQTMv/kKDQnW590p6waPHuO58CUaUw=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$556,
+        [nix.POS]: $pos[555],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "aciceri"))];
@@ -4115,13 +3517,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     tablegen: nix.thunk(() => ({
-      [nix.POS]: pos$559,
+      [nix.POS]: $pos[558],
       version: "0-unstable-2024-10-04",
       url: "github:Flakebi/tree-sitter-tablegen",
       rev: "3e9c4822ab5cdcccf4f8aa9dcd42117f736d51d9",
       hash: "sha256-8yn/Czv/aNQfa/k8gnr8qeCsuDtU2L2qHGKAMbv8Vgk=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$558,
+        [nix.POS]: $pos[557],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4130,13 +3532,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     tact: nix.thunk(() => ({
-      [nix.POS]: pos$561,
+      [nix.POS]: $pos[560],
       version: "1.6.0-unstable-2025-05-01",
       url: "github:tact-lang/tree-sitter-tact",
       rev: "a6267c2091ed432c248780cec9f8d42c8766d9ad",
       hash: "sha256-2AUN/VYor3K0hkneLYa6+LjE+V8EJogFqBTgdfvOiKM=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$560,
+        [nix.POS]: $pos[559],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4150,19 +3552,19 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`github:wenkokke/tree-sitter-talon?ref=${version}`);
       const hash = "sha256-NfPwnySeztMx3qzDbA4HE5WNVd6aImioZkvWi1lXh88=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$562,
+        [nix.POS]: $pos[561],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { [nix.POS]: pos$563, version, url, hash, meta };
+      return { [nix.POS]: $pos[562], version, url, hash, meta };
     })()),
     task: nix.thunk(() => ({
-      [nix.POS]: pos$565,
+      [nix.POS]: $pos[564],
       version: "0-unstable-2022-08-17",
       url: "github:alexanderbrevig/tree-sitter-task",
       rev: "ed4fb3674dd2d889c36e121f7173099290452af2",
       hash: "sha256-0vqXoDgQcAE1rm3kFlb+l/S4cZuL5sU3WsZMDSna1+s=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$564,
+        [nix.POS]: $pos[563],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4171,13 +3573,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     tcl: nix.thunk(() => ({
-      [nix.POS]: pos$567,
+      [nix.POS]: $pos[566],
       version: "0-unstable-2026-08-05",
       url: "github:tree-sitter-grammars/tree-sitter-tcl",
       rev: "850a72ab6436e06645b33b11cfa60cbdb04b1f01",
       hash: "sha256-ay0MMCB4MRzS8eV+ZnpD37udkiL6GVDLgI90Q+2gjdM=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$566,
+        [nix.POS]: $pos[565],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4186,12 +3588,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     teal: nix.thunk(() => ({
-      [nix.POS]: pos$569,
+      [nix.POS]: $pos[568],
       version: "0.1.0",
       url: "github:euclidianAce/tree-sitter-teal",
       hash: "sha256-JDqWr895Ob1Jn3Kf44xbkMJqyna0AiMBU5xJpA6ZP7w=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$568,
+        [nix.POS]: $pos[567],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4200,34 +3602,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     templ: nix.thunk(() => ({
-      [nix.POS]: pos$571,
+      [nix.POS]: $pos[570],
       version: "1.0.0-unstable-2025-12-31",
       url: "github:vrischmann/tree-sitter-templ",
       rev: "1c6db04effbcd7773c826bded9783cbc3061bd55",
       hash: "sha256-n+TJLNB6AoFOjkqpb8vkxXsXno/vE8M8yRzVflRUVd0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$570,
+        [nix.POS]: $pos[569],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     tera: nix.thunk(() => ({
-      [nix.POS]: pos$573,
+      [nix.POS]: $pos[572],
       version: "0.1.0",
       url: "github:uncenter/tree-sitter-tera",
       hash: "sha256-1Gb947YJnEFrCVKAuz06kwJdKD9PMab/alFJtyYjBso=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$572,
+        [nix.POS]: $pos[571],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     textproto: nix.thunk(() => ({
-      [nix.POS]: pos$575,
+      [nix.POS]: $pos[574],
       version: "0-unstable-2024-10-16",
       url: "github:PorterAtGoogle/tree-sitter-textproto",
       rev: "568471b80fd8793d37ed01865d8c2208a9fefd1b",
       hash: "sha256-VAj8qSxbkFqNp0X8BOZNvGTggSXZvzDjODedY11J0BQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$574,
+        [nix.POS]: $pos[573],
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4236,13 +3638,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     thrift: nix.thunk(() => ({
-      [nix.POS]: pos$577,
+      [nix.POS]: $pos[576],
       version: "0.5.0-unstable-2024-04-20",
       url: "github:tree-sitter-grammars/tree-sitter-thrift",
       rev: "68fd0d80943a828d9e6f49c58a74be1e9ca142cf",
       hash: "sha256-owZbs8ttjKrqTA8fQ/NmBGyIUUItSUvvW4hRv0NPV8Y=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$576,
+        [nix.POS]: $pos[575],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4251,20 +3653,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     tiger: nix.thunk(() => ({
-      [nix.POS]: pos$579,
+      [nix.POS]: $pos[578],
       version: "0.3.0-unstable-2025-03-13",
       url: "github:ambroisie/tree-sitter-tiger",
       rev: "4a77b2d7a004587646bddc4e854779044b6db459",
       hash: "sha256-jLdJ3nLShoBxVCcUbnaswYG5d4UU8aaE1xexb2LnmTQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$578,
+        [nix.POS]: $pos[577],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     tlaplus: nix.thunk(() => (() => {
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$580,
+            [nix.POS]: $pos[579],
             url: "https://github.com/tlaplus-community/tree-sitter-tlaplus/commit/2d831940c782850f64dabf5b7b17e9e51f7f0ebb.diff",
             hash: "sha256-ski2aYo25kHXz3T+Z2Coitdywot3tUiEbDY7gH7mTHE=",
           })))),
@@ -4273,115 +3675,115 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`github:tlaplus-community/tree-sitter-tlaplus?ref=${version}`);
       const hash = "sha256-k34gkAd0ueXEAww/Hc1mtBfn0Kp1pIBQtjDZ9GQeB4Q=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$581,
+        [nix.POS]: $pos[580],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { [nix.POS]: pos$582, patches, version, url, hash, meta };
+      return { [nix.POS]: $pos[581], patches, version, url, hash, meta };
     })()),
     todotxt: nix.thunk(() => ({
-      [nix.POS]: pos$584,
+      [nix.POS]: $pos[583],
       version: "0-unstable-2024-01-15",
       url: "github:arnarg/tree-sitter-todotxt",
       rev: "3937c5cd105ec4127448651a21aef45f52d19609",
       hash: "sha256-OeAh51rcFTiexAraRzIZUR/A8h9RPwKY7rmtc3ZzoRQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$583,
+        [nix.POS]: $pos[582],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     tolk: nix.thunk(() => ({
-      [nix.POS]: pos$586,
+      [nix.POS]: $pos[585],
       version: "0-unstable-2025-07-14",
       url: "github:ton-blockchain/ton-language-server",
       rev: "e90dbb89f8ec8fbf8a16b61a31d6cc19a840de4f",
       hash: "sha256-EeCp7i8ao+KCm8OAx4ALCDg7Nj0GAZbcC1ecyw76qZQ=",
       location: "server/src/languages/tolk/tree-sitter-tolk",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$585,
+        [nix.POS]: $pos[584],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     toml: nix.thunk(() => ({
-      [nix.POS]: pos$588,
+      [nix.POS]: $pos[587],
       version: "0.7.0-unstable-2024-12-03",
       url: "github:tree-sitter-grammars/tree-sitter-toml",
       rev: "64b56832c2cffe41758f28e05c756a3a98d16f41",
       hash: "sha256-m9RlGkHiOL/PNENrdEPqtPlahSqGymsx7gZrCoN/Lsk=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$587,
+        [nix.POS]: $pos[586],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     tql: nix.thunk(() => ({
-      [nix.POS]: pos$590,
+      [nix.POS]: $pos[589],
       version: "1.2.0",
       url: "github:tenzir/tree-sitter-tql",
       hash: "sha256-lfrEKZSHFA4JYjDQ98bVTORPlgSV2veGcGwYbspaYaA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$589,
+        [nix.POS]: $pos[588],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     tsq: nix.thunk(() => ({
-      [nix.POS]: pos$592,
+      [nix.POS]: $pos[591],
       version: "0.19.0-unstable-2024-02-24",
       url: "github:tree-sitter/tree-sitter-tsq",
       rev: "49da6de661be6a07cb51018880ebe680324e7b82",
       hash: "sha256-md4xynJx9F/l6N+JZYU8CLXmz50fV13L8xGJVUqk6do=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$591,
+        [nix.POS]: $pos[590],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     tsx: nix.thunk(() => ({
-      [nix.POS]: pos$594,
+      [nix.POS]: $pos[593],
       version: "0.23.2",
       url: "github:tree-sitter/tree-sitter-typescript",
       hash: "sha256-CU55+YoFJb6zWbJnbd38B7iEGkhukSVpBN7sli6GkGY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$593,
+        [nix.POS]: $pos[592],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     turtle: nix.thunk(() => ({
-      [nix.POS]: pos$596,
+      [nix.POS]: $pos[595],
       version: "0.1.0-unstable-2024-07-02",
       url: "github:GordianDziwis/tree-sitter-turtle",
       rev: "7f789ea7ef765080f71a298fc96b7c957fa24422",
       hash: "sha256-z6f73euFAG9du5owz7V9WLbWK81Jg0DwxN1metKPbTA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$595,
+        [nix.POS]: $pos[594],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     twig: nix.thunk(() => ({
-      [nix.POS]: pos$598,
+      [nix.POS]: $pos[597],
       version: "0.7.0",
       url: "github:kaermorchen/tree-sitter-twig",
       hash: "sha256-JvJeSwdqyGNjWwJpcRiJ1hHVlUge3XX0xr/WBJ/LRhk=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$597,
+        [nix.POS]: $pos[596],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
       })),
     })),
     typescript: nix.thunk(() => ({
-      [nix.POS]: pos$600,
+      [nix.POS]: $pos[599],
       version: "0.23.2",
       url: "github:tree-sitter/tree-sitter-typescript",
       hash: "sha256-CU55+YoFJb6zWbJnbd38B7iEGkhukSVpBN7sli6GkGY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$599,
+        [nix.POS]: $pos[598],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     typespec: nix.thunk(() => ({
-      [nix.POS]: pos$602,
+      [nix.POS]: $pos[601],
       version: "0-unstable-2026-01-01",
       url: "github:happenslol/tree-sitter-typespec",
       rev: "395bef1e1eb4dd18365401642beb534e8a244056",
       hash: "sha256-N+clb40CgGzjyvC9b/qMhbSUZ6VsLJzK7N1k5iq2seY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$601,
+        [nix.POS]: $pos[600],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4390,33 +3792,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     typst: nix.thunk(() => ({
-      [nix.POS]: pos$604,
+      [nix.POS]: $pos[603],
       version: "0.11.0",
       url: "github:uben0/tree-sitter-typst",
       hash: "sha256-n6RTRMJS3h+g+Wawjb7I9NJbz+w/SGi+DQVj1jiyGaU=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$603,
+        [nix.POS]: $pos[602],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     uiua: nix.thunk(() => ({
-      [nix.POS]: pos$606,
+      [nix.POS]: $pos[605],
       version: "0.13.0",
       url: "github:shnarazk/tree-sitter-uiua",
       hash: "sha256-b/uR04wTiLVTgrLr2OuBzZ0LJd35BozFAe2MdBVW0Qk=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$605,
+        [nix.POS]: $pos[604],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
       })),
     })),
     ungrammar: nix.thunk(() => ({
-      [nix.POS]: pos$608,
+      [nix.POS]: $pos[607],
       version: "0-unstable-2023-02-28",
       url: "github:Philipp-M/tree-sitter-ungrammar",
       rev: "debd26fed283d80456ebafa33a06957b0c52e451",
       hash: "sha256-ftvcD8I+hYqH3EGxaRZ0w8FHjBA34OSTTsrUsAOtayU=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$607,
+        [nix.POS]: $pos[606],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4425,13 +3827,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     unison: nix.thunk(() => ({
-      [nix.POS]: pos$610,
+      [nix.POS]: $pos[609],
       version: "2.1.3-unstable-2026-02-27",
       url: "github:kylegoetz/tree-sitter-unison",
       rev: "10365cc70ab2b2de85ea7ab35cf6b7636c36ce8b",
       hash: "sha256-l6X2x5lGlUhyf6Pr6lWd4aWacz7vmvtHVyM4qqPO8zg=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$609,
+        [nix.POS]: $pos[608],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4440,13 +3842,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     uxntal: nix.thunk(() => ({
-      [nix.POS]: pos$612,
+      [nix.POS]: $pos[611],
       version: "0-unstable-2024-05-05",
       url: "github:tree-sitter-grammars/tree-sitter-uxntal",
       rev: "ad9b638b914095320de85d59c49ab271603af048",
       hash: "sha256-hR0EaYv1++MJ0pdBl3ZtyEljitnp5hgFWQa9F6b1KE4=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$611,
+        [nix.POS]: $pos[610],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4460,23 +3862,23 @@ export default nix.lambda((args) => (() => {
       const hash = "sha256-lBrX5n4hYdDq+2m7j9JXyeGGS3yl4oBu8jK7VV+OE7I=";
       const location = "tree_sitter_v";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$613,
+        [nix.POS]: $pos[612],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "aciceri"))];
         })()),
       }));
-      return { [nix.POS]: pos$614, version, url, hash, location, meta };
+      return { [nix.POS]: $pos[613], version, url, hash, location, meta };
     })()),
     vala: nix.thunk(() => ({
-      [nix.POS]: pos$616,
+      [nix.POS]: $pos[615],
       version: "0-unstable-2024-10-29",
       url: "github:vala-lang/tree-sitter-vala",
       rev: "97e6db3c8c73b15a9541a458d8e797a07f588ef4",
       hash: "sha256-hAekweZGDHVrWVd04RrN+9Jz0D2kode+DpceTlUXii0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$615,
+        [nix.POS]: $pos[614],
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4489,23 +3891,23 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`github:ntsk/tree-sitter-vcl?ref=v${version}`);
       const hash = "sha256-KnEB2iLjw8wIXAsDPVg+w+YEI/UzlgSftPUMpS6hQEQ=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$617,
+        [nix.POS]: $pos[616],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "ntsk"))];
         })()),
       }));
-      return { [nix.POS]: pos$618, version, url, hash, meta };
+      return { [nix.POS]: $pos[617], version, url, hash, meta };
     })()),
     vento: nix.thunk(() => ({
-      [nix.POS]: pos$620,
+      [nix.POS]: $pos[619],
       version: "0-unstable-2026-02-23",
       url: "github:ventojs/tree-sitter-vento",
       rev: "4569bc1fb81f050ca4ef3ceefdd31cfeb35c4f0a",
       hash: "sha256-qD+O3gV/PGCdhv0nAlAi1ZeUmGSEfcKcbnipfZyex4g=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$619,
+        [nix.POS]: $pos[618],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4514,23 +3916,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     verilog: nix.thunk(() => ({
-      [nix.POS]: pos$622,
+      [nix.POS]: $pos[621],
       version: "1.0.3",
       url: "github:tree-sitter/tree-sitter-verilog",
       hash: "sha256-SlK33WQhutIeCXAEFpvWbQAwOwMab68WD3LRIqPiaNY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$621,
+        [nix.POS]: $pos[620],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     vhdl: nix.thunk(() => ({
-      [nix.POS]: pos$624,
+      [nix.POS]: $pos[623],
       version: "2.0.3-unstable-2026-09-14",
       url: "github:jpt13653903/tree-sitter-vhdl",
       rev: "9be8e45c3ae7e7a4373a943a5c81ff92ce3656f8",
       hash: "sha256-TU1dnMty8+OD24993bb7PB2M0RuzvKElWk4IkTCwGeg=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$623,
+        [nix.POS]: $pos[622],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4539,13 +3941,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     vhs: nix.thunk(() => ({
-      [nix.POS]: pos$626,
+      [nix.POS]: $pos[625],
       version: "0-unstable-2025-03-26",
       url: "github:charmbracelet/tree-sitter-vhs",
       rev: "0c6fae9d2cfc5b217bfd1fe84a7678f5917116db",
       hash: "sha256-o7Q/3wwiCjxO6hBfj1Wxoz2y6+wxLH+oCLiapox7+Hk=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$625,
+        [nix.POS]: $pos[624],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4554,24 +3956,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     vim: nix.thunk(() => ({
-      [nix.POS]: pos$628,
+      [nix.POS]: $pos[627],
       version: "0.8.1-unstable-2026-07-12",
       url: "github:tree-sitter-grammars/tree-sitter-vim",
       rev: "039c8d0aa1deae00ddeb0374dd70bcc0ec56938d",
       hash: "sha256-i+CfSWLRXhR2g98cGlfW4iRhNb3nt8O+WJ1Bjf2tnEM=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$627,
+        [nix.POS]: $pos[626],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     vue: nix.thunk(() => ({
-      [nix.POS]: pos$630,
+      [nix.POS]: $pos[629],
       version: "0.1.0",
       url: "github:tree-sitter-grammars/tree-sitter-vue",
       rev: "ce8011a414fdf8091f4e4071752efc376f4afb08",
       hash: "sha256-pCoyDRuRCpfpJh7vQIM8yZz5aPcqrdYlTJGM/K5oQFs=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$629,
+        [nix.POS]: $pos[628],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4581,14 +3983,14 @@ export default nix.lambda((args) => (() => {
       excludeBrokenTreeSitterJson: true,
     })),
     wast: nix.thunk(() => ({
-      [nix.POS]: pos$632,
+      [nix.POS]: $pos[631],
       version: "0-unstable-2022-05-17",
       url: "github:wasm-lsp/tree-sitter-wasm",
       rev: "2ca28a9f9d709847bf7a3de0942a84e912f59088",
       hash: "sha256-a1l4RsGpRQfUxEjwewyKiV0G7J2DHZW6+y1HnjREYAs=",
       location: "wast",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$631,
+        [nix.POS]: $pos[630],
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -4603,14 +4005,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     wat: nix.thunk(() => ({
-      [nix.POS]: pos$634,
+      [nix.POS]: $pos[633],
       version: "0-unstable-2022-05-17",
       url: "github:wasm-lsp/tree-sitter-wasm",
       rev: "2ca28a9f9d709847bf7a3de0942a84e912f59088",
       hash: "sha256-a1l4RsGpRQfUxEjwewyKiV0G7J2DHZW6+y1HnjREYAs=",
       location: "wat",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$633,
+        [nix.POS]: $pos[632],
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -4625,13 +4027,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     werk: nix.thunk(() => ({
-      [nix.POS]: pos$636,
+      [nix.POS]: $pos[635],
       version: "0-unstable-2025-03-19",
       url: "github:little-bonsai/tree-sitter-werk",
       rev: "92b0f7fe98465c4c435794a58e961306193d1c1e",
       hash: "sha256-VPY1fMYGSF1+87ia+d7b7l8PzNIoKwAbAT+yw5KHjjQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$635,
+        [nix.POS]: $pos[634],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4640,13 +4042,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     wesl: nix.thunk(() => ({
-      [nix.POS]: pos$638,
+      [nix.POS]: $pos[637],
       version: "0.1.0-unstable-2026-10-02",
       url: "github:wgsl-tooling-wg/tree-sitter-wesl",
       rev: "b600a65818e4dd7f4d32407d1427643c27f3c389",
       hash: "sha256-hf/dSdWkvmEICrHRNq6HNz2RqOWt5bMEhd+1RUOs/W4=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$637,
+        [nix.POS]: $pos[636],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4655,44 +4057,44 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     wgsl: nix.thunk(() => ({
-      [nix.POS]: pos$640,
+      [nix.POS]: $pos[639],
       version: "0-unstable-2023-01-09",
       url: "github:szebniok/tree-sitter-wgsl",
       rev: "40259f3c77ea856841a4e0c4c807705f3e4a2b65",
       hash: "sha256-voLkcJ/062hzipb3Ak/mgQvFbrLUJdnXq1IupzjMJXA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$639,
+        [nix.POS]: $pos[638],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     wikitext: nix.thunk(() => ({
-      [nix.POS]: pos$642,
+      [nix.POS]: $pos[641],
       version: "0.1.3",
       url: "github:wikimedia/tree-sitter-wikitext",
       hash: "sha256-jqM+SQzQZNjUyHc4wv9c80lPkH62xWrxAU1uvGEmQho=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$641,
+        [nix.POS]: $pos[640],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     wing: nix.thunk(() => ({
-      [nix.POS]: pos$644,
+      [nix.POS]: $pos[643],
       version: "0.83.11",
       url: "github:winglang/tree-sitter-wing",
       hash: "sha256-sL1ZoNuNUvTcOUf2I/6cQkeOPj4Jwqmv5zGXETdMByY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$643,
+        [nix.POS]: $pos[642],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     wit: nix.thunk(() => ({
-      [nix.POS]: pos$646,
+      [nix.POS]: $pos[645],
       version: "1.4.0",
       url: "github:bytecodealliance/tree-sitter-wit",
       hash: "sha256-63xH63s6lgticgRtMz7LCL1ThuXegn7qFCZgeQqIZH4=",
       excludeBrokenTreeSitterJson: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$645,
+        [nix.POS]: $pos[644],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4701,13 +4103,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     wren: nix.thunk(() => ({
-      [nix.POS]: pos$648,
+      [nix.POS]: $pos[647],
       version: "0-unstable-2024-01-01",
       url: "sourcehut:~jummit/tree-sitter-wren",
       rev: "6748694be32f11e7ec6b5faeb1b48ca6156d4e06",
       hash: "sha256-CU08QY4X/u4W4AEkK+gUmy5P8/XoBHDJmWX1vdGjmsI=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$647,
+        [nix.POS]: $pos[646],
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4720,23 +4122,23 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`github:synaptiko/tree-sitter-xit?ref=${version}`);
       const hash = "sha256-wTr7YyGnz/dWfA5oecRqxeR8Unoob6isGnQg4/iu+MI=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$649,
+        [nix.POS]: $pos[648],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "aciceri"))];
         })()),
       }));
-      return { [nix.POS]: pos$650, version, url, hash, meta };
+      return { [nix.POS]: $pos[649], version, url, hash, meta };
     })()),
     xml: nix.thunk(() => ({
-      [nix.POS]: pos$652,
+      [nix.POS]: $pos[651],
       version: "0.7.0-unstable-2026-01-21",
       url: "github:tree-sitter-grammars/tree-sitter-xml",
       rev: "5000ae8f22d11fbe93939b05c1e37cf21117162d",
       hash: "sha256-QN+jQx1CrTbYpmM9mLUfjWcymGsa0Th7LVgk4thnQXU=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$651,
+        [nix.POS]: $pos[650],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4745,13 +4147,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     xtc: nix.thunk(() => ({
-      [nix.POS]: pos$654,
+      [nix.POS]: $pos[653],
       version: "0-unstable-2024-04-15",
       url: "github:Alexis-Lapierre/tree-sitter-xtc",
       rev: "7bc11b736250c45e25cfb0215db2f8393779957e",
       hash: "sha256-teUDDvH8Km1WHNXyrUtX1yULYOaTgaAwT6aCaR4MTfs=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$653,
+        [nix.POS]: $pos[652],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4760,34 +4162,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     yaml: nix.thunk(() => ({
-      [nix.POS]: pos$656,
+      [nix.POS]: $pos[655],
       version: "0.7.2",
       url: "github:tree-sitter-grammars/tree-sitter-yaml",
       hash: "sha256-BX6TOfAZLW+0h2TNsgsLC9K2lfirraCWlBN2vCKiXQ4=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$655,
+        [nix.POS]: $pos[654],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),
     yang: nix.thunk(() => ({
-      [nix.POS]: pos$658,
+      [nix.POS]: $pos[657],
       version: "0-unstable-2022-11-21",
       url: "github:hubro/tree-sitter-yang",
       rev: "2c0e6be8dd4dcb961c345fa35c309ad4f5bd3502",
       hash: "sha256-6EIK1EStHrUHBLZBsZqd1LL05ZAJ6PKUyIzBBsTVjO8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$657,
+        [nix.POS]: $pos[656],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
     })),
     yara: nix.thunk(() => ({
-      [nix.POS]: pos$660,
+      [nix.POS]: $pos[659],
       version: "0-unstable-2024-12-12",
       url: "github:egibs/tree-sitter-yara",
       rev: "eb3ede203275c38000177f72ec0f9965312806ef",
       hash: "sha256-twcbL2fKOE0PdiEboSIObzAedljZ3arBm6QQUw/W5HQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$659,
+        [nix.POS]: $pos[658],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4796,14 +4198,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     yuck: nix.thunk(() => ({
-      [nix.POS]: pos$662,
+      [nix.POS]: $pos[661],
       version: "0.0.2-unstable-2026-04-03",
       url: "github:tree-sitter-grammars/tree-sitter-yuck",
       rev: "6c60112b3b3e739fb1ca4a8ea4bea2b6ffe11318",
       hash: "sha256-ZbUN9lv2nGgpQ0rU+H38gSCdCSav//47ESHXDMuQX7c=",
       excludeBrokenTreeSitterJson: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$661,
+        [nix.POS]: $pos[660],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4812,13 +4214,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     zig: nix.thunk(() => ({
-      [nix.POS]: pos$664,
+      [nix.POS]: $pos[663],
       version: "1.1.2-unstable-2025-09-10",
       url: "github:tree-sitter-grammars/tree-sitter-zig",
       rev: "6479aa13f32f701c383083d8b28360ebd682fb7d",
       hash: "sha256-T9Q6EhJ20tH5v1fUlnNA3UcdX52DMZE/PQjPWQtcHw0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$663,
+        [nix.POS]: $pos[662],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bootstrap.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 50, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["configurePhase", 26, 3], ["buildPhase", 34, 3], ["installPhase", 43, 3], ["forceShare", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { gccStdenv: false, fetchurl: false, autoconf: false, gcc: false, coreutils: false, "gambit-support": false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/bootstrap.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/bootstrap.nix", [["description", 50, 5]]);
-const pos$3 = nix.positions(here + "/bootstrap.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["configurePhase", 26, 3], ["buildPhase", 34, 3], ["installPhase", 43, 3], ["forceShare", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const gambit_support = nix.arg($, "gambit-support");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gambit-bootstrap",
       version: "4.9.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gambitscheme.org/4.9.5/gambit-v4_9_5.tgz",
           sha256: "sha256-4o74218OexFZcgwVAFPcq498TK4fDlyDiUR5cHP4wdw=",
         })))),
@@ -35,7 +33,7 @@ unset CFLAGS LDFLAGS LIBS CPPFLAGS CXXFLAGS
       installPhase: "cp -fa ./gsc-boot $out/gambit/\n",
       forceShare: nix.thunk(() => ["info"]),
       meta: nix.thunk(() => nix.update(nix.sel(gambit_support, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Optimizing Scheme to C compiler, bootstrap step",
       })),
     })));

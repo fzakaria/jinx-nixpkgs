@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["target_triple", 24, 7]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["mainProgram", 44, 5], ["maintainers", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["patches", 22, 3], ["buildAndTestSubdir", 28, 3], ["checkPhase", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, replaceVars: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["target_triple", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["mainProgram", 44, 5], ["maintainers", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["patches", 22, 3], ["buildAndTestSubdir", 28, 3], ["checkPhase", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lalrpop",
       version: "0.22.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lalrpop",
           repo: "lalrpop",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,14 +26,14 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-3Lm25X2QQQ4+3Spe6Nz5PkIvFcgwHQ+hqAdjsFesgro=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-correct-binary-path-in-tests.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             target_triple: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")),
           })))),
       ]),
       buildAndTestSubdir: "lalrpop",
       checkPhase: "buildAndTestSubdir=lalrpop-test cargoCheckHook\ncargoCheckHook\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "LR(1) parser generator for Rust",
         homepage: "https://github.com/lalrpop/lalrpop",
         changelog: nix.thunk(() => nix.str`https://github.com/lalrpop/lalrpop/blob/${nix.sel(finalAttrs, "src", "rev")}/RELEASES.md`),

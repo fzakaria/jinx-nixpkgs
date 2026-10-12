@@ -2,14 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/monetdb.nix", [[["url", 22, 5], ["hash", 23, 5]], [["maintainers", 59, 5]], [["enable", 61, 34]], [["monetdb", 61, 26]], [["services", 61, 17]], [["machine", 61, 9]], [["name", 57, 3], ["meta", 58, 3], ["nodes", 61, 3], ["testScript", 62, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/monetdb.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/monetdb.nix", [["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/monetdb.nix", [["enable", 61, 34]]);
-const pos$4 = nix.positions(here + "/monetdb.nix", [["monetdb", 61, 26]]);
-const pos$5 = nix.positions(here + "/monetdb.nix", [["services", 61, 17]]);
-const pos$6 = nix.positions(here + "/monetdb.nix", [["machine", 61, 9]]);
-const pos$7 = nix.positions(here + "/monetdb.nix", [["name", 57, 3], ["meta", 58, 3], ["nodes", 61, 3], ["testScript", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,29 +13,29 @@ export default nix.lambda((args) => (() => {
   const credsVoc = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), ".monetdb", "user=voc\npassword=voc\n"));
   const transaction = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "transaction", "START TRANSACTION;\nCREATE TABLE test (id int, data varchar(30));\nROLLBACK;\n"));
   const vocData = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchzip"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://dev.monetdb.org/Assets/VOC/voc_dump.zip",
       hash: "sha256-sQ5acTsSAiXQfOgt2PhN7X7Z9TZGZtLrPPxgQT2pCGQ=",
     }))));
   const onboardPeople = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "onboardPeople", "CREATE VIEW onboard_people AS\nSELECT * FROM (\nSELECT 'craftsmen' AS type, craftsmen.* FROM craftsmen\nUNION ALL\nSELECT 'impotenten' AS type, impotenten.* FROM impotenten\nUNION ALL\nSELECT 'passengers' AS type, passengers.* FROM passengers\nUNION ALL\nSELECT 'seafarers' AS type, seafarers.* FROM seafarers\nUNION ALL\nSELECT 'soldiers' AS type, soldiers.* FROM soldiers\nUNION ALL\nSELECT 'total' AS type, total.* FROM total\n) AS onboard_people_table;\nSELECT type, COUNT(*) AS total\nFROM onboard_people GROUP BY type ORDER BY type;\n"));
   const onboardExpected = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "strings", "replaceStrings"), nix.thunk(() => ["\n"]), nix.thunk(() => ["\\n"]), "+------------+-------+\n| type       | total |\n+============+=======+\n| craftsmen  |  2349 |\n| impotenten |   938 |\n| passengers |  2813 |\n| seafarers  |  4468 |\n| soldiers   |  4177 |\n| total      |  2467 |\n+------------+-------+\n"));
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "monetdb",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "StillerHarpo"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          monetdb: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+          [nix.POS]: $pos[3],
+          monetdb: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
         })),
       })),
     })),

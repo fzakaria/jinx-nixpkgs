@@ -2,32 +2,28 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sources.nix", [[["url", 8, 7], ["hash", 9, 7]], [["version", 6, 5], ["src", 7, 5]], [["url", 15, 7], ["hash", 16, 7]], [["version", 13, 5], ["src", 14, 5]], [["aarch64-darwin", 5, 3], ["x86_64-linux", 12, 3]]]);
 const formals$1 = { args: { fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sources.nix", [["url", 8, 7], ["hash", 9, 7]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["version", 6, 5], ["src", 7, 5]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["url", 15, 7], ["hash", 16, 7]]);
-const pos$4 = nix.positions(here + "/sources.nix", [["version", 13, 5], ["src", 14, 5]]);
-const pos$5 = nix.positions(here + "/sources.nix", [["aarch64-darwin", 5, 3], ["x86_64-linux", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchurl = nix.arg($, "fetchurl");
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "2.11.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://download.snipaste.com/archives/Snipaste-2.11.3.dmg",
           hash: "sha256-oih4OIieexc0pl2VK65e9/R5vcFj0MMb6RhZvKEg/T4=",
         })))),
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "2.11.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://download.snipaste.com/archives/Snipaste-2.11.3-x86_64.AppImage",
           hash: "sha256-6ARv8gRbZoul+sbXc9g3MTE6TwC6FxFHxvoaE4UkAzQ=",
         })))),

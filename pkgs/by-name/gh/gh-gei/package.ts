@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 24, 5], ["description", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["mainProgram", 28, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dotnet-sdk", 19, 3], ["projectFile", 20, 3], ["nugetDeps", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDotnetModule: false, dotnetCorePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 24, 5], ["description", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["mainProgram", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dotnet-sdk", 19, 3], ["projectFile", 20, 3], ["nugetDeps", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gh-gei";
       const version = "1.34.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "github",
           repo: "gh-gei",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const projectFile = "src/gei/gei.csproj";
       const nugetDeps = nix.path(here, "./deps.json");
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/github/gh-gei",
         description: "Migration CLI for GitHub to GitHub migrations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gei",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

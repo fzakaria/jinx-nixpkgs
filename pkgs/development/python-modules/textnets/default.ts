@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["pythonRelaxDeps", 48, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 67, 3], ["disabledTests", 72, 3], ["pythonImportsCheck", 77, 3], ["preCheck", 81, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, "pdm-backend": false, setuptools: false, igraph: false, leidenalg: false, matplotlib: false, pandas: false, pyarrow: false, scipy: false, spacy: false, "spacy-lookups-data": false, toolz: false, tqdm: false, wasabi: false, en_core_web_sm: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["pythonRelaxDeps", 48, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 67, 3], ["disabledTests", 72, 3], ["pythonImportsCheck", 77, 3], ["preCheck", 81, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jboynyc",
           repo: "textnets",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["textnets"]);
       const preCheck = "rm -r textnets\nexport MPLBACKEND=agg\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Text analysis with networks",
         homepage: "https://textnets.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/jboynyc/textnets/blob/v${version}/HISTORY.rst`),
@@ -71,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

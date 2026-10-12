@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]], [["homepage", 125, 5], ["description", 126, 5], ["changelog", 127, 5], ["license", 128, 5], ["platforms", 129, 5]], [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 34, 3], ["strictDeps", 41, 3], ["depsBuildBuild", 43, 3], ["nativeBuildInputs", 48, 3], ["nativeInstallCheckInputs", 66, 3], ["buildInputs", 75, 3], ["cmakeFlags", 81, 3], ["patches", 92, 3], ["doInstallCheck", 102, 3], ["enableParallelChecking", 103, 3], ["preInstallCheck", 104, 3], ["installCheckPhase", 115, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pkgsBuildBuild: false, cmake: false, glib: false, icu: false, libxml2: false, ninja: false, perl: false, "pkg-config": false, libical: false, python3: false, tzdata: false, fixDarwinDylibNames: false, withIntrospection: true, buildPackages: false, "gobject-introspection": false, vala: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 125, 5], ["description", 126, 5], ["changelog", 127, 5], ["license", 128, 5], ["platforms", 129, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 34, 3], ["strictDeps", 41, 3], ["depsBuildBuild", 43, 3], ["nativeBuildInputs", 48, 3], ["nativeInstallCheckInputs", 66, 3], ["buildInputs", 75, 3], ["cmakeFlags", 81, 3], ["patches", 92, 3], ["doInstallCheck", 102, 3], ["enableParallelChecking", 103, 3], ["preInstallCheck", 104, 3], ["installCheckPhase", 115, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const vala = nix.arg($, "vala");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libical",
       version: "3.0.20",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libical",
           repo: "libical",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,7 +72,7 @@ ctest --output-on-failure
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/libical/libical",
         description: "Open Source implementation of the iCalendar protocols",
         changelog: nix.thunk(() => nix.str`https://github.com/libical/libical/raw/v${nix.sel(finalAttrs, "version")}/ReleaseNotes.txt`),

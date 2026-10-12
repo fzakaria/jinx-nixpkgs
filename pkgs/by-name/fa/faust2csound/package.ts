@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["baseName", 8, 3], ["propagatedBuildInputs", 10, 3], ["preFixup", 17, 3]]]);
 const formals$1 = { args: { faust: false, csound: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["baseName", 8, 3], ["propagatedBuildInputs", 10, 3], ["preFixup", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const faust = nix.arg($, "faust");
   const csound = nix.arg($, "csound");
   return nix.app(nix.sel(faust, "wrapWithBuildEnv"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       baseName: "faust2csound",
       propagatedBuildInputs: nix.thunk(() => [csound]),
       preFixup: nix.thunk(() => nix.str`NIX_CFLAGS_COMPILE="$(printf '%s' "$NIX_CFLAGS_COMPILE" | sed 's%${csound}/include%${csound}/include/csound%')"

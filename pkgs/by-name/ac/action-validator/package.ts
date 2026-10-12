@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]], [["updateScript", 24, 12]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 22, 3], ["passthru", 24, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 30, 3], ["nativeCheckInputs", 32, 3], ["preCheck", 35, 3], ["postCheck", 40, 3], ["postInstall", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, gitMinimal: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 24, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 22, 3], ["passthru", 24, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 30, 3], ["nativeCheckInputs", 32, 3], ["preCheck", 35, 3], ["postCheck", 40, 3], ["postInstall", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "action-validator",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mpalmer",
           repo: "action-validator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-F8bJclpDpOdVET/dSIUYyP4DFcnhJDR2CV8poZtykko=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace Cargo.toml --replace-fail 'version = "0.0.0-git"' 'version = "${nix.sel(finalAttrs, "version")}"'
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gitMinimal]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to validate GitHub Action and Workflow YAML files",
         homepage: "https://github.com/mpalmer/action-validator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

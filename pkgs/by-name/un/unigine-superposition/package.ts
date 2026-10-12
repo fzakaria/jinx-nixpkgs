@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 38, 7], ["hash", 39, 7]], [["pname", 35, 13], ["version", 35, 19], ["src", 37, 5], ["nativeBuildInputs", 42, 5], ["buildInputs", 47, 5], ["installPhase", 68, 5], ["dontUnpack", 80, 5], ["dontWrapQtApps", 81, 5], ["postPatchMkspecs", 83, 5]], [["name", 89, 5], ["exec", 90, 5], ["genericName", 91, 5], ["icon", 92, 5], ["desktopName", 93, 5]], [["description", 142, 5], ["homepage", 143, 5], ["sourceProvenance", 144, 5], ["license", 145, 5], ["maintainers", 146, 5], ["platforms", 147, 5], ["mainProgram", 148, 5]], [["pname", 102, 11], ["version", 102, 17], ["targetPkgs", 104, 3], ["runScript", 126, 3], ["extraInstallCommands", 128, 3], ["meta", 141, 3]]]);
 const formals$1 = { args: { lib: false, glib: false, stdenv: false, dbus: false, freetype: false, fontconfig: false, zlib: false, libsForQt5: false, libxinerama: false, libxcb: false, libsm: false, libxi: false, libglvnd: false, libxext: false, libxrandr: false, openssl: false, libx11: false, libice: false, libxrender: false, autoPatchelfHook: false, makeWrapper: false, xkeyboard_config: false, fetchurl: false, buildFHSEnv: false, openal: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 35, 13], ["version", 35, 19], ["src", 37, 5], ["nativeBuildInputs", 42, 5], ["buildInputs", 47, 5], ["installPhase", 68, 5], ["dontUnpack", 80, 5], ["dontWrapQtApps", 81, 5], ["postPatchMkspecs", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 89, 5], ["exec", 90, 5], ["genericName", 91, 5], ["icon", 92, 5], ["desktopName", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 142, 5], ["homepage", 143, 5], ["sourceProvenance", 144, 5], ["license", 145, 5], ["maintainers", 146, 5], ["platforms", 147, 5], ["mainProgram", 148, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 102, 11], ["version", 102, 17], ["targetPkgs", 104, 3], ["runScript", 126, 3], ["extraInstallCommands", 128, 3], ["meta", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const pname = "unigine-superposition";
   const version = "1.1";
   const superposition = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://assets.unigine.com/d/Unigine_Superposition-${nix.sel(finalAttrs, "version")}.run`),
           hash: "sha256-dJThxzv1nvIWFRPV1cudm/+9hHmSnUl2rFO2lV3lgPg=",
         })))),
@@ -84,7 +80,7 @@ chmod +x $out/bin/superposition
       postPatchMkspecs: "cp -f $name/bin/superposition $out/lib/unigine/superposition/bin/superposition\n",
     })));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "Superposition",
       exec: "unigine-superposition",
       genericName: "A GPU Stress test tool from the UNIGINE",
@@ -92,7 +88,7 @@ chmod +x $out/bin/superposition
       desktopName: "Superposition Benchmark",
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       targetPkgs: (pkgs) => [
@@ -130,7 +126,7 @@ for RES in 16 24 32 48 64 128 256; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Unigine Superposition GPU benchmarking tool",
         homepage: "https://benchmark.unigine.com/superposition",
         sourceProvenance: nix.thunk(() => (() => {

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["NIX_CFLAGS_COMPILE", 41, 7]], [["homepage", 54, 5], ["changelog", 55, 5], ["description", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 27, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 35, 3], ["checkInputs", 37, 3], ["doCheck", 39, 3], ["env", 41, 3], ["cmakeFlags", 43, 3], ["doInstallCheck", 49, 3], ["versionCheckProgramArg", 50, 3], ["nativeInstallCheckInputs", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ftxui: false, libargs: false, nlohmann_json: false, gtest: false, gbenchmark: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["changelog", 55, 5], ["description", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 27, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 35, 3], ["checkInputs", 37, 3], ["doCheck", 39, 3], ["env", 41, 3], ["cmakeFlags", 43, 3], ["doInstallCheck", 49, 3], ["versionCheckProgramArg", 50, 3], ["nativeInstallCheckInputs", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gbenchmark = nix.arg($, "gbenchmark");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "json-tui",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ArthurSonzogni",
           repo: "json-tui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       checkInputs: nix.thunk(() => [gbenchmark]),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fexceptions" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fexceptions" })),
       cmakeFlags: nix.thunk(() => [
         "-Wno-dev",
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "JSON_TUI_BUILD_TESTS", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")))),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/ArthurSonzogni/json-tui",
         changelog: nix.thunk(() => nix.str`https://github.com/ArthurSonzogni/json-tui/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "JSON terminal UI made in C++",

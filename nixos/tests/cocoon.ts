@@ -2,49 +2,41 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cocoon.nix", [[["nativeBuildInputs", 19, 46]], [["nativeBuildInputs", 23, 57]], [["COCOON_DID", 11, 11], ["COCOON_HOSTNAME", 12, 11], ["COCOON_CONTACT_EMAIL", 13, 11], ["COCOON_ADMIN_PASSWORD", 16, 11], ["COCOON_SESSION_SECRET", 17, 11], ["COCOON_ROTATION_KEY_PATH", 18, 11], ["COCOON_JWK_PATH", 23, 11]], [["enable", 9, 9], ["settings", 10, 9]], [["cocoon", 8, 16]], [["services", 8, 7]], [["machine", 5, 9]], [["maintainers", 36, 8]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cocoon.nix", [["nativeBuildInputs", 19, 46]]);
-const pos$2 = nix.positions(here + "/cocoon.nix", [["nativeBuildInputs", 23, 57]]);
-const pos$3 = nix.positions(here + "/cocoon.nix", [["COCOON_DID", 11, 11], ["COCOON_HOSTNAME", 12, 11], ["COCOON_CONTACT_EMAIL", 13, 11], ["COCOON_ADMIN_PASSWORD", 16, 11], ["COCOON_SESSION_SECRET", 17, 11], ["COCOON_ROTATION_KEY_PATH", 18, 11], ["COCOON_JWK_PATH", 23, 11]]);
-const pos$4 = nix.positions(here + "/cocoon.nix", [["enable", 9, 9], ["settings", 10, 9]]);
-const pos$5 = nix.positions(here + "/cocoon.nix", [["cocoon", 8, 16]]);
-const pos$6 = nix.positions(here + "/cocoon.nix", [["services", 8, 7]]);
-const pos$7 = nix.positions(here + "/cocoon.nix", [["machine", 5, 9]]);
-const pos$8 = nix.positions(here + "/cocoon.nix", [["maintainers", 36, 8]]);
-const pos$9 = nix.positions(here + "/cocoon.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "cocoon",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             cocoon: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 COCOON_DID: "did:web:cocoon.example.com",
                 COCOON_HOSTNAME: "cocoon.example.com",
                 COCOON_CONTACT_EMAIL: "test@example.com",
                 COCOON_ADMIN_PASSWORD: "84f54c1229e02b662214e2af2df97cb6",
                 COCOON_SESSION_SECRET: "8ed099b41bb67939bf4e796fd4bd618add775a9265bcb32c63d00341a0f71b6c",
                 COCOON_ROTATION_KEY_PATH: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "rotation-key", nix.thunk(() => ({
-                    [nix.POS]: pos$1,
+                    [nix.POS]: $pos[0],
                     nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cocoon"))]),
                   })), "cocoon create-rotation-key --out $out\n")),
                 COCOON_JWK_PATH: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "jwk-key", nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cocoon"))]),
                   })), "cocoon create-private-jwk --out $out\n")),
               })),
@@ -55,7 +47,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "machine.wait_for_unit(\"cocoon.service\")\nmachine.wait_for_open_port(8080)\nmachine.succeed(\"curl --fail http://localhost:8080\")\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "isabelroses"))]),
     })),
   };

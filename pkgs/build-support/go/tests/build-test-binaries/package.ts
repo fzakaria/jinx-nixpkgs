@@ -2,26 +2,24 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 8, 5], ["src", 9, 5], ["vendorHash", 10, 5], ["buildTestBinaries", 11, 5]], [["testPackage", 18, 26]], [["nativeBuildInputs", 17, 5], ["passthru", 18, 5]]]);
 const formals$1 = { args: { buildGoModule: false, runCommandCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 8, 5], ["src", 9, 5], ["vendorHash", 10, 5], ["buildTestBinaries", 11, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["testPackage", 18, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 17, 5], ["passthru", 18, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildGoModule = nix.arg($, "buildGoModule");
   const runCommandCC = nix.arg($, "runCommandCC");
   const testPackage = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "build-test-binaries",
       src: nix.path(here, "./."),
       vendorHash: null,
       buildTestBinaries: true,
     }))));
   return nix.app(runCommandCC, "build-test-binaries-check", nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       nativeBuildInputs: nix.thunk(() => [testPackage]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, testPackage: testPackage })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], testPackage: testPackage })),
     })), "fail() {\n  echo \"Test failed: $1\" >&2\n  exit 1\n}\n\ncommand -v build-test-binaries.test ||\n  fail \"build-test-binaries.test not found in PATH\"\n\nbuild-test-binaries.test -test.v | tee $out ||\n  fail \"build-test-binaries.test failed\"\n\ngrep -q \"Hello from test\" $out ||\n  fail \"Output does not contain expected string\"\n");
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

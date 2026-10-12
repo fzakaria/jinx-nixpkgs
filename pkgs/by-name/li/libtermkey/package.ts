@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["makeFlags", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["strictDeps", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, libtool: false, "pkg-config": false, ncurses: false, unibilium: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["makeFlags", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["strictDeps", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const unibilium = nix.arg($, "unibilium");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libtermkey",
       version: "0.22",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.leonerd.org.uk/code/libtermkey/libtermkey-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "02dks6bj7n23lj005yq41azf95wh3hapmgc2lzyh12vigkjh67rg",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses, unibilium]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Terminal keypress reading library",
         homepage: "http://www.leonerd.org.uk/code/libtermkey",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

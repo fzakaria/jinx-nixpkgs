@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["description", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["mainProgram", 33, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["vendorHash", 17, 3], ["excludedPackages", 19, 3], ["doCheck", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["mainProgram", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["vendorHash", 17, 3], ["excludedPackages", 19, 3], ["doCheck", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "speedtest-go",
       version: "1.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "showwin",
           repo: "speedtest-go",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       excludedPackages: nix.thunk(() => ["example"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CLI and Go API to Test Internet Speed using speedtest.net",
         homepage: "https://github.com/showwin/speedtest-go",
         changelog: nix.thunk(() => nix.str`https://github.com/showwin/speedtest-go/releases/tag/v${nix.sel(finalAttrs, "version")}`),

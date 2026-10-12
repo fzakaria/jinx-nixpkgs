@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["lame", 17, 7], ["opusenc", 18, 7]], [["pname", 13, 3], ["patches", 15, 3], ["extraBuildInputs", 22, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, cdparanoia: false, flac: false, libogg: false, libvorbis: false, replaceVars: false, lame: false, "opus-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["lame", 17, 7], ["opusenc", 18, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["patches", 15, 3], ["extraBuildInputs", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const lame = nix.arg($, "lame");
   const opus_tools = nix.arg($, "opus-tools");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "audiocd-kio",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./encoder-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             lame: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), lame)),
             opusenc: nix.thunk(() => nix.str`${opus_tools}/bin/opusenc`),
           })))),

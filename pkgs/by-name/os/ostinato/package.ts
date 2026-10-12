@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["GenericName[it]", 70, 7], ["Comment[it]", 71, 7]], [["name", 61, 5], ["desktopName", 62, 5], ["genericName", 63, 5], ["comment", 64, 5], ["categories", 65, 5], ["startupNotify", 66, 5], ["exec", 67, 5], ["icon", 68, 5], ["extraConfig", 69, 5]], [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 97, 5]], [["pname", 26, 3], ["version", 27, 3], ["strictDeps", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 47, 3], ["patches", 55, 3], ["prePatch", 56, 3], ["desktopItems", 60, 3], ["preFixup", 75, 3], ["enableParallelBuilding", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, qt5: false, copyDesktopItems: false, makeDesktopItem: false, protobuf_21: false, libpcap: false, wireshark: false, gzip: false, diffutils: false, gawk: false, libnl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GenericName[it]", 70, 7], ["Comment[it]", 71, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 61, 5], ["desktopName", 62, 5], ["genericName", 63, 5], ["comment", 64, 5], ["categories", 65, 5], ["startupNotify", 66, 5], ["exec", 67, 5], ["icon", 68, 5], ["extraConfig", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 97, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["strictDeps", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 47, 3], ["patches", 55, 3], ["prePatch", 56, 3], ["desktopItems", 60, 3], ["preFixup", 75, 3], ["enableParallelBuilding", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const libnl = nix.arg($, "libnl");
   const protobuf = protobuf_21;
   const ostinatoIcon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://ostinato.org/images/site-logo.png",
       hash: "sha256-9cBngj8pNOTTWNdvZaND79aa14OnrqvXq0zjzQNJDXA=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ostinato",
       version: "1.3.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "pstavirs",
           repo: "ostinato",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +58,7 @@ export default nix.lambda((args) => (() => {
       prePatch: nix.thunk(() => nix.str`sed -i 's|/usr/include/libnl3|${nix.sel(libnl, "dev")}/include/libnl3|' server/drone.pro
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "ostinato",
             desktopName: "Ostinato",
             genericName: "Packet/Traffic Generator and Analyzer",
@@ -73,7 +68,7 @@ export default nix.lambda((args) => (() => {
             exec: "@out@/bin/ostinato",
             icon: ostinatoIcon,
             extraConfig: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               "GenericName[it]": "Generatore ed Analizzatore di pacchetti di rete",
               "Comment[it]": "Generatore ed Analizzatore di pacchetti di rete con interfaccia amichevole",
             })),
@@ -91,7 +86,7 @@ EOF
 `),
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Packet traffic generator and analyzer",
         homepage: "https://ostinato.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

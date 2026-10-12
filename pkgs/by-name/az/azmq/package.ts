@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["tagPrefix", 39, 5]], [["updateScript", 38, 12]], [["homepage", 43, 5], ["license", 44, 5], ["description", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["doCheck", 36, 3], ["passthru", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, boost: false, cmake: false, ninja: false, zeromq: false, catch2: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tagPrefix", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["license", 44, 5], ["description", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["doCheck", 36, 3], ["passthru", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const catch2 = nix.arg($, "catch2");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "azmq",
       version: "1.0.3-unstable-2025-11-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zeromq",
           repo: "azmq",
           rev: "819b24035cfa5b73081e21f5867445f2344f680d",
@@ -35,11 +31,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, catch2, zeromq]),
       doCheck: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/zeromq/azmq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),
         description: "C++ language binding library integrating ZeroMQ with Boost Asio",

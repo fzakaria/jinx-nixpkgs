@@ -2,32 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/etcd.nix", [[["enable", 16, 27]], [["sshBackdoor", 16, 15]], [["enable", 24, 11], ["openFirewall", 25, 11], ["listenClientUrls", 26, 11], ["listenPeerUrls", 30, 11], ["initialAdvertisePeerUrls", 31, 11], ["initialCluster", 32, 11]], [["etcd", 23, 18]], [["address", 39, 15], ["prefixLength", 40, 15]], [["addresses", 37, 32]], [["ipv4", 37, 27]], [["eth1", 37, 22]], [["useDHCP", 35, 11], ["defaultGateway", 36, 11], ["interfaces", 37, 11]], [["services", 23, 9], ["networking", 34, 9]], [["KUBECONFIG", 53, 38]], [["systemPackages", 49, 21], ["sessionVariables", 53, 21]], [["enable", 58, 11], ["role", 59, 11], ["package", 60, 11], ["disable", 61, 11], ["images", 62, 11], ["nodeIP", 63, 11], ["extraFlags", 64, 11]], [["allowedTCPPorts", 71, 13], ["allowedUDPPorts", 76, 13]], [["address", 82, 15], ["prefixLength", 83, 15]], [["addresses", 80, 32]], [["ipv4", 80, 27]], [["eth1", 80, 22]], [["firewall", 70, 11], ["useDHCP", 78, 11], ["defaultGateway", 79, 11], ["interfaces", 80, 11]], [["environment", 49, 9], ["virtualisation", 55, 9], ["services", 57, 9], ["networking", 69, 9]], [["etcd", 20, 5], ["server", 46, 5]], [["maintainers", 128, 8]], [["name", 15, 3], ["interactive", 16, 3], ["nodes", 18, 3], ["testScript", 90, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, rancherDistro: false, rancherPackage: false, serviceName: false, disabledComponents: false, coreImages: false, vmResources: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/etcd.nix", [["enable", 16, 27]]);
-const pos$2 = nix.positions(here + "/etcd.nix", [["sshBackdoor", 16, 15]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$3 = nix.positions(here + "/etcd.nix", [["enable", 24, 11], ["openFirewall", 25, 11], ["listenClientUrls", 26, 11], ["listenPeerUrls", 30, 11], ["initialAdvertisePeerUrls", 31, 11], ["initialCluster", 32, 11]]);
-const pos$4 = nix.positions(here + "/etcd.nix", [["etcd", 23, 18]]);
-const pos$5 = nix.positions(here + "/etcd.nix", [["address", 39, 15], ["prefixLength", 40, 15]]);
-const pos$6 = nix.positions(here + "/etcd.nix", [["addresses", 37, 32]]);
-const pos$7 = nix.positions(here + "/etcd.nix", [["ipv4", 37, 27]]);
-const pos$8 = nix.positions(here + "/etcd.nix", [["eth1", 37, 22]]);
-const pos$9 = nix.positions(here + "/etcd.nix", [["useDHCP", 35, 11], ["defaultGateway", 36, 11], ["interfaces", 37, 11]]);
-const pos$10 = nix.positions(here + "/etcd.nix", [["services", 23, 9], ["networking", 34, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/etcd.nix", [["KUBECONFIG", 53, 38]]);
-const pos$12 = nix.positions(here + "/etcd.nix", [["systemPackages", 49, 21], ["sessionVariables", 53, 21]]);
-const pos$13 = nix.positions(here + "/etcd.nix", [["enable", 58, 11], ["role", 59, 11], ["package", 60, 11], ["disable", 61, 11], ["images", 62, 11], ["nodeIP", 63, 11], ["extraFlags", 64, 11]]);
-const pos$14 = nix.positions(here + "/etcd.nix", [["allowedTCPPorts", 71, 13], ["allowedUDPPorts", 76, 13]]);
-const pos$15 = nix.positions(here + "/etcd.nix", [["address", 82, 15], ["prefixLength", 83, 15]]);
-const pos$16 = nix.positions(here + "/etcd.nix", [["addresses", 80, 32]]);
-const pos$17 = nix.positions(here + "/etcd.nix", [["ipv4", 80, 27]]);
-const pos$18 = nix.positions(here + "/etcd.nix", [["eth1", 80, 22]]);
-const pos$19 = nix.positions(here + "/etcd.nix", [["firewall", 70, 11], ["useDHCP", 78, 11], ["defaultGateway", 79, 11], ["interfaces", 80, 11]]);
-const pos$20 = nix.positions(here + "/etcd.nix", [["environment", 49, 9], ["virtualisation", 55, 9], ["services", 57, 9], ["networking", 69, 9]]);
-const pos$21 = nix.positions(here + "/etcd.nix", [["etcd", 20, 5], ["server", 46, 5]]);
-const pos$22 = nix.positions(here + "/etcd.nix", [["maintainers", 128, 8]]);
-const pos$23 = nix.positions(here + "/etcd.nix", [["name", 15, 3], ["interactive", 16, 3], ["nodes", 18, 3], ["testScript", 90, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const coreImages = nix.arg($, "coreImages");
   const vmResources = nix.arg($, "vmResources");
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: nix.thunk(() => nix.str`${nix.sel(rancherPackage, "name")}-etcd`),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+      [nix.POS]: $pos[1],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       etcd: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             etcd: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               openFirewall: true,
               listenClientUrls: nix.thunk(() => ["http://192.168.1.1:2379", "http://127.0.0.1:2379"]),
@@ -65,17 +43,17 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             useDHCP: false,
             defaultGateway: "192.168.1.1",
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   addresses: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$5, address: "192.168.1.1", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[4], address: "192.168.1.1", prefixLength: 24n })),
                     ]))),
                 })),
               })),
@@ -87,9 +65,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -98,14 +76,14 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             sessionVariables: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               KUBECONFIG: nix.thunk(() => nix.str`/etc/rancher/${rancherDistro}/${rancherDistro}.yaml`),
             })),
           })),
           virtualisation: vmResources,
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.force(rancherDistro), nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               enable: true,
               role: "server",
               package: rancherPackage,
@@ -116,22 +94,22 @@ export default nix.lambda((args) => (() => {
             }))],
           ])),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               allowedTCPPorts: nix.thunk(() => [2379n, 2380n, 6443n]),
               allowedUDPPorts: nix.thunk(() => [8472n]),
             })),
             useDHCP: false,
             defaultGateway: "192.168.1.2",
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   addresses: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$15, address: "192.168.1.2", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[14], address: "192.168.1.2", prefixLength: 24n })),
                     ]))),
                 })),
               })),
@@ -176,7 +154,7 @@ with subtest("should not have a secret in database"):
     etcd.wait_until_fails("[[ $(etcdctl get /registry/secrets/default/nixossecret | head -c1 | wc -c) -ne 0 ]]")
 `),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       maintainers: nix.thunk(() => nix.concat(nix.sel(pkgs, "etcd", "meta", "maintainers"), nix.concat(nix.sel(lib, "teams", "k3s", "members"), nix.sel(pkgs, "rke2", "meta", "maintainers")))),
     })),
   };

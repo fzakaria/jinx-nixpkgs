@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["teams", 62, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 38, 3], ["propagatedBuildInputs", 40, 3], ["pythonImportsCheck", 48, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 52, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, boltons: false, numpy: false, scipy: false, torch: false, trampoline: false, pytest7CheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["teams", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 38, 3], ["propagatedBuildInputs", 40, 3], ["pythonImportsCheck", 48, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 52, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google-research",
           repo: "torchsde",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest7CheckHook]);
       const disabledTests = nix.thunk(() => ["test_adjoint"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/google-research/torchsde/releases/tag/v${version}`),
         description: "Differentiable SDE solvers with GPU support and efficient sensitivity analysis",
         homepage: "https://github.com/google-research/torchsde",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "tts"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

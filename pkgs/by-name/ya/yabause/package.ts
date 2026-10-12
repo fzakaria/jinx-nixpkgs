@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["patches", 35, 3], ["cmakeFlags", 42, 3], ["postPatch", 49, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, "pkg-config": false, qt5: false, libGLU: false, libGL: false, SDL2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["patches", 35, 3], ["cmakeFlags", 42, 3], ["postPatch", 49, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "yabause";
       const version = "0.9.15";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20250129091147/http://free.downloads.tuxfamily.net/yabause/releases/${version}/yabause-${version}.tar.gz`),
           sha256: "1cn2rjjb7d9pkr4g5bqz55vd4pzyb7hg94cfmixjkzzkw0zw8d23",
         }))));
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postPatch = "substituteInPlace {./,src/,src/runner/}CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace src/{c68k,musashi}/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open-source Sega Saturn emulator",
         mainProgram: "yabause",
         homepage: "https://yabause.org/",
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

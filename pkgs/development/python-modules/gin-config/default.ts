@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]], [["tensorflow", 23, 5], ["torch", 24, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 20, 3], ["optional-dependencies", 22, 3], ["doCheck", 28, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, tensorflow: false, torch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tensorflow", 23, 5], ["torch", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 20, 3], ["optional-dependencies", 22, 3], ["doCheck", 28, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,21 +18,21 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-DG6lAm3tknyMk8mQsBxpUlfB30RuReVJoVjPvHnhntY=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tensorflow: nix.thunk(() => [tensorflow]),
         torch: nix.thunk(() => [torch]),
       }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["gin"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Gin provides a lightweight configuration framework for Python, based on dependency injection",
         homepage: "https://github.com/google/gin-config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

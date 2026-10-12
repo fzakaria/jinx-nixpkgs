@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["installFlags", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libxcb: false, "libxcb-util": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["installFlags", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const libxcb_util = nix.arg($, "libxcb-util");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wmutils-opt",
       version: "1.0-unstable-2024-09-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wmutils",
           repo: "opt",
           rev: "77124e003246fce8027452d3ceb440893b18d374",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxcb, libxcb_util]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Optional addons to wmutils",
         homepage: "https://github.com/wmutils/opt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

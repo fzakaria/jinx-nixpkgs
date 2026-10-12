@@ -2,45 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/repart-verity-store.nix", [[["x86_64", 18, 9], ["arm64", 19, 9]], [["x86_64", 25, 9], ["arm64", 26, 9]], [["usr", 16, 5], ["usr-verity", 23, 5]], [["flakeIgnore", 34, 9]], [["type", 50, 7], ["default", 51, 7], ["defaultText", 52, 7], ["description", 53, 7]], [["type", 60, 9], ["default", 61, 9], ["description", 62, 9]], [["type", 67, 9], ["default", 68, 9], ["description", 69, 9]], [["type", 74, 9], ["default", 75, 9], ["description", 76, 9]], [["esp", 59, 7], ["store-verity", 66, 7], ["store", 73, 7]], [["enable", 47, 5], ["ukiPath", 49, 5], ["partitionIds", 58, 5]], [["verityStore", 46, 24]], [["repart", 46, 17]], [["image", 46, 11]], [["enable", 85, 24]], [["dmVerity", 85, 15]], [["systemd", 85, 7], ["supportedFilesystems", 86, 7]], [["initrd", 84, 10]], [["device", 93, 7], ["fsType", 94, 7], ["options", 95, 7]], [["/nix/store", 92, 17]], [["Type", 101, 9], ["Verity", 102, 9], ["VerityMatchKey", 103, 9], ["Label", 104, 9], ["Minimize", 105, 9]], [["repartConfig", 100, 40]], [["Type", 111, 11], ["Verity", 112, 11], ["Format", 113, 11], ["VerityMatchKey", 114, 11], ["Label", 115, 11], ["Minimize", 116, 11]], [["storePaths", 109, 9], ["repartConfig", 110, 9]], [["partitions", 98, 18]], [["repart", 98, 11]], [["enable", 129, 23]], [["compression", 129, 11]], [["name", 134, 15], ["systemdRepartFlags", 141, 15]], [["nativeBuildInputs", 155, 15]], [["createEmpty", 181, 11]], [["source", 188, 36]], [["contents", 187, 41]], [["finalPartitions", 186, 15], ["nativeBuildInputs", 192, 15], ["preBuild", 198, 15], ["preInstall", 215, 15]], [["finalImage", 123, 7], ["intermediateImage", 126, 7], ["uki", 146, 7], ["image", 178, 7]], [["build", 122, 12]], [["boot", 84, 5], ["fileSystems", 92, 5], ["image", 98, 5], ["system", 122, 5]], [["maintainers", 237, 8]], [["options", 46, 3], ["config", 83, 3], ["meta", 237, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/repart-verity-store.nix", [["x86_64", 18, 9], ["arm64", 19, 9]]);
-const pos$2 = nix.positions(here + "/repart-verity-store.nix", [["x86_64", 25, 9], ["arm64", 26, 9]]);
-const pos$3 = nix.positions(here + "/repart-verity-store.nix", [["usr", 16, 5], ["usr-verity", 23, 5]]);
-const pos$4 = nix.positions(here + "/repart-verity-store.nix", [["flakeIgnore", 34, 9]]);
-const pos$5 = nix.positions(here + "/repart-verity-store.nix", [["type", 50, 7], ["default", 51, 7], ["defaultText", 52, 7], ["description", 53, 7]]);
-const pos$6 = nix.positions(here + "/repart-verity-store.nix", [["type", 60, 9], ["default", 61, 9], ["description", 62, 9]]);
-const pos$7 = nix.positions(here + "/repart-verity-store.nix", [["type", 67, 9], ["default", 68, 9], ["description", 69, 9]]);
-const pos$8 = nix.positions(here + "/repart-verity-store.nix", [["type", 74, 9], ["default", 75, 9], ["description", 76, 9]]);
-const pos$9 = nix.positions(here + "/repart-verity-store.nix", [["esp", 59, 7], ["store-verity", 66, 7], ["store", 73, 7]]);
-const pos$10 = nix.positions(here + "/repart-verity-store.nix", [["enable", 47, 5], ["ukiPath", 49, 5], ["partitionIds", 58, 5]]);
-const pos$11 = nix.positions(here + "/repart-verity-store.nix", [["verityStore", 46, 24]]);
-const pos$12 = nix.positions(here + "/repart-verity-store.nix", [["repart", 46, 17]]);
-const pos$13 = nix.positions(here + "/repart-verity-store.nix", [["image", 46, 11]]);
-const pos$14 = nix.positions(here + "/repart-verity-store.nix", [["enable", 85, 24]]);
-const pos$15 = nix.positions(here + "/repart-verity-store.nix", [["dmVerity", 85, 15]]);
-const pos$16 = nix.positions(here + "/repart-verity-store.nix", [["systemd", 85, 7], ["supportedFilesystems", 86, 7]]);
-const pos$17 = nix.positions(here + "/repart-verity-store.nix", [["initrd", 84, 10]]);
-const pos$18 = nix.positions(here + "/repart-verity-store.nix", [["device", 93, 7], ["fsType", 94, 7], ["options", 95, 7]]);
-const pos$19 = nix.positions(here + "/repart-verity-store.nix", [["/nix/store", 92, 17]]);
-const pos$20 = nix.positions(here + "/repart-verity-store.nix", [["Type", 101, 9], ["Verity", 102, 9], ["VerityMatchKey", 103, 9], ["Label", 104, 9], ["Minimize", 105, 9]]);
-const pos$21 = nix.positions(here + "/repart-verity-store.nix", [["repartConfig", 100, 40]]);
-const pos$22 = nix.positions(here + "/repart-verity-store.nix", [["Type", 111, 11], ["Verity", 112, 11], ["Format", 113, 11], ["VerityMatchKey", 114, 11], ["Label", 115, 11], ["Minimize", 116, 11]]);
-const pos$23 = nix.positions(here + "/repart-verity-store.nix", [["storePaths", 109, 9], ["repartConfig", 110, 9]]);
-const pos$24 = nix.positions(here + "/repart-verity-store.nix", [["partitions", 98, 18]]);
-const pos$25 = nix.positions(here + "/repart-verity-store.nix", [["repart", 98, 11]]);
-const pos$26 = nix.positions(here + "/repart-verity-store.nix", [["enable", 129, 23]]);
-const pos$27 = nix.positions(here + "/repart-verity-store.nix", [["compression", 129, 11]]);
-const pos$28 = nix.positions(here + "/repart-verity-store.nix", [["name", 134, 15], ["systemdRepartFlags", 141, 15]]);
-const pos$29 = nix.positions(here + "/repart-verity-store.nix", [["nativeBuildInputs", 155, 15]]);
-const pos$30 = nix.positions(here + "/repart-verity-store.nix", [["createEmpty", 181, 11]]);
-const pos$31 = nix.positions(here + "/repart-verity-store.nix", [["source", 188, 36]]);
-const pos$32 = nix.positions(here + "/repart-verity-store.nix", [["contents", 187, 41]]);
-const pos$33 = nix.positions(here + "/repart-verity-store.nix", [["finalPartitions", 186, 15], ["nativeBuildInputs", 192, 15], ["preBuild", 198, 15], ["preInstall", 215, 15]]);
-const pos$34 = nix.positions(here + "/repart-verity-store.nix", [["finalImage", 123, 7], ["intermediateImage", 126, 7], ["uki", 146, 7], ["image", 178, 7]]);
-const pos$35 = nix.positions(here + "/repart-verity-store.nix", [["build", 122, 12]]);
-const pos$36 = nix.positions(here + "/repart-verity-store.nix", [["boot", 84, 5], ["fileSystems", 92, 5], ["image", 98, 5], ["system", 122, 5]]);
-const pos$37 = nix.positions(here + "/repart-verity-store.nix", [["maintainers", 237, 8]]);
-const pos$38 = nix.positions(here + "/repart-verity-store.nix", [["options", 46, 3], ["config", 83, 3], ["meta", 237, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,45 +13,45 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "image", "repart", "verityStore"));
   const verityMatchKey = "store";
   const partitionTypes = nix.thunk(() => ({
-    [nix.POS]: pos$3,
-    usr: nix.thunk(() => nix.sel({ [nix.POS]: pos$1, x86_64: "usr-x86-64", arm64: "usr-arm64" }, nix.key(nix.str`${nix.sel(pkgs, "stdenv", "hostPlatform", "linuxArch")}`))),
-    "usr-verity": nix.thunk(() => nix.sel({ [nix.POS]: pos$2, x86_64: "usr-x86-64-verity", arm64: "usr-arm64-verity" }, nix.key(nix.str`${nix.sel(pkgs, "stdenv", "hostPlatform", "linuxArch")}`))),
+    [nix.POS]: $pos[2],
+    usr: nix.thunk(() => nix.sel({ [nix.POS]: $pos[0], x86_64: "usr-x86-64", arm64: "usr-arm64" }, nix.key(nix.str`${nix.sel(pkgs, "stdenv", "hostPlatform", "linuxArch")}`))),
+    "usr-verity": nix.thunk(() => nix.sel({ [nix.POS]: $pos[1], x86_64: "usr-x86-64-verity", arm64: "usr-arm64-verity" }, nix.key(nix.str`${nix.sel(pkgs, "stdenv", "hostPlatform", "linuxArch")}`))),
   }));
-  const verityHashCheck = nix.thunk(() => nix.app(nix.sel(pkgs, "buildPackages", "writers", "writePython3Bin"), "assert_uki_repart_match.py", nix.thunk(() => ({ [nix.POS]: pos$4, flakeIgnore: nix.thunk(() => ["E501"]) })), nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["@NIX_STORE_VERITY@"]), nix.thunk(() => [nix.thunk(() => nix.sel(partitionTypes, "usr-verity"))]), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./assert_uki_repart_match.py")))))));
+  const verityHashCheck = nix.thunk(() => nix.app(nix.sel(pkgs, "buildPackages", "writers", "writePython3Bin"), "assert_uki_repart_match.py", nix.thunk(() => ({ [nix.POS]: $pos[3], flakeIgnore: nix.thunk(() => ["E501"]) })), nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["@NIX_STORE_VERITY@"]), nix.thunk(() => [nix.thunk(() => nix.sel(partitionTypes, "usr-verity"))]), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./assert_uki_repart_match.py")))))));
   return {
-    [nix.POS]: pos$38,
+    [nix.POS]: $pos[37],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       image: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         repart: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           verityStore: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "building images with a dm-verity protected nix store")),
             ukiPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.str`/EFI/Linux/${nix.sel(config, "system", "boot", "loader", "ukiFile")}`),
                 defaultText: "/EFI/Linux/${config.system.boot.loader.ukiFile}",
                 description: "Specify the location on the ESP where the UKI is placed.\n",
               })))),
             partitionIds: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               esp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "00-esp",
                   description: "Specify the attribute name of the ESP.\n",
                 })))),
               "store-verity": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "10-store-verity",
                   description: "Specify the attribute name of the store's dm-verity hash partition.\n",
                 })))),
               store: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "20-store",
                   description: "Specify the attribute name of the store partition.\n",
@@ -99,14 +62,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        [nix.POS]: pos$36,
+        [nix.POS]: $pos[35],
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           initrd: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$15,
-              dmVerity: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
+              [nix.POS]: $pos[14],
+              dmVerity: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: true })),
             })),
             supportedFilesystems: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(config, "image", "repart", "partitions", nix.key(nix.sel(cfg, "partitionIds", "store")), "repartConfig", "Format"), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true))],
@@ -114,23 +77,23 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         fileSystems: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           "/nix/store": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               device: "/usr/nix/store",
               fsType: "none",
               options: nix.thunk(() => ["bind"]),
             })))),
         })),
         image: nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           repart: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             partitions: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "partitionIds", "store-verity"), nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 repartConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   Type: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(partitionTypes, "usr-verity")))),
                   Verity: "hash",
                   VerityMatchKey: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), verityMatchKey)),
@@ -139,10 +102,10 @@ export default nix.lambda((args) => (() => {
                 })),
               }))],
               [nix.sel(cfg, "partitionIds", "store"), nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 storePaths: nix.thunk(() => [nix.thunk(() => nix.sel(config, "system", "build", "toplevel"))]),
                 repartConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   Type: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(partitionTypes, "usr")))),
                   Verity: "data",
                   Format: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "erofs")),
@@ -155,15 +118,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         system: nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           build: nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             finalImage: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "system.build.finalImage has been renamed to system.build.image", nix.thunk(() => nix.sel(config, "system", "build", "image")))),
             intermediateImage: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(config, "image", "repart", "image", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$27,
-                compression: nix.thunk(() => ({ [nix.POS]: pos$26, enable: false })),
+                [nix.POS]: $pos[26],
+                compression: nix.thunk(() => ({ [nix.POS]: $pos[25], enable: false })),
               }))), "overrideAttrs"), (_) => (previousAttrs) => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 name: nix.thunk(() => (nix.asBool(nix.has(previousAttrs, "pname")) ? nix.str`${nix.sel(previousAttrs, "pname")}-${nix.sel(previousAttrs, "version")}-intermediate` : nix.str`${nix.sel(previousAttrs, "name")}-intermediate`)),
                 systemdRepartFlags: nix.thunk(() => nix.concat(nix.sel(previousAttrs, "systemdRepartFlags"), ["--defer-partitions=esp"])),
               }))),
@@ -172,7 +135,7 @@ export default nix.lambda((args) => (() => {
               const ukiFile = nix.thunk(() => nix.attr(from, "ukiFile"));
               const cmdline = nix.thunk(() => nix.str`init=${nix.sel(config, "system", "build", "toplevel")}/init ${nix.builtins.toString(nix.thunk(() => nix.sel(config, "boot", "kernelParams")))}`);
               return nix.app(nix.sel(lib, "mkOverride"), 99n, nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), ukiFile, nix.thunk(() => ({
-                    [nix.POS]: pos$29,
+                    [nix.POS]: $pos[28],
                     nativeBuildInputs: nix.thunk(() => [
                       nix.thunk(() => nix.sel(pkgs, "buildPackages", "jq")),
                       nix.thunk(() => nix.sel(pkgs, "buildPackages", "systemdUkify")),
@@ -192,14 +155,14 @@ ukify build \\
     --output="$out/${ukiFile}"
 `))));
             })()),
-            image: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 99n, nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(config, "image", "repart", "image", "override"), nix.thunk(() => ({ [nix.POS]: pos$30, createEmpty: false }))), "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                  [nix.POS]: pos$33,
+            image: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 99n, nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(config, "image", "repart", "image", "override"), nix.thunk(() => ({ [nix.POS]: $pos[29], createEmpty: false }))), "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
+                  [nix.POS]: $pos[32],
                   finalPartitions: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(previousAttrs, "finalPartitions")), nix.thunk(() => nix.attrsDyn({}, [
                       [nix.sel(cfg, "partitionIds", "esp"), nix.thunk(() => ({
-                        [nix.POS]: pos$32,
+                        [nix.POS]: $pos[31],
                         contents: nix.thunk(() => nix.attrsDyn({}, [
                           [nix.str`${nix.sel(cfg, "ukiPath")}`, nix.thunk(() => ({
-                            [nix.POS]: pos$31,
+                            [nix.POS]: $pos[30],
                             source: nix.thunk(() => nix.str`${nix.sel(config, "system", "build", "uki")}/${nix.sel(config, "system", "boot", "loader", "ukiFile")}`),
                           }))],
                         ])),
@@ -244,7 +207,7 @@ rm -v repart-output_orig.json
         })),
       })))),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$37,
+      [nix.POS]: $pos[36],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

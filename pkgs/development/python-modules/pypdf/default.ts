@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["fetchSubmodules", 37, 5], ["hash", 38, 5]], [["full", 60, 5], ["crypto", 61, 5], ["fonts", 62, 5], ["image", 63, 5], ["rtl_text", 64, 5]], [["doCheck", 73, 34]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["outputs", 41, 3], ["postPatch", 46, 3], ["build-system", 51, 3], ["nativeBuildInputs", 53, 3], ["optional-dependencies", 59, 3], ["pythonImportsCheck", 70, 3], ["nativeCheckInputs", 72, 3], ["disabledTestMarks", 79, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, sphinxHook: false, "sphinx-rtd-theme": false, "myst-parser": false, "arabic-reshaper": false, cryptography: false, fonttools: false, pillow: false, "python-bidi": false, fpdf2: false, pytestCheckHook: false, "pytest-timeout": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["fetchSubmodules", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["full", 60, 5], ["crypto", 61, 5], ["fonts", 62, 5], ["image", 63, 5], ["rtl_text", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doCheck", 73, 34]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["outputs", 41, 3], ["postPatch", 46, 3], ["build-system", 51, 3], ["nativeBuildInputs", 53, 3], ["optional-dependencies", 59, 3], ["pythonImportsCheck", 70, 3], ["nativeCheckInputs", 72, 3], ["disabledTestMarks", 79, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_timeout = nix.arg($, "pytest-timeout");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pypdf",
       version: "6.19.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "py-pdf",
           repo: "pypdf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,17 +45,17 @@ export default nix.lambda((args) => (() => {
         const fonts = nix.thunk(() => [fonttools]);
         const image = nix.thunk(() => [pillow]);
         const rtl_text = nix.thunk(() => [arabic_reshaper, python_bidi]);
-        return { [nix.POS]: pos$2, full, crypto, fonts, image, rtl_text };
+        return { [nix.POS]: $pos[1], full, crypto, fonts, image, rtl_text };
       })()),
       pythonImportsCheck: nix.thunk(() => ["pypdf"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(nix.sel(fpdf2, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: false })))),
+        nix.thunk(() => nix.app(nix.sel(fpdf2, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], doCheck: false })))),
         pytestCheckHook,
         pytest_timeout,
       ], nix.sel(finalAttrs, "passthru", "optional-dependencies", "full"))),
       disabledTestMarks: nix.thunk(() => ["enable_socket"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Pure-python PDF library capable of splitting, merging, cropping, and transforming the pages of PDF files",
         homepage: "https://github.com/py-pdf/pypdf",
         changelog: nix.thunk(() => nix.str`https://github.com/py-pdf/pypdf/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

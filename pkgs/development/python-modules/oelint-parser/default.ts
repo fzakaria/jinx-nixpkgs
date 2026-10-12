@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["pythonRelaxDeps", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, setuptools: false, deprecated: false, regex: false, "pytest-cov-stub": false, "pytest-forked": false, "pytest-random-order": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["pythonRelaxDeps", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest_random_order = nix.arg($, "pytest-random-order");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "oelint-parser",
       version: "8.13.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "priv-kweihmann",
           repo: "oelint-parser",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytest_forked, pytest_random_order, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["oelint_parser"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Alternative parser for bitbake recipes",
         homepage: "https://github.com/priv-kweihmann/oelint-parser",
         changelog: nix.thunk(() => nix.str`https://github.com/priv-kweihmann/oelint-parser/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

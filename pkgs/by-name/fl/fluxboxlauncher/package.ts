@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["maintainers", 66, 5], ["license", 67, 5], ["platforms", 68, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 37, 3], ["makeWrapperArgs", 44, 3], ["build-system", 49, 3], ["dependencies", 53, 3], ["postInstall", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false, gtk3: false, wrapGAppsHook3: false, glibcLocales: false, "gobject-introspection": false, gettext: false, pango: false, "gdk-pixbuf": false, atk: false, fluxbox: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["maintainers", 66, 5], ["license", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 37, 3], ["makeWrapperArgs", 44, 3], ["build-system", 49, 3], ["dependencies", 53, 3], ["postInstall", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const atk = nix.arg($, "atk");
   const fluxbox = nix.arg($, "fluxbox");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fluxboxlauncher",
       version: "0.2.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mothsart",
           repo: "fluxboxlauncher",
           rev: "0.2.1",
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "install -Dm444 fluxboxlauncher.desktop -t $out/share/applications\ninstall -Dm444 fluxboxlauncher.svg -t $out/share/icons/hicolor/scalable/apps\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Gui editor (gtk) to configure applications launching on a fluxbox session",
         mainProgram: "fluxboxlauncher",
         homepage: "https://github.com/mothsART/fluxboxlauncher",

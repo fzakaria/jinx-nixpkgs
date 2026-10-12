@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 21, 3], ["version", 22, 3], ["format", 23, 3], ["pypriject", 24, 3], ["disabled", 27, 3], ["src", 29, 3], ["postPatch", 36, 3], ["build-system", 46, 3], ["dependencies", 51, 3], ["nativeCheckInputs", 59, 3], ["pythonImportsCheck", 67, 3], ["disabledTests", 72, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aioresponses: false, beautifulsoup4: false, buildPythonPackage: false, fetchFromGitHub: false, html5lib: false, "pytest-asyncio": false, "pytest-aiohttp": false, pytestCheckHook: false, pythonAtLeast: false, requests: false, "requests-mock": false, setuptools: false, "setuptools-scm": false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["format", 23, 3], ["pypriject", 24, 3], ["disabled", 27, 3], ["src", 29, 3], ["postPatch", 36, 3], ["build-system", 46, 3], ["dependencies", 51, 3], ["nativeCheckInputs", 59, 3], ["pythonImportsCheck", 67, 3], ["disabledTests", 72, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pypriject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vanstinator",
           repo: "raincloudy",
           tag: version,
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["raincloudy", "raincloudy.aio"]);
       const disabledTests = nix.thunk(() => ["test_attributes"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Module to interact with Melnor RainCloud Smart Garden Watering Irrigation Timer",
         homepage: "https://github.com/vanstinator/raincloudy",
         changelog: nix.thunk(() => nix.str`https://github.com/vanstinator/raincloudy/releases/tag/${version}`),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

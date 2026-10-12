@@ -2,17 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/meshtasticd.nix", [[["maintainers", 12, 8]], [["Module", 21, 11], ["DIO2_AS_RF_SWITCH", 22, 11], ["spiSpeed", 23, 11]], [["Port", 26, 11], ["RootPath", 27, 11]], [["MaxNodes", 30, 11], ["MaxMessageQueue", 31, 11], ["MACAddressSource", 32, 11]], [["Lora", 20, 9], ["Webserver", 25, 9], ["General", 29, 9]], [["enable", 16, 7], ["port", 17, 7], ["settings", 19, 7]], [["meshtasticd", 15, 14]], [["services", 15, 5]], [["machine", 14, 9]], [["name", 11, 3], ["meta", 12, 3], ["nodes", 14, 3], ["testScript", 38, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/meshtasticd.nix", [["maintainers", 12, 8]]);
-const pos$2 = nix.positions(here + "/meshtasticd.nix", [["Module", 21, 11], ["DIO2_AS_RF_SWITCH", 22, 11], ["spiSpeed", 23, 11]]);
-const pos$3 = nix.positions(here + "/meshtasticd.nix", [["Port", 26, 11], ["RootPath", 27, 11]]);
-const pos$4 = nix.positions(here + "/meshtasticd.nix", [["MaxNodes", 30, 11], ["MaxMessageQueue", 31, 11], ["MACAddressSource", 32, 11]]);
-const pos$5 = nix.positions(here + "/meshtasticd.nix", [["Lora", 20, 9], ["Webserver", 25, 9], ["General", 29, 9]]);
-const pos$6 = nix.positions(here + "/meshtasticd.nix", [["enable", 16, 7], ["port", 17, 7], ["settings", 19, 7]]);
-const pos$7 = nix.positions(here + "/meshtasticd.nix", [["meshtasticd", 15, 14]]);
-const pos$8 = nix.positions(here + "/meshtasticd.nix", [["services", 15, 5]]);
-const pos$9 = nix.positions(here + "/meshtasticd.nix", [["machine", 14, 9]]);
-const pos$10 = nix.positions(here + "/meshtasticd.nix", [["name", 11, 3], ["meta", 12, 3], ["nodes", 14, 3], ["testScript", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,37 +12,37 @@ export default nix.lambda((args) => (() => {
   const mainPort = 9445n;
   const webPort = 9446n;
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "meshtasticd",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "drupol"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           meshtasticd: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             enable: true,
             port: mainPort,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               Lora: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 Module: "sim",
                 DIO2_AS_RF_SWITCH: false,
                 spiSpeed: "2000000",
               })),
               Webserver: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 Port: webPort,
                 RootPath: nix.thunk(() => nix.sel(pkgs, "meshtastic-web")),
               })),
               General: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 MaxNodes: 200n,
                 MaxMessageQueue: 100n,
                 MACAddressSource: "eth0",

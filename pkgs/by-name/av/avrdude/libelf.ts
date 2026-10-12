@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libelf.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libelf.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/libelf.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/libelf.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libelf",
       version: "0.8.13-unstable-2023-01-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "avrdudes",
           repo: "libelf",
           rev: "0c55bfe1d3020a20bddf6ce57c0d9d98ccb12586",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       installPhase: "runHook preInstall\nmkdir -p $out/lib\ncp liblibelf.a $out/lib/libelf.a\ncp -r $src/include $out/include\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ELF object file access library (vendored by avrdudes)",
         homepage: "https://github.com/avrdudes/libelf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

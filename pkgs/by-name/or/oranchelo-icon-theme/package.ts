@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 25, 3], ["dontDropIconThemeCache", 30, 3], ["dontWrapQtApps", 31, 3], ["makeFlags", 33, 3], ["postInstall", 38, 3], ["dontCheckForBrokenSymlinks", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gtk3: false, kdePackages: false, "hicolor-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 25, 3], ["dontDropIconThemeCache", 30, 3], ["dontWrapQtApps", 31, 3], ["makeFlags", 33, 3], ["postInstall", 38, 3], ["dontCheckForBrokenSymlinks", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "oranchelo-icon-theme";
       const version = "0.9.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OrancheloTeam",
           repo: "oranchelo-icon-theme",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "# space in icon name causes gtk-update-icon-cache to fail\nmv \"$out/share/icons/Oranchelo/apps/scalable/ grsync.svg\" \"$out/share/icons/Oranchelo/apps/scalable/grsync.svg\"\n\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache \"$theme\"\ndone\n";
       const dontCheckForBrokenSymlinks = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Oranchelo icon theme",
         homepage: "https://github.com/OrancheloTeam/oranchelo-icon-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

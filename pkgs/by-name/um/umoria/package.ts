@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]], [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]], [["name", 46, 7], ["url", 47, 7], ["hash", 48, 7]], [["homepage", 99, 5], ["description", 100, 5], ["mainProgram", 101, 5], ["longDescription", 102, 5], ["platforms", 108, 5], ["badPlatforms", 109, 5], ["maintainers", 110, 5], ["license", 114, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 52, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 59, 3], ["enableParallelBuilding", 60, 3], ["installPhase", 62, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, cmake: false, ncurses6: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 46, 7], ["url", 47, 7], ["hash", 48, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 99, 5], ["description", 100, 5], ["mainProgram", 101, 5], ["longDescription", 102, 5], ["platforms", 108, 5], ["badPlatforms", 109, 5], ["maintainers", 110, 5], ["license", 114, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 52, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 59, 3], ["enableParallelBuilding", 60, 3], ["installPhase", 62, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "umoria";
       const version = "5.7.15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dungeons-of-moria",
           repo: "umoria",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,25 +28,25 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-13.patch",
             url: "https://github.com/dungeons-of-moria/umoria/commit/71dad4103b5c8f3e1f7723eb14d14425755e7ba5.patch",
             hash: "sha256-5Ka3NTe0sJk6kReG+1hwZPEuB3R+Nn+2zxUXuOG7hm0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "clang.patch",
             url: "https://github.com/dungeons-of-moria/umoria/commit/f294e5880cd21d25c11eee820d629f4ff504ad10.patch",
             hash: "sha256-se8G4n8codXA9gznyIy337IFyznLnpCY7KA6UryZDls=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "clang-p2.patch",
             url: "https://github.com/dungeons-of-moria/umoria/commit/bf513b05dc34405665a8dd1386292cd70307dce0.patch",
             hash: "sha256-FXj5Y4G0gnXheXC2bmRbIx3a1IixJ/aGfRMxl2S/vqM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "clang-crash.patch",
             url: "https://github.com/dungeons-of-moria/umoria/commit/d073e8f867c49bb04a02c1995dd3efb0c5cc07e7.patch",
             hash: "sha256-4uwO8fe4M5jt0IM0z6MjO8UaEezweMA5L+pusel4VUU=",
@@ -97,7 +91,7 @@ chmod +x $out/bin/umoria
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://umoria.org/",
         description: "Dungeons of Moria - the original roguelike",
         mainProgram: "umoria",
@@ -114,7 +108,7 @@ runHook postInstall
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["updateScript", 54, 12]], [["description", 57, 5], ["homepage", 58, 5], ["maintainers", 59, 5], ["changelog", 63, 5], ["license", 64, 5], ["platforms", 65, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["enableParallelBuilding", 52, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libdaq: false, libdnet: false, flex: false, hwloc: false, luajit: false, openssl: false, libpcap: false, pcre2: false, "pkg-config": false, zlib: false, xz: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["maintainers", 59, 5], ["changelog", 63, 5], ["license", 64, 5], ["platforms", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["enableParallelBuilding", 52, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "snort",
       version: "3.12.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "snort3",
           repo: "snort3",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,11 +51,11 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Network intrusion prevention and detection system (IDS/IPS)",
         homepage: "https://www.snort.org",
         maintainers: nix.thunk(() => (() => {

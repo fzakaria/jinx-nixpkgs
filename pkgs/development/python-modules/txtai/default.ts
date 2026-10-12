@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["agent", 218, 7], ["ann", 219, 7], ["api", 220, 7], ["cloud", 221, 7], ["console", 222, 7], ["database", 223, 7], ["graph", 224, 7], ["model", 225, 7], ["pipeline-audio", 226, 7], ["pipeline-data", 227, 7], ["pipeline-image", 228, 7], ["pipeline-llm", 229, 7], ["pipeline-text", 230, 7], ["pipeline-train", 231, 7], ["pipeline", 232, 7], ["scoring", 233, 7], ["similarity", 234, 7], ["workflow", 235, 7], ["all", 236, 7]], [["owner", 241, 5], ["repo", 242, 5], ["tag", 243, 5], ["hash", 244, 5]], [["description", 311, 5], ["changelog", 312, 5], ["homepage", 313, 5], ["license", 314, 5], ["maintainers", 315, 5]], [["pname", 248, 3], ["version", 249, 11], ["src", 249, 19], ["pyproject", 250, 3], ["build-system", 252, 3], ["dependencies", 254, 3], ["optional-dependencies", 265, 3], ["preInstall", 269, 3], ["pythonImportsCheck", 273, 3], ["nativeCheckInputs", 275, 3], ["enabledTestPaths", 288, 3], ["disabledTests", 292, 3], ["meta", 310, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "faiss-cpu": false, torch: false, transformers: false, "huggingface-hub": false, numpy: false, pyyaml: false, regex: false, mcpadapt: false, smolagents: false, annoy: false, hnswlib: false, pgvector: false, sqlalchemy: false, "sqlite-vec-c": false, aiohttp: false, fastapi: false, "fastapi-mcp": false, httpx: false, pillow: false, "python-multipart": false, uvicorn: false, fasteners: false, rich: false, duckdb: false, networkx: false, onnx: false, onnxruntime: false, sounddevice: false, soundfile: false, scipy: false, ttstokenizer: false, webrtcvad: false, beautifulsoup4: false, nltk: false, pandas: false, tika: false, imagehash: false, timm: false, litellm: false, gliner: false, sentencepiece: false, staticvectors: false, accelerate: false, bitsandbytes: false, onnxmltools: false, peft: false, skl2onnx: false, fasttext: false, "scikit-learn": false, "sentence-transformers": false, skops: false, croniter: false, openpyxl: false, requests: false, xmltodict: false, msgpack: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["agent", 218, 7], ["ann", 219, 7], ["api", 220, 7], ["cloud", 221, 7], ["console", 222, 7], ["database", 223, 7], ["graph", 224, 7], ["model", 225, 7], ["pipeline-audio", 226, 7], ["pipeline-data", 227, 7], ["pipeline-image", 228, 7], ["pipeline-llm", 229, 7], ["pipeline-text", 230, 7], ["pipeline-train", 231, 7], ["pipeline", 232, 7], ["scoring", 233, 7], ["similarity", 234, 7], ["workflow", 235, 7], ["all", 236, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 241, 5], ["repo", 242, 5], ["tag", 243, 5], ["hash", 244, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 311, 5], ["changelog", 312, 5], ["homepage", 313, 5], ["license", 314, 5], ["maintainers", 315, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 248, 3], ["version", 249, 11], ["src", 249, 19], ["pyproject", 250, 3], ["build-system", 252, 3], ["dependencies", 254, 3], ["optional-dependencies", 265, 3], ["preInstall", 269, 3], ["pythonImportsCheck", 273, 3], ["nativeCheckInputs", 275, 3], ["enabledTestPaths", 288, 3], ["disabledTests", 292, 3], ["meta", 310, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -93,7 +90,7 @@ export default nix.lambda((args) => (() => {
   const similarity = nix.thunk(() => nix.concat(ann, vectors));
   const all = nix.thunk(() => nix.concat(agent, nix.concat(api, nix.concat(ann, nix.concat(console, nix.concat(database, nix.concat(graph, nix.concat(model, nix.concat(pipeline, nix.concat(scoring, nix.concat(similarity, workflow)))))))))));
   const optional_dependencies = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     agent: agent,
     ann: ann,
     api: api,
@@ -115,14 +112,14 @@ export default nix.lambda((args) => (() => {
     all: all,
   }));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "neuml",
       repo: "txtai",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-PL6mbGQfDA8YgVJBvTbVoXNTyTlZKhSwKwslF6mG+J8=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "txtai",
       version: version,
       src: src,
@@ -158,7 +155,7 @@ export default nix.lambda((args) => (() => {
         "testSQLiteCustom",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Semantic search and workflows powered by language models",
         changelog: nix.thunk(() => nix.str`https://github.com/neuml/txtai/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/neuml/txtai",

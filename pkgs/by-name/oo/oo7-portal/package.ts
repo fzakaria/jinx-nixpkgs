@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 34, 7], ["changelog", 35, 7], ["license", 36, 7], ["maintainers", 37, 7], ["platforms", 38, 7], ["description", 40, 5]], [["pname", 13, 3], ["version", 14, 17], ["src", 14, 25], ["cargoDeps", 14, 29], ["sourceRoot", 16, 3], ["cargoRoot", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 28, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { cargo: false, meson: false, ninja: false, oo7: false, "pkg-config": false, rustPlatform: false, rustc: false, stdenv: false, systemdLibs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 34, 7], ["changelog", 35, 7], ["license", 36, 7], ["maintainers", 37, 7], ["platforms", 38, 7], ["description", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 17], ["src", 14, 25], ["cargoDeps", 14, 29], ["sourceRoot", 16, 3], ["cargoRoot", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 28, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "oo7-portal",
       version: nix.thunk(() => nix.attr(oo7, "version")),
       src: nix.thunk(() => nix.attr(oo7, "src")),
@@ -37,7 +36,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(oo7, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         license: nix.thunk(() => nix.attr(from, "license")),

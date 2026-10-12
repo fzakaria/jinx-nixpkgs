@@ -2,19 +2,17 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["appName", 9, 5], ["appVersion", 10, 5], ["license", 11, 5], ["sha512", 12, 5], ["url", 13, 5]], [["appName", 16, 5], ["appVersion", 17, 5], ["license", 18, 5], ["sha256", 19, 5], ["url", 20, 5]], [["simple-sha512", 8, 3], ["simple-sha256", 15, 3]]]);
 const formals$1 = { args: { testers: false, fetchNextcloudApp: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tests.nix", [["appName", 9, 5], ["appVersion", 10, 5], ["license", 11, 5], ["sha512", 12, 5], ["url", 13, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["appName", 16, 5], ["appVersion", 17, 5], ["license", 18, 5], ["sha256", 19, 5], ["url", 20, 5]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["simple-sha512", 8, 3], ["simple-sha256", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const testers = nix.arg($, "testers");
   const fetchNextcloudApp = nix.arg($, "fetchNextcloudApp");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "simple-sha512": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchNextcloudApp, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         appName: "phonetrack",
         appVersion: "0.8.2",
         license: "agpl3Plus",
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
         url: "https://github.com/julien-nc/phonetrack/releases/download/v0.8.2/phonetrack-0.8.2.tar.gz",
       })))),
     "simple-sha256": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchNextcloudApp, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         appName: "phonetrack",
         appVersion: "0.8.2",
         license: "agpl3Plus",

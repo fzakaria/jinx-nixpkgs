@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 5], ["version", 29, 13], ["hash", 30, 5]], [["tests", 59, 5]], [["tests", 58, 12]], [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["teams", 69, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 33, 3], ["sphinxBuilders", 40, 3], ["dependencies", 42, 3], ["doCheck", 56, 3], ["passthru", 58, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, callPackage: false, debtcollector: false, fetchPypi: false, keystoneauth1: false, openstackdocstheme: false, "osc-lib": false, "oslo-config": false, "oslo-log": false, "oslo-serialization": false, "oslo-utils": false, pbr: false, prettytable: false, requests: false, setuptools: false, sphinxHook: false, "sphinxcontrib-programoutput": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 5], ["version", 29, 13], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 58, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["teams", 69, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 33, 3], ["sphinxBuilders", 40, 3], ["dependencies", 42, 3], ["doCheck", 56, 3], ["passthru", 58, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "python_manilaclient",
           version: version,
           hash: "sha256-ktc2Z6GsIKsINYjokStZdpvgcG8g+26YRewG09cnI9Q=",
@@ -55,15 +51,15 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["manilaclient"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Client library for OpenStack Manila API",
         mainProgram: "manila",
         homepage: "https://github.com/openstack/python-manilaclient",
@@ -71,7 +67,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

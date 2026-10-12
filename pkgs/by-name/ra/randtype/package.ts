@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 30, 5], ["mainProgram", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["broken", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["installPhase", 19, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["mainProgram", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["broken", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["installPhase", 19, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "randtype",
       version: "1.13",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/randtype/randtype-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "055xs02qwpgbkn2l57bwghbsrsysg1zhm2asp0byvjpz4sc4w1rd",
         })))),
       buildInputs: nix.thunk(() => [zlib]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/man/man1 $out/bin\ninstall -cp randtype.1.gz $out/share/man/man1\ninstall -cps randtype $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Semi-random text typer",
         mainProgram: "randtype",
         homepage: "https://benkibbey.wordpress.com/randtype/",

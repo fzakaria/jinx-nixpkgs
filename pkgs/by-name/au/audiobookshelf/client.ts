@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/client.nix", [[["CYPRESS_INSTALL_BINARY", 18, 5], ["NODE_OPTIONS", 19, 5]], [["pname", 9, 3], ["version", 10, 11], ["nodejs", 10, 19], ["src", 12, 3], ["npmDepsHash", 14, 3], ["env", 16, 3], ["npmBuildScript", 22, 3]]]);
 const formals$1 = { args: { src: false, version: false, buildNpmPackage: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/client.nix", [["CYPRESS_INSTALL_BINARY", 18, 5], ["NODE_OPTIONS", 19, 5]]);
-const pos$2 = nix.positions(here + "/client.nix", [["pname", 9, 3], ["version", 10, 11], ["nodejs", 10, 19], ["src", 12, 3], ["npmDepsHash", 14, 3], ["env", 16, 3], ["npmBuildScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "audiobookshelf-client",
       version: version,
       nodejs: nodejs,
       src: nix.thunk(() => nix.str`${src}/client`),
       npmDepsHash: "sha256-Rvy/bULWyVkGthfpIGkTMO8Lv1miywwea7jLODfm54Y=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         CYPRESS_INSTALL_BINARY: 0n,
         NODE_OPTIONS: "--openssl-legacy-provider",
       })),

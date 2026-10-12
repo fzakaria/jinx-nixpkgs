@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 49, 5], ["repo", 50, 5], ["rev", 53, 5], ["hash", 54, 5]], [["tabledetection", 94, 5], ["ocr", 95, 5]], [["pname", 103, 7], ["version", 104, 7], ["src", 105, 7], ["fetcherVersion", 107, 5], ["hash", 108, 5]], [["description", 151, 5], ["homepage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5]], [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["__structuredAttrs", 46, 3], ["src", 48, 3], ["postPatch", 57, 3], ["build-system", 64, 3], ["nativeBuildInputs", 66, 3], ["dependencies", 72, 3], ["optional-dependencies", 93, 3], ["pnpmDeps", 101, 3], ["postBuild", 111, 3], ["postInstall", 115, 3], ["nativeCheckInputs", 119, 3], ["disabledTests", 127, 3], ["preCheck", 138, 3], ["pythonImportsCheck", 145, 3], ["doCheck", 148, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchFromGitHub: false, django: false, pytestCheckHook: false, setuptools: false, celery: false, "django-taggit": false, feedgen: false, reportlab: false, jsonschema: false, wand: false, "django-filter": false, "django-treebeard": false, djangorestframework: false, pikepdf: false, pypdf: false, pycryptodome: false, "python-poppler": false, "zipstream-ng": false, "django-json-widget": false, "factory-boy": false, "pytest-django": false, camelot: false, pytesseract: false, "pytest-factoryboy": false, "poppler-utils": false, "pytest-playwright": false, "playwright-driver": false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_11: false, nodejs: false, markdown: false, nh3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 49, 5], ["repo", 50, 5], ["rev", 53, 5], ["hash", 54, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tabledetection", 94, 5], ["ocr", 95, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 103, 7], ["version", 104, 7], ["src", 105, 7], ["fetcherVersion", 107, 5], ["hash", 108, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 151, 5], ["homepage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["__structuredAttrs", 46, 3], ["src", 48, 3], ["postPatch", 57, 3], ["build-system", 64, 3], ["nativeBuildInputs", 66, 3], ["dependencies", 72, 3], ["optional-dependencies", 93, 3], ["pnpmDeps", 101, 3], ["postBuild", 111, 3], ["postInstall", 115, 3], ["nativeCheckInputs", 119, 3], ["disabledTests", 127, 3], ["preCheck", 138, 3], ["pythonImportsCheck", 145, 3], ["doCheck", 148, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,13 +45,13 @@ export default nix.lambda((args) => (() => {
   const nh3 = nix.arg($, "nh3");
   const pnpm = pnpm_11;
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "django-filingcabinet",
       version: "0.17-unstable-2026-05-07",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "okfde",
           repo: "django-filingcabinet",
           rev: "53fe999d9c984bed84bf0e76aca5d0dab9d2954b",
@@ -85,12 +81,12 @@ export default nix.lambda((args) => (() => {
         zipstream_ng,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tabledetection: nix.thunk(() => [camelot]),
         ocr: nix.thunk(() => [pytesseract]),
       })),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -118,7 +114,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["filingcabinet"]),
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), nix.thunk(() => nix.sel(playwright_driver, "browsers")))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Django app that manages documents with pages, annotations and collections",
         homepage: "https://github.com/okfde/django-filingcabinet",
         changelog: nix.thunk(() => nix.str`https://github.com/feincms/django-cabinet/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),

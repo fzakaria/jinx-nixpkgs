@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["platforms", 89, 5], ["maintainers", 90, 5], ["longDescription", 91, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 49, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 62, 3], ["cmakeFlags", 68, 3], ["ax_boost_user_serialization_lib", 75, 3], ["enableParallelBuilding", 77, 3], ["doCheck", 79, 11], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, gfortran: false, texinfo: false, python3: false, boost: false, simdWidth: true, enablePadding: true, enableSerialization: true, doCheck: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["platforms", 89, 5], ["maintainers", 90, 5], ["longDescription", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 49, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 62, 3], ["cmakeFlags", 68, 3], ["ax_boost_user_serialization_lib", 75, 3], ["enableParallelBuilding", 77, 3], ["doCheck", 79, 11], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "blitz++";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "blitzpp",
           repo: "blitz",
           tag: version,
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "use-cmake-install-full-dir.patch",
             url: "https://github.com/blitzpp/blitz/commit/020f1d768c7fa3265cec244dc28f3dc8572719c5.patch",
             hash: "sha256-8hYFNyWrejjIWPN/HzIOphD4Aq6Soe0FFUBmwV4tpWQ=",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const doCheck_1 = doCheck;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast multi-dimensional array library for C++",
         homepage: "https://sourceforge.net/projects/blitz/",
         license: nix.thunk(() => (() => {
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "Blitz++ is a C++ class library for scientific computing which provides\nperformance on par with Fortran 77/90. It uses template techniques to\nachieve high performance. Blitz++ provides dense arrays and vectors,\nrandom number generators, and small vectors (useful for representing\nmulticomponent or vector fields).\n",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

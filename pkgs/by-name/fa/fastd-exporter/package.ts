@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["mainProgram", 32, 5], ["maintainers", 33, 5]], [["pname", 8, 3], ["version", 9, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["mainProgram", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fastd-exporter",
       version: "0-unstable-2024-04-09",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "freifunk-darmstadt",
           repo: "fastd-exporter",
           rev: "374e4334af6661f4c91a3e83bf7ce071a2a72eca",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-r0W64dct6XWa9sIrzy0UdyoMw+kAq73Qc/QchmsYZkY=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Prometheus exporter for fastd",
         homepage: "https://github.com/freifunk-darmstadt/fastd-exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

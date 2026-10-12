@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/acpi.nix", [[["path", 7, 3], ["extraPaths", 8, 3], ["extraNativeBuildInputs", 9, 3]]]);
 const formals$1 = { args: { mkDerivation: false, flex: false, byacc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/acpi.nix", [["path", 7, 3], ["extraPaths", 8, 3], ["extraNativeBuildInputs", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const byacc = nix.arg($, "byacc");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "usr.sbin/acpi",
       extraPaths: nix.thunk(() => ["sys/contrib/dev/acpica"]),
       extraNativeBuildInputs: nix.thunk(() => [flex, byacc]),

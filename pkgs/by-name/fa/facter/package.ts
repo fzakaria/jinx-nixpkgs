@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["command", 49, 7], ["package", 50, 7], ["version", 51, 7]], [["version", 48, 11]], [["tests", 48, 5], ["updateScript", 53, 5]], [["changelog", 57, 5], ["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5], ["platforms", 66, 5]], [["pname", 21, 3], ["gemdir", 22, 3], ["exes", 23, 3], ["nativeBuildInputs", 25, 3], ["postBuild", 27, 3], ["passthru", 47, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { bundlerApp: false, bundlerUpdateScript: false, coreutils: false, facter: false, gnugrep: false, iproute2: false, lib: false, makeWrapper: false, "net-tools": false, pciutils: false, procps: false, stdenv: false, testers: false, "util-linux": false, "virt-what": false, zfs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["command", 49, 7], ["package", 50, 7], ["version", 51, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 48, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 48, 5], ["updateScript", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 57, 5], ["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5], ["platforms", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["gemdir", 22, 3], ["exes", 23, 3], ["nativeBuildInputs", 25, 3], ["postBuild", 27, 3], ["passthru", 47, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const virt_what = nix.arg($, "virt-what");
   const zfs = nix.arg($, "zfs");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "facter",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["facter"]),
@@ -39,11 +35,11 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), facter)} --version`),
               package: facter,
               version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "facter", "version")),
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "facter")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: "https://www.puppet.com/docs/puppet/latest/release_notes_facter.html",
         description: "System inventory tool",
         homepage: "https://github.com/puppetlabs/facter",

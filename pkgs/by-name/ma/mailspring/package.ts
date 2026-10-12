@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]], [["src", 38, 58], ["version", 38, 62]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 46, 9]], [["description", 56, 7], ["license", 57, 7], ["platforms", 58, 7]], [["pname", 41, 5], ["version", 42, 13], ["src", 42, 21], ["patches", 42, 25], ["postPatch", 43, 5], ["npmDepsHash", 44, 5], ["dontNpmBuild", 45, 5], ["env", 46, 5], ["npmFlags", 48, 5], ["makeCacheWritable", 50, 5], ["installPhase", 51, 5], ["meta", 55, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 84, 7]], [["extraArgs", 169, 7]], [["mailspring-app", 167, 13], ["updateScript", 168, 5]], [["description", 174, 5], ["downloadPage", 175, 5], ["changelog", 176, 5], ["homepage", 177, 5], ["license", 178, 5], ["longDescription", 179, 5], ["mainProgram", 183, 5], ["maintainers", 184, 5], ["platforms", 185, 5]], [["pname", 67, 3], ["version", 68, 11], ["src", 68, 19], ["patches", 68, 23], ["npmDepsHash", 70, 3], ["nativeBuildInputs", 72, 3], ["npmFlags", 82, 3], ["env", 84, 3], ["postPatch", 87, 3], ["preConfigure", 91, 3], ["installPhase", 128, 3], ["passthru", 166, 3], ["meta", 173, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, callPackage: false, fetchFromGitHub: false, "nix-update-script": false, actool: false, makeBinaryWrapper: false, "pkg-config": false, wrapGAppsHook3: false, zip: false, electron_44: false, "html-tidy": false, commandLineArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 38, 58], ["version", 38, 62]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 46, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 56, 7], ["license", 57, 7], ["platforms", 58, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 41, 5], ["version", 42, 13], ["src", 42, 21], ["patches", 42, 25], ["postPatch", 43, 5], ["npmDepsHash", 44, 5], ["dontNpmBuild", 45, 5], ["env", 46, 5], ["npmFlags", 48, 5], ["makeCacheWritable", 50, 5], ["installPhase", 51, 5], ["meta", 55, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 84, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 169, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["mailspring-app", 167, 13], ["updateScript", 168, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 174, 5], ["downloadPage", 175, 5], ["changelog", 176, 5], ["homepage", 177, 5], ["license", 178, 5], ["longDescription", 179, 5], ["mainProgram", 183, 5], ["maintainers", 184, 5], ["platforms", 185, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 67, 3], ["version", 68, 11], ["src", 68, 19], ["patches", 68, 23], ["npmDepsHash", 70, 3], ["nativeBuildInputs", 72, 3], ["npmFlags", 82, 3], ["env", 84, 3], ["postPatch", 87, 3], ["preConfigure", 91, 3], ["installPhase", 128, 3], ["passthru", 166, 3], ["meta", 173, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const commandLineArgs = nix.argOr($, "commandLineArgs", () => "");
   const version = "1.26.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Foundry376",
       repo: "Mailspring",
       tag: version,
@@ -41,9 +32,9 @@ export default nix.lambda((args) => (() => {
     }))));
   const patches = nix.thunk(() => [nix.path(here, "./remove-rpm-deb-and-macos-package-generation.patch")]);
   const electron = electron_44;
-  const mailspring_sync = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mailsync.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version }))));
+  const mailspring_sync = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mailsync.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], src: src, version: version }))));
   const mailspring_app = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mailspring-app",
       version: version,
       src: src,
@@ -51,19 +42,19 @@ export default nix.lambda((args) => (() => {
       postPatch: "cd app",
       npmDepsHash: "sha256-Bj41bbICX8mHw0DqzGekjDnain0HGJ3Y5B3aADPV8+0=",
       dontNpmBuild: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       makeCacheWritable: true,
       installPhase: "cp -r . \"$out\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Node dependencies for the Mailspring electron frontend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),
       })),
     }))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "mailspring",
       version: version,
       src: src,
@@ -71,7 +62,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-EWXLOGKWPvE42PvpzJL47i0FojoZeVcMkUctuf3/Hnw=",
       nativeBuildInputs: nix.thunk(() => nix.concat([makeBinaryWrapper, pkg_config, wrapGAppsHook3, zip], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [actool])))),
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$6, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[5], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       postPatch: "echo \"\" > scripts/postinstall.js\n",
       preConfigure: nix.thunk(() => nix.str`chmod +w app
 cp -r ${mailspring_app}/node_modules app/node_modules
@@ -135,15 +126,15 @@ makeWrapper "$out/Applications/Mailspring.app/Contents/MacOS/Mailspring" "$out/b
   --add-flags ${nix.app(nix.sel(lib, "escapeShellArg"), commandLineArgs)}
 `))), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         "mailspring-app": mailspring_app,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             extraArgs: nix.thunk(() => ["--subpackage=mailspring-app"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Beautiful, fast and maintained fork of Nylas Mail by one of the original authors",
         downloadPage: "https://github.com/Foundry376/Mailspring/releases",
         changelog: nix.thunk(() => nix.str`https://github.com/Foundry376/Mailspring/releases/tag/${nix.sel(finalAttrs, "version")}`),

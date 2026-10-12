@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["octodns", 16, 7]], [["self", 14, 5], ["packageOverrides", 15, 5]], [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["callPackage", 59, 35], ["directory", 60, 9]], [["providers", 57, 5], ["withProviders", 64, 5]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["teams", 81, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 51, 3], ["nativeInstallCheckInputs", 53, 3], ["doInstallCheck", 54, 3], ["passthru", 56, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false, runCommand: false, versionCheckHook: false, octodns: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["octodns", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["self", 14, 5], ["packageOverrides", 15, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["callPackage", 59, 35], ["directory", 60, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["providers", 57, 5], ["withProviders", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["teams", 81, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 51, 3], ["nativeInstallCheckInputs", 53, 3], ["doInstallCheck", 54, 3], ["passthru", 56, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const octodns = nix.arg($, "octodns");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       self: python,
       packageOverrides: (final) => (prev) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         octodns: nix.thunk(() => nix.app(nix.sel(final, "toPythonModule"), octodns)),
       }),
     }))));
   const python3Packages = nix.thunk(() => nix.sel(python, "pkgs"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "octodns",
       version: "1.22.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "octodns",
           repo: "octodns",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,9 +60,9 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         providers: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               callPackage: nix.thunk(() => nix.attr(python3Packages, "callPackage")),
               directory: nix.path(here, "./providers"),
             })))))),
@@ -80,7 +74,7 @@ ln -st $out/bin ${pyEnv}/bin/octodns-*
         })(),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Tools for managing DNS across multiple providers",
         homepage: "https://github.com/octodns/octodns",
         changelog: nix.thunk(() => nix.str`https://github.com/octodns/octodns/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

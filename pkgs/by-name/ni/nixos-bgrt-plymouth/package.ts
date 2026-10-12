@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 13, 5], ["owner", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["updateScript", 32, 12]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontConfigure", 19, 3], ["dontBuild", 20, 3], ["installPhase", 22, 3], ["passthru", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 13, 5], ["owner", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 32, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontConfigure", 19, 3], ["dontBuild", 20, 3], ["installPhase", 22, 3], ["passthru", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nixos-bgrt-plymouth",
       version: "0-unstable-2024-10-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "plymouth-theme-nixos-bgrt",
           owner: "helsinki-systems",
           rev: "9b3913c38212463f3e21e8e805eead8f332215fa",
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/plymouth/themes/nixos-bgrt\ncp -r $src/{*.plymouth,images} $out/share/plymouth/themes/nixos-bgrt/\nsubstituteInPlace $out/share/plymouth/themes/nixos-bgrt/*.plymouth --replace '@IMAGES@' \"$out/share/plymouth/themes/nixos-bgrt/images\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "BGRT theme with a spinning NixOS logo",
         homepage: "https://github.com/helsinki-systems/plymouth-theme-nixos-bgrt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

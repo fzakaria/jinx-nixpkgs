@@ -2,53 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["native", 52, 7], ["runtime", 57, 7], ["pythonNative", 63, 7]], [["native", 68, 7], ["cmakeEnableFlag", 69, 7]], [["cmakeEnableFlag", 72, 7]], [["native", 75, 7], ["cmakeEnableFlag", 78, 7]], [["native", 81, 7], ["cmakeEnableFlag", 82, 7]], [["cmakeEnableFlag", 85, 7]], [["cmakeEnableFlag", 88, 7], ["pythonRuntime", 89, 7]], [["runtime", 94, 7], ["pythonRuntime", 98, 7], ["cmakeEnableFlag", 104, 7]], [["pythonRuntime", 107, 7], ["native", 113, 7], ["runtime", 116, 7], ["cmakeEnableFlag", 123, 7]], [["pythonRuntime", 126, 7], ["cmakeEnableFlag", 129, 7]], [["cmakeEnableFlag", 132, 7], ["runtime", 133, 7]], [["cmakeEnableFlag", 139, 7]], [["runtime", 142, 7], ["cmakeEnableFlag", 143, 7]], [["runtime", 146, 7], ["cmakeEnableFlag", 147, 7], ["pythonRuntime", 148, 7]], [["cmakeEnableFlag", 155, 7]], [["cmakeEnableFlag", 158, 7]], [["cmakeEnableFlag", 161, 7]], [["runtime", 164, 7], ["cmakeEnableFlag", 168, 7]], [["cmakeEnableFlag", 171, 7]], [["cmakeEnableFlag", 174, 7]], [["cmakeEnableFlag", 177, 7], ["runtime", 178, 7]], [["cmakeEnableFlag", 184, 7]], [["runtime", 187, 7], ["pythonRuntime", 191, 7], ["cmakeEnableFlag", 192, 7]], [["cmakeEnableFlag", 195, 7]], [["runtime", 198, 7], ["cmakeEnableFlag", 201, 7]], [["runtime", 204, 7], ["cmakeEnableFlag", 207, 7]], [["cmakeEnableFlag", 210, 7], ["pythonRuntime", 211, 7]], [["pythonRuntime", 217, 7], ["cmakeEnableFlag", 221, 7]], [["cmakeEnableFlag", 224, 7]], [["runtime", 227, 7], ["cmakeEnableFlag", 228, 7]], [["runtime", 231, 7], ["cmakeEnableFlag", 235, 7]], [["cmakeEnableFlag", 238, 7], ["runtime", 239, 7]], [["runtime", 244, 7], ["cmakeEnableFlag", 245, 7], ["pythonRuntime", 246, 7]], [["cmakeEnableFlag", 253, 7]], [["cmakeEnableFlag", 256, 7], ["runtime", 257, 7]], [["basic", 51, 5], ["doxygen", 67, 5], ["man-pages", 71, 5], ["python-support", 74, 5], ["testing-support", 80, 5], ["post-install", 84, 5], ["gnuradio-runtime", 87, 5], ["gr-ctrlport", 93, 5], ["gnuradio-companion", 106, 5], ["jsonyaml_blocks", 125, 5], ["gr-blocks", 131, 5], ["gr-fec", 138, 5], ["gr-fft", 141, 5], ["gr-filter", 145, 5], ["gr-analog", 154, 5], ["gr-digital", 157, 5], ["gr-dtv", 160, 5], ["gr-audio", 163, 5], ["gr-channels", 170, 5], ["gr-pdu", 173, 5], ["gr-iio", 176, 5], ["common-precompiled-headers", 183, 5], ["gr-qtgui", 186, 5], ["gr-trellis", 194, 5], ["gr-uhd", 197, 5], ["gr-uhd-rfnoc", 203, 5], ["gr-utils", 209, 5], ["gr-modtool", 216, 5], ["gr-blocktool", 223, 5], ["gr-video-sdl", 226, 5], ["gr-vocoder", 230, 5], ["gr-wavelet", 237, 5], ["gr-zeromq", 243, 5], ["gr-network", 252, 5], ["gr-soapy", 255, 5]], [["owner", 273, 5], ["repo", 274, 5], ["tag", 275, 5], ["hash", 276, 5]], [["url", 287, 7], ["hash", 288, 7]], [["url", 292, 7], ["hash", 293, 7]], [["url", 298, 7], ["hash", 299, 7]], [["major", 413, 7], ["minor", 414, 7], ["patch", 415, 7]], [["uhd", 396, 7], ["boost", 397, 7], ["volk", 398, 7], ["libiio", 399, 7], ["libad9361", 400, 7], ["python", 401, 7], ["logLib", 405, 5], ["qwt", 406, 26], ["hasFeature", 409, 7], ["featuresInfo", 410, 7], ["versionAttr", 412, 5], ["gnuradioOlder", 417, 5], ["gnuradioAtLeast", 418, 5]], [["qt", 421, 5]], [["gtk", 424, 5]], [["description", 428, 5], ["mainProgram", 429, 5], ["longDescription", 430, 5], ["homepage", 439, 5], ["changelog", 440, 5], ["license", 441, 5], ["platforms", 442, 5], ["maintainers", 443, 5]], [["pname", 269, 3], ["version", 270, 3], ["src", 272, 3], ["patches", 279, 3], ["nativeBuildInputs", 303, 3], ["buildInputs", 307, 3], ["cmakeFlags", 310, 3], ["dontWrapPythonPrograms", 329, 3], ["dontWrapQtApps", 330, 3], ["postInstall", 332, 3], ["disallowedReferences", 349, 3], ["stripDebugList", 356, 3], ["outputs", 368, 3], ["doCheck", 377, 3], ["nativeCheckInputs", 378, 3], ["preCheck", 383, 3], ["doInstallCheck", 390, 3], ["nativeInstallCheckInputs", 391, 3], ["passthru", 393, 3], ["meta", 427, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, removeReferencesTo: false, "pkg-config": false, volk: false, cppunit: false, ctestCheckHook: false, writableTmpDirAsHomeHook: false, versionCheckHook: false, orc: false, boost: false, spdlog: false, mpir: false, doxygen: false, python: false, codec2: false, gsm: false, fftwFloat: false, "alsa-lib": false, libjack2: false, libiio: false, libad9361: false, uhd: false, SDL: false, gsl: false, soapysdr: false, libsndfile: false, libunwind: false, thrift: false, cppzmq: false, gtk3: false, pango: false, "gobject-introspection": false, cairo: false, qt5: false, libsForQt5: false, features: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["native", 52, 7], ["runtime", 57, 7], ["pythonNative", 63, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["native", 68, 7], ["cmakeEnableFlag", 69, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 72, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["native", 75, 7], ["cmakeEnableFlag", 78, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["native", 81, 7], ["cmakeEnableFlag", 82, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 85, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 88, 7], ["pythonRuntime", 89, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["runtime", 94, 7], ["pythonRuntime", 98, 7], ["cmakeEnableFlag", 104, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pythonRuntime", 107, 7], ["native", 113, 7], ["runtime", 116, 7], ["cmakeEnableFlag", 123, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pythonRuntime", 126, 7], ["cmakeEnableFlag", 129, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 132, 7], ["runtime", 133, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 139, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["runtime", 142, 7], ["cmakeEnableFlag", 143, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["runtime", 146, 7], ["cmakeEnableFlag", 147, 7], ["pythonRuntime", 148, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 155, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 158, 7]]);
-const pos$17 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 161, 7]]);
-const pos$18 = nix.positions(here + "/default.nix", [["runtime", 164, 7], ["cmakeEnableFlag", 168, 7]]);
-const pos$19 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 171, 7]]);
-const pos$20 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 174, 7]]);
-const pos$21 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 177, 7], ["runtime", 178, 7]]);
-const pos$22 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 184, 7]]);
-const pos$23 = nix.positions(here + "/default.nix", [["runtime", 187, 7], ["pythonRuntime", 191, 7], ["cmakeEnableFlag", 192, 7]]);
-const pos$24 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 195, 7]]);
-const pos$25 = nix.positions(here + "/default.nix", [["runtime", 198, 7], ["cmakeEnableFlag", 201, 7]]);
-const pos$26 = nix.positions(here + "/default.nix", [["runtime", 204, 7], ["cmakeEnableFlag", 207, 7]]);
-const pos$27 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 210, 7], ["pythonRuntime", 211, 7]]);
-const pos$28 = nix.positions(here + "/default.nix", [["pythonRuntime", 217, 7], ["cmakeEnableFlag", 221, 7]]);
-const pos$29 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 224, 7]]);
-const pos$30 = nix.positions(here + "/default.nix", [["runtime", 227, 7], ["cmakeEnableFlag", 228, 7]]);
-const pos$31 = nix.positions(here + "/default.nix", [["runtime", 231, 7], ["cmakeEnableFlag", 235, 7]]);
-const pos$32 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 238, 7], ["runtime", 239, 7]]);
-const pos$33 = nix.positions(here + "/default.nix", [["runtime", 244, 7], ["cmakeEnableFlag", 245, 7], ["pythonRuntime", 246, 7]]);
-const pos$34 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 253, 7]]);
-const pos$35 = nix.positions(here + "/default.nix", [["cmakeEnableFlag", 256, 7], ["runtime", 257, 7]]);
-const pos$36 = nix.positions(here + "/default.nix", [["basic", 51, 5], ["doxygen", 67, 5], ["man-pages", 71, 5], ["python-support", 74, 5], ["testing-support", 80, 5], ["post-install", 84, 5], ["gnuradio-runtime", 87, 5], ["gr-ctrlport", 93, 5], ["gnuradio-companion", 106, 5], ["jsonyaml_blocks", 125, 5], ["gr-blocks", 131, 5], ["gr-fec", 138, 5], ["gr-fft", 141, 5], ["gr-filter", 145, 5], ["gr-analog", 154, 5], ["gr-digital", 157, 5], ["gr-dtv", 160, 5], ["gr-audio", 163, 5], ["gr-channels", 170, 5], ["gr-pdu", 173, 5], ["gr-iio", 176, 5], ["common-precompiled-headers", 183, 5], ["gr-qtgui", 186, 5], ["gr-trellis", 194, 5], ["gr-uhd", 197, 5], ["gr-uhd-rfnoc", 203, 5], ["gr-utils", 209, 5], ["gr-modtool", 216, 5], ["gr-blocktool", 223, 5], ["gr-video-sdl", 226, 5], ["gr-vocoder", 230, 5], ["gr-wavelet", 237, 5], ["gr-zeromq", 243, 5], ["gr-network", 252, 5], ["gr-soapy", 255, 5]]);
-const pos$37 = nix.positions(here + "/default.nix", [["owner", 273, 5], ["repo", 274, 5], ["tag", 275, 5], ["hash", 276, 5]]);
-const pos$38 = nix.positions(here + "/default.nix", [["url", 287, 7], ["hash", 288, 7]]);
-const pos$39 = nix.positions(here + "/default.nix", [["url", 292, 7], ["hash", 293, 7]]);
-const pos$40 = nix.positions(here + "/default.nix", [["url", 298, 7], ["hash", 299, 7]]);
-const pos$41 = nix.positions(here + "/default.nix", [["major", 413, 7], ["minor", 414, 7], ["patch", 415, 7]]);
-const pos$42 = nix.positions(here + "/default.nix", [["uhd", 396, 7], ["boost", 397, 7], ["volk", 398, 7], ["libiio", 399, 7], ["libad9361", 400, 7], ["python", 401, 7], ["logLib", 405, 5], ["qwt", 406, 26], ["hasFeature", 409, 7], ["featuresInfo", 410, 7], ["versionAttr", 412, 5], ["gnuradioOlder", 417, 5], ["gnuradioAtLeast", 418, 5]]);
-const pos$43 = nix.positions(here + "/default.nix", [["qt", 421, 5]]);
-const pos$44 = nix.positions(here + "/default.nix", [["gtk", 424, 5]]);
-const pos$45 = nix.positions(here + "/default.nix", [["description", 428, 5], ["mainProgram", 429, 5], ["longDescription", 430, 5], ["homepage", 439, 5], ["changelog", 440, 5], ["license", 441, 5], ["platforms", 442, 5], ["maintainers", 443, 5]]);
-const pos$46 = nix.positions(here + "/default.nix", [["pname", 269, 3], ["version", 270, 3], ["src", 272, 3], ["patches", 279, 3], ["nativeBuildInputs", 303, 3], ["buildInputs", 307, 3], ["cmakeFlags", 310, 3], ["dontWrapPythonPrograms", 329, 3], ["dontWrapQtApps", 330, 3], ["postInstall", 332, 3], ["disallowedReferences", 349, 3], ["stripDebugList", 356, 3], ["outputs", 368, 3], ["doCheck", 377, 3], ["nativeCheckInputs", 378, 3], ["preCheck", 383, 3], ["doInstallCheck", 390, 3], ["nativeInstallCheckInputs", 391, 3], ["passthru", 393, 3], ["meta", 427, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -93,9 +48,9 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const features = nix.argOr($, "features", () => ({}));
   const featuresInfo = nix.thunk(() => ({
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     basic: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       native: nix.thunk(() => [cmake, pkg_config, orc]),
       runtime: nix.thunk(() => [volk, boost, spdlog, mpir]),
       pythonNative: nix.thunk(() => (() => {
@@ -104,29 +59,29 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     doxygen: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       native: nix.thunk(() => [doxygen]),
       cmakeEnableFlag: "DOXYGEN",
     })),
-    "man-pages": nix.thunk(() => ({ [nix.POS]: pos$3, cmakeEnableFlag: "MANPAGES" })),
+    "man-pages": nix.thunk(() => ({ [nix.POS]: $pos[2], cmakeEnableFlag: "MANPAGES" })),
     "python-support": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       native: nix.thunk(() => [python]),
       cmakeEnableFlag: "PYTHON",
     })),
     "testing-support": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       native: nix.thunk(() => [cppunit]),
       cmakeEnableFlag: "TESTING",
     })),
-    "post-install": nix.thunk(() => ({ [nix.POS]: pos$6, cmakeEnableFlag: "POSTINSTALL" })),
+    "post-install": nix.thunk(() => ({ [nix.POS]: $pos[5], cmakeEnableFlag: "POSTINSTALL" })),
     "gnuradio-runtime": nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       cmakeEnableFlag: "GNURADIO_RUNTIME",
       pythonRuntime: nix.thunk(() => [nix.thunk(() => nix.sel(python, "pkgs", "pybind11"))]),
     })),
     "gr-ctrlport": nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       runtime: nix.thunk(() => [libunwind, thrift]),
       pythonRuntime: nix.thunk(() => [
         nix.thunk(() => nix.sel(python, "pkgs", "thrift")),
@@ -136,7 +91,7 @@ export default nix.lambda((args) => (() => {
       cmakeEnableFlag: "GR_CTRLPORT",
     })),
     "gnuradio-companion": nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pythonRuntime: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
         return [
@@ -151,23 +106,23 @@ export default nix.lambda((args) => (() => {
       cmakeEnableFlag: "GRC",
     })),
     jsonyaml_blocks: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pythonRuntime: nix.thunk(() => [nix.thunk(() => nix.sel(python, "pkgs", "jsonschema"))]),
       cmakeEnableFlag: "JSONYAML_BLOCKS",
     })),
     "gr-blocks": nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       cmakeEnableFlag: "GR_BLOCKS",
       runtime: nix.thunk(() => [libsndfile]),
     })),
-    "gr-fec": nix.thunk(() => ({ [nix.POS]: pos$12, cmakeEnableFlag: "GR_FEC" })),
+    "gr-fec": nix.thunk(() => ({ [nix.POS]: $pos[11], cmakeEnableFlag: "GR_FEC" })),
     "gr-fft": nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       runtime: nix.thunk(() => [fftwFloat]),
       cmakeEnableFlag: "GR_FFT",
     })),
     "gr-filter": nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       runtime: nix.thunk(() => [fftwFloat]),
       cmakeEnableFlag: "GR_FILTER",
       pythonRuntime: nix.thunk(() => (() => {
@@ -179,24 +134,24 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
     })),
-    "gr-analog": nix.thunk(() => ({ [nix.POS]: pos$15, cmakeEnableFlag: "GR_ANALOG" })),
-    "gr-digital": nix.thunk(() => ({ [nix.POS]: pos$16, cmakeEnableFlag: "GR_DIGITAL" })),
-    "gr-dtv": nix.thunk(() => ({ [nix.POS]: pos$17, cmakeEnableFlag: "GR_DTV" })),
+    "gr-analog": nix.thunk(() => ({ [nix.POS]: $pos[14], cmakeEnableFlag: "GR_ANALOG" })),
+    "gr-digital": nix.thunk(() => ({ [nix.POS]: $pos[15], cmakeEnableFlag: "GR_DIGITAL" })),
+    "gr-dtv": nix.thunk(() => ({ [nix.POS]: $pos[16], cmakeEnableFlag: "GR_DTV" })),
     "gr-audio": nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       runtime: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib, libjack2]))),
       cmakeEnableFlag: "GR_AUDIO",
     })),
-    "gr-channels": nix.thunk(() => ({ [nix.POS]: pos$19, cmakeEnableFlag: "GR_CHANNELS" })),
-    "gr-pdu": nix.thunk(() => ({ [nix.POS]: pos$20, cmakeEnableFlag: "GR_PDU" })),
+    "gr-channels": nix.thunk(() => ({ [nix.POS]: $pos[18], cmakeEnableFlag: "GR_CHANNELS" })),
+    "gr-pdu": nix.thunk(() => ({ [nix.POS]: $pos[19], cmakeEnableFlag: "GR_PDU" })),
     "gr-iio": nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       cmakeEnableFlag: "GR_IIO",
       runtime: nix.thunk(() => [libiio, libad9361]),
     })),
-    "common-precompiled-headers": nix.thunk(() => ({ [nix.POS]: pos$22, cmakeEnableFlag: "COMMON_PCH" })),
+    "common-precompiled-headers": nix.thunk(() => ({ [nix.POS]: $pos[21], cmakeEnableFlag: "COMMON_PCH" })),
     "gr-qtgui": nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       runtime: nix.thunk(() => [
         nix.thunk(() => nix.sel(qt5, "qtbase")),
         nix.thunk(() => nix.sel(libsForQt5, "qwt")),
@@ -204,19 +159,19 @@ export default nix.lambda((args) => (() => {
       pythonRuntime: nix.thunk(() => [nix.thunk(() => nix.sel(python, "pkgs", "pyqt5"))]),
       cmakeEnableFlag: "GR_QTGUI",
     })),
-    "gr-trellis": nix.thunk(() => ({ [nix.POS]: pos$24, cmakeEnableFlag: "GR_TRELLIS" })),
+    "gr-trellis": nix.thunk(() => ({ [nix.POS]: $pos[23], cmakeEnableFlag: "GR_TRELLIS" })),
     "gr-uhd": nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       runtime: nix.thunk(() => [uhd]),
       cmakeEnableFlag: "GR_UHD",
     })),
     "gr-uhd-rfnoc": nix.thunk(() => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       runtime: nix.thunk(() => [uhd]),
       cmakeEnableFlag: "UHD_RFNOC",
     })),
     "gr-utils": nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       cmakeEnableFlag: "GR_UTILS",
       pythonRuntime: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
@@ -224,7 +179,7 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     "gr-modtool": nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       pythonRuntime: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
         return [
@@ -234,31 +189,31 @@ export default nix.lambda((args) => (() => {
       })()),
       cmakeEnableFlag: "GR_MODTOOL",
     })),
-    "gr-blocktool": nix.thunk(() => ({ [nix.POS]: pos$29, cmakeEnableFlag: "GR_BLOCKTOOL" })),
+    "gr-blocktool": nix.thunk(() => ({ [nix.POS]: $pos[28], cmakeEnableFlag: "GR_BLOCKTOOL" })),
     "gr-video-sdl": nix.thunk(() => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       runtime: nix.thunk(() => [SDL]),
       cmakeEnableFlag: "GR_VIDEO_SDL",
     })),
     "gr-vocoder": nix.thunk(() => ({
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       runtime: nix.thunk(() => [codec2, gsm]),
       cmakeEnableFlag: "GR_VOCODER",
     })),
     "gr-wavelet": nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       cmakeEnableFlag: "GR_WAVELET",
       runtime: nix.thunk(() => [gsl]),
     })),
     "gr-zeromq": nix.thunk(() => ({
-      [nix.POS]: pos$33,
+      [nix.POS]: $pos[32],
       runtime: nix.thunk(() => [cppzmq]),
       cmakeEnableFlag: "GR_ZEROMQ",
       pythonRuntime: nix.thunk(() => [nix.thunk(() => nix.sel(python, "pkgs", "pyzmq"))]),
     })),
-    "gr-network": nix.thunk(() => ({ [nix.POS]: pos$34, cmakeEnableFlag: "GR_NETWORK" })),
+    "gr-network": nix.thunk(() => ({ [nix.POS]: $pos[33], cmakeEnableFlag: "GR_NETWORK" })),
     "gr-soapy": nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       cmakeEnableFlag: "GR_SOAPY",
       runtime: nix.thunk(() => [soapysdr]),
     })),
@@ -268,11 +223,11 @@ export default nix.lambda((args) => (() => {
   const cross = nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform")));
   const libgnuradioRuntime = nix.thunk(() => nix.str`$(readlink -f $out/lib/libgnuradio-runtime${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")})`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$46,
+      [nix.POS]: $pos[45],
       pname: "gnuradio",
       version: "3.10.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           owner: "gnuradio",
           repo: "gnuradio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -281,17 +236,17 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./modtool-newmod-permissions.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             url: "https://github.com/gnuradio/gnuradio/commit/d8814e0c3ef68372e5a1093603ef602e2119cd8a.patch",
             hash: "sha256-TQxqsce1AhSjdwaG2IP11QTeOgdJHN6cAAnznBl8eM8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             url: "https://github.com/gnuradio/gnuradio/commit/56d230fd33fa2e8d6dc3685c9545589f21a6a1fd.patch",
             hash: "sha256-N6Y7B1EJKQxWlpu3E7sjNgivva8+x0V2DlBQMXYLXbA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             url: "https://github.com/gnuradio/gnuradio/commit/aee9fd3f79389c4282a98e8d62c8405c73fd91df.patch",
             hash: "sha256-UtYAJqqmydGs2EP4JOTGrQ6OgvL/jwGVwlhG4xxj8SU=",
           })))),
@@ -323,7 +278,7 @@ remove-references-to -t ${nix.sel(python, "pkgs", "pybind11")} $out/lib/cmake/gn
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$42,
+        [nix.POS]: $pos[41],
         uhd: uhd,
         boost: boost,
         volk: volk,
@@ -335,16 +290,16 @@ remove-references-to -t ${nix.sel(python, "pkgs", "pybind11")} $out/lib/cmake/gn
         hasFeature: hasFeature,
         featuresInfo: featuresInfo,
         versionAttr: nix.thunk(() => ({
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           major: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
           minor: nix.thunk(() => nix.app(nix.sel(lib, "versions", "patch"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
           patch: nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version")))), 3n)),
         })),
         gnuradioOlder: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "versionAttr", "major")))),
         gnuradioAtLeast: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "versionAttr", "major")))),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(hasFeature, "gr-qtgui")), nix.thunk(() => ({ [nix.POS]: pos$43, qt: qt5 }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(hasFeature, "gnuradio-companion")), nix.thunk(() => ({ [nix.POS]: pos$44, gtk: gtk3 })))))),
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(hasFeature, "gr-qtgui")), nix.thunk(() => ({ [nix.POS]: $pos[42], qt: qt5 }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(hasFeature, "gnuradio-companion")), nix.thunk(() => ({ [nix.POS]: $pos[43], gtk: gtk3 })))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         description: "Software Defined Radio (SDR) software",
         mainProgram: "gnuradio-config-info",
         longDescription: "GNU Radio is a free & open-source software development toolkit that\nprovides signal processing blocks to implement software radios. It can be\nused with readily-available low-cost external RF hardware to create\nsoftware-defined radios, or without hardware in a simulation-like\nenvironment. It is widely used in hobbyist, academic and commercial\nenvironments to support both wireless communications research and\nreal-world radio systems.\n",

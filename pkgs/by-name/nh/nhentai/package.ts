@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 15, 13], ["version", 16, 21], ["hash", 17, 13]], [["version", 13, 11], ["src", 14, 11]], [["iso8601", 12, 9]], [["packageOverrides", 23, 15], ["self", 24, 7]], [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["doCheck", 40, 3], ["pyproject", 42, 3], ["build-system", 44, 3], ["dependencies", 48, 3], ["pythonRelaxDeps", 59, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 15, 13], ["version", 16, 21], ["hash", 17, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 13, 11], ["src", 14, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["iso8601", 12, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageOverrides", 23, 15], ["self", 24, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["doCheck", 40, 3], ["pyproject", 42, 3], ["build-system", 44, 3], ["dependencies", 48, 3], ["pythonRelaxDeps", 59, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,25 +13,25 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const python = nix.thunk(() => (() => {
     const packageOverrides = (self) => (super$) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       iso8601: nix.thunk(() => nix.app(nix.sel(super$, "iso8601", "overridePythonAttrs"), (old) => (() => {
           const version = "1.1.0";
           const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               pname: "iso8601",
               version: version,
               hash: "sha256-MoEee4He7iBj6m0ulPiBmobR84EeSdI2I6QfqDK+8D8=",
             }))));
-          return { [nix.POS]: pos$2, version, src };
+          return { [nix.POS]: $pos[1], version, src };
         })())),
     });
-    return nix.app(nix.sel(python3, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, packageOverrides: packageOverrides, self: python })));
+    return nix.app(nix.sel(python3, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], packageOverrides: packageOverrides, self: python })));
   })());
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), nix.thunk(() => (() => {
       const pname = "nhentai";
       const version = "0.5.25";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "RicterZ",
           repo: "doujinshi-dl",
           rev: version,
@@ -64,7 +58,7 @@ export default nix.lambda((args) => (() => {
       })());
       const pythonRelaxDeps = nix.thunk(() => ["tabulate", "urllib3"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/RicterZ/doujinshi-dl",
         description: "CLI tool for downloading doujinshi from adult site(s)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -72,7 +66,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "nhentai",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

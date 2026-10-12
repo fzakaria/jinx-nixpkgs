@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["stripRoot", 19, 5], ["hash", 20, 5]], [["homepage", 26, 5], ["description", 27, 5], ["longDescription", 28, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]], [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["stripRoot", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 26, 5], ["description", 27, 5], ["longDescription", 28, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.002";
       const outputs = nix.thunk(() => ["out", "webfont"]);
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mozilla/zilla-slab/releases/download/v${version}/Zilla-Slab-Fonts-v${version}.zip`),
           stripRoot: false,
           hash: "sha256-yOHu+dSWlyI7w1N1teED9R1Fphso2bKAlYDC1KdqBCc=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mozilla/zilla-slab",
         description: "Zilla Slab fonts",
         longDescription: "Zilla Slab is Mozilla's core typeface, used\nfor the Mozilla wordmark, headlines and\nthroughout their designs. A contemporary\nslab serif, based on Typotheque's Tesla, it\nis constructed with smooth curves and true\nitalics, which gives text an unexpectedly\nsophisticated industrial look and a friendly\napproachability in all weights.\n",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { [nix.POS]: pos$3, pname, version, outputs, src, nativeBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, outputs, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

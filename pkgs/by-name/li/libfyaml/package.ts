@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["url", 25, 7], ["hash", 26, 7]], [["url", 30, 7], ["hash", 31, 7]], [["url", 34, 7], ["hash", 35, 7]], [["url", 44, 7], ["hash", 45, 7]], [["url", 48, 7], ["hash", 49, 7]], [["package", 74, 5]], [["pkg-config", 73, 18]], [["tests", 73, 12]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["pkgConfigModules", 83, 5], ["platforms", 84, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 23, 3], ["nativeBuildInputs", 53, 3], ["outputs", 58, 3], ["configureFlags", 65, 3], ["doCheck", 67, 3], ["preCheck", 69, 3], ["passthru", 73, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, autoreconfHook: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 48, 7], ["hash", 49, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["package", 74, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pkg-config", 73, 18]]);
-const pos$9 = nix.positions(here + "/package.nix", [["tests", 73, 12]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["pkgConfigModules", 83, 5], ["platforms", 84, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 23, 3], ["nativeBuildInputs", 53, 3], ["outputs", 58, 3], ["configureFlags", 65, 3], ["doCheck", 67, 3], ["preCheck", 69, 3], ["passthru", 73, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "libfyaml",
       version: "0.9.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pantoniou",
           repo: "libfyaml",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,28 +27,28 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/pantoniou/libfyaml/commit/0982fcefc6a16d4c8cb5b06747d3fc8e630de3ae.diff",
             hash: "sha256-aDubIn+et+1fWE7XU7a5AGZVacVFbAbC1PoSDrA6hXw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/pantoniou/libfyaml/commit/1026d76850909dc9b1c5f95b8cd94e865a313fd5.diff",
             hash: "sha256-0YfOqdqHdELFMqr52TDAC3BNFLkcuxvuJY5b9yZ7NFk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/pantoniou/libfyaml/commit/9192deaac095f9881cc1e5756dede683f36b09d6.diff",
             hash: "sha256-cNL9wQtxIRg/ShZLJP4qHYNFRrYo9kRG+/U+3FiUeaI=",
           })))),
         nix.path(here, "./pthread-darwin.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/pantoniou/libfyaml/commit/24b18e7363b336962fe160c1dc05ca57ba95783c.diff",
             hash: "sha256-g5QKI4HuS8MEQ9ddIQNC0j+28Dh9zLAp5RaZX5SWBHk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://github.com/pantoniou/libfyaml/commit/9f2492ca27bb1fda64f2b12edc2da17406208b93.diff",
             hash: "sha256-E4wS+P7R3VGrBpD7swWMMi/QPTF+9rzAeEyxhbmdiwk=",
           })))),
@@ -69,17 +59,17 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       preCheck: "patchShebangs test\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Fully feature complete YAML parser and emitter, supporting the latest YAML spec and passing the full YAML testsuite",
         homepage: "https://github.com/pantoniou/libfyaml",
         changelog: nix.thunk(() => nix.str`https://github.com/pantoniou/libfyaml/releases/tag/v${nix.sel(finalAttrs, "version")}`),

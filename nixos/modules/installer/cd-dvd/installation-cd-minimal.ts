@@ -2,44 +2,38 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/installation-cd-minimal.nix", [[["enable", 12, 21]], [["enable", 16, 21]], [["man", 12, 17], ["doc", 16, 17]], [["enable", 18, 20]], [["fontconfig", 18, 9]], [["edition", 20, 12]], [["imports", 7, 3], ["documentation", 12, 3], ["fonts", 18, 3], ["isoImage", 20, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/installation-cd-minimal.nix", [["enable", 12, 21]]);
-const pos$2 = nix.positions(here + "/installation-cd-minimal.nix", [["enable", 16, 21]]);
-const pos$3 = nix.positions(here + "/installation-cd-minimal.nix", [["man", 12, 17], ["doc", 16, 17]]);
-const pos$4 = nix.positions(here + "/installation-cd-minimal.nix", [["enable", 18, 20]]);
-const pos$5 = nix.positions(here + "/installation-cd-minimal.nix", [["fontconfig", 18, 9]]);
-const pos$6 = nix.positions(here + "/installation-cd-minimal.nix", [["edition", 20, 12]]);
-const pos$7 = nix.positions(here + "/installation-cd-minimal.nix", [["imports", 7, 3], ["documentation", 12, 3], ["fonts", 18, 3], ["isoImage", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     imports: nix.thunk(() => [
       nix.path(here, "../../profiles/minimal.nix"),
       nix.path(here, "./installation-cd-base.nix"),
     ]),
     documentation: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       man: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 500n, true)),
       })),
       doc: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 500n, true)),
       })),
     })),
     fonts: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       fontconfig: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 500n, false)),
       })),
     })),
     isoImage: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       edition: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 500n, "minimal")),
     })),
   };

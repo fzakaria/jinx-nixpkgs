@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["updateScript", 88, 12]], [["broken", 91, 5], ["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["vendorHash", 29, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 35, 3], ["nativeCheckInputs", 43, 3], ["postPatch", 47, 3], ["buildPhase", 54, 3], ["checkPhase", 62, 3], ["installPhase", 68, 3], ["preFixup", 75, 3], ["passthru", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, gnumake: false, "pkg-config": false, gtk3: false, rubyPackages: false, tor: false, mumble: false, installShellFiles: false, wrapGAppsHook3: false, writableTmpDirAsHomeHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 88, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 91, 5], ["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["vendorHash", 29, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 35, 3], ["nativeCheckInputs", 43, 3], ["postPatch", 47, 3], ["buildPhase", 54, 3], ["checkPhase", 62, 3], ["installPhase", 68, 3], ["preFixup", 75, 3], ["passthru", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wahay",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "digitalautonomy",
           repo: "wahay",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,11 +56,11 @@ runHook postBuild
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Decentralized encrypted conference call application",
         homepage: "https://wahay.org/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["CFLAGS", 31, 7]], [["description", 46, 5], ["mainProgram", 47, 5], ["downloadPage", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 23, 3], ["buildInputs", 29, 3], ["env", 31, 3], ["preConfigure", 33, 3], ["postInstall", 37, 3], ["enableParallelBuilding", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libxcrypt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["mainProgram", 47, 5], ["downloadPage", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 23, 3], ["buildInputs", 29, 3], ["env", 31, 3], ["preConfigure", 33, 3], ["postInstall", 37, 3], ["enableParallelBuilding", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +15,13 @@ export default nix.lambda((args) => (() => {
       const pname = "bftpd";
       const version = "6.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/bftpd/bftpd/bftpd-${version}/bftpd-${version}.tar.gz`),
           sha256: "sha256-f7XZCSrGwmQqyf5C4xtJ46Q4SDHxbr15rDzcAK1PvB4=",
         }))));
       const postPatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "for file in login.*; do\n  substituteInPlace $file --replace-fail \"#ifdef HAVE_UTMP_H\" \"#if 0\"\ndone\n"));
       const buildInputs = nix.thunk(() => [libxcrypt]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-std=gnu89" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], CFLAGS: "-std=gnu89" }));
       const preConfigure = "sed -re 's/-[og] 0//g' -i Makefile*\n";
       const postInstall = nix.thunk(() => nix.str`mkdir -p $out/share/doc/${pname}
 mv $out/etc/*.conf $out/share/doc/${pname}
@@ -32,7 +29,7 @@ rm -rf $out/{etc,var}
 `);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Minimal ftp server",
         mainProgram: "bftpd",
         downloadPage: "http://bftpd.sf.net/download.html",
@@ -45,7 +42,7 @@ rm -rf $out/{etc,var}
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

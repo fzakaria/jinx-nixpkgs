@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/akkuDerivation.nix", [[["platforms", 117, 27]], [["version", 26, 13], ["src", 26, 21], ["pname", 28, 5], ["propagatedBuildInputs", 29, 5], ["buildInputs", 30, 5], ["nativeBuildInputs", 31, 5], ["buildPhase", 38, 5], ["checkPhase", 56, 5], ["doCheck", 88, 5], ["installPhase", 89, 5], ["meta", 116, 5], ["setupHook", 120, 5]]]);
 const formals$1 = { args: { stdenv: false, akku: false, chez: false, guile: false, chibi: false, makeWrapper: false, lib: false, writeShellScriptBin: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, src: false, buildInputs: true, r7rs: true, nativeBuildInputs: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/akkuDerivation.nix", [["platforms", 117, 27]]);
-const pos$2 = nix.positions(here + "/akkuDerivation.nix", [["version", 26, 13], ["src", 26, 21], ["pname", 28, 5], ["propagatedBuildInputs", 29, 5], ["buildInputs", 30, 5], ["nativeBuildInputs", 31, 5], ["buildPhase", 38, 5], ["checkPhase", 56, 5], ["doCheck", 88, 5], ["installPhase", 89, 5], ["meta", 116, 5], ["setupHook", 120, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
     const parse_akku_ = nix.thunk(() => nix.app(writeShellScriptBin, "parse-akku", nix.thunk(() => nix.str`${guile}/bin/guile --no-auto-compile ${nix.path(here, "./parse-akku.scm")} "$@"`)));
     const parse_akku = nix.thunk(() => nix.str`${parse_akku_}/bin/parse-akku`);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version: version,
         src: src,
         pname: nix.thunk(() => nix.str`akku-${pname}`),
@@ -88,7 +87,7 @@ export CHIBI_MODULE_PATH=$propagated_chibi
         installPhase: "runHook preInstall\n\nmkdir -p $out/lib\n\ncd .akku\n\nrm -f bin/activate*\n\ncp -rL lib $out/lib/scheme-libs\ncp -rL bin $out/bin\n\n[ -d ffi ]    && cp -rL ffi $out/lib\n[ -d libobj ] && cp -rL libobj $out/lib\n\nCHEZSCHEMELIBDIRS=\"$out/lib/scheme-libs:$CHEZSCHEMELIBDIRS\"\n\n# add support for other schemes\nfor f in $out/bin/*\ndo\npatchShebangs $f\nwrapProgram $f \\\n  --prefix CHEZSCHEMELIBDIRS : $CHEZSCHEMELIBDIRS\ndone\n\nrunHook postInstall\n",
         meta: nix.thunk(() => nix.update((() => {
           const from = nix.thunk(() => nix.sel(akku, "meta"));
-          return { [nix.POS]: pos$1, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+          return { [nix.POS]: $pos[0], platforms: nix.thunk(() => nix.attr(from, "platforms")) };
         })(), nix.selOr(args_2, () => ({}), "meta"))),
         setupHook: nix.path(here, "./setup-hook.sh"),
       }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["name", "buildInputs", "meta", "nativeBuildInputs"])))));

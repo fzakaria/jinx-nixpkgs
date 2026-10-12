@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, astring: false, fmt: false, logs: false, lwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const logs = nix.arg($, "logs");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "irmin-watcher",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/irmin-watcher/releases/download/${nix.sel(finalAttrs, "version")}/irmin-watcher-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-vq4kwaz4QUG9x0fGEbQMAuDGjlT3/6lm8xiXTUqJmZM=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [astring, fmt, logs, lwt]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mirage/irmin-watcher",
         description: "Portable Irmin watch backends using FSevents or Inotify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 32, 3], ["dependencies", 34, 3], ["build-system", 47, 3], ["pythonRelaxDeps", 51, 3], ["installPhase", 55, 3], ["postFixup", 64, 3], ["nativeCheckInputs", 71, 3], ["disabledTestMarks", 77, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, makeWrapper: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 32, 3], ["dependencies", 34, 3], ["build-system", 47, 3], ["pythonRelaxDeps", 51, 3], ["installPhase", 55, 3], ["postFixup", 64, 3], ["nativeCheckInputs", 71, 3], ["disabledTestMarks", 77, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sherlock",
       version: "0.16.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sherlock-project",
           repo: "sherlock",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +66,7 @@ substituteInPlace sherlock_project/__init__.py \\
       })()),
       disabledTestMarks: nix.thunk(() => ["online"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://sherlockproject.xyz/",
         description: "Hunt down social media accounts by username across social networks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

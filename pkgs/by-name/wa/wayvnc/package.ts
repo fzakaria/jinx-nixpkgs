@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 32, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["mesonFlags", 58, 3], ["doCheck", 62, 3], ["__structuredAttrs", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, scdoc: false, "wayland-scanner": false, aml: false, jansson: false, libdrm: false, libxkbcommon: false, libgbm: false, neatvnc: false, pam: false, pixman: false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 32, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["mesonFlags", 58, 3], ["doCheck", 62, 3], ["__structuredAttrs", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const pixman = nix.arg($, "pixman");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wayvnc",
       version: "0.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "any1",
           repo: "wayvnc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "VNC server for wlroots based Wayland compositors",
         longDescription: "This is a VNC server for wlroots based Wayland compositors. It attaches\nto a running Wayland session, creates virtual input devices and exposes a\nsingle display via the RFB protocol. The Wayland session may be a\nheadless one, so it is also possible to run wayvnc without a physical\ndisplay attached.\n",
         homepage: "https://github.com/any1/wayvnc",

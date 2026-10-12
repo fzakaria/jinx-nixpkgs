@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["OPENSSL_NO_VENDOR", 25, 5]], [["nativeBuildInputs", 42, 13]], [["nativeBuildInputs", 57, 13]], [["makefile", 39, 7], ["justfile", 54, 7]], [["updateScript", 37, 5], ["tests", 38, 5]], [["homepage", 79, 5], ["changelog", 80, 5], ["description", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 87, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["env", 24, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["cargoHash", 31, 3], ["doCheck", 34, 3], ["passthru", 36, 3], ["nativeInstallCheckInputs", 75, 3], ["doInstallCheck", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, just: false, openssl: false, "pkg-config": false, runCommand: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 42, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 57, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["makefile", 39, 7], ["justfile", 54, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 37, 5], ["tests", 38, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 79, 5], ["changelog", 80, 5], ["description", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 87, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["env", 24, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["cargoHash", 31, 3], ["doCheck", 34, 3], ["passthru", 36, 3], ["nativeInstallCheckInputs", 75, 3], ["doInstallCheck", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,32 +17,32 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "task-keeper",
       version: "0.35.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linux-china",
           repo: "task-keeper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-13x3a963yrdzzYSgL692i9n6rjGPBTfjaa0WkvMKZk8=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       cargoHash: "sha256-ncpvYOUNhrQdAot1Sl27VFhR6dBLnbSogXGzCwQ2gS4=",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           makefile: nix.thunk(() => nix.app(runCommand, "task-keeper-makefile-test", nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "printf \"nix-test-task:\\n\\techo 2047\" > Makefile\ntk > output.txt\ngrep -qF -- \"make: Makefile\" output.txt\ngrep -qF -- \"-- nix-test-task\" output.txt\ntk nix-test-task > output.txt\ngrep -qF -- \"[tk] execute nix-test-task from make\" output.txt\ngrep -qF -- \"echo 2047\" output.txt\ntouch $out\n")),
           justfile: nix.thunk(() => nix.app(runCommand, "task-keeper-justfile-test", nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), just]),
             })), "printf \"nix-test-just-task:\\n\\techo 4095\" > Justfile\ntk > output.txt\ngrep -qF -- \"just: Justfile\" output.txt\ngrep -qF -- \"-- nix-test-just-task\" output.txt\ntk nix-test-just-task > stdout.txt 2> stderr.txt\ngrep -qF -- \"[tk] execute nix-test-just-task from just\" stdout.txt\ngrep -qF -- \"echo 4095\" stderr.txt\ntouch $out\n")),
         })),
@@ -57,7 +50,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/linux-china/task-keeper",
         changelog: nix.thunk(() => nix.str`https://github.com/linux-china/task-keeper/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "CLI to manage tasks from different task runners or package managers",

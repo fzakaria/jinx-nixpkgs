@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 47, 5], ["version", 48, 26], ["hash", 49, 5]], [["python3Packages", 112, 49]], [["libraries", 114, 9]], [["gpuCheck", 111, 12]], [["description", 132, 5], ["homepage", 133, 5], ["license", 134, 5], ["maintainers", 135, 5]], [["pname", 41, 3], ["version", 42, 3], ["pyproject", 43, 3], ["src", 46, 3], ["postPatch", 52, 3], ["pythonRelaxDeps", 62, 3], ["patches", 68, 3], ["build-system", 73, 3], ["dependencies", 78, 3], ["doCheck", 105, 3], ["dontUsePythonImportsCheck", 108, 3], ["passthru", 111, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, "setuptools-scm": false, accelerate: false, "cut-cross-entropy": false, datasets: false, filelock: false, "hf-transfer": false, "huggingface-hub": false, msgspec: false, numpy: false, packaging: false, peft: false, pillow: false, protobuf: false, psutil: false, regex: false, sentencepiece: false, torch: false, torchao: false, triton: false, tqdm: false, transformers: false, trl: false, tyro: false, "typing-extensions": false, cudaPackages: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 47, 5], ["version", 48, 26], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["python3Packages", 112, 49]]);
-const pos$3 = nix.positions(here + "/default.nix", [["libraries", 114, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["gpuCheck", 111, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 132, 5], ["homepage", 133, 5], ["license", 134, 5], ["maintainers", 135, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 41, 3], ["version", 42, 3], ["pyproject", 43, 3], ["src", 46, 3], ["postPatch", 52, 3], ["pythonRelaxDeps", 62, 3], ["patches", 68, 3], ["build-system", 73, 3], ["dependencies", 78, 3], ["doCheck", 105, 3], ["dontUsePythonImportsCheck", 108, 3], ["passthru", 111, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const cudaPackages = nix.arg($, "cudaPackages");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "unsloth-zoo",
       version: "2026.4.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "unsloth_zoo",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-jJ58d2+5lEALEaASELZtQkY2YxNWaLrfLvOCUGnwrh4=",
@@ -85,14 +80,17 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       dontUsePythonImportsCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        gpuCheck: nix.thunk(() => nix.sel(nix.app(nix.sel(cudaPackages, "writeGpuTestPython", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, python3Packages: nix.thunk(() => nix.sel(python, "pkgs")) })), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+        [nix.POS]: $pos[3],
+        gpuCheck: nix.thunk(() => nix.sel(nix.app(nix.sel(cudaPackages, "writeGpuTestPython", "override"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            python3Packages: nix.thunk(() => nix.sel(python, "pkgs")),
+          })), nix.thunk(() => ({
+            [nix.POS]: $pos[2],
             libraries: (ps) => [nix.thunk(() => nix.sel(ps, "unsloth-zoo"))],
           })), "import torch\n\nassert torch.cuda.is_available(), \"CUDA is not available\"\nassert torch.ones(1, device=\"cuda\").is_cuda\n\nimport unsloth_zoo  # noqa: F401\nfrom unsloth_zoo.device_type import DEVICE_COUNT, DEVICE_TYPE\n\nassert DEVICE_TYPE == \"cuda\", DEVICE_TYPE\nassert DEVICE_COUNT > 0, DEVICE_COUNT\nprint(f\"Unsloth Zoo detected {DEVICE_COUNT} CUDA device(s)\")\n"), "gpuCheck")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Utils for Unsloth",
         homepage: "https://github.com/unslothai/unsloth_zoo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

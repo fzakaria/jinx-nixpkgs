@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 13, 13], ["version", 13, 19], ["hash", 14, 5]], [["description", 32, 5], ["license", 33, 5], ["homepage", 34, 5]], [["pname", 8, 3], ["version", 9, 3], ["format", 10, 3], ["src", 12, 3], ["postPatch", 17, 3], ["dependencies", 21, 3], ["pythonImportsCheck", 25, 3], ["doCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 13, 13], ["version", 13, 19], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["license", 33, 5], ["homepage", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["format", 10, 3], ["src", 12, 3], ["postPatch", 17, 3], ["dependencies", 21, 3], ["pythonImportsCheck", 25, 3], ["doCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.9";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-uGCBHdgWoorVX2XqMCg0YBweb00sQ9ZSbJe8rlGeovs=",
@@ -30,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["camera"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MeerK40t camera plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/meerk40t/meerk40t-camera",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

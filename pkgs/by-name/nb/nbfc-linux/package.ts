@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["updateScript", 42, 12]], [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 58, 5], ["platforms", 59, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["configureFlags", 38, 3], ["passthru", 42, 3], ["nativeInstallCheckInputs", 44, 3], ["doInstallCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, lua5_4: false, curl: false, libxml2: false, openssl: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 42, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 58, 5], ["platforms", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["configureFlags", 38, 3], ["passthru", 42, 3], ["nativeInstallCheckInputs", 44, 3], ["doInstallCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nbfc-linux",
       version: "0.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nbfc-linux",
           repo: "nbfc-linux",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,13 +33,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [lua5_4, curl, libxml2, openssl]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--bindir=${nix.builtins.placeholder("out")}/bin`)]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C port of Stefan Hirschmann's NoteBook FanControl",
         longDescription: "nbfc-linux provides fan control service for notebooks\n",
         homepage: "https://github.com/nbfc-linux/nbfc-linux",

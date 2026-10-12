@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 30, 9], ["url", 31, 9], ["hashMode", 32, 9], ["sha256", 33, 17], ["message", 34, 9]], [["homepage", 46, 9], ["description", 47, 9], ["maintainers", 48, 9], ["license", 49, 9], ["platforms", 50, 9], ["hydraPlatforms", 51, 9], ["sourceProvenance", 52, 9]], [["pname", 60, 9], ["version", 61, 17], ["meta", 62, 17]], [["requireXcode", 68, 11], ["xcode_8_1", 69, 3], ["xcode_8_2", 70, 3], ["xcode_9_1", 71, 3], ["xcode_9_2", 72, 3], ["xcode_9_3", 73, 3], ["xcode_9_4", 74, 3], ["xcode_9_4_1", 75, 3], ["xcode_10_1", 76, 3], ["xcode_10_2", 77, 3], ["xcode_10_2_1", 78, 3], ["xcode_10_3", 79, 3], ["xcode_11", 80, 3], ["xcode_11_1", 81, 3], ["xcode_11_2", 82, 3], ["xcode_11_3", 83, 3], ["xcode_11_3_1", 84, 3], ["xcode_11_4", 85, 3], ["xcode_11_5", 86, 3], ["xcode_11_6", 87, 3], ["xcode_11_7", 88, 3], ["xcode_12", 89, 3], ["xcode_12_0_1", 90, 3], ["xcode_12_1", 91, 3], ["xcode_12_2", 92, 3], ["xcode_12_3", 93, 3], ["xcode_12_4", 94, 3], ["xcode_12_5", 95, 3], ["xcode_12_5_1", 96, 3], ["xcode_13", 97, 3], ["xcode_13_1", 98, 3], ["xcode_13_2", 99, 3], ["xcode_13_2_1", 100, 3], ["xcode_13_3", 101, 3], ["xcode_13_3_1", 102, 3], ["xcode_13_4", 103, 3], ["xcode_13_4_1", 104, 3], ["xcode_14", 105, 3], ["xcode_14_1", 106, 3], ["xcode_15", 107, 3], ["xcode_15_0_1", 108, 3], ["xcode_15_1", 109, 3], ["xcode_15_2", 110, 3], ["xcode_15_3", 111, 3], ["xcode_15_4", 112, 3], ["xcode_16", 113, 3], ["xcode_16_1", 114, 3], ["xcode_16_2", 115, 3], ["xcode_16_3", 116, 3], ["xcode_16_4", 117, 3], ["xcode_26", 118, 3], ["xcode_26_Apple_silicon", 119, 3], ["xcode_26_0_1", 120, 3], ["xcode_26_0_1_Apple_silicon", 121, 3], ["xcode_26_1", 122, 3], ["xcode_26_1_Apple_silicon", 123, 3], ["xcode_26_1_1", 124, 3], ["xcode_26_1_1_Apple_silicon", 125, 3], ["xcode_26_2", 126, 3], ["xcode_26_2_Apple_silicon", 127, 3], ["xcode_26_3", 128, 3], ["xcode_26_3_Apple_silicon", 129, 3], ["xcode_26_4", 130, 3], ["xcode_26_4_Apple_silicon", 131, 3], ["xcode_26_4_1", 132, 3], ["xcode_26_4_1_Apple_silicon", 133, 3], ["xcode_26_5", 134, 3], ["xcode_26_5_Apple_silicon", 135, 3], ["xcode_26_6", 136, 3], ["xcode_26_6_Apple_silicon", 137, 3], ["xcode_27", 138, 3], ["xcode", 139, 3]]]);
 const formals$1 = { args: { stdenv: false, requireFile: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 30, 9], ["url", 31, 9], ["hashMode", 32, 9], ["sha256", 33, 17], ["message", 34, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 46, 9], ["description", 47, 9], ["maintainers", 48, 9], ["license", 49, 9], ["platforms", 50, 9], ["hydraPlatforms", 51, 9], ["sourceProvenance", 52, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 60, 9], ["version", 61, 17], ["meta", 62, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["requireXcode", 68, 11], ["xcode_8_1", 69, 3], ["xcode_8_2", 70, 3], ["xcode_9_1", 71, 3], ["xcode_9_2", 72, 3], ["xcode_9_3", 73, 3], ["xcode_9_4", 74, 3], ["xcode_9_4_1", 75, 3], ["xcode_10_1", 76, 3], ["xcode_10_2", 77, 3], ["xcode_10_2_1", 78, 3], ["xcode_10_3", 79, 3], ["xcode_11", 80, 3], ["xcode_11_1", 81, 3], ["xcode_11_2", 82, 3], ["xcode_11_3", 83, 3], ["xcode_11_3_1", 84, 3], ["xcode_11_4", 85, 3], ["xcode_11_5", 86, 3], ["xcode_11_6", 87, 3], ["xcode_11_7", 88, 3], ["xcode_12", 89, 3], ["xcode_12_0_1", 90, 3], ["xcode_12_1", 91, 3], ["xcode_12_2", 92, 3], ["xcode_12_3", 93, 3], ["xcode_12_4", 94, 3], ["xcode_12_5", 95, 3], ["xcode_12_5_1", 96, 3], ["xcode_13", 97, 3], ["xcode_13_1", 98, 3], ["xcode_13_2", 99, 3], ["xcode_13_2_1", 100, 3], ["xcode_13_3", 101, 3], ["xcode_13_3_1", 102, 3], ["xcode_13_4", 103, 3], ["xcode_13_4_1", 104, 3], ["xcode_14", 105, 3], ["xcode_14_1", 106, 3], ["xcode_15", 107, 3], ["xcode_15_0_1", 108, 3], ["xcode_15_1", 109, 3], ["xcode_15_2", 110, 3], ["xcode_15_3", 111, 3], ["xcode_15_4", 112, 3], ["xcode_16", 113, 3], ["xcode_16_1", 114, 3], ["xcode_16_2", 115, 3], ["xcode_16_3", 116, 3], ["xcode_16_4", 117, 3], ["xcode_26", 118, 3], ["xcode_26_Apple_silicon", 119, 3], ["xcode_26_0_1", 120, 3], ["xcode_26_0_1_Apple_silicon", 121, 3], ["xcode_26_1", 122, 3], ["xcode_26_1_Apple_silicon", 123, 3], ["xcode_26_1_1", 124, 3], ["xcode_26_1_1_Apple_silicon", 125, 3], ["xcode_26_2", 126, 3], ["xcode_26_2_Apple_silicon", 127, 3], ["xcode_26_3", 128, 3], ["xcode_26_3_Apple_silicon", 129, 3], ["xcode_26_4", 130, 3], ["xcode_26_4_Apple_silicon", 131, 3], ["xcode_26_4_1", 132, 3], ["xcode_26_4_1_Apple_silicon", 133, 3], ["xcode_26_5", 134, 3], ["xcode_26_5_Apple_silicon", 135, 3], ["xcode_26_6", 136, 3], ["xcode_26_6_Apple_silicon", 137, 3], ["xcode_27", 138, 3], ["xcode", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,10 +35,10 @@ ${unxip}
 nix-store --add-fixed --recursive sha256 Xcode.app
 rm -rf Xcode.app
 `);
-        return { [nix.POS]: pos$1, name, url, hashMode, sha256: sha256_1, message };
+        return { [nix.POS]: $pos[0], name, url, hashMode, sha256: sha256_1, message };
       })())));
     const meta = nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       homepage: "https://developer.apple.com/xcode/",
       description: "Apple's Xcode developer tools",
       maintainers: nix.thunk(() => (() => {
@@ -53,10 +50,10 @@ rm -rf Xcode.app
       hydraPlatforms: [],
       sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
     }));
-    return nix.app(nix.sel(app, "overrideAttrs"), (oldAttrs) => nix.update(oldAttrs, { [nix.POS]: pos$3, pname: "xcode", version: version, meta: meta }));
+    return nix.app(nix.sel(app, "overrideAttrs"), (oldAttrs) => nix.update(oldAttrs, { [nix.POS]: $pos[2], pname: "xcode", version: version, meta: meta }));
   })();
   return nix.app(nix.sel(lib, "makeExtensible"), (self) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       requireXcode: requireXcode,
       xcode_8_1: nix.thunk(() => nix.app(requireXcode, "8.1", "sha256-VuAovU/b4rcLh+xMtcsZmbTWwTk35VGfMSp+fqPbsqM=")),
       xcode_8_2: nix.thunk(() => nix.app(requireXcode, "8.2", "sha256-ohqgGD7JEEmXEvmfn/N9Ga2lM8jNwhIuh+ky7PQPzY4=")),

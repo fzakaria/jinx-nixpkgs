@@ -2,45 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/audit.nix", [[["maintainers", 7, 5]], [["enable", 15, 11], ["rules", 16, 11], ["backlogLimit", 19, 11]], [["active", 23, 27]], [["active", 24, 26]], [["af_unix", 23, 19], ["syslog", 24, 19]], [["enable", 22, 11], ["plugins", 23, 11]], [["audit", 14, 18], ["auditd", 21, 18]], [["systemPackages", 29, 21]], [["security", 14, 9], ["environment", 29, 9]], [["machine", 11, 5]], [["name", 4, 3], ["meta", 6, 3], ["nodes", 10, 3], ["testScript", 33, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/audit.nix", [["maintainers", 7, 5]]);
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/audit.nix", [["enable", 15, 11], ["rules", 16, 11], ["backlogLimit", 19, 11]]);
-const pos$3 = nix.positions(here + "/audit.nix", [["active", 23, 27]]);
-const pos$4 = nix.positions(here + "/audit.nix", [["active", 24, 26]]);
-const pos$5 = nix.positions(here + "/audit.nix", [["af_unix", 23, 19], ["syslog", 24, 19]]);
-const pos$6 = nix.positions(here + "/audit.nix", [["enable", 22, 11], ["plugins", 23, 11]]);
-const pos$7 = nix.positions(here + "/audit.nix", [["audit", 14, 18], ["auditd", 21, 18]]);
-const pos$8 = nix.positions(here + "/audit.nix", [["systemPackages", 29, 21]]);
-const pos$9 = nix.positions(here + "/audit.nix", [["security", 14, 9], ["environment", 29, 9]]);
-const pos$10 = nix.positions(here + "/audit.nix", [["machine", 11, 5]]);
-const pos$11 = nix.positions(here + "/audit.nix", [["name", 4, 3], ["meta", 6, 3], ["nodes", 10, 3], ["testScript", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "audit",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "grimmauld"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           security: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             audit: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               rules: nix.thunk(() => [
                 nix.thunk(() => nix.str`-a always,exit -F exe=${nix.app(nix.sel(lib_1, "getExe"), nix.thunk(() => nix.sel(pkgs, "hello")))} -k nixos-test`),
@@ -48,17 +38,17 @@ export default nix.lambda((args) => (() => {
               backlogLimit: 512n,
             })),
             auditd: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               plugins: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                af_unix: nix.thunk(() => ({ [nix.POS]: pos$3, active: true })),
-                syslog: nix.thunk(() => ({ [nix.POS]: pos$4, active: true })),
+                [nix.POS]: $pos[4],
+                af_unix: nix.thunk(() => ({ [nix.POS]: $pos[2], active: true })),
+                syslog: nix.thunk(() => ({ [nix.POS]: $pos[3], active: true })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
           })),
         };

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["rev-prefix", 35, 5]], [["updateScript", 34, 12]], [["broken", 63, 5], ["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["passthru", 34, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 44, 3], ["propagatedBuildInputs", 50, 3], ["doCheck", 58, 3], ["nativeCheckInputs", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, gitUpdater: false, setuptools: false, "setuptools-lint": false, sphinx: false, "python-xlib": false, evdev: false, six: false, unittestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 34, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["broken", 63, 5], ["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["passthru", 34, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 44, 3], ["propagatedBuildInputs", 50, 3], ["doCheck", 58, 3], ["nativeCheckInputs", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pynputfix",
       version: "1.8.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AuroraWright",
           repo: "pynputfix",
           tag: "1.8.2",
           hash: "sha256-SKw745hh0G2NoWgUUjShyjiG2NYPd4iJlWx7IeGpW/4=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       })),
       postPatch: "substituteInPlace setup.py \\\n  --replace-fail \"'sphinx >=1.3.1',\" \"\" \\\n  --replace-fail \"'twine >=4.0']\" \"]\"\n",
       nativeBuildInputs: nix.thunk(() => [setuptools, setuptools_lint, sphinx]),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => [unittestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Library to control and monitor input devices",
         homepage: "https://github.com/moses-palmer/pynput",

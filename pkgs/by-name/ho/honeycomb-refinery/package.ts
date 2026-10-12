@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["NO_REDIS_TEST", 20, 7]], [["updateScript", 48, 12]], [["homepage", 51, 5], ["description", 52, 5], ["mainProgram", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["env", 20, 3], ["patches", 22, 3], ["excludedPackages", 29, 3], ["ldflags", 34, 3], ["vendorHash", 40, 3], ["doCheck", 42, 3], ["nativeInstallCheckInputs", 44, 3], ["doInstallCheck", 45, 3], ["versionCheckProgram", 46, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NO_REDIS_TEST", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["mainProgram", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["env", 20, 3], ["patches", 22, 3], ["excludedPackages", 29, 3], ["ldflags", 34, 3], ["vendorHash", 40, 3], ["doCheck", 42, 3], ["nativeInstallCheckInputs", 44, 3], ["doInstallCheck", 45, 3], ["versionCheckProgram", 46, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "honeycomb-refinery",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "honeycombio",
           repo: "refinery",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-fip02kKy+LLySFVBI/cKMEZdQRus+4dXBUfm0yGlBlc=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NO_REDIS_TEST: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NO_REDIS_TEST: true })),
       patches: nix.thunk(() => [
         nix.path(here, "./0001-add-NO_REDIS_TEST-env-var-that-disables-Redis-requir.patch"),
       ]),
@@ -43,11 +39,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/honeycombio/refinery",
         description: "Tail-sampling proxy for OpenTelemetry",
         mainProgram: "refinery",

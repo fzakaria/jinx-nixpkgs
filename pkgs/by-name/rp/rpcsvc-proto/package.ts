@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["name", 25, 7], ["url", 26, 7], ["sha256", 27, 7]], [["RPCGEN_CPP", 39, 7]], [["homepage", 53, 5], ["description", 54, 5], ["longDescription", 55, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["outputs", 31, 3], ["nativeBuildInputs", 37, 3], ["env", 39, 3], ["postPatch", 41, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, autoreconfHook: false, buildPackages: false, fetchpatch: false, targetPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["sha256", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["RPCGEN_CPP", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["description", 54, 5], ["longDescription", 55, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["outputs", 31, 3], ["nativeBuildInputs", 37, 3], ["env", 39, 3], ["postPatch", 41, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const targetPackages = nix.arg($, "targetPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rpcsvc-proto",
       version: "1.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "thkukuk",
           repo: "rpcsvc-proto",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "follow-RPCGEN_CPP-env-var",
             url: "https://github.com/thkukuk/rpcsvc-proto/commit/e772270774ff45172709e39f744cab875a816667.diff",
             sha256: "sha256-KrUD6YwdyxW9S99h4TB21ahnAOgQmQr2tYz++MIbk1Y=",
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man", "dev"]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         RPCGEN_CPP: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}cpp`),
       })),
       postPatch: nix.thunk(() => nix.add(nix.str`# replace fallback cpp with the target prefixed cpp
@@ -51,7 +47,7 @@ substituteInPlace rpcgen/rpc_main.c \\
   --replace '$(top_builddir)/rpcgen/rpcgen' '${nix.sel(buildPackages, "rpcsvc-proto")}/bin/rpcgen'
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/thkukuk/rpcsvc-proto",
         description: "This package contains rpcsvc proto.x files from glibc, which are missing in libtirpc",
         longDescription: "The RPC-API has been removed from glibc. The 2.32-release-notes\n(https://sourceware.org/pipermail/libc-announce/2020/000029.html) recommend to use\n`libtirpc` and this package instead.\n",

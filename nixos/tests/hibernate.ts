@@ -2,47 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hibernate.nix", [[["system", 6, 33], ["config", 6, 40]], [["system", 10, 49], ["pkgs", 10, 56]], [["powerDownCommands", 28, 25], ["resumeCommands", 29, 25]], [["emptyDiskImages", 31, 24], ["useNixStoreImage", 33, 24], ["sharedDirectories", 34, 24], ["useEFIBoot", 43, 24]], [["device", 38, 13], ["options", 39, 13]], [["enable", 42, 29]], [["systemd", 42, 21]], [["initrd", 42, 14]], [["imports", 24, 9], ["powerManagement", 28, 9], ["virtualisation", 31, 9], ["swapDevices", 36, 9], ["boot", 42, 9]], [["machine", 16, 5]], [["name", 13, 3], ["nodes", 15, 3], ["testScript", 47, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true, systemdStage1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hibernate.nix", [["system", 6, 33], ["config", 6, 40]]);
-const pos$2 = nix.positions(here + "/hibernate.nix", [["system", 10, 49], ["pkgs", 10, 56]]);
 const formals$2 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/hibernate.nix", [["powerDownCommands", 28, 25], ["resumeCommands", 29, 25]]);
-const pos$4 = nix.positions(here + "/hibernate.nix", [["emptyDiskImages", 31, 24], ["useNixStoreImage", 33, 24], ["sharedDirectories", 34, 24], ["useEFIBoot", 43, 24]]);
-const pos$5 = nix.positions(here + "/hibernate.nix", [["device", 38, 13], ["options", 39, 13]]);
-const pos$6 = nix.positions(here + "/hibernate.nix", [["enable", 42, 29]]);
-const pos$7 = nix.positions(here + "/hibernate.nix", [["systemd", 42, 21]]);
-const pos$8 = nix.positions(here + "/hibernate.nix", [["initrd", 42, 14]]);
-const pos$9 = nix.positions(here + "/hibernate.nix", [["imports", 24, 9], ["powerManagement", 28, 9], ["virtualisation", 31, 9], ["swapDevices", 36, 9], ["boot", 42, 9]]);
-const pos$10 = nix.positions(here + "/hibernate.nix", [["machine", 16, 5]]);
-const pos$11 = nix.positions(here + "/hibernate.nix", [["name", 13, 3], ["nodes", 15, 3], ["testScript", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
   const systemdStage1 = nix.arg($, "systemdStage1");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   return nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       name: nix.thunk(() => nix.add("hibernate", nix.app(nix.sel(pkgs, "lib", "optionalString"), systemdStage1, "-systemd-stage-1"))),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config_1 = nix.arg($_1, "config");
           const lib = nix.arg($_1, "lib");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             imports: nix.thunk(() => [nix.path(here, "./common/auto-format-root-device.nix")]),
             powerManagement: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               powerDownCommands: "systemctl --no-block stop backdoor.service",
               resumeCommands: "systemctl --no-block restart backdoor.service",
             })),
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               emptyDiskImages: nix.thunk(() => [
                 nix.thunk(() => nix.mul(2n, nix.sel(config_1, "virtualisation", "memorySize"))),
               ]),
@@ -52,16 +42,16 @@ export default nix.lambda((args) => (() => {
             })),
             swapDevices: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   device: "/dev/vdc",
                   options: nix.thunk(() => ["x-systemd.makefs"]),
                 })),
               ]))),
             boot: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               initrd: nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                systemd: nix.thunk(() => ({ [nix.POS]: pos$6, enable: systemdStage1 })),
+                [nix.POS]: $pos[6],
+                systemd: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: systemdStage1 })),
               })),
             })),
           };

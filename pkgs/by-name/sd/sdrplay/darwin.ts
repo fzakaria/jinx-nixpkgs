@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/darwin.nix", [[["majorVersion", 35, 5], ["majorMinorVersion", 36, 5]], [["pname", 15, 5], ["version", 16, 5], ["src", 17, 5], ["meta", 18, 5], ["nativeBuildInputs", 21, 3], ["unpackPhase", 27, 3], ["dontBuild", 32, 3], ["env", 34, 3], ["installPhase", 39, 3], ["postFixup", 53, 3]]]);
 const formals$1 = { args: { pname: false, version: false, src: false, meta: false, lib: false, stdenv: false, xar: false, cpio: false, libusb1: false, fixDarwinDylibNames: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/darwin.nix", [["majorVersion", 35, 5], ["majorMinorVersion", 36, 5]]);
-const pos$2 = nix.positions(here + "/darwin.nix", [["pname", 15, 5], ["version", 16, 5], ["src", 17, 5], ["meta", 18, 5], ["nativeBuildInputs", 21, 3], ["unpackPhase", 27, 3], ["dontBuild", 32, 3], ["env", 34, 3], ["installPhase", 39, 3], ["postFixup", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: src,
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "xar -xf $src\nzcat SDRplayAPI.pkg/Payload | cpio -i\n",
       dontBuild: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         majorVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version)),
         majorMinorVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version)),
       })),

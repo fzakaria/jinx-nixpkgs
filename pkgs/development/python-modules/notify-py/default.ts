@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["aplay", 35, 9], ["notifysend", 36, 9]], [["which", 42, 9]], [["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["nativeBuildInputs", 46, 3], ["build-system", 50, 3], ["pythonRelaxDeps", 54, 3], ["propagatedBuildInputs", 56, 3], ["nativeCheckInputs", 58, 3], ["checkPhase", 60, 3], ["doCheck", 81, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, "alsa-utils": false, libnotify: false, which: false, "poetry-core": false, jeepney: false, loguru: false, pytest: false, dbus: false, coreutils: false, pyprojectVersionPatchHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aplay", 35, 9], ["notifysend", 36, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["which", 42, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["nativeBuildInputs", 46, 3], ["build-system", 50, 3], ["pythonRelaxDeps", 54, 3], ["propagatedBuildInputs", 56, 3], ["nativeCheckInputs", 58, 3], ["checkPhase", 60, 3], ["doCheck", 81, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.43";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ms7m",
           repo: "notify-py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,12 +35,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./linux-paths.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               aplay: nix.thunk(() => nix.str`${alsa_utils}/bin/aplay`),
               notifysend: nix.thunk(() => nix.str`${libnotify}/bin/notify-send`),
             })))),
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./darwin-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, which: nix.thunk(() => nix.str`${which}/bin/which`) })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./darwin-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[2], which: nix.thunk(() => nix.str`${which}/bin/which`) })))),
         ]))));
       const nativeBuildInputs = nix.thunk(() => [pyprojectVersionPatchHook]);
       const build_system = nix.thunk(() => [poetry_core]);
@@ -62,7 +58,7 @@ PATH="$TMP/bin:$PATH" pytest
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["notifypy"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cross-platform desktop notification library for Python",
         mainProgram: "notifypy",
         homepage: "https://github.com/ms7m/notify-py",
@@ -77,7 +73,7 @@ PATH="$TMP/bin:$PATH" pytest
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

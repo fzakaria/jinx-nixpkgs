@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 28, 11], ["substitutions", 29, 11]], [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5], ["postFetch", 24, 5]], [["src", 67, 28], ["version", 67, 32], ["yarn-berry_4", 68, 15]], [["koito", 72, 28]], [["client", 66, 5], ["tests", 71, 5], ["updateScript", 75, 5]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 16, 3], ["__structuredAttrs", 38, 3], ["vendorHash", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["ldflags", 49, 3], ["postInstall", 55, 3], ["passthru", 65, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, substitute: false, "yarn-berry_4": false, callPackage: false, "pkg-config": false, vips: false, makeWrapper: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 28, 11], ["substitutions", 29, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5], ["postFetch", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 67, 28], ["version", 67, 32], ["yarn-berry_4", 68, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["koito", 72, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["client", 66, 5], ["tests", 71, 5], ["updateScript", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 16, 3], ["__structuredAttrs", 38, 3], ["vendorHash", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["ldflags", 49, 3], ["postInstall", 55, 3], ["passthru", 65, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "koito",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "gabehf",
           repo: "koito",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-z0HeuPYQwkyKkt8K7PKUYseECz2p1C/6UO5sUSxopBQ=",
           postFetch: nix.thunk(() => nix.str`cd $out/client
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -63,18 +57,18 @@ makeWrapper $out/bin/.koito-wrapped $out/bin/koito \\
   --run "cd $out/share"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         client: nix.thunk(() => nix.app(callPackage, nix.path(here, "./client.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             "yarn-berry_4": yarn_berry_4,
           })))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, koito: nix.thunk(() => nix.attr(nixosTests, "koito")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], koito: nix.thunk(() => nix.attr(nixosTests, "koito")) })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Modern, themeable scrobbler that you can use with any program that scrobbles to a custom ListenBrainz URL",
         homepage: "https://koito.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

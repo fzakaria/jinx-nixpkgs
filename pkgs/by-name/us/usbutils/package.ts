@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["hwdata", 26, 15]], [["url", 31, 7], ["hash", 32, 7]], [["homepage", 60, 5], ["description", 61, 5], ["maintainers", 62, 5], ["license", 66, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["outputs", 46, 3], ["postInstall", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, replaceVars: false, fetchpatch: false, meson: false, ninja: false, "pkg-config": false, libusb1: false, hwdata: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hwdata", 26, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["maintainers", 62, 5], ["license", 66, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["outputs", 46, 3], ["postInstall", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const hwdata = nix.arg($, "hwdata");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "usbutils",
       version: "019",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kernel/linux/utils/usb/usbutils/usbutils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ZZ9AxEDjG6hlxSyBijPTumqXNJ4zU/ixmFF5yyqnHsU=",
         })))),
       patches: nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, hwdata: hwdata })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], hwdata: hwdata })))),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://raw.githubusercontent.com/Homebrew/homebrew-core/1cf441a09f572566b1b7c4695a4d169d1177248a/Patches/usbutils/portable.patch",
               hash: "sha256-spTkWURij4sPLoWtDaWVMIk81AS5W+qUUOQL1pAZEvs=",
             })))),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => nix.concat(["out", "man"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["python"])))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "moveToOutput \"bin/lsusb.py\" \"$python\"\ninstall -Dm555 usbreset -t $out/bin\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://www.linux-usb.org/",
         description: "Tools for working with USB devices, such as lsusb",
         maintainers: nix.thunk(() => (() => {

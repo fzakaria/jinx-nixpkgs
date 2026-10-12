@@ -2,30 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stable", 43, 13], ["beta", 46, 13], ["canary", 47, 13], ["dev", 48, 13]], [["stable", 53, 13], ["beta", 56, 13], ["canary", 57, 13], ["dev", 58, 13]], [["description", 16, 9], ["longDescription", 17, 9], ["homepage", 21, 9], ["license", 26, 9], ["platforms", 37, 9], ["maintainers", 41, 9], ["teams", 51, 9], ["mainProgram", 61, 9], ["sourceProvenance", 62, 9]], [["meta", 66, 52]], [["fontDirectories", 73, 13]], [["buildFHSEnv", 71, 19], ["tiling_wm", 71, 31], ["fontsConf", 72, 11]], [["sha256Hash", 81, 9], ["url", 82, 9]], [["sha256Hash", 85, 9], ["url", 86, 9]], [["x86_64-linux", 80, 7], ["aarch64-darwin", 84, 7]], [["version", 78, 5], ["sources", 79, 5]], [["sha256Hash", 94, 9], ["url", 95, 9]], [["sha256Hash", 98, 9], ["url", 99, 9]], [["x86_64-linux", 93, 7], ["aarch64-darwin", 97, 7]], [["version", 91, 5], ["sources", 92, 5]], [["sha256Hash", 107, 9], ["url", 108, 9]], [["sha256Hash", 111, 9], ["url", 112, 9]], [["x86_64-linux", 106, 7], ["aarch64-darwin", 110, 7]], [["version", 104, 5], ["sources", 105, 5]], [["channel", 123, 7], ["pname", 124, 7]], [["channel", 131, 7], ["pname", 132, 7]], [["channel", 139, 7], ["pname", 140, 7]], [["channel", 147, 7], ["pname", 148, 7]], [["stable", 120, 3], ["beta", 128, 3], ["dev", 136, 3], ["canary", 144, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false, makeFontsConf: false, buildFHSEnv: false, stdenv: false, tiling_wm: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stable", 43, 13], ["beta", 46, 13], ["canary", 47, 13], ["dev", 48, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["stable", 53, 13], ["beta", 56, 13], ["canary", 57, 13], ["dev", 58, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 16, 9], ["longDescription", 17, 9], ["homepage", 21, 9], ["license", 26, 9], ["platforms", 37, 9], ["maintainers", 41, 9], ["teams", 51, 9], ["mainProgram", 61, 9], ["sourceProvenance", 62, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["meta", 66, 52]]);
-const pos$5 = nix.positions(here + "/default.nix", [["fontDirectories", 73, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["buildFHSEnv", 71, 19], ["tiling_wm", 71, 31], ["fontsConf", 72, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["sha256Hash", 81, 9], ["url", 82, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["sha256Hash", 85, 9], ["url", 86, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["x86_64-linux", 80, 7], ["aarch64-darwin", 84, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["version", 78, 5], ["sources", 79, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["sha256Hash", 94, 9], ["url", 95, 9]]);
-const pos$12 = nix.positions(here + "/default.nix", [["sha256Hash", 98, 9], ["url", 99, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["x86_64-linux", 93, 7], ["aarch64-darwin", 97, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["version", 91, 5], ["sources", 92, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["sha256Hash", 107, 9], ["url", 108, 9]]);
-const pos$16 = nix.positions(here + "/default.nix", [["sha256Hash", 111, 9], ["url", 112, 9]]);
-const pos$17 = nix.positions(here + "/default.nix", [["x86_64-linux", 106, 7], ["aarch64-darwin", 110, 7]]);
-const pos$18 = nix.positions(here + "/default.nix", [["version", 104, 5], ["sources", 105, 5]]);
-const pos$19 = nix.positions(here + "/default.nix", [["channel", 123, 7], ["pname", 124, 7]]);
-const pos$20 = nix.positions(here + "/default.nix", [["channel", 131, 7], ["pname", 132, 7]]);
-const pos$21 = nix.positions(here + "/default.nix", [["channel", 139, 7], ["pname", 140, 7]]);
-const pos$22 = nix.positions(here + "/default.nix", [["channel", 147, 7], ["pname", 148, 7]]);
-const pos$23 = nix.positions(here + "/default.nix", [["stable", 120, 3], ["beta", 128, 3], ["dev", 136, 3], ["canary", 144, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +17,7 @@ export default nix.lambda((args) => (() => {
     const channel = nix.thunk(() => nix.attr(opts, "channel"));
     const pname = nix.thunk(() => nix.attr(opts, "pname"));
     const meta = nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       description: nix.thunk(() => nix.str`Official IDE for Android (${channel} channel)`),
       longDescription: "Android Studio is the official IDE for Android app development, based on\nIntelliJ IDEA.\n",
       homepage: nix.thunk(() => (nix.asBool(nix.eq(channel, "stable")) ? "https://developer.android.com/studio/index.html" : "https://developer.android.com/studio/preview/index.html")),
@@ -59,7 +37,7 @@ export default nix.lambda((args) => (() => {
         const beta = stable;
         const canary = stable;
         const dev = stable;
-        return { [nix.POS]: pos$1, stable, beta, canary, dev };
+        return { [nix.POS]: $pos[0], stable, beta, canary, dev };
       })(), nix.key(nix.str`${channel}`))),
       teams: nix.thunk(() => nix.sel((() => {
         const stable = nix.thunk(() => (() => {
@@ -69,76 +47,76 @@ export default nix.lambda((args) => (() => {
         const beta = stable;
         const canary = stable;
         const dev = stable;
-        return { [nix.POS]: pos$2, stable, beta, canary, dev };
+        return { [nix.POS]: $pos[1], stable, beta, canary, dev };
       })(), nix.key(nix.str`${channel}`))),
       mainProgram: pname,
       sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
     }));
     const builder = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.path(here, "./darwin.nix") : nix.path(here, "./linux.nix")));
-    return nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(builder), nix.thunk(() => nix.update(opts, { [nix.POS]: pos$4, meta: meta })))), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? {} : {
-        [nix.POS]: pos$6,
+    return nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(builder), nix.thunk(() => nix.update(opts, { [nix.POS]: $pos[3], meta: meta })))), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? {} : {
+        [nix.POS]: $pos[5],
         buildFHSEnv: buildFHSEnv,
         tiling_wm: tiling_wm,
-        fontsConf: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$5, fontDirectories: [] })))),
+        fontsConf: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[4], fontDirectories: [] })))),
       })));
   })();
   const stableVersion = nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     version: "2026.1.4.8",
     sources: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         sha256Hash: "sha256-Jcl8psa1BfKiC/+WLf0ocYMn9h4lsJqbyRXx2uex5TQ=",
         url: "https://edgedl.me.gvt1.com/android/studio/ide-zips/2026.1.4.8/android-studio-quail4-patch1-linux.tar.gz",
       })),
       "aarch64-darwin": nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         sha256Hash: "sha256-GjOTMGAH+Qy/Luc+Rb64CasJqkBsL2Hun+gbTvURwGY=",
         url: "https://edgedl.me.gvt1.com/android/studio/install/2026.1.4.8/android-studio-quail4-patch1-mac_arm.dmg",
       })),
     })),
   }));
   const betaVersion = nix.thunk(() => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     version: "2026.2.1.7",
     sources: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         sha256Hash: "sha256-wI2hdMhYl2zPg8SU3+D413ygFqrBQfYMb1yjOsDQ1aA=",
         url: "https://edgedl.me.gvt1.com/android/studio/ide-zips/2026.2.1.7/android-studio-rabbit1-rc2-linux.tar.gz",
       })),
       "aarch64-darwin": nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         sha256Hash: "sha256-j7ccJ6D+uWOEqpUVEuulv1jjnBqOj2OS/SAhjyVRdso=",
         url: "https://edgedl.me.gvt1.com/android/studio/install/2026.2.1.7/android-studio-rabbit1-rc2-mac_arm.dmg",
       })),
     })),
   }));
   const latestVersion = nix.thunk(() => ({
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     version: "2026.2.2.3",
     sources: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         sha256Hash: "sha256-I1BUkbgkEQjoxzhRBUeZvz+gG4EMxgr4FZKJy7m062E=",
         url: "https://edgedl.me.gvt1.com/android/studio/ide-zips/2026.2.2.3/android-studio-rabbit2-canary3-linux.tar.gz",
       })),
       "aarch64-darwin": nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         sha256Hash: "sha256-Z6mDdui46xm3K1Tr1mogfU28VCh6T1AvJn9xVVEKc8E=",
         url: "https://edgedl.me.gvt1.com/android/studio/install/2026.2.2.3/android-studio-rabbit2-canary3-mac_arm.dmg",
       })),
     })),
   }));
   return {
-    [nix.POS]: pos$23,
-    stable: nix.thunk(() => nix.app(mkStudio, nix.thunk(() => nix.update(stableVersion, { [nix.POS]: pos$19, channel: "stable", pname: "android-studio" })))),
-    beta: nix.thunk(() => nix.app(mkStudio, nix.thunk(() => nix.update(betaVersion, { [nix.POS]: pos$20, channel: "beta", pname: "android-studio-beta" })))),
-    dev: nix.thunk(() => nix.app(mkStudio, nix.thunk(() => nix.update(latestVersion, { [nix.POS]: pos$21, channel: "dev", pname: "android-studio-dev" })))),
-    canary: nix.thunk(() => nix.app(mkStudio, nix.thunk(() => nix.update(latestVersion, { [nix.POS]: pos$22, channel: "canary", pname: "android-studio-canary" })))),
+    [nix.POS]: $pos[22],
+    stable: nix.thunk(() => nix.app(mkStudio, nix.thunk(() => nix.update(stableVersion, { [nix.POS]: $pos[18], channel: "stable", pname: "android-studio" })))),
+    beta: nix.thunk(() => nix.app(mkStudio, nix.thunk(() => nix.update(betaVersion, { [nix.POS]: $pos[19], channel: "beta", pname: "android-studio-beta" })))),
+    dev: nix.thunk(() => nix.app(mkStudio, nix.thunk(() => nix.update(latestVersion, { [nix.POS]: $pos[20], channel: "dev", pname: "android-studio-dev" })))),
+    canary: nix.thunk(() => nix.app(mkStudio, nix.thunk(() => nix.update(latestVersion, { [nix.POS]: $pos[21], channel: "canary", pname: "android-studio-canary" })))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

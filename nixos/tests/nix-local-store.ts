@@ -2,46 +2,38 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nix-local-store.nix", [[["enable", 5, 16]], [["experimental-features", 7, 7], ["log-lines", 8, 7]], [["daemon", 5, 9], ["settings", 6, 9], ["enable", 10, 9]], [["text", 13, 32]], [["test.nix", 13, 21]], [["etc", 13, 17]], [["nix", 5, 5], ["environment", 13, 5]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nix-local-store.nix", [["enable", 5, 16]]);
-const pos$2 = nix.positions(here + "/nix-local-store.nix", [["experimental-features", 7, 7], ["log-lines", 8, 7]]);
-const pos$3 = nix.positions(here + "/nix-local-store.nix", [["daemon", 5, 9], ["settings", 6, 9], ["enable", 10, 9]]);
-const pos$4 = nix.positions(here + "/nix-local-store.nix", [["text", 13, 32]]);
-const pos$5 = nix.positions(here + "/nix-local-store.nix", [["test.nix", 13, 21]]);
-const pos$6 = nix.positions(here + "/nix-local-store.nix", [["etc", 13, 17]]);
-const pos$7 = nix.positions(here + "/nix-local-store.nix", [["nix", 5, 5], ["environment", 13, 5]]);
-const pos$8 = nix.positions(here + "/nix-local-store.nix", [["machine", 4, 9]]);
-const pos$9 = nix.positions(here + "/nix-local-store.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "nix-local-store",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            daemon: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
+            [nix.POS]: $pos[2],
+            daemon: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: false })),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               "experimental-features": nix.thunk(() => ["nix-command"]),
               "log-lines": 26n,
             })),
             enable: true,
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               "test.nix": nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 text: nix.thunk(() => nix.str`derivation {
   name = "test";
   builder = "/bin/sh";

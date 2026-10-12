@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["nativeCheckInputs", 24, 3], ["preCheck", 26, 3], ["pythonImportsCheck", 30, 3], ["doCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitLab: false, pytestCheckHook: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["nativeCheckInputs", 24, 3], ["preCheck", 26, 3], ["pythonImportsCheck", 30, 3], ["doCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MatthiasLohr",
           repo: "tololib",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["tololib"]);
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python Library for Controlling TOLO Sauna/Steam Bath Devices",
         homepage: "https://gitlab.com/MatthiasLohr/tololib",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/MatthiasLohr/tololib/-/blob/v${version}/CHANGELOG.md`),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "tolo-cli",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

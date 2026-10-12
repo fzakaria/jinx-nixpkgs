@@ -2,10 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/default.nix", [["example-config", 2, 3]]);
+const $pos = nix.positions(here + "/default.nix", [[["example-config", 2, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$1,
+  [nix.POS]: $pos[0],
   "example-config": nix.thunk(() => nix.builtins.import(nix.path(here, "./example-config.nix"))),
 }));
 //# sourceMappingURL=default.ts.map

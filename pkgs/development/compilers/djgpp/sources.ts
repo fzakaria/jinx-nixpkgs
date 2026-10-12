@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sources.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["url", 28, 5], ["hash", 29, 5]], [["url", 33, 5], ["hash", 34, 5]], [["url", 38, 5], ["hash", 39, 5]], [["url", 43, 5], ["hash", 44, 5]], [["url", 48, 5], ["hash", 49, 5]], [["url", 53, 5], ["hash", 54, 5]], [["url", 58, 5], ["hash", 59, 5]], [["url", 63, 5], ["hash", 64, 5]], [["url", 68, 5], ["hash", 69, 5]], [["url", 73, 5], ["hash", 74, 5]], [["url", 78, 5], ["hash", 79, 5]], [["gccVersion", 18, 11], ["src", 20, 3], ["autoconf", 27, 3], ["automake", 32, 3], ["binutils", 37, 3], ["djcrossgcc", 42, 3], ["djcrx", 47, 3], ["djdev", 52, 3], ["djlsr", 57, 3], ["gcc", 62, 3], ["gmp", 67, 3], ["mpc", 72, 3], ["mpfr", 77, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sources.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["url", 33, 5], ["hash", 34, 5]]);
-const pos$4 = nix.positions(here + "/sources.nix", [["url", 38, 5], ["hash", 39, 5]]);
-const pos$5 = nix.positions(here + "/sources.nix", [["url", 43, 5], ["hash", 44, 5]]);
-const pos$6 = nix.positions(here + "/sources.nix", [["url", 48, 5], ["hash", 49, 5]]);
-const pos$7 = nix.positions(here + "/sources.nix", [["url", 53, 5], ["hash", 54, 5]]);
-const pos$8 = nix.positions(here + "/sources.nix", [["url", 58, 5], ["hash", 59, 5]]);
-const pos$9 = nix.positions(here + "/sources.nix", [["url", 63, 5], ["hash", 64, 5]]);
-const pos$10 = nix.positions(here + "/sources.nix", [["url", 68, 5], ["hash", 69, 5]]);
-const pos$11 = nix.positions(here + "/sources.nix", [["url", 73, 5], ["hash", 74, 5]]);
-const pos$12 = nix.positions(here + "/sources.nix", [["url", 78, 5], ["hash", 79, 5]]);
-const pos$13 = nix.positions(here + "/sources.nix", [["gccVersion", 18, 11], ["src", 20, 3], ["autoconf", 27, 3], ["automake", 32, 3], ["binutils", 37, 3], ["djcrossgcc", 42, 3], ["djcrx", 47, 3], ["djdev", 52, 3], ["djlsr", 57, 3], ["gcc", 62, 3], ["gmp", 67, 3], ["mpc", 72, 3], ["mpfr", 77, 3]]);
 
 export default nix.thunk(() => (() => {
   const gccVersion = "12.2.0";
@@ -35,67 +23,67 @@ export default nix.thunk(() => (() => {
     const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
     const fetchurl = nix.arg($, "fetchurl");
     return {
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       gccVersion: gccVersion,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "andrewwutw",
           repo: "build-djgpp",
           rev: "0dc28365825f853c3cc6ad0d8f10f8570bed5828",
           hash: "sha256-L7ROTbnd/Ry/E9cP0N+l0y0cUzkkbC5B2aU9/r3rLQg=",
         })))),
       autoconf: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`${gnuFtpMirror}/autoconf/autoconf-${autoconfVersion}.tar.xz`),
           hash: "sha256-ZOvOyfisWySHElqGp3YNJZGsnh09vVlIljP53mKldoQ=",
         })))),
       automake: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`${gnuFtpMirror}/Automake/automake-${automakeVersion}.tar.xz`),
           hash: "sha256-r2ujkUIiBofFAPebSqLxgdmyTk+NjsSXzqS6JsZL7a8=",
         })))),
       binutils: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`${djgppFtpMirror}/djgpp/deleted/v2gnu/bnu${binutilsVersion}s.zip`),
           hash: "sha256-DSFQyFvswmP5/qYXbesFmUJ9tqEFJpILb0mGclfpXX0=",
         })))),
       djcrossgcc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`${djgppFtpMirror}/djgpp/rpms/djcross-gcc-${gccVersion}/djcross-gcc-${gccVersion}.tar.bz2`),
           hash: "sha256-UL+wkeNv3LCQog0JigShIyBM7qJRqvN58Zitmti/BZM=",
         })))),
       djcrx: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: nix.thunk(() => nix.str`${djgppFtpMirror}/djgpp/current/v2/djcrx${djcrxVersion}.zip`),
           hash: "sha256-IidO2NXuV898zxYfXhaE/RwBkgaHJKfTThveFoBBymA=",
         })))),
       djdev: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: nix.thunk(() => nix.str`${djgppFtpMirror}/djgpp/current/v2/djdev${djdevVersion}.zip`),
           hash: "sha256-RVfftsFh0yZoCuX6cfAJisSUJaGxG5CgILgxYutwXdo=",
         })))),
       djlsr: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           url: nix.thunk(() => nix.str`${djgppFtpMirror}/djgpp/current/v2/djlsr${djlsrVersion}.zip`),
           hash: "sha256-gGkLbkT/i8bGCB/KH0+uuhWRxEkLdu8OyLNYR7ql3uo=",
         })))),
       gcc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           url: nix.thunk(() => nix.str`${gnuFtpMirror}/gcc/gcc-${gccVersion}/gcc-${gccVersion}.tar.xz`),
           hash: "sha256-5UnPnPNZSgDie2WJ1DItcOByDN0hPzm+tBgeBpJiMP8=",
         })))),
       gmp: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           url: nix.thunk(() => nix.str`${gnuFtpMirror}/gmp/gmp-${gmpVersion}.tar.xz`),
           hash: "sha256-/UgpkSzd0S+EGBw0Ucx1K+IkZD6H+sSXtp7d2txJtPI=",
         })))),
       mpc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           url: nix.thunk(() => nix.str`${gnuFtpMirror}/mpc/mpc-${mpcVersion}.tar.gz`),
           hash: "sha256-F1A9LDld/PEGtiLcFCaDwRmUMdCVNnxqrLpu7DA0BFk=",
         })))),
       mpfr: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           url: nix.thunk(() => nix.str`${gnuFtpMirror}/mpfr/mpfr-${mpfrVersion}.tar.xz`),
           hash: "sha256-DJij8XMv9spOppBVIHnanFl4ctMOluwoQU7iPJVVin8=",
         })))),

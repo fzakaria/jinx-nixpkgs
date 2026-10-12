@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["homepage", 88, 5], ["description", 89, 5], ["longDescription", 90, 5], ["changelog", 104, 5], ["license", 105, 5], ["mainProgram", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5], ["broken", 109, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["outputs", 41, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 57, 3], ["cmakeFlags", 73, 3], ["strictDeps", 79, 3], ["dontWrapGApps", 81, 3], ["preFixup", 83, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, cmake: false, fetchFromGitHub: false, ffmpeg: false, "discord-rpc": false, libedit: false, elfutils: false, libepoxy: false, libsForQt5: false, libzip: false, lua: false, minizip: false, "pkg-config": false, stdenv: false, wrapGAppsHook3: false, enableDiscordRpc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 88, 5], ["description", 89, 5], ["longDescription", 90, 5], ["changelog", 104, 5], ["license", 105, 5], ["mainProgram", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5], ["broken", 109, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["outputs", 41, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 57, 3], ["cmakeFlags", 73, 3], ["strictDeps", 79, 3], ["dontWrapGApps", 81, 3], ["preFixup", 83, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.thunk(() => nix.attr(libsForQt5, "wrapQtAppsHook"));
   const qtwayland = nix.thunk(() => nix.attr(libsForQt5, "qtwayland"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mgba",
       version: "0.10.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mgba-emu",
           repo: "mgba",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://mgba.io",
         description: "Modern GBA emulator with a focus on accuracy",
         longDescription: "mGBA is a new Game Boy Advance emulator written in C.\n\nThe project started in April 2013 with the goal of being fast enough to\nrun on lower end hardware than other emulators support, without\nsacrificing accuracy or portability. Even in the initial version, games\ngenerally play without problems. It is loosely based on the previous\nGBA.js emulator, although very little of GBA.js can still be seen in mGBA.\n\nOther goals include accurate enough emulation to provide a development\nenvironment for homebrew software, a good workflow for tool-assist\nrunners, and a modern feature set for emulators that older emulators may\nnot support.\n",

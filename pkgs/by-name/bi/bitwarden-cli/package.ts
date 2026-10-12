@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 44, 5], ["npm_config_build_from_source", 45, 5]], [["vaultwarden", 95, 7]], [["extraArgs", 98, 7]], [["npmDeps", 93, 26], ["tests", 94, 5], ["updateScript", 97, 5]], [["changelog", 106, 5], ["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["mainProgram", 110, 5], ["maintainers", 111, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nodejs", 31, 3], ["npmDepsFetcherVersion", 32, 3], ["npmDepsHash", 34, 3], ["nativeBuildInputs", 36, 3], ["makeCacheWritable", 41, 3], ["env", 43, 3], ["npmBuildScript", 48, 3], ["npmWorkspace", 50, 3], ["npmFlags", 52, 3], ["npmRebuildFlags", 54, 3], ["postConfigure", 59, 3], ["postBuild", 68, 3], ["postInstall", 75, 3], ["doInstallCheck", 85, 3], ["nativeInstallCheckInputs", 86, 3], ["versionCheckKeepEnvironment", 90, 3], ["passthru", 92, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, nodejs_22: false, perl: false, xcbuild: false, writableTmpDirAsHomeHook: false, versionCheckHook: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 44, 5], ["npm_config_build_from_source", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["vaultwarden", 95, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 98, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["npmDeps", 93, 26], ["tests", 94, 5], ["updateScript", 97, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 106, 5], ["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["mainProgram", 110, 5], ["maintainers", 111, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nodejs", 31, 3], ["npmDepsFetcherVersion", 32, 3], ["npmDepsHash", 34, 3], ["nativeBuildInputs", 36, 3], ["makeCacheWritable", 41, 3], ["env", 43, 3], ["npmBuildScript", 48, 3], ["npmWorkspace", 50, 3], ["npmFlags", 52, 3], ["npmRebuildFlags", 54, 3], ["postConfigure", 59, 3], ["postBuild", 68, 3], ["postInstall", 75, 3], ["doInstallCheck", 85, 3], ["nativeInstallCheckInputs", 86, 3], ["versionCheckKeepEnvironment", 90, 3], ["passthru", 92, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "bitwarden-cli",
       version: "2026.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bitwarden",
           repo: "clients",
           tag: nix.thunk(() => nix.str`cli-v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [perl, nix.thunk(() => nix.sel(xcbuild, "xcrun"))]))),
       makeCacheWritable: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         npm_config_build_from_source: "true",
       })),
@@ -57,19 +51,19 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook, versionCheckHook]),
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         npmDeps: nix.thunk(() => nix.attr(finalAttrs, "npmDeps")),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           vaultwarden: nix.thunk(() => nix.sel(nixosTests, "vaultwarden", "sqlite")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version=stable", "--version-regex=^cli-v(.*)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/bitwarden/clients/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Secure and free password manager for all of your devices",
         homepage: "https://bitwarden.com",

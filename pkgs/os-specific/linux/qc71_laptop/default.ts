@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["extraArgs", 35, 5]], [["updateScript", 34, 12]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["makeFlags", 23, 3], ["installPhase", 28, 3], ["passthru", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 34, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 46, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["makeFlags", 23, 3], ["installPhase", 28, 3], ["passthru", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qc71_laptop";
       const version = "0-unstable-2025-01-07";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pobrn",
           repo: "qc71_laptop",
           rev: "ebab4af0b2c5b162bb9f27c80cd284c36b8fb7a9",
@@ -37,11 +33,11 @@ install -D qc71_laptop.ko -t $out/lib/modules/${nix.sel(kernel, "modDirVersion")
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Linux driver for QC71 laptop",
         homepage: "https://github.com/pobrn/qc71_laptop/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -55,7 +51,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/versions.nix", [[["lib", 23, 11], ["stdenv", 24, 11], ["fetchurl", 25, 11], ["nixosTests", 26, 11], ["makeWrapper", 27, 11], ["udev", 28, 11], ["version", 30, 25], ["url", 30, 33], ["sha1", 30, 37], ["jre_headless", 31, 9]], [["name", 20, 7], ["value", 21, 7]], [["vanilla", 48, 5]]]);
 const formals$1 = { args: { lib: false, javaPackages: false, stdenv: false, fetchurl: false, nixosTests: false, makeWrapper: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/versions.nix", [["lib", 23, 11], ["stdenv", 24, 11], ["fetchurl", 25, 11], ["nixosTests", 26, 11], ["makeWrapper", 27, 11], ["udev", 28, 11], ["version", 30, 25], ["url", 30, 33], ["sha1", 30, 37], ["jre_headless", 31, 9]]);
-const pos$2 = nix.positions(here + "/versions.nix", [["name", 20, 7], ["value", 21, 7]]);
-const pos$3 = nix.positions(here + "/versions.nix", [["vanilla", 48, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,10 +19,10 @@ export default nix.lambda((args) => (() => {
   const escapeVersion = nix.thunk(() => nix.app(nix.builtins.replaceStrings, nix.thunk(() => ["."]), nix.thunk(() => ["-"])));
   const getJavaVersion = (v) => nix.sel(nix.builtins.getAttr(nix.thunk(() => nix.str`openjdk${nix.builtins.toString(v)}`), nix.thunk(() => nix.sel(javaPackages, "compiler"))), "headless");
   const mkVersion = (version) => (value) => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     name: nix.thunk(() => nix.str`vanilla-${nix.app(escapeVersion, version)}`),
     value: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./derivation.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         lib: lib,
         stdenv: stdenv,
         fetchurl: fetchurl,
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
   });
   const packages = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), mkVersion, versions));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.update(packages, {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       vanilla: nix.thunk(() => nix.sel(nix.app(mkVersion, latestVersion, nix.thunk(() => nix.sel(versions, nix.key(nix.force(latestVersion))))), "value")),
     })));
 })(), formals$1);

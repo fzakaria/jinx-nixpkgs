@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["changelog", 64, 5], ["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["teams", 68, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["sourceRoot", 32, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 47, 3], ["disabledTestPaths", 53, 3], ["pythonImportsCheck", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, aiohttp: false, orjson: false, "home-assistant-chip-clusters": false, "pytest-asyncio": false, "pytest-aiohttp": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 64, 5], ["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["teams", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["sourceRoot", 32, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 47, 3], ["disabledTestPaths", 53, 3], ["pythonImportsCheck", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest_aiohttp = nix.arg($, "pytest-aiohttp");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "matter-python-client",
       version: "1.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "matter-js",
           repo: "matterjs-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_client_integration.py", "tests/test_integration.py"]),
       pythonImportsCheck: nix.thunk(() => ["matter_server.client"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/matter-js/matterjs-server/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Python Client for the OHF Matter Server",
         homepage: "https://github.com/matter-js/matterjs-server/tree/main/python_client",

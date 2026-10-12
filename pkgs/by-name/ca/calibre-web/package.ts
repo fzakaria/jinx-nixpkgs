@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["comics", 75, 5], ["gdrive", 80, 5], ["gmail", 94, 5], ["kobo", 103, 5], ["ldap", 105, 5], ["metadata", 110, 5], ["oauth", 122, 5]], [["calibre-web", 150, 82]], [["tests", 150, 5], ["updateScript", 151, 5]], [["description", 155, 5], ["homepage", 156, 5], ["changelog", 157, 5], ["license", 158, 5], ["maintainers", 159, 5], ["mainProgram", 160, 5], ["platforms", 161, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 34, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["optional-dependencies", 74, 3], ["pythonRelaxDeps", 128, 3], ["nativeCheckInputs", 145, 3], ["pythonImportsCheck", 147, 3], ["passthru", 149, 3], ["meta", 154, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, nixosTests: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["comics", 75, 5], ["gdrive", 80, 5], ["gmail", 94, 5], ["kobo", 103, 5], ["ldap", 105, 5], ["metadata", 110, 5], ["oauth", 122, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["calibre-web", 150, 82]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 150, 5], ["updateScript", 151, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 155, 5], ["homepage", 156, 5], ["changelog", 157, 5], ["license", 158, 5], ["maintainers", 159, 5], ["mainProgram", 160, 5], ["platforms", 161, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 34, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["optional-dependencies", 74, 3], ["pythonRelaxDeps", 128, 3], ["nativeCheckInputs", 145, 3], ["pythonImportsCheck", 147, 3], ["passthru", 149, 3], ["meta", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "calibre-web",
       version: "0.6.27",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "janeczku",
           repo: "calibre-web",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +64,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         comics: nix.thunk(() => (() => {
           const w_1 = nix.withScope(python3Packages, null);
           return [
@@ -150,15 +145,15 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies")))),
       pythonImportsCheck: nix.thunk(() => ["calibreweb"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "calibre-web": nix.thunk(() => nix.attr(nixosTests, "calibre-web")),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Web app for browsing, reading and downloading eBooks stored in a Calibre database",
         homepage: "https://github.com/janeczku/calibre-web",
         changelog: nix.thunk(() => nix.str`https://github.com/janeczku/calibre-web/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

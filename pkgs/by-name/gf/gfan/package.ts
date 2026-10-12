@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["description", 74, 5], ["license", 75, 5], ["maintainers", 81, 5], ["platforms", 82, 5], ["homepage", 83, 5]], [["pname", 12, 3], ["version", 13, 3], ["strictDeps", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["postPatch", 35, 3], ["buildFlags", 49, 3], ["installFlags", 53, 3], ["buildInputs", 54, 3], ["enableParallelBuilding", 60, 3], ["hardeningDisable", 61, 3], ["doCheck", 63, 3], ["checkPhase", 66, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchurl: false, gmp: false, mpir: false, cddlib: false, onetbb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["license", 75, 5], ["maintainers", 81, 5], ["platforms", 82, 5], ["homepage", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["strictDeps", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["postPatch", 35, 3], ["buildFlags", 49, 3], ["installFlags", 53, 3], ["buildInputs", 54, 3], ["enableParallelBuilding", 60, 3], ["hardeningDisable", 61, 3], ["doCheck", 63, 3], ["checkPhase", 66, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const cddlib = nix.arg($, "cddlib");
   const onetbb = nix.arg($, "onetbb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gfan",
       version: "0.8beta",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://home.math.au.dk/jensen/software/gfan/gfan${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-+niE5fMXxQ+PtPN7z11Bnw/V97kNYDc0nRlX6nPOu+4=",
         })))),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./gfan-0.6.2-cddlib-prefix.patch")], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
           nix.path(here, "./gfan-0.8beta-libcxx-threading.patch"),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "clang-fix-miscompilation.patch",
               url: "https://raw.githubusercontent.com/sagemath/sage/eea1f59394a5066e9acd8ae39a90302820914ee3/build/pkgs/gfan/patches/nodel.patch",
               hash: "sha256-RrncSgFyrBIk/Bwe3accxiJ2rpOSJKQ84cV/uBvQsDc=",
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "runHook preCheck\nmake check | tee \"$TMPDIR/test.log\"\n! grep -q \"Failed tests:\" \"$TMPDIR/test.log\"\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Software package for computing Gröbner fans and tropical varieties",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

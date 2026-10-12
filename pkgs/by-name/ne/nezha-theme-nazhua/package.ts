@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["VITE_NEZHA_VERSION", 23, 5], ["VITE_SARASA_TERM_SC_USE_CDN", 24, 5], ["VITE_USE_CDN", 25, 5], ["VITE_CDN_LIB_TYPE", 26, 5]], [["updateScript", 38, 12]], [["description", 41, 5], ["changelog", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["env", 22, 3], ["dontNpmInstall", 29, 3], ["installPhase", 30, 3], ["passthru", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["VITE_NEZHA_VERSION", 23, 5], ["VITE_SARASA_TERM_SC_USE_CDN", 24, 5], ["VITE_USE_CDN", 25, 5], ["VITE_CDN_LIB_TYPE", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 41, 5], ["changelog", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["env", 22, 3], ["dontNpmInstall", 29, 3], ["installPhase", 30, 3], ["passthru", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nezha-theme-nazhua",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hi2shark",
           repo: "nazhua",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-V+fdXp2QevPRYQQ4j5w9OQro6w3qnyi7imhgzGdUiVs=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         VITE_NEZHA_VERSION: "v1",
         VITE_SARASA_TERM_SC_USE_CDN: "1",
         VITE_USE_CDN: "1",
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
       dontNpmInstall: true,
       installPhase: "runHook preInstall\n\ncp -r dist $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Nezha monitoring theme called Nazhua",
         changelog: nix.thunk(() => nix.str`https://github.com/hi2shark/nazhua/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/hi2shark/nazhua",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["postFetch", 25, 5]], [["POLARIS_WEB_DIR", 36, 5], ["POLARIS_SWAGGER_DIR", 37, 5]], [["tests", 52, 12], ["updateScript", 53, 12]], [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 32, 3], ["env", 35, 3], ["postInstall", 40, 3], ["preCheck", 45, 3], ["__darwinAllowLocalNetworking", 50, 3], ["passthru", 52, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "nix-update-script": false, "polaris-web": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["postFetch", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["POLARIS_WEB_DIR", 36, 5], ["POLARIS_SWAGGER_DIR", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 52, 12], ["updateScript", 53, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 32, 3], ["env", 35, 3], ["postInstall", 40, 3], ["preCheck", 45, 3], ["__darwinAllowLocalNetworking", 50, 3], ["passthru", 52, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const polaris_web = nix.arg($, "polaris-web");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "polaris",
       version: "0.14.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "agersant",
           repo: "polaris",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +30,7 @@ sed -i $out/Cargo.lock -z \\
         })))),
       cargoHash: "sha256-bVXz/rSfkmdQlAa3B4zamZebpRBOkch6zNOFiyEQBbY=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         POLARIS_WEB_DIR: nix.thunk(() => nix.str`${polaris_web}/share/polaris-web`),
         POLARIS_SWAGGER_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/polaris-swagger`),
       })),
@@ -42,12 +38,12 @@ sed -i $out/Cargo.lock -z \\
       preCheck: "# 'Err' value: Os { code: 24, kind: Uncategorized, message: \"Too many open files\" }\nulimit -n 4096\n",
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => nix.sel(nixosTests, "polaris")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Self-host your music collection, and access it from any computer and mobile device",
         longDescription: "Polaris is a FOSS music streaming application, designed to let you enjoy your music collection\nfrom any computer or mobile device. Polaris works by streaming your music directly from your\nown computer, without uploading it to a third-party. There are no  kind of premium version.\nThe only requirement is that your computer stays on while it streams your music!\n",
         homepage: "https://github.com/agersant/polaris",

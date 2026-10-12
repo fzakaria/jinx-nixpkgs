@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["strictDeps", 13, 3], ["src", 15, 3], ["flattenPackagesPrefix", 22, 3], ["flattenPcLookupDir", 23, 3], ["nativeBuildInputs", 25, 3], ["cmakeFlags", 29, 3], ["propagatedBuildInputs", 34, 3], ["postInstall", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "abseil-cpp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["strictDeps", 13, 3], ["src", 15, 3], ["flattenPackagesPrefix", 22, 3], ["flattenPcLookupDir", 23, 3], ["nativeBuildInputs", 25, 3], ["cmakeFlags", 29, 3], ["propagatedBuildInputs", 34, 3], ["postInstall", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const abseil_cpp = nix.arg($, "abseil-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "clickhouse-cpp",
       version: "2.6.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "clickhouse",
           repo: "clickhouse-cpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
 substituteAll ${nix.path(here, "./clickhouse-cpp.pc.in")} $out/lib/pkgconfig/clickhouse-cpp.pc
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C++ client library for ClickHouse",
         homepage: "https://github.com/clickhouse/clickhouse-cpp",
         changelog: nix.thunk(() => nix.str`https://github.com/clickhouse/clickhouse-cpp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

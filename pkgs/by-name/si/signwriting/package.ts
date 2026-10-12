@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 7], ["name", 14, 7], ["sha256", 15, 7]], [["url", 19, 7], ["name", 20, 7], ["sha256", 21, 7]], [["homepage", 29, 7], ["description", 30, 7], ["maintainers", 31, 7], ["license", 32, 7], ["platforms", 33, 7]], [["pname", 9, 5], ["version", 10, 5], ["src1", 12, 5], ["src2", 18, 5], ["outputHashAlgo", 24, 5], ["outputHashMode", 25, 5], ["outputHash", 26, 5], ["meta", 28, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 7], ["name", 14, 7], ["sha256", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 7], ["name", 20, 7], ["sha256", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 29, 7], ["description", 30, 7], ["maintainers", 31, 7], ["license", 32, 7], ["platforms", 33, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 5], ["version", 10, 5], ["src1", 12, 5], ["src2", 18, 5], ["outputHashAlgo", 24, 5], ["outputHashMode", 25, 5], ["outputHash", 26, 5], ["meta", 28, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(runCommand, "signwriting", nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "signwriting",
       version: "1.1.4",
       src1: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/Slevinski/signwriting_2010_fonts/raw/61c8e7123a1168657b5d34d85266a637f67b9d2b/fonts/SignWriting%202010.ttf",
           name: "SignWriting_2010.ttf",
           sha256: "1abjzykbjx2hal8mrxp51rvblv3q84akyn9qhjfaj20rwphkf5zj",
         })))),
       src2: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://github.com/Slevinski/signwriting_2010_fonts/raw/61c8e7123a1168657b5d34d85266a637f67b9d2b/fonts/SignWriting%202010%20Filling.ttf",
           name: "SignWriting_2010_Filling.ttf",
           sha256: "0am5wbf7jdy9szxkbsc5f3959cxvbj7mr0hy1ziqmkz02c6xjw2m",
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
       outputHash: "0cn37s3lc7gbr8036l7ia2869qmxglkmgllh3r9q5j54g3sfjc7q",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/Slevinski/signwriting_2010_fonts",
         description: "Typeface for written sign languages",
         maintainers: nix.thunk(() => (() => {

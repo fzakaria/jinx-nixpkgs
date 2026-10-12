@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["moonraker", 59, 11]], [["updateScript", 58, 5], ["tests", 59, 5]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["installPhase", 49, 3], ["passthru", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, python3: false, makeWrapper: false, "nix-update-script": false, nixosTests: false, useGpiod: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["moonraker", 59, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 58, 5], ["tests", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["installPhase", 49, 3], ["passthru", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pname = "moonraker";
       const version = "0.10.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Arksine",
           repo: "moonraker",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -60,15 +56,15 @@ makeWrapper ${pythonEnv}/bin/python $out/bin/moonraker \\
   --add-flags "$out/lib/moonraker/moonraker.py"
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           moonraker: nix.thunk(() => nix.sel(nixosTests, "moonraker")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "API web server for Klipper",
         homepage: "https://github.com/Arksine/moonraker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -79,7 +75,7 @@ makeWrapper ${pythonEnv}/bin/python $out/bin/moonraker \\
         mainProgram: "moonraker",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

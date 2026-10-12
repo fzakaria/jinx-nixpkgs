@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["updateScript", 52, 12]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["pythonRelaxDeps", 32, 3], ["propagatedBuildInputs", 38, 3], ["doCheck", 48, 3], ["pythonImportsCheck", 50, 3], ["passthru", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, unstableGitUpdater: false, "poetry-core": false, pdfrw: false, reportlab: false, rmscene: false, setuptools: false, svglib: false, xdg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 52, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["pythonRelaxDeps", 32, 3], ["propagatedBuildInputs", 38, 3], ["doCheck", 48, 3], ["pythonImportsCheck", 50, 3], ["passthru", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const svglib = nix.arg($, "svglib");
   const xdg = nix.arg($, "xdg");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rmrl",
       version: "0.2.1-unstable-2023-06-01",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "benneti",
           repo: "rmrl",
           rev: "e6f20322c80c6551174da1826c78261dfb3b74fe",
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["rmrl"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Render reMarkable documents to PDF",
         homepage: "https://github.com/benneti/rmrl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

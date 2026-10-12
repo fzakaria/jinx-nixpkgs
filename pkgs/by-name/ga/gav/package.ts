@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["prePatch", 20, 3], ["patches", 26, 3], ["buildInputs", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, SDL: false, SDL_image: false, SDL_mixer: false, SDL_net: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["prePatch", 20, 3], ["patches", 26, 3], ["buildInputs", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const SDL_mixer = nix.arg($, "SDL_mixer");
   const SDL_net = nix.arg($, "SDL_net");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gav",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/gav/gav-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "8f0deb8b2cd775b339229054f4f282583a4cfbcba9d27a6213cf910bab944f3e",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./gcc.patch")]),
       buildInputs: nix.thunk(() => [SDL, SDL_image, SDL_mixer, SDL_net]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Remake of AV Arcade Volleyball",
         mainProgram: "gav",
         homepage: "https://gav.sourceforge.net/",

@@ -2,16 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ec2-data.nix", [[["Type", 78, 21], ["RemainAfterExit", 79, 21]], [["description", 24, 7], ["wantedBy", 26, 7], ["before", 30, 7], ["after", 31, 7], ["path", 33, 7], ["script", 35, 7], ["serviceConfig", 78, 7]], [["Type", 110, 21], ["RemainAfterExit", 111, 21]], [["description", 83, 7], ["wantedBy", 84, 7], ["after", 85, 7], ["script", 86, 7], ["serviceConfig", 110, 7]], [["apply-ec2-data", 23, 22], ["print-host-key", 82, 22]], [["services", 23, 13]], [["systemd", 23, 5]], [["maintainers", 116, 8]], [["imports", 17, 3], ["config", 21, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ec2-data.nix", [["Type", 78, 21], ["RemainAfterExit", 79, 21]]);
-const pos$2 = nix.positions(here + "/ec2-data.nix", [["description", 24, 7], ["wantedBy", 26, 7], ["before", 30, 7], ["after", 31, 7], ["path", 33, 7], ["script", 35, 7], ["serviceConfig", 78, 7]]);
-const pos$3 = nix.positions(here + "/ec2-data.nix", [["Type", 110, 21], ["RemainAfterExit", 111, 21]]);
-const pos$4 = nix.positions(here + "/ec2-data.nix", [["description", 83, 7], ["wantedBy", 84, 7], ["after", 85, 7], ["script", 86, 7], ["serviceConfig", 110, 7]]);
-const pos$5 = nix.positions(here + "/ec2-data.nix", [["apply-ec2-data", 23, 22], ["print-host-key", 82, 22]]);
-const pos$6 = nix.positions(here + "/ec2-data.nix", [["services", 23, 13]]);
-const pos$7 = nix.positions(here + "/ec2-data.nix", [["systemd", 23, 5]]);
-const pos$8 = nix.positions(here + "/ec2-data.nix", [["maintainers", 116, 8]]);
-const pos$9 = nix.positions(here + "/ec2-data.nix", [["imports", 17, 3], ["config", 21, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["ec2", "metadata"]), "")),
     ]),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "apply-ec2-data": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             description: "Apply EC2 Data",
             wantedBy: nix.thunk(() => ["multi-user.target", "sshd-keygen.service"]),
             before: nix.thunk(() => ["sshd-keygen.service"]),
@@ -77,10 +69,10 @@ if [ -s "$userData" ]; then
   fi
 fi
 `),
-            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$1, Type: "oneshot", RemainAfterExit: true })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[0], Type: "oneshot", RemainAfterExit: true })),
           })),
           "print-host-key": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             description: "Print SSH Host Key",
             wantedBy: nix.thunk(() => ["multi-user.target"]),
             after: nix.thunk(() => ["sshd-keygen.service"]),
@@ -107,13 +99,13 @@ for i in /etc/ssh/ssh_host_*_key.pub; do
 done
 echo "-----END SSH HOST KEY KEYS-----" > /dev/console
 `),
-            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$3, Type: "oneshot", RemainAfterExit: true })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[2], Type: "oneshot", RemainAfterExit: true })),
           })),
         })),
       })),
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "arianvp"))];

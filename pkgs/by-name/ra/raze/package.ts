@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5], ["leaveDotGit", 29, 5], ["postFetch", 30, 5]], [["description", 78, 5], ["longDescription", 79, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5], ["platforms", 88, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["cmakeFlags", 56, 3], ["postPatch", 61, 3], ["postInstall", 68, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, SDL2: false, zmusic: false, libvpx: false, "pkg-config": false, makeWrapper: false, bzip2: false, gtk3: false, fluidsynth: false, openal: false, libGL: false, "vulkan-loader": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5], ["leaveDotGit", 29, 5], ["postFetch", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 78, 5], ["longDescription", 79, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5], ["platforms", 88, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["cmakeFlags", 56, 3], ["postPatch", 61, 3], ["postInstall", 68, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const vulkan_loader = nix.arg($, "vulkan-loader");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "raze",
       version: "1.11.0-unstable-2025-11-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ZDoom",
           repo: "Raze",
           rev: "76fe82f5eb318fdeb30ba9fb27093a9a10bc3821",
@@ -57,7 +55,7 @@ install -Dm644 ../source/platform/posix/org.zdoom.Raze.desktop $out/share/applic
 install -Dm644 ../soundfont/raze.sf2 $out/share/raze/soundfonts/raze.sf2
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Build engine port backed by GZDoom tech",
         longDescription: "Raze is a fork of Build engine games backed by GZDoom tech and combines\nDuke Nukem 3D, Blood, Redneck Rampage, Shadow Warrior and Exhumed/Powerslave\nin a single package. It is also capable of playing Nam and WW2 GI.\n",
         homepage: "https://github.com/ZDoom/Raze",

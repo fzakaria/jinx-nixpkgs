@@ -2,27 +2,24 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/sources.nix", [["version", 4, 5], ["hash", 5, 5], ["releaseId", 6, 5]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["version", 11, 5], ["hash", 12, 5], ["releaseId", 13, 5]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["version", 18, 5], ["hash", 19, 5], ["releaseId", 20, 5]]);
-const pos$4 = nix.positions(here + "/sources.nix", [["gwenhywfar", 3, 3], ["libchipcard", 10, 3], ["aqbanking", 17, 3]]);
+const $pos = nix.positions(here + "/sources.nix", [[["version", 4, 5], ["hash", 5, 5], ["releaseId", 6, 5]], [["version", 11, 5], ["hash", 12, 5], ["releaseId", 13, 5]], [["version", 18, 5], ["hash", 19, 5], ["releaseId", 20, 5]], [["gwenhywfar", 3, 3], ["libchipcard", 10, 3], ["aqbanking", 17, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$4,
+  [nix.POS]: $pos[3],
   gwenhywfar: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "5.14.1",
     hash: "sha256-iRb+qpnLlU+WPyy6jdLf/lfKz38oTa8A6rBxqtb+KrM=",
     releaseId: "630",
   })),
   libchipcard: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "5.1.6",
     hash: "sha256-bAf1J0F/dWIHT5kBLaTRHrTbr9M/SeZrRCzNbjuM/SA=",
     releaseId: "382",
   })),
   aqbanking: nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     version: "6.9.1",
     hash: "sha256-/JSivr+7T8JrmNyTyPo2qAJimM15lfeYIcSA2zVYf2s=",
     releaseId: "652",

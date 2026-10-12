@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 26, 5], ["homepage", 27, 5], ["sourceProvenance", 28, 5], ["platforms", 29, 5], ["maintainers", 30, 5], ["license", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 16, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 20, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["homepage", 27, 5], ["sourceProvenance", 28, 5], ["platforms", 29, 5], ["maintainers", 30, 5], ["license", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 16, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 20, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "shortcat";
       const version = "0.12.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://files.shortcat.app/releases/v${version}/Shortcat.zip`),
           sha256: "sha256-jmp9mBMYID0Zcu/o6ICYPS8QGHhSwcLz072jG3zR2mM=",
         }))));
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [unzip]);
       const installPhase = "mkdir -p $out/Applications/Shortcat.app\ncp -R . $out/Applications/Shortcat.app\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Manipulate macOS masterfully, minus the mouse",
         homepage: "https://shortcat.app/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

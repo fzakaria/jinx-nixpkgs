@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["updateScript", 53, 12]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["broken", 63, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["ldflags", 26, 3], ["nativeBuildInputs", 32, 3], ["doCheck", 34, 3], ["postInstall", 36, 3], ["doInstallCheck", 43, 3], ["nativeInstallCheckInputs", 45, 3], ["postInstallCheck", 49, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, stdenv: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["broken", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["ldflags", 26, 3], ["nativeBuildInputs", 32, 3], ["doCheck", 34, 3], ["postInstall", 36, 3], ["doInstallCheck", 43, 3], ["nativeInstallCheckInputs", 45, 3], ["postInstallCheck", 49, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "aws-nuke",
       version: "3.68.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ekristen",
           repo: "aws-nuke",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       postInstallCheck: "$out/bin/aws-nuke resource-types | grep \"IAMUser\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Remove all the resources from an AWS account",
         homepage: "https://github.com/ekristen/aws-nuke",
         changelog: nix.thunk(() => nix.str`https://github.com/ekristen/aws-nuke/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

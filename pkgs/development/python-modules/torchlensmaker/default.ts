@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["tests", 83, 5], ["pyEnv", 86, 5]], [["description", 96, 5], ["longDescription", 97, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5], ["teams", 110, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["sourceRoot", 40, 3], ["postPatch", 42, 3], ["build-system", 55, 3], ["dependencies", 59, 3], ["pythonRelaxDeps", 68, 3], ["pythonImportsCheck", 72, 3], ["nativeCheckInputs", 76, 3], ["passthru", 82, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, hatchling: false, indicio: false, ipython: false, jaxtyping: false, matplotlib: false, tlmviewer: false, torchimplicit: false, onnxruntime: false, onnxscript: false, pytestCheckHook: false, callPackage: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 83, 5], ["pyEnv", 86, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 96, 5], ["longDescription", 97, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5], ["teams", 110, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["sourceRoot", 40, 3], ["postPatch", 42, 3], ["build-system", 55, 3], ["dependencies", 59, 3], ["pythonRelaxDeps", 68, 3], ["pythonImportsCheck", 72, 3], ["nativeCheckInputs", 76, 3], ["passthru", 82, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "torchlensmaker",
       version: "0.0.14",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "victorpoughon",
           repo: "torchlensmaker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["torchlensmaker"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, onnxruntime, onnxscript]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests"), nix.thunk(() => ({})))),
         pyEnv: nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (ps) => (() => {
             const w = nix.withScope(ps, null);
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
           })())),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python library for modeling and designing optical systems",
         longDescription: "Torch Lens Maker is an open-source Python library for differentiable\ngeometric optics based on [PyTorch](https://pytorch.org/).\n\nThe goal of the project is to be able to design complex real-world\noptical systems (lenses, mirrors, etc.) using modern computer code and\nstate-of-the art numerical optimization.\n",
         homepage: "https://github.com/victorpoughon/torchlensmaker",

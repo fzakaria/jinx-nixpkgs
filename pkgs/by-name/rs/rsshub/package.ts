@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["GIT_HASH", 26, 7]], [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["fetcherVersion", 33, 5], ["hash", 34, 5], ["pnpm", 35, 5]], [["extraArgs", 70, 47]], [["updateScript", 70, 12]], [["description", 73, 5], ["longDescription", 74, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5], ["platforms", 86, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["pnpmDeps", 31, 3], ["nativeBuildInputs", 38, 3], ["buildPhase", 45, 3], ["installPhase", 55, 3], ["preFixup", 63, 3], ["passthru", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, makeBinaryWrapper: false, "nix-update-script": false, nodejs: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, replaceVars: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GIT_HASH", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["fetcherVersion", 33, 5], ["hash", 34, 5], ["pnpm", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 70, 47]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 70, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 73, 5], ["longDescription", 74, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5], ["platforms", 86, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["pnpmDeps", 31, 3], ["nativeBuildInputs", 38, 3], ["buildPhase", 45, 3], ["installPhase", 55, 3], ["preFixup", 63, 3], ["passthru", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "rsshub",
       version: "0-unstable-2026-07-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DIYgod",
           repo: "RSSHub",
           rev: "719cc1994b10bc96fcd17df6cf2046023d0cd9ba",
@@ -36,13 +30,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-fix-git-hash.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             GIT_HASH: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
           })))),
         nix.path(here, "./0002-fix-network-call.patch"),
       ]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -59,11 +53,11 @@ export default nix.lambda((args) => (() => {
   --add-flags "$out/lib/rsshub/dist/index.mjs"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "RSS feed generator",
         longDescription: "RSSHub is an open source, easy to use, and extensible RSS feed generator.\nIt's capable of generating RSS feeds from pretty much everything.\n\nRSSHub delivers millions of contents aggregated from all kinds of sources,\nour vibrant open source community is ensuring the deliver of RSSHub's new routes,\nnew features and bug fixes.\n",
         homepage: "https://docs.rsshub.app",

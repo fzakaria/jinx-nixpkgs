@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["PBR_VERSION", 32, 7]], [["homepage", 73, 5], ["description", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["teams", 77, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["env", 32, 3], ["postPatch", 34, 3], ["build-system", 40, 3], ["sphinxBuilders", 48, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 59, 3], ["checkPhase", 64, 3], ["pythonImportsCheck", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cliff: false, fetchFromGitHub: false, keystoneauth1: false, openstackdocstheme: false, "oslo-i18n": false, "oslo-serialization": false, "oslo-utils": false, pbr: false, "requests-mock": false, requests: false, setuptools: false, "sphinxcontrib-apidoc": false, sphinxHook: false, stestr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PBR_VERSION", 32, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 73, 5], ["description", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["teams", 77, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["env", 32, 3], ["postPatch", 34, 3], ["build-system", 40, 3], ["sphinxBuilders", 48, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 59, 3], ["checkPhase", 64, 3], ["pythonImportsCheck", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const version = "7.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openstack",
           repo: "python-barbicanclient",
           tag: version,
           hash: "sha256-SFAldyA/M0rkKb2o6ePp+9ITWrUszyTz5jvCnUadufo=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PBR_VERSION: version }));
       const postPatch = "# Disable rsvgconverter not needed to build manpage\nsubstituteInPlace doc/source/conf.py \\\n  --replace-fail \"'sphinxcontrib.rsvgconverter',\" \"#'sphinxcontrib.rsvgconverter',\"\n";
       const build_system = nix.thunk(() => [openstackdocstheme, pbr, setuptools, sphinxHook, sphinxcontrib_apidoc]);
       const sphinxBuilders = nix.thunk(() => ["man"]);
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\nstestr run\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["barbicanclient"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://opendev.org/openstack/python-barbicanclient",
         description: "Client library for OpenStack Barbican API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

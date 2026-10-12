@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["gds_gsettings_path", 36, 7]], [["packageName", 84, 7], ["versionPolicy", 85, 7]], [["installedTests", 89, 7]], [["updateScript", 83, 5], ["tests", 88, 5]], [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["teams", 97, 5], ["platforms", 98, 5], ["badPlatforms", 99, 5]], [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 29, 3], ["patches", 34, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 59, 3], ["doCheck", 67, 3], ["mesonFlags", 69, 3], ["postFixup", 74, 3], ["passthru", 82, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, replaceVars: false, meson: false, ninja: false, nixosTests: false, "pkg-config": false, glib: false, gettext: false, makeWrapper: false, gnutls: false, libproxy: false, gnome: false, "gsettings-desktop-schemas": false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gds_gsettings_path", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 84, 7], ["versionPolicy", 85, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["installedTests", 89, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 83, 5], ["tests", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["teams", 97, 5], ["platforms", 98, 5], ["badPlatforms", 99, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 29, 3], ["patches", 34, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 59, 3], ["doCheck", 67, 3], ["mesonFlags", 69, 3], ["postFixup", 74, 3], ["passthru", 82, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "glib-networking",
       version: "2.80.1",
       outputs: nix.thunk(() => ["out", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/glib-networking/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/glib-networking-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-uA4odBV81VBx8bZxD6C5EdWsXeEGqe4qTJx77mF4L44=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-gsettings.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             gds_gsettings_path: nix.thunk(() => nix.app(nix.sel(glib, "getSchemaPath"), gsettings_desktop_schemas)),
           })))),
         nix.path(here, "./installed-tests-path.patch"),
@@ -57,19 +51,19 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "find \"$installedTests/libexec\" \"$out/libexec\" -type f -executable -print0 \\\n  | while IFS= read -r -d \"\" file; do\n  echo \"Wrapping program '$file'\"\n  wrapProgram \"$file\" --prefix GIO_EXTRA_MODULES : \"$out/lib/gio/modules\"\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             packageName: "glib-networking",
             versionPolicy: "odd-unstable",
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "glib-networking")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Network-related giomodules for glib",
         homepage: "https://gitlab.gnome.org/GNOME/glib-networking",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

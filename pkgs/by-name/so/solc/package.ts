@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["url", 63, 11], ["hash", 64, 11]], [["doCheck", 140, 13]], [["solcWithTests", 139, 11]], [["tests", 138, 18]], [["pname", 54, 11], ["version", 55, 11], ["nativeInstallCheckInputs", 56, 11], ["doInstallCheck", 57, 11], ["meta", 58, 11], ["src", 62, 9], ["cmakeFlags", 67, 9], ["nativeBuildInputs", 85, 9], ["buildInputs", 86, 9], ["nativeCheckInputs", 95, 9], ["enableParallelBuilding", 113, 9], ["doCheck", 116, 9], ["checkPhase", 118, 9], ["installCheckPhase", 130, 9], ["passthru", 138, 9]], [["url", 155, 11], ["hash", 156, 11]], [["pname", 147, 11], ["version", 148, 11], ["nativeInstallCheckInputs", 149, 11], ["doInstallCheck", 150, 11], ["meta", 151, 11], ["src", 154, 9], ["dontUnpack", 158, 9], ["installPhase", 160, 9]]]);
 const formals$1 = { args: { lib: false, gccStdenv: false, fetchzip: false, pkgs: false, boost: false, cmake: false, jq: false, ncurses: false, python3: false, versionCheckHook: false, z3Support: true, z3: true, cvc4Support: true, cvc4: true, cln: true, gmp: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 63, 11], ["hash", 64, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["doCheck", 140, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["solcWithTests", 139, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 138, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 54, 11], ["version", 55, 11], ["nativeInstallCheckInputs", 56, 11], ["doInstallCheck", 57, 11], ["meta", 58, 11], ["src", 62, 9], ["cmakeFlags", 67, 9], ["nativeBuildInputs", 85, 9], ["buildInputs", 86, 9], ["nativeCheckInputs", 95, 9], ["enableParallelBuilding", 113, 9], ["doCheck", 116, 9], ["checkPhase", 118, 9], ["installCheckPhase", 130, 9], ["passthru", 138, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 155, 11], ["hash", 156, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 147, 11], ["version", 148, 11], ["nativeInstallCheckInputs", 149, 11], ["doInstallCheck", 150, 11], ["meta", 151, 11], ["src", 154, 9], ["dontUnpack", 158, 9], ["installPhase", 160, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
   const doInstallCheck = true;
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Compiler for Ethereum smart contract language Solidity",
     homepage: "https://github.com/ethereum/solidity",
     changelog: nix.thunk(() => nix.str`https://github.com/ethereum/solidity/releases/tag/v${version}`),
@@ -61,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck_1 = doInstallCheck;
       const meta_1 = meta;
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/ethereum/solidity/releases/download/v${version_1}/solidity_${version_1}.tar.gz`),
           hash: linuxHash,
         }))));
@@ -100,14 +93,14 @@ popd
 `);
       const installCheckPhase = "runHook preInstallCheck\n\n$out/bin/solc --version > /dev/null\n\nrunHook postInstallCheck\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          solcWithTests: nix.thunk(() => nix.app(nix.sel(solc, "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$3, doCheck: true }))),
+          [nix.POS]: $pos[3],
+          solcWithTests: nix.thunk(() => nix.app(nix.sel(solc, "overrideAttrs"), (attrs) => ({ [nix.POS]: $pos[2], doCheck: true }))),
         })),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: pname_1,
         version: version_1,
         nativeInstallCheckInputs: nativeInstallCheckInputs_1,
@@ -131,7 +124,7 @@ popd
       const doInstallCheck_1 = doInstallCheck;
       const meta_1 = meta;
       const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: nix.thunk(() => nix.str`https://github.com/ethereum/solidity/releases/download/v${version_1}/solc-macos`),
           hash: darwinHash,
         }))));
@@ -145,7 +138,7 @@ chmod +x $out/bin/solc
 runHook postInstall
 `);
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: pname_1,
         version: version_1,
         nativeInstallCheckInputs: nativeInstallCheckInputs_1,

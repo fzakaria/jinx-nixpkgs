@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["cppitertools_INSTALL_CMAKE_DIR", 49, 7]], [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 77, 5], ["maintainers", 78, 5], ["license", 79, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["__structuredAttrs", 21, 3], ["strictDeps", 29, 3], ["doCheck", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["nativeCheckInputs", 37, 3], ["cmakeBuildDir", 41, 3], ["cmakeInstallDir", 43, 3], ["env", 49, 3], ["cmakeFlags", 51, 3], ["prePatch", 53, 3], ["checkPhase", 58, 3], ["installPhase", 65, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, boost: false, catch2: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cppitertools_INSTALL_CMAKE_DIR", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 77, 5], ["maintainers", 78, 5], ["license", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["__structuredAttrs", 21, 3], ["strictDeps", 29, 3], ["doCheck", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["nativeCheckInputs", 37, 3], ["cmakeBuildDir", 41, 3], ["cmakeInstallDir", 43, 3], ["env", 49, 3], ["cmakeFlags", 51, 3], ["prePatch", 53, 3], ["checkPhase", 58, 3], ["installPhase", 65, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const catch2 = nix.arg($, "catch2");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cppitertools",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ryanhaining",
           repo: "cppitertools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       cmakeBuildDir: "cmake-build",
       cmakeInstallDir: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/cmake`),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cppitertools_INSTALL_CMAKE_DIR: nix.thunk(() => nix.sel(finalAttrs, "cmakeInstallDir")),
       })),
       cmakeFlags: nix.thunk(() => [
@@ -48,7 +45,7 @@ cp ${nix.app(nix.sel(lib, "getDev"), catch2)}/include/catch2/catch.hpp test/
       checkPhase: "runHook preCheck\ncmake -B build-test -S ../test\ncmake --build build-test -j$NIX_BUILD_CORES\nrunHook postCheck\n",
       installPhase: "runHook preInstall\ncmake --install . \"--prefix=$out\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Implementation of Python itertools and builtin iteration functions for C++17",
         longDescription: "Range-based for loop add-ons inspired by the Python builtins and itertools library\nfor C++17, using lazy evaluation wherever possible.\n",
         homepage: "https://github.com/ryanhaining/cppitertools",

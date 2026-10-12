@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 70, 5], ["longDescription", 71, 5], ["homepage", 75, 5], ["maintainers", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["mainProgram", 82, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["enableParallelBuilding", 23, 3], ["buildInputs", 24, 3], ["postPatch", 33, 3], ["makefile", 43, 3], ["makeFlags", 45, 3], ["installPhase", 50, 3], ["nativeInstallCheckInputs", 66, 3], ["doInstallCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, gmp: false, lib: false, "ocl-icd": false, "opencl-headers": false, stdenv: false, boinc: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 70, 5], ["longDescription", 71, 5], ["homepage", 75, 5], ["maintainers", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["mainProgram", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["enableParallelBuilding", 23, 3], ["buildInputs", 24, 3], ["postPatch", 33, 3], ["makefile", 43, 3], ["makeFlags", 45, 3], ["installPhase", 50, 3], ["nativeInstallCheckInputs", 66, 3], ["doInstallCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const boinc = nix.arg($, "boinc");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "genefer",
       version: "25.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "galloty",
           repo: "genefer22",
           rev: "37ea9f8f531ee625d10408e1d2a4ec4dcf270438",
@@ -59,7 +57,7 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Generalized Fermat Prime search program",
         longDescription: "genefer is an OpenMP® application on CPU and an OpenCL™ application on GPU.\nIt performs a fast probable primality test for numbers of the form b^2n + 1 with the Fermat test.\n",
         homepage: "https://github.com/galloty/genefer22",

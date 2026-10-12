@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["platforms", 79, 5], ["hydraPlatforms", 80, 5], ["sourceProvenance", 81, 5]], [["pname", 9, 3], ["version", 10, 3], ["outputs", 15, 3], ["src", 20, 3], ["postPatch", 27, 3], ["dontBuild", 45, 3], ["fonts", 51, 3], ["installPhase", 52, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, fonts: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["platforms", 79, 5], ["hydraPlatforms", 80, 5], ["sourceProvenance", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["outputs", 15, 3], ["src", 20, 3], ["postPatch", 27, 3], ["dontBuild", 45, 3], ["fonts", 51, 3], ["installPhase", 52, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fonts = nix.argOr($, "fonts", () => []);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "google-fonts",
       version: "0-unstable-2026-03-13",
       outputs: nix.thunk(() => ["out", "adobeBlank"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "fonts",
           rev: "5174b3333331c966c38f4355d50b03ca1c1df2f9",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       fonts: nix.thunk(() => nix.builtins.map((font) => nix.builtins.replaceStrings(nix.thunk(() => [" "]), nix.thunk(() => [""]), font), fonts)),
       installPhase: nix.thunk(() => nix.add("adobeBlankDest=$adobeBlank/share/fonts/truetype\ninstall -m 444 -Dt $adobeBlankDest ofl/adobeblank/AdobeBlank-Regular.ttf\nrm -r ofl/adobeblank\ndest=$out/share/fonts/truetype\n", (nix.asBool(nix.eq(fonts, [])) ? "find . -name '*.ttf' -exec install -m 444 -Dt $dest '{}' +\n" : "for font in $fonts; do\n  find . \\( -name \"$font-*.ttf\" -o -name \"$font[*.ttf\" -o -name \"$font.ttf\" \\) -exec install -m 444 -Dt $dest '{}' +\ndone\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://fonts.google.com",
         description: "Font files available from Google Fonts",
         license: nix.thunk(() => (() => {

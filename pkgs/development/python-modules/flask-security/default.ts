@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]], [["babel", 78, 5], ["common", 82, 5], ["fsqla", 88, 5], ["mfa", 92, 5]], [["changelog", 128, 5], ["homepage", 129, 5], ["description", 130, 5], ["license", 131, 5], ["maintainers", 132, 5]], [["pname", 53, 3], ["version", 54, 3], ["pyproject", 55, 3], ["src", 57, 3], ["build-system", 64, 3], ["dependencies", 66, 3], ["optional-dependencies", 77, 3], ["nativeCheckInputs", 100, 3], ["preCheck", 116, 3], ["disabledTests", 120, 3], ["pythonImportsCheck", 125, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, babel: false, "flask-babel": false, "argon2-cffi": false, bcrypt: false, bleach: false, "flask-mail": false, "flask-sqlalchemy": false, sqlalchemy: false, "sqlalchemy-utils": false, cryptography: false, phonenumberslite: false, webauthn: false, qrcode: false, "email-validator": false, flask: false, "flask-login": false, "flask-principal": false, "flask-wtf": false, libpass: false, markupsafe: false, passlib: false, "importlib-resources": false, wtforms: false, authlib: false, "flask-sqlalchemy-lite": false, freezegun: false, mongoengine: false, mongomock: false, peewee: false, pytestCheckHook: false, requests: false, zxcvbn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["babel", 78, 5], ["common", 82, 5], ["fsqla", 88, 5], ["mfa", 92, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 128, 5], ["homepage", 129, 5], ["description", 130, 5], ["license", 131, 5], ["maintainers", 132, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 53, 3], ["version", 54, 3], ["pyproject", 55, 3], ["src", 57, 3], ["build-system", 64, 3], ["dependencies", 66, 3], ["optional-dependencies", 77, 3], ["nativeCheckInputs", 100, 3], ["preCheck", 116, 3], ["disabledTests", 120, 3], ["pythonImportsCheck", 125, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pallets-eco",
           repo: "flask-security",
           tag: version,
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
         wtforms,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         babel: nix.thunk(() => [babel, flask_babel]),
         common: nix.thunk(() => [argon2_cffi, bcrypt, bleach, flask_mail]),
         fsqla: nix.thunk(() => [flask_sqlalchemy, sqlalchemy]),
@@ -90,7 +87,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_login_email_whatever"]);
       const pythonImportsCheck = nix.thunk(() => ["flask_security"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/pallets-eco/flask-security/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
         homepage: "https://github.com/pallets-eco/flask-security",
         description: "Quickly add security features to your Flask application",
@@ -101,7 +98,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["package", 40, 54]], [["pkg-config", 40, 11]], [["extraArgs", 42, 7]], [["tests", 40, 5], ["updateScript", 41, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["pkgConfigModules", 56, 5]], [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["cmakeFlags", 37, 3], ["passthru", 39, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libebml: false, "nix-update-script": false, "pkg-config": false, testers: false, validatePkgConfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 40, 54]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 40, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 42, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 40, 5], ["updateScript", 41, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["pkgConfigModules", 56, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["cmakeFlags", 37, 3], ["passthru", 39, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "libmatroska",
       version: "1.7.2",
       outputs: nix.thunk(() => ["dev", "out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Matroska-Org",
           repo: "libmatroska",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -38,21 +32,21 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libebml]),
       cmakeFlags: nix.thunk(() => ["-DBUILD_SHARED_LIBS=YES"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex", "release-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Library to parse Matroska files",
         homepage: "https://matroska.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/Matroska-Org/libmatroska/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS.md`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 5], ["version", 19, 26], ["hash", 20, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["nativeBuildInputs", 28, 3], ["dependencies", 30, 3], ["pythonImportsCheck", 35, 3], ["doCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "hatch-vcs": false, hatchling: false, "importlib-resources": false, itkwasm: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 26], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["nativeBuildInputs", 28, 3], ["dependencies", 30, 3], ["pythonImportsCheck", 35, 3], ["doCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const itkwasm = nix.arg($, "itkwasm");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "itkwasm-image-io-wasi",
       version: "1.6.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "itkwasm_image_io_wasi",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-g3w/OPU9N1GxJkW9kKrOvGtVPRVb6zTy5n2nB5WU7+Q=",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["itkwasm_image_io_wasi"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Input and output for scientific and medical image file formats",
         homepage: "https://pypi.org/project/itkwasm-image-io-wasi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

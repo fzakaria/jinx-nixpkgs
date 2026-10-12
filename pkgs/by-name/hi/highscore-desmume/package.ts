@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["hardcodeZeroVersion", 53, 5]], [["updateScript", 52, 12]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 33], ["maintainers", 60, 43]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["sourceRoot", 27, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["hardeningDisable", 50, 3], ["passthru", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, libhighscore: false, libGL: false, libx11: false, SDL2: false, libpcap: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 52, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 33], ["maintainers", 60, 43]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["sourceRoot", 27, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["hardeningDisable", 50, 3], ["passthru", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "highscore-desmume",
       version: "0-unstable-2025-09-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "highscore-emu",
           repo: "desmume",
           rev: "7d80d2a70850a5595ac8160e6dee5dea8b2fe293",
@@ -43,13 +39,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libhighscore, libGL, libx11, SDL2, libpcap]),
       hardeningDisable: nix.thunk(() => ["format"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libhighscore, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Port of DeSmuME to Highscore",
         homepage: "https://github.com/highscore-emu/desmume",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

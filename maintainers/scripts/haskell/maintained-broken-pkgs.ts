@@ -2,7 +2,7 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/maintained-broken-pkgs.nix", [["report", 18, 3], ["transitiveErrors", 25, 3]]);
+const $pos = nix.positions(here + "/maintained-broken-pkgs.nix", [[["report", 18, 3], ["transitiveErrors", 25, 3]]]);
 
 export default nix.thunk(() => (() => {
   const nixpkgs = nix.thunk(() => nix.builtins.import(nix.path(here, "../../..")));
@@ -14,7 +14,7 @@ export default nix.thunk(() => (() => {
   const transitiveBrokenPkgs = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => (nix.asBool(!nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.selOr(v, () => null, "outPath"))), "success"))) && nix.asBool(!nix.asBool(nix.sel(v, "meta", "broken")))), maintainedPkgs));
   const infoList = (pkgs) => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (drv) => nix.str`${name} ${nix.sel(nix.builtins.elemAt(nix.thunk(() => nix.sel(drv, "meta", "maintainers")), 0n), "github")}`, pkgs)));
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     report: nix.thunk(() => nix.str`BROKEN:
 ${nix.app(infoList, brokenPkgs)}
 

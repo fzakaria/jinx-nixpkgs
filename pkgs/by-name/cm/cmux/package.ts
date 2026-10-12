@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["updateScript", 46, 12]], [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["sourceProvenance", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["sourceRoot", 27, 3], ["installPhase", 29, 3], ["dontFixup", 44, 3], ["passthru", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, _7zz: false, makeBinaryWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 46, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["sourceProvenance", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["sourceRoot", 27, 3], ["installPhase", 29, 3], ["dontFixup", 44, 3], ["passthru", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cmux",
       version: "0.64.22",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/manaflow-ai/cmux/releases/download/v${nix.sel(finalAttrs, "version")}/cmux-macos.dmg`),
           hash: "sha256-/RSNujUZ/n0wiEQInOTQYrF3ObpkViPwWPZ6ZHmM6iU=",
         })))),
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -R cmux.app $out/Applications/\n\nmkdir -p $out/bin\nmakeBinaryWrapper \\\n  \"$out/Applications/cmux.app/Contents/MacOS/cmux\" \\\n  \"$out/bin/cmux\"\n\nrunHook postInstall\n",
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Native macOS terminal built on Ghostty, designed for AI coding agents",
         longDescription: "cmux is a macOS-native terminal application built on Ghostty that\nprovides vertical tabs, notification rings, an in-app browser, and\nfirst-class support for AI coding agents such as Claude Code.\nIt exposes scriptable CLI and socket APIs.\n",
         homepage: "https://cmux.com",

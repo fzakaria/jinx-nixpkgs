@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 41, 5], ["longDescription", 43, 5], ["license", 51, 5], ["homepage", 53, 5], ["maintainers", 55, 5], ["platforms", 57, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["configureFlags", 19, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 22, 3], ["postInstall", 24, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, ncurses: false, emacsSupport: true, emacs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["longDescription", 43, 5], ["license", 51, 5], ["homepage", 53, 5], ["maintainers", 55, 5], ["platforms", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["configureFlags", 19, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 22, 3], ["postInstall", 24, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const emacsSupport = nix.argOr($, "emacsSupport", () => true);
   const emacs = nix.arg($, "emacs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cscope",
       version: "15.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/cscope/cscope-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0ngiv4aj3rr35k3q3wjx0y19gh7i1ydqa0cqip6sjwd8fph5ll65",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), emacsSupport, emacs)),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), emacsSupport, "cd \"contrib/xcscope\"\n\nsed -i \"cscope-indexer\" \\\n    -\"es|^PATH=.*$|PATH=\\\"$out/bin:\\$PATH\\\"|g\"\nsed -i \"xcscope.el\" \\\n    -\"es|\\\"cscope-indexer\\\"|\\\"$out/libexec/cscope/cscope-indexer\\\"|g\";\n\nmkdir -p \"$out/libexec/cscope\"\ncp \"cscope-indexer\" \"$out/libexec/cscope\"\n\nmkdir -p \"$out/share/emacs/site-lisp\"\nemacs --batch --eval '(byte-compile-file \"xcscope.el\")'\ncp xcscope.el{,c} \"$out/share/emacs/site-lisp\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Developer's tool for browsing source code",
         longDescription: "Cscope is a developer's tool for browsing source code.  It has\nan impeccable Unix pedigree, having been originally developed at\nBell Labs back in the days of the PDP-11.  Cscope was part of\nthe official AT&T Unix distribution for many years, and has been\nused to manage projects involving 20 million lines of code!\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

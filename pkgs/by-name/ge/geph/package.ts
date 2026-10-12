@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["OPENSSL_NO_VENDOR", 63, 5], ["LIBSQLITE3_SYS_USE_PKG_CONFIG", 64, 5]], [["extraArgs", 96, 5]], [["updateScript", 95, 12]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["mainProgram", 106, 5], ["platforms", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoHash", 36, 3], ["postPatch", 38, 3], ["postInstall", 47, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 56, 3], ["env", 62, 3], ["buildFeatures", 67, 3], ["checkFlags", 72, 3], ["postFixup", 89, 3], ["passthru", 95, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, makeBinaryWrapper: false, "pkg-config": false, openssl: false, "rust-jemalloc-sys-unprefixed": false, sqlite: false, bash: false, coreutils: false, iproute2: false, iptables: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 63, 5], ["LIBSQLITE3_SYS_USE_PKG_CONFIG", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 95, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["mainProgram", 106, 5], ["platforms", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoHash", 36, 3], ["postPatch", 38, 3], ["postInstall", 47, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 56, 3], ["env", 62, 3], ["buildFeatures", 67, 3], ["checkFlags", 72, 3], ["postFixup", 89, 3], ["passthru", 95, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash, coreutils, iproute2, iptables])));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "geph5",
       version: "0.2.102",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "geph-official",
           repo: "geph5",
           rev: nix.thunk(() => nix.str`geph5-client-v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +45,7 @@ substituteInPlace binaries/geph5-client/src/vpn/linux.rs \\
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, pkg_config]),
       buildInputs: nix.thunk(() => [openssl, rust_jemalloc_sys_unprefixed, sqlite]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OPENSSL_NO_VENDOR: true,
         LIBSQLITE3_SYS_USE_PKG_CONFIG: "1",
       })),
@@ -68,14 +63,14 @@ substituteInPlace binaries/geph5-client/src/vpn/linux.rs \\
 done
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "geph5-client-v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Modular Internet censorship circumvention system designed specifically to deal with national filtering",
         homepage: "https://github.com/geph-official/geph5",
         changelog: nix.thunk(() => nix.str`https://github.com/geph-official/geph5/releases/tag/geph5-client-v${nix.sel(finalAttrs, "version")}`),

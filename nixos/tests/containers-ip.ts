@@ -2,40 +2,28 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/containers-ip.nix", [["enable", 7, 9], ["adminAddr", 8, 9]]);
-const pos$2 = nix.positions(here + "/containers-ip.nix", [["httpd", 6, 16]]);
-const pos$3 = nix.positions(here + "/containers-ip.nix", [["allowedTCPPorts", 10, 27]]);
-const pos$4 = nix.positions(here + "/containers-ip.nix", [["firewall", 10, 18]]);
-const pos$5 = nix.positions(here + "/containers-ip.nix", [["enable", 12, 11]]);
-const pos$6 = nix.positions(here + "/containers-ip.nix", [["services", 6, 7], ["networking", 10, 7], ["nix", 12, 7]]);
-const pos$7 = nix.positions(here + "/containers-ip.nix", [["hostAddress", 3, 13], ["localAddress", 3, 25], ["privateNetwork", 4, 5], ["config", 5, 5]]);
+const $pos = nix.positions(here + "/containers-ip.nix", [[["enable", 7, 9], ["adminAddr", 8, 9]], [["httpd", 6, 16]], [["allowedTCPPorts", 10, 27]], [["firewall", 10, 18]], [["enable", 12, 11]], [["services", 6, 7], ["networking", 10, 7], ["nix", 12, 7]], [["hostAddress", 3, 13], ["localAddress", 3, 25], ["privateNetwork", 4, 5], ["config", 5, 5]], [["maintainers", 21, 5]], [["writableStore", 29, 22], ["additionalPaths", 33, 22]], [["webserver4", 31, 18], ["webserver6", 32, 18]], [["virtualisation", 29, 7], ["containers", 31, 7]], [["machine", 26, 9]], [["name", 19, 3], ["meta", 20, 3], ["nodes", 26, 3], ["testScript", 36, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/containers-ip.nix", [["maintainers", 21, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/containers-ip.nix", [["writableStore", 29, 22], ["additionalPaths", 33, 22]]);
-const pos$10 = nix.positions(here + "/containers-ip.nix", [["webserver4", 31, 18], ["webserver6", 32, 18]]);
-const pos$11 = nix.positions(here + "/containers-ip.nix", [["virtualisation", 29, 7], ["containers", 31, 7]]);
-const pos$12 = nix.positions(here + "/containers-ip.nix", [["machine", 26, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/containers-ip.nix", [["name", 19, 3], ["meta", 20, 3], ["nodes", 26, 3], ["testScript", 36, 3]]);
 
 export default nix.thunk(() => (() => {
   const webserverFor = (hostAddress) => (localAddress) => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     hostAddress: hostAddress,
     localAddress: localAddress,
     privateNetwork: true,
     config: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        httpd: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, adminAddr: "foo@example.org" })),
+        [nix.POS]: $pos[1],
+        httpd: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true, adminAddr: "foo@example.org" })),
       })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedTCPPorts: nix.thunk(() => [80n]) })),
+        [nix.POS]: $pos[3],
+        firewall: nix.thunk(() => ({ [nix.POS]: $pos[2], allowedTCPPorts: nix.thunk(() => [80n]) })),
       })),
-      nix: nix.thunk(() => ({ [nix.POS]: pos$5, enable: false })),
+      nix: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: false })),
     })),
   });
   return nix.lambda((args) => (() => {
@@ -43,29 +31,29 @@ export default nix.thunk(() => (() => {
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       name: "containers-ipv4-ipv6",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "aszlig"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               writableStore: true,
               additionalPaths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "stdenv"))]),
             })),
             containers: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               webserver4: nix.thunk(() => nix.app(webserverFor, "10.231.136.1", "10.231.136.2")),
               webserver6: nix.thunk(() => nix.app(webserverFor, "fc00::2", "fc00::1")),
             })),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["iodine", 33, 15]], [["tagPrefix", 71, 7]], [["updateScript", 70, 5], ["networkManagerPlugin", 74, 5]], [["description", 78, 5], ["homepage", 79, 5], ["maintainers", 80, 35], ["teams", 80, 47], ["platforms", 80, 53], ["license", 81, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 31, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["configureFlags", 59, 3], ["preConfigure", 65, 3], ["passthru", 69, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, replaceVars: false, autoreconfHook: false, iodine: false, intltool: false, "pkg-config": false, networkmanager: false, libsecret: false, gtk3: false, withGnome: true, unstableGitUpdater: false, libnma: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["iodine", 33, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tagPrefix", 71, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 70, 5], ["networkManagerPlugin", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["maintainers", 80, 35], ["teams", 80, 47], ["platforms", 80, 53], ["license", 81, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 31, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["configureFlags", 59, 3], ["preConfigure", 65, 3], ["passthru", 69, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libnma = nix.arg($, "libnma");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`NetworkManager-iodine${nix.app(nix.sel(lib, "optionalString"), withGnome, "-gnome")}`),
       version: "1.2.0-unstable-2026-03-14",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "network-manager-iodine",
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
           sha256: "wQVajbnw8q544APKQJfoUb7JaSH8MU3qQN3Gp6mYReE=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, iodine: iodine })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], iodine: iodine })))),
         nix.path(here, "./CVE-2026-91837.patch"),
       ]),
       nativeBuildInputs: nix.thunk(() => [intltool, autoreconfHook, pkg_config, glib]),
@@ -52,14 +47,14 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "intltoolize\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagPrefix: "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], tagPrefix: "v" })))),
         networkManagerPlugin: "VPN/nm-iodine-service.name",
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(networkmanager, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "NetworkManager's iodine plugin",
         homepage: "https://gitlab.gnome.org/GNOME/network-manager-iodine",
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

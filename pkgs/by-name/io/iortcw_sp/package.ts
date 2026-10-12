@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["NIX_CFLAGS_COMPILE", 61, 5], ["NIX_CFLAGS_LINK", 65, 5]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["postPatch", 31, 3], ["enableParallelBuilding", 36, 3], ["sourceRoot", 38, 3], ["makeFlags", 40, 3], ["installTargets", 47, 3], ["buildInputs", 49, 3], ["nativeBuildInputs", 58, 3], ["env", 60, 3], ["postInstall", 70, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, opusfile: false, libogg: false, SDL2: false, openal: false, freetype: false, libjpeg: false, curl: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 61, 5], ["NIX_CFLAGS_LINK", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["postPatch", 31, 3], ["enableParallelBuilding", 36, 3], ["sourceRoot", 38, 3], ["makeFlags", 40, 3], ["installTargets", 47, 3], ["buildInputs", 49, 3], ["nativeBuildInputs", 58, 3], ["env", 60, 3], ["postInstall", 70, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "iortcw-sp",
       version: "1.51c",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "iortcw",
           repo: "iortcw",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [opusfile, libogg, SDL2, freetype, libjpeg, openal, curl]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), SDL2)}/include/SDL2`),
             nix.thunk(() => nix.str`-I${nix.sel(opusfile, "dev")}/include/opus`),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       })),
       postInstall: "for i in `find $out/opt/iortcw -maxdepth 1 -type f -executable`; do\n  makeWrapper $i $out/bin/`basename $i` --chdir \"$out/opt/iortcw\"\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Single player version of game engine for Return to Castle Wolfenstein",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

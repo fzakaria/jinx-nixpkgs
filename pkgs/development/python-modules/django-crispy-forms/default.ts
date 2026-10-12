@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 29, 3], ["nativeCheckInputs", 31, 3], ["pytestFlags", 36, 3], ["enabledTestPaths", 40, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, django: false, setuptools: false, pytestCheckHook: false, "pytest-django": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 29, 3], ["nativeCheckInputs", 31, 3], ["pytestFlags", 36, 3], ["enabledTestPaths", 40, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_django = nix.arg($, "pytest-django");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "django-crispy-forms",
       version: "2.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "django-crispy-forms",
           repo: "django-crispy-forms",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["crispy_forms/tests/"]),
       pythonImportsCheck: nix.thunk(() => ["crispy_forms"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Best way to have DRY Django forms",
         homepage: "https://django-crispy-forms.readthedocs.io/en/latest/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

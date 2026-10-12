@@ -2,40 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/misskey.nix", [[["maintainers", 8, 8]], [["url", 14, 9], ["port", 15, 17]], [["createLocally", 17, 16]], [["createLocally", 18, 13]], [["enable", 12, 7], ["settings", 13, 7], ["database", 17, 7], ["redis", 18, 7]], [["misskey", 11, 14]], [["services", 11, 5]], [["machine", 10, 9]], [["name", 6, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/misskey.nix", [["maintainers", 8, 8]]);
-const pos$2 = nix.positions(here + "/misskey.nix", [["url", 14, 9], ["port", 15, 17]]);
-const pos$3 = nix.positions(here + "/misskey.nix", [["createLocally", 17, 16]]);
-const pos$4 = nix.positions(here + "/misskey.nix", [["createLocally", 18, 13]]);
-const pos$5 = nix.positions(here + "/misskey.nix", [["enable", 12, 7], ["settings", 13, 7], ["database", 17, 7], ["redis", 18, 7]]);
-const pos$6 = nix.positions(here + "/misskey.nix", [["misskey", 11, 14]]);
-const pos$7 = nix.positions(here + "/misskey.nix", [["services", 11, 5]]);
-const pos$8 = nix.positions(here + "/misskey.nix", [["machine", 10, 9]]);
-const pos$9 = nix.positions(here + "/misskey.nix", [["name", 6, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const port = 61812n;
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "misskey",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "feathecutie"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           misskey: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$2, url: "http://misskey.local", port: port })),
-            database: nix.thunk(() => ({ [nix.POS]: pos$3, createLocally: true })),
-            redis: nix.thunk(() => ({ [nix.POS]: pos$4, createLocally: true })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[1], url: "http://misskey.local", port: port })),
+            database: nix.thunk(() => ({ [nix.POS]: $pos[2], createLocally: true })),
+            redis: nix.thunk(() => ({ [nix.POS]: $pos[3], createLocally: true })),
           })),
         })),
       })),

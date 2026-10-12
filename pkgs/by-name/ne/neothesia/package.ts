@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["url", 31, 7], ["hash", 32, 7]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 41, 3], ["cargoHash", 47, 3], ["cargoBuildFlags", 49, 3], ["postInstall", 53, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { rustPlatform: false, fetchFromGitHub: false, lib: false, ffmpeg_7: false, "pkg-config": false, "alsa-lib": false, wayland: false, makeWrapper: false, libxkbcommon: false, "vulkan-loader": false, libxrender: false, libxi: false, libxcursor: false, libx11: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 41, 3], ["cargoHash", 47, 3], ["cargoBuildFlags", 49, 3], ["postInstall", 53, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "neothesia",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PolyMeilex",
           repo: "Neothesia",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/PolyMeilex/Neothesia/commit/c450689134e5e767293ae9a4878a0396e585259b.patch",
             hash: "sha256-A7GuaEHIfSFrvS1SCBWGCuh3rvb2gaaw8dQ970f6u2Y=",
           })))),
@@ -58,7 +55,7 @@ install -Dm 644 flatpak/com.github.polymeilex.neothesia.png $out/share/icons/hic
 install -Dm 644 default.sf2 $out/share/neothesia/default.sf2
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Flashy Synthesia Like Software For Linux, Windows and macOS",
         homepage: "https://github.com/PolyMeilex/Neothesia",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["ldflags", 21, 3], ["nativeBuildInputs", 23, 3], ["nativeInstallCheckInputs", 25, 3], ["checkFlags", 27, 3], ["doInstallCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["ldflags", 21, 3], ["nativeBuildInputs", 23, 3], ["nativeInstallCheckInputs", 25, 3], ["checkFlags", 27, 3], ["doInstallCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "chainsaw",
       version: "2.16.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "WithSecureLabs",
           repo: "chainsaw",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Rapidly Search and Hunt through Windows Forensic Artefacts",
         homepage: "https://github.com/WithSecureLabs/chainsaw",
         changelog: nix.thunk(() => nix.str`https://github.com/WithSecureLabs/chainsaw/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

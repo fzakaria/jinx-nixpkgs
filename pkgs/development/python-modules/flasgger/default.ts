@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["pythonImportsCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["enabledTestPaths", 60, 3], ["disabledTestPaths", 64, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, flask: false, jsonschema: false, mistune: false, packaging: false, pyyaml: false, six: false, werkzeug: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["pythonImportsCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["enabledTestPaths", 60, 3], ["disabledTestPaths", 64, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flasgger",
           repo: "flasgger",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-tests-with-click-8.2.patch",
             url: "https://github.com/flasgger/flasgger/commit/08591b60e988c0002fcf1b1e9f98b78e041d2732.patch",
             hash: "sha256-DHaaY9W+cta3M2VA8S+ZQWacmgSpeyP03SKTiIlfBRM=",
@@ -49,14 +46,14 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_examples.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Easy OpenAPI specs and Swagger UI for your Flask API",
         homepage: "https://github.com/flasgger/flasgger/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

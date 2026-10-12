@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["pythonSupport", 47, 28]], [["vtk", 47, 7]], [["moduleNames", 51, 7], ["package", 52, 7]], [["python", 46, 5], ["cmake-config", 50, 5]], [["tests", 45, 12]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 65, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["cmakeFlags", 30, 3], ["doCheck", 43, 3], ["passthru", 45, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, vtk: false, gdcm: false, testers: false, "vtk-dicom": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pythonSupport", 47, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["vtk", 47, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["moduleNames", 51, 7], ["package", 52, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["python", 46, 5], ["cmake-config", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 45, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 65, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["cmakeFlags", 30, 3], ["doCheck", 43, 3], ["passthru", 45, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const vtk_dicom = nix.arg($, "vtk-dicom");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "vtk-dicom",
       version: "0.8.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dgobbi",
           repo: "vtk-dicom",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,22 +40,22 @@ export default nix.lambda((args) => (() => {
         ])))),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           python: nix.thunk(() => nix.app(nix.sel(vtk_dicom, "override"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              vtk: nix.thunk(() => nix.app(nix.sel(vtk, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, pythonSupport: true })))),
+              [nix.POS]: $pos[2],
+              vtk: nix.thunk(() => nix.app(nix.sel(vtk, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], pythonSupport: true })))),
             })))),
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               moduleNames: nix.thunk(() => ["DICOM"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "DICOM for VTK",
         homepage: "https://github.com/dgobbi/vtk-dicom",
         changelog: nix.thunk(() => nix.str`https://github.com/dgobbi/vtk-dicom/releases/tag/v${nix.sel(finalAttrs, "version")}`),

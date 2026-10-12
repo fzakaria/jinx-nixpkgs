@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 5], ["version", 20, 26], ["hash", 21, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["pythonRelaxDeps", 24, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["pythonImportsCheck", 36, 3], ["doCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, "alibabacloud-credentials": false, "alibabacloud-gateway-spi": false, "alibabacloud-tea-util": false, buildPythonPackage: false, cryptography: false, "darabonba-core": false, fetchPypi: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 26], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["pythonRelaxDeps", 24, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["pythonImportsCheck", 36, 3], ["doCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "alibabacloud-tea-openapi",
       version: "0.4.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "alibabacloud_tea_openapi",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-2vwyQBcS9bIcEtw9BbqIepGtFW2bSadmInn5/ZBSb7I=",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["Tea"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Aliyun Tea OpenAPI Library for Python",
         homepage: "https://pypi.org/project/alibabacloud-tea-openapi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

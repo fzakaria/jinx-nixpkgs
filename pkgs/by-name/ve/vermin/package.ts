@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["mainProgram", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 7, 3], ["version", 8, 3], ["pyproject", 9, 3], ["src", 11, 3], ["build-system", 18, 3], ["dependencies", 22, 3], ["checkPhase", 26, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["pyproject", 9, 3], ["src", 11, 3], ["build-system", 18, 3], ["dependencies", 22, 3], ["checkPhase", 26, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vermin",
       version: "1.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "netromdk",
           repo: "vermin",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       })()),
       checkPhase: "runHook preCheck\npython runtests.py\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "vermin",
         homepage: "https://github.com/netromdk/vermin",
         changelog: nix.thunk(() => nix.str`https://github.com/netromdk/vermin/releases/tag/v${nix.sel(finalAttrs, "version")}`),

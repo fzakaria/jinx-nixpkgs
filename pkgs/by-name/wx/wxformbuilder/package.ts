@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["fetchSubmodules", 21, 5], ["leaveDotGit", 22, 5], ["postFetch", 23, 5], ["hash", 29, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 70, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 50, 3], ["postInstall", 55, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, darwin: false, makeWrapper: false, "shared-mime-info": false, boost: false, wxwidgets_3_2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["fetchSubmodules", 21, 5], ["leaveDotGit", 22, 5], ["postFetch", 23, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 50, 3], ["postInstall", 55, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wxformbuilder",
       version: "4.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wxFormBuilder",
           repo: "wxFormBuilder",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, wxwidgets_3_2]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv $out/wxFormBuilder.app $out/Applications\nmakeWrapper $out/Applications/wxFormBuilder.app/Contents/MacOS/wxFormBuilder $out/bin/wxformbuilder\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "RAD tool for wxWidgets GUI design",
         homepage: "https://github.com/wxFormBuilder/wxFormBuilder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

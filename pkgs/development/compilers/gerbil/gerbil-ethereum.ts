@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gerbil-ethereum.nix", [[["fun", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]], [["pname", 11, 3], ["version", 12, 3], ["git-version", 13, 3], ["softwareName", 14, 3], ["gerbil-package", 15, 3], ["version-path", 16, 3], ["gerbilInputs", 18, 3], ["pre-src", 26, 3], ["postInstall", 34, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, gerbilPackages: false, "gerbil-support": false, gerbil: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gerbil-ethereum.nix", [["fun", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/gerbil-ethereum.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/gerbil-ethereum.nix", [["pname", 11, 3], ["version", 12, 3], ["git-version", 13, 3], ["softwareName", 14, 3], ["gerbil-package", 15, 3], ["version-path", 16, 3], ["gerbilInputs", 18, 3], ["pre-src", 26, 3], ["postInstall", 34, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       ];
     })());
     const pre_src = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fun: fetchFromGitHub,
       owner: "mighty-gerbils",
       repo: "gerbil-ethereum",
@@ -59,7 +57,7 @@ EOF
 chmod a+x $out/bin/run-ethereum-test-net
 `);
     const meta = nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       description: "Gerbil Ethereum: a Scheme alternative to web3.js",
       homepage: "https://github.com/fare/gerbil-ethereum",
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -70,7 +68,7 @@ chmod a+x $out/bin/run-ethereum-test-net
       })()),
     }));
     return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname,
       version,
       "git-version": git_version,

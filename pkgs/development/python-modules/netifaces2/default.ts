@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["pname", 24, 13], ["version", 24, 19], ["src", 24, 27], ["hash", 25, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]], [["pname", 20, 11], ["version", 20, 17], ["src", 20, 25], ["pyproject", 21, 3], ["cargoDeps", 23, 3], ["nativeBuildInputs", 28, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, rustPlatform: false, fetchFromGitHub: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 24, 13], ["version", 24, 19], ["src", 24, 27], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 11], ["version", 20, 17], ["src", 20, 25], ["pyproject", 21, 3], ["cargoDeps", 23, 3], ["nativeBuildInputs", 28, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const pname = "netifaces2";
   const version = "0.0.22";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "SamuelYvon",
       repo: "netifaces-2",
       tag: nix.thunk(() => nix.str`V${version}`),
       hash: "sha256-XO3HWq8FOVzvpbK8mIBOup6hFMnhDpqOK/5bPziPZQ8=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
       pyproject: true,
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["netifaces"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Portable network interface information",
         homepage: "https://github.com/SamuelYvon/netifaces-2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

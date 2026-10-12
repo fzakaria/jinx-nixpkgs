@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["updateScript", 56, 12]], [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 64, 5], ["maintainers", 65, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["pyproject", 25, 3], ["strictDeps", 27, 3], ["dontWrapGApps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["pythonPath", 43, 3], ["makeFlags", 48, 3], ["preFixup", 52, 3], ["passthru", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, atk: false, "gdk-pixbuf": false, "gobject-introspection": false, pango: false, python3Packages: false, txt2tags: false, wrapGAppsHook3: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 56, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["pyproject", 25, 3], ["strictDeps", 27, 3], ["dontWrapGApps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["pythonPath", 43, 3], ["makeFlags", 48, 3], ["preFixup", 52, 3], ["passthru", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xdgmenumaker",
       version: "2.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gapan",
           repo: "xdgmenumaker",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,11 +43,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command line tool that generates XDG menus for several window managers",
         mainProgram: "xdgmenumaker",
         homepage: "https://github.com/gapan/xdgmenumaker",

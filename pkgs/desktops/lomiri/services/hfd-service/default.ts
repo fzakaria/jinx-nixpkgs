@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["updateScript", 69, 12]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["teams", 76, 5], ["platforms", 77, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["cmakeFlags", 63, 3], ["dontWrapQtApps", 67, 3], ["passthru", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, accountsservice: false, cmake: false, "cmake-extras": false, deviceinfo: false, libgbinder: false, libglibutil: false, "pkg-config": false, qtbase: false, qtdeclarative: false, qtfeedback: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 69, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["teams", 76, 5], ["platforms", 77, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["cmakeFlags", 63, 3], ["dontWrapQtApps", 67, 3], ["passthru", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const qtfeedback = nix.arg($, "qtfeedback");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hfd-service",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/hfd-service",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,11 +62,11 @@ substituteInPlace src/CMakeLists.txt \\
       ]),
       dontWrapQtApps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "DBus-activated service that manages human feedback devices such as LEDs and vibrators on mobile devices",
         homepage: "https://gitlab.com/ubports/development/core/hfd-service",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/hfd-service/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

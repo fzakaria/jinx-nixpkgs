@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/graphql.nix", [[["description", 42, 5]], [["pname", 18, 3], ["version", 20, 19], ["src", 20, 27], ["propagatedBuildInputs", 22, 3], ["doCheck", 31, 3], ["checkInputs", 33, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "cohttp-lwt": false, "cohttp-lwt-unix": false, "graphql-cohttp": false, "graphql-lwt": false, irmin: false, "git-unix": false, alcotest: false, "alcotest-lwt": false, logs: false, yojson: false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/graphql.nix", [["description", 42, 5]]);
-const pos$2 = nix.positions(here + "/graphql.nix", [["pname", 18, 3], ["version", 20, 19], ["src", 20, 27], ["propagatedBuildInputs", 22, 3], ["doCheck", 31, 3], ["checkInputs", 33, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const cacert = nix.arg($, "cacert");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "irmin-graphql",
       version: nix.thunk(() => nix.attr(irmin, "version")),
       src: nix.thunk(() => nix.attr(irmin, "src")),
       propagatedBuildInputs: nix.thunk(() => [cohttp_lwt, cohttp_lwt_unix, graphql_cohttp, graphql_lwt, irmin, git_unix]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, alcotest_lwt, logs, yojson, cacert]),
-      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { [nix.POS]: pos$1, description: "GraphQL server for Irmin" })),
+      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { [nix.POS]: $pos[0], description: "GraphQL server for Irmin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=graphql.ts.map

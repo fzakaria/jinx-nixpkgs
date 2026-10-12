@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["HATCH_BUILD_HOOK_VCS_VERSION", 28, 7]], [["serial", 43, 5], ["ble", 44, 5], ["udp", 45, 5], ["all", 46, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["env", 28, 3], ["__darwinAllowLocalNetworking", 29, 3], ["build-system", 31, 3], ["dependencies", 36, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, "async-timeout": false, bleak: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, intelhex: false, pyserial: false, "pytest-asyncio": false, pytestCheckHook: false, smp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["HATCH_BUILD_HOOK_VCS_VERSION", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["serial", 43, 5], ["ble", 44, 5], ["udp", 45, 5], ["all", 46, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["env", 28, 3], ["__darwinAllowLocalNetworking", 29, 3], ["build-system", 31, 3], ["dependencies", 36, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,18 +24,18 @@ export default nix.lambda((args) => (() => {
       const version = "7.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intercreate",
           repo: "smpclient",
           tag: version,
           hash: "sha256-5o2z+cyOVpTNpOdc9GfFNmqcOhbGgbFM0qGng44E1xE=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, HATCH_BUILD_HOOK_VCS_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], HATCH_BUILD_HOOK_VCS_VERSION: version }));
       const __darwinAllowLocalNetworking = true;
       const build_system = nix.thunk(() => [hatchling, hatch_vcs]);
       const dependencies = nix.thunk(() => [async_timeout, intelhex, smp]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         serial: nix.thunk(() => [pyserial]),
         ble: nix.thunk(() => [bleak]),
         udp: [],
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_asyncio, pytestCheckHook], nix.sel(optional_dependencies, "all")));
       const pythonImportsCheck = nix.thunk(() => ["smpclient"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple Management Protocol (SMP) Client for remotely managing MCU firmware",
         homepage: "https://github.com/intercreate/smpclient",
         changelog: nix.thunk(() => nix.str`https://github.com/intercreate/smpclient/releases/tag/${nix.sel(src, "tag")}`),
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

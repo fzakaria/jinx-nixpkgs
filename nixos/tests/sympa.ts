@@ -2,45 +2,36 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sympa.nix", [[["maintainers", 4, 8]], [["webHost", 14, 13]], [["lists.example.org", 13, 11]], [["enable", 18, 13], ["https", 19, 13]], [["type", 21, 11], ["createLocally", 22, 11]], [["enable", 11, 9], ["domains", 12, 9], ["listMasters", 17, 9], ["web", 18, 9], ["database", 20, 9]], [["sympa", 10, 16]], [["services", 10, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 27, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sympa.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/sympa.nix", [["webHost", 14, 13]]);
-const pos$3 = nix.positions(here + "/sympa.nix", [["lists.example.org", 13, 11]]);
-const pos$4 = nix.positions(here + "/sympa.nix", [["enable", 18, 13], ["https", 19, 13]]);
-const pos$5 = nix.positions(here + "/sympa.nix", [["type", 21, 11], ["createLocally", 22, 11]]);
-const pos$6 = nix.positions(here + "/sympa.nix", [["enable", 11, 9], ["domains", 12, 9], ["listMasters", 17, 9], ["web", 18, 9], ["database", 20, 9]]);
-const pos$7 = nix.positions(here + "/sympa.nix", [["sympa", 10, 16]]);
-const pos$8 = nix.positions(here + "/sympa.nix", [["services", 10, 7]]);
-const pos$9 = nix.positions(here + "/sympa.nix", [["machine", 6, 9]]);
-const pos$10 = nix.positions(here + "/sympa.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "sympa",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             sympa: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               domains: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                "lists.example.org": nix.thunk(() => ({ [nix.POS]: pos$2, webHost: "localhost" })),
+                [nix.POS]: $pos[2],
+                "lists.example.org": nix.thunk(() => ({ [nix.POS]: $pos[1], webHost: "localhost" })),
               })),
               listMasters: nix.thunk(() => ["bob@example.org"]),
-              web: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, https: false })),
-              database: nix.thunk(() => ({ [nix.POS]: pos$5, type: "PostgreSQL", createLocally: true })),
+              web: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, https: false })),
+              database: nix.thunk(() => ({ [nix.POS]: $pos[4], type: "PostgreSQL", createLocally: true })),
             })),
           })),
         };

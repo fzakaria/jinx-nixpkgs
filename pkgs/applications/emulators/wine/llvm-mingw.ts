@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/llvm-mingw.nix", [[["aarch64", 25, 5], ["x86_64", 26, 5]], [["url", 34, 5], ["hash", 35, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["sourceProvenance", 67, 5]], [["pname", 30, 3], ["version", 31, 11], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 39, 3], ["dontConfigure", 44, 3], ["dontBuild", 45, 3], ["installPhase", 47, 3], ["autoPatchelfIgnoreMissingDeps", 56, 3], ["dontStrip", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, autoPatchelfHook: false, zlib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/llvm-mingw.nix", [["aarch64", 25, 5], ["x86_64", 26, 5]]);
-const pos$2 = nix.positions(here + "/llvm-mingw.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/llvm-mingw.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["sourceProvenance", 67, 5]]);
-const pos$4 = nix.positions(here + "/llvm-mingw.nix", [["pname", 30, 3], ["version", 31, 11], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 39, 3], ["dontConfigure", 44, 3], ["dontBuild", 45, 3], ["installPhase", 47, 3], ["autoPatchelfIgnoreMissingDeps", 56, 3], ["dontStrip", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const version = "20260421";
   const hostArch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "aarch64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x86_64" : nix.builtins.throw(nix.thunk(() => nix.str`llvm-mingw: unsupported host platform ${nix.sel(stdenv, "hostPlatform", "system")}`)))));
   const hashes = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     aarch64: "sha256-6c+lqTKQy4Utxaa5DM3iVUA6YzMmSL4XFHDKPBrTeCg=",
     x86_64: "sha256-+LjM53mv/qtHvK7Gzm6edosWYJSjZhI+9kstCzicwSE=",
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`llvm-mingw-${hostArch}`),
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/mstorsjo/llvm-mingw/releases/download/${version}/llvm-mingw-${version}-ucrt-ubuntu-22.04-${hostArch}.tar.xz`),
           hash: nix.thunk(() => nix.sel(hashes, nix.key(nix.force(hostArch)))),
         })))),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       autoPatchelfIgnoreMissingDeps: nix.thunk(() => ["*.dll"]),
       dontStrip: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "LLVM/Clang/LLD-based mingw-w64 toolchain (prebuilt)",
         homepage: "https://github.com/mstorsjo/llvm-mingw",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

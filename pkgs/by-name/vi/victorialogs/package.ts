@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["tests", 50, 5], ["updateScript", 51, 5]], [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["changelog", 62, 5], ["mainProgram", 63, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["postPatch", 35, 3], ["ldflags", 41, 3], ["__darwinAllowLocalNetworking", 47, 3], ["passthru", 49, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildGo127Module: false, fetchFromGitHub: false, "nix-update-script": false, nixosTests: false, withServer: true, withVlAgent: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 50, 5], ["updateScript", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["changelog", 62, 5], ["mainProgram", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["postPatch", 35, 3], ["ldflags", 41, 3], ["__darwinAllowLocalNetworking", 47, 3], ["passthru", 49, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const withServer = nix.argOr($, "withServer", () => true);
   const withVlAgent = nix.argOr($, "withVlAgent", () => false);
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "VictoriaLogs",
       version: "1.53.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "VictoriaMetrics",
           repo: "VictoriaLogs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,12 +42,12 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.sel(nixosTests, "victorialogs")))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://docs.victoriametrics.com/victorialogs/",
         description: "User friendly log database from VictoriaMetrics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

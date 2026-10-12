@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 99, 5], ["repo", 100, 5], ["tag", 101, 5], ["hash", 102, 5]], [["audio", 143, 5], ["aws", 144, 5], ["colab", 151, 5], ["crawler", 152, 5], ["dev", 153, 5], ["elasticsearch7", 174, 5], ["elasticsearch8", 178, 5], ["file-conversion", 182, 5], ["formatting", 192, 5], ["inference", 193, 5], ["metrics", 198, 5], ["ocr", 204, 5], ["only-faiss", 208, 5], ["only-pinecone", 212, 5], ["onnx", 213, 5], ["opensearch", 221, 5], ["pdf", 222, 5], ["preprocessing", 223, 5], ["preview", 227, 5], ["ray", 238, 5], ["sql", 242, 5], ["weaviate", 247, 5]], [["description", 256, 5], ["longDescription", 257, 5], ["changelog", 260, 5], ["homepage", 261, 5], ["license", 262, 5], ["maintainers", 263, 5], ["broken", 265, 5]], [["pname", 94, 3], ["version", 95, 3], ["pyproject", 96, 3], ["src", 98, 3], ["nativeBuildInputs", 105, 3], ["propagatedBuildInputs", 110, 3], ["optional-dependencies", 136, 3], ["doCheck", 251, 3], ["pythonImportsCheck", 253, 3], ["meta", 255, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, writableTmpDirAsHomeHook: false, boilerpy3: false, events: false, httpx: false, jsonschema: false, "lazy-imports": false, "more-itertools": false, networkx: false, pandas: false, pillow: false, platformdirs: false, posthog: false, "prompthub-py": false, pydantic: false, quantulum3: false, "rank-bm25": false, requests: false, "requests-cache": false, "scikit-learn": false, "sseclient-py": false, tenacity: false, tiktoken: false, tqdm: false, transformers: false, "openai-whisper": false, boto3: false, botocore: false, selenium: false, coverage: false, dulwich: false, mkdocs: false, mypy: false, "pre-commit": false, psutil: false, pylint: false, pytest: false, "pytest-asyncio": false, "pytest-cov": false, "python-multipart": false, reno: false, responses: false, toml: false, tox: false, watchdog: false, "elastic-transport": false, elasticsearch: false, beautifulsoup4: false, markdown: false, "python-docx": false, "python-frontmatter": false, "python-magic": false, tika: false, black: false, "huggingface-hub": false, "sentence-transformers": false, mlflow: false, rapidfuzz: false, scipy: false, seqeval: false, pdf2image: false, pytesseract: false, "faiss-cpu": false, pinecone: false, onnxruntime: false, "onnxruntime-tools": false, "opensearch-py": false, pymupdf: false, langdetect: false, nltk: false, canals: false, jinja2: false, openai: false, aiorwlock: false, ray: false, psycopg2: false, sqlalchemy: false, "sqlalchemy-utils": false, "weaviate-client": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 99, 5], ["repo", 100, 5], ["tag", 101, 5], ["hash", 102, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["audio", 143, 5], ["aws", 144, 5], ["colab", 151, 5], ["crawler", 152, 5], ["dev", 153, 5], ["elasticsearch7", 174, 5], ["elasticsearch8", 178, 5], ["file-conversion", 182, 5], ["formatting", 192, 5], ["inference", 193, 5], ["metrics", 198, 5], ["ocr", 204, 5], ["only-faiss", 208, 5], ["only-pinecone", 212, 5], ["onnx", 213, 5], ["opensearch", 221, 5], ["pdf", 222, 5], ["preprocessing", 223, 5], ["preview", 227, 5], ["ray", 238, 5], ["sql", 242, 5], ["weaviate", 247, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 256, 5], ["longDescription", 257, 5], ["changelog", 260, 5], ["homepage", 261, 5], ["license", 262, 5], ["maintainers", 263, 5], ["broken", 265, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 94, 3], ["version", 95, 3], ["pyproject", 96, 3], ["src", 98, 3], ["nativeBuildInputs", 105, 3], ["propagatedBuildInputs", 110, 3], ["optional-dependencies", 136, 3], ["doCheck", 251, 3], ["pythonImportsCheck", 253, 3], ["meta", 255, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -97,7 +94,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.22.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "deepset-ai",
           repo: "haystack",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -130,7 +127,7 @@ export default nix.lambda((args) => (() => {
         transformers,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         audio: nix.thunk(() => [openai_whisper]),
         aws: nix.thunk(() => [boto3, botocore]),
         colab: nix.thunk(() => [pillow]),
@@ -191,7 +188,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["haystack"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "LLM orchestration framework to build customizable, production-ready LLM applications",
         longDescription: "LLM orchestration framework to build customizable, production-ready LLM applications. Connect components (models, vector DBs, file converters) to pipelines or agents that can interact with your data. With advanced retrieval methods, it's best suited for building RAG, question answering, semantic search or conversational agent chatbots\n",
         changelog: nix.thunk(() => nix.str`https://github.com/deepset-ai/haystack/releases/tag/${nix.sel(src, "tag")}`),
@@ -204,7 +201,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(pydantic, "version")), "2")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

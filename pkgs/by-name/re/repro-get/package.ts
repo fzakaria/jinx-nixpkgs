@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["name", 49, 7], ["subPackages", 52, 7], ["installPhase", 53, 7], ["preCheck", 57, 7], ["outputHash", 58, 7], ["outputHashAlgo", 59, 7], ["outputHashMode", 60, 7], ["outputs", 61, 7], ["nativeBuildInputs", 62, 7]], [["package", 65, 7], ["command", 66, 7], ["version", 67, 15]], [["pkg-version", 47, 5], ["version", 64, 5]], [["tests", 46, 12]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["mainProgram", 76, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["preCheck", 29, 3], ["ldflags", 33, 3], ["postInstall", 39, 3], ["passthru", 46, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, testers: false, "repro-get": false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 49, 7], ["subPackages", 52, 7], ["installPhase", 53, 7], ["preCheck", 57, 7], ["outputHash", 58, 7], ["outputHashAlgo", 59, 7], ["outputHashMode", 60, 7], ["outputs", 61, 7], ["nativeBuildInputs", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 65, 7], ["command", 66, 7], ["version", 67, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-version", 47, 5], ["version", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 46, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["mainProgram", 76, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["preCheck", 29, 3], ["ldflags", 33, 3], ["postInstall", 39, 3], ["passthru", 46, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "repro-get";
       const version = "0.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "reproducible-containers",
           repo: "repro-get",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,11 +35,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd repro-get \\\n  --bash <($out/bin/repro-get completion bash) \\\n  --fish <($out/bin/repro-get completion fish) \\\n  --zsh <($out/bin/repro-get completion zsh)\n"));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-version": nix.thunk(() => nix.app(nix.sel(repro_get, "overrideAttrs"), (old) => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: nix.thunk(() => nix.str`${nix.sel(repro_get, "pname")}-${nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.app(nix.sel(lib, "substring"), 0n, 12n, nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.sel(repro_get, "drvPath")))))))}`),
               subPackages: nix.thunk(() => ["pkg/version"]),
               installPhase: "rm -rf $out\ntouch $out\n",
@@ -57,7 +51,7 @@ export default nix.lambda((args) => (() => {
               nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [cacert])),
             }))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: repro_get,
               command: "HOME=$(mktemp -d) repro-get -v",
               version: version,
@@ -65,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Reproducible apt/dnf/apk/pacman, with content-addressing",
         homepage: "https://github.com/reproducible-containers/repro-get",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -76,7 +70,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "repro-get",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

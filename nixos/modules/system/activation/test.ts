@@ -2,29 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["forbiddenDependenciesRegexes", 11, 14], ["stateVersion", 23, 14]], [["text", 13, 9]], [["dev-dependency", 12, 23]], [["etc", 12, 19]], [["enable", 15, 21]], [["device", 17, 9], ["fsType", 18, 9]], [["/", 16, 19]], [["enable", 20, 24]], [["grub", 20, 19]], [["loader", 20, 12]], [["system", 11, 7], ["environment", 12, 7], ["documentation", 15, 7], ["fileSystems", 16, 7], ["boot", 20, 7]], [["forbiddenDependenciesRegexes", 29, 14], ["extraDependencies", 30, 14], ["stateVersion", 39, 14]], [["enable", 31, 21]], [["device", 33, 9], ["fsType", 34, 9]], [["/", 32, 19]], [["enable", 36, 24]], [["grub", 36, 19]], [["loader", 36, 12]], [["system", 29, 7], ["documentation", 31, 7], ["fileSystems", 32, 7], ["boot", 36, 7]], [["test-forbiddenDependencies-fail", 44, 3], ["test-forbiddenDependencies-succeed", 45, 3]]]);
 const formals$1 = { args: { lib: false, nixos: false, expect: false, testers: false }, ellipsis: false };
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/test.nix", [["forbiddenDependenciesRegexes", 11, 14], ["stateVersion", 23, 14]]);
-const pos$2 = nix.positions(here + "/test.nix", [["text", 13, 9]]);
-const pos$3 = nix.positions(here + "/test.nix", [["dev-dependency", 12, 23]]);
-const pos$4 = nix.positions(here + "/test.nix", [["etc", 12, 19]]);
-const pos$5 = nix.positions(here + "/test.nix", [["enable", 15, 21]]);
-const pos$6 = nix.positions(here + "/test.nix", [["device", 17, 9], ["fsType", 18, 9]]);
-const pos$7 = nix.positions(here + "/test.nix", [["/", 16, 19]]);
-const pos$8 = nix.positions(here + "/test.nix", [["enable", 20, 24]]);
-const pos$9 = nix.positions(here + "/test.nix", [["grub", 20, 19]]);
-const pos$10 = nix.positions(here + "/test.nix", [["loader", 20, 12]]);
-const pos$11 = nix.positions(here + "/test.nix", [["system", 11, 7], ["environment", 12, 7], ["documentation", 15, 7], ["fileSystems", 16, 7], ["boot", 20, 7]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$12 = nix.positions(here + "/test.nix", [["forbiddenDependenciesRegexes", 29, 14], ["extraDependencies", 30, 14], ["stateVersion", 39, 14]]);
-const pos$13 = nix.positions(here + "/test.nix", [["enable", 31, 21]]);
-const pos$14 = nix.positions(here + "/test.nix", [["device", 33, 9], ["fsType", 34, 9]]);
-const pos$15 = nix.positions(here + "/test.nix", [["/", 32, 19]]);
-const pos$16 = nix.positions(here + "/test.nix", [["enable", 36, 24]]);
-const pos$17 = nix.positions(here + "/test.nix", [["grub", 36, 19]]);
-const pos$18 = nix.positions(here + "/test.nix", [["loader", 36, 12]]);
-const pos$19 = nix.positions(here + "/test.nix", [["system", 29, 7], ["documentation", 31, 7], ["fileSystems", 32, 7], ["boot", 36, 7]]);
-const pos$20 = nix.positions(here + "/test.nix", [["test-forbiddenDependencies-fail", 44, 3], ["test-forbiddenDependencies-succeed", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,29 +17,32 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       return {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         system: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           forbiddenDependenciesRegexes: nix.thunk(() => ["-dev$"]),
           stateVersion: nix.thunk(() => nix.sel(config, "system", "nixos", "release")),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            "dev-dependency": nix.thunk(() => ({ [nix.POS]: pos$2, text: nix.thunk(() => nix.str`${nix.sel(expect, "dev")}`) })),
+            [nix.POS]: $pos[2],
+            "dev-dependency": nix.thunk(() => ({
+              [nix.POS]: $pos[1],
+              text: nix.thunk(() => nix.str`${nix.sel(expect, "dev")}`),
+            })),
           })),
         })),
-        documentation: nix.thunk(() => ({ [nix.POS]: pos$5, enable: false })),
+        documentation: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: false })),
         fileSystems: nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          "/": nix.thunk(() => ({ [nix.POS]: pos$6, device: "ignore-root-device", fsType: "none" })),
+          [nix.POS]: $pos[6],
+          "/": nix.thunk(() => ({ [nix.POS]: $pos[5], device: "ignore-root-device", fsType: "none" })),
         })),
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           loader: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            grub: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
+            [nix.POS]: $pos[8],
+            grub: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: false })),
           })),
         })),
       };
@@ -67,29 +51,29 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
       const config = nix.arg($_1, "config");
       return {
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         system: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           forbiddenDependenciesRegexes: nix.thunk(() => ["-dev$"]),
           extraDependencies: nix.thunk(() => [nix.thunk(() => nix.sel(expect, "dev"))]),
           stateVersion: nix.thunk(() => nix.sel(config, "system", "nixos", "release")),
         })),
-        documentation: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
+        documentation: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: false })),
         fileSystems: nix.thunk(() => ({
-          [nix.POS]: pos$15,
-          "/": nix.thunk(() => ({ [nix.POS]: pos$14, device: "ignore-root-device", fsType: "none" })),
+          [nix.POS]: $pos[14],
+          "/": nix.thunk(() => ({ [nix.POS]: $pos[13], device: "ignore-root-device", fsType: "none" })),
         })),
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           loader: nix.thunk(() => ({
-            [nix.POS]: pos$17,
-            grub: nix.thunk(() => ({ [nix.POS]: pos$16, enable: false })),
+            [nix.POS]: $pos[16],
+            grub: nix.thunk(() => ({ [nix.POS]: $pos[15], enable: false })),
           })),
         })),
       };
     })(), formals$3)));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       "test-forbiddenDependencies-fail": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.sel(node_forbiddenDependencies_fail, "config", "system", "build", "toplevel")))),
       "test-forbiddenDependencies-succeed": nix.thunk(() => nix.sel(node_forbiddenDependencies_succeed, "config", "system", "build", "toplevel")),
     })));

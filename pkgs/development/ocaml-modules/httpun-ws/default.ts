@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["hash", 20, 5]], [["description", 36, 5], ["license", 37, 5], ["homepage", 38, 5], ["maintainers", 39, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 32, 3], ["checkInputs", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, angstrom: false, base64: false, bigstringaf: false, faraday: false, gluten: false, httpun: false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 36, 5], ["license", 37, 5], ["homepage", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 32, 3], ["checkInputs", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const httpun = nix.arg($, "httpun");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "httpun-ws",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/anmonteiro/httpun-ws/releases/download/${nix.sel(finalAttrs, "version")}/httpun-ws-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-6uDNLg61tPyctthitxFqbw/IUDsuQ5BGvw5vTLLCl/0=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Websocket implementation for httpun",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/anmonteiro/httpun-ws",

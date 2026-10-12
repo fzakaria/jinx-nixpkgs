@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["maintainers", 21, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, mkYaziPlugin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["maintainers", 21, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mediainfo.yazi",
       version: "0-unstable-2026-09-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "boydaihungst",
           repo: "mediainfo.yazi",
           rev: "f1cec0b43a6b5904e1638ad050f044c4eb1383da",
           hash: "sha256-p+wfTgQ4Td7Q/AIzsECzijam3NcPXxEPrpnUnT/028E=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Yazi plugin for previewing media files",
         homepage: "https://github.com/boydaihungst/mediainfo.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

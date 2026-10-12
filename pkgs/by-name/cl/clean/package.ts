@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 9], ["sha256", 18, 9]], [["url", 22, 9], ["sha256", 23, 9]], [["NIX_CFLAGS_COMPILE", 43, 7]], [["compile-hello-world", 52, 18]], [["tests", 52, 12]], [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 76, 5], ["mainProgram", 80, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["hardeningDisable", 28, 3], ["patches", 30, 3], ["postPatch", 35, 3], ["env", 43, 3], ["buildFlags", 45, 3], ["dontStrip", 50, 3], ["passthru", 52, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { binutils: false, fetchurl: false, gcc: false, lib: false, runCommand: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 9], ["sha256", 18, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 9], ["sha256", 23, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 43, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["compile-hello-world", 52, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 52, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 76, 5], ["mainProgram", 80, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["hardeningDisable", 28, 3], ["patches", 30, 3], ["postPatch", 35, 3], ["env", 43, 3], ["buildFlags", 45, 3], ["dontStrip", 50, 3], ["passthru", 52, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "clean",
       version: "3.1",
       src: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://ftp.cs.ru.nl/Clean/Clean31/linux/clean3.1_32_boot.tar.gz",
           sha256: "Ls0IKf+o7yhRLhtSV61jzmnYukfh5x5fogHaP5ke/Ck=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://ftp.cs.ru.nl/Clean/Clean31/linux/clean3.1_64_boot.tar.gz",
           sha256: "Gg5CVZjrwDBtV7Vuw21Xj6Rn+qN1Mf6B3ls6r/16oBc=",
         }))) : nix.builtins.throw("Architecture not supported")))),
@@ -43,13 +37,13 @@ substituteInPlace src/clm/clm.c \\
   --replace-fail /usr/bin/as ${binutils}/bin/as \\
   --replace-fail /usr/bin/gcc ${gcc}/bin/gcc
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       buildFlags: nix.thunk(() => ["-C src/"]),
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "compile-hello-world": nix.thunk(() => nix.app(runCommand, "compile-hello-world", nix.thunk(() => ({})), nix.thunk(() => nix.str`cat >HelloWorld.icl <<EOF
 module HelloWorld
 Start = "Hello, world!"
@@ -60,7 +54,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "General purpose, state-of-the-art, pure and lazy functional programming language",
         longDescription: "Clean is a general purpose, state-of-the-art, pure and lazy functional\nprogramming language designed for making real-world applications. Some\nof its most notable language features are uniqueness typing, dynamic typing,\nand generic functions.\n",
         homepage: "http://wiki.clean.cs.ru.nl/Clean",

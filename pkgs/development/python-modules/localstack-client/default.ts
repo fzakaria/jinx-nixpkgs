@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 5], ["version", 19, 13], ["hash", 20, 5]], [["localstack", 40, 20]], [["tests", 39, 12]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 23, 3], ["pythonImportsCheck", 25, 3], ["doCheck", 28, 3], ["nativeCheckInputs", 29, 3], ["disabledTests", 31, 3], ["__darwinAllowLocalNetworking", 37, 3], ["passthru", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, boto3: false, pytestCheckHook: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 13], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["localstack", 40, 20]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 39, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 23, 3], ["pythonImportsCheck", 25, 3], ["doCheck", 28, 3], ["nativeCheckInputs", 29, 3], ["disabledTests", 31, 3], ["__darwinAllowLocalNetworking", 37, 3], ["passthru", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.11";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "localstack_client",
           version: version,
           hash: "sha256-HL178fA7m1U//n6hD+E39E6NaQo3r5xlFeumGiN5/EY=",
@@ -34,18 +30,21 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_session"]);
       const __darwinAllowLocalNetworking = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, localstack: nix.thunk(() => nix.attr(pkgs, "localstack")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          localstack: nix.thunk(() => nix.attr(pkgs, "localstack")),
+        })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lightweight Python client for LocalStack",
         homepage: "https://github.com/localstack/localstack-python-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         format,

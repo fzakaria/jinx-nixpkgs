@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["description", 90, 5], ["maintainers", 91, 5], ["platforms", 94, 5], ["license", 95, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 31, 3], ["patches", 35, 3], ["makeFlags", 48, 3], ["installFlags", 61, 3], ["postPatch", 63, 3], ["nativeCheckInputs", 75, 3], ["doCheck", 76, 3], ["doInstallCheck", 77, 3], ["preInstall", 79, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "foomatic-filters": false, bc: false, ghostscript: false, systemd: false, udevCheckHook: false, vim: false, time: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 90, 5], ["maintainers", 91, 5], ["platforms", 94, 5], ["license", 95, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 31, 3], ["patches", 35, 3], ["makeFlags", 48, 3], ["installFlags", 61, 3], ["postPatch", 63, 3], ["nativeCheckInputs", 75, 3], ["doCheck", 76, 3], ["doInstallCheck", 77, 3], ["preInstall", 79, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const vim = nix.arg($, "vim");
   const time = nix.arg($, "time");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "foo2zjs",
       version: "20210116",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.loegria.net/mirrors/foo2zjs/foo2zjs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "14x3wizvncdy0xgvmcx541qanwb7bg76abygqy17bxycn1zh5r1x",
         })))),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       preInstall: "mkdir -pv $out/{etc/udev/rules.d,lib/udev/rules.d,etc/hotplug/usb}\nmkdir -pv $out/share/foomatic/db/source/{opt,printer,driver}\nmkdir -pv $out/share/cups/model\nmkdir -pv $out/share/{applications,pixmaps}\n\nmkdir -pv \"$out/bin\"\ncp -v getweb arm2hpdl \"$out/bin\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ZjStream printer drivers",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

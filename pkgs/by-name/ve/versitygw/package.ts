@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["CGO_ENABLED", 40, 7]], [["updateScript", 60, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 72, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["excludedPackages", 22, 3], ["ldflags", 34, 3], ["env", 40, 3], ["checkFlags", 42, 3], ["doInstallCheck", 55, 3], ["nativeInstallCheckInputs", 56, 3], ["versionCheckProgramArg", 57, 3], ["passthru", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["excludedPackages", 22, 3], ["ldflags", 34, 3], ["env", 40, 3], ["checkFlags", 42, 3], ["doInstallCheck", 55, 3], ["nativeInstallCheckInputs", 56, 3], ["versionCheckProgramArg", 57, 3], ["passthru", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "versitygw",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "versity",
           repo: "versitygw",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
         "-X main.BuildTime=1980-01-01T00:00:02Z",
         nix.thunk(() => nix.str`-X main.Version=v${nix.sel(finalAttrs, "version")}`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: "0" })),
       checkFlags: nix.thunk(() => (() => {
         const skippedTests = nix.thunk(() => [
           "^TestIntegration$",
@@ -56,11 +52,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Versity S3 gateway, a high-performance S3 translation service",
         homepage: "https://github.com/versity/versitygw",
         changelog: nix.thunk(() => nix.str`https://github.com/versity/versitygw/releases/tag/v${nix.sel(finalAttrs, "version")}`),

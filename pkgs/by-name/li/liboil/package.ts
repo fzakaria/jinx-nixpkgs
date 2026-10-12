@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["outputs", 19, 3], ["outputBin", 24, 3], ["nativeBuildInputs", 26, 3], ["configureFlags", 30, 3], ["buildFlags", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["outputs", 19, 3], ["outputBin", 24, 3], ["nativeBuildInputs", 26, 3], ["configureFlags", 30, 3], ["buildFlags", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "liboil",
       version: "0.3.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://liboil.freedesktop.org/download/liboil-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0sgwic99hxlb1av8cm0albzh8myb7r3lpcwxfm606l0bkc3h4pqh",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), "--build=x86_64")),
       buildFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "CFLAGS=-fheinous-gnu-extensions")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library of simple functions that are optimized for various CPUs",
         mainProgram: "oil-bugreport",
         homepage: "https://liboil.freedesktop.org",

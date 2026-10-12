@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["version", 16, 3], ["pname", 17, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 32, 3], ["strictDeps", 38, 3], ["prefixKey", 40, 3], ["configureFlags", 41, 3], ["createFindlibDestdir", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, gnumake42: false, perl: false, gmp: false, mpfr: false, ocaml: false, findlib: false, camlidl: false, apron: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 16, 3], ["pname", 17, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 32, 3], ["strictDeps", 38, 3], ["prefixKey", 40, 3], ["configureFlags", 41, 3], ["createFindlibDestdir", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1";
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-elina`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://files.sri.inf.ethz.ch/elina-${version}.tar.gz`),
           sha256: "1nymykskq1yx87y4xl6hl9i4q6kv0qaq25rniqgl1bfn883p1ysc",
         }))));
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => nix.concat(["--use-apron", "--use-opam", "--apron-prefix", apron], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "--absolute-dylibs")));
       const createFindlibDestdir = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ETH LIbrary for Numerical Analysis",
         homepage: "https://elina.ethz.ch/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "intersectLists"), nix.thunk(() => nix.sel(ocaml, "meta", "platforms")), nix.thunk(() => nix.sel(lib, "platforms", "x86")))),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         src,

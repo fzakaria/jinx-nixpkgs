@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postUnpack", 26, 3], ["postPatch", 32, 3], ["build-system", 37, 3], ["pythonRelaxDeps", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 49, 3], ["pythonNamespaces", 51, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, base58: false, bitstring: false, coincurve: false, cryptography: false, pysocks: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postUnpack", 26, 3], ["postPatch", 32, 3], ["build-system", 37, 3], ["pythonRelaxDeps", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 49, 3], ["pythonNamespaces", 51, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.06.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ElementsProject",
           repo: "lightning",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pythonNamespaces = nix.thunk(() => ["pyln"]);
       const pythonImportsCheck = nix.thunk(() => ["pyln.proto"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightning Network protocol library for testing and tooling",
         homepage: "https://github.com/ElementsProject/lightning/tree/master/contrib/pyln-proto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

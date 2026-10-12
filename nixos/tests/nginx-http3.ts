@@ -2,35 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nginx-http3.nix", [[["maintainers", 14, 14]], [["address", 24, 23], ["prefixLength", 25, 23]], [["addresses", 22, 24]], [["ipv4", 22, 19]], [["eth1", 21, 28]], [["allowedTCPPorts", 30, 26], ["allowedUDPPorts", 31, 26]], [["interfaces", 21, 17], ["extraHosts", 29, 17], ["firewall", 30, 17]], [["certificates", 34, 28]], [["pki", 34, 24]], [["onlySSL", 43, 19], ["sslCertificate", 44, 19], ["sslCertificateKey", 45, 19], ["http2", 46, 19], ["http3", 47, 19], ["http3_hq", 48, 19], ["quic", 49, 19], ["reuseport", 50, 19], ["root", 51, 19]], [["acme.test", 42, 30]], [["enable", 39, 17], ["package", 40, 17], ["virtualHosts", 42, 17]], [["nginx", 38, 24]], [["networking", 20, 15], ["security", 34, 15], ["services", 38, 15]], [["systemPackages", 69, 27]], [["address", 74, 23], ["prefixLength", 75, 23]], [["addresses", 72, 24]], [["ipv4", 72, 19]], [["eth1", 71, 28]], [["interfaces", 71, 17], ["extraHosts", 79, 17]], [["certificates", 82, 28]], [["pki", 82, 24]], [["environment", 69, 15], ["networking", 70, 15], ["security", 82, 15]], [["server", 17, 11], ["client", 66, 11]], [["name", 13, 9], ["meta", 14, 9], ["nodes", 16, 9], ["testScript", 88, 9]], [["name", 11, 7], ["value", 12, 7]]]);
 const formals$1 = { args: { pkgs: false, runTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nginx-http3.nix", [["maintainers", 14, 14]]);
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/nginx-http3.nix", [["address", 24, 23], ["prefixLength", 25, 23]]);
-const pos$3 = nix.positions(here + "/nginx-http3.nix", [["addresses", 22, 24]]);
-const pos$4 = nix.positions(here + "/nginx-http3.nix", [["ipv4", 22, 19]]);
-const pos$5 = nix.positions(here + "/nginx-http3.nix", [["eth1", 21, 28]]);
-const pos$6 = nix.positions(here + "/nginx-http3.nix", [["allowedTCPPorts", 30, 26], ["allowedUDPPorts", 31, 26]]);
-const pos$7 = nix.positions(here + "/nginx-http3.nix", [["interfaces", 21, 17], ["extraHosts", 29, 17], ["firewall", 30, 17]]);
-const pos$8 = nix.positions(here + "/nginx-http3.nix", [["certificates", 34, 28]]);
-const pos$9 = nix.positions(here + "/nginx-http3.nix", [["pki", 34, 24]]);
-const pos$10 = nix.positions(here + "/nginx-http3.nix", [["onlySSL", 43, 19], ["sslCertificate", 44, 19], ["sslCertificateKey", 45, 19], ["http2", 46, 19], ["http3", 47, 19], ["http3_hq", 48, 19], ["quic", 49, 19], ["reuseport", 50, 19], ["root", 51, 19]]);
-const pos$11 = nix.positions(here + "/nginx-http3.nix", [["acme.test", 42, 30]]);
-const pos$12 = nix.positions(here + "/nginx-http3.nix", [["enable", 39, 17], ["package", 40, 17], ["virtualHosts", 42, 17]]);
-const pos$13 = nix.positions(here + "/nginx-http3.nix", [["nginx", 38, 24]]);
-const pos$14 = nix.positions(here + "/nginx-http3.nix", [["networking", 20, 15], ["security", 34, 15], ["services", 38, 15]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/nginx-http3.nix", [["systemPackages", 69, 27]]);
-const pos$16 = nix.positions(here + "/nginx-http3.nix", [["address", 74, 23], ["prefixLength", 75, 23]]);
-const pos$17 = nix.positions(here + "/nginx-http3.nix", [["addresses", 72, 24]]);
-const pos$18 = nix.positions(here + "/nginx-http3.nix", [["ipv4", 72, 19]]);
-const pos$19 = nix.positions(here + "/nginx-http3.nix", [["eth1", 71, 28]]);
-const pos$20 = nix.positions(here + "/nginx-http3.nix", [["interfaces", 71, 17], ["extraHosts", 79, 17]]);
-const pos$21 = nix.positions(here + "/nginx-http3.nix", [["certificates", 82, 28]]);
-const pos$22 = nix.positions(here + "/nginx-http3.nix", [["pki", 82, 24]]);
-const pos$23 = nix.positions(here + "/nginx-http3.nix", [["environment", 69, 15], ["networking", 70, 15], ["security", 82, 15]]);
-const pos$24 = nix.positions(here + "/nginx-http3.nix", [["server", 17, 11], ["client", 66, 11]]);
-const pos$25 = nix.positions(here + "/nginx-http3.nix", [["name", 13, 9], ["meta", 14, 9], ["nodes", 16, 9], ["testScript", 88, 9]]);
-const pos$26 = nix.positions(here + "/nginx-http3.nix", [["name", 11, 7], ["value", 12, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,66 +13,66 @@ export default nix.lambda((args) => (() => {
   const runTest = nix.arg($, "runTest");
   const hosts = "192.168.2.101 acme.test\n";
   return nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((nginxPackage) => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         name: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "getName"), nginxPackage)),
         value: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             name: nix.thunk(() => nix.str`nginx-http3-${nix.app(nix.sel(pkgs, "lib", "getName"), nginxPackage)}`),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
                 return [nix.thunk(() => nix.lookup(w, "izorkin"))];
               })()),
             })),
             nodes: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               server: nix.lambda((args_1) => (() => {
                 const $_1 = nix.formals(args_1, formals$2);
                 const lib = nix.arg($_1, "lib");
                 const pkgs_1 = nix.arg($_1, "pkgs");
                 return {
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   networking: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     interfaces: nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       eth1: nix.thunk(() => ({
-                        [nix.POS]: pos$4,
+                        [nix.POS]: $pos[3],
                         ipv4: nix.thunk(() => ({
-                          [nix.POS]: pos$3,
+                          [nix.POS]: $pos[2],
                           addresses: nix.thunk(() => [
-                            nix.thunk(() => ({ [nix.POS]: pos$2, address: "192.168.2.101", prefixLength: 24n })),
+                            nix.thunk(() => ({ [nix.POS]: $pos[1], address: "192.168.2.101", prefixLength: 24n })),
                           ]),
                         })),
                       })),
                     })),
                     extraHosts: hosts,
                     firewall: nix.thunk(() => ({
-                      [nix.POS]: pos$6,
+                      [nix.POS]: $pos[5],
                       allowedTCPPorts: nix.thunk(() => [443n]),
                       allowedUDPPorts: nix.thunk(() => [443n]),
                     })),
                   })),
                   security: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     pki: nix.thunk(() => ({
-                      [nix.POS]: pos$8,
+                      [nix.POS]: $pos[7],
                       certificates: nix.thunk(() => [
                         nix.thunk(() => nix.builtins.readFile(nix.path(here, "./common/acme/server/ca.cert.pem"))),
                       ]),
                     })),
                   })),
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     nginx: nix.thunk(() => ({
-                      [nix.POS]: pos$12,
+                      [nix.POS]: $pos[11],
                       enable: true,
                       package: nginxPackage,
                       virtualHosts: nix.thunk(() => ({
-                        [nix.POS]: pos$11,
+                        [nix.POS]: $pos[10],
                         "acme.test": nix.thunk(() => ({
-                          [nix.POS]: pos$10,
+                          [nix.POS]: $pos[9],
                           onlySSL: true,
                           sslCertificate: nix.path(here, "./common/acme/server/acme.test.cert.pem"),
                           sslCertificateKey: nix.path(here, "./common/acme/server/acme.test.key.pem"),
@@ -117,21 +92,21 @@ export default nix.lambda((args) => (() => {
                 const $_1 = nix.formals(args_1, formals$3);
                 const pkgs_1 = nix.arg($_1, "pkgs");
                 return {
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   environment: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "curl"))]),
                   })),
                   networking: nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     interfaces: nix.thunk(() => ({
-                      [nix.POS]: pos$19,
+                      [nix.POS]: $pos[18],
                       eth1: nix.thunk(() => ({
-                        [nix.POS]: pos$18,
+                        [nix.POS]: $pos[17],
                         ipv4: nix.thunk(() => ({
-                          [nix.POS]: pos$17,
+                          [nix.POS]: $pos[16],
                           addresses: nix.thunk(() => [
-                            nix.thunk(() => ({ [nix.POS]: pos$16, address: "192.168.2.201", prefixLength: 24n })),
+                            nix.thunk(() => ({ [nix.POS]: $pos[15], address: "192.168.2.201", prefixLength: 24n })),
                           ]),
                         })),
                       })),
@@ -139,9 +114,9 @@ export default nix.lambda((args) => (() => {
                     extraHosts: hosts,
                   })),
                   security: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
+                    [nix.POS]: $pos[21],
                     pki: nix.thunk(() => ({
-                      [nix.POS]: pos$21,
+                      [nix.POS]: $pos[20],
                       certificates: nix.thunk(() => [
                         nix.thunk(() => nix.builtins.readFile(nix.path(here, "./common/acme/server/ca.cert.pem"))),
                       ]),

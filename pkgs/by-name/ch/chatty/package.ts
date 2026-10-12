@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 36, 5], ["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["preFixup", 72, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "appstream-glib": false, "desktop-file-utils": false, itstool: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, "evolution-data-server": false, feedbackd: false, glibmm_2_4: false, libsecret: false, "gnome-desktop": false, gspell: false, gtk4: false, gtksourceview5: false, gst_all_1: false, libcmatrix: false, libadwaita: false, libphonenumber: false, modemmanager: false, pidgin: false, protobuf: false, sqlite: false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 36, 5], ["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["preFixup", 72, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const plugins = nix.argOr($, "plugins", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "chatty",
       version: "0.8.9",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "Chatty",
@@ -81,7 +79,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "XMPP and SMS messaging via libpurple and ModemManager",
         mainProgram: "chatty",
         homepage: "https://gitlab.gnome.org/World/Chatty",

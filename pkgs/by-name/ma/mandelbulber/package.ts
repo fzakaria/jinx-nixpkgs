@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["nativeBuildInputs", 60, 9]], [["test", 59, 7]], [["tests", 58, 5], ["updateScript", 66, 5]], [["description", 70, 5], ["mainProgram", 71, 5], ["longDescription", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["sourceRoot", 50, 3], ["qmakeFlags", 52, 3], ["passthru", 57, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, runCommand: false, writableTmpDirAsHomeHook: false, "nix-update-script": false, libpng: false, gsl: false, libsndfile: false, lzo: false, libsForQt5: false, withOpenCL: true, "opencl-clhpp": true, "ocl-icd": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 60, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["test", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 58, 5], ["updateScript", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 70, 5], ["mainProgram", 71, 5], ["longDescription", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["sourceRoot", 50, 3], ["qmakeFlags", 52, 3], ["passthru", 57, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(withOpenCL) || nix.asBool(!nix.eq(opencl_clhpp, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ma/mandelbulber/package.nix:18:1");
   nix.assert_((!nix.asBool(withOpenCL) || nix.asBool(!nix.eq(ocl_icd, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ma/mandelbulber/package.nix:19:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mandelbulber",
       version: "2.34",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "buddhi1980",
           repo: "mandelbulber2",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,11 +53,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (nix.asBool(withOpenCL) ? "qmake/mandelbulber-opencl.pro" : "qmake/mandelbulber.pro")),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           test: nix.thunk(() => nix.app(runCommand, "mandelbulber2-test", nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 writableTmpDirAsHomeHook,
@@ -72,7 +67,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "3D fractal rendering engine",
         mainProgram: "mandelbulber2",
         longDescription: "Mandelbulber creatively generates three-dimensional fractals. Explore trigonometric, hyper-complex, Mandelbox, IFS, and many other 3D fractals.",

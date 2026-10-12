@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["analysis", 68, 5], ["cli", 74, 5], ["powermon", 81, 5], ["tunnel", 88, 5]], [["description", 125, 5], ["homepage", 126, 5], ["changelog", 127, 5], ["license", 128, 5], ["maintainers", 129, 5]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["pythonRelaxDeps", 46, 3], ["build-system", 53, 3], ["dependencies", 55, 3], ["optional-dependencies", 67, 3], ["nativeCheckInputs", 91, 3], ["preCheck", 97, 3], ["pythonImportsCheck", 101, 3], ["disabledTestPaths", 103, 3], ["disabledTests", 108, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { lib: false, argcomplete: false, bleak: false, buildPythonPackage: false, "dash-bootstrap-components": false, dash: false, dotmap: false, fetchFromGitHub: false, hypothesis: false, packaging: false, "pandas-stubs": false, pandas: false, parse: false, platformdirs: false, "poetry-core": false, "ppk2-api": false, "print-color": false, protobuf: false, pyarrow: false, pypubsub: false, pyqrcode: false, pyserial: false, pytap2: false, pytestCheckHook: false, pyyaml: false, requests: false, riden: false, setuptools: false, tabulate: false, wcwidth: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["analysis", 68, 5], ["cli", 74, 5], ["powermon", 81, 5], ["tunnel", 88, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 125, 5], ["homepage", 126, 5], ["changelog", 127, 5], ["license", 128, 5], ["maintainers", 129, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["pythonRelaxDeps", 46, 3], ["build-system", 53, 3], ["dependencies", 55, 3], ["optional-dependencies", 67, 3], ["nativeCheckInputs", 91, 3], ["preCheck", 97, 3], ["pythonImportsCheck", 101, 3], ["disabledTestPaths", 103, 3], ["disabledTests", 108, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const tabulate = nix.arg($, "tabulate");
   const wcwidth = nix.arg($, "wcwidth");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "meshtastic",
       version: "2.7.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "meshtastic",
           repo: "python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
         tabulate,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         analysis: nix.thunk(() => [dash, dash_bootstrap_components, pandas, pandas_stubs]),
         cli: nix.thunk(() => [argcomplete, dotmap, print_color, pyqrcode, wcwidth]),
         powermon: nix.thunk(() => [parse, platformdirs, ppk2_api, pyarrow, riden]),
@@ -91,7 +88,7 @@ export default nix.lambda((args) => (() => {
         "test_TCPInterface",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python API for talking to Meshtastic devices",
         homepage: "https://github.com/meshtastic/python",
         changelog: nix.thunk(() => nix.str`https://github.com/meshtastic/python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

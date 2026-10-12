@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 12, 5], ["owner", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 27, 5], ["longDescription", 28, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5], ["platforms", 42, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 12, 5], ["owner", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["longDescription", 28, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5], ["platforms", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "smc-fuzzer",
       version: "0-unstable-2020-12-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "smc-fuzzer",
           owner: "theopolis",
           rev: "ed60c4efeddea8a9778a976c49c650eee3840eac",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm 755 smc -t $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Apple SMC (System Management Controller) API fuzzer",
         longDescription: "smc-fuzzer uses the AppleSMC IOKit interface and a userland API for\ninteracting with the System Management Controller (Mac embedded\ncontrollers). The tool focuses on the SMC key/value API.\n\nsmc-fuzzer is not just useful for fuzzing the SMC itself: it can also be\nused to explicitly control or query the SMC.  That makes it useful in\nsystem management, e.g. controlling and querying the charge status of an\nApple laptop.\n",
         homepage: "https://github.com/theopolis/smc-fuzzer",

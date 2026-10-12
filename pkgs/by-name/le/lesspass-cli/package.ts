@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["license", 57, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["sourceRoot", 29, 3], ["build-system", 31, 3], ["nativeCheckInputs", 35, 3], ["preCheck", 41, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["license", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["sourceRoot", 29, 3], ["build-system", 31, 3], ["nativeCheckInputs", 35, 3], ["preCheck", 41, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pexpect = nix.thunk(() => nix.attr(from, "pexpect"));
   const repo = "lesspass";
   return nix.app(buildPythonApplication, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lesspass-cli",
       version: "9.1.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: repo,
           repo: repo,
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "mv lesspass lesspass.hidden  # ensure we're testing against *installed* package\n\n# some tests are designed to run against code in the source directory - adapt to run against\n# *installed* code\nsubstituteInPlace tests/test_functional.py tests/test_interaction.py \\\n  --replace-fail \"lesspass/core.py\" \"-m lesspass.core\"\n",
       pythonImportsCheck: nix.thunk(() => ["lesspass"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Stateless password manager",
         mainProgram: "lesspass",
         homepage: "https://lesspass.com",

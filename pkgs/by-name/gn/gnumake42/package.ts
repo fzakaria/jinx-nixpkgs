@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 56, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5], ["platforms", 61, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patchFlags", 21, 3], ["patches", 22, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["configureFlags", 36, 3], ["outputs", 38, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, guileSupport: true, "pkg-config": true, guile: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 56, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5], ["platforms", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patchFlags", 21, 3], ["patches", 22, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["configureFlags", 36, 3], ["outputs", 38, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const guile = nix.argOr($, "guile", () => null);
   nix.assert_((!nix.asBool(guileSupport) || nix.asBool((nix.asBool(!nix.eq(pkg_config, null)) && nix.asBool(!nix.eq(guile, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gn/gnumake42/package.nix:10:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gnumake",
       version: "4.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/make/make-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "12f5zzyq2w56g95nni65hc0g5p7154033y2f3qmjvd016szn5qnn",
         })))),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), guileSupport, "--with-guile")),
       outputs: nix.thunk(() => ["out", "man", "info"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to control the generation of non-source files from sources",
         longDescription: "Make is a tool which controls the generation of executables and\nother non-source files of a program from the program's source files.\n\nMake gets its knowledge of how to build your program from a file\ncalled the makefile, which lists each of the non-source files and\nhow to compute it from other files. When you write a program, you\nshould write a makefile for it, so that it is possible to use Make\nto build and install the program.\n",
         homepage: "https://www.gnu.org/software/make/",

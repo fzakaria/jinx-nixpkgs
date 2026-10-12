@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withCustomModes", 110, 44]], [["aarch64-linux", 189, 13], ["x86_64-linux", 190, 13]], [["amd64", 198, 13], ["arm64", 199, 13]], [["url", 195, 9], ["hash", 196, 9]], [["package", 303, 45]], [["version", 303, 13]], [["updateScript", 302, 7], ["tests", 303, 7]], [["pname", 182, 13], ["meta", 182, 19], ["version", 183, 5], ["src", 185, 5], ["strictDeps", 206, 5], ["nativeBuildInputs", 208, 5], ["buildInputs", 213, 5], ["unpackPhase", 223, 5], ["rpath", 230, 5], ["binpath", 231, 5], ["installPhase", 233, 5], ["postInstall", 297, 5], ["passthru", 301, 5]], [["url", 312, 7], ["hash", 313, 7]], [["package", 349, 45]], [["version", 349, 13]], [["updateScript", 348, 7], ["tests", 349, 7]], [["pname", 308, 13], ["meta", 308, 19], ["version", 309, 5], ["src", 311, 5], ["dontPatch", 316, 5], ["dontConfigure", 317, 5], ["dontBuild", 318, 5], ["dontFixup", 319, 5], ["nativeBuildInputs", 321, 5], ["sourceRoot", 326, 5], ["installPhase", 328, 5], ["postInstall", 343, 5], ["passthru", 347, 5]], [["description", 354, 5], ["homepage", 355, 5], ["license", 356, 5], ["maintainers", 357, 5], ["platforms", 361, 5], ["sourceProvenance", 365, 5], ["mainProgram", 366, 5]]]);
 const formals$1 = { args: { bintools: false, fetchurl: false, lib: false, makeWrapper: false, patchelf: false, stdenvNoCC: false, testers: false, "alsa-lib": false, "at-spi2-atk": false, "at-spi2-core": false, atk: false, cairo: false, cups: false, dbus: false, expat: false, fontconfig: false, freetype: false, "gcc-unwrapped": false, "gdk-pixbuf": false, glib: false, gtk3: false, gtk4: false, libdrm: false, libglvnd: false, libkrb5: false, libx11: false, libxcb: false, libxcomposite: false, libxcursor: false, libxdamage: false, libxext: false, libxfixes: false, libxi: false, libxkbcommon: false, libxrandr: false, libxrender: false, libxscrnsaver: false, libxshmfence: false, libxtst: false, libgbm: false, nspr: false, nss: false, pango: false, pipewire: false, "vulkan-loader": false, wayland: false, coreutils: false, commandLineArgs: true, systemd: false, libexif: false, pciutils: false, curl: false, liberation_ttf: false, "util-linux": false, wget: false, "xdg-utils": false, flac: false, harfbuzz: false, icu: false, libopus: false, libpng: false, snappy: false, "speechd-minimal": false, bzip2: false, libcap: false, libpulseaudio: false, pulseSupport: true, "adwaita-icon-theme": false, "gsettings-desktop-schemas": false, libva: false, libvaSupport: true, addDriverRunpath: false, undmg: false, plasmaSupport: true, qt6: false, kdePackages: false, withSymlink: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withCustomModes", 110, 44]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aarch64-linux", 189, 13], ["x86_64-linux", 190, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["amd64", 198, 13], ["arm64", 199, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 195, 9], ["hash", 196, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 303, 45]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 303, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 302, 7], ["tests", 303, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 182, 13], ["meta", 182, 19], ["version", 183, 5], ["src", 185, 5], ["strictDeps", 206, 5], ["nativeBuildInputs", 208, 5], ["buildInputs", 213, 5], ["unpackPhase", 223, 5], ["rpath", 230, 5], ["binpath", 231, 5], ["installPhase", 233, 5], ["postInstall", 297, 5], ["passthru", 301, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["url", 312, 7], ["hash", 313, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["package", 349, 45]]);
-const pos$11 = nix.positions(here + "/package.nix", [["version", 349, 13]]);
-const pos$12 = nix.positions(here + "/package.nix", [["updateScript", 348, 7], ["tests", 349, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 308, 13], ["meta", 308, 19], ["version", 309, 5], ["src", 311, 5], ["dontPatch", 316, 5], ["dontConfigure", 317, 5], ["dontBuild", 318, 5], ["dontFixup", 319, 5], ["nativeBuildInputs", 321, 5], ["sourceRoot", 326, 5], ["installPhase", 328, 5], ["postInstall", 343, 5], ["passthru", 347, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["description", 354, 5], ["homepage", 355, 5], ["license", 356, 5], ["maintainers", 357, 5], ["platforms", 361, 5], ["sourceProvenance", 365, 5], ["mainProgram", 366, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -98,7 +85,7 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const withSymlink = nix.argOr($, "withSymlink", () => true);
   const pname = "google-chrome";
-  const opusWithCustomModes = nix.thunk(() => nix.app(nix.sel(libopus, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCustomModes: true }))));
+  const opusWithCustomModes = nix.thunk(() => nix.app(nix.sel(libopus, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withCustomModes: true }))));
   const deps = nix.thunk(() => nix.concat([
     alsa_lib,
     at_spi2_atk,
@@ -161,17 +148,17 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(kdePackages, "breeze")),
     ])))))));
   const linux = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       meta: meta,
       version: "155.0.8059.39",
       src: nix.thunk(() => (() => {
-        const debArch = nix.thunk(() => nix.sel({ [nix.POS]: pos$2, "aarch64-linux": "arm64", "x86_64-linux": "amd64" }, nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
+        const debArch = nix.thunk(() => nix.sel({ [nix.POS]: $pos[1], "aarch64-linux": "arm64", "x86_64-linux": "amd64" }, nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: nix.thunk(() => nix.str`https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${nix.sel(finalAttrs, "version")}-1_${debArch}.deb`),
             hash: nix.thunk(() => nix.sel({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               amd64: "sha256-xYqg8s1mF5yfBQ4GLIgtJ6qbn4wrfHP+40mFYLXtCzg=",
               arm64: "sha256-NVZJRYCnHs7hXL6zts4jvzrzYLwFPZDTEFJBwiR9pSs=",
             }, nix.key(nix.force(debArch)))),
@@ -250,24 +237,24 @@ runHook postInstall
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withSymlink, "ln -s $out/bin/google-chrome-stable $out/bin/google-chrome\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
     })));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: pname,
       meta: meta,
       version: "155.0.8059.40",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           url: "https://dl.google.com/release2/chrome/lr7fpw3uxyyx5tnf7oone26c6m_155.0.8059.40/GoogleChrome-155.0.8059.40.dmg",
           hash: "sha256-AEwDm1wMe+PWH6UlTisJXDclN4rhmcZT8yS3D0rtiUw=",
         })))),
@@ -292,19 +279,19 @@ runHook postInstall
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withSymlink, "ln -s $out/bin/google-chrome-stable $out/bin/google-chrome\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
     })));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     description: "Freeware web browser developed by Google",
     homepage: "https://www.google.com/chrome/browser/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

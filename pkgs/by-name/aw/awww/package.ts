@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["buildInputs", 29, 3], ["doCheck", 36, 3], ["nativeBuildInputs", 38, 3], ["postInstall", 45, 3], ["postFixup", 58, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromCodeberg: false, rustPlatform: false, "pkg-config": false, lz4: false, libxkbcommon: false, installShellFiles: false, makeWrapper: false, procps: false, scdoc: false, "wayland-protocols": false, "wayland-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["buildInputs", 29, 3], ["doCheck", 36, 3], ["nativeBuildInputs", 38, 3], ["postInstall", 45, 3], ["postFixup", 58, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "awww",
       version: "0.12.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LGFae",
           repo: "awww",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Efficient animated wallpaper daemon for wayland, controlled at runtime",
         homepage: "https://codeberg.org/LGFae/awww",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

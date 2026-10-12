@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda_gdb.nix", [[["message", 56, 7], ["assertion", 57, 7]], [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 68, 5], ["changelog", 69, 5]], [["redistName", 16, 3], ["pname", 17, 3], ["outputs", 19, 3], ["allowFHSReferences", 24, 3], ["buildInputs", 26, 3], ["postInstall", 39, 3], ["brokenAssertions", 53, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { backendStdenv: false, buildRedist: false, cudaAtLeast: false, expat: false, gmp: false, lib: false, "libxcrypt-legacy": false, ncurses: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda_gdb.nix", [["message", 56, 7], ["assertion", 57, 7]]);
-const pos$2 = nix.positions(here + "/cuda_gdb.nix", [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 68, 5], ["changelog", 69, 5]]);
-const pos$3 = nix.positions(here + "/cuda_gdb.nix", [["redistName", 16, 3], ["pname", 17, 3], ["outputs", 19, 3], ["allowFHSReferences", 24, 3], ["buildInputs", 26, 3], ["postInstall", 39, 3], ["brokenAssertions", 53, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const python3MajorMinorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(python3, "version"))));
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       redistName: "cuda",
       pname: "cuda_gdb",
       outputs: nix.thunk(() => ["out", "bin"]),
@@ -39,10 +37,14 @@ unset -v pygdb
 popd >/dev/null
 `))),
       brokenAssertions: nix.thunk(() => [
-        nix.thunk(() => ({ [nix.POS]: pos$1, message: "python 3 version is supported", assertion: true })),
+        nix.thunk(() => ({
+          [nix.POS]: $pos[0],
+          message: "python 3 version is supported",
+          assertion: true,
+        })),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "NVIDIA tool for debugging CUDA applications on Linux and QNX systems",
         longDescription: "CUDA-GDB is the NVIDIA tool for debugging CUDA applications running on Linux and QNX. CUDA-GDB is an extension\nto GDB, the GNU Project debugger. The tool provides developers with a mechanism for debugging CUDA\napplications running on actual hardware.\n",
         homepage: "https://docs.nvidia.com/cuda/cuda-gdb",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ffmpeg.nix", [[["version", 8, 3], ["hash", 9, 3], ["withHardcodedTables", 11, 3], ["withHtmlDoc", 13, 3], ["withManPages", 14, 3], ["withPodDoc", 15, 3], ["withTxtDoc", 16, 3], ["withDocumentation", 17, 3]], [["patches", 22, 5], ["doCheck", 37, 5]]]);
 const formals$1 = { args: { lib: false, ffmpeg_6: false, alvr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ffmpeg.nix", [["version", 8, 3], ["hash", 9, 3], ["withHardcodedTables", 11, 3], ["withHtmlDoc", 13, 3], ["withManPages", 14, 3], ["withPodDoc", 15, 3], ["withTxtDoc", 16, 3], ["withDocumentation", 17, 3]]);
-const pos$2 = nix.positions(here + "/ffmpeg.nix", [["patches", 22, 5], ["doCheck", 37, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_6 = nix.arg($, "ffmpeg_6");
   const alvr = nix.arg($, "alvr");
   return nix.app(nix.sel(nix.app(nix.sel(ffmpeg_6, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "6.0",
       hash: "sha256-RVbgsafIbeUUNXmUbDQ03ZN42oaUo0njqROo7KOQgv0=",
       withHardcodedTables: false,
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       withTxtDoc: false,
       withDocumentation: false,
     }))), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "filter"), (p) => !nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), "texinfo-7.1.patch", nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.builtins.toString(p)))))), nix.thunk(() => nix.sel(old, "patches"))), [
         nix.thunk(() => nix.add(nix.sel(alvr, "src"), "/alvr/xtask/patches/0001-Add-AV_VAAPI_DRIVER_QUIRK_HEVC_ENCODER_ALIGN_64_16-f.patch")),
         nix.thunk(() => nix.add(nix.sel(alvr, "src"), "/alvr/xtask/patches/0001-av1-encode-backport.patch")),

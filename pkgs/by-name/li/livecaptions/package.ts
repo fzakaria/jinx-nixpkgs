@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]], [["name", 39, 5], ["url", 40, 5], ["hash", 41, 5]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["model", 38, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 54, 3], ["postUnpack", 61, 3], ["preFixup", 66, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, cmake: false, "appstream-glib": false, "desktop-file-utils": false, wrapGAppsHook4: false, onnxruntime: false, libadwaita: false, libpulseaudio: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 39, 5], ["url", 40, 5], ["hash", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["model", 38, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 54, 3], ["postUnpack", 61, 3], ["preFixup", 66, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const libx11 = nix.arg($, "libx11");
   const aprilAsr = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "april-asr",
       owner: "abb128",
       repo: "april-asr",
@@ -35,18 +31,18 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-/cOZ2EcZu/Br9v0ComxnOegcEtlC9e8FYt3XHfah7mE=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "livecaptions",
       version: "0.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "abb128",
           repo: "LiveCaptions",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-bLWJQgZopuQ0t2pexazUTj1+C2weRMrL3PUhIHZ0W5M=",
         })))),
       model: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "april-english-dev-01110_en.april",
           url: "https://april.sapples.net/april-english-dev-01110_en.april",
           hash: "sha256-d+uV0PpPdwijfoaMImUwHubELcsl5jymPuo9nLrbwfM=",
@@ -69,7 +65,7 @@ ln -s ${aprilAsr} source/subprojects/april-asr
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Linux Desktop application that provides live captioning",
         homepage: "https://github.com/abb128/LiveCaptions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

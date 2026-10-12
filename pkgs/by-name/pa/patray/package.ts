@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 14, 26], ["pname", 14, 34], ["hash", 15, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patchPhase", 18, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["doCheck", 33, 3], ["nativeBuildInputs", 35, 3], ["postFixup", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, python312: false, fetchPypi: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 14, 26], ["pname", 14, 34], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patchPhase", 18, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["doCheck", 33, 3], ["nativeBuildInputs", 35, 3], ["postFixup", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(python312, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "patray",
       version: "0.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           hash: "sha256-O8CBUexL2V1qI7bB/Lns3yjUvFOpC6spd/6asXa5+pw=",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapQtApp $out/bin/patray --prefix QT_PLUGIN_PATH : ${nix.sel(qt5, "qtbase")}/${nix.sel(qt5, "qtbase", "qtPluginPrefix")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Yet another tray pulseaudio frontend",
         homepage: "https://github.com/pohmelie/patray",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

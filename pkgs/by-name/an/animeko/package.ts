@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 92, 7], ["repo", 93, 7], ["tag", 94, 7], ["hash", 95, 7]], [["name", 106, 9], ["url", 107, 9], ["hash", 108, 9]], [["version", 89, 5], ["src", 91, 5], ["cmakeFlags", 98, 5], ["patches", 102, 5]], [["owner", 119, 5], ["repo", 120, 5], ["tag", 121, 5], ["hash", 122, 5], ["fetchSubmodules", 123, 5]], [["pname", 137, 26], ["pkg", 138, 5], ["data", 139, 5], ["silent", 140, 5], ["useBwrap", 141, 5]], [["JAVA_HOME", 145, 5], ["ANDROID_SDK_HOME", 146, 5]], [["updateScript", 265, 12]], [["description", 271, 5], ["homepage", 272, 5], ["mainProgram", 273, 5], ["license", 274, 5], ["maintainers", 275, 5], ["sourceProvenance", 278, 5], ["platforms", 282, 5], ["broken", 287, 5]], [["pname", 115, 3], ["version", 116, 3], ["src", 118, 3], ["postPatch", 126, 3], ["gradleBuildTask", 132, 3], ["gradleUpdateTask", 134, 3], ["mitmCache", 136, 3], ["env", 144, 3], ["gradleFlags", 149, 3], ["nativeBuildInputs", 153, 3], ["buildInputs", 158, 3], ["patches", 237, 3], ["dontWrapQtApps", 242, 3], ["doCheck", 244, 3], ["installPhase", 246, 3], ["preFixup", 259, 3], ["passthru", 265, 3], ["meta", 270, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, gradle: false, autoPatchelfHook: false, jetbrains: false, fontconfig: false, libxinerama: false, libxrandr: false, file: false, gtk3: false, glib: false, cups: false, lcms2: false, "alsa-lib": false, libvlc: false, libidn: false, pulseaudio: false, ffmpeg: false, libva: false, libdvbpsi: false, libogg: false, chromaprint: false, protobuf_21: false, libgcrypt: false, libdvdnav: false, libsecret: false, aribb24: false, libavc1394: false, libmpcdec: false, libvorbis: false, libebml: false, faad2: false, libjpeg8: false, libkate: false, librsvg: false, libxpm: false, qt5: false, libupnp: false, aalib: false, libcaca: false, libmatroska: false, "libopenmpt-modplug": false, libsidplayfp: false, shine: false, libarchive: false, gnupg: false, srt: false, libshout: false, ffmpeg_6: false, libmpeg2: false, "libxcb-keysyms": false, lirc: false, lua5_2: false, taglib: false, libspatialaudio: false, libmtp: false, speexdsp: false, libsamplerate: false, sox: false, libmad: false, libnotify: false, taglib_1: false, zvbi: false, libdc1394: false, libcddb: false, libbluray: false, libdvdread: false, libvncserver: false, twolame: false, samba: false, libnfs: false, flac: false, writeShellScript: false, "nix-update": false, libxml2: false, boost: false, thrift: false, libGL: false, libx11: false, libxdamage: false, nss: false, nspr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 92, 7], ["repo", 93, 7], ["tag", 94, 7], ["hash", 95, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 106, 9], ["url", 107, 9], ["hash", 108, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 89, 5], ["src", 91, 5], ["cmakeFlags", 98, 5], ["patches", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 119, 5], ["repo", 120, 5], ["tag", 121, 5], ["hash", 122, 5], ["fetchSubmodules", 123, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 137, 26], ["pkg", 138, 5], ["data", 139, 5], ["silent", 140, 5], ["useBwrap", 141, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["JAVA_HOME", 145, 5], ["ANDROID_SDK_HOME", 146, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 265, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 271, 5], ["homepage", 272, 5], ["mainProgram", 273, 5], ["license", 274, 5], ["maintainers", 275, 5], ["sourceProvenance", 278, 5], ["platforms", 282, 5], ["broken", 287, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 115, 3], ["version", 116, 3], ["src", 118, 3], ["postPatch", 126, 3], ["gradleBuildTask", 132, 3], ["gradleUpdateTask", 134, 3], ["mitmCache", 136, 3], ["env", 144, 3], ["gradleFlags", 149, 3], ["nativeBuildInputs", 153, 3], ["buildInputs", 158, 3], ["patches", 237, 3], ["dontWrapQtApps", 242, 3], ["doCheck", 244, 3], ["installPhase", 246, 3], ["preFixup", 259, 3], ["passthru", 265, 3], ["meta", 270, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -100,10 +92,10 @@ export default nix.lambda((args) => (() => {
   const nss = nix.arg($, "nss");
   const nspr = nix.arg($, "nspr");
   const thrift20 = nix.thunk(() => nix.app(nix.sel(thrift, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "thrift",
           tag: "v0.20.0",
@@ -112,7 +104,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "cmakeFlags"), ["-DCMAKE_POLICY_VERSION_MINIMUM=3.10"])),
       patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "thrift-add-missing-cstdint-include-gcc15.patch",
             url: "https://github.com/apache/thrift/commit/947ad66940cfbadd9b24ba31d892dfc1142dd330.patch",
             hash: "sha256-pWcG6/BepUwc/K6cBs+6d74AWIhZ2/wXvCunb/KyB0s=",
@@ -120,11 +112,11 @@ export default nix.lambda((args) => (() => {
       ])),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "animeko",
       version: "5.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "open-ani",
           repo: "animeko",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -138,7 +130,7 @@ sed -i "s/^package.version=.*/package.version=${nix.sel(finalAttrs, "version")}/
       gradleBuildTask: "createReleaseDistributable",
       gradleUpdateTask: nix.thunk(() => nix.sel(finalAttrs, "gradleBuildTask")),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           pkg: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           data: nix.path(here, "./deps.json"),
@@ -146,7 +138,7 @@ sed -i "s/^package.version=.*/package.version=${nix.sel(finalAttrs, "version")}/
           useBwrap: false,
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         JAVA_HOME: nix.thunk(() => nix.sel(jetbrains, "jdk-21")),
         ANDROID_SDK_HOME: "$(pwd)",
       })),
@@ -241,13 +233,13 @@ rm -r $out/lib/app/resources/lib
 ln -sf ${libvlc}/lib $out/lib/app/resources/
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-animeko", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} animeko
 $(nix-build -A animeko.mitmCache.updateScript)
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "One-stop platform for finding, following and watching anime",
         homepage: "https://github.com/open-ani/animeko",
         mainProgram: "Ani",

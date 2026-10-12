@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["withGrass", 19, 13], ["withServer", 19, 23]], [["qgis", 65, 11]], [["unwrapped", 64, 5], ["tests", 65, 5], ["updateScript", 66, 5]], [["version", 24, 28], ["outputs", 24, 36], ["pname", 25, 3], ["paths", 27, 3], ["nativeBuildInputs", 29, 3], ["pythonInputs", 35, 3], ["postBuild", 37, 3], ["passthru", 63, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, nixosTests: false, symlinkJoin: false, extraPythonPackages: true, qt6Packages: false, withGrass: true, withServer: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["withGrass", 19, 13], ["withServer", 19, 23]]);
-const pos$2 = nix.positions(here + "/default.nix", [["qgis", 65, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["unwrapped", 64, 5], ["tests", 65, 5], ["updateScript", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 24, 28], ["outputs", 24, 36], ["pname", 25, 3], ["paths", 27, 3], ["nativeBuildInputs", 29, 3], ["pythonInputs", 35, 3], ["postBuild", 37, 3], ["passthru", 63, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,9 +16,9 @@ export default nix.lambda((args) => (() => {
   const qt6Packages = nix.arg($, "qt6Packages");
   const withGrass = nix.argOr($, "withGrass", () => false);
   const withServer = nix.argOr($, "withServer", () => false);
-  const qgis_unwrapped = nix.thunk(() => nix.app(nix.sel(qt6Packages, "callPackage"), nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, withGrass: withGrass, withServer: withServer }))));
+  const qgis_unwrapped = nix.thunk(() => nix.app(nix.sel(qt6Packages, "callPackage"), nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], withGrass: withGrass, withServer: withServer }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: nix.thunk(() => nix.attr(qgis_unwrapped, "version")),
       outputs: nix.thunk(() => nix.attr(qgis_unwrapped, "outputs")),
       pname: "qgis",
@@ -52,9 +49,9 @@ done
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.str`ln -s ${nix.sel(qgis_unwrapped, "man")} $man
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         unwrapped: qgis_unwrapped,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, qgis: nix.thunk(() => nix.sel(nixosTests, "qgis")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], qgis: nix.thunk(() => nix.sel(nixosTests, "qgis")) })),
         updateScript: nix.thunk(() => [nix.path(here, "./update.sh"), "qgis"]),
       })),
       meta: nix.thunk(() => nix.sel(qgis_unwrapped, "meta")),

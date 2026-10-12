@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["platforms", 41, 5]], [["pname", 14, 3], ["version", 15, 20], ["src", 17, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 29, 3], ["postInstall", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, xapian: false, perl: false, pcre2: false, zlib: false, libmagic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 20], ["src", 17, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 29, 3], ["postInstall", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xapian-omega";
       const version = nix.thunk(() => nix.attr(xapian, "version"));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://oligarchy.co.uk/xapian/${version}/xapian-omega-${version}.tar.xz`),
           hash: "sha256-p9+2CN2LPqU93oUjbUdXloJgacTRJhieozp5M0myMXo=",
         }))));
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const postInstall = "mkdir -p $out/share/omega\ncp -r templates $out/share/omega\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Indexer and CGI search front-end built on Xapian library",
         homepage: "https://xapian.org/",
         changelog: nix.thunk(() => nix.str`https://xapian.org/docs/xapian-omega-${version}/NEWS`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

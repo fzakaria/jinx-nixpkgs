@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["pnpm", 42, 13], ["pname", 44, 7], ["version", 45, 7], ["src", 46, 7], ["fetcherVersion", 48, 5], ["hash", 49, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 52, 7]], [["name", 128, 7], ["desktopName", 129, 7], ["comment", 130, 7], ["icon", 131, 7], ["exec", 132, 7], ["categories", 133, 7], ["mimeTypes", 139, 7]], [["caddy", 148, 36], ["nginx", 148, 42]], [["updateScript", 144, 5], ["tests", 147, 5]], [["description", 153, 5], ["homepage", 154, 5], ["changelog", 155, 5], ["sourceProvenance", 156, 5], ["license", 157, 5], ["platforms", 158, 5], ["maintainers", 159, 5]], [["mainProgram", 165, 40]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["__structuredAttrs", 35, 3], ["npmConfigHook", 37, 3], ["npmBuildScript", 38, 3], ["npmDeps", 40, 3], ["pnpmDeps", 41, 3], ["env", 52, 3], ["nativeBuildInputs", 54, 3], ["postPatch", 63, 3], ["postBuild", 69, 3], ["installPhase", 81, 3], ["desktopItems", 126, 3], ["passthru", 143, 3], ["meta", 152, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, electron_43: false, "mpv-unwrapped": false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_11: false, darwin: false, actool: false, copyDesktopItems: false, makeDesktopItem: false, "nix-update-script": false, webVersion: true, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pnpm", 42, 13], ["pname", 44, 7], ["version", 45, 7], ["src", 46, 7], ["fetcherVersion", 48, 5], ["hash", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 52, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 128, 7], ["desktopName", 129, 7], ["comment", 130, 7], ["icon", 131, 7], ["exec", 132, 7], ["categories", 133, 7], ["mimeTypes", 139, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["caddy", 148, 36], ["nginx", 148, 42]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 144, 5], ["tests", 147, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 153, 5], ["homepage", 154, 5], ["changelog", 155, 5], ["sourceProvenance", 156, 5], ["license", 157, 5], ["platforms", 158, 5], ["maintainers", 159, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["mainProgram", 165, 40]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["__structuredAttrs", 35, 3], ["npmConfigHook", 37, 3], ["npmBuildScript", 38, 3], ["npmDeps", 40, 3], ["pnpmDeps", 41, 3], ["env", 52, 3], ["nativeBuildInputs", 54, 3], ["postPatch", 63, 3], ["postBuild", 69, 3], ["installPhase", 81, 3], ["desktopItems", 126, 3], ["passthru", 143, 3], ["meta", 152, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const electron = electron_43;
   const pnpm = pnpm_11;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "feishin",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jeffvli",
           repo: "feishin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +41,7 @@ export default nix.lambda((args) => (() => {
       npmBuildScript: nix.thunk(() => (nix.asBool(webVersion) ? "build:web" : "build")),
       npmDeps: null,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pnpm: pnpm,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -57,7 +49,7 @@ export default nix.lambda((args) => (() => {
           fetcherVersion: 4n,
           hash: "sha256-ltpz4e5Vv2vxt/93M4+vHUFJZjwTRwb2zrwvl1Lqjo8=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       nativeBuildInputs: nix.thunk(() => nix.concat([pnpm], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(webVersion)))), nix.thunk(() => [copyDesktopItems])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(!nix.asBool(webVersion)))), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook")), actool]))))),
       postPatch: "# release/app dependencies are installed on preConfigure\nsubstituteInPlace package.json \\\n  --replace-fail '\"postinstall\": \"install-electron && electron-builder install-app-deps\",' \"\"\n",
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(webVersion)), nix.thunk(() => nix.str`cp -r ${nix.sel(electron, "dist")} electron-dist
@@ -103,7 +95,7 @@ done
 `))), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(webVersion)), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "feishin",
               desktopName: "Feishin",
               comment: "Full-featured Jellyfin, Navidrome, and OpenSubsonic Compatible Music Player",
@@ -114,19 +106,19 @@ done
             })))),
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "feishin"));
           return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           caddy: nix.thunk(() => nix.attr(from, "caddy")),
           nginx: nix.thunk(() => nix.attr(from, "nginx")),
         };
         })()),
       })),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Full-featured Jellyfin, Navidrome, and OpenSubsonic Compatible Music Player",
         homepage: "https://github.com/jeffvli/feishin",
         changelog: nix.thunk(() => nix.str`https://github.com/jeffvli/feishin/releases/tag/v${nix.sel(finalAttrs, "version")}`),
@@ -144,7 +136,7 @@ done
             nix.thunk(() => nix.lookup(w_1, "jlbribeiro")),
           ];
         })()),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(webVersion)), nix.thunk(() => ({ [nix.POS]: pos$8, mainProgram: "feishin" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(webVersion)), nix.thunk(() => ({ [nix.POS]: $pos[7], mainProgram: "feishin" }))))),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

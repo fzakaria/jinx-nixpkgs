@@ -2,39 +2,20 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lxd-image-server.nix", [[["enable", 7, 21]], [["documentation", 7, 7]], [["configuration", 5, 5]], [["maintainers", 24, 5]], [["enable", 39, 15]], [["cores", 34, 9], ["memorySize", 36, 9], ["diskSize", 37, 9], ["incus", 39, 9]], [["enable", 43, 27]], [["::1", 68, 9]], [["nftables", 43, 18], ["hosts", 67, 18]], [["certificates", 45, 20]], [["pki", 45, 16]], [["enableACME", 62, 9], ["sslCertificate", 63, 9], ["sslCertificateKey", 64, 9]], [["acme.test", 61, 35]], [["enable", 50, 9], ["virtualHosts", 61, 22]], [["enable", 56, 11], ["domain", 57, 11]], [["enable", 54, 9], ["nginx", 55, 9]], [["nginx", 49, 16], ["lxd-image-server", 53, 16]], [["virtualisation", 33, 7], ["networking", 43, 7], ["security", 45, 7], ["services", 49, 7]], [["machine", 30, 9]], [["name", 21, 3], ["meta", 23, 3], ["nodes", 30, 3], ["testScript", 72, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lxd-image-server.nix", [["enable", 7, 21]]);
-const pos$2 = nix.positions(here + "/lxd-image-server.nix", [["documentation", 7, 7]]);
-const pos$3 = nix.positions(here + "/lxd-image-server.nix", [["configuration", 5, 5]]);
-const pos$4 = nix.positions(here + "/lxd-image-server.nix", [["maintainers", 24, 5]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/lxd-image-server.nix", [["enable", 39, 15]]);
-const pos$6 = nix.positions(here + "/lxd-image-server.nix", [["cores", 34, 9], ["memorySize", 36, 9], ["diskSize", 37, 9], ["incus", 39, 9]]);
-const pos$7 = nix.positions(here + "/lxd-image-server.nix", [["enable", 43, 27]]);
-const pos$8 = nix.positions(here + "/lxd-image-server.nix", [["::1", 68, 9]]);
-const pos$9 = nix.positions(here + "/lxd-image-server.nix", [["nftables", 43, 18], ["hosts", 67, 18]]);
-const pos$10 = nix.positions(here + "/lxd-image-server.nix", [["certificates", 45, 20]]);
-const pos$11 = nix.positions(here + "/lxd-image-server.nix", [["pki", 45, 16]]);
-const pos$12 = nix.positions(here + "/lxd-image-server.nix", [["enableACME", 62, 9], ["sslCertificate", 63, 9], ["sslCertificateKey", 64, 9]]);
-const pos$13 = nix.positions(here + "/lxd-image-server.nix", [["acme.test", 61, 35]]);
-const pos$14 = nix.positions(here + "/lxd-image-server.nix", [["enable", 50, 9], ["virtualHosts", 61, 22]]);
-const pos$15 = nix.positions(here + "/lxd-image-server.nix", [["enable", 56, 11], ["domain", 57, 11]]);
-const pos$16 = nix.positions(here + "/lxd-image-server.nix", [["enable", 54, 9], ["nginx", 55, 9]]);
-const pos$17 = nix.positions(here + "/lxd-image-server.nix", [["nginx", 49, 16], ["lxd-image-server", 53, 16]]);
-const pos$18 = nix.positions(here + "/lxd-image-server.nix", [["virtualisation", 33, 7], ["networking", 43, 7], ["security", 45, 7], ["services", 49, 7]]);
-const pos$19 = nix.positions(here + "/lxd-image-server.nix", [["machine", 30, 9]]);
-const pos$20 = nix.positions(here + "/lxd-image-server.nix", [["name", 21, 3], ["meta", 23, 3], ["nodes", 30, 3], ["testScript", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const incus_image = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../release.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       configuration: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         documentation: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
         })),
       })),
@@ -42,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const incus_image_metadata = nix.thunk(() => nix.add(nix.sel(incus_image, "incusContainerMeta", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))), nix.str`/tarball/nixos-image-lxc-*-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}.tar.xz`));
   const incus_image_rootfs = nix.thunk(() => nix.add(nix.sel(incus_image, "incusContainerImage", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))), nix.str`/nixos-lxc-image-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}.squashfs`));
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     name: "lxd-image-server",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "mkg20001")),
           nix.thunk(() => nix.lookup(w, "patryk27")),
@@ -55,42 +36,42 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             cores: 2n,
             memorySize: 2048n,
             diskSize: 4096n,
-            incus: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+            incus: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            nftables: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
-            hosts: nix.thunk(() => ({ [nix.POS]: pos$8, "::1": nix.thunk(() => ["acme.test"]) })),
+            [nix.POS]: $pos[8],
+            nftables: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
+            hosts: nix.thunk(() => ({ [nix.POS]: $pos[7], "::1": nix.thunk(() => ["acme.test"]) })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               certificates: nix.thunk(() => [
                 nix.thunk(() => nix.builtins.readFile(nix.path(here, "./common/acme/server/ca.cert.pem"))),
               ]),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 "acme.test": nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   enableACME: false,
                   sslCertificate: nix.path(here, "./common/acme/server/acme.test.cert.pem"),
                   sslCertificateKey: nix.path(here, "./common/acme/server/acme.test.key.pem"),
@@ -98,9 +79,9 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "lxd-image-server": nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               enable: true,
-              nginx: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true, domain: "acme.test" })),
+              nginx: nix.thunk(() => ({ [nix.POS]: $pos[14], enable: true, domain: "acme.test" })),
             })),
           })),
         };

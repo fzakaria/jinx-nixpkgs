@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["extraArgs", 38, 5]], [["updateScript", 37, 12]], [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["passthru", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, rename: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 37, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["passthru", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rename = nix.arg($, "rename");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cinzel",
       version: "0-unstable-2020-07-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NDISCOVER",
           repo: "Cinzel",
           rev: "dd598495b0fb2ad84270d5cc75d642d2f1e8eabf",
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [rename]),
       installPhase: "runHook preInstall\n\nrename 's/\\[wght\\]//g' \"\" fonts/variable/*\ninstall -Dm644 fonts/ttf/*.ttf -t $out/share/fonts/truetype\ninstall -Dm644 fonts/variable/*.ttf -t $variable/share/fonts/truetype\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/NDISCOVER/Cinzel",
         description: "Typeface inspired in First Century Roman Inscriptions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

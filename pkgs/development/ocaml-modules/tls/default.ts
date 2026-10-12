@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 27, 5], ["hash", 28, 5]], [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 47, 3], ["checkInputs", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, digestif: false, "domain-name": false, fmt: false, logs: false, kdf: false, "mirage-crypto": false, "mirage-crypto-ec": false, "mirage-crypto-pk": false, "mirage-crypto-rng": false, ohex: false, ptime: false, x509: false, ipaddr: false, alcotest: false, ounit2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 47, 3], ["checkInputs", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tls",
       version: "2.1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirleft/ocaml-tls/releases/download/v${nix.sel(finalAttrs, "version")}/tls-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-kNBOBvogamm10TewF+URwUG5WeXHkp58uKFRVTIkej8=",
         })))),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, ounit2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mirleft/ocaml-tls",
         description: "TLS in pure OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

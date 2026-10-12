@@ -2,63 +2,50 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dendrite.nix", [[["buildInputs", 6, 5]], [["server_name", 21, 20], ["private_key", 22, 20]], [["registration_disabled", 23, 24]], [["global", 21, 13], ["client_api", 23, 13]], [["enable", 17, 11], ["loadCredential", 18, 11], ["openRegistration", 19, 11], ["settings", 20, 11]], [["dendrite", 16, 18]], [["allowedTCPPorts", 27, 29]], [["firewall", 27, 20]], [["services", 16, 9], ["networking", 27, 9]], [["libraries", 34, 53]], [["systemPackages", 33, 21]], [["environment", 33, 9]], [["homeserver", 13, 5], ["client", 30, 5]], [["name", 10, 3], ["nodes", 12, 3], ["testScript", 86, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/dendrite.nix", [["buildInputs", 6, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/dendrite.nix", [["server_name", 21, 20], ["private_key", 22, 20]]);
-const pos$3 = nix.positions(here + "/dendrite.nix", [["registration_disabled", 23, 24]]);
-const pos$4 = nix.positions(here + "/dendrite.nix", [["global", 21, 13], ["client_api", 23, 13]]);
-const pos$5 = nix.positions(here + "/dendrite.nix", [["enable", 17, 11], ["loadCredential", 18, 11], ["openRegistration", 19, 11], ["settings", 20, 11]]);
-const pos$6 = nix.positions(here + "/dendrite.nix", [["dendrite", 16, 18]]);
-const pos$7 = nix.positions(here + "/dendrite.nix", [["allowedTCPPorts", 27, 29]]);
-const pos$8 = nix.positions(here + "/dendrite.nix", [["firewall", 27, 20]]);
-const pos$9 = nix.positions(here + "/dendrite.nix", [["services", 16, 9], ["networking", 27, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/dendrite.nix", [["libraries", 34, 53]]);
-const pos$11 = nix.positions(here + "/dendrite.nix", [["systemPackages", 33, 21]]);
-const pos$12 = nix.positions(here + "/dendrite.nix", [["environment", 33, 9]]);
-const pos$13 = nix.positions(here + "/dendrite.nix", [["homeserver", 13, 5], ["client", 30, 5]]);
-const pos$14 = nix.positions(here + "/dendrite.nix", [["name", 10, 3], ["nodes", 12, 3], ["testScript", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const homeserverUrl = "http://homeserver:8008";
   const private_key = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "matrix_key.pem", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dendrite"))]),
     })), "generate-keys --private-key $out"));
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "dendrite",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       homeserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             dendrite: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               loadCredential: nix.thunk(() => [nix.thunk(() => nix.str`test_private_key:${private_key}`)]),
               openRegistration: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 global: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   server_name: "test-dendrite-server.com",
                   private_key: "$CREDENTIALS_DIRECTORY/test_private_key",
                 })),
-                client_api: nix.thunk(() => ({ [nix.POS]: pos$3, registration_disabled: false })),
+                client_api: nix.thunk(() => ({ [nix.POS]: $pos[2], registration_disabled: false })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$7, allowedTCPPorts: nix.thunk(() => [8008n]) })),
+            [nix.POS]: $pos[7],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[6], allowedTCPPorts: nix.thunk(() => [8008n]) })),
           })),
         };
       })(), formals$2),
@@ -66,12 +53,12 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "do_test", nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "matrix-nio"))]),
                 })), "import asyncio\n\nfrom nio import AsyncClient\n\n\nasync def main() -> None:\n    # Connect to dendrite\n    client = AsyncClient(\"http://homeserver:8008\", \"alice\")\n\n    # Register as user alice\n    response = await client.register(\"alice\", \"my-secret-password\")\n\n    # Log in as user alice\n    response = await client.login(\"my-secret-password\")\n\n    # Create a new room\n    response = await client.room_create(federate=False)\n    room_id = response.room_id\n\n    # Join the room\n    response = await client.join(room_id)\n\n    # Send a message to the room\n    response = await client.room_send(\n        room_id=room_id,\n        message_type=\"m.room.message\",\n        content={\n            \"msgtype\": \"m.text\",\n            \"body\": \"Hello world!\"\n        }\n    )\n\n    # Sync responses\n    response = await client.sync(timeout=30000)\n\n    # Check the message was received by dendrite\n    last_message = response.rooms.join[room_id].timeline.events[-1].body\n    assert last_message == \"Hello world!\"\n\n    # Leave the room\n    response = await client.room_leave(room_id)\n\n    # Close the client\n    await client.close()\n\nasyncio.run(main())\n")),
             ]),

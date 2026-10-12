@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["homepage", 20, 5], ["description", 21, 5], ["platforms", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["mainProgram", 25, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["cargoHash", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromCodeberg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 20, 5], ["description", 21, 5], ["platforms", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["mainProgram", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["cargoHash", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "inhibridge",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Scrumplex",
           repo: "inhibridge",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-bW0+oZJO4JFgDuLl5f7iVorSyN/ro+BRSTX0j15Oqb4=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://codeberg.org/Scrumplex/inhibridge",
         description: "Simple daemon that bridges freedesktop.org ScreenSaver inhibitions to systemd-inhibit",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

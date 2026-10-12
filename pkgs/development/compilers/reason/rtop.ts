@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rtop.nix", [[["description", 31, 5], ["mainProgram", 32, 5]], [["pname", 10, 3], ["version", 11, 20], ["src", 11, 28], ["nativeBuildInputs", 13, 3], ["propagatedBuildInputs", 18, 3], ["postInstall", 23, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, reason: false, cppo: false, utop: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rtop.nix", [["description", 31, 5], ["mainProgram", 32, 5]]);
-const pos$2 = nix.positions(here + "/rtop.nix", [["pname", 10, 3], ["version", 11, 20], ["src", 11, 28], ["nativeBuildInputs", 13, 3], ["propagatedBuildInputs", 18, 3], ["postInstall", 23, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const utop = nix.arg($, "utop");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "rtop",
       version: nix.thunk(() => nix.attr(reason, "version")),
       src: nix.thunk(() => nix.attr(reason, "src")),
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
   --prefix OCAMLPATH : "$OCAMLPATH:$OCAMLFIND_DESTDIR"
 `),
       meta: nix.thunk(() => nix.update(nix.sel(reason, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Toplevel (or REPL) for Reason, based on utop",
         mainProgram: "rtop",
       })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["doCheck", 20, 3], ["checkTarget", 21, 3], ["preCheck", 22, 3], ["postCheck", 27, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 31, 3], ["preConfigure", 33, 3], ["makeFlags", 41, 3], ["enableParallelBuilding", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libpng: false, docSupport: true, doxygen: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["doCheck", 20, 3], ["checkTarget", 21, 3], ["preCheck", 22, 3], ["postCheck", 27, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 31, 3], ["preConfigure", 33, 3], ["makeFlags", 41, 3], ["enableParallelBuilding", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const doxygen = nix.argOr($, "doxygen", () => null);
   nix.assert_((!nix.asBool(docSupport) || nix.asBool(!nix.eq(doxygen, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pn/pngpp/package.nix:9:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pngpp",
       version: "0.2.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/pngpp/png++-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1qgf8j25r57wjqlnzdkm8ya5x1bmj6xjvapv8f2visqnmcbg52lr",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), docSupport, "docs")),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.nongnu.org/pngpp/",
         description: "C++ wrapper for libpng library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

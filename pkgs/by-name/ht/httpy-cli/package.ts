@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 14, 13], ["pname", 15, 5], ["hash", 16, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 19, 3], ["build-system", 26, 3], ["pythonImportsCheck", 30, 3], ["nativeCheckInputs", 34, 3], ["checkPhase", 39, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 14, 13], ["pname", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 19, 3], ["build-system", 26, 3], ["pythonImportsCheck", 30, 3], ["nativeCheckInputs", 34, 3], ["checkPhase", 39, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "httpy-cli",
           hash: "sha256-uhF/jF4buHMDiXOuuqjskynioz4qVBevQhdcUbH+91Q=",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "pytest")), curl]);
       const checkPhase = "runHook preCheck\necho \"line1\\nline2\\nline3\" > tests/test_file.txt\n# ignore the test_args according to pytest.ini in the repo\npytest tests/ --ignore=tests/test_args.py\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modern, user-friendly, programmable command-line HTTP client for the API",
         homepage: "https://github.com/knid/httpy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

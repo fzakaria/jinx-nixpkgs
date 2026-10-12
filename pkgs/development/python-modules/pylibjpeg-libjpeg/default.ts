@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 7], ["repo", 24, 7], ["tag", 25, 7], ["hash", 26, 7]], [["doCheck", 55, 7]], [["check", 54, 20]], [["tests", 54, 14]], [["description", 61, 7], ["homepage", 62, 7], ["changelog", 63, 7], ["license", 64, 7], ["maintainers", 65, 7]], [["pname", 18, 5], ["version", 19, 5], ["pyproject", 20, 5], ["src", 22, 5], ["postPatch", 29, 5], ["build-system", 37, 5], ["dependencies", 43, 5], ["nativeCheckInputs", 45, 5], ["doCheck", 52, 5], ["passthru", 54, 5], ["pythonImportsCheck", 58, 5], ["meta", 60, 5]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, cython: false, "poetry-core": false, setuptools: false, numpy: false, pydicom: false, "pylibjpeg-data": false, pylibjpeg: false, "libjpeg-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 7], ["repo", 24, 7], ["tag", 25, 7], ["hash", 26, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 55, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["check", 54, 20]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 54, 14]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 61, 7], ["homepage", 62, 7], ["changelog", 63, 7], ["license", 64, 7], ["maintainers", 65, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 5], ["pyproject", 20, 5], ["src", 22, 5], ["postPatch", 29, 5], ["build-system", 37, 5], ["dependencies", 43, 5], ["nativeCheckInputs", 45, 5], ["doCheck", 52, 5], ["passthru", 54, 5], ["pythonImportsCheck", 58, 5], ["meta", 60, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pylibjpeg = nix.arg($, "pylibjpeg");
   const libjpeg_tools = nix.arg($, "libjpeg-tools");
   const self = nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pylibjpeg-libjpeg",
       version: "2.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pydicom",
           repo: "pylibjpeg-libjpeg",
           tag: nix.thunk(() => nix.str`v${nix.sel(self, "version")}`),
@@ -47,15 +42,15 @@ chmod u+w lib/libjpeg
       nativeCheckInputs: nix.thunk(() => [pydicom, pylibjpeg_data, pylibjpeg, pytestCheckHook]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          check: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
+          [nix.POS]: $pos[2],
+          check: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), (_) => ({ [nix.POS]: $pos[1], doCheck: true }))),
         })),
       })),
       pythonImportsCheck: nix.thunk(() => ["libjpeg"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "JPEG, JPEG-LS and JPEG XT plugin for pylibjpeg",
         homepage: "https://github.com/pydicom/pylibjpeg-libjpeg",
         changelog: nix.thunk(() => nix.str`https://github.com/pydicom/pylibjpeg-libjpeg/releases/tag/v${nix.sel(self, "version")}`),

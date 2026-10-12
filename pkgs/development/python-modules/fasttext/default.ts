@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]], [["pname", 10, 27], ["version", 10, 33], ["src", 10, 41], ["format", 12, 3], ["buildInputs", 14, 3], ["pythonImportsCheck", 16, 3], ["propagatedBuildInputs", 18, 3], ["preBuild", 20, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, numpy: false, pkgs: false, pybind11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 27], ["version", 10, 33], ["src", 10, 41], ["format", 12, 3], ["buildInputs", 14, 3], ["pythonImportsCheck", 16, 3], ["propagatedBuildInputs", 18, 3], ["preBuild", 20, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "fasttext"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [numpy]),
       preBuild: "HOME=$TMPDIR\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python module for text classification and representation learning",
         homepage: "https://fasttext.cc/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

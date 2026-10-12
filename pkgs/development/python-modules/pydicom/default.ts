@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["pixeldata", 49, 5]], [["doCheck", 75, 5]], [["pytest", 74, 18]], [["pydicom-data", 70, 12], ["tests", 74, 12]], [["description", 110, 5], ["mainProgram", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["optional-dependencies", 48, 3], ["nativeCheckInputs", 60, 3], ["stripExclude", 69, 3], ["passthru", 70, 3], ["doCheck", 72, 3], ["preCheck", 81, 3], ["disabledTests", 86, 3], ["pythonImportsCheck", 107, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, numpy: false, pytestCheckHook: false, gdcm: false, pillow: false, pydicom: false, pyjpegls: false, pylibjpeg: false, "pylibjpeg-libjpeg": false, pyfakefs: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pixeldata", 49, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["doCheck", 75, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pytest", 74, 18]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pydicom-data", 70, 12], ["tests", 74, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 110, 5], ["mainProgram", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["optional-dependencies", 48, 3], ["nativeCheckInputs", 60, 3], ["stripExclude", 69, 3], ["passthru", 70, 3], ["doCheck", 72, 3], ["preCheck", 81, 3], ["disabledTests", 86, 3], ["pythonImportsCheck", 107, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const pyfakefs = nix.arg($, "pyfakefs");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const test_data = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "pydicom",
       repo: "pydicom-data",
       rev: "8da482f208401d63cd63f3f4efc41b6856ef36c7",
       hash: "sha256-ji7SppKdiszaXs8yCSIPkJj4Ld++XWNw9FuxLoFLfFo=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "pydicom",
       version: "3.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "pydicom",
           repo: "pydicom",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,17 +44,17 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => [numpy]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pixeldata: nix.thunk(() => nix.concat([pillow, pyjpegls, pylibjpeg, pylibjpeg_libjpeg, gdcm], nix.concat(nix.sel(pylibjpeg, "optional-dependencies", "openjpeg"), nix.sel(pylibjpeg, "optional-dependencies", "rle")))),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, pyfakefs, writableTmpDirAsHomeHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "pixeldata"))),
       stripExclude: nix.thunk(() => ["*/pydicom/data/*"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         "pydicom-data": test_data,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          pytest: nix.thunk(() => nix.app(nix.sel(pydicom, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$4, doCheck: true })))),
+          [nix.POS]: $pos[4],
+          pytest: nix.thunk(() => nix.app(nix.sel(pydicom, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[3], doCheck: true })))),
         })),
       })),
       doCheck: false,
@@ -77,7 +70,7 @@ ln -s ${test_data}/data_store/data $HOME/.pydicom/data
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["test_array"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_time_check"]))))),
       pythonImportsCheck: nix.thunk(() => ["pydicom"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Python package for working with DICOM files",
         mainProgram: "pydicom",
         homepage: "https://pydicom.github.io",

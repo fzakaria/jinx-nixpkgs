@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 17, 19], ["version", 17, 25], ["hash", 18, 11]], [["pname", 14, 9], ["version", 15, 9], ["src", 16, 9], ["patches", 20, 9], ["build-system", 21, 9], ["doCheck", 22, 9]], [["cement", 13, 7]], [["packageOverrides", 12, 5]], [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["doInstallCheck", 32, 3], ["src", 34, 3], ["pythonRelaxDeps", 41, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 72, 3], ["enabledTestPaths", 80, 3], ["disabledTests", 84, 3], ["postFixup", 105, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, fetchPypi: false, git: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 17, 19], ["version", 17, 25], ["hash", 18, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 14, 9], ["version", 15, 9], ["src", 16, 9], ["patches", 20, 9], ["build-system", 21, 9], ["doCheck", 22, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cement", 13, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageOverrides", 12, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["doInstallCheck", 32, 3], ["src", 34, 3], ["pythonRelaxDeps", 41, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 72, 3], ["enabledTestPaths", 80, 3], ["disabledTests", 84, 3], ["postFixup", 105, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       packageOverrides: (self) => (super$) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         cement: nix.thunk(() => nix.app(nix.sel(super$, "cement", "overridePythonAttrs"), (old) => (() => {
             const pname = "cement";
             const version = "2.10.14";
             const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 pname: pname,
                 version: version,
                 hash: "sha256-NC4n21SmYW3RiS7QuzWXoifO4z3C2FVgQm3xf8qQcFg=",
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
             })()));
             const doCheck = false;
             return {
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pname,
               version,
               src,
@@ -51,13 +45,13 @@ export default nix.lambda((args) => (() => {
       }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "awsebcli",
       version: "3.27.3",
       pyproject: true,
       doInstallCheck: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "aws",
           repo: "aws-elastic-beanstalk-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -118,7 +112,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "rm $out/nix-support/propagated-build-inputs\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Command line interface for Elastic Beanstalk",
         homepage: "https://aws.amazon.com/elasticbeanstalk/",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/aws-elastic-beanstalk-cli/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

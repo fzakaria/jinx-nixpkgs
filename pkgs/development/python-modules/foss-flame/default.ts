@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5], ["postFetch", 31, 5]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["mainProgram", 77, 5], ["license", 78, 5], ["maintainers", 83, 5], ["teams", 84, 5]], [["pname", 21, 3], ["version", 22, 3], ["__structuredAttrs", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["sourceRoot", 40, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 54, 3], ["pytestFlags", 61, 3], ["preCheck", 65, 3], ["pythonImportsCheck", 69, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, jsonschema: false, "license-expression": false, "osadl-matrix": false, pyyaml: false, "spdx-license-list": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5], ["postFetch", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["mainProgram", 77, 5], ["license", 78, 5], ["maintainers", 83, 5], ["teams", 84, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["__structuredAttrs", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["sourceRoot", 40, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 54, 3], ["pytestFlags", 61, 3], ["preCheck", 65, 3], ["pythonImportsCheck", 69, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const spdx_license_list = nix.arg($, "spdx-license-list");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "foss-flame",
       version: "0.21.8",
       __structuredAttrs: true,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hesa",
           repo: "foss-licenses",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "ln -s ../tests .\n",
       pythonImportsCheck: nix.thunk(() => ["flame"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "License meta data: data and python module/cli",
         homepage: "https://github.com/hesa/foss-licenses",
         changelog: nix.thunk(() => nix.str`https://github.com/hesa/foss-licenses/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

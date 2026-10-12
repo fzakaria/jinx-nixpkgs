@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 11], ["hash", 27, 11]], [["url", 30, 11], ["hash", 31, 11]], [["aarch64-darwin", 25, 9], ["x86_64-linux", 29, 9]], [["broken", 37, 5], ["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["platforms", 41, 5], ["license", 45, 5], ["sourceProvenance", 46, 5], ["maintainers", 47, 5], ["mainProgram", 53, 5]], [["updateScript", 56, 12]], [["pname", 61, 7], ["version", 62, 7], ["src", 63, 7], ["meta", 64, 7], ["passthru", 65, 7], ["sourceRoot", 68, 5], ["nativeBuildInputs", 70, 5], ["installPhase", 72, 5]], [["pname", 87, 7], ["version", 88, 7], ["src", 89, 7], ["meta", 90, 7], ["passthru", 91, 7], ["nativeBuildInputs", 94, 5], ["buildInputs", 102, 5], ["installPhase", 114, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, undmg: false, "nix-update-script": false, autoPatchelfHook: false, dpkg: false, "gdk-pixbuf": false, glib: false, gst_all_1: false, libsoup_3: false, webkitgtk_4_1: false, xdotool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 11], ["hash", 27, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 11], ["hash", 31, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-darwin", 25, 9], ["x86_64-linux", 29, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 37, 5], ["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["platforms", 41, 5], ["license", 45, 5], ["sourceProvenance", 46, 5], ["maintainers", 47, 5], ["mainProgram", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 56, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 61, 7], ["version", 62, 7], ["src", 63, 7], ["meta", 64, 7], ["passthru", 65, 7], ["sourceRoot", 68, 5], ["nativeBuildInputs", 70, 5], ["installPhase", 72, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 87, 7], ["version", 88, 7], ["src", 89, 7], ["meta", 90, 7], ["passthru", 91, 7], ["nativeBuildInputs", 94, 5], ["buildInputs", 102, 5], ["installPhase", 114, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,20 +23,20 @@ export default nix.lambda((args) => (() => {
   const pname = "spacedrive";
   const version = "0.4.3";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       "aarch64-darwin": nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/spacedriveapp/spacedrive/releases/download/${version}/Spacedrive-darwin-aarch64.dmg`),
         hash: "sha256-0Bj6GjsxLUgLlycA33pXIvItoqFtatjJl2Z/ZwjnC0c=",
       })),
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/spacedriveapp/spacedrive/releases/download/${version}/Spacedrive-linux-x86_64.deb`),
         hash: "sha256-MLCAHNLJ/9bdCBLBBssrpk98uvKTfHs9YGxmxJ11/oY=",
       })),
     }, () => nix.builtins.throw(nix.thunk(() => nix.str`${pname}-${version}: ${nix.sel(stdenv, "system")} is unsupported.`)), nix.key(nix.sel(stdenv, "system"))))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     broken: true,
     description: "Open source file manager, powered by a virtual distributed filesystem",
     homepage: "https://www.spacedrive.com",
@@ -65,11 +59,11 @@ export default nix.lambda((args) => (() => {
     mainProgram: "spacedrive",
   }));
   const passthru = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -79,7 +73,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [undmg]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications/Spacedrive.app\"\ncp -r . \"$out/Applications/Spacedrive.app\"\nmkdir -p \"$out/bin\"\nln -s \"$out/Applications/Spacedrive.app/Contents/MacOS/sd-desktop\" \"$out/bin/spacedrive\"\n\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: src,

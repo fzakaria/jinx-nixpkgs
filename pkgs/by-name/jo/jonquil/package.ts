@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["description", 62, 5], ["license", 63, 5], ["homepage", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 48, 3], ["propagatedBuildInputs", 52, 3], ["outputs", 56, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gfortran: false, buildType: true, meson: false, ninja: false, cmake: false, "pkg-config": false, "test-drive": false, "toml-f": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["license", 63, 5], ["homepage", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 48, 3], ["propagatedBuildInputs", 52, 3], ["outputs", 56, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const toml_f = nix.arg($, "toml-f");
   nix.assert_(nix.builtins.elem(buildType, nix.thunk(() => ["meson", "cmake"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/jo/jonquil/package.nix:15:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jonquil",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "toml-f",
           repo: "jonquil",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [toml_f]),
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "JSON parser on top of TOML implementation",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

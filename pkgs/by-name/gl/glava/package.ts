@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["sha256", 45, 5]], [["description", 95, 5], ["mainProgram", 98, 5], ["homepage", 99, 5], ["platforms", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["buildInputs", 48, 3], ["nativeBuildInputs", 58, 3], ["preConfigure", 62, 3], ["makeFlags", 75, 3], ["installFlags", 77, 3], ["fixupPhase", 81, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, writeScript: false, fetchFromGitHub: false, libGL: false, libx11: false, libxext: false, python3: false, libxrandr: false, libxrender: false, libpulseaudio: false, libxcomposite: false, enableGlfw: true, glfw: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["sha256", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 95, 5], ["mainProgram", 98, 5], ["homepage", 99, 5], ["platforms", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["buildInputs", 48, 3], ["nativeBuildInputs", 58, 3], ["preConfigure", 62, 3], ["makeFlags", 75, 3], ["installFlags", 77, 3], ["fixupPhase", 81, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +38,11 @@ case "$1" in
 esac
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "glava",
       version: "1.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jarcode-foss",
           repo: "glava",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +75,7 @@ substitute ${wrapperScript} $out/bin/glava --subst-var out
 chmod +x $out/bin/glava
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OpenGL audio spectrum visualizer\n",
         mainProgram: "glava",
         homepage: "https://github.com/jarcode-foss/glava",

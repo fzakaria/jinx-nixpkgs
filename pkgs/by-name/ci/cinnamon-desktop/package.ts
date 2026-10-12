@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["homepage", 73, 5], ["description", 74, 5], ["longDescription", 76, 5], ["license", 84, 5], ["platforms", 88, 5], ["teams", 89, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["outputs", 35, 3], ["propagatedBuildInputs", 40, 3], ["buildInputs", 46, 3], ["nativeBuildInputs", 56, 3], ["postPatch", 66, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, "gdk-pixbuf": false, "gobject-introspection": false, gtk3: false, intltool: false, isocodes: false, meson: false, ninja: false, "pkg-config": false, pulseaudio: false, python3: false, lib: false, stdenv: false, systemdLibs: false, xkeyboard_config: false, libxrandr: false, libxext: false, libxkbfile: false, wrapGAppsHook3: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 73, 5], ["description", 74, 5], ["longDescription", 76, 5], ["license", 84, 5], ["platforms", 88, 5], ["teams", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["outputs", 35, 3], ["propagatedBuildInputs", 40, 3], ["buildInputs", 46, 3], ["nativeBuildInputs", 56, 3], ["postPatch", 66, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cinnamon-desktop",
       version: "6.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "cinnamon-desktop",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "chmod +x install-scripts/meson_install_schemas.py # patchShebangs requires executable file\npatchShebangs install-scripts/meson_install_schemas.py\nsed \"s|/usr/share|/run/current-system/sw/share|g\" -i ./schemas/* # NOTE: unless this causes a circular dependency, we could link it to cinnamon/share/cinnamon\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/linuxmint/cinnamon-desktop",
         description: "Library and data for various Cinnamon modules",
         longDescription: "The libcinnamon-desktop library provides API shared by several applications\non the desktop, but that cannot live in the platform for various\nreasons. There is no API or ABI guarantee, although we are doing our\nbest to provide stability. Documentation for the API is available with\ngtk-doc.\n",

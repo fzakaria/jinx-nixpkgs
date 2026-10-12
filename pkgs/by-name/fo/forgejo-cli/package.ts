@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["RUSTONIG_SYSTEM_LIBONIG", 44, 5], ["BUILD_TYPE", 45, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 67, 5], ["mainProgram", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["env", 43, 3], ["postInstall", 48, 3], ["nativeInstallCheckInputs", 55, 3], ["versionCheckProgramArg", 56, 3], ["doInstallCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromCodeberg: false, "pkg-config": false, installShellFiles: false, writableTmpDirAsHomeHook: false, libgit2: false, oniguruma: false, openssl: false, zlib: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTONIG_SYSTEM_LIBONIG", 44, 5], ["BUILD_TYPE", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 67, 5], ["mainProgram", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["env", 43, 3], ["postInstall", 48, 3], ["nativeInstallCheckInputs", 55, 3], ["versionCheckProgramArg", 56, 3], ["doInstallCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "forgejo-cli",
       version: "0.6.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "forgejo-contrib",
           repo: "forgejo-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,13 +34,13 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-+7WiOmYBjTMEsIGaqnMVTIHhzTpm8ObnljNXFnDazhI=",
       nativeBuildInputs: nix.thunk(() => [pkg_config, installShellFiles, writableTmpDirAsHomeHook]),
       buildInputs: nix.thunk(() => [libgit2, oniguruma, openssl, zlib]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: true, BUILD_TYPE: "nixpkgs" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTONIG_SYSTEM_LIBONIG: true, BUILD_TYPE: "nixpkgs" })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd fj \\\n  --bash <($out/bin/fj completion bash) \\\n  --fish <($out/bin/fj completion fish) \\\n  --zsh <($out/bin/fj completion zsh)\n")),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI application for interacting with Forgejo",
         homepage: "https://codeberg.org/forgejo-contrib/forgejo-cli",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/forgejo-contrib/forgejo-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

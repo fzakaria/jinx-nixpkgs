@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 5], ["version", 16, 26], ["hash", 17, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["pythonImportsCheck", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, hatchling: false, "hatch-vcs": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 5], ["version", 16, 26], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["pythonImportsCheck", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const hatch_vcs = nix.arg($, "hatch-vcs");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "human-readable",
       version: "2.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "human_readable",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-P4Ef1W7oZpVyyy7J+FK1PuBwB0jlPDaVcx/9mrT8Uks=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
       pythonImportsCheck: nix.thunk(() => ["human_readable"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library to make data intended for machines, readable to humans",
         homepage: "https://github.com/staticdev/human-readable",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

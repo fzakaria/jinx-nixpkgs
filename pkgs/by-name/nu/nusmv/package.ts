@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 11], ["sha256", 18, 11]], [["url", 22, 11], ["sha256", 23, 11]], [["description", 39, 5], ["homepage", 40, 5], ["maintainers", 41, 5], ["sourceProvenance", 42, 5], ["platforms", 43, 5], ["license", 44, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 31, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 11], ["sha256", 18, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 11], ["sha256", 23, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["maintainers", 41, 5], ["sourceProvenance", 42, 5], ["platforms", 43, 5], ["license", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 31, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "NuSMV",
       version: "2.7.0",
       src: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(stdenv, "hostPlatform")), null);
         return nix.app(fetchurl, nix.thunk(() => (nix.asBool((nix.asBool(nix.lookup(w, "isx86_64")) && nix.asBool(nix.lookup(w, "isLinux")))) ? {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://nusmv.fbk.eu/distrib/${nix.sel(finalAttrs, "version")}/NuSMV-${nix.sel(finalAttrs, "version")}-linux64.tar.xz`),
             sha256: "019d1pa5aw58n11is1024hs8d520b3pp2iyix78vp04yv7wd42l8",
           } : (nix.asBool((nix.asBool(nix.lookup(w, "isx86_64")) && nix.asBool(nix.lookup(w, "isDarwin")))) ? {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://nusmv.fbk.eu/distrib/${nix.sel(finalAttrs, "version")}/NuSMV-${nix.sel(finalAttrs, "version")}-macos-universal.tar.xz`),
             sha256: "098wllv4yx284qv9nsi8kd5pgh10cr1hig01a1p2rxgfmrki52wm",
           } : nix.app(nix.builtins.throw, "only linux and mac x86_64 are currently supported")))));
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       installPhase: "install -m755 -D bin/NuSMV $out/bin/NuSMV\ninstall -m755 -D bin/ltl2smv $out/bin/ltl2smv\ncp -r include $out/include\ncp -r lib $out/lib\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "New symbolic model checker for the analysis of synchronous finite-state and infinite-state systems",
         homepage: "https://nusmv.fbk.eu/",
         maintainers: nix.thunk(() => (() => {

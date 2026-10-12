@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]], [["pymodbus", 46, 5], ["tmodbus", 50, 5]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 37, 3], ["build-system", 41, 3], ["optional-dependencies", 45, 3], ["nativeCheckInputs", 56, 3], ["disabledTests", 63, 3], ["pythonImportsCheck", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, gitMinimal: false, hatchling: false, lib: false, pymodbus: false, pyprojectVersionPatchHook: false, "pytest-asyncio": false, pytestCheckHook: false, tmodbus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pymodbus", 46, 5], ["tmodbus", 50, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 37, 3], ["build-system", 41, 3], ["optional-dependencies", 45, 3], ["nativeCheckInputs", 56, 3], ["disabledTests", 63, 3], ["pythonImportsCheck", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const tmodbus = nix.arg($, "tmodbus");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "modbus-connection",
       version: "4.10.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "home-assistant-libs",
           repo: "modbus-connection",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "tmodbus-0.6.2-compat.patch",
             url: "https://github.com/home-assistant-libs/modbus-connection/commit/34631716aaa0330f915ad58a351ddaaef123e7cf.patch",
             hash: "sha256-Oi47zSOaTPTLhrErBF9LwzixLh6+UpUS5rOvGoQbL4w=",
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pyprojectVersionPatchHook]),
       "build-system": nix.thunk(() => [hatchling]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pymodbus: nix.thunk(() => nix.concat([pymodbus], nix.sel(pymodbus, "optional-dependencies", "serial"))),
         tmodbus: nix.thunk(() => nix.concat([tmodbus], nix.sel(tmodbus, "optional-dependencies", "async-serial"))),
       })),
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_official_model_catalogue_generates_and_imports"]),
       pythonImportsCheck: nix.thunk(() => ["modbus_connection"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Small, backend-neutral Modbus connection abstraction",
         homepage: "https://github.com/home-assistant-libs/modbus-connection",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/modbus-connection/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

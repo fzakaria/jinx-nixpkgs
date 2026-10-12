@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hook.nix", [[["harec", 12, 64], ["qbe", 12, 70]], [["name", 15, 5], ["runtimeInputs", 16, 5], ["excludeShellChecks", 17, 5], ["text", 21, 5]], [["nativeBuildInputs", 30, 45]], [["hare_unconditional_flags", 49, 5], ["hare_stdlib", 50, 5]], [["description", 53, 5], ["badPlatforms", 54, 25], ["platforms", 54, 38], ["license", 55, 5]], [["name", 41, 3], ["propagatedBuildInputs", 47, 3], ["substitutions", 48, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { hare: false, lib: false, makeSetupHook: false, makeWrapper: false, runCommand: false, stdenv: false, writeShellApplication: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hook.nix", [["harec", 12, 64], ["qbe", 12, 70]]);
-const pos$2 = nix.positions(here + "/hook.nix", [["name", 15, 5], ["runtimeInputs", 16, 5], ["excludeShellChecks", 17, 5], ["text", 21, 5]]);
-const pos$3 = nix.positions(here + "/hook.nix", [["nativeBuildInputs", 30, 45]]);
-const pos$4 = nix.positions(here + "/hook.nix", [["hare_unconditional_flags", 49, 5], ["hare_stdlib", 50, 5]]);
-const pos$5 = nix.positions(here + "/hook.nix", [["description", 53, 5], ["badPlatforms", 54, 25], ["platforms", 54, 38], ["license", 55, 5]]);
-const pos$6 = nix.positions(here + "/hook.nix", [["name", 41, 3], ["propagatedBuildInputs", 47, 3], ["substitutions", 48, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const writeShellApplication = nix.arg($, "writeShellApplication");
   const arch = nix.thunk(() => nix.sel(stdenv, "targetPlatform", "uname", "processor"));
   const harePropagationInputs = nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       harec: nix.thunk(() => nix.attr(hare, "harec")),
       qbe: nix.thunk(() => nix.attr(hare, "qbe")),
     }))));
   const hareWrappedScript = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "hare",
       runtimeInputs: nix.thunk(() => [hare]),
       excludeShellChecks: nix.thunk(() => ["SC2086"]),
       text: "readonly cmd=\"$1\"\nshift\ncase \"$cmd\" in\n  \"test\"|\"run\"|\"build\") exec hare \"$cmd\" $NIX_HAREFLAGS \"$@\" ;;\n  *) exec hare ${cmd:+\"$cmd\"} \"$@\"\nesac\n",
     }))));
-  const hareWrapper = nix.thunk(() => nix.app(runCommand, "hare-wrapper", nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
+  const hareWrapper = nix.thunk(() => nix.app(runCommand, "hare-wrapper", nix.thunk(() => ({ [nix.POS]: $pos[2], nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
 install ${nix.app(nix.sel(lib, "getExe"), hareWrappedScript)} $out/bin/hare
 makeWrapper ${nix.app(nix.sel(lib, "getExe"), hare)} $out/bin/hare-native \\
   --inherit-argv0 \\
@@ -41,18 +36,18 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), hare)} $out/bin/hare-native \\
   --unset CC
 `)));
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "hare-hook",
       propagatedBuildInputs: nix.thunk(() => nix.concat([hareWrapper], harePropagationInputs)),
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         hare_unconditional_flags: nix.thunk(() => nix.str`-q -a${arch}`),
         hare_stdlib: nix.thunk(() => nix.str`${hare}/src/hare/stdlib`),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hare, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Setup hook for the Hare compiler",
         badPlatforms: nix.thunk(() => nix.attr(from, "badPlatforms")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

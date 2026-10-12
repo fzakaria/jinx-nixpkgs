@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["withClang", 35, 25]], [["test-version", 55, 5]], [["tests", 54, 12]], [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["dontWrapQtApps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["outputs", 48, 3], ["cmakeFlags", 50, 3], ["installPhase", 52, 3], ["passthru", 54, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, runCommand: false, cmake: false, "pkg-config": false, qttools: false, ninja: false, cups: false, curl: false, libGL: false, qtbase: false, qt5compat: false, qtcreator: false, "vulkan-headers": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["withClang", 35, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["test-version", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 54, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["dontWrapQtApps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["outputs", 48, 3], ["cmakeFlags", 50, 3], ["installPhase", 52, 3], ["passthru", 54, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const qtcreator = nix.arg($, "qtcreator");
   const vulkan_headers = nix.arg($, "vulkan-headers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "qodeassist-plugin",
       version: "0.9.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Palm1r",
           repo: "QodeAssist",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,23 +38,23 @@ export default nix.lambda((args) => (() => {
         cmake,
         pkg_config,
         ninja,
-        nix.thunk(() => nix.app(nix.sel(qttools, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withClang: true })))),
+        nix.thunk(() => nix.app(nix.sel(qttools, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], withClang: true })))),
       ]),
       buildInputs: nix.thunk(() => [cups, curl, libGL, qtbase, qt5compat, qtcreator, vulkan_headers]),
       outputs: nix.thunk(() => ["out"]),
       cmakeFlags: [],
       installPhase: "mkdir -p $out; cp -R lib $out/",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "test-version": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`QT_QPA_PLATFORM="offscreen" ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(qtcreator, "withPackages"), nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]))))} --version > $out
 cat $out | grep 'qodeassist ${nix.sel(finalAttrs, "version")}'
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "AI-powered coding assistant plugin for Qt Creator",
         longDescription: "QodeAssist is an AI-powered coding assistant plugin for Qt Creator.\nIt provides intelligent code completion and suggestions for C++ and QML,\nleveraging large language models through local providers like Ollama.\nEnhance your coding productivity with context-aware AI assistance directly\nin your Qt development environment.\n",
         homepage: "https://github.com/Palm1r/QodeAssist",

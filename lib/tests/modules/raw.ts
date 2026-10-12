@@ -2,38 +2,30 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/raw.nix", [[["type", 6, 7]], [["type", 9, 7]], [["type", 12, 7]], [["type", 15, 7]], [["default", 18, 7]], [["processedToplevel", 5, 5], ["unprocessedNesting", 8, 5], ["multiple", 11, 5], ["priorities", 14, 5], ["unprocessedNestingEvaluates", 17, 5]], [["foo", 24, 24]], [["processedToplevel", 23, 5], ["unprocessedNesting", 24, 5], ["multiple", 25, 5], ["priorities", 29, 5]], [["options", 4, 3], ["config", 22, 3]]]);
 const formals$1 = { args: { lib: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/raw.nix", [["type", 6, 7]]);
-const pos$2 = nix.positions(here + "/raw.nix", [["type", 9, 7]]);
-const pos$3 = nix.positions(here + "/raw.nix", [["type", 12, 7]]);
-const pos$4 = nix.positions(here + "/raw.nix", [["type", 15, 7]]);
-const pos$5 = nix.positions(here + "/raw.nix", [["default", 18, 7]]);
-const pos$6 = nix.positions(here + "/raw.nix", [["processedToplevel", 5, 5], ["unprocessedNesting", 8, 5], ["multiple", 11, 5], ["priorities", 14, 5], ["unprocessedNestingEvaluates", 17, 5]]);
-const pos$7 = nix.positions(here + "/raw.nix", [["foo", 24, 24]]);
-const pos$8 = nix.positions(here + "/raw.nix", [["processedToplevel", 23, 5], ["unprocessedNesting", 24, 5], ["multiple", 25, 5], ["priorities", 29, 5]]);
-const pos$9 = nix.positions(here + "/raw.nix", [["options", 4, 3], ["config", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const config = nix.arg($, "config");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$6,
-      processedToplevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "raw")) })))),
-      unprocessedNesting: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$2, type: nix.thunk(() => nix.sel(lib, "types", "raw")) })))),
-      multiple: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$3, type: nix.thunk(() => nix.sel(lib, "types", "raw")) })))),
-      priorities: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$4, type: nix.thunk(() => nix.sel(lib, "types", "raw")) })))),
+      [nix.POS]: $pos[5],
+      processedToplevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[0], type: nix.thunk(() => nix.sel(lib, "types", "raw")) })))),
+      unprocessedNesting: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[1], type: nix.thunk(() => nix.sel(lib, "types", "raw")) })))),
+      multiple: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[2], type: nix.thunk(() => nix.sel(lib, "types", "raw")) })))),
+      priorities: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[3], type: nix.thunk(() => nix.sel(lib, "types", "raw")) })))),
       unprocessedNestingEvaluates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           default: nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.sel(config, "unprocessedNesting")))),
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       processedToplevel: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, 10n)),
-      unprocessedNesting: nix.thunk(() => ({ [nix.POS]: pos$7, foo: nix.thunk(() => nix.builtins.throw("foo")) })),
+      unprocessedNesting: nix.thunk(() => ({ [nix.POS]: $pos[6], foo: nix.thunk(() => nix.builtins.throw("foo")) })),
       multiple: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => ["foo", "foo"]))),
       priorities: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => ["foo", nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "bar"))]))),
     })),

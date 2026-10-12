@@ -2,9 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-packages-wrapper.nix", [[["version", 203, 21], ["meta", 203, 29], ["targetPrefix", 203, 34], ["hoogle", 205, 7], ["override", 208, 7]], [["name", 106, 5], ["paths", 107, 5], ["nativeBuildInputs", 108, 5], ["postBuild", 109, 5], ["preferLocalBuild", 201, 5], ["passthru", 202, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, haskellPackages: false, symlinkJoin: false, makeWrapper: false, useLLVM: true, withHoogle: true, installDocumentation: true, hoogleWithPackages: false, postBuild: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/with-packages-wrapper.nix", [["version", 203, 21], ["meta", 203, 29], ["targetPrefix", 203, 34], ["hoogle", 205, 7], ["override", 208, 7]]);
-const pos$2 = nix.positions(here + "/with-packages-wrapper.nix", [["name", 106, 5], ["paths", 107, 5], ["nativeBuildInputs", 108, 5], ["postBuild", 109, 5], ["preferLocalBuild", 201, 5], ["passthru", 202, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +38,7 @@ should be written as
     const hasLibraries = nix.thunk(() => nix.app(nix.sel(lib, "any"), (x) => nix.sel(x, "isHaskellLibrary"), paths));
     const llvm = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(ghc, "llvmPackages", "llvm"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ghc, "version")), "9.10")) || nix.asBool(nix.sel(stdenv, "targetPlatform", "isDarwin")))), nix.thunk(() => [nix.thunk(() => nix.sel(ghc, "llvmPackages", "clang"))]))))));
     return (nix.asBool((nix.asBool(nix.eq(paths, [])) && nix.asBool(!nix.asBool(useLLVM)))) ? nix.force(ghc) : nix.app(symlinkJoin, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: nix.thunk(() => nix.add(nix.sel(ghc, "name"), "-with-packages")),
         paths: nix.thunk(() => nix.concat(paths, nix.concat([ghc], nix.app(nix.sel(lib, "optionals"), installDocumentation, nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getOutput"), "doc", ghc))]))))),
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -130,7 +129,7 @@ $out/bin/${ghcCommand}-pkg check
 `), postBuild)),
         preferLocalBuild: true,
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(ghc, "version")),
           meta: nix.thunk(() => nix.attr(ghc, "meta")),
           targetPrefix: nix.thunk(() => nix.attr(ghc, "targetPrefix")),

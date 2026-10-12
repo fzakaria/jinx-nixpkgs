@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 71, 9], ["hash", 72, 9], ["stripRoot", 73, 9]], [["version", 69, 7], ["src", 70, 7]], [["owner", 83, 5], ["repo", 84, 5], ["rev", 85, 5], ["hash", 86, 5]], [["pname", 90, 26], ["version", 90, 32], ["src", 90, 40], ["hash", 91, 5]], [["owner", 179, 9], ["repo", 180, 9], ["tag", 181, 9], ["hash", 182, 9]], [["version", 177, 7], ["src", 178, 7]], [["gnFlags", 192, 7]], [["owner", 201, 9], ["repo", 202, 9], ["tag", 203, 9], ["hash", 204, 9]], [["version", 198, 7], ["vendorHash", 199, 7], ["src", 200, 7], ["postInstall", 206, 7]], [["NIX_LDFLAGS", 250, 7]], [["nixosTest", 270, 5]], [["hardcodeZeroVersion", 276, 9]], [["command", 280, 9]], [["tests", 269, 12], ["updateScript", 273, 12]], [["description", 294, 5], ["homepage", 295, 5], ["license", 296, 5], ["maintainers", 297, 5], ["platforms", 302, 5], ["mainProgram", 307, 5]], [["pname", 79, 3], ["version", 80, 3], ["src", 82, 3], ["cargoDeps", 89, 3], ["patches", 94, 3], ["postPatch", 104, 3], ["preConfigure", 129, 3], ["nativeBuildInputs", 138, 3], ["buildInputs", 156, 3], ["cmakeFlags", 232, 3], ["env", 250, 3], ["postInstall", 252, 3], ["postFixup", 259, 3], ["dontWrapQtApps", 267, 3], ["passthru", 269, 3], ["meta", 293, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "apple-sdk_26": false, darwinMinVersionHook: false, cacert: false, fetchFromGitHub: false, fetchzip: false, pdfjs: false, "chromium-hsts-preload-list": false, cmake: false, gitMinimal: false, ninja: false, "pkg-config": false, curlFull: false, libavif: false, angle: false, brotli: false, cpptrace: false, glib: false, glslang: false, harfbuzz: false, libdrm: false, libGL: false, libjpeg_turbo: false, libpng: false, libpsl: false, libxml2: false, libedit: false, libpulseaudio: false, libwebp: false, mimalloc: false, openssl: false, perl: false, python3: false, qt6Packages: false, woff2: false, wuffs: false, cargo: false, "fast-float": false, ffmpeg: false, fmt: false, fontconfig: false, rustPlatform: false, rustc: false, rcodesign: false, makeWrapper: false, simdutf: false, skia: false, nixosTests: false, unstableGitUpdater: false, "_experimental-update-script-combinators": false, "common-updater-scripts": false, libtommath: false, sdl3: false, icu78: false, simdjson: false, sqlite: false, "vulkan-headers": false, "vulkan-loader": false, "vulkan-memory-allocator": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 71, 9], ["hash", 72, 9], ["stripRoot", 73, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 69, 7], ["src", 70, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 83, 5], ["repo", 84, 5], ["rev", 85, 5], ["hash", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 90, 26], ["version", 90, 32], ["src", 90, 40], ["hash", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 179, 9], ["repo", 180, 9], ["tag", 181, 9], ["hash", 182, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 177, 7], ["src", 178, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["gnFlags", 192, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 201, 9], ["repo", 202, 9], ["tag", 203, 9], ["hash", 204, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["version", 198, 7], ["vendorHash", 199, 7], ["src", 200, 7], ["postInstall", 206, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 250, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["nixosTest", 270, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 276, 9]]);
-const pos$13 = nix.positions(here + "/package.nix", [["command", 280, 9]]);
-const pos$14 = nix.positions(here + "/package.nix", [["tests", 269, 12], ["updateScript", 273, 12]]);
-const pos$15 = nix.positions(here + "/package.nix", [["description", 294, 5], ["homepage", 295, 5], ["license", 296, 5], ["maintainers", 297, 5], ["platforms", 302, 5], ["mainProgram", 307, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 79, 3], ["version", 80, 3], ["src", 82, 3], ["cargoDeps", 89, 3], ["patches", 94, 3], ["postPatch", 104, 3], ["preConfigure", 129, 3], ["nativeBuildInputs", 138, 3], ["buildInputs", 156, 3], ["cmakeFlags", 232, 3], ["env", 250, 3], ["postInstall", 252, 3], ["postFixup", 259, 3], ["dontWrapQtApps", 267, 3], ["passthru", 269, 3], ["meta", 293, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -84,28 +69,28 @@ export default nix.lambda((args) => (() => {
   const vulkan_memory_allocator = nix.arg($, "vulkan-memory-allocator");
   const zlib = nix.arg($, "zlib");
   const pdfjsForLadybird = nix.thunk(() => nix.app(nix.sel(pdfjs, "overrideAttrs"), (final) => (_prev) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "5.6.205",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mozilla/pdf.js/releases/download/v${nix.sel(final, "version")}/pdfjs-${nix.sel(final, "version")}-dist.zip`),
           hash: "sha256-JMmxoT68PNJ/MmlMwVNYcHerorklLv5YY6C55xjn73w=",
           stripRoot: false,
         })))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "ladybird",
       version: "0-unstable-2026-09-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "LadybirdBrowser",
           repo: "ladybird",
           rev: "b90af890b56cbd51c452d929fe71abcb8adaa36f",
           hash: "sha256-CfSC0zEn1VUZaoBHi4a91n/QLTdpapygVf9c/v44X9E=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -172,10 +157,10 @@ cp ${chromium_hsts_preload_list}/share/chromium-hsts-preload-list/transport_secu
         libedit,
         libwebp,
         nix.thunk(() => nix.app(nix.sel(mimalloc, "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             version: "2.2.7",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 owner: "microsoft",
                 repo: "mimalloc",
                 tag: "v2.2.7",
@@ -188,15 +173,15 @@ cp ${chromium_hsts_preload_list}/share/chromium-hsts-preload-list/transport_secu
         sdl3,
         simdutf,
         nix.thunk(() => nix.app(nix.sel(skia, "overrideAttrs"), (prev) => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             gnFlags: nix.thunk(() => nix.concat(nix.sel(prev, "gnFlags"), ["extra_cflags+=[\"-DSKCMS_DLL\"]"])),
           }))),
         nix.thunk(() => nix.app(nix.sel(wuffs, "overrideAttrs"), (prev) => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             version: "0.3.4",
             vendorHash: "sha256-CRzsGHE3K/WWPX0A3B1CvvEdADlxdIhaT5fOtaA3LPo=",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 owner: "google",
                 repo: "wuffs",
                 tag: "v0.3.4",
@@ -224,7 +209,7 @@ cp ${chromium_hsts_preload_list}/share/chromium-hsts-preload-list/transport_secu
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "ICU_ROOT", nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(icu78, "dev")))))),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["-DCMAKE_INSTALL_LIBEXECDIR=libexec"])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         NIX_LDFLAGS: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "-lGL "), "-lfontconfig")),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications $out/bin\nmv $out/bundle/Ladybird.app $out/Applications\nmakeWrapper \"$out/Applications/Ladybird.app/Contents/MacOS/Ladybird\" \"$out/bin/Ladybird\"\n")),
@@ -234,15 +219,15 @@ cp ${chromium_hsts_preload_list}/share/chromium-hsts-preload-list/transport_secu
 `))),
       dontWrapQtApps: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           nixosTest: nix.thunk(() => nix.sel(nixosTests, "ladybird")),
         })),
         updateScript: nix.thunk(() => (() => {
-          const updateSource = nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$12, hardcodeZeroVersion: true }))));
+          const updateSource = nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[11], hardcodeZeroVersion: true }))));
           const updateCargoDeps = nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             command: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-version")),
               "ladybird",
@@ -254,7 +239,7 @@ cp ${chromium_hsts_preload_list}/share/chromium-hsts-preload-list/transport_secu
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         description: "Browser using the SerenityOS LibWeb engine with a Qt or Cocoa GUI",
         homepage: "https://ladybird.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

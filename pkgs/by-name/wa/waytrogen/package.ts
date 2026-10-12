@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["pname", 45, 26], ["version", 45, 32], ["src", 45, 40], ["hash", 46, 5]], [["OPENSSL_NO_VENDOR", 86, 5]], [["updateScript", 90, 5], ["tests", 91, 5]], [["description", 109, 5], ["longDescription", 110, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 122, 5], ["platforms", 123, 5], ["badPlatforms", 124, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["cargoDeps", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 67, 3], ["env", 85, 3], ["passthru", 89, 3], ["preFixup", 94, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, wrapGAppsHook4: false, "nix-update-script": false, stdenv: false, meson: false, ninja: false, cargo: false, rustc: false, sqlite: false, openssl: false, "desktop-file-utils": false, bash: false, dbus: false, gtk4: false, ffmpeg: false, libx11: false, libxcursor: false, libxrandr: false, libxi: false, libxcb: false, libxkbcommon: false, "vulkan-loader": false, wayland: false, "xdg-utils": false, "xdg-desktop-portal": false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 45, 26], ["version", 45, 32], ["src", 45, 40], ["hash", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 90, 5], ["tests", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 109, 5], ["longDescription", 110, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 122, 5], ["platforms", 123, 5], ["badPlatforms", 124, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["cargoDeps", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 67, 3], ["env", 85, 3], ["passthru", 89, 3], ["preFixup", 94, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,18 +37,18 @@ export default nix.lambda((args) => (() => {
   const xdg_desktop_portal = nix.arg($, "xdg-desktop-portal");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "waytrogen",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nikolaizombie1",
           repo: "waytrogen",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-3whabM2leDPZS276FRCC5q6XSKWCIisQ0HLM8l8T5WE=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -93,9 +88,9 @@ export default nix.lambda((args) => (() => {
         xdg_utils,
         xdg_desktop_portal,
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], OPENSSL_NO_VENDOR: 1n })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({})),
       })),
@@ -104,7 +99,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Lightning fast wallpaper setter for Wayland",
         longDescription: "A GUI wallpaper setter for Wayland that is a spiritual successor\nfor the minimalistic wallpaper changer for X11 nitrogen. Written purely\nin the Rust 🦀 programming language. Supports hyprpaper, swaybg, mpvpaper, swww  and gSlapper wallpaper changers.\n",
         homepage: "https://github.com/nikolaizombie1/waytrogen",

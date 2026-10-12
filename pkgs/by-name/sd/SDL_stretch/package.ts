@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["broken", 29, 5], ["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 24]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["configureFlags", 19, 3], ["buildInputs", 23, 3], ["strictDeps", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, SDL: false, fetchurl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 29, 5], ["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 24]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["configureFlags", 19, 3], ["buildInputs", 23, 3], ["strictDeps", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "SDL_stretch",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/sdl-stretch/${nix.sel(finalAttrs, "version")}/SDL_stretch-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-fL8L+rAMPt1uceGH0qLEgncEh4DiySQIuqt7YjUy/Nc=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://sdl-stretch.sourceforge.net/",
         description: "Stretch Functions For SDL",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["enableParallelBuilding", 20, 3], ["doCheck", 22, 3], ["nativeCheckInputs", 24, 3], ["preCheck", 29, 3], ["doInstallCheck", 34, 3], ["nativeInstallCheckInputs", 36, 3], ["versionCheckProgram", 38, 3], ["versionCheckProgramArg", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, easel: false, perl: false, python3: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["enableParallelBuilding", 20, 3], ["doCheck", 22, 3], ["nativeCheckInputs", 24, 3], ["preCheck", 29, 3], ["doInstallCheck", 34, 3], ["nativeInstallCheckInputs", 36, 3], ["versionCheckProgram", 38, 3], ["versionCheckProgramArg", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "3.4",
       pname: "hmmer",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://eddylab.org/software/hmmer/hmmer-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ynDZT9DPJxvXBjQjqrsRbULeUzEXNDqbJ6ZcF/8G+/M=",
         })))),
@@ -36,7 +34,7 @@ patchShebangs easel/devkit/sqc testsuite/* src/hmmpress.itest.pl
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/hmmalign`),
       versionCheckProgramArg: "-h",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Biosequence analysis using profile hidden Markov models",
         longDescription: "HMMER is used for searching sequence databases for sequence homologs, and for making sequence alignments. It implements methods using probabilistic models called profile hidden Markov models (profile HMMs).\nHMMER is often used together with a profile database, such as Pfam or many of the databases that participate in Interpro. But HMMER can also work with query sequences, not just profiles, just like BLAST. For example, you can search a protein query sequence against a database with phmmer, or do an iterative search with jackhmmer.\nHMMER is designed to detect remote homologs as sensitively as possible, relying on the strength of its underlying probability models. In the past, this strength came at significant computational expense, but as of the new HMMER3 project, HMMER is now essentially as fast as BLAST.\nHMMER can be downloaded and installed as a command line tool on your own hardware, and now it is also more widely accessible to the scientific community via new search servers at the European Bioinformatics Institute.\n",
         homepage: "http://hmmer.org/",

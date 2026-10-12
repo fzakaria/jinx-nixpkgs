@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["calamares-nixos", 113, 13]], [["tests", 112, 12]], [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["maintainers", 124, 5], ["platforms", 127, 5], ["mainProgram", 128, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["patches", 50, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 67, 3], ["postPatch", 84, 3], ["separateDebugInfo", 98, 3], ["qtWrapperArgs", 100, 3], ["passthru", 112, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, writeShellScriptBin: false, "xdg-utils": false, fetchFromCodeberg: false, cmake: false, ninja: false, kdePackages: false, qt6: false, libpwquality: false, libxcrypt: false, parted: false, "yaml-cpp": false, tzdata: false, ckbcomp: false, "util-linux": false, "os-prober": false, xkeyboard_config: false, extraWrapperArgs: true, "calamares-nixos": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["calamares-nixos", 113, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 112, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["maintainers", 124, 5], ["platforms", 127, 5], ["mainProgram", 128, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["patches", 50, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 67, 3], ["postPatch", 84, 3], ["separateDebugInfo", 98, 3], ["qtWrapperArgs", 100, 3], ["passthru", 112, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const xdg_open_nixos = nix.thunk(() => nix.app(writeShellScriptBin, "xdg-open", nix.thunk(() => nix.str`sudo --user $(id -nu $PKEXEC_UID) env NIXOS_XDG_OPEN_USE_PORTAL=1 ${xdg_utils}/bin/xdg-open "$@"
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "calamares",
       version: "3.4.2",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Calamares",
           repo: "calamares",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -87,11 +83,11 @@ substituteInPlace CMakeLists.txt \\
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ckbcomp, os_prober, util_linux, xdg_open_nixos]))}`),
       ], extraWrapperArgs)),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "calamares-nixos": calamares_nixos })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], "calamares-nixos": calamares_nixos })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Distribution-independent installer framework",
         homepage: "https://calamares.io/",
         license: nix.thunk(() => (() => {

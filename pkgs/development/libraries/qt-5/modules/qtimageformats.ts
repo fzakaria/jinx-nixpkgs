@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtimageformats.nix", [[["pname", 12, 3], ["propagatedBuildInputs", 13, 3]]]);
 const formals$1 = { args: { lib: false, qtModule: false, qtbase: false, libwebp: false, jasper: false, libmng: false, libtiff: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtimageformats.nix", [["pname", 12, 3], ["propagatedBuildInputs", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libmng = nix.arg($, "libmng");
   const libtiff = nix.arg($, "libtiff");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "qtimageformats",
       propagatedBuildInputs: nix.thunk(() => nix.concat([qtbase, libwebp], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(jasper, "meta", "broken"))), nix.thunk(() => [jasper])), [libmng, libtiff]))),
     })));

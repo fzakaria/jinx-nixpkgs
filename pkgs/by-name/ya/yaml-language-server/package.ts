@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["changelog", 22, 5], ["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["mainProgram", 26, 5], ["maintainers", 27, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["npmDepsHash", 17, 3], ["strictDeps", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildNpmPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 22, 5], ["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["mainProgram", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["npmDepsHash", 17, 3], ["strictDeps", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "yaml-language-server",
       version: "1.24.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "redhat-developer",
           repo: "yaml-language-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-0jmq/4XpuZLjoRCxpGBZdGgfyvBTBBoT893o2mooCVw=",
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/redhat-developer/yaml-language-server/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Language Server for YAML Files",
         homepage: "https://github.com/redhat-developer/yaml-language-server",

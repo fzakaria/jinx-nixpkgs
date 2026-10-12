@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 10, 3], ["hash", 11, 3], ["dhallHash", 12, 3], ["source", 13, 3]]]);
 const formals$1 = { args: { dhallPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 10, 3], ["hash", 11, 3], ["dhallHash", 12, 3], ["source", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const dhallPackages = nix.arg($, "dhallPackages");
   return nix.app(nix.sel(dhallPackages, "buildDhallUrl"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://raw.githubusercontent.com/cdepillabout/example-dhall-nix/e6a675c72ecd4dd23d254a02aea8181fe875747f/mydhallfile.dhall",
       hash: "sha256-434x+QjHRzuprBdw0h6wmwB1Zj6yZqQb533me8XdO4c=",
       dhallHash: "sha256-434x+QjHRzuprBdw0h6wmwB1Zj6yZqQb533me8XdO4c=",

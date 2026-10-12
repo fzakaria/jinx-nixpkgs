@@ -2,10 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/diff.nix", [[["added", 43, 7], ["removed", 44, 7], ["changed", 45, 7], ["rebuilds", 54, 7]], [["package", 88, 9], ["maintainers", 93, 9]]]);
 const formals$1 = { args: { lib: false, runCommand: false, writeText: false }, ellipsis: false };
 const formals$2 = { args: { beforeDir: false, afterDir: false, evalSystem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/diff.nix", [["added", 43, 7], ["removed", 44, 7], ["changed", 45, 7], ["rebuilds", 54, 7]]);
-const pos$2 = nix.positions(here + "/diff.nix", [["package", 88, 9], ["maintainers", 93, 9]]);
 const formals$3 = { args: { package: false, maintainers: false }, ellipsis: false };
 
 export default nix.lambda((args) => (() => {
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "genAttrs")), (_) => true)),
         ])));
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         added: nix.thunk(() => nix.app(filterKeys, (n) => (_) => !nix.asBool(nix.has(old, nix.key(nix.force(n)))), new$)),
         removed: nix.thunk(() => nix.app(filterKeys, (n) => (_) => !nix.asBool(nix.has(new$, nix.key(nix.force(n)))), old)),
         changed: nix.thunk(() => nix.app(filterKeys, (n) => (v) => (nix.asBool(nix.has(new$, nix.key(nix.force(n)))) && nix.asBool(!nix.eq(v, nix.sel(new$, nix.key(nix.force(n)))))), old)),
@@ -47,7 +46,7 @@ export default nix.lambda((args) => (() => {
     const meta = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.thunk(() => nix.str`${after}/${evalSystem}/meta.json`)));
     const maintainers = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), meta, nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             package: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), k, nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".")),
                 nix.thunk(() => nix.sel(lib, "init")),

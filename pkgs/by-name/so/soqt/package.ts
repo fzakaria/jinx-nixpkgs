@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]], [["moduleNames", 38, 9], ["package", 39, 9], ["nativeBuildInputs", 40, 9]], [["cmake-config", 37, 7]], [["tests", 36, 5], ["updateScript", 43, 5]], [["homepage", 47, 5], ["license", 48, 5], ["description", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 28, 3], ["dontWrapQtApps", 33, 3], ["passthru", 35, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, coin3d: false, qt6: false, testers: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["moduleNames", 38, 9], ["package", 39, 9], ["nativeBuildInputs", 40, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cmake-config", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 36, 5], ["updateScript", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["license", 48, 5], ["description", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 28, 3], ["dontWrapQtApps", 33, 3], ["passthru", 35, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "soqt",
       version: "1.6.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coin3d",
           repo: "soqt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +31,11 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [coin3d, nix.thunk(() => nix.sel(qt6, "qtbase"))]),
       dontWrapQtApps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               moduleNames: nix.thunk(() => ["soqt"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]),
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/coin3d/soqt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         description: "Glue between Coin high-level 3D visualization library and Qt",

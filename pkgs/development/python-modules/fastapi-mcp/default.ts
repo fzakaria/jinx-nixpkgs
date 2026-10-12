@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 45, 3], ["pythonImportsCheck", 58, 3], ["nativeCheckInputs", 60, 3], ["disabledTestPaths", 67, 3], ["__darwinAllowLocalNetworking", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, tomli: false, fastapi: false, httpx: false, mcp: false, pydantic: false, "pydantic-settings": false, requests: false, rich: false, typer: false, uvicorn: false, coverage: false, "pytest-asyncio_0": false, "pytest-cov-stub": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 45, 3], ["pythonImportsCheck", 58, 3], ["nativeCheckInputs", 60, 3], ["disabledTestPaths", 67, 3], ["__darwinAllowLocalNetworking", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tadata-org",
           repo: "fastapi_mcp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_sse_real_transport.py"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Expose your FastAPI endpoints as Model Context Protocol (MCP) tools, with Auth",
         homepage: "https://github.com/tadata-org/fastapi_mcp",
         changelog: nix.thunk(() => nix.str`https://github.com/tadata-org/fastapi_mcp/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

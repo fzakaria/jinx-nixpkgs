@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/boot.nix", [[["url", 20, 5], ["hash", 23, 5]], [["description", 60, 5], ["homepage", 61, 5], ["mainProgram", 62, 5], ["maintainers", 63, 5], ["license", 64, 5], ["platforms", 65, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["postPatch", 40, 3], ["configureFlags", 44, 3], ["enableParallelBuilding", 54, 3], ["doCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "pkg-config": false, texinfo: false, libiconv: false, gdbm: false, openssl: false, zlib: false, mbedtls: false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/boot.nix", [["url", 20, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/boot.nix", [["description", 60, 5], ["homepage", 61, 5], ["mainProgram", 62, 5], ["maintainers", 63, 5], ["license", 64, 5], ["platforms", 65, 5]]);
-const pos$3 = nix.positions(here + "/boot.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["postPatch", 40, 3], ["configureFlags", 44, 3], ["enableParallelBuilding", 54, 3], ["doCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gauche-bootstrap";
       const version = "0.9.15";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/shirok/Gauche/releases/download/release${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}/Gauche-${version}.tgz`),
           hash: "sha256-NkPie8fIgiz9b7KJLbGF9ljo42STi8LM/O2yOeNa94M=",
         }))));
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "R7RS Scheme scripting engine (released version)",
         homepage: "https://practical-scheme.net/gauche/",
         mainProgram: "gosh",
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

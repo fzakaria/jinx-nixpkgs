@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 44, 7], ["hash", 45, 7]], [["pname", 41, 5], ["version", 42, 5], ["src", 43, 5], ["nativeBuildInputs", 47, 5], ["unpackPhase", 49, 5], ["installPhase", 55, 5]], [["description", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["platforms", 136, 5], ["sourceProvenance", 137, 5], ["maintainers", 138, 5], ["mainProgram", 139, 5]], [["version", 74, 11], ["pname", 75, 3], ["targetPkgs", 76, 3], ["extraBwrapArgs", 106, 3], ["runScript", 112, 3], ["extraInstallCommands", 122, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, procps: false, fetchurl: false, dpkg: false, writeShellScript: false, buildFHSEnv: false, nspr: false, kmod: false, systemdMinimal: false, glib: false, pulseaudio: false, libxext: false, libx11: false, libxrandr: false, glibc: false, cairo: false, libva: false, libdrm: false, coreutils: false, libxi: false, libGL: false, bash: false, libxcomposite: false, libxdamage: false, libxfixes: false, libxtst: false, nss: false, libxxf86vm: false, gtk3: false, "gdk-pixbuf": false, pango: false, libz: false, "libayatana-appindicator": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 41, 5], ["version", 42, 5], ["src", 43, 5], ["nativeBuildInputs", 47, 5], ["unpackPhase", 49, 5], ["installPhase", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["platforms", 136, 5], ["sourceProvenance", 137, 5], ["maintainers", 138, 5], ["mainProgram", 139, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 74, 11], ["pname", 75, 3], ["targetPkgs", 76, 3], ["extraBwrapArgs", 106, 3], ["runScript", 112, 3], ["extraInstallCommands", 122, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const libayatana_appindicator = nix.arg($, "libayatana-appindicator");
   const version = "4.7.2.0";
   const todesk_unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "todesk-unwrapped",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20250302114501if_/https://newdl.todesk.com/linux/todesk-v4.7.2.0-amd64.deb",
           hash: "sha256-v7VpXXFVaKI99RpzUWfAc6eE7NHGJeFrNeUTbVuX+yg=",
         })))),
@@ -71,7 +68,7 @@ runHook postInstall
 `),
     })));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: version,
       pname: "todesk",
       targetPkgs: (pkgs) => [
@@ -129,7 +126,7 @@ substituteInPlace "$out/share/applications/todesk.desktop" \\
   --replace-fail '/opt/todesk/bin' "${todesk_unwrapped}/lib"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Remote Desktop Application",
         homepage: "https://www.todesk.com/linux.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

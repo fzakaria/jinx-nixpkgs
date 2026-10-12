@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["aws", 53, 5]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 18, 11], ["version", 18, 17], ["format", 19, 3], ["src", 21, 3], ["propagatedBuildInputs", 28, 3], ["nativeCheckInputs", 33, 3], ["disabledTests", 38, 3], ["disabledTestPaths", 44, 3], ["pythonImportsCheck", 50, 3], ["optional-dependencies", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, tqdm: false, portalocker: false, boto3: false, pytestCheckHook: false, torch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aws", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 11], ["version", 18, 17], ["format", 19, 3], ["src", 21, 3], ["propagatedBuildInputs", 28, 3], ["nativeCheckInputs", 33, 3], ["disabledTests", 38, 3], ["disabledTestPaths", 44, 3], ["pythonImportsCheck", 50, 3], ["optional-dependencies", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pname = "iopath";
   const version = "0.1.10";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebookresearch",
           repo: "iopath",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,9 +34,9 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_download", "test_bad_args"]),
       disabledTestPaths: nix.thunk(() => ["tests/async_torch_test.py", "tests/async_writes_test.py"]),
       pythonImportsCheck: nix.thunk(() => ["iopath"]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, aws: nix.thunk(() => [boto3]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], aws: nix.thunk(() => [boto3]) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python library that provides common I/O interface across different storage backends",
         homepage: "https://github.com/facebookresearch/iopath",
         changelog: nix.thunk(() => nix.str`https://github.com/facebookresearch/iopath/releases/tag/v${version}`),

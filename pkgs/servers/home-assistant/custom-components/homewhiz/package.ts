@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["changelog", 36, 5], ["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["owner", 15, 3], ["domain", 16, 3], ["version", 17, 3], ["src", 19, 3], ["dependencies", 26, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false, aiohttp: false, awsiotsdk: false, bleak: false, "bleak-retry-connector": false, bidict: false, dacite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 36, 5], ["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 15, 3], ["domain", 16, 3], ["version", 17, 3], ["src", 19, 3], ["dependencies", 26, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const bidict = nix.arg($, "bidict");
   const dacite = nix.arg($, "dacite");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "home-assistant-HomeWhiz",
       domain: "homewhiz",
       version: "0.5.27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "home-assistant-HomeWhiz",
           repo: "home-assistant-HomeWhiz",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       dependencies: nix.thunk(() => [aiohttp, awsiotsdk, bidict, bleak, bleak_retry_connector, dacite]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-HomeWhiz/home-assistant-HomeWhiz/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Home Assistant custom component for devices that can connect to HomeWhiz mobile app (Beko, Grundig, Arcelik)",
         homepage: "https://github.com/home-assistant-HomeWhiz/home-assistant-HomeWhiz",

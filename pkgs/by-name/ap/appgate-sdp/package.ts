@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 105, 5], ["hash", 106, 5]], [["description", 171, 5], ["homepage", 172, 5], ["sourceProvenance", 173, 5], ["license", 174, 5], ["platforms", 175, 5], ["maintainers", 176, 5], ["mainProgram", 177, 5]], [["pname", 101, 3], ["version", 102, 3], ["src", 104, 3], ["autoPatchelfIgnoreMissingDeps", 110, 3], ["dontConfigure", 111, 3], ["dontBuild", 112, 3], ["buildInputs", 114, 3], ["nativeBuildInputs", 119, 3], ["unpackPhase", 125, 3], ["installPhase", 129, 3], ["meta", 170, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, "at-spi2-atk": false, "at-spi2-core": false, atk: false, autoPatchelfHook: false, cairo: false, cups: false, curl: false, dbus: false, dnsmasq: false, dpkg: false, expat: false, fetchurl: false, "gdk-pixbuf": false, glib: false, gtk3: false, icu: false, iproute2: false, krb5: false, lib: false, libdrm: false, libsecret: false, libuuid: false, libxcb: false, libxkbcommon: false, "lttng-ust": false, makeWrapper: false, libgbm: false, networkmanager: false, nspr: false, nss: false, openssl: false, pango: false, python3: false, stdenv: false, systemd: false, "xdg-utils": false, libxtst: false, libxscrnsaver: false, libxrender: false, libxrandr: false, libxi: false, libxfixes: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, libxshmfence: false, libxkbfile: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 105, 5], ["hash", 106, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 171, 5], ["homepage", 172, 5], ["sourceProvenance", 173, 5], ["license", 174, 5], ["platforms", 175, 5], ["maintainers", 176, 5], ["mainProgram", 177, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 101, 3], ["version", 102, 3], ["src", 104, 3], ["autoPatchelfIgnoreMissingDeps", 110, 3], ["dontConfigure", 111, 3], ["dontBuild", 112, 3], ["buildInputs", 114, 3], ["nativeBuildInputs", 119, 3], ["unpackPhase", 125, 3], ["installPhase", 129, 3], ["meta", 170, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -104,11 +102,11 @@ export default nix.lambda((args) => (() => {
     zlib,
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "appgate-sdp",
       version: "6.5.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://bin.appgate-sdp.com/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/client/appgate-sdp_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-tVHGAP90C4Jxz+Ur1hmlCmQ2tOtaSuIvAUQAqu6BKRw=",
         })))),
@@ -152,7 +150,7 @@ makeWrapper $out/opt/appgate/Appgate $out/bin/appgate \\
 wrapProgram $out/opt/appgate/linux/set_dns --set PYTHONPATH $PYTHONPATH
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Appgate SDP (Software Defined Perimeter) desktop client",
         homepage: "https://www.appgate.com/support/software-defined-perimeter-support",
         sourceProvenance: nix.thunk(() => (() => {

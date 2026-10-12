@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 45, 7], ["url", 46, 7], ["includes", 47, 7], ["hash", 52, 7]], [["isGNU", 199, 5]], [["homepage", 203, 5]], [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["outputs", 23, 3], ["strictDeps", 28, 3], ["buildInputs", 30, 3], ["depsBuildBuild", 32, 3], ["nativeBuildInputs", 33, 3], ["patches", 39, 3], ["autoreconfFlags", 61, 3], ["postUnpack", 63, 3], ["postPatch", 68, 3], ["enableParallelBuilding", 72, 3], ["preConfigure", 74, 3], ["topLevelConfigureFlags", 142, 3], ["configurePlatforms", 173, 3], ["configureFlags", 178, 3], ["postConfigure", 190, 3], ["makeFlags", 194, 3], ["doCheck", 196, 3], ["passthru", 198, 3], ["meta", 202, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gfortran: false, gcc_meta: false, release_version: false, version: false, getVersionFile: false, monorepoSrc: true, fetchpatch: false, autoreconfHook269: false, libiberty: false, buildPackages: false, libgcc: false, libbacktrace: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 45, 7], ["url", 46, 7], ["includes", 47, 7], ["hash", 52, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["isGNU", 199, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 203, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["outputs", 23, 3], ["strictDeps", 28, 3], ["buildInputs", 30, 3], ["depsBuildBuild", 32, 3], ["nativeBuildInputs", 33, 3], ["patches", 39, 3], ["autoreconfFlags", 61, 3], ["postUnpack", 63, 3], ["postPatch", 68, 3], ["enableParallelBuilding", 72, 3], ["preConfigure", 74, 3], ["topLevelConfigureFlags", 142, 3], ["configurePlatforms", 173, 3], ["configureFlags", 178, 3], ["postConfigure", 190, 3], ["makeFlags", 194, 3], ["doCheck", 196, 3], ["passthru", 198, 3], ["meta", 202, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const libgcc = nix.arg($, "libgcc");
   const libbacktrace = nix.arg($, "libbacktrace");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libgfortran",
       version: version,
       src: monorepoSrc,
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook269, libiberty, gfortran]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "system-libbacktrace.patch",
             url: "https://inbox.sourceware.org/gcc-patches/20260814013206.3818461-1-git@JohnEricson.me/raw",
             includes: nix.thunk(() => [
@@ -148,8 +145,8 @@ NIX_CFLAGS_COMPILE+=' -isystem ${nix.sel(stdenv, "cc", "cc")}/lib/gcc/${nix.sel(
       postConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), "NIX_CFLAGS_COMPILE=$NIX_CFLAGS_COMPILE_OLD\n")),
       makeFlags: nix.thunk(() => ["MULTIBUILDTOP:=../"]),
       doCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, isGNU: true })),
-      meta: nix.thunk(() => nix.update(gcc_meta, { [nix.POS]: pos$3, homepage: "https://gcc.gnu.org/" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], isGNU: true })),
+      meta: nix.thunk(() => nix.update(gcc_meta, { [nix.POS]: $pos[2], homepage: "https://gcc.gnu.org/" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

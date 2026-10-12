@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["stripRoot", 14, 5], ["hash", 15, 5]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 18, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, useVariableFont: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["stripRoot", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 18, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const useVariableFont = nix.argOr($, "useVariableFont", () => false);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cascadia-code",
       version: "2407.24",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/microsoft/cascadia-code/releases/download/v${nix.sel(finalAttrs, "version")}/CascadiaCode-${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-bCQzGCvjSQ1TXFVC3w9VPXNtjM4h7lRvljVjX/w1TJ4=",
@@ -30,7 +28,7 @@ ${(nix.asBool(useVariableFont) ? "install -Dm644 ttf/*.ttf -t $out/share/fonts/t
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Monospaced font that includes programming ligatures and is designed to enhance the modern look and feel of the Windows Terminal",
         homepage: "https://github.com/microsoft/cascadia-code",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/cascadia-code/raw/v${nix.sel(finalAttrs, "version")}/FONTLOG.txt`),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["platforms", 11, 27]], [["meta", 10, 5]]]);
 const formals$1 = { args: { pkgs: false, haskellPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["platforms", 11, 27]]);
-const pos$2 = nix.positions(here + "/default.nix", [["meta", 10, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const drv = nix.thunk(() => nix.sel(haskellPackages, "random"));
   const docs = nix.thunk(() => nix.app(nix.sel(pkgs, "haskell", "lib", "compose", "documentationTarball"), drv));
   return nix.app(nix.sel(pkgs, "runCommand"), "test haskell.lib.compose.documentationTarball", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(docs, "meta"));
-        return { [nix.POS]: pos$1, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+        return { [nix.POS]: $pos[0], platforms: nix.thunk(() => nix.attr(from, "platforms")) };
       })()),
     })), nix.thunk(() => nix.str`tar xvzf "${docs}/${nix.sel(drv, "name")}-docs.tar.gz"
 

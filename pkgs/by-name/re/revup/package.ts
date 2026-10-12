@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 16, 22], ["version", 16, 28], ["hash", 17, 7]], [["package", 45, 9]], [["version", 44, 13]], [["updateScript", 43, 7], ["tests", 44, 7]], [["homepage", 50, 7], ["description", 51, 7], ["longDescription", 52, 7], ["license", 71, 7], ["mainProgram", 72, 7], ["maintainers", 73, 7]], [["pname", 11, 5], ["version", 12, 5], ["pyproject", 13, 5], ["src", 15, 5], ["nativeBuildInputs", 20, 5], ["propagatedBuildInputs", 26, 5], ["nativeCheckInputs", 38, 5], ["passthru", 42, 5], ["meta", 49, 5]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, gitUpdater: false, python3Packages: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 16, 22], ["version", 16, 28], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 45, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 44, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 43, 7], ["tests", 44, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 50, 7], ["description", 51, 7], ["longDescription", 52, 7], ["license", 71, 7], ["mainProgram", 72, 7], ["maintainers", 73, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 5], ["version", 12, 5], ["pyproject", 13, 5], ["src", 15, 5], ["nativeBuildInputs", 20, 5], ["propagatedBuildInputs", 26, 5], ["nativeCheckInputs", 38, 5], ["passthru", 42, 5], ["meta", 49, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const testers = nix.arg($, "testers");
   const self = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "revup",
       version: "0.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(self, "pname")),
           version: nix.thunk(() => nix.attr(self, "version")),
           hash: "sha256-LrSRcnWc4AvWbpSrOLprs+rVM0sR1joLat3g9og6BwE=",
@@ -55,15 +50,15 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w_2, "pytest"))];
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: self })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: self })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/Skydio/revup",
         description: "Efficient git workflow and code review toolkit",
         longDescription: "Revup provides command-line tools that allow developers to iterate\nfaster on parallel changes and reduce the overhead of creating and\nmaintaining code reviews.\n\nFeatures:\n\n- Revup creates multiple independent chains of branches for you in the\n  background and without touching your working tree. It then creates and\n  manages github pull requests for all those branches.\n- Pull requests target the actual base branch and can be merged manually\n  or by continuous integration\n- Rebase detection saves time and continuous integration cost by not\n  re-pushing if the patch hasn't changed\n- Adds reviewers, labels, and creates drafts all from the commit text\n- Adds auto-updating \"review graph\" and \"patchsets\" elements to make\n  pull requests easier to navigate\n- revup amend and revup restack save time by replacing slow rebases\n",

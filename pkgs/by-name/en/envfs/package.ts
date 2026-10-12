@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["envfs", 28, 28], ["envfs-systemd-stage-1", 28, 34]], [["tests", 27, 5], ["updateScript", 31, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["postInstall", 21, 3], ["passthru", 26, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["envfs", 28, 28], ["envfs-systemd-stage-1", 28, 34]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 27, 5], ["updateScript", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["postInstall", 21, 3], ["passthru", 26, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "envfs",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Mic92",
           repo: "envfs",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,16 +26,16 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-dz3gpE464jnmSDsAsmJHcxUsEKeUURNoUjgGU2214Xg=",
       postInstall: "ln -s envfs $out/bin/mount.envfs\nln -s envfs $out/bin/mount.fuse.envfs\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           envfs: nix.thunk(() => nix.attr(nixosTests, "envfs")),
           "envfs-systemd-stage-1": nix.thunk(() => nix.attr(nixosTests, "envfs-systemd-stage-1")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fuse filesystem that returns symlinks to executables based on the PATH of the requesting process",
         homepage: "https://github.com/Mic92/envfs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

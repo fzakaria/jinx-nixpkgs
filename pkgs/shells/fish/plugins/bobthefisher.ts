@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bobthefisher.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]], [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["maintainers", 21, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, buildFishPlugin: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bobthefisher.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/bobthefisher.nix", [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["maintainers", 21, 5]]);
-const pos$3 = nix.positions(here + "/bobthefisher.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const buildFishPlugin = nix.arg($, "buildFishPlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bobthefisher",
       version: "0-unstable-2023-10-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Scrumplex",
           repo: "bobthefisher",
           rev: "f4179a14b087c7fbfc2e892da429adad40a39e44",
           sha256: "sha256-l1DHSZa40BX2/4GCjm5E53UOeFEnMioWbZtCW14WX6k=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Powerline-style, Git-aware fish theme optimized for awesome (fork of bobthefish)",
         homepage: "https://github.com/Scrumplex/bobthefisher",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

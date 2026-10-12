@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["lockFile", 26, 46]], [["fuzz", 42, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["cargoDeps", 26, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, cargo: false, fetchFromGitHub: false, frelatage: false, libiconv: false, pytestCheckHook: false, rustc: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lockFile", 26, 46]]);
-const pos$3 = nix.positions(here + "/default.nix", [["fuzz", 42, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["cargoDeps", 26, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +22,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ionite34",
           repo: "base2048",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-OXlfycJB1IrW2Zq0xPDGjjwCdRTWtX/ixPGWcd+YjAg=",
         }))));
-      const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") }))));
+      const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") }))));
       const postPatch = nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `);
       const nativeBuildInputs = nix.thunk(() => [
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
         rustc,
       ]);
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])));
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, fuzz: nix.thunk(() => [frelatage]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[2], fuzz: nix.thunk(() => [frelatage]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["base2048"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Binary encoding with base-2048 in Python with Rust",
         homepage: "https://github.com/ionite34/base2048",
         changelog: nix.thunk(() => nix.str`https://github.com/ionite34/base2048/releases/tag/v${version}`),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

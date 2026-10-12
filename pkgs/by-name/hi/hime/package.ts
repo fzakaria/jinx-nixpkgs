@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 21, 5], ["owner", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["homepage", 53, 5], ["downloadPage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["preConfigure", 41, 3], ["configureFlags", 42, 3], ["dontWrapQtApps", 46, 3], ["postFixup", 47, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, "pkg-config": false, which: false, gtk2: false, gtk3: false, qt5: false, libxtst: false, lib: false, libchewing: false, unixtools: false, anthy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 21, 5], ["owner", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["downloadPage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["preConfigure", 41, 3], ["configureFlags", 42, 3], ["dontWrapQtApps", 46, 3], ["postFixup", 47, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const unixtools = nix.arg($, "unixtools");
   const anthy = nix.arg($, "anthy");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hime",
       version: "0.9.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "hime",
           owner: "hime-ime",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       postFixup: "hime_rpath=$(patchelf --print-rpath $out/bin/hime)\npatchelf --set-rpath $out/lib/hime:$hime_rpath $out/bin/hime\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://hime-ime.github.io/",
         downloadPage: "https://github.com/hime-ime/hime/downloads",
         description: "Useful input method engine for Asia region",

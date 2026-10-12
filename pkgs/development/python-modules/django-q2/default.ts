@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["MONGO_HOST", 56, 5], ["REDIS_HOST", 57, 5]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 53, 3], ["env", 55, 3], ["disabledTests", 60, 3], ["disabledTestPaths", 75, 3], ["pytestFlags", 82, 3], ["__darwinAllowLocalNetworking", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, arrow: false, blessed: false, bson: false, buildPythonPackage: false, croniter: false, django: false, "django-picklefield": false, "django-redis": false, fetchFromGitHub: false, hiredis: false, "poetry-core": false, "pytest-django": false, pytestCheckHook: false, redisTestHook: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["MONGO_HOST", 56, 5], ["REDIS_HOST", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 53, 3], ["env", 55, 3], ["disabledTests", 60, 3], ["disabledTestPaths", 75, 3], ["pytestFlags", 82, 3], ["__darwinAllowLocalNetworking", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "django-q2",
           repo: "django-q2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         redisTestHook,
       ]);
       const pythonImportsCheck = nix.thunk(() => ["django_q"]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, MONGO_HOST: "127.0.0.1", REDIS_HOST: "127.0.0.1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], MONGO_HOST: "127.0.0.1", REDIS_HOST: "127.0.0.1" }));
       const disabledTests = nix.thunk(() => nix.concat(["test_mongo"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           "test_max_rss",
           "test_recycle",
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["-vv"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Multiprocessing distributed task queue for Django based on Django-Q",
         homepage: "https://github.com/django-q2/django-q2",
         changelog: nix.thunk(() => nix.str`https://github.com/django-q2/django-q2/releases/tag/${nix.sel(src, "tag")}`),
@@ -77,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

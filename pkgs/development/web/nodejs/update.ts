@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update.nix", [[["url", 18, 5], ["hash", 19, 5]]]);
 const formals$1 = { args: { lib: false, writeScript: false, "common-updater-scripts": false, coreutils: false, curl: false, fetchurl: false, gnugrep: false, gnupg: false, jq: false, majorVersion: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/update.nix", [["url", 18, 5], ["hash", 19, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const rev = "481637f813e912c4aa3622d7964ab426c97b8e8d";
   const pubring = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/nodejs/release-keys/raw/${rev}/gpg-only-active-keys/pubring.kbx`),
       hash: "sha256-FA8q1SYP1idztiQ86OHTAJZF1VjxIbgmLFXjg9woWTI=",
     }))));

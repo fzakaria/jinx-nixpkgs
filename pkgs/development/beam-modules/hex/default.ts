@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 13, 7], ["buildInputs", 14, 7]], [["owner", 24, 9], ["repo", 25, 9], ["rev", 26, 9], ["sha256", 27, 9]], [["description", 57, 9], ["license", 58, 9], ["homepage", 59, 9], ["maintainers", 60, 9]], [["env", 64, 9]], [["pname", 20, 7], ["version", 21, 7], ["src", 23, 7], ["setupHook", 30, 7], ["dontStrip", 34, 7], ["buildInputs", 36, 7], ["buildPhase", 38, 7], ["installPhase", 47, 7], ["meta", 56, 7], ["passthru", 63, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, writeText: false, elixir: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 13, 7], ["buildInputs", 14, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 24, 9], ["repo", 25, 9], ["rev", 26, 9], ["sha256", 27, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 57, 9], ["license", 58, 9], ["homepage", 59, 9], ["maintainers", 60, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["env", 64, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 20, 7], ["version", 21, 7], ["src", 23, 7], ["setupHook", 30, 7], ["dontStrip", 34, 7], ["buildInputs", 36, 7], ["buildPhase", 38, 7], ["installPhase", 47, 7], ["meta", 56, 7], ["passthru", 63, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const elixir = nix.arg($, "elixir");
   const shell = (drv) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`interactive-shell-${nix.sel(drv, "name")}`),
       buildInputs: nix.thunk(() => [drv]),
     })));
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hex";
       const version = "2.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "hexpm",
           repo: "hex",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "runHook preBuild\nexport HEX_OFFLINE=1\nexport HEX_HOME=./\nexport MIX_ENV=prod\nmix compile\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\n\nmkdir -p $out/lib/erlang/lib\ncp -r ./_build/prod/lib/hex $out/lib/erlang/lib/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Package manager for the Erlang VM https://hex.pm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/hexpm/hex",
@@ -46,9 +42,9 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "ericbmerritt"))];
         })()),
       }));
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, env: nix.thunk(() => nix.app(shell, self)) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], env: nix.thunk(() => nix.app(shell, self)) }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["url", 31, 7], ["hash", 32, 7]], [["url", 36, 7], ["hash", 37, 7]], [["assets", 77, 5]], [["homepage", 81, 5], ["changelog", 82, 5], ["description", 83, 5], ["license", 84, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["strictDeps", 55, 3], ["postPatch", 58, 3], ["installPhase", 62, 3], ["passthru", 76, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, SDL2_mixer: false, SDL2_image: false, callPackage: false, cmake: false, "pkg-config": false, ninja: false, fetchFromGitHub: false, fetchpatch: false, libpng: false, libjpeg: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["assets", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 81, 5], ["changelog", 82, 5], ["description", 83, 5], ["license", 84, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["strictDeps", 55, 3], ["postPatch", 58, 3], ["installPhase", 62, 3], ["passthru", 76, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nxengine-evo",
       version: "2.6.5-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nxengine",
           repo: "nxengine-evo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,12 +33,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/nxengine/nxengine-evo/commit/0076ebb11bcfec5dc5e2e923a50425f1a33a4133.patch",
             hash: "sha256-8j3fFFw8DMljV7aAFXE+eA+vkbz1HdFTMAJmk3BRU04=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/nxengine/nxengine-evo/commit/7e228063441da50f65a78bf2213e85b7fceffae9.patch",
             hash: "sha256-Vi8nE7IdvQbMDrXycw9hLsuHQwbpu1eiUTLSaIcRoUQ=",
           })))),
@@ -56,11 +51,11 @@ export default nix.lambda((args) => (() => {
 chmod -R a=r,a+X $out/share/nxengine/data
 `), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         assets: nix.thunk(() => nix.app(callPackage, nix.path(here, "./assets.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/nxengine/nxengine-evo",
         changelog: nix.thunk(() => nix.str`https://github.com/nxengine/nxengine-evo/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Complete open-source clone/rewrite of the masterpiece jump-and-run platformer Doukutsu Monogatari (also known as Cave Story)",

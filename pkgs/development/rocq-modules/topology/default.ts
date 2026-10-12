@@ -2,24 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hash", 14, 20]], [["hash", 15, 19]], [["hash", 16, 20]], [["hash", 17, 20]], [["hash", 18, 19]], [["hash", 19, 19]], [["hash", 20, 19]], [["hash", 21, 19]], [["10.2.0", 14, 11], ["9.0.0", 15, 11], ["8.12.0", 16, 11], ["8.10.0", 17, 11], ["8.9.0", 18, 11], ["8.8.0", 19, 11], ["8.7.0", 20, 11], ["8.6.0", 21, 11]], [["case", 28, 9], ["out", 29, 9]], [["case", 32, 9], ["out", 33, 9]], [["case", 36, 9], ["out", 37, 9]], [["case", 40, 9], ["out", 41, 9]], [["case", 44, 9], ["out", 45, 9]], [["case", 48, 9], ["out", 49, 9]], [["description", 58, 5], ["longDescription", 59, 5], ["maintainers", 63, 5], ["license", 64, 5]], [["pname", 10, 3], ["releaseRev", 12, 3], ["release", 14, 3], ["version", 23, 11], ["defaultVersion", 24, 3], ["propagatedBuildInputs", 53, 3], ["useDuneifVersion", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, "zorns-lemma": false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hash", 14, 20]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 15, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 16, 20]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 17, 20]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 18, 19]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 19, 19]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 20, 19]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hash", 21, 19]]);
-const pos$9 = nix.positions(here + "/default.nix", [["10.2.0", 14, 11], ["9.0.0", 15, 11], ["8.12.0", 16, 11], ["8.10.0", 17, 11], ["8.9.0", 18, 11], ["8.8.0", 19, 11], ["8.7.0", 20, 11], ["8.6.0", 21, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["case", 28, 9], ["out", 29, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["case", 32, 9], ["out", 33, 9]]);
-const pos$12 = nix.positions(here + "/default.nix", [["case", 36, 9], ["out", 37, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["case", 40, 9], ["out", 41, 9]]);
-const pos$14 = nix.positions(here + "/default.nix", [["case", 44, 9], ["out", 45, 9]]);
-const pos$15 = nix.positions(here + "/default.nix", [["case", 48, 9], ["out", 49, 9]]);
-const pos$16 = nix.positions(here + "/default.nix", [["description", 58, 5], ["longDescription", 59, 5], ["maintainers", 63, 5], ["license", 64, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["releaseRev", 12, 3], ["release", 14, 3], ["version", 23, 11], ["defaultVersion", 24, 3], ["propagatedBuildInputs", 53, 3], ["useDuneifVersion", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,41 +13,41 @@ export default nix.lambda((args) => (() => {
   const zorns_lemma = nix.arg($, "zorns-lemma");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       pname: "topology",
       releaseRev: (v) => nix.str`v${v}`,
       release: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         "10.2.0": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256-xLi3uRQBKL9KiLd4FBnbTPxh8TjdN8IEW/1D7n2B+xY=",
         })),
         "9.0.0": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256:03lgy53xg9pmrdd3d8qb4087k5qjnk260655svp6d79x4p2lxr8c",
         })),
         "8.12.0": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-ypHmHwzwZ6MQPYwuS3QyZmVOEPUCSbO2lhVaA6TypgQ=",
         })),
         "8.10.0": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-mCLF3JYIiO3AEW9yvlcLeF7zN4SjW3LG+Y5vYB0l55A=",
         })),
         "8.9.0": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256-ZJh1BM34iZOQ75zqLIA+KtBjO2y33y0UpAw/ydCWQYc=",
         })),
         "8.8.0": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256-Yfm3UymEP1e+BKMNPhdRFLdFhynMirtQ8E0HXnRiqHU=",
         })),
         "8.7.0": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256-qcZQKvMRs5wWIAny8ciF9TrmEQfKKO9fWhwIRL+s7VA=",
         })),
         "8.6.0": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           hash: "sha256-eu/dBEFo3y6vnXlJljUD4hds6+qgAPQVvsuspyGHcj8=",
         })),
       })),
@@ -72,25 +56,25 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.12", "8.18")),
               out: "10.2.0",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.10", "8.16")),
               out: "9.0.0",
             })),
-            nix.thunk(() => ({ [nix.POS]: pos$12, case: "8.9", out: "8.9.0" })),
-            nix.thunk(() => ({ [nix.POS]: pos$13, case: "8.8", out: "8.8.0" })),
-            nix.thunk(() => ({ [nix.POS]: pos$14, case: "8.7", out: "8.7.0" })),
-            nix.thunk(() => ({ [nix.POS]: pos$15, case: "8.6", out: "8.6.0" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[11], case: "8.9", out: "8.9.0" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[12], case: "8.8", out: "8.8.0" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[13], case: "8.7", out: "8.7.0" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[14], case: "8.6", out: "8.6.0" })),
           ]), null);
       })()),
       propagatedBuildInputs: nix.thunk(() => [zorns_lemma]),
       useDuneifVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "isGe"), "9.0")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         description: "General topology in Coq",
         longDescription: "This library develops some of the basic concepts and results of\ngeneral topology in Coq.\n",
         maintainers: nix.thunk(() => (() => {

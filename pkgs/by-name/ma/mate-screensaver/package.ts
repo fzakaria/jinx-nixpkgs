@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["odd-unstable", 64, 5], ["rev-prefix", 65, 5]], [["updateScript", 63, 12]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 75, 5], ["teams", 76, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 45, 3], ["configureFlags", 57, 3], ["makeFlags", 59, 3], ["enableParallelBuilding", 61, 3], ["passthru", 63, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "autoconf-archive": false, autoreconfHook: false, "pkg-config": false, gettext: false, gtk3: false, "dbus-glib": false, libxscrnsaver: false, libnotify: false, libxml2: false, "mate-common": false, "mate-desktop": false, "mate-menus": false, "mate-panel": false, pam: false, systemdLibs: false, wrapGAppsHook3: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["odd-unstable", 64, 5], ["rev-prefix", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 75, 5], ["teams", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 45, 3], ["configureFlags", 57, 3], ["makeFlags", 59, 3], ["enableParallelBuilding", 61, 3], ["passthru", 63, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mate-screensaver",
       version: "1.28.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mate-desktop",
           repo: "mate-screensaver",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,11 +62,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["DBUS_SESSION_SERVICE_DIR=$(out)/etc"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "odd-unstable": true, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "odd-unstable": true, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Screen saver and locker for the MATE desktop",
         homepage: "https://mate-desktop.org",
         license: nix.thunk(() => (() => {

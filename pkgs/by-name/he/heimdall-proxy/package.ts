@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["CGO_ENABLED", 27, 7]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5]], [["pname", 10, 3], ["version", 12, 11], ["src", 14, 3], ["vendorHash", 21, 3], ["tags", 23, 3], ["subPackages", 25, 3], ["env", 27, 3], ["ldflags", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, buildGoModule: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 12, 11], ["src", 14, 3], ["vendorHash", 21, 3], ["tags", 23, 3], ["subPackages", 25, 3], ["env", 27, 3], ["ldflags", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "0.17.19";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "heimdall-proxy",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dadrus",
           repo: "heimdall",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,14 +25,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-85Aty7bCV7sq4CDAk7CCGQuD18P1Uj1AMO191k+YAHY=",
       tags: nix.thunk(() => ["sqlite"]),
       subPackages: nix.thunk(() => ["."]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
         nix.thunk(() => nix.str`-X github.com/dadrus/heimdall/version.Version=${version}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cloud native Identity Aware Proxy and Access Control Decision service",
         homepage: "https://dadrus.github.io/heimdall",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

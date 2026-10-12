@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5], ["fetchSubmodules", 28, 5]], [["enableDebuginfod", 42, 26]], [["description", 83, 5], ["mainProgram", 84, 5], ["longDescription", 85, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["platforms", 96, 5], ["maintainers", 97, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["cmakeFlags", 39, 3], ["buildInputs", 41, 3], ["qtWrapperArgs", 66, 3], ["preFixup", 75, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, binutils: false, cmake: false, patchelfUnstable: false, elfutils: false, fetchFromGitHub: false, fetchpatch: false, kddockwidgets: false, kdePackages: false, libelf: false, perf: false, qt6: false, "rustc-demangle": false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5], ["fetchSubmodules", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enableDebuginfod", 42, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 83, 5], ["mainProgram", 84, 5], ["longDescription", 85, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["platforms", 96, 5], ["maintainers", 97, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["cmakeFlags", 39, 3], ["buildInputs", 41, 3], ["qtWrapperArgs", 66, 3], ["preFixup", 75, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const rustc_demangle = nix.arg($, "rustc-demangle");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hotspot",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KDAB",
           repo: "hotspot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "strings", "cmakeBool"), "QT6_BUILD", true)),
       ]),
       buildInputs: nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(nix.sel(elfutils, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableDebuginfod: true })))),
+        nix.thunk(() => nix.app(nix.sel(elfutils, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], enableDebuginfod: true })))),
         kddockwidgets,
         libelf,
         nix.thunk(() => nix.sel(qt6, "qtbase")),
@@ -81,7 +78,7 @@ export default nix.lambda((args) => (() => {
   $out/libexec/hotspot-perfparser
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GUI for Linux perf",
         mainProgram: "hotspot",
         longDescription: "hotspot is a GUI replacement for `perf report`.\nIt takes a perf.data file, parses and evaluates its contents and\nthen displays the result in a graphical way.\n",

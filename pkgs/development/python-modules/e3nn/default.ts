@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 40, 3], ["pythonImportsCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 53, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, "opt-einsum-fx": false, scipy: false, sympy: false, torch: false, pytestCheckHook: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 40, 3], ["pythonImportsCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 53, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "e3nn",
       version: "0.6.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "e3nn",
           repo: "e3nn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => nix.concat(["test_identity"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_activation", "test_input_weights_jit", "test_variance"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modular framework for neural networks with Euclidean symmetry",
         homepage: "https://github.com/e3nn/e3nn",
         changelog: nix.thunk(() => nix.str`https://github.com/e3nn/e3nn/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

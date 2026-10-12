@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 31, 5], ["homepage", 32, 5], ["mainProgram", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["nativeBuildInputs", 16, 3], ["extraInstallCommands", 17, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["mainProgram", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["nativeBuildInputs", 16, 3], ["extraInstallCommands", 17, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const appimageTools = nix.arg($, "appimageTools");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(appimageTools, "wrapType2"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "starc",
       version: "0.8.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/story-apps/starc/releases/download/v${nix.sel(finalAttrs, "version")}/starc-setup.AppImage`),
           hash: "sha256-ZNd69E70yTFOQGBAZuOJqKlzGS+0xSsAP2uh1EWb6B8=",
         })))),
@@ -33,7 +31,7 @@ wrapProgram $out/bin/starc \\
   --unset QT_PLUGIN_PATH
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Intuitive screenwriting app that streamlines the writing process",
         homepage: "https://starc.app/",
         mainProgram: "starc",

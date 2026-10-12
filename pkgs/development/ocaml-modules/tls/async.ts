@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/async.nix", [[["description", 28, 5]], [["pname", 11, 3], ["src", 13, 17], ["version", 13, 21], ["minimalOCamlVersion", 15, 3], ["doCheck", 17, 3], ["propagatedBuildInputs", 19, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, tls: false, async: false, "cstruct-async": false, core: false, "mirage-crypto-rng": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/async.nix", [["description", 28, 5]]);
-const pos$2 = nix.positions(here + "/async.nix", [["pname", 11, 3], ["src", 13, 17], ["version", 13, 21], ["minimalOCamlVersion", 15, 3], ["doCheck", 17, 3], ["propagatedBuildInputs", 19, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const core = nix.arg($, "core");
   const mirage_crypto_rng = nix.arg($, "mirage-crypto-rng");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "tls-async",
       src: nix.thunk(() => nix.attr(tls, "src")),
       version: nix.thunk(() => nix.attr(tls, "version")),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       propagatedBuildInputs: nix.thunk(() => [async$, core, cstruct_async, mirage_crypto_rng, tls]),
       meta: nix.thunk(() => nix.update(nix.sel(tls, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Transport Layer Security purely in OCaml, Async layer",
       })),
     })));

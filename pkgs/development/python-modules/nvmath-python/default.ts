@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 22, 31]], [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["teams", 74, 5], ["broken", 78, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["build-system", 44, 3], ["dependencies", 50, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 61, 3], ["pythonImportsCheck", 65, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, config: false, buildPythonPackage: false, fetchFromGitHub: false, cudaPackages_13_1: false, cython: false, setuptools: false, tomli: false, "cuda-bindings": false, "cuda-core": false, "cuda-pathfinder": false, numpy: false, cudaSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 22, 31]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["teams", 74, 5], ["broken", 78, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["build-system", 44, 3], ["dependencies", 50, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 61, 3], ["pythonImportsCheck", 65, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       stdenv: nix.thunk(() => nix.sel(cudaPackages_13_1, "backendStdenv")),
     })), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nvmath-python",
       version: "1.0.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "NVIDIA",
           repo: "nvmath-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages_13_1, "cuda_cudart"))]),
       pythonImportsCheck: nix.thunk(() => ["nvmath"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "NVIDIA Math Libraries for the Python Ecosystem",
         homepage: "https://pypi.org/project/nvmath-python",
         license: nix.thunk(() => (() => {

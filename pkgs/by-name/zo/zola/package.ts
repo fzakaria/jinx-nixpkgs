@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["RUSTONIG_SYSTEM_LIBONIG", 39, 7]], [["package", 48, 50]], [["version", 48, 18]], [["tests", 48, 12]], [["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["checkInputs", 35, 3], ["env", 39, 3], ["postInstall", 41, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, cacert: false, "pkg-config": false, oniguruma: false, installShellFiles: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTONIG_SYSTEM_LIBONIG", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 48, 50]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 48, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 48, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["checkInputs", 35, 3], ["env", 39, 3], ["postInstall", 41, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "zola",
       version: "0.23.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "getzola",
           repo: "zola",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,20 +31,20 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, installShellFiles]),
       buildInputs: nix.thunk(() => [oniguruma]),
       checkInputs: nix.thunk(() => [cacert]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTONIG_SYSTEM_LIBONIG: true })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd zola \\\n  --bash <($out/bin/zola completion bash) \\\n  --fish <($out/bin/zola completion fish) \\\n  --zsh <($out/bin/zola completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Fast static site generator with everything built-in",
         mainProgram: "zola",
         homepage: "https://www.getzola.org/",

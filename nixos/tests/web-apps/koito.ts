@@ -2,26 +2,22 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/koito.nix", [[["enable", 6, 20]], [["koito", 6, 14]], [["services", 6, 5]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 9, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/koito.nix", [["enable", 6, 20]]);
-const pos$2 = nix.positions(here + "/koito.nix", [["koito", 6, 14]]);
-const pos$3 = nix.positions(here + "/koito.nix", [["services", 6, 5]]);
-const pos$4 = nix.positions(here + "/koito.nix", [["machine", 5, 9]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/koito.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     name: "koito",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          koito: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+          [nix.POS]: $pos[1],
+          koito: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         })),
       })),
     })),

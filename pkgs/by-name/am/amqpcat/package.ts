@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["package", 36, 5]], [["version", 35, 18]], [["tests", 35, 12]], [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["format", 21, 3], ["shardsFile", 22, 3], ["buildInputs", 24, 3], ["preConfigure", 26, 3], ["doCheck", 33, 3], ["passthru", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, crystal: false, openssl: false, testers: false, amqpcat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 35, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 35, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["format", 21, 3], ["shardsFile", 22, 3], ["buildInputs", 24, 3], ["preConfigure", 26, 3], ["doCheck", 33, 3], ["passthru", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "amqpcat";
       const version = "1.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cloudamqp",
           repo: "amqpcat",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,14 +32,14 @@ export default nix.lambda((args) => (() => {
 `);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: amqpcat })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: amqpcat })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CLI tool for publishing to and consuming from AMQP servers",
         mainProgram: "amqpcat",
         homepage: "https://github.com/cloudamqp/amqpcat",
@@ -52,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

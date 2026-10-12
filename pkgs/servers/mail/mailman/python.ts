@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/python.nix", [[["django", 29, 11]], [["self", 10, 13], ["packageOverrides", 11, 5]]]);
 const formals$1 = { args: { python3: false, lib: false, overlay: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/python.nix", [["django", 29, 11]]);
-const pos$2 = nix.positions(here + "/python.nix", [["self", 10, 13], ["packageOverrides", 11, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const overlay = nix.argOr($, "overlay", () => (_) => (__1) => ({}));
   return nix.app(nix.sel(lib, "fix"), (self) => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         self: self,
-        packageOverrides: nix.thunk(() => nix.app(nix.sel(lib, "composeExtensions"), (self_1) => (super$) => ({ [nix.POS]: pos$1, django: nix.thunk(() => nix.sel(super$, "django_5")) }), overlay)),
+        packageOverrides: nix.thunk(() => nix.app(nix.sel(lib, "composeExtensions"), (self_1) => (super$) => ({ [nix.POS]: $pos[0], django: nix.thunk(() => nix.sel(super$, "django_5")) }), overlay)),
       }))));
 })(), formals$1);
 //# sourceMappingURL=python.ts.map

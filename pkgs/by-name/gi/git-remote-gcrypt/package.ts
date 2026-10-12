@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 22, 13], ["owner", 23, 5], ["repo", 24, 5], ["sha256", 25, 5]], [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]], [["pname", 17, 3], ["version", 18, 3], ["rev", 19, 3], ["src", 21, 3], ["outputs", 28, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 38, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, docutils: false, makeWrapper: false, gnupg: false, curl: false, rsync: false, coreutils: false, gawk: false, gnused: false, gnugrep: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 22, 13], ["owner", 23, 5], ["repo", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["rev", 19, 3], ["src", 21, 3], ["outputs", 28, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 38, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5";
       const rev = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: rev,
           owner: "spwhitton",
           repo: "git-remote-gcrypt",
@@ -39,7 +37,7 @@ wrapProgram "$out/bin/git-remote-gcrypt" \\
   --prefix PATH ":" "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnupg, curl, rsync, coreutils, gawk, gnused, gnugrep]))}"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://spwhitton.name/tech/code/git-remote-gcrypt",
         description: "Git remote helper for GPG-encrypted remotes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -54,7 +52,7 @@ wrapProgram "$out/bin/git-remote-gcrypt" \\
         mainProgram: "git-remote-gcrypt",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         rev,

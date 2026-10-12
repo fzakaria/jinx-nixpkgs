@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoVendorDir", 16, 3], ["doCheck", 17, 3], ["postInstall", 19, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoVendorDir", 16, 3], ["doCheck", 17, 3], ["postInstall", 19, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "okapi",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/trinsic-id/okapi/releases/download/v${nix.sel(finalAttrs, "version")}/okapi-vendor-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-wszpCzh1VhqBlox7ywWi6WKUmxQUTsf5N5IiJumlEbM=",
         })))),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "cp -r include $out\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of tools that support workflows for working with authentic data and identity management",
         homepage: "https://github.com/trinsic-id/okapi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

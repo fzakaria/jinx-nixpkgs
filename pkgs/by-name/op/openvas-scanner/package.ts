@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["NIX_CFLAGS_COMPILE", 44, 7]], [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5], ["platforms", 92, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["env", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 54, 3], ["cmakeFlags", 77, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bison: false, cmake: false, curl: false, doxygen: false, fetchFromGitHub: false, git: false, glib: false, gnutls: false, gpgme: false, "gvm-libs": false, "json-glib": false, libbsd: false, libclang: false, libgcrypt: false, libksba: false, libpcap: false, libsepol: false, libssh: false, libtasn1: false, "net-snmp": false, "p11-kit": false, "paho-mqtt-c": false, pandoc: false, pcre2: false, "pkg-config": false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5], ["platforms", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["env", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 54, 3], ["cmakeFlags", 77, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,17 +36,17 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openvas-scanner",
       version: "23.28.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "greenbone",
           repo: "openvas-scanner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ggmex/BmAVgdE1JNM3kybEmr/uKqrIl8JdSoBnsg+40=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       nativeBuildInputs: nix.thunk(() => [cmake, git, doxygen, pandoc, pkg_config]),
       buildInputs: nix.thunk(() => [
         bison,
@@ -81,7 +78,7 @@ export default nix.lambda((args) => (() => {
         "-DOPENVAS_FEED_LOCK_PATH=$out/var/lib/openvas/feed-update.lock",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Scanner component for Greenbone Community Edition",
         homepage: "https://github.com/greenbone/openvas-scanner",
         changelog: nix.thunk(() => nix.str`https://github.com/greenbone/openvas-scanner/blob/${nix.sel(finalAttrs, "src", "rev")}/changelog.toml`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ondir",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alecthomas",
           repo: "ondir",
           rev: "cb2f9f8b21e336165fc0a310d677fda75c8e8513",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmake DESTDIR=\"$out\" PREFIX= install\ncp scripts.* $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small program to automate tasks specific to certain directories",
         longDescription: "It works by executing scripts in directories when you enter and leave them.\nThis is done by overriding the shell builtins cd, pushd, and popd,\n which is a manual action.\nThe user is required to add a snippet to their shell initialisation file like .bashrc or .profile.\n\nWhich commands are executed on directory entry and leave is done\n in predefined locations with a .ondirrc file.\n\nSee man ondir for more information\n",
         homepage: "https://github.com/alecthomas/ondir/",

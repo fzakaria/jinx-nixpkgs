@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["XDG_SESSION_TYPE", 113, 7]], [["homepage", 116, 5], ["description", 117, 5], ["longDescription", 118, 5], ["license", 122, 5], ["maintainers", 123, 5], ["mainProgram", 126, 5], ["platforms", 127, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 42, 3], ["configurePhase", 49, 3], ["buildPhase", 70, 3], ["installPhase", 76, 3], ["dontPatchShebangs", 86, 3], ["doInstallCheck", 88, 3], ["installCheckPhase", 89, 3], ["env", 113, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, perl: false, which: false, wayland: false, libxkbcommon: false, ed: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["XDG_SESSION_TYPE", 113, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 116, 5], ["description", 117, 5], ["longDescription", 118, 5], ["license", 122, 5], ["maintainers", 123, 5], ["mainProgram", 126, 5], ["platforms", 127, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 42, 3], ["configurePhase", 49, 3], ["buildPhase", 70, 3], ["installPhase", 76, 3], ["dontPatchShebangs", 86, 3], ["doInstallCheck", 88, 3], ["installCheckPhase", 89, 3], ["env", 113, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const ed = nix.arg($, "ed");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "plan9port-wayland",
       version: "0-unstable-2025-11-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eaburns",
           repo: "plan9port",
           rev: "5848a455a79e4c3c5089fdeb7dcad69d67349bcd",
@@ -53,9 +50,9 @@ EOF
       dontPatchShebangs: true,
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/9 rc -c 'echo rc is working.'\n\n# 9l can find and use its libs\ncd $TMP\ncat >test.c <<EOF\n#include <u.h>\n#include <libc.h>\n#include <thread.h>\nvoid\nthreadmain(int argc, char **argv)\n{\n    threadexitsall(nil);\n}\nEOF\n$out/bin/9 9c -o test.o test.c\n$out/bin/9 9l -o test test.o\n./test\n\nrunHook postInstallCheck\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, XDG_SESSION_TYPE: "wayland" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], XDG_SESSION_TYPE: "wayland" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/eaburns/plan9port",
         description: "Plan 9 from User Space (fork with wayland support)",
         longDescription: "Plan 9 from User Space (aka plan9port) is a port of many Plan 9 programs\nfrom their native Plan 9 environment to Unix-like operating systems.\n",

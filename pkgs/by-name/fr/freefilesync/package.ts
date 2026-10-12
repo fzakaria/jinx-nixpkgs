@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 9], ["repo", 28, 9], ["tag", 29, 9], ["fetchSubmodules", 30, 9], ["hash", 31, 9]], [["version", 25, 7], ["src", 26, 7], ["patches", 33, 7]], [["url", 44, 5], ["postFetch", 46, 5], ["hash", 50, 5]], [["gtk3-dev", 60, 7]], [["NIX_CFLAGS_COMPILE", 89, 7]], [["name", 127, 7], ["desktopName", 128, 7], ["genericName", 129, 7], ["icon", 130, 7], ["exec", 131, 7], ["categories", 132, 7]], [["name", 138, 7], ["desktopName", 139, 7], ["genericName", 140, 7], ["icon", 141, 7], ["exec", 142, 7], ["categories", 143, 7]], [["description", 151, 5], ["homepage", 152, 5], ["license", 153, 5], ["maintainers", 159, 5], ["platforms", 160, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["sourceRoot", 53, 3], ["patches", 55, 3], ["postPatch", 68, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 79, 3], ["env", 89, 3], ["buildPhase", 99, 3], ["installPhase", 112, 3], ["desktopItems", 125, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, replaceVars: false, fetchFromGitHub: false, fetchDebianPatch: false, copyDesktopItems: false, "pkg-config": false, wrapGAppsHook3: false, unzip: false, curl: false, glib: false, gtk3: false, libidn2: false, libssh2: false, openssl: false, wxwidgets_3_3: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 9], ["repo", 28, 9], ["tag", 29, 9], ["fetchSubmodules", 30, 9], ["hash", 31, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 25, 7], ["src", 26, 7], ["patches", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 44, 5], ["postFetch", 46, 5], ["hash", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["gtk3-dev", 60, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 89, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 127, 7], ["desktopName", 128, 7], ["genericName", 129, 7], ["icon", 130, 7], ["exec", 131, 7], ["categories", 132, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 138, 7], ["desktopName", 139, 7], ["genericName", 140, 7], ["icon", 141, 7], ["exec", 142, 7], ["categories", 143, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 151, 5], ["homepage", 152, 5], ["license", 153, 5], ["maintainers", 159, 5], ["platforms", 160, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["sourceRoot", 53, 3], ["patches", 55, 3], ["postPatch", 68, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 79, 3], ["env", 89, 3], ["buildPhase", 99, 3], ["installPhase", 112, 3], ["desktopItems", 125, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,10 +26,10 @@ export default nix.lambda((args) => (() => {
   const wxwidgets_3_3 = nix.arg($, "wxwidgets_3_3");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const wxwidgets_3_3_2 = nix.thunk(() => nix.app(nix.sel(wxwidgets_3_3, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "3.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wxWidgets",
           repo: "wxWidgets",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,11 +39,11 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./wxcolorhook.patch")]),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "freefilesync",
       version: "14.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://freefilesync.org/download/FreeFileSync_${nix.sel(finalAttrs, "version")}_Source.zip`),
           postFetch: "rm -f \"$out\"\ntryDownload \"$url\" \"$out\"\n",
           hash: "sha256-PfSPmEIzRRJXgIIzrwsN0CXCAE662UX4YRayYRFMOk0=",
@@ -60,7 +52,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./skip-missing-Animal.dat.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./Makefile.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "gtk3-dev": nix.thunk(() => nix.app(nix.sel(lib, "getDev"), gtk3)),
           })))),
         nix.path(here, "./Disable_wxWidgets_uncaught_exception_handling.patch"),
@@ -70,7 +62,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, pkg_config, wrapGAppsHook3, unzip]),
       buildInputs: nix.thunk(() => [curl, glib, gtk3, libidn2, libssh2, openssl, wxwidgets_3_3_2]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_54",
             "-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_54",
@@ -89,7 +81,7 @@ export default nix.lambda((args) => (() => {
             const icon = name;
             const exec = name;
             const categories = nix.thunk(() => ["Utility", "FileTools"]);
-            return { [nix.POS]: pos$6, name, desktopName, genericName, icon, exec, categories };
+            return { [nix.POS]: $pos[5], name, desktopName, genericName, icon, exec, categories };
           })()))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => (() => {
             const name = "RealTimeSync";
@@ -98,11 +90,11 @@ export default nix.lambda((args) => (() => {
             const icon = name;
             const exec = name;
             const categories = nix.thunk(() => ["Utility", "FileTools"]);
-            return { [nix.POS]: pos$7, name, desktopName, genericName, icon, exec, categories };
+            return { [nix.POS]: $pos[6], name, desktopName, genericName, icon, exec, categories };
           })()))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Open Source File Synchronization & Backup Software",
         homepage: "https://freefilesync.org",
         license: nix.thunk(() => [

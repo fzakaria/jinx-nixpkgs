@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["build-system", 25, 3], ["src", 30, 3], ["postPatch", 37, 3], ["dontUseCmakeConfigure", 44, 3], ["nativeBuildInputs", 46, 3], ["dependencies", 51, 3], ["pythonImportsCheck", 60, 3], ["nativeCheckInputs", 62, 3], ["preInstallCheck", 64, 3], ["pytestFlags", 69, 3], ["disabledTests", 71, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitLab: false, stdenv: false, spglib: false, numpy: false, scipy: false, matplotlib: false, ase: false, netcdf4: false, cython: false, cmake: false, setuptools: false, "setuptools-scm": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["build-system", 25, 3], ["src", 30, 3], ["postPatch", 37, 3], ["dontUseCmakeConfigure", 44, 3], ["nativeBuildInputs", 46, 3], ["dependencies", 51, 3], ["pythonImportsCheck", 60, 3], ["nativeCheckInputs", 62, 3], ["preInstallCheck", 64, 3], ["pytestFlags", 69, 3], ["disabledTests", 71, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sousaw",
           repo: "BoltzTraP2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
           "test_fitde3D_saved_noder",
         ])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Band-structure interpolator and transport coefficient calculator",
         mainProgram: "btp2",
         homepage: "http://www.boltztrap.org/",
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

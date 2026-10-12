@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 58, 5], ["longDescription", 59, 5], ["mainProgram", 62, 5], ["homepage", 63, 35], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["strictDeps", 33, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["mesonFlags", 51, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, scdoc: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, libxkbcommon: false, cairo: false, "gdk-pixbuf": false, pam: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["longDescription", 59, 5], ["mainProgram", 62, 5], ["homepage", 63, 35], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["strictDeps", 33, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["mesonFlags", 51, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const pam = nix.arg($, "pam");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swaylock-effects",
       version: "1.7.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jirutka",
           repo: "swaylock-effects",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Screen locker for Wayland",
         longDescription: "Swaylock, with fancy effects\n",
         mainProgram: "swaylock",

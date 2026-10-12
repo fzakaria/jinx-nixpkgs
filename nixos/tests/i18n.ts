@@ -2,82 +2,64 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/i18n.nix", [[["maintainers", 4, 8]], [["defaultLocale", 9, 9], ["defaultCharset", 10, 9]], [["i18n", 8, 7]], [["defaultLocale", 15, 9], ["extraLocales", 16, 9]], [["i18n", 14, 7]], [["LC_MESSAGES", 25, 11], ["LC_TIME", 26, 11]], [["defaultLocale", 23, 9], ["extraLocaleSettings", 24, 9]], [["i18n", 22, 7]], [["LC_TIME", 34, 11]], [["LC_TIME", 37, 11]], [["defaultLocale", 32, 9], ["extraLocaleSettings", 33, 9], ["localeCharsets", 36, 9]], [["i18n", 31, 7]], [["defaultLocale", 43, 9]], [["i18n", 42, 7]], [["LC_COLLATE", 50, 11], ["LC_MESSAGES", 51, 11], ["LC_TIME", 52, 11]], [["defaultLocale", 48, 9], ["extraLocaleSettings", 49, 9]], [["i18n", 47, 7]], [["nonUTF8Charset", 7, 5], ["extraLocales1", 13, 5], ["extraLocaleSettings", 21, 5], ["localeCharsets", 30, 5], ["Csimple", 41, 5], ["CnonDefault", 46, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 57, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/i18n.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/i18n.nix", [["defaultLocale", 9, 9], ["defaultCharset", 10, 9]]);
-const pos$3 = nix.positions(here + "/i18n.nix", [["i18n", 8, 7]]);
-const pos$4 = nix.positions(here + "/i18n.nix", [["defaultLocale", 15, 9], ["extraLocales", 16, 9]]);
-const pos$5 = nix.positions(here + "/i18n.nix", [["i18n", 14, 7]]);
-const pos$6 = nix.positions(here + "/i18n.nix", [["LC_MESSAGES", 25, 11], ["LC_TIME", 26, 11]]);
-const pos$7 = nix.positions(here + "/i18n.nix", [["defaultLocale", 23, 9], ["extraLocaleSettings", 24, 9]]);
-const pos$8 = nix.positions(here + "/i18n.nix", [["i18n", 22, 7]]);
-const pos$9 = nix.positions(here + "/i18n.nix", [["LC_TIME", 34, 11]]);
-const pos$10 = nix.positions(here + "/i18n.nix", [["LC_TIME", 37, 11]]);
-const pos$11 = nix.positions(here + "/i18n.nix", [["defaultLocale", 32, 9], ["extraLocaleSettings", 33, 9], ["localeCharsets", 36, 9]]);
-const pos$12 = nix.positions(here + "/i18n.nix", [["i18n", 31, 7]]);
-const pos$13 = nix.positions(here + "/i18n.nix", [["defaultLocale", 43, 9]]);
-const pos$14 = nix.positions(here + "/i18n.nix", [["i18n", 42, 7]]);
-const pos$15 = nix.positions(here + "/i18n.nix", [["LC_COLLATE", 50, 11], ["LC_MESSAGES", 51, 11], ["LC_TIME", 52, 11]]);
-const pos$16 = nix.positions(here + "/i18n.nix", [["defaultLocale", 48, 9], ["extraLocaleSettings", 49, 9]]);
-const pos$17 = nix.positions(here + "/i18n.nix", [["i18n", 47, 7]]);
-const pos$18 = nix.positions(here + "/i18n.nix", [["nonUTF8Charset", 7, 5], ["extraLocales1", 13, 5], ["extraLocaleSettings", 21, 5], ["localeCharsets", 30, 5], ["Csimple", 41, 5], ["CnonDefault", 46, 5]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/i18n.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "glibLocales-custom-builds",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "doronbehar"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       nonUTF8Charset: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        i18n: nix.thunk(() => ({ [nix.POS]: pos$2, defaultLocale: "en_US", defaultCharset: "ISO-8859-1" })),
+        [nix.POS]: $pos[2],
+        i18n: nix.thunk(() => ({ [nix.POS]: $pos[1], defaultLocale: "en_US", defaultCharset: "ISO-8859-1" })),
       })),
       extraLocales1: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         i18n: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           defaultLocale: "en_US.UTF-8",
           extraLocales: nix.thunk(() => ["nl_NL.UTF-8/UTF-8"]),
         })),
       })),
       extraLocaleSettings: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         i18n: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           defaultLocale: "en_US.UTF-8",
-          extraLocaleSettings: nix.thunk(() => ({ [nix.POS]: pos$6, LC_MESSAGES: "en_US.UTF-8", LC_TIME: "de_DE.UTF-8" })),
+          extraLocaleSettings: nix.thunk(() => ({ [nix.POS]: $pos[5], LC_MESSAGES: "en_US.UTF-8", LC_TIME: "de_DE.UTF-8" })),
         })),
       })),
       localeCharsets: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         i18n: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           defaultLocale: "en_US.UTF-8",
-          extraLocaleSettings: nix.thunk(() => ({ [nix.POS]: pos$9, LC_TIME: "de_DE" })),
-          localeCharsets: nix.thunk(() => ({ [nix.POS]: pos$10, LC_TIME: "ISO-8859-1" })),
+          extraLocaleSettings: nix.thunk(() => ({ [nix.POS]: $pos[8], LC_TIME: "de_DE" })),
+          localeCharsets: nix.thunk(() => ({ [nix.POS]: $pos[9], LC_TIME: "ISO-8859-1" })),
         })),
       })),
       Csimple: nix.thunk(() => ({
-        [nix.POS]: pos$14,
-        i18n: nix.thunk(() => ({ [nix.POS]: pos$13, defaultLocale: "C" })),
+        [nix.POS]: $pos[13],
+        i18n: nix.thunk(() => ({ [nix.POS]: $pos[12], defaultLocale: "C" })),
       })),
       CnonDefault: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         i18n: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           defaultLocale: "en_US.UTF-8",
-          extraLocaleSettings: nix.thunk(() => ({ [nix.POS]: pos$15, LC_COLLATE: "C", LC_MESSAGES: "C", LC_TIME: "C" })),
+          extraLocaleSettings: nix.thunk(() => ({ [nix.POS]: $pos[14], LC_COLLATE: "C", LC_MESSAGES: "C", LC_TIME: "C" })),
         })),
       })),
     })),

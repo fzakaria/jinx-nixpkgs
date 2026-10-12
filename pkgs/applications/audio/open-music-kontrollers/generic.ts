@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["url", 32, 5], ["sha256", 33, 5]], [["broken", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 25, 11], ["version", 27, 11], ["postPatch", 29, 11], ["src", 31, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, lv2: false, sord: false, libx11: false, libxext: false, glew: false, lv2lint: false, pname: false, version: false, sha256: false, description: false, url: true, additionalBuildInputs: true, postPatch: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/generic.nix", [["url", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["broken", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["pname", 25, 11], ["version", 27, 11], ["postPatch", 29, 11], ["src", 31, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,15 +27,15 @@ export default nix.lambda((args) => (() => {
   const additionalBuildInputs = nix.argOr($, "additionalBuildInputs", () => []);
   const postPatch = nix.argOr($, "postPatch", () => "");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       postPatch: postPatch,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, sha256: sha256 })))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, sha256: sha256 })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja]),
       buildInputs: nix.thunk(() => nix.concat([lv2, sord, libx11, libxext, glew, lv2lint], additionalBuildInputs)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: description,
         homepage: nix.thunk(() => nix.str`https://open-music-kontrollers.ch/lv2/${pname}:`),

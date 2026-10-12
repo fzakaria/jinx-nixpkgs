@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["sha256", 33, 5]], [["description", 77, 5], ["mainProgram", 78, 5], ["longDescription", 79, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 92, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 50, 3], ["postPatch", 65, 3], ["mesonFlags", 69, 3], ["doCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "appstream-glib": false, "desktop-file-utils": false, gettext: false, glib: false, "gobject-introspection": false, gst_all_1: false, gtk4: false, "hicolor-icon-theme": false, isocodes: false, itstool: false, libadwaita: false, libxml2: false, meson: false, ninja: false, "pkg-config": false, pocketsphinx: false, python3: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 77, 5], ["mainProgram", 78, 5], ["longDescription", 79, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 50, 3], ["postPatch", 65, 3], ["mesonFlags", 69, 3], ["doCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "parlatype",
       version: "4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gkarsay",
           repo: "parlatype",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,7 +70,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Dgir=true", "-Dpocketsphinx=true"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GNOME audio player for transcription",
         mainProgram: "parlatype",
         longDescription: "Parlatype is a minimal audio player for manual speech transcription,\nwritten for the GNOME desktop environment. It plays audio sources to\ntranscribe them in your favourite text application. It’s intended to be\nuseful for journalists, students, scientists and whoever needs to\ntranscribe audio files.\n",

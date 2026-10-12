@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 19, 3], ["minimalOCamlVersion", 23, 3], ["duneVersion", 24, 3], ["propagatedBuildInputs", 26, 3], ["doCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, "io-page": false, "mirage-block": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 19, 3], ["minimalOCamlVersion", 23, 3], ["duneVersion", 24, 3], ["propagatedBuildInputs", 26, 3], ["doCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mirage-block-ramdisk";
       const version = "0.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-block-ramdisk/releases/download/${version}/mirage-block-ramdisk-${version}.tbz`),
           sha256: "cc0e814fd54efe7a5b7a8c5eb1c04e2dece751b7d8dee2d95908a0768896e8af",
         }))));
@@ -28,13 +26,13 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [io_page, mirage_block]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "In-memory BLOCK device for MirageOS",
         homepage: "https://github.com/mirage/mirage-block-ramdisk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

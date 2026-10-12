@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["categories", 35, 5], ["comment", 36, 5], ["desktopName", 37, 5], ["exec", 38, 5], ["genericName", 39, 5], ["icon", 40, 5], ["name", 41, 5]], [["updateScript", 90, 12]], [["description", 113, 5], ["homepage", 114, 5], ["downloadPage", 115, 5], ["sourceProvenance", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["platforms", 122, 5], ["mainProgram", 123, 5]], [["pname", 19, 3], ["version", 20, 3], ["revision", 21, 3], ["src", 23, 3], ["desktopItem", 34, 3], ["dontBuild", 44, 3], ["dontConfigure", 45, 3], ["dontPatchELF", 46, 3], ["dontWrapGApps", 47, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 57, 3], ["unpackPhase", 64, 3], ["installPhase", 70, 3], ["runtimeDependencies", 83, 3], ["postFixup", 85, 3], ["passthru", 90, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, "squashfs-tools": false, "alsa-lib": false, fetchurl: false, makeDesktopItem: false, makeWrapper: false, stdenv: false, lib: false, libsecret: false, libgbm: false, udev: false, wrapGAppsHook3: false, writeScript: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["categories", 35, 5], ["comment", 36, 5], ["desktopName", 37, 5], ["exec", 38, 5], ["genericName", 39, 5], ["icon", 40, 5], ["name", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 90, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 113, 5], ["homepage", 114, 5], ["downloadPage", 115, 5], ["sourceProvenance", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["platforms", 122, 5], ["mainProgram", 123, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["revision", 21, 3], ["src", 23, 3], ["desktopItem", 34, 3], ["dontBuild", 44, 3], ["dontConfigure", 45, 3], ["dontPatchELF", 46, 3], ["dontWrapGApps", 47, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 57, 3], ["unpackPhase", 64, 3], ["installPhase", 70, 3], ["runtimeDependencies", 83, 3], ["postFixup", 85, 3], ["passthru", 90, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +26,12 @@ export default nix.lambda((args) => (() => {
       const version = "9.43.1";
       const revision = "268";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://api.snapcraft.io/api/v1/snaps/download/WkTBXwoX81rBe3s3OTt3EiiLKBx2QhuS_${revision}.snap`),
           hash: "sha512-9XYNlynJqbBL1Vvf3nvNQiHUyCDV9zVcQamOkwjw5i5d/ILlkoirchfG2x7gnpbA0bkd76S6hgIyRMdbEbLD7Q==",
         }))));
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           categories: nix.thunk(() => ["Network"]),
           comment: "The SSH client that works on Desktop and Mobile",
           desktopName: "Termius",
@@ -65,11 +61,11 @@ runHook postInstall
       const runtimeDependencies = nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getLib"), udev))]);
       const postFixup = "makeWrapper $out/opt/termius/termius-app $out/bin/termius-app \\\n  \"${gappsWrapperArgs[@]}\"\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-termius", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts curl jq\n\nset -eu -o pipefail\n\ndata=$(curl -H 'X-Ubuntu-Series: 16' \\\n'https://api.snapcraft.io/api/v1/snaps/details/termius-app?fields=download_sha512,revision,version')\n\nversion=$(jq -r .version <<<\"$data\")\n\nif [[ \"x$UPDATE_NIX_OLD_VERSION\" != \"x$version\" ]]; then\n\n    revision=$(jq -r .revision <<<\"$data\")\n    hash=$(nix --extra-experimental-features nix-command hash to-sri \"sha512:$(jq -r .download_sha512 <<<\"$data\")\")\n\n    update-source-version \"$UPDATE_NIX_ATTR_PATH\" \"$version\" \"$hash\"\n    update-source-version --ignore-same-hash --version-key=revision \"$UPDATE_NIX_ATTR_PATH\" \"$revision\" \"$hash\"\n\nfi\n")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cross-platform SSH client with cloud data sync and more",
         homepage: "https://termius.com/",
         downloadPage: "https://termius.com/linux/",
@@ -89,7 +85,7 @@ runHook postInstall
         mainProgram: "termius-app",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         revision,

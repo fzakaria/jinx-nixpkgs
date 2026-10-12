@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 5], ["version", 21, 13], ["sha256", 22, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5]], [["pname", 15, 3], ["version", 16, 3], ["format", 17, 3], ["src", 19, 3], ["disabled", 25, 3], ["buildInputs", 27, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, mock: false, matplotlib: false, pkgs: false, nbconvert: false, markdown: false, isPy3k: false, ipykernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 13], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["format", 17, 3], ["src", 19, 3], ["disabled", 25, 3], ["buildInputs", 27, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.30.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "Pweave",
           version: version,
           sha256: "5e5298d90e06414a01f48e0d6aa4c36a70c5f223d929f2a9c7e2d388451c7357",
@@ -34,13 +32,13 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [ipykernel, matplotlib, nbconvert, markdown]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Scientific reports with embedded python computations with reST, LaTeX or markdown",
         homepage: "https://mpastell.com/pweave/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["pkg-config", 53, 11]], [["updateScript", 45, 5], ["tests", 53, 5]], [["description", 57, 31], ["homepage", 57, 43], ["license", 57, 52], ["maintainers", 58, 5], ["pkgConfigModules", 59, 5], ["platforms", 60, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 25, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 42, 3], ["passthru", 44, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libfontenc: false, xorgproto: false, freetype: false, xtrans: false, zlib: false, writeScript: false, testers: false, libxfont_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 53, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 45, 5], ["tests", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 57, 31], ["homepage", 57, 43], ["license", 57, 52], ["maintainers", 58, 5], ["pkgConfigModules", 59, 5], ["platforms", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 25, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 42, 3], ["passthru", 44, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const libxfont_1 = nix.arg($, "libxfont_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libxfont_2",
       version: "2.0.9",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/lib/libXfont2-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-8EKjcGZoFee5Qem3AZAkdVvRxsKVSvv6UVrzeCUXmeI=",
         })))),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libfontenc, xorgproto, freetype, xtrans, zlib]),
       propagatedBuildInputs: nix.thunk(() => [xorgproto]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname libXfont2 \\
@@ -47,14 +43,14 @@ version="$(list-directory-versions --pname libXfont2 \\
 update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libxfont_1, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

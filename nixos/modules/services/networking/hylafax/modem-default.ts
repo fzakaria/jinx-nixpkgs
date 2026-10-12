@@ -2,15 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/modem-default.nix", [[["TagLineFont", 7, 3], ["TagLineLocale", 8, 3], ["AdminGroup", 10, 3], ["AnswerRotary", 11, 3], ["LogFileMode", 12, 3], ["PriorityScheduling", 13, 3], ["RecvFileMode", 14, 3], ["ServerTracing", 15, 3], ["SessionTracing", 16, 3], ["UUCPLockDir", 17, 3], ["SendPageCmd", 19, 3], ["SendUUCPCmd", 20, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/modem-default.nix", [["TagLineFont", 7, 3], ["TagLineLocale", 8, 3], ["AdminGroup", 10, 3], ["AnswerRotary", 11, 3], ["LogFileMode", 12, 3], ["PriorityScheduling", 13, 3], ["RecvFileMode", 14, 3], ["ServerTracing", 15, 3], ["SessionTracing", 16, 3], ["UUCPLockDir", 17, 3], ["SendPageCmd", 19, 3], ["SendUUCPCmd", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     TagLineFont: "etc/LiberationSans-25.pcf",
     TagLineLocale: "en_US.UTF-8",
     AdminGroup: "root",

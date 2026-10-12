@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["RUSTFLAGS", 36, 7]], [["rev-prefix", 51, 33]], [["package", 54, 9]], [["veilid-version", 53, 7]], [["updateScript", 51, 5], ["tests", 52, 5]], [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["cargoBuildFlags", 32, 3], ["env", 36, 3], ["doCheck", 38, 3], ["outputs", 40, 3], ["postInstall", 46, 3], ["passthru", 50, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, rustPlatform: false, protobuf: false, capnproto: false, cmake: false, testers: false, veilid: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 51, 33]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 54, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["veilid-version", 53, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 51, 5], ["tests", 52, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["cargoBuildFlags", 32, 3], ["env", 36, 3], ["doCheck", 38, 3], ["outputs", 40, 3], ["postInstall", 46, 3], ["passthru", 50, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const veilid = nix.arg($, "veilid");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "veilid",
       version: "0.5.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "veilid",
           repo: "veilid",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,20 +30,20 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-a48+kCpsYjql+IGf3l0t4RXkthbc2mxqu9zCaeRPaR4=",
       nativeBuildInputs: nix.thunk(() => [capnproto, cmake, protobuf]),
       cargoBuildFlags: nix.thunk(() => ["--workspace"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "--cfg tokio_unstable" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTFLAGS: "--cfg tokio_unstable" })),
       doCheck: false,
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       postInstall: "moveToOutput \"lib\" \"$lib\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          "veilid-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: veilid })))),
+          [nix.POS]: $pos[4],
+          "veilid-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[3], package: veilid })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Open-source, peer-to-peer, mobile-first, networked application framework",
         mainProgram: "veilid-server",
         homepage: "https://veilid.com",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 36]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 21, 3], ["npmBuildScript", 22, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 25, 3], ["postPatch", 27, 3], ["installPhase", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, nodejs: false, buildNpmPackage: false, fetchFromGitHub: false, unzip: false, "gauge-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 36]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 21, 3], ["npmBuildScript", 22, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 25, 3], ["postPatch", 27, 3], ["installPhase", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gauge-plugin-js";
       const version = "5.0.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "getgauge",
           repo: "gauge-js",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +35,7 @@ unzip deploy/gauge-js-${version}.zip -d $out/share/gauge-plugins/js/${version}
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(gauge_unwrapped, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Gauge plugin that lets you write tests in JavaScript",
         homepage: "https://github.com/getgauge/gauge-js/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -46,7 +44,7 @@ unzip deploy/gauge-js-${version}.zip -d $out/share/gauge-plugins/js/${version}
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

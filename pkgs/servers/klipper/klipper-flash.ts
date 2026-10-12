@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/klipper-flash.nix", [[["name", 56, 3], ["runtimeInputs", 57, 3], ["text", 68, 3]]]);
 const formals$1 = { args: { lib: false, writeShellApplication: false, klipper: false, "klipper-firmware": false, avrdude: false, "dfu-util": false, stm32flash: false, mcu: true, flashDevice: true, canbusNetwork: true, canbusDevice: true, firmwareConfig: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/klipper-flash.nix", [["name", 56, 3], ["runtimeInputs", 57, 3], ["text", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
   ]);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (nix.asBool(!nix.eq(!nix.eq(flashDevice, null), (nix.asBool(!nix.eq(canbusNetwork, null)) && nix.asBool(!nix.eq(canbusDevice, null))))) && nix.asBool(nix.eq(!nix.eq(canbusNetwork, null), !nix.eq(canbusDevice, null))))), "Either set flashDevice or both canbusNetwork and canbusDevice"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/servers/klipper/klipper-flash.nix:51:1");
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`klipper-flash-${mcu}`),
       runtimeInputs: nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(flashDevice, null)), nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(matchPlatform, "avr")), nix.thunk(() => [avrdude])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(matchPlatform, "stm32")), nix.thunk(() => [stm32flash, dfu_util])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(matchPlatform, "lpc176x")), nix.thunk(() => [dfu_util])))))))),
       text: nix.thunk(() => (nix.asBool(!nix.eq(flashDevice, null)) ? (nix.asBool((nix.asBool((nix.asBool(!nix.eq(matchBoard, null)) && nix.asBool(nix.app(nix.sel(lib, "any"), (prefix) => nix.app(nix.sel(lib, "hasPrefix"), prefix, matchBoard), flashUsbSupportedBoards)))) && nix.asBool(!nix.eq(matchPlatform, null)))) ? nix.str`${klipper}/lib/scripts/flash_usb.py -t ${matchBoard} -d ${flashDevice}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(flashStartAddress, null)), nix.thunk(() => nix.str` -s ${flashStartAddress}`))} ${klipper_firmware}/klipper.bin "$@"

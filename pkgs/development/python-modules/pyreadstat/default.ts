@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["buildInputs", 31, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 39, 3], ["preCheck", 41, 3], ["checkPhase", 45, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cython: false, fetchFromGitHub: false, narwhals: false, pandas: false, python: false, readstat: false, setuptools: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["buildInputs", 31, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 39, 3], ["preCheck", 41, 3], ["checkPhase", 45, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Roche",
           repo: "pyreadstat",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +40,7 @@ ${nix.sel(python, "interpreter")} tests/test_basic.py
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Module to read SAS, SPSS and Stata files into pandas data frames",
         homepage: "https://github.com/Roche/pyreadstat",
         changelog: nix.thunk(() => nix.str`https://github.com/Roche/pyreadstat/blob/${nix.sel(src, "tag")}/change_log.md`),
@@ -53,7 +51,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

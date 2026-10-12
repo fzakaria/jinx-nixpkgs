@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/beancount-ing-diba.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["pyproject", 20, 3], ["propagatedBuildInputs", 22, 3], ["nativeBuildInputs", 27, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, beangulp: false, beancount: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/beancount-ing-diba.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/beancount-ing-diba.nix", [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/beancount-ing-diba.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["pyproject", 20, 3], ["propagatedBuildInputs", 22, 3], ["nativeBuildInputs", 27, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "beancount-ing-diba";
       const version = "1.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "siddhantgoel",
           repo: "beancount-ing",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "poetry-core"))];
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/siddhantgoel/beancount-ing",
         description: "Beancount Importers for ING-DiBa (Germany) CSV Exports",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

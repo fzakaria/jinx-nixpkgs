@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 10, 7], ["downloadVersion", 11, 7], ["hash", 12, 7]], [["name", 15, 7], ["downloadVersion", 16, 7], ["hash", 17, 7]], [["name", 20, 7], ["downloadVersion", 21, 7], ["hash", 22, 7]], [["name", 25, 7], ["downloadVersion", 26, 7], ["hash", 27, 7]], [["name", 30, 7], ["downloadVersion", 31, 7], ["hash", 32, 7]], [["name", 35, 7], ["downloadVersion", 36, 7], ["hash", 37, 7]], [["url", 55, 7], ["stripRoot", 56, 7], ["name", 57, 15], ["hash", 57, 20]], [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]], [["pname", 43, 3], ["version", 44, 3], ["sourceRoot", 46, 3], ["srcs", 48, 3], ["installPhase", 61, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 10, 7], ["downloadVersion", 11, 7], ["hash", 12, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 15, 7], ["downloadVersion", 16, 7], ["hash", 17, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 20, 7], ["downloadVersion", 21, 7], ["hash", 22, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 25, 7], ["downloadVersion", 26, 7], ["hash", 27, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 30, 7], ["downloadVersion", 31, 7], ["hash", 32, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 35, 7], ["downloadVersion", 36, 7], ["hash", 37, 7]]);
 const formals$2 = { args: { name: false, downloadVersion: false, hash: false }, ellipsis: false };
-const pos$7 = nix.positions(here + "/package.nix", [["url", 55, 7], ["stripRoot", 56, 7], ["name", 57, 15], ["hash", 57, 20]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["sourceRoot", 46, 3], ["srcs", 48, 3], ["installPhase", 61, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,44 +13,44 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const fonts = nix.thunk(() => [
     nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "azuki",
       downloadVersion: "121",
       hash: "sha256-AMpEJDD8lN0qWJ5C0y4V+/2JE/pKQrUHGfKHcnV+dhA=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "azuki-b",
       downloadVersion: "B120",
       hash: "sha256-GoXnDX9H6D1X0QEgrD2jmQp7ek081PpO+xR3OdIY8Ck=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "azuki-l",
       downloadVersion: "L120",
       hash: "sha256-rvWvSuvLnK3m2+iyKPQyIB1UGjg8dAW5oygjsLCQZ48=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "azuki-lb",
       downloadVersion: "LB100",
       hash: "sha256-zpGomVshCe2W2Z2C5UGtVrJ2k7F//MftndSHPHmG290=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "azuki-lp",
       downloadVersion: "LP100",
       hash: "sha256-Q/ND3dv8q7WTQx4oYVY5pTiGl4Ht89oA+tuCyfPOLUk=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "azuki-p",
       downloadVersion: "P100",
       hash: "sha256-s4uodxyXP5R7jwkzjmg6qJZCllJ/MtgkkVOeELI8hLI=",
     })),
   ]);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "azuki",
       version: "0-unstable-2021-07-02",
       sourceRoot: "azuki",
@@ -68,7 +60,7 @@ export default nix.lambda((args) => (() => {
           const downloadVersion = nix.arg($_1, "downloadVersion");
           const hash = nix.arg($_1, "hash");
           return nix.app(fetchzip, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               url: nix.thunk(() => nix.str`https://azukifont.com/font/azukifont${downloadVersion}.zip`),
               stripRoot: false,
               name: name,
@@ -77,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })(), formals$2), fonts)),
       installPhase: "runHook preInstall\n\nfor font in $srcs; do\n  install -Dm644 $font/azukifont*/*.ttf -t $out/share/fonts/truetype\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "http://azukifont.com/font/azuki.html",
         description: "Azuki Font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

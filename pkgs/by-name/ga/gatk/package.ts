@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["sourceProvenance", 37, 5], ["maintainers", 38, 5], ["longDescription", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["dontUnpack", 21, 3], ["installPhase", 23, 3], ["postFixup", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, jre: false, makeWrapper: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["sourceProvenance", 37, 5], ["maintainers", 38, 5], ["longDescription", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["dontUnpack", 21, 3], ["installPhase", 23, 3], ["postFixup", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gatk",
       version: "4.7.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/broadinstitute/gatk/releases/download/${nix.sel(finalAttrs, "version")}/gatk-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-tOiI2O2Ey5fz/I+FbiqqbnXcZXnJ5k0efI7MQ1tRie0=",
         })))),
@@ -35,7 +33,7 @@ install -m755 -D $src/gatk $out/bin/
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/gatk --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jre]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gatk.broadinstitute.org/hc/en-us",
         description: "Wide variety of tools with a primary focus on variant discovery and genotyping",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

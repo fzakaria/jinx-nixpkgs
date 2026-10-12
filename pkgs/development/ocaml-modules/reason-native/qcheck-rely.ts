@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qcheck-rely.nix", [[["description", 28, 5], ["homepage", 29, 5], ["downloadPage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["src", 12, 11], ["pname", 14, 3], ["version", 15, 3], ["nativeBuildInputs", 17, 3], ["propagatedBuildInputs", 21, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, "qcheck-core": false, reason: false, console: false, rely: false, src: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qcheck-rely.nix", [["description", 28, 5], ["homepage", 29, 5], ["downloadPage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$2 = nix.positions(here + "/qcheck-rely.nix", [["src", 12, 11], ["pname", 14, 3], ["version", 15, 3], ["nativeBuildInputs", 17, 3], ["propagatedBuildInputs", 21, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const rely = nix.arg($, "rely");
   const src = nix.arg($, "src");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: src,
       pname: "qcheck-rely",
       version: "1.0.2-unstable-2024-05-07",
       nativeBuildInputs: nix.thunk(() => [reason]),
       propagatedBuildInputs: nix.thunk(() => [qcheck_core, console, rely]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Library containing custom Rely matchers allowing for easily using QCheck with Rely. QCheck is a 'QuickCheck inspired property-based testing for OCaml, and combinators to generate random values to run tests on'",
         homepage: "https://github.com/reasonml/reason-native",
         downloadPage: "https://github.com/reasonml/reason-native/tree/master/src/qcheck-rely",

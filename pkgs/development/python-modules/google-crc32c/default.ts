@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["LDFLAGS", 30, 5], ["CFLAGS", 31, 5]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["buildInputs", 25, 3], ["dependencies", 27, 3], ["env", 29, 3], ["nativeCheckInputs", 34, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cffi: false, crc32c: false, fetchFromGitHub: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["LDFLAGS", 30, 5], ["CFLAGS", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["buildInputs", 25, 3], ["dependencies", 27, 3], ["env", 29, 3], ["nativeCheckInputs", 34, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "python-crc32c",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [crc32c]);
       const dependencies = nix.thunk(() => [cffi]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LDFLAGS: nix.thunk(() => nix.str`-L${crc32c}/lib`),
         CFLAGS: nix.thunk(() => nix.str`-I${crc32c}/include`),
       }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, crc32c]);
       const pythonImportsCheck = nix.thunk(() => ["google_crc32c"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wrapper the google/crc32c hardware-based implementation of the CRC32C hashing algorithm",
         homepage: "https://github.com/googleapis/python-crc32c",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/python-crc32c/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

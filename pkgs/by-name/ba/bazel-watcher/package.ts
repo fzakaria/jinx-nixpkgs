@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["CGO_ENABLED", 24, 7]], [["package", 34, 7], ["command", 35, 7]], [["version", 33, 11]], [["tests", 33, 5]], [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5], ["platforms", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["env", 24, 3], ["ldflags", 25, 3], ["subPackages", 30, 3], ["passthru", 32, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, testers: false, "bazel-watcher": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 34, 7], ["command", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 33, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 33, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5], ["platforms", 45, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["env", 24, 3], ["ldflags", 25, 3], ["subPackages", 30, 3], ["passthru", 32, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const bazel_watcher = nix.arg($, "bazel-watcher");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "bazel-watcher",
       version: "0.33.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bazelbuild",
           repo: "bazel-watcher",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-u1Zg/M9DSkwscy49qtPQygk1gyxKaPbhlFDYNtBQ9NY=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CGO_ENABLED: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "1" : "0")),
       })),
       ldflags: nix.thunk(() => [
@@ -41,14 +35,14 @@ export default nix.lambda((args) => (() => {
       ]),
       subPackages: nix.thunk(() => ["cmd/ibazel"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: bazel_watcher, command: "ibazel version" })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: bazel_watcher, command: "ibazel version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/bazelbuild/bazel-watcher",
         description: "Tools for building Bazel targets when source files change",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

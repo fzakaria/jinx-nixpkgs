@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 73, 7], ["repo", 74, 7], ["tag", 75, 7], ["hash", 76, 7]], [["version", 70, 5], ["src", 72, 5], ["patches", 79, 5], ["doCheck", 80, 5]], [["owner", 88, 5], ["repo", 89, 5], ["rev", 90, 5], ["hash", 91, 5], ["fetchSubmodules", 92, 5]], [["hardcodeZeroVersion", 179, 5]], [["updateScript", 177, 12]], [["description", 183, 5], ["homepage", 184, 5], ["license", 185, 5], ["maintainers", 186, 5], ["mainProgram", 187, 5], ["platforms", 188, 5]], [["pname", 84, 3], ["version", 85, 3], ["src", 87, 3], ["patches", 95, 3], ["strictDeps", 100, 3], ["nativeBuildInputs", 102, 3], ["buildInputs", 115, 3], ["preFixup", 168, 3], ["cmakeFlags", 173, 3], ["passthru", 177, 3], ["meta", 182, 3]]]);
 const formals$1 = { args: { bash: false, cmake: false, colord: false, "colord-gtk": false, curl: false, dav1d: false, "desktop-file-utils": false, exiftool: false, exiv2: false, fetchFromGitHub: false, glib: false, gmic: false, graphicsmagick: false, gtk3: false, icu: false, intltool: false, isocodes: false, jasper: false, "json-glib": false, lcms: false, lensfun: false, lerc: false, lib: false, libaom: false, libavif: false, libdatrie: false, libde265: false, libepoxy: false, libffi: false, libgcrypt: false, "libgpg-error": false, libheif: false, libjpeg: false, libpsl: false, librsvg: false, libsecret: false, libselinux: false, libsepol: false, libsoup_3: false, "libsysprof-capture": false, libthai: false, libwebp: false, libxdmcp: false, libxkbcommon: false, libxml2: false, libxtst: false, llvmPackages: false, openexr: false, openjpeg: false, "osm-gps-map": false, pcre2: false, perlPackages: false, "pkg-config": false, pugixml: false, python3Packages: false, rav1e: false, saxon: false, sqlite: false, stdenv: false, unstableGitUpdater: false, "util-linux": false, wrapGAppsHook3: false, x265: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 73, 7], ["repo", 74, 7], ["tag", 75, 7], ["hash", 76, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 70, 5], ["src", 72, 5], ["patches", 79, 5], ["doCheck", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 88, 5], ["repo", 89, 5], ["rev", 90, 5], ["hash", 91, 5], ["fetchSubmodules", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 179, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 177, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 183, 5], ["homepage", 184, 5], ["license", 185, 5], ["maintainers", 186, 5], ["mainProgram", 187, 5], ["platforms", 188, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 84, 3], ["version", 85, 3], ["src", 87, 3], ["patches", 95, 3], ["strictDeps", 100, 3], ["nativeBuildInputs", 102, 3], ["buildInputs", 115, 3], ["preFixup", 168, 3], ["cmakeFlags", 173, 3], ["passthru", 177, 3], ["meta", 182, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -79,7 +73,7 @@ export default nix.lambda((args) => (() => {
   const libavif_0_11 = nix.thunk(() => nix.app(nix.sel(libavif, "overrideAttrs"), nix.thunk(() => (() => {
       const version = "0.11.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AOMediaCodec",
           repo: "libavif",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -87,14 +81,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = [];
       const doCheck = false;
-      return { [nix.POS]: pos$2, version, src, patches, doCheck };
+      return { [nix.POS]: $pos[1], version, src, patches, doCheck };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "ansel",
       version: "0-unstable-2026-06-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "aurelienpierreeng",
           repo: "ansel",
           rev: "2a9850bdc393d88f799b2cb3d80f22757d467d3e",
@@ -170,11 +164,11 @@ export default nix.lambda((args) => (() => {
       preFixup: "gappsWrapperArgs+=(\n  --prefix LD_LIBRARY_PATH \":\" \"$out/lib/ansel\"\n)\n",
       cmakeFlags: nix.thunk(() => ["-DBINARY_PACKAGE_BUILD=1"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Darktable fork minus the bloat plus some design vision",
         homepage: "https://ansel.photos/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

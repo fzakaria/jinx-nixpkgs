@@ -2,36 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dublin-traceroute.nix", [[["vlans", 10, 22]], [["enable", 14, 27]], [["internalIPs", 15, 22], ["externalInterface", 16, 22]], [["nftables", 14, 18], ["nat", 15, 18]], [["virtualisation", 10, 7], ["networking", 14, 7]], [["maintainers", 23, 5]], [["vlans", 30, 22]], [["enable", 34, 27]], [["defaultGateway", 32, 18], ["nftables", 34, 18]], [["enable", 36, 34]], [["dublin-traceroute", 36, 16]], [["imports", 29, 7], ["virtualisation", 30, 7], ["networking", 32, 7], ["programs", 36, 7]], [["vlans", 42, 22]], [["enable", 46, 27]], [["internalIPs", 47, 22], ["externalInterface", 48, 22], ["enable", 49, 22]], [["nftables", 46, 18], ["nat", 47, 18]], [["virtualisation", 42, 7], ["networking", 46, 7]], [["vlans", 55, 22]], [["enable", 56, 27]], [["firewall", 56, 18]], [["enable", 57, 22], ["adminAddr", 58, 22]], [["enable", 59, 23], ["anonymousUser", 60, 23]], [["httpd", 57, 16], ["vsftpd", 59, 16]], [["virtualisation", 55, 7], ["networking", 56, 7], ["services", 57, 7]], [["client", 26, 9], ["router", 39, 9], ["server", 52, 9]], [["name", 21, 3], ["meta", 22, 3], ["nodes", 26, 3], ["testScript", 63, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/dublin-traceroute.nix", [["vlans", 10, 22]]);
-const pos$2 = nix.positions(here + "/dublin-traceroute.nix", [["enable", 14, 27]]);
-const pos$3 = nix.positions(here + "/dublin-traceroute.nix", [["internalIPs", 15, 22], ["externalInterface", 16, 22]]);
-const pos$4 = nix.positions(here + "/dublin-traceroute.nix", [["nftables", 14, 18], ["nat", 15, 18]]);
-const pos$5 = nix.positions(here + "/dublin-traceroute.nix", [["virtualisation", 10, 7], ["networking", 14, 7]]);
-const pos$6 = nix.positions(here + "/dublin-traceroute.nix", [["maintainers", 23, 5]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/dublin-traceroute.nix", [["vlans", 30, 22]]);
-const pos$8 = nix.positions(here + "/dublin-traceroute.nix", [["enable", 34, 27]]);
-const pos$9 = nix.positions(here + "/dublin-traceroute.nix", [["defaultGateway", 32, 18], ["nftables", 34, 18]]);
-const pos$10 = nix.positions(here + "/dublin-traceroute.nix", [["enable", 36, 34]]);
-const pos$11 = nix.positions(here + "/dublin-traceroute.nix", [["dublin-traceroute", 36, 16]]);
-const pos$12 = nix.positions(here + "/dublin-traceroute.nix", [["imports", 29, 7], ["virtualisation", 30, 7], ["networking", 32, 7], ["programs", 36, 7]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$13 = nix.positions(here + "/dublin-traceroute.nix", [["vlans", 42, 22]]);
-const pos$14 = nix.positions(here + "/dublin-traceroute.nix", [["enable", 46, 27]]);
-const pos$15 = nix.positions(here + "/dublin-traceroute.nix", [["internalIPs", 47, 22], ["externalInterface", 48, 22], ["enable", 49, 22]]);
-const pos$16 = nix.positions(here + "/dublin-traceroute.nix", [["nftables", 46, 18], ["nat", 47, 18]]);
-const pos$17 = nix.positions(here + "/dublin-traceroute.nix", [["virtualisation", 42, 7], ["networking", 46, 7]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$18 = nix.positions(here + "/dublin-traceroute.nix", [["vlans", 55, 22]]);
-const pos$19 = nix.positions(here + "/dublin-traceroute.nix", [["enable", 56, 27]]);
-const pos$20 = nix.positions(here + "/dublin-traceroute.nix", [["firewall", 56, 18]]);
-const pos$21 = nix.positions(here + "/dublin-traceroute.nix", [["enable", 57, 22], ["adminAddr", 58, 22]]);
-const pos$22 = nix.positions(here + "/dublin-traceroute.nix", [["enable", 59, 23], ["anonymousUser", 60, 23]]);
-const pos$23 = nix.positions(here + "/dublin-traceroute.nix", [["httpd", 57, 16], ["vsftpd", 59, 16]]);
-const pos$24 = nix.positions(here + "/dublin-traceroute.nix", [["virtualisation", 55, 7], ["networking", 56, 7], ["services", 57, 7]]);
-const pos$25 = nix.positions(here + "/dublin-traceroute.nix", [["client", 26, 9], ["router", 39, 9], ["server", 52, 9]]);
-const pos$26 = nix.positions(here + "/dublin-traceroute.nix", [["name", 21, 3], ["meta", 22, 3], ["nodes", 26, 3], ["testScript", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const routerBase = nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, vlans: nix.thunk(() => [2n, 1n]) })),
+        [nix.POS]: $pos[4],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], vlans: nix.thunk(() => [2n, 1n]) })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          nftables: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[3],
+          nftables: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           nat: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             internalIPs: nix.thunk(() => ["192.168.1.0/24"]),
             externalInterface: "eth1",
           })),
@@ -53,45 +28,45 @@ export default nix.lambda((args) => (() => {
       })),
     ])));
   return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     name: "dublin-traceroute",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "baloo"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$7, vlans: nix.thunk(() => [1n]) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[6], vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             defaultGateway: nix.thunk(() => nix.sel(nix.builtins.head(nix.thunk(() => nix.sel(nodes, "router", "networking", "interfaces", "eth2", "ipv4", "addresses"))), "address")),
-            nftables: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
+            nftables: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true })),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            "dublin-traceroute": nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+            [nix.POS]: $pos[10],
+            "dublin-traceroute": nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
           })),
         };
       })(), formals$2),
       router: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$17,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$13, vlans: nix.thunk(() => [2n, 1n]) })),
+          [nix.POS]: $pos[16],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[12], vlans: nix.thunk(() => [2n, 1n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$16,
-            nftables: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
+            [nix.POS]: $pos[15],
+            nftables: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: true })),
             nat: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               internalIPs: nix.thunk(() => ["192.168.1.0/24"]),
               externalInterface: "eth1",
               enable: true,
@@ -102,16 +77,16 @@ export default nix.lambda((args) => (() => {
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          [nix.POS]: pos$24,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$18, vlans: nix.thunk(() => [2n]) })),
+          [nix.POS]: $pos[23],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[17], vlans: nix.thunk(() => [2n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$20,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$19, enable: false })),
+            [nix.POS]: $pos[19],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[18], enable: false })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$23,
-            httpd: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true, adminAddr: "foo@example.org" })),
-            vsftpd: nix.thunk(() => ({ [nix.POS]: pos$22, enable: true, anonymousUser: true })),
+            [nix.POS]: $pos[22],
+            httpd: nix.thunk(() => ({ [nix.POS]: $pos[20], enable: true, adminAddr: "foo@example.org" })),
+            vsftpd: nix.thunk(() => ({ [nix.POS]: $pos[21], enable: true, anonymousUser: true })),
           })),
         };
       })(), formals$4),

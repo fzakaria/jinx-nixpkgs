@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 28, 5], ["homepage", 30, 5], ["license", 32, 5], ["platforms", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, fetchFromGitHub: false, lib: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 30, 5], ["license", 32, 5], ["platforms", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dcfldd",
       version: "1.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "resurrecting-open-source-projects",
           repo: "dcfldd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Enhanced version of GNU dd",
         homepage: "https://github.com/resurrecting-open-source-projects/dcfldd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

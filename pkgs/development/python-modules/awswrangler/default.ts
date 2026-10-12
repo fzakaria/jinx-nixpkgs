@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["sqlserver", 62, 5], ["sparql", 63, 5]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["pythonRelaxDeps", 38, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["optional-dependencies", 61, 3], ["nativeCheckInputs", 66, 3], ["pythonImportsCheck", 72, 3], ["enabledTestPaths", 74, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, boto3: false, buildPythonPackage: false, fetchFromGitHub: false, gremlinpython: false, hatchling: false, "jsonpath-ng": false, moto: false, openpyxl: false, "opensearch-py": false, pandas: false, pg8000: false, progressbar2: false, pyarrow: false, pymysql: false, pyodbc: false, pyparsing: false, pytestCheckHook: false, "redshift-connector": false, "requests-aws4auth": false, setuptools: false, sparqlwrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sqlserver", 62, 5], ["sparql", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["pythonRelaxDeps", 38, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["optional-dependencies", 61, 3], ["nativeCheckInputs", 66, 3], ["pythonImportsCheck", 72, 3], ["enabledTestPaths", 74, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const sparqlwrapper = nix.arg($, "sparqlwrapper");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "awswrangler",
       version: "3.17.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aws",
           repo: "aws-sdk-pandas",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         setuptools,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         sqlserver: nix.thunk(() => [pyodbc]),
         sparql: nix.thunk(() => [sparqlwrapper]),
       })),
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
         "tests/unit/test_moto.py",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pandas on AWS",
         homepage: "https://github.com/aws/aws-sdk-pandas",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/aws-sdk-pandas/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

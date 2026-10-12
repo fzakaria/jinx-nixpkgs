@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["homepage", 82, 5], ["description", 83, 5], ["mainProgram", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["disabled", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["pythonRelaxDeps", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTestPaths", 66, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, isPy3k: false, setuptools: false, colorama: false, texttable: false, tqdm: false, certifi: false, housekeeping: false, puremagic: false, pydiffx: false, "typing-extensions": false, "importlib-metadata": false, "importlib-resources": false, packaging: false, pytestCheckHook: false, "pytest-env": false, kgb: false, gitSetupHook: false, gitFull: false, subversion: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 82, 5], ["description", 83, 5], ["mainProgram", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["disabled", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["pythonRelaxDeps", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTestPaths", 66, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "reviewboard",
           repo: "rbtools",
           tag: nix.thunk(() => nix.str`release-${version}`),
@@ -72,7 +70,7 @@ export default nix.lambda((args) => (() => {
         "rbtools/clients/tests/test_scanning.py::ScanningTests::test_scanning_nested_repos_2",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.reviewboard.org/docs/rbtools/dev/",
         description: "RBTools is a set of command line tools for working with Review Board and RBCommons",
         mainProgram: "rbt",
@@ -80,7 +78,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

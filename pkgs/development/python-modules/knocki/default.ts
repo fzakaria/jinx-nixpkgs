@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["nativeBuildInputs", 32, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { aiohttp: false, aioresponses: false, lib: false, buildPythonPackage: false, fetchFromGitHub: false, mashumaro: false, orjson: false, "poetry-core": false, pyprojectVersionPatchHook: false, pytestCheckHook: false, "pytest-aiohttp": false, "pytest-cov-stub": false, syrupy: false, yarl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["nativeBuildInputs", 32, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "swan-solutions",
           repo: "knocki-homeassistant",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [aioresponses, pytestCheckHook, pytest_aiohttp, pytest_cov_stub, syrupy]);
       const pythonImportsCheck = nix.thunk(() => ["knocki"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Asynchronous Python client for Knocki vibration / door sensors",
         homepage: "https://github.com/swan-solutions/knocki-homeassistant",
         changelog: nix.thunk(() => nix.str`https://github.com/swan-solutions/knocki-homeassistant/releases/tag/v${version}`),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

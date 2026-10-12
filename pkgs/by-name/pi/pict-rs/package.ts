@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["PROTOC", 30, 5], ["PROTOC_INCLUDE", 31, 5]], [["pict-rs", 47, 43]], [["tests", 47, 12]], [["broken", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 26, 3], ["env", 28, 3], ["nativeBuildInputs", 34, 3], ["postInstall", 36, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitea: false, rustPlatform: false, makeWrapper: false, protobuf: false, imagemagick: false, ffmpeg: false, exiftool: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PROTOC", 30, 5], ["PROTOC_INCLUDE", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pict-rs", 47, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 47, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["broken", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 26, 3], ["env", 28, 3], ["nativeBuildInputs", 34, 3], ["postInstall", 36, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const exiftool = nix.arg($, "exiftool");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pict-rs",
       version: "0.5.24",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.asonix.dog",
           owner: "asonix",
           repo: "pict-rs",
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-W4Bj+juON8mPyXDHgFpTBBFOvQlmYIKihXHBHwelah4=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PROTOC: nix.thunk(() => nix.str`${protobuf}/bin/protoc`),
         PROTOC_INCLUDE: nix.thunk(() => nix.str`${protobuf}/include`),
       })),
@@ -45,14 +40,14 @@ export default nix.lambda((args) => (() => {
     --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [imagemagick, ffmpeg, exiftool]))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pict-rs": nix.thunk(() => nix.attr(nixosTests, "pict-rs")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Simple image hosting service",
         mainProgram: "pict-rs",

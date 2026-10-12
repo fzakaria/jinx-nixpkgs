@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["name", 34, 7], ["icon", 35, 7], ["exec", 36, 7], ["desktopName", 37, 7], ["comment", 38, 7], ["genericName", 39, 7], ["categories", 40, 7]], [["updateScript", 94, 12]], [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["platforms", 120, 5], ["sourceProvenance", 122, 5], ["maintainers", 123, 5], ["mainProgram", 124, 5]], [["pname", 23, 3], ["version", 24, 3], ["revision", 25, 3], ["src", 27, 3], ["desktopItems", 32, 3], ["nativeBuildInputs", 44, 3], ["unpackPhase", 52, 3], ["sourceRoot", 60, 3], ["postPatch", 62, 3], ["buildInputs", 66, 3], ["installPhase", 76, 3], ["preFixup", 89, 3], ["passthru", 94, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "squashfs-tools": false, autoPatchelfHook: false, copyDesktopItems: false, "alsa-lib": false, nss: false, libdrm: false, libgbm: false, libGL: false, libxkbcommon: false, pcsclite: false, makeDesktopItem: false, makeWrapper: false, wrapGAppsHook3: false, writeScript: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 7], ["icon", 35, 7], ["exec", 36, 7], ["desktopName", 37, 7], ["comment", 38, 7], ["genericName", 39, 7], ["categories", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 94, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["platforms", 120, 5], ["sourceProvenance", 122, 5], ["maintainers", 123, 5], ["mainProgram", 124, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["revision", 25, 3], ["src", 27, 3], ["desktopItems", 32, 3], ["nativeBuildInputs", 44, 3], ["unpackPhase", 52, 3], ["sourceRoot", 60, 3], ["postPatch", 62, 3], ["buildInputs", 66, 3], ["installPhase", 76, 3], ["preFixup", 89, 3], ["passthru", 94, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,13 +30,13 @@ export default nix.lambda((args) => (() => {
       const version = "26.2.6";
       const revision = "29";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://api.snapcraft.io/api/v1/snaps/download/rLNeIGEaag0TKFQLO0TxF3ARXg3rcTNx_${revision}.snap`),
           hash: "sha512-XvVXLmzopmzyIavLHcOItIe+wI9ACDTe/YOBYN7z8kAwA8Wlwf3Sz9eFQ2NZ6t25Am022uTI1WP8yi3Lt5fa7g==",
         }))));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "tk-safe",
             icon: "tk-safe",
             exec: "tk-safe",
@@ -66,11 +62,11 @@ export default nix.lambda((args) => (() => {
   --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL]))}"
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-tk-safe", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts curl jq\n\nset -eu -o pipefail\n\ndata=$(curl -H 'X-Ubuntu-Series: 16' \\\n'https://api.snapcraft.io/api/v1/snaps/details/tk-safe?fields=download_sha512,revision,version')\n\nversion=$(jq -r .version <<<\"$data\")\n\nif [[ \"x$UPDATE_NIX_OLD_VERSION\" != \"x$version\" ]]; then\n\n    revision=$(jq -r .revision <<<\"$data\")\n    hash=$(nix --extra-experimental-features nix-command hash to-sri \"sha512:$(jq -r .download_sha512 <<<\"$data\")\")\n\n    update-source-version \"$UPDATE_NIX_ATTR_PATH\" \"$version\" \"$hash\"\n    update-source-version --ignore-same-hash --version-key=revision \"$UPDATE_NIX_ATTR_PATH\" \"$revision\" \"$hash\"\n\nfi\n")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Electronic medical record (ePA) by Techniker Krankenkasse (TK)",
         homepage: "https://snapcraft.io/tk-safe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -86,7 +82,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "tk-safe",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         revision,

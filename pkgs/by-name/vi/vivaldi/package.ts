@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-linux", 73, 7], ["x86_64-linux", 74, 7]], [["aarch64-linux", 82, 9], ["x86_64-linux", 83, 9]], [["url", 79, 5], ["hash", 80, 5]], [["updateScript", 224, 12]], [["description", 227, 5], ["homepage", 228, 5], ["license", 229, 5], ["sourceProvenance", 230, 5], ["mainProgram", 231, 5], ["maintainers", 232, 5], ["platforms", 237, 5]], [["pname", 68, 3], ["version", 69, 3], ["suffix", 71, 3], ["src", 78, 3], ["unpackPhase", 88, 3], ["nativeBuildInputs", 95, 3], ["dontWrapQtApps", 101, 3], ["buildInputs", 103, 3], ["libPath", 159, 3], ["buildPhase", 166, 3], ["dontPatchELF", 184, 3], ["dontStrip", 185, 3], ["installPhase", 187, 3], ["passthru", 224, 3], ["meta", 226, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, coreutils: false, fetchurl: false, zlib: false, libx11: false, libxext: false, libsm: false, libice: false, libxkbcommon: false, libxshmfence: false, libxfixes: false, libxt: false, libxi: false, libxcursor: false, libxscrnsaver: false, libxcomposite: false, libxdamage: false, libxtst: false, libxrandr: false, "alsa-lib": false, dbus: false, cups: false, libexif: false, systemd: false, libva: false, libGL: false, freetype: false, fontconfig: false, libxft: false, libxrender: false, libxcb: false, expat: false, libuuid: false, libxml2: false, glib: false, gtk3: false, pango: false, "gdk-pixbuf": false, cairo: false, atk: false, "at-spi2-atk": false, "at-spi2-core": false, qt6: false, libdrm: false, libgbm: false, "vulkan-loader": false, addDriverRunpath: false, nss: false, nspr: false, patchelf: false, makeWrapper: false, wayland: false, pipewire: false, proprietaryCodecs: true, "vivaldi-ffmpeg-codecs": true, enableWidevine: true, "widevine-cdm": true, commandLineArgs: true, pulseSupport: true, libpulseaudio: false, kerberosSupport: true, libkrb5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-linux", 73, 7], ["x86_64-linux", 74, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aarch64-linux", 82, 9], ["x86_64-linux", 83, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 79, 5], ["hash", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 224, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 227, 5], ["homepage", 228, 5], ["license", 229, 5], ["sourceProvenance", 230, 5], ["mainProgram", 231, 5], ["maintainers", 232, 5], ["platforms", 237, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 68, 3], ["version", 69, 3], ["suffix", 71, 3], ["src", 78, 3], ["unpackPhase", 88, 3], ["nativeBuildInputs", 95, 3], ["dontWrapQtApps", 101, 3], ["buildInputs", 103, 3], ["libPath", 159, 3], ["buildPhase", 166, 3], ["dontPatchELF", 184, 3], ["dontStrip", 185, 3], ["installPhase", 187, 3], ["passthru", 224, 3], ["meta", 226, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -78,12 +73,12 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "vivaldi";
       const version = "8.2.4133.83";
-      const suffix = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "aarch64-linux": "arm64", "x86_64-linux": "amd64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+      const suffix = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], "aarch64-linux": "arm64", "x86_64-linux": "amd64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://downloads.vivaldi.com/stable/vivaldi-stable_${version}-1_${suffix}.deb`),
           hash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "aarch64-linux": "sha256-V9/QmggzB032MHuNNpsTog2Urgv/jvnlO3oGZqQASvw=",
             "x86_64-linux": "sha256-O9VbOMwgTnbBizK3nhmqOWz65efBhwGHiWcobs1bGTI=",
           }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -186,9 +181,9 @@ wrapProgram "$out/bin/vivaldi" \\
   \${qtWrapperArgs[@]}
 `, nix.app(nix.sel(lib, "optionalString"), enableWidevine, nix.thunk(() => nix.str`ln -sf ${widevine_cdm}/share/google/chrome/WidevineCdm $out/opt/vivaldi/WidevineCdm
 `))), "runHook postInstall\n"));
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update-vivaldi.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update-vivaldi.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Browser for our Friends, powerful and personal",
         homepage: "https://vivaldi.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -208,7 +203,7 @@ wrapProgram "$out/bin/vivaldi" \\
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         suffix,

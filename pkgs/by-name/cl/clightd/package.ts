@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["SYSTEM_BUS_DIR", 44, 5], ["POLKIT_ACTION_DIR", 46, 5]], [["description", 104, 5], ["mainProgram", 105, 5], ["homepage", 106, 5], ["platforms", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["env", 42, 3], ["postPatch", 49, 3], ["cmakeFlags", 54, 3], ["depsBuildBuild", 66, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 76, 3], ["postInstall", 98, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, dbus: false, cmake: false, "pkg-config": false, "wayland-scanner": false, glib: false, udev: false, polkit: false, libusb1: false, libjpeg: false, libmodule: false, libxdmcp: false, "util-linux": false, "libpthread-stubs": false, enableDdc: true, ddcutil: false, enableDpms: true, libxext: false, enableGamma: true, libdrm: false, libxrandr: false, libiio: false, wayland: false, enableScreen: true, enableYoctolight: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["SYSTEM_BUS_DIR", 44, 5], ["POLKIT_ACTION_DIR", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 104, 5], ["mainProgram", 105, 5], ["homepage", 106, 5], ["platforms", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["env", 42, 3], ["postPatch", 49, 3], ["cmakeFlags", 54, 3], ["depsBuildBuild", 66, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 76, 3], ["postInstall", 98, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,18 +35,18 @@ export default nix.lambda((args) => (() => {
   const enableScreen = nix.argOr($, "enableScreen", () => true);
   const enableYoctolight = nix.argOr($, "enableYoctolight", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "clightd",
       version: "5.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FedeDP",
           repo: "Clightd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-LOhBBd7QL5kH4TzMFgrh70C37WsFdsiKArP+tIEiPWo=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         SYSTEM_BUS_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/dbus-1/system-services`),
         POLKIT_ACTION_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/polkit-1/actions`),
       })),
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), enableDdc, nix.thunk(() => [ddcutil])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableDpms, nix.thunk(() => [libxext])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableGamma, nix.thunk(() => [libxrandr])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool((nix.asBool(enableDpms) || nix.asBool(enableGamma))) || nix.asBool(enableScreen))), nix.thunk(() => [libdrm, wayland]))))))),
       postInstall: "mkdir -p $out/bin\nln -svT $out/libexec/clightd $out/bin/clightd\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Linux bus interface that changes screen brightness/temperature",
         mainProgram: "clightd",
         homepage: "https://github.com/FedeDP/Clightd",

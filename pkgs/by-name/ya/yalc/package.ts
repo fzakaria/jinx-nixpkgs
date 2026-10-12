@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 21, 5], ["hash", 22, 5]], [["yarnLock", 26, 5], ["hash", 27, 5]], [["updateScript", 37, 12]], [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["yarnOfflineCache", 25, 3], ["nativeBuildInputs", 30, 3], ["passthru", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, fetchYarnDeps: false, nodejs: false, yarnBuildHook: false, yarnConfigHook: false, yarnInstallHook: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 37, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["yarnOfflineCache", 25, 3], ["nativeBuildInputs", 30, 3], ["passthru", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,28 +17,28 @@ export default nix.lambda((args) => (() => {
   const yarnInstallHook = nix.arg($, "yarnInstallHook");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "yalc",
       version: "0-unstable-2023-07-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wclr",
           repo: "yalc",
           rev: "3b834e488837e87df47414fd9917c10f07f0df08",
           hash: "sha256-v8OhLVuRhnyN2PrslgVVS0r56wGhYYmjoz3ZUZ95xBc=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-+w3azJEnRx4v3nJ3rhpLWt6CjOFhMMmr1UL5hg2ZR48=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, yarnInstallHook, nodejs]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Work with yarn/npm packages locally like a boss",
         mainProgram: "yalc",
         homepage: "https://github.com/wclr/yalc",

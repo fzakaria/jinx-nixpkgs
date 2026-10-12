@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["updateScript", 28, 12]], [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5], ["mainProgram", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["enableParallelBuilding", 22, 3], ["installPhase", 24, 3], ["passthru", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, openssl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 28, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5], ["mainProgram", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["enableParallelBuilding", 22, 3], ["installPhase", 24, 3], ["passthru", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xilinx-bootgen",
       version: "xilinx_v2024.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xilinx",
           repo: "bootgen",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "install -Dm755 bootgen $out/bin/bootgen\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Generate Boot Images for Xilinx Zynq and ZU+ SoCs",
         longDescription: "Bootgen for Xilinx Zynq and ZU+ SoCs, without code related to generating\nobfuscated key and without code to support FPGA encryption and\nauthentication. These features are only available as part of Bootgen\nshipped with Vivado tools.\n\nFor more details about Bootgen, please refer to Xilinx UG1283.\n",
         homepage: "https://github.com/Xilinx/bootgen",

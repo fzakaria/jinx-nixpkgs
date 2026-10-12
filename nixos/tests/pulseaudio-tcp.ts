@@ -2,44 +2,18 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pulseaudio-tcp.nix", [[["maintainers", 6, 8]], [["vlans", 15, 22]], [["useNetworkd", 17, 18]], [["Address", 21, 23]], [["name", 20, 9], ["networkConfig", 21, 9]], [["01-eth1", 19, 32]], [["networks", 19, 23]], [["wantedBy", 39, 35]], [["pulseaudio", 39, 24]], [["network", 19, 15], ["services", 39, 15]], [["allowedIpRanges", 30, 28]], [["enable", 27, 11], ["port", 28, 11], ["openFirewall", 29, 11], ["anonymousClients", 30, 11]], [["enable", 25, 9], ["tcp", 26, 9], ["systemWide", 32, 9], ["extraConfig", 33, 9]], [["pulseaudio", 24, 16]], [["virtualisation", 15, 7], ["networking", 17, 7], ["systemd", 19, 7], ["services", 24, 7]], [["vlans", 42, 22]], [["useNetworkd", 44, 18]], [["Address", 48, 23]], [["name", 47, 9], ["networkConfig", 48, 9]], [["01-eth1", 46, 32]], [["networks", 46, 23]], [["network", 46, 15]], [["enable", 52, 9], ["extraClientConf", 53, 9]], [["pulseaudio", 51, 16]], [["virtualisation", 42, 7], ["networking", 44, 7], ["systemd", 46, 7], ["services", 51, 7]], [["server", 14, 5], ["client", 41, 5]], [["name", 4, 3], ["meta", 6, 3], ["nodes", 13, 3], ["testScript", 60, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pulseaudio-tcp.nix", [["maintainers", 6, 8]]);
-const pos$2 = nix.positions(here + "/pulseaudio-tcp.nix", [["vlans", 15, 22]]);
-const pos$3 = nix.positions(here + "/pulseaudio-tcp.nix", [["useNetworkd", 17, 18]]);
-const pos$4 = nix.positions(here + "/pulseaudio-tcp.nix", [["Address", 21, 23]]);
-const pos$5 = nix.positions(here + "/pulseaudio-tcp.nix", [["name", 20, 9], ["networkConfig", 21, 9]]);
-const pos$6 = nix.positions(here + "/pulseaudio-tcp.nix", [["01-eth1", 19, 32]]);
-const pos$7 = nix.positions(here + "/pulseaudio-tcp.nix", [["networks", 19, 23]]);
-const pos$8 = nix.positions(here + "/pulseaudio-tcp.nix", [["wantedBy", 39, 35]]);
-const pos$9 = nix.positions(here + "/pulseaudio-tcp.nix", [["pulseaudio", 39, 24]]);
-const pos$10 = nix.positions(here + "/pulseaudio-tcp.nix", [["network", 19, 15], ["services", 39, 15]]);
-const pos$11 = nix.positions(here + "/pulseaudio-tcp.nix", [["allowedIpRanges", 30, 28]]);
-const pos$12 = nix.positions(here + "/pulseaudio-tcp.nix", [["enable", 27, 11], ["port", 28, 11], ["openFirewall", 29, 11], ["anonymousClients", 30, 11]]);
-const pos$13 = nix.positions(here + "/pulseaudio-tcp.nix", [["enable", 25, 9], ["tcp", 26, 9], ["systemWide", 32, 9], ["extraConfig", 33, 9]]);
-const pos$14 = nix.positions(here + "/pulseaudio-tcp.nix", [["pulseaudio", 24, 16]]);
-const pos$15 = nix.positions(here + "/pulseaudio-tcp.nix", [["virtualisation", 15, 7], ["networking", 17, 7], ["systemd", 19, 7], ["services", 24, 7]]);
-const pos$16 = nix.positions(here + "/pulseaudio-tcp.nix", [["vlans", 42, 22]]);
-const pos$17 = nix.positions(here + "/pulseaudio-tcp.nix", [["useNetworkd", 44, 18]]);
-const pos$18 = nix.positions(here + "/pulseaudio-tcp.nix", [["Address", 48, 23]]);
-const pos$19 = nix.positions(here + "/pulseaudio-tcp.nix", [["name", 47, 9], ["networkConfig", 48, 9]]);
-const pos$20 = nix.positions(here + "/pulseaudio-tcp.nix", [["01-eth1", 46, 32]]);
-const pos$21 = nix.positions(here + "/pulseaudio-tcp.nix", [["networks", 46, 23]]);
-const pos$22 = nix.positions(here + "/pulseaudio-tcp.nix", [["network", 46, 15]]);
-const pos$23 = nix.positions(here + "/pulseaudio-tcp.nix", [["enable", 52, 9], ["extraClientConf", 53, 9]]);
-const pos$24 = nix.positions(here + "/pulseaudio-tcp.nix", [["pulseaudio", 51, 16]]);
-const pos$25 = nix.positions(here + "/pulseaudio-tcp.nix", [["virtualisation", 42, 7], ["networking", 44, 7], ["systemd", 46, 7], ["services", 51, 7]]);
-const pos$26 = nix.positions(here + "/pulseaudio-tcp.nix", [["server", 14, 5], ["client", 41, 5]]);
-const pos$27 = nix.positions(here + "/pulseaudio-tcp.nix", [["name", 4, 3], ["meta", 6, 3], ["nodes", 13, 3], ["testScript", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$27,
+    [nix.POS]: $pos[26],
     name: "pulseaudio-tcp",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.concat(nix.sel(pkgs, "pulseaudio", "meta", "maintainers"), (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -49,40 +23,40 @@ export default nix.lambda((args) => (() => {
       })())),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$15,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
-        networking: nix.thunk(() => ({ [nix.POS]: pos$3, useNetworkd: true })),
+        [nix.POS]: $pos[14],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], vlans: nix.thunk(() => [1n]) })),
+        networking: nix.thunk(() => ({ [nix.POS]: $pos[2], useNetworkd: true })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           network: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             networks: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               "01-eth1": nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 name: "eth1",
-                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$4, Address: "10.0.0.1/24" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[3], Address: "10.0.0.1/24" })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            pulseaudio: nix.thunk(() => ({ [nix.POS]: pos$8, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+            [nix.POS]: $pos[8],
+            pulseaudio: nix.thunk(() => ({ [nix.POS]: $pos[7], wantedBy: nix.thunk(() => ["multi-user.target"]) })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           pulseaudio: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             enable: true,
             tcp: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               enable: true,
               port: 4713n,
               openFirewall: true,
-              anonymousClients: nix.thunk(() => ({ [nix.POS]: pos$11, allowedIpRanges: nix.thunk(() => ["10.0.0.2"]) })),
+              anonymousClients: nix.thunk(() => ({ [nix.POS]: $pos[10], allowedIpRanges: nix.thunk(() => ["10.0.0.2"]) })),
             })),
             systemWide: true,
             extraConfig: "load-module module-pipe-sink file=/tmp/audio_check sink_name=virtual_server_sink\nset-default-sink virtual_server_sink\n",
@@ -90,27 +64,27 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       client: nix.thunk(() => ({
-        [nix.POS]: pos$25,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$16, vlans: nix.thunk(() => [1n]) })),
-        networking: nix.thunk(() => ({ [nix.POS]: pos$17, useNetworkd: true })),
+        [nix.POS]: $pos[24],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[15], vlans: nix.thunk(() => [1n]) })),
+        networking: nix.thunk(() => ({ [nix.POS]: $pos[16], useNetworkd: true })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           network: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             networks: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               "01-eth1": nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 name: "eth1",
-                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$18, Address: "10.0.0.2/24" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[17], Address: "10.0.0.2/24" })),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           pulseaudio: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             enable: true,
             extraClientConf: "default-server = tcp:10.0.0.1:4713\n",
           })),

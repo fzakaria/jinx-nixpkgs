@@ -2,53 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vscodium.nix", [[["program", 10, 23]], [["cage", 10, 18]], [["NIXOS_OZONE_WL", 12, 31], ["DISPLAY", 13, 31]], [["variables", 12, 21]], [["packages", 15, 15]], [["imports", 7, 9], ["services", 10, 9], ["environment", 12, 9], ["fonts", 15, 9]], [["memorySize", 25, 24]], [["sessionCommands", 27, 41]], [["enable", 26, 26], ["displayManager", 27, 26]], [["xserver", 26, 18]], [["user", 30, 42]], [["auto", 30, 37]], [["displayManager", 30, 22]], [["imports", 20, 9], ["virtualisation", 25, 9], ["services", 26, 9], ["test-support", 30, 9]], [["wayland", 4, 5], ["xorg", 17, 5]], [["maintainers", 43, 14], ["broken", 49, 14]], [["name", 39, 17], ["nodes", 41, 9], ["meta", 43, 9], ["enableOCR", 51, 9], ["testScript", 53, 9]]]);
 const formals$1 = { args: { runTest: false }, ellipsis: false };
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/vscodium.nix", [["program", 10, 23]]);
-const pos$2 = nix.positions(here + "/vscodium.nix", [["cage", 10, 18]]);
-const pos$3 = nix.positions(here + "/vscodium.nix", [["NIXOS_OZONE_WL", 12, 31], ["DISPLAY", 13, 31]]);
-const pos$4 = nix.positions(here + "/vscodium.nix", [["variables", 12, 21]]);
-const pos$5 = nix.positions(here + "/vscodium.nix", [["packages", 15, 15]]);
-const pos$6 = nix.positions(here + "/vscodium.nix", [["imports", 7, 9], ["services", 10, 9], ["environment", 12, 9], ["fonts", 15, 9]]);
 const formals$3 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/vscodium.nix", [["memorySize", 25, 24]]);
-const pos$8 = nix.positions(here + "/vscodium.nix", [["sessionCommands", 27, 41]]);
-const pos$9 = nix.positions(here + "/vscodium.nix", [["enable", 26, 26], ["displayManager", 27, 26]]);
-const pos$10 = nix.positions(here + "/vscodium.nix", [["xserver", 26, 18]]);
-const pos$11 = nix.positions(here + "/vscodium.nix", [["user", 30, 42]]);
-const pos$12 = nix.positions(here + "/vscodium.nix", [["auto", 30, 37]]);
-const pos$13 = nix.positions(here + "/vscodium.nix", [["displayManager", 30, 22]]);
-const pos$14 = nix.positions(here + "/vscodium.nix", [["imports", 20, 9], ["virtualisation", 25, 9], ["services", 26, 9], ["test-support", 30, 9]]);
-const pos$15 = nix.positions(here + "/vscodium.nix", [["wayland", 4, 5], ["xorg", 17, 5]]);
 const formals$4 = { args: { lib: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/vscodium.nix", [["maintainers", 43, 14], ["broken", 49, 14]]);
-const pos$17 = nix.positions(here + "/vscodium.nix", [["name", 39, 17], ["nodes", 41, 9], ["meta", 43, 9], ["enableOCR", 51, 9], ["testScript", 53, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTest = nix.arg($, "runTest");
   const tests = nix.thunk(() => ({
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     wayland: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const lib = nix.arg($_1, "lib");
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         imports: nix.thunk(() => [nix.path(here, "./common/wayland-cage.nix")]),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           cage: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             program: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "vscodium")))} --force-device-scale-factor=2`),
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          variables: nix.thunk(() => ({ [nix.POS]: pos$3, NIXOS_OZONE_WL: "1", DISPLAY: "do not use" })),
+          [nix.POS]: $pos[3],
+          variables: nix.thunk(() => ({ [nix.POS]: $pos[2], NIXOS_OZONE_WL: "1", DISPLAY: "do not use" })),
         })),
         fonts: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           packages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "dejavu_fonts"))];
@@ -61,29 +45,29 @@ export default nix.lambda((args) => (() => {
       const lib = nix.arg($_1, "lib");
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         imports: nix.thunk(() => [
           nix.path(here, "./common/user-account.nix"),
           nix.path(here, "./common/x11.nix"),
         ]),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$7, memorySize: 2047n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[6], memorySize: 2047n })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           xserver: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             enable: true,
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               sessionCommands: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "vscodium")))} --force-device-scale-factor=2
 `),
             })),
           })),
         })),
         "test-support": nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           displayManager: nix.thunk(() => ({
-            [nix.POS]: pos$12,
-            auto: nix.thunk(() => ({ [nix.POS]: pos$11, user: "alice" })),
+            [nix.POS]: $pos[11],
+            auto: nix.thunk(() => ({ [nix.POS]: $pos[10], user: "alice" })),
           })),
         })),
       };
@@ -93,11 +77,11 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$4);
       const lib = nix.arg($_1, "lib");
       return {
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         name: name,
         nodes: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${name}`, machine]])),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "turion"))];

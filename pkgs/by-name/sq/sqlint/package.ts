@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["help", 17, 11]], [["updateScript", 16, 5], ["tests", 17, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 32, 5]], [["pname", 10, 3], ["gemdir", 11, 3], ["exes", 13, 3], ["passthru", 15, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false, bundlerUpdateScript: false, runCommand: false, sqlint: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["help", 17, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 16, 5], ["tests", 17, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["gemdir", 11, 3], ["exes", 13, 3], ["passthru", 15, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,22 +13,22 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const sqlint = nix.arg($, "sqlint");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sqlint",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["sqlint"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "sqlint")),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           help: nix.thunk(() => nix.app(runCommand, "sqlint-help-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${sqlint}/bin/sqlint --help
 touch $out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple SQL linter",
         homepage: "https://github.com/purcell/sqlint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

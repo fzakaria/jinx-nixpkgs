@@ -2,20 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["src", 23, 19], ["patches", 23, 23]], [["nativeBuildInputs", 30, 9]], [["org.gnome.evolution-data-server.addressbook", 61, 9], ["org.gnome.evolution.calendar", 62, 9], ["org.gnome.seahorse.nautilus.window", 63, 9]], [["schemaIdToVariableMapping", 60, 7]], [["name", 57, 5], ["src", 58, 5], ["args", 59, 5], ["expected", 66, 5]], [["org.gnome.evolution-data-server.addressbook", 78, 9]], [["schemaIdToVariableMapping", 77, 7]], [["name", 70, 5], ["src", 71, 5], ["patches", 72, 5], ["args", 76, 5], ["expected", 81, 5]], [["org.gnome.evolution-data-server.addressbook", 89, 9], ["org.gnome.evolution.calendar", 90, 9], ["org.gnome.seahorse.nautilus.window", 91, 9]], [["schemaIdToVariableMapping", 88, 7], ["schemaExistsFunction", 93, 7]], [["name", 85, 5], ["src", 86, 5], ["args", 87, 5], ["expected", 95, 5]], [["basic", 56, 3], ["patches", 69, 3], ["existsFn", 84, 3]]]);
 const formals$1 = { args: { runCommandLocal: false, lib: false, git: false, "clang-tools": false, makeHardcodeGsettingsPatch: false }, ellipsis: false };
 const formals$2 = { args: { name: false, expected: false, src: false, patches: true, args: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["src", 23, 19], ["patches", 23, 23]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 30, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["org.gnome.evolution-data-server.addressbook", 61, 9], ["org.gnome.evolution.calendar", 62, 9], ["org.gnome.seahorse.nautilus.window", 63, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["schemaIdToVariableMapping", 60, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 57, 5], ["src", 58, 5], ["args", 59, 5], ["expected", 66, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["org.gnome.evolution-data-server.addressbook", 78, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["schemaIdToVariableMapping", 77, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["name", 70, 5], ["src", 71, 5], ["patches", 72, 5], ["args", 76, 5], ["expected", 81, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["org.gnome.evolution-data-server.addressbook", 89, 9], ["org.gnome.evolution.calendar", 90, 9], ["org.gnome.seahorse.nautilus.window", 91, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["schemaIdToVariableMapping", 88, 7], ["schemaExistsFunction", 93, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["name", 85, 5], ["src", 86, 5], ["args", 87, 5], ["expected", 95, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["basic", 56, 3], ["patches", 69, 3], ["existsFn", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,8 +20,8 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const patches = nix.argOr($_1, "patches", () => []);
     const args_2 = nix.arg($_1, "args");
-    const patch = nix.thunk(() => nix.app(makeHardcodeGsettingsPatch, nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$1, src: src, patches: patches }))));
-    return nix.app(runCommandLocal, nix.thunk(() => nix.str`makeHardcodeGsettingsPatch-tests-${name}`), nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [git, clang_tools]) })), nix.thunk(() => nix.str`cp -r --no-preserve=all "${src}" src
+    const patch = nix.thunk(() => nix.app(makeHardcodeGsettingsPatch, nix.thunk(() => nix.update(args_2, { [nix.POS]: $pos[0], src: src, patches: patches }))));
+    return nix.app(runCommandLocal, nix.thunk(() => nix.str`makeHardcodeGsettingsPatch-tests-${name}`), nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [git, clang_tools]) })), nix.thunk(() => nix.str`cp -r --no-preserve=all "${src}" src
 cp -r --no-preserve=all "${expected}" src-expected
 
 pushd src
@@ -51,15 +40,15 @@ touch "$out"
 `));
   })(), formals$2);
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     basic: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "basic",
         src: nix.path(here, "./fixtures/example-project"),
         args: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           schemaIdToVariableMapping: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "org.gnome.evolution-data-server.addressbook": "EDS",
             "org.gnome.evolution.calendar": "EVO",
             "org.gnome.seahorse.nautilus.window": "SEANAUT",
@@ -68,26 +57,26 @@ touch "$out"
         expected: nix.path(here, "./fixtures/example-project-patched"),
       })))),
     patches: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: "patches",
         src: nix.path(here, "./fixtures/example-project-wrapped-settings-constructor"),
         patches: nix.thunk(() => [
           nix.path(here, "./fixtures/example-project-wrapped-settings-constructor-resolve.patch"),
         ]),
         args: nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          schemaIdToVariableMapping: nix.thunk(() => ({ [nix.POS]: pos$6, "org.gnome.evolution-data-server.addressbook": "EDS" })),
+          [nix.POS]: $pos[6],
+          schemaIdToVariableMapping: nix.thunk(() => ({ [nix.POS]: $pos[5], "org.gnome.evolution-data-server.addressbook": "EDS" })),
         })),
         expected: nix.path(here, "./fixtures/example-project-wrapped-settings-constructor-patched"),
       })))),
     existsFn: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         name: "exists-fn",
         src: nix.path(here, "./fixtures/example-project"),
         args: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           schemaIdToVariableMapping: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             "org.gnome.evolution-data-server.addressbook": "EDS",
             "org.gnome.evolution.calendar": "EVO",
             "org.gnome.seahorse.nautilus.window": "SEANAUT",

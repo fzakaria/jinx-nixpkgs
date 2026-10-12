@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["src", 16, 3], ["outputs", 21, 3], ["nativeBuildInputs", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, installFonts: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["src", 16, 3], ["outputs", 21, 3], ["nativeBuildInputs", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libertinus",
       version: "7.051",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/alerque/libertinus/releases/download/v${nix.sel(finalAttrs, "version")}/Libertinus-${nix.sel(finalAttrs, "version")}.tar.zst`),
           hash: "sha256-JQZ3ySnTd1owkTZDWUN5ryZKwu8oAQNaody+MLm+I6Y=",
         })))),
       outputs: nix.thunk(() => ["out", "webfont"]),
       nativeBuildInputs: nix.thunk(() => [installFonts, zstd]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Libertinus font family",
         longDescription: "The Libertinus font project began as a fork of the Linux Libertine and\nLinux Biolinum fonts. The original impetus was to add an OpenType math\ncompanion to the Libertine font families. Over time it grew into to a\nfull-fledged fork addressing many of the bugs in the Libertine fonts.\n",
         homepage: "https://github.com/alerque/libertinus",

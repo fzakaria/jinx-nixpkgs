@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 29, 5], ["license", 30, 5], ["homepage", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["license", 30, 5], ["homepage", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tt-rss-plugin-freshapi",
       version: "0-unstable-2024-11-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eric-pierce",
           repo: "freshapi",
           rev: "44c98f12e8a4423501fc6d8cb7903cca11094dc6",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\ninstall -D init.php $out/freshapi/init.php\ninstall -D api/greader.php $out/freshapi/api/greader.php\ninstall -D api/freshapi.php $out/freshapi/api/freshapi.php\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "FreshRSS / Google Reader API Plugin for Tiny-Tiny RSS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         homepage: "https://github.com/eric-pierce/freshapi",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]], [["version", 16, 3], ["pname", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["dontUnpack", 27, 3], ["installPhase", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 16, 3], ["pname", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["dontUnpack", 27, 3], ["installPhase", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "2020-11-15",
       pname: "zsh-command-time",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "popstas",
           repo: "zsh-command-time",
           rev: "803d26eef526bff1494d1a584e46a6e08d25d918",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "install -Dm0444 $src/command-time.plugin.zsh --target-directory=$out/share/zsh/plugins/command-time\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Plugin that output time: xx after long commands",
         homepage: "https://github.com/popstas/zsh-command-time",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

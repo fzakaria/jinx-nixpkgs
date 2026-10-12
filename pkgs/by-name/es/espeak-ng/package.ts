@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["pname", 45, 5], ["version", 46, 13], ["src", 46, 21], ["sourceRoot", 48, 5], ["postPatch", 51, 5], ["nativeBuildInputs", 55, 5], ["installPhase", 57, 5]], [["name", 73, 7], ["url", 74, 7], ["hash", 75, 7]], [["name", 79, 7], ["url", 80, 7], ["hash", 81, 7]], [["mbrola", 87, 15]], [["mbrolaSupport", 136, 13], ["ucd-tools", 136, 27]], [["description", 140, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["platforms", 145, 5], ["mainProgram", 146, 5]], [["pname", 67, 3], ["version", 68, 11], ["src", 68, 19], ["patches", 70, 3], ["postPatch", 91, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 111, 3], ["cmakeFlags", 116, 3], ["postInstall", 130, 3], ["passthru", 135, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, replaceVars: false, autoconf: false, automake: false, cmake: false, libtool: false, makeWrapper: false, ninja: false, "pkg-config": false, ronn: false, which: false, "alsa-plugins": false, asyncSupport: true, klattSupport: true, mbrola: false, mbrolaSupport: true, pcaudiolib: false, pcaudiolibSupport: true, sonic: false, sonicSupport: true, speechPlayerSupport: true, ucdSupport: true, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 45, 5], ["version", 46, 13], ["src", 46, 21], ["sourceRoot", 48, 5], ["postPatch", 51, 5], ["nativeBuildInputs", 55, 5], ["installPhase", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 73, 7], ["url", 74, 7], ["hash", 75, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 79, 7], ["url", 80, 7], ["hash", 81, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mbrola", 87, 15]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mbrolaSupport", 136, 13], ["ucd-tools", 136, 27]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 140, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["platforms", 145, 5], ["mainProgram", 146, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 67, 3], ["version", 68, 11], ["src", 68, 19], ["patches", 70, 3], ["postPatch", 91, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 111, 3], ["cmakeFlags", 116, 3], ["postInstall", 130, 3], ["passthru", 135, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,14 +35,14 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const version = "1.52.0.1-unstable-2025-09-09";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "espeak-ng",
       repo: "espeak-ng",
       rev: "0d451f8c1c6ae837418b823bd9c4cbc574ea9ff5",
       hash: "sha256-wpPi+YjSLhsEWfE3KEbL4A7o48qtz9fLRZ/u4xGOM2g=",
     }))));
   const ucd_tools = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ucd-tools",
       version: version,
       src: src,
@@ -64,19 +57,19 @@ export default nix.lambda((args) => (() => {
       const src_1 = src;
       const patches = nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "libsonic.patch",
             url: "https://github.com/espeak-ng/espeak-ng/commit/83e646e711af608fafa8c01dd812cd29e073f644.patch",
             hash: "sha256-UHuURyqRy/JVYYJH5EI5J2cpBfCNeTE24sMmheb+D2Q=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "cmake-default-ESPEAK_COMPAT-to-ON.patch",
             url: "https://github.com/espeak-ng/espeak-ng/commit/3dcbe7ea3ea85a9212968d0f05172dde4259e770.patch",
             hash: "sha256-U694hGe+cwy7qLe/6XmNHYIhccJGsbM0CzPZT5pIpUI=",
           })))),
       ], nix.app(nix.sel(lib, "optionals"), mbrolaSupport, nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mbrola.patch"), nix.thunk(() => ({ [nix.POS]: pos$5, mbrola: mbrola })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mbrola.patch"), nix.thunk(() => ({ [nix.POS]: $pos[4], mbrola: mbrola })))),
         ]))));
       const postPatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), ucdSupport, nix.thunk(() => nix.str`ln -s ${ucd_tools}/libucd.a src/ucd-tools/libucd.a
 `)));
@@ -106,9 +99,9 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`wrapProgram $out/bin/espeak-ng \\
   --set ALSA_PLUGIN_DIR ${alsa_plugins}/lib/alsa-lib
 `)));
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$6, mbrolaSupport: mbrolaSupport, "ucd-tools": ucd_tools }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[5], mbrolaSupport: mbrolaSupport, "ucd-tools": ucd_tools }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Speech synthesizer that supports more than hundred languages and accents",
         homepage: "https://github.com/espeak-ng/espeak-ng",
         changelog: nix.thunk(() => nix.str`https://github.com/espeak-ng/espeak-ng/blob/${nix.sel(src_1, "rev")}/ChangeLog.md`),
@@ -121,7 +114,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "espeak-ng",
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version: version_1,
         src: src_1,

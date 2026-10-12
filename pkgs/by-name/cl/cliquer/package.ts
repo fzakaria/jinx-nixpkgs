@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 36, 5], ["downloadPage", 37, 5], ["license", 38, 5], ["teams", 39, 5], ["mainProgram", 40, 5], ["platforms", 41, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 14, 3], ["doCheck", 21, 3], ["nativeBuildInputs", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 36, 5], ["downloadPage", 37, 5], ["license", 38, 5], ["teams", 39, 5], ["mainProgram", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 14, 3], ["doCheck", 21, 3], ["nativeBuildInputs", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.23",
       pname: "cliquer",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dimpase",
           repo: "autocliquer",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Routines for clique searching",
         longDescription: "Cliquer is a set of C routines for finding cliques in an arbitrary weighted graph.\nIt uses an exact branch-and-bound algorithm developed by Patric Östergård.\nIt is designed with the aim of being efficient while still being flexible and\neasy to use.\n",
         homepage: "https://users.aalto.fi/~pat/cliquer.html",

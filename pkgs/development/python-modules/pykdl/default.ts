@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 38, 7], ["homepage", 39, 7], ["license", 40, 7], ["maintainers", 41, 7], ["platforms", 42, 7]], [["pname", 14, 5], ["version", 15, 26], ["src", 15, 34], ["sourceRoot", 17, 5], ["postPatch", 20, 5], ["nativeBuildInputs", 25, 5], ["buildInputs", 29, 5], ["propagatedBuildInputs", 33, 5], ["cmakeFlags", 35, 5], ["meta", 37, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, toPythonModule: false, cmake: false, pybind11: false, "orocos-kdl": false, eigen: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 38, 7], ["homepage", 39, 7], ["license", 40, 7], ["maintainers", 41, 7], ["platforms", 42, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 14, 5], ["version", 15, 26], ["src", 15, 34], ["sourceRoot", 17, 5], ["postPatch", 20, 5], ["nativeBuildInputs", 25, 5], ["buildInputs", 29, 5], ["propagatedBuildInputs", 33, 5], ["cmakeFlags", 35, 5], ["meta", 37, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const python = nix.arg($, "python");
   return nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "pykdl",
         version: nix.thunk(() => nix.attr(orocos_kdl, "version")),
         src: nix.thunk(() => nix.attr(orocos_kdl, "src")),
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-DPYTHON_EXECUTABLE=${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(python, "pythonOnBuildForHost")))}`),
         ]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           description: "Kinematics and Dynamics Library (Python bindings)",
           homepage: "https://www.orocos.org/kdl.html",
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

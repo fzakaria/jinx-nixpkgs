@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 60, 5], ["hash", 61, 5]], [["description", 111, 5], ["mainProgram", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["platforms", 115, 5], ["maintainers", 116, 5]], [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 70, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, "pkg-config": false, qt6: false, curl: false, libmms: false, libmad: false, taglib: false, libvorbis: false, libogg: false, flac: false, libmpcdec: false, libmodplug: false, libsndfile: false, libcdio: false, cdparanoia: false, libcddb: false, faad2: false, ffmpeg: false, wildmidi: false, libbs2b: false, "game-music-emu": false, libarchive: false, opusfile: false, soxr: false, wavpack: false, libxmp: false, libsidplayfp: false, "alsa-lib": false, libpulseaudio: false, pipewire: false, libjack2: false, libsamplerate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 60, 5], ["hash", 61, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 111, 5], ["mainProgram", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["platforms", 115, 5], ["maintainers", 116, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 70, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const libjack2 = nix.arg($, "libjack2");
   const libsamplerate = nix.arg($, "libsamplerate");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "qmmp",
       version: "2.3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://qmmp.ylsoftware.com/files/qmmp/2.3/qmmp-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Uclk6eaFz2cmay6OMTXuRQS2v2sig/Rrv9Sr42rjaQ0=",
         })))),
@@ -89,7 +87,7 @@ export default nix.lambda((args) => (() => {
         libsamplerate,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Qt-based audio player that looks like Winamp",
         mainProgram: "qmmp",
         homepage: "https://qmmp.ylsoftware.com/",

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["nuspell", 55, 45]], [["package", 59, 9]], [["moduleNames", 65, 9], ["package", 66, 9], ["version", 67, 9], ["versionCheck", 68, 9]], [["wrapper", 58, 7], ["pkg-config", 62, 7], ["cmake", 64, 7]], [["withDicts", 55, 5], ["tests", 57, 5]], [["description", 74, 5], ["mainProgram", 75, 5], ["pkgConfigModules", 76, 5], ["homepage", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5], ["license", 80, 5], ["changelog", 81, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["strictDeps", 35, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 38, 3], ["cmakeFlags", 40, 3], ["nativeCheckInputs", 42, 3], ["doCheck", 46, 3], ["outputs", 48, 3], ["passthru", 54, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromGitHub: false, cmake: false, ctestCheckHook: false, doxygen: false, buildPackages: false, "pkg-config": false, icu: false, catch2_3: false, testers: false, enableManpages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nuspell", 55, 45]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 59, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["moduleNames", 65, 9], ["package", 66, 9], ["version", 67, 9], ["versionCheck", 68, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["wrapper", 58, 7], ["pkg-config", 62, 7], ["cmake", 64, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["withDicts", 55, 5], ["tests", 57, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 74, 5], ["mainProgram", 75, 5], ["pkgConfigModules", 76, 5], ["homepage", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5], ["license", 80, 5], ["changelog", 81, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["strictDeps", 35, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 38, 3], ["cmakeFlags", 40, 3], ["nativeCheckInputs", 42, 3], ["doCheck", 46, 3], ["outputs", 48, 3], ["passthru", 54, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const enableManpages = nix.argOr($, "enableManpages", () => nix.sel(buildPackages, "pandoc", "compiler", "bootstrapAvailable"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "nuspell",
       version: "5.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nuspell",
           repo: "nuspell",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,20 +40,20 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         withDicts: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             nuspell: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           wrapper: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "withDicts"), (d) => [nix.thunk(() => nix.sel(d, "en_US"))])),
             })))),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           cmake: nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               moduleNames: nix.thunk(() => ["Nuspell"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Free and open source C++ spell checking library",
         mainProgram: "nuspell",
         pkgConfigModules: nix.thunk(() => ["nuspell"]),

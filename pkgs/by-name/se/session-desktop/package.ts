@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 7], ["repo", 34, 7], ["tag", 35, 7], ["fetchSubmodules", 36, 7], ["deepClone", 37, 7], ["hash", 38, 7], ["postFetch", 41, 7]], [["pname", 67, 28], ["version", 67, 34], ["src", 67, 42], ["pnpm", 68, 15], ["fetcherVersion", 69, 7], ["hash", 70, 7]], [["homepage", 99, 7], ["license", 102, 7]], [["pname", 30, 5], ["version", 31, 5], ["src", 32, 5], ["postPatch", 51, 5], ["nativeBuildInputs", 55, 5], ["dontUseCmakeConfigure", 64, 5], ["pnpmDeps", 66, 5], ["preBuild", 73, 5], ["buildPhase", 80, 5], ["installPhase", 88, 5], ["meta", 98, 5]], [["owner", 112, 7], ["repo", 113, 7], ["tag", 114, 7], ["fetchSubmodules", 115, 7], ["leaveDotGit", 116, 7], ["postFetch", 117, 7], ["hash", 123, 7]], [["GIT_CONFIG_COUNT", 128, 11], ["GIT_CONFIG_KEY_0", 129, 11], ["GIT_CONFIG_VALUE_0", 130, 11]], [["env", 127, 9]], [["npm_config_nodedir", 164, 5], ["ELECTRON_SKIP_BINARY_DOWNLOAD", 165, 5]], [["patches", 171, 7], ["pname", 172, 7], ["src", 173, 7], ["version", 174, 7], ["pnpm", 176, 13], ["fetcherVersion", 177, 5], ["hash", 178, 5]], [["version", 235, 55]], [["name", 241, 7], ["desktopName", 242, 7], ["comment", 243, 7], ["exec", 244, 7], ["icon", 245, 7], ["terminal", 246, 7], ["type", 247, 7], ["categories", 248, 7]], [["libsession-util-nodejs", 253, 13], ["updateScript", 254, 5]], [["description", 258, 5], ["mainProgram", 259, 5], ["homepage", 260, 5], ["downloadPage", 261, 5], ["changelog", 262, 5], ["license", 263, 5], ["maintainers", 264, 5], ["platforms", 268, 5]], [["pname", 108, 3], ["version", 109, 3], ["src", 110, 3], ["patches", 136, 3], ["postPatch", 138, 3], ["nativeBuildInputs", 147, 3], ["env", 163, 3], ["dontUseCmakeConfigure", 168, 3], ["pnpmDeps", 169, 3], ["buildPhase", 181, 3], ["installPhase", 203, 3], ["postInstall", 228, 3], ["desktopItems", 239, 3], ["passthru", 252, 3], ["meta", 257, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, makeDesktopItem: false, writeShellScriptBin: false, copyDesktopItems: false, stdenv: false, makeWrapper: false, replaceVars: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, nodejs: false, electron: false, jq: false, tsx: false, python3: false, cmake: false, xcodebuild: false, cctools: false, darwin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 7], ["repo", 34, 7], ["tag", 35, 7], ["fetchSubmodules", 36, 7], ["deepClone", 37, 7], ["hash", 38, 7], ["postFetch", 41, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 67, 28], ["version", 67, 34], ["src", 67, 42], ["pnpm", 68, 15], ["fetcherVersion", 69, 7], ["hash", 70, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 99, 7], ["license", 102, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 30, 5], ["version", 31, 5], ["src", 32, 5], ["postPatch", 51, 5], ["nativeBuildInputs", 55, 5], ["dontUseCmakeConfigure", 64, 5], ["pnpmDeps", 66, 5], ["preBuild", 73, 5], ["buildPhase", 80, 5], ["installPhase", 88, 5], ["meta", 98, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 112, 7], ["repo", 113, 7], ["tag", 114, 7], ["fetchSubmodules", 115, 7], ["leaveDotGit", 116, 7], ["postFetch", 117, 7], ["hash", 123, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["GIT_CONFIG_COUNT", 128, 11], ["GIT_CONFIG_KEY_0", 129, 11], ["GIT_CONFIG_VALUE_0", 130, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["env", 127, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["npm_config_nodedir", 164, 5], ["ELECTRON_SKIP_BINARY_DOWNLOAD", 165, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["patches", 171, 7], ["pname", 172, 7], ["src", 173, 7], ["version", 174, 7], ["pnpm", 176, 13], ["fetcherVersion", 177, 5], ["hash", 178, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["version", 235, 55]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 241, 7], ["desktopName", 242, 7], ["comment", 243, 7], ["exec", 244, 7], ["icon", 245, 7], ["terminal", 246, 7], ["type", 247, 7], ["categories", 248, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["libsession-util-nodejs", 253, 13], ["updateScript", 254, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["description", 258, 5], ["mainProgram", 259, 5], ["homepage", 260, 5], ["downloadPage", 261, 5], ["changelog", 262, 5], ["license", 263, 5], ["maintainers", 264, 5], ["platforms", 268, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 108, 3], ["version", 109, 3], ["src", 110, 3], ["patches", 136, 3], ["postPatch", 138, 3], ["nativeBuildInputs", 147, 3], ["env", 163, 3], ["dontUseCmakeConfigure", 168, 3], ["pnpmDeps", 169, 3], ["buildPhase", 181, 3], ["installPhase", 203, 3], ["postInstall", 228, 3], ["desktopItems", 239, 3], ["passthru", 252, 3], ["meta", 257, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const pnpm = pnpm_10;
   const fake_git = nix.thunk(() => nix.app(writeShellScriptBin, "git", nix.thunk(() => nix.app(nix.sel(lib, "readFile"), nix.path(here, "./fake-git.sh")))));
   const libsession_util_nodejs = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libsession-util-nodejs",
       version: "0.6.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "session-foundation",
           repo: "libsession-util-nodejs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +48,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pnpmConfigHook, pnpm, nodejs, cmake, python3, fake_git]),
       dontUseCmakeConfigure: true,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -76,17 +63,17 @@ ln -s ${nix.sel(electron, "headers")} "$HOME/.cmake-js/electron-${nix.sel(stdenv
       buildPhase: "runHook preBuild\n\npnpm run install\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/node_modules\ncp -r . $out/lib/node_modules/libsession_util_nodejs\n# TODO: clean up unnecessary files\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/session-foundation/libsession-util-nodejs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       })),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: "session-desktop",
       version: "1.18.1",
       src: nix.thunk(() => nix.app(nix.sel(nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "session-foundation",
           repo: "session-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,9 +82,9 @@ ln -s ${nix.sel(electron, "headers")} "$HOME/.cmake-js/electron-${nix.sel(stdenv
           postFetch: "pushd $out\ngit rev-parse HEAD > .gitrev\nrm -rf .git\npopd\n",
           hash: "sha256-z60TQuZHrg7PW3CkNSvsWuYKoMW5ACJNf9I/R+wR4e8=",
         }))), "overrideAttrs"), (oldAttrs) => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           env: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "env"), {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             GIT_CONFIG_COUNT: 1n,
             GIT_CONFIG_KEY_0: "url.https://github.com/.insteadOf",
             GIT_CONFIG_VALUE_0: "git@github.com:",
@@ -126,13 +113,13 @@ substituteInPlace package.json --replace-fail 'pnpx tsx' '${nix.app(nix.sel(lib,
           nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook")),
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         npm_config_nodedir: nix.thunk(() => nix.sel(electron, "headers")),
         ELECTRON_SKIP_BINARY_DOWNLOAD: 1n,
       })),
       dontUseCmakeConfigure: true,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -187,11 +174,14 @@ runHook postInstall
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`mkdir -p $out/Applications/Session.app/Contents/{MacOS,Resources}
 ln -s $out/bin/session-desktop $out/Applications/Session.app/Contents/MacOS/Session
 install -Dm644 build/icon-mac.icns $out/Applications/Session.app/Contents/Resources/icon.icns
-install -Dm644 ${nix.app(replaceVars, nix.path(here, "./Info.plist"), nix.thunk(() => ({ [nix.POS]: pos$10, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))} $out/Applications/Session.app/Contents/Info.plist
+install -Dm644 ${nix.app(replaceVars, nix.path(here, "./Info.plist"), nix.thunk(() => ({
+            [nix.POS]: $pos[9],
+            version: nix.thunk(() => nix.attr(finalAttrs, "version")),
+          })))} $out/Applications/Session.app/Contents/Info.plist
 `))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             name: "Session",
             desktopName: "Session",
             comment: "Onion routing based messenger",
@@ -203,12 +193,12 @@ install -Dm644 ${nix.app(replaceVars, nix.path(here, "./Info.plist"), nix.thunk(
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         "libsession-util-nodejs": libsession_util_nodejs,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         description: "Onion routing based messenger",
         mainProgram: "session-desktop",
         homepage: "https://getsession.org/",

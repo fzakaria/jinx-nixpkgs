@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-debug-nvd.nix", [[["out", 20, 29]], [["withFacter", 21, 27], ["noFacter", 22, 27]], [["nativeBuildInputs", 14, 5], ["__structuredAttrs", 19, 5], ["unsafeDiscardReferences", 20, 5], ["exportReferencesGraph", 21, 5]]]);
 const formals$1 = { args: { runCommand: false, jq: false, nix: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-debug-nvd.nix", [["out", 20, 29]]);
-const pos$2 = nix.positions(here + "/test-debug-nvd.nix", [["withFacter", 21, 27], ["noFacter", 22, 27]]);
-const pos$3 = nix.positions(here + "/test-debug-nvd.nix", [["nativeBuildInputs", 14, 5], ["__structuredAttrs", 19, 5], ["unsafeDiscardReferences", 20, 5], ["exportReferencesGraph", 21, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const withFacter = nix.thunk(() => nix.sel(nixosTests, "facter", "nodes", "machine", "system", "build", "toplevel"));
   const noFacter = nix.thunk(() => nix.sel(nixosTests, "facter", "nodes", "machine", "system", "build", "noFacter", "config", "system", "build", "toplevel"));
   return nix.app(runCommand, "facter-debug-nvd-test", nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(facterDebug, "nvd")), jq, nix$]),
       __structuredAttrs: true,
-      unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: pos$1, out: true })),
+      unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: $pos[0], out: true })),
       exportReferencesGraph: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         withFacter: nix.thunk(() => [withFacter]),
         noFacter: nix.thunk(() => [noFacter]),
       })),

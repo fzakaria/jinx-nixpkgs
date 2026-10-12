@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["tag", 9, 5], ["hash", 10, 5]], [["version", 6, 3], ["src", 8, 3]]]);
 const formals$1 = { args: { "fenics-ufl": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["tag", 9, 5], ["hash", 10, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 6, 3], ["src", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,11 +11,11 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(fenics_ufl, "overrideAttrs"), (oldAttrs) => (() => {
       const version = "2025.3.0";
       const src = nix.thunk(() => nix.app(nix.sel(oldAttrs, "src", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           tag: version,
           hash: "sha256-BFeVwurTsFNirpjZlgaABzw/cLzWxXwbCHJQBHrLuOY=",
         }))));
-      return { [nix.POS]: pos$2, version, src };
+      return { [nix.POS]: $pos[1], version, src };
     })());
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

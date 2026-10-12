@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/buildGraalvmProduct.nix", [[["updateScript", 71, 7]], [["homepage", 81, 11], ["license", 82, 11], ["sourceProvenance", 83, 11], ["teams", 84, 11], ["platforms", 85, 11], ["description", 87, 9], ["mainProgram", 88, 9]], [["pname", 34, 5], ["nativeBuildInputs", 36, 5], ["buildInputs", 42, 5], ["unpackPhase", 49, 5], ["dontStrip", 68, 5], ["passthru", 70, 5], ["meta", 78, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoPatchelfHook: false, "graalvm-ce": false, makeWrapper: false, zlib: false, "libxcrypt-legacy": false, product: false, extraBuildInputs: true, extraNativeBuildInputs: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/buildGraalvmProduct.nix", [["updateScript", 71, 7]]);
-const pos$2 = nix.positions(here + "/buildGraalvmProduct.nix", [["homepage", 81, 11], ["license", 82, 11], ["sourceProvenance", 83, 11], ["teams", 84, 11], ["platforms", 85, 11], ["description", 87, 9], ["mainProgram", 88, 9]]);
-const pos$3 = nix.positions(here + "/buildGraalvmProduct.nix", [["pname", 34, 5], ["nativeBuildInputs", 36, 5], ["buildInputs", 42, 5], ["unpackPhase", 49, 5], ["dontStrip", 68, 5], ["passthru", 70, 5], ["meta", 78, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       "meta",
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: product,
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), autoPatchelfHook), extraNativeBuildInputs))),
       buildInputs: nix.thunk(() => nix.concat([
@@ -46,13 +44,13 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "runHook preUnpack\n\nmkdir -p \"$out\"\n\ntar xf \"$src\" -C \"$out\" --strip-components=1\n\n# Sanity check\nif [ ! -d \"$out/bin\" ]; then\n  echo \"The `bin` is directory missing after extracting the graalvm\"\n  echo \"tarball, please compare the directory structure of the\"\n  echo \"tarball with what happens in the unpackPhase (in particular\"\n  echo \"with regards to the `--strip-components` flag).\"\n  exit 1\nfi\n\nrunHook postUnpack\n",
       dontStrip: true,
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => [nix.path(here, "./update.sh"), product]),
       }, nix.selOr(args_1, () => ({}), "passhtru"))),
       meta: nix.thunk(() => nix.update((() => {
         const from = nix.thunk(() => nix.sel(graalvm_ce, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         sourceProvenance: nix.thunk(() => nix.attr(from, "sourceProvenance")),

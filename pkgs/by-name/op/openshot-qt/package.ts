@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["libopenshot", 55, 13], ["libopenshot-audio", 56, 27]], [["homepage", 60, 5], ["description", 61, 5], ["longDescription", 62, 5], ["license", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["format", 20, 3], ["outputs", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 33, 3], ["doCheck", 42, 3], ["dontWrapGApps", 44, 3], ["dontWrapQtApps", 45, 3], ["postFixup", 49, 3], ["passthru", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, doxygen: false, gtk3: false, libopenshot: false, wrapGAppsHook3: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["libopenshot", 55, 13], ["libopenshot-audio", 56, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["longDescription", 62, 5], ["license", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["format", 20, 3], ["outputs", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 33, 3], ["doCheck", 42, 3], ["dontWrapGApps", 44, 3], ["dontWrapQtApps", 45, 3], ["postFixup", 49, 3], ["passthru", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openshot-qt",
       version: "3.5.1-unstable-2026-07-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenShot",
           repo: "openshot-qt",
           rev: "9cd2b3f3ee9024c3496487a2de30a402515ed659",
@@ -50,12 +47,12 @@ export default nix.lambda((args) => (() => {
   --prefix PYTHONPATH : "$out/${nix.sel(python3Packages, "python", "sitePackages")}/openshot_qt"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         libopenshot: libopenshot,
         "libopenshot-audio": nix.thunk(() => nix.attr(libopenshot, "libopenshot-audio")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://openshot.org/",
         description: "Free, open-source video editor",
         longDescription: "OpenShot Video Editor is a free, open-source video editor for Linux.\nOpenShot can take your videos, photos, and music files and help you create\nthe film you have always dreamed of. Easily add sub-titles, transitions,\nand effects, and then export your film to DVD, YouTube, Vimeo, Xbox 360,\nand many other common formats.\n",

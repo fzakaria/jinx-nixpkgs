@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ringrtc.nix", [[["alsaSupport", 13, 5], ["pulseSupport", 14, 5], ["jackSupport", 15, 5], ["sndioSupport", 16, 5], ["enableShared", 17, 5]], [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["LIBCUBEB_SYS_USE_PKG_CONFIG", 47, 5], ["LIBCUBEB_STATIC", 48, 5]], [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["platforms", 67, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["preConfigure", 33, 3], ["cargoBuildFlags", 38, 3], ["doCheck", 44, 3], ["env", 46, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 56, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { rustPlatform: false, lib: false, fetchFromGitHub: false, cmake: false, protobuf: false, webrtc: false, "pkg-config": false, cubeb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ringrtc.nix", [["alsaSupport", 13, 5], ["pulseSupport", 14, 5], ["jackSupport", 15, 5], ["sndioSupport", 16, 5], ["enableShared", 17, 5]]);
-const pos$2 = nix.positions(here + "/ringrtc.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/ringrtc.nix", [["LIBCUBEB_SYS_USE_PKG_CONFIG", 47, 5], ["LIBCUBEB_STATIC", 48, 5]]);
-const pos$4 = nix.positions(here + "/ringrtc.nix", [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["platforms", 67, 5]]);
-const pos$5 = nix.positions(here + "/ringrtc.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["preConfigure", 33, 3], ["cargoBuildFlags", 38, 3], ["doCheck", 44, 3], ["env", 46, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 56, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const cubeb = nix.arg($, "cubeb");
   const cubeb$ = nix.thunk(() => nix.app(nix.sel(cubeb, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       alsaSupport: false,
       pulseSupport: true,
       jackSupport: false,
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
       enableShared: false,
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ringrtc",
       version: "2.72.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "signalapp",
           repo: "ringrtc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,11 +40,11 @@ grep 'webrtc.version=${nix.sel(webrtc, "version")}' config/version.properties
 `),
       cargoBuildFlags: nix.thunk(() => ["-p", "ringrtc", "--features", "electron"]),
       doCheck: false,
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, LIBCUBEB_SYS_USE_PKG_CONFIG: 1n, LIBCUBEB_STATIC: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], LIBCUBEB_SYS_USE_PKG_CONFIG: 1n, LIBCUBEB_STATIC: 1n })),
       nativeBuildInputs: nix.thunk(() => [protobuf, cmake, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([webrtc, cubeb$], nix.sel(cubeb$, "buildInputs"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/signalapp/ringrtc",
         description: "RingRTC library used by Signal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["url", 34, 7], ["hash", 35, 7]], [["url", 38, 7], ["hash", 39, 7]], [["package", 58, 5], ["versionCheck", 59, 5]], [["pkg-config", 57, 18]], [["tests", 57, 12]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["pkgConfigModules", 68, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 47, 3], ["doCheck", 55, 3], ["passthru", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, flex: false, meson: false, ninja: false, "pkg-config": false, testers: false, validatePkgConfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 58, 5], ["versionCheck", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pkg-config", 57, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 57, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["pkgConfigModules", 68, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 47, 3], ["doCheck", 55, 3], ["passthru", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "stc",
       version: "5.0",
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stclib",
           repo: "STC",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,12 +31,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/stclib/STC/commit/92751b4d04b2d980d640b28bd22a9cd651d77c6a.patch",
             hash: "sha256-11sE5pS7sqdfCGsGlvajkfgCf+QIkRFp4Js2//kAI3s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/stclib/STC/commit/0fa9ad03516ba0f71b38674f0ec631929368f385.patch",
             hash: "sha256-e1rhrKaf9fFAmSi8Puo494iG+hAdHZFzyn8IJoKjdAI=",
           })))),
@@ -53,18 +46,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [flex, meson, ninja, pkg_config, validatePkgConfig]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "C99 container library with generic and type-safe data structures",
         homepage: "https://github.com/stclib/STC",
         changelog: nix.thunk(() => nix.str`https://github.com/stclib/STC/releases/tag/v${nix.sel(finalAttrs, "version")}`),

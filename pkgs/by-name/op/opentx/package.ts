@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["description", 71, 5], ["longDescription", 72, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 85, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["postPatch", 46, 3], ["cmakeFlags", 58, 3], ["doInstallCheck", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "gcc-arm-embedded": false, python3Packages: false, udevCheckHook: false, libsForQt5: false, SDL: false, gtest: false, "dfu-util": false, avrdude: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 71, 5], ["longDescription", 72, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["postPatch", 46, 3], ["cmakeFlags", 58, 3], ["doInstallCheck", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "opentx";
       const version = "2.3.15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "opentx",
           repo: "opentx",
           rev: nix.thunk(() => nix.str`release/${version}`),
@@ -61,7 +59,7 @@ substituteInPlace companion/src/thirdparty/maxlibqt/src/widgets/CMakeLists.txt \
       ]);
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OpenTX Companion transmitter support software",
         longDescription: "OpenTX Companion is used for many different tasks like loading OpenTX\nfirmware to the radio, backing up model settings, editing settings and\nrunning radio simulators.\n",
         mainProgram: nix.thunk(() => nix.add("companion", nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "take"), 2n, nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), version))))))),
@@ -74,7 +72,7 @@ substituteInPlace companion/src/thirdparty/maxlibqt/src/widgets/CMakeLists.txt \
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

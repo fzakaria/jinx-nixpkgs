@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["package", 35, 5]], [["version", 34, 18]], [["tests", 34, 12]], [["changelog", 39, 5], ["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["doCheck", 24, 3], ["nativeBuildInputs", 26, 3], ["ldflags", 28, 3], ["postInstall", 30, 3], ["passthru", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, testers: false, "editorconfig-checker": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 34, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 34, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 39, 5], ["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["doCheck", 24, 3], ["nativeBuildInputs", 26, 3], ["ldflags", 28, 3], ["postInstall", 30, 3], ["passthru", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const editorconfig_checker = nix.arg($, "editorconfig-checker");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "editorconfig-checker",
       version: "4.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "editorconfig-checker",
           repo: "editorconfig-checker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +30,14 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => [nix.thunk(() => nix.str`-X main.version=${nix.sel(finalAttrs, "version")}`)]),
       postInstall: "installManPage docs/editorconfig-checker.1\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: editorconfig_checker })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: editorconfig_checker })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/editorconfig-checker/editorconfig-checker/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Tool to verify that your files are in harmony with your .editorconfig",
         mainProgram: "editorconfig-checker",

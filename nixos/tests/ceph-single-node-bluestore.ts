@@ -2,58 +2,31 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ceph-single-node-bluestore.nix", [[["name", 7, 7], ["ip", 8, 7]], [["name", 11, 7], ["uuid", 12, 7]], [["name", 15, 7], ["uuid", 16, 7]], [["name", 19, 7], ["uuid", 20, 7]], [["clusterId", 5, 5], ["monA", 6, 5], ["osd0", 10, 5], ["osd1", 14, 5], ["osd2", 18, 5]], [["fsid", 28, 9], ["monHost", 29, 9], ["monInitialMembers", 30, 9]], [["enable", 26, 7], ["global", 27, 7]], [["emptyDiskImages", 43, 9], ["vlans", 48, 9]], [["kernelPackages", 54, 12], ["kernelModules", 65, 12]], [["systemPackages", 58, 19]], [["ceph", 67, 16]], [["virtualisation", 42, 7], ["boot", 54, 7], ["networking", 56, 7], ["environment", 58, 7], ["services", 67, 7]], [["enable", 71, 12]], [["address", 74, 9], ["prefixLength", 75, 9]], [["addresses", 72, 26]], [["ipv4", 72, 21]], [["eth1", 72, 16]], [["dhcpcd", 71, 5], ["interfaces", 72, 5]], [["enable", 82, 9], ["daemons", 83, 9]], [["enable", 86, 9], ["daemons", 87, 9]], [["enable", 90, 9], ["daemons", 91, 9]], [["enable", 98, 9], ["daemons", 99, 9]], [["mon", 81, 7], ["mgr", 85, 7], ["osd", 89, 7], ["rgw", 97, 7]], [["daemonConfig", 80, 5]], [["maintainers", 303, 5]], [["cephConfig", 308, 7], ["networkConfig", 309, 7]], [["monA", 307, 5]], [["name", 301, 3], ["meta", 302, 3], ["nodes", 306, 3], ["testScript", 313, 11]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["name", 7, 7], ["ip", 8, 7]]);
-const pos$2 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["name", 11, 7], ["uuid", 12, 7]]);
-const pos$3 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["name", 15, 7], ["uuid", 16, 7]]);
-const pos$4 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["name", 19, 7], ["uuid", 20, 7]]);
-const pos$5 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["clusterId", 5, 5], ["monA", 6, 5], ["osd0", 10, 5], ["osd1", 14, 5], ["osd2", 18, 5]]);
 const formals$2 = { args: { daemonConfig: false }, ellipsis: false };
-const pos$6 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["fsid", 28, 9], ["monHost", 29, 9], ["monInitialMembers", 30, 9]]);
-const pos$7 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["enable", 26, 7], ["global", 27, 7]]);
 const formals$3 = { args: { cephConfig: false, networkConfig: false }, ellipsis: false };
 const formals$4 = { args: { pkgs: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["emptyDiskImages", 43, 9], ["vlans", 48, 9]]);
-const pos$9 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["kernelPackages", 54, 12], ["kernelModules", 65, 12]]);
-const pos$10 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["systemPackages", 58, 19]]);
-const pos$11 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["ceph", 67, 16]]);
-const pos$12 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["virtualisation", 42, 7], ["boot", 54, 7], ["networking", 56, 7], ["environment", 58, 7], ["services", 67, 7]]);
-const pos$13 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["enable", 71, 12]]);
-const pos$14 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["address", 74, 9], ["prefixLength", 75, 9]]);
-const pos$15 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["addresses", 72, 26]]);
-const pos$16 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["ipv4", 72, 21]]);
-const pos$17 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["eth1", 72, 16]]);
-const pos$18 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["dhcpcd", 71, 5], ["interfaces", 72, 5]]);
-const pos$19 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["enable", 82, 9], ["daemons", 83, 9]]);
-const pos$20 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["enable", 86, 9], ["daemons", 87, 9]]);
-const pos$21 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["enable", 90, 9], ["daemons", 91, 9]]);
-const pos$22 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["enable", 98, 9], ["daemons", 99, 9]]);
-const pos$23 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["mon", 81, 7], ["mgr", 85, 7], ["osd", 89, 7], ["rgw", 97, 7]]);
-const pos$24 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["daemonConfig", 80, 5]]);
-const pos$25 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["maintainers", 303, 5]]);
-const pos$26 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["cephConfig", 308, 7], ["networkConfig", 309, 7]]);
-const pos$27 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["monA", 307, 5]]);
-const pos$28 = nix.positions(here + "/ceph-single-node-bluestore.nix", [["name", 301, 3], ["meta", 302, 3], ["nodes", 306, 3], ["testScript", 313, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     clusterId: "066ae264-2a5d-4729-8001-6ad265f50b03",
-    monA: nix.thunk(() => ({ [nix.POS]: pos$1, name: "a", ip: "192.168.1.1" })),
-    osd0: nix.thunk(() => ({ [nix.POS]: pos$2, name: "0", uuid: "55ba2294-3e24-478f-bee0-9dca4c231dd9" })),
-    osd1: nix.thunk(() => ({ [nix.POS]: pos$3, name: "1", uuid: "5e97a838-85b6-43b0-8950-cb56d554d1e5" })),
-    osd2: nix.thunk(() => ({ [nix.POS]: pos$4, name: "2", uuid: "ea999274-13d0-4dd5-9af9-ad25a324f72f" })),
+    monA: nix.thunk(() => ({ [nix.POS]: $pos[0], name: "a", ip: "192.168.1.1" })),
+    osd0: nix.thunk(() => ({ [nix.POS]: $pos[1], name: "0", uuid: "55ba2294-3e24-478f-bee0-9dca4c231dd9" })),
+    osd1: nix.thunk(() => ({ [nix.POS]: $pos[2], name: "1", uuid: "5e97a838-85b6-43b0-8950-cb56d554d1e5" })),
+    osd2: nix.thunk(() => ({ [nix.POS]: $pos[3], name: "2", uuid: "ea999274-13d0-4dd5-9af9-ad25a324f72f" })),
   }));
   const generateCephConfig = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const daemonConfig = nix.arg($_1, "daemonConfig");
     return nix.update({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       enable: true,
       global: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         fsid: nix.thunk(() => nix.sel(cfg, "clusterId")),
         monHost: nix.thunk(() => nix.sel(cfg, "monA", "ip")),
         monInitialMembers: nix.thunk(() => nix.sel(cfg, "monA", "name")),
@@ -68,20 +41,20 @@ export default nix.lambda((args) => (() => {
       const $_2 = nix.formals(args_2, formals$4);
       const pkgs = nix.arg($_2, "pkgs");
       return {
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           emptyDiskImages: nix.thunk(() => [20480n, 20480n, 20480n]),
           vlans: nix.thunk(() => [1n]),
         })),
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
           kernelModules: nix.thunk(() => ["xfs"]),
         })),
         networking: networkConfig,
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -92,22 +65,22 @@ export default nix.lambda((args) => (() => {
             ];
           })()),
         })),
-        services: nix.thunk(() => ({ [nix.POS]: pos$11, ceph: cephConfig })),
+        services: nix.thunk(() => ({ [nix.POS]: $pos[10], ceph: cephConfig })),
       };
     })(), formals$4);
   })(), formals$3);
   const networkMonA = nix.thunk(() => ({
-    [nix.POS]: pos$18,
-    dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
+    [nix.POS]: $pos[17],
+    dhcpcd: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: false })),
     interfaces: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       eth1: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         ipv4: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 address: nix.thunk(() => nix.sel(cfg, "monA", "ip")),
                 prefixLength: 24n,
               })),
@@ -117,21 +90,21 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const cephConfigMonA = nix.thunk(() => nix.app(generateCephConfig, nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       daemonConfig: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         mon: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           enable: true,
           daemons: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "monA", "name"))]),
         })),
         mgr: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           enable: true,
           daemons: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "monA", "name"))]),
         })),
         osd: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           enable: true,
           daemons: nix.thunk(() => [
             nix.thunk(() => nix.sel(cfg, "osd0", "name")),
@@ -140,7 +113,7 @@ export default nix.lambda((args) => (() => {
           ]),
         })),
         rgw: nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           enable: true,
           daemons: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "monA", "name"))]),
         })),
@@ -337,18 +310,18 @@ rgw_daemons = json.loads(monA.succeed(
 assert rgw_daemons[0]["id"] == "${nix.sel(cfg, "monA", "name")}"
 `);
   return {
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     name: "basic-single-node-ceph-cluster-bluestore",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "lukegb"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$27,
-      monA: nix.thunk(() => nix.app(generateHost, nix.thunk(() => ({ [nix.POS]: pos$26, cephConfig: cephConfigMonA, networkConfig: networkMonA })))),
+      [nix.POS]: $pos[26],
+      monA: nix.thunk(() => nix.app(generateHost, nix.thunk(() => ({ [nix.POS]: $pos[25], cephConfig: cephConfigMonA, networkConfig: networkMonA })))),
     })),
     testScript: testScript,
   };

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 5], ["version", 23, 13], ["hash", 24, 5]], [["url", 34, 9], ["hash", 35, 9]], [["description", 67, 5], ["homepage", 68, 5], ["longDescription", 69, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 17, 3], ["version", 18, 3], ["format", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["propagatedBuildInputs", 40, 3], ["nativeCheckInputs", 47, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, aniso8601: false, blinker: false, buildPythonPackage: false, fetchPypi: false, flask: false, fetchpatch2: false, mock: false, pytest8_3CheckHook: false, pytz: false, six: false, werkzeug: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 5], ["version", 23, 13], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 34, 9], ["hash", 35, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["longDescription", 69, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["format", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["propagatedBuildInputs", 40, 3], ["nativeCheckInputs", 47, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.10";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "Flask-RESTful",
           version: version,
           hash: "sha256-/kry7wAn34+bT3l6uiDFVmgBtq3plaxjtYir8aWc7Dc=",
         }))));
       const patches = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(werkzeug, "version")), "2.1.0")), nix.thunk(() => [nix.path(here, "./werkzeug-2.1.0-compat.patch")])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(flask, "version")), "3.0.0")), nix.thunk(() => [nix.path(here, "./flask-3.0-compat.patch")])), [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/flask-restful/flask-restful/commit/6cc4b057e5450e0c84b3ee5f6f7a97e648a816d6.patch?full_index=1",
             hash: "sha256-kIjrkyL0OfX+gjoiYfchU0QYTPHz4JMCQcHLFH9oEF4=",
           })))),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["flask_restful"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Framework for creating REST APIs",
         homepage: "https://flask-restful.readthedocs.io",
         longDescription: "Flask-RESTful provides the building blocks for creating a great\nREST API.\n",
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

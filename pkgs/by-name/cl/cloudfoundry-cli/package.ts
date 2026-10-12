@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["url", 28, 5], ["sha256", 29, 5]], [["description", 57, 5], ["homepage", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5], ["license", 61, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 21, 3], ["subPackages", 23, 3], ["bashCompletionScript", 27, 3], ["nativeBuildInputs", 32, 3], ["ldflags", 34, 3], ["postInstall", 42, 3], ["doInstallCheck", 47, 3], ["versionCheckKeepEnvironment", 49, 3], ["nativeInstallCheckInputs", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchurl: false, installShellFiles: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5], ["license", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 21, 3], ["subPackages", 23, 3], ["bashCompletionScript", 27, 3], ["nativeBuildInputs", 32, 3], ["ldflags", 34, 3], ["postInstall", 42, 3], ["doInstallCheck", 47, 3], ["versionCheckKeepEnvironment", 49, 3], ["nativeInstallCheckInputs", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cloudfoundry-cli",
       version: "8.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cloudfoundry",
           repo: "cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-cDiYny1BiikrzLRkFmDQefOVTOvzbM86N1Uted3m9Mg=",
       subPackages: nix.thunk(() => ["."]),
       bashCompletionScript: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://raw.githubusercontent.com/cloudfoundry/cli-ci/5f4f0d5d01e89c6333673f0fa96056749e71b3cd/ci/installers/completion/cf8",
           sha256: "06w26kpnjd3f2wdjhb4pp0kaq2gb9kf87v7pjd9n2g7s7qhdqyhy",
         })))),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, writableTmpDirAsHomeHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Official command line client for Cloud Foundry",
         homepage: "https://github.com/cloudfoundry/cli",
         maintainers: nix.thunk(() => (() => {

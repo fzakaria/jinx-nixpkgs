@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["simple", 23, 5]], [["tests", 22, 12]], [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5], ["platforms", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["installFlags", 20, 3], ["passthru", 22, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, runCommand: false, fastahack: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["simple", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 22, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5], ["platforms", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["installFlags", 20, 3], ["passthru", 22, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const fastahack = nix.arg($, "fastahack");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fastahack",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ekg",
           repo: "fastahack",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,9 +25,9 @@ export default nix.lambda((args) => (() => {
         })))),
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           simple: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 cp ${nix.sel(fastahack, "src")}/tests/* $out
 grep -v ERROR <(${nix.app(nix.sel(lib, "getExe"), fastahack)} $out/correct.fasta 2>&1)
@@ -43,7 +39,7 @@ grep -v ERROR <(${nix.app(nix.sel(lib, "getExe"), fastahack)} $out/trailing_newl
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Utilities for indexing and sequence extraction from FASTA files",
         homepage: "https://github.com/ekg/fastahack",
         changelog: nix.thunk(() => nix.str`https://github.com/ekg/fastahack/releases/tag/v${nix.sel(finalAttrs, "version")}`),

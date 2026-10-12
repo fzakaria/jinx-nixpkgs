@@ -2,49 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wakapi.nix", [[["port", 12, 20]], [["dialect", 14, 15], ["host", 15, 15], ["port", 16, 15], ["name", 17, 15], ["user", 18, 15]], [["server", 12, 13], ["db", 13, 13]], [["createLocally", 23, 20]], [["enable", 10, 11], ["settings", 11, 11], ["database", 23, 11], ["environmentFiles", 27, 11]], [["wakapi", 9, 18]], [["services", 9, 9]], [["port", 41, 20]], [["dialect", 43, 15], ["name", 44, 15], ["user", 45, 15]], [["server", 41, 13], ["db", 42, 13]], [["enable", 39, 11], ["settings", 40, 11], ["environmentFiles", 49, 11]], [["wakapi", 38, 18]], [["services", 38, 9]], [["wakapiPsql", 6, 5], ["wakapiSqlite", 35, 5]], [["maintainers", 76, 8]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 62, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/wakapi.nix", [["port", 12, 20]]);
-const pos$2 = nix.positions(here + "/wakapi.nix", [["dialect", 14, 15], ["host", 15, 15], ["port", 16, 15], ["name", 17, 15], ["user", 18, 15]]);
-const pos$3 = nix.positions(here + "/wakapi.nix", [["server", 12, 13], ["db", 13, 13]]);
-const pos$4 = nix.positions(here + "/wakapi.nix", [["createLocally", 23, 20]]);
-const pos$5 = nix.positions(here + "/wakapi.nix", [["enable", 10, 11], ["settings", 11, 11], ["database", 23, 11], ["environmentFiles", 27, 11]]);
-const pos$6 = nix.positions(here + "/wakapi.nix", [["wakapi", 9, 18]]);
-const pos$7 = nix.positions(here + "/wakapi.nix", [["services", 9, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/wakapi.nix", [["port", 41, 20]]);
-const pos$9 = nix.positions(here + "/wakapi.nix", [["dialect", 43, 15], ["name", 44, 15], ["user", 45, 15]]);
-const pos$10 = nix.positions(here + "/wakapi.nix", [["server", 41, 13], ["db", 42, 13]]);
-const pos$11 = nix.positions(here + "/wakapi.nix", [["enable", 39, 11], ["settings", 40, 11], ["environmentFiles", 49, 11]]);
-const pos$12 = nix.positions(here + "/wakapi.nix", [["wakapi", 38, 18]]);
-const pos$13 = nix.positions(here + "/wakapi.nix", [["services", 38, 9]]);
-const pos$14 = nix.positions(here + "/wakapi.nix", [["wakapiPsql", 6, 5], ["wakapiSqlite", 35, 5]]);
-const pos$15 = nix.positions(here + "/wakapi.nix", [["maintainers", 76, 8]]);
-const pos$16 = nix.positions(here + "/wakapi.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 62, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     name: "Wakapi",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       wakapiPsql: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             wakapi: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                server: nix.thunk(() => ({ [nix.POS]: pos$1, port: 3000n })),
+                [nix.POS]: $pos[2],
+                server: nix.thunk(() => ({ [nix.POS]: $pos[0], port: 3000n })),
                 db: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   dialect: "postgres",
                   host: "/run/postgresql",
                   port: 5432n,
@@ -52,7 +37,7 @@ export default nix.lambda((args) => (() => {
                   user: "wakapi",
                 })),
               })),
-              database: nix.thunk(() => ({ [nix.POS]: pos$4, createLocally: true })),
+              database: nix.thunk(() => ({ [nix.POS]: $pos[3], createLocally: true })),
               environmentFiles: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "env", "WAKAPI_PASSWORD_SALT=NpqCY7eY7fMoIWYmPx5mAgr6YoSlXSuI\n")),
               ]),
@@ -64,16 +49,16 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             wakapi: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                server: nix.thunk(() => ({ [nix.POS]: pos$8, port: 3001n })),
-                db: nix.thunk(() => ({ [nix.POS]: pos$9, dialect: "sqlite3", name: "wakapi", user: "wakapi" })),
+                [nix.POS]: $pos[9],
+                server: nix.thunk(() => ({ [nix.POS]: $pos[7], port: 3001n })),
+                db: nix.thunk(() => ({ [nix.POS]: $pos[8], dialect: "sqlite3", name: "wakapi", user: "wakapi" })),
               })),
               environmentFiles: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "env", "WAKAPI_PASSWORD_SALT=NpqCY7eY7fMoIWYmPx5mAgr6YoSlXSuI\n")),
@@ -85,7 +70,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "with subtest(\"Test Wakapi with postgresql backend\"):\n  wakapiPsql.start()\n  wakapiPsql.wait_for_unit(\"wakapi.service\")\n  wakapiPsql.wait_for_open_port(3000)\n  wakapiPsql.succeed(\"curl --fail http://localhost:3000\")\n\nwith subtest(\"Test Wakapi with sqlite3 backend\"):\n  wakapiSqlite.start()\n  wakapiSqlite.wait_for_unit(\"wakapi.service\")\n  wakapiSqlite.wait_for_open_port(3001)\n  wakapiSqlite.succeed(\"curl --fail http://localhost:3001\")\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "NotAShelf"))]),
     })),
   };

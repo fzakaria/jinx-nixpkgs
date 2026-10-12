@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 50, 5], ["longDescription", 51, 5], ["license", 56, 5], ["homepage", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["vendorHash", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false, libGL: false, nssmdns: false, "pkg-config": false, libxxf86vm: false, libxrandr: false, libxi: false, libxinerama: false, libxext: false, libxcursor: false, libx11: false, xinput: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["longDescription", 51, 5], ["license", 56, 5], ["homepage", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["vendorHash", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "keylight-controller-mschneider82";
       const version = "0.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mschneider82",
           repo: "keylight-control",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         xinput,
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Desktop application to control Elgato Keylights",
         longDescription: "Requires having:\n* Elgato's Keylight paired to local wifi network.\n* Service avahi with nssmdns4 enabled.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "keylight-control",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

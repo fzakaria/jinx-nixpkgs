@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 28, 5], ["license", 29, 5], ["homepage", 30, 5], ["maintainers", 31, 5], ["teams", 32, 5]], [["pname", 12, 11], ["version", 12, 17], ["src", 14, 3], ["prePatch", 21, 3], ["buildInputs", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { buildPecl: false, lib: false, fetchFromGitHub: false, libmaxminddb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 28, 5], ["license", 29, 5], ["homepage", 30, 5], ["maintainers", 31, 5], ["teams", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 11], ["version", 12, 17], ["src", 14, 3], ["prePatch", 21, 3], ["buildInputs", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pname = "maxminddb";
   const version = "1.14.0";
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "maxmind",
           repo: "MaxMind-DB-Reader-php",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       prePatch: "cd ext\n",
       buildInputs: nix.thunk(() => [libmaxminddb]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C extension that is a drop-in replacement for MaxMind\\Db\\Reader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://github.com/maxmind/MaxMind-DB-Reader-php",

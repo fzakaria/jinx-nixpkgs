@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["gpg", 33, 7], ["gpg2", 34, 7]], [["homepage", 44, 5], ["description", 45, 5], ["mainProgram", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5], ["license", 55, 5]], [["pname", 10, 3], ["version", 11, 3], ["modRoot", 13, 3], ["subPackages", 14, 3], ["dontRenameImports", 19, 3], ["src", 21, 3], ["vendorHash", 27, 3], ["__structuredAttrs", 29, 3], ["patches", 31, 3], ["tags", 37, 3], ["ldflags", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { replaceVars: false, lib: false, buildGoModule: false, fetchFromGitHub: false, gnupg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gpg", 33, 7], ["gpg2", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["mainProgram", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5], ["license", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["modRoot", 13, 3], ["subPackages", 14, 3], ["dontRenameImports", 19, 3], ["src", 21, 3], ["vendorHash", 27, 3], ["__structuredAttrs", 29, 3], ["patches", 31, 3], ["tags", 37, 3], ["ldflags", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gnupg = nix.arg($, "gnupg");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "keybase",
       version: "6.6.3",
       modRoot: "go",
       subPackages: nix.thunk(() => ["kbnm", "keybase"]),
       dontRenameImports: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "keybase",
           repo: "client",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths-keybase.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             gpg: nix.thunk(() => nix.str`${gnupg}/bin/gpg`),
             gpg2: nix.thunk(() => nix.str`${gnupg}/bin/gpg2`),
           })))),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       tags: nix.thunk(() => ["production"]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.keybase.io/",
         description: "Keybase official command-line utility and service",
         mainProgram: "keybase",

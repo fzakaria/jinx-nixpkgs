@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 33, 5]], [["version", 9, 30], ["src", 9, 38], ["pname", 10, 3], ["sourceRoot", 12, 3], ["patches", 14, 3], ["postPatch", 16, 3], ["pyproject", 21, 3], ["propagatedBuildInputs", 23, 3], ["nativeCheckInputs", 28, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, "libeduvpn-common": false, selenium: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 9, 30], ["src", 9, 38], ["pname", 10, 3], ["sourceRoot", 12, 3], ["patches", 14, 3], ["postPatch", 16, 3], ["pyproject", 21, 3], ["propagatedBuildInputs", 23, 3], ["nativeCheckInputs", 28, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,9 +24,9 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [libeduvpn_common, setuptools]);
       const nativeCheckInputs = nix.thunk(() => [selenium]);
       const pythonImportsCheck = nix.thunk(() => ["eduvpn_common"]);
-      const meta = nix.thunk(() => nix.update(nix.sel(libeduvpn_common, "meta"), { [nix.POS]: pos$1, description: "Python wrapper for libeduvpn-common" }));
+      const meta = nix.thunk(() => nix.update(nix.sel(libeduvpn_common, "meta"), { [nix.POS]: $pos[0], description: "Python wrapper for libeduvpn-common" }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version,
         src,
         pname,

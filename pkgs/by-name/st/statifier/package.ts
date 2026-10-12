@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 27, 5], ["mainProgram", 28, 5], ["platforms", 29, 5], ["license", 30, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["phaseNames", 16, 3], ["postPatch", 21, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, multiStdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["mainProgram", 28, 5], ["platforms", 29, 5], ["license", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["phaseNames", 16, 3], ["postPatch", 21, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "statifier";
       const version = "1.7.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/statifier/statifier-${version}.tar.gz`),
           sha256: "03lzkla6knjhh186b43cac410x2fmhi28pkmzb3d211n3zp5i9y8",
         }))));
@@ -25,13 +23,13 @@ export default nix.lambda((args) => (() => {
 sed -e s@/bin/bash@"${nix.sel(multiStdenv, "shell")}"@g -i src/*.sh
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for creating static Linux binaries",
         mainProgram: "statifier",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, phaseNames, postPatch, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, phaseNames, postPatch, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

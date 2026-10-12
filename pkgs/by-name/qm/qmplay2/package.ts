@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 43, 46], ["src", 43, 54]], [["sources", 124, 13]], [["homepage", 128, 5], ["description", 129, 5], ["longDescription", 130, 5], ["license", 136, 5], ["mainProgram", 137, 5], ["maintainers", 138, 5], ["platforms", 142, 5]], [["pname", 51, 3], ["version", 52, 29], ["src", 52, 37], ["postPatch", 54, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 70, 3], ["cmakeFlags", 108, 3], ["strictDeps", 112, 3], ["postInstall", 116, 3], ["passthru", 123, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "alsa-lib": false, callPackage: false, cmake: false, ffmpeg: false, fribidi: false, "game-music-emu": false, libxdmcp: false, libxv: false, libass: false, libcddb: false, libcdio: false, libpulseaudio: false, libsidplayfp: false, libva: false, libxcb: false, ninja: false, "pkg-config": false, shaderc: false, qt5: false, qt6: false, taglib: false, "vulkan-headers": false, "vulkan-tools": false, deno: false, expat: false, libmpg123: false, libogg: false, libopenmpt: false, "libsysprof-capture": false, libvorbis: false, pipewire: false, rubberband: false, qtVersion: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 43, 46], ["src", 43, 54]]);
-const pos$2 = nix.positions(here + "/package.nix", [["sources", 124, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 128, 5], ["description", 129, 5], ["longDescription", 130, 5], ["license", 136, 5], ["mainProgram", 137, 5], ["maintainers", 138, 5], ["platforms", 142, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 29], ["src", 52, 37], ["postPatch", 54, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 70, 3], ["cmakeFlags", 108, 3], ["strictDeps", 112, 3], ["postInstall", 116, 3], ["passthru", 123, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
   const vulkan_headers_qmplay2 = nix.thunk(() => nix.app(nix.sel(vulkan_headers, "overrideAttrs"), (oldAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(sources, "vulkan-headers-qmplay2"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
     };
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(sources, "qmplay2"));
       return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.add(nix.add(nix.sel(sources, "qmplay2", "pname"), "-qt"), qtVersion)),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -110,9 +107,9 @@ popd
 wrapQtApp $out/bin/qmplay2 \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [deno]))}
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, sources: sources })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], sources: sources })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/zaps166/QMPlay2/",
         description: "Qt-based Multimedia player",
         longDescription: "QMPlay2 is a video and audio player. It can play all formats supported by\nFFmpeg and libmodplug (including J2B and SFX). It also supports Audio CD,\nraw files, Rayman 2 music, and chiptunes. It also contains YouTube and\nMyFreeMP3 browser.\n",

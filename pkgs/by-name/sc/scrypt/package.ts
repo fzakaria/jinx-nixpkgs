@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 44, 5], ["mainProgram", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 19, 3], ["configureFlags", 25, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 29, 3], ["patchPhase", 31, 3], ["doCheck", 39, 3], ["checkTarget", 40, 3], ["nativeCheckInputs", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openssl: false, getconf: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["mainProgram", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 19, 3], ["configureFlags", 25, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 29, 3], ["patchPhase", 31, 3], ["doCheck", 39, 3], ["checkTarget", 40, 3], ["nativeCheckInputs", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const getconf = nix.arg($, "getconf");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "scrypt",
       version: "1.3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.tarsnap.com/scrypt/scrypt-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "sha256-HCcQUX6ZjqrC6X2xHwkuNxOeaYhrIaGyZh9k4TAhWuk=",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "test",
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [util_linux]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Encryption utility",
         mainProgram: "scrypt",
         homepage: "https://www.tarsnap.com/scrypt.html",

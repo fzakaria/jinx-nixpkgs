@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["updateScript", 59, 12]], [["homepage", 62, 5], ["description", 63, 5], ["platforms", 64, 5], ["license", 65, 5], ["teams", 66, 5]], [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 20, 3], ["patches", 27, 3], ["strictDeps", 29, 3], ["preConfigure", 31, 3], ["nativeBuildInputs", 36, 3], ["postInstall", 42, 3], ["__structuredAttrs", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, gitUpdater: false, ninja: false, stdenv: false, swift: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["description", 63, 5], ["platforms", 64, 5], ["license", 65, 5], ["teams", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 20, 3], ["patches", 27, 3], ["strictDeps", 29, 3], ["preConfigure", 31, 3], ["nativeBuildInputs", 36, 3], ["postInstall", 42, 3], ["__structuredAttrs", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const swift = nix.arg($, "swift");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "swift-system",
       version: "1.8.1",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apple",
           repo: "swift-system",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,11 +47,11 @@ substitute ${nix.path(here, "./files/SwiftSystemConfig.cmake")} "\${!outputDev}/
 `),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/apple/swift-system",
         description: "Low-level APIs and types for Swift",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), nix.sel(lib, "platforms", "linux"))),

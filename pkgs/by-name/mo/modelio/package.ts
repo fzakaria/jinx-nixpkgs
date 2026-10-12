@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 24, 5], ["dontUnpack", 25, 5], ["installPhase", 26, 5]], [["url", 39, 5], ["hash", 40, 5]], [["homepage", 127, 5], ["changelog", 128, 5], ["description", 129, 5], ["sourceProvenance", 130, 5], ["license", 131, 5], ["maintainers", 132, 5], ["platforms", 133, 5], ["mainProgram", 134, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["strictDeps", 59, 3], ["__structuredAttrs", 60, 3], ["unpackPhase", 62, 3], ["dontConfigure", 68, 3], ["dontBuild", 69, 3], ["installPhase", 71, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, dpkg: false, makeWrapper: false, autoPatchelfHook: false, wrapGAppsHook3: false, gtk3: false, glib: false, libsecret: false, libx11: false, libxtst: false, openjdk11: false, webkitgtk_4_1: false, "glib-networking": false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 24, 5], ["dontUnpack", 25, 5], ["installPhase", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 127, 5], ["changelog", 128, 5], ["description", 129, 5], ["sourceProvenance", 130, 5], ["license", 131, 5], ["maintainers", 132, 5], ["platforms", 133, 5], ["mainProgram", 134, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["strictDeps", 59, 3], ["__structuredAttrs", 60, 3], ["unpackPhase", 62, 3], ["dontConfigure", 68, 3], ["dontBuild", 69, 3], ["installPhase", 71, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const glib_networking = nix.arg($, "glib-networking");
   const imagemagick = nix.arg($, "imagemagick");
   const webkitCompat = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "webkitgtk-4.0-compat",
       dontUnpack: true,
       installPhase: nix.thunk(() => nix.str`mkdir -p $out/lib
@@ -35,11 +32,11 @@ ln -s ${webkitgtk_4_1}/lib/libwebkit2gtk-4.1.so.0 $out/lib/libwebkit2gtk-4.0.so.
 `),
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "modelio",
       version: "5.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/ModelioOpenSource/Modelio/releases/download/v${nix.sel(finalAttrs, "version")}/modelio-open-source-${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-cg7ruIYpOgz2nfax37M8sUs89Qvbb5PMudyR0ZNiURo=",
         })))),
@@ -97,7 +94,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.modelio.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/ModelioOpenSource/Modelio/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Open-source UML, BPMN, ArchiMate and SysML modeling environment",

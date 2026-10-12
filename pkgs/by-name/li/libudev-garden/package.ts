@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["updateScript", 32, 12]], [["homepage", 35, 5], ["description", 36, 5], ["maintainers", 37, 5], ["license", 41, 5], ["pkgConfigModules", 42, 5], ["platforms", 43, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["passthru", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, "nix-update-script": false, meson: false, ninja: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 32, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 35, 5], ["description", 36, 5], ["maintainers", 37, 5], ["license", 41, 5], ["pkgConfigModules", 42, 5], ["platforms", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["passthru", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libudev-garden",
       version: "0.2.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Gardenhouse",
           repo: "libudev-garden",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://codeberg.org/Gardenhouse/libudev-garden",
         description: "Daemonless replacement for libudev for use with gardendevd",
         maintainers: nix.thunk(() => (() => {

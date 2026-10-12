@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 12, 13], ["version", 12, 19], ["sha256", 13, 5]], [["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5]], [["pname", 7, 3], ["version", 8, 3], ["format", 9, 3], ["src", 11, 3], ["pythonImportsCheck", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 12, 13], ["version", 12, 19], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 3], ["format", 9, 3], ["src", 11, 3], ["pythonImportsCheck", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +15,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "0539f8bd0464013b05ad62e0a1673f0ac9086c76b43ebf9f833053527cd9931b",
         }))));
       const pythonImportsCheck = nix.thunk(() => ["baseconv"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python module to convert numbers from base 10 integers to base X strings and back again",
         homepage: "https://github.com/semente/python-baseconv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "psfl")),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "rakesh4g"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, format, src, pythonImportsCheck, meta };
+      return { [nix.POS]: $pos[2], pname, version, format, src, pythonImportsCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["updateScript", 25, 12]], [["broken", 28, 5], ["homepage", 29, 5], ["description", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["mainProgram", 34, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["vendorHash", 23, 3], ["passthru", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildGoModule: false, fetchFromGitHub: false, libpulseaudio: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 25, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 28, 5], ["homepage", 29, 5], ["description", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["mainProgram", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["vendorHash", 23, 3], ["passthru", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "flex-ndax",
       version: "0.5-20250801.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kc2g-flex-tools",
           repo: "nDAX",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libpulseaudio]),
       vendorHash: "sha256-saQjN2G4mhS4XAxZbPnP2+F6n4pWw5bMNlcb8xEs11M=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/kc2g-flex-tools/nDAX",
         description: "FlexRadio digital audio transport (DAX) connector for PulseAudio",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["black", 59, 5], ["dirty-equals", 60, 5]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["buildInputs", 36, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 47, 3], ["optional-dependencies", 58, 3], ["pythonImportsCheck", 63, 3], ["disabledTestPaths", 65, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, asttokens: false, black: false, buildPythonPackage: false, "dirty-equals": false, executing: false, fetchFromGitHub: false, hatchling: false, hypothesis: false, isort: false, pydantic: false, pytest: false, "pytest-freezer": false, "pytest-mock": false, "pytest-xdist": false, pytestCheckHook: false, rich: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["black", 59, 5], ["dirty-equals", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["buildInputs", 36, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 47, 3], ["optional-dependencies", 58, 3], ["pythonImportsCheck", 63, 3], ["disabledTestPaths", 65, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.34.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "15r10nk",
           repo: "inline-snapshot",
           tag: version,
@@ -52,14 +49,14 @@ export default nix.lambda((args) => (() => {
         pytestCheckHook,
       ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         black: nix.thunk(() => [black]),
         "dirty-equals": nix.thunk(() => [dirty_equals]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["inline_snapshot"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_typing.py", "tests/test_docs.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Create and update inline snapshots in Python tests",
         homepage: "https://github.com/15r10nk/inline-snapshot/",
         changelog: nix.thunk(() => nix.str`https://github.com/15r10nk/inline-snapshot/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

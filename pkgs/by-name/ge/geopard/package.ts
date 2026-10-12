@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["pname", 30, 26], ["version", 30, 32], ["src", 30, 40], ["hash", 31, 5]], [["homepage", 52, 5], ["description", 53, 5], ["maintainers", 54, 5], ["license", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoDeps", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { stdenv: false, cargo: false, rustc: false, fetchFromGitHub: false, libadwaita: false, rustPlatform: false, "pkg-config": false, lib: false, wrapGAppsHook4: false, meson: false, ninja: false, "desktop-file-utils": false, "blueprint-compiler": false, "glib-networking": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 30, 26], ["version", 30, 32], ["src", 30, 40], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["maintainers", 54, 5], ["license", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoDeps", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const blueprint_compiler = nix.arg($, "blueprint-compiler");
   const glib_networking = nix.arg($, "glib-networking");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "geopard",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ranfdev",
           repo: "geopard",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-wOkzylRfFJsdu9KC4TvF/qYkGf8OZVd1tRre5TbNOX4=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [libadwaita, glib_networking]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/ranfdev/Geopard",
         description: "Colorful, adaptive gemini browser",
         maintainers: nix.thunk(() => (() => {

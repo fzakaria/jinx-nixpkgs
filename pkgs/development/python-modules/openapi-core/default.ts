@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["aiohttp", 61, 5], ["django", 65, 5], ["falcon", 66, 5], ["fastapi", 67, 5], ["flask", 68, 5], ["requests", 69, 5], ["starlette", 70, 5]], [["changelog", 111, 5], ["description", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["pythonRelaxDeps", 45, 3], ["dependencies", 49, 3], ["optional-dependencies", 60, 3], ["__darwinAllowLocalNetworking", 76, 3], ["nativeCheckInputs", 78, 3], ["pytestFlags", 88, 3], ["disabledTestPaths", 94, 3], ["disabledTests", 99, 3], ["pythonImportsCheck", 104, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aioitertools: false, buildPythonPackage: false, django: false, falcon: false, fastapi: false, fetchFromGitHub: false, flask: false, httpx: false, isodate: false, jsonschema: false, "jsonschema-path": false, "more-itertools": false, multidict: false, "openapi-schema-validator": false, "openapi-spec-validator": false, parse: false, "poetry-core": false, "pytest-aiohttp": false, "pytest-cov-stub": false, pytestCheckHook: false, responses: false, requests: false, starlette: false, webob: false, werkzeug: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aiohttp", 61, 5], ["django", 65, 5], ["falcon", 66, 5], ["fastapi", 67, 5], ["flask", 68, 5], ["requests", 69, 5], ["starlette", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 111, 5], ["description", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["pythonRelaxDeps", 45, 3], ["dependencies", 49, 3], ["optional-dependencies", 60, 3], ["__darwinAllowLocalNetworking", 76, 3], ["nativeCheckInputs", 78, 3], ["pytestFlags", 88, 3], ["disabledTestPaths", 94, 3], ["disabledTests", 99, 3], ["pythonImportsCheck", 104, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.23.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "p1c2u",
           repo: "openapi-core",
           tag: version,
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         jsonschema,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         aiohttp: nix.thunk(() => [aiohttp, multidict]),
         django: nix.thunk(() => [django]),
         falcon: nix.thunk(() => [falcon]),
@@ -84,7 +81,7 @@ export default nix.lambda((args) => (() => {
         "openapi_core.validation.response.validators",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/python-openapi/openapi-core/releases/tag/${version}`),
         description: "Client-side and server-side support for the OpenAPI Specification v3",
         homepage: "https://github.com/python-openapi/openapi-core",
@@ -95,7 +92,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

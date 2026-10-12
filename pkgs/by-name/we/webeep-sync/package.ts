@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["pname", 42, 26], ["version", 42, 32], ["src", 42, 40], ["hash", 43, 5], ["pnpm", 44, 5], ["fetcherVersion", 45, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 49, 5]], [["name", 106, 7], ["exec", 107, 7], ["icon", 108, 7], ["desktopName", 109, 7], ["comment", 110, 7], ["categories", 111, 7]], [["updateScript", 115, 12]], [["description", 118, 5], ["homepage", 119, 5], ["license", 120, 5], ["platforms", 121, 5], ["maintainers", 122, 5], ["mainProgram", 123, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["pnpmDeps", 41, 3], ["env", 48, 3], ["patches", 52, 3], ["preBuild", 54, 3], ["buildPhase", 70, 3], ["installPhase", 77, 3], ["desktopItems", 104, 3], ["passthru", 115, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchFromGitHub: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, writableTmpDirAsHomeHook: false, makeWrapper: false, electron: false, nodejs: false, zip: false, makeDesktopItem: false, copyDesktopItems: false, lib: false, "nix-update-script": false, withDebug: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 42, 26], ["version", 42, 32], ["src", 42, 40], ["hash", 43, 5], ["pnpm", 44, 5], ["fetcherVersion", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 106, 7], ["exec", 107, 7], ["icon", 108, 7], ["desktopName", 109, 7], ["comment", 110, 7], ["categories", 111, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 115, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 118, 5], ["homepage", 119, 5], ["license", 120, 5], ["platforms", 121, 5], ["maintainers", 122, 5], ["mainProgram", 123, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["pnpmDeps", 41, 3], ["env", 48, 3], ["patches", 52, 3], ["preBuild", 54, 3], ["buildPhase", 70, 3], ["installPhase", 77, 3], ["desktopItems", 104, 3], ["passthru", 115, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const withDebug = nix.argOr($, "withDebug", () => false);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "webeep-sync",
       version: "1.0.3-unstable-2026-03-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "toto04",
           repo: "webeep-sync",
           rev: "eabae4471b32660358c8bf95a985473f145d160a",
@@ -50,7 +44,7 @@ export default nix.lambda((args) => (() => {
         copyDesktopItems,
       ]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -58,7 +52,7 @@ export default nix.lambda((args) => (() => {
           pnpm: pnpm_10,
           fetcherVersion: 3n,
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       patches: nix.thunk(() => [nix.path(here, "./workspace.patch")]),
       preBuild: nix.thunk(() => nix.str`# create the electron archive to be used by electron-packager
 cp -r ${nix.sel(electron, "dist")} electron-dist
@@ -100,7 +94,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             exec: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             icon: nix.thunk(() => nix.sel(finalAttrs, "pname")),
@@ -110,11 +104,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Keep all your WeBeep files synced on your computer",
         homepage: "https://github.com/toto04/webeep-sync",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

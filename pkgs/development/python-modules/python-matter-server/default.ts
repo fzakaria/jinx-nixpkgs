@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["withDashboard", 56, 45]], [["pname", 60, 7], ["src", 61, 15], ["version", 61, 19], ["npmDepsHash", 63, 7], ["prePatch", 65, 7], ["buildPhase", 75, 7], ["installPhase", 80, 7]], [["server", 127, 5]], [["dontCheckPythonMetadata", 155, 7]], [["changelog", 158, 5], ["description", 159, 5], ["mainProgram", 160, 5], ["homepage", 161, 5], ["license", 162, 5], ["teams", 163, 5]], [["pname", 92, 3], ["src", 94, 5], ["version", 95, 5], ["pyproject", 98, 3], ["disabled", 100, 3], ["postPatch", 102, 3], ["build-system", 111, 3], ["pythonRelaxDeps", 115, 3], ["dependencies", 117, 3], ["optional-dependencies", 126, 3], ["nativeCheckInputs", 134, 3], ["preCheck", 142, 3], ["disabledTestPaths", 150, 3], ["env", 155, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonOlder: false, buildNpmPackage: false, python: false, setuptools: false, aiohttp: false, aiorun: false, atomicwrites: false, coloredlogs: false, orjson: false, "home-assistant-chip-clusters": false, cryptography: false, "home-assistant-chip-core": false, zeroconf: false, aioresponses: false, pytest: false, "pytest-aiohttp": false, "pytest-cov-stub": false, pytestCheckHook: false, withDashboard: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["withDashboard", 56, 45]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 60, 7], ["src", 61, 15], ["version", 61, 19], ["npmDepsHash", 63, 7], ["prePatch", 65, 7], ["buildPhase", 75, 7], ["installPhase", 80, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["server", 127, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["dontCheckPythonMetadata", 155, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["changelog", 158, 5], ["description", 159, 5], ["mainProgram", 160, 5], ["homepage", 161, 5], ["license", 162, 5], ["teams", 163, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 92, 3], ["src", 94, 5], ["version", 95, 5], ["pyproject", 98, 3], ["disabled", 100, 3], ["postPatch", 102, 3], ["build-system", 111, 3], ["pythonRelaxDeps", 115, 3], ["dependencies", 117, 3], ["optional-dependencies", 126, 3], ["nativeCheckInputs", 134, 3], ["preCheck", 142, 3], ["disabledTestPaths", 150, 3], ["env", 155, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const withDashboard = nix.argOr($, "withDashboard", () => true);
   const version = "8.1.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "matter-js",
       repo: "python-matter-server",
       tag: version,
@@ -46,10 +40,10 @@ export default nix.lambda((args) => (() => {
   const matterServerDashboard = nix.thunk(() => (() => {
     const pythonWithChip = nix.thunk(() => nix.app(nix.sel(python, "pythonOnBuildForHost", "withPackages"), (ps) => [
         nix.thunk(() => nix.sel(ps, "home-assistant-chip-clusters")),
-        nix.thunk(() => nix.app(nix.sel(ps, "python-matter-server", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withDashboard: false })))),
+        nix.thunk(() => nix.app(nix.sel(ps, "python-matter-server", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], withDashboard: false })))),
       ]));
     return nix.app(buildNpmPackage, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "python-matter-server-dashboard",
         src: src,
         version: version,
@@ -87,7 +81,7 @@ cd "dashboard"
         home_assistant_chip_clusters,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         server: nix.thunk(() => [cryptography, home_assistant_chip_core, zeroconf]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([aioresponses, pytest_aiohttp, pytest_cov_stub, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
@@ -97,9 +91,9 @@ cd "dashboard"
 `;
       })());
       const disabledTestPaths = nix.thunk(() => ["tests/server/ota/test_dcl.py"]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$5, dontCheckPythonMetadata: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[4], dontCheckPythonMetadata: true }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/matter-js/python-matter-server/releases/tag/${nix.sel(src_1, "tag")}`),
         description: "Python server to interact with Matter",
         mainProgram: "matter-server",
@@ -108,7 +102,7 @@ cd "dashboard"
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "home-assistant"))]),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         src: src_1,
         version: version_1,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["sha256", 31, 5]], [["NIX_CFLAGS_COMPILE", 42, 7]], [["mozillaPlugin", 65, 5], ["wine", 66, 5]], [["homepage", 81, 5], ["license", 82, 5], ["description", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5], ["mainProgram", 93, 5]], [["version", 25, 3], ["pname", 27, 3], ["src", 29, 3], ["buildInputs", 34, 3], ["env", 42, 3], ["patches", 44, 3], ["configurePhase", 52, 3], ["passthru", 64, 3], ["postInstall", 69, 3], ["preFixup", 73, 3], ["enableParallelBuilding", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv_32bit: false, fetchurl: false, bash: false, cabextract: false, curl: false, gnupg: false, libx11: false, libGLU: false, libGL: false, pkgsi686Linux: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mozillaPlugin", 65, 5], ["wine", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 81, 5], ["license", 82, 5], ["description", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5], ["mainProgram", 93, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 25, 3], ["pname", 27, 3], ["src", 29, 3], ["buildInputs", 34, 3], ["env", 42, 3], ["patches", 44, 3], ["configurePhase", 52, 3], ["passthru", 64, 3], ["postInstall", 69, 3], ["preFixup", 73, 3], ["enableParallelBuilding", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const mozillaPluginPath = "/lib/mozilla/plugins";
   const stdenv$ = stdenv_32bit;
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "0.2.8.2",
       pname: "pipelight",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://bitbucket.org/mmueller2012/pipelight/get/v${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1kyy6knkr42k34rs661r0f5sf6l1s2jdbphdg89n73ynijqmzjhk",
         })))),
       buildInputs: nix.thunk(() => [wine_custom, libx11, libGLU, libGL, curl]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fpermissive"]))),
       })),
       patches: nix.thunk(() => [
@@ -54,14 +50,14 @@ export default nix.lambda((args) => (() => {
   --downloader=${nix.sel(curl, "bin")}/bin/curl
   $configureFlags
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, mozillaPlugin: mozillaPluginPath, wine: wine_custom })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], mozillaPlugin: mozillaPluginPath, wine: wine_custom })),
       postInstall: "$out/bin/pipelight-plugin --create-mozilla-plugins\n",
       preFixup: nix.thunk(() => nix.str`substituteInPlace $out/share/pipelight/install-dependency \\
   --replace cabextract ${cabextract}/bin/cabextract
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://pipelight.net/",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 36, 5], ["description", 37, 5]], [["version", 13, 43], ["src", 13, 51], ["pname", 14, 3], ["pyproject", 15, 3], ["sourceRoot", 17, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["nativeCheckInputs", 28, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, pytestCheckHook: false, hatchling: false, "opentelemetry-api": false, "opentelemetry-instrumentation": false, "opentelemetry-instrumentation-dbapi": false, "opentelemetry-test-utils": false, psycopg2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 36, 5], ["description", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 13, 43], ["src", 13, 51], ["pname", 14, 3], ["pyproject", 15, 3], ["sourceRoot", 17, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["nativeCheckInputs", 28, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const opentelemetry_test_utils = nix.arg($, "opentelemetry-test-utils");
   const psycopg2 = nix.arg($, "psycopg2");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "src")),
       pname: "opentelemetry-instrumentation-psycopg2",
@@ -33,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [opentelemetry_test_utils, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.instrumentation.psycopg2"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-psycopg2",
         description: "OpenTelemetry Psycopg Instrumentation",
       })),

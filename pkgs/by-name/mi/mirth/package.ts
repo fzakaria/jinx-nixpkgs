@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 95, 5], ["longDescription", 96, 5], ["homepage", 100, 5], ["license", 101, 5], ["mainProgram", 102, 5], ["platforms", 104, 5], ["maintainers", 113, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["outputs", 42, 3], ["strictDeps", 51, 3], ["__structuredAttrs", 52, 3], ["depsBuildBuild", 54, 3], ["nativeBuildInputs", 56, 3], ["buildFlags", 58, 3], ["doCheck", 64, 3], ["installPhase", 66, 3], ["postFixup", 89, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromSourcehut: false, buildPackages: false, stdenv: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 95, 5], ["longDescription", 96, 5], ["homepage", 100, 5], ["license", 101, 5], ["mainProgram", 102, 5], ["platforms", 104, 5], ["maintainers", 113, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["outputs", 42, 3], ["strictDeps", 51, 3], ["__structuredAttrs", 52, 3], ["depsBuildBuild", 54, 3], ["nativeBuildInputs", 56, 3], ["buildFlags", 58, 3], ["doCheck", 64, 3], ["installPhase", 66, 3], ["postFixup", 89, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mirth",
       version: "0-unstable-2026-05-28",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~typeswitch",
           repo: "mirth",
           rev: "b180112a547cb803e3bf5720a0bb08f8bffa9742",
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -d \"$lib/lib/mirth\" \"$doc/share/doc/mirth/tutorial\" \\\n  \"$examples/share/mirth/examples\" \"$vim\"\n\ncp -Tr lib \"$lib/lib/mirth\"\ncp -Tr examples \"$examples/share/mirth/examples\"\ncp -Tr tutorial \"$doc/share/doc/mirth/tutorial\"\ncp -Tr tools/mirth-vim  \"$vim\"\n\nbin/mirth2 src/main.mth --docs \"$doc/share/doc/mirth\" -c\ninstall -Dm644 LICENSE README.md -t \"$doc/share/doc/mirth\"\n\n# stages 0–2 aren’t needed anymore\ninstall -Dm755 bin/mirth3 \"$bin/bin/mirthc\"\n\nrunHook postInstall\n",
       postFixup: "makeBinaryWrapper \"$bin/bin/mirthc\" \"$out/bin/mirthc\" \\\n  --add-flags \"-P $lib/lib/mirth\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Concatenative functional programming language with strong static linear types",
         longDescription: "Mirth is inspired by Forth, Joy, Haskell, Lisp, and monoidal category theory.\nMirth compiles to C99.\n",
         homepage: "https://git.sr.ht/~typeswitch/mirth",

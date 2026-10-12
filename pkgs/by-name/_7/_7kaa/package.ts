@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 7], ["hash", 28, 7]], [["license", 36, 10]], [["pname", 23, 5], ["version", 24, 5], ["src", 26, 5], ["installPhase", 31, 5], ["meta", 36, 5]], [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5]], [["pname", 40, 3], ["version", 41, 11], ["src", 43, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["preAutoreconf", 65, 3], ["hardeningDisable", 69, 3], ["postInstall", 73, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gccStdenv: false, autoreconfHook: false, "autoconf-archive": false, "pkg-config": false, fetchurl: false, fetchFromGitHub: false, openal: false, enet: false, SDL2: false, curl: false, gettext: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 36, 10]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 5], ["version", 24, 5], ["src", 26, 5], ["installPhase", 31, 5], ["meta", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 11], ["src", 43, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["preAutoreconf", 65, 3], ["hardeningDisable", 69, 3], ["postInstall", 73, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,26 +24,26 @@ export default nix.lambda((args) => (() => {
   const version = "2.15.6";
   const musicVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version));
   const music = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "7kaa-music",
       version: musicVersion,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.7kfans.com/downloads/7kaa-music-${musicVersion}.tar.bz2`),
           hash: "sha256-sNdntuJXGaFPXzSpN0SoAi17wkr2YnW+5U38eIaVwcM=",
         })))),
       installPhase: "mkdir -p $out\ncp -r * $out/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
     }))));
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "7kaa",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "the3dfxdude",
           repo: "7kaa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +59,7 @@ cp ${music}/COPYING-Music.txt $out/share/7kaa/MUSIC
 cp ${music}/COPYING-Music.txt $out/share/doc/7kaa
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.7kfans.com",
         description: "GPL release of the Seven Kingdoms with multiplayer (available only on x86 platforms)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

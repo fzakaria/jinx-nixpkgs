@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5], ["mainProgram", 96, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["__darwinAllowLocalNetworking", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 44, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 60, 3], ["pythonImportsCheck", 68, 3], ["disabledTests", 70, 3], ["disabledTestPaths", 84, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cython: false, distutils: false, fetchFromGitHub: false, greenlet: false, ipython: false, jinja2: false, "pkg-config": false, pkgconfig: false, pkgs: false, "pytest-cov-stub": false, "pytest-textual-snapshot": false, pytestCheckHook: false, pythonOlder: false, rich: false, setuptools: false, stdenv: false, textual: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5], ["mainProgram", 96, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["__darwinAllowLocalNetworking", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 44, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 60, 3], ["pythonImportsCheck", 68, 3], ["disabledTests", 70, 3], ["disabledTestPaths", 84, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const textual = nix.arg($, "textual");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "memray",
       version: "1.19.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bloomberg",
           repo: "memray",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["tests/integration/test_main.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Memory profiler for Python",
         homepage: "https://bloomberg.github.io/memray/",
         changelog: nix.thunk(() => nix.str`https://github.com/bloomberg/memray/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

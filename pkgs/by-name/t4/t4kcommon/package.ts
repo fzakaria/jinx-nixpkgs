@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["url", 32, 7], ["hash", 33, 7]], [["NIX_CFLAGS_COMPILE", 43, 7]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["version", 19, 3], ["pname", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["env", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 49, 3], ["postPatch", 60, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, SDL: false, SDL_image: false, SDL_mixer: false, SDL_net: false, SDL_ttf: false, libpng: false, librsvg: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 43, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 19, 3], ["pname", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["env", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 49, 3], ["postPatch", 60, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "0.1.1",
       pname: "t4kcommon",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tux4kids",
           repo: "t4kcommon",
           rev: nix.thunk(() => nix.str`upstream/${nix.sel(finalAttrs, "version")}`),
@@ -38,21 +34,21 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/tux4kids-pkg-team/t4kcommon/raw/f7073fa384f5a725139f54844e59b57338b69dc7/debian/patches/libpng16.patch",
             hash: "sha256-auQ8VvOyvLE1PD2dfeHZJV+MzIt1OtUa7OcOqsXTAYI=",
           })))),
         nix.path(here, "./linebreak-fix.patch"),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: "-fcommon -DGNULIB_UNISTR_U8_MBTOUC_UNSAFE -Wno-incompatible-pointer-types -std=gnu17",
       })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [SDL, SDL_image, SDL_mixer, SDL_net, SDL_ttf, libpng, librsvg, libxml2]),
       postPatch: "substituteInPlace {src/,./}CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library of code shared between tuxmath and tuxtype",
         homepage: "https://github.com/tux4kids/t4kcommon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["fontDirectories", 154, 46]], [["package", 173, 9], ["versionCheck", 174, 9]], [["pkg-config", 172, 7]], [["format-mp4", 180, 9], ["format-gif", 181, 9], ["format-bmp", 182, 9], ["format-jpg", 183, 9], ["format-png", 184, 9], ["music-app", 188, 7]], [["tests", 171, 5], ["updateScript", 190, 5]], [["description", 194, 5], ["mainProgram", 195, 5], ["homepage", 196, 5], ["changelog", 197, 5], ["license", 198, 5], ["teams", 202, 5], ["platforms", 203, 5], ["pkgConfigModules", 204, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["outputs", 47, 3], ["patches", 53, 3], ["postPatch", 59, 3], ["strictDeps", 84, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 103, 3], ["nativeCheckInputs", 125, 3], ["checkInputs", 130, 3], ["dontWrapQtApps", 135, 3], ["cmakeFlags", 137, 3], ["doCheck", 148, 3], ["enableParallelChecking", 150, 3], ["preCheck", 152, 3], ["preFixup", 164, 3], ["passthru", 170, 3], ["meta", 193, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, nixosTests: false, testers: false, boost: false, cmake: false, "cmake-extras": false, doxygen: false, gst_all_1: false, "gdk-pixbuf": false, gtest: false, makeFontsConf: false, libapparmor: false, libexif: false, libqtdbustest: false, librsvg: false, "lomiri-api": false, "persistent-cache-cpp": false, "pkg-config": false, python3: false, qtbase: false, qtdeclarative: false, "shared-mime-info": false, taglib: false, validatePkgConfig: false, wrapGAppsHook3: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fontDirectories", 154, 46]]);
-const pos$3 = nix.positions(here + "/default.nix", [["package", 173, 9], ["versionCheck", 174, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pkg-config", 172, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["format-mp4", 180, 9], ["format-gif", 181, 9], ["format-bmp", 182, 9], ["format-jpg", 183, 9], ["format-png", 184, 9], ["music-app", 188, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 171, 5], ["updateScript", 190, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 194, 5], ["mainProgram", 195, 5], ["homepage", 196, 5], ["changelog", 197, 5], ["license", 198, 5], ["teams", 202, 5], ["platforms", 203, 5], ["pkgConfigModules", 204, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["outputs", 47, 3], ["patches", 53, 3], ["postPatch", 59, 3], ["strictDeps", 84, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 103, 3], ["nativeCheckInputs", 125, 3], ["checkInputs", 130, 3], ["dontWrapQtApps", 135, 3], ["cmakeFlags", 137, 3], ["doCheck", 148, 3], ["enableParallelChecking", 150, 3], ["preCheck", 152, 3], ["preFixup", 164, 3], ["passthru", 170, 3], ["meta", 193, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const withQt6 = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "lomiri-thumbnailer",
       version: "3.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-thumbnailer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -116,7 +109,7 @@ substituteInPlace plugins/Lomiri/Thumbnailer*/CMakeLists.txt \\
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       enableParallelChecking: false,
       preCheck: nix.thunk(() => nix.str`# Fontconfig warnings breaks some tests
-export FONTCONFIG_FILE=${nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))}
+export FONTCONFIG_FILE=${nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[1], fontDirectories: [] })))}
 export HOME=$TMPDIR
 
 # Some tests need Qt plugins
@@ -130,18 +123,18 @@ export QML2_IMPORT_PATH=${nix.app(nix.sel(lib, "getBin"), qtdeclarative)}/${nix.
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withQt6)), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(nixosTests, "lomiri-gallery-app"));
             return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "format-mp4": nix.thunk(() => nix.attr(from, "format-mp4")),
             "format-gif": nix.thunk(() => nix.attr(from, "format-gif")),
             "format-bmp": nix.thunk(() => nix.attr(from, "format-bmp")),
@@ -153,7 +146,7 @@ export QML2_IMPORT_PATH=${nix.app(nix.sel(lib, "getBin"), qtdeclarative)}/${nix.
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "D-Bus service for out of process thumbnailing",
         mainProgram: "lomiri-thumbnailer-admin",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-thumbnailer",

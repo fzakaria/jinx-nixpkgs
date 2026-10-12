@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mod.nix", [[["pname", 31, 13], ["version", 32, 19], ["srcs", 34, 5], ["sourceRoot", 39, 5], ["postUnpack", 41, 5], ["postPatch", 46, 5], ["configurePhase", 59, 5], ["checkTarget", 68, 5], ["installPhase", 70, 5], ["meta", 115, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, packageAttrs: false, patchEngine: false, wrapLaunchGame: false, mod: false, engine: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mod.nix", [["pname", 31, 13], ["version", 32, 19], ["srcs", 34, 5], ["sourceRoot", 39, 5], ["postUnpack", 41, 5], ["postPatch", 46, 5], ["configurePhase", 59, 5], ["checkTarget", 68, 5], ["installPhase", 70, 5], ["meta", 115, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const modSourceName = nix.thunk(() => nix.selOr(mod, () => "mod", "src", "name"));
   const pname = nix.thunk(() => nix.str`openra_2019-${nix.sel(mod, "name")}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: pname,
       version: nix.thunk(() => nix.attr(mod, "version")),
       srcs: nix.thunk(() => [

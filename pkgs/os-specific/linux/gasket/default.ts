@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["broken", 64, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["postPatch", 38, 3], ["makeFlags", 42, 3], ["buildFlags", 47, 3], ["installFlags", 49, 3], ["installTargets", 50, 3], ["hardeningDisable", 52, 3], ["nativeBuildInputs", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch2: false, kernel: false, kernelModuleMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["broken", 64, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["postPatch", 38, 3], ["makeFlags", 42, 3], ["buildFlags", 47, 3], ["installFlags", 49, 3], ["installTargets", 50, 3], ["hardeningDisable", 52, 3], ["nativeBuildInputs", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gasket",
       version: "1.0-18-unstable-2024-04-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "gasket-driver",
           rev: "5815ee3908a46a415aac616ac7b9aedcb98a504c",
@@ -30,13 +26,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "linux-6.12-compat.patch",
             url: "https://github.com/google/gasket-driver/commit/4b2a1464f3b619daaf0f6c664c954a42c4b7ce00.patch",
             hash: "sha256-UOoOSEnpUMa4QXWVFpGFxBoF5szXaLEfcWtfKatO5XY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "linux-6.13-compat.patch",
             url: "https://github.com/google/gasket-driver/commit/6fbf8f8f8bcbc0ac9c9bef7a56f495a2c9872652.patch",
             hash: "sha256-roCo0/ETWuDVtZfbpFbrmy/icNI12A/ozOGQNLTtBUs=",
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["pic", "format"]),
       nativeBuildInputs: nix.thunk(() => nix.sel(kernel, "moduleBuildDependencies")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Coral Gasket Driver allows usage of the Coral EdgeTPU on Linux systems",
         homepage: "https://github.com/google/gasket-driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

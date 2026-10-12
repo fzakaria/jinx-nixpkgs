@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 34, 3], ["preCheck", 41, 3], ["build-system", 61, 3], ["dependencies", 63, 3], ["nativeCheckInputs", 67, 3], ["pythonImportsCheck", 74, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, pytestCheckHook: false, matplotlib: false, "legacy-cgi": false, "python-snap7": false, opencv4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 34, 3], ["preCheck", 41, 3], ["build-system", 61, 3], ["dependencies", 63, 3], ["nativeCheckInputs", 67, 3], ["pythonImportsCheck", 74, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2022.7.27";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rawpython",
           repo: "remi",
           rev: version,
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "remote-pkg_resources-dependency.patch",
             url: "https://github.com/rawpython/remi/commit/54b253ccd9d7e9626d8236ec4a8a32631ff2fca2.patch",
             hash: "sha256-VyTc5jFmNRWnAQqEupBB87Xw86+e7VgMoQeUrBcY+mg=",
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, python_snap7, opencv4, matplotlib]);
       const pythonImportsCheck = nix.thunk(() => ["remi", "editor", "editor.widgets"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pythonic, lightweight and websocket-based webui library",
         homepage: "https://github.com/rawpython/remi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["smbdSupport", 45, 22]], [["owner", 65, 5], ["repo", 66, 5], ["tag", 67, 5], ["hash", 68, 5]], [["package", 109, 35]], [["tests", 109, 5], ["updateScript", 110, 5]], [["description", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["mainProgram", 117, 5], ["license", 118, 5], ["maintainers", 119, 5]], [["pname", 61, 3], ["version", 62, 3], ["src", 64, 3], ["postPatch", 71, 3], ["nativeBuildInputs", 86, 3], ["installPhase", 91, 3], ["passthru", 108, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, makeWrapper: false, gitUpdater: false, cdrtools: false, coreutils: false, curl: false, gawk: false, "mesa-demos": false, gnugrep: false, gnused: false, jq: false, pciutils: false, procps: false, python3: false, qemu: false, socat: false, "spice-gtk": false, swtpm: false, usbutils: false, "util-linux": false, unzip: false, "xdg-user-dirs": false, xrandr: false, zsync: false, OVMF: false, OVMFFull: false, testers: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["smbdSupport", 45, 22]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 65, 5], ["repo", 66, 5], ["tag", 67, 5], ["hash", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 109, 35]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 109, 5], ["updateScript", 110, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["mainProgram", 117, 5], ["license", 118, 5], ["maintainers", 119, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 61, 3], ["version", 62, 3], ["src", 64, 3], ["postPatch", 71, 3], ["nativeBuildInputs", 86, 3], ["installPhase", 91, 3], ["passthru", 108, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
     pciutils,
     procps,
     python3,
-    nix.thunk(() => nix.app(nix.sel(qemu, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, smbdSupport: true })))),
+    nix.thunk(() => nix.app(nix.sel(qemu, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], smbdSupport: true })))),
     socat,
     swtpm,
     util_linux,
@@ -62,11 +57,11 @@ export default nix.lambda((args) => (() => {
     zsync,
   ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [mesa_demos, usbutils, xdg_user_dirs]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "quickemu",
       version: "4.9.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "quickemu-project",
           repo: "quickemu",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -100,15 +95,15 @@ done
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Quickly create and run optimised Windows, macOS and Linux virtual machines",
         homepage: "https://github.com/quickemu-project/quickemu",
         changelog: nix.thunk(() => nix.str`https://github.com/quickemu-project/quickemu/releases/tag/${nix.sel(finalAttrs, "version")}`),

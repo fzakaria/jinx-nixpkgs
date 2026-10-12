@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["sha256", 33, 5]], [["homepage", 87, 5], ["changelog", 88, 5], ["description", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["maintainers", 92, 5]], [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["outputs", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["postPatch", 60, 3], ["cmakeFlags", 70, 3], ["postInstall", 82, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, cmake: false, fetchFromGitHub: false, "pkg-config": false, fftwFloat: false, mbedtls: false, boost: false, "lksctp-tools": false, libconfig: false, pcsclite: false, uhd: false, "soapysdr-with-plugins": false, libbladeRF: false, zeromq: false, enableLteRates: true, enableAvx: true, enableAvx2: true, enableFma: true, enableAvx512: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 87, 5], ["changelog", 88, 5], ["description", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["maintainers", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["outputs", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["postPatch", 60, 3], ["cmakeFlags", 70, 3], ["postInstall", 82, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const enableFma = nix.argOr($, "enableFma", () => nix.sel(stdenv, "hostPlatform", "fmaSupport"));
   const enableAvx512 = nix.argOr($, "enableAvx512", () => nix.sel(stdenv, "hostPlatform", "avx512Support"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "srsran",
       version: "25_10",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "srsran",
           repo: "srsRAN_4G",
           tag: nix.thunk(() => nix.str`release_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))), "rm $out/lib/*.a\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.srslte.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/srsran/srsRAN_4G/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Open-source 4G software radio suite, including complete LTE UE, eNodeB and EPC applications",

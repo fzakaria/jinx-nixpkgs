@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 52, 5], ["repo", 53, 5], ["rev", 54, 5], ["hash", 55, 5]], [["description", 121, 5], ["downloadPage", 122, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["patches", 58, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 68, 3], ["mesonFlags", 110, 3], ["dontWrapQtApps", 114, 3], ["postInstall", 116, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, "alsa-lib": false, "audacious-bare": false, curl: false, faad2: false, ffmpeg: false, flac: false, fluidsynth: false, "gdk-pixbuf": false, lame: false, libbs2b: false, libcddb: false, libcdio: false, "libcdio-paranoia": false, libcue: false, libjack2: false, libmad: false, libmms: false, libmodplug: false, libmowgli: false, libnotify: false, libogg: false, libopenmpt: false, libpulseaudio: false, libresidfp: false, libsamplerate: false, libsidplayfp: false, libsndfile: false, libvorbis: false, libxml2: false, lirc: false, meson: false, mpg123: false, neon: false, ninja: false, "pkg-config": false, opusfile: false, pipewire: false, qt6: false, soxr: false, vgmstream: false, wavpack: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 52, 5], ["repo", 53, 5], ["rev", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 121, 5], ["downloadPage", 122, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["patches", 58, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 68, 3], ["mesonFlags", 110, 3], ["dontWrapQtApps", 114, 3], ["postInstall", 116, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const pname = "audacious-plugins";
       const version = "4.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "audacious-media-player",
           repo: "audacious-plugins",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -110,12 +108,12 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`ln -s ${nix.sel(vgmstream, "audacious")}/lib/audacious/Input/* $out/lib/audacious/Input
 `);
       const meta = nix.thunk(() => nix.update(nix.sel(audacious_bare, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Plugins for Audacious music player",
         downloadPage: "https://github.com/audacious-media-player/audacious-plugins",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/packages.nix", [[["owner", 16, 11], ["repo", 17, 11], ["tag", 18, 11], ["hash", 19, 11]], [["homepage", 27, 19]], [["pname", 11, 9], ["version", 12, 9], ["projectName", 13, 9], ["src", 15, 9], ["vendorHash", 24, 9], ["extraDescription", 26, 9], ["extraMeta", 27, 9]], [["cmd/internal/cli/actions.go", 39, 11], ["e2e/env/env.go", 40, 11], ["internal/pkg/util/env/env.go", 41, 11]], [["conmon", 31, 9], ["defaultToSuid", 36, 9], ["sourceFilesWithDefaultPaths", 38, 9]], [["owner", 53, 11], ["repo", 54, 11], ["tag", 55, 11], ["hash", 56, 11]], [["homepage", 71, 19]], [["pname", 48, 9], ["version", 49, 9], ["projectName", 50, 9], ["src", 52, 9], ["vendorHash", 61, 9], ["extraConfigureFlags", 63, 9], ["extraDescription", 70, 9], ["extraMeta", 71, 9]], [["cmd/internal/cli/actions.go", 80, 11], ["e2e/env/env.go", 81, 11], ["internal/pkg/util/env/clean.go", 82, 11]], [["defaultToSuid", 77, 9], ["sourceFilesWithDefaultPaths", 79, 9]], [["enable", 92, 9], ["package", 93, 17]], [["singularity", 91, 16]], [["programs", 91, 7]], [["description", 98, 11], ["longDescription", 99, 11]], [["meta", 97, 9]], [["apptainer", 110, 11], ["singularity", 110, 21], ["apptainer-overriden-nixos", 112, 3], ["singularity-overriden-nixos", 113, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchFromGitHub: false, nixos: false, conmon: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/packages.nix", [["owner", 16, 11], ["repo", 17, 11], ["tag", 18, 11], ["hash", 19, 11]]);
-const pos$2 = nix.positions(here + "/packages.nix", [["homepage", 27, 19]]);
-const pos$3 = nix.positions(here + "/packages.nix", [["pname", 11, 9], ["version", 12, 9], ["projectName", 13, 9], ["src", 15, 9], ["vendorHash", 24, 9], ["extraDescription", 26, 9], ["extraMeta", 27, 9]]);
-const pos$4 = nix.positions(here + "/packages.nix", [["cmd/internal/cli/actions.go", 39, 11], ["e2e/env/env.go", 40, 11], ["internal/pkg/util/env/env.go", 41, 11]]);
-const pos$5 = nix.positions(here + "/packages.nix", [["conmon", 31, 9], ["defaultToSuid", 36, 9], ["sourceFilesWithDefaultPaths", 38, 9]]);
-const pos$6 = nix.positions(here + "/packages.nix", [["owner", 53, 11], ["repo", 54, 11], ["tag", 55, 11], ["hash", 56, 11]]);
-const pos$7 = nix.positions(here + "/packages.nix", [["homepage", 71, 19]]);
-const pos$8 = nix.positions(here + "/packages.nix", [["pname", 48, 9], ["version", 49, 9], ["projectName", 50, 9], ["src", 52, 9], ["vendorHash", 61, 9], ["extraConfigureFlags", 63, 9], ["extraDescription", 70, 9], ["extraMeta", 71, 9]]);
-const pos$9 = nix.positions(here + "/packages.nix", [["cmd/internal/cli/actions.go", 80, 11], ["e2e/env/env.go", 81, 11], ["internal/pkg/util/env/clean.go", 82, 11]]);
-const pos$10 = nix.positions(here + "/packages.nix", [["defaultToSuid", 77, 9], ["sourceFilesWithDefaultPaths", 79, 9]]);
-const pos$11 = nix.positions(here + "/packages.nix", [["enable", 92, 9], ["package", 93, 17]]);
-const pos$12 = nix.positions(here + "/packages.nix", [["singularity", 91, 16]]);
-const pos$13 = nix.positions(here + "/packages.nix", [["programs", 91, 7]]);
-const pos$14 = nix.positions(here + "/packages.nix", [["description", 98, 11], ["longDescription", 99, 11]]);
-const pos$15 = nix.positions(here + "/packages.nix", [["meta", 97, 9]]);
-const pos$16 = nix.positions(here + "/packages.nix", [["apptainer", 110, 11], ["singularity", 110, 21], ["apptainer-overriden-nixos", 112, 3], ["singularity-overriden-nixos", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +16,7 @@ export default nix.lambda((args) => (() => {
         const version = "1.5.4";
         const projectName = "apptainer";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "apptainer",
             repo: "apptainer",
             tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,9 +24,9 @@ export default nix.lambda((args) => (() => {
           }))));
         const vendorHash = "sha256-k0HhLDImOs+nDn7B3VfxORnWRxTRlefi01YQiaNASeY=";
         const extraDescription = " (previously known as Singularity)";
-        const extraMeta = nix.thunk(() => ({ [nix.POS]: pos$2, homepage: "https://apptainer.org" }));
+        const extraMeta = nix.thunk(() => ({ [nix.POS]: $pos[1], homepage: "https://apptainer.org" }));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname,
           version,
           projectName,
@@ -51,11 +36,11 @@ export default nix.lambda((args) => (() => {
           extraMeta,
         };
       })()))), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       conmon: null,
       defaultToSuid: null,
       sourceFilesWithDefaultPaths: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "cmd/internal/cli/actions.go": nix.thunk(() => ["/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin"]),
         "e2e/env/env.go": nix.thunk(() => ["/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"]),
         "internal/pkg/util/env/env.go": nix.thunk(() => ["/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"]),
@@ -66,7 +51,7 @@ export default nix.lambda((args) => (() => {
         const version = "4.4.1";
         const projectName = "singularity";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             owner: "sylabs",
             repo: "singularity",
             tag: nix.thunk(() => nix.str`v${version}`),
@@ -75,9 +60,9 @@ export default nix.lambda((args) => (() => {
         const vendorHash = "sha256-uqEzYj8JmZWi2Rceh+JMJ5kzUmJ4T3JAt0rto1NewlM=";
         const extraConfigureFlags = nix.thunk(() => ["--without-squashfuse", "--without-libsubid"]);
         const extraDescription = " (Sylabs Inc's fork of Singularity, a.k.a. SingularityCE)";
-        const extraMeta = nix.thunk(() => ({ [nix.POS]: pos$7, homepage: "https://sylabs.io/" }));
+        const extraMeta = nix.thunk(() => ({ [nix.POS]: $pos[6], homepage: "https://sylabs.io/" }));
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           pname,
           version,
           projectName,
@@ -88,25 +73,25 @@ export default nix.lambda((args) => (() => {
           extraMeta,
         };
       })()))), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       defaultToSuid: true,
       sourceFilesWithDefaultPaths: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         "cmd/internal/cli/actions.go": nix.thunk(() => ["/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin"]),
         "e2e/env/env.go": nix.thunk(() => ["/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"]),
         "internal/pkg/util/env/clean.go": nix.thunk(() => ["/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"]),
       })),
     }))));
   const genOverridenNixos = (package$) => (packageName) => nix.app(nix.sel(nix.app(nixos, nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       programs: nix.thunk(() => ({
-        [nix.POS]: pos$12,
-        singularity: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true, package: package$ })),
+        [nix.POS]: $pos[11],
+        singularity: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: true, package: package$ })),
       })),
     }))), "config", "programs", "singularity", "packageOverriden", "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "",
         longDescription: nix.thunk(() => nix.str`This package produces identical store derivations to \`pkgs.${packageName}\`
 overridden and installed by the NixOS module \`programs.singularity\`
@@ -117,7 +102,7 @@ This is for binary substitutes only. Use pkgs.${packageName} instead.
       })),
     }));
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     apptainer: apptainer,
     singularity: singularity,
     "apptainer-overriden-nixos": nix.thunk(() => nix.app(genOverridenNixos, apptainer, "apptainer")),

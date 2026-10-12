@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/data.nix", [[["description", 30, 5]], [["pname", 13, 3], ["src", 15, 24], ["version", 15, 28], ["doCheck", 17, 3], ["buildInputs", 19, 3], ["nativeCheckInputs", 20, 3], ["checkInputs", 21, 3], ["propagatedBuildInputs", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, containers: false, ocaml: false, "dune-configurator": false, gen: false, iter: false, "qcheck-core": false, mdx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/data.nix", [["description", 30, 5]]);
-const pos$2 = nix.positions(here + "/data.nix", [["pname", 13, 3], ["src", 15, 24], ["version", 15, 28], ["doCheck", 17, 3], ["buildInputs", 19, 3], ["nativeCheckInputs", 20, 3], ["checkInputs", 21, 3], ["propagatedBuildInputs", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const qcheck_core = nix.arg($, "qcheck-core");
   const mdx = nix.arg($, "mdx");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "containers-data",
       src: nix.thunk(() => nix.attr(containers, "src")),
       version: nix.thunk(() => nix.attr(containers, "version")),
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       checkInputs: nix.thunk(() => [gen, iter, qcheck_core]),
       propagatedBuildInputs: nix.thunk(() => [containers]),
-      meta: nix.thunk(() => nix.update(nix.sel(containers, "meta"), { [nix.POS]: pos$1, description: "Set of advanced datatypes for containers" })),
+      meta: nix.thunk(() => nix.update(nix.sel(containers, "meta"), { [nix.POS]: $pos[0], description: "Set of advanced datatypes for containers" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=data.ts.map

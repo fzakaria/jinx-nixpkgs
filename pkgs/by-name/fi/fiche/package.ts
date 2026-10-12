@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["mainProgram", 40, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["doCheck", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["mainProgram", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["doCheck", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fiche",
       version: "0.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "solusipse",
           repo: "fiche",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "install -Dm755 fiche -t $out/bin\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line pastebin for sharing terminal output",
         longDescription: "Fiche is a command line pastebin server for sharing terminal output.\nIt can be used without any graphical tools from a TTY and has minimal requirements.\nA live instance can be found at https://termbin.com.\n\nExample usage:\necho just testing! | nc termbin.com 9999\n",
         homepage: "https://github.com/solusipse/fiche",

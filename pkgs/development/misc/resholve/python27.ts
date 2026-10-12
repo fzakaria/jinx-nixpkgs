@@ -2,26 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/python27.nix", [[["knownVulnerabilities", 11, 9]], [["meta", 10, 7]], [["lib", 16, 13], ["stdenv", 18, 7], ["callPackage", 19, 7], ["pythonPackagesExtensions", 20, 7], ["config", 21, 7], ["makeScopeWithSplicing'", 22, 7]], [["major", 29, 7], ["minor", 30, 7], ["patch", 31, 7], ["suffix", 32, 7]], [["self", 27, 5], ["sourceVersion", 28, 5], ["hash", 34, 5], ["passthruFun", 35, 13]], [["python27", 43, 15]], [["pip", 49, 9], ["setuptools", 50, 9]], [["self", 41, 5], ["pkgsBuildHost", 42, 5], ["packageOverrides", 47, 5], ["openssl", 54, 5], ["bzip2", 55, 5], ["readline", 56, 5], ["ncurses", 57, 5], ["gdbm", 58, 5], ["sqlite", 59, 5], ["rebuildBytecode", 60, 5], ["stripBytecode", 61, 5], ["strip2to3", 62, 5], ["stripConfig", 63, 5], ["stripIdlelib", 64, 5], ["stripTests", 65, 5], ["enableOptimizations", 66, 5]]]);
 const formals$1 = { args: { lib: false, pkgsBuildHost: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/python27.nix", [["knownVulnerabilities", 11, 9]]);
-const pos$2 = nix.positions(here + "/python27.nix", [["meta", 10, 7]]);
-const pos$3 = nix.positions(here + "/python27.nix", [["lib", 16, 13], ["stdenv", 18, 7], ["callPackage", 19, 7], ["pythonPackagesExtensions", 20, 7], ["config", 21, 7], ["makeScopeWithSplicing'", 22, 7]]);
-const pos$4 = nix.positions(here + "/python27.nix", [["major", 29, 7], ["minor", 30, 7], ["patch", 31, 7], ["suffix", 32, 7]]);
-const pos$5 = nix.positions(here + "/python27.nix", [["self", 27, 5], ["sourceVersion", 28, 5], ["hash", 34, 5], ["passthruFun", 35, 13]]);
-const pos$6 = nix.positions(here + "/python27.nix", [["python27", 43, 15]]);
-const pos$7 = nix.positions(here + "/python27.nix", [["pip", 49, 9], ["setuptools", 50, 9]]);
-const pos$8 = nix.positions(here + "/python27.nix", [["self", 41, 5], ["pkgsBuildHost", 42, 5], ["packageOverrides", 47, 5], ["openssl", 54, 5], ["bzip2", 55, 5], ["readline", 56, 5], ["ncurses", 57, 5], ["gdbm", 58, 5], ["sqlite", 59, 5], ["rebuildBytecode", 60, 5], ["stripBytecode", 61, 5], ["strip2to3", 62, 5], ["stripConfig", 63, 5], ["stripIdlelib", 64, 5], ["stripTests", 65, 5], ["enableOptimizations", 66, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgsBuildHost = nix.arg($, "pkgsBuildHost");
   const removeKnownVulnerabilities = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
-      meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { [nix.POS]: pos$1, knownVulnerabilities: [] })),
+      [nix.POS]: $pos[1],
+      meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { [nix.POS]: $pos[0], knownVulnerabilities: [] })),
     }));
   const passthruFun = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../interpreters/python/passthrufun.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       lib: lib,
       stdenv: nix.thunk(() => nix.attr(pkgsBuildHost, "stdenv")),
       callPackage: nix.thunk(() => nix.attr(pkgsBuildHost, "callPackage")),
@@ -30,18 +23,18 @@ export default nix.lambda((args) => (() => {
       "makeScopeWithSplicing'": nix.thunk(() => nix.attr(pkgsBuildHost, "makeScopeWithSplicing'")),
     }))));
   const python27Base = nix.thunk(() => nix.app(nix.sel(pkgsBuildHost, "callPackage"), nix.path(here, "./cpython-2.7"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       self: python27,
-      sourceVersion: nix.thunk(() => ({ [nix.POS]: pos$4, major: "2", minor: "7", patch: "18", suffix: ".12" })),
+      sourceVersion: nix.thunk(() => ({ [nix.POS]: $pos[3], major: "2", minor: "7", patch: "18", suffix: ".12" })),
       hash: "sha256-RuEgfpags9wJm9Xe0daotqUx4knABEUc7DvtgnQXEfE=",
       passthruFun: passthruFun,
     }))));
   const python27 = nix.thunk(() => nix.app(nix.sel(nix.app(removeKnownVulnerabilities, python27Base), "override"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       self: python27,
-      pkgsBuildHost: nix.thunk(() => nix.update(pkgsBuildHost, { [nix.POS]: pos$6, python27: python27 })),
+      pkgsBuildHost: nix.thunk(() => nix.update(pkgsBuildHost, { [nix.POS]: $pos[5], python27: python27 })),
       packageOverrides: nix.thunk(() => nix.app(nix.sel(lib, "composeExtensions"), nix.thunk(() => nix.builtins.import(nix.path(here, "./python2-packages.nix"))), (_self) => (super$) => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pip: nix.thunk(() => nix.app(removeKnownVulnerabilities, nix.thunk(() => nix.sel(super$, "pip")))),
           setuptools: nix.thunk(() => nix.app(removeKnownVulnerabilities, nix.thunk(() => nix.sel(super$, "setuptools")))),
         }))),

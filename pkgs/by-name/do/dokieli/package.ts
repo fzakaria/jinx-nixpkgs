@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["src", 30, 26], ["missingHashes", 30, 30], ["hash", 31, 5]], [["name", 66, 7], ["runtimeInputs", 67, 7], ["text", 71, 7]], [["updateScriptSrc", 64, 5], ["updateScriptDeps", 65, 5], ["updateScript", 73, 5]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["platforms", 86, 5], ["maintainers", 87, 5], ["teams", 88, 5], ["mainProgram", 89, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["missingHashes", 28, 3], ["offlineCache", 29, 3], ["buildPhase", 34, 3], ["installPhase", 42, 3], ["nativeBuildInputs", 51, 3], ["postFixup", 57, 3], ["passthru", 63, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, unstableGitUpdater: false, makeWrapper: false, writeShellApplication: false, "_experimental-update-script-combinators": false, nix: false, serve: false, stdenv: false, xsel: false, "yarn-berry_4": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 30, 26], ["missingHashes", 30, 30], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 66, 7], ["runtimeInputs", 67, 7], ["text", 71, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScriptSrc", 64, 5], ["updateScriptDeps", 65, 5], ["updateScript", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["platforms", 86, 5], ["maintainers", 87, 5], ["teams", 88, 5], ["mainProgram", 89, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["missingHashes", 28, 3], ["offlineCache", 29, 3], ["buildPhase", 34, 3], ["installPhase", 42, 3], ["nativeBuildInputs", 51, 3], ["postFixup", 57, 3], ["passthru", 63, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const yarn_berry_4 = nix.arg($, "yarn-berry_4");
   const yarn_berry = yarn_berry_4;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dokieli",
       version: "0-unstable-2026-08-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dokieli",
           repo: "dokieli",
           rev: "c23e80e4fe54a2ad20f36a9f21a0987f5e3e4505",
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-AqmUWgVDksQeBKcC8mpq1xgQ5NcHTjX/YSgm9J+feBs=",
@@ -54,10 +49,10 @@ export default nix.lambda((args) => (() => {
   --chdir $out
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScriptSrc: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         updateScriptDeps: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "update-dokieli-berry-deps",
             runtimeInputs: nix.thunk(() => [nix$, nix.thunk(() => nix.sel(yarn_berry, "yarn-berry-fetcher"))]),
             text: nix.thunk(() => nix.app(nix.sel(lib, "strings", "readFile"), nix.path(here, "./updateDeps.sh"))),
@@ -68,7 +63,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Clientside editor for decentralised article publishing, annotations and social interactions",
         homepage: "https://github.com/dokieli/dokieli",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [

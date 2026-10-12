@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 52, 5], ["homepage", 53, 5]], [["version", 14, 31], ["src", 14, 39], ["pname", 15, 3], ["pyproject", 16, 3], ["sourceRoot", 18, 3], ["patches", 20, 3], ["postPatch", 25, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["disabledTests", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, setuptools: false, scipy: false, "scikits-odes-core": false, "scikits-odes-daepack": false, "scikits-odes-sundials": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 14, 31], ["src", 14, 39], ["pname", 15, 3], ["pyproject", 16, 3], ["sourceRoot", 18, 3], ["patches", 20, 3], ["postPatch", 25, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["disabledTests", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +30,12 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["test_lsodi"])));
       const meta = nix.thunk(() => nix.update(nix.sel(scikits_odes_core, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Scikit offering extra ode/dae solvers, as an extension to what is available in scipy",
         homepage: "https://github.com/bmcage/odes/blob/master/packages/scikits-odes",
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version,
         src,
         pname,

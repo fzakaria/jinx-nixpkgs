@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5], ["fetchSubmodules", 36, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["src", 31, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["installFlags", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, avahi: false, boost: false, curl: false, fetchFromGitHub: false, fftwFloat: false, freetype: false, glib: false, glibmm_2_4: false, lib: false, libsndfile: false, libx11: false, libxcursor: false, libxext: false, libxinerama: false, libxrandr: false, lilv: false, ncurses: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5], ["fetchSubmodules", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["src", 31, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["installFlags", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "guitarix-vst",
       version: "0.5",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "brummer10",
           repo: "guitarix.vst",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`JUCE_VST3DESTDIR=${nix.builtins.placeholder("out")}/lib/vst3`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Versatile (guitar) amplifier VST3 plugin",
         homepage: "https://github.com/brummer10/guitarix.vst",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

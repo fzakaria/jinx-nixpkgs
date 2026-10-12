@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 5], ["version", 17, 26], ["hash", 18, 5]], [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["pythonRemoveDeps", 22, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["doCheck", 32, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "dvc-objects": false, fetchPypi: false, gcsfs: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 26], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["pythonRemoveDeps", 22, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["doCheck", 32, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const gcsfs = nix.arg($, "gcsfs");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dvc-gs",
       version: "3.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "dvc_gs",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-QhhWD/HVGW/Qx5FiZVzXnFE0+mHr40o6UH+vB0kibu4=",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [gcsfs, dvc_objects]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "gs plugin for dvc",
         homepage: "https://pypi.org/project/dvc-gs/version",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/dvc-gs/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 71, 3], ["disabledTests", 73, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, anthropic: false, backoff: false, buildPythonPackage: false, distro: false, django: false, fetchFromGitHub: false, freezegun: false, "google-genai": false, mcp: false, mock: false, monotonic: false, openai: false, "opentelemetry-exporter-otlp": false, "opentelemetry-sdk": false, parameterized: false, "pytest-asyncio": false, "pytest-bdd": false, pytestCheckHook: false, "python-dateutil": false, pythonAtLeast: false, requests: false, setuptools: false, six: false, "typing-extensions": false, zstandard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 71, 3], ["disabledTests", 73, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "posthog",
       version: "7.62.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PostHog",
           repo: "posthog-python",
           tag: nix.thunk(() => nix.str`posthog-v${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +74,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["posthog"]),
       disabledTests: nix.thunk(() => ["test_excepthook", "test_request", "test_upload"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Module for interacting with PostHog",
         homepage: "https://github.com/PostHog/posthog-python",
         changelog: nix.thunk(() => nix.str`https://github.com/PostHog/posthog-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

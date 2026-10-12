@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 20, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, python3: false, perl: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 20, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,21 +17,29 @@ export default nix.lambda((args) => (() => {
       const pname = "meme-suite";
       const version = "5.5.9";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://meme-suite.org/meme-software/${version}/meme-${version}.tar.gz`),
           sha256: "sha256-BAb7ex3Cf2qrPW06KezfYXu92UZpDPqXyiEpvCEL/RI=",
         }))));
       const buildInputs = nix.thunk(() => [zlib]);
       const nativeBuildInputs = nix.thunk(() => [perl, python3]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Motif-based sequence analysis tools",
         homepage: "https://meme-suite.org/meme/meme-software/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildInputs, nativeBuildInputs, meta };
+      return {
+        [nix.POS]: $pos[2],
+        pname,
+        version,
+        src,
+        buildInputs,
+        nativeBuildInputs,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

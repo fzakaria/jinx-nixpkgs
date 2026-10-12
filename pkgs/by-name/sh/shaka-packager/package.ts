@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["abseil-cpp", 28, 5]], [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["package", 83, 7], ["version", 84, 7]], [["version", 82, 11]], [["updateScript", 81, 5], ["tests", 82, 5]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["cmakeFlags", 67, 3], ["ninjaFlags", 74, 3], ["passthru", 80, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, testers: false, cmake: false, ninja: false, python3: false, "nix-update-script": false, "abseil-cpp_202601": false, curl: false, gtest: false, nlohmann_json: false, libpng: false, libxml2: false, libwebm: false, mbedtls: false, mimalloc: false, protobuf: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["abseil-cpp", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 83, 7], ["version", 84, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 82, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 81, 5], ["tests", 82, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["cmakeFlags", 67, 3], ["ninjaFlags", 74, 3], ["passthru", 80, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const zlib = nix.arg($, "zlib");
   const abseil_cpp$ = abseil_cpp_202601;
-  const protobuf$ = nix.thunk(() => nix.app(nix.sel(protobuf, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "abseil-cpp": abseil_cpp$ }))));
+  const protobuf$ = nix.thunk(() => nix.app(nix.sel(protobuf, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], "abseil-cpp": abseil_cpp$ }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "shaka-packager",
       version: "3.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "shaka-project",
           repo: "shaka-packager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,19 +61,19 @@ export default nix.lambda((args) => (() => {
       ]),
       ninjaFlags: nix.thunk(() => ["mpd_generator", "packager", "pssh_box_py"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-nixpkgs-release`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Media packaging framework for VOD and Live DASH and HLS applications",
         homepage: "https://shaka-project.github.io/shaka-packager/html/",
         changelog: nix.thunk(() => nix.str`https://github.com/shaka-project/shaka-packager/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["pname", 20, 5], ["version", 21, 13], ["src", 21, 21], ["sourceRoot", 23, 5], ["npmDepsHash", 24, 5], ["buildPhase", 26, 5], ["installPhase", 34, 5]], [["updateScript", 69, 12]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 80, 5]], [["pname", 46, 3], ["version", 47, 11], ["src", 47, 19], ["sourceRoot", 49, 3], ["vendorHash", 51, 3], ["preBuild", 53, 3], ["postInstall", 58, 3], ["ldflags", 62, 3], ["passthru", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, buildNpmPackage: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 20, 5], ["version", 21, 13], ["src", 21, 21], ["sourceRoot", 23, 5], ["npmDepsHash", 24, 5], ["buildPhase", 26, 5], ["installPhase", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 69, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 46, 3], ["version", 47, 11], ["src", 47, 19], ["sourceRoot", 49, 3], ["vendorHash", 51, 3], ["preBuild", 53, 3], ["postInstall", 58, 3], ["ldflags", 62, 3], ["passthru", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "1.5.2-stable";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "gtsteffaniak",
       repo: "filebrowser",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-1qG6IayTqL4x3CqJyvVSG8Fu4s6ywhWI9t1j9c+wTZM=",
     }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "filebrowser-quantum-frontend",
       version: version,
       src: src,
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r dist/* $out\n\nrunHook postInstall\n",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "filebrowser-quantum",
       version: version,
       src: src,
@@ -52,11 +48,11 @@ cp -r ${frontend}/* http/embed/
         "-X github.com/gtsteffaniak/filebrowser/backend/version.Version=testing",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Access and manage your files from the web",
         homepage: "https://github.com/gtsteffaniak/filebrowser",
         changelog: nix.thunk(() => nix.str`https://github.com/gtsteffaniak/filebrowser/blob/v${version}/CHANGELOG.md`),

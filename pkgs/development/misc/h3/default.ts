@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 9], ["repo", 18, 9], ["tag", 19, 9], ["hash", 20, 17]], [["homepage", 43, 9], ["description", 44, 9], ["license", 45, 9], ["changelog", 46, 9], ["platforms", 47, 9], ["maintainers", 48, 9]], [["version", 13, 15], ["pname", 14, 7], ["src", 16, 7], ["outputs", 23, 7], ["nativeBuildInputs", 28, 7], ["cmakeFlags", 30, 7], ["meta", 42, 7]], [["version", 54, 5], ["hash", 55, 5]], [["version", 59, 5], ["hash", 60, 5]], [["h3_3", 53, 3], ["h3_4", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchFromGitHub: false, withFilters: true }, ellipsis: false };
 const formals$2 = { args: { version: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 9], ["repo", 18, 9], ["tag", 19, 9], ["hash", 20, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 43, 9], ["description", 44, 9], ["license", 45, 9], ["changelog", 46, 9], ["platforms", 47, 9], ["maintainers", 48, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 13, 15], ["pname", 14, 7], ["src", 16, 7], ["outputs", 23, 7], ["nativeBuildInputs", 28, 7], ["cmakeFlags", 30, 7], ["meta", 42, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 54, 5], ["hash", 55, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 59, 5], ["hash", 60, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["h3_3", 53, 3], ["h3_4", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version: version,
         pname: "h3",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "uber",
             repo: "h3",
             tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_FILTERS", withFilters)),
         ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "4.0.0")), nix.thunk(() => ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"])))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "https://h3geo.org/",
           description: "Hexagonal hierarchical geospatial indexing system",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -60,14 +55,14 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     h3_3: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: "3.7.2",
         hash: "sha256-MvWqQraTnab6EuDx4V0v8EvrFWHT95f2EHTL2p2kei8=",
       })))),
     h3_4: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version: "4.4.1",
         hash: "sha256-tKonXauTJiOb5DV56tOmnvba7eNYcWTnOvCSokheVsY=",
       })))),

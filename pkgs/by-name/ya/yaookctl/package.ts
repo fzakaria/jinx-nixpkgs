@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["extraArgs", 50, 5]], [["updateScript", 49, 12]], [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["__structuredAttrs", 18, 3], ["pyproject", 20, 3], ["build-system", 21, 3], ["dontCheckRuntimeDeps", 23, 3], ["dependencies", 25, 3], ["checkPhase", 36, 3], ["passthru", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, python3: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 49, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["__structuredAttrs", 18, 3], ["pyproject", 20, 3], ["build-system", 21, 3], ["dontCheckRuntimeDeps", 23, 3], ["dependencies", 25, 3], ["checkPhase", 36, 3], ["passthru", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "yaookctl",
       version: "0-unstable-2026-08-14",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yaook",
           repo: "yaookctl",
           rev: "fe2319291ce129fd8001fdc404e825ab001cfe90",
@@ -54,11 +50,11 @@ ${nix.sel(python3, "interpreter")} -c "
 runHook postCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.com/yaook/yaookctl",
         description: "Toolbox for interacting with Yaook clusters",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

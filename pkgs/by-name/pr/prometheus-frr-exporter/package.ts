@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]], [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5]], [["pname", 17, 3], ["vendorHash", 18, 3], ["src", 19, 11], ["version", 19, 15], ["ldflags", 21, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["vendorHash", 18, 3], ["src", 19, 11], ["version", 19, 15], ["ldflags", 21, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "1.10.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "tynany",
       repo: "frr_exporter",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-Q8OrFmj54Tvn283ZbFc+R/g3cJw5ypAvV+Qbf/6BsmM=",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "prometheus-frr-exporter",
       vendorHash: "sha256-Z4miOR9gmZlYR/VAbMY6SLZJrzBEpuJbnrIJ3ObaZ/Y=",
       src: src,
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
         "-X github.com/prometheus/common/version.Branch=unknown",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Prometheus exporter for FRR version 3.0+",
         longDescription: "Prometheus exporter for FRR version 3.0+ that collects metrics from the\nFRR Unix sockets and exposes them via HTTP, ready for collecting by\nPrometheus.\n",
         homepage: "https://github.com/tynany/frr_exporter",

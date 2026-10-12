@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 10, 3], ["version", 11, 46], ["meta", 11, 54], ["runScript", 13, 3], ["targetPkgs", 15, 3], ["multiPkgs", 22, 3], ["extraInstallCommands", 44, 3]]]);
 const formals$1 = { args: { buildFHSEnv: false, extraLibs: true, extraPkgs: true, libgcc: false, libz: false, "plasticscm-client-core-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 46], ["meta", 11, 54], ["runScript", 13, 3], ["targetPkgs", 15, 3], ["multiPkgs", 22, 3], ["extraInstallCommands", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libz = nix.arg($, "libz");
   const plasticscm_client_core_unwrapped = nix.arg($, "plasticscm-client-core-unwrapped");
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "plasticscm-client-core",
       version: nix.thunk(() => nix.attr(plasticscm_client_core_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(plasticscm_client_core_unwrapped, "meta")),

@@ -2,44 +2,36 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-varlink.nix", [[["maintainers", 4, 8]], [["useNetworkd", 8, 18]], [["enable", 9, 25]], [["resolved", 9, 16]], [["enable", 10, 23]], [["network", 10, 15]], [["networking", 8, 7], ["services", 9, 7], ["systemd", 10, 7]], [["machine", 5, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 5, 3], ["testScript", 12, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-varlink.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/systemd-varlink.nix", [["useNetworkd", 8, 18]]);
-const pos$3 = nix.positions(here + "/systemd-varlink.nix", [["enable", 9, 25]]);
-const pos$4 = nix.positions(here + "/systemd-varlink.nix", [["resolved", 9, 16]]);
-const pos$5 = nix.positions(here + "/systemd-varlink.nix", [["enable", 10, 23]]);
-const pos$6 = nix.positions(here + "/systemd-varlink.nix", [["network", 10, 15]]);
-const pos$7 = nix.positions(here + "/systemd-varlink.nix", [["networking", 8, 7], ["services", 9, 7], ["systemd", 10, 7]]);
-const pos$8 = nix.positions(here + "/systemd-varlink.nix", [["machine", 5, 9]]);
-const pos$9 = nix.positions(here + "/systemd-varlink.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 5, 3], ["testScript", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "systemd-varlink",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raitobezarius"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
-          networking: nix.thunk(() => ({ [nix.POS]: pos$2, useNetworkd: true })),
+          [nix.POS]: $pos[6],
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[1], useNetworkd: true })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            resolved: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[3],
+            resolved: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            network: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+            [nix.POS]: $pos[5],
+            network: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
           })),
         };
       })(), formals$2),

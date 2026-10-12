@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5], ["platforms", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["buildPhase", 26, 3], ["installPhase", 37, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "apple-sdk": false, enableExperimentalFocusFirst: true, enableOldActivationMethod: true, enableAlternativeTaskSwitcher: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["buildPhase", 26, 3], ["installPhase", 37, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "autoraise";
       const version = "5.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sbmpost",
           repo: "AutoRaise",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +36,7 @@ runHook postBuild
 `);
       const installPhase = "runHook preInstall\nmkdir -p $out/Applications $out/bin\nmv AutoRaise.app $out/Applications/AutoRaise.app\nln -s $out/Applications/AutoRaise.app/Contents/MacOS/AutoRaise $out/bin/autoraise\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Automatically raise and focus a window when hovering over it with the mouse",
         homepage: "https://github.com/sbmpost/AutoRaise",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -50,7 +48,7 @@ runHook postBuild
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

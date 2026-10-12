@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["withShapingTypes", 78, 33]], [["withShapingTypes", 79, 43]], [["noShaping", 78, 5], ["onlyGraphemeShaping", 79, 5]], [["tests", 77, 12]], [["homepage", 83, 5], ["changelog", 84, 5], ["description", 85, 5], ["maintainers", 86, 5], ["license", 90, 5], ["platforms", 94, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["depsBuildBuild", 45, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 61, 3], ["mesonBuildType", 63, 3], ["mesonFlags", 64, 3], ["doCheck", 69, 3], ["outputs", 71, 3], ["passthru", 77, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromCodeberg: false, "pkg-config": false, meson: false, ninja: false, scdoc: false, freetype: false, fontconfig: false, nanosvg: false, pixman: false, tllist: false, check: false, withShapingTypes: true, harfbuzz: false, utf8proc: false, fcft: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["withShapingTypes", 78, 33]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withShapingTypes", 79, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["noShaping", 78, 5], ["onlyGraphemeShaping", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 77, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 83, 5], ["changelog", 84, 5], ["description", 85, 5], ["maintainers", 86, 5], ["license", 90, 5], ["platforms", 94, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["depsBuildBuild", 45, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 61, 3], ["mesonBuildType", 63, 3], ["mesonFlags", 64, 3], ["doCheck", 69, 3], ["outputs", 71, 3], ["passthru", 77, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const fcft = nix.arg($, "fcft");
   const availableShapingTypes = nix.thunk(() => ["grapheme", "run"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "fcft",
       version: "3.3.3",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dnkl",
           repo: "fcft",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,15 +47,15 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          noShaping: nix.thunk(() => nix.app(nix.sel(fcft, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withShapingTypes: [] })))),
-          onlyGraphemeShaping: nix.thunk(() => nix.app(nix.sel(fcft, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withShapingTypes: nix.thunk(() => ["grapheme"]) })))),
+          [nix.POS]: $pos[3],
+          noShaping: nix.thunk(() => nix.app(nix.sel(fcft, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], withShapingTypes: [] })))),
+          onlyGraphemeShaping: nix.thunk(() => nix.app(nix.sel(fcft, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], withShapingTypes: nix.thunk(() => ["grapheme"]) })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://codeberg.org/dnkl/fcft",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/dnkl/fcft/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Simple library for font loading and glyph rasterization",

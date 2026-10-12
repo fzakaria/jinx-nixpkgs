@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/otp.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["dontBuild", 21, 3], ["patchPhase", 23, 3], ["installFlags", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "oath-toolkit": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/otp.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/otp.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/otp.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["dontBuild", 21, 3], ["patchPhase", 23, 3], ["installFlags", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const oath_toolkit = nix.arg($, "oath-toolkit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pass-otp",
       version: "unstable-2026-05-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tadfisher",
           repo: "pass-otp",
           rev: "7bb50dbc4b6073f12f40be66a5ee371b9652a646",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
 `),
       installFlags: nix.thunk(() => ["PREFIX=$(out)", "BASHCOMPDIR=$(out)/share/bash-completion/completions"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pass extension for managing one-time-password (OTP) tokens",
         homepage: "https://github.com/tadfisher/pass-otp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

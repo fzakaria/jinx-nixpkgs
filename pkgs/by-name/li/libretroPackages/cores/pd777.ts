@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pd777.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["core", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 18, 3], ["extraNativeBuildInputs", 20, 3], ["postPatch", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, gitMinimal: false, mkLibretroCore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pd777.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/pd777.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/pd777.nix", [["core", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 18, 3], ["extraNativeBuildInputs", 20, 3], ["postPatch", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       core: "pd777",
       version: "0-unstable-2026-09-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mittonk",
           repo: "PD777",
           rev: "331af5f53cc0ffbab90f915681c8dfe3a4cda0a2",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       extraNativeBuildInputs: nix.thunk(() => [gitMinimal]),
       postPatch: "# The libretro Makefile writes object files outside sourceRoot.\nchmod -R u+w ../core\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Epoch Cassette Vision emulator core for libretro",
         homepage: "https://github.com/mittonk/PD777",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

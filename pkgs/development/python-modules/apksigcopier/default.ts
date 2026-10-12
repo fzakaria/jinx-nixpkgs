@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 62, 5], ["mainProgram", 63, 5], ["longDescription", 64, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 31, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["postBuild", 40, 3], ["postInstall", 44, 3], ["makeWrapperArgs", 48, 3], ["pythonImportsCheck", 55, 3], ["nativeInstallCheckInputs", 57, 3], ["versionCheckProgramArg", 58, 3], ["doInstallCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, apksigner: false, bash: false, buildPythonPackage: false, click: false, fetchFromGitHub: false, installShellFiles: false, pandoc: false, setuptools: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 62, 5], ["mainProgram", 63, 5], ["longDescription", 64, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 31, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["postBuild", 40, 3], ["postInstall", 44, 3], ["makeWrapperArgs", 48, 3], ["pythonImportsCheck", 55, 3], ["nativeInstallCheckInputs", 57, 3], ["versionCheckProgramArg", 58, 3], ["doInstallCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "apksigcopier",
       version: "1.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "obfusk",
           repo: "apksigcopier",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Copy/extract/patch android apk signatures & compare APKs",
         mainProgram: "apksigcopier",
         longDescription: "apksigcopier is a tool for copying android APK signatures from a signed\nAPK to an unsigned one (in order to verify reproducible builds).\nIt can also be used to compare two APKs with different signatures.\nIts command-line tool offers four operations:\n\n* copy signatures directly from a signed to an unsigned APK\n* extract signatures from a signed APK to a directory\n* patch previously extracted signatures onto an unsigned APK\n* compare two APKs with different signatures (requires apksigner)\n",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 61, 5], ["repo", 62, 5], ["rev", 63, 5], ["hash", 64, 5]], [["domain", 69, 7], ["owner", 70, 7], ["repo", 71, 7], ["rev", 72, 7], ["hash", 73, 7]], [["src", 68, 5], ["postPatch", 76, 5]], [["name", 193, 7], ["desktopName", 194, 7], ["genericName", 195, 7], ["comment", 196, 7], ["icon", 197, 7], ["exec", 198, 7], ["type", 199, 7], ["categories", 200, 7]], [["updateScript", 204, 12]], [["description", 207, 5], ["homepage", 208, 5], ["changelog", 209, 5], ["license", 210, 5], ["maintainers", 211, 5], ["platforms", 215, 5], ["mainProgram", 216, 5], ["sourceProvenance", 217, 5]], [["pname", 57, 3], ["version", 58, 3], ["src", 60, 3], ["monado", 67, 3], ["strictDeps", 81, 3], ["postUnpack", 84, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 112, 3], ["cmakeFlags", 153, 3], ["dontWrapQtApps", 175, 3], ["separateDebugInfo", 176, 3], ["preFixup", 178, 3], ["desktopItems", 191, 3], ["passthru", 204, 3], ["meta", 206, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, fetchFromGitHub: false, fetchFromGitLab: false, applyPatches: false, autoAddDriverRunpath: false, "android-tools": false, avahi: false, boost: false, cli11: false, cmake: false, eigen: false, ffmpeg: false, freetype: false, git: false, glib: false, glm: false, glslang: false, harfbuzz: false, hexdump: false, kdePackages: false, libarchive: false, libdrm: false, libGL: false, libnotify: false, librsvg: false, libva: false, libx11: false, libxrandr: false, makeDesktopItem: false, "nix-update-script": false, nlohmann_json: false, opencomposite: false, "openxr-loader": false, pipewire: false, "pkg-config": false, python3: false, qt6: false, "sdl2-compat": false, shaderc: false, systemd: false, udev: false, "vulkan-headers": false, "vulkan-loader": false, x264: false, xrizer: false, cudaSupport: true, ovrCompatSearchPaths: true, clientLibOnly: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 61, 5], ["repo", 62, 5], ["rev", 63, 5], ["hash", 64, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["domain", 69, 7], ["owner", 70, 7], ["repo", 71, 7], ["rev", 72, 7], ["hash", 73, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 68, 5], ["postPatch", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 193, 7], ["desktopName", 194, 7], ["genericName", 195, 7], ["comment", 196, 7], ["icon", 197, 7], ["exec", 198, 7], ["type", 199, 7], ["categories", 200, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 204, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 207, 5], ["homepage", 208, 5], ["changelog", 209, 5], ["license", 210, 5], ["maintainers", 211, 5], ["platforms", 215, 5], ["mainProgram", 216, 5], ["sourceProvenance", 217, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 57, 3], ["version", 58, 3], ["src", 60, 3], ["monado", 67, 3], ["strictDeps", 81, 3], ["postUnpack", 84, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 112, 3], ["cmakeFlags", 153, 3], ["dontWrapQtApps", 175, 3], ["separateDebugInfo", 176, 3], ["preFixup", 178, 3], ["desktopItems", 191, 3], ["passthru", 204, 3], ["meta", 206, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -64,20 +58,20 @@ export default nix.lambda((args) => (() => {
   const ovrCompatSearchPaths = nix.argOr($, "ovrCompatSearchPaths", () => nix.str`${xrizer}/lib/xrizer:${opencomposite}/lib/opencomposite`);
   const clientLibOnly = nix.argOr($, "clientLibOnly", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "wivrn",
       version: "26.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wivrn",
           repo: "wivrn",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-/kXgbku/4EeYY5YTwtY71csgxOP8bRACLqOvKXolg5g=",
         })))),
       monado: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               domain: "gitlab.freedesktop.org",
               owner: "monado",
               repo: "monado",
@@ -167,7 +161,7 @@ wrapQtApp "$out/bin/wivrn-dashboard" \\
 `))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(clientLibOnly)), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "WiVRn Server",
               desktopName: "WiVRn Server",
               genericName: "WiVRn Server",
@@ -179,11 +173,11 @@ wrapQtApp "$out/bin/wivrn-dashboard" \\
             })))),
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "OpenXR streaming application to a standalone headset",
         homepage: "https://github.com/WiVRn/WiVRn/",
         changelog: nix.thunk(() => nix.str`https://github.com/WiVRn/WiVRn/releases/tag/v${nix.sel(finalAttrs, "version")}`),

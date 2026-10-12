@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["CGO_ENABLED", 21, 5]], [["description", 55, 5], ["longDescription", 56, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["sourceProvenance", 69, 5], ["maintainers", 72, 5], ["mainProgram", 75, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["vendorHash", 18, 3], ["__structuredAttrs", 19, 3], ["env", 20, 3], ["subPackages", 24, 3], ["ldflags", 25, 3], ["nativeBuildInputs", 30, 3], ["__darwinAllowLocalNetworking", 31, 3], ["checkFlags", 32, 3], ["doInstallCheck", 46, 3], ["nativeInstallCheckInputs", 47, 3], ["postInstall", 48, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["longDescription", 56, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["sourceProvenance", 69, 5], ["maintainers", 72, 5], ["mainProgram", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["vendorHash", 18, 3], ["__structuredAttrs", 19, 3], ["env", 20, 3], ["subPackages", 24, 3], ["ldflags", 25, 3], ["nativeBuildInputs", 30, 3], ["__darwinAllowLocalNetworking", 31, 3], ["checkFlags", 32, 3], ["doInstallCheck", 46, 3], ["nativeInstallCheckInputs", 47, 3], ["postInstall", 48, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "talos",
       version: "26.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ory",
           repo: "talos",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-uSJHR/GDdCRh8sgw7GEUYUEnkwc9UAA4Qeyc+Ww4z1Q=",
       __structuredAttrs: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["..."]),
       ldflags: nix.thunk(() => [
         "-s",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd talos \\\n  --bash <($out/bin/talos completion bash) \\\n  --fish <($out/bin/talos completion fish) \\\n  --zsh <($out/bin/talos completion zsh)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Server for issuing, verifying, and managing API keys",
         longDescription: "It follows [cloud architecture best practices](https://www.ory.com/docs/ecosystem/software-architecture-philosophy) and focuses on:\n\n- Issuing, verifying, and revoking API keys at scale\n- Importing externally-issued API keys for unified verification\n- Deriving short-lived JWT and macaroon tokens from long-lived keys\n- Side-car deployment for fast API key verification\n- Low-latency verification with caching and eventual revocation\n- Predictable operations through structured logging, metrics, and tracing\n",
         homepage: "https://github.com/ory/talos",

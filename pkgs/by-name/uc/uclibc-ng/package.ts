@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 75, 5], ["hash", 76, 5]], [["url", 128, 7], ["rev-prefix", 129, 7]], [["libiconv", 125, 5], ["updateScript", 127, 5]], [["homepage", 134, 5], ["description", 135, 5], ["longDescription", 136, 5], ["license", 151, 5], ["maintainers", 152, 5], ["platforms", 153, 5], ["badPlatforms", 154, 5]], [["pname", 71, 3], ["version", 72, 3], ["src", 74, 3], ["configurePhase", 79, 3], ["hardeningDisable", 90, 3], ["dontStrip", 93, 3], ["depsBuildBuild", 95, 3], ["makeFlags", 97, 3], ["enableParallelBuilding", 108, 3], ["installPhase", 110, 3], ["passthru", 122, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoLibc: false, buildPackages: false, fetchurl: false, gitUpdater: false, linuxHeaders: false, libiconvReal: false, extraConfig: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 75, 5], ["hash", 76, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 128, 7], ["rev-prefix", 129, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["libiconv", 125, 5], ["updateScript", 127, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 134, 5], ["description", 135, 5], ["longDescription", 136, 5], ["license", 151, 5], ["maintainers", 152, 5], ["platforms", 153, 5], ["badPlatforms", 154, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 71, 3], ["version", 72, 3], ["src", 74, 3], ["configurePhase", 79, 3], ["hardeningDisable", 90, 3], ["dontStrip", 93, 3], ["depsBuildBuild", 95, 3], ["makeFlags", 97, 3], ["enableParallelBuilding", 108, 3], ["installPhase", 110, 3], ["passthru", 122, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +31,11 @@ UCLIBC_HAS_THREADS_NATIVE y
 KERNEL_HEADERS "${linuxHeaders}/include"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.selOr(stdenv, () => "", "hostPlatform", "gcc", "float"), "soft")), "UCLIBC_HAS_FPU n\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isEabi")), "CONFIG_ARM_EABI y\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLittleEndian")), "ARCH_WANTS_BIG_ENDIAN n\nARCH_BIG_ENDIAN n\nARCH_WANTS_LITTLE_ENDIAN y\nARCH_LITTLE_ENDIAN y\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isBigEndian")), "ARCH_WANTS_BIG_ENDIAN y\nARCH_BIG_ENDIAN y\nARCH_WANTS_LITTLE_ENDIAN n\nARCH_LITTLE_ENDIAN n\n")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "uclibc-ng",
       version: "1.0.59",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.uclibc-ng.org/releases/${nix.sel(finalAttrs, "version")}/uClibc-ng-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-hsbxWXG/sUFWhQ8uNpBtrFpp33s+aIIW0a6gnS21QXQ=",
         })))),
@@ -72,16 +68,16 @@ sed -i s@/lib/@$out/lib/@g $out/lib/libc.so $out/lib/libpthread.so || true
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         libiconv: libiconvReal,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.uclibc-ng.org/git/uclibc-ng.git",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://uclibc-ng.org",
         description: "Embedded C library",
         longDescription: "uClibc-ng is a small C library for developing embedded Linux systems. It\nis much smaller than the GNU C Library, but nearly all applications\nsupported by glibc also work perfectly with uClibc-ng.\n\nPorting applications from glibc to uClibc-ng typically involves just\nrecompiling the source code. uClibc-ng supports shared libraries and\nthreading. It currently runs on standard Linux and MMU-less (also known as\nuClinux) systems with support for Aarch64, Alpha, ARC, ARM, AVR32,\nBlackfin, CRIS, C-Sky, C6X, FR-V, H8/300, HPPA, i386, IA64, KVX, LM32,\nM68K/Coldfire, Metag, Microblaze, MIPS, MIPS64, NDS32, NIOS2, OpenRISC,\nPowerPC, RISCV64, Sparc, Sparc64, SuperH, Tile, X86_64 and XTENSA\nprocessors. Alpha, FR-V, HPPA, IA64, LM32, NIOS2, Tile and Sparc64 are\nexperimental and need more testing.\n",

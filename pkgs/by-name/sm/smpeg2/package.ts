@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 30, 3], ["outputs", 32, 3], ["preConfigure", 38, 3], ["postInstall", 42, 3], ["enableParallelBuilding", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoconf: false, automake: false, fetchFromGitHub: false, makeWrapper: false, "pkg-config": false, SDL2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 30, 3], ["outputs", 32, 3], ["preConfigure", 38, 3], ["postInstall", 42, 3], ["enableParallelBuilding", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "smpeg2",
       version: "2.0.0-unstable-2022-05-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "icculus",
           repo: "smpeg",
           rev: "c5793e5f3f2765fc09c24380d7e92136a0e33d3b",
@@ -39,7 +37,7 @@ wrapProgram $dev/bin/smpeg2-config \\
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://icculus.org/smpeg/",
         description: "SDL2 MPEG Player Library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

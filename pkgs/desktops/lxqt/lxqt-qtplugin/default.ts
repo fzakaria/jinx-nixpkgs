@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["updateScript", 48, 12]], [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["teams", 55, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["postPatch", 43, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "libdbusmenu-lxqt": false, "libfm-qt": false, libqtxdg: false, "lxqt-build-tools": false, gitUpdater: false, qtbase: false, qtsvg: false, qttools: false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 48, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["teams", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["postPatch", 43, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lxqt-qtplugin",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxqt",
           repo: "lxqt-qtplugin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libdbusmenu_lxqt, libfm_qt, libqtxdg, qtbase, qtsvg]),
       postPatch: "substituteInPlace src/CMakeLists.txt \\\n  --replace-fail \"DESTINATION \\\"\\${QT_PLUGINS_DIR}\" \"DESTINATION \\\"$qtPluginPrefix\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/lxqt/lxqt-qtplugin",
         description: "LXQt Qt platform integration plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

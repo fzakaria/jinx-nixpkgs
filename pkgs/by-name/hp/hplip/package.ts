@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 5], ["hash", 43, 5]], [["url", 47, 5], ["curlOptsList", 49, 5], ["hash", 53, 5]], [["version", 57, 13]], [["i686-linux", 61, 5], ["x86_64-linux", 62, 5], ["armv6l-linux", 63, 5], ["armv7l-linux", 64, 5], ["aarch64-linux", 65, 5]], [["url", 158, 7], ["hash", 159, 7]], [["url", 166, 7], ["hash", 167, 7]], [["CUPS_DATADIR", 249, 5], ["NIX_CFLAGS_COMPILE", 251, 5]], [["description", 361, 5], ["homepage", 362, 5], ["downloadPage", 363, 5], ["license", 364, 5], ["platforms", 374, 5], ["maintainers", 375, 5]], [["pname", 82, 11], ["version", 82, 17], ["pyproject", 83, 3], ["srcs", 85, 3], ["unpackCmd", 87, 3], ["sourceRoot", 94, 3], ["buildInputs", 96, 3], ["nativeBuildInputs", 114, 3], ["pythonPath", 123, 3], ["makeWrapperArgs", 140, 3], ["patches", 147, 3], ["postPatch", 171, 3], ["configureFlags", 198, 3], ["makeFlags", 220, 3], ["postConfigure", 235, 3], ["enableParallelBuilding", 241, 3], ["enableParallelInstalling", 242, 3], ["env", 244, 3], ["postInstall", 264, 3], ["dontWrapPythonPrograms", 318, 3], ["dontWrapGApps", 320, 3], ["dontWrapQtApps", 321, 3], ["preFixup", 322, 3], ["postFixup", 338, 3], ["stripDebugList", 352, 3], ["meta", 360, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, replaceVars: false, "pkg-config": false, autoreconfHook: false, "gobject-introspection": false, wrapGAppsHook3: false, cups: false, zlib: false, libjpeg: false, libusb1: false, python3Packages: false, "sane-backends": false, dbus: false, file: false, ghostscript: false, usbutils: false, "net-snmp": false, openssl: false, perl: false, "net-tools": false, avahi: false, bash: false, "util-linux": false, removeReferencesTo: false, qt5: false, withQt5: true, withPlugin: true, withStaticPPDInstall: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 47, 5], ["curlOptsList", 49, 5], ["hash", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 57, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["i686-linux", 61, 5], ["x86_64-linux", 62, 5], ["armv6l-linux", 63, 5], ["armv7l-linux", 64, 5], ["aarch64-linux", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 158, 7], ["hash", 159, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 166, 7], ["hash", 167, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["CUPS_DATADIR", 249, 5], ["NIX_CFLAGS_COMPILE", 251, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 361, 5], ["homepage", 362, 5], ["downloadPage", 363, 5], ["license", 364, 5], ["platforms", 374, 5], ["maintainers", 375, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 82, 11], ["version", 82, 17], ["pyproject", 83, 3], ["srcs", 85, 3], ["unpackCmd", 87, 3], ["sourceRoot", 94, 3], ["buildInputs", 96, 3], ["nativeBuildInputs", 114, 3], ["pythonPath", 123, 3], ["makeWrapperArgs", 140, 3], ["patches", 147, 3], ["postPatch", 171, 3], ["configureFlags", 198, 3], ["makeFlags", 220, 3], ["postConfigure", 235, 3], ["enableParallelBuilding", 241, 3], ["enableParallelInstalling", 242, 3], ["env", 244, 3], ["postInstall", 264, 3], ["dontWrapPythonPrograms", 318, 3], ["dontWrapGApps", 320, 3], ["dontWrapQtApps", 321, 3], ["preFixup", 322, 3], ["postFixup", 338, 3], ["stripDebugList", 352, 3], ["meta", 360, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,19 +41,19 @@ export default nix.lambda((args) => (() => {
   const pname = "hplip";
   const version = "3.26.4";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`mirror://sourceforge/hplip/hplip-${version}.tar.gz`),
       hash: "sha256-ucYSUnVPNbSiNzlsqJYeez4MVtt21mpnEre/PjDmlGM=",
     }))));
   const plugin = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://developers.hp.com/sites/default/files/2026-05/hplip-${version}-plugin.run`),
       curlOptsList: nix.thunk(() => ["--user-agent", "Mozilla/5.0 Gecko/20100101 Firefox/150.0"]),
       hash: "sha256-GZ94+K9/NolNcYDpCQljziVQp17HAfikujdmWpdG/fA=",
     }))));
-  const hplipState = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hplip.state"), nix.thunk(() => ({ [nix.POS]: pos$3, version: version }))));
+  const hplipState = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hplip.state"), nix.thunk(() => ({ [nix.POS]: $pos[2], version: version }))));
   const hplipPlatforms = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "i686-linux": "x86_32",
     "x86_64-linux": "x86_64",
     "armv6l-linux": "arm32",
@@ -71,7 +63,7 @@ export default nix.lambda((args) => (() => {
   const hplipArch = nix.thunk(() => nix.selOr(hplipPlatforms, () => nix.builtins.throw(nix.thunk(() => nix.str`HPLIP not supported on ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const pluginArches = nix.thunk(() => ["x86_32", "x86_64", "arm32", "arm64"]);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: pname,
       version: version,
       pyproject: false,
@@ -120,12 +112,12 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./hplip-3.20.11-nixos-cups-ppd-search-path.patch"),
         nix.path(here, "./gcc-compatability.patch"),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://web.archive.org/web/20230226174550/https://sources.debian.org/data/main/h/hplip/3.22.10+dfsg0-1/debian/patches/0028-Remove-ImageProcessor-binary-installs.patch",
             hash: "sha256-tNYccuwrcx5WCe7ULk8r8J6MVcUytGspiW64zAvO0qI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://launchpadlibrarian.net/800485629/hplip-no-urlopener.patch",
             hash: "sha256-LCd43WnwPo6SBjcxGI3bVryWedDeyKXc9tCF16edDK4=",
           })))),
@@ -186,7 +178,7 @@ echo 'AUTOMAKE_OPTIONS = foreign' >> Makefile.am
       enableParallelBuilding: true,
       enableParallelInstalling: false,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         CUPS_DATADIR: nix.thunk(() => nix.str`${cups}/share/cups`),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=implicit-int",
@@ -271,7 +263,7 @@ remove-references-to -t ${nix.sel(stdenv, "cc", "cc")} $(readlink -f $out/lib/*.
         "lib/sane",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Print, scan and fax HP drivers for Linux",
         homepage: "https://developers.hp.com/hp-linux-imaging-and-printing",
         downloadPage: "https://sourceforge.net/projects/hplip/files/hplip/",

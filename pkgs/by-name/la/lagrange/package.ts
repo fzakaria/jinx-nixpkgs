@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["attrPath", 74, 40]], [["updateScript", 74, 5]], [["description", 78, 5], ["homepage", 79, 5], ["mainProgram", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["cmakeFlags", 56, 3], ["installPhase", 61, 3], ["passthru", 73, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, "pkg-config": false, fribidi: false, harfbuzz: false, libogg: false, libwebp: false, libx11: false, mpg123: false, opusfile: false, SDL2: false, "the-foundation": false, zip: false, enableTUI: true, ncurses: false, sealcurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["attrPath", 74, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["mainProgram", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["cmakeFlags", 56, 3], ["installPhase", 61, 3], ["passthru", 73, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const sealcurses = nix.arg($, "sealcurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lagrange",
       version: "1.21.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "skyjake",
           repo: "lagrange",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,11 +55,11 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv Lagrange.app $out/Applications\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(enableTUI))), "# https://github.com/skyjake/lagrange/issues/610\nmake install\ninstall -d $out/share/lagrange\nln -s $out/Applications/Lagrange.app/Contents/Resources/resources.lgr $out/share/lagrange/resources.lgr\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, attrPath: "lagrange" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], attrPath: "lagrange" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Beautiful Gemini Client",
         homepage: "https://gmi.skyjake.fi/lagrange/",
         mainProgram: "lagrange",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bdanmaku.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["extraWrapperArgs", 21, 12], ["updateScript", 28, 12]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["scriptPath", 13, 3], ["src", 14, 3], ["passthru", 21, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildLua: false, fetchFromGitHub: false, "nix-update-script": false, biliass: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bdanmaku.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/bdanmaku.nix", [["extraWrapperArgs", 21, 12], ["updateScript", 28, 12]]);
-const pos$3 = nix.positions(here + "/bdanmaku.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$4 = nix.positions(here + "/bdanmaku.nix", [["pname", 10, 3], ["version", 11, 3], ["scriptPath", 13, 3], ["src", 14, 3], ["passthru", 21, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const biliass = nix.arg($, "biliass");
   return nix.app(buildLua, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bdanmaku",
       version: "0-unstable-2025-01-15",
       scriptPath: "bdanmaku.lua",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "UlyssesZh",
           repo: "bdanmaku",
           rev: "c9f2dca413a7148a662f006b8c524ccbd7a1945b",
           hash: "sha256-XbkKXZoC+Rqn0gSyyw8sn2VJO73MlatOS0lm2tcwcfY=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         extraWrapperArgs: nix.thunk(() => [
           "--prefix",
           "PATH",
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Mpv plugin to correctly display Bilibili danmaku, powered by biliass",
         homepage: "https://github.com/UlyssesZh/bdanmaku",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

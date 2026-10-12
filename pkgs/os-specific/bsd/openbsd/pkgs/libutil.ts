@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libutil.nix", [[["platforms", 38, 8]], [["path", 17, 3], ["libcMinimal", 19, 3], ["outputs", 21, 3], ["nativeBuildInputs", 26, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, libcMinimal: false, bsdSetupHook: false, openbsdSetupHook: false, makeMinimal: false, byacc: false, install: false, tsort: false, lorder: false, mandoc: false, statHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libutil.nix", [["platforms", 38, 8]]);
-const pos$2 = nix.positions(here + "/libutil.nix", [["path", 17, 3], ["libcMinimal", 19, 3], ["outputs", 21, 3], ["nativeBuildInputs", 26, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const mandoc = nix.arg($, "mandoc");
   const statHook = nix.arg($, "statHook");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "lib/libutil",
       libcMinimal: true,
       outputs: nix.thunk(() => ["out", "man"]),
@@ -37,7 +36,7 @@ export default nix.lambda((args) => (() => {
         statHook,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "openbsd")),
       })),
     })));

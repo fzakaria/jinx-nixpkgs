@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["fetchSubmodules", 47, 5], ["hash", 48, 5]], [["convert", 68, 5], ["docs", 77, 5]], [["extraArgs", 97, 5]], [["updateScript", 96, 12]], [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["build-system", 51, 3], ["dontUseCmakeConfigure", 56, 3], ["buildInputs", 58, 3], ["dependencies", 62, 3], ["optional-dependencies", 67, 3], ["pythonImportsCheck", 86, 3], ["preCheck", 88, 3], ["nativeCheckInputs", 92, 3], ["passthru", 96, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, ninja: false, "scikit-build-core": false, ggml: false, numpy: false, "typing-extensions": false, accelerate: false, sentencepiece: false, torch: false, torchaudio: false, torchvision: false, transformers: false, cairosvg: false, mkdocs: false, "mkdocs-material": false, mkdocstrings: false, pillow: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["fetchSubmodules", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["convert", 68, 5], ["docs", 77, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extraArgs", 97, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 96, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["build-system", 51, 3], ["dontUseCmakeConfigure", 56, 3], ["buildInputs", 58, 3], ["dependencies", 62, 3], ["optional-dependencies", 67, 3], ["pythonImportsCheck", 86, 3], ["preCheck", 88, 3], ["nativeCheckInputs", 92, 3], ["passthru", 96, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const pillow = nix.arg($, "pillow");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ggml-python",
       version: "0.0.45",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "abetlen",
           repo: "ggml-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ggml]),
       dependencies: nix.thunk(() => [numpy, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         convert: nix.thunk(() => [
           accelerate,
           numpy,
@@ -69,14 +64,14 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -rf ggml\n",
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python bindings for ggml",
         homepage: "https://github.com/abetlen/ggml-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

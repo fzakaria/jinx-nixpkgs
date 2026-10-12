@@ -2,13 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 48, 19], ["sha256", 48, 23]], [["command", 72, 11], ["supportedFeatures", 73, 11]], [["releaseVersion", 70, 17], ["updateScript", 71, 9]], [["description", 78, 9], ["license", 79, 9], ["homepage", 88, 9], ["changelog", 89, 9], ["platforms", 90, 9], ["maintainers", 91, 9]], [["pname", 38, 7], ["version", 39, 7], ["src", 41, 7], ["sourceRoot", 51, 7], ["nativeBuildInputs", 53, 7], ["dontInstallFonts", 54, 7], ["installPhase", 56, 7], ["passthru", 69, 7], ["meta", 77, 7]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, installFonts: false }, ellipsis: false };
 const formals$2 = { args: { caskName: false, description: false, folderName: false, licenseId: false, patchedName: false, version: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 48, 19], ["sha256", 48, 23]]);
-const pos$2 = nix.positions(here + "/default.nix", [["command", 72, 11], ["supportedFeatures", 73, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["releaseVersion", 70, 17], ["updateScript", 71, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 78, 9], ["license", 79, 9], ["homepage", 88, 9], ["changelog", 89, 9], ["platforms", 90, 9], ["maintainers", 91, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 38, 7], ["version", 39, 7], ["src", 41, 7], ["sourceRoot", 51, 7], ["nativeBuildInputs", 53, 7], ["dontInstallFonts", 54, 7], ["installPhase", 56, 7], ["passthru", 69, 7], ["meta", 77, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,14 +31,14 @@ export default nix.lambda((args) => (() => {
     const patchedName = nix.arg($_1, "patchedName");
     const version = nix.arg($_1, "version");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: nix.thunk(() => nix.add("nerd-fonts-", nix.app(nix.sel(lib, "strings", "toLower"), caskName))),
         version: nix.thunk(() => nix.add(releaseVersion, nix.app(convertVersion, version))),
         src: nix.thunk(() => (() => {
           const filename = nix.thunk(() => nix.add(folderName, ".tar.xz"));
           const url = nix.thunk(() => nix.str`https://github.com/ryanoasis/nerd-fonts/releases/download/${nix.sel(releaseInfo, "tag_name")}/${filename}`);
           const sha256 = nix.thunk(() => nix.sel(checksums, nix.key(nix.force(filename))));
-          return nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, sha256: sha256 })));
+          return nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, sha256: sha256 })));
         })()),
         sourceRoot: ".",
         nativeBuildInputs: nix.thunk(() => [installFonts]),
@@ -58,16 +54,16 @@ runHook postInstall
 `;
         })()),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           releaseVersion: releaseVersion,
           updateScript: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             command: nix.path(here, "./update.py"),
             supportedFeatures: nix.thunk(() => ["commit"]),
           })),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: nix.thunk(() => nix.add("Nerd Fonts: ", description)),
           license: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat((() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["twbtRelease", 20, 7], ["hash", 21, 7], ["prerelease", 22, 7]], [["twbtRelease", 25, 7], ["dfhackRelease", 26, 7], ["hash", 27, 7], ["prerelease", 28, 7]], [["0.44.12", 19, 5], ["0.47.05", 24, 5]], [["url", 44, 5], ["hash", 49, 23]], [["dfVersion", 70, 13]], [["description", 74, 5], ["maintainers", 75, 5], ["license", 79, 5], ["platforms", 80, 5], ["homepage", 81, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["sourceRoot", 52, 3], ["outputs", 54, 3], ["nativeBuildInputs", 60, 3], ["installPhase", 62, 3], ["passthru", 69, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false, unzip: false, dfVersion: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["twbtRelease", 20, 7], ["hash", 21, 7], ["prerelease", 22, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["twbtRelease", 25, 7], ["dfhackRelease", 26, 7], ["hash", 27, 7], ["prerelease", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["0.44.12", 19, 5], ["0.47.05", 24, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 44, 5], ["hash", 49, 23]]);
-const pos$5 = nix.positions(here + "/default.nix", [["dfVersion", 70, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 74, 5], ["maintainers", 75, 5], ["license", 79, 5], ["platforms", 80, 5], ["homepage", 81, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["sourceRoot", 52, 3], ["outputs", 54, 3], ["nativeBuildInputs", 60, 3], ["installPhase", 62, 3], ["passthru", 69, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,15 +18,15 @@ export default nix.lambda((args) => (() => {
   const maintainers = nix.thunk(() => nix.attr(lib, "maintainers"));
   const platforms = nix.thunk(() => nix.attr(lib, "platforms"));
   const twbt_releases = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "0.44.12": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       twbtRelease: "6.54",
       hash: "sha256-cKomZmTLHab9K8k0pZsB2uMf3D5/SVhy2GRusLdp7oE=",
       prerelease: false,
     })),
     "0.47.05": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       twbtRelease: "6.xx",
       dfhackRelease: "0.47.05-r8",
       hash: "sha256-qiNs6iMAUNGiq0kpXqEs4u4Wcrjf6/qA/dzBe947Trc=",
@@ -44,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "twbt";
       const version = nix.thunk(() => nix.sel(release, "twbtRelease"));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => (nix.asBool(nix.eq(version, "6.xx")) ? nix.str`https://github.com/thurin/df-twbt/releases/download/${nix.sel(release, "dfhackRelease")}/twbt-${version}-linux64-${nix.sel(release, "dfhackRelease")}.zip` : nix.str`https://github.com/mifki/df-twbt/releases/download/v${version}/twbt-${version}-linux.zip`)),
           hash: nix.thunk(() => nix.attr(release, "hash")),
         }))));
@@ -52,9 +46,9 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["lib", "art", "out"]);
       const nativeBuildInputs = nix.thunk(() => [unzip]);
       const installPhase = "mkdir -p $lib/hack/{plugins,lua} $art/data/art\ncp -a */twbt.plug.so $lib/hack/plugins/\ncp -a *.lua $lib/hack/lua/\ncp -a *.png $art/data/art/\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, dfVersion: dfVersion }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[4], dfVersion: dfVersion }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Plugin for Dwarf Fortress / DFHack that improves various aspects of the game interface",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(maintainers, null);
@@ -68,7 +62,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://github.com/mifki/df-twbt",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

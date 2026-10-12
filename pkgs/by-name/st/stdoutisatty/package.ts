@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["ls-color", 38, 7]], [["updateScript", 36, 5], ["tests", 37, 5]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5], ["platforms", 70, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["cmakeFlags", 27, 3], ["passthru", 35, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, makeBinaryWrapper: false, "nix-update-script": false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ls-color", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 36, 5], ["tests", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5], ["platforms", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["cmakeFlags", 27, 3], ["passthru", 35, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "stdoutisatty",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lilydjwg",
           repo: "stdoutisatty",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,10 +31,10 @@ export default nix.lambda((args) => (() => {
         "-DCMAKE_POLICY_VERSION_MINIMUM=3.10",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "ls-color": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test-ls-color`), nix.thunk(() => ({})), nix.thunk(() => nix.str`set -x
 mkdir somedir
 ln -s somedir somelink
@@ -56,7 +52,7 @@ set +x
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Make programs think their stdout is a tty / terminal",
         longDescription: "`stdoutisatty command` makes `command` think their stdout is a terminal,\neven if it is actually being piped into another program (e.g. `less`).\nThis is most useful for preserving user-friendly, colored outputs.\n\nFor example, `stdoutisatty ls --color=auto | less` will always show\ncolored output, despite being piped into a pager.\n",
         homepage: "https://github.com/lilydjwg/stdoutisatty",

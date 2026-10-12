@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["patches", 27, 27]], [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]], [["updateScript", 53, 12]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]], [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["overrideModAttrs", 27, 3], ["patches", 29, 3], ["nativeBuildInputs", 38, 3], ["nativeInstallCheckInputs", 43, 3], ["ldflags", 45, 3], ["postFixup", 47, 3], ["doInstallCheck", 51, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchpatch2: false, makeWrapper: false, massdns: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["patches", 27, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["overrideModAttrs", 27, 3], ["patches", 29, 3], ["nativeBuildInputs", 38, 3], ["nativeInstallCheckInputs", 43, 3], ["ldflags", 45, 3], ["postFixup", 47, 3], ["doInstallCheck", 51, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "puredns",
       version: "2.1.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "d3mondev",
           repo: "puredns",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-3I4ZRj0bM6VfdnaG7pG9E4Qw4dpxlX4xJbsOIZu01i0=",
         })))),
       vendorHash: "sha256-JB0Xojjh2STXwrpZxCvTgvp80ZLtL0jhhzTsiYOWtIM=",
-      overrideModAttrs: (_) => ({ [nix.POS]: pos$2, patches: nix.thunk(() => nix.sel(finalAttrs, "patches")) }),
+      overrideModAttrs: (_) => ({ [nix.POS]: $pos[1], patches: nix.thunk(() => nix.sel(finalAttrs, "patches")) }),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "bump-go.patch",
             url: "https://github.com/d3mondev/puredns/commit/4c58955c5d9450b9aecad2213c253a6eb2670c33.patch?full_index=1",
             hash: "sha256-CzlfN4ld065O7OVI5vILeyvv+jWBbAeweVgkeL80UDY=",
@@ -49,11 +44,11 @@ export default nix.lambda((args) => (() => {
 `),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Domain resolver and subdomain bruteforcing tool",
         homepage: "https://github.com/d3mondev/puredns",
         changelog: nix.thunk(() => nix.str`https://github.com/d3mondev/puredns/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

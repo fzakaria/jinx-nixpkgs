@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ld_elf_so.nix", [[["platforms", 11, 8]], [["noLibc", 9, 3], ["path", 10, 3], ["meta", 11, 3], ["LIBC_PIC", 12, 3], ["SHLINKINSTALLDIR", 14, 3], ["USE_FORT", 15, 3], ["makeFlags", 16, 3], ["extraPaths", 20, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, libcMinimal: false, defaultMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ld_elf_so.nix", [["platforms", 11, 8]]);
-const pos$2 = nix.positions(here + "/ld_elf_so.nix", [["noLibc", 9, 3], ["path", 10, 3], ["meta", 11, 3], ["LIBC_PIC", 12, 3], ["SHLINKINSTALLDIR", 14, 3], ["USE_FORT", 15, 3], ["makeFlags", 16, 3], ["extraPaths", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const libcMinimal = nix.arg($, "libcMinimal");
   const defaultMakeFlags = nix.arg($, "defaultMakeFlags");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       noLibc: true,
       path: "libexec/ld.elf_so",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
       LIBC_PIC: nix.thunk(() => nix.str`${libcMinimal}/lib/libc_pic.a`),

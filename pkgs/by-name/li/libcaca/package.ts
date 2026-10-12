@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["x11Support", 43, 32]], [["NIX_CFLAGS_COMPILE", 66, 7]], [["homepage", 74, 5], ["description", 75, 5], ["longDescription", 76, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["outputs", 50, 3], ["configureFlags", 57, 3], ["env", 66, 3], ["postInstall", 68, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, imlib2: false, libxext: false, libx11: false, ncurses: false, "pkg-config": false, zlib: false, x11Support: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x11Support", 43, 32]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 66, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["description", 75, 5], ["longDescription", 76, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["outputs", 50, 3], ["configureFlags", 57, 3], ["env", 66, 3], ["postInstall", 68, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const x11Support = nix.argOr($, "x11Support", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libcaca",
       version: "0.99.beta20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cacalabs",
           repo: "libcaca",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2026-42046.patch",
             url: "https://github.com/cacalabs/libcaca/commit/fb77acff9ba6bb01d53940da34fb10f20b156a23.patch",
             hash: "sha256-AdpiE5Gw/CVET//7TTYZCb0glW5HY+T8xZkYs1XCBvY=",
@@ -47,17 +42,17 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([
         ncurses,
         zlib,
-        nix.thunk(() => nix.app(nix.sel(imlib2, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, x11Support: x11Support })))),
+        nix.thunk(() => nix.app(nix.sel(imlib2, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], x11Support: x11Support })))),
       ], nix.app(nix.sel(lib, "optionals"), x11Support, nix.thunk(() => [libx11, libxext])))),
       outputs: nix.thunk(() => ["bin", "dev", "out", "man"]),
       configureFlags: nix.thunk(() => nix.concat([nix.thunk(() => (nix.asBool(x11Support) ? "--enable-x11" : "--disable-x11"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), false, "cocoa"))])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(x11Support)), "-DX_DISPLAY_MISSING")),
       })),
       postInstall: "mkdir -p $dev/bin\nmv $bin/bin/caca-config $dev/bin/caca-config\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "http://caca.zoy.org/wiki/libcaca",
         description: "Graphics library that outputs text instead of pixels",
         longDescription: "libcaca is a graphics library that outputs text instead of pixels, so that\nit can work on older video cards or text terminals. It is not unlike the\nfamous ​AAlib library, with the following improvements:\n\n- Unicode support\n- 2048 available colours (some devices can only handle 16)\n- dithering of colour images\n- advanced text canvas operations (blitting, rotations)\n\nLibcaca works in a text terminal (and should thus work on all Unix systems\nincluding Mac OS X) using the S-Lang or ncurses libraries. It also works\nnatively on DOS and Windows.\n\nLibcaca was written by Sam Hocevar and Jean-Yves Lamoureux.\n",

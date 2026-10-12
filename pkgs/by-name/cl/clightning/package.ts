@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["hash", 36, 5]], [["NIX_CFLAGS_COMPILE", 95, 7]], [["description", 100, 5], ["longDescription", 101, 5], ["homepage", 107, 5], ["maintainers", 108, 5], ["license", 112, 5], ["platforms", 113, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 60, 3], ["postPatch", 70, 3], ["configureFlags", 86, 3], ["makeFlags", 88, 3], ["enableParallelBuilding", 90, 3], ["env", 95, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cctools: false, darwin: false, fetchurl: false, autoconf: false, autogen: false, automake: false, gettext: false, libtool: false, "lowdown-unsandboxed": false, protobuf: false, unzip: false, which: false, gmp: false, libsodium: false, python3: false, sqlite: false, zlib: false, jq: false, libpq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 95, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 100, 5], ["longDescription", 101, 5], ["homepage", 107, 5], ["maintainers", 108, 5], ["license", 112, 5], ["platforms", 113, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 60, 3], ["postPatch", 70, 3], ["configureFlags", 86, 3], ["makeFlags", 88, 3], ["enableParallelBuilding", 90, 3], ["env", 95, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(p, "mako")),
     ]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "clightning",
       version: "26.04.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ElementsProject/lightning/releases/download/v${nix.sel(finalAttrs, "version")}/clightning-v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-MEsZ5GPCY6q/SNO+xcktfGiCZUVgl4p7pdMOiqIqFJM=",
         })))),
@@ -63,11 +60,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`VERSION=v${nix.sel(finalAttrs, "version")}`)]),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), "-Wno-error=gnu-folding-constant")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Bitcoin Lightning Network implementation in C",
         longDescription: "c-lightning is a standard compliant implementation of the Lightning\nNetwork protocol. The Lightning Network is a scalability solution for\nBitcoin, enabling secure and instant transfer of funds between any two\nparties for any amount.\n",
         homepage: "https://github.com/ElementsProject/lightning",

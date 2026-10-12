@@ -2,17 +2,13 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/functions.nix", [[["gemdir", 24, 15], ["gemfile", 26, 7], ["lockfile", 33, 7], ["gemset", 40, 7]], [["strictDeps", 101, 13], ["nativeBuildInputs", 102, 13]], [["type", 129, 9], ["bundledByPath", 130, 9], ["name", 131, 9], ["version", 132, 9], ["outPath", 133, 9], ["outputs", 134, 9], ["out", 135, 9], ["outputName", 136, 9], ["suffix", 137, 9], ["gemType", 138, 9]], [["ruby", 148, 17], ["type", 149, 32], ["source", 150, 9], ["gemName", 151, 9], ["gemPath", 152, 9]], [["bundlerFiles", 15, 3], ["filterGemset", 48, 3], ["platformMatches", 65, 3], ["groupMatches", 77, 3], ["applyGemConfigs", 83, 3], ["genStubsScript", 86, 3], ["pathDerivation", 120, 3], ["composeGemAttrs", 143, 3]]]);
 const formals$1 = { args: { lib: false, gemConfig: false }, ellipsis: true };
 const formals$2 = { args: { gemfile: true, lockfile: true, gemset: true, gemdir: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/functions.nix", [["gemdir", 24, 15], ["gemfile", 26, 7], ["lockfile", 33, 7], ["gemset", 40, 7]]);
 const formals$3 = { args: { ruby: false, groups: false }, ellipsis: true };
 const formals$4 = { args: { rubyEngine: false, version: false }, ellipsis: true };
 const formals$5 = { args: { lib: false, runCommand: false, ruby: false, confFiles: false, bundler: false, groups: false, binPaths: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/functions.nix", [["strictDeps", 101, 13], ["nativeBuildInputs", 102, 13]]);
 const formals$6 = { args: { gemName: false, version: false, path: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/functions.nix", [["type", 129, 9], ["bundledByPath", 130, 9], ["name", 131, 9], ["version", 132, 9], ["outPath", 133, 9], ["outputs", 134, 9], ["out", 135, 9], ["outputName", 136, 9], ["suffix", 137, 9], ["gemType", 138, 9]]);
-const pos$4 = nix.positions(here + "/functions.nix", [["ruby", 148, 17], ["type", 149, 32], ["source", 150, 9], ["gemName", 151, 9], ["gemPath", 152, 9]]);
-const pos$5 = nix.positions(here + "/functions.nix", [["bundlerFiles", 15, 3], ["filterGemset", 48, 3], ["platformMatches", 65, 3], ["groupMatches", 77, 3], ["applyGemConfigs", 83, 3], ["genStubsScript", 86, 3], ["pathDerivation", 120, 3], ["composeGemAttrs", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const gemset = nix.argOr($_1, "gemset", () => null);
       const gemdir = nix.argOr($_1, "gemdir", () => null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         gemdir: gemdir,
         gemfile: nix.thunk(() => (nix.asBool(nix.eq(gemfile, null)) ? (() => {
           nix.assert_(!nix.eq(gemdir, null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/ruby-modules/bundled-common/functions.nix:28:11");
@@ -81,7 +77,7 @@ export default nix.lambda((args) => (() => {
       const groups = nix.arg($_1, "groups");
       const binPaths = nix.arg($_1, "binPaths");
       const genStubsScript_1 = nix.thunk(() => nix.app(runCommand, "gen-bin-stubs", nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           strictDeps: true,
           nativeBuildInputs: nix.thunk(() => [ruby]),
         })), nix.thunk(() => nix.str`cp ${nix.path(here, "./gen-bin-stubs.rb")} $out
@@ -103,7 +99,7 @@ patchShebangs --build $out
       const version = nix.arg($_1, "version");
       const path = nix.arg($_1, "path");
       const res = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         type: "derivation",
         bundledByPath: true,
         name: gemName,
@@ -120,7 +116,7 @@ patchShebangs --build $out
     const composeGemAttrs = (ruby) => (gems) => (name) => (attrs) => nix.update(nix.builtins.removeAttrs(attrs, nix.thunk(() => ["platforms"])), (() => {
       const from = nix.thunk(() => nix.sel(attrs, "source"));
       return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       ruby: ruby,
       type: nix.thunk(() => nix.attr(from, "type")),
       source: nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(attrs, "source")), nix.thunk(() => ["type"]))),
@@ -129,7 +125,7 @@ patchShebangs --build $out
     };
     })());
     return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       bundlerFiles,
       filterGemset,
       platformMatches,

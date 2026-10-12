@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 75, 5], ["platforms", 76, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["doInstallCheck", 42, 3], ["preConfigure", 44, 3], ["postInstall", 46, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, bzip2: false, installShellFiles: false, libusb1: false, libzip: false, openssl: false, "tinyxml-2": false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 75, 5], ["platforms", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["doInstallCheck", 42, 3], ["preConfigure", 44, 3], ["postInstall", 46, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const tinyxml_2 = nix.arg($, "tinyxml-2");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nxpmicro-mfgtools",
       version: "1.5.243",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nxp-imx",
           repo: "mfgtools",
           rev: nix.thunk(() => nix.str`uuu_${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`echo ${nix.sel(finalAttrs, "version")} > .tarball-version`),
       postInstall: "# rules printed by the following invocation are static,\n# they come from hardcoded configs in libuuu/config.cpp:48\n$out/bin/uuu -udev > udev-rules 2>stderr.txt\nrules_file=\"$(cat stderr.txt|grep '1: put above udev run into'|sed 's|^.*/||')\"\ninstall -D udev-rules \"$out/lib/udev/rules.d/$rules_file\"\ninstallShellCompletion --cmd uuu \\\n  --bash ../snap/local/bash-completion/universal-update-utility\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Freescale/NXP I.MX chip image deploy tools",
         longDescription: "UUU (Universal Update Utility) is a command line tool, evolved out of\nMFGTools (aka MFGTools v3).\n\nOne of the main purposes is to upload images to I.MX SoC's using at least\ntheir boot ROM.\n\nWith time, the need for an update utility portable to Linux and Windows\nincreased. UUU has the same usage on both Windows and Linux. It means the same\nscript works on both OS.\n",
         homepage: "https://github.com/NXPmicro/mfgtools",

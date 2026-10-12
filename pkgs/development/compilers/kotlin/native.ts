@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/native.nix", [[["aarch64-darwin", 17, 11], ["x86_64-linux", 18, 11]], [["macos-aarch64", 29, 11], ["macos-x86_64", 30, 11], ["linux-x86_64", 31, 11]], [["url", 36, 7], ["sha256", 37, 7]], [["homepage", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["sourceProvenance", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 40, 3], ["installPhase", 45, 3], ["postFixup", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/native.nix", [["aarch64-darwin", 17, 11], ["x86_64-linux", 18, 11]]);
-const pos$2 = nix.positions(here + "/native.nix", [["macos-aarch64", 29, 11], ["macos-x86_64", 30, 11], ["linux-x86_64", 31, 11]]);
-const pos$3 = nix.positions(here + "/native.nix", [["url", 36, 7], ["sha256", 37, 7]]);
-const pos$4 = nix.positions(here + "/native.nix", [["homepage", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["sourceProvenance", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$5 = nix.positions(here + "/native.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 40, 3], ["installPhase", 45, 3], ["postFixup", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,19 +17,19 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.21";
       const src = nix.thunk(() => (() => {
         const getArch = nix.thunk(() => nix.selOr({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           "aarch64-darwin": "macos-aarch64",
           "x86_64-linux": "linux-x86_64",
         }, () => nix.builtins.throw(nix.thunk(() => nix.str`${pname}-${version}: ${nix.sel(stdenv, "system")} is unsupported.`)), nix.key(nix.sel(stdenv, "system"))));
         const getUrl = (version_1) => (arch) => nix.str`https://github.com/JetBrains/kotlin/releases/download/v${version_1}/kotlin-native-prebuilt-${arch}-${version_1}.tar.gz`;
         const getHash = (arch) => nix.sel({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "macos-aarch64": "sha256-UnDl9wj/7RXrEaApuAaLczIfz0lscQPf+pCeSdJxJeY=",
           "macos-x86_64": "sha256-mmsBQrx0yKqvvhnD8CU+oxqhWsOT1RzvzSniN3CeG7g=",
           "linux-x86_64": "sha256-oTW6qe+SklxcKu8gwc8DZzTKj+L65duYYXO+uWp6gfg=",
         }, nix.key(nix.force(arch)));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.app(getUrl, version, getArch)),
             sha256: nix.thunk(() => nix.app(getHash, getArch)),
           })));
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const postFixup = nix.thunk(() => nix.str`wrapProgram $out/bin/run_konan --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jre]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://kotlinlang.org/",
         description: "Modern programming language that makes developers happier",
         longDescription: "Kotlin/Native is a technology for compiling Kotlin code to native\nbinaries, which can run without a virtual machine. It is an LLVM based\nbackend for the Kotlin compiler and native implementation of the Kotlin\nstandard library.\n",
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(["x86_64-linux"], nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

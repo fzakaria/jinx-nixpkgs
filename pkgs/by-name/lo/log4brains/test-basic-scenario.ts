@@ -2,18 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-basic-scenario.nix", [[["timeout", 8, 8]], [["name", 6, 3], ["meta", 8, 3], ["nativeBuildInputs", 9, 3], ["script", 11, 3]]]);
 const formals$1 = { args: { testers: false, log4brains: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-basic-scenario.nix", [["timeout", 8, 8]]);
-const pos$2 = nix.positions(here + "/test-basic-scenario.nix", [["name", 6, 3], ["meta", 8, 3], ["nativeBuildInputs", 9, 3], ["script", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const testers = nix.arg($, "testers");
   const log4brains = nix.arg($, "log4brains");
   return nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "log4brains-test-basic-scenario",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 90n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 90n })),
       nativeBuildInputs: nix.thunk(() => [log4brains]),
       script: "log4brains | grep 'Log4brains CLI'\n\nmkdir project && cd project\n\nlog4brains init --defaults\ntest -f docs/adr/index.md\n\nlog4brains adr new --quiet 'Test ADR'\ngrep -r 'Test ADR' docs/adr/ >/dev/null\n\n# Note: Preview is difficult to check (and hence not checked):\n# (1) It requires some timeout for the page to become ready.\n# (2) The signal & process handling is screwed; on kill the\n#     process serving in the background stays alive.\n\nlog4brains build --out www\ntest -f www/index.html\ngrep -r 'Test ADR' www >/dev/null\n\ntouch $out\n",
     })));

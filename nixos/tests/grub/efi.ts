@@ -2,28 +2,20 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/efi.nix", [[["maintainers", 6, 5]], [["useBootLoader", 15, 22], ["useEFIBoot", 16, 22]], [["enable", 19, 9], ["efiSupport", 20, 9], ["device", 21, 9], ["extraConfig", 25, 9]], [["canTouchEfiVariables", 27, 23]], [["grub", 18, 19], ["efi", 27, 19]], [["loader", 18, 12]], [["virtualisation", 15, 7], ["boot", 18, 7]], [["machine", 12, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 12, 3], ["testScript", 30, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/efi.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/efi.nix", [["useBootLoader", 15, 22], ["useEFIBoot", 16, 22]]);
-const pos$3 = nix.positions(here + "/efi.nix", [["enable", 19, 9], ["efiSupport", 20, 9], ["device", 21, 9], ["extraConfig", 25, 9]]);
-const pos$4 = nix.positions(here + "/efi.nix", [["canTouchEfiVariables", 27, 23]]);
-const pos$5 = nix.positions(here + "/efi.nix", [["grub", 18, 19], ["efi", 27, 19]]);
-const pos$6 = nix.positions(here + "/efi.nix", [["loader", 18, 12]]);
-const pos$7 = nix.positions(here + "/efi.nix", [["virtualisation", 15, 7], ["boot", 18, 7]]);
-const pos$8 = nix.positions(here + "/efi.nix", [["machine", 12, 9]]);
-const pos$9 = nix.positions(here + "/efi.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 12, 3], ["testScript", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "grub-efi",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "tomfitzhenry")),
           nix.thunk(() => nix.lookup(w, "rnhmjoj")),
@@ -31,24 +23,24 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$7,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, useBootLoader: true, useEFIBoot: true })),
+          [nix.POS]: $pos[6],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], useBootLoader: true, useEFIBoot: true })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               grub: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 enable: true,
                 efiSupport: true,
                 device: "nodev",
                 extraConfig: "serial; terminal_output serial",
               })),
-              efi: nix.thunk(() => ({ [nix.POS]: pos$4, canTouchEfiVariables: true })),
+              efi: nix.thunk(() => ({ [nix.POS]: $pos[3], canTouchEfiVariables: true })),
             })),
           })),
         };

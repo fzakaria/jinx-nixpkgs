@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["url", 49, 7], ["sha256", 51, 22]], [["name", 75, 5], ["paths", 76, 5]], [["NIX_CFLAGS_COMPILE", 138, 11]], [["nativeCompilers", 210, 7]], [["homepage", 217, 7], ["branch", 218, 7], ["license", 219, 7], ["description", 220, 7], ["maintainers", 222, 7], ["longDescription", 224, 7], ["platforms", 241, 7], ["broken", 242, 7]], [["pname", 92, 13], ["version", 92, 19], ["src", 92, 27], ["patches", 94, 5], ["postPatch", 97, 5], ["strictDeps", 105, 5], ["prefixKey", 107, 5], ["configureFlags", 108, 5], ["dontAddStaticConfigureFlags", 133, 5], ["env", 135, 5], ["configurePlatforms", 145, 5], ["hardeningDisable", 156, 5], ["enableParallelBuilding", 163, 5], ["enableParallelInstalling", 168, 5], ["makefile", 173, 5], ["buildFlags", 174, 5], ["nativeBuildInputs", 181, 5], ["buildInputs", 182, 5], ["depsBuildBuild", 188, 5], ["propagatedBuildInputs", 189, 5], ["installTargets", 190, 5], ["preConfigure", 191, 5], ["postBuild", 204, 5], ["passthru", 209, 5], ["checkTarget", 213, 5], ["doCheck", 214, 13], ["meta", 216, 5]]]);
 const formals$1 = { args: { minor_version: false, major_version: false, patch_version: false, patches: true, doCheck: true }, ellipsis: true };
 const formals$2 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false, binutils: false, buildEnv: false, pkgsBuildBuild: false, libunwind: false, fetchpatch: false, libx11: false, xorgproto: false, useX11: true, aflSupport: true, flambdaSupport: true, spaceTimeSupport: true, unsafeStringSupport: true, framePointerSupport: true, noNakedPointers: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["url", 49, 7], ["sha256", 51, 22]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["name", 75, 5], ["paths", 76, 5]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["NIX_CFLAGS_COMPILE", 138, 11]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["nativeCompilers", 210, 7]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["homepage", 217, 7], ["branch", 218, 7], ["license", 219, 7], ["description", 220, 7], ["maintainers", 222, 7], ["longDescription", 224, 7], ["platforms", 241, 7], ["broken", 242, 7]]);
-const pos$6 = nix.positions(here + "/generic.nix", [["pname", 92, 13], ["version", 92, 19], ["src", 92, 27], ["patches", 94, 5], ["postPatch", 97, 5], ["strictDeps", 105, 5], ["prefixKey", 107, 5], ["configureFlags", 108, 5], ["dontAddStaticConfigureFlags", 133, 5], ["env", 135, 5], ["configurePlatforms", 145, 5], ["hardeningDisable", 156, 5], ["enableParallelBuilding", 163, 5], ["enableParallelInstalling", 168, 5], ["makefile", 173, 5], ["buildFlags", 174, 5], ["nativeBuildInputs", 181, 5], ["buildInputs", 182, 5], ["depsBuildBuild", 188, 5], ["propagatedBuildInputs", 189, 5], ["installTargets", 190, 5], ["preConfigure", 191, 5], ["postBuild", 204, 5], ["passthru", 209, 5], ["checkTarget", 213, 5], ["doCheck", 214, 13], ["meta", 216, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
     nix.assert_((!nix.asBool(framePointerSupport) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "4.01"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/ocaml/generic.nix:43:1");
     nix.assert_((!nix.asBool(noNakedPointers) || nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "4.02")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "5.0"))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/ocaml/generic.nix:44:1");
     const src = nix.thunk(() => nix.selOr(args_1, () => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.selOr(args_1, () => nix.str`http://caml.inria.fr/pub/distrib/ocaml-${versionNoPatch}/ocaml-${version}.tar.xz`, "url")),
           sha256: nix.thunk(() => nix.attr(args_1, "sha256")),
         }))), "src"));
@@ -68,7 +63,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(optionalString, framePointerSupport, "+fp")),
       ])));
     const x11env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "x11env",
         paths: nix.thunk(() => [libx11, xorgproto]),
       }))));
@@ -76,7 +71,7 @@ export default nix.lambda((args) => (() => {
     const x11inc = nix.thunk(() => nix.add(x11env, "/include"));
     const fetchpatch$ = (x) => (nix.asBool(nix.builtins.isAttrs(x)) ? nix.app(fetchpatch, x) : nix.force(x));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalArgs) => nix.update(args_1, {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: pname,
         version: version,
         src: src,
@@ -95,7 +90,7 @@ export default nix.lambda((args) => (() => {
             ])), nix.concat(nix.app(optional, noNakedPointers, nix.thunk(() => nix.app(flags, "--disable-naked-pointers", "-no-naked-pointers"))), nix.app(optional, nix.thunk(() => nix.sel(finalArgs, "doCheck")), "--enable-ocamltest"))))))))));
         })()),
         dontAddStaticConfigureFlags: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "4.08")),
-        env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "4.14")) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), version), "5.0")))), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
+        env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "4.14")) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), version), "5.0")))), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
         configurePlatforms: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "4.08")) && nix.asBool(!nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))))), nix.thunk(() => ["host", "target"]))),
         hardeningDisable: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "5.0")) && nix.asBool(nix.sel(stdenv, "cc", "isClang")))), "strictoverflow"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.has(args_1, "hardeningDisable")), nix.thunk(() => nix.sel(args_1, "hardeningDisable"))))),
         enableParallelBuilding: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "4.08")),
@@ -114,11 +109,11 @@ export default nix.lambda((args) => (() => {
 AS="${nix.sel(stdenv, "cc")}/bin/cc -c" ASPP="${nix.sel(stdenv, "cc")}/bin/cc -c"
 `))), nix.app(optionalString, nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "4.08")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))), "configureFlagsArray+=(\"-cc\" \"$CC\" \"-as\" \"$AS\" \"-partialld\" \"$LD -r\")\n"))),
         postBuild: "mkdir -p $out/include\nln -sv $out/lib/ocaml/caml $out/include/caml\n",
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$4, nativeCompilers: useNativeCompilers })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], nativeCompilers: useNativeCompilers })),
         checkTarget: "tests",
         doCheck: doCheck,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           homepage: "https://ocaml.org/",
           branch: versionNoPatch,
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

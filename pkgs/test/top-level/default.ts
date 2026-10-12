@@ -2,36 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["system", 12, 13]], [["localSystem", 11, 11]], [["system", 17, 13]], [["localSystem", 16, 11], ["crossSystem", 19, 11]], [["system", 24, 13]], [["system", 27, 13]], [["localSystem", 23, 11], ["crossSystem", 26, 11]], [["system", 33, 13]], [["config", 36, 13]], [["localSystem", 32, 11], ["crossSystem", 35, 11]], [["system", 44, 13]], [["config", 47, 13]], [["localSystem", 43, 11], ["crossSystem", 46, 11]], [["system", 53, 13]], [["system", 56, 13]], [["localSystem", 52, 11], ["crossSystem", 55, 11]], [["system", 74, 11]], [["system", 77, 11]], [["localSystem", 73, 9], ["crossSystem", 76, 9]], [["system", 90, 47]], [["wasReplaced", 97, 13]], [["replaceStdenv", 92, 16]], [["localSystem", 89, 9], ["config", 92, 9]], [["system", 108, 11]], [["system", 111, 11]], [["replaceStdenv", 113, 16]], [["localSystem", 107, 9], ["crossSystem", 110, 9], ["config", 113, 9]], [["platformEquality", 6, 3], ["appendOverlaysPreservesSplicing", 70, 3], ["replaceStdenv", 86, 3], ["replaceStdenvIgnoredForCross", 104, 3], ["massRebuildVariantComposition", 119, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["system", 12, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["localSystem", 11, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["system", 17, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["localSystem", 16, 11], ["crossSystem", 19, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["system", 24, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["system", 27, 13]]);
-const pos$7 = nix.positions(here + "/default.nix", [["localSystem", 23, 11], ["crossSystem", 26, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["system", 33, 13]]);
-const pos$9 = nix.positions(here + "/default.nix", [["config", 36, 13]]);
-const pos$10 = nix.positions(here + "/default.nix", [["localSystem", 32, 11], ["crossSystem", 35, 11]]);
-const pos$11 = nix.positions(here + "/default.nix", [["system", 44, 13]]);
-const pos$12 = nix.positions(here + "/default.nix", [["config", 47, 13]]);
-const pos$13 = nix.positions(here + "/default.nix", [["localSystem", 43, 11], ["crossSystem", 46, 11]]);
-const pos$14 = nix.positions(here + "/default.nix", [["system", 53, 13]]);
-const pos$15 = nix.positions(here + "/default.nix", [["system", 56, 13]]);
-const pos$16 = nix.positions(here + "/default.nix", [["localSystem", 52, 11], ["crossSystem", 55, 11]]);
-const pos$17 = nix.positions(here + "/default.nix", [["system", 74, 11]]);
-const pos$18 = nix.positions(here + "/default.nix", [["system", 77, 11]]);
-const pos$19 = nix.positions(here + "/default.nix", [["localSystem", 73, 9], ["crossSystem", 76, 9]]);
-const pos$20 = nix.positions(here + "/default.nix", [["system", 90, 47]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: false };
-const pos$21 = nix.positions(here + "/default.nix", [["wasReplaced", 97, 13]]);
-const pos$22 = nix.positions(here + "/default.nix", [["replaceStdenv", 92, 16]]);
-const pos$23 = nix.positions(here + "/default.nix", [["localSystem", 89, 9], ["config", 92, 9]]);
-const pos$24 = nix.positions(here + "/default.nix", [["system", 108, 11]]);
-const pos$25 = nix.positions(here + "/default.nix", [["system", 111, 11]]);
-const pos$26 = nix.positions(here + "/default.nix", [["replaceStdenv", 113, 16]]);
-const pos$27 = nix.positions(here + "/default.nix", [["localSystem", 107, 9], ["crossSystem", 110, 9], ["config", 113, 9]]);
-const pos$28 = nix.positions(here + "/default.nix", [["platformEquality", 6, 3], ["appendOverlaysPreservesSplicing", 70, 3], ["replaceStdenv", 86, 3], ["replaceStdenvIgnoredForCross", 104, 3], ["massRebuildVariantComposition", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,39 +12,39 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const nixpkgsFun = nix.thunk(() => nix.builtins.import(nix.path(here, "../../top-level")));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       platformEquality: nix.thunk(() => (() => {
         const configsLocal = nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            localSystem: nix.thunk(() => ({ [nix.POS]: pos$1, system: "x86_64-linux" })),
+            [nix.POS]: $pos[1],
+            localSystem: nix.thunk(() => ({ [nix.POS]: $pos[0], system: "x86_64-linux" })),
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            localSystem: nix.thunk(() => ({ [nix.POS]: pos$3, system: "aarch64-linux" })),
+            [nix.POS]: $pos[3],
+            localSystem: nix.thunk(() => ({ [nix.POS]: $pos[2], system: "aarch64-linux" })),
             crossSystem: null,
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            localSystem: nix.thunk(() => ({ [nix.POS]: pos$5, system: "x86_64-linux" })),
-            crossSystem: nix.thunk(() => ({ [nix.POS]: pos$6, system: "x86_64-linux" })),
+            [nix.POS]: $pos[6],
+            localSystem: nix.thunk(() => ({ [nix.POS]: $pos[4], system: "x86_64-linux" })),
+            crossSystem: nix.thunk(() => ({ [nix.POS]: $pos[5], system: "x86_64-linux" })),
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$10,
-            localSystem: nix.thunk(() => ({ [nix.POS]: pos$8, system: "aarch64-linux" })),
-            crossSystem: nix.thunk(() => ({ [nix.POS]: pos$9, config: "aarch64-unknown-linux-gnu" })),
+            [nix.POS]: $pos[9],
+            localSystem: nix.thunk(() => ({ [nix.POS]: $pos[7], system: "aarch64-linux" })),
+            crossSystem: nix.thunk(() => ({ [nix.POS]: $pos[8], config: "aarch64-unknown-linux-gnu" })),
           })),
         ]);
         const configsCross = nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            localSystem: nix.thunk(() => ({ [nix.POS]: pos$11, system: "aarch64-linux" })),
-            crossSystem: nix.thunk(() => ({ [nix.POS]: pos$12, config: "aarch64-unknown-linux-musl" })),
+            [nix.POS]: $pos[12],
+            localSystem: nix.thunk(() => ({ [nix.POS]: $pos[10], system: "aarch64-linux" })),
+            crossSystem: nix.thunk(() => ({ [nix.POS]: $pos[11], config: "aarch64-unknown-linux-musl" })),
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$16,
-            localSystem: nix.thunk(() => ({ [nix.POS]: pos$14, system: "aarch64-linux" })),
-            crossSystem: nix.thunk(() => ({ [nix.POS]: pos$15, system: "x86_64-unknown-linux-gnu" })),
+            [nix.POS]: $pos[15],
+            localSystem: nix.thunk(() => ({ [nix.POS]: $pos[13], system: "aarch64-linux" })),
+            crossSystem: nix.thunk(() => ({ [nix.POS]: $pos[14], system: "x86_64-unknown-linux-gnu" })),
           })),
         ]);
         const pkgsLocal = nix.thunk(() => nix.builtins.map(nixpkgsFun, configsLocal));
@@ -82,9 +55,9 @@ export default nix.lambda((args) => (() => {
       })()),
       appendOverlaysPreservesSplicing: nix.thunk(() => (() => {
         const cross = nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-            [nix.POS]: pos$19,
-            localSystem: nix.thunk(() => ({ [nix.POS]: pos$17, system: "x86_64-linux" })),
-            crossSystem: nix.thunk(() => ({ [nix.POS]: pos$18, system: "aarch64-linux" })),
+            [nix.POS]: $pos[18],
+            localSystem: nix.thunk(() => ({ [nix.POS]: $pos[16], system: "x86_64-linux" })),
+            crossSystem: nix.thunk(() => ({ [nix.POS]: $pos[17], system: "aarch64-linux" })),
           }))));
         const appended = nix.thunk(() => nix.app(nix.sel(cross, "appendOverlays"), []));
         nix.assert_(nix.has(nix.sel(cross, "makeWrapper"), "__spliced"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/test/top-level/default.nix:82:5");
@@ -93,18 +66,18 @@ export default nix.lambda((args) => (() => {
       })()),
       replaceStdenv: nix.thunk(() => (() => {
         const replacedPkgs = nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             localSystem: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(pkgs, "stdenv", "buildPlatform"));
-              return { [nix.POS]: pos$20, system: nix.thunk(() => nix.attr(from, "system")) };
+              return { [nix.POS]: $pos[19], system: nix.thunk(() => nix.attr(from, "system")) };
             })()),
             config: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               replaceStdenv: nix.lambda((args_1) => (() => {
                 const $_1 = nix.formals(args_1, formals$2);
                 const pkgs_1 = nix.arg($_1, "pkgs");
                 nix.assert_(!nix.asBool(nix.has(nix.sel(pkgs_1, "config"), "replaceStdenv")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/test/top-level/default.nix:94:11");
-                return nix.update(nix.sel(pkgs_1, "stdenv"), { [nix.POS]: pos$21, wasReplaced: true });
+                return nix.update(nix.sel(pkgs_1, "stdenv"), { [nix.POS]: $pos[20], wasReplaced: true });
               })(), formals$2),
             })),
           }))));
@@ -113,11 +86,11 @@ export default nix.lambda((args) => (() => {
       })()),
       replaceStdenvIgnoredForCross: nix.thunk(() => (() => {
         const crossPkgs = nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-            [nix.POS]: pos$27,
-            localSystem: nix.thunk(() => ({ [nix.POS]: pos$24, system: "x86_64-linux" })),
-            crossSystem: nix.thunk(() => ({ [nix.POS]: pos$25, system: "aarch64-linux" })),
+            [nix.POS]: $pos[26],
+            localSystem: nix.thunk(() => ({ [nix.POS]: $pos[23], system: "x86_64-linux" })),
+            crossSystem: nix.thunk(() => ({ [nix.POS]: $pos[24], system: "aarch64-linux" })),
             config: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               replaceStdenv: (_) => nix.builtins.throw("replaceStdenv must be ignored when cross compiling"),
             })),
           }))));

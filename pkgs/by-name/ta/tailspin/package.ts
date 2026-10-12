@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["updateScript", 40, 12]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["postPatch", 26, 3], ["postInstall", 31, 3], ["nativeInstallCheckInputs", 36, 3], ["versionCheckProgram", 37, 3], ["doInstallCheck", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, stdenv: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 40, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["postPatch", 26, 3], ["postInstall", 31, 3], ["nativeInstallCheckInputs", 36, 3], ["versionCheckProgram", 37, 3], ["doInstallCheck", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tailspin",
       version: "6.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bensadeh",
           repo: "tailspin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/tspin`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Log file highlighter",
         homepage: "https://github.com/bensadeh/tailspin",
         changelog: nix.thunk(() => nix.str`https://github.com/bensadeh/tailspin/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

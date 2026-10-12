@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["rev-prefix", 57, 7]], [["skipBulkUpdate", 55, 5], ["updateScript", 56, 5]], [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["sourceRoot", 29, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 43, 3], ["nativeCheckInputs", 48, 3], ["passthru", 53, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, gitUpdater: false, "google-api-core": false, "google-auth": false, "grpc-google-iam-v1": false, grpcio: false, lib: false, "proto-plus": false, protobuf: false, "pytest-asyncio": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 57, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 55, 5], ["updateScript", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["sourceRoot", 29, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 43, 3], ["nativeCheckInputs", 48, 3], ["passthru", 53, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "google-cloud-storage-control",
       version: "1.13.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "google-cloud-python",
           tag: nix.thunk(() => nix.str`google-cloud-storage-control-v${nix.sel(finalAttrs, "version")}`),
@@ -49,12 +45,12 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["google.cloud.storage_control", "google.cloud.storage_control_v2"]),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdate: true,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "google-cloud-storage-control-v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "google-cloud-storage-control-v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/${nix.sel(finalAttrs, "src", "tag")}/packages/google-cloud-storage-control/CHANGELOG.md`),
         description: "Google Cloud Storage Control API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-storage-control",

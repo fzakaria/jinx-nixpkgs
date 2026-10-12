@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["src", 17, 49]], [["name", 56, 9], ["url", 57, 9], ["hash", 58, 9], ["includes", 59, 9]], [["CFLAGS", 100, 5]], [["isGNU", 111, 5]], [["homepage", 115, 5]], [["pname", 14, 3], ["version", 15, 11], ["src", 17, 3], ["patches", 46, 3], ["postUnpack", 67, 3], ["preAutoreconf", 72, 3], ["enableParallelBuilding", 77, 3], ["nativeBuildInputs", 79, 3], ["configurePlatforms", 83, 3], ["configureFlags", 88, 3], ["env", 99, 3], ["preConfigure", 103, 3], ["doCheck", 108, 3], ["passthru", 110, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gcc_meta: false, release_version: false, version: false, getVersionFile: false, monorepoSrc: true, fetchpatch: false, autoreconfHook269: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["src", 17, 49]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 56, 9], ["url", 57, 9], ["hash", 58, 9], ["includes", 59, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["CFLAGS", 100, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["isGNU", 111, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 115, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 11], ["src", 17, 3], ["patches", 46, 3], ["postUnpack", 67, 3], ["preAutoreconf", 72, 3], ["enableParallelBuilding", 77, 3], ["nativeBuildInputs", 79, 3], ["configurePlatforms", 83, 3], ["configureFlags", 88, 3], ["env", 99, 3], ["preConfigure", 103, 3], ["doCheck", 108, 3], ["passthru", 110, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,15 +18,15 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook269 = nix.arg($, "autoreconfHook269");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libatomic",
       version: version,
-      src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`libatomic-src-${version}`), nix.thunk(() => ({ [nix.POS]: pos$1, src: monorepoSrc })), nix.thunk(() => nix.add("runPhase unpackPhase\n\nmkdir -p \"$out/gcc\"\ncp gcc/BASE-VER \"$out/gcc\"\ncp gcc/DATESTAMP \"$out/gcc\"\n\ncp -r libatomic \"$out\"\n\ncp -r config \"$out\"\ncp -r multilib.am \"$out\"\ncp -r libtool.m4 \"$out\"\n\ncp config.guess \"$out\"\ncp config.rpath \"$out\"\ncp config.sub \"$out\"\ncp config-ml.in \"$out\"\ncp ltmain.sh \"$out\"\ncp install-sh \"$out\"\ncp mkinstalldirs \"$out\"\n\n", "if [[ -f MD5SUMS ]]; then cp MD5SUMS \"$out\"; fi\n")))),
+      src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`libatomic-src-${version}`), nix.thunk(() => ({ [nix.POS]: $pos[0], src: monorepoSrc })), nix.thunk(() => nix.add("runPhase unpackPhase\n\nmkdir -p \"$out/gcc\"\ncp gcc/BASE-VER \"$out/gcc\"\ncp gcc/DATESTAMP \"$out/gcc\"\n\ncp -r libatomic \"$out\"\n\ncp -r config \"$out\"\ncp -r multilib.am \"$out\"\ncp -r libtool.m4 \"$out\"\n\ncp config.guess \"$out\"\ncp config.rpath \"$out\"\ncp config.sub \"$out\"\ncp config-ml.in \"$out\"\ncp ltmain.sh \"$out\"\ncp install-sh \"$out\"\ncp mkinstalldirs \"$out\"\n\n", "if [[ -f MD5SUMS ]]; then cp MD5SUMS \"$out\"; fi\n")))),
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), release_version, "16")), nix.thunk(() => [
           nix.thunk(() => nix.app(getVersionFile, "libatomic/no-gcc-objdir-install.patch")),
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), release_version, "16")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "custom-threading-model.patch",
               url: "https://github.com/gcc-mirror/gcc/commit/e5d853bbe9b05d6a00d98ad236f01937303e40c4.diff",
               hash: "sha256-U1Eh6ByhmseHQigfHIyO4MlAQB3fECmpPEP/M00DOg0=",
@@ -49,11 +44,11 @@ export default nix.lambda((args) => (() => {
         "cross_compiling=true",
         "--disable-multilib",
       ]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), release_version, "16")), nix.thunk(() => ({ [nix.POS]: pos$3, CFLAGS: "-g -O2" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), release_version, "16")), nix.thunk(() => ({ [nix.POS]: $pos[2], CFLAGS: "-g -O2" })))),
       preConfigure: "cd \"$buildRoot\"\nconfigureScript=$sourceRoot/configure\n",
       doCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, isGNU: true })),
-      meta: nix.thunk(() => nix.update(gcc_meta, { [nix.POS]: pos$5, homepage: "https://gcc.gnu.org/" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], isGNU: true })),
+      meta: nix.thunk(() => nix.update(gcc_meta, { [nix.POS]: $pos[4], homepage: "https://gcc.gnu.org/" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

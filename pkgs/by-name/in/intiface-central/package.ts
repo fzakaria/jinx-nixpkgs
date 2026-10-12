@@ -2,22 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["libraryPath", 58, 14]], [["pname", 40, 13], ["version", 40, 19], ["src", 40, 27], ["sourceRoot", 42, 5], ["preBuild", 44, 5], ["cargoHash", 49, 5], ["nativeBuildInputs", 51, 5], ["buildInputs", 53, 5], ["passthru", 58, 5]], [["owner", 62, 5], ["repo", 63, 5], ["tag", 64, 5], ["hash", 65, 5]], [["owner", 69, 5], ["repo", 70, 5], ["tag", 71, 5], ["hash", 72, 5]], [["buttplug", 84, 13]], [["pname", 87, 13], ["version", 87, 19], ["src", 87, 27], ["sourceRoot", 88, 5], ["hash", 89, 5]], [["pname", 98, 9], ["version", 99, 17], ["src", 99, 25], ["passthru", 100, 23], ["postPatch", 102, 9], ["installPhase", 114, 9]], [["rust_lib_intiface_central", 95, 5]], [["ZLIB_ROOT", 141, 7]], [["name", 158, 7], ["exec", 159, 7], ["icon", 160, 7], ["comment", 161, 7], ["desktopName", 162, 7]], [["updateScript", 166, 12]], [["mainProgram", 169, 5], ["description", 170, 5], ["homepage", 171, 5], ["license", 172, 5], ["maintainers", 173, 5], ["platforms", 174, 5]], [["pname", 76, 11], ["version", 76, 17], ["src", 76, 25], ["patches", 78, 3], ["pubspecLock", 82, 3], ["gitHashes", 84, 3], ["cargoDeps", 86, 3], ["cargoRoot", 92, 3], ["customSourceBuilders", 94, 3], ["preConfigure", 124, 3], ["nativeBuildInputs", 128, 3], ["buildInputs", 136, 3], ["env", 141, 3], ["preBuild", 143, 3], ["extraWrapProgramArgs", 150, 3], ["postInstall", 152, 3], ["desktopItems", 156, 3], ["passthru", 166, 3], ["meta", 168, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, flutter338: false, corrosion: false, rustPlatform: false, cargo: false, rustc: false, jdk: false, udev: false, zlib: false, copyDesktopItems: false, makeDesktopItem: false, runCommand: false, writeText: false, "pkg-config": false, dbus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["libraryPath", 58, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 40, 13], ["version", 40, 19], ["src", 40, 27], ["sourceRoot", 42, 5], ["preBuild", 44, 5], ["cargoHash", 49, 5], ["nativeBuildInputs", 51, 5], ["buildInputs", 53, 5], ["passthru", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 62, 5], ["repo", 63, 5], ["tag", 64, 5], ["hash", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 69, 5], ["repo", 70, 5], ["tag", 71, 5], ["hash", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["buttplug", 84, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 87, 13], ["version", 87, 19], ["src", 87, 27], ["sourceRoot", 88, 5], ["hash", 89, 5]]);
 const formals$2 = { args: { version: false, src: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 98, 9], ["version", 99, 17], ["src", 99, 25], ["passthru", 100, 23], ["postPatch", 102, 9], ["installPhase", 114, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["rust_lib_intiface_central", 95, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["ZLIB_ROOT", 141, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 158, 7], ["exec", 159, 7], ["icon", 160, 7], ["comment", 161, 7], ["desktopName", 162, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["updateScript", 166, 12]]);
-const pos$13 = nix.positions(here + "/package.nix", [["mainProgram", 169, 5], ["description", 170, 5], ["homepage", 171, 5], ["license", 172, 5], ["maintainers", 173, 5], ["platforms", 174, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 76, 11], ["version", 76, 17], ["src", 76, 25], ["patches", 78, 3], ["pubspecLock", 82, 3], ["gitHashes", 84, 3], ["cargoDeps", 86, 3], ["cargoRoot", 92, 3], ["customSourceBuilders", 94, 3], ["preConfigure", 124, 3], ["nativeBuildInputs", 128, 3], ["buildInputs", 136, 3], ["env", 141, 3], ["preBuild", 143, 3], ["extraWrapProgramArgs", 150, 3], ["postInstall", 152, 3], ["desktopItems", 156, 3], ["passthru", 166, 3], ["meta", 168, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,14 +32,14 @@ ln -s ${zlib}/lib $out/lib
   const pname = "intiface-central";
   const version = "3.0.4+40";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "intiface",
       repo: "intiface-central",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-RMllaThwCp2mRl0ecMtj3z6DC4uhdLqYNPI8lZChmhI=",
     }))));
   const rustDep = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: src,
@@ -63,35 +50,35 @@ ln -s ${buttplug} ../../buttplug
       cargoHash: "sha256-2KmwfvSDIaLvGda/EofUxGPRevv+/UQOUdSPRF2LEJw=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [dbus, udev]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, libraryPath: "lib/librust_lib_intiface_central.so" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], libraryPath: "lib/librust_lib_intiface_central.so" })),
     }))));
   const buttplug_dart = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "buttplugio",
       repo: "buttplug_dart",
       tag: "v1.0.0",
       hash: "sha256-nm9TdEL9+80hCbaPnpAJTQ0w1t40vWYcxyilQTwvEBU=",
     }))));
   const buttplug = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       owner: "buttplugio",
       repo: "buttplug",
       tag: "intiface_engine_4.0.2",
       hash: "sha256-4tzGZEsqfCnz/ZX6qNx/Hku6yDK0g6gyep6p6WZGoQk=",
     }))));
   return nix.app(nix.sel(flutter338, "buildFlutterApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: pname,
       version: version,
       src: src,
       patches: nix.thunk(() => [nix.path(here, "./corrosion.patch")]),
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       gitHashes: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         buttplug: "sha256-nm9TdEL9+80hCbaPnpAJTQ0w1t40vWYcxyilQTwvEBU=",
       })),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pname: pname,
           version: version,
           src: src,
@@ -100,13 +87,13 @@ ln -s ${buttplug} ../../buttplug
         })))),
       cargoRoot: "rust",
       customSourceBuilders: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         rust_lib_intiface_central: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const version_1 = nix.arg($_1, "version");
           const src_1 = nix.arg($_1, "src");
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               pname: "rust_lib_intiface_central",
               version: version_1,
               src: src_1,
@@ -133,7 +120,7 @@ endfunction()
         copyDesktopItems,
       ]),
       buildInputs: nix.thunk(() => [jdk, udev]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$10, ZLIB_ROOT: zlib_root })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[9], ZLIB_ROOT: zlib_root })),
       preBuild: nix.thunk(() => nix.str`chmod +w ..
 ln -s ${buttplug_dart} ../buttplug_dart
 ln -s ${buttplug} ../buttplug
@@ -142,7 +129,7 @@ ln -s ${buttplug} ../buttplug
       postInstall: "install -Dm644 $out/app/intiface-central/data/flutter_assets/assets/icons/intiface_central_icon.png $out/share/icons/hicolor/512x512/apps/intiface-central.png\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             name: "intiface-central",
             exec: "intiface_central",
             icon: "intiface-central",
@@ -150,9 +137,9 @@ ln -s ${buttplug} ../buttplug
             desktopName: "Intiface Central",
           })))),
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$12, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[11], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         mainProgram: "intiface_central",
         description: "Intiface Central (Buttplug Frontend) Application for Desktop",
         homepage: "https://intiface.com/",

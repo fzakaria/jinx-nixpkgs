@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 23, 3], ["isLibrary", 29, 3], ["isExecutable", 30, 3], ["libraryHaskellDepends", 31, 3], ["executableHaskellDepends", 46, 3], ["doHaddock", 54, 3], ["description", 55, 3], ["license", 56, 3], ["mainProgram", 57, 3]]]);
 const formals$1 = { args: { mkDerivation: false, base: false, bytestring: false, "cabal-install-parsers": false, "Cabal-syntax": false, containers: false, directory: false, fetchFromCodeberg: false, filepath: false, "generic-lens-lite": false, lib: false, mtl: false, "optparse-applicative": false, parsec: false, pretty: false, "regex-applicative": false, frontmatter: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 23, 3], ["isLibrary", 29, 3], ["isExecutable", 30, 3], ["libraryHaskellDepends", 31, 3], ["executableHaskellDepends", 46, 3], ["doHaddock", 54, 3], ["description", 55, 3], ["license", 56, 3], ["mainProgram", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "changelog-d";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fgaz",
           repo: "changelog-d",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -58,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const license = nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus"));
       const mainProgram = "changelog-d";
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

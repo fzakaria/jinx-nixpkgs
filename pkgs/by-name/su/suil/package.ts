@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["homepage", 76, 5], ["description", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 41, 3], ["mesonFlags", 51, 3], ["buildInputs", 58, 3], ["dontWrapQtApps", 71, 3], ["strictDeps", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, "pkg-config": false, meson: false, ninja: false, sphinxygen: false, doxygen: false, sphinx: false, python3Packages: false, lv2: false, withGtk3: true, gtk3: false, withQt5: true, qt5: false, withX11: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["description", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 41, 3], ["mesonFlags", 51, 3], ["buildInputs", 58, 3], ["dontWrapQtApps", 71, 3], ["strictDeps", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const withX11 = nix.argOr($, "withX11", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   const mesonEnable = nix.thunk(() => nix.attr(lib, "mesonEnable"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "suil",
       version: "0.10.20",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lv2",
           repo: "suil",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://drobilla.net/software/suil",
         description: "Lightweight C library for loading and wrapping LV2 plugin UIs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

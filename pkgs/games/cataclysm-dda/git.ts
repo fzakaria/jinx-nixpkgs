@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/git.nix", [[["tiles", 17, 13], ["debug", 17, 19], ["useXdgDir", 17, 25]], [["owner", 25, 7], ["repo", 26, 7], ["rev", 27, 15], ["sha256", 27, 19]], [["maintainers", 40, 7]], [["pname", 21, 5], ["version", 22, 13], ["src", 24, 5], ["patches", 30, 5], ["makeFlags", 35, 5], ["meta", 39, 5]]]);
 const formals$1 = { args: { lib: false, callPackage: false, fetchFromGitHub: false, pkgs: false, attachPkgs: false, tiles: true, debug: true, useXdgDir: true, version: true, rev: true, sha256: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/git.nix", [["tiles", 17, 13], ["debug", 17, 19], ["useXdgDir", 17, 25]]);
-const pos$2 = nix.positions(here + "/git.nix", [["owner", 25, 7], ["repo", 26, 7], ["rev", 27, 15], ["sha256", 27, 19]]);
-const pos$3 = nix.positions(here + "/git.nix", [["maintainers", 40, 7]]);
-const pos$4 = nix.positions(here + "/git.nix", [["pname", 21, 5], ["version", 22, 13], ["src", 24, 5], ["patches", 30, 5], ["makeFlags", 35, 5], ["meta", 39, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => "2024-12-11");
   const rev = nix.argOr($, "rev", () => "b871679a2d54dbc6bf3e6566033fadd2dc651592");
   const sha256 = nix.argOr($, "sha256", () => "sha256-t9R0QPky7zvjgGMq4kV8DdQFToJ/qngbJCw+8FlQztM=");
-  const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, tiles: tiles, debug: debug, useXdgDir: useXdgDir }))));
+  const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], tiles: tiles, debug: debug, useXdgDir: useXdgDir }))));
   const self = nix.thunk(() => nix.app(nix.sel(common, "overrideAttrs"), (common_1) => (() => {
       const pname = nix.thunk(() => nix.add(nix.sel(common_1, "pname"), "-git"));
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "CleverRaven",
           repo: "Cataclysm-DDA",
           rev: rev,
@@ -37,10 +34,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`VERSION=git-${version_1}-${nix.app(nix.sel(lib, "substring"), 0n, 8n, nix.thunk(() => nix.sel(src, "rev")))}`),
       ]));
       const meta = nix.thunk(() => nix.update(nix.sel(common_1, "meta"), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         maintainers: nix.thunk(() => nix.concat(nix.sel(common_1, "meta", "maintainers"), [])),
       }));
-      return { [nix.POS]: pos$4, pname, version: version_1, src, patches, makeFlags, meta };
+      return { [nix.POS]: $pos[3], pname, version: version_1, src, patches, makeFlags, meta };
     })()));
   return nix.app(attachPkgs, pkgs, self);
 })(), formals$1);

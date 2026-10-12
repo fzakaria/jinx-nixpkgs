@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 50, 5], ["description", 51, 5], ["maintainers", 52, 5], ["license", 56, 5], ["platforms", 57, 5]], [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["buildPhase", 35, 3], ["installPhase", 39, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false, libxslt: false, docbook_xsl: false, installShellFiles: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["maintainers", 52, 5], ["license", 56, 5], ["platforms", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["buildPhase", 35, 3], ["installPhase", 39, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.2";
       const pname = "pastebinit";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pastebinit",
           repo: "pastebinit",
           rev: version,
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
 `);
       const installPhase = "mkdir -p $out/bin\nmkdir -p $out/etc\ncp -a pastebinit $out/bin\ncp -a utils/* $out/bin\ncp -a pastebin.d $out/etc\nsubstituteInPlace $out/bin/pastebinit --subst-var-by \"etc\" \"$out/etc\"\ninstallManPage pastebinit.1\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://stgraber.org/category/pastebinit/",
         description: "Software that lets you send anything you want directly to a pastebin from the command line",
         maintainers: nix.thunk(() => (() => {
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         src,

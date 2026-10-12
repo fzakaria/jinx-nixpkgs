@@ -2,15 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["beamPackages", 16, 33]], [["debugInfo", 51, 9]], [["debugInfo", 55, 9]], [["debugInfo", 59, 9]], [["debugInfo", 63, 9]], [["erlang", 23, 15], ["beamPackages", 24, 7], ["rebar3", 26, 64], ["rebar3WithPlugins", 26, 71], ["rebar", 27, 7], ["pc", 29, 7], ["rebar3-proper", 30, 7], ["rebar3-nix", 31, 7], ["fetchHex", 33, 7], ["fetchRebar3Deps", 35, 7], ["rebar3Relx", 36, 7], ["buildRebar3", 38, 7], ["buildErlangMk", 39, 7], ["buildMix", 40, 7], ["fetchMixDeps", 41, 7], ["mixRelease", 42, 7], ["erlfmt", 44, 7], ["elvis-erlang", 45, 7], ["elixir", 48, 7], ["elixir_1_20", 50, 7], ["elixir_1_19", 54, 7], ["elixir_1_18", 58, 7], ["elixir_1_17", 62, 7], ["ex_doc", 69, 7], ["elixir-ls", 71, 7], ["expert", 72, 7], ["lfe", 74, 7], ["livebook", 76, 7], ["hex", 80, 7], ["beamCopySourceHook", 83, 9], ["beamModuleInstallHook", 84, 9], ["mixAppConfigPatchHook", 85, 9], ["mixBuildDirHook", 86, 9], ["mixCompileHook", 87, 9], ["mixDepsCompileHook", 88, 9], ["mixEscriptSetupHook", 89, 9], ["mixFodDepsSetupHook", 90, 9], ["mixNixDepsSetupHook", 91, 9], ["mixReleaseSetupHook", 92, 9], ["rebar3CompileHook", 93, 9], ["rebarDevendorPatchHook", 94, 9]], [["extend", 99, 7], ["webdriver", 104, 7]], [["otherSplices", 14, 3], ["keep", 16, 3], ["f", 17, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false, erlang: false, generateSplicesForMkScope: false, "makeScopeWithSplicing'": false, splicePath: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["beamPackages", 16, 33]]);
-const pos$2 = nix.positions(here + "/default.nix", [["debugInfo", 51, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["debugInfo", 55, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["debugInfo", 59, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["debugInfo", 63, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["erlang", 23, 15], ["beamPackages", 24, 7], ["rebar3", 26, 64], ["rebar3WithPlugins", 26, 71], ["rebar", 27, 7], ["pc", 29, 7], ["rebar3-proper", 30, 7], ["rebar3-nix", 31, 7], ["fetchHex", 33, 7], ["fetchRebar3Deps", 35, 7], ["rebar3Relx", 36, 7], ["buildRebar3", 38, 7], ["buildErlangMk", 39, 7], ["buildMix", 40, 7], ["fetchMixDeps", 41, 7], ["mixRelease", 42, 7], ["erlfmt", 44, 7], ["elvis-erlang", 45, 7], ["elixir", 48, 7], ["elixir_1_20", 50, 7], ["elixir_1_19", 54, 7], ["elixir_1_18", 58, 7], ["elixir_1_17", 62, 7], ["ex_doc", 69, 7], ["elixir-ls", 71, 7], ["expert", 72, 7], ["lfe", 74, 7], ["livebook", 76, 7], ["hex", 80, 7], ["beamCopySourceHook", 83, 9], ["beamModuleInstallHook", 84, 9], ["mixAppConfigPatchHook", 85, 9], ["mixBuildDirHook", 86, 9], ["mixCompileHook", 87, 9], ["mixDepsCompileHook", 88, 9], ["mixEscriptSetupHook", 89, 9], ["mixFodDepsSetupHook", 90, 9], ["mixNixDepsSetupHook", 91, 9], ["mixReleaseSetupHook", 92, 9], ["rebar3CompileHook", 93, 9], ["rebarDevendorPatchHook", 94, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["extend", 99, 7], ["webdriver", 104, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["otherSplices", 14, 3], ["keep", 16, 3], ["f", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const makeScopeWithSplicing$ = nix.arg($, "makeScopeWithSplicing'");
   const splicePath = nix.arg($, "splicePath");
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, splicePath)),
       keep: (self) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         beamPackages: nix.thunk(() => nix.attr(self, "beamPackages")),
       }),
       f: (self) => (() => {
@@ -34,7 +27,7 @@ export default nix.lambda((args) => (() => {
           const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "../tools/build-managers/rebar3"), nix.thunk(() => ({}))));
           const from_1 = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackages"), nix.path(here, "./hooks"), nix.thunk(() => ({}))));
           return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           erlang: erlang,
           beamPackages: self,
           rebar3: nix.thunk(() => nix.attr(from, "rebar3")),
@@ -54,10 +47,10 @@ export default nix.lambda((args) => (() => {
           erlfmt: nix.thunk(() => nix.app(callPackage, nix.path(here, "./erlfmt"), nix.thunk(() => ({})))),
           "elvis-erlang": nix.thunk(() => nix.app(callPackage, nix.path(here, "./elvis-erlang"), nix.thunk(() => ({})))),
           elixir: nix.thunk(() => nix.sel(self, "elixir_1_18")),
-          elixir_1_20: nix.thunk(() => nix.app(callPackage, nix.path(here, "../interpreters/elixir/1.20.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, debugInfo: true })))),
-          elixir_1_19: nix.thunk(() => nix.app(callPackage, nix.path(here, "../interpreters/elixir/1.19.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, debugInfo: true })))),
-          elixir_1_18: nix.thunk(() => nix.app(callPackage, nix.path(here, "../interpreters/elixir/1.18.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, debugInfo: true })))),
-          elixir_1_17: nix.thunk(() => nix.app(callPackage, nix.path(here, "../interpreters/elixir/1.17.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, debugInfo: true })))),
+          elixir_1_20: nix.thunk(() => nix.app(callPackage, nix.path(here, "../interpreters/elixir/1.20.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], debugInfo: true })))),
+          elixir_1_19: nix.thunk(() => nix.app(callPackage, nix.path(here, "../interpreters/elixir/1.19.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], debugInfo: true })))),
+          elixir_1_18: nix.thunk(() => nix.app(callPackage, nix.path(here, "../interpreters/elixir/1.18.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], debugInfo: true })))),
+          elixir_1_17: nix.thunk(() => nix.app(callPackage, nix.path(here, "../interpreters/elixir/1.17.nix"), nix.thunk(() => ({ [nix.POS]: $pos[4], debugInfo: true })))),
           ex_doc: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ex_doc"), nix.thunk(() => ({})))),
           "elixir-ls": nix.thunk(() => nix.app(callPackage, nix.path(here, "./elixir-ls"), nix.thunk(() => ({})))),
           expert: nix.thunk(() => nix.app(callPackage, nix.path(here, "./expert"), nix.thunk(() => ({})))),
@@ -78,7 +71,7 @@ export default nix.lambda((args) => (() => {
           rebarDevendorPatchHook: nix.thunk(() => nix.attr(from_1, "rebarDevendorPatchHook")),
         };
         })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             extend: nix.thunk(() => nix.builtins.throw("'beamPackages.extend' has been replaced by 'beamPackages.overrideScope'\n\nSee examples at https://nixos.org/manual/nixpkgs/unstable/#sec-beam\n")),
             webdriver: nix.thunk(() => nix.builtins.throw("'beamPackages.webdriver' has been removed.")),
           }))));

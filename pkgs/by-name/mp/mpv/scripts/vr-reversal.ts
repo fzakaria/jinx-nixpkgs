@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vr-reversal.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["rev-prefix", 19, 40]], [["updateScript", 19, 12], ["scriptName", 33, 12]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["passthru", 19, 3], ["dontBuild", 21, 3], ["postPatch", 24, 3], ["installPhase", 28, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gitUpdater: false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/vr-reversal.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/vr-reversal.nix", [["rev-prefix", 19, 40]]);
-const pos$3 = nix.positions(here + "/vr-reversal.nix", [["updateScript", 19, 12], ["scriptName", 33, 12]]);
-const pos$4 = nix.positions(here + "/vr-reversal.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]]);
-const pos$5 = nix.positions(here + "/vr-reversal.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["passthru", 19, 3], ["dontBuild", 21, 3], ["postPatch", 24, 3], ["installPhase", 28, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,22 +16,22 @@ export default nix.lambda((args) => (() => {
       const pname = "vr-reversal";
       const version = "1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dfaker",
           repo: "vr-reversal",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "1wn2ngcvn7wcsl3kmj782x5q9130qw951lj6ilrkafp6q6zscpqr",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
         scriptName: "360plugin.lua",
       }));
       const dontBuild = true;
       const postPatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ffmpeg, "version")), "5.0")), "substituteInPlace 360plugin.lua --replace-fail \":reset_rot=1:\" \":\"\n"));
       const installPhase = "mkdir -p $out/share/mpv/scripts\ncp -r 360plugin.lua $out/share/mpv/scripts/\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Script for mpv to play VR video with optional saving of head tracking data",
         homepage: "https://github.com/dfaker/VR-reversal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["NIX_CFLAGS_COMPILE", 29, 7]], [["updateScript", 45, 12]], [["description", 48, 5], ["homepage", 49, 5], ["downloadPage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 58, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["env", 29, 3], ["nativeCheckInputs", 31, 3], ["doInstallCheck", 36, 3], ["nativeInstallCheckInputs", 37, 3], ["cargoBuildFlags", 39, 3], ["passthru", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromCodeberg: false, rustPlatform: false, "nix-update-script": false, git: false, jujutsu: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 45, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["downloadPage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["env", 29, 3], ["nativeCheckInputs", 31, 3], ["doInstallCheck", 36, 3], ["nativeInstallCheckInputs", 37, 3], ["cargoBuildFlags", 39, 3], ["passthru", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,28 +15,28 @@ export default nix.lambda((args) => (() => {
   const jujutsu = nix.arg($, "jujutsu");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mergiraf",
       version: "0.20.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mergiraf",
           repo: "mergiraf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-MR0ZkCEQYyYD15htRuFUQelfp14dvlXijqdHtRjionU=",
         })))),
       cargoHash: "sha256-8QAb5HlZMl7WDMhI20/oY6LY/9U1hMAJaQk5hRaBXQc=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fno-strict-aliasing" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fno-strict-aliasing" })),
       nativeCheckInputs: nix.thunk(() => [git, jujutsu]),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       cargoBuildFlags: nix.thunk(() => ["--bin", "mergiraf"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Syntax-aware git merge driver for a growing collection of programming languages and file formats",
         homepage: "https://mergiraf.org/",
         downloadPage: "https://codeberg.org/mergiraf/mergiraf",

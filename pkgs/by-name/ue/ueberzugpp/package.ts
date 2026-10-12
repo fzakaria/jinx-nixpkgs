@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 111, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 62, 3], ["cmakeFlags", 96, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, openssl: false, zeromq: false, cppzmq: false, onetbb: false, spdlog: false, libsodium: false, fmt: false, vips: false, nlohmann_json: false, libsixel: false, "microsoft-gsl": false, chafa: false, cli11: false, libexif: false, "range-v3": false, enableOpencv: true, opencv: false, enableWayland: true, kdePackages: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, enableX11: true, "libxcb-image": false, libx11: false, cudaSupport: true, cudaPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 111, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 62, 3], ["cmakeFlags", 96, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const cudaPackages = nix.arg($, "cudaPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ueberzugpp",
       version: "2.9.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jstkdng",
           repo: "ueberzugpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -84,7 +82,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_X11", enableX11)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Drop in replacement for ueberzug written in C++",
         homepage: "https://github.com/jstkdng/ueberzugpp",
         changelog: nix.thunk(() => nix.str`https://github.com/jstkdng/ueberzugpp/releases/tag/v${nix.sel(finalAttrs, "version")}`),

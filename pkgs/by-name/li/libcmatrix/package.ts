@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["changelog", 54, 5], ["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["prePatch", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { fetchFromGitLab: false, glib: false, "json-glib": false, lib: false, libgcrypt: false, libsecret: false, libsoup_3: false, cmake: false, meson: false, ninja: false, olm: false, "pkg-config": false, sqlite: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 54, 5], ["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["prePatch", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libcmatrix",
       version: "0.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "source.puri.sm",
           owner: "Librem5",
           repo: "libcmatrix",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, json_glib, libgcrypt, libsecret, libsoup_3, olm, sqlite]),
       prePatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# 0u is not a valid version number on darwin\nsubstituteInPlace src/meson.build --replace-fail \"soversion: '0u',\" \"soversion: '0',\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://source.puri.sm/Librem5/libcmatrix/-/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "Matrix protocol library written in C using GObject",
         homepage: "https://source.puri.sm/Librem5/libcmatrix",

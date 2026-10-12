@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["sha256", 36, 5]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5]], [["pname", 27, 3], ["version", 28, 3], ["strictDeps", 30, 3], ["__structuredAttrs", 31, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["installPhase", 64, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gtk3: false, "gdk-pixbuf": false, "dbus-glib": false, libx11: false, libxcomposite: false, libxcursor: false, libxdamage: false, libxext: false, libxi: false, libxrender: false, libxt: false, libpulseaudio: false, libGL: false, pango: false, freetype: false, fontconfig: false, autoPatchelfHook: false, makeWrapper: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["strictDeps", 30, 3], ["__structuredAttrs", 31, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["installPhase", 64, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://archive.seamonkey-project.org/releases/${version}/linux-x86_64/en-US/seamonkey-${version}.en-US.linux-x86_64.tar.bz2`),
           sha256: "sha256-Y/vh0PXKNbsijkfrWGqBxXh96/vCeiQhKeqeEzQp2Cw=",
         }))));
@@ -71,7 +69,7 @@ wrapProgram $out/bin/seamonkey \\
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "The SeaMonkey project is a community effort to deliver production-quality releases of code names previously known as 'Mozilla Application Suite'",
           homepage: "https://www.seamonkey-project.org/",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "mpl20")),
@@ -81,7 +79,7 @@ wrapProgram $out/bin/seamonkey \\
         };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         strictDeps,

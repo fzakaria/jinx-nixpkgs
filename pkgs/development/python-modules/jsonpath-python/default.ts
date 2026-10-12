@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 14, 13], ["pname", 15, 5], ["hash", 16, 5]], [["homepage", 27, 5], ["description", 28, 5], ["maintainers", 29, 5], ["license", 30, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 13, 3], ["build-system", 18, 3], ["nativeCheckInputs", 19, 3], ["pythonImportsCheck", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, hatchling: false, lib: false, pytestCheckHook: false, "pytest-benchmark": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 14, 13], ["pname", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 27, 5], ["description", 28, 5], ["maintainers", 29, 5], ["license", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 13, 3], ["build-system", 18, 3], ["nativeCheckInputs", 19, 3], ["pythonImportsCheck", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "jsonpath_python",
           hash: "sha256-3e2ZMrTsQfuHJuCcg6+k5r5hj5OMLbKHzCqBcjxjlnE=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_benchmark, pytestCheckHook], nix.sel(pytest_benchmark, "optional-dependencies", "histogram")));
       const pythonImportsCheck = nix.thunk(() => ["jsonpath"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/sean2077/jsonpath-python",
         description: "More powerful JSONPath implementations in modern python",
         maintainers: nix.thunk(() => (() => {
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

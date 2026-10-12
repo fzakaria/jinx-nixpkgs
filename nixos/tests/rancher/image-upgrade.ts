@@ -2,27 +2,11 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/image-upgrade.nix", [[["k3s", 19, 7], ["rke2", 20, 7]], [["Entrypoint", 34, 9], ["Cmd", 35, 9]], [["name", 30, 7], ["compressor", 31, 7], ["copyToRoot", 32, 7], ["config", 33, 7]], [["enable", 47, 27]], [["sshBackdoor", 47, 15]], [["KUBECONFIG", 58, 36]], [["systemPackages", 54, 19], ["sessionVariables", 58, 19]], [["k3s", 68, 13], ["rke2", 69, 13]], [["enable", 63, 9], ["role", 64, 9], ["package", 65, 9], ["disable", 66, 9], ["images", 72, 9]], [["images", 84, 39]], [["services", 84, 13]], [["inheritParentConfig", 80, 9], ["configuration", 81, 9]], [["image-v2", 79, 22]], [["imports", 52, 7], ["environment", 54, 7], ["virtualisation", 60, 7], ["services", 62, 7], ["specialisation", 79, 7]], [["machine", 49, 9]], [["maintainers", 117, 8]], [["name", 46, 3], ["interactive", 47, 3], ["nodes", 49, 3], ["testScript", 91, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, rancherDistro: false, rancherPackage: false, serviceName: false, disabledComponents: false, coreImages: false, vmResources: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/image-upgrade.nix", [["k3s", 19, 7], ["rke2", 20, 7]]);
-const pos$2 = nix.positions(here + "/image-upgrade.nix", [["Entrypoint", 34, 9], ["Cmd", 35, 9]]);
-const pos$3 = nix.positions(here + "/image-upgrade.nix", [["name", 30, 7], ["compressor", 31, 7], ["copyToRoot", 32, 7], ["config", 33, 7]]);
-const pos$4 = nix.positions(here + "/image-upgrade.nix", [["enable", 47, 27]]);
-const pos$5 = nix.positions(here + "/image-upgrade.nix", [["sshBackdoor", 47, 15]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/image-upgrade.nix", [["KUBECONFIG", 58, 36]]);
-const pos$7 = nix.positions(here + "/image-upgrade.nix", [["systemPackages", 54, 19], ["sessionVariables", 58, 19]]);
-const pos$8 = nix.positions(here + "/image-upgrade.nix", [["k3s", 68, 13], ["rke2", 69, 13]]);
-const pos$9 = nix.positions(here + "/image-upgrade.nix", [["enable", 63, 9], ["role", 64, 9], ["package", 65, 9], ["disable", 66, 9], ["images", 72, 9]]);
 const formals$3 = { args: { lib: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/image-upgrade.nix", [["images", 84, 39]]);
-const pos$11 = nix.positions(here + "/image-upgrade.nix", [["services", 84, 13]]);
-const pos$12 = nix.positions(here + "/image-upgrade.nix", [["inheritParentConfig", 80, 9], ["configuration", 81, 9]]);
-const pos$13 = nix.positions(here + "/image-upgrade.nix", [["image-v2", 79, 22]]);
-const pos$14 = nix.positions(here + "/image-upgrade.nix", [["imports", 52, 7], ["environment", 54, 7], ["virtualisation", 60, 7], ["services", 62, 7], ["specialisation", 79, 7]]);
-const pos$15 = nix.positions(here + "/image-upgrade.nix", [["machine", 49, 9]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/image-upgrade.nix", [["maintainers", 117, 8]]);
-const pos$17 = nix.positions(here + "/image-upgrade.nix", [["name", 46, 3], ["interactive", 47, 3], ["nodes", 49, 3], ["testScript", 91, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const coreImages = nix.arg($, "coreImages");
   const vmResources = nix.arg($, "vmResources");
   const containerdSocket = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     k3s: "/run/k3s/containerd/containerd.sock",
     rke2: "/run/rke2/containerd/containerd.sock",
   }, nix.key(nix.force(rancherDistro))));
   const mkTestImage = (commandOutput) => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "test.local/test",
       compressor: "zstd",
       copyToRoot: nix.thunk(() => nix.sel(pkgs, "busybox")),
       config: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         Entrypoint: nix.thunk(() => ["sh"]),
         Cmd: nix.thunk(() => ["-c", nix.thunk(() => nix.str`echo '${commandOutput}'`)]),
       })),
@@ -53,22 +37,22 @@ export default nix.lambda((args) => (() => {
   const testImageV1 = nix.thunk(() => nix.app(mkTestImage, "image v1 deployed"));
   const testImageV2 = nix.thunk(() => nix.app(mkTestImage, "image v2 deployed"));
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: nix.thunk(() => nix.str`${nix.sel(rancherPackage, "name")}-image-upgrade`),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$5,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+      [nix.POS]: $pos[4],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           imports: nix.thunk(() => [nix.path(here, "../../modules/profiles/base.nix")]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -77,19 +61,19 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             sessionVariables: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               KUBECONFIG: nix.thunk(() => nix.str`/etc/rancher/${rancherDistro}/${rancherDistro}.yaml`),
             })),
           })),
           virtualisation: vmResources,
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.force(rancherDistro), nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               role: "server",
               package: rancherPackage,
               disable: nix.thunk(() => nix.sel({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 k3s: nix.thunk(() => nix.app(nix.sel(lib, "remove"), "traefik", disabledComponents)),
                 rke2: nix.thunk(() => nix.app(nix.sel(lib, "remove"), "rke2-ingress-nginx", disabledComponents)),
               }, nix.key(nix.force(rancherDistro)))),
@@ -97,18 +81,18 @@ export default nix.lambda((args) => (() => {
             }))],
           ])),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             "image-v2": nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               inheritParentConfig: true,
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$3);
                 const lib_1 = nix.arg($_2, "lib");
                 return {
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   services: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.force(rancherDistro), nix.thunk(() => ({
-                      [nix.POS]: pos$10,
+                      [nix.POS]: $pos[9],
                       images: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => nix.concat(coreImages, nix.concat(nix.app(nix.sel(lib_1, "optional"), nix.thunk(() => nix.eq(rancherDistro, "k3s")), nix.thunk(() => nix.sel(rancherPackage, "airgap-images"))), [testImageV2]))))),
                     }))],
                   ])),
@@ -146,7 +130,7 @@ with subtest("Same-name image with different auto-generated tag is re-imported")
 `;
     })(), formals$4),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       maintainers: nix.thunk(() => nix.concat(nix.sel(lib, "teams", "k3s", "members"), nix.sel(pkgs, "rke2", "meta", "maintainers"))),
     })),
   };

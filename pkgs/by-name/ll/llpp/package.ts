@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]], [["homepage", 94, 5], ["description", 95, 5], ["platforms", 96, 5], ["maintainers", 97, 5], ["license", 98, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 43, 3], ["strictDeps", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 54, 3], ["dontStrip", 71, 3], ["buildPhase", 73, 3], ["installPhase", 77, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, makeWrapper: false, fetchFromGitHub: false, ocaml: false, "pkg-config": false, mupdf: false, libx11: false, jbig2dec: false, openjpeg: false, libjpeg: false, lcms2: false, harfbuzz: false, libGLU: false, libGL: false, gumbo: false, freetype: false, zlib: false, xclip: false, "inotify-tools": false, procps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 94, 5], ["description", 95, 5], ["platforms", 96, 5], ["maintainers", 97, 5], ["license", 98, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 43, 3], ["strictDeps", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 54, 3], ["dontStrip", 71, 3], ["buildPhase", 73, 3], ["installPhase", 77, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   nix.assert_(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), ocaml)), "4.07"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ll/llpp/package.nix:25:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "llpp",
       version: "42",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "criticic",
           repo: "llpp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +68,7 @@ wrapProgram $out/bin/llpp.inotify \\
     --prefix PATH ":" "${procps}/bin"
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/criticic/llpp",
         description: "MuPDF based PDF pager written in OCaml",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),

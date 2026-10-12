@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 83, 5], ["sha256", 84, 5]], [["description", 138, 5], ["mainProgram", 139, 5], ["homepage", 140, 5], ["sourceProvenance", 141, 5], ["license", 142, 5], ["maintainers", 143, 5], ["platforms", 148, 5], ["knownVulnerabilities", 149, 5]], [["version", 79, 3], ["pname", 80, 3], ["src", 82, 3], ["sourceRoot", 87, 3], ["unpackCmd", 89, 3], ["dontBuild", 93, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 100, 3], ["installPhase", 102, 3], ["preFixup", 117, 3], ["meta", 137, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, makeWrapper: false, wrapGAppsHook3: false, "alsa-lib": false, atk: false, "at-spi2-atk": false, "at-spi2-core": false, cairo: false, cups: false, dbus: false, expat: false, fontconfig: false, freetype: false, "gdk-pixbuf": false, glib: false, glibc: false, gtk3: false, libuuid: false, nspr: false, nss: false, pango: false, libxtst: false, libxscrnsaver: false, libxrender: false, libxrandr: false, libxi: false, libxfixes: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, libxcb: false, systemd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 83, 5], ["sha256", 84, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 138, 5], ["mainProgram", 139, 5], ["homepage", 140, 5], ["sourceProvenance", 141, 5], ["license", 142, 5], ["maintainers", 143, 5], ["platforms", 148, 5], ["knownVulnerabilities", 149, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 79, 3], ["pname", 80, 3], ["src", 82, 3], ["sourceRoot", 87, 3], ["unpackCmd", 89, 3], ["dontBuild", 93, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 100, 3], ["installPhase", 102, 3], ["preFixup", 117, 3], ["meta", 137, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -80,11 +78,11 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(stdenv, "cc", "cc")),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "3.1.0",
       pname: "pencil",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pencil.evolus.vn/dl/V${nix.sel(finalAttrs, "version")}.ga/pencil_${nix.sel(finalAttrs, "version")}.ga_amd64.deb`),
           sha256: "01ae54b1a1351b909eb2366c6ec00816e1deba370e58f35601cf7368f10aaba3",
         })))),
@@ -112,7 +110,7 @@ wrapProgram $out/opt/pencil/pencil \\
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GUI prototyping/mockup tool",
         mainProgram: "pencil",
         homepage: "https://pencil.evolus.vn/",

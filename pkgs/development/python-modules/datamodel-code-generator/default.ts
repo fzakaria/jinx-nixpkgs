@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]], [["debug", 83, 5], ["graphql", 84, 5], ["http", 85, 5], ["protobuf", 86, 5], ["ruff", 87, 5], ["validation", 88, 5], ["watch", 92, 5]], [["description", 132, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["mainProgram", 137, 5]], [["pname", 53, 3], ["version", 54, 3], ["pyproject", 55, 3], ["__structuredAttrs", 56, 3], ["src", 58, 3], ["build-system", 65, 3], ["dependencies", 70, 3], ["optional-dependencies", 82, 3], ["nativeCheckInputs", 97, 3], ["disabledTests", 112, 3], ["__darwinAllowLocalNetworking", 127, 3], ["pythonImportsCheck", 129, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, argcomplete: false, black: false, genson: false, inflect: false, isort: false, jinja2: false, packaging: false, pydantic: false, pyyaml: false, pysnooper: false, "graphql-core": false, httpx: false, "grpcio-tools": false, ruff: false, "openapi-spec-validator": false, prance: false, watchfiles: false, "email-validator": false, hypothesis: false, "hypothesis-jsonschema": false, "inline-snapshot": false, jsonschema: false, msgspec: false, "pytest-mock": false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, "time-machine": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["debug", 83, 5], ["graphql", 84, 5], ["http", 85, 5], ["protobuf", 86, 5], ["ruff", 87, 5], ["validation", 88, 5], ["watch", 92, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 132, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["mainProgram", 137, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 53, 3], ["version", 54, 3], ["pyproject", 55, 3], ["__structuredAttrs", 56, 3], ["src", 58, 3], ["build-system", 65, 3], ["dependencies", 70, 3], ["optional-dependencies", 82, 3], ["nativeCheckInputs", 97, 3], ["disabledTests", 112, 3], ["__darwinAllowLocalNetworking", 127, 3], ["pythonImportsCheck", 129, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,13 +41,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const time_machine = nix.arg($, "time-machine");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "datamodel-code-generator",
       version: "0.71.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "koxudaxi",
           repo: "datamodel-code-generator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
         pyyaml,
       ]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           debug: nix.thunk(() => [pysnooper]),
           graphql: nix.thunk(() => [graphql_core]),
           http: nix.thunk(() => [httpx]),
@@ -102,7 +99,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["datamodel_code_generator"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pydantic model and dataclasses.dataclass generator for easy conversion of JSON, OpenAPI, JSON Schema, and YAML data sources",
         homepage: "https://github.com/koxudaxi/datamodel-code-generator",
         changelog: nix.thunk(() => nix.str`https://github.com/koxudaxi/datamodel-code-generator/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

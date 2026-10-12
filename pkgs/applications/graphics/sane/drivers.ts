@@ -2,26 +2,24 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/drivers.nix", [[["license", 11, 10]], [["name", 6, 5], ["owner", 7, 5], ["repo", 8, 5], ["rev", 9, 5], ["sha256", 10, 5], ["meta", 11, 5]], [["epjitsu", 5, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/drivers.nix", [["license", 11, 10]]);
-const pos$2 = nix.positions(here + "/drivers.nix", [["name", 6, 5], ["owner", 7, 5], ["repo", 8, 5], ["rev", 9, 5], ["sha256", 10, 5], ["meta", 11, 5]]);
-const pos$3 = nix.positions(here + "/drivers.nix", [["epjitsu", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     epjitsu: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "scansnap-firmware",
         owner: "stevleibelt",
         repo: "scansnap-firmware",
         rev: "96c3a8b2a4e4f1ccc4e5827c5eb5598084fd17c8",
         sha256: "1inchnvaqyw9d0skpg8hp5rpn27c09q58lsr42by4bahpbx5qday",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         })),
       })))),

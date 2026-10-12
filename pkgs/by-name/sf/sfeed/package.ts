@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["NIX_CFLAGS_COMPILE", 30, 7]], [["homepage", 33, 5], ["description", 34, 5], ["longDescription", 35, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 18, 3], ["makeFlags", 20, 3], ["installFlags", 27, 3], ["env", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["longDescription", 35, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 18, 3], ["makeFlags", 20, 3], ["installFlags", 27, 3], ["env", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sfeed",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.codemadness.org/sfeed",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-4ItAZ3HYmFc/OlUErAhUANm/BkeCIHvPtriWn9N29lg=",
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat(["RANLIB:=$(RANLIB)", "SFEED_CURSES_LDFLAGS:=-lncurses"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "COMPATOBJ:="))),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-D_DARWIN_C_SOURCE")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://codemadness.org/sfeed-simple-feed-parser.html",
         description: "RSS and Atom parser (and some format programs)",
         longDescription: "It converts RSS or Atom feeds from XML to a TAB-separated file. There are\nformatting programs included to convert this TAB-separated format to\nvarious other formats. There are also some programs and scripts included\nto import and export OPML and to fetch, filter, merge and order feed\nitems.\n",

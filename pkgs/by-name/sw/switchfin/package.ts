@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["cmakeFlags", 46, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, curl: false, dbus: false, ffmpeg: false, fmt_11: false, libwebp: false, mpv: false, SDL2: false, "tinyxml-2": false, tweeny: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["cmakeFlags", 46, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const tinyxml_2 = nix.arg($, "tinyxml-2");
   const tweeny = nix.arg($, "tweeny");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "switchfin",
       version: "0.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dragonflylee",
           repo: "switchfin",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         "-DUSE_SYSTEM_TWEENY=OFF",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Third-party native Jellyfin client for PC/PS4/PSVita/Nintendo Switch",
         homepage: "https://github.com/dragonflylee/switchfin",
         changelog: nix.thunk(() => nix.str`https://github.com/dragonflylee/switchfin/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

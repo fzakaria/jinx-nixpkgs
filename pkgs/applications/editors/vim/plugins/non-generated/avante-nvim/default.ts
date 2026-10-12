@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["RUSTFLAGS", 41, 9]], [["pname", 23, 5], ["version", 24, 13], ["src", 24, 21], ["cargoHash", 26, 5], ["nativeBuildInputs", 28, 5], ["buildInputs", 34, 5], ["buildFeatures", 38, 5], ["env", 41, 5], ["checkFlags", 43, 5]], [["attrPath", 81, 7]], [["updateScript", 80, 5], ["avante-nvim-lib", 85, 13]], [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["maintainers", 101, 5]], [["pname", 53, 3], ["version", 54, 11], ["src", 54, 19], ["dependencies", 56, 3], ["postInstall", 64, 3], ["passthru", 79, 3], ["nvimSkipModules", 88, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "nix-update-script": false, openssl: false, "pkg-config": false, rustPlatform: false, stdenv: false, vimPlugins: false, vimUtils: false, makeWrapper: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["RUSTFLAGS", 41, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 5], ["version", 24, 13], ["src", 24, 21], ["cargoHash", 26, 5], ["nativeBuildInputs", 28, 5], ["buildInputs", 34, 5], ["buildFeatures", 38, 5], ["env", 41, 5], ["checkFlags", 43, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["attrPath", 81, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 80, 5], ["avante-nvim-lib", 85, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["maintainers", 101, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 53, 3], ["version", 54, 11], ["src", 54, 19], ["dependencies", 56, 3], ["postInstall", 64, 3], ["passthru", 79, 3], ["nvimSkipModules", 88, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const version = "0.2.3";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "yetone",
       repo: "avante.nvim",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-VJN2ero5ndLqfmMImUF9fqbUKku6Q1CypjK5Q+SB0ck=",
     }))));
   const avante_nvim_lib = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "avante-nvim-lib",
       version: version,
       src: src,
@@ -42,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       buildFeatures: nix.thunk(() => ["luajit"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-C link-arg=-undefined -C link-arg=dynamic_lookup")),
       })),
       checkFlags: nix.thunk(() => [
@@ -53,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "avante.nvim",
       version: version,
       src: src,
@@ -80,8 +74,8 @@ install -D contrib/avante $out/bin/avante
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vimPlugins.avante-nvim.avante-nvim-lib" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], attrPath: "vimPlugins.avante-nvim.avante-nvim-lib" })))),
         "avante-nvim-lib": avante_nvim_lib,
       })),
       nvimSkipModules: nix.thunk(() => [
@@ -92,7 +86,7 @@ install -D contrib/avante $out/bin/avante
         "avante.providers.vertex_claude",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Neovim plugin designed to emulate the behaviour of the Cursor AI IDE",
         homepage: "https://github.com/avante-corp/avante.nvim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

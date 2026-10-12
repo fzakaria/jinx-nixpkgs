@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["url", 32, 7], ["sha256", 33, 7]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5], ["mainProgram", 72, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["strictDeps", 37, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 39, 3], ["makeFlags", 41, 3], ["postPatch", 43, 3], ["postInstall", 49, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, fetchpatch: false, bash: false, makeWrapper: false, bc: false, jq: false, coreutils: false, "util-linux": false, wimlib: false, file: false, syslinux: false, busybox: false, gnugrep: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["sha256", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5], ["mainProgram", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["strictDeps", 37, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 39, 3], ["makeFlags", 41, 3], ["postPatch", 43, 3], ["postInstall", 49, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bootiso";
       const version = "4.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jsamr",
           repo: "bootiso",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://code.opensuse.org/package/bootiso/raw/3799710e3da40c1b429ea1a2ce3896d18d08a5c5/f/syslinux-lib-root.patch",
             sha256: "sha256-x2EJppQsPPymSrjRwEy7mylW+2OKcGzKsKF3y7fzrB8=",
           })))),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bc, jq, coreutils, util_linux, wimlib, file, syslinux, gnugrep, busybox]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Script for securely creating a bootable USB device from one image file",
         homepage: "https://github.com/jsamr/bootiso",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "bootiso",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

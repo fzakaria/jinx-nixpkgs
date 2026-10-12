@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["updateScript", 41, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 18, 3], ["nativeBuildInputs", 20, 3], ["postBuild", 25, 3], ["postInstall", 33, 3], ["passthru", 40, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, mkfontscale: false, fontforge: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 18, 3], ["nativeBuildInputs", 20, 3], ["postBuild", 25, 3], ["postInstall", 33, 3], ["passthru", 40, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fontforge = nix.arg($, "fontforge");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "font-bitstream-type1",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/font/font-bitstream-type1-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-3i8ji0zXLbQiigumeCnXait8A54imT1mpyLuOFJIxig=",
         })))),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "# convert Postscript (Type 1) font to otf\nfor i in $(find -type f -name '*.pfa' -o -name '*.pfb'); do\n    name=$(basename $i | cut -d. -f1)\n    fontforge -lang=ff -c \"Open(\\\"$i\\\"); Generate(\\\"$name.otf\\\")\"\ndone\n",
       postInstall: "# install the otf fonts\nfontDir=\"$out/share/fonts/X11/otf\"\ninstall -Dm444 -t \"$fontDir\" *.otf\nmkfontscale \"$fontDir\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname ${nix.sel(finalAttrs, "pname")} \\
@@ -40,7 +37,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Bitstream Charter PostScript Type 1 and OpenType fonts",
         homepage: "https://gitlab.freedesktop.org/xorg/font/bitstream-type1",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bitstreamCharter")),

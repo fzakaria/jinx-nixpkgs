@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]], [["extraArgs", 136, 7]], [["package", 143, 39]], [["version", 143, 7]], [["test", 150, 7]], [["updateScript", 135, 5], ["tests", 142, 5]], [["description", 155, 5], ["homepage", 156, 5], ["license", 157, 5], ["maintainers", 158, 5], ["platforms", 163, 5], ["changelog", 164, 5], ["mainProgram", 165, 5]], [["pname", 53, 3], ["version", 54, 3], ["src", 56, 3], ["cargoHash", 63, 3], ["nativeBuildInputs", 65, 3], ["runtimeDependencies", 78, 3], ["buildInputs", 80, 3], ["outputs", 86, 3], ["buildNoDefaultFeatures", 91, 3], ["buildFeatures", 92, 3], ["cargoBuildFlags", 94, 3], ["cargoTestFlags", 98, 3], ["checkFlags", 103, 3], ["postInstall", 112, 3], ["passthru", 134, 3], ["meta", 154, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, darwin: false, fetchFromGitHub: false, rustPlatform: false, nixosTests: false, "nix-update-script": false, autoPatchelfHook: false, installShellFiles: false, cmake: false, ncurses: false, scdoc: false, shaderc: false, "pkg-config": false, "gcc-unwrapped": false, fontconfig: false, libGL: false, "vulkan-loader": false, libxkbcommon: false, withX11: true, libx11: false, libxcursor: false, libxi: false, libxrandr: false, libxcb: false, withWayland: true, wayland: false, testers: false, rio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 136, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 143, 39]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 143, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["test", 150, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 135, 5], ["tests", 142, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 155, 5], ["homepage", 156, 5], ["license", 157, 5], ["maintainers", 158, 5], ["platforms", 163, 5], ["changelog", 164, 5], ["mainProgram", 165, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 53, 3], ["version", 54, 3], ["src", 56, 3], ["cargoHash", 63, 3], ["nativeBuildInputs", 65, 3], ["runtimeDependencies", 78, 3], ["buildInputs", 80, 3], ["outputs", 86, 3], ["buildNoDefaultFeatures", 91, 3], ["buildFeatures", 92, 3], ["cargoBuildFlags", 94, 3], ["cargoTestFlags", 98, 3], ["checkFlags", 103, 3], ["postInstall", 112, 3], ["passthru", 134, 3], ["meta", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,11 +44,11 @@ export default nix.lambda((args) => (() => {
       vulkan_loader,
     ])), nix.concat(nix.app(nix.sel(lib, "optionals"), withX11, nix.thunk(() => [libx11, libxcursor, libxi, libxrandr, libxcb])), nix.app(nix.sel(lib, "optionals"), withWayland, nix.thunk(() => [wayland])))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "rio",
       version: "0.5.28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "raphamorim",
           repo: "rio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,21 +71,21 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["--skip=context::test::", "--skip=context::title::test::test_update_title"]),
       postInstall: nix.thunk(() => nix.add("install -D -m 644 misc/rio.desktop -t $out/share/applications\ninstall -D -m 644 misc/logo.svg \\\n                  $out/share/icons/hicolor/scalable/apps/rio.svg\n\ninstall -dm 755 \"$terminfo/share/terminfo\"\ntic -xe xterm-rio,rio -o \"$terminfo/share/terminfo\" misc/rio.terminfo\nmkdir -p $out/nix-support\necho \"$terminfo\" >> $out/nix-support/propagated-user-env-packages\n\nscdoc < extra/man/rio.1.scd > rio.1\nscdoc < extra/man/rio.5.scd > rio.5\nscdoc < extra/man/rio-bindings.5.scd > rio-bindings.5\ninstallManPage rio.1 rio.5 rio-bindings.5\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir $out/Applications/\nmv misc/osx/Rio.app/ $out/Applications/\nmkdir $out/Applications/Rio.app/Contents/MacOS/\nln -s $out/bin/rio $out/Applications/Rio.app/Contents/MacOS/\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "v([0-9.]+)"]),
           })))),
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: rio })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: rio })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "buildPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "rio")),
           }))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Hardware-accelerated GPU terminal emulator powered by WebGPU",
         homepage: "https://rioterm.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

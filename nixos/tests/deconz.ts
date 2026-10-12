@@ -2,38 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/deconz.nix", [[["maintainers", 8, 8]], [["pkgsReadOnly", 12, 8]], [["enable", 16, 7], ["httpPort", 17, 15], ["extraArgs", 18, 7]], [["deconz", 15, 14]], [["services", 15, 5]], [["machine", 14, 9]], [["name", 6, 3], ["meta", 8, 3], ["node", 12, 3], ["nodes", 14, 3], ["testScript", 25, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/deconz.nix", [["maintainers", 8, 8]]);
-const pos$2 = nix.positions(here + "/deconz.nix", [["pkgsReadOnly", 12, 8]]);
-const pos$3 = nix.positions(here + "/deconz.nix", [["enable", 16, 7], ["httpPort", 17, 15], ["extraArgs", 18, 7]]);
-const pos$4 = nix.positions(here + "/deconz.nix", [["deconz", 15, 14]]);
-const pos$5 = nix.positions(here + "/deconz.nix", [["services", 15, 5]]);
-const pos$6 = nix.positions(here + "/deconz.nix", [["machine", 14, 9]]);
-const pos$7 = nix.positions(here + "/deconz.nix", [["name", 6, 3], ["meta", 8, 3], ["node", 12, 3], ["nodes", 14, 3], ["testScript", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const httpPort = 800n;
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "deconz",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "bjornfor"))];
       })()),
     })),
-    node: nix.thunk(() => ({ [nix.POS]: pos$2, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: $pos[1], pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           deconz: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             httpPort: httpPort,
             extraArgs: nix.thunk(() => ["--dbg-err=2", "--dbg-info=2"]),

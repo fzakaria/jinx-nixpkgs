@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["owner", 40, 7], ["repo", 41, 7], ["rev", 42, 7], ["hash", 43, 7]], [["owner", 47, 7], ["repo", 48, 7], ["rev", 49, 7], ["hash", 50, 7]], [["owner", 54, 7], ["repo", 55, 7], ["rev", 56, 7], ["hash", 57, 7]], [["owner", 61, 7], ["repo", 62, 7], ["rev", 63, 7], ["hash", 64, 7]], [["owner", 68, 7], ["repo", 69, 7], ["rev", 70, 7], ["hash", 71, 7]], [["ada", 39, 5], ["muon", 46, 5], ["sha256", 53, 5], ["tree-sitter-ini", 60, 5], ["tree-sitter-meson", 67, 5]], [["updateScript", 147, 5]], [["description", 151, 5], ["homepage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["mainProgram", 155, 5], ["maintainers", 156, 5], ["platforms", 157, 5]], [["pname", 27, 3], ["version", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["mesonSubprojects", 38, 3], ["patches", 75, 3], ["strictDeps", 80, 3], ["nativeBuildInputs", 82, 3], ["nativeInstallCheckInputs", 89, 3], ["buildInputs", 93, 3], ["mesonFlags", 108, 3], ["doCheck", 121, 3], ["doInstallCheck", 122, 3], ["postUnpack", 124, 3], ["postPatch", 136, 3], ["mesonCheckFlags", 140, 3], ["passthru", 146, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gtest: false, meson: false, ninja: false, "pkg-config": false, python3: false, curl: false, libarchive: false, libossp_uuid: false, libpkgconf: false, tomlplusplus: false, libuuid: false, nlohmann_json: false, "tree-sitter": false, pkgsStatic: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 40, 7], ["repo", 41, 7], ["rev", 42, 7], ["hash", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 47, 7], ["repo", 48, 7], ["rev", 49, 7], ["hash", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 54, 7], ["repo", 55, 7], ["rev", 56, 7], ["hash", 57, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 61, 7], ["repo", 62, 7], ["rev", 63, 7], ["hash", 64, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 68, 7], ["repo", 69, 7], ["rev", 70, 7], ["hash", 71, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["ada", 39, 5], ["muon", 46, 5], ["sha256", 53, 5], ["tree-sitter-ini", 60, 5], ["tree-sitter-meson", 67, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 147, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 151, 5], ["homepage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["mainProgram", 155, 5], ["maintainers", 156, 5], ["platforms", 157, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["mesonSubprojects", 38, 3], ["patches", 75, 3], ["strictDeps", 80, 3], ["nativeBuildInputs", 82, 3], ["nativeInstallCheckInputs", 89, 3], ["buildInputs", 93, 3], ["mesonFlags", 108, 3], ["doCheck", 121, 3], ["doInstallCheck", 122, 3], ["postUnpack", 124, 3], ["postPatch", 136, 3], ["mesonCheckFlags", 140, 3], ["passthru", 146, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,49 +27,49 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "mesonlsp",
       version: "5.0.4",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JCWasmx86",
           repo: "mesonlsp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-j8J/IREXYwH6KP9KlUTAfLpNN3n7yJSxoh8fqcvQ2P8=",
         })))),
       mesonSubprojects: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         ada: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "ada-url",
             repo: "ada",
             rev: "v2.7.4",
             hash: "sha256-V5LwL03x7/a9Lvg1gPvgGipo7IICU7xyO2D3GqP6Lbw=",
           })))),
         muon: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "JCWasmx86",
             repo: "muon",
             rev: "cea0b8e6c2874d1f2ce4057a17bd37090f619b6b",
             hash: "sha256-MM47mdMKpQBykWeL1aSufH/BYfy+uAWVJLWWMhXolsE=",
           })))),
         sha256: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             owner: "amosnier",
             repo: "sha-2",
             rev: "49265c656f9b370da660531db8cc6bf0a2e110a6",
             hash: "sha256-X9M/ZATYXUiE4oGorPBnsdaKnKaObarnMRh6QEfkBls=",
           })))),
         "tree-sitter-ini": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             owner: "JCWasmx86",
             repo: "tree-sitter-ini",
             rev: "848b6269f7039739aebd169fbd3d5e6e34bef661",
             hash: "sha256-Lmlp20gxwfkWMbk81pBwfS7nc3ZBcMfjPzFB2ozhhLk=",
           })))),
         "tree-sitter-meson": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             owner: "JCWasmx86",
             repo: "tree-sitter-meson",
             rev: "09665faff74548820c10d77dd8738cd76d488572",
@@ -125,11 +116,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs src/libtypenamespace\n",
       mesonCheckFlags: nix.thunk(() => ["--print-errorlogs"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Unofficial, unendorsed language server for Meson written in C++",
         homepage: "https://github.com/JCWasmx86/mesonlsp",
         changelog: nix.thunk(() => nix.str`https://github.com/JCWasmx86/mesonlsp/releases/tag/v${nix.sel(finalAttrs, "version")}`),

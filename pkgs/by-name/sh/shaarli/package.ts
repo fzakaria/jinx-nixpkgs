@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 65, 5], ["license", 66, 5], ["homepage", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 17, 3], ["nativeBuildInputs", 22, 3], ["patchPhase", 24, 3], ["installPhase", 56, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["license", 66, 5], ["homepage", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 17, 3], ["nativeBuildInputs", 22, 3], ["patchPhase", 24, 3], ["installPhase", 56, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "shaarli",
       version: "0.16.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/shaarli/Shaarli/releases/download/v${nix.sel(finalAttrs, "version")}/shaarli-v${nix.sel(finalAttrs, "version")}-full.zip`),
           sha256: "sha256-ADnP/wcyDMUh9lsXeffNZCku27LyKjdCwdrJ8+K1zI4=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "substituteInPlace index.php \\\n  --replace \"new ConfigManager();\" \"new ConfigManager(getenv('SHAARLI_CONFIG'));\"\n",
       installPhase: "rm -r {cache,pagecache,tmp,data}/\nmkdir -p $doc/share/doc\nmv doc/ $doc/share/doc/shaarli\nmkdir $out/\ncp -R ./* $out\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Personal, minimalist, super-fast, database free, bookmarking service",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         homepage: "https://github.com/shaarli/Shaarli",

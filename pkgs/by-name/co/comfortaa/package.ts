@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["postFetch", 21, 5], ["hash", 25, 5]], [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]], [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 17, 3], ["sourceRoot", 28, 3], ["nativeBuildInputs", 30, 3], ["dontBuild", 32, 3], ["postInstall", 34, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["postFetch", 21, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 17, 3], ["sourceRoot", 28, 3], ["nativeBuildInputs", 30, 3], ["dontBuild", 32, 3], ["postInstall", 34, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "comfortaa",
       version: "3.101-unstable-2021-07-29",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googlefonts",
           repo: "comfortaa",
           rev: "2a87ac6f6ea3495150bfa00d0c0fb53dd0a2f11b",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       postInstall: "mkdir -p $out/share/doc/comfortaa\ncp ../FONTLOG.txt ../README.md $out/share/doc/comfortaa\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://aajohan.deviantart.com/art/Comfortaa-font-105395949",
         description: "Clean and modern font suitable for headings and logos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

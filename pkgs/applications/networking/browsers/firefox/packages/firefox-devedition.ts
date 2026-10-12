@@ -2,15 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/firefox-devedition.nix", [[["url", 17, 5], ["sha512", 18, 5]], [["product", 45, 7], ["sw_edition", 46, 7]], [["cpeParts", 44, 17]], [["changelog", 31, 5], ["description", 32, 5], ["homepage", 33, 5], ["maintainers", 34, 5], ["platforms", 37, 5], ["broken", 38, 5], ["maxSilent", 41, 5], ["license", 42, 5], ["mainProgram", 43, 5], ["identifiers", 44, 5]], [["firefox-devedition", 51, 26]], [["attrPath", 54, 5], ["versionSuffix", 55, 5], ["baseUrl", 56, 5]], [["pname", 11, 3], ["binaryName", 12, 3], ["version", 13, 3], ["applicationName", 14, 3], ["branding", 15, 3], ["src", 16, 3], ["extraPostPatch", 26, 3], ["meta", 30, 3], ["tests", 50, 3], ["updateScript", 53, 3]], [["enableAddonSigning", 60, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, callPackage: false, fetchurl: false, nixosTests: false, buildMozillaMach: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/firefox-devedition.nix", [["url", 17, 5], ["sha512", 18, 5]]);
-const pos$2 = nix.positions(here + "/firefox-devedition.nix", [["product", 45, 7], ["sw_edition", 46, 7]]);
-const pos$3 = nix.positions(here + "/firefox-devedition.nix", [["cpeParts", 44, 17]]);
-const pos$4 = nix.positions(here + "/firefox-devedition.nix", [["changelog", 31, 5], ["description", 32, 5], ["homepage", 33, 5], ["maintainers", 34, 5], ["platforms", 37, 5], ["broken", 38, 5], ["maxSilent", 41, 5], ["license", 42, 5], ["mainProgram", 43, 5], ["identifiers", 44, 5]]);
-const pos$5 = nix.positions(here + "/firefox-devedition.nix", [["firefox-devedition", 51, 26]]);
-const pos$6 = nix.positions(here + "/firefox-devedition.nix", [["attrPath", 54, 5], ["versionSuffix", 55, 5], ["baseUrl", 56, 5]]);
-const pos$7 = nix.positions(here + "/firefox-devedition.nix", [["pname", 11, 3], ["binaryName", 12, 3], ["version", 13, 3], ["applicationName", 14, 3], ["branding", 15, 3], ["src", 16, 3], ["extraPostPatch", 26, 3], ["meta", 30, 3], ["tests", 50, 3], ["updateScript", 53, 3]]);
-const pos$8 = nix.positions(here + "/firefox-devedition.nix", [["enableAddonSigning", 60, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +20,13 @@ export default nix.lambda((args) => (() => {
       const applicationName = "Firefox Developer Edition";
       const branding = "browser/branding/aurora";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://mozilla/devedition/releases/${version}/source/firefox-${version}.source.tar.xz`),
           sha512: "0780e3f58d8dd3f51863aa5b3abffed59a85ad693f9a15e59de0d7cb926f69aeefa35d68bddcfeb88d148288e7ac5cf03ddb3b33b254db0e781cad07634cac16",
         }))));
       const extraPostPatch = "sed -i '/^MOZ_APP_REMOTINGNAME=/d' browser/branding/aurora/configure.sh\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://www.mozilla.org/en-US/firefox/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}beta/releasenotes/`),
         description: "Web browser built from Firefox Developer Edition source tree",
         homepage: "http://www.mozilla.com/en-US/firefox/",
@@ -47,22 +40,22 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         mainProgram: binaryName,
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "mozilla", version), { [nix.POS]: pos$2, product: "firefox", sw_edition: "devedition" })),
+          [nix.POS]: $pos[2],
+          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "mozilla", version), { [nix.POS]: $pos[1], product: "firefox", sw_edition: "devedition" })),
         })),
       }));
       const tests = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "firefox-devedition": nix.thunk(() => nix.attr(nixosTests, "firefox-devedition")),
       }));
       const updateScript = nix.thunk(() => nix.app(callPackage, nix.path(here, "../update.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           attrPath: "firefox-devedition-unwrapped",
           versionSuffix: "b[0-9]*",
           baseUrl: "https://archive.mozilla.org/pub/devedition/releases/",
         }))));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         binaryName,
         version,
@@ -74,6 +67,6 @@ export default nix.lambda((args) => (() => {
         tests,
         updateScript,
       };
-    })())), "override"), nix.thunk(() => ({ [nix.POS]: pos$8, enableAddonSigning: false })));
+    })())), "override"), nix.thunk(() => ({ [nix.POS]: $pos[7], enableAddonSigning: false })));
 })(), formals$1);
 //# sourceMappingURL=firefox-devedition.ts.map

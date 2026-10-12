@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["cocoon", 29, 86]], [["tests", 29, 5], ["updateScript", 30, 5]], [["description", 34, 5], ["changelog", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["ldflags", 20, 3], ["vendorHash", 26, 3], ["passthru", 28, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false, stdenvNoCC: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cocoon", 29, 86]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 29, 5], ["updateScript", 30, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 34, 5], ["changelog", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["ldflags", 20, 3], ["vendorHash", 26, 3], ["passthru", 28, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cocoon",
       version: "0.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "haileyok",
           repo: "cocoon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
       ]),
       vendorHash: "sha256-Dxbilj8A67jjOWqqkv4B1iekQ2oUg+5oVjP1ta4YOk0=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$2, cocoon: nix.thunk(() => nix.attr(nixosTests, "cocoon")) })))),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: $pos[1], cocoon: nix.thunk(() => nix.attr(nixosTests, "cocoon")) })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "ATProtocol Personal Data Server written in Go with a SQLite block and blob store",
         changelog: nix.thunk(() => nix.str`https://github.com/haileyok/cocoon/releases/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/haileyok/cocoon",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 20], ["hash", 13, 20]], [["url", 14, 22], ["hash", 15, 22]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["sourceProvenance", 63, 5], ["platforms", 64, 5], ["maintainers", 68, 5], ["mainProgram", 72, 5]], [["pname", 26, 3], ["version", 27, 11], ["src", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["dontConfigure", 40, 3], ["dontBuild", 41, 3], ["installPhase", 43, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, autoPatchelfHook: false, fetchurl: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 20], ["hash", 13, 20]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 14, 22], ["hash", 15, 22]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["sourceProvenance", 63, 5], ["platforms", 64, 5], ["maintainers", 68, 5], ["mainProgram", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 11], ["src", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["dontConfigure", 40, 3], ["dontBuild", 41, 3], ["installPhase", 43, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const version = "0.106.0";
   const serverSource_x64 = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     url: nix.thunk(() => nix.str`https://github.com/TriliumNext/Trilium/releases/download/v${version}/TriliumNotes-Server-v${version}-linux-x64.tar.xz`),
     hash: "sha256-xpOijrhtKJLjBVPY/ZoXH01y5cdvAt0/szX2vUdrauw=",
   }));
   const serverSource_arm64 = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     url: nix.thunk(() => nix.str`https://github.com/TriliumNext/Trilium/releases/download/v${version}/TriliumNotes-Server-v${version}-linux-arm64.tar.xz`),
     hash: "sha256-di+BwgYiHIpqxSN0TKy7KWk2lq1/F7Bf81hfPSl9jxw=",
   }));
   const serverSource = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? nix.force(serverSource_x64) : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? nix.force(serverSource_arm64) : nix.builtins.throw(nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "config")} not supported by trilium-server`)))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "trilium-server",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, serverSource)),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\nmkdir -p \"$out/share/trilium-server\"\n\ncp -r ./* \"$out/share/trilium-server/\"\n\n# Unused musl prebuilds confuse autoPatchelfHook (glibc-only).\nrm -f \"$out/share/trilium-server/node_modules/better-sqlite3/prebuilds\"/linuxmusl-*.node\n\nmakeWrapper \"$out/share/trilium-server/node/bin/node\" \"$out/bin/trilium-server\" \\\n  --chdir \"$out/share/trilium-server\" \\\n  --add-flags \"main.mjs\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Hierarchical note taking application with focus on building large personal knowledge bases",
         homepage: "https://github.com/TriliumNext/Trilium",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

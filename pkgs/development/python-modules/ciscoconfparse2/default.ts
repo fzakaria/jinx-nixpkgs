@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["broken", 88, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["pythonRelaxDeps", 34, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 59, 3], ["pythonImportsCheck", 64, 3], ["disabledTests", 66, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, attrs: false, buildPythonPackage: false, dnspython: false, fetchFromGitHub: false, hatchling: false, "hier-config": false, loguru: false, macaddress: false, passlib: false, pyparsing: false, "pytest-cov-stub": false, pytestCheckHook: false, pyyaml: false, rich: false, scrypt: false, tomlkit: false, typeguard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["broken", 88, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["pythonRelaxDeps", 34, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 59, 3], ["pythonImportsCheck", 64, 3], ["disabledTests", 66, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mpenning",
           repo: "ciscoconfparse2",
           tag: version,
@@ -70,7 +68,7 @@ export default nix.lambda((args) => (() => {
         "testValues_save_as_01",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Module to parse, audit, query, build and modify device configurations",
         homepage: "https://github.com/mpenning/ciscoconfparse2",
         changelog: nix.thunk(() => nix.str`https://github.com/mpenning/ciscoconfparse2/blob/${nix.sel(src, "tag")}/CHANGES.md`),
@@ -82,7 +80,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(hier_config, "version")), "3")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

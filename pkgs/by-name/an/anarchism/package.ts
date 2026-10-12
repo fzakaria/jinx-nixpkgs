@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["homepage", 35, 5], ["changelog", 36, 5], ["description", 37, 5], ["longDescription", 38, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 20, 3], ["installPhase", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "xdg-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 35, 5], ["changelog", 36, 5], ["description", 37, 5], ["longDescription", 38, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 20, 3], ["installPhase", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "anarchism",
       version: "15.3-4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "anarchism",
@@ -32,7 +30,7 @@ substituteInPlace debian/anarchism.desktop \\
 `),
       installPhase: "mkdir -p $out/share/doc/anarchism $out/share/applications $out/share/icons/hicolor/scalable/apps\ncp -r {html,markdown} $out/share/doc/anarchism\ncp debian/anarchism.svg $out/share/icons/hicolor/scalable/apps\ncp debian/anarchism.desktop $out/share/applications\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.anarchistfaq.org/",
         changelog: "http://anarchism.pageabode.com/afaq/new.html",
         description: "Exhaustive exploration of Anarchist theory and practice",

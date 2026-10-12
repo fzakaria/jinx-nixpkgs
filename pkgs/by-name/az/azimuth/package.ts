@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 85, 5], ["longDescription", 86, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["mainProgram", 102, 5], ["platforms", 103, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["__structuredAttrs", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 37, 3], ["makeFlags", 44, 3], ["enableParallelBuilding", 46, 3], ["postPatch", 48, 3], ["doCheck", 63, 3], ["checkTarget", 64, 3], ["installPhase", 66, 3], ["postFixup", 79, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, SDL2: false, "pkg-config": false, libGL: false, which: false, makeBinaryWrapper: false, icnsify: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 85, 5], ["longDescription", 86, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["mainProgram", 102, 5], ["platforms", 103, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["__structuredAttrs", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 37, 3], ["makeFlags", 44, 3], ["enableParallelBuilding", 46, 3], ["postPatch", 48, 3], ["doCheck", 63, 3], ["checkTarget", 64, 3], ["installPhase", 66, 3], ["postFixup", 79, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const icnsify = nix.arg($, "icnsify");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "azimuth",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mdsteele",
           repo: "azimuth",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\nmkdir -p $out/bin\ninstall -m755 out/release/host/bin/azimuth $out/bin/\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\ncp -R out/release/host/Azimuth.app $out/Applications/\n")), "runHook postInstall\n")),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeBinaryWrapper \"$out/Applications/Azimuth.app/Contents/MacOS/Azimuth\" \\\n  \"$out/bin/azimuth\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Metroidvania game with vector graphics, inspired by Super Metroid and Star Control II",
         longDescription: "Azimuth is a metroidvania game, and something of an homage to the previous\ngreats of the genre (Super Metroid in particular). You will need to pilot\nyour ship, explore the inside of the planet, fight enemies, overcome\nobstacles, and uncover the storyline piece by piece. Azimuth features a\nhuge game world to explore, lots of little puzzles to solve, dozens of\nweapons and upgrades to find and use, and a wide variety of enemies and\nbosses to tangle with.\n",
         homepage: "https://mdsteele.games/azimuth/",

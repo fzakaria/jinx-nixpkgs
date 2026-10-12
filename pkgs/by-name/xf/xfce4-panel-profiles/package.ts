@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 30, 5], ["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["rev-prefix", 58, 40]], [["updateScript", 58, 12]], [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5], ["teams", 65, 5], ["platforms", 66, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["mesonFlags", 54, 3], ["passthru", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gettext: false, "gobject-introspection": false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, glib: false, gtk3: false, libxfce4ui: false, libxfce4util: false, python3: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 30, 5], ["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 58, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 58, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5], ["teams", 65, 5], ["platforms", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["mesonFlags", 54, 3], ["passthru", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(ps, "psutil")),
     ]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xfce4-panel-profiles",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.xfce.org",
           owner: "apps",
           repo: "xfce4-panel-profiles",
@@ -48,11 +44,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dpython-path=${nix.app(nix.sel(lib, "getExe"), pythonEnv)}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "xfce4-panel-profiles-" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "xfce4-panel-profiles-" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://docs.xfce.org/apps/xfce4-panel-profiles/start",
         description: "Simple application to manage Xfce panel layouts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

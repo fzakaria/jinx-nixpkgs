@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["ayatana-indicator-messages", 141, 7]], [["pkg-config", 147, 7], ["vm", 148, 7]], [["ayatana-indicators", 140, 5], ["tests", 146, 5], ["updateScript", 150, 5]], [["description", 154, 5], ["longDescription", 155, 5], ["homepage", 159, 5], ["changelog", 160, 5], ["license", 163, 5], ["platforms", 164, 5], ["maintainers", 165, 5], ["pkgConfigModules", 166, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["outputs", 38, 3], ["postPatch", 44, 3], ["strictDeps", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 79, 3], ["nativeCheckInputs", 87, 3], ["checkInputs", 96, 3], ["cmakeFlags", 101, 3], ["makeFlags", 107, 3], ["doCheck", 113, 3], ["preCheck", 115, 3], ["postCheck", 120, 3], ["preInstall", 125, 3], ["preFixup", 133, 3], ["passthru", 139, 3], ["meta", 153, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gitUpdater: false, nixosTests: false, testers: false, accountsservice: false, cmake: false, "dbus-test-runner": false, withDocumentation: true, docbook_xsl: false, docbook_xml_dtd_45: false, glib: false, "gobject-introspection": false, gtest: false, "gtk-doc": false, intltool: false, lomiri: false, "pkg-config": false, python3: false, systemdLibs: false, vala: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ayatana-indicator-messages", 141, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 147, 7], ["vm", 148, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ayatana-indicators", 140, 5], ["tests", 146, 5], ["updateScript", 150, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 154, 5], ["longDescription", 155, 5], ["homepage", 159, 5], ["changelog", 160, 5], ["license", 163, 5], ["platforms", 164, 5], ["maintainers", 165, 5], ["pkgConfigModules", 166, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["outputs", 38, 3], ["postPatch", 44, 3], ["strictDeps", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 79, 3], ["nativeCheckInputs", 87, 3], ["checkInputs", 96, 3], ["cmakeFlags", 101, 3], ["makeFlags", 107, 3], ["doCheck", 113, 3], ["preCheck", 115, 3], ["postCheck", 120, 3], ["preInstall", 125, 3], ["preFixup", 133, 3], ["passthru", 139, 3], ["meta", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ayatana-indicator-messages",
       version: "24.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AyatanaIndicators",
           repo: "ayatana-indicator-messages",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -79,20 +74,20 @@ export default nix.lambda((args) => (() => {
       preInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withDocumentation, "# installing regenerates docs, generated files are created without write permissions, errors out while trying to overwrite them\nchmod +w doc/reference/html/*\n")),
       preFixup: "gappsWrapperArgs+=(\n  --suffix PATH : '/run/current-system/sw/bin'\n)\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "ayatana-indicators": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "ayatana-indicator-messages": nix.thunk(() => ["ayatana", "lomiri"]),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           vm: nix.thunk(() => nix.sel(nixosTests, "ayatana-indicators")),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Ayatana Indicator Messages Applet",
         longDescription: "The -messages Ayatana System Indicator is the messages menu indicator for Unity7, MATE and Lomiri (optionally for\nothers, e.g. XFCE, LXDE).\n",
         homepage: "https://github.com/AyatanaIndicators/ayatana-indicator-messages",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["lockFile", 30, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["cargoDeps", 29, 3], ["postPatch", 33, 3], ["build-system", 37, 3], ["nativeCheckInputs", 44, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, cargo: false, rustPlatform: false, rustc: false, buildPythonPackage: false, hypothesis: false, pytestCheckHook: false, "pytest-benchmark": false, "setuptools-rust": false, xxhash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lockFile", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["cargoDeps", 29, 3], ["postPatch", 33, 3], ["build-system", 37, 3], ["nativeCheckInputs", 44, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const setuptools_rust = nix.arg($, "setuptools-rust");
   const xxhash = nix.arg($, "xxhash");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "safelz4",
       version: "0.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LVivona",
           repo: "safelz4",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-t4pCykt2WsR/Ij/ylwKHLY/NYBdDLlZjMY2BX3ld9T4=",
         })))),
-      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })))),
+      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") })))),
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       "build-system": nix.thunk(() => [
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export PATH=$out/bin:$PATH\n",
       pythonImportsCheck: nix.thunk(() => ["safelz4"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python bindings for lz4_flex, the fastest pure-Rust implementation of the LZ4 compression algorithm",
         homepage: "https://github.com/LVivona/safelz4",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 81, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 36, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 48, 3], ["disabledTestPaths", 57, 3], ["pythonImportsCheck", 64, 3], ["pythonRemoveDeps", 66, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, distlib: false, empy: false, packaging: false, "python-dateutil": false, pyyaml: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-repeat": false, "pytest-rerunfailures": false, scspell: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 81, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 36, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 48, 3], ["disabledTestPaths", 57, 3], ["pythonImportsCheck", 64, 3], ["pythonRemoveDeps", 66, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.21.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "colcon",
           repo: "colcon-core",
           tag: version,
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["colcon_core"]);
       const pythonRemoveDeps = nix.thunk(() => ["pytest-cov", "setuptools"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line tool to build sets of software packages",
         homepage: "https://github.com/colcon/colcon-core",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "colcon",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,25 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["extend", 15, 28]], [["nixops", 26, 11]], [["self", 22, 7], ["packageOverrides", 23, 7]], [["nixops-digitalocean", 36, 11], ["nixops-encrypted-links", 37, 11], ["nixops-hercules-ci", 38, 11], ["nixops-vbox", 39, 11], ["nixos-modules-contrib", 40, 11], ["nixopsvbox", 43, 11]], [["nixops-aws", 46, 11], ["nixops-gce", 47, 11], ["nixops-libvirtd", 48, 11], ["nixops-hetzner", 49, 11], ["nixops-hetznercloud", 50, 11], ["nixops-virtd", 51, 11]], [["selectedPlugins", 66, 11]], [["propagatedBuildInputs", 72, 9], ["postFixup", 76, 9]], [["nixopsPkg", 94, 13]], [["emptyFile", 98, 72]], [["emptyFile", 103, 40]], [["nixos", 93, 11], ["commutative_addAvailablePlugins_withPlugins", 96, 11]], [["withAPlugin", 109, 11]], [["rawPackage", 117, 13]], [["plugins", 130, 13]], [["selectedPlugins", 85, 9], ["availablePlugins", 86, 9], ["withPlugins", 87, 9], ["python", 88, 9], ["tests", 90, 7], ["overrideAttrs", 113, 7], ["addAvailablePlugins", 126, 7], ["internals", 135, 7]], [["outputs", 140, 9], ["derivation", 144, 9]], [["python", 21, 5], ["plugins", 31, 5], ["availablePlugins", 56, 5], ["selectedPlugins", 58, 5], ["withPlugins", 62, 5], ["rawPackage", 70, 5], ["extraPackageAttrs", 83, 5], ["package", 138, 5], ["public", 148, 5]], [["nixops_unstable_minimal", 155, 3], ["nixops_unstable_full", 158, 3]]]);
 const formals$1 = { args: { lib: false, config: false, python3: false, emptyFile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["extend", 15, 28]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nixops", 26, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["self", 22, 7], ["packageOverrides", 23, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["nixops-digitalocean", 36, 11], ["nixops-encrypted-links", 37, 11], ["nixops-hercules-ci", 38, 11], ["nixops-vbox", 39, 11], ["nixos-modules-contrib", 40, 11], ["nixopsvbox", 43, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["nixops-aws", 46, 11], ["nixops-gce", 47, 11], ["nixops-libvirtd", 48, 11], ["nixops-hetzner", 49, 11], ["nixops-hetznercloud", 50, 11], ["nixops-virtd", 51, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["selectedPlugins", 66, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 72, 9], ["postFixup", 76, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["nixopsPkg", 94, 13]]);
-const pos$9 = nix.positions(here + "/default.nix", [["emptyFile", 98, 72]]);
-const pos$10 = nix.positions(here + "/default.nix", [["emptyFile", 103, 40]]);
-const pos$11 = nix.positions(here + "/default.nix", [["nixos", 93, 11], ["commutative_addAvailablePlugins_withPlugins", 96, 11]]);
-const pos$12 = nix.positions(here + "/default.nix", [["withAPlugin", 109, 11]]);
-const pos$13 = nix.positions(here + "/default.nix", [["rawPackage", 117, 13]]);
-const pos$14 = nix.positions(here + "/default.nix", [["plugins", 130, 13]]);
-const pos$15 = nix.positions(here + "/default.nix", [["selectedPlugins", 85, 9], ["availablePlugins", 86, 9], ["withPlugins", 87, 9], ["python", 88, 9], ["tests", 90, 7], ["overrideAttrs", 113, 7], ["addAvailablePlugins", 126, 7], ["internals", 135, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["outputs", 140, 9], ["derivation", 144, 9]]);
-const pos$17 = nix.positions(here + "/default.nix", [["python", 21, 5], ["plugins", 31, 5], ["availablePlugins", 56, 5], ["selectedPlugins", 58, 5], ["withPlugins", 62, 5], ["rawPackage", 70, 5], ["extraPackageAttrs", 83, 5], ["package", 138, 5], ["public", 148, 5]]);
-const pos$18 = nix.positions(here + "/default.nix", [["nixops_unstable_minimal", 155, 3], ["nixops_unstable_full", 158, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const extends$ = nix.thunk(() => nix.attr(lib, "extends"));
   const encapsulate = (layerZero) => (() => {
     const fixed = nix.thunk(() => nix.app(layerZero, nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         extend: (f) => nix.app(encapsulate, nix.thunk(() => nix.app(extends$, f, layerZero))),
       }, fixed))));
     return nix.sel(fixed, "public");
   })();
   const nixopsContextBase = (this$) => ({
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     python: nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         self: nix.thunk(() => nix.sel(this$, "python")),
         packageOverrides: (self) => (super$) => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           nixops: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({})))),
         }, nix.app(nix.sel(this$, "plugins"), self, super$)),
       })))),
@@ -56,7 +39,7 @@ export default nix.lambda((args) => (() => {
         const nixos_modules_contrib = nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./plugins/nixos-modules-contrib.nix"), nix.thunk(() => ({}))));
         const nixopsvbox = nixops_vbox;
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "nixops-digitalocean": nixops_digitalocean,
           "nixops-encrypted-links": nixops_encrypted_links,
           "nixops-hercules-ci": nixops_hercules_ci,
@@ -72,7 +55,7 @@ export default nix.lambda((args) => (() => {
           const nixops_hetznercloud = nix.thunk(() => nix.app(nix.builtins.throw, "nixops-hetznercloud was broken and was removed from nixpkgs"));
           const nixops_virtd = nixops_libvirtd;
           return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "nixops-aws": nixops_aws,
             "nixops-gce": nixops_gce,
             "nixops-libvirtd": nixops_libvirtd,
@@ -85,46 +68,46 @@ export default nix.lambda((args) => (() => {
     availablePlugins: nix.thunk(() => nix.app(nix.sel(this$, "plugins"), nix.thunk(() => nix.sel(this$, "python", "pkgs")), nix.thunk(() => nix.sel(this$, "python", "pkgs")))),
     selectedPlugins: [],
     withPlugins: (selector) => nix.app(nix.sel(this$, "extend"), (this$_1) => (_old) => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         selectedPlugins: nix.thunk(() => nix.app(selector, nix.thunk(() => nix.sel(this$_1, "availablePlugins")))),
       })),
     rawPackage: nix.thunk(() => nix.app(nix.sel(this$, "python", "pkgs", "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(this$, "python", "pkgs", "nixops", "overridePythonAttrs"), (old) => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "propagatedBuildInputs"), nix.sel(this$, "selectedPlugins"))),
           postFixup: "rm $out/nix-support/propagated-build-inputs\n",
         }))))),
     extraPackageAttrs: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       selectedPlugins: nix.thunk(() => nix.attr(this$, "selectedPlugins")),
       availablePlugins: nix.thunk(() => nix.attr(this$, "availablePlugins")),
       withPlugins: nix.thunk(() => nix.attr(this$, "withPlugins")),
       python: nix.thunk(() => nix.attr(this$, "python")),
       tests: nix.thunk(() => nix.update(nix.sel(this$, "rawPackage", "tests"), nix.update({
-        [nix.POS]: pos$11,
-        nixos: nix.thunk(() => nix.app(nix.sel(this$, "rawPackage", "tests", "nixos", "passthru", "override"), nix.thunk(() => ({ [nix.POS]: pos$8, nixopsPkg: nix.thunk(() => nix.sel(this$, "rawPackage")) })))),
+        [nix.POS]: $pos[10],
+        nixos: nix.thunk(() => nix.app(nix.sel(this$, "rawPackage", "tests", "nixos", "passthru", "override"), nix.thunk(() => ({ [nix.POS]: $pos[7], nixopsPkg: nix.thunk(() => nix.sel(this$, "rawPackage")) })))),
         commutative_addAvailablePlugins_withPlugins: nix.thunk(() => (() => {
-          nix.assert_(nix.eq(nix.app(nix.sel(nix.app(nix.sel(this$, "public", "addAvailablePlugins"), (self) => (super$) => ({ [nix.POS]: pos$9, emptyFile: emptyFile })), "withPlugins"), (ps) => [emptyFile]), nix.app(nix.sel(nix.app(nix.sel(this$, "public", "withPlugins"), (ps) => [emptyFile]), "addAvailablePlugins"), (self) => (super$) => ({ [nix.POS]: pos$10, emptyFile: emptyFile }))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/networking/cluster/nixops/default.nix:97:13");
+          nix.assert_(nix.eq(nix.app(nix.sel(nix.app(nix.sel(this$, "public", "addAvailablePlugins"), (self) => (super$) => ({ [nix.POS]: $pos[8], emptyFile: emptyFile })), "withPlugins"), (ps) => [emptyFile]), nix.app(nix.sel(nix.app(nix.sel(this$, "public", "withPlugins"), (ps) => [emptyFile]), "addAvailablePlugins"), (self) => (super$) => ({ [nix.POS]: $pos[9], emptyFile: emptyFile }))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/networking/cluster/nixops/default.nix:97:13");
           return nix.force(emptyFile);
         })()),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(this$, "selectedPlugins"), [])), nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           withAPlugin: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.sel(nix.app(nix.sel(this$, "withPlugins"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
                 return [nix.thunk(() => nix.lookup(w, "nixops-encrypted-links"))];
               })()), "tests")))),
         })))))),
       overrideAttrs: (f) => nix.app(nix.sel(this$, "extend"), (this$_1) => (oldThis) => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           rawPackage: nix.thunk(() => nix.app(nix.sel(oldThis, "rawPackage", "overrideAttrs"), f)),
         })),
       addAvailablePlugins: (newPlugins) => nix.app(nix.sel(this$, "extend"), (finalThis) => (oldThis) => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "composeExtensions"), nix.thunk(() => nix.sel(oldThis, "plugins")), newPlugins)),
         })),
       internals: this$,
     })),
     package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "lazyDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         outputs: nix.thunk(() => ["out", "dist"]),
         derivation: nix.thunk(() => nix.sel(this$, "rawPackage")),
       }))), nix.sel(this$, "extraPackageAttrs"))),
@@ -132,7 +115,7 @@ export default nix.lambda((args) => (() => {
   });
   const minimal = nix.thunk(() => nix.app(encapsulate, nixopsContextBase));
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     nixops_unstable_minimal: minimal,
     nixops_unstable_full: nix.thunk(() => nix.app(nix.sel(minimal, "withPlugins"), (ps) => [
         nix.thunk(() => nix.sel(ps, "nixops-digitalocean")),

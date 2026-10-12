@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["owner", 29, 9], ["repo", 30, 9], ["tag", 31, 9], ["hash", 32, 9]], [["description", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["homepage", 60, 5], ["platforms", 61, 25], ["license", 62, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postUnpack", 26, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["propagatedBuildInputs", 52, 3], ["qtWrapperArgs", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, eigen: false, avogadrolibs: false, hdf5: false, jkqtplotter: false, openbabel: false, qt6: false, mesa: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 29, 9], ["repo", 30, 9], ["tag", 31, 9], ["hash", 32, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["homepage", 60, 5], ["platforms", 61, 25], ["license", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postUnpack", 26, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["propagatedBuildInputs", 52, 3], ["qtWrapperArgs", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const mesa = nix.arg($, "mesa");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "avogadro2",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenChemistry",
           repo: "avogadroapp",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postUnpack: nix.thunk(() => (() => {
         const avogadroI18N = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "OpenChemistry",
             repo: "avogadro-i18n",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Molecule editor and visualizer",
         mainProgram: "avogadro2",
         maintainers: nix.thunk(() => (() => {

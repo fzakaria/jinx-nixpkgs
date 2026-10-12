@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["buildPhase", 24, 3], ["installPhase", 34, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false, libxinerama: false, imlib2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["buildPhase", 24, 3], ["installPhase", 34, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libxinerama = nix.arg($, "libxinerama");
   const imlib2 = nix.arg($, "imlib2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "imlibsetroot",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://robotmonkeys.net/wp-content/uploads/2010/03/imlibsetroot-12.tar.gz",
           sha256: "8c1b3b7c861e4d865883ec13a96b8e4ab22464a87d4e6c67255b17a88e3cfd1c",
         })))),
@@ -35,7 +33,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\ninstall -D -m 0755 imlibsetroot -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Xinerama Aware Background Changer",
         homepage: "http://robotmonkeys.net/2010/03/30/imlibsetroot/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mitAdvertising")),

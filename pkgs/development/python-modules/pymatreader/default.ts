@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["extraArgs", 47, 5]], [["updateScript", 46, 12]], [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["build-system", 32, 3], ["propagatedBuildInputs", 34, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 43, 3], ["passthru", 46, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitLab: false, hatchling: false, h5py: false, numpy: false, scipy: false, xmltodict: false, pytestCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 46, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["build-system", 32, 3], ["propagatedBuildInputs", 34, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 43, 3], ["passthru", 46, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "obob",
           repo: "pymatreader",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pymatreader"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=^([\\d.]+)$"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python package to read all kinds and all versions of Matlab mat files",
         homepage: "https://gitlab.com/obob/pymatreader/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/obob/pymatreader/-/blob/v${version}/CHANGELOG.md`),
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

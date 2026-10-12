@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 39, 7]], [["name", 50, 5], ["exec", 51, 5], ["icon", 52, 5], ["desktopName", 53, 5], ["comment", 54, 5], ["startupWMClass", 55, 5], ["type", 56, 5], ["categories", 57, 5], ["mimeTypes", 61, 5]], [["updateScript", 66, 12]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["mainProgram", 75, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["npmDepsHash", 21, 3], ["npmPackFlags", 23, 3], ["makeCacheWritable", 27, 3], ["npmFlags", 29, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["env", 39, 3], ["postInstall", 41, 3], ["desktopItems", 49, 3], ["passthru", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, electron: false, copyDesktopItems: false, makeDesktopItem: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 50, 5], ["exec", 51, 5], ["icon", 52, 5], ["desktopName", 53, 5], ["comment", 54, 5], ["startupWMClass", 55, 5], ["type", 56, 5], ["categories", 57, 5], ["mimeTypes", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 66, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["mainProgram", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["npmDepsHash", 21, 3], ["npmPackFlags", 23, 3], ["makeCacheWritable", 27, 3], ["npmFlags", 29, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["env", 39, 3], ["postInstall", 41, 3], ["desktopItems", 49, 3], ["passthru", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "slacky",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "andirsun",
           repo: "Slacky",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
       npmFlags: nix.thunk(() => ["--legacy-peer-deps"]),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       postInstall: nix.thunk(() => nix.str`mkdir -p $out/share/icons
 ln -s $out/lib/node_modules/slacky/build/icons/icon.png $out/share/icons/slacky.png
 makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/slacky \\
@@ -44,7 +39,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/slacky \\
   --add-flags $out/lib/node_modules/slacky/
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "slacky",
             exec: "slacky %u",
             icon: "slacky",
@@ -56,11 +51,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/slacky \\
             mimeTypes: nix.thunk(() => ["x-scheme-handler/slack"]),
           })))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Unofficial Slack desktop client for arm64 Linux",
         homepage: "https://github.com/andirsun/Slacky",
         changelog: nix.thunk(() => nix.str`https://github.com/andirsun/Slacky/releases/tag/v${nix.sel(finalAttrs, "version")}`),

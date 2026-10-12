@@ -2,61 +2,54 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dwl.nix", [[["maintainers", 6, 5]], [["systemPackages", 21, 19]], [["defaultSession", 23, 31]], [["displayManager", 23, 16]], [["enable", 25, 20]], [["dwl", 25, 16]], [["options", 28, 27]], [["qemu", 28, 22]], [["imports", 16, 7], ["environment", 21, 7], ["services", 23, 7], ["programs", 25, 7], ["virtualisation", 28, 7]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 31, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/dwl.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/dwl.nix", [["systemPackages", 21, 19]]);
-const pos$3 = nix.positions(here + "/dwl.nix", [["defaultSession", 23, 31]]);
-const pos$4 = nix.positions(here + "/dwl.nix", [["displayManager", 23, 16]]);
-const pos$5 = nix.positions(here + "/dwl.nix", [["enable", 25, 20]]);
-const pos$6 = nix.positions(here + "/dwl.nix", [["dwl", 25, 16]]);
-const pos$7 = nix.positions(here + "/dwl.nix", [["options", 28, 27]]);
-const pos$8 = nix.positions(here + "/dwl.nix", [["qemu", 28, 22]]);
-const pos$9 = nix.positions(here + "/dwl.nix", [["imports", 16, 7], ["environment", 21, 7], ["services", 23, 7], ["programs", 25, 7], ["virtualisation", 28, 7]]);
-const pos$10 = nix.positions(here + "/dwl.nix", [["machine", 9, 9]]);
-const pos$11 = nix.positions(here + "/dwl.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "dwl_test_vm",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "gurjaka"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           imports: nix.thunk(() => [
             nix.path(here, "./common/user-account.nix"),
             nix.path(here, "./common/wayland-cage.nix"),
           ]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "foot"))]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               defaultSession: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "dwl")),
             })),
           })),
-          programs: nix.thunk(() => ({ [nix.POS]: pos$6, dwl: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })) })),
+          programs: nix.thunk(() => ({
+            [nix.POS]: $pos[5],
+            dwl: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
+          })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             qemu: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               options: nix.thunk(() => ["-vga none -device virtio-gpu-pci"]),
             })),
           })),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["packageName", 59, 7]], [["updateScript", 58, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["teams", 68, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 38, 3], ["preFixup", 53, 3], ["passthru", 57, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, appstream: false, "blueprint-compiler": false, "desktop-file-utils": false, gjs: false, gst_all_1: false, libadwaita: false, meson: false, ninja: false, "pkg-config": false, typescript_5: false, wrapGAppsHook4: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["teams", 68, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 38, 3], ["preFixup", 53, 3], ["passthru", 57, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "decibels",
       version: "49.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/decibels/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/decibels-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-mme6FN8jUXyEn8/ep2THOiQeWQVSmbEl6YrqsqeAGtU=",
         })))),
@@ -56,11 +52,11 @@ export default nix.lambda((args) => (() => {
       ]),
       preFixup: "sed -i \"1 a imports.package._findEffectiveEntryPointName = () => 'org.gnome.Decibels';\" $out/bin/org.gnome.Decibels\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "decibels" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "decibels" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Play audio files",
         homepage: "https://gitlab.gnome.org/GNOME/decibels",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/decibels/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

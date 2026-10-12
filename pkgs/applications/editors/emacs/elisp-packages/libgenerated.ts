@@ -2,48 +2,36 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libgenerated.nix", [[["owner", 21, 9], ["repo", 22, 9], ["rev", 23, 9], ["sha256", 24, 17]], [["owner", 39, 9], ["repo", 40, 9], ["rev", 41, 9], ["sha256", 42, 17]], [["rev", 53, 9], ["sha256", 54, 17], ["url", 54, 24]], [["GIT_SSL_NO_VERIFY", 57, 11]], [["rev", 69, 9], ["url", 70, 9], ["sha256", 71, 17]], [["rev", 82, 9], ["sha256", 83, 17], ["url", 83, 24]], [["url", 94, 9], ["sha256", 95, 17]], [["url", 106, 9], ["sha256", 107, 17]], [["github", 9, 5], ["gitlab", 27, 5], ["git", 45, 5], ["bitbucket", 61, 5], ["hg", 74, 5], ["sourcehut", 86, 5], ["codeberg", 98, 5]], [["name", 154, 19], ["url", 155, 19], ["sha256", 156, 27]], [["broken", 162, 23]], [["pname", 137, 21], ["ename", 137, 27], ["commit", 138, 34], ["version", 139, 13], ["src", 148, 13], ["recipe", 149, 13], ["packageRequires", 158, 13], ["meta", 161, 13]], [["melpaDerivation", 114, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false }, ellipsis: false };
 const formals$2 = { args: { repo: true }, ellipsis: true };
 const formals$3 = { args: { sha256: false, commit: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/libgenerated.nix", [["owner", 21, 9], ["repo", 22, 9], ["rev", 23, 9], ["sha256", 24, 17]]);
 const formals$4 = { args: { fetchFromGitLab: false }, ellipsis: false };
 const formals$5 = { args: { repo: true }, ellipsis: true };
 const formals$6 = { args: { sha256: false, commit: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/libgenerated.nix", [["owner", 39, 9], ["repo", 40, 9], ["rev", 41, 9], ["sha256", 42, 17]]);
 const formals$7 = { args: { fetchgit: false }, ellipsis: false };
 const formals$8 = { args: { url: true }, ellipsis: true };
 const formals$9 = { args: { sha256: false, commit: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/libgenerated.nix", [["rev", 53, 9], ["sha256", 54, 17], ["url", 54, 24]]);
-const pos$4 = nix.positions(here + "/libgenerated.nix", [["GIT_SSL_NO_VERIFY", 57, 11]]);
 const formals$10 = { args: { fetchhg: false }, ellipsis: false };
 const formals$11 = { args: { repo: true }, ellipsis: true };
 const formals$12 = { args: { sha256: false, commit: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/libgenerated.nix", [["rev", 69, 9], ["url", 70, 9], ["sha256", 71, 17]]);
 const formals$13 = { args: { fetchhg: false }, ellipsis: false };
 const formals$14 = { args: { url: true }, ellipsis: true };
 const formals$15 = { args: { sha256: false, commit: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/libgenerated.nix", [["rev", 82, 9], ["sha256", 83, 17], ["url", 83, 24]]);
 const formals$16 = { args: { fetchzip: false }, ellipsis: false };
 const formals$17 = { args: { repo: true }, ellipsis: true };
 const formals$18 = { args: { sha256: false, commit: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/libgenerated.nix", [["url", 94, 9], ["sha256", 95, 17]]);
 const formals$19 = { args: { fetchzip: false }, ellipsis: false };
 const formals$20 = { args: { repo: true }, ellipsis: true };
 const formals$21 = { args: { sha256: false, commit: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/libgenerated.nix", [["url", 106, 9], ["sha256", 107, 17]]);
-const pos$9 = nix.positions(here + "/libgenerated.nix", [["github", 9, 5], ["gitlab", 27, 5], ["git", 45, 5], ["bitbucket", 61, 5], ["hg", 74, 5], ["sourcehut", 86, 5], ["codeberg", 98, 5]]);
 const formals$22 = { args: { ename: false, fetcher: false, commit: true, sha256: true }, ellipsis: true };
 const formals$23 = { args: { melpaBuild: false, fetchurl: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/libgenerated.nix", [["name", 154, 19], ["url", 155, 19], ["sha256", 156, 27]]);
-const pos$11 = nix.positions(here + "/libgenerated.nix", [["broken", 162, 23]]);
-const pos$12 = nix.positions(here + "/libgenerated.nix", [["pname", 137, 21], ["ename", 137, 27], ["commit", 138, 34], ["version", 139, 13], ["src", 148, 13], ["recipe", 149, 13], ["packageRequires", 158, 13], ["meta", 161, 13]]);
-const pos$13 = nix.positions(here + "/libgenerated.nix", [["melpaDerivation", 114, 3]]);
 
 export default (lib) => (self) => (() => {
   const elemAt = nix.thunk(() => nix.attr(lib, "elemAt"));
   const matchForgeRepo = nix.thunk(() => nix.app(nix.builtins.match, "(.+)/(.+)"));
   const fetchers = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (fetcher) => nix.app(nix.sel(self, "callPackage"), fetcher, nix.thunk(() => ({}))), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       github: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
@@ -57,7 +45,7 @@ export default (lib) => (self) => (() => {
             const m = nix.thunk(() => nix.app(matchForgeRepo, repo));
             nix.assert_(!nix.eq(m, null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/editors/emacs/elisp-packages/libgenerated.nix:19:7");
             return nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 owner: nix.thunk(() => nix.app(elemAt, m, 0n)),
                 repo: nix.thunk(() => nix.app(elemAt, m, 1n)),
                 rev: commit,
@@ -79,7 +67,7 @@ export default (lib) => (self) => (() => {
             const m = nix.thunk(() => nix.app(matchForgeRepo, repo));
             nix.assert_(!nix.eq(m, null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/editors/emacs/elisp-packages/libgenerated.nix:37:7");
             return nix.app(fetchFromGitLab, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 owner: nix.thunk(() => nix.app(elemAt, m, 0n)),
                 repo: nix.thunk(() => nix.app(elemAt, m, 1n)),
                 rev: commit,
@@ -98,7 +86,7 @@ export default (lib) => (self) => (() => {
             const $_2 = nix.formals(args_2, formals$9);
             const sha256 = nix.arg($_2, "sha256");
             const commit = nix.arg($_2, "commit");
-            return nix.app(nix.sel(nix.app(fetchgit, nix.thunk(() => ({ [nix.POS]: pos$3, rev: commit, sha256: sha256, url: url }))), "overrideAttrs"), (_) => ({ [nix.POS]: pos$4, GIT_SSL_NO_VERIFY: true }));
+            return nix.app(nix.sel(nix.app(fetchgit, nix.thunk(() => ({ [nix.POS]: $pos[2], rev: commit, sha256: sha256, url: url }))), "overrideAttrs"), (_) => ({ [nix.POS]: $pos[3], GIT_SSL_NO_VERIFY: true }));
           })(), formals$9);
         })(), formals$8);
       })(), formals$7),
@@ -113,7 +101,7 @@ export default (lib) => (self) => (() => {
             const sha256 = nix.arg($_2, "sha256");
             const commit = nix.arg($_2, "commit");
             return nix.app(fetchhg, nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 rev: commit,
                 url: nix.thunk(() => nix.str`https://bitbucket.com/${repo}`),
                 sha256: sha256,
@@ -131,7 +119,7 @@ export default (lib) => (self) => (() => {
             const $_2 = nix.formals(args_2, formals$15);
             const sha256 = nix.arg($_2, "sha256");
             const commit = nix.arg($_2, "commit");
-            return nix.app(fetchhg, nix.thunk(() => ({ [nix.POS]: pos$6, rev: commit, sha256: sha256, url: url })));
+            return nix.app(fetchhg, nix.thunk(() => ({ [nix.POS]: $pos[5], rev: commit, sha256: sha256, url: url })));
           })(), formals$15);
         })(), formals$14);
       })(), formals$13),
@@ -146,7 +134,7 @@ export default (lib) => (self) => (() => {
             const sha256 = nix.arg($_2, "sha256");
             const commit = nix.arg($_2, "commit");
             return nix.app(fetchzip, nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 url: nix.thunk(() => nix.str`https://git.sr.ht/~${repo}/archive/${commit}.tar.gz`),
                 sha256: sha256,
               })));
@@ -164,7 +152,7 @@ export default (lib) => (self) => (() => {
             const sha256 = nix.arg($_2, "sha256");
             const commit = nix.arg($_2, "commit");
             return nix.app(fetchzip, nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 url: nix.thunk(() => nix.str`https://codeberg.org/${repo}/archive/${commit}.tar.gz`),
                 sha256: sha256,
               })));
@@ -173,7 +161,7 @@ export default (lib) => (self) => (() => {
       })(), formals$19),
     }))));
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     melpaDerivation: (variant) => nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$22);
       const args_1 = args;
@@ -194,20 +182,20 @@ export default (lib) => (self) => (() => {
             const melpaBuild = nix.arg($_1, "melpaBuild");
             const fetchurl = nix.arg($_1, "fetchurl");
             return nix.app(melpaBuild, nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 pname: pname,
                 ename: ename,
                 commit: nix.thunk(() => nix.attr(sourceArgs, "commit")),
                 version: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(version, null)), nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ".", nix.thunk(() => nix.builtins.map(nix.builtins.toString, nix.thunk(() => nix.builtins.filter((n) => nix.ge(n, 0n), version)))))))),
                 src: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(sha256, null)) || nix.asBool(broken))) ? null : nix.app(nix.sel(fetchers, nix.key(nix.force(fetcher))), args_1, sourceArgs))),
                 recipe: nix.thunk(() => (nix.asBool(nix.eq(commit, null)) ? null : nix.app(fetchurl, nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     name: nix.thunk(() => nix.add(pname, "-recipe")),
                     url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/melpa/melpa/${commit}/recipes/${ename}`),
                     sha256: sha256,
                   }))))),
                 packageRequires: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(deps, null)), nix.thunk(() => nix.builtins.map((dep) => nix.selOr(pkgargs, () => nix.selOr(self, () => null, nix.key(nix.force(dep))), nix.key(nix.force(dep))), deps)))),
-                meta: nix.thunk(() => nix.update(nix.selOr(sourceArgs, () => ({}), "meta"), { [nix.POS]: pos$11, broken: broken })),
+                meta: nix.thunk(() => nix.update(nix.selOr(sourceArgs, () => ({}), "meta"), { [nix.POS]: $pos[10], broken: broken })),
               })));
           })(), formals$23), nix.thunk(() => ({}))))) : null);
     })(), formals$22),

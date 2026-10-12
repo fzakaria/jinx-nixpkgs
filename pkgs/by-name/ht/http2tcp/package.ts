@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["maintainers", 32, 5], ["description", 33, 5], ["longDescription", 34, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["dontBuild", 23, 3], ["installPhase", 25, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["maintainers", 32, 5], ["description", 33, 5], ["longDescription", 34, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["dontBuild", 23, 3], ["installPhase", 25, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "http2tcp";
       const version = "0.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.linta.de/~aehlig/http2tcp/${pname}-${version}.tar.gz`),
           sha256: "34fb83c091689dee398ca80db76487e0c39abb17cef390d845ffd888009a5caa",
         }))));
@@ -30,7 +28,7 @@ cp http2tcp* $out/bin
 cp Protocol $out/share/${pname}/
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "clkamp"))];
@@ -42,7 +40,7 @@ cp Protocol $out/share/${pname}/
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

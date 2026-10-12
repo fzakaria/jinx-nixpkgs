@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tsort.nix", [[["platforms", 29, 8]], [["path", 13, 3], ["extraPaths", 14, 3], ["outputs", 15, 3], ["MK_TESTS", 16, 3], ["makeFlags", 17, 3], ["nativeBuildInputs", 20, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, bsdSetupHook: false, freebsdSetupHook: false, makeMinimal: false, install: false, mandoc: false, groff: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tsort.nix", [["platforms", 29, 8]]);
-const pos$2 = nix.positions(here + "/tsort.nix", [["path", 13, 3], ["extraPaths", 14, 3], ["outputs", 15, 3], ["MK_TESTS", 16, 3], ["makeFlags", 17, 3], ["nativeBuildInputs", 20, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const mandoc = nix.arg($, "mandoc");
   const groff = nix.arg($, "groff");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.bin/tsort",
       extraPaths: [],
       outputs: nix.thunk(() => ["out"]),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["STRIP=-s"]),
       nativeBuildInputs: nix.thunk(() => [bsdSetupHook, freebsdSetupHook, makeMinimal, install, mandoc, groff]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

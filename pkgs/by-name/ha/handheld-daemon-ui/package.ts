@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5]], [["pname", 14, 52], ["version", 14, 58], ["src", 14, 66]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5], ["platforms", 39, 5], ["sourceProvenance", 40, 5]], [["pname", 17, 11], ["version", 17, 17], ["src", 17, 25], ["extraInstallCommands", 19, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 14, 52], ["version", 14, 58], ["src", 14, 66]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5], ["platforms", 39, 5], ["sourceProvenance", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 11], ["version", 17, 17], ["src", 17, 25], ["extraInstallCommands", 19, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const pname = "handheld-daemon-ui";
   const version = "3.4.2";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/hhd-dev/hhd-ui/releases/download/v${version}/hhd-ui.Appimage`),
       hash: "sha256-91Wa50dJAW6Re1MBperHFoftAPagihUP4fv5cMb+pxI=",
     }))));
-  const extractedFiles = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const extractedFiles = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -39,7 +36,7 @@ mkdir -p $iconDir
 cp ${extractedFiles}/hhd-ui.png $iconDir
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "UI for the Handheld Daemon",
         homepage: "https://github.com/hhd-dev/hhd-ui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

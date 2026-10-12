@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 5], ["version", 18, 26], ["hash", 19, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["pythonRemoveDeps", 23, 3], ["build-system", 25, 3], ["dependencies", 30, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "dvc-objects": false, fetchPypi: false, "setuptools-scm": false, setuptools: false, webdav4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 26], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["pythonRemoveDeps", 23, 3], ["build-system", 25, 3], ["dependencies", 30, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const webdav4 = nix.arg($, "webdav4");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dvc-webdav",
       version: "3.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "dvc_webdav",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-PA0Er7CYWiwVbwtxn0uUN85KzTRmR9j2/uBDtekXx24",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [dvc_objects, webdav4]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Webdav plugin for dvc",
         homepage: "https://pypi.org/project/dvc-webdav/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

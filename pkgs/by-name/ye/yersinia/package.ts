@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["pname", 28, 7], ["version", 29, 7], ["debianRevision", 30, 7], ["patch", 31, 7], ["hash", 32, 7]], [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 66, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["autoreconfPhase", 46, 3], ["configureFlags", 48, 3], ["makeFlags", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchDebianPatch: false, autoreconfHook: false, "pkg-config": false, ncurses: false, libpcap: false, libnet: false, enableAdmin: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 7], ["version", 29, 7], ["debianRevision", 30, 7], ["patch", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["autoreconfPhase", 46, 3], ["configureFlags", 48, 3], ["makeFlags", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libnet = nix.arg($, "libnet");
   const enableAdmin = nix.argOr($, "enableAdmin", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "yersinia",
       version: "unstable-2022-11-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tomac",
           repo: "yersinia",
           rev: "867b309eced9e02b63412855440cd4f5f7727431",
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: "yersinia",
             version: "0.8.2",
             debianRevision: "2.3",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableAdmin)), "--disable-admin"))),
       makeFlags: nix.thunk(() => ["LDFLAGS=-lncurses"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Framework for layer 2 attacks",
         mainProgram: "yersinia",
         homepage: "https://github.com/tomac/yersinia",

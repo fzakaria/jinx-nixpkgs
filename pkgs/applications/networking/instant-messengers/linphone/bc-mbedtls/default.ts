@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["rev", 21, 13], ["domain", 23, 5], ["group", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["sha256", 27, 5], ["fetchSubmodules", 28, 5]], [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7], ["excludes", 38, 7]], [["homepage", 73, 5], ["changelog", 74, 5], ["description", 75, 5], ["license", 76, 5], ["platforms", 80, 5], ["maintainers", 81, 5]], [["pname", 16, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 31, 3], ["nativeBuildInputs", 42, 3], ["strictDeps", 49, 3], ["hardeningDisable", 52, 3], ["cmakeFlags", 54, 3], ["enableParallelChecking", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, cmake: false, ninja: false, perl: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["rev", 21, 13], ["domain", 23, 5], ["group", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["sha256", 27, 5], ["fetchSubmodules", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7], ["excludes", 38, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 73, 5], ["changelog", 74, 5], ["description", 75, 5], ["license", 76, 5], ["platforms", 80, 5], ["maintainers", 81, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 31, 3], ["nativeBuildInputs", 42, 3], ["strictDeps", 49, 3], ["hardeningDisable", 52, 3], ["cmakeFlags", 54, 3], ["enableParallelChecking", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const rev = "1d452d3852321cb55c07307cb506b25759134b76";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mbedtls",
       version: "3.6.1-unstable-2025-08-11",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: rev,
           domain: "gitlab.linphone.org",
           group: "BC",
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "linphone-mbedtls-fix-unterminated-string-initialization.patch",
             url: "https://github.com/Mbed-TLS/mbedtls/commit/d593c54b3cbfc3c806476a725e7d82763da0da9e.patch",
             hash: "sha256-hh2cGzL75fEqlFNhEyL2fI9qsBW2Eq43DdWFD9qLsKE=",
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelChecking: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gitlab.linphone.org/BC/public/external/mbedtls",
         changelog: nix.thunk(() => nix.str`https://gitlab.linphone.org/BC/public/external/mbedtls/-/blob/${rev}/ChangeLog`),
         description: "Portable cryptographic and TLS library, formerly known as PolarSSL (Linphone fork)",

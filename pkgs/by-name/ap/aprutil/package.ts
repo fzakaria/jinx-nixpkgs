@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["sha256", 31, 5]], [["NIX_CFLAGS_LINK", 39, 7]], [["sslSupport", 109, 13], ["bdbSupport", 109, 24], ["ldapSupport", 109, 35]], [["homepage", 113, 5], ["description", 114, 5], ["mainProgram", 115, 5], ["maintainers", 116, 5], ["platforms", 117, 5], ["license", 118, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 34, 3], ["env", 39, 3], ["outputs", 41, 3], ["outputBin", 45, 3], ["nativeBuildInputs", 47, 3], ["configureFlags", 52, 3], ["postConfigure", 69, 3], ["propagatedBuildInputs", 83, 3], ["postInstall", 94, 3], ["enableParallelBuilding", 106, 3], ["passthru", 108, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, apr: false, expat: false, gnused: false, sslSupport: true, openssl: false, bdbSupport: true, db: false, ldapSupport: true, openldap: false, libiconv: false, libxcrypt: false, cyrus_sasl: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_LINK", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["sslSupport", 109, 13], ["bdbSupport", 109, 24], ["ldapSupport", 109, 35]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 113, 5], ["description", 114, 5], ["mainProgram", 115, 5], ["maintainers", 116, 5], ["platforms", 117, 5], ["license", 118, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 34, 3], ["env", 39, 3], ["outputs", 41, 3], ["outputBin", 45, 3], ["nativeBuildInputs", 47, 3], ["configureFlags", 52, 3], ["postConfigure", 69, 3], ["propagatedBuildInputs", 83, 3], ["postInstall", 94, 3], ["enableParallelBuilding", 106, 3], ["passthru", 108, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,17 +28,17 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(bdbSupport) || nix.asBool(!nix.eq(db, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ap/aprutil/package.nix:22:1");
   nix.assert_((!nix.asBool(ldapSupport) || nix.asBool(!nix.eq(openldap, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ap/aprutil/package.nix:23:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "apr-util",
       version: "1.6.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/apr/apr-util-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-lt4d1vagR20tLnlkkm2MHdw7sOIQ4bGBLTulpFSjkuI=",
         })))),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./fix-libxcrypt-build.patch")], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.path(here, "./include-static-dependencies.patch")))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_LINK: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lcrypt"]))),
       })),
       outputs: nix.thunk(() => ["out", "dev"]),
@@ -73,13 +69,13 @@ wrapProgram $dev/bin/apu-1-config --prefix PATH : "${gnused}/bin"
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         sslSupport: sslSupport,
         bdbSupport: bdbSupport,
         ldapSupport: ldapSupport,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://apr.apache.org/",
         description: "Companion library to APR, the Apache Portable Runtime",
         mainProgram: "apu-1-config",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["tests", 41, 12]], [["homepage", 44, 5], ["license", 45, 5], ["description", 46, 5], ["mainProgram", 47, 5], ["maintainers", 48, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 25, 3], ["pythonRelaxDeps", 35, 3], ["nativeCheckInputs", 37, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, python3Packages: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 41, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["license", 45, 5], ["description", 46, 5], ["mainProgram", 47, 5], ["maintainers", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 25, 3], ["pythonRelaxDeps", 35, 3], ["nativeCheckInputs", 37, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "steck",
       version: "0.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "supakeen",
           repo: "steck",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,9 +45,9 @@ export default nix.lambda((args) => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return [nix.thunk(() => nix.lookup(w_2, "pytestCheckHook"))];
       })()),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "pinnwand")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], tests: nix.thunk(() => nix.sel(nixosTests, "pinnwand")) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/supakeen/steck",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Client for pinnwand pastebin",

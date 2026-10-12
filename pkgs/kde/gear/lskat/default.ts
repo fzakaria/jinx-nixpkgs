@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 12, 8]], [["pname", 7, 3], ["extraNativeBuildInputs", 9, 3], ["extraBuildInputs", 10, 3], ["meta", 12, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qtsvg: false, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 12, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["extraNativeBuildInputs", 9, 3], ["extraBuildInputs", 10, 3], ["meta", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const _7zz = nix.arg($, "_7zz");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "lskat",
       extraNativeBuildInputs: nix.thunk(() => [_7zz]),
       extraBuildInputs: nix.thunk(() => [qtsvg]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "lskat" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "lskat" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

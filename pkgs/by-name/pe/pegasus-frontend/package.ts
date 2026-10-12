@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["fetchSubmodules", 20, 5], ["hash", 21, 5]], [["updateScript", 44, 12]], [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 58, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["passthru", 44, 3], ["__structuredAttrs", 45, 3], ["strictDeps", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, cmake: false, SDL2: false, sqlite: false, libsForQt5: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["fetchSubmodules", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 44, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["passthru", 44, 3], ["__structuredAttrs", 45, 3], ["strictDeps", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pegasus-frontend",
       version: "0-unstable-2026-10-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mmatyas",
           repo: "pegasus-frontend",
           rev: "5d58223e58f84afb31d5d14a67438841b981a6fa",
@@ -47,13 +44,13 @@ export default nix.lambda((args) => (() => {
         ];
       })(), [sqlite, SDL2])),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross platform, customizable graphical frontend for launching emulators and managing your game collection",
         mainProgram: "pegasus-fe",
         homepage: "https://pegasus-frontend.org/",

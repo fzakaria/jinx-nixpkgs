@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["updateScript", 57, 12]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5], ["platforms", 67, 27]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["preBuild", 43, 3], ["postInstall", 47, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, wrapGAppsHook4: false, "nix-update-script": false, cairo: false, "gdk-pixbuf": false, gettext: false, glib: false, gtk4: false, pango: false, polkit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 57, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5], ["platforms", 67, 27]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["preBuild", 43, 3], ["postInstall", 47, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const polkit = nix.arg($, "polkit");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "soteria",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "imvaskel",
           repo: "soteria",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,13 +37,13 @@ export default nix.lambda((args) => (() => {
       preBuild: "export SOTERIA_DEFAULT_LOCALE_DIR=$out/share/locale\n",
       postInstall: "mkdir -p $SOTERIA_DEFAULT_LOCALE_DIR\nfor file in po/*.po; do\n  lang=${file%.*}\n  lang=${lang#po/}\n  mkdir -p \"$SOTERIA_DEFAULT_LOCALE_DIR/$lang/LC_MESSAGES\"\n  msgfmt \"$file\" -o \"$SOTERIA_DEFAULT_LOCALE_DIR/$lang/LC_MESSAGES/soteria.mo\"\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(polkit, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Polkit authentication agent written in GTK designed to be used with any desktop environment",
         homepage: "https://github.com/ImVaskel/soteria",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

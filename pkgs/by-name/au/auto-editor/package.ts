@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["DISABLE_HEVC", 45, 5], ["DISABLE_WHISPER", 46, 5], ["DISABLE_VPX", 47, 5], ["DISABLE_SVTAV1", 48, 5], ["DISABLE_VPL", 49, 5]], [["changelog", 71, 5], ["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5], ["platforms", 80, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["lockFile", 31, 3], ["buildInputs", 33, 3], ["env", 43, 3], ["postPatch", 52, 3], ["nativeCheckInputs", 61, 3], ["postInstall", 66, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNimPackage: false, fetchFromGitHub: false, "ffmpeg-full": false, "yt-dlp": false, lame: false, libopus: false, x264: false, dav1d: false, zlib: false, "alsa-lib": false, python3: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["DISABLE_HEVC", 45, 5], ["DISABLE_WHISPER", 46, 5], ["DISABLE_VPX", 47, 5], ["DISABLE_SVTAV1", 48, 5], ["DISABLE_VPL", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 71, 5], ["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5], ["platforms", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["lockFile", 31, 3], ["buildInputs", 33, 3], ["env", 43, 3], ["postPatch", 52, 3], ["nativeCheckInputs", 61, 3], ["postInstall", 66, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "auto-editor";
       const version = "31.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "WyattBlue",
           repo: "auto-editor",
           tag: version,
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const lockFile = nix.path(here, "./lock.json");
       const buildInputs = nix.thunk(() => nix.concat([ffmpeg_full, lame, libopus, x264, dav1d, zlib], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), alsa_lib)));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         DISABLE_HEVC: "1",
         DISABLE_WHISPER: "1",
         DISABLE_VPX: "1",
@@ -54,7 +51,7 @@ substituteInPlace ae.nimble \\
       const nativeCheckInputs = nix.thunk(() => [python3, nix.thunk(() => nix.sel(python3Packages, "av"))]);
       const postInstall = "mv $out/bin/main $out/bin/auto-editor\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/WyattBlue/auto-editor/releases/tag/${nix.sel(src, "tag")}`),
         description: "Command line application for automatically editing video and audio by analyzing a variety of methods, most notably audio loudness",
         homepage: "https://auto-editor.com/",
@@ -70,7 +67,7 @@ substituteInPlace ae.nimble \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

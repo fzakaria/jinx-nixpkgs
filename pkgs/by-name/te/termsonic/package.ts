@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["homepage", 24, 5], ["description", 25, 5], ["license", 26, 5], ["platforms", 27, 5], ["mainProgram", 28, 5], ["maintainers", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchzip: false, "pkg-config": false, "alsa-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 24, 5], ["description", 25, 5], ["license", 26, 5], ["platforms", 27, 5], ["mainProgram", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const alsa_lib = nix.arg($, "alsa-lib");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "termsonic",
       version: "0-unstable-2026-08-07",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.sixfoisneuf.fr/termsonic/snapshot/termsonic-dd778fcc6bee41cd7ae9f6e173e7dd6f16e1f53d.zip",
           hash: "sha256-m48lJvJ83NoFuN05UH5BFTNoSftKa4giGJr3CWdaqnA=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [alsa_lib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git.sixfoisneuf.fr/termsonic",
         description: "Subsonic client running in your terminal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 33, 5], ["longDescription", 35, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["mainProgram", 49, 5]], [["pname", 8, 3], ["version", 9, 3], ["strictDeps", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["makeFlags", 23, 3], ["installPhase", 28, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["longDescription", 35, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["mainProgram", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["strictDeps", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["makeFlags", 23, 3], ["installPhase", 28, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "iotools",
       version: "1.6-unstable-2017-12-11",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "adurbin",
           repo: "iotools",
           rev: "18949fdc4dedb1da3f51ee83a582b112fb9f2c71",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["DEBUG=0", "STATIC=0"]),
       installPhase: "install -Dm755 iotools -t $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Set of simple command line tools which allow access to\n      hardware device registers",
         longDescription: "Provides a set of simple command line tools which allow access to\nhardware device registers. Supported register interfaces include PCI,\nIO, memory mapped IO, SMBus, CPUID, and MSR. Also included are some\nutilities which allow for simple arithmetic, logical, and other\noperations.\n",
         homepage: "https://github.com/adurbin/iotools",

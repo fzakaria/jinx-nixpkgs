@@ -2,54 +2,43 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/functions.nix", [[["default", 5, 5]], [["type", 9, 5]], [["default", 13, 5]], [["valueIsFunction", 4, 11], ["value", 8, 11], ["applied", 12, 11]], [["x", 19, 45]], [["x", 20, 44]], [["single-lambda", 18, 13], ["multiple-lambdas", 19, 13], ["merging-lambdas", 20, 13]], [["value", 18, 7]], [["y", 24, 44]], [["multiple-lambdas", 23, 13], ["merging-lambdas", 24, 13]], [["value", 23, 7]], [["options", 4, 3], ["config", 16, 3]]]);
 const formals$1 = { args: { lib: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/functions.nix", [["default", 5, 5]]);
-const pos$2 = nix.positions(here + "/functions.nix", [["type", 9, 5]]);
-const pos$3 = nix.positions(here + "/functions.nix", [["default", 13, 5]]);
-const pos$4 = nix.positions(here + "/functions.nix", [["valueIsFunction", 4, 11], ["value", 8, 11], ["applied", 12, 11]]);
-const pos$5 = nix.positions(here + "/functions.nix", [["x", 19, 45]]);
-const pos$6 = nix.positions(here + "/functions.nix", [["x", 20, 44]]);
-const pos$7 = nix.positions(here + "/functions.nix", [["single-lambda", 18, 13], ["multiple-lambdas", 19, 13], ["merging-lambdas", 20, 13]]);
-const pos$8 = nix.positions(here + "/functions.nix", [["value", 18, 7]]);
-const pos$9 = nix.positions(here + "/functions.nix", [["y", 24, 44]]);
-const pos$10 = nix.positions(here + "/functions.nix", [["multiple-lambdas", 23, 13], ["merging-lambdas", 24, 13]]);
-const pos$11 = nix.positions(here + "/functions.nix", [["value", 23, 7]]);
-const pos$12 = nix.positions(here + "/functions.nix", [["options", 4, 3], ["config", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const config = nix.arg($, "config");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       valueIsFunction: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           default: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "isFunction"), nix.thunk(() => nix.sel(config, "value")))),
         })))),
-      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$2, type: nix.thunk(() => nix.sel(lib, "types", "anything")) })))),
+      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[1], type: nix.thunk(() => nix.sel(lib, "types", "anything")) })))),
       applied: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           default: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (fun) => nix.app(fun, null), nix.thunk(() => nix.sel(config, "value")))),
         })))),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           value: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             "single-lambda": (x) => nix.force(x),
-            "multiple-lambdas": (x) => ({ [nix.POS]: pos$5, x: x }),
-            "merging-lambdas": (x) => ({ [nix.POS]: pos$6, x: x }),
+            "multiple-lambdas": (x) => ({ [nix.POS]: $pos[4], x: x }),
+            "merging-lambdas": (x) => ({ [nix.POS]: $pos[5], x: x }),
           })),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           value: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             "multiple-lambdas": (x) => [x],
-            "merging-lambdas": (y) => ({ [nix.POS]: pos$9, y: y }),
+            "merging-lambdas": (y) => ({ [nix.POS]: $pos[8], y: y }),
           })),
         })),
       ]))),

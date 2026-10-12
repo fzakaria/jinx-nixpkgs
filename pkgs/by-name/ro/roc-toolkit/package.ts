@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["NIX_CFLAGS_COMPILE", 82, 5], ["NIX_LDFLAGS", 83, 5]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5]], [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 34, 3], ["nativeBuildInputs", 41, 3], ["propagatedBuildInputs", 48, 3], ["sconsFlags", 59, 3], ["env", 81, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, scons: false, ragel: false, gengetopt: false, "pkg-config": false, libuv: false, openfecSupport: true, openfec: false, speexdsp: false, libunwindSupport: true, libunwind: false, pulseaudioSupport: true, libpulseaudio: false, opensslSupport: true, openssl: false, soxSupport: true, sox: false, libsndfileSupport: true, libsndfile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 82, 5], ["NIX_LDFLAGS", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 34, 3], ["nativeBuildInputs", 41, 3], ["propagatedBuildInputs", 48, 3], ["sconsFlags", 59, 3], ["env", 81, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const libsndfileSupport = nix.argOr($, "libsndfileSupport", () => true);
   const libsndfile = nix.arg($, "libsndfile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "roc-toolkit",
       version: "0.4.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "roc-streaming",
           repo: "roc-toolkit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,12 +50,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-openfec-includes=${nix.sel(openfec, "dev")}/include`),
       ])))))))))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: "-D_XOPEN_SOURCE=700 -D__BSD_VISIBLE",
           NIX_LDFLAGS: "-lpthread",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Roc is a toolkit for real-time audio streaming over the network",
         homepage: "https://github.com/roc-streaming/roc-toolkit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

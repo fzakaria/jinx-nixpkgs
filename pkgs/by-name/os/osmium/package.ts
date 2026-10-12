@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 37, 5], ["hash", 38, 5]], [["name", 105, 5], ["exec", 106, 5], ["icon", 107, 5], ["desktopName", 108, 5], ["genericName", 109, 5], ["categories", 110, 5], ["mimeTypes", 114, 5], ["startupWMClass", 115, 5]], [["updateScript", 119, 5]], [["description", 123, 5], ["homepage", 124, 5], ["license", 125, 5], ["mainProgram", 126, 5], ["maintainers", 127, 5], ["platforms", 130, 5], ["sourceProvenance", 133, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["installPhase", 67, 3], ["desktopItem", 104, 3], ["passthru", 118, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, makeDesktopItem: false, makeShellWrapper: false, autoPatchelfHook: false, libgcc: false, libx11: false, libxext: false, libxcb: false, libGL: false, ffmpeg: false, glib: false, dbus: false, pango: false, libxcomposite: false, libxdamage: false, libxrandr: false, libxkbcommon: false, libgbm: false, libva: false, nss: false, nspr: false, pipewire: false, gtk3: false, libnotify: false, libpulseaudio: false, "alsa-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 105, 5], ["exec", 106, 5], ["icon", 107, 5], ["desktopName", 108, 5], ["genericName", 109, 5], ["categories", 110, 5], ["mimeTypes", 114, 5], ["startupWMClass", 115, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 119, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 123, 5], ["homepage", 124, 5], ["license", 125, 5], ["mainProgram", 126, 5], ["maintainers", 127, 5], ["platforms", 130, 5], ["sourceProvenance", 133, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["installPhase", 67, 3], ["desktopItem", 104, 3], ["passthru", 118, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "osmium";
       const version = "0.0.42-alpha";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://updater.osmium.chat/Osmium-${version}-x64.tar.gz`),
           hash: "sha256-AI9hrCHa0gfI/m7zGUzAagyypgfKSgm2cVnn9LH1I0g=",
         }))));
@@ -95,7 +91,7 @@ ln -s "$desktopItem/share/applications" $out/share
 runHook postInstall
 `);
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "osmium",
           exec: "osmium",
           icon: "osmium",
@@ -105,9 +101,9 @@ runHook postInstall
           mimeTypes: nix.thunk(() => ["x-scheme-handler/osmium"]),
           startupWMClass: "Osmium",
         }))));
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Globally distributed community messaging and voice/video platform",
         homepage: "https://osmium.chat/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -123,7 +119,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

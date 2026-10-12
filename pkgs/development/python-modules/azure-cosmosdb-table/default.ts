@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 26], ["version", 20, 32], ["hash", 21, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["doCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, cryptography: false, "azure-common": false, "azure-storage-common": false, "azure-cosmosdb-nspkg": false, futures: true, isPy3k: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 26], ["version", 20, 32], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["doCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const isPy3k = nix.arg($, "isPy3k");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "azure-cosmosdb-table",
       version: "1.0.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-XwYdKrjc8vC06WXVl257eusSR+qJaRHw4dKQkqqqKcc=",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => nix.concat([cryptography, azure_common, azure_storage_common, azure_cosmosdb_nspkg], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(isPy3k)), nix.thunk(() => [futures])))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "This is the Microsoft Azure Log Analytics Client Library",
         homepage: "https://github.com/Azure/azure-sdk-for-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

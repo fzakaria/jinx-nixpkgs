@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 26], ["version", 17, 32], ["hash", 19, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["postPatch", 22, 3], ["build-system", 27, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 30, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, numpy: false, pytestCheckHook: false, "pytest-cov-stub": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 26], ["version", 17, 32], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["postPatch", 22, 3], ["build-system", 27, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 30, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pyevtk",
       version: "1.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-H2vnh2o6AFyCWIYVUdpP5+RP8aLn/yqT1txR3u39pfQ=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_cov_stub]),
       pythonImportsCheck: nix.thunk(() => ["pyevtk"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Exports data to binary VTK files for visualization/analysis",
         homepage: "https://github.com/pyscience-projects/pyevtk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

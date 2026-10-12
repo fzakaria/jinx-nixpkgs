@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["updateScript", 52, 12]], [["description", 55, 5], ["homepage", 56, 5], ["maintainers", 57, 5], ["license", 58, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["installPhase", 45, 3], ["passthru", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPerlPackage: false, fetchFromGitHub: false, GD: false, IPCShareLite: false, JSON: false, LWP: false, mapnik: false, boost: false, "nix-update-script": false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 52, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["maintainers", 57, 5], ["license", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["installPhase", 45, 3], ["passthru", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "Tirex";
       const version = "0.8.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openstreetmap",
           repo: "tirex",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.concat([GD, IPCShareLite, JSON, LWP, mapnik, boost], nix.sel(mapnik, "buildInputs")));
       const installPhase = "install -m 755 -d $out/usr/libexec\nmake install DESTDIR=$out INSTALLOPTS=\"\"\nmv $out/$out/lib $out/$out/share $out\nrmdir $out/$out $out/nix/store $out/nix\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tools for running a map tile server",
         homepage: "https://wiki.openstreetmap.org/wiki/Tirex",
         maintainers: nix.thunk(() => (() => {
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

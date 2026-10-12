@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 31, 7], ["emptyFile", 34, 15], ["hello", 34, 25], ["one", 35, 7], ["boolTrue", 36, 7], ["boolFalse", 37, 7], ["foo", 38, 7], ["list", 39, 7], ["pathDefaultNix", 44, 7], ["packages", 45, 7], ["buildCommand", 51, 7]], [["one", 84, 9], ["boolTrue", 85, 9], ["boolFalse", 86, 9], ["foo", 87, 9], ["list", 88, 9], ["pathDefaultNix", 93, 9], ["stringWithDep", 94, 9], ["aPackageAttrSet", 95, 9], ["anOutPath", 96, 9], ["anAnAlternateOutput", 97, 9], ["args", 98, 9], ["passAsFile", 103, 9], ["bar", 104, 9]], [["drvAttrs", 109, 57]], [["barPath", 112, 19]], [["one", 113, 9], ["boolTrue", 114, 9], ["boolFalse", 115, 9], ["foo", 116, 9], ["list", 117, 9], ["pathDefaultNix", 118, 9], ["stringWithDep", 119, 9], ["aPackageAttrSet", 120, 9], ["anOutPath", 121, 9], ["anAnAlternateOutput", 122, 9], ["passAsFile", 124, 9], ["barPath", 125, 9]], [["name", 131, 9], ["exampleBarPathString", 133, 9], ["dontUnpack", 137, 9], ["dontBuild", 138, 9], ["dontFixup", 139, 9], ["doCheck", 140, 9], ["installPhase", 142, 9], ["checkPhase", 144, 9]], [["nixos", 22, 3], ["valueToString", 25, 3], ["unstructuredDerivationInputEnv", 79, 3]]]);
 const formals$1 = { args: { devShellTools: false, emptyFile: false, lib: false, stdenv: false, hello: false, writeText: false, zlib: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 31, 7], ["emptyFile", 34, 15], ["hello", 34, 25], ["one", 35, 7], ["boolTrue", 36, 7], ["boolFalse", 37, 7], ["foo", 38, 7], ["list", 39, 7], ["pathDefaultNix", 44, 7], ["packages", 45, 7], ["buildCommand", 51, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["one", 84, 9], ["boolTrue", 85, 9], ["boolFalse", 86, 9], ["foo", 87, 9], ["list", 88, 9], ["pathDefaultNix", 93, 9], ["stringWithDep", 94, 9], ["aPackageAttrSet", 95, 9], ["anOutPath", 96, 9], ["anAnAlternateOutput", 97, 9], ["args", 98, 9], ["passAsFile", 103, 9], ["bar", 104, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["drvAttrs", 109, 57]]);
-const pos$4 = nix.positions(here + "/default.nix", [["barPath", 112, 19]]);
-const pos$5 = nix.positions(here + "/default.nix", [["one", 113, 9], ["boolTrue", 114, 9], ["boolFalse", 115, 9], ["foo", 116, 9], ["list", 117, 9], ["pathDefaultNix", 118, 9], ["stringWithDep", 119, 9], ["aPackageAttrSet", 120, 9], ["anOutPath", 121, 9], ["anAnAlternateOutput", 122, 9], ["passAsFile", 124, 9], ["barPath", 125, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 131, 9], ["exampleBarPathString", 133, 9], ["dontUnpack", 137, 9], ["dontBuild", 138, 9], ["dontFixup", 139, 9], ["doCheck", 140, 9], ["installPhase", 142, 9], ["checkPhase", 144, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["nixos", 22, 3], ["valueToString", 25, 3], ["unstructuredDerivationInputEnv", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const isString = nix.thunk(() => nix.attr(lib, "isString"));
   const mapAttrsToList = nix.thunk(() => nix.attr(lib, "mapAttrsToList"));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       nixos: nix.thunk(() => nix.sel(nixosTests, "docker-tools-nix-shell")),
       valueToString: nix.thunk(() => (() => {
         const valueToString = nix.thunk(() => nix.attr(devShellTools, "valueToString"));
         return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "devShellTools-valueToString-built-tests",
             emptyFile: emptyFile,
             hello: hello,
@@ -60,7 +54,7 @@ export default nix.lambda((args) => (() => {
       unstructuredDerivationInputEnv: nix.thunk(() => (() => {
         const unstructuredDerivationInputEnv = nix.thunk(() => nix.attr(devShellTools, "unstructuredDerivationInputEnv"));
         const drvAttrs = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           one: 1n,
           boolTrue: true,
           boolFalse: false,
@@ -77,9 +71,9 @@ export default nix.lambda((args) => (() => {
 ${nix.app(writeText, "qux", "yea")}
 `),
         }));
-        const result = nix.thunk(() => nix.app(unstructuredDerivationInputEnv, nix.thunk(() => ({ [nix.POS]: pos$3, drvAttrs: drvAttrs }))));
-        nix.assert_(nix.eq(nix.update(result, { [nix.POS]: pos$4, barPath: "<check later>" }), {
-          [nix.POS]: pos$5,
+        const result = nix.thunk(() => nix.app(unstructuredDerivationInputEnv, nix.thunk(() => ({ [nix.POS]: $pos[2], drvAttrs: drvAttrs }))));
+        nix.assert_(nix.eq(nix.update(result, { [nix.POS]: $pos[3], barPath: "<check later>" }), {
+          [nix.POS]: $pos[4],
           one: "1",
           boolTrue: "1",
           boolFalse: "",
@@ -94,7 +88,7 @@ ${nix.app(writeText, "qux", "yea")}
           barPath: "<check later>",
         }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/dev-shell-tools/tests/default.nix:111:5");
         return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "devShellTools-unstructuredDerivationInputEnv-built-tests",
             exampleBarPathString: nix.thunk(() => (() => {
               nix.assert_(nix.app(isString, nix.thunk(() => nix.sel(result, "barPath"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/dev-shell-tools/tests/default.nix:134:11");

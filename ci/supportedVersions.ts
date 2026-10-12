@@ -2,10 +2,8 @@
 import * as nix from "../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/supportedVersions.nix", [[["url", 9, 30], ["sha256", 10, 5]], [["allowAliases", 13, 12]], [["config", 13, 5]]]);
 const formals$1 = { args: { pinnedJson: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/supportedVersions.nix", [["url", 9, 30], ["sha256", 10, 5]]);
-const pos$2 = nix.positions(here + "/supportedVersions.nix", [["allowAliases", 13, 12]]);
-const pos$3 = nix.positions(here + "/supportedVersions.nix", [["config", 13, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const nixpkgs = nix.thunk(() => nix.builtins.fetchTarball(nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pinned, "nixpkgs"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.attr(from, "url")),
       sha256: nix.thunk(() => nix.sel(pinned, "nixpkgs", "hash")),
     };
     })())));
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      [nix.POS]: pos$3,
-      config: nix.thunk(() => ({ [nix.POS]: pos$2, allowAliases: false })),
+      [nix.POS]: $pos[2],
+      config: nix.thunk(() => ({ [nix.POS]: $pos[1], allowAliases: false })),
     }))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const lix = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(pkgs, "lixPackageSets")), nix.thunk(() => [

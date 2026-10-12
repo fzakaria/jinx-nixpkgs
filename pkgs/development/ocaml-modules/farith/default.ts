@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["pname", 11, 3], ["version", 12, 3], ["minimalOCamlVersion", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitLab: false, ppx_deriving: false, ppx_hash: false, zarith: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["minimalOCamlVersion", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const ppx_hash = nix.arg($, "ppx_hash");
   const zarith = nix.arg($, "zarith");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "farith",
       version: "0.1",
       minimalOCamlVersion: "4.10",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.frama-c.com",
           owner: "pub",
           repo: "farith",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ppx_deriving, ppx_hash, zarith]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modelisation of base 2 floating points with arbitrary exponent and mantisse size.",
         homepage: "https://git.frama-c.com/pub/farith",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

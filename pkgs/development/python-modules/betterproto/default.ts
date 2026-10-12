@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["compiler", 57, 25]], [["description", 102, 5], ["mainProgram", 103, 5], ["longDescription", 104, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["build-system", 49, 3], ["dependencies", 51, 3], ["optional-dependencies", 57, 3], ["nativeCheckInputs", 63, 3], ["pythonImportsCheck", 75, 3], ["preCheck", 79, 3], ["disabledTests", 85, 3], ["disabledTestPaths", 94, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, "poetry-core": false, grpclib: false, "python-dateutil": false, "typing-extensions": false, black: false, jinja2: false, isort: false, addBinToPathHook: false, cachelib: false, "grpcio-tools": false, pydantic: false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, tomlkit: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["compiler", 57, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 102, 5], ["mainProgram", 103, 5], ["longDescription", 104, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["build-system", 49, 3], ["dependencies", 51, 3], ["optional-dependencies", 57, 3], ["nativeCheckInputs", 63, 3], ["pythonImportsCheck", 75, 3], ["preCheck", 79, 3], ["disabledTests", 85, 3], ["disabledTestPaths", 94, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const tomlkit = nix.arg($, "tomlkit");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "betterproto",
       version: "2.0.0b7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "danielgtaylor",
           repo: "python-betterproto",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail \"poetry-core>=1.0.0,<2\" \"poetry-core\"\n",
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [grpclib, python_dateutil, typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, compiler: nix.thunk(() => [black, jinja2, isort]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], compiler: nix.thunk(() => [black, jinja2, isort]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([
         addBinToPathHook,
         cachelib,
@@ -72,7 +69,7 @@ ${nix.sel(python, "interpreter")} -m tests.generate
           "tests/test_inputs.py::test_message_json[namespace_builtin_types]",
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Code generator & library for Protobuf 3 and async gRPC",
         mainProgram: "protoc-gen-python_betterproto",
         longDescription: "This project aims to provide an improved experience when using Protobuf /\ngRPC in a modern Python environment by making use of modern language\nfeatures and generating readable, understandable, idiomatic Python code.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["nativeCheckInputs", 41, 3], ["configureFlags", 45, 3], ["enableParallelBuilding", 50, 3], ["doCheck", 52, 3], ["preCheck", 54, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, "pkg-config": false, elfutils: false, libxml2: false, xxhash: false, xz: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["nativeCheckInputs", 41, 3], ["configureFlags", 45, 3], ["enableParallelBuilding", 50, 3], ["doCheck", 52, 3], ["preCheck", 54, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libabigail",
       version: "2.10",
       outputs: nix.thunk(() => ["bin", "out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mirrors.kernel.org/sourceware/libabigail/libabigail-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-DMEOZHE5gzDgAbn+N/HoxRCKmrYysIypY01sZLw4C3g=",
         })))),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       preCheck: "# runtestdiffpkg needs cache directory\nexport XDG_CACHE_HOME=\"$TEMPDIR\"\npatchShebangs tests/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ABI Generic Analysis and Instrumentation Library",
         homepage: "https://sourceware.org/libabigail/",
         license: nix.thunk(() => (() => {

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/msun.nix", [[["MK_TESTS", 38, 7]], [["path", 12, 3], ["extraPaths", 13, 3], ["outputs", 20, 3], ["noLibc", 26, 3], ["buildInputs", 28, 3], ["preBuild", 34, 3], ["env", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkDerivation: false, include: false, libcMinimal: false, libgcc: false, csu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/msun.nix", [["MK_TESTS", 38, 7]]);
-const pos$2 = nix.positions(here + "/msun.nix", [["path", 12, 3], ["extraPaths", 13, 3], ["outputs", 20, 3], ["noLibc", 26, 3], ["buildInputs", 28, 3], ["preBuild", 34, 3], ["env", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libgcc = nix.arg($, "libgcc");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "lib/msun",
       extraPaths: nix.thunk(() => nix.concat(["lib/libc"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["contrib/arm-optimized-routines"])))),
       outputs: nix.thunk(() => ["out", "man", "debug"]),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [include, libcMinimal, libgcc]),
       preBuild: nix.thunk(() => nix.str`export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -B${csu}/lib"
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, MK_TESTS: "no" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], MK_TESTS: "no" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=msun.ts.map

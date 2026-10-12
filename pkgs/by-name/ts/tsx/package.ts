@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs-slim", 14, 38]], [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 29, 7], ["version", 30, 7], ["src", 31, 7], ["pnpm", 33, 5], ["fetcherVersion", 34, 5], ["hash", 35, 5]], [["updateScript", 105, 12]], [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 115, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["pnpmDeps", 27, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["patchPhase", 48, 3], ["buildPhase", 68, 3], ["installPhase", 87, 3], ["doCheck", 99, 3], ["nativeInstallCheckInputs", 100, 3], ["doInstallCheck", 103, 3], ["passthru", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, "nodejs-slim_24": false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs-slim", 14, 38]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 7], ["version", 30, 7], ["src", 31, 7], ["pnpm", 33, 5], ["fetcherVersion", 34, 5], ["hash", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 105, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 115, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["pnpmDeps", 27, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["patchPhase", 48, 3], ["buildPhase", 68, 3], ["installPhase", 87, 3], ["doCheck", 99, 3], ["nativeInstallCheckInputs", 100, 3], ["doInstallCheck", 103, 3], ["passthru", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   const nodejs_slim = nodejs_slim_24;
-  const pnpm$ = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim }))));
+  const pnpm$ = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], "nodejs-slim": nodejs_slim }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tsx",
       version: "4.23.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "privatenumber",
           repo: "tsx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-hHiJaLyCJwxSV1fc9Zpn/JHmvRS2fhT1XmL+B94+axw=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -69,11 +64,11 @@ runHook postPatch
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "TypeScript Execute (tsx): The easiest way to run TypeScript in Node.js",
         homepage: "https://tsx.hirok.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

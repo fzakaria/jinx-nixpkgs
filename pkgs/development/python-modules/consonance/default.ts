@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 38, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["env", 35, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 50, 3], ["enabledTestPaths", 52, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, dissononce: false, "python-axolotl-curve25519": false, transitions: false, protobuf: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 38, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["env", 35, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 50, 3], ["enabledTestPaths", 52, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tgalal",
           repo: "consonance",
           tag: version,
@@ -34,27 +30,27 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-type-error.patch",
             url: "https://github.com/tgalal/consonance/pull/9/commits/92fb78af98a18f0533ec8a286136968174fb0baf.patch",
             hash: "sha256-wVUGxZ4W2zPyrcQPQTc85LcRUtsLbTBVzS10NEolpQY=",
           })))),
       ]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [dissononce, python_axolotl_curve25519, transitions, protobuf]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const enabledTestPaths = nix.thunk(() => ["tests/test_handshakes_offline.py"]);
       const pythonImportsCheck = nix.thunk(() => ["consonance"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "WhatsApp's handshake implementation using Noise Protocol",
         homepage: "https://github.com/tgalal/consonance",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

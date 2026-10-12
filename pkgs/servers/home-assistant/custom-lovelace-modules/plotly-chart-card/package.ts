@@ -2,15 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 7], ["repo", 17, 7], ["tag", 18, 7], ["hash", 19, 7]], [["mainProgram", 24, 10]], [["pname", 12, 5], ["version", 13, 5], ["src", 15, 5], ["vendorHash", 22, 5], ["meta", 24, 5]], [["nodejs", 28, 28]], [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["ESBUILD_BINARY_PATH", 46, 7]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["npmDepsHash", 39, 3], ["forceGitDeps", 42, 3], ["makeCacheWritable", 43, 3], ["env", 46, 3], ["installPhase", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, nodejs_22: false, buildNpmPackage: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 7], ["repo", 17, 7], ["tag", 18, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 24, 10]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 5], ["version", 13, 5], ["src", 15, 5], ["vendorHash", 22, 5], ["meta", 24, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nodejs", 28, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["ESBUILD_BINARY_PATH", 46, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["npmDepsHash", 39, 3], ["forceGitDeps", 42, 3], ["makeCacheWritable", 43, 3], ["env", 46, 3], ["installPhase", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,21 +16,21 @@ export default nix.lambda((args) => (() => {
       const pname = "esbuild";
       const version = "0.16.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "evanw",
           repo: "esbuild",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-plcI3p/m1tPODZNcBoP/kc3avO11oXww7NIA9wdX+Pc=",
         }))));
       const vendorHash = "sha256-+BfxCyg0KkDQpHt/wycy/8CTG6YBA/VJvJFhhzUnSiQ=";
-      const meta = nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "esbuild" }));
-      return { [nix.POS]: pos$3, pname, version, src, vendorHash, meta };
+      const meta = nix.thunk(() => ({ [nix.POS]: $pos[1], mainProgram: "esbuild" }));
+      return { [nix.POS]: $pos[2], pname, version, src, vendorHash, meta };
     })())));
-  return nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, nodejs: nodejs_22 })), nix.thunk(() => (() => {
+  return nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], nodejs: nodejs_22 })), nix.thunk(() => (() => {
       const pname = "plotly-graph-card";
       const version = "3.3.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "dbuezas",
           repo: "lovelace-plotly-graph-card",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,12 +40,12 @@ export default nix.lambda((args) => (() => {
       const forceGitDeps = true;
       const makeCacheWritable = true;
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         ESBUILD_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), esbuild)),
       }));
       const installPhase = "install -d $out\ninstall -m0644 dist/plotly-graph-card.js $out/\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Highly customisable Lovelace card to plot interactive graphs. Brings scrolling, zooming, and much more",
         homepage: "https://github.com/dbuezas/lovelace-plotly-graph-card",
         changelog: nix.thunk(() => nix.str`https://github.com/dbuezas/lovelace-plotly-graph-card/releases/tag/${nix.sel(src, "tag")}`),
@@ -64,7 +57,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

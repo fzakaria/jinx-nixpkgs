@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libchipcard.nix", [[["url", 19, 5], ["hash", 20, 13]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["pname", 15, 3], ["version", 16, 11], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["makeFlags", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gwenhywfar: false, pcsclite: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libchipcard.nix", [["url", 19, 5], ["hash", 20, 13]]);
-const pos$2 = nix.positions(here + "/libchipcard.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/libchipcard.nix", [["pname", 15, 3], ["version", 16, 11], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["makeFlags", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libchipcard";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.aquamaniac.de/rdm/attachments/download/${releaseId}/libchipcard-${version_1}.tar.gz`),
           hash: hash,
         }))));
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gwenhywfar, pcsclite, zlib]);
       const makeFlags = nix.thunk(() => ["crypttokenplugindir=$(out)/lib/gwenhywfar/plugins/ct"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for access to chipcards",
         homepage: "https://www.aquamaniac.de/rdm/projects/libchipcard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version: version_1,
         src,

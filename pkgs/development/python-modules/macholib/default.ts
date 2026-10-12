@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["singleBinary", 15, 37]], [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["pyinstaller", 54, 13]], [["tests", 53, 12]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 32, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["doCheck", 46, 3], ["nativeCheckInputs", 47, 3], ["passthru", 53, 3], ["preCheck", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, unittestCheckHook: false, altgraph: false, setuptools: false, pyinstaller: false, bashNonInteractive: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["singleBinary", 15, 37]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pyinstaller", 54, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 53, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 32, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["doCheck", 46, 3], ["nativeCheckInputs", 47, 3], ["passthru", 53, 3], ["preCheck", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pyinstaller = nix.arg($, "pyinstaller");
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   const coreutils = nix.arg($, "coreutils");
-  const coreutils$ = nix.thunk(() => nix.app(nix.sel(coreutils, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, singleBinary: false }))));
+  const coreutils$ = nix.thunk(() => nix.app(nix.sel(coreutils, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], singleBinary: false }))));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname = "macholib";
       const version = "1.16.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ronaldoussoren",
           repo: "macholib",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,12 +39,12 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.sel(stdenv, "buildPlatform", "isDarwin"));
       const nativeCheckInputs = nix.thunk(() => [bashNonInteractive, coreutils$, unittestCheckHook]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, pyinstaller: pyinstaller })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], pyinstaller: pyinstaller })),
       }));
       const preCheck = "export PATH=\"$PATH:$out/bin\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Analyze and edit Mach-O headers, the executable format used by Mac OS X",
         homepage: "https://github.com/ronaldoussoren/macholib",
         changelog: nix.thunk(() => nix.str`https://github.com/ronaldoussoren/macholib/releases/tag/v${version}`),
@@ -60,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

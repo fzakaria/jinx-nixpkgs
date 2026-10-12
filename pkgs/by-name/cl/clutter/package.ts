@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["sha256", 36, 5]], [["NIX_CFLAGS_COMPILE", 81, 5]], [["packageName", 88, 7], ["versionPolicy", 89, 7]], [["updateScript", 87, 5]], [["description", 94, 5], ["longDescription", 96, 5], ["license", 111, 5], ["homepage", 112, 5], ["maintainers", 114, 5], ["platforms", 115, 5]], [["pname", 31, 3], ["version", 32, 11], ["src", 34, 3], ["outputs", 39, 3], ["buildInputs", 44, 3], ["nativeBuildInputs", 45, 3], ["propagatedBuildInputs", 49, 3], ["configureFlags", 71, 3], ["env", 80, 3], ["passthru", 86, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libGLU: false, libGL: false, libx11: false, libxext: false, libxfixes: false, libxdamage: false, libxcomposite: false, libxi: false, libxcb: false, cogl: false, pango: false, atk: false, "json-glib": false, "gobject-introspection": false, gtk3: false, gnome: false, libinput: false, libgudev: false, libxkbcommon: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 88, 7], ["versionPolicy", 89, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 94, 5], ["longDescription", 96, 5], ["license", 111, 5], ["homepage", 112, 5], ["maintainers", 114, 5], ["platforms", 115, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 11], ["src", 34, 3], ["outputs", 39, 3], ["buildInputs", 44, 3], ["nativeBuildInputs", 45, 3], ["propagatedBuildInputs", 49, 3], ["configureFlags", 71, 3], ["env", 80, 3], ["passthru", 86, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const version = "1.26.4";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "clutter",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/clutter/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/clutter-${version}.tar.xz`),
           sha256: "1rn4cd1an6a9dfda884aqpcwcgq8dgydpqvb19nmagw4b70zlj4b",
         })))),
@@ -64,15 +59,15 @@ export default nix.lambda((args) => (() => {
         ])))),
       configureFlags: nix.thunk(() => nix.concat(["--enable-introspection"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--without-x", "--enable-x11-backend=no", "--enable-quartz-backend=yes"])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "clutter", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "clutter", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Library for creating fast, dynamic graphical user interfaces",
         longDescription: "Clutter is free software library for creating fast, compelling,\nportable, and dynamic graphical user interfaces.  It is a core part\nof MeeGo, and is supported by the open source community.  Its\ndevelopment is sponsored by Intel.\n\nClutter uses OpenGL for rendering (and optionally OpenGL|ES for use\non mobile and embedded platforms), but wraps an easy to use,\nefficient, flexible API around GL's complexity.\n\nClutter enforces no particular user interface style, but provides a\nrich, generic foundation for higher-level toolkits tailored to\nspecific needs.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

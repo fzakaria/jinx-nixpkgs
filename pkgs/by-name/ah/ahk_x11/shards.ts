@@ -2,90 +2,78 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/shards.nix", [["url", 3, 5], ["rev", 4, 5], ["sha256", 5, 5]]);
-const pos$2 = nix.positions(here + "/shards.nix", [["url", 8, 5], ["rev", 9, 5], ["sha256", 10, 5]]);
-const pos$3 = nix.positions(here + "/shards.nix", [["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$4 = nix.positions(here + "/shards.nix", [["url", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$5 = nix.positions(here + "/shards.nix", [["url", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$6 = nix.positions(here + "/shards.nix", [["url", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$7 = nix.positions(here + "/shards.nix", [["url", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]]);
-const pos$8 = nix.positions(here + "/shards.nix", [["url", 38, 5], ["rev", 39, 5], ["sha256", 40, 5]]);
-const pos$9 = nix.positions(here + "/shards.nix", [["url", 43, 5], ["rev", 44, 5], ["sha256", 45, 5]]);
-const pos$10 = nix.positions(here + "/shards.nix", [["url", 48, 5], ["rev", 49, 5], ["sha256", 50, 5]]);
-const pos$11 = nix.positions(here + "/shards.nix", [["url", 53, 5], ["rev", 54, 5], ["sha256", 55, 5]]);
-const pos$12 = nix.positions(here + "/shards.nix", [["url", 58, 5], ["rev", 59, 5], ["sha256", 60, 5]]);
-const pos$13 = nix.positions(here + "/shards.nix", [["atspi", 2, 3], ["cron_parser", 7, 3], ["future", 12, 3], ["gi-crystal", 17, 3], ["gtk3", 22, 3], ["harfbuzz", 27, 3], ["notify", 32, 3], ["pango", 37, 3], ["tasker", 42, 3], ["x11", 47, 3], ["x_do", 52, 3], ["xtst", 57, 3]]);
+const $pos = nix.positions(here + "/shards.nix", [[["url", 3, 5], ["rev", 4, 5], ["sha256", 5, 5]], [["url", 8, 5], ["rev", 9, 5], ["sha256", 10, 5]], [["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["url", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["url", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["url", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["url", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]], [["url", 38, 5], ["rev", 39, 5], ["sha256", 40, 5]], [["url", 43, 5], ["rev", 44, 5], ["sha256", 45, 5]], [["url", 48, 5], ["rev", 49, 5], ["sha256", 50, 5]], [["url", 53, 5], ["rev", 54, 5], ["sha256", 55, 5]], [["url", 58, 5], ["rev", 59, 5], ["sha256", 60, 5]], [["atspi", 2, 3], ["cron_parser", 7, 3], ["future", 12, 3], ["gi-crystal", 17, 3], ["gtk3", 22, 3], ["harfbuzz", 27, 3], ["notify", 32, 3], ["pango", 37, 3], ["tasker", 42, 3], ["x11", 47, 3], ["x_do", 52, 3], ["xtst", 57, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$13,
+  [nix.POS]: $pos[12],
   atspi: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     url: "https://github.com/phil294/atspi.cr.git",
     rev: "7aec8d3604313da415e54e654c1dc6b33ae05d8d",
     sha256: "1r6k9f00a2y406hqsgq0r58zlfmg3xbzqjmfh93nwqs4m6h0shml",
   })),
   cron_parser: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     url: "https://github.com/kostya/cron_parser.git",
     rev: "v0.4.0",
     sha256: "17fgg2nvyx99v05l10h6cnxfr7swz8yaxhmnk4l47kg2spi8w90a",
   })),
   future: nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     url: "https://github.com/crystal-community/future.cr.git",
     rev: "v1.0.0",
     sha256: "1mji2djkrf4vxgs432kgkzxx54ybzk636789k2vsws3sf14l74i8",
   })),
   "gi-crystal": nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     url: "https://github.com/hugopl/gi-crystal.git",
     rev: "v0.23.0",
     sha256: "0ykb7sy62036brix12sj416h6gx85liq2kivwkh2cmf71lk02cqr",
   })),
   gtk3: nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     url: "https://github.com/phil294/gtk3.cr.git",
     rev: "3e6cdc45c1c39d82c215b4cdf0bbb9b5598460e1",
     sha256: "0x25p85kp2f6gbsi36nyddhji7mmmqa7v4xs18bddf3kbgh72nw3",
   })),
   harfbuzz: nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     url: "https://github.com/hugopl/harfbuzz.cr.git",
     rev: "v0.2.1",
     sha256: "08zx5q1mm1h4lzfr38dk8nk7mx1y955zdjl6n48rl619bc1ywdpg",
   })),
   notify: nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     url: "https://github.com/phil294/notify.cr.git",
     rev: "0c9880e6169e09f0db1cb40432e0b76651d15ad3",
     sha256: "1waasvhx4n817d8gqk3fza4ac4a9d71f80cfii5dbh2aqzhqf070",
   })),
   pango: nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     url: "https://github.com/hugopl/pango.cr.git",
     rev: "v0.3.1",
     sha256: "0xlf127flimnll875mcq92q7xsi975rrgdpcpmnrwllhdhfx9qmv",
   })),
   tasker: nix.thunk(() => ({
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     url: "https://github.com/spider-gazelle/tasker.git",
     rev: "v2.1.4",
     sha256: "0254sl279nrw5nz43dz5gm89ah1zrw5bvxfma81navpx5gfg9pyb",
   })),
   x11: nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     url: "https://github.com/phil294/x11-cr.git",
     rev: "5a937d647d8eac29106602fcdeb161a78eb3d59d",
     sha256: "11rflkxrg1dl5c80llwan4qs47ir7w7lgqdmhy2z907kxbrfkznr",
   })),
   x_do: nix.thunk(() => ({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     url: "https://github.com/phil294/x_do.cr.git",
     rev: "94f755a4f18a9a9820e9738b371cbe6b49731926",
     sha256: "099mrhyb8kly6isk7xr1mzxbxfm4xizmyyw2ylmlx4ywynz9iyl6",
   })),
   xtst: nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     url: "https://github.com/phil294/xtst-cr.git",
     rev: "f731b708e1789d039258ecd62f7b0d1107a00b78",
     sha256: "1vhzn1ck7ifkvhw5f9kpljsa278va039wa6f3hhd8w6gr2zqvzk8",

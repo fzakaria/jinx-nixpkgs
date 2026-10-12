@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7], ["postFetch", 29, 7]], [["pname", 36, 13], ["version", 36, 19], ["pnpm", 37, 5], ["src", 38, 5], ["fetcherVersion", 39, 5], ["hash", 40, 5]], [["pname", 73, 5], ["src", 74, 13], ["version", 74, 17], ["hash", 75, 5]], [["firezone", 79, 26]], [["tests", 78, 12]], [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 90, 5], ["platforms", 91, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["pnpmDeps", 35, 3], ["pnpmRoot", 42, 3], ["preBuild", 44, 3], ["postBuild", 55, 3], ["nativeBuildInputs", 64, 3], ["mixReleaseName", 70, 11], ["mixFodDeps", 72, 3], ["passthru", 78, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, nixosTests: false, fetchFromGitHub: false, beam27Packages: false, gitMinimal: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, nodejs: false, tailwindcss_3: false, esbuild: false, mixReleaseName: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7], ["postFetch", 29, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 36, 13], ["version", 36, 19], ["pnpm", 37, 5], ["src", 38, 5], ["fetcherVersion", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 73, 5], ["src", 74, 13], ["version", 74, 17], ["hash", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["firezone", 79, 26]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 78, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 90, 5], ["platforms", 91, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["pnpmDeps", 35, 3], ["pnpmRoot", 42, 3], ["preBuild", 44, 3], ["postBuild", 55, 3], ["nativeBuildInputs", 64, 3], ["mixReleaseName", 70, 11], ["mixFodDeps", 72, 3], ["passthru", 78, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`firezone-server-${mixReleaseName_1}`);
       const version = "0-unstable-2025-08-31";
       const src = nix.thunk(() => nix.str`${nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "firezone",
           repo: "firezone",
           rev: "f86719db19b848ab757995361032c1f2b7927d13",
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
 `),
         })))}/elixir`);
       const pnpmDeps = nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           pnpm: pnpm_10,
@@ -60,21 +54,21 @@ EOF
       const nativeBuildInputs = nix.thunk(() => [pnpmConfigHook, pnpm_10, nodejs]);
       const mixReleaseName_1 = mixReleaseName;
       const mixFodDeps = nix.thunk(() => nix.app(nix.sel(beam27Packages, "fetchMixDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.str`mix-deps-${pname}-${version}`),
           src: src,
           version: version,
           hash: "sha256-h3l7HK9dxNmkHWfJyCOCXmCvFOK+mZtmszhRv0zxqoo=",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           firezone: nix.thunk(() => nix.attr(nixosTests, "firezone")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Backend server for the Firezone zero-trust access platform",
         homepage: "https://github.com/firezone/firezone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "elastic20")),
@@ -89,7 +83,7 @@ EOF
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

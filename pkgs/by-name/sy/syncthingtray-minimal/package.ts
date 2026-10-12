@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["webviewSupport", 6, 3], ["jsSupport", 7, 3], ["kioPluginSupport", 8, 3], ["plasmoidSupport", 9, 3], ["systemdSupport", 10, 3]]]);
 const formals$1 = { args: { syncthingtray: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["webviewSupport", 6, 3], ["jsSupport", 7, 3], ["kioPluginSupport", 8, 3], ["plasmoidSupport", 9, 3], ["systemdSupport", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const syncthingtray = nix.arg($, "syncthingtray");
   return nix.app(nix.sel(syncthingtray, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       webviewSupport: false,
       jsSupport: false,
       kioPluginSupport: false,

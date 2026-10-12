@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 38, 3], ["preCheck", 43, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, django: false, fetchFromGitHub: false, icalendar: false, pytestCheckHook: false, "pytest-django": false, "python-dateutil": false, pytz: false, setuptools: false, pyprojectVersionPatchHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 38, 3], ["preCheck", 43, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pyprojectVersionPatchHook = nix.arg($, "pyprojectVersionPatchHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "django-scheduler",
       version: "0.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "llazzaro",
           repo: "django-scheduler",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export DJANGO_SETTINGS_MODULE=tests.settings\n",
       pythonImportsCheck: nix.thunk(() => ["schedule"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Calendar app for Django",
         homepage: "https://github.com/llazzaro/django-scheduler",
         changelog: nix.thunk(() => nix.str`https://github.com/llazzaro/django-scheduler/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

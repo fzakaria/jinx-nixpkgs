@@ -2,14 +2,13 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/updateSettingsTest.nix", [["a", 4, 5]]);
-const pos$2 = nix.positions(here + "/updateSettingsTest.nix", [["settings", 3, 3]]);
+const $pos = nix.positions(here + "/updateSettingsTest.nix", [[["a", 4, 5]], [["settings", 3, 3]]]);
 
 export default nix.thunk(() => (() => {
   const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs")), nix.thunk(() => ({})))), null);
   return nix.app(nix.lookup(w, "callPackage"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./updateSettings.nix"))), nix.thunk(() => ({})), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      settings: nix.thunk(() => ({ [nix.POS]: pos$1, a: "fdsdf" })),
+      [nix.POS]: $pos[1],
+      settings: nix.thunk(() => ({ [nix.POS]: $pos[0], a: "fdsdf" })),
     })));
 })());
 //# sourceMappingURL=updateSettingsTest.ts.map

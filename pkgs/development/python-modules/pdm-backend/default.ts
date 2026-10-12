@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["PDM_BUILD_SCM_VERSION", 26, 7]], [["homepage", 50, 5], ["changelog", 51, 5], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["env", 26, 3], ["pythonImportsCheck", 28, 3], ["nativeCheckInputs", 30, 3], ["preCheck", 38, 3], ["setupHook", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, editables: false, gitMinimal: false, mercurial: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PDM_BUILD_SCM_VERSION", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 50, 5], ["changelog", 51, 5], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["env", 26, 3], ["pythonImportsCheck", 28, 3], ["nativeCheckInputs", 30, 3], ["preCheck", 38, 3], ["setupHook", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +20,19 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pdm-project",
           repo: "pdm-backend",
           tag: version,
           hash: "sha256-082ZSfRUGUV8DX+vuJeOd+HOuAfnKfZPZ3Lyhx6TRlE=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PDM_BUILD_SCM_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PDM_BUILD_SCM_VERSION: version }));
       const pythonImportsCheck = nix.thunk(() => ["pdm.backend"]);
       const nativeCheckInputs = nix.thunk(() => [editables, gitMinimal, mercurial, pytestCheckHook, setuptools]);
       const preCheck = "unset PDM_BUILD_SCM_VERSION\n\n# tests require a configured git identity\nexport HOME=$TMPDIR\ngit config --global user.name nixbld\ngit config --global user.email nixbld@localhost\n";
       const setupHook = nix.path(here, "./setup-hook.sh");
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/pdm-project/pdm-backend",
         changelog: nix.thunk(() => nix.str`https://github.com/pdm-project/pdm-backend/releases/tag/${version}`),
         description: "Yet another PEP 517 backend",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

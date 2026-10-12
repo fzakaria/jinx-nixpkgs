@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["CGO_ENABLED", 48, 7]], [["minio", 65, 18]], [["tests", 65, 12]], [["homepage", 68, 5], ["description", 69, 5], ["changelog", 70, 5], ["maintainers", 71, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["knownVulnerabilities", 77, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["vendorHash", 42, 3], ["doCheck", 44, 3], ["subPackages", 46, 3], ["env", 48, 3], ["tags", 50, 3], ["ldflags", 52, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["minio", 65, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 65, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["changelog", 70, 5], ["maintainers", 71, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["knownVulnerabilities", 77, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["vendorHash", 42, 3], ["doCheck", 44, 3], ["subPackages", 46, 3], ["env", 48, 3], ["tags", 50, 3], ["ldflags", 52, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   })();
   const versionToYear = (version) => nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", version)), 0n);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "minio",
       version: "2025-10-15T17-29-55Z",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "minio",
           repo: "minio",
           rev: nix.thunk(() => nix.str`RELEASE.${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-BFnTJE9QFWmPsx90hDTG8MusdnwaBPYJxM5bCFk3hew=",
       doCheck: false,
       subPackages: nix.thunk(() => ["."]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       tags: nix.thunk(() => ["kqueue"]),
       ldflags: nix.thunk(() => (() => {
         const t = "github.com/minio/minio/cmd";
@@ -52,11 +47,11 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, minio: nix.thunk(() => nix.sel(nixosTests, "minio")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], minio: nix.thunk(() => nix.sel(nixosTests, "minio")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.minio.io/",
         description: "S3-compatible object storage server",
         changelog: nix.thunk(() => nix.str`https://github.com/minio/minio/releases/tag/RELEASE.${nix.sel(finalAttrs, "version")}`),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]], [["pname", 67, 7], ["src", 68, 15], ["version", 68, 19], ["vendorHash", 69, 7]], [["libxkbcommon", 150, 7]], [["CGO_ENABLED", 169, 5], ["GOFLAGS", 170, 5], ["GOTOOLCHAIN", 171, 5]], [["default", 338, 7]], [["tests", 337, 5], ["updateScript", 340, 5]], [["homepage", 344, 5], ["description", 345, 5], ["license", 346, 5], ["changelog", 347, 5], ["platforms", 351, 5], ["mainProgram", 352, 5], ["maintainers", 353, 5]], [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["src", 58, 3], ["goModules", 65, 3], ["buildInputs", 72, 3], ["nativeBuildInputs", 105, 3], ["depsBuildBuild", 129, 3], ["outputs", 131, 3], ["patches", 138, 3], ["postPatch", 154, 3], ["hardeningDisable", 163, 3], ["env", 168, 3], ["configurePhase", 174, 3], ["buildPhase", 181, 3], ["nativeCheckInputs", 220, 3], ["preCheck", 234, 3], ["checkPhase", 268, 3], ["installPhase", 280, 3], ["passthru", 336, 3], ["meta", 343, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, python3Packages: false, libunistring: false, harfbuzz: false, fontconfig: false, "pkg-config": false, ncurses: false, imagemagick: false, libstartup_notification: false, libGL: false, libx11: false, libxrandr: false, libxinerama: false, libxcursor: false, libxkbcommon: false, libxi: false, libxext: false, "wayland-protocols": false, wayland: false, xxhash: false, "nerd-fonts": false, lcms2: false, librsync: false, openssl: false, installShellFiles: false, dbus: false, sudo: false, libcanberra: false, libicns: false, "wayland-scanner": false, libpng: false, python3: false, zlib: false, simde: false, bashInteractive: false, zsh: false, fish: false, nixosTests: false, go_1_26: false, buildGo126Module: false, "nix-update-script": false, makeBinaryWrapper: false, darwin: false, cairo: false, "shader-slang": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 67, 7], ["src", 68, 15], ["version", 68, 19], ["vendorHash", 69, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["libxkbcommon", 150, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 169, 5], ["GOFLAGS", 170, 5], ["GOTOOLCHAIN", 171, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["default", 338, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 337, 5], ["updateScript", 340, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 344, 5], ["description", 345, 5], ["license", 346, 5], ["changelog", 347, 5], ["platforms", 351, 5], ["mainProgram", 352, 5], ["maintainers", 353, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["src", 58, 3], ["goModules", 65, 3], ["buildInputs", 72, 3], ["nativeBuildInputs", 105, 3], ["depsBuildBuild", 129, 3], ["outputs", 131, 3], ["patches", 138, 3], ["postPatch", 154, 3], ["hardeningDisable", 163, 3], ["env", 168, 3], ["configurePhase", 174, 3], ["buildPhase", 181, 3], ["nativeCheckInputs", 220, 3], ["preCheck", 234, 3], ["checkPhase", 268, 3], ["installPhase", 280, 3], ["passthru", 336, 3], ["meta", 343, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -68,14 +61,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.49.2";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kovidgoyal",
           repo: "kitty",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-FstfBzwdh1z7Qy9zWDY7L7mpd5bxnypgqEzqeLe16fY=",
         }))));
       const goModules = nix.thunk(() => nix.sel(nix.app(buildGo126Module, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "kitty-go-modules",
           src: src,
           version: version,
@@ -132,7 +125,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./zsh-compinit.patch"),
         nix.path(here, "./disable-test_ssh_bootstrap_with_different_launchers.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libxkbcommon-runtime-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             libxkbcommon: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libxkbcommon)}/lib/libxkbcommon.so.0`),
           })))),
       ]);
@@ -145,7 +138,7 @@ export default nix.lambda((args) => (() => {
 `)));
       const hardeningDisable = nix.thunk(() => ["fortify3"]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         CGO_ENABLED: 0n,
         GOFLAGS: "-trimpath",
         GOTOOLCHAIN: "local",
@@ -215,15 +208,15 @@ cp -r 'shell-integration' "$shell_integration"
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             default: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "kitty")),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/kovidgoyal/kitty",
         description: "Fast, feature-rich, GPU based terminal emulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -244,7 +237,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         pyproject,

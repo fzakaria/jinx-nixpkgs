@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]], [["homepage", 23, 5], ["description", 24, 5], ["license", 25, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 23, 5], ["description", 24, 5], ["license", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "matrix-org",
           repo: nix.thunk(() => nix.str`python-${pname}`),
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [poetry_core]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/matrix-org/python-unpaddedbase64",
         description: "Unpadded Base64",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
-      return { [nix.POS]: pos$3, pname, version, pyproject, src, nativeBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, pyproject, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

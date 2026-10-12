@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["am_cv_func_iconv_works", 46, 5]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 74, 5], ["mainProgram", 75, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["outputs", 33, 3], ["configureFlags", 38, 3], ["env", 45, 3], ["buildInputs", 49, 3], ["nativeBuildInputs", 61, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "pkg-config": false, gnutls: false, "p11-kit": false, openssl: false, useOpenSSL: true, gmp: false, libxml2: false, stoken: false, zlib: false, pcsclite: false, "vpnc-scripts": false, useDefaultExternalBrowser: true, "xdg-utils": false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["am_cv_func_iconv_works", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 74, 5], ["mainProgram", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["outputs", 33, 3], ["configureFlags", 38, 3], ["env", 45, 3], ["buildInputs", 49, 3], ["nativeBuildInputs", 61, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const xdg_utils = nix.arg($, "xdg-utils");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openconnect",
       version: "9.12-unstable-2025-11-03",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openconnect",
           repo: "openconnect",
           rev: "0dcdff87db65daf692dc323732831391d595d98d",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         "--disable-nls",
         "--without-openssl-version-check",
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, am_cv_func_iconv_works: "yes" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], am_cv_func_iconv_works: "yes" })),
       buildInputs: nix.thunk(() => nix.concat([
         gmp,
         libxml2,
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [p11_kit, pcsclite])), nix.app(nix.sel(lib, "optional"), useDefaultExternalBrowser, xdg_utils)))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "VPN Client for Cisco's AnyConnect SSL VPN",
         homepage: "https://www.infradead.org/openconnect/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

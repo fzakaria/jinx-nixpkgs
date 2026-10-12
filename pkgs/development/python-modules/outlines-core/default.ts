@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["lockFile", 48, 5]], [["tests", 83, 5]], [["description", 119, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["maintainers", 123, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["cargoDeps", 47, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 68, 3], ["build-system", 72, 3], ["dependencies", 77, 3], ["optional-dependencies", 82, 3], ["pythonImportsCheck", 93, 3], ["preCheck", 95, 3], ["nativeCheckInputs", 99, 3], ["disabledTests", 104, 3], ["disabledTestPaths", 113, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cargo: false, "pkg-config": false, rustPlatform: false, rustc: false, openssl: false, "setuptools-rust": false, "setuptools-scm": false, interegular: false, jsonschema: false, datasets: false, numpy: false, pydantic: false, scipy: false, torch: false, transformers: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lockFile", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 83, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 119, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["maintainers", 123, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["cargoDeps", 47, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 68, 3], ["build-system", 72, 3], ["dependencies", 77, 3], ["optional-dependencies", 82, 3], ["pythonImportsCheck", 93, 3], ["preCheck", 95, 3], ["nativeCheckInputs", 99, 3], ["disabledTests", 104, 3], ["disabledTestPaths", 113, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const transformers = nix.arg($, "transformers");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "outlines-core",
       version: "0.2.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dottxt-ai",
           repo: "outlines-core",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-XmXD2tWG2277bC318Bn9RqeEE7j9VdauvWnBmFS8Lsk=",
         })))),
-      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })))),
+      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") })))),
       postPatch: nix.thunk(() => nix.str`substituteInPlace Cargo.toml \\
   --replace-fail \\
     'version = "0.0.0"' \\
@@ -61,7 +57,7 @@ cp --no-preserve=mode ${nix.path(here, "./Cargo.lock")} Cargo.lock
       "build-system": nix.thunk(() => [setuptools_rust, setuptools_scm]),
       dependencies: nix.thunk(() => [interegular, jsonschema]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => [datasets, numpy, pydantic, scipy, torch, transformers]),
       })),
       pythonImportsCheck: nix.thunk(() => ["outlines_core"]),
@@ -76,7 +72,7 @@ cp --no-preserve=mode ${nix.path(here, "./Cargo.lock")} Cargo.lock
       ]),
       disabledTestPaths: nix.thunk(() => ["tests/test_kernels.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Structured text generation (core)",
         homepage: "https://github.com/outlines-dev/outlines-core",
         changelog: nix.thunk(() => nix.str`https://github.com/dottxt-ai/outlines-core/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

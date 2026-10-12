@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5], ["forceFetchGit", 20, 5], ["leaveDotGit", 21, 5]], [["homepage", 36, 5], ["downloadPage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitea: false, rustPlatform: false, "pkg-config": false, git: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5], ["forceFetchGit", 20, 5], ["leaveDotGit", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 36, 5], ["downloadPage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fedigroups",
       version: "0.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.ondrovo.com",
           owner: "MightyPork",
           repo: "group-actor",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, git]),
       buildInputs: nix.thunk(() => [openssl]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git.ondrovo.com/MightyPork/group-actor#fedi-groups",
         downloadPage: "https://git.ondrovo.com/MightyPork/group-actor/releases",
         description: "Approximation of groups usable with Fediverse software that implements the Mastodon client API",

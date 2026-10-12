@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["sha256", 28, 5]], [["CGO_ENABLED", 40, 7]], [["package", 87, 9], ["command", 88, 9], ["version", 89, 9]], [["tests", 84, 12]], [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["vendorHash", 30, 3], ["outputs", 32, 3], ["ldflags", 34, 3], ["env", 40, 3], ["nativeBuildInputs", 42, 3], ["postInstall", 47, 3], ["checkFlags", 67, 3], ["passthru", 84, 3], ["__darwinAllowLocalNetworking", 94, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, lndir: false, testers: false, regclient: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 87, 9], ["command", 88, 9], ["version", 89, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 84, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["vendorHash", 30, 3], ["outputs", 32, 3], ["ldflags", 34, 3], ["env", 40, 3], ["nativeBuildInputs", 42, 3], ["postInstall", 47, 3], ["checkFlags", 67, 3], ["passthru", 84, 3], ["__darwinAllowLocalNetworking", 94, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const regclient = nix.arg($, "regclient");
   const bins = nix.thunk(() => ["regbot", "regctl", "regsync"]);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "regclient",
       version: "0.11.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "regclient",
           repo: "regclient",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +34,7 @@ export default nix.lambda((args) => (() => {
         "-w",
         nix.thunk(() => nix.str`-X github.com/regclient/regclient/internal/version.vcsTag=${nix.sel(finalAttrs, "src", "tag")}`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, lndir]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (bin) => nix.add(nix.add(nix.str`local bin=$${bin}
 local outputBin=bin
@@ -56,10 +51,10 @@ mv $out/bin/${bin} $bin/bin
         return [nix.thunk(() => nix.str`-skip=${nix.builtins.concatStringsSep("|", skip)}`)];
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "mergeAttrsList"), nix.thunk(() => nix.builtins.map((bin) => nix.attrsDyn({}, [
               [nix.str`${bin}Version`, nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   package: regclient,
                   command: nix.thunk(() => nix.str`${bin} version`),
                   version: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
@@ -68,7 +63,7 @@ mv $out/bin/${bin} $bin/bin
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Docker and OCI Registry Client in Go and tooling using those libraries",
         homepage: "https://github.com/regclient/regclient",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

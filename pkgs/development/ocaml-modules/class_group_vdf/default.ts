@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7]], [["description", 54, 7], ["homepage", 55, 7], ["license", 56, 7], ["maintainers", 57, 7]], [["pname", 18, 5], ["version", 19, 5], ["src", 21, 5], ["minimalOCamlVersion", 28, 5], ["nativeBuildInputs", 30, 5], ["buildInputs", 36, 5], ["propagatedBuildInputs", 40, 5], ["checkInputs", 46, 5], ["doCheck", 51, 5], ["meta", 53, 5]], [["preHook", 69, 9]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, buildDunePackage: false, gmp: false, "pkg-config": false, "dune-configurator": false, zarith: false, integers: false, "stdlib-random": false, alcotest: false, bisect_ppx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 7], ["homepage", 55, 7], ["license", 56, 7], ["maintainers", 57, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 5], ["src", 21, 5], ["minimalOCamlVersion", 28, 5], ["nativeBuildInputs", 30, 5], ["buildInputs", 36, 5], ["propagatedBuildInputs", 40, 5], ["checkInputs", 46, 5], ["doCheck", 51, 5], ["meta", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["preHook", 69, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "class_group_vdf";
       const version = "0.0.5";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nomadic-labs/cryptography",
           repo: "ocaml-chia-vdf",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,14 +36,14 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [alcotest, bisect_ppx]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Verifiable Delay Functions bindings to Chia's VDF",
         homepage: "https://gitlab.com/nomadic-labs/tezos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ulrikstrid"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,
@@ -58,6 +55,6 @@ export default nix.lambda((args) => (() => {
         doCheck,
         meta,
       };
-    })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinMinVersion")), "10.14")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isMacOS")))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ({ [nix.POS]: pos$4, preHook: "export MACOSX_DEPLOYMENT_TARGET=10.14\n" }))))));
+    })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinMinVersion")), "10.14")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isMacOS")))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ({ [nix.POS]: $pos[3], preHook: "export MACOSX_DEPLOYMENT_TARGET=10.14\n" }))))));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

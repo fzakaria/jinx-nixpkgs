@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 37, 5], ["homepage", 38, 5], ["maintainers", 39, 5], ["license", 40, 5], ["mainProgram", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 23, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, slop: false, ffmpeg: false, fetchFromGitHub: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["maintainers", 39, 5], ["license", 40, 5], ["mainProgram", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 23, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "capture-unstable",
       version: "2019-03-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "buhman",
           repo: "capture",
           rev: "80dd9e7195aad5c132badef610f19509f3935b24",
@@ -34,7 +32,7 @@ wrapProgram $out/bin/capture \\
   --prefix PATH : '${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [slop, ffmpeg]))}'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "No bullshit screen capture tool",
         homepage: "https://github.com/buhman/capture",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ar1a"))]),

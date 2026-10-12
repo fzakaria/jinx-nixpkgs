@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["NIX_CFLAGS_COMPILE", 26, 7]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 52, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["nativeBuildInputs", 22, 3], ["env", 26, 3], ["postInstall", 33, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, rustPlatform: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["nativeBuildInputs", 22, 3], ["env", 26, 3], ["postInstall", 33, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "topgrade",
       version: "17.12.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "topgrade-rs",
           repo: "topgrade",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,12 +26,12 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-MCFkV7lnSLmNaurj3SkyQEfsuqEZ9ldHpV3Eh0TYHIk=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-framework", "AppKit"]))))),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd topgrade \\\n  --bash <($out/bin/topgrade --gen-completion bash) \\\n  --fish <($out/bin/topgrade --gen-completion fish) \\\n  --zsh <($out/bin/topgrade --gen-completion zsh)\n\n$out/bin/topgrade --gen-manpage > topgrade.8\ninstallManPage topgrade.8\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Upgrade all the things",
         homepage: "https://github.com/topgrade-rs/topgrade",
         changelog: nix.thunk(() => nix.str`https://github.com/topgrade-rs/topgrade/releases/tag/v${nix.sel(finalAttrs, "version")}`),

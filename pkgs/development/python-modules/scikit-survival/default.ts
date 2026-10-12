@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]], [["nativeInstallCheckInputs", 116, 5], ["disabledTests", 117, 5], ["disabledTestPaths", 118, 5]], [["full", 115, 18]], [["tests", 115, 12]], [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5]], [["pname", 52, 3], ["version", 53, 3], ["pyproject", 54, 3], ["src", 56, 3], ["postPatch", 63, 3], ["build-system", 68, 3], ["pythonRelaxDeps", 77, 3], ["dependencies", 80, 3], ["pythonImportsCheck", 91, 3], ["nativeCheckInputs", 93, 3], ["preCheck", 97, 3], ["disabledTestPaths", 102, 3], ["disabledTests", 113, 3], ["passthru", 115, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, eigen: false, cython: false, numpy: false, packaging: false, "scikit-learn": false, setuptools: false, "setuptools-scm": false, ecos: false, joblib: false, numexpr: false, osqp: false, pandas: false, scipy: false, polars: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nativeInstallCheckInputs", 116, 5], ["disabledTests", 117, 5], ["disabledTestPaths", 118, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["full", 115, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 115, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 52, 3], ["version", 53, 3], ["pyproject", 54, 3], ["src", 56, 3], ["postPatch", 63, 3], ["build-system", 68, 3], ["pythonRelaxDeps", 77, 3], ["dependencies", 80, 3], ["pythonImportsCheck", 91, 3], ["nativeCheckInputs", 93, 3], ["preCheck", 97, 3], ["disabledTestPaths", 102, 3], ["disabledTests", 113, 3], ["passthru", 115, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,12 +37,12 @@ export default nix.lambda((args) => (() => {
   ]);
   const flakyTests = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_baseline_predict"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_coxnet"]))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "scikit-survival",
       version: "0.28.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sebp",
           repo: "scikit-survival",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,11 +69,11 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTests: nix.thunk(() => nix.concat(slowTests, flakyTests)),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           full: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (old) => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeInstallCheckInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeInstallCheckInputs"), [polars])),
               disabledTests: flakyTests,
               disabledTestPaths: [],
@@ -86,7 +81,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Survival analysis built on top of scikit-learn",
         homepage: "https://github.com/sebp/scikit-survival",
         changelog: nix.thunk(() => nix.str`https://github.com/sebp/scikit-survival/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

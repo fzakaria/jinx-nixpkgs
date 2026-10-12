@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 21, 5], ["url", 22, 5], ["sha256", 23, 5]], [["description", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 26, 3], ["postPatch", 29, 3], ["hardeningDisable", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["preBuild", 47, 3], ["makeFlags", 54, 3], ["installPhase", 58, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gtk2: false, glib: false, "pkg-config": false, libGLU: false, libGL: false, wxwidgets_3_2: false, libx11: false, xorgproto: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 21, 5], ["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 26, 3], ["postPatch", 29, 3], ["hardeningDisable", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["preBuild", 47, 3], ["makeFlags", 54, 3], ["installPhase", 58, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fsg";
       const version = "4.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`fsg-src-${version}.tar.gz`),
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/ctrlcctrlv/wxsand/5716c16b655ca3670e7acd76372b43763bec20d1/fsg-src-${version}-ORIGINAL.tar.gz`),
           sha256: "1756y01rkvd3f1pkj88jqh83fqcfl2fy0c48mcq53pjzln9ycv8c",
@@ -45,14 +43,14 @@ echo -e '#!${runtimeShell}\\nLC_ALL=C '$out'/libexec/sand "$@"' >$out/bin/fsg
 chmod a+x $out/bin/fsg
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cellular automata engine tuned towards the likes of Falling Sand",
         mainProgram: "fsg",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

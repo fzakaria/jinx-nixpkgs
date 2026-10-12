@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["strictDeps", 18, 3], ["dontBuild", 19, 3], ["installPhase", 21, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["strictDeps", 18, 3], ["dontBuild", 19, 3], ["installPhase", 21, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "spaceship-prompt";
       const version = "4.22.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "spaceship-prompt",
           repo: "spaceship-prompt",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "install -Dm644 LICENSE.md \"$out/share/licenses/spaceship-prompt/LICENSE\"\ninstall -Dm644 README.md \"$out/share/doc/spaceship-prompt/README.md\"\nfind docs -type f -exec install -Dm644 {} \"$out/share/doc/spaceship-prompt/{}\" \\;\nfind lib -type f -exec install -Dm644 {} \"$out/lib/spaceship-prompt/{}\" \\;\nfind scripts -type f -exec install -Dm644 {} \"$out/lib/spaceship-prompt/{}\" \\;\nfind sections -type f -exec install -Dm644 {} \"$out/lib/spaceship-prompt/{}\" \\;\ninstall -Dm644 spaceship.zsh \"$out/lib/spaceship-prompt/spaceship.zsh\"\ninstall -Dm644 async.zsh \"$out/lib/spaceship-prompt/async.zsh\"\ninstall -d \"$out/share/zsh/themes/\"\nln -s \"$out/lib/spaceship-prompt/spaceship.zsh\" \"$out/share/zsh/themes/spaceship.zsh-theme\"\ninstall -d \"$out/share/zsh/site-functions/\"\nln -s \"$out/lib/spaceship-prompt/spaceship.zsh\" \"$out/share/zsh/site-functions/prompt_spaceship_setup\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Zsh prompt for Astronauts",
         homepage: "https://github.com/spaceship-prompt/spaceship-prompt/",
         changelog: nix.thunk(() => nix.str`https://github.com/spaceship-prompt/spaceship-prompt/releases/tag/v${version}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

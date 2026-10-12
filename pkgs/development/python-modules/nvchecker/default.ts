@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["awesomeversion", 59, 5], ["pypi", 61, 5], ["htmlparser", 62, 5], ["rpmrepo", 63, 5], ["jq", 64, 5], ["git_pygit2", 65, 5], ["git_dulwich", 66, 5]], [["SSL_CERT_FILE", 70, 5]], [["updateScript", 95, 12]], [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["__darwinAllowLocalNetworking", 41, 3], ["build-system", 43, 3], ["nativeBuildInputs", 45, 3], ["dependencies", 50, 3], ["optional-dependencies", 57, 3], ["env", 69, 3], ["nativeCheckInputs", 73, 3], ["postBuild", 82, 3], ["postInstall", 87, 3], ["pythonImportsCheck", 91, 3], ["disabledTestMarks", 93, 3], ["passthru", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, awesomeversion: false, buildPythonPackage: false, cacert: false, docutils: false, dulwich: false, fetchFromGitHub: false, flaky: false, installShellFiles: false, jq: false, lxml: false, "nix-update-script": false, packaging: false, platformdirs: false, pycurl: false, pygit2: false, "pytest-asyncio": false, pytestCheckHook: false, "pytest-httpbin": false, "pytest-rerunfailures": false, pythonOlder: false, setuptools: false, structlog: false, tornado: false, zstandard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["awesomeversion", 59, 5], ["pypi", 61, 5], ["htmlparser", 62, 5], ["rpmrepo", 63, 5], ["jq", 64, 5], ["git_pygit2", 65, 5], ["git_dulwich", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["SSL_CERT_FILE", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 95, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["__darwinAllowLocalNetworking", 41, 3], ["build-system", 43, 3], ["nativeBuildInputs", 45, 3], ["dependencies", 50, 3], ["optional-dependencies", 57, 3], ["env", 69, 3], ["nativeCheckInputs", 73, 3], ["postBuild", 82, 3], ["postInstall", 87, 3], ["pythonImportsCheck", 91, 3], ["disabledTestMarks", 93, 3], ["passthru", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const tornado = nix.arg($, "tornado");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nvchecker",
       version: "2.22",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lilydjwg",
           repo: "nvchecker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [docutils, installShellFiles]),
       dependencies: nix.thunk(() => [structlog, platformdirs, tornado, pycurl]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         awesomeversion: nix.thunk(() => [awesomeversion]),
         pypi: nix.thunk(() => [packaging]),
         htmlparser: nix.thunk(() => [lxml]),
@@ -64,7 +59,7 @@ export default nix.lambda((args) => (() => {
         git_dulwich: nix.thunk(() => [dulwich]),
       })),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(finalAttrs, "doInstallCheck")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
         })))),
       nativeCheckInputs: nix.thunk(() => nix.concat([flaky, pytest_asyncio, pytest_httpbin, pytest_rerunfailures, pytestCheckHook], nix.builtins.concatLists(nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
@@ -73,11 +68,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["nvchecker"]),
       disabledTestMarks: nix.thunk(() => ["needs_net"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "New version checker for software",
         homepage: "https://github.com/lilydjwg/nvchecker",
         changelog: nix.thunk(() => nix.str`https://github.com/lilydjwg/nvchecker/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

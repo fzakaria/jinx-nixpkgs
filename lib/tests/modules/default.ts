@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["modulesPath", 10, 19]], [["modules", 9, 15], ["specialArgs", 10, 7]], [["config", 12, 5], ["options", 13, 5]]]);
 const formals$1 = { args: { lib: true, modules: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["modulesPath", 10, 19]]);
-const pos$2 = nix.positions(here + "/default.nix", [["modules", 9, 15], ["specialArgs", 10, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["config", 12, 5], ["options", 13, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const modules = nix.argOr($, "modules", () => []);
   return (() => {
     const from = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         modules: modules,
-        specialArgs: nix.thunk(() => ({ [nix.POS]: pos$1, modulesPath: nix.path(here, "./.") })),
+        specialArgs: nix.thunk(() => ({ [nix.POS]: $pos[0], modulesPath: nix.path(here, "./.") })),
       }))));
     return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     config: nix.thunk(() => nix.attr(from, "config")),
     options: nix.thunk(() => nix.attr(from, "options")),
   };

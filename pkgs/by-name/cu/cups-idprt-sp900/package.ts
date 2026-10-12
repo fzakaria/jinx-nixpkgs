@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 18, 5], ["url", 19, 5], ["hash", 20, 5]], [["x86_64-linux", 39, 11], ["x86-linux", 40, 11]], [["description", 55, 5], ["platforms", 56, 5], ["license", 60, 5], ["sourceProvenance", 61, 5], ["maintainers", 62, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["sourceRoot", 22, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 30, 3], ["installPhase", 35, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false, autoPatchelfHook: false, cups: false, e2fsprogs: false, krb5: false, "libxcrypt-legacy": false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 18, 5], ["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 39, 11], ["x86-linux", 40, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["platforms", 56, 5], ["license", 60, 5], ["sourceProvenance", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["sourceRoot", 22, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 30, 3], ["installPhase", 35, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt_legacy = nix.arg($, "libxcrypt-legacy");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cups-idprt-sp900",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "idprt_sp900_printer_linux_driver.zip",
           url: "https://www.idprt.com/prt_v2/files/down_file/id/176/fid/498.html",
           hash: "sha256-+YVQTrqpi16xX+d/ulMtffpA9X7hwtWRiS/mIAw13n8=",
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cups, e2fsprogs, krb5, libxcrypt_legacy]),
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook, unzip]),
       installPhase: nix.thunk(() => (() => {
-        const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$2, "x86_64-linux": "x64", "x86-linux": "x86" }, () => nix.builtins.throw(nix.thunk(() => nix.str`cups-idprt-sp900: No prebuilt filters for system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
+        const arch = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[1], "x86_64-linux": "x64", "x86-linux": "x86" }, () => nix.builtins.throw(nix.thunk(() => nix.str`cups-idprt-sp900: No prebuilt filters for system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
         return nix.str`runHook preInstall
 mkdir -p $out/share/cups/model $out/lib/cups/filter
 cp -r filter/${arch}/. $out/lib/cups/filter
@@ -43,7 +40,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CUPS driver for the iDPRT SP900",
         platforms: nix.thunk(() => ["x86_64-linux", "x86-linux"]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 83, 5], ["repo", 84, 5], ["tag", 85, 5], ["hash", 86, 5]], [["maintainers", 242, 35], ["platforms", 242, 47], ["mainProgram", 243, 9]], [["pname", 222, 7], ["version", 223, 28], ["src", 223, 36], ["sourceRoot", 225, 7], ["nativeBuildInputs", 227, 7], ["buildInputs", 231, 7], ["postBuild", 233, 7], ["postInstall", 237, 7], ["meta", 241, 7]], [["package", 258, 11], ["versionCheck", 259, 11]], [["sdl12-compat", 252, 11], ["sdl2-compat", 253, 11], ["sdl3-image", 254, 11], ["sdl3-ttf", 255, 11], ["pkg-config", 257, 9], ["debug-text-example", 261, 39]], [["nixosTest", 264, 9]], [["extraArgs", 268, 7]], [["debug-text-example", 221, 5], ["tests", 247, 5], ["updateScript", 267, 5]], [["description", 276, 5], ["homepage", 277, 5], ["changelog", 278, 5], ["license", 279, 5], ["maintainers", 280, 5], ["teams", 281, 5], ["platforms", 282, 5], ["pkgConfigModules", 283, 5]], [["pname", 72, 3], ["version", 73, 3], ["outputs", 75, 3], ["src", 82, 3], ["postPatch", 89, 3], ["strictDeps", 123, 3], ["nativeBuildInputs", 125, 3], ["buildInputs", 132, 3], ["cmakeFlags", 179, 3], ["doCheck", 212, 3], ["postInstall", 214, 3], ["passthru", 219, 3], ["meta", 275, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, "alsa-lib": false, cmake: false, dbus: false, fetchFromGitHub: false, ibusMinimal: false, installShellFiles: false, libGL: false, "libayatana-appindicator": false, libdecor: false, libdrm: false, libjack2: false, libpulseaudio: false, libusb1: false, libxkbcommon: false, libgbm: false, libx11: false, libxcb: false, libxscrnsaver: false, libxcursor: false, libxext: false, libxfixes: false, libxi: false, libxrandr: false, libxtst: false, ninja: false, "nix-update-script": false, nixosTests: false, pipewire: false, sndio: false, systemdLibs: false, testers: false, validatePkgConfig: false, "vulkan-headers": false, "vulkan-loader": false, wayland: false, "wayland-scanner": false, zenity: false, "sdl12-compat": false, "sdl2-compat": false, "sdl3-image": false, "sdl3-ttf": false, alsaSupport: true, dbusSupport: true, drmSupport: true, ibusSupport: true, jackSupport: true, libdecorSupport: true, libudevSupport: true, libusbSupport: true, openglSupport: true, pipewireSupport: true, pulseaudioSupport: true, sndioSupport: true, traySupport: true, vulkanSupport: true, waylandSupport: true, x11Support: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 83, 5], ["repo", 84, 5], ["tag", 85, 5], ["hash", 86, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["maintainers", 242, 35], ["platforms", 242, 47], ["mainProgram", 243, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 222, 7], ["version", 223, 28], ["src", 223, 36], ["sourceRoot", 225, 7], ["nativeBuildInputs", 227, 7], ["buildInputs", 231, 7], ["postBuild", 233, 7], ["postInstall", 237, 7], ["meta", 241, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 258, 11], ["versionCheck", 259, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sdl12-compat", 252, 11], ["sdl2-compat", 253, 11], ["sdl3-image", 254, 11], ["sdl3-ttf", 255, 11], ["pkg-config", 257, 9], ["debug-text-example", 261, 39]]);
-const pos$6 = nix.positions(here + "/package.nix", [["nixosTest", 264, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 268, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["debug-text-example", 221, 5], ["tests", 247, 5], ["updateScript", 267, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 276, 5], ["homepage", 277, 5], ["changelog", 278, 5], ["license", 279, 5], ["maintainers", 280, 5], ["teams", 281, 5], ["platforms", 282, 5], ["pkgConfigModules", 283, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 72, 3], ["version", 73, 3], ["outputs", 75, 3], ["src", 82, 3], ["postPatch", 89, 3], ["strictDeps", 123, 3], ["nativeBuildInputs", 125, 3], ["buildInputs", 132, 3], ["cmakeFlags", 179, 3], ["doCheck", 212, 3], ["postInstall", 214, 3], ["passthru", 219, 3], ["meta", 275, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -79,12 +70,12 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(waylandSupport) || nix.asBool(openglSupport))), "SDL3 requires OpenGL support to enable Wayland"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sd/sdl3/package.nix:66:1");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(ibusSupport) || nix.asBool(dbusSupport))), "SDL3 requires dbus support to enable ibus"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sd/sdl3/package.nix:69:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "sdl3",
       version: "3.4.16",
       outputs: nix.thunk(() => ["lib", "dev", "out", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libsdl-org",
           repo: "SDL",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -144,9 +135,9 @@ substituteInPlace src/dialog/unix/SDL_zenitydialog.c \\
       doCheck: true,
       postInstall: "moveToOutput \"share/installed-tests\" \"$installedTests\"\nmoveToOutput \"libexec/installed-tests\" \"$installedTests\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         "debug-text-example": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs$) => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: "sdl3-debug-text-example",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -158,7 +149,7 @@ substituteInPlace src/dialog/unix/SDL_zenitydialog.c \\
             meta: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
               return {
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
               platforms: nix.thunk(() => nix.attr(from, "platforms")),
               mainProgram: "debug-text",
@@ -168,26 +159,26 @@ substituteInPlace src/dialog/unix/SDL_zenitydialog.c \\
         tests: nix.thunk(() => nix.update(nix.sel(sdl12_compat, "tests"), nix.update(nix.sel(sdl2_compat, "tests"), nix.update((() => {
           const from = nix.thunk(() => nix.sel(finalAttrs, "passthru"));
           return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "sdl12-compat": sdl12_compat,
           "sdl2-compat": sdl2_compat,
           "sdl3-image": sdl3_image,
           "sdl3-ttf": sdl3_ttf,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
           "debug-text-example": nix.thunk(() => nix.attr(from, "debug-text-example")),
         };
-        })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$6, nixosTest: nix.thunk(() => nix.sel(nixosTests, "sdl3")) }))))))),
+        })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: $pos[5], nixosTest: nix.thunk(() => nix.sel(nixosTests, "sdl3")) }))))))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             extraArgs: nix.thunk(() => ["--version-regex", "release-(3\\..*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Cross-platform development library",
         homepage: "https://libsdl.org",
         changelog: nix.thunk(() => nix.str`https://github.com/libsdl-org/SDL/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

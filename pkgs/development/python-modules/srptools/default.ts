@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 5], ["version", 19, 26], ["hash", 20, 5]], [["description", 32, 5], ["mainProgram", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 27, 3], ["pythonImportsCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, six: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 26], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 32, 5], ["mainProgram", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 27, 3], ["pythonImportsCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "srptools",
       version: "1.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "srptools",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-f6QzclahVC6PW7S+0Z4dmuqY/l/5uvdmkzQqHdasfJY=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["srptools"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Module to implement Secure Remote Password (SRP) authentication",
         mainProgram: "srptools",
         homepage: "https://github.com/idlesign/srptools",

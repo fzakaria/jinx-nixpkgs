@@ -2,77 +2,63 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unpackerr.nix", [[["maintainers", 5, 8]], [["systemPackages", 10, 19]], [["mode", 13, 9], ["user", 14, 9], ["group", 15, 9]], [["d", 12, 65]], [["/srv/unpackerr", 12, 48]], [["10-unpackerr", 12, 33]], [["settings", 12, 24]], [["tmpfiles", 12, 15]], [["path", 25, 15]], [["start_delay", 22, 11], ["folder", 23, 11]], [["enable", 19, 9], ["group", 20, 9], ["settings", 21, 9]], [["unpackerr", 18, 16]], [["environment", 10, 7], ["systemd", 12, 7], ["services", 18, 7]], [["machine", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 32, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/unpackerr.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/unpackerr.nix", [["systemPackages", 10, 19]]);
-const pos$3 = nix.positions(here + "/unpackerr.nix", [["mode", 13, 9], ["user", 14, 9], ["group", 15, 9]]);
-const pos$4 = nix.positions(here + "/unpackerr.nix", [["d", 12, 65]]);
-const pos$5 = nix.positions(here + "/unpackerr.nix", [["/srv/unpackerr", 12, 48]]);
-const pos$6 = nix.positions(here + "/unpackerr.nix", [["10-unpackerr", 12, 33]]);
-const pos$7 = nix.positions(here + "/unpackerr.nix", [["settings", 12, 24]]);
-const pos$8 = nix.positions(here + "/unpackerr.nix", [["tmpfiles", 12, 15]]);
-const pos$9 = nix.positions(here + "/unpackerr.nix", [["path", 25, 15]]);
-const pos$10 = nix.positions(here + "/unpackerr.nix", [["start_delay", 22, 11], ["folder", 23, 11]]);
-const pos$11 = nix.positions(here + "/unpackerr.nix", [["enable", 19, 9], ["group", 20, 9], ["settings", 21, 9]]);
-const pos$12 = nix.positions(here + "/unpackerr.nix", [["unpackerr", 18, 16]]);
-const pos$13 = nix.positions(here + "/unpackerr.nix", [["environment", 10, 7], ["systemd", 12, 7], ["services", 18, 7]]);
-const pos$14 = nix.positions(here + "/unpackerr.nix", [["machine", 7, 9]]);
-const pos$15 = nix.positions(here + "/unpackerr.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "unpackerr",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Wekuz"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "zip"))];
             })()),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 "10-unpackerr": nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   "/srv/unpackerr": nix.thunk(() => ({
-                    [nix.POS]: pos$4,
-                    d: nix.thunk(() => ({ [nix.POS]: pos$3, mode: "0775", user: "unpackerr", group: "users" })),
+                    [nix.POS]: $pos[3],
+                    d: nix.thunk(() => ({ [nix.POS]: $pos[2], mode: "0775", user: "unpackerr", group: "users" })),
                   })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             unpackerr: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               enable: true,
               group: "users",
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 start_delay: "15s",
-                folder: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$9, path: "/srv/unpackerr" }))]),
+                folder: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[8], path: "/srv/unpackerr" }))]),
               })),
             })),
           })),

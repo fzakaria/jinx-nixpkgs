@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["outputs", 33, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["cmakeFlags", 61, 3], ["postBuild", 65, 3], ["nativeCheckInputs", 70, 3], ["checkInputs", 72, 3], ["doCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "gz-cmake": false, doxygen: false, graphviz: false, cli11: false, spdlog: false, python3: false, gtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["outputs", 33, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["cmakeFlags", 61, 3], ["postBuild", 65, 3], ["nativeCheckInputs", 70, 3], ["checkInputs", 72, 3], ["doCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gz-utils",
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gazebosim",
           repo: "gz-utils",
           tag: nix.thunk(() => nix.str`gz-utils${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}_${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [gtest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "General purpose utility classes and functions for the Gazebo libraries",
         homepage: "https://gazebosim.org/home",
         changelog: nix.thunk(() => nix.str`https://github.com/gazebosim/gz-utils/blob/${nix.sel(finalAttrs, "src", "tag")}/Changelog.md`),

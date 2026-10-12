@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["url", 30, 7], ["hash", 31, 7]], [["name", 62, 7], ["desktopName", 63, 7], ["comment", 64, 7], ["exec", 65, 7], ["icon", 66, 7], ["terminal", 67, 7], ["type", 68, 7], ["categories", 69, 7]], [["description", 74, 5], ["mainProgram", 75, 5], ["longDescription", 76, 5], ["homepage", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["patches", 28, 3], ["makeFlags", 35, 3], ["preBuild", 43, 3], ["preInstall", 49, 3], ["postInstall", 53, 3], ["desktopItems", 60, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchpatch: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, tk: false, groff: false, rman: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 62, 7], ["desktopName", 63, 7], ["comment", 64, 7], ["exec", 65, 7], ["icon", 66, 7], ["terminal", 67, 7], ["type", 68, 7], ["categories", 69, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 74, 5], ["mainProgram", 75, 5], ["longDescription", 76, 5], ["homepage", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["patches", 28, 3], ["makeFlags", 35, 3], ["preBuild", 43, 3], ["preInstall", 49, 3], ["postInstall", 53, 3], ["desktopItems", 60, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const groff = nix.arg($, "groff");
   const rman = nix.arg($, "rman");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tkman",
       version: "2.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/tkman/tkman-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-S4ffz+7zmVy9+isz/8q+FV4wF5Rw2iL1ftY8RsJjRLs=",
         })))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/app-text/tkman/files/tkman-CVE-2008-5137.diff?id=dec60bb6900d6ebdaaa6aa1dcb845b30b739f9b5",
             hash: "sha256-l97SY2/YnMgzHYKnVYCVJKV7oGLN1hXNpeHFlLVzTMA=",
           })))),
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "wrapProgram $out/bin/tkman \\\n  --run 'export MANPATH=\"$(manpath)\"'\nrm $out/bin/retkman # doesn't work\ninstall -Dm644 contrib/TkMan.gif $out/share/icons/hicolor/64x64/apps/tkman.gif\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "tkman",
             desktopName: "TkMan",
             comment: "Graphical man page and info viewer",
@@ -64,7 +60,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Graphical, hypertext manual page and Texinfo browser for UNIX",
         mainProgram: "tkman",
         longDescription: "TkMan is a graphical, hypertext manual page and Texinfo browser for UNIX.\nTkMan boasts hypertext links, unmatched online text formatting and display\nquality, (optional) outline view of man pages, high quality display and\nsuperior navigational interface to Texinfo documents, a novel information\nvisualization mechanism called Notemarks, full text search among man pages\nand Texinfo, incremental and regular expression search within pages,\nregular expression search within Texinfo that shows all matches (not just\nthe next), robustly attached yellow highlight annotations, a shortcut/hot\nlist, lists of all pages in user configurable volumes, a comprehensive\nPreferences panel, and man page versioning support, among many other features.\n",

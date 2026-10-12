@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["python3", 39, 60]], [["etesync-dav", 47, 26]], [["tests", 46, 12]], [["homepage", 51, 5], ["description", 52, 5], ["mainProgram", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["broken", 58, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["build-system", 26, 3], ["pythonRelaxDeps", 28, 3], ["dependencies", 30, 3], ["doCheck", 44, 3], ["passthru", 46, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, nixosTests: false, python3Packages: false, fetchFromGitHub: false, radicale: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["python3", 39, 60]]);
-const pos$3 = nix.positions(here + "/package.nix", [["etesync-dav", 47, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 46, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["mainProgram", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["broken", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["build-system", 26, 3], ["pythonRelaxDeps", 28, 3], ["dependencies", 30, 3], ["doCheck", 44, 3], ["passthru", 46, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const radicale = nix.arg($, "radicale");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "etesync-dav",
       version: "0.35.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "etesync",
           repo: "etesync-dav",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,20 +40,20 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_1, "flask")),
           nix.thunk(() => nix.lookup(w_1, "flask-wtf")),
           nix.thunk(() => nix.lookup(w_1, "msgpack")),
-          nix.thunk(() => nix.app(nix.sel(python3Packages, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(radicale, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, python3: nix.thunk(() => nix.lookup(w_1, "python")) })))))),
+          nix.thunk(() => nix.app(nix.sel(python3Packages, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(radicale, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], python3: nix.thunk(() => nix.lookup(w_1, "python")) })))))),
           nix.thunk(() => nix.lookup(w_1, "requests")),
         ], nix.sel(nix.lookup(w_1, "requests"), "optional-dependencies", "socks"));
       })()),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "etesync-dav": nix.thunk(() => nix.attr(nixosTests, "etesync-dav")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.etesync.com",
         description: "Secure, end-to-end encrypted, and privacy respecting sync for contacts, calendars and tasks",
         mainProgram: "etesync-dav",

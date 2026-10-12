@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["changelog", 76, 5], ["description", 77, 5], ["mainProgram", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 44, 3], ["disabledTests", 50, 3], ["pytestFlags", 66, 3], ["pythonImportsCheck", 70, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, docopt: false, pytz: false, requests: false, setuptools: false, vincenty: false, xmltodict: false, pytestCheckHook: false, "requests-mock": false, syrupy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 76, 5], ["description", 77, 5], ["mainProgram", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 44, 3], ["disabledTests", 50, 3], ["pytestFlags", 66, 3], ["pythonImportsCheck", 70, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mjj4791",
           repo: "python-buienradar",
           tag: version,
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--snapshot-warn-unused"]);
       const pythonImportsCheck = nix.thunk(() => ["buienradar.buienradar", "buienradar.constants"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/mjj4791/python-buienradar/blob/${nix.sel(src, "tag")}/CHANGLOG.rst`),
         description: "Library and CLI tools for interacting with buienradar",
         mainProgram: "buienradar",
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

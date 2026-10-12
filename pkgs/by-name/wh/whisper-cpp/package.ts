@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["cudaSupport", 60, 7], ["cudaPackages", 61, 7], ["rocmSupport", 62, 7], ["rocmPackages", 63, 7], ["vulkanSupport", 64, 7], ["metalSupport", 65, 7]], [["owner", 75, 5], ["repo", 76, 5], ["tag", 77, 5], ["hash", 78, 5]], [["updateScript", 137, 12]], [["description", 140, 5], ["longDescription", 141, 5], ["homepage", 145, 5], ["license", 146, 5], ["mainProgram", 147, 5], ["platforms", 148, 5], ["badPlatforms", 149, 5], ["maintainers", 150, 5]], [["pname", 71, 3], ["version", 72, 3], ["src", 74, 3], ["patches", 85, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 95, 3], ["propagatedBuildInputs", 98, 3], ["cmakeFlags", 100, 3], ["postInstall", 114, 3], ["doInstallCheck", 128, 3], ["installCheckPhase", 130, 3], ["passthru", 137, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, git: false, ninja: false, fetchFromGitHub: false, SDL2: false, wget: false, which: false, "ffmpeg-headless": false, "llama-cpp": false, makeWrapper: false, "nix-update-script": false, metalSupport: true, coreMLSupport: true, config: false, cudaSupport: true, cudaPackages: true, rocmSupport: true, rocmPackages: true, vulkanSupport: true, withSDL: true, withFFmpegSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["cudaSupport", 60, 7], ["cudaPackages", 61, 7], ["rocmSupport", 62, 7], ["rocmPackages", 63, 7], ["vulkanSupport", 64, 7], ["metalSupport", 65, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 75, 5], ["repo", 76, 5], ["tag", 77, 5], ["hash", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 137, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 140, 5], ["longDescription", 141, 5], ["homepage", 145, 5], ["license", 146, 5], ["mainProgram", 147, 5], ["platforms", 148, 5], ["badPlatforms", 149, 5], ["maintainers", 150, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 71, 3], ["version", 72, 3], ["src", 74, 3], ["patches", 85, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 95, 3], ["propagatedBuildInputs", 98, 3], ["cmakeFlags", 100, 3], ["postInstall", 114, 3], ["doInstallCheck", 128, 3], ["installCheckPhase", 130, 3], ["passthru", 137, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const isLinux = nix.thunk(() => nix.attr(from, "isLinux"));
   const isAarch64 = nix.thunk(() => nix.attr(from, "isAarch64"));
   const llama_cpp$ = nix.thunk(() => nix.app(nix.sel(llama_cpp, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       cudaSupport: cudaSupport,
       cudaPackages: cudaPackages,
       rocmSupport: rocmSupport,
@@ -55,11 +51,11 @@ export default nix.lambda((args) => (() => {
       metalSupport: metalSupport,
     }))));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "whisper-cpp",
       version: "1.9.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ggml-org",
           repo: "whisper.cpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,11 +86,11 @@ wrapProgram "$out/bin/whisper-cpp-download-ggml-model" \\
       doInstallCheck: nix.thunk(() => !nix.asBool((nix.asBool((nix.asBool(isLinux) && nix.asBool(isAarch64))) && nix.asBool(cudaSupport)))),
       installCheckPhase: "runHook preInstallCheck\n\"$out/bin/whisper-cli\" --help >/dev/null\n\"$out/bin/parakeet-cli\" --help >/dev/null\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Port of OpenAI's Whisper model in C/C++",
         longDescription: "To download the models as described in the project's readme, you may\nuse the `whisper-cpp-download-ggml-model` binary from this package.\n",
         homepage: "https://github.com/ggerganov/whisper.cpp",

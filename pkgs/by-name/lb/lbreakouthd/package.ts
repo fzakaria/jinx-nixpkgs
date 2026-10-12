@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["pname", 39, 26], ["version", 39, 32], ["url", 40, 5], ["extraRegex", 41, 5]], [["updateScript", 38, 12]], [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 25]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 22, 3], ["buildInputs", 29, 3], ["hardeningDisable", 36, 3], ["passthru", 38, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, SDL2_ttf: false, directoryListingUpdater: false, fetchurl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 39, 26], ["version", 39, 32], ["url", 40, 5], ["extraRegex", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 25]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 22, 3], ["buildInputs", 29, 3], ["hardeningDisable", 36, 3], ["passthru", 38, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lbreakouthd",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/lgames/lbreakouthd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-7/youW5Kh9+8ksoVcPTjBuP8w07/90UeyhG0ty0VGcg=",
         })))),
@@ -32,9 +28,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, SDL2_image, SDL2_mixer, SDL2_ttf]),
       hardeningDisable: nix.thunk(() => ["format"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             url: "https://lgames.sourceforge.io/LBreakoutHD/",
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL2, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://lgames.sourceforge.io/LBreakoutHD/",
         description: "Widescreen Breakout clone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

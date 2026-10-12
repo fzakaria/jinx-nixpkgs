@@ -2,2479 +2,2170 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/release_sources.nix", [["url", 5, 7], ["locale", 6, 7], ["arch", 7, 7], ["sha256", 8, 7]]);
-const pos$2 = nix.positions(here + "/release_sources.nix", [["url", 11, 7], ["locale", 12, 7], ["arch", 13, 7], ["sha256", 14, 7]]);
-const pos$3 = nix.positions(here + "/release_sources.nix", [["url", 17, 7], ["locale", 18, 7], ["arch", 19, 7], ["sha256", 20, 7]]);
-const pos$4 = nix.positions(here + "/release_sources.nix", [["url", 23, 7], ["locale", 24, 7], ["arch", 25, 7], ["sha256", 26, 7]]);
-const pos$5 = nix.positions(here + "/release_sources.nix", [["url", 29, 7], ["locale", 30, 7], ["arch", 31, 7], ["sha256", 32, 7]]);
-const pos$6 = nix.positions(here + "/release_sources.nix", [["url", 35, 7], ["locale", 36, 7], ["arch", 37, 7], ["sha256", 38, 7]]);
-const pos$7 = nix.positions(here + "/release_sources.nix", [["url", 41, 7], ["locale", 42, 7], ["arch", 43, 7], ["sha256", 44, 7]]);
-const pos$8 = nix.positions(here + "/release_sources.nix", [["url", 47, 7], ["locale", 48, 7], ["arch", 49, 7], ["sha256", 50, 7]]);
-const pos$9 = nix.positions(here + "/release_sources.nix", [["url", 53, 7], ["locale", 54, 7], ["arch", 55, 7], ["sha256", 56, 7]]);
-const pos$10 = nix.positions(here + "/release_sources.nix", [["url", 59, 7], ["locale", 60, 7], ["arch", 61, 7], ["sha256", 62, 7]]);
-const pos$11 = nix.positions(here + "/release_sources.nix", [["url", 65, 7], ["locale", 66, 7], ["arch", 67, 7], ["sha256", 68, 7]]);
-const pos$12 = nix.positions(here + "/release_sources.nix", [["url", 71, 7], ["locale", 72, 7], ["arch", 73, 7], ["sha256", 74, 7]]);
-const pos$13 = nix.positions(here + "/release_sources.nix", [["url", 77, 7], ["locale", 78, 7], ["arch", 79, 7], ["sha256", 80, 7]]);
-const pos$14 = nix.positions(here + "/release_sources.nix", [["url", 83, 7], ["locale", 84, 7], ["arch", 85, 7], ["sha256", 86, 7]]);
-const pos$15 = nix.positions(here + "/release_sources.nix", [["url", 89, 7], ["locale", 90, 7], ["arch", 91, 7], ["sha256", 92, 7]]);
-const pos$16 = nix.positions(here + "/release_sources.nix", [["url", 95, 7], ["locale", 96, 7], ["arch", 97, 7], ["sha256", 98, 7]]);
-const pos$17 = nix.positions(here + "/release_sources.nix", [["url", 101, 7], ["locale", 102, 7], ["arch", 103, 7], ["sha256", 104, 7]]);
-const pos$18 = nix.positions(here + "/release_sources.nix", [["url", 107, 7], ["locale", 108, 7], ["arch", 109, 7], ["sha256", 110, 7]]);
-const pos$19 = nix.positions(here + "/release_sources.nix", [["url", 113, 7], ["locale", 114, 7], ["arch", 115, 7], ["sha256", 116, 7]]);
-const pos$20 = nix.positions(here + "/release_sources.nix", [["url", 119, 7], ["locale", 120, 7], ["arch", 121, 7], ["sha256", 122, 7]]);
-const pos$21 = nix.positions(here + "/release_sources.nix", [["url", 125, 7], ["locale", 126, 7], ["arch", 127, 7], ["sha256", 128, 7]]);
-const pos$22 = nix.positions(here + "/release_sources.nix", [["url", 131, 7], ["locale", 132, 7], ["arch", 133, 7], ["sha256", 134, 7]]);
-const pos$23 = nix.positions(here + "/release_sources.nix", [["url", 137, 7], ["locale", 138, 7], ["arch", 139, 7], ["sha256", 140, 7]]);
-const pos$24 = nix.positions(here + "/release_sources.nix", [["url", 143, 7], ["locale", 144, 7], ["arch", 145, 7], ["sha256", 146, 7]]);
-const pos$25 = nix.positions(here + "/release_sources.nix", [["url", 149, 7], ["locale", 150, 7], ["arch", 151, 7], ["sha256", 152, 7]]);
-const pos$26 = nix.positions(here + "/release_sources.nix", [["url", 155, 7], ["locale", 156, 7], ["arch", 157, 7], ["sha256", 158, 7]]);
-const pos$27 = nix.positions(here + "/release_sources.nix", [["url", 161, 7], ["locale", 162, 7], ["arch", 163, 7], ["sha256", 164, 7]]);
-const pos$28 = nix.positions(here + "/release_sources.nix", [["url", 167, 7], ["locale", 168, 7], ["arch", 169, 7], ["sha256", 170, 7]]);
-const pos$29 = nix.positions(here + "/release_sources.nix", [["url", 173, 7], ["locale", 174, 7], ["arch", 175, 7], ["sha256", 176, 7]]);
-const pos$30 = nix.positions(here + "/release_sources.nix", [["url", 179, 7], ["locale", 180, 7], ["arch", 181, 7], ["sha256", 182, 7]]);
-const pos$31 = nix.positions(here + "/release_sources.nix", [["url", 185, 7], ["locale", 186, 7], ["arch", 187, 7], ["sha256", 188, 7]]);
-const pos$32 = nix.positions(here + "/release_sources.nix", [["url", 191, 7], ["locale", 192, 7], ["arch", 193, 7], ["sha256", 194, 7]]);
-const pos$33 = nix.positions(here + "/release_sources.nix", [["url", 197, 7], ["locale", 198, 7], ["arch", 199, 7], ["sha256", 200, 7]]);
-const pos$34 = nix.positions(here + "/release_sources.nix", [["url", 203, 7], ["locale", 204, 7], ["arch", 205, 7], ["sha256", 206, 7]]);
-const pos$35 = nix.positions(here + "/release_sources.nix", [["url", 209, 7], ["locale", 210, 7], ["arch", 211, 7], ["sha256", 212, 7]]);
-const pos$36 = nix.positions(here + "/release_sources.nix", [["url", 215, 7], ["locale", 216, 7], ["arch", 217, 7], ["sha256", 218, 7]]);
-const pos$37 = nix.positions(here + "/release_sources.nix", [["url", 221, 7], ["locale", 222, 7], ["arch", 223, 7], ["sha256", 224, 7]]);
-const pos$38 = nix.positions(here + "/release_sources.nix", [["url", 227, 7], ["locale", 228, 7], ["arch", 229, 7], ["sha256", 230, 7]]);
-const pos$39 = nix.positions(here + "/release_sources.nix", [["url", 233, 7], ["locale", 234, 7], ["arch", 235, 7], ["sha256", 236, 7]]);
-const pos$40 = nix.positions(here + "/release_sources.nix", [["url", 239, 7], ["locale", 240, 7], ["arch", 241, 7], ["sha256", 242, 7]]);
-const pos$41 = nix.positions(here + "/release_sources.nix", [["url", 245, 7], ["locale", 246, 7], ["arch", 247, 7], ["sha256", 248, 7]]);
-const pos$42 = nix.positions(here + "/release_sources.nix", [["url", 251, 7], ["locale", 252, 7], ["arch", 253, 7], ["sha256", 254, 7]]);
-const pos$43 = nix.positions(here + "/release_sources.nix", [["url", 257, 7], ["locale", 258, 7], ["arch", 259, 7], ["sha256", 260, 7]]);
-const pos$44 = nix.positions(here + "/release_sources.nix", [["url", 263, 7], ["locale", 264, 7], ["arch", 265, 7], ["sha256", 266, 7]]);
-const pos$45 = nix.positions(here + "/release_sources.nix", [["url", 269, 7], ["locale", 270, 7], ["arch", 271, 7], ["sha256", 272, 7]]);
-const pos$46 = nix.positions(here + "/release_sources.nix", [["url", 275, 7], ["locale", 276, 7], ["arch", 277, 7], ["sha256", 278, 7]]);
-const pos$47 = nix.positions(here + "/release_sources.nix", [["url", 281, 7], ["locale", 282, 7], ["arch", 283, 7], ["sha256", 284, 7]]);
-const pos$48 = nix.positions(here + "/release_sources.nix", [["url", 287, 7], ["locale", 288, 7], ["arch", 289, 7], ["sha256", 290, 7]]);
-const pos$49 = nix.positions(here + "/release_sources.nix", [["url", 293, 7], ["locale", 294, 7], ["arch", 295, 7], ["sha256", 296, 7]]);
-const pos$50 = nix.positions(here + "/release_sources.nix", [["url", 299, 7], ["locale", 300, 7], ["arch", 301, 7], ["sha256", 302, 7]]);
-const pos$51 = nix.positions(here + "/release_sources.nix", [["url", 305, 7], ["locale", 306, 7], ["arch", 307, 7], ["sha256", 308, 7]]);
-const pos$52 = nix.positions(here + "/release_sources.nix", [["url", 311, 7], ["locale", 312, 7], ["arch", 313, 7], ["sha256", 314, 7]]);
-const pos$53 = nix.positions(here + "/release_sources.nix", [["url", 317, 7], ["locale", 318, 7], ["arch", 319, 7], ["sha256", 320, 7]]);
-const pos$54 = nix.positions(here + "/release_sources.nix", [["url", 323, 7], ["locale", 324, 7], ["arch", 325, 7], ["sha256", 326, 7]]);
-const pos$55 = nix.positions(here + "/release_sources.nix", [["url", 329, 7], ["locale", 330, 7], ["arch", 331, 7], ["sha256", 332, 7]]);
-const pos$56 = nix.positions(here + "/release_sources.nix", [["url", 335, 7], ["locale", 336, 7], ["arch", 337, 7], ["sha256", 338, 7]]);
-const pos$57 = nix.positions(here + "/release_sources.nix", [["url", 341, 7], ["locale", 342, 7], ["arch", 343, 7], ["sha256", 344, 7]]);
-const pos$58 = nix.positions(here + "/release_sources.nix", [["url", 347, 7], ["locale", 348, 7], ["arch", 349, 7], ["sha256", 350, 7]]);
-const pos$59 = nix.positions(here + "/release_sources.nix", [["url", 353, 7], ["locale", 354, 7], ["arch", 355, 7], ["sha256", 356, 7]]);
-const pos$60 = nix.positions(here + "/release_sources.nix", [["url", 359, 7], ["locale", 360, 7], ["arch", 361, 7], ["sha256", 362, 7]]);
-const pos$61 = nix.positions(here + "/release_sources.nix", [["url", 365, 7], ["locale", 366, 7], ["arch", 367, 7], ["sha256", 368, 7]]);
-const pos$62 = nix.positions(here + "/release_sources.nix", [["url", 371, 7], ["locale", 372, 7], ["arch", 373, 7], ["sha256", 374, 7]]);
-const pos$63 = nix.positions(here + "/release_sources.nix", [["url", 377, 7], ["locale", 378, 7], ["arch", 379, 7], ["sha256", 380, 7]]);
-const pos$64 = nix.positions(here + "/release_sources.nix", [["url", 383, 7], ["locale", 384, 7], ["arch", 385, 7], ["sha256", 386, 7]]);
-const pos$65 = nix.positions(here + "/release_sources.nix", [["url", 389, 7], ["locale", 390, 7], ["arch", 391, 7], ["sha256", 392, 7]]);
-const pos$66 = nix.positions(here + "/release_sources.nix", [["url", 395, 7], ["locale", 396, 7], ["arch", 397, 7], ["sha256", 398, 7]]);
-const pos$67 = nix.positions(here + "/release_sources.nix", [["url", 401, 7], ["locale", 402, 7], ["arch", 403, 7], ["sha256", 404, 7]]);
-const pos$68 = nix.positions(here + "/release_sources.nix", [["url", 407, 7], ["locale", 408, 7], ["arch", 409, 7], ["sha256", 410, 7]]);
-const pos$69 = nix.positions(here + "/release_sources.nix", [["url", 413, 7], ["locale", 414, 7], ["arch", 415, 7], ["sha256", 416, 7]]);
-const pos$70 = nix.positions(here + "/release_sources.nix", [["url", 419, 7], ["locale", 420, 7], ["arch", 421, 7], ["sha256", 422, 7]]);
-const pos$71 = nix.positions(here + "/release_sources.nix", [["url", 425, 7], ["locale", 426, 7], ["arch", 427, 7], ["sha256", 428, 7]]);
-const pos$72 = nix.positions(here + "/release_sources.nix", [["url", 431, 7], ["locale", 432, 7], ["arch", 433, 7], ["sha256", 434, 7]]);
-const pos$73 = nix.positions(here + "/release_sources.nix", [["url", 437, 7], ["locale", 438, 7], ["arch", 439, 7], ["sha256", 440, 7]]);
-const pos$74 = nix.positions(here + "/release_sources.nix", [["url", 443, 7], ["locale", 444, 7], ["arch", 445, 7], ["sha256", 446, 7]]);
-const pos$75 = nix.positions(here + "/release_sources.nix", [["url", 449, 7], ["locale", 450, 7], ["arch", 451, 7], ["sha256", 452, 7]]);
-const pos$76 = nix.positions(here + "/release_sources.nix", [["url", 455, 7], ["locale", 456, 7], ["arch", 457, 7], ["sha256", 458, 7]]);
-const pos$77 = nix.positions(here + "/release_sources.nix", [["url", 461, 7], ["locale", 462, 7], ["arch", 463, 7], ["sha256", 464, 7]]);
-const pos$78 = nix.positions(here + "/release_sources.nix", [["url", 467, 7], ["locale", 468, 7], ["arch", 469, 7], ["sha256", 470, 7]]);
-const pos$79 = nix.positions(here + "/release_sources.nix", [["url", 473, 7], ["locale", 474, 7], ["arch", 475, 7], ["sha256", 476, 7]]);
-const pos$80 = nix.positions(here + "/release_sources.nix", [["url", 479, 7], ["locale", 480, 7], ["arch", 481, 7], ["sha256", 482, 7]]);
-const pos$81 = nix.positions(here + "/release_sources.nix", [["url", 485, 7], ["locale", 486, 7], ["arch", 487, 7], ["sha256", 488, 7]]);
-const pos$82 = nix.positions(here + "/release_sources.nix", [["url", 491, 7], ["locale", 492, 7], ["arch", 493, 7], ["sha256", 494, 7]]);
-const pos$83 = nix.positions(here + "/release_sources.nix", [["url", 497, 7], ["locale", 498, 7], ["arch", 499, 7], ["sha256", 500, 7]]);
-const pos$84 = nix.positions(here + "/release_sources.nix", [["url", 503, 7], ["locale", 504, 7], ["arch", 505, 7], ["sha256", 506, 7]]);
-const pos$85 = nix.positions(here + "/release_sources.nix", [["url", 509, 7], ["locale", 510, 7], ["arch", 511, 7], ["sha256", 512, 7]]);
-const pos$86 = nix.positions(here + "/release_sources.nix", [["url", 515, 7], ["locale", 516, 7], ["arch", 517, 7], ["sha256", 518, 7]]);
-const pos$87 = nix.positions(here + "/release_sources.nix", [["url", 521, 7], ["locale", 522, 7], ["arch", 523, 7], ["sha256", 524, 7]]);
-const pos$88 = nix.positions(here + "/release_sources.nix", [["url", 527, 7], ["locale", 528, 7], ["arch", 529, 7], ["sha256", 530, 7]]);
-const pos$89 = nix.positions(here + "/release_sources.nix", [["url", 533, 7], ["locale", 534, 7], ["arch", 535, 7], ["sha256", 536, 7]]);
-const pos$90 = nix.positions(here + "/release_sources.nix", [["url", 539, 7], ["locale", 540, 7], ["arch", 541, 7], ["sha256", 542, 7]]);
-const pos$91 = nix.positions(here + "/release_sources.nix", [["url", 545, 7], ["locale", 546, 7], ["arch", 547, 7], ["sha256", 548, 7]]);
-const pos$92 = nix.positions(here + "/release_sources.nix", [["url", 551, 7], ["locale", 552, 7], ["arch", 553, 7], ["sha256", 554, 7]]);
-const pos$93 = nix.positions(here + "/release_sources.nix", [["url", 557, 7], ["locale", 558, 7], ["arch", 559, 7], ["sha256", 560, 7]]);
-const pos$94 = nix.positions(here + "/release_sources.nix", [["url", 563, 7], ["locale", 564, 7], ["arch", 565, 7], ["sha256", 566, 7]]);
-const pos$95 = nix.positions(here + "/release_sources.nix", [["url", 569, 7], ["locale", 570, 7], ["arch", 571, 7], ["sha256", 572, 7]]);
-const pos$96 = nix.positions(here + "/release_sources.nix", [["url", 575, 7], ["locale", 576, 7], ["arch", 577, 7], ["sha256", 578, 7]]);
-const pos$97 = nix.positions(here + "/release_sources.nix", [["url", 581, 7], ["locale", 582, 7], ["arch", 583, 7], ["sha256", 584, 7]]);
-const pos$98 = nix.positions(here + "/release_sources.nix", [["url", 587, 7], ["locale", 588, 7], ["arch", 589, 7], ["sha256", 590, 7]]);
-const pos$99 = nix.positions(here + "/release_sources.nix", [["url", 593, 7], ["locale", 594, 7], ["arch", 595, 7], ["sha256", 596, 7]]);
-const pos$100 = nix.positions(here + "/release_sources.nix", [["url", 599, 7], ["locale", 600, 7], ["arch", 601, 7], ["sha256", 602, 7]]);
-const pos$101 = nix.positions(here + "/release_sources.nix", [["url", 605, 7], ["locale", 606, 7], ["arch", 607, 7], ["sha256", 608, 7]]);
-const pos$102 = nix.positions(here + "/release_sources.nix", [["url", 611, 7], ["locale", 612, 7], ["arch", 613, 7], ["sha256", 614, 7]]);
-const pos$103 = nix.positions(here + "/release_sources.nix", [["url", 617, 7], ["locale", 618, 7], ["arch", 619, 7], ["sha256", 620, 7]]);
-const pos$104 = nix.positions(here + "/release_sources.nix", [["url", 623, 7], ["locale", 624, 7], ["arch", 625, 7], ["sha256", 626, 7]]);
-const pos$105 = nix.positions(here + "/release_sources.nix", [["url", 629, 7], ["locale", 630, 7], ["arch", 631, 7], ["sha256", 632, 7]]);
-const pos$106 = nix.positions(here + "/release_sources.nix", [["url", 635, 7], ["locale", 636, 7], ["arch", 637, 7], ["sha256", 638, 7]]);
-const pos$107 = nix.positions(here + "/release_sources.nix", [["url", 641, 7], ["locale", 642, 7], ["arch", 643, 7], ["sha256", 644, 7]]);
-const pos$108 = nix.positions(here + "/release_sources.nix", [["url", 647, 7], ["locale", 648, 7], ["arch", 649, 7], ["sha256", 650, 7]]);
-const pos$109 = nix.positions(here + "/release_sources.nix", [["url", 653, 7], ["locale", 654, 7], ["arch", 655, 7], ["sha256", 656, 7]]);
-const pos$110 = nix.positions(here + "/release_sources.nix", [["url", 659, 7], ["locale", 660, 7], ["arch", 661, 7], ["sha256", 662, 7]]);
-const pos$111 = nix.positions(here + "/release_sources.nix", [["url", 665, 7], ["locale", 666, 7], ["arch", 667, 7], ["sha256", 668, 7]]);
-const pos$112 = nix.positions(here + "/release_sources.nix", [["url", 671, 7], ["locale", 672, 7], ["arch", 673, 7], ["sha256", 674, 7]]);
-const pos$113 = nix.positions(here + "/release_sources.nix", [["url", 677, 7], ["locale", 678, 7], ["arch", 679, 7], ["sha256", 680, 7]]);
-const pos$114 = nix.positions(here + "/release_sources.nix", [["url", 683, 7], ["locale", 684, 7], ["arch", 685, 7], ["sha256", 686, 7]]);
-const pos$115 = nix.positions(here + "/release_sources.nix", [["url", 689, 7], ["locale", 690, 7], ["arch", 691, 7], ["sha256", 692, 7]]);
-const pos$116 = nix.positions(here + "/release_sources.nix", [["url", 695, 7], ["locale", 696, 7], ["arch", 697, 7], ["sha256", 698, 7]]);
-const pos$117 = nix.positions(here + "/release_sources.nix", [["url", 701, 7], ["locale", 702, 7], ["arch", 703, 7], ["sha256", 704, 7]]);
-const pos$118 = nix.positions(here + "/release_sources.nix", [["url", 707, 7], ["locale", 708, 7], ["arch", 709, 7], ["sha256", 710, 7]]);
-const pos$119 = nix.positions(here + "/release_sources.nix", [["url", 713, 7], ["locale", 714, 7], ["arch", 715, 7], ["sha256", 716, 7]]);
-const pos$120 = nix.positions(here + "/release_sources.nix", [["url", 719, 7], ["locale", 720, 7], ["arch", 721, 7], ["sha256", 722, 7]]);
-const pos$121 = nix.positions(here + "/release_sources.nix", [["url", 725, 7], ["locale", 726, 7], ["arch", 727, 7], ["sha256", 728, 7]]);
-const pos$122 = nix.positions(here + "/release_sources.nix", [["url", 731, 7], ["locale", 732, 7], ["arch", 733, 7], ["sha256", 734, 7]]);
-const pos$123 = nix.positions(here + "/release_sources.nix", [["url", 737, 7], ["locale", 738, 7], ["arch", 739, 7], ["sha256", 740, 7]]);
-const pos$124 = nix.positions(here + "/release_sources.nix", [["url", 743, 7], ["locale", 744, 7], ["arch", 745, 7], ["sha256", 746, 7]]);
-const pos$125 = nix.positions(here + "/release_sources.nix", [["url", 749, 7], ["locale", 750, 7], ["arch", 751, 7], ["sha256", 752, 7]]);
-const pos$126 = nix.positions(here + "/release_sources.nix", [["url", 755, 7], ["locale", 756, 7], ["arch", 757, 7], ["sha256", 758, 7]]);
-const pos$127 = nix.positions(here + "/release_sources.nix", [["url", 761, 7], ["locale", 762, 7], ["arch", 763, 7], ["sha256", 764, 7]]);
-const pos$128 = nix.positions(here + "/release_sources.nix", [["url", 767, 7], ["locale", 768, 7], ["arch", 769, 7], ["sha256", 770, 7]]);
-const pos$129 = nix.positions(here + "/release_sources.nix", [["url", 773, 7], ["locale", 774, 7], ["arch", 775, 7], ["sha256", 776, 7]]);
-const pos$130 = nix.positions(here + "/release_sources.nix", [["url", 779, 7], ["locale", 780, 7], ["arch", 781, 7], ["sha256", 782, 7]]);
-const pos$131 = nix.positions(here + "/release_sources.nix", [["url", 785, 7], ["locale", 786, 7], ["arch", 787, 7], ["sha256", 788, 7]]);
-const pos$132 = nix.positions(here + "/release_sources.nix", [["url", 791, 7], ["locale", 792, 7], ["arch", 793, 7], ["sha256", 794, 7]]);
-const pos$133 = nix.positions(here + "/release_sources.nix", [["url", 797, 7], ["locale", 798, 7], ["arch", 799, 7], ["sha256", 800, 7]]);
-const pos$134 = nix.positions(here + "/release_sources.nix", [["url", 803, 7], ["locale", 804, 7], ["arch", 805, 7], ["sha256", 806, 7]]);
-const pos$135 = nix.positions(here + "/release_sources.nix", [["url", 809, 7], ["locale", 810, 7], ["arch", 811, 7], ["sha256", 812, 7]]);
-const pos$136 = nix.positions(here + "/release_sources.nix", [["url", 815, 7], ["locale", 816, 7], ["arch", 817, 7], ["sha256", 818, 7]]);
-const pos$137 = nix.positions(here + "/release_sources.nix", [["url", 821, 7], ["locale", 822, 7], ["arch", 823, 7], ["sha256", 824, 7]]);
-const pos$138 = nix.positions(here + "/release_sources.nix", [["url", 827, 7], ["locale", 828, 7], ["arch", 829, 7], ["sha256", 830, 7]]);
-const pos$139 = nix.positions(here + "/release_sources.nix", [["url", 833, 7], ["locale", 834, 7], ["arch", 835, 7], ["sha256", 836, 7]]);
-const pos$140 = nix.positions(here + "/release_sources.nix", [["url", 839, 7], ["locale", 840, 7], ["arch", 841, 7], ["sha256", 842, 7]]);
-const pos$141 = nix.positions(here + "/release_sources.nix", [["url", 845, 7], ["locale", 846, 7], ["arch", 847, 7], ["sha256", 848, 7]]);
-const pos$142 = nix.positions(here + "/release_sources.nix", [["url", 851, 7], ["locale", 852, 7], ["arch", 853, 7], ["sha256", 854, 7]]);
-const pos$143 = nix.positions(here + "/release_sources.nix", [["url", 857, 7], ["locale", 858, 7], ["arch", 859, 7], ["sha256", 860, 7]]);
-const pos$144 = nix.positions(here + "/release_sources.nix", [["url", 863, 7], ["locale", 864, 7], ["arch", 865, 7], ["sha256", 866, 7]]);
-const pos$145 = nix.positions(here + "/release_sources.nix", [["url", 869, 7], ["locale", 870, 7], ["arch", 871, 7], ["sha256", 872, 7]]);
-const pos$146 = nix.positions(here + "/release_sources.nix", [["url", 875, 7], ["locale", 876, 7], ["arch", 877, 7], ["sha256", 878, 7]]);
-const pos$147 = nix.positions(here + "/release_sources.nix", [["url", 881, 7], ["locale", 882, 7], ["arch", 883, 7], ["sha256", 884, 7]]);
-const pos$148 = nix.positions(here + "/release_sources.nix", [["url", 887, 7], ["locale", 888, 7], ["arch", 889, 7], ["sha256", 890, 7]]);
-const pos$149 = nix.positions(here + "/release_sources.nix", [["url", 893, 7], ["locale", 894, 7], ["arch", 895, 7], ["sha256", 896, 7]]);
-const pos$150 = nix.positions(here + "/release_sources.nix", [["url", 899, 7], ["locale", 900, 7], ["arch", 901, 7], ["sha256", 902, 7]]);
-const pos$151 = nix.positions(here + "/release_sources.nix", [["url", 905, 7], ["locale", 906, 7], ["arch", 907, 7], ["sha256", 908, 7]]);
-const pos$152 = nix.positions(here + "/release_sources.nix", [["url", 911, 7], ["locale", 912, 7], ["arch", 913, 7], ["sha256", 914, 7]]);
-const pos$153 = nix.positions(here + "/release_sources.nix", [["url", 917, 7], ["locale", 918, 7], ["arch", 919, 7], ["sha256", 920, 7]]);
-const pos$154 = nix.positions(here + "/release_sources.nix", [["url", 923, 7], ["locale", 924, 7], ["arch", 925, 7], ["sha256", 926, 7]]);
-const pos$155 = nix.positions(here + "/release_sources.nix", [["url", 929, 7], ["locale", 930, 7], ["arch", 931, 7], ["sha256", 932, 7]]);
-const pos$156 = nix.positions(here + "/release_sources.nix", [["url", 935, 7], ["locale", 936, 7], ["arch", 937, 7], ["sha256", 938, 7]]);
-const pos$157 = nix.positions(here + "/release_sources.nix", [["url", 941, 7], ["locale", 942, 7], ["arch", 943, 7], ["sha256", 944, 7]]);
-const pos$158 = nix.positions(here + "/release_sources.nix", [["url", 947, 7], ["locale", 948, 7], ["arch", 949, 7], ["sha256", 950, 7]]);
-const pos$159 = nix.positions(here + "/release_sources.nix", [["url", 953, 7], ["locale", 954, 7], ["arch", 955, 7], ["sha256", 956, 7]]);
-const pos$160 = nix.positions(here + "/release_sources.nix", [["url", 959, 7], ["locale", 960, 7], ["arch", 961, 7], ["sha256", 962, 7]]);
-const pos$161 = nix.positions(here + "/release_sources.nix", [["url", 965, 7], ["locale", 966, 7], ["arch", 967, 7], ["sha256", 968, 7]]);
-const pos$162 = nix.positions(here + "/release_sources.nix", [["url", 971, 7], ["locale", 972, 7], ["arch", 973, 7], ["sha256", 974, 7]]);
-const pos$163 = nix.positions(here + "/release_sources.nix", [["url", 977, 7], ["locale", 978, 7], ["arch", 979, 7], ["sha256", 980, 7]]);
-const pos$164 = nix.positions(here + "/release_sources.nix", [["url", 983, 7], ["locale", 984, 7], ["arch", 985, 7], ["sha256", 986, 7]]);
-const pos$165 = nix.positions(here + "/release_sources.nix", [["url", 989, 7], ["locale", 990, 7], ["arch", 991, 7], ["sha256", 992, 7]]);
-const pos$166 = nix.positions(here + "/release_sources.nix", [["url", 995, 7], ["locale", 996, 7], ["arch", 997, 7], ["sha256", 998, 7]]);
-const pos$167 = nix.positions(here + "/release_sources.nix", [["url", 1001, 7], ["locale", 1002, 7], ["arch", 1003, 7], ["sha256", 1004, 7]]);
-const pos$168 = nix.positions(here + "/release_sources.nix", [["url", 1007, 7], ["locale", 1008, 7], ["arch", 1009, 7], ["sha256", 1010, 7]]);
-const pos$169 = nix.positions(here + "/release_sources.nix", [["url", 1013, 7], ["locale", 1014, 7], ["arch", 1015, 7], ["sha256", 1016, 7]]);
-const pos$170 = nix.positions(here + "/release_sources.nix", [["url", 1019, 7], ["locale", 1020, 7], ["arch", 1021, 7], ["sha256", 1022, 7]]);
-const pos$171 = nix.positions(here + "/release_sources.nix", [["url", 1025, 7], ["locale", 1026, 7], ["arch", 1027, 7], ["sha256", 1028, 7]]);
-const pos$172 = nix.positions(here + "/release_sources.nix", [["url", 1031, 7], ["locale", 1032, 7], ["arch", 1033, 7], ["sha256", 1034, 7]]);
-const pos$173 = nix.positions(here + "/release_sources.nix", [["url", 1037, 7], ["locale", 1038, 7], ["arch", 1039, 7], ["sha256", 1040, 7]]);
-const pos$174 = nix.positions(here + "/release_sources.nix", [["url", 1043, 7], ["locale", 1044, 7], ["arch", 1045, 7], ["sha256", 1046, 7]]);
-const pos$175 = nix.positions(here + "/release_sources.nix", [["url", 1049, 7], ["locale", 1050, 7], ["arch", 1051, 7], ["sha256", 1052, 7]]);
-const pos$176 = nix.positions(here + "/release_sources.nix", [["url", 1055, 7], ["locale", 1056, 7], ["arch", 1057, 7], ["sha256", 1058, 7]]);
-const pos$177 = nix.positions(here + "/release_sources.nix", [["url", 1061, 7], ["locale", 1062, 7], ["arch", 1063, 7], ["sha256", 1064, 7]]);
-const pos$178 = nix.positions(here + "/release_sources.nix", [["url", 1067, 7], ["locale", 1068, 7], ["arch", 1069, 7], ["sha256", 1070, 7]]);
-const pos$179 = nix.positions(here + "/release_sources.nix", [["url", 1073, 7], ["locale", 1074, 7], ["arch", 1075, 7], ["sha256", 1076, 7]]);
-const pos$180 = nix.positions(here + "/release_sources.nix", [["url", 1079, 7], ["locale", 1080, 7], ["arch", 1081, 7], ["sha256", 1082, 7]]);
-const pos$181 = nix.positions(here + "/release_sources.nix", [["url", 1085, 7], ["locale", 1086, 7], ["arch", 1087, 7], ["sha256", 1088, 7]]);
-const pos$182 = nix.positions(here + "/release_sources.nix", [["url", 1091, 7], ["locale", 1092, 7], ["arch", 1093, 7], ["sha256", 1094, 7]]);
-const pos$183 = nix.positions(here + "/release_sources.nix", [["url", 1097, 7], ["locale", 1098, 7], ["arch", 1099, 7], ["sha256", 1100, 7]]);
-const pos$184 = nix.positions(here + "/release_sources.nix", [["url", 1103, 7], ["locale", 1104, 7], ["arch", 1105, 7], ["sha256", 1106, 7]]);
-const pos$185 = nix.positions(here + "/release_sources.nix", [["url", 1109, 7], ["locale", 1110, 7], ["arch", 1111, 7], ["sha256", 1112, 7]]);
-const pos$186 = nix.positions(here + "/release_sources.nix", [["url", 1115, 7], ["locale", 1116, 7], ["arch", 1117, 7], ["sha256", 1118, 7]]);
-const pos$187 = nix.positions(here + "/release_sources.nix", [["url", 1121, 7], ["locale", 1122, 7], ["arch", 1123, 7], ["sha256", 1124, 7]]);
-const pos$188 = nix.positions(here + "/release_sources.nix", [["url", 1127, 7], ["locale", 1128, 7], ["arch", 1129, 7], ["sha256", 1130, 7]]);
-const pos$189 = nix.positions(here + "/release_sources.nix", [["url", 1133, 7], ["locale", 1134, 7], ["arch", 1135, 7], ["sha256", 1136, 7]]);
-const pos$190 = nix.positions(here + "/release_sources.nix", [["url", 1139, 7], ["locale", 1140, 7], ["arch", 1141, 7], ["sha256", 1142, 7]]);
-const pos$191 = nix.positions(here + "/release_sources.nix", [["url", 1145, 7], ["locale", 1146, 7], ["arch", 1147, 7], ["sha256", 1148, 7]]);
-const pos$192 = nix.positions(here + "/release_sources.nix", [["url", 1151, 7], ["locale", 1152, 7], ["arch", 1153, 7], ["sha256", 1154, 7]]);
-const pos$193 = nix.positions(here + "/release_sources.nix", [["url", 1157, 7], ["locale", 1158, 7], ["arch", 1159, 7], ["sha256", 1160, 7]]);
-const pos$194 = nix.positions(here + "/release_sources.nix", [["url", 1163, 7], ["locale", 1164, 7], ["arch", 1165, 7], ["sha256", 1166, 7]]);
-const pos$195 = nix.positions(here + "/release_sources.nix", [["url", 1169, 7], ["locale", 1170, 7], ["arch", 1171, 7], ["sha256", 1172, 7]]);
-const pos$196 = nix.positions(here + "/release_sources.nix", [["url", 1175, 7], ["locale", 1176, 7], ["arch", 1177, 7], ["sha256", 1178, 7]]);
-const pos$197 = nix.positions(here + "/release_sources.nix", [["url", 1181, 7], ["locale", 1182, 7], ["arch", 1183, 7], ["sha256", 1184, 7]]);
-const pos$198 = nix.positions(here + "/release_sources.nix", [["url", 1187, 7], ["locale", 1188, 7], ["arch", 1189, 7], ["sha256", 1190, 7]]);
-const pos$199 = nix.positions(here + "/release_sources.nix", [["url", 1193, 7], ["locale", 1194, 7], ["arch", 1195, 7], ["sha256", 1196, 7]]);
-const pos$200 = nix.positions(here + "/release_sources.nix", [["url", 1199, 7], ["locale", 1200, 7], ["arch", 1201, 7], ["sha256", 1202, 7]]);
-const pos$201 = nix.positions(here + "/release_sources.nix", [["url", 1205, 7], ["locale", 1206, 7], ["arch", 1207, 7], ["sha256", 1208, 7]]);
-const pos$202 = nix.positions(here + "/release_sources.nix", [["url", 1211, 7], ["locale", 1212, 7], ["arch", 1213, 7], ["sha256", 1214, 7]]);
-const pos$203 = nix.positions(here + "/release_sources.nix", [["url", 1217, 7], ["locale", 1218, 7], ["arch", 1219, 7], ["sha256", 1220, 7]]);
-const pos$204 = nix.positions(here + "/release_sources.nix", [["url", 1223, 7], ["locale", 1224, 7], ["arch", 1225, 7], ["sha256", 1226, 7]]);
-const pos$205 = nix.positions(here + "/release_sources.nix", [["url", 1229, 7], ["locale", 1230, 7], ["arch", 1231, 7], ["sha256", 1232, 7]]);
-const pos$206 = nix.positions(here + "/release_sources.nix", [["url", 1235, 7], ["locale", 1236, 7], ["arch", 1237, 7], ["sha256", 1238, 7]]);
-const pos$207 = nix.positions(here + "/release_sources.nix", [["url", 1241, 7], ["locale", 1242, 7], ["arch", 1243, 7], ["sha256", 1244, 7]]);
-const pos$208 = nix.positions(here + "/release_sources.nix", [["url", 1247, 7], ["locale", 1248, 7], ["arch", 1249, 7], ["sha256", 1250, 7]]);
-const pos$209 = nix.positions(here + "/release_sources.nix", [["url", 1253, 7], ["locale", 1254, 7], ["arch", 1255, 7], ["sha256", 1256, 7]]);
-const pos$210 = nix.positions(here + "/release_sources.nix", [["url", 1259, 7], ["locale", 1260, 7], ["arch", 1261, 7], ["sha256", 1262, 7]]);
-const pos$211 = nix.positions(here + "/release_sources.nix", [["url", 1265, 7], ["locale", 1266, 7], ["arch", 1267, 7], ["sha256", 1268, 7]]);
-const pos$212 = nix.positions(here + "/release_sources.nix", [["url", 1271, 7], ["locale", 1272, 7], ["arch", 1273, 7], ["sha256", 1274, 7]]);
-const pos$213 = nix.positions(here + "/release_sources.nix", [["url", 1277, 7], ["locale", 1278, 7], ["arch", 1279, 7], ["sha256", 1280, 7]]);
-const pos$214 = nix.positions(here + "/release_sources.nix", [["url", 1283, 7], ["locale", 1284, 7], ["arch", 1285, 7], ["sha256", 1286, 7]]);
-const pos$215 = nix.positions(here + "/release_sources.nix", [["url", 1289, 7], ["locale", 1290, 7], ["arch", 1291, 7], ["sha256", 1292, 7]]);
-const pos$216 = nix.positions(here + "/release_sources.nix", [["url", 1295, 7], ["locale", 1296, 7], ["arch", 1297, 7], ["sha256", 1298, 7]]);
-const pos$217 = nix.positions(here + "/release_sources.nix", [["url", 1301, 7], ["locale", 1302, 7], ["arch", 1303, 7], ["sha256", 1304, 7]]);
-const pos$218 = nix.positions(here + "/release_sources.nix", [["url", 1307, 7], ["locale", 1308, 7], ["arch", 1309, 7], ["sha256", 1310, 7]]);
-const pos$219 = nix.positions(here + "/release_sources.nix", [["url", 1313, 7], ["locale", 1314, 7], ["arch", 1315, 7], ["sha256", 1316, 7]]);
-const pos$220 = nix.positions(here + "/release_sources.nix", [["url", 1319, 7], ["locale", 1320, 7], ["arch", 1321, 7], ["sha256", 1322, 7]]);
-const pos$221 = nix.positions(here + "/release_sources.nix", [["url", 1325, 7], ["locale", 1326, 7], ["arch", 1327, 7], ["sha256", 1328, 7]]);
-const pos$222 = nix.positions(here + "/release_sources.nix", [["url", 1331, 7], ["locale", 1332, 7], ["arch", 1333, 7], ["sha256", 1334, 7]]);
-const pos$223 = nix.positions(here + "/release_sources.nix", [["url", 1337, 7], ["locale", 1338, 7], ["arch", 1339, 7], ["sha256", 1340, 7]]);
-const pos$224 = nix.positions(here + "/release_sources.nix", [["url", 1343, 7], ["locale", 1344, 7], ["arch", 1345, 7], ["sha256", 1346, 7]]);
-const pos$225 = nix.positions(here + "/release_sources.nix", [["url", 1349, 7], ["locale", 1350, 7], ["arch", 1351, 7], ["sha256", 1352, 7]]);
-const pos$226 = nix.positions(here + "/release_sources.nix", [["url", 1355, 7], ["locale", 1356, 7], ["arch", 1357, 7], ["sha256", 1358, 7]]);
-const pos$227 = nix.positions(here + "/release_sources.nix", [["url", 1361, 7], ["locale", 1362, 7], ["arch", 1363, 7], ["sha256", 1364, 7]]);
-const pos$228 = nix.positions(here + "/release_sources.nix", [["url", 1367, 7], ["locale", 1368, 7], ["arch", 1369, 7], ["sha256", 1370, 7]]);
-const pos$229 = nix.positions(here + "/release_sources.nix", [["url", 1373, 7], ["locale", 1374, 7], ["arch", 1375, 7], ["sha256", 1376, 7]]);
-const pos$230 = nix.positions(here + "/release_sources.nix", [["url", 1379, 7], ["locale", 1380, 7], ["arch", 1381, 7], ["sha256", 1382, 7]]);
-const pos$231 = nix.positions(here + "/release_sources.nix", [["url", 1385, 7], ["locale", 1386, 7], ["arch", 1387, 7], ["sha256", 1388, 7]]);
-const pos$232 = nix.positions(here + "/release_sources.nix", [["url", 1391, 7], ["locale", 1392, 7], ["arch", 1393, 7], ["sha256", 1394, 7]]);
-const pos$233 = nix.positions(here + "/release_sources.nix", [["url", 1397, 7], ["locale", 1398, 7], ["arch", 1399, 7], ["sha256", 1400, 7]]);
-const pos$234 = nix.positions(here + "/release_sources.nix", [["url", 1403, 7], ["locale", 1404, 7], ["arch", 1405, 7], ["sha256", 1406, 7]]);
-const pos$235 = nix.positions(here + "/release_sources.nix", [["url", 1409, 7], ["locale", 1410, 7], ["arch", 1411, 7], ["sha256", 1412, 7]]);
-const pos$236 = nix.positions(here + "/release_sources.nix", [["url", 1415, 7], ["locale", 1416, 7], ["arch", 1417, 7], ["sha256", 1418, 7]]);
-const pos$237 = nix.positions(here + "/release_sources.nix", [["url", 1421, 7], ["locale", 1422, 7], ["arch", 1423, 7], ["sha256", 1424, 7]]);
-const pos$238 = nix.positions(here + "/release_sources.nix", [["url", 1427, 7], ["locale", 1428, 7], ["arch", 1429, 7], ["sha256", 1430, 7]]);
-const pos$239 = nix.positions(here + "/release_sources.nix", [["url", 1433, 7], ["locale", 1434, 7], ["arch", 1435, 7], ["sha256", 1436, 7]]);
-const pos$240 = nix.positions(here + "/release_sources.nix", [["url", 1439, 7], ["locale", 1440, 7], ["arch", 1441, 7], ["sha256", 1442, 7]]);
-const pos$241 = nix.positions(here + "/release_sources.nix", [["url", 1445, 7], ["locale", 1446, 7], ["arch", 1447, 7], ["sha256", 1448, 7]]);
-const pos$242 = nix.positions(here + "/release_sources.nix", [["url", 1451, 7], ["locale", 1452, 7], ["arch", 1453, 7], ["sha256", 1454, 7]]);
-const pos$243 = nix.positions(here + "/release_sources.nix", [["url", 1457, 7], ["locale", 1458, 7], ["arch", 1459, 7], ["sha256", 1460, 7]]);
-const pos$244 = nix.positions(here + "/release_sources.nix", [["url", 1463, 7], ["locale", 1464, 7], ["arch", 1465, 7], ["sha256", 1466, 7]]);
-const pos$245 = nix.positions(here + "/release_sources.nix", [["url", 1469, 7], ["locale", 1470, 7], ["arch", 1471, 7], ["sha256", 1472, 7]]);
-const pos$246 = nix.positions(here + "/release_sources.nix", [["url", 1475, 7], ["locale", 1476, 7], ["arch", 1477, 7], ["sha256", 1478, 7]]);
-const pos$247 = nix.positions(here + "/release_sources.nix", [["url", 1481, 7], ["locale", 1482, 7], ["arch", 1483, 7], ["sha256", 1484, 7]]);
-const pos$248 = nix.positions(here + "/release_sources.nix", [["url", 1487, 7], ["locale", 1488, 7], ["arch", 1489, 7], ["sha256", 1490, 7]]);
-const pos$249 = nix.positions(here + "/release_sources.nix", [["url", 1493, 7], ["locale", 1494, 7], ["arch", 1495, 7], ["sha256", 1496, 7]]);
-const pos$250 = nix.positions(here + "/release_sources.nix", [["url", 1499, 7], ["locale", 1500, 7], ["arch", 1501, 7], ["sha256", 1502, 7]]);
-const pos$251 = nix.positions(here + "/release_sources.nix", [["url", 1505, 7], ["locale", 1506, 7], ["arch", 1507, 7], ["sha256", 1508, 7]]);
-const pos$252 = nix.positions(here + "/release_sources.nix", [["url", 1511, 7], ["locale", 1512, 7], ["arch", 1513, 7], ["sha256", 1514, 7]]);
-const pos$253 = nix.positions(here + "/release_sources.nix", [["url", 1517, 7], ["locale", 1518, 7], ["arch", 1519, 7], ["sha256", 1520, 7]]);
-const pos$254 = nix.positions(here + "/release_sources.nix", [["url", 1523, 7], ["locale", 1524, 7], ["arch", 1525, 7], ["sha256", 1526, 7]]);
-const pos$255 = nix.positions(here + "/release_sources.nix", [["url", 1529, 7], ["locale", 1530, 7], ["arch", 1531, 7], ["sha256", 1532, 7]]);
-const pos$256 = nix.positions(here + "/release_sources.nix", [["url", 1535, 7], ["locale", 1536, 7], ["arch", 1537, 7], ["sha256", 1538, 7]]);
-const pos$257 = nix.positions(here + "/release_sources.nix", [["url", 1541, 7], ["locale", 1542, 7], ["arch", 1543, 7], ["sha256", 1544, 7]]);
-const pos$258 = nix.positions(here + "/release_sources.nix", [["url", 1547, 7], ["locale", 1548, 7], ["arch", 1549, 7], ["sha256", 1550, 7]]);
-const pos$259 = nix.positions(here + "/release_sources.nix", [["url", 1553, 7], ["locale", 1554, 7], ["arch", 1555, 7], ["sha256", 1556, 7]]);
-const pos$260 = nix.positions(here + "/release_sources.nix", [["url", 1559, 7], ["locale", 1560, 7], ["arch", 1561, 7], ["sha256", 1562, 7]]);
-const pos$261 = nix.positions(here + "/release_sources.nix", [["url", 1565, 7], ["locale", 1566, 7], ["arch", 1567, 7], ["sha256", 1568, 7]]);
-const pos$262 = nix.positions(here + "/release_sources.nix", [["url", 1571, 7], ["locale", 1572, 7], ["arch", 1573, 7], ["sha256", 1574, 7]]);
-const pos$263 = nix.positions(here + "/release_sources.nix", [["url", 1577, 7], ["locale", 1578, 7], ["arch", 1579, 7], ["sha256", 1580, 7]]);
-const pos$264 = nix.positions(here + "/release_sources.nix", [["url", 1583, 7], ["locale", 1584, 7], ["arch", 1585, 7], ["sha256", 1586, 7]]);
-const pos$265 = nix.positions(here + "/release_sources.nix", [["url", 1589, 7], ["locale", 1590, 7], ["arch", 1591, 7], ["sha256", 1592, 7]]);
-const pos$266 = nix.positions(here + "/release_sources.nix", [["url", 1595, 7], ["locale", 1596, 7], ["arch", 1597, 7], ["sha256", 1598, 7]]);
-const pos$267 = nix.positions(here + "/release_sources.nix", [["url", 1601, 7], ["locale", 1602, 7], ["arch", 1603, 7], ["sha256", 1604, 7]]);
-const pos$268 = nix.positions(here + "/release_sources.nix", [["url", 1607, 7], ["locale", 1608, 7], ["arch", 1609, 7], ["sha256", 1610, 7]]);
-const pos$269 = nix.positions(here + "/release_sources.nix", [["url", 1613, 7], ["locale", 1614, 7], ["arch", 1615, 7], ["sha256", 1616, 7]]);
-const pos$270 = nix.positions(here + "/release_sources.nix", [["url", 1619, 7], ["locale", 1620, 7], ["arch", 1621, 7], ["sha256", 1622, 7]]);
-const pos$271 = nix.positions(here + "/release_sources.nix", [["url", 1625, 7], ["locale", 1626, 7], ["arch", 1627, 7], ["sha256", 1628, 7]]);
-const pos$272 = nix.positions(here + "/release_sources.nix", [["url", 1631, 7], ["locale", 1632, 7], ["arch", 1633, 7], ["sha256", 1634, 7]]);
-const pos$273 = nix.positions(here + "/release_sources.nix", [["url", 1637, 7], ["locale", 1638, 7], ["arch", 1639, 7], ["sha256", 1640, 7]]);
-const pos$274 = nix.positions(here + "/release_sources.nix", [["url", 1643, 7], ["locale", 1644, 7], ["arch", 1645, 7], ["sha256", 1646, 7]]);
-const pos$275 = nix.positions(here + "/release_sources.nix", [["url", 1649, 7], ["locale", 1650, 7], ["arch", 1651, 7], ["sha256", 1652, 7]]);
-const pos$276 = nix.positions(here + "/release_sources.nix", [["url", 1655, 7], ["locale", 1656, 7], ["arch", 1657, 7], ["sha256", 1658, 7]]);
-const pos$277 = nix.positions(here + "/release_sources.nix", [["url", 1661, 7], ["locale", 1662, 7], ["arch", 1663, 7], ["sha256", 1664, 7]]);
-const pos$278 = nix.positions(here + "/release_sources.nix", [["url", 1667, 7], ["locale", 1668, 7], ["arch", 1669, 7], ["sha256", 1670, 7]]);
-const pos$279 = nix.positions(here + "/release_sources.nix", [["url", 1673, 7], ["locale", 1674, 7], ["arch", 1675, 7], ["sha256", 1676, 7]]);
-const pos$280 = nix.positions(here + "/release_sources.nix", [["url", 1679, 7], ["locale", 1680, 7], ["arch", 1681, 7], ["sha256", 1682, 7]]);
-const pos$281 = nix.positions(here + "/release_sources.nix", [["url", 1685, 7], ["locale", 1686, 7], ["arch", 1687, 7], ["sha256", 1688, 7]]);
-const pos$282 = nix.positions(here + "/release_sources.nix", [["url", 1691, 7], ["locale", 1692, 7], ["arch", 1693, 7], ["sha256", 1694, 7]]);
-const pos$283 = nix.positions(here + "/release_sources.nix", [["url", 1697, 7], ["locale", 1698, 7], ["arch", 1699, 7], ["sha256", 1700, 7]]);
-const pos$284 = nix.positions(here + "/release_sources.nix", [["url", 1703, 7], ["locale", 1704, 7], ["arch", 1705, 7], ["sha256", 1706, 7]]);
-const pos$285 = nix.positions(here + "/release_sources.nix", [["url", 1709, 7], ["locale", 1710, 7], ["arch", 1711, 7], ["sha256", 1712, 7]]);
-const pos$286 = nix.positions(here + "/release_sources.nix", [["url", 1715, 7], ["locale", 1716, 7], ["arch", 1717, 7], ["sha256", 1718, 7]]);
-const pos$287 = nix.positions(here + "/release_sources.nix", [["url", 1721, 7], ["locale", 1722, 7], ["arch", 1723, 7], ["sha256", 1724, 7]]);
-const pos$288 = nix.positions(here + "/release_sources.nix", [["url", 1727, 7], ["locale", 1728, 7], ["arch", 1729, 7], ["sha256", 1730, 7]]);
-const pos$289 = nix.positions(here + "/release_sources.nix", [["url", 1733, 7], ["locale", 1734, 7], ["arch", 1735, 7], ["sha256", 1736, 7]]);
-const pos$290 = nix.positions(here + "/release_sources.nix", [["url", 1739, 7], ["locale", 1740, 7], ["arch", 1741, 7], ["sha256", 1742, 7]]);
-const pos$291 = nix.positions(here + "/release_sources.nix", [["url", 1745, 7], ["locale", 1746, 7], ["arch", 1747, 7], ["sha256", 1748, 7]]);
-const pos$292 = nix.positions(here + "/release_sources.nix", [["url", 1751, 7], ["locale", 1752, 7], ["arch", 1753, 7], ["sha256", 1754, 7]]);
-const pos$293 = nix.positions(here + "/release_sources.nix", [["url", 1757, 7], ["locale", 1758, 7], ["arch", 1759, 7], ["sha256", 1760, 7]]);
-const pos$294 = nix.positions(here + "/release_sources.nix", [["url", 1763, 7], ["locale", 1764, 7], ["arch", 1765, 7], ["sha256", 1766, 7]]);
-const pos$295 = nix.positions(here + "/release_sources.nix", [["url", 1769, 7], ["locale", 1770, 7], ["arch", 1771, 7], ["sha256", 1772, 7]]);
-const pos$296 = nix.positions(here + "/release_sources.nix", [["url", 1775, 7], ["locale", 1776, 7], ["arch", 1777, 7], ["sha256", 1778, 7]]);
-const pos$297 = nix.positions(here + "/release_sources.nix", [["url", 1781, 7], ["locale", 1782, 7], ["arch", 1783, 7], ["sha256", 1784, 7]]);
-const pos$298 = nix.positions(here + "/release_sources.nix", [["url", 1787, 7], ["locale", 1788, 7], ["arch", 1789, 7], ["sha256", 1790, 7]]);
-const pos$299 = nix.positions(here + "/release_sources.nix", [["url", 1793, 7], ["locale", 1794, 7], ["arch", 1795, 7], ["sha256", 1796, 7]]);
-const pos$300 = nix.positions(here + "/release_sources.nix", [["url", 1799, 7], ["locale", 1800, 7], ["arch", 1801, 7], ["sha256", 1802, 7]]);
-const pos$301 = nix.positions(here + "/release_sources.nix", [["url", 1805, 7], ["locale", 1806, 7], ["arch", 1807, 7], ["sha256", 1808, 7]]);
-const pos$302 = nix.positions(here + "/release_sources.nix", [["url", 1811, 7], ["locale", 1812, 7], ["arch", 1813, 7], ["sha256", 1814, 7]]);
-const pos$303 = nix.positions(here + "/release_sources.nix", [["url", 1817, 7], ["locale", 1818, 7], ["arch", 1819, 7], ["sha256", 1820, 7]]);
-const pos$304 = nix.positions(here + "/release_sources.nix", [["url", 1823, 7], ["locale", 1824, 7], ["arch", 1825, 7], ["sha256", 1826, 7]]);
-const pos$305 = nix.positions(here + "/release_sources.nix", [["url", 1829, 7], ["locale", 1830, 7], ["arch", 1831, 7], ["sha256", 1832, 7]]);
-const pos$306 = nix.positions(here + "/release_sources.nix", [["url", 1835, 7], ["locale", 1836, 7], ["arch", 1837, 7], ["sha256", 1838, 7]]);
-const pos$307 = nix.positions(here + "/release_sources.nix", [["url", 1841, 7], ["locale", 1842, 7], ["arch", 1843, 7], ["sha256", 1844, 7]]);
-const pos$308 = nix.positions(here + "/release_sources.nix", [["url", 1847, 7], ["locale", 1848, 7], ["arch", 1849, 7], ["sha256", 1850, 7]]);
-const pos$309 = nix.positions(here + "/release_sources.nix", [["url", 1853, 7], ["locale", 1854, 7], ["arch", 1855, 7], ["sha256", 1856, 7]]);
-const pos$310 = nix.positions(here + "/release_sources.nix", [["version", 2, 3], ["sources", 3, 3]]);
+const $pos = nix.positions(here + "/release_sources.nix", [[["url", 5, 7], ["locale", 6, 7], ["arch", 7, 7], ["sha256", 8, 7]], [["url", 11, 7], ["locale", 12, 7], ["arch", 13, 7], ["sha256", 14, 7]], [["url", 17, 7], ["locale", 18, 7], ["arch", 19, 7], ["sha256", 20, 7]], [["url", 23, 7], ["locale", 24, 7], ["arch", 25, 7], ["sha256", 26, 7]], [["url", 29, 7], ["locale", 30, 7], ["arch", 31, 7], ["sha256", 32, 7]], [["url", 35, 7], ["locale", 36, 7], ["arch", 37, 7], ["sha256", 38, 7]], [["url", 41, 7], ["locale", 42, 7], ["arch", 43, 7], ["sha256", 44, 7]], [["url", 47, 7], ["locale", 48, 7], ["arch", 49, 7], ["sha256", 50, 7]], [["url", 53, 7], ["locale", 54, 7], ["arch", 55, 7], ["sha256", 56, 7]], [["url", 59, 7], ["locale", 60, 7], ["arch", 61, 7], ["sha256", 62, 7]], [["url", 65, 7], ["locale", 66, 7], ["arch", 67, 7], ["sha256", 68, 7]], [["url", 71, 7], ["locale", 72, 7], ["arch", 73, 7], ["sha256", 74, 7]], [["url", 77, 7], ["locale", 78, 7], ["arch", 79, 7], ["sha256", 80, 7]], [["url", 83, 7], ["locale", 84, 7], ["arch", 85, 7], ["sha256", 86, 7]], [["url", 89, 7], ["locale", 90, 7], ["arch", 91, 7], ["sha256", 92, 7]], [["url", 95, 7], ["locale", 96, 7], ["arch", 97, 7], ["sha256", 98, 7]], [["url", 101, 7], ["locale", 102, 7], ["arch", 103, 7], ["sha256", 104, 7]], [["url", 107, 7], ["locale", 108, 7], ["arch", 109, 7], ["sha256", 110, 7]], [["url", 113, 7], ["locale", 114, 7], ["arch", 115, 7], ["sha256", 116, 7]], [["url", 119, 7], ["locale", 120, 7], ["arch", 121, 7], ["sha256", 122, 7]], [["url", 125, 7], ["locale", 126, 7], ["arch", 127, 7], ["sha256", 128, 7]], [["url", 131, 7], ["locale", 132, 7], ["arch", 133, 7], ["sha256", 134, 7]], [["url", 137, 7], ["locale", 138, 7], ["arch", 139, 7], ["sha256", 140, 7]], [["url", 143, 7], ["locale", 144, 7], ["arch", 145, 7], ["sha256", 146, 7]], [["url", 149, 7], ["locale", 150, 7], ["arch", 151, 7], ["sha256", 152, 7]], [["url", 155, 7], ["locale", 156, 7], ["arch", 157, 7], ["sha256", 158, 7]], [["url", 161, 7], ["locale", 162, 7], ["arch", 163, 7], ["sha256", 164, 7]], [["url", 167, 7], ["locale", 168, 7], ["arch", 169, 7], ["sha256", 170, 7]], [["url", 173, 7], ["locale", 174, 7], ["arch", 175, 7], ["sha256", 176, 7]], [["url", 179, 7], ["locale", 180, 7], ["arch", 181, 7], ["sha256", 182, 7]], [["url", 185, 7], ["locale", 186, 7], ["arch", 187, 7], ["sha256", 188, 7]], [["url", 191, 7], ["locale", 192, 7], ["arch", 193, 7], ["sha256", 194, 7]], [["url", 197, 7], ["locale", 198, 7], ["arch", 199, 7], ["sha256", 200, 7]], [["url", 203, 7], ["locale", 204, 7], ["arch", 205, 7], ["sha256", 206, 7]], [["url", 209, 7], ["locale", 210, 7], ["arch", 211, 7], ["sha256", 212, 7]], [["url", 215, 7], ["locale", 216, 7], ["arch", 217, 7], ["sha256", 218, 7]], [["url", 221, 7], ["locale", 222, 7], ["arch", 223, 7], ["sha256", 224, 7]], [["url", 227, 7], ["locale", 228, 7], ["arch", 229, 7], ["sha256", 230, 7]], [["url", 233, 7], ["locale", 234, 7], ["arch", 235, 7], ["sha256", 236, 7]], [["url", 239, 7], ["locale", 240, 7], ["arch", 241, 7], ["sha256", 242, 7]], [["url", 245, 7], ["locale", 246, 7], ["arch", 247, 7], ["sha256", 248, 7]], [["url", 251, 7], ["locale", 252, 7], ["arch", 253, 7], ["sha256", 254, 7]], [["url", 257, 7], ["locale", 258, 7], ["arch", 259, 7], ["sha256", 260, 7]], [["url", 263, 7], ["locale", 264, 7], ["arch", 265, 7], ["sha256", 266, 7]], [["url", 269, 7], ["locale", 270, 7], ["arch", 271, 7], ["sha256", 272, 7]], [["url", 275, 7], ["locale", 276, 7], ["arch", 277, 7], ["sha256", 278, 7]], [["url", 281, 7], ["locale", 282, 7], ["arch", 283, 7], ["sha256", 284, 7]], [["url", 287, 7], ["locale", 288, 7], ["arch", 289, 7], ["sha256", 290, 7]], [["url", 293, 7], ["locale", 294, 7], ["arch", 295, 7], ["sha256", 296, 7]], [["url", 299, 7], ["locale", 300, 7], ["arch", 301, 7], ["sha256", 302, 7]], [["url", 305, 7], ["locale", 306, 7], ["arch", 307, 7], ["sha256", 308, 7]], [["url", 311, 7], ["locale", 312, 7], ["arch", 313, 7], ["sha256", 314, 7]], [["url", 317, 7], ["locale", 318, 7], ["arch", 319, 7], ["sha256", 320, 7]], [["url", 323, 7], ["locale", 324, 7], ["arch", 325, 7], ["sha256", 326, 7]], [["url", 329, 7], ["locale", 330, 7], ["arch", 331, 7], ["sha256", 332, 7]], [["url", 335, 7], ["locale", 336, 7], ["arch", 337, 7], ["sha256", 338, 7]], [["url", 341, 7], ["locale", 342, 7], ["arch", 343, 7], ["sha256", 344, 7]], [["url", 347, 7], ["locale", 348, 7], ["arch", 349, 7], ["sha256", 350, 7]], [["url", 353, 7], ["locale", 354, 7], ["arch", 355, 7], ["sha256", 356, 7]], [["url", 359, 7], ["locale", 360, 7], ["arch", 361, 7], ["sha256", 362, 7]], [["url", 365, 7], ["locale", 366, 7], ["arch", 367, 7], ["sha256", 368, 7]], [["url", 371, 7], ["locale", 372, 7], ["arch", 373, 7], ["sha256", 374, 7]], [["url", 377, 7], ["locale", 378, 7], ["arch", 379, 7], ["sha256", 380, 7]], [["url", 383, 7], ["locale", 384, 7], ["arch", 385, 7], ["sha256", 386, 7]], [["url", 389, 7], ["locale", 390, 7], ["arch", 391, 7], ["sha256", 392, 7]], [["url", 395, 7], ["locale", 396, 7], ["arch", 397, 7], ["sha256", 398, 7]], [["url", 401, 7], ["locale", 402, 7], ["arch", 403, 7], ["sha256", 404, 7]], [["url", 407, 7], ["locale", 408, 7], ["arch", 409, 7], ["sha256", 410, 7]], [["url", 413, 7], ["locale", 414, 7], ["arch", 415, 7], ["sha256", 416, 7]], [["url", 419, 7], ["locale", 420, 7], ["arch", 421, 7], ["sha256", 422, 7]], [["url", 425, 7], ["locale", 426, 7], ["arch", 427, 7], ["sha256", 428, 7]], [["url", 431, 7], ["locale", 432, 7], ["arch", 433, 7], ["sha256", 434, 7]], [["url", 437, 7], ["locale", 438, 7], ["arch", 439, 7], ["sha256", 440, 7]], [["url", 443, 7], ["locale", 444, 7], ["arch", 445, 7], ["sha256", 446, 7]], [["url", 449, 7], ["locale", 450, 7], ["arch", 451, 7], ["sha256", 452, 7]], [["url", 455, 7], ["locale", 456, 7], ["arch", 457, 7], ["sha256", 458, 7]], [["url", 461, 7], ["locale", 462, 7], ["arch", 463, 7], ["sha256", 464, 7]], [["url", 467, 7], ["locale", 468, 7], ["arch", 469, 7], ["sha256", 470, 7]], [["url", 473, 7], ["locale", 474, 7], ["arch", 475, 7], ["sha256", 476, 7]], [["url", 479, 7], ["locale", 480, 7], ["arch", 481, 7], ["sha256", 482, 7]], [["url", 485, 7], ["locale", 486, 7], ["arch", 487, 7], ["sha256", 488, 7]], [["url", 491, 7], ["locale", 492, 7], ["arch", 493, 7], ["sha256", 494, 7]], [["url", 497, 7], ["locale", 498, 7], ["arch", 499, 7], ["sha256", 500, 7]], [["url", 503, 7], ["locale", 504, 7], ["arch", 505, 7], ["sha256", 506, 7]], [["url", 509, 7], ["locale", 510, 7], ["arch", 511, 7], ["sha256", 512, 7]], [["url", 515, 7], ["locale", 516, 7], ["arch", 517, 7], ["sha256", 518, 7]], [["url", 521, 7], ["locale", 522, 7], ["arch", 523, 7], ["sha256", 524, 7]], [["url", 527, 7], ["locale", 528, 7], ["arch", 529, 7], ["sha256", 530, 7]], [["url", 533, 7], ["locale", 534, 7], ["arch", 535, 7], ["sha256", 536, 7]], [["url", 539, 7], ["locale", 540, 7], ["arch", 541, 7], ["sha256", 542, 7]], [["url", 545, 7], ["locale", 546, 7], ["arch", 547, 7], ["sha256", 548, 7]], [["url", 551, 7], ["locale", 552, 7], ["arch", 553, 7], ["sha256", 554, 7]], [["url", 557, 7], ["locale", 558, 7], ["arch", 559, 7], ["sha256", 560, 7]], [["url", 563, 7], ["locale", 564, 7], ["arch", 565, 7], ["sha256", 566, 7]], [["url", 569, 7], ["locale", 570, 7], ["arch", 571, 7], ["sha256", 572, 7]], [["url", 575, 7], ["locale", 576, 7], ["arch", 577, 7], ["sha256", 578, 7]], [["url", 581, 7], ["locale", 582, 7], ["arch", 583, 7], ["sha256", 584, 7]], [["url", 587, 7], ["locale", 588, 7], ["arch", 589, 7], ["sha256", 590, 7]], [["url", 593, 7], ["locale", 594, 7], ["arch", 595, 7], ["sha256", 596, 7]], [["url", 599, 7], ["locale", 600, 7], ["arch", 601, 7], ["sha256", 602, 7]], [["url", 605, 7], ["locale", 606, 7], ["arch", 607, 7], ["sha256", 608, 7]], [["url", 611, 7], ["locale", 612, 7], ["arch", 613, 7], ["sha256", 614, 7]], [["url", 617, 7], ["locale", 618, 7], ["arch", 619, 7], ["sha256", 620, 7]], [["url", 623, 7], ["locale", 624, 7], ["arch", 625, 7], ["sha256", 626, 7]], [["url", 629, 7], ["locale", 630, 7], ["arch", 631, 7], ["sha256", 632, 7]], [["url", 635, 7], ["locale", 636, 7], ["arch", 637, 7], ["sha256", 638, 7]], [["url", 641, 7], ["locale", 642, 7], ["arch", 643, 7], ["sha256", 644, 7]], [["url", 647, 7], ["locale", 648, 7], ["arch", 649, 7], ["sha256", 650, 7]], [["url", 653, 7], ["locale", 654, 7], ["arch", 655, 7], ["sha256", 656, 7]], [["url", 659, 7], ["locale", 660, 7], ["arch", 661, 7], ["sha256", 662, 7]], [["url", 665, 7], ["locale", 666, 7], ["arch", 667, 7], ["sha256", 668, 7]], [["url", 671, 7], ["locale", 672, 7], ["arch", 673, 7], ["sha256", 674, 7]], [["url", 677, 7], ["locale", 678, 7], ["arch", 679, 7], ["sha256", 680, 7]], [["url", 683, 7], ["locale", 684, 7], ["arch", 685, 7], ["sha256", 686, 7]], [["url", 689, 7], ["locale", 690, 7], ["arch", 691, 7], ["sha256", 692, 7]], [["url", 695, 7], ["locale", 696, 7], ["arch", 697, 7], ["sha256", 698, 7]], [["url", 701, 7], ["locale", 702, 7], ["arch", 703, 7], ["sha256", 704, 7]], [["url", 707, 7], ["locale", 708, 7], ["arch", 709, 7], ["sha256", 710, 7]], [["url", 713, 7], ["locale", 714, 7], ["arch", 715, 7], ["sha256", 716, 7]], [["url", 719, 7], ["locale", 720, 7], ["arch", 721, 7], ["sha256", 722, 7]], [["url", 725, 7], ["locale", 726, 7], ["arch", 727, 7], ["sha256", 728, 7]], [["url", 731, 7], ["locale", 732, 7], ["arch", 733, 7], ["sha256", 734, 7]], [["url", 737, 7], ["locale", 738, 7], ["arch", 739, 7], ["sha256", 740, 7]], [["url", 743, 7], ["locale", 744, 7], ["arch", 745, 7], ["sha256", 746, 7]], [["url", 749, 7], ["locale", 750, 7], ["arch", 751, 7], ["sha256", 752, 7]], [["url", 755, 7], ["locale", 756, 7], ["arch", 757, 7], ["sha256", 758, 7]], [["url", 761, 7], ["locale", 762, 7], ["arch", 763, 7], ["sha256", 764, 7]], [["url", 767, 7], ["locale", 768, 7], ["arch", 769, 7], ["sha256", 770, 7]], [["url", 773, 7], ["locale", 774, 7], ["arch", 775, 7], ["sha256", 776, 7]], [["url", 779, 7], ["locale", 780, 7], ["arch", 781, 7], ["sha256", 782, 7]], [["url", 785, 7], ["locale", 786, 7], ["arch", 787, 7], ["sha256", 788, 7]], [["url", 791, 7], ["locale", 792, 7], ["arch", 793, 7], ["sha256", 794, 7]], [["url", 797, 7], ["locale", 798, 7], ["arch", 799, 7], ["sha256", 800, 7]], [["url", 803, 7], ["locale", 804, 7], ["arch", 805, 7], ["sha256", 806, 7]], [["url", 809, 7], ["locale", 810, 7], ["arch", 811, 7], ["sha256", 812, 7]], [["url", 815, 7], ["locale", 816, 7], ["arch", 817, 7], ["sha256", 818, 7]], [["url", 821, 7], ["locale", 822, 7], ["arch", 823, 7], ["sha256", 824, 7]], [["url", 827, 7], ["locale", 828, 7], ["arch", 829, 7], ["sha256", 830, 7]], [["url", 833, 7], ["locale", 834, 7], ["arch", 835, 7], ["sha256", 836, 7]], [["url", 839, 7], ["locale", 840, 7], ["arch", 841, 7], ["sha256", 842, 7]], [["url", 845, 7], ["locale", 846, 7], ["arch", 847, 7], ["sha256", 848, 7]], [["url", 851, 7], ["locale", 852, 7], ["arch", 853, 7], ["sha256", 854, 7]], [["url", 857, 7], ["locale", 858, 7], ["arch", 859, 7], ["sha256", 860, 7]], [["url", 863, 7], ["locale", 864, 7], ["arch", 865, 7], ["sha256", 866, 7]], [["url", 869, 7], ["locale", 870, 7], ["arch", 871, 7], ["sha256", 872, 7]], [["url", 875, 7], ["locale", 876, 7], ["arch", 877, 7], ["sha256", 878, 7]], [["url", 881, 7], ["locale", 882, 7], ["arch", 883, 7], ["sha256", 884, 7]], [["url", 887, 7], ["locale", 888, 7], ["arch", 889, 7], ["sha256", 890, 7]], [["url", 893, 7], ["locale", 894, 7], ["arch", 895, 7], ["sha256", 896, 7]], [["url", 899, 7], ["locale", 900, 7], ["arch", 901, 7], ["sha256", 902, 7]], [["url", 905, 7], ["locale", 906, 7], ["arch", 907, 7], ["sha256", 908, 7]], [["url", 911, 7], ["locale", 912, 7], ["arch", 913, 7], ["sha256", 914, 7]], [["url", 917, 7], ["locale", 918, 7], ["arch", 919, 7], ["sha256", 920, 7]], [["url", 923, 7], ["locale", 924, 7], ["arch", 925, 7], ["sha256", 926, 7]], [["url", 929, 7], ["locale", 930, 7], ["arch", 931, 7], ["sha256", 932, 7]], [["url", 935, 7], ["locale", 936, 7], ["arch", 937, 7], ["sha256", 938, 7]], [["url", 941, 7], ["locale", 942, 7], ["arch", 943, 7], ["sha256", 944, 7]], [["url", 947, 7], ["locale", 948, 7], ["arch", 949, 7], ["sha256", 950, 7]], [["url", 953, 7], ["locale", 954, 7], ["arch", 955, 7], ["sha256", 956, 7]], [["url", 959, 7], ["locale", 960, 7], ["arch", 961, 7], ["sha256", 962, 7]], [["url", 965, 7], ["locale", 966, 7], ["arch", 967, 7], ["sha256", 968, 7]], [["url", 971, 7], ["locale", 972, 7], ["arch", 973, 7], ["sha256", 974, 7]], [["url", 977, 7], ["locale", 978, 7], ["arch", 979, 7], ["sha256", 980, 7]], [["url", 983, 7], ["locale", 984, 7], ["arch", 985, 7], ["sha256", 986, 7]], [["url", 989, 7], ["locale", 990, 7], ["arch", 991, 7], ["sha256", 992, 7]], [["url", 995, 7], ["locale", 996, 7], ["arch", 997, 7], ["sha256", 998, 7]], [["url", 1001, 7], ["locale", 1002, 7], ["arch", 1003, 7], ["sha256", 1004, 7]], [["url", 1007, 7], ["locale", 1008, 7], ["arch", 1009, 7], ["sha256", 1010, 7]], [["url", 1013, 7], ["locale", 1014, 7], ["arch", 1015, 7], ["sha256", 1016, 7]], [["url", 1019, 7], ["locale", 1020, 7], ["arch", 1021, 7], ["sha256", 1022, 7]], [["url", 1025, 7], ["locale", 1026, 7], ["arch", 1027, 7], ["sha256", 1028, 7]], [["url", 1031, 7], ["locale", 1032, 7], ["arch", 1033, 7], ["sha256", 1034, 7]], [["url", 1037, 7], ["locale", 1038, 7], ["arch", 1039, 7], ["sha256", 1040, 7]], [["url", 1043, 7], ["locale", 1044, 7], ["arch", 1045, 7], ["sha256", 1046, 7]], [["url", 1049, 7], ["locale", 1050, 7], ["arch", 1051, 7], ["sha256", 1052, 7]], [["url", 1055, 7], ["locale", 1056, 7], ["arch", 1057, 7], ["sha256", 1058, 7]], [["url", 1061, 7], ["locale", 1062, 7], ["arch", 1063, 7], ["sha256", 1064, 7]], [["url", 1067, 7], ["locale", 1068, 7], ["arch", 1069, 7], ["sha256", 1070, 7]], [["url", 1073, 7], ["locale", 1074, 7], ["arch", 1075, 7], ["sha256", 1076, 7]], [["url", 1079, 7], ["locale", 1080, 7], ["arch", 1081, 7], ["sha256", 1082, 7]], [["url", 1085, 7], ["locale", 1086, 7], ["arch", 1087, 7], ["sha256", 1088, 7]], [["url", 1091, 7], ["locale", 1092, 7], ["arch", 1093, 7], ["sha256", 1094, 7]], [["url", 1097, 7], ["locale", 1098, 7], ["arch", 1099, 7], ["sha256", 1100, 7]], [["url", 1103, 7], ["locale", 1104, 7], ["arch", 1105, 7], ["sha256", 1106, 7]], [["url", 1109, 7], ["locale", 1110, 7], ["arch", 1111, 7], ["sha256", 1112, 7]], [["url", 1115, 7], ["locale", 1116, 7], ["arch", 1117, 7], ["sha256", 1118, 7]], [["url", 1121, 7], ["locale", 1122, 7], ["arch", 1123, 7], ["sha256", 1124, 7]], [["url", 1127, 7], ["locale", 1128, 7], ["arch", 1129, 7], ["sha256", 1130, 7]], [["url", 1133, 7], ["locale", 1134, 7], ["arch", 1135, 7], ["sha256", 1136, 7]], [["url", 1139, 7], ["locale", 1140, 7], ["arch", 1141, 7], ["sha256", 1142, 7]], [["url", 1145, 7], ["locale", 1146, 7], ["arch", 1147, 7], ["sha256", 1148, 7]], [["url", 1151, 7], ["locale", 1152, 7], ["arch", 1153, 7], ["sha256", 1154, 7]], [["url", 1157, 7], ["locale", 1158, 7], ["arch", 1159, 7], ["sha256", 1160, 7]], [["url", 1163, 7], ["locale", 1164, 7], ["arch", 1165, 7], ["sha256", 1166, 7]], [["url", 1169, 7], ["locale", 1170, 7], ["arch", 1171, 7], ["sha256", 1172, 7]], [["url", 1175, 7], ["locale", 1176, 7], ["arch", 1177, 7], ["sha256", 1178, 7]], [["url", 1181, 7], ["locale", 1182, 7], ["arch", 1183, 7], ["sha256", 1184, 7]], [["url", 1187, 7], ["locale", 1188, 7], ["arch", 1189, 7], ["sha256", 1190, 7]], [["url", 1193, 7], ["locale", 1194, 7], ["arch", 1195, 7], ["sha256", 1196, 7]], [["url", 1199, 7], ["locale", 1200, 7], ["arch", 1201, 7], ["sha256", 1202, 7]], [["url", 1205, 7], ["locale", 1206, 7], ["arch", 1207, 7], ["sha256", 1208, 7]], [["url", 1211, 7], ["locale", 1212, 7], ["arch", 1213, 7], ["sha256", 1214, 7]], [["url", 1217, 7], ["locale", 1218, 7], ["arch", 1219, 7], ["sha256", 1220, 7]], [["url", 1223, 7], ["locale", 1224, 7], ["arch", 1225, 7], ["sha256", 1226, 7]], [["url", 1229, 7], ["locale", 1230, 7], ["arch", 1231, 7], ["sha256", 1232, 7]], [["url", 1235, 7], ["locale", 1236, 7], ["arch", 1237, 7], ["sha256", 1238, 7]], [["url", 1241, 7], ["locale", 1242, 7], ["arch", 1243, 7], ["sha256", 1244, 7]], [["url", 1247, 7], ["locale", 1248, 7], ["arch", 1249, 7], ["sha256", 1250, 7]], [["url", 1253, 7], ["locale", 1254, 7], ["arch", 1255, 7], ["sha256", 1256, 7]], [["url", 1259, 7], ["locale", 1260, 7], ["arch", 1261, 7], ["sha256", 1262, 7]], [["url", 1265, 7], ["locale", 1266, 7], ["arch", 1267, 7], ["sha256", 1268, 7]], [["url", 1271, 7], ["locale", 1272, 7], ["arch", 1273, 7], ["sha256", 1274, 7]], [["url", 1277, 7], ["locale", 1278, 7], ["arch", 1279, 7], ["sha256", 1280, 7]], [["url", 1283, 7], ["locale", 1284, 7], ["arch", 1285, 7], ["sha256", 1286, 7]], [["url", 1289, 7], ["locale", 1290, 7], ["arch", 1291, 7], ["sha256", 1292, 7]], [["url", 1295, 7], ["locale", 1296, 7], ["arch", 1297, 7], ["sha256", 1298, 7]], [["url", 1301, 7], ["locale", 1302, 7], ["arch", 1303, 7], ["sha256", 1304, 7]], [["url", 1307, 7], ["locale", 1308, 7], ["arch", 1309, 7], ["sha256", 1310, 7]], [["url", 1313, 7], ["locale", 1314, 7], ["arch", 1315, 7], ["sha256", 1316, 7]], [["url", 1319, 7], ["locale", 1320, 7], ["arch", 1321, 7], ["sha256", 1322, 7]], [["url", 1325, 7], ["locale", 1326, 7], ["arch", 1327, 7], ["sha256", 1328, 7]], [["url", 1331, 7], ["locale", 1332, 7], ["arch", 1333, 7], ["sha256", 1334, 7]], [["url", 1337, 7], ["locale", 1338, 7], ["arch", 1339, 7], ["sha256", 1340, 7]], [["url", 1343, 7], ["locale", 1344, 7], ["arch", 1345, 7], ["sha256", 1346, 7]], [["url", 1349, 7], ["locale", 1350, 7], ["arch", 1351, 7], ["sha256", 1352, 7]], [["url", 1355, 7], ["locale", 1356, 7], ["arch", 1357, 7], ["sha256", 1358, 7]], [["url", 1361, 7], ["locale", 1362, 7], ["arch", 1363, 7], ["sha256", 1364, 7]], [["url", 1367, 7], ["locale", 1368, 7], ["arch", 1369, 7], ["sha256", 1370, 7]], [["url", 1373, 7], ["locale", 1374, 7], ["arch", 1375, 7], ["sha256", 1376, 7]], [["url", 1379, 7], ["locale", 1380, 7], ["arch", 1381, 7], ["sha256", 1382, 7]], [["url", 1385, 7], ["locale", 1386, 7], ["arch", 1387, 7], ["sha256", 1388, 7]], [["url", 1391, 7], ["locale", 1392, 7], ["arch", 1393, 7], ["sha256", 1394, 7]], [["url", 1397, 7], ["locale", 1398, 7], ["arch", 1399, 7], ["sha256", 1400, 7]], [["url", 1403, 7], ["locale", 1404, 7], ["arch", 1405, 7], ["sha256", 1406, 7]], [["url", 1409, 7], ["locale", 1410, 7], ["arch", 1411, 7], ["sha256", 1412, 7]], [["url", 1415, 7], ["locale", 1416, 7], ["arch", 1417, 7], ["sha256", 1418, 7]], [["url", 1421, 7], ["locale", 1422, 7], ["arch", 1423, 7], ["sha256", 1424, 7]], [["url", 1427, 7], ["locale", 1428, 7], ["arch", 1429, 7], ["sha256", 1430, 7]], [["url", 1433, 7], ["locale", 1434, 7], ["arch", 1435, 7], ["sha256", 1436, 7]], [["url", 1439, 7], ["locale", 1440, 7], ["arch", 1441, 7], ["sha256", 1442, 7]], [["url", 1445, 7], ["locale", 1446, 7], ["arch", 1447, 7], ["sha256", 1448, 7]], [["url", 1451, 7], ["locale", 1452, 7], ["arch", 1453, 7], ["sha256", 1454, 7]], [["url", 1457, 7], ["locale", 1458, 7], ["arch", 1459, 7], ["sha256", 1460, 7]], [["url", 1463, 7], ["locale", 1464, 7], ["arch", 1465, 7], ["sha256", 1466, 7]], [["url", 1469, 7], ["locale", 1470, 7], ["arch", 1471, 7], ["sha256", 1472, 7]], [["url", 1475, 7], ["locale", 1476, 7], ["arch", 1477, 7], ["sha256", 1478, 7]], [["url", 1481, 7], ["locale", 1482, 7], ["arch", 1483, 7], ["sha256", 1484, 7]], [["url", 1487, 7], ["locale", 1488, 7], ["arch", 1489, 7], ["sha256", 1490, 7]], [["url", 1493, 7], ["locale", 1494, 7], ["arch", 1495, 7], ["sha256", 1496, 7]], [["url", 1499, 7], ["locale", 1500, 7], ["arch", 1501, 7], ["sha256", 1502, 7]], [["url", 1505, 7], ["locale", 1506, 7], ["arch", 1507, 7], ["sha256", 1508, 7]], [["url", 1511, 7], ["locale", 1512, 7], ["arch", 1513, 7], ["sha256", 1514, 7]], [["url", 1517, 7], ["locale", 1518, 7], ["arch", 1519, 7], ["sha256", 1520, 7]], [["url", 1523, 7], ["locale", 1524, 7], ["arch", 1525, 7], ["sha256", 1526, 7]], [["url", 1529, 7], ["locale", 1530, 7], ["arch", 1531, 7], ["sha256", 1532, 7]], [["url", 1535, 7], ["locale", 1536, 7], ["arch", 1537, 7], ["sha256", 1538, 7]], [["url", 1541, 7], ["locale", 1542, 7], ["arch", 1543, 7], ["sha256", 1544, 7]], [["url", 1547, 7], ["locale", 1548, 7], ["arch", 1549, 7], ["sha256", 1550, 7]], [["url", 1553, 7], ["locale", 1554, 7], ["arch", 1555, 7], ["sha256", 1556, 7]], [["url", 1559, 7], ["locale", 1560, 7], ["arch", 1561, 7], ["sha256", 1562, 7]], [["url", 1565, 7], ["locale", 1566, 7], ["arch", 1567, 7], ["sha256", 1568, 7]], [["url", 1571, 7], ["locale", 1572, 7], ["arch", 1573, 7], ["sha256", 1574, 7]], [["url", 1577, 7], ["locale", 1578, 7], ["arch", 1579, 7], ["sha256", 1580, 7]], [["url", 1583, 7], ["locale", 1584, 7], ["arch", 1585, 7], ["sha256", 1586, 7]], [["url", 1589, 7], ["locale", 1590, 7], ["arch", 1591, 7], ["sha256", 1592, 7]], [["url", 1595, 7], ["locale", 1596, 7], ["arch", 1597, 7], ["sha256", 1598, 7]], [["url", 1601, 7], ["locale", 1602, 7], ["arch", 1603, 7], ["sha256", 1604, 7]], [["url", 1607, 7], ["locale", 1608, 7], ["arch", 1609, 7], ["sha256", 1610, 7]], [["url", 1613, 7], ["locale", 1614, 7], ["arch", 1615, 7], ["sha256", 1616, 7]], [["url", 1619, 7], ["locale", 1620, 7], ["arch", 1621, 7], ["sha256", 1622, 7]], [["url", 1625, 7], ["locale", 1626, 7], ["arch", 1627, 7], ["sha256", 1628, 7]], [["url", 1631, 7], ["locale", 1632, 7], ["arch", 1633, 7], ["sha256", 1634, 7]], [["url", 1637, 7], ["locale", 1638, 7], ["arch", 1639, 7], ["sha256", 1640, 7]], [["url", 1643, 7], ["locale", 1644, 7], ["arch", 1645, 7], ["sha256", 1646, 7]], [["url", 1649, 7], ["locale", 1650, 7], ["arch", 1651, 7], ["sha256", 1652, 7]], [["url", 1655, 7], ["locale", 1656, 7], ["arch", 1657, 7], ["sha256", 1658, 7]], [["url", 1661, 7], ["locale", 1662, 7], ["arch", 1663, 7], ["sha256", 1664, 7]], [["url", 1667, 7], ["locale", 1668, 7], ["arch", 1669, 7], ["sha256", 1670, 7]], [["url", 1673, 7], ["locale", 1674, 7], ["arch", 1675, 7], ["sha256", 1676, 7]], [["url", 1679, 7], ["locale", 1680, 7], ["arch", 1681, 7], ["sha256", 1682, 7]], [["url", 1685, 7], ["locale", 1686, 7], ["arch", 1687, 7], ["sha256", 1688, 7]], [["url", 1691, 7], ["locale", 1692, 7], ["arch", 1693, 7], ["sha256", 1694, 7]], [["url", 1697, 7], ["locale", 1698, 7], ["arch", 1699, 7], ["sha256", 1700, 7]], [["url", 1703, 7], ["locale", 1704, 7], ["arch", 1705, 7], ["sha256", 1706, 7]], [["url", 1709, 7], ["locale", 1710, 7], ["arch", 1711, 7], ["sha256", 1712, 7]], [["url", 1715, 7], ["locale", 1716, 7], ["arch", 1717, 7], ["sha256", 1718, 7]], [["url", 1721, 7], ["locale", 1722, 7], ["arch", 1723, 7], ["sha256", 1724, 7]], [["url", 1727, 7], ["locale", 1728, 7], ["arch", 1729, 7], ["sha256", 1730, 7]], [["url", 1733, 7], ["locale", 1734, 7], ["arch", 1735, 7], ["sha256", 1736, 7]], [["url", 1739, 7], ["locale", 1740, 7], ["arch", 1741, 7], ["sha256", 1742, 7]], [["url", 1745, 7], ["locale", 1746, 7], ["arch", 1747, 7], ["sha256", 1748, 7]], [["url", 1751, 7], ["locale", 1752, 7], ["arch", 1753, 7], ["sha256", 1754, 7]], [["url", 1757, 7], ["locale", 1758, 7], ["arch", 1759, 7], ["sha256", 1760, 7]], [["url", 1763, 7], ["locale", 1764, 7], ["arch", 1765, 7], ["sha256", 1766, 7]], [["url", 1769, 7], ["locale", 1770, 7], ["arch", 1771, 7], ["sha256", 1772, 7]], [["url", 1775, 7], ["locale", 1776, 7], ["arch", 1777, 7], ["sha256", 1778, 7]], [["url", 1781, 7], ["locale", 1782, 7], ["arch", 1783, 7], ["sha256", 1784, 7]], [["url", 1787, 7], ["locale", 1788, 7], ["arch", 1789, 7], ["sha256", 1790, 7]], [["url", 1793, 7], ["locale", 1794, 7], ["arch", 1795, 7], ["sha256", 1796, 7]], [["url", 1799, 7], ["locale", 1800, 7], ["arch", 1801, 7], ["sha256", 1802, 7]], [["url", 1805, 7], ["locale", 1806, 7], ["arch", 1807, 7], ["sha256", 1808, 7]], [["url", 1811, 7], ["locale", 1812, 7], ["arch", 1813, 7], ["sha256", 1814, 7]], [["url", 1817, 7], ["locale", 1818, 7], ["arch", 1819, 7], ["sha256", 1820, 7]], [["url", 1823, 7], ["locale", 1824, 7], ["arch", 1825, 7], ["sha256", 1826, 7]], [["url", 1829, 7], ["locale", 1830, 7], ["arch", 1831, 7], ["sha256", 1832, 7]], [["url", 1835, 7], ["locale", 1836, 7], ["arch", 1837, 7], ["sha256", 1838, 7]], [["url", 1841, 7], ["locale", 1842, 7], ["arch", 1843, 7], ["sha256", 1844, 7]], [["url", 1847, 7], ["locale", 1848, 7], ["arch", 1849, 7], ["sha256", 1850, 7]], [["url", 1853, 7], ["locale", 1854, 7], ["arch", 1855, 7], ["sha256", 1856, 7]], [["version", 2, 3], ["sources", 3, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$310,
+  [nix.POS]: $pos[309],
   version: "157.0.1",
   sources: nix.thunk(() => [
     nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/ach/firefox-157.0.1.tar.xz",
       locale: "ach",
       arch: "linux-x86_64",
       sha256: "1a8c5e7903b152603bb1824f05fb5c6839485a185155c5298eade84d601d45b8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/af/firefox-157.0.1.tar.xz",
       locale: "af",
       arch: "linux-x86_64",
       sha256: "80e340dc1fe187e5d80a742da6fc262ba02ac54c090b1841af49fe604bb73c62",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/an/firefox-157.0.1.tar.xz",
       locale: "an",
       arch: "linux-x86_64",
       sha256: "c29c99a606a486c724b567e8ea093e92f0b9750ebaab0ea3184596add8e8a4e0",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/ar/firefox-157.0.1.tar.xz",
       locale: "ar",
       arch: "linux-x86_64",
       sha256: "08179ee8877f54b1614766b491bc639209b614317ce88fa9af663d813678353e",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/ast/firefox-157.0.1.tar.xz",
       locale: "ast",
       arch: "linux-x86_64",
       sha256: "33494a047e37050cd9a3bae57b21700eddeb118d11d7082bdd97bc359bfcdac5",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/az/firefox-157.0.1.tar.xz",
       locale: "az",
       arch: "linux-x86_64",
       sha256: "e487e16240d5e3f3f27ffcf84c85b869555e179d137210d337be4ead2ec76dc0",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/be/firefox-157.0.1.tar.xz",
       locale: "be",
       arch: "linux-x86_64",
       sha256: "d483ff87917e848044c43cb823d43e7a72909fda021868eb3ced389bd8a1f13d",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/bg/firefox-157.0.1.tar.xz",
       locale: "bg",
       arch: "linux-x86_64",
       sha256: "7f108cff4eff5203f45b7a66d69dab86b1601c4f2cc52cad6d4db6185a0410df",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/bn/firefox-157.0.1.tar.xz",
       locale: "bn",
       arch: "linux-x86_64",
       sha256: "b83e3bd7a12c2cdfb70b8d986abcc6c3fa74c64358208bc5886ddcc5768cd228",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/br/firefox-157.0.1.tar.xz",
       locale: "br",
       arch: "linux-x86_64",
       sha256: "2916aaba008d136c4120f92a3bc2bde575153ec2961fb0455b0ee215bc072a50",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/bs/firefox-157.0.1.tar.xz",
       locale: "bs",
       arch: "linux-x86_64",
       sha256: "cd9d6ad6e42eaa8d77dd241266c9f865c3bf10045d0cf68b3a92bec7edb6b7e2",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/ca-valencia/firefox-157.0.1.tar.xz",
       locale: "ca-valencia",
       arch: "linux-x86_64",
       sha256: "f161e2f1811fd9353866298d7133c09f63dfaee5a5d333d6f1b0e1030072774e",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/ca/firefox-157.0.1.tar.xz",
       locale: "ca",
       arch: "linux-x86_64",
       sha256: "c30f6ff38ed9c6fdedfdf71f2409030e7635828bc2acf7d553c24c3b4fbe5a76",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/cak/firefox-157.0.1.tar.xz",
       locale: "cak",
       arch: "linux-x86_64",
       sha256: "bb27e9ce69fa8d3bb3492c3b4eadfb8fc2dc239a5a75fdbb1d5deb38def9423b",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/cs/firefox-157.0.1.tar.xz",
       locale: "cs",
       arch: "linux-x86_64",
       sha256: "eeb38d5d659669f55645ceb5c47f3f57d4d9a12c83db3a0fde7b070aad7f2eac",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/cy/firefox-157.0.1.tar.xz",
       locale: "cy",
       arch: "linux-x86_64",
       sha256: "ed04e490ae444121a213330e80ec67200f434ea1adaad70c065cd40aa39b1331",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/da/firefox-157.0.1.tar.xz",
       locale: "da",
       arch: "linux-x86_64",
       sha256: "759bc893e7e87959819bd082c154ab960d674de8c703154f49290b7c3393a9a3",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/de/firefox-157.0.1.tar.xz",
       locale: "de",
       arch: "linux-x86_64",
       sha256: "87b9d0c9cfd686c1a94bb5d393ebd1a93912410ef55ce7b7f5e53da4f8432bfc",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/dsb/firefox-157.0.1.tar.xz",
       locale: "dsb",
       arch: "linux-x86_64",
       sha256: "64dc0a74e33068e73a0f9b0d79cbec201b43f91b8faeb7af066a8f79bbee2766",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/el/firefox-157.0.1.tar.xz",
       locale: "el",
       arch: "linux-x86_64",
       sha256: "047cd7bdc897c3c083d81bf4077149474ecfa9b93d4901c9a809d85c6f3f830a",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/en-CA/firefox-157.0.1.tar.xz",
       locale: "en-CA",
       arch: "linux-x86_64",
       sha256: "b4f80c1af55de2f7ef817c5ee7c864a269cf3e45d8cb5b097084968d99273c87",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/en-GB/firefox-157.0.1.tar.xz",
       locale: "en-GB",
       arch: "linux-x86_64",
       sha256: "5157239fb2923974f7cd1bc6e14276833413d6c53d55d4f4886fb43d95f124c6",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/en-US/firefox-157.0.1.tar.xz",
       locale: "en-US",
       arch: "linux-x86_64",
       sha256: "0d92bf39cdd174f5f361008509310bdefbce72a57ca10523a43b32d62dc699b6",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/eo/firefox-157.0.1.tar.xz",
       locale: "eo",
       arch: "linux-x86_64",
       sha256: "baae76e8ba8849db00931f8b453004fa400c1a1fd1975655099efcdb9b91909c",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/es-AR/firefox-157.0.1.tar.xz",
       locale: "es-AR",
       arch: "linux-x86_64",
       sha256: "275e34bae76e51da4f8e5e0a9f16ec1d6431ed0d582be0f30df127e088897a45",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/es-CL/firefox-157.0.1.tar.xz",
       locale: "es-CL",
       arch: "linux-x86_64",
       sha256: "d3b1d1ae265eadc8d28f4d25c5d83c6bc8397367c964bf7df6ca06abd688332c",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/es-ES/firefox-157.0.1.tar.xz",
       locale: "es-ES",
       arch: "linux-x86_64",
       sha256: "f7bbab5b6ae50ecf07d6c2545f64395ac878982c20e827f8a5ab55dbff059946",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/es-MX/firefox-157.0.1.tar.xz",
       locale: "es-MX",
       arch: "linux-x86_64",
       sha256: "97e778e874f09ff57c9d126456eada5ed21ea1fdd4bb9f2ebfbca9599f3d7402",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/et/firefox-157.0.1.tar.xz",
       locale: "et",
       arch: "linux-x86_64",
       sha256: "d2bb854c87025773189dd4a455611391713ca22fa1f40bcfabd69d4322f94366",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/eu/firefox-157.0.1.tar.xz",
       locale: "eu",
       arch: "linux-x86_64",
       sha256: "6e94a13f030d4e1c0dd97599f7139f57bcfa022567886fa600872a53ed679297",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/fa/firefox-157.0.1.tar.xz",
       locale: "fa",
       arch: "linux-x86_64",
       sha256: "7dd971060ded6e7deb8a1e6d64a3e5e78069b9800bb167103811ea12f87c18e6",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/ff/firefox-157.0.1.tar.xz",
       locale: "ff",
       arch: "linux-x86_64",
       sha256: "af669236e85b78803fdfec7c24ee932c35590e615275cc39bc82c46cc2d9cc14",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$33,
+      [nix.POS]: $pos[32],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/fi/firefox-157.0.1.tar.xz",
       locale: "fi",
       arch: "linux-x86_64",
       sha256: "17896640f960ac481c9f6513f0910d1332e6f33536e9a42f515b6dd691c28e7f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/fr/firefox-157.0.1.tar.xz",
       locale: "fr",
       arch: "linux-x86_64",
       sha256: "a8e1df8b64b1d2193d04b1ba5f043fd5d45b20c170a295d48ff9785d37a29e8e",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/fur/firefox-157.0.1.tar.xz",
       locale: "fur",
       arch: "linux-x86_64",
       sha256: "97a6c2d9a155d04a794fa6159fcaff07c53e1ac0b10f9d26e8e266840a6cfb39",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$36,
+      [nix.POS]: $pos[35],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/fy-NL/firefox-157.0.1.tar.xz",
       locale: "fy-NL",
       arch: "linux-x86_64",
       sha256: "5cccdc8611c616b0bf95967c91b7f708d6bb68538e92c2587340f2f1dded38b6",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$37,
+      [nix.POS]: $pos[36],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/ga-IE/firefox-157.0.1.tar.xz",
       locale: "ga-IE",
       arch: "linux-x86_64",
       sha256: "65aa6cd90e03f93cd483dc4cd6ca79d07c0d2384a95ebc9757764c9f9dcc9535",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$38,
+      [nix.POS]: $pos[37],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/gd/firefox-157.0.1.tar.xz",
       locale: "gd",
       arch: "linux-x86_64",
       sha256: "45e54cd8bb1ef2755e4531d6442f08b224b6d84eaed02fc6a47779baea33fa2d",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$39,
+      [nix.POS]: $pos[38],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/gl/firefox-157.0.1.tar.xz",
       locale: "gl",
       arch: "linux-x86_64",
       sha256: "77fab7c8cfa98c6f59aad97d0107a6611ca0fdd69d8d71aeed0ccf455fb551a8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$40,
+      [nix.POS]: $pos[39],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/gn/firefox-157.0.1.tar.xz",
       locale: "gn",
       arch: "linux-x86_64",
       sha256: "0bb491ec0ab34e46287c928b338b4da52af543c6cfe5054d4eebf3c6e7291aca",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$41,
+      [nix.POS]: $pos[40],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/gu-IN/firefox-157.0.1.tar.xz",
       locale: "gu-IN",
       arch: "linux-x86_64",
       sha256: "d6b32d1cd797e58b99e1c0ec07463732d3cbc8ed02b862fdf536c2bf2eb451aa",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$42,
+      [nix.POS]: $pos[41],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/he/firefox-157.0.1.tar.xz",
       locale: "he",
       arch: "linux-x86_64",
       sha256: "3568e2b4321a5f5475be722921964c6adf7214e55eec66abca5a2ebd4a11066b",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$43,
+      [nix.POS]: $pos[42],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/hi-IN/firefox-157.0.1.tar.xz",
       locale: "hi-IN",
       arch: "linux-x86_64",
       sha256: "4571965a8e5e4e69140b1339beada9b6c78273785e06cc64406ffa5413992730",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$44,
+      [nix.POS]: $pos[43],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/hr/firefox-157.0.1.tar.xz",
       locale: "hr",
       arch: "linux-x86_64",
       sha256: "87fa1e727625fce98f9063c57d7d016935cf80e01908083b4eaee01dd65faa49",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$45,
+      [nix.POS]: $pos[44],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/hsb/firefox-157.0.1.tar.xz",
       locale: "hsb",
       arch: "linux-x86_64",
       sha256: "5b085e231e148a7cc2f6d116718b75160d4d1aea1d9947fd990379d2377a99cf",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$46,
+      [nix.POS]: $pos[45],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/hu/firefox-157.0.1.tar.xz",
       locale: "hu",
       arch: "linux-x86_64",
       sha256: "7c64d42d92a3b30d3461172844ae03d48eea4ff4f54c25d68bb6348f2e13b11b",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$47,
+      [nix.POS]: $pos[46],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/hy-AM/firefox-157.0.1.tar.xz",
       locale: "hy-AM",
       arch: "linux-x86_64",
       sha256: "aedef4f1abb0a339fa027db32a93e72f53d3dab2e452fb67f87f37995aed424f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$48,
+      [nix.POS]: $pos[47],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/ia/firefox-157.0.1.tar.xz",
       locale: "ia",
       arch: "linux-x86_64",
       sha256: "9cf7251a6724adbc72ee65f0f813e268ee82102e1b0db3a63dc169a4028ae0ac",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$49,
+      [nix.POS]: $pos[48],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/id/firefox-157.0.1.tar.xz",
       locale: "id",
       arch: "linux-x86_64",
       sha256: "e839e89896ce021336235ced03bcefc392038922ad4354cb870a159b522b9e58",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$50,
+      [nix.POS]: $pos[49],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/is/firefox-157.0.1.tar.xz",
       locale: "is",
       arch: "linux-x86_64",
       sha256: "13c72f89312552cbbd6f73684db4eb2c477c28be64b3bf11af85361dd63d7cee",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$51,
+      [nix.POS]: $pos[50],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/it/firefox-157.0.1.tar.xz",
       locale: "it",
       arch: "linux-x86_64",
       sha256: "714303fe0930fbcff2bf193f3299c560aa2971c693b554975db88a48751dccd1",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$52,
+      [nix.POS]: $pos[51],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/ja/firefox-157.0.1.tar.xz",
       locale: "ja",
       arch: "linux-x86_64",
       sha256: "6528e01c27fb0a8eb99ddf82c68b91c66daafd8823f0e1364f5245e2b157839d",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$53,
+      [nix.POS]: $pos[52],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/ka/firefox-157.0.1.tar.xz",
       locale: "ka",
       arch: "linux-x86_64",
       sha256: "21bfde25301904a17a747b616dd91e2a60ef5f4128c6e9bd47b25ddc962aac5a",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$54,
+      [nix.POS]: $pos[53],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/kab/firefox-157.0.1.tar.xz",
       locale: "kab",
       arch: "linux-x86_64",
       sha256: "ed68e577f451f3bca441124b3ae2453849ae5ab52708e2cfdd4f05791ce8b91c",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$55,
+      [nix.POS]: $pos[54],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/kk/firefox-157.0.1.tar.xz",
       locale: "kk",
       arch: "linux-x86_64",
       sha256: "71972b0d29a14bb380d2e48572d7d3d2aaac59efc84ffbd4b088c84173b08718",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$56,
+      [nix.POS]: $pos[55],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/km/firefox-157.0.1.tar.xz",
       locale: "km",
       arch: "linux-x86_64",
       sha256: "632805346f09140dabe089334775e45d1c433a7ffd1c95dd25dcd8fdcb50b7a7",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$57,
+      [nix.POS]: $pos[56],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/kn/firefox-157.0.1.tar.xz",
       locale: "kn",
       arch: "linux-x86_64",
       sha256: "3d72a787fc5781871576323e90ef799598bc2f212e315a65ac98c83e3eb23d8a",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$58,
+      [nix.POS]: $pos[57],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/ko/firefox-157.0.1.tar.xz",
       locale: "ko",
       arch: "linux-x86_64",
       sha256: "f31f88516b6583d1c579f5acb3d6da8979faf8c17f0d2cadda7ad355c2aebc37",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$59,
+      [nix.POS]: $pos[58],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/lij/firefox-157.0.1.tar.xz",
       locale: "lij",
       arch: "linux-x86_64",
       sha256: "f442ef137bea8619fff48518ace1e9912088eb5b95c59dfbed6ccfff557dda98",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$60,
+      [nix.POS]: $pos[59],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/lt/firefox-157.0.1.tar.xz",
       locale: "lt",
       arch: "linux-x86_64",
       sha256: "8188c9d063f1f69318ad4a65db5d98a4bde2562e5f8c71bfa2ce3ab4d5fcf9c5",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$61,
+      [nix.POS]: $pos[60],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/lv/firefox-157.0.1.tar.xz",
       locale: "lv",
       arch: "linux-x86_64",
       sha256: "456a6612967ff2621a5787a3f3e03fc19c8bbef7b5f6705366eab3bf8ed345b6",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$62,
+      [nix.POS]: $pos[61],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/mk/firefox-157.0.1.tar.xz",
       locale: "mk",
       arch: "linux-x86_64",
       sha256: "b54cd3552c735d5d0836bb34494045cbd8c90336731e8ef56adfe6543184c3e9",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$63,
+      [nix.POS]: $pos[62],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/mr/firefox-157.0.1.tar.xz",
       locale: "mr",
       arch: "linux-x86_64",
       sha256: "1c0b68ae3c30a1dd28b293f79ef559512ec22f5bcf1cfecc1af8c73408860f30",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$64,
+      [nix.POS]: $pos[63],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/ms/firefox-157.0.1.tar.xz",
       locale: "ms",
       arch: "linux-x86_64",
       sha256: "0bf0f47a8a8b8ef69627b9d159e69374232e54aed65daf4d07c753e2d48b26b6",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$65,
+      [nix.POS]: $pos[64],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/my/firefox-157.0.1.tar.xz",
       locale: "my",
       arch: "linux-x86_64",
       sha256: "7dd4644d90ef1a0a4266043b72c607a88efd54297eaefc6761528e2566d17cd3",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$66,
+      [nix.POS]: $pos[65],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/nb-NO/firefox-157.0.1.tar.xz",
       locale: "nb-NO",
       arch: "linux-x86_64",
       sha256: "dd798ce1bcff10449bf79f5bcfa7a346661f160b750868db828708675caf5110",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$67,
+      [nix.POS]: $pos[66],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/ne-NP/firefox-157.0.1.tar.xz",
       locale: "ne-NP",
       arch: "linux-x86_64",
       sha256: "13a13d288ce73dbdd2aff6fd3edc29559c554e0c6e2ca9180ce30e9c9274d85c",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$68,
+      [nix.POS]: $pos[67],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/nl/firefox-157.0.1.tar.xz",
       locale: "nl",
       arch: "linux-x86_64",
       sha256: "624224a9200ac7ba278fcada309ac1d5ca59453a1a157003bd343b3099a0fd19",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$69,
+      [nix.POS]: $pos[68],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/nn-NO/firefox-157.0.1.tar.xz",
       locale: "nn-NO",
       arch: "linux-x86_64",
       sha256: "6b9aea0be0e637703fc19db8c6d316784a90586218c06ea5ecb00cd179bf76de",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$70,
+      [nix.POS]: $pos[69],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/oc/firefox-157.0.1.tar.xz",
       locale: "oc",
       arch: "linux-x86_64",
       sha256: "daf6a1160650a4a4c73a73b2961d0f67fd5f8d1eacfb97eb0e43fa9e6cc06535",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$71,
+      [nix.POS]: $pos[70],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/pa-IN/firefox-157.0.1.tar.xz",
       locale: "pa-IN",
       arch: "linux-x86_64",
       sha256: "bef8997e2c35bdc2b4110ae48e51ad3fe883572e7e78c9e8b4223db4ab592e7a",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$72,
+      [nix.POS]: $pos[71],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/pl/firefox-157.0.1.tar.xz",
       locale: "pl",
       arch: "linux-x86_64",
       sha256: "d6ec126a2c35abc7cebe87e24ea1e08190b7fb3b7e5e6e1132c2592526b12dca",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$73,
+      [nix.POS]: $pos[72],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/pt-BR/firefox-157.0.1.tar.xz",
       locale: "pt-BR",
       arch: "linux-x86_64",
       sha256: "67fa3be4823069960f95bbe0a9b99eccbd5f518418022b43376d3f3ccd284ec8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$74,
+      [nix.POS]: $pos[73],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/pt-PT/firefox-157.0.1.tar.xz",
       locale: "pt-PT",
       arch: "linux-x86_64",
       sha256: "66eecf01d54c37523bb0c25ede705dffd267423de84ecef2156b70eb53204146",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$75,
+      [nix.POS]: $pos[74],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/rm/firefox-157.0.1.tar.xz",
       locale: "rm",
       arch: "linux-x86_64",
       sha256: "8c0f25c4b53bfc73f7711dc9eefd0475a39d3486706ecba4f26701a921e069e3",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$76,
+      [nix.POS]: $pos[75],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/ro/firefox-157.0.1.tar.xz",
       locale: "ro",
       arch: "linux-x86_64",
       sha256: "b4b1f529888e95ed344e58ca61e00a89f02aca68214d85c2d4ce69344b46773a",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$77,
+      [nix.POS]: $pos[76],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/ru/firefox-157.0.1.tar.xz",
       locale: "ru",
       arch: "linux-x86_64",
       sha256: "a937153fffc2ce3561f6c10d477da7a0687faa5d0ae374a9d7dcf0d8f9dd2422",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$78,
+      [nix.POS]: $pos[77],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/sat/firefox-157.0.1.tar.xz",
       locale: "sat",
       arch: "linux-x86_64",
       sha256: "bd6c0b3f27ab4a4579a91ffda6ddd233d4898c1e071dedf26e5d80e01969c847",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$79,
+      [nix.POS]: $pos[78],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/sc/firefox-157.0.1.tar.xz",
       locale: "sc",
       arch: "linux-x86_64",
       sha256: "7bf59f928646d601b6d8ddea128b744b18a8ce53065df64d8388181c53ccdd83",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$80,
+      [nix.POS]: $pos[79],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/sco/firefox-157.0.1.tar.xz",
       locale: "sco",
       arch: "linux-x86_64",
       sha256: "5cc8d29fea7625bff10a102639cc4abb919a4ba10d81c703d526574e89f4cce6",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$81,
+      [nix.POS]: $pos[80],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/si/firefox-157.0.1.tar.xz",
       locale: "si",
       arch: "linux-x86_64",
       sha256: "d8c097968e870e7bb7096b0bbecfe731928139865a8be13d217462f5627b7e76",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$82,
+      [nix.POS]: $pos[81],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/sk/firefox-157.0.1.tar.xz",
       locale: "sk",
       arch: "linux-x86_64",
       sha256: "e3827ba60ab2f5526bfd087c89e9da7a7be81ca6e3ed7c8a5b629dc9580d311b",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$83,
+      [nix.POS]: $pos[82],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/skr/firefox-157.0.1.tar.xz",
       locale: "skr",
       arch: "linux-x86_64",
       sha256: "8df96df149ea908da0e584cf2c61189199770b67dc6e689eb0012059ead9d319",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$84,
+      [nix.POS]: $pos[83],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/sl/firefox-157.0.1.tar.xz",
       locale: "sl",
       arch: "linux-x86_64",
       sha256: "f97ce3adaad5907db19455dc1d46eba24eb1b732ae478aad48939ed2526849ac",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$85,
+      [nix.POS]: $pos[84],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/son/firefox-157.0.1.tar.xz",
       locale: "son",
       arch: "linux-x86_64",
       sha256: "ad8c4cba5eb8d2119b641e2141152faf2d2eb96158a799a1816352b7b12b5ab3",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$86,
+      [nix.POS]: $pos[85],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/sq/firefox-157.0.1.tar.xz",
       locale: "sq",
       arch: "linux-x86_64",
       sha256: "7dd83b3cba1fe715167accbbf34fe997833726a0448a9462eda968016f0e44d0",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$87,
+      [nix.POS]: $pos[86],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/sr/firefox-157.0.1.tar.xz",
       locale: "sr",
       arch: "linux-x86_64",
       sha256: "235c8ce281a451b0e92c285bb452941fdc7fcce8b9b595832848448948693dca",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$88,
+      [nix.POS]: $pos[87],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/sv-SE/firefox-157.0.1.tar.xz",
       locale: "sv-SE",
       arch: "linux-x86_64",
       sha256: "a3849071a0d28ec343fb1532b4d63c9d6e44e4117a2551fe1c136600e4ce4e29",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$89,
+      [nix.POS]: $pos[88],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/szl/firefox-157.0.1.tar.xz",
       locale: "szl",
       arch: "linux-x86_64",
       sha256: "f20c13c346fac709f6ead654619b97c0606628a52fd85821aaf081332c437568",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$90,
+      [nix.POS]: $pos[89],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/ta/firefox-157.0.1.tar.xz",
       locale: "ta",
       arch: "linux-x86_64",
       sha256: "79df88bd4bf7992ceb599ce9abe7e94858c4970544d696e6155e47a7e1b7b921",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$91,
+      [nix.POS]: $pos[90],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/te/firefox-157.0.1.tar.xz",
       locale: "te",
       arch: "linux-x86_64",
       sha256: "d3f763da5b29327b0e12e02d382d8ea50b225e0d7a876b5e4686acdef0feea30",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$92,
+      [nix.POS]: $pos[91],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/tg/firefox-157.0.1.tar.xz",
       locale: "tg",
       arch: "linux-x86_64",
       sha256: "1ae7bf3cb8863b9b44a089b57709be81281a0fa7228687c64fedfd526c34f9b5",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$93,
+      [nix.POS]: $pos[92],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/th/firefox-157.0.1.tar.xz",
       locale: "th",
       arch: "linux-x86_64",
       sha256: "c4a55bae543a470311cc39cb850196597f57e5bf2f693dac6cef4cd4ce353226",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$94,
+      [nix.POS]: $pos[93],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/tl/firefox-157.0.1.tar.xz",
       locale: "tl",
       arch: "linux-x86_64",
       sha256: "956e172a73072d338e54404cd1f888370d9850797f6495023ba3b13b93407bbc",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$95,
+      [nix.POS]: $pos[94],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/tr/firefox-157.0.1.tar.xz",
       locale: "tr",
       arch: "linux-x86_64",
       sha256: "041fec001b0f4b267710202a2a1d68cc016f3bbb2f4e3afd5d64721d51aa46ba",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$96,
+      [nix.POS]: $pos[95],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/trs/firefox-157.0.1.tar.xz",
       locale: "trs",
       arch: "linux-x86_64",
       sha256: "468941154277ba6db825dcc8ed0d5cef3ed0d13f3bcf6240c269fbc846bcb9d1",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$97,
+      [nix.POS]: $pos[96],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/uk/firefox-157.0.1.tar.xz",
       locale: "uk",
       arch: "linux-x86_64",
       sha256: "7843ff5bd22caa80a5afc6bc5e1418e96a670f5b83093e2c7e59f30d34b21228",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$98,
+      [nix.POS]: $pos[97],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/ur/firefox-157.0.1.tar.xz",
       locale: "ur",
       arch: "linux-x86_64",
       sha256: "a34d033d0022e19a8a331a879a5f586cf37bb58fdd11791cc5ff3c51f5bc0a00",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$99,
+      [nix.POS]: $pos[98],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/uz/firefox-157.0.1.tar.xz",
       locale: "uz",
       arch: "linux-x86_64",
       sha256: "a129280034951c1e1fbd2b86e17f6b5f6b0319ef0b96a421e620800eb50b6584",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$100,
+      [nix.POS]: $pos[99],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/vi/firefox-157.0.1.tar.xz",
       locale: "vi",
       arch: "linux-x86_64",
       sha256: "8ef1417693e7d7748907a2d592fd4366911e1de74e032c823e81575d5e243dd3",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$101,
+      [nix.POS]: $pos[100],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/xh/firefox-157.0.1.tar.xz",
       locale: "xh",
       arch: "linux-x86_64",
       sha256: "36502f39a8a584e091daeba223db06a0c21dfdc3e0a2520cb34bb6b8ca0af903",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$102,
+      [nix.POS]: $pos[101],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/zh-CN/firefox-157.0.1.tar.xz",
       locale: "zh-CN",
       arch: "linux-x86_64",
       sha256: "3ea0fc7d4a8c2f83e4e28e30c2303134574151a1d6af4f4ae1fd07b9f67d9454",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$103,
+      [nix.POS]: $pos[102],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-x86_64/zh-TW/firefox-157.0.1.tar.xz",
       locale: "zh-TW",
       arch: "linux-x86_64",
       sha256: "58f8b1752de1d13bccbf852c1e9fb394f42f793c0b1c2487535aacc45e7b9e34",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$104,
+      [nix.POS]: $pos[103],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/ach/firefox-157.0.1.tar.xz",
       locale: "ach",
       arch: "linux-aarch64",
       sha256: "a3dae4561d7d5140376a98d3c74a1fe68b716ea84b3322ddc1492637f9ed47c9",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$105,
+      [nix.POS]: $pos[104],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/af/firefox-157.0.1.tar.xz",
       locale: "af",
       arch: "linux-aarch64",
       sha256: "515c9f62324b86fcce818f3217313a3caa2516375548f44d31fa7b1dba15f2b9",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$106,
+      [nix.POS]: $pos[105],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/an/firefox-157.0.1.tar.xz",
       locale: "an",
       arch: "linux-aarch64",
       sha256: "73cceb90aa7750eec65c99acabcde9eaf4b11d543d71ff420f2e5b133da1c76d",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$107,
+      [nix.POS]: $pos[106],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/ar/firefox-157.0.1.tar.xz",
       locale: "ar",
       arch: "linux-aarch64",
       sha256: "fff33e183059e86b9dc1dbf74a22aa283e6ee8ccd4f1888cabbc0a14a449cd0f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$108,
+      [nix.POS]: $pos[107],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/ast/firefox-157.0.1.tar.xz",
       locale: "ast",
       arch: "linux-aarch64",
       sha256: "97137e4864a906300bd7605916f20d95ca163aee2f1d4e97254186cac67d174f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$109,
+      [nix.POS]: $pos[108],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/az/firefox-157.0.1.tar.xz",
       locale: "az",
       arch: "linux-aarch64",
       sha256: "e39859d4453c57f91115b17a6ce0b47d4001a93b6bcb9fd3553fe3e0577da660",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$110,
+      [nix.POS]: $pos[109],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/be/firefox-157.0.1.tar.xz",
       locale: "be",
       arch: "linux-aarch64",
       sha256: "2868ee9f1d5dd2fa0dd8b0a6e88a399ac32cd64914fae32ecb85c36d1ca6ffa1",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$111,
+      [nix.POS]: $pos[110],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/bg/firefox-157.0.1.tar.xz",
       locale: "bg",
       arch: "linux-aarch64",
       sha256: "c968d4c27dedf0833860c68d803fba65a2d0145b9d0aec236670e9dc29508148",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$112,
+      [nix.POS]: $pos[111],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/bn/firefox-157.0.1.tar.xz",
       locale: "bn",
       arch: "linux-aarch64",
       sha256: "1c6363a76c70add5676411cc8c0d4b07d65d063060560d09f9844312be9110ed",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$113,
+      [nix.POS]: $pos[112],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/br/firefox-157.0.1.tar.xz",
       locale: "br",
       arch: "linux-aarch64",
       sha256: "cb2549a34067a236bebd449daac203fba8f9cb66e20b47f174675596ea9470ff",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$114,
+      [nix.POS]: $pos[113],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/bs/firefox-157.0.1.tar.xz",
       locale: "bs",
       arch: "linux-aarch64",
       sha256: "2afa3de7aca2a49fb3fad3bb20aca658551f795cd9112f2b3639d1326624c07e",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$115,
+      [nix.POS]: $pos[114],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/ca-valencia/firefox-157.0.1.tar.xz",
       locale: "ca-valencia",
       arch: "linux-aarch64",
       sha256: "ece53824f8061c430feb4e227bcc963af3cd0afe4804adc35eb99a262f6aec14",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$116,
+      [nix.POS]: $pos[115],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/ca/firefox-157.0.1.tar.xz",
       locale: "ca",
       arch: "linux-aarch64",
       sha256: "1833d0f92e928c50ad2b253dde2c9ac6045f1bc44553e15bf2eafa95b0f68044",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$117,
+      [nix.POS]: $pos[116],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/cak/firefox-157.0.1.tar.xz",
       locale: "cak",
       arch: "linux-aarch64",
       sha256: "7f0160b89c65365446eef5f7c3f28da04bbeac98018653a9b831d41159a3148e",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$118,
+      [nix.POS]: $pos[117],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/cs/firefox-157.0.1.tar.xz",
       locale: "cs",
       arch: "linux-aarch64",
       sha256: "017caf5018e418ff9d66eb4150e91c13a2681443ef1599152b2261fe85b299d2",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$119,
+      [nix.POS]: $pos[118],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/cy/firefox-157.0.1.tar.xz",
       locale: "cy",
       arch: "linux-aarch64",
       sha256: "edd4297063fa248e6a18c76eac16bd3f418d65946dc368952277729882db00d0",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$120,
+      [nix.POS]: $pos[119],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/da/firefox-157.0.1.tar.xz",
       locale: "da",
       arch: "linux-aarch64",
       sha256: "e0ba15c353dae719b7e91f5f8c7f8679dee5419c42c5e84aa08717bc33a9e036",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$121,
+      [nix.POS]: $pos[120],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/de/firefox-157.0.1.tar.xz",
       locale: "de",
       arch: "linux-aarch64",
       sha256: "4025fd11aa5d05d7b60316782b5e7027cd55e58a6eb7b450debbdf35adc7045b",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$122,
+      [nix.POS]: $pos[121],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/dsb/firefox-157.0.1.tar.xz",
       locale: "dsb",
       arch: "linux-aarch64",
       sha256: "684d0ef48d35744c2279a291af0799e99e3287be5b000e6b3a0bb518aab0f4ab",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$123,
+      [nix.POS]: $pos[122],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/el/firefox-157.0.1.tar.xz",
       locale: "el",
       arch: "linux-aarch64",
       sha256: "ebdd47ac369813e420a5209458b0945f7f5e2b16f2eb05757fe9543ea4d2c1cc",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$124,
+      [nix.POS]: $pos[123],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/en-CA/firefox-157.0.1.tar.xz",
       locale: "en-CA",
       arch: "linux-aarch64",
       sha256: "f7324e76648107ddb4c3c4f10b441c18cd8388c702b7f7ba191dcd8ac834c4d9",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$125,
+      [nix.POS]: $pos[124],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/en-GB/firefox-157.0.1.tar.xz",
       locale: "en-GB",
       arch: "linux-aarch64",
       sha256: "e2086c6ed72248cd5666677726f7a66009f6934c78d40ca16d63ecbacd35ebc8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$126,
+      [nix.POS]: $pos[125],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/en-US/firefox-157.0.1.tar.xz",
       locale: "en-US",
       arch: "linux-aarch64",
       sha256: "b99d44d1d64bf8133db1c28e77cafdf82216af90c0a94802f0f6578c9b722d7d",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$127,
+      [nix.POS]: $pos[126],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/eo/firefox-157.0.1.tar.xz",
       locale: "eo",
       arch: "linux-aarch64",
       sha256: "539bd0b9accde2ad5139b82bc946ecc6edcc2d9757430a4f6f4b84ab4a9c7d2a",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$128,
+      [nix.POS]: $pos[127],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/es-AR/firefox-157.0.1.tar.xz",
       locale: "es-AR",
       arch: "linux-aarch64",
       sha256: "55273858185614a716453289ba51c76326092b10f6090690a9da0a05bff191d8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$129,
+      [nix.POS]: $pos[128],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/es-CL/firefox-157.0.1.tar.xz",
       locale: "es-CL",
       arch: "linux-aarch64",
       sha256: "9a08a1ff3562e83530034893cf99628e7259a3ba8bffcaf45f05c1549fb8f451",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$130,
+      [nix.POS]: $pos[129],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/es-ES/firefox-157.0.1.tar.xz",
       locale: "es-ES",
       arch: "linux-aarch64",
       sha256: "97bd86e967c9ac1be24f156441e2eb69bfac4aa5b2adf0a8664a5199cd3fe8a0",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$131,
+      [nix.POS]: $pos[130],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/es-MX/firefox-157.0.1.tar.xz",
       locale: "es-MX",
       arch: "linux-aarch64",
       sha256: "fa98108cc3f5d9c08f175be0c7e392111b50f036fff598c77ce6fe078cec58e5",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$132,
+      [nix.POS]: $pos[131],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/et/firefox-157.0.1.tar.xz",
       locale: "et",
       arch: "linux-aarch64",
       sha256: "11818c56dcaff41ca78652d252e198b40a2eae26b04ec8027ec2728b8bbf9cc7",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$133,
+      [nix.POS]: $pos[132],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/eu/firefox-157.0.1.tar.xz",
       locale: "eu",
       arch: "linux-aarch64",
       sha256: "fdef4ac2066fa57bafeb5e2d762691ab87088be0e35dda8243e1c8423124c633",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$134,
+      [nix.POS]: $pos[133],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/fa/firefox-157.0.1.tar.xz",
       locale: "fa",
       arch: "linux-aarch64",
       sha256: "2d1b65e8d11100320aeb262027dd1d6820f27ec7e4366562d026e68bf0f16229",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$135,
+      [nix.POS]: $pos[134],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/ff/firefox-157.0.1.tar.xz",
       locale: "ff",
       arch: "linux-aarch64",
       sha256: "5652d293ce4fcb7f6e0835bd0bffe2502635deda8e1d2662187cf0222fde2444",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$136,
+      [nix.POS]: $pos[135],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/fi/firefox-157.0.1.tar.xz",
       locale: "fi",
       arch: "linux-aarch64",
       sha256: "4add212e8ea776b20d914dcece94c8a14921c7a683471553c3b007619ad9752e",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$137,
+      [nix.POS]: $pos[136],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/fr/firefox-157.0.1.tar.xz",
       locale: "fr",
       arch: "linux-aarch64",
       sha256: "932c72f9a1614fc26fd1b690afce554baf65d3aad0d1ad5cefb883412320d61d",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$138,
+      [nix.POS]: $pos[137],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/fur/firefox-157.0.1.tar.xz",
       locale: "fur",
       arch: "linux-aarch64",
       sha256: "127f6c6c5bddc867abaff1e052907ec874d01946d7844f71b583eae52600c0fe",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$139,
+      [nix.POS]: $pos[138],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/fy-NL/firefox-157.0.1.tar.xz",
       locale: "fy-NL",
       arch: "linux-aarch64",
       sha256: "df8487589396cf55bb87831b2d3918973c571147caa6569bcb23f00595168cd0",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$140,
+      [nix.POS]: $pos[139],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/ga-IE/firefox-157.0.1.tar.xz",
       locale: "ga-IE",
       arch: "linux-aarch64",
       sha256: "b11777059504fe5a3194380c8d1275db9b28dab7a8eabdd09b2ab168179b407a",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$141,
+      [nix.POS]: $pos[140],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/gd/firefox-157.0.1.tar.xz",
       locale: "gd",
       arch: "linux-aarch64",
       sha256: "d4a0722e4d9b31a1bb2e40ac5a8b7f097d6e135174a0642d761b55b59f4c9ccb",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$142,
+      [nix.POS]: $pos[141],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/gl/firefox-157.0.1.tar.xz",
       locale: "gl",
       arch: "linux-aarch64",
       sha256: "bdacac4c27408517b4a308ebc73a3e4dbe849904eb2a09072cc65b58f80543b7",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$143,
+      [nix.POS]: $pos[142],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/gn/firefox-157.0.1.tar.xz",
       locale: "gn",
       arch: "linux-aarch64",
       sha256: "fe90a8fcc5c1bf5c9f4feab7ef204c7a6b996198e42c9125894faf4ed3b67fed",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$144,
+      [nix.POS]: $pos[143],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/gu-IN/firefox-157.0.1.tar.xz",
       locale: "gu-IN",
       arch: "linux-aarch64",
       sha256: "c47616b873f43b65d1b47ce7a91a6f3b91cd61318440a62acd1811807218f58c",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$145,
+      [nix.POS]: $pos[144],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/he/firefox-157.0.1.tar.xz",
       locale: "he",
       arch: "linux-aarch64",
       sha256: "0688964ff98acfc8d5803f59f0307726cfb8f091b8bdc159b112a427030dd3c1",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$146,
+      [nix.POS]: $pos[145],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/hi-IN/firefox-157.0.1.tar.xz",
       locale: "hi-IN",
       arch: "linux-aarch64",
       sha256: "b9960b734c420b1cf68adc9378d66f4e418b0a56bef0fc54096a62a48d01c1df",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$147,
+      [nix.POS]: $pos[146],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/hr/firefox-157.0.1.tar.xz",
       locale: "hr",
       arch: "linux-aarch64",
       sha256: "953d26e77dbc57d9c86144d88133997a07e7d649f5a1ae0c6b4c991cce744267",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$148,
+      [nix.POS]: $pos[147],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/hsb/firefox-157.0.1.tar.xz",
       locale: "hsb",
       arch: "linux-aarch64",
       sha256: "4421b95ae6688a2a2b5bdb7d43a7027a4eb04bd5718ecfada55d502da095e000",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$149,
+      [nix.POS]: $pos[148],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/hu/firefox-157.0.1.tar.xz",
       locale: "hu",
       arch: "linux-aarch64",
       sha256: "fae6b38495ae6e7657010837cf8a33e1cb9b5772512adfb4773364bd0c363aeb",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$150,
+      [nix.POS]: $pos[149],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/hy-AM/firefox-157.0.1.tar.xz",
       locale: "hy-AM",
       arch: "linux-aarch64",
       sha256: "13254b2803e46f61158021bcf7cd2dc5af7ca7048822b3efc871e2d7d320c2ac",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$151,
+      [nix.POS]: $pos[150],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/ia/firefox-157.0.1.tar.xz",
       locale: "ia",
       arch: "linux-aarch64",
       sha256: "0ddeeac700506ebef1a15c34b3ea44eb840a20ee9e3ea35f93577230f63d013f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$152,
+      [nix.POS]: $pos[151],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/id/firefox-157.0.1.tar.xz",
       locale: "id",
       arch: "linux-aarch64",
       sha256: "515ac0b6cbe12268fd100fcdf7b3d424e482d93b43e261ec50ea4d49c85c9610",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$153,
+      [nix.POS]: $pos[152],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/is/firefox-157.0.1.tar.xz",
       locale: "is",
       arch: "linux-aarch64",
       sha256: "3d102326e2bf38f284a5ea3841cbce3fad96da181ca6e222914e7ea8f8f26833",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$154,
+      [nix.POS]: $pos[153],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/it/firefox-157.0.1.tar.xz",
       locale: "it",
       arch: "linux-aarch64",
       sha256: "35dd5e22d46641f047e3840c7a9ec317058a2a6b003da6da1cc5c096940dca6c",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$155,
+      [nix.POS]: $pos[154],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/ja/firefox-157.0.1.tar.xz",
       locale: "ja",
       arch: "linux-aarch64",
       sha256: "78bc164f2b16f9f066718576ecbe1b6a59b004aa9a0ab7766878c76a9b8e627c",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$156,
+      [nix.POS]: $pos[155],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/ka/firefox-157.0.1.tar.xz",
       locale: "ka",
       arch: "linux-aarch64",
       sha256: "ea217771d1bc5ece9b2b0bfc330cfebe861f3dcf44fd332bd4dbe84d883425ef",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$157,
+      [nix.POS]: $pos[156],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/kab/firefox-157.0.1.tar.xz",
       locale: "kab",
       arch: "linux-aarch64",
       sha256: "0357bbf1abfd461da3e31c06c5aeeee5bb27e51920e20eaa0173ff1ce0183588",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$158,
+      [nix.POS]: $pos[157],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/kk/firefox-157.0.1.tar.xz",
       locale: "kk",
       arch: "linux-aarch64",
       sha256: "921eacef61e4962e3f54aa9f92b34fef02e456d73282f7b313de13a4c6346520",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$159,
+      [nix.POS]: $pos[158],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/km/firefox-157.0.1.tar.xz",
       locale: "km",
       arch: "linux-aarch64",
       sha256: "f62c9110d703c814e106eba11d67ad818a3a9525eb0cfc08d92f5ef6b2965b15",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$160,
+      [nix.POS]: $pos[159],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/kn/firefox-157.0.1.tar.xz",
       locale: "kn",
       arch: "linux-aarch64",
       sha256: "146a170e189aeb09cc2c49f08663ad87659a6b2a612073234dd6e230ca54f237",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$161,
+      [nix.POS]: $pos[160],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/ko/firefox-157.0.1.tar.xz",
       locale: "ko",
       arch: "linux-aarch64",
       sha256: "1ebc06c9e4e8110f0454f609bdff519d7d8e6fe171e8907950d967938a99d718",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$162,
+      [nix.POS]: $pos[161],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/lij/firefox-157.0.1.tar.xz",
       locale: "lij",
       arch: "linux-aarch64",
       sha256: "14678af7b6812cdfd86feaacbe0341513bca52716e65ec152b3ade09988a8944",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$163,
+      [nix.POS]: $pos[162],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/lt/firefox-157.0.1.tar.xz",
       locale: "lt",
       arch: "linux-aarch64",
       sha256: "5584440152ddea661f28b805ab2b86d6a66c4a66c0bfee744fe6a5149616f8f4",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$164,
+      [nix.POS]: $pos[163],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/lv/firefox-157.0.1.tar.xz",
       locale: "lv",
       arch: "linux-aarch64",
       sha256: "5d1d8c35e61d10f4b1a592e85597dea32a6acfb5fc860dedb84f7251915f400f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$165,
+      [nix.POS]: $pos[164],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/mk/firefox-157.0.1.tar.xz",
       locale: "mk",
       arch: "linux-aarch64",
       sha256: "fc84705424b42792f0591e88dc4c473c4018d16d64a6e836214a8f1d01c39c00",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$166,
+      [nix.POS]: $pos[165],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/mr/firefox-157.0.1.tar.xz",
       locale: "mr",
       arch: "linux-aarch64",
       sha256: "bc8d73e90945c215dfe8be8a4af8c57b2aa2d56cd0677faefc6290b2f7ac05d3",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$167,
+      [nix.POS]: $pos[166],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/ms/firefox-157.0.1.tar.xz",
       locale: "ms",
       arch: "linux-aarch64",
       sha256: "a210be5887654e14a31c49de2095e62b4c169ea9584defa089a06a4127971c7c",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$168,
+      [nix.POS]: $pos[167],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/my/firefox-157.0.1.tar.xz",
       locale: "my",
       arch: "linux-aarch64",
       sha256: "eb008aaf53202d25d8871c715a1bc74c46c9667958c5f052b7257181839b095c",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$169,
+      [nix.POS]: $pos[168],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/nb-NO/firefox-157.0.1.tar.xz",
       locale: "nb-NO",
       arch: "linux-aarch64",
       sha256: "f271c1cc0096b23e2294e160eed869a131550c80b55f5fc1a61b4471f9e3c120",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$170,
+      [nix.POS]: $pos[169],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/ne-NP/firefox-157.0.1.tar.xz",
       locale: "ne-NP",
       arch: "linux-aarch64",
       sha256: "d64ea5607d7153afa7b301c4069b38c494b04e05c94d4c955a6ba7e47592e5ba",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$171,
+      [nix.POS]: $pos[170],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/nl/firefox-157.0.1.tar.xz",
       locale: "nl",
       arch: "linux-aarch64",
       sha256: "4279977e7aa5e78864594f20346dca5d13d30d35823c65593b57480228f526e3",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$172,
+      [nix.POS]: $pos[171],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/nn-NO/firefox-157.0.1.tar.xz",
       locale: "nn-NO",
       arch: "linux-aarch64",
       sha256: "77689b5b7ec4a8f893fe47b4c2e938209a63cb318c3b750a11cf7750ca415ec8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$173,
+      [nix.POS]: $pos[172],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/oc/firefox-157.0.1.tar.xz",
       locale: "oc",
       arch: "linux-aarch64",
       sha256: "fa0f8a80b12ba244fd4a82a4b69bccd9cabba8c1d8c4681e383d3720004aeda4",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$174,
+      [nix.POS]: $pos[173],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/pa-IN/firefox-157.0.1.tar.xz",
       locale: "pa-IN",
       arch: "linux-aarch64",
       sha256: "c589fc45b104b71113a67577faed615bee8ca3bf9d380837d46e5c1fbf11cd48",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$175,
+      [nix.POS]: $pos[174],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/pl/firefox-157.0.1.tar.xz",
       locale: "pl",
       arch: "linux-aarch64",
       sha256: "7014811a3d5cacdacecaf7a29ecfb0f5bd92be57c4440da0d588cbe98e76e6b0",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$176,
+      [nix.POS]: $pos[175],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/pt-BR/firefox-157.0.1.tar.xz",
       locale: "pt-BR",
       arch: "linux-aarch64",
       sha256: "116f84acabab0350bb2a29a15e8f4830956f11a173d02facedbde1a1f7762869",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$177,
+      [nix.POS]: $pos[176],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/pt-PT/firefox-157.0.1.tar.xz",
       locale: "pt-PT",
       arch: "linux-aarch64",
       sha256: "c7d4439e8d88a6ad338578aab0df2d50087afc3f11d4bea5a913d5ba31b44303",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$178,
+      [nix.POS]: $pos[177],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/rm/firefox-157.0.1.tar.xz",
       locale: "rm",
       arch: "linux-aarch64",
       sha256: "df9504e1d19df61f0b6f5d04203bd860cda14a10207b9a439358d7e7f67cbe52",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$179,
+      [nix.POS]: $pos[178],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/ro/firefox-157.0.1.tar.xz",
       locale: "ro",
       arch: "linux-aarch64",
       sha256: "3e2d8828cb3e5bfcced1f4de63ea0f40cb084a18eb134caa5d7144c43615d1de",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$180,
+      [nix.POS]: $pos[179],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/ru/firefox-157.0.1.tar.xz",
       locale: "ru",
       arch: "linux-aarch64",
       sha256: "1af94d13ac8fe10cf28330eb614196784b2face05018da470f8c03adf010f83f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$181,
+      [nix.POS]: $pos[180],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/sat/firefox-157.0.1.tar.xz",
       locale: "sat",
       arch: "linux-aarch64",
       sha256: "6862e0a2fa5b3291b7443b983eba77cf0f5455484ba6d709bfb8c38bcfb6ec65",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$182,
+      [nix.POS]: $pos[181],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/sc/firefox-157.0.1.tar.xz",
       locale: "sc",
       arch: "linux-aarch64",
       sha256: "856d423825d33cf0b0c266a657ae20b38fcdf44f97bd2ab5d8eaf104dcbcdd84",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$183,
+      [nix.POS]: $pos[182],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/sco/firefox-157.0.1.tar.xz",
       locale: "sco",
       arch: "linux-aarch64",
       sha256: "8687e54cf67412dafe57a79d24ded21bbb5a16e2793a9f74dfd84e9fedeb15fc",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$184,
+      [nix.POS]: $pos[183],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/si/firefox-157.0.1.tar.xz",
       locale: "si",
       arch: "linux-aarch64",
       sha256: "26ed6508c0fe9c3cd3d08f60e3c5ecd147ad8c792fb655094ba647b1646d2e11",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$185,
+      [nix.POS]: $pos[184],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/sk/firefox-157.0.1.tar.xz",
       locale: "sk",
       arch: "linux-aarch64",
       sha256: "47630cb089991ada7f8e816c957737fdb8dc2ed6260fb8ed758b0ee7aaec55f0",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$186,
+      [nix.POS]: $pos[185],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/skr/firefox-157.0.1.tar.xz",
       locale: "skr",
       arch: "linux-aarch64",
       sha256: "ea96d48368f02357e29c2f43ed8f5ebf3c295c43d01628d08bdd45e6a557c68f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$187,
+      [nix.POS]: $pos[186],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/sl/firefox-157.0.1.tar.xz",
       locale: "sl",
       arch: "linux-aarch64",
       sha256: "dbab2ed452176a24c9633c8ab14d81b7d2b2ebe9a09d7357175bb797c93f09ae",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$188,
+      [nix.POS]: $pos[187],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/son/firefox-157.0.1.tar.xz",
       locale: "son",
       arch: "linux-aarch64",
       sha256: "0ea80bf11f28e362254e62f9ba5123e12ff4d0ee71e4f26d843c1a0b5de4e6d3",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$189,
+      [nix.POS]: $pos[188],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/sq/firefox-157.0.1.tar.xz",
       locale: "sq",
       arch: "linux-aarch64",
       sha256: "6bfa5c799c761be56b06d88bcc8c6dd90291937688d552587f00456622d2e539",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$190,
+      [nix.POS]: $pos[189],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/sr/firefox-157.0.1.tar.xz",
       locale: "sr",
       arch: "linux-aarch64",
       sha256: "2c33dfc83fa02795f49e16d7ce2e90a3b44921a4e9d3498d986d64d80e7617bd",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$191,
+      [nix.POS]: $pos[190],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/sv-SE/firefox-157.0.1.tar.xz",
       locale: "sv-SE",
       arch: "linux-aarch64",
       sha256: "06db8537a03aa76c127804cc4291a97ea9d9d025a176585666b5b17da52718a2",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$192,
+      [nix.POS]: $pos[191],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/szl/firefox-157.0.1.tar.xz",
       locale: "szl",
       arch: "linux-aarch64",
       sha256: "160670ae647b287c50b6d293036c74456b441f9121987063b0073aff8bd6b4e0",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$193,
+      [nix.POS]: $pos[192],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/ta/firefox-157.0.1.tar.xz",
       locale: "ta",
       arch: "linux-aarch64",
       sha256: "d76853b8329b0e15dc24dfed2d1048d994e444c5c2459a2d78e3840314dbee0e",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$194,
+      [nix.POS]: $pos[193],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/te/firefox-157.0.1.tar.xz",
       locale: "te",
       arch: "linux-aarch64",
       sha256: "47b52bd01b89df0acbca32dfb215d94ef5a7bda1802d80d73c4a63d0db8a4440",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$195,
+      [nix.POS]: $pos[194],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/tg/firefox-157.0.1.tar.xz",
       locale: "tg",
       arch: "linux-aarch64",
       sha256: "7a9d910437085e8cf4b3905b72ef4394db1e695249b4a38596f03529399b1a7e",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$196,
+      [nix.POS]: $pos[195],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/th/firefox-157.0.1.tar.xz",
       locale: "th",
       arch: "linux-aarch64",
       sha256: "afd387aa8567c297f714349e8695a2927805d0590ae86f490ddfcc660a43ad57",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$197,
+      [nix.POS]: $pos[196],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/tl/firefox-157.0.1.tar.xz",
       locale: "tl",
       arch: "linux-aarch64",
       sha256: "8d8ea2a2ed69582b17aac4be90662df04ff4c9029dbdf8741b579c301771d013",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$198,
+      [nix.POS]: $pos[197],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/tr/firefox-157.0.1.tar.xz",
       locale: "tr",
       arch: "linux-aarch64",
       sha256: "b183766ad3fa5f0edf5432692f0448841d2e3f8621243c87528a7f40bcaa136e",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$199,
+      [nix.POS]: $pos[198],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/trs/firefox-157.0.1.tar.xz",
       locale: "trs",
       arch: "linux-aarch64",
       sha256: "781911b35020dadc618384ab320da2648535905da7a76526dc671b94ad0d3594",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$200,
+      [nix.POS]: $pos[199],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/uk/firefox-157.0.1.tar.xz",
       locale: "uk",
       arch: "linux-aarch64",
       sha256: "a6fbbb8a9e0752935773fa8c81f819ded5477dd99646af69ead4aace92b90b80",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$201,
+      [nix.POS]: $pos[200],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/ur/firefox-157.0.1.tar.xz",
       locale: "ur",
       arch: "linux-aarch64",
       sha256: "39448e57e92efa63a18e186dfe0ebd98b619bd40bc9618cd4592840a1a78f7b1",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$202,
+      [nix.POS]: $pos[201],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/uz/firefox-157.0.1.tar.xz",
       locale: "uz",
       arch: "linux-aarch64",
       sha256: "49ae467dafd15f48236198dfc2350f968a1f4920482597d424996a94e8ec894b",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$203,
+      [nix.POS]: $pos[202],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/vi/firefox-157.0.1.tar.xz",
       locale: "vi",
       arch: "linux-aarch64",
       sha256: "e4e0f9c6014ea979858c054cc4e6f28eb762f4a47c8b789ce8411c1803d360f8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$204,
+      [nix.POS]: $pos[203],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/xh/firefox-157.0.1.tar.xz",
       locale: "xh",
       arch: "linux-aarch64",
       sha256: "288daeef054848d2403908ceaf100da75077ebde86580696065fb539d7d2b241",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$205,
+      [nix.POS]: $pos[204],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/zh-CN/firefox-157.0.1.tar.xz",
       locale: "zh-CN",
       arch: "linux-aarch64",
       sha256: "2f5c93f3539069f0f5b8000fc2037e1522ff0515813bee23024882d8062c68b8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$206,
+      [nix.POS]: $pos[205],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/linux-aarch64/zh-TW/firefox-157.0.1.tar.xz",
       locale: "zh-TW",
       arch: "linux-aarch64",
       sha256: "f9bbd86bf12cf03c227ca8cc3b1f66abe723730e492860d29f7a4d10aaaa9df3",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$207,
+      [nix.POS]: $pos[206],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/ach/Firefox%20157.0.1.dmg",
       locale: "ach",
       arch: "mac",
       sha256: "899c960cc9512001fd302f1ac7878ead1f685464b8bc4f5286b0f2bd9a9606a9",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$208,
+      [nix.POS]: $pos[207],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/af/Firefox%20157.0.1.dmg",
       locale: "af",
       arch: "mac",
       sha256: "7b7afa3668778e9e172fb5f19f4f8c3a458cf3819e7c938eaef71d78a350266c",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$209,
+      [nix.POS]: $pos[208],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/an/Firefox%20157.0.1.dmg",
       locale: "an",
       arch: "mac",
       sha256: "12ba7760605cbb7f27e14722640abe23c43df978c5b0cda28b911ee8e4ed69f8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$210,
+      [nix.POS]: $pos[209],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/ar/Firefox%20157.0.1.dmg",
       locale: "ar",
       arch: "mac",
       sha256: "ebc40cfc23ec5eff16d17cbc762e2e4a3d64f290ac9eb433eddc4a8fecc979d3",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$211,
+      [nix.POS]: $pos[210],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/ast/Firefox%20157.0.1.dmg",
       locale: "ast",
       arch: "mac",
       sha256: "ea34e4898bf517fb6321d87b39ea487f889f7deccfb4131bb0b191f9e93bb46f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$212,
+      [nix.POS]: $pos[211],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/az/Firefox%20157.0.1.dmg",
       locale: "az",
       arch: "mac",
       sha256: "ce0c8665c371cc139f62b6c286a0c206854cb234d3334d4bf52284cab68f59dd",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$213,
+      [nix.POS]: $pos[212],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/be/Firefox%20157.0.1.dmg",
       locale: "be",
       arch: "mac",
       sha256: "fa66564e63ac24be951e65164e6ffa5b6f15b71edae9470dbd3bc7f6abc589f2",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$214,
+      [nix.POS]: $pos[213],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/bg/Firefox%20157.0.1.dmg",
       locale: "bg",
       arch: "mac",
       sha256: "fcf475f52dfd37ed51dc6979d2a11f6e7b9091b1b3fcde9e486e93fa0f31b845",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$215,
+      [nix.POS]: $pos[214],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/bn/Firefox%20157.0.1.dmg",
       locale: "bn",
       arch: "mac",
       sha256: "f6619040eb3b014b19b179a70bdd18d95995cc0c5a9c7b3756790c701802912d",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$216,
+      [nix.POS]: $pos[215],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/br/Firefox%20157.0.1.dmg",
       locale: "br",
       arch: "mac",
       sha256: "649158c60699b7a1780083412943098f4dbaef785d6602924b9f12176a09baec",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$217,
+      [nix.POS]: $pos[216],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/bs/Firefox%20157.0.1.dmg",
       locale: "bs",
       arch: "mac",
       sha256: "8953c23189c5fb1ad52f5f472719cee24784445049917659e11447ae067332d2",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$218,
+      [nix.POS]: $pos[217],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/ca-valencia/Firefox%20157.0.1.dmg",
       locale: "ca-valencia",
       arch: "mac",
       sha256: "6097d7f038ac8c7d4988ca6b5b677ab3377cff09d4d5b74798fa7b32f1177147",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$219,
+      [nix.POS]: $pos[218],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/ca/Firefox%20157.0.1.dmg",
       locale: "ca",
       arch: "mac",
       sha256: "d0b569176e18cb34132ffaa9bfba02ee92df403bd4a44a8efe05eccd8ece5295",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$220,
+      [nix.POS]: $pos[219],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/cak/Firefox%20157.0.1.dmg",
       locale: "cak",
       arch: "mac",
       sha256: "5d5ca4a256d968818e4bd1123aa31245663b62007e61a2b15e619dbef905412c",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$221,
+      [nix.POS]: $pos[220],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/cs/Firefox%20157.0.1.dmg",
       locale: "cs",
       arch: "mac",
       sha256: "900ed50251f6c1b1825595ec18aefea716edc585f9d81cb44bcc88e34082c857",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$222,
+      [nix.POS]: $pos[221],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/cy/Firefox%20157.0.1.dmg",
       locale: "cy",
       arch: "mac",
       sha256: "d160db5321ee630820f39df305010aff3c6348636e4c224ccd543c84396d4dbf",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$223,
+      [nix.POS]: $pos[222],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/da/Firefox%20157.0.1.dmg",
       locale: "da",
       arch: "mac",
       sha256: "7499d5dbe6171eedde549771a1f4348c5574a4ae8f0a2b41a0d78614a8df6e3e",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$224,
+      [nix.POS]: $pos[223],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/de/Firefox%20157.0.1.dmg",
       locale: "de",
       arch: "mac",
       sha256: "fd97bd556de50c56a2d642c272e41626d32de7df0afec8cc5bef71786208032b",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$225,
+      [nix.POS]: $pos[224],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/dsb/Firefox%20157.0.1.dmg",
       locale: "dsb",
       arch: "mac",
       sha256: "6c2ea8ccc22d27539d8cb59057ee86d99502b7c8a225c048d0b00e9e9341a1d0",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$226,
+      [nix.POS]: $pos[225],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/el/Firefox%20157.0.1.dmg",
       locale: "el",
       arch: "mac",
       sha256: "e5f3931fd9158991c4c6a5f956b32f308b9a8c74664ea688752b574aad07a390",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$227,
+      [nix.POS]: $pos[226],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/en-CA/Firefox%20157.0.1.dmg",
       locale: "en-CA",
       arch: "mac",
       sha256: "13914be1b24772e72fd62de3650f781f57aa37b6c2bcde167dffbe1a3315882f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$228,
+      [nix.POS]: $pos[227],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/en-GB/Firefox%20157.0.1.dmg",
       locale: "en-GB",
       arch: "mac",
       sha256: "f7709e35f2a87bd07e3281a357470c189b49970fad652f7f4ee7ad77c465f1ac",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$229,
+      [nix.POS]: $pos[228],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/en-US/Firefox%20157.0.1.dmg",
       locale: "en-US",
       arch: "mac",
       sha256: "40a0a649120635460256dae9ad63e40377f77326cbc9c449a5d0a1d7f5dd7982",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$230,
+      [nix.POS]: $pos[229],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/eo/Firefox%20157.0.1.dmg",
       locale: "eo",
       arch: "mac",
       sha256: "24209f75c8197017b6ac8c5435823642c48df7e350c9baa9b189598030e74490",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$231,
+      [nix.POS]: $pos[230],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/es-AR/Firefox%20157.0.1.dmg",
       locale: "es-AR",
       arch: "mac",
       sha256: "e6d935a3d7872951db90c40f9c566aa3b6dfece23a5cb4f89e1931f40b062be9",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$232,
+      [nix.POS]: $pos[231],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/es-CL/Firefox%20157.0.1.dmg",
       locale: "es-CL",
       arch: "mac",
       sha256: "4056055be06aa405a05b8e251a8bd8515f6d3e5ee24a4d238d63d98fcbbf2e18",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$233,
+      [nix.POS]: $pos[232],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/es-ES/Firefox%20157.0.1.dmg",
       locale: "es-ES",
       arch: "mac",
       sha256: "d0280f13be7b27b95a6be34a7fb4b26692e43c1807c10826f59e7cbdc3bb39ae",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$234,
+      [nix.POS]: $pos[233],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/es-MX/Firefox%20157.0.1.dmg",
       locale: "es-MX",
       arch: "mac",
       sha256: "1031d5bacb1cb36da77bd6e4f6261a19a0e3bebc89e0d07b15cd063055b29f9f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$235,
+      [nix.POS]: $pos[234],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/et/Firefox%20157.0.1.dmg",
       locale: "et",
       arch: "mac",
       sha256: "6441c16ee214fd1b31704ce513528f14fd7e0e2a9ffb4ccd5d63fba4d74c18ae",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$236,
+      [nix.POS]: $pos[235],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/eu/Firefox%20157.0.1.dmg",
       locale: "eu",
       arch: "mac",
       sha256: "f37f29bf27305e844b9a64b2c37aa5c5830f54abef36a3022785f0f8489f78ea",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$237,
+      [nix.POS]: $pos[236],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/fa/Firefox%20157.0.1.dmg",
       locale: "fa",
       arch: "mac",
       sha256: "7dcb1cd06070dd7c5bd23bf3f9ca866103401f2fc074bfe01324e437df6803b1",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$238,
+      [nix.POS]: $pos[237],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/ff/Firefox%20157.0.1.dmg",
       locale: "ff",
       arch: "mac",
       sha256: "28af20f9036d4f3b8ed5ed7c216df0bf4931e7b003873e80e80dd4a5095aaad1",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$239,
+      [nix.POS]: $pos[238],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/fi/Firefox%20157.0.1.dmg",
       locale: "fi",
       arch: "mac",
       sha256: "09b24d49a644291d5f38c483c2ad7a8f7ea9a4107c0a477170570e5ca95843ac",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$240,
+      [nix.POS]: $pos[239],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/fr/Firefox%20157.0.1.dmg",
       locale: "fr",
       arch: "mac",
       sha256: "48e4f401c0b68c2adc947ba5e7049cab18057242242d135eb3d2cf9f139d0a67",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$241,
+      [nix.POS]: $pos[240],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/fur/Firefox%20157.0.1.dmg",
       locale: "fur",
       arch: "mac",
       sha256: "59f6feeed4581e3a0128fa3fdf07ca959618d097d11b8db3da2c9b8a26293f69",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$242,
+      [nix.POS]: $pos[241],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/fy-NL/Firefox%20157.0.1.dmg",
       locale: "fy-NL",
       arch: "mac",
       sha256: "205d67656be91dfe92aa01c142c058a619357fcb180aa1c1cdc8313e0bbc0a69",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$243,
+      [nix.POS]: $pos[242],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/ga-IE/Firefox%20157.0.1.dmg",
       locale: "ga-IE",
       arch: "mac",
       sha256: "b086e320246213e76eb4c7a7724b3a00da9fba7f02624bd80050ccc4a4166594",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$244,
+      [nix.POS]: $pos[243],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/gd/Firefox%20157.0.1.dmg",
       locale: "gd",
       arch: "mac",
       sha256: "dadf2c0a6e11e51a5613ddfd660ea7a12ca6d5e10301085d71747b5abad0d0b2",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$245,
+      [nix.POS]: $pos[244],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/gl/Firefox%20157.0.1.dmg",
       locale: "gl",
       arch: "mac",
       sha256: "4aa918db717ce11f9c51d745b2a793da9c468676b89e72a25bc88af6dc6977c8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$246,
+      [nix.POS]: $pos[245],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/gn/Firefox%20157.0.1.dmg",
       locale: "gn",
       arch: "mac",
       sha256: "18abcf1adacc7a7086f38e8e6738e393acb47772b71481b58f1aca0fbb94a92f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$247,
+      [nix.POS]: $pos[246],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/gu-IN/Firefox%20157.0.1.dmg",
       locale: "gu-IN",
       arch: "mac",
       sha256: "b8d39780ddc7756d8416f73709443f9c050b18d035ecb45e7ef681bd8814acb4",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$248,
+      [nix.POS]: $pos[247],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/he/Firefox%20157.0.1.dmg",
       locale: "he",
       arch: "mac",
       sha256: "c18d579b31596eac6c3a94dd48512c13b44b8ea44c935f057246a03cdf0b0bc5",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$249,
+      [nix.POS]: $pos[248],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/hi-IN/Firefox%20157.0.1.dmg",
       locale: "hi-IN",
       arch: "mac",
       sha256: "f926118d40a68f23faab7447afb52c0a8ff417abb246762940d0223ff8579c40",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$250,
+      [nix.POS]: $pos[249],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/hr/Firefox%20157.0.1.dmg",
       locale: "hr",
       arch: "mac",
       sha256: "a60335ac70b4fa4e43319b305d1767d93d40d11a629581ef357d7179471acffd",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$251,
+      [nix.POS]: $pos[250],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/hsb/Firefox%20157.0.1.dmg",
       locale: "hsb",
       arch: "mac",
       sha256: "68ed5197daf05ca0debe3d05d4bac3c77033f4b718e4f9e0c1929f02f2638115",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$252,
+      [nix.POS]: $pos[251],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/hu/Firefox%20157.0.1.dmg",
       locale: "hu",
       arch: "mac",
       sha256: "ac93ecad23f06f130e4d5612b824320dd27d5c53a633fce2b3ea397ac312dc15",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$253,
+      [nix.POS]: $pos[252],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/hy-AM/Firefox%20157.0.1.dmg",
       locale: "hy-AM",
       arch: "mac",
       sha256: "c736681d11e089058b06900025d83fb870caf5ea022ab8dc54aaa02172a62043",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$254,
+      [nix.POS]: $pos[253],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/ia/Firefox%20157.0.1.dmg",
       locale: "ia",
       arch: "mac",
       sha256: "ff5296aeb65742980465ae065521c55723f07b950004016cfe30b9bb0c48fb83",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$255,
+      [nix.POS]: $pos[254],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/id/Firefox%20157.0.1.dmg",
       locale: "id",
       arch: "mac",
       sha256: "1991760333da969225a7fd88fec1e4bda5947cb71994df30bd257450d47290a4",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$256,
+      [nix.POS]: $pos[255],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/is/Firefox%20157.0.1.dmg",
       locale: "is",
       arch: "mac",
       sha256: "07605e95480e6b0e34308c4b0b32d25f87576a18295849ab6e8ef2d990690ad4",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$257,
+      [nix.POS]: $pos[256],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/it/Firefox%20157.0.1.dmg",
       locale: "it",
       arch: "mac",
       sha256: "fb9165a6679f6765ff7c0db3a3101b0f09281b435323677a95bbbb39f20d95c1",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$258,
+      [nix.POS]: $pos[257],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/ja-JP-mac/Firefox%20157.0.1.dmg",
       locale: "ja-JP-mac",
       arch: "mac",
       sha256: "9ad338e29a7430165a7baded2707d3fe093516d443db490db03f08d2aba09754",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$259,
+      [nix.POS]: $pos[258],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/ka/Firefox%20157.0.1.dmg",
       locale: "ka",
       arch: "mac",
       sha256: "ac547b73c8e57274b3cf7520fff4a97b584252d52c10541e9f1b39d49e549167",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$260,
+      [nix.POS]: $pos[259],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/kab/Firefox%20157.0.1.dmg",
       locale: "kab",
       arch: "mac",
       sha256: "03da6f7e90e9e5d4c363688548335341ea2d4f187aec71e6b9ad63b7fd84289d",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$261,
+      [nix.POS]: $pos[260],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/kk/Firefox%20157.0.1.dmg",
       locale: "kk",
       arch: "mac",
       sha256: "a24744ac2ef11bb6273ad002ef7aabfa39a4ae6af6e24b522330336bc9f73db2",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$262,
+      [nix.POS]: $pos[261],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/km/Firefox%20157.0.1.dmg",
       locale: "km",
       arch: "mac",
       sha256: "768fd0fc9921cd71297cee02e3bd95ad745603464284111ae03e8c0792bb07c4",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$263,
+      [nix.POS]: $pos[262],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/kn/Firefox%20157.0.1.dmg",
       locale: "kn",
       arch: "mac",
       sha256: "f8828c3777ce8f31d384a7366d365eb9dbbe6e7df362469360d4ffbd5db2d510",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$264,
+      [nix.POS]: $pos[263],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/ko/Firefox%20157.0.1.dmg",
       locale: "ko",
       arch: "mac",
       sha256: "ac8e0b13956a3a519e0878fa09f3b4dbcf7b62a00f79c1f31190aee635edccb1",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$265,
+      [nix.POS]: $pos[264],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/lij/Firefox%20157.0.1.dmg",
       locale: "lij",
       arch: "mac",
       sha256: "2080e4d097edafef3e08f8d72b22e5cf9fde1f0c2a33dc493e033dd14954a79e",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$266,
+      [nix.POS]: $pos[265],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/lt/Firefox%20157.0.1.dmg",
       locale: "lt",
       arch: "mac",
       sha256: "c7fccf68d14bc6298d50b1b23b692f679c1b42e1b095b34388797e36c58547c5",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$267,
+      [nix.POS]: $pos[266],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/lv/Firefox%20157.0.1.dmg",
       locale: "lv",
       arch: "mac",
       sha256: "80d181d7bb47b088e56d05aa93e0ca1f6d351c523490568fdeecd8c207a7707a",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$268,
+      [nix.POS]: $pos[267],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/mk/Firefox%20157.0.1.dmg",
       locale: "mk",
       arch: "mac",
       sha256: "b13f8eb1106559dfbca5dd88212569f392a6ffa0c6ff033eaa0eed2cfea0509a",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$269,
+      [nix.POS]: $pos[268],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/mr/Firefox%20157.0.1.dmg",
       locale: "mr",
       arch: "mac",
       sha256: "5a9c759eca06820f227f9d0d23102696b68e934e3842461decb4c3eaaa8c050d",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$270,
+      [nix.POS]: $pos[269],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/ms/Firefox%20157.0.1.dmg",
       locale: "ms",
       arch: "mac",
       sha256: "ccc942c5eea8a58ecf45a9b69d0a282929ecbf834343f01f587f0d7196043dfe",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$271,
+      [nix.POS]: $pos[270],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/my/Firefox%20157.0.1.dmg",
       locale: "my",
       arch: "mac",
       sha256: "c3dd80770c689d9e9bfa0779ba66012cfc777a4a6497f61b25c9e4e7ba092448",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$272,
+      [nix.POS]: $pos[271],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/nb-NO/Firefox%20157.0.1.dmg",
       locale: "nb-NO",
       arch: "mac",
       sha256: "73a7a95a4d1fd417ece1862d55442138bf32f4bb2a9ebe644cd7748aee80808e",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$273,
+      [nix.POS]: $pos[272],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/ne-NP/Firefox%20157.0.1.dmg",
       locale: "ne-NP",
       arch: "mac",
       sha256: "2b76c781db6b036a2c9bef2b18ef2f13ea9847d78e2b2e965d5859626df84bfb",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$274,
+      [nix.POS]: $pos[273],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/nl/Firefox%20157.0.1.dmg",
       locale: "nl",
       arch: "mac",
       sha256: "c2b8162d87760809c7425e8344023b634c62a7f3430d0026203c2ee9a49053b6",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$275,
+      [nix.POS]: $pos[274],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/nn-NO/Firefox%20157.0.1.dmg",
       locale: "nn-NO",
       arch: "mac",
       sha256: "14594f330adc260ec0c8aaef38a507eb3ec442b6b42e5f05c9394fccd19f0d3e",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$276,
+      [nix.POS]: $pos[275],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/oc/Firefox%20157.0.1.dmg",
       locale: "oc",
       arch: "mac",
       sha256: "fed17d5fe6a4fce84ddca30027f53780558a528cd57b60e06aef664fe42ac35f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$277,
+      [nix.POS]: $pos[276],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/pa-IN/Firefox%20157.0.1.dmg",
       locale: "pa-IN",
       arch: "mac",
       sha256: "cf19411c4452987ab3f3c9c00f3b358e562dc9dde71c2076abdf00d2441405a1",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$278,
+      [nix.POS]: $pos[277],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/pl/Firefox%20157.0.1.dmg",
       locale: "pl",
       arch: "mac",
       sha256: "80be1bf8dc916f59a103407029c9001a281fbd9a9d223b1ea46aa0757be5d3eb",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$279,
+      [nix.POS]: $pos[278],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/pt-BR/Firefox%20157.0.1.dmg",
       locale: "pt-BR",
       arch: "mac",
       sha256: "75d8ad68ef90aa72a4a6f0f43bdc85144f2edd79a43aa1b939a2e8c4d318e21c",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$280,
+      [nix.POS]: $pos[279],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/pt-PT/Firefox%20157.0.1.dmg",
       locale: "pt-PT",
       arch: "mac",
       sha256: "862982f8891e78613939347cc0c2bc3a69cd881d3dede44c0e0e26582e852430",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$281,
+      [nix.POS]: $pos[280],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/rm/Firefox%20157.0.1.dmg",
       locale: "rm",
       arch: "mac",
       sha256: "e7e1dd6d861085017ab8669ad6dc012953a6d8e0f56eae95ed3d27ba480faa04",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$282,
+      [nix.POS]: $pos[281],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/ro/Firefox%20157.0.1.dmg",
       locale: "ro",
       arch: "mac",
       sha256: "317caec72712fae6834bd0c8878d3ff46abf005b036255d4f4f4c6b0ac638697",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$283,
+      [nix.POS]: $pos[282],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/ru/Firefox%20157.0.1.dmg",
       locale: "ru",
       arch: "mac",
       sha256: "146a0ab541dbe2d18ac87d80ab2fc7cb79b03948f05ac10124f069370bb87373",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$284,
+      [nix.POS]: $pos[283],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/sat/Firefox%20157.0.1.dmg",
       locale: "sat",
       arch: "mac",
       sha256: "b092e145fef3def98c86ed41d7071a79948619af1bddaa494838d5fcbc85e065",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$285,
+      [nix.POS]: $pos[284],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/sc/Firefox%20157.0.1.dmg",
       locale: "sc",
       arch: "mac",
       sha256: "5ee1f6cb18338a3c7b68ad94b94b825c0307b21b0af216bc6dae04bdf9e5b782",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$286,
+      [nix.POS]: $pos[285],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/sco/Firefox%20157.0.1.dmg",
       locale: "sco",
       arch: "mac",
       sha256: "5b9db262a01015bd8539e9d94e6cb86425271c21e347e8c178e766f8a6770170",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$287,
+      [nix.POS]: $pos[286],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/si/Firefox%20157.0.1.dmg",
       locale: "si",
       arch: "mac",
       sha256: "834d3d44ba6e9b0cb43b12464258f240b0d4db644c6b1b851d8cb31a2dd3dc83",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$288,
+      [nix.POS]: $pos[287],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/sk/Firefox%20157.0.1.dmg",
       locale: "sk",
       arch: "mac",
       sha256: "a3cac3ca3a1ead4f30bfa31f4b390d4a5f344f58d8e8cdf143a85d6807894fd5",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$289,
+      [nix.POS]: $pos[288],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/skr/Firefox%20157.0.1.dmg",
       locale: "skr",
       arch: "mac",
       sha256: "24e9e651398f380fcc30ca330b0bffca939b25e51c8ee20ced1ebd54adf643ad",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$290,
+      [nix.POS]: $pos[289],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/sl/Firefox%20157.0.1.dmg",
       locale: "sl",
       arch: "mac",
       sha256: "28ba60c2fa8bdae9841ba0e41ac94652584488707213590a8c084089b5dcff99",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$291,
+      [nix.POS]: $pos[290],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/son/Firefox%20157.0.1.dmg",
       locale: "son",
       arch: "mac",
       sha256: "b9b75e3c8495023b7e0929b51c708dce3eeebc2a3b5e72fd637371f3a22e4860",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$292,
+      [nix.POS]: $pos[291],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/sq/Firefox%20157.0.1.dmg",
       locale: "sq",
       arch: "mac",
       sha256: "8a81516d38633bcc9366c33dd0ebccfd5274c3a29b9b49b1bfe0d1bc80a4f815",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$293,
+      [nix.POS]: $pos[292],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/sr/Firefox%20157.0.1.dmg",
       locale: "sr",
       arch: "mac",
       sha256: "acf3795dabb05e32440c3939a8b3c3e58fdb6f6a94129f062d555dec3d80374d",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$294,
+      [nix.POS]: $pos[293],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/sv-SE/Firefox%20157.0.1.dmg",
       locale: "sv-SE",
       arch: "mac",
       sha256: "935f3f6a64e3cdc7f454b3825b75b6ad125339c85cb85c40da76325dd2ead6a2",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$295,
+      [nix.POS]: $pos[294],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/szl/Firefox%20157.0.1.dmg",
       locale: "szl",
       arch: "mac",
       sha256: "059b4815aa35eaff913947be97e41967181f22d23ffb19cd37995aaac6631e1f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$296,
+      [nix.POS]: $pos[295],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/ta/Firefox%20157.0.1.dmg",
       locale: "ta",
       arch: "mac",
       sha256: "44322c7e36c813f5cde9838f9364e76fbe5903994346a0e866ba67f03c200a95",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$297,
+      [nix.POS]: $pos[296],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/te/Firefox%20157.0.1.dmg",
       locale: "te",
       arch: "mac",
       sha256: "4d383ea8ce50c0ff8635c633e02999374d9cc8cf6675abe1027174a812b5550b",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$298,
+      [nix.POS]: $pos[297],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/tg/Firefox%20157.0.1.dmg",
       locale: "tg",
       arch: "mac",
       sha256: "886838a4a11f25e28c751e081d29c331acba5b24b855c9a5080553d5e1eb4f17",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$299,
+      [nix.POS]: $pos[298],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/th/Firefox%20157.0.1.dmg",
       locale: "th",
       arch: "mac",
       sha256: "19f139a00b109f1651ca1eee3a9f20a6a3ba12b95b4e760ea8c84b536df2e7a8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$300,
+      [nix.POS]: $pos[299],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/tl/Firefox%20157.0.1.dmg",
       locale: "tl",
       arch: "mac",
       sha256: "c72ad3a372f7f4fe11e9b5683af2cbeb2752d101d6269f2a2b29adb46c102971",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$301,
+      [nix.POS]: $pos[300],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/tr/Firefox%20157.0.1.dmg",
       locale: "tr",
       arch: "mac",
       sha256: "65970fa94ff247fa36037bb6e5dccebfb27c56a8f808a564286421d1eec68f84",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$302,
+      [nix.POS]: $pos[301],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/trs/Firefox%20157.0.1.dmg",
       locale: "trs",
       arch: "mac",
       sha256: "e4ebc94a49a979e63021f71bcc3de7caa26c6605a79a40bbf2c3f2bcc6b6fb49",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$303,
+      [nix.POS]: $pos[302],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/uk/Firefox%20157.0.1.dmg",
       locale: "uk",
       arch: "mac",
       sha256: "cfae6606ae302bbb6708b379c631f3db10ea518261f9c19e60c5ef96b3a7364b",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$304,
+      [nix.POS]: $pos[303],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/ur/Firefox%20157.0.1.dmg",
       locale: "ur",
       arch: "mac",
       sha256: "d6a85b50ed5ac9c2325867a545fbfa00063d203a7ab76064c8d53a6dc4775e45",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$305,
+      [nix.POS]: $pos[304],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/uz/Firefox%20157.0.1.dmg",
       locale: "uz",
       arch: "mac",
       sha256: "cecd5284512b46596c1c388b1beb5427b50455f8e51477822ccb7350830597e9",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$306,
+      [nix.POS]: $pos[305],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/vi/Firefox%20157.0.1.dmg",
       locale: "vi",
       arch: "mac",
       sha256: "1c89397807e365e131ff105c80c838f626ee165d1c67998adbf9f0b3cdef8b1a",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$307,
+      [nix.POS]: $pos[306],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/xh/Firefox%20157.0.1.dmg",
       locale: "xh",
       arch: "mac",
       sha256: "bdc0500b07c08d23deb55289ac104aa11dbe2857c93fc67433769c67f89b5ee1",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$308,
+      [nix.POS]: $pos[307],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/zh-CN/Firefox%20157.0.1.dmg",
       locale: "zh-CN",
       arch: "mac",
       sha256: "9b8c2b9ced2805219d940e394ab2e3c3537662e8af4c4771f5702e1638fa2396",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$309,
+      [nix.POS]: $pos[308],
       url: "https://archive.mozilla.org/pub/firefox/releases/157.0.1/mac/zh-TW/Firefox%20157.0.1.dmg",
       locale: "zh-TW",
       arch: "mac",

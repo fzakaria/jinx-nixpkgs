@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 102, 5], ["longDescription", 103, 5], ["homepage", 119, 5], ["license", 120, 5], ["mainProgram", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 52, 3], ["dependencies", 60, 3], ["dontWrapGApps", 88, 3], ["postInstall", 91, 3], ["preFixup", 97, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, "blueprint-compiler": false, wrapGAppsHook4: false, "desktop-file-utils": false, libadwaita: false, gtksourceview5: false, webkitgtk_6_0: false, gcr_4: false, "gdk-pixbuf": false, autoPatchelfHook: false, appstream: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 102, 5], ["longDescription", 103, 5], ["homepage", 119, 5], ["license", 120, 5], ["mainProgram", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 52, 3], ["dependencies", 60, 3], ["dontWrapGApps", 88, 3], ["postInstall", 91, 3], ["preFixup", 97, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const appstream = nix.arg($, "appstream");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "devtoolbox",
       version: "1.3.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aleiepure",
           repo: "devtoolbox",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -87,7 +85,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "rm -r $out/devtoolbox\nln -s $out/share/locale/zh_Hant $out/share/locale/zh_TW\nln -s $out/share/locale/zh_Hans $out/share/locale/zh_CN\n",
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Development tools at your fingertips",
         longDescription: "If you're tired of endlessly looking online for the right\ntool, or to find again that website of which you don't\nrecall the name to do a quick conversion, this is the\nright app for you. This is a collection of powerful yet\nsimple-to-use tools and utilities to solve the most common\ndaily development problems:\n- JSON to YAML converter and vice-versa\n- CRON expressions parser\n- Formatters for common languages\n- Hash generators\n- Regex tester\n- Markdown Previewer\n- Image converters\n- Much more...\n",
         homepage: "https://github.com/aleiepure/devtoolbox",

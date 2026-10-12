@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["url", 76, 7]], [["updateScript", 75, 5]], [["homepage", 81, 5], ["description", 82, 5], ["mainProgram", 83, 5], ["longDescription", 84, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["makeFlags", 44, 3], ["enableParallelBuilding", 48, 3], ["postBuild", 50, 3], ["installPhase", 56, 3], ["passthru", 74, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, imagemagick: false, gettext: false, glibcLocalesUtf8: false, libpng: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, SDL2_ttf: false, zlib: false, libiconv: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 76, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 81, 5], ["description", 82, 5], ["mainProgram", 83, 5], ["longDescription", 84, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["makeFlags", 44, 3], ["enableParallelBuilding", 48, 3], ["postBuild", 50, 3], ["installPhase", 56, 3], ["passthru", 74, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fheroes2",
       version: "1.1.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ihhub",
           repo: "fheroes2",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,11 +50,11 @@ export default nix.lambda((args) => (() => {
       postBuild: "# Pick guaranteed to be present UTF-8 locale.\n# Otherwise `iconv` calls fail to produce valid translations.\nLANG=en_US.UTF_8 make -C files/lang\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 $PWD/src/dist/fheroes2/fheroes2 $out/bin/fheroes2\n\ninstall -Dm644 -t $out/share/fheroes2/files/lang $PWD/files/lang/*.mo\ninstall -Dm644 -t $out/share/fheroes2/files/data $PWD/files/data/resurrection.h2d\n\ninstall -Dm644 -t $out/share/applications $PWD/script/packaging/common/fheroes2.desktop\n\nfor size in 16 24 32 48 64 128; do\n  mkdir -p $out/share/icons/hicolor/\"$size\"x\"$size\"/apps\n  convert -resize \"$size\"x\"$size\" $PWD/src/resources/fheroes2.png $out/share/icons/hicolor/\"$size\"x\"$size\"/apps/fheroes2.png\ndone;\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://github.com/ihhub/fheroes2.git" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], url: "https://github.com/ihhub/fheroes2.git" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/ihhub/fheroes2",
         description: "Free implementation of Heroes of Might and Magic II game engine",
         mainProgram: "fheroes2",

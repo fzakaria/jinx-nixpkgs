@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sage-with-env.nix", [[["env", 142, 5]], [["version", 96, 3], ["pname", 97, 3], ["src", 98, 3], ["nativeBuildInputs", 100, 11], ["buildInputs", 100, 29], ["configurePhase", 102, 3], ["buildPhase", 104, 3], ["installPhase", 118, 3], ["passthru", 141, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, "sage-env": false, blas: false, lapack: false, "pkg-config": false, three: false, singular: false, gap: false, giac: false, maxima: false, pari: false, gmp: false, gfan: false, python3: false, eclib: false, ntl: false, ecm: false, pythonEnv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sage-with-env.nix", [["env", 142, 5]]);
-const pos$2 = nix.positions(here + "/sage-with-env.nix", [["version", 96, 3], ["pname", 97, 3], ["src", 98, 3], ["nativeBuildInputs", 100, 11], ["buildInputs", 100, 29], ["configurePhase", 102, 3], ["buildPhase", 104, 3], ["installPhase", 118, 3], ["passthru", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -98,9 +97,9 @@ cp -f '${sage_env}/sage-env' "$out/bin/sage-env"
 substituteInPlace "$out/bin/sage-env" \\
   --subst-var-by sage-local "$out"
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$1, env: sage_env }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[0], env: sage_env }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version,
         pname,
         src,

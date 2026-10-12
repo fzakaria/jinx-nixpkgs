@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]], [["description", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["license", 82, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 26, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 52, 3], ["enableParallelBuilding", 58, 3], ["preInstall", 62, 3], ["postInstall", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libsForQt5: false, freetype: false, graphite2: false, icu: false, krb5: false, systemdLibs: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["license", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 26, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 52, 3], ["enableParallelBuilding", 58, 3], ["preInstall", 62, 3], ["postInstall", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "detect-it-easy",
       version: "3.21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "horsicq",
           repo: "DIE-engine",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin\nmkdir -p $out/share/applications\nmkdir -p $out/share/icons\n",
       postInstall: "cp -r $src/XYara/yara_rules $out/lib/die/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Program for determining types of files for Windows, Linux and MacOS",
         mainProgram: "die",
         homepage: "https://github.com/horsicq/Detect-It-Easy",

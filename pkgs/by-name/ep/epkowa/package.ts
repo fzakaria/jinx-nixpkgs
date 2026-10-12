@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 22, 5], ["sourceProvenance", 23, 5], ["license", 24, 5], ["platforms", 25, 5]], [["name", 31, 5], ["paths", 32, 5]], [["urls", 41, 7], ["sha256", 45, 7]], [["pname", 37, 5], ["version", 38, 5], ["src", 40, 5], ["buildInputs", 48, 5], ["meta", 52, 5]], [["urls", 60, 5], ["sha256", 64, 5]], [["urls", 82, 7], ["sha256", 86, 7]], [["common_meta", 128, 59]], [["plugins", 128, 12]], [["description", 131, 5], ["longDescription", 132, 5], ["maintainers", 145, 5]], [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 72, 3], ["patches", 79, 3], ["patchFlags", 93, 3], ["configureFlags", 95, 3], ["postConfigure", 102, 3], ["postInstall", 106, 3], ["postFixup", 116, 3], ["passthru", 128, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackages: false, fetchurl: false, fetchpatch: false, makeWrapper: false, symlinkJoin: false, "pkg-config": false, libtool: false, gtk2: false, libxml2: false, libxslt: false, "libusb-compat-0_1": false, "sane-backends": false, getopt: false, epkowa: false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 22, 5], ["sourceProvenance", 23, 5], ["license", 24, 5], ["platforms", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 31, 5], ["paths", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["urls", 41, 7], ["sha256", 45, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 37, 5], ["version", 38, 5], ["src", 40, 5], ["buildInputs", 48, 5], ["meta", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["urls", 60, 5], ["sha256", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["urls", 82, 7], ["sha256", 86, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["common_meta", 128, 59]]);
-const pos$8 = nix.positions(here + "/package.nix", [["plugins", 128, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 131, 5], ["longDescription", 132, 5], ["maintainers", 145, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 72, 3], ["patches", 79, 3], ["patchFlags", 93, 3], ["configureFlags", 95, 3], ["postConfigure", 102, 3], ["postInstall", 106, 3], ["postFixup", 116, 3], ["passthru", 128, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const epkowa = nix.arg($, "epkowa");
   const plugins = nix.argOr($, "plugins", () => nix.sel(epkowa, "plugins"));
   const common_meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     homepage: "http://download.ebz.epson.net/dsc/search/01/search/?OSC=LX",
     sourceProvenance: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -51,7 +42,7 @@ export default nix.lambda((args) => (() => {
   }));
   const plugins$ = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "filterAttrs"), (_) => nix.sel(lib, "isDerivation"), plugins));
   const fwdir = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "esci-firmware-dir",
       paths: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.add(value, "/share/esci"), plugins$)),
     }))));
@@ -59,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const pname = "iscan-data";
       const version = "1.39.2-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`http://support.epson.net/linux/src/scanner/iscan/iscan-data_${version}.tar.gz`),
             nix.thunk(() => nix.str`https://web.archive.org/web/http://support.epson.net/linux/src/scanner/iscan/iscan-data_${version}.tar.gz`),
@@ -68,13 +59,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const buildInputs = nix.thunk(() => [libxslt]);
       const meta = common_meta;
-      return { [nix.POS]: pos$4, pname, version, src, buildInputs, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, buildInputs, meta };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "iscan";
       const version = "2.30.4-2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`http://support.epson.net/linux/src/scanner/iscan/iscan_${version}.tar.gz`),
             nix.thunk(() => nix.str`https://web.archive.org/web/http://support.epson.net/linux/src/scanner/iscan/iscan_${version}.tar.gz`),
@@ -85,7 +76,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gtk2, libxml2, libusb_compat_0_1, sane_backends]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             urls: nix.thunk(() => [
               "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-gfx/iscan/files/iscan-2.28.1.3+libpng-1.5.patch?h=b6e4c805d53b49da79a0f64ef16bb82d6d800fcf",
               "https://web.archive.org/web/https://gitweb.gentoo.org/repo/gentoo.git/plain/media-gfx/iscan/files/iscan-2.28.1.3+libpng-1.5.patch?h=b6e4c805d53b49da79a0f64ef16bb82d6d800fcf",
@@ -113,11 +104,11 @@ registry=$out/bin/iscan-registry;
 ${nix.sel(value, "passthru", "registrationCommand")}
 `, plugins$)))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        plugins: nix.thunk(() => nix.app(callPackages, nix.path(here, "./plugins.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, common_meta: common_meta })))),
+        [nix.POS]: $pos[7],
+        plugins: nix.thunk(() => nix.app(callPackages, nix.path(here, "./plugins.nix"), nix.thunk(() => ({ [nix.POS]: $pos[6], common_meta: common_meta })))),
       }));
       const meta = nix.thunk(() => nix.update(common_meta, {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "sane-epkowa backend for some epson scanners",
         longDescription: nix.thunk(() => nix.add(nix.add("Includes gui-less iscan (aka. Image Scan! for Linux).\nSupported hardware: at least :\n", nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.sel(value, "passthru", "hw"), plugins$)))), "It is possible to only use a subset of the plugins by overriding the `plugins` input:\nepkowa' = pkgs.epkowa.override {\n  plugins = {\n    inherit (pkgs.epkowa.plugins) x770; # Select correct plugins for your scanner here\n  };\n};\n")),
         maintainers: nix.thunk(() => (() => {
@@ -129,7 +120,7 @@ ${nix.sel(value, "passthru", "registrationCommand")}
         })()),
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuquantum.nix", [[["message", 57, 9], ["assertion", 58, 9]], [["message", 64, 9], ["assertion", 67, 9]], [["description", 72, 7], ["longDescription", 73, 7], ["homepage", 77, 7], ["changelog", 78, 7]], [["redistName", 20, 5], ["pname", 21, 5], ["outputs", 23, 5], ["buildInputs", 31, 5], ["appendRunpaths", 42, 5], ["autoPatchelfIgnoreMissingDeps", 50, 5], ["platformAssertions", 55, 5], ["brokenAssertions", 62, 5], ["meta", 71, 5]]]);
 const formals$1 = { args: { backendStdenv: false, buildRedist: false, cuda_cudart: false, lib: false, libcublas: false, libcurand: false, libcusolver: false, libcusolvermp: false, libcutensor: false, nccl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuquantum.nix", [["message", 57, 9], ["assertion", 58, 9]]);
-const pos$2 = nix.positions(here + "/cuquantum.nix", [["message", 64, 9], ["assertion", 67, 9]]);
-const pos$3 = nix.positions(here + "/cuquantum.nix", [["description", 72, 7], ["longDescription", 73, 7], ["homepage", 77, 7], ["changelog", 78, 7]]);
-const pos$4 = nix.positions(here + "/cuquantum.nix", [["redistName", 20, 5], ["pname", 21, 5], ["outputs", 23, 5], ["buildInputs", 31, 5], ["appendRunpaths", 42, 5], ["autoPatchelfIgnoreMissingDeps", 50, 5], ["platformAssertions", 55, 5], ["brokenAssertions", 62, 5], ["meta", 71, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const cudaCapabilities = nix.thunk(() => nix.attr(backendStdenv, "cudaCapabilities"));
       const cuquantumAtLeast = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         redistName: "cuquantum",
         pname: "cuquantum",
         outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static"]),
@@ -35,20 +32,20 @@ export default nix.lambda((args) => (() => {
         autoPatchelfIgnoreMissingDeps: nix.thunk(() => ["libnvidia-ml.so.1"]),
         platformAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             message: nix.thunk(() => nix.str`cuQuantum supports CUDA compute capabilities 7.5 and newer (found ${nix.builtins.toJSON(cudaCapabilities)})`),
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), "7.5")), cudaCapabilities)),
           })),
         ]),
         brokenAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             message: nix.thunk(() => nix.add(nix.str`cuQuantum releases since 26.09.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` require cuTENSOR 2.8.0 or newer (found ${nix.sel(libcutensor, "version")})`)),
             assertion: nix.thunk(() => (!nix.asBool(nix.app(cuquantumAtLeast, "26.09")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(libcutensor, "version")), "2.8")))),
           })),
         ]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: "Set of high-performance libraries and tools for accelerating quantum computing simulations at both the circuit and device level by orders of magnitude",
           longDescription: "NVIDIA cuQuantum SDK is a set of high-performance libraries and tools for accelerating quantum computing\nsimulations at both the circuit and device level by orders of magnitude.\n",
           homepage: "https://developer.nvidia.com/cuquantum-sdk",

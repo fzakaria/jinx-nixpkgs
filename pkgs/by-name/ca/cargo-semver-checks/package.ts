@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["package", 58, 43]], [["version", 58, 11]], [["tests", 58, 5], ["updateScript", 59, 5]], [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 71, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["nativeCheckInputs", 30, 3], ["buildInputs", 34, 3], ["checkFlags", 38, 3], ["preCheck", 44, 3], ["passthru", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, cmake: false, zlib: false, testers: false, "cargo-semver-checks": false, "nix-update-script": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 58, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 58, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 58, 5], ["updateScript", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["nativeCheckInputs", 30, 3], ["buildInputs", 34, 3], ["checkFlags", 38, 3], ["preCheck", 44, 3], ["passthru", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cargo-semver-checks",
       version: "0.50.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "obi1kenobi",
           repo: "cargo-semver-checks",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,15 +47,15 @@ substituteInPlace test_outputs/integration_snapshots__bugreport.snap \\
     'cargo-semver-checks ${nix.sel(finalAttrs, "version")}'
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: cargo_semver_checks })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: cargo_semver_checks })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tool to scan your Rust crate for semver violations",
         mainProgram: "cargo-semver-checks",
         homepage: "https://github.com/obi1kenobi/cargo-semver-checks",

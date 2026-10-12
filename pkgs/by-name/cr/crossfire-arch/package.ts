@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["hydraPlatforms", 31, 5], ["maintainers", 32, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 17, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["hydraPlatforms", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 17, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "crossfire-arch",
       version: "2025-04",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.code.sf.net/p/crossfire/crossfire-arch",
           rev: "876eb50b9199e9aa06175b7a7d85832662be3f78",
           hash: "sha256-jDiAKcjWYvjGiD68LuKlZS4sOR9jW3THp99kAEdE+y0=",
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out\"\ncp -a . \"$out/\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Archetype data for the Crossfire free MMORPG",
         homepage: "http://crossfire.real-time.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

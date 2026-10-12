@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 15, 26], ["pname", 16, 5], ["hash", 17, 5]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["dependencies", 25, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, podman: false, fetchPypi: false, "ansible-lint": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 15, 26], ["pname", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["dependencies", 25, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const ansible_lint = nix.arg($, "ansible-lint");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ansible-navigator",
       version: "26.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "ansible_navigator",
           hash: "sha256-MLzoipI+LPjNmFAC56ITwr1iUuxJYmDaYlMUaw2hi5Y=",
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["ansible_navigator"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Text-based user interface (TUI) for Ansible",
         homepage: "https://ansible.readthedocs.io/projects/navigator/",
         changelog: nix.thunk(() => nix.str`https://github.com/ansible/ansible-navigator/releases/tag/v${nix.sel(finalAttrs, "version")}`),

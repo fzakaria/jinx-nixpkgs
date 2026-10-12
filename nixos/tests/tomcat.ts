@@ -2,41 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tomcat.nix", [[["maintainers", 4, 8]], [["enable", 12, 15]], [["enable", 10, 9], ["port", 11, 9], ["axis2", 12, 9]], [["tomcat", 9, 16]], [["services", 9, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 16, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tomcat.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/tomcat.nix", [["enable", 12, 15]]);
-const pos$3 = nix.positions(here + "/tomcat.nix", [["enable", 10, 9], ["port", 11, 9], ["axis2", 12, 9]]);
-const pos$4 = nix.positions(here + "/tomcat.nix", [["tomcat", 9, 16]]);
-const pos$5 = nix.positions(here + "/tomcat.nix", [["services", 9, 7]]);
-const pos$6 = nix.positions(here + "/tomcat.nix", [["machine", 6, 9]]);
-const pos$7 = nix.positions(here + "/tomcat.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "tomcat",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "anthonyroussel"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             tomcat: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               port: 8001n,
-              axis2: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+              axis2: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             })),
           })),
         };

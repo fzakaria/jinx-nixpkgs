@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 23, 5], ["owner", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5], ["platforms", 53, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["strictDeps", 46, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, meson: false, ninja: false, cmake: false, "pkg-config": false, wrapGAppsHook3: false, gtk3: false, glib: false, openssl: false, nettle: false, libb2: false, libgcrypt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 23, 5], ["owner", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5], ["platforms", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["strictDeps", 46, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libb2 = nix.arg($, "libb2");
   const libgcrypt = nix.arg($, "libgcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gtkhash",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "gtkhash",
           owner: "gtkhash",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, glib, openssl, nettle, libb2, libgcrypt]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cross-platform desktop utility for computing message digests or checksums",
         homepage: "https://gtkhash.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

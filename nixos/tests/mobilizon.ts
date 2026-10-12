@@ -2,26 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mobilizon.nix", [[["maintainers", 10, 8]], [["name", 22, 15], ["hostname", 23, 15]], [["port", 25, 43]], [["http", 25, 38]], [[":instance", 21, 13], ["Mobilizon.Web.Endpoint", 25, 13]], [[":mobilizon", 20, 11]], [["enable", 18, 9], ["settings", 19, 9]], [["enableACME", 33, 9], ["sslCertificate", 34, 9], ["sslCertificateKey", 35, 9]], [["virtualHosts", 32, 22]], [["package", 41, 27]], [["mobilizon", 17, 16], ["nginx", 32, 16], ["postgresql", 41, 16]], [["certificateFiles", 30, 20]], [["pki", 30, 16]], [["::1", 38, 24]], [["hosts", 38, 18]], [["services", 17, 7], ["security", 30, 7], ["networking", 38, 7]], [["server", 14, 9]], [["name", 9, 3], ["meta", 10, 3], ["nodes", 14, 3], ["testScript", 44, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mobilizon.nix", [["maintainers", 10, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/mobilizon.nix", [["name", 22, 15], ["hostname", 23, 15]]);
-const pos$3 = nix.positions(here + "/mobilizon.nix", [["port", 25, 43]]);
-const pos$4 = nix.positions(here + "/mobilizon.nix", [["http", 25, 38]]);
-const pos$5 = nix.positions(here + "/mobilizon.nix", [[":instance", 21, 13], ["Mobilizon.Web.Endpoint", 25, 13]]);
-const pos$6 = nix.positions(here + "/mobilizon.nix", [[":mobilizon", 20, 11]]);
-const pos$7 = nix.positions(here + "/mobilizon.nix", [["enable", 18, 9], ["settings", 19, 9]]);
-const pos$8 = nix.positions(here + "/mobilizon.nix", [["enableACME", 33, 9], ["sslCertificate", 34, 9], ["sslCertificateKey", 35, 9]]);
-const pos$9 = nix.positions(here + "/mobilizon.nix", [["virtualHosts", 32, 22]]);
-const pos$10 = nix.positions(here + "/mobilizon.nix", [["package", 41, 27]]);
-const pos$11 = nix.positions(here + "/mobilizon.nix", [["mobilizon", 17, 16], ["nginx", 32, 16], ["postgresql", 41, 16]]);
-const pos$12 = nix.positions(here + "/mobilizon.nix", [["certificateFiles", 30, 20]]);
-const pos$13 = nix.positions(here + "/mobilizon.nix", [["pki", 30, 16]]);
-const pos$14 = nix.positions(here + "/mobilizon.nix", [["::1", 38, 24]]);
-const pos$15 = nix.positions(here + "/mobilizon.nix", [["hosts", 38, 18]]);
-const pos$16 = nix.positions(here + "/mobilizon.nix", [["services", 17, 7], ["security", 30, 7], ["networking", 38, 7]]);
-const pos$17 = nix.positions(here + "/mobilizon.nix", [["server", 14, 9]]);
-const pos$18 = nix.positions(here + "/mobilizon.nix", [["name", 9, 3], ["meta", 10, 3], ["nodes", 14, 3], ["testScript", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,59 +13,62 @@ export default nix.lambda((args) => (() => {
   const mobilizonDomain = nix.thunk(() => nix.sel(certs, "domain"));
   const port = 41395n;
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "mobilizon",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "erictapen"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             mobilizon: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 ":mobilizon": nix.thunk(() => ({
-                  [nix.POS]: pos$5,
-                  ":instance": nix.thunk(() => ({ [nix.POS]: pos$2, name: "Test Mobilizon", hostname: mobilizonDomain })),
-                  "Mobilizon.Web.Endpoint": nix.thunk(() => ({ [nix.POS]: pos$4, http: nix.thunk(() => ({ [nix.POS]: pos$3, port: port })) })),
+                  [nix.POS]: $pos[4],
+                  ":instance": nix.thunk(() => ({ [nix.POS]: $pos[1], name: "Test Mobilizon", hostname: mobilizonDomain })),
+                  "Mobilizon.Web.Endpoint": nix.thunk(() => ({
+                    [nix.POS]: $pos[3],
+                    http: nix.thunk(() => ({ [nix.POS]: $pos[2], port: port })),
+                  })),
                 })),
               })),
             })),
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${mobilizonDomain}`, nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   enableACME: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                   sslCertificate: nix.thunk(() => nix.sel(certs, nix.key(nix.force(mobilizonDomain)), "cert")),
                   sslCertificateKey: nix.thunk(() => nix.sel(certs, nix.key(nix.force(mobilizonDomain)), "key")),
                 }))],
               ])),
             })),
-            postgresql: nix.thunk(() => ({ [nix.POS]: pos$10, package: nix.thunk(() => nix.sel(pkgs, "postgresql_17")) })),
+            postgresql: nix.thunk(() => ({ [nix.POS]: $pos[9], package: nix.thunk(() => nix.sel(pkgs, "postgresql_17")) })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$15,
-            hosts: nix.thunk(() => ({ [nix.POS]: pos$14, "::1": nix.thunk(() => [mobilizonDomain]) })),
+            [nix.POS]: $pos[14],
+            hosts: nix.thunk(() => ({ [nix.POS]: $pos[13], "::1": nix.thunk(() => [mobilizonDomain]) })),
           })),
         };
       })(), formals$2),

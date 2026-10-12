@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 17, 5], ["owner", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["updateScript", 56, 12]], [["description", 59, 5], ["longDescription", 60, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["enableParallelBuilding", 33, 3], ["makeFlags", 35, 3], ["preBuild", 37, 3], ["buildFlags", 41, 3], ["installPhase", 46, 3], ["nativeInstallCheckInputs", 52, 3], ["versionCheckProgram", 53, 3], ["doInstallCheck", 54, 3], ["passthru", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, xxd: false, zlib: false, llvmPackages: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 17, 5], ["owner", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 56, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["longDescription", 60, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["enableParallelBuilding", 33, 3], ["makeFlags", 35, 3], ["preBuild", 37, 3], ["buildFlags", 41, 3], ["installPhase", 46, 3], ["nativeInstallCheckInputs", 52, 3], ["versionCheckProgram", 53, 3], ["doInstallCheck", 54, 3], ["passthru", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "star",
       version: "2.7.11b",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "STAR",
           owner: "alexdobin",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/STAR`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Spliced Transcripts Alignment to a Reference",
         longDescription: "STAR (Spliced Transcripts Alignment to a Reference) is a fast RNA-seq\nread mapper, with support for splice-junction and fusion read detection.\n",
         mainProgram: "STAR",

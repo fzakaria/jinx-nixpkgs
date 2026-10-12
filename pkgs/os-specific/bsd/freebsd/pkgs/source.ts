@@ -2,15 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/source.nix", [[["owner", 9, 3], ["repo", 10, 3], ["rev", 11, 24], ["hash", 11, 28]]]);
 const formals$1 = { args: { fetchFromGitHub: false, sourceData: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/source.nix", [["owner", 9, 3], ["repo", 10, 3], ["rev", 11, 24], ["hash", 11, 28]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const sourceData = nix.arg($, "sourceData");
   return nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "freebsd",
       repo: "freebsd-src",
       rev: nix.thunk(() => nix.attr(sourceData, "rev")),

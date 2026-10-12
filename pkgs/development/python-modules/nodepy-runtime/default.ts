@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]], [["homepage", 29, 5], ["description", 30, 5], ["longDescription", 31, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, localimport: false, pathlib2: false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 29, 5], ["description", 30, 5], ["longDescription", 31, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-6tSsD76EpCZxkdulv1BcUZtIXGWLG6PuII25J8STygE=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [localimport, pathlib2, six]);
       const pythonImportsCheck = nix.thunk(() => ["nodepy"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/nodepy/nodepy",
         description: "Runtime for Python inspired by Node.JS",
         longDescription: "Node.py is a Python runtime and package manager compatible with CPython\n2.7 and 3.3 – 3.6. It provides a separate import mechanism for modules\ninspired by Node.js, bringing dependency management and ease of deployment\nfor Python applications up to par with other languages without virtual\nenvironments.\n\nNode.py comes with a built-in package manager that builds on Pip for\nstandard Python dependencies but also adds the capability to install\npackages that are specifically developed for Node.py. To install the\ndependencies of the package manager you must specify the [pm] install\nextra.\n",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

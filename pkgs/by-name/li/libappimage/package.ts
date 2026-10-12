@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["url", 41, 7], ["hash", 42, 7]], [["name", 47, 7], ["url", 48, 7], ["excludes", 49, 7], ["hash", 54, 7]], [["name", 57, 7], ["url", 58, 7], ["hash", 59, 7]], [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5]], [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["patches", 37, 3], ["postPatch", 66, 3], ["cmakeFlags", 72, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 88, 3], ["propagatedBuildInputs", 96, 3], ["strictDeps", 103, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, autoconf: false, automake: false, libtool: false, "pkg-config": false, boost: false, cairo: false, glib: false, libarchive: false, librsvg: false, squashfuse: false, "xdg-utils-cxx": false, xz: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 47, 7], ["url", 48, 7], ["excludes", 49, 7], ["hash", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 57, 7], ["url", 58, 7], ["hash", 59, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["patches", 37, 3], ["postPatch", 66, 3], ["cmakeFlags", 72, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 88, 3], ["propagatedBuildInputs", 96, 3], ["strictDeps", 103, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libappimage",
       version: "1.0.4-5",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AppImageCommunity",
           repo: "libappimage",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,19 +39,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/AppImageCommunity/libappimage/commit/1e0515b23b90588ce406669134feca56ddcbbe43.patch",
             hash: "sha256-WIMvXNqC1stgPiBTRpXHWq3edIRnQomtRSW2qO52TRo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "libappimage-use-system-gtest.patch",
             url: "https://github.com/AppImageCommunity/libappimage/commit/7b83b7247fd2d86c330e09f534c9cec1b03f649f.patch",
             excludes: nix.thunk(() => ["ci/*", "lib/gtest", "tests/*"]),
             hash: "sha256-H+ph5TfKJPFcAzw2c7pzmqvB9R50HtZP/DbroOxLTVU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "libappimage-fix-cmake-4.patch",
             url: "https://github.com/AppImageCommunity/libappimage/commit/e5f6ea562611d534dc8e899a12ddf15c50e820be.patch",
             hash: "sha256-P6fPoiqVX3TrKGrU2EXIMBpQLGl7xNcy41Iq7vRM+n8=",
@@ -76,7 +71,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [cairo, glib, librsvg, zlib]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Implements functionality for dealing with AppImage files",
         homepage: "https://github.com/AppImageCommunity/libappimage/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["sourceProvenance", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 61, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontUnpack", 18, 3], ["polyWrapper", 20, 3], ["installPhase", 30, 3], ["doInstallCheck", 40, 3], ["installCheckPhase", 41, 3], ["__structuredAttrs", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jdk: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["sourceProvenance", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontUnpack", 18, 3], ["polyWrapper", 20, 3], ["installPhase", 30, 3], ["doInstallCheck", 40, 3], ["installCheckPhase", 41, 3], ["__structuredAttrs", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "polylith",
       version: "0.3.33",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/polyfy/polylith/releases/download/v${nix.sel(finalAttrs, "version")}/poly-${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "sha256-t3WCANee9WwmdYnQldfGp4zEhAH+rFBxR1jPNdOIoio=",
         })))),
@@ -42,7 +40,7 @@ runHook postInstallCheck
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool used to develop Polylith based architectures in Clojure",
         mainProgram: "poly",
         homepage: "https://github.com/polyfy/polylith",

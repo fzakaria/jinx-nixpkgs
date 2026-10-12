@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["homepage", 57, 5], ["description", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pyproject", 28, 3], ["dontWrapGApps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 47, 3], ["preFixup", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, wrapGAppsHook4: false, meson: false, ninja: false, "pkg-config": false, "appstream-glib": false, "desktop-file-utils": false, "gobject-introspection": false, glib: false, "blueprint-compiler": false, libadwaita: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 57, 5], ["description", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pyproject", 28, 3], ["dontWrapGApps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 47, 3], ["preFixup", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "halftone",
       version: "0.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tfuxu",
           repo: "halftone",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       })()),
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/tfuxu/halftone",
         description: "Simple app for giving images that pixel-art style",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

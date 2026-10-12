@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["broken", 124, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["pythonRelaxDeps", 20, 3], ["pythonRemoveDeps", 22, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 78, 3], ["pytestFlags", 84, 3], ["disabledTests", 89, 3], ["pythonImportsCheck", 113, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["broken", 124, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["pythonRelaxDeps", 20, 3], ["pythonRemoveDeps", 22, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 78, 3], ["pytestFlags", 84, 3], ["disabledTests", 89, 3], ["pythonImportsCheck", 113, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "maigret",
       version: "0.6.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "soxoj",
           repo: "maigret",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -104,7 +102,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_asyncio_progressbar_executor"])))),
       pythonImportsCheck: nix.thunk(() => ["maigret"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to collect details about an username",
         homepage: "https://maigret.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/soxoj/maigret/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

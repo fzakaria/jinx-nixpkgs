@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["ayatana-indicator-display", 110, 7]], [["startup", 116, 7], ["lomiri", 117, 7]], [["ayatana-indicators", 109, 5], ["tests", 115, 5], ["updateScript", 119, 5]], [["description", 123, 5], ["longDescription", 124, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["maintainers", 131, 5], ["platforms", 132, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 42, 3], ["strictDeps", 53, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 64, 3], ["nativeCheckInputs", 84, 3], ["checkInputs", 90, 3], ["dontWrapQtApps", 97, 3], ["cmakeFlags", 99, 3], ["doCheck", 106, 3], ["passthru", 108, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, gitUpdater: false, fetchFromGitHub: false, nixosTests: false, accountsservice: false, cmake: false, cppcheck: false, dbus: false, geoclue2: false, glib: false, "gsettings-desktop-schemas": false, gtest: false, intltool: false, "libayatana-common": false, libgudev: false, librda: false, libsForQt5: false, lomiri: false, marco: false, "mate-settings-daemon": false, "pkg-config": false, "properties-cpp": false, python3: false, systemdLibs: false, wrapGAppsHook3: false, xsct: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ayatana-indicator-display", 110, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["startup", 116, 7], ["lomiri", 117, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ayatana-indicators", 109, 5], ["tests", 115, 5], ["updateScript", 119, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 123, 5], ["longDescription", 124, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["maintainers", 131, 5], ["platforms", 132, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 42, 3], ["strictDeps", 53, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 64, 3], ["nativeCheckInputs", 84, 3], ["checkInputs", 90, 3], ["dontWrapQtApps", 97, 3], ["cmakeFlags", 99, 3], ["doCheck", 106, 3], ["passthru", 108, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const xsct = nix.arg($, "xsct");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ayatana-indicator-display",
       version: "26.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AyatanaIndicators",
           repo: "ayatana-indicator-display",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -101,20 +96,20 @@ substituteInPlace src/service.cpp \\
       ]),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "ayatana-indicators": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "ayatana-indicator-display": nix.thunk(() => ["ayatana", "lomiri"]),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           startup: nix.thunk(() => nix.sel(nixosTests, "ayatana-indicators")),
           lomiri: nix.thunk(() => nix.sel(nixosTests, "lomiri", "desktop-ayatana-indicator-display")),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Ayatana Indicator for Display configuration",
         longDescription: "This Ayatana Indicator is designed to be placed on the right side of a\npanel and give the user easy control for changing their display settings.\n",
         homepage: "https://github.com/AyatanaIndicators/ayatana-indicator-display",

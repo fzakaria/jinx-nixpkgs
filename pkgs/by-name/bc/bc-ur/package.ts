@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["url", 23, 7], ["hash", 24, 7]], [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["nativeBuildInputs", 28, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["nativeBuildInputs", 28, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bc-ur",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BlockchainCommons",
           repo: "bc-ur",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,14 +25,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://raw.githubusercontent.com/feather-wallet/feather/632963a9e22bf4c8bbe6b5b4d895e31bda17bafd/contrib/depends/patches/bc-ur/build-fix.patch",
             hash: "sha256-F53/z0maUGfdzJ7qjcLjTzn6+80oxu4sqfQPsDo4HZ0=",
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/BlockchainCommons/bc-ur",
         description: "UR reference library in C++",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2Patent")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5], ["mainProgram", 83, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 47, 3], ["configureFlags", 60, 3], ["preConfigure", 67, 3], ["postInstall", 73, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, libx11: false, libxcomposite: false, libxft: false, libxmu: false, libxrandr: false, libxext: false, libxscrnsaver: false, pam: false, coreutils: false, makeWrapper: false, withXscreensaver: true, xscreensaver: false, withDocs: true, pandoc: false, withHtaccess: true, apacheHttpd: false, withPamtester: true, pamtester: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5], ["mainProgram", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 47, 3], ["configureFlags", 60, 3], ["preConfigure", 67, 3], ["postInstall", 73, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const withPamtester = nix.argOr($, "withPamtester", () => false);
   const pamtester = nix.arg($, "pamtester");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xsecurelock",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "xsecurelock",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +62,7 @@ EOF
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/libexec/xsecurelock/saver_blank --prefix PATH : ${coreutils}/bin
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "X11 screen lock utility with security in mind",
         homepage: "https://github.com/google/xsecurelock",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

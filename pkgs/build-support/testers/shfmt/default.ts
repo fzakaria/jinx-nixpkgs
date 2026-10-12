@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 16, 11], ["indent", 16, 15], ["name", 17, 3], ["dontUnpack", 18, 3], ["nativeBuildInputs", 19, 3], ["doCheck", 20, 3], ["dontConfigure", 21, 3], ["dontBuild", 22, 3], ["checkPhase", 23, 3], ["installPhase", 26, 3]]]);
 const formals$1 = { args: { lib: false, shfmt: false, stdenvNoCC: false }, ellipsis: false };
 const formals$2 = { args: { name: false, src: false, indent: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 16, 11], ["indent", 16, 15], ["name", 17, 3], ["dontUnpack", 18, 3], ["nativeBuildInputs", 19, 3], ["doCheck", 20, 3], ["dontConfigure", 21, 3], ["dontBuild", 22, 3], ["checkPhase", 23, 3], ["installPhase", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const indent = nix.argOr($_1, "indent", () => 2n);
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         __structuredAttrs: true,
         strictDeps: true,
         src: src,

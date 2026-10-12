@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libqtpas.nix", [[["description", 37, 5], ["homepage", 38, 5], ["maintainers", 41, 5], ["license", 42, 28], ["platforms", 42, 36]], [["pname", 15, 3], ["version", 16, 21], ["src", 16, 29], ["sourceRoot", 18, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["dontWrapQtApps", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, lazarus: false, qmake: false, qtbase: false, qtx11extras: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libqtpas.nix", [["description", 37, 5], ["homepage", 38, 5], ["maintainers", 41, 5], ["license", 42, 28], ["platforms", 42, 36]]);
-const pos$2 = nix.positions(here + "/libqtpas.nix", [["pname", 15, 3], ["version", 16, 21], ["src", 16, 29], ["sourceRoot", 18, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["dontWrapQtApps", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const qtx11extras = nix.argOr($, "qtx11extras", () => null);
   const qtVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "libqtpas",
       version: nix.thunk(() => nix.attr(lazarus, "version")),
       src: nix.thunk(() => nix.attr(lazarus, "src")),
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(lazarus, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.str`Free Pascal Qt${qtVersion} binding library`),
         homepage: nix.thunk(() => nix.add(nix.str`https://wiki.freepascal.org/Qt${qtVersion}_Interface`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(qtVersion, "5")), "#libqt5pas"))),
         maintainers: nix.thunk(() => (() => {

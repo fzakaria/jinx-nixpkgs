@@ -2,30 +2,23 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kexec.nix", [[["maintainers", 5, 5]], [["vlans", 15, 24], ["memorySize", 16, 24]], [["virtualisation", 15, 9]], [["vlans", 22, 24]], [["systemPackages", 23, 21]], [["virtualisation", 22, 9], ["environment", 23, 9], ["imports", 24, 9]], [["node1", 12, 5], ["node2", 19, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 11, 3], ["testScript", 28, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/kexec.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/kexec.nix", [["vlans", 15, 24], ["memorySize", 16, 24]]);
-const pos$3 = nix.positions(here + "/kexec.nix", [["virtualisation", 15, 9]]);
 const formals$3 = { args: { modulesPath: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/kexec.nix", [["vlans", 22, 24]]);
-const pos$5 = nix.positions(here + "/kexec.nix", [["systemPackages", 23, 21]]);
-const pos$6 = nix.positions(here + "/kexec.nix", [["virtualisation", 22, 9], ["environment", 23, 9], ["imports", 24, 9]]);
-const pos$7 = nix.positions(here + "/kexec.nix", [["node1", 12, 5], ["node2", 19, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/kexec.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 11, 3], ["testScript", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "kexec",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => nix.concat(nix.sel(pkgs, "kexec-tools", "meta", "maintainers"), [
           nix.thunk(() => nix.lookup(w, "flokli")),
           nix.thunk(() => nix.lookup(w, "lassulus")),
@@ -33,22 +26,26 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       node1: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$3,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: [], memorySize: nix.thunk(() => nix.mul(4n, 1024n)) })),
+          [nix.POS]: $pos[2],
+          virtualisation: nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            vlans: [],
+            memorySize: nix.thunk(() => nix.mul(4n, 1024n)),
+          })),
         };
       })(), formals$2),
       node2: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const modulesPath = nix.arg($_1, "modulesPath");
         return {
-          [nix.POS]: pos$6,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$4, vlans: [] })),
+          [nix.POS]: $pos[5],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[3], vlans: [] })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
           })),
           imports: nix.thunk(() => [nix.thunk(() => nix.str`${modulesPath}/installer/netboot/netboot.nix`)]),

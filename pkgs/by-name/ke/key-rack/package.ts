@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["pname", 35, 26], ["version", 35, 32], ["src", 35, 40], ["hash", 36, 5]], [["NIX_CFLAGS_COMPILE", 54, 7]], [["updateScript", 59, 5]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 28, 3], ["postPatch", 30, 3], ["cargoDeps", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 50, 3], ["env", 54, 3], ["passthru", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, stdenv: false, rustPlatform: false, cargo: false, rustc: false, libadwaita: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, python3: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 35, 26], ["version", 35, 32], ["src", 35, 40], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 28, 3], ["postPatch", 30, 3], ["cargoDeps", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 50, 3], ["env", 54, 3], ["passthru", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "key-rack",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "sophie-h",
           repo: "key-rack",
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./0001-fix-E0716.patch")]),
       postPatch: "patchShebangs --build build-aux/{checks.sh,read-manifest.py}\n",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -58,15 +53,15 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [libadwaita]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "16")))), "-Wno-error=incompatible-function-pointer-types")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "View and edit your apps’ keys",
         homepage: "https://gitlab.gnome.org/sophie-h/key-rack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 30, 5], ["platforms", 31, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 22, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "pkg-config": false, libconfig: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 30, 5], ["platforms", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 22, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libconfig = nix.arg($, "libconfig");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libusbgx",
       version: "0-unstable-2021-10-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linux-usb-gadgets",
           repo: "libusbgx",
           rev: "060784424609d5a4e3bce8355f788c93f09802a5",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libconfig]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C library encapsulating the kernel USB gadget-configfs userspace API functionality",
         homepage: "https://github.com/linux-usb-gadgets/libusbgx",
         license: nix.thunk(() => (() => {

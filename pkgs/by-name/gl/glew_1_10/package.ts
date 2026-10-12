@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["pkg-config", 61, 18]], [["tests", 61, 12]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["pkgConfigModules", 68, 5], ["platforms", 69, 25], ["broken", 71, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["outputs", 29, 3], ["patchPhase", 34, 3], ["buildFlags", 41, 3], ["installFlags", 42, 3], ["preInstall", 44, 3], ["postInstall", 48, 3], ["makeFlags", 55, 3], ["passthru", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libGLU: false, libxmu: false, libxi: false, libxext: false, testers: false, mesa: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 61, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 61, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["pkgConfigModules", 68, 5], ["platforms", 69, 25], ["broken", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["outputs", 29, 3], ["patchPhase", 34, 3], ["buildFlags", 41, 3], ["installFlags", 42, 3], ["preInstall", 44, 3], ["postInstall", 48, 3], ["makeFlags", 55, 3], ["passthru", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const mesa = nix.arg($, "mesa");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "glew",
       version: "1.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/glew/glew-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "01zki46dr5khzlyywr3cg615bcal32dazfazkf360s1znqh17i4r",
         })))),
@@ -45,16 +41,16 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv
         "LD:=$(CC)",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "OpenGL extension loading library for C(++)",
         homepage: "https://glew.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

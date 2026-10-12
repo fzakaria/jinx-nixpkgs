@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/3.5.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["url", 26, 7], ["sha256", 27, 7]], [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 54, 5], ["sourceProvenance", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]], [["pname", 11, 3], ["version", 12, 3], ["jar", 13, 3], ["src", 17, 3], ["patches", 24, 3], ["installPhase", 31, 3], ["jre", 43, 11], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchurl: false, fetchFromGitHub: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/3.5.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/3.5.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$3 = nix.positions(here + "/3.5.nix", [["url", 26, 7], ["sha256", 27, 7]]);
-const pos$4 = nix.positions(here + "/3.5.nix", [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 54, 5], ["sourceProvenance", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]]);
-const pos$5 = nix.positions(here + "/3.5.nix", [["pname", 11, 3], ["version", 12, 3], ["jar", 13, 3], ["src", 17, 3], ["patches", 24, 3], ["installPhase", 31, 3], ["jre", 43, 11], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +17,12 @@ export default nix.lambda((args) => (() => {
       const pname = "antlr";
       const version = "3.5.2";
       const jar = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.antlr3.org/download/antlr-${version}-complete.jar`),
           sha256: "0srjwxipwsfzmpi0v32d1l5lzk9gi5in8ayg33sq8wyp8ygnbji6",
         }))));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "antlr",
           repo: "antlr3",
           rev: "5c2a916a10139cdb5c7c8851ee592ed9c3b3d4ff",
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://src.fedoraproject.org/rpms/antlr3/raw/f1bb8d639678047935e1761c3bf3c1c7da8d0f1d/f/0006-antlr3memory.hpp-fix-for-C-20-mode.patch",
             sha256: "0apk904afjqbad6c7z9r72a9lkbz69vwrl8j2a6zgxjn8dfb2p8b",
           })))),
@@ -51,7 +47,7 @@ ln -s "$out/bin/antlr"{,3}
 `);
       const jre_1 = jre;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Powerful parser generator",
         longDescription: "ANTLR (ANother Tool for Language Recognition) is a powerful parser\ngenerator for reading, processing, executing, or translating structured\ntext or binary files. It's widely used to build languages, tools, and\nframeworks. From a grammar, ANTLR generates a parser that can build and\nwalk parse trees.\n",
         homepage: "https://www.antlr.org/",
@@ -64,7 +60,7 @@ ln -s "$out/bin/antlr"{,3}
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "workflow"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         jar,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["pname", 17, 13], ["version", 17, 19], ["src", 17, 27]], [["description", 36, 5], ["homepage", 37, 5], ["downloadPage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]], [["pname", 21, 11], ["version", 21, 17], ["src", 21, 25], ["nativeBuildInputs", 22, 3], ["extraInstallCommands", 24, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 17, 13], ["version", 17, 19], ["src", 17, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["downloadPage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 11], ["version", 21, 17], ["src", 21, 25], ["nativeBuildInputs", 22, 3], ["extraInstallCommands", 24, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const pname = "framesh";
   const version = "0.6.11";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/floating/frame/releases/download/v${version}/Frame-${version}.AppImage`),
       hash: "sha256-t60jsA4ojXF805OUrqIOdk8eP9PlwA/g0XxEBCahmb4=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -38,7 +35,7 @@ substituteInPlace $out/share/applications/frame.desktop \\
   --replace 'Exec=AppRun' 'Exec=${pname}'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Native web3 interface that lets you sign data, securely manage accounts and transparently interact with dapps via web3 protocols like Ethereum and IPFS",
         homepage: "https://frame.sh/",
         downloadPage: "https://github.com/floating/frame/releases",

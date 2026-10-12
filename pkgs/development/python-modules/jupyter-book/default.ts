@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["src", 41, 26], ["hash", 42, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["teams", 82, 5], ["mainProgram", 83, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["npmDeps", 40, 3], ["build-system", 45, 3], ["nativeBuildInputs", 52, 3], ["propagatedBuildInputs", 58, 3], ["dependencies", 62, 3], ["pythonImportsCheck", 69, 3], ["nativeCheckInputs", 72, 3], ["versionCheckProgramArg", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchNpmDeps: false, "hatch-deps-selector": false, "hatch-jupyter-builder": false, "hatch-nodejs-version": false, hatchling: false, nodejs: false, npmHooks: false, "jupyter-core": false, "jupyter-server": false, ipykernel: false, nodeenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 41, 26], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["teams", 82, 5], ["mainProgram", 83, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["npmDeps", 40, 3], ["build-system", 45, 3], ["nativeBuildInputs", 52, 3], ["propagatedBuildInputs", 58, 3], ["dependencies", 62, 3], ["pythonImportsCheck", 69, 3], ["nativeCheckInputs", 72, 3], ["versionCheckProgramArg", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,20 +23,20 @@ export default nix.lambda((args) => (() => {
   const nodeenv = nix.arg($, "nodeenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jupyter-book",
       version: "2.1.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jupyter-book",
           repo: "jupyter-book",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-8jOPjF9tFwXmq5iWGW3V8qif7UdPPrDZW4cVjtSdbYY=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-xbDn7jDDd/nWKVvx2R6uJIaWQMSOktCeKv2EBkkzhTY=",
         })))),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Build a book with Jupyter Notebooks and Sphinx",
         homepage: "https://jupyterbook.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter-book/jupyter-book/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

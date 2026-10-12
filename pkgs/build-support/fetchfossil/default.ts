@@ -2,9 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 18, 5], ["builder", 19, 5], ["nativeBuildInputs", 20, 5], ["strictDeps", 25, 5], ["__structuredAttrs", 26, 5], ["impureEnvVars", 30, 5], ["outputHash", 32, 13], ["outputHashAlgo", 32, 24], ["outputHashMode", 33, 5], ["url", 35, 13], ["rev", 35, 17], ["preferLocalBuild", 36, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fossil: false, cacert: false }, ellipsis: false };
 const formals$2 = { args: { name: true, url: false, rev: false, outputHash: true, outputHashAlgo: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 18, 5], ["builder", 19, 5], ["nativeBuildInputs", 20, 5], ["strictDeps", 25, 5], ["__structuredAttrs", 26, 5], ["impureEnvVars", 30, 5], ["outputHash", 32, 13], ["outputHashAlgo", 32, 24], ["outputHashMode", 33, 5], ["url", 35, 13], ["rev", 35, 17], ["preferLocalBuild", 36, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const outputHash = nix.argOr($_1, "outputHash", () => nix.sel(lib, "fakeHash"));
       const outputHashAlgo = nix.argOr($_1, "outputHashAlgo", () => null);
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.add("fossil-archive", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(name, null)), nix.thunk(() => nix.str`-${name}`)))),
           builder: nix.path(here, "./builder.sh"),
           nativeBuildInputs: nix.thunk(() => [fossil, cacert]),

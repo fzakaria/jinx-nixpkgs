@@ -2,27 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/amuled.nix", [[["systemPackages", 12, 17]], [["FilterLanIPs", 22, 15]], [["Enabled", 23, 18]], [["eMule", 22, 9], ["AmuleApi", 23, 9]], [["enable", 17, 7], ["openPeerPorts", 18, 7], ["ExternalConnectPasswordFile", 19, 7], ["AmuleApiAdminPasswordFile", 20, 7], ["settings", 21, 7]], [["amule", 16, 14]], [["environment", 12, 5], ["services", 16, 5]], [["maintainers", 31, 8]], [["ECPort", 38, 34]], [["ExternalConnect", 38, 18]], [["AmuleApiAdminPasswordFile", 37, 9], ["settings", 38, 9]], [["amule", 36, 16]], [["Restart", 41, 45]], [["serviceConfig", 41, 31]], [["amuled", 41, 24]], [["services", 41, 15]], [["imports", 35, 7], ["services", 36, 7], ["systemd", 41, 7]], [["seeder", 34, 5], ["leecher", 43, 5]], [["name", 29, 3], ["meta", 31, 3], ["nodes", 33, 3], ["testScript", 46, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/amuled.nix", [["systemPackages", 12, 17]]);
-const pos$2 = nix.positions(here + "/amuled.nix", [["FilterLanIPs", 22, 15]]);
-const pos$3 = nix.positions(here + "/amuled.nix", [["Enabled", 23, 18]]);
-const pos$4 = nix.positions(here + "/amuled.nix", [["eMule", 22, 9], ["AmuleApi", 23, 9]]);
-const pos$5 = nix.positions(here + "/amuled.nix", [["enable", 17, 7], ["openPeerPorts", 18, 7], ["ExternalConnectPasswordFile", 19, 7], ["AmuleApiAdminPasswordFile", 20, 7], ["settings", 21, 7]]);
-const pos$6 = nix.positions(here + "/amuled.nix", [["amule", 16, 14]]);
-const pos$7 = nix.positions(here + "/amuled.nix", [["environment", 12, 5], ["services", 16, 5]]);
-const pos$8 = nix.positions(here + "/amuled.nix", [["maintainers", 31, 8]]);
-const pos$9 = nix.positions(here + "/amuled.nix", [["ECPort", 38, 34]]);
-const pos$10 = nix.positions(here + "/amuled.nix", [["ExternalConnect", 38, 18]]);
-const pos$11 = nix.positions(here + "/amuled.nix", [["AmuleApiAdminPasswordFile", 37, 9], ["settings", 38, 9]]);
-const pos$12 = nix.positions(here + "/amuled.nix", [["amule", 36, 16]]);
-const pos$13 = nix.positions(here + "/amuled.nix", [["Restart", 41, 45]]);
-const pos$14 = nix.positions(here + "/amuled.nix", [["serviceConfig", 41, 31]]);
-const pos$15 = nix.positions(here + "/amuled.nix", [["amuled", 41, 24]]);
-const pos$16 = nix.positions(here + "/amuled.nix", [["services", 41, 15]]);
-const pos$17 = nix.positions(here + "/amuled.nix", [["imports", 35, 7], ["services", 36, 7], ["systemd", 41, 7]]);
-const pos$18 = nix.positions(here + "/amuled.nix", [["seeder", 34, 5], ["leecher", 43, 5]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/amuled.nix", [["name", 29, 3], ["meta", 31, 3], ["nodes", 33, 3], ["testScript", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,61 +12,61 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const adminPassword = "admin-secret";
   const node = nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl")), nix.thunk(() => nix.sel(pkgs, "jq"))]),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       amule: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         enable: true,
         openPeerPorts: true,
         ExternalConnectPasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "amule-ec-password", "ec-secret")),
         AmuleApiAdminPasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "amule-api-password", adminPassword)),
         settings: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          eMule: nix.thunk(() => ({ [nix.POS]: pos$2, FilterLanIPs: 0n })),
-          AmuleApi: nix.thunk(() => ({ [nix.POS]: pos$3, Enabled: 1n })),
+          [nix.POS]: $pos[3],
+          eMule: nix.thunk(() => ({ [nix.POS]: $pos[1], FilterLanIPs: 0n })),
+          AmuleApi: nix.thunk(() => ({ [nix.POS]: $pos[2], Enabled: 1n })),
         })),
       })),
     })),
   }));
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "amuled",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "aciceri"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       seeder: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         imports: nix.thunk(() => [node]),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           amule: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             AmuleApiAdminPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "/run/amule admin password")),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$10,
-              ExternalConnect: nix.thunk(() => ({ [nix.POS]: pos$9, ECPort: 14712n })),
+              [nix.POS]: $pos[9],
+              ExternalConnect: nix.thunk(() => ({ [nix.POS]: $pos[8], ECPort: 14712n })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             amuled: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               serviceConfig: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "no")),
               })),
             })),

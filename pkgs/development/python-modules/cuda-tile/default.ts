@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["stdenv", 36, 31]], [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["CUDA_TILE_CMAKE_DLPACK_PATH", 77, 5], ["CUDA_TILE_CMAKE_XLA_PATH", 78, 5]], [["tileiras", 96, 5]], [["requiredSystemFeatures", 113, 5], ["doCheck", 114, 5]], [["gpuCheck", 112, 12]], [["description", 118, 5], ["homepage", 119, 5], ["downloadPage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["broken", 127, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["postPatch", 49, 3], ["build-system", 72, 3], ["env", 76, 3], ["nativeBuildInputs", 81, 3], ["dontUseCmakeConfigure", 85, 3], ["buildInputs", 87, 3], ["dependencies", 91, 3], ["optional-dependencies", 95, 3], ["pythonImportsCheck", 102, 3], ["nativeCheckInputs", 104, 3], ["doCheck", 110, 3], ["passthru", 112, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, config: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "typing-extensions": false, cmake: false, cudaPackages: false, dlpack: false, pytestCheckHook: false, torch: false, "cuda-tile": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["stdenv", 36, 31]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["CUDA_TILE_CMAKE_DLPACK_PATH", 77, 5], ["CUDA_TILE_CMAKE_XLA_PATH", 78, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tileiras", 96, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["requiredSystemFeatures", 113, 5], ["doCheck", 114, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["gpuCheck", 112, 12]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 118, 5], ["homepage", 119, 5], ["downloadPage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["broken", 127, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["postPatch", 49, 3], ["build-system", 72, 3], ["env", 76, 3], ["nativeBuildInputs", 81, 3], ["dontUseCmakeConfigure", 85, 3], ["buildInputs", 87, 3], ["dependencies", 91, 3], ["optional-dependencies", 95, 3], ["pythonImportsCheck", 102, 3], ["nativeCheckInputs", 104, 3], ["doCheck", 110, 3], ["passthru", 112, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,23 +20,23 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const cuda_tile = nix.arg($, "cuda-tile");
   const xla = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "openxla",
       repo: "xla",
       rev: "b6f37ab7767f428fd6f993de5e211643d47d4deb",
       hash: "sha256-U4e3k4nm9gB1x5hahXwycWSryBQuxIPmOzVf6kuahY0=",
     }))));
   return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       stdenv: nix.thunk(() => nix.sel(cudaPackages, "backendStdenv")),
     })), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "cuda-tile",
       version: "1.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "NVIDIA",
           repo: "cutile-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +46,7 @@ export default nix.lambda((args) => (() => {
 `)),
       "build-system": nix.thunk(() => [setuptools]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         CUDA_TILE_CMAKE_DLPACK_PATH: dlpack,
         CUDA_TILE_CMAKE_XLA_PATH: xla,
       })),
@@ -62,20 +54,20 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart"))]),
       dependencies: nix.thunk(() => [typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$5, tileiras: [] })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[4], tileiras: [] })),
       pythonImportsCheck: nix.thunk(() => ["cuda.tile"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, torch]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         gpuCheck: nix.thunk(() => nix.app(nix.sel(cuda_tile, "overridePythonAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doCheck: true,
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Programming model for writing parallel kernels for NVIDIA GPUs",
         homepage: "https://docs.nvidia.com/cuda/cutile-python/",
         downloadPage: "https://github.com/NVIDIA/cutile-python",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 5], ["version", 20, 26], ["hash", 21, 5]], [["changelog", 50, 5], ["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["buildInputs", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 33, 3], ["preCheck", 39, 3], ["__darwinAllowLocalNetworking", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, django: false, setuptools: false, "setuptools-scm": false, "django-configurations": false, pytest: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 26], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 50, 5], ["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["buildInputs", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 33, 3], ["preCheck", 39, 3], ["__darwinAllowLocalNetworking", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pytest-django",
       version: "4.14.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pytest_django",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Jnh90/Qiz7q49VuAp3bi7ep6EQkst06WC+8TElFXCO8=",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "# bring pytest_django_test module into PYTHONPATH\nexport PYTHONPATH=\"$PWD:$PYTHONPATH\"\n\n# test the lightweight sqlite flavor\nexport DJANGO_SETTINGS_MODULE=\"pytest_django_test.settings_sqlite\"\n",
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-django/blob/v${nix.sel(finalAttrs, "version")}/docs/changelog.rst`),
         description: "Pytest plugin for testing of Django applications",
         homepage: "https://pytest-django.readthedocs.org/en/latest/",

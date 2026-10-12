@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["maintainers", 69, 5], ["platforms", 70, 5], ["description", 71, 5], ["longDescription", 72, 5], ["homepage", 77, 5], ["license", 78, 5]], [["name", 20, 3], ["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["enableParallelBuilding", 45, 3], ["patches", 47, 3], ["preConfigure", 49, 3], ["postConfigure", 51, 3], ["configureFlags", 53, 3], ["postInstall", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, file: false, zip: false, wxwidgets_3_2: false, gtk3: false, contribPlugins: true, hunspell: false, boost187: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["maintainers", 69, 5], ["platforms", 70, 5], ["description", 71, 5], ["longDescription", 72, 5], ["homepage", 77, 5], ["license", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 20, 3], ["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["enableParallelBuilding", 45, 3], ["patches", 47, 3], ["preConfigure", 49, 3], ["postConfigure", 51, 3], ["configureFlags", 53, 3], ["postInstall", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "codeblocks";
       const version = "25.03";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/codeblocks/Sources/${version}/codeblocks_${version}.tar.xz`),
           hash: "sha256-sPaqWQjTNtf0H5V2skGKx9J++8WSgqqMkXHYjOp0BJ4=",
         }))));
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         ]))));
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -s $out/lib/codeblocks/plugins $out/share/codeblocks/plugins\n"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         description: "Open source, cross platform, free C, C++ and Fortran IDE",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name,
         pname,
         version,

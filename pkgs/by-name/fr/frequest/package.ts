@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 7], ["name", 16, 7], ["repo", 17, 7], ["rev", 18, 7], ["hash", 19, 7]], [["owner", 26, 7], ["name", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["hash", 30, 7]], [["owner", 33, 7], ["name", 34, 7], ["repo", 35, 7], ["rev", 36, 7], ["hash", 37, 7]], [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]], [["pname", 10, 3], ["version", 11, 3], ["srcs", 13, 3], ["sourceRoot", 40, 3], ["patches", 42, 3], ["buildInputs", 51, 3], ["nativeBuildInputs", 55, 3], ["postInstall", 61, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 7], ["name", 16, 7], ["repo", 17, 7], ["rev", 18, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 7], ["name", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 33, 7], ["name", 34, 7], ["repo", 35, 7], ["rev", 36, 7], ["hash", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["srcs", 13, 3], ["sourceRoot", 40, 3], ["patches", 42, 3], ["buildInputs", 51, 3], ["nativeBuildInputs", 55, 3], ["postInstall", 61, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "frequest",
       version: "1.2a",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "fabiobento512",
             name: "frequest",
             repo: "FRequest",
@@ -31,7 +26,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-fdn3MK5GWBOhJjpMtRaytO9EsVzz6KJknDhqWtAyXCc=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "fabiobento512",
             name: "CommonLibs",
             repo: "CommonLibs",
@@ -39,7 +34,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-iLJJ95yJ+VjNPuk8fNEDvYBI0db0rcfJF12a9azGv1Y=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "fabiobento512",
             name: "CommonUtils",
             repo: "CommonUtils",
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: "frequest",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "Change-desktop-icon-name",
             url: "https://github.com/fabiobento512/FRequest/commit/22e98970b78f6d9ca0037c39c2492e93e836abff.patch",
             hash: "sha256-YoI68SPMHD4bAgjWpn6eSda3Oon8bevbiwTx1JFFm40=",
@@ -63,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -D FRequest $out/bin/FRequest\ninstall -D LinuxAppImageDeployment/frequest.desktop $out/share/applications/frequest.desktop\ninstall -D LinuxAppImageDeployment/frequest_icon.png $out/share/icons/hicolor/128x128/apps/frequest_icon.png\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Fast, lightweight and opensource desktop application to make HTTP(s) requests",
         homepage: "https://fabiobento512.github.io/FRequest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

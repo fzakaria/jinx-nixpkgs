@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["fetchSubmodules", 27, 5], ["hash", 28, 5]], [["moduleNames", 76, 9], ["package", 77, 9]], [["cmake-config", 75, 7]], [["tests", 74, 5]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["mainProgram", 86, 5], ["license", 87, 5], ["platforms", 93, 5], ["maintainers", 94, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 40, 3], ["cmakeFlags", 46, 3], ["doCheck", 53, 3], ["__darwinAllowLocalNetworking", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTests", 63, 3], ["passthru", 73, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, mpi: false, cgal: false, sparsehash: false, imagemagick: false, gtest: false, ctestCheckHook: false, mpiCheckPhaseHook: false, withExamples: true, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["fetchSubmodules", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["moduleNames", 76, 9], ["package", 77, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cmake-config", 75, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["mainProgram", 86, 5], ["license", 87, 5], ["platforms", 93, 5], ["maintainers", 94, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 40, 3], ["cmakeFlags", 46, 3], ["doCheck", 53, 3], ["__darwinAllowLocalNetworking", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTests", 63, 3], ["passthru", 73, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const withExamples = nix.argOr($, "withExamples", () => false);
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kagen",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KarlsruheGraphGeneration",
           repo: "kagen",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,18 +54,18 @@ export default nix.lambda((args) => (() => {
           "test_permutation.4cores",
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               moduleNames: nix.thunk(() => ["KaGen"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Communication-free Massively Distributed Graph Generators",
         homepage: "https://github.com/KarlsruheGraphGeneration/KaGen",
         changelog: nix.thunk(() => nix.str`https://github.com/KarlsruheGraphGeneration/KaGen/releases/tag/v${nix.sel(finalAttrs, "version")}`),

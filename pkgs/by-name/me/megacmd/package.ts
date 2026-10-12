@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 36, 5], ["fetchSubmodules", 37, 5], ["postCheckout", 38, 5], ["hash", 39, 5]], [["extraArgs", 160, 5]], [["updateScript", 159, 12]], [["description", 164, 5], ["homepage", 165, 5], ["changelog", 166, 5], ["license", 167, 5], ["platforms", 171, 5], ["maintainers", 172, 5], ["mainProgram", 176, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["__structuredAttrs", 42, 3], ["patches", 44, 3], ["postPatch", 64, 3], ["enableParallelBuilding", 74, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 96, 3], ["cmakeFlags", 111, 3], ["postInstall", 120, 3], ["preFixup", 134, 3], ["__darwinAllowLocalNetworking", 152, 3], ["doInstallCheck", 154, 3], ["nativeInstallCheckInputs", 155, 3], ["versionCheckProgram", 156, 3], ["versionCheckProgramArg", 157, 3], ["passthru", 159, 3], ["meta", 163, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, cryptopp: false, curl: false, fetchFromGitHub: false, file: false, ffmpeg: false, fuse3: false, icu: false, libmediainfo: false, libsodium: false, libuv: false, libzen: false, makeWrapper: false, "nix-update-script": false, pdfium: false, "pkg-config": false, readline: false, sqlite: false, versionCheckHook: false, writeShellScriptBin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 36, 5], ["fetchSubmodules", 37, 5], ["postCheckout", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 160, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 159, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 164, 5], ["homepage", 165, 5], ["changelog", 166, 5], ["license", 167, 5], ["platforms", 171, 5], ["maintainers", 172, 5], ["mainProgram", 176, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["__structuredAttrs", 42, 3], ["patches", 44, 3], ["postPatch", 64, 3], ["enableParallelBuilding", 74, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 96, 3], ["cmakeFlags", 111, 3], ["postInstall", 120, 3], ["preFixup", 134, 3], ["__darwinAllowLocalNetworking", 152, 3], ["doInstallCheck", 154, 3], ["nativeInstallCheckInputs", 155, 3], ["versionCheckProgram", 156, 3], ["versionCheckProgramArg", 157, 3], ["passthru", 159, 3], ["meta", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writeShellScriptBin = nix.arg($, "writeShellScriptBin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "megacmd",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "meganz",
           repo: "MEGAcmd",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}_Linux`),
@@ -101,14 +97,14 @@ done
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/mega-version`),
       versionCheckProgramArg: "-l",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=(\\d+\\.\\d+\\.\\d+)_Linux"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "MEGA Command Line Interactive and Scriptable Application",
         homepage: "https://mega.io/cmd",
         changelog: nix.thunk(() => nix.str`https://github.com/meganz/MEGAcmd/blob/${nix.sel(finalAttrs, "src", "tag")}/build/megacmd/megacmd.changes`),

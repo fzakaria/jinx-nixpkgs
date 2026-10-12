@@ -2,19 +2,18 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wl.nix", [[["description", 5, 8]], [["name", 3, 3], ["nativeBuildInputs", 4, 3], ["meta", 5, 3]]]);
 const formals$1 = { args: { buildAstalModule: false, "wl-vapi-gen": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wl.nix", [["description", 5, 8]]);
-const pos$2 = nix.positions(here + "/wl.nix", [["name", 3, 3], ["nativeBuildInputs", 4, 3], ["meta", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildAstalModule = nix.arg($, "buildAstalModule");
   const wl_vapi_gen = nix.arg($, "wl-vapi-gen");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "wl",
       nativeBuildInputs: nix.thunk(() => [wl_vapi_gen]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Central wayland connection manager" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "Central wayland connection manager" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=wl.ts.map

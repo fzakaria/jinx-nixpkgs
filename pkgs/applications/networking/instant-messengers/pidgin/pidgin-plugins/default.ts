@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["withOpenssl", 16, 7], ["withGnutls", 17, 7], ["plugins", 18, 7]], [["texLive", 24, 7]], [["pidgin", 15, 5], ["pidginPackages", 21, 5], ["pidgin-latex", 23, 5], ["pidgin-carbons", 27, 5], ["pidgin-xmpp-receipts", 29, 5], ["pidgin-otr", 31, 5], ["pidgin-osd", 33, 5], ["pidgin-sipe", 35, 5], ["pidgin-window-merge", 37, 5], ["purple-discord", 39, 5], ["purple-googlechat", 41, 5], ["purple-lurch", 43, 5], ["purple-mm-sms", 45, 5], ["purple-plugin-pack", 47, 5], ["purple-slack", 49, 5]], [["tdlib-purple", 53, 5], ["pidgin-indicator", 54, 5], ["purple-matrix", 55, 5], ["pidgin-skypeweb", 56, 5], ["purple-hangouts", 57, 5], ["pidgin-msn-pecan", 58, 5], ["pidgin-mra", 59, 5], ["purple-facebook", 60, 5], ["pidgin-opensteamworks", 61, 5], ["purple-vk-plugin", 62, 5], ["purple-xmpp-http-upload", 63, 5]]]);
 const formals$1 = { args: { lib: false, newScope: false, pidgin: false, texliveBasic: false, config: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["withOpenssl", 16, 7], ["withGnutls", 17, 7], ["plugins", 18, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["texLive", 24, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pidgin", 15, 5], ["pidginPackages", 21, 5], ["pidgin-latex", 23, 5], ["pidgin-carbons", 27, 5], ["pidgin-xmpp-receipts", 29, 5], ["pidgin-otr", 31, 5], ["pidgin-osd", 33, 5], ["pidgin-sipe", 35, 5], ["pidgin-window-merge", 37, 5], ["purple-discord", 39, 5], ["purple-googlechat", 41, 5], ["purple-lurch", 43, 5], ["purple-mm-sms", 45, 5], ["purple-plugin-pack", 47, 5], ["purple-slack", 49, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tdlib-purple", 53, 5], ["pidgin-indicator", 54, 5], ["purple-matrix", 55, 5], ["pidgin-skypeweb", 56, 5], ["purple-hangouts", 57, 5], ["pidgin-msn-pecan", 58, 5], ["pidgin-mra", 59, 5], ["purple-facebook", 60, 5], ["pidgin-opensteamworks", 61, 5], ["purple-vk-plugin", 62, 5], ["purple-xmpp-http-upload", 63, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,15 +15,15 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const callPackage = nix.thunk(() => nix.sel(self, "callPackage"));
       return nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pidgin: nix.thunk(() => nix.app(callPackage, nix.path(here, "../."), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             withOpenssl: nix.thunk(() => nix.selOr(config, () => true, "pidgin", "openssl")),
             withGnutls: nix.thunk(() => nix.selOr(config, () => false, "pidgin", "gnutls")),
             plugins: [],
           })))),
         pidginPackages: self,
-        "pidgin-latex": nix.thunk(() => nix.app(callPackage, nix.path(here, "./pidgin-latex"), nix.thunk(() => ({ [nix.POS]: pos$2, texLive: texliveBasic })))),
+        "pidgin-latex": nix.thunk(() => nix.app(callPackage, nix.path(here, "./pidgin-latex"), nix.thunk(() => ({ [nix.POS]: $pos[1], texLive: texliveBasic })))),
         "pidgin-carbons": nix.thunk(() => nix.app(callPackage, nix.path(here, "./carbons"), nix.thunk(() => ({})))),
         "pidgin-xmpp-receipts": nix.thunk(() => nix.app(callPackage, nix.path(here, "./pidgin-xmpp-receipts"), nix.thunk(() => ({})))),
         "pidgin-otr": nix.thunk(() => nix.app(callPackage, nix.path(here, "./otr"), nix.thunk(() => ({})))),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         "purple-plugin-pack": nix.thunk(() => nix.app(callPackage, nix.path(here, "./purple-plugin-pack"), nix.thunk(() => ({})))),
         "purple-slack": nix.thunk(() => nix.app(callPackage, nix.path(here, "./purple-slack"), nix.thunk(() => ({})))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "tdlib-purple": nix.thunk(() => nix.builtins.throw("'pidginPackages.tdlib-purple' has been removed due to being broken for more than a year; see RFC 180")),
           "pidgin-indicator": nix.thunk(() => nix.builtins.throw("'pidginPackages.pidgin-indicator' has been removed as it depended on libappindicator-gtk2, which was removed for depending on the deprecated GTK 2 engine.")),
           "purple-matrix": nix.thunk(() => nix.builtins.throw("'pidginPackages.purple-matrix' has been unmaintained since April 2022, so it was removed.")),

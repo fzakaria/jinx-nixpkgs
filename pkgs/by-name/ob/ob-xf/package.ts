@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 5]], [["NIX_LDFLAGS", 70, 7], ["FONTCONFIG_FILE", 73, 7]], [["updateScript", 92, 12]], [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["maintainers", 99, 5], ["mainProgram", 100, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 33, 3], ["__structuredAttrs", 45, 3], ["strictDeps", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 54, 3], ["enableParallelBuilding", 67, 3], ["env", 70, 3], ["installPhase", 75, 3], ["passthru", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gitUpdater: false, cmake: false, "pkg-config": false, "alsa-lib": false, freetype: false, fontconfig: false, libjack2: false, libGL: false, libx11: false, libxcursor: false, libxext: false, libxinerama: false, libxrandr: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 70, 7], ["FONTCONFIG_FILE", 73, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 92, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["maintainers", 99, 5], ["mainProgram", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 33, 3], ["__structuredAttrs", 45, 3], ["strictDeps", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 54, 3], ["enableParallelBuilding", 67, 3], ["env", 70, 3], ["installPhase", 75, 3], ["passthru", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ob-xf",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "surge-synthesizer",
           repo: "OB-Xf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,17 +63,17 @@ EOF
       ]),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: "-lX11",
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
       })),
       installPhase: "runHook preInstall\n\n# Factory data (patches, themes) — provided by upstream's install() rule\ncmake --install .\n\nmkdir -p $out/lib/{vst3,lv2,clap}\n\ncp -r OB-Xf_artefacts/Release/VST3/OB-Xf.vst3 $out/lib/vst3/\ncp -r OB-Xf_artefacts/Release/LV2/OB-Xf.lv2 $out/lib/lv2/\ncp -r OB-Xf_artefacts/Release/CLAP/OB-Xf.clap $out/lib/clap/\n\ninstall -Dm755 OB-Xf_artefacts/Release/Standalone/OB-Xf $out/bin/OB-Xf\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Virtual analog synthesizer plug-in inspired by the Oberheim OB-X",
         homepage: "https://surge-synth-team.org/ob-xf/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

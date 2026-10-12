@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 33, 3], ["makeWrapperArgs", 40, 3], ["nativeInstallCheckInputs", 52, 3], ["doInstallCheck", 53, 3], ["pythonImportsCheck", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, ghostscript: false, imagemagick: false, "poppler-utils": false, python3: false, tesseract5: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 33, 3], ["makeWrapperArgs", 40, 3], ["nativeInstallCheckInputs", 52, 3], ["doInstallCheck", 53, 3], ["pythonImportsCheck", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const tesseract5 = nix.arg($, "tesseract5");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "invoice2data",
       version: "1.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "invoice-x",
           repo: "invoice2data",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       pythonImportsCheck: nix.thunk(() => ["invoice2data"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Data extractor for PDF invoices",
         mainProgram: "invoice2data",
         homepage: "https://github.com/invoice-x/invoice2data",

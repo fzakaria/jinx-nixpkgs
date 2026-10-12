@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["broken", 61, 5], ["maintainers", 62, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["patches", 20, 3], ["postPatch", 22, 3], ["configureFlags", 27, 3], ["hardeningDisable", 29, 3], ["doCheck", 31, 3], ["doInstallCheck", 33, 3], ["nativeInstallCheckInputs", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libxcrypt: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["broken", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["patches", 20, 3], ["postPatch", 22, 3], ["configureFlags", 27, 3], ["hardeningDisable", 29, 3], ["doCheck", 31, 3], ["doInstallCheck", 33, 3], ["nativeInstallCheckInputs", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pies",
       version: "1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/pies/pies-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-ZSi00WmC6il4+aSohqFKrKjtp6xFXYE7IIRGVwFmHWw=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Program invocation and execution supervisor",
         longDescription: "The name Pies (pronounced \"p-yes\") stands for Program Invocation and\nExecution Supervisor.  This utility starts and controls execution of\nexternal programs, called components.  Each component is a\nstand-alone program, which is executed in the foreground.  Upon\nstartup, pies reads the list of components from its configuration\nfile, starts them, and remains in the background, controlling their\nexecution.  If any of the components terminates, the default action\nof Pies is to restart it.  However, it can also be programmed to\nperform a variety of another actions such as, e.g., sending mail\nnotifications to the system administrator, invoking another external\nprogram, etc.\n\nPies can be used for a wide variety of tasks.  Its most obvious use\nis to put in background a program which normally cannot detach itself\nfrom the controlling terminal, such as, e.g., minicom.  It can\nlaunch and control components of some complex system, such as\nJabberd or MeTA1 (and it offers much more control over them than the\nnative utilities).  Finally, it can replace the inetd utility!\n",
         homepage: "https://www.gnu.org/software/pies/",

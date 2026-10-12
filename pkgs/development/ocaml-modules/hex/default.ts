@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["pname", 9, 3], ["version", 10, 3], ["duneVersion", 12, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["doCheck", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, cstruct: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["duneVersion", 12, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["doCheck", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,20 +12,20 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const cstruct = nix.arg($, "cstruct");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hex",
       version: "1.5.0",
       duneVersion: "3",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-hex/releases/download/v${nix.sel(finalAttrs, "version")}/hex-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-LmfuyhsDBJMHowgxtc1pS8stPn8qa0+1l/vbZHNRtNw=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [cstruct]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Minimal OCaml library providing hexadecimal converters",
         homepage: "https://github.com/mirage/ocaml-hex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

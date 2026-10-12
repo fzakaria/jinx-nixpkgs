@@ -2,16 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plr.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["extraArgs", 32, 7]], [["wrapperArgs", 43, 18]], [["name", 41, 9], ["paths", 42, 9], ["passthru", 43, 9]], [["finalPackage", 48, 7], ["sql", 49, 7]], [["extension", 47, 11]], [["updateScript", 31, 5], ["withPackages", 34, 5], ["tests", 47, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["license", 65, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["makeFlags", 28, 3], ["passthru", 30, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { buildEnv: false, fetchFromGitHub: false, lib: false, "nix-update-script": false, "pkg-config": false, postgresql: false, postgresqlBuildExtension: false, postgresqlTestExtension: false, R: false, rPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/plr.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/plr.nix", [["extraArgs", 32, 7]]);
-const pos$3 = nix.positions(here + "/plr.nix", [["wrapperArgs", 43, 18]]);
-const pos$4 = nix.positions(here + "/plr.nix", [["name", 41, 9], ["paths", 42, 9], ["passthru", 43, 9]]);
-const pos$5 = nix.positions(here + "/plr.nix", [["finalPackage", 48, 7], ["sql", 49, 7]]);
-const pos$6 = nix.positions(here + "/plr.nix", [["extension", 47, 11]]);
-const pos$7 = nix.positions(here + "/plr.nix", [["updateScript", 31, 5], ["withPackages", 34, 5], ["tests", 47, 5]]);
-const pos$8 = nix.positions(here + "/plr.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["license", 65, 5]]);
-const pos$9 = nix.positions(here + "/plr.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["makeFlags", 28, 3], ["passthru", 30, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const R = nix.arg($, "R");
   const rPackages = nix.arg($, "rPackages");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "plr",
       version: "8.4.8.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "postgres-plr",
           repo: "plr",
           tag: nix.thunk(() => nix.str`REL${nix.app(nix.sel(lib, "replaceString"), ".", "_", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -40,35 +32,35 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [R]),
       makeFlags: nix.thunk(() => ["USE_PGXS=1"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=^REL(\\d+)_(\\d+)_(\\d+)$"]),
           })))),
         withPackages: (f) => (() => {
           const pkgs = nix.thunk(() => nix.app(f, rPackages));
           const paths = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ":", (pkg) => nix.str`${pkg}/library`, pkgs));
           return nix.app(buildEnv, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-with-packages-${nix.sel(finalAttrs, "version")}`),
               paths: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               passthru: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 wrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--set R_LIBS_SITE "${paths}"`)]),
               })),
             })));
         })(),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               finalPackage: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "base64enc"))])),
               sql: "CREATE EXTENSION plr;\nDO LANGUAGE plr $$\n  require('base64enc')\n  base64encode(1:100)\n$$;\n",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "PL/R - R Procedural Language for PostgreSQL",
         homepage: "https://github.com/postgres-plr/plr",
         changelog: nix.thunk(() => nix.str`https://github.com/postgres-plr/plr/blob/${nix.sel(finalAttrs, "src", "rev")}/changelog.md`),

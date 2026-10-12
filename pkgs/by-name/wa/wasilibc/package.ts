@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]], [["firefox-unwrapped", 74, 15], ["firefox-esr-unwrapped", 74, 33]], [["incdir", 71, 5], ["libdir", 72, 5], ["tests", 73, 5]], [["changelog", 79, 5], ["description", 80, 5], ["homepage", 81, 5], ["platforms", 82, 5], ["maintainers", 83, 5], ["license", 87, 5]], [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["patches", 30, 3], ["nativeBuildInputs", 34, 3], ["outputs", 43, 3], ["cmakeFlags", 48, 3], ["enableParallelBuilding", 57, 3], ["preFixup", 59, 3], ["passthru", 70, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { stdenvNoLibc: false, cmake: false, fetchFromGitHub: false, lib: false, lld: false, llvmPackages: false, ninja: false, "wasm-tools": false, "wit-bindgen": false, wkg: false, "firefox-unwrapped": false, "firefox-esr-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["firefox-unwrapped", 74, 15], ["firefox-esr-unwrapped", 74, 33]]);
-const pos$3 = nix.positions(here + "/package.nix", [["incdir", 71, 5], ["libdir", 72, 5], ["tests", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 79, 5], ["description", 80, 5], ["homepage", 81, 5], ["platforms", 82, 5], ["maintainers", 83, 5], ["license", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["patches", 30, 3], ["nativeBuildInputs", 34, 3], ["outputs", 43, 3], ["cmakeFlags", 48, 3], ["enableParallelBuilding", 57, 3], ["preFixup", 59, 3], ["passthru", 70, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const firefox_unwrapped = nix.arg($, "firefox-unwrapped");
   const firefox_esr_unwrapped = nix.arg($, "firefox-esr-unwrapped");
   return nix.app(nix.sel(stdenvNoLibc, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "wasilibc",
       version: "32",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "WebAssembly",
           repo: "wasi-libc",
           tag: nix.thunk(() => nix.str`wasi-sdk-${nix.sel(finalAttrs, "version")}`),
@@ -49,17 +45,17 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenvNoLibc, "system"), nix.sel(stdenvNoLibc, "targetPlatform", "rust", "rustcTargetSpec"))), nix.thunk(() => nix.str`ln -s $out/lib/${nix.sel(stdenvNoLibc, "system")} $out/lib/${nix.sel(stdenvNoLibc, "targetPlatform", "rust", "rustcTargetSpec")}
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         incdir: nix.thunk(() => nix.str`/include/${nix.sel(stdenvNoLibc, "system")}`),
         libdir: nix.thunk(() => nix.str`/lib/${nix.sel(stdenvNoLibc, "system")}`),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "firefox-unwrapped": firefox_unwrapped,
           "firefox-esr-unwrapped": firefox_esr_unwrapped,
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/WebAssembly/wasi-sdk/releases/tag/wasi-sdk-${nix.sel(finalAttrs, "version")}`),
         description: "WASI libc implementation for WebAssembly",
         homepage: "https://wasi.dev",

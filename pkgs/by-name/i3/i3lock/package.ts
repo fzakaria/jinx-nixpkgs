@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["xcbSupport", 23, 5]], [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 70, 5], ["maintainers", 71, 5], ["mainProgram", 74, 5], ["license", 75, 5], ["platforms", 76, 5]], [["pname", 27, 3], ["version", 28, 3], ["strictDeps", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["separateDebugInfo", 40, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["nativeInstallCheckInputs", 60, 3], ["doInstallCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, libxcb: false, "libxcb-keysyms": false, "libxcb-image": false, xcbutilxrm: false, pam: false, libx11: false, libev: false, libxkbcommon: false, libxkbfile: false, "libxcb-util": false, cairo: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["xcbSupport", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 70, 5], ["maintainers", 71, 5], ["mainProgram", 74, 5], ["license", 75, 5], ["platforms", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["strictDeps", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["separateDebugInfo", 40, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["nativeInstallCheckInputs", 60, 3], ["doInstallCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,15 +25,15 @@ export default nix.lambda((args) => (() => {
   const libxcb_util = nix.arg($, "libxcb-util");
   const cairo = nix.arg($, "cairo");
   const versionCheckHook = nix.arg($, "versionCheckHook");
-  const cairo$ = nix.thunk(() => nix.app(nix.sel(cairo, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, xcbSupport: true }))));
+  const cairo$ = nix.thunk(() => nix.app(nix.sel(cairo, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], xcbSupport: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "i3lock",
       version: "2.16",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "i3",
           repo: "i3lock",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple screen locker like slock",
         longDescription: "Simple screen locker. After locking, a colored background (default: white) or\na configurable image is shown, and a ring-shaped unlock-indicator gives feedback\nfor every keystroke. After entering your password, the screen is unlocked again.\n",
         homepage: "https://i3wm.org/i3lock/",

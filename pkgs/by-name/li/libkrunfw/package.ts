@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["NIX_CFLAGS_COMPILE", 71, 5]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 83, 5], ["platforms", 88, 5]], [["pname", 23, 3], ["version", 24, 3], ["kernelSrc", 26, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["makeFlags", 59, 3], ["env", 70, 3], ["enableParallelBuilding", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, flex: false, bison: false, bc: false, cpio: false, perl: false, elfutils: false, python3: false, variant: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 83, 5], ["platforms", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["kernelSrc", 26, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["makeFlags", 59, 3], ["env", 70, 3], ["enableParallelBuilding", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const variant = nix.argOr($, "variant", () => null);
   nix.assert_(nix.app(nix.sel(lib, "elem"), variant, nix.thunk(() => [null, "sev", "tdx"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libkrunfw/package.nix:16:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.add("libkrunfw", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(variant, null)), nix.thunk(() => nix.str`-${variant}`)))),
       version: "5.5.0",
       kernelSrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "mirror://kernel/linux/kernel/v6.x/linux-6.12.91.tar.xz",
           hash: "sha256-D/KrnhafnxlIVXRx+7RQ0wGPjFt3yvKI4aOYJYJZeWk=",
         })))),
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "libkrun",
           repo: "libkrunfw",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,10 +51,10 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [elfutils]),
       makeFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(variant, "sev")), nix.thunk(() => ["SEV=1"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(variant, "tdx")), nix.thunk(() => ["TDX=1"]))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isAarch64")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-march=armv8-a+crypto" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isAarch64")), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-march=armv8-a+crypto" })))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Dynamic library bundling the guest payload consumed by libkrun",
         homepage: "https://github.com/libkrun/libkrunfw",
         license: nix.thunk(() => (() => {

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ppx.nix", [[["pname", 8, 3], ["src", 9, 21], ["version", 9, 25], ["meta", 9, 33], ["buildInputs", 11, 3], ["propagatedBuildInputs", 12, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, pgocaml: false, ppx_optcomp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ppx.nix", [["pname", 8, 3], ["src", 9, 21], ["version", 9, 25], ["meta", 9, 33], ["buildInputs", 11, 3], ["propagatedBuildInputs", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const pgocaml = nix.arg($, "pgocaml");
   const ppx_optcomp = nix.arg($, "ppx_optcomp");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "pgocaml_ppx",
       src: nix.thunk(() => nix.attr(pgocaml, "src")),
       version: nix.thunk(() => nix.attr(pgocaml, "version")),

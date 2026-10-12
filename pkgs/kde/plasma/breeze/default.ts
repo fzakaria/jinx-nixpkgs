@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 52, 8]], [["pname", 9, 3], ["outputs", 11, 3], ["extraBuildInputs", 17, 3], ["extraCmakeFlags", 21, 3], ["postInstall", 48, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qtbase: false, qtsvg: false, libsForQt5: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 52, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["outputs", 11, 3], ["extraBuildInputs", 17, 3], ["extraCmakeFlags", 21, 3], ["postInstall", 48, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "breeze",
       outputs: nix.thunk(() => ["out", "dev", "qt5"]),
       extraBuildInputs: nix.thunk(() => [qtsvg]),
@@ -45,7 +44,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`mkdir -p $qt5/${nix.sel(libsForQt5, "qtbase", "qtPluginPrefix")}/styles
 mv $out/${nix.sel(qtbase, "qtPluginPrefix")}/styles/breeze5.so $qt5/${nix.sel(libsForQt5, "qtbase", "qtPluginPrefix")}/styles
 `),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "breeze-settings6" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "breeze-settings6" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

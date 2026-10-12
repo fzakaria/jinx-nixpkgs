@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 9], ["hash", 15, 9]], [["url", 19, 9], ["hash", 20, 9]], [["pname", 25, 50], ["version", 25, 56], ["src", 25, 64]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5], ["platforms", 40, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["extraInstallCommands", 23, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { appimageTools: false, lib: false, fetchurl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 9], ["hash", 15, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 9], ["hash", 20, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 50], ["version", 25, 56], ["src", 25, 64]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5], ["platforms", 40, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["extraInstallCommands", 23, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,16 +15,16 @@ export default nix.lambda((args) => (() => {
       const pname = "httpie-desktop";
       const version = "2025.2.0";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/httpie/desktop/releases/download/v${version}/HTTPie-${version}-arm64.AppImage`),
           hash: "sha256-FBzjlYwgCULgjaJUPALlqqRj7fZMps7hybt5m5EkeAo=",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/httpie/desktop/releases/download/v${version}/HTTPie-${version}.AppImage`),
           hash: "sha256-qFDiFXQbYAhweQhgYfZW/lUMtmw09tqT9t/GPJRtZU8=",
         })))));
       const extraInstallCommands = nix.thunk(() => (() => {
-        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src }))));
+        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, version: version, src: src }))));
         return nix.str`install -Dm644 ${contents}/httpie.desktop $out/share/applications/httpie.desktop
 substituteInPlace $out/share/applications/httpie.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=httpie-desktop'
@@ -36,7 +32,7 @@ cp -r ${contents}/usr/share/* $out/share
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cross-platform API testing client for humans. Painlessly test REST, GraphQL, and HTTP APIs",
         homepage: "https://github.com/httpie/desktop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -47,7 +43,7 @@ cp -r ${contents}/usr/share/* $out/share
         mainProgram: "httpie-desktop",
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
-      return { [nix.POS]: pos$5, pname, version, src, extraInstallCommands, meta };
+      return { [nix.POS]: $pos[4], pname, version, src, extraInstallCommands, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

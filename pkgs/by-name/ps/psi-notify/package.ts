@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 38, 5], ["longDescription", 39, 5], ["license", 44, 5], ["homepage", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, systemd: false, libnotify: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["longDescription", 39, 5], ["license", 44, 5], ["homepage", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libnotify = nix.arg($, "libnotify");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "psi-notify",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cdown",
           repo: "psi-notify",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       installPhase: "runHook preInstall\n\ninstall -D psi-notify $out/bin/psi-notify\nsubstituteInPlace psi-notify.service --replace psi-notify $out/bin/psi-notify\ninstall -D psi-notify.service $out/lib/systemd/user/psi-notify.service\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Alert on system resource saturation",
         longDescription: "psi-notify can alert you when resources on your machine are becoming\noversaturated, and allow you to take action before your system slows to a\ncrawl.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

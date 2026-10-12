@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 7], ["repo", 14, 7], ["rev", 15, 7], ["sha256", 16, 7]], [["src", 20, 34]], [["tmux-fingers", 20, 21]], [["homepage", 34, 7]], [["format", 9, 5], ["version", 10, 5], ["pname", 11, 5], ["src", 12, 5], ["shardsFile", 19, 5], ["crystalBinaries", 20, 5], ["postInstall", 22, 5], ["doCheck", 30, 5], ["doInstallCheck", 31, 5], ["meta", 33, 5]], [["tmuxFingersDir", 46, 7]], [["version", 39, 21], ["src", 39, 29], ["meta", 39, 33], ["pluginName", 41, 3], ["rtpFilePath", 42, 3], ["patches", 44, 3]]]);
 const formals$1 = { args: { mkTmuxPlugin: false, replaceVars: false, fetchFromGitHub: false, crystal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 7], ["repo", 14, 7], ["rev", 15, 7], ["sha256", 16, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 20, 34]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tmux-fingers", 20, 21]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 34, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["format", 9, 5], ["version", 10, 5], ["pname", 11, 5], ["src", 12, 5], ["shardsFile", 19, 5], ["crystalBinaries", 20, 5], ["postInstall", 22, 5], ["doCheck", 30, 5], ["doInstallCheck", 31, 5], ["meta", 33, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tmuxFingersDir", 46, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 39, 21], ["src", 39, 29], ["meta", 39, 33], ["pluginName", 41, 3], ["rtpFilePath", 42, 3], ["patches", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.7.1";
       const pname = "fingers";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Morantron",
           repo: "tmux-fingers",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -30,15 +24,15 @@ export default nix.lambda((args) => (() => {
         }))));
       const shardsFile = nix.path(here, "./shards.nix");
       const crystalBinaries = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        "tmux-fingers": nix.thunk(() => ({ [nix.POS]: pos$2, src: "src/fingers.cr" })),
+        [nix.POS]: $pos[2],
+        "tmux-fingers": nix.thunk(() => ({ [nix.POS]: $pos[1], src: "src/fingers.cr" })),
       }));
       const postInstall = "shopt -s dotglob extglob\nrm -rv !(\"tmux-fingers.tmux\"|\"bin\")\nshopt -u dotglob extglob\n";
       const doCheck = false;
       const doInstallCheck = false;
-      const meta = nix.thunk(() => ({ [nix.POS]: pos$4, homepage: "https://github.com/Morantron/tmux-fingers" }));
+      const meta = nix.thunk(() => ({ [nix.POS]: $pos[3], homepage: "https://github.com/Morantron/tmux-fingers" }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         format,
         version,
         pname,
@@ -52,14 +46,14 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(mkTmuxPlugin, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: nix.thunk(() => nix.attr(fingers, "version")),
       src: nix.thunk(() => nix.attr(fingers, "src")),
       meta: nix.thunk(() => nix.attr(fingers, "meta")),
       pluginName: nix.thunk(() => nix.sel(fingers, "src", "repo")),
       rtpFilePath: "tmux-fingers.tmux",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix.patch"), nix.thunk(() => ({ [nix.POS]: pos$6, tmuxFingersDir: nix.thunk(() => nix.str`${fingers}/bin`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix.patch"), nix.thunk(() => ({ [nix.POS]: $pos[5], tmuxFingersDir: nix.thunk(() => nix.str`${fingers}/bin`) })))),
       ]),
     })));
 })(), formals$1);

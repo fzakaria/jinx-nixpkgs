@@ -2,10 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pkgs", 86, 75]], [["buildInputs", 75, 11], ["propagatedBuildInputs", 75, 23], ["name", 77, 3], ["phases", 78, 3], ["setupNew", 82, 3], ["buildPhase", 84, 3]]]);
 const formals$1 = { args: { mkDerivation: false, replaceVars: false, pkgs: false }, ellipsis: false };
 const formals$2 = { args: { stdenv: true, name: false, buildInputs: true, propagatedBuildInputs: true, extraCmds: true, cleanupCmds: true, shell: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pkgs", 86, 75]]);
-const pos$2 = nix.positions(here + "/default.nix", [["buildInputs", 75, 11], ["propagatedBuildInputs", 75, 23], ["name", 77, 3], ["phases", 78, 3], ["setupNew", 82, 3], ["buildPhase", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +21,14 @@ export default nix.lambda((args) => (() => {
     const cleanupCmds = nix.argOr($_1, "cleanupCmds", () => "");
     const shell = nix.argOr($_1, "shell", () => nix.str`${nix.sel(pkgs, "bashInteractive")}/bin/bash --norc`);
     return nix.app(mkDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         buildInputs: buildInputs,
         propagatedBuildInputs: propagatedBuildInputs,
         name: nix.thunk(() => nix.str`env-${name}`),
         phases: nix.thunk(() => ["buildPhase", "fixupPhase"]),
         setupNew: nix.path(here, "../../stdenv/generic/setup.sh"),
         buildPhase: nix.thunk(() => (() => {
-          const initialPath = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../stdenv/generic/common-path.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs }))));
+          const initialPath = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../stdenv/generic/common-path.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
           return nix.str`set -x
 mkdir -p "$out/dev-envs" "$out/nix-support" "$out/bin"
 s="$out/nix-support/setup-new-modified"

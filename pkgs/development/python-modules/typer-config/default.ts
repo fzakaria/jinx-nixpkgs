@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["all", 37, 5], ["python-dotenv", 42, 5], ["toml", 43, 5], ["yaml", 44, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 47, 3], ["pythonImportsCheck", 54, 3], ["disabledTestPaths", 56, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pydantic: false, pytestCheckHook: false, "python-dotenv": false, pyyaml: false, schema: false, toml: false, typer: false, "uv-build": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 37, 5], ["python-dotenv", 42, 5], ["toml", 43, 5], ["yaml", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 47, 3], ["pythonImportsCheck", 54, 3], ["disabledTestPaths", 56, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "maxb2",
           repo: "typer-config",
           tag: version,
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [uv_build]);
       const dependencies = nix.thunk(() => [typer]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [python_dotenv, pyyaml, toml]),
         "python-dotenv": nix.thunk(() => [python_dotenv]),
         toml: nix.thunk(() => [toml]),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["typer_config"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_example.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utilities for working with configuration files in typer CLIs",
         homepage: "https://github.com/maxb2/typer-config",
         changelog: nix.thunk(() => nix.str`https://github.com/maxb2/typer-config/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

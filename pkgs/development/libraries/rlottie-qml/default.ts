@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["patches", 31, 3], ["postPatch", 39, 3], ["strictDeps", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 60, 3], ["dontWrapQtApps", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, fetchpatch: false, cmake: false, "pkg-config": false, qtbase: false, qtdeclarative: false, qtmultimedia: false, quazip: false, rlottie: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["patches", 31, 3], ["postPatch", 39, 3], ["strictDeps", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 60, 3], ["dontWrapQtApps", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const quazip = nix.arg($, "quazip");
   const rlottie = nix.arg($, "rlottie");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rlottie-qml",
       version: "0-unstable-2021-05-03",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mymike00",
           repo: "rlottie-qml",
           rev: "f9506889a284039888c7a43db37e155bb7b30c40",
@@ -47,7 +45,7 @@ substituteInPlace CMakeLists.txt \\
       propagatedBuildInputs: nix.thunk(() => [quazip]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for using rlottie via QML",
         homepage: "https://gitlab.com/mymike00/rlottie-qml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["url", 50, 9], ["hash", 51, 9]], [["homepage", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["outputs", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["strictDeps", 45, 3], ["postInstall", 47, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, curl: false, gmp: false, gsl: false, libpq: false, mpfr: false, ncurses: false, plotutils: false, "pkg-config": false, withPDFDoc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 50, 9], ["hash", 51, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["outputs", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["strictDeps", 45, 3], ["postInstall", 47, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const withPDFDoc = nix.argOr($, "withPDFDoc", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "algol68g",
       version: "3.12.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://algol68genie.nl/algol68g-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-TS5m+Byi+5j4jiOuQbR159QERfNJsQiGNngtoyC9IrE=",
         })))),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       postInstall: nix.thunk(() => (() => {
         const pdfdoc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://algol68genie.nl/learning-algol-68-genie.pdf",
             hash: "sha256-BrVjYXd5sknV0+UCRgQMf0H3QMzMQcLhytEEuiTGkLE=",
           }))));
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
 `));
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://algol68genie.nl/en/algol-68-genie/",
         description: "Algol 68 Genie compiler-interpreter",
         longDescription: "Algol 68 Genie (a68g) is a recent checkout hybrid compiler-interpreter,\nwritten from scratch by Marcel van der Veer. It ranks among the most\ncomplete Algol 68 implementations. It implements for example arbitrary\nprecision arithmetic, complex numbers, parallel processing, partial\nparametrisation and formatted transput, as well as support for curses,\nregular expressions and sounds. It can be linked to GNU plotutils, the GNU\nscientific library and PostgreSQL.\n",

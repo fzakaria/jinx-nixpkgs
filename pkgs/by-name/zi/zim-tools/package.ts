@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["updateScript", 62, 12]], [["description", 65, 5], ["homepage", 66, 5], ["maintainers", 67, 5], ["license", 68, 5], ["platforms", 69, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["nativeCheckInputs", 59, 3], ["doCheck", 60, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false, "pkg-config": false, docopt_cpp: false, file: false, gumbo: false, "mustache-hpp": false, libzim: false, icu: false, zlib: false, gtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["maintainers", 67, 5], ["license", 68, 5], ["platforms", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["nativeCheckInputs", 59, 3], ["doCheck", 60, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zim-tools",
       version: "3.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openzim",
           repo: "zim-tools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,11 +40,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [gtest]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Various ZIM command line tools",
         homepage: "https://github.com/openzim/zim-tools",
         maintainers: nix.thunk(() => (() => {

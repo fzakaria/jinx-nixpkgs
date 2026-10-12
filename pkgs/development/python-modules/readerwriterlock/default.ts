@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["changelog", 41, 5], ["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["pythonImportsCheck", 29, 3], ["nativeCheckInputs", 31, 3], ["unittestFlags", 35, 3], ["doCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, lib: false, pythonOlder: false, setuptools: false, "typing-extensions": false, unittestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 41, 5], ["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["pythonImportsCheck", 29, 3], ["nativeCheckInputs", 31, 3], ["unittestFlags", 35, 3], ["doCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "readerwriterlock",
       version: "1.0.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elarivie",
           repo: "pyReaderWriterLock",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       unittestFlags: nix.thunk(() => ["tests"]),
       doCheck: nix.thunk(() => nix.app(pythonOlder, "3.14")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/elarivie/pyReaderWriterLock/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Python 3 implementation of the Readers-writers problem",
         homepage: "https://github.com/elarivie/pyReaderWriterLock",

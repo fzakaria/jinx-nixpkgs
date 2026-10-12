@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 48, 7], ["exec", 49, 7], ["icon", 50, 7], ["comment", 51, 7], ["desktopName", 52, 7], ["categories", 53, 7]], [["description", 85, 5], ["longDescription", 86, 5], ["mainProgram", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 100, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["cargoHash", 44, 3], ["desktopItems", 46, 3], ["postInstall", 57, 3], ["postFixup", 74, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, rustPlatform: false, fetchFromGitHub: false, SDL2: false, makeBinaryWrapper: false, copyDesktopItems: false, makeDesktopItem: false, desktopToDarwinBundle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 48, 7], ["exec", 49, 7], ["icon", 50, 7], ["comment", 51, 7], ["desktopName", 52, 7], ["categories", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 85, 5], ["longDescription", 86, 5], ["mainProgram", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 100, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["cargoHash", 44, 3], ["desktopItems", 46, 3], ["postInstall", 57, 3], ["postFixup", 74, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const dataDirFlag = "--set SYZYGY_DATA_DIR $out/share/syzygy";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "system-syzygy",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mdsteele",
           repo: "syzygy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-H/iG6vsmtpBGYBBqNQG5EpyZaUtfXfVaHv4fkxwqrD0=",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "system-syzygy",
             exec: "syzygy",
             icon: "syzygy",
@@ -68,7 +65,7 @@ makeBinaryWrapper "$app/MacOS/System Syzygy" "$out/bin/syzygy" \\
 ln -s "$out/share/syzygy" "$app/Resources/data"
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Narrative meta-puzzle game in the style of The Fool's Errand",
         longDescription: "System Syzygy is a story and a puzzle game, in the style of Cliff\nJohnson's The Fool's Errand and 3 in Three, and of Andrew Plotkin's\nSystem's Twilight.  By the end of the game, all the different puzzles and\npieces of the story come together into a single meta-puzzle.\n",
         mainProgram: "syzygy",

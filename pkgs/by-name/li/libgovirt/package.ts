@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["NIX_CFLAGS_COMPILE", 32, 7]], [["packageName", 54, 7], ["versionPolicy", 55, 7]], [["updateScript", 53, 5]], [["homepage", 60, 5], ["description", 61, 5], ["maintainers", 62, 5], ["platforms", 66, 5], ["license", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 23, 3], ["patches", 28, 3], ["env", 32, 3], ["nativeBuildInputs", 40, 3], ["propagatedBuildInputs", 47, 3], ["passthru", 52, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, gnome: false, meson: false, "pkg-config": false, "gobject-introspection": false, ninja: false, glib: false, librest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 54, 7], ["versionPolicy", 55, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["maintainers", 62, 5], ["platforms", 66, 5], ["license", 67, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 23, 3], ["patches", 28, 3], ["env", 32, 3], ["nativeBuildInputs", 40, 3], ["propagatedBuildInputs", 47, 3], ["passthru", 52, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +22,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.9";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgovirt/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libgovirt-${version}.tar.xz`),
           sha256: "sha256-6RDuJTyaVYlO4Kq+niQyepom6xj1lqdBbyWL/VnZUdk=",
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./auto-disable-incompatible-compiler-warnings.patch")]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
               "-Wno-typedef-redefinition",
               "-Wno-missing-field-initializers",
@@ -43,11 +38,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [meson, pkg_config, gobject_introspection, ninja]);
       const propagatedBuildInputs = nix.thunk(() => [glib, librest]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: pname, versionPolicy: "none" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: pname, versionPolicy: "none" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.gnome.org/GNOME/libgovirt",
         description: "GObject wrapper for the oVirt REST API",
         maintainers: nix.thunk(() => (() => {
@@ -64,7 +59,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         outputs,

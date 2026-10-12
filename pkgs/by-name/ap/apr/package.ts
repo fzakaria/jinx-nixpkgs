@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["homepage", 78, 5], ["description", 79, 5], ["mainProgram", 80, 5], ["platforms", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["postPatch", 23, 3], ["outputs", 27, 3], ["outputBin", 31, 3], ["preConfigure", 33, 3], ["configureFlags", 37, 3], ["nativeBuildInputs", 71, 3], ["doCheck", 73, 3], ["enableParallelBuilding", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, buildPackages: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 78, 5], ["description", 79, 5], ["mainProgram", 80, 5], ["platforms", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["postPatch", 23, 3], ["outputs", 27, 3], ["outputBin", 31, 3], ["preConfigure", 33, 3], ["configureFlags", 37, 3], ["nativeBuildInputs", 71, 3], ["doCheck", 73, 3], ["enableParallelBuilding", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "apr",
       version: "1.7.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/apr/apr-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-SQMNktJXXac1eRtJbcMi885c/5SUd5uozCjH9Gxd6zI=",
         })))),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://apr.apache.org/",
         description: "Apache Portable Runtime library",
         mainProgram: "apr-1-config",

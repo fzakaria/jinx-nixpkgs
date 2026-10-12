@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]], [["graphviz", 38, 15]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 24, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 30, 3], ["patches", 36, 3], ["enabledTestPaths", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, replaceVars: false, graphviz: false, pytestCheckHook: false, chardet: false, parameterized: false, pyparsing: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["graphviz", 38, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 24, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 30, 3], ["patches", 36, 3], ["enabledTestPaths", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-whSPaBxKM+CL8OJqnl+OQJmoLg4qBoCY8yzoZXc2StU=",
@@ -34,12 +31,12 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pyparsing]);
       const nativeCheckInputs = nix.thunk(() => [chardet, parameterized, pytestCheckHook]);
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-graphviz-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, graphviz: graphviz })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-graphviz-path.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], graphviz: graphviz })))),
       ]);
       const enabledTestPaths = nix.thunk(() => ["test/test_pydot.py"]);
       const pythonImportsCheck = nix.thunk(() => ["pydot"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Allows to create both directed and non directed graphs from Python",
         homepage: "https://github.com/erocarrera/pydot",
         changelog: nix.thunk(() => nix.str`https://github.com/pydot/pydot/blob/v${version}/ChangeLog`),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

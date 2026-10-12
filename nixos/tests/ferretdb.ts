@@ -2,31 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ferretdb.nix", [[["maintainers", 15, 10]], [["FERRETDB_HANDLER", 22, 20]], [["enable", 21, 11], ["settings", 22, 11]], [["name", 35, 15], ["ensureDBOwnership", 36, 15]], [["enable", 31, 11], ["ensureDatabases", 32, 11], ["ensureUsers", 33, 11]], [["ferretdb", 20, 18], ["postgresql", 30, 18]], [["Requires", 26, 11], ["After", 27, 11]], [["serviceConfig", 25, 35]], [["ferretdb", 25, 26]], [["services", 25, 17]], [["systemPackages", 41, 21]], [["services", 20, 9], ["systemd", 25, 9], ["environment", 41, 9]], [["machine", 17, 11]], [["testScript", 13, 13], ["name", 14, 5], ["meta", 15, 5], ["nodes", 17, 5]], [["maintainers", 47, 10]], [["enable", 52, 27]], [["ferretdb", 52, 18]], [["systemPackages", 54, 21]], [["services", 52, 9], ["environment", 54, 9]], [["machine", 49, 11]], [["testScript", 45, 13], ["name", 46, 5], ["meta", 47, 5], ["nodes", 49, 5]], [["postgresql", 12, 3], ["sqlite", 44, 3]]]);
 const formals$1 = { args: { runTest: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ferretdb.nix", [["maintainers", 15, 10]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/ferretdb.nix", [["FERRETDB_HANDLER", 22, 20]]);
-const pos$3 = nix.positions(here + "/ferretdb.nix", [["enable", 21, 11], ["settings", 22, 11]]);
-const pos$4 = nix.positions(here + "/ferretdb.nix", [["name", 35, 15], ["ensureDBOwnership", 36, 15]]);
-const pos$5 = nix.positions(here + "/ferretdb.nix", [["enable", 31, 11], ["ensureDatabases", 32, 11], ["ensureUsers", 33, 11]]);
-const pos$6 = nix.positions(here + "/ferretdb.nix", [["ferretdb", 20, 18], ["postgresql", 30, 18]]);
-const pos$7 = nix.positions(here + "/ferretdb.nix", [["Requires", 26, 11], ["After", 27, 11]]);
-const pos$8 = nix.positions(here + "/ferretdb.nix", [["serviceConfig", 25, 35]]);
-const pos$9 = nix.positions(here + "/ferretdb.nix", [["ferretdb", 25, 26]]);
-const pos$10 = nix.positions(here + "/ferretdb.nix", [["services", 25, 17]]);
-const pos$11 = nix.positions(here + "/ferretdb.nix", [["systemPackages", 41, 21]]);
-const pos$12 = nix.positions(here + "/ferretdb.nix", [["services", 20, 9], ["systemd", 25, 9], ["environment", 41, 9]]);
-const pos$13 = nix.positions(here + "/ferretdb.nix", [["machine", 17, 11]]);
-const pos$14 = nix.positions(here + "/ferretdb.nix", [["testScript", 13, 13], ["name", 14, 5], ["meta", 15, 5], ["nodes", 17, 5]]);
-const pos$15 = nix.positions(here + "/ferretdb.nix", [["maintainers", 47, 10]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/ferretdb.nix", [["enable", 52, 27]]);
-const pos$17 = nix.positions(here + "/ferretdb.nix", [["ferretdb", 52, 18]]);
-const pos$18 = nix.positions(here + "/ferretdb.nix", [["systemPackages", 54, 21]]);
-const pos$19 = nix.positions(here + "/ferretdb.nix", [["services", 52, 9], ["environment", 54, 9]]);
-const pos$20 = nix.positions(here + "/ferretdb.nix", [["machine", 49, 11]]);
-const pos$21 = nix.positions(here + "/ferretdb.nix", [["testScript", 45, 13], ["name", 46, 5], ["meta", 47, 5], ["nodes", 49, 5]]);
-const pos$22 = nix.positions(here + "/ferretdb.nix", [["postgresql", 12, 3], ["sqlite", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,53 +14,57 @@ export default nix.lambda((args) => (() => {
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const testScript = "machine.start()\nmachine.wait_for_unit(\"ferretdb.service\")\nmachine.wait_for_open_port(27017)\nmachine.succeed(\"mongosh --eval 'use myNewDatabase;' --eval 'db.myCollection.insertOne( { x: 1 } );'\")\n";
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     postgresql: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         testScript: testScript,
         name: "ferretdb-postgresql",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "julienmalka"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 ferretdb: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   enable: true,
-                  settings: nix.thunk(() => ({ [nix.POS]: pos$2, FERRETDB_HANDLER: "pg" })),
+                  settings: nix.thunk(() => ({ [nix.POS]: $pos[1], FERRETDB_HANDLER: "pg" })),
                 })),
                 postgresql: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   enable: true,
                   ensureDatabases: nix.thunk(() => ["ferretdb"]),
                   ensureUsers: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$4, name: "ferretdb", ensureDBOwnership: true })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[3], name: "ferretdb", ensureDBOwnership: true })),
                   ]),
                 })),
               })),
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   ferretdb: nix.thunk(() => ({
-                    [nix.POS]: pos$8,
-                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$7, Requires: "postgresql.target", After: "postgresql.target" })),
+                    [nix.POS]: $pos[7],
+                    serviceConfig: nix.thunk(() => ({
+                      [nix.POS]: $pos[6],
+                      Requires: "postgresql.target",
+                      After: "postgresql.target",
+                    })),
                   })),
                 })),
               })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 systemPackages: nix.thunk(() => (() => {
                   const w = nix.withScope(pkgs_1, null);
                   return [nix.thunk(() => nix.lookup(w, "mongosh"))];
@@ -92,29 +75,29 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     sqlite: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         testScript: testScript,
         name: "ferretdb-sqlite",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "julienmalka"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$3);
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$17,
-                ferretdb: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true })),
+                [nix.POS]: $pos[16],
+                ferretdb: nix.thunk(() => ({ [nix.POS]: $pos[15], enable: true })),
               })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 systemPackages: nix.thunk(() => (() => {
                   const w = nix.withScope(pkgs_1, null);
                   return [nix.thunk(() => nix.lookup(w, "mongosh"))];

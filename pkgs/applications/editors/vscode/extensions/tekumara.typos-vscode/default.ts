@@ -2,15 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["arch", 16, 9], ["hash", 17, 9]], [["arch", 20, 9], ["hash", 21, 9]], [["arch", 24, 9], ["hash", 25, 9]], [["x86_64-linux", 15, 7], ["aarch64-linux", 19, 7], ["aarch64-darwin", 23, 7]], [["name", 32, 5], ["publisher", 33, 5], ["version", 37, 5], ["hash", 38, 23], ["arch", 38, 28]], [["updateScript", 53, 12]], [["changelog", 56, 5], ["description", 57, 5], ["downloadPage", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 66, 5]], [["mktplcRef", 31, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["postInstall", 48, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, jq: false, lib: false, moreutils: false, "typos-lsp": false, "vscode-utils": false, "vscode-extension-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["arch", 16, 9], ["hash", 17, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arch", 20, 9], ["hash", 21, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["arch", 24, 9], ["hash", 25, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 15, 7], ["aarch64-linux", 19, 7], ["aarch64-darwin", 23, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 32, 5], ["publisher", 33, 5], ["version", 37, 5], ["hash", 38, 23], ["arch", 38, 28]]);
-const pos$6 = nix.positions(here + "/default.nix", [["updateScript", 53, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["changelog", 56, 5], ["description", 57, 5], ["downloadPage", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 66, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["mktplcRef", 31, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["postInstall", 48, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,27 +17,27 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const extInfo = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       arch: "linux-x64",
       hash: "sha256-hcRjZ+z7gUg0jG12c9k98d+3knGgtW6XRF2tSfQQvOg=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       arch: "linux-arm64",
       hash: "sha256-4375B2WsRajVtCewX2ruWDrdgsGlccefcfHDl8X6z9A=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       arch: "darwin-arm64",
       hash: "sha256-3na7btLQRIAb9EtHAHUSbLvdM/j/EJ9z0W5qv0Ysoz4=",
     })),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system))));
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "typos-vscode",
         publisher: "tekumara",
         version: "0.1.56",
@@ -57,11 +50,11 @@ export default nix.lambda((args) => (() => {
 jq '.contributes.configuration.properties."typos.path".default = "${nix.app(nix.sel(lib, "getExe"), typos_lsp)}"' package.json | sponge package.json
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://github.com/tekumara/typos-lsp/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "VSCode extension for providing a low false-positive source code spell checker",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=tekumara.typos-vscode",

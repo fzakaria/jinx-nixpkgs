@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["name", 64, 7], ["comment", 65, 7], ["desktopName", 66, 7], ["exec", 67, 7], ["icon", 68, 7], ["categories", 69, 7], ["type", 75, 7], ["terminal", 76, 7]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["postInstall", 47, 3], ["preFixup", 51, 3], ["desktopItems", 62, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, "aircrack-ng": false, copyDesktopItems: false, fetchFromGitHub: false, "gdk-pixbuf": false, glib: false, graphene: false, gtk4: false, iw: false, macchanger: false, makeDesktopItem: false, pango: false, "pkg-config": false, rustPlatform: false, "wireshark-cli": false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 64, 7], ["comment", 65, 7], ["desktopName", 66, 7], ["exec", 67, 7], ["icon", 68, 7], ["categories", 69, 7], ["type", 75, 7], ["terminal", 76, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["postInstall", 47, 3], ["preFixup", 51, 3], ["desktopItems", 62, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const wireshark_cli = nix.arg($, "wireshark-cli");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "airgorah",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "martin-olivier",
           repo: "airgorah",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "airgorah",
             comment: "A WiFi auditing software that can perform deauth attacks and passwords cracking",
             desktopName: "airgorah",
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "WiFi security auditing software mainly based on aircrack-ng tools suite",
         homepage: "https://github.com/martin-olivier/airgorah",
         changelog: nix.thunk(() => nix.str`https://github.com/martin-olivier/airgorah/releases/tag/v${nix.sel(finalAttrs, "version")}`),

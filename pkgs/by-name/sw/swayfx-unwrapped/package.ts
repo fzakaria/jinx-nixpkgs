@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["swaybg", 62, 15]], [["enableXWayland", 102, 51]], [["package", 127, 9], ["command", 128, 9], ["version", 129, 9]], [["basic", 125, 7], ["version", 126, 7]], [["tests", 124, 5]], [["description", 135, 5], ["homepage", 136, 5], ["changelog", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 142, 5], ["mainProgram", 143, 5], ["longDescription", 145, 5]], [["enableXWayland", 40, 5], ["isNixOS", 41, 5], ["systemdSupport", 42, 5], ["trayEnabled", 43, 5], ["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["separateDebugInfo", 56, 3], ["patches", 58, 3], ["strictDeps", 76, 3], ["depsBuildBuild", 77, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 87, 3], ["mesonFlags", 106, 3], ["passthru", 123, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, systemd: false, meson: false, replaceVars: false, swaybg: false, ninja: false, "pkg-config": false, "gdk-pixbuf": false, librsvg: false, "wayland-protocols": false, libdrm: false, libinput: false, cairo: false, pango: false, wayland: false, libGL: false, libxkbcommon: false, pcre2: false, json_c: false, libevdev: false, scdoc: false, scenefx: false, "wayland-scanner": false, "libxcb-wm": false, wlroots_0_20: false, testers: false, nixosTests: false, isNixOS: true, enableXWayland: true, systemdSupport: true, trayEnabled: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["swaybg", 62, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["enableXWayland", 102, 51]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 127, 9], ["command", 128, 9], ["version", 129, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["basic", 125, 7], ["version", 126, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 124, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 135, 5], ["homepage", 136, 5], ["changelog", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 142, 5], ["mainProgram", 143, 5], ["longDescription", 145, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["enableXWayland", 40, 5], ["isNixOS", 41, 5], ["systemdSupport", 42, 5], ["trayEnabled", 43, 5], ["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["separateDebugInfo", 56, 3], ["patches", 58, 3], ["strictDeps", 76, 3], ["depsBuildBuild", 77, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 87, 3], ["mesonFlags", 106, 3], ["passthru", 123, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,7 +41,7 @@ export default nix.lambda((args) => (() => {
   const systemdSupport = nix.argOr($, "systemdSupport", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemd));
   const trayEnabled = nix.argOr($, "trayEnabled", () => nix.force(systemdSupport));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       enableXWayland: enableXWayland,
       isNixOS: isNixOS,
       systemdSupport: systemdSupport,
@@ -56,7 +49,7 @@ export default nix.lambda((args) => (() => {
       pname: "swayfx-unwrapped",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wlrfx",
           repo: "swayfx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +58,7 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       patches: nix.thunk(() => nix.concat([
         nix.path(here, "./load-configuration-from-etc.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, swaybg: swaybg })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], swaybg: swaybg })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(finalAttrs, "isNixOS"))), nix.thunk(() => [nix.path(here, "./sway-config-no-nix-store-references.patch")])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "isNixOS")), nix.thunk(() => [nix.path(here, "./sway-config-nixos-paths.patch")]))))),
       strictDeps: true,
       depsBuildBuild: nix.thunk(() => [pkg_config]),
@@ -86,7 +79,7 @@ export default nix.lambda((args) => (() => {
         wayland,
         wayland_protocols,
         nix.thunk(() => nix.app(nix.sel(wlroots_0_20, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enableXWayland: nix.thunk(() => nix.attr(finalAttrs, "enableXWayland")),
           })))),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "enableXWayland")), nix.thunk(() => [libxcb_wm])))),
@@ -101,12 +94,12 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           basic: nix.thunk(() => nix.sel(nixosTests, "swayfx")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "sway --version",
               version: nix.thunk(() => nix.str`swayfx version ${nix.sel(finalAttrs, "version")}`),
@@ -114,7 +107,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Sway, but with eye candy",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),
         changelog: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "meta", "homepage")}/releases/tag/${nix.sel(finalAttrs, "version")}`),

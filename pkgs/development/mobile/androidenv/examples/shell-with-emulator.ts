@@ -2,32 +2,21 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/shell-with-emulator.nix", [[["allowUnfree", 19, 12]], [["config", 19, 5]], [["pkgs", 46, 13], ["licenseAccepted", 46, 18]], [["includeSystemImages", 52, 5], ["includeEmulator", 53, 5], ["extraLicenses", 56, 5]], [["hw.keyboard", 76, 7]], [["name", 74, 5], ["configOptions", 75, 5], ["sdkExtraArgs", 78, 5]], [["nativeBuildInputs", 117, 11]], [["nativeBuildInputs", 147, 11]], [["nativeBuildInputs", 177, 11]], [["shell-with-emulator-sdkmanager-packages-test", 114, 5], ["shell-with-emulator-sdkmanager-excluded-packages-test", 144, 5], ["shell-with-emulator-avdmanager-create-avd-test", 174, 5]], [["tests", 112, 12]], [["name", 88, 3], ["packages", 89, 3], ["LANG", 96, 3], ["LC_ALL", 97, 3], ["JAVA_HOME", 98, 3], ["ANDROID_HOME", 100, 3], ["ANDROID_NDK_ROOT", 101, 3], ["shellHook", 103, 3], ["passthru", 112, 3]]]);
 const formals$1 = { args: { pkgs: true, licenseAccepted: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/shell-with-emulator.nix", [["allowUnfree", 19, 12]]);
-const pos$2 = nix.positions(here + "/shell-with-emulator.nix", [["config", 19, 5]]);
-const pos$3 = nix.positions(here + "/shell-with-emulator.nix", [["pkgs", 46, 13], ["licenseAccepted", 46, 18]]);
-const pos$4 = nix.positions(here + "/shell-with-emulator.nix", [["includeSystemImages", 52, 5], ["includeEmulator", 53, 5], ["extraLicenses", 56, 5]]);
-const pos$5 = nix.positions(here + "/shell-with-emulator.nix", [["hw.keyboard", 76, 7]]);
-const pos$6 = nix.positions(here + "/shell-with-emulator.nix", [["name", 74, 5], ["configOptions", 75, 5], ["sdkExtraArgs", 78, 5]]);
-const pos$7 = nix.positions(here + "/shell-with-emulator.nix", [["nativeBuildInputs", 117, 11]]);
-const pos$8 = nix.positions(here + "/shell-with-emulator.nix", [["nativeBuildInputs", 147, 11]]);
-const pos$9 = nix.positions(here + "/shell-with-emulator.nix", [["nativeBuildInputs", 177, 11]]);
-const pos$10 = nix.positions(here + "/shell-with-emulator.nix", [["shell-with-emulator-sdkmanager-packages-test", 114, 5], ["shell-with-emulator-sdkmanager-excluded-packages-test", 144, 5], ["shell-with-emulator-avdmanager-create-avd-test", 174, 5]]);
-const pos$11 = nix.positions(here + "/shell-with-emulator.nix", [["tests", 112, 12]]);
-const pos$12 = nix.positions(here + "/shell-with-emulator.nix", [["name", 88, 3], ["packages", 89, 3], ["LANG", 96, 3], ["LC_ALL", 97, 3], ["JAVA_HOME", 98, 3], ["ANDROID_HOME", 100, 3], ["ANDROID_NDK_ROOT", 101, 3], ["shellHook", 103, 3], ["passthru", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../..")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      config: nix.thunk(() => ({ [nix.POS]: pos$1, allowUnfree: true })),
+      [nix.POS]: $pos[1],
+      config: nix.thunk(() => ({ [nix.POS]: $pos[0], allowUnfree: true })),
     }))));
   const licenseAccepted = nix.argOr($, "licenseAccepted", () => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../license.nix"), nix.thunk(() => ({}))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
-  const androidEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: pos$3, pkgs: pkgs, licenseAccepted: licenseAccepted }))));
+  const androidEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: $pos[2], pkgs: pkgs, licenseAccepted: licenseAccepted }))));
   const emulatorSupported = nix.thunk(() => (nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86_64")) || nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isDarwin"))));
   const sdkArgs = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     includeSystemImages: true,
     includeEmulator: "if-supported",
     extraLicenses: nix.thunk(() => [
@@ -42,9 +31,9 @@ export default nix.lambda((args) => (() => {
   }));
   const androidComposition = nix.thunk(() => nix.app(nix.sel(androidEnv, "composeAndroidPackages"), sdkArgs));
   const androidEmulator = nix.thunk(() => nix.app(nix.sel(androidEnv, "emulateApp"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "android-sdk-emulator-demo",
-      configOptions: nix.thunk(() => ({ [nix.POS]: pos$5, "hw.keyboard": "yes" })),
+      configOptions: nix.thunk(() => ({ [nix.POS]: $pos[4], "hw.keyboard": "yes" })),
       sdkExtraArgs: sdkArgs,
     }))));
   const androidSdk = nix.thunk(() => nix.sel(androidComposition, "androidsdk"));
@@ -61,10 +50,10 @@ export default nix.lambda((args) => (() => {
       const ANDROID_NDK_ROOT = nix.thunk(() => nix.str`${ANDROID_HOME}/ndk-bundle`);
       const shellHook = "# Write out local.properties for Android Studio.\ncat <<EOF > local.properties\n# This file was automatically generated by nix-shell.\nsdk.dir=$ANDROID_HOME\nndk.dir=$ANDROID_NDK_ROOT\nEOF\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$10,
-          "shell-with-emulator-sdkmanager-packages-test": nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "shell-with-emulator-sdkmanager-packages-test", nix.thunk(() => ({ [nix.POS]: pos$7, nativeBuildInputs: nix.thunk(() => [androidSdk, jdk]) })), nix.thunk(() => nix.str`output="$(sdkmanager --list)"
+          [nix.POS]: $pos[9],
+          "shell-with-emulator-sdkmanager-packages-test": nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "shell-with-emulator-sdkmanager-packages-test", nix.thunk(() => ({ [nix.POS]: $pos[6], nativeBuildInputs: nix.thunk(() => [androidSdk, jdk]) })), nix.thunk(() => nix.str`output="$(sdkmanager --list)"
 installed_packages_section=$(echo "\${output%%Available Packages*}" | awk 'NR>4 {print $1}')
 echo "installed_packages_section: \${installed_packages_section}"
 
@@ -84,7 +73,7 @@ done
 
 touch "$out"
 `))),
-          "shell-with-emulator-sdkmanager-excluded-packages-test": nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "shell-with-emulator-sdkmanager-excluded-packages-test", nix.thunk(() => ({ [nix.POS]: pos$8, nativeBuildInputs: nix.thunk(() => [androidSdk, jdk]) })), nix.thunk(() => nix.str`output="$(sdkmanager --list)"
+          "shell-with-emulator-sdkmanager-excluded-packages-test": nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "shell-with-emulator-sdkmanager-excluded-packages-test", nix.thunk(() => ({ [nix.POS]: $pos[7], nativeBuildInputs: nix.thunk(() => [androidSdk, jdk]) })), nix.thunk(() => nix.str`output="$(sdkmanager --list)"
 installed_packages_section=$(echo "\${output%%Available Packages*}" | awk 'NR>4 {print $1}')
 
 excluded_packages=(ndk)
@@ -105,7 +94,7 @@ done
 touch "$out"
 `))),
           "shell-with-emulator-avdmanager-create-avd-test": nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "shell-with-emulator-avdmanager-create-avd-test", nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               nativeBuildInputs: nix.thunk(() => [androidSdk, androidEmulator, jdk]),
             })), nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), emulatorSupported, nix.thunk(() => nix.str`export ANDROID_USER_HOME=$PWD/.android
 mkdir -p $ANDROID_USER_HOME
@@ -124,7 +113,7 @@ avdmanager delete avd -n testAVD || true
         })),
       }));
       return {
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         name,
         packages,
         LANG,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 9, 5], ["repo", 10, 5], ["tag", 11, 5], ["hash", 12, 5]], [["homepage", 42, 5], ["maintainers", 43, 5], ["teams", 44, 5]], [["pname", 16, 3], ["patches", 20, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, libwacom: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 9, 5], ["repo", 10, 5], ["tag", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["maintainers", 43, 5], ["teams", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["patches", 20, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libwacom = nix.arg($, "libwacom");
   const libwacom_surface = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "linux-surface",
       repo: "libwacom-surface",
       tag: "v2.17.0-1",
       hash: "sha256-0p68GMtQPlf/lX0Sl0VtttRODBKPMSeQOu3Le5JorSQ=",
     }))));
   return nix.app(nix.sel(libwacom, "overrideAttrs"), (prevAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libwacom-surface",
       patches: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "patches"), nix.builtins.map((p) => nix.str`${libwacom_surface}/patches/v2/${p}`, nix.thunk(() => [
           "0001-Add-support-for-BUS_VIRTUAL.patch",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
           "0016-data-Add-Microsoft-Surface-Laptop-Studio.patch",
         ])))),
       meta: nix.thunk(() => nix.update(nix.sel(prevAttrs, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/linux-surface/libwacom-surface",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

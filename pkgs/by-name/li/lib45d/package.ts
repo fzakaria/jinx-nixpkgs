@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["patches", 17, 3], ["installPhase", 22, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, fetchpatch: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["patches", 17, 3], ["installPhase", 22, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lib45d",
       version: "0.3.6-unstable-2024-01-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "45Drives",
           repo: "lib45d",
           rev: "a607e278182a3184c004c45c215aa22c15d6941d",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./stringstream.patch")]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 -t $out/lib dist/shared/lib45d.so\n\nmkdir -p $out/include/45d\ncp -f -r src/incl/45d/* $out/include/45d/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/45Drives/lib45d",
         description: "45Drives C++ Library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

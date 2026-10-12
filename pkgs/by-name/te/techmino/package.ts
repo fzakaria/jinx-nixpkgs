@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["ccloader", 12, 59]], [["libcoldclear", 13, 51], ["luajit", 13, 64]], [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]], [["name", 21, 5], ["exec", 22, 5], ["icon", 23, 5], ["comment", 28, 5], ["desktopName", 29, 5], ["genericName", 30, 5], ["categories", 31, 5]], [["url", 40, 5], ["hash", 41, 5]], [["ccloader", 66, 13], ["libcoldclear", 66, 22], ["updateScript", 67, 5]], [["description", 75, 13], ["downloadPage", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5]], [["pname", 36, 11], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 44, 3], ["dontUnpack", 46, 3], ["installPhase", 48, 3], ["passthru", 65, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, callPackage: false, makeWrapper: false, makeDesktopItem: false, love: false, luajit: false, writeShellScript: false, "nix-update": false, libcoldclear: true, ccloader: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["ccloader", 12, 59]]);
-const pos$2 = nix.positions(here + "/package.nix", [["libcoldclear", 13, 51], ["luajit", 13, 64]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 21, 5], ["exec", 22, 5], ["icon", 23, 5], ["comment", 28, 5], ["desktopName", 29, 5], ["genericName", 30, 5], ["categories", 31, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 40, 5], ["hash", 41, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["ccloader", 66, 13], ["libcoldclear", 66, 22], ["updateScript", 67, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 75, 13], ["downloadPage", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 36, 11], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 44, 3], ["dontUnpack", 46, 3], ["installPhase", 48, 3], ["passthru", 65, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const luajit = nix.arg($, "luajit");
   const writeShellScript = nix.arg($, "writeShellScript");
   const nix_update = nix.arg($, "nix-update");
-  const libcoldclear = nix.argOr($, "libcoldclear", () => nix.app(callPackage, nix.path(here, "./libcoldclear.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, ccloader: ccloader }))));
-  const ccloader = nix.argOr($, "ccloader", () => nix.app(callPackage, nix.path(here, "./ccloader.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, libcoldclear: libcoldclear, luajit: luajit }))));
+  const libcoldclear = nix.argOr($, "libcoldclear", () => nix.app(callPackage, nix.path(here, "./libcoldclear.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], ccloader: ccloader }))));
+  const ccloader = nix.argOr($, "ccloader", () => nix.app(callPackage, nix.path(here, "./ccloader.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], libcoldclear: libcoldclear, luajit: luajit }))));
   const pname = "techmino";
   const description = "Modern Tetris clone with many features";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: pname,
       exec: "techmino",
       icon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "techmino.png",
           url: "https://github.com/26F-Studio/Techmino/assets/9590981/95981af1-f39a-47d9-bd99-a78ab767c08f",
           hash: "sha256-+j+8m2vwaWgHYSFL6urvTcB0vA+PCZ+FYJ22CNXfcSc=",
@@ -47,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "0.17.21";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`https://github.com/26F-Studio/Techmino/releases/download/v${version}/Techmino_Bare.love`),
           hash: "sha256-8gMIyNP1FS52LnbpQ+G9XNtK3rQruzkMDRz7Gk9LZcQ=",
         }))));
@@ -69,7 +62,7 @@ ln -s ${desktopItem}/share/applications/* $out/share/applications/
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         ccloader: ccloader,
         libcoldclear: libcoldclear,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-script.sh", nix.thunk(() => nix.str`if ${nix.app(nix.sel(lib, "getExe"), nix_update)} techmino | grep "Packages updated"; then
@@ -78,7 +71,7 @@ fi
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: description,
         downloadPage: "https://github.com/26F-Studio/Techmino/releases",
         homepage: "https://github.com/26F-Studio/Techmino/",
@@ -91,7 +84,7 @@ fi
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: pname_1,
         version,
         src,

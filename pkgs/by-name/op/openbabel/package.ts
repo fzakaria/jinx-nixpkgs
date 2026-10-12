@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["description", 81, 5], ["homepage", 82, 5], ["platforms", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["nativeCheckInputs", 58, 3], ["cmakeFlags", 62, 3], ["disabledTests", 68, 3], ["doCheck", 76, 3], ["dontUseNinjaCheck", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, ninja: false, perl: false, zlib: false, libxml2: false, eigen: false, python3: false, cairo: false, "pkg-config": false, swig: false, rapidjson: false, boost: false, maeparser: false, coordgenlibs: false, ctestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["platforms", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["nativeCheckInputs", 58, 3], ["cmakeFlags", 62, 3], ["disabledTests", 68, 3], ["doCheck", 76, 3], ["dontUseNinjaCheck", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const coordgenlibs = nix.arg($, "coordgenlibs");
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openbabel",
       version: "3.1.1-unstable-2024-12-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openbabel",
           repo: "openbabel",
           rev: "889c350feb179b43aa43985799910149d4eaa2bc",
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       dontUseNinjaCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Toolbox designed to speak the many languages of chemical data",
         homepage: "http://openbabel.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

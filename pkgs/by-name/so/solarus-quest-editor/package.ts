@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]], [["pname", 21, 3], ["version", 22, 21], ["src", 24, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["cmakeFlags", 49, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, qlementine: false, cmake: false, ninja: false, luajit: false, SDL2: false, SDL2_image: false, SDL2_ttf: false, physfs: false, openal: false, libmodplug: false, libvorbis: false, solarus: false, glm: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 21], ["src", 24, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["cmakeFlags", 49, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const glm = nix.arg($, "glm");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "solarus-quest-editor",
       version: nix.thunk(() => nix.attr(solarus, "version")),
       src: nix.thunk(() => nix.add(nix.sel(solarus, "src"), "/editor")),
@@ -55,7 +54,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "SOLARUS_QLEMENTINE_LOCAL_PATH", nix.thunk(() => nix.str`${nix.sel(qlementine, "src")}`))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Editor for the Zelda-like ARPG game engine, Solarus",
         mainProgram: "solarus-editor",
         longDescription: "Solarus is a game engine for Zelda-like ARPG games written in lua.\nMany full-fledged games have been written for the engine.\nGames can be created easily using the editor.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 15, 3], ["version", 16, 3], ["format", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["propagatedBuildInputs", 31, 3], ["nativeCheckInputs", 33, 3], ["disabledTests", 38, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, paypalhttp: false, pytestCheckHook: false, responses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["format", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["propagatedBuildInputs", 31, 3], ["nativeCheckInputs", 33, 3], ["disabledTests", 38, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "paypal",
           repo: "Checkout-Python-SDK",
           tag: version,
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, responses]);
       const disabledTests = nix.thunk(() => ["testOrdersPatchTest", "testOrdersCreateTest", "testOrderGetRequestTest"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python SDK for Checkout RESTful APIs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

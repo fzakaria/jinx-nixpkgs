@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["__structuredAttrs", 8, 3], ["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["checkFlags", 22, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromCodeberg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["__structuredAttrs", 8, 3], ["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["checkFlags", 22, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       __structuredAttrs: true,
       pname: "pgtui",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kdwarn",
           repo: "pgtui",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
         "--skip=relations::tests::single_col_text_primary_key_correct",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "A Postgres TUI client that utilizes your terminal text editor for inserts & updates",
         mainProgram: "pgtui",
         homepage: "https://kdwarn.net/pgtui",

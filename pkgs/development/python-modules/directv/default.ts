@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["__darwinAllowLocalNetworking", 48, 3], ["disabledTests", 50, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, aiohttp: false, yarl: false, aresponses: false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["__darwinAllowLocalNetworking", 48, 3], ["disabledTests", 50, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ctalkington",
           repo: "python-directv",
           tag: version,
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "replace-async-timeout-with-asyncio.timeout.patch",
             url: "https://github.com/ctalkington/python-directv/commit/a161454b09e144de15883d25378fbb13069e241b.patch",
             hash: "sha256-jI+ALoQ0EDUQCSQp90SE+e3sGMWLwojNtLevAbgoScc=",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_client_error"]);
       const pythonImportsCheck = nix.thunk(() => ["directv"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/ctalkington/python-directv/releases/tag/${nix.sel(src, "tag")}`),
         description: "Asynchronous Python client for DirecTV (SHEF)",
         homepage: "https://github.com/ctalkington/python-directv",
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["pname", 34, 26], ["version", 34, 32], ["src", 34, 40], ["hash", 35, 5]], [["pname", 39, 26], ["version", 39, 32], ["src", 39, 40], ["pnpm", 40, 5], ["fetcherVersion", 41, 5], ["hash", 42, 5]], [["OXC_VERSION", 59, 7]], [["extraArgs", 109, 5]], [["updateScript", 108, 12]], [["description", 113, 5], ["homepage", 114, 5], ["downloadPage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 119, 5], ["platforms", 120, 32]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoDeps", 33, 3], ["pnpmDeps", 38, 3], ["nativeBuildInputs", 45, 3], ["dontUseCmakeConfigure", 57, 3], ["env", 59, 3], ["preBuild", 68, 3], ["buildPhase", 77, 3], ["installPhase", 85, 3], ["doInstallCheck", 105, 3], ["nativeInstallCheckInputs", 106, 3], ["passthru", 108, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, cargo: false, cmake: false, makeBinaryWrapper: false, nodejs_24: false, "nodejs-slim": false, pnpmConfigHook: false, pnpm_10: false, rustPlatform: false, rustc: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 34, 26], ["version", 34, 32], ["src", 34, 40], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 39, 26], ["version", 39, 32], ["src", 39, 40], ["pnpm", 40, 5], ["fetcherVersion", 41, 5], ["hash", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["OXC_VERSION", 59, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 109, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 108, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 113, 5], ["homepage", 114, 5], ["downloadPage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 119, 5], ["platforms", 120, 32]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoDeps", 33, 3], ["pnpmDeps", 38, 3], ["nativeBuildInputs", 45, 3], ["dontUseCmakeConfigure", 57, 3], ["env", 59, 3], ["preBuild", 68, 3], ["buildPhase", 77, 3], ["installPhase", 85, 3], ["doInstallCheck", 105, 3], ["nativeInstallCheckInputs", 106, 3], ["passthru", 108, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,25 +23,25 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "oxfmt",
       version: "0.68.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oxc-project",
           repo: "oxc",
           tag: nix.thunk(() => nix.str`oxfmt_v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-BqBI+xOFDcsw4muiyh6TypA8msJfwTsQ/nC4B6AtiLE=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-1raDjWN2IvtschMmLgs9Twlxc4+XVIEZ+7pqkVUDOR8=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -68,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         OXC_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "for cli in node_modules/.pnpm/@napi-rs+cli@*/node_modules/@napi-rs/cli/dist/cli.js; do\n  substituteInPlace \"$cli\" \\\n    --replace-fail '\"/bin/ps\"' '\":\"' \\\n    --replace-fail '\"/usr/sbin/ioreg\"' '\":\"' \\\n    --replace-fail '\"/usr/sbin/sysctl\"' '\":\"'\ndone\n")),
@@ -94,16 +87,16 @@ runHook postInstall
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex=^oxfmt_v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs_slim, "meta"));
         return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "High-performance formatter for the JavaScript ecosystem",
         homepage: "https://oxc.rs/docs/guide/usage/formatter",
         downloadPage: "https://github.com/oxc-project/oxc",

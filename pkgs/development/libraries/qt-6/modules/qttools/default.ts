@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["NIX_CFLAGS_COMPILE", 25, 7]], [["pname", 15, 3], ["postPatch", 17, 3], ["env", 25, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 34, 3], ["cmakeFlags", 40, 3], ["postInstall", 49, 3]]]);
 const formals$1 = { args: { pkgsBuildBuild: false, qtModule: false, stdenv: false, lib: false, qtbase: false, qtdeclarative: false, cups: false, llvmPackages: false, withClang: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 25, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["postPatch", 17, 3], ["env", 25, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 34, 3], ["cmakeFlags", 40, 3], ["postInstall", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const withClang = nix.argOr($, "withClang", () => false);
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qttools",
       postPatch: "substituteInPlace \\\n  src/qdoc/catch/CMakeLists.txt \\\n  src/qdoc/catch_generators/CMakeLists.txt \\\n  src/qdoc/catch_conversions/CMakeLists.txt \\\n  --replace '${CMAKE_INSTALL_INCLUDEDIR}' \"$out/include\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-DNIX_OUTPUT_OUT="${nix.builtins.placeholder("out")}"`),
           ]))),

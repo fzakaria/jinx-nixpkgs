@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["updateScript", 33, 12]], [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["postPatch", 23, 3], ["postInstall", 28, 3], ["passthru", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["postPatch", 23, 3], ["postInstall", 28, 3], ["passthru", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tewisay",
       version: "0-unstable-2022-11-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "raymond-w-ko",
           repo: "tewisay",
           rev: "caa5b0131dda868f656716d2107f02d04d1048d4",
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace main.go \\\n  --replace \"/usr\" \"$out\"\n",
       postInstall: "mkdir -p $out/share\nmv {cows,zsh} $out/share\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/raymond-w-ko/tewisay",
         description: "Cowsay replacement with unicode and partial ansi escape support",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["attrPath", 42, 11]], [["unwrapped", 40, 9], ["updateScript", 41, 9]], [["maintainers", 47, 9], ["platforms", 48, 9]], [["pname", 19, 9], ["version", 20, 9], ["name", 22, 7], ["src", 24, 7], ["dontUnpack", 26, 7], ["buildPhase", 27, 7], ["passthru", 39, 7], ["meta", 46, 7]], [["wrapper", 53, 26]]]);
 const formals$1 = { args: { lib: false, callPackage: false, "nix-update-script": false, stdenvNoCC: false, zellij: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["attrPath", 42, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["unwrapped", 40, 9], ["updateScript", 41, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["maintainers", 47, 9], ["platforms", 48, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 9], ["version", 20, 9], ["name", 22, 7], ["src", 24, 7], ["dontUnpack", 26, 7], ["buildPhase", 27, 7], ["passthru", 39, 7], ["meta", 46, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["wrapper", 53, 26]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const wrapper = (attrName) => (pkg) => (() => {
     nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => !nix.asBool((nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "runtimeDeps", pkg)) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "runtimeDeps", nix.thunk(() => nix.sel(pkg, "passthru")))))))), nix.thunk(() => nix.str`Plugin ${nix.sel(pkg, "pname")} has specified \`runtimeDeps\` instead of \`passthru.runtimeDeps\``)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ze/zellij/plugins/default.nix:14:5");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: nix.thunk(() => nix.attr(pkg, "pname")),
         version: nix.thunk(() => nix.attr(pkg, "version")),
         name: nix.thunk(() => nix.str`zellij-plugin-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.wasm`),
@@ -27,21 +23,21 @@ export default nix.lambda((args) => (() => {
         dontUnpack: true,
         buildPhase: "resultFile=$(find \"$src\" -name '*.wasm')\nif [ $(echo \"$resultFile\" | wc -l) -ne 1 ]; then\n  echo \"The unwrapped plugin ($src) contains more than one WASM file\"\n  echo \"$resultFile\"\n  exit 1\nfi\n\n# there should probably be `ln -s` here, but it produces a permission error for me\ncp \"$resultFile\" \"$out\"\n",
         passthru: nix.thunk(() => nix.update(nix.selOr(pkg, () => ({}), "passthru"), {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           unwrapped: pkg,
           updateScript: nix.thunk(() => nix.app(nix.selOr(pkg, () => nix.force(nix_update_script), "passthru", "updateScript"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               attrPath: nix.thunk(() => nix.str`zellijPlugins.${attrName}.unwrapped`),
             })))),
         })),
         meta: nix.thunk(() => nix.update(nix.sel(pkg, "meta"), {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           maintainers: nix.thunk(() => nix.concat(nix.selOr(pkg, () => [], "meta", "maintainers"), [nix.thunk(() => nix.sel(lib, "maintainers", "PerchunPak"))])),
           platforms: nix.thunk(() => nix.selOr(pkg, () => nix.sel(zellij, "platforms"), "meta", "platforms")),
         })),
       }));
   })();
   const rustPlugins = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), wrapper, nix.thunk(() => nix.app(callPackage, nix.path(here, "./rust"), nix.thunk(() => ({}))))));
-  return nix.update(rustPlugins, { [nix.POS]: pos$5, wrapper: wrapper });
+  return nix.update(rustPlugins, { [nix.POS]: $pos[4], wrapper: wrapper });
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

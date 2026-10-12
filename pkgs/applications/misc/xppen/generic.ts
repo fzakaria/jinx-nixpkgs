@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["name", 18, 5], ["extension", 19, 5], ["url", 20, 13], ["hash", 20, 17]], [["description", 59, 5], ["downloadPage", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5], ["platforms", 67, 5], ["sourceProvenance", 68, 5]], [["pname", 15, 11], ["version", 15, 17], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["dontConfigure", 33, 3], ["dontBuild", 34, 3], ["dontCheck", 35, 3], ["installPhase", 37, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, autoPatchelfHook: false, qt5: false, libusb1: false, pname: false, version: false, url: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["name", 18, 5], ["extension", 19, 5], ["url", 20, 13], ["hash", 20, 17]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["description", 59, 5], ["downloadPage", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5], ["platforms", 67, 5], ["sourceProvenance", 68, 5]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["pname", 15, 11], ["version", 15, 17], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["dontConfigure", 33, 3], ["dontBuild", 34, 3], ["dontCheck", 35, 3], ["installPhase", 37, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const url = nix.arg($, "url");
   const hash = nix.arg($, "hash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`XPPenLinux${version}.tar.gz`),
           extension: "tar.gz",
           url: url,
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       dontCheck: true,
       installPhase: "runHook preInstall\n\nrm -r App/usr/lib/pentablet/{lib,platforms,PenTablet.sh}\nmkdir -p $out/{bin,usr}\ncp -r App/lib $out/lib\ncp -r App/usr/share $out/share\ncp -r App/usr/lib $out/usr/lib\n\n# hack: edit the binary directly\n# TODO: replace it with buildFHSEnv if possible? last time it caused other issues\nsed -i 's#/usr/lib/pentablet#/var/lib/pentablet#g' $out/usr/lib/pentablet/PenTablet\nln -s $out/usr/lib/pentablet/PenTablet $out/bin/PenTablet\n\nsubstituteInPlace $out/share/applications/xppentablet.desktop \\\n  --replace-fail \"/usr/lib/pentablet/PenTablet.sh\" \"PenTablet\" \\\n  --replace-fail \"/usr/share/icons/hicolor/256x256/apps/xppentablet.png\" \"xppentablet\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "XPPen driver",
         downloadPage: "https://www.xp-pen.com/download/",
         homepage: "https://www.xp-pen.com/",

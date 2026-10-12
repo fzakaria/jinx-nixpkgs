@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["fetchSubmodules", 31, 5], ["hash", 32, 5]], [["description", 88, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["license", 91, 5], ["maintainers", 95, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 51, 3], ["nativeCheckInputs", 55, 3], ["cmakeFlags", 57, 3], ["prePatch", 62, 3], ["preBuild", 67, 3], ["checkPhase", 71, 3], ["pythonImportsCheck", 80, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, cmake: false, setuptools: false, boost: false, eigen: false, gmp: false, cgal: false, mpfr: false, onetbb: false, numpy: false, cython: false, pybind11: false, matplotlib: false, scipy: false, pytest: false, enableTBB: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["fetchSubmodules", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["license", 91, 5], ["maintainers", 95, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 51, 3], ["nativeCheckInputs", 55, 3], ["cmakeFlags", 57, 3], ["prePatch", 62, 3], ["preBuild", 67, 3], ["checkPhase", 71, 3], ["pythonImportsCheck", 80, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GUDHI",
           repo: "gudhi-devel",
           tag: nix.thunk(() => nix.str`tags/gudhi-release-${version}`),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\n\nrm -r gudhi\nctest --output-on-failure\n\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["gudhi", "gudhi.hera", "gudhi.point_cloud", "gudhi.clustering"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for Computational Topology and Topological Data Analysis (TDA)",
         homepage: "https://gudhi.inria.fr/python/latest/",
         downloadPage: "https://github.com/GUDHI/gudhi-devel",
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

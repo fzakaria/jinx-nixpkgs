@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["pname", 59, 7], ["version", 60, 7], ["src", 61, 7], ["sourceRoot", 62, 7], ["pnpm", 64, 13], ["fetcherVersion", 65, 5], ["hash", 66, 5]], [["bluesky-pds", 96, 82]], [["tests", 96, 5], ["updateScript", 97, 5]], [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 107, 5], ["platforms", 111, 5], ["mainProgram", 112, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["sourceRoot", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 55, 3], ["pnpmDeps", 57, 3], ["buildPhase", 69, 3], ["installPhase", 85, 3], ["passthru", 95, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { stdenv: false, makeBinaryWrapper: false, removeReferencesTo: false, srcOnly: false, python3: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, fetchFromGitHub: false, nodejs_22: false, vips: false, "pkg-config": false, nixosTests: false, lib: false, "nix-update-script": false, cctools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 59, 7], ["version", 60, 7], ["src", 61, 7], ["sourceRoot", 62, 7], ["pnpm", 64, 13], ["fetcherVersion", 65, 5], ["hash", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["bluesky-pds", 96, 82]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 96, 5], ["updateScript", 97, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 107, 5], ["platforms", 111, 5], ["mainProgram", 112, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["sourceRoot", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 55, 3], ["pnpmDeps", 57, 3], ["buildPhase", 69, 3], ["installPhase", 85, 3], ["passthru", 95, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "setuptools"))]));
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pds",
       version: "0.4.5034",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bluesky-social",
           repo: "pds",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(cctools, "libtool"))])))),
       buildInputs: nix.thunk(() => [vips]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -80,15 +75,15 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib/pds}\nmv node_modules $out/lib/pds\nmv index.ts $out/lib/pds\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "bluesky-pds": nix.thunk(() => nix.attr(nixosTests, "bluesky-pds")),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Bluesky Personal Data Server (PDS)",
         homepage: "https://github.com/bluesky-social/pds",
         license: nix.thunk(() => (() => {

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["patches", 33, 3], ["postPatch", 35, 3], ["qtWrapperArgs", 47, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, boost: false, wirelesstools: false, iw: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["patches", 33, 3], ["postPatch", 35, 3], ["qtWrapperArgs", 47, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "linssid";
       const version = "2.7";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/linssid/LinSSID_${version}/linssid_${version}.orig.tar.gz`),
           sha256: "13d35rlcjncd8lx3khkgn9x8is2xjd5fp6ns5xsn3w6l4xj9b4gl",
         }))));
@@ -51,7 +49,7 @@ rm -fr qwt-lib
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [wirelesstools, iw]))}`),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Graphical wireless scanning for Linux",
         homepage: "https://sourceforge.net/projects/linssid/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -60,7 +58,7 @@ rm -fr qwt-lib
         mainProgram: "linssid",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

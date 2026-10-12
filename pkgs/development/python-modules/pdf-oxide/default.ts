@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["ocr", 31, 5]], [["description", 48, 5]], [["pname", 16, 5], ["version", 17, 5], ["src", 18, 5], ["cargoDeps", 19, 5], ["pyproject", 22, 3], ["__structuredAttrs", 23, 3], ["nativeBuildInputs", 25, 3], ["optional-dependencies", 30, 3], ["nativeCheckInputs", 34, 3], ["disabledTests", 38, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { pkgs: false, buildPythonPackage: false, rustPlatform: false, onnxruntime: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["ocr", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 5], ["src", 18, 5], ["cargoDeps", 19, 5], ["pyproject", 22, 3], ["__structuredAttrs", 23, 3], ["nativeBuildInputs", 25, 3], ["optional-dependencies", 30, 3], ["nativeCheckInputs", 34, 3], ["disabledTests", 38, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildPythonPackage, (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "pdf-oxide"));
       return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -31,14 +29,14 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "maturinBuildHook")),
         ];
       })()),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$1, ocr: nix.thunk(() => [onnxruntime]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[0], ocr: nix.thunk(() => [onnxruntime]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => [
         "test_version_is_038_or_newer",
         "test_issue_401_two_embedded_fonts_save_encrypted",
       ]),
       pythonImportsCheck: nix.thunk(() => ["pdf_oxide"]),
-      meta: nix.thunk(() => nix.update(nix.sel(pkgs, "pdf-oxide", "meta"), { [nix.POS]: pos$2, description: "Python bindings for the pdf_oxide library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(pkgs, "pdf-oxide", "meta"), { [nix.POS]: $pos[1], description: "Python bindings for the pdf_oxide library" })),
     };
     })());
 })(), formals$1);

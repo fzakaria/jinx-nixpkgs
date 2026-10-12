@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 20, 5], ["aarch64-linux", 21, 5], ["aarch64-darwin", 22, 5]], [["modules", 30, 5], ["jdk", 38, 5]], [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["name", 54, 7], ["url", 55, 7], ["hash", 56, 7]], [["nativeBuildInputs", 92, 15]], [["tika", 123, 26]], [["tests", 122, 12]], [["changelog", 127, 5], ["description", 128, 5], ["longDescription", 129, 5], ["homepage", 136, 5], ["license", 137, 5], ["mainProgram", 138, 5], ["maintainers", 139, 5], ["sourceProvenance", 140, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 52, 3], ["buildOffline", 60, 3], ["manualMvnArtifacts", 62, 3], ["mvnJdk", 69, 3], ["mvnHash", 70, 3], ["mvnParameters", 72, 3], ["nativeBuildInputs", 82, 3], ["installPhase", 84, 3], ["passthru", 122, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, maven: false, jdk17: false, jre17_minimal: false, fetchFromGitHub: false, fetchpatch: false, makeWrapper: false, mvnDepsHash: true, enableGui: true, enableOcr: true, runCommand: false, tesseract: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 20, 5], ["aarch64-linux", 21, 5], ["aarch64-darwin", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["modules", 30, 5], ["jdk", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 54, 7], ["url", 55, 7], ["hash", 56, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 92, 15]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tika", 123, 26]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 122, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["changelog", 127, 5], ["description", 128, 5], ["longDescription", 129, 5], ["homepage", 136, 5], ["license", 137, 5], ["mainProgram", 138, 5], ["maintainers", 139, 5], ["sourceProvenance", 140, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 52, 3], ["buildOffline", 60, 3], ["manualMvnArtifacts", 62, 3], ["mvnJdk", 69, 3], ["mvnHash", 70, 3], ["mvnParameters", 72, 3], ["nativeBuildInputs", 82, 3], ["installPhase", 84, 3], ["passthru", 122, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const tesseract = nix.arg($, "tesseract");
   const nixosTests = nix.arg($, "nixosTests");
   const mvnDepsHashes = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "sha256-ZlGOxVXU63AKzfWeOLGPa2l8v+Rv8Bzr4H/Er62cxk8=",
     "aarch64-linux": "sha256-CrOYBEnp8cVpdF2PrpGQjmdYH8ZKupm9Jf1LVyNoObk=",
     "aarch64-darwin": "sha256-zvvko6wSJoc2cgMLl7XVmypq0vVTirrIpJiEdypPlrU=",
   }));
   const knownMvnDepsHash = nix.thunk(() => nix.selOr(mvnDepsHashes, () => nix.app(nix.sel(lib, "warn"), "This platform doesn't have a default mvnDepsHash value, you'll need to specify it manually", nix.thunk(() => nix.sel(lib, "fakeHash"))), nix.key(nix.sel(stdenv, "system"))));
   const jdk = nix.thunk(() => nix.app(nix.sel(jre17_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       modules: nix.thunk(() => [
         "java.base",
         "java.desktop",
@@ -52,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tika";
       const version = "2.9.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "apache",
           repo: "tika",
           tag: version,
@@ -60,7 +52,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "CVE-2025-54988.patch",
             url: "https://github.com/apache/tika/commit/bfee6d5569fe9197c4ea947a96e212825184ca33.patch",
             hash: "sha256-LHM2SafZ85f53mWWSbA4ZQ/QSiDeiwNnzAbLGqGQqPM=",
@@ -80,7 +72,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = nix.thunk(() => (() => {
         const flags = "--add-opens java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.nio=ALL-UNNAMED";
         const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([
-            nix.thunk(() => nix.app(runCommand, "jdk-tika", nix.thunk(() => ({ [nix.POS]: pos$5, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${jdk}/bin/java $out/bin/java \\
+            nix.thunk(() => nix.app(runCommand, "jdk-tika", nix.thunk(() => ({ [nix.POS]: $pos[4], nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${jdk}/bin/java $out/bin/java \\
   --add-flags "${flags}"
 `))),
           ], nix.app(nix.sel(lib, "optionals"), enableOcr, nix.thunk(() => [tesseract]))))));
@@ -96,11 +88,11 @@ runHook postInstall
 `);
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$6, tika: nix.thunk(() => nix.attr(nixosTests, "tika")) })),
+        [nix.POS]: $pos[6],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[5], tika: nix.thunk(() => nix.attr(nixosTests, "tika")) })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: nix.thunk(() => nix.str`https://github.com/apache/tika/blob/${nix.sel(src, "rev")}/CHANGES.txt`),
         description: "Toolkit for extracting metadata and text from over a thousand different file types",
         longDescription: "The Apache Tika™ toolkit detects and extracts metadata and text\nfrom over a thousand different file types (such as PPT, XLS, and PDF).\nAll of these file types can be parsed through a single interface,\nmaking Tika useful for search engine indexing, content analysis,\ntranslation, and much more.\n",
@@ -120,7 +112,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         src,

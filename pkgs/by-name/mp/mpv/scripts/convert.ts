@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/convert.nix", [[["url", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["updateScript", 20, 12]], [["description", 39, 5], ["homepage", 40, 5], ["maintainers", 41, 5], ["longDescription", 42, 5], ["license", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["passthru", 20, 3], ["patches", 22, 3], ["postPatch", 24, 3], ["scriptPath", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, fetchgit: false, unstableGitUpdater: false, buildLua: false, libnotify: false, "mkvtoolnix-cli": false, yad: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/convert.nix", [["url", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/convert.nix", [["updateScript", 20, 12]]);
-const pos$3 = nix.positions(here + "/convert.nix", [["description", 39, 5], ["homepage", 40, 5], ["maintainers", 41, 5], ["longDescription", 42, 5], ["license", 47, 5]]);
-const pos$4 = nix.positions(here + "/convert.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["passthru", 20, 3], ["patches", 22, 3], ["postPatch", 24, 3], ["scriptPath", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const mkvtoolnix_cli = nix.arg($, "mkvtoolnix-cli");
   const yad = nix.arg($, "yad");
   return nix.app(buildLua, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mpv-convert-script",
       version: "0-unstable-2015-07-02",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gist.github.com/Zehkul/25ea7ae77b30af959be0",
           rev: "f95cee43e390e843a47e8ec9d1711a12a8cd343d",
           sha256: "13m7l4sy2r8jv2sfrb3vvqvnim4a9ilnv28q5drlg09v298z3mck",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       patches: nix.thunk(() => [nix.path(here, "./convert.patch")]),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
 `),
       scriptPath: "convert_script.lua",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Convert parts of a video while you are watching it in mpv",
         homepage: "https://gist.github.com/Zehkul/25ea7ae77b30af959be0",
         maintainers: [],

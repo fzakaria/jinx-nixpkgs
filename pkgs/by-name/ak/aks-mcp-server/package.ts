@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["CGO_ENABLED", 32, 7]], [["description", 68, 5], ["longDescription", 69, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["subPackages", 25, 3], ["nativeBuildInputs", 27, 3], ["env", 32, 3], ["tags", 34, 3], ["ldflags", 36, 3], ["checkFlags", 45, 3], ["preCheck", 52, 3], ["postInstall", 56, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, makeBinaryWrapper: false, "azure-cli": false, kubectl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 68, 5], ["longDescription", 69, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["subPackages", 25, 3], ["nativeBuildInputs", 27, 3], ["env", 32, 3], ["tags", 34, 3], ["ldflags", 36, 3], ["checkFlags", 45, 3], ["preCheck", 52, 3], ["postInstall", 56, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const kubectl = nix.arg($, "kubectl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "aks-mcp-server",
       version: "0.0.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Azure",
           repo: "aks-mcp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-EdDiLibw3OXtTmAaD6PIi6xiW7+x8TUeAezdjpu8IjY=",
       subPackages: nix.thunk(() => ["cmd/aks-mcp"]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, makeBinaryWrapper]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: "0" })),
       tags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["withoutebpf"]))),
       ldflags: nix.thunk(() => [
         "-s",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [azure_cli, kubectl]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Model Context Protocol server for Azure Kubernetes Service",
         longDescription: "The AKS-MCP server enables AI assistants to interact with Azure Kubernetes\nService clusters through the Model Context Protocol. It translates natural\nlanguage requests into AKS operations and provides cluster information,\nnetwork details, and resource management capabilities.\n",
         homepage: "https://github.com/Azure/aks-mcp",

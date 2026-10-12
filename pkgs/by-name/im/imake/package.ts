@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["CFLAGS", 54, 7]], [["tradcpp", 64, 13]], [["updateScript", 68, 5]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 48, 3], ["configureFlags", 50, 3], ["env", 54, 3], ["preInstall", 58, 3], ["setupHook", 63, 3], ["passthru", 67, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, replaceVars: false, tradcpp: false, "xorg-cf-files": false, "pkg-config": false, xorgproto: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS", 54, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tradcpp", 64, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 48, 3], ["configureFlags", 50, 3], ["env", 54, 3], ["preInstall", 58, 3], ["setupHook", 63, 3], ["passthru", 67, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "imake",
       version: "1.0.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/util/imake-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-VZVVJ+rr6UYz5Ag9T+XyFgpl/kxtr97ki4n+pfHKing=",
         })))),
@@ -42,15 +37,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`ac_cv_path_RAWCPP=${nix.sel(stdenv, "cc", "targetPrefix")}cpp`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CFLAGS: nix.thunk(() => nix.str`-DIMAKE_COMPILETIME_CPP='"${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`${tradcpp}/bin/cpp` : "gcc")}"'`),
       })),
       preInstall: nix.thunk(() => nix.str`mkdir -p $out/lib/X11/config
 ln -s ${xorg_cf_files}/lib/X11/config/* $out/lib/X11/config
 `),
-      setupHook: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup-hook.sh"), nix.thunk(() => ({ [nix.POS]: pos$3, tradcpp: tradcpp })))),
+      setupHook: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup-hook.sh"), nix.thunk(() => ({ [nix.POS]: $pos[2], tradcpp: tradcpp })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname ${nix.sel(finalAttrs, "pname")} \\
@@ -60,7 +55,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Obsolete C preprocessor interface to the make utility",
         homepage: "https://gitlab.freedesktop.org/xorg/util/imake",
         license: nix.thunk(() => (() => {

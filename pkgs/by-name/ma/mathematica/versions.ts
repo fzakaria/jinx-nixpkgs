@@ -2,42 +2,11 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/versions.nix", [["version", 8, 5], ["lang", 9, 5], ["language", 10, 5], ["hash", 11, 5], ["installer", 12, 5]]);
-const pos$2 = nix.positions(here + "/versions.nix", [["version", 15, 5], ["lang", 16, 5], ["language", 17, 5], ["hash", 18, 5], ["installer", 19, 5]]);
-const pos$3 = nix.positions(here + "/versions.nix", [["version", 22, 5], ["lang", 23, 5], ["language", 24, 5], ["hash", 25, 5], ["installer", 26, 5]]);
-const pos$4 = nix.positions(here + "/versions.nix", [["version", 29, 5], ["lang", 30, 5], ["language", 31, 5], ["hash", 32, 5], ["installer", 33, 5]]);
-const pos$5 = nix.positions(here + "/versions.nix", [["version", 36, 5], ["lang", 37, 5], ["language", 38, 5], ["hash", 39, 5], ["installer", 40, 5]]);
-const pos$6 = nix.positions(here + "/versions.nix", [["version", 43, 5], ["lang", 44, 5], ["language", 45, 5], ["hash", 46, 5], ["installer", 47, 5]]);
-const pos$7 = nix.positions(here + "/versions.nix", [["version", 50, 5], ["lang", 51, 5], ["language", 52, 5], ["hash", 53, 5], ["installer", 54, 5]]);
-const pos$8 = nix.positions(here + "/versions.nix", [["version", 57, 5], ["lang", 58, 5], ["language", 59, 5], ["hash", 60, 5], ["installer", 61, 5]]);
-const pos$9 = nix.positions(here + "/versions.nix", [["version", 64, 5], ["lang", 65, 5], ["language", 66, 5], ["hash", 67, 5], ["installer", 68, 5]]);
-const pos$10 = nix.positions(here + "/versions.nix", [["version", 71, 5], ["lang", 72, 5], ["language", 73, 5], ["hash", 74, 5], ["installer", 75, 5]]);
-const pos$11 = nix.positions(here + "/versions.nix", [["version", 78, 5], ["lang", 79, 5], ["language", 80, 5], ["hash", 81, 5], ["installer", 82, 5]]);
-const pos$12 = nix.positions(here + "/versions.nix", [["version", 85, 5], ["lang", 86, 5], ["language", 87, 5], ["hash", 88, 5], ["installer", 89, 5]]);
-const pos$13 = nix.positions(here + "/versions.nix", [["version", 92, 5], ["lang", 93, 5], ["language", 94, 5], ["hash", 95, 5], ["installer", 96, 5]]);
-const pos$14 = nix.positions(here + "/versions.nix", [["version", 99, 5], ["lang", 100, 5], ["language", 101, 5], ["hash", 102, 5], ["installer", 103, 5]]);
-const pos$15 = nix.positions(here + "/versions.nix", [["version", 106, 5], ["lang", 107, 5], ["language", 108, 5], ["hash", 109, 5], ["installer", 110, 5]]);
-const pos$16 = nix.positions(here + "/versions.nix", [["version", 113, 5], ["lang", 114, 5], ["language", 115, 5], ["hash", 116, 5], ["installer", 117, 5]]);
-const pos$17 = nix.positions(here + "/versions.nix", [["version", 120, 5], ["lang", 121, 5], ["language", 122, 5], ["hash", 123, 5], ["installer", 124, 5]]);
-const pos$18 = nix.positions(here + "/versions.nix", [["version", 127, 5], ["lang", 128, 5], ["language", 129, 5], ["hash", 130, 5], ["installer", 131, 5]]);
-const pos$19 = nix.positions(here + "/versions.nix", [["version", 134, 5], ["lang", 135, 5], ["language", 136, 5], ["hash", 137, 5], ["installer", 138, 5]]);
-const pos$20 = nix.positions(here + "/versions.nix", [["version", 141, 5], ["lang", 142, 5], ["language", 143, 5], ["hash", 144, 5], ["installer", 145, 5]]);
-const pos$21 = nix.positions(here + "/versions.nix", [["version", 148, 5], ["lang", 149, 5], ["language", 150, 5], ["hash", 151, 5], ["installer", 152, 5]]);
-const pos$22 = nix.positions(here + "/versions.nix", [["version", 155, 5], ["lang", 156, 5], ["language", 157, 5], ["hash", 158, 5], ["installer", 159, 5]]);
-const pos$23 = nix.positions(here + "/versions.nix", [["version", 162, 5], ["lang", 163, 5], ["language", 164, 5], ["hash", 165, 5], ["installer", 166, 5]]);
-const pos$24 = nix.positions(here + "/versions.nix", [["version", 169, 5], ["lang", 170, 5], ["language", 171, 5], ["hash", 172, 5], ["installer", 173, 5]]);
-const pos$25 = nix.positions(here + "/versions.nix", [["version", 176, 5], ["lang", 177, 5], ["language", 178, 5], ["hash", 179, 5], ["installer", 180, 5]]);
-const pos$26 = nix.positions(here + "/versions.nix", [["version", 183, 5], ["lang", 184, 5], ["language", 185, 5], ["hash", 186, 5], ["installer", 187, 5]]);
-const pos$27 = nix.positions(here + "/versions.nix", [["version", 190, 5], ["lang", 191, 5], ["language", 192, 5], ["hash", 193, 5], ["installer", 194, 5]]);
-const pos$28 = nix.positions(here + "/versions.nix", [["version", 197, 5], ["lang", 198, 5], ["language", 199, 5], ["hash", 200, 5], ["installer", 201, 5]]);
-const pos$29 = nix.positions(here + "/versions.nix", [["version", 204, 5], ["lang", 205, 5], ["language", 206, 5], ["hash", 207, 5], ["installer", 208, 5]]);
-const pos$30 = nix.positions(here + "/versions.nix", [["version", 211, 5], ["lang", 212, 5], ["language", 213, 5], ["hash", 214, 5], ["installer", 215, 5]]);
-const pos$31 = nix.positions(here + "/versions.nix", [["version", 218, 5], ["lang", 219, 5], ["language", 220, 5], ["hash", 221, 5], ["installer", 222, 5]]);
-const pos$32 = nix.positions(here + "/versions.nix", [["version", 225, 5], ["lang", 226, 5], ["language", 227, 5], ["hash", 228, 5], ["installer", 229, 5]]);
+const $pos = nix.positions(here + "/versions.nix", [[["version", 8, 5], ["lang", 9, 5], ["language", 10, 5], ["hash", 11, 5], ["installer", 12, 5]], [["version", 15, 5], ["lang", 16, 5], ["language", 17, 5], ["hash", 18, 5], ["installer", 19, 5]], [["version", 22, 5], ["lang", 23, 5], ["language", 24, 5], ["hash", 25, 5], ["installer", 26, 5]], [["version", 29, 5], ["lang", 30, 5], ["language", 31, 5], ["hash", 32, 5], ["installer", 33, 5]], [["version", 36, 5], ["lang", 37, 5], ["language", 38, 5], ["hash", 39, 5], ["installer", 40, 5]], [["version", 43, 5], ["lang", 44, 5], ["language", 45, 5], ["hash", 46, 5], ["installer", 47, 5]], [["version", 50, 5], ["lang", 51, 5], ["language", 52, 5], ["hash", 53, 5], ["installer", 54, 5]], [["version", 57, 5], ["lang", 58, 5], ["language", 59, 5], ["hash", 60, 5], ["installer", 61, 5]], [["version", 64, 5], ["lang", 65, 5], ["language", 66, 5], ["hash", 67, 5], ["installer", 68, 5]], [["version", 71, 5], ["lang", 72, 5], ["language", 73, 5], ["hash", 74, 5], ["installer", 75, 5]], [["version", 78, 5], ["lang", 79, 5], ["language", 80, 5], ["hash", 81, 5], ["installer", 82, 5]], [["version", 85, 5], ["lang", 86, 5], ["language", 87, 5], ["hash", 88, 5], ["installer", 89, 5]], [["version", 92, 5], ["lang", 93, 5], ["language", 94, 5], ["hash", 95, 5], ["installer", 96, 5]], [["version", 99, 5], ["lang", 100, 5], ["language", 101, 5], ["hash", 102, 5], ["installer", 103, 5]], [["version", 106, 5], ["lang", 107, 5], ["language", 108, 5], ["hash", 109, 5], ["installer", 110, 5]], [["version", 113, 5], ["lang", 114, 5], ["language", 115, 5], ["hash", 116, 5], ["installer", 117, 5]], [["version", 120, 5], ["lang", 121, 5], ["language", 122, 5], ["hash", 123, 5], ["installer", 124, 5]], [["version", 127, 5], ["lang", 128, 5], ["language", 129, 5], ["hash", 130, 5], ["installer", 131, 5]], [["version", 134, 5], ["lang", 135, 5], ["language", 136, 5], ["hash", 137, 5], ["installer", 138, 5]], [["version", 141, 5], ["lang", 142, 5], ["language", 143, 5], ["hash", 144, 5], ["installer", 145, 5]], [["version", 148, 5], ["lang", 149, 5], ["language", 150, 5], ["hash", 151, 5], ["installer", 152, 5]], [["version", 155, 5], ["lang", 156, 5], ["language", 157, 5], ["hash", 158, 5], ["installer", 159, 5]], [["version", 162, 5], ["lang", 163, 5], ["language", 164, 5], ["hash", 165, 5], ["installer", 166, 5]], [["version", 169, 5], ["lang", 170, 5], ["language", 171, 5], ["hash", 172, 5], ["installer", 173, 5]], [["version", 176, 5], ["lang", 177, 5], ["language", 178, 5], ["hash", 179, 5], ["installer", 180, 5]], [["version", 183, 5], ["lang", 184, 5], ["language", 185, 5], ["hash", 186, 5], ["installer", 187, 5]], [["version", 190, 5], ["lang", 191, 5], ["language", 192, 5], ["hash", 193, 5], ["installer", 194, 5]], [["version", 197, 5], ["lang", 198, 5], ["language", 199, 5], ["hash", 200, 5], ["installer", 201, 5]], [["version", 204, 5], ["lang", 205, 5], ["language", 206, 5], ["hash", 207, 5], ["installer", 208, 5]], [["version", 211, 5], ["lang", 212, 5], ["language", 213, 5], ["hash", 214, 5], ["installer", 215, 5]], [["version", 218, 5], ["lang", 219, 5], ["language", 220, 5], ["hash", 221, 5], ["installer", 222, 5]], [["version", 225, 5], ["lang", 226, 5], ["language", 227, 5], ["hash", 228, 5], ["installer", 229, 5]]]);
 
 export default nix.thunk(() => [
   nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "15.0.1",
     lang: "en",
     language: "English",
@@ -45,7 +14,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_15.0.1_LIN.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "15.0.1",
     lang: "en",
     language: "English",
@@ -53,7 +22,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_15.0.1.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     version: "15.0.0",
     lang: "en",
     language: "English",
@@ -61,7 +30,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_15_LIN.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     version: "15.0.0",
     lang: "en",
     language: "English",
@@ -69,7 +38,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_15.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     version: "14.3.0",
     lang: "en",
     language: "English",
@@ -77,7 +46,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_14.3.0_LIN.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     version: "14.3.0",
     lang: "en",
     language: "English",
@@ -85,7 +54,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_14.3.0_LIN_Bndl.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     version: "14.2.1",
     lang: "en",
     language: "English",
@@ -93,7 +62,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_14.2.1_LIN.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     version: "14.2.1",
     lang: "en",
     language: "English",
@@ -101,7 +70,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_14.2.1_LIN_Bndl.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     version: "14.2.0",
     lang: "en",
     language: "English",
@@ -109,7 +78,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_14.2.0_LIN.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     version: "14.2.0",
     lang: "en",
     language: "English",
@@ -117,7 +86,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_14.2.0_LIN_Bndl.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     version: "14.1.0",
     lang: "en",
     language: "English",
@@ -125,7 +94,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_14.1.0_LIN.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     version: "14.1.0",
     lang: "en",
     language: "English",
@@ -133,7 +102,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_14.1.0_LIN_Bndl.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     version: "14.0.0",
     lang: "en",
     language: "English",
@@ -141,7 +110,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_14.0.0_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     version: "14.0.0",
     lang: "en",
     language: "English",
@@ -149,7 +118,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_14.0.0_BNDL_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     version: "13.3.1",
     lang: "en",
     language: "English",
@@ -157,7 +126,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.3.1_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     version: "13.3.1",
     lang: "en",
     language: "English",
@@ -165,7 +134,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.3.1_BNDL_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     version: "13.3.0",
     lang: "en",
     language: "English",
@@ -173,7 +142,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.3.0_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     version: "13.3.0",
     lang: "en",
     language: "English",
@@ -181,7 +150,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.3.0_BNDL_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     version: "13.2.1",
     lang: "en",
     language: "English",
@@ -189,7 +158,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.2.1_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     version: "13.2.1",
     lang: "en",
     language: "English",
@@ -197,7 +166,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.2.1_BNDL_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     version: "13.2.0",
     lang: "en",
     language: "English",
@@ -205,7 +174,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.2.0_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     version: "13.2.0",
     lang: "en",
     language: "English",
@@ -213,7 +182,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.2.0_BNDL_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     version: "13.1.0",
     lang: "en",
     language: "English",
@@ -221,7 +190,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.1.0_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$24,
+    [nix.POS]: $pos[23],
     version: "13.1.0",
     lang: "en",
     language: "English",
@@ -229,7 +198,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.1.0_BNDL_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$25,
+    [nix.POS]: $pos[24],
     version: "13.0.1",
     lang: "en",
     language: "English",
@@ -237,7 +206,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.0.1_BNDL_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     version: "13.0.0",
     lang: "en",
     language: "English",
@@ -245,7 +214,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.0.0_BNDL_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$27,
+    [nix.POS]: $pos[26],
     version: "12.3.1",
     lang: "en",
     language: "English",
@@ -253,7 +222,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_12.3.1_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     version: "12.3.0",
     lang: "en",
     language: "English",
@@ -261,7 +230,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_12.3.0_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$29,
+    [nix.POS]: $pos[28],
     version: "12.2.0",
     lang: "en",
     language: "English",
@@ -269,7 +238,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_12.2.0_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$30,
+    [nix.POS]: $pos[29],
     version: "12.1.1",
     lang: "en",
     language: "English",
@@ -277,7 +246,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_12.1.1_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$31,
+    [nix.POS]: $pos[30],
     version: "12.1.0",
     lang: "en",
     language: "English",
@@ -285,7 +254,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_12.1.0_LINUX.sh",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$32,
+    [nix.POS]: $pos[31],
     version: "12.0.0",
     lang: "en",
     language: "English",

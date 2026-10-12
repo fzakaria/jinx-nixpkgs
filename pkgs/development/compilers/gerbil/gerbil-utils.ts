@@ -2,17 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gerbil-utils.nix", [[["fun", 12, 5], ["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["maintainers", 24, 5]], [["pname", 4, 3], ["version", 5, 3], ["git-version", 6, 3], ["softwareName", 7, 3], ["gerbil-package", 8, 3], ["version-path", 9, 3], ["pre-src", 11, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gerbil-utils.nix", [["fun", 12, 5], ["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/gerbil-utils.nix", [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["maintainers", 24, 5]]);
-const pos$3 = nix.positions(here + "/gerbil-utils.nix", [["pname", 4, 3], ["version", 5, 3], ["git-version", 6, 3], ["softwareName", 7, 3], ["gerbil-package", 8, 3], ["version-path", 9, 3], ["pre-src", 11, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     pname: "gerbil-utils",
     version: "unstable-2023-12-06",
     "git-version": "0.4-13-g9398865",
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
     "gerbil-package": "clan",
     "version-path": "version",
     "pre-src": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fun: fetchFromGitHub,
       owner: "mighty-gerbils",
       repo: "gerbil-utils",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       sha256: "0dga03qq7iy12bnpxr6d40qhvihsvn3y87psf2w2clnpypjb3blx",
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       description: "Gerbil Clan: Community curated Collection of Common Utilities",
       homepage: "https://github.com/fare/gerbil-utils",
       license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

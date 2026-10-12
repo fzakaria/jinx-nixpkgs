@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["updateScript", 66, 5]], [["description", 70, 5], ["changelog", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["teams", 79, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 50, 3], ["dontWrapGApps", 59, 3], ["preFixup", 61, 3], ["passthru", 65, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, "gobject-introspection": false, libadwaita: false, wrapGAppsHook4: false, meson: false, ninja: false, "desktop-file-utils": false, "pkg-config": false, appstream: false, libsecret: false, libportal: false, gtk4: false, gtksourceview5: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 70, 5], ["changelog", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["teams", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 50, 3], ["dontWrapGApps", 59, 3], ["preFixup", 61, 3], ["passthru", 65, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const gtksourceview5 = nix.arg($, "gtksourceview5");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "errands",
       version: "46.2.10",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mrvladus",
           repo: "Errands",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,11 +60,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Manage your tasks",
         changelog: nix.thunk(() => nix.str`https://github.com/mrvladus/Errands/releases/tag/${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/mrvladus/Errands",

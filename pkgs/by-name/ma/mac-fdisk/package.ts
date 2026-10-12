@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["url", 21, 7], ["sha256", 22, 7]], [["url", 26, 7], ["sha256", 27, 7]], [["url", 31, 7], ["sha256", 32, 7]], [["url", 36, 7], ["sha256", 37, 7]], [["url", 41, 7], ["sha256", 42, 7]], [["url", 46, 7], ["sha256", 47, 7]], [["url", 51, 7], ["sha256", 52, 7]], [["url", 56, 7], ["sha256", 57, 7]], [["url", 61, 7], ["sha256", 62, 7]], [["url", 66, 7], ["sha256", 67, 7]], [["url", 71, 7], ["sha256", 72, 7]], [["NIX_CFLAGS_COMPILE", 82, 7]], [["description", 101, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 108, 5], ["platforms", 110, 5], ["badPlatforms", 111, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["nativeBuildInputs", 76, 3], ["enableParallelBuilding", 80, 3], ["env", 82, 3], ["hardeningDisable", 84, 3], ["installPhase", 86, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, fetchpatch: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 7], ["sha256", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 26, 7], ["sha256", 27, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 31, 7], ["sha256", 32, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 36, 7], ["sha256", 37, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 41, 7], ["sha256", 42, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 46, 7], ["sha256", 47, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 51, 7], ["sha256", 52, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["url", 56, 7], ["sha256", 57, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["url", 61, 7], ["sha256", 62, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["url", 66, 7], ["sha256", 67, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["url", 71, 7], ["sha256", 72, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 82, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 108, 5], ["platforms", 110, 5], ["badPlatforms", 111, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["nativeBuildInputs", 76, 3], ["enableParallelBuilding", 80, 3], ["env", 82, 3], ["hardeningDisable", 84, 3], ["installPhase", 86, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,78 +13,78 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "mac-fdisk",
       version: "0.1.16",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://deb.debian.org/debian/pool/main/m/mac-fdisk/mac-fdisk_0.1.orig.tar.gz",
           sha256: "sha256-pYNyhPvRKdIje0Rpay0OzmrkGcl+/JOhMv7r+2LZk/Q=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.adelielinux.org/adelie/packages/-/raw/1b708c8a90e3548c4954c6367a9376f76f3746bd/user/mac-fdisk/mac-fdisk-0.1-debian.patch",
             sha256: "sha256-a9pGF+UsFeZiXgracmT4anqgpmcGcS/W3jGtFzHZtt4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://git.adelielinux.org/adelie/packages/-/raw/1fa4c88ee21866eeb0feae8f6b0bf609a04711cc/user/mac-fdisk/mac-fdisk-0.1-headers.patch",
             sha256: "sha256-FIk9K+lP+3e1pgmNfymTdpdSoTpBDv29kmwYgqYwWQw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://git.adelielinux.org/adelie/packages/-/raw/1b708c8a90e3548c4954c6367a9376f76f3746bd/user/mac-fdisk/mac-fdisk-0.1-more-arches.patch",
             sha256: "sha256-HNRmzETUmKfZQFrjg6Y/HPwUnLk0vO5DokfU4umdOm0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://git.adelielinux.org/adelie/packages/-/raw/1fa4c88ee21866eeb0feae8f6b0bf609a04711cc/user/mac-fdisk/mac-fdisk-0.1_p16-ppc64.patch",
             sha256: "sha256-GK0nfga59nOXotkbKI+2ejA9TtyZUwDIxuXWFGGbeFg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://git.adelielinux.org/adelie/packages/-/raw/1fa4c88ee21866eeb0feae8f6b0bf609a04711cc/user/mac-fdisk/mac-fdisk-0.1_p16-proper-inline.patch",
             sha256: "sha256-wr2teKpm0FyqNudKYlTD49pTFDis33Fo+0LULNYIJko=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://git.adelielinux.org/adelie/packages/-/raw/1b708c8a90e3548c4954c6367a9376f76f3746bd/user/mac-fdisk/mac-fdisk-amd64.patch",
             sha256: "sha256-iO4/sY5sGKQyymMmAOb/TlCc9id2qgEDw7E8pFZpsHI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: "https://git.adelielinux.org/adelie/packages/-/raw/1fa4c88ee21866eeb0feae8f6b0bf609a04711cc/user/mac-fdisk/mac-fdisk-fdisk-header-musl.patch",
             sha256: "sha256-mKBVjvLKtxKPADeoPqp17YdJ1QWj2enAYhKKSqTnQ44=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             url: "https://git.adelielinux.org/adelie/packages/-/raw/1fa4c88ee21866eeb0feae8f6b0bf609a04711cc/user/mac-fdisk/mac-fdisk-large-disk-support.patch",
             sha256: "sha256-IXZZdozqZKyZEz87ZzB8Jof22GgvHf4GaXBqSKn8su8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             url: "https://git.adelielinux.org/adelie/packages/-/raw/1fa4c88ee21866eeb0feae8f6b0bf609a04711cc/user/mac-fdisk/mac-fdisk-largerthan2gb.patch",
             sha256: "sha256-ATK7QYXV7BOk8iIFeXY8g+ZHLuuhww9pcrqOMDn/oLM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             url: "https://git.adelielinux.org/adelie/packages/-/raw/1fa4c88ee21866eeb0feae8f6b0bf609a04711cc/user/mac-fdisk/mac-fdisk-non-glibc-support.patch",
             sha256: "sha256-CBZUKf7dPvvpuG5L+SI1FQ4W7/fDgeKXHUMFkJNu/MY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             url: "https://git.adelielinux.org/adelie/packages/-/raw/656ae6bf9f8a64aee95c4797b20bfe713627f1f4/user/mac-fdisk/flush-stdout.patch",
             sha256: "sha256-k7+UPiUf/oCQdDhxDcC+FRwkxS89WSsYzFw6fUB/10I=",
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$13, NIX_CFLAGS_COMPILE: "-D_GNU_SOURCE" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[12], NIX_CFLAGS_COMPILE: "-D_GNU_SOURCE" })),
       hardeningDisable: nix.thunk(() => ["format"]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 pdisk $out/sbin/mac-fdisk\ninstall -Dm755 fdisk $out/sbin/pmac-fdisk\n\nfor manpage in {,p}mac-fdisk.8; do\n  mv \"$manpage\".in $manpage\n  installManPage $manpage\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "68K and PowerPC Mac disk partitioning utility, Adélie Linux version",
         homepage: "https://git.adelielinux.org/adelie/packages/-/tree/master/user/mac-fdisk",
         license: nix.thunk(() => (() => {

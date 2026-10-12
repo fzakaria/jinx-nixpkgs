@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["sourceProvenance", 54, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["nativeBuildInputs", 23, 3], ["outputs", 28, 3], ["buildPhase", 33, 3], ["installPhase", 37, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["sourceProvenance", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["nativeBuildInputs", 23, 3], ["outputs", 28, 3], ["buildPhase", 33, 3], ["installPhase", 37, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const mkdocs = nix.thunk(() => nix.attr(python3Packages, "mkdocs"));
   const mkdocs_material = nix.thunk(() => nix.attr(python3Packages, "mkdocs-material"));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "internalallthethings",
       version: "0-unstable-2025-11-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "swisskyrepo",
           repo: "InternalAllTheThings",
           rev: "9a97b9d16e5f9834b4ef2276b6cd1b98a0748b6e",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "mkdocs build\n",
       installPhase: "runHook preInstall\nmkdir -p $doc/share/internalallthethings\ncp -r site/* $doc/share/internalallthethings\n\nmkdir -p $out/share/internalallthethings\nrm -r mkdocs.yml site\ncp -r * $out/share/internalallthethings\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/swisskyrepo/InternalAllTheThings",
         description: "Active Directory and Internal Pentest Cheatsheets",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

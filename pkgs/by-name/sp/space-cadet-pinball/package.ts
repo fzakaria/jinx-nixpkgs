@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5], ["stripRoot", 16, 5], ["nativeBuildInputs", 17, 5]], [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 75, 5], ["maintainers", 79, 5], ["platforms", 80, 5], ["mainProgram", 81, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["postPatch", 40, 3], ["installPhase", 53, 3], ["postInstall", 66, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchzip: false, cmake: false, SDL2: false, SDL2_mixer: false, unrar: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5], ["stripRoot", 16, 5], ["nativeBuildInputs", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 75, 5], ["maintainers", 79, 5], ["platforms", 80, 5], ["mainProgram", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["postPatch", 40, 3], ["installPhase", 53, 3], ["postInstall", 66, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   const unrar = nix.arg($, "unrar");
   const assets = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://archive.org/download/SpaceCadet_Plus95/Space_Cadet.rar",
       hash: "sha256-fC+zsR8BY6vXpUkVd6i1jF0IZZxVKVvNi6VWCKT+pA4=",
       stripRoot: false,
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "SpaceCadetPinball";
       const version = "2.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "k4zmu2a",
           repo: "SpaceCadetPinball",
           rev: nix.thunk(() => nix.str`Release_${version}`),
@@ -58,7 +55,7 @@ runHook postInstall
   ${assets}/Sounds/*.WAV -t ${assetsDest}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Reverse engineering of 3D Pinball for Windows – Space Cadet, a game bundled with Windows",
         homepage: "https://github.com/k4zmu2a/SpaceCadetPinball",
         license: nix.thunk(() => (() => {
@@ -76,7 +73,7 @@ runHook postInstall
         mainProgram: "SpaceCadetPinball",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

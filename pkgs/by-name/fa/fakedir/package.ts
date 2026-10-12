@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["CFLAGS", 19, 7]], [["extraArgs", 29, 5]], [["updateScript", 28, 12]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5], ["platforms", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 19, 3], ["installPhase", 24, 3], ["passthru", 28, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 28, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5], ["platforms", 41, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 19, 3], ["installPhase", 24, 3], ["passthru", 28, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,30 +12,30 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "fakedir",
       version: "0-unstable-2025-12-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nixie-dev",
           repo: "fakedir",
           rev: "82bfac1f58a76f56fc4ef928982f507e01c552a5",
           hash: "sha256-wPseLfbRffX0Pr4TxJh59cmuY1OEfSDTvM2KrORafKs=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Ofast", "-DSTRIP_DEBUG"]))),
       })),
       installPhase: "install -Dm755 libfakedir.dylib $out/lib/libfakedir.dylib\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version=branch", "--version-regex=(0-unstable-.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Substitutes a directory elsewhere on macOS by replacing system calls",
         homepage: "https://github.com/nixie-dev/fakedir",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

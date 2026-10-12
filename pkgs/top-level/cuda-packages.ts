@@ -2,18 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda-packages.nix", [[["manifests", 23, 7]], [["cublasmp", 46, 5], ["cuda", 47, 5], ["cudnn", 48, 5], ["cudss", 49, 5], ["cuquantum", 50, 5], ["cusolvermp", 51, 5], ["cusparselt", 52, 5], ["cutensor", 53, 5], ["nppplus", 54, 5], ["nvcomp", 55, 5], ["nvjpeg2000", 56, 5], ["nvpl", 57, 5], ["nvtiff", 58, 5], ["tensorrt", 59, 5]], [["cublasmp", 69, 5], ["cuda", 70, 5], ["cudnn", 71, 5], ["cudss", 72, 5], ["cuquantum", 73, 5], ["cusolvermp", 74, 5], ["cusparselt", 75, 5], ["cutensor", 76, 5], ["nppplus", 77, 5], ["nvcomp", 78, 5], ["nvjpeg2000", 79, 5], ["nvpl", 80, 5], ["nvtiff", 81, 5], ["tensorrt", 82, 5]], [["cublasmp", 92, 5], ["cuda", 93, 5], ["cudnn", 94, 5], ["cudss", 95, 5], ["cuquantum", 96, 5], ["cusolvermp", 97, 5], ["cusparselt", 98, 5], ["cutensor", 99, 5], ["nppplus", 100, 5], ["nvcomp", 101, 5], ["nvjpeg2000", 102, 5], ["nvpl", 103, 5], ["nvtiff", 104, 5], ["tensorrt", 105, 5]], [["cublasmp", 115, 5], ["cuda", 116, 5], ["cudnn", 117, 5], ["cudss", 118, 5], ["cuquantum", 119, 5], ["cusolvermp", 120, 5], ["cusparselt", 121, 5], ["cutensor", 122, 5], ["nppplus", 123, 5], ["nvcomp", 124, 5], ["nvjpeg2000", 125, 5], ["nvpl", 126, 5], ["nvtiff", 127, 5], ["tensorrt", 128, 5]], [["cublasmp", 132, 5], ["cuda", 133, 5], ["cudnn", 134, 5], ["cudss", 135, 5], ["cuquantum", 136, 5], ["cusolvermp", 137, 5], ["cusparselt", 138, 5], ["cutensor", 139, 5], ["nppplus", 140, 5], ["nvcomp", 141, 5], ["nvjpeg2000", 142, 5], ["nvpl", 143, 5], ["nvtiff", 144, 5], ["tensorrt", 145, 5]], [["cublasmp", 149, 5], ["cuda", 150, 5], ["cudnn", 151, 5], ["cudss", 152, 5], ["cuquantum", 153, 5], ["cusolvermp", 154, 5], ["cusparselt", 155, 5], ["cutensor", 156, 5], ["nppplus", 157, 5], ["nvcomp", 158, 5], ["nvjpeg2000", 159, 5], ["nvpl", 160, 5], ["nvtiff", 161, 5], ["tensorrt", 162, 5]], [["cublasmp", 166, 5], ["cuda", 167, 5], ["cudnn", 168, 5], ["cudss", 169, 5], ["cuquantum", 170, 5], ["cusolvermp", 171, 5], ["cusparselt", 172, 5], ["cutensor", 173, 5], ["nppplus", 174, 5], ["nvcomp", 175, 5], ["nvjpeg2000", 176, 5], ["nvpl", 177, 5], ["nvtiff", 178, 5], ["tensorrt", 179, 5]], [["cublasmp", 183, 5], ["cuda", 184, 5], ["cudnn", 185, 5], ["cudss", 186, 5], ["cuquantum", 187, 5], ["cusolvermp", 188, 5], ["cusparselt", 189, 5], ["cutensor", 190, 5], ["nppplus", 191, 5], ["nvcomp", 192, 5], ["nvjpeg2000", 193, 5], ["nvpl", 194, 5], ["nvtiff", 195, 5], ["tensorrt", 196, 5]], [["cudaPackages_12_6", 201, 5], ["cudaPackages_12_8", 202, 5], ["cudaPackages_12_9", 203, 5], ["cudaPackages_13_0", 204, 5], ["cudaPackages_13_1", 205, 5], ["cudaPackages_13_2", 206, 5], ["cudaPackages_13_3", 207, 5], ["cudaPackages_13_4", 208, 5]]]);
 const formals$1 = { args: { _cuda: false, callPackage: false, config: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda-packages.nix", [["manifests", 23, 7]]);
-const pos$2 = nix.positions(here + "/cuda-packages.nix", [["cublasmp", 46, 5], ["cuda", 47, 5], ["cudnn", 48, 5], ["cudss", 49, 5], ["cuquantum", 50, 5], ["cusolvermp", 51, 5], ["cusparselt", 52, 5], ["cutensor", 53, 5], ["nppplus", 54, 5], ["nvcomp", 55, 5], ["nvjpeg2000", 56, 5], ["nvpl", 57, 5], ["nvtiff", 58, 5], ["tensorrt", 59, 5]]);
-const pos$3 = nix.positions(here + "/cuda-packages.nix", [["cublasmp", 69, 5], ["cuda", 70, 5], ["cudnn", 71, 5], ["cudss", 72, 5], ["cuquantum", 73, 5], ["cusolvermp", 74, 5], ["cusparselt", 75, 5], ["cutensor", 76, 5], ["nppplus", 77, 5], ["nvcomp", 78, 5], ["nvjpeg2000", 79, 5], ["nvpl", 80, 5], ["nvtiff", 81, 5], ["tensorrt", 82, 5]]);
-const pos$4 = nix.positions(here + "/cuda-packages.nix", [["cublasmp", 92, 5], ["cuda", 93, 5], ["cudnn", 94, 5], ["cudss", 95, 5], ["cuquantum", 96, 5], ["cusolvermp", 97, 5], ["cusparselt", 98, 5], ["cutensor", 99, 5], ["nppplus", 100, 5], ["nvcomp", 101, 5], ["nvjpeg2000", 102, 5], ["nvpl", 103, 5], ["nvtiff", 104, 5], ["tensorrt", 105, 5]]);
-const pos$5 = nix.positions(here + "/cuda-packages.nix", [["cublasmp", 115, 5], ["cuda", 116, 5], ["cudnn", 117, 5], ["cudss", 118, 5], ["cuquantum", 119, 5], ["cusolvermp", 120, 5], ["cusparselt", 121, 5], ["cutensor", 122, 5], ["nppplus", 123, 5], ["nvcomp", 124, 5], ["nvjpeg2000", 125, 5], ["nvpl", 126, 5], ["nvtiff", 127, 5], ["tensorrt", 128, 5]]);
-const pos$6 = nix.positions(here + "/cuda-packages.nix", [["cublasmp", 132, 5], ["cuda", 133, 5], ["cudnn", 134, 5], ["cudss", 135, 5], ["cuquantum", 136, 5], ["cusolvermp", 137, 5], ["cusparselt", 138, 5], ["cutensor", 139, 5], ["nppplus", 140, 5], ["nvcomp", 141, 5], ["nvjpeg2000", 142, 5], ["nvpl", 143, 5], ["nvtiff", 144, 5], ["tensorrt", 145, 5]]);
-const pos$7 = nix.positions(here + "/cuda-packages.nix", [["cublasmp", 149, 5], ["cuda", 150, 5], ["cudnn", 151, 5], ["cudss", 152, 5], ["cuquantum", 153, 5], ["cusolvermp", 154, 5], ["cusparselt", 155, 5], ["cutensor", 156, 5], ["nppplus", 157, 5], ["nvcomp", 158, 5], ["nvjpeg2000", 159, 5], ["nvpl", 160, 5], ["nvtiff", 161, 5], ["tensorrt", 162, 5]]);
-const pos$8 = nix.positions(here + "/cuda-packages.nix", [["cublasmp", 166, 5], ["cuda", 167, 5], ["cudnn", 168, 5], ["cudss", 169, 5], ["cuquantum", 170, 5], ["cusolvermp", 171, 5], ["cusparselt", 172, 5], ["cutensor", 173, 5], ["nppplus", 174, 5], ["nvcomp", 175, 5], ["nvjpeg2000", 176, 5], ["nvpl", 177, 5], ["nvtiff", 178, 5], ["tensorrt", 179, 5]]);
-const pos$9 = nix.positions(here + "/cuda-packages.nix", [["cublasmp", 183, 5], ["cuda", 184, 5], ["cudnn", 185, 5], ["cudss", 186, 5], ["cuquantum", 187, 5], ["cusolvermp", 188, 5], ["cusparselt", 189, 5], ["cutensor", 190, 5], ["nppplus", 191, 5], ["nvcomp", 192, 5], ["nvjpeg2000", 193, 5], ["nvpl", 194, 5], ["nvtiff", 195, 5], ["tensorrt", 196, 5]]);
-const pos$10 = nix.positions(here + "/cuda-packages.nix", [["cudaPackages_12_6", 201, 5], ["cudaPackages_12_8", 202, 5], ["cudaPackages_12_9", 203, 5], ["cudaPackages_13_0", 204, 5], ["cudaPackages_13_1", 205, 5], ["cudaPackages_13_2", 206, 5], ["cudaPackages_13_3", 207, 5], ["cudaPackages_13_4", 208, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +19,11 @@ export default nix.lambda((args) => (() => {
     })(), formals$2), nix.thunk(() => ({}))));
   const hasJetsonCudaCapability = nix.thunk(() => nix.app(nix.sel(lib, "any"), (cudaCapability) => nix.selOr(_cuda, () => false, "db", "cudaCapabilityToInfo", nix.key(nix.force(cudaCapability)), "isJetson"), nix.thunk(() => nix.selOr(config, () => [], "cudaCapabilities"))));
   const mkCudaPackages = (manifestVersions) => nix.app(callPackage, nix.path(here, "../development/cuda-modules"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       manifests: nix.thunk(() => nix.app(nix.sel(_cuda, "lib", "selectManifests"), manifestVersions)),
     })));
   const cudaPackages_12_6 = nix.thunk(() => nix.app(mkCudaPackages, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       cublasmp: "0.10.0",
       cuda: "12.6.3",
       cudnn: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "9.20.0" : "9.27.0")),
@@ -49,7 +40,7 @@ export default nix.lambda((args) => (() => {
       tensorrt: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "10.7.0" : (nix.asBool(nix.sel(hostPlatform, "isAarch64")) ? "10.13.0" : "11.3.0"))),
     }))));
   const cudaPackages_12_8 = nix.thunk(() => nix.app(mkCudaPackages, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       cublasmp: "0.10.0",
       cuda: "12.8.2",
       cudnn: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "9.20.0" : "9.27.0")),
@@ -66,7 +57,7 @@ export default nix.lambda((args) => (() => {
       tensorrt: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "10.7.0" : (nix.asBool(nix.sel(hostPlatform, "isAarch64")) ? "10.13.0" : "11.3.0"))),
     }))));
   const cudaPackages_12_9 = nix.thunk(() => nix.app(mkCudaPackages, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       cublasmp: "0.10.0",
       cuda: "12.9.2",
       cudnn: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "9.20.0" : "9.27.0")),
@@ -83,7 +74,7 @@ export default nix.lambda((args) => (() => {
       tensorrt: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "10.7.0" : (nix.asBool(nix.sel(hostPlatform, "isAarch64")) ? "10.13.0" : "11.3.0"))),
     }))));
   const cudaPackages_13_0 = nix.thunk(() => nix.app(mkCudaPackages, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       cublasmp: "0.10.0",
       cuda: "13.0.3",
       cudnn: "9.27.0",
@@ -100,7 +91,7 @@ export default nix.lambda((args) => (() => {
       tensorrt: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "10.16.1" : "11.3.0")),
     }))));
   const cudaPackages_13_1 = nix.thunk(() => nix.app(mkCudaPackages, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       cublasmp: "0.10.0",
       cuda: "13.1.2",
       cudnn: "9.27.0",
@@ -117,7 +108,7 @@ export default nix.lambda((args) => (() => {
       tensorrt: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "10.16.1" : "11.3.0")),
     }))));
   const cudaPackages_13_2 = nix.thunk(() => nix.app(mkCudaPackages, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       cublasmp: "0.10.0",
       cuda: "13.2.2",
       cudnn: "9.27.0",
@@ -134,7 +125,7 @@ export default nix.lambda((args) => (() => {
       tensorrt: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "11.1.0" : "11.3.0")),
     }))));
   const cudaPackages_13_3 = nix.thunk(() => nix.app(mkCudaPackages, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       cublasmp: "0.10.0",
       cuda: "13.3.1",
       cudnn: "9.27.0",
@@ -151,7 +142,7 @@ export default nix.lambda((args) => (() => {
       tensorrt: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "11.1.0" : "11.3.0")),
     }))));
   const cudaPackages_13_4 = nix.thunk(() => nix.app(mkCudaPackages, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       cublasmp: "0.10.0",
       cuda: "13.4.2",
       cudnn: "9.27.0",
@@ -168,7 +159,7 @@ export default nix.lambda((args) => (() => {
       tensorrt: nix.thunk(() => (nix.asBool(hasJetsonCudaCapability) ? "11.1.0" : "11.3.0")),
     }))));
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     cudaPackages_12_6: cudaPackages_12_6,
     cudaPackages_12_8: cudaPackages_12_8,
     cudaPackages_12_9: cudaPackages_12_9,

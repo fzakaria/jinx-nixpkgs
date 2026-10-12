@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["src", 28, 32], ["nativeBuildInputs", 29, 11]], [["supportedFeatures", 39, 11]], [["pubspecSource", 25, 5], ["updateScript", 34, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["pubspecLock", 22, 3], ["passthru", 24, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildDartApplication: false, fetchFromGitHub: false, runCommand: false, "yq-go": false, "_experimental-update-script-combinators": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 28, 32], ["nativeBuildInputs", 29, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["supportedFeatures", 39, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pubspecSource", 25, 5], ["updateScript", 34, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["pubspecLock", 22, 3], ["passthru", 24, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildDartApplication, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "fvm",
       version: "4.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "conceptadev",
           repo: "fvm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,19 +27,19 @@ export default nix.lambda((args) => (() => {
         })))),
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             nativeBuildInputs: nix.thunk(() => [yq_go]),
           })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "fvm.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$3, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "fvm.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: $pos[2], supportedFeatures: [] })),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple CLI to manage Flutter SDK versions",
         homepage: "https://github.com/conceptadev/fvm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

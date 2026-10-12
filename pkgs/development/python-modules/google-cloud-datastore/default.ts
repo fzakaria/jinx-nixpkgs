@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 5], ["version", 26, 26], ["hash", 27, 5]], [["libcst", 45, 5]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 30, 3], ["pythonRelaxDeps", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 44, 3], ["nativeCheckInputs", 48, 3], ["preCheck", 55, 3], ["disabledTestPaths", 60, 3], ["pythonImportsCheck", 70, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "google-api-core": false, "google-auth": false, "google-cloud-core": false, "google-cloud-testutils": false, grpcio: false, libcst: false, mock: false, "proto-plus": false, protobuf: false, "pytest-asyncio": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 5], ["version", 26, 26], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libcst", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 30, 3], ["pythonRelaxDeps", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 44, 3], ["nativeCheckInputs", 48, 3], ["preCheck", 55, 3], ["disabledTestPaths", 60, 3], ["pythonImportsCheck", 70, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "google-cloud-datastore",
       version: "2.27.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "google_cloud_datastore",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-4sNS78FW9ruUI2U7JOFQTO9LTYjg/s5aSN6cSKDQ7Uw=",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
         proto_plus,
         protobuf,
       ], nix.sel(google_api_core, "optional-dependencies", "grpc"))),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, libcst: nix.thunk(() => [libcst]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], libcst: nix.thunk(() => [libcst]) })),
       nativeCheckInputs: nix.thunk(() => [google_cloud_testutils, mock, pytestCheckHook, pytest_asyncio]),
       preCheck: "# directory shadows imports\nrm -r google\n",
       disabledTestPaths: nix.thunk(() => [
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
         "google.cloud.datastore_v1",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Google Cloud Datastore API client library",
         homepage: "https://cloud.google.com/datastore",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-datastore-v${nix.sel(finalAttrs, "version")}/packages/google-cloud-datastore/CHANGELOG.md`),

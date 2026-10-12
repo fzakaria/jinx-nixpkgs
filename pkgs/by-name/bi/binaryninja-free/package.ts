@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 7], ["hash", 28, 7]], [["url", 31, 7], ["hash", 32, 7]], [["x86_64-linux", 26, 5], ["aarch64-linux", 30, 5]], [["url", 45, 5], ["hash", 46, 5]], [["name", 51, 7], ["desktopName", 52, 7], ["comment", 53, 7], ["exec", 54, 7], ["icon", 55, 7], ["mimeTypes", 56, 7], ["categories", 60, 7]], [["shortName", 106, 7], ["fullName", 107, 7], ["url", 108, 7], ["free", 109, 7]], [["changelog", 100, 5], ["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["mainProgram", 111, 5], ["maintainers", 112, 5], ["platforms", 116, 5]], [["pname", 37, 3], ["version", 38, 11], ["src", 40, 3], ["icon", 44, 3], ["desktopItems", 49, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 70, 3], ["installPhase", 86, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, copyDesktopItems: false, curl: false, dbus: false, fetchurl: false, fontconfig: false, freetype: false, lib: false, libdrm: false, libGLU: false, libxkbcommon: false, makeDesktopItem: false, stdenv: false, unzip: false, wayland: false, "libxcb-image": false, "libxcb-keysyms": false, "libxcb-render-util": false, "libxcb-wm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 26, 5], ["aarch64-linux", 30, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 45, 5], ["hash", 46, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 51, 7], ["desktopName", 52, 7], ["comment", 53, 7], ["exec", 54, 7], ["icon", 55, 7], ["mimeTypes", 56, 7], ["categories", 60, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["shortName", 106, 7], ["fullName", 107, 7], ["url", 108, 7], ["free", 109, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 100, 5], ["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["mainProgram", 111, 5], ["maintainers", 112, 5], ["platforms", 116, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 11], ["src", 40, 3], ["icon", 44, 3], ["desktopItems", 49, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 70, 3], ["installPhase", 86, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,31 +28,31 @@ export default nix.lambda((args) => (() => {
   const libxcb_wm = nix.arg($, "libxcb-wm");
   const version = "6.0.10601";
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/Vector35/binaryninja-api/releases/download/stable/${version}/binaryninja_free_linux.zip`),
       hash: "sha256-PoucWGGr5umwTIa1+cStLchs7ep5ty17Cu4f3PfOkdY=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://github.com/Vector35/binaryninja-api/releases/download/stable/${version}/binaryninja_free_linux-arm.zip`),
       hash: "sha256-G3gSWFa+Rh9zJMoA9QyH8XiIXsEK0YVXgHDtmR6X11o=",
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "binaryninja-free",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))))),
       icon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: "https://raw.githubusercontent.com/Vector35/binaryninja-api/448f40be71dffa86a6581c3696627ccc1bdf74f2/docs/img/logo.png",
           hash: "sha256-TzGAAefTknnOBj70IHe64D6VwRKqIDpL4+o9kTw0Mn4=",
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "com.vector35.binaryninja",
             desktopName: "Binary Ninja Free",
             comment: "A Reverse Engineering Platform",
@@ -97,12 +90,12 @@ install -Dm644 ${nix.sel(finalAttrs, "icon")} $out/share/icons/hicolor/256x256/a
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://binary.ninja/changelog/#${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
         description: "Interactive decompiler, disassembler, debugger",
         homepage: "https://binary.ninja/",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             shortName: "binary-ninja",
             fullName: "Binary Ninja Free Software License",
             url: "https://docs.binary.ninja/about/license.html#free-license",

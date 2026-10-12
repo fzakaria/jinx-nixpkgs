@@ -2,83 +2,26 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stunnel.nix", [[["enable", 6, 7], ["user", 7, 7]], [["stunnel", 5, 14]], [["stunnel", 9, 18]], [["isSystemUser", 11, 7], ["group", 12, 7]], [["stunnel", 10, 17]], [["groups", 9, 11], ["users", 10, 11]], [["services", 5, 5], ["users", 9, 5]], [["DefaultDependencies", 30, 20]], [["Type", 31, 23]], [["wantedBy", 24, 9], ["before", 25, 9], ["conflicts", 29, 9], ["unitConfig", 30, 9], ["serviceConfig", 31, 9], ["script", 32, 9]], [["create-test-cert", 23, 24]], [["services", 23, 15]], [["systemd", 23, 7]], [["allowedTCPPorts", 42, 27]], [["firewall", 42, 18]], [["accept", 44, 9], ["connect", 45, 9], ["cert", 46, 9]], [["https", 43, 32]], [["servers", 43, 24]], [["stunnel", 43, 16]], [["wantedBy", 49, 9], ["script", 50, 9]], [["simple-webserver", 48, 24]], [["services", 48, 15]], [["networking", 42, 7], ["services", 43, 7], ["systemd", 48, 7]], [["text", 75, 46]], [["webroot/index.html", 75, 25]], [["etc", 75, 21]], [["imports", 70, 9], ["environment", 75, 9]], [["client", 68, 7], ["server", 69, 7]], [["name", 65, 5], ["nodes", 67, 5], ["testScript", 79, 5]], [["accept", 100, 13], ["connect", 101, 13], ["CAFile", 102, 13]], [["accept", 105, 13], ["connect", 106, 13], ["CAFile", 107, 13], ["verifyHostname", 108, 13]], [["accept", 111, 13], ["connect", 112, 13], ["CAFile", 113, 13], ["verifyHostname", 114, 13]], [["httpsClient", 99, 11], ["httpsClientWithHostVerify", 104, 11], ["httpsClientWithHostVerifyFail", 110, 11]], [["clients", 98, 26]], [["stunnel", 98, 18]], [["imports", 97, 9], ["services", 98, 9]], [["text", 124, 46]], [["webroot/index.html", 124, 25]], [["etc", 124, 21]], [["imports", 119, 9], ["environment", 124, 9]], [["client", 96, 7], ["server", 118, 7]], [["name", 93, 5], ["nodes", 95, 5], ["testScript", 128, 5]], [["accept", 160, 11], ["connect", 161, 11], ["verifyPeer", 162, 11], ["CAFile", 163, 11], ["cert", 164, 11], ["key", 165, 11]], [["authenticated-https", 159, 34]], [["clients", 159, 26]], [["stunnel", 159, 18]], [["imports", 155, 9], ["services", 159, 9]], [["CAFile", 176, 11], ["verifyPeer", 177, 11]], [["https", 175, 34]], [["servers", 175, 26]], [["stunnel", 175, 18]], [["text", 179, 46]], [["webroot/index.html", 179, 25]], [["etc", 179, 21]], [["imports", 170, 9], ["services", 175, 9], ["environment", 179, 9]], [["client", 154, 7], ["wrongclient", 168, 7], ["server", 169, 7]], [["name", 151, 5], ["nodes", 153, 5], ["testScript", 183, 5]], [["basicServer", 64, 3], ["serverAndClient", 92, 3], ["mutualAuth", 150, 3]]]);
 const formals$1 = { args: { runTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/stunnel.nix", [["enable", 6, 7], ["user", 7, 7]]);
-const pos$2 = nix.positions(here + "/stunnel.nix", [["stunnel", 5, 14]]);
-const pos$3 = nix.positions(here + "/stunnel.nix", [["stunnel", 9, 18]]);
-const pos$4 = nix.positions(here + "/stunnel.nix", [["isSystemUser", 11, 7], ["group", 12, 7]]);
-const pos$5 = nix.positions(here + "/stunnel.nix", [["stunnel", 10, 17]]);
-const pos$6 = nix.positions(here + "/stunnel.nix", [["groups", 9, 11], ["users", 10, 11]]);
-const pos$7 = nix.positions(here + "/stunnel.nix", [["services", 5, 5], ["users", 9, 5]]);
 const formals$2 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/stunnel.nix", [["DefaultDependencies", 30, 20]]);
-const pos$9 = nix.positions(here + "/stunnel.nix", [["Type", 31, 23]]);
-const pos$10 = nix.positions(here + "/stunnel.nix", [["wantedBy", 24, 9], ["before", 25, 9], ["conflicts", 29, 9], ["unitConfig", 30, 9], ["serviceConfig", 31, 9], ["script", 32, 9]]);
-const pos$11 = nix.positions(here + "/stunnel.nix", [["create-test-cert", 23, 24]]);
-const pos$12 = nix.positions(here + "/stunnel.nix", [["services", 23, 15]]);
-const pos$13 = nix.positions(here + "/stunnel.nix", [["systemd", 23, 7]]);
 const formals$3 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/stunnel.nix", [["allowedTCPPorts", 42, 27]]);
-const pos$15 = nix.positions(here + "/stunnel.nix", [["firewall", 42, 18]]);
-const pos$16 = nix.positions(here + "/stunnel.nix", [["accept", 44, 9], ["connect", 45, 9], ["cert", 46, 9]]);
-const pos$17 = nix.positions(here + "/stunnel.nix", [["https", 43, 32]]);
-const pos$18 = nix.positions(here + "/stunnel.nix", [["servers", 43, 24]]);
-const pos$19 = nix.positions(here + "/stunnel.nix", [["stunnel", 43, 16]]);
-const pos$20 = nix.positions(here + "/stunnel.nix", [["wantedBy", 49, 9], ["script", 50, 9]]);
-const pos$21 = nix.positions(here + "/stunnel.nix", [["simple-webserver", 48, 24]]);
-const pos$22 = nix.positions(here + "/stunnel.nix", [["services", 48, 15]]);
-const pos$23 = nix.positions(here + "/stunnel.nix", [["networking", 42, 7], ["services", 43, 7], ["systemd", 48, 7]]);
-const pos$24 = nix.positions(here + "/stunnel.nix", [["text", 75, 46]]);
-const pos$25 = nix.positions(here + "/stunnel.nix", [["webroot/index.html", 75, 25]]);
-const pos$26 = nix.positions(here + "/stunnel.nix", [["etc", 75, 21]]);
-const pos$27 = nix.positions(here + "/stunnel.nix", [["imports", 70, 9], ["environment", 75, 9]]);
-const pos$28 = nix.positions(here + "/stunnel.nix", [["client", 68, 7], ["server", 69, 7]]);
-const pos$29 = nix.positions(here + "/stunnel.nix", [["name", 65, 5], ["nodes", 67, 5], ["testScript", 79, 5]]);
-const pos$30 = nix.positions(here + "/stunnel.nix", [["accept", 100, 13], ["connect", 101, 13], ["CAFile", 102, 13]]);
-const pos$31 = nix.positions(here + "/stunnel.nix", [["accept", 105, 13], ["connect", 106, 13], ["CAFile", 107, 13], ["verifyHostname", 108, 13]]);
-const pos$32 = nix.positions(here + "/stunnel.nix", [["accept", 111, 13], ["connect", 112, 13], ["CAFile", 113, 13], ["verifyHostname", 114, 13]]);
-const pos$33 = nix.positions(here + "/stunnel.nix", [["httpsClient", 99, 11], ["httpsClientWithHostVerify", 104, 11], ["httpsClientWithHostVerifyFail", 110, 11]]);
-const pos$34 = nix.positions(here + "/stunnel.nix", [["clients", 98, 26]]);
-const pos$35 = nix.positions(here + "/stunnel.nix", [["stunnel", 98, 18]]);
-const pos$36 = nix.positions(here + "/stunnel.nix", [["imports", 97, 9], ["services", 98, 9]]);
-const pos$37 = nix.positions(here + "/stunnel.nix", [["text", 124, 46]]);
-const pos$38 = nix.positions(here + "/stunnel.nix", [["webroot/index.html", 124, 25]]);
-const pos$39 = nix.positions(here + "/stunnel.nix", [["etc", 124, 21]]);
-const pos$40 = nix.positions(here + "/stunnel.nix", [["imports", 119, 9], ["environment", 124, 9]]);
-const pos$41 = nix.positions(here + "/stunnel.nix", [["client", 96, 7], ["server", 118, 7]]);
-const pos$42 = nix.positions(here + "/stunnel.nix", [["name", 93, 5], ["nodes", 95, 5], ["testScript", 128, 5]]);
-const pos$43 = nix.positions(here + "/stunnel.nix", [["accept", 160, 11], ["connect", 161, 11], ["verifyPeer", 162, 11], ["CAFile", 163, 11], ["cert", 164, 11], ["key", 165, 11]]);
-const pos$44 = nix.positions(here + "/stunnel.nix", [["authenticated-https", 159, 34]]);
-const pos$45 = nix.positions(here + "/stunnel.nix", [["clients", 159, 26]]);
-const pos$46 = nix.positions(here + "/stunnel.nix", [["stunnel", 159, 18]]);
-const pos$47 = nix.positions(here + "/stunnel.nix", [["imports", 155, 9], ["services", 159, 9]]);
-const pos$48 = nix.positions(here + "/stunnel.nix", [["CAFile", 176, 11], ["verifyPeer", 177, 11]]);
-const pos$49 = nix.positions(here + "/stunnel.nix", [["https", 175, 34]]);
-const pos$50 = nix.positions(here + "/stunnel.nix", [["servers", 175, 26]]);
-const pos$51 = nix.positions(here + "/stunnel.nix", [["stunnel", 175, 18]]);
-const pos$52 = nix.positions(here + "/stunnel.nix", [["text", 179, 46]]);
-const pos$53 = nix.positions(here + "/stunnel.nix", [["webroot/index.html", 179, 25]]);
-const pos$54 = nix.positions(here + "/stunnel.nix", [["etc", 179, 21]]);
-const pos$55 = nix.positions(here + "/stunnel.nix", [["imports", 170, 9], ["services", 175, 9], ["environment", 179, 9]]);
-const pos$56 = nix.positions(here + "/stunnel.nix", [["client", 154, 7], ["wrongclient", 168, 7], ["server", 169, 7]]);
-const pos$57 = nix.positions(here + "/stunnel.nix", [["name", 151, 5], ["nodes", 153, 5], ["testScript", 183, 5]]);
-const pos$58 = nix.positions(here + "/stunnel.nix", [["basicServer", 64, 3], ["serverAndClient", 92, 3], ["mutualAuth", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTest = nix.arg($, "runTest");
   const stunnelCommon = nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      stunnel: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, user: "stunnel" })),
+      [nix.POS]: $pos[1],
+      stunnel: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true, user: "stunnel" })),
     })),
     users: nix.thunk(() => ({
-      [nix.POS]: pos$6,
-      groups: nix.thunk(() => ({ [nix.POS]: pos$3, stunnel: nix.thunk(() => ({})) })),
+      [nix.POS]: $pos[5],
+      groups: nix.thunk(() => ({ [nix.POS]: $pos[2], stunnel: nix.thunk(() => ({})) })),
       users: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        stunnel: nix.thunk(() => ({ [nix.POS]: pos$4, isSystemUser: true, group: "stunnel" })),
+        [nix.POS]: $pos[4],
+        stunnel: nix.thunk(() => ({ [nix.POS]: $pos[3], isSystemUser: true, group: "stunnel" })),
       })),
     })),
   }));
@@ -88,18 +31,18 @@ export default nix.lambda((args) => (() => {
     const lib = nix.arg($_1, "lib");
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           "create-test-cert": nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             wantedBy: nix.thunk(() => ["sysinit.target"]),
             before: nix.thunk(() => ["sysinit.target", "shutdown.target"]),
             conflicts: nix.thunk(() => ["shutdown.target"]),
-            unitConfig: nix.thunk(() => ({ [nix.POS]: pos$8, DefaultDependencies: false })),
-            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$9, Type: "oneshot" })),
+            unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[7], DefaultDependencies: false })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[8], Type: "oneshot" })),
             script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "openssl")))} req -batch -x509 -newkey rsa -nodes -out /test-cert.pem -keyout /test-key.pem -subj /CN=${nix.sel(config, "networking", "hostName")}
 ( umask 077; cat /test-key.pem /test-cert.pem > /test-key-and-cert.pem )
 chown stunnel /test-key.pem /test-key-and-cert.pem
@@ -114,19 +57,19 @@ chown stunnel /test-key.pem /test-key-and-cert.pem
     const lib = nix.arg($_1, "lib");
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$15,
-        firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [443n]) })),
+        [nix.POS]: $pos[14],
+        firewall: nix.thunk(() => ({ [nix.POS]: $pos[13], allowedTCPPorts: nix.thunk(() => [443n]) })),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         stunnel: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           servers: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             https: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               accept: "443",
               connect: 80n,
               cert: "/test-key-and-cert.pem",
@@ -135,11 +78,11 @@ chown stunnel /test-key.pem /test-key-and-cert.pem
         })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           "simple-webserver": nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             wantedBy: nix.thunk(() => ["multi-user.target"]),
             script: nix.thunk(() => nix.str`cd /etc/webroot
 ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "python3")), "python")} -m http.server 80
@@ -155,21 +98,21 @@ server_cert = ${src}.succeed("cat /test-cert.pem")
 ${dest}.succeed("echo %s > ${filename}" % quote(server_cert))
 `;
   return {
-    [nix.POS]: pos$58,
+    [nix.POS]: $pos[57],
     basicServer: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         name: "basicServer",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           client: nix.thunk(() => ({})),
           server: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             imports: nix.thunk(() => [makeCert, serverCommon, stunnelCommon]),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               etc: nix.thunk(() => ({
-                [nix.POS]: pos$25,
-                "webroot/index.html": nix.thunk(() => ({ [nix.POS]: pos$24, text: "well met" })),
+                [nix.POS]: $pos[24],
+                "webroot/index.html": nix.thunk(() => ({ [nix.POS]: $pos[23], text: "well met" })),
               })),
             })),
           })),
@@ -186,34 +129,34 @@ client.succeed('[[ "$(< out)" == "well met" ]]')
 `),
       })))),
     serverAndClient: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$42,
+        [nix.POS]: $pos[41],
         name: "serverAndClient",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           client: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             imports: nix.thunk(() => [stunnelCommon]),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               stunnel: nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 clients: nix.thunk(() => ({
-                  [nix.POS]: pos$33,
+                  [nix.POS]: $pos[32],
                   httpsClient: nix.thunk(() => ({
-                    [nix.POS]: pos$30,
+                    [nix.POS]: $pos[29],
                     accept: "80",
                     connect: "server:443",
                     CAFile: "/authorized-server-cert.crt",
                   })),
                   httpsClientWithHostVerify: nix.thunk(() => ({
-                    [nix.POS]: pos$31,
+                    [nix.POS]: $pos[30],
                     accept: "81",
                     connect: "server:443",
                     CAFile: "/authorized-server-cert.crt",
                     verifyHostname: "server",
                   })),
                   httpsClientWithHostVerifyFail: nix.thunk(() => ({
-                    [nix.POS]: pos$32,
+                    [nix.POS]: $pos[31],
                     accept: "82",
                     connect: "server:443",
                     CAFile: "/authorized-server-cert.crt",
@@ -224,13 +167,13 @@ client.succeed('[[ "$(< out)" == "well met" ]]')
             })),
           })),
           server: nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             imports: nix.thunk(() => [makeCert, serverCommon, stunnelCommon]),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$39,
+              [nix.POS]: $pos[38],
               etc: nix.thunk(() => ({
-                [nix.POS]: pos$38,
-                "webroot/index.html": nix.thunk(() => ({ [nix.POS]: pos$37, text: "hello there" })),
+                [nix.POS]: $pos[37],
+                "webroot/index.html": nix.thunk(() => ({ [nix.POS]: $pos[36], text: "hello there" })),
               })),
             })),
           })),
@@ -256,20 +199,20 @@ client.succeed('[[ "$(< out)" == "" ]]')
 `),
       })))),
     mutualAuth: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$57,
+        [nix.POS]: $pos[56],
         name: "mutualAuth",
         nodes: nix.thunk(() => (() => {
           const client = nix.thunk(() => ({
-            [nix.POS]: pos$47,
+            [nix.POS]: $pos[46],
             imports: nix.thunk(() => [makeCert, stunnelCommon]),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$46,
+              [nix.POS]: $pos[45],
               stunnel: nix.thunk(() => ({
-                [nix.POS]: pos$45,
+                [nix.POS]: $pos[44],
                 clients: nix.thunk(() => ({
-                  [nix.POS]: pos$44,
+                  [nix.POS]: $pos[43],
                   "authenticated-https": nix.thunk(() => ({
-                    [nix.POS]: pos$43,
+                    [nix.POS]: $pos[42],
                     accept: "80",
                     connect: "server:443",
                     verifyPeer: true,
@@ -283,27 +226,31 @@ client.succeed('[[ "$(< out)" == "" ]]')
           }));
           const wrongclient = client;
           const server = nix.thunk(() => ({
-            [nix.POS]: pos$55,
+            [nix.POS]: $pos[54],
             imports: nix.thunk(() => [makeCert, serverCommon, stunnelCommon]),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$51,
+              [nix.POS]: $pos[50],
               stunnel: nix.thunk(() => ({
-                [nix.POS]: pos$50,
+                [nix.POS]: $pos[49],
                 servers: nix.thunk(() => ({
-                  [nix.POS]: pos$49,
-                  https: nix.thunk(() => ({ [nix.POS]: pos$48, CAFile: "/authorized-client-certs.crt", verifyPeer: true })),
+                  [nix.POS]: $pos[48],
+                  https: nix.thunk(() => ({
+                    [nix.POS]: $pos[47],
+                    CAFile: "/authorized-client-certs.crt",
+                    verifyPeer: true,
+                  })),
                 })),
               })),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$54,
+              [nix.POS]: $pos[53],
               etc: nix.thunk(() => ({
-                [nix.POS]: pos$53,
-                "webroot/index.html": nix.thunk(() => ({ [nix.POS]: pos$52, text: "secret handshake" })),
+                [nix.POS]: $pos[52],
+                "webroot/index.html": nix.thunk(() => ({ [nix.POS]: $pos[51], text: "secret handshake" })),
               })),
             })),
           }));
-          return { [nix.POS]: pos$56, client, wrongclient, server };
+          return { [nix.POS]: $pos[55], client, wrongclient, server };
         })()),
         testScript: nix.thunk(() => nix.str`start_all()
 

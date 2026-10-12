@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["PYTHON_COMMAND", 29, 5]], [["NIX_CFLAGS_COMPILE", 32, 5]], [["efi", 49, 12]], [["license", 52, 25], ["platforms", 52, 33], ["description", 53, 5], ["homepage", 54, 5], ["maintainers", 55, 5], ["broken", 59, 5]], [["pname", 12, 3], ["version", 13, 18], ["nativeBuildInputs", 15, 3], ["strictDeps", 24, 3], ["env", 26, 3], ["dontPatchELF", 39, 3], ["dontStrip", 40, 3], ["installPhase", 43, 3], ["passthru", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, edk2: false, llvmPackages: false, "util-linux": false, nasm: false, python3: false, pkgsBuildHost: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["PYTHON_COMMAND", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["efi", 49, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["license", 52, 25], ["platforms", 52, 33], ["description", 53, 5], ["homepage", 54, 5], ["maintainers", 55, 5], ["broken", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 18], ["nativeBuildInputs", 15, 3], ["strictDeps", 24, 3], ["env", 26, 3], ["dontPatchELF", 39, 3], ["dontStrip", 40, 3], ["installPhase", 43, 3], ["passthru", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const pkgsBuildHost = nix.arg($, "pkgsBuildHost");
   return nix.app(nix.sel(edk2, "mkDerivation"), "ShellPkg/ShellPkg.dsc", (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "edk2-uefi-shell",
       version: nix.thunk(() => nix.attr(edk2, "version")),
       nativeBuildInputs: nix.thunk(() => nix.concat([util_linux, nasm, python3], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
@@ -29,23 +25,23 @@ export default nix.lambda((args) => (() => {
         ])))),
       strictDeps: true,
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         PYTHON_COMMAND: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgsBuildHost, "python3")))}/bin/python3`),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fno-pic", "-Qunused-arguments"]))),
         }))))),
       dontPatchELF: true,
       dontStrip: true,
       installPhase: "runHook preInstall\ninstall -D -m0644 Build/Shell/RELEASE*/*/Shell_EA4BB293-2D7F-4456-A681-1F22F42CD0BC.efi $out/shell.efi\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         efi: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/shell.efi`),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(edk2, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         license: nix.thunk(() => nix.attr(from, "license")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "UEFI Shell from Tianocore EFI development kit",

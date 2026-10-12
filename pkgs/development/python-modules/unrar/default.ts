@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]], [["unrar_lib_path", 27, 7]], [["homepage", 38, 5], ["changelog", 39, 5], ["description", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 21, 3], ["patches", 25, 3], ["nativeCheckInputs", 31, 3], ["doCheck", 33, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, replaceVars: false, buildPythonPackage: false, fetchPypi: false, unrar: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["unrar_lib_path", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 38, 5], ["changelog", 39, 5], ["description", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 21, 3], ["patches", 25, 3], ["nativeCheckInputs", 31, 3], ["doCheck", 33, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-skRHpbkwJL5gDvglVmi6I6MPRRF2V3tpFVnqE1n30WQ=",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use_nix_unrar_path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             unrar_lib_path: nix.thunk(() => nix.str`${unrar}/lib/libunrar${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
       ]);
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const pythonImportsCheck = nix.thunk(() => ["unrar"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://github.com/matiasb/python-unrar",
         changelog: nix.thunk(() => nix.str`https://github.com/matiasb/python-unrar/releases/tag/v${version}`),
         description: "Wrapper for UnRAR library, plus a rarfile module on top of it",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

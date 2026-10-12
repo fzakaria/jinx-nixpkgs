@@ -2,15 +2,15 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/import-custom-arg.nix", [[["imports", 4, 3]]]);
 const formals$1 = { args: { lib: false, custom: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/import-custom-arg.nix", [["imports", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const custom = nix.arg($, "custom");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     imports: nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optional"), custom, nix.path(here, "./define-enable-force.nix")))),
   };
 })(), formals$1);

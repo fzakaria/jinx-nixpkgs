@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["broken", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 28, 3], ["strictDeps", 34, 3], ["buildPhase", 36, 3], ["createFindlibDestdir", 38, 3], ["doCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, findlib: false, ocaml: false, ocamlbuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["broken", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 28, 3], ["strictDeps", 34, 3], ["buildPhase", 36, 3], ["createFindlibDestdir", 38, 3], ["doCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-sosa`);
       const version = "0.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hammerlab",
           repo: "sosa",
           rev: nix.thunk(() => nix.str`sosa.${version}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const createFindlibDestdir = true;
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/hammerlab/sosa",
         description: "Sane OCaml String API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.02"))),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

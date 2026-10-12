@@ -2,22 +2,19 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["openRaUpdater", 6, 65]], [["buildOpenRAEngine", 7, 51]], [["release", 11, 5], ["bleed", 12, 5]], [["engines", 10, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["openRaUpdater", 6, 65]]);
-const pos$2 = nix.positions(here + "/default.nix", [["buildOpenRAEngine", 7, 51]]);
-const pos$3 = nix.positions(here + "/default.nix", [["release", 11, 5], ["bleed", 12, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["engines", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   const openRaUpdater = nix.thunk(() => nix.app(callPackage, nix.path(here, "../updater.nix"), nix.thunk(() => ({}))));
-  const buildOpenRAEngine = nix.thunk(() => nix.app(callPackage, nix.path(here, "../build-engine.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, openRaUpdater: openRaUpdater }))));
-  const callPackage$ = (path) => nix.app(callPackage, path, nix.thunk(() => ({ [nix.POS]: pos$2, buildOpenRAEngine: buildOpenRAEngine })));
+  const buildOpenRAEngine = nix.thunk(() => nix.app(callPackage, nix.path(here, "../build-engine.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], openRaUpdater: openRaUpdater }))));
+  const callPackage$ = (path) => nix.app(callPackage, path, nix.thunk(() => ({ [nix.POS]: $pos[1], buildOpenRAEngine: buildOpenRAEngine })));
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     engines: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       release: nix.thunk(() => nix.app(callPackage$, nix.path(here, "./release"))),
       bleed: nix.thunk(() => nix.app(callPackage$, nix.path(here, "./bleed"))),
     })),

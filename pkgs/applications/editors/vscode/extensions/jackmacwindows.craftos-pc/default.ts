@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 11, 5], ["publisher", 12, 5], ["version", 13, 5], ["hash", 14, 5]], [["changelog", 35, 5], ["description", 36, 5], ["downloadPage", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["mktplcRef", 10, 3], ["nativeBuildInputs", 16, 3], ["postInstall", 20, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { "vscode-utils": false, "craftos-pc": false, jq: false, lib: false, moreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 11, 5], ["publisher", 12, 5], ["version", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 35, 5], ["description", 36, 5], ["downloadPage", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 10, 3], ["nativeBuildInputs", 16, 3], ["postInstall", 20, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "craftos-pc",
         publisher: "jackmacwindows",
         version: "1.2.3",
@@ -38,7 +36,7 @@ jq -e '
 | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://marketplace.visualstudio.com/items/jackmacwindows.craftos-pc/changelog",
         description: "Visual Studio Code extension for opening a CraftOS-PC window",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=jackmacwindows.craftos-pc",

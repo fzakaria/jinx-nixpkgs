@@ -2,43 +2,26 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/fonts.nix", [["hash", 3, 5], ["name", 4, 5], ["url", 5, 5], ["version", 6, 5]]);
-const pos$2 = nix.positions(here + "/fonts.nix", [["hash", 9, 5], ["name", 10, 5], ["url", 11, 5], ["version", 12, 5]]);
-const pos$3 = nix.positions(here + "/fonts.nix", [["hash", 15, 5], ["name", 16, 5], ["stripRoot", 17, 5], ["url", 18, 5], ["version", 19, 5]]);
-const pos$4 = nix.positions(here + "/fonts.nix", [["hash", 22, 5], ["name", 23, 5], ["url", 24, 5], ["version", 25, 5]]);
-const pos$5 = nix.positions(here + "/fonts.nix", [["hash", 28, 5], ["name", 29, 5], ["url", 30, 5], ["version", 31, 5]]);
-const pos$6 = nix.positions(here + "/fonts.nix", [["hash", 34, 5], ["name", 35, 5], ["url", 36, 5], ["version", 37, 5]]);
-const pos$7 = nix.positions(here + "/fonts.nix", [["hash", 40, 5], ["name", 41, 5], ["url", 42, 5], ["version", 43, 5]]);
-const pos$8 = nix.positions(here + "/fonts.nix", [["hash", 46, 5], ["name", 47, 5], ["url", 48, 5], ["version", 49, 5]]);
-const pos$9 = nix.positions(here + "/fonts.nix", [["hash", 52, 5], ["name", 53, 5], ["url", 54, 5], ["version", 55, 5]]);
-const pos$10 = nix.positions(here + "/fonts.nix", [["hash", 58, 5], ["name", 59, 5], ["url", 60, 5], ["version", 61, 5]]);
-const pos$11 = nix.positions(here + "/fonts.nix", [["hash", 64, 5], ["name", 65, 5], ["url", 66, 5], ["version", 67, 5]]);
-const pos$12 = nix.positions(here + "/fonts.nix", [["hash", 70, 5], ["name", 71, 5], ["url", 72, 5], ["version", 73, 5]]);
-const pos$13 = nix.positions(here + "/fonts.nix", [["hash", 76, 5], ["name", 77, 5], ["url", 78, 5], ["version", 79, 5]]);
-const pos$14 = nix.positions(here + "/fonts.nix", [["hash", 82, 5], ["name", 83, 5], ["url", 84, 5], ["version", 85, 5]]);
-const pos$15 = nix.positions(here + "/fonts.nix", [["hash", 88, 5], ["name", 89, 5], ["url", 90, 5], ["version", 91, 5]]);
-const pos$16 = nix.positions(here + "/fonts.nix", [["hash", 94, 5], ["name", 95, 5], ["url", 96, 5], ["version", 97, 5]]);
-const pos$17 = nix.positions(here + "/fonts.nix", [["hash", 100, 5], ["name", 101, 5], ["stripRoot", 102, 5], ["url", 103, 5], ["version", 104, 5]]);
-const pos$18 = nix.positions(here + "/fonts.nix", [["math", 2, 3], ["mono", 8, 3], ["mono-variable", 14, 3], ["sans", 21, 3], ["sans-arabic", 27, 3], ["sans-condensed", 33, 3], ["sans-devanagari", 39, 3], ["sans-hebrew", 45, 3], ["sans-jp", 51, 3], ["sans-kr", 57, 3], ["sans-sc", 63, 3], ["sans-tc", 69, 3], ["sans-thai", 75, 3], ["sans-thai-looped", 81, 3], ["sans-variable", 87, 3], ["serif", 93, 3], ["serif-variable", 99, 3]]);
+const $pos = nix.positions(here + "/fonts.nix", [[["hash", 3, 5], ["name", 4, 5], ["url", 5, 5], ["version", 6, 5]], [["hash", 9, 5], ["name", 10, 5], ["url", 11, 5], ["version", 12, 5]], [["hash", 15, 5], ["name", 16, 5], ["stripRoot", 17, 5], ["url", 18, 5], ["version", 19, 5]], [["hash", 22, 5], ["name", 23, 5], ["url", 24, 5], ["version", 25, 5]], [["hash", 28, 5], ["name", 29, 5], ["url", 30, 5], ["version", 31, 5]], [["hash", 34, 5], ["name", 35, 5], ["url", 36, 5], ["version", 37, 5]], [["hash", 40, 5], ["name", 41, 5], ["url", 42, 5], ["version", 43, 5]], [["hash", 46, 5], ["name", 47, 5], ["url", 48, 5], ["version", 49, 5]], [["hash", 52, 5], ["name", 53, 5], ["url", 54, 5], ["version", 55, 5]], [["hash", 58, 5], ["name", 59, 5], ["url", 60, 5], ["version", 61, 5]], [["hash", 64, 5], ["name", 65, 5], ["url", 66, 5], ["version", 67, 5]], [["hash", 70, 5], ["name", 71, 5], ["url", 72, 5], ["version", 73, 5]], [["hash", 76, 5], ["name", 77, 5], ["url", 78, 5], ["version", 79, 5]], [["hash", 82, 5], ["name", 83, 5], ["url", 84, 5], ["version", 85, 5]], [["hash", 88, 5], ["name", 89, 5], ["url", 90, 5], ["version", 91, 5]], [["hash", 94, 5], ["name", 95, 5], ["url", 96, 5], ["version", 97, 5]], [["hash", 100, 5], ["name", 101, 5], ["stripRoot", 102, 5], ["url", 103, 5], ["version", 104, 5]], [["math", 2, 3], ["mono", 8, 3], ["mono-variable", 14, 3], ["sans", 21, 3], ["sans-arabic", 27, 3], ["sans-condensed", 33, 3], ["sans-devanagari", 39, 3], ["sans-hebrew", 45, 3], ["sans-jp", 51, 3], ["sans-kr", 57, 3], ["sans-sc", 63, 3], ["sans-tc", 69, 3], ["sans-thai", 75, 3], ["sans-thai-looped", 81, 3], ["sans-variable", 87, 3], ["serif", 93, 3], ["serif-variable", 99, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$18,
+  [nix.POS]: $pos[17],
   math: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     hash: "sha256-dJA6uqxa/yb3eLY4l39NeP0yIl2NfrbaRpf6h0/F7Xc=",
     name: "IBM Plex Math",
     url: "https://github.com/IBM/plex/releases/download/@ibm/plex-math@1.1.0/ibm-plex-math.zip",
     version: "1.1.0",
   })),
   mono: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     hash: "sha256-GK9KStu5KQ5g5+IUwJq4L+a5gOwzsNXH80OOIbyvOnM=",
     name: "IBM Plex Mono",
     url: "https://github.com/IBM/plex/releases/download/%40ibm/plex-mono%402.5.0/ibm-plex-mono.zip",
     version: "2.5.0",
   })),
   "mono-variable": nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     hash: "sha256-lvgkqijKYDpUUJF/YsFHesy8I4w+qhduObzM7m3xZas=",
     name: "IBM Plex Mono (Variable)",
     stripRoot: false,
@@ -46,98 +29,98 @@ export default nix.thunk(() => ({
     version: "1.0.0",
   })),
   sans: nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     hash: "sha256-mK+8GGl2ugF2+fS6yd3p5NWPHHcKEJWiShDS3lihOlI=",
     name: "IBM Plex Sans",
     url: "https://github.com/IBM/plex/releases/download/@ibm/plex-sans@1.1.0/ibm-plex-sans.zip",
     version: "1.1.0",
   })),
   "sans-arabic": nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     hash: "sha256-qi4k7kMLftIuq87idyxq46FOD6QYycdG6j3zJmu8mhI=",
     name: "IBM Plex Sans Arabic",
     url: "https://github.com/IBM/plex/releases/download/@ibm/plex-sans-arabic@1.1.0/ibm-plex-sans-arabic.zip",
     version: "1.1.0",
   })),
   "sans-condensed": nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     hash: "sha256-prqyJIPs+UpQxFTbn/eAfsG/jKwQTOO72fZNzAtXUWg=",
     name: "IBM Plex Sans Condensed",
     url: "https://github.com/IBM/plex/releases/download/@ibm/plex-sans-condensed@2.0.0/ibm-plex-sans-condensed.zip",
     version: "2.0.0",
   })),
   "sans-devanagari": nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     hash: "sha256-K57OVqcH5r9tZx8NFEoz1P3xpUooqpF7xxJzNmnObwE=",
     name: "IBM Plex Sans Devanagari",
     url: "https://github.com/IBM/plex/releases/download/@ibm/plex-sans-devanagari@1.1.0/ibm-plex-sans-devanagari.zip",
     version: "1.1.0",
   })),
   "sans-hebrew": nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     hash: "sha256-rTuBQYLI+6gEFTumCdaWpeoLzRoyFSmqWbXziq+UG6I=",
     name: "IBM Plex Sans Hebrew",
     url: "https://github.com/IBM/plex/releases/download/@ibm/plex-sans-hebrew@1.1.0/ibm-plex-sans-hebrew.zip",
     version: "1.1.0",
   })),
   "sans-jp": nix.thunk(() => ({
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     hash: "sha256-2BbhqsutMXEoS2JoZjJprrElIpFa9lgvPaM65pnYdfs=",
     name: "IBM Plex Sans Japanese",
     url: "https://github.com/IBM/plex/releases/download/@ibm/plex-sans-jp@3.0.0/ibm-plex-sans-jp.zip",
     version: "3.0.0",
   })),
   "sans-kr": nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     hash: "sha256-FsHxMvLlI4yylgG96DOZIdW2DYpk7I+c5QgkVIkNZIE=",
     name: "IBM Plex Sans Korean",
     url: "https://github.com/IBM/plex/releases/download/@ibm/plex-sans-kr@1.1.0/ibm-plex-sans-kr.zip",
     version: "1.1.0",
   })),
   "sans-sc": nix.thunk(() => ({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     hash: "sha256-Q3cEVlR/UkNZaGIhNMIdojId6fHmAsZdLwMsKq1zLRY=",
     name: "IBM Plex Sans Chinese SC",
     url: "https://github.com/IBM/plex/releases/download/@ibm/plex-sans-sc@1.1.0/ibm-plex-sans-sc.zip",
     version: "1.1.0",
   })),
   "sans-tc": nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     hash: "sha256-kZvzSK6fEjfVMR4kxC4lxtD7GskqvJZx8BBJVT4T9MU=",
     name: "IBM Plex Sans Chinese TC",
     url: "https://github.com/IBM/plex/releases/download/@ibm/plex-sans-tc@1.1.1/ibm-plex-sans-tc.zip",
     version: "1.1.1",
   })),
   "sans-thai": nix.thunk(() => ({
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     hash: "sha256-JZVbvZdj+IfBthiqivOXHrvAUe392M9ECGsiJkm0saE=",
     name: "IBM Plex Sans Thai",
     url: "https://github.com/IBM/plex/releases/download/@ibm/plex-sans-thai@1.1.0/ibm-plex-sans-thai.zip",
     version: "1.1.0",
   })),
   "sans-thai-looped": nix.thunk(() => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     hash: "sha256-cry/Ctwt1bsrdbvWkJIYWLjsvV6a1lLFsT85znqERnw=",
     name: "IBM Plex Sans Thai Looped",
     url: "https://github.com/IBM/plex/releases/download/@ibm/plex-sans-thai-looped@1.1.0/ibm-plex-sans-thai-looped.zip",
     version: "1.1.0",
   })),
   "sans-variable": nix.thunk(() => ({
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     hash: "sha256-W45wPOmmP4KuJ3TVes2x0n25KgyDzX48ce1lQrjAXpw=",
     name: "IBM Plex Sans (Variable)",
     url: "https://github.com/IBM/plex/releases/download/@ibm/plex-sans-variable@0.2.0/plex-sans-variable.zip",
     version: "0.2.0",
   })),
   serif: nix.thunk(() => ({
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     hash: "sha256-PO9KxV4K3a7fB4fR/i7LSf0mhK4I2eUDMsbSYWDQcb4=",
     name: "IBM Plex Serif",
     url: "https://github.com/IBM/plex/releases/download/@ibm/plex-serif@2.0.0/ibm-plex-serif.zip",
     version: "2.0.0",
   })),
   "serif-variable": nix.thunk(() => ({
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     hash: "sha256-xhjmeIMT7FAFhfR8fekAxzQEl1hOtPdQ6qsVpnZN6Xg=",
     name: "IBM Plex Serif (Variable)",
     stripRoot: false,

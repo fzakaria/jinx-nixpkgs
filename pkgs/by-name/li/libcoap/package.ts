@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 20, 5], ["owner", 21, 5], ["rev", 22, 5], ["fetchSubmodules", 23, 5], ["hash", 24, 5]], [["homepage", 45, 5], ["description", 46, 5], ["platforms", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["preConfigure", 38, 3], ["configureFlags", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, automake: false, autoconf: false, which: false, "pkg-config": false, libtool: false, lib: false, stdenv: false, gnutls: false, asciidoc: false, doxygen: false, withTLS: true, withDocs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 20, 5], ["owner", 21, 5], ["rev", 22, 5], ["fetchSubmodules", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["platforms", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["preConfigure", 38, 3], ["configureFlags", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const withTLS = nix.argOr($, "withTLS", () => true);
   const withDocs = nix.argOr($, "withDocs", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libcoap",
       version: "4.3.5b",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "libcoap",
           owner: "obgm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "./autogen.sh",
       configureFlags: nix.thunk(() => nix.concat(["--disable-shared"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withDocs)), "--disable-documentation"), nix.app(nix.sel(lib, "optional"), withTLS, "--enable-dtls")))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/obgm/libcoap",
         description: "CoAP (RFC 7252) implementation in C",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

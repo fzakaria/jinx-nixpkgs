@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtwayland.nix", [[["badPlatforms", 33, 8]], [["pname", 12, 3], ["propagatedBuildInputs", 13, 3], ["buildInputs", 17, 3], ["nativeBuildInputs", 18, 3], ["outputs", 22, 3], ["patches", 27, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { qtModule: false, qtbase: false, qtquickcontrols: false, wayland: false, "wayland-scanner": false, "pkg-config": false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtwayland.nix", [["badPlatforms", 33, 8]]);
-const pos$2 = nix.positions(here + "/qtwayland.nix", [["pname", 12, 3], ["propagatedBuildInputs", 13, 3], ["buildInputs", 17, 3], ["nativeBuildInputs", 18, 3], ["outputs", 22, 3], ["patches", 27, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const lib = nix.arg($, "lib");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qtwayland",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtquickcontrols]),
       buildInputs: nix.thunk(() => [wayland]),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "bin"]),
       patches: nix.thunk(() => [nix.path(here, "./qtwayland-app_id.patch")]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         badPlatforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       })),
     })));

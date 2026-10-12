@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build.nix", [[["src", 45, 7], ["version", 46, 7], ["git-version", 47, 7], ["rev", 48, 7], ["stampYmd", 49, 7], ["stampHms", 50, 7], ["optimizationSetting", 51, 7], ["openssl", 52, 7]], [["pname", 39, 3], ["src", 40, 11], ["version", 40, 15], ["git-version", 40, 23], ["bootstrap", 41, 3], ["passthru", 43, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 64, 3], ["configureFlags", 70, 3], ["configurePhase", 107, 3], ["buildPhase", 132, 3], ["postInstall", 152, 3], ["doCheck", 158, 3], ["dontStrip", 159, 3], ["meta", 161, 3]]]);
 const formals$1 = { args: { gccStdenv: false, lib: false, pkgs: false, git: false, openssl: false, autoconf: false, coreutils: false, src: false, version: false, "git-version": false, stampYmd: true, stampHms: true, "gambit-support": false, optimizationSetting: true, "gambit-params": true, rev: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build.nix", [["src", 45, 7], ["version", 46, 7], ["git-version", 47, 7], ["rev", 48, 7], ["stampYmd", 49, 7], ["stampHms", 50, 7], ["optimizationSetting", 51, 7], ["openssl", 52, 7]]);
-const pos$2 = nix.positions(here + "/build.nix", [["pname", 39, 3], ["src", 40, 11], ["version", 40, 15], ["git-version", 40, 23], ["bootstrap", 41, 3], ["passthru", 43, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 64, 3], ["configureFlags", 70, 3], ["configurePhase", 107, 3], ["buildPhase", 132, 3], ["postInstall", 152, 3], ["doCheck", 158, 3], ["dontStrip", 159, 3], ["meta", 161, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const git_version_1 = git_version;
       const bootstrap = nix.thunk(() => nix.sel(gambit_support, "gambit-bootstrap"));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         src: src_1,
         version: version_1,
         "git-version": git_version_1,
@@ -98,7 +97,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(gambit_params,
       const dontStrip = true;
       const meta = nix.thunk(() => nix.sel(gambit_support, "meta"));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         src: src_1,
         version: version_1,

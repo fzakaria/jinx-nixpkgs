@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["src", 39, 26], ["pname", 39, 30], ["version", 39, 36], ["fetchAll", 40, 5], ["hash", 41, 5]], [["ly", 59, 36]], [["tests", 59, 5], ["updateScript", 60, 5]], [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5], ["platforms", 76, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["zigDeps", 38, 3], ["postConfigure", 44, 3], ["zigBuildFlags", 48, 3], ["postInstall", 50, 3], ["doInstallCheck", 55, 3], ["nativeInstallCheckInputs", 56, 3], ["passthru", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { fetchFromCodeberg: false, lib: false, libxcb: false, "linux-pam": false, makeBinaryWrapper: false, nixosTests: false, stdenv: false, versionCheckHook: false, x11Support: true, zig_0_17: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 39, 26], ["pname", 39, 30], ["version", 39, 36], ["fetchAll", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ly", 59, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 59, 5], ["updateScript", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5], ["platforms", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["zigDeps", 38, 3], ["postConfigure", 44, 3], ["zigBuildFlags", 48, 3], ["postInstall", 50, 3], ["doInstallCheck", 55, 3], ["nativeInstallCheckInputs", 56, 3], ["passthru", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const zig = zig_0_17;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ly",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fairyglade",
           repo: "ly",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, zig]),
       buildInputs: nix.thunk(() => nix.concat([linux_pam], nix.app(nix.sel(lib, "optionals"), x11Support, nix.thunk(() => [libxcb])))),
       zigDeps: nix.thunk(() => nix.app(nix.sel(zig, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -54,12 +49,12 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, ly: nix.thunk(() => nix.attr(nixosTests, "ly")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], ly: nix.thunk(() => nix.attr(nixosTests, "ly")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "TUI display manager",
         longDescription: "Ly is a lightweight TUI (ncurses-like) display manager for Linux\nand BSD, designed with portability in mind (e.g. it does not\nrequire systemd to run).\n",
         homepage: "https://codeberg.org/fairyglade/ly",

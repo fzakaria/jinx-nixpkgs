@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["updateScript", 62, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 31, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["postPatch", 53, 3], ["passthru", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "budgie-desktop": false, fetchFromGitHub: false, glib: false, gtk3: false, "gtk-layer-shell": false, libgee: false, libgtop: false, libpeas2: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, vala: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 31, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["postPatch", 53, 3], ["passthru", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const vala = nix.arg($, "vala");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "budgie-systemmonitor-applet",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "prateekmedia",
           repo: "budgie-systemmonitor-applet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [budgie_desktop, glib, gtk3, gtk_layer_shell, libgee, libgtop, libpeas2]),
       postPatch: "# https://github.com/BuddiesOfBudgie/budgie-desktop/issues/749\n# https://github.com/prateekmedia/budgie-systemmonitor-applet/issues/4\nsubstituteInPlace meson.build \\\n  --replace-fail \"dependency('libpeas-1.0', version: '>= 1.8.0')\" \"dependency('libpeas-2')\" \\\n  --replace-fail \"dependency('budgie-1.0', version: '>= 2')\" \"dependency('budgie-3.0')\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Budgie applet to show cpu frequency, ram, swap, network and uptime",
         homepage: "https://github.com/prateekmedia/budgie-systemmonitor-applet",
         changelog: nix.thunk(() => nix.str`https://github.com/prateekmedia/budgie-systemmonitor-applet/releases/tag/v${nix.sel(finalAttrs, "version")}`),

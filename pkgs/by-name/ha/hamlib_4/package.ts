@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["description", 71, 5], ["longDescription", 72, 5], ["license", 80, 5], ["homepage", 84, 5], ["maintainers", 85, 5], ["platforms", 89, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["strictDeps", 36, 3], ["depsBuildBuild", 37, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 48, 3], ["configureFlags", 60, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, perl: false, swig: false, autoreconfHook: false, gd: false, ncurses: false, python311: false, libxml2: false, tcl: false, "libusb-compat-0_1": false, "pkg-config": false, boost: false, libtool: false, pythonBindings: true, tclBindings: true, perlBindings: true, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 71, 5], ["longDescription", 72, 5], ["license", 80, 5], ["homepage", 84, 5], ["maintainers", 85, 5], ["platforms", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["strictDeps", 36, 3], ["depsBuildBuild", 37, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 48, 3], ["configureFlags", 60, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const python3 = python311;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hamlib",
       version: "4.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Hamlib",
           repo: "Hamlib",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`CC_FOR_BUILD=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), perlBindings, nix.thunk(() => ["--with-perl-binding"])), nix.concat(nix.app(nix.sel(lib, "optionals"), tclBindings, nix.thunk(() => ["--with-tcl-binding", nix.thunk(() => nix.str`--with-tcl=${tcl}/lib/`)])), nix.app(nix.sel(lib, "optionals"), pythonBindings, nix.thunk(() => ["--with-python-binding"])))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Runtime library to control radio transceivers and receivers",
         longDescription: "Hamlib provides a standardized programming interface that applications\ncan use to send the appropriate commands to a radio.\n\nAlso included in the package is a simple radio control program 'rigctl',\nwhich lets one control a radio transceiver or receiver, either from\ncommand line interface or in a text-oriented interactive interface.\n",
         license: nix.thunk(() => (() => {

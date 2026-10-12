@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 9], ["sha256", 25, 9]], [["url", 29, 9], ["sha256", 30, 9]], [["description", 69, 5], ["mainProgram", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 17, 3], ["version", 19, 3], ["src", 21, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 37, 3], ["libPath", 39, 3], ["dontStrip", 41, 3], ["installPhase", 43, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, gmp: false, zlib: false, libiconv: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 9], ["sha256", 25, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 9], ["sha256", 30, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["mainProgram", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 19, 3], ["src", 21, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 37, 3], ["libPath", 39, 3], ["dontStrip", 41, 3], ["installPhase", 43, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,15 +16,15 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const dynamic_linker = nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "dynamicLinker"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "psc-package-simple",
       version: "0.6.2",
       src: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/purescript/psc-package/releases/download/v0.6.2/macos.tar.gz",
           sha256: "17dh3bc5b6ahfyx0pi6n9qnrhsyi83qdynnca6k1kamxwjimpcq1",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://github.com/purescript/psc-package/releases/download/v0.6.2/linux64.tar.gz",
           sha256: "1zvay9q3xj6yd76w6qyb9la4jaj9zvpf4dp78xcznfqbnbhm1a54",
         }))))),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.str`patchelf --interpreter ${dynamic_linker} --set-rpath ${nix.sel(finalAttrs, "libPath")} $PSC_PACKAGE
 `))), "chmod u-w $PSC_PACKAGE\n\ninstallShellCompletion --cmd psc-package \\\n  --bash <($PSC_PACKAGE --bash-completion-script $PSC_PACKAGE) \\\n  --fish <($PSC_PACKAGE --fish-completion-script $PSC_PACKAGE) \\\n  --zsh <($PSC_PACKAGE --zsh-completion-script $PSC_PACKAGE)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Package manager for PureScript based on package sets",
         mainProgram: "psc-package",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

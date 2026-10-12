@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["NIX_LDFLAGS", 45, 7]], [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 67, 5], ["downloadPage", 68, 5], ["mainProgram", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["broken", 75, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["preBuild", 36, 3], ["makeFlags", 40, 3], ["env", 45, 3], ["installPhase", 47, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, SDL2: false, python3: false, jack2: false, "alsa-lib": false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 67, 5], ["downloadPage", 68, 5], ["mainProgram", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["broken", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["preBuild", 36, 3], ["makeFlags", 40, 3], ["env", 45, 3], ["installPhase", 47, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
     })()));
   const platform = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "OSX" : "X64"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "littlegptracker",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "djdiskmachine",
           repo: "littlegptracker",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`PLATFORM=${platform}`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-framework Foundation")),
       })),
       installPhase: nix.thunk(() => (() => {
@@ -56,7 +53,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Music tracker optimised to run on portable game consoles",
         longDescription: "Little Piggy Tracker (f.k.a 'LittleGPTracker') is a music tracker optimised to run on portable game consoles.\nIt is currently running on Windows, MacOS (intel/arm) & Linux, PSP, Miyoo Mini, and a collection of other retro gaming handhelds.\nIt implements the user interface of littlesounddj and precedes M8 tracker, two popular trackers greatly loved in the tracker community.\n",
         homepage: "https://github.com/djdiskmachine/LittleGPTracker",

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/python.nix", [[["pname", 8, 3], ["pyproject", 9, 3], ["version", 10, 22], ["src", 10, 30], ["build-system", 12, 3], ["preConfigure", 14, 3], ["buildInputs", 18, 3], ["pythonImportsCheck", 20, 3], ["meta", 22, 22]]]);
 const formals$1 = { args: { buildPythonPackage: false, setuptools: false, usbrelay: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/python.nix", [["pname", 8, 3], ["pyproject", 9, 3], ["version", 10, 22], ["src", 10, 30], ["build-system", 12, 3], ["preConfigure", 14, 3], ["buildInputs", 18, 3], ["pythonImportsCheck", 20, 3], ["meta", 22, 22]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const usbrelay = nix.arg($, "usbrelay");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "usbrelay_py",
       pyproject: true,
       version: nix.thunk(() => nix.attr(usbrelay, "version")),

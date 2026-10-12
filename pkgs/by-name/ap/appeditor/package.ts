@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["sha256", 27, 5]], [["updateScript", 53, 5]], [["description", 57, 5], ["homepage", 58, 5], ["maintainers", 59, 5], ["teams", 60, 5], ["platforms", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 40, 3], ["postPatch", 47, 3], ["passthru", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, vala: false, meson: false, ninja: false, "pkg-config": false, pantheon: false, python3: false, gettext: false, glib: false, gtk3: false, libgee: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["maintainers", 59, 5], ["teams", 60, 5], ["platforms", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 40, 3], ["postPatch", 47, 3], ["passthru", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libgee = nix.arg($, "libgee");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "appeditor",
       version: "1.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "donadigo",
           repo: "appeditor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,11 +37,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gtk3, nix.thunk(() => nix.sel(pantheon, "granite")), libgee]),
       postPatch: "chmod +x meson/post_install.py\npatchShebangs meson/post_install.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Edit the Pantheon desktop application menu",
         homepage: "https://github.com/donadigo/appeditor",
         maintainers: nix.thunk(() => (() => {

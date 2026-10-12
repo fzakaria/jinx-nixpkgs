@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["homepage", 154, 5], ["changelog", 155, 5], ["description", 156, 5], ["license", 157, 5], ["platforms", 159, 5]], [["version", 31, 3], ["pname", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["postPatch", 46, 3], ["build-system", 128, 3], ["dependencies", 130, 3], ["doCheck", 134, 3], ["nativeCheckInputs", 136, 3], ["preCheck", 138, 3], ["disabledTestPaths", 144, 3], ["pythonImportsCheck", 151, 3], ["meta", 153, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, libGL: false, libGLU: false, libxxf86vm: false, libxrender: false, libxrandr: false, libxi: false, libxinerama: false, libxext: false, libx11: false, pillow: false, "gdk-pixbuf": false, "gtk3-x11": false, pytestCheckHook: false, glibc: false, fontconfig: false, freetype: false, "ffmpeg-full": false, openal: false, libpulseaudio: false, harfbuzz: false, "apple-sdk": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 154, 5], ["changelog", 155, 5], ["description", 156, 5], ["license", 157, 5], ["platforms", 159, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 31, 3], ["pname", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["postPatch", 46, 3], ["build-system", 128, 3], ["dependencies", 130, 3], ["doCheck", 134, 3], ["nativeCheckInputs", 136, 3], ["preCheck", 138, 3], ["disabledTestPaths", 144, 3], ["pythonImportsCheck", 151, 3], ["meta", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pyglet";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyglet",
           repo: "pyglet",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -136,7 +134,7 @@ EOF
       ]);
       const pythonImportsCheck = nix.thunk(() => ["pyglet"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.pyglet.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/pyglet/pyglet/blob/${nix.sel(src, "tag")}/RELEASE_NOTES`),
         description: "Cross-platform windowing and multimedia library",
@@ -147,7 +145,7 @@ EOF
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         pyproject,

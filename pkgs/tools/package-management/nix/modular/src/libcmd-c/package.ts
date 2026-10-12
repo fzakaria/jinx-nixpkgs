@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["platforms", 31, 5]], [["pname", 16, 3], ["version", 17, 11], ["workDir", 19, 3], ["propagatedBuildInputs", 21, 3], ["mesonFlags", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, mkMesonLibrary: false, "nix-util-c": false, "nix-store-c": false, "nix-expr-c": false, "nix-cmd": false, version: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["platforms", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 11], ["workDir", 19, 3], ["propagatedBuildInputs", 21, 3], ["mesonFlags", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const nix_cmd = nix.arg($, "nix-cmd");
   const version = nix.arg($, "version");
   return nix.app(mkMesonLibrary, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "nix-cmd-c",
       version: version,
       workDir: nix.path(here, "./."),
       propagatedBuildInputs: nix.thunk(() => [nix_util_c, nix_store_c, nix_expr_c, nix_cmd]),
       mesonFlags: [],
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
       })),
     }));

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["teams", 61, 5], ["platforms", 62, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["preFixup", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, autoreconfHook: false, libgcrypt: false, "pkg-config": false, curlWithGnuTls: false, gnunet: false, jansson: false, libmicrohttpd: false, libpq: false, libsodium: false, libtool: false, "taler-exchange": false, "taler-merchant": false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["teams", 61, 5], ["platforms", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["preFixup", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const taler_merchant = nix.arg($, "taler-merchant");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "taler-sync",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git-www.taler.net/sync.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-1m26ORKsN0GHJWQ/5gtMO3x1ng+GsZK9Y80413vF5pI=",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail "/bin/bash" "${runtimeShell}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Backup and synchronization service",
         homepage: "https://git-www.taler.net/sync.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["mysql", 34, 5], ["postgres", 35, 5]], [["optional-dependencies", 33, 12]], [["DJANGO_SETTINGS_MODULE", 39, 5], ["DJSTRIPE_TEST_DB_VENDOR", 40, 5]], [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["maintainers", 120, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["passthru", 33, 3], ["env", 38, 3], ["nativeCheckInputs", 43, 3], ["disabledTestPaths", 48, 3], ["pythonImportsCheck", 113, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, django: false, stripe: false, mysqlclient: false, psycopg2: false, "pytest-django": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mysql", 34, 5], ["postgres", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["optional-dependencies", 33, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["DJANGO_SETTINGS_MODULE", 39, 5], ["DJSTRIPE_TEST_DB_VENDOR", 40, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["maintainers", 120, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["passthru", 33, 3], ["env", 38, 3], ["nativeCheckInputs", 43, 3], ["disabledTestPaths", 48, 3], ["pythonImportsCheck", 113, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dj-stripe",
           repo: "dj-stripe",
           tag: version,
@@ -36,15 +31,15 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [django, stripe]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "optional-dependencies": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           mysql: nix.thunk(() => [mysqlclient]),
           postgres: nix.thunk(() => [psycopg2]),
         })),
       }));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         DJANGO_SETTINGS_MODULE: "tests.settings",
         DJSTRIPE_TEST_DB_VENDOR: "sqlite",
       }));
@@ -115,7 +110,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["djstripe"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Stripe Models for Django",
         homepage: "https://github.com/dj-stripe/dj-stripe",
         changelog: nix.thunk(() => nix.str`https://github.com/dj-stripe/dj-stripe/releases/tag/${version}`),
@@ -126,7 +121,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 16, 7], ["owner", 17, 15], ["repo", 18, 7], ["rev", 19, 7], ["sha256", 20, 7]], [["src", 24, 5]], [["name", 32, 7], ["owner", 33, 15], ["repo", 34, 7], ["rev", 35, 7], ["sha256", 36, 7]], [["homepage", 69, 5], ["description", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5], ["license", 73, 5]], [["version", 28, 11], ["pname", 28, 19], ["srcs", 30, 3], ["sourceRoot", 41, 3], ["patches", 43, 3], ["dotnet-sdk", 53, 3], ["dotnet-runtime", 54, 3], ["dotnetFlags", 56, 3], ["nugetDeps", 60, 3], ["runtimeDeps", 62, 3], ["projectFile", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { keystone: false, fetchFromGitHub: false, buildDotnetModule: false, dotnetCorePackages: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 16, 7], ["owner", 17, 15], ["repo", 18, 7], ["rev", 19, 7], ["sha256", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 32, 7], ["owner", 33, 15], ["repo", 34, 7], ["rev", 35, 7], ["sha256", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["description", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5], ["license", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 28, 11], ["pname", 28, 19], ["srcs", 30, 3], ["sourceRoot", 41, 3], ["patches", 43, 3], ["dotnet-sdk", 53, 3], ["dotnet-runtime", 54, 3], ["dotnetFlags", 56, 3], ["nugetDeps", 60, 3], ["runtimeDeps", 62, 3], ["projectFile", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const keystone_rev = "MIPS-0.9.2";
   const keystone_sha256 = "sha256-xLkO06ZgnmAavJMP1kjDwXT1hc5eSDXv+4MUkOz6xeo=";
   const keystone_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "keystone",
       owner: owner,
       repo: "keystone",
       rev: keystone_rev,
       sha256: keystone_sha256,
     }))));
-  const keystone_override = nix.thunk(() => nix.app(nix.sel(keystone, "overrideAttrs"), (old) => ({ [nix.POS]: pos$2, src: keystone_src })));
+  const keystone_override = nix.thunk(() => nix.app(nix.sel(keystone, "overrideAttrs"), (old) => ({ [nix.POS]: $pos[1], src: keystone_src })));
   return nix.app(buildDotnetModule, nix.thunk(() => (() => {
       const version_1 = version;
       const pname_1 = pname;
       const srcs = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: pname_1,
             owner: owner,
             repo: "CLPS2C-Compiler",
@@ -61,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const runtimeDeps = nix.thunk(() => [keystone_override]);
       const projectFile = "CLPS2C-Compiler/CLPS2C-Compiler/CLPS2C-Compiler.csproj";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/NiV-L-A/CLPS2C-Compiler",
         description: "Compiler for CLPS2C, a domain-specific language built specifically for writing PS2 cheat codes",
         mainProgram: "CLPS2C-Compiler",
@@ -69,7 +65,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version: version_1,
         pname: pname_1,
         srcs,

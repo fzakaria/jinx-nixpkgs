@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5], ["mainProgram", 85, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 27, 3], ["patches", 32, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 49, 3], ["preCheck", 51, 3], ["doCheck", 56, 3], ["enableParallelBuilding", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gtk3: false, which: false, "pkg-config": false, intltool: false, file: false, libintl: false, "hicolor-icon-theme": false, python3: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5], ["mainProgram", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 27, 3], ["patches", 32, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 49, 3], ["preCheck", 51, 3], ["doCheck", 56, 3], ["enableParallelBuilding", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "geany",
       version: "2.1",
       outputs: nix.thunk(() => ["out", "dev", "doc", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.geany.org/geany-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-a5aohERjMAwQuWkqCl7a2CNu7J6ENC9XX4PU/IkzEig=",
         })))),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small and lightweight IDE",
         longDescription: "Geany is a small and lightweight Integrated Development Environment.\nIt was developed to provide a small and fast IDE, which has only a few dependencies from other packages.\nAnother goal was to be as independent as possible from a special Desktop Environment like KDE or GNOME.\nGeany only requires the GTK runtime libraries.\nSome basic features of Geany:\n- Syntax highlighting\n- Code folding\n- Symbol name auto-completion\n- Construct completion/snippets\n- Auto-closing of XML and HTML tags\n- Call tips\n- Many supported filetypes including C, Java, PHP, HTML, Python, Perl, Pascal (full list)\n- Symbol lists\n- Code navigation\n- Build system to compile and execute your code\n- Simple project management\n- Plugin interface\n",
         homepage: "https://www.geany.org/",

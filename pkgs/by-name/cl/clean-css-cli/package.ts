@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["description", 24, 5], ["homepage", 25, 5], ["changelog", 26, 5], ["license", 27, 5], ["mainProgram", 28, 5], ["maintainers", 29, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["npmDepsHash", 17, 3], ["dontNpmBuild", 19, 3], ["dontCheckForBrokenSymlinks", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["changelog", 26, 5], ["license", 27, 5], ["mainProgram", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["npmDepsHash", 17, 3], ["dontNpmBuild", 19, 3], ["dontCheckForBrokenSymlinks", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "clean-css-cli",
       version: "5.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "clean-css",
           repo: "clean-css-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       dontNpmBuild: true,
       dontCheckForBrokenSymlinks: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command-line interface to the clean-css CSS optimization library",
         homepage: "https://github.com/clean-css/clean-css-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/clean-css/clean-css-cli/blob/v${nix.sel(finalAttrs, "version")}/History.md`),

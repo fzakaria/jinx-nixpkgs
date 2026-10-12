@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]], [["updateScript", 64, 12]], [["homepage", 67, 5], ["description", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 76, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["outputs", 37, 3], ["nativeBuildInputs", 42, 3], ["cmakeFlags", 50, 3], ["postInstall", 54, 3], ["doCheck", 62, 3], ["passthru", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, "nix-update-script": false, doxygen: false, cmake: false, graphviz: false, withDoc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 64, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["outputs", 37, 3], ["nativeBuildInputs", 42, 3], ["cmakeFlags", 50, 3], ["postInstall", 54, 3], ["doCheck", 62, 3], ["passthru", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const graphviz = nix.arg($, "graphviz");
   const withDoc = nix.argOr($, "withDoc", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "eigen",
       version: "5.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libeigen",
           repo: "eigen",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-doc.patch",
             url: "https://gitlab.com/libeigen/eigen/-/commit/976f15ebca3f486902c3da4c98b8f92c3c4ed7a4.diff",
             hash: "sha256-/FSXhY+/ZRKfE/aIDAgP+DoNCtH8ikUItYGmfo+QH0E=",
@@ -47,11 +43,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withDoc, "# Fontconfig error: No writable cache directories\nexport XDG_CACHE_HOME=\"$(mktemp -d)\"\n\ncmake --build . -t install-doc\n")),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://eigen.tuxfamily.org",
         description: "C++ template library for linear algebra: vectors, matrices, and related algorithms",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/libeigen/eigen/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

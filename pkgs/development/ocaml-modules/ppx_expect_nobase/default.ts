@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["broken", 36, 5]], [["pname", 12, 3], ["version", 13, 3], ["minimalOCamlVersion", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, "dune-build-info": false, ppx_inline_test_nobase: false, ppxlib: false, sexplib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["broken", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["minimalOCamlVersion", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const sexplib = nix.arg($, "sexplib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ppx_expect_nobase",
       version: "0.17.3.2",
       minimalOCamlVersion: "4.14.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Kakadu",
           repo: "ppx_expect_nobase",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [dune_build_info, ppx_inline_test_nobase, ppxlib, sexplib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cram like framework for OCaml",
         homepage: "https://github.com/Kakadu/ppx_expect_nobase",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

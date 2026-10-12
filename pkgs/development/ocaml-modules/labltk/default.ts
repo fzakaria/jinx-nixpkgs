@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 16, 7], ["sha256", 17, 7], ["stdenv", 18, 7]], [["version", 21, 7], ["sha256", 22, 7], ["stdenv", 23, 7]], [["version", 26, 7], ["sha256", 27, 7], ["stdenv", 28, 7]], [["version", 31, 7], ["sha256", 32, 7]], [["version", 35, 7], ["sha256", 36, 7]], [["version", 39, 7], ["sha256", 40, 7]], [["version", 43, 7], ["sha256", 44, 7]], [["version", 47, 7], ["sha256", 48, 7]], [["version", 51, 7], ["sha256", 52, 7]], [["version", 55, 7], ["sha256", 56, 7]], [["4.09", 15, 5], ["4.10", 20, 5], ["4.11", 25, 5], ["4.12", 30, 5], ["4.13", 34, 5], ["4.14", 38, 5], ["5.0", 42, 5], ["5.2", 46, 5], ["5.3", 50, 5], ["5.4", 54, 5]], [["stdenv", 60, 13], ["version", 62, 5], ["sha256", 63, 5]], [["url", 75, 5], ["sha256", 76, 21]], [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["platforms", 120, 26], ["maintainers", 121, 5], ["broken", 122, 5]], [["version", 71, 19], ["pname", 72, 3], ["src", 74, 3], ["strictDeps", 79, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 86, 3], ["configureFlags", 91, 3], ["dontAddPrefix", 96, 3], ["dontAddStaticConfigureFlags", 97, 3], ["configurePlatforms", 98, 3], ["buildFlags", 100, 3], ["createFindlibDestdir", 105, 3], ["postInstall", 107, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { stdenv: false, gcc13Stdenv: false, lib: false, makeWrapper: false, fetchzip: false, ocaml: false, findlib: false, tcl: false, tk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 16, 7], ["sha256", 17, 7], ["stdenv", 18, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 21, 7], ["sha256", 22, 7], ["stdenv", 23, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 26, 7], ["sha256", 27, 7], ["stdenv", 28, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 31, 7], ["sha256", 32, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 35, 7], ["sha256", 36, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 39, 7], ["sha256", 40, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 43, 7], ["sha256", 44, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["version", 47, 7], ["sha256", 48, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["version", 51, 7], ["sha256", 52, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["version", 55, 7], ["sha256", 56, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["4.09", 15, 5], ["4.10", 20, 5], ["4.11", 25, 5], ["4.12", 30, 5], ["4.13", 34, 5], ["4.14", 38, 5], ["5.0", 42, 5], ["5.2", 46, 5], ["5.3", 50, 5], ["5.4", 54, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["stdenv", 60, 13], ["version", 62, 5], ["sha256", 63, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["url", 75, 5], ["sha256", 76, 21]]);
-const pos$14 = nix.positions(here + "/default.nix", [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["platforms", 120, 26], ["maintainers", 121, 5], ["broken", 122, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["version", 71, 19], ["pname", 72, 3], ["src", 74, 3], ["strictDeps", 79, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 86, 3], ["configureFlags", 91, 3], ["dontAddPrefix", 96, 3], ["dontAddStaticConfigureFlags", 97, 3], ["configurePlatforms", 98, 3], ["buildFlags", 100, 3], ["createFindlibDestdir", 105, 3], ["postInstall", 107, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,73 +17,73 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const tk = nix.arg($, "tk");
   const params = nix.thunk(() => ({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     "4.09": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "8.06.7",
       sha256: "1cqnxjv2dvw9csiz4iqqyx6rck04jgylpglk8f69kgybf7k7xk2h",
       stdenv: gcc13Stdenv,
     })),
     "4.10": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "8.06.8",
       sha256: "0lfjc7lscq81ibqb3fcybdzs2r1i2xl7rsgi7linq46a0pcpkinw",
       stdenv: gcc13Stdenv,
     })),
     "4.11": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "8.06.9",
       sha256: "1k42k3bjkf22gk39lwwzqzfhgjyhxnclslldrzpg5qy1829pbnc0",
       stdenv: gcc13Stdenv,
     })),
     "4.12": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "8.06.10",
       sha256: "06cck7wijq4zdshzhxm6jyl8k3j0zglj2axsyfk6q1sq754zyf4a",
     })),
     "4.13": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "8.06.11",
       sha256: "1zjpg9jvs6i9jvbgn6zgispwqiv8rxvaszxcx9ha9fax3wzhv9qy",
     })),
     "4.14": nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "8.06.12",
       sha256: "sha256:17fmb13l18isgwr38hg9r5a0nayf2hhw6acj5153cy1sygsdg3b5",
     })),
     "5.0": nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: "8.06.13",
       sha256: "sha256-Vpf13g3DEWlUI5aypiowGp2fkQPK0cOGv2XiRUY/Ip4=",
     })),
     "5.2": nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       version: "8.06.14",
       sha256: "sha256-eVSQetk+i3KObjHfsvnD615cIsq3aZ7IxycX42cuPIU=",
     })),
     "5.3": nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       version: "8.06.15",
       sha256: "sha256-I/y5qr5sasCtlrwxL/Lex79rg0o4tzDMBmQY7MdpU2w=",
     })),
     "5.4": nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       version: "8.06.16",
       sha256: "sha256-T+5x6nfxrJh4NEMCPFY/9AMug2oqxNl4CGw1lRy9ne4=",
     })),
   }));
   const param = nix.thunk(() => nix.update({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     stdenv: stdenv,
     version: "",
     sha256: nix.thunk(() => nix.sel(lib, "fakeSha256")),
   }, nix.selOr(params, () => ({}), nix.key(nix.str`${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version")))}`))));
   return nix.app(nix.sel(param, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       version: nix.thunk(() => nix.attr(param, "version")),
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-labltk`),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           url: nix.thunk(() => nix.str`https://github.com/garrigue/labltk/archive/${nix.sel(param, "version")}.tar.gz`),
           sha256: nix.thunk(() => nix.attr(param, "sha256")),
         })))),
@@ -114,7 +100,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "OCaml interface to Tcl/Tk, including OCaml library explorer OCamlBrowser",
         homepage: "http://labltk.forge.ocamlcore.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]], [["arangodb", 89, 5], ["auth", 92, 5], ["azureblockblob", 93, 5], ["brotli", 97, 5], ["cassandra", 98, 5], ["consul", 99, 5], ["cosmosdbsql", 102, 5], ["couchbase", 103, 5], ["couchdb", 104, 5], ["django", 107, 5], ["dynamodb", 108, 5], ["elasticsearch", 109, 5], ["eventlet", 113, 5], ["gcs", 114, 5], ["gevent", 119, 5], ["memcache", 120, 5], ["mongodb", 121, 5], ["msgpack", 122, 5], ["pydantic", 123, 5], ["pymemcache", 124, 5], ["pyro", 125, 5], ["pytest", 126, 5], ["redis", 130, 5], ["s3", 131, 5], ["slmq", 132, 5], ["solar", 135, 5], ["sphinxautobuild", 136, 5], ["sqlalchemy", 137, 5], ["sqs", 138, 5], ["tblib", 143, 5], ["thread", 144, 5], ["yaml", 145, 5], ["zeromq", 146, 5], ["zookeeper", 147, 5], ["zsdt", 148, 5]], [["description", 221, 5], ["homepage", 222, 5], ["changelog", 223, 5], ["license", 224, 5], ["maintainers", 225, 5], ["mainProgram", 226, 5]], [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["src", 58, 3], ["patches", 65, 3], ["build-system", 69, 3], ["dependencies", 71, 3], ["optional-dependencies", 86, 3], ["nativeCheckInputs", 151, 3], ["disabledTestPaths", 160, 3], ["disabledTests", 170, 3], ["pythonImportsCheck", 218, 3], ["meta", 220, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "azure-identity": false, "azure-storage-blob": false, billiard: false, boto3: false, brotli: false, brotlipy: false, buildPythonPackage: false, "cassandra-driver": false, click: false, "click-didyoumean": false, "click-plugins": false, "click-repl": false, cryptography: false, exceptiongroup: false, django: false, "elastic-transport": false, elasticsearch: false, ephem: false, fetchFromGitHub: false, gevent: false, "google-cloud-firestore": false, "google-cloud-storage": false, grpcio: false, isPyPy: false, kazoo: false, kombu: false, moto: false, pydantic: false, pydocumentdb: false, pylibmc: false, "pytest-celery": false, "pytest-click": false, "pytest-timeout": false, pytestCheckHook: false, "python-dateutil": false, "python-memcached": false, pyzmq: false, setuptools: false, tzlocal: false, "sphinx-autobuild": false, tblib: false, urllib3: false, vine: false, zstandard: false, withAmqpRepl: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arangodb", 89, 5], ["auth", 92, 5], ["azureblockblob", 93, 5], ["brotli", 97, 5], ["cassandra", 98, 5], ["consul", 99, 5], ["cosmosdbsql", 102, 5], ["couchbase", 103, 5], ["couchdb", 104, 5], ["django", 107, 5], ["dynamodb", 108, 5], ["elasticsearch", 109, 5], ["eventlet", 113, 5], ["gcs", 114, 5], ["gevent", 119, 5], ["memcache", 120, 5], ["mongodb", 121, 5], ["msgpack", 122, 5], ["pydantic", 123, 5], ["pymemcache", 124, 5], ["pyro", 125, 5], ["pytest", 126, 5], ["redis", 130, 5], ["s3", 131, 5], ["slmq", 132, 5], ["solar", 135, 5], ["sphinxautobuild", 136, 5], ["sqlalchemy", 137, 5], ["sqs", 138, 5], ["tblib", 143, 5], ["thread", 144, 5], ["yaml", 145, 5], ["zeromq", 146, 5], ["zookeeper", 147, 5], ["zsdt", 148, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 221, 5], ["homepage", 222, 5], ["changelog", 223, 5], ["license", 224, 5], ["maintainers", 225, 5], ["mainProgram", 226, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["src", 58, 3], ["patches", 65, 3], ["build-system", 69, 3], ["dependencies", 71, 3], ["optional-dependencies", 86, 3], ["nativeCheckInputs", 151, 3], ["disabledTestPaths", 160, 3], ["disabledTests", 170, 3], ["pythonImportsCheck", 218, 3], ["meta", 220, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,12 +55,12 @@ export default nix.lambda((args) => (() => {
   const zstandard = nix.arg($, "zstandard");
   const withAmqpRepl = nix.argOr($, "withAmqpRepl", () => false);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "celery",
       version: "5.6.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "celery",
           repo: "celery",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -83,7 +80,7 @@ export default nix.lambda((args) => (() => {
         vine,
       ], nix.app(nix.sel(lib, "optionals"), withAmqpRepl, nix.thunk(() => [click_repl])))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         arangodb: [],
         auth: nix.thunk(() => [cryptography]),
         azureblockblob: nix.thunk(() => [azure_identity, azure_storage_blob]),
@@ -152,7 +149,7 @@ export default nix.lambda((args) => (() => {
         ]))))),
       pythonImportsCheck: nix.thunk(() => ["celery"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Distributed task queue",
         homepage: "https://github.com/celery/celery/",
         changelog: nix.thunk(() => nix.str`https://github.com/celery/celery/blob/${nix.sel(finalAttrs, "src", "tag")}/Changelog.rst`),

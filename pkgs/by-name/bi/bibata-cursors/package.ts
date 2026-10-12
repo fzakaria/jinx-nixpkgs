@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["url", 21, 5], ["hash", 22, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["bitmaps", 20, 3], ["nativeBuildInputs", 25, 3], ["buildPhase", 29, 3], ["installPhase", 51, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, fetchzip: false, clickgen: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["bitmaps", 20, 3], ["nativeBuildInputs", 25, 3], ["buildPhase", 29, 3], ["installPhase", 51, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "bibata-cursors";
       const version = "2.0.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ful1e5",
           repo: "Bibata_Cursor",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-kIKidw1vditpuxO1gVuZeUPdWBzkiksO/q2R/+DUdEc=",
         }))));
       const bitmaps = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/ful1e5/Bibata_Cursor/releases/download/v${version}/bitmaps.zip`),
           hash: "sha256-4VjyNWry0NPnt5+s0od/p18gry2O0ZrknYZh+PAPM8Q=",
         }))));
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "runHook preBuild\n\nctgen configs/normal/x.build.toml -p x11 -d $bitmaps/Bibata-Modern-Amber -n 'Bibata-Modern-Amber' -c 'Yellowish and rounded edge Bibata XCursors'\nctgen configs/normal/x.build.toml -p x11 -d $bitmaps/Bibata-Modern-Classic -n 'Bibata-Modern-Classic' -c 'Black and rounded edge Bibata XCursors'\nctgen configs/normal/x.build.toml -p x11 -d $bitmaps/Bibata-Modern-Ice -n 'Bibata-Modern-Ice' -c 'White and rounded edge Bibata XCursors'\n\nctgen configs/right/x.build.toml -p x11 -d $bitmaps/Bibata-Modern-Amber-Right -n 'Bibata-Modern-Amber-Right' -c 'Yellowish and rounded edge right-hand Bibata XCursors'\nctgen configs/right/x.build.toml -p x11 -d $bitmaps/Bibata-Modern-Classic-Right -n 'Bibata-Modern-Classic-Right' -c 'Black and rounded edge right-hand Bibata XCursors'\nctgen configs/right/x.build.toml -p x11 -d $bitmaps/Bibata-Modern-Ice-Right -n 'Bibata-Modern-Ice-Right' -c 'White and rounded edge right-hand Bibata XCursors'\n\nctgen configs/normal/x.build.toml -p x11 -d $bitmaps/Bibata-Original-Amber -n 'Bibata-Original-Amber' -c 'Yellowish and sharp edge Bibata XCursors'\nctgen configs/normal/x.build.toml -p x11 -d $bitmaps/Bibata-Original-Classic -n 'Bibata-Original-Classic' -c 'Black and sharp edge Bibata XCursors'\nctgen configs/normal/x.build.toml -p x11 -d $bitmaps/Bibata-Original-Ice -n 'Bibata-Original-Ice' -c 'White and sharp edge Bibata XCursors'\n\nctgen configs/right/x.build.toml -p x11 -d $bitmaps/Bibata-Original-Amber-Right -n 'Bibata-Original-Amber-Right' -c 'Yellowish and sharp edge right-hand Bibata XCursors'\nctgen configs/right/x.build.toml -p x11 -d $bitmaps/Bibata-Original-Classic-Right -n 'Bibata-Original-Classic-Right' -c 'Black and sharp edge right-hand Bibata XCursors'\nctgen configs/right/x.build.toml -p x11 -d $bitmaps/Bibata-Original-Ice-Right -n 'Bibata-Original-Ice-Right' -c 'White and sharp edge right-hand Bibata XCursors'\n\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\n\ninstall -dm 0755 $out/share/icons\ncp -rf themes/* $out/share/icons/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Material Based Cursor Theme",
         homepage: "https://github.com/ful1e5/Bibata_Cursor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

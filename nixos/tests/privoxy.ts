@@ -2,98 +2,63 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/privoxy.nix", [[["buildInputs", 6, 45]], [["maintainers", 31, 5]], [["name", 43, 11], ["destination", 44, 11], ["text", 45, 11]], [["root", 42, 23]], [["extraConfig", 47, 26]], [["/", 42, 19], ["/ads", 47, 19]], [["addSSL", 39, 9], ["sslCertificate", 40, 9], ["sslCertificateKey", 41, 9], ["locations", 42, 9]], [["example.com", 38, 35]], [["enable", 37, 22], ["virtualHosts", 38, 22]], [["ca-cert-file", 56, 11], ["ca-key-file", 57, 11], ["debug", 58, 11]], [["enable", 53, 9], ["inspectHttps", 54, 9], ["settings", 55, 9], ["userActions", 60, 9], ["userFilters", 67, 9]], [["nginx", 37, 16], ["privoxy", 52, 16]], [["certificateFiles", 73, 20]], [["pki", 73, 16]], [["::1", 75, 24]], [["httpProxy", 76, 24], ["httpsProxy", 77, 24]], [["hosts", 75, 18], ["proxy", 76, 18]], [["services", 37, 7], ["security", 73, 7], ["networking", 75, 7]], [["forward-socks4", 85, 18]], [["enable", 84, 9], ["settings", 85, 9]], [["privoxy", 83, 16]], [["services", 83, 7]], [["forward-socks4a", 93, 18]], [["enable", 92, 9], ["settings", 93, 9]], [["privoxy", 91, 16]], [["services", 91, 7]], [["forward-socks5", 101, 18]], [["enable", 100, 9], ["settings", 101, 9]], [["privoxy", 99, 16]], [["services", 99, 7]], [["forward-socks5t", 109, 18]], [["enable", 108, 9], ["settings", 109, 9]], [["privoxy", 107, 16]], [["services", 107, 7]], [["machine", 34, 9], ["machine_socks4", 80, 9], ["machine_socks4a", 88, 9], ["machine_socks5", 96, 9], ["machine_socks5t", 104, 9]], [["name", 29, 3], ["meta", 30, 3], ["nodes", 34, 3], ["testScript", 113, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/privoxy.nix", [["buildInputs", 6, 45]]);
-const pos$2 = nix.positions(here + "/privoxy.nix", [["maintainers", 31, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$3 = nix.positions(here + "/privoxy.nix", [["name", 43, 11], ["destination", 44, 11], ["text", 45, 11]]);
-const pos$4 = nix.positions(here + "/privoxy.nix", [["root", 42, 23]]);
-const pos$5 = nix.positions(here + "/privoxy.nix", [["extraConfig", 47, 26]]);
-const pos$6 = nix.positions(here + "/privoxy.nix", [["/", 42, 19], ["/ads", 47, 19]]);
-const pos$7 = nix.positions(here + "/privoxy.nix", [["addSSL", 39, 9], ["sslCertificate", 40, 9], ["sslCertificateKey", 41, 9], ["locations", 42, 9]]);
-const pos$8 = nix.positions(here + "/privoxy.nix", [["example.com", 38, 35]]);
-const pos$9 = nix.positions(here + "/privoxy.nix", [["enable", 37, 22], ["virtualHosts", 38, 22]]);
-const pos$10 = nix.positions(here + "/privoxy.nix", [["ca-cert-file", 56, 11], ["ca-key-file", 57, 11], ["debug", 58, 11]]);
-const pos$11 = nix.positions(here + "/privoxy.nix", [["enable", 53, 9], ["inspectHttps", 54, 9], ["settings", 55, 9], ["userActions", 60, 9], ["userFilters", 67, 9]]);
-const pos$12 = nix.positions(here + "/privoxy.nix", [["nginx", 37, 16], ["privoxy", 52, 16]]);
-const pos$13 = nix.positions(here + "/privoxy.nix", [["certificateFiles", 73, 20]]);
-const pos$14 = nix.positions(here + "/privoxy.nix", [["pki", 73, 16]]);
-const pos$15 = nix.positions(here + "/privoxy.nix", [["::1", 75, 24]]);
-const pos$16 = nix.positions(here + "/privoxy.nix", [["httpProxy", 76, 24], ["httpsProxy", 77, 24]]);
-const pos$17 = nix.positions(here + "/privoxy.nix", [["hosts", 75, 18], ["proxy", 76, 18]]);
-const pos$18 = nix.positions(here + "/privoxy.nix", [["services", 37, 7], ["security", 73, 7], ["networking", 75, 7]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$19 = nix.positions(here + "/privoxy.nix", [["forward-socks4", 85, 18]]);
-const pos$20 = nix.positions(here + "/privoxy.nix", [["enable", 84, 9], ["settings", 85, 9]]);
-const pos$21 = nix.positions(here + "/privoxy.nix", [["privoxy", 83, 16]]);
-const pos$22 = nix.positions(here + "/privoxy.nix", [["services", 83, 7]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$23 = nix.positions(here + "/privoxy.nix", [["forward-socks4a", 93, 18]]);
-const pos$24 = nix.positions(here + "/privoxy.nix", [["enable", 92, 9], ["settings", 93, 9]]);
-const pos$25 = nix.positions(here + "/privoxy.nix", [["privoxy", 91, 16]]);
-const pos$26 = nix.positions(here + "/privoxy.nix", [["services", 91, 7]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$27 = nix.positions(here + "/privoxy.nix", [["forward-socks5", 101, 18]]);
-const pos$28 = nix.positions(here + "/privoxy.nix", [["enable", 100, 9], ["settings", 101, 9]]);
-const pos$29 = nix.positions(here + "/privoxy.nix", [["privoxy", 99, 16]]);
-const pos$30 = nix.positions(here + "/privoxy.nix", [["services", 99, 7]]);
 const formals$6 = { args: {  }, ellipsis: true };
-const pos$31 = nix.positions(here + "/privoxy.nix", [["forward-socks5t", 109, 18]]);
-const pos$32 = nix.positions(here + "/privoxy.nix", [["enable", 108, 9], ["settings", 109, 9]]);
-const pos$33 = nix.positions(here + "/privoxy.nix", [["privoxy", 107, 16]]);
-const pos$34 = nix.positions(here + "/privoxy.nix", [["services", 107, 7]]);
-const pos$35 = nix.positions(here + "/privoxy.nix", [["machine", 34, 9], ["machine_socks4", 80, 9], ["machine_socks4a", 88, 9], ["machine_socks5", 96, 9], ["machine_socks5t", 104, 9]]);
-const pos$36 = nix.positions(here + "/privoxy.nix", [["name", 29, 3], ["meta", 30, 3], ["nodes", 34, 3], ["testScript", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const certs = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "example-certs", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), "mkdir $out\n\n# generate CA keypair\nopenssl req -new -nodes -x509 \\\n  -extensions v3_ca -keyout $out/ca.key \\\n  -out $out/ca.crt -days 365 \\\n  -subj \"/O=Privoxy CA/CN=Privoxy CA\"\n\n# generate server key/signing request\nopenssl genrsa -out $out/server.key 3072\nopenssl req -new -key $out/server.key \\\n  -out server.csr -sha256 \\\n  -subj \"/O=An unhappy server./CN=example.com\"\n\n# sign the request/generate the certificate\nopenssl x509 -req -in server.csr -CA $out/ca.crt \\\n-CAkey $out/ca.key -CAcreateserial -out $out/server.crt \\\n-days 500 -sha256\n"));
   return {
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     name: "privoxy",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "rnhmjoj"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 "example.com": nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   addSSL: true,
                   sslCertificate: nix.thunk(() => nix.str`${certs}/server.crt`),
                   sslCertificateKey: nix.thunk(() => nix.str`${certs}/server.key`),
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     "/": nix.thunk(() => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       root: nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                          [nix.POS]: pos$3,
+                          [nix.POS]: $pos[2],
                           name: "bad-day",
                           destination: "/how-are-you/index.html",
                           text: "I've had a bad day!\n",
                         })))),
                     })),
                     "/ads": nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       extraConfig: "return 200 \"Hot Nixpkgs PRs in your area. Click here!\\n\";\n",
                     })),
                   })),
@@ -101,11 +66,11 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             privoxy: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               enable: true,
               inspectHttps: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 "ca-cert-file": nix.thunk(() => nix.str`${certs}/ca.crt`),
                 "ca-key-file": nix.thunk(() => nix.str`${certs}/ca.key`),
                 debug: 65536n,
@@ -115,17 +80,17 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${certs}/ca.crt`)]),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$17,
-            hosts: nix.thunk(() => ({ [nix.POS]: pos$15, "::1": nix.thunk(() => ["example.com"]) })),
+            [nix.POS]: $pos[16],
+            hosts: nix.thunk(() => ({ [nix.POS]: $pos[14], "::1": nix.thunk(() => ["example.com"]) })),
             proxy: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               httpProxy: "http://localhost:8118",
               httpsProxy: "http://localhost:8118",
             })),
@@ -135,13 +100,13 @@ export default nix.lambda((args) => (() => {
       machine_socks4: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             privoxy: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$19, "forward-socks4": "/ 127.0.0.1:9050 ." })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[18], "forward-socks4": "/ 127.0.0.1:9050 ." })),
             })),
           })),
         };
@@ -149,13 +114,13 @@ export default nix.lambda((args) => (() => {
       machine_socks4a: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             privoxy: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$23, "forward-socks4a": "/ 127.0.0.1:9050 ." })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[22], "forward-socks4a": "/ 127.0.0.1:9050 ." })),
             })),
           })),
         };
@@ -163,13 +128,13 @@ export default nix.lambda((args) => (() => {
       machine_socks5: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         return {
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             privoxy: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$27, "forward-socks5": "/ 127.0.0.1:9050 ." })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[26], "forward-socks5": "/ 127.0.0.1:9050 ." })),
             })),
           })),
         };
@@ -177,13 +142,13 @@ export default nix.lambda((args) => (() => {
       machine_socks5t: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$6);
         return {
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             privoxy: nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$31, "forward-socks5t": "/ 127.0.0.1:9050 ." })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[30], "forward-socks5t": "/ 127.0.0.1:9050 ." })),
             })),
           })),
         };

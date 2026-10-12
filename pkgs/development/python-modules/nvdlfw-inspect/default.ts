@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 29, 5], ["hash", 30, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pyyaml: false, torch: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nvdlfw-inspect",
       version: "0.2.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NVIDIA",
           repo: "nvidia-dlfw-inspect",
           rev: "3a7314ac44f8479a3368a69ac4c7938e40e6104c",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["nvdlfw_inspect"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Facilitates debugging convergence issues and testing new algorithms/recipes for training LLMs using Nvidia libraries",
         homepage: "https://github.com/NVIDIA/nvidia-dlfw-inspect",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

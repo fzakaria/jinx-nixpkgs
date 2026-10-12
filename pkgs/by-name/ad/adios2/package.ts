@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["mpi", 40, 15], ["mpiSupport", 40, 19], ["cppSupport", 41, 7]], [["mpi", 45, 9], ["mpiSupport", 46, 9], ["python3Packages", 47, 9], ["pythonSupport", 48, 9]], [["mpi", 51, 56]], [["hdf5", 39, 5], ["catalyst", 43, 5], ["mpi4py", 51, 5]], [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]], [["pname", 112, 30], ["version", 112, 36], ["meta", 112, 44], ["dependencies", 113, 9]], [["moduleNames", 202, 7], ["package", 203, 7]], [["cmake-config", 201, 5]], [["doCheck", 208, 7]], [["withCheck", 207, 5]], [["tests", 200, 12]], [["homepage", 213, 5], ["description", 214, 5], ["license", 215, 5], ["platforms", 216, 5], ["maintainers", 217, 5]], [["version", 55, 3], ["pname", 56, 3], ["src", 58, 3], ["postPatch", 65, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 83, 3], ["propagatedBuildInputs", 107, 3], ["cmakeFlags", 120, 3], ["preInstall", 179, 3], ["doCheck", 184, 3], ["dontUseNinjaCheck", 185, 3], ["enableParallelChecking", 187, 3], ["__darwinAllowLocalNetworking", 189, 3], ["nativeCheckInputs", 191, 3], ["pythonImportsCheck", 198, 3], ["passthru", 200, 3], ["meta", 212, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, perl: false, cmake: false, ninja: false, gfortran: false, "pkg-config": false, python3Packages: false, mpi: false, catalyst: false, bzip2: false, "c-blosc2": false, hdf5: false, libfabric: false, libpng: false, libsodium: false, pugixml: false, sqlite: false, zeromq: false, zfp: false, zlib: false, ucx: false, libffi: false, "yaml-cpp": false, nlohmann_json: false, openssl: false, gtest: false, ctestCheckHook: false, mpiCheckPhaseHook: false, testers: false, mpiSupport: true, pythonSupport: true, withExamples: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["mpi", 40, 15], ["mpiSupport", 40, 19], ["cppSupport", 41, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mpi", 45, 9], ["mpiSupport", 46, 9], ["python3Packages", 47, 9], ["pythonSupport", 48, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mpi", 51, 56]]);
-const pos$4 = nix.positions(here + "/package.nix", [["hdf5", 39, 5], ["catalyst", 43, 5], ["mpi4py", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 112, 30], ["version", 112, 36], ["meta", 112, 44], ["dependencies", 113, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["moduleNames", 202, 7], ["package", 203, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["cmake-config", 201, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["doCheck", 208, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["withCheck", 207, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["tests", 200, 12]]);
-const pos$12 = nix.positions(here + "/package.nix", [["homepage", 213, 5], ["description", 214, 5], ["license", 215, 5], ["platforms", 216, 5], ["maintainers", 217, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["version", 55, 3], ["pname", 56, 3], ["src", 58, 3], ["postPatch", 65, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 83, 3], ["propagatedBuildInputs", 107, 3], ["cmakeFlags", 120, 3], ["preInstall", 179, 3], ["doCheck", 184, 3], ["dontUseNinjaCheck", 185, 3], ["enableParallelChecking", 187, 3], ["__darwinAllowLocalNetworking", 189, 3], ["nativeCheckInputs", 191, 3], ["pythonImportsCheck", 198, 3], ["passthru", 200, 3], ["meta", 212, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,28 +42,28 @@ export default nix.lambda((args) => (() => {
   const pythonSupport = nix.argOr($, "pythonSupport", () => false);
   const withExamples = nix.argOr($, "withExamples", () => false);
   const adios2Packages = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     hdf5: nix.thunk(() => nix.app(nix.sel(hdf5, "override"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         mpi: mpi,
         mpiSupport: mpiSupport,
         cppSupport: nix.thunk(() => !nix.asBool(mpiSupport)),
       })))),
     catalyst: nix.thunk(() => nix.app(nix.sel(catalyst, "override"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mpi: mpi,
         mpiSupport: mpiSupport,
         python3Packages: python3Packages,
         pythonSupport: pythonSupport,
       })))),
-    mpi4py: nix.thunk(() => nix.app(nix.sel(python3Packages, "mpi4py", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, mpi: mpi })))),
+    mpi4py: nix.thunk(() => nix.app(nix.sel(python3Packages, "mpi4py", "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], mpi: mpi })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       version: "2.12.1",
       pname: "adios2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "ornladios",
           repo: "adios2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -104,7 +92,7 @@ export default nix.lambda((args) => (() => {
         openssl,
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), ucx)), ucx), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLoongArch64")), libffi), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), zfp)), zfp))))),
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), mpiSupport, mpi), nix.app(nix.sel(lib, "optional"), pythonSupport, nix.thunk(() => nix.app(nix.sel(python3Packages, "mkPythonMetaPackage"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
@@ -163,21 +151,21 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["adios2"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               moduleNames: nix.thunk(() => ["adios2"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$10,
-            withCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$9, doCheck: true })))),
+            [nix.POS]: $pos[9],
+            withCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[8], doCheck: true })))),
           }))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         homepage: "https://adios2.readthedocs.io/en/latest/",
         description: "Adaptable Input/Output System version 2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

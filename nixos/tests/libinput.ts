@@ -2,47 +2,39 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libinput.nix", [[["user", 14, 40]], [["auto", 14, 35]], [["displayManager", 14, 20]], [["naturalScrolling", 19, 11], ["leftHanded", 20, 11], ["middleEmulation", 21, 11], ["horizontalScrolling", 22, 11]], [["enable", 17, 9], ["mouse", 18, 9]], [["libinput", 16, 16]], [["imports", 9, 7], ["test-support", 14, 7], ["services", 16, 7]], [["machine", 6, 9]], [["name", 4, 3], ["nodes", 6, 3], ["testScript", 27, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/libinput.nix", [["user", 14, 40]]);
-const pos$2 = nix.positions(here + "/libinput.nix", [["auto", 14, 35]]);
-const pos$3 = nix.positions(here + "/libinput.nix", [["displayManager", 14, 20]]);
-const pos$4 = nix.positions(here + "/libinput.nix", [["naturalScrolling", 19, 11], ["leftHanded", 20, 11], ["middleEmulation", 21, 11], ["horizontalScrolling", 22, 11]]);
-const pos$5 = nix.positions(here + "/libinput.nix", [["enable", 17, 9], ["mouse", 18, 9]]);
-const pos$6 = nix.positions(here + "/libinput.nix", [["libinput", 16, 16]]);
-const pos$7 = nix.positions(here + "/libinput.nix", [["imports", 9, 7], ["test-support", 14, 7], ["services", 16, 7]]);
-const pos$8 = nix.positions(here + "/libinput.nix", [["machine", 6, 9]]);
-const pos$9 = nix.positions(here + "/libinput.nix", [["name", 4, 3], ["nodes", 6, 3], ["testScript", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "libinput",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           imports: nix.thunk(() => [
             nix.path(here, "./common/x11.nix"),
             nix.path(here, "./common/user-account.nix"),
           ]),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$1, user: "alice" })),
+              [nix.POS]: $pos[1],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[0], user: "alice" })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             libinput: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               mouse: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 naturalScrolling: true,
                 leftHanded: true,
                 middleEmulation: false,

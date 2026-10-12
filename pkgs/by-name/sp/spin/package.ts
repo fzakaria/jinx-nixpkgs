@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["sourceRoot", 36, 3], ["preBuild", 38, 3], ["enableParallelBuilding", 43, 3], ["makeFlags", 44, 3], ["postInstall", 46, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, makeWrapper: false, bison: false, gcc: false, tk: false, swarm: false, graphviz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["sourceRoot", 36, 3], ["preBuild", 38, 3], ["enableParallelBuilding", 43, 3], ["makeFlags", 44, 3], ["postInstall", 46, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const graphviz = nix.arg($, "graphviz");
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gcc, graphviz, tk, swarm])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "spin",
       version: "6.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nimble-code",
           repo: "Spin",
           rev: nix.thunk(() => nix.str`version-${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +42,7 @@ makeWrapper $out/share/spin/ispin.tcl $out/bin/ispin \\
   --prefix PATH : $out/bin:${binPath}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Formal verification tool for distributed software systems",
         homepage: "https://spinroot.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

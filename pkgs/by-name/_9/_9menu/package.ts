@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["extraArgs", 35, 5]], [["updateScript", 34, 12]], [["homepage", 42, 5], ["description", 43, 5], ["mainProgram", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["passthru", 34, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, "pkg-config": false, meson: false, ninja: false, libx11: false, libxext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 34, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["mainProgram", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["passthru", 34, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "9menu",
       version: "1.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arnoldrobbins",
           repo: "9menu",
           tag: nix.thunk(() => nix.str`9menu-release-${nix.sel(finalAttrs, "version")}`),
@@ -34,14 +30,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja]),
       buildInputs: nix.thunk(() => [libx11, libxext]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "9menu-release-([0-9.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/arnoldrobbins/9menu",
         description: "Simple X11 menu program for running commands",
         mainProgram: "9menu",

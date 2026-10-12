@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/without-data.nix", [[["url", 31, 5], ["sha256", 32, 5]], [["url", 37, 7], ["sha256", 38, 7], ["postFetch", 39, 7]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 35, 3], ["postPatch", 45, 3], ["buildInputs", 49, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { fetchpatch: false, fetchurl: false, lib: false, stdenv: false, libGLU: false, libglut: false, libx11: false, plib: false, openal: false, freealut: false, libxrandr: false, xorgproto: false, libxext: false, libsm: false, libice: false, libxi: false, libxt: false, libxrender: false, libxxf86vm: false, libvorbis: false, libpng: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/without-data.nix", [["url", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/without-data.nix", [["url", 37, 7], ["sha256", 38, 7], ["postFetch", 39, 7]]);
-const pos$3 = nix.positions(here + "/without-data.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$4 = nix.positions(here + "/without-data.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 35, 3], ["postPatch", 45, 3], ["buildInputs", 49, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,17 +30,17 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "torcs-without-data",
       version: "1.3.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/torcs/all-in-one/${nix.sel(finalAttrs, "version")}/torcs-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-odQQNf5ip+jbAZHxNhXnymiUVEn4v2ohYdF6/y/+iis=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/games-team/torcs/raw/fb0711c171b38c4648dc7c048249ec20f79eb8e2/debian/patches/format-argument.patch",
             sha256: "sha256-9tVBdVxk6YU4CXK633jYakq8BkDFx40bEjOBOhN/46g=",
             postFetch: "sed -i 's/\\r$//' \"$out\"\n",
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
         libvorbis,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Car racing game (does not come with the game data required to run)",
         homepage: "https://torcs.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

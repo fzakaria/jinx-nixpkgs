@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["bootForth", 48, 24], ["updateScript", 90, 12]], [["CROSS_PREFIX", 67, 5]], [["description", 93, 5], ["homepage", 94, 5], ["downloadPage", 95, 5], ["license", 96, 5], ["broken", 99, 5], ["platforms", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 44, 3], ["passthru", 48, 3], ["configureFlags", 50, 3], ["env", 65, 3], ["makeFlags", 70, 3], ["preConfigure", 76, 3], ["postConfigure", 80, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPackages: false, autoreconfHook: false, gitUpdater: false, texinfo: false, libffi: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["bootForth", 48, 24], ["updateScript", 90, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CROSS_PREFIX", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 93, 5], ["homepage", 94, 5], ["downloadPage", 95, 5], ["license", 96, 5], ["broken", 99, 5], ["platforms", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 44, 3], ["passthru", 48, 3], ["configureFlags", 50, 3], ["env", 65, 3], ["makeFlags", 70, 3], ["preConfigure", 76, 3], ["postConfigure", 80, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const bootForth = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./boot-forth.nix"), nix.thunk(() => ({}))));
   const lispDir = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/emacs/site-lisp`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gforth",
       version: "0.7.9_20260729",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "forthy42",
           repo: "gforth",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([writableTmpDirAsHomeHook, autoreconfHook, texinfo, swig], (nix.asBool(!nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))) ? [nix.thunk(() => nix.sel(buildPackages, "gforth"))] : [bootForth]))),
       buildInputs: nix.thunk(() => [libffi]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         bootForth: bootForth,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`CROSS_PREFIX=${nix.sel(stdenv, "hostPlatform", "config")}-`),
         ]))))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           CROSS_PREFIX: nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "config")}-`),
         })))),
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => [
@@ -67,7 +63,7 @@ export PATH="$PWD/.cross-bin:$PATH"
 sed -i 's/^\\(all:.*\\) check/\\1/' Makefile
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Forth implementation of the GNU project",
         homepage: "https://www.gnu.org/software/gforth",
         downloadPage: "https://github.com/forthy42/gforth",

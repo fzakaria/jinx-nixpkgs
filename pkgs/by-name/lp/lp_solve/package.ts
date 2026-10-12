@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["NIX_CFLAGS_COMPILE", 37, 5]], [["NIX_LDFLAGS", 40, 5]], [["emulator", 47, 7]], [["description", 79, 5], ["mainProgram", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["env", 36, 3], ["dontConfigure", 43, 3], ["patches", 45, 3], ["buildPhase", 51, 3], ["installPhase", 64, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cctools: false, fixDarwinDylibNames: false, darwin: false, replaceVars: false, buildPackages: false, binutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["emulator", 47, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 79, 5], ["mainProgram", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["env", 36, 3], ["dontConfigure", 43, 3], ["patches", 45, 3], ["buildPhase", 51, 3], ["installPhase", 64, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,22 +17,22 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const binutils = nix.arg($, "binutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lp_solve",
       version: "5.5.2.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lp-solve",
           repo: "lp_solve",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-mCYstt0vEGZk7rjcXmxqZjYTviF8xfg1mvA4jqKCYgE=",
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [binutils])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools, fixDarwinDylibNames])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook"))]))))),
-      env: nix.thunk(() => nix.update({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-headerpad_max_install_names" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_LDFLAGS: "-headerpad_max_install_names" }))))),
       dontConfigure: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-fix-cross-compilation.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             emulator: nix.thunk(() => nix.str`${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)}`),
           })))),
       ]),
@@ -53,7 +48,7 @@ runHook postBuild
       })()),
       installPhase: "runHook preInstall\n\ninstall -d -m755 $out/bin $out/lib $out/include/lpsolve\ninstall -m755 lp_solve/bin/*/lp_solve -t $out/bin\ninstall -m644 lpsolve55/bin/*/liblpsolve* -t $out/lib\ninstall -m644 lp_*.h -t $out/include/lpsolve\n\nrm $out/lib/liblpsolve*.a\nrm $out/include/lpsolve/lp_solveDLL.h  # A Windows header\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Mixed Integer Linear Programming (MILP) solver",
         mainProgram: "lp_solve",
         homepage: "https://github.com/lp-solve/lp_solve",

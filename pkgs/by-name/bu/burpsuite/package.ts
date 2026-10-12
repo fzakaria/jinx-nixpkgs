@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 23, 5], ["urls", 24, 5], ["hash", 29, 5]], [["name", 35, 5], ["exec", 36, 5], ["icon", 37, 5], ["desktopName", 38, 5], ["comment", 39, 5], ["categories", 40, 5]], [["updateScript", 90, 12]], [["description", 93, 13], ["longDescription", 94, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["sourceProvenance", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["hydraPlatforms", 107, 5], ["maintainers", 108, 5], ["mainProgram", 114, 5]], [["pname", 48, 11], ["version", 48, 17], ["runScript", 50, 3], ["targetPkgs", 54, 3], ["extraInstallCommands", 84, 3], ["passthru", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { config: false, lib: false, buildFHSEnv: false, fetchurl: false, jdk: false, makeDesktopItem: false, unzip: false, iconName: true, licenseAccepted: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 23, 5], ["urls", 24, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 5], ["exec", 36, 5], ["icon", 37, 5], ["desktopName", 38, 5], ["comment", 39, 5], ["categories", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 90, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 93, 13], ["longDescription", 94, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["sourceProvenance", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["hydraPlatforms", 107, 5], ["maintainers", 108, 5], ["mainProgram", 114, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 48, 11], ["version", 48, 17], ["runScript", 50, 3], ["targetPkgs", 54, 3], ["extraInstallCommands", 84, 3], ["passthru", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const pname = "burpsuite";
   const version = "2026.8";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "burpsuite.jar",
       urls: nix.thunk(() => [
         nix.thunk(() => nix.str`https://portswigger-cdn.net/burp/releases/download?product=desktop&version=${version}&type=Jar`),
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const description = "Integrated platform for performing security testing of web applications";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: pname,
       exec: pname,
       icon: pname,
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Development", "Security", "System"]),
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       runScript: nix.thunk(() => nix.add(nix.str`${nix.app(nix.sel(lib, "getExe"), jdk)} -jar ${src} --suppress-jre-check --disable-check-for-updates-dialog --disable-auto-update`, nix.app(nix.sel(lib, "optionalString"), licenseAccepted, " --i-accept-the-license-agreement"))),
@@ -83,9 +79,9 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "getBin"), unzip)}/bin/unzip -p ${src} resources/Media/icon64${iconName}.png > "$out/share/icons/hicolor/64x64/apps/burpsuite.png"
 cp -r ${desktopItem}/share/applications $out/share
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: description,
         longDescription: "Burp Suite is an integrated platform for performing security testing of web applications.\nIts various tools work seamlessly together to support the entire testing process, from\ninitial mapping and analysis of an application's attack surface, through to finding and\nexploiting security vulnerabilities.\n",
         homepage: "https://portswigger.net/burp/",

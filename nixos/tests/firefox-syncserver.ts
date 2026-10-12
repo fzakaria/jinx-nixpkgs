@@ -2,22 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/firefox-syncserver.nix", [[["enable", 18, 19], ["package", 19, 19]], [["mysql", 17, 26]], [["services", 17, 17]], [["mysql", 16, 15], ["postgresql", 22, 15]], [["type", 29, 26]], [["enable", 34, 19], ["hostname", 35, 19], ["capacity", 36, 19]], [["enable", 28, 17], ["database", 29, 17], ["secrets", 30, 17], ["singleNode", 33, 17]], [["firefox-syncserver", 27, 24]], [["systemPackages", 39, 27]], [["services", 27, 15], ["environment", 39, 15]], [["machine", 12, 20]], [["name", 10, 9], ["containers", 12, 9], ["testScript", 43, 9]], [["mysql", 52, 3], ["postgresql", 53, 3]]]);
 const formals$1 = { args: { backend: true }, ellipsis: false };
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/firefox-syncserver.nix", [["enable", 18, 19], ["package", 19, 19]]);
-const pos$2 = nix.positions(here + "/firefox-syncserver.nix", [["mysql", 17, 26]]);
-const pos$3 = nix.positions(here + "/firefox-syncserver.nix", [["services", 17, 17]]);
-const pos$4 = nix.positions(here + "/firefox-syncserver.nix", [["mysql", 16, 15], ["postgresql", 22, 15]]);
-const pos$5 = nix.positions(here + "/firefox-syncserver.nix", [["type", 29, 26]]);
-const pos$6 = nix.positions(here + "/firefox-syncserver.nix", [["enable", 34, 19], ["hostname", 35, 19], ["capacity", 36, 19]]);
-const pos$7 = nix.positions(here + "/firefox-syncserver.nix", [["enable", 28, 17], ["database", 29, 17], ["secrets", 30, 17], ["singleNode", 33, 17]]);
-const pos$8 = nix.positions(here + "/firefox-syncserver.nix", [["firefox-syncserver", 27, 24]]);
-const pos$9 = nix.positions(here + "/firefox-syncserver.nix", [["systemPackages", 39, 27]]);
-const pos$10 = nix.positions(here + "/firefox-syncserver.nix", [["services", 27, 15], ["environment", 39, 15]]);
-const pos$11 = nix.positions(here + "/firefox-syncserver.nix", [["machine", 12, 20]]);
-const pos$12 = nix.positions(here + "/firefox-syncserver.nix", [["name", 10, 9], ["containers", 12, 9], ["testScript", 43, 9]]);
-const pos$13 = nix.positions(here + "/firefox-syncserver.nix", [["mysql", 52, 3], ["postgresql", 53, 3]]);
 
 export default nix.thunk(() => (() => {
   const makeFirefoxSyncserverTest = (name) => nix.lambda((args) => (() => {
@@ -28,22 +16,22 @@ export default nix.thunk(() => (() => {
         const lib = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           name: nix.thunk(() => nix.str`firefox-syncserver-${name}`),
           containers: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$3);
               const pkgs_1 = nix.arg($_2, "pkgs");
               return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.sel({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     mysql: nix.thunk(() => ({
-                      [nix.POS]: pos$3,
+                      [nix.POS]: $pos[2],
                       services: nix.thunk(() => ({
-                        [nix.POS]: pos$2,
+                        [nix.POS]: $pos[1],
                         mysql: nix.thunk(() => ({
-                          [nix.POS]: pos$1,
+                          [nix.POS]: $pos[0],
                           enable: true,
                           package: nix.thunk(() => nix.sel(pkgs_1, "mariadb")),
                         })),
@@ -52,16 +40,16 @@ export default nix.thunk(() => (() => {
                     postgresql: nix.thunk(() => ({})),
                   }, nix.key(nix.force(backend)))),
                   nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$8,
+                      [nix.POS]: $pos[7],
                       "firefox-syncserver": nix.thunk(() => ({
-                        [nix.POS]: pos$7,
+                        [nix.POS]: $pos[6],
                         enable: true,
-                        database: nix.thunk(() => ({ [nix.POS]: pos$5, type: backend })),
+                        database: nix.thunk(() => ({ [nix.POS]: $pos[4], type: backend })),
                         secrets: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "sync-secrets", "SYNC_MASTER_SECRET=a-]test-secret-that-is-not-real\n")),
                         singleNode: nix.thunk(() => ({
-                          [nix.POS]: pos$6,
+                          [nix.POS]: $pos[5],
                           enable: true,
                           hostname: "firefox-syncserver.local",
                           capacity: 1n,
@@ -69,7 +57,7 @@ export default nix.thunk(() => (() => {
                       })),
                     })),
                     environment: nix.thunk(() => ({
-                      [nix.POS]: pos$9,
+                      [nix.POS]: $pos[8],
                       systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
                     })),
                   })),
@@ -81,7 +69,7 @@ export default nix.thunk(() => (() => {
       })(), formals$2));
   })(), formals$1);
   return nix.builtins.mapAttrs((k) => (v) => nix.app(makeFirefoxSyncserverTest, k, v), nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       mysql: nix.thunk(() => ({})),
       postgresql: nix.thunk(() => ({})),
     })));

@@ -2,63 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/systemd-networkd-bridge.nix", [["SYSTEMD_LOG_LEVEL", 24, 51]]);
-const pos$2 = nix.positions(here + "/systemd-networkd-bridge.nix", [["environment", 24, 39]]);
-const pos$3 = nix.positions(here + "/systemd-networkd-bridge.nix", [["systemd-networkd", 24, 22]]);
-const pos$4 = nix.positions(here + "/systemd-networkd-bridge.nix", [["services", 24, 13]]);
-const pos$5 = nix.positions(here + "/systemd-networkd-bridge.nix", [["enable", 27, 25]]);
-const pos$6 = nix.positions(here + "/systemd-networkd-bridge.nix", [["useNetworkd", 25, 16], ["useDHCP", 26, 16], ["firewall", 27, 16]]);
-const pos$7 = nix.positions(here + "/systemd-networkd-bridge.nix", [["systemd", 24, 5], ["networking", 25, 5]]);
+const $pos = nix.positions(here + "/systemd-networkd-bridge.nix", [[["SYSTEMD_LOG_LEVEL", 24, 51]], [["environment", 24, 39]], [["systemd-networkd", 24, 22]], [["services", 24, 13]], [["enable", 27, 25]], [["useNetworkd", 25, 16], ["useDHCP", 26, 16], ["firewall", 27, 16]], [["systemd", 24, 5], ["networking", 25, 5]], [["vlans", 43, 22]], [["Name", 48, 25]], [["matchConfig", 48, 13], ["address", 49, 13]], [["30-eth", 47, 11]], [["enable", 45, 9], ["networks", 46, 9]], [["network", 44, 15]], [["imports", 39, 7], ["virtualisation", 43, 7], ["systemd", 44, 7]], [["vlans", 68, 22]], [["Kind", 74, 15], ["Name", 75, 15]], [["STP", 77, 26]], [["netdevConfig", 73, 13], ["bridgeConfig", 77, 13]], [["40-br0", 72, 11]], [["Name", 82, 25]], [["Bridge", 83, 27]], [["matchConfig", 82, 13], ["networkConfig", 83, 13]], [["Name", 86, 25]], [["matchConfig", 86, 13]], [["30-eth", 81, 11], ["40-br0", 85, 11]], [["enable", 70, 9], ["netdevs", 71, 9], ["networks", 80, 9]], [["network", 69, 15]], [["imports", 64, 7], ["virtualisation", 68, 7], ["systemd", 69, 7]], [["maintainers", 96, 5]], [["octet", 100, 7], ["vlan", 101, 7]], [["octet", 104, 7], ["vlan", 105, 7]], [["octet", 108, 7], ["vlan", 109, 7]], [["node1", 99, 5], ["node2", 103, 5], ["node3", 107, 5], ["sw1", 111, 5], ["sw2", 116, 5], ["sw3", 121, 5]], [["name", 94, 3], ["meta", 95, 3], ["nodes", 98, 3], ["testScript", 127, 3]]]);
 const formals$1 = { args: { octet: false, vlan: false }, ellipsis: false };
 const formals$2 = { args: { lib: false, pkgs: false, config: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/systemd-networkd-bridge.nix", [["vlans", 43, 22]]);
-const pos$9 = nix.positions(here + "/systemd-networkd-bridge.nix", [["Name", 48, 25]]);
-const pos$10 = nix.positions(here + "/systemd-networkd-bridge.nix", [["matchConfig", 48, 13], ["address", 49, 13]]);
-const pos$11 = nix.positions(here + "/systemd-networkd-bridge.nix", [["30-eth", 47, 11]]);
-const pos$12 = nix.positions(here + "/systemd-networkd-bridge.nix", [["enable", 45, 9], ["networks", 46, 9]]);
-const pos$13 = nix.positions(here + "/systemd-networkd-bridge.nix", [["network", 44, 15]]);
-const pos$14 = nix.positions(here + "/systemd-networkd-bridge.nix", [["imports", 39, 7], ["virtualisation", 43, 7], ["systemd", 44, 7]]);
 const formals$3 = { args: { lib: false, pkgs: false, config: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/systemd-networkd-bridge.nix", [["vlans", 68, 22]]);
-const pos$16 = nix.positions(here + "/systemd-networkd-bridge.nix", [["Kind", 74, 15], ["Name", 75, 15]]);
-const pos$17 = nix.positions(here + "/systemd-networkd-bridge.nix", [["STP", 77, 26]]);
-const pos$18 = nix.positions(here + "/systemd-networkd-bridge.nix", [["netdevConfig", 73, 13], ["bridgeConfig", 77, 13]]);
-const pos$19 = nix.positions(here + "/systemd-networkd-bridge.nix", [["40-br0", 72, 11]]);
-const pos$20 = nix.positions(here + "/systemd-networkd-bridge.nix", [["Name", 82, 25]]);
-const pos$21 = nix.positions(here + "/systemd-networkd-bridge.nix", [["Bridge", 83, 27]]);
-const pos$22 = nix.positions(here + "/systemd-networkd-bridge.nix", [["matchConfig", 82, 13], ["networkConfig", 83, 13]]);
-const pos$23 = nix.positions(here + "/systemd-networkd-bridge.nix", [["Name", 86, 25]]);
-const pos$24 = nix.positions(here + "/systemd-networkd-bridge.nix", [["matchConfig", 86, 13]]);
-const pos$25 = nix.positions(here + "/systemd-networkd-bridge.nix", [["30-eth", 81, 11], ["40-br0", 85, 11]]);
-const pos$26 = nix.positions(here + "/systemd-networkd-bridge.nix", [["enable", 70, 9], ["netdevs", 71, 9], ["networks", 80, 9]]);
-const pos$27 = nix.positions(here + "/systemd-networkd-bridge.nix", [["network", 69, 15]]);
-const pos$28 = nix.positions(here + "/systemd-networkd-bridge.nix", [["imports", 64, 7], ["virtualisation", 68, 7], ["systemd", 69, 7]]);
 const formals$4 = { args: { pkgs: false }, ellipsis: true };
-const pos$29 = nix.positions(here + "/systemd-networkd-bridge.nix", [["maintainers", 96, 5]]);
-const pos$30 = nix.positions(here + "/systemd-networkd-bridge.nix", [["octet", 100, 7], ["vlan", 101, 7]]);
-const pos$31 = nix.positions(here + "/systemd-networkd-bridge.nix", [["octet", 104, 7], ["vlan", 105, 7]]);
-const pos$32 = nix.positions(here + "/systemd-networkd-bridge.nix", [["octet", 108, 7], ["vlan", 109, 7]]);
-const pos$33 = nix.positions(here + "/systemd-networkd-bridge.nix", [["node1", 99, 5], ["node2", 103, 5], ["node3", 107, 5], ["sw1", 111, 5], ["sw2", 116, 5], ["sw3", 121, 5]]);
-const pos$34 = nix.positions(here + "/systemd-networkd-bridge.nix", [["name", 94, 3], ["meta", 95, 3], ["nodes", 98, 3], ["testScript", 127, 3]]);
 
 export default nix.thunk(() => (() => {
   const commonConf = nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "systemd-networkd": nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          environment: nix.thunk(() => ({ [nix.POS]: pos$1, SYSTEMD_LOG_LEVEL: "debug" })),
+          [nix.POS]: $pos[1],
+          environment: nix.thunk(() => ({ [nix.POS]: $pos[0], SYSTEMD_LOG_LEVEL: "debug" })),
         })),
       })),
     })),
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       useNetworkd: true,
       useDHCP: false,
-      firewall: nix.thunk(() => ({ [nix.POS]: pos$5, enable: false })),
+      firewall: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: false })),
     })),
   }));
   const generateNodeConf = nix.lambda((args) => (() => {
@@ -71,19 +38,19 @@ export default nix.thunk(() => (() => {
       const pkgs = nix.arg($_1, "pkgs");
       const config = nix.arg($_1, "config");
       return {
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         imports: nix.thunk(() => [nix.path(here, "common/user-account.nix"), commonConf]),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, vlans: nix.thunk(() => [vlan]) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[7], vlans: nix.thunk(() => [vlan]) })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           network: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             enable: true,
             networks: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               "30-eth": nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                matchConfig: nix.thunk(() => ({ [nix.POS]: pos$9, Name: "eth1" })),
+                [nix.POS]: $pos[9],
+                matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[8], Name: "eth1" })),
                 address: nix.thunk(() => [nix.thunk(() => nix.str`10.0.0.${nix.builtins.toString(octet)}/24`)]),
               })),
             })),
@@ -98,32 +65,32 @@ export default nix.thunk(() => (() => {
     const pkgs = nix.arg($, "pkgs");
     const config = nix.arg($, "config");
     return {
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       imports: nix.thunk(() => [nix.path(here, "common/user-account.nix"), commonConf]),
-      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$15, vlans: vlans })),
+      virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[14], vlans: vlans })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         network: nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           enable: true,
           netdevs: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             "40-br0": nix.thunk(() => ({
-              [nix.POS]: pos$18,
-              netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$16, Kind: "bridge", Name: "br0" })),
-              bridgeConfig: nix.thunk(() => ({ [nix.POS]: pos$17, STP: "yes" })),
+              [nix.POS]: $pos[17],
+              netdevConfig: nix.thunk(() => ({ [nix.POS]: $pos[15], Kind: "bridge", Name: "br0" })),
+              bridgeConfig: nix.thunk(() => ({ [nix.POS]: $pos[16], STP: "yes" })),
             })),
           })),
           networks: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             "30-eth": nix.thunk(() => ({
-              [nix.POS]: pos$22,
-              matchConfig: nix.thunk(() => ({ [nix.POS]: pos$20, Name: "eth*" })),
-              networkConfig: nix.thunk(() => ({ [nix.POS]: pos$21, Bridge: "br0" })),
+              [nix.POS]: $pos[21],
+              matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[19], Name: "eth*" })),
+              networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[20], Bridge: "br0" })),
             })),
             "40-br0": nix.thunk(() => ({
-              [nix.POS]: pos$24,
-              matchConfig: nix.thunk(() => ({ [nix.POS]: pos$23, Name: "br0" })),
+              [nix.POS]: $pos[23],
+              matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[22], Name: "br0" })),
             })),
           })),
         })),
@@ -134,20 +101,20 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$4);
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       name: "networkd",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "picnoir"))]),
         };
       })()),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$33,
-        node1: nix.thunk(() => nix.app(generateNodeConf, nix.thunk(() => ({ [nix.POS]: pos$30, octet: 1n, vlan: 1n })))),
-        node2: nix.thunk(() => nix.app(generateNodeConf, nix.thunk(() => ({ [nix.POS]: pos$31, octet: 2n, vlan: 3n })))),
-        node3: nix.thunk(() => nix.app(generateNodeConf, nix.thunk(() => ({ [nix.POS]: pos$32, octet: 3n, vlan: 6n })))),
+        [nix.POS]: $pos[32],
+        node1: nix.thunk(() => nix.app(generateNodeConf, nix.thunk(() => ({ [nix.POS]: $pos[29], octet: 1n, vlan: 1n })))),
+        node2: nix.thunk(() => nix.app(generateNodeConf, nix.thunk(() => ({ [nix.POS]: $pos[30], octet: 2n, vlan: 3n })))),
+        node3: nix.thunk(() => nix.app(generateNodeConf, nix.thunk(() => ({ [nix.POS]: $pos[31], octet: 3n, vlan: 6n })))),
         sw1: nix.thunk(() => nix.app(generateSwitchConf, nix.thunk(() => [1n, 2n, 4n]))),
         sw2: nix.thunk(() => nix.app(generateSwitchConf, nix.thunk(() => [2n, 3n, 5n]))),
         sw3: nix.thunk(() => nix.app(generateSwitchConf, nix.thunk(() => [4n, 5n, 6n]))),

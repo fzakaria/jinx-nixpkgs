@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["preRebuild", 11, 7], ["postInstall", 15, 7]], [["patchNpmElm", 21, 11]]]);
 const formals$1 = { args: { writeScriptBin: false, stdenv: false, lib: false, elm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["preRebuild", 11, 7], ["postInstall", 15, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["patchNpmElm", 21, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const elm = nix.arg($, "elm");
   const patchNpmElm = (pkg) => nix.app(nix.sel(pkg, "override"), (old) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       preRebuild: nix.thunk(() => nix.add(nix.selOr(old, () => "", "preRebuild"), "rm node_modules/elm/install.js\necho \"console.log('Nixpkgs\\' version of Elm will be used');\" > node_modules/elm/install.js\n")),
       postInstall: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postInstall"), nix.str`ln -sf ${elm}/bin/elm node_modules/elm/bin/elm
 `)),
     }));
-  return { [nix.POS]: pos$2, patchNpmElm: patchNpmElm };
+  return { [nix.POS]: $pos[1], patchNpmElm: patchNpmElm };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["updateScript", 84, 12]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["maintainers", 90, 5], ["mainProgram", 94, 5], ["license", 95, 5], ["platforms", 96, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["proxyVendor", 29, 3], ["vendorHash", 30, 3], ["nativeBuildInputs", 32, 3], ["patches", 37, 3], ["postPatch", 39, 3], ["makeFlags", 49, 3], ["pythonPath", 51, 3], ["buildInputs", 53, 3], ["installPhase", 60, 3], ["postFixup", 69, 3], ["nativeInstallCheckInputs", 81, 3], ["doInstallCheck", 82, 3], ["passthru", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromSourcehut: false, ncurses: false, withNotmuch: true, notmuch: false, scdoc: false, python3Packages: false, w3m: false, dante: false, gawk: false, versionCheckHook: false, bashNonInteractive: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 84, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["maintainers", 90, 5], ["mainProgram", 94, 5], ["license", 95, 5], ["platforms", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["proxyVendor", 29, 3], ["vendorHash", 30, 3], ["nativeBuildInputs", 32, 3], ["patches", 37, 3], ["postPatch", 39, 3], ["makeFlags", 49, 3], ["pythonPath", 51, 3], ["buildInputs", 53, 3], ["installPhase", 60, 3], ["postFixup", 69, 3], ["nativeInstallCheckInputs", 81, 3], ["doInstallCheck", 82, 3], ["passthru", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "aerc",
       version: "0.22.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~rjarry",
           repo: "aerc",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,11 +59,11 @@ wrapProgram $out/libexec/aerc/filters/html \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Email client for your terminal",
         homepage: "https://aerc-mail.org/",
         changelog: nix.thunk(() => nix.str`https://git.sr.ht/~rjarry/aerc/tree/${nix.sel(finalAttrs, "version")}/item/CHANGELOG.md`),

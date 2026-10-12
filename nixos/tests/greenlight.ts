@@ -2,37 +2,31 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/greenlight.nix", [[["maintainers", 10, 5], ["teams", 11, 5]], [["RAILS_ENV", 20, 11], ["RAILS_DUMP_SCHEMA", 21, 11]], [["enable", 17, 9], ["settings", 19, 9]], [["greenlight", 16, 16]], [["services", 16, 7]], [["greenlight", 15, 5]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 14, 3], ["testScript", 27, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/greenlight.nix", [["maintainers", 10, 5], ["teams", 11, 5]]);
-const pos$2 = nix.positions(here + "/greenlight.nix", [["RAILS_ENV", 20, 11], ["RAILS_DUMP_SCHEMA", 21, 11]]);
-const pos$3 = nix.positions(here + "/greenlight.nix", [["enable", 17, 9], ["settings", 19, 9]]);
-const pos$4 = nix.positions(here + "/greenlight.nix", [["greenlight", 16, 16]]);
-const pos$5 = nix.positions(here + "/greenlight.nix", [["services", 16, 7]]);
-const pos$6 = nix.positions(here + "/greenlight.nix", [["greenlight", 15, 5]]);
-const pos$7 = nix.positions(here + "/greenlight.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 14, 3], ["testScript", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "greenlight",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       greenlight: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           greenlight: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$2, RAILS_ENV: "development", RAILS_DUMP_SCHEMA: false })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[1], RAILS_ENV: "development", RAILS_DUMP_SCHEMA: false })),
           })),
         })),
       })),

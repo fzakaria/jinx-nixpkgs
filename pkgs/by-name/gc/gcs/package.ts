@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["updateScript", 69, 12]], [["changelog", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["broken", 80, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["modPostBuild", 31, 3], ["vendorHash", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 40, 3], ["flags", 56, 3], ["ldflags", 57, 3], ["installPhase", 63, 3], ["passthru", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, "pkg-config": false, libGL: false, libx11: false, libxcursor: false, libxrandr: false, libxinerama: false, libxi: false, libxxf86vm: false, mupdf: false, fontconfig: false, freetype: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 69, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["broken", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["modPostBuild", 31, 3], ["vendorHash", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 40, 3], ["flags", 56, 3], ["ldflags", 57, 3], ["installPhase", 63, 3], ["passthru", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const freetype = nix.arg($, "freetype");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gcs",
       version: "5.42.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "richardwilkes",
           repo: "gcs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,11 +56,11 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\ninstall -Dm755 $GOPATH/bin/gcs -t $out/bin\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/richardwilkes/gcs/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Stand-alone, interactive, character sheet editor for the GURPS 4th Edition roleplaying game system",
         homepage: "https://gurpscharactersheet.com/",

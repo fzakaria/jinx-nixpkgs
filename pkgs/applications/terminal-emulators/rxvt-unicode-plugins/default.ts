@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["autocomplete-all-the-things", 4, 3], ["bidi", 6, 3], ["font-size", 8, 3], ["perl", 10, 3], ["perls", 12, 3], ["resize-font", 14, 3], ["tabbedex", 16, 3], ["theme-switch", 18, 3], ["vtwheel", 20, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["autocomplete-all-the-things", 4, 3], ["bidi", 6, 3], ["font-size", 8, 3], ["perl", 10, 3], ["perls", 12, 3], ["resize-font", 14, 3], ["tabbedex", 16, 3], ["theme-switch", 18, 3], ["vtwheel", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "autocomplete-all-the-things": nix.thunk(() => nix.app(callPackage, nix.path(here, "./urxvt-autocomplete-all-the-things"), nix.thunk(() => ({})))),
     bidi: nix.thunk(() => nix.app(callPackage, nix.path(here, "./urxvt-bidi"), nix.thunk(() => ({})))),
     "font-size": nix.thunk(() => nix.app(callPackage, nix.path(here, "./urxvt-font-size"), nix.thunk(() => ({})))),

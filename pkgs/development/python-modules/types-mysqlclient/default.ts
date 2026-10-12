@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 16, 13], ["pname", 17, 5], ["hash", 18, 5]], [["description", 28, 5], ["changelog", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["version", 11, 11], ["pname", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 21, 3], ["doCheck", 23, 3], ["pythonImportsCheck", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 16, 13], ["pname", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 28, 5], ["changelog", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 11, 11], ["pname", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 21, 3], ["doCheck", 23, 3], ["pythonImportsCheck", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const version = "2.3.0.20260923";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       pname: "types-mysqlclient",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "types_mysqlclient",
           hash: "sha256-+Fy8ikS2wUDiqARUb0bKPUezU3z/fDPId5iKI/cP/6Q=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["MySQLdb-stubs"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Typing stubs for mysqlclient",
         changelog: "https://github.com/typeshed-internal/stub_uploader/blob/main/data/changelogs/mysqlclient.md",
         homepage: "https://github.com/python/typeshed",

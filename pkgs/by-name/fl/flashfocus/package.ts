@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 19, 26], ["version", 19, 32], ["hash", 20, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["updateScript", 68, 12]], [["homepage", 71, 5], ["description", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["pythonRelaxDeps", 47, 3], ["propagatedBuildInputs", 53, 3], ["doCheck", 64, 3], ["pythonImportsCheck", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, fetchpatch: false, "netcat-openbsd": false, procps: false, bash: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 19, 26], ["version", 19, 32], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 68, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 71, 5], ["description", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["pythonRelaxDeps", 47, 3], ["propagatedBuildInputs", 53, 3], ["doCheck", 64, 3], ["pythonImportsCheck", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "flashfocus",
       version: "2.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-O6jRQ6e96b8CuumTD6TGELaz26No7WFZgGSnNSlqzuE=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "bump-marshmallow.patch",
             url: "https://github.com/fennerm/flashfocus/commit/0ed8616ad31c5e281be1a890ad9510323fa1b6c7.patch",
             hash: "sha256-A7PwvqPpi4koKD3d6SRHVV753hGd9wIf3/nT49f6qoY=",
@@ -65,11 +61,11 @@ substituteInPlace src/flashfocus/util.py \\
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["flashfocus"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/fennerm/flashfocus",
         description: "Simple focus animations for tiling window managers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

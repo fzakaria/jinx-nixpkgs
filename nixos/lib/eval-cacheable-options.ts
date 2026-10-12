@@ -2,18 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/eval-cacheable-options.nix", [[["lib", 16, 13], ["pkgs", 17, 5]], [["config", 20, 13], ["lib", 20, 20], ["pkgs", 21, 5]], [["check", 27, 13], ["args", 28, 13]], [["stateVersion", 29, 12]], [["_module", 27, 5], ["system", 29, 5]], [["config", 36, 15], ["pkgs", 36, 22], ["utils", 36, 27], ["class", 37, 7]], [["modules", 32, 5], ["specialArgs", 35, 5]], [["pkgs", 45, 72], ["lib", 45, 77]], [["nixosOptionsDoc", 44, 21]], [["lib", 42, 15], ["buildPackages", 44, 7]], [["pkgs", 41, 5], ["config", 47, 5], ["options", 48, 5], ["version", 49, 5], ["revision", 50, 5], ["prefix", 51, 5], ["extraSources", 52, 5]]]);
 const formals$1 = { args: { libPath: false, pkgsLibPath: false, nixosPath: false, modules: false, stateVersion: false, release: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/eval-cacheable-options.nix", [["lib", 16, 13], ["pkgs", 17, 5]]);
-const pos$2 = nix.positions(here + "/eval-cacheable-options.nix", [["config", 20, 13], ["lib", 20, 20], ["pkgs", 21, 5]]);
-const pos$3 = nix.positions(here + "/eval-cacheable-options.nix", [["check", 27, 13], ["args", 28, 13]]);
-const pos$4 = nix.positions(here + "/eval-cacheable-options.nix", [["stateVersion", 29, 12]]);
-const pos$5 = nix.positions(here + "/eval-cacheable-options.nix", [["_module", 27, 5], ["system", 29, 5]]);
-const pos$6 = nix.positions(here + "/eval-cacheable-options.nix", [["config", 36, 15], ["pkgs", 36, 22], ["utils", 36, 27], ["class", 37, 7]]);
-const pos$7 = nix.positions(here + "/eval-cacheable-options.nix", [["modules", 32, 5], ["specialArgs", 35, 5]]);
-const pos$8 = nix.positions(here + "/eval-cacheable-options.nix", [["pkgs", 45, 72], ["lib", 45, 77]]);
-const pos$9 = nix.positions(here + "/eval-cacheable-options.nix", [["nixosOptionsDoc", 44, 21]]);
-const pos$10 = nix.positions(here + "/eval-cacheable-options.nix", [["lib", 42, 15], ["buildPackages", 44, 7]]);
-const pos$11 = nix.positions(here + "/eval-cacheable-options.nix", [["pkgs", 41, 5], ["config", 47, 5], ["options", 48, 5], ["version", 49, 5], ["revision", 50, 5], ["prefix", 51, 5], ["extraSources", 52, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,26 +15,26 @@ export default nix.lambda((args) => (() => {
   const release = nix.arg($, "release");
   const lib = nix.thunk(() => nix.builtins.import(libPath));
   const modulesPath = nix.thunk(() => nix.str`${nixosPath}/modules`);
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(pkgsLibPath), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, pkgs: null }))));
-  const utils = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${nixosPath}/lib/utils.nix`)), nix.thunk(() => ({ [nix.POS]: pos$2, config: config, lib: lib, pkgs: null }))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(pkgsLibPath), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, pkgs: null }))));
+  const utils = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${nixosPath}/lib/utils.nix`)), nix.thunk(() => ({ [nix.POS]: $pos[1], config: config, lib: lib, pkgs: null }))));
   const config = nix.thunk(() => ({
-    [nix.POS]: pos$5,
-    _module: nix.thunk(() => ({ [nix.POS]: pos$3, check: false, args: nix.thunk(() => ({})) })),
-    system: nix.thunk(() => ({ [nix.POS]: pos$4, stateVersion: stateVersion })),
+    [nix.POS]: $pos[4],
+    _module: nix.thunk(() => ({ [nix.POS]: $pos[2], check: false, args: nix.thunk(() => ({})) })),
+    system: nix.thunk(() => ({ [nix.POS]: $pos[3], stateVersion: stateVersion })),
   }));
   const eval$ = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       modules: nix.thunk(() => nix.concat(nix.builtins.map((m) => nix.str`${modulesPath}/${m}`, modules), [config])),
-      specialArgs: nix.thunk(() => ({ [nix.POS]: pos$6, config: config, pkgs: pkgs, utils: utils, class: "nixos" })),
+      specialArgs: nix.thunk(() => ({ [nix.POS]: $pos[5], config: config, pkgs: pkgs, utils: utils, class: "nixos" })),
     }))));
   const docs = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${nixosPath}/doc/manual`)), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pkgs: nix.thunk(() => nix.update(pkgs, {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         lib: lib,
         buildPackages: nix.thunk(() => ({
-          [nix.POS]: pos$9,
-          nixosOptionsDoc: (attrs) => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${nixosPath}/lib/make-options-doc`)), nix.thunk(() => nix.update({ [nix.POS]: pos$8, pkgs: pkgs, lib: lib }, attrs))),
+          [nix.POS]: $pos[8],
+          nixosOptionsDoc: (attrs) => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${nixosPath}/lib/make-options-doc`)), nix.thunk(() => nix.update({ [nix.POS]: $pos[7], pkgs: pkgs, lib: lib }, attrs))),
         })),
       })),
       config: nix.thunk(() => nix.sel(config, "config")),

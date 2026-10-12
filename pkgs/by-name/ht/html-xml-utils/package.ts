@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, curl: false, gperf: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gperf = nix.arg($, "gperf");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "html-xml-utils",
       version: "8.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.w3.org/Tools/HTML-XML-utils/html-xml-utils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-iIoxYxp6cDCLsvMz4HfQQW9Lt4MX+Gl/+0qVGH9ncwE=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gperf]),
       buildInputs: nix.thunk(() => [curl, libiconv]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utilities for manipulating HTML and XML files",
         homepage: "https://www.w3.org/Tools/HTML-XML-utils/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "w3c")),

@@ -2,60 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["x86_64-linux", 19, 5], ["aarch64-linux", 20, 5], ["aarch64-darwin", 21, 5], ["riscv32-linux", 22, 5], ["riscv64-linux", 23, 5]], [["url", 31, 5], ["hash", 32, 5]], [["case", 45, 37], ["out", 45, 42]], [["hash", 58, 13]], [["hash", 59, 13]], [["hash", 60, 14]], [["hash", 61, 14]], [["hash", 62, 14]], [["hash", 63, 14]], [["hash", 64, 16]], [["hash", 65, 14]], [["hash", 66, 14]], [["hash", 67, 14]], [["hash", 68, 14]], [["hash", 69, 14]], [["3.8", 58, 7], ["3.9", 59, 7], ["3.10", 60, 7], ["3.11", 61, 7], ["3.12", 62, 7], ["3.13", 63, 7], ["3.13.1", 64, 7], ["3.14", 65, 7], ["3.15", 66, 7], ["3.16", 67, 7], ["3.17", 68, 7], ["3.18", 69, 7]], [["description", 134, 7], ["homepage", 135, 7], ["license", 136, 7], ["platforms", 137, 7], ["maintainers", 138, 7]], [["pname", 37, 5], ["owner", 38, 5], ["version", 40, 13], ["releaseRev", 41, 5], ["defaultVersion", 43, 5], ["release", 57, 5], ["strictDeps", 72, 5], ["nativeBuildInputs", 74, 5], ["buildInputs", 82, 5], ["propagatedBuildInputs", 83, 5], ["postPatch", 88, 5], ["configurePhase", 94, 5], ["installTargets", 104, 5], ["installFlags", 105, 5], ["preInstall", 106, 5], ["postInstall", 110, 5], ["outputs", 126, 5], ["meta", 133, 5]], [["url", 158, 17], ["hash", 159, 17]], [["url", 163, 17], ["hash", 164, 17]], [["url", 168, 17], ["hash", 169, 17]], [["url", 173, 17], ["hash", 174, 17]], [["url", 178, 17], ["hash", 179, 17]], [["cases", 151, 13], ["out", 155, 13]], [["url", 191, 17], ["hash", 192, 17]], [["url", 196, 17], ["hash", 197, 17]], [["url", 201, 17], ["hash", 202, 17]], [["url", 206, 17], ["hash", 207, 17]], [["cases", 184, 13], ["out", 188, 13]], [["url", 219, 17], ["hash", 220, 17]], [["url", 224, 17], ["hash", 225, 17]], [["cases", 212, 13], ["out", 216, 13]], [["cases", 230, 13], ["out", 234, 13]], [["url", 247, 17], ["hash", 248, 17]], [["url", 252, 17], ["hash", 253, 17]], [["url", 257, 17], ["hash", 258, 17]], [["url", 262, 17], ["hash", 263, 17]], [["url", 267, 17], ["hash", 268, 17]], [["cases", 240, 13], ["out", 244, 13]], [["url", 282, 17], ["hash", 283, 17]], [["url", 287, 17], ["hash", 288, 17]], [["url", 292, 17], ["hash", 293, 17]], [["cases", 275, 13], ["out", 279, 13]], [["url", 305, 17], ["hash", 306, 17]], [["cases", 298, 13], ["out", 302, 13]], [["url", 320, 17], ["hash", 321, 17]], [["cases", 313, 13], ["out", 317, 13]], [["url", 333, 17], ["hash", 334, 17]], [["cases", 326, 13], ["out", 330, 13]], [["url", 346, 17], ["hash", 347, 17]], [["cases", 339, 13], ["out", 343, 13]], [["patches", 146, 5]], [["configurePhase", 358, 5]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, flocq: false, MenhirLib: false, fetchpatch: false, makeWrapper: false, coq2html: false, stdenv: false, tools: true, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["x86_64-linux", 19, 5], ["aarch64-linux", 20, 5], ["aarch64-darwin", 21, 5], ["riscv32-linux", 22, 5], ["riscv64-linux", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["case", 45, 37], ["out", 45, 42]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 58, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 59, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 60, 14]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 61, 14]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hash", 62, 14]]);
-const pos$9 = nix.positions(here + "/default.nix", [["hash", 63, 14]]);
-const pos$10 = nix.positions(here + "/default.nix", [["hash", 64, 16]]);
-const pos$11 = nix.positions(here + "/default.nix", [["hash", 65, 14]]);
-const pos$12 = nix.positions(here + "/default.nix", [["hash", 66, 14]]);
-const pos$13 = nix.positions(here + "/default.nix", [["hash", 67, 14]]);
-const pos$14 = nix.positions(here + "/default.nix", [["hash", 68, 14]]);
-const pos$15 = nix.positions(here + "/default.nix", [["hash", 69, 14]]);
-const pos$16 = nix.positions(here + "/default.nix", [["3.8", 58, 7], ["3.9", 59, 7], ["3.10", 60, 7], ["3.11", 61, 7], ["3.12", 62, 7], ["3.13", 63, 7], ["3.13.1", 64, 7], ["3.14", 65, 7], ["3.15", 66, 7], ["3.16", 67, 7], ["3.17", 68, 7], ["3.18", 69, 7]]);
-const pos$17 = nix.positions(here + "/default.nix", [["description", 134, 7], ["homepage", 135, 7], ["license", 136, 7], ["platforms", 137, 7], ["maintainers", 138, 7]]);
-const pos$18 = nix.positions(here + "/default.nix", [["pname", 37, 5], ["owner", 38, 5], ["version", 40, 13], ["releaseRev", 41, 5], ["defaultVersion", 43, 5], ["release", 57, 5], ["strictDeps", 72, 5], ["nativeBuildInputs", 74, 5], ["buildInputs", 82, 5], ["propagatedBuildInputs", 83, 5], ["postPatch", 88, 5], ["configurePhase", 94, 5], ["installTargets", 104, 5], ["installFlags", 105, 5], ["preInstall", 106, 5], ["postInstall", 110, 5], ["outputs", 126, 5], ["meta", 133, 5]]);
-const pos$19 = nix.positions(here + "/default.nix", [["url", 158, 17], ["hash", 159, 17]]);
-const pos$20 = nix.positions(here + "/default.nix", [["url", 163, 17], ["hash", 164, 17]]);
-const pos$21 = nix.positions(here + "/default.nix", [["url", 168, 17], ["hash", 169, 17]]);
-const pos$22 = nix.positions(here + "/default.nix", [["url", 173, 17], ["hash", 174, 17]]);
-const pos$23 = nix.positions(here + "/default.nix", [["url", 178, 17], ["hash", 179, 17]]);
-const pos$24 = nix.positions(here + "/default.nix", [["cases", 151, 13], ["out", 155, 13]]);
-const pos$25 = nix.positions(here + "/default.nix", [["url", 191, 17], ["hash", 192, 17]]);
-const pos$26 = nix.positions(here + "/default.nix", [["url", 196, 17], ["hash", 197, 17]]);
-const pos$27 = nix.positions(here + "/default.nix", [["url", 201, 17], ["hash", 202, 17]]);
-const pos$28 = nix.positions(here + "/default.nix", [["url", 206, 17], ["hash", 207, 17]]);
-const pos$29 = nix.positions(here + "/default.nix", [["cases", 184, 13], ["out", 188, 13]]);
-const pos$30 = nix.positions(here + "/default.nix", [["url", 219, 17], ["hash", 220, 17]]);
-const pos$31 = nix.positions(here + "/default.nix", [["url", 224, 17], ["hash", 225, 17]]);
-const pos$32 = nix.positions(here + "/default.nix", [["cases", 212, 13], ["out", 216, 13]]);
-const pos$33 = nix.positions(here + "/default.nix", [["cases", 230, 13], ["out", 234, 13]]);
-const pos$34 = nix.positions(here + "/default.nix", [["url", 247, 17], ["hash", 248, 17]]);
-const pos$35 = nix.positions(here + "/default.nix", [["url", 252, 17], ["hash", 253, 17]]);
-const pos$36 = nix.positions(here + "/default.nix", [["url", 257, 17], ["hash", 258, 17]]);
-const pos$37 = nix.positions(here + "/default.nix", [["url", 262, 17], ["hash", 263, 17]]);
-const pos$38 = nix.positions(here + "/default.nix", [["url", 267, 17], ["hash", 268, 17]]);
-const pos$39 = nix.positions(here + "/default.nix", [["cases", 240, 13], ["out", 244, 13]]);
-const pos$40 = nix.positions(here + "/default.nix", [["url", 282, 17], ["hash", 283, 17]]);
-const pos$41 = nix.positions(here + "/default.nix", [["url", 287, 17], ["hash", 288, 17]]);
-const pos$42 = nix.positions(here + "/default.nix", [["url", 292, 17], ["hash", 293, 17]]);
-const pos$43 = nix.positions(here + "/default.nix", [["cases", 275, 13], ["out", 279, 13]]);
-const pos$44 = nix.positions(here + "/default.nix", [["url", 305, 17], ["hash", 306, 17]]);
-const pos$45 = nix.positions(here + "/default.nix", [["cases", 298, 13], ["out", 302, 13]]);
-const pos$46 = nix.positions(here + "/default.nix", [["url", 320, 17], ["hash", 321, 17]]);
-const pos$47 = nix.positions(here + "/default.nix", [["cases", 313, 13], ["out", 317, 13]]);
-const pos$48 = nix.positions(here + "/default.nix", [["url", 333, 17], ["hash", 334, 17]]);
-const pos$49 = nix.positions(here + "/default.nix", [["cases", 326, 13], ["out", 330, 13]]);
-const pos$50 = nix.positions(here + "/default.nix", [["url", 346, 17], ["hash", 347, 17]]);
-const pos$51 = nix.positions(here + "/default.nix", [["cases", 339, 13], ["out", 343, 13]]);
-const pos$52 = nix.positions(here + "/default.nix", [["patches", 146, 5]]);
-const pos$53 = nix.positions(here + "/default.nix", [["configurePhase", 358, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -71,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const tools = nix.argOr($, "tools", () => nix.sel(stdenv, "cc"));
   const version = nix.argOr($, "version", () => null);
   const targets = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "x86_64-linux",
     "aarch64-linux": "aarch64-linux",
     "aarch64-darwin": "aarch64-macos",
@@ -80,18 +28,18 @@ export default nix.lambda((args) => (() => {
   }));
   const target = nix.thunk(() => nix.selOr(targets, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const menhir_20260203 = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://github.com/AbsInt/CompCert/commit/5fd8013305ecf6fa7cd2ea5a0a6fa3ebb2bc31c5.patch",
       hash: "sha256-0bDqGSkvJM/rdCoFa6if/pJLJ4gYx2Bkld9wJaQDQOU=",
     }))));
   const compcert = nix.thunk(() => nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       pname: "compcert",
       owner: "AbsInt",
       version: version,
       releaseRev: (v) => nix.str`v${v}`,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$3, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[2], case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.15", "9.2")), "3.18")),
@@ -103,53 +51,53 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         "3.8": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256:1gzlyxvw64ca12qql3wnq3bidcx9ygsklv9grjma3ib4hvg7vnr7",
         })),
         "3.9": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256:1srcz2dqrvmbvv5cl66r34zqkm0hsbryk7gd3i9xx4slahc9zvdb",
         })),
         "3.10": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256:19rmx8r8v46101ij5myfrz60arqjy7q3ra3fb8mxqqi3c8c4l4j6",
         })),
         "3.11": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256-ZISs/ZAJVWtxp9+Sg5qV5Rss1gI9hK769GnBfawLa6A=",
         })),
         "3.12": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           hash: "sha256-hXkQ8UnAx3k50OJGBmSm4hgrnRFCosu4+PEMrcKfmV0=",
         })),
         "3.13": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           hash: "sha256-ZedxgEPr1ZgKIcyhQ6zD1l2xr6RDNNUYq/4ZyR6ojM4=",
         })),
         "3.13.1": nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           hash: "sha256-ldXbuzVB0Z+UVTd5S4yGSg6oRYiKbXLMmUZcQsJLcns=",
         })),
         "3.14": nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           hash: "sha256-QXJMpp/BaPiK5okHeo2rcmXENToXKjB51UqljMHTDgw=",
         })),
         "3.15": nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           hash: "sha256-QFTueGZd0hAWUj+c5GZL/AyNpfN4FuJiIzCICmwRXJ8=",
         })),
         "3.16": nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           hash: "sha256-Ep8bcSFs3Cu+lV5qgo89JJU2vh4TTq66Or0c4evo3gM=",
         })),
         "3.17": nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           hash: "sha256-RRc39FUe2sHQdO/ybwA3B7o31qfxcUkgah6I20i0ElE=",
         })),
         "3.18": nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           hash: "sha256-WadkhdtAgh+Tz8RxHT7NEV8RMeBBXxzJ1pLQPs94vfo=",
         })),
       })),
@@ -185,7 +133,7 @@ ${target} \\
       postInstall: "# move man into place\nmv $out/share/man/ $man/share/\n\n# move docs into place\nmkdir -p $doc/share/doc/compcert\nmv doc/html $doc/share/doc/compcert/\n\n# wrap ccomp to undefine _FORTIFY_SOURCE; ccomp invokes cc1 which sets\n# _FORTIFY_SOURCE=2 by default, but undefines __GNUC__ (as it should),\n# which causes a warning in libc. this suppresses it.\nfor x in ccomp clightgen; do\n  wrapProgram $out/bin/$x --add-flags \"-U_FORTIFY_SOURCE\"\ndone\n",
       outputs: nix.thunk(() => ["out", "lib", "doc", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         description: "Formally verified C compiler",
         homepage: "https://compcert.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "inria-compcert")),
@@ -201,7 +149,7 @@ ${target} \\
       })),
     }))));
   const patched_compcert = nix.thunk(() => nix.app(nix.sel(compcert, "overrideAttrs"), (o) => ({
-      [nix.POS]: pos$52,
+      [nix.POS]: $pos[51],
       patches: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
@@ -209,83 +157,83 @@ ${target} \\
             nix.thunk(() => nix.sel(o, "version")),
           ]), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               cases: nix.thunk(() => [nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.12.2", "8.13.2")), "3.8"]),
               out: nix.thunk(() => [
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     url: "https://github.com/AbsInt/CompCert/commit/06956421b4307054af221c118c5f59593c0e67b9.patch",
                     hash: "sha256:1f90q6j3xfvnf3z830bkd4d8526issvmdlrjlc95bfsqs78i1yrl",
                   })))),
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     url: "https://github.com/AbsInt/CompCert/commit/0895388e7ebf9c9f3176d225107e21968919fb97.patch",
                     hash: "sha256:0qhkzgb2xl5kxys81pldp3mr39gd30lvr2l2wmplij319vp3xavd",
                   })))),
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$21,
+                    [nix.POS]: $pos[20],
                     url: "https://github.com/AbsInt/CompCert/commit/6bf310dd678285dc193798e89fc2c441d8430892.patch",
                     hash: "sha256:026ahhvpj5pksy90f8pnxgmhgwfqk4kwyvcf8x3dsanvz98d4pj5",
                   })))),
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$22,
+                    [nix.POS]: $pos[21],
                     url: "https://github.com/AbsInt/CompCert/commit/7563a5df926a4c6fb1489a7a4c847641c8a35095.patch",
                     hash: "sha256:05vkslzy399r3dm6dmjs722rrajnyfa30xsyy3djl52isvn4gyfb",
                   })))),
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     url: "https://github.com/AbsInt/CompCert/commit/48bc183167c4ce01a5c9ea86e49d60530adf7290.patch",
                     hash: "sha256:0j62lppfk26d1brdp3qwll2wi4gvpx1k70qivpvby5f7dpkrkax1",
                   })))),
               ]),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               cases: nix.thunk(() => [nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.14", "8.15")), "3.10"]),
               out: nix.thunk(() => [
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$25,
+                    [nix.POS]: $pos[24],
                     url: "https://github.com/AbsInt/CompCert/commit/a79f0f99831aa0b0742bf7cce459cc9353bd7cd0.patch",
                     hash: "sha256:0g20x8gfzvplpad9y9vr1p33k6qv6rsp691x6687v9ffvz7zsz94",
                   })))),
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$26,
+                    [nix.POS]: $pos[25],
                     url: "https://github.com/AbsInt/CompCert/commit/a882f78c069f7337dd9f4abff117d4df98ef38a6.patch",
                     hash: "sha256:16i87s608fj9ni7cvd5wrd7gicqniad7w78wi26pxdy0pacl7bjg",
                   })))),
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$27,
+                    [nix.POS]: $pos[26],
                     url: "https://github.com/AbsInt/CompCert/commit/10a976994d7fd30d143354c289ae735d210ccc09.patch",
                     hash: "sha256:0bg58gpkgxlmxzp6sg0dvybrfk0pxnm7qd6vxlrbsbm2w6wk03jv",
                   })))),
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$28,
+                    [nix.POS]: $pos[27],
                     url: "https://github.com/AbsInt/CompCert/commit/283a5be7296c4c0a94d863b427c77007ab875733.patch",
                     hash: "sha256:1s7hvb5ii3p8kkcjlzwldvk8xc3iiibxi9935qjbrh25xi6qs66k",
                   })))),
               ]),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.16")),
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "3.11", "3.12")),
               ]),
               out: nix.thunk(() => [
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$30,
+                    [nix.POS]: $pos[29],
                     url: "https://github.com/AbsInt/CompCert/commit/34be08a23d18d56f2dde24fd24b6dbe3bcb01ec3.patch",
                     hash: "sha256-a5YnftGVadVypEqrOYRRxI7YtGOEWyKnO4GqakFhvzI=",
                   })))),
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$31,
+                    [nix.POS]: $pos[30],
                     url: "https://github.com/AbsInt/CompCert/commit/35531503b3493cb9b0ec8a8585e84928c85b4af9.patch",
                     hash: "sha256-DvtYi/eiPUe8tA0EFTcCjJA0JjtVKceUsX4ZDM0pWkE=",
                   })))),
               ]),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$33,
+              [nix.POS]: $pos[32],
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.15", "8.16")),
                 nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "3.13")),
@@ -293,34 +241,34 @@ ${target} \\
               out: nix.thunk(() => [menhir_20260203]),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$39,
+              [nix.POS]: $pos[38],
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.17", "8.19")),
                 nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "3.13")),
               ]),
               out: nix.thunk(() => [
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$34,
+                    [nix.POS]: $pos[33],
                     url: "https://github.com/AbsInt/CompCert/commit/2e04d986bdae578186e40330842878559a550402.patch",
                     hash: "sha256-2ZRAjUUSScJI8ogWFTnukCUnJdLWGvyOPyfIVlHL4ig=",
                   })))),
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$35,
+                    [nix.POS]: $pos[34],
                     url: "https://github.com/AbsInt/CompCert/commit/28218c5663cba36c6078ca342335d4e55c412bd7.patch",
                     hash: "sha256-aAatUMO26oZwFYGh1BXYWxbTuyOgU8BAKMGDS5796hM=",
                   })))),
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$36,
+                    [nix.POS]: $pos[35],
                     url: "https://github.com/AbsInt/CompCert/commit/9f3d7b6eb99377ad4689cd57563c484c57baa457.patch",
                     hash: "sha256-paofdSBxP/JFoBSiO1OI+mjKRI3UCanXRh/drzYt93E=",
                   })))),
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$37,
+                    [nix.POS]: $pos[36],
                     url: "https://github.com/AbsInt/CompCert/commit/a2e4ed62fc558d565366845f9d135bd7db5e23c4.patch",
                     hash: "sha256-ufk0bokuayLfkSvK3cK4E9iXU5eZpp9d/ETSa/zCfMg=",
                   })))),
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$38,
+                    [nix.POS]: $pos[37],
                     url: "https://github.com/AbsInt/CompCert/commit/8fcfb7d2a6e9ba44003ccab0dfcc894982779af1.patch",
                     hash: "sha256-m/kcnDBBPWFriipuGvKZUqLQU8/W1uqw8j4qfCwnTZk=",
                   })))),
@@ -328,38 +276,38 @@ ${target} \\
               ]),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$43,
+              [nix.POS]: $pos[42],
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.19", "8.20")),
                 nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "3.14")),
               ]),
               out: nix.thunk(() => [
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$40,
+                    [nix.POS]: $pos[39],
                     url: "https://github.com/AbsInt/CompCert/commit/8fcfb7d2a6e9ba44003ccab0dfcc894982779af1.patch",
                     hash: "sha256-m/kcnDBBPWFriipuGvKZUqLQU8/W1uqw8j4qfCwnTZk=",
                   })))),
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$41,
+                    [nix.POS]: $pos[40],
                     url: "https://github.com/AbsInt/CompCert/commit/20a5b48758bf8ac18e4c420df67017b371efc237.patch",
                     hash: "sha256-TJ87CvLiAv1absGnPsTXsD/HQwKgS82loUTcosulyso=",
                   })))),
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$42,
+                    [nix.POS]: $pos[41],
                     url: "https://github.com/AbsInt/CompCert/commit/e6c9a2d068ae67923bbc7c6b7035b6afde6ece3c.patch",
                     hash: "sha256-PtiEkG/aLRotIiqrmc6SQncQSi7IGSC5QX3e52xkOUQ=",
                   })))),
               ]),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$45,
+              [nix.POS]: $pos[44],
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.19", "8.20")),
                 nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "3.15")),
               ]),
               out: nix.thunk(() => [
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$44,
+                    [nix.POS]: $pos[43],
                     url: "https://github.com/AbsInt/CompCert/commit/e524b0a19ae5140f64047b1cba6ebbe1d16d5bbf.patch",
                     hash: "sha256-24kt0hA75ooyXymH+kNS5VlsuXMHbkqTw4m+BzNUwrw=",
                   })))),
@@ -367,39 +315,39 @@ ${target} \\
               ]),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$47,
+              [nix.POS]: $pos[46],
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "9.0")),
                 nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "3.16")),
               ]),
               out: nix.thunk(() => [
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$46,
+                    [nix.POS]: $pos[45],
                     url: "https://github.com/AbsInt/CompCert/commit/a962ef9da0fb4ef2a4314ccedd111eb248e42cf2.patch",
                     hash: "sha256-ipYqcfcgz3cKyI1NGSgfOgiVdV1WUwlv6DVB1S1hJvw=",
                   })))),
               ]),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$49,
+              [nix.POS]: $pos[48],
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "isGe"), "9.0")),
                 nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "3.17")),
               ]),
               out: nix.thunk(() => [
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$48,
+                    [nix.POS]: $pos[47],
                     url: "https://github.com/AbsInt/CompCert/commit/6e5d40fb028d787249cd897fe4a1b96420addb8b.patch",
                     hash: "sha256-YBDsvhfup1IMc5GcW7BdsHUKGCv3A1eGIeb4Wal4x7A=",
                   })))),
               ]),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$51,
+              [nix.POS]: $pos[50],
               cases: nix.thunk(() => [(_) => true, nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "3.18"))]),
               out: nix.thunk(() => [
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$50,
+                    [nix.POS]: $pos[49],
                     url: "https://github.com/AbsInt/CompCert/commit/8135de0cc006f094e4a96aff9bb76cf716c9065a.patch",
                     hash: "sha256-vqbS7rMjO2+vrBhvG+JGCHpsGZyrBoAYS+JOaXdcnMg=",
                   })))),
@@ -409,7 +357,7 @@ ${target} \\
       })()),
     })));
   return nix.app(nix.sel(patched_compcert, "overrideAttrs"), (o) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(coq, "version"), null)) && nix.asBool(nix.eq(nix.sel(coq, "version"), "dev")))), nix.thunk(() => ({
-        [nix.POS]: pos$53,
+        [nix.POS]: $pos[52],
         configurePhase: nix.thunk(() => nix.str`${nix.sel(o, "configurePhase")} \\
   -ignore-ocaml-version \\
   -ignore-coq-version

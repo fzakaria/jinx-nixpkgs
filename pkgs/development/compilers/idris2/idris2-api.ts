@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/idris2-api.nix", [[["description", 14, 7], ["homepage", 15, 7], ["license", 16, 7], ["maintainers", 17, 7], ["platforms", 18, 29]], [["src", 5, 32], ["version", 5, 36], ["ipkgName", 6, 5], ["idrisLibraries", 7, 5], ["preBuild", 8, 5], ["meta", 13, 5]]]);
 const formals$1 = { args: { lib: false, idris2Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/idris2-api.nix", [["description", 14, 7], ["homepage", 15, 7], ["license", 16, 7], ["maintainers", 17, 7], ["platforms", 18, 29]]);
-const pos$2 = nix.positions(here + "/idris2-api.nix", [["src", 5, 32], ["version", 5, 36], ["ipkgName", 6, 5], ["idrisLibraries", 7, 5], ["preBuild", 8, 5], ["meta", 13, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const apiPkg = nix.thunk(() => nix.app(buildIdris, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(idris2, "unwrapped"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.attr(from, "src")),
       version: nix.thunk(() => nix.attr(from, "version")),
       ipkgName: "idris2api",
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(idris2, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Idris2 Compiler API Library",
         homepage: "https://github.com/idris-lang/Idris2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["KERN_DIR", 19, 7]], [["description", 27, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["hardeningDisable", 11, 3], ["nativeBuildInputs", 17, 3], ["env", 19, 3], ["makeFlags", 21, 3], ["installTargets", 22, 3], ["enableParallelBuilding", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { stdenv: false, virtualbox: false, kernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["KERN_DIR", 19, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["hardeningDisable", 11, 3], ["nativeBuildInputs", 17, 3], ["env", 19, 3], ["makeFlags", 21, 3], ["installTargets", 22, 3], ["enableParallelBuilding", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,21 +11,21 @@ export default nix.lambda((args) => (() => {
   const virtualbox = nix.arg($, "virtualbox");
   const kernel = nix.arg($, "kernel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "virtualbox-modules",
       version: nix.thunk(() => nix.str`${nix.sel(virtualbox, "version")}-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.sel(virtualbox, "modsrc")),
       hardeningDisable: nix.thunk(() => ["fortify", "pic", "stackprotector"]),
       nativeBuildInputs: nix.thunk(() => nix.sel(kernel, "moduleBuildDependencies")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         KERN_DIR: nix.thunk(() => nix.str`${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`),
       })),
       makeFlags: nix.thunk(() => ["INSTALL_MOD_PATH=$(out)"]),
       installTargets: nix.thunk(() => ["install"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => nix.update(nix.sel(virtualbox, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.add(nix.sel(virtualbox, "meta", "description"), " (kernel modules)")),
       })),
     })));

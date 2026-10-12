@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]], [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]], [["yarnLock", 67, 5], ["hash", 68, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 70, 7]], [["version", 106, 9]], [["name", 113, 7], ["desktopName", 114, 7], ["exec", 115, 7], ["icon", 116, 7], ["categories", 117, 7], ["comment", 121, 7], ["mimeTypes", 122, 7]], [["withBlas", 135, 7]], [["fftwLib", 145, 11], ["fftwDev", 146, 11], ["flint", 147, 11]], [["RUSTC_BOOTSTRAP", 163, 9], ["RUSTFLAGS", 164, 9]], [["broken", 187, 9], ["mainProgram", 188, 9]], [["pname", 139, 7], ["version", 140, 28], ["src", 140, 36], ["patches", 142, 7], ["nativeBuildInputs", 151, 7], ["buildInputs", 156, 7], ["cargoHash", 160, 7], ["env", 162, 7], ["preCheck", 170, 7], ["checkFlags", 175, 7], ["meta", 184, 7]], [["updateScript", 130, 5], ["fftwFloatStatic", 133, 5], ["flintStatic", 134, 5], ["graph", 138, 5]], [["description", 194, 5], ["homepage", 195, 5], ["changelog", 196, 5], ["downloadPage", 197, 5], ["license", 198, 5], ["maintainers", 199, 5], ["mainProgram", 200, 5]], [["pname", 25, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["nativeBuildInputs", 56, 3], ["yarnOfflineCache", 66, 3], ["env", 70, 3], ["preBuild", 72, 3], ["yarnBuildScript", 76, 3], ["checkPhase", 78, 3], ["postInstall", 86, 3], ["desktopItems", 111, 3], ["passthru", 129, 3], ["meta", 193, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, fetchpatch: false, fetchYarnDeps: false, yarnConfigHook: false, yarnBuildHook: false, yarnInstallHook: false, replaceVars: false, copyDesktopItems: false, makeDesktopItem: false, makeBinaryWrapper: false, "nix-update-script": false, nodejs: false, electron: false, gnum4: false, pkgsStatic: false, blas: false, darwin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["yarnLock", 67, 5], ["hash", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 70, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 106, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 113, 7], ["desktopName", 114, 7], ["exec", 115, 7], ["icon", 116, 7], ["categories", 117, 7], ["comment", 121, 7], ["mimeTypes", 122, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["withBlas", 135, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["fftwLib", 145, 11], ["fftwDev", 146, 11], ["flint", 147, 11]]);
-const pos$10 = nix.positions(here + "/package.nix", [["RUSTC_BOOTSTRAP", 163, 9], ["RUSTFLAGS", 164, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["broken", 187, 9], ["mainProgram", 188, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 139, 7], ["version", 140, 28], ["src", 140, 36], ["patches", 142, 7], ["nativeBuildInputs", 151, 7], ["buildInputs", 156, 7], ["cargoHash", 160, 7], ["env", 162, 7], ["preCheck", 170, 7], ["checkFlags", 175, 7], ["meta", 184, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["updateScript", 130, 5], ["fftwFloatStatic", 133, 5], ["flintStatic", 134, 5], ["graph", 138, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["description", 194, 5], ["homepage", 195, 5], ["changelog", 196, 5], ["downloadPage", 197, 5], ["license", 198, 5], ["maintainers", 199, 5], ["mainProgram", 200, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["nativeBuildInputs", 56, 3], ["yarnOfflineCache", 66, 3], ["env", 70, 3], ["preBuild", 72, 3], ["yarnBuildScript", 76, 3], ["checkPhase", 78, 3], ["postInstall", 86, 3], ["desktopItems", 111, 3], ["passthru", 129, 3], ["meta", 193, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const blas = nix.arg($, "blas");
   const darwin = nix.arg($, "darwin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "graphest",
       version: "1.8.2-unstable-2026-01-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "unageek",
           repo: "graphest",
           rev: "2bcb478acd40a1174606e51f4affeca56446c9f6",
@@ -54,13 +40,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "npm-files",
             url: "https://github.com/unageek/graphest/commit/1d1b8ee610a55bf9465a630499c6b0f6e9a66689.patch",
             hash: "sha256-5PU9iPy6gfesl40piRTw9+QMNf4GSGASYs8ZTLedS7o=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "open-file",
             url: "https://github.com/unageek/graphest/commit/05f2e486a5cdd79d5135057d67c398256dc5019c.patch",
             hash: "sha256-GkssYkHVps8PeHMX/Fj5uj6r+MLrZcETXtQq4mZcOrQ=",
@@ -76,11 +62,11 @@ export default nix.lambda((args) => (() => {
         nodejs,
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook"))))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-krpJflsoUPIzhdtyQu3WmapM4C63adwOq2Q6inUa3Xk=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       preBuild: "# do not set this in env because it must not be present in the configure phase\nexport NODE_ENV=production\n",
       yarnBuildScript: "build:app",
       checkPhase: "runHook preCheck\n\nyarn test\n\nrunHook postCheck\n",
@@ -97,13 +83,13 @@ install -Dm444 ${nix.path(here, "./mime.xml")} $out/share/mime/packages/graphest
 ln -s $out/bin/Graphest $out/Applications/Graphest.app/Contents/MacOS/Graphest
 install -Dm444 build/icon.icns $out/Applications/Graphest.app/Contents/Resources/icon.icns
 install -Dm444 ${nix.app(replaceVars, nix.path(here, "./Info.plist"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             version: nix.thunk(() => nix.builtins.elemAt(nix.thunk(() => nix.builtins.match("([^\\-]+).*", nix.thunk(() => nix.sel(finalAttrs, "version")))), 0n)),
           })))} $out/Applications/Graphest.app/Contents/Info.plist
 `)))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "graphest",
             desktopName: "Graphest",
             exec: "Graphest %u",
@@ -114,18 +100,18 @@ install -Dm444 ${nix.app(replaceVars, nix.path(here, "./Info.plist"), nix.thunk(
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         fftwFloatStatic: nix.thunk(() => nix.sel(pkgsStatic, "fftwFloat")),
-        flintStatic: nix.thunk(() => nix.app(nix.sel(pkgsStatic, "flint", "override"), nix.thunk(() => ({ [nix.POS]: pos$8, withBlas: true })))),
+        flintStatic: nix.thunk(() => nix.app(nix.sel(pkgsStatic, "flint", "override"), nix.thunk(() => ({ [nix.POS]: $pos[7], withBlas: true })))),
         graph: nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             pname: "graphest-graph",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             patches: nix.thunk(() => [
               nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dependencies.patch"), nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   fftwLib: nix.thunk(() => nix.sel(finalAttrs, "passthru", "fftwFloatStatic", "out")),
                   fftwDev: nix.thunk(() => nix.sel(finalAttrs, "passthru", "fftwFloatStatic", "dev")),
                   flint: nix.thunk(() => nix.sel(finalAttrs, "passthru", "flintStatic", "out")),
@@ -135,7 +121,7 @@ install -Dm444 ${nix.app(replaceVars, nix.path(here, "./Info.plist"), nix.thunk(
             buildInputs: nix.thunk(() => [blas]),
             cargoHash: "sha256-GC0BHLWRKw6ThQiIfFQoOcGq9Xm0I9rt8uhwyalCa2I=",
             env: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               RUSTC_BOOTSTRAP: 1n,
               RUSTFLAGS: nix.thunk(() => nix.add("-lblas", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86")), " -Ctarget-cpu=haswell"))),
             })),
@@ -151,14 +137,14 @@ ln -s ../${nix.sel(stdenv, "targetPlatform", "rust", "rustcTargetSpec")}/release
               "--skip=graph_tests::implicit::t_84a2738be35745da97a9b120c563b4b3",
             ]),
             meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "meta"), {
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMsvc")),
               mainProgram: "graph",
             })),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "Graphing calculator that can faithfully plot arbitrary mathematical relations",
         homepage: "https://github.com/unageek/graphest",
         changelog: "https://github.com/unageek/graphest/releases",

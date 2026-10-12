@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["broken", 48, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, boost: false, codec2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["broken", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const codec2 = nix.arg($, "codec2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "m17-cxx-demod",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mobilinkd",
           repo: "m17-cxx-demod",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-13.patch",
             url: "https://github.com/mobilinkd/m17-cxx-demod/commit/2e2aaf95eeac456a2e8795e4363518bb4d797ac0.patch",
             hash: "sha256-+XRzHStJ/7XI5JDoBeNwbifsTOw8il3GyFwlbw07wyk=",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [codec2, boost]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "M17 Demodulator in C++",
         homepage: "https://github.com/mobilinkd/m17-cxx-demod",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

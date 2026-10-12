@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/freeoffice.nix", [[["version", 9, 5], ["edition", 10, 5], ["hash", 11, 5]], [["hash", 26, 31], ["url", 27, 7]], [["version", 20, 29], ["edition", 20, 37], ["pname", 22, 5], ["suiteName", 23, 5], ["src", 25, 5], ["archive", 30, 5]]]);
 const formals$1 = { args: { callPackage: false, fetchurl: false, officeVersion: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/freeoffice.nix", [["version", 9, 5], ["edition", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/freeoffice.nix", [["hash", 26, 31], ["url", 27, 7]]);
-const pos$3 = nix.positions(here + "/freeoffice.nix", [["version", 20, 29], ["edition", 20, 37], ["pname", 22, 5], ["suiteName", 23, 5], ["src", 25, 5], ["archive", 30, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const fetchurl = nix.arg($, "fetchurl");
   const officeVersion = nix.argOr($, "officeVersion", () => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "1234",
     edition: "2024",
     hash: "sha256-q5QUevkSxdh622ZMhwbO44HLJowpg0vwv9de7hdOUQQ=",
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
       const pname = "freeoffice";
       const suiteName = "FreeOffice";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: nix.thunk(() => nix.attr(officeVersion, "hash")),
           url: nix.thunk(() => nix.str`https://www.softmaker.net/down/softmaker-freeoffice-${edition}-${version}-amd64.tgz`),
         }))));
       const archive = nix.thunk(() => nix.str`freeoffice${edition}.tar.lzma`);
-      return { [nix.POS]: pos$3, version, edition, pname, suiteName, src, archive };
+      return { [nix.POS]: $pos[2], version, edition, pname, suiteName, src, archive };
     })())));
 })(), formals$1);
 //# sourceMappingURL=freeoffice.ts.map

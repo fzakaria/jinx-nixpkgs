@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["pname", 27, 26], ["version", 27, 32], ["src", 27, 40], ["pnpm", 28, 5], ["fetcherVersion", 29, 5], ["hash", 30, 5]], [["zigbee2mqtt", 54, 18]], [["tests", 54, 12], ["updateScript", 55, 12]], [["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["longDescription", 62, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["pnpmDeps", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["buildPhase", 44, 3], ["dontNpmPrune", 52, 3], ["passthru", 54, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nodejs: false, npmHooks: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, systemdMinimal: false, nixosTests: false, "nix-update-script": false, withSystemd: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 27, 26], ["version", 27, 32], ["src", 27, 40], ["pnpm", 28, 5], ["fetcherVersion", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["zigbee2mqtt", 54, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 54, 12], ["updateScript", 55, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["longDescription", 62, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["pnpmDeps", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["buildPhase", 44, 3], ["dontNpmPrune", 52, 3], ["passthru", 54, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const withSystemd = nix.argOr($, "withSystemd", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdMinimal));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "zigbee2mqtt",
       version: "2.14.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Koenkk",
           repo: "zigbee2mqtt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-az/mbrflILDWSu3kIA280dJWqTlImh1s7FvHeu/DKe4=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -54,15 +49,15 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npnpm run build\n\nrunHook postBuild\n",
       dontNpmPrune: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           zigbee2mqtt: nix.thunk(() => nix.sel(nixosTests, "zigbee2mqtt")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/Koenkk/zigbee2mqtt/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Zigbee to MQTT bridge using zigbee-shepherd",
         homepage: "https://github.com/Koenkk/zigbee2mqtt",

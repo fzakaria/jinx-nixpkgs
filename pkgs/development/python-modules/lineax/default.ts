@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 43, 3], ["nativeCheckInputs", 45, 3], ["checkPhase", 52, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, equinox: false, jax: false, jaxtyping: false, "typing-extensions": false, beartype: false, pytest: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 43, 3], ["nativeCheckInputs", 45, 3], ["checkPhase", 52, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lineax",
       version: "0.1.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "patrick-kidger",
           repo: "lineax",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +42,7 @@ ${nix.sel(python, "interpreter")} -m tests
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Linear solvers in JAX and Equinox",
         homepage: "https://github.com/patrick-kidger/lineax",
         changelog: nix.thunk(() => nix.str`https://github.com/patrick-kidger/lineax/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

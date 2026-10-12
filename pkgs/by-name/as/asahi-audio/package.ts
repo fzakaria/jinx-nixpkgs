@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["updateScript", 37, 5], ["requiredLv2Packages", 38, 5]], [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["makeFlags", 21, 3], ["fixupPhase", 26, 3], ["passthru", 36, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, "lsp-plugins": false, "bankstown-lv2": false, "triforce-lv2": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 37, 5], ["requiredLv2Packages", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["makeFlags", 21, 3], ["fixupPhase", 26, 3], ["passthru", 36, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const triforce_lv2 = nix.arg($, "triforce-lv2");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "asahi-audio",
       version: "4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AsahiLinux",
           repo: "asahi-audio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,12 +28,12 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)", "DATA_DIR=share"]),
       fixupPhase: "runHook preFixup\n\nfor config_file in $(find $out -type f -not -name '*.wav') ; do\n    substituteInPlace \"$config_file\" --replace-warn \"/usr\" \"$out\"\ndone\n\nrunHook postFixup\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         requiredLv2Packages: nix.thunk(() => [lsp_plugins, bankstown_lv2, triforce_lv2]),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Linux userspace audio configuration for Apple Silicon Macs",
         longDescription: "This package contains DSP configuration files for Apple Silicon\nMacs supported by the Asahi Linux project. The goal is to make\nthe Asahi Linux audio experience better than macOS, and in doing\nso demonstrate that desktop Linux audio can be made fit for\npurpose with a little bit of effort.\n\nCurrently Supported Devices (speakers)\n  - MacBook Air (13-inch, M1, 2020)\n  - MacBook Air (13-inch, M2, 2022)\n  - MacBook Air (15-inch, M2, 2023)\n  - MacBook Pro (13-inch, M1/M2, 2020/2022)\n  - MacBook Pro (14-inch, M1/M2 Pro/Max, 2021/2023)\n  - MacBook Pro (16-inch, M1/M2 Pro/Max, 2021/2023)\n  - Mac mini (M1/M2/M2 Pro, 2020/2023)\n  - Mac Studio (M1/M2 Max/Ultra, 2022/2023)\n\nCurrently Supported Devices (microphones)\n  - MacBook Air (13-inch, M1, 2020)\n  - MacBook Air (13-inch, M2, 2022)\n  - MacBook Air (15-inch, M2, 2023)\n  - MacBook Pro (13-inch, M1/M2, 2020/2022)\n  - MacBook Pro (14-inch, M1/M2 Pro/Max, 2021/2023)\n  - MacBook Pro (16-inch, M1/M2 Pro/Max, 2021/2023)\n",
         homepage: "https://github.com/AsahiLinux/asahi-audio",

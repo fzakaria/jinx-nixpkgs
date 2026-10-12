@@ -2,11 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["urls", 79, 7], ["name", 80, 7]], [["jar", 99, 12]], [["pname", 85, 11], ["version", 85, 17], ["meta", 85, 25], ["dontUnpack", 86, 3], ["strictDeps", 88, 3], ["__structuredAttrs", 89, 3], ["installPhase", 93, 3], ["passthru", 99, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenv: false }, ellipsis: false };
 const formals$2 = { args: { groupId: false, artifactId: false, version: false, classifier: true, repos: true, url: true, urls: true, meta: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["urls", 79, 7], ["name", 80, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["jar", 99, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 85, 11], ["version", 85, 17], ["meta", 85, 25], ["dontUnpack", 86, 3], ["strictDeps", 88, 3], ["__structuredAttrs", 89, 3], ["installPhase", 93, 3], ["passthru", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,12 +42,12 @@ export default nix.lambda((args) => (() => {
       ]));
     const urls_ = nix.thunk(() => (nix.asBool(!nix.eq(url, "")) ? [url] : (nix.asBool(!nix.eq(urls, [])) ? nix.force(urls) : nix.builtins.map(mkJarUrl, repos))));
     const jar = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["groupId", "artifactId", "version", "classifier", "repos", "url", "meta"])), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         urls: urls_,
         name: nix.thunk(() => nix.str`${pname}-${version}.jar`),
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: pname,
         version: version,
         meta: meta,
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
         installPhase: nix.thunk(() => nix.str`mkdir -p $out/share/java
 ln -s ${jar} $out/share/java/${filename}
 `),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$2, jar: jar })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], jar: jar })),
       })));
   })(), formals$2);
 })(), formals$1);

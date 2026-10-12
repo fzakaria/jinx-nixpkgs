@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["pythonPath", 18, 12]], [["homepage", 21, 5], ["description", 22, 5], ["license", 23, 5], ["teams", 24, 5]], [["pname", 7, 3], ["namespace", 8, 3], ["version", 9, 3], ["src", 11, 3], ["passthru", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, buildKodiAddon: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pythonPath", 18, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 21, 5], ["description", 22, 5], ["license", 23, 5], ["teams", 24, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["namespace", 8, 3], ["version", 9, 3], ["src", 11, 3], ["passthru", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,21 +15,21 @@ export default nix.lambda((args) => (() => {
       const namespace = "plugin.image.pdf";
       const version = "2.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "i96751414",
           repo: "plugin.image.pdfreader",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "sha256-J93poR5VO9fAgNCEGftJVYnpXOsJSxnhHI6TAJZ2LeI=",
         }))));
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, pythonPath: "lib/api" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], pythonPath: "lib/api" }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://forum.kodi.tv/showthread.php?tid=187421",
         description: "Comic book reader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
-      return { [nix.POS]: pos$4, pname, namespace, version, src, passthru, meta };
+      return { [nix.POS]: $pos[3], pname, namespace, version, src, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

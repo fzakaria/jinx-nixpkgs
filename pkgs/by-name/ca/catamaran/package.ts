@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["stripRoot", 12, 5], ["hash", 13, 5]], [["homepage", 28, 5], ["description", 29, 5], ["longDescription", 30, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["stripRoot", 16, 3], ["installPhase", 18, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["stripRoot", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 28, 5], ["description", 29, 5], ["longDescription", 30, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["stripRoot", 16, 3], ["installPhase", 18, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "catamaran",
       version: "0-unstable-2024-03-02",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.1001fonts.com/download/catamaran.zip",
           stripRoot: false,
           hash: "sha256-9s11lZSS4pYJZwl8Uk7qtdwfZ2bkoZkSIf1MkQlv7H4=",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       stripRoot: false,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fonts/truetype\nmv *.ttf $out/share/fonts/truetype/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://fonts.google.com/specimen/Catamaran",
         description: "Stylish sans-serif Tamil and Latin typeface",
         longDescription: "Catamaran is a Unicode-compliant Latin and Tamil text type family designed for the digital age.\nThe Tamil is monolinear and was designed alongside the sans serif Latin and Devanagari family Palanquin.\n\nIt currently comprises of 9 text weights, making it a versatile family that strikes a balance between typographic conventions and that bit of sparkle.\n(A catamaran is a multihulled vessel consisting of two parallel hulls of equal size.\nThe catamaran concept is a relative newcomer for Western boat designers, been used since time immemorial among the Dravidian people, in South India.)\n",

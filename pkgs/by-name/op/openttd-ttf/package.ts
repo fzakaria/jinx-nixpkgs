@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["homepage", 52, 5], ["changelog", 53, 5], ["description", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["postPatch", 31, 3], ["buildPhase", 39, 3], ["installPhase", 45, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, python3: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["changelog", 53, 5], ["description", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["postPatch", 31, 3], ["buildPhase", 39, 3], ["installPhase", 45, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openttd-ttf",
       version: "0.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenTTD",
           repo: "openttd-ttf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n./build.sh\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/OpenTTD/OpenTTD-TTF",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenTTD/OpenTTD-TTF/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "TrueType typefaces for text in a pixel art style, designed for use in OpenTTD",

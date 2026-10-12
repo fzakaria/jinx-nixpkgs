@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["passlib", 46, 5], ["cache", 47, 5]], [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["dependencies", 39, 3], ["optional-dependencies", 45, 3], ["nativeCheckInputs", 50, 3], ["__darwinAllowLocalNetworking", 60, 3], ["sandboxProfile", 63, 3], ["preCheck", 67, 3], ["disabledTests", 71, 3], ["disabledTestPaths", 78, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, distutils: false, fetchFromGitHub: false, passlib: false, pip: false, pytestCheckHook: false, pythonOlder: false, setuptools: false, twine: false, watchdog: false, webtest: false, build: false, "importlib-resources": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["passlib", 46, 5], ["cache", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["dependencies", 39, 3], ["optional-dependencies", 45, 3], ["nativeCheckInputs", 50, 3], ["__darwinAllowLocalNetworking", 60, 3], ["sandboxProfile", 63, 3], ["preCheck", 67, 3], ["disabledTests", 71, 3], ["disabledTestPaths", 78, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pypiserver",
           repo: "pypiserver",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => nix.concat([distutils, pip], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.12")), nix.thunk(() => [importlib_resources]))));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         passlib: nix.thunk(() => [passlib]),
         cache: nix.thunk(() => [watchdog]),
       }));
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["docker/test_docker.py"]);
       const pythonImportsCheck = nix.thunk(() => ["pypiserver"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Minimal PyPI server for use with pip/easy_install",
         homepage: "https://github.com/pypiserver/pypiserver",
         changelog: nix.thunk(() => nix.str`https://github.com/pypiserver/pypiserver/releases/tag/v${version}`),
@@ -73,7 +70,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pypi-server",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

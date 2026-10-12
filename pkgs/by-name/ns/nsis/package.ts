@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["url", 23, 5], ["sha256", 24, 5]], [["name", 39, 7], ["paths", 40, 7]], [["name", 44, 7], ["paths", 45, 7]], [["CPPPATH", 38, 5], ["LIBPATH", 43, 5]], [["nativeBuildInputs", 93, 43]], [["compile-bigtest", 92, 5]], [["tests", 91, 12]], [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["maintainers", 107, 5], ["mainProgram", 108, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["srcWinDistributable", 22, 3], ["postUnpack", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["env", 37, 3], ["sconsFlags", 49, 3], ["preBuild", 59, 3], ["prefixKey", 69, 3], ["installTargets", 70, 3], ["postInstall", 75, 3], ["passthru", 91, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, symlinkJoin: false, fetchurl: false, fetchzip: false, makeWrapper: false, runCommand: false, scons: false, zlib: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 39, 7], ["paths", 40, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 44, 7], ["paths", 45, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["CPPPATH", 38, 5], ["LIBPATH", 43, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 93, 43]]);
-const pos$7 = nix.positions(here + "/package.nix", [["compile-bigtest", 92, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 91, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["maintainers", 107, 5], ["mainProgram", 108, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["srcWinDistributable", 22, 3], ["postUnpack", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["env", 37, 3], ["sconsFlags", 49, 3], ["preBuild", 59, 3], ["prefixKey", 69, 3], ["installTargets", 70, 3], ["postInstall", 75, 3], ["passthru", 91, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "nsis",
       version: "3.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/nsis/NSIS%203/${nix.sel(finalAttrs, "version")}/nsis-${nix.sel(finalAttrs, "version")}-src.tar.bz2`),
           sha256: "11miw8jbhqcn5wmndcjdjfs0r7jm08x5cfvxyj64xkx29a77mvgk",
         })))),
       srcWinDistributable: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/nsis/NSIS%203/${nix.sel(finalAttrs, "version")}/nsis-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "0rp9bycykjgx2aq656sdba1h4v14nfyiic2lgp1xm93l2czx9k9q",
         })))),
@@ -48,14 +39,14 @@ chmod -R u+w $out/share/nsis
       nativeBuildInputs: nix.thunk(() => nix.concat([scons], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [makeWrapper])))),
       buildInputs: nix.thunk(() => nix.concat([zlib], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         CPPPATH: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "nsis-includes",
             paths: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(zlib, "dev"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
           })))),
         LIBPATH: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "nsis-libs",
             paths: nix.thunk(() => nix.concat([zlib], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
           })))),
@@ -73,11 +64,11 @@ chmod -R u+w $out/share/nsis
       installTargets: nix.thunk(() => ["install-compiler"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "wrapProgram $out/bin/makensis \\\n  --run '\n    case \"${LC_ALL:-}\" in\n      *UTF-8*|*utf8*) ;;\n      \"\")\n        case \"${LC_CTYPE:-} ${LANG:-}\" in\n          *UTF-8*|*utf8*) ;;\n          *) export LC_ALL=en_US.UTF-8 ;;\n        esac\n        ;;\n      *) export LC_ALL=en_US.UTF-8 ;;\n    esac\n  '\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "compile-bigtest": nix.thunk(() => nix.app(runCommand, "nsis-compile-bigtest", nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`pushd ${nix.sel(finalAttrs, "srcWinDistributable")}/Examples >/dev/null
 makensis bigtest.nsi "-XOutfile /dev/null"
@@ -87,7 +78,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Free scriptable win32 installer/uninstaller system that doesn't suck and isn't huge",
         homepage: "https://nsis.sourceforge.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5], ["extension", 18, 5], ["stripRoot", 19, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5], ["platforms", 46, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 24, 3], ["makeFlags", 26, 3], ["postInstall", 31, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { bashInteractive: false, jq: false, makeWrapper: false, p7zip: false, lib: false, stdenv: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5], ["extension", 18, 5], ["stripRoot", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 24, 3], ["makeFlags", 26, 3], ["postInstall", 31, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "r2mod_cli",
       version: "1.3.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://thunderstore.io/package/download/Foldex/r2mod_cli/${nix.sel(finalAttrs, "version")}/`),
           hash: "sha256-J7ybNZa44/H+AjQ7L949I3iClXoDwinl/ITMK/QsTR0=",
           extension: "zip",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/r2mod --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jq, p7zip]))}";
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Risk of Rain 2 Mod Manager in Bash",
         homepage: "https://thunderstore.io/package/Foldex/r2mod_cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

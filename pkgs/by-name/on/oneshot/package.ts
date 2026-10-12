@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["GOWORK", 24, 7]], [["package", 45, 5], ["command", 46, 5]], [["version", 44, 18]], [["tests", 44, 12]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["subPackages", 22, 3], ["env", 24, 3], ["modRoot", 26, 3], ["ldflags", 28, 3], ["installPhase", 36, 3], ["passthru", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, testers: false, oneshot: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GOWORK", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 45, 5], ["command", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 44, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 44, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["subPackages", 22, 3], ["env", 24, 3], ["modRoot", 26, 3], ["ldflags", 28, 3], ["installPhase", 36, 3], ["passthru", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const oneshot = nix.arg($, "oneshot");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "oneshot",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "forestnode-io",
           repo: "oneshot",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-TktSQMIHYXF9eyY6jyfE31WLXEq7VZU3qnVIMGjMMcA=",
       subPackages: nix.thunk(() => ["cmd"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], GOWORK: "off" })),
       modRoot: "v2",
       ldflags: nix.thunk(() => [
         "-s",
@@ -42,14 +36,14 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstall -D -m 555 -T $GOPATH/bin/cmd $out/bin/oneshot\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: oneshot, command: "oneshot version" })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: oneshot, command: "oneshot version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "First-come first-served single-fire HTTP server",
         homepage: "https://www.oneshot.uno/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

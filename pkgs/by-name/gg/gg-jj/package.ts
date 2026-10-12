@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["pname", 34, 7], ["version", 35, 7], ["src", 36, 7], ["patches", 37, 7], ["hash", 39, 5]], [["OPENSSL_NO_VENDOR", 68, 7]], [["updateScript", 79, 12]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["platforms", 86, 37], ["maintainers", 87, 5], ["mainProgram", 88, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["npmDeps", 32, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 59, 3], ["checkFlags", 63, 3], ["env", 68, 3], ["postInstall", 70, 3], ["doInstallCheck", 76, 3], ["nativeInstallCheckInputs", 77, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, fetchNpmDeps: false, "cargo-tauri": false, nodejs: false, npmHooks: false, "pkg-config": false, wrapGAppsHook3: false, openssl: false, webkitgtk_4_1: false, versionCheckHook: false, "nix-update-script": false, gitMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 34, 7], ["version", 35, 7], ["src", 36, 7], ["patches", 37, 7], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 68, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 79, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["platforms", 86, 37], ["maintainers", 87, 5], ["mainProgram", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["npmDeps", 32, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 59, 3], ["checkFlags", 63, 3], ["env", 68, 3], ["postInstall", 70, 3], ["doInstallCheck", 76, 3], ["nativeInstallCheckInputs", 77, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gg",
       version: "0.39.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gulbanana",
           repo: "gg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-oDAA4lFfp/zMQ2gm595OgnNyP3tiPSC1M0hiozOH/ss=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -56,18 +51,18 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [webkitgtk_4_1])))),
       nativeCheckInputs: nix.thunk(() => [gitMinimal]),
       checkFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--skip=web::tests::integration_test"]))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], OPENSSL_NO_VENDOR: true })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/bin\nln -s $out/Applications/gg.app/Contents/MacOS/gg $out/bin/gg\n")),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cargo_tauri, "hook", "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "GUI for the version control system Jujutsu",
         homepage: "https://github.com/gulbanana/gg",
         changelog: nix.thunk(() => nix.str`https://github.com/gulbanana/gg/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

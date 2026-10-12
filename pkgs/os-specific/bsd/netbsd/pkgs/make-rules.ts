@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-rules.nix", [[["path", 10, 3], ["noCC", 11, 3], ["buildInputs", 13, 3], ["nativeBuildInputs", 14, 3], ["dontBuild", 19, 3], ["postPatch", 21, 3], ["installPhase", 66, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, stdenv: false, bsdSetupHook: false, netbsdSetupHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-rules.nix", [["path", 10, 3], ["noCC", 11, 3], ["buildInputs", 13, 3], ["nativeBuildInputs", 14, 3], ["dontBuild", 19, 3], ["postPatch", 21, 3], ["installPhase", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const bsdSetupHook = nix.arg($, "bsdSetupHook");
   const netbsdSetupHook = nix.arg($, "netbsdSetupHook");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "share/mk",
       noCC: true,
       buildInputs: [],

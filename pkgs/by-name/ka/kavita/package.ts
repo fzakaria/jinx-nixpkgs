@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["pname", 23, 5], ["version", 24, 26], ["src", 24, 34], ["patches", 26, 5], ["postPatch", 33, 5], ["projectFile", 40, 5], ["nugetDeps", 41, 5], ["dotnet-sdk", 42, 5], ["dotnet-runtime", 43, 5]], [["pname", 47, 5], ["version", 48, 26], ["src", 48, 34], ["sourceRoot", 50, 5], ["npmBuildScript", 52, 5], ["npmFlags", 53, 5], ["npmRebuildFlags", 54, 5], ["npmDepsHash", 55, 5]], [["kavita", 73, 28]], [["tests", 72, 5], ["updateScript", 75, 5]], [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5], ["mainProgram", 88, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["backend", 22, 3], ["frontend", 46, 3], ["dontBuild", 58, 3], ["installPhase", 60, 3], ["passthru", 71, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, buildDotnetModule: false, buildNpmPackage: false, dotnetCorePackages: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 23, 5], ["version", 24, 26], ["src", 24, 34], ["patches", 26, 5], ["postPatch", 33, 5], ["projectFile", 40, 5], ["nugetDeps", 41, 5], ["dotnet-sdk", 42, 5], ["dotnet-runtime", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 47, 5], ["version", 48, 26], ["src", 48, 34], ["sourceRoot", 50, 5], ["npmBuildScript", 52, 5], ["npmFlags", 53, 5], ["npmRebuildFlags", 54, 5], ["npmDepsHash", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["kavita", 73, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 72, 5], ["updateScript", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5], ["mainProgram", 88, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["backend", 22, 3], ["frontend", 46, 3], ["dontBuild", 58, 3], ["installPhase", 60, 3], ["passthru", 71, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "kavita",
       version: "0.9.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kareadita",
           repo: "kavita",
           rev: "d77d956b9551227d8be2ee488b08f14aa3a341e5",
           hash: "sha256-f0qGURiegUypD0XKZi43vJbA4KQ8OjZ6kWYg8fh1rPU=",
         })))),
       backend: nix.thunk(() => nix.app(buildDotnetModule, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "kavita-backend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -48,7 +42,7 @@ substituteInPlace Kavita.Server/Startup.cs Kavita.Services/LocalizationService.c
           "dotnet-runtime": nix.thunk(() => nix.sel(dotnetCorePackages, "aspnetcore_10_0")),
         })))),
       frontend: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "kavita-frontend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -61,12 +55,12 @@ substituteInPlace Kavita.Server/Startup.cs Kavita.Services/LocalizationService.c
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/lib/kavita\nln -s $backend/lib/kavita-backend $out/lib/kavita/backend\nln -s $frontend/lib/node_modules/kavita-webui/dist $out/lib/kavita/frontend\nln -s $backend/bin/Kavita.Server $out/bin/kavita\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, kavita: nix.thunk(() => nix.attr(nixosTests, "kavita")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], kavita: nix.thunk(() => nix.attr(nixosTests, "kavita")) })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Fast, feature rich, cross platform reading server",
         homepage: "https://kavitareader.com",
         changelog: nix.thunk(() => nix.str`https://github.com/kareadita/kavita/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

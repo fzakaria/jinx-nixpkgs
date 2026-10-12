@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["homepage", 26, 5], ["description", 27, 5], ["platforms", 28, 5], ["license", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["preConfigure", 19, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libgcrypt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 26, 5], ["description", 27, 5], ["platforms", 28, 5], ["license", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["preConfigure", 19, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libgcrypt = nix.arg($, "libgcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "seccure",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://point-at-infinity.org/seccure/seccure-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0nwnk3hfhgvf5xr0xipbh6smfnya22wphc5rj0vgi5d0zr5cwrk5",
         })))),
       buildInputs: nix.thunk(() => [libgcrypt]),
       preConfigure: "sed -e s@/usr/@$out/@g -i Makefile\nsed -e 's@ln -f@ln -sf@g' -i Makefile\nmkdir -p $out/bin $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://point-at-infinity.org/seccure/",
         description: "Zero-configuration elliptic curve cryptography utility",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["homepage", 48, 5], ["description", 49, 5], ["platforms", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 25, 3], ["dontBuild", 27, 3], ["installPhase", 29, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { coreutils: false, fetchFromSourcehut: false, file: false, libcaca: false, makeWrapper: false, python3: false, openssl: false, qrencode: false, lib: false, stdenv: false, "yubikey-manager": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["platforms", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 25, 3], ["dontBuild", 27, 3], ["installPhase", 29, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const yubikey_manager = nix.arg($, "yubikey-manager");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gen-oath-safe",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~mcepl",
           repo: "gen-oath-safe",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +48,7 @@ wrapProgram $out/bin/gen-oath-safe \\
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git.sr.ht/~mcepl/gen-oath-safe",
         description: "Script for generating HOTP/TOTP keys (and QR code)",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

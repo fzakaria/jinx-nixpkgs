@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 7], ["sha256", 17, 7]], [["url", 20, 7], ["sha256", 21, 7]], [["jar", 15, 5], ["gridPlugin", 19, 5]], [["homepage", 49, 5], ["description", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["sourceProvenance", 53, 5], ["license", 54, 5]], [["pname", 26, 11], ["version", 26, 17], ["dontUnpack", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["installPhase", 33, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, jdk: false, "selenium-server-standalone": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 7], ["sha256", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 7], ["sha256", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["jar", 15, 5], ["gridPlugin", 19, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["sourceProvenance", 53, 5], ["license", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 11], ["version", 26, 17], ["dontUnpack", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["installPhase", 33, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const pluginName = nix.thunk(() => nix.str`selendroid-grid-plugin-${version}`);
   const version = "0.17.0";
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     jar: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/selendroid/selendroid/releases/download/${version}/selendroid-standalone-${version}-with-dependencies.jar`),
         sha256: "10lxdsgp711pv8r6dk2aagnbvnn1b25zfqjvz7plc73zqhx1dxvw",
       })))),
     gridPlugin: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://search.maven.org/remotecontent?filepath=io/selendroid/selendroid-grid-plugin/${version}/${pluginName}.jar`),
         sha256: "1x6cjmp2hpghbgbf8vss0qaj2n4sfl29wp3bc4k1s3hnnpccvz70",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       dontUnpack: true,
@@ -54,7 +50,7 @@ makeWrapper ${jdk}/bin/java $out/bin/selendroid-selenium \\
   --add-flags "-capabilityMatcher io.selendroid.grid.SelendroidCapabilityMatcher"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://selendroid.io/",
         description: "Test automation for native or hybrid Android apps and the mobile web",
         maintainers: [],

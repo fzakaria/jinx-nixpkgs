@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]], [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["checkInputs", 22, 3], ["doCheck", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, alcotest: false, fmt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["checkInputs", 22, 3], ["doCheck", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const fmt = nix.arg($, "fmt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "metrics",
       version: "0.5.0",
       minimalOCamlVersion: "4.04",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/metrics/releases/download/v${nix.sel(finalAttrs, "version")}/metrics-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-3zVjgJCdBkYbzQl+9gY8qfPFE2X0dqeXwDZktTwFcV0=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Metrics infrastructure for OCaml",
         homepage: "https://github.com/mirage/metrics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

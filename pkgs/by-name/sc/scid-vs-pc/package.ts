@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["name", 56, 5], ["desktopName", 57, 5], ["genericName", 58, 5], ["comment", 59, 5], ["icon", 60, 5], ["exec", 61, 5], ["categories", 62, 5]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["addTclConfigureFlags", 39, 3], ["configureFlags", 40, 3], ["postInstall", 48, 3], ["desktopItem", 55, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, tcl: false, bashNonInteractive: false, tk: false, libx11: false, zlib: false, makeWrapper: false, which: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 56, 5], ["desktopName", 57, 5], ["genericName", 58, 5], ["comment", 59, 5], ["icon", 60, 5], ["exec", 61, 5], ["categories", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["addTclConfigureFlags", 39, 3], ["configureFlags", 40, 3], ["postInstall", 48, 3], ["desktopItem", 55, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(tcl, "mkTclDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "scid-vs-pc",
       version: "4.27",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/scidvspc/scid_vs_pc-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-aWN1w46dOW7VMACs8huvUsACtk3ggIS6BZ51BM9k+VM=",
         })))),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/share/applications\ncp $desktopItem/share/applications/* $out/share/applications/\n\ninstall -D icons/scid.png \"$out\"/share/icons/hicolor/128x128/apps/scid.png\n",
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "scid-vs-pc",
           desktopName: "Scid vs. PC",
           genericName: "Chess Database",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
           categories: nix.thunk(() => ["Game", "BoardGame"]),
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Chess database with play and training functionality",
         homepage: "https://scidvspc.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

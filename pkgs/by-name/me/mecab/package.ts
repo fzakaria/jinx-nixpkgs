@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchFromGitHub", 10, 44], ["libiconv", 10, 60]], [["description", 26, 9], ["homepage", 27, 9], ["license", 28, 9], ["platforms", 29, 9], ["mainProgram", 30, 9], ["maintainers", 31, 9]], [["pname", 18, 7], ["postInstall", 20, 7], ["meta", 25, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, libiconv: false, callPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchFromGitHub", 10, 44], ["libiconv", 10, 60]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 9], ["homepage", 27, 9], ["license", 28, 9], ["platforms", 29, 9], ["mainProgram", 30, 9], ["maintainers", 31, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 7], ["postInstall", 20, 7], ["meta", 25, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const callPackage = nix.arg($, "callPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
-  const mecab_base = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchFromGitHub: fetchFromGitHub, libiconv: libiconv }))));
+  const mecab_base = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchFromGitHub: fetchFromGitHub, libiconv: libiconv }))));
   const mecab_ipadic = nix.thunk(() => nix.app(callPackage, nix.path(here, "./ipadic.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(nix.app(mecab_base, finalAttrs), {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mecab",
       postInstall: nix.thunk(() => nix.str`mkdir -p $out/lib/mecab/dic
 ln -s ${mecab_ipadic} $out/lib/mecab/dic/ipadic
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Japanese morphological analysis system",
         homepage: "http://taku910.github.io/mecab",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

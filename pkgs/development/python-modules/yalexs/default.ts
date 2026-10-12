@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["pythonRelaxDeps", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 54, 3], ["disabledTests", 63, 3], ["pythonImportsCheck", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, aiofiles: false, aiohttp: false, aiointercept: false, buildPythonPackage: false, ciso8601: false, fetchFromGitHub: false, freenub: false, "poetry-core": false, propcache: false, pyjwt: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-freezegun": false, pytestCheckHook: false, "python-dateutil": false, "python-socketio": false, "requests-mock": false, requests: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["pythonRelaxDeps", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 54, 3], ["disabledTests", 63, 3], ["pythonImportsCheck", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "yalexs",
       version: "9.2.13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bdraco",
           repo: "yalexs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test__raise_response_exceptions"]),
       pythonImportsCheck: nix.thunk(() => ["yalexs"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python API for Yale Access (formerly August) Smart Lock and Doorbell",
         homepage: "https://github.com/bdraco/yalexs",
         changelog: nix.thunk(() => nix.str`https://github.com/bdraco/yalexs/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

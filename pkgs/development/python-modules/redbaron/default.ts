@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 54, 5], ["homepage", 55, 5], ["downloadPage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 36, 3], ["preCheck", 40, 3], ["disabledTestPaths", 44, 3], ["disabledTests", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, baron: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["downloadPage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 36, 3], ["preCheck", 40, 3], ["disabledTestPaths", 44, 3], ["disabledTests", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const baron = nix.arg($, "baron");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "redbaron",
       version: "0.9.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PyCQA",
           repo: "redbaron",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["test_bounding_box.py"]),
       disabledTests: nix.thunk(() => ["test_highlight"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Abstraction on top of baron, a FST for python to make writing refactoring code a realistic task",
         homepage: "https://redbaron.readthedocs.io/en/latest",
         downloadPage: "https://github.com/PyCQA/redbaron",

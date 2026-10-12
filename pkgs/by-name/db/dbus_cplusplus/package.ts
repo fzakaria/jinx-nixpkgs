@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["name", 18, 5], ["sha256", 19, 5]], [["name", 24, 7], ["url", 25, 7], ["sha256", 28, 7]], [["name", 31, 7], ["url", 32, 7], ["sha256", 33, 7]], [["name", 36, 7], ["url", 37, 7], ["sha256", 38, 7]], [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7]], [["name", 46, 7], ["url", 47, 7], ["hash", 48, 7]], [["name", 51, 7], ["url", 52, 7], ["hash", 53, 7]], [["name", 56, 7], ["url", 57, 7], ["hash", 58, 7]], [["homepage", 80, 5], ["description", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 22, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 63, 3], ["configureFlags", 69, 3], ["enableParallelBuilding", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, dbus: false, glib: false, "pkg-config": false, expat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["name", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 7], ["url", 25, 7], ["sha256", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 31, 7], ["url", 32, 7], ["sha256", 33, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 36, 7], ["url", 37, 7], ["sha256", 38, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 46, 7], ["url", 47, 7], ["hash", 48, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 51, 7], ["url", 52, 7], ["hash", 53, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 56, 7], ["url", 57, 7], ["hash", 58, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 80, 5], ["description", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 22, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 63, 3], ["configureFlags", 69, 3], ["enableParallelBuilding", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,50 +19,50 @@ export default nix.lambda((args) => (() => {
       const pname = "dbus-cplusplus";
       const version = "0.9.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "mirror://sourceforge/dbus-cplusplus/dbus-c%2B%2B/0.9.0/libdbus-c%2B%2B-0.9.0.tar.gz",
           name: nix.thunk(() => nix.str`${pname}-${version}.tar.gz`),
           sha256: "0qafmy2i6dzx4n1dqp6pygyy6gjljnb7hwjcj2z11c1wgclsq4dw",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-4.7.patch",
             url: nix.thunk(() => nix.add("https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-libs/", "dbus-c++/files/dbus-c++-0.9.0-gcc-4.7.patch?id=dec60bb6900d6ebdaaa6aa1dcb845b30b739f9b5")),
             sha256: "0rwcz9pvc13b3yfr0lkifnfz0vb5q6dg240bzgf37ni4s8rpc72g",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "writechar.patch",
             url: "https://src.fedoraproject.org/rpms/dbus-c++/raw/9f515ace0594c8b2b9f0d41ffe71bc5b78d30eee/f/dbus-c++-writechar.patch",
             sha256: "1kkg4gbpm4hp87l25zw2a3r9c58g7vvgzcqgiman734i66zsbb9l",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "threading.patch",
             url: "https://src.fedoraproject.org/rpms/dbus-c++/raw/9f515ace0594c8b2b9f0d41ffe71bc5b78d30eee/f/dbus-c++-threading.patch",
             sha256: "1h362anx3wyxm5lq0v8girmip1jmkdbijrmbrq7k5pp47zkhwwrq",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "template-operators.patch",
             url: "https://src.fedoraproject.org/rpms/dbus-c++/raw/9f515ace0594c8b2b9f0d41ffe71bc5b78d30eee/f/dbus-c++-template-operators.patch",
             hash: "sha256-B8S7z/YH2YEQgaRsBJBBVTx8vHQhHW7z171TZmogpL8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "0001-src-eventloop.cpp-use-portable-method-for-initializi.patch",
             url: "https://github.com/openembedded/meta-openembedded/raw/119e75e48dbf0539b4e440417901458ffff79b38/meta-oe/recipes-core/dbus/libdbus-c++-0.9.0/0001-src-eventloop.cpp-use-portable-method-for-initializi.patch",
             hash: "sha256-GJWvp5F26c88OCGLrFcXaqUl2FMSDCluppMrRQO3rzc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "0002-tools-generate_proxy.cpp-avoid-possibly-undefined-ui.patch",
             url: "https://github.com/openembedded/meta-openembedded/raw/119e75e48dbf0539b4e440417901458ffff79b38/meta-oe/recipes-core/dbus/libdbus-c++-0.9.0/0002-tools-generate_proxy.cpp-avoid-possibly-undefined-ui.patch",
             hash: "sha256-P9JuG/6k5L6NTiAGH9JRfNcwpNVOV29RQC6fTj0fKZE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "0003-Fixed-undefined-ssize_t-for-clang-3.8.0-on-FreeBSD.patch",
             url: "https://github.com/openembedded/meta-openembedded/raw/119e75e48dbf0539b4e440417901458ffff79b38/meta-oe/recipes-core/dbus/libdbus-c++-0.9.0/0003-Fixed-undefined-ssize_t-for-clang-3.8.0-on-FreeBSD.patch",
             hash: "sha256-/RCpDvaLIw0kmuBvUGbfnVEvgTKjIQWcSKWheCfgSmM=",
@@ -82,7 +73,7 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => nix.concat(["--disable-ecore", "--disable-tests"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => ["--disable-examples"]))));
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://dbus-cplusplus.sourceforge.net",
         description: "C++ API for D-BUS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -90,7 +81,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version,
         src,

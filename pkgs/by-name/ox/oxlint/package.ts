@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["pname", 41, 26], ["version", 41, 32], ["src", 41, 40], ["hash", 42, 5]], [["pname", 46, 26], ["version", 46, 32], ["src", 46, 40], ["pnpm", 47, 13], ["fetcherVersion", 48, 5], ["hash", 49, 5]], [["OXC_VERSION", 70, 7]], [["extraArgs", 148, 5]], [["updateScript", 147, 12]], [["description", 152, 5], ["homepage", 153, 5], ["changelog", 154, 5], ["license", 155, 5], ["maintainers", 156, 5], ["mainProgram", 157, 5], ["platforms", 158, 35]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["cargoDeps", 40, 3], ["pnpmDeps", 45, 3], ["dontUseCmakeConfigure", 52, 3], ["pnpmWorkspaces", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 68, 3], ["env", 70, 3], ["preBuild", 78, 3], ["installPhase", 85, 3], ["nativeInstallCheckInputs", 104, 3], ["doInstallCheck", 105, 3], ["installCheckPhase", 107, 3], ["passthru", 147, 3], ["meta", 151, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpm_11: false, pnpmConfigHook: false, pnpmBuildHook: false, nodejs_24: false, "nodejs-slim_24": false, rustPlatform: false, cargo: false, rustc: false, cmake: false, makeBinaryWrapper: false, "nix-update-script": false, "rust-jemalloc-sys": false, tsgolint: false, versionCheckHook: false, darwin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 41, 26], ["version", 41, 32], ["src", 41, 40], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 46, 26], ["version", 46, 32], ["src", 46, 40], ["pnpm", 47, 13], ["fetcherVersion", 48, 5], ["hash", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["OXC_VERSION", 70, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 148, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 147, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 152, 5], ["homepage", 153, 5], ["changelog", 154, 5], ["license", 155, 5], ["maintainers", 156, 5], ["mainProgram", 157, 5], ["platforms", 158, 35]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["cargoDeps", 40, 3], ["pnpmDeps", 45, 3], ["dontUseCmakeConfigure", 52, 3], ["pnpmWorkspaces", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 68, 3], ["env", 70, 3], ["preBuild", 78, 3], ["installPhase", 85, 3], ["nativeInstallCheckInputs", 104, 3], ["doInstallCheck", 105, 3], ["installCheckPhase", 107, 3], ["passthru", 147, 3], ["meta", 151, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,25 +28,25 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "oxlint",
       version: "1.86.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oxc-project",
           repo: "oxc",
           tag: nix.thunk(() => nix.str`oxlint_v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-B/L7rXj9Bjp7RJgLYNRGGyC01jmYle/0c4htmHXcN04=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-Uz8Lau2kGdIJI2q1JoZ/dgYa+mHO6VdKxP9NAEIzfI0=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -76,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [rust_jemalloc_sys]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         OXC_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`for cli in node_modules/.pnpm/@napi-rs+cli@*/node_modules/@napi-rs/cli/dist/cli.js; do
@@ -105,16 +98,16 @@ runHook postInstall
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\nexpectFail() {\n  local needle=\"$1\"; shift\n  local output\n  output=\"$(\"$@\" 2>&1)\" && {\n    printf 'expected `%s` to fail\\n%s\\n' \"$*\" \"$output\" >&2\n    exit 1\n  }\n  grep -Fq \"$needle\" <<<\"$output\"\n}\n\ncd \"$(mktemp -d)\"\n\ncat >plugin.mjs <<'EOF'\nexport default {\n  meta: { name: \"smoke-plugin\" },\n  rules: {\n    \"always-error\": {\n      create: (context) => ({\n        Program(node) {\n          context.report({ node, message: \"plugin-smoke-ok\" });\n        },\n      }),\n    },\n  },\n};\nEOF\necho '{\"jsPlugins\":[\"./plugin.mjs\"],\"rules\":{\"smoke-plugin/always-error\":\"error\"}}' >plugin.jsonc\necho 'void 0;' >plugin.js\nexpectFail plugin-smoke-ok \"$out/bin/oxlint\" -c plugin.jsonc plugin.js\n\necho 'const s: string = \"\"; const _: string = s as string;' >type-aware.ts\nexpectFail no-unnecessary-type-assertion \\\n  \"$out/bin/oxlint\" -D typescript/no-unnecessary-type-assertion --type-aware type-aware.ts\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex=^oxlint_v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs_slim_24, "meta"));
         return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Collection of JavaScript tools written in Rust",
         homepage: "https://github.com/oxc-project/oxc",
         changelog: nix.thunk(() => nix.str`https://github.com/oxc-project/oxc/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

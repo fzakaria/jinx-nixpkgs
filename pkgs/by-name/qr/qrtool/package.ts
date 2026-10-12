@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 40, 5], ["license", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["mainProgram", 44, 5], ["maintainers", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["postInstall", 28, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, asciidoctor: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["license", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["mainProgram", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["postInstall", 28, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const asciidoctor = nix.arg($, "asciidoctor");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "qrtool",
       version: "0.13.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sorairolake",
           repo: "qrtool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [asciidoctor, installShellFiles]),
       postInstall: nix.thunk(() => nix.add("asciidoctor -b manpage docs/man/man1/*.1.adoc\ninstallManPage docs/man/man1/*.1\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd qrtool \\\n  --bash <($out/bin/qrtool completion bash) \\\n  --fish <($out/bin/qrtool completion fish) \\\n  --zsh <($out/bin/qrtool completion zsh)\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utility for encoding and decoding QR code images",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://sorairolake.github.io/qrtool/book/index.html",

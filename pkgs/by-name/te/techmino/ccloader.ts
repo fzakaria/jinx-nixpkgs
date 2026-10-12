@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ccloader.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["fetchSubmodules", 17, 5], ["hash", 18, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 21, 3], ["buildPhase", 26, 3], ["installPhase", 34, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libcoldclear: false, luajit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ccloader.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["fetchSubmodules", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/ccloader.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/ccloader.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 21, 3], ["buildPhase", 26, 3], ["installPhase", 34, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ccloader";
       const version = "11.4.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "26F-Studio",
           repo: "cold_clear_ai_love2d_wrapper",
           rev: version,
@@ -40,7 +38,7 @@ mv CCLoader.so $out/lib/lua/${nix.sel(luajit, "luaversion")}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Luajit wrapper for Cold Clear, a Tetris AI",
         homepage: "https://github.com/26F-Studio/cold_clear_ai_love2d_wrapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -50,7 +48,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

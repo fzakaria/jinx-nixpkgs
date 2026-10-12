@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs-slim", 18, 35]], [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["pnpm", 33, 13], ["fetcherVersion", 34, 5], ["hash", 35, 5]], [["updateScript", 85, 12]], [["platforms", 88, 5], ["mainProgram", 89, 5], ["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["pnpmDeps", 31, 3], ["nativeBuildInputs", 38, 3], ["buildPhase", 47, 3], ["installPhase", 55, 3], ["nativeInstallCheckInputs", 82, 3], ["doInstallCheck", 83, 3], ["passthru", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_10: false, faketty: false, "nodejs-slim_22": false, versionCheckHook: false, makeBinaryWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs-slim", 18, 35]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["pnpm", 33, 13], ["fetcherVersion", 34, 5], ["hash", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 85, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["platforms", 88, 5], ["mainProgram", 89, 5], ["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["pnpmDeps", 31, 3], ["nativeBuildInputs", 38, 3], ["buildPhase", 47, 3], ["installPhase", 55, 3], ["nativeInstallCheckInputs", 82, 3], ["doInstallCheck", 83, 3], ["passthru", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_10;
   const nodejs_slim = nodejs_slim_22;
-  const pnpm$ = nix.thunk(() => nix.app(nix.sel(pnpm, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim }))));
+  const pnpm$ = nix.thunk(() => nix.app(nix.sel(pnpm, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], "nodejs-slim": nodejs_slim }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "shopify",
       version: "4.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "shopify",
           repo: "cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-y3HAuoXHmC9tX+PK7JMS0c4PpwhRVvxFnTIgobInTfE=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -76,11 +71,11 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         mainProgram: "shopify",
         description: "CLI which helps you build against the Shopify platform faster",

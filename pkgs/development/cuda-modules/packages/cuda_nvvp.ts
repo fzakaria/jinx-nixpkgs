@@ -2,21 +2,20 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda_nvvp.nix", [[["description", 11, 5], ["longDescription", 12, 5], ["homepage", 16, 5]], [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["allowFHSReferences", 8, 3], ["meta", 10, 3]]]);
 const formals$1 = { args: { buildRedist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda_nvvp.nix", [["description", 11, 5], ["longDescription", 12, 5], ["homepage", 16, 5]]);
-const pos$2 = nix.positions(here + "/cuda_nvvp.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["allowFHSReferences", 8, 3], ["meta", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "cuda_nvvp",
       outputs: nix.thunk(() => ["out"]),
       allowFHSReferences: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Cross-platform performance profiling tool for optimizing CUDA C/C++ applications",
         longDescription: "The NVIDIA Visual Profiler is a cross-platform performance profiling tool that delivers developers vital\nfeedback for optimizing CUDA C/C++ applications.\n",
         homepage: "https://developer.nvidia.com/nvidia-visual-profiler",

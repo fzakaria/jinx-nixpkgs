@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]], [["description", 80, 5], ["longDescription", 81, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 55, 3], ["preConfigure", 70, 3], ["configureFlags", 71, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, autoconf: false, automake: false, curl: false, iprange: false, iproute2: false, iptables: false, iputils: false, kmod: false, "net-tools": false, procps: false, tcpdump: false, traceroute: false, "util-linux": false, whois: false, onlyQOS: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 80, 5], ["longDescription", 81, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 55, 3], ["preConfigure", 70, 3], ["configureFlags", 71, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "firehol";
       const version = "3.1.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "firehol",
           repo: "firehol",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
         "--disable-update-ipsets",
       ], nix.app(nix.sel(lib, "optionals"), onlyQOS, nix.thunk(() => ["--disable-firehol"]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Firewall for humans",
         longDescription: "FireHOL, an iptables stateful packet filtering firewall for humans!\nFireQOS, a TC based bandwidth shaper for humans!\n",
         homepage: "https://firehol.org/",
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

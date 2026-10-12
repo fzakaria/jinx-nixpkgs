@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "absl-py": false, jax: false, numpy: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jmp",
       version: "0.0.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "deepmind",
           repo: "jmp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["jmp"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "This library implements support for mixed precision training in JAX",
         homepage: "https://github.com/deepmind/jmp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

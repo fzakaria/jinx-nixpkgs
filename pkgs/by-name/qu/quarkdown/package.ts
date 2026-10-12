@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["pkg", 73, 5], ["data", 74, 5]], [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 111, 5], ["sourceProvenance", 112, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["__structuredAttrs", 62, 3], ["strictDeps", 63, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 70, 3], ["mitmCache", 72, 3], ["__darwinAllowLocalNetworking", 76, 3], ["gradleFlags", 77, 3], ["doCheck", 86, 3], ["installPhase", 88, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gradle_8: false, jre: false, "dart-sass": false, libarchive: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg", 73, 5], ["data", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 111, 5], ["sourceProvenance", 112, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["__structuredAttrs", 62, 3], ["strictDeps", 63, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 70, 3], ["mitmCache", 72, 3], ["__darwinAllowLocalNetworking", 76, 3], ["gradleFlags", 77, 3], ["doCheck", 86, 3], ["installPhase", 88, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const gradle = gradle_8;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "quarkdown",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "iamgio",
           repo: "quarkdown",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +66,7 @@ EOF
       nativeBuildInputs: nix.thunk(() => [gradle, dart_sass, libarchive, makeWrapper]),
       buildInputs: nix.thunk(() => [jre]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pkg: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -91,7 +88,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Modern Markdown-based typesetting system",
         homepage: "https://github.com/iamgio/quarkdown",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

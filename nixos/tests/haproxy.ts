@@ -2,62 +2,50 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/haproxy.nix", [[["enable", 9, 11], ["config", 10, 11]], [["ip", 49, 17], ["port", 50, 17]], [["documentRoot", 45, 13], ["adminAddr", 46, 13], ["listen", 47, 13]], [["localhost", 44, 24]], [["enable", 43, 11], ["virtualHosts", 44, 11]], [["haproxy", 8, 18], ["httpd", 42, 18]], [["allowedTCPPorts", 55, 29], ["allowedUDPPorts", 60, 29]], [["firewall", 55, 20]], [["services", 8, 9], ["networking", 55, 9]], [["systemPackages", 68, 21]], [["environment", 68, 9]], [["server", 5, 5], ["client", 65, 5]], [["name", 3, 3], ["nodes", 4, 3], ["testScript", 71, 3]]]);
 const formals$1 = { args: { lib: false, hostPkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/haproxy.nix", [["enable", 9, 11], ["config", 10, 11]]);
-const pos$2 = nix.positions(here + "/haproxy.nix", [["ip", 49, 17], ["port", 50, 17]]);
-const pos$3 = nix.positions(here + "/haproxy.nix", [["documentRoot", 45, 13], ["adminAddr", 46, 13], ["listen", 47, 13]]);
-const pos$4 = nix.positions(here + "/haproxy.nix", [["localhost", 44, 24]]);
-const pos$5 = nix.positions(here + "/haproxy.nix", [["enable", 43, 11], ["virtualHosts", 44, 11]]);
-const pos$6 = nix.positions(here + "/haproxy.nix", [["haproxy", 8, 18], ["httpd", 42, 18]]);
-const pos$7 = nix.positions(here + "/haproxy.nix", [["allowedTCPPorts", 55, 29], ["allowedUDPPorts", 60, 29]]);
-const pos$8 = nix.positions(here + "/haproxy.nix", [["firewall", 55, 20]]);
-const pos$9 = nix.positions(here + "/haproxy.nix", [["services", 8, 9], ["networking", 55, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/haproxy.nix", [["systemPackages", 68, 21]]);
-const pos$11 = nix.positions(here + "/haproxy.nix", [["environment", 68, 9]]);
-const pos$12 = nix.positions(here + "/haproxy.nix", [["server", 5, 5], ["client", 65, 5]]);
-const pos$13 = nix.positions(here + "/haproxy.nix", [["name", 3, 3], ["nodes", 4, 3], ["testScript", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const hostPkgs = nix.arg($, "hostPkgs");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "haproxy",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             haproxy: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               enable: true,
               config: "defaults\n  mode http\n  timeout connect 10s\n  timeout client 10s\n  timeout server 10s\n\n  log /dev/log local0 debug err\n  option logasap\n  option httplog\n  option httpslog\n\nbackend http_server\n  server httpd [::1]:8000 alpn http/1.1\n\nfrontend http\n  bind :80\n  bind :443 ssl strict-sni crt /etc/ssl/fullchain.pem alpn h2,http/1.1\n  bind quic4@:443 ssl strict-sni crt /etc/ssl/fullchain.pem alpn h3 allow-0rtt\n\n  http-after-response add-header alt-svc 'h3=\":443\"; ma=60' if { ssl_fc }\n\n  http-request use-service prometheus-exporter if { path /metrics }\n  use_backend http_server\n\nfrontend http-cert-auth\n  bind :8443 ssl strict-sni crt /etc/ssl/fullchain.pem verify required ca-file /etc/ssl/cacert.crt\n  bind quic4@:8443 ssl strict-sni crt /etc/ssl/fullchain.pem verify required ca-file /etc/ssl/cacert.crt alpn h3\n\n  use_backend http_server\n",
             })),
             httpd: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 localhost: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   documentRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "index.txt", "We are all good!")),
                   adminAddr: "notme@yourhost.local",
-                  listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$2, ip: "::1", port: 8000n }))]),
+                  listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[1], ip: "::1", port: 8000n }))]),
                 })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               allowedTCPPorts: nix.thunk(() => [80n, 443n, 8443n]),
               allowedUDPPorts: nix.thunk(() => [443n, 8443n]),
             })),
@@ -68,9 +56,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
           })),
         };

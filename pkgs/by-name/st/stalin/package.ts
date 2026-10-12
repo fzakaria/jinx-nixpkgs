@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 48, 5], ["license", 49, 5], ["description", 50, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["buildPhase", 23, 3], ["installPhase", 25, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, ncompress: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["license", 49, 5], ["description", 50, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["buildPhase", 23, 3], ["installPhase", 25, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "stalin";
       const version = "0.11";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "ftp://ftp.ecn.purdue.edu/qobi/stalin.tar.Z",
           sha256: "0lz8riccpigdixwf6dswwva6s4kxaz3dzxhkqhcxgwmffy30vw8s",
         }))));
@@ -45,7 +43,7 @@ substituteInPlace "$out/bin/stalin" \\
   --replace "$PWD/include" "$out/share/stalin-${version}/include"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.ece.purdue.edu/~qobi/software.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         description: "Optimizing Scheme compiler",
@@ -53,7 +51,7 @@ substituteInPlace "$out/bin/stalin" \\
         platforms: nix.thunk(() => ["i686-linux"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 7], ["repo", 21, 7], ["tag", 22, 7], ["hash", 23, 7]], [["pkg", 32, 7], ["data", 33, 7]], [["description", 70, 7], ["longDescription", 71, 7], ["homepage", 76, 7], ["license", 77, 7], ["maintainers", 78, 7], ["mainProgram", 79, 7], ["platforms", 80, 7]], [["pname", 14, 5], ["version", 15, 5], ["strictDeps", 16, 5], ["__structuredAttrs", 17, 5], ["src", 19, 5], ["nativeBuildInputs", 26, 5], ["mitmCache", 31, 5], ["doCheck", 36, 5], ["postPatch", 37, 5], ["gradleBuildTask", 48, 5], ["installPhase", 49, 5], ["meta", 69, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gradle: false, jre: false, makeWrapper: false, libx11: false, libxext: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 7], ["repo", 21, 7], ["tag", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg", 32, 7], ["data", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 70, 7], ["longDescription", 71, 7], ["homepage", 76, 7], ["license", 77, 7], ["maintainers", 78, 7], ["mainProgram", 79, 7], ["platforms", 80, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 5], ["version", 15, 5], ["strictDeps", 16, 5], ["__structuredAttrs", 17, 5], ["src", 19, 5], ["nativeBuildInputs", 26, 5], ["mitmCache", 31, 5], ["doCheck", 36, 5], ["postPatch", 37, 5], ["gradleBuildTask", 48, 5], ["installPhase", 49, 5], ["meta", 69, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const libGL = nix.arg($, "libGL");
   const self = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ramus",
       version: "2.0.2",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Vitaliy-Yakovchuk",
           repo: "ramus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-2rbcUqM0YgwPLo8lNFCRJQDlHZQEivB3GRG/iIlwXiQ=",
         })))),
       nativeBuildInputs: nix.thunk(() => [gradle, makeWrapper]),
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$2, pkg: finalAttrs, data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: $pos[1], pkg: finalAttrs, data: nix.path(here, "./deps.json") })))),
       doCheck: false,
       postPatch: "sed -i \"/plugins {/,/^}/d\" build.gradle\nsed -i \"/^dependencies {/,/^}/d\" build.gradle\nsed -i \"/^izpack {/,/^}/d\" build.gradle\nsed -i \"s|org.dockingframes:docking-frames-common:1.1.2-SNAPSHOT|org.dockingframes:docking-frames-common:1.1.1|g\" \\\n  gui-framework-core/build.gradle\nsed -i \"/    maven {/{N;N;/freehep/d}\" client/build.gradle\nsed -i \"s/sourceCompatibility = 1\\.6/sourceCompatibility = 8/\" build.gradle\nsed -i \"s/targetCompatibility = 1\\.6/targetCompatibility = 8/\" build.gradle\n",
       gradleBuildTask: "copyFiles",
@@ -50,7 +47,7 @@ makeWrapper ${jre}/bin/java $out/bin/ramus \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Java-based IDEF0 and DFD modelling tool",
         longDescription: "Ramus is a desktop application for creating IDEF0 functional decomposition\ndiagrams and Data Flow Diagrams (DFD). It is written in Java/Swing and\nsupports saving/loading projects in its own XML-based format.\n",
         homepage: "https://github.com/Vitaliy-Yakovchuk/ramus",

@@ -2,32 +2,26 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-initrd-vconsole.nix", [[["enable", 16, 9], ["emergencyAccess", 17, 9]], [["systemd", 15, 19]], [["kernelParams", 8, 12], ["initrd", 15, 12]], [["earlySetup", 21, 9], ["keyMap", 22, 9]], [["boot", 8, 7], ["console", 20, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-initrd-vconsole.nix", [["enable", 16, 9], ["emergencyAccess", 17, 9]]);
-const pos$2 = nix.positions(here + "/systemd-initrd-vconsole.nix", [["systemd", 15, 19]]);
-const pos$3 = nix.positions(here + "/systemd-initrd-vconsole.nix", [["kernelParams", 8, 12], ["initrd", 15, 12]]);
-const pos$4 = nix.positions(here + "/systemd-initrd-vconsole.nix", [["earlySetup", 21, 9], ["keyMap", 22, 9]]);
-const pos$5 = nix.positions(here + "/systemd-initrd-vconsole.nix", [["boot", 8, 7], ["console", 20, 7]]);
-const pos$6 = nix.positions(here + "/systemd-initrd-vconsole.nix", [["machine", 5, 9]]);
-const pos$7 = nix.positions(here + "/systemd-initrd-vconsole.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "systemd-initrd-vconsole",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             kernelParams: nix.thunk(() => nix.app(nix.sel(lib, "mkAfter"), nix.thunk(() => [
                 "rd.systemd.unit=rescue.target",
                 "loglevel=3",
@@ -35,11 +29,11 @@ export default nix.lambda((args) => (() => {
                 "systemd.log_level=warning",
               ]))),
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              systemd: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, emergencyAccess: true })),
+              [nix.POS]: $pos[1],
+              systemd: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true, emergencyAccess: true })),
             })),
           })),
-          console: nix.thunk(() => ({ [nix.POS]: pos$4, earlySetup: true, keyMap: "colemak" })),
+          console: nix.thunk(() => ({ [nix.POS]: $pos[3], earlySetup: true, keyMap: "colemak" })),
         };
       })(), formals$2),
     })),

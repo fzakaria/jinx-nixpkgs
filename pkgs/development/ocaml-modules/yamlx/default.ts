@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 26, 5], ["maintainers", 27, 5], ["license", 28, 5], ["homepage", 29, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 20, 3], ["checkInputs", 21, 3], ["minimalOCamlVersion", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, ppx_deriving: false, testo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 26, 5], ["maintainers", 27, 5], ["license", 28, 5], ["homepage", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 20, 3], ["checkInputs", 21, 3], ["minimalOCamlVersion", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const ppx_deriving = nix.arg($, "ppx_deriving");
   const testo = nix.arg($, "testo");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "yamlx",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mjambon/yamlx/releases/download/${nix.sel(finalAttrs, "version")}/yamlx-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-ejpFZY4G6m4/EPApN6GDwEfFC9qS8azWeJQspOCRhkA=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [testo]),
       minimalOCamlVersion: "4.14",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pure-OCaml YAML 1.2 parser with a lossless, comment-preserving AST",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 41, 9], ["hash", 42, 9]], [["url", 45, 9], ["hash", 46, 9]], [["x86_64-linux", 40, 7], ["aarch64-linux", 44, 7]], [["updateScript", 153, 12]], [["homepage", 156, 5], ["sourceProvenance", 157, 5], ["license", 158, 5], ["description", 159, 5], ["platforms", 160, 5], ["maintainers", 164, 5]], [["pname", 27, 3], ["outputs", 29, 3], ["version", 33, 3], ["src", 35, 3], ["unpackPhase", 51, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 61, 3], ["installPhase", 67, 3], ["makeWrapperArgs", 117, 3], ["postFixup", 141, 3], ["dontStrip", 149, 3], ["dontWrapQtApps", 150, 3], ["preferLocalBuild", 151, 3], ["passthru", 153, 3], ["meta", 155, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, makeWrapper: false, "xdg-utils": false, dbus: false, getconf: false, glibc: false, libxrandr: false, libx11: false, libxext: false, libxdamage: false, libxtst: false, libsm: false, libxfixes: false, coreutils: false, libsForQt5: false, icu63: false, nss: false, minizip: false, pipewire: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 41, 9], ["hash", 42, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 45, 9], ["hash", 46, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 40, 7], ["aarch64-linux", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 153, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 156, 5], ["sourceProvenance", 157, 5], ["license", 158, 5], ["description", 159, 5], ["platforms", 160, 5], ["maintainers", 164, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["outputs", 29, 3], ["version", 33, 3], ["src", 35, 3], ["unpackPhase", 51, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 61, 3], ["installPhase", 67, 3], ["makeWrapperArgs", 117, 3], ["postFixup", 141, 3], ["dontStrip", 149, 3], ["dontWrapQtApps", 150, 3], ["preferLocalBuild", 151, 3], ["passthru", 153, 3], ["meta", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,21 +30,21 @@ export default nix.lambda((args) => (() => {
   const minizip = nix.arg($, "minizip");
   const pipewire = nix.arg($, "pipewire");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "teamviewer",
       outputs: nix.thunk(() => ["out", "dev"]),
       version: "15.81.5",
       src: nix.thunk(() => (() => {
         const base_url = nix.thunk(() => nix.str`https://dl.teamviewer.com/download/linux/version_${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}x`);
         return nix.selOr({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`${base_url}/teamviewer_${nix.sel(finalAttrs, "version")}_amd64.deb`),
               hash: "sha256-Wf0MmfOi5ryXWGOpqenZUu3kmQgJCaqt/fE6Z/brMeI=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`${base_url}/teamviewer_${nix.sel(finalAttrs, "version")}_arm64.deb`),
               hash: "sha256-eut46sFd/c/3RxsTJ1MHMGKIqJNSO0BD4uTYkayOoOE=",
             })))),
@@ -129,9 +124,9 @@ substituteInPlace $out/share/teamviewer/tv_bin/script/tvw_config \\
       dontStrip: true,
       dontWrapQtApps: true,
       preferLocalBuild: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update-teamviewer.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update-teamviewer.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.teamviewer.com",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

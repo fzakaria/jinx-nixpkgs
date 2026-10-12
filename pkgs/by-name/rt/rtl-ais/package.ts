@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["mainProgram", 33, 5], ["platforms", 34, 5]], [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 13, 3], ["buildInputs", 14, 3], ["src", 19, 3], ["makeFlags", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, libusb1: false, "rtl-sdr": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["mainProgram", 33, 5], ["platforms", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 13, 3], ["buildInputs", 14, 3], ["src", 19, 3], ["makeFlags", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const rtl_sdr = nix.arg($, "rtl-sdr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rtl-ais",
       version: "0.8.1",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [rtl_sdr, libusb1]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dgiardini",
           repo: "rtl-ais",
           rev: "0e85f4e5f9ce7378834c3129bc894580efc24291",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple AIS tuner and generic dual-frequency FM demodulator",
         homepage: "https://github.com/dgiardini/rtl-ais",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

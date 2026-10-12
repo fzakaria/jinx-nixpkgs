@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["version", 66, 40]], [["pname", 70, 9], ["version", 71, 9], ["src", 72, 9], ["propagatedBuildInputs", 73, 9]], [["ppxlib", 66, 7], ["charon", 69, 7]], [["description", 242, 5], ["homepage", 243, 5], ["license", 244, 5], ["maintainers", 245, 5], ["platforms", 246, 5], ["badPlatforms", 248, 5], ["mainProgram", 249, 5]], [["pname", 92, 11], ["src", 92, 17], ["version", 92, 21], ["strictDeps", 94, 3], ["__structuredAttrs", 95, 3], ["nativeBuildInputs", 97, 3], ["buildInputs", 122, 3], ["preConfigure", 172, 3], ["dontUseCmakeConfigure", 206, 3], ["configureFlags", 208, 3], ["buildFlags", 221, 3], ["dontUseNinjaBuild", 229, 3], ["dontUseNinjaInstall", 230, 3], ["postInstall", 232, 3], ["meta", 241, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, autoconf: false, automake: false, cmake: false, dune_3: false, git: false, makeWrapper: false, ninja: false, opam: false, "pkg-config": false, perl: false, which: false, gmp: false, mpfr: false, "ocaml-ng": false, sqlite: false, zlib: false, beamPackages: false, jdk: false, python3: false, withErlang: true, withJava: true, withLLVM: true, withRust: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 66, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 70, 9], ["version", 71, 9], ["src", 72, 9], ["propagatedBuildInputs", 73, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ppxlib", 66, 7], ["charon", 69, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 242, 5], ["homepage", 243, 5], ["license", 244, 5], ["maintainers", 245, 5], ["platforms", 246, 5], ["badPlatforms", 248, 5], ["mainProgram", 249, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 92, 11], ["src", 92, 17], ["version", 92, 21], ["strictDeps", 94, 3], ["__structuredAttrs", 95, 3], ["nativeBuildInputs", 97, 3], ["buildInputs", 122, 3], ["preConfigure", 172, 3], ["dontUseCmakeConfigure", 206, 3], ["configureFlags", 208, 3], ["buildFlags", 221, 3], ["dontUseNinjaBuild", 229, 3], ["dontUseNinjaInstall", 230, 3], ["postInstall", 232, 3], ["meta", 241, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,24 +36,24 @@ export default nix.lambda((args) => (() => {
   const pname = "infer";
   const version = "1.3.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "facebook",
       repo: pname,
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-Kq7sJVBqe4ei1HbZz8R+P4V6yxisxEmPVHjyVlpL1aw=",
     }))));
   const llvmSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "llvm",
       repo: "llvm-project",
       tag: "llvmorg-21.1.6",
       hash: "sha256-mqZLJYDEs6FXAjbSOruR2ATZZxemNMagNG9SMjSWBFE=",
     }))));
   const ocamlPackages = nix.thunk(() => nix.app(nix.sel(ocaml_ng, "ocamlPackages_5_3", "overrideScope"), (self) => (super$) => ({
-      [nix.POS]: pos$5,
-      ppxlib: nix.thunk(() => nix.app(nix.sel(super$, "ppxlib", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, version: "0.34.0" })))),
+      [nix.POS]: $pos[4],
+      ppxlib: nix.thunk(() => nix.app(nix.sel(super$, "ppxlib", "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], version: "0.34.0" })))),
       charon: nix.thunk(() => nix.app(nix.sel(super$, "buildDunePackage"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: "charon",
           version: "0.1",
           src: nix.thunk(() => nix.str`${src}/dependencies/charon`),
@@ -85,7 +79,7 @@ export default nix.lambda((args) => (() => {
   })());
   const javaDeps = nix.thunk(() => [jdk]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       src: src,
       version: version,
@@ -202,7 +196,7 @@ substituteInPlace infer/dune-workspace.in \\
 `));
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Facebook's static analysis tool for Java, C++, Objective-C, and C.",
         homepage: "https://fbinfer.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

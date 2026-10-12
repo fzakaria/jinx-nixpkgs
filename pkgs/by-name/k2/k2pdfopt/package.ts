@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 44, 5], ["hash", 45, 5]], [["pname", 51, 28], ["version", 52, 7], ["debianRevision", 53, 7], ["patch", 54, 7], ["hash", 55, 7]], [["pname", 58, 28], ["version", 59, 7], ["debianRevision", 60, 7], ["patch", 61, 7], ["hash", 62, 7]], [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["platforms", 116, 5], ["maintainers", 117, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 43, 3], ["patches", 48, 3], ["postPatch", 66, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 93, 3], ["cmakeFlags", 105, 3], ["installPhase", 107, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, runCommand: false, fetchzip: false, fetchurl: false, fetchpatch: false, fetchFromGitHub: false, cmake: false, jbig2dec: false, libjpeg_turbo: false, libpng: false, makeWrapper: false, "pkg-config": false, zlib: false, enableGSL: true, gsl: false, enableGhostScript: true, ghostscript: false, enableMuPDF: true, mupdf: false, enableDJVU: true, djvulibre: false, enableLeptonica: true, leptonica: false, fetchDebianPatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 51, 28], ["version", 52, 7], ["debianRevision", 53, 7], ["patch", 54, 7], ["hash", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 58, 28], ["version", 59, 7], ["debianRevision", 60, 7], ["patch", 61, 7], ["hash", 62, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["platforms", 116, 5], ["maintainers", 117, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 43, 3], ["patches", 48, 3], ["postPatch", 66, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 93, 3], ["cmakeFlags", 105, 3], ["installPhase", 107, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,18 +33,18 @@ export default nix.lambda((args) => (() => {
   const leptonica = nix.arg($, "leptonica");
   const fetchDebianPatch = nix.arg($, "fetchDebianPatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "k2pdfopt",
       version: "2.55",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.willus.com/k2pdfopt/src/k2pdfopt_v${nix.sel(finalAttrs, "version")}_src.zip`),
           hash: "sha256-orQNDXQkkcCtlA8wndss6SiJk4+ImiFCG8XRLEg963k=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./0001-Fix-CMakeLists.patch"),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}+ds`),
             debianRevision: "3.1",
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-uJ9Gpyq64n/HKqo0hkQ2dnkSLCKNN4DedItPGzHfqR8=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}+ds`),
             debianRevision: "3.1",
@@ -72,7 +68,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "install -D -m 755 k2pdfopt $out/bin/k2pdfopt\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Optimizes PDF/DJVU files for mobile e-readers (e.g. the Kindle) and smartphones",
         homepage: "http://www.willus.com/k2pdfopt",
         changelog: "https://www.willus.com/k2pdfopt/k2pdfopt_version.txt",

@@ -2,9 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nativeBuildInputs", 13, 5]], [["cross", 65, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pkgsCross: false, makeBinaryWrapper: false, writeText: false, runCommand: false, runCommandCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cross", 65, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const runCommand = nix.arg($, "runCommand");
   const runCommandCC = nix.arg($, "runCommandCC");
-  const env = nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]) }));
+  const env = nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]) }));
   const envCheck = nix.thunk(() => nix.app(runCommandCC, "envcheck", env, nix.thunk(() => nix.str`cc -Wall -Werror -Wpedantic -o $out ${nix.path(here, "./envcheck.c")}
 `)));
   const makeGoldenTest = (testname) => nix.app(runCommand, nix.thunk(() => nix.str`make-binary-wrapper-test-${testname}`), env, nix.thunk(() => nix.str`mkdir -p tmp/foo # for the chdir test
@@ -60,7 +59,7 @@ cp wrapper.c $out
       "suffix",
       "prefix-dedup-last",
     ]), makeGoldenTest), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       cross: nix.thunk(() => nix.app(nix.sel(pkgsCross, nix.key((nix.asBool(nix.sel(stdenv, "buildPlatform", "isAarch64")) ? "gnu64" : "aarch64-multiplatform")), "callPackage"), nix.path(here, "./cross.nix"), nix.thunk(() => ({})))),
     })))));
   return nix.update(nix.app(writeText, "make-binary-wrapper-tests", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.attrValues(tests)))}

@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["package", 35, 11], ["os", 35, 19], ["arch", 35, 22], ["nativeBuildInputs", 36, 3], ["autoPatchelfIgnoreMissingDeps", 40, 3], ["buildInputs", 41, 3], ["patchElfBnaries", 47, 3], ["patchOsAgnostic", 71, 3], ["patchInstructions", 103, 3], ["noAuditTmpdir", 106, 3], ["meta", 108, 11]]]);
 const formals$1 = { args: { stdenv: false, lib: false, pkgs: false, pkgsHostHost: false, makeWrapper: false, autoPatchelfHook: false, deployAndroidPackage: false, package: false, os: false, arch: false, "platform-tools": false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["package", 35, 11], ["os", 35, 19], ["arch", 35, 22], ["nativeBuildInputs", 36, 3], ["autoPatchelfIgnoreMissingDeps", 40, 3], ["buildInputs", 41, 3], ["patchElfBnaries", 47, 3], ["patchOsAgnostic", 71, 3], ["patchInstructions", 103, 3], ["noAuditTmpdir", 106, 3], ["meta", 108, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -79,7 +79,7 @@ done
       const noAuditTmpdir = true;
       const meta_1 = meta;
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         package: package$_1,
         os: os_1,
         arch: arch_1,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["src", 17, 46]], [["name", 52, 7], ["url", 53, 7], ["hash", 54, 7]], [["isGNU", 100, 5]], [["homepage", 104, 5]], [["pname", 14, 3], ["version", 15, 11], ["src", 17, 3], ["outputs", 45, 3], ["patches", 50, 3], ["postUnpack", 59, 3], ["preAutoreconf", 64, 3], ["enableParallelBuilding", 69, 3], ["nativeBuildInputs", 71, 3], ["configurePlatforms", 75, 3], ["configureFlags", 80, 3], ["preConfigure", 86, 3], ["hardeningDisable", 91, 3], ["doCheck", 97, 3], ["passthru", 99, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gcc_meta: false, release_version: false, version: false, getVersionFile: false, monorepoSrc: true, fetchpatch: false, autoreconfHook269: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["src", 17, 46]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 52, 7], ["url", 53, 7], ["hash", 54, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["isGNU", 100, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 104, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 11], ["src", 17, 3], ["outputs", 45, 3], ["patches", 50, 3], ["postUnpack", 59, 3], ["preAutoreconf", 64, 3], ["enableParallelBuilding", 69, 3], ["nativeBuildInputs", 71, 3], ["configurePlatforms", 75, 3], ["configureFlags", 80, 3], ["preConfigure", 86, 3], ["hardeningDisable", 91, 3], ["doCheck", 97, 3], ["passthru", 99, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook269 = nix.arg($, "autoreconfHook269");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libssp",
       version: version,
-      src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`libssp-src-${version}`), nix.thunk(() => ({ [nix.POS]: pos$1, src: monorepoSrc })), nix.thunk(() => nix.add("runPhase unpackPhase\n\nmkdir -p \"$out/gcc\"\ncp gcc/BASE-VER \"$out/gcc\"\ncp gcc/DATESTAMP \"$out/gcc\"\n\ncp -r libssp \"$out\"\n\ncp -r config \"$out\"\ncp -r multilib.am \"$out\"\n\ncp config.guess \"$out\"\ncp config.rpath \"$out\"\ncp config.sub \"$out\"\ncp config-ml.in \"$out\"\ncp ltmain.sh \"$out\"\ncp install-sh \"$out\"\ncp mkinstalldirs \"$out\"\n\n", "if [[ -f MD5SUMS ]]; then cp MD5SUMS \"$out\"; fi\n")))),
+      src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`libssp-src-${version}`), nix.thunk(() => ({ [nix.POS]: $pos[0], src: monorepoSrc })), nix.thunk(() => nix.add("runPhase unpackPhase\n\nmkdir -p \"$out/gcc\"\ncp gcc/BASE-VER \"$out/gcc\"\ncp gcc/DATESTAMP \"$out/gcc\"\n\ncp -r libssp \"$out\"\n\ncp -r config \"$out\"\ncp -r multilib.am \"$out\"\n\ncp config.guess \"$out\"\ncp config.rpath \"$out\"\ncp config.sub \"$out\"\ncp config-ml.in \"$out\"\ncp ltmain.sh \"$out\"\ncp install-sh \"$out\"\ncp mkinstalldirs \"$out\"\n\n", "if [[ -f MD5SUMS ]]; then cp MD5SUMS \"$out\"; fi\n")))),
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "regular-libdir-includedir.patch",
             url: "https://inbox.sourceware.org/gcc-patches/20250720172933.2404828-1-git@JohnEricson.me/raw",
             hash: "sha256-W7dcy1Tm3O2reK7kx83DRv8W97qUfaqDbKLiLXIegRw=",
@@ -49,8 +45,8 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cd \"$buildRoot\"\nconfigureScript=$sourceRoot/configure\n",
       hardeningDisable: nix.thunk(() => ["fortify", "stackprotector"]),
       doCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, isGNU: true })),
-      meta: nix.thunk(() => nix.update(gcc_meta, { [nix.POS]: pos$4, homepage: "https://gcc.gnu.org/" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], isGNU: true })),
+      meta: nix.thunk(() => nix.update(gcc_meta, { [nix.POS]: $pos[3], homepage: "https://gcc.gnu.org/" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

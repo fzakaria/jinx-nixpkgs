@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["providedSessions", 26, 12]], [["pname", 9, 3], ["extraNativeBuildInputs", 11, 3], ["extraBuildInputs", 12, 3], ["cmakeFlags", 18, 3], ["postFixup", 20, 3], ["passthru", 26, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, "pkg-config": false, qtsensors: false, qtwayland: false, "plasma-workspace": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["providedSessions", 26, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["extraNativeBuildInputs", 11, 3], ["extraBuildInputs", 12, 3], ["cmakeFlags", 18, 3], ["postFixup", 20, 3], ["passthru", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const qtwayland = nix.arg($, "qtwayland");
   const plasma_workspace = nix.arg($, "plasma-workspace");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "plasma-mobile",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtsensors, qtwayland]),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
     "$out/libexec/plasma-dbus-run-session-if-needed" \\
     "${plasma_workspace}/libexec/plasma-dbus-run-session-if-needed"
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, providedSessions: nix.thunk(() => ["plasma-mobile"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], providedSessions: nix.thunk(() => ["plasma-mobile"]) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

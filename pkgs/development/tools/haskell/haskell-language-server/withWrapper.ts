@@ -2,16 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/withWrapper.nix", [[["cabalFlag", 47, 7], ["packages", 48, 7]], [["cabalFlag", 53, 7], ["packages", 54, 7]], [["cabalFlag", 59, 7], ["packages", 60, 7]], [["cabalFlag", 65, 7], ["packages", 66, 7]], [["ormolu", 46, 5], ["fourmolu", 52, 5], ["floskell", 58, 5], ["stylish-haskell", 64, 5]], [["libraryHaskellDepends", 115, 9]], [["enableSharedExecutables", 130, 11]], [["maintainers", 170, 5], ["longDescription", 171, 5]], [["pname", 160, 3], ["version", 161, 3], ["buildCommand", 163, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, haskellPackages: false, haskell: false, supportedGhcVersions: true, dynamic: true, supportedFormatters: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/withWrapper.nix", [["cabalFlag", 47, 7], ["packages", 48, 7]]);
-const pos$2 = nix.positions(here + "/withWrapper.nix", [["cabalFlag", 53, 7], ["packages", 54, 7]]);
-const pos$3 = nix.positions(here + "/withWrapper.nix", [["cabalFlag", 59, 7], ["packages", 60, 7]]);
-const pos$4 = nix.positions(here + "/withWrapper.nix", [["cabalFlag", 65, 7], ["packages", 66, 7]]);
-const pos$5 = nix.positions(here + "/withWrapper.nix", [["ormolu", 46, 5], ["fourmolu", 52, 5], ["floskell", 58, 5], ["stylish-haskell", 64, 5]]);
-const pos$6 = nix.positions(here + "/withWrapper.nix", [["libraryHaskellDepends", 115, 9]]);
-const pos$7 = nix.positions(here + "/withWrapper.nix", [["enableSharedExecutables", 130, 11]]);
-const pos$8 = nix.positions(here + "/withWrapper.nix", [["maintainers", 170, 5], ["longDescription", 171, 5]]);
-const pos$9 = nix.positions(here + "/withWrapper.nix", [["pname", 160, 3], ["version", 161, 3], ["buildCommand", 163, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,24 +23,24 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.builtins.map, nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "ghc")))),
       ])))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/tools/haskell/haskell-language-server/withWrapper.nix:33:1");
   const knownFormatters = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     ormolu: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       cabalFlag: "ormolu",
       packages: nix.thunk(() => ["hls-ormolu-plugin"]),
     })),
     fourmolu: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       cabalFlag: "fourmolu",
       packages: nix.thunk(() => ["hls-fourmolu-plugin"]),
     })),
     floskell: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       cabalFlag: "floskell",
       packages: nix.thunk(() => ["hls-floskell-plugin"]),
     })),
     "stylish-haskell": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       cabalFlag: "stylishhaskell",
       packages: nix.thunk(() => ["hls-stylish-haskell-plugin"]),
     })),
@@ -69,7 +61,7 @@ export default nix.lambda((args) => (() => {
     const deps = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (fmt) => nix.sel(fmt, "value", "packages"), unwanted));
     const stripNulls = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (x) => !nix.eq(x, null)));
     const stripDeps = nix.thunk(() => nix.app(overrideCabal, (drv) => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         libraryHaskellDepends: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.selOr(drv, () => [], "libraryHaskellDepends")), nix.thunk(() => [
             stripNulls,
             nix.thunk(() => nix.app(nix.sel(lib, "filter"), (dep) => !nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(dep, "pname")), deps)))),
@@ -78,7 +70,7 @@ export default nix.lambda((args) => (() => {
     return (drv) => nix.app(nix.sel(lib, "pipe"), drv, nix.thunk(() => nix.concat([stripDeps], nix.builtins.map(disableCabalFlag, flags))));
   })());
   const tunedHls = (hsPkgs) => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(hsPkgs, "haskell-language-server")), nix.thunk(() => nix.concat([
-      nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "overrideCabal"), (old) => nix.attrsDyn({ [nix.POS]: pos$7, enableSharedExecutables: dynamic }, [
+      nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "overrideCabal"), (old) => nix.attrsDyn({ [nix.POS]: $pos[6], enableSharedExecutables: dynamic }, [
           [(nix.asBool(!nix.asBool(dynamic)) ? "postInstall" : null), nix.thunk(() => nix.str`${nix.selOr(old, () => "", "postInstall")}
 
 remove-references-to -t ${nix.sel(hsPkgs, "ghc")} $out/bin/haskell-language-server
@@ -95,7 +87,7 @@ remove-references-to -t ${nix.sel(hsPkgs, "ghc")} $out/bin/haskell-language-serv
   })();
   const makeSymlinks = (version) => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (x) => nix.str`ln -s ${nix.app(tunedHls, nix.thunk(() => nix.app(getPackages, version)))}/bin/haskell-language-server $out/bin/${x}`, nix.thunk(() => nix.app(targets, version)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "haskell-language-server",
       version: nix.thunk(() => nix.sel(haskellPackages, "haskell-language-server", "version")),
       buildCommand: nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -103,7 +95,7 @@ ln -s ${nix.app(tunedHls, nix.thunk(() => nix.app(getPackages, nix.thunk(() => n
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", makeSymlinks, supportedGhcVersions)}
 `),
       meta: nix.thunk(() => nix.update(nix.sel(haskellPackages, "haskell-language-server", "meta"), {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "maralorn"))]),
         longDescription: nix.thunk(() => nix.str`This package provides the executables ${nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", (x) => nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.app(targets, x))), supportedGhcVersions)} and haskell-language-server-wrapper.
 You can choose for which ghc versions to install hls with pkgs.haskell-language-server.override { supportedGhcVersions = [ "90" "92" ]; }.

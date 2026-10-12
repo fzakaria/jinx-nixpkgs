@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 16, 13], ["pname", 17, 5], ["hash", 18, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 11, 3], ["version", 12, 11], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 25, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 16, 13], ["pname", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 11], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 25, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const version = "2.0.3";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ddsmt",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "ddSMT",
           hash: "sha256-nmhEG4sUmgpgRUduVTtwDLGPJVKx+dEaPb+KjFRwV2Q=",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Delta debugger for SMT benchmarks in SMT-LIB v2",
         homepage: "https://ddsmt.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

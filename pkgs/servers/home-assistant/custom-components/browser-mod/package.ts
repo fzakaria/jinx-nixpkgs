@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 13], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["src", 29, 13], ["hash", 30, 5]], [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["maintainers", 39, 5], ["license", 40, 5]], [["owner", 11, 3], ["domain", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["npmDeps", 28, 3], ["npmBuildScript", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false, fetchNpmDeps: false, nodejs: false, npmHooks: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 13], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 29, 13], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["maintainers", 39, 5], ["license", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 11, 3], ["domain", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["npmDeps", 28, 3], ["npmBuildScript", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "browser_mod";
       const version = "3.2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: owner,
           repo: "hass-browser_mod",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,13 +30,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")),
       ]);
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: src,
           hash: "sha256-GgeXLnRh1bF3DFTRmjyhSgV/xJYf42zr9XCOlJYZwnA=",
         }))));
       const npmBuildScript = "build";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Home Assistant integration to turn your browser into a controllable entity and media player",
         homepage: "https://github.com/thomasloven/hass-browser_mod",
         changelog: nix.thunk(() => nix.str`https://github.com/thomasloven/hass-browser_mod/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         owner,
         domain,
         version,

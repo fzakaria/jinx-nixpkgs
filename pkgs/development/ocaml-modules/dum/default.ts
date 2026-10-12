@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["hash", 14, 5]], [["homepage", 26, 5], ["description", 27, 5], ["longDescription", 28, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 17, 3], ["propagatedBuildInputs", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, "easy-format": false, buildDunePackage: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 26, 5], ["description", 27, 5], ["longDescription", 28, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 17, 3], ["propagatedBuildInputs", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dum",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mjambon/dum/releases/download/${nix.sel(finalAttrs, "version")}/dum-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-ZFojUD/IoxVTDfGyh2wveFsSz4D19pKkHrNuU+LFJlE=",
         })))),
       postPatch: "substituteInPlace \"dum.ml\" \\\n--replace-fail \"Lazy.lazy_is_val\" \"Lazy.is_val\" \\\n--replace-fail \"Obj.final_tag\" \"Obj.custom_tag\"\n",
       propagatedBuildInputs: nix.thunk(() => [easy_format]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mjambon/dum",
         description: "Inspect the runtime representation of arbitrary OCaml values",
         longDescription: "Dum is a library for inspecting the runtime representation of\narbitrary OCaml values. Shared or cyclic data are detected\nand labelled. This guarantees that printing would always\nterminate. This makes it possible to print values such as closures,\nobjects or exceptions in depth and without risk.\n",

@@ -2,46 +2,40 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/playwright-python.nix", [[["maintainers", 6, 5]], [["NIX_MANUAL_DOCROOT", 13, 9], ["PLAYWRIGHT_BROWSERS_PATH", 14, 9]], [["libraries", 19, 13]], [["variables", 12, 19], ["systemPackages", 16, 19]], [["environment", 12, 7]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 52, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/playwright-python.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/playwright-python.nix", [["NIX_MANUAL_DOCROOT", 13, 9], ["PLAYWRIGHT_BROWSERS_PATH", 14, 9]]);
-const pos$3 = nix.positions(here + "/playwright-python.nix", [["libraries", 19, 13]]);
-const pos$4 = nix.positions(here + "/playwright-python.nix", [["variables", 12, 19], ["systemPackages", 16, 19]]);
-const pos$5 = nix.positions(here + "/playwright-python.nix", [["environment", 12, 7]]);
-const pos$6 = nix.positions(here + "/playwright-python.nix", [["machine", 9, 9]]);
-const pos$7 = nix.positions(here + "/playwright-python.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "playwright-python",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "phaer"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             variables: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               NIX_MANUAL_DOCROOT: nix.thunk(() => nix.str`file://${nix.sel(pkgs_1, "nix", "doc")}/share/doc/nix/manual/index.html`),
               PLAYWRIGHT_BROWSERS_PATH: nix.thunk(() => nix.sel(pkgs_1, "playwright-driver", "browsers")),
             })),
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "test_playwright", nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "playwright"))]),
                 })), "import sys\nimport re\nfrom playwright.sync_api import sync_playwright\nfrom playwright.sync_api import expect\n\nbrowsers = {\n  \"chromium\": {'args': [\"--headless\", \"--disable-gpu\"], 'channel': 'chromium'},\n  \"firefox\": {},\n  \"webkit\": {}\n}\nneedle = re.compile(\"Nix.* Manual\")\nif len(sys.argv) != 3 or sys.argv[1] not in browsers.keys():\n    print(f\"usage: {sys.argv[0]} [{'|'.join(browsers.keys())}] <url>\")\n    sys.exit(1)\nbrowser_name = sys.argv[1]\nurl = sys.argv[2]\nbrowser_kwargs = browsers.get(browser_name)\nargs = ' '.join(browser_kwargs.get('args', []))\nprint(f\"Running test on {browser_name} {args}\")\nwith sync_playwright() as p:\n    browser = getattr(p, browser_name).launch(**browser_kwargs)\n    context = browser.new_context()\n    page = context.new_page()\n    page.goto(url)\n    expect(page.get_by_text(needle)).to_be_visible()\n")),
             ]),

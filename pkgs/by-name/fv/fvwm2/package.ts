@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["NIX_CFLAGS_COMPILE", 73, 7]], [["homepage", 82, 5], ["changelog", 83, 5], ["description", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["pythonPath", 62, 3], ["configureFlags", 66, 3], ["env", 73, 3], ["postFixup", 75, 3], ["enableParallelBuilding", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, cairo: false, fontconfig: false, freetype: false, fribidi: false, libxcursor: false, libxft: false, libxinerama: false, libxpm: false, libxt: false, libpng: false, librsvg: false, libstroke: false, libxslt: false, perl: false, "pkg-config": false, python3Packages: false, readline: false, enableGestures: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 73, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 82, 5], ["changelog", 83, 5], ["description", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["pythonPath", 62, 3], ["configureFlags", 66, 3], ["env", 73, 3], ["postFixup", 75, 3], ["enableParallelBuilding", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const enableGestures = nix.argOr($, "enableGestures", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fvwm",
       version: "2.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fvwmorg",
           repo: "fvwm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,13 +65,13 @@ export default nix.lambda((args) => (() => {
       pythonPath: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "pyxdg"))]),
       configureFlags: nix.thunk(() => ["--enable-mandoc", "--disable-htmldoc"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion -Wno-error=incompatible-pointer-types",
       })),
       postFixup: "wrapPythonPrograms\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://fvwm.org",
         changelog: nix.thunk(() => nix.str`https://github.com/fvwmorg/fvwm/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Multiple large virtual desktop window manager",

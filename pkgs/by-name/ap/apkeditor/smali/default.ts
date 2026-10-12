@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 7], ["repo", 16, 7], ["rev", 21, 7], ["hash", 22, 7]], [["pkg", 31, 7], ["data", 32, 7]], [["license", 51, 10]], [["pname", 10, 5], ["version", 11, 5], ["projectName", 12, 5], ["src", 14, 5], ["patches", 25, 5], ["mitmCache", 30, 5], ["gradleBuildTask", 34, 5], ["installPhase", 36, 5], ["meta", 51, 5]]]);
 const formals$1 = { args: { fetchFromGitHub: false, gradle: false, lib: false, REAndroidLibrary: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 7], ["repo", 16, 7], ["rev", 21, 7], ["hash", 22, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg", 31, 7], ["data", 32, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["license", 51, 10]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 5], ["version", 11, 5], ["projectName", 12, 5], ["src", 14, 5], ["patches", 25, 5], ["mitmCache", 30, 5], ["gradleBuildTask", 34, 5], ["installPhase", 36, 5], ["meta", 51, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,26 +12,26 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const REAndroidLibrary = nix.arg($, "REAndroidLibrary");
   const self = nix.thunk(() => nix.app(REAndroidLibrary, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "smali",
       version: "0-unstable-2024-11-24",
       projectName: "smali",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "REAndroid",
           repo: "smali-lib",
           rev: "76b35b4e0c9e8c874ca3e374bb943bba8d280770",
           hash: "sha256-PhRBjiIKA4EIiafPplZNBErXG8V84Xn0cZLWVPmJelQ=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./fix-gradle.patch")]),
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$2, pkg: self, data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: $pos[1], pkg: self, data: nix.path(here, "./deps.json") })))),
       gradleBuildTask: "build",
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 install -Dm644 smali/build/libs/*-fat.jar $out/${nix.sel(self, "outJar")}
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [

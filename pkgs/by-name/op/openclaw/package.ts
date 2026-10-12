@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs-slim", 17, 29]], [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["pname", 33, 26], ["version", 33, 32], ["src", 33, 40], ["pnpm", 34, 13], ["fetcherVersion", 35, 5], ["hash", 36, 5]], [["updateScript", 115, 12]], [["description", 118, 5], ["longDescription", 119, 5], ["homepage", 130, 5], ["changelog", 131, 5], ["license", 132, 5], ["mainProgram", 133, 5], ["maintainers", 134, 5], ["platforms", 139, 5], ["knownVulnerabilities", 140, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["pnpmDepsHash", 30, 3], ["pnpmDeps", 32, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 41, 3], ["buildPhase", 49, 3], ["installPhase", 70, 3], ["postInstall", 100, 3], ["nativeInstallCheckInputs", 112, 3], ["doInstallCheck", 113, 3], ["passthru", 115, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, buildPackages: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_11: false, "nodejs-slim_22": false, makeWrapper: false, versionCheckHook: false, rolldown: false, installShellFiles: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs-slim", 17, 29]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 26], ["version", 33, 32], ["src", 33, 40], ["pnpm", 34, 13], ["fetcherVersion", 35, 5], ["hash", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 115, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 118, 5], ["longDescription", 119, 5], ["homepage", 130, 5], ["changelog", 131, 5], ["license", 132, 5], ["mainProgram", 133, 5], ["maintainers", 134, 5], ["platforms", 139, 5], ["knownVulnerabilities", 140, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["pnpmDepsHash", 30, 3], ["pnpmDeps", 32, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 41, 3], ["buildPhase", 49, 3], ["installPhase", 70, 3], ["postInstall", 100, 3], ["nativeInstallCheckInputs", 112, 3], ["doInstallCheck", 113, 3], ["passthru", 115, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const rolldown = nix.arg($, "rolldown");
   const installShellFiles = nix.arg($, "installShellFiles");
   const version = nix.argOr($, "version", () => "2026.6.33");
-  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim_22 }))));
+  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], "nodejs-slim": nodejs_slim_22 }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "openclaw",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "openclaw",
           repo: "openclaw",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       pnpmDepsHash: "sha256-eVyR8SVp0SyjflFomvgn9dgAqvXIUgjCYc5NICxxIg8=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -106,9 +101,9 @@ runHook postInstall
         })()))),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Self-hosted, open-source AI assistant/agent",
         longDescription: "Self-hosted AI assistant/agent connected to all your apps on your Linux\nor macOS machine and controlled via your choice of chat app.\n\nNote: Project is in early/rapid development and uses LLMs to parse untrusted\ncontent while having full access to system by default.\n\nParsing untrusted input with LLMs leaves them vulnerable to prompt injection.\n\n(Originally known as Moltbot and ClawdBot)\n",
         homepage: "https://openclaw.ai",

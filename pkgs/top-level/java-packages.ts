@@ -2,21 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/java-packages.nix", [[["platforms", 20, 13]], [["meta", 19, 11]], [["featureVersion", 37, 25]], [["enableGtk", 40, 17]], [["headless", 44, 15]], [["headless", 46, 58]], [["headless", 48, 13]], [["lib", 73, 28], ["callPackage", 73, 32], ["stdenv", 73, 44]], [["lib", 76, 28], ["callPackage", 76, 32]], [["lib", 85, 28], ["callPackage", 85, 32]], [["lib", 88, 28], ["callPackage", 88, 32]], [["corretto11", 54, 7], ["corretto17", 55, 7], ["corretto21", 56, 7], ["corretto25", 57, 7], ["openjdk8", 59, 7], ["openjdk11", 60, 7], ["openjdk17", 61, 7], ["openjdk21", 62, 7], ["openjdk25", 63, 7], ["openjdk8-bootstrap", 66, 7], ["openjdk11-bootstrap", 67, 7], ["openjdk17-bootstrap", 68, 7], ["temurin-bin", 70, 7], ["semeru-bin", 82, 7]], [["openjfx17", 11, 18], ["openjfx21", 11, 28], ["openjfx25", 11, 38], ["compiler", 12, 3]], [["jogl_2_4_0", 97, 3], ["mavenfod", 98, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/java-packages.nix", [["platforms", 20, 13]]);
-const pos$2 = nix.positions(here + "/java-packages.nix", [["meta", 19, 11]]);
-const pos$3 = nix.positions(here + "/java-packages.nix", [["featureVersion", 37, 25]]);
-const pos$4 = nix.positions(here + "/java-packages.nix", [["enableGtk", 40, 17]]);
-const pos$5 = nix.positions(here + "/java-packages.nix", [["headless", 44, 15]]);
-const pos$6 = nix.positions(here + "/java-packages.nix", [["headless", 46, 58]]);
-const pos$7 = nix.positions(here + "/java-packages.nix", [["headless", 48, 13]]);
-const pos$8 = nix.positions(here + "/java-packages.nix", [["lib", 73, 28], ["callPackage", 73, 32], ["stdenv", 73, 44]]);
-const pos$9 = nix.positions(here + "/java-packages.nix", [["lib", 76, 28], ["callPackage", 76, 32]]);
-const pos$10 = nix.positions(here + "/java-packages.nix", [["lib", 85, 28], ["callPackage", 85, 32]]);
-const pos$11 = nix.positions(here + "/java-packages.nix", [["lib", 88, 28], ["callPackage", 88, 32]]);
-const pos$12 = nix.positions(here + "/java-packages.nix", [["corretto11", 54, 7], ["corretto17", 55, 7], ["corretto21", 56, 7], ["corretto25", 57, 7], ["openjdk8", 59, 7], ["openjdk11", 60, 7], ["openjdk17", 61, 7], ["openjdk21", 62, 7], ["openjdk25", 63, 7], ["openjdk8-bootstrap", 66, 7], ["openjdk11-bootstrap", 67, 7], ["openjdk17-bootstrap", 68, 7], ["temurin-bin", 70, 7], ["semeru-bin", 82, 7]]);
-const pos$13 = nix.positions(here + "/java-packages.nix", [["openjfx17", 11, 18], ["openjfx21", 11, 28], ["openjfx25", 11, 38], ["compiler", 12, 3]]);
-const pos$14 = nix.positions(here + "/java-packages.nix", [["jogl_2_4_0", 97, 3], ["mavenfod", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,27 +13,27 @@ export default nix.lambda((args) => (() => {
   const config = nix.thunk(() => nix.attr(pkgs, "config"));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   return nix.update({
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     openjfx17: nix.thunk(() => nix.attr(pkgs, "openjfx17")),
     openjfx21: nix.thunk(() => nix.attr(pkgs, "openjfx21")),
     openjfx25: nix.thunk(() => nix.attr(pkgs, "openjfx25")),
     compiler: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
         const mergeMetaPlatforms = (jdk) => (other) => nix.update(jdk, {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           meta: nix.thunk(() => nix.update(nix.sel(jdk, "meta"), {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             platforms: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(nix.sel(jdk, "meta", "platforms"), nix.sel(other, "meta", "platforms"))))),
           })),
         });
         const mkLinuxDarwin = (linux) => (darwin) => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.app(mergeMetaPlatforms, linux, darwin) : nix.app(mergeMetaPlatforms, darwin, linux));
         const mkOpenjdk = (featureVersion) => (() => {
-          const openjdkLinux = nix.thunk(() => nix.update(nix.app(callPackage, nix.path(here, "../development/compilers/openjdk/generic.nix"), nix.thunk(() => nix.update({ [nix.POS]: pos$3, featureVersion: featureVersion }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), featureVersion, "11")), nix.thunk(() => ({ [nix.POS]: pos$4, enableGtk: false })))))), {
-            [nix.POS]: pos$5,
+          const openjdkLinux = nix.thunk(() => nix.update(nix.app(callPackage, nix.path(here, "../development/compilers/openjdk/generic.nix"), nix.thunk(() => nix.update({ [nix.POS]: $pos[2], featureVersion: featureVersion }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), featureVersion, "11")), nix.thunk(() => ({ [nix.POS]: $pos[3], enableGtk: false })))))), {
+            [nix.POS]: $pos[4],
             headless: nix.thunk(() => nix.app(mergeMetaPlatforms, openjdkLinuxHeadless, openjdkDarwin)),
           }));
-          const openjdkLinuxHeadless = nix.thunk(() => nix.app(nix.sel(openjdkLinux, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, headless: true }))));
+          const openjdkLinuxHeadless = nix.thunk(() => nix.app(nix.sel(openjdkLinux, "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], headless: true }))));
           const openjdkDarwin = nix.thunk(() => nix.update(nix.app(callPackage, nix.thunk(() => nix.add(nix.path(here, "../development/compilers/zulu"), nix.str`/${featureVersion}.nix`)), nix.thunk(() => ({}))), {
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             headless: nix.thunk(() => nix.app(mergeMetaPlatforms, openjdkDarwin, openjdkLinuxHeadless)),
           }));
           return nix.app(mkLinuxDarwin, openjdkLinux, openjdkDarwin);
@@ -66,13 +53,13 @@ export default nix.lambda((args) => (() => {
           const openjdk17_bootstrap = nix.thunk(() => nix.sel(temurin_bin, "jdk-17"));
           const temurin_bin = nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
               const temurinLinux = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/compilers/temurin-bin/jdk-linux.nix")), nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   lib: nix.thunk(() => nix.attr(pkgs, "lib")),
                   callPackage: nix.thunk(() => nix.attr(pkgs, "callPackage")),
                   stdenv: nix.thunk(() => nix.attr(pkgs, "stdenv")),
                 }))));
               const temurinDarwin = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/compilers/temurin-bin/jdk-darwin.nix")), nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   lib: nix.thunk(() => nix.attr(pkgs, "lib")),
                   callPackage: nix.thunk(() => nix.attr(pkgs, "callPackage")),
                 }))));
@@ -80,19 +67,19 @@ export default nix.lambda((args) => (() => {
             })())));
           const semeru_bin = nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
               const semeruLinux = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/compilers/semeru-bin/jdk-linux.nix")), nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   lib: nix.thunk(() => nix.attr(pkgs, "lib")),
                   callPackage: nix.thunk(() => nix.attr(pkgs, "callPackage")),
                 }))));
               const semeruDarwin = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/compilers/semeru-bin/jdk-darwin.nix")), nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   lib: nix.thunk(() => nix.attr(pkgs, "lib")),
                   callPackage: nix.thunk(() => nix.attr(pkgs, "callPackage")),
                 }))));
               return nix.app(nix.sel(lib, "mapAttrs"), (name) => (drv) => nix.app(mkLinuxDarwin, drv, nix.thunk(() => nix.sel(semeruDarwin, nix.key(nix.force(name))))), semeruLinux);
             })())));
           return {
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             corretto11,
             corretto17,
             corretto21,
@@ -111,7 +98,7 @@ export default nix.lambda((args) => (() => {
         })();
       })()))),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       jogl_2_4_0: nix.thunk(() => nix.builtins.throw("'jogl_2_4_0' is renamed to/replaced by 'jogl'")),
       mavenfod: nix.thunk(() => nix.builtins.throw("'mavenfod' is renamed to/replaced by 'maven.buildMavenPackage'")),
     }))));

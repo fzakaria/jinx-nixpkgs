@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]], [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["license", 68, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["preConfigure", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, libx11: false, xorgproto: false, libxt: false, libxaw: false, libsm: false, libice: false, libxmu: false, libxext: false, gnuchess: false, texinfo: false, libxpm: false, "pkg-config": false, librsvg: false, cairo: false, pango: false, gtk3: false, autoreconfHook: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["license", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["preConfigure", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xboard",
       version: "4.9.1-unstable-2026-08-03",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://https.git.savannah.gnu.org/git/xboard.git",
           rev: "46b3c1d4ea45529cb2054516ff50feb902628d1c",
           sha256: "sha256-P21e6ikimEvm0k98RCeEuvC/ZVtWbosXzioOB18tUbI=",
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "patchShebangs .\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GUI for chess engines",
         mainProgram: "xboard",
         homepage: "https://www.gnu.org/software/xboard/",

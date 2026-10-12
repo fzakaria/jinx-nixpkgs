@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["src", 14, 49]], [["isGNU", 67, 5]], [["homepage", 71, 5]], [["pname", 11, 3], ["version", 12, 11], ["src", 14, 3], ["outputs", 40, 3], ["enableParallelBuilding", 45, 3], ["sourceRoot", 47, 3], ["preConfigure", 49, 3], ["configureFlags", 55, 3], ["postInstall", 60, 3], ["doCheck", 64, 3], ["passthru", 66, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gcc_meta: false, release_version: false, version: false, monorepoSrc: true, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["src", 14, 49]]);
-const pos$2 = nix.positions(here + "/default.nix", [["isGNU", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 11], ["src", 14, 3], ["outputs", 40, 3], ["enableParallelBuilding", 45, 3], ["sourceRoot", 47, 3], ["preConfigure", 49, 3], ["configureFlags", 55, 3], ["postInstall", 60, 3], ["doCheck", 64, 3], ["passthru", 66, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const monorepoSrc = nix.argOr($, "monorepoSrc", () => null);
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libiberty",
       version: version,
-      src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`libiberty-src-${version}`), nix.thunk(() => ({ [nix.POS]: pos$1, src: monorepoSrc })), nix.thunk(() => nix.add("runPhase unpackPhase\n\nmkdir -p \"$out/gcc\"\ncp gcc/BASE-VER \"$out/gcc\"\ncp gcc/DATESTAMP \"$out/gcc\"\n\ncp -r include \"$out\"\ncp -r libiberty \"$out\"\n\ncp config.guess \"$out\"\ncp config.rpath \"$out\"\ncp config.sub \"$out\"\ncp config-ml.in \"$out\"\ncp ltmain.sh \"$out\"\ncp install-sh \"$out\"\ncp mkinstalldirs \"$out\"\n\n", "if [[ -f MD5SUMS ]]; then cp MD5SUMS \"$out\"; fi\n")))),
+      src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`libiberty-src-${version}`), nix.thunk(() => ({ [nix.POS]: $pos[0], src: monorepoSrc })), nix.thunk(() => nix.add("runPhase unpackPhase\n\nmkdir -p \"$out/gcc\"\ncp gcc/BASE-VER \"$out/gcc\"\ncp gcc/DATESTAMP \"$out/gcc\"\n\ncp -r include \"$out\"\ncp -r libiberty \"$out\"\n\ncp config.guess \"$out\"\ncp config.rpath \"$out\"\ncp config.sub \"$out\"\ncp config-ml.in \"$out\"\ncp ltmain.sh \"$out\"\ncp install-sh \"$out\"\ncp mkinstalldirs \"$out\"\n\n", "if [[ -f MD5SUMS ]]; then cp MD5SUMS \"$out\"; fi\n")))),
       outputs: nix.thunk(() => ["out", "dev"]),
       enableParallelBuilding: true,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/libiberty`),
@@ -29,8 +26,8 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["--enable-install-libiberty"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))), "--enable-shared"))),
       postInstall: "cp pic/libiberty.a $out/lib/libiberty_pic.a\n",
       doCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, isGNU: true })),
-      meta: nix.thunk(() => nix.update(gcc_meta, { [nix.POS]: pos$3, homepage: "https://gcc.gnu.org/" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], isGNU: true })),
+      meta: nix.thunk(() => nix.update(gcc_meta, { [nix.POS]: $pos[2], homepage: "https://gcc.gnu.org/" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

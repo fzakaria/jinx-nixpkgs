@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 98, 5], ["repo", 99, 5], ["tag", 100, 5], ["hash", 101, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 114, 7]], [["X-PulseAudio-Properties", 148, 19]], [["name", 131, 7], ["desktopName", 132, 7], ["genericName", 133, 7], ["comment", 134, 7], ["icon", 135, 7], ["exec", 136, 7], ["terminal", 137, 7], ["mimeTypes", 138, 7], ["categories", 139, 7], ["startupNotify", 146, 7], ["startupWMClass", 147, 7], ["extraConfig", 148, 7]], [["castlabs-electron", 194, 13], ["updateScript", 195, 5]], [["changelog", 216, 5], ["description", 217, 5], ["homepage", 218, 5], ["license", 219, 5], ["maintainers", 220, 5], ["platforms", 226, 5], ["mainProgram", 227, 5]], [["pname", 94, 3], ["version", 95, 3], ["src", 97, 3], ["nativeBuildInputs", 104, 3], ["npmDepsHash", 110, 3], ["forceGitDeps", 111, 3], ["makeCacheWritable", 112, 3], ["env", 114, 3], ["buildPhase", 116, 3], ["desktopItems", 129, 3], ["dontWrapGApps", 152, 3], ["installPhase", 154, 3], ["postFixup", 167, 3], ["passthru", 193, 3], ["meta", 215, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, callPackage: false, makeShellWrapper: false, copyDesktopItems: false, makeDesktopItem: false, stdenv: false, wrapGAppsHook3: false, glib: false, gtk3: false, gtk4: false, "at-spi2-atk": false, libdrm: false, libgbm: false, libxkbcommon: false, libxshmfence: false, libGL: false, "vulkan-loader": false, "alsa-lib": false, cairo: false, cups: false, dbus: false, expat: false, "gdk-pixbuf": false, nss: false, nspr: false, libx11: false, libxcb: false, libxcomposite: false, libxdamage: false, libxext: false, libxfixes: false, libxrandr: false, libxkbfile: false, pango: false, systemd: false, pciutils: false, libnotify: false, pipewire: false, libsecret: false, libpulseaudio: false, "speechd-minimal": false, writeShellScript: false, yq: false, curl: false, "nix-update": false, "common-updater-scripts": false, "castlabs-electron": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 98, 5], ["repo", 99, 5], ["tag", 100, 5], ["hash", 101, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 114, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["X-PulseAudio-Properties", 148, 19]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 131, 7], ["desktopName", 132, 7], ["genericName", 133, 7], ["comment", 134, 7], ["icon", 135, 7], ["exec", 136, 7], ["terminal", 137, 7], ["mimeTypes", 138, 7], ["categories", 139, 7], ["startupNotify", 146, 7], ["startupWMClass", 147, 7], ["extraConfig", 148, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["castlabs-electron", 194, 13], ["updateScript", 195, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 216, 5], ["description", 217, 5], ["homepage", 218, 5], ["license", 219, 5], ["maintainers", 220, 5], ["platforms", 226, 5], ["mainProgram", 227, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 94, 3], ["version", 95, 3], ["src", 97, 3], ["nativeBuildInputs", 104, 3], ["npmDepsHash", 110, 3], ["forceGitDeps", 111, 3], ["makeCacheWritable", 112, 3], ["env", 114, 3], ["buildPhase", 116, 3], ["desktopItems", 129, 3], ["dontWrapGApps", 152, 3], ["installPhase", 154, 3], ["postFixup", 167, 3], ["passthru", 193, 3], ["meta", 215, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -100,11 +94,11 @@ export default nix.lambda((args) => (() => {
       vulkan_loader,
     ])));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "tidal-hifi",
       version: "8.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Mastermindzh",
           repo: "tidal-hifi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -114,7 +108,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-6qOeWKLBlGy32zY4p0Ar0scToQthbtrpCSi7MyS8igA=",
       forceGitDeps: true,
       makeCacheWritable: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 npm run compile
@@ -128,7 +122,7 @@ runHook postBuild
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             desktopName: "TIDAL Hi-Fi",
             genericName: "Music Player",
@@ -140,7 +134,7 @@ runHook postBuild
             categories: nix.thunk(() => ["Audio", "Music", "Player", "Network", "AudioVideo"]),
             startupNotify: true,
             startupWMClass: "tidal-hifi",
-            extraConfig: nix.thunk(() => ({ [nix.POS]: pos$3, "X-PulseAudio-Properties": "media.role=music" })),
+            extraConfig: nix.thunk(() => ({ [nix.POS]: $pos[2], "X-PulseAudio-Properties": "media.role=music" })),
           })))),
       ]),
       dontWrapGApps: true,
@@ -164,7 +158,7 @@ makeShellWrapper "$out/share/tidal-hifi/tidal-hifi" "$out/bin/tidal-hifi" \\
   "\${gappsWrapperArgs[@]}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "castlabs-electron": castlabs_electron,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update", nix.thunk(() => nix.str`set -xeuo pipefail
 export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix_update, yq, curl, common_updater_scripts]))}:$PATH"
@@ -178,7 +172,7 @@ NIXPKGS_ALLOW_UNFREE=1 update-source-version tidal-hifi.castlabs-electron "$NEW_
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/Mastermindzh/tidal-hifi/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Web version of Tidal running in Electron with Hi-Fi support thanks to Widevine",
         homepage: "https://github.com/Mastermindzh/tidal-hifi",

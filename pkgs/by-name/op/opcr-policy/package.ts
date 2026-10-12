@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["GOWORK", 27, 7]], [["mainProgram", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["description", 45, 5], ["longDescription", 46, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 17, 3], ["ldflags", 19, 3], ["subPackages", 25, 3], ["env", 27, 3], ["doCheck", 29, 3], ["doInstallCheck", 31, 3], ["installCheckPhase", 32, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GOWORK", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["description", 45, 5], ["longDescription", 46, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 17, 3], ["ldflags", 19, 3], ["subPackages", 25, 3], ["env", 27, 3], ["doCheck", 29, 3], ["doInstallCheck", 31, 3], ["installCheckPhase", 32, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "opcr-policy",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "opcr-io",
           repo: "policy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/opcr-io/policy/pkg/version.ver=${nix.sel(finalAttrs, "version")}`),
       ]),
       subPackages: nix.thunk(() => ["cmd/policy"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], GOWORK: "off" })),
       doCheck: false,
       doInstallCheck: true,
       installCheckPhase: nix.thunk(() => nix.str`runHook preInstallCheck
@@ -42,7 +39,7 @@ $out/bin/policy version | grep "version: ${nix.sel(finalAttrs, "version")}"
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: "policy",
         homepage: "https://openpolicycontainers.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/opcr-io/policy/releases/tag/v${nix.sel(finalAttrs, "version")}`),

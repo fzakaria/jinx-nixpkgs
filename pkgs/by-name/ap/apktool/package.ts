@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["modules", 12, 5]], [["urls", 25, 5], ["hash", 28, 5]], [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["sourceProvenance", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["dontUnpack", 31, 3], ["nativeBuildInputs", 33, 3], ["sourceRoot", 35, 3], ["installPhase", 37, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, jre_minimal: false, aapt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["modules", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["urls", 25, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["sourceProvenance", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["dontUnpack", 31, 3], ["nativeBuildInputs", 33, 3], ["sourceRoot", 35, 3], ["installPhase", 37, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const jre_minimal = nix.arg($, "jre_minimal");
   const aapt = nix.arg($, "aapt");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       modules: nix.thunk(() => ["java.base", "java.desktop", "java.logging", "java.xml"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "apktool",
       version: "3.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://github.com/iBotPeaches/Apktool/releases/download/v${nix.sel(finalAttrs, "version")}/apktool_${nix.sel(finalAttrs, "version")}.jar`),
           ]),
@@ -48,7 +45,7 @@ makeWrapper "${jre}/bin/java" "$out/bin/apktool" \\
   --prefix PATH : ${nix.app(nix.sel(lib, "getBin"), aapt)}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool for reverse engineering Android apk files",
         mainProgram: "apktool",
         homepage: "https://apktool.org",

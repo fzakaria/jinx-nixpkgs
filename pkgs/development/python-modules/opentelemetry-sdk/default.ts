@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["doCheck", 41, 63]], [["tests", 41, 14]], [["homepage", 44, 7], ["description", 45, 7]], [["version", 14, 33], ["src", 14, 41], ["pname", 15, 5], ["pyproject", 16, 5], ["sourceRoot", 18, 5], ["build-system", 20, 5], ["dependencies", 22, 5], ["nativeCheckInputs", 28, 5], ["disabledTestPaths", 34, 5], ["pythonImportsCheck", 36, 5], ["doCheck", 38, 5], ["passthru", 41, 5], ["meta", 43, 5]]]);
 const formals$1 = { args: { buildPythonPackage: false, flaky: false, hatchling: false, "opentelemetry-api": false, "opentelemetry-semantic-conventions": false, "opentelemetry-test-utils": false, "typing-extensions": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["doCheck", 41, 63]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 41, 14]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 44, 7], ["description", 45, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 14, 33], ["src", 14, 41], ["pname", 15, 5], ["pyproject", 16, 5], ["sourceRoot", 18, 5], ["build-system", 20, 5], ["dependencies", 22, 5], ["nativeCheckInputs", 28, 5], ["disabledTestPaths", 34, 5], ["pythonImportsCheck", 36, 5], ["doCheck", 38, 5], ["passthru", 41, 5], ["meta", 43, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const self = nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: nix.thunk(() => nix.attr(opentelemetry_api, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_api, "src")),
       pname: "opentelemetry-sdk",
@@ -32,13 +29,13 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.sdk"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => nix.attrsDyn({}, [
-          [nix.sel(self, "pname"), nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1, doCheck: true }))))],
+          [nix.sel(self, "pname"), nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[0], doCheck: true }))))],
         ])),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_api, "meta"), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/open-telemetry/opentelemetry-python/tree/main/opentelemetry-sdk",
         description: "OpenTelemetry Python SDK",
       })),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["pname", 22, 5], ["version", 23, 13], ["src", 23, 21], ["npmDepsHash", 24, 5], ["sourceRoot", 25, 5], ["installPhase", 26, 5]], [["extraArgs", 51, 7]], [["ui", 49, 13], ["updateScript", 50, 5]], [["description", 59, 5], ["homepage", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["pname", 36, 11], ["version", 36, 17], ["src", 36, 25], ["cargoHash", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 42, 3], ["preBuild", 44, 3], ["passthru", 48, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, buildNpmPackage: false, fetchFromGitHub: false, "pkg-config": false, openssl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 22, 5], ["version", 23, 13], ["src", 23, 21], ["npmDepsHash", 24, 5], ["sourceRoot", 25, 5], ["installPhase", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 51, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ui", 49, 13], ["updateScript", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 36, 11], ["version", 36, 17], ["src", 36, 25], ["cargoHash", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 42, 3], ["preBuild", 44, 3], ["passthru", 48, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const pname = "sql-studio";
   const version = "0.1.53";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "frectonz",
       repo: "sql-studio",
       tag: version,
       hash: "sha256-8QUXe3ooaeFoW175OGSutI93iqH5L+7aerq+tmxgwa8=",
     }))));
   const ui = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "sql-studio-ui",
       version: version,
       src: src,
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ncp -pr --reflink=auto -- dist \"$out/\"\n\nrunHook postInstall\n",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -48,12 +43,12 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`cp -pr --reflink=auto -- ${ui} ui/dist
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         ui: ui,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "SQL Database Explorer [SQLite, libSQL, PostgreSQL, MySQL/MariaDB, ClickHouse, Microsoft SQL Server]",
         homepage: "https://github.com/frectonz/sql-studio",
         mainProgram: "sql-studio",

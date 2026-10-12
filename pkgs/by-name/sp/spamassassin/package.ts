@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["url", 28, 5], ["hash", 29, 5]], [["homepage", 141, 5], ["description", 142, 5], ["license", 143, 5], ["platforms", 144, 5], ["maintainers", 145, 5]], [["pname", 19, 3], ["version", 20, 3], ["rulesRev", 21, 3], ["src", 23, 3], ["defaultRulesSrc", 27, 3], ["patches", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 38, 3], ["makeFlags", 70, 3], ["makeMakerFlags", 75, 3], ["__darwinAllowLocalNetworking", 77, 3], ["checkInputs", 79, 3], ["preCheck", 92, 3], ["postInstall", 109, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, perlPackages: false, makeBinaryWrapper: false, gnupg: false, re2c: false, gcc: false, gnumake: false, libxcrypt: false, openssl: false, coreutils: false, "poppler-utils": false, tesseract: false, "iana-etc": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 141, 5], ["description", 142, 5], ["license", 143, 5], ["platforms", 144, 5], ["maintainers", 145, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["rulesRev", 21, 3], ["src", 23, 3], ["defaultRulesSrc", 27, 3], ["patches", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 38, 3], ["makeFlags", 70, 3], ["makeMakerFlags", 75, 3], ["__darwinAllowLocalNetworking", 77, 3], ["checkInputs", 79, 3], ["preCheck", 92, 3], ["postInstall", 109, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +26,12 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.1";
       const rulesRev = "r1916528";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/spamassassin/source/Mail-${pname}-${version}.tar.bz2`),
           hash: "sha256-l3XtdVnoPsPmwD7bK+j/x/FcxAX7E+hcFI6wvxkXIag=",
         }))));
       const defaultRulesSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://apache/spamassassin/source/Mail-${pname}-rules-${version}.${rulesRev}.tgz`),
           hash: "sha256-OB6t/H5RPl9zU4m3gXPeWvRx89Bv5quPEpY0pmRLS/Q=",
         }))));
@@ -121,7 +118,7 @@ for n in "$out/bin/"*; do
 done
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://spamassassin.apache.org/",
         description: "Open-Source Spam Filter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -135,7 +132,7 @@ done
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         rulesRev,

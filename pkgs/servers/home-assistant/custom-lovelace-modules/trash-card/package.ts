@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["entrypoint", 29, 12]], [["description", 32, 5], ["homepage", 33, 5], ["changelog", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["installPhase", 20, 3], ["passthru", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["entrypoint", 29, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["changelog", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["installPhase", 20, 3], ["passthru", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "trash-card",
       version: "2.4.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "idaho",
           repo: "hassio-trash-card",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,9 +23,9 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-zvsJASztDfecn+FRvQPmT0vIblaCD11eBM9LLq+VFrg=",
       installPhase: "runHook preInstall\n\nmkdir $out\ncp dist/trashcard.js $out/\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, entrypoint: "trashcard.js" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], entrypoint: "trashcard.js" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Custom Home Assistant card that displays your current and upcoming trash collection schedule.",
         homepage: "https://github.com/idaho/hassio-trash-card",
         changelog: nix.thunk(() => nix.str`https://github.com/idaho/hassio-trash-card/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

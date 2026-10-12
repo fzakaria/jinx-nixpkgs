@@ -2,20 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/latest.nix", [[["version", 4, 3], ["sha256", 5, 3]], [["postPatch", 8, 5]]]);
 const formals$1 = { args: { callPackage: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/latest.nix", [["version", 4, 3], ["sha256", 5, 3]]);
-const pos$2 = nix.positions(here + "/latest.nix", [["postPatch", 8, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./build.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "a4da4dfac44d1bbc6986c5c76fea45a60ebdd8e5",
       sha256: "0gcjpw2q263hh8w2sjvq3f3k2d28qpkkv0jnl8hw1l7v604i8zxg",
     }))), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       postPatch: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postPatch"), nix.str`echo 'echo ${runtimeShell}' > scripts/find_shell
 `)),
     }));

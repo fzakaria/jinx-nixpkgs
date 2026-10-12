@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["NIX_CFLAGS_COMPILE", 109, 7]], [["pacemaker", 138, 26]], [["tests", 137, 12]], [["homepage", 142, 5], ["description", 143, 5], ["license", 144, 5], ["platforms", 145, 5], ["maintainers", 146, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["outputs", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 66, 3], ["strictDeps", 81, 3], ["postPatch", 85, 3], ["preConfigure", 92, 3], ["configureFlags", 95, 3], ["installFlags", 107, 3], ["env", 109, 3], ["enableParallelBuilding", 119, 3], ["postInstall", 122, 3], ["doInstallCheck", 132, 3], ["nativeInstallCheckInputs", 133, 3], ["versionCheckProgram", 134, 3], ["versionCheckProgramArg", 135, 3], ["passthru", 137, 3], ["meta", 141, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoconf: false, automake: false, bash: false, bzip2: false, corosync: false, dbus: false, docbook_xsl: false, fetchFromGitHub: false, getopt: false, gettext: false, glib: false, gnutls: false, help2man: false, libqb: false, libtool: false, libuuid: false, libxml2: false, libxslt: false, pam: false, "pkg-config": false, python3: false, nixosTests: false, versionCheckHook: false, forOCF: true, "ocf-resource-agents": false, withManpages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 109, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pacemaker", 138, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 137, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 142, 5], ["description", 143, 5], ["license", 144, 5], ["platforms", 145, 5], ["maintainers", 146, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["outputs", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 66, 3], ["strictDeps", 81, 3], ["postPatch", 85, 3], ["preConfigure", 92, 3], ["configureFlags", 95, 3], ["installFlags", 107, 3], ["env", 109, 3], ["enableParallelBuilding", 119, 3], ["postInstall", 122, 3], ["doInstallCheck", 132, 3], ["nativeInstallCheckInputs", 133, 3], ["versionCheckProgram", 134, 3], ["versionCheckProgramArg", 135, 3], ["passthru", 137, 3], ["meta", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const ocf_resource_agents = nix.arg($, "ocf-resource-agents");
   const withManpages = nix.argOr($, "withManpages", () => !nix.asBool(forOCF));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pacemaker",
       version: "3.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ClusterLabs",
           repo: "pacemaker",
           tag: nix.thunk(() => nix.str`Pacemaker-${nix.sel(finalAttrs, "version")}`),
@@ -85,7 +80,7 @@ substituteInPlace configure.ac \\
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(forOCF)), nix.thunk(() => nix.str`--with-ocfdir=${ocf_resource_agents}/usr/lib/ocf`)))),
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`DESTDIR=${nix.builtins.placeholder("out")}`)]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-error=strict-prototypes", "-Wno-error=deprecated-declarations"])), ["-Wno-error=discarded-qualifiers"])))),
       })),
       enableParallelBuilding: true,
@@ -95,14 +90,14 @@ substituteInPlace configure.ac \\
       versionCheckProgram: nix.thunk(() => [nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/sbin/pacemakerd`)]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pacemaker: nix.thunk(() => nix.attr(nixosTests, "pacemaker")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://clusterlabs.org/pacemaker/",
         description: "Open source, high availability resource manager suitable for both small and large clusters",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

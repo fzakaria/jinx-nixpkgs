@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enable52Compat", 44, 31]], [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["homepage", 140, 5], ["description", 141, 5], ["longDescription", 142, 5], ["license", 150, 5], ["mainProgram", 153, 5], ["maintainers", 154, 5], ["platforms", 155, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 68, 3], ["mesonFlags", 93, 3], ["hardeningDisable", 108, 3], ["strictDeps", 113, 3], ["postPatch", 115, 3], ["preBuild", 126, 3], ["postInstall", 133, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, "alsa-lib": false, boost: false, meson: false, config: false, expat: false, fetchFromGitHub: false, ffmpeg: false, ffms: false, fftw: false, fontconfig: false, freetype: false, fribidi: false, harfbuzz: false, hunspell: false, icu: false, intltool: false, libGL: false, libass: false, "libportal-gtk3": false, libpulseaudio: false, libuchardet: false, luajit: false, ninja: false, openal: false, "pkg-config": false, portaudio: false, python3: false, stdenv: false, wrapGAppsHook3: false, wxwidgets_3_2: false, zlib: false, alsaSupport: true, openalSupport: true, portaudioSupport: true, pulseaudioSupport: true, spellcheckSupport: true, useBundledLuaJIT: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enable52Compat", 44, 31]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 140, 5], ["description", 141, 5], ["longDescription", 142, 5], ["license", 150, 5], ["mainProgram", 153, 5], ["maintainers", 154, 5], ["platforms", 155, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 68, 3], ["mesonFlags", 93, 3], ["hardeningDisable", 108, 3], ["strictDeps", 113, 3], ["postPatch", 115, 3], ["preBuild", 126, 3], ["postInstall", 133, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,13 +45,13 @@ export default nix.lambda((args) => (() => {
   const pulseaudioSupport = nix.argOr($, "pulseaudioSupport", () => nix.selOr(config, () => nix.sel(stdenv, "hostPlatform", "isLinux"), "pulseaudio"));
   const spellcheckSupport = nix.argOr($, "spellcheckSupport", () => true);
   const useBundledLuaJIT = nix.argOr($, "useBundledLuaJIT", () => false);
-  const luajit$ = nix.thunk(() => nix.app(nix.sel(luajit, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enable52Compat: true }))));
+  const luajit$ = nix.thunk(() => nix.app(nix.sel(luajit, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enable52Compat: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "aegisub",
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "TypesettingTools",
           repo: "aegisub",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -99,7 +96,7 @@ EOF
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv Aegisub.app $out/Applications\nmakeWrapper $out/Applications/Aegisub.app/Contents/MacOS/aegisub $out/bin/aegisub\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/TypesettingTools/Aegisub",
         description: "Advanced subtitle editor",
         longDescription: "Aegisub is a free, cross-platform open source tool for creating and\nmodifying subtitles. Aegisub makes it quick and easy to time subtitles to\naudio, and features many powerful tools for styling them, including a\nbuilt-in real-time video preview.\n",

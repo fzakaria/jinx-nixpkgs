@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/csu.nix", [[["name", 18, 7], ["url", 19, 7], ["hash", 20, 7], ["includes", 21, 7]], [["platforms", 31, 8]], [["noLibc", 13, 3], ["path", 14, 3], ["patches", 15, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["meta", 31, 3], ["extraPaths", 32, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, fetchpatch: false, bsdSetupHook: false, openbsdSetupHook: false, makeMinimal: false, install: false, include: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/csu.nix", [["name", 18, 7], ["url", 19, 7], ["hash", 20, 7], ["includes", 21, 7]]);
-const pos$2 = nix.positions(here + "/csu.nix", [["platforms", 31, 8]]);
-const pos$3 = nix.positions(here + "/csu.nix", [["noLibc", 13, 3], ["path", 14, 3], ["patches", 15, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["meta", 31, 3], ["extraPaths", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const install = nix.arg($, "install");
   const include = nix.arg($, "include");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       noLibc: true,
       path: "lib/csu",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "nolibstatic-support.patch",
             url: "https://marc.info/?l=openbsd-tech&m=171972639411562&q=raw",
             hash: "sha256-ZMegMq/A/SeFp8fofIyF0AA0IUo/11ZgKxg/UNT4z3E=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [bsdSetupHook, openbsdSetupHook, makeMinimal, install]),
       buildInputs: nix.thunk(() => [include]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "openbsd")),
       })),
       extraPaths: nix.thunk(() => ["libexec/ld.so"]),

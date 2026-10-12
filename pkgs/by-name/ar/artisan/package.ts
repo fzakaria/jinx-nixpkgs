@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["pname", 17, 13], ["version", 17, 19], ["src", 17, 27]], [["extraArgs", 29, 5]], [["updateScript", 28, 12]], [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["downloadPage", 36, 5], ["license", 37, 5], ["mainProgram", 38, 5], ["sourceProvenance", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 21, 11], ["version", 21, 17], ["src", 21, 25], ["extraInstallCommands", 23, 3], ["passthru", 28, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchurl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 17, 13], ["version", 17, 19], ["src", 17, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 28, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["downloadPage", 36, 5], ["license", 37, 5], ["mainProgram", 38, 5], ["sourceProvenance", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 11], ["version", 21, 17], ["src", 21, 25], ["extraInstallCommands", 23, 3], ["passthru", 28, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const pname = "artisan";
   const version = "4.2.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/artisan-roaster-scope/artisan/releases/download/v${version}/${pname}-linux-${version}.AppImage`),
       hash: "sha256-4vhdx97Y8ntj4HU2T/pHq/ZgioeY0yi+ydVcDFrHRrQ=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -33,14 +28,14 @@ export default nix.lambda((args) => (() => {
 install -m 444 -D ${appimageContents}/artisan.png $out/share/applications/artisan.png
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex=v([\\d.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Visual scope for coffee roasters",
         homepage: "https://artisan-scope.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/artisan-roaster-scope/artisan/releases/tag/v${version}`),

@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]], [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]], [["owner", 56, 5], ["repo", 57, 5], ["rev", 58, 5], ["hash", 59, 5]], [["owner", 63, 5], ["repo", 64, 5], ["rev", 65, 5], ["hash", 66, 5]], [["owner", 75, 5], ["repo", 76, 5], ["tag", 77, 13], ["sha256", 78, 5]], [["name", 83, 7], ["url", 84, 7], ["hash", 85, 7]], [["description", 199, 5], ["homepage", 200, 5], ["license", 201, 5], ["maintainers", 202, 5], ["platforms", 205, 5]], [["pname", 71, 3], ["version", 72, 11], ["src", 74, 3], ["patches", 81, 3], ["postPatch", 89, 3], ["cmakeFlags", 111, 3], ["nativeBuildInputs", 142, 3], ["buildInputs", 152, 3], ["propagatedBuildInputs", 166, 3], ["postInstall", 183, 3], ["preFixup", 192, 3], ["meta", 198, 3]]]);
 const formals$1 = { args: { version: false, tag: false, sourceSha256: false }, ellipsis: false };
 const formals$2 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, castxml: false, swig: false, expat: false, eigen: false, fftw: false, gdcm: false, "hdf5-cpp": false, libjpeg: false, libminc: false, libtiff: false, libpng: false, libx11: false, libuuid: false, patchelf: false, python: true, numpy: true, xz: false, vtk: false, which: false, zlib: false, enablePython: true, enableRtk: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["owner", 56, 5], ["repo", 57, 5], ["rev", 58, 5], ["hash", 59, 5]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["owner", 63, 5], ["repo", 64, 5], ["rev", 65, 5], ["hash", 66, 5]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["owner", 75, 5], ["repo", 76, 5], ["tag", 77, 13], ["sha256", 78, 5]]);
-const pos$6 = nix.positions(here + "/generic.nix", [["name", 83, 7], ["url", 84, 7], ["hash", 85, 7]]);
-const pos$7 = nix.positions(here + "/generic.nix", [["description", 199, 5], ["homepage", 200, 5], ["license", 201, 5], ["maintainers", 202, 5], ["platforms", 205, 5]]);
-const pos$8 = nix.positions(here + "/generic.nix", [["pname", 71, 3], ["version", 72, 11], ["src", 74, 3], ["patches", 81, 3], ["postPatch", 89, 3], ["cmakeFlags", 111, 3], ["nativeBuildInputs", 142, 3], ["buildInputs", 152, 3], ["propagatedBuildInputs", 166, 3], ["postInstall", 183, 3], ["preFixup", 192, 3], ["meta", 198, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,39 +42,39 @@ export default nix.lambda((args) => (() => {
     const enableRtk = nix.argOr($_1, "enableRtk", () => true);
     const withVtk = nix.thunk(() => !nix.asBool(enablePython));
     const itkGenericLabelInterpolatorSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "InsightSoftwareConsortium",
         repo: "ITKGenericLabelInterpolator",
         rev: "2f3768110ffe160c00c533a1450a49a16f4452d9",
         hash: "sha256-Cm3jg14MMnbr/sP+gqR2Rh25xJjoRvpmY/jP/DKH978=",
       }))));
     const itkAdaptiveDenoisingSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         owner: "ntustison",
         repo: "ITKAdaptiveDenoising",
         rev: "24825c8d246e941334f47968553f0ae388851f0c",
         hash: "sha256-deJbza36c0Ohf9oKpO2T4po37pkyI+2wCSeGL4r17Go=",
       }))));
     const itkSimpleITKFiltersSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner: "InsightSoftwareConsortium",
         repo: "ITKSimpleITKFilters",
         rev: "bb896868fc6480835495d0da4356d5db009592a6",
         hash: "sha256-MfaIA0xxA/pzUBSwnAevr17iR23Bo5iQO2cSyknS3o4=",
       }))));
     const rtkSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         owner: "RTKConsortium",
         repo: "RTK",
         rev: "583288b1898dedcfb5e4d602e31020b452971383",
         hash: "sha256-1ItsLCRwRzGDSRe4xUDg09Hksu1nKichbWuM0YSVkbM=",
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: "itk",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             owner: "InsightSoftwareConsortium",
             repo: "ITK",
             tag: tag,
@@ -89,7 +82,7 @@ export default nix.lambda((args) => (() => {
           })))),
         patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "5.4")), nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 name: "fix-gcc13-build",
                 url: "https://github.com/InsightSoftwareConsortium/ITK/commit/9a719a0d2f5f489eeb9351b0ef913c3693147a4f.patch",
                 hash: "sha256-dDyqYOzo91afR8W7k2N64X6l7t6Ws1C9iuRkWHUe0fg=",
@@ -152,7 +145,7 @@ find $out/${nix.sel(python, "sitePackages")}/itk -type f -name '*.so*' -exec \\
   patchelf {} --shrink-rpath --allowed-rpath-prefixes "$NIX_STORE" \\;
 `))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           description: "Insight Segmentation and Registration Toolkit",
           homepage: "https://www.itk.org",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

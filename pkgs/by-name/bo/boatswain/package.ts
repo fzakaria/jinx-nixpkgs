@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["updateScript", 67, 5]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["teams", 76, 5], ["mainProgram", 77, 5], ["platforms", 78, 5], ["broken", 79, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["strictDeps", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 54, 3], ["passthru", 66, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, appstream: false, "desktop-file-utils": false, fetchFromGitLab: false, glib: false, "gobject-introspection": false, graphene: false, gtk4: false, gusb: false, hidapi: false, "json-glib": false, libadwaita: false, libpeas2: false, "libportal-gtk4": false, libsecret: false, libsoup_3: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["teams", 76, 5], ["mainProgram", 77, 5], ["platforms", 78, 5], ["broken", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["strictDeps", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 54, 3], ["passthru", 66, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "boatswain",
       version: "5.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "boatswain",
@@ -70,11 +67,11 @@ export default nix.lambda((args) => (() => {
         libsoup_3,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Control Elgato Stream Deck devices",
         homepage: "https://gitlab.gnome.org/World/boatswain",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/boatswain/-/releases/${nix.sel(finalAttrs, "version")}`),

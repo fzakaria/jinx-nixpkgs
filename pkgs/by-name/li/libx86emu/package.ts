@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["NIX_CFLAGS_COMPILE", 33, 7]], [["description", 43, 5], ["license", 44, 5], ["homepage", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["postUnpack", 21, 3], ["patchPhase", 22, 3], ["buildFlags", 28, 3], ["env", 33, 3], ["enableParallelBuilding", 35, 3], ["installFlags", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["license", 44, 5], ["homepage", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["postUnpack", 21, 3], ["patchPhase", 22, 3], ["buildFlags", 28, 3], ["env", 33, 3], ["enableParallelBuilding", 35, 3], ["installFlags", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libx86emu",
       version: "3.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wfeldt",
           repo: "libx86emu",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,11 +32,11 @@ substituteInPlace Makefile --replace "/usr" "/"
         "shared",
         nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })),
       enableParallelBuilding: true,
       installFlags: nix.thunk(() => ["DESTDIR=$(out)", "LIBDIR=/lib"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "x86 emulation library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         homepage: "https://github.com/wfeldt/libx86emu",

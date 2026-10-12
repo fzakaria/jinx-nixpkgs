@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["redis", 37, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["pythonImportsCheck", 34, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 42, 3], ["disabledTestPaths", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, itsdangerous: false, redis: false, starlette: false, pytestCheckHook: false, "pytest-asyncio": false, "pytest-cov-stub": false, httpx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["redis", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["pythonImportsCheck", 34, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 42, 3], ["disabledTestPaths", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alex-oleshkevich",
           repo: "starsessions",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [itsdangerous, starlette]);
       const pythonImportsCheck = nix.thunk(() => ["starsessions"]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, redis: nix.thunk(() => [redis]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], redis: nix.thunk(() => [redis]) }));
       const nativeCheckInputs = nix.thunk(() => [httpx, pytestCheckHook, pytest_asyncio, pytest_cov_stub]);
       const disabledTestPaths = nix.thunk(() => ["tests/backends/test_redis.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Advanced sessions for Starlette and FastAPI frameworks",
         homepage: "https://github.com/alex-oleshkevich/starsessions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

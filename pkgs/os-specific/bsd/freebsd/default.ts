@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["branch", 43, 15]], [["sourceData", 46, 7], ["versionData", 47, 7], ["buildFreebsd", 48, 7], ["patchesRoot", 49, 7]], [["otherSplices", 39, 11], ["f", 40, 3]]]);
 const formals$1 = { args: { "makeScopeWithSplicing'": false, generateSplicesForMkScope: false, callPackage: false, attributePathToSplice: true, branch: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["branch", 43, 15]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sourceData", 46, 7], ["versionData", 47, 7], ["buildFreebsd", 48, 7], ["patchesRoot", 49, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["otherSplices", 39, 11], ["f", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,10 +24,10 @@ Branches can be selected by overriding the \`branch\` attribute on the freebsd p
 `));
   const otherSplices = nix.thunk(() => nix.app(generateSplicesForMkScope, attributePathToSplice));
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       otherSplices: otherSplices,
-      f: (self) => nix.update({ [nix.POS]: pos$1, branch: branch }, nix.app(callPackage, nix.path(here, "./package-set.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+      f: (self) => nix.update({ [nix.POS]: $pos[0], branch: branch }, nix.app(callPackage, nix.path(here, "./package-set.nix"), nix.thunk(() => ({
+          [nix.POS]: $pos[1],
           sourceData: nix.thunk(() => nix.selOr(versions, () => nix.builtins.throw(nix.thunk(() => nix.app(badBranchError, nix.thunk(() => nix.sel(self, "branch"))))), nix.key(nix.sel(self, "branch")))),
           versionData: nix.thunk(() => nix.sel(self, "sourceData", "version")),
           buildFreebsd: nix.thunk(() => nix.sel(otherSplices, "selfBuildHost")),

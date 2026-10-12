@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["installPhase", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fftw: false, gtk2: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["installPhase", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gtk2 = nix.arg($, "gtk2");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rscw",
       version: "0.1e",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.pa3fwm.nl/software/rscw/rscw-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1hxwxmqc5jinr14ya1idigqigc8qhy1vimzcwy2vmwdjay2sqik2",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk2, fftw]),
       installPhase: "install -D -m 0755 noisycw $out/bin/noisycw\ninstall -D -m 0755 rs12tlmdec $out/bin/rs12tlmdec\ninstall -D -m 0755 rscw $out/bin/rscw\ninstall -D -m 0755 rscwx $out/bin/rscwx\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Receive CW through the soundcard",
         homepage: "https://www.pa3fwm.nl/software/rscw/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

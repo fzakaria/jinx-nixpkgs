@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mkLibretroCore.nix", [[["linux", 66, 13], ["darwin", 67, 13], ["windows", 68, 13]], [["armv7l", 74, 13], ["armv6l", 75, 13], ["aarch64", 76, 13], ["i686", 77, 13]], [["hardcodeZeroVersion", 102, 45]], [["core", 99, 17], ["libretroCore", 99, 22], ["updateScript", 102, 9]], [["platforms", 107, 39], ["teams", 108, 9]], [["mainProgram", 110, 66]], [["pname", 51, 7], ["buildInputs", 53, 7], ["nativeBuildInputs", 54, 7], ["enableParallelBuilding", 57, 9], ["includeRetroArch", 58, 9], ["makefile", 59, 9], ["strictDeps", 60, 9], ["makeFlags", 63, 7], ["installPhase", 84, 7], ["passthru", 98, 7], ["meta", 106, 7]], [["constructDrv", 12, 3], ["excludeDrvArgNames", 14, 3], ["extendDrvArgs", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, "retroarch-bare": false, unstableGitUpdater: false, zlib: false }, ellipsis: false };
 const formals$2 = { args: { core: false, enableParallelBuilding: true, extraBuildInputs: true, extraNativeBuildInputs: true, makeFlags: true, makefile: true, meta: true, passthru: true, strictDeps: true, libretroCore: true, normalizeCore: true, includeRetroArch: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mkLibretroCore.nix", [["linux", 66, 13], ["darwin", 67, 13], ["windows", 68, 13]]);
-const pos$2 = nix.positions(here + "/mkLibretroCore.nix", [["armv7l", 74, 13], ["armv6l", 75, 13], ["aarch64", 76, 13], ["i686", 77, 13]]);
-const pos$3 = nix.positions(here + "/mkLibretroCore.nix", [["hardcodeZeroVersion", 102, 45]]);
-const pos$4 = nix.positions(here + "/mkLibretroCore.nix", [["core", 99, 17], ["libretroCore", 99, 22], ["updateScript", 102, 9]]);
-const pos$5 = nix.positions(here + "/mkLibretroCore.nix", [["platforms", 107, 39], ["teams", 108, 9]]);
-const pos$6 = nix.positions(here + "/mkLibretroCore.nix", [["mainProgram", 110, 66]]);
-const pos$7 = nix.positions(here + "/mkLibretroCore.nix", [["pname", 51, 7], ["buildInputs", 53, 7], ["nativeBuildInputs", 54, 7], ["enableParallelBuilding", 57, 9], ["includeRetroArch", 58, 9], ["makefile", 59, 9], ["strictDeps", 60, 9], ["makeFlags", 63, 7], ["installPhase", 84, 7], ["passthru", 98, 7], ["meta", 106, 7]]);
-const pos$8 = nix.positions(here + "/mkLibretroCore.nix", [["constructDrv", 12, 3], ["excludeDrvArgNames", 14, 3], ["extendDrvArgs", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => [
         "core",
@@ -51,7 +44,7 @@ export default nix.lambda((args) => (() => {
         const coreFilename = nix.thunk(() => nix.str`${nix.app(d2u, core)}_libretro${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`);
         const mainProgram = nix.thunk(() => nix.str`retroarch-${core}`);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pname: nix.thunk(() => nix.str`libretro-${core}`),
           buildInputs: nix.thunk(() => nix.concat([zlib], extraBuildInputs)),
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(finalAttrs, "includeRetroArch")), makeWrapper), extraNativeBuildInputs)),
@@ -60,9 +53,9 @@ export default nix.lambda((args) => (() => {
           makefile: makefile,
           strictDeps: strictDeps,
           makeFlags: nix.thunk(() => nix.concat([
-            nix.thunk(() => nix.str`platform=${nix.selOr({ [nix.POS]: pos$1, linux: "unix", darwin: "osx", windows: "win" }, () => nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name"), nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")))}`),
+            nix.thunk(() => nix.str`platform=${nix.selOr({ [nix.POS]: $pos[0], linux: "unix", darwin: "osx", windows: "win" }, () => nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name"), nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")))}`),
             nix.thunk(() => nix.str`ARCH=${nix.selOr({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               armv7l: "arm",
               armv6l: "arm",
               aarch64: "arm64",
@@ -76,19 +69,19 @@ install -Dt ${coreDir} ${coreFilename}
   --add-flags "-L ${coreDir}/${coreFilename}"
 `))), "\nrunHook postInstall\n")),
           passthru: nix.thunk(() => nix.update({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             core: core,
             libretroCore: libretroCore,
-            updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, hardcodeZeroVersion: true })))),
+            updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], hardcodeZeroVersion: true })))),
           }, passthru)),
           meta: nix.thunk(() => nix.update((() => {
             const from = nix.thunk(() => nix.sel(retroarch_bare, "meta"));
             return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             platforms: nix.thunk(() => nix.attr(from, "platforms")),
             teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "libretro"))]),
           };
-          })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(finalAttrs, "includeRetroArch")), nix.thunk(() => ({ [nix.POS]: pos$6, mainProgram: mainProgram }))), meta))),
+          })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(finalAttrs, "includeRetroArch")), nix.thunk(() => ({ [nix.POS]: $pos[5], mainProgram: mainProgram }))), meta))),
         };
       })(), formals$2),
     })));

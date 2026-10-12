@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 39, 3], ["strictDeps", 49, 3], ["mesonFlags", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, wayland: false, cairo: false, pango: false, gtk3: false, "pkg-config": false, scdoc: false, libnotify: false, glib: false, wrapGAppsHook3: false, "hicolor-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 39, 3], ["strictDeps", 49, 3], ["mesonFlags", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swappy",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jtheoof",
           repo: "swappy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dc_args=-I${nix.sel(glib, "dev")}/include/gio-unix-2.0`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Wayland native snapshot editing tool, inspired by Snappy on macOS",
         homepage: "https://github.com/jtheoof/swappy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

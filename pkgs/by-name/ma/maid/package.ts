@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["run", 15, 18]], [["updateScript", 13, 12], ["tests", 15, 12]], [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["maintainers", 21, 5], ["platforms", 22, 5]], [["pname", 9, 3], ["gemdir", 10, 3], ["exes", 11, 3], ["passthru", 13, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { bundlerApp: false, bundlerUpdateScript: false, callPackage: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["run", 15, 18]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 13, 12], ["tests", 15, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["maintainers", 21, 5], ["platforms", 22, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["gemdir", 10, 3], ["exes", 11, 3], ["passthru", 13, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,15 +16,15 @@ export default nix.lambda((args) => (() => {
       const gemdir = nix.path(here, "./.");
       const exes = nix.thunk(() => ["maid"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, pname)),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           run: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Rule-based file mover and cleaner in Ruby",
         homepage: "https://github.com/maid/maid",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { [nix.POS]: pos$4, pname, gemdir, exes, passthru, meta };
+      return { [nix.POS]: $pos[3], pname, gemdir, exes, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["sage", 67, 13]], [["tests", 66, 12]], [["description", 71, 5], ["changelog", 72, 5], ["homepage", 73, 5], ["teams", 74, 5], ["license", 75, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["propagatedBuildInputs", 51, 3], ["nativeCheckInputs", 56, 3], ["preCheck", 58, 3], ["passthru", 66, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, cysignals: false, cython: false, pkgconfig: false, setuptools: false, gmp: false, pari: false, mpfr: false, fplll: false, numpy: false, sage: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sage", 67, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 66, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 71, 5], ["changelog", 72, 5], ["homepage", 73, 5], ["teams", 74, 5], ["license", 75, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["propagatedBuildInputs", 51, 3], ["nativeCheckInputs", 56, 3], ["preCheck", 58, 3], ["passthru", 66, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fplll",
           repo: "fpylll",
           tag: version,
@@ -41,9 +37,12 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [numpy, cysignals]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const preCheck = "# Since upstream introduced --doctest-modules in\n# https://github.com/fplll/fpylll/commit/9732fdb40cf1bd43ad1f60762ec0a8401743fc79,\n# it is necessary to ignore import mismatches. Not sure why, but the files\n# should be identical anyway.\nexport PY_IGNORE_IMPORTMISMATCH=1\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) }));
+      const passthru = nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], sage: sage })),
+      }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python interface for fplll",
         changelog: nix.thunk(() => nix.str`https://github.com/fplll/fpylll/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/fplll/fpylll",
@@ -51,7 +50,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

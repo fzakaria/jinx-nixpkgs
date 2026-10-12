@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["updateScript", 79, 12]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["teams", 85, 5], ["platforms", 86, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["nativeCheckInputs", 48, 3], ["dontWrapQtApps", 52, 3], ["doCheck", 55, 3], ["preCheck", 57, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, unstableGitUpdater: false, cmake: false, kdePackages: false, libsForQt5: false, mkcal: false, "pkg-config": false, tzdata: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 79, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["teams", 85, 5], ["platforms", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["nativeCheckInputs", 48, 3], ["dontWrapQtApps", 52, 3], ["doCheck", 55, 3], ["preCheck", 57, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const tzdata = nix.arg($, "tzdata");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qtorganizer-mkcal",
       version: "0-unstable-2026-06-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dcaliste",
           repo: "qtorganizer-mkcal",
           rev: "6efa089553ccc3c44ada8fd2fe1349a004d4f619",
@@ -69,11 +66,11 @@ export QT_PLUGIN_PATH=$TMP/fake-install:$QT_PLUGIN_PATH
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "QtOrganizer plugin using sqlite via mKCal",
         homepage: "https://github.com/dcaliste/qtorganizer-mkcal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

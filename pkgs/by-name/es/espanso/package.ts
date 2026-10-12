@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["package", 143, 9], ["version", 144, 30]], [["version", 142, 7]], [["waylandSupport", 140, 13], ["tests", 141, 5], ["updateScript", 147, 5]], [["description", 151, 5], ["mainProgram", 152, 5], ["homepage", 153, 5], ["license", 154, 5], ["maintainers", 155, 5], ["platforms", 159, 5], ["longDescription", 160, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["cargoHash", 48, 3], ["nativeBuildInputs", 50, 3], ["buildNoDefaultFeatures", 58, 3], ["buildFeatures", 59, 3], ["buildInputs", 72, 3], ["postPatch", 94, 3], ["doCheck", 110, 3], ["postInstall", 112, 3], ["passthru", 139, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { lib: false, coreutils: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, kdePackages: false, dbus: false, kdotool: false, libx11: false, libxcb: false, libxi: false, libxtst: false, libnotify: false, libxkbcommon: false, libpng: false, openssl: false, xclip: false, xdotool: false, setxkbmap: false, "wl-clipboard": false, wxwidgets_3_2: false, makeWrapper: false, securityWrapperPath: true, "nix-update-script": false, stdenv: false, waylandSupport: true, x11Support: true, testers: false, nixosTests: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 143, 9], ["version", 144, 30]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 142, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["waylandSupport", 140, 13], ["tests", 141, 5], ["updateScript", 147, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 151, 5], ["mainProgram", 152, 5], ["homepage", 153, 5], ["license", 154, 5], ["maintainers", 155, 5], ["platforms", 159, 5], ["longDescription", 160, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["cargoHash", 48, 3], ["nativeBuildInputs", 50, 3], ["buildNoDefaultFeatures", 58, 3], ["buildFeatures", 59, 3], ["buildInputs", 72, 3], ["postPatch", 94, 3], ["doCheck", 110, 3], ["postInstall", 112, 3], ["passthru", 139, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +41,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(!nix.asBool(x11Support))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/es/espanso/package.nix:35:1");
   nix.assert_((!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(!nix.asBool(waylandSupport))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/es/espanso/package.nix:36:1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "espanso",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "espanso",
           repo: "espanso",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -84,12 +79,12 @@ wrapProgram $out/bin/espanso \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libnotify, setxkbmap])), nix.concat(nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [kdotool, wl_clipboard])), nix.app(nix.sel(lib, "optionals"), x11Support, nix.thunk(() => [xclip]))))))}
 `)),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         waylandSupport: waylandSupport,
         tests: nix.thunk(() => nix.update(nix.sel(nixosTests, "espanso"), {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             })))),
@@ -97,7 +92,7 @@ wrapProgram $out/bin/espanso \\
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cross-platform Text Expander written in Rust",
         mainProgram: "espanso",
         homepage: "https://espanso.org",

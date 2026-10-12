@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 84, 5], ["hash", 85, 5]], [["NIX_CFLAGS_COMPILE", 172, 7]], [["updateScript", 235, 12]], [["description", 240, 5], ["homepage", 241, 5], ["license", 242, 5], ["platforms", 247, 5], ["maintainers", 248, 5], ["teams", 251, 5]], [["pname", 80, 3], ["version", 81, 3], ["src", 83, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 97, 3], ["propagatedBuildInputs", 125, 3], ["strictDeps", 167, 3], ["dontDropIconThemeCache", 169, 3], ["env", 172, 3], ["mesonFlags", 174, 3], ["patches", 189, 3], ["postPatch", 193, 3], ["setupHook", 202, 3], ["preConfigure", 206, 3], ["postInstall", 213, 3], ["postFixup", 228, 3], ["passthru", 235, 3], ["__structuredAttrs", 237, 3], ["meta", 239, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, SDL2: false, "alsa-lib": false, bullet: false, check: false, curl: false, dbus: false, doxygen: false, expat: false, fontconfig: false, freetype: false, fribidi: false, ghostscript: false, giflib: false, glib: false, gst_all_1: false, gtk3: false, harfbuzz: false, "hicolor-icon-theme": false, ibus: false, jbig2dec: false, libGL: false, libdrm: false, libgbm: false, libinput: false, libjpeg: false, libpng: false, libpulseaudio: false, libraw: false, librsvg: false, libsndfile: false, libspectre: false, libtiff: false, libwebp: false, libxkbcommon: false, lua: false, lz4: false, "mesa-gl-headers": false, "mint-x-icons": false, openjpeg: false, openssl: false, poppler: false, systemd: false, udev: false, "util-linux": false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, writeText: false, libxtst: false, libxscrnsaver: false, libxrender: false, libxrandr: false, libxi: false, libxinerama: false, libxfixes: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, xorgproto: false, libxcb: false, zlib: false, directoryListingUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 84, 5], ["hash", 85, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 172, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 235, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 240, 5], ["homepage", 241, 5], ["license", 242, 5], ["platforms", 247, 5], ["maintainers", 248, 5], ["teams", 251, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 80, 3], ["version", 81, 3], ["src", 83, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 97, 3], ["propagatedBuildInputs", 125, 3], ["strictDeps", 167, 3], ["dontDropIconThemeCache", 169, 3], ["env", 172, 3], ["mesonFlags", 174, 3], ["patches", 189, 3], ["postPatch", 193, 3], ["setupHook", 202, 3], ["preConfigure", 206, 3], ["postInstall", 213, 3], ["postFixup", 228, 3], ["passthru", 235, 3], ["__structuredAttrs", 237, 3], ["meta", 239, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -84,11 +80,11 @@ export default nix.lambda((args) => (() => {
   const mesonBool = nix.thunk(() => nix.attr(lib, "mesonBool"));
   const mesonOption = nix.thunk(() => nix.attr(lib, "mesonOption"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "efl",
       version: "1.28.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.enlightenment.org/rel/libs/efl/efl-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-hM9hRfnMgr//aQAFviQ5LI88UvjgD/BNjuo3FCnAlCQ=",
         })))),
@@ -163,7 +159,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       dontDropIconThemeCache: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-std=gnu17")),
       })),
       mesonFlags: nix.thunk(() => [
@@ -194,12 +190,12 @@ patchelf --add-needed ${libpulseaudio}/lib/libpulse.so $out/lib/libecore_audio.s
 patchelf --add-needed ${nix.sel(libsndfile, "out")}/lib/libsndfile.so $out/lib/libecore_audio.so
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({})))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Enlightenment foundation libraries",
         homepage: "https://enlightenment.org/",
         license: nix.thunk(() => (() => {

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 13], ["hash", 19, 13]], [["url", 23, 13], ["hash", 24, 13]], [["extension", 32, 9], ["stripRoot", 33, 9]], [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["teams", 54, 5], ["platforms", 55, 5], ["sourceProvenance", 56, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 38, 3], ["installPhase", 40, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, autoPatchelfHook: false, libcxx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 13], ["hash", 19, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 13], ["hash", 24, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extension", 32, 9], ["stripRoot", 33, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["teams", 54, 5], ["platforms", 55, 5], ["sourceProvenance", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 38, 3], ["installPhase", 40, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,26 +13,26 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const libcxx = nix.arg($, "libcxx");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "aapt",
       version: "8.13.2-14304508",
       src: nix.thunk(() => (() => {
         const urlAndHash = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isLinux")) ? {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dl.google.com/android/maven2/com/android/tools/build/aapt2/${nix.sel(finalAttrs, "version")}/aapt2-${nix.sel(finalAttrs, "version")}-linux.jar`),
           hash: "sha256-eiNY58ueDpcyKvAteRuKFVr3r22kOhwSADkaH3CRwKw=",
         } : (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://dl.google.com/android/maven2/com/android/tools/build/aapt2/${nix.sel(finalAttrs, "version")}/aapt2-${nix.sel(finalAttrs, "version")}-osx.jar`),
           hash: "sha256-RI/S2oXMSvipALRfeRTsiXUh130/b8iP+EO0yltd7x0=",
         } : nix.builtins.throw(nix.thunk(() => nix.str`Unsupport platform: ${nix.sel(stdenvNoCC, "system")}`)))));
-        return nix.app(fetchzip, nix.thunk(() => nix.update(urlAndHash, { [nix.POS]: pos$3, extension: "zip", stripRoot: false })));
+        return nix.app(fetchzip, nix.thunk(() => nix.update(urlAndHash, { [nix.POS]: $pos[2], extension: "zip", stripRoot: false })));
       })()),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => [libcxx]))),
       installPhase: "runHook preInstall\n\ninstall -D aapt2 $out/bin/aapt2\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Build tool that compiles and packages Android app's resources",
         mainProgram: "aapt2",
         homepage: "https://developer.android.com/tools/aapt2",

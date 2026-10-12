@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["downloadPage", 31, 5], ["sourceProvenance", 32, 5], ["platforms", 33, 5], ["maintainers", 36, 5], ["mainProgram", 40, 5]], [["url", 67, 7], ["hash", 68, 7]], [["name", 94, 9], ["comment", 95, 9], ["desktopName", 96, 9], ["genericName", 97, 9], ["exec", 98, 9], ["icon", 99, 9], ["categories", 100, 9], ["mimeTypes", 101, 9]], [["nativeBuildInputs", 44, 5], ["buildInputs", 50, 5], ["dontWrapGApps", 64, 5], ["src", 66, 5], ["installPhase", 71, 5], ["postFixup", 88, 5], ["desktopItems", 92, 5]], [["url", 115, 7], ["hash", 116, 7]], [["nativeBuildInputs", 111, 5], ["src", 114, 5], ["sourceRoot", 118, 5], ["installPhase", 119, 5]], [["pname", 131, 13], ["version", 131, 19], ["meta", 131, 27]], [["x86_64-linux", 136, 5]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, fetchurl: false, stdenvNoCC: false, makeDesktopItem: false, copyDesktopItems: false, autoPatchelfHook: false, wrapGAppsHook3: false, makeWrapper: false, _7zz: false, glib: false, "gsettings-desktop-schemas": false, libGL: false, libGLU: false, libgcc: false, gtk3: false, gtk2: false, libxxf86vm: false, libxtst: false, "temurin-jre-bin": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["downloadPage", 31, 5], ["sourceProvenance", 32, 5], ["platforms", 33, 5], ["maintainers", 36, 5], ["mainProgram", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 67, 7], ["hash", 68, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 94, 9], ["comment", 95, 9], ["desktopName", 96, 9], ["genericName", 97, 9], ["exec", 98, 9], ["icon", 99, 9], ["categories", 100, 9], ["mimeTypes", 101, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 44, 5], ["buildInputs", 50, 5], ["dontWrapGApps", 64, 5], ["src", 66, 5], ["installPhase", 71, 5], ["postFixup", 88, 5], ["desktopItems", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 115, 7], ["hash", 116, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 111, 5], ["src", 114, 5], ["sourceRoot", 118, 5], ["installPhase", 119, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 131, 13], ["version", 131, 19], ["meta", 131, 27]]);
-const pos$8 = nix.positions(here + "/package.nix", [["x86_64-linux", 136, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const pname = "vesta-viewer";
   const version = "3.5.8";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "3D visualization program for structural models, volumetric data such as electron/nuclear densities, and crystal morphologies",
     homepage: "https://jp-minerals.org/vesta/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -57,7 +50,7 @@ export default nix.lambda((args) => (() => {
     mainProgram: "VESTA",
   }));
   const linuxArgs = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     nativeBuildInputs: nix.thunk(() => [copyDesktopItems, autoPatchelfHook, wrapGAppsHook3, makeWrapper]),
     buildInputs: nix.thunk(() => [
       glib,
@@ -73,7 +66,7 @@ export default nix.lambda((args) => (() => {
     ]),
     dontWrapGApps: true,
     src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://jp-minerals.org/vesta/archives/${version}/VESTA-gtk3.tar.bz2`),
         hash: "sha256-Dm4exMUgNZ6Sh8dVhsvLZGS38UXxe9t+9s3ttBQajGg=",
       })))),
@@ -81,7 +74,7 @@ export default nix.lambda((args) => (() => {
     postFixup: "makeWrapper $out/lib/VESTA/VESTA $out/bin/VESTA \"${gappsWrapperArgs[@]}\"\n",
     desktopItems: nix.thunk(() => [
       nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "vesta",
           comment: nix.thunk(() => nix.sel(meta, "description")),
           desktopName: "VESTA",
@@ -94,16 +87,16 @@ export default nix.lambda((args) => (() => {
     ]),
   }));
   const darwinArgs = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     nativeBuildInputs: nix.thunk(() => [_7zz]),
     src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         url: nix.thunk(() => nix.str`https://jp-minerals.org/vesta/archives/${version}/VESTA.dmg`),
         hash: "sha256-L8vj3MNwHo3m5wP1lByNjHZ4VTVOWSm0Aiw1ItosbSw=",
       })))),
     sourceRoot: "VESTA/VESTA",
     installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r *.app $out/Applications\n\nrunHook postInstall\n",
   }));
-  return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update({ [nix.POS]: pos$7, pname: pname, version: version, meta: meta }, nix.selOr({ [nix.POS]: pos$8, "x86_64-linux": linuxArgs }, () => ({}), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))))));
+  return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update({ [nix.POS]: $pos[6], pname: pname, version: version, meta: meta }, nix.selOr({ [nix.POS]: $pos[7], "x86_64-linux": linuxArgs }, () => ({}), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

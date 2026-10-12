@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/input-overlay.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]], [["description", 73, 5], ["homepage", 74, 5], ["maintainers", 75, 5], ["license", 76, 5], ["platforms", 77, 31]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["cmakeFlags", 57, 3], ["postUnpack", 61, 3], ["preFixup", 65, 3], ["dontWrapQtApps", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, ninja: false, "obs-studio": false, qt6: false, libxt: false, libxtst: false, libxi: false, libxinerama: false, libxext: false, libxdmcp: false, libxau: false, libx11: false, libxkbcommon: false, libxkbfile: false, sdl3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/input-overlay.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]]);
-const pos$2 = nix.positions(here + "/input-overlay.nix", [["description", 73, 5], ["homepage", 74, 5], ["maintainers", 75, 5], ["license", 76, 5], ["platforms", 77, 31]]);
-const pos$3 = nix.positions(here + "/input-overlay.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["cmakeFlags", 57, 3], ["postUnpack", 61, 3], ["preFixup", 65, 3], ["dontWrapQtApps", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libxkbfile = nix.arg($, "libxkbfile");
   const sdl3 = nix.arg($, "sdl3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "obs-input-overlay",
       version: "5.1.0-unstable-2025-09-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "univrsal",
           repo: "input-overlay",
           rev: "4d62e7d0c55f8ff62c3a0e7b1a8f3092086b23b7",
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Show keyboard, gamepad and mouse input on stream",
         homepage: "https://github.com/univrsal/input-overlay",
         maintainers: nix.thunk(() => (() => {

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["postCheckout", 21, 5], ["hash", 25, 5]], [["package", 84, 5], ["command", 85, 5], ["version", 86, 5]], [["version", 83, 18]], [["tests", 83, 12]], [["description", 90, 5], ["downloadPage", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 99, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["proxyVendor", 28, 3], ["vendorHash", 29, 3], ["subPackages", 31, 3], ["ldflags", 33, 3], ["tags", 39, 3], ["nativeBuildInputs", 41, 3], ["patches", 46, 3], ["preBuild", 51, 3], ["nativeCheckInputs", 58, 3], ["preCheck", 60, 3], ["checkPhase", 65, 3], ["postInstall", 75, 3], ["passthru", 83, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, testers: false, flyctl: false, installShellFiles: false, git: false, rake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["postCheckout", 21, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 84, 5], ["command", 85, 5], ["version", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 83, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 83, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 90, 5], ["downloadPage", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 99, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["proxyVendor", 28, 3], ["vendorHash", 29, 3], ["subPackages", 31, 3], ["ldflags", 33, 3], ["tags", 39, 3], ["nativeBuildInputs", 41, 3], ["patches", 46, 3], ["preBuild", 51, 3], ["nativeCheckInputs", 58, 3], ["preCheck", 60, 3], ["checkPhase", 65, 3], ["postInstall", 75, 3], ["passthru", 83, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "flyctl";
       const version = "0.4.111";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "superfly",
           repo: "flyctl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -53,11 +48,11 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\n# We do not set trimpath for tests, in case they reference test assets\nexport GOFLAGS=${GOFLAGS//-trimpath/}\n\nbuildGoDir test ./...\n\nrunHook postCheck\n";
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd flyctl \\\n  --bash <($out/bin/flyctl completion bash) \\\n  --fish <($out/bin/flyctl completion fish) \\\n  --zsh <($out/bin/flyctl completion zsh)\nln -s $out/bin/flyctl $out/bin/fly\n"));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: flyctl,
               command: "HOME=$(mktemp -d) flyctl version",
               version: nix.thunk(() => nix.str`v${nix.sel(flyctl, "version")}`),
@@ -65,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Command line tools for fly.io services",
         downloadPage: "https://github.com/superfly/flyctl",
         homepage: "https://fly.io/",
@@ -81,7 +76,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "flyctl",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

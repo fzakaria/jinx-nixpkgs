@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["hash", 16, 5]], [["url", 21, 5], ["hash", 22, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 20, 3], ["propagatedBuildInputs", 25, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, fetchpatch: false, ppxlib: false, spices: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 20, 3], ["propagatedBuildInputs", 25, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const spices = nix.arg($, "spices");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "config",
       version: "0.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ocaml-sys/config.ml/releases/download/${nix.sel(finalAttrs, "version")}/config-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-bcRCfLX2ro8vnQTJiX2aYGJC+eD26vkPynMYg817YFM=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/ocaml-sys/config.ml/commit/89222d8088cc3c530eb0094d7ff8ec8a67da07d1.patch",
             hash: "sha256-/jNsUXoUrfza5BCpEo7XtEjKwQX3ofEq99v0+UBh7ss=",
           })))))),
       propagatedBuildInputs: nix.thunk(() => [ppxlib, spices]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Ergonomic, lightweight conditional compilation through attributes",
         homepage: "https://github.com/ocaml-sys/config.ml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

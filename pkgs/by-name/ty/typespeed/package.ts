@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["NIX_CFLAGS_COMPILE", 23, 7]], [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["buildInputs", 11, 3], ["src", 12, 3], ["patches", 17, 3], ["env", 23, 3], ["configureFlags", 25, 3], ["makeFlags", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["buildInputs", 11, 3], ["src", 12, 3], ["patches", 17, 3], ["env", 23, 3], ["configureFlags", 25, 3], ["makeFlags", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,21 +12,21 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "typespeed",
       version: "0.6.5",
       buildInputs: nix.thunk(() => [ncurses]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://typespeed.sourceforge.net/typespeed-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "5c860385ceed8a60f13217cc0192c4c2b4705c3e80f9866f7d72ff306eb72961",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./typespeed-config-in-home.patch")]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fcommon" })),
       configureFlags: nix.thunk(() => ["--datadir=${out}/share/"]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Curses based typing game",
         mainProgram: "typespeed",
         homepage: "https://typespeed.sourceforge.net/",

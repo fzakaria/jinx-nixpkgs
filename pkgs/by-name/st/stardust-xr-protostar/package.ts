@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["STARDUST_RES_PREFIXES", 19, 7]], [["updateScript", 44, 12]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["teams", 50, 5], ["platforms", 51, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 19, 3], ["cargoHash", 21, 3], ["__structuredAttrs", 23, 3], ["checkFlags", 25, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["STARDUST_RES_PREFIXES", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 44, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["teams", 50, 5], ["platforms", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 19, 3], ["cargoHash", 21, 3], ["__structuredAttrs", 23, 3], ["checkFlags", 25, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "stardust-xr-protostar",
       version: "0.51.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stardustxr",
           repo: "protostar",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-mL7LnBvc2B9Y56NCDeNyqIDQsuWb4iMehZ7koR1KkX8=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         STARDUST_RES_PREFIXES: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/res`),
       })),
       cargoHash: "sha256-6NiEKm6m4xX6ZSF9Gp7APG/lku3fKoobPSS4AodjCI8=",
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
         "--skip=xdg::test_render_svg_to_png",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Prototype application launchers for Stardust XR",
         homepage: "https://stardustxr.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

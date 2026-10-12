@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["homepage", 32, 5], ["description", 33, 5], ["longDescription", 34, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 21, 3], ["doCheck", 26, 3], ["checkInputs", 27, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, "_0install-solver": false, alcotest: false, cudf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 32, 5], ["description", 33, 5], ["longDescription", 34, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 21, 3], ["doCheck", 26, 3], ["checkInputs", 27, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const cudf = nix.arg($, "cudf");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "opam-0install-cudf",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ocaml-opam",
           repo: "opam-0install-cudf",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ocaml-opam/opam-0install-cudf",
         description: "Opam solver using 0install backend using the CUDF interface",
         longDescription: "Opam's default solver is designed to maintain a set of packages\nover time, minimising disruption when installing new programs and\nfinding a compromise solution across all packages.\n\nIn many situations (e.g. CI, local roots or duniverse builds) this\nis not necessary, and we can get a solution much faster by using\na different algorithm.\n\nThis package provides a generic solver library which uses 0install's\nsolver library. The library uses the CUDF library in order to interface\nwith opam as it is the format common used to talk to all the supported solvers.\n",

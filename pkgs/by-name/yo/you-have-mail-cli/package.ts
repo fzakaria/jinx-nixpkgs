@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["owner", 38, 9], ["repo", 39, 9], ["rev", 40, 9], ["hash", 41, 9]], [["pname", 35, 7], ["version", 36, 7], ["src", 37, 7], ["modRoot", 43, 7], ["vendorHash", 44, 7]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["goSrpVersion", 25, 3], ["postPatch", 26, 3], ["goModules", 33, 3], ["cargoHash", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, go: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 38, 9], ["repo", 39, 9], ["rev", 40, 9], ["hash", 41, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 35, 7], ["version", 36, 7], ["src", 37, 7], ["modRoot", 43, 7], ["vendorHash", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["goSrpVersion", 25, 3], ["postPatch", 26, 3], ["goModules", 33, 3], ["cargoHash", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const go = nix.arg($, "go");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "you-have-mail-cli",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LeanderBB",
           repo: "you-have-mail-cli",
           rev: "b338153353495428e2dc0065843553b7821b9d3a",
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
       goSrpVersion: "0.1.5",
       postPatch: "export GOCACHE=$TMPDIR/go-cache\nexport GOPATH=\"$TMPDIR/go\"\nexport GOPROXY=off\ncp -r --reflink=auto \"$goModules\" $(echo \"$cargoDepsCopy\"/*/\"go-srp-$goSrpVersion\")/go/vendor\n",
       goModules: nix.thunk(() => nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "proton-api-rs",
           version: "0.14.0",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               owner: "LeanderBB",
               repo: "proton-api-rs",
               rev: "4597810e8335118f3c780a04e6d099ae46a7a376",
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
         }))), "goModules")),
       cargoHash: "sha256-w2hrrFHpgeAPcP/swerZu0VJ34T/9/JeQkipp4IQ2js=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Small application to notify you when you receive an email in your email account",
         homepage: "https://github.com/LeanderBB/you-have-mail-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["updateScript", 34, 12]], [["homepage", 54, 5], ["description", 55, 5], ["mainProgram", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["build-system", 26, 3], ["dependencies", 30, 3], ["passthru", 34, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { python3Packages: false, fetchFromGitHub: false, lib: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 34, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["mainProgram", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["build-system", 26, 3], ["dependencies", 30, 3], ["passthru", 34, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kitti3",
       version: "0.5.1-unstable-2021-09-10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LandingEllipse",
           repo: "kitti3",
           rev: "f9f94c8b9f8b61a9d085206ada470cfe755a2a92",
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "poetry-core"))]),
       dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "i3ipc"))]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-kitti3", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p git common-updater-scripts perl tomlq
 tmpdir="$(mktemp -d)"
@@ -50,7 +47,7 @@ perl -pe 's/^(.*version = ")([\\d\\.]+)(.*)$/\${1}'"\${newVersion}"'";/' \\
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/LandingEllipse/kitti3",
         description: "Kitty drop-down service for sway & i3wm",
         mainProgram: "kitti3",

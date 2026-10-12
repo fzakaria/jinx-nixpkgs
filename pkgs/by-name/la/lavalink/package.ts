@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["lavalink", 35, 43]], [["tests", 35, 12]], [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["sourceProvenance", 48, 5], ["mainProgram", 49, 5], ["platforms", 50, 24]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["dontUnpack", 24, 3], ["installPhase", 26, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, jdk21: false, jdk: true, fetchurl: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lavalink", 35, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 35, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["sourceProvenance", 48, 5], ["mainProgram", 49, 5], ["platforms", 50, 24]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["dontUnpack", 24, 3], ["installPhase", 26, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lavalink",
       version: "4.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/lavalink-devs/Lavalink/releases/download/${nix.sel(finalAttrs, "version")}/Lavalink.jar`),
           hash: "sha256-jLgB5ZEHLDaJ+v1xzPVxqVpOrTzDXfwEXhV9dj2JEZo=",
         })))),
@@ -37,16 +33,16 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jdk)} $out/bin/lavalink \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           lavalink: nix.thunk(() => nix.attr(nixosTests, "lavalink")),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jdk, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Standalone audio sending node based on Lavaplayer and Koe",
         longDescription: "A standalone audio sending node based on Lavaplayer and Koe. Allows for sending audio without it ever reaching any of your shards.\n\nBeing used in production by FredBoat, Dyno, LewdBot, and more.\n",
         homepage: "https://lavalink.dev/",

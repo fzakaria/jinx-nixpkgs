@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 5], ["version", 21, 13], ["hash", 22, 5]], [["asymmetric_crypto", 34, 25]], [["changelog", 44, 5], ["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, cryptography: false, flask: false, pyjwt: false, pytestCheckHook: false, "python-dateutil": false, setuptools: false, werkzeug: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 13], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["asymmetric_crypto", 34, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 44, 5], ["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +22,18 @@ export default nix.lambda((args) => (() => {
       const version = "4.7.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "flask_jwt_extended",
           version: version,
           hash: "sha256-eP0PRgMX+s86AISmRX/68vHdqe771Xb5TOo1sOrdVTE=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [flask, pyjwt, python_dateutil, werkzeug]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, asymmetric_crypto: nix.thunk(() => [cryptography]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], asymmetric_crypto: nix.thunk(() => [cryptography]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["flask_jwt_extended"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/vimalloc/flask-jwt-extended/releases/tag/${version}`),
         description: "JWT extension for Flask",
         homepage: "https://flask-jwt-extended.readthedocs.io/",
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

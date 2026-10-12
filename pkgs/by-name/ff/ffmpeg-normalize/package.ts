@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 14, 13], ["pname", 15, 5], ["hash", 16, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 50, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["pythonRelaxDeps", 30, 3], ["checkPhase", 34, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 14, 13], ["pname", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["pythonRelaxDeps", 30, 3], ["checkPhase", 34, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.42.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "ffmpeg_normalize",
           hash: "sha256-cCqqpunF7zn4QHoS3QTAtyeTX/+AKIxFVMl6FOWYjWw=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["colorlog"]);
       const checkPhase = "runHook preCheck\n\n$out/bin/ffmpeg-normalize --help > /dev/null\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Normalize audio via ffmpeg",
         homepage: "https://github.com/slhck/ffmpeg-normalize",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ffmpeg-normalize",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

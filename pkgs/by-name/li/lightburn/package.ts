@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["name", 61, 7], ["exec", 62, 7], ["icon", 63, 7], ["genericName", 64, 7], ["desktopName", 65, 7]], [["description", 87, 5], ["homepage", 88, 5], ["sourceProvenance", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5], ["mainProgram", 93, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["unpackPhase", 55, 3], ["desktopItems", 59, 3], ["installPhase", 69, 3], ["postFixup", 79, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, p7zip: false, nss: false, nspr: false, libusb1: false, cups: false, autoPatchelfHook: false, "libgpg-error": false, e2fsprogs: false, makeDesktopItem: false, copyDesktopItems: false, libx11: false, libxcb: false, libGL: false, "alsa-lib": false, freetype: false, fontconfig: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 61, 7], ["exec", 62, 7], ["icon", 63, 7], ["genericName", 64, 7], ["desktopName", 65, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["sourceProvenance", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5], ["mainProgram", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["unpackPhase", 55, 3], ["desktopItems", 59, 3], ["installPhase", 69, 3], ["postFixup", 79, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lightburn";
       const version = "1.7.08";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://release.lightburnsoftware.com/LightBurn/Release/LightBurn-v${version}/LightBurn-Linux64-v${version}.7z`),
           hash: "sha256-dG/A39/SapyS6GGSKCsHUvYN+CONul/s55HTi9Cc59g=",
         }))));
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const unpackPhase = "7z x $src\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "lightburn",
             exec: "lightburn",
             icon: "lightburn",
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\nmkdir -p $out/opt\ncp -ar LightBurn $out/opt/lightburn\ninstall -Dm644 $out/opt/lightburn/LightBurn.png $out/share/icons/hicolor/512x512/apps/lightburn.png\n\nrunHook postInstall\n";
       const postFixup = "mkdir $out/bin\nmakeWrapper $out/opt/lightburn/AppRun $out/bin/lightburn \\\n  --unset QT_PLUGIN_PATH \\\n  --unset QML2_IMPORT_PATH\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Layout, editing, and control software for your laser cutter",
         homepage: "https://lightburnsoftware.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -83,7 +80,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lightburn",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

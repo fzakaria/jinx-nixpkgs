@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["desktopName", 24, 5], ["name", 25, 5], ["genericName", 26, 5], ["exec", 27, 5], ["icon", 28, 5], ["categories", 29, 5], ["keywords", 33, 5], ["comment", 37, 5]], [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]], [["test", 85, 18]], [["tests", 85, 12]], [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["platforms", 92, 5], ["maintainers", 93, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["makeFlags", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 55, 3], ["enableParallelBuilding", 66, 3], ["postPatch", 68, 3], ["preInstall", 75, 3], ["postInstall", 79, 3], ["passthru", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "pkg-config": false, nixosTests: false, freetype: false, fontconfig: false, libGL: false, libx11: false, libxrandr: false, libxcb: false, libxkbcommon: false, utf8proc: false, wayland: false, libnotify: false, "xdg-utils": false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["desktopName", 24, 5], ["name", 25, 5], ["genericName", 26, 5], ["exec", 27, 5], ["icon", 28, 5], ["categories", 29, 5], ["keywords", 33, 5], ["comment", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["test", 85, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 85, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["platforms", 92, 5], ["maintainers", 93, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["makeFlags", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 55, 3], ["enableParallelBuilding", 66, 3], ["postPatch", 68, 3], ["preInstall", 75, 3], ["postInstall", 79, 3], ["passthru", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const xdg_utils = nix.arg($, "xdg-utils");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       desktopName: "Wayst",
       name: "wayst",
       genericName: "Terminal",
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
       comment: "A simple terminal emulator",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "wayst",
       version: "0-unstable-2023-07-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "91861",
           repo: "wayst",
           rev: "f8b218eec1af706fd5ae287f5073e6422eb8b6d8",
@@ -76,14 +71,14 @@ ln -s ${desktopItem}/share/applications/* $out/share/applications
 install -D icons/wayst.svg $out/share/icons/hicolor/scalable/apps/wayst.svg
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "wayst")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple terminal emulator",
         mainProgram: "wayst",
         homepage: "https://github.com/91861/wayst",

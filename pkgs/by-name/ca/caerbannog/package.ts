@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 47, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromSourcehut: false, python3: false, glib: false, "gobject-introspection": false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, gtk3: false, atk: false, libhandy: false, libnotify: false, pango: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 47, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const libnotify = nix.arg($, "libnotify");
   const pango = nix.arg($, "pango");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "caerbannog",
       version: "0.3",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~craftyguy",
           repo: "caerbannog",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Mobile-friendly Gtk frontend for password-store",
         mainProgram: "caerbannog",
         homepage: "https://sr.ht/~craftyguy/caerbannog/",

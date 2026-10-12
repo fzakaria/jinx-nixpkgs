@@ -2,51 +2,43 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/caddy.nix", [[["maintainers", 6, 10]], [["extraConfig", 15, 29]], [["enable", 14, 17], ["virtualHost", 15, 17]], [["enable", 12, 11], ["domain", 13, 11], ["caddy", 14, 11]], [["globalConfig", 18, 24]], [["bentopdf", 11, 18], ["caddy", 18, 18]], [["services", 11, 9]], [["machine", 8, 11]], [["name", 5, 5], ["meta", 6, 5], ["nodes", 8, 5], ["testScript", 21, 5]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/caddy.nix", [["maintainers", 6, 10]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/caddy.nix", [["extraConfig", 15, 29]]);
-const pos$3 = nix.positions(here + "/caddy.nix", [["enable", 14, 17], ["virtualHost", 15, 17]]);
-const pos$4 = nix.positions(here + "/caddy.nix", [["enable", 12, 11], ["domain", 13, 11], ["caddy", 14, 11]]);
-const pos$5 = nix.positions(here + "/caddy.nix", [["globalConfig", 18, 24]]);
-const pos$6 = nix.positions(here + "/caddy.nix", [["bentopdf", 11, 18], ["caddy", 18, 18]]);
-const pos$7 = nix.positions(here + "/caddy.nix", [["services", 11, 9]]);
-const pos$8 = nix.positions(here + "/caddy.nix", [["machine", 8, 11]]);
-const pos$9 = nix.positions(here + "/caddy.nix", [["name", 5, 5], ["meta", 6, 5], ["nodes", 8, 5], ["testScript", 21, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       name: "bentopdf-caddy",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "stunkymonkey"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               bentopdf: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 enable: true,
                 domain: "localhost:80",
                 caddy: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   enable: true,
-                  virtualHost: nix.thunk(() => ({ [nix.POS]: pos$2, extraConfig: "tls internal" })),
+                  virtualHost: nix.thunk(() => ({ [nix.POS]: $pos[1], extraConfig: "tls internal" })),
                 })),
               })),
-              caddy: nix.thunk(() => ({ [nix.POS]: pos$5, globalConfig: "auto_https disable_certs" })),
+              caddy: nix.thunk(() => ({ [nix.POS]: $pos[4], globalConfig: "auto_https disable_certs" })),
             })),
           };
         })(), formals$2),

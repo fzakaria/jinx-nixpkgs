@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["src", 33, 13], ["hash", 34, 5]], [["updateScript", 72, 12]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["cargoDeps", 32, 3], ["build-system", 37, 3], ["buildInputs", 45, 3], ["nativeCheckInputs", 49, 3], ["disabledTestPaths", 58, 3], ["pythonImportsCheck", 66, 3], ["doCheck", 70, 3], ["passthru", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, cargo: false, rustc: false, libiconv: false, buildPythonPackage: false, setuptools: false, "setuptools-rust": false, pytestCheckHook: false, "pytest-mypy-plugins": false, hypothesis: false, freezegun: false, "time-machine": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 33, 13], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 72, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["cargoDeps", 32, 3], ["build-system", 37, 3], ["buildInputs", 45, 3], ["nativeCheckInputs", 49, 3], ["disabledTestPaths", 58, 3], ["pythonImportsCheck", 66, 3], ["doCheck", 70, 3], ["passthru", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ariebovenberg",
           repo: "whenever",
           tag: version,
           hash: "sha256-axysocowBamYcNZ9IS58SefSltWC8mdO1Ovf65vMxTk=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: src,
           hash: "sha256-ZJhHIY9oFGGfK0XdZtzH7uSqbg3y3aDEh5q4ba5W0tI=",
         }))));
@@ -61,11 +57,11 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["whenever"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Strict, predictable, and typed datetimes",
         homepage: "https://github.com/ariebovenberg/whenever",
         changelog: nix.thunk(() => nix.str`https://github.com/ariebovenberg/whenever/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -76,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

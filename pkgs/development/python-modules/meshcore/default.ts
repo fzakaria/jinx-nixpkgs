@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["url", 36, 7], ["hash", 37, 7]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 50, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, hatchling: false, bleak: false, pycayennelpp: false, "pyserial-asyncio-fast": false, pycryptodome: false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 50, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "meshcore",
       version: "2.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "meshcore-dev",
           repo: "meshcore_py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/meshcore-dev/meshcore_py/commit/9294e574739844e0e291b972b40e1a0a40149e47.patch",
             hash: "sha256-Ufr+5rDDO32W6dtD7wEU34iLJai3H0dBCEtLS5j4u/0=",
           })))),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["meshcore"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python library for communicating with meshcore companion radios",
         homepage: "https://github.com/meshcore-dev/meshcore_py",
         changelog: nix.thunk(() => nix.str`https://github.com/meshcore-dev/meshcore_py/releases/tag/v${nix.sel(finalAttrs, "version")}`),

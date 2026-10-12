@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/spago-legacy.nix", [[["url", 68, 5], ["sha256", 69, 5], ["rev", 70, 5], ["fetchSubmodules", 71, 5]], [["pname", 65, 3], ["version", 66, 3], ["src", 67, 3], ["isLibrary", 73, 3], ["isExecutable", 74, 3], ["libraryHaskellDepends", 75, 3], ["executableHaskellDepends", 128, 3], ["testHaskellDepends", 135, 3], ["testToolDepends", 150, 3], ["homepage", 151, 3], ["license", 152, 3], ["mainProgram", 153, 3]]]);
 const formals$1 = { args: { mkDerivation: false, aeson: false, "aeson-pretty": false, "ansi-terminal": false, "async-pool": false, base: false, "bower-json": false, bytestring: false, containers: false, cryptonite: false, dhall: false, directory: false, either: false, extra: false, fetchgit: false, "file-embed": false, filepath: false, foldl: false, fsnotify: false, "generic-lens": false, Glob: false, hspec: false, "hspec-discover": false, "hspec-megaparsec": false, "http-client": false, "http-conduit": false, "http-types": false, "lens-family-core": false, lib: false, megaparsec: false, mtl: false, "network-uri": false, "open-browser": false, "optparse-applicative": false, prettyprinter: false, process: false, QuickCheck: false, retry: false, rio: false, "rio-orphans": false, safe: false, "semver-range": false, stm: false, stringsearch: false, tar: false, "template-haskell": false, temporary: false, text: false, time: false, transformers: false, turtle: false, unliftio: false, "unordered-containers": false, "uri-encode": false, "utf8-string": false, versions: false, "with-utf8": false, yaml: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/spago-legacy.nix", [["url", 68, 5], ["sha256", 69, 5], ["rev", 70, 5], ["fetchSubmodules", 71, 5]]);
-const pos$2 = nix.positions(here + "/spago-legacy.nix", [["pname", 65, 3], ["version", 66, 3], ["src", 67, 3], ["isLibrary", 73, 3], ["isExecutable", 74, 3], ["libraryHaskellDepends", 75, 3], ["executableHaskellDepends", 128, 3], ["testHaskellDepends", 135, 3], ["testToolDepends", 150, 3], ["homepage", 151, 3], ["license", 152, 3], ["mainProgram", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -68,11 +67,11 @@ export default nix.lambda((args) => (() => {
   const yaml = nix.arg($, "yaml");
   const zlib = nix.arg($, "zlib");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "spago-legacy",
       version: "0.21.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/purescript/spago-legacy.git",
           sha256: "18p9cic1y9b2v12np4b5sd82rz5njxh8f1vgqs4gwm6xjccmszmr",
           rev: "2790261c28f59940f192c56f3b8245b3ae8b798d",

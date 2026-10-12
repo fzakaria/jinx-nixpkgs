@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["mpi", 111, 13]], [["description", 158, 5], ["homepage", 159, 5], ["license", 160, 5], ["platforms", 161, 5], ["maintainers", 162, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["pyproject", 48, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 60, 3], ["propagatedBuildInputs", 74, 3], ["dependencies", 76, 3], ["propagatedUserEnvPkgs", 90, 3], ["dontUseSetuptoolsBuild", 92, 3], ["dontUsePipInstall", 93, 3], ["enableParallelBuilding", 95, 3], ["preConfigure", 97, 3], ["configureFlags", 102, 3], ["passthru", 110, 3], ["nativeCheckInputs", 121, 3], ["pythonImportsCheck", 124, 3], ["checkPhase", 127, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonOlder: false, setuptools: false, autoreconfHook: false, "pkg-config": false, mpiCheckPhaseHook: false, gfortran: false, mpi: false, blas: false, lapack: false, fftw: false, "hdf5-mpi": false, swig: false, gsl: false, harminv: false, libctl: false, libgdsii: false, guile: false, mpb: false, python: false, numpy: false, scipy: false, matplotlib: false, "h5py-mpi": false, cython: false, autograd: false, mpi4py: false, distutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mpi", 111, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 158, 5], ["homepage", 159, 5], ["license", 160, 5], ["platforms", 161, 5], ["maintainers", 162, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["pyproject", 48, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 60, 3], ["propagatedBuildInputs", 74, 3], ["dependencies", 76, 3], ["propagatedUserEnvPkgs", 90, 3], ["dontUseSetuptoolsBuild", 92, 3], ["dontUsePipInstall", 93, 3], ["enableParallelBuilding", 95, 3], ["preConfigure", 97, 3], ["configureFlags", 102, 3], ["passthru", 110, 3], ["nativeCheckInputs", 121, 3], ["pythonImportsCheck", 124, 3], ["checkPhase", 127, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const pname = "meep";
       const version = "1.34.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NanoComp",
           repo: "meep",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -83,7 +80,7 @@ export PYTHON=${nix.sel(python, "interpreter")};
         "--with-openmp",
         "--enable-maintainer-mode",
       ]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, mpi: mpi }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], mpi: mpi }));
       const nativeCheckInputs = nix.thunk(() => [mpiCheckPhaseHook]);
       const pythonImportsCheck = nix.thunk(() => ["meep.mpb"]);
       const checkPhase = nix.thunk(() => nix.str`runHook preCheck
@@ -115,7 +112,7 @@ ${mpi}/bin/mpiexec -np 2 python3 test.py
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free finite-difference time-domain (FDTD) software for electromagnetic simulations",
         homepage: "https://meep.readthedocs.io/en/latest/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -129,7 +126,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

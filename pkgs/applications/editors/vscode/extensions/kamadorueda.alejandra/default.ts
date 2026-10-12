@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 11, 5], ["publisher", 12, 5], ["version", 13, 5], ["hash", 14, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["mktplcRef", 10, 3], ["nativeBuildInputs", 16, 3], ["postInstall", 20, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { alejandra: false, jq: false, lib: false, moreutils: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 11, 5], ["publisher", 12, 5], ["version", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 10, 3], ["nativeBuildInputs", 16, 3], ["postInstall", 20, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const moreutils = nix.arg($, "moreutils");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "alejandra",
         publisher: "kamadorueda",
         version: "1.0.0",
@@ -36,7 +34,7 @@ jq -e '
 | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Uncompromising Nix Code Formatter",
         homepage: "https://github.com/kamadorueda/alejandra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

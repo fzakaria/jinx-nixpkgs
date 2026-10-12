@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]], [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["sourceProvenance", 69, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 26, 3], ["buildPhase", 33, 3], ["doCheck", 39, 3], ["checkPhase", 41, 3], ["installPhase", 47, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, ant: false, jdk17: false, makeWrapper: false, stripJavaArchivesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["sourceProvenance", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 26, 3], ["buildPhase", 33, 3], ["doCheck", 39, 3], ["checkPhase", 41, 3], ["installPhase", 47, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   const jdk = jdk17;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openrocket",
       version: "23.09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openrocket",
           repo: "openrocket",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +44,7 @@ makeWrapper ${jdk}/bin/java $out/bin/openrocket \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/openrocket/openrocket/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Model-rocketry aerodynamics and trajectory simulation software",
         homepage: "https://openrocket.info",

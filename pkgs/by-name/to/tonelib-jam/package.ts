@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["description", 60, 5], ["homepage", 61, 5], ["sourceProvenance", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["runtimeDependencies", 40, 3], ["installPhase", 49, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, dpkg: false, "alsa-lib": false, freetype: false, libglvnd: false, curl: false, libxcursor: false, libxinerama: false, libxrandr: false, libxrender: false, libjack2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["sourceProvenance", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["runtimeDependencies", 40, 3], ["installPhase", 49, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tonelib-jam";
       const version = "4.8.7";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://tonelib.vip/download/24-10-24/ToneLib-Jam-amd64.deb",
           hash: "sha256-qBCEaV9uw6HHJYK+8AK+JYQK375cY0Ae3gxiQ0+sAg4=",
         }))));
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const runtimeDependencies = nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getLib")), nix.thunk(() => [curl, libxcursor, libxinerama, libxrandr, libxrender, libjack2])));
       const installPhase = "runHook preInstall\n\ncp -r usr $out\nsubstituteInPlace $out/share/applications/ToneLib-Jam.desktop \\\n  --replace-fail \"/usr/\" \"$out/\"\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ToneLib Jam – the learning and practice software for guitar players",
         homepage: "https://tonelib.net/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ToneLib-Jam",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

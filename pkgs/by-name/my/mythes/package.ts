@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["homepage", 28, 5], ["description", 29, 5], ["mainProgram", 30, 5], ["license", 31, 5], ["platforms", 32, 29]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 21, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, hunspell: false, ncurses: false, "pkg-config": false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 28, 5], ["description", 29, 5], ["mainProgram", 30, 5], ["license", 31, 5], ["platforms", 32, 29]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 21, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mythes",
       version: "1.2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/hunspell/mythes-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0prh19wy1c74kmzkkavm9qslk99gz8h8wmjvwzjc6lf8v2az708y",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hunspell, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://hunspell.sourceforge.net/",
         description: "Thesaurus library from Hunspell project",
         mainProgram: "th_gen_idx.pl",

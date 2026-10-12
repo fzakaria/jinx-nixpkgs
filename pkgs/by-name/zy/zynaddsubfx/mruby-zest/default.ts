@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["fetchSubmodules", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 48, 7]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 29, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["env", 48, 3], ["preBuild", 51, 3], ["installTargets", 55, 3], ["postInstall", 57, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, gcc14Stdenv: false, fetchFromGitHub: false, bison: false, "pkg-config": false, rake: false, ruby: false, libGL: false, libuv: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["fetchSubmodules", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 48, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 29, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["env", 48, 3], ["preBuild", 51, 3], ["installTargets", 55, 3], ["postInstall", 57, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libuv = nix.arg($, "libuv");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(gcc14Stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mruby-zest",
       version: "3.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mruby-zest",
           repo: "mruby-zest-build",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,12 +32,12 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./force-cxx-as-linker.patch")]),
       nativeBuildInputs: nix.thunk(() => [bison, pkg_config, rake, ruby]),
       buildInputs: nix.thunk(() => [libGL, libuv, libx11]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-O3" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-O3" })),
       preBuild: "rm mruby/mrbgems/mruby-compiler/core/y.tab.c\n",
       installTargets: nix.thunk(() => ["pack"]),
       postInstall: "ln -s \"$out/zest\" \"$out/zyn-fusion\"\ncp -a package/{font,libzest.so,schema,zest} \"$out\"\n\n# mruby-widget-lib/src/api.c requires MainWindow.qml as part of a\n# sanity check, even though qml files are compiled into the binary\n# https://github.com/mruby-zest/mruby-zest-build/blob/3.0.6/src/mruby-widget-lib/src/api.c#L107-L124\n# https://github.com/mruby-zest/mruby-zest-build/blob/3.0.6/linux-pack.sh#L17-L18\nmkdir -p \"$out/qml\"\ntouch \"$out/qml/MainWindow.qml\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Zest Framework used in ZynAddSubFX's UI",
         homepage: "https://github.com/mruby-zest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

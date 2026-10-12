@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 43, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, gtk3: false, "pkg-config": false, libofx: false, intltool: false, wrapGAppsHook3: false, libsoup_3: false, "adwaita-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const libsoup_3 = nix.arg($, "libsoup_3");
   const adwaita_icon_theme = nix.arg($, "adwaita-icon-theme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "homebank",
       version: "5.10.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.gethomebank.org/public/sources/homebank-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-8L6v4H6iIVXI+OJneY1usF1uAV1WYLlvs0/eylprxMc=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook3, intltool]),
       buildInputs: nix.thunk(() => [gtk3, libofx, libsoup_3, adwaita_icon_theme]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free, easy, personal accounting for everyone",
         mainProgram: "homebank",
         homepage: "https://www.gethomebank.org",

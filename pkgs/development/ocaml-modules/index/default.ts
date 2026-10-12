@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 27, 5], ["hash", 28, 5]], [["url", 34, 7], ["hash", 35, 7], ["includes", 36, 7]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 31, 3], ["postPatch", 41, 3], ["minimalOCamlVersion", 45, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 50, 3], ["checkInputs", 63, 3], ["doCheck", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchpatch: false, buildDunePackage: false, repr: false, ppx_repr: false, fmt: false, logs: false, mtime: false, "stdlib-shims": false, cmdliner: false, progress: false, "semaphore-compat": false, optint: false, alcotest: false, crowbar: false, re: false, lru: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 34, 7], ["hash", 35, 7], ["includes", 36, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 31, 3], ["postPatch", 41, 3], ["minimalOCamlVersion", 45, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 50, 3], ["checkInputs", 63, 3], ["doCheck", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,17 +26,17 @@ export default nix.lambda((args) => (() => {
   const re = nix.arg($, "re");
   const lru = nix.arg($, "lru");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "index",
       version: "1.6.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/index/releases/download/${nix.sel(finalAttrs, "version")}/index-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-k4iDUJik7UTuztBw7YaFXASd8SqYMR1JgLm3JOyriGA=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/mirage/index/commit/aa7aa4734213f74a246f66719a1085b522f431d4.patch",
             hash: "sha256-Vc4r/I3TeIy/D4FcYzj4vRrH87vI2JRagqAXhD9BUxc=",
             includes: nix.thunk(() => ["*.ml"]),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, crowbar, re]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Platform-agnostic multi-level index",
         homepage: "https://github.com/mirage/index",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["packageName", 53, 7]], [["updateScript", 52, 5]], [["platforms", 58, 5], ["teams", 59, 5], ["license", 60, 5], ["description", 61, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 42, 3], ["mesonFlags", 47, 3], ["passthru", 51, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, gnome: false, gtk3: false, glib: false, "gobject-introspection": false, libarchive: false, vala: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["platforms", 58, 5], ["teams", 59, 5], ["license", 60, 5], ["description", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 42, 3], ["mesonFlags", 47, 3], ["passthru", 51, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const libarchive = nix.arg($, "libarchive");
   const vala = nix.arg($, "vala");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-autoar",
       version: "0.4.5",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-autoar/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-autoar-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-g4xTBvw4v6ovI6viQmL0vxV3HjMD+13LdPW5x6YV2r4=",
         })))),
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [libarchive, glib]),
       mesonFlags: nix.thunk(() => ["-Dvapi=true"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-autoar" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-autoar" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5]], [["minimalOCamlVersion", 11, 3], ["version", 12, 3], ["pname", 13, 3], ["duneVersion", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 27, 3], ["checkInputs", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, decompress: false, "stdlib-shims": false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["minimalOCamlVersion", 11, 3], ["version", 12, 3], ["pname", 13, 3], ["duneVersion", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 27, 3], ["checkInputs", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const stdlib_shims = nix.arg($, "stdlib-shims");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       minimalOCamlVersion: "4.08",
       version: "20221222",
       pname: "imagelib",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/rlepigre/ocaml-imagelib/releases/download/${nix.sel(finalAttrs, "version")}/imagelib-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-BQ2TVxGlpc6temteK84TKXpx0MtHZSykL/TjKN9xGP0=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Image formats such as PNG and PPM in OCaml",
         homepage: "https://github.com/rlepigre/ocaml-imagelib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

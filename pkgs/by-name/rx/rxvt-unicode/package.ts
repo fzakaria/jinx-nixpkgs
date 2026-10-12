@@ -2,15 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["plugins", 12, 7], ["extraDeps", 13, 7], ["perlDeps", 14, 7]], [["availablePlugins", 42, 36]], [["test", 67, 15]], [["plugins", 66, 9], ["tests", 67, 9]], [["pname", 48, 7], ["paths", 50, 7], ["nativeBuildInputs", 52, 7], ["postBuild", 54, 7], ["meta", 63, 40], ["version", 63, 45], ["passthru", 65, 7]], [["configure", 72, 39]]]);
 const formals$1 = { args: { symlinkJoin: false, makeWrapper: false, lib: false, "rxvt-unicode-unwrapped": false, "rxvt-unicode-plugins": false, perlPackages: false, nixosTests: false, configure: true }, ellipsis: false };
 const formals$2 = { args: { availablePlugins: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["plugins", 12, 7], ["extraDeps", 13, 7], ["perlDeps", 14, 7]]);
 const formals$3 = { args: { configure: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/package.nix", [["availablePlugins", 42, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["test", 67, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["plugins", 66, 9], ["tests", 67, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 48, 7], ["paths", 50, 7], ["nativeBuildInputs", 52, 7], ["postBuild", 54, 7], ["meta", 63, 40], ["version", 63, 45], ["passthru", 65, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["configure", 72, 39]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const availablePlugins = nix.arg($_1, "availablePlugins");
     return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       plugins: nix.thunk(() => nix.builtins.attrValues(availablePlugins)),
       extraDeps: [],
       perlDeps: [],
@@ -39,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const wrapper = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     const configure_1 = nix.arg($_1, "configure");
-    const config = nix.thunk(() => nix.app(configure_1, nix.thunk(() => ({ [nix.POS]: pos$2, availablePlugins: availablePlugins }))));
+    const config = nix.thunk(() => nix.app(configure_1, nix.thunk(() => ({ [nix.POS]: $pos[1], availablePlugins: availablePlugins }))));
     const plugins = nix.thunk(() => nix.selOr(config, () => nix.builtins.attrValues(availablePlugins), "plugins"));
     const extraDeps = nix.thunk(() => nix.selOr(config, () => [], "extraDeps"));
     const perlDeps = nix.thunk(() => nix.concat(nix.selOr(config, () => [], "perlDeps"), nix.app(nix.sel(lib, "concatMap"), mkPerlDeps, plugins)));
     return nix.app(symlinkJoin, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "rxvt-unicode",
         paths: nix.thunk(() => nix.concat([rxvt_unicode_unwrapped], nix.concat(plugins, extraDeps))),
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -58,15 +53,15 @@ wrapProgram $out/bin/urxvtd \\
         meta: nix.thunk(() => nix.attr(rxvt_unicode_unwrapped, "meta")),
         version: nix.thunk(() => nix.attr(rxvt_unicode_unwrapped, "version")),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           plugins: plugins,
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "urxvt")),
           })),
         })),
       })));
   })(), formals$3);
-  return nix.app(nix.sel(lib, "makeOverridable"), wrapper, nix.thunk(() => ({ [nix.POS]: pos$6, configure: configure })));
+  return nix.app(nix.sel(lib, "makeOverridable"), wrapper, nix.thunk(() => ({ [nix.POS]: $pos[5], configure: configure })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

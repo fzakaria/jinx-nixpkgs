@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 67, 5], ["repo", 68, 5], ["tag", 69, 5], ["hash", 70, 5]], [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 116, 7]], [["qa", 170, 5], ["test", 175, 5]], [["rev-prefix", 200, 5], ["ignoredVersions", 202, 5]], [["updateScript", 199, 12]], [["description", 206, 5], ["homepage", 207, 5], ["changelog", 208, 5], ["license", 209, 5], ["mainProgram", 210, 5], ["maintainers", 211, 5]], [["pname", 62, 3], ["version", 63, 3], ["pyproject", 64, 3], ["src", 66, 3], ["postPatch", 73, 3], ["env", 116, 3], ["pythonRelaxDeps", 118, 3], ["build-system", 123, 3], ["dependencies", 128, 3], ["optional-dependencies", 169, 3], ["nativeCheckInputs", 181, 3], ["disabledTestPaths", 183, 3], ["pythonImportsCheck", 197, 3], ["passthru", 199, 3], ["meta", 205, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, "absl-py": false, afdko: false, axisregistry: false, beautifulsoup4: false, black: false, brotli: false, coreutils: false, diffenator2: false, "ffmpeg-python": false, fontfeatures: false, fontmake: false, fonttools: false, gflanguages: false, gfmetadata: false, gfsubsets: false, glyphsets: false, glyphslib: false, harfbuzz: false, jinja2: false, nanoemoji: false, networkx: false, ninja: false, "opentype-feature-freezer": false, "ots-python": false, packaging: false, paintcompiler: false, pillow: false, protobuf: false, pycairo: false, pygit2: false, pygithub: false, pytest: false, pyyaml: false, requests: false, rich: false, "ruamel-yaml": false, strictyaml: false, tabulate: false, "ttfautohint-py": false, ufomerge: false, unidecode: false, vharfbuzz: false, vttlib: false, gitpython: false, "freetype-py": false, python: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 67, 5], ["repo", 68, 5], ["tag", 69, 5], ["hash", 70, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 116, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["qa", 170, 5], ["test", 175, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["rev-prefix", 200, 5], ["ignoredVersions", 202, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 199, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 206, 5], ["homepage", 207, 5], ["changelog", 208, 5], ["license", 209, 5], ["mainProgram", 210, 5], ["maintainers", 211, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 62, 3], ["version", 63, 3], ["pyproject", 64, 3], ["src", 66, 3], ["postPatch", 73, 3], ["env", 116, 3], ["pythonRelaxDeps", 118, 3], ["build-system", 123, 3], ["dependencies", 128, 3], ["optional-dependencies", 169, 3], ["nativeCheckInputs", 181, 3], ["disabledTestPaths", 183, 3], ["pythonImportsCheck", 197, 3], ["passthru", 199, 3], ["meta", 205, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -73,7 +67,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googlefonts",
           repo: "gftools",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -120,7 +114,7 @@ substituteInPlace \\
   Lib/gftools/builder/operations/rename.py \\
   --replace-fail "'gftools" "'${nix.builtins.placeholder("out")}t/bin/gftools"
 `);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
       const pythonRelaxDeps = nix.thunk(() => ["protobuf", "pygit2"]);
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => nix.concat([
@@ -162,7 +156,7 @@ substituteInPlace \\
         gitpython,
       ], nix.concat(nix.sel(fonttools, "optional-dependencies", "ufo"), nix.sel(fontmake, "optional-dependencies", "json"))));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         qa: nix.thunk(() => [diffenator2, pycairo, freetype_py]),
         test: nix.thunk(() => [black, pytest]),
       }));
@@ -179,11 +173,11 @@ substituteInPlace \\
       ]);
       const pythonImportsCheck = nix.thunk(() => ["gftools"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v", ignoredVersions: "0.9991" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-prefix": "v", ignoredVersions: "0.9991" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Misc tools for working with the Google Fonts library",
         homepage: "https://github.com/googlefonts/gftools",
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/gftools/releases/tag/${nix.sel(src, "tag")}`),
@@ -195,7 +189,7 @@ substituteInPlace \\
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

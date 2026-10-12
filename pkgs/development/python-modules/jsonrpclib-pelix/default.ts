@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]], [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["build-system", 12, 3], ["src", 14, 3], ["doCheck", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, hatchling: false, fetchPypi: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["build-system", 12, 3], ["src", 14, 3], ["doCheck", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,21 +17,21 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [hatchling]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "jsonrpclib_pelix",
           version: version,
           hash: "sha256-N5o8mz3UeHJ0GVh6p88Uu2/w5kMB3swP+pj3EPa/7B4=",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "JSON RPC client library - Pelix compatible fork",
         homepage: "https://pypi.org/project/jsonrpclib-pelix/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["url", 30, 7], ["hash", 31, 7]], [["homepage", 52, 5], ["description", 53, 5], ["longDescription", 54, 5], ["license", 64, 5]], [["version", 17, 3], ["pname", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["buildInputs", 35, 3], ["propagatedBuildInputs", 36, 3], ["checkInputs", 41, 3], ["doCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch: false, buildDunePackage: false, "dune-configurator": false, either: false, seq: false, gen: false, iter: false, "qcheck-core": false, uutf: false, yojson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 52, 5], ["description", 53, 5], ["longDescription", 54, 5], ["license", 64, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 17, 3], ["pname", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["buildInputs", 35, 3], ["propagatedBuildInputs", 36, 3], ["checkInputs", 41, 3], ["doCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const uutf = nix.arg($, "uutf");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "3.16",
       pname: "containers",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "c-cube",
           repo: "ocaml-containers",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/c-cube/ocaml-containers/commit/3b49ad2a4e8cfe366d0588e1940d626f0e1b8a2d.patch",
             hash: "sha256-LFe+LtpBBrf82SX57b4iQSvfd9tSXmnfhffjvjcfLpg=",
           })))),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [gen, iter, qcheck_core, uutf, yojson]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/c-cube/ocaml-containers",
         description: "Modular standard library focused on data structures",
         longDescription: "Containers is a standard library (BSD license) focused on data structures,\ncombinators and iterators, without dependencies on unix. Every module is\nindependent and is prefixed with 'CC' in the global namespace. Some modules\nextend the stdlib (e.g. CCList provides safe map/fold_right/append, and\nadditional functions on lists).\n\nIt also features optional libraries for dealing with strings, and\nhelpers for unix and threads.\n",

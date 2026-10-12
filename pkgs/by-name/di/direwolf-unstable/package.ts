@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hamlibSupport", 12, 11], ["gpsdSupport", 12, 25], ["extraScripts", 12, 37]], [["owner", 18, 7], ["repo", 19, 7], ["rev", 20, 7], ["hash", 21, 7]], [["extraArgs", 26, 49]], [["updateScript", 26, 14]], [["version", 15, 5], ["src", 17, 5], ["dontVersionCheck", 24, 5], ["passthru", 26, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, direwolf: false, "nix-update-script": false, hamlibSupport: true, gpsdSupport: true, extraScripts: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hamlibSupport", 12, 11], ["gpsdSupport", 12, 25], ["extraScripts", 12, 37]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 18, 7], ["repo", 19, 7], ["rev", 20, 7], ["hash", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 26, 49]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 26, 14]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 15, 5], ["src", 17, 5], ["dontVersionCheck", 24, 5], ["passthru", 26, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,15 +15,15 @@ export default nix.lambda((args) => (() => {
   const gpsdSupport = nix.argOr($, "gpsdSupport", () => true);
   const extraScripts = nix.argOr($, "extraScripts", () => false);
   return nix.app(nix.sel(nix.app(nix.sel(direwolf, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       hamlibSupport: hamlibSupport,
       gpsdSupport: gpsdSupport,
       extraScripts: extraScripts,
     }))), "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "1.8.1-unstable-2026-09-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "wb2osz",
           repo: "direwolf",
           rev: "f11c82b81a23ca425f91bf9810fe9e2dc4f7539e",
@@ -35,8 +31,8 @@ export default nix.lambda((args) => (() => {
         })))),
       dontVersionCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch=dev"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch=dev"]) })))),
       })),
     }));
 })(), formals$1);

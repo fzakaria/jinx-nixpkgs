@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 21, 3], ["nativeBuildInputs", 28, 3], ["dontWrapQtApps", 33, 3], ["dontWrapGApps", 34, 3], ["makeWrapperArgs", 35, 3], ["postInstall", 40, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, wrapGAppsHook3: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 21, 3], ["nativeBuildInputs", 28, 3], ["dontWrapQtApps", 33, 3], ["dontWrapGApps", 34, 3], ["makeWrapperArgs", 35, 3], ["postInstall", 40, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "buttermanager",
       version: "2.5.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "egara",
           repo: "buttermanager",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       makeWrapperArgs: nix.thunk(() => ["${qtWrapperArgs[@]}", "${gappsWrapperArgs[@]}"]),
       postInstall: "substituteInPlace packaging/buttermanager.desktop \\\n  --replace-fail /opt/buttermanager/gui/buttermanager.svg buttermanager\n\ninstall -Dm444 packaging/buttermanager.desktop -t $out/share/applications\ninstall -Dm444 packaging/buttermanager.svg -t $out/share/icons/hicolor/scalable/apps\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Btrfs tool for managing snapshots, balancing filesystems and upgrading the system safely",
         homepage: "https://github.com/egara/buttermanager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

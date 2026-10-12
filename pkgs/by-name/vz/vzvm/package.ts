@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["updateScript", 53, 12]], [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["sourceProvenance", 68, 5], ["mainProgram", 69, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["strictDeps", 23, 3], ["__structuredAttrs", 24, 3], ["nativeBuildInputs", 26, 3], ["buildPhase", 32, 3], ["installPhase", 40, 3], ["postFixup", 49, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, darwin: false, stdenv: false, swift: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["sourceProvenance", 68, 5], ["mainProgram", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["strictDeps", 23, 3], ["__structuredAttrs", 24, 3], ["nativeBuildInputs", 26, 3], ["buildPhase", 32, 3], ["installPhase", 40, 3], ["postFixup", 49, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const swift = nix.arg($, "swift");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vzvm",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "applicative-systems",
           repo: "vzvm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`codesign --entitlements ${nix.sel(finalAttrs, "src")}/vzvm/vzvm.entitlements -f -s - $out/bin/vzvm
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Minimal Linux VM monitor built on Apple's Virtualization.framework",
         longDescription: "vzvm boots a Linux guest from a kernel and initrd on Apple's\nVirtualization.framework, configured from a JSON file. It supports\nRosetta directory shares for running x86_64 binaries on Apple silicon, and\nforwards host TCP ports into the guest over vsock, so inbound connections need\nno guest IP discovery. Highly specialized for use as linux-builder.\n",
         homepage: "https://github.com/applicative-systems/vzvm",

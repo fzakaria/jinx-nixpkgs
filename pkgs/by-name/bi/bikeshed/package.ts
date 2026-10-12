@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 13, 26], ["version", 13, 32], ["hash", 14, 5]], [["description", 65, 5], ["mainProgram", 66, 5], ["longDescription", 67, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["build-system", 19, 3], ["pythonRelaxDeps", 21, 3], ["dependencies", 23, 3], ["checkPhase", 58, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 13, 26], ["version", 13, 32], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["mainProgram", 66, 5], ["longDescription", 67, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["build-system", 19, 3], ["pythonRelaxDeps", 21, 3], ["dependencies", 23, 3], ["checkPhase", 58, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bikeshed",
       version: "7.0.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-s+NHSOHqJl89/sB5b3SWS+dT7WpsSv9tedoOfuDA2ls=",
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "$out/bin/bikeshed test\n",
       pythonImportsCheck: nix.thunk(() => ["bikeshed"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Preprocessor for anyone writing specifications that converts source files into actual specs",
         mainProgram: "bikeshed",
         longDescription: "Bikeshed is a pre-processor for spec documents, turning a source document\n(containing only the actual spec content, plus several shorthands for linking\nto terms and other things) into a final spec document, with appropriate boilerplate,\nbibliography, indexes, etc all filled in. It's used on specs for CSS\nand many other W3C working groups, WHATWG, the C++ standards committee, and elsewhere!\n",

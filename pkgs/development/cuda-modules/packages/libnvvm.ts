@@ -2,21 +2,20 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libnvvm.nix", [[["description", 19, 5], ["longDescription", 20, 5], ["homepage", 23, 5]], [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 8, 3], ["prePatch", 11, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { buildRedist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libnvvm.nix", [["description", 19, 5], ["longDescription", 20, 5], ["homepage", 23, 5]]);
-const pos$2 = nix.positions(here + "/libnvvm.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 8, 3], ["prePatch", 11, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "libnvvm",
       outputs: nix.thunk(() => ["out"]),
       prePatch: "nixLog \"un-nesting top-level $PWD/nvvm directory\"\nmv -v \"$PWD/nvvm\"/* \"$PWD/\"\nnixLog \"removing empty $PWD/nvvm directory\"\nrmdir -v \"$PWD/nvvm\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Interface for generating PTX code from both binary and text NVVM IR inputs",
         longDescription: "libNVVM API provides an interface for generating PTX code from both binary and text NVVM IR inputs.\n",
         homepage: "https://docs.nvidia.com/cuda/libnvvm-api",

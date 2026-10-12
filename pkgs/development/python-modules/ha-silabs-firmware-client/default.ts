@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["changelog", 50, 5], ["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["disabled", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 41, 3], ["nativeCheckInputs", 43, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { aiohttp: false, aioresponses: false, buildPythonPackage: false, fetchFromGitHub: false, lib: false, "pytest-asyncio": false, pytestCheckHook: false, pythonOlder: false, setuptools: false, yarl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 50, 5], ["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["disabled", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 41, 3], ["nativeCheckInputs", 43, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.13"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "home-assistant-libs",
           repo: "ha-silabs-firmware-client",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["ha_silabs_firmware_client"]);
       const nativeCheckInputs = nix.thunk(() => [aioresponses, pytest_asyncio, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/ha-silabs-firmware-client/releases/tag/${nix.sel(src, "tag")}`),
         description: "Home Assistant client for firmwares released with silabs-firmware-builder",
         homepage: "https://github.com/home-assistant-libs/ha-silabs-firmware-client",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

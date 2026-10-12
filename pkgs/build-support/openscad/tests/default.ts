@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 38, 9], ["version", 39, 9], ["libName", 40, 9], ["src", 41, 9], ["installTargets", 42, 9]], [["dummylib", 37, 7]], [["openscadPackages", 54, 5]], [["nativeBuildInputs", 61, 9]], [["withPackages-glob-test", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, runCommand: false, openscad: false, openscadPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 38, 9], ["version", 39, 9], ["libName", 40, 9], ["src", 41, 9], ["installTargets", 42, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dummylib", 37, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["openscadPackages", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 61, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["withPackages-glob-test", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const openscadPackages = nix.arg($, "openscadPackages");
   const dummySrc = nix.thunk(() => nix.app(runCommand, "mock-chaotic-repo", nix.thunk(() => ({})), "mkdir -p $out/modules \\\n         $out/unwanted-clutter \\\n         $out/utils \\\n         $out/\"folder with spaces\" \\\n         $out/empty-dir \\\n         $out/glob-char-\\* \\\n         $out/dot-files\n\necho \"module main_core() { sphere(10); }\" > $out/core.scad\necho \"module main_utils() { cube(5); }\" > $out/utils.scad\necho \"module nested_mod() { cylinder(10); }\" > $out/modules/shapes.scad\necho \"module math_helpers() { cube(2); }\" > $out/utils/math.scad\n\necho \"module spaced() { sphere(1); }\" > $out/\"my file.scad\"\n\necho \"module weird() { echo(\\\"weird\\\"); }\" > $out/glob-char-\\*/actual.scad\n\necho \"secret config\" > $out/modules/.hidden-config\n\necho \"print('broken script')\" > $out/unwanted-clutter/dont_copy_me.py\necho \"unwanted markdown\" > $out/README.md\n"));
   const openscadPackagesOverridden = nix.thunk(() => nix.app(nix.sel(openscadPackages, "overrideScope"), (openscadFinal) => (openscadPrev) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       dummylib: nix.thunk(() => nix.app(nix.sel(openscadFinal, "buildOpenSCADPackage"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "dummylib",
           version: "1.0.0",
           libName: "dummylib",
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
           installTargets: nix.thunk(() => ["core.scad", "modules", "my file.scad", "glob-char-*", "utils/*.scad"]),
         })))),
     })));
-  const wrappedOpenscad = nix.thunk(() => nix.app(nix.sel(openscad, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, openscadPackages: openscadPackagesOverridden }))));
+  const wrappedOpenscad = nix.thunk(() => nix.app(nix.sel(openscad, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], openscadPackages: openscadPackagesOverridden }))));
   return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       "withPackages-glob-test": nix.thunk(() => nix.app(runCommand, "openscad-withPackages-glob-test", nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           nativeBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(wrappedOpenscad, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "dummylib"))])),
           ]),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 17, 5], ["sha256", 22, 5], ["stripRoot", 23, 5]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5], ["sourceProvenance", 85, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 26, 3], ["sourceRoot", 28, 3], ["libPath", 30, 3], ["postUnpack", 37, 3], ["patchPhase", 43, 3], ["buildPhase", 57, 3], ["installPhase", 66, 3], ["dontStrip", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, rpmextract: false, ncurses5: false, numactl: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 17, 5], ["sha256", 22, 5], ["stripRoot", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5], ["sourceProvenance", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 26, 3], ["sourceRoot", 28, 3], ["libPath", 30, 3], ["postUnpack", 37, 3], ["patchPhase", 43, 3], ["buildPhase", 57, 3], ["installPhase", 66, 3], ["dontStrip", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "intel-ocl";
       const version = "5.0-63503";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             "https://registrationcenter-download.intel.com/akdlm/irc_nas/11396/SRB5.0_linux64.zip",
             "http://registrationcenter-download.intel.com/akdlm/irc_nas/11396/SRB5.0_linux64.zip",
@@ -52,7 +50,7 @@ runHook postPatch
       const installPhase = "runHook preInstall\n\ninstall -D -m 0755 opt/intel/opencl/*.so* -t $out/lib/intel-ocl\ninstall -D -m 0644 opt/intel/opencl/*.{o,rtl,bin} -t $out/lib/intel-ocl\ninstall -D -m 0644 opt/intel/opencl/{LICENSE,NOTICES} -t $out/share/doc/intel-ocl\ninstall -D -m 0644 intel.icd -t $out/etc/OpenCL/vendors\n\nrunHook postInstall\n";
       const dontStrip = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Official OpenCL runtime for Intel CPUs",
         homepage: "https://software.intel.com/en-us/articles/opencl-drivers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -61,7 +59,7 @@ runHook postPatch
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

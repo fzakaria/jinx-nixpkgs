@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 30, 28], ["version", 30, 34], ["src", 30, 42], ["pnpm", 31, 15], ["fetcherVersion", 32, 7], ["hash", 33, 7]], [["pname", 26, 5], ["src", 27, 21], ["version", 27, 25], ["pnpmDeps", 29, 5], ["nativeBuildInputs", 36, 5], ["__darwinAllowLocalNetworking", 42, 5], ["buildPhase", 44, 5], ["installPhase", 48, 5]], [["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]], [["gitea", 122, 28], ["gitea-actions-runner", 122, 34]], [["data-compressed", 117, 5], ["tests", 121, 5]], [["description", 127, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["maintainers", 131, 5], ["mainProgram", 135, 5]], [["pname", 55, 3], ["version", 56, 3], ["outputs", 58, 3], ["src", 63, 3], ["proxyVendor", 70, 3], ["vendorHash", 72, 3], ["postPatch", 74, 3], ["subPackages", 80, 3], ["nativeBuildInputs", 82, 3], ["tags", 84, 3], ["ldflags", 89, 3], ["postInstall", 96, 3], ["passthru", 116, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { lib: false, buildGo127Module: false, fetchFromGitHub: false, makeWrapper: false, git: false, bash: false, coreutils: false, compressDrvWeb: false, gitea: false, gzip: false, nodejs: false, openssh: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_11: false, stdenv: false, sqliteSupport: true, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 30, 28], ["version", 30, 34], ["src", 30, 42], ["pnpm", 31, 15], ["fetcherVersion", 32, 7], ["hash", 33, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 26, 5], ["src", 27, 21], ["version", 27, 25], ["pnpmDeps", 29, 5], ["nativeBuildInputs", 36, 5], ["__darwinAllowLocalNetworking", 42, 5], ["buildPhase", 44, 5], ["installPhase", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["gitea", 122, 28], ["gitea-actions-runner", 122, 34]]);
-const pos$5 = nix.positions(here + "/package.nix", [["data-compressed", 117, 5], ["tests", 121, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 127, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["maintainers", 131, 5], ["mainProgram", 135, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 55, 3], ["version", 56, 3], ["outputs", 58, 3], ["src", 63, 3], ["proxyVendor", 70, 3], ["vendorHash", 72, 3], ["postPatch", 74, 3], ["subPackages", 80, 3], ["nativeBuildInputs", 82, 3], ["tags", 84, 3], ["ldflags", 89, 3], ["postInstall", 96, 3], ["passthru", 116, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const pnpm = pnpm_11;
   const frontend = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "gitea-frontend",
       src: nix.thunk(() => nix.attr(gitea, "src")),
       version: nix.thunk(() => nix.attr(gitea, "version")),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -52,12 +46,12 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out\ncp -R public $out/\n",
     })));
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gitea",
       version: "28.1.0",
       outputs: nix.thunk(() => ["out", "data"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "go-gitea",
           repo: "gitea",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,16 +80,16 @@ wrapProgram $out/bin/gitea \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash, coreutils, git, gzip, openssh]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "data-compressed": nix.thunk(() => nix.app(nix.sel(lib, "warn"), "gitea.passthru.data-compressed is deprecated. Use \"compressDrvWeb gitea.data\".", nix.thunk(() => nix.app(compressDrvWeb, nix.thunk(() => nix.sel(gitea, "data")), nix.thunk(() => ({})))))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           gitea: nix.thunk(() => nix.attr(nixosTests, "gitea")),
           "gitea-actions-runner": nix.thunk(() => nix.attr(nixosTests, "gitea-actions-runner")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Git with a cup of tea",
         homepage: "https://about.gitea.com",
         changelog: nix.thunk(() => nix.str`https://github.com/go-gitea/gitea/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

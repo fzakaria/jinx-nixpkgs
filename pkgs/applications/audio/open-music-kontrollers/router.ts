@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/router.nix", [[["pname", 6, 5], ["version", 7, 5], ["url", 9, 5], ["sha256", 10, 5], ["description", 12, 5]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/router.nix", [["pname", 6, 5], ["version", 7, 5], ["url", 9, 5], ["sha256", 10, 5], ["description", 12, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`https://git.open-music-kontrollers.ch/lv2/${pname}.lv2/snapshot/${pname}.lv2-7d754dd64c540d40b828166401617715dc235ca3.tar.xz`);
       const sha256 = "sha256-LjaW5Xdxfjzd6IJ2ptHzmHt7fhU1HQo7ubZ4USVqRE8=";
       const description = "Atom/Audio/CV router LV2 plugin bundle";
-      return { [nix.POS]: pos$1, pname, version, url, sha256, description };
+      return { [nix.POS]: $pos[0], pname, version, url, sha256, description };
     })())));
 })(), formals$1);
 //# sourceMappingURL=router.ts.map

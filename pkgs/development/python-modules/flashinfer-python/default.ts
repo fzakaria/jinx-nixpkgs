@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["fetchSubmodules", 42, 5], ["hash", 43, 5]], [["FLASHINFER_CUDA_ARCH_LIST", 85, 7]], [["broken", 103, 5], ["homepage", 104, 5], ["description", 105, 5], ["longDescription", 106, 5], ["license", 113, 5], ["maintainers", 114, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["build-system", 46, 3], ["nativeBuildInputs", 51, 3], ["dontUseCmakeConfigure", 57, 3], ["buildInputs", 59, 3], ["preConfigure", 79, 3], ["env", 85, 3], ["pythonRemoveDeps", 87, 3], ["dependencies", 91, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, config: false, buildPythonPackage: false, fetchFromGitHub: false, "apache-tvm-ffi": false, setuptools: false, cmake: false, ninja: false, cudaPackages: false, click: false, einops: false, numpy: false, "nvidia-ml-py": false, requests: false, tabulate: false, torch: false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["fetchSubmodules", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["FLASHINFER_CUDA_ARCH_LIST", 85, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["broken", 103, 5], ["homepage", 104, 5], ["description", 105, 5], ["longDescription", 106, 5], ["license", 113, 5], ["maintainers", 114, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["build-system", 46, 3], ["nativeBuildInputs", 51, 3], ["dontUseCmakeConfigure", 57, 3], ["buildInputs", 59, 3], ["preConfigure", 79, 3], ["env", 85, 3], ["pythonRemoveDeps", 87, 3], ["dependencies", 91, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "flashinfer-python",
       version: "0.6.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flashinfer-ai",
           repo: "flashinfer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,13 +55,13 @@ export default nix.lambda((args) => (() => {
       })()),
       preConfigure: "export FLASHINFER_ENABLE_AOT=1\nexport TORCH_NVCC_FLAGS=\"--maxrregcount=64\"\nexport MAX_JOBS=\"$NIX_BUILD_CORES\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         FLASHINFER_CUDA_ARCH_LIST: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.sel(torch, "cudaCapabilities")))),
       })),
       pythonRemoveDeps: nix.thunk(() => ["nvidia-cudnn-frontend", "nvidia-cutlass-dsl"]),
       dependencies: nix.thunk(() => [click, einops, numpy, nvidia_ml_py, requests, tabulate, torch, tqdm]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(torch, "cudaSupport"))) || nix.asBool(!nix.asBool(nix.sel(config, "cudaSupport"))))),
         homepage: "https://flashinfer.ai/",
         description: "Library and kernel generator for Large Language Models",

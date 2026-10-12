@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/obs-gstreamer.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["obsWrapperArguments", 44, 12]], [["description", 64, 5], ["homepage", 65, 5], ["maintainers", 66, 5], ["license", 70, 5], ["platforms", 71, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["passthru", 44, 3], ["postInstall", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gst_all_1: false, "pkg-config": false, meson: false, ninja: false, "obs-studio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/obs-gstreamer.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/obs-gstreamer.nix", [["obsWrapperArguments", 44, 12]]);
-const pos$3 = nix.positions(here + "/obs-gstreamer.nix", [["description", 64, 5], ["homepage", 65, 5], ["maintainers", 66, 5], ["license", 70, 5], ["platforms", 71, 5]]);
-const pos$4 = nix.positions(here + "/obs-gstreamer.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["passthru", 44, 3], ["postInstall", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-gstreamer";
       const version = "0.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fzwoch",
           repo: "obs-gstreamer",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         obsWrapperArguments: nix.thunk(() => (() => {
           const gstreamerHook = (package$) => nix.str`--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : ${nix.app(nix.sel(lib, "getLib"), package$)}/lib/gstreamer-1.0`;
           const w_1 = nix.withScope(gst_all_1, null);
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       }));
       const postInstall = "mkdir $out/lib/obs-plugins\nmv $out/lib/obs-gstreamer.so $out/lib/obs-plugins/\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OBS Studio source, encoder and video filter plugin to use GStreamer elements/pipelines in OBS Studio",
         homepage: "https://github.com/fzwoch/obs-gstreamer",
         maintainers: nix.thunk(() => (() => {
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

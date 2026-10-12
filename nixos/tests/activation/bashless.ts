@@ -2,52 +2,36 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bashless.nix", [[["maintainers", 10, 8]], [["enable", 31, 25]], [["binsh", 20, 19], ["shell", 31, 19], ["systemPackages", 32, 19]], [["enable", 21, 33]], [["shell", 21, 27]], [["systemd", 21, 19]], [["initrd", 21, 12]], [["enable", 22, 35]], [["shell", 22, 29]], [["shutdownRamfs", 22, 15]], [["mountHostNixStore", 26, 22], ["useNixStoreImage", 27, 22]], [["enable", 30, 21]], [["bash", 30, 16]], [["forbiddenDependenciesRegexes", 39, 14]], [["imports", 15, 7], ["environment", 20, 7], ["boot", 21, 7], ["systemd", 22, 7], ["virtualisation", 26, 7], ["programs", 30, 7], ["system", 39, 7]], [["machine", 12, 9]], [["name", 8, 3], ["meta", 10, 3], ["nodes", 12, 3], ["testScript", 42, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/bashless.nix", [["maintainers", 10, 8]]);
 const formals$2 = { args: { pkgs: false, modulesPath: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/bashless.nix", [["enable", 31, 25]]);
-const pos$3 = nix.positions(here + "/bashless.nix", [["binsh", 20, 19], ["shell", 31, 19], ["systemPackages", 32, 19]]);
-const pos$4 = nix.positions(here + "/bashless.nix", [["enable", 21, 33]]);
-const pos$5 = nix.positions(here + "/bashless.nix", [["shell", 21, 27]]);
-const pos$6 = nix.positions(here + "/bashless.nix", [["systemd", 21, 19]]);
-const pos$7 = nix.positions(here + "/bashless.nix", [["initrd", 21, 12]]);
-const pos$8 = nix.positions(here + "/bashless.nix", [["enable", 22, 35]]);
-const pos$9 = nix.positions(here + "/bashless.nix", [["shell", 22, 29]]);
-const pos$10 = nix.positions(here + "/bashless.nix", [["shutdownRamfs", 22, 15]]);
-const pos$11 = nix.positions(here + "/bashless.nix", [["mountHostNixStore", 26, 22], ["useNixStoreImage", 27, 22]]);
-const pos$12 = nix.positions(here + "/bashless.nix", [["enable", 30, 21]]);
-const pos$13 = nix.positions(here + "/bashless.nix", [["bash", 30, 16]]);
-const pos$14 = nix.positions(here + "/bashless.nix", [["forbiddenDependenciesRegexes", 39, 14]]);
-const pos$15 = nix.positions(here + "/bashless.nix", [["imports", 15, 7], ["environment", 20, 7], ["boot", 21, 7], ["systemd", 22, 7], ["virtualisation", 26, 7], ["programs", 30, 7], ["system", 39, 7]]);
-const pos$16 = nix.positions(here + "/bashless.nix", [["machine", 12, 9]]);
-const pos$17 = nix.positions(here + "/bashless.nix", [["name", 8, 3], ["meta", 10, 3], ["nodes", 12, 3], ["testScript", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "activation-bashless",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const modulesPath = nix.arg($_1, "modulesPath");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           imports: nix.thunk(() => [nix.thunk(() => nix.str`${modulesPath}/profiles/bashless.nix`)]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             binsh: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), null)),
-            shell: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            shell: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "coreutils")),
               nix.thunk(() => nix.sel(pkgs, "gnugrep")),
@@ -55,29 +39,29 @@ export default nix.lambda((args) => (() => {
             ]),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                shell: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
+                [nix.POS]: $pos[4],
+                shell: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: false })),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             shutdownRamfs: nix.thunk(() => ({
-              [nix.POS]: pos$9,
-              shell: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
+              [nix.POS]: $pos[8],
+              shell: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: false })),
             })),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$11, mountHostNixStore: false, useNixStoreImage: true })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[10], mountHostNixStore: false, useNixStoreImage: true })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            bash: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
+            [nix.POS]: $pos[12],
+            bash: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: true })),
           })),
           system: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             forbiddenDependenciesRegexes: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
           })),
         };

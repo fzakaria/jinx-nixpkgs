@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 28, 5], ["homepage", 29, 5], ["maintainers", 30, 5], ["license", 31, 5], ["platforms", 32, 5]], [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["buildInputs", 22, 3], ["doCheck", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, i3: false, pcre2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["maintainers", 30, 5], ["license", 31, 5], ["platforms", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["buildInputs", 22, 3], ["doCheck", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const version = "4.21.1";
   return nix.app(nix.sel(i3, "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "i3-rounded",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LinoBigatti",
           repo: "i3-rounded",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.sel(oldAttrs, "buildInputs"), [pcre2])),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fork of i3-gaps that adds rounding to window corners",
         homepage: "https://github.com/LinoBigatti/i3-rounded",
         maintainers: nix.thunk(() => (() => {

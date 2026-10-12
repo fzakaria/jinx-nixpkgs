@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, wrapGAppsHook3: false, atk: false, cairo: false, "gdk-pixbuf": false, glib: false, gtk3: false, pango: false, "gtk-layer-shell": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const gtk_layer_shell = nix.arg($, "gtk-layer-shell");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sway-easyfocus",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "edzdez",
           repo: "sway-easyfocus",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [atk, cairo, gdk_pixbuf, glib, gtk3, gtk_layer_shell, pango]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to help efficiently focus windows in Sway, inspired by i3-easyfocus",
         homepage: "https://github.com/edzdez/sway-easyfocus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

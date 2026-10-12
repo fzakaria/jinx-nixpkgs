@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 22, 28]], [["description", 44, 5], ["mainProgram", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["teams", 48, 5], ["platforms", 49, 5]], [["pname", 15, 3], ["version", 16, 23], ["src", 16, 31], ["patches", 18, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["preConfigure", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, replaceVars: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, gssdp_1_6: false, gtk4: false, libsoup_3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 22, 28]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["mainProgram", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["teams", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 23], ["src", 16, 31], ["patches", 18, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["preConfigure", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +18,21 @@ export default nix.lambda((args) => (() => {
   const gtk4 = nix.arg($, "gtk4");
   const libsoup_3 = nix.arg($, "libsoup_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gssdp-tools",
       version: nix.thunk(() => nix.attr(gssdp_1_6, "version")),
       src: nix.thunk(() => nix.attr(gssdp_1_6, "src")),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./standalone-tools.patch"), nix.thunk(() => ({ [nix.POS]: pos$1, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./standalone-tools.patch"), nix.thunk(() => ({
+            [nix.POS]: $pos[0],
+            version: nix.thunk(() => nix.attr(finalAttrs, "version")),
+          })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, wrapGAppsHook4]),
       buildInputs: nix.thunk(() => [gssdp_1_6, gtk4, libsoup_3]),
       preConfigure: "cd tools\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Device Sniffer tool based on GSSDP framework",
         mainProgram: "gssdp-device-sniffer",
         homepage: "http://www.gupnp.org/",

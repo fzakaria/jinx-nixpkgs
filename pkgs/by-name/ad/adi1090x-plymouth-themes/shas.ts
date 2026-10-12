@@ -2,487 +2,407 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/shas.nix", [["url", 3, 5], ["sha", 4, 5]]);
-const pos$2 = nix.positions(here + "/shas.nix", [["url", 7, 5], ["sha", 8, 5]]);
-const pos$3 = nix.positions(here + "/shas.nix", [["url", 11, 5], ["sha", 12, 5]]);
-const pos$4 = nix.positions(here + "/shas.nix", [["url", 15, 5], ["sha", 16, 5]]);
-const pos$5 = nix.positions(here + "/shas.nix", [["url", 19, 5], ["sha", 20, 5]]);
-const pos$6 = nix.positions(here + "/shas.nix", [["url", 23, 5], ["sha", 24, 5]]);
-const pos$7 = nix.positions(here + "/shas.nix", [["url", 27, 5], ["sha", 28, 5]]);
-const pos$8 = nix.positions(here + "/shas.nix", [["url", 31, 5], ["sha", 32, 5]]);
-const pos$9 = nix.positions(here + "/shas.nix", [["url", 35, 5], ["sha", 36, 5]]);
-const pos$10 = nix.positions(here + "/shas.nix", [["url", 39, 5], ["sha", 40, 5]]);
-const pos$11 = nix.positions(here + "/shas.nix", [["url", 43, 5], ["sha", 44, 5]]);
-const pos$12 = nix.positions(here + "/shas.nix", [["url", 47, 5], ["sha", 48, 5]]);
-const pos$13 = nix.positions(here + "/shas.nix", [["url", 51, 5], ["sha", 52, 5]]);
-const pos$14 = nix.positions(here + "/shas.nix", [["url", 55, 5], ["sha", 56, 5]]);
-const pos$15 = nix.positions(here + "/shas.nix", [["url", 59, 5], ["sha", 60, 5]]);
-const pos$16 = nix.positions(here + "/shas.nix", [["url", 63, 5], ["sha", 64, 5]]);
-const pos$17 = nix.positions(here + "/shas.nix", [["url", 67, 5], ["sha", 68, 5]]);
-const pos$18 = nix.positions(here + "/shas.nix", [["url", 71, 5], ["sha", 72, 5]]);
-const pos$19 = nix.positions(here + "/shas.nix", [["url", 75, 5], ["sha", 76, 5]]);
-const pos$20 = nix.positions(here + "/shas.nix", [["url", 79, 5], ["sha", 80, 5]]);
-const pos$21 = nix.positions(here + "/shas.nix", [["url", 83, 5], ["sha", 84, 5]]);
-const pos$22 = nix.positions(here + "/shas.nix", [["url", 87, 5], ["sha", 88, 5]]);
-const pos$23 = nix.positions(here + "/shas.nix", [["url", 91, 5], ["sha", 92, 5]]);
-const pos$24 = nix.positions(here + "/shas.nix", [["url", 95, 5], ["sha", 96, 5]]);
-const pos$25 = nix.positions(here + "/shas.nix", [["url", 99, 5], ["sha", 100, 5]]);
-const pos$26 = nix.positions(here + "/shas.nix", [["url", 103, 5], ["sha", 104, 5]]);
-const pos$27 = nix.positions(here + "/shas.nix", [["url", 107, 5], ["sha", 108, 5]]);
-const pos$28 = nix.positions(here + "/shas.nix", [["url", 111, 5], ["sha", 112, 5]]);
-const pos$29 = nix.positions(here + "/shas.nix", [["url", 115, 5], ["sha", 116, 5]]);
-const pos$30 = nix.positions(here + "/shas.nix", [["url", 119, 5], ["sha", 120, 5]]);
-const pos$31 = nix.positions(here + "/shas.nix", [["url", 123, 5], ["sha", 124, 5]]);
-const pos$32 = nix.positions(here + "/shas.nix", [["url", 127, 5], ["sha", 128, 5]]);
-const pos$33 = nix.positions(here + "/shas.nix", [["url", 131, 5], ["sha", 132, 5]]);
-const pos$34 = nix.positions(here + "/shas.nix", [["url", 135, 5], ["sha", 136, 5]]);
-const pos$35 = nix.positions(here + "/shas.nix", [["url", 139, 5], ["sha", 140, 5]]);
-const pos$36 = nix.positions(here + "/shas.nix", [["url", 143, 5], ["sha", 144, 5]]);
-const pos$37 = nix.positions(here + "/shas.nix", [["url", 147, 5], ["sha", 148, 5]]);
-const pos$38 = nix.positions(here + "/shas.nix", [["url", 151, 5], ["sha", 152, 5]]);
-const pos$39 = nix.positions(here + "/shas.nix", [["url", 155, 5], ["sha", 156, 5]]);
-const pos$40 = nix.positions(here + "/shas.nix", [["url", 159, 5], ["sha", 160, 5]]);
-const pos$41 = nix.positions(here + "/shas.nix", [["url", 163, 5], ["sha", 164, 5]]);
-const pos$42 = nix.positions(here + "/shas.nix", [["url", 167, 5], ["sha", 168, 5]]);
-const pos$43 = nix.positions(here + "/shas.nix", [["url", 171, 5], ["sha", 172, 5]]);
-const pos$44 = nix.positions(here + "/shas.nix", [["url", 175, 5], ["sha", 176, 5]]);
-const pos$45 = nix.positions(here + "/shas.nix", [["url", 179, 5], ["sha", 180, 5]]);
-const pos$46 = nix.positions(here + "/shas.nix", [["url", 183, 5], ["sha", 184, 5]]);
-const pos$47 = nix.positions(here + "/shas.nix", [["url", 187, 5], ["sha", 188, 5]]);
-const pos$48 = nix.positions(here + "/shas.nix", [["url", 191, 5], ["sha", 192, 5]]);
-const pos$49 = nix.positions(here + "/shas.nix", [["url", 195, 5], ["sha", 196, 5]]);
-const pos$50 = nix.positions(here + "/shas.nix", [["url", 199, 5], ["sha", 200, 5]]);
-const pos$51 = nix.positions(here + "/shas.nix", [["url", 203, 5], ["sha", 204, 5]]);
-const pos$52 = nix.positions(here + "/shas.nix", [["url", 207, 5], ["sha", 208, 5]]);
-const pos$53 = nix.positions(here + "/shas.nix", [["url", 211, 5], ["sha", 212, 5]]);
-const pos$54 = nix.positions(here + "/shas.nix", [["url", 215, 5], ["sha", 216, 5]]);
-const pos$55 = nix.positions(here + "/shas.nix", [["url", 219, 5], ["sha", 220, 5]]);
-const pos$56 = nix.positions(here + "/shas.nix", [["url", 223, 5], ["sha", 224, 5]]);
-const pos$57 = nix.positions(here + "/shas.nix", [["url", 227, 5], ["sha", 228, 5]]);
-const pos$58 = nix.positions(here + "/shas.nix", [["url", 231, 5], ["sha", 232, 5]]);
-const pos$59 = nix.positions(here + "/shas.nix", [["url", 235, 5], ["sha", 236, 5]]);
-const pos$60 = nix.positions(here + "/shas.nix", [["url", 239, 5], ["sha", 240, 5]]);
-const pos$61 = nix.positions(here + "/shas.nix", [["url", 243, 5], ["sha", 244, 5]]);
-const pos$62 = nix.positions(here + "/shas.nix", [["url", 247, 5], ["sha", 248, 5]]);
-const pos$63 = nix.positions(here + "/shas.nix", [["url", 251, 5], ["sha", 252, 5]]);
-const pos$64 = nix.positions(here + "/shas.nix", [["url", 255, 5], ["sha", 256, 5]]);
-const pos$65 = nix.positions(here + "/shas.nix", [["url", 259, 5], ["sha", 260, 5]]);
-const pos$66 = nix.positions(here + "/shas.nix", [["url", 263, 5], ["sha", 264, 5]]);
-const pos$67 = nix.positions(here + "/shas.nix", [["url", 267, 5], ["sha", 268, 5]]);
-const pos$68 = nix.positions(here + "/shas.nix", [["url", 271, 5], ["sha", 272, 5]]);
-const pos$69 = nix.positions(here + "/shas.nix", [["url", 275, 5], ["sha", 276, 5]]);
-const pos$70 = nix.positions(here + "/shas.nix", [["url", 279, 5], ["sha", 280, 5]]);
-const pos$71 = nix.positions(here + "/shas.nix", [["url", 283, 5], ["sha", 284, 5]]);
-const pos$72 = nix.positions(here + "/shas.nix", [["url", 287, 5], ["sha", 288, 5]]);
-const pos$73 = nix.positions(here + "/shas.nix", [["url", 291, 5], ["sha", 292, 5]]);
-const pos$74 = nix.positions(here + "/shas.nix", [["url", 295, 5], ["sha", 296, 5]]);
-const pos$75 = nix.positions(here + "/shas.nix", [["url", 299, 5], ["sha", 300, 5]]);
-const pos$76 = nix.positions(here + "/shas.nix", [["url", 303, 5], ["sha", 304, 5]]);
-const pos$77 = nix.positions(here + "/shas.nix", [["url", 307, 5], ["sha", 308, 5]]);
-const pos$78 = nix.positions(here + "/shas.nix", [["url", 311, 5], ["sha", 312, 5]]);
-const pos$79 = nix.positions(here + "/shas.nix", [["url", 315, 5], ["sha", 316, 5]]);
-const pos$80 = nix.positions(here + "/shas.nix", [["url", 319, 5], ["sha", 320, 5]]);
-const pos$81 = nix.positions(here + "/shas.nix", [["abstract_ring", 2, 3], ["abstract_ring_alt", 6, 3], ["alienware", 10, 3], ["angular", 14, 3], ["angular_alt", 18, 3], ["black_hud", 22, 3], ["blockchain", 26, 3], ["circle", 30, 3], ["circle_alt", 34, 3], ["circle_flow", 38, 3], ["circle_hud", 42, 3], ["circuit", 46, 3], ["colorful", 50, 3], ["colorful_loop", 54, 3], ["colorful_sliced", 58, 3], ["connect", 62, 3], ["cross_hud", 66, 3], ["cubes", 70, 3], ["cuts", 74, 3], ["cuts_alt", 78, 3], ["cyanide", 82, 3], ["cybernetic", 86, 3], ["dark_planet", 90, 3], ["darth_vader", 94, 3], ["deus_ex", 98, 3], ["dna", 102, 3], ["double", 106, 3], ["dragon", 110, 3], ["flame", 114, 3], ["glitch", 118, 3], ["glowing", 122, 3], ["green_blocks", 126, 3], ["green_loader", 130, 3], ["hexagon", 134, 3], ["hexagon_2", 138, 3], ["hexagon_alt", 142, 3], ["hexagon_dots", 146, 3], ["hexagon_dots_alt", 150, 3], ["hexagon_hud", 154, 3], ["hexagon_red", 158, 3], ["hexa_retro", 162, 3], ["hud", 166, 3], ["hud_2", 170, 3], ["hud_3", 174, 3], ["hud_space", 178, 3], ["ibm", 182, 3], ["infinite_seal", 186, 3], ["ironman", 190, 3], ["liquid", 194, 3], ["loader", 198, 3], ["loader_2", 202, 3], ["loader_alt", 206, 3], ["lone", 210, 3], ["metal_ball", 214, 3], ["motion", 218, 3], ["optimus", 222, 3], ["owl", 226, 3], ["pie", 230, 3], ["pixels", 234, 3], ["polaroid", 238, 3], ["red_loader", 242, 3], ["rings", 246, 3], ["rings_2", 250, 3], ["rog", 254, 3], ["rog_2", 258, 3], ["seal", 262, 3], ["seal_2", 266, 3], ["seal_3", 270, 3], ["sliced", 274, 3], ["sphere", 278, 3], ["spin", 282, 3], ["spinner_alt", 286, 3], ["splash", 290, 3], ["square", 294, 3], ["square_hud", 298, 3], ["target", 302, 3], ["target_2", 306, 3], ["tech_a", 310, 3], ["tech_b", 314, 3], ["unrap", 318, 3]]);
+const $pos = nix.positions(here + "/shas.nix", [[["url", 3, 5], ["sha", 4, 5]], [["url", 7, 5], ["sha", 8, 5]], [["url", 11, 5], ["sha", 12, 5]], [["url", 15, 5], ["sha", 16, 5]], [["url", 19, 5], ["sha", 20, 5]], [["url", 23, 5], ["sha", 24, 5]], [["url", 27, 5], ["sha", 28, 5]], [["url", 31, 5], ["sha", 32, 5]], [["url", 35, 5], ["sha", 36, 5]], [["url", 39, 5], ["sha", 40, 5]], [["url", 43, 5], ["sha", 44, 5]], [["url", 47, 5], ["sha", 48, 5]], [["url", 51, 5], ["sha", 52, 5]], [["url", 55, 5], ["sha", 56, 5]], [["url", 59, 5], ["sha", 60, 5]], [["url", 63, 5], ["sha", 64, 5]], [["url", 67, 5], ["sha", 68, 5]], [["url", 71, 5], ["sha", 72, 5]], [["url", 75, 5], ["sha", 76, 5]], [["url", 79, 5], ["sha", 80, 5]], [["url", 83, 5], ["sha", 84, 5]], [["url", 87, 5], ["sha", 88, 5]], [["url", 91, 5], ["sha", 92, 5]], [["url", 95, 5], ["sha", 96, 5]], [["url", 99, 5], ["sha", 100, 5]], [["url", 103, 5], ["sha", 104, 5]], [["url", 107, 5], ["sha", 108, 5]], [["url", 111, 5], ["sha", 112, 5]], [["url", 115, 5], ["sha", 116, 5]], [["url", 119, 5], ["sha", 120, 5]], [["url", 123, 5], ["sha", 124, 5]], [["url", 127, 5], ["sha", 128, 5]], [["url", 131, 5], ["sha", 132, 5]], [["url", 135, 5], ["sha", 136, 5]], [["url", 139, 5], ["sha", 140, 5]], [["url", 143, 5], ["sha", 144, 5]], [["url", 147, 5], ["sha", 148, 5]], [["url", 151, 5], ["sha", 152, 5]], [["url", 155, 5], ["sha", 156, 5]], [["url", 159, 5], ["sha", 160, 5]], [["url", 163, 5], ["sha", 164, 5]], [["url", 167, 5], ["sha", 168, 5]], [["url", 171, 5], ["sha", 172, 5]], [["url", 175, 5], ["sha", 176, 5]], [["url", 179, 5], ["sha", 180, 5]], [["url", 183, 5], ["sha", 184, 5]], [["url", 187, 5], ["sha", 188, 5]], [["url", 191, 5], ["sha", 192, 5]], [["url", 195, 5], ["sha", 196, 5]], [["url", 199, 5], ["sha", 200, 5]], [["url", 203, 5], ["sha", 204, 5]], [["url", 207, 5], ["sha", 208, 5]], [["url", 211, 5], ["sha", 212, 5]], [["url", 215, 5], ["sha", 216, 5]], [["url", 219, 5], ["sha", 220, 5]], [["url", 223, 5], ["sha", 224, 5]], [["url", 227, 5], ["sha", 228, 5]], [["url", 231, 5], ["sha", 232, 5]], [["url", 235, 5], ["sha", 236, 5]], [["url", 239, 5], ["sha", 240, 5]], [["url", 243, 5], ["sha", 244, 5]], [["url", 247, 5], ["sha", 248, 5]], [["url", 251, 5], ["sha", 252, 5]], [["url", 255, 5], ["sha", 256, 5]], [["url", 259, 5], ["sha", 260, 5]], [["url", 263, 5], ["sha", 264, 5]], [["url", 267, 5], ["sha", 268, 5]], [["url", 271, 5], ["sha", 272, 5]], [["url", 275, 5], ["sha", 276, 5]], [["url", 279, 5], ["sha", 280, 5]], [["url", 283, 5], ["sha", 284, 5]], [["url", 287, 5], ["sha", 288, 5]], [["url", 291, 5], ["sha", 292, 5]], [["url", 295, 5], ["sha", 296, 5]], [["url", 299, 5], ["sha", 300, 5]], [["url", 303, 5], ["sha", 304, 5]], [["url", 307, 5], ["sha", 308, 5]], [["url", 311, 5], ["sha", 312, 5]], [["url", 315, 5], ["sha", 316, 5]], [["url", 319, 5], ["sha", 320, 5]], [["abstract_ring", 2, 3], ["abstract_ring_alt", 6, 3], ["alienware", 10, 3], ["angular", 14, 3], ["angular_alt", 18, 3], ["black_hud", 22, 3], ["blockchain", 26, 3], ["circle", 30, 3], ["circle_alt", 34, 3], ["circle_flow", 38, 3], ["circle_hud", 42, 3], ["circuit", 46, 3], ["colorful", 50, 3], ["colorful_loop", 54, 3], ["colorful_sliced", 58, 3], ["connect", 62, 3], ["cross_hud", 66, 3], ["cubes", 70, 3], ["cuts", 74, 3], ["cuts_alt", 78, 3], ["cyanide", 82, 3], ["cybernetic", 86, 3], ["dark_planet", 90, 3], ["darth_vader", 94, 3], ["deus_ex", 98, 3], ["dna", 102, 3], ["double", 106, 3], ["dragon", 110, 3], ["flame", 114, 3], ["glitch", 118, 3], ["glowing", 122, 3], ["green_blocks", 126, 3], ["green_loader", 130, 3], ["hexagon", 134, 3], ["hexagon_2", 138, 3], ["hexagon_alt", 142, 3], ["hexagon_dots", 146, 3], ["hexagon_dots_alt", 150, 3], ["hexagon_hud", 154, 3], ["hexagon_red", 158, 3], ["hexa_retro", 162, 3], ["hud", 166, 3], ["hud_2", 170, 3], ["hud_3", 174, 3], ["hud_space", 178, 3], ["ibm", 182, 3], ["infinite_seal", 186, 3], ["ironman", 190, 3], ["liquid", 194, 3], ["loader", 198, 3], ["loader_2", 202, 3], ["loader_alt", 206, 3], ["lone", 210, 3], ["metal_ball", 214, 3], ["motion", 218, 3], ["optimus", 222, 3], ["owl", 226, 3], ["pie", 230, 3], ["pixels", 234, 3], ["polaroid", 238, 3], ["red_loader", 242, 3], ["rings", 246, 3], ["rings_2", 250, 3], ["rog", 254, 3], ["rog_2", 258, 3], ["seal", 262, 3], ["seal_2", 266, 3], ["seal_3", 270, 3], ["sliced", 274, 3], ["sphere", 278, 3], ["spin", 282, 3], ["spinner_alt", 286, 3], ["splash", 290, 3], ["square", 294, 3], ["square_hud", 298, 3], ["target", 302, 3], ["target_2", 306, 3], ["tech_a", 310, 3], ["tech_b", 314, 3], ["unrap", 318, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$81,
+  [nix.POS]: $pos[80],
   abstract_ring: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/abstract_ring.tar.gz",
     sha: "0hfrzm974nm8f237vzlyjjh4pikva3n7fqr1p7jmx04g857g4rjq",
   })),
   abstract_ring_alt: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/abstract_ring_alt.tar.gz",
     sha: "0gx6l6w9d9z6am3x99igp6v1kykpwd39sjhalfsl21x1ah2cfmbh",
   })),
   alienware: nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/alienware.tar.gz",
     sha: "0pq9zdhdz5vg97zfzsj9kh63szsm9qww2j7bgp2w4z6pg42xcswh",
   })),
   angular: nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/angular.tar.gz",
     sha: "15rsljiv1nhgcsgjiwsb2jiwah1ghxa95dbj3hlddx8d337nxljc",
   })),
   angular_alt: nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/angular_alt.tar.gz",
     sha: "12v4d7yjd81vch6cm2jphkb24gnc5d2kncfi4lsan6vhamija49f",
   })),
   black_hud: nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/black_hud.tar.gz",
     sha: "07iy216xij19m6jy76z2rafmjm8mv4k7mwpp145xayz52zhs66s8",
   })),
   blockchain: nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/blockchain.tar.gz",
     sha: "1w0hz1fyj4p9qxwdhib9c7gxx582wb9fz2dyd77l9xqjkps78fjx",
   })),
   circle: nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/circle.tar.gz",
     sha: "16xrz3v85kpxc4palm8flc7lhscfl6psm1dz999r802yivxl5ikg",
   })),
   circle_alt: nix.thunk(() => ({
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/circle_alt.tar.gz",
     sha: "0hsia8rq059kyxrnikr6brwmg7pa5kbm3j9gj4ky1a83dwpx18lg",
   })),
   circle_flow: nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/circle_flow.tar.gz",
     sha: "109m9hdirrr9a6gxgqpq80yz0lx4s7bv7nihdfjzg7rhl0icgw93",
   })),
   circle_hud: nix.thunk(() => ({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/circle_hud.tar.gz",
     sha: "1xmc30z5k583zrknx2g7rmq41vw9chyxhdacpxvxzyvnp0828z0j",
   })),
   circuit: nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/circuit.tar.gz",
     sha: "0linpkxhx01v7q2s3c7z8py0h697z7a4jhwbs2gp47p2923xggij",
   })),
   colorful: nix.thunk(() => ({
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/colorful.tar.gz",
     sha: "0m89prph31a0r0rxax989n72wdk3d5ywl8h3lygas8k7g908xr3p",
   })),
   colorful_loop: nix.thunk(() => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/colorful_loop.tar.gz",
     sha: "0nbdh6v8zn1xxm44sgr1904wik8pv0yrqjg84dym10k7hvfnb1af",
   })),
   colorful_sliced: nix.thunk(() => ({
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/colorful_sliced.tar.gz",
     sha: "1yadpyiwiixxily7wzhd8myxnrvhzdc9m6lj7g4ll3hlwygw7rz1",
   })),
   connect: nix.thunk(() => ({
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/connect.tar.gz",
     sha: "0gwd27vlr23zbf0mw34gd55f3s32a70q1s03z36dsf01bbyrvwz5",
   })),
   cross_hud: nix.thunk(() => ({
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/cross_hud.tar.gz",
     sha: "1j79c99n3r94vrf6f8n2a42jjfywaf7vf6q34awdqcl188hc3qzi",
   })),
   cubes: nix.thunk(() => ({
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/cubes.tar.gz",
     sha: "11r6q9f4vz64rxz8wshhhpyp7knwn2klw50z98bn3qbmwl3zfh8c",
   })),
   cuts: nix.thunk(() => ({
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/cuts.tar.gz",
     sha: "1bf8yrwha2bibnpf8abc0bxsj0g9sg3m1fpagxcpr61m0cl4i3vq",
   })),
   cuts_alt: nix.thunk(() => ({
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/cuts_alt.tar.gz",
     sha: "00yrhfnfnmirzij5wd592cfn90crw3774a6wdxq4s538wrpmzhik",
   })),
   cyanide: nix.thunk(() => ({
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/cyanide.tar.gz",
     sha: "0bbrqg77m0655l9x90334b8yn60kni062p17h4rf6kp9qbi86gg0",
   })),
   cybernetic: nix.thunk(() => ({
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/cybernetic.tar.gz",
     sha: "0chk52pfl81npffda6hy1pag6n8l5ssq61mc0qaa4nqfwpyvqqvw",
   })),
   dark_planet: nix.thunk(() => ({
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/dark_planet.tar.gz",
     sha: "1bbwdzgmvrdxkd379r1w2rkl0r5ixlh56xn59c47bmfbjl19927d",
   })),
   darth_vader: nix.thunk(() => ({
-    [nix.POS]: pos$24,
+    [nix.POS]: $pos[23],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/darth_vader.tar.gz",
     sha: "1czq929j87zila0v49kikjqdw8bmssmn5cp573i3qb9kry5xdlm7",
   })),
   deus_ex: nix.thunk(() => ({
-    [nix.POS]: pos$25,
+    [nix.POS]: $pos[24],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/deus_ex.tar.gz",
     sha: "1la8rlvy9gh593vx2w9wjq2hmsp58fd2gx9l9g2222mmzpk1hmcc",
   })),
   dna: nix.thunk(() => ({
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/dna.tar.gz",
     sha: "1mkq23khwsbnz8spf00amk48fx5vnk3rpzapx37rpx1klgxpm89q",
   })),
   double: nix.thunk(() => ({
-    [nix.POS]: pos$27,
+    [nix.POS]: $pos[26],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/double.tar.gz",
     sha: "11grxa2wblii4yxxrwfbbmwlwk26sm6mw9y00wfadijx2iyx30i1",
   })),
   dragon: nix.thunk(() => ({
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/dragon.tar.gz",
     sha: "1hlvr2s8zhlf8mg9pskwby94kh15g8icxn3833cdqqhmgvc0d7l5",
   })),
   flame: nix.thunk(() => ({
-    [nix.POS]: pos$29,
+    [nix.POS]: $pos[28],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/flame.tar.gz",
     sha: "1yszmhmmjgdkjvqpij3gjwz8vxjhmklf7clbpz947254zgwxyn5g",
   })),
   glitch: nix.thunk(() => ({
-    [nix.POS]: pos$30,
+    [nix.POS]: $pos[29],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/glitch.tar.gz",
     sha: "15gwhfnrn0p80wdaymnlvrcig5cjb4m5qz56hbhg4jdwcjdlppbd",
   })),
   glowing: nix.thunk(() => ({
-    [nix.POS]: pos$31,
+    [nix.POS]: $pos[30],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/glowing.tar.gz",
     sha: "09h7dn805lrg04j5lp30l3qc6kb8xxilibdg0pxfadwyljblwl1f",
   })),
   green_blocks: nix.thunk(() => ({
-    [nix.POS]: pos$32,
+    [nix.POS]: $pos[31],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/green_blocks.tar.gz",
     sha: "09xx5fbnby567s9s8hmryalm9k9vs520lymiprw06nig49rmy4v2",
   })),
   green_loader: nix.thunk(() => ({
-    [nix.POS]: pos$33,
+    [nix.POS]: $pos[32],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/green_loader.tar.gz",
     sha: "09vw6c9albsv28y4bdlp54csq5bl0vrd20yjph00jxhvhizffk3k",
   })),
   hexagon: nix.thunk(() => ({
-    [nix.POS]: pos$34,
+    [nix.POS]: $pos[33],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/hexagon.tar.gz",
     sha: "17api8ndiqjxyj7prxz0bv1dpq0h0wvphnll4lb2dlhxp61bjmj3",
   })),
   hexagon_2: nix.thunk(() => ({
-    [nix.POS]: pos$35,
+    [nix.POS]: $pos[34],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/hexagon_2.tar.gz",
     sha: "030yr5nb6q7bw1f1dh9kcdmd87x25f1fn60v45vmk7k07y1s10c8",
   })),
   hexagon_alt: nix.thunk(() => ({
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/hexagon_alt.tar.gz",
     sha: "1f6i8signlscp0av3kcmdw0xm13pf2dy2lz3c6wq9d9203ibry1p",
   })),
   hexagon_dots: nix.thunk(() => ({
-    [nix.POS]: pos$37,
+    [nix.POS]: $pos[36],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/hexagon_dots.tar.gz",
     sha: "13mi9f8saw9zk8zdxp003ipigyd4y26iydn0pd1c0vr5fbz483rq",
   })),
   hexagon_dots_alt: nix.thunk(() => ({
-    [nix.POS]: pos$38,
+    [nix.POS]: $pos[37],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/hexagon_dots_alt.tar.gz",
     sha: "1gkzh5i84cwv64f3r8rgpzyj8h1kpn92m4syf67kn5sdhqykvqkz",
   })),
   hexagon_hud: nix.thunk(() => ({
-    [nix.POS]: pos$39,
+    [nix.POS]: $pos[38],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/hexagon_hud.tar.gz",
     sha: "17k5378fsydvcps9rxd117rfqlijnrsj1ggyqx445a5yrwy6rx55",
   })),
   hexagon_red: nix.thunk(() => ({
-    [nix.POS]: pos$40,
+    [nix.POS]: $pos[39],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/hexagon_red.tar.gz",
     sha: "0x8i1k54qff7agwq9gqi2z59lww8qglck105bv87ylgy5z6150sx",
   })),
   hexa_retro: nix.thunk(() => ({
-    [nix.POS]: pos$41,
+    [nix.POS]: $pos[40],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/hexa_retro.tar.gz",
     sha: "0bwx2nvvr6bkqnmnv2kh9slbi11lv0h3hnzql99d9llr3vlid5ip",
   })),
   hud: nix.thunk(() => ({
-    [nix.POS]: pos$42,
+    [nix.POS]: $pos[41],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/hud.tar.gz",
     sha: "0zng0rn4lacxf9v1azndzv5v7pl84f0amschccdlnymilyy564ck",
   })),
   hud_2: nix.thunk(() => ({
-    [nix.POS]: pos$43,
+    [nix.POS]: $pos[42],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/hud_2.tar.gz",
     sha: "14ldw37gpysnw3k1cssh8q1hgxnrh954pgq5x5xhrlv2w6rsbfzq",
   })),
   hud_3: nix.thunk(() => ({
-    [nix.POS]: pos$44,
+    [nix.POS]: $pos[43],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/hud_3.tar.gz",
     sha: "0lc3x51gjfc58y45yzfnpy2i07vk9vdzbjl5yawv3wh97jy5x6x7",
   })),
   hud_space: nix.thunk(() => ({
-    [nix.POS]: pos$45,
+    [nix.POS]: $pos[44],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/hud_space.tar.gz",
     sha: "13ipj1l737bs9rnhh5vviq6bm5hdghpyq6s5hc1fhg2cgldfnq0i",
   })),
   ibm: nix.thunk(() => ({
-    [nix.POS]: pos$46,
+    [nix.POS]: $pos[45],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/ibm.tar.gz",
     sha: "0acs1f468xfpsvzy400f8ba7890n3pp69c9b20lb8slamm9l4swd",
   })),
   infinite_seal: nix.thunk(() => ({
-    [nix.POS]: pos$47,
+    [nix.POS]: $pos[46],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/infinite_seal.tar.gz",
     sha: "07g4qmkfc9yqjpbs0yr277ij3pbhc1p51gzpnnbc3viwm1zzrs6p",
   })),
   ironman: nix.thunk(() => ({
-    [nix.POS]: pos$48,
+    [nix.POS]: $pos[47],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/ironman.tar.gz",
     sha: "0w5z22529jrgd2ab7fqibm2sd57740qxyqqrzhyvgd4l5axn1yzd",
   })),
   liquid: nix.thunk(() => ({
-    [nix.POS]: pos$49,
+    [nix.POS]: $pos[48],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/liquid.tar.gz",
     sha: "01lwzb2yid7hb1f2nc0jycll9kvq89jcz7s7w81vqirx4by8p8n8",
   })),
   loader: nix.thunk(() => ({
-    [nix.POS]: pos$50,
+    [nix.POS]: $pos[49],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/loader.tar.gz",
     sha: "0vx66kb56n6dy74k6yjk5w8apc8q1hmr8mrpgl420lzdqm4ggrgz",
   })),
   loader_2: nix.thunk(() => ({
-    [nix.POS]: pos$51,
+    [nix.POS]: $pos[50],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/loader_2.tar.gz",
     sha: "0rir3gfi8bq4m8s0xhbd2ppny6q60b42wq9vs826axk2g58jczrw",
   })),
   loader_alt: nix.thunk(() => ({
-    [nix.POS]: pos$52,
+    [nix.POS]: $pos[51],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/loader_alt.tar.gz",
     sha: "0pfg304xmgc46ai9d5m51p05i7zbvhfzfsscn7yk6kiw09b21fpz",
   })),
   lone: nix.thunk(() => ({
-    [nix.POS]: pos$53,
+    [nix.POS]: $pos[52],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/lone.tar.gz",
     sha: "0xx959215w8qcpbzn9w3ip4shq3ib7dcni43z4m9jwa28aa3v7y8",
   })),
   metal_ball: nix.thunk(() => ({
-    [nix.POS]: pos$54,
+    [nix.POS]: $pos[53],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/metal_ball.tar.gz",
     sha: "18nbikv736yd1q4qf9nq0fzspmxlkq1z6kl0jzady8ifkny1kvlw",
   })),
   motion: nix.thunk(() => ({
-    [nix.POS]: pos$55,
+    [nix.POS]: $pos[54],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/motion.tar.gz",
     sha: "0nbvgsgkpkdx83v45fb4z6ywiz3cpdmbsx8jcxhaa0cpywvq40bh",
   })),
   optimus: nix.thunk(() => ({
-    [nix.POS]: pos$56,
+    [nix.POS]: $pos[55],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/optimus.tar.gz",
     sha: "0zxv3b21mxkl0dvhs6nzd94vlsphc8h1zzvkcgng6cqg9n1c206p",
   })),
   owl: nix.thunk(() => ({
-    [nix.POS]: pos$57,
+    [nix.POS]: $pos[56],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/owl.tar.gz",
     sha: "1ylkpydmy65xilqzkdps18kr0yyqggkxaysmmik3sz01qs6xjrz6",
   })),
   pie: nix.thunk(() => ({
-    [nix.POS]: pos$58,
+    [nix.POS]: $pos[57],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/pie.tar.gz",
     sha: "1x834k0qsa8c7z3ds0vk6cw2r1f4ydmyk8yz1hdw8lxys17n9rj8",
   })),
   pixels: nix.thunk(() => ({
-    [nix.POS]: pos$59,
+    [nix.POS]: $pos[58],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/pixels.tar.gz",
     sha: "072ag60r2n3jjj64r1nzsj5p97gjcfrvd72axm1z741rz5xaigki",
   })),
   polaroid: nix.thunk(() => ({
-    [nix.POS]: pos$60,
+    [nix.POS]: $pos[59],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/polaroid.tar.gz",
     sha: "0m748kj5qps9vwwww44i1lj64r0mg0hqnfkg7dhqrf7nl0saw4da",
   })),
   red_loader: nix.thunk(() => ({
-    [nix.POS]: pos$61,
+    [nix.POS]: $pos[60],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/red_loader.tar.gz",
     sha: "18vvlknnp3kiviacmp0cbmagrqzbhli6qv6vbzw362cv2mxhid85",
   })),
   rings: nix.thunk(() => ({
-    [nix.POS]: pos$62,
+    [nix.POS]: $pos[61],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/rings.tar.gz",
     sha: "0xhwnxr5hcxqr64vr45lkvwzbbcpzxfbdlad006r16m480ncripw",
   })),
   rings_2: nix.thunk(() => ({
-    [nix.POS]: pos$63,
+    [nix.POS]: $pos[62],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/rings_2.tar.gz",
     sha: "0vdjby6kyazxy042ljyv59pg4zfsvzzssf20w4r7ircfyiqypajs",
   })),
   rog: nix.thunk(() => ({
-    [nix.POS]: pos$64,
+    [nix.POS]: $pos[63],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/rog.tar.gz",
     sha: "0az3vxndzym39w7357mmr6zyzfy32pg036v6jim895z10093b0y0",
   })),
   rog_2: nix.thunk(() => ({
-    [nix.POS]: pos$65,
+    [nix.POS]: $pos[64],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/rog_2.tar.gz",
     sha: "13yfqb06ihzma80lfsb0mlsaq0j6qakqx607pr5rmhl6765bz116",
   })),
   seal: nix.thunk(() => ({
-    [nix.POS]: pos$66,
+    [nix.POS]: $pos[65],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/seal.tar.gz",
     sha: "14k98v41ng3had7n6q1z513yc53zzkji7gm4n2jpjj5rd1jd2xr8",
   })),
   seal_2: nix.thunk(() => ({
-    [nix.POS]: pos$67,
+    [nix.POS]: $pos[66],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/seal_2.tar.gz",
     sha: "0kwn7njj7anci9ihf8aqs7k7qv2vsnqc81sj5db672qn4hxpy50v",
   })),
   seal_3: nix.thunk(() => ({
-    [nix.POS]: pos$68,
+    [nix.POS]: $pos[67],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/seal_3.tar.gz",
     sha: "0pjqq7qlmb0mf0xnm001b1f5jcbfzd3a3hzsf0jysacb5wmpzspp",
   })),
   sliced: nix.thunk(() => ({
-    [nix.POS]: pos$69,
+    [nix.POS]: $pos[68],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/sliced.tar.gz",
     sha: "1xrlhg1glykj73x9spq609y4ygfy3xw4azk3npjfh3ky5l0jqxjg",
   })),
   sphere: nix.thunk(() => ({
-    [nix.POS]: pos$70,
+    [nix.POS]: $pos[69],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/sphere.tar.gz",
     sha: "1nav61fr7wba1vbas8wci3fpyx0pidgiv9wm4zxdrw7hqw8akkpn",
   })),
   spin: nix.thunk(() => ({
-    [nix.POS]: pos$71,
+    [nix.POS]: $pos[70],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/spin.tar.gz",
     sha: "1yb39jmvifb1ijh5i804d06c97samhf8w4p0w1xwxq29j6ihsvw9",
   })),
   spinner_alt: nix.thunk(() => ({
-    [nix.POS]: pos$72,
+    [nix.POS]: $pos[71],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/spinner_alt.tar.gz",
     sha: "136nhpxlc2kar9jwz4pdxpg30b66n7bqy5mk9lm4v90pwf5m3kbs",
   })),
   splash: nix.thunk(() => ({
-    [nix.POS]: pos$73,
+    [nix.POS]: $pos[72],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/splash.tar.gz",
     sha: "1wnmqqm07yrbd5ha31dd2iihmrjr555hd8fgra9fy9zh2pw9wgf2",
   })),
   square: nix.thunk(() => ({
-    [nix.POS]: pos$74,
+    [nix.POS]: $pos[73],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/square.tar.gz",
     sha: "1wkixypxchsi11d8qfackcbvcjhifys9xlsc61rd7hfgz2nwjmww",
   })),
   square_hud: nix.thunk(() => ({
-    [nix.POS]: pos$75,
+    [nix.POS]: $pos[74],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/square_hud.tar.gz",
     sha: "13bbzxv4gq66z0h801m8fi3n2rk41212nhapa5xb3xgh7v23my04",
   })),
   target: nix.thunk(() => ({
-    [nix.POS]: pos$76,
+    [nix.POS]: $pos[75],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/target.tar.gz",
     sha: "0vk8abdxhs93bj9l21db2ai7w945z472rwwn1m4070vrhs2fvzn4",
   })),
   target_2: nix.thunk(() => ({
-    [nix.POS]: pos$77,
+    [nix.POS]: $pos[76],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/target_2.tar.gz",
     sha: "0n6f1lnmry5zv3y592gp0r2rn297h806zhcgd7yfp0z2zgay67nz",
   })),
   tech_a: nix.thunk(() => ({
-    [nix.POS]: pos$78,
+    [nix.POS]: $pos[77],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/tech_a.tar.gz",
     sha: "13gdq6h3m7skryr95vi0a30ylrapxg1nkc8cv8vn025gj6bafa83",
   })),
   tech_b: nix.thunk(() => ({
-    [nix.POS]: pos$79,
+    [nix.POS]: $pos[78],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/tech_b.tar.gz",
     sha: "1l383plabzlkccqjhf8x02jskykr4wkj2wy6knk9kg6qrq8w870l",
   })),
   unrap: nix.thunk(() => ({
-    [nix.POS]: pos$80,
+    [nix.POS]: $pos[79],
     url: "https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/unrap.tar.gz",
     sha: "0571pvnhmny9642rfg7sw6csrz7bka2424zfryg858c0hg6aqrnk",
   })),

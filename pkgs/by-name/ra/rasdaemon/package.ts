@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["rasdaemon", 82, 43]], [["tests", 82, 12], ["updateScript", 84, 12]], [["description", 87, 5], ["longDescription", 90, 5], ["homepage", 97, 5], ["license", 98, 5], ["platforms", 99, 5], ["changelog", 100, 5], ["maintainers", 101, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 45, 3], ["checkInputs", 49, 3], ["postPatch", 53, 3], ["mesonFlags", 61, 3], ["outputs", 66, 3], ["doCheck", 73, 3], ["postInstall", 75, 3], ["passthru", 82, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { cmocka: false, dmidecode: false, fetchFromGitHub: false, lib: false, libtraceevent: false, meson: false, ninja: false, "nix-update-script": false, nixosTests: false, pciutils: false, "pkg-config": false, python3: false, sqlite: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rasdaemon", 82, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 82, 12], ["updateScript", 84, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 87, 5], ["longDescription", 90, 5], ["homepage", 97, 5], ["license", 98, 5], ["platforms", 99, 5], ["changelog", 100, 5], ["maintainers", 101, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 45, 3], ["checkInputs", 49, 3], ["postPatch", 53, 3], ["mesonFlags", 61, 3], ["outputs", 66, 3], ["doCheck", 73, 3], ["postInstall", 75, 3], ["passthru", 82, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rasdaemon",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mchehab",
           repo: "rasdaemon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,15 +59,15 @@ substituteInPlace tests/test-db-cli.c \\
       doCheck: true,
       postInstall: "# remove incorrectly installed meson file\nrm $out/etc/ras/dimm_labels.d/meson.build\ninstall -Dm 0755 ../contrib/edac-fake-inject $inject/bin/edac-fake-inject\ninstall -Dm 0755 ../contrib/edac-tests $inject/bin/edac-tests\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           rasdaemon: nix.thunk(() => nix.attr(nixosTests, "rasdaemon")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "A Reliability, Availability and Serviceability (RAS) logging tool using EDAC kernel tracing events\n",
         longDescription: "Rasdaemon is a RAS (Reliability, Availability and Serviceability) logging\ntool. It records memory errors, using the EDAC tracing events. EDAC is a\nLinux kernel subsystem with handles detection of ECC errors from memory\ncontrollers for most chipsets on i386 and x86_64 architectures. EDAC\ndrivers for other architectures like arm also exists.\n",
         homepage: "https://github.com/mchehab/rasdaemon",

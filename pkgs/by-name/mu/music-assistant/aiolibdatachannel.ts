@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/aiolibdatachannel.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 25, 5], ["fetchSubmodules", 26, 5], ["hash", 27, 5]], [["AIOLIB_REQUIRE_NATIVE", 36, 7]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 36]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 30, 3], ["env", 36, 3], ["nativeBuildInputs", 38, 3], ["dontUseCmakeConfigure", 43, 3], ["build-system", 45, 3], ["buildInputs", 51, 3], ["preCheck", 55, 3], ["nativeCheckInputs", 59, 3], ["disabledTestPaths", 65, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cmake: false, fetchFromGitHub: false, "music-assistant": false, nanobind: false, ninja: false, openssl: false, "pytest-asyncio": false, pytestCheckHook: false, "scikit-build-core": false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/aiolibdatachannel.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 25, 5], ["fetchSubmodules", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/aiolibdatachannel.nix", [["AIOLIB_REQUIRE_NATIVE", 36, 7]]);
-const pos$3 = nix.positions(here + "/aiolibdatachannel.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 36]]);
-const pos$4 = nix.positions(here + "/aiolibdatachannel.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 30, 3], ["env", 36, 3], ["nativeBuildInputs", 38, 3], ["dontUseCmakeConfigure", 43, 3], ["build-system", 45, 3], ["buildInputs", 51, 3], ["preCheck", 55, 3], ["nativeCheckInputs", 59, 3], ["disabledTestPaths", 65, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const scikit_build_core = nix.arg($, "scikit-build-core");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "aiolibdatachannel",
       version: "2026.5.22-unstable-2026-07-23",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "music-assistant",
           repo: "aiolibdatachannel",
           rev: "950e7f0fef33000e701bae48e4872913cebbcc9a",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-y9tnlAQK+BAfXxy7sdNpxA5jOukMw+XkYEwPBj0JZC4=",
         })))),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail 'setuptools-scm>=8,<9' 'setuptools-scm>=8' \\\n  --replace-fail 'dynamic = [\"version\"]' 'version = \"2026.5.22\"'\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, AIOLIB_REQUIRE_NATIVE: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], AIOLIB_REQUIRE_NATIVE: "1" })),
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       dontUseCmakeConfigure: true,
       "build-system": nix.thunk(() => [nanobind, scikit_build_core, setuptools_scm]),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(music_assistant, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "asyncio-friendly Python wrapper for libdatachannel (WebRTC Data Channels)",
         homepage: "https://github.com/music-assistant/aiolibdatachannel/tree/feat/certpem-testdrive",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

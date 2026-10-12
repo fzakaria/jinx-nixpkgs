@@ -2,43 +2,13 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sabnzbd-module.nix", [[["html_login", 24, 13], ["inet_exposure", 25, 13], ["api_key", 26, 13]], [["enable", 29, 13], ["required", 30, 13], ["optional", 31, 13], ["displayname", 32, 13], ["host", 33, 13], ["name", 34, 13]], [["example.com", 28, 19]], [["misc", 23, 11], ["servers", 28, 11]], [["enable", 7, 9], ["secretFiles", 8, 9], ["settings", 22, 9]], [["sabnzbd", 6, 16]], [["systemPackages", 39, 19]], [["allowUnfreePackages", 58, 22]], [["config", 58, 15]], [["services", 6, 7], ["environment", 39, 7], ["nixpkgs", 58, 7]], [["maintainers", 63, 8]], [["pkgsReadOnly", 65, 8]], [["imports", 70, 7]], [["allowConfigWrite", 76, 31]], [["sabnzbd", 76, 23]], [["services", 76, 14]], [["imports", 75, 7], ["config", 76, 7]], [["configFile", 84, 11]], [["sabnzbd", 83, 18]], [["systemPackages", 94, 21]], [["services", 83, 9], ["environment", 94, 9]], [["imports", 81, 7], ["config", 82, 7]], [["api_key", 115, 18], ["nzb_key", 116, 18]], [["misc", 115, 13]], [["@api_key@", 121, 13], ["@nzb_key@", 122, 13]], [["enable", 113, 11], ["settings", 114, 11], ["secretValues", 118, 11]], [["sabnzbd", 112, 18]], [["services", 112, 9]], [["config", 111, 7]], [["machine", 67, 9], ["with_writeable_config", 72, 9], ["with_raw_config_file", 78, 9], ["with_secret_values", 108, 9]], [["name", 62, 3], ["meta", 63, 3], ["node", 65, 3], ["nodes", 67, 3], ["testScript", 128, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sabnzbd-module.nix", [["html_login", 24, 13], ["inet_exposure", 25, 13], ["api_key", 26, 13]]);
-const pos$2 = nix.positions(here + "/sabnzbd-module.nix", [["enable", 29, 13], ["required", 30, 13], ["optional", 31, 13], ["displayname", 32, 13], ["host", 33, 13], ["name", 34, 13]]);
-const pos$3 = nix.positions(here + "/sabnzbd-module.nix", [["example.com", 28, 19]]);
-const pos$4 = nix.positions(here + "/sabnzbd-module.nix", [["misc", 23, 11], ["servers", 28, 11]]);
-const pos$5 = nix.positions(here + "/sabnzbd-module.nix", [["enable", 7, 9], ["secretFiles", 8, 9], ["settings", 22, 9]]);
-const pos$6 = nix.positions(here + "/sabnzbd-module.nix", [["sabnzbd", 6, 16]]);
-const pos$7 = nix.positions(here + "/sabnzbd-module.nix", [["systemPackages", 39, 19]]);
-const pos$8 = nix.positions(here + "/sabnzbd-module.nix", [["allowUnfreePackages", 58, 22]]);
-const pos$9 = nix.positions(here + "/sabnzbd-module.nix", [["config", 58, 15]]);
-const pos$10 = nix.positions(here + "/sabnzbd-module.nix", [["services", 6, 7], ["environment", 39, 7], ["nixpkgs", 58, 7]]);
-const pos$11 = nix.positions(here + "/sabnzbd-module.nix", [["maintainers", 63, 8]]);
-const pos$12 = nix.positions(here + "/sabnzbd-module.nix", [["pkgsReadOnly", 65, 8]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$13 = nix.positions(here + "/sabnzbd-module.nix", [["imports", 70, 7]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$14 = nix.positions(here + "/sabnzbd-module.nix", [["allowConfigWrite", 76, 31]]);
-const pos$15 = nix.positions(here + "/sabnzbd-module.nix", [["sabnzbd", 76, 23]]);
-const pos$16 = nix.positions(here + "/sabnzbd-module.nix", [["services", 76, 14]]);
-const pos$17 = nix.positions(here + "/sabnzbd-module.nix", [["imports", 75, 7], ["config", 76, 7]]);
 const formals$5 = { args: { pkgs: false }, ellipsis: true };
-const pos$18 = nix.positions(here + "/sabnzbd-module.nix", [["configFile", 84, 11]]);
-const pos$19 = nix.positions(here + "/sabnzbd-module.nix", [["sabnzbd", 83, 18]]);
-const pos$20 = nix.positions(here + "/sabnzbd-module.nix", [["systemPackages", 94, 21]]);
-const pos$21 = nix.positions(here + "/sabnzbd-module.nix", [["services", 83, 9], ["environment", 94, 9]]);
-const pos$22 = nix.positions(here + "/sabnzbd-module.nix", [["imports", 81, 7], ["config", 82, 7]]);
 const formals$6 = { args: { pkgs: false }, ellipsis: true };
-const pos$23 = nix.positions(here + "/sabnzbd-module.nix", [["api_key", 115, 18], ["nzb_key", 116, 18]]);
-const pos$24 = nix.positions(here + "/sabnzbd-module.nix", [["misc", 115, 13]]);
-const pos$25 = nix.positions(here + "/sabnzbd-module.nix", [["@api_key@", 121, 13], ["@nzb_key@", 122, 13]]);
-const pos$26 = nix.positions(here + "/sabnzbd-module.nix", [["enable", 113, 11], ["settings", 114, 11], ["secretValues", 118, 11]]);
-const pos$27 = nix.positions(here + "/sabnzbd-module.nix", [["sabnzbd", 112, 18]]);
-const pos$28 = nix.positions(here + "/sabnzbd-module.nix", [["services", 112, 9]]);
-const pos$29 = nix.positions(here + "/sabnzbd-module.nix", [["config", 111, 7]]);
-const pos$30 = nix.positions(here + "/sabnzbd-module.nix", [["machine", 67, 9], ["with_writeable_config", 72, 9], ["with_raw_config_file", 78, 9], ["with_secret_values", 108, 9]]);
-const pos$31 = nix.positions(here + "/sabnzbd-module.nix", [["name", 62, 3], ["meta", 63, 3], ["node", 65, 3], ["nodes", 67, 3], ["testScript", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,28 +17,28 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         sabnzbd: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           enable: true,
           secretFiles: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secret-a.toml", "[servers]\n[[example.com]]\nrequired=1\npriority=2\n")),
             nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secret-b.toml", "[servers]\n[[example.com]]\nenable=1\npriority=5\n")),
           ]),
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             misc: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               html_login: false,
               inet_exposure: "api (full)",
               api_key: "123456",
             })),
             servers: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               "example.com": nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 enable: false,
                 required: false,
                 optional: true,
@@ -81,45 +51,45 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         systemPackages: nix.thunk(() => [
           nix.thunk(() => nix.sel(pkgs, "jq")),
           nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "do_test", "set -euxo pipefail\n\nmisc_url=\"http://127.0.0.1:8080/api?mode=get_config&section=misc&output=json&apikey=123456\"\nservers_url=\"http://127.0.0.1:8080/api?mode=get_config&section=servers&output=json&apikey=123456\"\n\n[[ $(curl $misc_url | jq .config.misc.inet_exposure) == 3 ]]\n[[ $(curl $misc_url | jq .config.misc.html_login) == \"false\" ]]\n\n[[ $(curl $servers_url | jq .config.servers[0].enable) == 1 ]]\n[[ $(curl $servers_url | jq .config.servers[0].required) == 1 ]]\n[[ $(curl $servers_url | jq .config.servers[0].optional) == 1 ]]\n[[ $(curl $servers_url | jq .config.servers[0].priority) == 5 ]]\n")),
         ]),
       })),
       nixpkgs: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        config: nix.thunk(() => ({ [nix.POS]: pos$8, allowUnfreePackages: nix.thunk(() => ["unrar"]) })),
+        [nix.POS]: $pos[8],
+        config: nix.thunk(() => ({ [nix.POS]: $pos[7], allowUnfreePackages: nix.thunk(() => ["unrar"]) })),
       })),
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$31,
+    [nix.POS]: $pos[30],
     name: "sabnzbd",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jojosch"))];
       })()),
     })),
-    node: nix.thunk(() => ({ [nix.POS]: pos$12, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: $pos[11], pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
-        return { [nix.POS]: pos$13, imports: nix.thunk(() => [common_config]) };
+        return { [nix.POS]: $pos[12], imports: nix.thunk(() => [common_config]) };
       })(), formals$3),
       with_writeable_config: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           imports: nix.thunk(() => [common_config]),
           config: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$15,
-              sabnzbd: nix.thunk(() => ({ [nix.POS]: pos$14, allowConfigWrite: true })),
+              [nix.POS]: $pos[14],
+              sabnzbd: nix.thunk(() => ({ [nix.POS]: $pos[13], allowConfigWrite: true })),
             })),
           })),
         };
@@ -128,19 +98,19 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           imports: nix.thunk(() => [common_config]),
           config: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               sabnzbd: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 configFile: nix.thunk(() => nix.builtins.toFile("config.ini", "[misc]\ninet_exposure = 2\nhtml_login = 0\napi_key = abcdef\nlog_dir = /var/lib/sabnzbd\nadmin_dir = /var/lib/sabnzbd\n")),
               })),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               systemPackages: nix.thunk(() => [
                 nix.thunk(() => nix.sel(pkgs, "jq")),
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "do_test_2", "set -euxo pipefail\n\nmisc_url=\"http://127.0.0.1:8080/api?mode=get_config&section=misc&output=json&apikey=abcdef\"\n\n[[ $(curl $misc_url | jq .config.misc.inet_exposure) == 2 ]]\n[[ $(curl $misc_url | jq .config.misc.html_login) == \"false\" ]]\n")),
@@ -153,20 +123,20 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$6);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           config: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               sabnzbd: nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 enable: true,
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
-                  misc: nix.thunk(() => ({ [nix.POS]: pos$23, api_key: "@api_key@", nzb_key: "@nzb_key@" })),
+                  [nix.POS]: $pos[23],
+                  misc: nix.thunk(() => ({ [nix.POS]: $pos[22], api_key: "@api_key@", nzb_key: "@nzb_key@" })),
                 })),
                 secretValues: nix.thunk(() => ({
-                  [nix.POS]: pos$25,
+                  [nix.POS]: $pos[24],
                   "@api_key@": nix.thunk(() => nix.builtins.toFile("api_key", "dummyapikey")),
                   "@nzb_key@": nix.thunk(() => nix.builtins.toFile("nzb_key", "dummynzbkey")),
                 })),

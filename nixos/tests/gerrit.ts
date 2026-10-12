@@ -2,31 +2,21 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gerrit.nix", [[["maintainers", 7, 5]], [["allowedTCPPorts", 17, 29]], [["firewall", 17, 20]], [["canonicalWebUrl", 33, 20]], [["listenAddress", 34, 18], ["advertisedAddress", 35, 18]], [["gerrit", 33, 13], ["sshd", 34, 13]], [["enable", 23, 11], ["serverId", 24, 11], ["listenAddress", 25, 11], ["jvmHeapLimit", 26, 11], ["builtinPlugins", 28, 11], ["settings", 32, 11]], [["gerrit", 22, 18]], [["networking", 17, 9], ["services", 22, 9]], [["server", 14, 5], ["client", 40, 5]], [["name", 4, 3], ["meta", 6, 3], ["nodes", 13, 3], ["testScript", 46, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gerrit.nix", [["maintainers", 7, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/gerrit.nix", [["allowedTCPPorts", 17, 29]]);
-const pos$3 = nix.positions(here + "/gerrit.nix", [["firewall", 17, 20]]);
-const pos$4 = nix.positions(here + "/gerrit.nix", [["canonicalWebUrl", 33, 20]]);
-const pos$5 = nix.positions(here + "/gerrit.nix", [["listenAddress", 34, 18], ["advertisedAddress", 35, 18]]);
-const pos$6 = nix.positions(here + "/gerrit.nix", [["gerrit", 33, 13], ["sshd", 34, 13]]);
-const pos$7 = nix.positions(here + "/gerrit.nix", [["enable", 23, 11], ["serverId", 24, 11], ["listenAddress", 25, 11], ["jvmHeapLimit", 26, 11], ["builtinPlugins", 28, 11], ["settings", 32, 11]]);
-const pos$8 = nix.positions(here + "/gerrit.nix", [["gerrit", 22, 18]]);
-const pos$9 = nix.positions(here + "/gerrit.nix", [["networking", 17, 9], ["services", 22, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$10 = nix.positions(here + "/gerrit.nix", [["server", 14, 5], ["client", 40, 5]]);
-const pos$11 = nix.positions(here + "/gerrit.nix", [["name", 4, 3], ["meta", 6, 3], ["nodes", 13, 3], ["testScript", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "gerrit",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "flokli")),
           nix.thunk(() => nix.lookup(w, "zimbatm")),
@@ -34,30 +24,34 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [80n, 2222n]) })),
+            [nix.POS]: $pos[2],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], allowedTCPPorts: nix.thunk(() => [80n, 2222n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             gerrit: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               serverId: "aa76c84b-50b0-4711-a0a0-1ee30e45bbd0",
               listenAddress: "[::]:80",
               jvmHeapLimit: "1g",
               builtinPlugins: nix.thunk(() => ["hooks", "webhooks"]),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                gerrit: nix.thunk(() => ({ [nix.POS]: pos$4, canonicalWebUrl: "http://server" })),
-                sshd: nix.thunk(() => ({ [nix.POS]: pos$5, listenAddress: "[::]:2222", advertisedAddress: "[::]:2222" })),
+                [nix.POS]: $pos[5],
+                gerrit: nix.thunk(() => ({ [nix.POS]: $pos[3], canonicalWebUrl: "http://server" })),
+                sshd: nix.thunk(() => ({
+                  [nix.POS]: $pos[4],
+                  listenAddress: "[::]:2222",
+                  advertisedAddress: "[::]:2222",
+                })),
               })),
             })),
           })),

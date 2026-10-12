@@ -2,10 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/lts.nix", [["version", 2, 3], ["rev", 3, 3], ["hash", 4, 3], ["lts", 5, 3]]);
+const $pos = nix.positions(here + "/lts.nix", [[["version", 2, 3], ["rev", 3, 3], ["hash", 4, 3], ["lts", 5, 3]]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "26.8.5.13-lts",
     rev: "ec5605431dacfc812affc406cc81ca398ca68174",
     hash: "sha256-PKvk9iJoPFHB4dTHSWox2hPiTNt2EPlwZ/t3+Up9GsY=",

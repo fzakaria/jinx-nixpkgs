@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, gtkmm3: false, glibmm_2_4: false, libappindicator: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const glibmm_2_4 = nix.arg($, "glibmm_2_4");
   const libappindicator = nix.arg($, "libappindicator");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "powermode-indicator",
       version: "0-unstable-2024-07-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PiyushXCoder",
           repo: "powermode-indicator",
           rev: "0a67f63290b087f1eeff2c6c6869c2122ac78e6f",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [libappindicator, gtkmm3, glibmm_2_4]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/PiyushXCoder/powermode-indicator",
         description: "Tray tool for power profiles management",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

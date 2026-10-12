@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 19, 3], ["nativeCheckInputs", 21, 3], ["doCheck", 22, 3], ["postBuild", 24, 3], ["checkPhase", 28, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, chromium: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 19, 3], ["nativeCheckInputs", 21, 3], ["doCheck", 22, 3], ["postBuild", 24, 3], ["checkPhase", 28, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const chromium = nix.arg($, "chromium");
   const python3 = nix.arg($, "python3");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "single-file-cli",
       version: "1.1.49",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gildas-lormeau",
           repo: "single-file-cli",
           rev: "af0f6f119edd8bf82bce3860fa55cfad869ac874",
@@ -48,7 +46,7 @@ wait
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CLI tool for saving a faithful copy of a complete web page in a single HTML file",
         homepage: "https://github.com/gildas-lormeau/single-file-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

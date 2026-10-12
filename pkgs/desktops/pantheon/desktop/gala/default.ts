@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["updateScript", 79, 5]], [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["teams", 87, 5], ["mainProgram", 88, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["depsBuildBuild", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 56, 3], ["postPatch", 73, 3], ["passthru", 78, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "desktop-file-utils": false, gettext: false, libxml2: false, meson: false, ninja: false, "pkg-config": false, vala: false, "wayland-scanner": false, wrapGAppsHook4: false, "at-spi2-core": false, "gnome-settings-daemon": false, "gnome-desktop": false, granite: false, granite7: false, gtk3: false, gtk4: false, ibus: false, "json-glib": false, libgee: false, libhandy: false, mutter: false, sqlite: false, systemdLibs: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 79, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["teams", 87, 5], ["mainProgram", 88, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["depsBuildBuild", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 56, 3], ["postPatch", 73, 3], ["passthru", 78, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gala",
       version: "8.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "gala",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -78,11 +75,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace meson.build \\\n  --replace-fail \"conf.set('PLUGINDIR', plugins_dir)\" \"conf.set('PLUGINDIR','/run/current-system/sw/lib/gala/plugins')\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Window & compositing manager based on mutter and designed by elementary for use with Pantheon",
         homepage: "https://github.com/elementary/gala",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

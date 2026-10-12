@@ -2,11 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/internal.nix", [[["address", 190, 11], ["prefixLength", 191, 11]], [["address", 195, 11], ["prefixLength", 196, 11]], [["toStringFromExpandedIp", 161, 5], ["split", 182, 5]], [["_ipv6", 146, 3]]]);
 const formals$1 = { args: { lib: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/internal.nix", [["address", 190, 11], ["prefixLength", 191, 11]]);
-const pos$2 = nix.positions(here + "/internal.nix", [["address", 195, 11], ["prefixLength", 196, 11]]);
-const pos$3 = nix.positions(here + "/internal.nix", [["toStringFromExpandedIp", 161, 5], ["split", 182, 5]]);
-const pos$4 = nix.positions(here + "/internal.nix", [["_ipv6", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,19 +47,19 @@ export default nix.lambda((args) => (() => {
   })();
   const parseIpv6FromString = (addr) => nix.app(parseExpandedIpv6, nix.thunk(() => nix.app(expandIpv6, addr)));
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     _ipv6: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       toStringFromExpandedIp: (pieces) => nix.app(nix.sel(strings, "concatMapStringsSep"), ":", (piece) => nix.app(nix.sel(strings, "toLower"), nix.thunk(() => nix.app(nix.sel(trivial, "toHexString"), piece))), pieces),
       split: (addr) => (() => {
         const splitted = nix.thunk(() => nix.app(nix.sel(strings, "splitString"), "/", addr));
         const splittedLength = nix.thunk(() => nix.app(length, splitted));
         return (nix.asBool(nix.eq(splittedLength, 1n)) ? {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           address: nix.thunk(() => nix.app(parseIpv6FromString, addr)),
           prefixLength: ipv6Bits,
         } : (nix.asBool(nix.eq(splittedLength, 2n)) ? {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           address: nix.thunk(() => nix.app(parseIpv6FromString, nix.thunk(() => nix.app(head, splitted)))),
           prefixLength: nix.thunk(() => (() => {
             const n = nix.thunk(() => nix.app(nix.sel(strings, "toInt"), nix.thunk(() => nix.app(last, splitted))));

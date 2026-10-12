@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 27, 5], ["homepage", 28, 5], ["donationPage", 29, 5], ["downloadPage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 44, 7], ["version", 45, 7], ["meta", 46, 7], ["lib", 48, 7], ["fetchurl", 49, 7], ["stdenvNoCC", 50, 7], ["makeBinaryWrapper", 52, 7], ["undmg", 53, 7]], [["pname", 59, 7], ["version", 60, 7], ["meta", 61, 7], ["lib", 63, 7], ["fetchFromGitHub", 64, 7], ["flutter341", 65, 7], ["replaceVars", 66, 7], ["rustPlatform", 67, 7], ["stdenvNoCC", 68, 7], ["copyDesktopItems", 70, 7], ["makeDesktopItem", 71, 7], ["libayatana-appindicator", 73, 7], ["nixosTests", 75, 7]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchurl: false, flutter341: false, replaceVars: false, rustPlatform: false, stdenvNoCC: false, copyDesktopItems: false, makeBinaryWrapper: false, makeDesktopItem: false, undmg: false, "libayatana-appindicator": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["donationPage", 29, 5], ["downloadPage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 44, 7], ["version", 45, 7], ["meta", 46, 7], ["lib", 48, 7], ["fetchurl", 49, 7], ["stdenvNoCC", 50, 7], ["makeBinaryWrapper", 52, 7], ["undmg", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 59, 7], ["version", 60, 7], ["meta", 61, 7], ["lib", 63, 7], ["fetchFromGitHub", 64, 7], ["flutter341", 65, 7], ["replaceVars", 66, 7], ["rustPlatform", 67, 7], ["stdenvNoCC", 68, 7], ["copyDesktopItems", 70, 7], ["makeDesktopItem", 71, 7], ["libayatana-appindicator", 73, 7], ["nixosTests", 75, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const pname = "localsend";
   const version = "1.18.0";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Open source cross-platform alternative to AirDrop",
     homepage: "https://localsend.org/",
     donationPage: "https://localsend.org/donate",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   return (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.app(nix.builtins.import(nix.path(here, "./darwin.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       meta: meta,
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       makeBinaryWrapper: makeBinaryWrapper,
       undmg: undmg,
     }))) : nix.app(nix.builtins.import(nix.path(here, "./linux.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       meta: meta,

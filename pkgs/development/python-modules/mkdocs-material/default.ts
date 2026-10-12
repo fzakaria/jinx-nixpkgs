@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["recommended", 66, 5], ["git", 71, 5], ["imaging", 75, 5]], [["changelog", 87, 5], ["description", 88, 5], ["downloadPage", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 48, 3], ["pythonRelaxDeps", 63, 3], ["optional-dependencies", 65, 3], ["doCheck", 82, 3], ["pythonImportsCheck", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, babel: false, backrefs: false, buildPythonPackage: false, cairosvg: false, colorama: false, fetchFromGitHub: false, "hatch-nodejs-version": false, "hatch-requirements-txt": false, hatchling: false, jinja2: false, markdown: false, mkdocs: false, "mkdocs-git-revision-date-localized-plugin": false, "mkdocs-material-extensions": false, "mkdocs-minify-plugin": false, "mkdocs-redirects": false, "mkdocs-rss-plugin": false, paginate: false, pillow: false, pygments: false, "pymdown-extensions": false, regex: false, requests: false, "trove-classifiers": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["recommended", 66, 5], ["git", 71, 5], ["imaging", 75, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 87, 5], ["description", 88, 5], ["downloadPage", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 48, 3], ["pythonRelaxDeps", 63, 3], ["optional-dependencies", 65, 3], ["doCheck", 82, 3], ["pythonImportsCheck", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const trove_classifiers = nix.arg($, "trove-classifiers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mkdocs-material",
       version: "9.7.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "squidfunk",
           repo: "mkdocs-material",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonRelaxDeps: nix.thunk(() => ["backrefs"]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         recommended: nix.thunk(() => [mkdocs_minify_plugin, mkdocs_redirects, mkdocs_rss_plugin]),
         git: nix.thunk(() => [mkdocs_git_revision_date_localized_plugin]),
         imaging: nix.thunk(() => [cairosvg, pillow]),
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["mkdocs"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/squidfunk/mkdocs-material/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG`),
         description: "Material for mkdocs",
         downloadPage: "https://github.com/squidfunk/mkdocs-material",

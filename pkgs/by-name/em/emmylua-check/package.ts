@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["OPENSSL_NO_VENDOR", 25, 7]], [["updateScript", 36, 5]], [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]], [["pname", 11, 3], ["version", 12, 24], ["src", 12, 32], ["cargoHash", 12, 36], ["__structuredAttrs", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 20, 3], ["env", 25, 3], ["buildAndTestSubdir", 27, 3], ["nativeInstallCheckInputs", 29, 3], ["versionCheckProgram", 32, 3], ["doInstallCheck", 33, 3], ["passthru", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, openssl: false, "emmylua-ls": false, "pkg-config": false, rustPlatform: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 24], ["src", 12, 32], ["cargoHash", 12, 36], ["__structuredAttrs", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 20, 3], ["env", 25, 3], ["buildAndTestSubdir", 27, 3], ["nativeInstallCheckInputs", 29, 3], ["versionCheckProgram", 32, 3], ["doInstallCheck", 33, 3], ["passthru", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "emmylua_check",
       version: nix.thunk(() => nix.attr(emmylua_ls, "version")),
       src: nix.thunk(() => nix.attr(emmylua_ls, "src")),
@@ -26,17 +23,17 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], OPENSSL_NO_VENDOR: 1n })),
       buildAndTestSubdir: "crates/emmylua_check",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/emmylua_check`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Comprehensive Lua static analysis tool for code quality assurance",
         homepage: "https://github.com/EmmyLuaLs/emmylua-analyzer-rust",
         changelog: nix.thunk(() => nix.str`https://github.com/EmmyLuaLs/emmylua-analyzer-rust/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

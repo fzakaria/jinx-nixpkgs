@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 17, 13], ["pname", 18, 5], ["hash", 19, 5]], [["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["description", 38, 5], ["mainProgram", 39, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["pythonImportsCheck", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, lib: false, pathspec: false, setuptools: false, "tree-sitter-language-pack": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 17, 13], ["pname", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["description", 38, 5], ["mainProgram", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["pythonImportsCheck", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "grep_ast",
           hash: "sha256-YgokKkST5nITONHJpsI0rmUfh3T0kkptz5D2hl1LLuM=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pathspec, tree_sitter_language_pack]);
       const pythonImportsCheck = nix.thunk(() => ["grep_ast"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/paul-gauthier/grep-ast",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "grep-ast",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

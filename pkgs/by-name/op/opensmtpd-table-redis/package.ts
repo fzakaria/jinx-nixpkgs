@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["NIX_CFLAGS_COMPILE", 38, 7]], [["homepage", 45, 5], ["description", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 20, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 26, 3], ["configureFlags", 31, 3], ["env", 38, 3], ["preConfigure", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, automake: false, hiredis: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 20, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 26, 3], ["configureFlags", 31, 3], ["env", 38, 3], ["preConfigure", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const hiredis = nix.arg($, "hiredis");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "opensmtpd-table-redis",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenSMTPD",
           repo: "table-redis",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,12 +34,12 @@ export default nix.lambda((args) => (() => {
         "--with-path-pidfile=/run",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${hiredis}/include/hiredis`),
       })),
       preConfigure: "sh bootstrap\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.opensmtpd.org/",
         description: "Redis tables for the OpenSMTPD mail server",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenSMTPD/table-redis/releases/tag/${nix.sel(finalAttrs, "version")}`),

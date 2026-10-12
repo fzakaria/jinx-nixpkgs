@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 44, 5], ["description", 45, 5], ["longDescription", 46, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["preAutoreconf", 32, 3], ["configureFlags", 36, 3], ["doInstallCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, libimobiledevice: false, libusb1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["longDescription", 46, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["preAutoreconf", 32, 3], ["configureFlags", 36, 3], ["doInstallCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libimobiledevice = nix.arg($, "libimobiledevice");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "usbmuxd",
       version: "1.1.1+date=2025-12-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libimobiledevice",
           repo: "usbmuxd",
           rev: "3ded00c9985a5108cfc7591a309f9a23d57a8cba",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/libimobiledevice/usbmuxd",
         description: "Socket daemon to multiplex connections from and to iOS devices",
         longDescription: "usbmuxd stands for \"USB multiplexing daemon\". This daemon is in charge of\nmultiplexing connections over USB to an iOS device. To users, it means\nyou can sync your music, contacts, photos, etc. over USB. To developers, it\nmeans you can connect to any listening localhost socket on the device. usbmuxd\nis not used for tethering data transfer which uses a dedicated USB interface as\na virtual network device. Multiple connections to different TCP ports can happen\nin parallel. The higher-level layers are handled by libimobiledevice.\n",

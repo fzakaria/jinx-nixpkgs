@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["platforms", 26, 5], ["maintainers", 27, 5], ["mainProgram", 28, 5]], [["pname", 9, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, rustPlatform: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["platforms", 26, 5], ["maintainers", 27, 5], ["mainProgram", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "owofetch";
       const version = "0.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "netthier",
           repo: "owofetch-rs",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const cargoHash = "sha256-0ON1h8+ruLOvBR7Q/hOIW6j+BjfPAAuYA2wrUYj59Ow=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Alternative to *fetch, uwuifies all stats",
         homepage: "https://github.com/netthier/owofetch-rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "owofetch",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, cargoHash, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, cargoHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

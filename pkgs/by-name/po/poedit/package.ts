@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["extraArgs", 82, 5]], [["updateScript", 81, 12]], [["description", 89, 5], ["mainProgram", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5], ["broken", 96, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 60, 3], ["preConfigure", 62, 3], ["configureFlags", 67, 3], ["preFixup", 75, 3], ["enableParallelBuilding", 79, 3], ["passthru", 81, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, autoconf: false, automake: false, libtool: false, gettext: false, "pkg-config": false, wxwidgets_3_2: false, boost: false, icu: false, lucenepp: false, asciidoc: false, libxslt: false, xmlto: false, gtk3: false, gtkspell3: false, pugixml: false, nlohmann_json: false, "hicolor-icon-theme": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 81, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 89, 5], ["mainProgram", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5], ["broken", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 60, 3], ["preConfigure", 62, 3], ["configureFlags", 67, 3], ["preFixup", 75, 3], ["enableParallelBuilding", 79, 3], ["passthru", 81, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "poedit",
       version: "3.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vslavik",
           repo: "poedit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-oss`),
@@ -78,14 +74,14 @@ export default nix.lambda((args) => (() => {
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "(.*)-oss"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cross-platform gettext catalogs (.po files) editor",
         mainProgram: "poedit",
         homepage: "https://www.poedit.net/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 20, 3], ["postPatch", 25, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 20, 3], ["postPatch", 25, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nemo-qml-plugin-dbus";
       const version = "2.1.24";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.sailfishos.org",
           owner: "mer-core",
           repo: "nemo-qml-plugin-dbus",
@@ -36,14 +34,14 @@ substituteInPlace src/plugin/plugin.pro \\
   --replace '$$[QT_INSTALL_QML]' $out'/${nix.sel(qt5, "qtbase", "qtQmlPrefix")}'
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Nemo DBus plugin for qml",
         homepage: "https://git.sailfishos.org/mer-core/nemo-qml-plugin-dbus/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "Thra11"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, postPatch, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, nativeBuildInputs, postPatch, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

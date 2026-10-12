@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["vscode-extension", 92, 7]], [["updateScript", 90, 5], ["tests", 91, 5]], [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5]], [["pname", 15, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["nativeBuildInputs", 31, 3], ["checkFlags", 36, 3], ["postInstall", 71, 3], ["nativeInstallCheckInputs", 83, 3], ["versionCheckProgramArg", 86, 3], ["doInstallCheck", 87, 3], ["passthru", 89, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, "pkg-config": false, buildPackages: false, versionCheckHook: false, "nix-update-script": false, "vscode-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["vscode-extension", 92, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 90, 5], ["tests", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["nativeBuildInputs", 31, 3], ["checkFlags", 36, 3], ["postInstall", 71, 3], ["nativeInstallCheckInputs", 83, 3], ["versionCheckProgramArg", 86, 3], ["doInstallCheck", 87, 3], ["passthru", 89, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const vscode_extensions = nix.arg($, "vscode-extensions");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tinymist",
       version: "0.15.8",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Myriad-Dreamin",
           repo: "tinymist",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,15 +70,15 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-V",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "vscode-extension": nix.thunk(() => nix.sel(vscode_extensions, "myriad-dreamin", "tinymist")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Integrated language service for Typst",
         homepage: "https://github.com/Myriad-Dreamin/tinymist",
         changelog: nix.thunk(() => nix.str`https://github.com/Myriad-Dreamin/tinymist/blob/v${nix.sel(finalAttrs, "version")}/editors/vscode/CHANGELOG.md`),

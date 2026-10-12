@@ -2,48 +2,39 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sharkey.nix", [[["index", 18, 23]], [["url", 17, 11], ["meilisearch", 18, 11]], [["enable", 13, 9], ["setupMeilisearch", 14, 9], ["environmentFiles", 15, 9], ["settings", 16, 9]], [["masterKeyFile", 22, 28]], [["sharkey", 12, 16], ["meilisearch", 22, 16]], [["services", 12, 7]], [["machine", 9, 9]], [["description", 28, 9], ["actions", 29, 9], ["indexes", 30, 9], ["expiresAt", 31, 9]], [["maintainers", 52, 8]], [["name", 7, 3], ["nodes", 9, 3], ["testScript", 25, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sharkey.nix", [["index", 18, 23]]);
-const pos$2 = nix.positions(here + "/sharkey.nix", [["url", 17, 11], ["meilisearch", 18, 11]]);
-const pos$3 = nix.positions(here + "/sharkey.nix", [["enable", 13, 9], ["setupMeilisearch", 14, 9], ["environmentFiles", 15, 9], ["settings", 16, 9]]);
-const pos$4 = nix.positions(here + "/sharkey.nix", [["masterKeyFile", 22, 28]]);
-const pos$5 = nix.positions(here + "/sharkey.nix", [["sharkey", 12, 16], ["meilisearch", 22, 16]]);
-const pos$6 = nix.positions(here + "/sharkey.nix", [["services", 12, 7]]);
-const pos$7 = nix.positions(here + "/sharkey.nix", [["machine", 9, 9]]);
-const pos$8 = nix.positions(here + "/sharkey.nix", [["description", 28, 9], ["actions", 29, 9], ["indexes", 30, 9], ["expiresAt", 31, 9]]);
-const pos$9 = nix.positions(here + "/sharkey.nix", [["maintainers", 52, 8]]);
-const pos$10 = nix.positions(here + "/sharkey.nix", [["name", 7, 3], ["nodes", 9, 3], ["testScript", 25, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const meilisearchKey = "TESTKEY-naXRkVX7nhvLaGOmGGuicDKxZAj0khEaoOZPeEZafv8w9j8V6aKb0NVdXRChL5kR";
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "sharkey",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             sharkey: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               setupMeilisearch: true,
               environmentFiles: nix.thunk(() => ["/run/secrets/sharkey-env"]),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 url: "http://exampleurl.invalid",
-                meilisearch: nix.thunk(() => ({ [nix.POS]: pos$1, index: "exampleurl_invalid" })),
+                meilisearch: nix.thunk(() => ({ [nix.POS]: $pos[0], index: "exampleurl_invalid" })),
               })),
             })),
             meilisearch: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               masterKeyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "meilisearch-key", meilisearchKey)),
             })),
           })),
@@ -52,7 +43,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: nix.thunk(() => (() => {
       const createIndexPayload = nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           description: "Sharkey API key",
           actions: nix.thunk(() => ["*"]),
           indexes: nix.thunk(() => ["exampleurl_invalid---notes"]),
@@ -76,7 +67,7 @@ with subtest("Testing Sharkey is running and listening to HTTP requests"):
 `;
     })()),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "tmarkus"))];

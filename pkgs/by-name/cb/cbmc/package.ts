@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["version", 38, 7]], [["cudd", 51, 7]], [["NIX_CFLAGS_COMPILE", 86, 7]], [["extraArgs", 117, 5]], [["updateScript", 116, 12]], [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 131, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["srcglucose", 29, 3], ["srccadical", 36, 3], ["nativeBuildInputs", 41, 3], ["patches", 49, 3], ["postPatch", 56, 3], ["postInstall", 77, 3], ["env", 86, 3], ["cmakeFlags", 105, 3], ["nativeInstallCheckInputs", 110, 3], ["doInstallCheck", 113, 3], ["versionCheckProgram", 114, 3], ["passthru", 116, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bison: false, cadical: false, cmake: false, flex: false, makeWrapper: false, perl: false, replaceVars: false, cudd: false, "nix-update-script": false, fetchpatch: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["cudd", 51, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 86, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 117, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 116, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 131, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["srcglucose", 29, 3], ["srccadical", 36, 3], ["nativeBuildInputs", 41, 3], ["patches", 49, 3], ["postPatch", 56, 3], ["postInstall", 77, 3], ["env", 86, 3], ["cmakeFlags", 105, 3], ["nativeInstallCheckInputs", 110, 3], ["doInstallCheck", 113, 3], ["versionCheckProgram", 114, 3], ["passthru", 116, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,27 +22,27 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "cbmc",
       version: "6.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "diffblue",
           repo: "cbmc",
           tag: nix.thunk(() => nix.str`cbmc-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-GHpgcGBE/AAhTVxGVzTPMdZ8BkuXa7/OgMumZJ8ENRc=",
         })))),
       srcglucose: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "brunodutertre",
           repo: "glucose-syrup",
           rev: "0bb2afd3b9baace6981cbb8b4a1c7683c44968b7",
           hash: "sha256-+KrnXEJe7ApSuj936T615DaXOV+C2LlRxc213fQI+Q4=",
         })))),
-      srccadical: nix.thunk(() => nix.sel(nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, version: "3.0.0" }))), "src")),
+      srccadical: nix.thunk(() => nix.sel(nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], version: "3.0.0" }))), "src")),
       nativeBuildInputs: nix.thunk(() => [bison, cmake, flex, perl, makeWrapper]),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-Do-not-download-sources-in-cmake.patch"), nix.thunk(() => ({ [nix.POS]: pos$4, cudd: nix.thunk(() => nix.sel(cudd, "src")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-Do-not-download-sources-in-cmake.patch"), nix.thunk(() => ({ [nix.POS]: $pos[3], cudd: nix.thunk(() => nix.sel(cudd, "src")) })))),
         nix.path(here, "./0002-Do-not-download-sources-in-cmake.patch"),
       ]),
       postPatch: nix.thunk(() => nix.add(nix.str`# fix library_check.sh interpreter error
@@ -69,7 +61,7 @@ substituteInPlace src/solvers/CMakeLists.txt \\
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "cc", "isGNU"))), "# goto-gcc rely on gcc\nsubstituteInPlace \"regression/CMakeLists.txt\" \\\n  --replace-fail \"add_subdirectory(goto-gcc)\" \"\"\n"))),
       postInstall: "# goto-cc expects ls_parse.py in PATH\nmkdir -p $out/share/cbmc\nmv $out/bin/ls_parse.py $out/share/cbmc/ls_parse.py\nchmod +x $out/share/cbmc/ls_parse.py\nwrapProgram $out/bin/goto-cc \\\n  --prefix PATH : \"$out/share/cbmc\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
               "-Wno-unused-command-line-argument",
               "-Wno-error=unused-but-set-variable",
@@ -86,14 +78,14 @@ substituteInPlace src/solvers/CMakeLists.txt \\
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/cbmc`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             extraArgs: nix.thunk(() => ["--version-regex", "cbmc-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Bounded Model Checker for C and C++ programs",
         homepage: "http://www.cprover.org/cbmc/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

@@ -2,13 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["signingKey", 22, 13], ["message", 22, 24]], [["uefiSigningKey", 26, 5]], [["nativeBuildInputs", 39, 11], ["verificationKey", 42, 32], ["signature", 43, 19], ["message", 43, 29], ["strictDeps", 44, 11], ["__structuredAttrs", 45, 11]], [["nativeBuildInputs", 58, 11], ["uefiCertificate", 63, 36], ["strictDeps", 64, 11], ["__structuredAttrs", 65, 11]], [["signingKey", 31, 13], ["verificationKey", 32, 26], ["message", 34, 13], ["signature", 34, 21], ["signature-check", 36, 5], ["certificate-check", 55, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, writeText: false, autopen: false, testSignedPackages: false, linkFarm: false, runCommand: false, openssl_4_0: false }, ellipsis: false };
 const formals$2 = { args: { signingKey: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["signingKey", 22, 13], ["message", 22, 24]]);
-const pos$2 = nix.positions(here + "/default.nix", [["uefiSigningKey", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 39, 11], ["verificationKey", 42, 32], ["signature", 43, 19], ["message", 43, 29], ["strictDeps", 44, 11], ["__structuredAttrs", 45, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 58, 11], ["uefiCertificate", 63, 36], ["strictDeps", 64, 11], ["__structuredAttrs", 65, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["signingKey", 31, 13], ["verificationKey", 32, 26], ["message", 34, 13], ["signature", 34, 21], ["signature-check", 36, 5], ["certificate-check", 55, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,16 +20,16 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const signingKey = nix.arg($_1, "signingKey");
     const message = nix.thunk(() => nix.app(writeText, "autopen-test-message", "squeamish ossifrage\n"));
-    const signature = nix.thunk(() => nix.app(nix.sel(autopen, "sign"), nix.thunk(() => ({ [nix.POS]: pos$1, signingKey: signingKey, message: message }))));
-    const signedPackages = nix.thunk(() => nix.app(nix.sel(testSignedPackages, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, uefiSigningKey: signingKey }))));
+    const signature = nix.thunk(() => nix.app(nix.sel(autopen, "sign"), nix.thunk(() => ({ [nix.POS]: $pos[0], signingKey: signingKey, message: message }))));
+    const signedPackages = nix.thunk(() => nix.app(nix.sel(testSignedPackages, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], uefiSigningKey: signingKey }))));
     return nix.app(linkFarm, "autopen-test", nix.thunk(() => nix.update({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         signingKey: signingKey,
         verificationKey: nix.thunk(() => nix.attr(signingKey, "verificationKey")),
         message: message,
         signature: signature,
         "signature-check": nix.thunk(() => nix.app(runCommand, "autopen-test-signature-check", nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             nativeBuildInputs: nix.thunk(() => [autopen]),
             verificationKey: nix.thunk(() => nix.attr(signingKey, "verificationKey")),
             signature: signature,
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
             __structuredAttrs: true,
           })), "autopen verify \\\n  --verification-key=\"$verificationKey\" \\\n  --signature=\"$signature\" \\\n  -- \"$message\"\ntouch -- \"$out\"\n")),
         "certificate-check": nix.thunk(() => nix.app(runCommand, "autopen-test-certificate-check", nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             nativeBuildInputs: nix.thunk(() => [openssl_4_0]),
             uefiCertificate: nix.thunk(() => nix.attr(signedPackages, "uefiCertificate")),
             strictDeps: true,

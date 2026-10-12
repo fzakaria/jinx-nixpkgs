@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/meta-package.nix", [[["pname", 21, 5], ["version", 22, 5], ["dependencies", 23, 5], ["optional-dependencies", 24, 5], ["meta", 25, 5], ["passthru", 26, 5], ["pyproject", 29, 3], ["unpackPhase", 32, 3], ["build-system", 57, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, hatchling: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, dependencies: true, "optional-dependencies": true, passthru: true, meta: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/meta-package.nix", [["pname", 21, 5], ["version", 22, 5], ["dependencies", 23, 5], ["optional-dependencies", 24, 5], ["meta", 25, 5], ["passthru", 26, 5], ["pyproject", 29, 3], ["unpackPhase", 32, 3], ["build-system", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
     const passthru = nix.argOr($_1, "passthru", () => ({}));
     const meta = nix.argOr($_1, "meta", () => ({}));
     return nix.app(buildPythonPackage, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: pname,
         version: version,
         dependencies: dependencies,

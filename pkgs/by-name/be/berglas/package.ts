@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["access", 11, 5], ["create", 12, 5], ["delete", 13, 5], ["list", 14, 5], ["read", 15, 5], ["replace", 16, 5], ["resolver", 17, 5], ["revoke", 18, 5], ["update", 19, 5]], [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["sha256", 44, 5]], [["package", 59, 7]], [["version", 58, 5]], [["tests", 57, 12]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["vendorHash", 47, 3], ["ldflags", 49, 3], ["postPatch", 55, 3], ["passthru", 57, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, testers: false, berglas: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["access", 11, 5], ["create", 12, 5], ["delete", 13, 5], ["list", 14, 5], ["read", 15, 5], ["replace", 16, 5], ["resolver", 17, 5], ["revoke", 18, 5], ["update", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["sha256", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 57, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["vendorHash", 47, 3], ["ldflags", 49, 3], ["postPatch", 55, 3], ["passthru", 57, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const berglas = nix.arg($, "berglas");
   const skipTests = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     access: "Access",
     create: "Create",
     delete: "Delete",
@@ -39,11 +33,11 @@ substituteInPlace pkg/berglas/${goFileName}_test.go \\
 `;
     })(), "", nix.thunk(() => nix.builtins.attrNames(skipTests))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "berglas",
       version: "2.0.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "GoogleCloudPlatform",
           repo: "berglas",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,14 +51,14 @@ substituteInPlace pkg/berglas/${goFileName}_test.go \\
       ]),
       postPatch: skipTestsCommand,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: berglas })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: berglas })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Tool for managing secrets on Google Cloud",
         homepage: "https://github.com/GoogleCloudPlatform/berglas",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

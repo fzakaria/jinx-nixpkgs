@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pname", 29, 13], ["version", 29, 19], ["src", 29, 27], ["hash", 30, 5]], [["tracing-opentelemetry", 46, 5]], [["rev-prefix", 70, 5]], [["updateScript", 69, 12]], [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["cargoDeps", 28, 3], ["buildAndTestSubdir", 33, 3], ["nativeBuildInputs", 35, 3], ["dependencies", 40, 3], ["optional-dependencies", 45, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 56, 3], ["passthru", 69, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, gitUpdater: false, "opentelemetry-api": false, "opentelemetry-sdk": false, "pytest-asyncio": false, pytestCheckHook: false, "qcs-api-client-common": false, quil: false, rustPlatform: false, syrupy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 29, 13], ["version", 29, 19], ["src", 29, 27], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tracing-opentelemetry", 46, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["rev-prefix", 70, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 69, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["cargoDeps", 28, 3], ["buildAndTestSubdir", 33, 3], ["nativeBuildInputs", 35, 3], ["dependencies", 40, 3], ["optional-dependencies", 45, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 56, 3], ["passthru", 69, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.26.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rigetti",
           repo: "qcs-sdk-rust",
           tag: nix.thunk(() => nix.str`lib/v${version}`),
           hash: "sha256-XqsxtFwQnAJHYMaR+uO8wzlxA+GtqfllJUCIt0l1i9o=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -50,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const dependencies = nix.thunk(() => [qcs_api_client_common, quil]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "tracing-opentelemetry": nix.thunk(() => [opentelemetry_api]),
       }));
       const nativeCheckInputs = nix.thunk(() => [opentelemetry_sdk, pytest_asyncio, pytestCheckHook, syrupy]);
@@ -67,11 +61,11 @@ export default nix.lambda((args) => (() => {
         "test_qvm_tracing",
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "lib/v" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-prefix": "lib/v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/rigetti/qcs-sdk-rust/blob/${nix.sel(src, "tag")}/${buildAndTestSubdir}/CHANGELOG.md`),
         description: "Python interface for the QCS Rust SDK",
         homepage: "https://github.com/rigetti/qcs-sdk-rust/tree/main/crates/python",
@@ -82,7 +76,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

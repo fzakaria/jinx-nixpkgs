@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["homepage", 29, 5], ["description", 30, 5], ["sourceProvenance", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["sourceProvenance", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "briss",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/briss/briss-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "45dd668a9ceb9cd59529a9fefe422a002ee1554a61be07e6fc8b3baf33d733d9",
         })))),
@@ -30,7 +28,7 @@ install -D -m444 -t "$out/share" *.jar
 makeWrapper "${jre}/bin/java" "$out/bin/briss" --add-flags "-Xms128m -Xmx1024m -cp \\"$out/share/\\" -jar \\"$out/share/briss-${nix.sel(finalAttrs, "version")}.jar\\""
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://sourceforge.net/projects/briss/",
         description: "Java application for cropping PDF files",
         sourceProvenance: nix.thunk(() => (() => {

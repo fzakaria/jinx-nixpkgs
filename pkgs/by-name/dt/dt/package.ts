@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 22, 5], ["description", 23, 5], ["longDescription", 24, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, zig_0_14: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 22, 5], ["description", 23, 5], ["longDescription", 24, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const zig_0_14 = nix.arg($, "zig_0_14");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dt",
       version: "1.3.1-unstable-2025-06-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "so-dang-cool",
           repo: "dt",
           rev: "7b87e3e012439179772617814cb7d001928d6868",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [zig_0_14]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://dt.plumbing",
         description: "Duct tape for your unix pipes",
         longDescription: "dt is a utility and programming language. The utility is intended for\nergonomic in-the-shell execution. The language is straightforward (in\nthe most literal sense) with a minimal syntax that allows for\nhigh-level, higher-order programming.\n\nIt's meant to supplement (not replace!) other tools like awk, sed,\nxargs, and shell built-ins. Something like the Perl one-liners popular\nyesteryear, but hopefully easier to read and reason through.\n\nIn short, dt is intended to be generally useful, with zero pretense of\nelegance.\n",

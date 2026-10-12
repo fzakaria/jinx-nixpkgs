@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 5], ["version", 18, 13], ["hash", 19, 5]], [["cache", 32, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["dependencies", 26, 3], ["optional-dependencies", 31, 3], ["pythonImportsCheck", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, mkdocs: false, wcmatch: false, platformdirs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 13], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cache", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["dependencies", 26, 3], ["optional-dependencies", 31, 3], ["pythonImportsCheck", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +19,17 @@ export default nix.lambda((args) => (() => {
       const version = "7.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "mkdocs_include_markdown_plugin",
           version: version,
           hash: "sha256-KAASZ0ZFLjHC4yG71DyBkLNW4N41PiDLwWo0o8PWeWw=",
         }))));
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [mkdocs, wcmatch]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, cache: nix.thunk(() => [platformdirs]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], cache: nix.thunk(() => [platformdirs]) }));
       const pythonImportsCheck = nix.thunk(() => ["mkdocs_include_markdown_plugin"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Mkdocs Markdown includer plugin",
         homepage: "https://pypi.org/project/mkdocs-include-markdown-plugin/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["owner", 9, 5], ["repo", 10, 5], ["rev", 11, 5], ["hash", 12, 5]], [["description", 16, 5], ["homepage", 17, 5], ["license", 18, 5], ["maintainers", 19, 5], ["mainProgram", 23, 5]], [["version", 6, 11], ["src", 8, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["owner", 9, 5], ["repo", 10, 5], ["rev", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/common.nix", [["description", 16, 5], ["homepage", 17, 5], ["license", 18, 5], ["maintainers", 19, 5], ["mainProgram", 23, 5]]);
-const pos$3 = nix.positions(here + "/common.nix", [["version", 6, 11], ["src", 8, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "0.23.1";
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     version: version,
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "Donkie",
         repo: "Spoolman",
         rev: nix.thunk(() => nix.str`v${version}`),
         hash: "sha256-Oa/cNmpc0hWRf0EQI5aXIE/p9//Sos5Nj3QFEjKgj5o=",
       })))),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       description: "Keep track of your inventory of 3D-printer filament spools",
       homepage: "https://github.com/Donkie/Spoolman",
       license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

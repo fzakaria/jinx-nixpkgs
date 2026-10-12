@@ -2,39 +2,33 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["maintainers", 5, 5]], [["reportPath", 9, 21]], [["facter", 9, 14]], [["systemPackages", 10, 17]], [["hardware", 9, 5], ["environment", 10, 5]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 13, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["maintainers", 5, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["reportPath", 9, 21]]);
-const pos$3 = nix.positions(here + "/default.nix", [["facter", 9, 14]]);
-const pos$4 = nix.positions(here + "/default.nix", [["systemPackages", 10, 17]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hardware", 9, 5], ["environment", 10, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["machine", 8, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "facter",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "mic92"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         hardware: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          facter: nix.thunk(() => ({ [nix.POS]: pos$2, reportPath: nix.path(here, "./facter.json") })),
+          [nix.POS]: $pos[2],
+          facter: nix.thunk(() => ({ [nix.POS]: $pos[1], reportPath: nix.path(here, "./facter.json") })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nixos-facter"))]),
         })),
       })),

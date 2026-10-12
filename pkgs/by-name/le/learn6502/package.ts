@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 42, 11], ["substitutions", 43, 11]], [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5], ["postFetch", 38, 5]], [["src", 60, 26], ["missingHashes", 60, 30], ["hash", 61, 5]], [["updateScript", 96, 12]], [["description", 110, 5], ["homepage", 111, 5], ["mainProgram", 112, 5], ["license", 113, 5], ["platforms", 114, 5], ["maintainers", 115, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 53, 3], ["missingHashes", 57, 3], ["offlineCache", 59, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 78, 3], ["strictDeps", 84, 3], ["postConfigure", 87, 3], ["preBuild", 92, 3], ["passthru", 96, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, substitute: false, "yarn-berry_4": false, nodejs: false, meson: false, ninja: false, "blueprint-compiler": false, gtksourceview5: false, wrapGAppsHook4: false, "desktop-file-utils": false, "pkg-config": false, writableTmpDirAsHomeHook: false, gjs: false, libadwaita: false, writeShellScript: false, "nix-update": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 42, 11], ["substitutions", 43, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5], ["postFetch", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 60, 26], ["missingHashes", 60, 30], ["hash", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 96, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["mainProgram", 112, 5], ["license", 113, 5], ["platforms", 114, 5], ["maintainers", 115, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 53, 3], ["missingHashes", 57, 3], ["offlineCache", 59, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 78, 3], ["strictDeps", 84, 3], ["postConfigure", 87, 3], ["preBuild", 92, 3], ["passthru", 96, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const yarn_berry = yarn_berry_4;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "learn6502",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "JumpLink",
           repo: "Learn6502",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-b91b+H5avQDYknDaKUSPGG+Vq6sxSwuJgSiVzdqlbh8=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -56,7 +51,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       patches: nix.thunk(() => [nix.path(here, "./get-yarn-from-path.patch")]),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-BIP2L6EQXKzpiYrA8qpqQEQ/NnjFrQSyHlmFg7vg1Xk=",
@@ -79,7 +74,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       postConfigure: "pushd ..\n",
       preBuild: "popd\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-learn6502", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} learn6502 || true
 export HOME=$(mktemp -d)
 src=$(nix build --no-link --print-out-paths .#learn6502.src)
@@ -93,7 +88,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} learn6502 --version skip
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Modern 6502 Assembly Learning Environment for GNOME",
         homepage: "https://github.com/JumpLink/Learn6502",
         mainProgram: "eu.jumplink.Learn6502",

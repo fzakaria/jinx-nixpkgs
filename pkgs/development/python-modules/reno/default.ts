@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["PBR_VERSION", 30, 7]], [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["teams", 88, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["env", 30, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 43, 3], ["checkPhase", 56, 3], ["pythonImportsCheck", 77, 3], ["postInstallCheck", 79, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, dulwich: false, docutils: false, lib: false, fetchFromGitHub: false, git: false, gnupg: false, pbr: false, pyyaml: false, setuptools: false, sphinx: false, stestr: false, testtools: false, testscenarios: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PBR_VERSION", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["teams", 88, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["env", 30, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 43, 3], ["checkPhase", 56, 3], ["pythonImportsCheck", 77, 3], ["postInstallCheck", 79, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,19 +22,19 @@ export default nix.lambda((args) => (() => {
   const testtools = nix.arg($, "testtools");
   const testscenarios = nix.arg($, "testscenarios");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "reno",
       version: "4.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openstack",
           repo: "reno",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-le9JtE0XODlYhTFsrjxFXG/Weshr+FyN4M4S3BMBLUE=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       "build-system": nix.thunk(() => [setuptools]),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["reno"]),
       postInstallCheck: "$out/bin/reno -h\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Release Notes Manager",
         mainProgram: "reno",
         homepage: "https://docs.openstack.org/reno/latest",

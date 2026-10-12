@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["stripRoot", 13, 5], ["hash", 14, 5]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["maintainers", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 17, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["stripRoot", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 17, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,21 +14,21 @@ export default nix.lambda((args) => (() => {
       const pname = "nanum-gothic-coding";
       const version = "2.5";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/naver/nanumfont/releases/download/VER${version}/NanumGothicCoding-${version}.zip`),
           stripRoot: false,
           hash: "sha256-jHbbCMUxn54iQMKdAWI3r8CDxi+5LLJh8ucQzq2Ukdc=",
         }))));
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/fonts/NanumGothicCoding\ncp *.ttf $out/share/fonts/NanumGothicCoding\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Contemporary monospaced sans-serif typeface with a warm touch",
         homepage: "https://github.com/naver/nanumfont",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: [],
       }));
-      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

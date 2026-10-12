@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["NIX_CFLAGS_COMPILE", 29, 5]], [["description", 60, 5], ["mainProgram", 61, 5], ["longDescription", 62, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["env", 28, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 43, 3], ["configureScript", 48, 3], ["preInstall", 51, 3], ["enableParallelBuilding", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libtool: false, gettext: false, "pkg-config": false, vala: false, "gnome-common": false, "gobject-introspection": false, libgee: false, "json-glib": false, skkDictionaries: false, libxkbcommon: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["mainProgram", 61, 5], ["longDescription", 62, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["env", 28, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 43, 3], ["configureScript", 48, 3], ["preInstall", 51, 3], ["enableParallelBuilding", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const skkDictionaries = nix.arg($, "skkDictionaries");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libskk",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ueno",
           repo: "libskk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-Dciz5VeflaX2eYt1B90NpgLKNtCHY/CDabuCx+T/SS0=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=int-conversion"]))),
       })),
       buildInputs: nix.thunk(() => [libxkbcommon]),
@@ -48,7 +45,7 @@ ln -s ${nix.sel(skkDictionaries, "l")}/share/skk/SKK-JISYO.L $dictDir/
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library to deal with Japanese kana-to-kanji conversion method",
         mainProgram: "skk",
         longDescription: "Libskk is a library that implements basic features of SKK including:\nnew word registration, completion, numeric conversion, abbrev mode, kuten input,\nhankaku-katakana input, Lisp expression evaluation (concat only), and re-conversion.\nIt also supports various typing rules including: romaji-to-kana, AZIK, TUT-Code, and NICOLA,\nas well as various dictionary types including: file dictionary (such as SKK-JISYO.[SML]),\nuser dictionary, skkserv, and CDB format dictionary.\n",

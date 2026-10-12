@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["name", 32, 7], ["exec", 33, 7], ["icon", 34, 7], ["comment", 35, 7], ["desktopName", 36, 7], ["categories", 37, 7]], [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["desktopItems", 30, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["installPhase", 53, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, qt6: false, makeDesktopItem: false, copyDesktopItems: false, fetchFromGitHub: false, cmake: false, kmod: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 32, 7], ["exec", 33, 7], ["icon", 34, 7], ["comment", 35, 7], ["desktopName", 36, 7], ["categories", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["desktopItems", 30, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["installPhase", 53, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const kmod = nix.arg($, "kmod");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mcontrolcenter",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dmitry-s93",
           repo: "MControlCenter",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +33,7 @@ substituteInPlace src/helper/mcontrolcenter.helper.service \\
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "MControlCenter",
             exec: "mcontrolcenter",
             icon: "mcontrolcenter",
@@ -54,7 +51,7 @@ substituteInPlace src/helper/mcontrolcenter.helper.service \\
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtbase")), kmod]),
       installPhase: "runHook preInstall\ninstall -Dm755 mcontrolcenter $out/bin/mcontrolcenter\ninstall -Dm755 helper/mcontrolcenter-helper $out/libexec/mcontrolcenter-helper\ninstall -Dm644 ../resources/mcontrolcenter.svg $out/share/icons/hicolor/scalable/apps/mcontrolcenter.svg\ninstall -Dm644 ../src/helper/mcontrolcenter-helper.conf $out/share/dbus-1/system.d/mcontrolcenter-helper.conf\ninstall -Dm644 ../src/helper/mcontrolcenter.helper.service $out/share/dbus-1/system-services/mcontrolcenter.helper.service\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/dmitry-s93/MControlCenter",
         description: "Tool to change the settings of MSI laptops running Linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/server.nix", [[["url", 46, 7], ["hash", 47, 15]], [["description", 123, 7], ["homepage", 124, 7], ["license", 125, 7], ["maintainers", 127, 7], ["platforms", 132, 7]], [["pname", 42, 5], ["version", 43, 13], ["src", 45, 5], ["enableParallelBuilding", 50, 5], ["nativeBuildInputs", 52, 5], ["buildInputs", 57, 5], ["configureFlags", 75, 5], ["prePatch", 95, 5], ["preAutoreconf", 99, 5], ["postInstall", 106, 5], ["meta", 122, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, "pkg-config": false, curl: false, libevent: false, libiconv: false, libxml2: false, openssl: false, pcre2: false, zlib: false, jabberSupport: true, iksemel: false, ldapSupport: true, openldap: false, odbcSupport: true, unixodbc: false, snmpSupport: true, "net-snmp": false, sshSupport: true, libssh2: false, mysqlSupport: true, libmysqlclient: false, postgresqlSupport: true, libpq: false, ipmiSupport: true, openipmi: false }, ellipsis: false };
 const formals$2 = { args: { version: false, hash: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/server.nix", [["url", 46, 7], ["hash", 47, 15]]);
-const pos$2 = nix.positions(here + "/server.nix", [["description", 123, 7], ["homepage", 124, 7], ["license", 125, 7], ["maintainers", 127, 7], ["platforms", 132, 7]]);
-const pos$3 = nix.positions(here + "/server.nix", [["pname", 42, 5], ["version", 43, 13], ["src", 45, 5], ["enableParallelBuilding", 50, 5], ["nativeBuildInputs", 52, 5], ["buildInputs", 57, 5], ["configureFlags", 75, 5], ["prePatch", 95, 5], ["preAutoreconf", 99, 5], ["postInstall", 106, 5], ["meta", 122, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,11 +45,11 @@ export default nix.lambda((args) => (() => {
       const version = nix.arg($_1, "version");
       const hash = nix.arg($_1, "hash");
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "zabbix-server",
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://cdn.zabbix.com/zabbix/sources/stable/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/zabbix-${version}.tar.gz`),
               hash: hash,
             })))),
@@ -73,7 +71,7 @@ export default nix.lambda((args) => (() => {
           preAutoreconf: "for i in $(find . -type f -name \"*.m4\"); do\n  substituteInPlace $i \\\n    --replace 'test -x \"$PKG_CONFIG\"' 'type -P \"$PKG_CONFIG\" >/dev/null'\ndone\n",
           postInstall: nix.thunk(() => nix.add(nix.add("mkdir -p $out/share/zabbix/database/\ncp -r include $out/\n", nix.app(optionalString, mysqlSupport, "mkdir -p $out/share/zabbix/database/mysql\ncp -prvd database/mysql/*.sql $out/share/zabbix/database/mysql/\n")), nix.app(optionalString, postgresqlSupport, "mkdir -p $out/share/zabbix/database/postgresql\ncp -prvd database/postgresql/*.sql $out/share/zabbix/database/postgresql/\n\nmkdir -p $out/share/zabbix/database/postgresql/timescaledb\ncp -prvd database/postgresql/timescaledb/schema.sql $out/share/zabbix/database/postgresql/timescaledb/schema.sql\n"))),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             description: "Enterprise-class open source distributed monitoring solution",
             homepage: "https://www.zabbix.com/",
             license: nix.thunk(() => (nix.asBool(nix.ge(nix.app(nix.sel(lib, "versions", "major"), version), "7")) ? nix.sel(lib, "licenses", "agpl3Only") : nix.sel(lib, "licenses", "gpl2Plus"))),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 7], ["repo", 30, 7], ["tag", 31, 7], ["hash", 32, 7]], [["HELIX_DISABLE_AUTO_GRAMMAR_BUILD", 55, 7], ["HELIX_DEFAULT_RUNTIME", 56, 7]], [["description", 79, 7], ["homepage", 80, 7], ["changelog", 81, 7], ["license", 82, 7], ["mainProgram", 83, 7], ["maintainers", 84, 7]], [["pname", 20, 5], ["version", 21, 5], ["outputs", 23, 5], ["src", 28, 5], ["cargoHash", 35, 5], ["patches", 37, 5], ["postPatch", 42, 5], ["nativeBuildInputs", 48, 5], ["env", 53, 5], ["postBuild", 59, 5], ["postInstall", 63, 5], ["nativeInstallCheckInputs", 72, 5], ["versionCheckProgram", 75, 5], ["doInstallCheck", 76, 5], ["meta", 78, 5]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, runCommand: false, installShellFiles: false, mdbook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 7], ["repo", 30, 7], ["tag", 31, 7], ["hash", 32, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["HELIX_DISABLE_AUTO_GRAMMAR_BUILD", 55, 7], ["HELIX_DEFAULT_RUNTIME", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 79, 7], ["homepage", 80, 7], ["changelog", 81, 7], ["license", 82, 7], ["mainProgram", 83, 7], ["maintainers", 84, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 5], ["version", 21, 5], ["outputs", 23, 5], ["src", 28, 5], ["cargoHash", 35, 5], ["patches", 37, 5], ["postPatch", 42, 5], ["nativeBuildInputs", 48, 5], ["env", 53, 5], ["postBuild", 59, 5], ["postInstall", 63, 5], ["nativeInstallCheckInputs", 72, 5], ["versionCheckProgram", 75, 5], ["doInstallCheck", 76, 5], ["meta", 78, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
 rm -rf $out/grammars $out/queries
 `)));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "helix-unwrapped",
         version: "25.07.1",
         outputs: nix.thunk(() => ["out", "doc"]),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "helix-editor",
             repo: "helix",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +35,7 @@ rm -rf $out/grammars $out/queries
         postPatch: "# mdbook 0.5 uses asset hashing for CSS/JS files\n# Remove custom theme to use default mdbook theme with correct asset references\nrm -f book/theme/index.hbs\n",
         nativeBuildInputs: nix.thunk(() => [installShellFiles, mdbook]),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           HELIX_DISABLE_AUTO_GRAMMAR_BUILD: "1",
           HELIX_DEFAULT_RUNTIME: defaultRuntimeDir,
         })),
@@ -48,7 +45,7 @@ rm -rf $out/grammars $out/queries
         versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/hx`),
         doInstallCheck: true,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: "Post-modern modal text editor",
           homepage: "https://helix-editor.com",
           changelog: nix.thunk(() => nix.str`https://github.com/helix-editor/helix/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

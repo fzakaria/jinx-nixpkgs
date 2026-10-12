@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 48, 11], ["repo", 49, 11], ["tag", 50, 11], ["hash", 51, 11]], [["name", 56, 13], ["url", 57, 13], ["hash", 58, 13]], [["version", 46, 9], ["src", 47, 9], ["patches", 53, 9]], [["url", 71, 5], ["hash", 72, 5]], [["updateScript", 138, 12]], [["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["platforms", 148, 5]], [["pname", 67, 3], ["version", 68, 3], ["src", 70, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 80, 3], ["runtimeDependencies", 96, 3], ["stripExclude", 103, 3], ["propagatedBuildInputs", 105, 3], ["strictDeps", 109, 3], ["installPhase", 111, 3], ["passthru", 138, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchurl: false, fetchpatch: false, autoPatchelfHook: false, makeWrapper: false, "nix-update-script": false, glibcLocales: false, python3Packages: false, dotnetCorePackages: false, "gtk-sharp-3_0": false, gtk3: false, "gtk3-x11": false, dconf: false, cairo: false, "gdk-pixbuf": false, glib: false, libpng: false, libx11: false, libxcb: false, libxrandr: false, webkitgtk_4_1: false, "libayatana-appindicator": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 48, 11], ["repo", 49, 11], ["tag", 50, 11], ["hash", 51, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 56, 13], ["url", 57, 13], ["hash", 58, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 46, 9], ["src", 47, 9], ["patches", 53, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 71, 5], ["hash", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 138, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["platforms", 148, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 67, 3], ["version", 68, 3], ["src", 70, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 80, 3], ["runtimeDependencies", 96, 3], ["stripExclude", 103, 3], ["propagatedBuildInputs", 105, 3], ["strictDeps", 109, 3], ["installPhase", 111, 3], ["passthru", 138, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,7 +44,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "robotframework"), "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "6.1";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 owner: "robotframework",
                 repo: "robotframework",
                 tag: nix.thunk(() => nix.str`v${version}`),
@@ -58,23 +52,23 @@ export default nix.lambda((args) => (() => {
               }))));
             const patches = nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "patches"), [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   name: "python3.13-support.patch",
                   url: "https://github.com/robotframework/robotframework/commit/921e352556dc8538b72de1e693e2a244d420a26d.patch",
                   hash: "sha256-aSaror26x4kVkLVetPEbrJG4H1zstHsNWqmwqOys3zo=",
                 })))),
               nix.path(here, "./robotframework-python3.14-type-name.patch"),
             ]));
-            return { [nix.POS]: pos$3, version, src, patches };
+            return { [nix.POS]: $pos[2], version, src, patches };
           })())),
       ]));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "renode",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://github.com/renode/renode/releases/download/v${nix.sel(finalAttrs, "version")}/renode-${nix.sel(finalAttrs, "version")}.linux.tar.gz`),
           hash: "sha256-1kz/3kjnIGS6nof/NOGGy3qo2PKW3sm7vNaot2rn/XY=",
         })))),
@@ -120,11 +114,11 @@ substituteInPlace "$out/libexec/renode/renode-test" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Virtual development framework for complex embedded systems",
         homepage: "https://renode.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

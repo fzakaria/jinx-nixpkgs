@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["homepage", 42, 5], ["changelog", 43, 5], ["description", 44, 5], ["longDescription", 45, 5], ["maintainers", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["broken", 54, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 20, 3], ["buildInputs", 26, 3], ["strictDeps", 33, 3], ["configureFlags", 35, 3], ["doCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, libopcodes: false, libiberty: false, stdenv: false, libbfd: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["changelog", 43, 5], ["description", 44, 5], ["longDescription", 45, 5], ["maintainers", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["broken", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 20, 3], ["buildInputs", 26, 3], ["strictDeps", 33, 3], ["configureFlags", 35, 3], ["doCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libbfd = nix.arg($, "libbfd");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lightning",
       version: "2.2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/lightning/lightning-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-wEXHozoAr/v+sRBm+lAsA5kuR0piupWXeq0G28FMaCk=",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.gnu.org/software/lightning/",
         changelog: nix.thunk(() => nix.str`https://git.savannah.gnu.org/cgit/lightning.git/tree/ChangeLog?h=lightning-${nix.sel(finalAttrs, "version")}`),
         description: "Run-time code generation library",

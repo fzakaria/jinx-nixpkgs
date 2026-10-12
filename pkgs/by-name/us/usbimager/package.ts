@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 68, 5], ["broken", 70, 5], ["mainProgram", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["postPatch", 41, 3], ["postInstall", 48, 3], ["dontConfigure", 53, 3], ["makeFlags", 55, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "pkg-config": false, wrapGAppsHook3: false, withLibui: true, gtk3: false, withUdisks: true, udisks: false, glib: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 68, 5], ["broken", 70, 5], ["mainProgram", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["postPatch", 41, 3], ["postInstall", 48, 3], ["dontConfigure", 53, 3], ["makeFlags", 55, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "usbimager",
       version: "1.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bztsrc",
           repo: "usbimager",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       makeFlags: nix.thunk(() => nix.concat(["PREFIX=$(out)"], nix.concat(nix.app(nix.sel(lib, "optional"), withLibui, "USE_LIBUI=yes"), nix.app(nix.sel(lib, "optional"), withUdisks, "USE_UDISKS2=yes")))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Very minimal GUI app that can write compressed disk images to USB drives",
         homepage: "https://gitlab.com/bztsrc/usbimager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

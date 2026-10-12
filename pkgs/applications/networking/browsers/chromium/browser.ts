@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/browser.nix", [[["sandboxExecutableName", 84, 24]], [["description", 89, 5], ["longDescription", 92, 5], ["homepage", 98, 5], ["maintainers", 105, 5], ["license", 117, 5], ["platforms", 118, 5], ["mainProgram", 119, 5], ["hydraPlatforms", 120, 5], ["timeout", 124, 5]], [["name", 10, 3], ["packageName", 11, 3], ["buildTargets", 12, 3], ["outputs", 17, 3], ["sandboxExecutableName", 22, 3], ["installPhase", 24, 3], ["passthru", 84, 3], ["requiredSystemFeatures", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, mkChromiumDerivation: false, chromiumVersionAtLeast: false, enableWideVine: false, ungoogled: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/browser.nix", [["sandboxExecutableName", 84, 24]]);
-const pos$2 = nix.positions(here + "/browser.nix", [["description", 89, 5], ["longDescription", 92, 5], ["homepage", 98, 5], ["maintainers", 105, 5], ["license", 117, 5], ["platforms", 118, 5], ["mainProgram", 119, 5], ["hydraPlatforms", 120, 5], ["timeout", 124, 5]]);
-const pos$3 = nix.positions(here + "/browser.nix", [["name", 10, 3], ["packageName", 11, 3], ["buildTargets", 12, 3], ["outputs", 17, 3], ["sandboxExecutableName", 22, 3], ["installPhase", 24, 3], ["passthru", 84, 3], ["requiredSystemFeatures", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -68,10 +66,10 @@ substituteInPlace $out/share/applications/chromium-browser.desktop \\
   --replace-fail "@@extra_desktop_entries" ""
 
 `, "if grep -F '@@' $out/share/applications/chromium-browser.desktop ; then\n  echo \"error: chromium-browser.desktop contains unsubstituted placeholders\" >&2\n  exit 1\nfi\n"));
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$1, sandboxExecutableName: sandboxExecutableName }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[0], sandboxExecutableName: sandboxExecutableName }));
       const requiredSystemFeatures = nix.thunk(() => ["big-parallel"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.add("Open source web browser from Google", nix.app(nix.sel(lib, "optionalString"), ungoogled, ", with dependencies on Google web services removed"))),
         longDescription: "Chromium is an open source web browser from Google that aims to build a\nsafer, faster, and more stable way for all Internet users to experience\nthe web. It has a minimalist user interface and provides the vast majority\nof source code for Google Chrome (which has some additional features).\n",
         homepage: nix.thunk(() => (nix.asBool(ungoogled) ? "https://github.com/ungoogled-software/ungoogled-chromium" : "https://www.chromium.org/")),
@@ -92,7 +90,7 @@ substituteInPlace $out/share/applications/chromium-browser.desktop \\
         timeout: 172800n,
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name,
         packageName,
         buildTargets,

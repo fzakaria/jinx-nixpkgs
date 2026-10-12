@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update-shell.nix", [[["NVIM_TREESITTER", 21, 7]], [["packages", 16, 3], ["env", 21, 3]]]);
 const formals$1 = { args: { pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/update-shell.nix", [["NVIM_TREESITTER", 21, 7]]);
-const pos$2 = nix.positions(here + "/update-shell.nix", [["packages", 16, 3], ["env", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +14,14 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w_1, "json"))];
     })()));
   return nix.app(nix.lookup(w, "mkShell"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       packages: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "nurl")),
         nix.thunk(() => nix.lookup(w, "python3")),
         luaWithPackages,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NVIM_TREESITTER: nix.thunk(() => nix.sel(nix.lookup(w, "vimPlugins"), "nvim-treesitter")),
       })),
     })));

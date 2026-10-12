@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 29, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
       const pname = "kacst";
       const version = "2.01";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/f/fonts-kacst/fonts-kacst_${version}+mry.orig.tar.bz2`),
           hash: "sha256-byiZzpYiMU6kJs+NSISfHPFzAnJtc8toNIbV/fKiMzg=",
         }))));
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/fonts\ncp -R kacst $out/share/fonts\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Latin-Arabic TrueType fonts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         maintainers: nix.thunk(() => (() => {
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

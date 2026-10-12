@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["mainProgram", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["ldflags", 30, 3], ["postInstall", 38, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { buildGo127Module: false, buildPackages: false, fetchFromGitHub: false, installShellFiles: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["mainProgram", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["ldflags", 30, 3], ["postInstall", 38, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "go-arch-lint",
       version: "1.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fe3dback",
           repo: "go-arch-lint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GoLang architecture linter (checker) tool. Will check all project import path and compare with arch rules defined in yml file",
         homepage: "https://github.com/fe3dback/go-arch-lint",
         changelog: nix.thunk(() => nix.str`https://github.com/fe3dback/go-arch-lint/releases/tag/v${nix.sel(finalAttrs, "version")}`),

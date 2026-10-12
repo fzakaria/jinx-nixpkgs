@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/curry-frontend.nix", [[["pname", 24, 3], ["version", 25, 3], ["src", 26, 3], ["isLibrary", 27, 3], ["isExecutable", 28, 3], ["enableSeparateDataOutput", 29, 3], ["libraryHaskellDepends", 30, 3], ["executableHaskellDepends", 49, 3], ["testHaskellDepends", 50, 3], ["homepage", 67, 3], ["description", 68, 3], ["license", 69, 3], ["mainProgram", 70, 3]]]);
 const formals$1 = { args: { mkDerivation: false, base: false, binary: false, bytestring: false, Cabal: false, containers: false, directory: false, extra: false, "file-embed": false, filepath: false, lib: false, mtl: false, "network-uri": false, parsec: false, pretty: false, process: false, "set-extra": false, "template-haskell": false, time: false, transformers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/curry-frontend.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 26, 3], ["isLibrary", 27, 3], ["isExecutable", 28, 3], ["enableSeparateDataOutput", 29, 3], ["libraryHaskellDepends", 30, 3], ["executableHaskellDepends", 49, 3], ["testHaskellDepends", 50, 3], ["homepage", 67, 3], ["description", 68, 3], ["license", 69, 3], ["mainProgram", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const time = nix.arg($, "time");
   const transformers = nix.arg($, "transformers");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "curry-frontend",
       version: "2.1.0",
       src: nix.path(here, "./."),

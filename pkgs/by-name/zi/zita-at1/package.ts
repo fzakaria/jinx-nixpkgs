@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["buildInputs", 25, 3], ["preConfigure", 37, 3], ["makeFlags", 41, 3], ["enableParallelBuilding", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cairo: false, fftwSinglePrec: false, libx11: false, libxft: false, libclthreads: false, libclxclient: false, libjack2: false, xorgproto: false, "zita-resampler": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["buildInputs", 25, 3], ["preConfigure", 37, 3], ["makeFlags", 41, 3], ["enableParallelBuilding", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const zita_resampler = nix.arg($, "zita-resampler");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zita-at1",
       version: "0.8.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://kokkinizita.linuxaudio.org/linuxaudio/downloads/zita-at1-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-NSYTJmgOmL/CgGI/rBGQuqmccZEzvwYgchb7e4XqmmM=",
         })))),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Autotuner Jack application to correct the pitch of vocal tracks",
         homepage: "https://kokkinizita.linuxaudio.org/linuxaudio/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

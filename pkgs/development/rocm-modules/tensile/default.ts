@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["sparseCheckout", 28, 5], ["hash", 32, 5]], [["hash", 66, 7], ["url", 67, 7], ["relative", 68, 7]], [["dontCheckPythonMetadata", 81, 5], ["ROCM_PATH", 82, 5]], [["finalAttrs", 87, 54]], [["updateScript", 87, 12]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["teams", 93, 5], ["platforms", 94, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["sourceRoot", 34, 3], ["postPatch", 38, 3], ["buildInputs", 50, 3], ["propagatedBuildInputs", 52, 3], ["patches", 61, 3], ["doCheck", 72, 3], ["nativeCheckInputs", 74, 3], ["env", 80, 3], ["pythonImportsCheck", 85, 3], ["passthru", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch: false, rocmUpdateScript: false, buildPythonPackage: false, pytestCheckHook: false, setuptools: false, distro: false, pyyaml: false, msgpack: false, pandas: false, joblib: false, filelock: false, clr: false, rich: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["sparseCheckout", 28, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 66, 7], ["url", 67, 7], ["relative", 68, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["dontCheckPythonMetadata", 81, 5], ["ROCM_PATH", 82, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["finalAttrs", 87, 54]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 87, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["teams", 93, 5], ["platforms", 94, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["sourceRoot", 34, 3], ["postPatch", 38, 3], ["buildInputs", 50, 3], ["propagatedBuildInputs", 52, 3], ["patches", 61, 3], ["doCheck", 72, 3], ["nativeCheckInputs", 74, 3], ["env", 80, 3], ["pythonImportsCheck", 85, 3], ["passthru", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const clr = nix.arg($, "clr");
   const rich = nix.arg($, "rich");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "tensile",
       version: "7.2.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./tensile-solutionstructs-perf-fix.diff"),
         nix.path(here, "./tensile-create-library-dont-copy-twice.diff"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             hash: "sha256-ZHXNYSeLkhhNDaIfdqQm68Pxmh1shUL7mAVmh8/I6Xk=",
             url: "https://github.com/GZGavinZhao/rocm-libraries/commit/1f7135dfc0cdb175c8f0e5eb71b2d24699942873.patch",
             relative: "shared/tensile",
@@ -58,17 +52,17 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, filelock, clr]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         dontCheckPythonMetadata: true,
         ROCM_PATH: nix.thunk(() => nix.str`${clr}`),
       })),
       pythonImportsCheck: nix.thunk(() => ["Tensile"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$4, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[3], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "GEMMs and tensor contractions",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/shared/tensile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

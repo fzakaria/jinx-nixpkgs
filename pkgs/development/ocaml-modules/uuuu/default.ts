@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["mainProgram", 25, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["doCheck", 16, 3], ["duneVersion", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["mainProgram", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["doCheck", 16, 3], ["duneVersion", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,21 +14,21 @@ export default nix.lambda((args) => (() => {
       const pname = "uuuu";
       const version = "0.4.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/uuuu/releases/download/v${version}/uuuu-${version}.tbz`),
           hash: "sha256-5+GNk9s36ZocrAjuvlDIiQTq6WF9q0M8j3h/TakrGSg=",
         }))));
       const doCheck = true;
       const duneVersion = "3";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library to normalize an ISO-8859 input to Unicode code-point",
         homepage: "https://github.com/mirage/uuuu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
         mainProgram: "uuuu.generate",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, doCheck, duneVersion, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, doCheck, duneVersion, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 56, 13], ["pname", 57, 5], ["hash", 58, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["build-system", 23, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 36, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 51, 3], ["src", 55, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, sphinxHook: false, setuptools: false, "setuptools-scm": false, click: false, docutils: false, sphinx: false, pytestCheckHook: false, defusedxml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 56, 13], ["pname", 57, 5], ["hash", 58, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["build-system", 23, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 36, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 51, 3], ["src", 55, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +29,13 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, defusedxml]);
       const pythonImportsCheck = nix.thunk(() => ["sphinx_click"]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "sphinx_click",
           hash: "sha256-/Hi0FUpOUVlGLjbeVbhkN0fabNqGs7Uqi7YiieYDd2w=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sphinx extension that automatically documents click applications",
         homepage: "https://github.com/click-contrib/sphinx-click",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

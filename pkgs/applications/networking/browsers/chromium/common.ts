@@ -2,73 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["url", 133, 7], ["hash", 134, 15], ["revert", 134, 20], ["excludes", 134, 27]], [["rev", 185, 52], ["hash", 185, 56]], [["bintools", 197, 32]], [["name", 202, 5], ["paths", 203, 5]], [["rev", 212, 9], ["hash", 213, 9], ["cargoHash", 214, 9]], [["rev", 217, 9], ["hash", 218, 9], ["cargoHash", 219, 9]], [["154", 211, 7], ["155", 216, 7]], [["url", 229, 7], ["rev", 231, 25], ["hash", 231, 29]], [["RUSTC_BOOTSTRAP", 249, 9]], [["pname", 225, 5], ["version", 226, 5], ["src", 228, 5], ["cargoHash", 234, 23], ["buildInputs", 236, 5], ["cargoBuildFlags", 240, 5], ["cargoTestFlags", 246, 5], ["env", 249, 5]], [["pname", 263, 9], ["version", 264, 9], ["src", 265, 9], ["sourceRoot", 266, 9], ["nativeBuildInputs", 268, 7], ["hash", 269, 7]], [["mainProgram", 281, 10]], [["pname", 253, 5], ["version", 254, 5], ["src", 256, 5], ["sourceRoot", 257, 5], ["cargoDeps", 261, 5], ["nativeBuildInputs", 272, 5], ["buildInputs", 277, 5], ["meta", 281, 5]], [["version", 289, 9], ["hash", 290, 9]], [["version", 293, 9], ["hash", 294, 9]], [["154", 288, 7], ["155", 292, 7]], [["owner", 304, 7], ["repo", 305, 7], ["tag", 306, 7], ["hash", 307, 26]], [["pname", 300, 5], ["version", 301, 24], ["src", 303, 5], ["vendorHash", 310, 5]], [["x86_64", 321, 11], ["i686", 322, 11], ["arm", 323, 11], ["aarch64", 324, 11]], [["cpu", 314, 5], ["os", 328, 5]], [["unpack", 347, 18]], [["name", 345, 9], ["downloadToTemp", 346, 9], ["passthru", 347, 9], ["nativeBuildInputs", 348, 9], ["postFetch", 349, 9]], [["url", 391, 5], ["extension", 392, 5], ["stripRoot", 393, 5], ["hash", 394, 5]], [["src", 414, 9], ["sourceRoot", 415, 9], ["hash", 416, 9]], [["nativeBuildInputs", 419, 11]], [["withCustomModes", 459, 41]], [["withCustomModes", 516, 27]], [["name", 635, 9], ["url", 637, 9], ["decode", 638, 9], ["includes", 639, 9], ["hash", 640, 9]], [["name", 647, 9], ["url", 649, 9], ["hash", 650, 9]], [["name", 658, 9], ["url", 660, 9], ["excludes", 661, 9], ["hash", 662, 9]], [["name", 670, 9], ["url", 672, 9], ["decode", 673, 9], ["revert", 674, 9], ["hash", 675, 9]], [["name", 681, 9], ["url", 683, 9], ["decode", 684, 9], ["revert", 685, 9], ["hash", 686, 9]], [["name", 702, 9], ["url", 704, 9], ["decode", 705, 9], ["revert", 706, 9], ["hash", 707, 9]], [["name", 713, 9], ["url", 715, 9], ["decode", 716, 9], ["revert", 717, 9], ["hash", 718, 9]], [["name", 724, 9], ["url", 725, 9], ["hash", 726, 9]], [["name", 732, 9], ["url", 734, 9], ["decode", 735, 9], ["revert", 736, 9], ["hash", 737, 9]], [["name", 767, 9], ["url", 769, 9], ["decode", 770, 9], ["revert", 771, 9], ["hash", 772, 9]], [["name", 779, 9], ["url", 781, 9], ["decode", 782, 9], ["hash", 783, 9]], [["name", 791, 9], ["url", 793, 9], ["decode", 794, 9], ["hash", 795, 9]], [["name", 819, 9], ["url", 821, 9], ["decode", 822, 9], ["revert", 823, 9], ["includes", 824, 9], ["hash", 825, 9]], [["name", 844, 9], ["url", 846, 9], ["decode", 847, 9], ["revert", 848, 9], ["includes", 849, 9], ["hash", 850, 9]], [["name", 855, 9], ["url", 857, 9], ["decode", 858, 9], ["revert", 859, 9], ["hash", 860, 9]], [["name", 865, 9], ["url", 867, 9], ["decode", 868, 9], ["stripLen", 869, 9], ["extraPrefix", 870, 9], ["revert", 871, 9], ["hash", 872, 9]], [["name", 1063, 7], ["paths", 1064, 7]], [["is_official_build", 1078, 9], ["disable_fieldtrial_testing_config", 1079, 9], ["host_cpu", 1082, 9], ["host_os", 1083, 9], ["target_cpu", 1084, 9], ["v8_target_cpu", 1085, 9], ["target_os", 1086, 9], ["custom_toolchain", 1094, 9], ["host_toolchain", 1095, 9]], [["host_toolchain", 1100, 9], ["v8_snapshot_toolchain", 1101, 9]], [["host_pkg_config", 1104, 9], ["pkg_config", 1105, 9], ["use_sysroot", 1108, 9], ["treat_warnings_as_errors", 1110, 9], ["clang_use_chrome_plugins", 1113, 9], ["symbol_level", 1116, 9], ["blink_symbol_level", 1117, 9], ["google_api_key", 1122, 9], ["use_gio", 1125, 9], ["use_cups", 1126, 9]], [["enable_widevine", 1131, 9]], [["rtc_use_pipewire", 1135, 9], ["chrome_pgo_phase", 1137, 9], ["clang_base_path", 1138, 9], ["use_clang_modules", 1141, 9]], [["v8_use_metagen_instance_types", 1145, 9]], [["use_unified_system_module", 1151, 9]], [["use_qt5", 1154, 9], ["use_qt6", 1155, 9], ["clang_warning_suppression_file", 1158, 9], ["use_system_libffi", 1162, 9]], [["rust_sysroot_absolute", 1167, 9]], [["rust_bindgen_root", 1170, 9], ["enable_rust", 1171, 9], ["rustc_version", 1174, 9]], [["arm_control_flow_integrity", 1178, 9]], [["proprietary_codecs", 1182, 9], ["enable_hangout_services_extension", 1183, 9], ["ffmpeg_branding", 1184, 9]], [["use_vaapi", 1188, 9], ["use_v4l2_codec", 1189, 9]], [["use_pulseaudio", 1192, 9], ["link_pulseaudio", 1193, 9]], [["use_typescript_go", 1196, 9], ["devtools_use_typescript_go", 1197, 9]], [["RUSTC_BOOTSTRAP", 1245, 7], ["NIX_CFLAGS_COMPILE", 1250, 7], ["BUILD_CC", 1256, 7], ["BUILD_CXX", 1257, 7], ["BUILD_AR", 1258, 7], ["BUILD_NM", 1259, 7], ["BUILD_READELF", 1260, 7]], [["NIX_LD_USE_RESPONSE_FILE", 1266, 7]], [["updateScript", 1310, 7]], [["chromiumDeps", 1313, 15], ["npmDeps", 1313, 28]], [["pname", 398, 5], ["version", 399, 29], ["packageName", 400, 13], ["buildType", 400, 25], ["buildPath", 400, 35], ["unpackPhase", 402, 5], ["npmRoot", 411, 5], ["npmDeps", 412, 5], ["nativeBuildInputs", 422, 5], ["depsBuildBuild", 445, 5], ["buildInputs", 515, 5], ["patches", 573, 5], ["postPatch", 876, 5], ["hardeningDisable", 1060, 5], ["llvmCcAndBintools", 1062, 5], ["gnFlags", 1070, 5], ["preConfigure", 1203, 5], ["configurePhase", 1226, 5], ["env", 1240, 5], ["buildPhase", 1269, 5], ["postFixup", 1291, 5], ["passthru", 1309, 5]], [["passthru", 1327, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchpatch: false, fetchurl: false, zstd: false, fetchFromGitHub: false, fetchFromGitiles: false, fetchNpmDeps: false, fetchzip: false, rustPlatform: false, buildGoModule: false, buildPackages: false, pkgsBuildBuild: false, "upstream-info": false, chromiumVersionAtLeast: false, versionRange: false, ninja: false, bashInteractive: false, go: false, cargo: false, "pkg-config": false, python3: false, perl: false, nodejs: false, npmHooks: false, which: false, libuuid: false, overrideCC: false, pkgsBuildHost: false, gnChromium: false, symlinkJoin: false, openssl: false, libpng: false, bzip2: false, flac: false, speex: false, libopus: false, libevent: false, expat: false, libjpeg: false, snappy: false, libcap: false, minizip: false, libwebp: false, libusb1: false, re2: false, ffmpeg: false, libxslt: false, libxml2: false, nasm: false, nspr: false, nss: false, "util-linux": false, "alsa-lib": false, bison: false, gperf: false, libkrb5: false, glib: false, gtk3: false, "dbus-glib": false, libxscrnsaver: false, libxcursor: false, libxtst: false, libxshmfence: false, libGLU: false, libGL: false, "dri-pkgconfig-stub": false, libgbm: false, pciutils: false, protobuf: false, "speechd-minimal": false, libxdamage: false, "at-spi2-core": false, pipewire: false, libva: false, libdrm: false, wayland: false, libxkbcommon: false, curl: false, libffi: false, libepoxy: false, libevdev: false, glibc: false, "vulkan-loader": false, cupsSupport: true, cups: true, proprietaryCodecs: true, libpulseaudio: true, ungoogled: true, "ungoogled-chromium": false, libgcrypt: true, systemdSupport: true, systemdLibs: false }, ellipsis: false };
 const formals$2 = { args: { commit: false, hash: false, revert: true, excludes: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["url", 133, 7], ["hash", 134, 15], ["revert", 134, 20], ["excludes", 134, 27]]);
-const pos$2 = nix.positions(here + "/common.nix", [["rev", 185, 52], ["hash", 185, 56]]);
-const pos$3 = nix.positions(here + "/common.nix", [["bintools", 197, 32]]);
-const pos$4 = nix.positions(here + "/common.nix", [["name", 202, 5], ["paths", 203, 5]]);
-const pos$5 = nix.positions(here + "/common.nix", [["rev", 212, 9], ["hash", 213, 9], ["cargoHash", 214, 9]]);
-const pos$6 = nix.positions(here + "/common.nix", [["rev", 217, 9], ["hash", 218, 9], ["cargoHash", 219, 9]]);
-const pos$7 = nix.positions(here + "/common.nix", [["154", 211, 7], ["155", 216, 7]]);
-const pos$8 = nix.positions(here + "/common.nix", [["url", 229, 7], ["rev", 231, 25], ["hash", 231, 29]]);
-const pos$9 = nix.positions(here + "/common.nix", [["RUSTC_BOOTSTRAP", 249, 9]]);
-const pos$10 = nix.positions(here + "/common.nix", [["pname", 225, 5], ["version", 226, 5], ["src", 228, 5], ["cargoHash", 234, 23], ["buildInputs", 236, 5], ["cargoBuildFlags", 240, 5], ["cargoTestFlags", 246, 5], ["env", 249, 5]]);
-const pos$11 = nix.positions(here + "/common.nix", [["pname", 263, 9], ["version", 264, 9], ["src", 265, 9], ["sourceRoot", 266, 9], ["nativeBuildInputs", 268, 7], ["hash", 269, 7]]);
-const pos$12 = nix.positions(here + "/common.nix", [["mainProgram", 281, 10]]);
-const pos$13 = nix.positions(here + "/common.nix", [["pname", 253, 5], ["version", 254, 5], ["src", 256, 5], ["sourceRoot", 257, 5], ["cargoDeps", 261, 5], ["nativeBuildInputs", 272, 5], ["buildInputs", 277, 5], ["meta", 281, 5]]);
-const pos$14 = nix.positions(here + "/common.nix", [["version", 289, 9], ["hash", 290, 9]]);
-const pos$15 = nix.positions(here + "/common.nix", [["version", 293, 9], ["hash", 294, 9]]);
-const pos$16 = nix.positions(here + "/common.nix", [["154", 288, 7], ["155", 292, 7]]);
-const pos$17 = nix.positions(here + "/common.nix", [["owner", 304, 7], ["repo", 305, 7], ["tag", 306, 7], ["hash", 307, 26]]);
-const pos$18 = nix.positions(here + "/common.nix", [["pname", 300, 5], ["version", 301, 24], ["src", 303, 5], ["vendorHash", 310, 5]]);
-const pos$19 = nix.positions(here + "/common.nix", [["x86_64", 321, 11], ["i686", 322, 11], ["arm", 323, 11], ["aarch64", 324, 11]]);
-const pos$20 = nix.positions(here + "/common.nix", [["cpu", 314, 5], ["os", 328, 5]]);
-const pos$21 = nix.positions(here + "/common.nix", [["unpack", 347, 18]]);
-const pos$22 = nix.positions(here + "/common.nix", [["name", 345, 9], ["downloadToTemp", 346, 9], ["passthru", 347, 9], ["nativeBuildInputs", 348, 9], ["postFetch", 349, 9]]);
-const pos$23 = nix.positions(here + "/common.nix", [["url", 391, 5], ["extension", 392, 5], ["stripRoot", 393, 5], ["hash", 394, 5]]);
-const pos$24 = nix.positions(here + "/common.nix", [["src", 414, 9], ["sourceRoot", 415, 9], ["hash", 416, 9]]);
-const pos$25 = nix.positions(here + "/common.nix", [["nativeBuildInputs", 419, 11]]);
-const pos$26 = nix.positions(here + "/common.nix", [["withCustomModes", 459, 41]]);
-const pos$27 = nix.positions(here + "/common.nix", [["withCustomModes", 516, 27]]);
-const pos$28 = nix.positions(here + "/common.nix", [["name", 635, 9], ["url", 637, 9], ["decode", 638, 9], ["includes", 639, 9], ["hash", 640, 9]]);
-const pos$29 = nix.positions(here + "/common.nix", [["name", 647, 9], ["url", 649, 9], ["hash", 650, 9]]);
-const pos$30 = nix.positions(here + "/common.nix", [["name", 658, 9], ["url", 660, 9], ["excludes", 661, 9], ["hash", 662, 9]]);
-const pos$31 = nix.positions(here + "/common.nix", [["name", 670, 9], ["url", 672, 9], ["decode", 673, 9], ["revert", 674, 9], ["hash", 675, 9]]);
-const pos$32 = nix.positions(here + "/common.nix", [["name", 681, 9], ["url", 683, 9], ["decode", 684, 9], ["revert", 685, 9], ["hash", 686, 9]]);
-const pos$33 = nix.positions(here + "/common.nix", [["name", 702, 9], ["url", 704, 9], ["decode", 705, 9], ["revert", 706, 9], ["hash", 707, 9]]);
-const pos$34 = nix.positions(here + "/common.nix", [["name", 713, 9], ["url", 715, 9], ["decode", 716, 9], ["revert", 717, 9], ["hash", 718, 9]]);
-const pos$35 = nix.positions(here + "/common.nix", [["name", 724, 9], ["url", 725, 9], ["hash", 726, 9]]);
-const pos$36 = nix.positions(here + "/common.nix", [["name", 732, 9], ["url", 734, 9], ["decode", 735, 9], ["revert", 736, 9], ["hash", 737, 9]]);
-const pos$37 = nix.positions(here + "/common.nix", [["name", 767, 9], ["url", 769, 9], ["decode", 770, 9], ["revert", 771, 9], ["hash", 772, 9]]);
-const pos$38 = nix.positions(here + "/common.nix", [["name", 779, 9], ["url", 781, 9], ["decode", 782, 9], ["hash", 783, 9]]);
-const pos$39 = nix.positions(here + "/common.nix", [["name", 791, 9], ["url", 793, 9], ["decode", 794, 9], ["hash", 795, 9]]);
-const pos$40 = nix.positions(here + "/common.nix", [["name", 819, 9], ["url", 821, 9], ["decode", 822, 9], ["revert", 823, 9], ["includes", 824, 9], ["hash", 825, 9]]);
-const pos$41 = nix.positions(here + "/common.nix", [["name", 844, 9], ["url", 846, 9], ["decode", 847, 9], ["revert", 848, 9], ["includes", 849, 9], ["hash", 850, 9]]);
-const pos$42 = nix.positions(here + "/common.nix", [["name", 855, 9], ["url", 857, 9], ["decode", 858, 9], ["revert", 859, 9], ["hash", 860, 9]]);
-const pos$43 = nix.positions(here + "/common.nix", [["name", 865, 9], ["url", 867, 9], ["decode", 868, 9], ["stripLen", 869, 9], ["extraPrefix", 870, 9], ["revert", 871, 9], ["hash", 872, 9]]);
-const pos$44 = nix.positions(here + "/common.nix", [["name", 1063, 7], ["paths", 1064, 7]]);
-const pos$45 = nix.positions(here + "/common.nix", [["is_official_build", 1078, 9], ["disable_fieldtrial_testing_config", 1079, 9], ["host_cpu", 1082, 9], ["host_os", 1083, 9], ["target_cpu", 1084, 9], ["v8_target_cpu", 1085, 9], ["target_os", 1086, 9], ["custom_toolchain", 1094, 9], ["host_toolchain", 1095, 9]]);
-const pos$46 = nix.positions(here + "/common.nix", [["host_toolchain", 1100, 9], ["v8_snapshot_toolchain", 1101, 9]]);
-const pos$47 = nix.positions(here + "/common.nix", [["host_pkg_config", 1104, 9], ["pkg_config", 1105, 9], ["use_sysroot", 1108, 9], ["treat_warnings_as_errors", 1110, 9], ["clang_use_chrome_plugins", 1113, 9], ["symbol_level", 1116, 9], ["blink_symbol_level", 1117, 9], ["google_api_key", 1122, 9], ["use_gio", 1125, 9], ["use_cups", 1126, 9]]);
-const pos$48 = nix.positions(here + "/common.nix", [["enable_widevine", 1131, 9]]);
-const pos$49 = nix.positions(here + "/common.nix", [["rtc_use_pipewire", 1135, 9], ["chrome_pgo_phase", 1137, 9], ["clang_base_path", 1138, 9], ["use_clang_modules", 1141, 9]]);
-const pos$50 = nix.positions(here + "/common.nix", [["v8_use_metagen_instance_types", 1145, 9]]);
-const pos$51 = nix.positions(here + "/common.nix", [["use_unified_system_module", 1151, 9]]);
-const pos$52 = nix.positions(here + "/common.nix", [["use_qt5", 1154, 9], ["use_qt6", 1155, 9], ["clang_warning_suppression_file", 1158, 9], ["use_system_libffi", 1162, 9]]);
-const pos$53 = nix.positions(here + "/common.nix", [["rust_sysroot_absolute", 1167, 9]]);
-const pos$54 = nix.positions(here + "/common.nix", [["rust_bindgen_root", 1170, 9], ["enable_rust", 1171, 9], ["rustc_version", 1174, 9]]);
-const pos$55 = nix.positions(here + "/common.nix", [["arm_control_flow_integrity", 1178, 9]]);
-const pos$56 = nix.positions(here + "/common.nix", [["proprietary_codecs", 1182, 9], ["enable_hangout_services_extension", 1183, 9], ["ffmpeg_branding", 1184, 9]]);
-const pos$57 = nix.positions(here + "/common.nix", [["use_vaapi", 1188, 9], ["use_v4l2_codec", 1189, 9]]);
-const pos$58 = nix.positions(here + "/common.nix", [["use_pulseaudio", 1192, 9], ["link_pulseaudio", 1193, 9]]);
-const pos$59 = nix.positions(here + "/common.nix", [["use_typescript_go", 1196, 9], ["devtools_use_typescript_go", 1197, 9]]);
-const pos$60 = nix.positions(here + "/common.nix", [["RUSTC_BOOTSTRAP", 1245, 7], ["NIX_CFLAGS_COMPILE", 1250, 7], ["BUILD_CC", 1256, 7], ["BUILD_CXX", 1257, 7], ["BUILD_AR", 1258, 7], ["BUILD_NM", 1259, 7], ["BUILD_READELF", 1260, 7]]);
-const pos$61 = nix.positions(here + "/common.nix", [["NIX_LD_USE_RESPONSE_FILE", 1266, 7]]);
-const pos$62 = nix.positions(here + "/common.nix", [["updateScript", 1310, 7]]);
-const pos$63 = nix.positions(here + "/common.nix", [["chromiumDeps", 1313, 15], ["npmDeps", 1313, 28]]);
-const pos$64 = nix.positions(here + "/common.nix", [["pname", 398, 5], ["version", 399, 29], ["packageName", 400, 13], ["buildType", 400, 25], ["buildPath", 400, 35], ["unpackPhase", 402, 5], ["npmRoot", 411, 5], ["npmDeps", 412, 5], ["nativeBuildInputs", 422, 5], ["depsBuildBuild", 445, 5], ["buildInputs", 515, 5], ["patches", 573, 5], ["postPatch", 876, 5], ["hardeningDisable", 1060, 5], ["llvmCcAndBintools", 1062, 5], ["gnFlags", 1070, 5], ["preConfigure", 1203, 5], ["configurePhase", 1226, 5], ["env", 1240, 5], ["buildPhase", 1269, 5], ["postFixup", 1291, 5], ["passthru", 1309, 5]]);
-const pos$65 = nix.positions(here + "/common.nix", [["passthru", 1327, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -182,7 +118,7 @@ export default nix.lambda((args) => (() => {
       const revert = nix.argOr($_1, "revert", () => false);
       const excludes = nix.argOr($_1, "excludes", () => []);
       return nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/chromium/chromium/commit/${commit}.patch`),
           hash: hash,
           revert: revert,
@@ -203,7 +139,7 @@ export default nix.lambda((args) => (() => {
     const ungoogler = nix.thunk(() => nix.app(ungoogled_chromium, nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(upstream_info, "deps", "ungoogled-patches"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         rev: nix.thunk(() => nix.attr(from, "rev")),
         hash: nix.thunk(() => nix.attr(from, "hash")),
       };
@@ -211,12 +147,12 @@ export default nix.lambda((args) => (() => {
     const buildPlatformLlvmStdenv = nix.thunk(() => (() => {
       const llvmPackages = nix.thunk(() => nix.sel(pkgsBuildBuild, "rustc", "llvmPackages"));
       return nix.app(overrideCC, nix.thunk(() => nix.sel(llvmPackages, "stdenv")), nix.thunk(() => nix.app(nix.sel(llvmPackages, "stdenv", "cc", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             bintools: nix.thunk(() => nix.attr(llvmPackages, "bintools")),
           })))));
     })());
     const rustTools = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "rustTools",
         paths: nix.thunk(() => [
           nix.thunk(() => nix.sel(buildPackages, "rust-bindgen")),
@@ -224,26 +160,26 @@ export default nix.lambda((args) => (() => {
         ]),
       }))));
     const _crubit = nix.thunk(() => nix.sel({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       "154": nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         rev: "69b85cba43f85a6439dc0be86a6fe424bb07a100",
         hash: "sha256-hSN4ZW3LsN3cerv3h3whAYLDZuoE6YaLuR9WY48P3E0=",
         cargoHash: "sha256-xJWYE0gfEkf0WvrkaDkXiOYwvrlQGqa7QxkosXKH6UQ=",
       })),
       "155": nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         rev: "a355b02da81bc9f350925c73ec0322ce4d5140f1",
         hash: "sha256-Z2wsYe2Tln+CeAV9naC1QRnmvrz3HZXF06cNIp1RqU4=",
         cargoHash: "sha256-5EB6yTk+eGffjUK/TXf6ZxCU0p05Dh1nL8q3Nl6TiiY=",
       })),
     }, nix.key(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(upstream_info, "version"))))));
     const crubit = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname: "crubit",
         version: "0-unstable-2026-09-11",
         src: nix.thunk(() => nix.app(fetchFromGitiles, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: "https://chromium.googlesource.com/external/github.com/google/crubit.git",
             rev: nix.thunk(() => nix.attr(_crubit, "rev")),
             hash: nix.thunk(() => nix.attr(_crubit, "hash")),
@@ -252,16 +188,16 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "rustc", "llvmPackages", "llvm"))]),
         cargoBuildFlags: nix.thunk(() => ["--bin", "cc_bindings_from_rs"]),
         cargoTestFlags: nix.thunk(() => nix.sel(finalAttrs, "cargoBuildFlags")),
-        env: nix.thunk(() => ({ [nix.POS]: pos$9, RUSTC_BOOTSTRAP: 1n })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[8], RUSTC_BOOTSTRAP: 1n })),
       })));
     const gnrt = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         pname: "gnrt",
         version: "0-unstable",
         src: nix.thunk(() => nix.sel(chromiumDeps, "src")),
         sourceRoot: "tools/crates/gnrt",
         cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -271,27 +207,27 @@ export default nix.lambda((args) => (() => {
           })))),
         nativeBuildInputs: nix.thunk(() => [zstd, pkg_config]),
         buildInputs: nix.thunk(() => [openssl]),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$12, mainProgram: "gnrt" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[11], mainProgram: "gnrt" })),
       })));
     const _esbuild = nix.thunk(() => nix.sel({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       "154": nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         version: "0.25.1",
         hash: "sha256-vrhtdrvrcC3dQoJM6hWq6wrGJLSiVww/CNPlL1N5kQ8=",
       })),
       "155": nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         version: "0.28.2",
         hash: "sha256-I1u+9U5Oj/KzxSjCxwyitwSuDKimatkbC3R2OtaUsfM=",
       })),
     }, nix.key(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(upstream_info, "version"))))));
     const esbuild = nix.thunk(() => nix.app(buildGoModule, (finalAttrs) => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         pname: "esbuild",
         version: nix.thunk(() => nix.attr(_esbuild, "version")),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             owner: "evanw",
             repo: "esbuild",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -300,10 +236,16 @@ export default nix.lambda((args) => (() => {
         vendorHash: "sha256-+BfxCyg0KkDQpHt/wycy/8CTG6YBA/VJvJFhhzUnSiQ=",
       })));
     const chromiumRosettaStone = nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       cpu: (platform) => (() => {
         const name = nix.thunk(() => nix.sel(platform, "parsed", "cpu", "name"));
-        return nix.selOr({ [nix.POS]: pos$19, x86_64: "x64", i686: "x86", arm: "arm", aarch64: "arm64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`no chromium Rosetta Stone entry for cpu: ${name}`)), nix.key(nix.sel(platform, "parsed", "cpu", "name")));
+        return nix.selOr({
+          [nix.POS]: $pos[18],
+          x86_64: "x64",
+          i686: "x86",
+          arm: "arm",
+          aarch64: "arm64",
+        }, () => nix.builtins.throw(nix.thunk(() => nix.str`no chromium Rosetta Stone entry for cpu: ${name}`)), nix.key(nix.sel(platform, "parsed", "cpu", "name")));
       })(),
       os: (platform) => (nix.asBool(nix.sel(platform, "isLinux")) ? "linux" : nix.builtins.throw(nix.thunk(() => nix.str`no chromium Rosetta Stone entry for os: ${nix.sel(platform, "config")}`))),
     }));
@@ -311,10 +253,10 @@ export default nix.lambda((args) => (() => {
     const rustcVersion = nix.thunk(() => nix.sel(buildPackages, "rustc", "version"));
     const llvmVersion = nix.thunk(() => nix.sel(buildPackages, "rustc", "llvmPackages", "llvm", "version"));
     const chromiumDeps = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (path) => (args_1) => nix.app(fetchFromGitiles, nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_1, nix.thunk(() => ["recompress"])), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(args_1, () => false, "recompress")), nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             name: "source.tar.zstd",
             downloadToTemp: false,
-            passthru: nix.thunk(() => ({ [nix.POS]: pos$21, unpack: true })),
+            passthru: nix.thunk(() => ({ [nix.POS]: $pos[20], unpack: true })),
             nativeBuildInputs: nix.thunk(() => [zstd]),
             postFetch: "tar \\\n  --use-compress-program=\"zstd -T$NIX_BUILD_CORES\" \\\n  --sort=name \\\n  --mtime=\"1970-01-01\" \\\n  --owner=root --group=root \\\n  --numeric-owner --mode=go=rX,u+rw,a-s \\\n  --remove-files \\\n  --directory=\"$out\" \\\n  -cf \"$TMPDIR/source.zstd\" .\nmv \"$TMPDIR/source.zstd\" \"$out\"\n",
           })))))), nix.thunk(() => nix.sel(upstream_info, "DEPS"))));
@@ -327,7 +269,7 @@ cp -r ${dep}/. ${path}
 `), nix.str`chmod u+w -R ${path}
 `), chromiumDeps))));
     const bidi = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         url: "https://commondatastorage.googleapis.com/chromium-nodejs/chromium-bidi/e7aab7e5ac29d62f5c023d7e8ba5eedc09a11945a88b0e174fc42f64c0820071",
         extension: "tar.gz",
         stripRoot: false,
@@ -348,12 +290,12 @@ runHook postUnpack
 `);
       const npmRoot = "third_party/node";
       const npmDeps = nix.thunk(() => nix.app(nix.sel(nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           src: nix.thunk(() => nix.sel(chromiumDeps, "src")),
           sourceRoot: npmRoot,
           hash: nix.thunk(() => nix.sel(upstream_info, "deps", "npmHash")),
         }))), "overrideAttrs"), (p) => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(p, () => [], "nativeBuildInputs"), [zstd])),
         })));
       const nativeBuildInputs = nix.thunk(() => nix.concat([
@@ -374,7 +316,7 @@ runHook postUnpack
         pkg_config,
         libuuid,
       ], nix.concat([
-        nix.thunk(() => nix.app(nix.sel(buildPackages, "libopus", "override"), nix.thunk(() => ({ [nix.POS]: pos$26, withCustomModes: true })))),
+        nix.thunk(() => nix.app(nix.sel(buildPackages, "libopus", "override"), nix.thunk(() => ({ [nix.POS]: $pos[25], withCustomModes: true })))),
         bzip2,
         flac,
         speex,
@@ -422,7 +364,7 @@ runHook postUnpack
         libevdev,
       ], nix.concat(nix.app(nix.sel(lib, "optional"), systemdSupport, systemdLibs), nix.concat(nix.app(nix.sel(lib, "optionals"), cupsSupport, nix.thunk(() => [libgcrypt, cups])), [libpulseaudio])))));
       const buildInputs = nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(nix.sel(libopus, "override"), nix.thunk(() => ({ [nix.POS]: pos$27, withCustomModes: true })))),
+        nix.thunk(() => nix.app(nix.sel(libopus, "override"), nix.thunk(() => ({ [nix.POS]: $pos[26], withCustomModes: true })))),
         bzip2,
         flac,
         speex,
@@ -476,7 +418,7 @@ runHook postUnpack
         nix.path(here, "./patches/chromium-136-nodejs-assert-minimal-version-instead-of-exact-match.patch"),
       ], nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             name: "chromium-138-rust-1.86-mismatched_lifetime_syntaxes.patch",
             url: "https://chromium.googlesource.com/chromium/src/+/94a87ff38c51fd1a71980a5051d3553978391608^!?format=TEXT",
             decode: "base64 -d",
@@ -485,14 +427,14 @@ runHook postUnpack
           })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.app(chromiumVersionAtLeast, "154"))) && nix.asBool(!nix.asBool(ungoogled)))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               name: "ungoogled-chromium-145-build-with-wasm-rollup.patch",
               url: "https://github.com/ungoogled-software/ungoogled-chromium/raw/refs/tags/145.0.7632.159-1/patches/core/ungoogled-chromium/build-with-wasm-rollup.patch",
               hash: "sha256-Ho5I33FOgtYHvKSZlWXWuBaqnSHqy4+f6EZdiL+/rRQ=",
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(versionRange, "154", "155")) && nix.asBool(!nix.asBool(ungoogled)))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$30,
+              [nix.POS]: $pos[29],
               name: "ungoogled-chromium-154-build-with-wasm-rollup.patch",
               url: "https://github.com/ungoogled-software/ungoogled-chromium/raw/refs/tags/150.0.7871.46-1/patches/core/ungoogled-chromium/build-with-wasm-rollup.patch",
               excludes: nix.thunk(() => ["third_party/devtools-frontend/src/scripts/build/ninja/bundle.gni"]),
@@ -500,7 +442,7 @@ runHook postUnpack
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(ungoogled)), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               name: "chromium-146-revert-Add-finch-seeds-to-desktop-perf-builds.patch",
               url: "https://chromium.googlesource.com/chromium/src/+/d2e8a550eece6051372da94a475a8661da203106^!?format=TEXT",
               decode: "base64 -d",
@@ -509,7 +451,7 @@ runHook postUnpack
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(versionRange, "146", "148")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), llvmVersion, "23")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               name: "chromium-146-revert-Update-fsanitizer=array-bounds-config.patch",
               url: "https://chromium.googlesource.com/chromium/src/+/acb47d9a6b56c4889a2ed4216e9968cfc740086c^!?format=TEXT",
               decode: "base64 -d",
@@ -518,7 +460,7 @@ runHook postUnpack
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(versionRange, "146", "147"))), nix.thunk(() => [nix.path(here, "./patches/chromium-142-bytemuck-rust-1.95.patch")])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(chromiumVersionAtLeast, "147")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), llvmVersion, "23")))), nix.thunk(() => [nix.path(here, "./patches/chromium-147-llvm-22.patch")])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(versionRange, "148", "149")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), llvmVersion, "23")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$33,
+              [nix.POS]: $pos[32],
               name: "chromium-148-revert-build-Add--fsanitizer=return-config.patch",
               url: "https://chromium.googlesource.com/chromium/src/+/99ba1f5302f9433efdb4df302cb7b7de56c72e4c^!?format=TEXT",
               decode: "base64 -d",
@@ -526,7 +468,7 @@ runHook postUnpack
               hash: "sha256-/qzzxwTdPMwIdsqD/G02S7kKHCj3QxECL+g1WYEaWmU=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$34,
+              [nix.POS]: $pos[33],
               name: "chromium-148-revert-build-Enable--fsanitizer=return-config.patch",
               url: "https://chromium.googlesource.com/chromium/src/+/9357bfbea03753fe52264c9ec36abe74f48cfef5^!?format=TEXT",
               decode: "base64 -d",
@@ -534,14 +476,14 @@ runHook postUnpack
               hash: "sha256-14fTHNh3vGsf4KgeH8uLX+aK3lrjK0VKd1dfK1g7r0I=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               name: "archlinux-chromium-146-drop-unknown-clang-flag.patch",
               url: "https://gitlab.archlinux.org/archlinux/packaging/packages/chromium/-/raw/148.0.7778.96-1/chromium-146-drop-unknown-clang-flag.patch",
               hash: "sha256-jR0G9z2R8VGl2tkB3u0368RyWM1J6qYXqNWwKkYd5zU=",
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(versionRange, "151", "153")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), llvmVersion, "23")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$36,
+              [nix.POS]: $pos[35],
               name: "chromium-151-revert-Fix-is_wasm-compile-for-supersize.patch",
               url: "https://chromium.googlesource.com/chromium/src/+/160ccfd3b5a2dbab95516928716ae586e17de84b^!?format=TEXT",
               decode: "base64 -d",
@@ -552,7 +494,7 @@ runHook postUnpack
           nix.path(here, "./patches/chromium-149-use-of-undeclared-identifier-ERROR.patch"),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(versionRange, "148", "149")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$37,
+              [nix.POS]: $pos[36],
               name: "chromium-148-revert-Reland-build-use-tool-inputs-instead-of-siso-config-for-rust-actions.patch",
               url: "https://chromium.googlesource.com/chromium/src/+/9193ab90af24c23ee983e0a8da9bed45712f0d26^!?format=TEXT",
               decode: "base64 -d",
@@ -561,7 +503,7 @@ runHook postUnpack
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(versionRange, "150", "151")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$38,
+              [nix.POS]: $pos[37],
               name: "chromium-150-backport-build--Omit-ar-from-inputs-when-resolved-via--PATH.patch",
               url: "https://chromium.googlesource.com/chromium/src/+/60f987d8d5f7272793a40290d060b8f50933f825^!?format=TEXT",
               decode: "base64 -d",
@@ -569,7 +511,7 @@ runHook postUnpack
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(versionRange, "151", "152")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$39,
+              [nix.POS]: $pos[38],
               name: "chromium-151-backport-don't-depends-on-histograms.xml-if-it-is-not-git-checkout.patch",
               url: "https://chromium.googlesource.com/chromium/src/+/27f8690db999f6e56f0af7a9ea3d28a019ed72ca^!?format=TEXT",
               decode: "base64 -d",
@@ -577,7 +519,7 @@ runHook postUnpack
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(chromiumVersionAtLeast, "151")), nix.thunk(() => [nix.path(here, "./patches/chromium-151-dawn-use-Go-from-PATH.patch")])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(chromiumVersionAtLeast, "151.0.7922.169")) && nix.asBool(!nix.asBool(ungoogled)))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$40,
+              [nix.POS]: $pos[39],
               name: "chromium-151-revert-Show-Linux-first-run-terms-of-service-dialog-by-default.patch",
               url: "https://chromium.googlesource.com/chromium/src/+/ae9b17ac975d4b10af762e9344083d858f1347ce^!?format=TEXT",
               decode: "base64 -d",
@@ -587,7 +529,7 @@ runHook postUnpack
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(versionRange, "152", "155")), nix.thunk(() => [nix.path(here, "./patches/ungoogled-chromium-152-crubit.patch")])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(versionRange, "152", "153")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), llvmVersion, "23")))), nix.thunk(() => [nix.path(here, "./patches/chromium-152-dawn-llvm-22.patch")])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(chromiumVersionAtLeast, "153")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$41,
+              [nix.POS]: $pos[40],
               name: "chromium-153-revert-DEPS-use-DEPS-provided-python-instead-of-a-system-one.patch",
               url: "https://chromium.googlesource.com/chromium/src/+/ce8851b40f37e74adcb7813256930792f35b8039^!?format=TEXT",
               decode: "base64 -d",
@@ -597,7 +539,7 @@ runHook postUnpack
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(versionRange, "153", "154")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$42,
+              [nix.POS]: $pos[41],
               name: "chromium-153-revert-Migrate-OpenType-format-check-bindings-to-Crubit.patch",
               url: "https://chromium.googlesource.com/chromium/src/+/493e6c3911e33cc356856bafbffc6cf95521266b^!?format=TEXT",
               decode: "base64 -d",
@@ -606,7 +548,7 @@ runHook postUnpack
             })))),
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(versionRange, "153", "155")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$43,
+              [nix.POS]: $pos[42],
               name: "chromium-153-revert-devtools-frontend-Remove-TSGO-flag.patch",
               url: "https://chromium.googlesource.com/devtools/devtools-frontend/+/2691b4ae139d2e7b6244f05139a0b85082c7473c^!?format=TEXT",
               decode: "base64 -d",
@@ -745,7 +687,7 @@ ${ungoogler}/utils/domain_substitution.py apply -r ${ungoogler}/domain_regex.lis
 `))));
       const hardeningDisable = nix.thunk(() => ["strictflexarrays1"]);
       const llvmCcAndBintools = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          [nix.POS]: pos$44,
+          [nix.POS]: $pos[43],
           name: "llvmCcAndBintools",
           paths: nix.thunk(() => [
             nix.thunk(() => nix.sel(buildPackages, "rustc", "llvmPackages", "llvm")),
@@ -753,7 +695,7 @@ ${ungoogler}/utils/domain_substitution.py apply -r ${ungoogler}/domain_regex.lis
           ]),
         }))));
       const gnFlags = nix.thunk(() => nix.app(mkGnFlags, nix.thunk(() => nix.update({
-          [nix.POS]: pos$45,
+          [nix.POS]: $pos[44],
           is_official_build: true,
           disable_fieldtrial_testing_config: true,
           host_cpu: nix.thunk(() => nix.app(nix.sel(chromiumRosettaStone, "cpu"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")))),
@@ -764,11 +706,11 @@ ${ungoogler}/utils/domain_substitution.py apply -r ${ungoogler}/domain_regex.lis
           custom_toolchain: "//build/toolchain/linux/unbundle:default",
           host_toolchain: "//build/toolchain/linux/unbundle:default",
         }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ({
-            [nix.POS]: pos$46,
+            [nix.POS]: $pos[45],
             host_toolchain: "//build/toolchain/linux/unbundle:host",
             v8_snapshot_toolchain: "//build/toolchain/linux/unbundle:host",
           }))), nix.update({
-          [nix.POS]: pos$47,
+          [nix.POS]: $pos[46],
           host_pkg_config: nix.thunk(() => nix.str`${nix.sel(pkgsBuildBuild, "pkg-config")}/bin/pkg-config`),
           pkg_config: nix.thunk(() => nix.str`${nix.sel(pkgsBuildHost, "pkg-config")}/bin/${nix.sel(stdenv, "cc", "targetPrefix")}pkg-config`),
           use_sysroot: false,
@@ -779,33 +721,33 @@ ${ungoogler}/utils/domain_substitution.py apply -r ${ungoogler}/domain_regex.lis
           google_api_key: "AIzaSyDGi15Zwl11UNe6Y-5XW_upsfyw31qwZPI",
           use_gio: true,
           use_cups: cupsSupport,
-        }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(packageName_1, "chromium")), nix.thunk(() => ({ [nix.POS]: pos$48, enable_widevine: true }))), nix.update({
-          [nix.POS]: pos$49,
+        }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(packageName_1, "chromium")), nix.thunk(() => ({ [nix.POS]: $pos[47], enable_widevine: true }))), nix.update({
+          [nix.POS]: $pos[48],
           rtc_use_pipewire: true,
           chrome_pgo_phase: 0n,
           clang_base_path: nix.thunk(() => nix.str`${llvmCcAndBintools}`),
           use_clang_modules: false,
-        }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(chromiumVersionAtLeast, "155")), nix.thunk(() => ({ [nix.POS]: pos$50, v8_use_metagen_instance_types: false }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(chromiumVersionAtLeast, "150")), nix.thunk(() => ({ [nix.POS]: pos$51, use_unified_system_module: false }))), nix.update({
-          [nix.POS]: pos$52,
+        }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(chromiumVersionAtLeast, "155")), nix.thunk(() => ({ [nix.POS]: $pos[49], v8_use_metagen_instance_types: false }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(chromiumVersionAtLeast, "150")), nix.thunk(() => ({ [nix.POS]: $pos[50], use_unified_system_module: false }))), nix.update({
+          [nix.POS]: $pos[51],
           use_qt5: false,
           use_qt6: false,
           clang_warning_suppression_file: "",
           use_system_libffi: true,
         }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.app(chromiumVersionAtLeast, "154"))), nix.thunk(() => ({
-            [nix.POS]: pos$53,
+            [nix.POS]: $pos[52],
             rust_sysroot_absolute: nix.thunk(() => nix.str`${nix.sel(buildPackages, "rustc")}`),
           }))), nix.update({
-          [nix.POS]: pos$54,
+          [nix.POS]: $pos[53],
           rust_bindgen_root: nix.thunk(() => nix.str`${rustTools}`),
           enable_rust: true,
           rustc_version: rustcVersion,
-        }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => ({ [nix.POS]: pos$55, arm_control_flow_integrity: "none" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), proprietaryCodecs, nix.thunk(() => ({
-            [nix.POS]: pos$56,
+        }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => ({ [nix.POS]: $pos[54], arm_control_flow_integrity: "none" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), proprietaryCodecs, nix.thunk(() => ({
+            [nix.POS]: $pos[55],
             proprietary_codecs: true,
             enable_hangout_services_extension: true,
             ffmpeg_branding: "Chrome",
-          }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ({ [nix.POS]: pos$57, use_vaapi: false, use_v4l2_codec: true }))), nix.update({ [nix.POS]: pos$58, use_pulseaudio: true, link_pulseaudio: true }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(versionRange, "153", "155")), nix.thunk(() => ({
-            [nix.POS]: pos$59,
+          }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ({ [nix.POS]: $pos[56], use_vaapi: false, use_v4l2_codec: true }))), nix.update({ [nix.POS]: $pos[57], use_pulseaudio: true, link_pulseaudio: true }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(versionRange, "153", "155")), nix.thunk(() => ({
+            [nix.POS]: $pos[58],
             use_typescript_go: false,
             devtools_use_typescript_go: false,
           }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), ungoogled, nix.thunk(() => nix.app(nix.sel(lib, "importTOML"), nix.path(here, "./ungoogled-flags.toml")))), nix.selOr(extraAttrs, () => ({}), "gnFlags"))))))))))))))))))));
@@ -824,7 +766,7 @@ grep -o WARNING gn-gen-outputs.txt && echo "Found gn WARNING, exiting nix build"
 runHook postConfigure
 `);
       const env = nix.thunk(() => nix.update({
-        [nix.POS]: pos$60,
+        [nix.POS]: $pos[59],
         RUSTC_BOOTSTRAP: 1n,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add("-Wno-unknown-warning-option -Wno-unused-command-line-argument -Wno-shadow", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(chromiumVersionAtLeast, "149")), " -Wno-macro-redefined"))),
         BUILD_CC: "$CC_FOR_BUILD",
@@ -832,7 +774,7 @@ runHook postConfigure
         BUILD_AR: "$AR_FOR_BUILD",
         BUILD_NM: "$NM_FOR_BUILD",
         BUILD_READELF: "$READELF_FOR_BUILD",
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(chromiumVersionAtLeast, "150")), nix.thunk(() => ({ [nix.POS]: pos$61, NIX_LD_USE_RESPONSE_FILE: 1n })))));
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(chromiumVersionAtLeast, "150")), nix.thunk(() => ({ [nix.POS]: $pos[60], NIX_LD_USE_RESPONSE_FILE: 1n })))));
       const buildPhase = nix.thunk(() => (() => {
         const buildCommand = (target) => nix.str`TERM=dumb ninja -C "${buildPath_1}" -j$NIX_BUILD_CORES "${target}"
 bash -s << EOL
@@ -861,9 +803,9 @@ done
 rm "$libExecPath/libvulkan.so.1"
 ln -s -t "$libExecPath" "${nix.app(nix.sel(lib, "getLib"), vulkan_loader)}/lib/libvulkan.so.1"
 `);
-      const passthru = nix.thunk(() => nix.update({ [nix.POS]: pos$62, updateScript: nix.path(here, "./update.mjs") }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(isElectron)), nix.thunk(() => ({ [nix.POS]: pos$63, chromiumDeps: chromiumDeps, npmDeps: npmDeps })))));
+      const passthru = nix.thunk(() => nix.update({ [nix.POS]: $pos[61], updateScript: nix.path(here, "./update.mjs") }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(isElectron)), nix.thunk(() => ({ [nix.POS]: $pos[62], chromiumDeps: chromiumDeps, npmDeps: npmDeps })))));
       return {
-        [nix.POS]: pos$64,
+        [nix.POS]: $pos[63],
         pname,
         version,
         packageName: packageName_1,
@@ -889,7 +831,7 @@ ln -s -t "$libExecPath" "${nix.app(nix.sel(lib, "getLib"), vulkan_loader)}/lib/l
       };
     })());
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(base, nix.update(nix.builtins.removeAttrs(extraAttrs, nix.thunk(() => ["name", "gnFlags", "buildTargets"])), {
-        [nix.POS]: pos$65,
+        [nix.POS]: $pos[64],
         passthru: nix.thunk(() => nix.update(nix.sel(base, "passthru"), nix.selOr(extraAttrs, () => ({}), "passthru"))),
       }))));
   })();

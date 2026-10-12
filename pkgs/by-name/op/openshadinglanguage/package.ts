@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 85, 5], ["homepage", 86, 5], ["maintainers", 87, 5], ["license", 88, 5], ["platforms", 89, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["cmakeFlags", 36, 3], ["postPatch", 46, 3], ["preConfigure", 51, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 61, 3], ["propagatedBuildInputs", 75, 3], ["postFixup", 79, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { bison: false, cmake: false, fetchFromGitHub: false, flex: false, hexdump: false, lib: false, libxml2: false, llvmPackages: false, openexr: false, openimageio: false, partio: false, pugixml: false, python3Packages: false, "robin-map": false, stdenv: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["maintainers", 87, 5], ["license", 88, 5], ["platforms", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["cmakeFlags", 36, 3], ["postPatch", 46, 3], ["preConfigure", 51, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 61, 3], ["propagatedBuildInputs", 75, 3], ["postFixup", 79, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libclang = nix.thunk(() => nix.attr(llvmPackages, "libclang"));
   const llvm = nix.thunk(() => nix.attr(llvmPackages, "llvm"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openshadinglanguage",
       version: "1.15.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AcademySoftwareFoundation",
           repo: "OpenShadingLanguage",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "openimageio"))]),
       postFixup: "substituteInPlace \"$out\"/lib/pkgconfig/*.pc \\\n  --replace '=${exec_prefix}//' '=/'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Advanced shading language for production GI renderers",
         homepage: "http://openshadinglanguage.org",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "amarshall"))]),

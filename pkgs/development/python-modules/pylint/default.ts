@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["description", 102, 5], ["homepage", 103, 5], ["longDescription", 105, 5], ["license", 114, 5], ["maintainers", 115, 5], ["mainProgram", 116, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 47, 3], ["pytestFlags", 59, 3], ["disabledTestPaths", 68, 3], ["disabledTests", 75, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, astroid: false, buildPythonPackage: false, dill: false, fetchFromGitHub: false, gitpython: false, isort: false, mccabe: false, platformdirs: false, py: false, "pytest-timeout": false, "pytest-xdist": false, pytest7CheckHook: false, pythonAtLeast: false, requests: false, setuptools: false, tomlkit: false, "typing-extensions": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["longDescription", 105, 5], ["license", 114, 5], ["maintainers", 115, 5], ["mainProgram", 116, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 47, 3], ["pytestFlags", 59, 3], ["disabledTestPaths", 68, 3], ["disabledTests", 75, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pylint",
       version: "4.0.6-unstable-2026-07-14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pylint-dev",
           repo: "pylint",
           rev: "5f7e4013c004324f11eac6f310d932f505272e28",
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
         "test_functional_relation_extraction",
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_do_not_import_files_from_local_directory"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_parallel_execution", "test_py3k_jobs_option"]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bug and style checker for Python",
         homepage: "https://pylint.readthedocs.io/en/stable/",
         longDescription: "Pylint is a Python static code analysis tool which looks for programming errors,\nhelps enforcing a coding standard, sniffs for code smells and offers simple\nrefactoring suggestions.\nPylint is shipped with following additional commands:\n- pyreverse: an UML diagram generator\n- symilar: an independent similarities checker\n- epylint: Emacs and Flymake compatible Pylint\n",

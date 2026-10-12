@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["extensionUuid", 54, 5], ["extensionPortalSlug", 55, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["postInstall", 34, 3], ["passthru", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, glib: false, allowPolkitPolicy: true, config: false, systemd: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extensionUuid", 54, 5], ["extensionPortalSlug", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["postInstall", 34, 3], ["passthru", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gnome-shell-extension-systemd-manager";
       const version = "20";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hardpixel",
           repo: "systemd-manager",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,12 +32,12 @@ substitute systemd-policies/$bn $out/share/polkit-1/actions/$bn \\
   --replace-fail /usr/bin/systemctl ${nix.app(nix.sel(lib, "getBin"), systemd)}/bin/systemctl
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(allowPolkitPolicy, "systemctl")), "install -Dm0644 \\\n  systemd-policies/10-service_status.rules \\\n  $out/share/polkit-1/rules.d/10-gnome-extension-systemd-manager.rules\n")));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         extensionUuid: "systemd-manager@hardpixel.eu",
         extensionPortalSlug: "systemd-manager",
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GNOME Shell extension to manage systemd services",
         homepage: "https://github.com/hardpixel/systemd-manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -53,7 +50,7 @@ substitute systemd-policies/$bn $out/share/polkit-1/actions/$bn \\
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 60, 9], ["repo", 61, 9], ["rev", 62, 9], ["hash", 63, 9]], [["name", 70, 11], ["url", 71, 11], ["hash", 72, 11]], [["NIX_CFLAGS_COMPILE", 110, 11]], [["homepage", 135, 9], ["description", 136, 9], ["license", 137, 9], ["platforms", 138, 9]], [["pname", 56, 7], ["version", 57, 7], ["src", 59, 7], ["patches", 66, 7], ["strictDeps", 76, 7], ["nativeBuildInputs", 78, 7], ["buildInputs", 86, 7], ["configureFlags", 94, 7], ["makeFlags", 103, 7], ["env", 110, 7], ["postConfigure", 112, 7], ["postInstall", 125, 7], ["enableParallelBuilding", 131, 7], ["doCheck", 132, 7], ["meta", 134, 7]]]);
 const formals$1 = { args: { lib: false, bc: false, coreutils: false, cups: false, dbus: false, dejavu_fonts: false, fetchFromGitHub: false, fetchpatch: false, fontconfig: false, gawk: false, ghostscript: false, gnugrep: false, gnused: false, ijs: false, libcupsfilters: false, libppd: false, libexif: false, libjpeg: false, liblouis: false, libpng: false, makeWrapper: false, autoreconfHook: false, mupdf: false, perl: false, "pkg-config": false, poppler: false, "poppler-utils": false, qpdf: false, stdenv: false, which: false, withAvahi: true, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 60, 9], ["repo", 61, 9], ["rev", 62, 9], ["hash", 63, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 70, 11], ["url", 71, 11], ["hash", 72, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 110, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 135, 9], ["description", 136, 9], ["license", 137, 9], ["platforms", 138, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 56, 7], ["version", 57, 7], ["src", 59, 7], ["patches", 66, 7], ["strictDeps", 76, 7], ["nativeBuildInputs", 78, 7], ["buildInputs", 86, 7], ["configureFlags", 94, 7], ["makeFlags", 103, 7], ["env", 110, 7], ["postConfigure", 112, 7], ["postInstall", 125, 7], ["enableParallelBuilding", 131, 7], ["doCheck", 132, 7], ["meta", 134, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
           const pname = "cups-filters";
           const version = "2.0.1";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "OpenPrinting",
               repo: "cups-filters",
               rev: version,
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
             }))));
           const patches = nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 name: "cups-filters-fix-build-with-gcc15-c23.patch",
                 url: "https://github.com/OpenPrinting/cups-filters/commit/9871a50b5c1f9c2caa2754aac1f5db70c886021b.patch",
                 hash: "sha256-Hu3nCHzX6K4tD7T5XIt0dh6GPQxmgfuHqbBXWfdXxoA=",
@@ -79,7 +75,7 @@ export default nix.lambda((args) => (() => {
             "CUPS_DATADIR=$(out)/share/cups",
             "CUPS_SERVERROOT=$(out)/etc/cups",
           ]);
-          const env = nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=c++17" }));
+          const env = nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-std=c++17" }));
           const postConfigure = nix.thunk(() => nix.str`# Ensure that bannertopdf can find the PDF templates in
 # $out. (By default, it assumes that cups and cups-filters are
 # installed in the same prefix.)
@@ -98,14 +94,14 @@ done
           const enableParallelBuilding = true;
           const doCheck = true;
           const meta = nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             homepage: "http://www.linuxfoundation.org/collaborate/workgroups/openprinting/cups-filters",
             description: "Backends, filters, and other software that was once part of the core CUPS distribution but is no longer maintained by Apple Inc",
             license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
           }));
           return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             pname,
             version,
             src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["name", 15, 5], ["sha256", 16, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["unpackPhase", 22, 3], ["installPhase", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, puredata: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["name", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["unpackPhase", 22, 3], ["installPhase", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const puredata = nix.arg($, "puredata");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "puremapping",
       version: "20160130",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.chnry.net/data/puremapping-${nix.sel(finalAttrs, "version")}-generic.zip`),
           name: "puremapping",
           sha256: "1h7qgqd8srrxw2y1rkdw5js4k6f5vc8x6nlm2mq9mq9vjck7n1j7",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "unzip $src\n",
       installPhase: "mkdir -p $out/puremapping\nmv puremapping/ $out\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Set of externals to facilitate the use of sensors within Pure Data and to create complex relations between input and output of a dynamic system",
         homepage: "http://www.chnry.net/ch/?090-Pure-Mapping&lang=en",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl1Only")),

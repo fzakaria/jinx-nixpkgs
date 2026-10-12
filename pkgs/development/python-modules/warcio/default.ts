@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]], [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 17, 3], ["version", 18, 3], ["format", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["propagatedBuildInputs", 37, 3], ["nativeCheckInputs", 42, 3], ["pytestFlags", 51, 3], ["disabledTestPaths", 55, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, httpbin: false, multidict: false, pytestCheckHook: false, requests: false, setuptools: false, six: false, wsgiprox: false, "pytest-cov-stub": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["format", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["propagatedBuildInputs", 37, 3], ["nativeCheckInputs", 42, 3], ["pytestFlags", 51, 3], ["disabledTestPaths", 55, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "webrecorder",
           repo: "warcio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "add-offline-option.patch",
             url: "https://github.com/webrecorder/warcio/pull/135/commits/2546fe457c57ab0b391764a4ce419656458d9d07.patch",
             hash: "sha256-3izm9LvAeOFixiIUUqmd5flZIxH92+NxL7jeu35aObQ=",
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["test/test_capture_http_proxy.py"]);
       const pythonImportsCheck = nix.thunk(() => ["warcio"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Streaming WARC/ARC library for fast web archive IO",
         mainProgram: "warcio",
         homepage: "https://github.com/webrecorder/warcio",
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

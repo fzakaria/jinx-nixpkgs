@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["arch", 36, 7], ["binaryname", 37, 7]], [["arch", 40, 7], ["binaryname", 41, 7]], [["x86_64-linux", 35, 5], ["aarch64-linux", 39, 5]], [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]], [["name", 96, 7], ["exec", 97, 7], ["icon", 98, 7], ["comment", 99, 7], ["desktopName", 100, 7], ["genericName", 101, 7], ["categories", 102, 7], ["terminal", 106, 7]], [["updateScript", 157, 12]], [["description", 160, 5], ["homepage", 161, 5], ["changelog", 162, 5], ["license", 167, 5], ["maintainers", 173, 5], ["platforms", 174, 5], ["mainProgram", 178, 5]], [["pname", 50, 3], ["version", 51, 3], ["mvnHash", 53, 3], ["src", 55, 3], ["postPatch", 63, 3], ["mvnDepsParameters", 68, 3], ["mvnParameters", 69, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 79, 3], ["strictDeps", 91, 3], ["__structuredAttrs", 92, 3], ["desktopItems", 94, 3], ["installPhase", 110, 3], ["passthru", 157, 3], ["meta", 159, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, autoPatchelfHook: false, chromedriver: false, copyDesktopItems: false, deno: false, ffmpeg: false, fetchFromGitLab: false, fontconfig: false, glib: false, gtk3: false, imagemagick: false, lib: false, libmediainfo: false, libx11: false, libxext: false, libxi: false, libxrender: false, libxtst: false, libzen: false, makeDesktopItem: false, makeWrapper: false, maven: false, "nix-update-script": false, pipewire: false, "yt-dlp": false, zenity: false, zlib: false, stdenv: false, xz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["arch", 36, 7], ["binaryname", 37, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["arch", 40, 7], ["binaryname", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 35, 5], ["aarch64-linux", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 96, 7], ["exec", 97, 7], ["icon", 98, 7], ["comment", 99, 7], ["desktopName", 100, 7], ["genericName", 101, 7], ["categories", 102, 7], ["terminal", 106, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 157, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 160, 5], ["homepage", 161, 5], ["changelog", 162, 5], ["license", 167, 5], ["maintainers", 173, 5], ["platforms", 174, 5], ["mainProgram", 178, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 50, 3], ["version", 51, 3], ["mvnHash", 53, 3], ["src", 55, 3], ["postPatch", 63, 3], ["mvnDepsParameters", 68, 3], ["mvnParameters", 69, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 79, 3], ["strictDeps", 91, 3], ["__structuredAttrs", 92, 3], ["desktopItems", 94, 3], ["installPhase", 110, 3], ["passthru", 157, 3], ["meta", 159, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,9 +37,9 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const xz = nix.arg($, "xz");
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$3,
-    "x86_64-linux": nix.thunk(() => ({ [nix.POS]: pos$1, arch: "amd64", binaryname: "tinyMediaManager" })),
-    "aarch64-linux": nix.thunk(() => ({ [nix.POS]: pos$2, arch: "arm64", binaryname: "tinyMediaManager-arm" })),
+    [nix.POS]: $pos[2],
+    "x86_64-linux": nix.thunk(() => ({ [nix.POS]: $pos[0], arch: "amd64", binaryname: "tinyMediaManager" })),
+    "aarch64-linux": nix.thunk(() => ({ [nix.POS]: $pos[1], arch: "arm64", binaryname: "tinyMediaManager-arm" })),
   }));
   const sysSrc = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => (() => {
@@ -54,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.3.4";
       const mvnHash = "sha256-pLySrUiZz55ZpTn2JABtnFjoVa1iUlLN7oDeaIg9O8s=";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "tinyMediaManager",
           repo: "tinyMediaManager",
           tag: nix.thunk(() => nix.str`tinyMediaManager-${version}`),
@@ -69,7 +62,7 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "tinyMediaManager",
             exec: "tinyMediaManager",
             icon: "tinyMediaManager",
@@ -109,11 +102,11 @@ substituteInPlace $out/opt/tinyMediaManager/launcher.yml \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Media management tool",
         homepage: "https://www.tinymediamanager.org/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/tinyMediaManager/tinyMediaManager/-/releases/tinyMediaManager-${version}#changelog`),
@@ -132,7 +125,7 @@ runHook postInstall
         mainProgram: "tinyMediaManager",
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         mvnHash,

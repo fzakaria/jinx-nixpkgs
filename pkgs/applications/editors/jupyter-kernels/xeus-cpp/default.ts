@@ -2,16 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["displayName", 15, 5], ["argv", 16, 5], ["language", 22, 5], ["logo32", 23, 5], ["logo64", 24, 5]], [["cpp11-kernel", 30, 3], ["cpp14-kernel", 31, 3], ["cpp17-kernel", 32, 3], ["cpp20-kernel", 33, 3], ["cpp23-kernel", 34, 3], ["xeus-cpp", 36, 11]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["displayName", 15, 5], ["argv", 16, 5], ["language", 22, 5], ["logo32", 23, 5], ["logo64", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cpp11-kernel", 30, 3], ["cpp14-kernel", 31, 3], ["cpp17-kernel", 32, 3], ["cpp20-kernel", 33, 3], ["cpp23-kernel", 34, 3], ["xeus-cpp", 36, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   const xeus_cpp = nix.thunk(() => nix.app(callPackage, nix.path(here, "./xeus-cpp.nix"), nix.thunk(() => ({}))));
   const mkKernelSpec = (std) => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     displayName: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["c++"]), nix.thunk(() => ["C++ "]), std)),
     argv: nix.thunk(() => [
       nix.thunk(() => nix.str`${xeus_cpp}/bin/xcpp`),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
     logo64: nix.thunk(() => nix.str`${xeus_cpp}/share/jupyter/kernels/xcpp17/logo-64x64.png`),
   });
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "cpp11-kernel": nix.thunk(() => nix.app(mkKernelSpec, "c++11")),
     "cpp14-kernel": nix.thunk(() => nix.app(mkKernelSpec, "c++14")),
     "cpp17-kernel": nix.thunk(() => nix.app(mkKernelSpec, "c++17")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 44, 5], ["mainProgram", 45, 5], ["longDescription", 46, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 31, 3], ["installTargets", 33, 3], ["postInstall", 35, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, ocamlPackages: false, opaline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["mainProgram", 45, 5], ["longDescription", 46, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 31, 3], ["installTargets", 33, 3], ["postInstall", 35, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ocamlPackages = nix.arg($, "ocamlPackages");
   const opaline = nix.arg($, "opaline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ott",
       version: "0.34",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ott-lang",
           repo: "ott",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       installTargets: "ott.install",
       postInstall: nix.thunk(() => nix.add("opaline -prefix $out\n", "rm -r $out/share/emacs\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for the working semanticist",
         mainProgram: "ott",
         longDescription: "Ott is a tool for writing definitions of programming languages and\ncalculi. It takes as input a definition of a language syntax and\nsemantics, in a concise and readable ASCII notation that is close to\nwhat one would write in informal mathematics. It generates LaTeX to\nbuild a typeset version of the definition, and Coq, HOL, and Isabelle\nversions of the definition. Additionally, it can be run as a filter,\ntaking a LaTeX/Coq/Isabelle/HOL source file with embedded (symbolic)\nterms of the defined language, parsing them and replacing them by\ntarget-system terms.\n",

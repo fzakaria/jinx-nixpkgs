@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["simple-execution", 56, 5]], [["tests", 55, 12]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["preConfigure", 27, 3], ["makeFlags", 32, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["doCheck", 44, 3], ["buildFlags", 45, 3], ["hardeningDisable", 53, 3], ["passthru", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchgit: false, lib: false, stdenv: false, gtk3: false, "pkg-config": false, libxml2: false, llvm: false, perl: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["simple-execution", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 55, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["preConfigure", 27, 3], ["makeFlags", 32, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["doCheck", 44, 3], ["buildFlags", 45, 3], ["hardeningDisable", 53, 3], ["passthru", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const GCC_BASE = nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "cc")}/lib/gcc/${nix.sel(stdenv, "hostPlatform", "uname", "processor")}-unknown-linux-gnu/${nix.sel(stdenv, "cc", "cc", "version")}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sparse",
       version: "0.6.5-rc1-unstable-2025-12-18",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.kernel.org/pub/scm/devel/sparse/sparse.git",
           rev: "37156835e3d725b6d750f000be33ba3814bb2310",
           hash: "sha256-662n1ENn8ZsiBtSBx6Vr1MrRAwzvob0Y1ifnBVtfB5k=",
@@ -42,14 +38,14 @@ sed -i 's|qx(\\$ccom -print-file-name=)|"${GCC_BASE}"|' cgcc
       buildFlags: nix.thunk(() => [nix.thunk(() => nix.str`GCC_BASE:=${GCC_BASE}`)]),
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "simple-execution": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Semantic parser for C",
         homepage: "https://git.kernel.org/pub/scm/devel/sparse/sparse.git/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

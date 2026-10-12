@@ -2,9 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dictd-wordnet.nix", [[["description", 36, 5], ["longDescription", 38, 5], ["homepage", 44, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["version", 11, 3], ["pname", 12, 3], ["buildInputs", 14, 3], ["convert", 19, 3], ["builder", 21, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3: false, wordnet: false, writeScript: false, libfaketime: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dictd-wordnet.nix", [["description", 36, 5], ["longDescription", 38, 5], ["homepage", 44, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$2 = nix.positions(here + "/dictd-wordnet.nix", [["version", 11, 3], ["pname", 12, 3], ["buildInputs", 14, 3], ["convert", 19, 3], ["builder", 21, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,14 +31,14 @@ faketime -f "$source_date" python ${convert} $DATA
 echo en_US.UTF-8 > locale
 `)));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Dictd-compatible version of WordNet",
         longDescription: "WordNet® is a large lexical database of English. This package makes\nthe wordnet data available to dictd and by extension for lookup with\nthe dict command.\n",
         homepage: "https://wordnet.princeton.edu/",
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { [nix.POS]: pos$2, version, pname, buildInputs, convert, builder, meta };
+      return { [nix.POS]: $pos[1], version, pname, buildInputs, convert, builder, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=dictd-wordnet.ts.map

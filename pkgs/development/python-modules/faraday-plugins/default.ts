@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 57, 3], ["disabledTestPaths", 59, 3], ["disabledTests", 64, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, beautifulsoup4: false, buildPythonPackage: false, click: false, colorama: false, fetchFromGitHub: false, html2text: false, lxml: false, markdown: false, pandas: false, pytestCheckHook: false, "python-dateutil": false, pytz: false, requests: false, setuptools: false, simplejson: false, tabulate: false, tldextract: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 57, 3], ["disabledTestPaths", 59, 3], ["disabledTests", 64, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const tabulate = nix.arg($, "tabulate");
   const tldextract = nix.arg($, "tldextract");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "faraday-plugins",
       version: "1.31.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "infobyte",
           repo: "faraday_plugins",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["faraday_plugins"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Security tools report parsers for Faraday",
         homepage: "https://github.com/infobyte/faraday_plugins",
         changelog: nix.thunk(() => nix.str`https://github.com/infobyte/faraday_plugins/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

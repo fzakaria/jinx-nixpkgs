@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["patches", 12, 5], ["postPatchInit", 13, 5]], [["version", 22, 9], ["url", 23, 9], ["sha256", 24, 9]], [["version", 29, 9], ["url", 30, 9], ["sha256", 31, 9]], [["version", 35, 9], ["download_id", 36, 9], ["url", 37, 9], ["sha256", 38, 9], ["patches", 39, 9], ["postPatchInit", 40, 9]], [["url", 51, 21], ["sha256", 52, 21]], [["homepage", 86, 5], ["description", 87, 5], ["longDescription", 88, 5], ["license", 93, 5], ["platforms", 97, 26]], [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["nativeBuildInputs", 55, 3], ["propagatedBuildInputs", 60, 3], ["strictDeps", 62, 3], ["patches", 64, 19], ["postPatch", 66, 3], ["buildFlags", 72, 3], ["preInstall", 77, 3], ["postInstall", 81, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, zlib: false, ocaml: false, findlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["patches", 12, 5], ["postPatchInit", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 22, 9], ["url", 23, 9], ["sha256", 24, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 29, 9], ["url", 30, 9], ["sha256", 31, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 35, 9], ["download_id", 36, 9], ["url", 37, 9], ["sha256", 38, 9], ["patches", 39, 9], ["postPatchInit", 40, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 51, 21], ["sha256", 52, 21]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 86, 5], ["description", 87, 5], ["longDescription", 88, 5], ["license", 93, 5], ["platforms", 97, 26]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["nativeBuildInputs", 55, 3], ["propagatedBuildInputs", 60, 3], ["strictDeps", 62, 3], ["patches", 64, 19], ["postPatch", 66, 3], ["buildFlags", 72, 3], ["preInstall", 77, 3], ["postInstall", 81, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const findlib = nix.arg($, "findlib");
   const common = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     patches: [],
     postPatchInit: "cp META-zip META-camlzip\necho 'directory=\"../zip\"' >> META-camlzip\n",
   }));
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.07")) ? nix.update(common, {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "1.11",
     url: "https://github.com/xavierleroy/camlzip/archive/rel111.tar.gz",
     sha256: "sha256-/7vF3j4cE9wOWScjdtIy0u3pGzJ1UQY9R/3bdPHV7Tc=",
   }) : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.02")) ? nix.update(common, {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     version: "1.10",
     url: "https://github.com/xavierleroy/camlzip/archive/rel110.tar.gz",
     sha256: "X0YcczaQ3lFeJEiTIgjSSZ1zi32KFMtmZsP0FFpyfbI=",
   }) : {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     version: "1.05",
     download_id: "1037",
     url: nix.thunk(() => nix.str`http://forge.ocamlcore.org/frs/download.php/${nix.sel(param, "download_id")}/camlzip-${nix.sel(param, "version")}.tar.gz`),
@@ -45,11 +39,11 @@ export default nix.lambda((args) => (() => {
 `),
   })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-camlzip`),
       version: nix.thunk(() => nix.sel(param, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.attr(param, "url")),
           sha256: nix.thunk(() => nix.attr(param, "sha256")),
         })))),
@@ -69,7 +63,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "http://cristal.inria.fr/~xleroy/software.html#camlzip",
         description: "Library for handling ZIP and GZIP files in OCaml",
         longDescription: "This Objective Caml library provides easy access to compressed files in\nZIP and GZIP format, as well as to Java JAR files.  It provides functions\nfor reading from and writing to compressed files in these formats.\n",

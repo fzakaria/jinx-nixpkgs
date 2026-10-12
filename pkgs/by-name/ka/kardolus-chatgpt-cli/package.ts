@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 42, 5], ["platforms", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["doCheck", 26, 3], ["nativeBuildInputs", 28, 3], ["postFixup", 29, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 42, 5], ["platforms", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["doCheck", 26, 3], ["nativeBuildInputs", 28, 3], ["postFixup", 29, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kardolus-chatgpt-cli",
       version: "1.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kardolus",
           repo: "chatgpt-cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postFixup: "wrapProgram $out/bin/chatgpt \\\n  --run \"mkdir -p ~/.chatgpt-cli\" \\\n  --set-default CHATGPT_CLI_HISTORY_DIR ~/.chatgpt-cli\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command-line interface for ChatGPT",
         longDescription: "ChatGPT CLI is a versatile tool for interacting with LLMs through OpenAI, Azure, and other popular providers like Perplexity AI and Llama.\nIt supports prompt files, history tracking, and live data injection via MCP (Model Context Protocol),\nmaking it ideal for both casual users and developers seeking a powerful, customizable GPT experience.\n",
         homepage: "https://github.com/kardolus/chatgpt-cli",

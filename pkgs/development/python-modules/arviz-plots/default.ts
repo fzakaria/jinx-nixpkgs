@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["bokeh", 68, 5], ["doc", 71, 5], ["matplotlib", 83, 5], ["plotly", 86, 5], ["test", 90, 5]], [["MPLBACKEND", 103, 5]], [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5]], [["pname", 44, 3], ["version", 45, 19], ["pyproject", 46, 3], ["__structuredAttrs", 47, 3], ["src", 49, 3], ["build-system", 56, 3], ["dependencies", 60, 3], ["optional-dependencies", 67, 3], ["pythonImportsCheck", 99, 3], ["env", 101, 3], ["nativeCheckInputs", 106, 3], ["disabledTests", 116, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, arviz: false, fetchFromGitHub: false, "flit-core": false, "arviz-base": false, "arviz-stats": false, bokeh: false, h5netcdf: false, "jupyter-sphinx": false, "myst-nb": false, "myst-parser": false, numpydoc: false, plotly: false, sphinx: false, "sphinx-book-theme": false, "sphinx-copybutton": false, "sphinx-design": false, matplotlib: false, webcolors: false, hypothesis: false, kaleido: false, pytest: false, "pytest-cov": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["bokeh", 68, 5], ["doc", 71, 5], ["matplotlib", 83, 5], ["plotly", 86, 5], ["test", 90, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["MPLBACKEND", 103, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 44, 3], ["version", 45, 19], ["pyproject", 46, 3], ["__structuredAttrs", 47, 3], ["src", 49, 3], ["build-system", 56, 3], ["dependencies", 60, 3], ["optional-dependencies", 67, 3], ["pythonImportsCheck", 99, 3], ["env", 101, 3], ["nativeCheckInputs", 106, 3], ["disabledTests", 116, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const pytest_cov = nix.arg($, "pytest-cov");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "arviz-plots",
       version: nix.thunk(() => nix.attr(arviz, "version")),
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arviz-devs",
           repo: "arviz-plots",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => nix.concat([arviz_base, arviz_stats], nix.sel(arviz_stats, "optional-dependencies", "xarray"))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         bokeh: nix.thunk(() => [bokeh]),
         doc: nix.thunk(() => [
           h5netcdf,
@@ -72,11 +68,11 @@ export default nix.lambda((args) => (() => {
         test: nix.thunk(() => [h5netcdf, hypothesis, kaleido, pytest, pytest_cov]),
       })),
       pythonImportsCheck: nix.thunk(() => ["arviz_plots"]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, MPLBACKEND: "Agg" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[2], MPLBACKEND: "Agg" })))),
       nativeCheckInputs: nix.thunk(() => [bokeh, h5netcdf, hypothesis, matplotlib, plotly, pytestCheckHook, webcolors]),
       disabledTests: nix.thunk(() => ["test_plot_trace_dist"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "ArviZ modular plotting",
         homepage: "https://github.com/arviz-devs/arviz-plots",
         changelog: nix.thunk(() => nix.str`https://github.com/arviz-devs/arviz-plots/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

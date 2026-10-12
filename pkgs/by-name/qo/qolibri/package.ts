@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["owner", 36, 9], ["repo", 37, 9], ["rev", 38, 9], ["hash", 39, 9]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 27, 3], ["cmakeFlags", 33, 3], ["postInstall", 44, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, lib: false, ninja: false, qt6Packages: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 36, 9], ["repo", 37, 9], ["rev", 38, 9], ["hash", 39, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 27, 3], ["cmakeFlags", 33, 3], ["postInstall", 44, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const qt6Packages = nix.arg($, "qt6Packages");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qolibri",
       version: "2.1.5-unstable-2025-01-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mvf",
           repo: "qolibri",
           rev: "edc0683915c0a99872a4c04ff53afe0f5df101fb",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeOptionType"), "filepath", "QOLIBRI_EB_SOURCE_DIR", nix.thunk(() => nix.str`${nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               owner: "mvf",
               repo: "eb",
               rev: "58e1c3bb9847ed5d05863f478f21e7a8ca3d74c8",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -Dm644 $src/qolibri.desktop -t $out/share/applications\n\nfor size in 16 32 48 64 128; do\n  install -Dm644 \\\n    $src/images/qolibri-$size.png \\\n    $out/share/icons/hicolor/${size}x${size}/apps/qolibri.png\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "EPWING reader for viewing Japanese dictionaries",
         homepage: "https://github.com/mvf/qolibri",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

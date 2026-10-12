@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["buildInputs", 22, 3], ["tags", 24, 3], ["ldflags", 26, 3], ["subPackages", 35, 3], ["doCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, krb5: false, withGssapi: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["buildInputs", 22, 3], ["tags", 24, 3], ["ldflags", 26, 3], ["subPackages", 35, 3], ["doCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mongodb_exporter";
       const version = "0.53.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "percona",
           repo: "mongodb_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const subPackages = nix.thunk(() => ["."]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Prometheus exporter for MongoDB including sharding, replication and storage engines",
         homepage: "https://github.com/percona/mongodb_exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mongodb_exporter",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

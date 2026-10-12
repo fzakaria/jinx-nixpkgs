@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["openssl", 58, 15]], [["NIX_CFLAGS_COMPILE", 90, 7]], [["openldap", 161, 26], ["kerberosWithLdap", 162, 5]], [["tests", 160, 12]], [["homepage", 166, 5], ["description", 167, 5], ["license", 168, 5], ["maintainers", 169, 5], ["platforms", 173, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 32, 3], ["outputs", 41, 3], ["__darwinAllowLocalNetworking", 48, 3], ["enableParallelBuilding", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 56, 3], ["preConfigure", 73, 3], ["configureFlags", 77, 3], ["env", 90, 3], ["makeFlags", 92, 3], ["extraContribModules", 104, 3], ["postBuild", 111, 3], ["preCheck", 117, 3], ["doCheck", 139, 3], ["preFixup", 142, 3], ["installFlags", 146, 3], ["postInstall", 153, 3], ["passthru", 160, 3], ["meta", 165, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cyrus_sasl: false, groff: false, libsodium: false, libtool: false, openssl: false, systemdMinimal: false, libxcrypt: false, withModules: true, withSystemd: true, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["openssl", 58, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 90, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["openldap", 161, 26], ["kerberosWithLdap", 162, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 160, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 166, 5], ["description", 167, 5], ["license", 168, 5], ["maintainers", 169, 5], ["platforms", 173, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 32, 3], ["outputs", 41, 3], ["__darwinAllowLocalNetworking", 48, 3], ["enableParallelBuilding", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 56, 3], ["preConfigure", 73, 3], ["configureFlags", 77, 3], ["env", 90, 3], ["makeFlags", 92, 3], ["extraContribModules", 104, 3], ["postBuild", 111, 3], ["preCheck", 117, 3], ["doCheck", 139, 3], ["preFixup", 142, 3], ["installFlags", 146, 3], ["postInstall", 153, 3], ["passthru", 160, 3], ["meta", 165, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const withSystemd = nix.argOr($, "withSystemd", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdMinimal));
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "openldap",
       version: "2.6.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-1pO0lRekLvuFoaNkoxCu0WpT1CjRtGwNMe8/unj8tlY=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "test069-sleep.patch",
             url: "https://bugs.openldap.org/attachment.cgi?id=1051",
             hash: "sha256-9LcFTswMQojrwHD+PRvlnSrwrISCFcboHypBwoDIZc0=",
@@ -49,7 +42,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       nativeBuildInputs: nix.thunk(() => [groff]),
       buildInputs: nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(nix.sel(cyrus_sasl, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, openssl: openssl })))),
+        nix.thunk(() => nix.app(nix.sel(cyrus_sasl, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], openssl: openssl })))),
         libtool,
         openssl,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libxcrypt])), nix.concat(nix.app(nix.sel(lib, "optionals"), withModules, nix.thunk(() => [libsodium])), nix.app(nix.sel(lib, "optionals"), withSystemd, nix.thunk(() => [systemdMinimal])))))),
@@ -62,7 +55,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), withModules, "modules")),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ["--with-yielding_select=yes", "ac_cv_func_memcmp_working=yes"])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), "--with-pic")))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DLDAPI_SOCK=\"/run/openldap/ldapi\""]))),
       })),
       makeFlags: nix.thunk(() => [
@@ -88,15 +81,15 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withModules, "for module in ${extraContribModules[@]}; do\n  make ${installFlags[@]} install -C contrib/slapd-modules/$module\ndone\nchmod +x \"$out\"/lib/*.{so,dylib}\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           openldap: nix.thunk(() => nix.attr(nixosTests, "openldap")),
           kerberosWithLdap: nix.thunk(() => nix.sel(nixosTests, "kerberos", "ldap")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://www.openldap.org/",
         description: "Open source implementation of the Lightweight Directory Access Protocol",
         license: nix.thunk(() => nix.sel(lib, "licenses", "openldap")),

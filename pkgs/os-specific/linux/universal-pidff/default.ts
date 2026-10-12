@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 45, 5], ["broken", 48, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["hardeningDisable", 24, 3], ["nativeBuildInputs", 28, 3], ["makeFlags", 30, 3], ["installTargets", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 45, 5], ["broken", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["hardeningDisable", 24, 3], ["nativeBuildInputs", 28, 3], ["makeFlags", 30, 3], ["installTargets", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "universal-pidff";
       const version = "0.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JacKeTUs",
           repo: "universal-pidff",
           tag: version,
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]));
       const installTargets = nix.thunk(() => ["install"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PIDFF driver with useful patches for initialization of FFB devices",
         homepage: "https://github.com/JacKeTUs/universal-pidff",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelOlder"), "5.10")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

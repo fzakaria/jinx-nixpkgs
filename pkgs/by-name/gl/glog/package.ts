@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["GTEST_FILTER", 51, 7]], [["homepage", 101, 5], ["license", 102, 5], ["description", 103, 5], ["platforms", 104, 5], ["maintainers", 105, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["cmakeFlags", 34, 3], ["doCheck", 45, 3], ["enableParallelChecking", 48, 3], ["nativeCheckInputs", 49, 3], ["env", 51, 3], ["checkPhase", 72, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, gflags: false, gtest: false, perl: false, pkgsBuildHost: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GTEST_FILTER", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 101, 5], ["license", 102, 5], ["description", 103, 5], ["platforms", 104, 5], ["maintainers", 105, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["cmakeFlags", 34, 3], ["doCheck", 45, 3], ["enableParallelChecking", 48, 3], ["nativeCheckInputs", 49, 3], ["env", 51, 3], ["checkPhase", 72, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const pkgsBuildHost = nix.arg($, "pkgsBuildHost");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "glog",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "glog",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       enableParallelChecking: false,
       nativeCheckInputs: nix.thunk(() => [perl]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         GTEST_FILTER: nix.thunk(() => (() => {
           const filteredTests = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => [
               "Symbolize.SymbolizeStackConsumption",
@@ -58,7 +55,7 @@ runHook postCheck
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/google/glog",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         description: "Library for application-level logging",

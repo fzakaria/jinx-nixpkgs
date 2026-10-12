@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]], [["description", 148, 5], ["mainProgram", 149, 5], ["homepage", 150, 5], ["license", 151, 5], ["maintainers", 152, 5], ["teams", 156, 5], ["platforms", 157, 5]], [["pname", 54, 3], ["version", 55, 3], ["src", 57, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 69, 3], ["patches", 100, 3], ["postPatch", 109, 3], ["cmakeFlags", 113, 3], ["postInstall", 115, 3], ["dontWrapQtApps", 128, 3], ["qtWrapperArgs", 132, 3], ["postFixup", 134, 3], ["meta", 147, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, llvmPackages: false, libsForQt5: false, libGLU: false, lib3ds: false, lib3mf: false, bzip2: false, muparser: false, eigen: false, glew: false, gmp: false, levmar: false, qhull: false, cmake: false, cgal: false, boost: false, mpfr: false, xercesc: false, onetbb: false, embree: false, vcg: false, libigl: false, corto: false, openctm: false, structuresynth: false, "vclab-nexus": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 148, 5], ["mainProgram", 149, 5], ["homepage", 150, 5], ["license", 151, 5], ["maintainers", 152, 5], ["teams", 156, 5], ["platforms", 157, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 54, 3], ["version", 55, 3], ["src", 57, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 69, 3], ["patches", 100, 3], ["postPatch", 109, 3], ["cmakeFlags", 113, 3], ["postInstall", 115, 3], ["dontWrapQtApps", 128, 3], ["qtWrapperArgs", 132, 3], ["postFixup", 134, 3], ["meta", 147, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,11 +55,11 @@ export default nix.lambda((args) => (() => {
   ]);
   const cmakeFlagsDisallowDownload = nix.thunk(() => nix.app(nix.sel(lib, "map"), (x) => nix.str`-DMESHLAB_ALLOW_DOWNLOAD_${x}=OFF`, downloads));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "meshlab",
       version: "2025.07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cnr-isti-vclab",
           repo: "meshlab",
           tag: nix.thunk(() => nix.str`MeshLab-${nix.sel(finalAttrs, "version")}`),
@@ -110,7 +108,7 @@ install_name_tool -change libopenctm.dylib "${nix.app(nix.sel(lib, "getOutput"),
   "$out/Applications/meshlab.app/Contents/PlugIns/libio_ctm.so"
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "System for processing and editing 3D triangular meshes",
         mainProgram: "meshlab",
         homepage: "https://www.meshlab.net/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["DisableAppUpdate", 18, 5]], [["policies", 22, 83]], [["pname", 26, 5], ["version", 27, 5], ["src", 28, 5], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["patchelfFlags", 41, 3], ["postPatch", 43, 3], ["installPhase", 48, 3], ["passthru", 69, 11], ["meta", 69, 20]]]);
 const formals$1 = { args: { pname: false, version: false, src: false, nativeBuildInputs: false, passthru: false, meta: false, stdenv: false, config: false, writeText: false, autoPatchelfHook: false, patchelfUnstable: false, "alsa-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["DisableAppUpdate", 18, 5]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["policies", 22, 83]]);
-const pos$3 = nix.positions(here + "/linux.nix", [["pname", 26, 5], ["version", 27, 5], ["src", 28, 5], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["patchelfFlags", 41, 3], ["postPatch", 43, 3], ["installPhase", 48, 3], ["passthru", 69, 11], ["meta", 69, 20]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,10 +19,10 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const patchelfUnstable = nix.arg($, "patchelfUnstable");
   const alsa_lib = nix.arg($, "alsa-lib");
-  const policies = nix.thunk(() => nix.update({ [nix.POS]: pos$1, DisableAppUpdate: true }, nix.selOr(config, () => ({}), "thunderbird", "policies")));
-  const policiesJson = nix.thunk(() => nix.app(writeText, "thunderbird-policies.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$2, policies: policies }))))));
+  const policies = nix.thunk(() => nix.update({ [nix.POS]: $pos[0], DisableAppUpdate: true }, nix.selOr(config, () => ({}), "thunderbird", "policies")));
+  const policiesJson = nix.thunk(() => nix.app(writeText, "thunderbird-policies.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[1], policies: policies }))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: src,

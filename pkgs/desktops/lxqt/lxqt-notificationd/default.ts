@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["updateScript", 47, 12]], [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["teams", 54, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, kwindowsystem: false, "layer-shell-qt": false, liblxqt: false, libqtxdg: false, "lxqt-build-tools": false, qtbase: false, qtsvg: false, qttools: false, qtwayland: false, wrapQtAppsHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 47, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["teams", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lxqt-notificationd";
       const version = "2.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxqt",
           repo: "lxqt-notificationd",
           rev: version,
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake, lxqt_build_tools, qttools, wrapQtAppsHook]);
       const buildInputs = nix.thunk(() => [kwindowsystem, layer_shell_qt, liblxqt, libqtxdg, qtbase, qtsvg, qtwayland]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/lxqt/lxqt-notificationd",
         description: "LXQt notification daemon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

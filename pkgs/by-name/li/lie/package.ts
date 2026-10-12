@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 16, 5], ["mainProgram", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["longDescription", 21, 5], ["platforms", 28, 5], ["maintainers", 29, 5]], [["url", 33, 5], ["sha256", 34, 5]], [["version", 10, 3], ["pname", 13, 3], ["meta", 15, 3], ["src", 32, 3], ["buildInputs", 37, 3], ["patchPhase", 42, 3], ["installPhase", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bison: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 16, 5], ["mainProgram", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["longDescription", 21, 5], ["platforms", 28, 5], ["maintainers", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 5], ["sha256", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 13, 3], ["meta", 15, 3], ["src", 32, 3], ["buildInputs", 37, 3], ["patchPhase", 42, 3], ["installPhase", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "2.2.2",
       pname: "lie",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Computer algebra package for Lie group computations",
         mainProgram: "lie",
         homepage: "http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       })),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/conLiE.tar.gz",
           sha256: "07lbj75qqr4pq1j1qz8fyfnmrz1gnk92lnsshxycfavxl5zzdmn4",
         })))),

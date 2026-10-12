@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7]], [["callPackage", 65, 17], ["directory", 66, 9]], [["micro", 68, 45]], [["tests", 64, 7], ["wrapper", 68, 7]], [["homepage", 75, 7], ["changelog", 76, 7], ["description", 77, 7], ["longDescription", 78, 7], ["license", 88, 7], ["mainProgram", 89, 7], ["maintainers", 90, 7]], [["pname", 18, 5], ["version", 19, 5], ["src", 21, 5], ["vendorHash", 28, 5], ["proxyVendor", 29, 5], ["nativeBuildInputs", 31, 5], ["outputs", 33, 5], ["subPackages", 38, 5], ["ldflags", 40, 5], ["preBuild", 53, 5], ["postInstall", 57, 5], ["passthru", 63, 5], ["nativeInstallCheckInputs", 71, 5], ["doInstallCheck", 72, 5], ["meta", 74, 5]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, callPackage: false, fetchFromGitHub: false, installShellFiles: false, stdenv: false, versionCheckHook: false, withXclip: true, withWlClipboard: true, withWlclip: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["callPackage", 65, 17], ["directory", 66, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["micro", 68, 45]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 64, 7], ["wrapper", 68, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 75, 7], ["changelog", 76, 7], ["description", 77, 7], ["longDescription", 78, 7], ["license", 88, 7], ["mainProgram", 89, 7], ["maintainers", 90, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 5], ["version", 19, 5], ["src", 21, 5], ["vendorHash", 28, 5], ["proxyVendor", 29, 5], ["nativeBuildInputs", 31, 5], ["outputs", 33, 5], ["subPackages", 38, 5], ["ldflags", 40, 5], ["preBuild", 53, 5], ["postInstall", 57, 5], ["passthru", 63, 5], ["nativeInstallCheckInputs", 71, 5], ["doInstallCheck", 72, 5], ["meta", 74, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const withWlClipboard = nix.argOr($, "withWlClipboard", () => null);
   const withWlclip = nix.argOr($, "withWlclip", () => null);
   const self = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "micro",
       version: "2.0.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "micro-editor",
           repo: "micro",
           rev: nix.thunk(() => nix.str`v${nix.sel(self, "version")}`),
@@ -50,18 +45,18 @@ export default nix.lambda((args) => (() => {
       preBuild: "GOOS= GOARCH= go generate ./runtime\n",
       postInstall: "installManPage assets/packaging/micro.1\ninstall -Dm444 assets/packaging/micro.desktop $out/share/applications/micro.desktop\ninstall -Dm644 assets/micro-logo-mark.svg $out/share/icons/hicolor/scalable/apps/micro.svg\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             callPackage: callPackage,
             directory: nix.path(here, "./tests"),
           })))),
-        wrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, micro: self })))),
+        wrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], micro: self })))),
       })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://micro-editor.github.io",
         changelog: "https://github.com/micro-editor/micro/releases/",
         description: "Modern and intuitive terminal-based text editor",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update.nix", [[["url", 20, 7], ["hash", 21, 7]], [["url", 24, 7], ["hash", 25, 7]], [["url", 28, 7], ["hash", 29, 7]]]);
 const formals$1 = { args: { lib: false, writeScript: false, "common-updater-scripts": false, bash: false, coreutils: false, curl: false, fetchurl: false, gnugrep: false, gnupg: false, gnused: false, nix: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/update.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$2 = nix.positions(here + "/update.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/update.nix", [["url", 28, 7], ["hash", 29, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const downloadPageUrl = "https://download.electrum.org";
   const signingKeys = nix.thunk(() => nix.app(nix.sel(lib, "lists", "map"), fetchurl, nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "https://github.com/spesmilo/electrum/raw/master/pubkeys/Emzy.asc",
         hash: "sha256-QG0cM6AKlSKFacVlhcso/xvrooUdF7oqoppyezt0hjE=",
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "https://github.com/spesmilo/electrum/raw/master/pubkeys/ThomasV.asc",
         hash: "sha256-37ApVZlI+2EevxQIKXVKVpktt1Ls3UbWq4dfio2ORdo=",
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: "https://github.com/spesmilo/electrum/raw/master/pubkeys/sombernight_releasekey.asc",
         hash: "sha256-GgdPJ9TB5hh5SPCcTZURfqXkrU4qwl0dCci52V/wpdQ=",
       })),

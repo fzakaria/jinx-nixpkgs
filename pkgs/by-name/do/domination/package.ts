@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 18, 5], ["desktopName", 19, 5], ["exec", 20, 5], ["icon", 21, 5]], [["name", 24, 5], ["desktopName", 25, 5], ["exec", 26, 5], ["icon", 27, 5]], [["url", 37, 5], ["rev", 43, 5], ["hash", 44, 5]], [["domination-starts", 98, 5]], [["tests", 97, 12], ["updateScript", 101, 12]], [["homepage", 104, 5], ["downloadPage", 105, 5], ["description", 106, 5], ["longDescription", 107, 5], ["sourceProvenance", 113, 5], ["license", 117, 5], ["mainProgram", 118, 5], ["maintainers", 119, 5], ["platforms", 120, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 36, 3], ["nativeBuildInputs", 47, 3], ["buildPhase", 55, 3], ["desktopItems", 62, 3], ["installPhase", 67, 3], ["preFixup", 92, 3], ["passthru", 97, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchsvn: false, jdk8: false, jre: false, ant: false, stripJavaArchivesHook: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 18, 5], ["desktopName", 19, 5], ["exec", 20, 5], ["icon", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 5], ["desktopName", 25, 5], ["exec", 26, 5], ["icon", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 37, 5], ["rev", 43, 5], ["hash", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["domination-starts", 98, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 97, 12], ["updateScript", 101, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 104, 5], ["downloadPage", 105, 5], ["description", 106, 5], ["longDescription", 107, 5], ["sourceProvenance", 113, 5], ["license", 117, 5], ["mainProgram", 118, 5], ["maintainers", 119, 5], ["platforms", 120, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 36, 3], ["nativeBuildInputs", 47, 3], ["buildPhase", 55, 3], ["desktopItems", 62, 3], ["installPhase", 67, 3], ["preFixup", 92, 3], ["passthru", 97, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,25 +19,25 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const nixosTests = nix.arg($, "nixosTests");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "domination",
       desktopName: "Domination",
       exec: "domination",
       icon: "domination",
     }))));
   const editorDesktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "domination-map-editor",
       desktopName: "Domination Map Editor",
       exec: "domination-map-editor",
       icon: "domination",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "domination",
       version: "1.3.5",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://svn.code.sf.net/p/domination/code/Domination",
           rev: "2778",
           hash: "sha256-OsCpSL/0QgaaUAzoyPPrAlJixRlqsLJu2D8FkEuo0Ak=",
@@ -76,15 +70,15 @@ runHook postInstall
 `),
       preFixup: "# remove extra metadata files for jar files which break stripJavaArchivesHook\nfind $out/share/domination/lib -type f -name '._*.jar' -delete\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "domination-starts": nix.thunk(() => nix.sel(nixosTests, "domination")),
         })),
         updateScript: nix.path(here, "./update.tcl"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://domination.sourceforge.net/",
         downloadPage: "https://domination.sourceforge.net/download.shtml",
         description: "Game that is a bit like the board game Risk or RisiKo",

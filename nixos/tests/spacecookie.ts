@@ -2,15 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/spacecookie.nix", [[["preStart", 14, 9]], [["spacecookie", 13, 24]], [["services", 13, 15]], [["root", 24, 11], ["hostname", 25, 11]], [["enable", 21, 9], ["openFirewall", 22, 9], ["settings", 23, 9]], [["spacecookie", 20, 16]], [["systemd", 13, 7], ["services", 20, 7]], [["name", 10, 3], ["nodes", 11, 3], ["testScript", 33, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/spacecookie.nix", [["preStart", 14, 9]]);
-const pos$2 = nix.positions(here + "/spacecookie.nix", [["spacecookie", 13, 24]]);
-const pos$3 = nix.positions(here + "/spacecookie.nix", [["services", 13, 15]]);
-const pos$4 = nix.positions(here + "/spacecookie.nix", [["root", 24, 11], ["hostname", 25, 11]]);
-const pos$5 = nix.positions(here + "/spacecookie.nix", [["enable", 21, 9], ["openFirewall", 22, 9], ["settings", 23, 9]]);
-const pos$6 = nix.positions(here + "/spacecookie.nix", [["spacecookie", 20, 16]]);
-const pos$7 = nix.positions(here + "/spacecookie.nix", [["systemd", 13, 7], ["services", 20, 7]]);
-const pos$8 = nix.positions(here + "/spacecookie.nix", [["name", 10, 3], ["nodes", 11, 3], ["testScript", 33, 3]]);
 
 export default nix.thunk(() => (() => {
   const gopherRoot = "/tmp/gopher";
@@ -21,17 +14,17 @@ export default nix.thunk(() => (() => {
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     return {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "spacecookie",
       nodes: nix.thunk(() => nix.attrsDyn({}, [
         [gopherHost, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               spacecookie: nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 preStart: nix.thunk(() => nix.str`mkdir -p ${gopherRoot}/directory
 printf "%s" "${fileContent}" > ${gopherRoot}/${fileName}
 `),
@@ -39,12 +32,12 @@ printf "%s" "${fileContent}" > ${gopherRoot}/${fileName}
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             spacecookie: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               openFirewall: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$4, root: gopherRoot, hostname: gopherHost })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[3], root: gopherRoot, hostname: gopherHost })),
             })),
           })),
         }))],

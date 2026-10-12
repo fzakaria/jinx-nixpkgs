@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["homepage", 51, 5], ["description", 52, 5], ["maintainers", 53, 5], ["license", 54, 5]], [["pname", 15, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 34, 3], ["preCheck", 41, 3], ["disabledTestPaths", 45, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, wcwidth: false, six: false, pytestCheckHook: false, mock: false, glibcLocales: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 51, 5], ["description", 52, 5], ["maintainers", 53, 5], ["license", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 34, 3], ["preCheck", 41, 3], ["disabledTestPaths", 45, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const mock = nix.arg($, "mock");
   const glibcLocales = nix.arg($, "glibcLocales");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "blessed",
       version: "1.25-unstable-2025-12-05",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jquast",
           repo: "blessed",
           rev: "cee680ff7fb3ad31f42ae98582ba74629f1fd6b0",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm tox.ini\n",
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_sixel.py"]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jquast/blessed",
         description: "Thin, practical wrapper around terminal capabilities in Python",
         maintainers: nix.thunk(() => (() => {

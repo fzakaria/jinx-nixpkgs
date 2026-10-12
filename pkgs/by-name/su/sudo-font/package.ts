@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5]], [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sudo-font",
       version: "3.6",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/jenskutilek/sudo-font/releases/download/v${nix.sel(finalAttrs, "version")}/sudo.zip`),
           hash: "sha256-4jw1MGxV/a78U7jAfnRLxfZFOqDzyTctCaqKT/s1mMU=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Font for programmers and command line users",
         homepage: "https://www.kutilek.de/sudo-font/",
         changelog: nix.thunk(() => nix.str`https://github.com/jenskutilek/sudo-font/raw/v${nix.sel(finalAttrs, "version")}/sudo/FONTLOG.txt`),

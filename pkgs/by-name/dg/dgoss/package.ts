@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["$CONTAINER_RUNTIME", 34, 9]], [["scripts", 26, 7], ["interpreter", 27, 7], ["inputs", 28, 7], ["keep", 33, 7]], [["default", 25, 5]], [["homepage", 40, 5], ["changelog", 41, 5], ["description", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["mainProgram", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["dontConfigure", 16, 3], ["dontBuild", 17, 3], ["installPhase", 19, 3], ["solutions", 24, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { bash: false, coreutils: false, gnused: false, goss: false, lib: false, resholve: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["$CONTAINER_RUNTIME", 34, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["scripts", 26, 7], ["interpreter", 27, 7], ["inputs", 28, 7], ["keep", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["default", 25, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["changelog", 41, 5], ["description", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["mainProgram", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["dontConfigure", 16, 3], ["dontBuild", 17, 3], ["installPhase", 19, 3], ["solutions", 24, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const resholve = nix.arg($, "resholve");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dgoss",
       version: nix.thunk(() => nix.sel(goss, "version")),
       src: nix.thunk(() => nix.sel(goss, "src")),
@@ -29,17 +25,17 @@ export default nix.lambda((args) => (() => {
 install -D extras/dgoss/dgoss $out/bin/dgoss
 `),
       solutions: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         default: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           scripts: nix.thunk(() => ["bin/dgoss"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [coreutils, gnused, which]),
-          keep: nix.thunk(() => ({ [nix.POS]: pos$1, $CONTAINER_RUNTIME: true })),
+          keep: nix.thunk(() => ({ [nix.POS]: $pos[0], $CONTAINER_RUNTIME: true })),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: nix.thunk(() => nix.str`https://github.com/goss-org/goss/blob/v${nix.sel(finalAttrs, "version")}/extras/dgoss/README.md`),
         changelog: nix.thunk(() => nix.str`https://github.com/goss-org/goss/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Convenience wrapper around goss that aims to bring the simplicity of goss to docker containers",

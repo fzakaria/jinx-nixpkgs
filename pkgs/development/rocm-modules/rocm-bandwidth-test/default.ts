@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["finalAttrs", 34, 54]], [["updateScript", 34, 12]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5], ["teams", 43, 5], ["platforms", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["__structuredAttrs", 21, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["cmakeFlags", 30, 3], ["passthru", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, rocmPackages: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["finalAttrs", 34, 54]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 34, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5], ["teams", 43, 5], ["platforms", 44, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["__structuredAttrs", 21, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["cmakeFlags", 30, 3], ["passthru", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rocmPackages = nix.arg($, "rocmPackages");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rocm-bandwidth-test",
       version: "6.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm_bandwidth_test",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "ROCT_INC_DIR", nix.thunk(() => nix.str`${nix.sel(rocmPackages, "rocm-runtime")}/include/libhsakmt`))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Bandwidth test for AMD GPUs supported by ROCm",
         homepage: "https://github.com/ROCm/rocm_bandwidth_test",
         changelog: nix.thunk(() => nix.str`https://github.com/ROCm/rocm_bandwidth_test/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

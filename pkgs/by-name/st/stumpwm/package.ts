@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["teams", 48, 5], ["platforms", 49, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["doCheck", 37, 3], ["postConfigure", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, autoreconfHook: false, sbcl: false, texinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["teams", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["doCheck", 37, 3], ["postConfigure", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "stumpwm",
       version: "24.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stumpwm",
           repo: "stumpwm",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postConfigure: "export ASDF_OUTPUT_TRANSLATIONS=$(pwd):$(pwd)\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tiling, keyboard driven window manager",
         homepage: "https://stumpwm.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

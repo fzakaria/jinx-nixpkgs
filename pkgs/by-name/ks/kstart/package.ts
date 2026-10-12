@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["outputsToInstall", 59, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["configureFlags", 37, 3], ["preBuild", 42, 3], ["doCheck", 48, 3], ["preCheck", 49, 3], ["outputs", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, keyutils: false, libkrb5: false, openafs: false, perl: false, "pkg-config": false, enableSetPAG: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["outputsToInstall", 59, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["configureFlags", 37, 3], ["preBuild", 42, 3], ["doCheck", 48, 3], ["preCheck", 49, 3], ["outputs", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const enableSetPAG = nix.argOr($, "enableSetPAG", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kstart",
       version: "4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rra",
           repo: "kstart",
           rev: nix.thunk(() => nix.str`release/${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +39,7 @@ done
       preCheck: "patchShebangs tests\n",
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         outputsToInstall: nix.thunk(() => ["out", "man"]),
         description: "Modified version of kerberos tools that support automatic ticket refresh",
         homepage: "https://github.com/rra/kstart",

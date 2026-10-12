@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]], [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]], [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]], [["name", 50, 7], ["url", 51, 7], ["hash", 52, 7]], [["url", 131, 5]], [["updateScript", 129, 12]], [["homepage", 135, 5], ["description", 136, 5], ["license", 137, 5], ["platforms", 138, 5], ["maintainers", 139, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 27, 3], ["outputs", 56, 3], ["separateDebugInfo", 62, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 71, 3], ["nativeCheckInputs", 77, 3], ["pythonPath", 81, 3], ["configureFlags", 86, 3], ["postUnpack", 97, 3], ["doCheck", 104, 3], ["postInstall", 106, 3], ["preFixup", 116, 3], ["postFixup", 120, 3], ["enableParallelBuilding", 127, 3], ["passthru", 129, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, fetchpatch: false, autoreconfHook: false, "pkg-config": false, ell: false, coreutils: false, docutils: false, readline: false, openssl: false, python3Packages: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 50, 7], ["url", 51, 7], ["hash", 52, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 131, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 129, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 135, 5], ["description", 136, 5], ["license", 137, 5], ["platforms", 138, 5], ["maintainers", 139, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 27, 3], ["outputs", 56, 3], ["separateDebugInfo", 62, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 71, 3], ["nativeCheckInputs", 77, 3], ["pythonPath", 81, 3], ["configureFlags", 86, 3], ["postUnpack", 97, 3], ["doCheck", 104, 3], ["postInstall", 106, 3], ["preFixup", 116, 3], ["postFixup", 120, 3], ["enableParallelBuilding", 127, 3], ["passthru", 129, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "iwd",
       version: "3.12",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.kernel.org/pub/scm/network/wireless/iwd.git",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-78Zw/i2dXecvC+DDSunPlUzqJj0FFYf7Sm6iN5VXBbA=",
@@ -41,25 +33,25 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./no_netdev_group.diff"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "rrm-fix-stack-buffer-overflow-in-rrm_report_beacon_results.patch",
             url: "https://raw.githubusercontent.com/abhinavagarwal07/iwd-security-poc/1d646278412ef446f30cb58025590e6ff5945cb0/patches/0001-rrm-fix-stack-buffer-overflow-in-rrm_report_beacon_r.patch",
             hash: "sha256-t7f4vrS8Ns0BUt8UxS+62T+xWDZaA/t5A0cnXWm00ZU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "ie-fix-off-by-one-in-he-capabilities-channel-width-set.patch",
             url: "https://raw.githubusercontent.com/abhinavagarwal07/iwd-security-poc/1d646278412ef446f30cb58025590e6ff5945cb0/patches/0002-ie-fix-off-by-one-in-HE-Capabilities-Channel-Width-S.patch",
             hash: "sha256-142lowS9YtOGwfRqryxxGnzcNZrz72tIOhVZhlo3fMY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "ft-fix-mde_equal-self-comparison-and-type-mismatch.patch",
             url: "https://raw.githubusercontent.com/abhinavagarwal07/iwd-security-poc/1d646278412ef446f30cb58025590e6ff5945cb0/patches/0003-ft-fix-mde_equal-self-comparison-and-type-mismatch.patch",
             hash: "sha256-Qdm8eAw3tbH/wDWvmWIkKxMQ2m16o+VvEPYaKXBgAAw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "ie-fix-uint8_t-underflow-in-fte-sub-element-parser.patch",
             url: "https://raw.githubusercontent.com/abhinavagarwal07/iwd-security-poc/1d646278412ef446f30cb58025590e6ff5945cb0/patches/0004-ie-fix-uint8_t-underflow-in-FTE-sub-element-parser.patch",
             hash: "sha256-6At7PUXoORM++9ndIzxTTRu7V09+D31DrdMNLt1EtOc=",
@@ -104,14 +96,14 @@ substituteInPlace $out/share/dbus-1/system-services/net.connman.iwd.service \\
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://git.kernel.org/pub/scm/network/wireless/iwd.git",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://git.kernel.org/pub/scm/network/wireless/iwd.git",
         description: "Wireless daemon for Linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 27, 5], ["hash", 28, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["sourceRoot", 39, 3], ["cmakeFlags", 41, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, intelLlvmStdenv: false, cmake: false, ninja: false, lib: false, gpuTuningTarget: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["sourceRoot", 39, 3], ["cmakeFlags", 41, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gpuTuningTarget = nix.argOr($, "gpuTuningTarget", () => "DEFAULT");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "gpuTuningTarget", gpuTuningTarget, nix.thunk(() => ["DEFAULT", "INTEL_GPU", "NVIDIA_GPU", "AMD_GPU"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ge/generic-sycl-components/package.nix:12:1");
   return nix.app(nix.sel(intelLlvmStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "generic-sycl-components",
       version: "unstable-2025-08-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "uxlfoundation",
           repo: "generic-sycl-components",
           rev: "99241128f64b700392e4cfdd047caada024bf7dd",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "TUNING_TARGET", gpuTuningTarget)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SYCL-based BLAS kernels used as the generic BLAS backend for oneMath",
         homepage: "https://github.com/uxlfoundation/generic-sycl-components",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

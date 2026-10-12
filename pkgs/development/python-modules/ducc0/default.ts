@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["DUCC0_USE_NANOBIND", 40, 5], ["DUCC0_OPTIMIZATION", 41, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["env", 39, 3], ["build-system", 44, 3], ["dontUseCmakeConfigure", 51, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 54, 3], ["enabledTestPaths", 59, 3], ["pythonImportsCheck", 60, 3], ["postInstall", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitLab: false, cmake: false, nanobind: false, ninja: false, "scikit-build-core": false, setuptools: false, numpy: false, "pytest-xdist": false, pytestCheckHook: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["DUCC0_USE_NANOBIND", 40, 5], ["DUCC0_OPTIMIZATION", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["env", 39, 3], ["build-system", 44, 3], ["dontUseCmakeConfigure", 51, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 54, 3], ["enabledTestPaths", 59, 3], ["pythonImportsCheck", 60, 3], ["postInstall", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ducc0",
       version: "0.41.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.mpcdf.mpg.de",
           owner: "mtr",
           repo: "ducc",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-OeTTrIcvY9bhnctc6h1xUdSriQN4RNy3vjxWKKlT0ew=",
         })))),
       postPatch: "substituteInPlace pyproject.toml --replace-fail '\"pybind11>=2.13.6\", ' \"\"\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, DUCC0_USE_NANOBIND: "", DUCC0_OPTIMIZATION: "portable" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], DUCC0_USE_NANOBIND: "", DUCC0_OPTIMIZATION: "portable" })),
       "build-system": nix.thunk(() => [cmake, nanobind, ninja, scikit_build_core, setuptools]),
       dontUseCmakeConfigure: true,
       dependencies: nix.thunk(() => [numpy]),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
 cp -r ${nix.sel(finalAttrs, "src")}/src/ducc0 $out/include
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Efficient algorithms for Fast Fourier transforms and more",
         homepage: "https://gitlab.mpcdf.mpg.de/mtr/ducc",
         changelog: nix.thunk(() => nix.str`https://gitlab.mpcdf.mpg.de/mtr/ducc/-/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog?ref_type=tags`),

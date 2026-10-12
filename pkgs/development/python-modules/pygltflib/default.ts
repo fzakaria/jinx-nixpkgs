@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 35, 3], ["nativeCheckInputs", 40, 3], ["preCheck", 41, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitLab: false, fetchFromGitHub: false, setuptools: false, "dataclasses-json": false, deprecated: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 35, 3], ["nativeCheckInputs", 40, 3], ["preCheck", 41, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const deprecated = nix.arg($, "deprecated");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const gltf_sample_models = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "KhronosGroup",
       repo: "glTF-Sample-Models",
       rev: "d7a3cc8e51d7c573771ae77a57f16b0662a905c6",
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.16.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "dodgyville",
           repo: "pygltflib",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
 `);
       const pythonImportsCheck = nix.thunk(() => ["pygltflib"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Module for reading and writing basic glTF files",
         homepage: "https://gitlab.com/dodgyville/pygltflib",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/dodgyville/pygltflib/-/blob/v${version}/CHANGELOG.md`),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

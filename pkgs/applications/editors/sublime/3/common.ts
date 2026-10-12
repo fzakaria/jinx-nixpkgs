@@ -2,12 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["url", 63, 7], ["sha256", 64, 7]], [["pname", 59, 5], ["version", 60, 5], ["src", 62, 5], ["dontStrip", 67, 5], ["dontPatchELF", 68, 5], ["buildInputs", 69, 5], ["nativeBuildInputs", 73, 5], ["patchPhase", 81, 5], ["buildPhase", 97, 5], ["installPhase", 113, 5], ["dontWrapGApps", 126, 5], ["postFixup", 128, 5]], [["description", 171, 5], ["homepage", 172, 5], ["maintainers", 173, 5], ["sourceProvenance", 178, 5], ["license", 179, 5], ["platforms", 180, 5]], [["pname", 144, 11], ["version", 145, 3], ["dontUnpack", 147, 3], ["nativeBuildInputs", 151, 3], ["installPhase", 153, 3], ["meta", 170, 3]]]);
 const formals$1 = { args: { buildVersion: false, x32sha256: false, x64sha256: false, dev: true }, ellipsis: false };
 const formals$2 = { args: { fetchurl: false, lib: false, stdenv: false, libx11: false, glib: false, glibcLocales: false, gtk3: false, cairo: false, pango: false, libredirect: false, makeWrapper: false, wrapGAppsHook3: false, pkexecPath: true, openssl: false, bzip2: false, bash: false, unzip: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["url", 63, 7], ["sha256", 64, 7]]);
-const pos$2 = nix.positions(here + "/common.nix", [["pname", 59, 5], ["version", 60, 5], ["src", 62, 5], ["dontStrip", 67, 5], ["dontPatchELF", 68, 5], ["buildInputs", 69, 5], ["nativeBuildInputs", 73, 5], ["patchPhase", 81, 5], ["buildPhase", 97, 5], ["installPhase", 113, 5], ["dontWrapGApps", 126, 5], ["postFixup", 128, 5]]);
-const pos$3 = nix.positions(here + "/common.nix", [["description", 171, 5], ["homepage", 172, 5], ["maintainers", 173, 5], ["sourceProvenance", 178, 5], ["license", 179, 5], ["platforms", 180, 5]]);
-const pos$4 = nix.positions(here + "/common.nix", [["pname", 144, 11], ["version", 145, 3], ["dontUnpack", 147, 3], ["nativeBuildInputs", 151, 3], ["installPhase", 153, 3], ["meta", 170, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,10 +45,10 @@ export default nix.lambda((args) => (() => {
     const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libx11, glib, gtk3, cairo, pango])));
     const redirects = nix.thunk(() => [nix.thunk(() => nix.str`/usr/bin/pkexec=${pkexecPath}`)]);
     const binaryPackage = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: nix.thunk(() => nix.str`${pname}-bin`),
         version: buildVersion,
-        src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: downloadUrl, sha256: archSha256 })))),
+        src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[0], url: downloadUrl, sha256: archSha256 })))),
         dontStrip: true,
         dontPatchELF: true,
         buildInputs: nix.thunk(() => [glib, gtk3]),
@@ -97,7 +94,7 @@ wrapProgram $out/plugin_host --prefix LD_PRELOAD : ${nix.app(nix.sel(lib, "getLi
 `),
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.attrsDyn({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname,
         version: buildVersion,
         dontUnpack: true,
@@ -114,7 +111,7 @@ for directory in $${primaryBinary}/Icon/*; do
 done
 `)),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: "Sophisticated text editor for code, markup and prose",
           homepage: "https://www.sublimetext.com/",
           maintainers: nix.thunk(() => (() => {

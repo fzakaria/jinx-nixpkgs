@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["package", 38, 5]], [["version", 37, 18]], [["tests", 37, 12]], [["description", 42, 5], ["mainProgram", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["subPackages", 22, 3], ["ldflags", 26, 3], ["doCheck", 35, 3], ["passthru", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, testers: false, "osv-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 37, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 37, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 42, 5], ["mainProgram", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["subPackages", 22, 3], ["ldflags", 26, 3], ["doCheck", 35, 3], ["passthru", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const osv_scanner = nix.arg($, "osv-scanner");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "osv-scanner",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "osv-scanner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,14 +34,14 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: osv_scanner })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: osv_scanner })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Vulnerability scanner written in Go which uses the data provided by https://osv.dev",
         mainProgram: "osv-scanner",
         homepage: "https://github.com/google/osv-scanner",

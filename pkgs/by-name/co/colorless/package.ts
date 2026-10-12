@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["homepage", 44, 5], ["description", 45, 5], ["longDescription", 46, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["makeFlags", 21, 3], ["preInstall", 33, 3], ["postInstall", 37, 3], ["strictDeps", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenvNoCC: false, coreutils: false, bash: false, binSh: true, gnused: false, less: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["longDescription", 46, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["makeFlags", 21, 3], ["preInstall", 33, 3], ["postInstall", 37, 3], ["strictDeps", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "colorless";
       const version = "109";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://software.kimmo.suominen.com/colorless-${version}.tar.gz`),
           sha256: "039a140fa11cf153cc4d03e4f753b7ff142cab88ff116b7600ccf9edee81927c",
         }))));
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "install -Dm644 -t $out/share/doc/colorless LICENSE README.md\n";
       const strictDeps = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://kimmo.suominen.com/sw/colorless",
         description: "Enable colorised command output and pipe it to less",
         longDescription: "colorless is a wrapper that enables colorised output of commands and\npipes the output to less(1).\n",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "colorless",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

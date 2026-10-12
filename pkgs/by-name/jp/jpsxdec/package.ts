@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["name", 58, 7], ["exec", 59, 7], ["icon", 60, 7], ["desktopName", 61, 7], ["comment", 62, 7], ["categories", 63, 7]], [["shortName", 75, 7], ["url", 76, 7], ["free", 77, 7]], [["changelog", 71, 5], ["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["sourceRoot", 25, 3], ["nativeBuildInputs", 27, 3], ["buildPhase", 35, 3], ["installPhase", 41, 3], ["desktopItems", 56, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ant: false, jdk8: false, jre: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, stripJavaArchivesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 58, 7], ["exec", 59, 7], ["icon", 60, 7], ["desktopName", 61, 7], ["comment", 62, 7], ["categories", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["shortName", 75, 7], ["url", 76, 7], ["free", 77, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 71, 5], ["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["sourceRoot", 25, 3], ["nativeBuildInputs", 27, 3], ["buildPhase", 35, 3], ["installPhase", 41, 3], ["desktopItems", 56, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jpsxdec",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "m35",
           repo: "jpsxdec",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +46,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "jpsxdec",
             exec: "jpsxdec",
             icon: "jpsxdec",
@@ -60,12 +56,12 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/m35/jpsxdec/blob/${nix.sel(finalAttrs, "src", "rev")}/jpsxdec/doc/CHANGES.txt`),
         description: "Cross-platform PlayStation 1 audio and video converter",
         homepage: "https://jpsxdec.blogspot.com/",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             shortName: "jpsxdec",
             url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/m35/jpsxdec/${nix.sel(finalAttrs, "src", "rev")}/.github/LICENSE.md`),
             free: true,

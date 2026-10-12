@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["url", 35, 7], ["hash", 36, 7]], [["NIX_CFLAGS_COMPILE", 63, 7]], [["withVtk", 79, 45]], [["withVtk", 79, 7]], [["tests", 78, 5]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 89, 5], ["platforms", 90, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["env", 63, 3], ["cmakeFlags", 64, 3], ["passthru", 77, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, ninja: false, rapidjson: false, tcl: false, tk: false, libGL: false, libGLU: false, libxext: false, libxmu: false, libxi: false, vtk: false, withVtk: true, "opencascade-occt": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 63, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["withVtk", 79, 45]]);
-const pos$5 = nix.positions(here + "/package.nix", [["withVtk", 79, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 78, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 89, 5], ["platforms", 90, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["env", 63, 3], ["cmakeFlags", 64, 3], ["passthru", 77, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const withVtk = nix.argOr($, "withVtk", () => false);
   const opencascade_occt = nix.arg($, "opencascade-occt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "opencascade-occt",
       version: "7.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Open-Cascade-SAS",
           repo: "OCCT",
           tag: nix.thunk(() => nix.str`V${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -44,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "7.9")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://github.com/Open-Cascade-SAS/OCCT/commit/7236e83dcc1e7284e66dc61e612154617ef715d6.diff",
               hash: "sha256-NoC2mE3DG78Y0c9UWonx1vmXoU4g5XxFUT3eVXqLU60=",
             })))),
@@ -52,7 +45,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withVtk) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), "substituteInPlace adm/MODULES \\\n  --replace-fail \"TKIVtkDraw\" \"\"\n")),
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       buildInputs: nix.thunk(() => nix.concat([tcl, tk, libGL, libGLU, libxext, libxmu, libxi, rapidjson], nix.app(nix.sel(lib, "optional"), withVtk, vtk))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fpermissive" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-fpermissive" })),
       cmakeFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_RAPIDJSON", true)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_RELEASE_DISABLE_EXCEPTIONS", false)),
@@ -62,14 +55,14 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "3RDPARTY_VTK_INCLUDE_DIR", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), vtk)}/include/vtk`))),
         ])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          withVtk: nix.thunk(() => nix.app(nix.sel(opencascade_occt, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, withVtk: true })))),
+          [nix.POS]: $pos[4],
+          withVtk: nix.thunk(() => nix.app(nix.sel(opencascade_occt, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], withVtk: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Open CASCADE Technology, libraries for 3D modeling and numerical simulation",
         homepage: "https://www.opencascade.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

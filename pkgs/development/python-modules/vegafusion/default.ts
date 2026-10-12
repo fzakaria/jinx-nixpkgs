@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["src", 45, 13], ["name", 46, 5], ["hash", 47, 5]], [["test", 72, 5]], [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["cargoDeps", 44, 3], ["buildAndTestSubdir", 50, 3], ["buildInputs", 52, 3], ["nativeBuildInputs", 54, 3], ["dependencies", 59, 3], ["optional-dependencies", 71, 3], ["pythonImportsCheck", 84, 3], ["nativeCheckInputs", 86, 3], ["disabledTests", 88, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, pytestCheckHook: false, "arro3-core": false, protobuf: false, psutil: false, altair: false, ipywidgets: false, "vl-convert-python": false, anywidget: false, polars: false, grpcio: false, pyarrow: false, duckdb: false, "vega-datasets": false, "scikit-image": false, jupytext: false, ipykernel: false, selenium: false, flaky: false, tenacity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 45, 13], ["name", 46, 5], ["hash", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["test", 72, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["cargoDeps", 44, 3], ["buildAndTestSubdir", 50, 3], ["buildInputs", 52, 3], ["nativeBuildInputs", 54, 3], ["dependencies", 59, 3], ["optional-dependencies", 71, 3], ["pythonImportsCheck", 84, 3], ["nativeCheckInputs", 86, 3], ["disabledTests", 88, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hex-inc",
           repo: "vegafusion",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./fix-test_transformer.patch")]);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: src,
           name: nix.thunk(() => nix.str`${pname}-${version}`),
           hash: "sha256-T/4k4ZWiO/AQvCxsbjyLMvV/zKq8ywy2rAQYMsJ73t4=",
@@ -73,7 +69,7 @@ export default nix.lambda((args) => (() => {
         pyarrow,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         test: nix.thunk(() => [
           duckdb,
           vega_datasets,
@@ -97,7 +93,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const w_1 = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Core tools for using VegaFusion from Python",
           homepage: "https://github.com/hex-inc/vegafusion",
           license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -108,7 +104,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 28, 26], ["version", 28, 32], ["hash", 29, 5]], [["homepage", 78, 5], ["changelog", 79, 5], ["description", 80, 5], ["license", 81, 5], ["maintainers", 85, 5], ["mainProgram", 90, 5], ["platforms", 91, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["build-system", 32, 3], ["dependencies", 37, 3], ["pythonRelaxDeps", 59, 3], ["nativeBuildInputs", 60, 3], ["postInstall", 65, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, fetchpatch: false, fetchPypi: false, makeWrapper: false, python313Packages: false, libclang: false, "clang-tools": false, cppcheck: false, gcc: false, infer: false, withClang: true, withClangTools: true, withCppcheck: true, withGcc: true, withInfer: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 28, 26], ["version", 28, 32], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 78, 5], ["changelog", 79, 5], ["description", 80, 5], ["license", 81, 5], ["maintainers", 85, 5], ["mainProgram", 90, 5], ["platforms", 91, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["build-system", 32, 3], ["dependencies", 37, 3], ["pythonRelaxDeps", 59, 3], ["nativeBuildInputs", 60, 3], ["postInstall", 65, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const withGcc = nix.argOr($, "withGcc", () => false);
   const withInfer = nix.argOr($, "withInfer", () => false);
   return nix.app(nix.sel(python313Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "codechecker",
       version: "6.29.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-0D8eO+UumjZXh/t00IUcBLtUUwXJINbFaUG+svkOScQ=",
@@ -75,7 +73,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/CodeChecker" --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withClang, libclang), nix.concat(nix.app(nix.sel(lib, "optional"), withClangTools, clang_tools), nix.concat(nix.app(nix.sel(lib, "optional"), withCppcheck, cppcheck), nix.concat(nix.app(nix.sel(lib, "optional"), withGcc, gcc), nix.app(nix.sel(lib, "optional"), withInfer, infer)))))))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/Ericsson/codechecker",
         changelog: nix.thunk(() => nix.str`https://github.com/Ericsson/codechecker/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Analyzer tooling, defect database and viewer extension for the Clang Static Analyzer and Clang Tidy",

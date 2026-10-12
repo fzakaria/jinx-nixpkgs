@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 21, 5], ["group", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["extraArgs", 48, 47]], [["updateScript", 48, 12]], [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 55, 5], ["license", 56, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["installFlags", 46, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoreconfHook: false, "pkg-config": false, "util-macros": false, wrapWithXFileSearchPathHook: false, libx11: false, libxaw: false, libxmu: false, xorgproto: false, libxt: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 21, 5], ["group", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 48, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 55, 5], ["license", 56, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["installFlags", 46, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xload",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "app",
@@ -42,11 +38,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxaw, libxmu, xorgproto, libxt]),
       installFlags: nix.thunk(() => ["appdefaultdir=$out/share/X11/app-defaults"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version-regex=xload-(.*)"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            extraArgs: nix.thunk(() => ["--version-regex=xload-(.*)"]),
+          })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "System load average display for X",
         longDescription: "xload displays a periodically updating histogram of the system load average.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/app/xload",

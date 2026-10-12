@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["extraArgs", 86, 5]], [["updateScript", 85, 12]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5], ["mainProgram", 97, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 43, 3], ["makeWrapperArgs", 49, 3], ["postPatch", 63, 3], ["passthru", 85, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, file: false, coreutils: false, bashNonInteractive: false, less: false, highlight: false, w3m: false, imagemagick: false, imagePreviewSupport: true, sixelPreviewSupport: true, neoVimSupport: true, improvedEncodingDetection: true, rightToLeftTextSupport: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 85, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5], ["mainProgram", 97, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 43, 3], ["makeWrapperArgs", 49, 3], ["postPatch", 63, 3], ["passthru", 85, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const rightToLeftTextSupport = nix.argOr($, "rightToLeftTextSupport", () => false);
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ranger",
       version: "1.9.4-unstable-2026-09-09",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ranger",
           repo: "ranger",
           rev: "46e957af9762dd2fcaabfbef4d3c45c16edd1184",
@@ -75,11 +71,11 @@ substituteInPlace ranger/config/rc.conf \\
   --replace "set preview_images false" "set preview_images true"
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "File manager with minimalistic curses interface",
         homepage: "https://ranger.fm/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

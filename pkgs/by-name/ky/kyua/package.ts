@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["doInstallCheck", 16, 5]], [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["tagPrefix", 106, 48]], [["updateScript", 106, 12]], [["description", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["mainProgram", 115, 5], ["maintainers", 116, 5], ["platforms", 117, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["setupHooks", 30, 3], ["postPatch", 32, 3], ["strictDeps", 75, 3], ["buildInputs", 77, 3], ["nativeBuildInputs", 82, 3], ["enableParallelBuilding", 88, 3], ["makeFlags", 90, 3], ["doInstallCheck", 95, 3], ["installCheckInputs", 97, 3], ["nativeInstallCheckInputs", 98, 3], ["installCheckPhase", 100, 3], ["passthru", 106, 3], ["__structuredAttrs", 108, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, atf: false, autoreconfHook: false, lutok: false, "pkg-config": false, sqlite: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["doInstallCheck", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tagPrefix", 106, 48]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 106, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["mainProgram", 115, 5], ["maintainers", 116, 5], ["platforms", 117, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["setupHooks", 30, 3], ["postPatch", 32, 3], ["strictDeps", 75, 3], ["buildInputs", 77, 3], ["nativeBuildInputs", 82, 3], ["enableParallelBuilding", 88, 3], ["makeFlags", 90, 3], ["doInstallCheck", 95, 3], ["installCheckInputs", 97, 3], ["nativeInstallCheckInputs", 98, 3], ["installCheckPhase", 100, 3], ["passthru", 106, 3], ["__structuredAttrs", 108, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const sqlite = nix.arg($, "sqlite");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
-  const atf$ = nix.thunk(() => nix.app(nix.sel(atf, "overrideAttrs"), (_) => ({ [nix.POS]: pos$1, doInstallCheck: false })));
+  const atf$ = nix.thunk(() => nix.app(nix.sel(atf, "overrideAttrs"), (_) => ({ [nix.POS]: $pos[0], doInstallCheck: false })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kyua",
       version: "0.13-unstable-2024-01-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "freebsd",
           repo: "kyua",
           rev: "c85354e09ad93a902c9e8a701c042c045ec2a5b7",
@@ -45,12 +40,12 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [sqlite]),
       installCheckPhase: "runHook preInstallCheck\nHOME=$TMPDIR PATH=$out/bin:$PATH kyua test\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagPrefix: "kyua-" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], tagPrefix: "kyua-" })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Testing framework for infrastructure software",
         homepage: "https://github.com/freebsd/kyua/",
         changelog: "https://github.com/freebsd/kyua/blob/master/NEWS.md",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/install-skill.nix", [[["platforms", 13, 10]], [["strictDeps", 9, 5], ["__structuredAttrs", 10, 5], ["nativeBuildInputs", 12, 5], ["meta", 13, 5]]]);
 const formals$1 = { args: { lib: false, installAgentSkills: false, runCommandLocal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/install-skill.nix", [["platforms", 13, 10]]);
-const pos$2 = nix.positions(here + "/install-skill.nix", [["strictDeps", 9, 5], ["__structuredAttrs", 10, 5], ["nativeBuildInputs", 12, 5], ["meta", 13, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const installAgentSkills = nix.arg($, "installAgentSkills");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   return nix.app(runCommandLocal, "install-agent-skills--install-skill", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       strictDeps: true,
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [installAgentSkills]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })), "# required to functions/hook to work. this is a contrived example\n# so its fine to manually set here\nexport pname=test-installSkill\n\nmkdir -p skill-xyz\necho \"This is a test agent skill!\" > skill-xyz/SKILL.md\n\ninstallSkill ./skill-xyz\n\ncmp skill-xyz/SKILL.md $out/share/skills/$pname/skill-xyz/SKILL.md\n");

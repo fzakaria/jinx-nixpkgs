@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 77, 5], ["hash", 78, 5]], [["description", 129, 5], ["homepage", 130, 5], ["downloadPage", 131, 5], ["mainProgram", 132, 5], ["license", 133, 5], ["platforms", 134, 5], ["sourceProvenance", 135, 5], ["maintainers", 136, 5]], [["pname", 73, 3], ["version", 74, 3], ["src", 76, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 87, 3], ["runtimeDependencies", 88, 3], ["dontConfigure", 96, 3], ["dontBuild", 97, 3], ["installPhase", 99, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, autoPatchelfHook: false, dpkg: false, makeBinaryWrapper: false, libgcc: false, glib: false, nss: false, nspr: false, "at-spi2-atk": false, cups: false, libdrm: false, gtk3: false, pango: false, cairo: false, libgbm: false, expat: false, libxkbcommon: false, "alsa-lib": false, "libva-minimal": false, pulseaudio: false, libGL: false, "vulkan-loader": false, curlWithGnuTls: false, libxrandr: false, libxfixes: false, libxext: false, libxdamage: false, libxcomposite: false, lib: false, libnotify: false, libappindicator: false, systemd: false, pciutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 77, 5], ["hash", 78, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 129, 5], ["homepage", 130, 5], ["downloadPage", 131, 5], ["mainProgram", 132, 5], ["license", 133, 5], ["platforms", 134, 5], ["sourceProvenance", 135, 5], ["maintainers", 136, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 73, 3], ["version", 74, 3], ["src", 76, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 87, 3], ["runtimeDependencies", 88, 3], ["dontConfigure", 96, 3], ["dontBuild", 97, 3], ["installPhase", 99, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -68,11 +66,11 @@ export default nix.lambda((args) => (() => {
   const libPath = nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "makeLibraryPath"), deps), ":"), nix.app(nix.sel(lib, "makeSearchPathOutput"), "lib", "lib64", deps)));
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), deps));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "airtame-application",
       version: "4.16.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.airtame.com/app/latest/linux/Airtame-${nix.sel(finalAttrs, "version")}.deb`),
           hash: "sha256-wjWuPqXXonxbaobwl6dpYmUHA5W3+LXYskFJLUsjDf8=",
         })))),
@@ -115,7 +113,7 @@ sed -i "s|Exec.*$|Exec=$out/bin/airtame-application \\$U|" $out/share/applicatio
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Airtame official screen streaming application",
         homepage: "https://airtame.com",
         downloadPage: nix.thunk(() => nix.str`https://downloads.airtame.com/app/latest/linux/Airtame-${nix.sel(finalAttrs, "version")}.deb`),

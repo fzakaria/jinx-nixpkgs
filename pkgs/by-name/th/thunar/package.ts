@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 50, 9], ["license", 51, 9], ["platforms", 52, 9], ["teams", 53, 9], ["description", 56, 7]], [["name", 18, 5], ["paths", 20, 5], ["nativeBuildInputs", 22, 5], ["postBuild", 24, 5], ["meta", 48, 5]]]);
 const formals$1 = { args: { lib: false, makeWrapper: false, symlinkJoin: false, "thunar-unwrapped": false, thunarPlugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 50, 9], ["license", 51, 9], ["platforms", 52, 9], ["teams", 53, 9], ["description", 56, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 18, 5], ["paths", 20, 5], ["nativeBuildInputs", 22, 5], ["postBuild", 24, 5], ["meta", 48, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const thunarPlugins = nix.argOr($, "thunarPlugins", () => []);
   const thunar = thunar_unwrapped;
   return (nix.asBool(nix.eq(thunarPlugins, [])) ? nix.force(thunar) : nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`thunar-with-plugins-${nix.sel(thunar, "version")}`),
       paths: nix.thunk(() => nix.concat([thunar], thunarPlugins)),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -44,7 +43,7 @@ done
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(thunar, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["name", 36, 11], ["url", 37, 11], ["hash", 38, 11]], [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["enableParallelBuilding", 27, 3], ["patches", 29, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 65, 3], ["outputs", 71, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, libtool: false, autoreconfHook: false, bison: false, groff: false, ghostscript: false, gettext: false, acl: false, libcap: false, lsof: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 36, 11], ["url", 37, 11], ["hash", 38, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["enableParallelBuilding", 27, 3], ["patches", 29, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 65, 3], ["outputs", 71, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libcap = nix.arg($, "libcap");
   const lsof = nix.arg($, "lsof");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "explain",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/libexplain/libexplain-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-KIY7ZezMdJNOI3ysQTZMs8GALDbJ4jGO0EF0YP7oP4A=",
         })))),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         const debian_src = "https://sources.debian.org/data/main";
         const debian_ver = nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}.D001-17`);
         const debian_patch = (fname) => (hash) => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: fname,
             url: nix.thunk(() => nix.str`${debian_src}/libe/libexplain/${debian_ver}/debian/patches/${fname}`),
             hash: hash,
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [acl, libcap, lsof]),
       outputs: nix.thunk(() => ["bin", "dev", "out", "man", "doc"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library and utility to explain system call errors",
         mainProgram: "explain",
         homepage: "https://libexplain.sourceforge.net",

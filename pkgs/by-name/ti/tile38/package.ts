@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 37, 5], ["license", 38, 5], ["teams", 39, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["subPackages", 20, 3], ["ldflags", 25, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 37, 5], ["license", 38, 5], ["teams", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["subPackages", 20, 3], ["ldflags", 25, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tile38",
       version: "1.38.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tidwall",
           repo: "tile38",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/tidwall/tile38/core.Version=${nix.sel(finalAttrs, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Real-time Geospatial and Geofencing",
         longDescription: "Tile38 is an in-memory geolocation data store, spatial index, and realtime geofence.\nIt supports a variety of object types including lat/lon points, bounding boxes, XYZ tiles, Geohashes, and GeoJSON.\n",
         homepage: "https://tile38.com/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["url", 29, 7], ["hash", 30, 7], ["includes", 31, 7]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5], ["platforms", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["patches", 26, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, cmake: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7], ["includes", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5], ["platforms", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["patches", 26, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "linyaps-web-store-installer",
       version: "1.6.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenAtom-Linyaps",
           repo: "linyaps-web-store-installer",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace ll-installer/space.linglong.Installer.desktop \\\n  --replace-fail \"Exec=/usr/bin/ll-installer\" \"Exec=$out/bin/ll-installer\"\n",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/OpenAtom-Linyaps/linyaps-web-store-installer/commit/fc365dd06b17df38d9ae991775e51c5f1b547341.patch?full_index=1",
             hash: "sha256-BpFM3w8njRANvxH34PyP3Y2hLtZWOl18KZxzA+Ew3Zg=",
             includes: nix.thunk(() => ["CMakeLists.txt"]),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtbase"))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "URI Handler for Linyaps Web Store",
         homepage: "https://github.com/OpenAtom-Linyaps/linyaps-web-store-installer",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenAtom-Linyaps/linyaps-web-store-installer/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 35], ["sha256", 31, 39]], [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 54, 5], ["sourceProvenance", 58, 5]], [["commandLineArgs", 17, 11], ["useVSCodeRipgrep", 17, 27], ["version", 19, 18], ["vscodeVersion", 19, 26], ["pname", 21, 3], ["executableName", 23, 3], ["longName", 24, 3], ["shortName", 25, 3], ["libraryName", 26, 3], ["iconName", 27, 3], ["sourceRoot", 29, 3], ["src", 31, 3], ["tests", 33, 3], ["updateScript", 35, 3], ["dontFixup", 40, 3], ["meta", 42, 3]], [["dontAutoPatchelf", 63, 5], ["runtimeDependencies", 65, 5], ["postFixup", 73, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildVscode: false, fd: false, fetchurl: false, nixosTests: false, commandLineArgs: true, useVSCodeRipgrep: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 35], ["sha256", 31, 39]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 54, 5], ["sourceProvenance", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["commandLineArgs", 17, 11], ["useVSCodeRipgrep", 17, 27], ["version", 19, 18], ["vscodeVersion", 19, 26], ["pname", 21, 3], ["executableName", 23, 3], ["longName", 24, 3], ["shortName", 25, 3], ["libraryName", 26, 3], ["iconName", 27, 3], ["sourceRoot", 29, 3], ["src", 31, 3], ["tests", 33, 3], ["updateScript", 35, 3], ["dontFixup", 40, 3], ["meta", 42, 3]]);
-const pos$4 = nix.positions(here + "/package.nix", [["dontAutoPatchelf", 63, 5], ["runtimeDependencies", 65, 5], ["postFixup", 73, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const useVSCodeRipgrep = nix.argOr($, "useVSCodeRipgrep", () => nix.sel(stdenv, "hostPlatform", "isDarwin"));
   const info = nix.thunk(() => nix.selOr(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./info.json")), () => nix.builtins.throw(nix.thunk(() => nix.str`windsurf: unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
   return nix.app(nix.sel(nix.app(buildVscode, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       commandLineArgs: commandLineArgs,
       useVSCodeRipgrep: useVSCodeRipgrep,
       version: nix.thunk(() => nix.attr(info, "version")),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       iconName: "devin-desktop",
       sourceRoot: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "Devin.app" : "Devin")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.attr(info, "url")),
           sha256: nix.thunk(() => nix.attr(info, "sha256")),
         })))),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       updateScript: nix.path(here, "./update/update.mts"),
       dontFixup: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Agentic IDE powered by AI Flow paradigm",
         longDescription: "The first agentic IDE, and then some.\nDevin Desktop is where the work of developers and AI truly flow together, allowing for a coding experience that feels like literal magic.\n",
         homepage: "https://devin.ai/desktop",
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),
       })),
     }))), "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       dontAutoPatchelf: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       runtimeDependencies: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "runtimeDependencies"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [fd])))),
       postFixup: nix.thunk(() => nix.add(nix.selOr(oldAttrs, () => "", "postFixup"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`autoPatchelf -- "$out"

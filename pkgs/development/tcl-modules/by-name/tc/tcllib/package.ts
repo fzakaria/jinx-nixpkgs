@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 21, 3], ["buildFlags", 25, 3], ["tclRequiresCheck", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, mkTclDerivation: false, critcl: false, withCritcl: true, bashNonInteractive: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 21, 3], ["buildFlags", 25, 3], ["tclRequiresCheck", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const withCritcl = nix.argOr($, "withCritcl", () => true);
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tcllib",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/tcllib/tcllib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-LoY6y7p9n1dXk4eSa/HuyA4bIXa0rN7F2OGESk2tROI=",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => nix.concat(["all"], nix.app(nix.sel(lib, "optional"), withCritcl, "critcl"))),
       tclRequiresCheck: nix.thunk(() => ["struct::graph", "doctools", "json"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://core.tcl-lang.org/tcllib/",
         description: "Tcl-only library of standard routines for Tcl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "tcltk")),

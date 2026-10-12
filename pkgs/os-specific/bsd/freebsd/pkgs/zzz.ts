@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zzz.nix", [[["path", 21, 3], ["postPatch", 22, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, acpi: false, apm: false, bin: false, gnugrep: false, sysctl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/zzz.nix", [["path", 21, 3], ["postPatch", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const sysctl = nix.arg($, "sysctl");
   const depsPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [acpi, apm, bin, gnugrep, sysctl])));
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "usr.sbin/zzz",
       postPatch: nix.thunk(() => nix.str`sed -E -i -e "s|/bin/sh|${nix.app(nix.sel(lib, "getBin"), bin)}/bin/sh|g" $BSDSRCDIR/usr.sbin/zzz/zzz.sh
 sed -E -i -e "s|PATH=.*|PATH=${depsPath}|g" $BSDSRCDIR/usr.sbin/zzz/zzz.sh

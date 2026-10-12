@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 39, 5], ["sha256", 40, 5]], [["cross-aarch64", 81, 5]], [["tests", 80, 12]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["platforms", 88, 5]], [["pname", 19, 3], ["version", 20, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 27, 3], ["src", 38, 3], ["patches", 43, 3], ["postPatch", 58, 3], ["makeFlags", 70, 3], ["passthru", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "gnu-efi": false, openssl: false, sbsigntool: false, perl: false, perlPackages: false, help2man: false, fetchzip: false, pkgsCross: false, efitools: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 39, 5], ["sha256", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cross-aarch64", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 80, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["platforms", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 27, 3], ["src", 38, 3], ["patches", 43, 3], ["postPatch", 58, 3], ["makeFlags", 70, 3], ["passthru", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const isCross = nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "efitools",
       version: "1.9.2",
       buildInputs: nix.thunk(() => [gnu_efi, openssl]),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
         sbsigntool,
       ], nix.app(nix.sel(lib, "optionals"), isCross, nix.thunk(() => [efitools])))),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git/snapshot/efitools-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0jabgl2pxvfl780yvghq131ylpf82k7banjz0ksjhlm66ik8gb1i",
         })))),
@@ -63,14 +59,14 @@ patchShebangs .
         nix.thunk(() => nix.str`OBJCOPY=${nix.sel(stdenv, "cc", "targetPrefix")}objcopy`),
       ], nix.app(nix.sel(lib, "optionals"), isCross, nix.thunk(() => ["MANPAGES="])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "cross-aarch64": nix.thunk(() => nix.sel(pkgsCross, "aarch64-multiplatform", "efitools")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tools for manipulating UEFI secure boot platforms",
         homepage: "https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

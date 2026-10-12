@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 55, 7], ["homepage", 56, 7], ["changelog", 57, 7], ["license", 58, 7], ["teams", 59, 7], ["platforms", 60, 7]], [["pname", 13, 3], ["version", 14, 28], ["src", 16, 3], ["paths", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 26, 3], ["dontUnpack", 28, 3], ["dontConfigure", 29, 3], ["dontBuild", 30, 3], ["preferLocalBuild", 32, 3], ["allowSubstitutes", 33, 3], ["installPhase", 35, 3], ["preFixup", 42, 3], ["__structuredAttrs", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, glib: false, "gobject-introspection": false, lndir: false, wrapGAppsHook3: false, "budgie-desktop": false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 55, 7], ["homepage", 56, 7], ["changelog", 57, 7], ["license", 58, 7], ["teams", 59, 7], ["platforms", 60, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 28], ["src", 16, 3], ["paths", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 26, 3], ["dontUnpack", 28, 3], ["dontConfigure", 29, 3], ["dontBuild", 30, 3], ["preferLocalBuild", 32, 3], ["allowSubstitutes", 33, 3], ["installPhase", 35, 3], ["preFixup", 42, 3], ["__structuredAttrs", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const budgie_desktop = nix.arg($, "budgie-desktop");
   const plugins = nix.argOr($, "plugins", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${nix.sel(budgie_desktop, "pname")}-with-plugins`),
       version: nix.thunk(() => nix.attr(budgie_desktop, "version")),
       src: null,
@@ -43,7 +42,7 @@ done
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(budgie_desktop, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

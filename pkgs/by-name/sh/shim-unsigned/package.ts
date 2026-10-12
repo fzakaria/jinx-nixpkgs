@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 18, 7], ["aarch64-linux", 19, 7]], [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]], [["url", 38, 7], ["hash", 39, 7]], [["NIX_CFLAGS_COMPILE", 45, 7]], [["archSuffix", 60, 13], ["target", 61, 5], ["mokManagerTarget", 62, 5], ["fallbackTarget", 63, 5]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 74, 5], ["teams", 77, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 35, 3], ["buildInputs", 43, 3], ["env", 45, 3], ["makeFlags", 47, 3], ["installTargets", 51, 3], ["installFlags", 52, 3], ["passthru", 56, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, fetchpatch2: false, lib: false, elfutils: false, vendorCertFile: true, defaultLoader: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 18, 7], ["aarch64-linux", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 45, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["archSuffix", 60, 13], ["target", 61, 5], ["mokManagerTarget", 62, 5], ["fallbackTarget", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 74, 5], ["teams", 77, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 35, 3], ["buildInputs", 43, 3], ["env", 45, 3], ["makeFlags", 47, 3], ["installTargets", 51, 3], ["installFlags", 52, 3], ["passthru", 56, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)));
-  const archSuffix = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "x86_64-linux": "x64", "aarch64-linux": "aa64" }, () => nix.force(throwSystem), nix.key(nix.force(system))));
+  const archSuffix = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], "x86_64-linux": "x64", "aarch64-linux": "aa64" }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "shim",
       version: "16.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "rhboot",
           repo: "shim",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,14 +32,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/rhboot/shim/commit/c4665d282072df2ed8ab6ae1d5fa0de41e5db02f.patch?full_index=1",
             hash: "sha256-0QGqEo5qu3TrG9yqwQLZGuKhgoeReF+RrJzlOVQYDmA=",
           })))),
       ]),
       buildInputs: nix.thunk(() => [elfutils]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.builtins.toString(nix.thunk(() => nix.sel(elfutils, "dev")))}/include`),
           ]))),
@@ -54,14 +48,14 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["install-as-data"]),
       installFlags: nix.thunk(() => ["DATATARGETDIR=$(out)/share/shim"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         archSuffix: archSuffix,
         target: nix.thunk(() => nix.str`shim${archSuffix}.efi`),
         mokManagerTarget: nix.thunk(() => nix.str`mm${archSuffix}.efi`),
         fallbackTarget: nix.thunk(() => nix.str`fb${archSuffix}.efi`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "UEFI shim loader",
         homepage: "https://github.com/rhboot/shim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd1")),

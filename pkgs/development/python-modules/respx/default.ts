@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 32, 3], ["disabledTests", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, flask: false, httpcore: false, httpx: false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, setuptools: false, starlette: false, trio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 32, 3], ["disabledTests", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.23.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lundberg",
           repo: "respx",
           tag: version,
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_pass_through"]);
       const pythonImportsCheck = nix.thunk(() => ["respx"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for mocking HTTPX",
         homepage: "https://lundberg.github.io/respx/",
         changelog: nix.thunk(() => nix.str`https://github.com/lundberg/respx/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

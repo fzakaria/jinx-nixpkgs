@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["updateScript", 77, 12]], [["homepage", 80, 5], ["description", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5]], [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 29, 3], ["patches", 36, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 56, 3], ["configureFlags", 64, 3], ["enableParallelBuilding", 69, 3], ["doCheck", 71, 3], ["checkInputs", 73, 3], ["checkTarget", 75, 3], ["passthru", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, bison: false, check: false, flex: false, gitUpdater: false, gmp: false, gtk3: false, "pkg-config": false, libsForQt5: false, withGUI: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 77, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 80, 5], ["description", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 29, 3], ["patches", 36, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 56, 3], ["configureFlags", 64, 3], ["enableParallelBuilding", 69, 3], ["doCheck", 71, 3], ["checkInputs", 73, 3], ["checkTarget", 75, 3], ["passthru", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const withGUI = nix.argOr($, "withGUI", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mpsolve",
       version: "3.2.2",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "robol",
           repo: "MPSolve",
           rev: "de7ebfc7afc4834a0c9f92a04be7abdf5943d446",
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "include-cmath-in-c++-before-defining-isnan-macro.patch",
             url: "https://github.com/robol/MPSolve/commit/260432c9d1002261f60159d0520af7862d4471ed.patch",
             hash: "sha256-ODWpp966S1SsSN8hf7yuYgJR44GgbLwSxui280WWGmM=",
@@ -57,11 +53,11 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [check]),
       checkTarget: "check",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://numpi.dm.unipi.it/scientific-computing-libraries/mpsolve/",
         description: "Multiprecision Polynomial Solver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

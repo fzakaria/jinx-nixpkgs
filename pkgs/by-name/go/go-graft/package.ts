@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["CGO_ENABLED", 19, 7]], [["description", 39, 5], ["changelog", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 47, 5], ["platforms", 48, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 19, 3], ["ldflags", 21, 3], ["vendorHash", 27, 3], ["nativeBuildInputs", 29, 3], ["postInstall", 31, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 39, 5], ["changelog", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 47, 5], ["platforms", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 19, 3], ["ldflags", 21, 3], ["vendorHash", 27, 3], ["nativeBuildInputs", 29, 3], ["postInstall", 31, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "go-graft",
       version: "0.2.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "daeuniverse",
           repo: "gg",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-DXW0NtFYvcCX4CgMs5/5HPaO9f9eFtw401wmJdCbHPU=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         nix.thunk(() => nix.str`-X github.com/mzz2017/gg/cmd.Version=${nix.sel(finalAttrs, "version")}`),
         "-s",
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "installShellCompletion --cmd gg \\\n--bash completion/bash/gg \\\n--fish completion/fish/gg.fish \\\n--zsh completion/zsh/_gg\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command-line tool for one-click proxy in your research and development without installing v2ray or anything else",
         changelog: nix.thunk(() => nix.str`https://github.com/daeuniverse/gg/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         homepage: "https://github.com/daeuniverse/gg",

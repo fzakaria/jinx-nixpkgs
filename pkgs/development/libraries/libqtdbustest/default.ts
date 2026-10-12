@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["url", 36, 7], ["hash", 37, 7]], [["url", 42, 7], ["hash", 43, 7]], [["pkg-config", 98, 11]], [["tests", 98, 5], ["updateScript", 99, 5]], [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["teams", 107, 5], ["mainProgram", 108, 5], ["pkgConfigModules", 109, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["strictDeps", 47, 3], ["postPatch", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 59, 3], ["nativeCheckInputs", 64, 3], ["checkInputs", 75, 3], ["dontWrapQtApps", 79, 3], ["cmakeFlags", 81, 3], ["doCheck", 85, 3], ["enableParallelChecking", 87, 3], ["checkPhase", 89, 3], ["passthru", 97, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, fetchpatch: false, gitUpdater: false, testers: false, cmake: false, "cmake-extras": false, dbus: false, "dbus-test-runner": false, gtest: false, "pkg-config": false, procps: false, python3: false, qtbase: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 42, 7], ["hash", 43, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pkg-config", 98, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 98, 5], ["updateScript", 99, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["teams", 107, 5], ["mainProgram", 108, 5], ["pkgConfigModules", 109, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["strictDeps", 47, 3], ["postPatch", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 59, 3], ["nativeCheckInputs", 64, 3], ["checkInputs", 75, 3], ["dontWrapQtApps", 79, 3], ["cmakeFlags", 81, 3], ["doCheck", 85, 3], ["enableParallelChecking", 87, 3], ["checkPhase", 89, 3], ["passthru", 97, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const withQt6 = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "libqtdbustest",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/libqtdbustest",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,12 +36,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/ubports-team/libqtdbustest/-/raw/debian/0.3.2-3/debian/patches/1003_no-QProcess-waitForstarted-timeout.patch",
             hash: "sha256-ThDbn6URvkj5ARDMj+xO0fb1Qh2YQRzVy24O03KglHI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://salsa.debian.org/ubports-team/libqtdbustest/-/raw/debian/0.3.2-3/debian/patches/1004_make-reading-address-from-dbus-daemon-more-robust.patch",
             hash: "sha256-hq8pdducp/udxoGWGt1dgL/7VHcbJO/oT1dOY1zew8M=",
           })))),
@@ -72,15 +66,15 @@ export default nix.lambda((args) => (() => {
       enableParallelChecking: false,
       checkPhase: "runHook preCheck\n\ndbus-test-runner -t make -p test -p \"${enableParallelChecking:+-j $NIX_BUILD_CORES}\"\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Library for testing DBus interactions using Qt",
         homepage: "https://gitlab.com/ubports/development/core/libqtdbustest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

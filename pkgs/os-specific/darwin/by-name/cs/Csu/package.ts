@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 29, 5], ["badPlatforms", 30, 5]], [["releaseName", 9, 3], ["makeFlags", 11, 3], ["installFlags", 19, 3], ["setupHooks", 21, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, makeSetupHook: false, mkAppleDerivation: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 29, 5], ["badPlatforms", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["releaseName", 9, 3], ["makeFlags", 11, 3], ["installFlags", 19, 3], ["setupHooks", 21, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const mkAppleDerivation = nix.arg($, "mkAppleDerivation");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       releaseName: "Csu",
       makeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}clang`),
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./setup-hooks/add-Csu-lib-path.sh"),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Common startup stubs for Darwin",
         badPlatforms: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isAarch"))]),
       })),

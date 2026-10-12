@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 37, 26], ["version", 37, 32], ["src", 37, 40], ["pnpm", 38, 5], ["fetcherVersion", 39, 5], ["hash", 40, 5]], [["cli", 107, 5]], [["tests", 106, 12]], [["description", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5], ["platforms", 116, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["pnpmDeps", 36, 3], ["patchPhase", 43, 3], ["buildPhase", 53, 3], ["installPhase", 62, 3], ["dontStrip", 104, 3], ["passthru", 106, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, nodejs: false, pnpm_11: false, "prisma-engines_7": false, jq: false, makeWrapper: false, moreutils: false, callPackage: false, pnpmConfigHook: false, fetchPnpmDeps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 37, 26], ["version", 37, 32], ["src", 37, 40], ["pnpm", 38, 5], ["fetcherVersion", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cli", 107, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 106, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5], ["platforms", 116, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["pnpmDeps", 36, 3], ["patchPhase", 43, 3], ["buildPhase", 53, 3], ["installPhase", 62, 3], ["dontStrip", 104, 3], ["passthru", 106, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const fetchPnpmDeps = nix.arg($, "fetchPnpmDeps");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "prisma_7",
       version: "7.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "prisma",
           repo: "prisma",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, jq, makeWrapper, moreutils, pnpm_11]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -89,14 +84,14 @@ runHook postInstall
 `),
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           cli: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-cli.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Next-generation ORM for Node.js and TypeScript",
         homepage: "https://www.prisma.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

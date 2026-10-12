@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["updateScript", 80, 12]], [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 91, 5], ["platforms", 92, 5]], [["pname", 34, 3], ["version", 35, 3], ["__structuredAttrs", 37, 3], ["strictDeps", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 54, 3], ["doInstallCheck", 74, 3], ["versionCheckProgram", 75, 3], ["nativeInstallCheckInputs", 76, 3], ["passthru", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, "wayland-scanner": false, bashNonInteractive: false, cairo: false, fontconfig: false, freetype: false, glib: false, libGL: false, librsvg: false, libwebp: false, libxkbcommon: false, libxml2: false, nlohmann_json: false, pango: false, stb: false, tomlplusplus: false, wayland: false, "wayland-protocols": false, wlroots_0_20: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 80, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 91, 5], ["platforms", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["__structuredAttrs", 37, 3], ["strictDeps", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 54, 3], ["doInstallCheck", 74, 3], ["versionCheckProgram", 75, 3], ["nativeInstallCheckInputs", 76, 3], ["passthru", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "noctalia-greeter",
       version: "1.6.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "noctalia-dev",
           repo: "noctalia-greeter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -73,11 +70,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/noctalia-greeter`),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "`greetd` greeter for Noctalia",
         homepage: "https://github.com/noctalia-dev/noctalia-greeter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

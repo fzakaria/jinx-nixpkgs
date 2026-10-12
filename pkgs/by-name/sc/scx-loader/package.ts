@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["VENDOR_PREFIX", 24, 5], ["VENDOR_DATADIR", 25, 5]], [["scx-loader", 42, 36]], [["updateScript", 41, 5], ["tests", 42, 5]], [["mainProgram", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]], [["pname", 9, 3], ["version", 10, 3], ["cargoHash", 12, 3], ["src", 14, 3], ["__structuredAttrs", 21, 3], ["env", 23, 3], ["postInstall", 28, 3], ["postFixup", 33, 3], ["passthru", 40, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, rustPlatform: false, lib: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["VENDOR_PREFIX", 24, 5], ["VENDOR_DATADIR", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["scx-loader", 42, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 41, 5], ["tests", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["cargoHash", 12, 3], ["src", 14, 3], ["__structuredAttrs", 21, 3], ["env", 23, 3], ["postInstall", 28, 3], ["postFixup", 33, 3], ["passthru", 40, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,31 +13,31 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "scx-loader",
       version: "1.1.3",
       cargoHash: "sha256-N2bJBIqledSGxFmJQCBRIH6ZK0aGumGbL7kfrzgl7HI=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sched-ext",
           repo: "scx-loader",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-NbTakrEdk3pundjk554QrUpKTXxQl6I8Y/IgmxjGKuw=",
         })))),
       __structuredAttrs: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, VENDOR_PREFIX: "", VENDOR_DATADIR: "/share" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], VENDOR_PREFIX: "", VENDOR_DATADIR: "/share" })),
       postInstall: "cargo xtask install --destdir $out\nrm $out/bin/xtask\n",
       postFixup: "substituteInPlace $out/lib/systemd/system/scx_loader.service \\\n  --replace-fail \"/usr/bin/scx_loader\" \"$out/bin/scx_loader\"\nsubstituteInPlace $out/share/dbus-1/system-services/org.scx.Loader.service \\\n  --replace-fail \"/usr/bin/scx_loader\" \"$out/bin/scx_loader\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "scx-loader": nix.thunk(() => nix.attr(nixosTests, "scx-loader")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         mainProgram: "scxctl",
         homepage: "https://github.com/sched-ext/scx-loader",
         changelog: nix.thunk(() => nix.str`https://github.com/sched-ext/scx-loader/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

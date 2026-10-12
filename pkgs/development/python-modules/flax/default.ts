@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["updateScript", 122, 5]], [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5]], [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["__structuredAttrs", 41, 3], ["src", 43, 3], ["build-system", 50, 3], ["dependencies", 55, 3], ["pythonImportsCheck", 69, 3], ["nativeCheckInputs", 71, 3], ["disabledTestPaths", 84, 3], ["disabledTests", 101, 3], ["passthru", 121, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, jax: false, msgpack: false, numpy: false, optax: false, "orbax-checkpoint": false, pyyaml: false, rich: false, tensorstore: false, treescope: false, "typing-extensions": false, cloudpickle: false, keras: false, einops: false, flaxlib: false, pytestCheckHook: false, "pytest-xdist": false, sphinx: false, tensorflow: false, torch: false, writeScript: false, tomlq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 122, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["__structuredAttrs", 41, 3], ["src", 43, 3], ["build-system", 50, 3], ["dependencies", 55, 3], ["pythonImportsCheck", 69, 3], ["nativeCheckInputs", 71, 3], ["disabledTestPaths", 84, 3], ["disabledTests", 101, 3], ["passthru", 121, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const tomlq = nix.arg($, "tomlq");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "flax",
       version: "0.12.10",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "flax",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,14 +74,14 @@ export default nix.lambda((args) => (() => {
         "test_transforms",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str`nix-update flax # does not --build by default
 nix-build . -A flax.src # src is essentially a passthru
 nix-update flaxlib --version="$(${nix.app(nix.sel(lib, "getExe"), tomlq)} <result/Cargo.toml .something.version)" --commit
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Neural network library for JAX",
         homepage: "https://github.com/google/flax",
         changelog: nix.thunk(() => nix.str`https://github.com/google/flax/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

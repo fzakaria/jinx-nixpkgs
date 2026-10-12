@@ -2,25 +2,22 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/sources.nix", [["url", 3, 5], ["sha256", 4, 5]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["url", 7, 5], ["sha256", 8, 5]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["url", 11, 5], ["sha256", 12, 5]]);
-const pos$4 = nix.positions(here + "/sources.nix", [["Dark", 2, 3], ["Light", 6, 3], ["Red", 10, 3]]);
+const $pos = nix.positions(here + "/sources.nix", [[["url", 3, 5], ["sha256", 4, 5]], [["url", 7, 5], ["sha256", 8, 5]], [["url", 11, 5], ["sha256", 12, 5]], [["Dark", 2, 3], ["Light", 6, 3], ["Red", 10, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$4,
+  [nix.POS]: $pos[3],
   Dark: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     url: "https://github.com/ful1e5/XCursor-pro/releases/download/v2.0.2/XCursor-Pro-Dark.tar.xz",
     sha256: "12r7b2wygasl5yk0k5m6b640q4b23k072myzpz8s5jkyvnp3p84n",
   })),
   Light: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     url: "https://github.com/ful1e5/XCursor-pro/releases/download/v2.0.2/XCursor-Pro-Light.tar.xz",
     sha256: "19vddq8ajdxxzl3fnvac7p4lmb2hvyszpl25f5nmpm84xwp1kdla",
   })),
   Red: nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     url: "https://github.com/ful1e5/XCursor-pro/releases/download/v2.0.2/XCursor-Pro-Red.tar.xz",
     sha256: "00rhqmcfczy3nvk95rgy22mi6yqpp7ggbxck1z0ay2qv6cfics9m",
   })),

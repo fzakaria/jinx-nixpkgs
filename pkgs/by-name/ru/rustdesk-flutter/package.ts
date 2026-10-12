@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 7], ["repo", 43, 7], ["rev", 44, 7], ["hash", 45, 7]], [["pname", 38, 5], ["version", 39, 5], ["src", 41, 5], ["patches", 48, 5], ["cargoHash", 52, 5], ["cargoBuildFlags", 53, 5], ["doCheck", 57, 5]], [["flutter", 61, 5]], [["owner", 72, 5], ["repo", 73, 5], ["tag", 74, 5], ["fetchSubmodules", 75, 5], ["hash", 76, 5]], [["VCPKG_ROOT", 80, 7], ["OPENSSL_NO_VENDOR", 81, 7]], [["pname", 94, 7], ["version", 95, 7], ["src", 96, 7], ["patches", 97, 7], ["hash", 99, 5]], [["name", 229, 9], ["exec", 230, 9]], [["new-window", 228, 15]], [["name", 213, 7], ["desktopName", 214, 7], ["genericName", 215, 7], ["comment", 216, 7], ["exec", 217, 7], ["icon", 218, 7], ["terminal", 219, 7], ["type", 220, 7], ["startupNotify", 221, 7], ["categories", 222, 7], ["keywords", 227, 7], ["actions", 228, 7]], [["name", 234, 7], ["desktopName", 235, 7], ["noDisplay", 236, 7], ["mimeTypes", 237, 7], ["tryExec", 238, 7], ["exec", 239, 7], ["icon", 240, 7], ["terminal", 241, 7], ["type", 242, 7], ["startupNotify", 243, 7]], [["description", 248, 5], ["homepage", 249, 5], ["changelog", 250, 5], ["license", 251, 5], ["maintainers", 252, 5], ["mainProgram", 256, 5], ["platforms", 257, 5]], [["pname", 68, 3], ["version", 69, 3], ["src", 71, 3], ["strictDeps", 79, 3], ["env", 80, 3], ["sourceRoot", 84, 3], ["pubspecLock", 87, 3], ["gitHashes", 88, 3], ["cargoRoot", 91, 3], ["cargoDeps", 92, 3], ["dontCargoBuild", 102, 3], ["cargoBuildFlags", 103, 3], ["cargoBuildType", 104, 3], ["cargoBuildFeatures", 105, 3], ["nativeBuildInputs", 111, 3], ["buildInputs", 126, 3], ["prePatch", 146, 3], ["patches", 151, 3], ["prepareBuildRunner", 155, 3], ["postPatch", 163, 3], ["preBuild", 177, 3], ["postInstall", 200, 3], ["extraWrapProgramArgs", 206, 3], ["desktopItems", 211, 3], ["meta", 247, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, cargo: false, copyDesktopItems: false, fetchFromGitHub: false, flutter329: false, ffmpeg_7: false, gst_all_1: false, fuse3: false, libxtst: false, libaom: false, libopus: false, libpulseaudio: false, libva: false, libvdpau: false, libvpx: false, libxkbcommon: false, libyuv: false, pam: false, makeDesktopItem: false, rustPlatform: false, "libayatana-appindicator": false, rustc: false, rustfmt: false, xdotool: false, "xdg-user-dirs": false, pipewire: false, "cargo-expand": false, yq: false, callPackage: false, addDriverRunpath: false, perl: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 7], ["repo", 43, 7], ["rev", 44, 7], ["hash", 45, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 38, 5], ["version", 39, 5], ["src", 41, 5], ["patches", 48, 5], ["cargoHash", 52, 5], ["cargoBuildFlags", 53, 5], ["doCheck", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["flutter", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 72, 5], ["repo", 73, 5], ["tag", 74, 5], ["fetchSubmodules", 75, 5], ["hash", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["VCPKG_ROOT", 80, 7], ["OPENSSL_NO_VENDOR", 81, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 94, 7], ["version", 95, 7], ["src", 96, 7], ["patches", 97, 7], ["hash", 99, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 229, 9], ["exec", 230, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["new-window", 228, 15]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 213, 7], ["desktopName", 214, 7], ["genericName", 215, 7], ["comment", 216, 7], ["exec", 217, 7], ["icon", 218, 7], ["terminal", 219, 7], ["type", 220, 7], ["startupNotify", 221, 7], ["categories", 222, 7], ["keywords", 227, 7], ["actions", 228, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 234, 7], ["desktopName", 235, 7], ["noDisplay", 236, 7], ["mimeTypes", 237, 7], ["tryExec", 238, 7], ["exec", 239, 7], ["icon", 240, 7], ["terminal", 241, 7], ["type", 242, 7], ["startupNotify", 243, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 248, 5], ["homepage", 249, 5], ["changelog", 250, 5], ["license", 251, 5], ["maintainers", 252, 5], ["mainProgram", 256, 5], ["platforms", 257, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 68, 3], ["version", 69, 3], ["src", 71, 3], ["strictDeps", 79, 3], ["env", 80, 3], ["sourceRoot", 84, 3], ["pubspecLock", 87, 3], ["gitHashes", 88, 3], ["cargoRoot", 91, 3], ["cargoDeps", 92, 3], ["dontCargoBuild", 102, 3], ["cargoBuildFlags", 103, 3], ["cargoBuildType", 104, 3], ["cargoBuildFeatures", 105, 3], ["nativeBuildInputs", 111, 3], ["buildInputs", 126, 3], ["prePatch", 146, 3], ["patches", 151, 3], ["prepareBuildRunner", 155, 3], ["postPatch", 163, 3], ["preBuild", 177, 3], ["postInstall", 200, 3], ["extraWrapProgramArgs", 206, 3], ["desktopItems", 211, 3], ["meta", 247, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const pname = "flutter_rust_bridge_codegen";
       const version = "1.80.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fzyzcjy",
           repo: "flutter_rust_bridge",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -66,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const cargoBuildFlags = nix.thunk(() => ["--package", "flutter_rust_bridge_codegen"]);
       const doCheck = false;
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,
@@ -76,13 +65,13 @@ export default nix.lambda((args) => (() => {
         doCheck,
       };
     })())));
-  const ffigen = nix.thunk(() => nix.app(callPackage, nix.path(here, "./ffigen"), nix.thunk(() => ({ [nix.POS]: pos$3, flutter: flutter329 }))));
+  const ffigen = nix.thunk(() => nix.app(callPackage, nix.path(here, "./ffigen"), nix.thunk(() => ({ [nix.POS]: $pos[2], flutter: flutter329 }))));
   const sharedLibraryExt = nix.thunk(() => nix.sel(rustc, "stdenv", "hostPlatform", "extensions", "sharedLibrary"));
   return nix.app(nix.sel(flutter329, "buildFlutterApplication"), nix.thunk(() => (() => {
       const pname = "rustdesk";
       const version = "1.4.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "rustdesk",
           repo: "rustdesk",
           tag: version,
@@ -90,13 +79,13 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-AnwdIO4TveC48uMioBCvH60xun24ckK420ONSEB9lQI=",
         }))));
       const strictDeps = true;
-      const env = nix.thunk(() => ({ [nix.POS]: pos$5, VCPKG_ROOT: "/homeless-shelter", OPENSSL_NO_VENDOR: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[4], VCPKG_ROOT: "/homeless-shelter", OPENSSL_NO_VENDOR: true }));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/flutter`);
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const gitHashes = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./git-hashes.json")));
       const cargoRoot = "..";
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname: pname,
           version: version,
           src: src,
@@ -185,7 +174,7 @@ cd flutter
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             name: "rustdesk",
             desktopName: "RustDesk",
             genericName: "Remote Desktop",
@@ -198,12 +187,12 @@ cd flutter
             categories: nix.thunk(() => ["Network", "RemoteAccess", "GTK"]),
             keywords: nix.thunk(() => ["internet"]),
             actions: nix.thunk(() => ({
-              [nix.POS]: pos$8,
-              "new-window": nix.thunk(() => ({ [nix.POS]: pos$7, name: "Open a New Window", exec: "rustdesk %u" })),
+              [nix.POS]: $pos[7],
+              "new-window": nix.thunk(() => ({ [nix.POS]: $pos[6], name: "Open a New Window", exec: "rustdesk %u" })),
             })),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             name: "rustdesk-link",
             desktopName: "RustDeskURL Scheme Handler",
             noDisplay: true,
@@ -217,7 +206,7 @@ cd flutter
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Virtual / remote desktop infrastructure for everyone! Open source TeamViewer / Citrix alternative",
         homepage: "https://rustdesk.com",
         changelog: nix.thunk(() => nix.str`https://github.com/rustdesk/rustdesk/releases/${version}`),
@@ -233,7 +222,7 @@ cd flutter
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pname,
         version,
         src,

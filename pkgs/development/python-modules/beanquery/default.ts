@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["homepage", 49, 5], ["description", 50, 5], ["longDescription", 51, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, beancount: false, click: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch2: false, "python-dateutil": false, pytestCheckHook: false, setuptools: false, "tatsu-lts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 49, 5], ["description", 50, 5], ["longDescription", 51, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "beancount",
           repo: "beanquery",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "beancount-workaround.patch",
             url: "https://github.com/beancount/beanquery/commit/aa0776285a25baeedf151e9f582bef0314f76004.patch?full_index=1",
             hash: "sha256-hWL1CDsBSbMqufEQrtEncmyUr5L5VJI+i4xQtnAvQd8=",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["beanquery"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/beancount/beanquery",
         description: "Beancount Query Language",
         longDescription: "A customizable light-weight SQL query tool that works on tabular data,\nincluding Beancount.\n",
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "bean-query",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mcdb.nix", [[["pname", 12, 3], ["version", 14, 19], ["src", 14, 27], ["propagatedBuildInputs", 16, 3], ["checkInputs", 21, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "camlp-streams": false, optint: false, alcotest: false, uri: false, base64: false, seppo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mcdb.nix", [["pname", 12, 3], ["version", 14, 19], ["src", 14, 27], ["propagatedBuildInputs", 16, 3], ["checkInputs", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const base64 = nix.arg($, "base64");
   const seppo = nix.arg($, "seppo");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "mcdb",
       version: nix.thunk(() => nix.attr(seppo, "version")),
       src: nix.thunk(() => nix.attr(seppo, "src")),

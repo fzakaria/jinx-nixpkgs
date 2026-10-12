@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["version", 45, 28], ["package", 46, 7], ["command", 47, 7]], [["version", 50, 28], ["package", 51, 7], ["command", 52, 7]], [["cliVersion", 44, 5], ["serverVersion", 49, 5]], [["tests", 43, 12]], [["changelog", 57, 5], ["description", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["license", 61, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["excludedPackages", 22, 3], ["ldflags", 24, 3], ["__darwinAllowLocalNetworking", 31, 3], ["checkFlags", 33, 3], ["postInstall", 38, 3], ["passthru", 43, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, testers: false, toxiproxy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 45, 28], ["package", 46, 7], ["command", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 50, 28], ["package", 51, 7], ["command", 52, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["cliVersion", 44, 5], ["serverVersion", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 43, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 57, 5], ["description", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["license", 61, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["excludedPackages", 22, 3], ["ldflags", 24, 3], ["__darwinAllowLocalNetworking", 31, 3], ["checkFlags", 33, 3], ["postInstall", 38, 3], ["passthru", 43, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const toxiproxy = nix.arg($, "toxiproxy");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "toxiproxy",
       version: "2.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Shopify",
           repo: "toxiproxy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,17 +37,17 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mv $out/bin/cli $out/bin/toxiproxy-cli\nmv $out/bin/server $out/bin/toxiproxy-server\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           cliVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: toxiproxy,
               command: nix.thunk(() => nix.str`${toxiproxy}/bin/toxiproxy-cli -version`),
             })))),
           serverVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: toxiproxy,
               command: nix.thunk(() => nix.str`${toxiproxy}/bin/toxiproxy-server -version`),
@@ -61,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/Shopify/toxiproxy/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Proxy for for simulating network conditions",
         homepage: "https://github.com/Shopify/toxiproxy",

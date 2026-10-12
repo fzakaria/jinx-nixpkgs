@@ -2,53 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kmonad.nix", [[["maintainers", 7, 5]], [["enable", 21, 15], ["fallthrough", 22, 15]], [["device", 19, 13], ["defcfg", 20, 13], ["config", 24, 13]], [["defaultKbd", 18, 11]], [["enable", 13, 9], ["extraArgs", 14, 9], ["keyboards", 17, 9]], [["extraRules", 37, 21]], [["kmonad", 12, 16], ["udev", 37, 16]], [["services", 12, 7]], [["machine", 11, 5]], [["name", 4, 3], ["meta", 6, 3], ["nodes", 10, 3], ["testScript", 43, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/kmonad.nix", [["maintainers", 7, 5]]);
-const pos$2 = nix.positions(here + "/kmonad.nix", [["enable", 21, 15], ["fallthrough", 22, 15]]);
-const pos$3 = nix.positions(here + "/kmonad.nix", [["device", 19, 13], ["defcfg", 20, 13], ["config", 24, 13]]);
-const pos$4 = nix.positions(here + "/kmonad.nix", [["defaultKbd", 18, 11]]);
-const pos$5 = nix.positions(here + "/kmonad.nix", [["enable", 13, 9], ["extraArgs", 14, 9], ["keyboards", 17, 9]]);
-const pos$6 = nix.positions(here + "/kmonad.nix", [["extraRules", 37, 21]]);
-const pos$7 = nix.positions(here + "/kmonad.nix", [["kmonad", 12, 16], ["udev", 37, 16]]);
-const pos$8 = nix.positions(here + "/kmonad.nix", [["services", 12, 7]]);
-const pos$9 = nix.positions(here + "/kmonad.nix", [["machine", 11, 5]]);
-const pos$10 = nix.positions(here + "/kmonad.nix", [["name", 4, 3], ["meta", 6, 3], ["nodes", 10, 3], ["testScript", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "kmonad",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "linj"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           kmonad: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
             extraArgs: nix.thunk(() => ["--log-level=debug"]),
             keyboards: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               defaultKbd: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 device: "/dev/input/by-id/vm-default-kbd",
-                defcfg: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, fallthrough: true })),
+                defcfg: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, fallthrough: true })),
                 config: "(defsrc :name default-src\n  1)\n(deflayer default-layer :source default-src\n  @T2)\n(defalias\n  T2 2)\n",
               })),
             })),
           })),
           udev: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             extraRules: "ACTION==\"add\", KERNEL==\"event*\", SUBSYSTEM==\"input\", ATTRS{name}==\"QEMU Virtio Keyboard\", ATTRS{id/product}==\"0001\", ATTRS{id/vendor}==\"0627\", SYMLINK+=\"input/by-id/vm-default-kbd\"\n",
           })),
         })),

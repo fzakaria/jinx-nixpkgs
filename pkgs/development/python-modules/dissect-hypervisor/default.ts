@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["fetchLFS", 26, 5], ["hash", 27, 5]], [["url", 33, 7], ["excludes", 34, 7], ["hash", 35, 7]], [["full", 56, 5]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 30, 3], ["postPatch", 39, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 62, 3], ["pythonImportsCheck", 67, 3], ["disabledTests", 69, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, "backports-zstd": false, buildPythonPackage: false, defusedxml: false, "dissect-cstruct": false, "dissect-util": false, fetchFromGitHub: false, fetchpatch2: false, pycryptodome: false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, zstandard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["fetchLFS", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 33, 7], ["excludes", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["full", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 30, 3], ["postPatch", 39, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 62, 3], ["pythonImportsCheck", 67, 3], ["disabledTests", 69, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dissect-hypervisor",
       version: "3.21",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fox-it",
           repo: "dissect.hypervisor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/fox-it/dissect.hypervisor/commit/8baa8f6ac1ae9a7cfd99095472d9f8e933d290f5.patch?full_index=1",
             excludes: nix.thunk(() => ["tests/util/test_vmtar.py"]),
             hash: "sha256-Ot0rV1j+yQrXi7v1ARX+Pamnbr+/Q7T1YidY80QdgDo=",
@@ -48,12 +44,12 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace tests/util/test_vmtar.py \\\n  --replace-fail '\"test/file1\",' '\"test\", \"test/file1\",'\n",
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [defusedxml, dissect_cstruct, dissect_util]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, full: nix.thunk(() => [backports_zstd, pycryptodome]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[2], full: nix.thunk(() => [backports_zstd, pycryptodome]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pythonImportsCheck: nix.thunk(() => ["dissect.hypervisor"]),
       disabledTests: nix.thunk(() => ["test_vmtar"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Dissect module implementing parsers for various hypervisor disk, backup and configuration files",
         homepage: "https://github.com/fox-it/dissect.hypervisor",
         changelog: nix.thunk(() => nix.str`https://github.com/fox-it/dissect.hypervisor/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

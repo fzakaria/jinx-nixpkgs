@@ -2,11 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/elpa-packages.nix", [[["fetchurl", 52, 23]], [["callPackage", 47, 9]], [["org-transclusion", 64, 9], ["rcirc-menu", 70, 9], ["vc-jj", 72, 9]]]);
 const formals$1 = { args: { lib: false, pkgs: false, buildPackages: false }, ellipsis: false };
 const formals$2 = { args: { generated: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/elpa-packages.nix", [["fetchurl", 52, 23]]);
-const pos$2 = nix.positions(here + "/elpa-packages.nix", [["callPackage", 47, 9]]);
-const pos$3 = nix.positions(here + "/elpa-packages.nix", [["org-transclusion", 64, 9], ["rcirc-menu", 70, 9], ["vc-jj", 72, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +20,13 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const generated = nix.argOr($_1, "generated", () => nix.path(here, "./elpa-generated.nix"));
         const imported = nix.thunk(() => nix.app(nix.builtins.import(generated), nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            callPackage: (pkgs_1) => (args_2) => nix.app(nix.sel(self, "callPackage"), pkgs_1, nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$1, fetchurl: fetchurl }))),
+            [nix.POS]: $pos[1],
+            callPackage: (pkgs_1) => (args_2) => nix.app(nix.sel(self, "callPackage"), pkgs_1, nix.thunk(() => nix.update(args_2, { [nix.POS]: $pos[0], fetchurl: fetchurl }))),
           }))));
         const super$ = imported;
         const commonOverrides = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./elpa-common-overrides.nix")), pkgs, lib, buildPackages));
         const overrides = (self_1) => (super$_1) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "org-transclusion": nix.thunk(() => (nix.asBool(nix.eq(nix.sel(super$_1, "org-transclusion", "version"), "1.2.0")) ? nix.app(markBroken, nix.thunk(() => nix.sel(super$_1, "org-transclusion"))) : nix.sel(super$_1, "org-transclusion"))),
           "rcirc-menu": nix.thunk(() => nix.app(markBroken, nix.thunk(() => nix.sel(super$_1, "rcirc-menu")))),
           "vc-jj": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$_1, "vc-jj")))),

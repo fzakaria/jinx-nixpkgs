@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["shattered-pixel-dungeon-starts", 23, 5]], [["tests", 22, 12]], [["homepage", 29, 5], ["downloadPage", 30, 5], ["description", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 18, 3], ["depsPath", 20, 3], ["passthru", 22, 3], ["desktopName", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["shattered-pixel-dungeon-starts", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 22, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["downloadPage", 30, 5], ["description", 31, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 18, 3], ["depsPath", 20, 3], ["passthru", 22, 3], ["desktopName", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "shattered-pixel-dungeon";
       const version = "4.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "00-Evan",
           repo: "shattered-pixel-dungeon",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,21 +23,21 @@ export default nix.lambda((args) => (() => {
       const patches = [];
       const depsPath = nix.path(here, "./deps.json");
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "shattered-pixel-dungeon-starts": nix.thunk(() => nix.sel(nixosTests, "shattered-pixel-dungeon")),
         })),
       }));
       const desktopName = "Shattered Pixel Dungeon";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://shatteredpixel.com/",
         downloadPage: "https://github.com/00-Evan/shattered-pixel-dungeon/releases",
         description: "Traditional roguelike game with pixel-art graphics and simple interface",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

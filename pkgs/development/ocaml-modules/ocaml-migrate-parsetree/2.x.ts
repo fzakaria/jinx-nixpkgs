@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/2.x.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 20, 5], ["license", 21, 5], ["maintainers", 22, 5], ["homepage", 26, 5], ["broken", 27, 5]], [["pname", 9, 3], ["version", 10, 3], ["minimalOCamlVersion", 12, 3], ["src", 14, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, ocaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/2.x.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/2.x.nix", [["description", 20, 5], ["license", 21, 5], ["maintainers", 22, 5], ["homepage", 26, 5], ["broken", 27, 5]]);
-const pos$3 = nix.positions(here + "/2.x.nix", [["pname", 9, 3], ["version", 10, 3], ["minimalOCamlVersion", 12, 3], ["src", 14, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const ocaml = nix.arg($, "ocaml");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ocaml-migrate-parsetree",
       version: "2.4.0",
       minimalOCamlVersion: "4.02",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ocaml-ppx/ocaml-migrate-parsetree/releases/download/${nix.sel(finalAttrs, "version")}/ocaml-migrate-parsetree-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-7EnEUtwzemIFVqtoK/AZi/UBglULUC2PsjClkSYKpqQ=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Convert OCaml parsetrees between different major versions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         maintainers: nix.thunk(() => (() => {

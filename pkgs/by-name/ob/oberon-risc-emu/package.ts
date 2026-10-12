@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["homepage", 27, 5], ["description", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["mainProgram", 31, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, SDL2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["mainProgram", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "oberon-risc-emu",
       version: "2016.1-unstable-2020-08-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pdewacht",
           repo: "oberon-risc-emu",
           rev: "26c8ac5737c71811803c87ad51f1f0d6e62e71fe",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2]),
       installPhase: "mkdir -p $out/bin\nmv risc $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/pdewacht/oberon-risc-emu/",
         description: "Emulator for the Oberon RISC machine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

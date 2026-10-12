@@ -2,8 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/codelldb-launch.nix", [[["pname", 11, 3], ["version", 12, 11], ["src", 12, 19], ["cargoHash", 12, 23], ["nativeBuildInputs", 14, 3], ["cargoBuildFlags", 16, 3], ["doCheck", 21, 3]]]);
 const formals$1 = { args: { makeBinaryWrapper: false, rustPlatform: false, pname: false, src: false, version: false, cargoHash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/codelldb-launch.nix", [["pname", 11, 3], ["version", 12, 11], ["src", 12, 19], ["cargoHash", 12, 23], ["nativeBuildInputs", 14, 3], ["cargoBuildFlags", 16, 3], ["doCheck", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const cargoHash = nix.arg($, "cargoHash");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.str`${pname}-codelldb-launch`),
       version: version,
       src: src,

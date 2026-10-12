@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 55]], [["useSwift", 83, 52]], [["description", 111, 5], ["mainProgram", 112, 5], ["homepage", 113, 5], ["platforms", 114, 5], ["license", 115, 5], ["teams", 116, 5]], [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["patches", 37, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 50, 3], ["postInstall", 58, 3], ["doInstallCheck", 97, 11], ["installCheckPhase", 100, 3], ["__structuredAttrs", 108, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, curl: false, fetchFromGitHub: false, libxml2: false, ninja: false, stdenv: false, "swift-corelibs-libdispatch": false, "swift-foundation": false, "swift-foundation-icu": false, "swift-minimal": false, swift_release: false, swift_sources: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 55]]);
-const pos$2 = nix.positions(here + "/package.nix", [["useSwift", 83, 52]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 111, 5], ["mainProgram", 112, 5], ["homepage", 113, 5], ["platforms", 114, 5], ["license", 115, 5], ["teams", 116, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["patches", 37, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 50, 3], ["postInstall", 58, 3], ["doInstallCheck", 97, 11], ["installCheckPhase", 100, 3], ["__structuredAttrs", 108, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const swift_sources = nix.arg($, "swift_sources");
   const doInstallCheck = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "swift-corelibs-foundation",
       version: swift_release,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-corelibs-foundation"));
           return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "swiftlang",
           repo: "swift-corelibs-foundation",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -67,7 +64,7 @@ for f in "$out/bin/plutil" "$out/lib/libFoundation${nix.sel(stdenv, "hostPlatfor
   patchelf --add-rpath ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPathOutput"), "out", nix.thunk(() => nix.str`lib/swift/${nix.sel(stdenv, "hostPlatform", "swift", "platform")}`), nix.thunk(() => [swift_minimal]))))} "$f"
   patchelf --add-rpath ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [
               swift_corelibs_libdispatch,
-              nix.thunk(() => nix.app(nix.sel(swift_corelibs_libdispatch, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, useSwift: false })))),
+              nix.thunk(() => nix.app(nix.sel(swift_corelibs_libdispatch, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], useSwift: false })))),
               swift_foundation,
             ]))))} "$f"
 done
@@ -83,7 +80,7 @@ runHook postInstallCheck
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Core utilities, internationalization, and OS independence for Swift",
         mainProgram: "plutil",
         homepage: "https://github.com/swiftlang/swift-corelibs-foundation",

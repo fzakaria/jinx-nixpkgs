@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["name", 80, 5], ["desktopName", 81, 5], ["exec", 82, 5], ["comment", 83, 5], ["categories", 84, 5], ["keywords", 87, 5]], [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5], ["mainProgram", 103, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoHash", 36, 3], ["doCheck", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["buildNoDefaultFeatures", 69, 3], ["buildFeatures", 70, 3], ["postFixup", 72, 3], ["desktopItem", 79, 3], ["desktopItems", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, "pkg-config": false, cmake: false, fontconfig: false, glib: false, gtk3: false, freetype: false, openssl: false, libxrandr: false, libxi: false, libxcursor: false, libx11: false, libxcb: false, libGL: false, libxkbcommon: false, wayland: false, withGui: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 80, 5], ["desktopName", 81, 5], ["exec", 82, 5], ["comment", 83, 5], ["categories", 84, 5], ["keywords", 87, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5], ["mainProgram", 103, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoHash", 36, 3], ["doCheck", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["buildNoDefaultFeatures", 69, 3], ["buildFeatures", 70, 3], ["postFixup", 72, 3], ["desktopItem", 79, 3], ["desktopItems", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rusty-psn";
       const version = "0.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RainbowCookie32",
           repo: "rusty-psn",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
       const postFixup = nix.thunk(() => nix.add(nix.str`patchelf --set-rpath "${nix.app(nix.sel(lib, "makeLibraryPath"), buildInputs)}" $out/bin/rusty-psn
 `, nix.app(nix.sel(lib, "optionalString"), withGui, "mv $out/bin/rusty-psn $out/bin/rusty-psn-gui\n")));
       const desktopItem = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withGui, nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "rusty-psn",
             desktopName: "rusty-psn",
             exec: "rusty-psn-gui",
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
           }))))));
       const desktopItems = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => [desktopItem])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple tool to grab updates for PS3 games, directly from Sony's servers using their updates API",
         homepage: "https://github.com/RainbowCookie32/rusty-psn/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -87,7 +84,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: nix.thunk(() => (nix.asBool(withGui) ? "rusty-psn-gui" : "rusty-psn")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

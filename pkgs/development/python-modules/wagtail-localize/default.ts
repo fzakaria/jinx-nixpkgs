@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 32, 5], ["owner", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["pname", 39, 5], ["npmDepsHash", 40, 5], ["NODE_OPTIONS", 42, 5], ["version", 44, 13], ["src", 44, 21], ["installPhase", 46, 5]], [["google", 76, 5]], [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]], [["pname", 61, 11], ["version", 61, 17], ["src", 61, 25], ["pyproject", 63, 3], ["build-system", 65, 3], ["dependencies", 67, 3], ["optional-dependencies", 75, 3], ["nativeCheckInputs", 79, 3], ["preBuild", 86, 3], ["checkPhase", 90, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, buildNpmPackage: false, "flit-core": false, django: false, polib: false, "typing-extensions": false, wagtail: false, "wagtail-modeladmin": false, "google-cloud-translate": false, "dj-database-url": false, "django-rq": false, fetchFromGitHub: false, freezegun: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 32, 5], ["owner", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 39, 5], ["npmDepsHash", 40, 5], ["NODE_OPTIONS", 42, 5], ["version", 44, 13], ["src", 44, 21], ["installPhase", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["google", 76, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 61, 11], ["version", 61, 17], ["src", 61, 25], ["pyproject", 63, 3], ["build-system", 65, 3], ["dependencies", 67, 3], ["optional-dependencies", 75, 3], ["nativeCheckInputs", 79, 3], ["preBuild", 86, 3], ["checkPhase", 90, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const pname = "wagtail-localize";
   const version = "1.14.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       repo: "wagtail-localize",
       owner: "wagtail",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-3T3o2whNNWSbsggNhPI6vnxeONGpNdD2/BMiFl/nWmo=",
     }))));
   const assets = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${pname}-assets`),
       npmDepsHash: "sha256-5TKYDFYF8H1UrSUWeKDd/lf0Twk1mVKrPL9ywsdSdz4=",
       NODE_OPTIONS: "--openssl-legacy-provider",
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [django, polib, typing_extensions, wagtail, wagtail_modeladmin]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, google: nix.thunk(() => [google_cloud_translate]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[2], google: nix.thunk(() => [google_cloud_translate]) }));
       const nativeCheckInputs = nix.thunk(() => [dj_database_url, django_rq, freezegun, google_cloud_translate]);
       const preBuild = nix.thunk(() => nix.str`cp -r ${assets}/src/wagtail_localize/static src/wagtail_localize/
 `);
@@ -62,7 +58,7 @@ ${nix.sel(python, "interpreter")} testmanage.py test
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Translation plugin for Wagtail CMS",
         homepage: "https://github.com/wagtail/wagtail-localize",
         changelog: nix.thunk(() => nix.str`https://github.com/wagtail/wagtail-localize/blob/${nix.sel(src_1, "tag")}/CHANGELOG.md`),
@@ -73,7 +69,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: pname_1,
         version: version_1,
         src: src_1,

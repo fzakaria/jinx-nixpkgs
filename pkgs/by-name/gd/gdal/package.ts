@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 89, 5], ["repo", 90, 5], ["tag", 91, 5], ["hash", 92, 5]], [["gdal", 332, 46]], [["tests", 332, 12]], [["changelog", 337, 5], ["description", 338, 5], ["homepage", 339, 5], ["license", 340, 5], ["maintainers", 341, 5], ["teams", 344, 5], ["platforms", 345, 5]], [["pname", 85, 3], ["version", 86, 3], ["src", 88, 3], ["patches", 95, 3], ["nativeBuildInputs", 100, 3], ["cmakeFlags", 115, 3], ["buildInputs", 147, 3], ["pythonPath", 232, 3], ["postInstall", 233, 3], ["enableParallelBuilding", 242, 3], ["doInstallCheck", 244, 3], ["preCheck", 247, 3], ["nativeInstallCheckInputs", 258, 3], ["pytestFlags", 265, 3], ["disabledTestPaths", 268, 3], ["disabledTests", 280, 3], ["postCheck", 328, 3], ["passthru", 332, 3], ["__darwinAllowLocalNetworking", 334, 3], ["meta", 336, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromGitHub: false, useMinimalFeatures: true, useArmadillo: true, useArrow: true, useHDF: true, useJava: true, useLibAvif: true, useLibHEIF: true, useLibJXL: true, useMysql: true, useNetCDF: true, usePoppler: true, usePostgres: true, useTiledb: true, ant: false, armadillo: false, "arrow-cpp": false, bison: false, brunsli: false, "c-blosc": false, cfitsio: false, cmake: false, crunch: false, cryptopp: false, curl: false, dav1d: false, doxygen: false, expat: false, geos: false, giflib: false, graphviz: false, gtest: false, hdf4: false, "hdf5-cpp": false, jdk: false, json_c: false, lerc: false, libaom: false, libavif: false, libde265: false, libdeflate: false, libgeotiff: false, libheif: false, libhwy: false, libiconv: false, libjpeg: false, libjxl: false, libmysqlclient: false, libpq: false, libpng: false, libspatialite: false, libtiff: false, libwebp: false, libxml2: false, lz4: false, netcdf: false, openexr: false, openjpeg: false, openssl: false, pcre2: false, "pkg-config": false, poppler: false, proj: false, python3Packages: false, qhull: false, rav1e: false, sqlite: false, swig: false, tiledb: false, x265: false, xercesc: false, xz: false, zlib: false, zstd: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 89, 5], ["repo", 90, 5], ["tag", 91, 5], ["hash", 92, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gdal", 332, 46]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 332, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 337, 5], ["description", 338, 5], ["homepage", 339, 5], ["license", 340, 5], ["maintainers", 341, 5], ["teams", 344, 5], ["platforms", 345, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 85, 3], ["version", 86, 3], ["src", 88, 3], ["patches", 95, 3], ["nativeBuildInputs", 100, 3], ["cmakeFlags", 115, 3], ["buildInputs", 147, 3], ["pythonPath", 232, 3], ["postInstall", 233, 3], ["enableParallelBuilding", 242, 3], ["doInstallCheck", 244, 3], ["preCheck", 247, 3], ["nativeInstallCheckInputs", 258, 3], ["pytestFlags", 265, 3], ["disabledTestPaths", 268, 3], ["disabledTests", 280, 3], ["postCheck", 328, 3], ["passthru", 332, 3], ["__darwinAllowLocalNetworking", 334, 3], ["meta", 336, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -90,11 +86,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.add("gdal", nix.app(nix.sel(lib, "optionalString"), useMinimalFeatures, "-minimal"))),
       version: "3.13.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OSGeo",
           repo: "gdal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -222,12 +218,15 @@ export CI=1
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64"))), nix.thunk(() => ["test_jp2openjpeg_22"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_rda_download_queue", "test_ogr_gpkg_arrow_stream_huge_array"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(proj, "version")), "8")), nix.thunk(() => ["test_ogr_parquet_write_crs_without_id_in_datum_ensemble_members"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(usePoppler)), nix.thunk(() => ["test_pdf_jpx_compression"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(useNetCDF)), nix.thunk(() => ["test_zarr_read_simple_sharding"])))))))),
       postCheck: "popd # autotest\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, gdal: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            gdal: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
+          })))),
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/OSGeo/gdal/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS.md`),
         description: "Translator library for raster geospatial data formats",
         homepage: "https://www.gdal.org/",

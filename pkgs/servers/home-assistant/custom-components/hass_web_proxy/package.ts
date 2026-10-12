@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["url", 31, 7], ["hash", 32, 7]], [["changelog", 55, 5], ["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["owner", 17, 3], ["domain", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["dependencies", 36, 3], ["ignoreVersionRequirement", 41, 3], ["nativeCheckInputs", 45, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false, fetchpatch: false, "hass-web-proxy-lib": false, urlmatch: false, pytestCheckHook: false, "pytest-aiohttp": false, "pytest-cov-stub": false, "pytest-freezer": false, "pytest-homeassistant-custom-component": false, "pytest-timeout": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 55, 5], ["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 17, 3], ["domain", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["dependencies", 36, 3], ["ignoreVersionRequirement", 41, 3], ["nativeCheckInputs", 45, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const domain = "hass_web_proxy";
       const version = "0.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dermotduffy",
           repo: "hass-web-proxy-integration",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/dermotduffy/hass-web-proxy-integration/commit/77964d49fd6e9d7aefe0cd9c19226a80477dc909.patch",
             hash: "sha256-PZBRHVoHXMiELHitmj+YmgVSQiOqEmyP4o3MBc1Yjsg=",
           })))),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         pytest_timeout,
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/dermotduffy/hass-web-proxy-integration/releases/tag/${nix.sel(src, "tag")}`),
         description: "Home Assistant Web Proxy",
         homepage: "https://github.com/dermotduffy/hass-web-proxy-integration",
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         owner,
         domain,
         version,

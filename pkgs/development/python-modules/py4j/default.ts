@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 13], ["version", 14, 19], ["hash", 15, 5]], [["description", 22, 5], ["homepage", 23, 5], ["sourceProvenance", 24, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 8, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["doCheck", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 13], ["version", 14, 19], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 22, 5], ["homepage", 23, 5], ["sourceProvenance", 24, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["doCheck", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +15,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.9.9";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-9pTK0Z76W9He5PPlJw60BmE8l0OUA15b/E7Bq6hwuHk=",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Py4J enables Python programs running in a Python interpreter to dynamically access Java objects in a Java Virtual Machine. Methods are called as if the Java objects resided in the Python interpreter and Java collections can be accessed through standard Python collection methods. Py4J also enables Java programs to call back Python objects",
         homepage: "https://www.py4j.org/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "shlevy"))]),
       }));
-      return { [nix.POS]: pos$3, pname, version, format, src, doCheck, meta };
+      return { [nix.POS]: $pos[2], pname, version, format, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

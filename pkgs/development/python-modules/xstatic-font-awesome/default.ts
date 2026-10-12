@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 5], ["version", 15, 13], ["hash", 16, 5]], [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["doCheck", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, fetchPypi: false, setuptools_80: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 5], ["version", 15, 13], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["doCheck", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.2.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "XStatic-Font-Awesome",
           version: version,
           hash: "sha256-8HWHEJYShjjy4VOQINgid1TD2IXdaOfubemgEjUHaCg=",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools_80]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/xstatic-py/xstatic-font-awesome",
         description: "Font Awesome packaged for python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

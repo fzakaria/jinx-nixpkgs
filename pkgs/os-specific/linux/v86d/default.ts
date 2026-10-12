@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["NIX_CFLAGS_COMPILE", 28, 7]], [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["env", 28, 3], ["configureFlags", 30, 3], ["hardeningDisable", 35, 3], ["makeFlags", 37, 3], ["configurePhase", 42, 3], ["buildInputs", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false, klibc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["env", 28, 3], ["configureFlags", 30, 3], ["hardeningDisable", 35, 3], ["makeFlags", 37, 3], ["configurePhase", 42, 3], ["buildInputs", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const klibc = nix.arg($, "klibc");
   const pversion = "0.1.10";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "v86d",
       version: nix.thunk(() => nix.str`${pversion}-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mjanusz",
           repo: "v86d",
           tag: nix.thunk(() => nix.str`v86d-${pversion}`),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "patchShebangs configure\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration -Wno-implicit-int",
       })),
       configureFlags: nix.thunk(() => ["--with-klibc", "--with-x86emu"]),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\n./configure $configureFlags\n\nrunHook postConfigure\n",
       buildInputs: nix.thunk(() => [klibc]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Daemon to run x86 code in an emulated environment",
         mainProgram: "v86d",
         homepage: "https://github.com/mjanusz/v86d",

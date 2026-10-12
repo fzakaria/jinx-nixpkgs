@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5], ["fetchSubmodules", 39, 5]], [["name", 46, 7], ["url", 47, 7], ["hash", 48, 7]], [["changelog", 101, 5], ["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 109, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 42, 3], ["postFetch", 52, 3], ["cmakeFlags", 57, 3], ["checkTarget", 72, 3], ["strictDeps", 74, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 92, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, boehmgc: false, bison: false, flex: false, protobuf: false, gmp: false, boost: false, python3: false, doxygen: false, graphviz: false, libbpf: false, libllvm: false, enableDocumentation: true, enableBPF: true, enableDPDK: true, enableBMV2: true, enableGraphBackend: true, enableP4Tests: true, enableGTests: true, enableMultithreading: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5], ["fetchSubmodules", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 46, 7], ["url", 47, 7], ["hash", 48, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 101, 5], ["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 109, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 42, 3], ["postFetch", 52, 3], ["cmakeFlags", 57, 3], ["checkTarget", 72, 3], ["strictDeps", 74, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 92, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const enableMultithreading = nix.argOr($, "enableMultithreading", () => false);
   const toCMakeBoolean = (v) => (nix.asBool(v) ? "ON" : "OFF");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "p4c",
       version: "1.2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "p4lang",
           repo: "p4c",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-13.patch",
             url: "https://github.com/p4lang/p4c/commit/6756816100b7c51e3bf717ec55114a8e8575ba1d.patch",
             hash: "sha256-wWM1qjgQCNMPdrhQF38jzFgODUsAcaHTajdbV7L3y8o=",
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([bison, flex, cmake, protobuf, python3], nix.concat(nix.app(nix.sel(lib, "optionals"), enableDocumentation, nix.thunk(() => [doxygen, graphviz])), nix.app(nix.sel(lib, "optionals"), enableBPF, nix.thunk(() => [libllvm, libbpf]))))),
       buildInputs: nix.thunk(() => [protobuf, boost, boehmgc, gmp, flex]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: "https://github.com/p4lang/p4c/releases",
         description: "Reference compiler for the P4 programming language",
         homepage: "https://github.com/p4lang/p4c",

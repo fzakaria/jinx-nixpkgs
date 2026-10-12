@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["clarabel", 52, 5], ["cvxopt", 53, 5], ["daqp", 54, 5], ["ecos", 55, 5], ["gurobi", 56, 5], ["highs", 57, 5], ["jaxopt", 58, 5], ["osqp", 60, 5], ["piqp", 61, 5], ["proxqp", 62, 5], ["quadprog", 64, 5], ["scs", 65, 5], ["open_source_solvers", 66, 5]], [["description", 103, 5], ["changelog", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["optional-dependencies", 50, 3], ["pythonImportsCheck", 83, 3], ["nativeCheckInputs", 85, 3], ["enabledTestPaths", 90, 3], ["pytestFlags", 92, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, "flit-core": false, numpy: false, scipy: false, clarabel: false, cvxopt: false, daqp: false, ecos: false, gurobipy: false, jaxopt: false, osqp: false, quadprog: false, scs: false, highspy: false, piqp: false, proxsuite: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["clarabel", 52, 5], ["cvxopt", 53, 5], ["daqp", 54, 5], ["ecos", 55, 5], ["gurobi", 56, 5], ["highs", 57, 5], ["jaxopt", 58, 5], ["osqp", 60, 5], ["piqp", 61, 5], ["proxqp", 62, 5], ["quadprog", 64, 5], ["scs", 65, 5], ["open_source_solvers", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 103, 5], ["changelog", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["optional-dependencies", 50, 3], ["pythonImportsCheck", 83, 3], ["nativeCheckInputs", 85, 3], ["enabledTestPaths", 90, 3], ["pytestFlags", 92, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const proxsuite = nix.arg($, "proxsuite");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qpsolvers",
       version: "4.13.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qpsolvers",
           repo: "qpsolvers",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => [numpy, scipy]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           clarabel: nix.thunk(() => [clarabel]),
           cvxopt: nix.thunk(() => [cvxopt]),
           daqp: nix.thunk(() => [daqp]),
@@ -85,7 +82,7 @@ export default nix.lambda((args) => (() => {
         "--deselect=tests/test_solve_qp.py::TestSolveQP::test_warmstart_scs",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Quadratic programming solvers in Python with a unified API",
         changelog: nix.thunk(() => nix.str`https://github.com/qpsolvers/qpsolvers/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         homepage: "https://github.com/qpsolvers/qpsolvers",

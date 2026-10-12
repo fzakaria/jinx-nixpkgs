@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mephisto.nix", [[["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 40, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromSourcehut: false, "pkg-config": false, cmake: false, meson: false, ninja: false, faust: false, fontconfig: false, glew: false, "libvterm-neovim": false, lv2: false, lv2lint: false, sord: false, libxext: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mephisto.nix", [["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/mephisto.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/mephisto.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 40, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mephisto",
       version: "0.18.2",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "open-music-kontrollers.ch",
           owner: "~hp",
           repo: "mephisto.lv2",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja, fontconfig, cmake]),
       buildInputs: nix.thunk(() => [faust, libvterm_neovim, lv2, sord, libx11, libxext, glew, lv2lint]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Just-in-time FAUST embedded in an LV2 plugin",
         homepage: "https://git.open-music-kontrollers.ch/~hp/mephisto.lv2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),

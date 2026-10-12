@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 26, 3], ["nativeCheckInputs", 32, 3], ["enabledTestPaths", 34, 3], ["disabledTests", 36, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "http-message-signatures": false, "http-sfv": false, requests: false, pytestCheckHook: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 26, 3], ["nativeCheckInputs", 32, 3], ["enabledTestPaths", 34, 3], ["disabledTests", 36, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyauth",
           repo: "requests-http-signature",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_readme_example"]);
       const pythonImportsCheck = nix.thunk(() => ["requests_http_signature"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Requests authentication module for HTTP Signature",
         homepage: "https://github.com/kislyuk/requests-http-signature",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

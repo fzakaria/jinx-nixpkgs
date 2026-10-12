@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["changelog", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["makeFlags", 32, 3], ["postInstall", 37, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { bc: false, bind: false, coreutils: false, curl: false, fetchFromGitHub: false, file: false, iproute2: false, lib: false, makeWrapper: false, "netcat-gnu": false, nmap: false, openssl: false, python3: false, stdenv: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["makeFlags", 32, 3], ["postInstall", 37, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "check_ssl_cert";
       const version = "2.103.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "matteocorti",
           repo: "check_ssl_cert",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([bc, bind, coreutils, curl, file, netcat_gnu, nmap, openssl, python3, which], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), iproute2))))}"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/matteocorti/check_ssl_cert/releases/tag/v${version}`),
         description: "Nagios plugin to check the CA and validity of an X.509 certificate",
         homepage: "https://github.com/matteocorti/check_ssl_cert",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

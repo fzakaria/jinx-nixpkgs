@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cohttp.nix", [[["description", 49, 5]], [["pname", 19, 3], ["version", 22, 5], ["src", 23, 5], ["propagatedBuildInputs", 26, 3], ["doCheck", 34, 3], ["checkInputs", 35, 3], ["__darwinAllowLocalNetworking", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, paf: false, "cohttp-lwt": false, "domain-name": false, h1: false, ipaddr: false, "alcotest-lwt": false, fmt: false, logs: false, "mirage-crypto-rng": false, tcpip: false, uri: false, lwt: false, astring: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cohttp.nix", [["description", 49, 5]]);
-const pos$2 = nix.positions(here + "/cohttp.nix", [["pname", 19, 3], ["version", 22, 5], ["src", 23, 5], ["propagatedBuildInputs", 26, 3], ["doCheck", 34, 3], ["checkInputs", 35, 3], ["__darwinAllowLocalNetworking", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const astring = nix.arg($, "astring");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "paf-cohttp",
       version: nix.thunk(() => nix.attr(paf, "version")),
       src: nix.thunk(() => nix.attr(paf, "src")),
@@ -32,7 +31,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest_lwt, fmt, logs, mirage_crypto_rng, tcpip, uri, lwt, astring]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => nix.update(nix.sel(paf, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "CoHTTP client with its HTTP/AF implementation",
       })),
     })));

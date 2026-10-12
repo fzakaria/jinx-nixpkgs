@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 23, 5], ["longDescription", 24, 5], ["homepage", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["mainProgram", 33, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["doCheck", 18, 3], ["cargoHash", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["longDescription", 24, 5], ["homepage", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["mainProgram", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["doCheck", 18, 3], ["cargoHash", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "carl",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "b1rger",
           repo: "carl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       cargoHash: "sha256-b2BilwYCNTT1B3Cuia8N6ay6HRxf0Mkrkdu5qzksxoQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "cal(1) with more features and written in rust",
         longDescription: "Carl is a calendar for the commandline. It tries to mimic the various cal(1)\nimplementations out there, but also adds enhanced features like colors and ical\nsupport\n",
         homepage: "https://github.com/b1rger/carl",

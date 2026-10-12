@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["categories", 33, 7], ["desktopName", 40, 7], ["exec", 41, 7], ["genericName", 42, 7], ["icon", 43, 7], ["mimeTypes", 44, 7], ["name", 45, 7], ["startupNotify", 46, 7], ["startupWMClass", 47, 7], ["terminal", 48, 7], ["type", 49, 7]], [["electron_version", 57, 7]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 70, 7]], [["broken", 124, 5], ["description", 125, 5], ["longDescription", 126, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["platforms", 136, 5], ["sourceProvenance", 137, 5], ["mainProgram", 138, 5], ["maintainers", 139, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["desktopItems", 31, 3], ["patches", 53, 3], ["nativeBuildInputs", 61, 3], ["npmDepsHash", 66, 3], ["makeCacheWritable", 68, 3], ["env", 70, 3], ["npmFlags", 74, 3], ["preBuild", 76, 3], ["npmBuildScript", 99, 3], ["installPhase", 101, 3], ["postFixup", 116, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, replaceVars: false, copyDesktopItems: false, makeWrapper: false, makeDesktopItem: false, electron_42: false, commandLineArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["categories", 33, 7], ["desktopName", 40, 7], ["exec", 41, 7], ["genericName", 42, 7], ["icon", 43, 7], ["mimeTypes", 44, 7], ["name", 45, 7], ["startupNotify", 46, 7], ["startupWMClass", 47, 7], ["terminal", 48, 7], ["type", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["electron_version", 57, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 70, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["broken", 124, 5], ["description", 125, 5], ["longDescription", 126, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["platforms", 136, 5], ["sourceProvenance", 137, 5], ["mainProgram", 138, 5], ["maintainers", 139, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["desktopItems", 31, 3], ["patches", 53, 3], ["nativeBuildInputs", 61, 3], ["npmDepsHash", 66, 3], ["makeCacheWritable", 68, 3], ["env", 70, 3], ["npmFlags", 74, 3], ["preBuild", 76, 3], ["npmBuildScript", 99, 3], ["installPhase", 101, 3], ["postFixup", 116, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const commandLineArgs = nix.argOr($, "commandLineArgs", () => "");
   const electron = electron_42;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lx-music-desktop",
       version: "2.12.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lyswhut",
           repo: "lx-music-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             categories: nix.thunk(() => ["Utility", "AudioVideo", "Audio", "Player", "Music"]),
             desktopName: "LX Music Desktop",
             exec: "lx-music-desktop",
@@ -52,14 +47,14 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./electron-builder.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             electron_version: nix.thunk(() => nix.sel(electron, "version")),
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems]),
       npmDepsHash: "sha256-bBgewJxBSzyL1V9U9qm0TbWCZMjheCUK6DvvoE3T67M=",
       makeCacheWritable: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       preBuild: nix.thunk(() => nix.str`# delete prebuilt libs
 rm -r build-config/lib
@@ -90,7 +85,7 @@ npm rebuild --no-progress --verbose
   --add-flags ${nix.app(nix.sel(lib, "escapeShellArg"), commandLineArgs)}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Music software based on Electron and Vue",
         longDescription: "Some functionalities (e.g. lyrics window) are broken when lx-music-desktop\nruns using a Wayland ozone platform due to Electron's lack of support\nfor Wayland. If you do need these features, please consider unsetting\n`NIXOS_OZONE_WL` and passing `--ozone-platform=x11` from the command line\nto restore the expected behavior.\n",

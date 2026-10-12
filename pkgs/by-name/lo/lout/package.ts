@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 27, 5], ["longDescription", 29, 5], ["homepage", 49, 5], ["license", 51, 5], ["platforms", 53, 5], ["maintainers", 54, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["makeFlags", 21, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ghostscript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["longDescription", 29, 5], ["homepage", 49, 5], ["license", 51, 5], ["platforms", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["makeFlags", 21, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ghostscript = nix.arg($, "ghostscript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lout",
       version: "3.43.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "william8000",
           repo: "lout",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Document layout system similar in style to LaTeX",
         longDescription: "The Lout document formatting system is now reads a high-level\ndescription of a document similar in style to LaTeX and produces\na PostScript or plain text output file.\n\nLout offers an unprecedented range of advanced features,\nincluding optimal paragraph and page breaking, automatic\nhyphenation, PostScript EPS file inclusion and generation,\nequation formatting, tables, diagrams, rotation and scaling,\nsorted indexes, bibliographic databases, running headers and\nodd-even pages, automatic cross referencing, multilingual\ndocuments including hyphenation (most European languages are\nsupported), formatting of computer programs, and much more, all\nready to use.  Furthermore, Lout is easily extended with\ndefinitions which are very much easier to write than troff of\nTeX macros because Lout is a high-level, purely functional\nlanguage, the outcome of an eight-year research project that\nwent back to the beginning.\n",
         homepage: "https://github.com/william8000/lout",

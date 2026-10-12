@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["rsa", 34, 5], ["signedtoken", 35, 5], ["signals", 39, 5]], [["django-allauth", 57, 7], ["django-oauth-toolkit", 58, 7], ["google-auth-oauthlib", 59, 7], ["requests-oauthlib", 60, 7]], [["tests", 55, 12]], [["changelog", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 53, 3], ["passthru", 55, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, blinker: false, buildPythonPackage: false, cryptography: false, fetchFromGitHub: false, mock: false, pyjwt: false, pytestCheckHook: false, setuptools: false, "django-allauth": false, "django-oauth-toolkit": false, "google-auth-oauthlib": false, "requests-oauthlib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rsa", 34, 5], ["signedtoken", 35, 5], ["signals", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["django-allauth", 57, 7], ["django-oauth-toolkit", 58, 7], ["google-auth-oauthlib", 59, 7], ["requests-oauthlib", 60, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 55, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["changelog", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 53, 3], ["passthru", 55, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oauthlib",
           repo: "oauthlib",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         rsa: nix.thunk(() => [cryptography]),
         signedtoken: nix.thunk(() => [cryptography, pyjwt]),
         signals: nix.thunk(() => [blinker]),
@@ -47,9 +42,9 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_fetch_access_token"]);
       const pythonImportsCheck = nix.thunk(() => ["oauthlib"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "django-allauth": django_allauth,
           "django-oauth-toolkit": django_oauth_toolkit,
           "google-auth-oauthlib": google_auth_oauthlib,
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/oauthlib/oauthlib/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
         description: "Generic, spec-compliant, thorough implementation of the OAuth request-signing logic",
         homepage: "https://github.com/oauthlib/oauthlib",
@@ -68,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

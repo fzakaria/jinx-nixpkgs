@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]], [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["makeFlags", 30, 3], ["installTargets", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 45, 3], ["doInstallCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, systemd: false, coreutils: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["makeFlags", 30, 3], ["installTargets", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 45, 3], ["doInstallCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "brightnessctl",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Hummer12007",
           repo: "brightnessctl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +37,7 @@ substituteInPlace 90-brightnessctl.rules \\
       buildInputs: nix.thunk(() => [systemd]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/Hummer12007/brightnessctl",
         description: "This program allows you read and control device brightness",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

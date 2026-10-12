@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 52, 5], ["PUPPETEER_SKIP_DOWNLOAD", 53, 5]], [["name", 69, 7], ["exec", 70, 7], ["icon", 71, 7], ["comment", 72, 7], ["desktopName", 73, 7], ["categories", 74, 7]], [["extraArgs", 90, 7]], [["wrapperPaths", 82, 5], ["updateScript", 87, 5]], [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5], ["mainProgram", 102, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["npmDepsHash", 35, 3], ["nativeBuildInputs", 37, 3], ["dontNpmBuild", 43, 3], ["buildInputs", 45, 3], ["strictDeps", 49, 3], ["env", 51, 3], ["postInstall", 56, 3], ["desktopItems", 67, 3], ["passthru", 81, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "nix-update-script": false, "node-gyp": false, "pkg-config": false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, libsecret: false, ffmpeg: false, "yt-dlp": false, electron_43: false, chromium: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 52, 5], ["PUPPETEER_SKIP_DOWNLOAD", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 69, 7], ["exec", 70, 7], ["icon", 71, 7], ["comment", 72, 7], ["desktopName", 73, 7], ["categories", 74, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 90, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["wrapperPaths", 82, 5], ["updateScript", 87, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5], ["mainProgram", 102, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["npmDepsHash", 35, 3], ["nativeBuildInputs", 37, 3], ["dontNpmBuild", 43, 3], ["buildInputs", 45, 3], ["strictDeps", 49, 3], ["env", 51, 3], ["postInstall", 56, 3], ["desktopItems", 67, 3], ["passthru", 81, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const chromium = nix.arg($, "chromium");
   const electron = electron_43;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "Sharedown",
       version: "5.3.6-unstable-2025-12-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kylon",
           repo: "Sharedown",
           rev: "5d0cbe2d25de6e288e35bd549f436b090d6e287a",
@@ -45,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libsecret]),
       strictDeps: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         PUPPETEER_SKIP_DOWNLOAD: "1",
       })),
@@ -60,7 +54,7 @@ makeWrapper ${electron}/bin/electron $out/bin/sharedown \\
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "Sharedown",
             exec: "Sharedown",
             icon: "Sharedown",
@@ -70,12 +64,12 @@ makeWrapper ${electron}/bin/electron $out/bin/sharedown \\
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         wrapperPaths: nix.thunk(() => [ffmpeg, yt_dlp, chromium]),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Application to save your Sharepoint videos for offline usage",
         homepage: "https://github.com/kylon/Sharedown",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

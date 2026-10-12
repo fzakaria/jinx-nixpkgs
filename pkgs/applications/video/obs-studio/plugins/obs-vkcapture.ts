@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/obs-vkcapture.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["maintainers", 90, 5], ["license", 93, 5], ["platforms", 94, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cmakeFlags", 36, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["postPatch", 63, 3], ["postInstall", 78, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, ninja: false, wayland: false, "wayland-scanner": false, "obs-studio": false, libffi: false, libx11: false, libxau: false, libxdmcp: false, libxcb: false, "vulkan-headers": false, "vulkan-loader": false, libGL: false, pkgsi686Linux: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/obs-vkcapture.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/obs-vkcapture.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["maintainers", 90, 5], ["license", 93, 5], ["platforms", 94, 5]]);
-const pos$3 = nix.positions(here + "/obs-vkcapture.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cmakeFlags", 36, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["postPatch", 63, 3], ["postInstall", 78, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const pkgsi686Linux = nix.arg($, "pkgsi686Linux");
   const obs_vkcapture32 = nix.thunk(() => nix.sel(pkgsi686Linux, "obs-studio-plugins", "obs-vkcapture"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "obs-vkcapture",
       version: "1.5.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nowrep",
           repo: "obs-vkcapture",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +65,7 @@ for bin in ${obs_vkcapture32}/bin/* ; do
 done
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OBS Linux Vulkan/OpenGL game capture",
         homepage: "https://github.com/nowrep/obs-vkcapture",
         changelog: nix.thunk(() => nix.str`https://github.com/nowrep/obs-vkcapture/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["fetchSubmodules", 17, 5], ["hash", 18, 5]], [["package", 25, 43]], [["version", 25, 11]], [["updateScript", 24, 5], ["tests", 25, 5]], [["homepage", 29, 5], ["description", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["nativeBuildInputs", 21, 3], ["passthru", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["fetchSubmodules", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 25, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 25, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 24, 5], ["tests", 25, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["nativeBuildInputs", 21, 3], ["passthru", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "upx",
       version: "5.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "upx",
           repo: "upx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,18 +27,18 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://upx.github.io/",
         description: "Ultimate Packer for eXecutables",
         changelog: nix.thunk(() => nix.str`https://github.com/upx/upx/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

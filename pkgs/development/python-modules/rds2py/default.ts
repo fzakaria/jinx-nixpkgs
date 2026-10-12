@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["description", 118, 5], ["homepage", 119, 5], ["license", 120, 5], ["maintainers", 121, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["rds2cpp-src", 32, 3], ["byteme-src", 39, 3], ["prePatch", 49, 3], ["postPatch", 60, 3], ["preConfigure", 75, 3], ["nativeBuildInputs", 79, 3], ["build-system", 86, 3], ["dependencies", 91, 3], ["nativeCheckInputs", 95, 3], ["disabledTestPaths", 103, 3], ["dontUseCmakeConfigure", 113, 3], ["pythonImportsCheck", 115, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, stdenv: false, fetchFromGitHub: false, cmake: false, zlib: false, pybind11: false, pytestCheckHook: false, "pytest-cov-stub": false, "pkg-config": false, setuptools: false, "setuptools-scm": false, biocutils: false, biocframe: false, pandas: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 118, 5], ["homepage", 119, 5], ["license", 120, 5], ["maintainers", 121, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["rds2cpp-src", 32, 3], ["byteme-src", 39, 3], ["prePatch", 49, 3], ["postPatch", 60, 3], ["preConfigure", 75, 3], ["nativeBuildInputs", 79, 3], ["build-system", 86, 3], ["dependencies", 91, 3], ["nativeCheckInputs", 95, 3], ["disabledTestPaths", 103, 3], ["dontUseCmakeConfigure", 113, 3], ["pythonImportsCheck", 115, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,21 +28,21 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BiocPy",
           repo: "rds2py",
           tag: version,
           hash: "sha256-GbRpkt+K2HXuAT7KtI4h1SnZ4RtSo5hrea2L92VZj/o=",
         }))));
       const rds2cpp_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "LTLA",
           repo: "rds2cpp",
           rev: "v1.1.0",
           hash: "sha256-q7C/oORmhgXlqnZnslhyrxBc3RRF2gdgGuQU4TimxtI=",
         }))));
       const byteme_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "LTLA",
           repo: "byteme",
           rev: "v1.2.2",
@@ -74,7 +70,7 @@ chmod -R u+w build/_deps
       const dontUseCmakeConfigure = true;
       const pythonImportsCheck = nix.thunk(() => ["rds2py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Read RDS files, in Python",
         homepage: "https://github.com/BiocPy/rds2py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -84,7 +80,7 @@ chmod -R u+w build/_deps
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

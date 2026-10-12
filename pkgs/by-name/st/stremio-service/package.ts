@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["license", 30, 10]], [["pname", 26, 5], ["version", 27, 5], ["url", 28, 5], ["hash", 29, 5], ["meta", 30, 5]], [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["server", 158, 13]], [["mainProgram", 162, 5], ["description", 163, 5], ["homepage", 164, 5], ["license", 165, 5], ["maintainers", 171, 5], ["platforms", 175, 5]], [["pname", 35, 3], ["version", 36, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 56, 3], ["cargoHash", 64, 3], ["buildFeatures", 65, 3], ["postPatch", 70, 3], ["preBuild", 76, 3], ["dontCargoInstall", 96, 3], ["installPhase", 97, 3], ["checkFlags", 152, 3], ["passthru", 157, 3], ["meta", 161, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, makeBinaryWrapper: false, "desktop-file-utils": false, librsvg: false, openssl: false, glib: false, gtk3: false, "libayatana-appindicator": false, "jellyfin-ffmpeg": false, nodejs: false, procps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["license", 30, 10]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 26, 5], ["version", 27, 5], ["url", 28, 5], ["hash", 29, 5], ["meta", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["server", 158, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 162, 5], ["description", 163, 5], ["homepage", 164, 5], ["license", 165, 5], ["maintainers", 171, 5], ["platforms", 175, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 56, 3], ["cargoHash", 64, 3], ["buildFeatures", 65, 3], ["postPatch", 70, 3], ["preBuild", 76, 3], ["dontCargoInstall", 96, 3], ["installPhase", 97, 3], ["checkFlags", 152, 3], ["passthru", 157, 3], ["meta", 161, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,19 +29,19 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`https://dl.strem.io/server/v${version}/desktop/server.js`);
       const hash = "sha256-Vno5e7EbeIVxvxdQ/QXdeJJ/l77Ayd3qptnMHszuOSI=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
-      return { [nix.POS]: pos$2, pname, version, url, hash, meta };
+      return { [nix.POS]: $pos[1], pname, version, url, hash, meta };
     })())));
   const os = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "macos" : nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "stremio-service",
       version: "0.1.21",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "Stremio",
           repo: "stremio-service",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -105,9 +100,9 @@ makeBinaryWrapper \\
 runHook postInstall
 `),
       checkFlags: nix.thunk(() => ["--skip=copyright"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, server: server })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], server: server })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         mainProgram: "stremio-service",
         description: "Modern media center that gives you the freedom to watch everything you want (Service only)",
         homepage: "https://www.stremio.com/",

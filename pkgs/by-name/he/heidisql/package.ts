@@ -2,20 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["package", 31, 17], ["library", 31, 25], ["path", 32, 9]], [["package", 37, 9], ["library", 38, 9], ["path", 39, 9]], [["package", 42, 9], ["library", 43, 9]], [["package", 46, 9], ["library", 47, 9]], [["package", 50, 9], ["library", 51, 9]], [["package", 54, 9], ["library", 55, 9]], [["owner", 75, 7], ["repo", 76, 7], ["tag", 77, 7], ["hash", 78, 7]], [["name", 129, 9], ["desktopName", 130, 9], ["comment", 131, 9], ["icon", 132, 9], ["exec", 133, 9], ["terminal", 134, 9], ["categories", 135, 9]], [["ignoredVersions", 143, 7], ["allowedVersions", 144, 7], ["rev-prefix", 145, 7]], [["updateScript", 142, 14]], [["mainProgram", 149, 7], ["description", 150, 7], ["homepage", 151, 7], ["platforms", 152, 7], ["license", 153, 7], ["maintainers", 154, 7]], [["pname", 68, 5], ["version", 69, 5], ["strictDeps", 71, 5], ["__structuredAttrs", 72, 5], ["src", 74, 5], ["nativeBuildInputs", 81, 5], ["buildInputs", 90, 5], ["postPatch", 96, 5], ["buildPhase", 101, 5], ["installPhase", 109, 5], ["desktopItems", 127, 5], ["passthru", 142, 5], ["meta", 148, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fpc: false, "lazarus-qt6": false, qt6Packages: false, autoPatchelfHook: false, writableTmpDirAsHomeHook: false, "mariadb-connector-c": false, libpq: false, sqlite: false, freetds: false, firebird: false, writers: false, copyDesktopItems: false, makeDesktopItem: false, gitUpdater: false }, ellipsis: false };
 const formals$2 = { args: { package: false, library: false, path: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["package", 31, 17], ["library", 31, 25], ["path", 32, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 37, 9], ["library", 38, 9], ["path", 39, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 42, 9], ["library", 43, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 46, 9], ["library", 47, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 50, 9], ["library", 51, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["package", 54, 9], ["library", 55, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 75, 7], ["repo", 76, 7], ["tag", 77, 7], ["hash", 78, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 129, 9], ["desktopName", 130, 9], ["comment", 131, 9], ["icon", 132, 9], ["exec", 133, 9], ["terminal", 134, 9], ["categories", 135, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["ignoredVersions", 143, 7], ["allowedVersions", 144, 7], ["rev-prefix", 145, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["updateScript", 142, 14]]);
-const pos$11 = nix.positions(here + "/package.nix", [["mainProgram", 149, 7], ["description", 150, 7], ["homepage", 151, 7], ["platforms", 152, 7], ["license", 153, 7], ["maintainers", 154, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 68, 5], ["version", 69, 5], ["strictDeps", 71, 5], ["__structuredAttrs", 72, 5], ["src", 74, 5], ["nativeBuildInputs", 81, 5], ["buildInputs", 90, 5], ["postPatch", 96, 5], ["buildPhase", 101, 5], ["installPhase", 109, 5], ["desktopItems", 127, 5], ["passthru", 142, 5], ["meta", 148, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +32,7 @@ export default nix.lambda((args) => (() => {
         const library = nix.arg($_1, "library");
         const path = nix.argOr($_1, "path", () => "lib");
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           package: package$,
           library: library,
           path: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), package$)}/${path}`),
@@ -51,26 +40,26 @@ export default nix.lambda((args) => (() => {
       })(), formals$2);
       const dbConnectors = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             package: mariadb_connector_c,
             library: "libmariadb.so",
             path: "lib/mariadb",
           })))),
-        nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({ [nix.POS]: pos$3, package: libpq, library: "libpq.so" })))),
-        nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({ [nix.POS]: pos$4, package: sqlite, library: "libsqlite3.so" })))),
-        nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({ [nix.POS]: pos$5, package: freetds, library: "libsybdb.so" })))),
-        nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({ [nix.POS]: pos$6, package: firebird, library: "libfbclient.so" })))),
+        nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({ [nix.POS]: $pos[2], package: libpq, library: "libpq.so" })))),
+        nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({ [nix.POS]: $pos[3], package: sqlite, library: "libsqlite3.so" })))),
+        nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({ [nix.POS]: $pos[4], package: freetds, library: "libsybdb.so" })))),
+        nix.thunk(() => nix.app(makeDbConnector, nix.thunk(() => ({ [nix.POS]: $pos[5], package: firebird, library: "libfbclient.so" })))),
       ]);
       const customScript = nix.thunk(() => nix.app(nix.sel(writers, "writeBashBin"), "heidisql-ldconfig", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map((x) => nix.str`printf '	%s (libc6,x86-64) => %s/%s
 ' "${nix.sel(x, "library")}" "${nix.sel(x, "path")}" "${nix.sel(x, "library")}"`, dbConnectors))))));
       return {
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pname: "heidisql",
         version: "12.20",
         strictDeps: true,
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             owner: "HeidiSQL",
             repo: "HeidiSQL",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -113,7 +102,7 @@ runHook postInstall
 `),
         desktopItems: nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               name: "heidisql",
               desktopName: "HeidiSQL",
               comment: "A lightweight client for managing MariaDB, MySQL, SQL Server, PostgreSQL, SQLite, Interbase and Firebird, written in Delphi and Lazarus/FreePascal",
@@ -124,16 +113,16 @@ runHook postInstall
             })))),
         ]),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               ignoredVersions: "[v0-9.]*-Windows$",
               allowedVersions: "v[0-9]*.[0-9]*",
               "rev-prefix": "v",
             })))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           mainProgram: "heidisql",
           description: "A lightweight client for managing MariaDB, MySQL, SQL Server, PostgreSQL, SQLite, Interbase and Firebird, written in Delphi and Lazarus/FreePascal",
           homepage: "https://www.heidisql.com/",

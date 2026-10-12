@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["updateScript", 105, 12]], [["changelog", 108, 5], ["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["maintainers", 115, 5], ["platforms", 116, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["outputs", 47, 3], ["postPatch", 54, 3], ["configureFlags", 60, 3], ["strictDeps", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 79, 3], ["postInstall", 100, 3], ["passthru", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, "gtk-doc": false, docbook_xml_dtd_43: false, python3: false, "gobject-introspection": false, glib: false, udev: false, kmod: false, parted: false, cryptsetup: false, lvm2: false, "util-linux": false, libbytesize: false, libndctl: false, nss: false, volume_key: false, libxslt: false, docbook_xsl: false, gptfdisk: false, libyaml: false, "autoconf-archive": false, "thin-provisioning-tools": false, makeBinaryWrapper: false, e2fsprogs: false, libnvme: false, keyutils: false, libatasmart: false, "json-glib": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 105, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 108, 5], ["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["maintainers", 115, 5], ["platforms", 116, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["outputs", 47, 3], ["postPatch", 54, 3], ["configureFlags", 60, 3], ["strictDeps", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 79, 3], ["postInstall", 100, 3], ["passthru", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const json_glib = nix.arg($, "json-glib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libblockdev",
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "storaged-project",
           repo: "libblockdev",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -96,11 +93,11 @@ export default nix.lambda((args) => (() => {
   ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [thin_provisioning_tools]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/storaged-project/libblockdev/raw/${nix.sel(finalAttrs, "src", "tag")}/NEWS.rst`),
         description: "Library for manipulating block devices",
         homepage: "http://storaged.org/libblockdev/",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 52, 27]], [["pname", 39, 3], ["cargoHash", 45, 5], ["src", 46, 5], ["version", 47, 5], ["meta", 50, 3], ["buildAndTestSubdir", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 67, 3], ["checkFlags", 89, 3], ["postPatch", 104, 3], ["postInstall", 121, 3], ["postFixup", 179, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, stdenv: false, atk: false, autoconf: false, automake: false, cairo: false, coreutils: false, gawk: false, glib: false, "glib-networking": false, gmp: false, gnutls: false, gnugrep: false, gnused: false, gpauth: false, gtk3: false, iproute2: false, libtool: false, libxml2: false, lz4: false, makeBinaryWrapper: false, "net-tools": false, nettle: false, openresolv: false, openssl: false, "p11-kit": false, pango: false, perl: false, "pkg-config": false, systemd: false, unixtools: false, zlib: false, withSystemd: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 52, 27]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["cargoHash", 45, 5], ["src", 46, 5], ["version", 47, 5], ["meta", 50, 3], ["buildAndTestSubdir", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 67, 3], ["checkFlags", 89, 3], ["postPatch", 104, 3], ["postInstall", 121, 3], ["postFixup", 179, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withSystemd = nix.argOr($, "withSystemd", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemd));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "gpclient",
       cargoHash: nix.thunk(() => nix.attr(gpauth, "cargoHash")),
       src: nix.thunk(() => nix.attr(gpauth, "src")),
@@ -51,7 +50,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => nix.update(nix.sel(gpauth, "meta"), (() => {
         const from = nix.thunk(() => nix.sel(gpauth, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from, "description")),
       };
       })())),

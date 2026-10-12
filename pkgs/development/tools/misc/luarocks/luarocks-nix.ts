@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/luarocks-nix.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["hardcodeZeroVersion", 32, 7]], [["updateScript", 30, 5]], [["description", 39, 7], ["license", 40, 7], ["maintainers", 41, 7], ["platforms", 42, 7], ["homepage", 44, 5], ["mainProgram", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["propagatedNativeBuildInputs", 20, 3], ["patches", 25, 3], ["doInstallCheck", 27, 3], ["passthru", 29, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { luarocks_bootstrap: false, fetchFromGitHub: false, unstableGitUpdater: false, nurl: false, file: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/luarocks-nix.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/luarocks-nix.nix", [["hardcodeZeroVersion", 32, 7]]);
-const pos$3 = nix.positions(here + "/luarocks-nix.nix", [["updateScript", 30, 5]]);
-const pos$4 = nix.positions(here + "/luarocks-nix.nix", [["description", 39, 7], ["license", 40, 7], ["maintainers", 41, 7], ["platforms", 42, 7], ["homepage", 44, 5], ["mainProgram", 45, 5]]);
-const pos$5 = nix.positions(here + "/luarocks-nix.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["propagatedNativeBuildInputs", 20, 3], ["patches", 25, 3], ["doInstallCheck", 27, 3], ["passthru", 29, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nurl = nix.arg($, "nurl");
   const file = nix.arg($, "file");
   return nix.app(nix.sel(luarocks_bootstrap, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "luarocks-nix",
       version: "nix_v3.5.0-1-unstable-2026-03-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nix-community",
           repo: "luarocks-nix",
           rev: "3a9f4bff6cdda670f866fb9f755d548a714f680a",
@@ -31,13 +27,13 @@ export default nix.lambda((args) => (() => {
       patches: [],
       doInstallCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(old, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: nix.thunk(() => nix.attr(from, "description")),
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

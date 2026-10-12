@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 13], ["hash", 39, 5]], [["USE_NCCONFIG", 78, 5], ["HDF5_DIR", 79, 5], ["NETCDF4_DIR", 80, 5], ["CURL_DIR", 81, 5], ["JPEG_DIR", 82, 5]], [["NIX_CFLAGS_COMPILE", 84, 44]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["maintainers", 92, 5], ["license", 93, 5]], [["pname", 29, 3], ["version", 30, 11], ["pyproject", 31, 3], ["disabled", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 49, 3], ["buildInputs", 55, 3], ["nativeCheckInputs", 63, 3], ["checkPhase", 67, 3], ["env", 76, 3], ["pythonImportsCheck", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, certifi: false, cftime: false, curl: false, cython: false, fetchFromGitHub: false, hdf5: false, isPyPy: false, libjpeg: false, netcdf: false, numpy: false, "oldest-supported-numpy": false, pytest: false, python: false, "setuptools-scm": false, stdenv: false, wheel: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 13], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["USE_NCCONFIG", 78, 5], ["HDF5_DIR", 79, 5], ["NETCDF4_DIR", 80, 5], ["CURL_DIR", 81, 5], ["JPEG_DIR", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 84, 44]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["maintainers", 92, 5], ["license", 93, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 11], ["pyproject", 31, 3], ["disabled", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 49, 3], ["buildInputs", 55, 3], ["nativeCheckInputs", 63, 3], ["checkPhase", 67, 3], ["env", 76, 3], ["pythonImportsCheck", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const suffix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "match"), ".*\\.post[0-9]+", version), null)), "rel"));
   const tag = nix.thunk(() => nix.str`v${version}${suffix}`);
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "netcdf4",
       version: version,
       pyproject: true,
       disabled: isPyPy,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Unidata",
           repo: "netcdf4-python",
           tag: tag,
@@ -58,16 +54,16 @@ NO_NET=1 NO_CDL=1 ${nix.sel(python, "interpreter")} run_all.py
 runHook postCheck
 `),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         USE_NCCONFIG: "0",
         HDF5_DIR: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), hdf5)),
         NETCDF4_DIR: netcdf,
         CURL_DIR: nix.thunk(() => nix.sel(curl, "dev")),
         JPEG_DIR: nix.thunk(() => nix.sel(libjpeg, "dev")),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion" }))))),
       pythonImportsCheck: nix.thunk(() => ["netCDF4"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Interface to netCDF library (versions 3 and 4)",
         homepage: "https://github.com/Unidata/netcdf4-python",
         changelog: nix.thunk(() => nix.str`https://github.com/Unidata/netcdf4-python/raw/${tag}/Changelog`),

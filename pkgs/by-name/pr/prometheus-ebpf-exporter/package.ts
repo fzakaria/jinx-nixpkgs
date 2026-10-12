@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["stdenv", 16, 26]], [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["CGO_LDFLAGS", 41, 7]], [["ebpf", 72, 57]], [["updateScript", 71, 5], ["tests", 72, 5]], [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 85, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["postPatch", 29, 3], ["buildInputs", 34, 3], ["env", 41, 3], ["hardeningDisable", 43, 3], ["ldflags", 45, 3], ["postBuild", 55, 3], ["postInstall", 59, 3], ["doCheck", 65, 3], ["doInstallCheck", 67, 3], ["nativeInstallCheckInputs", 68, 3], ["passthru", 70, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false, versionCheckHook: false, "nix-update-script": false, libbpf: false, libelf: false, libsystemtap: false, libz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["stdenv", 16, 26]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CGO_LDFLAGS", 41, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ebpf", 72, 57]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 71, 5], ["tests", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 85, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["postPatch", 29, 3], ["buildInputs", 34, 3], ["env", 41, 3], ["hardeningDisable", 43, 3], ["ldflags", 45, 3], ["postBuild", 55, 3], ["postInstall", 59, 3], ["doCheck", 65, 3], ["doInstallCheck", 67, 3], ["nativeInstallCheckInputs", 68, 3], ["passthru", 70, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const libelf = nix.arg($, "libelf");
   const libsystemtap = nix.arg($, "libsystemtap");
   const libz = nix.arg($, "libz");
-  return nix.app(nix.sel(buildGoModule, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: clangStdenv })), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+  return nix.app(nix.sel(buildGoModule, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: clangStdenv })), (finalAttrs) => ({
+      [nix.POS]: $pos[6],
       pname: "prometheus-ebpf-exporter",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "cloudflare",
           repo: "ebpf_exporter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-ZwKXIIoV4yEyjSpGjVDr91/CQmVuF9zc0IHkJYraE9o=",
       postPatch: "substituteInPlace examples/Makefile \\\n  --replace-fail \"-Wall -Werror\" \"\"\n",
       buildInputs: nix.thunk(() => [libbpf, libelf, libsystemtap, libz]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CGO_LDFLAGS: "-l bpf" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CGO_LDFLAGS: "-l bpf" })),
       hardeningDisable: nix.thunk(() => ["zerocallusedregs"]),
       ldflags: nix.thunk(() => [
         "-s",
@@ -55,15 +49,15 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { [nix.POS]: pos$4, ebpf: nix.thunk(() => nix.attr(from, "ebpf")) };
+          return { [nix.POS]: $pos[3], ebpf: nix.thunk(() => nix.attr(from, "ebpf")) };
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Prometheus exporter for custom eBPF metrics",
         mainProgram: "ebpf_exporter",
         homepage: "https://github.com/cloudflare/ebpf_exporter",

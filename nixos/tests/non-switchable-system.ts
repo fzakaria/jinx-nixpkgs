@@ -2,34 +2,29 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/non-switchable-system.nix", [[["maintainers", 6, 8]], [["enable", 9, 19]], [["switch", 9, 12]], [["system", 9, 5]], [["machine", 8, 9]], [["name", 4, 3], ["meta", 6, 3], ["nodes", 8, 3], ["testScript", 12, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/non-switchable-system.nix", [["maintainers", 6, 8]]);
-const pos$2 = nix.positions(here + "/non-switchable-system.nix", [["enable", 9, 19]]);
-const pos$3 = nix.positions(here + "/non-switchable-system.nix", [["switch", 9, 12]]);
-const pos$4 = nix.positions(here + "/non-switchable-system.nix", [["system", 9, 5]]);
-const pos$5 = nix.positions(here + "/non-switchable-system.nix", [["machine", 8, 9]]);
-const pos$6 = nix.positions(here + "/non-switchable-system.nix", [["name", 4, 3], ["meta", 6, 3], ["nodes", 8, 3], ["testScript", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "non-switchable-system",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         system: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          switch: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+          [nix.POS]: $pos[2],
+          switch: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
         })),
       })),
     })),

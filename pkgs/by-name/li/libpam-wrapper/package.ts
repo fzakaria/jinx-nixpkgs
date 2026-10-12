@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["siteDir", 26, 7], ["includeDir", 27, 7]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, cmake: false, "linux-pam": false, replaceVars: false, enablePython: true, python: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["siteDir", 26, 7], ["includeDir", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const python = nix.argOr($, "python", () => null);
   nix.assert_((!nix.asBool(enablePython) || nix.asBool(!nix.eq(python, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libpam-wrapper/package.nix:12:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libpam-wrapper",
       version: "1.1.5",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.samba.org/pam_wrapper.git",
           rev: nix.thunk(() => nix.str`pam_wrapper-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-AtfkiCUvCxUfll6lOlbMyy5AhS5R2BGF1+ecC1VuwzM=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./python.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             siteDir: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enablePython, nix.thunk(() => nix.sel(python, "sitePackages")))),
             includeDir: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enablePython, nix.thunk(() => nix.str`include/${nix.sel(python, "libPrefix")}`))),
           })))),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake], nix.app(nix.sel(lib, "optionals"), enablePython, nix.thunk(() => [python])))),
       buildInputs: nix.thunk(() => [linux_pam]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wrapper for testing PAM modules",
         homepage: "https://cwrap.org/pam_wrapper.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

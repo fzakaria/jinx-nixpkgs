@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 37, 5], ["hash", 38, 5]], [["description", 97, 5], ["homepage", 98, 5], ["sourceProvenance", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5], ["platforms", 103, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["libPath", 75, 3], ["dontBuild", 77, 3], ["dontConfigure", 78, 3], ["installPhase", 80, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, dpkg: false, autoPatchelfHook: false, makeWrapper: false, wrapGAppsHook3: false, "alsa-lib": false, dbus: false, fontconfig: false, freetype: false, glib: false, gst_all_1: false, libGL: false, libinput: false, libpulseaudio: false, libsecret: false, libtiff: false, libxkbcommon: false, libgbm: false, openssl: false, systemd: false, "libxcb-cursor": false, "libxcb-wm": false, "libxcb-render-util": false, "libxcb-keysyms": false, "libxcb-image": false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["sourceProvenance", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5], ["platforms", 103, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["libPath", 75, 3], ["dontBuild", 77, 3], ["dontConfigure", 78, 3], ["installPhase", 80, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const libxcb_image = nix.arg($, "libxcb-image");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "alfaview",
       version: "9.26.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://assets.alfaview.com/stable/linux/deb/alfaview_${nix.sel(finalAttrs, "version")}.deb`),
           hash: "sha256-IGhwEZYVg/lLeLhayUHMbjmhTozbllP1Vrmk4Fdgf7k=",
         })))),
@@ -91,7 +89,7 @@ makeWrapper $out/opt/alfaview/alfaview $out/bin/alfaview \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Video-conferencing application, specialized in virtual online meetings, seminars, training sessions and conferences",
         homepage: "https://alfaview.com",
         sourceProvenance: nix.thunk(() => (() => {

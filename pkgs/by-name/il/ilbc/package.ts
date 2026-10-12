@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["platforms", 35, 5], ["license", 36, 5]], [["pname", 10, 3], ["version", 11, 3], ["script", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["unpackPhase", 22, 3], ["cmakeFlags", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gawk: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["platforms", 35, 5], ["license", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["script", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["unpackPhase", 22, 3], ["cmakeFlags", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0-unstable-2004-12-03";
       const script = nix.path(here, "./extract-cfile.awk");
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.ietf.org/rfc/rfc3951.txt",
           sha256: "0zf4mvi3jzx6zjrfl2rbhl2m68pzbzpf1vbdmn7dqbfpcb67jpdy",
         }))));
@@ -31,12 +29,12 @@ cp -v ${nix.path(here, "./CMakeLists.txt")} CMakeLists.txt
 `);
       const cmakeFlags = nix.thunk(() => ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         script,

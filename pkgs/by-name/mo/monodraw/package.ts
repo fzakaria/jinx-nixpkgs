@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["build", 44, 13], ["updateScript", 45, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["sourceProvenance", 77, 5]], [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["src", 25, 3], ["sourceRoot", 30, 3], ["nativeBuildInputs", 32, 3], ["installPhase", 34, 3], ["passthru", 43, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, unzip: false, fetchurl: false, writeShellScript: false, curl: false, xmlstarlet: false, gnused: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["build", 44, 13], ["updateScript", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["sourceProvenance", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["src", 25, 3], ["sourceRoot", 30, 3], ["nativeBuildInputs", 32, 3], ["installPhase", 34, 3], ["passthru", 43, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const build = "118";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "monodraw",
       version: "1.7.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://updates.helftone.com/monodraw/downloads/Monodraw-b${build}.zip`),
           hash: "sha256-7ti/FXoxNMhSYV7TWTeP8mAnCdqukI0SgDdW6RRQsFc=",
         })))),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -R ./Monodraw.app $out/Applications\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         build: build,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "monodraw-update-script", nix.thunk(() => nix.str`set -euo pipefail
 export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, xmlstarlet, gnused, common_updater_scripts]))}"
@@ -53,7 +50,7 @@ update-source-version monodraw "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Powerful ASCII art editor designed for the Mac",
         homepage: "https://monodraw.helftone.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -2,21 +2,10 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["collectiveClosure", 88, 9], ["directReferences", 89, 9], ["closures", 90, 9], ["samples", 91, 9]], [["mainProgram", 96, 7]], [["name", 58, 5], ["src", 60, 5], ["dontUnpack", 61, 5], ["dontBuild", 62, 5], ["installPhase", 64, 5], ["doInstallCheck", 76, 5], ["nativeInstallCheckInputs", 77, 5], ["installCheckPhase", 80, 5], ["passthru", 86, 5], ["meta", 95, 5]], [["writableStore", 119, 24]], [["substituters", 122, 22]], [["settings", 122, 13]], [["extraDependencies", 123, 16]], [["virtualisation", 119, 9], ["nix", 122, 9], ["system", 123, 9]], [["machine", 111, 11]], [["collectiveClosure", 132, 9], ["directReferences", 133, 9], ["closures", 134, 9], ["samples", 135, 9], ["testScriptBin", 136, 9], ["guestTestScriptBin", 138, 15]], [["maintainers", 141, 7]], [["name", 110, 5], ["nodes", 111, 5], ["testScript", 125, 5], ["passthru", 130, 5], ["meta", 140, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, testers: false, callPackage: false, writeText: false, "shellcheck-minimal": false, samples: true, cleanSamples: true, writeDirectReferencesToFile: false, writeClosure: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["collectiveClosure", 88, 9], ["directReferences", 89, 9], ["closures", 90, 9], ["samples", 91, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mainProgram", 96, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 58, 5], ["src", 60, 5], ["dontUnpack", 61, 5], ["dontBuild", 62, 5], ["installPhase", 64, 5], ["doInstallCheck", 76, 5], ["nativeInstallCheckInputs", 77, 5], ["installCheckPhase", 80, 5], ["passthru", 86, 5], ["meta", 95, 5]]);
 const formals$2 = { args: { config: false, lib: false }, ellipsis: true };
 const formals$3 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/default.nix", [["writableStore", 119, 24]]);
-const pos$5 = nix.positions(here + "/default.nix", [["substituters", 122, 22]]);
-const pos$6 = nix.positions(here + "/default.nix", [["settings", 122, 13]]);
-const pos$7 = nix.positions(here + "/default.nix", [["extraDependencies", 123, 16]]);
-const pos$8 = nix.positions(here + "/default.nix", [["virtualisation", 119, 9], ["nix", 122, 9], ["system", 123, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["machine", 111, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["collectiveClosure", 132, 9], ["directReferences", 133, 9], ["closures", 134, 9], ["samples", 135, 9], ["testScriptBin", 136, 9], ["guestTestScriptBin", 138, 15]]);
-const pos$11 = nix.positions(here + "/default.nix", [["maintainers", 141, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["name", 110, 5], ["nodes", 111, 5], ["testScript", 125, 5], ["passthru", 130, 5], ["meta", 140, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const directReferences = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => nix.app(writeDirectReferencesToFile, v), samples));
   const collectiveClosure = nix.thunk(() => nix.app(writeClosure, nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), samples))));
   const testScriptBin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "references-test",
       src: nix.path(here, "./references-test.sh"),
       dontUnpack: true,
@@ -57,13 +46,13 @@ shellcheck "$out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}"
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         collectiveClosure: collectiveClosure,
         directReferences: directReferences,
         closures: closures,
         samples: samples,
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "references-test" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[1], mainProgram: "references-test" })),
     })));
   return nix.app(nix.sel(testers, "runNixOSTest"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
@@ -71,26 +60,26 @@ runHook postInstallCheck
       const lib_1 = nix.arg($_1, "lib");
       const guestTestScriptBin = nix.thunk(() => nix.sel(config, "node", "pkgs", "tests", "trivial-builders", "references", "testScriptBin"));
       return {
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         name: "nixpkgs-trivial-builders-references",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const config_1 = nix.arg($_2, "config");
             const lib_2 = nix.arg($_2, "lib");
             const pkgs = nix.arg($_2, "pkgs");
             return {
-              [nix.POS]: pos$8,
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$4, writableStore: true })),
+              [nix.POS]: $pos[7],
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[3], writableStore: true })),
               nix: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   substituters: nix.thunk(() => nix.app(nix.sel(lib_2, "mkForce"), [])),
                 })),
               })),
-              system: nix.thunk(() => ({ [nix.POS]: pos$7, extraDependencies: nix.thunk(() => [guestTestScriptBin]) })),
+              system: nix.thunk(() => ({ [nix.POS]: $pos[6], extraDependencies: nix.thunk(() => [guestTestScriptBin]) })),
             };
           })(), formals$3),
         })),
@@ -99,7 +88,7 @@ runHook postInstallCheck
 """)
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           collectiveClosure: collectiveClosure,
           directReferences: directReferences,
           closures: closures,
@@ -108,7 +97,7 @@ runHook postInstallCheck
           guestTestScriptBin: guestTestScriptBin,
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
             return [

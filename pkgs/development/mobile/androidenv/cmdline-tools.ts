@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cmdline-tools.nix", [[["name", 16, 3], ["package", 17, 11], ["os", 17, 19], ["arch", 17, 22], ["nativeBuildInputs", 18, 3], ["patchInstructions", 23, 3], ["meta", 54, 11]]]);
 const formals$1 = { args: { deployAndroidPackage: false, lib: false, package: false, autoPatchelfHook: false, makeWrapper: false, os: false, arch: false, pkgs: false, stdenv: false, postInstall: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cmdline-tools.nix", [["name", 16, 3], ["package", 17, 11], ["os", 17, 19], ["arch", 17, 22], ["nativeBuildInputs", 18, 3], ["patchInstructions", 23, 3], ["meta", 54, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const postInstall = nix.arg($, "postInstall");
   const meta = nix.arg($, "meta");
   return nix.app(deployAndroidPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "androidsdk",
       package: package$,
       os: os,

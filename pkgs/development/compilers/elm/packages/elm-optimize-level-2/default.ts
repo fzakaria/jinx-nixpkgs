@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["extraArgs", 23, 47]], [["updateScript", 23, 12]], [["changelog", 26, 5], ["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["mainProgram", 31, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["npmFlags", 21, 3], ["passthru", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 23, 47]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 23, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 26, 5], ["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["mainProgram", 31, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["npmFlags", 21, 3], ["passthru", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "elm-optimize-level-2",
       version: "0.3.4-unstable-2022-04-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mdgriffith",
           repo: "elm-optimize-level-2",
           rev: "46b0975d5349260d2492c2ee532af7230f5af407",
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-4noXdD/KUNridPlwQ2cqVcAaUoP5XUwZhpbEPHVBeqo=",
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: "https://github.com/mdgriffith/elm-optimize-level-2/blob/master/CHANGELOG.md",
         description: "A second level of optimization for the Javascript that the Elm Compiler produces.",
         homepage: "https://github.com/mdgriffith/elm-optimize-level-2",

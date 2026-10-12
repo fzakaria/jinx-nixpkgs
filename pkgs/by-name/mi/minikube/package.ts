@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["homepage", 113, 5], ["description", 114, 5], ["mainProgram", 115, 5], ["license", 116, 5], ["maintainers", 117, 5]], [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 25, 3], ["vendorHash", 27, 3], ["doCheck", 29, 3], ["src", 31, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 62, 3], ["buildPhase", 64, 3], ["installPhase", 72, 3], ["nativeInstallCheckInputs", 104, 3], ["versionCheckKeepEnvironment", 108, 3], ["versionCheckProgramArg", 109, 3], ["doInstallCheck", 110, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, "pkg-config": false, which: false, libvirt: false, withQemu: true, qemu: false, "socket-vmnet": false, withVfkit: true, vfkit: false, makeWrapper: false, writableTmpDirAsHomeHook: false, OVMF: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 113, 5], ["description", 114, 5], ["mainProgram", 115, 5], ["license", 116, 5], ["maintainers", 117, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 25, 3], ["vendorHash", 27, 3], ["doCheck", 29, 3], ["src", 31, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 62, 3], ["buildPhase", 64, 3], ["installPhase", 72, 3], ["nativeInstallCheckInputs", 104, 3], ["versionCheckKeepEnvironment", 108, 3], ["versionCheckProgramArg", 109, 3], ["doInstallCheck", 110, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const OVMF = nix.arg($, "OVMF");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "minikube",
       version: "1.38.1",
       __structuredAttrs: true,
       vendorHash: "sha256-Oy8cM/foZKC83PxqkJW+o8vVYJhszKxXs9l2eks7FN4=",
       doCheck: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kubernetes",
           repo: "minikube",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,7 +77,7 @@ runHook postInstall
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://minikube.sigs.k8s.io",
         description: "Tool that makes it easy to run Kubernetes locally",
         mainProgram: "minikube",

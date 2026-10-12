@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 42, 7]], [["name", 118, 7], ["exec", 119, 7], ["icon", 120, 7], ["desktopName", 121, 7], ["comment", 122, 7], ["categories", 123, 7], ["mimeTypes", 128, 7]], [["updateScript", 132, 12]], [["description", 135, 5], ["mainProgram", 136, 5], ["homepage", 137, 5], ["changelog", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["platforms", 147, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["npmDepsHash", 31, 3], ["nativeBuildInputs", 33, 3], ["doInstallCheck", 40, 3], ["env", 42, 3], ["makeCacheWritable", 44, 3], ["buildPhase", 46, 3], ["installPhase", 80, 3], ["desktopItems", 116, 3], ["passthru", 132, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, "alsa-utils": false, copyDesktopItems: false, electron_43: false, libicns: false, makeDesktopItem: false, makeWrapper: false, "nix-update-script": false, versionCheckHook: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 118, 7], ["exec", 119, 7], ["icon", 120, 7], ["desktopName", 121, 7], ["comment", 122, 7], ["categories", 123, 7], ["mimeTypes", 128, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 132, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 135, 5], ["mainProgram", 136, 5], ["homepage", 137, 5], ["changelog", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["platforms", 147, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["npmDepsHash", 31, 3], ["nativeBuildInputs", 33, 3], ["doInstallCheck", 40, 3], ["env", 42, 3], ["makeCacheWritable", 44, 3], ["buildPhase", 46, 3], ["installPhase", 80, 3], ["desktopItems", 116, 3], ["passthru", 132, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "teams-for-linux";
       const version = "2.23.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "IsmaelMartinez",
           repo: "teams-for-linux",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-MHGi5Vs8N+BKAu8hJtJG8RQuIcMh59ucJt2XR1HBvkc=";
       const nativeBuildInputs = nix.thunk(() => nix.concat([makeWrapper, versionCheckHook], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [copyDesktopItems])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libicns])))));
       const doInstallCheck = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux"));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const makeCacheWritable = true;
       const buildPhase = nix.thunk(() => nix.add(nix.add(nix.str`runHook preBuild
 
@@ -75,7 +70,7 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' "$out/bin/teams-for-l
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\ncp -r dist/mac*/teams-for-linux.app $out/Applications\nmakeWrapper $out/Applications/teams-for-linux.app/Contents/MacOS/teams-for-linux $out/bin/teams-for-linux\n")), "\nrunHook postInstall\n"));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "teams-for-linux",
             exec: "teams-for-linux %U",
             icon: "teams-for-linux",
@@ -86,11 +81,11 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' "$out/bin/teams-for-l
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Unofficial Microsoft Teams client for Linux",
         mainProgram: "teams-for-linux",
         homepage: "https://github.com/IsmaelMartinez/teams-for-linux",
@@ -112,7 +107,7 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' "$out/bin/teams-for-l
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["platforms", 99, 5], ["mainProgram", 100, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 35, 3], ["patches", 42, 3], ["strictDeps", 46, 3], ["__structuredAttrs", 47, 3], ["buildInputs", 51, 3], ["nativeBuildInputs", 53, 3], ["postPatch", 60, 3], ["buildPhase", 65, 3], ["installPhase", 72, 3], ["doInstallCheck", 89, 3], ["installCheckPhase", 90, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { bison: false, cacert: false, fetchFromGitHub: false, flex: false, php: false, lib: false, stdenv: false, installShellFiles: false, which: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["platforms", 99, 5], ["mainProgram", 100, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 35, 3], ["patches", 42, 3], ["strictDeps", 46, 3], ["__structuredAttrs", 47, 3], ["buildInputs", 51, 3], ["nativeBuildInputs", 53, 3], ["postPatch", 60, 3], ["buildPhase", 65, 3], ["installPhase", 72, 3], ["doInstallCheck", 89, 3], ["installCheckPhase", 90, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ WRAPPER
 chmod +x $out/bin/${toolset}
 `;
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "arcanist",
       version: "0-unstable-2026-07-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "phorgeit",
           repo: "arcanist",
           rev: "b084cd508f587aaa2ed6fef5e2cee163b4bdd259",
@@ -62,7 +60,7 @@ runHook postInstall
       doInstallCheck: true,
       installCheckPhase: "$out/bin/arc help diff -- > /dev/null\n$out/bin/phage help alias -- > /dev/null\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line interface to Phorge and Phabricator",
         homepage: "https://we.phorge.it/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

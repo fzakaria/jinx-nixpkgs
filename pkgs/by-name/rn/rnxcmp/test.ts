@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["url", 33, 9], ["hash", 34, 9]], [["name", 31, 7], ["path", 32, 7]], [["url", 40, 9], ["hash", 41, 9]], [["name", 38, 7], ["path", 39, 7]], [["name", 47, 5], ["text", 48, 5]], [["crx", 140, 3], ["crz", 141, 3], ["rnx", 142, 3]]]);
 const formals$1 = { args: { lib: false, linkFarm: false, writeShellApplication: false, fetchurl: false, runCommand: false, rnxcmp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test.nix", [["url", 33, 9], ["hash", 34, 9]]);
-const pos$2 = nix.positions(here + "/test.nix", [["name", 31, 7], ["path", 32, 7]]);
-const pos$3 = nix.positions(here + "/test.nix", [["url", 40, 9], ["hash", 41, 9]]);
-const pos$4 = nix.positions(here + "/test.nix", [["name", 38, 7], ["path", 39, 7]]);
-const pos$5 = nix.positions(here + "/test.nix", [["name", 47, 5], ["text", 48, 5]]);
-const pos$6 = nix.positions(here + "/test.nix", [["crx", 140, 3], ["crz", 141, 3], ["rnx", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,24 +18,24 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => (() => {
         const name = nix.thunk(() => nix.str`${file_1_name}.crx.gz`);
         const path = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://igs.bkg.bund.de/root_ftp/EUREF/highrate/2026/002/b/${name}`),
             hash: "sha256-HUpzgFfwCf0N/OyJjJEStrOPPecmC4cr66DPbMjNyzc=",
           }))));
-        return { [nix.POS]: pos$2, name, path };
+        return { [nix.POS]: $pos[1], name, path };
       })()),
       nix.thunk(() => (() => {
         const name = "ZARA00ESP_S_20260020115_15M_01S_MO.crx.gz";
         const path = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://igs.bkg.bund.de/root_ftp/EUREF/highrate/2026/002/b/${name}`),
             hash: "sha256-cnoYjcUwJMSvNB7f1HNCBi1hBKsuduOxrRw9S2Evopw=",
           }))));
-        return { [nix.POS]: pos$4, name, path };
+        return { [nix.POS]: $pos[3], name, path };
       })()),
     ])));
   const assert_dir_not_empty_app = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "assert-dir-not-empty",
       text: "# From https://mywiki.wooledge.org/BashFAQ/004\nshopt -s nullglob dotglob\nfiles=(\"$1/\"*)\nif ! (( ${#files[*]} )); then\n  echo \"ERROR: Previous command did not produce any files!\"\n  exit 1\nfi\n",
     }))));
@@ -99,7 +94,7 @@ done
 touch "$out"
 `)));
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     crx: file_comparison,
     crz: files_comparison,
     rnx: comparison_rnx,

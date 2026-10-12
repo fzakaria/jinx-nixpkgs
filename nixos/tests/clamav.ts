@@ -2,59 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/clamav.nix", [[["OnAccessPrevention", 13, 11], ["OnAccessIncludePath", 14, 11]], [["enable", 9, 16], ["settings", 12, 16]], [["enable", 10, 19]], [["daemon", 9, 9], ["clamonacc", 10, 9]], [["clamav", 8, 16]], [["argument", 20, 73]], [["L", 20, 71]], [["/var/lib/clamav/test.hdb", 20, 44]], [["d", 30, 53]], [["/opt", 30, 46]], [["10-eicar", 20, 33], ["10-testdir", 30, 33]], [["settings", 20, 24]], [["tmpfiles", 20, 15]], [["services", 8, 7], ["systemd", 20, 7]], [["machine", 7, 5]], [["name", 5, 3], ["nodes", 6, 3], ["testScript", 34, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/clamav.nix", [["OnAccessPrevention", 13, 11], ["OnAccessIncludePath", 14, 11]]);
-const pos$2 = nix.positions(here + "/clamav.nix", [["enable", 9, 16], ["settings", 12, 16]]);
-const pos$3 = nix.positions(here + "/clamav.nix", [["enable", 10, 19]]);
-const pos$4 = nix.positions(here + "/clamav.nix", [["daemon", 9, 9], ["clamonacc", 10, 9]]);
-const pos$5 = nix.positions(here + "/clamav.nix", [["clamav", 8, 16]]);
-const pos$6 = nix.positions(here + "/clamav.nix", [["argument", 20, 73]]);
-const pos$7 = nix.positions(here + "/clamav.nix", [["L", 20, 71]]);
-const pos$8 = nix.positions(here + "/clamav.nix", [["/var/lib/clamav/test.hdb", 20, 44]]);
-const pos$9 = nix.positions(here + "/clamav.nix", [["d", 30, 53]]);
-const pos$10 = nix.positions(here + "/clamav.nix", [["/opt", 30, 46]]);
-const pos$11 = nix.positions(here + "/clamav.nix", [["10-eicar", 20, 33], ["10-testdir", 30, 33]]);
-const pos$12 = nix.positions(here + "/clamav.nix", [["settings", 20, 24]]);
-const pos$13 = nix.positions(here + "/clamav.nix", [["tmpfiles", 20, 15]]);
-const pos$14 = nix.positions(here + "/clamav.nix", [["services", 8, 7], ["systemd", 20, 7]]);
-const pos$15 = nix.positions(here + "/clamav.nix", [["machine", 7, 5]]);
-const pos$16 = nix.positions(here + "/clamav.nix", [["name", 5, 3], ["nodes", 6, 3], ["testScript", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     name: "clamav",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           clamav: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             daemon: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$1, OnAccessPrevention: true, OnAccessIncludePath: "/opt" })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[0], OnAccessPrevention: true, OnAccessIncludePath: "/opt" })),
             })),
-            clamonacc: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            clamonacc: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           tmpfiles: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               "10-eicar": nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 "/var/lib/clamav/test.hdb": nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   L: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     argument: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "runCommand"), "test.hdb", nix.thunk(() => ({})), nix.thunk(() => nix.str`echo CLAMAVTEST > testfile
 ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "clamav")), "sigtool")} --sha256 testfile > $out
 `))}`),
@@ -62,8 +47,8 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "clamav")), "si
                 })),
               })),
               "10-testdir": nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                "/opt": nix.thunk(() => ({ [nix.POS]: pos$9, d: nix.thunk(() => ({})) })),
+                [nix.POS]: $pos[9],
+                "/opt": nix.thunk(() => ({ [nix.POS]: $pos[8], d: nix.thunk(() => ({})) })),
               })),
             })),
           })),

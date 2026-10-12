@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sage.nix", [[["longTests", 50, 7], ["timeLimit", 51, 7]], [["tests", 48, 5], ["quicktest", 49, 5], ["lib", 53, 5], ["with-env", 54, 5], ["kernelspec", 55, 5]], [["doc", 58, 5]], [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["teams", 66, 5], ["platforms", 67, 5]], [["version", 18, 3], ["pname", 19, 3], ["src", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["dontUnpack", 29, 3], ["configurePhase", 30, 3], ["buildPhase", 31, 3], ["installPhase", 33, 3], ["doInstallCheck", 40, 3], ["installCheckPhase", 41, 3], ["passthru", 47, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, "sage-tests": false, "sage-with-env": false, "jupyter-kernel-definition": false, "jupyter-kernel-specs": false, sagedoc: false, withDoc: false, requireSageTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sage.nix", [["longTests", 50, 7], ["timeLimit", 51, 7]]);
-const pos$2 = nix.positions(here + "/sage.nix", [["tests", 48, 5], ["quicktest", 49, 5], ["lib", 53, 5], ["with-env", 54, 5], ["kernelspec", 55, 5]]);
-const pos$3 = nix.positions(here + "/sage.nix", [["doc", 58, 5]]);
-const pos$4 = nix.positions(here + "/sage.nix", [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["teams", 66, 5], ["platforms", 67, 5]]);
-const pos$5 = nix.positions(here + "/sage.nix", [["version", 18, 3], ["pname", 19, 3], ["src", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["dontUnpack", 29, 3], ["configurePhase", 30, 3], ["buildPhase", 31, 3], ["installPhase", 33, 3], ["doInstallCheck", 40, 3], ["installCheckPhase", 41, 3], ["passthru", 47, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const withDoc = nix.arg($, "withDoc");
   const requireSageTests = nix.arg($, "requireSageTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: nix.thunk(() => nix.sel(finalAttrs, "src", "version")),
       pname: "sage",
       src: nix.thunk(() => nix.sel(sage_with_env, "env", "lib", "src")),
@@ -39,15 +35,15 @@ makeWrapper "${sage_with_env}/bin/sage" "$out/bin/sage" \\
       doInstallCheck: withDoc,
       installCheckPhase: "export HOME=\"$TMPDIR/sage-home\"\nmkdir -p \"$HOME\"\n\"$out/bin/sage\" -c 'browse_sage_doc._open(\"reference\", testing=True)'\n",
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: sage_tests,
-        quicktest: nix.thunk(() => nix.app(nix.sel(sage_tests, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, longTests: false, timeLimit: 600n })))),
+        quicktest: nix.thunk(() => nix.app(nix.sel(sage_tests, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], longTests: false, timeLimit: 600n })))),
         lib: nix.thunk(() => nix.sel(sage_with_env, "env", "lib")),
         "with-env": sage_with_env,
         kernelspec: jupyter_kernel_definition,
-      }, nix.app(nix.sel(lib, "optionalAttrs"), withDoc, nix.thunk(() => ({ [nix.POS]: pos$3, doc: sagedoc }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), withDoc, nix.thunk(() => ({ [nix.POS]: $pos[2], doc: sagedoc }))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open Source Mathematics Software, free alternative to Magma, Maple, Mathematica, and Matlab",
         mainProgram: "sage",
         homepage: "https://www.sagemath.org",

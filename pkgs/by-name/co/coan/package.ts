@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 39, 5], ["mainProgram", 40, 5], ["longDescription", 41, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["broken", 52, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["nativeBuildInputs", 25, 3], ["configureFlags", 30, 3], ["enableParallelBuilding", 32, 3], ["postInstall", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["longDescription", 41, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["broken", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["nativeBuildInputs", 25, 3], ["configureFlags", 30, 3], ["enableParallelBuilding", 32, 3], ["postInstall", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "6.0.1",
       pname: "coan",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/coan2/v${nix.sel(finalAttrs, "version")}/coan-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1d041j0nd1hc0562lbj269dydjm4rbzagdgzdnmwdxr98544yw44",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "mv -v $out/share/man/man1/coan.1.{1,gz}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C preprocessor chainsaw",
         mainProgram: "coan",
         longDescription: "A software engineering tool for analysing preprocessor-based\nconfigurations of C or C++ source code. Its principal use is to simplify\na body of source code by eliminating any parts that are redundant with\nrespect to a specified configuration. Dead code removal is an\napplication of this sort.\n",

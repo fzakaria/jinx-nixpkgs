@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 43, 5], ["homepage", 44, 5], ["platforms", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postInstall", 21, 3], ["doInstallCheck", 25, 3], ["installCheckPhase", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, meson: false, ninja: false, "vulkan-loader": false, "vulkan-headers": false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["platforms", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postInstall", 21, 3], ["doInstallCheck", 25, 3], ["installCheckPhase", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_headers = nix.arg($, "vulkan-headers");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vkdisplayinfo",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ChristophHaag",
           repo: "vkdisplayinfo",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       buildInputs: nix.thunk(() => [vulkan_loader, vulkan_headers]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Print displays and modes enumerated with the Vulkan function vkGetPhysicalDeviceDisplayPropertiesKHR",
         homepage: "https://github.com/ChristophHaag/vkdisplayinfo",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

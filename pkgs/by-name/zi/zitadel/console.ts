@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/console.nix", [[["pname", 21, 5], ["version", 22, 13], ["nativeBuildInputs", 23, 5], ["workDir", 28, 5], ["bufArgs", 29, 5], ["outputPath", 30, 5], ["hash", 31, 5]], [["yarnLock", 43, 5], ["hash", 44, 5]], [["pname", 35, 3], ["version", 36, 11], ["src", 38, 3], ["sourceRoot", 40, 3], ["offlineCache", 42, 3], ["nativeBuildInputs", 47, 3], ["preBuild", 53, 3], ["installPhase", 57, 3]]]);
 const formals$1 = { args: { generateProtobufCode: false, version: false, zitadelRepo: false }, ellipsis: false };
 const formals$2 = { args: { stdenv: false, fetchYarnDeps: false, yarnConfigHook: false, yarnBuildHook: false, nodejs: false, "grpc-gateway": false, "protoc-gen-grpc-web": false, "protoc-gen-js": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/console.nix", [["pname", 21, 5], ["version", 22, 13], ["nativeBuildInputs", 23, 5], ["workDir", 28, 5], ["bufArgs", 29, 5], ["outputPath", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/console.nix", [["yarnLock", 43, 5], ["hash", 44, 5]]);
-const pos$3 = nix.positions(here + "/console.nix", [["pname", 35, 3], ["version", 36, 11], ["src", 38, 3], ["sourceRoot", 40, 3], ["offlineCache", 42, 3], ["nativeBuildInputs", 47, 3], ["preBuild", 53, 3], ["installPhase", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const protoc_gen_grpc_web = nix.arg($_1, "protoc-gen-grpc-web");
     const protoc_gen_js = nix.arg($_1, "protoc-gen-js");
     const protobufGenerated = nix.thunk(() => nix.app(generateProtobufCode, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: "zitadel-console",
         version: version,
         nativeBuildInputs: nix.thunk(() => [grpc_gateway, protoc_gen_grpc_web, protoc_gen_js]),
@@ -34,13 +32,13 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-UzmwUUYg0my3noAQNtlUEBQ+K6GVnBSkWj4CzoaoLKw=",
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "zitadel-console",
         version: version,
         src: zitadelRepo,
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(zitadelRepo, "name")}/console`),
         offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             yarnLock: nix.thunk(() => nix.str`${zitadelRepo}/console/yarn.lock`),
             hash: "sha256-ekgLd5DTOBZWuT63QnTjx40ZYvLKZh+FXCn+h5vj9qQ=",
           })))),

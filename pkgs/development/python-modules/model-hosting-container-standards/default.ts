@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7], ["stripLen", 44, 7]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["sourceRoot", 36, 3], ["patches", 38, 3], ["build-system", 48, 3], ["pythonRemoveDeps", 52, 3], ["dependencies", 56, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 67, 3], ["disabledTests", 73, 3], ["disabledTestPaths", 79, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, "poetry-core": false, fastapi: false, httpx: false, jmespath: false, pydantic: false, starlette: false, supervisor: false, "pytest-asyncio": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7], ["stripLen", 44, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["sourceRoot", 36, 3], ["patches", 38, 3], ["build-system", 48, 3], ["pythonRemoveDeps", 52, 3], ["dependencies", 56, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 67, 3], ["disabledTests", 73, 3], ["disabledTestPaths", 79, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "model-hosting-container-standards",
       version: "0.1.16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aws",
           repo: "model-hosting-container-standards",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/python`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-compat-with-fastapi-0.137.patch",
             url: "https://github.com/aws/model-hosting-container-standards/commit/ce3f9590088e3194d56345074c65ae96524fb127.patch",
             hash: "sha256-H0oxuIOoGthN+JdXQmeJ/9PRwrfhBUnVEj0ASwgtztQ=",
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_continuous_restart_behavior", "test_startup_retry_limit"]),
       disabledTestPaths: nix.thunk(() => ["tests/integration/test_dependency_install_integration.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Standardized Python framework for seamless integration between ML frameworks (TensorRT-LLM, vLLM) and Amazon SageMaker hosting",
         homepage: "https://github.com/aws/model-hosting-container-standards/tree/main/python",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/model-hosting-container-standards/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["package", 23, 37]], [["version", 23, 5]], [["tests", 22, 12]], [["description", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["mainProgram", 36, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["passthru", 22, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, testers: false, alejandra: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 23, 37]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 23, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 22, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["mainProgram", 36, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["passthru", 22, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const alejandra = nix.arg($, "alejandra");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "alejandra",
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kamadorueda",
           repo: "alejandra",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,14 +25,14 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-IX4xp8llB7USpS/SSQ9L8+17hQk5nkXFP8NgFKVLqKU=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: alejandra })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: alejandra })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Uncompromising Nix Code Formatter",
         homepage: "https://github.com/kamadorueda/alejandra",
         changelog: nix.thunk(() => nix.str`https://github.com/kamadorueda/alejandra/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["url", 53, 5], ["rev-prefix", 54, 5]], [["updateScript", 52, 12]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 18, 3], ["nativeBuildInputs", 23, 3], ["cmakeFlags", 27, 3], ["installPhase", 32, 3], ["passthru", 52, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, cmake: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 53, 5], ["rev-prefix", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 52, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 18, 3], ["nativeBuildInputs", 23, 3], ["cmakeFlags", 27, 3], ["installPhase", 32, 3], ["passthru", 52, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "openfec",
       version: "1.4.2.12",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/roc-streaming/openfec/archive/refs/tags/v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-KOP3LqCZHdEgm+XhzBdNxnJipGC4gpvA57T7mIeSyaE=",
         })))),
@@ -45,15 +41,15 @@ install -D -m755 -t $out/lib ../bin/Release/libopenfec${so}
 `);
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/roc-streaming/openfec.git",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Application-level Forward Erasure Correction codes",
         homepage: "https://github.com/roc-streaming/openfec",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-c")),

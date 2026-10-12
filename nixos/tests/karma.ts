@@ -2,55 +2,38 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/karma.nix", [[["resolve_timeout", 15, 15]], [["receiver", 19, 15], ["group_by", 20, 15], ["continue", 21, 15], ["group_wait", 22, 15], ["group_interval", 23, 15], ["repeat_interval", 24, 15]], [["url", 31, 21], ["send_resolved", 32, 21], ["max_alerts", 33, 21]], [["name", 28, 17], ["webhook_configs", 29, 17]], [["global", 14, 13], ["route", 17, 13], ["receivers", 26, 13]], [["enable", 9, 11], ["logLevel", 10, 11], ["port", 11, 11], ["openFirewall", 12, 11], ["configuration", 13, 11]], [["alertmanager", 8, 29]], [["address", 45, 15], ["port", 46, 15]], [["name", 51, 19], ["uri", 52, 19]], [["servers", 49, 15]], [["name", 56, 19]], [["config", 57, 17], ["requests", 58, 17], ["timestamp", 59, 17]], [["listen", 44, 13], ["alertmanager", 48, 13], ["karma", 56, 13], ["log", 57, 13]], [["enable", 41, 11], ["openFirewall", 42, 11], ["settings", 43, 11]], [["prometheus", 8, 18], ["karma", 40, 18]], [["services", 8, 9]], [["server", 5, 5]], [["name", 3, 3], ["nodes", 4, 3], ["testScript", 65, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/karma.nix", [["resolve_timeout", 15, 15]]);
-const pos$2 = nix.positions(here + "/karma.nix", [["receiver", 19, 15], ["group_by", 20, 15], ["continue", 21, 15], ["group_wait", 22, 15], ["group_interval", 23, 15], ["repeat_interval", 24, 15]]);
-const pos$3 = nix.positions(here + "/karma.nix", [["url", 31, 21], ["send_resolved", 32, 21], ["max_alerts", 33, 21]]);
-const pos$4 = nix.positions(here + "/karma.nix", [["name", 28, 17], ["webhook_configs", 29, 17]]);
-const pos$5 = nix.positions(here + "/karma.nix", [["global", 14, 13], ["route", 17, 13], ["receivers", 26, 13]]);
-const pos$6 = nix.positions(here + "/karma.nix", [["enable", 9, 11], ["logLevel", 10, 11], ["port", 11, 11], ["openFirewall", 12, 11], ["configuration", 13, 11]]);
-const pos$7 = nix.positions(here + "/karma.nix", [["alertmanager", 8, 29]]);
-const pos$8 = nix.positions(here + "/karma.nix", [["address", 45, 15], ["port", 46, 15]]);
-const pos$9 = nix.positions(here + "/karma.nix", [["name", 51, 19], ["uri", 52, 19]]);
-const pos$10 = nix.positions(here + "/karma.nix", [["servers", 49, 15]]);
-const pos$11 = nix.positions(here + "/karma.nix", [["name", 56, 19]]);
-const pos$12 = nix.positions(here + "/karma.nix", [["config", 57, 17], ["requests", 58, 17], ["timestamp", 59, 17]]);
-const pos$13 = nix.positions(here + "/karma.nix", [["listen", 44, 13], ["alertmanager", 48, 13], ["karma", 56, 13], ["log", 57, 13]]);
-const pos$14 = nix.positions(here + "/karma.nix", [["enable", 41, 11], ["openFirewall", 42, 11], ["settings", 43, 11]]);
-const pos$15 = nix.positions(here + "/karma.nix", [["prometheus", 8, 18], ["karma", 40, 18]]);
-const pos$16 = nix.positions(here + "/karma.nix", [["services", 8, 9]]);
-const pos$17 = nix.positions(here + "/karma.nix", [["server", 5, 5]]);
-const pos$18 = nix.positions(here + "/karma.nix", [["name", 3, 3], ["nodes", 4, 3], ["testScript", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "karma",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             prometheus: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               alertmanager: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 enable: true,
                 logLevel: "debug",
                 port: 9093n,
                 openFirewall: true,
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
-                  global: nix.thunk(() => ({ [nix.POS]: pos$1, resolve_timeout: "1m" })),
+                  [nix.POS]: $pos[4],
+                  global: nix.thunk(() => ({ [nix.POS]: $pos[0], resolve_timeout: "1m" })),
                   route: nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     receiver: "test",
                     group_by: nix.thunk(() => ["..."]),
                     continue: false,
@@ -60,11 +43,11 @@ export default nix.lambda((args) => (() => {
                   })),
                   receivers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       name: "test",
                       webhook_configs: nix.thunk(() => [
                         nix.thunk(() => ({
-                          [nix.POS]: pos$3,
+                          [nix.POS]: $pos[2],
                           url: "http://localhost:1234",
                           send_resolved: true,
                           max_alerts: 0n,
@@ -76,20 +59,20 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             karma: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               enable: true,
               openFirewall: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$13,
-                listen: nix.thunk(() => ({ [nix.POS]: pos$8, address: "0.0.0.0", port: 8081n })),
+                [nix.POS]: $pos[12],
+                listen: nix.thunk(() => ({ [nix.POS]: $pos[7], address: "0.0.0.0", port: 8081n })),
                 alertmanager: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   servers: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$9, name: "alertmanager", uri: "https://127.0.0.1:9093" })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[8], name: "alertmanager", uri: "https://127.0.0.1:9093" })),
                   ]),
                 })),
-                karma: nix.thunk(() => ({ [nix.POS]: pos$11, name: "test-dashboard" })),
-                log: nix.thunk(() => ({ [nix.POS]: pos$12, config: true, requests: true, timestamp: true })),
+                karma: nix.thunk(() => ({ [nix.POS]: $pos[10], name: "test-dashboard" })),
+                log: nix.thunk(() => ({ [nix.POS]: $pos[11], config: true, requests: true, timestamp: true })),
               })),
             })),
           })),

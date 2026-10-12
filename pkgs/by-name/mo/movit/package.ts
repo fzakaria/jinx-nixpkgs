@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["GTEST_DIR", 47, 5]], [["NIX_CFLAGS_COMPILE", 50, 5]], [["NIX_LDFLAGS", 53, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["propagatedBuildInputs", 41, 3], ["env", 46, 3], ["enableParallelBuilding", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, SDL2: false, fftw: false, gtest: false, eigen: false, libepoxy: false, libGL: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GTEST_DIR", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["propagatedBuildInputs", 41, 3], ["env", 46, 3], ["enableParallelBuilding", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "movit";
       const version = "1.7.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://movit.sesse.net/movit-${version}.tar.gz`),
           sha256: "sha256-AKwfjkbC0+OMdcu3oa8KYVdRwVjGEctwBTCUtl7P6NU=",
         }))));
@@ -36,12 +31,12 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [SDL2, fftw, gtest, libGL, libx11]);
       const propagatedBuildInputs = nix.thunk(() => [eigen, libepoxy]);
       const env = nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         GTEST_DIR: nix.thunk(() => nix.str`${nix.sel(gtest, "src")}/googletest`),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=c++17" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$4, NIX_LDFLAGS: "-framework OpenGL" }))))));
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-std=c++17" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_LDFLAGS: "-framework OpenGL" }))))));
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "High-performance, high-quality video filters for the GPU",
         homepage: "https://movit.sesse.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

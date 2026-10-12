@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["nativeCheckInputs", 23, 3], ["pythonImportsCheck", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pytestCheckHook: false, fetchFromCodeberg: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["nativeCheckInputs", 23, 3], ["pythonImportsCheck", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JakobDev",
           repo: "desktop-entry-lib",
           rev: version,
@@ -29,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["desktop_entry_lib"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Allows reading and writing .desktop files according to the Desktop Entry Specification",
         homepage: "https://codeberg.org/JakobDev/desktop-entry-lib",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/JakobDev/desktop-entry-lib/releases/tag/${version}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

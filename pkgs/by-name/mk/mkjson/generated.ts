@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generated.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 29, 3], ["isLibrary", 36, 3], ["isExecutable", 37, 3], ["libraryHaskellDepends", 38, 3], ["executableHaskellDepends", 56, 3], ["testHaskellDepends", 74, 3], ["benchmarkHaskellDepends", 94, 3], ["description", 114, 3], ["homepage", 115, 3], ["license", 116, 3], ["maintainers", 117, 3], ["mainProgram", 118, 3]]]);
 const formals$1 = { args: { mkDerivation: false, lib: false, fetchFromGitHub: false, aeson: false, base: false, bytestring: false, containers: false, criterion: false, doctest: false, Glob: false, "mersenne-random-pure64": false, mtl: false, "optparse-applicative": false, parsec: false, random: false, "regex-tdfa": false, scientific: false, text: false, time: false, "unordered-containers": false, uuid: false, vector: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generated.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/generated.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 29, 3], ["isLibrary", 36, 3], ["isExecutable", 37, 3], ["libraryHaskellDepends", 38, 3], ["executableHaskellDepends", 56, 3], ["testHaskellDepends", 74, 3], ["benchmarkHaskellDepends", 94, 3], ["description", 114, 3], ["homepage", 115, 3], ["license", 116, 3], ["maintainers", 117, 3], ["mainProgram", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mkjson";
       const version = "0.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mfussenegger",
           repo: "mkjson",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -126,7 +125,7 @@ export default nix.lambda((args) => (() => {
       })());
       const mainProgram = "mkjson";
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

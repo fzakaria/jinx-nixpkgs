@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]], [["name", 23, 7], ["url", 24, 7], ["hash", 25, 7]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 38, 3], ["doCheck", 41, 3], ["checkInputs", 43, 3], ["enabledTestPaths", 48, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchpatch2: false, mock: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 23, 7], ["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 38, 3], ["doCheck", 41, 3], ["checkInputs", 43, 3], ["enabledTestPaths", 48, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-f8kFJyzvpPNkwaNCnLvpwPmLeTmI77W/kKrIDwjbCbE=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "parameterized-docstring-3.13-compat.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-python/parameterized/files/parameterized-0.9.0-py313-test.patch?id=dec60bb6900d6ebdaaa6aa1dcb845b30b739f9b5",
             hash: "sha256-tWcN0eRC0oRHrOaa/cctXLhi1WapDKvxO36e6gU6UIk=",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["parameterized/test.py"]);
       const pythonImportsCheck = nix.thunk(() => ["parameterized"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Parameterized testing with any Python test framework",
         homepage: "https://github.com/wolever/parameterized",
         changelog: nix.thunk(() => nix.str`https://github.com/wolever/parameterized/blob/v${version}/CHANGELOG.txt`),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

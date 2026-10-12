@@ -2,16 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["platforms", 17, 26]], [["pname", 7, 3], ["version", 8, 19], ["src", 10, 3], ["nativeBuildInputs", 12, 3], ["doCheck", 14, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { julec: false, clangStdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["platforms", 17, 26]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 19], ["src", 10, 3], ["nativeBuildInputs", 12, 3], ["doCheck", 14, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const julec = nix.arg($, "julec");
   const clangStdenv = nix.arg($, "clangStdenv");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "hello-jule",
       version: nix.thunk(() => nix.attr(julec, "version")),
       src: nix.path(here, "./hello-jule"),
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(julec, "meta"));
-        return { [nix.POS]: pos$1, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+        return { [nix.POS]: $pos[0], platforms: nix.thunk(() => nix.attr(from, "platforms")) };
       })()),
     }));
 })(), formals$1);

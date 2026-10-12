@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["updateScript", 25, 12]], [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 33, 5], ["changelog", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["doCheck", 23, 3], ["passthru", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, gitUpdater: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 25, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 33, 5], ["changelog", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["doCheck", 23, 3], ["passthru", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "badchars",
       version: "0.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cytopia",
           repo: "badchars",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "HEX badchar generator for different programming languages",
         longDescription: "A HEX bad char generator to instruct encoders such as shikata-ga-nai to\ntransform those to other chars.\n",
         homepage: "https://github.com/cytopia/badchars",

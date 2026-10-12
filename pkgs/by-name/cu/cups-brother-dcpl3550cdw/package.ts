@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["homepage", 95, 5], ["downloadPage", 96, 5], ["description", 97, 5], ["license", 98, 5], ["sourceProvenance", 102, 5], ["platforms", 103, 5], ["maintainers", 107, 5]], [["pname", 22, 3], ["version", 23, 11], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["unpackPhase", 34, 3], ["installPhase", 42, 3], ["postFixup", 67, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { pkgsi686Linux: false, lib: false, stdenv: false, fetchurl: false, dpkg: false, makeWrapper: false, ghostscript: false, file: false, gnused: false, gnugrep: false, coreutils: false, which: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["downloadPage", 96, 5], ["description", 97, 5], ["license", 98, 5], ["sourceProvenance", 102, 5], ["platforms", 103, 5], ["maintainers", 107, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 11], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["unpackPhase", 34, 3], ["installPhase", 42, 3], ["postFixup", 67, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const model = "dcpl3550cdw";
   const interpreter = nix.thunk(() => nix.str`${nix.sel(pkgsi686Linux, "stdenv", "cc", "libc")}/lib/ld-linux.so.2`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`cups-brother-${model}`),
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf103919/dcpl3550cdwpdrv-${version}.i386.deb`),
           hash: "sha256-FbtqISK3f1q1+JXJ+RP5O/8G0ZW9gcCS7OI0YRljwyY=",
         })))),
@@ -71,7 +69,7 @@ wrapProgram $out/opt/brother/Printers/${model}/lpd/br${model}filter \\
   --set NIX_REDIRECTS /opt=$out/opt
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.brother.com/",
         downloadPage: nix.thunk(() => nix.str`https://support.brother.com/g/b/downloadlist.aspx?c=eu_ot&lang=en&prod=${model}_eu&os=128`),
         description: "Brother DCP-L3550CDW printer driver",

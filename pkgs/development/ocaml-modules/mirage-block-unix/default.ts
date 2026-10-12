@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["minimalOCamlVersion", 23, 3], ["duneVersion", 24, 3], ["propagatedBuildInputs", 26, 3], ["doCheck", 34, 3], ["checkInputs", 35, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, "cstruct-lwt": false, diet: false, logs: false, "mirage-block": false, ounit2: false, rresult: false, uri: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["minimalOCamlVersion", 23, 3], ["duneVersion", 24, 3], ["propagatedBuildInputs", 26, 3], ["doCheck", 34, 3], ["checkInputs", 35, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const rresult = nix.arg($, "rresult");
   const uri = nix.arg($, "uri");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mirage-block-unix",
       version: "2.14.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-block-unix/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-block-unix-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-6ReAzd+pCd5ccmXOh6GlSxHo4GuEgptxLha62n+dBsE=",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [diet, ounit2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MirageOS disk block driver for Unix",
         homepage: "https://github.com/mirage/mirage-block-unix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

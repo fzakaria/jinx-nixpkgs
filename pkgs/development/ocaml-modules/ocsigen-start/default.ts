@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]], [["homepage", 58, 5], ["description", 59, 5], ["longDescription", 60, 5], ["license", 63, 5], ["platforms", 64, 26], ["maintainers", 65, 5]], [["pname", 19, 3], ["version", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["propagatedBuildInputs", 31, 3], ["strictDeps", 40, 3], ["patches", 42, 3], ["src", 46, 3], ["preInstall", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, ocaml: false, findlib: false, "ocsigen-toolkit": false, pgocaml_ppx: false, safepass: false, yojson: false, "cohttp-lwt-unix": false, eliom: false, "resource-pooling": false, "ocsigen-ppx-rpc": false, "js_of_ocaml-ppx_deriving_json": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 58, 5], ["description", 59, 5], ["longDescription", 60, 5], ["license", 63, 5], ["platforms", 64, 26], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["propagatedBuildInputs", 31, 3], ["strictDeps", 40, 3], ["patches", 42, 3], ["src", 46, 3], ["preInstall", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const ocsigen_ppx_rpc = nix.arg($, "ocsigen-ppx-rpc");
   const js_of_ocaml_ppx_deriving_json = nix.arg($, "js_of_ocaml-ppx_deriving_json");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-ocsigen-start`),
       version: "8.0.0",
       nativeBuildInputs: nix.thunk(() => [ocaml, findlib, eliom]),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => [nix.path(here, "./templates-dir.patch")]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ocsigen",
           repo: "ocsigen-start",
           rev: "b64139e365ab1d244033133629431f7a73e3e054",
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://ocsigen.org/ocsigen-start",
         description: "Eliom application skeleton",
         longDescription: "An Eliom application skeleton, ready to use to build your own application with users, (pre)registration, notifications, etc.\n",

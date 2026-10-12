@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["pname", 39, 7], ["version", 40, 7], ["src", 41, 7], ["cargoRoot", 42, 7], ["hash", 44, 5]], [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5], ["platforms", 97, 5]], [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["src", 30, 3], ["cargoDeps", 37, 3], ["postUnpack", 52, 3], ["cargoRoot", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 71, 3], ["checkInputs", 78, 3], ["cmakeFlags", 82, 3], ["doCheck", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, python3: false, rustPlatform: false, rustc: false, cargo: false, qt6: false, libarchive: false, corrosion: false, hunspell: false, gtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 39, 7], ["version", 40, 7], ["src", 41, 7], ["cargoRoot", 42, 7], ["hash", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5], ["platforms", 97, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["src", 30, 3], ["cargoDeps", 37, 3], ["postUnpack", 52, 3], ["cargoRoot", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 71, 3], ["checkInputs", 78, 3], ["cmakeFlags", 82, 3], ["doCheck", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,20 +22,20 @@ export default nix.lambda((args) => (() => {
   const hunspell = nix.arg($, "hunspell");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "katvan",
       version: "0.12.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "IgKh",
           repo: "katvan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-WyPiRj/5So/1vjAytnXoldwYMG++tuLl0B0v31BeJxY=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "bare-bones editor for Typst files, with a bias for Right-to-Left editing",
         homepage: "https://github.com/IgKh/katvan",
         changelog: nix.thunk(() => nix.str`https://github.com/IgKh/katvan/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

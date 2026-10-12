@@ -2,9 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/manpage-urls.nix", [[["nativeBuildInputs", 18, 7], ["outputHash", 26, 7]]]);
 const formals$1 = { args: { lib: false, runCommand: false, testers: false, cacert: false, python3: false }, ellipsis: false };
 const formals$2 = { args: { name: true, script: true, urlsFile: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/manpage-urls.nix", [["nativeBuildInputs", 18, 7], ["outputHash", 26, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const script = nix.argOr($_1, "script", () => nix.path(here, "./manpage-urls.py"));
       const urlsFile = nix.argOr($_1, "urlsFile", () => nix.path(here, "../manpage-urls.json"));
       return nix.app(runCommand, name, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           nativeBuildInputs: nix.thunk(() => [
             cacert,
             nix.thunk(() => nix.app(nix.sel(python3, "pythonOnBuildForHost", "withPackages"), (p) => [

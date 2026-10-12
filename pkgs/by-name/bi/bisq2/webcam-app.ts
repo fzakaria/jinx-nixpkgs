@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/webcam-app.nix", [[["version", 28, 11], ["pname", 30, 3], ["src", 31, 3], ["dontUnpack", 32, 3], ["nativeBuildInputs", 34, 3], ["buildPhase", 39, 3], ["installPhase", 46, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, makeBinaryWrapper: false, jdk: false, writeShellScript: false, unzip: false, bisq2: false, socat: false, libraryPath: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/webcam-app.nix", [["version", 28, 11], ["pname", 30, 3], ["src", 31, 3], ["dontUnpack", 32, 3], ["nativeBuildInputs", 34, 3], ["buildPhase", 39, 3], ["installPhase", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +43,7 @@ substituteAllInPlace $out/bin/bisq2-webcam-app
 runHook postInstall
 `);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         version: version_1,
         pname,
         src,

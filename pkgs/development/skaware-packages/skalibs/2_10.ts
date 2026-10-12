@@ -2,20 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/2_10.nix", [[["description", 8, 8]], [["pname", 4, 3], ["version", 5, 3], ["sha256", 6, 3], ["meta", 8, 3], ["outputs", 10, 3], ["configureFlags", 17, 3], ["postInstall", 31, 3]]]);
 const formals$1 = { args: { skawarePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/2_10.nix", [["description", 8, 8]]);
-const pos$2 = nix.positions(here + "/2_10.nix", [["pname", 4, 3], ["version", 5, 3], ["sha256", 6, 3], ["meta", 8, 3], ["outputs", 10, 3], ["configureFlags", 17, 3], ["postInstall", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const skawarePackages = nix.arg($, "skawarePackages");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "skalibs",
       version: "2.10.0.3",
       sha256: "0ka6n5rnxd5sn5lycarf596d5wlak5s535zqqlz0rnhdcnpb105p",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Set of general-purpose C programming libraries",
       })),
       outputs: nix.thunk(() => ["lib", "dev", "doc", "out"]),

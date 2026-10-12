@@ -2,10 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetch-lake-deps.nix", [[["strictDeps", 38, 7], ["__structuredAttrs", 39, 7], ["pname", 41, 7], ["nativeBuildInputs", 43, 7], ["impureEnvVars", 49, 7], ["dontConfigure", 54, 7], ["buildPhase", 56, 7], ["installPhase", 88, 7], ["dontFixup", 94, 7], ["outputHashMode", 96, 7], ["outputHash", 97, 7], ["outputHashAlgo", 98, 7]], [["constructDrv", 17, 3], ["excludeDrvArgNames", 19, 3], ["extendDrvArgs", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, gitMinimal: false, cacert: false, jq: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, src: false, hash: false, sourceRoot: true, patches: true, prePatch: true, postPatch: true, excludePackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fetch-lake-deps.nix", [["strictDeps", 38, 7], ["__structuredAttrs", 39, 7], ["pname", 41, 7], ["nativeBuildInputs", 43, 7], ["impureEnvVars", 49, 7], ["dontConfigure", 54, 7], ["buildPhase", 56, 7], ["installPhase", 88, 7], ["dontFixup", 94, 7], ["outputHashMode", 96, 7], ["outputHash", 97, 7], ["outputHashAlgo", 98, 7]]);
-const pos$2 = nix.positions(here + "/fetch-lake-deps.nix", [["constructDrv", 17, 3], ["excludeDrvArgNames", 19, 3], ["extendDrvArgs", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const jq = nix.arg($, "jq");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["excludePackages"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
         const postPatch = nix.argOr($_1, "postPatch", () => "");
         const excludePackages = nix.argOr($_1, "excludePackages", () => []);
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           strictDeps: true,
           __structuredAttrs: true,
           pname: nix.thunk(() => nix.str`${pname}-lake-deps`),

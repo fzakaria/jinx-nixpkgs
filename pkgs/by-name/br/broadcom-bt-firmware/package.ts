@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5], ["sourceProvenance", 51, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["unpackCmd", 23, 3], ["installPhase", 28, 3], ["outputHashMode", 41, 3], ["outputHashAlgo", 42, 3], ["outputHash", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, cabextract: false, "bt-fw-converter": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5], ["sourceProvenance", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["unpackCmd", 23, 3], ["installPhase", 28, 3], ["outputHashMode", 41, 3], ["outputHashAlgo", 42, 3], ["outputHash", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "broadcom-bt-firmware";
       const version = "12.0.1.1012";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://download.windowsupdate.com/c/msdownload/update/driver/drvs/2017/04/852bb503-de7b-4810-a7dd-cbab62742f09_7cf83a4c194116648d17707ae37d564f9c70bec2.cab",
           sha256: "1b1qjwxjk4y91l3iz157kms8601n0mmiik32cs6w9b1q4sl4pxx9",
         }))));
@@ -31,7 +29,7 @@ cabextract $src --directory ${pname}-${version}
       const outputHashAlgo = "sha256";
       const outputHash = "042frb2dmrqfj8q83h5p769q6hg2b3i8fgnyvs9r9a71z7pbsagq";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Firmware for Broadcom WIDCOMM® Bluetooth devices",
         homepage: "https://www.catalog.update.microsoft.com/Search.aspx?q=Broadcom+bluetooth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -46,7 +44,7 @@ cabextract $src --directory ${pname}-${version}
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

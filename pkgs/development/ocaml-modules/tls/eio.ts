@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/eio.nix", [[["logs", 31, 29]], [["pname", 16, 3], ["src", 18, 17], ["meta", 18, 21], ["version", 18, 26], ["minimalOCamlVersion", 20, 3], ["__darwinAllowLocalNetworking", 22, 3], ["doCheck", 24, 3], ["nativeCheckInputs", 25, 3], ["checkInputs", 28, 3], ["propagatedBuildInputs", 34, 3]]]);
 const formals$1 = { args: { lib: false, ocaml: false, buildDunePackage: false, crowbar: false, eio: false, eio_main: false, logs: false, mdx: false, "mirage-crypto-rng": false, ptime: false, tls: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/eio.nix", [["logs", 31, 29]]);
-const pos$2 = nix.positions(here + "/eio.nix", [["pname", 16, 3], ["src", 18, 17], ["meta", 18, 21], ["version", 18, 26], ["minimalOCamlVersion", 20, 3], ["__darwinAllowLocalNetworking", 22, 3], ["doCheck", 24, 3], ["nativeCheckInputs", 25, 3], ["checkInputs", 28, 3], ["propagatedBuildInputs", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const ptime = nix.arg($, "ptime");
   const tls = nix.arg($, "tls");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "tls-eio",
       src: nix.thunk(() => nix.attr(tls, "src")),
       meta: nix.thunk(() => nix.attr(tls, "meta")),
@@ -32,7 +31,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [
         crowbar,
         eio_main,
-        nix.thunk(() => nix.app(nix.sel(mdx, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, logs: logs })))),
+        nix.thunk(() => nix.app(nix.sel(mdx, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], logs: logs })))),
       ]),
       propagatedBuildInputs: nix.thunk(() => [ptime, eio, mirage_crypto_rng, tls]),
     })));

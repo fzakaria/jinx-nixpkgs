@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["extraArgs", 29, 5]], [["updateScript", 28, 12]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["hydraPlatforms", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 19, 3], ["passthru", 28, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 28, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["hydraPlatforms", 46, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 19, 3], ["passthru", 28, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jawiki-all-titles-in-ns0",
       version: "0-unstable-2026-10-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "musjj",
           repo: "jawiki-archive",
           rev: "e5107cea0956047929b677ba5b0be3ea1902f9df",
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir $out\ncp jawiki-latest-all-titles-in-ns0.gz $out/jawiki-all-titles-in-ns0.gz\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version", "branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version", "branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Jawiki dump list of page titles in main namespace",
         homepage: "https://dumps.wikimedia.org/backup-index.html",
         license: nix.thunk(() => (() => {

@@ -2,10 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/auto-layer.nix", [[["graph", 20, 27]], [["__structuredAttrs", 19, 5], ["exportReferencesGraph", 20, 5], ["fromImage", 21, 13], ["maxLayers", 21, 23], ["nativeBuildInputs", 22, 5], ["excludePathsFile", 26, 5]]]);
 const formals$1 = { args: { jq: false, lib: false, python3: false, runCommand: false, writeText: false }, ellipsis: false };
 const formals$2 = { args: { closureRoots: false, excludePaths: true, maxLayers: true, fromImage: true, debug: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/auto-layer.nix", [["graph", 20, 27]]);
-const pos$2 = nix.positions(here + "/auto-layer.nix", [["__structuredAttrs", 19, 5], ["exportReferencesGraph", 20, 5], ["fromImage", 21, 13], ["maxLayers", 21, 23], ["nativeBuildInputs", 22, 5], ["excludePathsFile", 26, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,9 +21,9 @@ export default nix.lambda((args) => (() => {
     const fromImage = nix.argOr($_1, "fromImage", () => null);
     const debug = nix.argOr($_1, "debug", () => false);
     return nix.app(runCommand, "layers.json", nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         __structuredAttrs: true,
-        exportReferencesGraph: nix.thunk(() => ({ [nix.POS]: pos$1, graph: closureRoots })),
+        exportReferencesGraph: nix.thunk(() => ({ [nix.POS]: $pos[0], graph: closureRoots })),
         fromImage: fromImage,
         maxLayers: maxLayers,
         nativeBuildInputs: nix.thunk(() => [jq, python3]),

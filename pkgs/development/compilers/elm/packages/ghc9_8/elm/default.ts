@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 41, 5], ["sha256", 42, 5], ["rev", 43, 5], ["fetchSubmodules", 44, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 40, 3], ["patches", 46, 3], ["isLibrary", 47, 3], ["isExecutable", 48, 3], ["executableHaskellDepends", 49, 3], ["homepage", 82, 3], ["description", 83, 3], ["license", 84, 3], ["mainProgram", 85, 3]]]);
 const formals$1 = { args: { mkDerivation: false, "ansi-terminal": false, "ansi-wl-pprint": false, base: false, binary: false, bytestring: false, containers: false, directory: false, "edit-distance": false, fetchgit: false, filelock: false, filepath: false, "ghc-prim": false, haskeline: false, HTTP: false, "http-client": false, "http-client-tls": false, "http-types": false, "language-glsl": false, lib: false, mtl: false, network: false, parsec: false, process: false, scientific: false, SHA: false, "snap-core": false, "snap-server": false, "template-haskell": false, time: false, "unordered-containers": false, "utf8-string": false, vector: false, "zip-archive": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 41, 5], ["sha256", 42, 5], ["rev", 43, 5], ["fetchSubmodules", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 40, 3], ["patches", 46, 3], ["isLibrary", 47, 3], ["isExecutable", 48, 3], ["executableHaskellDepends", 49, 3], ["homepage", 82, 3], ["description", 83, 3], ["license", 84, 3], ["mainProgram", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const vector = nix.arg($, "vector");
   const zip_archive = nix.arg($, "zip-archive");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "elm",
       version: "0.19.2",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/elm/compiler",
           sha256: "0npadfvk5gyiifq4095yg7k8cr3hb28drdh07b77nxzwsqanp4s5",
           rev: "48befde196cbcbdf459114e36c02b52c49b58050",

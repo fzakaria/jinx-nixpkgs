@@ -2,60 +2,40 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/aesmd.nix", [[["maintainers", 5, 5]], [["defaultQuotingType", 16, 11], ["qplLogLevel", 17, 11], ["proxyType", 18, 11]], [["enable", 14, 9], ["settings", 15, 9]], [["aesmd", 13, 16]], [["isNormalUser", 24, 9], ["extraGroups", 25, 9]], [["isNormalUser", 29, 31]], [["sgxtest", 23, 19], ["nosgxtest", 29, 19]], [["users", 23, 13]], [["AssertPathExists", 32, 41]], [["unitConfig", 32, 30]], [["aesmd", 32, 24]], [["services", 32, 15]], [["AZDCAP_DEBUG_LOG_LEVEL", 41, 17]], [["quoteProviderLibrary", 39, 15], ["environment", 40, 15]], [["aesmd", 38, 22]], [["services", 38, 13]], [["configuration", 35, 27]], [["withQuoteProvider", 35, 9]], [["services", 13, 7], ["users", 23, 7], ["systemd", 32, 7], ["specialisation", 34, 7]], [["machine", 10, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 10, 3], ["testScript", 48, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/aesmd.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/aesmd.nix", [["defaultQuotingType", 16, 11], ["qplLogLevel", 17, 11], ["proxyType", 18, 11]]);
-const pos$3 = nix.positions(here + "/aesmd.nix", [["enable", 14, 9], ["settings", 15, 9]]);
-const pos$4 = nix.positions(here + "/aesmd.nix", [["aesmd", 13, 16]]);
-const pos$5 = nix.positions(here + "/aesmd.nix", [["isNormalUser", 24, 9], ["extraGroups", 25, 9]]);
-const pos$6 = nix.positions(here + "/aesmd.nix", [["isNormalUser", 29, 31]]);
-const pos$7 = nix.positions(here + "/aesmd.nix", [["sgxtest", 23, 19], ["nosgxtest", 29, 19]]);
-const pos$8 = nix.positions(here + "/aesmd.nix", [["users", 23, 13]]);
-const pos$9 = nix.positions(here + "/aesmd.nix", [["AssertPathExists", 32, 41]]);
-const pos$10 = nix.positions(here + "/aesmd.nix", [["unitConfig", 32, 30]]);
-const pos$11 = nix.positions(here + "/aesmd.nix", [["aesmd", 32, 24]]);
-const pos$12 = nix.positions(here + "/aesmd.nix", [["services", 32, 15]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$13 = nix.positions(here + "/aesmd.nix", [["AZDCAP_DEBUG_LOG_LEVEL", 41, 17]]);
-const pos$14 = nix.positions(here + "/aesmd.nix", [["quoteProviderLibrary", 39, 15], ["environment", 40, 15]]);
-const pos$15 = nix.positions(here + "/aesmd.nix", [["aesmd", 38, 22]]);
-const pos$16 = nix.positions(here + "/aesmd.nix", [["services", 38, 13]]);
-const pos$17 = nix.positions(here + "/aesmd.nix", [["configuration", 35, 27]]);
-const pos$18 = nix.positions(here + "/aesmd.nix", [["withQuoteProvider", 35, 9]]);
-const pos$19 = nix.positions(here + "/aesmd.nix", [["services", 13, 7], ["users", 23, 7], ["systemd", 32, 7], ["specialisation", 34, 7]]);
-const pos$20 = nix.positions(here + "/aesmd.nix", [["machine", 10, 9]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$21 = nix.positions(here + "/aesmd.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 10, 3], ["testScript", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     name: "aesmd",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "veehaitch"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             aesmd: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 defaultQuotingType: "ecdsa_256",
                 qplLogLevel: "info",
                 proxyType: "direct",
@@ -63,40 +43,44 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              sgxtest: nix.thunk(() => ({ [nix.POS]: pos$5, isNormalUser: true, extraGroups: nix.thunk(() => ["sgx"]) })),
-              nosgxtest: nix.thunk(() => ({ [nix.POS]: pos$6, isNormalUser: true })),
+              [nix.POS]: $pos[6],
+              sgxtest: nix.thunk(() => ({
+                [nix.POS]: $pos[4],
+                isNormalUser: true,
+                extraGroups: nix.thunk(() => ["sgx"]),
+              })),
+              nosgxtest: nix.thunk(() => ({ [nix.POS]: $pos[5], isNormalUser: true })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               aesmd: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 unitConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   AssertPathExists: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), [])),
                 })),
               })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             withQuoteProvider: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$3);
                 return {
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     aesmd: nix.thunk(() => ({
-                      [nix.POS]: pos$14,
+                      [nix.POS]: $pos[13],
                       quoteProviderLibrary: nix.thunk(() => nix.sel(pkgs, "sgx-azure-dcap-client")),
-                      environment: nix.thunk(() => ({ [nix.POS]: pos$13, AZDCAP_DEBUG_LOG_LEVEL: "INFO" })),
+                      environment: nix.thunk(() => ({ [nix.POS]: $pos[12], AZDCAP_DEBUG_LOG_LEVEL: "INFO" })),
                     })),
                   })),
                 };

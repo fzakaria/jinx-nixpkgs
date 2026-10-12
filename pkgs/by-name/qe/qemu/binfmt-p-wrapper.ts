@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/binfmt-p-wrapper.nix", [[["name", 17, 11], ["src", 19, 3], ["dontUnpack", 21, 3], ["dontInstall", 22, 3], ["buildInputs", 24, 3], ["buildPhase", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, enableDebug: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/binfmt-p-wrapper.nix", [["name", 17, 11], ["src", 19, 3], ["dontUnpack", 21, 3], ["dontInstall", 22, 3], ["buildInputs", 24, 3], ["buildPhase", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const enableDebug = nix.argOr($, "enableDebug", () => false);
   return (name) => (emulator) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: name,
       src: nix.path(here, "./binfmt-p-wrapper.c"),
       dontUnpack: true,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["test", 28, 18]], [["tests", 28, 12]], [["mainProgram", 31, 5]], [["pname", 13, 3], ["version", 14, 38], ["nativeBuildInputs", 16, 3], ["buildCommand", 18, 3], ["preferLocalBuild", 25, 3], ["allowSubstitutes", 26, 3], ["passthru", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { stdenv: false, haskellPackages: false, makeWrapper: false, packages: true, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["test", 28, 18]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 28, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 38], ["nativeBuildInputs", 16, 3], ["buildCommand", 18, 3], ["preferLocalBuild", 25, 3], ["allowSubstitutes", 26, 3], ["passthru", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(haskellPackages, "termonad"));
       return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "termonad-with-packages",
       version: nix.thunk(() => nix.attr(from, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -30,13 +27,13 @@ makeWrapper ${termonadEnv}/bin/termonad $out/bin/termonad \\
       preferLocalBuild: true,
       allowSubstitutes: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "termonad")),
         })),
       })),
-      meta: nix.thunk(() => nix.update(nix.sel(haskellPackages, "termonad", "meta"), { [nix.POS]: pos$3, mainProgram: "termonad" })),
+      meta: nix.thunk(() => nix.update(nix.sel(haskellPackages, "termonad", "meta"), { [nix.POS]: $pos[2], mainProgram: "termonad" })),
     };
     })()));
 })(), formals$1);

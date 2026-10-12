@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["extraArgs", 51, 5]], [["updateScript", 49, 12]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5], ["platforms", 65, 5], ["broken", 66, 5]], [["pname", 13, 3], ["version", 14, 11], ["pyproject", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["build-system", 27, 3], ["dependencies", 28, 3], ["postInstall", 35, 3], ["dontWrapQtApps", 43, 3], ["postFixup", 45, 3], ["passthru", 49, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3: false, fetchFromGitHub: false, qt6: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 49, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5], ["platforms", 65, 5], ["broken", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 11], ["pyproject", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["build-system", 27, 3], ["dependencies", 28, 3], ["postInstall", 35, 3], ["dontWrapQtApps", 43, 3], ["postFixup", 45, 3], ["passthru", 49, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "26.1.2";
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "novelwriter",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vkbo",
           repo: "novelWriter",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,14 +44,14 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       postFixup: "wrapQtApp $out/bin/novelwriter\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open source plain text editor designed for writing novels",
         homepage: "https://novelwriter.io",
         changelog: "https://github.com/vkbo/novelWriter/blob/main/CHANGELOG.md",

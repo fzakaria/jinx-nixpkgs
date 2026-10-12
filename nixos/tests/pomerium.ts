@@ -2,49 +2,24 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pomerium.nix", [[["maintainers", 6, 7]], [["vlans", 18, 28]], [["enable", 20, 22]], [["allowedTCPPorts", 21, 24]], [["192.168.1.1", 26, 17], ["192.168.1.2", 30, 17]], [["address", 37, 19], ["prefixLength", 38, 19]], [["addresses", 35, 36]], [["ipv4", 35, 31]], [["eth1", 35, 26]], [["dhcpcd", 20, 15], ["firewall", 21, 15], ["hosts", 25, 15], ["interfaces", 35, 15]], [["virtualisation", 18, 13], ["networking", 19, 13]], [["systemPackages", 49, 25]], [["from", 64, 21], ["to", 65, 21], ["allow_public_unauthenticated_access", 66, 21], ["preserve_host_header", 67, 21]], [["from", 70, 21], ["to", 71, 21], ["allowed_domains", 72, 21], ["preserve_host_header", 73, 21]], [["address", 53, 17], ["insecure_server", 54, 17], ["authenticate_service_url", 55, 17], ["idp_provider", 57, 17], ["idp_scopes", 58, 17], ["idp_client_id", 59, 17], ["idp_provider_url", 60, 17], ["policy", 62, 17]], [["enable", 51, 15], ["settings", 52, 15], ["secretsFile", 77, 15]], [["pomerium", 50, 22]], [["imports", 48, 13], ["environment", 49, 13], ["services", 50, 13]], [["root", 90, 15]], [["root", 96, 15]], [["my.website", 89, 41], ["dummy-oidc", 95, 41]], [["enable", 88, 28], ["virtualHosts", 89, 28]], [["nginx", 88, 22]], [["imports", 87, 13], ["services", 88, 13]], [["pomerium", 45, 9], ["backend", 84, 9]], [["name", 4, 5], ["meta", 5, 5], ["nodes", 12, 5], ["testScript", 114, 5]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pomerium.nix", [["maintainers", 6, 7]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/pomerium.nix", [["vlans", 18, 28]]);
-const pos$3 = nix.positions(here + "/pomerium.nix", [["enable", 20, 22]]);
-const pos$4 = nix.positions(here + "/pomerium.nix", [["allowedTCPPorts", 21, 24]]);
-const pos$5 = nix.positions(here + "/pomerium.nix", [["192.168.1.1", 26, 17], ["192.168.1.2", 30, 17]]);
-const pos$6 = nix.positions(here + "/pomerium.nix", [["address", 37, 19], ["prefixLength", 38, 19]]);
-const pos$7 = nix.positions(here + "/pomerium.nix", [["addresses", 35, 36]]);
-const pos$8 = nix.positions(here + "/pomerium.nix", [["ipv4", 35, 31]]);
-const pos$9 = nix.positions(here + "/pomerium.nix", [["eth1", 35, 26]]);
-const pos$10 = nix.positions(here + "/pomerium.nix", [["dhcpcd", 20, 15], ["firewall", 21, 15], ["hosts", 25, 15], ["interfaces", 35, 15]]);
-const pos$11 = nix.positions(here + "/pomerium.nix", [["virtualisation", 18, 13], ["networking", 19, 13]]);
 const formals$3 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$12 = nix.positions(here + "/pomerium.nix", [["systemPackages", 49, 25]]);
-const pos$13 = nix.positions(here + "/pomerium.nix", [["from", 64, 21], ["to", 65, 21], ["allow_public_unauthenticated_access", 66, 21], ["preserve_host_header", 67, 21]]);
-const pos$14 = nix.positions(here + "/pomerium.nix", [["from", 70, 21], ["to", 71, 21], ["allowed_domains", 72, 21], ["preserve_host_header", 73, 21]]);
-const pos$15 = nix.positions(here + "/pomerium.nix", [["address", 53, 17], ["insecure_server", 54, 17], ["authenticate_service_url", 55, 17], ["idp_provider", 57, 17], ["idp_scopes", 58, 17], ["idp_client_id", 59, 17], ["idp_provider_url", 60, 17], ["policy", 62, 17]]);
-const pos$16 = nix.positions(here + "/pomerium.nix", [["enable", 51, 15], ["settings", 52, 15], ["secretsFile", 77, 15]]);
-const pos$17 = nix.positions(here + "/pomerium.nix", [["pomerium", 50, 22]]);
-const pos$18 = nix.positions(here + "/pomerium.nix", [["imports", 48, 13], ["environment", 49, 13], ["services", 50, 13]]);
 const formals$4 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/pomerium.nix", [["root", 90, 15]]);
-const pos$20 = nix.positions(here + "/pomerium.nix", [["root", 96, 15]]);
-const pos$21 = nix.positions(here + "/pomerium.nix", [["my.website", 89, 41], ["dummy-oidc", 95, 41]]);
-const pos$22 = nix.positions(here + "/pomerium.nix", [["enable", 88, 28], ["virtualHosts", 89, 28]]);
-const pos$23 = nix.positions(here + "/pomerium.nix", [["nginx", 88, 22]]);
-const pos$24 = nix.positions(here + "/pomerium.nix", [["imports", 87, 13], ["services", 88, 13]]);
-const pos$25 = nix.positions(here + "/pomerium.nix", [["pomerium", 45, 9], ["backend", 84, 9]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$26 = nix.positions(here + "/pomerium.nix", [["name", 4, 5], ["meta", 5, 5], ["nodes", 12, 5], ["testScript", 114, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       name: "pomerium",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w, "lukegb")),
             nix.thunk(() => nix.lookup(w, "devusb")),
@@ -57,24 +32,24 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
           const pkgs_1 = nix.arg($_1, "pkgs");
           const lib_1 = nix.arg($_1, "lib");
           return {
-            [nix.POS]: pos$11,
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
+            [nix.POS]: $pos[10],
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], vlans: nix.thunk(() => [1n]) })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$10,
-              dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+              [nix.POS]: $pos[9],
+              dhcpcd: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[3], allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
               hosts: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 "192.168.1.1": nix.thunk(() => ["pomerium", "pom-auth"]),
                 "192.168.1.2": nix.thunk(() => ["backend", "dummy-oidc"]),
               })),
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
-                    addresses: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOverride"), 0n, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$6, address: myIP, prefixLength: 24n }))]))),
+                    [nix.POS]: $pos[6],
+                    addresses: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOverride"), 0n, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[5], address: myIP, prefixLength: 24n }))]))),
                   })),
                 })),
               })),
@@ -82,28 +57,28 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
           };
         })(), formals$2);
         return {
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           pomerium: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$3);
             const pkgs_1 = nix.arg($_1, "pkgs");
             const lib_1 = nix.arg($_1, "lib");
             return {
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               imports: nix.thunk(() => [nix.thunk(() => nix.app(base, "192.168.1.1"))]),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 systemPackages: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(pkgs_1, null);
                   return [nix.thunk(() => nix.lookup(w_1, "chromium"))];
                 })()),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 pomerium: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   enable: true,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     address: ":80",
                     insecure_server: true,
                     authenticate_service_url: "http://pom-auth",
@@ -113,14 +88,14 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
                     idp_provider_url: "http://dummy-oidc",
                     policy: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$13,
+                        [nix.POS]: $pos[12],
                         from: "https://my.website",
                         to: "http://192.168.1.2",
                         allow_public_unauthenticated_access: true,
                         preserve_host_header: true,
                       })),
                       nix.thunk(() => ({
-                        [nix.POS]: pos$14,
+                        [nix.POS]: $pos[13],
                         from: "https://login.required",
                         to: "http://192.168.1.2",
                         allowed_domains: nix.thunk(() => ["my.domain"]),
@@ -138,21 +113,21 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
             const pkgs_1 = nix.arg($_1, "pkgs");
             const lib_1 = nix.arg($_1, "lib");
             return {
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               imports: nix.thunk(() => [nix.thunk(() => nix.app(base, "192.168.1.2"))]),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 nginx: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   enable: true,
                   virtualHosts: nix.thunk(() => ({
-                    [nix.POS]: pos$21,
+                    [nix.POS]: $pos[20],
                     "my.website": nix.thunk(() => ({
-                      [nix.POS]: pos$19,
+                      [nix.POS]: $pos[18],
                       root: nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "testdir", nix.thunk(() => ({})), "mkdir \"$out\"\necho hello world > \"$out/index.html\"\n")),
                     })),
                     "dummy-oidc": nix.thunk(() => ({
-                      [nix.POS]: pos$20,
+                      [nix.POS]: $pos[19],
                       root: nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "testdir", nix.thunk(() => ({})), "mkdir -p \"$out/.well-known\"\ncat <<EOF >\"$out/.well-known/openid-configuration\"\n  {\n    \"issuer\": \"http://dummy-oidc\",\n    \"authorization_endpoint\": \"http://dummy-oidc/auth.txt\",\n    \"token_endpoint\": \"http://dummy-oidc/token\",\n    \"jwks_uri\": \"http://dummy-oidc/jwks.json\",\n    \"userinfo_endpoint\": \"http://dummy-oidc/userinfo\",\n    \"id_token_signing_alg_values_supported\": [\"RS256\"]\n  }\nEOF\necho hello I am login page >\"$out/auth.txt\"\n")),
                     })),
                   })),

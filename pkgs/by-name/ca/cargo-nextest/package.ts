@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["extraArgs", 36, 5]], [["updateScript", 35, 12]], [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 48, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 20, 3], ["cargoHash", 24, 3], ["cargoBuildFlags", 26, 3], ["cargoTestFlags", 30, 3], ["passthru", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 35, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 20, 3], ["cargoHash", 24, 3], ["cargoBuildFlags", 26, 3], ["cargoTestFlags", 30, 3], ["passthru", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cargo-nextest",
       version: "0.9.146",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nextest-rs",
           repo: "nextest",
           tag: nix.thunk(() => nix.str`cargo-nextest-${nix.sel(finalAttrs, "version")}`),
@@ -32,14 +28,14 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["-p", "cargo-nextest"]),
       cargoTestFlags: nix.thunk(() => ["-p", "cargo-nextest"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=^cargo-nextest-([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Next-generation test runner for Rust projects",
         mainProgram: "cargo-nextest",
         homepage: "https://github.com/nextest-rs/nextest",

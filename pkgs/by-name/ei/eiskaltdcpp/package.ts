@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 91, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["cmakeFlags", 65, 3], ["postInstall", 78, 3], ["preFixup", 82, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, bzip2: false, libx11: false, libsForQt5: false, libiconv: false, pcre2: false, libidn2: false, libidn: false, lua5: false, miniupnpc: false, aspell: false, gettext: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 91, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["cmakeFlags", 65, 3], ["postInstall", 78, 3], ["preFixup", 82, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "eiskaltdcpp",
       version: "2.4.2-unstable-2024-11-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eiskaltdcpp",
           repo: "eiskaltdcpp",
           rev: "697db4b03e3d9ffa48b3d4c74fd043dee7663266",
@@ -76,7 +74,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "ln -s $out/bin/$pname-qt $out/bin/$pname\n",
       preFixup: "substituteInPlace $out/bin/eiskaltdcpp-cli-jsonrpc \\\n  --replace \"/usr/local\" \"$out\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cross-platform program that uses the Direct Connect and ADC protocols",
         homepage: "https://github.com/eiskaltdcpp/eiskaltdcpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["pname", 21, 5], ["src", 22, 13], ["version", 22, 17], ["nativeBuildInputs", 24, 5], ["buildPhase", 29, 5], ["installPhase", 38, 5], ["outputHashMode", 47, 5], ["outputHash", 48, 5], ["doCheck", 50, 5]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 89, 5]], [["version", 54, 11], ["pname", 54, 19], ["src", 54, 25], ["nativeBuildInputs", 56, 3], ["postPatch", 61, 3], ["buildPhase", 65, 3], ["installPhase", 73, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, jdk: false, maven: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 21, 5], ["src", 22, 13], ["version", 22, 17], ["nativeBuildInputs", 24, 5], ["buildPhase", 29, 5], ["installPhase", 38, 5], ["outputHashMode", 47, 5], ["outputHash", 48, 5], ["doCheck", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 54, 11], ["pname", 54, 19], ["src", 54, 25], ["nativeBuildInputs", 56, 3], ["postPatch", 61, 3], ["buildPhase", 65, 3], ["installPhase", 73, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const pname = "jnr-posix";
   const version = "3.1.18";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "jnr",
       repo: "jnr-posix",
       rev: nix.thunk(() => nix.str`jnr-posix-${version}`),
       hash: "sha256-zx8I9rsu9Kjef+LatDA1WIuO7Vgo0/JM5nGi3pSWch4=",
     }))));
   const deps = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`deps-${pname}`),
       src: src,
       version: version,
@@ -56,7 +53,7 @@ install -D target/jnr-posix-${version_1}.jar $out/share/java/jnr-posix-${version
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight cross-platform POSIX emulation layer for Java, written in Java and is part of the JNR project",
         homepage: "https://github.com/jnr/jnr-posix",
         license: nix.thunk(() => (() => {
@@ -73,7 +70,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: version_1,
         pname: pname_1,
         src: src_1,

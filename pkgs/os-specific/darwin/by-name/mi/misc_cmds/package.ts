@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 37, 8]], [["releaseName", 11, 3], ["outputs", 13, 3], ["xcodeHash", 18, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, libedit: false, libutil: false, mkAppleDerivation: false, ncurses: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 37, 8]]);
-const pos$2 = nix.positions(here + "/package.nix", [["releaseName", 11, 3], ["outputs", 13, 3], ["xcodeHash", 18, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       releaseName: "misc_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-xuEHBlgys/xI9lm/wtiVAKi+AWWvRluW2I4rWOmS1kw=",
       postPatch: "substituteInPlace calendar/pathnames.h \\\n  --replace-fail '/usr' \"$out\"\nsubstituteInPlace calendar/io.c \\\n  --replace-fail '/usr/local' \"$out\"\nsubstituteInPlace calendar/calendar.1 \\\n  --replace-fail '/usr/local/share/calendar, /usr/share/calendar' \"$out/share/calendar\"\n",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libedit, libutil, ncurses]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Miscellaneous commands for Darwin" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "Miscellaneous commands for Darwin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

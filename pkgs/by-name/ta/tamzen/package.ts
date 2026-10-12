@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, mkfontscale: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tamzen-font",
       version: "1.11.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sunaku",
           repo: "tamzen-font",
           rev: nix.thunk(() => nix.str`Tamzen-${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [mkfontscale]),
       installPhase: "install -m 644 -D otb/*.otb pcf/*.pcf -t \"$out/share/fonts/misc\"\ninstall -m 644 -D psf/*.psf -t \"$out/share/consolefonts\"\nmkfontdir \"$out/share/fonts/misc\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bitmapped programming font based on Tamsyn",
         longDescription: "Tamzen is a monospace bitmap font. It is programmatically forked\nfrom Tamsyn version 1.11, which backports glyphs from older\nversions while deleting deliberately empty glyphs to allow\nsecondary/fallback fonts to provide real glyphs at those codepoints.\nTamzen also has fonts that additionally provide the Powerline\nsymbols.\n",
         homepage: "https://github.com/sunaku/tamzen-font",

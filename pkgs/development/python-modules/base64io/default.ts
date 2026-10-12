@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]], [["updateScript", 39, 12]], [["homepage", 42, 5], ["changelog", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["build-system", 32, 3], ["nativeCheckInputs", 34, 3], ["passthru", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, mock: false, pytestCheckHook: false, setuptools: false, unstableGitUpdater: false, fetchpatch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 39, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 42, 5], ["changelog", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["build-system", 32, 3], ["nativeCheckInputs", 34, 3], ["passthru", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.3-unstable-2025-01-09";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aws",
           repo: "base64io-python",
           rev: "1bd47f7f8cfeeff654ea0edda3fbb69f840ccd05",
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "default-buffer-size-compat.patch",
             url: "https://github.com/abus-sh/base64io-python/commit/a929dc3c9d873eabe491ccae9a2d0d57726f37da.patch?full_index=1",
             hash: "sha256-VfPOZ8cDRW2mQy6ROl77kBRE780NhH4kbjkyD1/jMRk=",
@@ -41,11 +37,11 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const nativeCheckInputs = nix.thunk(() => [mock, pytestCheckHook]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://base64io-python.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/base64io-python/blob/${version}/CHANGELOG.rst`),
         description: "Python stream implementation for base64 encoding/decoding",
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

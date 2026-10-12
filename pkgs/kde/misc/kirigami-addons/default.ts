@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["license", 28, 8]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["extraNativeBuildInputs", 20, 3], ["extraBuildInputs", 21, 3], ["extraPropagatedBuildInputs", 22, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, fetchurl: false, qtdeclarative: false, qtmultimedia: false, qt5compat: false, qttools: false, kitemmodels: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 28, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["extraNativeBuildInputs", 20, 3], ["extraBuildInputs", 21, 3], ["extraPropagatedBuildInputs", 22, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kirigami-addons";
       const version = "1.14.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kde/stable/kirigami-addons/kirigami-addons-${version}.tar.xz`),
           hash: "sha256-Hks0Atf4dEyQOwwLkH+jeTebhI3tpBO1qUDbr0cUyzI=",
         }))));
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const extraBuildInputs = nix.thunk(() => [qtdeclarative]);
       const extraPropagatedBuildInputs = nix.thunk(() => [qt5compat, qtmultimedia, kitemmodels]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

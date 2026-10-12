@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 5], ["version", 24, 13], ["hash", 25, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["pythonRelaxDeps", 28, 3], ["build-system", 33, 3], ["nativeBuildInputs", 35, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 48, 3], ["pythonImportsCheck", 53, 3], ["__darwinAllowLocalNetworking", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, ipykernel: false, jupytext: false, mkdocs: false, "mkdocs-material": false, nbconvert: false, pygments: false, pytestCheckHook: false, "pytest-cov-stub": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 5], ["version", 24, 13], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["pythonRelaxDeps", 28, 3], ["build-system", 33, 3], ["nativeBuildInputs", 35, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 48, 3], ["pythonImportsCheck", 53, 3], ["__darwinAllowLocalNetworking", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.26.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "mkdocs_jupyter",
           version: version,
           hash: "sha256-fIDA05U96R5bQKDTIJIzeVyPgAJDqymOTsOOBQTtpjA=",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["mkdocs_jupyter"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Use Jupyter Notebook in mkdocs",
         homepage: "https://github.com/danielfrg/mkdocs-jupyter",
         changelog: nix.thunk(() => nix.str`https://github.com/danielfrg/mkdocs-jupyter/blob/${version}/CHANGELOG.md`),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["client", 37, 5], ["asyncio_client", 41, 5]], [["description", 73, 5], ["longDescription", 74, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 44, 3], ["preCheck", 54, 3], ["postCheck", 59, 3], ["disabledTests", 63, 3], ["pythonImportsCheck", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, aiohttp: false, buildPythonPackage: false, setuptools: false, eventlet: false, fetchFromGitHub: false, "iana-etc": false, libredirect: false, mock: false, "pytest-asyncio": false, pytestCheckHook: false, requests: false, "simple-websocket": false, tornado: false, "websocket-client": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["client", 37, 5], ["asyncio_client", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 73, 5], ["longDescription", 74, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 44, 3], ["preCheck", 54, 3], ["postCheck", 59, 3], ["disabledTests", 63, 3], ["pythonImportsCheck", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.13.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "miguelgrinberg",
           repo: "python-engineio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [simple_websocket]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         client: nix.thunk(() => [requests, websocket_client]),
         asyncio_client: nix.thunk(() => [aiohttp]),
       }));
@@ -59,7 +56,7 @@ export NIX_REDIRECTS=/etc/protocols=${iana_etc}/etc/protocols:/etc/resolv.conf=$
       const disabledTests = nix.thunk(() => ["test_async_mode_eventlet", "test_logger"]);
       const pythonImportsCheck = nix.thunk(() => ["engineio"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python based Engine.IO client and server",
         longDescription: "Engine.IO is a lightweight transport protocol that enables real-time\nbidirectional event-based communication between clients and a server.\n",
         homepage: "https://github.com/miguelgrinberg/python-engineio/",
@@ -71,7 +68,7 @@ export NIX_REDIRECTS=/etc/protocols=${iana_etc}/etc/protocols:/etc/resolv.conf=$
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

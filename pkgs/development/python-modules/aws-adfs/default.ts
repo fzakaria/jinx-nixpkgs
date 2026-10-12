@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["pythonRelaxDeps", 35, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 54, 3], ["preCheck", 59, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, boto3: false, botocore: false, buildPythonPackage: false, click: false, configparser: false, fetchFromGitHub: false, fido2: false, lxml: false, "poetry-core": false, pyopenssl: false, pytestCheckHook: false, requests: false, "requests-kerberos": false, toml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["pythonRelaxDeps", 35, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 54, 3], ["preCheck", 59, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.13.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "venth",
           repo: "aws-adfs",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export HOME=$(mktemp -d);\n";
       const pythonImportsCheck = nix.thunk(() => ["aws_adfs"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line tool to ease AWS CLI authentication against ADFS",
         homepage: "https://github.com/venth/aws-adfs",
         changelog: nix.thunk(() => nix.str`https://github.com/venth/aws-adfs/releases/tag/${nix.sel(src, "tag")}`),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "aws-adfs",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

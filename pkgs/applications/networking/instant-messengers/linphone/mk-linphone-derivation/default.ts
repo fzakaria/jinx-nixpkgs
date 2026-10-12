@@ -2,12 +2,9 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["leaveDotGit", 18, 5], ["postFetch", 19, 5]], [["homepage", 70, 9], ["maintainers", 72, 9], ["platforms", 76, 9]], [["version", 53, 7], ["src", 55, 15], ["nativeBuildInputs", 57, 7], ["sourceRoot", 62, 7], ["cmakeFlags", 64, 7], ["meta", 69, 7]], [["constructDrv", 37, 3], ["excludeDrvArgNames", 39, 3], ["extendDrvArgs", 44, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, cmake: false, linphoneSdkVersion: false, linphoneSdkHash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["leaveDotGit", 18, 5], ["postFetch", 19, 5]]);
 const formals$2 = { args: { sourceRoot: true, nativeBuildInputs: true, cmakeFlags: true }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 70, 9], ["maintainers", 72, 9], ["platforms", 76, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 53, 7], ["src", 55, 15], ["nativeBuildInputs", 57, 7], ["sourceRoot", 62, 7], ["cmakeFlags", 64, 7], ["meta", 69, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["constructDrv", 37, 3], ["excludeDrvArgNames", 39, 3], ["extendDrvArgs", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const linphoneSdkVersion = nix.arg($, "linphoneSdkVersion");
   const linphoneSdkHash = nix.arg($, "linphoneSdkHash");
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "BelledonneCommunications",
       repo: "linphone-sdk",
       tag: linphoneSdkVersion,
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       postFetch: "cd $out\ngit remote add origin https://github.com/BelledonneCommunications/linphone-sdk.git\ngit reset --hard HEAD\n# `external` submodules are hardcoded to resolve to BC's Gitlab instance,\n# however, since we manually package all required external modules anyway,\n# we do not need to also fetch them here.\n#\n# We also use `--jobs 1` to avoid hitting BC's rate limit for the handful of\n# hardcoded submodules that we _do_ need.\nfor submodule in $(git config --file .gitmodules --get-regexp path | awk '{print $2}' | grep -v '^external/.*$'); do\n  git submodule update --init --recursive --jobs 1 \"$submodule\"\ndone\nfind \"$out\" -name .git -type d -print0 | xargs -0 rm -rf\n",
     }))));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["sourceRoot", "version"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -37,14 +34,14 @@ export default nix.lambda((args) => (() => {
         const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
         const cmakeFlags = nix.argOr($_1, "cmakeFlags", () => []);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: linphoneSdkVersion,
           src: src,
           nativeBuildInputs: nix.thunk(() => nix.concat([cmake], nativeBuildInputs)),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/${sourceRoot}`),
           cmakeFlags: nix.thunk(() => nix.concat(["-DBUILD_SHARED_LIBS=ON"], cmakeFlags)),
           meta: nix.thunk(() => nix.update({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             homepage: "https://gitlab.linphone.org/BC/public/linphone-sdk",
             maintainers: nix.thunk(() => [
               nix.thunk(() => nix.sel(lib, "maintainers", "jluttine")),

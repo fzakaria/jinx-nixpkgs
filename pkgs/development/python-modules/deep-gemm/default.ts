@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 38, 47]], [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["name", 60, 9], ["paths", 61, 9]], [["cuda_home", 59, 7]], [["DG_USE_LOCAL_VERSION", 83, 5]], [["CUDA_HOME", 86, 5], ["LDFLAGS", 88, 5]], [["requiredSystemFeatures", 128, 5], ["pythonImportsCheck", 131, 5], ["doCheck", 133, 5]], [["gpuCheck", 127, 12]], [["description", 137, 5], ["homepage", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["broken", 141, 5]], [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["patches", 51, 3], ["postPatch", 74, 3], ["env", 81, 3], ["build-system", 94, 3], ["nativeBuildInputs", 99, 3], ["buildInputs", 103, 3], ["nativeCheckInputs", 119, 3], ["doCheck", 125, 3], ["passthru", 127, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, symlinkJoin: false, setuptools: false, torch: false, fmt: false, pybind11: false, autoAddDriverRunpath: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false, "deep-gemm": false, config: false, cudaPackages: false, cudaSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 38, 47]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 60, 9], ["paths", 61, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["cuda_home", 59, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["DG_USE_LOCAL_VERSION", 83, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["CUDA_HOME", 86, 5], ["LDFLAGS", 88, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["requiredSystemFeatures", 128, 5], ["pythonImportsCheck", 131, 5], ["doCheck", 133, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["gpuCheck", 127, 12]]);
-const pos$9 = nix.positions(here + "/default.nix", [["description", 137, 5], ["homepage", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["broken", 141, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["patches", 51, 3], ["postPatch", 74, 3], ["env", 81, 3], ["build-system", 94, 3], ["nativeBuildInputs", 99, 3], ["buildInputs", 103, 3], ["nativeCheckInputs", 119, 3], ["doCheck", 125, 3], ["passthru", 127, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,14 +26,14 @@ export default nix.lambda((args) => (() => {
   const getBin = nix.thunk(() => nix.attr(lib, "getBin"));
   const optionalAttrs = nix.thunk(() => nix.attr(lib, "optionalAttrs"));
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: $pos[9],
       pname: "deep-gemm",
       version: "2.1.1.post3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "deepseek-ai",
           repo: "DeepGEMM",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,9 +42,9 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./use-system-libraries.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patch-runtime-cuda-home-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             cuda_home: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 name: "cuda-toolkit",
                 paths: nix.thunk(() => (() => {
                   const w = nix.withScope(cudaPackages, null);
@@ -73,8 +64,8 @@ export default nix.lambda((args) => (() => {
     "__version__ = '2.1.1'" \\
     "__version__ = '${nix.sel(finalAttrs, "version")}'"
 `),
-      env: nix.thunk(() => nix.update({ [nix.POS]: pos$5, DG_USE_LOCAL_VERSION: "0" }, nix.app(optionalAttrs, cudaSupport, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+      env: nix.thunk(() => nix.update({ [nix.POS]: $pos[4], DG_USE_LOCAL_VERSION: "0" }, nix.app(optionalAttrs, cudaSupport, nix.thunk(() => ({
+          [nix.POS]: $pos[5],
           CUDA_HOME: nix.thunk(() => nix.sel(nix.app(getBin, nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc"))), "outPath")),
           LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/lib/stubs`),
@@ -96,16 +87,16 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, writableTmpDirAsHomeHook]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         gpuCheck: nix.thunk(() => nix.app(nix.sel(deep_gemm, "overridePythonAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             pythonImportsCheck: nix.thunk(() => ["deep_gemm"]),
             doCheck: true,
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Clean and efficient FP8 GEMM kernels with fine-grained scaling",
         homepage: "https://github.com/deepseek-ai/DeepGEMM",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

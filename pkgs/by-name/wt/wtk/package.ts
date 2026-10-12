@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["name", 19, 5], ["sha256", 20, 5]], [["homepage", 37, 5], ["description", 38, 5], ["sourceProvenance", 39, 5], ["license", 40, 5], ["platforms", 41, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["builder", 23, 3], ["nativeBuildInputs", 25, 3], ["libraries", 27, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, requireFile: false, unzip: false, libxt: false, libxpm: false, libx11: false, libsm: false, libice: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["name", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["sourceProvenance", 39, 5], ["license", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["builder", 23, 3], ["nativeBuildInputs", 25, 3], ["libraries", 27, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sun-java-wtk";
       const version = "2.5.2_01";
       const src = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://java.sun.com/products/sjwtoolkit/download.html",
           name: nix.thunk(() => nix.str`sun_java_wireless_toolkit-${version}-linuxi486.bin.sh`),
           sha256: "1cjb9c27847wv0hq3j645ckn4di4vsfvp29fr4zmdqsnvk4ahvj1",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(stdenv, "cc", "cc")),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://java.sun.com/products/sjwtoolkit/download.html",
         description: "Sun Java Wireless Toolkit 2.5.2_01 for CLDC",
         sourceProvenance: nix.thunk(() => (() => {
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["i686-linux"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

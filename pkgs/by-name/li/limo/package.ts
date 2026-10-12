@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5], ["platforms", 82, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["strictDeps", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["cmakeFlags", 62, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, jsoncpp: false, libarchive: false, libcpr: false, libloot: false, lz4: false, pugixml: false, libsForQt5: false, withUnrar: true, unrar: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5], ["platforms", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["strictDeps", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["cmakeFlags", 62, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const withUnrar = nix.argOr($, "withUnrar", () => false);
   const unrar = nix.arg($, "unrar");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "limo",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "limo-app",
           repo: "limo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "LIBUNRAR_INCLUDE_DIR", "")),
         ]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "General purpose mod manager with support for the NexusMods API and LOOT",
         homepage: "https://github.com/limo-app/limo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

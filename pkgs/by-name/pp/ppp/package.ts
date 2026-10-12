@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["url", 33, 7], ["hash", 34, 7]], [["NIX_LDFLAGS", 76, 7]], [["pppd", 91, 26]], [["tests", 90, 12]], [["homepage", 95, 5], ["description", 96, 5], ["license", 97, 5], ["platforms", 103, 5], ["maintainers", 104, 5]], [["version", 19, 3], ["pname", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["configureFlags", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["postPatch", 61, 3], ["enableParallelBuilding", 70, 3], ["makeFlags", 72, 3], ["env", 76, 3], ["installFlags", 78, 3], ["postInstall", 82, 3], ["postFixup", 86, 3], ["passthru", 90, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, bash: false, fetchFromGitHub: false, fetchpatch: false, lib: false, libpcap: false, libxcrypt: false, "linux-pam": false, nixosTests: false, openssl: false, "pkg-config": false, stdenv: false, withSystemd: true, systemdLibs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 76, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pppd", 91, 26]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 90, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["description", 96, 5], ["license", 97, 5], ["platforms", 103, 5], ["maintainers", 104, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 19, 3], ["pname", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["configureFlags", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["postPatch", 61, 3], ["enableParallelBuilding", 70, 3], ["makeFlags", 72, 3], ["env", 76, 3], ["installFlags", 78, 3], ["postInstall", 82, 3], ["postFixup", 86, 3], ["passthru", 90, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const withSystemd = nix.argOr($, "withSystemd", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdLibs));
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: "2.5.2",
       pname: "ppp",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ppp-project",
           repo: "ppp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/ppp-project/ppp/commit/05361692ee7d6260ce5c04c9fa0e5a1aa7565323.patch",
             hash: "sha256-ybuWyA1t9IJ1Sg06a0b0tin4qssr0qzmenfGoA1X0BE=",
           })))),
@@ -56,16 +50,16 @@ export default nix.lambda((args) => (() => {
       postPatch: "for file in $(find -name Makefile.linux); do\n  substituteInPlace \"$file\" --replace '-m 4550' '-m 550'\ndone\n\npatchShebangs --host \\\n  scripts/{pon,poff,plog}\n",
       enableParallelBuilding: true,
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-lcrypt" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_LDFLAGS: "-lcrypt" })),
       installFlags: nix.thunk(() => ["sysconfdir=$(out)/etc"]),
       postInstall: "install -Dm755 -t $out/bin scripts/{pon,poff,plog}\n",
       postFixup: "substituteInPlace \"$out/bin/pon\" --replace \"/usr/sbin\" \"$out/bin\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, pppd: nix.thunk(() => nix.attr(nixosTests, "pppd")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], pppd: nix.thunk(() => nix.attr(nixosTests, "pppd")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://ppp.samba.org",
         description: "Point-to-point implementation to provide Internet connections over serial lines",
         license: nix.thunk(() => (() => {

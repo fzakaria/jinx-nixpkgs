@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["broken", 33, 5], ["homepage", 34, 5], ["description", 35, 5], ["maintainers", 36, 5], ["license", 40, 5], ["platforms", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["preInstall", 25, 3], ["makeFlags", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, libx11: false, libxrandr: false, xorgproto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 33, 5], ["homepage", 34, 5], ["description", 35, 5], ["maintainers", 36, 5], ["license", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["preInstall", 25, 3], ["makeFlags", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sct",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.umaxx.net/dl/sct-0.5.tar.gz",
           sha256: "sha256-nyYcdnCq8KcSUpc0HPCGzJI6NNrrTJLAHqPawfwPR/Q=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin $out/share/man/man1\n",
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         homepage: "https://www.umaxx.net/",
         description: "Minimal utility to set display colour temperature",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["pythonRelaxDeps", 34, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "paho-mqtt": false, "pytest-cov-stub": false, pytestCheckHook: false, "python-dateutil": false, setuptools: false, weconnect: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["pythonRelaxDeps", 34, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const weconnect = nix.arg($, "weconnect");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "weconnect-mqtt",
       version: "0.49.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tillsteinbach",
           repo: "WeConnect-mqtt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +41,7 @@ substituteInPlace pytest.ini \\
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["weconnect_mqtt"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python client that publishes data from Volkswagen WeConnect",
         homepage: "https://github.com/tillsteinbach/WeConnect-mqtt",
         changelog: nix.thunk(() => nix.str`https://github.com/tillsteinbach/WeConnect-mqtt/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),

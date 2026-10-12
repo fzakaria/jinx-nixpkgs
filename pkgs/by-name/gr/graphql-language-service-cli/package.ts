@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["yarnLock", 29, 5], ["hash", 30, 5]], [["updateScript", 65, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["yarnOfflineCache", 28, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 40, 3], ["nativeInstallCheckInputs", 60, 3], ["doInstallCheck", 61, 3], ["versionCheckProgram", 62, 3], ["passthru", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchYarnDeps: false, makeWrapper: false, nodejs: false, stdenv: false, yarnBuildHook: false, yarnConfigHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["yarnOfflineCache", 28, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 40, 3], ["nativeInstallCheckInputs", 60, 3], ["doInstallCheck", 61, 3], ["versionCheckProgram", 62, 3], ["passthru", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "graphql-language-service-cli",
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "graphql",
           repo: "graphiql",
           tag: nix.thunk(() => nix.str`graphql-language-service-cli@${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./patches/0001-repurpose-vscode-graphql-build-script.patch")]),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-ae6KP2sFgw8/8YaTJSPscBlVQ5/bzbvHRZygcMgFAlU=",
         })))),
@@ -59,9 +55,9 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./updater.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./updater.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Official, runtime independent Language Service for GraphQL",
         homepage: "https://github.com/graphql/graphiql",
         changelog: nix.thunk(() => nix.str`https://github.com/graphql/graphiql/blob/${nix.sel(finalAttrs, "src", "tag")}/packages/graphql-language-service-cli/CHANGELOG.md`),

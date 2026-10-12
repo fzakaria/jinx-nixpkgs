@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["hash", 34, 5]], [["homepage", 84, 5], ["description", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 91, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 37, 3], ["enableParallelBuilding", 42, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 52, 3], ["cmakeFlags", 68, 3], ["doCheck", 77, 3], ["checkInputs", 79, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, cmake: false, zlib: false, bzip2: false, libiconv: false, libxml2: false, openssl: false, ncurses: false, curl: false, libmilter: false, pcre2: false, libmspack: false, systemdLibs: false, systemdSupport: true, json_c: false, check: false, rustc: false, "rust-bindgen": false, rustfmt: false, cargo: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 84, 5], ["description", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 91, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 37, 3], ["enableParallelBuilding", 42, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 52, 3], ["cmakeFlags", 68, 3], ["doCheck", 77, 3], ["checkInputs", 79, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const cargo = nix.arg($, "cargo");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "clamav",
       version: "1.5.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.clamav.net/downloads/production/clamav-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-GvEReiKPG1vH+pGg2rw3hIqZ59JRiOm+gEMzLOch39M=",
         })))),
@@ -71,7 +69,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "pytest"))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.clamav.net",
         description: "Antivirus engine designed for detecting Trojans, viruses, malware and other malicious threats",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

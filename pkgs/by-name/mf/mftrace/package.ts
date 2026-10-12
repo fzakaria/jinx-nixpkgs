@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]], [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]], [["tlDeps", 62, 12]], [["description", 69, 5], ["longDescription", 70, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 80, 5], ["platforms", 81, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 52, 3], ["postInstall", 57, 3], ["passthru", 62, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, makeWrapper: false, autoreconfHook: false, python3: false, fontforge: false, potrace: false, fetchpatch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tlDeps", 62, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["longDescription", 70, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 80, 5], ["platforms", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 52, 3], ["postInstall", 57, 3], ["passthru", 62, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const potrace = nix.arg($, "potrace");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mftrace",
       version: "1.2.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hanwen",
           repo: "mftrace",
           rev: nix.thunk(() => nix.str`release/${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-15.patch",
             url: "https://salsa.debian.org/debian/mftrace/-/raw/628987e5ce8bdab737f9fbc730a75fdd29ce81d2/debian/patches/gcc-15.patch",
             hash: "sha256-eTDohSGzy2hxZmpAXiYaAk3DBnrXduNum0fO6bHGUQw=",
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/mftrace --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tlDeps: (ps) => [
           nix.thunk(() => nix.sel(ps, "kpathsea")),
           nix.thunk(() => nix.sel(ps, "t1utils")),
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
         ],
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Scalable PostScript Fonts for MetaFont",
         longDescription: "mftrace is a small Python program that lets you trace a TeX bitmap\nfont into a PFA or PFB font (A PostScript Type1 Scalable Font) or\nTTF (TrueType) font.\n",
         homepage: "https://lilypond.org/mftrace/",

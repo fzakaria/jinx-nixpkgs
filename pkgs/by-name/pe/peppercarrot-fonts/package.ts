@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["license", 58, 5]], [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 17, 3], ["sourceRoot", 26, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 36, 3], ["buildPhase", 42, 3], ["strictDeps", 49, 3], ["__structuredAttrs", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, fontforge: false, stdenvNoCC: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["license", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 17, 3], ["sourceRoot", 26, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 36, 3], ["buildPhase", 42, 3], ["strictDeps", 49, 3], ["__structuredAttrs", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "peppercarrot-fonts",
       version: "1.0.0",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "framagit.org",
           owner: "peppercarrot",
           repo: "fonts",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open fonts used in the webcomic Pepper&Carrot",
         homepage: "https://www.peppercarrot.com/en/fonts",
         changelog: "https://framagit.org/peppercarrot/fonts/-/blob/master/CHANGELOG.md",

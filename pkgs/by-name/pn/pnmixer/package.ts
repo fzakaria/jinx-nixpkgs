@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 58, 5]], [["pname", 16, 3], ["version", 17, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["enableParallelBuilding", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, gettext: false, "alsa-lib": false, gtk3: false, glib: false, libnotify: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["enableParallelBuilding", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const libnotify = nix.arg($, "libnotify");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pnmixer",
       version: "0.7.2",
       strictDeps: true,
       __structuredAttrs: true,
       enableParallelBuilding: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nicklan",
           repo: "pnmixer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, gettext]),
       buildInputs: nix.thunk(() => [alsa_lib, gtk3, glib, libnotify, libx11]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/nicklan/pnmixer",
         description: "ALSA volume mixer for the system tray",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

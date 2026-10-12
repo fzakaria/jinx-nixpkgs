@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["mistune", 16, 7]], [["self", 14, 5], ["packageOverrides", 15, 5]], [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["postFetch", 30, 5], ["hash", 33, 5]], [["src", 37, 5], ["hash", 38, 5]], [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["mainProgram", 108, 5], ["maintainers", 109, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["npmDeps", 36, 3], ["npmRoot", 41, 3], ["nativeBuildInputs", 43, 3], ["propagatedBuildInputs", 50, 3], ["nativeCheckInputs", 68, 3], ["postInstall", 74, 3], ["pythonImportsCheck", 78, 3], ["disabledTests", 82, 3], ["postCheck", 99, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchNpmDeps: false, fetchPypi: false, nodejs: false, npmHooks: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["mistune", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["self", 14, 5], ["packageOverrides", 15, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["postFetch", 30, 5], ["hash", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 37, 5], ["hash", 38, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["mainProgram", 108, 5], ["maintainers", 109, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["npmDeps", 36, 3], ["npmRoot", 41, 3], ["nativeBuildInputs", 43, 3], ["propagatedBuildInputs", 50, 3], ["nativeCheckInputs", 68, 3], ["postInstall", 74, 3], ["pythonImportsCheck", 78, 3], ["disabledTests", 82, 3], ["postCheck", 99, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const npmHooks = nix.arg($, "npmHooks");
   const python3 = nix.arg($, "python3");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       self: python,
-      packageOverrides: (self) => (super$) => ({ [nix.POS]: pos$1, mistune: nix.thunk(() => nix.sel(self, "mistune_2")) }),
+      packageOverrides: (self) => (super$) => ({ [nix.POS]: $pos[0], mistune: nix.thunk(() => nix.sel(self, "mistune_2")) }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), nix.thunk(() => (() => {
       const pname = "lektor";
       const version = "3.4.0b14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "lektor",
           repo: "lektor",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-Wr3MhUGihqlPyUlWM8KT+sb/FtHH/NfRNDT9QCKJj5k=",
         }))));
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           src: nix.thunk(() => nix.str`${src}/${npmRoot}`),
           hash: "sha256-zcvfVVLhHPas4ulyQ9HDG3f5Bofco1A6pDx9TmREOIk=",
         }))));
@@ -92,7 +87,7 @@ export default nix.lambda((args) => (() => {
         ]))));
       const postCheck = "make test-js\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Static content management system",
         homepage: "https://www.getlektor.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/lektor/lektor/blob/v${version}/CHANGES.md`),
@@ -101,7 +96,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

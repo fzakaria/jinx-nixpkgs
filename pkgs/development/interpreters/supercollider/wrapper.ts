@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["name", 10, 3], ["paths", 11, 3], ["nativeBuildInputs", 13, 3], ["postBuild", 15, 3], ["pname", 32, 27], ["version", 32, 33], ["meta", 32, 41]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, makeWrapper: false, supercollider: false, plugins: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["name", 10, 3], ["paths", 11, 3], ["nativeBuildInputs", 13, 3], ["postBuild", 15, 3], ["pname", 32, 27], ["version", 32, 33], ["meta", 32, 41]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const supercollider = nix.arg($, "supercollider");
   const plugins = nix.arg($, "plugins");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`supercollider-with-plugins-${nix.sel(supercollider, "version")}`),
       paths: nix.thunk(() => nix.concat([supercollider], plugins)),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

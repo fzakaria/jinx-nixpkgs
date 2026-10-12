@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]], [["homepage", 45, 5], ["description", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["buildInputs", 27, 3], ["propagatedBuildInputs", 29, 3], ["nativeCheckInputs", 31, 3], ["enabledTestPaths", 36, 3], ["disabledTests", 38, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, decorator: false, fetchPypi: false, invoke: false, pytest: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 45, 5], ["description", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["buildInputs", 27, 3], ["propagatedBuildInputs", 29, 3], ["nativeCheckInputs", 31, 3], ["enabledTestPaths", 36, 3], ["disabledTests", 38, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-lW6gKOww27+2gN2Oe0p/uPgKI5WV6Ius4Bi/LA1xgkg=",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_skips_pytest_fixtures"]);
       const pythonImportsCheck = nix.thunk(() => ["pytest_relaxed"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://pytest-relaxed.readthedocs.io/",
         description: "Relaxed test discovery/organization for pytest",
         changelog: nix.thunk(() => nix.str`https://github.com/bitprophet/pytest-relaxed/blob/${version}/docs/changelog.rst`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

@@ -2,30 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/opensnitch.nix", [[["maintainers", 17, 5]], [["allowedTCPPorts", 25, 27]], [["firewall", 25, 18]], [["extraConfig", 28, 34]], [["localhost", 28, 22]], [["enable", 27, 9], ["virtualHosts", 28, 9]], [["caddy", 26, 16]], [["networking", 25, 7], ["services", 26, 7]], [["server", 24, 5]], [["DefaultAction", 40, 20], ["ProcMonitorMethod", 41, 20], ["LogLevel", 42, 20]], [["enable", 39, 11], ["settings", 40, 11]], [["opensnitch", 38, 18]], [["services", 38, 9]], [["DefaultAction", 53, 20], ["ProcMonitorMethod", 54, 20], ["LogLevel", 55, 20]], [["type", 67, 21], ["sensitive", 68, 21], ["operand", 69, 21], ["data", 70, 21]], [["type", 74, 21], ["sensitive", 75, 21], ["operand", 76, 21], ["data", 77, 21]], [["type", 63, 17], ["operand", 64, 17], ["list", 65, 17]], [["name", 58, 15], ["enabled", 59, 15], ["action", 60, 15], ["duration", 61, 15], ["operator", 62, 15]], [["curl", 57, 13]], [["enable", 52, 11], ["settings", 53, 11], ["rules", 56, 11]], [["opensnitch", 51, 18]], [["services", 51, 9]], [["name", 14, 3], ["meta", 16, 3], ["nodes", 23, 3], ["testScript", 88, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/opensnitch.nix", [["maintainers", 17, 5]]);
-const pos$2 = nix.positions(here + "/opensnitch.nix", [["allowedTCPPorts", 25, 27]]);
-const pos$3 = nix.positions(here + "/opensnitch.nix", [["firewall", 25, 18]]);
-const pos$4 = nix.positions(here + "/opensnitch.nix", [["extraConfig", 28, 34]]);
-const pos$5 = nix.positions(here + "/opensnitch.nix", [["localhost", 28, 22]]);
-const pos$6 = nix.positions(here + "/opensnitch.nix", [["enable", 27, 9], ["virtualHosts", 28, 9]]);
-const pos$7 = nix.positions(here + "/opensnitch.nix", [["caddy", 26, 16]]);
-const pos$8 = nix.positions(here + "/opensnitch.nix", [["networking", 25, 7], ["services", 26, 7]]);
-const pos$9 = nix.positions(here + "/opensnitch.nix", [["server", 24, 5]]);
-const pos$10 = nix.positions(here + "/opensnitch.nix", [["DefaultAction", 40, 20], ["ProcMonitorMethod", 41, 20], ["LogLevel", 42, 20]]);
-const pos$11 = nix.positions(here + "/opensnitch.nix", [["enable", 39, 11], ["settings", 40, 11]]);
-const pos$12 = nix.positions(here + "/opensnitch.nix", [["opensnitch", 38, 18]]);
-const pos$13 = nix.positions(here + "/opensnitch.nix", [["services", 38, 9]]);
-const pos$14 = nix.positions(here + "/opensnitch.nix", [["DefaultAction", 53, 20], ["ProcMonitorMethod", 54, 20], ["LogLevel", 55, 20]]);
-const pos$15 = nix.positions(here + "/opensnitch.nix", [["type", 67, 21], ["sensitive", 68, 21], ["operand", 69, 21], ["data", 70, 21]]);
-const pos$16 = nix.positions(here + "/opensnitch.nix", [["type", 74, 21], ["sensitive", 75, 21], ["operand", 76, 21], ["data", 77, 21]]);
-const pos$17 = nix.positions(here + "/opensnitch.nix", [["type", 63, 17], ["operand", 64, 17], ["list", 65, 17]]);
-const pos$18 = nix.positions(here + "/opensnitch.nix", [["name", 58, 15], ["enabled", 59, 15], ["action", 60, 15], ["duration", 61, 15], ["operator", 62, 15]]);
-const pos$19 = nix.positions(here + "/opensnitch.nix", [["curl", 57, 13]]);
-const pos$20 = nix.positions(here + "/opensnitch.nix", [["enable", 52, 11], ["settings", 53, 11], ["rules", 56, 11]]);
-const pos$21 = nix.positions(here + "/opensnitch.nix", [["opensnitch", 51, 18]]);
-const pos$22 = nix.positions(here + "/opensnitch.nix", [["services", 51, 9]]);
-const pos$23 = nix.positions(here + "/opensnitch.nix", [["name", 14, 3], ["meta", 16, 3], ["nodes", 23, 3], ["testScript", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const test_ebpf = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86"));
   const monitorMethods = nix.thunk(() => nix.concat(["proc", "ftrace", "audit"], nix.app(nix.sel(lib, "optional"), test_ebpf, "ebpf")));
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: "opensnitch",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "onny")),
           nix.thunk(() => nix.lookup(w, "grimmauld")),
@@ -47,65 +25,75 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => nix.update({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [80n]) })),
+          [nix.POS]: $pos[2],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], allowedTCPPorts: nix.thunk(() => [80n]) })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           caddy: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             enable: true,
             virtualHosts: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              localhost: nix.thunk(() => ({ [nix.POS]: pos$4, extraConfig: "respond \"Hello, world!\"\n" })),
+              [nix.POS]: $pos[4],
+              localhost: nix.thunk(() => ({ [nix.POS]: $pos[3], extraConfig: "respond \"Hello, world!\"\n" })),
             })),
           })),
         })),
       })),
     }, nix.update(nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((m) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`client_blocked_${m}`), nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               opensnitch: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 enable: true,
-                settings: nix.thunk(() => ({ [nix.POS]: pos$10, DefaultAction: "deny", ProcMonitorMethod: m, LogLevel: 1n })),
+                settings: nix.thunk(() => ({
+                  [nix.POS]: $pos[9],
+                  DefaultAction: "deny",
+                  ProcMonitorMethod: m,
+                  LogLevel: 1n,
+                })),
               })),
             })),
           }))), monitorMethods))), nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((m) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`client_allowed_${m}`), nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               opensnitch: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 enable: true,
-                settings: nix.thunk(() => ({ [nix.POS]: pos$14, DefaultAction: "deny", ProcMonitorMethod: m, LogLevel: 1n })),
+                settings: nix.thunk(() => ({
+                  [nix.POS]: $pos[13],
+                  DefaultAction: "deny",
+                  ProcMonitorMethod: m,
+                  LogLevel: 1n,
+                })),
                 rules: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   curl: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
+                    [nix.POS]: $pos[17],
                     name: "curl",
                     enabled: true,
                     action: "allow",
                     duration: "always",
                     operator: nix.thunk(() => ({
-                      [nix.POS]: pos$17,
+                      [nix.POS]: $pos[16],
                       type: "list",
                       operand: "list",
                       list: nix.thunk(() => [
                         nix.thunk(() => ({
-                          [nix.POS]: pos$15,
+                          [nix.POS]: $pos[14],
                           type: "simple",
                           sensitive: false,
                           operand: "process.path",
                           data: nix.thunk(() => nix.str`${nix.sel(pkgs, "curl")}/bin/curl`),
                         })),
                         nix.thunk(() => ({
-                          [nix.POS]: pos$16,
+                          [nix.POS]: $pos[15],
                           type: "network",
                           sensitive: false,
                           operand: "dest.network",

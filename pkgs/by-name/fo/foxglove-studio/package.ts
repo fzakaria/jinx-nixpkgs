@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["updateScript", 65, 12]], [["name", 69, 7], ["desktopName", 70, 7], ["comment", 71, 7], ["exec", 72, 7], ["icon", 73, 7], ["categories", 74, 7], ["mimeTypes", 75, 7]], [["changelog", 84, 5], ["description", 85, 5], ["downloadPage", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5], ["hydraPlatforms", 91, 5], ["sourceProvenance", 92, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["installPhase", 50, 3], ["preFixup", 63, 3], ["passthru", 65, 3], ["desktopItems", 67, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, dpkg: false, autoPatchelfHook: false, makeDesktopItem: false, makeWrapper: false, copyDesktopItems: false, "alsa-lib": false, "at-spi2-core": false, gtk3: false, libGL: false, libappindicator: false, libdrm: false, libgbm: false, libnotify: false, libxcb: false, nss: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 69, 7], ["desktopName", 70, 7], ["comment", 71, 7], ["exec", 72, 7], ["icon", 73, 7], ["categories", 74, 7], ["mimeTypes", 75, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 84, 5], ["description", 85, 5], ["downloadPage", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5], ["hydraPlatforms", 91, 5], ["sourceProvenance", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["installPhase", 50, 3], ["preFixup", 63, 3], ["passthru", 65, 3], ["desktopItems", 67, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const nss = nix.arg($, "nss");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "foxglove-studio",
       version: "2.56.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://get.foxglove.dev/desktop/v${nix.sel(finalAttrs, "version")}/foxglove-studio-${nix.sel(finalAttrs, "version")}-linux-amd64.deb`),
           hash: "sha256-s9wuCwkq9SRJu7iqpM2ribOOTF5oS42rVUNQXlNWzUU=",
         })))),
@@ -53,10 +49,10 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\nmkdir -p $out/{bin,opt,share}\n\ncp -r opt/Foxglove $out/opt/\ncp -r usr/share/icons $out/share/\ncp -r usr/share/mime $out/share/\n\nln -s \"$out/opt/Foxglove/foxglove-studio\" $out/bin/foxglove-studio\n\nrunHook postInstall\n",
       preFixup: "patchelf --add-needed libGL.so.1 --add-needed libEGL.so.1 $out/opt/Foxglove/foxglove-studio",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "foxglove-studio",
             desktopName: "Foxglove Studio",
             comment: "Integrated robotics visualization and debugging",
@@ -67,7 +63,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://docs.foxglove.dev/changelog/foxglove/v${nix.sel(finalAttrs, "version")}`),
         description: "Visualization and observability platform for robotics",
         downloadPage: "https://foxglove.dev/download",

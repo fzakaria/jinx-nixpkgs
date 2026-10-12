@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]], [["jq", 28, 7]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 57, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 26, 3], ["build-system", 32, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 44, 3], ["enabledTestPaths", 46, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, argcomplete: false, buildPythonPackage: false, fetchPypi: false, jq: false, pytestCheckHook: false, pyyaml: false, setuptools: false, "setuptools-scm": false, replaceVars: false, tomlkit: false, xmltodict: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["jq", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 26, 3], ["build-system", 32, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 44, 3], ["enabledTestPaths", 46, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-ulhqGm8wz3BbL5IgZxLfIoHNMgKAIQ57e4Cty48lbjs=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./jq-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             jq: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), jq)}/bin/jq`),
           })))),
       ]);
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["test/test.py"]);
       const pythonImportsCheck = nix.thunk(() => ["yq"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command-line YAML/XML/TOML processor - jq wrapper for YAML, XML, TOML documents",
         homepage: "https://github.com/kislyuk/yq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "yq",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

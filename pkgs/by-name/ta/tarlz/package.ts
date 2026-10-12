@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["sha256", 29, 5]], [["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["mainProgram", 43, 5]], [["pname", 12, 3], ["version", 13, 3], ["outputs", 14, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["src", 27, 3], ["enableParallelBuilding", 32, 3], ["makeFlags", 33, 3], ["doCheck", 35, 3], ["doInstallCheck", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, lzip: false, lzlib: false, texinfo: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["mainProgram", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["outputs", 14, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["src", 27, 3], ["enableParallelBuilding", 32, 3], ["makeFlags", 33, 3], ["doCheck", 35, 3], ["doInstallCheck", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tarlz",
       version: "0.30",
       outputs: nix.thunk(() => ["out", "man", "info"]),
       nativeBuildInputs: nix.thunk(() => [lzip, texinfo, versionCheckHook]),
       buildInputs: nix.thunk(() => [lzlib]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/lzip/tarlz/tarlz-${nix.sel(finalAttrs, "version")}.tar.lz`),
           sha256: "sha256-xjOTGUE/N/xLFVsbqKWGQKf+42SYsJXTttPBPZx/KGw=",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.nongnu.org/lzip/tarlz.html",
         description: "Massively parallel combined implementation of the tar archiver and the lzip compressor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

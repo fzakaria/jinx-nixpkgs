@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["src", 23, 58], ["version", 23, 62]], [["src", 24, 59], ["version", 24, 63]], [["src", 25, 59], ["version", 25, 63]], [["src", 26, 59], ["version", 26, 63]], [["src", 27, 52], ["version", 27, 56]], [["src", 28, 57], ["version", 28, 61]], [["src", 29, 56], ["version", 29, 60]], [["src", 30, 59], ["version", 30, 63]], [["src", 33, 57], ["version", 33, 61]], [["src", 39, 13], ["strictDeps", 40, 5]], [["updateScript", 43, 12]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["version", 19, 11], ["pname", 20, 3], ["paths", 22, 3], ["pathsToLink", 36, 3], ["derivationArgs", 38, 3], ["passthru", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { buildEnv: false, callPackage: false, fetchFromGitHub: false, lib: false, unstableGitUpdater: false, enableDeno: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 23, 58], ["version", 23, 62]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 24, 59], ["version", 24, 63]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 25, 59], ["version", 25, 63]]);
-const pos$5 = nix.positions(here + "/package.nix", [["src", 26, 59], ["version", 26, 63]]);
-const pos$6 = nix.positions(here + "/package.nix", [["src", 27, 52], ["version", 27, 56]]);
-const pos$7 = nix.positions(here + "/package.nix", [["src", 28, 57], ["version", 28, 61]]);
-const pos$8 = nix.positions(here + "/package.nix", [["src", 29, 56], ["version", 29, 60]]);
-const pos$9 = nix.positions(here + "/package.nix", [["src", 30, 59], ["version", 30, 63]]);
-const pos$10 = nix.positions(here + "/package.nix", [["src", 33, 57], ["version", 33, 61]]);
-const pos$11 = nix.positions(here + "/package.nix", [["src", 39, 13], ["strictDeps", 40, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["updateScript", 43, 12]]);
-const pos$13 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["version", 19, 11], ["pname", 20, 3], ["paths", 22, 3], ["pathsToLink", 36, 3], ["derivationArgs", 38, 3], ["passthru", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,36 +15,36 @@ export default nix.lambda((args) => (() => {
   const enableDeno = nix.argOr($, "enableDeno", () => false);
   const version = "0-unstable-2026-09-30";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "flatpak",
       repo: "flatpak-builder-tools",
       rev: "74697c75b630d7330e77250fc13cb5ea688d9479",
       hash: "sha256-yr6RTFN/ypqLPzagrjljnY9dhrin+bfbgzhsz3RY9ps=",
     }))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       version: version,
       pname: "flatpak-builder-tools",
       paths: nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-cargo-generator.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version })))),
-        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-dotnet-generator.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, src: src, version: version })))),
-        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-go-get-generator.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, src: src, version: version })))),
-        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-gradle-generator.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, src: src, version: version })))),
-        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-json2yaml.nix"), nix.thunk(() => ({ [nix.POS]: pos$6, src: src, version: version })))),
-        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-node-generator.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, src: src, version: version })))),
-        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-pip-generator.nix"), nix.thunk(() => ({ [nix.POS]: pos$8, src: src, version: version })))),
-        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-poetry-generator.nix"), nix.thunk(() => ({ [nix.POS]: pos$9, src: src, version: version })))),
+        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-cargo-generator.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], src: src, version: version })))),
+        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-dotnet-generator.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], src: src, version: version })))),
+        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-go-get-generator.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], src: src, version: version })))),
+        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-gradle-generator.nix"), nix.thunk(() => ({ [nix.POS]: $pos[4], src: src, version: version })))),
+        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-json2yaml.nix"), nix.thunk(() => ({ [nix.POS]: $pos[5], src: src, version: version })))),
+        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-node-generator.nix"), nix.thunk(() => ({ [nix.POS]: $pos[6], src: src, version: version })))),
+        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-pip-generator.nix"), nix.thunk(() => ({ [nix.POS]: $pos[7], src: src, version: version })))),
+        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-poetry-generator.nix"), nix.thunk(() => ({ [nix.POS]: $pos[8], src: src, version: version })))),
       ], nix.app(nix.sel(lib, "optionals"), enableDeno, nix.thunk(() => [
-          nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-deno-generator.nix"), nix.thunk(() => ({ [nix.POS]: pos$10, src: src, version: version })))),
+          nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-deno-generator.nix"), nix.thunk(() => ({ [nix.POS]: $pos[9], src: src, version: version })))),
         ])))),
       pathsToLink: nix.thunk(() => ["/bin"]),
-      derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$11, src: src, strictDeps: true })),
+      derivationArgs: nix.thunk(() => ({ [nix.POS]: $pos[10], src: src, strictDeps: true })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         description: "Collection of community-contributed scripts to assist with building applications using Flatpak Builder",
         homepage: "https://github.com/flatpak/flatpak-builder-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["getopt", 48, 7]], [["pass", 95, 7], ["brokenExtensions", 96, 7]], [["withExtensions", 94, 5]], [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 108, 5], ["mainProgram", 109, 5], ["longDescription", 111, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["patches", 46, 3], ["postPatch", 52, 3], ["nativeBuildInputs", 61, 3], ["extraPath", 63, 3], ["postInstall", 82, 3], ["installFlags", 89, 3], ["passthru", 93, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeBinaryWrapper: false, replaceVars: false, pass: false, passage: false, age: false, unixtools: false, coreutils: false, findutils: false, gnugrep: false, gnused: false, qrencode: true, "wl-clipboard": true, git: true, xclip: true, tree: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["getopt", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pass", 95, 7], ["brokenExtensions", 96, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["withExtensions", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 108, 5], ["mainProgram", 109, 5], ["longDescription", 111, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["patches", 46, 3], ["postPatch", 52, 3], ["nativeBuildInputs", 61, 3], ["extraPath", 63, 3], ["postInstall", 82, 3], ["installFlags", 89, 3], ["passthru", 93, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,18 +35,18 @@ export default nix.lambda((args) => (() => {
     "pass-file",
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "passage",
       version: "1.7.4a2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FiloSottile",
           repo: "passage",
           rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-tGHJFzDc2K117r5EMFdKsfw/+EpdZ0qzaExt+RGI4qo=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./darwin-getopt-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, getopt: nix.thunk(() => nix.sel(unixtools, "getopt")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./darwin-getopt-path.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], getopt: nix.thunk(() => nix.sel(unixtools, "getopt")) })))),
         nix.path(here, "./set-correct-program-name-for-sleep.patch"),
       ]),
       postPatch: nix.thunk(() => nix.str`# Since we reuse the pass wrapper the extension will also live in its directory not the passage specific one
@@ -80,15 +75,15 @@ wrapProgram $out/bin/passage --prefix PATH : $extraPath --argv0 $pname
 `),
       installFlags: nix.thunk(() => ["PREFIX=$(out)", "WITH_ALLCOMP=yes"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         withExtensions: nix.thunk(() => nix.app(nix.sel(pass, "withExtensions", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pass: passage,
             brokenExtensions: extensionsNotSupportinPassage,
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Stores, retrieves, generates, and synchronizes passwords securely",
         homepage: "https://github.com/FiloSottile/passage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

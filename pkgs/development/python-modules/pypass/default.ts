@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 26], ["version", 28, 32], ["hash", 29, 5]], [["git_exec", 35, 7], ["grep_exec", 36, 7], ["gpg_exec", 37, 7], ["tree_exec", 38, 7], ["xclip_exec", 39, 7]], [["broken", 77, 5], ["description", 78, 5], ["mainProgram", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["maintainers", 83, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 33, 3], ["pythonRemoveDeps", 43, 3], ["build-system", 47, 3], ["nativeBuildInputs", 49, 3], ["dependencies", 51, 3], ["nativeCheckInputs", 57, 3], ["preCheck", 63, 3], ["disabledTests", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, click: false, colorama: false, fetchPypi: false, gitMinimal: false, gnugrep: false, gnupg: false, pbr: false, pexpect: false, pytestCheckHook: false, setuptools: false, replaceVars: false, tree: false, xclip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 26], ["version", 28, 32], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["git_exec", 35, 7], ["grep_exec", 36, 7], ["gpg_exec", 37, 7], ["tree_exec", 38, 7], ["xclip_exec", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["broken", 77, 5], ["description", 78, 5], ["mainProgram", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["maintainers", 83, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 33, 3], ["pythonRemoveDeps", 43, 3], ["build-system", 47, 3], ["nativeBuildInputs", 49, 3], ["dependencies", 51, 3], ["nativeCheckInputs", 57, 3], ["preCheck", 63, 3], ["disabledTests", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,19 +24,19 @@ export default nix.lambda((args) => (() => {
   const tree = nix.arg($, "tree");
   const xclip = nix.arg($, "xclip");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pypass",
       version: "0.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-+dAQiufpULdU26or4EKDqazQbOZjGRbhI/+ddo+spNo=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mark-executables.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             git_exec: nix.thunk(() => nix.str`${gitMinimal}/bin/git`),
             grep_exec: nix.thunk(() => nix.str`${gnugrep}/bin/grep`),
             gpg_exec: nix.thunk(() => nix.str`${gnupg}/bin/gpg2`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export HOME=$(mktemp -d)\nexport GNUPGHOME=pypass/tests/gnupg\ngit config --global user.email \"nix-builder@nixos.org\"\ngit config --global user.name \"Nix Builder\"\ngit config --global pull.ff only\nmake setup_gpg\n",
       disabledTests: nix.thunk(() => ["test_show_clip"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Password manager pass in Python",
         mainProgram: "pypass",

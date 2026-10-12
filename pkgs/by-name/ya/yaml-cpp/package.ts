@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["rev-prefix", 35, 40]], [["updateScript", 35, 12]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 23, 3], ["cmakeFlags", 27, 3], ["doCheck", 33, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false, cmake: false, static: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 35, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 35, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 23, 3], ["cmakeFlags", 27, 3], ["doCheck", 33, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const static$ = nix.argOr($, "static", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "yaml-cpp",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jbeder",
           repo: "yaml-cpp",
           tag: nix.thunk(() => nix.str`yaml-cpp-${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "yaml-cpp-" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "yaml-cpp-" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "YAML parser and emitter for C++",
         homepage: "https://github.com/jbeder/yaml-cpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 40, 3], ["disabledTestPaths", 42, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, attrs: false, buildPythonPackage: false, fetchFromGitHub: false, "python-dateutil": false, pytestCheckHook: false, requests: false, "requests-mock": false, setuptools: false, "sphinx-rtd-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 40, 3], ["disabledTestPaths", 42, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const sphinx_rtd_theme = nix.arg($, "sphinx-rtd-theme");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "py-tes",
       version: "1.1.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ohsu-comp-bio",
           repo: "py-tes",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["tes"]),
       disabledTestPaths: nix.thunk(() => ["tests/integration"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python SDK for the GA4GH Task Execution API",
         homepage: "https://github.com/ohsu-comp-bio/py-tes",
         changelog: nix.thunk(() => nix.str`https://github.com/ohsu-comp-bio/py-tes/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

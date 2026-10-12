@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 7, 5], ["sha256", 8, 5]], [["version", 4, 3], ["git-version", 5, 3], ["src", 6, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 7, 5], ["sha256", 8, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 4, 3], ["git-version", 5, 3], ["src", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +13,11 @@ export default nix.lambda((args) => (() => {
       const version = "4.9.5";
       const git_version = nix.thunk(() => nix.str`v${version}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gambitscheme.org/4.9.5/gambit-v4_9_5.tgz",
           sha256: "sha256-4o74218OexFZcgwVAFPcq498TK4fDlyDiUR5cHP4wdw=",
         }))));
-      return { [nix.POS]: pos$2, version, "git-version": git_version, src };
+      return { [nix.POS]: $pos[1], version, "git-version": git_version, src };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

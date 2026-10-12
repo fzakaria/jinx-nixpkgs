@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/combine-deps.nix", [[["pname", 30, 7], ["version", 31, 25], ["url", 32, 7], ["sha256", 33, 7]]]);
 const formals$1 = { args: { list: false, baseRid: false, otherRids: false, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/combine-deps.nix", [["pname", 30, 7], ["version", 31, 25], ["url", 32, 7], ["sha256", 33, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.attr(package$, "version"));
       const url = nix.thunk(() => nix.app(replace, nix.thunk(() => nix.sel(package$, "url"))));
       const sha256 = nix.thunk(() => nix.builtins.hashFile("sha256", nix.thunk(() => nix.builtins.fetchurl(url))));
-      return { [nix.POS]: pos$1, pname, version, url, sha256 };
+      return { [nix.POS]: $pos[0], pname, version, url, sha256 };
     })();
   })();
   const expandPackage = (package$) => nix.concat([package$], nix.app(optionals, nix.thunk(() => !nix.eq(nix.app(nix.sel(strings, "match"), nix.thunk(() => nix.str`.*\\.${baseRid}(\\..*|$)`), nix.thunk(() => nix.sel(package$, "pname"))), null)), nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(changePackageRid, package$)), otherRids))));

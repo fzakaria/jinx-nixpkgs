@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 20, 26], ["pname", 21, 5], ["hash", 22, 5]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 53, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["build-system", 25, 3], ["buildInputs", 27, 3], ["dependencies", 31, 3], ["pythonImportsCheck", 38, 3], ["nativeCheckInputs", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, propagateRns: true, qrcode: false, rns: false, setuptools: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 20, 26], ["pname", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["build-system", 25, 3], ["buildInputs", 27, 3], ["dependencies", 31, 3], ["pythonImportsCheck", 38, 3], ["nativeCheckInputs", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lxmf",
       version: "1.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "lxmf",
           hash: "sha256-8UJDKDuQrQY1YHHZA5Q1dkCSQgH5yZLc3+y8I2FPswk=",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["LXMF"]),
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), propagateRns, nix.thunk(() => [versionCheckHook]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight Extensible Message Format for Reticulum",
         homepage: "https://github.com/markqvist/lxmf",
         changelog: nix.thunk(() => nix.str`https://github.com/markqvist/LXMF/releases/tag/${nix.sel(finalAttrs, "version")}`),

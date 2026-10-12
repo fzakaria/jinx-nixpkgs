@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hash", 15, 17]], [["hash", 16, 17]], [["hash", 17, 17]], [["1.7", 15, 11], ["1.8", 16, 11], ["1.9", 17, 11]], [["case", 22, 35], ["out", 22, 40]], [["homepage", 37, 5], ["description", 38, 5], ["maintainers", 39, 5], ["license", 43, 5]], [["pname", 11, 3], ["releaseRev", 13, 3], ["release", 15, 3], ["version", 19, 11], ["defaultVersion", 20, 3], ["propagatedBuildInputs", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, "mathcomp-boot": false, stdlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hash", 15, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 16, 17]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 17, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["1.7", 15, 11], ["1.8", 16, 11], ["1.9", 17, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["case", 22, 35], ["out", 22, 40]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["description", 38, 5], ["maintainers", 39, 5], ["license", 43, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["releaseRev", 13, 3], ["release", 15, 3], ["version", 19, 11], ["defaultVersion", 20, 3], ["propagatedBuildInputs", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,27 +14,27 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "autosubst",
       releaseRev: (v) => nix.str`v${v}`,
       release: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "1.7": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256-qoyteQ5W2Noxf12uACOVeHhPLvgmTzrvEo6Ts+FKTGI=",
         })),
         "1.8": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-n0lD8D+tjqkDDjFiE4CggxczOPS5TkEnxpB3zEwWZ2I=",
         })),
         "1.9": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-XiLZjMc+1iwRGOstfLm/WQRF6FTdX6oJr5urn3wmLlA=",
         })),
       })),
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$5, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[4], case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.14", "9.1")), "1.9")),
@@ -50,7 +44,7 @@ export default nix.lambda((args) => (() => {
       })()),
       propagatedBuildInputs: nix.thunk(() => [mathcomp_boot, stdlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://www.ps.uni-saarland.de/autosubst/",
         description: "Automation for de Bruijn syntax and substitution in Coq",
         maintainers: nix.thunk(() => (() => {

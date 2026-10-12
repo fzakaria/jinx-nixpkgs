@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 79, 5], ["license", 80, 5], ["platforms", 81, 5]], [["pname", 18, 3], ["cmakeFlags", 20, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 45, 3], ["nativeBuildInputs", 49, 3], ["postPatch", 58, 3], ["preConfigure", 63, 3], ["strictDeps", 67, 3], ["postInstall", 73, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, "bc-soci": false, belcard: false, "belle-sip": false, doxygen: false, jsoncpp: false, libxml2: false, lime: false, mediastreamer2: false, python3: false, sqlite: false, xercesc: false, "bc-zxing-cpp": false, mkLinphoneDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 79, 5], ["license", 80, 5], ["platforms", 81, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["cmakeFlags", 20, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 45, 3], ["nativeBuildInputs", 49, 3], ["postPatch", 58, 3], ["preConfigure", 63, 3], ["strictDeps", 67, 3], ["postInstall", 73, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const bc_zxing_cpp = nix.arg($, "bc-zxing-cpp");
   const mkLinphoneDerivation = nix.arg($, "mkLinphoneDerivation");
   return nix.app(mkLinphoneDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "liblinphone",
       cmakeFlags: nix.thunk(() => ["-DENABLE_UNIT_TESTS=NO", "-DENABLE_STRICT=NO", "-DJsonCPP_TARGET=jsoncpp"]),
       buildInputs: nix.thunk(() => [
@@ -53,7 +52,7 @@ export default nix.lambda((args) => (() => {
 ln -s ${belcard}/share/belr/grammars/* $out/share/belr/grammars/
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Library for SIP calls and instant messaging",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

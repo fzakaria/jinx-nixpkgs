@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["dynamodb", 55, 5], ["mongodb", 59, 5], ["redis", 60, 5], ["security", 61, 5], ["yaml", 62, 5], ["all", 63, 5]], [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["optional-dependencies", 54, 3], ["nativeCheckInputs", 70, 3], ["preCheck", 82, 3], ["enabledTestPaths", 86, 3], ["disabledTests", 91, 3], ["pythonImportsCheck", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, attrs: false, buildPythonPackage: false, hatchling: false, boto3: false, botocore: false, cattrs: false, fetchFromGitHub: false, itsdangerous: false, platformdirs: false, psutil: false, pymongo: false, pytestCheckHook: false, "pytest-rerunfailures": false, "pytest-xdist": false, pyyaml: false, redis: false, requests: false, "requests-mock": false, responses: false, rich: false, tenacity: false, "time-machine": false, ujson: false, orjson: false, urllib3: false, "url-normalize": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dynamodb", 55, 5], ["mongodb", 59, 5], ["redis", 60, 5], ["security", 61, 5], ["yaml", 62, 5], ["all", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["optional-dependencies", 54, 3], ["nativeCheckInputs", 70, 3], ["preCheck", 82, 3], ["enabledTestPaths", 86, 3], ["disabledTests", 91, 3], ["pythonImportsCheck", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const urllib3 = nix.arg($, "urllib3");
   const url_normalize = nix.arg($, "url-normalize");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "requests-cache",
       version: "1.3.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "requests-cache",
           repo: "requests-cache",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [attrs, cattrs, platformdirs, requests, urllib3, url_normalize]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         dynamodb: nix.thunk(() => [boto3, botocore]),
         mongodb: nix.thunk(() => [pymongo]),
         redis: nix.thunk(() => [redis]),
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_request_only_if_cached__stale_if_error__expired"]),
       pythonImportsCheck: nix.thunk(() => ["requests_cache"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Persistent cache for requests library",
         homepage: "https://github.com/reclosedev/requests-cache",
         changelog: nix.thunk(() => nix.str`https://github.com/requests-cache/requests-cache/blob/v${nix.sel(finalAttrs, "version")}/HISTORY.md`),

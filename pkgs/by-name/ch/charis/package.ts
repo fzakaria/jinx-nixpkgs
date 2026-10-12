@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["homepage", 27, 5], ["description", 28, 5], ["longDescription", 29, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["longDescription", 29, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "charis",
       version: "7.000",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://software.sil.org/downloads/r/charis/Charis-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-cVz0U2PAIl8FqT/HhvDNoWg3SCwKQ1e7rdk+dkP1Cc8=",
         })))),
@@ -30,7 +28,7 @@ install -D --mode 444 --target-directory $out/share/doc/charis-${nix.sel(finalAt
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://software.sil.org/charis",
         description: "Family of highly readable fonts for broad multilingual use",
         longDescription: "This Charis font is essentially the same design as the SIL Charis font\nfirst released by SIL in 1997. Charis is similar to Bitstream Charter,\none of the first fonts designed specifically for laser printers. It is\nhighly readable and holds up well in less-than-ideal reproduction\nenvironments. It also has a full set of styles – regular, italic, bold,\nbold italic. Charis is a serif, proportionally-spaced font optimized for\nreadability in long printed documents.\n\nThe goal for this product was to provide a single Unicode-based font\nfamily that would contain a comprehensive inventory of glyphs needed for\nalmost any Roman- or Cyrillic-based writing system, whether used for\nphonetic or orthographic needs. In addition, there is provision for other\ncharacters and symbols useful to linguists. This font makes use of\nstate-of-the-art font technologies to support complex typographic issues,\nsuch as the need to position arbitrary combinations of base glyphs and\ndiacritics optimally.\n",

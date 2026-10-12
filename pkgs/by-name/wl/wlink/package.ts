@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 19, 26], ["version", 19, 32], ["hash", 20, 5]], [["updateScript", 39, 5]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["platforms", 50, 5], ["broken", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["doInstallCheck", 35, 3], ["nativeInstallCheckInputs", 36, 3], ["passthru", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, rustPlatform: false, fetchCrate: false, "pkg-config": false, libusb1: false, udev: false, "nix-update-script": false, versionCheckHook: false, darwin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 19, 26], ["version", 19, 32], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["platforms", 50, 5], ["broken", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["doInstallCheck", 35, 3], ["nativeInstallCheckInputs", 36, 3], ["passthru", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const darwin = nix.arg($, "darwin");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wlink",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-kxjUDh+A4X+jddgBfrJSaVRjxo805EvJHaASElv8yKc=",
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "WCH-Link flash tool for WCH's RISC-V MCUs(CH32V, CH56X, CH57X, CH58X, CH59X, CH32L103, CH32X035, CH641, CH643)",
         homepage: "https://github.com/ch32-rs/wlink",
         changelog: nix.thunk(() => nix.str`https://github.com/ch32-rs/wlink/releases/tag/v${nix.sel(finalAttrs, "version")}`),

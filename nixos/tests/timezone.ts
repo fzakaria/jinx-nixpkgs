@@ -2,41 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/timezone.nix", [[["maintainers", 4, 8]], [["timeZone", 10, 14]], [["time", 10, 9]], [["timeZone", 16, 14]], [["time", 16, 9]], [["node_eutz", 7, 5], ["node_nulltz", 13, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 20, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/timezone.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/timezone.nix", [["timeZone", 10, 14]]);
-const pos$3 = nix.positions(here + "/timezone.nix", [["time", 10, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/timezone.nix", [["timeZone", 16, 14]]);
-const pos$5 = nix.positions(here + "/timezone.nix", [["time", 16, 9]]);
-const pos$6 = nix.positions(here + "/timezone.nix", [["node_eutz", 7, 5], ["node_nulltz", 13, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/timezone.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "timezone",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       node_eutz: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$3,
-          time: nix.thunk(() => ({ [nix.POS]: pos$2, timeZone: "Europe/Amsterdam" })),
+          [nix.POS]: $pos[2],
+          time: nix.thunk(() => ({ [nix.POS]: $pos[1], timeZone: "Europe/Amsterdam" })),
         };
       })(), formals$2),
       node_nulltz: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
-          time: nix.thunk(() => ({ [nix.POS]: pos$4, timeZone: null })),
+          [nix.POS]: $pos[4],
+          time: nix.thunk(() => ({ [nix.POS]: $pos[3], timeZone: null })),
         };
       })(), formals$3),
     })),

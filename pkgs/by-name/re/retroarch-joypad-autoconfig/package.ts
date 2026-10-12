@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["rev-prefix", 24, 5]], [["updateScript", 23, 12]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["teams", 31, 5], ["platforms", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["makeFlags", 19, 3], ["passthru", 23, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 23, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["teams", 31, 5], ["platforms", 32, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["makeFlags", 19, 3], ["passthru", 23, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "retroarch-joypad-autoconfig";
       const version = "1.22.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "retroarch-joypad-autoconfig",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,18 +23,18 @@ export default nix.lambda((args) => (() => {
         }))));
       const makeFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Joypad autoconfig files",
         homepage: "https://www.libretro.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "libretro"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { [nix.POS]: pos$5, pname, version, src, makeFlags, passthru, meta };
+      return { [nix.POS]: $pos[4], pname, version, src, makeFlags, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

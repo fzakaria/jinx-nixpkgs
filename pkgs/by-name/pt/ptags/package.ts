@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 36, 5], ["mainProgram", 37, 5], ["homepage", 38, 5], ["maintainers", 39, 5], ["license", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["nativeBuildInputs", 22, 3], ["postInstall", 24, 3], ["checkPhase", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, ctags: false, lib: false, makeWrapper: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["mainProgram", 37, 5], ["homepage", 38, 5], ["maintainers", 39, 5], ["license", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["nativeBuildInputs", 22, 3], ["postInstall", 24, 3], ["checkPhase", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ptags",
       version: "0.3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dalance",
           repo: "ptags",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +31,7 @@ wrapProgram "$out/bin/ptags" \\
 `),
       checkPhase: "$releaseDir/ptags --help > /dev/null\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Parallel universal-ctags wrapper for git repository",
         mainProgram: "ptags",
         homepage: "https://github.com/dalance/ptags",

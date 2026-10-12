@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["GIT_PAGER", 80, 7]], [["extraArgs", 119, 7]], [["package", 125, 7]], [["version", 124, 11]], [["updateScript", 118, 5], ["tests", 124, 5]], [["description", 130, 5], ["longDescription", 131, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 138, 5], ["maintainers", 142, 5], ["mainProgram", 146, 5], ["platforms", 147, 5]], [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["cargoHash", 36, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["buildNoDefaultFeatures", 57, 3], ["buildFeatures", 58, 3], ["cargoBuildFlags", 63, 3], ["checkNoDefaultFeatures", 68, 3], ["checkFeatures", 69, 3], ["cargoTestFlags", 70, 3], ["nativeCheckInputs", 75, 3], ["env", 80, 3], ["dontUseCargoParallelTests", 81, 3], ["postInstall", 83, 3], ["postFixup", 94, 3], ["doInstallCheck", 113, 3], ["nativeInstallCheckInputs", 114, 3], ["versionCheckProgramArg", 115, 3], ["passthru", 117, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, "desktop-file-utils": false, fontconfig: false, freetype: false, zlib: false, libxcb: false, libxkbcommon: false, libGL: false, "vulkan-loader": false, wayland: false, git: false, "xdg-utils": false, makeBinaryWrapper: false, writableTmpDirAsHomeHook: false, testers: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GIT_PAGER", 80, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 119, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 125, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 124, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 118, 5], ["tests", 124, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 130, 5], ["longDescription", 131, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 138, 5], ["maintainers", 142, 5], ["mainProgram", 146, 5], ["platforms", 147, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["cargoHash", 36, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["buildNoDefaultFeatures", 57, 3], ["buildFeatures", 58, 3], ["cargoBuildFlags", 63, 3], ["checkNoDefaultFeatures", 68, 3], ["checkFeatures", 69, 3], ["cargoTestFlags", 70, 3], ["nativeCheckInputs", 75, 3], ["env", 80, 3], ["dontUseCargoParallelTests", 81, 3], ["postInstall", 83, 3], ["postFixup", 94, 3], ["doInstallCheck", 113, 3], ["nativeInstallCheckInputs", 114, 3], ["versionCheckProgramArg", 115, 3], ["passthru", 117, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "gitcomet",
       version: "0.2.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Auto-Explore",
           repo: "GitComet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +50,7 @@ export default nix.lambda((args) => (() => {
       checkFeatures: nix.thunk(() => ["gix"]),
       cargoTestFlags: nix.thunk(() => ["--workspace", "--exclude=gitcomet-ui-gpui"]),
       nativeCheckInputs: nix.thunk(() => [git, writableTmpDirAsHomeHook]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GIT_PAGER: "cat" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], GIT_PAGER: "cat" })),
       dontUseCargoParallelTests: true,
       postInstall: "install -Dm644 assets/linux/gitcomet.desktop \\\n  $out/share/applications/gitcomet.desktop\ndesktop-file-validate $out/share/applications/gitcomet.desktop\n\nfor size in 32 48 128 256 512; do\n  install -Dm644 \"assets/linux/hicolor/${size}x${size}/apps/gitcomet.png\" \\\n    \"$out/share/icons/hicolor/${size}x${size}/apps/gitcomet.png\"\ndone\n",
       postFixup: nix.thunk(() => nix.str`patchelf $out/bin/gitcomet --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, vulkan_loader, wayland]))}
@@ -70,21 +63,21 @@ wrapProgram $out/bin/gitcomet \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex=^v([0-9]+[.][0-9]+[.][0-9]+)$", "--use-github-releases"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Fast, resource-efficient Git GUI written in Rust",
         longDescription: "GitComet is a Git graphical client built with Rust and the gpui\ntoolkit, using gix as its Git implementation.\n",
         homepage: "https://gitcomet.dev",

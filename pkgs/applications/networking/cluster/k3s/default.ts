@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["k3s_1_34", 15, 3], ["k3s_1_35", 16, 3], ["k3s_1_36", 17, 3], ["k3s_1_37", 18, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["k3s_1_34", 15, 3], ["k3s_1_35", 16, 3], ["k3s_1_36", 17, 3], ["k3s_1_37", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const forVersions = (versions) => nix.app(callPackage, nix.thunk(() => nix.app(k3s_builder, nix.thunk(() => nix.builtins.import(versions)))), extraArgs);
   const extraArgs = nix.thunk(() => nix.builtins.removeAttrs(args_1, nix.thunk(() => ["callPackage"])));
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     k3s_1_34: nix.thunk(() => nix.app(forVersions, nix.path(here, "./1_34/versions.nix"))),
     k3s_1_35: nix.thunk(() => nix.app(forVersions, nix.path(here, "./1_35/versions.nix"))),
     k3s_1_36: nix.thunk(() => nix.app(forVersions, nix.path(here, "./1_36/versions.nix"))),

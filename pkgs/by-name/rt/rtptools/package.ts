@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 10, 5], ["sha256", 11, 5]], [["description", 14, 5], ["homepage", 15, 5], ["maintainers", 16, 5], ["platforms", 17, 5], ["license", 18, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 10, 5], ["sha256", 11, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 14, 5], ["homepage", 15, 5], ["maintainers", 16, 5], ["platforms", 17, 5], ["license", 18, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,16 +11,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rtptools",
       version: "1.22",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.cs.columbia.edu/irt/software/rtptools/download/rtptools-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0a4c0vmhxibfc58rrxpbav2bsk546chkg50ir4h3i57v4fjb4xic",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Number of small applications that can be used for processing RTP data",
         homepage: "https://www.cs.columbia.edu/irt/software/rtptools/",
         maintainers: [],

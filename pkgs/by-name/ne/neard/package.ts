@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["changelog", 78, 5], ["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 25, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 36, 3], ["dontWrapGApps", 45, 3], ["configureFlags", 47, 3], ["buildInputs", 55, 3], ["strictDeps", 61, 3], ["enableParallelBuilding", 63, 3], ["pythonPath", 65, 3], ["doCheck", 70, 3], ["preFixup", 72, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, autoreconfHook: false, "autoconf-archive": false, "gobject-introspection": false, "pkg-config": false, wrapGAppsHook3: false, glib: false, dbus: false, libnl: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 78, 5], ["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 25, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 36, 3], ["dontWrapGApps", 45, 3], ["configureFlags", 47, 3], ["buildInputs", 55, 3], ["strictDeps", 61, 3], ["enableParallelBuilding", 63, 3], ["pythonPath", 65, 3], ["doCheck", 70, 3], ["preFixup", 72, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const libnl = nix.arg($, "libnl");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "neard",
       version: "0.20",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linux-nfc",
           repo: "neard",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\nwrapPythonProgramsIn \"$out/lib/neard\" \"${pythonPath[*]}\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/linux-nfc/neard/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog`),
         description: "Near Field Communication manager",
         homepage: "https://01.org/linux-nfc",

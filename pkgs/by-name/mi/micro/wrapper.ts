@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["name", 11, 3], ["pname", 12, 19], ["version", 12, 25], ["outputs", 12, 33], ["nativeBuildInputs", 14, 3], ["paths", 16, 3], ["postBuild", 18, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, micro: false, makeWrapper: false, symlinkJoin: false, extraPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["name", 11, 3], ["pname", 12, 19], ["version", 12, 25], ["outputs", 12, 33], ["nativeBuildInputs", 14, 3], ["paths", 16, 3], ["postBuild", 18, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const extraPackages = nix.argOr($, "extraPackages", () => []);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`micro-wrapped-${nix.sel(micro, "version")}`),
       pname: nix.thunk(() => nix.attr(micro, "pname")),
       version: nix.thunk(() => nix.attr(micro, "version")),

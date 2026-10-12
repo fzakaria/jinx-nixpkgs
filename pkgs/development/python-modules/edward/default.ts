@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["sha256", 19, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["doCheck", 23, 3], ["propagatedBuildInputs", 25, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, keras: false, numpy: false, scipy: false, six: false, tensorflow: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["doCheck", 23, 3], ["propagatedBuildInputs", 25, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "3818b39e77c26fc1a37767a74fdd5e7d02877d75ed901ead2f40bd03baaa109f",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const propagatedBuildInputs = nix.thunk(() => [keras, numpy, scipy, six, tensorflow]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Probabilistic programming language using Tensorflow",
         homepage: "https://github.com/blei-lab/edward",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

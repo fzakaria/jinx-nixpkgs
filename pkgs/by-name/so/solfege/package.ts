@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["hash", 36, 5]], [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5], ["mainProgram", 114, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["patches", 39, 3], ["preConfigure", 46, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 69, 3], ["propagatedBuildInputs", 74, 3], ["configureFlags", 79, 3], ["preBuild", 83, 3], ["postBuild", 93, 3], ["dontWrapGApps", 97, 3], ["preFixup", 99, 3], ["enableParallelBuilding", 103, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, "alsa-utils": false, autoconf: false, automake: false, csound: false, "docbook-xsl-ns": false, fetchurl: false, "gdk-pixbuf": false, gettext: false, ghostscript: false, "gnome-doc-utils": false, "gobject-introspection": false, gtk3: false, librsvg: false, libxslt: false, lilypond: false, mpg123: false, "pkg-config": false, python3Packages: false, swig: false, texinfo: false, timidity: false, txt2man: false, "vorbis-tools": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5], ["mainProgram", 114, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["patches", 39, 3], ["preConfigure", 46, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 69, 3], ["propagatedBuildInputs", 74, 3], ["configureFlags", 79, 3], ["preBuild", 83, 3], ["postBuild", 93, 3], ["dontWrapGApps", 97, 3], ["preFixup", 99, 3], ["enableParallelBuilding", 103, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const vorbis_tools = nix.arg($, "vorbis-tools");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "solfege",
       version: "3.23.4",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://alpha.gnu.org/gnu/solfege/solfege-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-t6JJxgGk5hpN76o9snxtM07tkYnwpQ808M/8Ttw+gWk=",
         })))),
@@ -92,7 +90,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Ear training program",
         homepage: "https://www.gnu.org/software/solfege/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

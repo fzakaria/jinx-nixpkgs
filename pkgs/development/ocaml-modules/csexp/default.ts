@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["hash", 14, 5]], [["liquidsoap", 20, 13]], [["tests", 19, 12]], [["description", 24, 5], ["homepage", 25, 5], ["changelog", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["minimalOCamlVersion", 17, 3], ["passthru", 19, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, liquidsoap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["liquidsoap", 20, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 19, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 24, 5], ["homepage", 25, 5], ["changelog", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["minimalOCamlVersion", 17, 3], ["passthru", 19, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,21 +12,21 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const liquidsoap = nix.arg($, "liquidsoap");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "csexp",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ocaml-dune/csexp/releases/download/${nix.sel(finalAttrs, "version")}/csexp-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-GhTdBLtDeaQZkCSFUGKMd5E6nAfzw1wTcLaWDml3h/8=",
         })))),
       minimalOCamlVersion: "4.03",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, liquidsoap: liquidsoap })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], liquidsoap: liquidsoap })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Minimal support for Canonical S-expressions",
         homepage: "https://github.com/ocaml-dune/csexp",
         changelog: nix.thunk(() => nix.str`https://github.com/ocaml-dune/csexp/raw/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

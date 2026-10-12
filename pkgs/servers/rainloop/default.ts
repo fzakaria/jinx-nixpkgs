@@ -2,14 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 28, 9], ["sha256", 31, 9]], [["description", 69, 9], ["homepage", 70, 9], ["downloadPage", 71, 9], ["license", 72, 9], ["platforms", 73, 9], ["maintainers", 74, 9]], [["pname", 14, 7], ["version", 15, 7], ["nativeBuildInputs", 17, 7], ["unpackPhase", 22, 7], ["src", 27, 7], ["prePatch", 34, 7], ["patches", 38, 7], ["postPatch", 42, 7], ["includeScript", 46, 7], ["installPhase", 59, 7], ["meta", 68, 7]], [["edition", 80, 5], ["sha256", 81, 5]], [["edition", 84, 5], ["sha256", 85, 5]], [["rainloop-community", 79, 3], ["rainloop-standard", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, writeText: false, dos2unix: false, dataPath: true }, ellipsis: false };
 const formals$2 = { args: { edition: false, sha256: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 28, 9], ["sha256", 31, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 69, 9], ["homepage", 70, 9], ["downloadPage", 71, 9], ["license", 72, 9], ["platforms", 73, 9], ["maintainers", 74, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 7], ["version", 15, 7], ["nativeBuildInputs", 17, 7], ["unpackPhase", 22, 7], ["src", 27, 7], ["prePatch", 34, 7], ["patches", 38, 7], ["postPatch", 42, 7], ["includeScript", 46, 7], ["installPhase", 59, 7], ["meta", 68, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["edition", 80, 5], ["sha256", 81, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["edition", 84, 5], ["sha256", 85, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["rainloop-community", 79, 3], ["rainloop-standard", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +25,7 @@ export default nix.lambda((args) => (() => {
         const nativeBuildInputs = nix.thunk(() => [unzip, dos2unix]);
         const unpackPhase = "mkdir rainloop\nunzip -q -d rainloop $src\n";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/RainLoop/rainloop-webmail/releases/download/v${version}/rainloop-${edition}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(edition, "")), "-")}${version}.zip`),
             sha256: sha256,
           }))));
@@ -56,7 +51,7 @@ mkdir $out/data
 chmod 700 $out/data
 `);
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Simple, modern & fast web-based email client",
           homepage: "https://www.rainloop.net",
           downloadPage: "https://github.com/RainLoop/rainloop-webmail/releases",
@@ -68,7 +63,7 @@ chmod 700 $out/data
           maintainers: [],
         }));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname,
           version,
           nativeBuildInputs,
@@ -84,14 +79,14 @@ chmod 700 $out/data
       })()));
   })(), formals$2);
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     "rainloop-community": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         edition: "community",
         sha256: "sha256-25ScQ2OwSKAuqg8GomqDhpebhzQZjCk57h6MxUNiymc=",
       })))),
     "rainloop-standard": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         edition: "",
         sha256: "sha256-aYCwqFqhJEeakn4R0MUDGcSp+M47JbbCrbYaML8aeSs=",
       })))),

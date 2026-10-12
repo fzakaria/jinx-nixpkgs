@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 44, 3], ["disabledTests", 50, 3], ["disabledTestPaths", 55, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, numpy: false, pandas: false, packaging: false, astropy: false, pytestCheckHook: false, "pytest-doctestplus": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 44, 3], ["disabledTests", 50, 3], ["disabledTestPaths", 55, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_doctestplus = nix.arg($, "pytest-doctestplus");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "drms",
       version: "0.9.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sunpy",
           repo: "drms",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["docs/tutorial.rst"]),
       pythonImportsCheck: nix.thunk(() => ["drms"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Access HMI, AIA and MDI data with Python",
         homepage: "https://github.com/sunpy/drms",
         changelog: nix.thunk(() => nix.str`https://github.com/sunpy/drms/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

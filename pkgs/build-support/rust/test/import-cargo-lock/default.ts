@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["libraries", 24, 7], ["flakeIgnore", 28, 7]], [["replaceWorkspaceValues", 23, 5]], [["basic", 11, 3], ["basicDynamic", 12, 3], ["gitDependency", 13, 3], ["gitDependencyRev", 14, 3], ["gitDependencyRevNonWorkspaceNestedCrate", 15, 3], ["gitDependencyTag", 18, 3], ["gitDependencyBranch", 19, 3], ["maturin", 20, 3], ["v1", 21, 3], ["gitDependencyWorkspaceInheritance", 22, 3]]]);
 const formals$1 = { args: { callPackage: false, maturin: false, writers: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["libraries", 24, 7], ["flakeIgnore", 28, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["replaceWorkspaceValues", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["basic", 11, 3], ["basicDynamic", 12, 3], ["gitDependency", 13, 3], ["gitDependencyRev", 14, 3], ["gitDependencyRevNonWorkspaceNestedCrate", 15, 3], ["gitDependencyTag", 18, 3], ["gitDependencyBranch", 19, 3], ["maturin", 20, 3], ["v1", 21, 3], ["gitDependencyWorkspaceInheritance", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const writers = nix.arg($, "writers");
   const python3Packages = nix.arg($, "python3Packages");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     basic: nix.thunk(() => nix.app(callPackage, nix.path(here, "./basic"), nix.thunk(() => ({})))),
     basicDynamic: nix.thunk(() => nix.app(callPackage, nix.path(here, "./basic-dynamic"), nix.thunk(() => ({})))),
     gitDependency: nix.thunk(() => nix.app(callPackage, nix.path(here, "./git-dependency"), nix.thunk(() => ({})))),
@@ -25,9 +23,9 @@ export default nix.lambda((args) => (() => {
     maturin: nix.thunk(() => nix.sel(maturin, "tests", "pyo3")),
     v1: nix.thunk(() => nix.app(callPackage, nix.path(here, "./v1"), nix.thunk(() => ({})))),
     gitDependencyWorkspaceInheritance: nix.thunk(() => nix.app(callPackage, nix.path(here, "./git-dependency-workspace-inheritance"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         replaceWorkspaceValues: nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), "replace-workspace-values", nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             libraries: nix.thunk(() => (() => {
               const w = nix.withScope(python3Packages, null);
               return [

@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["version", 43, 7]], [["stdenv", 47, 5]], [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["RUSTFLAGS", 69, 5], ["LIBSQLITE3_SYS_USE_PKG_CONFIG", 70, 5], ["OPENSSL_NO_VENDOR", 71, 5], ["DEVENV_IS_RELEASE", 72, 5]], [["package", 169, 7], ["command", 170, 7]], [["version", 168, 5]], [["tests", 167, 12]], [["changelog", 175, 5], ["description", 176, 5], ["homepage", 177, 5], ["license", 178, 5], ["mainProgram", 179, 5], ["maintainers", 180, 5]], [["pname", 51, 3], ["version", 52, 11], ["src", 54, 3], ["cargoHash", 61, 3], ["postPatch", 63, 3], ["env", 68, 3], ["cargoBuildFlags", 75, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 93, 3], ["nativeCheckInputs", 108, 3], ["preCheck", 113, 3], ["useNextest", 123, 3], ["checkFlags", 125, 3], ["cargoTestFlags", 130, 3], ["postInstall", 135, 3], ["passthru", 167, 3], ["meta", 174, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, useMoldLinker: false, fetchFromGitHub: false, gitMinimal: false, makeBinaryWrapper: false, cmake: false, installShellFiles: false, rustPlatform: false, testers: false, cachix: false, nixVersions: false, openssl: false, dbus: false, protobuf: false, sqlite: false, "pkg-config": false, glibcLocalesUtf8: false, boehmgc: false, "libghostty-vt": false, llvmPackages: false, nixd: false, bash: false, devenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["stdenv", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 69, 5], ["LIBSQLITE3_SYS_USE_PKG_CONFIG", 70, 5], ["OPENSSL_NO_VENDOR", 71, 5], ["DEVENV_IS_RELEASE", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["package", 169, 7], ["command", 170, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 168, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 167, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["changelog", 175, 5], ["description", 176, 5], ["homepage", 177, 5], ["license", 178, 5], ["mainProgram", 179, 5], ["maintainers", 180, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 11], ["src", 54, 3], ["cargoHash", 61, 3], ["postPatch", 63, 3], ["env", 68, 3], ["cargoBuildFlags", 75, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 93, 3], ["nativeCheckInputs", 108, 3], ["preCheck", 113, 3], ["useNextest", 123, 3], ["checkFlags", 125, 3], ["cargoTestFlags", 130, 3], ["postInstall", 135, 3], ["passthru", 167, 3], ["meta", 174, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,24 +35,24 @@ export default nix.lambda((args) => (() => {
   const devenvNixVersion = "2.35";
   const devenvNixRev = "2a2ff1045ef7361212d7eac0c062534538968de6";
   const devenvNixSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`devenv-nix-${devenvNixVersion}-source`),
       owner: "cachix",
       repo: "nix",
       rev: devenvNixRev,
       hash: "sha256-1CSuPNIbGyL2JJjOVg0KU7NWst1yZ6iXGDkiN/3bY5o=",
     }))));
-  const nix_components = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(nixVersions, "nixComponents_git", "overrideSource"), devenvNixSrc), "overrideScope"), (finalScope) => (prevScope) => ({ [nix.POS]: pos$2, version: devenvNixVersion })));
+  const nix_components = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(nixVersions, "nixComponents_git", "overrideSource"), devenvNixSrc), "overrideScope"), (finalScope) => (prevScope) => ({ [nix.POS]: $pos[1], version: devenvNixVersion })));
   const buildRustPackage = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       stdenv: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.app(useMoldLinker, stdenv) : nix.force(stdenv))),
     }))));
   return nix.app(buildRustPackage, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "devenv",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "cachix",
           repo: "devenv",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -70,7 +61,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-ed2k0D5tp7tlvpqXdxr4uGJozI2gvW1Dvz1SSJDR4NI=",
       postPatch: "substituteInPlace Cargo.toml \\\n  --replace-fail '\"pkg-config\",' '\"pkg-config\", \"link-dynamic\",'\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         RUSTFLAGS: "--cfg tracing_unstable",
         LIBSQLITE3_SYS_USE_PKG_CONFIG: "1",
         OPENSSL_NO_VENDOR: "1",
@@ -133,18 +124,18 @@ installShellCompletion --cmd devenv \\
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               package: devenv,
               command: "export XDG_DATA_HOME=$PWD; devenv version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         changelog: "https://github.com/cachix/devenv/releases",
         description: "Fast, Declarative, Reproducible, and Composable Developer Environments",
         homepage: "https://github.com/cachix/devenv",

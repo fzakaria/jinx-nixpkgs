@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["url", 24, 7], ["hash", 25, 7]], [["url", 28, 7], ["hash", 29, 7]], [["url", 33, 7], ["hash", 34, 7]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5], ["broken", 54, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 42, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, json_c: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5], ["broken", 54, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 42, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const json_c = nix.arg($, "json_c");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ucode",
       version: "0.0.20250529",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jow-",
           repo: "ucode",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,17 +27,17 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/jow-/ucode/commit/4d81e6c13506599261208786cfe4ee068f346dcd.patch",
             hash: "sha256-RZhD422ue00bqam4n7jAynPDJdOzOFJnf34YbT2wH/s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/jow-/ucode/commit/a7ead3169ebf355e66b399aca1dd3a5ce29e1e5b.patch",
             hash: "sha256-sc+jSAlix1jE9Cb4MMuqI7VHG6h+zpCL7UZ84awOL6M=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/jow-/ucode/commit/beafcff845fcdbb46308ee54422661e80300079d.patch",
             hash: "sha256-JcBk8kJHDlHLRuVR2fmsSfWqVmbFZMPF16+nPp6QFf4=",
           })))),
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [json_c]),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "JavaScript-like language with optional templating",
         homepage: "https://github.com/jow-/ucode",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

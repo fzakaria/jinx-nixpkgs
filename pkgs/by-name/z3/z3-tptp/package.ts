@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["license", 31, 23], ["homepage", 31, 31], ["platforms", 31, 40], ["description", 32, 5], ["maintainers", 33, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["preConfigure", 18, 3], ["installPhase", 24, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, z3: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["license", 31, 23], ["homepage", 31, 31], ["platforms", 31, 40], ["description", 32, 5], ["maintainers", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["preConfigure", 18, 3], ["installPhase", 24, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const z3 = nix.arg($, "z3");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "z3-tptp",
       version: nix.thunk(() => nix.sel(z3, "version")),
       src: nix.thunk(() => nix.sel(z3, "src")),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(z3, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.attr(from, "license")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

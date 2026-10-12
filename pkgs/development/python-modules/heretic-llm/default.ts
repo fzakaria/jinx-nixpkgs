@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["research", 82, 5]], [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 102, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["pythonRelaxDeps", 49, 3], ["build-system", 58, 3], ["dependencies", 60, 3], ["optional-dependencies", 81, 3], ["pythonImportsCheck", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "uv-build": false, accelerate: false, bitsandbytes: false, datasets: false, "hf-transfer": false, "huggingface-hub": false, imageio: false, immutabledict: false, kernels: false, langdetect: false, "lm-eval": false, matplotlib: false, numpy: false, optuna: false, peft: false, psutil: false, "py-cpuinfo": false, "pydantic-settings": false, questionary: false, rich: false, "scikit-learn": false, "tomli-w": false, transformers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["research", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 102, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["pythonRelaxDeps", 49, 3], ["build-system", 58, 3], ["dependencies", 60, 3], ["optional-dependencies", 81, 3], ["pythonImportsCheck", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const tomli_w = nix.arg($, "tomli-w");
   const transformers = nix.arg($, "transformers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "heretic-llm",
       version: "1.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "p-e-w",
           repo: "heretic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,12 +77,12 @@ export default nix.lambda((args) => (() => {
         transformers,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         research: nix.thunk(() => [imageio, matplotlib, numpy, scikit_learn]),
       })),
       pythonImportsCheck: nix.thunk(() => ["heretic"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to remove censorship removal for language models",
         homepage: "https://github.com/p-e-w/heretic",
         changelog: nix.thunk(() => nix.str`https://github.com/p-e-w/heretic/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["description", 73, 5], ["homepage", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["license", 77, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, plib: false, libglut: false, xorgproto: false, libx11: false, libxext: false, libxi: false, libice: false, libsm: false, libxt: false, libxmu: false, libGLU: false, libGL: false, boost: false, zlib: false, libjpeg: false, freealut: false, openscenegraph: false, openal: false, expat: false, cmake: false, apr: false, xz: false, curl: false, "c-ares": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["license", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const c_ares = nix.arg($, "c-ares");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "simgear",
       version: "2024.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flightgear",
           repo: "simgear",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -75,7 +73,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       propagatedBuildInputs: nix.thunk(() => [c_ares]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simulation construction toolkit",
         homepage: "https://wiki.flightgear.org/SimGear",
         maintainers: nix.thunk(() => (() => {

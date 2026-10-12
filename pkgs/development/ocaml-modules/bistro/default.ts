@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["homepage", 47, 35], ["description", 48, 5], ["maintainers", 49, 5], ["license", 50, 5], ["broken", 51, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["propagatedBuildInputs", 30, 3], ["minimalOCamlVersion", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDunePackage: false, base64: false, bos: false, core: false, core_kernel: false, core_unix: true, lwt_react: false, ocamlgraph: false, ppx_sexp_conv: false, rresult: false, sexplib: false, tyxml: false, ppxlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 47, 35], ["description", 48, 5], ["maintainers", 49, 5], ["license", 50, 5], ["broken", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["propagatedBuildInputs", 30, 3], ["minimalOCamlVersion", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const tyxml = nix.arg($, "tyxml");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bistro",
       version: "unstable-2024-05-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pveber",
           repo: "bistro",
           rev: "d44c44b52148e58ca3842c3efedf3115e376d800",
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Build and execute typed scientific workflows",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

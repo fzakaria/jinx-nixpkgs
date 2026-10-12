@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 17, 11], ["version", 17, 17], ["format", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 25, 3], ["doCheck", 34, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, torch: false, torchvision: false, timm: false, pycocotools: false, omegaconf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 11], ["version", 17, 17], ["format", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 25, 3], ["doCheck", 34, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pname = "effdet";
   const version = "0.4.1";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-rFWJ/TBKVlDCAZhrLvX44QwREJOnGxxJ+muIF3EIErU=",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["effdet"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PyTorch implementation of EfficientDet",
         homepage: "https://pypi.org/project/effdet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

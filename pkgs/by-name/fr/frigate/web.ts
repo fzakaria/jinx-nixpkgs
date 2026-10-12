@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/web.nix", [[["pname", 9, 3], ["version", 10, 11], ["src", 10, 19], ["sourceRoot", 12, 3], ["postPatch", 14, 3], ["npmDepsHash", 34, 3], ["installPhase", 36, 3], ["meta", 40, 21]]]);
 const formals$1 = { args: { buildNpmPackage: false, frigate: false, src: false, version: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/web.nix", [["pname", 9, 3], ["version", 10, 11], ["src", 10, 19], ["sourceRoot", 12, 3], ["postPatch", 14, 3], ["npmDepsHash", 34, 3], ["installPhase", 36, 3], ["meta", 40, 21]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const version = nix.arg($, "version");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "frigate-web",
       version: version,
       src: src,

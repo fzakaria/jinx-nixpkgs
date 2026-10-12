@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 48, 9], ["version", 49, 9], ["src", 50, 9], ["meta", 51, 9], ["strictDeps", 54, 7], ["depsBuildBuild", 56, 7], ["nativeBuildInputs", 58, 7], ["configureFlags", 72, 7], ["buildInputs", 85, 7], ["pythonPath", 96, 7], ["preConfigure", 101, 7], ["dontWrapGApps", 103, 7], ["preFixup", 105, 7], ["postFixup", 109, 7], ["postInstall", 116, 7], ["enableParallelBuilding", 132, 7]], [["owner", 141, 7], ["repo", 142, 7], ["rev", 143, 7], ["sha256", 144, 7]], [["description", 148, 7], ["longDescription", 149, 7], ["license", 157, 7], ["homepage", 158, 7], ["platforms", 159, 7], ["mainProgram", 160, 7], ["maintainers", 161, 7]], [["pname", 137, 5], ["version", 138, 5], ["src", 140, 5], ["meta", 147, 5]], [["owner", 170, 7], ["repo", 171, 7], ["rev", 172, 7], ["hash", 173, 7]], [["longDescription", 177, 7], ["homepage", 178, 7], ["mainProgram", 179, 7], ["maintainers", 180, 7]], [["pname", 166, 5], ["version", 167, 5], ["src", 169, 5], ["meta", 176, 5]], [["redshift", 136, 3], ["gammastep", 165, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchFromGitLab: false, autoconf: false, automake: false, gettext: false, intltool: false, libtool: false, "pkg-config": false, wrapGAppsHook3: false, wrapPython: false, "gobject-introspection": false, "wayland-scanner": false, gtk3: false, python: false, pygobject3: false, pyxdg: false, withQuartz: true, withRandr: true, libxcb: false, withDrm: true, libdrm: false, withVidmode: true, libxxf86vm: false, withGeolocation: true, withCoreLocation: true, withGeoclue: true, geoclue: false, withAppIndicator: true, libappindicator: false, "libayatana-appindicator": false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, src: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 48, 9], ["version", 49, 9], ["src", 50, 9], ["meta", 51, 9], ["strictDeps", 54, 7], ["depsBuildBuild", 56, 7], ["nativeBuildInputs", 58, 7], ["configureFlags", 72, 7], ["buildInputs", 85, 7], ["pythonPath", 96, 7], ["preConfigure", 101, 7], ["dontWrapGApps", 103, 7], ["preFixup", 105, 7], ["postFixup", 109, 7], ["postInstall", 116, 7], ["enableParallelBuilding", 132, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 141, 7], ["repo", 142, 7], ["rev", 143, 7], ["sha256", 144, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 148, 7], ["longDescription", 149, 7], ["license", 157, 7], ["homepage", 158, 7], ["platforms", 159, 7], ["mainProgram", 160, 7], ["maintainers", 161, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 137, 5], ["version", 138, 5], ["src", 140, 5], ["meta", 147, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["owner", 170, 7], ["repo", 171, 7], ["rev", 172, 7], ["hash", 173, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["longDescription", 177, 7], ["homepage", 178, 7], ["mainProgram", 179, 7], ["maintainers", 180, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 166, 5], ["version", 167, 5], ["src", 169, 5], ["meta", 176, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["redshift", 136, 3], ["gammastep", 165, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -94,7 +87,7 @@ wrapGApp $out/bin/${pname_1}
         const postInstall = nix.thunk(() => (nix.asBool(nix.eq(pname_1, "gammastep")) ? "substituteInPlace $out/share/applications/gammastep.desktop \\\n  --replace 'Exec=gammastep' \"Exec=$out/bin/gammastep\"\nsubstituteInPlace $out/share/applications/gammastep-indicator.desktop \\\n  --replace 'Exec=gammastep-indicator' \"Exec=$out/bin/gammastep-indicator\"\n" : "substituteInPlace $out/share/applications/redshift.desktop \\\n  --replace 'Exec=redshift' \"Exec=$out/bin/redshift\"\nsubstituteInPlace $out/share/applications/redshift-gtk.desktop \\\n  --replace 'Exec=redshift-gtk' \"Exec=$out/bin/redshift-gtk\"\n"));
         const enableParallelBuilding = true;
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname_1,
           version: version_1,
           src: src_1,
@@ -119,14 +112,14 @@ wrapGApp $out/bin/${pname_1}
         const pname = "redshift";
         const version = "1.12";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "sharpbracket",
             repo: "redshift",
             rev: nix.thunk(() => nix.str`v${version}`),
             sha256: "12cb4gaqkybp4bkkns8pam378izr2mwhr2iy04wkprs2v92j7bz6",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: "Screen color temperature manager",
           longDescription: "Redshift adjusts the color temperature according to the position\nof the sun. A different color temperature is set during night and\ndaytime. During twilight and early morning, the color temperature\ntransitions smoothly from night to daytime temperature to allow\nyour eyes to slowly adapt. At night the color temperature should\nbe set to match the lamps in your room.\n",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -135,20 +128,20 @@ wrapGApp $out/bin/${pname_1}
           mainProgram: "redshift",
           maintainers: [],
         }));
-        return { [nix.POS]: pos$4, pname, version, src, meta };
+        return { [nix.POS]: $pos[3], pname, version, src, meta };
       })())));
     const gammastep = nix.thunk(() => nix.app(mkRedshift, nix.thunk(() => (() => {
         const pname = "gammastep";
         const version = "2.0.11";
         const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             owner: "chinstrap",
             repo: "gammastep",
             rev: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-c8JpQLHHLYuzSC9bdymzRTF6dNqOLwYqgwUOpKcgAEU=",
           }))));
         const meta = nix.thunk(() => nix.update(nix.sel(redshift, "meta"), {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           longDescription: nix.thunk(() => nix.add("Gammastep", nix.app(nix.sel(lib, "removePrefix"), "Redshift", nix.thunk(() => nix.sel(redshift, "meta", "longDescription"))))),
           homepage: "https://gitlab.com/chinstrap/gammastep",
           mainProgram: "gammastep",
@@ -157,9 +150,9 @@ wrapGApp $out/bin/${pname_1}
             return nix.concat([nix.thunk(() => nix.lookup(w, "acidbong"))], nix.sel(redshift, "meta", "maintainers"));
           })()),
         }));
-        return { [nix.POS]: pos$7, pname, version, src, meta };
+        return { [nix.POS]: $pos[6], pname, version, src, meta };
       })())));
-    return { [nix.POS]: pos$8, redshift, gammastep };
+    return { [nix.POS]: $pos[7], redshift, gammastep };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

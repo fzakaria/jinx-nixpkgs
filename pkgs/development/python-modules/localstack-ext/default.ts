@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 33, 5], ["version", 34, 13], ["hash", 35, 5]], [["localstack", 74, 20]], [["tests", 73, 12]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 38, 3], ["pythonRemoveDeps", 43, 3], ["dependencies", 49, 3], ["pythonImportsCheck", 68, 3], ["doCheck", 71, 3], ["passthru", 73, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, "setuptools-scm": false, click: false, dill: false, dnslib: false, dnspython: false, plux: false, pyaes: false, pyjwt: false, pyotp: false, "python-dateutil": false, "python-jose": false, pyyaml: false, requests: false, rich: false, tabulate: false, semver: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 33, 5], ["version", 34, 13], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["localstack", 74, 20]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 73, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 38, 3], ["pythonRemoveDeps", 43, 3], ["dependencies", 49, 3], ["pythonImportsCheck", 68, 3], ["doCheck", 71, 3], ["passthru", 73, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "localstack_ext",
           version: version,
           hash: "sha256-AQrG6iRTBarinrGgJeLr5OYguuN7KWyxRUYNMHz4mlE=",
@@ -64,18 +60,21 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["localstack"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, localstack: nix.thunk(() => nix.attr(pkgs, "localstack")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          localstack: nix.thunk(() => nix.attr(pkgs, "localstack")),
+        })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Extensions for LocalStack",
         homepage: "https://github.com/localstack/localstack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

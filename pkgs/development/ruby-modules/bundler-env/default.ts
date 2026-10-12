@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["lib", 35, 9], ["ruby", 36, 9], ["gemConfig", 37, 9], ["groups", 38, 9]], [["bundler", 44, 55]], [["pname", 47, 15], ["name", 47, 21], ["mainGemName", 48, 7]], [["name", 66, 25], ["basicEnv", 66, 30]], [["lib", 80, 13], ["runCommand", 81, 13], ["ruby", 82, 13], ["bundler", 83, 13], ["groups", 84, 13], ["confFiles", 86, 11], ["binPaths", 87, 11]], [["platforms", 92, 9]], [["basicEnv", 98, 19], ["env", 99, 30]], [["ignoreCollisions", 70, 15], ["pname", 72, 26], ["version", 72, 32], ["paths", 74, 7], ["pathsToLink", 75, 7], ["postBuild", 77, 7], ["meta", 91, 7], ["passthru", 95, 7]], [["__structuredAttrs", 105, 51]]]);
 const formals$1 = { args: { ruby: false, lib: false, callPackage: false, defaultGemConfig: false, buildEnv: false, runCommand: false, buildPackages: false, bundler: false }, ellipsis: false };
 const formals$2 = { args: { name: true, pname: true, gemdir: true, gemfile: true, lockfile: true, gemset: true, groups: true, ruby: true, copyGemFiles: true, gemConfig: true, postBuild: true, document: true, meta: true, ignoreCollisions: true, passthru: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["lib", 35, 9], ["ruby", 36, 9], ["gemConfig", 37, 9], ["groups", 38, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["bundler", 44, 55]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 47, 15], ["name", 47, 21], ["mainGemName", 48, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 66, 25], ["basicEnv", 66, 30]]);
-const pos$5 = nix.positions(here + "/default.nix", [["lib", 80, 13], ["runCommand", 81, 13], ["ruby", 82, 13], ["bundler", 83, 13], ["groups", 84, 13], ["confFiles", 86, 11], ["binPaths", 87, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["platforms", 92, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["basicEnv", 98, 19], ["env", 99, 30]]);
-const pos$8 = nix.positions(here + "/default.nix", [["ignoreCollisions", 70, 15], ["pname", 72, 26], ["version", 72, 32], ["paths", 74, 7], ["pathsToLink", 75, 7], ["postBuild", 77, 7], ["meta", 91, 7], ["passthru", 95, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["__structuredAttrs", 105, 51]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,25 +36,25 @@ export default nix.lambda((args) => (() => {
     const ignoreCollisions = nix.argOr($_1, "ignoreCollisions", () => false);
     const passthru = nix.argOr($_1, "passthru", () => ({}));
     const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../bundled-common/functions.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         lib: lib,
         ruby: ruby_1,
         gemConfig: gemConfig,
         groups: groups,
       }))));
     const genStubsScript = nix.thunk(() => nix.attr(from, "genStubsScript"));
-    const basicEnv = nix.thunk(() => nix.app(callPackage, nix.path(here, "../bundled-common"), nix.thunk(() => ({ [nix.POS]: pos$2, bundler: bundler })), nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$3, pname: pname, name: name, mainGemName: pname }))));
+    const basicEnv = nix.thunk(() => nix.app(callPackage, nix.path(here, "../bundled-common"), nix.thunk(() => ({ [nix.POS]: $pos[1], bundler: bundler })), nix.thunk(() => nix.update(args_2, { [nix.POS]: $pos[2], pname: pname, name: name, mainGemName: pname }))));
     const envPaths = nix.thunk(() => nix.attr(basicEnv, "envPaths"));
-    return (nix.asBool(nix.eq(pname, null)) ? nix.update(basicEnv, { [nix.POS]: pos$4, name: name, basicEnv: basicEnv }) : (() => {
+    return (nix.asBool(nix.eq(pname, null)) ? nix.update(basicEnv, { [nix.POS]: $pos[3], name: name, basicEnv: basicEnv }) : (() => {
       const bundlerEnvArgs = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         ignoreCollisions: ignoreCollisions,
         pname: nix.thunk(() => nix.attr(basicEnv, "pname")),
         version: nix.thunk(() => nix.attr(basicEnv, "version")),
         paths: envPaths,
         pathsToLink: nix.thunk(() => ["/lib"]),
         postBuild: nix.thunk(() => nix.add(nix.app(genStubsScript, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             lib: lib,
             runCommand: runCommand,
             ruby: ruby_1,
@@ -72,16 +64,16 @@ export default nix.lambda((args) => (() => {
             binPaths: nix.thunk(() => [nix.thunk(() => nix.sel(basicEnv, "gems", nix.key(nix.force(pname))))]),
           }))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(postBuild, null)), postBuild))),
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           platforms: nix.thunk(() => nix.sel(ruby_1, "meta", "platforms")),
         }, meta)),
         passthru: nix.thunk(() => nix.update(nix.sel(basicEnv, "passthru"), nix.update({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           basicEnv: basicEnv,
           env: nix.thunk(() => nix.attr(basicEnv, "env")),
         }, passthru))),
       }));
-      return (nix.asBool(copyGemFiles) ? nix.app(runCommand, nix.thunk(() => nix.sel(basicEnv, "name")), nix.thunk(() => nix.update(bundlerEnvArgs, { [nix.POS]: pos$9, __structuredAttrs: true })), nix.thunk(() => nix.str`mkdir -p $out
+      return (nix.asBool(copyGemFiles) ? nix.app(runCommand, nix.thunk(() => nix.sel(basicEnv, "name")), nix.thunk(() => nix.update(bundlerEnvArgs, { [nix.POS]: $pos[8], __structuredAttrs: true })), nix.thunk(() => nix.str`mkdir -p $out
 for i in $paths; do
   ${nix.sel(buildPackages, "rsync")}/bin/rsync -a $i/lib $out/
 done

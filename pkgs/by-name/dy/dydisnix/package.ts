@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["description", 52, 5], ["longDescription", 53, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]], [["version", 20, 3], ["pname", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["preConfigure", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, automake: false, libtool: false, "pkg-config": false, glib: false, libxml2: false, libxslt: false, getopt: false, libiconv: false, gettext: false, nix: false, disnix: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["longDescription", 53, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 20, 3], ["pname", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["preConfigure", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const disnix = nix.arg($, "disnix");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0-unstable-2020-11-02",
       pname: "dydisnix",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "svanderburg",
           repo: "dydisnix",
           rev: "12ca1516bc1e5d161ac68f5d8252a0a2f353c8cf",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, libxml2, libxslt, getopt, nix$, disnix, libiconv, gettext]),
       preConfigure: "./bootstrap\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Toolset enabling self-adaptive redeployment on top of Disnix",
         longDescription: "Dynamic Disnix is a (very experimental!) prototype extension framework for Disnix supporting dynamic (re)deployment of service-oriented systems.\n",
         homepage: "https://github.com/svanderburg/dydisnix",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["ignoredVersions", 101, 53]], [["updateScript", 101, 12]], [["description", 104, 5], ["homepage", 105, 5], ["downloadPage", 106, 5], ["changelog", 107, 5], ["license", 110, 5], ["maintainers", 121, 5], ["platforms", 122, 5], ["mainProgram", 123, 5]], [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["src", 28, 3], ["outputs", 33, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 50, 3], ["wafConfigureFlags", 57, 3], ["wafBuildFlags", 75, 3], ["wafInstallFlags", 77, 3], ["postFixup", 79, 3], ["doCheck", 83, 3], ["nativeCheckInputs", 85, 3], ["checkPhase", 87, 3], ["nativeInstallCheckInputs", 95, 3], ["doInstallCheck", 99, 3], ["passthru", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, asciidoctor: false, bison: false, directoryListingUpdater: false, "iana-etc": false, libcap: false, libseccomp: false, openssl: false, "pkg-config": false, "pps-tools": false, python3: false, versionCheckHook: false, wafHook: false, withDocs: true, withSeccomp: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ignoredVersions", 101, 53]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 101, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 104, 5], ["homepage", 105, 5], ["downloadPage", 106, 5], ["changelog", 107, 5], ["license", 110, 5], ["maintainers", 121, 5], ["platforms", 122, 5], ["mainProgram", 123, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["src", 28, 3], ["outputs", 33, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 50, 3], ["wafConfigureFlags", 57, 3], ["wafBuildFlags", 75, 3], ["wafInstallFlags", 77, 3], ["postFixup", 79, 3], ["doCheck", 83, 3], ["nativeCheckInputs", 85, 3], ["checkPhase", 87, 3], ["nativeInstallCheckInputs", 95, 3], ["doInstallCheck", 99, 3], ["passthru", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const withDocs = nix.argOr($, "withDocs", () => true);
   const withSeccomp = nix.argOr($, "withSeccomp", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ntpsec",
       version: "1.2.5",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ftp.ntpsec.org/pub/releases/ntpsec-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-b7GRzdr2B+d1Sx9pFaGmHcQBiz5O7z0v+s7JYcloKUk=",
         })))),
@@ -61,11 +57,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "-rc" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], ignoredVersions: "-rc" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Secure, hardened, and improved implementation of Network Time Protocol",
         homepage: "https://www.ntpsec.org/",
         downloadPage: "https://ftp.ntpsec.org/pub/releases/",

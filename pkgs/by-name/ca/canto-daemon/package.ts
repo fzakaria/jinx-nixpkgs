@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]], [["version", 8, 3], ["pyproject", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["doCheck", 23, 3], ["pythonImportsCheck", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 8, 3], ["pyproject", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["doCheck", 23, 3], ["pythonImportsCheck", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.9.8",
       pyproject: true,
       pname: "canto-daemon",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "themoken",
           repo: "canto-next",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["canto_next"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Daemon for the canto Atom/RSS feed reader",
         longDescription: "Canto is an Atom/RSS feed reader for the console that is meant to be\nquick, concise, and colorful. It's meant to allow you to crank through\nfeeds like you've never cranked before by providing a minimal, yet\ninformation packed interface. No navigating menus. No dense blocks of\nunreadable white text. An interface with almost infinite customization\nand extensibility using the excellent Python programming language.\n",
         homepage: "https://codezen.org/canto-ng/",

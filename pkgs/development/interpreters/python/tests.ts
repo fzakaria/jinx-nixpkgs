@@ -2,41 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["extraLibs", 31, 17], ["ignoreCollisions", 33, 17]], [["environment", 39, 13], ["interpreter", 40, 13], ["is_venv", 41, 13], ["is_nixenv", 42, 13], ["is_virtualenv", 43, 13]], [["plain", 38, 11]], [["environment", 51, 13], ["interpreter", 55, 13], ["is_venv", 56, 13], ["is_nixenv", 57, 13], ["is_virtualenv", 58, 13]], [["nixenv-virtualenv", 50, 11]], [["environment", 64, 13], ["interpreter", 65, 13], ["is_venv", 66, 13], ["is_nixenv", 67, 13], ["is_virtualenv", 68, 13]], [["nixenv", 63, 11]], [["environment", 76, 13], ["interpreter", 79, 13], ["is_venv", 80, 13], ["is_nixenv", 81, 13], ["is_virtualenv", 82, 13]], [["plain-venv", 75, 11]], [["environment", 91, 13], ["interpreter", 94, 13], ["is_venv", 95, 13], ["is_nixenv", 96, 13], ["is_virtualenv", 97, 13]], [["nixenv-venv", 90, 11]], [["pythonVersion", 106, 32]], [["interpreter", 128, 9]], [["tkinter", 127, 7]], [["interpreter", 135, 9]], [["cpython-gdb", 134, 7]], [["interpreter", 143, 9]], [["nix-pythonprefix-mypy", 142, 7]], [["my-script", 161, 15]], [["pname", 156, 13], ["version", 157, 13], ["root", 158, 13], ["scripts", 160, 13]], [["my-editable", 155, 11]], [["self", 152, 9], ["packageOverrides", 153, 9]], [["nativeBuildInputs", 172, 13]], [["editable-script", 169, 7]], [["foobar", 193, 9]], [["packageOverrides", 206, 19], ["self", 207, 27]], [["test-packageOverrides", 201, 9]], [["foo", 230, 21]], [["pythonPackagesExtensions", 228, 17]], [["test-pythonPackagesExtensions", 224, 9]], [["url", 254, 13], ["sha256", 255, 13]], [["pname", 250, 11], ["version", 251, 11], ["pyproject", 252, 11], ["src", 253, 11], ["nativeBuildInputs", 257, 11], ["buildInputs", 264, 11], ["propagatedBuildInputs", 265, 11]], [["condaExamplePackage", 276, 7]]]);
 const formals$1 = { args: { stdenv: false, python: false, runCommand: false, lib: false, callPackage: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["extraLibs", 31, 17], ["ignoreCollisions", 33, 17]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["environment", 39, 13], ["interpreter", 40, 13], ["is_venv", 41, 13], ["is_nixenv", 42, 13], ["is_virtualenv", 43, 13]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["plain", 38, 11]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["environment", 51, 13], ["interpreter", 55, 13], ["is_venv", 56, 13], ["is_nixenv", 57, 13], ["is_virtualenv", 58, 13]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["nixenv-virtualenv", 50, 11]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["environment", 64, 13], ["interpreter", 65, 13], ["is_venv", 66, 13], ["is_nixenv", 67, 13], ["is_virtualenv", 68, 13]]);
-const pos$7 = nix.positions(here + "/tests.nix", [["nixenv", 63, 11]]);
-const pos$8 = nix.positions(here + "/tests.nix", [["environment", 76, 13], ["interpreter", 79, 13], ["is_venv", 80, 13], ["is_nixenv", 81, 13], ["is_virtualenv", 82, 13]]);
-const pos$9 = nix.positions(here + "/tests.nix", [["plain-venv", 75, 11]]);
-const pos$10 = nix.positions(here + "/tests.nix", [["environment", 91, 13], ["interpreter", 94, 13], ["is_venv", 95, 13], ["is_nixenv", 96, 13], ["is_virtualenv", 97, 13]]);
-const pos$11 = nix.positions(here + "/tests.nix", [["nixenv-venv", 90, 11]]);
-const pos$12 = nix.positions(here + "/tests.nix", [["pythonVersion", 106, 32]]);
-const pos$13 = nix.positions(here + "/tests.nix", [["interpreter", 128, 9]]);
-const pos$14 = nix.positions(here + "/tests.nix", [["tkinter", 127, 7]]);
-const pos$15 = nix.positions(here + "/tests.nix", [["interpreter", 135, 9]]);
-const pos$16 = nix.positions(here + "/tests.nix", [["cpython-gdb", 134, 7]]);
-const pos$17 = nix.positions(here + "/tests.nix", [["interpreter", 143, 9]]);
-const pos$18 = nix.positions(here + "/tests.nix", [["nix-pythonprefix-mypy", 142, 7]]);
-const pos$19 = nix.positions(here + "/tests.nix", [["my-script", 161, 15]]);
-const pos$20 = nix.positions(here + "/tests.nix", [["pname", 156, 13], ["version", 157, 13], ["root", 158, 13], ["scripts", 160, 13]]);
-const pos$21 = nix.positions(here + "/tests.nix", [["my-editable", 155, 11]]);
-const pos$22 = nix.positions(here + "/tests.nix", [["self", 152, 9], ["packageOverrides", 153, 9]]);
-const pos$23 = nix.positions(here + "/tests.nix", [["nativeBuildInputs", 172, 13]]);
-const pos$24 = nix.positions(here + "/tests.nix", [["editable-script", 169, 7]]);
-const pos$25 = nix.positions(here + "/tests.nix", [["foobar", 193, 9]]);
-const pos$26 = nix.positions(here + "/tests.nix", [["packageOverrides", 206, 19], ["self", 207, 27]]);
-const pos$27 = nix.positions(here + "/tests.nix", [["test-packageOverrides", 201, 9]]);
-const pos$28 = nix.positions(here + "/tests.nix", [["foo", 230, 21]]);
-const pos$29 = nix.positions(here + "/tests.nix", [["pythonPackagesExtensions", 228, 17]]);
-const pos$30 = nix.positions(here + "/tests.nix", [["test-pythonPackagesExtensions", 224, 9]]);
 const formals$2 = { args: { autoPatchelfHook: false, fetchurl: false, pythonCondaPackages: false }, ellipsis: false };
-const pos$31 = nix.positions(here + "/tests.nix", [["url", 254, 13], ["sha256", 255, 13]]);
-const pos$32 = nix.positions(here + "/tests.nix", [["pname", 250, 11], ["version", 251, 11], ["pyproject", 252, 11], ["src", 253, 11], ["nativeBuildInputs", 257, 11], ["buildInputs", 264, 11], ["propagatedBuildInputs", 265, 11]]);
-const pos$33 = nix.positions(here + "/tests.nix", [["condaExamplePackage", 276, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,7 +22,7 @@ export default nix.lambda((args) => (() => {
           const w = nix.withScope(ps, null);
           return [nix.thunk(() => nix.lookup(w, "virtualenv"))];
         })()) : nix.app(nix.sel(python_1, "buildEnv", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           extraLibs: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(python_1, "pkgs")), null);
             return [nix.thunk(() => nix.lookup(w, "virtualenv"))];
@@ -62,7 +30,7 @@ export default nix.lambda((args) => (() => {
           ignoreCollisions: true,
         })))));
       return nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         plain: nix.thunk(() => (() => {
           const environment = python_1;
           const interpreter = nix.thunk(() => nix.sel(environment, "interpreter"));
@@ -70,7 +38,7 @@ export default nix.lambda((args) => (() => {
           const is_nixenv = "False";
           const is_virtualenv = "False";
           return {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             environment,
             interpreter,
             is_venv,
@@ -79,7 +47,7 @@ export default nix.lambda((args) => (() => {
           };
         })()),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(python_1, "isPyPy"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "nixenv-virtualenv": nix.thunk(() => (() => {
             const environment = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(python_1, "name")}-virtualenv`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(pythonVirtualEnv, "interpreter")} -m virtualenv venv
 mv venv $out
@@ -89,7 +57,7 @@ mv venv $out
             const is_nixenv = "True";
             const is_virtualenv = "True";
             return {
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               environment,
               interpreter,
               is_venv,
@@ -98,7 +66,7 @@ mv venv $out
             };
           })()),
         }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(python_1, "implementation"), "graal")), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           nixenv: nix.thunk(() => (() => {
             const environment = pythonEnv;
             const interpreter = nix.thunk(() => nix.sel(environment, "interpreter"));
@@ -106,7 +74,7 @@ mv venv $out
             const is_nixenv = "True";
             const is_virtualenv = "False";
             return {
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               environment,
               interpreter,
               is_venv,
@@ -115,7 +83,7 @@ mv venv $out
             };
           })()),
         }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(python_1, "isPy3k")) && nix.asBool(!nix.asBool(nix.sel(python_1, "isPyPy"))))), nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           "plain-venv": nix.thunk(() => (() => {
             const environment = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(python_1, "name")}-venv`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(python_1, "interpreter")} -m venv $out
 `)));
@@ -124,7 +92,7 @@ mv venv $out
             const is_nixenv = "False";
             const is_virtualenv = "False";
             return {
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               environment,
               interpreter,
               is_venv,
@@ -133,7 +101,7 @@ mv venv $out
             };
           })()),
         }))), {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         "nixenv-venv": nix.thunk(() => (() => {
           const environment = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(python_1, "name")}-venv`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(pythonEnv, "interpreter")} -m venv $out
 `)));
@@ -142,7 +110,7 @@ mv venv $out
           const is_nixenv = "True";
           const is_virtualenv = "False";
           return {
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             environment,
             interpreter,
             is_venv,
@@ -153,7 +121,7 @@ mv venv $out
       }))));
     })());
     const testfun = (name) => (attrs) => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(python, "name")}-tests-${name}`), nix.thunk(() => nix.update({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pythonVersion: nix.thunk(() => nix.attr(python, "pythonVersion")),
       }, attrs)), nix.thunk(() => nix.str`cp -r ${nix.path(here, "./tests/test_environments")} tests
 chmod -R +w tests
@@ -165,34 +133,34 @@ touch $out/success
     return nix.app(nix.sel(lib, "mapAttrs"), testfun, environments);
   })());
   const integrationTests = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(python, "isPyPy"))), nix.thunk(() => nix.update({
-      [nix.POS]: pos$14,
-      tkinter: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/test_tkinter"), nix.thunk(() => ({ [nix.POS]: pos$13, interpreter: python })))),
+      [nix.POS]: $pos[13],
+      tkinter: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/test_tkinter"), nix.thunk(() => ({ [nix.POS]: $pos[12], interpreter: python })))),
     }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(python, "isPy3k")) && nix.asBool(nix.app(nix.sel(python, "pythonOlder"), "3.13")))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), nix.thunk(() => ({
-        [nix.POS]: pos$16,
-        "cpython-gdb": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/test_cpython_gdb"), nix.thunk(() => ({ [nix.POS]: pos$15, interpreter: python })))),
+        [nix.POS]: $pos[15],
+        "cpython-gdb": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/test_cpython_gdb"), nix.thunk(() => ({ [nix.POS]: $pos[14], interpreter: python })))),
       }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(python, "isPy3k")) && nix.asBool(nix.app(nix.sel(python, "pythonOlder"), "3.13")))), nix.thunk(() => ({
-        [nix.POS]: pos$18,
-        "nix-pythonprefix-mypy": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/test_nix_pythonprefix"), nix.thunk(() => ({ [nix.POS]: pos$17, interpreter: python })))),
+        [nix.POS]: $pos[17],
+        "nix-pythonprefix-mypy": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/test_nix_pythonprefix"), nix.thunk(() => ({ [nix.POS]: $pos[16], interpreter: python })))),
       }))))))));
   const editableTests = nix.thunk(() => (() => {
     const testPython = nix.thunk(() => nix.app(nix.sel(python, "override"), nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         self: testPython,
         packageOverrides: (pyfinal) => (pyprev) => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           "my-editable": nix.thunk(() => nix.app(nix.sel(pyfinal, "mkPythonEditablePackage"), nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               pname: "my-editable",
               version: "0.1.0",
               root: "$NIX_BUILD_TOP/src",
-              scripts: nix.thunk(() => ({ [nix.POS]: pos$19, "my-script": "my_editable.main:main" })),
+              scripts: nix.thunk(() => ({ [nix.POS]: $pos[18], "my-script": "my_editable.main:main" })),
             })))),
         }),
       }))));
     return {
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       "editable-script": nix.thunk(() => nix.app(runCommand, "editable-test", nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           nativeBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(testPython, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "my-editable"))])),
           ]),
@@ -200,13 +168,13 @@ touch $out/success
     };
   })());
   const overrideTests = nix.thunk(() => (() => {
-    const extension = (self) => (super$) => ({ [nix.POS]: pos$25, foobar: nix.thunk(() => nix.sel(super$, "numpy")) });
+    const extension = (self) => (super$) => ({ [nix.POS]: $pos[24], foobar: nix.thunk(() => nix.sel(super$, "numpy")) });
     const is_prebuilt = (python_1) => nix.eq(nix.sel(python_1, "pythonAttr"), null);
     return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(python, "isPy3k")), nix.thunk(() => nix.update({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         "test-packageOverrides": nix.thunk(() => (() => {
           const myPython = nix.thunk(() => (() => {
-            const self = nix.thunk(() => nix.app(nix.sel(python, "override"), nix.thunk(() => ({ [nix.POS]: pos$26, packageOverrides: extension, self: self }))));
+            const self = nix.thunk(() => nix.app(nix.sel(python, "override"), nix.thunk(() => ({ [nix.POS]: $pos[25], packageOverrides: extension, self: self }))));
             return nix.force(self);
           })());
           nix.assert_(nix.eq(nix.sel(myPython, "pkgs", "foobar"), nix.sel(myPython, "pkgs", "numpy")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/interpreters/python/tests.nix:212:11");
@@ -216,12 +184,15 @@ touch $out/success
             })());
         })()),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.has(python, "pythonAttr")) && nix.asBool(!nix.asBool(nix.app(is_prebuilt, python))))), nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           "test-pythonPackagesExtensions": nix.thunk(() => (() => {
             const pkgs_ = nix.thunk(() => nix.app(nix.sel(pkgs, "extend"), (final) => (prev) => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 pythonPackagesExtensions: nix.thunk(() => nix.concat(nix.sel(prev, "pythonPackagesExtensions"), [
-                  (python_final) => (python_prev) => ({ [nix.POS]: pos$28, foo: nix.thunk(() => nix.sel(python_prev, "setuptools")) }),
+                  (python_final) => (python_prev) => ({
+                    [nix.POS]: $pos[27],
+                    foo: nix.thunk(() => nix.sel(python_prev, "setuptools")),
+                  }),
                 ])),
               })));
             return nix.sel(pkgs_, nix.key(nix.sel(python, "pythonAttr")), "pkgs", "foo");
@@ -235,12 +206,12 @@ touch $out/success
           const fetchurl = nix.arg($_1, "fetchurl");
           const pythonCondaPackages = nix.arg($_1, "pythonCondaPackages");
           return nix.app(nix.sel(python, "pkgs", "buildPythonPackage"), nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               pname: "requests",
               version: "2.24.0",
               pyproject: false,
               src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                  [nix.POS]: pos$31,
+                  [nix.POS]: $pos[30],
                   url: "https://repo.anaconda.com/pkgs/main/noarch/requests-2.24.0-py_0.tar.bz2",
                   sha256: "02qzaf6gwsqbcs69pix1fnjxzgnngwzvrsy65h1d521g750mjvvp",
                 })))),
@@ -265,7 +236,7 @@ touch $out/success
         })(), formals$2), nix.thunk(() => ({}))));
       const pythonWithRequests = nix.thunk(() => nix.app(nix.sel(requests, "pythonModule", "withPackages"), (ps) => [requests]));
       return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(python, "isPy3k")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           condaExamplePackage: nix.thunk(() => nix.app(runCommand, "import-requests", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(pythonWithRequests, "interpreter")} -c "import requests" > $out
 `))),
         })));

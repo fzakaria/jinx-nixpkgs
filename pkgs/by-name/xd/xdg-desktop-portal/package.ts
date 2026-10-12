@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["domain", 46, 5], ["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]], [["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]], [["storeDir", 74, 26]], [["storeDir", 79, 26]], [["installedTests", 194, 7], ["validate-icon", 196, 7]], [["tests", 193, 5]], [["description", 204, 5], ["homepage", 205, 5], ["license", 206, 5], ["maintainers", 207, 5], ["platforms", 208, 5]], [["pname", 54, 3], ["version", 55, 3], ["outputs", 57, 3], ["separateDebugInfo", 61, 3], ["src", 63, 3], ["patches", 70, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 95, 3], ["nativeCheckInputs", 118, 3], ["checkInputs", 138, 3], ["mesonFlags", 140, 3], ["strictDeps", 154, 3], ["doCheck", 156, 3], ["postPatch", 158, 3], ["preCheck", 171, 3], ["preFixup", 188, 3], ["passthru", 192, 3], ["meta", 203, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchFromGitLab: false, flatpak: false, fuse3: false, bubblewrap: false, docutils: false, systemdMinimal: false, geoclue2: false, glib: false, "gsettings-desktop-schemas": false, "json-glib": false, meson: false, ninja: false, nixosTests: false, pipewire: false, "gdk-pixbuf": false, librsvg: false, "gobject-introspection": false, python3: false, "pkg-config": false, stdenv: false, runCommand: false, wrapGAppsNoGuiHook: false, bash: false, dbus: false, gst_all_1: false, libgudev: false, umockdev: false, replaceVars: false, enableGeoLocation: true, enableSystemd: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["domain", 46, 5], ["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["storeDir", 74, 26]]);
-const pos$5 = nix.positions(here + "/package.nix", [["storeDir", 79, 26]]);
-const pos$6 = nix.positions(here + "/package.nix", [["installedTests", 194, 7], ["validate-icon", 196, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 193, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 204, 5], ["homepage", 205, 5], ["license", 206, 5], ["maintainers", 207, 5], ["platforms", 208, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 54, 3], ["version", 55, 3], ["outputs", 57, 3], ["separateDebugInfo", 61, 3], ["src", 63, 3], ["patches", 70, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 95, 3], ["nativeCheckInputs", 118, 3], ["checkInputs", 138, 3], ["mesonFlags", 140, 3], ["strictDeps", 154, 3], ["doCheck", 156, 3], ["postPatch", 158, 3], ["preCheck", 171, 3], ["preFixup", 188, 3], ["passthru", 192, 3], ["meta", 203, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const enableGeoLocation = nix.argOr($, "enableGeoLocation", () => true);
   const enableSystemd = nix.argOr($, "enableSystemd", () => true);
   const libglnxSrc = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       domain: "gitlab.gnome.org",
       owner: "GNOME",
       repo: "libglnx",
@@ -56,7 +48,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-U6+vIU/wxnGGg07FJElQijbV0+jUswdG/lfzhw4wQy0=",
     }))));
   const gvdbSrc = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       domain: "gitlab.gnome.org",
       owner: "GNOME",
       repo: "gvdb",
@@ -64,13 +56,13 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-FQPctq+fj6du0sBawaJxtO0PRO0KIHHhdA2jh24Yacw=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "xdg-desktop-portal",
       version: "1.22.1",
       outputs: nix.thunk(() => ["out", "installedTests"]),
       separateDebugInfo: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "flatpak",
           repo: "xdg-desktop-portal",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -78,11 +70,11 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-icon-validation.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             storeDir: nix.thunk(() => nix.attr(nix.builtins, "storeDir")),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-sound-validation.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             storeDir: nix.thunk(() => nix.attr(nix.builtins, "storeDir")),
           })))),
         nix.path(here, "./installed-tests-path.patch"),
@@ -153,9 +145,9 @@ export LD_PRELOAD=${nix.app(nix.sel(lib, "getLib"), umockdev)}/lib/libumockdev-p
 `))),
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(finalAttrs, "finalPackage", "doCheck"))), "mkdir $installedTests\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "xdg-desktop-portal")),
           "validate-icon": nix.thunk(() => nix.app(runCommand, "test-icon-validation", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/libexec/xdg-desktop-portal-validate-icon --ruleset=desktop --sandbox --path=${nix.sel(finalAttrs, "src")}/doc/website/favicon.svg > "$out"
 grep format=svg "$out"
@@ -163,7 +155,7 @@ grep format=svg "$out"
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Desktop integration portals for sandboxed apps",
         homepage: "https://flatpak.github.io/xdg-desktop-portal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

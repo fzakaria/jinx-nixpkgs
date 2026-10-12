@@ -2,97 +2,64 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rtkit.nix", [[["maintainers", 6, 8]], [["assertion", 13, 11], ["message", 14, 11]], [["autologinUser", 19, 22]], [["getty", 19, 16]], [["enable", 21, 22]], [["extraArgs", 58, 23], ["extraConfig", 59, 23]], [["rtkit", 21, 16], ["polkit", 58, 16]], [["args", 25, 24]], [["rtkit", 25, 18]], [["security", 25, 9]], [["configuration", 24, 37]], [["withHigherPrio", 24, 22]], [["ExecStart", 35, 11], ["LimitRTTIME", 37, 11]], [["description", 33, 9], ["serviceConfig", 34, 9], ["wantedBy", 39, 9]], [["sleeper", 32, 29]], [["services", 32, 20]], [["ExecStart", 46, 11], ["LimitRTTIME", 47, 11], ["User", 48, 11]], [["description", 44, 9], ["serviceConfig", 45, 9]], [["sleeper@", 43, 24]], [["wants", 51, 34]], [["multi-user", 51, 23]], [["user", 32, 15], ["services", 43, 15], ["targets", 51, 15]], [["systemPackages", 54, 19]], [["assertions", 11, 7], ["imports", 18, 7], ["services", 19, 7], ["security", 21, 7], ["specialisation", 24, 7], ["systemd", 32, 7], ["environment", 54, 7]], [["machine", 8, 9]], [["args", 74, 22]], [["rtkit", 74, 16]], [["bindsTo", 80, 11], ["after", 81, 11], ["scriptArgs", 82, 11], ["script", 83, 11], ["path", 87, 11]], [["strace-rtkit", 75, 24]], [["services", 75, 15]], [["security", 74, 7], ["systemd", 75, 7]], [["machine", 71, 21]], [["nodes", 71, 15]], [["name", 4, 3], ["meta", 6, 3], ["nodes", 8, 3], ["interactive", 71, 3], ["testScript", 91, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/rtkit.nix", [["maintainers", 6, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/rtkit.nix", [["assertion", 13, 11], ["message", 14, 11]]);
-const pos$3 = nix.positions(here + "/rtkit.nix", [["autologinUser", 19, 22]]);
-const pos$4 = nix.positions(here + "/rtkit.nix", [["getty", 19, 16]]);
-const pos$5 = nix.positions(here + "/rtkit.nix", [["enable", 21, 22]]);
-const pos$6 = nix.positions(here + "/rtkit.nix", [["extraArgs", 58, 23], ["extraConfig", 59, 23]]);
-const pos$7 = nix.positions(here + "/rtkit.nix", [["rtkit", 21, 16], ["polkit", 58, 16]]);
-const pos$8 = nix.positions(here + "/rtkit.nix", [["args", 25, 24]]);
-const pos$9 = nix.positions(here + "/rtkit.nix", [["rtkit", 25, 18]]);
-const pos$10 = nix.positions(here + "/rtkit.nix", [["security", 25, 9]]);
-const pos$11 = nix.positions(here + "/rtkit.nix", [["configuration", 24, 37]]);
-const pos$12 = nix.positions(here + "/rtkit.nix", [["withHigherPrio", 24, 22]]);
-const pos$13 = nix.positions(here + "/rtkit.nix", [["ExecStart", 35, 11], ["LimitRTTIME", 37, 11]]);
-const pos$14 = nix.positions(here + "/rtkit.nix", [["description", 33, 9], ["serviceConfig", 34, 9], ["wantedBy", 39, 9]]);
-const pos$15 = nix.positions(here + "/rtkit.nix", [["sleeper", 32, 29]]);
-const pos$16 = nix.positions(here + "/rtkit.nix", [["services", 32, 20]]);
-const pos$17 = nix.positions(here + "/rtkit.nix", [["ExecStart", 46, 11], ["LimitRTTIME", 47, 11], ["User", 48, 11]]);
-const pos$18 = nix.positions(here + "/rtkit.nix", [["description", 44, 9], ["serviceConfig", 45, 9]]);
-const pos$19 = nix.positions(here + "/rtkit.nix", [["sleeper@", 43, 24]]);
-const pos$20 = nix.positions(here + "/rtkit.nix", [["wants", 51, 34]]);
-const pos$21 = nix.positions(here + "/rtkit.nix", [["multi-user", 51, 23]]);
-const pos$22 = nix.positions(here + "/rtkit.nix", [["user", 32, 15], ["services", 43, 15], ["targets", 51, 15]]);
-const pos$23 = nix.positions(here + "/rtkit.nix", [["systemPackages", 54, 19]]);
-const pos$24 = nix.positions(here + "/rtkit.nix", [["assertions", 11, 7], ["imports", 18, 7], ["services", 19, 7], ["security", 21, 7], ["specialisation", 24, 7], ["systemd", 32, 7], ["environment", 54, 7]]);
-const pos$25 = nix.positions(here + "/rtkit.nix", [["machine", 8, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$26 = nix.positions(here + "/rtkit.nix", [["args", 74, 22]]);
-const pos$27 = nix.positions(here + "/rtkit.nix", [["rtkit", 74, 16]]);
-const pos$28 = nix.positions(here + "/rtkit.nix", [["bindsTo", 80, 11], ["after", 81, 11], ["scriptArgs", 82, 11], ["script", 83, 11], ["path", 87, 11]]);
-const pos$29 = nix.positions(here + "/rtkit.nix", [["strace-rtkit", 75, 24]]);
-const pos$30 = nix.positions(here + "/rtkit.nix", [["services", 75, 15]]);
-const pos$31 = nix.positions(here + "/rtkit.nix", [["security", 74, 7], ["systemd", 75, 7]]);
-const pos$32 = nix.positions(here + "/rtkit.nix", [["machine", 71, 21]]);
-const pos$33 = nix.positions(here + "/rtkit.nix", [["nodes", 71, 15]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$34 = nix.positions(here + "/rtkit.nix", [["name", 4, 3], ["meta", 6, 3], ["nodes", 8, 3], ["interactive", 71, 3], ["testScript", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$34,
+    [nix.POS]: $pos[33],
     name: "rtkit",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "rvl"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               assertion: nix.thunk(() => nix.sel(config, "security", "polkit", "enable")),
               message: "rtkit needs polkit to handle authorization",
             })),
           ]),
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            getty: nix.thunk(() => ({ [nix.POS]: pos$3, autologinUser: "alice" })),
+            [nix.POS]: $pos[3],
+            getty: nix.thunk(() => ({ [nix.POS]: $pos[2], autologinUser: "alice" })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            rtkit: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+            [nix.POS]: $pos[6],
+            rtkit: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
             polkit: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               extraArgs: nix.thunk(() => ["--log-level=notice"]),
               extraConfig: "polkit.addRule(function(action, subject) {\n  const ns = \"org.freedesktop.RealtimeKit1.\";\n  const acquireHighPrio = ns + \"acquire-high-priority\";\n  const acquireRT = ns + \"acquire-real-time\";\n  if (action.id == acquireHighPrio || action.id == acquireRT) {\n    polkit.log(\"rtkit: Checking \" + action.id + \" for \" + subject.user + \"\\n  \" + subject);\n  }\n});\n",
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             withHigherPrio: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 security: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   rtkit: nix.thunk(() => ({
-                    [nix.POS]: pos$8,
+                    [nix.POS]: $pos[7],
                     args: nix.thunk(() => ["--max-realtime-priority=89", "--our-realtime-priority=90"]),
                   })),
                 })),
@@ -100,16 +67,16 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             user: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 sleeper: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   description: "Guinea pig service",
                   serviceConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     ExecStart: nix.thunk(() => nix.str`@${nix.sel(pkgs, "coreutils")}/bin/sleep sleep inf`),
                     LimitRTTIME: 200000n,
                   })),
@@ -118,12 +85,12 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               "sleeper@": nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 description: "Guinea pig system service for %I",
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   ExecStart: nix.thunk(() => nix.str`@${nix.sel(pkgs, "coreutils")}/bin/sleep sleep inf`),
                   LimitRTTIME: 200000n,
                   User: "%I",
@@ -131,38 +98,38 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             targets: nix.thunk(() => ({
-              [nix.POS]: pos$21,
-              "multi-user": nix.thunk(() => ({ [nix.POS]: pos$20, wants: nix.thunk(() => ["sleeper@alice.service"]) })),
+              [nix.POS]: $pos[20],
+              "multi-user": nix.thunk(() => ({ [nix.POS]: $pos[19], wants: nix.thunk(() => ["sleeper@alice.service"]) })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "util-linux"))]),
           })),
         };
       })(), formals$2),
     })),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$33,
+      [nix.POS]: $pos[32],
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const pkgs = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$31,
+            [nix.POS]: $pos[30],
             security: nix.thunk(() => ({
-              [nix.POS]: pos$27,
-              rtkit: nix.thunk(() => ({ [nix.POS]: pos$26, args: nix.thunk(() => ["--debug"]) })),
+              [nix.POS]: $pos[26],
+              rtkit: nix.thunk(() => ({ [nix.POS]: $pos[25], args: nix.thunk(() => ["--debug"]) })),
             })),
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$30,
+              [nix.POS]: $pos[29],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 "strace-rtkit": nix.thunk(() => (() => {
                   const target = "rtkit-daemon.service";
                   return {
-                    [nix.POS]: pos$28,
+                    [nix.POS]: $pos[27],
                     bindsTo: nix.thunk(() => [target]),
                     after: nix.thunk(() => [target]),
                     scriptArgs: target,

@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 7], ["sha256", 25, 7]], [["version", 22, 5], ["src", 23, 5], ["nativeBuildInputs", 28, 5], ["unpackPhase", 33, 5], ["installPhase", 39, 5]], [["nativeBuildInputs", 48, 5], ["buildInputs", 53, 5], ["installPhase", 67, 5]], [["url", 79, 7], ["hash", 80, 7]], [["version", 77, 5], ["src", 78, 5]], [["url", 88, 7], ["hash", 89, 7]], [["version", 86, 5], ["src", 87, 5]], [["aarch64-linux", 76, 14], ["x86_64-linux", 85, 14]], [["homepage", 109, 7], ["description", 110, 7], ["longDescription", 111, 7], ["license", 119, 7], ["maintainers", 120, 7], ["platforms", 124, 7]], [["pname", 96, 5], ["version", 98, 5], ["dontStrip", 100, 5], ["doInstallCheck", 102, 5], ["installCheckPhase", 104, 5], ["meta", 108, 5]]]);
 const formals$1 = { args: { lib: false, autoPatchelfHook: false, cpio: false, freetype: false, zlib: false, openssl: false, fetchurl: false, dpkg: false, "gcc-unwrapped": false, libjpeg: false, libpng: false, fontconfig: false, stdenv: false, xar: false, libxrender: false, libxext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 7], ["sha256", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 22, 5], ["src", 23, 5], ["nativeBuildInputs", 28, 5], ["unpackPhase", 33, 5], ["installPhase", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 48, 5], ["buildInputs", 53, 5], ["installPhase", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 79, 7], ["hash", 80, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 77, 5], ["src", 78, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 88, 7], ["hash", 89, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 86, 5], ["src", 87, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["aarch64-linux", 76, 14], ["x86_64-linux", 85, 14]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 109, 7], ["description", 110, 7], ["longDescription", 111, 7], ["license", 119, 7], ["maintainers", 120, 7], ["platforms", 124, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 96, 5], ["version", 98, 5], ["dontStrip", 100, 5], ["doInstallCheck", 102, 5], ["installCheckPhase", 104, 5], ["meta", 108, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,17 +26,24 @@ export default nix.lambda((args) => (() => {
   const darwinAttrs = nix.thunk(() => (() => {
     const version = "0.12.6-2";
     const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/wkhtmltopdf/packaging/releases/download/${version}/wkhtmltox-${version}.macos-cocoa.pkg`),
         sha256: "sha256-gaZrd7UI/t6NvKpnEnIDdIN2Vos2c6F/ZhG21R6YlPg=",
       }))));
     const nativeBuildInputs = nix.thunk(() => [xar, cpio]);
     const unpackPhase = "xar -xf $src\nzcat Payload | cpio -i\ntar -xf usr/local/share/wkhtmltox-installer/wkhtmltox.tar.gz\n";
     const installPhase = "runHook preInstall\nmkdir -p $out\ncp -r bin include lib share $out/\nrunHook postInstall\n";
-    return { [nix.POS]: pos$2, version, src, nativeBuildInputs, unpackPhase, installPhase };
+    return {
+      [nix.POS]: $pos[1],
+      version,
+      src,
+      nativeBuildInputs,
+      unpackPhase,
+      installPhase,
+    };
   })());
   const _linuxAttrs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     nativeBuildInputs: nix.thunk(() => [dpkg, autoPatchelfHook]),
     buildInputs: nix.thunk(() => [
       libxext,
@@ -61,35 +59,35 @@ export default nix.lambda((args) => (() => {
     installPhase: "runHook preInstall\n\ncp -r usr/local $out\n\nrunHook postInstall\n",
   }));
   const linuxAttrs = nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     "aarch64-linux": nix.thunk(() => nix.update((() => {
       const version = "0.12.6.1-3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://github.com/wkhtmltopdf/packaging/releases/download/${version}/wkhtmltox_${version}.bookworm_arm64.deb`),
           hash: "sha256-tmBhV7J8E+BE0Ku+ZwMB+I3k4Xgq/KT5wGpYF/PgOpw=",
         }))));
-      return { [nix.POS]: pos$5, version, src };
+      return { [nix.POS]: $pos[4], version, src };
     })(), _linuxAttrs)),
     "x86_64-linux": nix.thunk(() => nix.update((() => {
       const version = "0.12.6.1-3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: nix.thunk(() => nix.str`https://github.com/wkhtmltopdf/packaging/releases/download/${version}/wkhtmltox_${version}.bookworm_amd64.deb`),
           hash: "sha256-mLoNFXtQ028jvQ3t9MCqKMewxQ/NzcVKpba7uoGjlB0=",
         }))));
-      return { [nix.POS]: pos$7, version, src };
+      return { [nix.POS]: $pos[6], version, src };
     })(), _linuxAttrs)),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "wkhtmltopdf",
       version: "none",
       dontStrip: true,
       doInstallCheck: true,
       installCheckPhase: "$out/bin/wkhtmltopdf --version\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://wkhtmltopdf.org/",
         description: "Tools for rendering web pages to PDF or images (binary package)",
         longDescription: "wkhtmltopdf and wkhtmltoimage are open source (LGPL) command line tools\nto render HTML into PDF and various image formats using the QT Webkit\nrendering engine. These run entirely \"headless\" and do not require a\ndisplay or display service.\n\nThere is also a C library, if you're into that kind of thing.\n",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 37, 5], ["hash", 38, 5]], [["packageName", 73, 7]], [["updateScript", 72, 5]], [["homepage", 78, 5], ["description", 79, 5], ["teams", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["mainProgram", 83, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 54, 3], ["passthru", 71, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "adwaita-icon-theme": false, "desktop-file-utils": false, "docbook-xsl-nons": false, gettext: false, glib: false, gnome: false, "gnome-settings-daemon": false, "gsettings-desktop-schemas": false, gtk3: false, itstool: false, "libcanberra-gtk3": false, libdvdread: false, libhandy: false, libnotify: false, libpwquality: false, libsecret: false, libxml2: false, libxslt: false, meson: false, ninja: false, "pkg-config": false, systemd: false, udisks: false, wrapGAppsHook3: false, xz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 73, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 78, 5], ["description", 79, 5], ["teams", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["mainProgram", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 54, 3], ["passthru", 71, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-disk-utility",
       version: "46.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-disk-utility/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-disk-utility-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-wk6UOaBNcLz640nKE0xwBUNf4rb0UhFN+Hi/8Libv/4=",
         })))),
@@ -77,11 +73,11 @@ export default nix.lambda((args) => (() => {
         xz,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-disk-utility" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-disk-utility" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://apps.gnome.org/DiskUtility/",
         description: "Udisks graphical front-end",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),

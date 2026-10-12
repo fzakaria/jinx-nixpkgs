@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/built-by-uv.nix", [[["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 14, 3], ["dependencies", 16, 3], ["pythonImportsCheck", 18, 3], ["nativeCheckInputs", 20, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, "uv-build": false, anyio: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/built-by-uv.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 14, 3], ["dependencies", 16, 3], ["pythonImportsCheck", 18, 3], ["nativeCheckInputs", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const anyio = nix.arg($, "anyio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "built-by-uv",
       version: "0.1.0",
       pyproject: true,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["libxcrypt", 17, 5]], [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["homepage", 82, 5], ["maintainers", 83, 5], ["license", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5], ["changelog", 90, 5], ["description", 91, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["strictDeps", 33, 3], ["enableParallelBuilding", 34, 3], ["outputs", 36, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 51, 3], ["configureFlags", 53, 3], ["postInstall", 58, 3], ["postFixup", 76, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, libcap: false, libsodium: false, openssl: false, zlib: false, perl: false, ncurses: false, "libxcrypt-legacy": false, removeReferencesTo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["libxcrypt", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 82, 5], ["maintainers", 83, 5], ["license", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5], ["changelog", 90, 5], ["description", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["strictDeps", 33, 3], ["enableParallelBuilding", 34, 3], ["outputs", 36, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 51, 3], ["configureFlags", 53, 3], ["postInstall", 58, 3], ["postFixup", 76, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const libxcrypt_legacy = nix.arg($, "libxcrypt-legacy");
   const removeReferencesTo = nix.arg($, "removeReferencesTo");
-  const perl$ = nix.thunk(() => nix.app(nix.sel(perl, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, libxcrypt: libxcrypt_legacy }))));
+  const perl$ = nix.thunk(() => nix.app(nix.sel(perl, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], libxcrypt: libxcrypt_legacy }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "proftpd",
       version: "1.3.9d",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "proftpd",
           repo: "proftpd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "patchShebangs $out/bin\n\n# This causes a cyclic dependency between $out and $dev, but for\n# no good reason: `--enable-dso` is disabled, so this isn't functional\n# and even then we'd need special support for building custom proftpd\n# modules since installing stuff into the store later on\n# doesn't work anyways.\nrm $out/bin/prxs\n\n# Remove unneeded directories:\n# * var doesn't make sense in the store\n# * share/locale is not used\n# * libexec seems to be needed for custom modules\n#   only which is not supported by this package.\nrm -r $out/{var,share,libexec}\n",
       postFixup: "# Strip away configure flags from proftpd that point to $dev.\nremove-references-to -t $dev $out/bin/*\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.proftpd.org/",
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "maintainers", "leona")),

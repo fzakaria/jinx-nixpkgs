@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs", 11, 28]], [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["cross-seed", 26, 11]], [["updateScript", 25, 5], ["tests", 26, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5], ["maintainers", 34, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["npmDepsHash", 22, 3], ["passthru", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "nix-update-script": false, nixosTests: false, nodejs_22: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs", 11, 28]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cross-seed", 26, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 25, 5], ["tests", 26, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5], ["maintainers", 34, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["npmDepsHash", 22, 3], ["passthru", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   const nodejs_22 = nix.arg($, "nodejs_22");
-  return nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs_22 })), nix.thunk(() => (() => {
+  return nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], nodejs: nodejs_22 })), nix.thunk(() => (() => {
       const pname = "cross-seed";
       const version = "6.13.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "cross-seed",
           repo: "cross-seed",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,15 +25,15 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-HoIiO7cj4JNY+sJEuH1v0AgagDuBTySJaoVo/4SsfIc=";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "cross-seed": nix.thunk(() => nix.sel(nixosTests, "cross-seed")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Fully-automatic torrent cross-seeding with Torznab",
         homepage: "https://cross-seed.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -48,7 +43,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "mkez"))];
         })()),
       }));
-      return { [nix.POS]: pos$6, pname, version, src, npmDepsHash, passthru, meta };
+      return { [nix.POS]: $pos[5], pname, version, src, npmDepsHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

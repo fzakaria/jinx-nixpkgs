@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["VERGEN_GIT_SHA", 31, 7]], [["updateScript", 52, 12]], [["changelog", 55, 5], ["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["sourceProvenance", 62, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["separateDebugInfo", 28, 3], ["__structuredAttrs", 29, 3], ["env", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["dontUseJustBuild", 40, 3], ["dontUseJustCheck", 41, 3], ["justFlags", 43, 3], ["passthru", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, libcosmicAppHook: false, just: false, openssl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["VERGEN_GIT_SHA", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 52, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 55, 5], ["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["sourceProvenance", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["separateDebugInfo", 28, 3], ["__structuredAttrs", 29, 3], ["env", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["dontUseJustBuild", 40, 3], ["dontUseJustCheck", 41, 3], ["justFlags", 43, 3], ["passthru", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cosmic-ext-tweaks",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cosmic-utils",
           repo: "tweaks",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       __structuredAttrs: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         VERGEN_GIT_SHA: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
       })),
       nativeBuildInputs: nix.thunk(() => [libcosmicAppHook, just]),
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`target/${nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget")}/release/cosmic-ext-tweaks`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/cosmic-utils/tweaks/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Tweaking tool for the COSMIC Desktop Environment",
         homepage: "https://github.com/cosmic-utils/tweaks",

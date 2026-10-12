@@ -2,9 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 25, 7], ["builder", 26, 7], ["nativeBuildInputs", 27, 7], ["strictDeps", 32, 7], ["__structuredAttrs", 33, 7], ["outputHash", 35, 15], ["outputHashAlgo", 35, 26], ["outputHashMode", 36, 7], ["cvsRoot", 39, 9], ["module", 40, 9], ["tag", 41, 9], ["date", 42, 9]]]);
 const formals$1 = { args: { stdenvNoCC: false, cvs: false, openssh: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { cvsRoot: false, module: false, tag: true, date: true, outputHash: false, outputHashAlgo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 25, 7], ["builder", 26, 7], ["nativeBuildInputs", 27, 7], ["strictDeps", 32, 7], ["__structuredAttrs", 33, 7], ["outputHash", 35, 15], ["outputHashAlgo", 35, 26], ["outputHashMode", 36, 7], ["cvsRoot", 39, 9], ["module", 40, 9], ["tag", 41, 9], ["date", 42, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
         const outputHash = nix.arg($_1, "outputHash");
         const outputHashAlgo = nix.arg($_1, "outputHashAlgo");
         return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "cvs-export",
             builder: nix.path(here, "./builder.sh"),
             nativeBuildInputs: nix.thunk(() => [cvs, openssh]),

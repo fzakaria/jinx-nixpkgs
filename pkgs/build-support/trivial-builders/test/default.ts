@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["samples", 32, 26]], [["samples", 39, 26]], [["concat", 23, 3], ["linkFarm", 24, 3], ["symlinkJoin", 25, 3], ["overriding", 26, 3], ["references", 27, 11], ["requireFile", 28, 3], ["runCommand", 29, 3], ["writeCBin", 30, 3], ["writeClosure-union", 31, 3], ["writeShellApplication", 34, 3], ["writeScriptBin", 35, 3], ["writeShellScript", 36, 3], ["writeShellScriptBin", 37, 3], ["writeStringReferencesToFile", 38, 3], ["writeTextFile", 41, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["samples", 32, 26]]);
-const pos$2 = nix.positions(here + "/default.nix", [["samples", 39, 26]]);
-const pos$3 = nix.positions(here + "/default.nix", [["concat", 23, 3], ["linkFarm", 24, 3], ["symlinkJoin", 25, 3], ["overriding", 26, 3], ["references", 27, 11], ["requireFile", 28, 3], ["runCommand", 29, 3], ["writeCBin", 30, 3], ["writeClosure-union", 31, 3], ["writeShellApplication", 34, 3], ["writeScriptBin", 35, 3], ["writeShellScript", 36, 3], ["writeShellScriptBin", 37, 3], ["writeStringReferencesToFile", 38, 3], ["writeTextFile", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const recurseIntoAttrs = nix.thunk(() => nix.attr(lib, "recurseIntoAttrs"));
   const references = nix.thunk(() => nix.app(callPackage, nix.path(here, "./references"), nix.thunk(() => ({}))));
   return nix.app(recurseIntoAttrs, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       concat: nix.thunk(() => nix.app(callPackage, nix.path(here, "./concat-test.nix"), nix.thunk(() => ({})))),
       linkFarm: nix.thunk(() => nix.app(callPackage, nix.path(here, "./link-farm.nix"), nix.thunk(() => ({})))),
       symlinkJoin: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./symlink-join.nix"), nix.thunk(() => ({})))))),
@@ -24,12 +22,18 @@ export default nix.lambda((args) => (() => {
       requireFile: nix.thunk(() => nix.app(callPackage, nix.path(here, "./requireFile.nix"), nix.thunk(() => ({})))),
       runCommand: nix.thunk(() => nix.app(callPackage, nix.path(here, "./runCommand.nix"), nix.thunk(() => ({})))),
       writeCBin: nix.thunk(() => nix.app(callPackage, nix.path(here, "./writeCBin.nix"), nix.thunk(() => ({})))),
-      "writeClosure-union": nix.thunk(() => nix.app(callPackage, nix.path(here, "./writeClosure-union.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, samples: nix.thunk(() => nix.attr(references, "samples")) })))),
+      "writeClosure-union": nix.thunk(() => nix.app(callPackage, nix.path(here, "./writeClosure-union.nix"), nix.thunk(() => ({
+          [nix.POS]: $pos[0],
+          samples: nix.thunk(() => nix.attr(references, "samples")),
+        })))),
       writeShellApplication: nix.thunk(() => nix.app(callPackage, nix.path(here, "./writeShellApplication.nix"), nix.thunk(() => ({})))),
       writeScriptBin: nix.thunk(() => nix.app(callPackage, nix.path(here, "./writeScriptBin.nix"), nix.thunk(() => ({})))),
       writeShellScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./write-shell-script.nix"), nix.thunk(() => ({})))),
       writeShellScriptBin: nix.thunk(() => nix.app(callPackage, nix.path(here, "./writeShellScriptBin.nix"), nix.thunk(() => ({})))),
-      writeStringReferencesToFile: nix.thunk(() => nix.app(callPackage, nix.path(here, "./writeStringReferencesToFile.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, samples: nix.thunk(() => nix.attr(references, "samples")) })))),
+      writeStringReferencesToFile: nix.thunk(() => nix.app(callPackage, nix.path(here, "./writeStringReferencesToFile.nix"), nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          samples: nix.thunk(() => nix.attr(references, "samples")),
+        })))),
       writeTextFile: nix.thunk(() => nix.app(callPackage, nix.path(here, "./write-text-file.nix"), nix.thunk(() => ({})))),
     })));
 })(), formals$1);

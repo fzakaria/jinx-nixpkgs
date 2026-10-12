@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["NIX_CFLAGS_COMPILE", 32, 7]], [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["nativeBuildInputs", 25, 3], ["env", 32, 3], ["postPatch", 34, 3], ["installPhase", 40, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, ncurses: false, readline: false, ronn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["nativeBuildInputs", 25, 3], ["env", 32, 3], ["postPatch", 34, 3], ["installPhase", 40, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const ronn = nix.arg($, "ronn");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cpcfs",
       version: "0.85.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "derikz",
           repo: "cpcfs",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src`),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, ncurses, readline, ronn]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu89" })),
       postPatch: "substituteInPlace Makefile \\\n  --replace '-ltermcap' '-lncurses' \\\n  --replace '-L /usr/lib/termcap' ' '\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\nmkdir -p $out/man/man1\ncp cpcfs $out/bin\nronn --roff ../template.doc --pipe > $out/man/man1/cpcfs.1\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Manipulating CPC dsk images and files",
         mainProgram: "cpcfs",
         homepage: "https://github.com/derikz/cpcfs/",

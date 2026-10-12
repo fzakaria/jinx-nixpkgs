@@ -2,10 +2,10 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/default.nix", [["_class", 2, 3], ["imports", 4, 3]]);
+const $pos = nix.positions(here + "/default.nix", [[["_class", 2, 3], ["imports", 4, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$1,
+  [nix.POS]: $pos[0],
   _class: "treefmtConfig",
   imports: nix.thunk(() => [
     nix.path(here, "./options.nix"),

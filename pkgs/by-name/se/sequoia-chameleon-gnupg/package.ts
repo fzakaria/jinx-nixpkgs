@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["ASSET_OUT_DIR", 42, 7]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["env", 42, 3], ["postInstall", 44, 3], ["doCheck", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitLab: false, "pkg-config": false, makeWrapper: false, nettle: false, openssl: false, sqlite: false, gnupg: false, execline: false, gnused: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ASSET_OUT_DIR", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["env", 42, 3], ["postInstall", 44, 3], ["doCheck", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sequoia-chameleon-gnupg";
       const version = "0.13.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sequoia-pgp",
           repo: "sequoia-chameleon-gnupg",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         installShellFiles,
       ]);
       const buildInputs = nix.thunk(() => [nettle, openssl, sqlite]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ASSET_OUT_DIR: "target" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], ASSET_OUT_DIR: "target" }));
       const postInstall = nix.thunk(() => nix.str`# Wrap to find gpg-agent from GnuPG.
 makeWrapper $out/bin/gpg-sq $out/bin/gpg \\
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnupg]))}
@@ -67,7 +64,7 @@ installShellCompletion --cmd gpg-sq \\
 `);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sequoia's reimplementation of the GnuPG interface",
         homepage: "https://gitlab.com/sequoia-pgp/sequoia-chameleon-gnupg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -78,7 +75,7 @@ installShellCompletion --cmd gpg-sq \\
         mainProgram: "gpg-sq",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

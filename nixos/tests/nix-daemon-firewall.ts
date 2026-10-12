@@ -2,79 +2,16 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nix-daemon-firewall.nix", [[["a", 6, 5], ["b", 7, 5], ["c", 8, 5]], [["name", 33, 5], ["url", 34, 5], ["hash", 35, 5]], [["name", 40, 5], ["url", 41, 5], ["hash", 42, 5]], [["name", 47, 5], ["url", 48, 5], ["hash", 49, 5]], [["name", 54, 5], ["url", 55, 5], ["hash", 56, 5]], [["address", 82, 13], ["prefixLength", 83, 13]], [["address", 86, 13], ["prefixLength", 87, 13]], [["addresses", 80, 14]], [["ipv4", 80, 9]], [["eth1", 79, 18]], [["enable", 92, 9], ["flushRuleset", 93, 9]], [["useDHCP", 78, 7], ["interfaces", 79, 7], ["nftables", 91, 7]], [["substituters", 99, 7], ["extra-sandbox-paths", 101, 7]], [["settings", 97, 9], ["enable", 103, 9]], [["source", 107, 26]], [["source", 108, 27]], [["source", 109, 37]], [["source", 110, 29]], [["source", 111, 22]], [["fetch-public.nix", 107, 7], ["fetch-private.nix", 108, 7], ["fetch-public-other-port.nix", 109, 7], ["fetch-localhost.nix", 110, 7], ["resolver.nix", 111, 7]], [["etc", 106, 17]], [["return", 117, 43]], [["/a", 117, 38]], [["locations", 117, 28]], [["default", 117, 20]], [["enable", 116, 7], ["virtualHosts", 117, 7]], [["nginx", 115, 14]], [["networking", 77, 5], ["nix", 97, 5], ["environment", 106, 5], ["services", 115, 5]], [["maintainers", 123, 8]], [["addr", 132, 15], ["port", 133, 15]], [["addr", 136, 15], ["port", 137, 15]], [["return", 141, 18]], [["return", 142, 18]], [["return", 143, 18]], [["/a", 141, 13], ["/b", 142, 13], ["/c", 143, 13]], [["listen", 130, 11], ["locations", 140, 11]], [["default", 129, 22]], [["enable", 128, 9], ["virtualHosts", 129, 9]], [["nginx", 127, 16]], [["address", 152, 15], ["prefixLength", 153, 15]], [["address", 156, 15], ["prefixLength", 157, 15]], [["addresses", 150, 16]], [["ipv4", 150, 11]], [["eth1", 149, 20]], [["allowedTCPPorts", 162, 18]], [["useDHCP", 148, 9], ["interfaces", 149, 9], ["firewall", 162, 9]], [["services", 127, 7], ["networking", 147, 7]], [["imports", 170, 7]], [["enable", 176, 9], ["allowLoopback", 177, 9], ["allowNonTCPUDP", 178, 9]], [["firewall", 175, 11]], [["imports", 174, 7], ["nix", 175, 7]], [["enable", 185, 9], ["allowPrivateNetworks", 186, 9]], [["firewall", 184, 11]], [["imports", 183, 7], ["nix", 184, 7]], [["enable", 193, 9], ["allowedTCPPorts", 194, 9]], [["firewall", 192, 11]], [["imports", 191, 7], ["nix", 192, 7]], [["enable", 201, 9]], [["firewall", 200, 11]], [["enable", 203, 25]], [["resolved", 203, 16]], [["imports", 199, 7], ["nix", 200, 7], ["services", 203, 7]], [["httpServer", 126, 5], ["unfirewalled", 169, 5], ["everythingAllowed", 173, 5], ["noLocalNets", 182, 5], ["onlyPort80", 190, 5], ["resolved", 198, 5]], [["name", 122, 3], ["meta", 123, 3], ["nodes", 125, 3], ["testScript", 207, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nix-daemon-firewall.nix", [["a", 6, 5], ["b", 7, 5], ["c", 8, 5]]);
 const formals$2 = { args: { name: false, url: false, hash: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/nix-daemon-firewall.nix", [["name", 33, 5], ["url", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/nix-daemon-firewall.nix", [["name", 40, 5], ["url", 41, 5], ["hash", 42, 5]]);
-const pos$4 = nix.positions(here + "/nix-daemon-firewall.nix", [["name", 47, 5], ["url", 48, 5], ["hash", 49, 5]]);
-const pos$5 = nix.positions(here + "/nix-daemon-firewall.nix", [["name", 54, 5], ["url", 55, 5], ["hash", 56, 5]]);
-const pos$6 = nix.positions(here + "/nix-daemon-firewall.nix", [["address", 82, 13], ["prefixLength", 83, 13]]);
-const pos$7 = nix.positions(here + "/nix-daemon-firewall.nix", [["address", 86, 13], ["prefixLength", 87, 13]]);
-const pos$8 = nix.positions(here + "/nix-daemon-firewall.nix", [["addresses", 80, 14]]);
-const pos$9 = nix.positions(here + "/nix-daemon-firewall.nix", [["ipv4", 80, 9]]);
-const pos$10 = nix.positions(here + "/nix-daemon-firewall.nix", [["eth1", 79, 18]]);
-const pos$11 = nix.positions(here + "/nix-daemon-firewall.nix", [["enable", 92, 9], ["flushRuleset", 93, 9]]);
-const pos$12 = nix.positions(here + "/nix-daemon-firewall.nix", [["useDHCP", 78, 7], ["interfaces", 79, 7], ["nftables", 91, 7]]);
-const pos$13 = nix.positions(here + "/nix-daemon-firewall.nix", [["substituters", 99, 7], ["extra-sandbox-paths", 101, 7]]);
-const pos$14 = nix.positions(here + "/nix-daemon-firewall.nix", [["settings", 97, 9], ["enable", 103, 9]]);
-const pos$15 = nix.positions(here + "/nix-daemon-firewall.nix", [["source", 107, 26]]);
-const pos$16 = nix.positions(here + "/nix-daemon-firewall.nix", [["source", 108, 27]]);
-const pos$17 = nix.positions(here + "/nix-daemon-firewall.nix", [["source", 109, 37]]);
-const pos$18 = nix.positions(here + "/nix-daemon-firewall.nix", [["source", 110, 29]]);
-const pos$19 = nix.positions(here + "/nix-daemon-firewall.nix", [["source", 111, 22]]);
-const pos$20 = nix.positions(here + "/nix-daemon-firewall.nix", [["fetch-public.nix", 107, 7], ["fetch-private.nix", 108, 7], ["fetch-public-other-port.nix", 109, 7], ["fetch-localhost.nix", 110, 7], ["resolver.nix", 111, 7]]);
-const pos$21 = nix.positions(here + "/nix-daemon-firewall.nix", [["etc", 106, 17]]);
-const pos$22 = nix.positions(here + "/nix-daemon-firewall.nix", [["return", 117, 43]]);
-const pos$23 = nix.positions(here + "/nix-daemon-firewall.nix", [["/a", 117, 38]]);
-const pos$24 = nix.positions(here + "/nix-daemon-firewall.nix", [["locations", 117, 28]]);
-const pos$25 = nix.positions(here + "/nix-daemon-firewall.nix", [["default", 117, 20]]);
-const pos$26 = nix.positions(here + "/nix-daemon-firewall.nix", [["enable", 116, 7], ["virtualHosts", 117, 7]]);
-const pos$27 = nix.positions(here + "/nix-daemon-firewall.nix", [["nginx", 115, 14]]);
-const pos$28 = nix.positions(here + "/nix-daemon-firewall.nix", [["networking", 77, 5], ["nix", 97, 5], ["environment", 106, 5], ["services", 115, 5]]);
-const pos$29 = nix.positions(here + "/nix-daemon-firewall.nix", [["maintainers", 123, 8]]);
-const pos$30 = nix.positions(here + "/nix-daemon-firewall.nix", [["addr", 132, 15], ["port", 133, 15]]);
-const pos$31 = nix.positions(here + "/nix-daemon-firewall.nix", [["addr", 136, 15], ["port", 137, 15]]);
-const pos$32 = nix.positions(here + "/nix-daemon-firewall.nix", [["return", 141, 18]]);
-const pos$33 = nix.positions(here + "/nix-daemon-firewall.nix", [["return", 142, 18]]);
-const pos$34 = nix.positions(here + "/nix-daemon-firewall.nix", [["return", 143, 18]]);
-const pos$35 = nix.positions(here + "/nix-daemon-firewall.nix", [["/a", 141, 13], ["/b", 142, 13], ["/c", 143, 13]]);
-const pos$36 = nix.positions(here + "/nix-daemon-firewall.nix", [["listen", 130, 11], ["locations", 140, 11]]);
-const pos$37 = nix.positions(here + "/nix-daemon-firewall.nix", [["default", 129, 22]]);
-const pos$38 = nix.positions(here + "/nix-daemon-firewall.nix", [["enable", 128, 9], ["virtualHosts", 129, 9]]);
-const pos$39 = nix.positions(here + "/nix-daemon-firewall.nix", [["nginx", 127, 16]]);
-const pos$40 = nix.positions(here + "/nix-daemon-firewall.nix", [["address", 152, 15], ["prefixLength", 153, 15]]);
-const pos$41 = nix.positions(here + "/nix-daemon-firewall.nix", [["address", 156, 15], ["prefixLength", 157, 15]]);
-const pos$42 = nix.positions(here + "/nix-daemon-firewall.nix", [["addresses", 150, 16]]);
-const pos$43 = nix.positions(here + "/nix-daemon-firewall.nix", [["ipv4", 150, 11]]);
-const pos$44 = nix.positions(here + "/nix-daemon-firewall.nix", [["eth1", 149, 20]]);
-const pos$45 = nix.positions(here + "/nix-daemon-firewall.nix", [["allowedTCPPorts", 162, 18]]);
-const pos$46 = nix.positions(here + "/nix-daemon-firewall.nix", [["useDHCP", 148, 9], ["interfaces", 149, 9], ["firewall", 162, 9]]);
-const pos$47 = nix.positions(here + "/nix-daemon-firewall.nix", [["services", 127, 7], ["networking", 147, 7]]);
-const pos$48 = nix.positions(here + "/nix-daemon-firewall.nix", [["imports", 170, 7]]);
-const pos$49 = nix.positions(here + "/nix-daemon-firewall.nix", [["enable", 176, 9], ["allowLoopback", 177, 9], ["allowNonTCPUDP", 178, 9]]);
-const pos$50 = nix.positions(here + "/nix-daemon-firewall.nix", [["firewall", 175, 11]]);
-const pos$51 = nix.positions(here + "/nix-daemon-firewall.nix", [["imports", 174, 7], ["nix", 175, 7]]);
-const pos$52 = nix.positions(here + "/nix-daemon-firewall.nix", [["enable", 185, 9], ["allowPrivateNetworks", 186, 9]]);
-const pos$53 = nix.positions(here + "/nix-daemon-firewall.nix", [["firewall", 184, 11]]);
-const pos$54 = nix.positions(here + "/nix-daemon-firewall.nix", [["imports", 183, 7], ["nix", 184, 7]]);
-const pos$55 = nix.positions(here + "/nix-daemon-firewall.nix", [["enable", 193, 9], ["allowedTCPPorts", 194, 9]]);
-const pos$56 = nix.positions(here + "/nix-daemon-firewall.nix", [["firewall", 192, 11]]);
-const pos$57 = nix.positions(here + "/nix-daemon-firewall.nix", [["imports", 191, 7], ["nix", 192, 7]]);
-const pos$58 = nix.positions(here + "/nix-daemon-firewall.nix", [["enable", 201, 9]]);
-const pos$59 = nix.positions(here + "/nix-daemon-firewall.nix", [["firewall", 200, 11]]);
-const pos$60 = nix.positions(here + "/nix-daemon-firewall.nix", [["enable", 203, 25]]);
-const pos$61 = nix.positions(here + "/nix-daemon-firewall.nix", [["resolved", 203, 16]]);
-const pos$62 = nix.positions(here + "/nix-daemon-firewall.nix", [["imports", 199, 7], ["nix", 200, 7], ["services", 203, 7]]);
-const pos$63 = nix.positions(here + "/nix-daemon-firewall.nix", [["httpServer", 126, 5], ["unfirewalled", 169, 5], ["everythingAllowed", 173, 5], ["noLocalNets", 182, 5], ["onlyPort80", 190, 5], ["resolved", 198, 5]]);
-const pos$64 = nix.positions(here + "/nix-daemon-firewall.nix", [["name", 122, 3], ["meta", 123, 3], ["nodes", 125, 3], ["testScript", 207, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const hashes = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     a: "sha256-ypeBEsobvcr6wjGzmiPcTaeG7/gUfE5yuYB3ha/uSLs=",
     b: "sha256-PiPoFgA5WUoziU9lZOGxNIu9egCI1CxKy3PurtWcAJ0=",
     c: "sha256-Ln0sA6lQeuJl7PW1NWiFpTOTogKdJBOUmXJloaJa78Y=",
@@ -97,25 +34,25 @@ export default nix.lambda((args) => (() => {
 `));
   })(), formals$2);
   const publicFetcher = nix.thunk(() => nix.app(mkFetcher, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "public",
       url: "http://1.0.0.1/a",
       hash: nix.thunk(() => nix.sel(hashes, "a")),
     }))));
   const privateFetcher = nix.thunk(() => nix.app(mkFetcher, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "private",
       url: "http://192.168.0.1/b",
       hash: nix.thunk(() => nix.sel(hashes, "b")),
     }))));
   const publicFetcherOtherPort = nix.thunk(() => nix.app(mkFetcher, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "public",
       url: "http://192.168.0.1:81/c",
       hash: nix.thunk(() => nix.sel(hashes, "c")),
     }))));
   const localhostFetcher = nix.thunk(() => nix.app(mkFetcher, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "localhost",
       url: "http://127.0.0.1/a",
       hash: nix.thunk(() => nix.sel(hashes, "a")),
@@ -134,24 +71,24 @@ export default nix.lambda((args) => (() => {
 }
 `)));
   const baseNixSystem = (ipSuffix) => ({
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       useDHCP: false,
       interfaces: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         eth1: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           ipv4: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             addresses: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 address: nix.thunk(() => nix.str`192.168.0.${nix.builtins.toString(ipSuffix)}`),
                 prefixLength: 24n,
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 address: nix.thunk(() => nix.str`1.0.0.${nix.builtins.toString(ipSuffix)}`),
                 prefixLength: 24n,
               })),
@@ -159,40 +96,40 @@ export default nix.lambda((args) => (() => {
           })),
         })),
       })),
-      nftables: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true, flushRuleset: false })),
+      nftables: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: true, flushRuleset: false })),
     })),
     nix: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       settings: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
         "extra-sandbox-paths": nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "pkgsStatic", "busybox")}`)]),
       })),
       enable: true,
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       etc: nix.thunk(() => ({
-        [nix.POS]: pos$20,
-        "fetch-public.nix": nix.thunk(() => ({ [nix.POS]: pos$15, source: publicFetcher })),
-        "fetch-private.nix": nix.thunk(() => ({ [nix.POS]: pos$16, source: privateFetcher })),
-        "fetch-public-other-port.nix": nix.thunk(() => ({ [nix.POS]: pos$17, source: publicFetcherOtherPort })),
-        "fetch-localhost.nix": nix.thunk(() => ({ [nix.POS]: pos$18, source: localhostFetcher })),
-        "resolver.nix": nix.thunk(() => ({ [nix.POS]: pos$19, source: resolver })),
+        [nix.POS]: $pos[19],
+        "fetch-public.nix": nix.thunk(() => ({ [nix.POS]: $pos[14], source: publicFetcher })),
+        "fetch-private.nix": nix.thunk(() => ({ [nix.POS]: $pos[15], source: privateFetcher })),
+        "fetch-public-other-port.nix": nix.thunk(() => ({ [nix.POS]: $pos[16], source: publicFetcherOtherPort })),
+        "fetch-localhost.nix": nix.thunk(() => ({ [nix.POS]: $pos[17], source: localhostFetcher })),
+        "resolver.nix": nix.thunk(() => ({ [nix.POS]: $pos[18], source: resolver })),
       })),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       nginx: nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         enable: true,
         virtualHosts: nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           default: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             locations: nix.thunk(() => ({
-              [nix.POS]: pos$23,
-              "/a": nix.thunk(() => ({ [nix.POS]: pos$22, return: "200 \"a\"" })),
+              [nix.POS]: $pos[22],
+              "/a": nix.thunk(() => ({ [nix.POS]: $pos[21], return: "200 \"a\"" })),
             })),
           })),
         })),
@@ -200,99 +137,99 @@ export default nix.lambda((args) => (() => {
     })),
   });
   return {
-    [nix.POS]: pos$64,
+    [nix.POS]: $pos[63],
     name: "nix-daemon-firewall",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "das_j"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$63,
+      [nix.POS]: $pos[62],
       httpServer: nix.thunk(() => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           nginx: nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             enable: true,
             virtualHosts: nix.thunk(() => ({
-              [nix.POS]: pos$37,
+              [nix.POS]: $pos[36],
               default: nix.thunk(() => ({
-                [nix.POS]: pos$36,
+                [nix.POS]: $pos[35],
                 listen: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$30, addr: "0.0.0.0", port: 80n })),
-                  nix.thunk(() => ({ [nix.POS]: pos$31, addr: "0.0.0.0", port: 81n })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[29], addr: "0.0.0.0", port: 80n })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[30], addr: "0.0.0.0", port: 81n })),
                 ]),
                 locations: nix.thunk(() => ({
-                  [nix.POS]: pos$35,
-                  "/a": nix.thunk(() => ({ [nix.POS]: pos$32, return: "200 \"a\"" })),
-                  "/b": nix.thunk(() => ({ [nix.POS]: pos$33, return: "200 \"b\"" })),
-                  "/c": nix.thunk(() => ({ [nix.POS]: pos$34, return: "200 \"c\"" })),
+                  [nix.POS]: $pos[34],
+                  "/a": nix.thunk(() => ({ [nix.POS]: $pos[31], return: "200 \"a\"" })),
+                  "/b": nix.thunk(() => ({ [nix.POS]: $pos[32], return: "200 \"b\"" })),
+                  "/c": nix.thunk(() => ({ [nix.POS]: $pos[33], return: "200 \"c\"" })),
                 })),
               })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$46,
+          [nix.POS]: $pos[45],
           useDHCP: false,
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$44,
+            [nix.POS]: $pos[43],
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$43,
+              [nix.POS]: $pos[42],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$42,
+                [nix.POS]: $pos[41],
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$40, address: "192.168.0.1", prefixLength: 24n })),
-                  nix.thunk(() => ({ [nix.POS]: pos$41, address: "1.0.0.1", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[39], address: "192.168.0.1", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[40], address: "1.0.0.1", prefixLength: 24n })),
                 ]),
               })),
             })),
           })),
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$45, allowedTCPPorts: nix.thunk(() => [80n, 81n]) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[44], allowedTCPPorts: nix.thunk(() => [80n, 81n]) })),
         })),
       })),
       unfirewalled: nix.thunk(() => ({
-        [nix.POS]: pos$48,
+        [nix.POS]: $pos[47],
         imports: nix.thunk(() => [nix.thunk(() => nix.app(baseNixSystem, 2n))]),
       })),
       everythingAllowed: nix.thunk(() => ({
-        [nix.POS]: pos$51,
+        [nix.POS]: $pos[50],
         imports: nix.thunk(() => [nix.thunk(() => nix.app(baseNixSystem, 3n))]),
         nix: nix.thunk(() => ({
-          [nix.POS]: pos$50,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$49, enable: true, allowLoopback: true, allowNonTCPUDP: true })),
+          [nix.POS]: $pos[49],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[48], enable: true, allowLoopback: true, allowNonTCPUDP: true })),
         })),
       })),
       noLocalNets: nix.thunk(() => ({
-        [nix.POS]: pos$54,
+        [nix.POS]: $pos[53],
         imports: nix.thunk(() => [nix.thunk(() => nix.app(baseNixSystem, 4n))]),
         nix: nix.thunk(() => ({
-          [nix.POS]: pos$53,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$52, enable: true, allowPrivateNetworks: false })),
+          [nix.POS]: $pos[52],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[51], enable: true, allowPrivateNetworks: false })),
         })),
       })),
       onlyPort80: nix.thunk(() => ({
-        [nix.POS]: pos$57,
+        [nix.POS]: $pos[56],
         imports: nix.thunk(() => [nix.thunk(() => nix.app(baseNixSystem, 5n))]),
         nix: nix.thunk(() => ({
-          [nix.POS]: pos$56,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$55, enable: true, allowedTCPPorts: nix.thunk(() => [80n]) })),
+          [nix.POS]: $pos[55],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[54], enable: true, allowedTCPPorts: nix.thunk(() => [80n]) })),
         })),
       })),
       resolved: nix.thunk(() => ({
-        [nix.POS]: pos$62,
+        [nix.POS]: $pos[61],
         imports: nix.thunk(() => [nix.thunk(() => nix.app(baseNixSystem, 6n))]),
         nix: nix.thunk(() => ({
-          [nix.POS]: pos$59,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$58, enable: true })),
+          [nix.POS]: $pos[58],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[57], enable: true })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$61,
-          resolved: nix.thunk(() => ({ [nix.POS]: pos$60, enable: true })),
+          [nix.POS]: $pos[60],
+          resolved: nix.thunk(() => ({ [nix.POS]: $pos[59], enable: true })),
         })),
       })),
     })),

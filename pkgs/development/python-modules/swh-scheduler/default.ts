@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 38, 5], ["group", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["changelog", 90, 5], ["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 46, 3], ["dependencies", 51, 3], ["pythonImportsCheck", 62, 3], ["doCheck", 65, 3], ["nativeCheckInputs", 67, 3], ["disabledTests", 84, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitLab: false, setuptools: false, "setuptools-scm": false, celery: false, flask: false, humanize: false, "importlib-metadata": false, pika: false, psycopg: false, tabulate: false, "swh-storage": false, plotille: false, postgresql: false, postgresqlTestHook: false, pytestCheckHook: false, "pytest-mock": false, "pytest-postgresql": false, "pytest-shared-session-scope": false, "pytest-xdist": false, "requests-mock": false, simpy: false, "swh-journal": false, "types-python-dateutil": false, "types-pyyaml": false, "types-requests": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 38, 5], ["group", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 90, 5], ["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 46, 3], ["dependencies", 51, 3], ["pythonImportsCheck", 62, 3], ["doCheck", 65, 3], ["nativeCheckInputs", 67, 3], ["disabledTests", 84, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const types_pyyaml = nix.arg($, "types-pyyaml");
   const types_requests = nix.arg($, "types-requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swh-scheduler",
       version: "3.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.softwareheritage.org",
           group: "swh",
           owner: "devel",
@@ -82,7 +80,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTests: nix.thunk(() => ["test_setup_log_handler_with_env_configuration", "test_task_exception"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://gitlab.softwareheritage.org/swh/devel/swh-scheduler/-/tags/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Job scheduler for the Software Heritage project",
         homepage: "https://gitlab.softwareheritage.org/swh/devel/swh-scheduler",

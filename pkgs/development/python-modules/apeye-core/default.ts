@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 16, 13], ["pname", 17, 5], ["hash", 18, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 21, 3], ["nativeBuildInputs", 23, 3], ["dependencies", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, lib: false, hatchling: false, "hatch-requirements-txt": false, "domdf-python-tools": false, idna: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 16, 13], ["pname", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 21, 3], ["nativeBuildInputs", 23, 3], ["dependencies", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "apeye_core",
           hash: "sha256-Xecu09AMybIP6lXlS3q49e+FAOszpTaLwWKlWF4jilU=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [hatch_requirements_txt]);
       const dependencies = nix.thunk(() => [domdf_python_tools, idna]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Core (offline) functionality for the apeye library",
         homepage: "https://github.com/domdfcoding/apyey-core",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

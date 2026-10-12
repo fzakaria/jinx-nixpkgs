@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 50, 5], ["homepage", 51, 5], ["platforms", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["setupHook", 36, 3], ["preFixup", 42, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, writeText: false, meson: false, "vulkan-headers": false, "vulkan-utility-libraries": false, ninja: false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["platforms", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["setupHook", 36, 3], ["preFixup", 42, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const jq = nix.arg($, "jq");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vkdevicechooser",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jiriks74",
           repo: "vkdevicechooser",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       setupHook: nix.thunk(() => nix.app(writeText, "setup-hook", "addToSearchPath XDG_DATA_DIRS @out@/share\n")),
       preFixup: "for f in \"$out\"/share/vulkan/explicit_layer.d/*.json \"$out\"/share/vulkan/implicit_layer.d/*.json; do\n  jq <\"$f\" >tmp.json \".layer.library_path = \\\"$out/lib/\\\" + .layer.library_path\"\n  mv tmp.json \"$f\"\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Vulkan layer to force a specific device to be used",
         homepage: "https://github.com/aejsmith/vkdevicechooser",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

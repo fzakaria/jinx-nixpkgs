@@ -2,97 +2,66 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/miriway.nix", [[["maintainers", 6, 5]], [["memorySize", 18, 22]], [["enable", 21, 9], ["user", 22, 9]], [["auto", 20, 35]], [["displayManager", 20, 20]], [["enable", 25, 24]], [["enable", 31, 9], ["config", 32, 9], ["settings", 38, 9]], [["ydotool", 25, 16], ["miriway", 30, 16]], [["enable", 27, 24]], [["defaultSession", 28, 31]], [["xserver", 27, 16], ["displayManager", 28, 16]], [["test-wayland", 46, 11], ["test-x11", 47, 11]], [["font", 60, 13], ["initial-color-theme", 61, 13]], [["foreground", 64, 13], ["background", 65, 13], ["regular2", 66, 13]], [["main", 59, 11], ["colors-light", 63, 11]], [["source", 58, 33]], [["family", 71, 20]], [["family", 72, 18]], [["family", 73, 20]], [["family", 74, 25]], [["normal", 71, 13], ["bold", 72, 13], ["italic", 73, 13], ["bold_italic", 74, 13], ["size", 75, 13]], [["foreground", 79, 15], ["background", 80, 15]], [["green", 83, 15]], [["primary", 78, 13], ["normal", 82, 13]], [["font", 70, 11], ["colors", 77, 11]], [["source", 69, 44]], [["xdg/foot/foot.ini", 58, 13], ["xdg/alacritty/alacritty.toml", 69, 13]], [["shellAliases", 45, 9], ["systemPackages", 50, 9], ["etc", 58, 9]], [["packages", 89, 13]], [["imports", 12, 7], ["virtualisation", 18, 7], ["test-support", 20, 7], ["programs", 25, 7], ["services", 27, 7], ["environment", 44, 7], ["fonts", 89, 7]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["enableOCR", 92, 3], ["testScript", 94, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/miriway.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/miriway.nix", [["memorySize", 18, 22]]);
-const pos$3 = nix.positions(here + "/miriway.nix", [["enable", 21, 9], ["user", 22, 9]]);
-const pos$4 = nix.positions(here + "/miriway.nix", [["auto", 20, 35]]);
-const pos$5 = nix.positions(here + "/miriway.nix", [["displayManager", 20, 20]]);
-const pos$6 = nix.positions(here + "/miriway.nix", [["enable", 25, 24]]);
-const pos$7 = nix.positions(here + "/miriway.nix", [["enable", 31, 9], ["config", 32, 9], ["settings", 38, 9]]);
-const pos$8 = nix.positions(here + "/miriway.nix", [["ydotool", 25, 16], ["miriway", 30, 16]]);
-const pos$9 = nix.positions(here + "/miriway.nix", [["enable", 27, 24]]);
-const pos$10 = nix.positions(here + "/miriway.nix", [["defaultSession", 28, 31]]);
-const pos$11 = nix.positions(here + "/miriway.nix", [["xserver", 27, 16], ["displayManager", 28, 16]]);
-const pos$12 = nix.positions(here + "/miriway.nix", [["test-wayland", 46, 11], ["test-x11", 47, 11]]);
-const pos$13 = nix.positions(here + "/miriway.nix", [["font", 60, 13], ["initial-color-theme", 61, 13]]);
-const pos$14 = nix.positions(here + "/miriway.nix", [["foreground", 64, 13], ["background", 65, 13], ["regular2", 66, 13]]);
-const pos$15 = nix.positions(here + "/miriway.nix", [["main", 59, 11], ["colors-light", 63, 11]]);
-const pos$16 = nix.positions(here + "/miriway.nix", [["source", 58, 33]]);
-const pos$17 = nix.positions(here + "/miriway.nix", [["family", 71, 20]]);
-const pos$18 = nix.positions(here + "/miriway.nix", [["family", 72, 18]]);
-const pos$19 = nix.positions(here + "/miriway.nix", [["family", 73, 20]]);
-const pos$20 = nix.positions(here + "/miriway.nix", [["family", 74, 25]]);
-const pos$21 = nix.positions(here + "/miriway.nix", [["normal", 71, 13], ["bold", 72, 13], ["italic", 73, 13], ["bold_italic", 74, 13], ["size", 75, 13]]);
-const pos$22 = nix.positions(here + "/miriway.nix", [["foreground", 79, 15], ["background", 80, 15]]);
-const pos$23 = nix.positions(here + "/miriway.nix", [["green", 83, 15]]);
-const pos$24 = nix.positions(here + "/miriway.nix", [["primary", 78, 13], ["normal", 82, 13]]);
-const pos$25 = nix.positions(here + "/miriway.nix", [["font", 70, 11], ["colors", 77, 11]]);
-const pos$26 = nix.positions(here + "/miriway.nix", [["source", 69, 44]]);
-const pos$27 = nix.positions(here + "/miriway.nix", [["xdg/foot/foot.ini", 58, 13], ["xdg/alacritty/alacritty.toml", 69, 13]]);
-const pos$28 = nix.positions(here + "/miriway.nix", [["shellAliases", 45, 9], ["systemPackages", 50, 9], ["etc", 58, 9]]);
-const pos$29 = nix.positions(here + "/miriway.nix", [["packages", 89, 13]]);
-const pos$30 = nix.positions(here + "/miriway.nix", [["imports", 12, 7], ["virtualisation", 18, 7], ["test-support", 20, 7], ["programs", 25, 7], ["services", 27, 7], ["environment", 44, 7], ["fonts", 89, 7]]);
-const pos$31 = nix.positions(here + "/miriway.nix", [["machine", 9, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$32 = nix.positions(here + "/miriway.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["enableOCR", 92, 3], ["testScript", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$32,
+    [nix.POS]: $pos[31],
     name: "miriway",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "OPNA2608"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           imports: nix.thunk(() => [
             nix.path(here, "./common/auto.nix"),
             nix.path(here, "./common/user-account.nix"),
           ]),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2047n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 2047n })),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, user: "alice" })),
+              [nix.POS]: $pos[3],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true, user: "alice" })),
             })),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            ydotool: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+            [nix.POS]: $pos[7],
+            ydotool: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
             miriway: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               config: "add-wayland-extensions=all\nenable-x11=\n\nshell-component=foot --maximized\n",
               settings: "command_ctrl_alt=t:foot --maximized\ncommand_ctrl_alt=a:env WINIT_UNIX_BACKEND=x11 WAYLAND_DISPLAY= alacritty --option window.startup_mode=\\\"maximized\\\"\n",
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+            [nix.POS]: $pos[10],
+            xserver: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true })),
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               defaultSession: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "miriway")),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             shellAliases: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               "test-wayland": "wayland-info | tee /tmp/test-wayland.out && touch /tmp/test-wayland-exit-ok",
               "test-x11": "glinfo | tee /tmp/test-x11.out && touch /tmp/test-x11-exit-ok",
             })),
@@ -106,13 +75,13 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               "xdg/foot/foot.ini": nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 source: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))), "generate"), "foot.ini", nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     main: nix.thunk(() => ({
-                      [nix.POS]: pos$13,
+                      [nix.POS]: $pos[12],
                       font: "inconsolata:size=16",
                       "initial-color-theme": "light",
                     })),
@@ -120,33 +89,33 @@ export default nix.lambda((args) => (() => {
                       const foreground = "000000";
                       const background = "ffffff";
                       const regular2 = foreground;
-                      return { [nix.POS]: pos$14, foreground, background, regular2 };
+                      return { [nix.POS]: $pos[13], foreground, background, regular2 };
                     })()),
                   })))),
               })),
               "xdg/alacritty/alacritty.toml": nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 source: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))), "generate"), "alacritty.toml", nix.thunk(() => ({
-                    [nix.POS]: pos$25,
+                    [nix.POS]: $pos[24],
                     font: nix.thunk(() => (() => {
-                      const normal = nix.thunk(() => ({ [nix.POS]: pos$17, family: "Inconsolata" }));
-                      const bold = nix.thunk(() => ({ [nix.POS]: pos$18, family: nix.thunk(() => nix.sel(normal, "family")) }));
-                      const italic = nix.thunk(() => ({ [nix.POS]: pos$19, family: nix.thunk(() => nix.sel(normal, "family")) }));
-                      const bold_italic = nix.thunk(() => ({ [nix.POS]: pos$20, family: nix.thunk(() => nix.sel(normal, "family")) }));
+                      const normal = nix.thunk(() => ({ [nix.POS]: $pos[16], family: "Inconsolata" }));
+                      const bold = nix.thunk(() => ({ [nix.POS]: $pos[17], family: nix.thunk(() => nix.sel(normal, "family")) }));
+                      const italic = nix.thunk(() => ({ [nix.POS]: $pos[18], family: nix.thunk(() => nix.sel(normal, "family")) }));
+                      const bold_italic = nix.thunk(() => ({ [nix.POS]: $pos[19], family: nix.thunk(() => nix.sel(normal, "family")) }));
                       const size = 16n;
-                      return { [nix.POS]: pos$21, normal, bold, italic, bold_italic, size };
+                      return { [nix.POS]: $pos[20], normal, bold, italic, bold_italic, size };
                     })()),
                     colors: nix.thunk(() => (() => {
-                      const primary = nix.thunk(() => ({ [nix.POS]: pos$22, foreground: "0x000000", background: "0xffffff" }));
-                      const normal = nix.thunk(() => ({ [nix.POS]: pos$23, green: nix.thunk(() => nix.sel(primary, "foreground")) }));
-                      return { [nix.POS]: pos$24, primary, normal };
+                      const primary = nix.thunk(() => ({ [nix.POS]: $pos[21], foreground: "0x000000", background: "0xffffff" }));
+                      const normal = nix.thunk(() => ({ [nix.POS]: $pos[22], green: nix.thunk(() => nix.sel(primary, "foreground")) }));
+                      return { [nix.POS]: $pos[23], primary, normal };
                     })()),
                   })))),
               })),
             })),
           })),
           fonts: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "inconsolata"))]),
           })),
         };

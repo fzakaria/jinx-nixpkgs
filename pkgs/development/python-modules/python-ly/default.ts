@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["changelog", 36, 5], ["description", 37, 5], ["longDescription", 38, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["pythonImportsCheck", 23, 3], ["build-system", 25, 3], ["nativeCheckInputs", 27, 3], ["doInstallCheck", 32, 3], ["nativeInstallCheckInputs", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, lib: false, lxml: false, pytestCheckHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 36, 5], ["description", 37, 5], ["longDescription", 38, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["pythonImportsCheck", 23, 3], ["build-system", 25, 3], ["nativeCheckInputs", 27, 3], ["doInstallCheck", 32, 3], ["nativeInstallCheckInputs", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "python-ly",
       version: "0.9.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "frescobaldi",
           repo: "python-ly",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/frescobaldi/python-ly/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Tool and library for manipulating LilyPond files",
         longDescription: "This package provides a Python library ly containing various\nPython modules to parse, manipulate or create documents in\nLilyPond format.  A command line program ly is also provided\nthat can be used to do various manipulations with LilyPond\nfiles.\n\nThe LilyPond format is a plain text input format that is used by\nthe GNU music typesetter [LilyPond](https://lilypond.org).\n",

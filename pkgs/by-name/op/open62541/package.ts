@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["openssl", 29, 15], ["mbedtls", 29, 23]], [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5], ["fetchSubmodules", 43, 5]], [["doCheck", 160, 11]], [["withDoc", 163, 13], ["withEncryption", 166, 13]], [["doCheck", 171, 9]], [["open62541WithTests", 170, 7], ["open62541Full", 173, 7], ["open62541Full-openssl", 174, 7], ["open62541Full-mbedtls", 175, 7]], [["updateScript", 153, 12], ["tests", 155, 12]], [["description", 179, 5], ["longDescription", 180, 5], ["homepage", 188, 5], ["changelog", 189, 5], ["license", 190, 5], ["maintainers", 191, 5], ["platforms", 192, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["cmakeFlags", 46, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 75, 3], ["buildFlags", 77, 3], ["doCheck", 83, 3], ["checkInputs", 85, 3], ["enableParallelChecking", 92, 3], ["preCheck", 94, 3], ["postInstall", 127, 3], ["__darwinAllowLocalNetworking", 151, 3], ["passthru", 153, 3], ["meta", 178, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, check: false, libxcrypt: false, subunit: false, python3Packages: false, "nix-update-script": false, withDoc: true, "graphviz-nox": false, withExamples: true, withEncryption: true, openssl: false, mbedtls: false, open62541: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["openssl", 29, 15], ["mbedtls", 29, 23]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5], ["fetchSubmodules", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["doCheck", 160, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["withDoc", 163, 13], ["withEncryption", 166, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["doCheck", 171, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["open62541WithTests", 170, 7], ["open62541Full", 173, 7], ["open62541Full-openssl", 174, 7], ["open62541Full-mbedtls", 175, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 153, 12], ["tests", 155, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 179, 5], ["longDescription", 180, 5], ["homepage", 188, 5], ["changelog", 189, 5], ["license", 190, 5], ["maintainers", 191, 5], ["platforms", 192, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["cmakeFlags", 46, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 75, 3], ["buildFlags", 77, 3], ["doCheck", 83, 3], ["checkInputs", 85, 3], ["enableParallelChecking", 92, 3], ["preCheck", 94, 3], ["postInstall", 127, 3], ["__darwinAllowLocalNetworking", 151, 3], ["passthru", 153, 3], ["meta", 178, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const mbedtls = nix.arg($, "mbedtls");
   const open62541 = nix.arg($, "open62541");
-  const encryptionBackend = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, openssl: openssl, mbedtls: mbedtls }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported encryption backend: ${withEncryption}`)), nix.key(nix.str`${withEncryption}`)));
+  const encryptionBackend = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], openssl: openssl, mbedtls: mbedtls }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported encryption backend: ${withEncryption}`)), nix.key(nix.str`${withEncryption}`)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "open62541",
       version: "1.4.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "open62541",
           repo: "open62541",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -105,13 +97,13 @@ rm -r bin/libopen62541*
 `)))),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => (() => {
-          const open62541Full = (encBackend) => nix.app(nix.sel(nix.app(nix.sel(open62541, "overrideAttrs"), (_) => ({ [nix.POS]: pos$3, doCheck: true })), "override"), nix.thunk(() => ({ [nix.POS]: pos$4, withDoc: true, withEncryption: encBackend })));
+          const open62541Full = (encBackend) => nix.app(nix.sel(nix.app(nix.sel(open62541, "overrideAttrs"), (_) => ({ [nix.POS]: $pos[2], doCheck: true })), "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], withDoc: true, withEncryption: encBackend })));
           return {
-            [nix.POS]: pos$6,
-            open62541WithTests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ [nix.POS]: pos$5, doCheck: true }))),
+            [nix.POS]: $pos[5],
+            open62541WithTests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ [nix.POS]: $pos[4], doCheck: true }))),
             open62541Full: nix.thunk(() => nix.app(open62541Full, false)),
             "open62541Full-openssl": nix.thunk(() => nix.app(open62541Full, "openssl")),
             "open62541Full-mbedtls": nix.thunk(() => nix.app(open62541Full, "mbedtls")),
@@ -119,7 +111,7 @@ rm -r bin/libopen62541*
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Open source implementation of OPC UA",
         longDescription: "open62541 (http://open62541.org) is an open source and free implementation\nof OPC UA (OPC Unified Architecture) written in the common subset of the\nC99 and C++98 languages.\nThe library is usable with all major compilers and provides the necessary\ntools to implement dedicated OPC UA clients and servers, or to integrate\nOPC UA-based communication into existing applications.\n",
         homepage: "https://www.open62541.org",

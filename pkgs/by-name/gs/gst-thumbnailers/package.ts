@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["pname", 35, 26], ["version", 35, 32], ["src", 35, 40], ["hash", 36, 5]], [["thumbnailers", 78, 11]], [["tests", 78, 5], ["updateScript", 79, 5]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 91, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoDeps", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 49, 3], ["strictDeps", 59, 3], ["__structuredAttrs", 60, 3], ["doCheck", 62, 3], ["nativeCheckInputs", 64, 3], ["preCheck", 71, 3], ["mesonCheckFlags", 75, 3], ["passthru", 77, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, rustPlatform: false, meson: false, ninja: false, "pkg-config": false, cargo: false, rustc: false, wrapGAppsNoGuiHook: false, gst_all_1: false, fontconfig: false, libglycin: false, "glycin-loaders": false, writableTmpDirAsHomeHook: false, "shared-mime-info": false, callPackage: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 35, 26], ["version", 35, 32], ["src", 35, 40], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["thumbnailers", 78, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 78, 5], ["updateScript", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 91, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoDeps", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 49, 3], ["strictDeps", 59, 3], ["__structuredAttrs", 60, 3], ["doCheck", 62, 3], ["nativeCheckInputs", 64, 3], ["preCheck", 71, 3], ["mesonCheckFlags", 75, 3], ["passthru", 77, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gst-thumbnailers",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "gst-thumbnailers",
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-QxOdjtPnX4ulGsenASQzKJckbIqfSU7FeR+iW1ZL878=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -75,15 +70,15 @@ export default nix.lambda((args) => (() => {
 `),
       mesonCheckFlags: nix.thunk(() => ["-v"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           thumbnailers: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Generate thumbnailer for video and audio files",
         homepage: "https://gitlab.gnome.org/GNOME/gst-thumbnailers",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gst-thumbnailers/-/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["postFixup", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, meson: false, ninja: false, vala: false, wrapGAppsHook4: false, libadwaita: false, "json-glib": false, libgee: false, "pkg-config": false, gtk3: false, "desktop-file-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["postFixup", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "emulsion-palette",
       version: "3.3.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lainsce",
           repo: "emulsion",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [desktop_file_utils, gtk3, json_glib, libadwaita, libgee]),
       postFixup: "ln -s $out/bin/io.github.lainsce.Emulsion $out/bin/emulsion-palette\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Store your color palettes in an easy way",
         homepage: "https://github.com/lainsce/emulsion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

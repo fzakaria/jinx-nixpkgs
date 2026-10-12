@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 87, 5], ["repo", 88, 5], ["tag", 89, 5], ["hash", 90, 5]], [["benchmark", 118, 5], ["dev", 125, 5], ["full", 131, 5], ["graphgym", 156, 5], ["modelhub", 161, 5], ["rag", 164, 5], ["test", 179, 5]], [["description", 327, 5], ["homepage", 328, 5], ["changelog", 329, 5], ["license", 330, 5], ["maintainers", 331, 5]], [["pname", 81, 3], ["version", 82, 3], ["pyproject", 83, 3], ["__structuredAttrs", 84, 3], ["src", 86, 3], ["postPatch", 93, 3], ["build-system", 100, 3], ["dependencies", 104, 3], ["optional-dependencies", 117, 3], ["pythonImportsCheck", 188, 3], ["nativeCheckInputs", 190, 3], ["pytestFlags", 195, 3], ["disabledTests", 203, 3], ["disabledTestPaths", 308, 3], ["meta", 326, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, aiohttp: false, fsspec: false, jinja2: false, numpy: false, psutil: false, pyparsing: false, requests: false, torch: false, tqdm: false, xxhash: false, matplotlib: false, networkx: false, pandas: false, protobuf: false, wandb: false, ipython: false, "matplotlib-inline": false, "pre-commit": false, "torch-geometric": false, ase: false, graphviz: false, h5py: false, numba: false, "opt-einsum": false, pynndescent: false, rdflib: false, rdkit: false, "scikit-image": false, "scikit-learn": false, scipy: false, statsmodels: false, sympy: false, tabulate: false, torchmetrics: false, trimesh: false, "pytorch-lightning": false, yacs: false, "huggingface-hub": false, faiss: false, "json-repair": false, langgraph: false, openai: false, pyyaml: false, datasets: false, transformers: false, sentencepiece: false, accelerate: false, peft: false, onnx: false, onnxruntime: false, pytest: false, "pytest-cov-stub": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false, pythonAtLeast: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 87, 5], ["repo", 88, 5], ["tag", 89, 5], ["hash", 90, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["benchmark", 118, 5], ["dev", 125, 5], ["full", 131, 5], ["graphgym", 156, 5], ["modelhub", 161, 5], ["rag", 164, 5], ["test", 179, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 327, 5], ["homepage", 328, 5], ["changelog", 329, 5], ["license", 330, 5], ["maintainers", 331, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 81, 3], ["version", 82, 3], ["pyproject", 83, 3], ["__structuredAttrs", 84, 3], ["src", 86, 3], ["postPatch", 93, 3], ["build-system", 100, 3], ["dependencies", 104, 3], ["optional-dependencies", 117, 3], ["pythonImportsCheck", 188, 3], ["nativeCheckInputs", 190, 3], ["pytestFlags", 195, 3], ["disabledTests", 203, 3], ["disabledTestPaths", 308, 3], ["meta", 326, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -71,13 +68,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "torch-geometric",
       version: "2.8.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyg-team",
           repo: "pytorch_geometric",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -102,7 +99,7 @@ export default nix.lambda((args) => (() => {
         xxhash,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         benchmark: nix.thunk(() => [matplotlib, networkx, pandas, protobuf, wandb]),
         dev: nix.thunk(() => [ipython, matplotlib_inline, pre_commit, torch_geometric]),
         full: nix.thunk(() => [
@@ -229,7 +226,7 @@ export default nix.lambda((args) => (() => {
           "test/utils/test_scatter.py::test_group_cat[mps]",
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test/nn/aggr/test_aggr_utils.py"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Graph Neural Network Library for PyTorch",
         homepage: "https://github.com/pyg-team/pytorch_geometric",
         changelog: nix.thunk(() => nix.str`https://github.com/pyg-team/pytorch_geometric/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["fetchSubmodules", 39, 5], ["hash", 40, 5]], [["updateScript", 71, 12]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 81, 5], ["platforms", 82, 5]], [["pname", 30, 3], ["version", 31, 3], ["patches", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["strictDeps", 64, 3], ["nativeInstallCheckInputs", 66, 3], ["doInstallCheck", 69, 3], ["passthru", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, config: false, stdenv: false, fetchFromGitHub: false, cmake: false, ispc: false, ninja: false, "pkg-config": false, cudaPackages: false, boost: false, fmt: false, onetbb: false, opencv: false, vectorscan: false, versionCheckHook: false, "nix-update-script": false, cudaSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["fetchSubmodules", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 71, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 81, 5], ["platforms", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["patches", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["strictDeps", 64, 3], ["nativeInstallCheckInputs", 66, 3], ["doInstallCheck", 69, 3], ["passthru", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "todds",
       version: "0.4.1",
       patches: nix.thunk(() => [nix.path(here, "./TBB-version.patch")]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "todds-encoder",
           repo: "todds",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,11 +45,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CPU-based DDS encoder optimized for fast batch conversions with high encoding quality",
         homepage: "https://github.com/todds-encoder/todds",
         changelog: nix.thunk(() => nix.str`https://github.com/todds-encoder/todds/releases/tag/${nix.sel(finalAttrs, "version")}`),

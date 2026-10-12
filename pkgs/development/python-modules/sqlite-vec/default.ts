@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 34, 7], ["url", 35, 7], ["hash", 36, 7], ["stripLen", 37, 7]], [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7], ["stripLen", 44, 7]], [["numpy", 71, 5]], [["description", 86, 5], ["maintainers", 87, 5]], [["pname", 23, 26], ["version", 23, 32], ["src", 23, 40], ["pyproject", 24, 3], ["sourceRoot", 29, 3], ["patches", 31, 3], ["postPatch", 50, 3], ["build-system", 57, 3], ["nativeBuildInputs", 62, 3], ["dependencies", 66, 3], ["optional-dependencies", 70, 3], ["nativeCheckInputs", 76, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchpatch: false, pyprojectVersionPatchHook: false, setuptools: false, "setuptools-scm": false, "sqlite-vec-c": false, numpy: false, openai: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7], ["stripLen", 37, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7], ["stripLen", 44, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["numpy", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 86, 5], ["maintainers", 87, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 26], ["version", 23, 32], ["src", 23, 40], ["pyproject", 24, 3], ["sourceRoot", 29, 3], ["patches", 31, 3], ["postPatch", 50, 3], ["build-system", 57, 3], ["nativeBuildInputs", 62, 3], ["dependencies", 66, 3], ["optional-dependencies", 70, 3], ["nativeCheckInputs", 76, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/bindings`);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "add-python-build-files.patch",
             url: "https://github.com/asg017/sqlite-vec/commit/c1917deb11aa79dcac32440679345b93e13b1b86.patch",
             hash: "sha256-4/9QLKuM/1AbD8AQHwJ14rhWVYVc+MILvK6+tWwWQlw=",
             stripLen: 1n,
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "add-python-test.patch",
             url: "https://github.com/asg017/sqlite-vec/commit/608972c9dcbfc7f4583e99fd8de6e5e16da11081.patch",
             hash: "sha256-8dfw7zs7z2FYh8DoAxurMYCDMOheg8Zl1XGcPw1A1BM=",
@@ -51,16 +47,16 @@ substituteInPlace sqlite_vec/__init__.py \\
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const nativeBuildInputs = nix.thunk(() => [pyprojectVersionPatchHook]);
       const dependencies = nix.thunk(() => [sqlite_vec_c]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, numpy: nix.thunk(() => [numpy]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[2], numpy: nix.thunk(() => [numpy]) }));
       const nativeCheckInputs = nix.thunk(() => [numpy, openai, pytestCheckHook, sqlite_vec_c]);
       const pythonImportsCheck = nix.thunk(() => ["sqlite_vec"]);
       const meta = nix.thunk(() => nix.update(nix.sel(sqlite_vec_c, "meta"), {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python bindings for sqlite-vec",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sarahec"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,26 +2,24 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["publisher", 8, 5], ["name", 9, 5], ["version", 10, 5], ["hash", 11, 5]], [["changelog", 15, 5], ["description", 16, 5], ["downloadPage", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["maintainers", 20, 5]], [["mktplcRef", 7, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["publisher", 8, 5], ["name", 9, 5], ["version", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 15, 5], ["description", 16, 5], ["downloadPage", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["maintainers", 20, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 7, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         publisher: "ms-python",
         name: "mypy-type-checker",
         version: "2026.6.0",
         hash: "sha256-Sis9Tm5uWTyAIJnHvdh/dwOs580YprqDQ3XP8FhWvw0=",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://github.com/microsoft/vscode-mypy/releases",
         description: "VSCode extension for type checking support for Python files using Mypy",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-python.mypy-type-checker",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["NIX_LDFLAGS", 47, 5]], [["libraries", 66, 13]], [["updateScript", 61, 12]], [["description", 100, 5], ["mainProgram", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 108, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["env", 46, 3], ["postInstall", 55, 3], ["passthru", 61, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, makeWrapper: false, zlib: false, bzip2: false, libjpeg: false, SDL2: false, SDL2_net: false, SDL2_mixer: false, gtk3: false, writers: false, python3Packages: false, "nix-update": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["libraries", 66, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 61, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 100, 5], ["mainProgram", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 108, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["env", 46, 3], ["postInstall", 55, 3], ["passthru", 61, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const nix_update = nix.arg($, "nix-update");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ecwolf",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ECWolfEngine",
           repo: "ECWolf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,15 +37,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [makeWrapper])))),
       buildInputs: nix.thunk(() => [zlib, bzip2, libjpeg, SDL2, SDL2_net, SDL2_mixer, gtk3]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-framework", "AppKit"]))),
         })))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\ncp -R ecwolf.app $out/Applications\nmakeWrapper $out/{Applications/ecwolf.app/Contents/MacOS,bin}/ecwolf\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => (() => {
           const updateScriptPkg = nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), "ecwolf_update_script", nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               libraries: nix.thunk(() => (() => {
                 const w = nix.withScope(python3Packages, null);
                 return [
@@ -66,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Advanced source port for Wolfenstein 3D, Spear of Destiny, and Super 3D Noah's Ark",
         mainProgram: "ecwolf",
         homepage: "https://maniacsvault.net/ecwolf/",

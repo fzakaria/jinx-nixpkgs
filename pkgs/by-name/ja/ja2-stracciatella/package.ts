@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["url", 27, 5], ["hash", 28, 5]], [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["pname", 78, 7], ["version", 79, 7], ["src", 80, 7], ["cargoRoot", 81, 7], ["hash", 83, 5]], [["shortName", 108, 7], ["fullName", 109, 7], ["url", 110, 7], ["free", 111, 7]], [["broken", 105, 5], ["description", 106, 5], ["license", 107, 5], ["homepage", 113, 5], ["maintainers", 114, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["postPatch", 47, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 65, 3], ["cargoRoot", 74, 3], ["cargoDeps", 76, 3], ["cmakeFlags", 86, 3], ["doInstallCheck", 97, 3], ["installCheckPhase", 99, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchFromGitHub: false, cmake: false, python3: false, rustPlatform: false, cargo: false, rustc: false, SDL2: false, fltk: false, lua5_3: false, miniaudio: false, rapidjson: false, sol2: false, gtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 78, 7], ["version", 79, 7], ["src", 80, 7], ["cargoRoot", 81, 7], ["hash", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["shortName", 108, 7], ["fullName", 109, 7], ["url", 110, 7], ["free", 111, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["broken", 105, 5], ["description", 106, 5], ["license", 107, 5], ["homepage", 113, 5], ["maintainers", 114, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["postPatch", 47, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 65, 3], ["cargoRoot", 74, 3], ["cargoDeps", 76, 3], ["cmakeFlags", 86, 3], ["doInstallCheck", 97, 3], ["installCheckPhase", 99, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const sol2 = nix.arg($, "sol2");
   const gtest = nix.arg($, "gtest");
   const stringTheory = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/zrax/string_theory/archive/3.8.tar.gz",
       hash: "sha256-mq7pW3qRZs03/SijzbTl1txJHCSW/TO+gvRLWZh/11M=",
     }))));
   const magicEnum = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://github.com/Neargye/magic_enum/archive/v0.8.2.zip",
       hash: "sha256-oQ+mUDB8YJULcSploz+0bprJbqclhc+p/Pmsn1AsAes=",
     }))));
@@ -43,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ja2-stracciatella";
       const version = "0.21.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "ja2-stracciatella",
           repo: "ja2-stracciatella",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -67,7 +61,7 @@ substituteInPlace dependencies/lib-magic_enum/getter/CMakeLists.txt.in \\
       const buildInputs = nix.thunk(() => [SDL2, fltk, lua5_3, rapidjson, sol2, gtest]);
       const cargoRoot = "rust";
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: pname,
           version: version,
           src: src,
@@ -87,11 +81,11 @@ substituteInPlace dependencies/lib-magic_enum/getter/CMakeLists.txt.in \\
       const doInstallCheck = true;
       const installCheckPhase = "HOME=$(mktemp -d) $out/bin/ja2 -unittests\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         broken: true,
         description: "Jagged Alliance 2, with community fixes",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             shortName: "strategyFirst",
             fullName: "Strategy First Inc. Source Code License Agreement",
             url: "https://github.com/ja2-stracciatella/ja2-stracciatella/blob/master/SFI%20Source%20Code%20license%20agreement.txt",
@@ -101,7 +95,7 @@ substituteInPlace dependencies/lib-magic_enum/getter/CMakeLists.txt.in \\
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

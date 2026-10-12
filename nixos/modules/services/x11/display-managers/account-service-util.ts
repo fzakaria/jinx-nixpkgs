@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/account-service-util.nix", [[["teams", 43, 5]], [["name", 11, 3], ["pyproject", 13, 3], ["src", 15, 3], ["dontUnpack", 17, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["propagatedBuildInputs", 31, 3], ["installPhase", 36, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { accountsservice: false, glib: false, "gobject-introspection": false, python3: false, wrapGAppsNoGuiHook: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/account-service-util.nix", [["teams", 43, 5]]);
-const pos$2 = nix.positions(here + "/account-service-util.nix", [["name", 11, 3], ["pyproject", 13, 3], ["src", 15, 3], ["dontUnpack", 17, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["propagatedBuildInputs", 31, 3], ["installPhase", 36, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsNoGuiHook = nix.arg($, "wrapGAppsNoGuiHook");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "set-session",
       pyproject: false,
       src: nix.path(here, "./set-session.py"),
@@ -32,7 +31,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "mkdir -p $out/bin\ncp $src $out/bin/set-session\nchmod +x $out/bin/set-session\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       })),
     })));

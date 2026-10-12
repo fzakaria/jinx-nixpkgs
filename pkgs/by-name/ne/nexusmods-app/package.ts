@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]], [["mainProgram", 85, 33], ["INSTALL_EXEC", 86, 7], ["INSTALL_TRYEXEC", 87, 7]], [["tests", 191, 16]], [["pname", 189, 7], ["doCheck", 190, 7], ["passthru", 191, 7]], [["app", 188, 5]], [["tests", 186, 12], ["updateScript", 195, 12]], [["mainProgram", 198, 5], ["homepage", 199, 5], ["changelog", 200, 5], ["license", 201, 5], ["maintainers", 202, 5], ["platforms", 206, 5], ["description", 207, 5], ["longDescription", 208, 5], ["knownVulnerabilities", 234, 5]], [["pname", 24, 11], ["version", 25, 3], ["src", 27, 3], ["gameHashes", 35, 3], ["enableParallelBuilding", 37, 3], ["projectFile", 44, 3], ["testProjectFile", 45, 3], ["nativeCheckInputs", 47, 3], ["nativeBuildInputs", 49, 3], ["nugetDeps", 53, 3], ["mapNuGetDependencies", 54, 3], ["dotnet-sdk", 56, 3], ["dotnet-runtime", 57, 3], ["postPatch", 59, 3], ["makeWrapperArgs", 79, 3], ["postInstall", 83, 3], ["runtimeInputs", 113, 3], ["executables", 119, 3], ["dotnetBuildFlags", 121, 3], ["doCheck", 134, 3], ["dotnetTestFlags", 136, 3], ["testFilters", 145, 3], ["disabledTests", 151, 3], ["doInstallCheck", 160, 3], ["nativeInstallCheckInputs", 162, 3], ["installCheckPhase", 168, 3], ["passthru", 186, 3], ["meta", 197, 3]]]);
 const formals$1 = { args: { _7zz: false, buildDotnetModule: false, callPackage: false, "desktop-file-utils": false, dotnetCorePackages: false, fetchFromGitHub: false, imagemagick: false, lib: false, "xdg-utils": false, pname: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 85, 33], ["INSTALL_EXEC", 86, 7], ["INSTALL_TRYEXEC", 87, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 191, 16]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 189, 7], ["doCheck", 190, 7], ["passthru", 191, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["app", 188, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 186, 12], ["updateScript", 195, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["mainProgram", 198, 5], ["homepage", 199, 5], ["changelog", 200, 5], ["license", 201, 5], ["maintainers", 202, 5], ["platforms", 206, 5], ["description", 207, 5], ["longDescription", 208, 5], ["knownVulnerabilities", 234, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 24, 11], ["version", 25, 3], ["src", 27, 3], ["gameHashes", 35, 3], ["enableParallelBuilding", 37, 3], ["projectFile", 44, 3], ["testProjectFile", 45, 3], ["nativeCheckInputs", 47, 3], ["nativeBuildInputs", 49, 3], ["nugetDeps", 53, 3], ["mapNuGetDependencies", 54, 3], ["dotnet-sdk", 56, 3], ["dotnet-runtime", 57, 3], ["postPatch", 59, 3], ["makeWrapperArgs", 79, 3], ["postInstall", 83, 3], ["runtimeInputs", 113, 3], ["executables", 119, 3], ["dotnetBuildFlags", 121, 3], ["doCheck", 134, 3], ["dotnetTestFlags", 136, 3], ["testFilters", 145, 3], ["disabledTests", 151, 3], ["doInstallCheck", 160, 3], ["nativeInstallCheckInputs", 162, 3], ["installCheckPhase", 168, 3], ["passthru", 186, 3], ["meta", 197, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pname = nix.argOr($, "pname", () => "nexusmods-app");
   const constants = nix.thunk(() => ["INSTALLATION_METHOD_PACKAGE_MANAGER", "NEXUSMODS_APP_USE_SYSTEM_EXTRACTOR"]);
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: "0.21.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Nexus-Mods",
           repo: "NexusMods.App",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +61,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(finalAttrs, "f
       postInstall: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "strings", "toShellVars"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),
           INSTALL_EXEC: "${INSTALL_EXEC}",
           INSTALL_TRYEXEC: "${INSTALL_TRYEXEC}",
@@ -122,20 +115,20 @@ done
       nativeInstallCheckInputs: nix.thunk(() => [desktop_file_utils]),
       installCheckPhase: "runHook preInstallCheck\n\necho 'Checking for issues in $out/share/applications/com.nexusmods.app.desktop'\n(\n  cd $out/share/applications\n  desktop-file-validate com.nexusmods.app.desktop\n  if grep '\\$' com.nexusmods.app.desktop \\\n    --with-filename --line-number\n  then\n    echo 'error: unexpected \"$\"'\n    exit 1\n  fi\n) &>/dev/stderr\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           app: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-tested`),
               doCheck: true,
-              passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({})) })),
+              passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], tests: nix.thunk(() => ({})) })),
             })))),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         mainProgram: "NexusMods.App",
         homepage: "https://github.com/Nexus-Mods/NexusMods.App",
         changelog: nix.thunk(() => nix.str`https://github.com/Nexus-Mods/NexusMods.App/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

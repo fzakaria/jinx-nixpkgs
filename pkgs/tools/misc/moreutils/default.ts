@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["url", 55, 5]], [["updateScript", 53, 12]], [["description", 61, 5], ["homepage", 62, 5], ["maintainers", 63, 5], ["platforms", 67, 5], ["license", 68, 5], ["priority", 72, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["makeFlags", 46, 3], ["passthru", 53, 3], ["__structuredAttrs", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, libxml2: false, libxslt: false, "docbook-xsl": false, docbook_xml_dtd_44: false, makeWrapper: false, parallel: false, perl: false, cctools: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 53, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["maintainers", 63, 5], ["platforms", 67, 5], ["license", 68, 5], ["priority", 72, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["makeFlags", 46, 3], ["passthru", 53, 3], ["__structuredAttrs", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const cctools = nix.arg($, "cctools");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "moreutils",
       version: "0.70",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.joeyh.name/moreutils",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-71ACHzzk258U4q2L7GJ59mrMZG99M7nQkcH4gHafGP0=",
@@ -49,12 +45,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "git://git.joeyh.name/moreutils" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], url: "git://git.joeyh.name/moreutils" })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Growing collection of the unix tools that nobody thought to write long ago when unix was young",
         homepage: "https://joeyh.name/code/moreutils/",
         maintainers: nix.thunk(() => (() => {

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/1.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["changelog", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 28]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["pythonImportsCheck", 32, 3], ["doCheck", 34, 3], ["nativeCheckInputs", 36, 3], ["preCheck", 40, 3], ["disabledTests", 47, 3], ["__darwinAllowLocalNetworking", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, esphome: false, fetchFromGitHub: false, lib: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/1.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/1.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/1.nix", [["changelog", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 28]]);
-const pos$4 = nix.positions(here + "/1.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["pythonImportsCheck", 32, 3], ["doCheck", 34, 3], ["nativeCheckInputs", 36, 3], ["preCheck", 40, 3], ["disabledTests", 47, 3], ["__darwinAllowLocalNetworking", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   const testing = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "eclipse",
       repo: "paho.mqtt.testing",
       rev: "a4dc694010217b291ee78ee13a6d1db812f9babd",
       hash: "sha256-SQoNdkWMjnasPjpXQF2yV97MUra8gb27pc3rNoA8Rjw=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "paho-mqtt",
       version: "1.6.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "eclipse",
           repo: "paho.mqtt.python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +46,7 @@ export PYTHONPATH=".:$PYTHONPATH"
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(esphome, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/eclipse/paho.mqtt.python/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog.txt`),
         description: "MQTT version 5.0/3.1.1 client class",
         homepage: "https://eclipse.org/paho",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["rev-prefix", 53, 40]], [["skipBulkUpdate", 52, 12], ["updateScript", 53, 12]], [["changelog", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["sourceRoot", 28, 3], ["build-system", 30, 3], ["pythonRelaxDeps", 32, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 45, 3], ["nativeCheckInputs", 47, 3], ["passthru", 52, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, gitUpdater: false, "google-api-core": false, "google-auth": false, "google-geo-type": false, lib: false, "proto-plus": false, protobuf: false, "pytest-asyncio": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 53, 40]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 52, 12], ["updateScript", 53, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["sourceRoot", 28, 3], ["build-system", 30, 3], ["pythonRelaxDeps", 32, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 45, 3], ["nativeCheckInputs", 47, 3], ["passthru", 52, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "google-cloud-python",
           tag: nix.thunk(() => nix.str`google-maps-routing-v${version}`),
@@ -41,12 +37,12 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["google.maps.routing_v2"]);
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytestCheckHook]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdate: true,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "google-maps-routing-v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "google-maps-routing-v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/${nix.sel(src, "tag")}/packages/google-maps-routing/CHANGELOG.md`),
         description: "Google Maps Routing API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-maps-routing",
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

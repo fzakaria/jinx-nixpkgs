@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, qmake: false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qtdbusextended";
       const version = "0.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nemomobile",
           repo: "qtdbusextended",
           rev: version,
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace src/src.pro \\\n  --replace '$$[QT_INSTALL_LIBS]' \"$out/lib\" \\\n  --replace '$$[QT_INSTALL_HEADERS]' \"$out/include\" \\\n  --replace '$$[QMAKE_MKSPECS]' \"$out/mkspecs\"\n";
       const nativeBuildInputs = nix.thunk(() => [qmake, wrapQtAppsHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Qt provides several classes for DBus communication",
         homepage: "https://github.com/nemomobile/qtdbusextended",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "wineee"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, postPatch, nativeBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, postPatch, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,19 +2,12 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/combine-wrapper.nix", [[["key", 41, 15], ["pkg", 42, 23]], [["startSet", 48, 9], ["operator", 49, 9]], [["run", 60, 5], ["doc", 61, 5], ["source", 62, 5], ["bin", 63, 5], ["tlpkg", 64, 5]], [["outputSpecified", 70, 7], ["tlOutputName", 71, 7]], [["message", 78, 22]], [["removal", 78, 14]], [["problems", 78, 5]], [["__extraName", 81, 5], ["__extraVersion", 82, 5], ["requiredTeXPackages", 83, 5], ["__combine", 84, 5], ["__fromCombineWrapper", 85, 5]]]);
 const formals$1 = { args: { lib: false, toTLPkgList: false, pkgs: false, buildTeXEnv: false }, ellipsis: false };
 const formals$2 = { args: { pkgFilter: true, extraName: true, extraVersion: true }, ellipsis: true };
 const formals$3 = { args: { tlType: false, version: true, outputName: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/combine-wrapper.nix", [["key", 41, 15], ["pkg", 42, 23]]);
 const formals$4 = { args: { pkg: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/combine-wrapper.nix", [["startSet", 48, 9], ["operator", 49, 9]]);
-const pos$3 = nix.positions(here + "/combine-wrapper.nix", [["run", 60, 5], ["doc", 61, 5], ["source", 62, 5], ["bin", 63, 5], ["tlpkg", 64, 5]]);
 const formals$5 = { args: { tlType: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/combine-wrapper.nix", [["outputSpecified", 70, 7], ["tlOutputName", 71, 7]]);
-const pos$5 = nix.positions(here + "/combine-wrapper.nix", [["message", 78, 22]]);
-const pos$6 = nix.positions(here + "/combine-wrapper.nix", [["removal", 78, 14]]);
-const pos$7 = nix.positions(here + "/combine-wrapper.nix", [["problems", 78, 5]]);
-const pos$8 = nix.positions(here + "/combine-wrapper.nix", [["__extraName", 81, 5], ["__extraVersion", 82, 5], ["requiredTeXPackages", 83, 5], ["__combine", 84, 5], ["__fromCombineWrapper", 85, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,14 +30,14 @@ export default nix.lambda((args) => (() => {
             const version = nix.argOr($_2, "version", () => "");
             const outputName = nix.argOr($_2, "outputName", () => "");
             return {
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               key: nix.thunk(() => nix.str`${nix.selOr(pkg, () => nix.sel(pkg, "name"), "pname")}.${tlType}-${version}-${outputName}`),
               pkg: pkg,
             };
           })(), formals$3), nix.thunk(() => nix.selOr(drv, () => nix.app(toTLPkgList, drv), "pkgs")));
         const pkgListToSets = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), tlPkgToSets));
         return nix.builtins.genericClosure(nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             startSet: nix.thunk(() => nix.app(pkgListToSets, pkgList)),
             operator: nix.lambda((args_3) => (() => {
               const $_2 = nix.formals(args_3, formals$4);
@@ -55,7 +48,7 @@ export default nix.lambda((args) => (() => {
       })()));
     const combined = nix.thunk(() => nix.app(combinePkgs, nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), pkgSet))));
     const tlTypeToOut = nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       run: "tex",
       doc: "texdoc",
       source: "texsource",
@@ -67,7 +60,7 @@ export default nix.lambda((args) => (() => {
       const drv = args_3;
       const tlType = nix.arg($_2, "tlType");
       return nix.update(drv, {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         outputSpecified: true,
         tlOutputName: nix.thunk(() => nix.sel(tlTypeToOut, nix.key(nix.force(tlType)))),
       });
@@ -75,16 +68,16 @@ export default nix.lambda((args) => (() => {
     const all = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "filter"), pkgFilter, combined), nix.app(nix.sel(lib, "filter"), (pkg) => nix.eq(nix.sel(pkg, "tlType"), "tlpkg"), combined)));
     const converted = nix.thunk(() => nix.builtins.map(toSpecified, all));
     return nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         problems: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           removal: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             message: "texlive.combine is deprecated and will be removed from Nixpkgs 27.05. Please switch to texliveSmall.withPackages. See https://nixos.org/manual/nixpkgs/stable/#sec-language-texlive-user-guide.",
           })),
         })),
       })), nix.thunk(() => nix.app(buildTeXEnv, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           __extraName: extraName,
           __extraVersion: extraVersion,
           requiredTeXPackages: (_) => nix.force(converted),

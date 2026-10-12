@@ -2,21 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mumble.nix", [[["systemPackages", 8, 19]], [["imports", 7, 7], ["environment", 8, 7]], [["maintainers", 20, 5]], [["enable", 27, 27]], [["apparmor", 27, 18]], [["enable", 28, 25], ["registerName", 29, 25], ["password", 30, 25], ["environmentFile", 31, 25]], [["murmur", 28, 18]], [["allowedTCPPorts", 32, 29]], [["firewall", 32, 20]], [["security", 27, 9], ["services", 28, 9], ["networking", 32, 9]], [["server", 24, 5], ["client1", 35, 5], ["client2", 36, 5]], [["name", 18, 3], ["meta", 19, 3], ["nodes", 23, 3], ["testScript", 39, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mumble.nix", [["systemPackages", 8, 19]]);
-const pos$2 = nix.positions(here + "/mumble.nix", [["imports", 7, 7], ["environment", 8, 7]]);
-const pos$3 = nix.positions(here + "/mumble.nix", [["maintainers", 20, 5]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/mumble.nix", [["enable", 27, 27]]);
-const pos$5 = nix.positions(here + "/mumble.nix", [["apparmor", 27, 18]]);
-const pos$6 = nix.positions(here + "/mumble.nix", [["enable", 28, 25], ["registerName", 29, 25], ["password", 30, 25], ["environmentFile", 31, 25]]);
-const pos$7 = nix.positions(here + "/mumble.nix", [["murmur", 28, 18]]);
-const pos$8 = nix.positions(here + "/mumble.nix", [["allowedTCPPorts", 32, 29]]);
-const pos$9 = nix.positions(here + "/mumble.nix", [["firewall", 32, 20]]);
-const pos$10 = nix.positions(here + "/mumble.nix", [["security", 27, 9], ["services", 28, 9], ["networking", 32, 9]]);
-const pos$11 = nix.positions(here + "/mumble.nix", [["server", 24, 5], ["client1", 35, 5], ["client2", 36, 5]]);
-const pos$12 = nix.positions(here + "/mumble.nix", [["name", 18, 3], ["meta", 19, 3], ["nodes", 23, 3], ["testScript", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,40 +14,40 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "mumble"))]),
       })),
     };
   })(), formals$2);
   const envFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "nixos-test-mumble-murmurd.env", "MURMURD_PASSWORD=testpassword\n"));
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "mumble",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "thoughtpolice"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           security: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            apparmor: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+            [nix.POS]: $pos[4],
+            apparmor: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             murmur: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               registerName: "NixOS tests",
               password: "$MURMURD_PASSWORD",
@@ -66,9 +55,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "murmur", "port"))]),
             })),
           })),

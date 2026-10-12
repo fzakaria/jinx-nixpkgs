@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-linux", 17, 7], ["x86_64-linux", 18, 7]], [["aarch64-linux", 27, 9], ["x86_64-linux", 28, 9]], [["url", 23, 5], ["hash", 24, 5]], [["pname", 34, 13], ["version", 34, 19], ["src", 34, 27]], [["updateScript", 65, 12]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5], ["mainProgram", 77, 5]], [["pname", 40, 11], ["version", 40, 17], ["src", 40, 25], ["nativeBuildInputs", 42, 3], ["extraInstallCommands", 44, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, appimageTools: false, makeWrapper: false, tor: false, trezord: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-linux", 17, 7], ["x86_64-linux", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aarch64-linux", 27, 9], ["x86_64-linux", 28, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 34, 13], ["version", 34, 19], ["src", 34, 27]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5], ["mainProgram", 77, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 40, 11], ["version", 40, 17], ["src", 40, 25], ["nativeBuildInputs", 42, 3], ["extraInstallCommands", 44, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const pname = "trezor-suite";
   const version = "26.9.3";
   const suffix = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-linux": "linux-arm64",
     "x86_64-linux": "linux-x86_64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://github.com/trezor/trezor-suite/releases/download/v${version}/Trezor-Suite-${version}-${suffix}.AppImage`),
       hash: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "aarch64-linux": "sha512-dodnUWKXMdkCQjlXTb4f4CoKg3yEAWMijBvWjIM0Lc4hn0raBPxfYCZf7xBNSLntZ5tRi65u32aqbpLPnIs+kg==",
         "x86_64-linux": "sha512-cwfo+YdZnlhW/sFppwVwNPLGacHGDmAQTBTReJ4VoqgewPRsScVNJxHjH5qg/qG2Q2HrU2qAIcF/CIzZzMzjJA==",
       }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[3], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => (() => {
       const pname_1 = pname;
       const version_1 = version;
@@ -61,9 +55,9 @@ mkdir -p $out/share/${pname_1}/resources/bin/{bridge,tor}
 ln -sf ${trezord}/bin/trezord-go $out/share/${pname_1}/resources/bin/bridge/trezord
 ln -sf ${tor}/bin/tor $out/share/${pname_1}/resources/bin/tor/tor
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Trezor Suite - Desktop App for managing crypto",
         homepage: "https://suite.trezor.io",
         changelog: nix.thunk(() => nix.str`https://github.com/trezor/trezor-suite/releases/tag/v${version_1}`),
@@ -76,7 +70,7 @@ ln -sf ${tor}/bin/tor $out/share/${pname_1}/resources/bin/tor/tor
         mainProgram: "trezor-suite",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: pname_1,
         version: version_1,
         src: src_1,

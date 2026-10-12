@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mkPrelude.nix", [[["IDRIS2_PREFIX", 35, 9], ["IDRIS2_PACKAGE_PATH", 36, 9]], [["pname", 22, 7], ["version", 23, 7], ["src", 24, 7], ["strictDeps", 25, 7], ["makeFlags", 27, 7], ["enableParallelBuilding", 29, 7], ["preBuild", 30, 7], ["env", 34, 7]], [["constructDrv", 9, 3], ["excludeDrvArgNames", 11, 3], ["extendDrvArgs", 15, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, "idris2-src": false, "idris2-version": false, "idris2-unwrapped": false }, ellipsis: false };
 const formals$2 = { args: { name: false, dependencies: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mkPrelude.nix", [["IDRIS2_PREFIX", 35, 9], ["IDRIS2_PACKAGE_PATH", 36, 9]]);
-const pos$2 = nix.positions(here + "/mkPrelude.nix", [["pname", 22, 7], ["version", 23, 7], ["src", 24, 7], ["strictDeps", 25, 7], ["makeFlags", 27, 7], ["enableParallelBuilding", 29, 7], ["preBuild", 30, 7], ["env", 34, 7]]);
-const pos$3 = nix.positions(here + "/mkPrelude.nix", [["constructDrv", 9, 3], ["excludeDrvArgNames", 11, 3], ["extendDrvArgs", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const idris2_version = nix.arg($, "idris2-version");
   const idris2_unwrapped = nix.arg($, "idris2-unwrapped");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["dependencies"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
         const name = nix.arg($_1, "name");
         const dependencies = nix.argOr($_1, "dependencies", () => []);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: name,
           version: idris2_version,
           src: idris2_src,
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
           preBuild: nix.thunk(() => nix.str`cd libs/${name}
 `),
           env: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             IDRIS2_PREFIX: nix.thunk(() => nix.builtins.placeholder("out")),
             IDRIS2_PACKAGE_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), nix.thunk(() => nix.str`idris2-${idris2_version}`), dependencies)),
           })),

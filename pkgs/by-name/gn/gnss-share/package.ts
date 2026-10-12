@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]], [["description", 17, 5], ["longDescription", 18, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["mainProgram", 30, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["vendorHash", 15, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitLab: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 17, 5], ["longDescription", 18, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["mainProgram", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["vendorHash", 15, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gnss-share",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "postmarketOS",
           repo: "gnss-share",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-dmE6hfKUqEr7BMNi/HMUOk4jDB0dPXEMkWQyWj6XpY4=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Share GNSS data between multiple clients",
         longDescription: "gnss-share is an app that facilitates sharing GNSS location data with multiple\nclients, while providing a way to perform device-specific setup beforehand. For\nsome devices, it can also manage loading and storing A-GPS data.\n\nThis is meant to replace things like gpsd, and gps-share, and work together\nwith geoclue* or other clients that support fetching NMEA location data over\nsockets.\n",
         homepage: "https://gitlab.com/postmarketOS/gnss-share",

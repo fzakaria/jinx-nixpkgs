@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]], [["description", 63, 5], ["longDescription", 64, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5], ["broken", 83, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["outputs", 30, 3], ["configureFlags", 37, 3], ["hardeningDisable", 49, 3], ["preCheck", 51, 3], ["dontStrip", 56, 3], ["doCheck", 58, 11], ["nativeCheckInputs", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, doCheck: true, dejagnu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["longDescription", 64, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5], ["broken", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["outputs", 30, 3], ["configureFlags", 37, 3], ["hardeningDisable", 49, 3], ["preCheck", 51, 3], ["dontStrip", 56, 3], ["doCheck", 58, 11], ["nativeCheckInputs", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const doCheck = nix.argOr($, "doCheck", () => true);
   const dejagnu = nix.arg($, "dejagnu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libffi",
       version: "3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/libffi/libffi/releases/download/v${nix.sel(finalAttrs, "version")}/libffi-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-cvunkicD3fp6Ao1ROsFahcjVTI1n9V+lpIAohdxlIFY=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-15.patch",
             url: "https://github.com/libffi/libffi/commit/0859f8431242d5adff21420b9cab538d2af527b5.patch",
             hash: "sha256-Py4ZAhVyXsfLxr4pnYAH7/lcsQOmpToFgvjQvLg9XVc=",
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       doCheck: doCheck,
       nativeCheckInputs: nix.thunk(() => [dejagnu]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Foreign function call interface library",
         longDescription: "The libffi library provides a portable, high level programming\ninterface to various calling conventions.  This allows a\nprogrammer to call any function specified by a call interface\ndescription at run-time.\n\nFFI stands for Foreign Function Interface.  A foreign function\ninterface is the popular name for the interface that allows code\nwritten in one language to call code written in another\nlanguage.  The libffi library really only provides the lowest,\nmachine dependent layer of a fully featured foreign function\ninterface.  A layer must exist above libffi that handles type\nconversions for values passed between the two languages.\n",
         homepage: "http://sourceware.org/libffi/",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["sage", 55, 13]], [["tests", 54, 12]], [["changelog", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["disabled", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["buildInputs", 34, 3], ["preCheck", 41, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 52, 3], ["passthru", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, isPyPy: false, setuptools: false, gmp: false, mpfr: false, libmpc: false, pytestCheckHook: false, hypothesis: false, cython: false, mpmath: false, sage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sage", 55, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 54, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["disabled", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["buildInputs", 34, 3], ["preCheck", 41, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 52, 3], ["passthru", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const mpmath = nix.arg($, "mpmath");
   const sage = nix.arg($, "sage");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gmpy2",
       version: "2.2.2",
       pyproject: true,
       disabled: isPyPy,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aleaxit",
           repo: "gmpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,9 +38,12 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm gmpy2 -r\n",
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, hypothesis, cython, mpmath]),
       pythonImportsCheck: nix.thunk(() => ["gmpy2"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) })),
+      passthru: nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], sage: sage })),
+      })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/aleaxit/gmpy/blob/${nix.sel(finalAttrs, "src", "rev")}/docs/history.rst`),
         description: "Interface to GMP, MPFR, and MPC for Python 3.7+",
         homepage: "https://github.com/aleaxit/gmpy/",

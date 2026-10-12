@@ -2,33 +2,29 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-vorbis.nix", [[["enableVorbis", 11, 32]], [["systemPackages", 10, 21]], [["environment", 10, 9]], [["machine", 7, 11]], [["name", 5, 5], ["nodes", 7, 5], ["testScript", 16, 5]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/with-vorbis.nix", [["enableVorbis", 11, 32]]);
-const pos$2 = nix.positions(here + "/with-vorbis.nix", [["systemPackages", 10, 21]]);
-const pos$3 = nix.positions(here + "/with-vorbis.nix", [["environment", 10, 9]]);
-const pos$4 = nix.positions(here + "/with-vorbis.nix", [["machine", 7, 11]]);
-const pos$5 = nix.positions(here + "/with-vorbis.nix", [["name", 5, 5], ["nodes", 7, 5], ["testScript", 16, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "timidity-with-vorbis",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               systemPackages: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs_1, null);
                 return [
-                  nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "timidity"), "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableVorbis: true })))),
+                  nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "timidity"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableVorbis: true })))),
                   nix.thunk(() => nix.lookup(w, "ffmpeg")),
                 ];
               })()),

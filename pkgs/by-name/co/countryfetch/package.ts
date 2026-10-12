@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["OPENSSL_NO_VENDOR", 25, 5]], [["updateScript", 37, 12]], [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["env", 24, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["cargoBuildFlags", 32, 3], ["nativeInstallCheckInputs", 34, 3], ["doInstallCheck", 35, 3], ["passthru", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, openssl: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 37, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["env", 24, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["cargoBuildFlags", 32, 3], ["nativeInstallCheckInputs", 34, 3], ["doInstallCheck", 35, 3], ["passthru", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,29 +15,29 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "countryfetch",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nik-rev",
           repo: "countryfetch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-povKd1Y/2Mi+6yJd9+RsJ4F19/wvXvBOK2Jgbs4UnP0=",
         })))),
       cargoHash: "sha256-0ZBhRheJGapPqVieXbIpoboVV4RLXan042u5SSgrYQk=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: true })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       cargoBuildFlags: nix.thunk(() => ["--package=countryfetch"]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command-line tool similar to Neofetch for obtaining information about your country",
         homepage: "https://github.com/nik-rev/countryfetch",
         changelog: nix.thunk(() => nix.str`https://github.com/nik-rev/countryfetch/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

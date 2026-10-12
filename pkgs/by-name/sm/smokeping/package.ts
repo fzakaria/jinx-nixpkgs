@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["url", 24, 7], ["hash", 25, 7]], [["smokeping", 56, 18]], [["tests", 56, 12]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["propagatedBuildInputs", 29, 3], ["nativeBuildInputs", 50, 3], ["postInstall", 52, 3], ["passthru", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, fping: false, rrdtool: false, perlPackages: false, autoreconfHook: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["smokeping", 56, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 56, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["propagatedBuildInputs", 29, 3], ["nativeBuildInputs", 50, 3], ["postInstall", 52, 3], ["passthru", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "smokeping",
       version: "2.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://oss.oetiker.ch/smokeping/pub/smokeping-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-8b41v8zCuhyfdfdtIisptXAk7+icW1ZLhsGjfOLR3bE=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://src.fedoraproject.org/rpms/smokeping/raw/4ebf1921706a5a29c758fdce2f59cc35652c944a/f/smokeping-2.8.2-no-3rd-party.patch",
             hash: "sha256-97rQ4m9HHl3lIpQyjZvu+gZSrNIB2pckxmopCQAQPp0=",
           })))),
@@ -60,14 +55,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       postInstall: "mv $out/htdocs/smokeping.fcgi.dist $out/htdocs/smokeping.fcgi\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           smokeping: nix.thunk(() => nix.sel(nixosTests, "smokeping")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Network latency collector",
         homepage: "https://oss.oetiker.ch/smokeping",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

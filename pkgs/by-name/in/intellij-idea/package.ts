@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 7], ["hash", 21, 7]], [["url", 24, 7], ["hash", 25, 7]], [["url", 28, 7], ["hash", 29, 7]], [["x86_64-linux", 19, 5], ["aarch64-linux", 23, 5], ["aarch64-darwin", 27, 5]], [["homepage", 72, 5], ["description", 73, 5], ["longDescription", 74, 5], ["maintainers", 78, 5], ["teams", 82, 5], ["license", 83, 5], ["sourceProvenance", 84, 5]], [["jetbrains-libdbm", 35, 11], ["fsnotifier", 35, 28], ["pname", 37, 3], ["wmClass", 39, 3], ["product", 40, 3], ["productShort", 41, 3], ["version", 44, 3], ["buildNumber", 45, 3], ["src", 48, 3], ["jdk", 51, 3], ["extraLdPath", 57, 3], ["extraWrapperArgs", 58, 3], ["buildInputs", 63, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { fetchurl: false, fsnotifier: false, jetbrains: false, "jetbrains-libdbm": false, lib: false, lldb: false, maven: false, musl: false, stdenv: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 19, 5], ["aarch64-linux", 23, 5], ["aarch64-darwin", 27, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["longDescription", 74, 5], ["maintainers", 78, 5], ["teams", 82, 5], ["license", 83, 5], ["sourceProvenance", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["jetbrains-libdbm", 35, 11], ["fsnotifier", 35, 28], ["pname", 37, 3], ["wmClass", 39, 3], ["product", 40, 3], ["productShort", 41, 3], ["version", 44, 3], ["buildNumber", 45, 3], ["src", 48, 3], ["jdk", 51, 3], ["extraLdPath", 57, 3], ["extraWrapperArgs", 58, 3], ["buildInputs", 63, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,25 +19,25 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const urls = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://download.jetbrains.com/idea/ideaIU-2026.2.3.tar.gz",
       hash: "sha256-aHUciuTUlAclHNGX33lfvtkbb9yF0QxzxGSameSWqzc=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://download.jetbrains.com/idea/ideaIU-2026.2.3-aarch64.tar.gz",
       hash: "sha256-hzKG3WQGlxojEYJ+3WbFYGDDRVgqSmsXdOOSUYOwLsU=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://download.jetbrains.com/idea/ideaIU-2026.2.3-aarch64.dmg",
       hash: "sha256-qsPNxthEG5QFJHP+43qWeSQqNvSfYP3ObM6qPnrUbjM=",
     })),
   }));
   return nix.app(nix.sel(jetbrains, "mkJetBrainsProduct"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       "jetbrains-libdbm": jetbrains_libdbm,
       fsnotifier: fsnotifier,
       pname: "intellij-idea",
@@ -60,7 +55,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [lldb, musl]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.jetbrains.com/idea/",
         description: "Java, Kotlin, Groovy and Scala IDE from JetBrains",
         longDescription: "IDE for Java SE, Groovy & Scala development Powerful environment for building Google Android apps Integration with JUnit, TestNG, popular SCMs, Ant & Maven.\nAlso known as IntelliJ.\n",

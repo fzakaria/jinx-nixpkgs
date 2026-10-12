@@ -2,37 +2,19 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/amd-sev.nix", [[["maintainers", 5, 5]], [["enable", 14, 28]], [["enable", 15, 33]], [["sev", 14, 24], ["sevGuest", 15, 24]], [["amd", 14, 20]], [["cpu", 14, 16]], [["sevtest", 18, 22]], [["groups", 18, 15]], [["enable", 21, 11], ["group", 22, 11], ["mode", 23, 11]], [["enable", 26, 11], ["group", 27, 11]], [["sev", 20, 26], ["sevGuest", 25, 26]], [["amd", 20, 22]], [["cpu", 20, 18]], [["users", 18, 9], ["hardware", 20, 9]], [["configuration", 17, 41]], [["sevCustomUserGroup", 17, 22]], [["hardware", 14, 7], ["specialisation", 17, 7]], [["machine", 11, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 11, 3], ["testScript", 32, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/amd-sev.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/amd-sev.nix", [["enable", 14, 28]]);
-const pos$3 = nix.positions(here + "/amd-sev.nix", [["enable", 15, 33]]);
-const pos$4 = nix.positions(here + "/amd-sev.nix", [["sev", 14, 24], ["sevGuest", 15, 24]]);
-const pos$5 = nix.positions(here + "/amd-sev.nix", [["amd", 14, 20]]);
-const pos$6 = nix.positions(here + "/amd-sev.nix", [["cpu", 14, 16]]);
-const pos$7 = nix.positions(here + "/amd-sev.nix", [["sevtest", 18, 22]]);
-const pos$8 = nix.positions(here + "/amd-sev.nix", [["groups", 18, 15]]);
-const pos$9 = nix.positions(here + "/amd-sev.nix", [["enable", 21, 11], ["group", 22, 11], ["mode", 23, 11]]);
-const pos$10 = nix.positions(here + "/amd-sev.nix", [["enable", 26, 11], ["group", 27, 11]]);
-const pos$11 = nix.positions(here + "/amd-sev.nix", [["sev", 20, 26], ["sevGuest", 25, 26]]);
-const pos$12 = nix.positions(here + "/amd-sev.nix", [["amd", 20, 22]]);
-const pos$13 = nix.positions(here + "/amd-sev.nix", [["cpu", 20, 18]]);
-const pos$14 = nix.positions(here + "/amd-sev.nix", [["users", 18, 9], ["hardware", 20, 9]]);
-const pos$15 = nix.positions(here + "/amd-sev.nix", [["configuration", 17, 41]]);
-const pos$16 = nix.positions(here + "/amd-sev.nix", [["sevCustomUserGroup", 17, 22]]);
-const pos$17 = nix.positions(here + "/amd-sev.nix", [["hardware", 14, 7], ["specialisation", 17, 7]]);
-const pos$18 = nix.positions(here + "/amd-sev.nix", [["machine", 11, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/amd-sev.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 11, 3], ["testScript", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "amd-sev",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -42,41 +24,41 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           hardware: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             cpu: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               amd: nix.thunk(() => ({
-                [nix.POS]: pos$4,
-                sev: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
-                sevGuest: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+                [nix.POS]: $pos[3],
+                sev: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
+                sevGuest: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
               })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             sevCustomUserGroup: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
-                  groups: nix.thunk(() => ({ [nix.POS]: pos$7, sevtest: nix.thunk(() => ({})) })),
+                  [nix.POS]: $pos[7],
+                  groups: nix.thunk(() => ({ [nix.POS]: $pos[6], sevtest: nix.thunk(() => ({})) })),
                 })),
                 hardware: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   cpu: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     amd: nix.thunk(() => ({
-                      [nix.POS]: pos$11,
-                      sev: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true, group: "root", mode: "0600" })),
-                      sevGuest: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, group: "sevtest" })),
+                      [nix.POS]: $pos[10],
+                      sev: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true, group: "root", mode: "0600" })),
+                      sevGuest: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true, group: "sevtest" })),
                     })),
                   })),
                 })),

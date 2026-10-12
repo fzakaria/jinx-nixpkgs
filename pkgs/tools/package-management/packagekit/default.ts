@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]], [["nixos-test", 111, 5]], [["tests", 110, 12]], [["description", 115, 5], ["longDescription", 116, 5], ["homepage", 126, 5], ["license", 127, 5], ["platforms", 128, 5], ["maintainers", 129, 5]], [["pname", 34, 3], ["version", 35, 3], ["outputs", 37, 3], ["src", 43, 3], ["buildInputs", 50, 3], ["nativeBuildInputs", 63, 3], ["mesonFlags", 78, 3], ["postPatch", 95, 3], ["passthru", 110, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, gettext: false, glib: false, "pkg-config": false, polkit: false, python3: false, sqlite: false, "gobject-introspection": false, vala: false, jansson: false, docbook_xsl_ns: false, "gtk-doc": false, boost: false, meson: false, ninja: false, libxslt: false, "docbook-xsl-nons": false, docbook_xml_dtd_42: false, libxml2: false, gst_all_1: false, gtk3: false, enableCommandNotFound: true, enableBashCompletion: true, "bash-completion": true, enableSystemd: true, systemdLibs: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nixos-test", 111, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 110, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 115, 5], ["longDescription", 116, 5], ["homepage", 126, 5], ["license", 127, 5], ["platforms", 128, 5], ["maintainers", 129, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["outputs", 37, 3], ["src", 43, 3], ["buildInputs", 50, 3], ["nativeBuildInputs", 63, 3], ["mesonFlags", 78, 3], ["postPatch", 95, 3], ["passthru", 110, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "packagekit",
       version: "1.4.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PackageKit",
           repo: "PackageKit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -101,14 +97,14 @@ substituteInPlace client/meson.build \\
 patchShebangs tests/runner/setup-test-root.py
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "nixos-test": nix.thunk(() => nix.sel(nixosTests, "packagekit")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "System to facilitate installing and updating packages",
         longDescription: "PackageKit is a system designed to make installing and updating software\non your computer easier. The primary design goal is to unify all the\nsoftware graphical tools used in different distributions, and use some of\nthe latest technology like PolicyKit. The actual nuts-and-bolts distro\ntool (dnf, apt, etc) is used by PackageKit using compiled and scripted\nhelpers. PackageKit isn't meant to replace these tools, instead providing\na common set of abstractions that can be used by standard GUI and text\nmode package managers.\n",
         homepage: "https://github.com/PackageKit/PackageKit",

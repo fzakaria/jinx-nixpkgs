@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["enableOcr", 40, 5], ["enableCxx", 41, 5], ["enablePython", 42, 5], ["enableBarcode", 43, 5], ["python3", 44, 5]], [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["PYMUPDF_SETUP_MUPDF_BUILD", 102, 5], ["PYMUPDF_SETUP_LIBCLANG", 104, 5], ["PYMUPDF_MUPDF_LIB", 106, 5], ["PYMUPDF_MUPDF_INCLUDE", 107, 5]], [["extraArgs", 247, 5]], [["updateScript", 246, 12]], [["description", 251, 5], ["homepage", 252, 5], ["changelog", 253, 5], ["license", 254, 5], ["maintainers", 255, 5], ["platforms", 256, 5]], [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["src", 54, 3], ["patches", 61, 3], ["postPatch", 67, 3], ["preConfigure", 76, 3], ["build-system", 80, 3], ["dependencies", 87, 3], ["buildInputs", 91, 3], ["env", 100, 3], ["postInstall", 111, 3], ["nativeCheckInputs", 117, 3], ["disabledTests", 125, 3], ["disabledTestPaths", 148, 3], ["pythonImportsCheck", 231, 3], ["preCheck", 236, 3], ["passthru", 246, 3], ["meta", 250, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, python: false, toPythonModule: false, clang: false, pipcl: false, psutil: false, setuptools: false, swig: false, freetype: false, harfbuzz: false, openjpeg: false, jbig2dec: false, libjpeg_turbo: false, gumbo: false, mupdf: false, pytestCheckHook: false, fonttools: false, pillow: false, "pymupdf-fonts": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["enableOcr", 40, 5], ["enableCxx", 41, 5], ["enablePython", 42, 5], ["enableBarcode", 43, 5], ["python3", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["PYMUPDF_SETUP_MUPDF_BUILD", 102, 5], ["PYMUPDF_SETUP_LIBCLANG", 104, 5], ["PYMUPDF_MUPDF_LIB", 106, 5], ["PYMUPDF_MUPDF_INCLUDE", 107, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["extraArgs", 247, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 246, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 251, 5], ["homepage", 252, 5], ["changelog", 253, 5], ["license", 254, 5], ["maintainers", 255, 5], ["platforms", 256, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["src", 54, 3], ["patches", 61, 3], ["postPatch", 67, 3], ["preConfigure", 76, 3], ["build-system", 80, 3], ["dependencies", 87, 3], ["buildInputs", 91, 3], ["env", 100, 3], ["postInstall", 111, 3], ["nativeCheckInputs", 117, 3], ["disabledTests", 125, 3], ["disabledTestPaths", 148, 3], ["pythonImportsCheck", 231, 3], ["preCheck", 236, 3], ["passthru", 246, 3], ["meta", 250, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const pymupdf_fonts = nix.arg($, "pymupdf-fonts");
   const nix_update_script = nix.arg($, "nix-update-script");
   const mupdf_cxx = nix.thunk(() => nix.app(nix.sel(mupdf, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       enableOcr: true,
       enableCxx: true,
       enablePython: true,
@@ -47,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const mupdf_cxx_lib = nix.thunk(() => nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(lib, "getLib"), mupdf_cxx))));
   const mupdf_cxx_dev = nix.thunk(() => nix.app(nix.sel(lib, "getDev"), mupdf_cxx));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "pymupdf",
       version: "1.27.2.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "pymupdf",
           repo: "PyMuPDF",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +59,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [mupdf_cxx_lib]),
       buildInputs: nix.thunk(() => [freetype, harfbuzz, openjpeg, jbig2dec, libjpeg_turbo, gumbo]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         PYMUPDF_SETUP_MUPDF_BUILD: "",
         PYMUPDF_SETUP_LIBCLANG: "clang",
         PYMUPDF_MUPDF_LIB: nix.thunk(() => nix.str`${mupdf_cxx_lib}/lib`),
@@ -164,14 +158,14 @@ done
       pythonImportsCheck: nix.thunk(() => ["pymupdf", "fitz"]),
       preCheck: "export PATH=\"$out/bin:$PATH\";\n\n# Fixes at least one test; see:\n# * <https://github.com/pymupdf/PyMuPDF/blob/refs/tags/1.25.1/scripts/sysinstall.py#L390>\n# * <https://github.com/pymupdf/PyMuPDF/blob/refs/tags/1.25.1/tests/test_pixmap.py#L425-L428>\nexport PYMUPDF_SYSINSTALL_TEST=1\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex=([\\d]+\\.[\\d]+\\.[\\d]+(\\.[\\d]+)?)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Python bindings for MuPDF's rendering library",
         homepage: "https://github.com/pymupdf/PyMuPDF",
         changelog: nix.thunk(() => nix.str`https://github.com/pymupdf/PyMuPDF/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

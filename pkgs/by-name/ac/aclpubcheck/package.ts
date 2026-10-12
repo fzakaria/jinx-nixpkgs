@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["example-pdf", 39, 5]], [["tests", 38, 12]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["mainProgram", 46, 5], ["maintainers", 47, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["__structuredAttrs", 20, 3], ["build-system", 22, 3], ["dependencies", 26, 3], ["passthru", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["example-pdf", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["mainProgram", 46, 5], ["maintainers", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["__structuredAttrs", 20, 3], ["build-system", 22, 3], ["dependencies", 26, 3], ["passthru", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "aclpubcheck",
       version: "0.1-unstable-2026-09-11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "acl-org",
           repo: "aclpubcheck",
           rev: "237bee3a554f2d2fcda69cd0cf1edf4168e3d339",
@@ -47,14 +43,14 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "example-pdf": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tool for checking ACL paper submissions",
         homepage: "https://github.com/acl-org/aclpubcheck",
         license: nix.thunk(() => (() => {

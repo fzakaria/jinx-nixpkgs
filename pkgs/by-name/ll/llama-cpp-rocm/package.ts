@@ -2,20 +2,18 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rocmSupport", 4, 23]], [["description", 7, 29]], [["meta", 5, 3]]]);
 const formals$1 = { args: { "llama-cpp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rocmSupport", 4, 23]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 7, 29]]);
-const pos$3 = nix.positions(here + "/package.nix", [["meta", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const llama_cpp = nix.arg($, "llama-cpp");
-  return nix.app(nix.sel(nix.app(nix.sel(llama_cpp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, rocmSupport: true }))), "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$3,
+  return nix.app(nix.sel(nix.app(nix.sel(llama_cpp, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], rocmSupport: true }))), "overrideAttrs"), (oldAttrs) => ({
+      [nix.POS]: $pos[2],
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), (() => {
         const from = nix.thunk(() => nix.sel(oldAttrs, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.attr(from, "description")),
       };
       })())),

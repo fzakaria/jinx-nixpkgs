@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 9], ["hash", 28, 9]], [["patches", 25, 5]], [["repo", 34, 5], ["owner", 35, 5], ["tag", 36, 5], ["fetchSubmodules", 37, 5], ["hash", 38, 5]], [["aarch64-linux", 54, 9], ["armv7l-linux", 55, 9], ["x86_64-linux", 56, 9]], [["aarch64-linux", 62, 9], ["armv7l-linux", 63, 9], ["x86_64-linux", 64, 9]], [["url", 60, 7], ["hash", 61, 7]], [["src_repo", 123, 13], ["luajit_koreader", 123, 22], ["updateScript", 124, 5]], [["homepage", 144, 5], ["changelog", 145, 5], ["description", 146, 5], ["mainProgram", 147, 5], ["sourceProvenance", 148, 5], ["platforms", 149, 5], ["license", 154, 5], ["maintainers", 155, 5]], [["pname", 42, 3], ["version", 43, 11], ["__structuredAttrs", 45, 3], ["strictDeps", 46, 3], ["src", 48, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 73, 3], ["installPhase", 83, 3], ["passthru", 122, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, makeWrapper: false, fetchFromGitHub: false, dpkg: false, glib: false, gnutar: false, "gtk3-x11": false, luajit: false, sdcv: false, sdl3: false, openssl: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 9], ["hash", 28, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["patches", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["repo", 34, 5], ["owner", 35, 5], ["tag", 36, 5], ["fetchSubmodules", 37, 5], ["hash", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["aarch64-linux", 54, 9], ["armv7l-linux", 55, 9], ["x86_64-linux", 56, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["aarch64-linux", 62, 9], ["armv7l-linux", 63, 9], ["x86_64-linux", 64, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 60, 7], ["hash", 61, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["src_repo", 123, 13], ["luajit_koreader", 123, 22], ["updateScript", 124, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 144, 5], ["changelog", 145, 5], ["description", 146, 5], ["mainProgram", 147, 5], ["sourceProvenance", 148, 5], ["platforms", 149, 5], ["license", 154, 5], ["maintainers", 155, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 11], ["__structuredAttrs", 45, 3], ["strictDeps", 46, 3], ["src", 48, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 73, 3], ["installPhase", 83, 3], ["passthru", 122, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,17 +24,17 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const version = "2026.07.1";
   const luajit_koreader = nix.thunk(() => nix.app(nix.sel(luajit, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://raw.githubusercontent.com/koreader/koreader-base/master/thirdparty/luajit/koreader-luajit-enable-table_pack.patch",
             hash: "sha256-tvx7eRoSwnumqK6H7+2RCAKRDFJtaRY/2mRPjy30fJA=",
           })))),
       ])),
     })));
   const src_repo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       repo: "koreader",
       owner: "koreader",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +42,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-395G5bu0gs0oKOc/CfKNeal66vgXBDgHSpopoQ0GRzw=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "koreader",
       version: version,
       __structuredAttrs: true,
@@ -58,16 +50,16 @@ export default nix.lambda((args) => (() => {
       src: nix.thunk(() => (() => {
         const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
         const arch = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "aarch64-linux": "arm64",
             "armv7l-linux": "armhf",
             "x86_64-linux": "amd64",
           }))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: nix.thunk(() => nix.str`https://github.com/koreader/koreader/releases/download/v${version}/koreader_${version}-1_${arch}.deb`),
             hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 "aarch64-linux": "sha256-swwNcmquMjnO31pFNkKZbqU8Kx7Rtwq2ebT12XK8yvQ=",
                 "armv7l-linux": "sha256-TpMm9smcDff7A4BkWguWuOwDAJXQITk/HGmDgDIRtrw=",
                 "x86_64-linux": "sha256-CWmnfC7Dy4nVf7diwRvsOvE12W/gkE2235h49Hq0f4k=",
@@ -94,13 +86,13 @@ ln -sf ${nix.app(nix.sel(lib, "getLib"), sdl3)}/lib/libSDL3.so.0 $out/lib/koread
 runHook postInstall
 `)),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         src_repo: src_repo,
         luajit_koreader: luajit_koreader,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-koreader", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p nix curl jq nix-update common-updater-scripts\nset -eou pipefail\nversion=$(nix eval --raw --file . koreader.version)\nnix-update koreader\nlatestVersion=$(nix eval --raw --file . koreader.version)\nif [[ \"$latestVersion\" == \"$version\" ]]; then\n  exit 0\nfi\nupdate-source-version koreader $latestVersion --source-key=src_repo --ignore-same-version\nsystems=$(nix eval --json -f . koreader.meta.platforms | jq --raw-output '.[]')\nfor system in $systems; do\n  hash=$(nix --extra-experimental-features nix-command hash convert --to sri --hash-algo sha256 $(nix-prefetch-url $(nix eval --raw -f . koreader.src.url --system \"$system\")))\n  update-source-version koreader $latestVersion $hash --system=$system --ignore-same-version --ignore-same-hash\ndone\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://github.com/koreader/koreader",
         changelog: nix.thunk(() => nix.str`https://github.com/koreader/koreader/releases/tag/v${version}`),
         description: "Ebook reader application supporting PDF, DjVu, EPUB, FB2 and many more formats, running on Cervantes, Kindle, Kobo, PocketBook and Android devices",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["package", 59, 7], ["moduleNames", 60, 7]], [["pkg-config", 58, 11]], [["tests", 58, 5]], [["changelog", 69, 5], ["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 27, 3], ["configureFlags", 31, 3], ["outputs", 33, 3], ["outputDoc", 38, 3], ["nativeBuildInputs", 40, 3], ["propagatedBuildInputs", 50, 3], ["strictDeps", 55, 3], ["passthru", 57, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, libogg: false, libvorbis: false, "pkg-config": false, perl: false, testers: false, validatePkgConfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 59, 7], ["moduleNames", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 58, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 69, 5], ["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 27, 3], ["configureFlags", 31, 3], ["outputs", 33, 3], ["outputDoc", 38, 3], ["nativeBuildInputs", 40, 3], ["propagatedBuildInputs", 50, 3], ["strictDeps", 55, 3], ["passthru", 57, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libtheora",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xiph",
           repo: "theora",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,18 +37,18 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [libogg, libvorbis]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["theora", "theoradec", "theoraenc"]),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://gitlab.xiph.org/xiph/theora/-/releases/v${nix.sel(finalAttrs, "version")}`),
         description: "Library for Theora, a free and open video compression format",
         homepage: "https://www.theora.org/",

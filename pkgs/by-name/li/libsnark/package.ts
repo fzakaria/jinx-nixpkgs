@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]], [["broken", 52, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["platforms", 56, 5]], [["pname", 15, 3], ["version", 16, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 22, 3], ["cmakeFlags", 29, 3], ["src", 36, 3], ["postPatch", 44, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, openssl: false, boost: false, gmp: false, withProcps: true, procps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 52, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 22, 3], ["cmakeFlags", 29, 3], ["src", 36, 3], ["postPatch", 44, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const withProcps = nix.argOr($, "withProcps", () => false);
   const procps = nix.arg($, "procps");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libsnark",
       version: "20140603-unstable-2024-02-23",
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([openssl, boost, gmp], nix.app(nix.sel(lib, "optional"), withProcps, procps))),
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withProcps)), nix.thunk(() => ["-DWITH_PROCPS=OFF"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))))), nix.thunk(() => ["-DWITH_SUPERCOP=OFF"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))), nix.thunk(() => ["-DCURVE=ALT_BN128"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scipr-lab",
           repo: "libsnark",
           rev: "6c705e3135f585c222813654caedc86520fda1f6",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace {,depends/{libff,libfqfft}/}CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace depends/gtest/{,googlemock/,googletest/}CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6.4)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: withProcps,
         description: "C++ library for zkSNARKs",
         homepage: "https://github.com/scipr-lab/libsnark",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["modules", 23, 5]], [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["sourceProvenance", 81, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["build-system", 55, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 64, 3], ["enabledTestPaths", 69, 3], ["pythonImportsCheck", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, dill: false, jre_minimal: false, joblib: false, pandas: false, "scikit-learn": false, pytestCheckHook: false, statsmodels: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["modules", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["sourceProvenance", 81, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["build-system", 55, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 64, 3], ["enabledTestPaths", 69, 3], ["pythonImportsCheck", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const statsmodels = nix.arg($, "statsmodels");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       modules: nix.thunk(() => [
         "java.base",
         "java.desktop",
@@ -34,12 +31,12 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sklearn2pmml",
       version: "0.132.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "jpmml",
           repo: "sklearn2pmml",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +55,7 @@ substituteInPlace setup.cfg \\
       enabledTestPaths: nix.thunk(() => ["sklearn2pmml/tests"]),
       pythonImportsCheck: nix.thunk(() => ["sklearn2pmml"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python library for converting Scikit-Learn pipelines to PMML",
         homepage: "https://github.com/jpmml/sklearn2pmml",
         changelog: nix.thunk(() => nix.str`https://github.com/jpmml/sklearn2pmml/blob/${nix.sel(finalAttrs, "version")}/NEWS.md`),

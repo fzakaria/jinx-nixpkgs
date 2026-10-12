@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["NIX_CFLAGS_COMPILE", 49, 7]], [["name", 73, 7], ["exec", 74, 7], ["icon", 75, 7], ["desktopName", 76, 7], ["comment", 77, 7], ["categories", 78, 7]], [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 90, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["postPatch", 39, 3], ["configureFlags", 44, 3], ["env", 49, 3], ["preInstall", 61, 3], ["postInstall", 66, 3], ["desktopItems", 71, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "alsa-lib": false, libjack2: false, "pkg-config": false, libx11: false, libxext: false, xorgproto: false, libpulseaudio: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 73, 7], ["exec", 74, 7], ["icon", 75, 7], ["desktopName", 76, 7], ["comment", 77, 7], ["categories", 78, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["postPatch", 39, 3], ["configureFlags", 44, 3], ["env", 49, 3], ["preInstall", 61, 3], ["postInstall", 66, 3], ["desktopItems", 71, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bristol",
       version: "0.60.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/bristol/bristol-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-fR8LvQ19MD/HfGuVSbYXCNeoO03AB4GAEbH1XR+pIro=",
         })))),
@@ -37,14 +33,14 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i '41,43d' libbristolaudio/audioEngineJack.c  # disable alsa/iatomic\nsed -i '35i void doPitchWheel(Baudio *baudio);' bristol/bristolmemorymoog.c\n",
       configureFlags: nix.thunk(() => ["--enable-jack-default-audio", "--enable-jack-default-midi"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fcommon", "-Wno-implicit-int", "-std=gnu17"]))),
       })),
       preInstall: "sed -e \"s@\\`which bristol\\`@$out/bin/bristol@g\" -i bin/startBristol\nsed -e \"s@\\`which brighton\\`@$out/bin/brighton@g\" -i bin/startBristol\n",
       postInstall: "mkdir -p $out/share/icons/hicolor/scalable/apps/\nln -s $out/share/bristol/bitmaps/bicon.svg $out/share/icons/hicolor/scalable/apps/\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "Bristol",
             exec: "bristol",
             icon: "bicon",
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Range of synthesiser, electric piano and organ emulations",
         homepage: "https://bristol.sourceforge.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

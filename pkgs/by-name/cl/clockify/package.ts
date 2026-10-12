@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["pname", 18, 58], ["version", 18, 64], ["src", 18, 72]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["mainProgram", 33, 5], ["platforms", 34, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["extraInstallCommands", 16, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 18, 58], ["version", 18, 64], ["src", 18, 72]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["mainProgram", 33, 5], ["platforms", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["extraInstallCommands", 16, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +14,12 @@ export default nix.lambda((args) => (() => {
       const pname = "clockify";
       const version = "2.3.2.2633";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20250419021523/https://clockify.me/downloads/Clockify_Setup.AppImage",
           hash: "sha256-cQP1QkF2uWGsCjYjVdxPFLL8atAjT6rPQbPqeNX0QqQ=",
         }))));
       const extraInstallCommands = nix.thunk(() => (() => {
-        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
         return nix.str`install -Dm 444 ${appimageContents}/clockify.desktop -t $out/share/applications
 install -Dm 444 ${appimageContents}/clockify.png -t $out/share/icons
 
@@ -31,7 +28,7 @@ substituteInPlace $out/share/applications/clockify.desktop \\
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free time tracker and timesheet app that lets you track work hours across projects",
         homepage: "https://clockify.me",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -39,7 +36,7 @@ substituteInPlace $out/share/applications/clockify.desktop \\
         mainProgram: "clockify",
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
-      return { [nix.POS]: pos$4, pname, version, src, extraInstallCommands, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, extraInstallCommands, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

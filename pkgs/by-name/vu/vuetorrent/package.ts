@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["updateScript", 30, 12]], [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["installPhase", 21, 3], ["passthru", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 30, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["installPhase", 21, 3], ["passthru", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vuetorrent";
       const version = "2.35.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "VueTorrent",
           repo: "VueTorrent",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-szloFJfkV8W/bl0Bi0NqvD0g1SBN55t1xvgMHM/71o4=";
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share\ncp -r vuetorrent $out/share/vuetorrent\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Full-featured BitTorrent client written in Vue",
         homepage: "https://github.com/VueTorrent/VueTorrent",
         changelog: nix.thunk(() => nix.str`https://github.com/VueTorrent/VueTorrent/releases/tag/${nix.sel(src, "tag")}`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["extraArgs", 39, 5]], [["updateScript", 38, 12]], [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["mainProgram", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["sourceProvenance", 59, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["sourceRoot", 22, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 29, 3], ["passthru", 38, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, unzip: false, "nix-update-script": false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["mainProgram", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["sourceProvenance", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["sourceRoot", 22, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 29, 3], ["passthru", 38, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mactrix";
       const version = "0.3.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/viktorstrate/mactrix/releases/download/v${version}/Mactrix.app.zip`),
           hash: "sha256-Y4ydihGSGKNXDatzW/cpJYS1lwjnkIdhVtdr+Y5eaa0=",
         }))));
@@ -31,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [unzip, makeBinaryWrapper]);
       const installPhase = "runHook preInstall\nmkdir -p $out/Applications\ncp -R Mactrix.app $out/Applications/\nmkdir -p $out/bin\nmakeWrapper $out/Applications/Mactrix.app/Contents/MacOS/Mactrix $out/bin/mactrix\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Native Matrix client for macOS",
         longDescription: "A native macOS client for Matrix – an open protocol for decentralised, secure communications.\n\nMactrix is built with Apple's SwiftUI framework to provide seamless native integration with macOS.\nIt leverages the robust matrix-rust-sdk for stability and performance.\n",
         homepage: "https://github.com/viktorstrate/mactrix",
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

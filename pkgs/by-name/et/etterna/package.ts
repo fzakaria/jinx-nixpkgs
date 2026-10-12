@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["name", 66, 7], ["desktopName", 67, 7], ["genericName", 68, 7], ["icon", 69, 7], ["tryExec", 70, 7], ["exec", 71, 7], ["categories", 72, 7], ["comment", 77, 7], ["terminal", 78, 7]], [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["mainProgram", 117, 5], ["platforms", 118, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["desktopItems", 64, 3], ["installPhase", 82, 3], ["cmakeFlags", 109, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, cmake: false, "pkg-config": false, openssl: false, libGLU: false, libxvmc: false, libxrandr: false, libxinerama: false, libxext: false, libx11: false, "alsa-lib": false, libjack2: false, libpulseaudio: false, libogg: false, sse2neon: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 66, 7], ["desktopName", 67, 7], ["genericName", 68, 7], ["icon", 69, 7], ["tryExec", 70, 7], ["exec", 71, 7], ["categories", 72, 7], ["comment", 77, 7], ["terminal", 78, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["mainProgram", 117, 5], ["platforms", 118, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["desktopItems", 64, 3], ["installPhase", 82, 3], ["cmakeFlags", 109, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libogg = nix.arg($, "libogg");
   const sse2neon = nix.arg($, "sse2neon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "etterna",
       version: "0.74.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "etternagame",
           repo: "etterna",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "etterna",
             desktopName: "Etterna",
             genericName: "Rhythm and dance game",
@@ -101,7 +98,7 @@ runHook postInstall
 `),
       cmakeFlags: nix.thunk(() => ["-D WITH_CRASHPAD=OFF"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Advanced cross-platform rhythm game focused on keyboard play",
         homepage: "https://etternaonline.com",
         changelog: nix.thunk(() => nix.str`https://github.com/etternagame/etterna/releases/tag/v${nix.sel(finalAttrs, "version")}`),

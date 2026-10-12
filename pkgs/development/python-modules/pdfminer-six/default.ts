@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["ocrmypdf", 56, 15]], [["tests", 55, 5]], [["changelog", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 30, 3], ["postInstall", 35, 3], ["pythonImportsCheck", 41, 3], ["nativeCheckInputs", 46, 3], ["disabledTests", 48, 3], ["passthru", 54, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cryptography: false, "charset-normalizer": false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, ocrmypdf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ocrmypdf", 56, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 30, 3], ["postInstall", 35, 3], ["pythonImportsCheck", 41, 3], ["nativeCheckInputs", 46, 3], ["disabledTests", 48, 3], ["passthru", 54, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "20260107";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pdfminer",
           repo: "pdfminer.six",
           tag: version,
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["test_contrib_issue_1004_mediabox"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, ocrmypdf: ocrmypdf })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], ocrmypdf: ocrmypdf })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/pdfminer/pdfminer.six/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "PDF parser and analyzer",
         homepage: "https://github.com/pdfminer/pdfminer.six",
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

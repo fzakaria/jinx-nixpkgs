@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 53, 9], ["hash", 54, 9]], [["url", 57, 9], ["hash", 58, 9]], [["aarch64-linux", 52, 7], ["x86_64-linux", 56, 7]], [["sources", 51, 5], ["updateScript", 61, 5]], [["changelog", 85, 5], ["description", 86, 5], ["downloadPage", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5], ["platforms", 95, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 31, 3], ["installPhase", 33, 3], ["passthru", 50, 3], ["__structuredAttrs", 81, 3], ["strictDeps", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, nodejs: false, coreutils: false, which: false, writeShellScript: false, curl: false, "common-updater-scripts": false, jq: false, disableSecurity: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 53, 9], ["hash", 54, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 57, 9], ["hash", 58, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-linux", 52, 7], ["x86_64-linux", 56, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["sources", 51, 5], ["updateScript", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 85, 5], ["description", 86, 5], ["downloadPage", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5], ["platforms", 95, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 31, 3], ["installPhase", 33, 3], ["passthru", 50, 3], ["__structuredAttrs", 81, 3], ["strictDeps", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const disableSecurity = nix.argOr($, "disableSecurity", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "opensearch-dashboards",
       version: "3.9.0",
       src: nix.thunk(() => nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), "passthru", "sources", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -40,16 +35,16 @@ sed -i 's@NODE=.*@NODE=${nodejs}/bin/node@' $out/libexec/opensearch-dashboards/b
 ${nix.app(nix.sel(lib, "optionalString"), disableSecurity, "rm -r $out/libexec/opensearch-dashboards/plugins/securityDashboards")}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         sources: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://artifacts.opensearch.org/releases/bundle/opensearch-dashboards/${nix.sel(finalAttrs, "version")}/opensearch-dashboards-${nix.sel(finalAttrs, "version")}-linux-arm64.tar.gz`),
               hash: "sha256-9lC+Swdbc2gP4rvnEcv1hFj2mULxQynqJjzJOkTRd68=",
             })))),
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://artifacts.opensearch.org/releases/bundle/opensearch-dashboards/${nix.sel(finalAttrs, "version")}/opensearch-dashboards-${nix.sel(finalAttrs, "version")}-linux-x64.tar.gz`),
               hash: "sha256-qe4TsBbkPZflLqWWnk7a+nXHtkQm9IVGb8EBWC/s+sg=",
             })))),
@@ -69,7 +64,7 @@ done
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/opensearch-project/OpenSearch-Dashboards/blob/${nix.sel(finalAttrs, "version")}/release-notes/opensearch-dashboards.release-notes-${nix.sel(finalAttrs, "version")}.md`),
         description: "Visualize logs and time-stamped data",
         downloadPage: "https://github.com/opensearch-project/OpenSearch-Dashboards",

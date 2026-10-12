@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["license", 33, 7]], [["pname", 25, 5], ["version", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 30, 5], ["hash", 31, 5], ["meta", 32, 5]], [["qcheck-core", 47, 13]], [["atdgen", 50, 13]], [["atdgen", 54, 13], ["junit", 54, 20]], [["lib", 16, 5], ["buildDunePackage", 17, 5], ["re", 18, 5], ["reason", 19, 5], ["ppxlib", 20, 5], ["src", 24, 3], ["cli", 37, 3], ["console", 38, 3], ["dir", 39, 3], ["file-context-printer", 40, 3], ["frame", 41, 3], ["fp", 42, 3], ["fs", 43, 3], ["pastel", 44, 3], ["pastel-console", 45, 3], ["qcheck-rely", 46, 3], ["refmterr", 49, 3], ["rely", 52, 3], ["rely-junit-reporter", 53, 3], ["unicode-config", 56, 3], ["unicode", 57, 3], ["utf8", 58, 3]]]);
 const formals$1 = { args: { lib: false, newScope: false, fetchFromGitHub: false, atdgen: false, buildDunePackage: false, junit: false, ppxlib: false, "qcheck-core": false, re: false, reason: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["license", 33, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 25, 5], ["version", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 30, 5], ["hash", 31, 5], ["meta", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["qcheck-core", 47, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["atdgen", 50, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["atdgen", 54, 13], ["junit", 54, 20]]);
-const pos$6 = nix.positions(here + "/default.nix", [["lib", 16, 5], ["buildDunePackage", 17, 5], ["re", 18, 5], ["reason", 19, 5], ["ppxlib", 20, 5], ["src", 24, 3], ["cli", 37, 3], ["console", 38, 3], ["dir", 39, 3], ["file-context-printer", 40, 3], ["frame", 41, 3], ["fp", 42, 3], ["fs", 43, 3], ["pastel", 44, 3], ["pastel-console", 45, 3], ["qcheck-rely", 46, 3], ["refmterr", 49, 3], ["rely", 52, 3], ["rely-junit-reporter", 53, 3], ["unicode-config", 56, 3], ["unicode", 57, 3], ["utf8", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,21 +18,24 @@ export default nix.lambda((args) => (() => {
   const re = nix.arg($, "re");
   const reason = nix.arg($, "reason");
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       lib: lib,
       buildDunePackage: buildDunePackage,
       re: re,
       reason: reason,
       ppxlib: ppxlib,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "reason-native",
           version: "0-unstable-2024-05-07",
           owner: "reasonml",
           repo: "reason-native",
           rev: "20b1997b6451d9715dfdbeec86a9d274c7430ed8",
           hash: "sha256-96Ucq70eSy6pqh5ne9xoODWe/nPuriZnFAdx0OkLVCs=",
-          meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+          meta: nix.thunk(() => ({
+            [nix.POS]: $pos[0],
+            license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+          })),
         })))),
       cli: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cli.nix"), nix.thunk(() => ({})))),
       console: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./console.nix"), nix.thunk(() => ({})))),
@@ -48,10 +46,10 @@ export default nix.lambda((args) => (() => {
       fs: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./fs.nix"), nix.thunk(() => ({})))),
       pastel: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pastel.nix"), nix.thunk(() => ({})))),
       "pastel-console": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pastel-console.nix"), nix.thunk(() => ({})))),
-      "qcheck-rely": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./qcheck-rely.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, "qcheck-core": qcheck_core })))),
-      refmterr: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./refmterr.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, atdgen: atdgen })))),
+      "qcheck-rely": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./qcheck-rely.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], "qcheck-core": qcheck_core })))),
+      refmterr: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./refmterr.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], atdgen: atdgen })))),
       rely: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rely.nix"), nix.thunk(() => ({})))),
-      "rely-junit-reporter": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rely-junit-reporter.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, atdgen: atdgen, junit: junit })))),
+      "rely-junit-reporter": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rely-junit-reporter.nix"), nix.thunk(() => ({ [nix.POS]: $pos[4], atdgen: atdgen, junit: junit })))),
       "unicode-config": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./unicode-config.nix"), nix.thunk(() => ({})))),
       unicode: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./unicode.nix"), nix.thunk(() => ({})))),
       utf8: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./utf8.nix"), nix.thunk(() => ({})))),

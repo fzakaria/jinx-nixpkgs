@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["sha256", 30, 5]], [["libX11", 45, 7]], [["description", 80, 5], ["homepage", 81, 5], ["sourceProvenance", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 28, 3], ["patches", 33, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 54, 3], ["sourceRoot", 60, 3], ["unpackCmd", 61, 3], ["dontConfigure", 63, 3], ["dontBuild", 64, 3], ["installPhase", 66, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, replaceVars: false, dpkg: false, autoPatchelfHook: false, cups: false, tcl: false, tk: false, libx11: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["libX11", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["sourceProvenance", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 28, 3], ["patches", 33, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 54, 3], ["sourceRoot", 60, 3], ["unpackCmd", 61, 3], ["dontConfigure", 63, 3], ["dontBuild", 64, 3], ["installPhase", 66, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const pname = "fxlinuxprintutil";
       const version = "1.1.1-1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/NixOS/nixpkgs/files/12232817/fxlinuxpdf112119031.zip",
           sha256: "1mv07ch6ysk9bknfmjqsgxb803sj6vfin29s9knaqv17jvgyh0n3",
         }))));
       const patches = nix.thunk(() => [
         nix.path(here, "./fxlputil.patch"),
         nix.path(here, "./fxlputil.tcl.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fxlocalechk.tcl.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, libX11: libx11 })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fxlocalechk.tcl.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], libX11: libx11 })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [dpkg, autoPatchelfHook, makeWrapper]);
       const buildInputs = nix.thunk(() => [cups, tcl, tk]);
@@ -48,7 +45,7 @@ mv usr/lib $out
 wrapProgram $out/bin/fxlputil --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [tcl, tk]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Optional configuration tool for fxlinuxprint",
         homepage: "https://onlinesupport.fujixerox.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -60,7 +57,7 @@ wrapProgram $out/bin/fxlputil --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPat
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 92, 5], ["longDescription", 93, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 53, 3], ["disabledTestPaths", 81, 3], ["pythonImportsCheck", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, astroid: false, buildPythonPackage: false, "deal-solver": false, "docstring-parser": false, fetchFromGitHub: false, "flit-core": false, hypothesis: false, marshmallow: false, pygments: false, "pytest-cov-stub": false, pytestCheckHook: false, pythonAtLeast: false, sphinx: false, typeguard: false, urllib3: false, vaa: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 92, 5], ["longDescription", 93, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 53, 3], ["disabledTestPaths", 81, 3], ["pythonImportsCheck", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.24.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "life4",
           repo: "deal",
           tag: version,
@@ -70,7 +68,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_runtime/test_offline.py", "tests/test_testing.py"]);
       const pythonImportsCheck = nix.thunk(() => ["deal"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for design by contract (DbC) and checking values, exceptions, and side-effects",
         longDescription: "In a nutshell, deal empowers you to write bug-free code.\nBy adding a few decorators to your code, you get for free tests, static analysis, formal verification,\nand much more.\n",
         homepage: "https://github.com/life4/deal",
@@ -82,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

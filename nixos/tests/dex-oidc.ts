@@ -2,77 +2,59 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dex-oidc.nix", [[["maintainers", 4, 8]], [["mode", 44, 9], ["user", 45, 9], ["text", 46, 9]], [["dex/oidcclient", 43, 23]], [["systemPackages", 9, 19], ["etc", 43, 19]], [["host", 16, 20]], [["type", 15, 13], ["config", 16, 13]], [["http", 18, 15]], [["skipApprovalScreen", 19, 18]], [["id", 22, 15], ["name", 23, 15], ["redirectURIs", 24, 15], ["secretFile", 25, 15]], [["username", 34, 17], ["password", 35, 17]], [["type", 30, 15], ["id", 31, 15], ["name", 32, 15], ["config", 33, 15]], [["issuer", 13, 11], ["storage", 14, 11], ["web", 18, 11], ["oauth2", 19, 11], ["staticClients", 20, 11], ["connectors", 28, 11]], [["enable", 11, 9], ["settings", 12, 9]], [["name", 54, 13], ["ensureDBOwnership", 55, 13]], [["enable", 50, 9], ["ensureDatabases", 51, 9], ["ensureUsers", 52, 9]], [["dex", 10, 16], ["postgresql", 49, 16]], [["environment", 9, 7], ["services", 10, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 61, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/dex-oidc.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/dex-oidc.nix", [["mode", 44, 9], ["user", 45, 9], ["text", 46, 9]]);
-const pos$3 = nix.positions(here + "/dex-oidc.nix", [["dex/oidcclient", 43, 23]]);
-const pos$4 = nix.positions(here + "/dex-oidc.nix", [["systemPackages", 9, 19], ["etc", 43, 19]]);
-const pos$5 = nix.positions(here + "/dex-oidc.nix", [["host", 16, 20]]);
-const pos$6 = nix.positions(here + "/dex-oidc.nix", [["type", 15, 13], ["config", 16, 13]]);
-const pos$7 = nix.positions(here + "/dex-oidc.nix", [["http", 18, 15]]);
-const pos$8 = nix.positions(here + "/dex-oidc.nix", [["skipApprovalScreen", 19, 18]]);
-const pos$9 = nix.positions(here + "/dex-oidc.nix", [["id", 22, 15], ["name", 23, 15], ["redirectURIs", 24, 15], ["secretFile", 25, 15]]);
-const pos$10 = nix.positions(here + "/dex-oidc.nix", [["username", 34, 17], ["password", 35, 17]]);
-const pos$11 = nix.positions(here + "/dex-oidc.nix", [["type", 30, 15], ["id", 31, 15], ["name", 32, 15], ["config", 33, 15]]);
-const pos$12 = nix.positions(here + "/dex-oidc.nix", [["issuer", 13, 11], ["storage", 14, 11], ["web", 18, 11], ["oauth2", 19, 11], ["staticClients", 20, 11], ["connectors", 28, 11]]);
-const pos$13 = nix.positions(here + "/dex-oidc.nix", [["enable", 11, 9], ["settings", 12, 9]]);
-const pos$14 = nix.positions(here + "/dex-oidc.nix", [["name", 54, 13], ["ensureDBOwnership", 55, 13]]);
-const pos$15 = nix.positions(here + "/dex-oidc.nix", [["enable", 50, 9], ["ensureDatabases", 51, 9], ["ensureUsers", 52, 9]]);
-const pos$16 = nix.positions(here + "/dex-oidc.nix", [["dex", 10, 16], ["postgresql", 49, 16]]);
-const pos$17 = nix.positions(here + "/dex-oidc.nix", [["environment", 9, 7], ["services", 10, 7]]);
-const pos$18 = nix.positions(here + "/dex-oidc.nix", [["machine", 6, 9]]);
-const pos$19 = nix.positions(here + "/dex-oidc.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "dex-oidc",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Flakebi"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "jq"))];
             })()),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              "dex/oidcclient": nix.thunk(() => ({ [nix.POS]: pos$2, mode: "0400", user: "dex", text: "oidcclientsecret" })),
+              [nix.POS]: $pos[2],
+              "dex/oidcclient": nix.thunk(() => ({ [nix.POS]: $pos[1], mode: "0400", user: "dex", text: "oidcclientsecret" })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             dex: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 issuer: "http://127.0.0.1:8080/dex",
                 storage: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   type: "postgres",
-                  config: nix.thunk(() => ({ [nix.POS]: pos$5, host: "/var/run/postgresql" })),
+                  config: nix.thunk(() => ({ [nix.POS]: $pos[4], host: "/var/run/postgresql" })),
                 })),
-                web: nix.thunk(() => ({ [nix.POS]: pos$7, http: "127.0.0.1:8080" })),
-                oauth2: nix.thunk(() => ({ [nix.POS]: pos$8, skipApprovalScreen: true })),
+                web: nix.thunk(() => ({ [nix.POS]: $pos[6], http: "127.0.0.1:8080" })),
+                oauth2: nix.thunk(() => ({ [nix.POS]: $pos[7], skipApprovalScreen: true })),
                 staticClients: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     id: "oidcclient",
                     name: "Client",
                     redirectURIs: nix.thunk(() => ["https://example.com/callback"]),
@@ -81,21 +63,21 @@ export default nix.lambda((args) => (() => {
                 ]),
                 connectors: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     type: "mockPassword",
                     id: "mock",
                     name: "Example",
-                    config: nix.thunk(() => ({ [nix.POS]: pos$10, username: "admin", password: "password" })),
+                    config: nix.thunk(() => ({ [nix.POS]: $pos[9], username: "admin", password: "password" })),
                   })),
                 ]),
               })),
             })),
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               enable: true,
               ensureDatabases: nix.thunk(() => ["dex"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$14, name: "dex", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: $pos[13], name: "dex", ensureDBOwnership: true })),
               ]),
             })),
           })),

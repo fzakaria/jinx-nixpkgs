@@ -2,38 +2,20 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/example-config.nix", [[["maintainers", 9, 7]], [["default_realm", 29, 15]], [["admin_server", 33, 17], ["kdc", 34, 17]], [["ATHENA.MIT.EDU", 32, 15]], [["example.com", 41, 15], [".example.com", 42, 15]], [["EXAMPLE.COM", 46, 17]], [["ATHENA.MIT.EDU", 49, 17]], [["ATHENA.MIT.EDU", 45, 15], ["EXAMPLE.COM", 48, 15]], [["debug", 54, 17], ["ticket_lifetime", 55, 17], ["renew_lifetime", 56, 17], ["max_timeout", 57, 17], ["timeout_shift", 58, 17], ["initial_timeout", 59, 17]], [["pam", 53, 15]], [["disable", 62, 30]], [["ccselect", 62, 21]], [["kdc", 64, 15], ["admin_server", 65, 15], ["default", 66, 15]], [["includedir", 22, 13], ["include", 25, 13], ["libdefaults", 28, 13], ["realms", 31, 13], ["domain_realm", 40, 13], ["capaths", 44, 13], ["appdefaults", 52, 13], ["plugins", 62, 13], ["logging", 63, 13]], [["enable", 19, 11], ["package", 20, 11], ["settings", 21, 11]], [["krb5", 18, 18]], [["security", 18, 9]], [["machine", 15, 11]], [["name", 7, 5], ["meta", 8, 5], ["nodes", 15, 5], ["testScript", 72, 5]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/example-config.nix", [["maintainers", 9, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/example-config.nix", [["default_realm", 29, 15]]);
-const pos$3 = nix.positions(here + "/example-config.nix", [["admin_server", 33, 17], ["kdc", 34, 17]]);
-const pos$4 = nix.positions(here + "/example-config.nix", [["ATHENA.MIT.EDU", 32, 15]]);
-const pos$5 = nix.positions(here + "/example-config.nix", [["example.com", 41, 15], [".example.com", 42, 15]]);
-const pos$6 = nix.positions(here + "/example-config.nix", [["EXAMPLE.COM", 46, 17]]);
-const pos$7 = nix.positions(here + "/example-config.nix", [["ATHENA.MIT.EDU", 49, 17]]);
-const pos$8 = nix.positions(here + "/example-config.nix", [["ATHENA.MIT.EDU", 45, 15], ["EXAMPLE.COM", 48, 15]]);
-const pos$9 = nix.positions(here + "/example-config.nix", [["debug", 54, 17], ["ticket_lifetime", 55, 17], ["renew_lifetime", 56, 17], ["max_timeout", 57, 17], ["timeout_shift", 58, 17], ["initial_timeout", 59, 17]]);
-const pos$10 = nix.positions(here + "/example-config.nix", [["pam", 53, 15]]);
-const pos$11 = nix.positions(here + "/example-config.nix", [["disable", 62, 30]]);
-const pos$12 = nix.positions(here + "/example-config.nix", [["ccselect", 62, 21]]);
-const pos$13 = nix.positions(here + "/example-config.nix", [["kdc", 64, 15], ["admin_server", 65, 15], ["default", 66, 15]]);
-const pos$14 = nix.positions(here + "/example-config.nix", [["includedir", 22, 13], ["include", 25, 13], ["libdefaults", 28, 13], ["realms", 31, 13], ["domain_realm", 40, 13], ["capaths", 44, 13], ["appdefaults", 52, 13], ["plugins", 62, 13], ["logging", 63, 13]]);
-const pos$15 = nix.positions(here + "/example-config.nix", [["enable", 19, 11], ["package", 20, 11], ["settings", 21, 11]]);
-const pos$16 = nix.positions(here + "/example-config.nix", [["krb5", 18, 18]]);
-const pos$17 = nix.positions(here + "/example-config.nix", [["security", 18, 9]]);
-const pos$18 = nix.positions(here + "/example-config.nix", [["machine", 15, 11]]);
-const pos$19 = nix.positions(here + "/example-config.nix", [["name", 7, 5], ["meta", 8, 5], ["nodes", 15, 5], ["testScript", 72, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       name: "krb5-with-example-config",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w, "eqyiel")),
             nix.thunk(() => nix.lookup(w, "dblsaiko")),
@@ -41,45 +23,45 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
         };
       })()),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             security: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               krb5: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 enable: true,
                 package: nix.thunk(() => nix.sel(pkgs_1, "krb5")),
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   includedir: nix.thunk(() => ["/etc/krb5.conf.d"]),
                   include: nix.thunk(() => ["/etc/krb5-extra.conf"]),
-                  libdefaults: nix.thunk(() => ({ [nix.POS]: pos$2, default_realm: "ATHENA.MIT.EDU" })),
+                  libdefaults: nix.thunk(() => ({ [nix.POS]: $pos[1], default_realm: "ATHENA.MIT.EDU" })),
                   realms: nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     "ATHENA.MIT.EDU": nix.thunk(() => ({
-                      [nix.POS]: pos$3,
+                      [nix.POS]: $pos[2],
                       admin_server: "athena.mit.edu",
                       kdc: nix.thunk(() => ["athena01.mit.edu", "athena02.mit.edu"]),
                     })),
                   })),
                   domain_realm: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     "example.com": "EXAMPLE.COM",
                     ".example.com": "EXAMPLE.COM",
                   })),
                   capaths: nix.thunk(() => ({
-                    [nix.POS]: pos$8,
-                    "ATHENA.MIT.EDU": nix.thunk(() => ({ [nix.POS]: pos$6, "EXAMPLE.COM": "." })),
-                    "EXAMPLE.COM": nix.thunk(() => ({ [nix.POS]: pos$7, "ATHENA.MIT.EDU": "." })),
+                    [nix.POS]: $pos[7],
+                    "ATHENA.MIT.EDU": nix.thunk(() => ({ [nix.POS]: $pos[5], "EXAMPLE.COM": "." })),
+                    "EXAMPLE.COM": nix.thunk(() => ({ [nix.POS]: $pos[6], "ATHENA.MIT.EDU": "." })),
                   })),
                   appdefaults: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     pam: nix.thunk(() => ({
-                      [nix.POS]: pos$9,
+                      [nix.POS]: $pos[8],
                       debug: false,
                       ticket_lifetime: 36000n,
                       renew_lifetime: 36000n,
@@ -89,11 +71,11 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
                     })),
                   })),
                   plugins: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
-                    ccselect: nix.thunk(() => ({ [nix.POS]: pos$11, disable: "k5identity" })),
+                    [nix.POS]: $pos[11],
+                    ccselect: nix.thunk(() => ({ [nix.POS]: $pos[10], disable: "k5identity" })),
                   })),
                   logging: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     kdc: "SYSLOG:NOTICE",
                     admin_server: "SYSLOG:NOTICE",
                     default: "SYSLOG:NOTICE",

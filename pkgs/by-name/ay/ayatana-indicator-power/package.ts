@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["ayatana-indicator-power", 91, 7]], [["startup", 97, 7], ["lomiri", 98, 7]], [["ayatana-indicators", 90, 5], ["tests", 96, 5], ["updateScript", 100, 5]], [["description", 104, 5], ["longDescription", 105, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["platforms", 113, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["strictDeps", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 54, 3], ["nativeCheckInputs", 68, 3], ["checkInputs", 73, 3], ["cmakeFlags", 78, 3], ["doCheck", 87, 3], ["passthru", 89, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, gitUpdater: false, fetchFromGitHub: false, nixosTests: false, cmake: false, dbus: false, "dbus-test-runner": false, glib: false, gtest: false, intltool: false, "libayatana-common": false, libnotify: false, librda: false, "lomiri-qt6": false, "pkg-config": false, python3: false, systemdLibs: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ayatana-indicator-power", 91, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["startup", 97, 7], ["lomiri", 98, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ayatana-indicators", 90, 5], ["tests", 96, 5], ["updateScript", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 104, 5], ["longDescription", 105, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["platforms", 113, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["strictDeps", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 54, 3], ["nativeCheckInputs", 68, 3], ["checkInputs", 73, 3], ["cmakeFlags", 78, 3], ["doCheck", 87, 3], ["passthru", 89, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ayatana-indicator-power",
       version: "26.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AyatanaIndicators",
           repo: "ayatana-indicator-power",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -80,20 +75,20 @@ substituteInPlace src/CMakeLists.txt \\
       ]),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "ayatana-indicators": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "ayatana-indicator-power": nix.thunk(() => ["ayatana", "lomiri"]),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           startup: nix.thunk(() => nix.sel(nixosTests, "ayatana-indicators")),
           lomiri: nix.thunk(() => nix.sel(nixosTests, "lomiri", "desktop-ayatana-indicator-power")),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Ayatana Indicator showing power state",
         longDescription: "This Ayatana Indicator displays current power management information and\ngives the user a way to access power management preferences.\n",
         homepage: "https://github.com/AyatanaIndicators/ayatana-indicator-power",

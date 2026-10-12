@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["VERGEN_GIT_SHA", 30, 7]], [["cosmic", 91, 9], ["cosmic-autologin", 92, 9], ["cosmic-noxwayland", 93, 9], ["cosmic-autologin-noxwayland", 94, 9]], [["extraArgs", 99, 7]], [["tests", 89, 5], ["updateScript", 98, 5]], [["homepage", 107, 5], ["description", 108, 5], ["license", 109, 5], ["mainProgram", 110, 5], ["teams", 111, 5], ["platforms", 112, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["separateDebugInfo", 27, 3], ["__structuredAttrs", 28, 3], ["env", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["dontUseJustBuild", 40, 3], ["dontUseJustCheck", 41, 3], ["justFlags", 43, 3], ["buildPhase", 54, 3], ["checkPhase", 71, 3], ["passthru", 88, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, just: false, libcosmicAppHook: false, glib: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["VERGEN_GIT_SHA", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cosmic", 91, 9], ["cosmic-autologin", 92, 9], ["cosmic-noxwayland", 93, 9], ["cosmic-autologin-noxwayland", 94, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 99, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 89, 5], ["updateScript", 98, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 107, 5], ["description", 108, 5], ["license", 109, 5], ["mainProgram", 110, 5], ["teams", 111, 5], ["platforms", 112, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["separateDebugInfo", 27, 3], ["__structuredAttrs", 28, 3], ["env", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["dontUseJustBuild", 40, 3], ["dontUseJustCheck", 41, 3], ["justFlags", 43, 3], ["buildPhase", 54, 3], ["checkPhase", 71, 3], ["passthru", 88, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cosmic-files",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pop-os",
           repo: "cosmic-files",
           tag: nix.thunk(() => nix.str`epoch-${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +31,7 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       __structuredAttrs: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         VERGEN_GIT_SHA: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
       })),
       nativeBuildInputs: nix.thunk(() => [
@@ -59,21 +53,21 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\ndefaultCargoBuildFlags=\"$cargoBuildFlags\"\n\ncargoBuildFlags=\"$defaultCargoBuildFlags --package cosmic-files\"\nrunHook cargoBuildHook\n\ncargoBuildFlags=\"$defaultCargoBuildFlags --package cosmic-files-thumbnailer\"\nrunHook cargoBuildHook\n\ncargoBuildFlags=\"$defaultCargoBuildFlags --package cosmic-files-applet\"\nrunHook cargoBuildHook\n\nrunHook postBuild\n",
       checkPhase: "runHook preCheck\n\ndefaultCargoTestFlags=\"$cargoTestFlags\"\n\ncargoTestFlags=\"$defaultCargoTestFlags --package cosmic-files\"\nrunHook cargoCheckHook\n\ncargoTestFlags=\"$defaultCargoTestFlags --package cosmic-files-thumbnailer\"\nrunHook cargoCheckHook\n\ncargoTestFlags=\"$defaultCargoTestFlags --package cosmic-files-applet\"\nrunHook cargoCheckHook\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           cosmic: nix.thunk(() => nix.attr(nixosTests, "cosmic")),
           "cosmic-autologin": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin")),
           "cosmic-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-noxwayland")),
           "cosmic-autologin-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin-noxwayland")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex", "epoch-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/pop-os/cosmic-files",
         description: "File Manager for the COSMIC Desktop Environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 34, 5], ["longDescription", 35, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 13, 11], ["version", 13, 17], ["src", 15, 3], ["pyproject", 21, 3], ["build-system", 23, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, discordpy: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 34, 5], ["longDescription", 35, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 11], ["version", 13, 17], ["src", 15, 3], ["pyproject", 21, 3], ["build-system", 23, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pname = "reactionmenu";
   const version = "3.1.7";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Defxult",
           repo: "reactionmenu",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [discordpy]),
       pythonImportsCheck: nix.thunk(() => ["reactionmenu"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library to create a discord.py 2.0+ paginator",
         longDescription: "A Python library to create a discord.py 2.0+ paginator (reaction menu/buttons menu).\nSupports pagination with buttons, reactions, and category selection using selects.\n",
         homepage: "https://github.com/Defxult/reactionmenu",

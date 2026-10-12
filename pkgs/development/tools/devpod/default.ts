@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["CGO_ENABLED", 52, 9]], [["package", 70, 7], ["command", 71, 7], ["version", 72, 7]], [["version", 69, 20]], [["tests", 69, 14]], [["pname", 47, 5], ["version", 48, 13], ["src", 48, 21], ["meta", 48, 25], ["vendorHash", 50, 5], ["env", 52, 5], ["ldflags", 54, 5], ["excludedPackages", 58, 5], ["nativeBuildInputs", 60, 5], ["postInstall", 62, 5], ["passthru", 69, 5]], [["yarnLock", 83, 7], ["hash", 84, 7]], [["mainProgram", 181, 7], ["platforms", 182, 7]], [["pname", 77, 5], ["version", 78, 13], ["src", 78, 21], ["sourceRoot", 80, 5], ["offlineCache", 82, 5], ["cargoRoot", 87, 5], ["buildAndTestSubdir", 88, 5], ["cargoHash", 90, 5], ["cargoPatches", 92, 5], ["patches", 94, 5], ["postPatch", 109, 5], ["nativeBuildInputs", 121, 5], ["buildInputs", 137, 5], ["postInstall", 144, 5], ["dontWrapGApps", 174, 5], ["postFixup", 176, 5], ["meta", 180, 5]], [["devpod", 187, 11], ["devpod-desktop", 187, 18]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, rustPlatform: false, fetchFromGitHub: false, fetchYarnDeps: false, "cargo-tauri": false, "desktop-file-utils": false, installShellFiles: false, jq: false, makeBinaryWrapper: false, moreutils: false, nodejs: false, "pkg-config": false, yarnConfigHook: false, wrapGAppsHook3: false, "glib-networking": false, "libayatana-appindicator": false, openssl: false, webkitgtk_4_1: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["CGO_ENABLED", 52, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["package", 70, 7], ["command", 71, 7], ["version", 72, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 69, 20]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 69, 14]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 47, 5], ["version", 48, 13], ["src", 48, 21], ["meta", 48, 25], ["vendorHash", 50, 5], ["env", 52, 5], ["ldflags", 54, 5], ["excludedPackages", 58, 5], ["nativeBuildInputs", 60, 5], ["postInstall", 62, 5], ["passthru", 69, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["yarnLock", 83, 7], ["hash", 84, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["mainProgram", 181, 7], ["platforms", 182, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 77, 5], ["version", 78, 13], ["src", 78, 21], ["sourceRoot", 80, 5], ["offlineCache", 82, 5], ["cargoRoot", 87, 5], ["buildAndTestSubdir", 88, 5], ["cargoHash", 90, 5], ["cargoPatches", 92, 5], ["patches", 94, 5], ["postPatch", 109, 5], ["nativeBuildInputs", 121, 5], ["buildInputs", 137, 5], ["postInstall", 144, 5], ["dontWrapGApps", 174, 5], ["postFixup", 176, 5], ["meta", 180, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["devpod", 187, 11], ["devpod-desktop", 187, 18]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const version = "0.6.15";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "loft-sh",
       repo: "devpod",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-fLUJeEwNDyzMYUEYVQL9XGQv/VAxjH4IZ1SJa6jx4Mw=",
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "Codespaces but open-source, client-only and unopinionated: Works with any IDE and lets you use any cloud, kubernetes or just localhost docker",
     mainProgram: "devpod",
     homepage: "https://devpod.sh",
@@ -55,13 +45,13 @@ export default nix.lambda((args) => (() => {
     maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "tomasajt"))]),
   }));
   const devpod = nix.thunk(() => nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "devpod",
       version: version,
       src: src,
       meta: meta,
       vendorHash: null,
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         nix.thunk(() => nix.str`-X github.com/loft-sh/devpod/pkg/version.version=v${version}`),
       ]),
@@ -69,11 +59,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "$out/bin/devpod completion bash >devpod.bash\n$out/bin/devpod completion fish >devpod.fish\n$out/bin/devpod completion zsh >devpod.zsh\ninstallShellCompletion devpod.{bash,fish,zsh}\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "devpod version",
               version: nix.thunk(() => nix.str`v${version}`),
@@ -82,13 +72,13 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   const devpod_desktop = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "devpod-desktop",
       version: version,
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/desktop`),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           yarnLock: nix.thunk(() => nix.str`${src}/desktop/yarn.lock`),
           hash: "sha256-0Ov+Ik+th2IiuuqJyiO9t8vTyMqxDa9juEwbwHFaoi4=",
         })))),
@@ -142,11 +132,11 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), devpod)} "$out/bin/devpod"
       dontWrapGApps: true,
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "wrapGApp \"$out/bin/DevPod Desktop\"\n")),
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         mainProgram: "DevPod Desktop",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       })),
     }))));
-  return { [nix.POS]: pos$11, devpod: devpod, "devpod-desktop": devpod_desktop };
+  return { [nix.POS]: $pos[10], devpod: devpod, "devpod-desktop": devpod_desktop };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

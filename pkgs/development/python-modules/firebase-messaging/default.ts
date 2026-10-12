@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["docs", 63, 5]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["outputs", 36, 3], ["build-system", 41, 3], ["nativeBuildInputs", 45, 3], ["pythonRelaxDeps", 50, 3], ["dependencies", 55, 3], ["optional-dependencies", 62, 3], ["pythonImportsCheck", 71, 3], ["nativeCheckInputs", 73, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aioresponses: false, "async-timeout": false, buildPythonPackage: false, cryptography: false, fetchFromGitHub: false, hatchling: false, "http-ece": false, "myst-parser": false, protobuf: false, "pytest-asyncio": false, "pytest-mock": false, "pytest-socket": false, pytestCheckHook: false, "requests-mock": false, sphinx: false, "sphinx-autodoc-typehints": false, "sphinx-rtd-theme": false, sphinxHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["docs", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["outputs", 36, 3], ["build-system", 41, 3], ["nativeBuildInputs", 45, 3], ["pythonRelaxDeps", 50, 3], ["dependencies", 55, 3], ["optional-dependencies", 62, 3], ["pythonImportsCheck", 71, 3], ["nativeCheckInputs", 73, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sdb9696",
           repo: "firebase-messaging",
           tag: version,
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["http-ece", "protobuf"]);
       const dependencies = nix.thunk(() => [aiohttp, cryptography, http_ece, protobuf]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         docs: nix.thunk(() => [myst_parser, sphinx, sphinx_autodoc_typehints, sphinx_rtd_theme]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["firebase_messaging"]);
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         pytestCheckHook,
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library to subscribe to GCM/FCM and receive notifications within a python application",
         homepage: "https://github.com/sdb9696/firebase-messaging",
         changelog: nix.thunk(() => nix.str`https://github.com/sdb9696/firebase-messaging/releases/tag/${nix.sel(src, "tag")}`),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

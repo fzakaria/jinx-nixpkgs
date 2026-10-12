@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 32, 9], ["message", 33, 9], ["hash", 40, 9]], [["name", 44, 5], ["url", 45, 5], ["hash", 46, 5]], [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5], ["fetchSubmodules", 60, 5]], [["name", 85, 7], ["icon", 86, 7], ["exec", 87, 7], ["comment", 88, 7], ["desktopName", 89, 7], ["categories", 90, 7]], [["description", 150, 5], ["homepage", 151, 5], ["license", 152, 5], ["maintainers", 166, 5], ["mainProgram", 167, 5], ["platforms", 168, 5]], [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["strictDeps", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 77, 3], ["desktopItems", 83, 3], ["preConfigure", 94, 3], ["hardeningDisable", 116, 3], ["installPhase", 123, 3], ["preFixup", 139, 3], ["postFixup", 145, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { lib: false, sf64baserom: true, requireFile: false, fetchurl: false, fetchFromGitHub: false, llvmPackages_19: false, cmake: false, copyDesktopItems: false, installShellFiles: false, makeWrapper: false, ninja: false, "pkg-config": false, python3: false, wrapGAppsHook3: false, SDL2: false, gtk3: false, "vulkan-loader": false, makeDesktopItem: false, n64recomp: false, sm64tools: false, "directx-shader-compiler": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 32, 9], ["message", 33, 9], ["hash", 40, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 44, 5], ["url", 45, 5], ["hash", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5], ["fetchSubmodules", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 85, 7], ["icon", 86, 7], ["exec", 87, 7], ["comment", 88, 7], ["desktopName", 89, 7], ["categories", 90, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 150, 5], ["homepage", 151, 5], ["license", 152, 5], ["maintainers", 166, 5], ["mainProgram", 167, 5], ["platforms", 168, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["strictDeps", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 77, 3], ["desktopItems", 83, 3], ["preConfigure", 94, 3], ["hardeningDisable", 116, 3], ["installPhase", 123, 3], ["preFixup", 139, 3], ["postFixup", 145, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,23 +29,23 @@ export default nix.lambda((args) => (() => {
   const sm64tools = nix.arg($, "sm64tools");
   const directx_shader_compiler = nix.arg($, "directx-shader-compiler");
   const baseRom = nix.thunk(() => (nix.asBool(!nix.eq(sf64baserom, null)) ? nix.force(sf64baserom) : nix.app(requireFile, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "starfox64.us.rev1.z64",
       message: "starfox64recomp only supports the US version 1.1 of Starfox 64.\nPlease dump your copy and rename it to starfox64.us.rev1.z64\nand add it to the nix store using\nnix-store --add-fixed sha256 starfox64.us.rev1.z64\nSee https://dumping.guide/carts/nintendo/n64 for more details.\n",
       hash: "sha256-OFvPGQHtEvsRUvPCJ9GWjMVK5B6FZtpmaV33GvQKVz8=",
     })))));
   const comptool = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "comptool.py",
       url: "https://raw.githubusercontent.com/sonicdcer/sf64/83eeee7d96fbe5a6b6fa013e13ed7eda8213b3e3/tools/comptool.py",
       hash: "sha256-md56iEj6DKODKm3U0XrAygiaRlUgvFCSWfWyyh4lmzw=",
     }))));
   return nix.app(nix.sel(llvmPackages_19, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "starfox64recomp",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "sonicdcer",
           repo: "Starfox64Recomp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,7 +67,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, gtk3, vulkan_loader]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "Starfox64Recompiled",
             icon: "Starfox64Recompiled",
             exec: "Starfox64Recompiled",
@@ -108,7 +103,7 @@ substituteInPlace CMakeLists.txt \\
 `),
       postFixup: "wrapProgram $out/bin/Starfox64Recompiled --chdir \"$out/share/starfox64recomp\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Static recompilation of Starfox 64 for PC (Windows/Linux)",
         homepage: "https://github.com/sonicdcer/Starfox64Recomp",
         license: nix.thunk(() => (() => {

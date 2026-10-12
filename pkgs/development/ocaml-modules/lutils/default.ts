@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["homepage", 26, 5], ["description", 27, 5], ["changelog", 28, 5], ["license", 29, 5], ["mainProgram", 30, 5]], [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, "camlp-streams": false, num: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 26, 5], ["description", 27, 5], ["changelog", 28, 5], ["license", 29, 5], ["mainProgram", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const camlp_streams = nix.arg($, "camlp-streams");
   const num = nix.arg($, "num");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lutils",
       version: "1.54.1",
       minimalOCamlVersion: "4.02",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www-verimag.imag.fr/DIST-TOOLS/SYNCHRONE/pool/lutils.v${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha512:d3c3b80286b1aa236ba922d9e18a133721fc80126c8b89520fb811dce9400e217aaa75b5d49e03988be7f6bf5f2e1a391d02ceeaa5ec0a0cd5ce218083a29514",
         })))),
       propagatedBuildInputs: nix.thunk(() => [camlp_streams, num]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gricad-gitlab.univ-grenoble-alpes.fr/verimag/synchrone/lutils/",
         description: "Tools and libs shared by Verimag/synchronous tools (lustre, lutin, rdbg)",
         changelog: nix.thunk(() => nix.str`https://gricad-gitlab.univ-grenoble-alpes.fr/verimag/synchrone/lutils/-/releases/v${nix.sel(finalAttrs, "version")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["name", 22, 7], ["url", 23, 7], ["sha256", 24, 7]], [["broken", 36, 5], ["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["makeFlags", 28, 3], ["installPhase", 30, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 22, 7], ["url", 23, 7], ["sha256", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 36, 5], ["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["makeFlags", 28, 3], ["installPhase", 30, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wavegain",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MestreLion",
           repo: "wavegain",
           rev: "c928eaf97aeec5732625491b64c882e08e314fee",
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fno-common.patch",
             url: "https://github.com/MestreLion/wavegain/commit/ee5e0f9a0ce34c0cf2769ea6566685a54b938304.patch",
             sha256: "11yi0czdn5h5bsqp23cww6yn9lm60cij8i1pzfwcfhgyf6f8ym1n",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installPhase: "strip -s wavegain\ninstall -vD wavegain \"$out/bin/wavegain\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "ReplayGain for wave files",
         homepage: "https://github.com/MestreLion/wavegain",

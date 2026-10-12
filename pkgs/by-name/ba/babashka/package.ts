@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["unwrapped", 44, 12], ["clojure-tools", 45, 12]], [["pname", 11, 3], ["version", 12, 32], ["meta", 12, 40], ["doInstallCheck", 12, 45], ["dontUnpack", 14, 3], ["dontBuild", 15, 3], ["nativeBuildInputs", 17, 3], ["installPhase", 22, 3], ["installCheckPhase", 37, 3], ["passthru", 44, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, "babashka-unwrapped": false, callPackage: false, makeWrapper: false, installShellFiles: false, clojureToolsBabashka: true, jdkBabashka: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["unwrapped", 44, 12], ["clojure-tools", 45, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 32], ["meta", 12, 40], ["doInstallCheck", 12, 45], ["dontUnpack", 14, 3], ["dontBuild", 15, 3], ["nativeBuildInputs", 17, 3], ["installPhase", 22, 3], ["installCheckPhase", 37, 3], ["passthru", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const clojureToolsBabashka = nix.argOr($, "clojureToolsBabashka", () => nix.app(callPackage, nix.path(here, "./clojure-tools.nix"), nix.thunk(() => ({}))));
   const jdkBabashka = nix.argOr($, "jdkBabashka", () => nix.sel(clojureToolsBabashka, "jdk"));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "babashka",
       version: nix.thunk(() => nix.attr(babashka_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(babashka_unwrapped, "meta")),
@@ -43,7 +42,7 @@ export CLJ_CONFIG="$TMP/.clojure"
 $out/bin/bb clojure --version | grep -wF '${nix.sel(clojureToolsBabashka, "version")}'
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         unwrapped: babashka_unwrapped,
         "clojure-tools": clojureToolsBabashka,
       })),

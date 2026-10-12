@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["passthru", 45, 23]]]);
 const formals$1 = { args: { lib: false, runCommand: false, runtimeShell: false, writeShellScript: false }, ellipsis: false };
 const formals$2 = { args: { microhs: false, packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["passthru", 45, 23]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +39,7 @@ if (( "\${NIX_DEBUG:-0}" >= 1 )); then
 fi
 exec ${microhs}/bin/mhs "\${args[@]}"
 `)));
-    return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(microhs, "name")}-wrapped`), nix.thunk(() => ({ [nix.POS]: pos$1, passthru: nix.thunk(() => nix.attr(microhs, "passthru")) })), nix.thunk(() => nix.str`mkdir -p $out/bin
+    return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(microhs, "name")}-wrapped`), nix.thunk(() => ({ [nix.POS]: $pos[0], passthru: nix.thunk(() => nix.attr(microhs, "passthru")) })), nix.thunk(() => nix.str`mkdir -p $out/bin
 cp -rs ${microhs}/bin/* $out/bin/
 rm $out/bin/mhs 2>/dev/null || true
 cp ${wrapper} $out/bin/mhs

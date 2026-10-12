@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7], ["fetchSubmodules", 26, 7]], [["GIT_CONFIG_COUNT", 29, 9], ["GIT_CONFIG_KEY_0", 30, 9], ["GIT_CONFIG_VALUE_0", 31, 9]], [["NIX_CFLAGS_COMPILE", 77, 7]], [["name", 99, 7], ["exec", 100, 7], ["icon", 101, 7], ["desktopName", 102, 7], ["genericName", 103, 7], ["categories", 104, 7]], [["description", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["mainProgram", 126, 5], ["platforms", 127, 5], ["badPlatforms", 129, 5], ["sourceProvenance", 130, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 34, 3], ["postPatch", 48, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 66, 3], ["env", 77, 3], ["installPhase", 82, 3], ["desktopItems", 97, 3], ["preFixup", 111, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, libsForQt5: false, scrcpy: false, "android-tools": false, ffmpeg: false, imagemagick: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7], ["fetchSubmodules", 26, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GIT_CONFIG_COUNT", 29, 9], ["GIT_CONFIG_KEY_0", 30, 9], ["GIT_CONFIG_VALUE_0", 31, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 77, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 99, 7], ["exec", 100, 7], ["icon", 101, 7], ["desktopName", 102, 7], ["genericName", 103, 7], ["categories", 104, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["mainProgram", 126, 5], ["platforms", 127, 5], ["badPlatforms", 129, 5], ["sourceProvenance", 130, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 34, 3], ["postPatch", 48, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 66, 3], ["env", 77, 3], ["installPhase", 82, 3], ["desktopItems", 97, 3], ["preFixup", 111, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "qtscrcpy",
       version: "3.3.3",
       src: nix.thunk(() => nix.app(nix.sel(nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "barry-ran",
           repo: "QtScrcpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-UZgAFptVC67IXYdxTEmB18fJlFdaOrYrQY4JmdGEJXE=",
           fetchSubmodules: true,
         }))), "overrideAttrs"), (_) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           GIT_CONFIG_COUNT: 1n,
           GIT_CONFIG_KEY_0: "url.https://github.com/.insteadOf",
           GIT_CONFIG_VALUE_0: "git@github.com:",
@@ -70,13 +65,13 @@ substituteInPlace QtScrcpy/sndcpy/sndcpy.sh \\
         ];
       })())),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=sign-compare"]))),
       })),
       installPhase: "runHook preInstall\n\npushd ../output/x64/Release\n  install -Dm755 QtScrcpy -t $out/bin\n  install -Dm755 sndcpy.sh -t $out/share/qtscrcpy\n  install -Dm644 sndcpy.apk -t $out/share/qtscrcpy\npopd\n\nmkdir -p $out/share/icons/hicolor/512x512/apps\nmagick ../QtScrcpy/res/image/tray/logo.png -resize 512x512 $out/share/icons/hicolor/512x512/apps/qtscrcpy.png\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "QtScrcpy",
             exec: "QtScrcpy %U",
             icon: "qtscrcpy",
@@ -91,7 +86,7 @@ substituteInPlace QtScrcpy/sndcpy/sndcpy.sh \\
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Android real-time display control software",
         homepage: "https://github.com/barry-ran/QtScrcpy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

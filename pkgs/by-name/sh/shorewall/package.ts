@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 7], ["hash", 31, 7]], [["url", 34, 7], ["hash", 35, 7]], [["url", 38, 7], ["hash", 39, 7]], [["homepage", 110, 5], ["description", 111, 5], ["longDescription", 112, 5], ["license", 123, 5], ["platforms", 124, 5]], [["pname", 25, 3], ["version", 26, 3], ["srcs", 28, 3], ["sourceRoot", 42, 3], ["buildInputs", 44, 3], ["prePatch", 56, 3], ["configurePhase", 64, 3], ["installPhase", 81, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { coreutils: false, fetchurl: false, gnugrep: false, gnused: false, iproute2: false, iptables: false, perl: false, perlPackages: false, lib: false, stdenv: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 110, 5], ["description", 111, 5], ["longDescription", 112, 5], ["license", 123, 5], ["platforms", 124, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["srcs", 28, 3], ["sourceRoot", 42, 3], ["buildInputs", 44, 3], ["prePatch", 56, 3], ["configurePhase", 64, 3], ["installPhase", 81, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,22 +27,22 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`${gnused}/bin`),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "shorewall",
       version: "5.2.8",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://shorewall.org/pub/shorewall/5.2/shorewall-5.2.8/shorewall-core-${nix.sel(finalAttrs, "version")}.tar.bz2`),
             hash: "sha256-OZlrlpeiAXlHBJrT8DyyeOj5Of+SSyu0vyoLwXxZmI4=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://shorewall.org/pub/shorewall/5.2/shorewall-5.2.8/shorewall-${nix.sel(finalAttrs, "version")}.tar.bz2`),
             hash: "sha256-+7WrSS7TcuqvAoF8xzD4LEmoHFpfXO5LyPG86EbyMG0=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://shorewall.org/pub/shorewall/5.2/shorewall-5.2.8/shorewall6-${nix.sel(finalAttrs, "version")}.tar.bz2`),
             hash: "sha256-6Cw6lTi2VIGVOY3DnIOwG89m61oigUyRWpJLmtwIjNE=",
           })))),
@@ -106,7 +102,7 @@ sed -i $out/share/shorewall/shorewallrc \\
     -e 's~^CONFDIR=.*~CONFDIR=/etc~'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://shorewall.org/",
         description: "IP gateway/firewall configuration tool for GNU/Linux",
         longDescription: "Shorewall is a high-level tool for configuring Netfilter. You describe your\nfirewall/gateway requirements using entries in a set of configuration\nfiles. Shorewall reads those configuration files and with the help of the\niptables, iptables-restore, ip and tc utilities, Shorewall configures\nNetfilter and the Linux networking subsystem to match your requirements.\nShorewall can be used on a dedicated firewall system, a multi-function\ngateway/router/server or on a standalone GNU/Linux system. Shorewall does\nnot use Netfilter's ipchains compatibility mode and can thus take\nadvantage of Netfilter's connection state tracking capabilities.\n",

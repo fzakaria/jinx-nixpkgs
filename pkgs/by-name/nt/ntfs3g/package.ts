@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["homepage", 88, 5], ["description", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5], ["platforms", 92, 5], ["license", 93, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 28, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 47, 3], ["patches", 53, 3], ["configureFlags", 59, 3], ["postInstall", 80, 3], ["enableParallelBuilding", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, gettext: false, mount: false, libuuid: false, kmod: false, crypto: true, libgcrypt: false, "macfuse-stubs": false, gnutls: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 88, 5], ["description", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5], ["platforms", 92, 5], ["license", 93, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 28, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 47, 3], ["patches", 53, 3], ["configureFlags", 59, 3], ["postInstall", 80, 3], ["enableParallelBuilding", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const macfuse_stubs = nix.arg($, "macfuse-stubs");
   const gnutls = nix.arg($, "gnutls");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ntfs3g",
       version: "2026.9.18",
       outputs: nix.thunk(() => ["out", "dev", "man", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tuxera",
           repo: "ntfs-3g",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "# Prefer ntfs-3g over the ntfs driver in the kernel.\nln -sv mount.ntfs-3g $out/sbin/mount.ntfs\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/tuxera/ntfs-3g",
         description: "FUSE-based NTFS driver with full write support",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ryand56"))]),

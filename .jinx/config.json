@@ -5,6 +5,6 @@
     "narHash": "sha256-XK4KceonkwD8LuMAt/vNrz982mXJM5jeHAxMwsUXXAQ=",
     "url": "github:NixOS/nixpkgs/6510408d147d8c5e6d76043e899e9251756f6a75"
   },
-  "jinx": "df0e52be4898d174bd2f9e0b0dee2b94852733fe",
-  "abi": 2
+  "jinx": "22142f8e2b04a7e3f16336bc73399c75f0893047",
+  "abi": 3
 }

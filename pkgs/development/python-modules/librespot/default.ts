@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 27, 7]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["env", 27, 3], ["pythonRelaxDeps", 29, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["doCheck", 44, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, defusedxml: false, fetchFromGitHub: false, protobuf: false, pycryptodomex: false, pyogg: false, requests: false, setuptools: false, "websocket-client": false, zeroconf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["env", 27, 3], ["pythonRelaxDeps", 29, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["doCheck", 44, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +23,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kokarare1212",
           repo: "librespot-python",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-VjVPrWttOYfWsxzZpRgpZVenmP0y9Fea6Bhv9U8BO9U=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
       const pythonRelaxDeps = true;
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["librespot"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open Source Spotify Client",
         homepage: "https://github.com/kokarare1212/librespot-python",
         changelog: nix.thunk(() => nix.str`https://github.com/kokarare1212/librespot-python/releases/tag/v${version}`),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

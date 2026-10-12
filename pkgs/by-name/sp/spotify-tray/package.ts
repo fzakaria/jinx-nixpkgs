@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["name", 25, 7], ["url", 26, 7], ["sha256", 27, 7]], [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["postFixup", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, "pkg-config": false, gtk3: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["sha256", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["postFixup", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "spotify-tray",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tsmetana",
           repo: "spotify-tray",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-building-with-automake-1.16.5.patch",
             url: "https://github.com/tsmetana/spotify-tray/commit/1305f473ba4a406e907b98c8255f23154f349613.patch",
             sha256: "sha256-u2IopfMzNCu2F06RZoJw3OAsRxxZYdIMnKnyb7/KBgk=",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3]),
       postFixup: "wrapProgram $out/bin/spotify-tray --set GDK_BACKEND x11\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/tsmetana/spotify-tray",
         description: "Adds a tray icon to the Spotify Linux client application",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

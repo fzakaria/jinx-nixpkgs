@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 73, 5], ["homepage", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["dontWrapGApps", 51, 3], ["preFixup", 53, 3], ["preBuild", 57, 3], ["postInstall", 63, 3], ["doCheck", 68, 3], ["pythonImportsCheck", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, "pkg-config": false, "gobject-introspection": false, wrapGAppsHook3: false, gtk3: false, gst_all_1: false, writableTmpDirAsHomeHook: false, gtksourceview4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["dontWrapGApps", 51, 3], ["preFixup", 53, 3], ["preBuild", 57, 3], ["postInstall", 63, 3], ["doCheck", 68, 3], ["pythonImportsCheck", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const gtksourceview4 = nix.arg($, "gtksourceview4");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pychess",
       version: "1.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pychess",
           repo: "pychess",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pychess"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Advanced GTK chess client written in Python",
         homepage: "https://pychess.github.io/",
         mainProgram: "pychess",

@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-luarocks-package.nix", [[["LUAROCKS_CONFIG", 98, 11]], [["name", 137, 11], ["text", 138, 11]], [["asBindings", 141, 52]], [["externalDeps", 154, 15], ["local_cache", 155, 15], ["rocks_subdir", 159, 15], ["requiredLuaRocks", 164, 15]], [["variables", 172, 19]], [["lua", 248, 19]], [["platforms", 253, 11], ["maintainers", 255, 11], ["broken", 256, 11]], [["name", 92, 9], ["rockspecVersion", 93, 17], ["__structuredAttrs", 95, 9], ["strictDeps", 96, 9], ["env", 97, 9], ["generatedRockspecFilename", 102, 9], ["nativeBuildInputs", 104, 9], ["doCheck", 113, 11], ["extraConfig", 114, 11], ["rockspecFilename", 115, 11], ["knownRockspec", 116, 11], ["externalDeps", 117, 11], ["nativeCheckInputs", 118, 11], ["buildInputs", 121, 9], ["propagatedBuildInputs", 129, 9], ["rocksSubdir", 134, 9], ["configFile", 136, 9], ["luarocks_content", 141, 9], ["luarocksConfig", 147, 9], ["configurePhase", 179, 9], ["buildPhase", 195, 9], ["postFixup", 209, 9], ["installPhase", 215, 9], ["shellHook", 235, 9], ["disallowedReferences", 241, 9], ["passthru", 247, 9], ["meta", 252, 9]]]);
 const formals$1 = { args: { lib: false, stdenv: false, lua: false, wrapLua: false, luarocks_bootstrap: false, writeTextFile: false, buildPackages: false, luarocksCheckHook: false, luaLib: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, rockspecVersion: true, namePrefix: true, buildInputs: true, nativeCheckInputs: true, nativeBuildInputs: true, propagatedBuildInputs: true, disabled: true, makeWrapperArgs: true, dontWrapLuaPrograms: true, doCheck: true, externalDeps: true, extraConfig: true, luarocksConfig: true, rockspecFilename: true, knownRockspec: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-luarocks-package.nix", [["LUAROCKS_CONFIG", 98, 11]]);
-const pos$2 = nix.positions(here + "/build-luarocks-package.nix", [["name", 137, 11], ["text", 138, 11]]);
-const pos$3 = nix.positions(here + "/build-luarocks-package.nix", [["asBindings", 141, 52]]);
-const pos$4 = nix.positions(here + "/build-luarocks-package.nix", [["externalDeps", 154, 15], ["local_cache", 155, 15], ["rocks_subdir", 159, 15], ["requiredLuaRocks", 164, 15]]);
-const pos$5 = nix.positions(here + "/build-luarocks-package.nix", [["variables", 172, 19]]);
-const pos$6 = nix.positions(here + "/build-luarocks-package.nix", [["lua", 248, 19]]);
-const pos$7 = nix.positions(here + "/build-luarocks-package.nix", [["platforms", 253, 11], ["maintainers", 255, 11], ["broken", 256, 11]]);
-const pos$8 = nix.positions(here + "/build-luarocks-package.nix", [["name", 92, 9], ["rockspecVersion", 93, 17], ["__structuredAttrs", 95, 9], ["strictDeps", 96, 9], ["env", 97, 9], ["generatedRockspecFilename", 102, 9], ["nativeBuildInputs", 104, 9], ["doCheck", 113, 11], ["extraConfig", 114, 11], ["rockspecFilename", 115, 11], ["knownRockspec", 116, 11], ["externalDeps", 117, 11], ["nativeCheckInputs", 118, 11], ["buildInputs", 121, 9], ["propagatedBuildInputs", 129, 9], ["rocksSubdir", 134, 9], ["configFile", 136, 9], ["luarocks_content", 141, 9], ["luarocksConfig", 147, 9], ["configurePhase", 179, 9], ["buildPhase", 195, 9], ["postFixup", 209, 9], ["installPhase", 215, 9], ["shellHook", 235, 9], ["disallowedReferences", 241, 9], ["passthru", 247, 9], ["meta", 252, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,13 +39,13 @@ export default nix.lambda((args) => (() => {
     const knownRockspec = nix.argOr($_1, "knownRockspec", () => null);
     const luarocks_config = "luarocks-config.lua";
     const luarocksDrv = nix.thunk(() => nix.app(nix.sel(luaLib, "toLuaModule"), nix.thunk(() => nix.app(nix.sel(lua, "stdenv", "mkDerivation"), (self) => nix.update(attrs, {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           name: nix.thunk(() => nix.add(nix.add(nix.add(namePrefix, nix.sel(self, "pname")), "-"), nix.sel(self, "version"))),
           rockspecVersion: rockspecVersion,
           __structuredAttrs: true,
           strictDeps: true,
           env: nix.thunk(() => nix.update({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             LUAROCKS_CONFIG: nix.thunk(() => nix.sel(self, "configFile")),
           }, nix.selOr(attrs, () => ({}), "env"))),
           generatedRockspecFilename: nix.thunk(() => nix.str`./${nix.sel(self, "pname")}-${nix.sel(self, "rockspecVersion")}.rockspec`),
@@ -70,24 +63,24 @@ export default nix.lambda((args) => (() => {
           propagatedBuildInputs: nix.thunk(() => nix.concat(propagatedBuildInputs, [lua])),
           rocksSubdir: nix.thunk(() => nix.str`${nix.sel(self, "pname")}-${nix.sel(self, "version")}-rocks`),
           configFile: nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: nix.thunk(() => nix.add(nix.sel(self, "pname"), "-luarocks-config.lua")),
               text: nix.thunk(() => nix.sel(self, "luarocks_content")),
             })))),
-          luarocks_content: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "generators", "toLua"), nix.thunk(() => ({ [nix.POS]: pos$3, asBindings: true })), nix.thunk(() => nix.sel(self, "luarocksConfig"))), nix.str`
+          luarocks_content: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "generators", "toLua"), nix.thunk(() => ({ [nix.POS]: $pos[2], asBindings: true })), nix.thunk(() => nix.sel(self, "luarocksConfig"))), nix.str`
 ${nix.sel(self, "extraConfig")}
 `)),
           luarocksConfig: nix.thunk(() => (() => {
             const externalDepsGenerated = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (drv) => !nix.asBool(nix.has(drv, "luaModule")), nix.thunk(() => nix.concat(nix.sel(self, "finalPackage", "nativeBuildInputs"), nix.concat(nix.sel(self, "propagatedBuildInputs"), nix.sel(self, "buildInputs"))))));
             const generatedConfig = nix.thunk(() => nix.app(nix.sel(luaLib, "generateLuarocksConfig"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 externalDeps: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(nix.sel(self, "externalDeps"), externalDepsGenerated)))),
                 local_cache: "",
                 rocks_subdir: nix.thunk(() => nix.sel(self, "rocksSubdir")),
                 requiredLuaRocks: nix.thunk(() => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.sel(luaLib, "hasLuaModule")), nix.thunk(() => nix.app(nix.sel(lua, "pkgs", "requiredLuaModules"), nix.thunk(() => nix.concat(nix.sel(self, "finalPackage", "nativeBuildInputs"), nix.sel(self, "propagatedBuildInputs"))))))),
               }))));
             const luarocksConfig$ = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), luarocksConfig, nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(attrs, "extraVariables")), nix.thunk(() => nix.app(nix.sel(lib, "warn"), "extraVariables in buildLuarocksPackage is deprecated, use luarocksConfig instead", nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     variables: nix.thunk(() => nix.sel(attrs, "extraVariables")),
                   }))))))));
             return nix.app(nix.sel(lib, "recursiveUpdate"), generatedConfig, luarocksConfig$);
@@ -121,9 +114,9 @@ runHook postShell
               nix.thunk(() => nix.sel(lua, "luaOnBuild")),
               nix.thunk(() => nix.sel(lua, "luaOnBuild", "pkgs", "luarocks_bootstrap")),
             ]))),
-          passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$6, lua: lua }, nix.selOr(attrs, () => ({}), "passthru"))),
+          passthru: nix.thunk(() => nix.update({ [nix.POS]: $pos[5], lua: lua }, nix.selOr(attrs, () => ({}), "passthru"))),
           meta: nix.thunk(() => nix.update({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             platforms: nix.thunk(() => nix.sel(lua, "meta", "platforms")),
             maintainers: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "meta", "maintainers"), [])),
             broken: disabled,

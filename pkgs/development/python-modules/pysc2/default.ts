@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["sha256", 28, 5]], [["changelog", 57, 5], ["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]], [["pname", 20, 3], ["version", 21, 3], ["format", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 36, 3], ["propagatedBuildInputs", 41, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, fetchFromGitHub: false, "absl-py": false, future: false, mock: false, mpyq: false, numpy: false, portpicker: false, protobuf: false, pygame: false, s2clientprotocol: false, six: false, "websocket-client": false, "sc2-headless": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 57, 5], ["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["format", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 36, 3], ["propagatedBuildInputs", 41, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "deepmind",
           repo: "pysc2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
         sc2_headless,
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/google-deepmind/pysc2/releases/tag/${nix.sel(src, "tag")}`),
         description: "Starcraft II environment and library for training agents",
         homepage: "https://github.com/deepmind/pysc2",
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

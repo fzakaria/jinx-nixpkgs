@@ -2,31 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["gccVersion", 37, 11], ["alireRevision", 38, 11]], [["url", 42, 21], ["hash", 43, 13], ["upstreamTriplet", 44, 13]], [["url", 47, 21], ["hash", 48, 13], ["upstreamTriplet", 49, 13]], [["x86_64-linux", 41, 11], ["aarch64-darwin", 46, 11]], [["gccVersion", 54, 11], ["alireRevision", 55, 11]], [["url", 59, 21], ["hash", 60, 13], ["upstreamTriplet", 61, 13]], [["url", 64, 21], ["hash", 65, 13], ["upstreamTriplet", 66, 13]], [["url", 69, 21], ["hash", 70, 13], ["upstreamTriplet", 71, 13]], [["x86_64-linux", 58, 11], ["aarch64-linux", 63, 11], ["aarch64-darwin", 68, 11]], [["gccVersion", 76, 11], ["alireRevision", 77, 11]], [["url", 81, 21], ["hash", 82, 13], ["upstreamTriplet", 83, 13]], [["url", 86, 21], ["hash", 87, 13], ["upstreamTriplet", 88, 13]], [["url", 91, 21], ["hash", 92, 13], ["upstreamTriplet", 93, 13]], [["x86_64-linux", 80, 11], ["aarch64-linux", 85, 11], ["aarch64-darwin", 90, 11]], [["gccVersion", 98, 11], ["alireRevision", 99, 11]], [["url", 103, 21], ["hash", 104, 13], ["upstreamTriplet", 105, 13]], [["url", 108, 21], ["hash", 109, 13], ["upstreamTriplet", 110, 13]], [["url", 113, 21], ["hash", 114, 13], ["upstreamTriplet", 115, 13]], [["x86_64-linux", 102, 11], ["aarch64-linux", 107, 11], ["aarch64-darwin", 112, 11]], [["13", 36, 9], ["14", 53, 9], ["15", 75, 9], ["16", 97, 9]], [["url", 129, 44], ["hash", 129, 48]], [["langC", 252, 7], ["langCC", 253, 7], ["langFortran", 254, 7], ["langAda", 255, 7], ["isGNU", 256, 7]], [["description", 260, 7], ["homepage", 261, 7], ["license", 262, 7], ["maintainers", 263, 7], ["platforms", 267, 7], ["sourceProvenance", 274, 7]], [["pname", 123, 5], ["gccVersion", 124, 42], ["alireRevision", 124, 53], ["version", 126, 5], ["src", 128, 5], ["nativeBuildInputs", 132, 5], ["buildInputs", 151, 5], ["__structuredAttrs", 174, 5], ["strictDeps", 175, 5], ["autoPatchelfIgnoreMissingDeps", 178, 5], ["postPatch", 181, 5], ["installPhase", 200, 5], ["passthru", 251, 5], ["meta", 259, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, autoPatchelfHook: false, fetchzip: false, xz: false, ncurses5: false, ncurses: false, readline: false, gmp: false, mpfr: false, expat: false, libipt: false, zlib: false, dejagnu: false, sourceHighlight: false, python3: false, elfutils: false, guile: false, glibc: false, zstd: false, majorVersion: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["gccVersion", 37, 11], ["alireRevision", 38, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 42, 21], ["hash", 43, 13], ["upstreamTriplet", 44, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 47, 21], ["hash", 48, 13], ["upstreamTriplet", 49, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 41, 11], ["aarch64-darwin", 46, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["gccVersion", 54, 11], ["alireRevision", 55, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["url", 59, 21], ["hash", 60, 13], ["upstreamTriplet", 61, 13]]);
-const pos$7 = nix.positions(here + "/default.nix", [["url", 64, 21], ["hash", 65, 13], ["upstreamTriplet", 66, 13]]);
-const pos$8 = nix.positions(here + "/default.nix", [["url", 69, 21], ["hash", 70, 13], ["upstreamTriplet", 71, 13]]);
-const pos$9 = nix.positions(here + "/default.nix", [["x86_64-linux", 58, 11], ["aarch64-linux", 63, 11], ["aarch64-darwin", 68, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["gccVersion", 76, 11], ["alireRevision", 77, 11]]);
-const pos$11 = nix.positions(here + "/default.nix", [["url", 81, 21], ["hash", 82, 13], ["upstreamTriplet", 83, 13]]);
-const pos$12 = nix.positions(here + "/default.nix", [["url", 86, 21], ["hash", 87, 13], ["upstreamTriplet", 88, 13]]);
-const pos$13 = nix.positions(here + "/default.nix", [["url", 91, 21], ["hash", 92, 13], ["upstreamTriplet", 93, 13]]);
-const pos$14 = nix.positions(here + "/default.nix", [["x86_64-linux", 80, 11], ["aarch64-linux", 85, 11], ["aarch64-darwin", 90, 11]]);
-const pos$15 = nix.positions(here + "/default.nix", [["gccVersion", 98, 11], ["alireRevision", 99, 11]]);
-const pos$16 = nix.positions(here + "/default.nix", [["url", 103, 21], ["hash", 104, 13], ["upstreamTriplet", 105, 13]]);
-const pos$17 = nix.positions(here + "/default.nix", [["url", 108, 21], ["hash", 109, 13], ["upstreamTriplet", 110, 13]]);
-const pos$18 = nix.positions(here + "/default.nix", [["url", 113, 21], ["hash", 114, 13], ["upstreamTriplet", 115, 13]]);
-const pos$19 = nix.positions(here + "/default.nix", [["x86_64-linux", 102, 11], ["aarch64-linux", 107, 11], ["aarch64-darwin", 112, 11]]);
-const pos$20 = nix.positions(here + "/default.nix", [["13", 36, 9], ["14", 53, 9], ["15", 75, 9], ["16", 97, 9]]);
-const pos$21 = nix.positions(here + "/default.nix", [["url", 129, 44], ["hash", 129, 48]]);
-const pos$22 = nix.positions(here + "/default.nix", [["langC", 252, 7], ["langCC", 253, 7], ["langFortran", 254, 7], ["langAda", 255, 7], ["isGNU", 256, 7]]);
-const pos$23 = nix.positions(here + "/default.nix", [["description", 260, 7], ["homepage", 261, 7], ["license", 262, 7], ["maintainers", 263, 7], ["platforms", 267, 7], ["sourceProvenance", 274, 7]]);
-const pos$24 = nix.positions(here + "/default.nix", [["pname", 123, 5], ["gccVersion", 124, 42], ["alireRevision", 124, 53], ["version", 126, 5], ["src", 128, 5], ["nativeBuildInputs", 132, 5], ["buildInputs", 151, 5], ["__structuredAttrs", 174, 5], ["strictDeps", 175, 5], ["autoPatchelfIgnoreMissingDeps", 178, 5], ["postPatch", 181, 5], ["installPhase", 200, 5], ["passthru", 251, 5], ["meta", 259, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,80 +33,80 @@ export default nix.lambda((args) => (() => {
       const versionMap = nix.thunk(() => (() => {
         const url = nix.thunk(() => nix.str`https://github.com/alire-project/GNAT-FSF-builds/releases/download/gnat-${nix.sel(finalAttrs, "version")}/gnat-${nix.sel(stdenv, "hostPlatform", "system")}-${nix.sel(finalAttrs, "version")}.tar.gz`);
         return {
-          [nix.POS]: pos$20,
-          "13": nix.thunk(() => nix.update({ [nix.POS]: pos$1, gccVersion: "13.2.0", alireRevision: "2" }, nix.selOr({
-            [nix.POS]: pos$4,
+          [nix.POS]: $pos[19],
+          "13": nix.thunk(() => nix.update({ [nix.POS]: $pos[0], gccVersion: "13.2.0", alireRevision: "2" }, nix.selOr({
+            [nix.POS]: $pos[3],
             "x86_64-linux": nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: url,
               hash: "sha256-DC95udGSzRDE22ON4UpekxTYWOSBeUdJvILbSFj6MFQ=",
               upstreamTriplet: "x86_64-pc-linux-gnu",
             })),
             "aarch64-darwin": nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: url,
               hash: "sha256-Bjl6iuM2xLknezR92j/kpDYpxqTcxK1v8rffmivOAVw=",
               upstreamTriplet: "aarch64-apple-darwin23.2.0",
             })),
           }, () => nix.force(throwUnsupportedSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))),
-          "14": nix.thunk(() => nix.update({ [nix.POS]: pos$5, gccVersion: "14.2.0", alireRevision: "1" }, nix.selOr({
-            [nix.POS]: pos$9,
+          "14": nix.thunk(() => nix.update({ [nix.POS]: $pos[4], gccVersion: "14.2.0", alireRevision: "1" }, nix.selOr({
+            [nix.POS]: $pos[8],
             "x86_64-linux": nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               url: url,
               hash: "sha256-pH3IuOpCM9sY/ppTYcxBmgpsUiMrisIjmAa/rmmZXb4=",
               upstreamTriplet: "x86_64-pc-linux-gnu",
             })),
             "aarch64-linux": nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               url: url,
               hash: "sha256-SVW/0yyj6ZH1GAjvD+unII+zSLGd3KGFt1bjjQ3SEFU=",
               upstreamTriplet: "aarch64-linux-gnu",
             })),
             "aarch64-darwin": nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               url: url,
               hash: "sha256-/nARwdQzAMd41fslUbrgloxn0hVZp9PokfQ9yPmL1g8=",
               upstreamTriplet: "aarch64-apple-darwin23.6.0",
             })),
           }, () => nix.force(throwUnsupportedSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))),
-          "15": nix.thunk(() => nix.update({ [nix.POS]: pos$10, gccVersion: "15.3.0", alireRevision: "1" }, nix.selOr({
-            [nix.POS]: pos$14,
+          "15": nix.thunk(() => nix.update({ [nix.POS]: $pos[9], gccVersion: "15.3.0", alireRevision: "1" }, nix.selOr({
+            [nix.POS]: $pos[13],
             "x86_64-linux": nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               url: url,
               hash: "sha256-8CDxqAQW7zskadfdzMjJqzPN8GZ2qu/7NWvcQLDis1s=",
               upstreamTriplet: "x86_64-pc-linux-gnu",
             })),
             "aarch64-linux": nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               url: url,
               hash: "sha256-cLLYWqdZuEZxV4ofd0GtO/+pQDMKs6TAOrAHw3DgI94=",
               upstreamTriplet: "aarch64-linux-gnu",
             })),
             "aarch64-darwin": nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               url: url,
               hash: "sha256-WKwNQJEghnXQLexKHswn494b4sz+usvgYEIoNaedzCk=",
               upstreamTriplet: "aarch64-apple-darwin24.6.0",
             })),
           }, () => nix.force(throwUnsupportedSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))),
-          "16": nix.thunk(() => nix.update({ [nix.POS]: pos$15, gccVersion: "16.1.0", alireRevision: "1" }, nix.selOr({
-            [nix.POS]: pos$19,
+          "16": nix.thunk(() => nix.update({ [nix.POS]: $pos[14], gccVersion: "16.1.0", alireRevision: "1" }, nix.selOr({
+            [nix.POS]: $pos[18],
             "x86_64-linux": nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               url: url,
               hash: "sha256-5bKYPJnXDGa80BtAogLE82X0zTuYKdN2cKh503oMeic=",
               upstreamTriplet: "x86_64-pc-linux-gnu",
             })),
             "aarch64-linux": nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               url: url,
               hash: "sha256-jJnqDJGBOjqbT4hDW0nRpV0oA3RXxJhvI7BuvQkPDQI=",
               upstreamTriplet: "aarch64-linux-gnu",
             })),
             "aarch64-darwin": nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               url: url,
               hash: "sha256-TJlV/Ngq6SwpIgGkwamTN3aRGP2BnEzJyBGovtWb6Y0=",
               upstreamTriplet: "aarch64-apple-darwin24.6.0",
@@ -144,7 +121,7 @@ export default nix.lambda((args) => (() => {
       return (() => {
         const from_1 = nix.thunk(() => nix.sel(versionMap, nix.key(nix.force(majorVersion))));
         return {
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         pname: "gnat-bootstrap",
         gccVersion: nix.thunk(() => nix.attr(from_1, "gccVersion")),
         alireRevision: nix.thunk(() => nix.attr(from_1, "alireRevision")),
@@ -152,7 +129,7 @@ export default nix.lambda((args) => (() => {
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => (() => {
             const from_2 = nix.thunk(() => nix.sel(versionMap, nix.key(nix.force(majorVersion))));
             return {
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             url: nix.thunk(() => nix.attr(from_2, "url")),
             hash: nix.thunk(() => nix.attr(from_2, "hash")),
           };
@@ -186,7 +163,7 @@ done
   "$out" "${nix.sel(stdenv, "cc", "libc")}"
 `)))),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           langC: true,
           langCC: false,
           langFortran: false,
@@ -194,7 +171,7 @@ done
           isGNU: true,
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           description: "GNAT, the GNU Ada Translator",
           homepage: "https://www.gnu.org/software/gnat",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postConfigure", 31, 3], ["buildInputs", 40, 3], ["nativeBuildInputs", 50, 3], ["build-system", 56, 3], ["dependencies", 60, 3], ["doCheck", 71, 3], ["postInstall", 73, 3], ["dontWrapGApps", 83, 3], ["preFixup", 84, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, gettext: false, gtk3: false, python3Packages: false, "gdk-pixbuf": false, libnotify: false, glib: false, "gobject-introspection": false, wrapGAppsHook3: false, "libayatana-appindicator": false, "gsettings-desktop-schemas": false, "libcanberra-gtk3": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postConfigure", 31, 3], ["buildInputs", 40, 3], ["nativeBuildInputs", 50, 3], ["build-system", 56, 3], ["dependencies", 60, 3], ["doCheck", 71, 3], ["postInstall", 73, 3], ["dontWrapGApps", 83, 3], ["preFixup", 84, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const libcanberra_gtk3 = nix.arg($, "libcanberra-gtk3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ayatana-webmail",
       version: "26.6.13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AyatanaIndicators",
           repo: "ayatana-webmail",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -74,7 +72,7 @@ glib-compile-schemas $out/share/glib-2.0/schemas
 makeWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [libcanberra_gtk3]))})
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Webmail notifications and actions for any desktop",
         homepage: "https://github.com/AyatanaIndicators/ayatana-webmail",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

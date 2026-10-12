@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["nativeCheckInputs", 24, 3], ["propagatedBuildInputs", 25, 3], ["disabledTests", 31, 3], ["doCheck", 37, 3], ["pythonImportsCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, commonmark: false, docutils: false, sphinx: false, isPy3k: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["nativeCheckInputs", 24, 3], ["propagatedBuildInputs", 25, 3], ["disabledTests", 31, 3], ["doCheck", 37, 3], ["pythonImportsCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rtfd",
           repo: "recommonmark",
           rev: version,
@@ -34,13 +32,13 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => !nix.asBool(isPy3k));
       const pythonImportsCheck = nix.thunk(() => ["recommonmark"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Docutils-compatibility bridge to CommonMark",
         homepage: "https://github.com/rtfd/recommonmark",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

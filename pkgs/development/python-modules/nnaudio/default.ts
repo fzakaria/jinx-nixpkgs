@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 23, 5], ["hash", 24, 5]], [["url", 27, 5], ["hash", 28, 5]], [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["sourceRoot", 44, 3], ["build-system", 46, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 54, 3], ["preCheck", 60, 3], ["doCheck", 70, 3], ["disabledTests", 72, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, numpy: false, scipy: false, torch: false, librosa: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["sourceRoot", 44, 3], ["build-system", 46, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 54, 3], ["preCheck", 60, 3], ["doCheck", 70, 3], ["disabledTests", 72, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,23 +20,23 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const choice = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://librosa.org/data/audio/admiralbob77_-_Choice_-_Drum-bass.ogg",
       hash: "sha256-rGRPlkXnwVF05KT4Vh5NFEjX9uWf9rBVazEOu87Yebw=",
     }))));
   const vibeace = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://librosa.org/data/audio/Kevin_MacLeod_-_Vibe_Ace.ogg",
       hash: "sha256-bCOu091apX8rFlLsq2jRXZuCrSV/VOY56yiAygm8EYo=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nnaudio",
       version: "0.3.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "KinWaiCheuk",
           repo: "nnAudio",
           rev: "e77d9f874cf37b273f44f68aefbd32fb0b979912",
@@ -59,7 +55,7 @@ export NUMBA_CACHE_DIR=$(mktemp -d)
       disabledTests: nix.thunk(() => nix.concat(["test_cfp_original[cpu]", "test_cfp_new[cpu]", "test_vqt_gamma_zero[cpu]"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_cqt_1992_v2_linear[cpu]", "test_cqt_1992_v2_log[cpu]"])))),
       pythonImportsCheck: nix.thunk(() => ["nnAudio"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast GPU audio processing toolbox with 1D convolutional neural network",
         homepage: "https://github.com/KinWaiCheuk/nnAudio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

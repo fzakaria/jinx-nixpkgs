@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["pkg-config", 85, 5]], [["tests", 84, 12]], [["description", 89, 5], ["homepage", 90, 5], ["license", 92, 5], ["pkgConfigModules", 97, 5], ["platforms", 98, 5], ["maintainers", 99, 5], ["teams", 100, 5]], [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 28, 3], ["patches", 33, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["configureFlags", 64, 3], ["enableParallelBuilding", 68, 3], ["postInstall", 70, 3], ["doCheck", 77, 3], ["preCheck", 79, 3], ["passthru", 84, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, validatePkgConfig: false, freexl: false, geos: false, librttopo: false, libxml2: false, minizip: false, proj: false, sqlite: false, libiconv: false, zlib: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 84, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["license", 92, 5], ["pkgConfigModules", 97, 5], ["platforms", 98, 5], ["maintainers", 99, 5], ["teams", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 28, 3], ["patches", 33, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["configureFlags", 64, 3], ["enableParallelBuilding", 68, 3], ["postInstall", 70, 3], ["doCheck", 77, 3], ["preCheck", 79, 3], ["passthru", 84, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libspatialite",
       version: "5.1.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Q74t00na/+AW3RQAxdEShYKMIv6jXKUQnyHz7VBgUIA=",
         })))),
@@ -48,14 +44,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       preCheck: "export LD_LIBRARY_PATH=$(pwd)/src/.libs\nexport DYLD_LIBRARY_PATH=$(pwd)/src/.libs\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Extensible spatial index library in C++",
         homepage: "https://www.gaia-gis.it/fossil/libspatialite",
         license: nix.thunk(() => (() => {

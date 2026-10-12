@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["homepage", 136, 5], ["changelog", 137, 5], ["description", 138, 5], ["mainProgram", 139, 5], ["license", 140, 5], ["maintainers", 141, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["postPatch", 47, 3], ["build-system", 51, 3], ["pythonRelaxDeps", 53, 3], ["dependencies", 57, 3], ["pythonImportsCheck", 77, 3], ["nativeCheckInputs", 79, 3], ["enabledTestPaths", 86, 3], ["disabledTests", 91, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, lap: false, matplotlib: false, "opencv-python": false, pandas: false, pillow: false, polars: false, psutil: false, "py-cpuinfo": false, pyyaml: false, requests: false, scipy: false, seaborn: false, torch: false, torchvision: false, tqdm: false, "ultralytics-thop": false, aiohttp: false, onnx: false, onnxruntime: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 136, 5], ["changelog", 137, 5], ["description", 138, 5], ["mainProgram", 139, 5], ["license", 140, 5], ["maintainers", 141, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["postPatch", 47, 3], ["build-system", 51, 3], ["pythonRelaxDeps", 53, 3], ["dependencies", 57, 3], ["pythonImportsCheck", 77, 3], ["nativeCheckInputs", 79, 3], ["enabledTestPaths", 86, 3], ["disabledTests", 91, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const onnxruntime = nix.arg($, "onnxruntime");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ultralytics",
       version: "8.4.51",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ultralytics",
           repo: "ultralytics",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -96,7 +94,7 @@ export default nix.lambda((args) => (() => {
         "test_grayscale",
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_utils_benchmarks"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_utils_checks", "test_utils_benchmarks", "test_train_ndjson"]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ultralytics/ultralytics",
         changelog: nix.thunk(() => nix.str`https://github.com/ultralytics/ultralytics/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Train YOLO models for computer vision tasks",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5]], [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 32, 3], ["postPatch", 37, 3], ["build-system", 42, 3], ["buildInputs", 44, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, taskwarrior2: false, distutils: false, kitchen: false, "python-dateutil": false, pytz: false, pytest7CheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 32, 3], ["postPatch", 37, 3], ["build-system", 42, 3], ["buildInputs", 44, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-EQm9+b3nqbMqUAejAsh4MD/2UYi2QiWsdKMomkxUi90=",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [distutils, kitchen, python_dateutil, pytz]);
       const nativeCheckInputs = nix.thunk(() => [pytest7CheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ralphbean/taskw",
         description: "Python bindings for your taskwarrior database",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

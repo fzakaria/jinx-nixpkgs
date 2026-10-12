@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["elixir", 31, 7]], [["homepage", 54, 5], ["changelog", 55, 5], ["description", 56, 5], ["longDescription", 60, 5], ["license", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5], ["teams", 68, 5]], [["updateScript", 70, 12]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["nativeBuildInputs", 26, 3], ["env", 31, 3], ["dontConfigure", 33, 3], ["dontBuild", 34, 3], ["installPhase", 36, 3], ["meta", 53, 3], ["passthru", 70, 3]]]);
 const formals$1 = { args: { lib: false, elixir: false, fetchFromGitHub: false, makeWrapper: false, stdenv: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["elixir", 31, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 54, 5], ["changelog", 55, 5], ["description", 56, 5], ["longDescription", 60, 5], ["license", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5], ["teams", 68, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 70, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["nativeBuildInputs", 26, 3], ["env", 31, 3], ["dontConfigure", 33, 3], ["dontBuild", 34, 3], ["installPhase", 36, 3], ["meta", 53, 3], ["passthru", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elixir-ls";
       const version = "0.31.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elixir-lsp",
           repo: "elixir-ls",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,12 +25,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./launch.sh.patch")]);
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, elixir: elixir }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], elixir: elixir }));
       const dontConfigure = true;
       const dontBuild = true;
       const installPhase = "cp -R . $out\nln -s $out/VERSION $out/scripts/VERSION\n\nsubstituteAllInPlace $out/scripts/launch.sh\n\nmkdir -p $out/bin\n\nmakeWrapper $out/scripts/language_server.sh $out/bin/elixir-ls \\\n  --set ELS_LOCAL \"1\"\n\nmakeWrapper $out/scripts/debug_adapter.sh $out/bin/elixir-debug-adapter \\\n  --set ELS_LOCAL \"1\"\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/elixir-lsp/elixir-ls",
         changelog: nix.thunk(() => nix.str`https://github.com/elixir-lsp/elixir-ls/releases/tag/v${version}`),
         description: "A frontend-independent IDE \"smartness\" server for Elixir.\nImplements the \"Language Server Protocol\" standard and provides debugger support via the \"Debug Adapter Protocol\"\n",
@@ -45,11 +41,11 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "beam"))]),
       }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

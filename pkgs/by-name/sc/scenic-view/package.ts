@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withWebKit", 16, 40]], [["enableJavaFX", 15, 7], ["openjfx_jdk", 16, 7]], [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["name", 34, 5], ["desktopName", 35, 5], ["exec", 36, 5], ["comment", 37, 5], ["mimeTypes", 38, 5], ["categories", 43, 5]], [["url", 52, 7], ["hash", 53, 7], ["excludes", 54, 7]], [["pname", 66, 13], ["data", 67, 5]], [["broken", 87, 5], ["description", 89, 5], ["mainProgram", 90, 5], ["longDescription", 91, 5], ["homepage", 96, 5], ["sourceProvenance", 97, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5]], [["pname", 48, 11], ["version", 48, 17], ["src", 48, 25], ["patches", 50, 3], ["nativeBuildInputs", 60, 3], ["mitmCache", 65, 3], ["__darwinAllowLocalNetworking", 70, 3], ["doCheck", 72, 3], ["installPhase", 74, 3], ["desktopItems", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, openjdk: false, openjfx: false, gradle_8: false, fetchpatch2: false, makeDesktopItem: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withWebKit", 16, 40]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enableJavaFX", 15, 7], ["openjfx_jdk", 16, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 34, 5], ["desktopName", 35, 5], ["exec", 36, 5], ["comment", 37, 5], ["mimeTypes", 38, 5], ["categories", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 52, 7], ["hash", 53, 7], ["excludes", 54, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 66, 13], ["data", 67, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["broken", 87, 5], ["description", 89, 5], ["mainProgram", 90, 5], ["longDescription", 91, 5], ["homepage", 96, 5], ["sourceProvenance", 97, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 48, 11], ["version", 48, 17], ["src", 48, 25], ["patches", 50, 3], ["nativeBuildInputs", 60, 3], ["mitmCache", 65, 3], ["__darwinAllowLocalNetworking", 70, 3], ["doCheck", 72, 3], ["installPhase", 74, 3], ["desktopItems", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const makeWrapper = nix.arg($, "makeWrapper");
   const jdk = nix.thunk(() => nix.app(nix.sel(openjdk, "override"), nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         enableJavaFX: true,
-        openjfx_jdk: nix.thunk(() => nix.app(nix.sel(openjfx, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withWebKit: true })))),
+        openjfx_jdk: nix.thunk(() => nix.app(nix.sel(openjfx, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withWebKit: true })))),
       }))))));
   const pname = "scenic-view";
   const version = "11.0.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "JonathanGiles",
       repo: "scenic-view",
       rev: version,
@@ -39,7 +32,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const gradle = gradle_8;
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "scenic-view",
       desktopName: "scenic-view",
       exec: "scenic-view",
@@ -53,14 +46,14 @@ export default nix.lambda((args) => (() => {
       const src_1 = src;
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/JonathanGiles/scenic-view/commit/0f682bba77e9662ce860216987c94e468f5da421.patch?full_index=1",
             hash: "sha256-ISbKexjpGfS8xaRR4GqJ0J+z8fdv8+n4VCO6/SvLGlw=",
             excludes: nix.thunk(() => ["*.md"]),
           })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [gradle, makeWrapper]);
-      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$6, pname: pname_1, data: nix.path(here, "./deps.json") }))));
+      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: $pos[5], pname: pname_1, data: nix.path(here, "./deps.json") }))));
       const __darwinAllowLocalNetworking = true;
       const doCheck = true;
       const installPhase = nix.thunk(() => nix.str`runHook preInstall
@@ -73,7 +66,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [desktopItem]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))))),
         description: "JavaFx application to visualize and modify the scenegraph of running JavaFx applications",
         mainProgram: "scenic-view",
@@ -94,7 +87,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: pname_1,
         version: version_1,
         src: src_1,

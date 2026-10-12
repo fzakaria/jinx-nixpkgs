@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5], ["fetchSubmodules", 18, 5]], [["homepage", 35, 5], ["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 22, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 29, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5], ["fetchSubmodules", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 35, 5], ["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 22, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 29, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "iodash",
       version: "0.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "YukiWorkshop",
           repo: "IODash",
           rev: "9dcb26621a9c17dbab704b5bab0c3a5fc72624cb",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.2)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/YukiWorkshop/IODash",
         description: "Lightweight C++ I/O library for POSIX operation systems",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

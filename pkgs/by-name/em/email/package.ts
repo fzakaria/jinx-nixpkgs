@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]], [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["name", 37, 7], ["url", 38, 7], ["sha256", 39, 7]], [["NIX_CFLAGS_COMPILE", 45, 7]], [["description", 56, 5], ["license", 57, 5], ["homepage", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 31, 3], ["patches", 33, 3], ["env", 45, 3], ["buildInputs", 47, 3], ["unpackPhase", 49, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 37, 7], ["url", 38, 7], ["sha256", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 45, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 56, 5], ["license", 57, 5], ["homepage", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 31, 3], ["patches", 33, 3], ["env", 45, 3], ["buildInputs", 47, 3], ["unpackPhase", 49, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const openssl = nix.arg($, "openssl");
   const eMailSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "deanproxy",
       repo: "eMail",
       rev: "7d23c8f508a52bd8809e2af4290417829b6bb5ae",
@@ -26,27 +21,27 @@ export default nix.lambda((args) => (() => {
     }))));
   const srcRoot = nix.thunk(() => nix.sel(eMailSrc, "name"));
   const dlibSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "deanproxy",
       repo: "dlib",
       rev: "f62f29e918748b7cea476220f7492672be81c9de",
       sha256: "0h34cikch98sb7nsqjnb9wl384c8ndln3m6yb1172l4y89qjg9rr",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "email-git",
       version: "unstable-2016-01-31",
       src: eMailSrc,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fno-common.patch",
             url: "https://github.com/deanproxy/eMail/commit/c3c1e52132832be0e51daa6e0037d5bb79a17751.patch",
             sha256: "17ndrb65g0v4y521333h4244419s8nncm0yx2jwv12sf0dl6gy8i",
           })))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=gnu17"]))),
       })),
       buildInputs: nix.thunk(() => [openssl]),
@@ -55,7 +50,7 @@ cp -Rp ${dlibSrc}/* ${srcRoot}/dlib;
 chmod -R +w ${srcRoot}/dlib;
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Command line SMTP client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://deanproxy.com/code",

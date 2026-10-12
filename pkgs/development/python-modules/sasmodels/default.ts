@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["full", 69, 5], ["server", 75, 5], ["opencl", 76, 5], ["cuda", 77, 5]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 48, 3], ["buildInputs", 58, 3], ["pythonRemoveDeps", 60, 3], ["dependencies", 63, 3], ["optional-dependencies", 68, 3], ["nativeCheckInputs", 80, 3], ["pythonImportsCheck", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, columnize: false, "hatch-requirements-txt": false, "hatch-sphinx": false, "hatch-vcs": false, hatchling: false, siphash24: false, sphinx: false, numpy: false, scipy: false, bumps: false, docutils: false, matplotlib: false, "opencl-headers": false, pycuda: false, pyopencl: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["full", 69, 5], ["server", 75, 5], ["opencl", 76, 5], ["cuda", 77, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 48, 3], ["buildInputs", 58, 3], ["pythonRemoveDeps", 60, 3], ["dependencies", 63, 3], ["optional-dependencies", 68, 3], ["nativeCheckInputs", 80, 3], ["pythonImportsCheck", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.12";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SasView",
           repo: "sasmodels",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const pythonRemoveDeps = nix.thunk(() => ["tccbox"]);
       const dependencies = nix.thunk(() => [numpy, scipy]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         full: nix.thunk(() => [docutils, bumps, matplotlib, columnize]),
         server: nix.thunk(() => [bumps]),
         opencl: nix.thunk(() => [pyopencl]),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, writableTmpDirAsHomeHook], nix.sel(optional_dependencies, "full")));
       const pythonImportsCheck = nix.thunk(() => ["sasmodels"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library of small angle scattering models",
         homepage: "https://github.com/SasView/sasmodels",
         changelog: nix.thunk(() => nix.str`https://github.com/SasView/sasmodels/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["extraArgs", 78, 5]], [["updateScript", 77, 12]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["doCheck", 49, 3], ["preCheck", 51, 3], ["disabledTestPaths", 58, 3], ["disabledTests", 66, 3], ["__darwinAllowLocalNetworking", 75, 3], ["passthru", 77, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, "nix-update-script": false, fetchFromGitHub: false, setuptools: false, urllib3: false, dnspython: false, pytestCheckHook: false, mock: false, pyopenssl: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 78, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 77, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["doCheck", 49, 3], ["preCheck", 51, 3], ["disabledTestPaths", 58, 3], ["disabledTests", 66, 3], ["__darwinAllowLocalNetworking", 75, 3], ["passthru", 77, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pyopenssl = nix.arg($, "pyopenssl");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "python-etcd",
       version: "0.4.5-unstable-2024-08-09",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jplana",
           repo: "python-etcd",
           rev: "d2889f7b23feee8797657b19c404f0d4034dd03c",
@@ -54,11 +50,11 @@ export default nix.lambda((args) => (() => {
         ]))),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python client for Etcd",
         homepage: "https://github.com/jplana/python-etcd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

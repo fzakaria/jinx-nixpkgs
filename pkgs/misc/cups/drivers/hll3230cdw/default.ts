@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 86, 5], ["license", 87, 5], ["sourceProvenance", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5], ["homepage", 94, 5], ["downloadPage", 95, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["unpackPhase", 33, 3], ["installPhase", 35, 3], ["postFixup", 64, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, perl: false, gnused: false, dpkg: false, makeWrapper: false, autoPatchelfHook: false, libredirect: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 86, 5], ["license", 87, 5], ["sourceProvenance", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5], ["homepage", 94, 5], ["downloadPage", 95, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["unpackPhase", 33, 3], ["installPhase", 35, 3], ["postFixup", 64, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cups-brother-hll3230cdw";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf103925/hll3230cdwpdrv-${version}-0.i386.deb`),
           sha256: "9d49abc584bf22bc381510618a34107ead6ab14562b51831fefd6009947aa5a9",
         }))));
@@ -50,7 +48,7 @@ substituteInPlace $out/bin/brprintconf_hll3230cdw \\
   --replace \\"\\$"@"\\" \\"\\$"@\\" | LD_PRELOAD= ${gnused}/bin/sed -E '/^(function list :|resource file :).*/{s#/opt#$out/opt#}'"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Brother HL-L3230CDW printer driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         sourceProvenance: nix.thunk(() => (() => {
@@ -66,7 +64,7 @@ substituteInPlace $out/bin/brprintconf_hll3230cdw \\
         downloadPage: "https://support.brother.com/g/b/downloadend.aspx?c=us&lang=en&prod=hll3230cdw_us_eu_as&os=128&dlid=dlf103925_000&flang=4&type3=10283",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

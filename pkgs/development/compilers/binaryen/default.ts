@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]], [["homepage", 104, 5], ["description", 105, 5], ["platforms", 106, 5], ["maintainers", 107, 5], ["license", 110, 5]], [["emscripten", 113, 23]], [["name", 116, 7], ["runtimeInputs", 117, 7], ["text", 124, 7]], [["tests", 113, 5], ["testsuite", 114, 13], ["updateScript", 115, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["strictDeps", 43, 3], ["preConfigure", 45, 3], ["nativeCheckInputs", 61, 3], ["checkInputs", 66, 3], ["checkPhase", 67, 3], ["postInstall", 73, 3], ["tests", 79, 3], ["doCheck", 101, 3], ["meta", 103, 3], ["passthru", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, python3: false, fetchFromGitHub: false, emscripten: false, gtest: false, lit: false, nodejs: false, filecheck: false, writeShellApplication: false, "common-updater-scripts": false, curl: false, jq: false, nix: false, "nix-update": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 104, 5], ["description", 105, 5], ["platforms", 106, 5], ["maintainers", 107, 5], ["license", 110, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["emscripten", 113, 23]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 116, 7], ["runtimeInputs", 117, 7], ["text", 124, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 113, 5], ["testsuite", 114, 13], ["updateScript", 115, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["strictDeps", 43, 3], ["preConfigure", 45, 3], ["nativeCheckInputs", 61, 3], ["checkInputs", 66, 3], ["checkPhase", 67, 3], ["postInstall", 73, 3], ["tests", 79, 3], ["doCheck", 101, 3], ["meta", 103, 3], ["passthru", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const nix_update = nix.arg($, "nix-update");
   const testsuite = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "WebAssembly",
       repo: "testsuite",
       rev: "4b24564c844e3d34bf46dfcb3c774ee5163e31cc",
@@ -40,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "binaryen";
       const version = "132";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "WebAssembly",
           repo: "binaryen",
           rev: nix.thunk(() => nix.str`version_${version}`),
@@ -81,7 +75,7 @@ fi
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["example", "validator"]))));
       const doCheck = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/WebAssembly/binaryen",
         description: "Compiler infrastructure and toolchain library for WebAssembly, in C++",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -92,18 +86,18 @@ fi
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, emscripten: emscripten })),
+        [nix.POS]: $pos[5],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], emscripten: emscripten })),
         testsuite: testsuite,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "binaryen-update",
               runtimeInputs: nix.thunk(() => [common_updater_scripts, curl, jq, nix$, nix_update]),
               text: "nix-update binaryen\n\n# keep the testsuite pin on binaryen's submodule pointer at the new tag\ntag=$(nix eval --raw --file . binaryen.src.rev)\nrev=$(curl -fsSL \"https://api.github.com/repos/WebAssembly/binaryen/contents/test/spec/testsuite?ref=$tag\" | jq -er .sha)\nif [[ $rev != \"$(nix eval --raw --file . binaryen.testsuite.rev)\" ]]; then\n  update-source-version binaryen --source-key=testsuite --rev=\"$rev\" --ignore-same-version\nfi\n",
             })))))),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

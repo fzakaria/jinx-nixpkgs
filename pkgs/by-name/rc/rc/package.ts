@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["readlineSupport", 98, 11], ["lineEditingLibrary", 99, 11]], [["editlineSupport", 104, 11], ["lineEditingLibrary", 105, 11]], [["static", 95, 7], ["readline", 96, 7], ["editline", 102, 7]], [["shellPath", 93, 5], ["tests", 94, 5]], [["homepage", 112, 5], ["description", 113, 5], ["license", 114, 5], ["mainProgram", 115, 5], ["maintainers", 116, 5], ["platforms", 117, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["outputs", 45, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 63, 3], ["strictDeps", 69, 3], ["makeFlags", 71, 3], ["buildFlags", 81, 3], ["postInstall", 88, 3], ["passthru", 92, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, pkgsStatic: false, rc: false, byacc: false, ed: false, ncurses: false, readline: false, editline: false, installShellFiles: false, historySupport: true, readlineSupport: true, editlineSupport: true, lineEditingLibrary: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["readlineSupport", 98, 11], ["lineEditingLibrary", 99, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["editlineSupport", 104, 11], ["lineEditingLibrary", 105, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["static", 95, 7], ["readline", 96, 7], ["editline", 102, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["shellPath", 93, 5], ["tests", 94, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 112, 5], ["description", 113, 5], ["license", 114, 5], ["mainProgram", 115, 5], ["maintainers", 116, 5], ["platforms", 117, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["outputs", 45, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 63, 3], ["strictDeps", 69, 3], ["makeFlags", 71, 3], ["buildFlags", 81, 3], ["postInstall", 88, 3], ["passthru", 92, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +28,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(nix.eq(lineEditingLibrary, "readline")) || nix.asBool(readlineSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/rc/rc/package.nix:32:1");
   nix.assert_((!nix.asBool(nix.eq(lineEditingLibrary, "editline")) || nix.asBool(editlineSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/rc/rc/package.nix:33:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "rc",
       version: "1.7.4-unstable-2025-10-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rakitzis",
           repo: "rc",
           rev: "2bab312ea11cb77d2654a731357842971c0b5d18",
@@ -63,17 +57,17 @@ EOF
       buildFlags: nix.thunk(() => nix.concat(["all"], nix.app(nix.sel(lib, "optionals"), historySupport, nix.thunk(() => ["history"])))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), historySupport, "installManPage history.1\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         shellPath: "/bin/rc",
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           static: nix.thunk(() => nix.sel(pkgsStatic, "rc")),
-          readline: nix.thunk(() => nix.app(nix.sel(lib, "optionalDrvAttr"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.app(nix.sel(rc, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, readlineSupport: true, lineEditingLibrary: "readline" })))))),
-          editline: nix.thunk(() => nix.app(nix.sel(lib, "optionalDrvAttr"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.app(nix.sel(rc, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, editlineSupport: true, lineEditingLibrary: "editline" })))))),
+          readline: nix.thunk(() => nix.app(nix.sel(lib, "optionalDrvAttr"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.app(nix.sel(rc, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], readlineSupport: true, lineEditingLibrary: "readline" })))))),
+          editline: nix.thunk(() => nix.app(nix.sel(lib, "optionalDrvAttr"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.app(nix.sel(rc, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], editlineSupport: true, lineEditingLibrary: "editline" })))))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/rakitzis/rc",
         description: "Plan 9 shell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

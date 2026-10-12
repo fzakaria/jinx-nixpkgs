@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]], [["pname", 10, 3], ["version", 11, 3], ["outputs", 12, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 25, 3], ["postPatch", 27, 3], ["buildPhase", 41, 3], ["installPhase", 49, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, help2man: false, python3: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["outputs", 12, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 25, 3], ["postPatch", 27, 3], ["buildPhase", 41, 3], ["installPhase", 49, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "terminal-colors",
       version: "3.0.2",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eikenb",
           repo: "terminal-colors",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nhelp2man -n 'display terminal colors' -N ./$pname > $pname.1\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -D -m755 ./$pname -t $out/bin\ninstall -D -m644 ./$pname.1 -t $man/share/man/man1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Script displaying terminal colors in various formats",
         homepage: "https://github.com/eikenb/terminal-colors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

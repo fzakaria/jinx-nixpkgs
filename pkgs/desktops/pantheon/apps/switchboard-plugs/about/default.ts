@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["updateScript", 68, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["teams", 76, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["passthru", 67, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false, "pkg-config": false, vala: false, "json-glib": false, libadwaita: false, libgee: false, libgtop: false, libgudev: false, libsoup_3: false, gettext: false, glib: false, granite7: false, gtk4: false, packagekit: false, polkit: false, switchboard: false, udisks: false, fwupd: false, appstream: false, "elementary-settings-daemon": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["teams", 76, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["passthru", 67, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "switchboard-plug-about";
       const version = "8.2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "settings-system",
           tag: version,
@@ -64,11 +61,11 @@ export default nix.lambda((args) => (() => {
         udisks,
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Switchboard About Plug",
         homepage: "https://github.com/elementary/settings-system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

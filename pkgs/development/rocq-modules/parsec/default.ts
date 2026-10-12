@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 25, 35], ["out", 25, 40]], [["hash", 34, 19]], [["hash", 35, 19]], [["hash", 36, 19]], [["hash", 37, 19]], [["0.2.0", 34, 11], ["0.1.2", 35, 11], ["0.1.1", 36, 11], ["0.1.0", 37, 11]], [["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 12, 3], ["repo", 13, 3], ["owner", 14, 3], ["propagatedBuildInputs", 16, 3], ["releaseRev", 20, 3], ["version", 22, 11], ["defaultVersion", 23, 3], ["release", 34, 3], ["useDuneifVersion", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, ceres: false, ExtLib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 25, 35], ["out", 25, 40]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 34, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 35, 19]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 36, 19]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 37, 19]]);
-const pos$6 = nix.positions(here + "/default.nix", [["0.2.0", 34, 11], ["0.1.2", 35, 11], ["0.1.1", 36, 11], ["0.1.0", 37, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["repo", 13, 3], ["owner", 14, 3], ["propagatedBuildInputs", 16, 3], ["releaseRev", 20, 3], ["version", 22, 11], ["defaultVersion", 23, 3], ["release", 34, 3], ["useDuneifVersion", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const ExtLib = nix.arg($, "ExtLib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "parsec",
       repo: "coq-parsec",
       owner: "liyishuai",
@@ -29,7 +22,7 @@ export default nix.lambda((args) => (() => {
       releaseRev: (v) => nix.str`v${v}`,
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[0], case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.14", "9.1")), "0.2.0")),
@@ -39,27 +32,27 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         "0.2.0": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-hM6LVFQ2VQ42QeHu8Ex+oz1VvJUr+g8/nZN+bYHEljQ=",
         })),
         "0.1.2": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-QN0h1CsX86DQBDsluXLtNUvMh3r60/0iDSbYam67AhA=",
         })),
         "0.1.1": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256:1c0l18s68pzd4c8i3jimh2yz0pqm4g38pca4bm7fr18r8xmqf189",
         })),
         "0.1.0": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256:01avfcqirz2b9wjzi9iywbhz9szybpnnj3672dgkfsimyg9jgnsr",
         })),
       })),
       useDuneifVersion: (v) => (nix.asBool(nix.app(nix.sel(lib, "versions", "isGe"), "0.2.0", v)) || nix.asBool(nix.eq(v, "dev"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Library for serialization to S-expressions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => (() => {

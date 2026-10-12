@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["package", 22, 50]], [["version", 22, 18]], [["tests", 22, 12]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["mainProgram", 29, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["passthru", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, testers: false, sshs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 22, 50]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 22, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 22, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["mainProgram", 29, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["passthru", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const sshs = nix.arg($, "sshs");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sshs",
       version: "4.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "quantumsheep",
           repo: "sshs",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,14 +25,14 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-SpiJ0WUDmxoqoVbuRh/Kzu3urvhdsm/UZdJdrJ3pP/g=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: sshs })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: sshs })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Terminal user interface for SSH",
         homepage: "https://github.com/quantumsheep/sshs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

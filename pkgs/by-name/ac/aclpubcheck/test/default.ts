@@ -2,14 +2,14 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nativeBuildInputs", 5, 45]]]);
 const formals$1 = { args: { runCommand: false, aclpubcheck: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 5, 45]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommand = nix.arg($, "runCommand");
   const aclpubcheck = nix.arg($, "aclpubcheck");
-  return nix.app(runCommand, "aclpubcheck-test-example-pdf", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [aclpubcheck]) })), nix.thunk(() => nix.str`# aclpubcheck prints out the path that was passed to it, which may change over time if it is a Nix store path.
+  return nix.app(runCommand, "aclpubcheck-test-example-pdf", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [aclpubcheck]) })), nix.thunk(() => nix.str`# aclpubcheck prints out the path that was passed to it, which may change over time if it is a Nix store path.
 # Since we're comparing the output of aclpubcheck, this would break the test.
 # To avoid this, pass aclpubcheck a relative path to a symlink in the current working directory instead of the absolute path.
 # Simply using \`cd\` to change directories into the example directory does not work,

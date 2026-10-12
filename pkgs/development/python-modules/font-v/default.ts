@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 53, 5], ["changelog", 54, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["nativeCheckInputs", 32, 3], ["preCheck", 37, 3], ["disabledTests", 46, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fonttools: false, gitMinimal: false, gitpython: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 53, 5], ["changelog", 54, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["nativeCheckInputs", 32, 3], ["preCheck", 37, 3], ["disabledTests", 46, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "font-v",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "source-foundry",
           repo: "font-v",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "# Many tests assume they are running from a git checkout, although they\n# don't care which one. Create a dummy git repo to satisfy the tests:\ngit init -b main\ngit config user.email test@example.invalid\ngit config user.name Test\ngit commit --allow-empty --message 'Dummy commit for tests'\n",
       disabledTests: nix.thunk(() => ["test_utilities_get_gitrootpath_function"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python utility for manipulating font version headers",
         changelog: nix.thunk(() => nix.str`https://github.com/source-foundry/font-v/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         mainProgram: "font-v",

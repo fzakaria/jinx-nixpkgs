@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["hash", 34, 5]], [["packageName", 73, 7], ["versionPolicy", 74, 7]], [["installedTests", 78, 7]], [["updateScript", 72, 5], ["tests", 77, 5]], [["description", 83, 5], ["mainProgram", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["teams", 87, 5], ["platforms", 88, 5]], [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 32, 3], ["patches", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 54, 3], ["propagatedBuildInputs", 60, 3], ["mesonFlags", 64, 3], ["doCheck", 69, 3], ["passthru", 71, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gettext: false, "gobject-introspection": false, "gtk-doc": false, docbook_xsl: false, docbook_xml_dtd_43: false, "pkg-config": false, meson: false, ninja: false, vala: false, glib: false, zlib: false, gnome: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 73, 7], ["versionPolicy", 74, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["installedTests", 78, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 72, 5], ["tests", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 83, 5], ["mainProgram", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["teams", 87, 5], ["platforms", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 32, 3], ["patches", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 54, 3], ["propagatedBuildInputs", 60, 3], ["mesonFlags", 64, 3], ["doCheck", 69, 3], ["passthru", 71, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const gnome = nix.arg($, "gnome");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gcab",
       version: "1.6",
       outputs: nix.thunk(() => ["bin", "out", "dev", "devdoc", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gcab/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gcab-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-LwyWFVd8QSaQniUfneBibD7noVI3bBW1VE3xD8h+Vgs=",
         })))),
@@ -58,15 +53,15 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gcab", versionPolicy: "none" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gcab", versionPolicy: "none" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "gcab")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "GObject library to create cabinet files",
         mainProgram: "gcab",
         homepage: "https://gitlab.gnome.org/GNOME/gcab",

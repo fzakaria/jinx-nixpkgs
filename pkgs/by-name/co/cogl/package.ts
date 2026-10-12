@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["sha256", 35, 5]], [["COGL_PANGO_DEP_CFLAGS", 110, 5], ["NIX_CFLAGS_COMPILE", 117, 5]], [["packageName", 133, 7], ["versionPolicy", 134, 7]], [["updateScript", 132, 5]], [["description", 139, 5], ["maintainers", 140, 5], ["longDescription", 142, 5], ["platforms", 149, 5], ["license", 150, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 38, 3], ["outputs", 47, 3], ["nativeBuildInputs", 52, 3], ["configureFlags", 60, 3], ["propagatedBuildInputs", 83, 3], ["buildInputs", 103, 3], ["env", 109, 3], ["passthru", 131, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libGL: false, glib: false, "gdk-pixbuf": false, libxrandr: false, libxfixes: false, libxdamage: false, libxcomposite: false, libintl: false, pangoSupport: true, pango: false, cairo: false, "gobject-introspection": false, wayland: false, gnome: false, libgbm: false, "mesa-gl-headers": false, automake: false, autoconf: false, gstreamerSupport: true, gst_all_1: false, harfbuzz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["sha256", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["COGL_PANGO_DEP_CFLAGS", 110, 5], ["NIX_CFLAGS_COMPILE", 117, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 133, 7], ["versionPolicy", 134, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 132, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 139, 5], ["maintainers", 140, 5], ["longDescription", 142, 5], ["platforms", 149, 5], ["license", 150, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 38, 3], ["outputs", 47, 3], ["nativeBuildInputs", 52, 3], ["configureFlags", 60, 3], ["propagatedBuildInputs", 83, 3], ["buildInputs", 103, 3], ["env", 109, 3], ["passthru", 131, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cogl";
       const version = "1.22.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/cogl/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/cogl-${version}.tar.xz`),
           sha256: "0nfph4ai60ncdx7hy6hl1i1cmp761jgnyjfhagzi0iqq36qb41d8",
         }))));
@@ -74,7 +69,7 @@ export default nix.lambda((args) => (() => {
         ])))));
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), pangoSupport, nix.thunk(() => [pango, cairo, harfbuzz])));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         COGL_PANGO_DEP_CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(pangoSupport))), nix.thunk(() => [
               nix.thunk(() => nix.str`-I${nix.sel(pango, "dev")}/include/pango-1.0`),
               nix.thunk(() => nix.str`-I${nix.sel(cairo, "dev")}/include/cairo`),
@@ -83,11 +78,11 @@ export default nix.lambda((args) => (() => {
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-std=gnu17"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))))))),
       }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: pname, versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: pname, versionPolicy: "odd-unstable" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Small open source library for using 3D graphics hardware for rendering",
         maintainers: [],
         longDescription: "Cogl is a small open source library for using 3D graphics hardware for\nrendering. The API departs from the flat state machine style of OpenGL\nand is designed to make it easy to write orthogonal components that can\nrender without stepping on each other's toes.\n",
@@ -103,7 +98,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

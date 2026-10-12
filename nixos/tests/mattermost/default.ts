@@ -2,58 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["systemPackages", 15, 13]], [["127.0.0.1", 22, 13]], [["hosts", 21, 22]], [["package", 27, 13], ["initialScript", 28, 13]], [["enable", 44, 15], ["export", 45, 15]], [["peerAuth", 48, 15]], [["enableSecurityAlerts", 50, 23]], [["AboutLink", 52, 31]], [["AutomaticPrepackagedPlugins", 53, 30]], [["AdminNoticesEnabled", 56, 17], ["UserNoticesEnabled", 57, 17]], [["SupportSettings", 52, 15], ["PluginSettings", 53, 15], ["AnnouncementSettings", 54, 15]], [["removeFreeBadge", 61, 15], ["removeUserLimit", 62, 15]], [["enable", 38, 13], ["siteName", 39, 21], ["host", 40, 13], ["port", 41, 21], ["siteUrl", 42, 13], ["socket", 43, 13], ["database", 47, 13], ["telemetry", 50, 13], ["settings", 51, 13], ["package", 60, 13]], [["postgresql", 26, 20], ["mattermost", 37, 20]], [["stateVersion", 35, 18]], [["package", 68, 33]], [["mattermost", 68, 22]], [["stateVersion", 69, 20]], [["services", 68, 13], ["system", 69, 13]], [["configuration", 67, 33]], [["latest", 67, 26]], [["environment", 14, 11], ["networking", 21, 11], ["services", 26, 11], ["system", 35, 11], ["specialisation", 67, 11]], [["HelpLink", 83, 32]], [["SupportSettings", 83, 16]], [["mutableConfig", 81, 7], ["preferNixConfig", 82, 7], ["settings", 83, 7]], [["owner", 96, 17], ["repo", 97, 17], ["rev", 99, 17], ["hash", 100, 17]], [["pname", 93, 15], ["version", 94, 15], ["src", 95, 15], ["vendorHash", 102, 15], ["npmDepsHash", 103, 15]], [["owner", 111, 17], ["repo", 112, 17], ["rev", 114, 17], ["hash", 115, 17]], [["npmFlags", 120, 17]], [["pname", 108, 15], ["version", 109, 15], ["src", 110, 15], ["vendorHash", 117, 15], ["npmDepsHash", 118, 15], ["extraGoModuleAttrs", 119, 15]], [["mutableConfig", 88, 11], ["preferNixConfig", 89, 11], ["plugins", 90, 11]], [["stateVersion", 127, 18]], [["stateVersion", 130, 55]], [["system", 130, 48]], [["configuration", 130, 34]], [["upgrade", 130, 26]], [["system", 127, 11], ["specialisation", 130, 11]], [["postPatch", 138, 11]], [["webapp", 136, 9]], [["peerAuth", 151, 9]], [["HelpLink", 153, 32]], [["SupportSettings", 153, 16]], [["package", 135, 7], ["mutableConfig", 143, 7], ["user", 146, 7], ["group", 147, 7], ["database", 149, 7], ["settings", 153, 7]], [["fromEnvironment", 157, 16]], [["AboutLink", 158, 32]], [["SupportSettings", 158, 16]], [["mutableConfig", 156, 7], ["database", 157, 7], ["settings", 158, 7], ["environmentFile", 159, 7]], [["postgresMutable", 80, 5], ["postgresMostlyMutable", 85, 5], ["postgresImmutable", 134, 5], ["postgresEnvironmentFile", 155, 5]], [["name", 77, 3], ["nodes", 79, 3], ["testScript", 166, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["systemPackages", 15, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["127.0.0.1", 22, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hosts", 21, 22]]);
-const pos$4 = nix.positions(here + "/default.nix", [["package", 27, 13], ["initialScript", 28, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["enable", 44, 15], ["export", 45, 15]]);
-const pos$6 = nix.positions(here + "/default.nix", [["peerAuth", 48, 15]]);
-const pos$7 = nix.positions(here + "/default.nix", [["enableSecurityAlerts", 50, 23]]);
-const pos$8 = nix.positions(here + "/default.nix", [["AboutLink", 52, 31]]);
-const pos$9 = nix.positions(here + "/default.nix", [["AutomaticPrepackagedPlugins", 53, 30]]);
-const pos$10 = nix.positions(here + "/default.nix", [["AdminNoticesEnabled", 56, 17], ["UserNoticesEnabled", 57, 17]]);
-const pos$11 = nix.positions(here + "/default.nix", [["SupportSettings", 52, 15], ["PluginSettings", 53, 15], ["AnnouncementSettings", 54, 15]]);
-const pos$12 = nix.positions(here + "/default.nix", [["removeFreeBadge", 61, 15], ["removeUserLimit", 62, 15]]);
-const pos$13 = nix.positions(here + "/default.nix", [["enable", 38, 13], ["siteName", 39, 21], ["host", 40, 13], ["port", 41, 21], ["siteUrl", 42, 13], ["socket", 43, 13], ["database", 47, 13], ["telemetry", 50, 13], ["settings", 51, 13], ["package", 60, 13]]);
-const pos$14 = nix.positions(here + "/default.nix", [["postgresql", 26, 20], ["mattermost", 37, 20]]);
-const pos$15 = nix.positions(here + "/default.nix", [["stateVersion", 35, 18]]);
-const pos$16 = nix.positions(here + "/default.nix", [["package", 68, 33]]);
-const pos$17 = nix.positions(here + "/default.nix", [["mattermost", 68, 22]]);
-const pos$18 = nix.positions(here + "/default.nix", [["stateVersion", 69, 20]]);
-const pos$19 = nix.positions(here + "/default.nix", [["services", 68, 13], ["system", 69, 13]]);
-const pos$20 = nix.positions(here + "/default.nix", [["configuration", 67, 33]]);
-const pos$21 = nix.positions(here + "/default.nix", [["latest", 67, 26]]);
-const pos$22 = nix.positions(here + "/default.nix", [["environment", 14, 11], ["networking", 21, 11], ["services", 26, 11], ["system", 35, 11], ["specialisation", 67, 11]]);
-const pos$23 = nix.positions(here + "/default.nix", [["HelpLink", 83, 32]]);
-const pos$24 = nix.positions(here + "/default.nix", [["SupportSettings", 83, 16]]);
-const pos$25 = nix.positions(here + "/default.nix", [["mutableConfig", 81, 7], ["preferNixConfig", 82, 7], ["settings", 83, 7]]);
-const pos$26 = nix.positions(here + "/default.nix", [["owner", 96, 17], ["repo", 97, 17], ["rev", 99, 17], ["hash", 100, 17]]);
-const pos$27 = nix.positions(here + "/default.nix", [["pname", 93, 15], ["version", 94, 15], ["src", 95, 15], ["vendorHash", 102, 15], ["npmDepsHash", 103, 15]]);
-const pos$28 = nix.positions(here + "/default.nix", [["owner", 111, 17], ["repo", 112, 17], ["rev", 114, 17], ["hash", 115, 17]]);
-const pos$29 = nix.positions(here + "/default.nix", [["npmFlags", 120, 17]]);
-const pos$30 = nix.positions(here + "/default.nix", [["pname", 108, 15], ["version", 109, 15], ["src", 110, 15], ["vendorHash", 117, 15], ["npmDepsHash", 118, 15], ["extraGoModuleAttrs", 119, 15]]);
-const pos$31 = nix.positions(here + "/default.nix", [["mutableConfig", 88, 11], ["preferNixConfig", 89, 11], ["plugins", 90, 11]]);
-const pos$32 = nix.positions(here + "/default.nix", [["stateVersion", 127, 18]]);
-const pos$33 = nix.positions(here + "/default.nix", [["stateVersion", 130, 55]]);
-const pos$34 = nix.positions(here + "/default.nix", [["system", 130, 48]]);
-const pos$35 = nix.positions(here + "/default.nix", [["configuration", 130, 34]]);
-const pos$36 = nix.positions(here + "/default.nix", [["upgrade", 130, 26]]);
-const pos$37 = nix.positions(here + "/default.nix", [["system", 127, 11], ["specialisation", 130, 11]]);
-const pos$38 = nix.positions(here + "/default.nix", [["postPatch", 138, 11]]);
-const pos$39 = nix.positions(here + "/default.nix", [["webapp", 136, 9]]);
-const pos$40 = nix.positions(here + "/default.nix", [["peerAuth", 151, 9]]);
-const pos$41 = nix.positions(here + "/default.nix", [["HelpLink", 153, 32]]);
-const pos$42 = nix.positions(here + "/default.nix", [["SupportSettings", 153, 16]]);
-const pos$43 = nix.positions(here + "/default.nix", [["package", 135, 7], ["mutableConfig", 143, 7], ["user", 146, 7], ["group", 147, 7], ["database", 149, 7], ["settings", 153, 7]]);
-const pos$44 = nix.positions(here + "/default.nix", [["fromEnvironment", 157, 16]]);
-const pos$45 = nix.positions(here + "/default.nix", [["AboutLink", 158, 32]]);
-const pos$46 = nix.positions(here + "/default.nix", [["SupportSettings", 158, 16]]);
-const pos$47 = nix.positions(here + "/default.nix", [["mutableConfig", 156, 7], ["database", 157, 7], ["settings", 158, 7], ["environmentFile", 159, 7]]);
-const pos$48 = nix.positions(here + "/default.nix", [["postgresMutable", 80, 5], ["postgresMostlyMutable", 85, 5], ["postgresImmutable", 134, 5], ["postgresEnvironmentFile", 155, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$49 = nix.positions(here + "/default.nix", [["name", 77, 3], ["nodes", 79, 3], ["testScript", 166, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -68,9 +20,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "mattermost")),
               nix.thunk(() => nix.sel(pkgs, "curl")),
@@ -78,58 +30,58 @@ export default nix.lambda((args) => (() => {
             ]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            hosts: nix.thunk(() => ({ [nix.POS]: pos$2, "127.0.0.1": nix.thunk(() => [host]) })),
+            [nix.POS]: $pos[2],
+            hosts: nix.thunk(() => ({ [nix.POS]: $pos[1], "127.0.0.1": nix.thunk(() => [host]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.sel(pkgs, "postgresql")))),
               initialScript: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "services", "mattermost", "database", "peerAuth"))), nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "init.sql", nix.thunk(() => nix.str`create role ${nix.sel(config, "services", "mattermost", "database", "user")} with login nocreatedb nocreaterole encrypted password '${nix.sel(config, "services", "mattermost", "database", "password")}';
 `))))),
             })),
             mattermost: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 enable: true,
                 siteName: siteName,
                 host: "0.0.0.0",
                 port: port,
                 siteUrl: url,
-                socket: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, export: true })),
+                socket: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true, export: true })),
                 database: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   peerAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 })),
-                telemetry: nix.thunk(() => ({ [nix.POS]: pos$7, enableSecurityAlerts: false })),
+                telemetry: nix.thunk(() => ({ [nix.POS]: $pos[6], enableSecurityAlerts: false })),
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
-                  SupportSettings: nix.thunk(() => ({ [nix.POS]: pos$8, AboutLink: "https://nixos.org" })),
-                  PluginSettings: nix.thunk(() => ({ [nix.POS]: pos$9, AutomaticPrepackagedPlugins: false })),
-                  AnnouncementSettings: nix.thunk(() => ({ [nix.POS]: pos$10, AdminNoticesEnabled: false, UserNoticesEnabled: false })),
+                  [nix.POS]: $pos[10],
+                  SupportSettings: nix.thunk(() => ({ [nix.POS]: $pos[7], AboutLink: "https://nixos.org" })),
+                  PluginSettings: nix.thunk(() => ({ [nix.POS]: $pos[8], AutomaticPrepackagedPlugins: false })),
+                  AnnouncementSettings: nix.thunk(() => ({ [nix.POS]: $pos[9], AdminNoticesEnabled: false, UserNoticesEnabled: false })),
                 })),
-                package: nix.thunk(() => nix.app(nix.sel(pkgs, "mattermost", "override"), nix.thunk(() => ({ [nix.POS]: pos$12, removeFreeBadge: true, removeUserLimit: true })))),
+                package: nix.thunk(() => nix.app(nix.sel(pkgs, "mattermost", "override"), nix.thunk(() => ({ [nix.POS]: $pos[11], removeFreeBadge: true, removeUserLimit: true })))),
               })), mattermostConfig)),
           })),
           system: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             stateVersion: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(lib, "version")))))),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             latest: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   mattermost: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     package: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.sel(pkgs, "mattermostLatest")))),
                   })),
                 })),
                 system: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   stateVersion: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(lib, "version")))))),
                 })),
               })),
@@ -140,32 +92,32 @@ export default nix.lambda((args) => (() => {
       extraConfig,
     ]));
   return {
-    [nix.POS]: pos$49,
+    [nix.POS]: $pos[48],
     name: "mattermost",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$48,
+      [nix.POS]: $pos[47],
       postgresMutable: nix.thunk(() => nix.app(makeMattermost, nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           mutableConfig: true,
           preferNixConfig: false,
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$24,
-            SupportSettings: nix.thunk(() => ({ [nix.POS]: pos$23, HelpLink: "https://search.nixos.org" })),
+            [nix.POS]: $pos[23],
+            SupportSettings: nix.thunk(() => ({ [nix.POS]: $pos[22], HelpLink: "https://search.nixos.org" })),
           })),
         })), nix.thunk(() => ({})))),
       postgresMostlyMutable: nix.thunk(() => nix.app(makeMattermost, nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           mutableConfig: true,
           preferNixConfig: true,
           plugins: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
               nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "mattermost"), "buildPlugin"), nix.thunk(() => ({
-                  [nix.POS]: pos$27,
+                  [nix.POS]: $pos[26],
                   pname: "mattermost-plugin-starter-template",
                   version: "0.1.0",
                   src: nix.thunk(() => nix.app(nix.lookup(w, "fetchFromGitHub"), nix.thunk(() => ({
-                      [nix.POS]: pos$26,
+                      [nix.POS]: $pos[25],
                       owner: "mattermost",
                       repo: "mattermost-plugin-starter-template",
                       rev: "7c98e89ac1a268ce8614bc665571b7bbc9a70df2",
@@ -175,11 +127,11 @@ export default nix.lambda((args) => (() => {
                   npmDepsHash: "sha256-z08nc4XwT+uQjQlZiUydJyh8mqeJoYdPFWuZpw9k99s=",
                 })))),
               nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "mattermost"), "buildPlugin"), nix.thunk(() => ({
-                  [nix.POS]: pos$30,
+                  [nix.POS]: $pos[29],
                   pname: "mattermost-plugin-todo",
                   version: "0.8-pre",
                   src: nix.thunk(() => nix.app(nix.lookup(w, "fetchFromGitHub"), nix.thunk(() => ({
-                      [nix.POS]: pos$28,
+                      [nix.POS]: $pos[27],
                       owner: "mattermost-community",
                       repo: "mattermost-plugin-todo",
                       rev: "f25dc91ea401c9f0dcd4abcebaff10eb8b9836e5",
@@ -187,24 +139,24 @@ export default nix.lambda((args) => (() => {
                     })))),
                   vendorHash: "sha256-5KpechSp3z/Nq713PXYruyNxveo6CwrCSKf2JaErbgg=",
                   npmDepsHash: "sha256-o2UOEkwb8Vx2lDWayNYgng0GXvmS6lp/ExfOq3peyMY=",
-                  extraGoModuleAttrs: nix.thunk(() => ({ [nix.POS]: pos$29, npmFlags: nix.thunk(() => ["--legacy-peer-deps"]) })),
+                  extraGoModuleAttrs: nix.thunk(() => ({ [nix.POS]: $pos[28], npmFlags: nix.thunk(() => ["--legacy-peer-deps"]) })),
                 })))),
             ];
           })()),
         })), nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           system: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             stateVersion: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "24.11")),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             upgrade: nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 system: nix.thunk(() => ({
-                  [nix.POS]: pos$33,
+                  [nix.POS]: $pos[32],
                   stateVersion: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(lib, "version")))))),
                 })),
               })),
@@ -212,30 +164,30 @@ export default nix.lambda((args) => (() => {
           })),
         })))),
       postgresImmutable: nix.thunk(() => nix.app(makeMattermost, nix.thunk(() => ({
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           package: nix.thunk(() => nix.app(nix.sel(pkgs, "mattermost", "overrideAttrs"), (prev) => ({
-              [nix.POS]: pos$39,
+              [nix.POS]: $pos[38],
               webapp: nix.thunk(() => nix.app(nix.sel(prev, "webapp", "overrideAttrs"), (prevWebapp) => ({
-                  [nix.POS]: pos$38,
+                  [nix.POS]: $pos[37],
                   postPatch: nix.thunk(() => nix.add(nix.selOr(prevWebapp, () => "", "postPatch"), "substituteInPlace channels/src/root.html --replace-fail \"Mattermost\" \"Patched Mattermost\"\n")),
                 }))),
             }))),
           mutableConfig: false,
           user: "mmuser",
           group: "mmgroup",
-          database: nix.thunk(() => ({ [nix.POS]: pos$40, peerAuth: false })),
+          database: nix.thunk(() => ({ [nix.POS]: $pos[39], peerAuth: false })),
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$42,
-            SupportSettings: nix.thunk(() => ({ [nix.POS]: pos$41, HelpLink: "https://search.nixos.org" })),
+            [nix.POS]: $pos[41],
+            SupportSettings: nix.thunk(() => ({ [nix.POS]: $pos[40], HelpLink: "https://search.nixos.org" })),
           })),
         })), nix.thunk(() => ({})))),
       postgresEnvironmentFile: nix.thunk(() => nix.app(makeMattermost, nix.thunk(() => ({
-          [nix.POS]: pos$47,
+          [nix.POS]: $pos[46],
           mutableConfig: false,
-          database: nix.thunk(() => ({ [nix.POS]: pos$44, fromEnvironment: true })),
+          database: nix.thunk(() => ({ [nix.POS]: $pos[43], fromEnvironment: true })),
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$46,
-            SupportSettings: nix.thunk(() => ({ [nix.POS]: pos$45, AboutLink: "https://example.org" })),
+            [nix.POS]: $pos[45],
+            SupportSettings: nix.thunk(() => ({ [nix.POS]: $pos[44], AboutLink: "https://example.org" })),
           })),
           environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mattermost-env", "MM_SQLSETTINGS_DATASOURCE=postgres:///mattermost?host=/run/postgresql\nMM_SUPPORTSETTINGS_ABOUTLINK=https://nixos.org\n")),
         })), nix.thunk(() => ({})))),

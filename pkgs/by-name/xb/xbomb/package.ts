@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["homepage", 27, 5], ["description", 28, 5], ["mainProgram", 29, 5], ["license", 30, 5], ["platforms", 31, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["makeFlags", 22, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false, libxaw: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["mainProgram", 29, 5], ["license", 30, 5], ["platforms", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["makeFlags", 22, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxaw = nix.arg($, "libxaw");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xbomb",
       version: "2.2b",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.gedanken.org.uk/software/xbomb/download/xbomb-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "0692gjw28qvh8wj9l58scjw6kxj7jdyb3yzgcgs9wcznq11q839m",
         })))),
       buildInputs: nix.thunk(() => [libx11, libxaw]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`INSTDIR=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.gedanken.org.uk/software/xbomb/",
         description: "Minesweeper for X11 with various grid sizes and shapes",
         mainProgram: "xbomb",

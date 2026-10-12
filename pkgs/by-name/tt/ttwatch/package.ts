@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["homepage", 50, 5], ["description", 51, 5], ["maintainers", 52, 5], ["license", 53, 5], ["platforms", 54, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["cmakeFlags", 38, 3], ["preFixup", 40, 3], ["postPatch", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, perl: false, "pkg-config": false, openssl: false, curl: false, libusb1: false, protobufc: false, enableUnsafe: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["maintainers", 52, 5], ["license", 53, 5], ["platforms", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["cmakeFlags", 38, 3], ["preFixup", 40, 3], ["postPatch", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const protobufc = nix.arg($, "protobufc");
   const enableUnsafe = nix.argOr($, "enableUnsafe", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ttwatch",
       version: "2020-06-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ryanbinns",
           repo: "ttwatch",
           rev: "260aff5869fd577d788d86b546399353d9ff72c1",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "chmod +x $out/bin/ttbin2mysports\n",
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ryanbinns/ttwatch",
         description: "Linux TomTom GPS Watch Utilities",
         maintainers: nix.thunk(() => (() => {

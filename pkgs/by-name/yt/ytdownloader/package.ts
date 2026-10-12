@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["name", 40, 7], ["exec", 41, 7], ["icon", 42, 7], ["desktopName", 43, 7], ["comment", 44, 7], ["categories", 45, 7], ["startupWMClass", 46, 7]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 50, 7]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["npmDepsHash", 26, 3], ["makeCacheWritable", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["desktopItems", 38, 3], ["env", 50, 3], ["dontNpmBuild", 52, 3], ["patches", 56, 3], ["postPatch", 58, 3], ["postInstall", 64, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, copyDesktopItems: false, makeWrapper: false, "ffmpeg-headless": false, "yt-dlp": false, makeDesktopItem: false, electron_43: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 40, 7], ["exec", 41, 7], ["icon", 42, 7], ["desktopName", 43, 7], ["comment", 44, 7], ["categories", 45, 7], ["startupWMClass", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["npmDepsHash", 26, 3], ["makeCacheWritable", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["desktopItems", 38, 3], ["env", 50, 3], ["dontNpmBuild", 52, 3], ["patches", 56, 3], ["postPatch", 58, 3], ["postInstall", 64, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ytDownloader";
       const version = "4.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aandrew-me",
           repo: "ytDownloader",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [ffmpeg_headless, yt_dlp]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ytDownloader",
             exec: "ytdownloader %U",
             icon: "ytdownloader",
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
             startupWMClass: "ytDownloader",
           })))),
       ]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const dontNpmBuild = true;
       const patches = nix.thunk(() => [nix.path(here, "./config-dir.patch")]);
       const postPatch = "# Disable auto-updates\nsubstituteInPlace src/preferences.js \\\n  --replace-warn 'const autoUpdateDisabled = getId(\"autoUpdateDisabled\");' 'const autoUpdateDisabled = \"true\";'\n";
@@ -61,7 +57,7 @@ makeWrapper ${electron}/bin/electron $out/bin/ytdownloader \\
 install -Dm444 assets/images/icon.png $out/share/icons/hicolor/512x512/apps/ytdownloader.png
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Modern GUI video and audio downloader",
         homepage: "https://github.com/aandrew-me/ytDownloader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -73,7 +69,7 @@ install -Dm444 assets/images/icon.png $out/share/icons/hicolor/512x512/apps/ytdo
         mainProgram: "ytdownloader",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

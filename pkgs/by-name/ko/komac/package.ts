@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["OPENSSL_NO_VENDOR", 45, 5], ["YRX_REGENERATE_MODULES_RS", 46, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 47, 5]], [["version", 63, 28], ["package", 65, 7], ["command", 66, 7]], [["version", 62, 11]], [["tests", 62, 5], ["updateScript", 69, 5]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 81, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["env", 44, 3], ["doInstallCheck", 50, 3], ["nativeInstallCheckInputs", 51, 3], ["versionCheckProgram", 52, 3], ["postInstall", 54, 3], ["passthru", 61, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, openssl: false, rustPlatform: false, testers: false, komac: false, dbus: false, zstd: false, installShellFiles: false, versionCheckHook: false, "nix-update-script": false, bzip2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 45, 5], ["YRX_REGENERATE_MODULES_RS", 46, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 63, 28], ["package", 65, 7], ["command", 66, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 62, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 62, 5], ["updateScript", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 81, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["env", 44, 3], ["doInstallCheck", 50, 3], ["nativeInstallCheckInputs", 51, 3], ["versionCheckProgram", 52, 3], ["postInstall", 54, 3], ["passthru", 61, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const bzip2 = nix.arg($, "bzip2");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "komac",
       version: "2.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "russellbanks",
           repo: "Komac",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), nix.thunk(() => [installShellFiles])))),
       buildInputs: nix.thunk(() => [dbus, openssl, zstd, bzip2]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OPENSSL_NO_VENDOR: true,
         YRX_REGENERATE_MODULES_RS: "no",
         ZSTD_SYS_USE_PKG_CONFIG: true,
@@ -52,11 +46,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/komac`),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd komac \\\n  --bash <($out/bin/komac complete bash) \\\n  --zsh <($out/bin/komac complete zsh) \\\n  --fish <($out/bin/komac complete fish)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: komac,
               command: "komac --version",
@@ -65,7 +59,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Community Manifest Creator for WinGet",
         homepage: "https://github.com/russellbanks/Komac",
         changelog: nix.thunk(() => nix.str`https://github.com/russellbanks/Komac/releases/tag/v${nix.sel(finalAttrs, "version")}`),

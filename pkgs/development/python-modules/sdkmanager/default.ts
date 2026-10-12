@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["homepage", 47, 5], ["description", 48, 5], ["mainProgram", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["pythonRelaxDeps", 25, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["postInstall", 36, 3], ["doCheck", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitLab: false, pythonAtLeast: false, argcomplete: false, requests: false, setuptools: false, looseversion: false, gnupg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 47, 5], ["description", 48, 5], ["mainProgram", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["pythonRelaxDeps", 25, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["postInstall", 36, 3], ["doCheck", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fdroid",
           repo: "sdkmanager",
           tag: version,
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["sdkmanager"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.com/fdroid/sdkmanager",
         description: "Drop-in replacement for sdkmanager from the Android SDK written in Python",
         mainProgram: "sdkmanager",
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

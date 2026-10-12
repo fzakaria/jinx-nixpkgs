@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchurl", 14, 44], ["fetchzip", 14, 53]], [["updateScript", 70, 5]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["sourceProvenance", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5], ["mainProgram", 81, 5]], [["pname", 19, 3], ["version", 21, 74], ["src", 21, 82], ["sourceRoot", 23, 3], ["strictDeps", 25, 3], ["__structuredAttrs", 26, 3], ["dontUnpack", 28, 3], ["nativeBuildInputs", 30, 3], ["installPhase", 40, 3], ["passthru", 69, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, cacert: false, fetchurl: false, fetchzip: false, installShellFiles: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchurl", 14, 44], ["fetchzip", 14, 53]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["sourceProvenance", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5], ["mainProgram", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 21, 74], ["src", 21, 82], ["sourceRoot", 23, 3], ["strictDeps", 25, 3], ["__structuredAttrs", 26, 3], ["dontUnpack", 28, 3], ["nativeBuildInputs", 30, 3], ["installPhase", 40, 3], ["passthru", 69, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
   const isDarwin = nix.thunk(() => nix.attr(from, "isDarwin"));
   const system = nix.thunk(() => nix.attr(from, "system"));
-  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl, fetchzip: fetchzip }))));
+  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, fetchzip: fetchzip }))));
   const tupleStdenv = nix.thunk(() => (nix.asBool(isDarwin) ? nix.force(stdenvNoCC) : nix.force(stdenv)));
   return nix.app(nix.sel(tupleStdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from_1 = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system))));
       return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tuple",
       version: nix.thunk(() => nix.attr(from_1, "version")),
       src: nix.thunk(() => nix.attr(from_1, "src")),
@@ -44,9 +41,9 @@ makeWrapper $out/bin/.tuple-wrapped $out/bin/tuple \\
 
 runHook postInstall
 `)),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Remote pair programming app",
         homepage: "https://tuple.app",
         changelog: "https://tuple.app/changelog",

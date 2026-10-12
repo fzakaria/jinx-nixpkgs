@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["pname", 35, 7], ["version", 36, 7], ["src", 37, 7], ["cargoRoot", 38, 7], ["hash", 40, 5]], [["doCheck", 86, 43]], [["pytest", 86, 5]], [["tests", 85, 12]], [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 100, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["cargoDeps", 33, 3], ["cargoRoot", 43, 3], ["build-system", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["dependencies", 58, 3], ["nativeCheckInputs", 62, 3], ["preCheck", 68, 3], ["disabledTests", 73, 3], ["doCheck", 83, 3], ["passthru", 85, 3], ["pythonImportsCheck", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cargo: false, hypothesmith: false, isPy313: false, libcst: false, libiconv: false, pytestCheckHook: false, pyyaml: false, "pyyaml-ft": false, rustPlatform: false, rustc: false, "setuptools-rust": false, "setuptools-scm": false, ufmt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 35, 7], ["version", 36, 7], ["src", 37, 7], ["cargoRoot", 38, 7], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doCheck", 86, 43]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pytest", 86, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 85, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 100, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["cargoDeps", 33, 3], ["cargoRoot", 43, 3], ["build-system", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["dependencies", 58, 3], ["nativeCheckInputs", 62, 3], ["preCheck", 68, 3], ["disabledTests", 73, 3], ["doCheck", 83, 3], ["passthru", 85, 3], ["pythonImportsCheck", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Instagram",
           repo: "LibCST",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-AJm3grS+I/NXZ8ame4rmHPOxRHGO0Ofo35RtSDO2tyI=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -66,15 +60,15 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          pytest: nix.thunk(() => nix.app(nix.sel(libcst, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
+          [nix.POS]: $pos[3],
+          pytest: nix.thunk(() => nix.app(nix.sel(libcst, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], doCheck: true })))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["libcst"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Concrete Syntax Tree (CST) parser and serializer library for Python",
         homepage: "https://github.com/Instagram/LibCST",
         changelog: nix.thunk(() => nix.str`https://github.com/Instagram/LibCST/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -92,7 +86,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 13, 26], ["pname", 14, 5], ["hash", 15, 5]], [["description", 23, 5], ["homepage", 24, 5], ["platforms", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 18, 3], ["nativeBuildInputs", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 13, 26], ["pname", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["homepage", 24, 5], ["platforms", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 18, 3], ["nativeBuildInputs", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchCrate = nix.arg($, "fetchCrate");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "writedisk",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "writedisk",
           hash: "sha256-Weu2rUZYvKMQIwxDQsCW30NAjb6Dar2926r/tyREDoo=",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-W1IuK6/gkvfaHsivgfF0J+SisX8nPKLR7qFZ2Ia+LEc=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small utility for writing a disk image to a USB drive",
         homepage: "https://github.com/nicholasbishop/writedisk",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

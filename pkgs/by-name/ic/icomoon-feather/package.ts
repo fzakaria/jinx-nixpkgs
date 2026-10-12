@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sparseCheckout", 14, 5], ["hash", 15, 5]], [["homepage", 27, 5], ["description", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["installPhase", 18, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sparseCheckout", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["installPhase", 18, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "icomoon-feather",
       version: "0-unstable-2024-05-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "adi1090x",
           repo: "polybar-themes",
           rev: "adb6a4546a8351a469fa779df173e46b69aa1ac3",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm644 fonts/panels/icomoon_feather.ttf -t $out/share/fonts/truetype/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/adi1090x/polybar-themes/tree/master/fonts/panels",
         description: "Icomoon feather font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

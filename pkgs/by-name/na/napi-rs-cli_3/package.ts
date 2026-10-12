@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["src", 30, 26], ["missingHashes", 30, 30], ["hash", 31, 5]], [["YARN_ENABLE_SCRIPTS", 42, 7]], [["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 80, 27]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["__structuredAttrs", 24, 3], ["strictDeps", 25, 3], ["missingHashes", 27, 3], ["yarnOfflineCache", 29, 3], ["nativeBuildInputs", 34, 3], ["env", 42, 3], ["buildPhase", 44, 3], ["installPhase", 52, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, nodejs: false, "yarn-berry_4": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 30, 26], ["missingHashes", 30, 30], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["YARN_ENABLE_SCRIPTS", 42, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 80, 27]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["__structuredAttrs", 24, 3], ["strictDeps", 25, 3], ["missingHashes", 27, 3], ["yarnOfflineCache", 29, 3], ["nativeBuildInputs", 34, 3], ["env", 42, 3], ["buildPhase", 44, 3], ["installPhase", 52, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const yarn_berry_4 = nix.arg($, "yarn-berry_4");
   const yarn_berry = yarn_berry_4;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "napi-rs-cli",
       version: "3.7.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "napi-rs",
           repo: "napi-rs",
           tag: nix.thunk(() => nix.str`@napi-rs/cli@${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       missingHashes: nix.path(here, "./missing-hashes.json"),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-6w1eIE+akL+04CwTAc4gCWBWu47E5J6dj+tIWp5glGk=",
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
         yarn_berry,
         nix.thunk(() => nix.sel(yarn_berry, "yarnBerryConfigHook")),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, YARN_ENABLE_SCRIPTS: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], YARN_ENABLE_SCRIPTS: "0" })),
       buildPhase: "runHook preBuild\n\nyarn workspace @napi-rs/cli build\n\nrunHook postBuild\n",
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 
@@ -65,7 +61,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CLI tools for napi-rs",
         mainProgram: "napi",
         homepage: "https://napi.rs",

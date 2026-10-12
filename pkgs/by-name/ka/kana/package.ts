@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["pname", 30, 26], ["version", 30, 32], ["src", 30, 40], ["hash", 31, 5]], [["NIX_CFLAGS_COMPILE", 57, 7]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoDeps", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 45, 3], ["env", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, rustPlatform: false, meson: false, ninja: false, "pkg-config": false, rustc: false, cargo: false, wrapGAppsHook4: false, "desktop-file-utils": false, libadwaita: false, gst_all_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 30, 26], ["version", 30, 32], ["src", 30, 40], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 57, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoDeps", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 45, 3], ["env", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const gst_all_1 = nix.arg($, "gst_all_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "kana",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "fkinoshita",
           repo: "Kana",
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-/Ri723ub8LMlhbPObC83bay63JuWIQpgxAT5UUYuwZI=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -63,11 +59,11 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "16")))), "-Wno-error=incompatible-function-pointer-types")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Learn Japanese hiragana and katakana characters",
         homepage: "https://gitlab.gnome.org/fkinoshita/kana",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

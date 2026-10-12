@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["PKG_CONFIG_BASH_COMPLETION_COMPLETIONSDIR", 62, 7], ["PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMGENERATORDIR", 63, 7], ["PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR", 64, 7]], [["netplan", 90, 26]], [["tests", 89, 12]], [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["env", 62, 3], ["postPatch", 66, 3], ["postFixup", 75, 3], ["mesonFlags", 85, 3], ["passthru", 89, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, "pkg-config": false, glib: false, pandoc: false, systemd: false, libyaml: false, python3: false, libuuid: false, "bash-completion": false, meson: false, ninja: false, cmake: false, iproute2: false, makeWrapper: false, lib: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_BASH_COMPLETION_COMPLETIONSDIR", 62, 7], ["PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMGENERATORDIR", 63, 7], ["PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR", 64, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["netplan", 90, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 89, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["env", 62, 3], ["postPatch", 66, 3], ["postFixup", 75, 3], ["mesonFlags", 85, 3], ["passthru", 89, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +33,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "netplan",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "canonical",
           repo: "netplan",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +47,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pythonenv, pkg_config, pandoc, meson, ninja, cmake, makeWrapper]),
       buildInputs: nix.thunk(() => [pythonenv, systemd, glib, libyaml, libuuid, bash_completion, iproute2]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_BASH_COMPLETION_COMPLETIONSDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/bash-completion/completions`),
         PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMGENERATORDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/system-generators`),
         PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/system`),
@@ -72,11 +67,14 @@ wrapProgram $out/lib/systemd/system-generators/netplan \\
 `),
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "testing", false))]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, netplan: nix.thunk(() => nix.attr(nixosTests, "netplan")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          netplan: nix.thunk(() => nix.attr(nixosTests, "netplan")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Backend-agnostic network configuration in YAML",
         homepage: "https://netplan.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

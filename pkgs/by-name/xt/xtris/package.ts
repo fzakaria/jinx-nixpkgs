@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["NIX_CFLAGS_COMPILE", 29, 7]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patchPhase", 16, 3], ["buildInputs", 27, 3], ["env", 29, 3], ["makeFlags", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patchPhase", 16, 3], ["buildInputs", 27, 3], ["env", 29, 3], ["makeFlags", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,23 +12,23 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xtris",
       version: "1.15",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20120315061213/http://www.iagora.com/~espel/xtris/xtris-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1vqva99lyv7r6f9c7yikk8ahcfh9aq3clvwm4pz964wlbr9mj1v6",
         })))),
       patchPhase: "sed -i '\n  s:/usr/local/bin:'$out'/bin:\n  s:/usr/local/man:'$out'/share/man:\n  s:mkdir:mkdir -p:g\n  s:^CFLAGS:#CFLAGS:\n' Makefile\n\nsed -i '28i#include <time.h>' xtserv.c\nsed -i '35i#include <time.h>' xtbot.c\n",
       buildInputs: nix.thunk(() => [libx11]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Multi-player version of the classical game of Tetris, for the X Window system",
         homepage: "https://web.archive.org/web/20120315061213/http://www.iagora.com/~espel/xtris/xtris.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

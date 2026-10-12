@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["headersOnly", 18, 47]], [["headersOnly", 23, 61]], [["w32api", 17, 7], ["w32api-headers", 18, 7], ["newlib-cygwin", 20, 7], ["newlib-cygwin-nobin", 22, 7], ["newlib-cygwin-headers", 23, 7], ["cygwinDllLinkHook", 25, 7]], [["otherSplices", 10, 11], ["f", 11, 3]]]);
 const formals$1 = { args: { "makeScopeWithSplicing'": false, generateSplicesForMkScope: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["headersOnly", 18, 47]]);
-const pos$2 = nix.positions(here + "/default.nix", [["headersOnly", 23, 61]]);
-const pos$3 = nix.positions(here + "/default.nix", [["w32api", 17, 7], ["w32api-headers", 18, 7], ["newlib-cygwin", 20, 7], ["newlib-cygwin-nobin", 22, 7], ["newlib-cygwin-headers", 23, 7], ["cygwinDllLinkHook", 25, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["otherSplices", 10, 11], ["f", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const generateSplicesForMkScope = nix.arg($, "generateSplicesForMkScope");
   const otherSplices = nix.thunk(() => nix.app(generateSplicesForMkScope, "cygwin"));
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       otherSplices: otherSplices,
       f: (self) => (() => {
         const callPackage = nix.thunk(() => nix.sel(self, "callPackage"));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           w32api: nix.thunk(() => nix.app(callPackage, nix.path(here, "./w32api"), nix.thunk(() => ({})))),
-          "w32api-headers": nix.thunk(() => nix.app(callPackage, nix.path(here, "./w32api"), nix.thunk(() => ({ [nix.POS]: pos$1, headersOnly: true })))),
+          "w32api-headers": nix.thunk(() => nix.app(callPackage, nix.path(here, "./w32api"), nix.thunk(() => ({ [nix.POS]: $pos[0], headersOnly: true })))),
           "newlib-cygwin": nix.thunk(() => nix.app(callPackage, nix.path(here, "./newlib-cygwin"), nix.thunk(() => ({})))),
           "newlib-cygwin-nobin": nix.thunk(() => nix.app(callPackage, nix.path(here, "./newlib-cygwin/nobin.nix"), nix.thunk(() => ({})))),
-          "newlib-cygwin-headers": nix.thunk(() => nix.app(callPackage, nix.path(here, "./newlib-cygwin"), nix.thunk(() => ({ [nix.POS]: pos$2, headersOnly: true })))),
+          "newlib-cygwin-headers": nix.thunk(() => nix.app(callPackage, nix.path(here, "./newlib-cygwin"), nix.thunk(() => ({ [nix.POS]: $pos[1], headersOnly: true })))),
           cygwinDllLinkHook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./cygwin-dll-link-hook"), nix.thunk(() => ({})))),
         };
       })(),

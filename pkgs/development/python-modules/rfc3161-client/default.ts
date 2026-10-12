@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["src", 25, 26], ["pname", 25, 30], ["hash", 26, 5]], [["homepage", 49, 5], ["maintainers", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["changelog", 53, 5], ["description", 54, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["cargoDeps", 24, 3], ["pythonRelaxDeps", 29, 3], ["nativeBuildInputs", 33, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, fetchFromGitHub: false, perl: false, cryptography: false, rustPlatform: false, pretend: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 25, 26], ["pname", 25, 30], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 49, 5], ["maintainers", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["changelog", 53, 5], ["description", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["cargoDeps", 24, 3], ["pythonRelaxDeps", 29, 3], ["nativeBuildInputs", 33, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const pretend = nix.arg($, "pretend");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rfc3161-client",
       version: "1.0.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trailofbits",
           repo: "rfc3161-client",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-M3O2cOBT7ObhCxAyNyOktLF/ZQvrGkyfk2nmlric4oo=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           hash: "sha256-YCn/MDSDgrntbFZBJ9eQ5KM74fx7+r0aMdW3jOGJ5+w=",
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [cryptography, pretend]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/trailofbits/rfc3161-client",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

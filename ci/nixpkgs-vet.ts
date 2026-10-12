@@ -2,11 +2,9 @@
 import * as nix from "../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nixpkgs-vet.nix", [[["fileset", 16, 7], ["root", 20, 7]], [["NIXPKGS_VET_NIX_PACKAGE", 31, 9]], [["nativeBuildInputs", 28, 5], ["env", 31, 5]]]);
 const formals$1 = { args: { lib: false, nix: false, "nixpkgs-vet": false, runCommand: false }, ellipsis: false };
 const formals$2 = { args: { base: true, head: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nixpkgs-vet.nix", [["fileset", 16, 7], ["root", 20, 7]]);
-const pos$2 = nix.positions(here + "/nixpkgs-vet.nix", [["NIXPKGS_VET_NIX_PACKAGE", 31, 9]]);
-const pos$3 = nix.positions(here + "/nixpkgs-vet.nix", [["nativeBuildInputs", 28, 5], ["env", 31, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
     const filtered = nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "fileset")), null);
       return (path) => nix.app(nix.lookup(w, "toSource"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           fileset: nix.thunk(() => nix.app(nix.lookup(w, "difference"), nix.thunk(() => nix.app(nix.lookup(w, "gitTracked"), path)), nix.thunk(() => nix.app(nix.lookup(w, "unions"), nix.thunk(() => [
                 nix.thunk(() => nix.add(path, nix.path("", "/.github"))),
                 nix.thunk(() => nix.add(path, nix.path("", "/ci"))),
@@ -32,9 +30,9 @@ export default nix.lambda((args) => (() => {
     const filteredBase = nix.thunk(() => nix.app(filtered, base));
     const filteredHead = nix.thunk(() => nix.app(filtered, head));
     return nix.app(runCommand, "nixpkgs-vet", nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         nativeBuildInputs: nix.thunk(() => [nixpkgs_vet]),
-        env: nix.thunk(() => ({ [nix.POS]: pos$2, NIXPKGS_VET_NIX_PACKAGE: nix$ })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIXPKGS_VET_NIX_PACKAGE: nix$ })),
       })), nix.thunk(() => nix.str`export NIX_STORE_DIR=$(mktemp -d)
 export NIX_STATE_DIR=$(mktemp -d)
 $NIXPKGS_VET_NIX_PACKAGE/bin/nix-store --init

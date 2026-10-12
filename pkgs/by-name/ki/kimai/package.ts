@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["extensions", 20, 5], ["extraConfig", 36, 5]], [["kimai", 56, 5]], [["tests", 55, 12]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["longDescription", 63, 5], ["maintainers", 68, 5], ["platforms", 69, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["php", 19, 3], ["vendorHash", 41, 3], ["composerNoPlugins", 43, 3], ["postInstall", 44, 3], ["passthru", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { php: false, fetchFromGitHub: false, lib: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
 const formals$2 = { args: { enabled: false, all: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["extensions", 20, 5], ["extraConfig", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["kimai", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 55, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["longDescription", 63, 5], ["maintainers", 68, 5], ["platforms", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["php", 19, 3], ["vendorHash", 41, 3], ["composerNoPlugins", 43, 3], ["postInstall", 44, 3], ["passthru", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kimai",
       version: "2.67.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kimai",
           repo: "kimai",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-yeQFo6rwtsRL32Pw+o4uXeS80Hyij4MENtdMybq5WMU=",
         })))),
       php: nix.thunk(() => nix.app(nix.sel(php, "buildEnv"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           extensions: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const enabled = nix.arg($_1, "enabled");
@@ -53,11 +48,11 @@ export default nix.lambda((args) => (() => {
       composerNoPlugins: false,
       postInstall: "# Make available the console utility, as Kimai doesn't list this in\n# composer.json.\nmkdir -p \"$out\"/share/php/kimai \"$out\"/bin\nln -s \"$out\"/share/php/kimai/bin/console \"$out\"/bin/console\n\n# Install bundled assets. This is normally done in the `composer install`\n# post-install script, but it's being skipped.\n(cd \"$out\"/share/php/kimai && php ./bin/console assets:install)\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, kimai: nix.thunk(() => nix.sel(nixosTests, "kimai")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], kimai: nix.thunk(() => nix.sel(nixosTests, "kimai")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Web-based multi-user time-tracking application",
         homepage: "https://www.kimai.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

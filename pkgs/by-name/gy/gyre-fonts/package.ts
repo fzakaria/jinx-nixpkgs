@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 15, 5]], [["description", 27, 5], ["longDescription", 28, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["longDescription", 28, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gyre-fonts",
       version: "2.501",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.gust.org.pl/projects/e-foundry/tex-gyre/whole/tg${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}otf.zip`),
           hash: "sha256-mRPI/rDsx1vDVItG7h29I7VNPYqgSPqChXS6/gVgfNc=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -D --mode=444 --target-directory=$out/share/fonts/opentype *.otf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OpenType fonts from the Gyre project, suitable for use with (La)TeX",
         longDescription: "The Gyre project started in 2006, and will\neventually include enhanced releases of all 35 freely available\nPostScript fonts distributed with Ghostscript v4.00.  These are\nbeing converted to OpenType and extended with diacritical marks\ncovering all modern European languages and then some\n",
         homepage: "https://www.gust.org.pl/projects/e-foundry/tex-gyre/index_html#Readings",

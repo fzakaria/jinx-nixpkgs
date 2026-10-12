@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 57, 5]], [["pname", 24, 3], ["src", 26, 23], ["version", 26, 27], ["minimalOCamlVersion", 28, 3], ["propagatedBuildInputs", 30, 3], ["checkInputs", 47, 3], ["doCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, astring: false, digestif: false, fmt: false, jsonm: false, logs: false, ocamlgraph: false, uri: false, repr: false, ppx_irmin: false, bheap: false, uutf: false, mtime: false, lwt: false, optint: false, vector: false, hex: false, alcotest: false, "qcheck-alcotest": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 57, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["src", 26, 23], ["version", 26, 27], ["minimalOCamlVersion", 28, 3], ["propagatedBuildInputs", 30, 3], ["checkInputs", 47, 3], ["doCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const qcheck_alcotest = nix.arg($, "qcheck-alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "irmin",
       src: nix.thunk(() => nix.attr(ppx_irmin, "src")),
       version: nix.thunk(() => nix.attr(ppx_irmin, "version")),
@@ -52,7 +51,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [vector, hex, alcotest, qcheck_alcotest]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(ppx_irmin, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Distributed database built on the same principles as Git",
       })),
     })));

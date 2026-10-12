@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["pythonImportsCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["enabledTestPaths", 63, 3], ["disabledTests", 65, 3], ["__darwinAllowLocalNetworking", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, blinker: false, click: false, crochet: false, jsonschema: false, pika: false, pyopenssl: false, requests: false, "service-identity": false, tomli: false, twisted: false, "pytest-mock": false, "pytest-twisted": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["pythonImportsCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["enabledTestPaths", 63, 3], ["disabledTests", 65, 3], ["__darwinAllowLocalNetworking", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fedora-infra",
           repo: "fedora-messaging",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.concat(["test_no_conf"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_publish_rejected_message"]))));
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for sending AMQP messages with JSON schema in Fedora infrastructure",
         homepage: "https://github.com/fedora-infra/fedora-messaging",
         changelog: nix.thunk(() => nix.str`https://github.com/fedora-infra/fedora-messaging/releases/tag/${nix.sel(src, "tag")}`),
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

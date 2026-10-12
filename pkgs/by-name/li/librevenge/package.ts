@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["configureFlags", 30, 3], ["postPatch", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, boost: false, "pkg-config": false, cppunit: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["configureFlags", 30, 3], ["postPatch", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cppunit = nix.arg($, "cppunit");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "librevenge",
       version: "0.0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/libwpd/librevenge/librevenge-${nix.sel(finalAttrs, "version")}/librevenge-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-GerPXOVdf+apkKRRQlic332gx7aHAXl/EzSCy0Txifo=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--disable-werror"]),
       postPatch: "sed -i 's,-DLIBREVENGE_BUILD,\\0 -DBOOST_ERROR_CODE_HEADER_ONLY,g' src/lib/Makefile.in\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Base library for writing document import filters",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         maintainers: nix.thunk(() => (() => {

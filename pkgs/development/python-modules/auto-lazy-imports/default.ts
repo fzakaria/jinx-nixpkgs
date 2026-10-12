@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["nativeBuildInputs", 56, 11]], [["check-autorun-pyenv", 53, 5]], [["tests", 52, 12]], [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["pythonImportsCheck", 29, 3], ["nativeCheckInputs", 33, 3], ["preInstallCheck", 37, 3], ["preCheck", 46, 3], ["passthru", 52, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, python: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "hatch-autorun": false, pytestCheckHook: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 56, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["check-autorun-pyenv", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 52, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["pythonImportsCheck", 29, 3], ["nativeCheckInputs", 33, 3], ["preInstallCheck", 37, 3], ["preCheck", 46, 3], ["passthru", 52, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hmiladhia",
           repo: "lazyimports",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,11 +40,11 @@ fi
 export NIX_PYTHONPATH="$out/${nix.sel(python, "sitePackages")}\${NIX_PYTHONPATH:+:"$NIX_PYTHONPATH"}"
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "check-autorun-pyenv": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-check-autorun-pyenv`), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (ps) => [
                     nix.thunk(() => nix.sel(ps, "auto-lazy-imports")),
@@ -61,7 +56,7 @@ export NIX_PYTHONPATH="$out/${nix.sel(python, "sitePackages")}\${NIX_PYTHONPATH:
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Enable lazy imports using native python syntax",
         homepage: "https://github.com/hmiladhia/lazyimports",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -71,7 +66,7 @@ export NIX_PYTHONPATH="$out/${nix.sel(python, "sitePackages")}\${NIX_PYTHONPATH:
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

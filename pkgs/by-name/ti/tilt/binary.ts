@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/binary.nix", [[["tilt-assets", 43, 13], ["updateScript", 44, 5]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 14, 3], ["src", 20, 11], ["version", 20, 15], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["ldflags", 26, 3], ["nativeBuildInputs", 28, 3], ["postInstall", 30, 3], ["preBuild", 37, 3], ["passthru", 42, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, src: false, version: false, "tilt-assets": false, stdenv: false, installShellFiles: false, "nix-update": false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/binary.nix", [["tilt-assets", 43, 13], ["updateScript", 44, 5]]);
-const pos$2 = nix.positions(here + "/binary.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/binary.nix", [["pname", 14, 3], ["src", 20, 11], ["version", 20, 15], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["ldflags", 26, 3], ["nativeBuildInputs", 28, 3], ["postInstall", 30, 3], ["preBuild", 37, 3], ["passthru", 42, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
 cp -r ${tilt_assets}/* pkg/assets/build/
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         "tilt-assets": tilt_assets,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-tilt", nix.thunk(() => nix.str`set -euo pipefail
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} "$@" --override-filename pkgs/by-name/ti/tilt/package.nix tilt
@@ -39,7 +37,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} --version=skip --no-src tilt.tilt
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Local development tool to manage your developer instance when your team deploys to Kubernetes in production",
         mainProgram: "tilt",
         homepage: "https://tilt.dev/",
@@ -53,7 +51,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} --version=skip --no-src tilt.tilt
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         src: src_1,
         version: version_1,

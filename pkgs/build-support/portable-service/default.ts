@@ -2,13 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["PORTABLE_ID", 53, 9], ["PORTABLE_PRETTY_NAME", 54, 9], ["HOME_URL", 55, 9], ["ID", 56, 9], ["PRETTY_NAME", 57, 9], ["BUILD_ID", 58, 9]], [["pname", 64, 7], ["version", 65, 15], ["buildCommand", 67, 7]], [["rootPaths", 99, 36]], [["pname", 95, 3], ["version", 96, 11], ["nativeBuildInputs", 98, 3], ["closureInfo", 99, 3], ["buildCommand", 101, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, stdenv: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, units: false, description: true, homepage: true, symlinks: true, contents: true, squashfsTools: true, "squash-compression": true, "squash-block-size": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["PORTABLE_ID", 53, 9], ["PORTABLE_PRETTY_NAME", 54, 9], ["HOME_URL", 55, 9], ["ID", 56, 9], ["PRETTY_NAME", 57, 9], ["BUILD_ID", 58, 9]]);
 const formals$3 = { args: { object: false, symlink: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 64, 7], ["version", 65, 15], ["buildCommand", 67, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rootPaths", 99, 36]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 95, 3], ["version", 96, 11], ["nativeBuildInputs", 98, 3], ["closureInfo", 99, 3], ["buildCommand", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
     const envFileGenerator = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({}))));
     const rootFsScaffold = nix.thunk(() => (() => {
       const os_release_params = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         PORTABLE_ID: pname,
         PORTABLE_PRETTY_NAME: description,
         HOME_URL: homepage,
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       }));
       const os_release = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "os-release", nix.thunk(() => nix.app(envFileGenerator, nix.thunk(() => nix.app(filterNull, os_release_params))))));
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "root-fs-scaffold",
           version: version,
           buildCommand: nix.thunk(() => nix.add(nix.add(nix.str`# scaffold a file system layout
@@ -65,12 +62,12 @@ ln -s ${object} $out/${symlink};
     })());
     nix.assert_((nix.asBool(nix.app(nix.sel(lib, "all"), (u) => nix.app(nix.sel(lib, "hasPrefix"), pname, nix.thunk(() => nix.sel(u, "name"))), units)) || nix.asBool(nix.builtins.throw("Unit names must be prefixed with the service name"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/portable-service/default.nix:90:1");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: nix.thunk(() => nix.str`${pname}-img`),
         version: version,
         nativeBuildInputs: nix.thunk(() => [squashfsTools]),
         closureInfo: nix.thunk(() => nix.app(nix.sel(pkgs, "closureInfo"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             rootPaths: nix.thunk(() => nix.concat([rootFsScaffold], contents)),
           })))),
         buildCommand: nix.thunk(() => nix.str`mkdir -p nix/store

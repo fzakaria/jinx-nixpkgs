@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["package", 53, 54]], [["pkg-config", 53, 11]], [["tests", 53, 5], ["updateScript", 54, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["pkgConfigModules", 66, 5]], [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["strictDeps", 32, 3], ["cmakeFlags", 34, 3], ["postFixup", 46, 3], ["passthru", 52, 3], ["__structuredAttrs", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "nix-update-script": false, testers: false, validatePkgConfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 53, 54]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 53, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 53, 5], ["updateScript", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["pkgConfigModules", 66, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["strictDeps", 32, 3], ["cmakeFlags", 34, 3], ["postFixup", 46, 3], ["passthru", 52, 3], ["__structuredAttrs", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "jansson",
       version: "2.15.0",
       outputs: nix.thunk(() => ["dev", "out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "akheron",
           repo: "jansson",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +34,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "# Incorrectly references the dev output, libjansson.so is in out\nsubstituteInPlace $dev/lib/cmake/jansson/janssonTargets-release.cmake \\\n  --replace-fail \"\\${_IMPORT_PREFIX}/lib\" \"$out/lib\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "C library for encoding, decoding and manipulating JSON data",
         homepage: "https://github.com/akheron/jansson",
         changelog: nix.thunk(() => nix.str`https://github.com/akheron/jansson/raw/${nix.sel(finalAttrs, "src", "tag")}/CHANGES`),

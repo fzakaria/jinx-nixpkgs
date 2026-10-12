@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["pythonRelaxDeps", 43, 3], ["dependencies", 45, 3], ["__darwinAllowLocalNetworking", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTestPaths", 67, 3], ["disabledTests", 80, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, click: false, prettytable: false, "prompt-toolkit": false, pygments: false, requests: false, rich: false, urllib3: false, mock: false, pytestCheckHook: false, sphinx: false, testtools: false, tkinter: false, writableTmpDirAsHomeHook: false, zeep: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["pythonRelaxDeps", 43, 3], ["dependencies", 45, 3], ["__darwinAllowLocalNetworking", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTestPaths", 67, 3], ["disabledTests", 80, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const zeep = nix.arg($, "zeep");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "softlayer",
       version: "6.2.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "softlayer",
           repo: "softlayer-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_cf_call_large_dataset"]),
       pythonImportsCheck: nix.thunk(() => ["SoftLayer"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python libraries that assist in calling the SoftLayer API",
         homepage: "https://github.com/softlayer/softlayer-python",
         changelog: nix.thunk(() => nix.str`https://github.com/softlayer/softlayer-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

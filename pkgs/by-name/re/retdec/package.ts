@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]], [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["sha256", 44, 5]], [["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["sha256", 50, 5]], [["owner", 53, 5], ["repo", 54, 5], ["rev", 55, 5], ["sha256", 56, 5]], [["owner", 60, 5], ["repo", 61, 5], ["rev", 62, 5], ["sha256", 63, 5]], [["rev", 68, 5]], [["url", 72, 5], ["hash", 73, 5], ["stripRoot", 74, 5]], [["CAPSTONE", 90, 5], ["LLVM", 91, 5], ["YARA", 92, 5], ["YARAMOD", 93, 5], ["SUPPORT_PKG", 94, 5]], [["KEYSTONE", 97, 5]], [["owner", 130, 5], ["repo", 131, 5], ["tag", 132, 5], ["sha256", 133, 5]], [["url", 139, 7], ["hash", 140, 7]], [["description", 229, 5], ["homepage", 230, 5], ["license", 231, 5], ["maintainers", 232, 5], ["platforms", 233, 5]], [["pname", 119, 3], ["version", 127, 3], ["src", 129, 3], ["patches", 136, 3], ["nativeBuildInputs", 144, 3], ["buildInputs", 157, 3], ["cmakeFlags", 166, 3], ["preConfigure", 173, 3], ["doInstallCheck", 221, 3], ["installCheckPhase", 222, 3], ["meta", 228, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, fetchpatch: false, fetchzip: false, writeText: false, lib: false, openssl: false, cmake: false, autoconf: false, automake: false, libtool: false, "pkg-config": false, bison: false, flex: false, groff: false, perl: false, python3: false, ncurses: false, time: false, upx: false, gtest: false, libffi: false, libxml2: false, zlib: false, enableTests: true, buildDevTools: true, compileYaraPatterns: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["sha256", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["sha256", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 53, 5], ["repo", 54, 5], ["rev", 55, 5], ["sha256", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 60, 5], ["repo", 61, 5], ["rev", 62, 5], ["sha256", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["rev", 68, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 72, 5], ["hash", 73, 5], ["stripRoot", 74, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["CAPSTONE", 90, 5], ["LLVM", 91, 5], ["YARA", 92, 5], ["YARAMOD", 93, 5], ["SUPPORT_PKG", 94, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["KEYSTONE", 97, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["owner", 130, 5], ["repo", 131, 5], ["tag", 132, 5], ["sha256", 133, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["url", 139, 7], ["hash", 140, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["description", 229, 5], ["homepage", 230, 5], ["license", 231, 5], ["maintainers", 232, 5], ["platforms", 233, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 119, 3], ["version", 127, 3], ["src", 129, 3], ["patches", 136, 3], ["nativeBuildInputs", 144, 3], ["buildInputs", 157, 3], ["cmakeFlags", 166, 3], ["preConfigure", 173, 3], ["doInstallCheck", 221, 3], ["installCheckPhase", 222, 3], ["meta", 228, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,43 +35,43 @@ export default nix.lambda((args) => (() => {
   const buildDevTools = nix.argOr($, "buildDevTools", () => true);
   const compileYaraPatterns = nix.argOr($, "compileYaraPatterns", () => true);
   const capstone = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "capstone-engine",
       repo: "capstone",
       rev: "5.0-rc2",
       sha256: "sha256-nB7FcgisBa8rRDS3k31BbkYB+tdqA6Qyj9hqCnFW+ME=",
     }))));
   const llvm = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "avast-tl",
       repo: "llvm",
       rev: "2a1f3d8a97241c6e91710be8f84cf3cf80c03390",
       sha256: "sha256-+v1T0VI9R92ed9ViqsfYZMJtPCjPHCr4FenoYdLuFOU=",
     }))));
   const yaracpp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "VirusTotal",
       repo: "yara",
       rev: "v4.2.0-rc1",
       sha256: "sha256-WcN6ClYO2d+/MdG06RHx3kN0o0WVAY876dJiG7CwJ8w=",
     }))));
   const yaramod = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "avast",
       repo: "yaramod",
       rev: "aa06dd408c492a8f4488774caf2ee105ccc23ab5",
       sha256: "sha256-NVDRf2U5H92EN/Ks//uxNEaeKU+sT4VL4QyyYMO+zKk=",
     }))));
   const keystone = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       owner: "keystone-engine",
       repo: "keystone",
       rev: "d7ba8e378e5284e6384fc9ecd660ed5f6532e922",
       sha256: "1yzw3v8xvxh1rysh97y0i8y9svzbglx2zbsqjhrfx18vngh0x58f",
     }))));
   const retdec_support_version = "2019-03-08";
-  const retdec_support = nix.thunk(() => nix.update({ [nix.POS]: pos$6, rev: retdec_support_version }, nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+  const retdec_support = nix.thunk(() => nix.update({ [nix.POS]: $pos[5], rev: retdec_support_version }, nix.app(fetchzip, nix.thunk(() => ({
+      [nix.POS]: $pos[6],
       url: nix.thunk(() => nix.str`https://github.com/avast-tl/retdec-support/releases/download/${retdec_support_version}/retdec-support_${retdec_support_version}.tar.xz`),
       hash: "sha256-t1tx4MfLW/lwtbO5JQ1nrFBIOeMclq+0dENuXW+ahIM=",
       stripRoot: false,
@@ -99,20 +87,20 @@ if ! echo "$expected" | grep -q "$have"; then
 fi
 `;
   const deps = nix.thunk(() => nix.update({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     CAPSTONE: capstone,
     LLVM: llvm,
     YARA: yaracpp,
     YARAMOD: yaramod,
     SUPPORT_PKG: retdec_support,
-  }, nix.app(nix.sel(lib, "optionalAttrs"), enableTests, nix.thunk(() => ({ [nix.POS]: pos$9, KEYSTONE: keystone })))));
+  }, nix.app(nix.sel(lib, "optionalAttrs"), enableTests, nix.thunk(() => ({ [nix.POS]: $pos[8], KEYSTONE: keystone })))));
   const install_share = nix.thunk(() => nix.app(writeText, "install-share.py", "import os, sys, shutil, subprocess\n\ninstall_path, arch_url, sha256hash_ref, version = sys.argv[1:]\nsupport_dir = os.path.join(install_path, 'share', 'retdec', 'support')\n\nassert os.path.isdir(arch_url), \"nix install-share.py expects a path for support url\"\n\nos.makedirs(support_dir, exist_ok=True)\nshutil.copytree(arch_url, support_dir, dirs_exist_ok=True)\nsubprocess.check_call(['chmod', '-R', 'u+w', support_dir])\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "retdec",
       version: "5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           owner: "avast",
           repo: "retdec",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -120,7 +108,7 @@ fi
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             url: "https://github.com/avast/retdec/commit/dbaab2c3d17b1eae22c581e8ab6bfefadf4ef6ae.patch",
             hash: "sha256-YqHYPGAGWT4x6C+CpsOSsOIZ+NPM2FBQtGQFs74OUIQ=",
           })))),
@@ -190,7 +178,7 @@ substituteInPlace scripts/retdec-unpacker.py \\
 rm -rf $out/bin/__pycache__
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         description: "Retargetable machine-code decompiler based on LLVM",
         homepage: "https://retdec.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

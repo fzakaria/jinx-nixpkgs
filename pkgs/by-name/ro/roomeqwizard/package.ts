@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 24, 5]], [["name", 30, 5], ["exec", 31, 5], ["icon", 32, 5], ["desktopName", 33, 5], ["genericName", 34, 5], ["categories", 35, 5]], [["name", 39, 5], ["text", 40, 5]], [["updateScript", 97, 12]], [["homepage", 117, 5], ["license", 118, 5], ["platforms", 119, 5], ["maintainers", 120, 5], ["description", 123, 5], ["longDescription", 124, 5], ["mainProgram", 128, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["dontUnpack", 27, 3], ["desktopItem", 29, 3], ["responseFile", 38, 3], ["udevRules", 52, 3], ["nativeBuildInputs", 57, 3], ["buildPhase", 59, 3], ["installPhase", 75, 3], ["passthru", 97, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { coreutils: false, fetchurl: false, gawk: false, gnused: false, jdk8: false, lib: false, makeDesktopItem: false, makeWrapper: false, stdenv: false, writeScript: false, writeTextFile: false, recommendedUdevRules: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 5], ["exec", 31, 5], ["icon", 32, 5], ["desktopName", 33, 5], ["genericName", 34, 5], ["categories", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 39, 5], ["text", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 97, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 117, 5], ["license", 118, 5], ["platforms", 119, 5], ["maintainers", 120, 5], ["description", 123, 5], ["longDescription", 124, 5], ["mainProgram", 128, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["dontUnpack", 27, 3], ["desktopItem", 29, 3], ["responseFile", 38, 3], ["udevRules", 52, 3], ["nativeBuildInputs", 57, 3], ["buildPhase", 59, 3], ["installPhase", 75, 3], ["passthru", 97, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +23,13 @@ export default nix.lambda((args) => (() => {
       const pname = "roomeqwizard";
       const version = "5.31.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.roomeqwizard.com/installers/REW_linux_no_jre_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.sh`),
           sha256: "sha256-qaGkKVoiBJ2UWVKAMqbuqNFi6FGcblMxAbYwhf/71CY=",
         }))));
       const dontUnpack = true;
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: pname,
           exec: pname,
           icon: pname,
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
           categories: nix.thunk(() => ["AudioVideo"]),
         }))));
       const responseFile = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "response.varfile",
           text: "createDesktopLinkAction$Boolean=false\nexecuteLauncherAction$Boolean=false\nmem$Integer=1\nopengl$Boolean=false\nsys.adminRights$Boolean=false\nsys.installationDir=INSTALLDIR\nsys.languageId=en\nsys.programGroupDisabled$Boolean=true\n",
         }))));
@@ -78,7 +73,7 @@ ${nix.app(nix.sel(lib, "optionalString"), recommendedUdevRules, "echo \"$udevRul
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`${pname}-update.sh`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl common-updater-scripts nixpkgs-fmt coreutils perl
 
@@ -98,7 +93,7 @@ fi
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.roomeqwizard.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -111,7 +106,7 @@ fi
         mainProgram: "roomeqwizard",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/extras.nix", [[["package", 14, 11], ["os", 14, 19], ["arch", 14, 22], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["patchInstructions", 24, 3], ["meta", 42, 11]]]);
 const formals$1 = { args: { deployAndroidPackage: false, lib: false, package: false, os: false, arch: false, autoPatchelfHook: false, makeWrapper: false, pkgs: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/extras.nix", [["package", 14, 11], ["os", 14, 19], ["arch", 14, 22], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["patchInstructions", 24, 3], ["meta", 42, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const meta = nix.arg($, "meta");
   return nix.app(deployAndroidPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       package: package$,
       os: os,
       arch: arch,

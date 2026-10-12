@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]], [["name", 75, 7], ["exec", 76, 7], ["comment", 77, 7], ["type", 78, 7], ["icon", 79, 7], ["desktopName", 80, 7], ["categories", 81, 7]], [["NIX_LDFLAGS", 87, 7]], [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["mainProgram", 100, 5], ["platforms", 101, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["enableParallelBuilding", 43, 3], ["makeFlags", 45, 3], ["installPhase", 57, 3], ["desktopItems", 73, 3], ["env", 87, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, "alsa-lib": false, freetype: false, libx11: false, libxrandr: false, libxinerama: false, libxext: false, libxcursor: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 75, 7], ["exec", 76, 7], ["comment", 77, 7], ["type", 78, 7], ["icon", 79, 7], ["desktopName", 80, 7], ["categories", 81, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 87, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["mainProgram", 100, 5], ["platforms", 101, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["enableParallelBuilding", 43, 3], ["makeFlags", 45, 3], ["installPhase", 57, 3], ["desktopItems", 73, 3], ["env", 87, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "show-midi",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gbevin",
           repo: "ShowMIDI",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dt $out/share/ShowMIDI/themes Themes/*\n\ninstall -D Design/icon.png $out/share/icons/show-midi.png\n\nmkdir -p $out/bin $out/lib/lv2 $out/lib/vst3\ncd Builds/LinuxMakefile/build/\ncp -r ShowMIDI.lv2 $out/lib/lv2\ncp -r ShowMIDI.vst3 $out/lib/vst3\ncp ShowMIDI $out/bin\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ShowMIDI",
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -62,11 +58,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXext", "-lXcursor", "-lXinerama", "-lXrandr"]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Multi-platform GUI application to effortlessly visualize MIDI activity",
         homepage: "https://github.com/gbevin/ShowMIDI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

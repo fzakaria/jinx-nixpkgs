@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]], [["name", 146, 7], ["desktopName", 147, 7], ["exec", 148, 7], ["icon", 149, 7], ["type", 150, 7], ["genericName", 151, 7], ["comment", 152, 7], ["categories", 153, 7], ["keywords", 157, 7]], [["url", 170, 9], ["hash", 171, 9]], [["updateScript", 208, 12]], [["homepage", 219, 5], ["description", 220, 5], ["longDescription", 221, 5], ["changelog", 235, 5], ["license", 236, 5], ["maintainers", 240, 5], ["platforms", 244, 5], ["mainProgram", 245, 5]], [["pname", 38, 3], ["version", 39, 3], ["srcVersion", 40, 3], ["src", 42, 3], ["outputs", 49, 3], ["makeFlags", 54, 3], ["buildInputs", 77, 3], ["nativeBuildInputs", 104, 3], ["patches", 114, 3], ["postPatch", 123, 3], ["desktopItems", 144, 3], ["installPhase", 167, 3], ["postFixup", 198, 3], ["enableParallelBuilding", 202, 3], ["doInstallCheck", 204, 3], ["nativeInstallCheckInputs", 205, 3], ["versionCheckProgramArg", 206, 3], ["passthru", 208, 3], ["meta", 218, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "alsa-lib": false, sdl3: false, "sdl3-ttf": false, copyDesktopItems: false, expat: false, fetchurl: false, flac: false, fontconfig: false, glm: false, installShellFiles: false, libxi: false, libxinerama: false, libjpeg: false, libpcap: false, libpulseaudio: false, makeDesktopItem: false, makeWrapper: false, "pkg-config": false, portaudio: false, portmidi: false, pugixml: false, python3: false, qt6: false, rapidjson: false, sqlite: false, utf8proc: false, versionCheckHook: false, which: false, writeScript: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 146, 7], ["desktopName", 147, 7], ["exec", 148, 7], ["icon", 149, 7], ["type", 150, 7], ["genericName", 151, 7], ["comment", 152, 7], ["categories", 153, 7], ["keywords", 157, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 170, 9], ["hash", 171, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 208, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 219, 5], ["description", 220, 5], ["longDescription", 221, 5], ["changelog", 235, 5], ["license", 236, 5], ["maintainers", 240, 5], ["platforms", 244, 5], ["mainProgram", 245, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["srcVersion", 40, 3], ["src", 42, 3], ["outputs", 49, 3], ["makeFlags", 54, 3], ["buildInputs", 77, 3], ["nativeBuildInputs", 104, 3], ["patches", 114, 3], ["postPatch", 123, 3], ["desktopItems", 144, 3], ["installPhase", 167, 3], ["postFixup", 198, 3], ["enableParallelBuilding", 202, 3], ["doInstallCheck", 204, 3], ["nativeInstallCheckInputs", 205, 3], ["versionCheckProgramArg", 206, 3], ["passthru", 208, 3], ["meta", 218, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mame",
       version: "0.289",
       srcVersion: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mamedev",
           repo: "mame",
           rev: nix.thunk(() => nix.str`mame${nix.sel(finalAttrs, "srcVersion")}`),
@@ -105,7 +100,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.add("for file in src/emu/emuopts.cpp src/osd/modules/lib/osdobj_common.cpp; do\n  substituteInPlace \"$file\" \\\n    --subst-var-by mamePath \"$out/opt/mame\"\ndone\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace scripts/src/osd/sdl3.lua --replace-fail \\\n  'backtick(\"sw_vers -productVersion\")' \\\n  \"os.getenv('MACOSX_DEPLOYMENT_TARGET') or '$darwinMinVersion'\"\n"))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "MAME",
             desktopName: "MAME",
             exec: "mame",
@@ -119,7 +114,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: nix.thunk(() => (() => {
         const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/4256be4cf56870aa1fbd85c48cafeafa187160e0/Papirus/32x32/apps/mame.svg",
             hash: "sha256-s44Xl9UGizmddd/ugwABovM8w35P0lW9ByB69MIpG+E=",
           }))));
@@ -150,11 +145,11 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-h",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(writeScript, "mame-update-script", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl common-updater-scripts jq\n\nset -eu -o pipefail\n\nlatest_version=$(curl -s https://api.github.com/repos/mamedev/mame/releases/latest | jq --raw-output .tag_name)\nupdate-source-version mame \"${latest_version/mame0/0.}\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.mamedev.org/",
         description: "Multi-purpose emulation framework",
         longDescription: "MAME's purpose is to preserve decades of software history. As electronic\ntechnology continues to rush forward, MAME prevents this important\n\"vintage\" software from being lost and forgotten. This is achieved by\ndocumenting the hardware and how it functions. The source code to MAME\nserves as this documentation. The fact that the software is usable serves\nprimarily to validate the accuracy of the documentation (how else can you\nprove that you have recreated the hardware faithfully?). Over time, MAME\n(originally stood for Multiple Arcade Machine Emulator) absorbed the\nsister-project MESS (Multi Emulator Super System), so MAME now documents a\nwide variety of (mostly vintage) computers, video game consoles and\ncalculators, in addition to the arcade video games that were its initial\nfocus.\n",

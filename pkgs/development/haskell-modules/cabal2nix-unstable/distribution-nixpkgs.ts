@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/distribution-nixpkgs.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 22, 3], ["postUnpack", 26, 3], ["enableSeparateDataOutput", 27, 3], ["libraryHaskellDepends", 28, 3], ["testHaskellDepends", 40, 3], ["homepage", 50, 3], ["description", 51, 3], ["license", 52, 3]]]);
 const formals$1 = { args: { mkDerivation: false, aeson: false, base: false, bytestring: false, Cabal: false, containers: false, deepseq: false, directory: false, fetchzip: false, hspec: false, "language-nix": false, lens: false, lib: false, pretty: false, process: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/distribution-nixpkgs.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/distribution-nixpkgs.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 22, 3], ["postUnpack", 26, 3], ["enableSeparateDataOutput", 27, 3], ["libraryHaskellDepends", 28, 3], ["testHaskellDepends", 40, 3], ["homepage", 50, 3], ["description", 51, 3], ["license", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pretty = nix.arg($, "pretty");
   const process = nix.arg($, "process");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "distribution-nixpkgs",
       version: "1.7.1.1-unstable-2026-03-30",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/NixOS/cabal2nix/archive/41239bcc0622a0975c6705a03a44dfeffeb56f23.tar.gz",
           sha256: "01qj6cvaif0810v83r6izcj1bbfpcqqxw4wybq04qsq92sqybpw2",
         })))),

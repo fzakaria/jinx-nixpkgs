@@ -2,48 +2,41 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qownnotes.nix", [[["maintainers", 5, 8]], [["user", 16, 40]], [["auto", 16, 35]], [["displayManager", 16, 20]], [["systemPackages", 17, 19]], [["imports", 11, 7], ["test-support", 16, 7], ["environment", 17, 7]], [["machine", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["enableOCR", 23, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/qownnotes.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/qownnotes.nix", [["user", 16, 40]]);
-const pos$3 = nix.positions(here + "/qownnotes.nix", [["auto", 16, 35]]);
-const pos$4 = nix.positions(here + "/qownnotes.nix", [["displayManager", 16, 20]]);
-const pos$5 = nix.positions(here + "/qownnotes.nix", [["systemPackages", 17, 19]]);
-const pos$6 = nix.positions(here + "/qownnotes.nix", [["imports", 11, 7], ["test-support", 16, 7], ["environment", 17, 7]]);
-const pos$7 = nix.positions(here + "/qownnotes.nix", [["machine", 7, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/qownnotes.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["enableOCR", 23, 3], ["testScript", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "qownnotes",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "pbek"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           imports: nix.thunk(() => [
             nix.path(here, "./common/user-account.nix"),
             nix.path(here, "./common/x11.nix"),
           ]),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$2, user: "alice" })),
+              [nix.POS]: $pos[2],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[1], user: "alice" })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "qownnotes")),
               nix.thunk(() => nix.sel(pkgs, "xdotool")),

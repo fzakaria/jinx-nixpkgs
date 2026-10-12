@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 12, 26], ["version", 12, 32], ["hash", 13, 5]], [["description", 19, 5], ["mainProgram", 20, 5], ["homepage", 21, 5], ["changelog", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 12, 26], ["version", 12, 32], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 19, 5], ["mainProgram", 20, 5], ["homepage", 21, 5], ["changelog", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cherrybomb",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-MHKBP102U1Ug9wZm9x4+opZgG8f6Hx03FvoLV4qaDgY=",
         })))),
       cargoHash: "sha256-j9CT2HHFY4ANWKvx8t/jgCc3aOiSEJlq8CHstjSc+O4=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CLI tool that helps you avoid undefined user behavior by validating your API specifications",
         mainProgram: "cherrybomb",
         homepage: "https://github.com/blst-security/cherrybomb",

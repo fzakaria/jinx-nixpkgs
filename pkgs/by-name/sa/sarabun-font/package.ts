@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["homepage", 38, 5], ["description", 39, 5], ["longDescription", 40, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["outputs", 21, 3], ["dontInstallWebfonts", 26, 3], ["installPhase", 28, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 38, 5], ["description", 39, 5], ["longDescription", 40, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["outputs", 21, 3], ["dontInstallWebfonts", 26, 3], ["installPhase", 28, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sarabun",
       version: "0-unstable-2018-08-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cadsondemak",
           repo: "sarabun",
           rev: "854cdbc6afa002ff8c2ce6aa7b86f99c7f71c9eb",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontInstallWebfonts: true,
       installPhase: "runHook preInstall\n\nmkdir -p $doc/sarabun\ncp -r $src/OFL.txt $src/docs/* $doc/sarabun\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://cadsondemak.github.io/Sarabun/",
         description: "Slightly-condensed looped Thai and sans serif Latin typeface for communications",
         longDescription: "The most popular typeface from the 13 fonts from SIPA Thailand’s National\nfonts project. Sarabun was designed by Suppakit Chalermlarp to be a\nserious text face. Great choice for a long reading formal text. This font\nwas selected by the royal Thai government to be the official typeface for\ndocumentation purpose. It was also adopted by many private organizations\nto be used as a communication font. Sarabun has a slightly condensed\nproportion which fits perfectly with Thai legibility. It also carries a\nneutral Thai traditional loop design which can easily fit in with any\noccasion. Probably one of the most today’s familiar Thai loop typefaces.\n",

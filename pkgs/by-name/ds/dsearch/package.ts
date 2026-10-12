@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["updateScript", 42, 5]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["teams", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["nativeBuildInputs", 28, 3], ["postInstall", 30, 3], ["passthru", 41, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["teams", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["nativeBuildInputs", 28, 3], ["postInstall", 30, 3], ["passthru", 41, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dsearch",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AvengeMedia",
           repo: "danksearch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "install -Dm744 ./assets/dsearch.service $out/lib/systemd/user/dsearch.service\nsubstituteInPlace $out/lib/systemd/user/dsearch.service \\\n  --replace-fail /usr/local/bin/dsearch $out/bin/dsearch\n\ninstallShellCompletion --cmd dsearch \\\n  --bash <($out/bin/dsearch completion bash) \\\n  --fish <($out/bin/dsearch completion fish) \\\n  --zsh <($out/bin/dsearch completion zsh)\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast, configurable filesystem search with fuzzy matching",
         homepage: "https://github.com/AvengeMedia/danksearch",
         changelog: nix.thunk(() => nix.str`https://github.com/AvengeMedia/danksearch/releases/tag/v${nix.sel(finalAttrs, "version")}`),

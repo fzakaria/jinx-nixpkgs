@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["hardeningDisable", 46, 3], ["cmakeFlags", 48, 3], ["prePatch", 52, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, SDL2: false, SDL2_image: false, libx11: false, rtaudio: false, rtmidi: false, glew: false, "alsa-lib": false, angelscript: false, cmake: false, "pkg-config": false, zenity: false, withEditor: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["hardeningDisable", 46, 3], ["cmakeFlags", 48, 3], ["prePatch", 52, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const zenity = nix.arg($, "zenity");
   const withEditor = nix.argOr($, "withEditor", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "theforceengine",
       version: "1.22.420",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TheForceEngine",
           repo: "TheForceEngine",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +59,7 @@ substituteInPlace TheForceEngine/TFE_Ui/portable-file-dialogs.h \\
   --replace-fail "flags(flag::has_zenity) ? \\"zenity\\"" "flags(flag::has_zenity) ? \\"${nix.app(nix.sel(lib, "getExe"), zenity)}\\""
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modern \"Jedi Engine\" replacement supporting Dark Forces, mods, and in the future, Outlaws",
         mainProgram: "theforceengine",
         homepage: "https://theforceengine.github.io",

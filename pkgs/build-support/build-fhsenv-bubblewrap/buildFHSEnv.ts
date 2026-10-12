@@ -2,14 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/buildFHSEnv.nix", [[["name", 100, 5], ["destination", 101, 5], ["text", 102, 5]], [["paths", 174, 11], ["priority", 175, 11]], [["lockFile", 215, 15]], [["name", 213, 5], ["src", 214, 5], ["cargoLock", 215, 5], ["doCheck", 216, 5]], [["graph", 223, 31]], [["__structuredAttrs", 222, 9], ["exportReferencesGraph", 223, 9], ["paths", 225, 11], ["paths32", 226, 11], ["isMultiBuild", 227, 11], ["includeClosures", 228, 11], ["nativeBuildInputs", 230, 9]]]);
 const formals$1 = { args: { lib: false, stdenv: false, runCommandLocal: false, buildEnv: false, writeText: false, writeShellScriptBin: false, pkgs: false, pkgsHostTarget: false }, ellipsis: false };
 const formals$2 = { args: { profile: true, targetPkgs: true, multiPkgs: true, multiArch: true, includeClosures: true, nativeBuildInputs: true, extraBuildCommands: true, extraBuildCommandsMulti: true, extraOutputsToInstall: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/buildFHSEnv.nix", [["name", 100, 5], ["destination", 101, 5], ["text", 102, 5]]);
-const pos$2 = nix.positions(here + "/buildFHSEnv.nix", [["paths", 174, 11], ["priority", 175, 11]]);
-const pos$3 = nix.positions(here + "/buildFHSEnv.nix", [["lockFile", 215, 15]]);
-const pos$4 = nix.positions(here + "/buildFHSEnv.nix", [["name", 213, 5], ["src", 214, 5], ["cargoLock", 215, 5], ["doCheck", 216, 5]]);
-const pos$5 = nix.positions(here + "/buildFHSEnv.nix", [["graph", 223, 31]]);
-const pos$6 = nix.positions(here + "/buildFHSEnv.nix", [["__structuredAttrs", 222, 9], ["exportReferencesGraph", 223, 9], ["paths", 225, 11], ["paths32", 226, 11], ["isMultiBuild", 227, 11], ["includeClosures", 228, 11], ["nativeBuildInputs", 230, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -69,7 +64,7 @@ export default nix.lambda((args) => (() => {
 exec ${(nix.asBool(isMultiBuild) ? nix.sel(pkgsi686Linux, "glibc", "bin") : nix.sel(pkgs, "glibc", "bin"))}/bin/ldconfig -f /etc/ld.so.conf -C /etc/ld.so.cache "$@"
 `)));
     const etcProfile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.str`${name}-fhsenv-profile`),
         destination: "/etc/profile",
         text: nix.thunk(() => nix.str`export PS1='${name}-fhsenv:\\u@\\h:\\w\\$ '
@@ -120,7 +115,7 @@ ${profile}
         const extraOutputs = nix.thunk(() => nix.builtins.map((out) => nix.selOr(drv, () => null, nix.key(nix.force(out))), extraOutputsToInstall));
         const cleanOutputs = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (o) => !nix.eq(o, null), nix.thunk(() => nix.concat(pickedOutputs, extraOutputs))));
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           paths: cleanOutputs,
           priority: nix.thunk(() => nix.selOr(drv, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority")),
         };
@@ -137,17 +132,17 @@ ${profile}
       })())));
     const allPaths = nix.thunk(() => nix.concat(paths, paths32));
     const rootfs_builder = nix.thunk(() => nix.app(nix.sel(pkgs, "buildPackages", "rustPlatform", "buildRustPackage"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "fhs-rootfs-bulder",
         src: nix.path(here, "./rootfs-builder"),
-        cargoLock: nix.thunk(() => ({ [nix.POS]: pos$3, lockFile: nix.path(here, "./rootfs-builder/Cargo.lock") })),
+        cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[2], lockFile: nix.path(here, "./rootfs-builder/Cargo.lock") })),
         doCheck: false,
       }))));
     const rootfs = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${name}-fhsenv-rootfs`), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         __structuredAttrs: true,
         exportReferencesGraph: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           graph: nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (p) => nix.sel(p, "paths"), allPaths)),
         })),
         paths: paths,

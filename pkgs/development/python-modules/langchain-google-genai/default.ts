@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["rev-prefix", 89, 7], ["ignoredVersions", 90, 7]], [["skipBulkUpdate", 87, 5], ["updateScript", 88, 5]], [["changelog", 95, 5], ["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["sourceRoot", 43, 3], ["build-system", 45, 3], ["dependencies", 47, 3], ["nativeCheckInputs", 56, 3], ["enabledTestPaths", 66, 3], ["disabledTests", 68, 3], ["disabledTestPaths", 77, 3], ["pythonImportsCheck", 83, 3], ["passthru", 85, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, filetype: false, "google-api-core": false, "google-auth": false, "google-genai": false, "langchain-core": false, pydantic: false, freezegun: false, "langchain-tests": false, numpy: false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, syrupy: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 89, 7], ["ignoredVersions", 90, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 87, 5], ["updateScript", 88, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 95, 5], ["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["sourceRoot", 43, 3], ["build-system", 45, 3], ["dependencies", 47, 3], ["nativeCheckInputs", 56, 3], ["enabledTestPaths", 66, 3], ["disabledTests", 68, 3], ["disabledTestPaths", 77, 3], ["pythonImportsCheck", 83, 3], ["passthru", 85, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const syrupy = nix.arg($, "syrupy");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "langchain-google-genai",
       version: "4.3.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "langchain-ai",
           repo: "langchain-google",
           tag: nix.thunk(() => nix.str`libs/genai/v${nix.sel(finalAttrs, "version")}`),
@@ -72,16 +68,16 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["langchain_google_genai"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdate: true,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "rev-prefix": "libs/genai/v",
             ignoredVersions: "a|b|dev|rc",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langchain-google/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "LangChain integrations for Google Gemini",
         homepage: "https://github.com/langchain-ai/langchain-google/tree/main/libs/genai",

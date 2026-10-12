@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["html", 45, 5], ["networkx", 46, 5]], [["changelog", 88, 5], ["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 44, 3], ["__darwinAllowLocalNetworking", 49, 3], ["nativeCheckInputs", 51, 3], ["disabledTestPaths", 60, 3], ["disabledTests", 66, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, pyparsing: false, networkx: false, html5lib: false, pip: false, "pytest-cov-stub": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["html", 45, 5], ["networkx", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 88, 5], ["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 44, 3], ["__darwinAllowLocalNetworking", 49, 3], ["nativeCheckInputs", 51, 3], ["disabledTestPaths", 60, 3], ["disabledTests", 66, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RDFLib",
           repo: "rdflib",
           tag: version,
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [pyparsing]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         html: nix.thunk(() => [html5lib]),
         networkx: nix.thunk(() => [networkx]),
       }));
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["TestGraphHTTP"]))));
       const pythonImportsCheck = nix.thunk(() => ["rdflib"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/RDFLib/rdflib/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Python library for working with RDF",
         homepage: "https://rdflib.readthedocs.io",
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

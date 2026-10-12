@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["jdk", 16, 5], ["modules", 17, 5]], [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5], ["fetchSubmodules", 38, 5]], [["protocPath", 56, 7]], [["pkg", 59, 5], ["data", 60, 5]], [["src", 66, 5], ["hash", 67, 5]], [["updateScript", 91, 12]], [["description", 96, 5], ["homepage", 97, 5], ["sourceProvenance", 98, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 41, 3], ["patches", 48, 3], ["postPatch", 50, 3], ["env", 56, 3], ["mitmCache", 58, 3], ["npmRoot", 63, 3], ["npmDeps", 65, 3], ["preBuild", 70, 3], ["gradleBuildTask", 76, 3], ["doCheck", 78, 3], ["installPhase", 80, 3], ["passthru", 91, 3], ["__darwinAllowLocalNetworking", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchNpmDeps: false, makeWrapper: false, npmHooks: false, gradle: false, jdk_headless: false, jre_minimal: false, nodejs: false, protobuf_35: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["jdk", 16, 5], ["modules", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5], ["fetchSubmodules", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["protocPath", 56, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg", 59, 5], ["data", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["src", 66, 5], ["hash", 67, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 91, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["sourceProvenance", 98, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 41, 3], ["patches", 48, 3], ["postPatch", 50, 3], ["env", 56, 3], ["mitmCache", 58, 3], ["npmRoot", 63, 3], ["npmDeps", 65, 3], ["preBuild", 70, 3], ["gradleBuildTask", 76, 3], ["doCheck", 78, 3], ["installPhase", 80, 3], ["passthru", 91, 3], ["__darwinAllowLocalNetworking", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const protobuf_35 = nix.arg($, "protobuf_35");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       jdk: jdk_headless,
       modules: nix.thunk(() => [
         "java.desktop",
@@ -40,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const protobuf = protobuf_35;
   const protobufJavaVer = nix.thunk(() => nix.builtins.import(nix.path(here, "./protobuf-java-version.nix")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "traccar",
       version: "6.15.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "traccar",
           repo: "traccar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,17 +56,17 @@ substituteInPlace build.gradle \\
   --replace-fail "\\$protobufVersion" "${protobufJavaVer}"
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         protocPath: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), protobuf, "protoc")),
       })),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pkg: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           data: nix.path(here, "./deps.json"),
         })))),
       npmRoot: "traccar-web",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/traccar-web`),
           hash: "sha256-C/jfTuFFGdGNGyoYb5fhEmsKdWb5XfsoJ388Rzh35fY=",
         })))),
@@ -89,10 +82,10 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/traccar \\
   --add-flags "-jar $out/tracker-server.jar"
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], updateScript: nix.path(here, "./update.sh") })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Open source GPS tracking system",
         homepage: "https://www.traccar.org/",
         sourceProvenance: nix.thunk(() => (() => {

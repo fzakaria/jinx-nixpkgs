@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 21, 9], ["hash", 22, 9]], [["version", 26, 9], ["hash", 28, 9]], [["url", 39, 5], ["hash", 40, 21]], [["hello", 62, 5]], [["tests", 61, 12]], [["homepage", 66, 5], ["downloadPage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 33, 3], ["version", 34, 19], ["minimalOCamlVersion", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["propagatedBuildInputs", 56, 3], ["passthru", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, buildDunePackage: false, fetchurl: false, fix: false, menhir: false, menhirLib: false, menhirSdk: false, "merlin-extend": false, ppxlib: false, cppo: false, cmdliner: false, "dune-build-info": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 21, 9], ["hash", 22, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 26, 9], ["hash", 28, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 39, 5], ["hash", 40, 21]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hello", 62, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 61, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 66, 5], ["downloadPage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 19], ["minimalOCamlVersion", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["propagatedBuildInputs", 56, 3], ["passthru", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const cmdliner = nix.arg($, "cmdliner");
   const dune_build_info = nix.arg($, "dune-build-info");
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")) ? {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "3.18.0",
     hash: "sha256-T7pqFvVFUbeOHZDrLBZ/bulkyvU4O8LS+TzszH5k3EQ=",
   } : {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "3.15.0",
     hash: "sha256-7D0gJfQ5Hw0riNIFPmJ6haoa3dnFEyDp5yxpDgX7ZqY=",
   }));
@@ -40,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.attr(param, "version"));
       const minimalOCamlVersion = "4.11";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/reasonml/reason/releases/download/${version}/reason-${version}.tbz`),
           hash: nix.thunk(() => nix.attr(param, "hash")),
         }))));
@@ -48,14 +42,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.concat([dune_build_info, fix, menhirSdk, merlin_extend], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "3.17")), cmdliner)));
       const propagatedBuildInputs = nix.thunk(() => [ppxlib, menhirLib]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hello: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/hello"), nix.thunk(() => ({})))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://reasonml.github.io/",
         downloadPage: "https://github.com/reasonml/reason",
         description: "User-friendly programming language built on OCaml",
@@ -63,7 +57,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         minimalOCamlVersion,

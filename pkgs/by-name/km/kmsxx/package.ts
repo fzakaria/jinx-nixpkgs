@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["fetchSubmodules", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["dontUseCmakeConfigure", 48, 3], ["mesonFlags", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, cmake: false, "pkg-config": false, libdrm: false, fmt: false, libevdev: false, withPython: true, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["fetchSubmodules", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["dontUseCmakeConfigure", 48, 3], ["mesonFlags", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const withPython = nix.argOr($, "withPython", () => false);
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kmsxx",
       version: "2021-07-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tomba",
           repo: "kmsxx",
           fetchSubmodules: true,
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withPython)), "-Dpykms=disabled")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C++11 library, utilities and python bindings for Linux kernel mode setting",
         homepage: "https://github.com/tomba/kmsxx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

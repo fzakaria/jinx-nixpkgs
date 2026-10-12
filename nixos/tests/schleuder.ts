@@ -2,51 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/schleuder.nix", [[["mydomain", 15, 11], ["destination", 16, 11], ["smtp_tls_CAfile", 17, 11], ["smtpd_tls_chain_files", 18, 11]], [["main", 14, 18]], [["enable", 12, 9], ["enableSubmission", 13, 9], ["settings", 14, 9], ["localRecipients", 23, 9]], [["tls_cert_file", 41, 11], ["tls_key_file", 42, 11]], [["api", 40, 18]], [["enable", 30, 9], ["extraSettingsFile", 34, 9], ["lists", 39, 9], ["settings", 40, 9]], [["selfmx", 95, 18]], [["enable", 94, 9], ["settings", 95, 9]], [["postfix", 11, 16], ["schleuder", 29, 16], ["dnsmasq", 93, 16]], [["systemPackages", 46, 19]], [["certificateFiles", 90, 20]], [["pki", 90, 16]], [["extraHosts", 98, 18]], [["nativeBuildInputs", 119, 17]], [["rules", 114, 24]], [["tmpfiles", 114, 15]], [["imports", 10, 7], ["services", 11, 7], ["environment", 46, 7], ["security", 90, 7], ["networking", 98, 7], ["systemd", 114, 7]], [["machine", 7, 9]], [["name", 6, 3], ["nodes", 7, 3], ["testScript", 139, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/schleuder.nix", [["mydomain", 15, 11], ["destination", 16, 11], ["smtp_tls_CAfile", 17, 11], ["smtpd_tls_chain_files", 18, 11]]);
-const pos$2 = nix.positions(here + "/schleuder.nix", [["main", 14, 18]]);
-const pos$3 = nix.positions(here + "/schleuder.nix", [["enable", 12, 9], ["enableSubmission", 13, 9], ["settings", 14, 9], ["localRecipients", 23, 9]]);
-const pos$4 = nix.positions(here + "/schleuder.nix", [["tls_cert_file", 41, 11], ["tls_key_file", 42, 11]]);
-const pos$5 = nix.positions(here + "/schleuder.nix", [["api", 40, 18]]);
-const pos$6 = nix.positions(here + "/schleuder.nix", [["enable", 30, 9], ["extraSettingsFile", 34, 9], ["lists", 39, 9], ["settings", 40, 9]]);
-const pos$7 = nix.positions(here + "/schleuder.nix", [["selfmx", 95, 18]]);
-const pos$8 = nix.positions(here + "/schleuder.nix", [["enable", 94, 9], ["settings", 95, 9]]);
-const pos$9 = nix.positions(here + "/schleuder.nix", [["postfix", 11, 16], ["schleuder", 29, 16], ["dnsmasq", 93, 16]]);
-const pos$10 = nix.positions(here + "/schleuder.nix", [["systemPackages", 46, 19]]);
-const pos$11 = nix.positions(here + "/schleuder.nix", [["certificateFiles", 90, 20]]);
-const pos$12 = nix.positions(here + "/schleuder.nix", [["pki", 90, 16]]);
-const pos$13 = nix.positions(here + "/schleuder.nix", [["extraHosts", 98, 18]]);
-const pos$14 = nix.positions(here + "/schleuder.nix", [["nativeBuildInputs", 119, 17]]);
-const pos$15 = nix.positions(here + "/schleuder.nix", [["rules", 114, 24]]);
-const pos$16 = nix.positions(here + "/schleuder.nix", [["tmpfiles", 114, 15]]);
-const pos$17 = nix.positions(here + "/schleuder.nix", [["imports", 10, 7], ["services", 11, 7], ["environment", 46, 7], ["security", 90, 7], ["networking", 98, 7], ["systemd", 114, 7]]);
-const pos$18 = nix.positions(here + "/schleuder.nix", [["machine", 7, 9]]);
-const pos$19 = nix.positions(here + "/schleuder.nix", [["name", 6, 3], ["nodes", 7, 3], ["testScript", 139, 3]]);
 
 export default nix.thunk(() => (() => {
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")));
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "schleuder",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       machine: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const pkgs = nix.arg($, "pkgs");
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             postfix: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               enableSubmission: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 main: nix.thunk(() => ({
-                  [nix.POS]: pos$1,
+                  [nix.POS]: $pos[0],
                   mydomain: domain,
                   destination: domain,
                   smtp_tls_CAfile: nix.thunk(() => nix.str`${nix.sel(certs, "ca", "cert")}`),
@@ -59,27 +41,27 @@ export default nix.thunk(() => (() => {
               localRecipients: nix.thunk(() => ["root", "alice", "bob"]),
             })),
             schleuder: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               extraSettingsFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "schleuder-api-keys.yml", "api:\n  valid_api_keys:\n    - fnord\n")),
               lists: nix.thunk(() => [nix.thunk(() => nix.str`security@${domain}`)]),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 api: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   tls_cert_file: nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.force(domain)), "cert")}`),
                   tls_key_file: nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.force(domain)), "key")}`),
                 })),
               })),
             })),
             dnsmasq: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$7, selfmx: true })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[6], selfmx: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "gnupg")),
               nix.thunk(() => nix.sel(pkgs, "msmtp")),
@@ -121,24 +103,24 @@ grep "big security problem" decrypted
             ]),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             extraHosts: nix.thunk(() => nix.str`127.0.0.1 ${domain}
 `),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               rules: nix.thunk(() => (() => {
                 const cliconfig = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "schleuder-cli.yml", nix.thunk(() => ({
-                    [nix.POS]: pos$14,
+                    [nix.POS]: $pos[13],
                     nativeBuildInputs: nix.thunk(() => [
                       nix.thunk(() => nix.sel(pkgs, "jq")),
                       nix.thunk(() => nix.sel(pkgs, "openssl")),

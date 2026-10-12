@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 12, 7]], [["x86_64-linux", 17, 7]], [["url", 26, 5], ["stripRoot", 27, 5], ["hash", 28, 13]], [["homepage", 56, 5], ["mainProgram", 57, 5], ["description", 58, 5], ["platforms", 59, 5], ["maintainers", 62, 5], ["license", 63, 5], ["sourceProvenance", 64, 5], ["changelog", 65, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["dontConfigure", 31, 3], ["dontBuild", 32, 3], ["dontStrip", 33, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 39, 3], ["installPhase", 43, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchzip: false, lib: false, autoPatchelfHook: false, libz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 12, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 17, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 26, 5], ["stripRoot", 27, 5], ["hash", 28, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["mainProgram", 57, 5], ["description", 58, 5], ["platforms", 59, 5], ["maintainers", 62, 5], ["license", 63, 5], ["sourceProvenance", 64, 5], ["changelog", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["dontConfigure", 31, 3], ["dontBuild", 32, 3], ["dontStrip", 33, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 39, 3], ["installPhase", 43, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const libz = nix.arg($, "libz");
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)));
-  const suffix = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "x86_64-linux": "lin64_standalone" }, () => nix.force(throwSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const suffix = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], "x86_64-linux": "lin64_standalone" }, () => nix.force(throwSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const hash = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "x86_64-linux": "sha256-ucG6oR4gBRUjMmHRr9QNenc04ENvwLvyCzSAqIoAiwM=",
   }, () => nix.force(throwSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "volatility2-bin",
       version: "2.6.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/volatilityfoundation/volatility/releases/download/${nix.sel(finalAttrs, "version")}/volatility_${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}_${suffix}.zip`),
           stripRoot: true,
           hash: hash,
@@ -47,7 +43,7 @@ ln -s $out/bin/volatility2 $out/bin/vol2
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://volatilityfoundation.org/",
         mainProgram: "volatility2",
         description: "Advanced memory forensics framework",

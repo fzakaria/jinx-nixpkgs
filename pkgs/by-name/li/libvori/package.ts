@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["maintainers", 24, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["maintainers", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libvori",
       version: "220621",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://brehm-research.de/files/libvori-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-HPqYxWSBS92s8cDn8RWCE311hmj2MH5us5LHIxeYTBQ=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for Voronoi integration of electron densities",
         homepage: "https://brehm-research.de/libvori.php",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

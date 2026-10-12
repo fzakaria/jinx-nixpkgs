@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs-slim", 21, 30]], [["owner", 30, 13], ["repo", 31, 13], ["rev", 32, 13], ["hash", 33, 13]], [["version", 28, 11], ["src", 29, 11], ["vendorHash", 35, 11]], [["buildGoModule", 23, 5]], [["url", 50, 5], ["rev", 51, 5], ["hash", 52, 5]], [["pname", 56, 26], ["version", 56, 32], ["src", 56, 40], ["pnpm", 57, 5], ["fetcherVersion", 58, 5], ["hash", 59, 5]], [["ESBUILD_BINARY_PATH", 115, 7]], [["homepage", 118, 5], ["description", 119, 5], ["license", 120, 5], ["teams", 121, 5], ["platforms", 122, 5], ["mainProgram", 123, 5], ["broken", 125, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 49, 3], ["pnpmDeps", 55, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 73, 3], ["postUnpack", 79, 3], ["postPatch", 86, 3], ["preConfigure", 92, 3], ["preBuild", 99, 3], ["postFixup", 110, 3], ["env", 115, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, esbuild: false, buildGoModule: false, fetchFromGitHub: false, fetchgit: false, srcOnly: false, removeReferencesTo: false, "nodejs-slim_24": false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, python3: false, gitMinimal: false, jq: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs-slim", 21, 30]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 30, 13], ["repo", 31, 13], ["rev", 32, 13], ["hash", 33, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 28, 11], ["src", 29, 11], ["vendorHash", 35, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["buildGoModule", 23, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 50, 5], ["rev", 51, 5], ["hash", 52, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 56, 26], ["version", 56, 32], ["src", 56, 40], ["pnpm", 57, 5], ["fetcherVersion", 58, 5], ["hash", 59, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["ESBUILD_BINARY_PATH", 115, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 118, 5], ["description", 119, 5], ["license", 120, 5], ["teams", 121, 5], ["platforms", 122, 5], ["mainProgram", 123, 5], ["broken", 125, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 49, 3], ["pnpmDeps", 55, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 73, 3], ["postUnpack", 79, 3], ["postPatch", 86, 3], ["preConfigure", 92, 3], ["preBuild", 99, 3], ["postFixup", 110, 3], ["env", 115, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,35 +24,35 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const zip = nix.arg($, "zip");
   const nodeSources = nix.thunk(() => nix.app(srcOnly, nodejs_slim_24));
-  const pnpm$ = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim_24 }))));
+  const pnpm$ = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], "nodejs-slim": nodejs_slim_24 }))));
   const esbuild$ = nix.thunk(() => nix.app(nix.sel(esbuild, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       buildGoModule: (args_1) => nix.app(buildGoModule, nix.thunk(() => nix.update(args_1, (() => {
           const version = "0.19.9";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               owner: "evanw",
               repo: "esbuild",
               rev: nix.thunk(() => nix.str`v${version}`),
               hash: "sha256-GiQTB/P+7uVGZfUaeM7S/5lGvfHlTl/cFt7XbNfE0qw=",
             }))));
           const vendorHash = "sha256-+BfxCyg0KkDQpHt/wycy/8CTG6YBA/VJvJFhhzUnSiQ=";
-          return { [nix.POS]: pos$3, version, src, vendorHash };
+          return { [nix.POS]: $pos[2], version, src, vendorHash };
         })()))),
     }))));
   const customPython = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "setuptools"))]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "taler-wallet-core",
       version: "1.5.10",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: "https://git-www.taler.net/taler-typescript-core.git",
           rev: "3816d089724c513299b62b20bdb88d94d5be67f5",
           hash: "sha256-/KxB4uBbJbnFUPAc6a++bfTwl2CM1ZYjxPTDYwRh21Q=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -96,11 +88,11 @@ done
 `),
       postFixup: "# else it fails to find the python interpreter\npatchShebangs --build $out/bin/taler-helper-sqlite3\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         ESBUILD_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), esbuild$)),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://git-www.taler.net/taler-typescript-core.git",
         description: "CLI wallet for GNU Taler written in TypeScript and Anastasis Web UI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

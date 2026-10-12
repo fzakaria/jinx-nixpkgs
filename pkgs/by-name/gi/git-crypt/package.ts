@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["CXXFLAGS", 45, 7]], [["homepage", 60, 5], ["description", 61, 5], ["longDescription", 62, 5], ["downloadPage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["mainProgram", 77, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["postPatch", 33, 3], ["makeFlags", 38, 3], ["env", 45, 3], ["postFixup", 49, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, git: false, gnupg: false, makeWrapper: false, openssl: false, lib: false, stdenv: false, libxslt: false, docbook_xsl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["longDescription", 62, 5], ["downloadPage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["mainProgram", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["postPatch", 33, 3], ["makeFlags", 38, 3], ["env", 45, 3], ["postFixup", 49, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxslt = nix.arg($, "libxslt");
   const docbook_xsl = nix.arg($, "docbook_xsl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "git-crypt",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AGWA",
           repo: "git-crypt",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,14 +37,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`DOCBOOK_XSL=${docbook_xsl}/share/xml/docbook-xsl-nons/manpages/docbook.xsl`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DOPENSSL_API_COMPAT=0x30000000L"]))),
       })),
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/git-crypt \\
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git, gnupg]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.agwa.name/projects/git-crypt",
         description: "Transparent file encryption in git",
         longDescription: "git-crypt enables transparent encryption and decryption of files in a git\nrepository. Files which you choose to protect are encrypted when\ncommitted, and decrypted when checked out. git-crypt lets you freely\nshare a repository containing a mix of public and private\ncontent. git-crypt gracefully degrades, so developers without the secret\nkey can still clone and commit to a repository with encrypted files. This\nlets you store your secret material (such as keys or passwords) in the\nsame repository as your code, without requiring you to lock down your\nentire repository.\n",

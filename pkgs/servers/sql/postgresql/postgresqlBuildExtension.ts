@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/postgresqlBuildExtension.nix", [[["extraArgs", 86, 17]], [["updateScript", 83, 11]], [["passthru", 80, 7], ["strictDeps", 91, 7], ["__structuredAttrs", 92, 7], ["buildInputs", 93, 7], ["nativeBuildInputs", 94, 7], ["installFlags", 96, 7], ["postInstall", 101, 7]], [["constructDrv", 67, 3], ["excludeDrvArgNames", 69, 3], ["extendDrvArgs", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, postgresql: false, "nix-update-script": false }, ellipsis: false };
 const formals$2 = { args: { enableUpdateScript: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/postgresqlBuildExtension.nix", [["extraArgs", 86, 17]]);
-const pos$2 = nix.positions(here + "/postgresqlBuildExtension.nix", [["updateScript", 83, 11]]);
-const pos$3 = nix.positions(here + "/postgresqlBuildExtension.nix", [["passthru", 80, 7], ["strictDeps", 91, 7], ["__structuredAttrs", 92, 7], ["buildInputs", 93, 7], ["nativeBuildInputs", 94, 7], ["installFlags", 96, 7], ["postInstall", 101, 7]]);
-const pos$4 = nix.positions(here + "/postgresqlBuildExtension.nix", [["constructDrv", 67, 3], ["excludeDrvArgNames", 69, 3], ["extendDrvArgs", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["enableUpdateScript"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -24,10 +21,10 @@ export default nix.lambda((args) => (() => {
         const prevAttrs = args_1;
         const enableUpdateScript = nix.argOr($_1, "enableUpdateScript", () => true);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           passthru: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "passthru"), nix.app(nix.sel(lib, "optionalAttrs"), enableUpdateScript, nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              updateScript: nix.thunk(() => nix.selOr(prevAttrs, () => nix.app(nix_update_script, nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "hasInfix"), "unstable", nix.thunk(() => nix.sel(prevAttrs, "version")))), nix.thunk(() => ({ [nix.POS]: pos$1, extraArgs: nix.thunk(() => ["--version=branch"]) }))))), "passthru", "updateScript")),
+              [nix.POS]: $pos[1],
+              updateScript: nix.thunk(() => nix.selOr(prevAttrs, () => nix.app(nix_update_script, nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "hasInfix"), "unstable", nix.thunk(() => nix.sel(prevAttrs, "version")))), nix.thunk(() => ({ [nix.POS]: $pos[0], extraArgs: nix.thunk(() => ["--version=branch"]) }))))), "passthru", "updateScript")),
             }))))),
           strictDeps: true,
           __structuredAttrs: true,

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["packages", 26, 9], ["targetPackages", 27, 9]], [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]], [["timeout", 137, 20]], [["nativeBuildInputs", 132, 15], ["meta", 137, 15]], [["package", 168, 41]], [["with-net8-sdk", 164, 9], ["with-net9-sdk", 165, 9], ["with-net10-sdk", 166, 9], ["no-sdk", 167, 9], ["version", 168, 9]], [["tests", 126, 5], ["updateScript", 170, 5]], [["homepage", 174, 5], ["description", 175, 5], ["changelog", 176, 5], ["license", 177, 5], ["maintainers", 178, 5], ["mainProgram", 179, 5]], [["pname", 39, 11], ["dotnet-sdk", 39, 17], ["dotnet-runtime", 39, 28], ["vsVersion", 41, 3], ["src", 42, 3], ["version", 52, 3], ["projectFile", 53, 3], ["useDotnetFromEnv", 54, 3], ["nugetDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["patches", 59, 3], ["postPatch", 65, 3], ["useAppHost", 72, 3], ["dotnetFlags", 73, 3], ["executables", 87, 3], ["postInstall", 89, 3], ["installPhase", 97, 3], ["postFixup", 119, 3], ["passthru", 125, 3], ["meta", 173, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDotnetModule: false, dotnetCorePackages: false, stdenvNoCC: false, testers: false, jq: false, runCommand: false, expect: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["packages", 26, 9], ["targetPackages", 27, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["timeout", 137, 20]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 132, 15], ["meta", 137, 15]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 168, 41]]);
-const pos$6 = nix.positions(here + "/package.nix", [["with-net8-sdk", 164, 9], ["with-net9-sdk", 165, 9], ["with-net10-sdk", 166, 9], ["no-sdk", 167, 9], ["version", 168, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 126, 5], ["updateScript", 170, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 174, 5], ["description", 175, 5], ["changelog", 176, 5], ["license", 177, 5], ["maintainers", 178, 5], ["mainProgram", 179, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 39, 11], ["dotnet-sdk", 39, 17], ["dotnet-runtime", 39, 28], ["vsVersion", 41, 3], ["src", 42, 3], ["version", 52, 3], ["projectFile", 53, 3], ["useDotnetFromEnv", 54, 3], ["nugetDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["patches", 59, 3], ["postPatch", 65, 3], ["useAppHost", 72, 3], ["dotnetFlags", 73, 3], ["executables", 87, 3], ["postInstall", 89, 3], ["installPhase", 97, 3], ["postFixup", 119, 3], ["passthru", 125, 3], ["meta", 173, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +25,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "sdk_8_0")),
         ])));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       packages: nix.thunk(() => nix.attr(from, "packages")),
       targetPackages: nix.thunk(() => nix.attr(from, "targetPackages")),
     };
@@ -43,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const rid = nix.thunk(() => nix.app(nix.sel(dotnetCorePackages, "systemToDotnetRid"), nix.thunk(() => nix.sel(stdenvNoCC, "targetPlatform", "system"))));
   const project = "Microsoft.CodeAnalysis.LanguageServer";
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: pname,
       "dotnet-sdk": dotnet_sdk,
       "dotnet-runtime": dotnet_runtime,
       vsVersion: "2.148.23-prerelease",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "dotnet",
           repo: "roslyn",
           rev: nix.thunk(() => nix.str`VSCode-CSharp-${nix.sel(finalAttrs, "vsVersion")}`),
@@ -99,12 +91,12 @@ substituteInPlace $out/bin/${project} \\
   --replace-fail "$out/lib/$pname/${project}" "${nix.app(nix.sel(lib, "getExe"), dotnet_runtime)}\\" \\"$out/lib/$pname/${project}.dll"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => (() => {
           const with_sdk = (sdk) => nix.app(runCommand, nix.thunk(() => nix.str`with-${(nix.asBool(nix.has(sdk, "version")) ? nix.sel(sdk, "version") : "no")}-sdk`), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), sdk, expect]),
-              meta: nix.thunk(() => ({ [nix.POS]: pos$3, timeout: 60n })),
+              meta: nix.thunk(() => ({ [nix.POS]: $pos[2], timeout: 60n })),
             })), nix.thunk(() => nix.str`HOME=$TMPDIR
 expect <<"EOF"
   set timeout 60
@@ -125,13 +117,13 @@ EOF
 touch $out
 `));
           return {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             "with-net8-sdk": nix.thunk(() => nix.app(with_sdk, nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0")))),
             "with-net9-sdk": nix.thunk(() => nix.app(with_sdk, nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_9_0")))),
             "with-net10-sdk": nix.thunk(() => nix.app(with_sdk, nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_10_0")))),
             "no-sdk": nix.thunk(() => nix.app(with_sdk, null)),
             version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           };
@@ -139,7 +131,7 @@ touch $out
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://github.com/dotnet/vscode-csharp",
         description: "Language server behind C# Dev Kit for Visual Studio Code",
         changelog: nix.thunk(() => nix.str`https://github.com/dotnet/vscode-csharp/releases/tag/v${nix.sel(finalAttrs, "vsVersion")}`),

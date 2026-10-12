@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cargo-test-macro-0.1.0", 26, 7]], [["lockFile", 24, 5], ["outputHashes", 25, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 14, 3], ["buildInputs", 18, 3], ["cargoLock", 23, 3], ["doInstallCheck", 30, 3], ["installCheckPhase", 32, 3]]]);
 const formals$1 = { args: { rustPlatform: false, "pkg-config": false, openssl: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cargo-test-macro-0.1.0", 26, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lockFile", 24, 5], ["outputHashes", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 14, 3], ["buildInputs", 18, 3], ["cargoLock", 23, 3], ["doInstallCheck", 30, 3], ["installCheckPhase", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "git-dependency-rev-non-workspace-nested-crate",
       version: "0.1.0",
       src: nix.path(here, "./package"),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl, zlib]),
       cargoLock: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         lockFile: nix.path(here, "./package/Cargo.lock"),
         outputHashes: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           "cargo-test-macro-0.1.0": "1yy1y1d523xdzwg1gc77pigbcwsbawmy4b7vw8v21m7q957sk0c4",
         })),
       })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 56, 3], ["pytestFlags", 64, 3], ["disabledTests", 68, 3], ["pythonImportsCheck", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, buildPythonPackage: false, pythonAtLeast: false, setuptools: false, flask: false, matplotlib: false, numpy: false, pillow: false, psycopg2: false, scipy: false, tkinter: false, "typing-extensions": false, addBinToPathHook: false, pytestCheckHook: false, "pytest-mock": false, "pytest-xdist": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 56, 3], ["pytestFlags", 64, 3], ["disabledTests", 68, 3], ["pythonImportsCheck", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.29.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ase",
           repo: "ase",
           tag: version,
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ["test_info_calculators"]))));
       const pythonImportsCheck = nix.thunk(() => ["ase"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Atomic Simulation Environment",
         homepage: "https://ase-lib.org/",
         changelog: "https://ase-lib.org/releasenotes.html",
@@ -71,7 +69,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

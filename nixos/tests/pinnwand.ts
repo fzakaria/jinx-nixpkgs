@@ -2,20 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pinnwand.nix", [[["maintainers", 12, 5]], [["allowedTCPPorts", 19, 29]], [["firewall", 19, 20]], [["enable", 24, 11], ["port", 25, 11]], [["pinnwand", 23, 18]], [["networking", 19, 9], ["services", 23, 9]], [["libraries", 37, 15], ["flakeIgnore", 41, 15]], [["systemPackages", 32, 21]], [["environment", 32, 9]], [["server", 16, 5], ["client", 29, 5]], [["name", 10, 3], ["meta", 11, 3], ["containers", 15, 3], ["testScript", 66, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pinnwand.nix", [["maintainers", 12, 5]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/pinnwand.nix", [["allowedTCPPorts", 19, 29]]);
-const pos$3 = nix.positions(here + "/pinnwand.nix", [["firewall", 19, 20]]);
-const pos$4 = nix.positions(here + "/pinnwand.nix", [["enable", 24, 11], ["port", 25, 11]]);
-const pos$5 = nix.positions(here + "/pinnwand.nix", [["pinnwand", 23, 18]]);
-const pos$6 = nix.positions(here + "/pinnwand.nix", [["networking", 19, 9], ["services", 23, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/pinnwand.nix", [["libraries", 37, 15], ["flakeIgnore", 41, 15]]);
-const pos$8 = nix.positions(here + "/pinnwand.nix", [["systemPackages", 32, 21]]);
-const pos$9 = nix.positions(here + "/pinnwand.nix", [["environment", 32, 9]]);
-const pos$10 = nix.positions(here + "/pinnwand.nix", [["server", 16, 5], ["client", 29, 5]]);
-const pos$11 = nix.positions(here + "/pinnwand.nix", [["name", 10, 3], ["meta", 11, 3], ["containers", 15, 3], ["testScript", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,29 +13,29 @@ export default nix.lambda((args) => (() => {
   const port = 8000n;
   const baseUrl = nix.thunk(() => nix.str`http://server:${nix.builtins.toString(port)}`);
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "pinnwand",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "hexa"))]),
       };
     })()),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [port]) })),
+            [nix.POS]: $pos[2],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], allowedTCPPorts: nix.thunk(() => [port]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            pinnwand: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, port: port })),
+            [nix.POS]: $pos[4],
+            pinnwand: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, port: port })),
           })),
         };
       })(), formals$2),
@@ -53,13 +43,13 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "steck")),
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "setup-steck.py", nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   libraries: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "python3", "pkgs")), null);
                     return [

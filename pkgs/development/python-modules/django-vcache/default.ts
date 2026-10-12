@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["pname", 26, 26], ["version", 26, 32], ["src", 26, 40], ["hash", 27, 5]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["cargoDeps", 25, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeBuildInputs", 38, 3], ["pythonImportsCheck", 43, 3], ["doCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, django: false, fetchFromGitLab: false, hatchling: false, ormsgpack: false, pythonOlder: false, pyzstd: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 26, 26], ["version", 26, 32], ["src", 26, 40], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["cargoDeps", 25, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeBuildInputs", 38, 3], ["pythonImportsCheck", 43, 3], ["doCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const pyzstd = nix.arg($, "pyzstd");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "django-vcache",
       version: "3.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "glitchtip",
           repo: "django-vcache",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-9KsIijeWC97IAD+xlE78UvSSIUp5DbpOdaDRcw8ZxWQ=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["django_vcache"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Specialized, lightweight Django cache backend for Valkey",
         homepage: "https://gitlab.com/glitchtip/django-vcache/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/glitchtip/django-vcache/-/blob/main/CHANGELOG.md#${nix.app(nix.sel(lib, "replaceString"), ".", "", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["teams", 48, 5], ["platforms", 49, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["depsBuildBuild", 30, 3], ["nativeBuildInputs", 32, 3], ["doCheck", 38, 3], ["configureFlags", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, fetchpatch: false, autoreconfHook: false, buildPackages: false, optimize: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["teams", 48, 5], ["platforms", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["depsBuildBuild", 30, 3], ["nativeBuildInputs", 32, 3], ["doCheck", 38, 3], ["configureFlags", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const optimize = nix.argOr($, "optimize", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gf2x",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.inria.fr",
           owner: "gf2x",
           repo: "gf2x",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gf2x-1.3.0-configure-clang16.patch",
             url: "https://gitlab.inria.fr/gf2x/gf2x/-/commit/a2f0fd388c12ca0b9f4525c6cfbc515418dcbaf8.diff",
             hash: "sha256-Aj2KzWZMR24S04IbPOBPwacCU4rEiB+FFWxtRuF50LA=",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(optimize)), nix.thunk(() => ["--disable-hardware-specific-code"]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Routines for fast arithmetic in GF(2)[x]",
         homepage: "https://gitlab.inria.fr/gf2x/gf2x/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

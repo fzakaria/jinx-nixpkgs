@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["hash", 15, 5]], [["updateScript", 43, 5]], [["changelog", 47, 5], ["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["configureFlags", 22, 3], ["postConfigure", 27, 3], ["enableParallelBuilding", 32, 3], ["postInstall", 34, 3], ["doInstallCheck", 39, 3], ["nativeInstallCheckInputs", 40, 3], ["passthru", 42, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, "net-snmp": false, "nix-update-script": false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 47, 5], ["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["configureFlags", 22, 3], ["postConfigure", 27, 3], ["enableParallelBuilding", 32, 3], ["postInstall", 34, 3], ["doInstallCheck", 39, 3], ["nativeInstallCheckInputs", 40, 3], ["passthru", 42, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "check_interfaces";
       const version = "1.4.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/NETWAYS/check_interfaces/releases/download/v${version}/check_interfaces-${version}.tar.gz`),
           hash: "sha256-sQ2lee2gxyrl455tumMJ4EbKc8mYEDXl18Wik6daf5Q=",
         }))));
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/NETWAYS/check_interfaces/releases/tag/v${version}`),
         description: "Icinga check plugin for network hardware interfaces",
         homepage: "https://github.com/NETWAYS/check_interfaces/",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "check_interfaces",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

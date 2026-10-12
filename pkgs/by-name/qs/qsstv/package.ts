@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["platforms", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["version", 18, 3], ["pname", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["postInstall", 44, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openjpeg: false, "pkg-config": false, libsForQt5: false, fftw: false, libpulseaudio: false, "alsa-lib": false, hamlib: false, libv4l: false, fftwFloat: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["platforms", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 18, 3], ["pname", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["postInstall", 44, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const fftwFloat = nix.arg($, "fftwFloat");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "9.5.8",
       pname: "qsstv",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.qsl.net/o/on4qz/qsstv/downloads/qsstv_${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0s3sivc0xan6amibdiwfnknrl3248wzgy98w6gyxikl0qsjpygy0",
         })))),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "# Install desktop icon\nmkdir -p $out/share/icons/hicolor/32x32/apps\nmagick icons/qsstv.png -resize 32x32 $out/share/icons/hicolor/32x32/apps/qsstv.png\ninstall -D qsstv.desktop $out/share/applications/qsstv.desktop\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Qt-based slow-scan TV and fax",
         mainProgram: "qsstv",
         homepage: "https://www.qsl.net/on4qz/",

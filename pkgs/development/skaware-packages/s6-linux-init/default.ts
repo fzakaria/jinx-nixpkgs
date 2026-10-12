@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 16, 8], ["platforms", 17, 8]], [["pname", 12, 3], ["version", 13, 3], ["sha256", 14, 3], ["meta", 16, 3], ["outputs", 19, 3], ["buildInputs", 25, 3], ["configureFlags", 31, 3], ["postConfigure", 42, 3], ["postInstall", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, skawarePackages: false, skalibs: false, execline: false, s6: false, targetPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 16, 8], ["platforms", 17, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["sha256", 14, 3], ["meta", 16, 3], ["outputs", 19, 3], ["buildInputs", 25, 3], ["configureFlags", 31, 3], ["postConfigure", 42, 3], ["postInstall", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const s6 = nix.arg($, "s6");
   const targetPackages = nix.arg($, "targetPackages");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "s6-linux-init",
       version: "1.2.0.2",
       sha256: "sha256-b60BTaFiwMgZJBl8V9FuGnXBM7NKIOQjQxobdB6Qex0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Set of minimalistic tools used to create a s6-based init system, including a /sbin/init binary, on a Linux kernel",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),

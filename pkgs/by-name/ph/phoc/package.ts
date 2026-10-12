@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5], ["forceFetchGit", 40, 5]], [["domain", 48, 5], ["group", 49, 5], ["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5], ["forceFetchGit", 55, 5]], [["name", 95, 9], ["src", 96, 30], ["preferLocalBuild", 97, 9], ["allowSubstitutes", 98, 9], ["installPhase", 99, 9]], [["patches", 93, 5]], [["package", 107, 7]], [["gvdb", 109, 86]], [["phosh", 105, 11], ["version", 106, 11], ["dependency-versions", 109, 11]], [["tests", 105, 5], ["updateScript", 110, 5]], [["description", 114, 5], ["mainProgram", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["platforms", 122, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 68, 3], ["postPatch", 84, 3], ["mesonFlags", 88, 3], ["wlroots", 92, 3], ["passthru", 104, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, fetchFromGitLab: false, callPackage: false, meson: false, ninja: false, "pkg-config": false, python3: false, "wayland-scanner": false, wrapGAppsHook3: false, libinput: false, "gobject-introspection": false, mutter: false, "gnome-desktop": false, glib: false, gtk3: false, "json-glib": false, wayland: false, libdrm: false, libxkbcommon: false, wlroots_0_19: false, "libxcb-wm": false, "nix-update-script": false, nixosTests: false, testers: false, gmobile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5], ["forceFetchGit", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["domain", 48, 5], ["group", 49, 5], ["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5], ["forceFetchGit", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 95, 9], ["src", 96, 30], ["preferLocalBuild", 97, 9], ["allowSubstitutes", 98, 9], ["installPhase", 99, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["patches", 93, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 107, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["gvdb", 109, 86]]);
-const pos$7 = nix.positions(here + "/package.nix", [["phosh", 105, 11], ["version", 106, 11], ["dependency-versions", 109, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 105, 5], ["updateScript", 110, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 114, 5], ["mainProgram", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["platforms", 122, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 68, 3], ["postPatch", 84, 3], ["mesonFlags", 88, 3], ["wlroots", 92, 3], ["passthru", 104, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const gmobile = nix.arg($, "gmobile");
   const gvdb = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       domain: "gitlab.gnome.org",
       owner: "GNOME",
       repo: "gvdb",
@@ -53,11 +44,11 @@ export default nix.lambda((args) => (() => {
       forceFetchGit: true,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "phoc",
       version: "0.54.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "Phosh",
@@ -93,10 +84,10 @@ export default nix.lambda((args) => (() => {
 `),
       mesonFlags: nix.thunk(() => ["-Dembed-wlroots=disabled"]),
       wlroots: nix.thunk(() => nix.app(nix.sel(wlroots_0_19, "overrideAttrs"), (old) => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
             nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 name: "0001-Revert-layer-shell-error-on-0-dimension-without-anch.patch",
                 src: nix.thunk(() => nix.attr(finalAttrs, "src")),
                 preferLocalBuild: true,
@@ -106,20 +97,20 @@ export default nix.lambda((args) => (() => {
           ])),
         }))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           phosh: nix.thunk(() => nix.sel(nixosTests, "phosh")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
-          "dependency-versions": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-dependency-versions.nix"), nix.thunk(() => ({ [nix.POS]: pos$6, gvdb: gvdb })))),
+          "dependency-versions": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-dependency-versions.nix"), nix.thunk(() => ({ [nix.POS]: $pos[5], gvdb: gvdb })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Wayland compositor for mobile phones like the Librem 5",
         mainProgram: "phoc",
         homepage: "https://gitlab.gnome.org/World/Phosh/phoc",

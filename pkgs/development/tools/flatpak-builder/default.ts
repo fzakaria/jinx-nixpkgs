@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["extraLoaders", 50, 5]], [["url", 66, 5], ["hash", 67, 5]], [["brz", 76, 7], ["cp", 77, 7], ["patch", 78, 7], ["tar", 79, 7], ["bsdunzip", 80, 7], ["rpm2cpio", 81, 7], ["cpio", 82, 7], ["git", 83, 7], ["rofilesfuse", 84, 7], ["strip", 85, 7], ["eustrip", 86, 7], ["euelfcompress", 87, 7]], [["glibcLocales", 91, 15]], [["installedTests", 158, 7]], [["installedTestsDependencies", 148, 5], ["tests", 157, 5]], [["description", 163, 5], ["mainProgram", 164, 5], ["homepage", 165, 5], ["license", 166, 5], ["maintainers", 167, 5], ["platforms", 168, 5]], [["pname", 54, 3], ["version", 55, 3], ["outputs", 57, 3], ["src", 65, 3], ["patches", 70, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 109, 3], ["mesonFlags", 125, 3], ["dontPatchShebangs", 131, 3], ["enableParallelBuilding", 133, 3], ["postFixup", 136, 3], ["passthru", 147, 3], ["meta", 162, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, replaceVars: false, nixosTests: false, docbook_xml_dtd_45: false, docbook_xsl: false, gettext: false, libxml2: false, libxslt: false, "pkg-config": false, xmlto: false, meson: false, ninja: false, gnome: false, librsvg: false, makeWrapper: false, acl: false, appstream: false, breezy: false, binutils: false, bzip2: false, coreutils: false, cpio: false, curl: false, debugedit: false, elfutils: false, flatpak: false, gitMinimal: false, glib: false, glibcLocales: false, gnumake: false, gnupg: false, gnutar: false, "json-glib": false, libarchive: false, libcap: false, libyaml: false, ostree: false, patch: false, rpm: false, attr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["extraLoaders", 50, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 66, 5], ["hash", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["brz", 76, 7], ["cp", 77, 7], ["patch", 78, 7], ["tar", 79, 7], ["bsdunzip", 80, 7], ["rpm2cpio", 81, 7], ["cpio", 82, 7], ["git", 83, 7], ["rofilesfuse", 84, 7], ["strip", 85, 7], ["eustrip", 86, 7], ["euelfcompress", 87, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["glibcLocales", 91, 15]]);
-const pos$5 = nix.positions(here + "/default.nix", [["installedTests", 158, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["installedTestsDependencies", 148, 5], ["tests", 157, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 163, 5], ["mainProgram", 164, 5], ["homepage", 165, 5], ["license", 166, 5], ["maintainers", 167, 5], ["platforms", 168, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 54, 3], ["version", 55, 3], ["outputs", 57, 3], ["src", 65, 3], ["patches", 70, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 109, 3], ["mesonFlags", 125, 3], ["dontPatchShebangs", 131, 3], ["enableParallelBuilding", 133, 3], ["postFixup", 136, 3], ["passthru", 147, 3], ["meta", 162, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,21 +49,21 @@ export default nix.lambda((args) => (() => {
   const patch = nix.arg($, "patch");
   const rpm = nix.arg($, "rpm");
   const attr = nix.arg($, "attr");
-  const gdkPixbufLoadersCache = nix.thunk(() => nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({ [nix.POS]: pos$1, extraLoaders: nix.thunk(() => [librsvg]) }))));
+  const gdkPixbufLoadersCache = nix.thunk(() => nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({ [nix.POS]: $pos[0], extraLoaders: nix.thunk(() => [librsvg]) }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "flatpak-builder",
       version: "1.4.10",
       outputs: nix.thunk(() => ["out", "doc", "man", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/flatpak/flatpak-builder/releases/download/${nix.sel(finalAttrs, "version")}/flatpak-builder-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-sXIQeMBpfIyh19uWUjK1CdGqh/aLTa43jrUAvd3bnME=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./respect-xml-catalog-files-var.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             brz: nix.thunk(() => nix.str`${breezy}/bin/brz`),
             cp: nix.thunk(() => nix.str`${coreutils}/bin/cp`),
             patch: nix.thunk(() => nix.str`${patch}/bin/patch`),
@@ -84,7 +77,7 @@ export default nix.lambda((args) => (() => {
             eustrip: nix.thunk(() => nix.str`${elfutils}/bin/eu-strip`),
             euelfcompress: nix.thunk(() => nix.str`${elfutils}/bin/eu-elfcompress`),
           })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-test-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$4, glibcLocales: glibcLocales })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-test-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[3], glibcLocales: glibcLocales })))),
         nix.path(here, "./fix-test-prefix.patch"),
       ]),
       nativeBuildInputs: nix.thunk(() => [
@@ -129,15 +122,15 @@ wrapProgram $out/bin/flatpak-builder --set GDK_PIXBUF_MODULE_FILE ${gdkPixbufLoa
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         installedTestsDependencies: nix.thunk(() => [gnupg, ostree, gnumake, attr, libxml2, appstream]),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "flatpak-builder")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Tool to build flatpaks from source",
         mainProgram: "flatpak-builder",
         homepage: "https://github.com/flatpak/flatpak-builder",

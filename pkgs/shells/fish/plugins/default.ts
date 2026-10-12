@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["ai", 11, 5], ["async-prompt", 13, 5], ["autopair", 15, 5], ["aws", 17, 5], ["bang-bang", 19, 5], ["bobthefish", 21, 5], ["bobthefisher", 23, 5], ["buildFishPlugin", 25, 5], ["colored-man-pages", 27, 5], ["clownfish", 29, 5], ["bass", 31, 5], ["done", 33, 5], ["exercism-cli-fish-wrapper", 35, 5], ["fifc", 37, 5], ["fishbang", 39, 5], ["fish-bd", 41, 5], ["fishtape", 45, 5], ["fishtape_3", 46, 5], ["fish-you-should-use", 48, 5], ["foreign-env", 50, 5], ["forgit", 52, 5], ["fzf", 54, 5], ["fzf-fish", 56, 5], ["github-copilot-cli-fish", 58, 5], ["git-abbr", 60, 5], ["grc", 62, 5], ["gruvbox", 64, 5], ["humantime-fish", 66, 5], ["hydro", 68, 5], ["macos", 70, 5], ["nvm", 72, 5], ["pisces", 74, 5], ["plugin-git", 76, 5], ["plugin-sudope", 78, 5], ["puffer", 80, 5], ["pure", 82, 5], ["sdkman-for-fish", 84, 5], ["spark", 86, 5], ["sponge", 88, 5], ["tide", 90, 5], ["transient-fish", 92, 5], ["wakatime-fish", 94, 5], ["z", 96, 5]], [["autopair-fish", 99, 5]]]);
 const formals$1 = { args: { lib: false, newScope: false, config: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["ai", 11, 5], ["async-prompt", 13, 5], ["autopair", 15, 5], ["aws", 17, 5], ["bang-bang", 19, 5], ["bobthefish", 21, 5], ["bobthefisher", 23, 5], ["buildFishPlugin", 25, 5], ["colored-man-pages", 27, 5], ["clownfish", 29, 5], ["bass", 31, 5], ["done", 33, 5], ["exercism-cli-fish-wrapper", 35, 5], ["fifc", 37, 5], ["fishbang", 39, 5], ["fish-bd", 41, 5], ["fishtape", 45, 5], ["fishtape_3", 46, 5], ["fish-you-should-use", 48, 5], ["foreign-env", 50, 5], ["forgit", 52, 5], ["fzf", 54, 5], ["fzf-fish", 56, 5], ["github-copilot-cli-fish", 58, 5], ["git-abbr", 60, 5], ["grc", 62, 5], ["gruvbox", 64, 5], ["humantime-fish", 66, 5], ["hydro", 68, 5], ["macos", 70, 5], ["nvm", 72, 5], ["pisces", 74, 5], ["plugin-git", 76, 5], ["plugin-sudope", 78, 5], ["puffer", 80, 5], ["pure", 82, 5], ["sdkman-for-fish", 84, 5], ["spark", 86, 5], ["sponge", 88, 5], ["tide", 90, 5], ["transient-fish", 92, 5], ["wakatime-fish", 94, 5], ["z", 96, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["autopair-fish", 99, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const w = nix.withScope(self, null);
       return nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         ai: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./ai.nix"), nix.thunk(() => ({})))),
         "async-prompt": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./async-prompt.nix"), nix.thunk(() => ({})))),
         autopair: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./autopair.nix"), nix.thunk(() => ({})))),
@@ -59,7 +58,7 @@ export default nix.lambda((args) => (() => {
         "wakatime-fish": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./wakatime-fish.nix"), nix.thunk(() => ({})))),
         z: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./z.nix"), nix.thunk(() => ({})))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "autopair-fish": nix.thunk(() => nix.sel(self, "autopair")),
         }))));
     })());

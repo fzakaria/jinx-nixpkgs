@@ -2,28 +2,21 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/xen-domU.nix", [[["device", 6, 20]], [["grub", 6, 15]], [["kernelModules", 8, 15]], [["loader", 6, 8], ["initrd", 8, 8]], [["tty", 19, 20]], [["enable", 22, 22]], [["syslogd", 19, 12], ["timesyncd", 22, 12]], [["boot", 6, 3], ["services", 19, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/xen-domU.nix", [["device", 6, 20]]);
-const pos$2 = nix.positions(here + "/xen-domU.nix", [["grub", 6, 15]]);
-const pos$3 = nix.positions(here + "/xen-domU.nix", [["kernelModules", 8, 15]]);
-const pos$4 = nix.positions(here + "/xen-domU.nix", [["loader", 6, 8], ["initrd", 8, 8]]);
-const pos$5 = nix.positions(here + "/xen-domU.nix", [["tty", 19, 20]]);
-const pos$6 = nix.positions(here + "/xen-domU.nix", [["enable", 22, 22]]);
-const pos$7 = nix.positions(here + "/xen-domU.nix", [["syslogd", 19, 12], ["timesyncd", 22, 12]]);
-const pos$8 = nix.positions(here + "/xen-domU.nix", [["boot", 6, 3], ["services", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       loader: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        grub: nix.thunk(() => ({ [nix.POS]: pos$1, device: "nodev" })),
+        [nix.POS]: $pos[1],
+        grub: nix.thunk(() => ({ [nix.POS]: $pos[0], device: "nodev" })),
       })),
       initrd: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         kernelModules: nix.thunk(() => [
           "xen-blkfront",
           "xen-tpmfront",
@@ -36,9 +29,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$7,
-      syslogd: nix.thunk(() => ({ [nix.POS]: pos$5, tty: "hvc0" })),
-      timesyncd: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
+      [nix.POS]: $pos[6],
+      syslogd: nix.thunk(() => ({ [nix.POS]: $pos[4], tty: "hvc0" })),
+      timesyncd: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: false })),
     })),
   };
 })(), formals$1);

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["simple", 45, 7]], [["tests", 44, 5], ["updateScript", 50, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["mainProgram", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 30, 3], ["passthru", 43, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, pandoc: false, runCommand: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["simple", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 44, 5], ["updateScript", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["mainProgram", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 30, 3], ["passthru", 43, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "yq-go",
       version: "4.54.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mikefarah",
           repo: "yq",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,9 +40,9 @@ export MAN_HEADER="yq (https://github.com/mikefarah/yq/) version ${nix.sel(final
 installManPage yq.1
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           simple: nix.thunk(() => nix.app(runCommand, "yq-go-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`echo "test: 1" | ${nix.sel(finalAttrs, "finalPackage")}/bin/yq eval -o=json > $out
 [ "$(cat $out | tr -d $'\\n ')" = '{"test":1}' ]
 `))),
@@ -54,7 +50,7 @@ installManPage yq.1
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Portable command-line YAML processor",
         homepage: "https://mikefarah.gitbook.io/yq/",
         changelog: nix.thunk(() => nix.str`https://github.com/mikefarah/yq/raw/${nix.sel(finalAttrs, "src", "tag")}/release_notes.txt`),

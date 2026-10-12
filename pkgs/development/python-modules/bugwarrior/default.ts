@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]], [["bts", 74, 5], ["bugzilla", 75, 5], ["gmail", 76, 5], ["jira", 80, 5], ["keyring", 81, 5], ["trac", 82, 5]], [["homepage", 125, 5], ["description", 126, 5], ["changelog", 127, 5], ["license", 128, 5], ["platforms", 129, 5], ["mainProgram", 130, 5], ["maintainers", 131, 5]], [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["src", 52, 3], ["build-system", 59, 3], ["dependencies", 61, 3], ["optional-dependencies", 73, 3], ["nativeCheckInputs", 85, 3], ["disabledTestPaths", 97, 3], ["disabledTests", 103, 3], ["pythonImportsCheck", 122, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, click: false, "dogpile-cache": false, jinja2: false, lockfile: false, pydantic: false, "python-dateutil": false, requests: false, taskw: false, debianbts: false, "python-bugzilla": false, "google-api-python-client": false, "google-auth-oauthlib": false, jira: false, keyring: false, offtrac: false, docutils: false, pytestCheckHook: false, responses: false, sphinx: false, "sphinx-click": false, "sphinx-inline-tabs": false, taskwarrior3: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["bts", 74, 5], ["bugzilla", 75, 5], ["gmail", 76, 5], ["jira", 80, 5], ["keyring", 81, 5], ["trac", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 125, 5], ["description", 126, 5], ["changelog", 127, 5], ["license", 128, 5], ["platforms", 129, 5], ["mainProgram", 130, 5], ["maintainers", 131, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["src", 52, 3], ["build-system", 59, 3], ["dependencies", 61, 3], ["optional-dependencies", 73, 3], ["nativeCheckInputs", 85, 3], ["disabledTestPaths", 97, 3], ["disabledTests", 103, 3], ["pythonImportsCheck", 122, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bugwarrior",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GothenburgBitFactory",
           repo: "bugwarrior",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
         taskw,
       ], nix.sel(pydantic, "optional-dependencies", "email"))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         bts: nix.thunk(() => [debianbts]),
         bugzilla: nix.thunk(() => [python_bugzilla]),
         gmail: nix.thunk(() => [google_api_python_client, google_auth_oauthlib]),
@@ -93,7 +90,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_docs_build_without_warning", "test_manpage_build_without_warning"])))),
       pythonImportsCheck: nix.thunk(() => ["bugwarrior"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/GothenburgBitFactory/bugwarrior",
         description: "Sync github, bitbucket, bugzilla, and trac issues with taskwarrior",
         changelog: nix.thunk(() => nix.str`https://github.com/GothenburgBitFactory/bugwarrior/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

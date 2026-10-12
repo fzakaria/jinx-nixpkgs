@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["url", 28, 7], ["hash", 29, 7]], [["url", 33, 7], ["hash", 34, 7]], [["url", 38, 7], ["hash", 39, 7]], [["NIX_CFLAGS_COMPILE", 60, 5]], [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["badPlatforms", 82, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["outputs", 43, 3], ["nativeBuildInputs", 48, 3], ["propagatedBuildInputs", 54, 3], ["env", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchurl: false, "abseil-cpp": false, meson: false, ninja: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 60, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["badPlatforms", 82, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["outputs", 43, 3], ["nativeBuildInputs", 48, 3], ["propagatedBuildInputs", 54, 3], ["env", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "webrtc-audio-processing",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "pulseaudio",
           repo: "webrtc-audio-processing",
@@ -35,17 +29,17 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.alpinelinux.org/aports/plain/community/webrtc-audio-processing-1/0001-rtc_base-Include-stdint.h-to-fix-build-failures.patch?id=625e19c19972e69e034c0870a31b375833d1ab5d",
             hash: "sha256-9nI22SJoU0H3CzsPSAObtCFTadtvkzdnqIh6mxmUuds=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.alpinelinux.org/alpine/aports/-/raw/0630fa25465530c0e7358f00016bdc812894f67f/community/webrtc-audio-processing-1/add-loongarch-support.patch",
             hash: "sha256-Cn3KwKSSV/QJm1JW0pkEWB6OmeA0fRlVkiMU8OzXNzY=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/webrtc-audio-processing-1/-/raw/9de1306d3a6a78f435666453b85ba8ede0dd91ea/0001-Fix-compilation-with-GCC-15.patch",
             hash: "sha256-Ws7FRBX5+nIKWJv6cROqO5eSm5AJGyZVWrAjQ4R3n0I=",
           })))),
@@ -53,9 +47,9 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       propagatedBuildInputs: nix.thunk(() => [abseil_cpp]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_32")), nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_COMPILE: "-msse2" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_32")), nix.thunk(() => ({ [nix.POS]: $pos[4], NIX_CFLAGS_COMPILE: "-msse2" })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://www.freedesktop.org/software/pulseaudio/webrtc-audio-processing",
         description: "More Linux packaging friendly copy of the AudioProcessing module from the WebRTC project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

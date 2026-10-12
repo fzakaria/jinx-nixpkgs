@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-darwin", 29, 7]], [["url", 71, 9], ["hash", 72, 9]], [["url", 75, 9], ["hash", 76, 9]], [["url", 79, 9], ["hash", 80, 9]], [["aarch64-darwin", 70, 7], ["aarch64-linux", 74, 7], ["x86_64-linux", 78, 7]], [["sources", 69, 5], ["updateScript", 83, 5]], [["homepage", 103, 5], ["changelog", 104, 5], ["description", 105, 5], ["sourceProvenance", 106, 5], ["longDescription", 107, 5], ["license", 110, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5], ["platforms", 122, 5], ["broken", 125, 5]], [["version", 20, 3], ["pname", 21, 3], ["src", 23, 3], ["sourceRoot", 27, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["dontConfigure", 42, 3], ["dontBuild", 43, 3], ["installPhase", 45, 3], ["postPhases", 54, 3], ["postPatchelf", 55, 3], ["passthru", 68, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, autoPatchelfHook: false, unzip: false, installShellFiles: false, makeWrapper: false, openssl: false, writeShellScript: false, curl: false, jq: false, "common-updater-scripts": false, cctools: false, darwin: false, rcodesign: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-darwin", 29, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 71, 9], ["hash", 72, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 75, 9], ["hash", 76, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 79, 9], ["hash", 80, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["aarch64-darwin", 70, 7], ["aarch64-linux", 74, 7], ["x86_64-linux", 78, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["sources", 69, 5], ["updateScript", 83, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 103, 5], ["changelog", 104, 5], ["description", 105, 5], ["sourceProvenance", 106, 5], ["longDescription", 107, 5], ["license", 110, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5], ["platforms", 122, 5], ["broken", 125, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["version", 20, 3], ["pname", 21, 3], ["src", 23, 3], ["sourceRoot", 27, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["dontConfigure", 42, 3], ["dontBuild", 43, 3], ["installPhase", 45, 3], ["postPhases", 54, 3], ["postPatchelf", 55, 3], ["passthru", 68, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const rcodesign = nix.arg($, "rcodesign");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       version: "1.4.2",
       pname: "bun",
       src: nix.thunk(() => nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), "passthru", "sources", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
-      sourceRoot: nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "aarch64-darwin": "bun-darwin-aarch64" }, () => null, nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
+      sourceRoot: nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], "aarch64-darwin": "bun-darwin-aarch64" }, () => null, nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => nix.concat([unzip, installShellFiles, makeWrapper], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])))),
       buildInputs: nix.thunk(() => [openssl]),
@@ -47,21 +40,21 @@ export default nix.lambda((args) => (() => {
 '${nix.app(nix.sel(lib, "getExe"), rcodesign)}' sign --code-signature-flags linker-signed $out/bin/bun
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform")))), "installShellCompletion --cmd bun \\\n  --bash <(SHELL=\"bash\" $out/bin/bun completions) \\\n  --zsh <(SHELL=\"zsh\" $out/bin/bun completions) \\\n  --fish <(SHELL=\"fish\" $out/bin/bun completions)\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         sources: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://github.com/oven-sh/bun/releases/download/bun-v${nix.sel(finalAttrs, "version")}/bun-darwin-aarch64.zip`),
               hash: "sha256-kJh6OhbX21VtiGrD1VHnttPt8KHPQ6yu1iLoZ2vh0S8=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://github.com/oven-sh/bun/releases/download/bun-v${nix.sel(finalAttrs, "version")}/bun-linux-aarch64.zip`),
               hash: "sha256-VDKLvC2cjgyfiSxUTWbFeoO4QTnjSQnl7oF1jxrI/ac=",
             })))),
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: nix.thunk(() => nix.str`https://github.com/oven-sh/bun/releases/download/bun-v${nix.sel(finalAttrs, "version")}/bun-linux-x64-baseline.zip`),
               hash: "sha256-xngEDxT+BEDrg503y9DOTAUaMtpygGrJfeamqra/co8=",
             })))),
@@ -79,7 +72,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://bun.sh",
         changelog: nix.thunk(() => nix.str`https://bun.sh/blog/bun-v${nix.sel(finalAttrs, "version")}`),
         description: "Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one",

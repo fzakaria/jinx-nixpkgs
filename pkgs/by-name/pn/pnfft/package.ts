@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["precision", 20, 38]], [["precision", 21, 35]], [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 34, 3], ["nativeBuildInputs", 39, 3], ["preConfigure", 41, 3], ["configureFlags", 45, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 53, 3], ["enableParallelBuilding", 55, 3], ["doCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, fetchFromGitHub: false, fftwMpi: false, gsl: false, lib: false, llvmPackages: false, pfft: false, precision: true, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["precision", 20, 38]]);
-const pos$2 = nix.positions(here + "/package.nix", [["precision", 21, 35]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 34, 3], ["nativeBuildInputs", 39, 3], ["preConfigure", 41, 3], ["configureFlags", 45, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 53, 3], ["enableParallelBuilding", 55, 3], ["doCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const precision = nix.argOr($, "precision", () => "double");
   const stdenv = nix.arg($, "stdenv");
   nix.assert_(nix.app(nix.sel(lib, "elem"), precision, nix.thunk(() => ["single", "double", "long-double"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pn/pnfft/package.nix:13:1");
-  const fftw$ = nix.thunk(() => nix.app(nix.sel(fftwMpi, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, precision: precision }))));
-  const pfft$ = nix.thunk(() => nix.app(nix.sel(pfft, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, precision: precision }))));
+  const fftw$ = nix.thunk(() => nix.app(nix.sel(fftwMpi, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], precision: precision }))));
+  const pfft$ = nix.thunk(() => nix.app(nix.sel(pfft, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], precision: precision }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`pnfft-${precision}`),
       version: "1.0.7-alpha-unstable-2018-06-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "mpip",
           repo: "pnfft",
           rev: "a0bb24b8fa8af59c9e599b1cc3914586636d9125",
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Parallel nonequispaced fast Fourier transforms",
         homepage: "https://www-user.tu-chemnitz.de/~potts/workgroup/pippig/software.php.en#pnfft",
         changelog: "https://github.com/mpip/pnfft/blob/master/ChangeLog",

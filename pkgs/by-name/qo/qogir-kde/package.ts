@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["updateScript", 64, 12]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["installPhase", 51, 3], ["passthru", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 64, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["installPhase", 51, 3], ["passthru", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qogir-kde",
       version: "0-unstable-2024-12-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vinceliuice",
           repo: "qogir-kde",
           rev: "31e7bbf94e905ef40d262d2bc6063156df252470",
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs install.sh\n\nsubstituteInPlace install.sh \\\n  --replace '$HOME/.local' $out \\\n  --replace '$HOME/.config' $out/share\n\nsubstituteInPlace sddm/*/Main.qml \\\n  --replace /usr $out\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/plasma/plasmoids\n\nname= HOME=\"$TMPDIR\" ./install.sh --dest $out/share/themes\n\nmkdir -p $out/share/sddm/themes\ncp -a sddm/Qogir $out/share/sddm/themes/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Flat Design theme for KDE Plasma desktop",
         homepage: "https://github.com/vinceliuice/Qogir-kde",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

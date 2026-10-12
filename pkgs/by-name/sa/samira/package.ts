@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["name", 29, 5], ["src", 30, 26], ["hash", 31, 5]], [["updateScript", 63, 12]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["platforms", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["npmDeps", 28, 3], ["cargoRoot", 34, 3], ["buildAndTestSubdir", 35, 3], ["cargoHash", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 47, 3], ["preFixup", 54, 3], ["passthru", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, "cargo-tauri": false, fetchFromGitHub: false, fetchNpmDeps: false, "glib-networking": false, "libayatana-appindicator": false, "nix-update-script": false, nodejs: false, npmHooks: false, openssl: false, "pkg-config": false, rustPlatform: false, webkitgtk_4_1: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 5], ["src", 30, 26], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["platforms", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["npmDeps", 28, 3], ["cargoRoot", 34, 3], ["buildAndTestSubdir", 35, 3], ["cargoHash", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 47, 3], ["preFixup", 54, 3], ["passthru", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "samira",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jsnli",
           repo: "Samira",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-SZg4N9fm4+p2vROCx7BLdphHeWlFkQrjQETObwPP8H0=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-l6lgJsrBtnxdWFJUhm2ftrRA8yBw47EY0QA4xNYhG6c=",
@@ -55,11 +51,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib_networking, libayatana_appindicator, openssl, webkitgtk_4_1]),
       preFixup: "mkdir -p $out/share/lib\ncp $src/assets/libsteam_api.so $out/share/lib\n\ngappsWrapperArgs+=(\n  --prefix LD_LIBRARY_PATH : \"$out/share/lib\"\n)\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Steam Achievement Manager for Linux",
         homepage: "https://github.com/jsnli/Samira",
         changelog: nix.thunk(() => nix.str`https://github.com/jsnli/Samira/releases/tag/v${nix.sel(finalAttrs, "version")}`),

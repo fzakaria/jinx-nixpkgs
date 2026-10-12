@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]], [["description", 48, 5], ["homepage", 49, 5], ["sourceProvenance", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["sourceRoot", 21, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["doCheck", 32, 3], ["pythonRelaxDeps", 34, 3], ["preFixup", 36, 3], ["pythonImportsCheck", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, jdk8: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, six: false, py4j: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["sourceProvenance", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["sourceRoot", 21, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["doCheck", 32, 3], ["pythonRelaxDeps", 34, 3], ["preFixup", 36, 3], ["pythonImportsCheck", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "11.3.40";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-rSuW/6fSro1pAxDj2tZ+EYvO0zf0yCWXNaS9Ls7xJfw=",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const preFixup = "substituteInPlace \"$out/bin/find-spark-home\" \\\n  --replace-fail find_spark_home.py .find_spark_home.py-wrapped\n";
       const pythonImportsCheck = nix.thunk(() => ["pyspark", "six", "py4j"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Client for connecting to remote Databricks clusters",
         homepage: "https://pypi.org/project/databricks-connect",
         sourceProvenance: nix.thunk(() => (() => {
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

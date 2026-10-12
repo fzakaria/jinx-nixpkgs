@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 17, 5]], [["updateScript", 37, 12]], [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["installPhase", 28, 3], ["preFixup", 32, 3], ["passthru", 37, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchzip: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 37, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["installPhase", 28, 3], ["preFixup", 32, 3], ["passthru", 37, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pdf-parser",
       version: "0.7.14",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://didierstevens.com/files/software/pdf-parser_V${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           hash: "sha256-oAmTzkBxwrXXSSimaN1Uo4wP+7ySrmyJNb9jD2uWglA=",
         })))),
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   --replace-fail '/usr/bin/python' '${nix.sel(python3Packages, "python")}/bin/python'
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-pdf-parser", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts curl pcre2\n\nset -eu -o pipefail\n\nversion=\"$(curl -s https://blog.didierstevens.com/programs/pdf-tools/ |\n  pcre2grep -O '$1.$2.$3' '\\bpdf-parser_V(\\d+)_(\\d+)_(\\d+)\\.zip\\b.*')\"\n\nupdate-source-version \"$UPDATE_NIX_ATTR_PATH\" \"$version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Parse a PDF document",
         longDescription: "This tool will parse a PDF document to identify the fundamental elements used in the analyzed file.\nIt will not render a PDF document.\n",
         homepage: "https://blog.didierstevens.com/programs/pdf-tools/",

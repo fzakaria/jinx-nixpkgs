@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mkLinphoneDerivation", 9, 5], ["linphoneSdkVersion", 11, 5], ["linphoneSdkHash", 12, 5]], [["otherSplices", 7, 3], ["extra", 8, 3], ["f", 14, 3]]]);
 const formals$1 = { args: { generateSplicesForMkScope: false, "makeScopeWithSplicing'": false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mkLinphoneDerivation", 9, 5], ["linphoneSdkVersion", 11, 5], ["linphoneSdkHash", 12, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["otherSplices", 7, 3], ["extra", 8, 3], ["f", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const makeScopeWithSplicing$ = nix.arg($, "makeScopeWithSplicing'");
   const lib = nix.arg($, "lib");
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "linphonePackages")),
       extra: (self) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         mkLinphoneDerivation: nix.thunk(() => nix.sel(self, "mk-linphone-derivation")),
         linphoneSdkVersion: "5.5.13",
         linphoneSdkHash: "sha256-RsSMLO7wZ7azWF7/KcERkd5et73w0kUZpwsqj9QxZgc=",

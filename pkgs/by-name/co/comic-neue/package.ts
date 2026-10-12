@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["homepage", 34, 5], ["description", 35, 5], ["longDescription", 36, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]], [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["longDescription", 36, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.51";
       const outputs = nix.thunk(() => ["out", "webfont", "doc"]);
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/crozynski/comicneue/releases/download/${version}/comicneue-master.zip`),
           hash: "sha256-Xkw+Yd36ffptKsS8RSEP9BPX6eQI7TZn2NgU49rdo80=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const installPhase = "runHook preInstall\n\ninstall -m644 -Dt $doc/share/doc/ {FONTLOG,OFL-FAQ,OFL}.txt Booklet-ComicNeue.pdf\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://comicneue.com/",
         description: "Casual type face: Make your lemonade stand look like a fortune 500 company",
         longDescription: "ComicNeue is inspired by Comic Sans but more regular. It was\ndesigned by Craig Rozynski. It is available in two variants:\nComic Neue and Comic Neue Angular. The former having round and\nthe latter angular terminals. Both variants come in Light,\nRegular, and Bold weights with Oblique variants.\n",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         outputs,

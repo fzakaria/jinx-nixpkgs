@@ -2,19 +2,12 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mk-pulumi-package.nix", [[["sourceRoot", 21, 9], ["subPackages", 23, 9], ["doCheck", 25, 9], ["ldflags", 27, 9]], [["pname", 56, 13], ["meta", 57, 13], ["src", 58, 13], ["version", 59, 13], ["pyproject", 61, 11], ["sourceRoot", 63, 11], ["propagatedBuildInputs", 65, 11], ["postPatch", 72, 11], ["checkPhase", 100, 11], ["pythonImportsCheck", 109, 11]], [["name", 135, 5], ["owner", 137, 7], ["repo", 138, 7], ["rev", 139, 7], ["hash", 140, 7], ["fetchSubmodules", 141, 7]], [["src", 147, 7], ["version", 148, 7], ["vendorHash", 149, 7], ["extraLdflags", 150, 7], ["env", 151, 7], ["cmd", 154, 5], ["pname", 155, 5]], [["meta", 182, 17], ["src", 182, 22], ["version", 182, 26], ["pname", 184, 9]], [["python", 180, 19]], [["sdks", 180, 14]], [["pname", 160, 5], ["env", 161, 13], ["src", 161, 17], ["nativeBuildInputs", 163, 5], ["cmd", 167, 5], ["postConfigure", 169, 5], ["passthru", 180, 5]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, python3Packages: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, src: false, version: false, vendorHash: false, cmd: false, extraLdflags: false, env: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mk-pulumi-package.nix", [["sourceRoot", 21, 9], ["subPackages", 23, 9], ["doCheck", 25, 9], ["ldflags", 27, 9]]);
 const formals$3 = { args: { meta: false, pname: false, src: false, version: false }, ellipsis: true };
 const formals$4 = { args: { buildPythonPackage: false, parver: false, pip: false, pulumi: false, semver: false, setuptools: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/mk-pulumi-package.nix", [["pname", 56, 13], ["meta", 57, 13], ["src", 58, 13], ["version", 59, 13], ["pyproject", 61, 11], ["sourceRoot", 63, 11], ["propagatedBuildInputs", 65, 11], ["postPatch", 72, 11], ["checkPhase", 100, 11], ["pythonImportsCheck", 109, 11]]);
 const formals$5 = { args: { owner: false, repo: false, rev: false, version: false, hash: false, vendorHash: false, cmdGen: false, cmdRes: false, extraLdflags: false, env: true, meta: false, fetchSubmodules: true, pythonArgs: true }, ellipsis: true };
-const pos$3 = nix.positions(here + "/mk-pulumi-package.nix", [["name", 135, 5], ["owner", 137, 7], ["repo", 138, 7], ["rev", 139, 7], ["hash", 140, 7], ["fetchSubmodules", 141, 7]]);
-const pos$4 = nix.positions(here + "/mk-pulumi-package.nix", [["src", 147, 7], ["version", 148, 7], ["vendorHash", 149, 7], ["extraLdflags", 150, 7], ["env", 151, 7], ["cmd", 154, 5], ["pname", 155, 5]]);
-const pos$5 = nix.positions(here + "/mk-pulumi-package.nix", [["meta", 182, 17], ["src", 182, 22], ["version", 182, 26], ["pname", 184, 9]]);
-const pos$6 = nix.positions(here + "/mk-pulumi-package.nix", [["python", 180, 19]]);
-const pos$7 = nix.positions(here + "/mk-pulumi-package.nix", [["sdks", 180, 14]]);
-const pos$8 = nix.positions(here + "/mk-pulumi-package.nix", [["pname", 160, 5], ["env", 161, 13], ["src", 161, 17], ["nativeBuildInputs", 163, 5], ["cmd", 167, 5], ["postConfigure", 169, 5], ["passthru", 180, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +26,7 @@ export default nix.lambda((args) => (() => {
     const extraLdflags = nix.arg($_1, "extraLdflags");
     const env = nix.arg($_1, "env");
     return nix.app(buildGoModule, nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/provider`),
         subPackages: nix.thunk(() => [nix.thunk(() => nix.str`cmd/${cmd}`)]),
         doCheck: false,
@@ -56,7 +49,7 @@ export default nix.lambda((args) => (() => {
         const semver = nix.arg($_2, "semver");
         const setuptools = nix.arg($_2, "setuptools");
         return nix.app(buildPythonPackage, nix.thunk(() => nix.update({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: pname,
             meta: meta,
             src: src,
@@ -118,7 +111,7 @@ runHook postCheck
     const fetchSubmodules = nix.argOr($_1, "fetchSubmodules", () => false);
     const pythonArgs = nix.argOr($_1, "pythonArgs", () => ({}));
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: nix.thunk(() => nix.str`source-${repo}-${rev}`),
         owner: owner,
         repo: repo,
@@ -127,7 +120,7 @@ runHook postCheck
         fetchSubmodules: fetchSubmodules,
       }))));
     const pulumi_gen = nix.thunk(() => nix.app(mkBasePackage, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         src: src,
         version: version,
         vendorHash: vendorHash,
@@ -137,7 +130,7 @@ runHook postCheck
         pname: cmdGen,
       }))));
     return nix.app(mkBasePackage, nix.thunk(() => nix.update({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: repo,
         env: env,
         src: src,
@@ -153,10 +146,10 @@ popd
 VERSION=v${version} go generate cmd/${cmdRes}/main.go
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           sdks: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            python: nix.thunk(() => nix.app(mkPythonPackage, nix.thunk(() => nix.update({ [nix.POS]: pos$5, meta: meta, src: src, version: version, pname: repo }, pythonArgs)))),
+            [nix.POS]: $pos[5],
+            python: nix.thunk(() => nix.app(mkPythonPackage, nix.thunk(() => nix.update({ [nix.POS]: $pos[4], meta: meta, src: src, version: version, pname: repo }, pythonArgs)))),
           })),
         })),
       }, nix.app(nix.sel(lib, "removeAttrs"), args_2, nix.thunk(() => ["pythonArgs"])))));

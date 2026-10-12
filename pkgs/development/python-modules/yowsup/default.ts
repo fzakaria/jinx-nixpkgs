@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["sha256", 30, 5]], [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 39, 5]], [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["disabled", 24, 3], ["src", 26, 3], ["pythonRelaxDeps", 33, 3], ["pythonRemoveDeps", 34, 3], ["env", 36, 3], ["build-system", 42, 3], ["nativeCheckInputs", 44, 3], ["dependencies", 46, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pythonOlder: false, isPy3k: false, fetchFromGitHub: false, setuptools: false, appdirs: false, consonance: false, protobuf: false, "python-axolotl": false, six: false, pyasyncore: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["disabled", 24, 3], ["src", 26, 3], ["pythonRelaxDeps", 33, 3], ["pythonRemoveDeps", 34, 3], ["env", 36, 3], ["build-system", 42, 3], ["nativeCheckInputs", 44, 3], ["dependencies", 46, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tgalal",
           repo: "yowsup",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,12 +34,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const pythonRelaxDeps = true;
       const pythonRemoveDeps = nix.thunk(() => ["argparse"]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
       const build_system = nix.thunk(() => [setuptools]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const dependencies = nix.thunk(() => nix.concat([appdirs, consonance, protobuf, python_axolotl, six], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(pythonOlder, "3.12"))), nix.thunk(() => [pyasyncore]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/tgalal/yowsup",
         description: "Python WhatsApp library",
         mainProgram: "yowsup-cli",
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

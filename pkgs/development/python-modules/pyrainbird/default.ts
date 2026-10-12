@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["pythonRelaxDeps", 38, 3], ["dependencies", 42, 3], ["__darwinAllowLocalNetworking", 52, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, "aiohttp-retry": false, buildPythonPackage: false, fetchFromGitHub: false, freezegun: false, ical: false, mashumaro: false, parameterized: false, pycryptodome: false, "pytest-aiohttp": false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-golden": false, "pytest-mock": false, pytestCheckHook: false, "python-dateutil": false, pyyaml: false, setuptools: false, syrupy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["pythonRelaxDeps", 38, 3], ["dependencies", 42, 3], ["__darwinAllowLocalNetworking", 52, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const syrupy = nix.arg($, "syrupy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pyrainbird",
       version: "6.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "allenporter",
           repo: "pyrainbird",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["pyrainbird"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Module to interact with Rainbird controllers",
         homepage: "https://github.com/allenporter/pyrainbird",
         changelog: nix.thunk(() => nix.str`https://github.com/allenporter/pyrainbird/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["homepage", 32, 5], ["changelog", 33, 5], ["description", 34, 5], ["platforms", 35, 5], ["license", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 17, 3], ["nativeBuildInputs", 22, 3], ["outputs", 24, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 32, 5], ["changelog", 33, 5], ["description", 34, 5], ["platforms", 35, 5], ["license", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 17, 3], ["nativeBuildInputs", 22, 3], ["outputs", 24, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sg3_utils",
       version: "1.49",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://sg.danny.cz/sg/p/sg3_utils-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "sha256-hLpQlRCN2Xz7VU17OHIfKqK0P8H5PPgqvW7+TJ2iIKc=",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       outputs: nix.thunk(() => ["out", "man", "dev", "lib"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://sg.danny.cz/sg/",
         changelog: "https://sg.danny.cz/sg/p/sg3_utils.ChangeLog",
         description: "Utilities that send SCSI commands to devices",

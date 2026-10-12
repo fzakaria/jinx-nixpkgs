@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["name", 39, 7], ["exec", 40, 7], ["icon", 41, 7], ["desktopName", 42, 7], ["comment", 43, 7], ["categories", 44, 7]], [["package", 68, 5], ["version", 69, 5]], [["version", 67, 18]], [["tests", 67, 12]], [["description", 73, 5], ["longDescription", 74, 5], ["homepage", 85, 5], ["sourceProvenance", 86, 5], ["license", 87, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5], ["platforms", 93, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["dontBuild", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["desktopItem", 37, 3], ["desktopItems", 47, 3], ["installPhase", 49, 3], ["preFixup", 63, 3], ["passthru", 67, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, jre: false, perl: false, makeWrapper: false, imagemagick: false, makeDesktopItem: false, copyDesktopItems: false, desktopToDarwinBundle: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 39, 7], ["exec", 40, 7], ["icon", 41, 7], ["desktopName", 42, 7], ["comment", 43, 7], ["categories", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 68, 5], ["version", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 67, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 67, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 73, 5], ["longDescription", 74, 5], ["homepage", 85, 5], ["sourceProvenance", 86, 5], ["license", 87, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5], ["platforms", 93, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["dontBuild", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["desktopItem", 37, 3], ["desktopItems", 47, 3], ["installPhase", 49, 3], ["preFixup", 63, 3], ["passthru", 67, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "fastqc",
       version: "0.12.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-TenRG2x8ivJ2HM2ZpLaJShp0yI0Qc6K5lW5/NJFAa1I",
         })))),
@@ -37,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper, imagemagick], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), copyDesktopItems), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), desktopToDarwinBundle)))),
       buildInputs: nix.thunk(() => [jre, perl]),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "FastQC",
           exec: "fastqc",
           icon: "fastqc",
@@ -50,18 +44,18 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`makeWrapper $out/FastQC/fastqc $out/bin/fastqc --prefix PATH : ${jre}/bin
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Quality control application for high throughput sequence data",
         longDescription: "FastQC aims to provide a simple way to do some quality control checks on raw sequence data coming from high throughput sequencing pipelines. It provides a modular set of analyses which you can use to give a quick impression of whether your data has any problems of which you should be aware before doing any further analysis.\n\nThe main functions of FastQC are\n\n- Import of data from BAM, SAM or FastQ files (any variant)\n- Providing a quick overview to tell you in which areas there may be problems\n- Summary graphs and tables to quickly assess your data\n- Export of results to an HTML based permanent report\n- Offline operation to allow automated generation of reports without running the interactive application\n",
         homepage: "https://www.bioinformatics.babraham.ac.uk/projects/fastqc/",

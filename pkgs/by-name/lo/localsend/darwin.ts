@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/darwin.nix", [[["url", 21, 5], ["hash", 22, 5]], [["sourceProvenance", 44, 5], ["mainProgram", 45, 5], ["platforms", 46, 5]], [["pname", 15, 11], ["version", 15, 17], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["sourceRoot", 30, 3], ["installPhase", 32, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { pname: false, version: false, meta: false, lib: false, fetchurl: false, stdenvNoCC: false, makeBinaryWrapper: false, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/darwin.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/darwin.nix", [["sourceProvenance", 44, 5], ["mainProgram", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/darwin.nix", [["pname", 15, 11], ["version", 15, 17], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["sourceRoot", 30, 3], ["installPhase", 32, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const undmg = nix.arg($, "undmg");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/localsend/localsend/releases/download/v${nix.sel(finalAttrs, "version")}/LocalSend-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-k6uITCcDoPq9cmEQl7JhbA3vhsQlbOoq3XoP823Xazo=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r LocalSend.app $out/Applications\n\nmakeWrapper $out/Applications/LocalSend.app/Contents/MacOS/LocalSend $out/bin/localsend\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
         mainProgram: "localsend",
         platforms: nix.thunk(() => ["aarch64-darwin"]),

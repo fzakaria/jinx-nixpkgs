@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["url", 32, 5], ["rev-prefix", 33, 5]], [["updateScript", 31, 12]], [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["configurePlatforms", 21, 3], ["postInstall", 23, 3], ["enableParallelBuilding", 27, 3], ["dontDisableStatic", 29, 3], ["passthru", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "alsa-lib": false, fixDarwinDylibNames: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 5], ["rev-prefix", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 31, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["configurePlatforms", 21, 3], ["postInstall", 23, 3], ["enableParallelBuilding", 27, 3], ["dontDisableStatic", 29, 3], ["passthru", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sndio",
       version: "1.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.sndio.org/sndio-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-vr07/QHFDJN2zz54FLk3m+2eF9A5O1ETt+t6PQ0DjFQ=",
         })))),
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       dontDisableStatic: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://sndio.org/git/sndio", "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], url: "https://sndio.org/git/sndio", "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.sndio.org",
         description: "Small audio and MIDI framework part of the OpenBSD project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

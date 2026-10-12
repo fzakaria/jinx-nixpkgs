@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 7], ["repo", 27, 7], ["tag", 28, 7], ["hash", 29, 7]], [["pname", 36, 9], ["version", 37, 9], ["src", 38, 9], ["sourceRoot", 39, 9], ["hash", 41, 7]], [["doCheck", 55, 65]], [["pytest", 55, 20]], [["tests", 55, 14]], [["description", 70, 7], ["homepage", 71, 7], ["license", 72, 7], ["maintainers", 73, 31]], [["pname", 21, 5], ["version", 22, 5], ["pyproject", 23, 5], ["src", 25, 5], ["sourceRoot", 32, 5], ["cargoDeps", 34, 5], ["nativeBuildInputs", 44, 5], ["dependencies", 49, 5], ["pythonImportsCheck", 51, 5], ["doCheck", 54, 5], ["passthru", 55, 5], ["nativeCheckInputs", 57, 5], ["meta", 69, 5]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, "typing-extensions": false, pytestCheckHook: false, hypothesis: false, "inline-snapshot": false, "pytest-benchmark": false, "pytest-run-parallel": false, "pytest-timeout": false, "pytest-mock": false, "dirty-equals": false, pydantic: false, "typing-inspection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 7], ["repo", 27, 7], ["tag", 28, 7], ["hash", 29, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 36, 9], ["version", 37, 9], ["src", 38, 9], ["sourceRoot", 39, 9], ["hash", 41, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doCheck", 55, 65]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pytest", 55, 20]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 55, 14]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 70, 7], ["homepage", 71, 7], ["license", 72, 7], ["maintainers", 73, 31]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 21, 5], ["version", 22, 5], ["pyproject", 23, 5], ["src", 25, 5], ["sourceRoot", 32, 5], ["cargoDeps", 34, 5], ["nativeBuildInputs", 44, 5], ["dependencies", 49, 5], ["pythonImportsCheck", 51, 5], ["doCheck", 54, 5], ["passthru", 55, 5], ["nativeCheckInputs", 57, 5], ["meta", 69, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.46.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pydantic",
           repo: "pydantic",
           tag: nix.thunk(() => nix.str`core-v${version}`),
@@ -41,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/pydantic-core`);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -56,10 +50,10 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pydantic_core"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          pytest: nix.thunk(() => nix.app(nix.sel(pydantic_core, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
+          [nix.POS]: $pos[3],
+          pytest: nix.thunk(() => nix.app(nix.sel(pydantic_core, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], doCheck: true })))),
         })),
       }));
       const nativeCheckInputs = nix.thunk(() => [
@@ -76,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pydantic, "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Core validation logic for pydantic written in rust",
         homepage: "https://github.com/pydantic/pydantic/tree/main/pydantic-core",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -84,7 +78,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["all", 69, 5], ["image", 86, 5], ["sklearn", 90, 5], ["plots", 91, 5], ["markdown", 96, 5], ["mmcv", 97, 5], ["tf", 98, 5], ["xgb", 99, 5], ["lgbm", 100, 5], ["huggingface", 101, 5], ["fastai", 108, 5], ["lightning", 109, 5], ["optuna", 115, 5]], [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["maintainers", 128, 5]], [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["build-system", 54, 3], ["dependencies", 56, 3], ["optional-dependencies", 68, 3], ["doCheck", 119, 3], ["pythonImportsCheck", 121, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "setuptools-scm": false, dvc: false, "dvc-render": false, "dvc-studio-client": false, funcy: false, gto: false, psutil: false, pynvml: false, "ruamel-yaml": false, scmrepo: false, jsonargparse: false, lightgbm: false, lightning: false, matplotlib: false, mmcv: false, numpy: false, optuna: false, pandas: false, pillow: false, "scikit-learn": false, tensorflow: false, torch: false, transformers: false, xgboost: false, datasets: false, fastai: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 69, 5], ["image", 86, 5], ["sklearn", 90, 5], ["plots", 91, 5], ["markdown", 96, 5], ["mmcv", 97, 5], ["tf", 98, 5], ["xgb", 99, 5], ["lgbm", 100, 5], ["huggingface", 101, 5], ["fastai", 108, 5], ["lightning", 109, 5], ["optuna", 115, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["maintainers", 128, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["build-system", 54, 3], ["dependencies", 56, 3], ["optional-dependencies", 68, 3], ["doCheck", 119, 3], ["pythonImportsCheck", 121, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.49.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "iterative",
           repo: "dvclive",
           tag: version,
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
         scmrepo,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => nix.concat([
           jsonargparse,
           lightgbm,
@@ -96,7 +93,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["dvclive"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for logging machine learning metrics and other metadata in simple file formats",
         homepage: "https://github.com/iterative/dvclive",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/dvclive/releases/tag/${nix.sel(src, "tag")}`),
@@ -107,7 +104,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

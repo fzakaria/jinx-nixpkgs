@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]], [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["longDescription", 74, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["postInstall", 61, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, fetchFromGitHub: false, makeWrapper: false, gtk3: false, libcddb: false, intltool: false, "pkg-config": false, cdparanoia: false, mp3Support: true, lame: false, oggSupport: true, "vorbis-tools": false, flacSupport: true, flac: false, opusSupport: true, "opus-tools": false, wavpackSupport: true, wavpack: false, monkeysAudioSupport: true, "monkeys-audio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["longDescription", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["postInstall", 61, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const monkeys_audio = nix.arg($, "monkeys-audio");
   const runtimeDeps = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), mp3Support, lame), nix.concat(nix.app(nix.sel(lib, "optional"), oggSupport, vorbis_tools), nix.concat(nix.app(nix.sel(lib, "optional"), flacSupport, flac), nix.concat(nix.app(nix.sel(lib, "optional"), opusSupport, opus_tools), nix.concat(nix.app(nix.sel(lib, "optional"), wavpackSupport, wavpack), nix.concat(nix.app(nix.sel(lib, "optional"), monkeysAudioSupport, monkeys_audio), [cdparanoia])))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "asunder",
       version: "3.1.0-unstable-2025-03-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rizalmart",
           repo: "asunder-gtk3",
           rev: "e3676704f7c7912e61ad7d78fe19015c102a27e1",
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), runtimeDeps)}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Graphical Audio CD ripper and encoder for Linux",
         mainProgram: "asunder",
         homepage: "https://github.com/rizalmart/asunder-gtk3",

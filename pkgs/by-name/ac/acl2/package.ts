@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["disableImmobileSpace", 28, 37]], [["nativeBuildInputs", 29, 43]], [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["url", 56, 7], ["hash", 57, 7]], [["libipasir", 61, 7], ["libssl", 62, 7], ["libcrypto", 63, 7]], [["description", 164, 5], ["mainProgram", 165, 5], ["longDescription", 166, 5], ["homepage", 191, 5], ["downloadPage", 192, 5], ["license", 193, 5], ["maintainers", 211, 5], ["platforms", 215, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["libipasir", 51, 3], ["patches", 53, 3], ["postPatch", 76, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 82, 3], ["enableParallelBuilding", 103, 3], ["preConfigure", 105, 3], ["postConfigure", 114, 3], ["preBuild", 124, 3], ["makeFlags", 125, 3], ["doCheck", 130, 3], ["checkTarget", 131, 3], ["installPhase", 133, 3], ["preDistPhases", 142, 3], ["certifyBooksPhase", 144, 3], ["removeBooksPhase", 158, 3], ["meta", 163, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromGitHub: false, fetchpatch: false, runCommandLocal: false, makeWrapper: false, replaceVars: false, sbcl: false, which: false, perl: false, hostname: false, openssl: false, glucose: false, minisat: false, "abc-verifier": false, z3: false, python3: false, certifyBooks: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["disableImmobileSpace", 28, 37]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 29, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 56, 7], ["hash", 57, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["libipasir", 61, 7], ["libssl", 62, 7], ["libcrypto", 63, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 164, 5], ["mainProgram", 165, 5], ["longDescription", 166, 5], ["homepage", 191, 5], ["downloadPage", 192, 5], ["license", 193, 5], ["maintainers", 211, 5], ["platforms", 215, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["libipasir", 51, 3], ["patches", 53, 3], ["postPatch", 76, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 82, 3], ["enableParallelBuilding", 103, 3], ["preConfigure", 105, 3], ["postConfigure", 114, 3], ["preBuild", 124, 3], ["makeFlags", 125, 3], ["doCheck", 130, 3], ["checkTarget", 131, 3], ["installPhase", 133, 3], ["preDistPhases", 142, 3], ["certifyBooksPhase", 144, 3], ["removeBooksPhase", 158, 3], ["meta", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,16 +27,16 @@ export default nix.lambda((args) => (() => {
   const z3 = nix.arg($, "z3");
   const python3 = nix.arg($, "python3");
   const certifyBooks = nix.argOr($, "certifyBooks", () => true);
-  const sbcl$ = nix.thunk(() => nix.app(nix.sel(args_1, "sbcl", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1, disableImmobileSpace: true }))));
-  const sbcl_1 = nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.sel(args_1, "sbcl", "name")), nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${sbcl$}/bin/sbcl $out/bin/sbcl \\
+  const sbcl$ = nix.thunk(() => nix.app(nix.sel(args_1, "sbcl", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[0], disableImmobileSpace: true }))));
+  const sbcl_1 = nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.sel(args_1, "sbcl", "name")), nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${sbcl$}/bin/sbcl $out/bin/sbcl \\
   --add-flags "--dynamic-space-size 2000"
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "acl2",
       version: "8.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "acl2-devel",
           repo: "acl2-devel",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,12 +45,12 @@ export default nix.lambda((args) => (() => {
       libipasir: nix.thunk(() => nix.app(callPackage, nix.path(here, "./libipasirglucose4"), nix.thunk(() => ({})))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/acl2/acl2/commit/be39e7835f1c68008c17188d2f65eeaef61632fa.patch",
             hash: "sha256-pZ/r0vlyJz7ymYfrVtHDxsLdw0M/MJStBH42ZLO7Fs4=",
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-path-changes-for-nix.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             libipasir: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "libipasir")}/lib/${nix.sel(finalAttrs, "libipasir", "libname")}`),
             libssl: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), openssl)}/lib/libssl${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             libcrypto: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), openssl)}/lib/libcrypto${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
@@ -89,7 +83,7 @@ export default nix.lambda((args) => (() => {
       certifyBooksPhase: "# Certify the community books\npushd $out/share/acl2/books\nmakeFlags=\"ACL2=$out/share/acl2/saved_acl2\"\nbuildFlags=\"all\"\nbuildPhase\n\n# Clean up some stuff to save space\nfind -name '*@useless-runes.lsp' -execdir rm {} +  # saves ~1GB of space\nfind -name '*.cert.out' -execdir gzip {} +         # saves ~400MB of space\n\npopd\n",
       removeBooksPhase: "# Delete the community books\nrm -rf $out/share/acl2/books\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Interpreter and prover for a Lisp dialect",
         mainProgram: "acl2",
         longDescription: nix.thunk(() => nix.add("ACL2 is a logic and programming language in which you can model computer\nsystems, together with a tool to help you prove properties of those\nmodels. \"ACL2\" denotes \"A Computational Logic for Applicative Common\nLisp\".\n\nACL2 is part of the Boyer-Moore family of provers, for which its authors\nhave received the 2005 ACM Software System Award.\n\nThis package installs the main ACL2 executable acl2, as well as the\nbuild tools cert.pl and clean.pl, renamed to acl2-cert and\nacl2-clean.\n\n", (nix.asBool(certifyBooks) ? "The community books are also included and certified with the `make\neverything` target.\n" : "The community books are not included in this package.\n"))),

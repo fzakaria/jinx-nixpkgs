@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 5], ["hash", 43, 5]], [["CXXFLAGS", 93, 5]], [["homepage", 124, 5], ["description", 125, 5], ["platforms", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["mainProgram", 129, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 56, 3], ["postPatch", 79, 3], ["configureFlags", 84, 3], ["env", 92, 3], ["dontWrapGApps", 97, 3], ["dontWrapQtApps", 98, 3], ["postInstall", 101, 3], ["makeFlags", 117, 3], ["enableParallelBuilding", 121, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, "pkg-config": false, texinfo: false, cairo: false, gd: false, libcerf: false, pango: false, readline: false, zlib: false, withTeXLive: true, texliveSmall: false, withLua: true, lua: false, withCaca: true, libcaca: false, libx11: false, libxt: false, libxpm: false, libxaw: false, aquaterm: true, withWxGTK: true, wxwidgets_3_2: false, fontconfig: false, gnused: false, coreutils: false, withQt: true, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 93, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 124, 5], ["description", 125, 5], ["platforms", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["mainProgram", 129, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 56, 3], ["postPatch", 79, 3], ["configureFlags", 84, 3], ["env", 92, 3], ["dontWrapGApps", 97, 3], ["dontWrapQtApps", 98, 3], ["postInstall", 101, 3], ["makeFlags", 117, 3], ["enableParallelBuilding", 121, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const qt5 = nix.arg($, "qt5");
   const withX = nix.thunk(() => (nix.asBool(!nix.asBool(aquaterm)) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gnuplot",
       version: "6.0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/gnuplot/gnuplot-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-cyN/N/AzBtaL+uEzqaUNXpNBOE4ZjVqzfuypq1NN7tg=",
         })))),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (nix.asBool(withQt) ? "--with-qt=qt5" : "--without-qt")),
         nix.thunk(() => (nix.asBool(aquaterm) ? "--with-aquaterm" : "--without-aquaterm")),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), withCaca, "--with-caca"), nix.app(nix.sel(lib, "optional"), withTeXLive, nix.thunk(() => nix.str`--with-texdir=${nix.builtins.placeholder("out")}/share/texmf/tex/latex/gnuplot`))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(withQt))), nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=c++11" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(withQt))), nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-std=c++11" })))),
       dontWrapGApps: true,
       dontWrapQtApps: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withX, nix.thunk(() => nix.str`wrapProgramShell $out/bin/gnuplot \\
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => ["-C src"]))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.gnuplot.info/",
         description: "Portable command-line driven graphing utility for many platforms",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),

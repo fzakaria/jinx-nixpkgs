@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["NIX_LDFLAGS", 18, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 41, 5], ["hydraPlatforms", 42, 5]], [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["env", 17, 3], ["preBuild", 21, 3], ["installPhase", 26, 3], ["buildInputs", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 18, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 41, 5], ["hydraPlatforms", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["env", 17, 3], ["preBuild", 21, 3], ["installPhase", 26, 3], ["buildInputs", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,20 +12,20 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "3.16",
       pname: "aescrypt",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.aescrypt.com/download/v3/linux/aescrypt-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "sha256-4uGS0LReq5dI7+Wel7ZWzFXx+utZWi93q4TUSw7AhNI=",
         })))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-liconv" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-liconv" })))),
       preBuild: "substituteInPlace src/Makefile --replace-fail \"CC=gcc\" \"CC?=gcc\"\ncd src\n",
       installPhase: "mkdir -p $out/bin\ncp aescrypt $out/bin\ncp aescrypt_keygen $out/bin\n",
       buildInputs: nix.thunk(() => [libiconv]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Encrypt files with Advanced Encryption Standard (AES)",
         homepage: "https://www.aescrypt.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 28, 5], ["license", 29, 5]], [["pname", 10, 3], ["buildInputs", 12, 3], ["cmakeFlags", 23, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { bctoolbox: false, "belle-sip": false, lib: false, "bc-soci": false, sqlite: false, mkLinphoneDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 28, 5], ["license", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["buildInputs", 12, 3], ["cmakeFlags", 23, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const mkLinphoneDerivation = nix.arg($, "mkLinphoneDerivation");
   return nix.app(mkLinphoneDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "lime",
       buildInputs: nix.thunk(() => [bctoolbox, belle_sip, bc_soci, sqlite]),
       cmakeFlags: nix.thunk(() => ["-DENABLE_UNIT_TESTS=NO"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "End-to-end encryption library for instant messaging. Part of the Linphone project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       })),

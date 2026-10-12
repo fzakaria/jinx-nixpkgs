@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["url", 22, 7], ["hash", 23, 7]], [["LDFLAGS", 29, 7], ["NIX_CFLAGS_COMPILE", 40, 7]], [["iftop", 42, 43]], [["tests", 42, 12]], [["description", 45, 5], ["longDescription", 46, 5], ["license", 51, 5], ["homepage", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["env", 29, 3], ["buildInputs", 31, 3], ["passthru", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false, libpcap: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LDFLAGS", 29, 7], ["NIX_CFLAGS_COMPILE", 40, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["iftop", 42, 43]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 42, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 45, 5], ["longDescription", 46, 5], ["license", 51, 5], ["homepage", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["env", 29, 3], ["buildInputs", 31, 3], ["passthru", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,33 +14,33 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "iftop",
       version: "1.0pre4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ex-parrot.com/pdw/iftop/download/iftop-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "15sgkdyijb7vbxpxjavh5qm5nvyii3fqcg9mzvw7fx8s6zmfwczp",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/debian/iftop/-/raw/750d49dd3fabc338586a86f5bb0a5b97a5ff5fa2/debian/patches/bug-debian-1096832-ftbfs-with-GCC-15.patch",
             hash: "sha256-BhjN7AZNCJCqrY2IAutUYYDZkLq+TD2YnKYZxHgVdYg=",
           })))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "-lgcc_s")),
         NIX_CFLAGS_COMPILE: "-fcommon",
       })),
       buildInputs: nix.thunk(() => [ncurses, libpcap]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, iftop: nix.thunk(() => nix.attr(nixosTests, "iftop")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], iftop: nix.thunk(() => nix.attr(nixosTests, "iftop")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Display bandwidth usage on a network interface",
         longDescription: "iftop does for network usage what top(1) does for CPU usage. It listens\nto network traffic on a named interface and displays a table of current\nbandwidth usage by pairs of hosts.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

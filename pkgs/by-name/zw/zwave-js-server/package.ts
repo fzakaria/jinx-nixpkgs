@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["zwave-js", 26, 28]], [["tests", 25, 5]], [["changelog", 31, 5], ["description", 32, 5], ["license", 33, 5], ["homepage", 34, 5], ["maintainers", 35, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["npmFlags", 22, 3], ["passthru", 24, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["zwave-js", 26, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 25, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 31, 5], ["description", 32, 5], ["license", 33, 5], ["homepage", 34, 5], ["maintainers", 35, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["npmFlags", 22, 3], ["passthru", 24, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zwave-js-server";
       const version = "3.10.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zwave-js",
           repo: "zwave-js-server",
           rev: version,
@@ -28,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-kiQD4Bvqz32XcWnUPsU+C8sW/pd8s7qxlh/0RWN1n5s=";
       const npmFlags = nix.thunk(() => ["--include=dev"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "zwave-js": nix.thunk(() => nix.attr(nixosTests, "zwave-js")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/zwave-js/zwave-js-server/releases/tag/${version}`),
         description: "Small server wrapper around Z-Wave JS to access it via a WebSocket",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -45,7 +41,16 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "graham33"))];
         })()),
       }));
-      return { [nix.POS]: pos$5, pname, version, src, npmDepsHash, npmFlags, passthru, meta };
+      return {
+        [nix.POS]: $pos[4],
+        pname,
+        version,
+        src,
+        npmDepsHash,
+        npmFlags,
+        passthru,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

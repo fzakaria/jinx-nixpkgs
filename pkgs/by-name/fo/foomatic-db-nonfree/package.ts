@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["changelog", 71, 5], ["description", 72, 5], ["downloadPage", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["longDescription", 79, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 23, 3], ["__structuredAttrs", 24, 3], ["nativeBuildInputs", 26, 3], ["postPatch", 34, 3], ["preConfigure", 42, 3], ["postInstall", 50, 3], ["postFixup", 64, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, automake: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 71, 5], ["description", 72, 5], ["downloadPage", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["longDescription", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 23, 3], ["__structuredAttrs", 24, 3], ["nativeBuildInputs", 26, 3], ["postPatch", 34, 3], ["preConfigure", 42, 3], ["postInstall", 50, 3], ["postFixup", 64, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "foomatic-db-nonfree",
       version: "0-unstable-2015-06-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenPrinting",
           repo: "foomatic-db-nonfree",
           rev: "6ddae02ac89240c019f8b5026cfe70e30fd2b3db",
@@ -51,7 +49,7 @@ find -H "${nix.builtins.placeholder("out")}/share/cups/model/foomatic-db-nonfree
   | xargs -0r -n 64 -P "$NIX_BUILD_CORES" gzip -9n
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/OpenPrinting/foomatic-db-nonfree/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),
         description: "OpenPrinting printer support database (unfree content)",
         downloadPage: "https://www.openprinting.org/download/foomatic/",

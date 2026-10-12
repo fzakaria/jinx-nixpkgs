@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["fetchSubmodules", 18, 5], ["hash", 19, 5]], [["src", 22, 43], ["version", 22, 47]], [["url", 27, 9], ["hash", 28, 9]], [["url", 32, 9], ["hash", 33, 9]], [["llvm", 75, 12]], [["description", 78, 5], ["homepage", 79, 5], ["downloadPage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["sourceProvenance", 83, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5], ["broken", 94, 5]], [["pname", 40, 3], ["src", 41, 11], ["version", 41, 15], ["nativeBuildInputs", 43, 3], ["__structuredAttrs", 49, 3], ["strictDeps", 50, 3], ["dontUseCmakeConfigure", 52, 3], ["buildPhase", 54, 3], ["nativeInstallCheckInputs", 71, 3], ["versionCheckProgramArg", 72, 3], ["doInstallCheck", 73, 3], ["passthru", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromGitHub: false, fetchurl: false, automake: false, autoconf: false, cmake: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["fetchSubmodules", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 22, 43], ["version", 22, 47]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 27, 9], ["hash", 28, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 32, 9], ["hash", 33, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["llvm", 75, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["downloadPage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["sourceProvenance", 83, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5], ["broken", 94, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["src", 41, 11], ["version", 41, 15], ["nativeBuildInputs", 43, 3], ["__structuredAttrs", 49, 3], ["strictDeps", 50, 3], ["dontUseCmakeConfigure", 52, 3], ["buildPhase", 54, 3], ["nativeInstallCheckInputs", 71, 3], ["versionCheckProgramArg", 72, 3], ["doInstallCheck", 73, 3], ["passthru", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,25 +18,25 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const version = "2026.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "smlnj",
       repo: "smlnj",
       tag: nix.thunk(() => nix.str`v${version}`),
       fetchSubmodules: true,
       hash: "sha256-1oiDdiGZvg8Dlz3InFLjOilvBTShuTFHz91Xmc1onMA=",
     }))));
-  const llvm = nix.thunk(() => nix.app(callPackage, nix.path(here, "./llvm.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version }))));
+  const llvm = nix.thunk(() => nix.app(callPackage, nix.path(here, "./llvm.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], src: src, version: version }))));
   const bootFile = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isUnix")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))) ? nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://smlnj.cs.uchicago.edu/dist/working/${version}/boot.amd64-unix.tgz`),
       hash: "sha256-ug2Busk6aYeqEGh923ZG8c3xw1Cjmct2Fxv7K44cjOs=",
     }))) : (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isUnix")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) ? nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: nix.thunk(() => nix.str`https://smlnj.cs.uchicago.edu/dist/working/${version}/boot.arm64-unix.tgz`),
       hash: "sha256-UQ8GxaabgJ3QoH6hlnWCNSsxyR73H2VdKsbsgt376k0=",
     }))) : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported host platform: ${nix.sel(stdenv, "hostPlatform", "config")}`)))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "smlnj",
       src: src,
       version: version,
@@ -68,9 +62,9 @@ runHook postBuild
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "@SMLversion",
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, llvm: llvm })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], llvm: llvm })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Standard ML of New Jersey, a Standard ML compiler",
         homepage: "https://smlnj.org",
         downloadPage: nix.thunk(() => nix.str`https://smlnj.org/dist/working/${version}/install.html`),

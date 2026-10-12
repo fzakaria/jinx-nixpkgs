@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 9], ["hash", 36, 9]], [["url", 39, 9], ["hash", 40, 9]], [["url", 43, 9], ["hash", 44, 9]], [["x86_64-linux", 34, 7], ["aarch64-darwin", 38, 7], ["aarch64-linux", 42, 7]], [["sources", 33, 5], ["updateScript", 47, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["sourceProvenance", 72, 5], ["maintainers", 73, 5], ["mainProgram", 76, 5], ["platforms", 77, 5]], [["pname", 13, 3], ["version", 14, 3], ["sourceRoot", 16, 3], ["src", 17, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 26, 3], ["passthru", 32, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, curl: false, jq: false, installShellFiles: false, writeShellScript: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 9], ["hash", 36, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 9], ["hash", 40, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 43, 9], ["hash", 44, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 34, 7], ["aarch64-darwin", 38, 7], ["aarch64-linux", 42, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sources", 33, 5], ["updateScript", 47, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["sourceProvenance", 72, 5], ["maintainers", 73, 5], ["mainProgram", 76, 5], ["platforms", 77, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["sourceRoot", 16, 3], ["src", 17, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 26, 3], ["passthru", 32, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "speakeasy-cli",
       version: "1.800.1",
       sourceRoot: ".",
@@ -31,21 +25,21 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip, installShellFiles]),
       installPhase: "runHook preInstall\ninstall -Dm 755 ./speakeasy $out/bin/speakeasy\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         sources: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://github.com/speakeasy-api/speakeasy/releases/download/v${nix.sel(finalAttrs, "version")}/speakeasy_linux_amd64.zip`),
               hash: "sha256-0hcr8AE6Mce5hOpzk+6B4+G0dFceYXwKV1w/UneIfHs=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://github.com/speakeasy-api/speakeasy/releases/download/v${nix.sel(finalAttrs, "version")}/speakeasy_darwin_arm64.zip`),
               hash: "sha256-rmuEmLhJetZbJRTus041Uv78f7UxZuxyiHqZaEp3aQ0=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://github.com/speakeasy-api/speakeasy/releases/download/v${nix.sel(finalAttrs, "version")}/speakeasy_linux_arm64.zip`),
               hash: "sha256-kWSnp1YvtJUEdC55yM7fIyNunOqBjL7R0NEdZ7J0DRs=",
             })))),
@@ -63,7 +57,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "CLI tool for Speakeasy",
         homepage: "https://www.speakeasyapi.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/speakeasy-api/speakeasy/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["version", 57, 82]], [["version", 57, 18]], [["tests", 57, 12]], [["description", 60, 5], ["license", 61, 5], ["homepage", 62, 5], ["maintainers", 63, 5], ["mainProgram", 66, 5], ["platforms", 67, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["makeWrapperArgs", 49, 3], ["dontWrapGApps", 53, 3], ["pythonImportsCheck", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, libappindicator: false, "gobject-introspection": false, wrapGAppsHook4: false, callPackage: false, bash: false, pipewire: false, gtk4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 57, 82]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 57, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 57, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 60, 5], ["license", 61, 5], ["homepage", 62, 5], ["maintainers", 63, 5], ["mainProgram", 66, 5], ["platforms", 67, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["makeWrapperArgs", 49, 3], ["dontWrapGApps", 53, 3], ["pythonImportsCheck", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const gtk4 = nix.arg($, "gtk4");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pulsemeeter",
       version: "2.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "theRealCarneiro",
           repo: "pulsemeeter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,14 +51,17 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       pythonImportsCheck: nix.thunk(() => ["pulsemeeter"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(callPackage, nix.path(here, "./version-test.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(callPackage, nix.path(here, "./version-test.nix"), nix.thunk(() => ({
+              [nix.POS]: $pos[1],
+              version: nix.thunk(() => nix.attr(finalAttrs, "version")),
+            })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Pulseaudio and pipewire audio mixer inspired by voicemeeter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/theRealCarneiro/pulsemeeter",

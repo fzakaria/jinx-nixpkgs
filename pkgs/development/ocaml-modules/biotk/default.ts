@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 29, 5], ["hash", 30, 5]], [["description", 54, 5], ["license", 55, 5]], [["pname", 23, 3], ["version", 24, 3], ["minimalOCamlVersion", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["propagatedBuildInputs", 37, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, "angstrom-unix": false, binning: false, "ocaml-crunch": false, camlzip: false, core_kernel: false, core_unix: true, csvfields: true, fmt: false, gsl: false, ppx_csv_conv: true, ppx_deriving: false, rresult: false, tyxml: false, uri: false, vg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["license", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["minimalOCamlVersion", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["propagatedBuildInputs", 37, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const uri = nix.arg($, "uri");
   const vg = nix.arg($, "vg");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "biotk",
       version: "0.3",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/pveber/biotk/releases/download/v${nix.sel(finalAttrs, "version")}/biotk-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-9eRd3qYteUxu/xNEUER/DHodr6cTCuPtSKr38x32gig=",
         })))),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
         vg,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Toolkit for bioinformatics in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-c")),
       })),

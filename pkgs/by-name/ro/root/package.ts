@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["callPackage", 62, 38]], [["tests", 62, 5]], [["url", 66, 5], ["hash", 67, 5]], [["owner", 71, 5], ["repo", 72, 5], ["tag", 75, 5], ["hash", 76, 5]], [["homepage", 234, 5], ["description", 235, 5], ["platforms", 236, 5], ["maintainers", 237, 5], ["license", 241, 5]], [["pname", 58, 3], ["version", 59, 3], ["passthru", 61, 3], ["src", 65, 3], ["clad_src", 70, 3], ["clang", 80, 3], ["nativeBuildInputs", 82, 3], ["propagatedBuildInputs", 88, 3], ["buildInputs", 91, 3], ["preConfigure", 134, 3], ["cmakeFlags", 152, 3], ["postInstall", 170, 3], ["separateDebugInfo", 229, 3], ["setupHook", 231, 3], ["meta", 233, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, blas: false, callPackage: false, curl: false, fetchFromGitHub: false, fetchurl: false, makeWrapper: false, writeText: false, "apple-sdk": false, cmake: false, coreutils: false, git: false, davix: false, fftw: false, ftgl: false, gl2ps: false, gnugrep: false, gnused: false, gsl: false, libGLU: false, libGL: false, libxcrypt: false, libxml2: false, llvm_20: false, lsof: false, lz4: false, libxpm: false, libxft: false, libxext: false, libx11: false, xz: false, man: false, openssl: false, pcre2: false, nlohmann_json: false, "pkg-config": false, procps: false, python3: false, which: false, xxhash: false, zlib: false, zstd: false, giflib: false, libjpeg: false, libtiff: false, libpng: false, patchRcPathCsh: false, patchRcPathFish: false, patchRcPathPosix: false, onetbb: false, xrootd: false, freetype: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["callPackage", 62, 38]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 66, 5], ["hash", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 71, 5], ["repo", 72, 5], ["tag", 75, 5], ["hash", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 234, 5], ["description", 235, 5], ["platforms", 236, 5], ["maintainers", 237, 5], ["license", 241, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 58, 3], ["version", 59, 3], ["passthru", 61, 3], ["src", 65, 3], ["clad_src", 70, 3], ["clang", 80, 3], ["nativeBuildInputs", 82, 3], ["propagatedBuildInputs", 88, 3], ["buildInputs", 91, 3], ["preConfigure", 134, 3], ["cmakeFlags", 152, 3], ["postInstall", 170, 3], ["separateDebugInfo", 229, 3], ["setupHook", 231, 3], ["meta", 233, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -66,20 +61,20 @@ export default nix.lambda((args) => (() => {
   const xrootd = nix.arg($, "xrootd");
   const freetype = nix.arg($, "freetype");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "root",
       version: "6.40.04",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        tests: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tests")), nix.thunk(() => ({ [nix.POS]: pos$1, callPackage: callPackage })))),
+        [nix.POS]: $pos[1],
+        tests: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tests")), nix.thunk(() => ({ [nix.POS]: $pos[0], callPackage: callPackage })))),
       })),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://root.cern.ch/download/root_v${nix.sel(finalAttrs, "version")}.source.tar.gz`),
           hash: "sha256-RK2iU7GTXTS2gBIiIy1Qcx/nxePLz6tHc0yFAxz75NM=",
         })))),
       clad_src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "vgvassilev",
           repo: "clad",
           tag: "v2.3",
@@ -157,7 +152,7 @@ patchRcPathFish "$out/bin/thisroot.fish" "${nix.app(nix.sel(lib, "makeBinPath"),
       separateDebugInfo: true,
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://root.cern/",
         description: "Data analysis framework",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

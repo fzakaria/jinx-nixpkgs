@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]], [["tests", 34, 5]], [["tests", 33, 12]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["teams", 43, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 31, 3], ["passthru", 33, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fixtures: false, pbr: false, six: false, "python-subunit": false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 33, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["teams", 43, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 31, 3], ["passthru", 33, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.1.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-XOlzR3NPCMpia7SWliqLx6266Wk3MPWFnZxSk9Si/YA=",
@@ -33,22 +29,22 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [fixtures, six, python_subunit]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["oslotest"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Oslo test framework",
         homepage: "https://github.com/openstack/oslotest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         format,

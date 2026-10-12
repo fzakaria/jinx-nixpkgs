@@ -2,43 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/alice-lg.nix", [[["systemPackages", 11, 19]], [["listen_http", 16, 13], ["enable_prefix_lookup", 17, 13], ["asn", 18, 13], ["routes_store_refresh_parallelism", 19, 13], ["neighbors_store_refresh_parallelism", 20, 13], ["routes_store_refresh_interval", 21, 13], ["neighbors_store_refresh_interval", 22, 13]], [["interval", 25, 13], ["force_release_memory", 26, 13]], [["server", 15, 11], ["housekeeping", 24, 11]], [["enable", 13, 9], ["settings", 14, 9]], [["alice-lg", 12, 16]], [["environment", 11, 7], ["services", 12, 7]], [["host1", 10, 5]], [["name", 8, 3], ["nodes", 9, 3], ["testScript", 33, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/alice-lg.nix", [["systemPackages", 11, 19]]);
-const pos$2 = nix.positions(here + "/alice-lg.nix", [["listen_http", 16, 13], ["enable_prefix_lookup", 17, 13], ["asn", 18, 13], ["routes_store_refresh_parallelism", 19, 13], ["neighbors_store_refresh_parallelism", 20, 13], ["routes_store_refresh_interval", 21, 13], ["neighbors_store_refresh_interval", 22, 13]]);
-const pos$3 = nix.positions(here + "/alice-lg.nix", [["interval", 25, 13], ["force_release_memory", 26, 13]]);
-const pos$4 = nix.positions(here + "/alice-lg.nix", [["server", 15, 11], ["housekeeping", 24, 11]]);
-const pos$5 = nix.positions(here + "/alice-lg.nix", [["enable", 13, 9], ["settings", 14, 9]]);
-const pos$6 = nix.positions(here + "/alice-lg.nix", [["alice-lg", 12, 16]]);
-const pos$7 = nix.positions(here + "/alice-lg.nix", [["environment", 11, 7], ["services", 12, 7]]);
-const pos$8 = nix.positions(here + "/alice-lg.nix", [["host1", 10, 5]]);
-const pos$9 = nix.positions(here + "/alice-lg.nix", [["name", 8, 3], ["nodes", 9, 3], ["testScript", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "alice-lg",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       host1: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "jq"))];
           })()),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "alice-lg": nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               server: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 listen_http: "[::]:7340",
                 enable_prefix_lookup: true,
                 asn: 1n,
@@ -47,7 +39,7 @@ export default nix.lambda((args) => (() => {
                 routes_store_refresh_interval: 5n,
                 neighbors_store_refresh_interval: 5n,
               })),
-              housekeeping: nix.thunk(() => ({ [nix.POS]: pos$3, interval: 5n, force_release_memory: true })),
+              housekeeping: nix.thunk(() => ({ [nix.POS]: $pos[2], interval: 5n, force_release_memory: true })),
             })),
           })),
         })),

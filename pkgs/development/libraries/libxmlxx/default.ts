@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["attrPath", 43, 7], ["packageName", 44, 7], ["versionPolicy", 45, 7], ["freeze", 46, 7]], [["updateScript", 42, 5]], [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["configureFlags", 21, 3], ["outputs", 26, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 36, 3], ["passthru", 41, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libxml2: false, glibmm_2_4: false, perl: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["attrPath", 43, 7], ["packageName", 44, 7], ["versionPolicy", 45, 7], ["freeze", 46, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 42, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["configureFlags", 21, 3], ["outputs", 26, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 36, 3], ["passthru", 41, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libxml++";
       const version = "2.40.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libxml++/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libxml++-${version}.tar.xz`),
           sha256: "1sb3akryklvh2v6m6dihdnbpf1lkx441v972q9hlz1sq6bfspm2a",
         }))));
@@ -32,9 +28,9 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config, perl]);
       const propagatedBuildInputs = nix.thunk(() => [libxml2, glibmm_2_4]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             attrPath: "libxmlxx",
             packageName: "libxml++",
             versionPolicy: "odd-unstable",
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://libxmlplusplus.sourceforge.net/",
         description: "C++ wrapper for the libxml2 XML parser library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

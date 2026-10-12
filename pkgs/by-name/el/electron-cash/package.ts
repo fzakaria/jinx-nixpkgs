@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]], [["description", 103, 5], ["mainProgram", 104, 5], ["longDescription", 105, 5], ["homepage", 111, 5], ["platforms", 112, 5], ["maintainers", 113, 5], ["license", 117, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["dependencies", 27, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 63, 3], ["postPatch", 79, 3], ["preFixup", 88, 3], ["doInstallCheck", 92, 3], ["installCheckPhase", 93, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3Packages: false, qt5: false, secp256k1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 103, 5], ["mainProgram", 104, 5], ["longDescription", 105, 5], ["homepage", 111, 5], ["platforms", 112, 5], ["maintainers", 113, 5], ["license", 117, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["dependencies", 27, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 63, 3], ["postPatch", 79, 3], ["preFixup", 88, 3], ["doInstallCheck", 92, 3], ["installCheckPhase", 93, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.4.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Electron-Cash",
           repo: "Electron-Cash",
           tag: version,
@@ -77,7 +75,7 @@ substituteInPlace contrib/requirements/requirements.txt \\
       const doInstallCheck = true;
       const installCheckPhase = "output=\"$($out/bin/electron-cash help 2>&1)\"\nif [[ \"$output\" == *\"failed to load\"* ]]; then\n  echo \"$output\"\n  echo \"Forbidden text detected: failed to load\"\n  exit 1\nfi\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bitcoin Cash SPV Wallet",
         mainProgram: "electron-cash",
         longDescription: "An easy-to-use Bitcoin Cash client featuring wallets generated from\nmnemonic seeds (in addition to other, more advanced, wallet options)\nand the ability to perform transactions without downloading a copy\nof the blockchain.\n",
@@ -93,7 +91,7 @@ substituteInPlace contrib/requirements/requirements.txt \\
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]], [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 63, 7]], [["beautifulsoup4", 117, 5], ["shaperglot", 118, 5], ["googlefontsalwayslatest", 119, 5], ["adobefonts", 126, 5], ["fontval", 127, 5], ["fontwerk", 128, 5], ["googlefonts", 129, 5], ["iso15008", 141, 5], ["microsoft", 142, 5], ["notofonts", 143, 5], ["typenetwork", 144, 5], ["docs", 149, 5], ["all", 154, 5]], [["simple", 181, 18]], [["tests", 181, 12]], [["description", 184, 5], ["homepage", 185, 5], ["changelog", 186, 5], ["license", 187, 5], ["mainProgram", 188, 5], ["maintainers", 189, 5]], [["pname", 52, 3], ["version", 53, 3], ["pyproject", 54, 3], ["src", 56, 3], ["env", 63, 3], ["pythonRelaxDeps", 65, 3], ["build-system", 72, 3], ["nativeBuildInputs", 77, 3], ["dependencies", 81, 3], ["nativeCheckInputs", 105, 3], ["optional-dependencies", 116, 3], ["preCheck", 165, 3], ["disabledTests", 170, 3], ["postInstall", 176, 3], ["passthru", 181, 3], ["meta", 183, 3]]]);
 const formals$1 = { args: { lib: false, axisregistry: false, beautifulsoup4: false, beziers: false, buildPythonPackage: false, callPackage: false, cmarkgfm: false, collidoscope: false, defcon: false, dehinter: false, fetchFromGitHub: false, fonttools: false, "freetype-py": false, gflanguages: false, gfsubsets: false, glyphsets: false, installShellFiles: false, jinja2: false, lxml: false, munkres: false, opentypespec: false, "ots-python": false, packaging: false, "pip-api": false, protobuf: false, "pytest-xdist": false, pytestCheckHook: false, pyyaml: false, "requests-mock": false, requests: false, rich: false, "setuptools-scm": false, setuptools: false, shaperglot: false, stringbrewer: false, toml: false, ufo2ft: false, ufolint: false, unicodedata2: false, uharfbuzz: false, vharfbuzz: false, "myst-parser": false, sphinx: false, "sphinx-rtd-theme": false, "pytest-cov-stub": false, pylint: false, black: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 63, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["beautifulsoup4", 117, 5], ["shaperglot", 118, 5], ["googlefontsalwayslatest", 119, 5], ["adobefonts", 126, 5], ["fontval", 127, 5], ["fontwerk", 128, 5], ["googlefonts", 129, 5], ["iso15008", 141, 5], ["microsoft", 142, 5], ["notofonts", 143, 5], ["typenetwork", 144, 5], ["docs", 149, 5], ["all", 154, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["simple", 181, 18]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 181, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 184, 5], ["homepage", 185, 5], ["changelog", 186, 5], ["license", 187, 5], ["mainProgram", 188, 5], ["maintainers", 189, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 52, 3], ["version", 53, 3], ["pyproject", 54, 3], ["src", 56, 3], ["env", 63, 3], ["pythonRelaxDeps", 65, 3], ["build-system", 72, 3], ["nativeBuildInputs", 77, 3], ["dependencies", 81, 3], ["nativeCheckInputs", 105, 3], ["optional-dependencies", 116, 3], ["preCheck", 165, 3], ["disabledTests", 170, 3], ["postInstall", 176, 3], ["passthru", 181, 3], ["meta", 183, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -61,18 +55,18 @@ export default nix.lambda((args) => (() => {
   const pylint = nix.arg($, "pylint");
   const black = nix.arg($, "black");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "fontbakery",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fonttools",
           repo: "fontbakery",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-IkGcaRW8RjwR/foACR38HtCuETyXTyCjpIUaY+awMQo=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
       pythonRelaxDeps: nix.thunk(() => ["collidoscope", "freetype-py", "protobuf", "vharfbuzz"]),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
@@ -108,7 +102,7 @@ export default nix.lambda((args) => (() => {
         black,
       ], nix.sel(finalAttrs, "passthru", "optional-dependencies", "all"))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         beautifulsoup4: nix.thunk(() => [beautifulsoup4]),
         shaperglot: nix.thunk(() => [shaperglot]),
         googlefontsalwayslatest: nix.thunk(() => [axisregistry, gflanguages, gfsubsets, glyphsets, shaperglot]),
@@ -127,14 +121,14 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_check_axes_match", "test_check_vertical_metrics_regressions"]),
       postInstall: "installShellCompletion --bash --name fontbakery \\\n  snippets/fontbakery.bash-completion\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Tool for checking the quality of font projects",
         homepage: "https://github.com/googlefonts/fontbakery",
         changelog: nix.thunk(() => nix.str`https://github.com/fonttools/fontbakery/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 7], ["repo", 25, 7], ["tag", 26, 7], ["hash", 27, 7]], [["description", 78, 7], ["mainProgram", 79, 7], ["homepage", 80, 7], ["changelog", 81, 7], ["platforms", 82, 7], ["maintainers", 83, 7], ["license", 84, 7]], [["pname", 17, 5], ["version", 18, 5], ["strictDeps", 20, 5], ["__structuredAttrs", 21, 5], ["src", 23, 5], ["enableParallelBuilding", 30, 5], ["nativeBuildInputs", 32, 5], ["buildInputs", 39, 5], ["postPatch", 46, 5], ["preConfigure", 57, 5], ["preBuild", 63, 5], ["postCheck", 67, 5], ["preInstall", 71, 5], ["meta", 77, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, getopt: false, lua: false, boost: false, libxcrypt: false, "pkg-config": false, swig: false, perl: false, gcc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 7], ["repo", 25, 7], ["tag", 26, 7], ["hash", 27, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 78, 7], ["mainProgram", 79, 7], ["homepage", 80, 7], ["changelog", 81, 7], ["platforms", 82, 7], ["maintainers", 83, 7], ["license", 84, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 5], ["version", 18, 5], ["strictDeps", 20, 5], ["__structuredAttrs", 21, 5], ["src", 23, 5], ["enableParallelBuilding", 30, 5], ["nativeBuildInputs", 32, 5], ["buildInputs", 39, 5], ["postPatch", 46, 5], ["preConfigure", 57, 5], ["preBuild", 63, 5], ["postCheck", 67, 5], ["preInstall", 71, 5], ["meta", 77, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const gcc = nix.arg($, "gcc");
   const self = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "highlight",
       version: "4.21",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "saalen",
           repo: "highlight",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +43,7 @@ install -m644 extras/swig/highlight.{so,pm} $out/${nix.sel(perl, "libPrefix")}
 make -C extras/swig clean # Clean up intermediate files.
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Source code highlighting tool",
         mainProgram: "highlight",
         homepage: "http://www.andre-simon.de/doku/highlight/en/highlight.php",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 39, 5], ["homepage", 40, 5], ["longDescription", 41, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, greenlet: false, setuptools: false, twisted: false, "zope-interface": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["longDescription", 41, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const twisted = nix.arg($, "twisted");
   const zope_interface = nix.arg($, "zope-interface");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "python3-eventlib",
       version: "0.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AGProjects",
           repo: "python3-eventlib",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [greenlet, twisted, zope_interface]),
       pythonImportsCheck: nix.thunk(() => ["eventlib"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Networking library written in Python",
         homepage: "https://github.com/AGProjects/python3-eventlib",
         longDescription: "Eventlib is a networking library written in Python. It achieves high\nscalability by using non-blocking I/O while at the same time retaining\nhigh programmer usability by using coroutines to make the non-blocking io\noperations appear blocking at the source code level.\n",

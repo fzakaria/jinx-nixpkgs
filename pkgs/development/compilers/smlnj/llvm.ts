@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/llvm.nix", [[["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 46, 5]], [["pname", 18, 3], ["version", 19, 11], ["src", 20, 3], ["strictDeps", 21, 3], ["__structuredAttrs", 22, 3], ["nativeBuildInputs", 24, 3], ["cmakeFlags", 31, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, git: false, python3: false, ninja: false, src: false, version: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/llvm.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 46, 5]]);
-const pos$2 = nix.positions(here + "/llvm.nix", [["pname", 18, 3], ["version", 19, 11], ["src", 20, 3], ["strictDeps", 21, 3], ["__structuredAttrs", 22, 3], ["nativeBuildInputs", 24, 3], ["cmakeFlags", 31, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const targets = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isx86_64")), "X86"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isAarch64")), "AArch64")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "smlnj-llvm",
       version: version,
       src: nix.thunk(() => nix.str`${src}/runtime/llvm21`),
@@ -32,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "LLVM_ENABLE_DUMP", true)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Custom LLVM for Standard ML of New Jersey",
         homepage: "https://smlnj.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

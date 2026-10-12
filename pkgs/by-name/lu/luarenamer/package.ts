@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["updateScript", 36, 12]], [["homepage", 39, 5], ["changelog", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 46, 5], ["platforms", 47, 33]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["dotnet-sdk", 28, 3], ["dotnet-runtime", 29, 3], ["nugetDeps", 31, 3], ["projectFile", 32, 3], ["executables", 34, 3], ["passthru", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, "dotnet-sdk_8": false, "dotnet-aspnetcore_8": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 36, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 39, 5], ["changelog", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 46, 5], ["platforms", 47, 33]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["dotnet-sdk", 28, 3], ["dotnet-runtime", 29, 3], ["nugetDeps", 31, 3], ["projectFile", 32, 3], ["executables", 34, 3], ["passthru", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const dotnet_aspnetcore_8 = nix.arg($, "dotnet-aspnetcore_8");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "luarenamer",
       version: "5.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Mik1ll",
           repo: "LuaRenamer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,13 +31,13 @@ export default nix.lambda((args) => (() => {
       projectFile: "LuaRenamer/LuaRenamer.csproj",
       executables: [],
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(dotnet_sdk_8, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/Mik1ll/LuaRenamer",
         changelog: nix.thunk(() => nix.str`https://github.com/Mik1ll/LuaRenamer/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Plugin for Shoko that allows users to rename their collection using Lua",

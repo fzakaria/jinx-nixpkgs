@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5], ["fetchSubmodules", 43, 5]], [["NIX_LDFLAGS", 77, 7]], [["url", 93, 7], ["hash", 94, 7], ["stripLen", 95, 7], ["extraPrefix", 96, 7]], [["updateScript", 132, 12]], [["description", 135, 5], ["mainProgram", 136, 5], ["homepage", 137, 5], ["license", 138, 5], ["platforms", 139, 5], ["maintainers", 140, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 55, 3], ["env", 77, 3], ["patches", 88, 3], ["postPatch", 100, 3], ["installPhase", 106, 3], ["postInstall", 122, 3], ["passthru", 132, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, ensureNewerSourcesForZipFilesHook: false, cmake: false, "pkg-config": false, "alsa-lib": false, libx11: false, libxcursor: false, libxext: false, libxinerama: false, libxrender: false, libxrandr: false, libxdmcp: false, libxtst: false, xvfb: false, freetype: false, fontconfig: false, zenity: false, curl: false, python3: false, libxkbcommon: false, libGL: false, libGLU: false, libjack2: false, expat: false, webkitgtk_4_1: false, makeWrapper: false, writableTmpDirAsHomeHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5], ["fetchSubmodules", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 93, 7], ["hash", 94, 7], ["stripLen", 95, 7], ["extraPrefix", 96, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 132, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 135, 5], ["mainProgram", 136, 5], ["homepage", 137, 5], ["license", 138, 5], ["platforms", 139, 5], ["maintainers", 140, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 55, 3], ["env", 77, 3], ["patches", 88, 3], ["postPatch", 100, 3], ["installPhase", 106, 3], ["postInstall", 122, 3], ["passthru", 132, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "plugdata",
       version: "0.9.3-2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "plugdata-team",
           repo: "plugdata",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -85,7 +80,7 @@ export default nix.lambda((args) => (() => {
         webkitgtk_4_1,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-lX11",
             "-lXext",
@@ -99,7 +94,7 @@ export default nix.lambda((args) => (() => {
       })),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/pure-data/pure-data/commit/95e4105bc1044cbbcbbbcc369480a77c298d7475.patch",
             hash: "sha256-siwtizmlAS6fTOE1t+VvDKm1F14YquVlt2QAOKOGX2c=",
             stripLen: 1n,
@@ -113,11 +108,11 @@ wrapProgram $out/bin/plugdata \\
   --prefix PATH : '${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [zenity]))}'
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Plugin wrapper around Pure Data to allow patching in a wide selection of DAWs",
         mainProgram: "plugdata",
         homepage: "https://plugdata.org/",

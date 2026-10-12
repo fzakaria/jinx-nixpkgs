@@ -2,17 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["sha256", 17, 30]], [["officialRelease", 17, 14]], [["sha256", 18, 30]], [["officialRelease", 18, 14]], [["15.3.0", 17, 5], ["16.2.0", 18, 5]], [["lib", 34, 13], ["gitRelease", 35, 13], ["officialRelease", 36, 13], ["version", 37, 13]], [["overrideCC", 50, 38], ["officialRelease", 52, 15], ["gitRelease", 53, 15], ["monorepoSrc", 54, 15], ["version", 55, 15], ["patchesFn", 56, 15], ["buildGccPackages", 59, 13], ["targetGccPackages", 60, 13], ["otherSplices", 61, 13]], [["version", 68, 76]], [["mkPackage", 70, 26]]]);
 const formals$1 = { args: { lib: false, callPackage: false, stdenv: false, stdenvAdapters: false, gccVersions: true, patchesFn: true, buildPackages: false, targetPackages: false, binutilsNoLibc: false, binutils: false, generateSplicesForMkScope: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["sha256", 17, 30]]);
-const pos$2 = nix.positions(here + "/default.nix", [["officialRelease", 17, 14]]);
-const pos$3 = nix.positions(here + "/default.nix", [["sha256", 18, 30]]);
-const pos$4 = nix.positions(here + "/default.nix", [["officialRelease", 18, 14]]);
-const pos$5 = nix.positions(here + "/default.nix", [["15.3.0", 17, 5], ["16.2.0", 18, 5]]);
 const formals$2 = { args: { name: true, officialRelease: true, gitRelease: true, monorepoSrc: true, version: true }, ellipsis: false };
-const pos$6 = nix.positions(here + "/default.nix", [["lib", 34, 13], ["gitRelease", 35, 13], ["officialRelease", 36, 13], ["version", 37, 13]]);
-const pos$7 = nix.positions(here + "/default.nix", [["overrideCC", 50, 38], ["officialRelease", 52, 15], ["gitRelease", 53, 15], ["monorepoSrc", 54, 15], ["version", 55, 15], ["patchesFn", 56, 15], ["buildGccPackages", 59, 13], ["targetGccPackages", 60, 13], ["otherSplices", 61, 13]]);
-const pos$8 = nix.positions(here + "/default.nix", [["version", 68, 76]]);
-const pos$9 = nix.positions(here + "/default.nix", [["mkPackage", 70, 26]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const binutils = nix.arg($, "binutils");
   const generateSplicesForMkScope = nix.arg($, "generateSplicesForMkScope");
   const versions = nix.thunk(() => nix.update({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     "15.3.0": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       officialRelease: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         sha256: "sha256-+lnBvu+JlfJ8TXHB3yJ1hxiTFdPm+v8btDBuYbDFMOs=",
       })),
     })),
     "16.2.0": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       officialRelease: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         sha256: "sha256-5nOOKVl/czJwcxqpBgDzf/3ARQed/CfsfoGSzIEIXD4=",
       })),
     })),
@@ -54,7 +46,7 @@ export default nix.lambda((args) => (() => {
     const monorepoSrc = nix.argOr($_1, "monorepoSrc", () => null);
     const version = nix.argOr($_1, "version", () => null);
     const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/common-let.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         lib: lib,
         gitRelease: gitRelease,
         officialRelease: officialRelease,
@@ -64,7 +56,7 @@ export default nix.lambda((args) => (() => {
     const release_version = nix.thunk(() => nix.attr(releaseInfo, "release_version"));
     const attrName = nix.thunk(() => nix.selOr(args_2, () => (nix.asBool(!nix.eq(gitRelease, null)) ? "git" : nix.app(nix.sel(lib, "versions", "major"), release_version)), "name"));
     return nix.app(nix.sel(lib, "nameValuePair"), attrName, nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./common"), nix.thunk(() => nix.update({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             overrideCC: nix.thunk(() => nix.attr(stdenvAdapters, "overrideCC")),
             officialRelease: officialRelease,
             gitRelease: gitRelease,
@@ -76,7 +68,7 @@ export default nix.lambda((args) => (() => {
             otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, nix.thunk(() => nix.str`gccNGPackages_${attrName}`))),
           }, packageSetArgs)))))));
   })(), formals$2);
-  const gccPackages = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (version) => (args_1) => nix.app(mkPackage, nix.thunk(() => nix.update(args_1, { [nix.POS]: pos$8, version: version }))), versions));
-  return nix.update(gccPackages, { [nix.POS]: pos$9, mkPackage: mkPackage });
+  const gccPackages = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (version) => (args_1) => nix.app(mkPackage, nix.thunk(() => nix.update(args_1, { [nix.POS]: $pos[7], version: version }))), versions));
+  return nix.update(gccPackages, { [nix.POS]: $pos[8], mkPackage: mkPackage });
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

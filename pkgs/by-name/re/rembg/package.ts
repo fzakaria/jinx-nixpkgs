@@ -2,12 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withCli", 3, 71]]]);
 const formals$1 = { args: { python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withCli", 3, 71]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const python3Packages = nix.arg($, "python3Packages");
-  return nix.app(nix.sel(python3Packages, "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(python3Packages, "rembg", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCli: true })))));
+  return nix.app(nix.sel(python3Packages, "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(python3Packages, "rembg", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withCli: true })))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

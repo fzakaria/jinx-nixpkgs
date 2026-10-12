@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["dontUseCmakeConfigure", 60, 14]], [["nginx-otel", 62, 36]], [["forNginx", 60, 5], ["tests", 62, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["dynamic", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["preConfigure", 54, 3], ["passthru", 58, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { "abseil-cpp": false, "c-ares": false, cmake: false, fetchFromGitHub: false, grpc: false, lib: false, mkNginxPlugin: false, nixosTests: false, nlohmann_json: false, openssl: false, "opentelemetry-cpp": false, "pkg-config": false, protobuf: false, re2: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["dontUseCmakeConfigure", 60, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nginx-otel", 62, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["forNginx", 60, 5], ["tests", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["dynamic", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["preConfigure", 54, 3], ["passthru", 58, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const re2 = nix.arg($, "re2");
   const zlib = nix.arg($, "zlib");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "otel",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nginxinc",
           repo: "nginx-otel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,15 +49,15 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`export NGX_OTEL_CMAKE_OPTS="-DNGX_OTEL_GRPC=package -DNGX_OTEL_SDK=package -DNGX_OTEL_PROTO_DIR=${nix.sel(opentelemetry_cpp, "opentelemetry-proto")} -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=$out/modules"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        forNginx: nix.thunk(() => ({ [nix.POS]: pos$2, dontUseCmakeConfigure: true })),
+        [nix.POS]: $pos[3],
+        forNginx: nix.thunk(() => ({ [nix.POS]: $pos[1], dontUseCmakeConfigure: true })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "nginx-otel": nix.thunk(() => nix.attr(nixosTests, "nginx-otel")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "OpenTelemetry support for nginx",
         homepage: "https://github.com/nginxinc/nginx-otel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,32 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gitolite-fcgiwrap.nix", [[["maintainers", 16, 5]], [["allowedTCPPorts", 24, 29]], [["firewall", 24, 20]], [["user", 27, 19], ["group", 28, 19]], [["user", 29, 54], ["group", 29, 59]], [["process", 27, 11], ["socket", 29, 11]], [["gitolite", 26, 37]], [["instances", 26, 27]], [["enable", 33, 11], ["adminPubkey", 34, 11]], [["extraConfig", 40, 50]], [["/git", 40, 43]], [["locations", 40, 33]], [["server", 40, 24]], [["enable", 38, 11], ["recommendedProxySettings", 39, 11], ["virtualHosts", 40, 11]], [["fcgiwrap", 26, 18], ["gitolite", 32, 18], ["nginx", 37, 18]], [["source", 72, 45]], [["gitolite/htpasswd", 72, 25]], [["etc", 72, 21]], [["networking", 24, 9], ["services", 26, 9], ["environment", 72, 9]], [["systemPackages", 80, 21]], [["environment", 80, 9]], [["server", 21, 5], ["client", 77, 5]], [["name", 13, 3], ["meta", 15, 3], ["nodes", 19, 3], ["testScript", 84, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["maintainers", 16, 5]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["allowedTCPPorts", 24, 29]]);
-const pos$3 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["firewall", 24, 20]]);
-const pos$4 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["user", 27, 19], ["group", 28, 19]]);
-const pos$5 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["user", 29, 54], ["group", 29, 59]]);
-const pos$6 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["process", 27, 11], ["socket", 29, 11]]);
-const pos$7 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["gitolite", 26, 37]]);
-const pos$8 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["instances", 26, 27]]);
-const pos$9 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["enable", 33, 11], ["adminPubkey", 34, 11]]);
-const pos$10 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["extraConfig", 40, 50]]);
-const pos$11 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["/git", 40, 43]]);
-const pos$12 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["locations", 40, 33]]);
-const pos$13 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["server", 40, 24]]);
-const pos$14 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["enable", 38, 11], ["recommendedProxySettings", 39, 11], ["virtualHosts", 40, 11]]);
-const pos$15 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["fcgiwrap", 26, 18], ["gitolite", 32, 18], ["nginx", 37, 18]]);
-const pos$16 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["source", 72, 45]]);
-const pos$17 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["gitolite/htpasswd", 72, 25]]);
-const pos$18 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["etc", 72, 21]]);
-const pos$19 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["networking", 24, 9], ["services", 26, 9], ["environment", 72, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$20 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["systemPackages", 80, 21]]);
-const pos$21 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["environment", 80, 9]]);
-const pos$22 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["server", 21, 5], ["client", 77, 5]]);
-const pos$23 = nix.positions(here + "/gitolite-fcgiwrap.nix", [["name", 13, 3], ["meta", 15, 3], ["nodes", 19, 3], ["testScript", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,39 +14,39 @@ export default nix.lambda((args) => (() => {
   const password = "some_password";
   const adminPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO7urFhAA90BTpGuEHeWWTY3W/g9PBxXNxfWhfbrm4Le root@client\n";
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: "gitolite-fcgiwrap",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "bbigras"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: $pos[2],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             fcgiwrap: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               instances: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 gitolite: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
-                  process: nix.thunk(() => ({ [nix.POS]: pos$4, user: "gitolite", group: "gitolite" })),
+                  [nix.POS]: $pos[5],
+                  process: nix.thunk(() => ({ [nix.POS]: $pos[3], user: "gitolite", group: "gitolite" })),
                   socket: nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(config, "services", "nginx"));
                     return {
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     user: nix.thunk(() => nix.attr(from, "user")),
                     group: nix.thunk(() => nix.attr(from, "group")),
                   };
@@ -76,19 +54,19 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
             })),
-            gitolite: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true, adminPubkey: adminPublicKey })),
+            gitolite: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true, adminPubkey: adminPublicKey })),
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               enable: true,
               recommendedProxySettings: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 server: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     "/git": nix.thunk(() => ({
-                      [nix.POS]: pos$10,
+                      [nix.POS]: $pos[9],
                       extraConfig: nix.thunk(() => nix.str`# turn off gzip as git objects are already well compressed
 gzip off;
 
@@ -123,11 +101,11 @@ fastcgi_pass unix:${nix.sel(config, "services", "fcgiwrap", "instances", "gitoli
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               "gitolite/htpasswd": nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "htpasswd", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(pkgs, "apacheHttpd")}/bin/htpasswd -bc "$out" ${user} ${password}
 `))),
               })),
@@ -139,9 +117,9 @@ fastcgi_pass unix:${nix.sel(config, "services", "fcgiwrap", "instances", "gitoli
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "git"))]),
           })),
         };

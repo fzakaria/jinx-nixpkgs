@@ -2,13 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["privateTmp", 38, 17], ["multiArch", 40, 9], ["includeClosures", 41, 9], ["targetPkgs", 44, 9], ["multiPkgs", 68, 9], ["profile", 90, 9], ["extraPreBwrapCmds", 128, 17], ["extraBuildCommands", 133, 9], ["extraBwrapArgs", 137, 9]], [["description", 196, 13], ["mainProgram", 197, 13], ["name", 198, 13], ["license", 199, 13]], [["version", 172, 37], ["pname", 173, 11], ["extraPkgs", 175, 11], ["extraLibraries", 178, 13], ["extraProfile", 179, 13], ["extraPreBwrapCmds", 180, 13], ["extraBwrapArgs", 181, 13], ["extraEnv", 182, 13], ["privateTmp", 183, 13], ["runScript", 186, 11], ["meta", 195, 11]], [["buildRuntimeEnv", 204, 15], ["run", 206, 7], ["run-free", 207, 7]], [["pname", 146, 3], ["version", 147, 29], ["meta", 147, 37], ["extraPkgs", 149, 3], ["extraLibraries", 151, 5], ["extraProfile", 152, 5], ["extraPreBwrapCmds", 153, 5], ["extraBwrapArgs", 154, 5], ["extraEnv", 155, 5], ["privateTmp", 156, 5], ["runScript", 159, 3], ["extraInstallCommands", 163, 3], ["passthru", 167, 3]]]);
 const formals$1 = { args: { lib: false, "steam-unwrapped": false, buildFHSEnv: false, writeShellScript: false, extraPkgs: true, extraLibraries: true, extraProfile: true, extraPreBwrapCmds: true, extraBwrapArgs: true, extraArgs: true, extraEnv: true, privateTmp: true }, ellipsis: false };
 const formals$2 = { args: { extraPkgs: true, extraLibraries: true, extraProfile: true, extraPreBwrapCmds: true, extraBwrapArgs: true, extraEnv: true, privateTmp: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["privateTmp", 38, 17], ["multiArch", 40, 9], ["includeClosures", 41, 9], ["targetPkgs", 44, 9], ["multiPkgs", 68, 9], ["profile", 90, 9], ["extraPreBwrapCmds", 128, 17], ["extraBuildCommands", 133, 9], ["extraBwrapArgs", 137, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 196, 13], ["mainProgram", 197, 13], ["name", 198, 13], ["license", 199, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 172, 37], ["pname", 173, 11], ["extraPkgs", 175, 11], ["extraLibraries", 178, 13], ["extraProfile", 179, 13], ["extraPreBwrapCmds", 180, 13], ["extraBwrapArgs", 181, 13], ["extraEnv", 182, 13], ["privateTmp", 183, 13], ["runScript", 186, 11], ["meta", 195, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["buildRuntimeEnv", 204, 15], ["run", 206, 7], ["run-free", 207, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 146, 3], ["version", 147, 29], ["meta", 147, 37], ["extraPkgs", 149, 3], ["extraLibraries", 151, 5], ["extraProfile", 152, 5], ["extraPreBwrapCmds", 153, 5], ["extraBwrapArgs", 154, 5], ["extraEnv", 155, 5], ["privateTmp", 156, 5], ["runScript", 159, 3], ["extraInstallCommands", 163, 3], ["passthru", 167, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
           "extraArgs",
           "extraEnv",
         ])), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         privateTmp: privateTmp_1,
         multiArch: true,
         includeClosures: true,
@@ -123,7 +119,7 @@ ${extraProfile_1}
       })));
   })(), formals$2);
   return nix.app(buildRuntimeEnv, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "steam",
       version: nix.thunk(() => nix.attr(steam_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(steam_unwrapped, "meta")),
@@ -140,7 +136,7 @@ ${extraProfile_1}
 `),
       passthru: nix.thunk(() => (() => {
         const makeSteamRun = (package$) => nix.app(buildRuntimeEnv, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             version: nix.thunk(() => nix.attr(steam_unwrapped, "version")),
             pname: "steam-run",
             extraPkgs: (pkgs) => nix.concat(package$, nix.app(extraPkgs, pkgs)),
@@ -152,7 +148,7 @@ ${extraProfile_1}
             privateTmp: privateTmp,
             runScript: nix.thunk(() => nix.app(writeShellScript, "steam-run", "if [ $# -eq 0 ]; then\n  echo \"Usage: steam-run command-to-run args...\" >&2\n  exit 1\nfi\n\nexec \"$@\"\n")),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               description: "Run commands in the same FHS environment that is used for Steam",
               mainProgram: "steam-run",
               name: "steam-run",
@@ -160,7 +156,7 @@ ${extraProfile_1}
             })),
           })));
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           buildRuntimeEnv: buildRuntimeEnv,
           run: nix.thunk(() => nix.app(makeSteamRun, nix.thunk(() => [steam_unwrapped]))),
           "run-free": nix.thunk(() => nix.app(makeSteamRun, [])),

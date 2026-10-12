@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 17, 13], ["owner", 19, 5], ["repo", 20, 5], ["sha256", 21, 5]], [["description", 25, 5], ["mainProgram", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5]], [["pname", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["vendorHash", 12, 3], ["doCheck", 14, 3], ["src", 16, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { buildGoModule: false, lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 17, 13], ["owner", 19, 5], ["repo", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["mainProgram", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["vendorHash", 12, 3], ["doCheck", 14, 3], ["src", 16, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const vendorHash = null;
       const doCheck = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: rev,
           owner: "zmb3",
           repo: "gogetdoc",
           sha256: "1v74zd0x2xh10603p8raazssacv3y0x0lr9apkpsdk0bfp5jj0lr",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Gets documentation for items in Go source code",
         mainProgram: "gogetdoc",
         homepage: "https://github.com/zmb3/gogetdoc",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
-      return { [nix.POS]: pos$3, pname, version, rev, vendorHash, doCheck, src, meta };
+      return { [nix.POS]: $pos[2], pname, version, rev, vendorHash, doCheck, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

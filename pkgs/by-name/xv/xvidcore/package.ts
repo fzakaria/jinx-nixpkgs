@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["url", 24, 7], ["hash", 25, 7]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["preConfigure", 29, 3], ["configureFlags", 38, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 51, 3], ["postInstall", 62, 3], ["postFixup", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchurl: false, yasm: false, autoconf: false, automake: false, libtool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["preConfigure", 29, 3], ["configureFlags", 38, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 51, 3], ["postInstall", 62, 3], ["postFixup", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xvidcore",
       version: "1.3.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.xvid.com/downloads/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-ruqulS1Ns5UkmDmjvQOEHWhEhD9aT4TCcf+I96oaz/c=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://src.fedoraproject.org/rpms/xvidcore/raw/95382dbe529e5589a727fffceb620b0a89ff55f2/f/xvidcore-c23.patch",
             hash: "sha256-bGwWNmXIEIIw4Tc7lrMZ4jnhcQ+uKAsxL6fuAOosMVA=",
           })))),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "rm $out/lib/*.a\n")),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMinGW")), "ln -s $out/bin/*.dll $out/lib\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "MPEG-4 video codec for PC",
         homepage: "https://www.xvid.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

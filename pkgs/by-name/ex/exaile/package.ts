@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["sha256", 45, 5]], [["homepage", 116, 5], ["description", 117, 5], ["mainProgram", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["platforms", 121, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 60, 3], ["nativeCheckInputs", 92, 3], ["makeFlags", 96, 3], ["doCheck", 100, 3], ["preCheck", 101, 3], ["postInstall", 107, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "gobject-introspection": false, makeWrapper: false, wrapGAppsHook3: false, gtk3: false, gst_all_1: false, python3: false, gettext: false, "adwaita-icon-theme": false, help2man: false, keybinder3: false, libnotify: false, librsvg: false, streamripper: false, udisks: false, webkitgtk_4_1: false, iconTheme: true, deviceDetectionSupport: true, documentationSupport: true, notificationSupport: true, scalableIconSupport: true, translationSupport: true, ipythonSupport: true, cdMetadataSupport: true, lastfmSupport: true, lyricsManiaSupport: true, multimediaKeySupport: true, musicBrainzSupport: true, podcastSupport: true, streamripperSupport: true, wikipediaSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["sha256", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 116, 5], ["description", 117, 5], ["mainProgram", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["platforms", 121, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 60, 3], ["nativeCheckInputs", 92, 3], ["makeFlags", 96, 3], ["doCheck", 100, 3], ["preCheck", 101, 3], ["postInstall", 107, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const streamripperSupport = nix.argOr($, "streamripperSupport", () => false);
   const wikipediaSupport = nix.argOr($, "wikipediaSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "exaile",
       version: "4.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "exaile",
           repo: "exaile",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -91,7 +89,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([python3], nix.app(nix.sel(lib, "optionals"), streamripperSupport, nix.thunk(() => [streamripper])))))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.exaile.org/",
         description: "Music player with a simple interface and powerful music management capabilities",
         mainProgram: "exaile",

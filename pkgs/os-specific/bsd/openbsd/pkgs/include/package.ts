@@ -2,8 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["path", 13, 3], ["noCC", 14, 3], ["extraPaths", 16, 3], ["nativeBuildInputs", 40, 3], ["makeFlags", 50, 3], ["headersOnly", 55, 3]]]);
 const formals$1 = { args: { mkDerivation: false, makeMinimal: false, bsdSetupHook: false, openbsdSetupHook: false, install: false, rpcgen: false, mtree: false, pax: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["path", 13, 3], ["noCC", 14, 3], ["extraPaths", 16, 3], ["nativeBuildInputs", 40, 3], ["makeFlags", 50, 3], ["headersOnly", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pax = nix.arg($, "pax");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "include",
       noCC: true,
       extraPaths: nix.thunk(() => [

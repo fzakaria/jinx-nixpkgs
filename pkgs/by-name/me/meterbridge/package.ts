@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5]], [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libGL: false, SDL: false, SDL_image: false, libjack2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const SDL_image = nix.arg($, "SDL_image");
   const libjack2 = nix.arg($, "libjack2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.9.3",
       pname: "meterbridge",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://plugin.org.uk/meterbridge/meterbridge-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0s7n3czfpil94vsd7iblv4xrck9c7zvsz4r3yfbkqcv85pjz1viz",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libGL, SDL, SDL_image, libjack2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Various meters (VU, PPM, DPM, JF, SCO) for Jack Audio Connection Kit",
         homepage: "http://plugin.org.uk/meterbridge/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

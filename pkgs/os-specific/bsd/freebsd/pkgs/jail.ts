@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jail.nix", [[["mainProgram", 18, 8]], [["path", 9, 3], ["extraNativeBuildInputs", 10, 3], ["buildInputs", 14, 3], ["MK_TESTS", 17, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, flex: false, byacc: false, libjail: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/jail.nix", [["mainProgram", 18, 8]]);
-const pos$2 = nix.positions(here + "/jail.nix", [["path", 9, 3], ["extraNativeBuildInputs", 10, 3], ["buildInputs", 14, 3], ["MK_TESTS", 17, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const byacc = nix.arg($, "byacc");
   const libjail = nix.arg($, "libjail");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.sbin/jail",
       extraNativeBuildInputs: nix.thunk(() => [flex, byacc]),
       buildInputs: nix.thunk(() => [libjail]),
       MK_TESTS: "no",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "jail" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "jail" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=jail.ts.map

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["hash", 36, 5]], [["url", 42, 7], ["hash", 43, 7]], [["packageName", 83, 7]], [["updateScript", 82, 5]], [["homepage", 88, 5], ["description", 89, 5], ["mainProgram", 90, 5], ["teams", 91, 5], ["license", 92, 5], ["platforms", 93, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 59, 3], ["doCheck", 74, 3], ["preCheck", 76, 3], ["passthru", 81, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, appstream: false, "blueprint-compiler": false, meson: false, ninja: false, vala: false, gettext: false, itstool: false, fetchurl: false, fetchpatch: false, "pkg-config": false, libxml2: false, gtk4: false, glib: false, "glib-networking": false, gtksourceview5: false, wrapGAppsHook4: false, gnome: false, mpfr: false, gmp: false, libsoup_3: false, libmpc: false, libadwaita: false, "gsettings-desktop-schemas": false, libgee: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 42, 7], ["hash", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 83, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 82, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 88, 5], ["description", 89, 5], ["mainProgram", 90, 5], ["teams", 91, 5], ["license", 92, 5], ["platforms", 93, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 59, 3], ["doCheck", 74, 3], ["preCheck", 76, 3], ["passthru", 81, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,17 +34,17 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const libgee = nix.arg($, "libgee");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gnome-calculator",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-calculator/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-calculator-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-gFPWiRVl6IKHS2XB21HFvzEABet4i4usNUY5B0M1CpA=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.gnome.org/GNOME/gnome-calculator/-/commit/c9bf69ce3688390a584ca7571ea5fcda5aea8863.patch",
             hash: "sha256-FoV6SUprVdNcRORpoi+bNMTjzMM8bmXuze+6C9lqF8E=",
           })))),
@@ -82,11 +77,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       preCheck: "# Currency conversion test tries to store currency data in $HOME/.cache.\nexport HOME=$TMPDIR\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gnome-calculator" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "gnome-calculator" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://apps.gnome.org/Calculator/",
         description: "Application that solves mathematical equations and is suitable as a default application in a Desktop environment",
         mainProgram: "gnome-calculator",

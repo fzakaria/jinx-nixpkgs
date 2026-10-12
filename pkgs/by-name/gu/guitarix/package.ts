@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 62, 5], ["repo", 63, 5], ["tag", 64, 5], ["fetchSubmodules", 65, 5], ["hash", 66, 5]], [["name", 117, 7], ["url", 118, 7], ["hash", 119, 7], ["includes", 120, 7]], [["description", 153, 5], ["mainProgram", 154, 5], ["longDescription", 155, 5], ["homepage", 170, 5], ["license", 171, 5], ["maintainers", 172, 5], ["platforms", 177, 5]], [["pname", 58, 3], ["version", 59, 3], ["src", 61, 3], ["sourceRoot", 69, 3], ["strictDeps", 71, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 89, 3], ["patchFlags", 113, 3], ["patches", 114, 3], ["postPatch", 130, 3], ["wafConfigureFlags", 134, 3], ["meta", 152, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, avahi: false, bluez: false, boost: false, curl: false, eigen: false, faust: false, fetchpatch2: false, fftwSinglePrec: false, gettext: false, glib: false, "glib-networking": false, glibmm_2_4: false, gperf: false, gtk3: false, gtkmm3: false, "hicolor-icon-theme": false, intltool: false, "ladspa-header": false, libjack2: false, liblo: false, libsndfile: false, lilv: false, lrdf: false, lv2: false, "pkg-config": false, python3: false, sassc: false, wafHook: false, which: false, wrapGAppsHook3: false, "zita-convolver": false, "zita-resampler": false, enableFaust: true, enableGperf: true, enableOptimization: true, enableNSM: true, enableSse: true, optimizationSupport: true, withAvahi: true, withBluez: true, withLiblo: true, withZitaConvolver: true, withZitaResampler: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 62, 5], ["repo", 63, 5], ["tag", 64, 5], ["fetchSubmodules", 65, 5], ["hash", 66, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 117, 7], ["url", 118, 7], ["hash", 119, 7], ["includes", 120, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 153, 5], ["mainProgram", 154, 5], ["longDescription", 155, 5], ["homepage", 170, 5], ["license", 171, 5], ["maintainers", 172, 5], ["platforms", 177, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 58, 3], ["version", 59, 3], ["src", 61, 3], ["sourceRoot", 69, 3], ["strictDeps", 71, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 89, 3], ["patchFlags", 113, 3], ["patches", 114, 3], ["postPatch", 130, 3], ["wafConfigureFlags", 134, 3], ["meta", 152, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,11 +55,11 @@ export default nix.lambda((args) => (() => {
   const withZitaResampler = nix.argOr($, "withZitaResampler", () => true);
   nix.assert_((!nix.asBool(enableNSM) || nix.asBool(withLiblo)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gu/guitarix/package.nix:55:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "guitarix",
       version: "0.47.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "brummer10",
           repo: "guitarix",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -102,7 +99,7 @@ export default nix.lambda((args) => (() => {
       patchFlags: nix.thunk(() => ["-p2"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "make-boost-system-stub-optional.patch",
             url: "https://github.com/brummer10/guitarix/compare/v0.47.0..187670358ffc47a0fa09e140586b2e88dfdcf043.patch?full_index=1",
             hash: "sha256-9Z0sAM/oTm3ejv9chDbXEpkjNvlX/SN+k48XaJTqdy0=",
@@ -118,7 +115,7 @@ export default nix.lambda((args) => (() => {
         "--install-roboto-font",
       ], nix.concat(nix.app(nix.sel(lib, "optional"), enableFaust, "--faust"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableFaust)), "--no-faust"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableNSM)), "--no-nsm"), nix.concat(nix.app(nix.sel(lib, "optional"), enableOptimization, "--optimization"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableSse)), "--disable-sse"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withAvahi)), "--no-avahi"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withBluez)), "--no-bluez"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withZitaConvolver)), "--includeconvolver"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withZitaResampler)), "--includeresampler"))))))))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Virtual guitar amplifier for Linux running with JACK",
         mainProgram: "guitarix",
         longDescription: "Guitarix takes the signal from your guitar as any real amp would do: as a\nmono-signal from your sound card. Your tone is processed by a main amp and\na rack-section. Both can be routed separately and deliver a processed\nstereo-signal via JACK. You may fill the rack with effects from more than\n25 built-in modules spanning from a simple noise-gate to brain-slashing\nmodulation-fx like flanger, phaser or auto-wah. Your signal is processed\nwith minimum latency. On a properly set-up Linux-system you do not need to\nwait for more than 10 milliseconds for your playing to be delivered,\nprocessed by guitarix.\n\nGuitarix offers the range of sounds you would expect from a full-featured\nuniversal guitar-amp. You can get crisp clean-sounds, nice overdrive, fat\ndistortion and a diversity of crazy sounds never heard before.\n",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5], ["fetchSubmodules", 45, 5]], [["rev-prefix", 79, 33]], [["updateScript", 79, 5]], [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["buildInputs", 48, 3], ["nativeBuildInputs", 59, 3], ["postPatch", 68, 3], ["passthru", 78, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchFromGitHub: false, gperf: false, gawk: false, gitUpdater: false, "pkg-config": false, boost: false, luajit_openresty: false, asciidoctor: false, emilua: false, liburing: false, openssl: false, cmake: false, fmt: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5], ["fetchSubmodules", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["rev-prefix", 79, 33]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 79, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["buildInputs", 48, 3], ["nativeBuildInputs", 59, 3], ["postPatch", 68, 3], ["passthru", 78, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const zlib = nix.arg($, "zlib");
   const td_wrap = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "tdlib",
       repo: "td",
       rev: "4041ecb535802ba1c55fcd11adf5d3ada41c2be7",
       hash: "sha256-/TaPYy+FUOVhyocDZ13zwR07xbzp6g8c6xvAGVFLQvk=",
     }))));
   const trial_circular_wrap = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "breese",
       repo: "trial.protocol",
       rev: "79149f604a49b8dfec57857ca28aaf508069b669",
@@ -48,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pname = "emilua-tdlib";
       const version = "1.0.4";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "emilua",
           repo: "tdlib",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -75,11 +69,11 @@ substituteInPlace td/td/generate/tl-parser/CMakeLists.txt \\
   --replace-fail "cmake_minimum_required(VERSION 3.0 FATAL_ERROR)" "cmake_minimum_required(VERSION 3.10)"
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Telegram Database Library bindings for Emilua",
         homepage: "https://emilua.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -90,7 +84,7 @@ substituteInPlace td/td/generate/tl-parser/CMakeLists.txt \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

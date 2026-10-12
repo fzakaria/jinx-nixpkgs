@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 65, 5], ["repo", 66, 5], ["tag", 67, 5], ["hash", 68, 5]], [["description", 205, 5], ["homepage", 206, 5], ["changelog", 207, 5], ["license", 208, 5], ["maintainers", 209, 5]], [["pname", 60, 3], ["version", 61, 3], ["pyproject", 62, 3], ["src", 64, 3], ["postPatch", 71, 3], ["build-system", 76, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 83, 3], ["dependencies", 87, 3], ["postFixup", 122, 3], ["preCheck", 126, 3], ["nativeCheckInputs", 130, 3], ["disabledTestPaths", 143, 3], ["enabledTestPaths", 168, 3], ["disabledTests", 172, 3], ["meta", 204, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, qt6: false, "app-model": false, appdirs: false, cachey: false, certifi: false, dask: false, "docstring-parser": false, imageio: false, jsonschema: false, magicgui: false, "napari-console": false, npe2: false, "napari-svg": false, pandas: false, pillow: false, pint: false, psutil: false, pydantic: false, "pydantic-extra-types": false, "pydantic-settings": false, pyopengl: false, pyyaml: false, requests: false, "scikit-image": false, scipy: false, superqt: false, tifffile: false, toolz: false, tqdm: false, "typing-extensions": false, vispy: false, wrapt: false, hypothesis: false, pooch: false, pretend: false, pyautogui: false, "pytest-pretty": false, "pytest-qt": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false, xarray: false, zarr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 65, 5], ["repo", 66, 5], ["tag", 67, 5], ["hash", 68, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 205, 5], ["homepage", 206, 5], ["changelog", 207, 5], ["license", 208, 5], ["maintainers", 209, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 60, 3], ["version", 61, 3], ["pyproject", 62, 3], ["src", 64, 3], ["postPatch", 71, 3], ["build-system", 76, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 83, 3], ["dependencies", 87, 3], ["postFixup", 122, 3], ["preCheck", 126, 3], ["nativeCheckInputs", 130, 3], ["disabledTestPaths", 143, 3], ["enabledTestPaths", 168, 3], ["disabledTests", 172, 3], ["meta", 204, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,12 +55,12 @@ export default nix.lambda((args) => (() => {
   const xarray = nix.arg($, "xarray");
   const zarr = nix.arg($, "zarr");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "napari",
       version: "0.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "napari",
           repo: "napari",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -164,7 +162,7 @@ export default nix.lambda((args) => (() => {
         "test_view",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast, interactive, multi-dimensional image viewer",
         homepage: "https://github.com/napari/napari",
         changelog: nix.thunk(() => nix.str`https://github.com/napari/napari/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["extraArgs", 27, 47]], [["updateScript", 27, 12]], [["description", 30, 5], ["homepage", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["license", 34, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["strictDeps", 18, 3], ["__structuredAttrs", 19, 3], ["postPatch", 22, 3], ["passthru", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromCodeberg: false, lib: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 27, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 27, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["license", 34, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["strictDeps", 18, 3], ["__structuredAttrs", 19, 3], ["postPatch", 22, 3], ["passthru", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "kbd-ergol",
       version: "0-unstable-2026-07-07",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Alerymin",
           repo: "kbd-ergol",
           rev: "0af6404625fe4da03bc27e1141dc255ac49fa94e",
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       postPatch: "substituteInPlace Makefile \\\n  --replace \"/usr/share/kbd/\" \"$out/share/\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Ergo-L layout in keymap format for linux console",
         homepage: "https://codeberg.org/Alerymin/kbd-ergol",
         maintainers: nix.thunk(() => (() => {

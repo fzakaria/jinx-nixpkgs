@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["changelog", 105, 5], ["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5]], [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 30, 3], ["patches", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 56, 3], ["doInstallCheck", 63, 3], ["cmakeFlags", 65, 3], ["postPatch", 80, 3], ["postInstall", 93, 3], ["nativeInstallCheckInputs", 98, 3], ["pythonImportsCheck", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, cmake: false, flex: false, bison: false, libxml2: false, pythonSupport: true, python3: false, libusb1: false, avahiSupport: true, avahi: false, libaio: false, runtimeShell: false, lib: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 105, 5], ["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 30, 3], ["patches", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 56, 3], ["doInstallCheck", 63, 3], ["cmakeFlags", 65, 3], ["postPatch", 80, 3], ["postInstall", 93, 3], ["nativeInstallCheckInputs", 98, 3], ["pythonImportsCheck", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.26";
       const outputs = nix.thunk(() => nix.concat(["out", "lib", "dev"], nix.app(nix.sel(lib, "optional"), pythonSupport, "python")));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "analogdevicesinc",
           repo: "libiio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -56,7 +54,7 @@ moveToOutput ${nix.sel(python3, "sitePackages")} "$python"
       const nativeInstallCheckInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), pythonSupport, nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "pythonImportsCheckHook"))])));
       const pythonImportsCheck = nix.thunk(() => ["iio"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/analogdevicesinc/libiio/releases/tag/${nix.sel(src, "tag")}`),
         description: "API for interfacing with the Linux Industrial I/O Subsystem",
         homepage: "https://github.com/analogdevicesinc/libiio",
@@ -68,7 +66,7 @@ moveToOutput ${nix.sel(python3, "sitePackages")} "$python"
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         outputs,

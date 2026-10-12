@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["NIX_CFLAGS_COMPILE", 22, 5]], [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 45, 5], ["homepage", 46, 5], ["downloadPage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["minimalOCamlVersion", 18, 3], ["env", 21, 3], ["src", 25, 3], ["nativeCheckInputs", 32, 3], ["checkInputs", 36, 3], ["doCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, ocaml: false, buildDunePackage: false, fetchFromGitHub: false, findlib: false, mdx: false, qcheck: false, ppx_inline_test: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["downloadPage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["minimalOCamlVersion", 18, 3], ["env", 21, 3], ["src", 25, 3], ["nativeCheckInputs", 32, 3], ["checkInputs", 36, 3], ["doCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const qcheck = nix.arg($, "qcheck");
   const ppx_inline_test = nix.arg($, "ppx_inline_test");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "patricia-tree",
       version: "0.14.0",
       __structuredAttrs: true,
       minimalOCamlVersion: "4.14",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")), nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")), nix.thunk(() => ({ [nix.POS]: $pos[0], NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "codex-semantics-library",
           repo: "patricia-tree",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [mdx, ppx_inline_test, qcheck]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Patricia Tree data structure in OCaml",
         homepage: "https://codex.top/api/patricia-tree/",
         downloadPage: "https://github.com/codex-semantics-library/patricia-tree",

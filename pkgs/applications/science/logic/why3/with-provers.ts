@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-provers.nix", [[["provers", 9, 58]], [["pname", 20, 3], ["version", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["dontUnpack", 26, 3], ["buildPhase", 28, 3], ["installPhase", 34, 3]]]);
 const formals$1 = { args: { stdenv: false, makeWrapper: false, runCommand: false, why3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/with-provers.nix", [["provers", 9, 58]]);
-const pos$2 = nix.positions(here + "/with-provers.nix", [["pname", 20, 3], ["version", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["dontUnpack", 26, 3], ["buildPhase", 28, 3], ["installPhase", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const why3 = nix.arg($, "why3");
   return (provers) => (() => {
-    const configAwkScript = nix.thunk(() => nix.app(runCommand, "why3-conf.awk", nix.thunk(() => ({ [nix.POS]: pos$1, provers: provers })), "for p in $provers; do\n  for b in $p/bin/*; do\n    BASENAME=$(basename $b)\n    echo \"/^command =/{ gsub(\\\"$BASENAME\\\", \\\"$b\\\") }\" >> $out\n  done\ndone\necho '{ print }' >> $out\n"));
+    const configAwkScript = nix.thunk(() => nix.app(runCommand, "why3-conf.awk", nix.thunk(() => ({ [nix.POS]: $pos[0], provers: provers })), "for p in $provers; do\n  for b in $p/bin/*; do\n    BASENAME=$(basename $b)\n    echo \"/^command =/{ gsub(\\\"$BASENAME\\\", \\\"$b\\\") }\" >> $out\n  done\ndone\necho '{ print }' >> $out\n"));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: nix.thunk(() => nix.str`${nix.sel(why3, "pname")}-with-provers`),
         version: nix.thunk(() => nix.sel(why3, "version")),
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),

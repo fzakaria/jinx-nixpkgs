@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["url", 36, 7], ["hash", 37, 7]], [["NIX_CFLAGS_COMPILE", 86, 7]], [["package", 100, 7], ["command", 101, 7]], [["version", 99, 11]], [["rev-prefix", 110, 33]], [["tests", 99, 5], ["updateScript", 110, 5]], [["description", 114, 5], ["mainProgram", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["maintainers", 119, 5], ["broken", 120, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 57, 3], ["preConfigure", 78, 3], ["env", 86, 3], ["dontWrapGApps", 88, 3], ["postInstall", 90, 3], ["preFixup", 94, 3], ["passthru", 98, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, perl: false, wrapGAppsHook3: false, qt6: false, qt6Packages: false, calcmysky: false, indilib: false, libnova: false, exiv2: false, nlopt: false, testers: false, "xvfb-run": false, gitUpdater: false, md4c: false, withQtWebEngine: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 86, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 100, 7], ["command", 101, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 99, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["rev-prefix", 110, 33]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 99, 5], ["updateScript", 110, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 114, 5], ["mainProgram", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["maintainers", 119, 5], ["broken", 120, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 57, 3], ["preConfigure", 78, 3], ["env", 86, 3], ["dontWrapGApps", 88, 3], ["postInstall", 90, 3], ["preFixup", 94, 3], ["passthru", 98, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const md4c = nix.arg($, "md4c");
   const withQtWebEngine = nix.argOr($, "withQtWebEngine", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), nix.thunk(() => nix.sel(qt6, "qtwebengine"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "stellarium",
       version: "26.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Stellarium",
           repo: "stellarium",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/stellarium/-/raw/ab559b6e9349569278f83c2dfc83990e971a8cb2/qt-6.10.patch",
             hash: "sha256-a7zC9IQOj93VnPy8Bj/fLe4oJux7I4Edgj5OaKI4TZU=",
           })))),
@@ -82,18 +74,18 @@ substituteInPlace src/CMakeLists.txt \\
       preConfigure: nix.thunk(() => nix.add(nix.str`export SOURCE_DATE_EPOCH=$(date -d 20${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}0101 +%s)
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "export LC_ALL=en_US.UTF-8\n"))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`-F${nix.sel(qt6, "qtserialport")}/lib`))),
       })),
       dontWrapGApps: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeWrapper $out/Applications/Stellarium.app/Contents/MacOS/Stellarium $out/bin/stellarium\n")),
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.str`# Create a temporary home directory because stellarium aborts with an
 # error if it can't write some configuration files.
@@ -104,10 +96,10 @@ HOME="$tmpdir" ${nix.app(nix.sel(lib, "getExe"), xvfb_run)} stellarium --version
 `),
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$6, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[5], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Free open-source planetarium",
         mainProgram: "stellarium",
         homepage: "https://stellarium.org/",

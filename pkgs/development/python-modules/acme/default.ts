@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 37, 5]], [["pname", 13, 3], ["version", 14, 21], ["src", 14, 29], ["pyproject", 15, 3], ["sourceRoot", 17, 3], ["build-system", 19, 3], ["dependencies", 23, 3], ["doCheck", 32, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, certbot: false, cryptography: false, pyopenssl: false, pyrfc3339: false, josepy: false, requests: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 21], ["src", 14, 29], ["pyproject", 15, 3], ["sourceRoot", 17, 3], ["build-system", 19, 3], ["dependencies", 23, 3], ["doCheck", 32, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,9 +25,9 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [cryptography, pyopenssl, pyrfc3339, requests, josepy]);
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["acme"]);
-      const meta = nix.thunk(() => nix.update(nix.sel(certbot, "meta"), { [nix.POS]: pos$1, description: "ACME protocol implementation in Python" }));
+      const meta = nix.thunk(() => nix.update(nix.sel(certbot, "meta"), { [nix.POS]: $pos[0], description: "ACME protocol implementation in Python" }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

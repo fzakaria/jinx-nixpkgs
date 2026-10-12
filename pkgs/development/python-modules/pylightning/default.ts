@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 9, 3], ["pyproject", 10, 3], ["src", 13, 25], ["version", 13, 29], ["postUnpack", 15, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["doCheck", 24, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, setuptools: false, "pyln-client": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["pyproject", 10, 3], ["src", 13, 25], ["version", 13, 29], ["postUnpack", 15, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["doCheck", 24, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pyln_client = nix.arg($, "pyln-client");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "pylightning",
       pyproject: true,
       src: nix.thunk(() => nix.attr(pyln_client, "src")),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["lightning"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Compatibility library for the Core Lightning Python client",
         homepage: "https://github.com/ElementsProject/lightning/tree/master/contrib/pylightning",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

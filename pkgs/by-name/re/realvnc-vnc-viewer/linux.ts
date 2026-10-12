@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["name", 19, 9], ["url", 20, 9], ["hash", 21, 9]], [["x86_64-linux", 18, 7]], [["mainProgram", 56, 5]], [["pname", 14, 11], ["version", 14, 17], ["src", 16, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["unpackPhase", 36, 3], ["postPatch", 40, 3], ["installPhase", 47, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, autoPatchelfHook: false, rpmextract: false, libx11: false, libxext: false, pname: false, version: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["name", 19, 9], ["url", 20, 9], ["hash", 21, 9]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["x86_64-linux", 18, 7]]);
-const pos$3 = nix.positions(here + "/linux.nix", [["mainProgram", 56, 5]]);
-const pos$4 = nix.positions(here + "/linux.nix", [["pname", 14, 11], ["version", 14, 17], ["src", 16, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["unpackPhase", 36, 3], ["postPatch", 40, 3], ["installPhase", 47, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
             const name = nix.thunk(() => nix.str`VNC-Viewer-${nix.sel(finalAttrs, "version")}-Linux-x64.rpm`);
             const url = nix.thunk(() => nix.str`https://downloads.realvnc.com/download/file/viewer.files/${name}`);
             const hash = "sha256-rIOP7d8qrOeMgaQRYo+GRXT1fLnPegdpONT0p5aBCxM=";
-            return { [nix.POS]: pos$1, name, url, hash };
+            return { [nix.POS]: $pos[0], name, url, hash };
           })()))),
       }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "system")))),
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook, rpmextract]),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "rpmextract $src\n",
       postPatch: "substituteInPlace ./usr/share/applications/realvnc-vncviewer.desktop \\\n  --replace /usr/share/icons/hicolor/48x48/apps/vncviewer48x48.png vncviewer48x48.png\nsubstituteInPlace ./usr/share/mimelnk/application/realvnc-vncviewer-mime.desktop \\\n  --replace /usr/share/icons/hicolor/48x48/apps/vncviewer48x48.png vncviewer48x48.png\n",
       installPhase: "runHook preInstall\n\nmv usr $out\n\nrunHook postInstall\n",
-      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$3, mainProgram: "vncviewer" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[2], mainProgram: "vncviewer" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=linux.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["strictDeps", 61, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 66, 3], ["cmakeFlags", 76, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, curl: false, curlpp: false, inih: false, openssl: false, pugixml: false, nlohmann_json: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["strictDeps", 61, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 66, 3], ["cmakeFlags", 76, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nlohmann_json = nix.arg($, "nlohmann_json");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "minio-cpp",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "minio",
           repo: "minio-cpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "MINIO_CPP_MAKE_DOC", false)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MinIO C++ Client SDK for Amazon S3 Compatible Cloud Storage",
         homepage: "https://github.com/minio/minio-cpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

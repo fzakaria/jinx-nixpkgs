@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 18, 3], ["version", 19, 3], ["format", 20, 3], ["src", 22, 3], ["pythonRemoveDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["preCheck", 40, 3], ["nativeCheckInputs", 45, 3], ["disabledTests", 47, 3], ["disabledTestPaths", 61, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, numpy: false, scipy: false, "scikit-learn": false, joblib: false, six: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["format", 20, 3], ["src", 22, 3], ["pythonRemoveDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["preCheck", 40, 3], ["nativeCheckInputs", 45, 3], ["disabledTests", 47, 3], ["disabledTestPaths", 61, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.41";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scikit-learn-contrib",
           repo: "hdbscan",
           tag: nix.thunk(() => nix.str`release-${version}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["test_branches.py"]);
       const pythonImportsCheck = nix.thunk(() => ["hdbscan"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Hierarchical Density-Based Spatial Clustering of Applications with Noise, a clustering algorithm with a scikit-learn compatible API",
         homepage: "https://github.com/scikit-learn-contrib/hdbscan",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-learn-contrib/hdbscan/releases/tag/release-${version}`),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

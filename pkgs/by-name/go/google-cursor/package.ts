@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 10, 7], ["hash", 11, 7]], [["name", 14, 7], ["hash", 15, 7]], [["name", 18, 7], ["hash", 19, 7]], [["name", 22, 7], ["hash", 23, 7]], [["url", 35, 7], ["name", 36, 7], ["hash", 37, 7]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]], [["pname", 28, 3], ["version", 29, 3], ["sourceRoot", 31, 3], ["srcs", 32, 3], ["postInstall", 41, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchzip: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 10, 7], ["hash", 11, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 14, 7], ["hash", 15, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 18, 7], ["hash", 19, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 22, 7], ["hash", 23, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 35, 7], ["name", 36, 7], ["hash", 37, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["sourceRoot", 31, 3], ["srcs", 32, 3], ["postInstall", 41, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,40 +12,40 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const colors = nix.thunk(() => [
     nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "Black",
       hash: "sha256-pb2U9j1m8uJaILxUxKqp8q9FGuwzZsQvhPP3bfGZL5I=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "Blue",
       hash: "sha256-PmJeGShQLIC7ceRwQvSbphqz19fKptksZeHKi9QSL5Y=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "Red",
       hash: "sha256-/X81jLoWaw4UMoDRf1f6oaKKRWexQc4PAACy3doV4Kc=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "White",
       hash: "sha256-eT/Zy6O6TBD6G8q/dg+9rNYDHutLLxEY1lvLDP90b+g=",
     })),
   ]);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "google-cursor",
       version: "2.0.0",
       sourceRoot: ".",
       srcs: nix.thunk(() => nix.builtins.map((color) => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: nix.thunk(() => nix.str`https://github.com/ful1e5/Google_Cursor/releases/download/v${nix.sel(finalAttrs, "version")}/GoogleDot-${nix.sel(color, "name")}.tar.gz`),
             name: nix.thunk(() => nix.str`GoogleDot-${nix.sel(color, "name")}`),
             hash: nix.thunk(() => nix.sel(color, "hash")),
           }))), colors)),
       postInstall: "mkdir -p $out/share/icons\ncp -r GoogleDot-* $out/share/icons\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Opensource cursor theme inspired by Google",
         homepage: "https://github.com/ful1e5/Google_Cursor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

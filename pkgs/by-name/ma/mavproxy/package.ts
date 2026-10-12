@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["url", 25, 7], ["hash", 26, 7]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 50, 3], ["nativeInstallCheckInputs", 53, 3], ["doInstallCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromGitHub: false, fetchpatch: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 50, 3], ["nativeInstallCheckInputs", 53, 3], ["doInstallCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "MAVProxy",
       version: "1.8.74",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ArduPilot",
           repo: "MAVProxy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/ArduPilot/MAVProxy/commit/db52f3f5d1991942026c00b51a3ce1ce85998cbd.patch",
             hash: "sha256-mNhOfXJMiUihsso3fjzlbeXW/3ENvrdkFSLo23dMCY4=",
           })))),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "MAVLink proxy and command line ground station",
         homepage: "https://github.com/ArduPilot/MAVProxy",
         changelog: nix.thunk(() => nix.str`https://github.com/ArduPilot/MAVProxy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

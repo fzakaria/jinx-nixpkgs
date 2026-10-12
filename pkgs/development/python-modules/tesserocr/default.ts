@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["build-system", 42, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 52, 3], ["dependencies", 57, 3], ["pythonImportsCheck", 62, 3], ["nativeCheckInputs", 64, 3], ["preCheck", 68, 3], ["disabledTests", 72, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cysignals: false, cython: false, setuptools: false, "pkg-config": false, leptonica: false, tesseract5: false, pillow: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["build-system", 42, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 52, 3], ["dependencies", 57, 3], ["pythonImportsCheck", 62, 3], ["nativeCheckInputs", 64, 3], ["preCheck", 68, 3], ["disabledTests", 72, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pillow = nix.arg($, "pillow");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tesserocr",
       version: "2.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sirfz",
           repo: "tesserocr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -rf tesserocr\n",
       disabledTests: nix.thunk(() => ["test_init_full"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple, Pillow-friendly, wrapper around the tesseract-ocr API for Optical Character Recognition (OCR)",
         homepage: "https://github.com/sirfz/tesserocr",
         changelog: nix.thunk(() => nix.str`https://github.com/sirfz/tesserocr/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

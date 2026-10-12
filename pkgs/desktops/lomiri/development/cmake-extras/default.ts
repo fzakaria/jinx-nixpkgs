@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["teams", 48, 5], ["platforms", 49, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["strictDeps", 30, 3], ["dontWrapQtApps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitLab: false, cmake: false, qtbase: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["teams", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["strictDeps", 30, 3], ["dontWrapQtApps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const qtbase = nix.arg($, "qtbase");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cmake-extras",
       version: "1.10",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/cmake-extras",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +36,7 @@ substituteInPlace src/QmlPlugins/QmlPluginsConfig.cmake \\
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [qtbase]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of add-ons for the CMake build tool",
         homepage: "https://gitlab.com/ubports/development/core/cmake-extras",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/cmake-extras/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

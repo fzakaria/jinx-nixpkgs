@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 103, 5], ["longDescription", 104, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["platforms", 118, 5], ["license", 119, 5], ["maintainers", 126, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["cmakeFlags", 60, 3], ["doCheck", 93, 3], ["checkPhase", 94, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, ragel: false, "util-linux": false, python3: false, boost: false, sqlite: false, enableShared: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 103, 5], ["longDescription", 104, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["platforms", 118, 5], ["license", 119, 5], ["maintainers", 126, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["cmakeFlags", 60, 3], ["doCheck", 93, 3], ["checkPhase", 94, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vectorscan",
       version: "5.4.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "VectorCamp",
           repo: "vectorscan",
           rev: nix.thunk(() => nix.str`vectorscan/${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +58,7 @@ substituteInPlace cmake/build_wrapper.sh \\
       doCheck: true,
       checkPhase: "runHook preCheck\n\n./bin/unit-hyperscan\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Portable fork of the high-performance regular expression matching library",
         longDescription: "A fork of Intel's Hyperscan, modified to run on more platforms. Currently\nARM NEON/ASIMD is 100% functional, and Power VSX are in development.\nARM SVE2 will be implemented when hardware becomes accessible to the\ndevelopers. More platforms will follow in the future, on demand/request.\n\nVectorscan will follow Intel's API and internal algorithms where possible,\nbut will not hesitate to make code changes where it is thought of giving\nbetter performance or better portability. In addition, the code will be\ngradually simplified and made more uniform and all architecture specific\ncode will be abstracted away.\n",
         homepage: "https://www.vectorcamp.gr/vectorscan/",

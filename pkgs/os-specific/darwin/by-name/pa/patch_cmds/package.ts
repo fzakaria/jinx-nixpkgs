@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 32, 5], ["license", 33, 5]], [["releaseName", 10, 3], ["outputs", 12, 3], ["patches", 17, 3], ["xcodeHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, "apple-sdk_26": false, libutil: false, mkAppleDerivation: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 32, 5], ["license", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["releaseName", 10, 3], ["outputs", 12, 3], ["patches", 17, 3], ["xcodeHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const mkAppleDerivation = nix.arg($, "mkAppleDerivation");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       releaseName: "patch_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       patches: nix.thunk(() => [nix.path(here, "./patches/0001-Fall-back-to-scandir.patch")]),
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [apple_sdk_26, libutil]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "BSD patch commands for Darwin",
         license: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "licenses", "apple-psl10")),

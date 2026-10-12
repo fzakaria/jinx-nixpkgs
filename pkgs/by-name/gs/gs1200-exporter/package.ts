@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["gs1200-exporter", 22, 26]], [["tests", 21, 12]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["mainProgram", 29, 5]], [["pname", 8, 3], ["version", 9, 3], ["__structuredAttrs", 10, 3], ["src", 11, 3], ["vendorHash", 17, 3], ["postPatch", 18, 3], ["passthru", 21, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gs1200-exporter", 22, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 21, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["mainProgram", 29, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["__structuredAttrs", 10, 3], ["src", 11, 3], ["vendorHash", 17, 3], ["postPatch", 18, 3], ["passthru", 21, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.11.13";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "robinelfrink",
           repo: "gs1200-exporter",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-R8is2TM2npCY1eOTRsL1spTJWf/KiBqHpjr4EjraLeU=";
       const postPatch = "substituteInPlace go.mod --replace-fail \"go 1.26.4\" \"go 1.26.3\"\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "gs1200-exporter": nix.thunk(() => nix.attr(nixosTests, "gs1200-exporter")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Prometheus exporter for Zyxel GS1200 switches",
         homepage: "https://github.com/robinelfrink/gs1200-exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gs1200-exporter",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         __structuredAttrs,

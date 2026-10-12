@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5], ["fetchSubmodules", 31, 5]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]], [["pname", 20, 3], ["version", 21, 3], ["__structuredAttrs", 23, 3], ["strictDeps", 24, 3], ["src", 26, 3], ["patches", 34, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["cmakeFlags", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, cmake: false, "pkg-config": false, cimg: false, libjpeg: false, libpng: false, nlohmann_json: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5], ["fetchSubmodules", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["__structuredAttrs", 23, 3], ["strictDeps", 24, 3], ["src", 26, 3], ["patches", 34, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["cmakeFlags", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const nlohmann_json = nix.arg($, "nlohmann_json");
   const excludelist = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://raw.githubusercontent.com/probonopd/AppImages/15a64c20dc23a0154622ba25829364323903b6b5/excludelist",
       sha256: "sha256-UNsPiU80sWnEely8DBfbq2Hp7evKW8gmmh5qwb9L2tk=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "linuxdeploy-plugin-qt",
       version: "0-unstable-2026-03-07",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "linuxdeploy",
           repo: "linuxdeploy-plugin-qt",
           rev: "511d51d066f632dfdfbcf0bf7284ec38090812d2",
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cimg, libjpeg, libpng, nlohmann_json]),
       cmakeFlags: nix.thunk(() => ["-DBUILD_TESTING=OFF"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Qt plugin for linuxdeploy to bundle Qt applications into AppImage format",
         homepage: "https://github.com/linuxdeploy/linuxdeploy-plugin-qt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

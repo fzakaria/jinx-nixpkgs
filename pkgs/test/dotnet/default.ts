@@ -2,15 +2,15 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["project-references", 4, 3], ["use-dotnet-from-env", 5, 3], ["structured-attrs", 6, 3], ["final-attrs", 7, 3], ["nuget-deps", 8, 3], ["cross-target", 9, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["project-references", 4, 3], ["use-dotnet-from-env", 5, 3], ["structured-attrs", 6, 3], ["final-attrs", 7, 3], ["nuget-deps", 8, 3], ["cross-target", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const callPackage = nix.arg($, "callPackage");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "project-references": nix.thunk(() => nix.app(callPackage, nix.path(here, "./project-references"), nix.thunk(() => ({})))),
     "use-dotnet-from-env": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./use-dotnet-from-env"), nix.thunk(() => ({})))))),
     "structured-attrs": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./structured-attrs"), nix.thunk(() => ({})))))),

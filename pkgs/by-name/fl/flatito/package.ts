@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["remotes", 16, 9], ["sha256", 17, 9], ["type", 18, 9]], [["source", 15, 15]], [["flatito", 15, 7]], [["ruby", 10, 13], ["name", 11, 5], ["version", 12, 5], ["gemdir", 13, 5], ["gemset", 14, 5]], [["sha256", 31, 10]], [["updateScript", 34, 12]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]], [["ruby", 25, 11], ["gemName", 27, 3], ["pname", 28, 3], ["version", 29, 3], ["source", 31, 3], ["propagatedBuildInputs", 32, 3], ["passthru", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, ruby: false, buildRubyGem: false, bundlerEnv: false, bundlerUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["remotes", 16, 9], ["sha256", 17, 9], ["type", 18, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["source", 15, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["flatito", 15, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ruby", 10, 13], ["name", 11, 5], ["version", 12, 5], ["gemdir", 13, 5], ["gemset", 14, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sha256", 31, 10]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 34, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["ruby", 25, 11], ["gemName", 27, 3], ["pname", 28, 3], ["version", 29, 3], ["source", 31, 3], ["propagatedBuildInputs", 32, 3], ["passthru", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +18,18 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.1";
       const gemdir = nix.path(here, "./.");
       const gemset = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix"))), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           flatito: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             source: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               remotes: nix.thunk(() => ["https://rubygems.org"]),
               sha256: "9f5a8f899a14c1a0fe74cb89288f24ddc47bd5d83ac88ac8023d19b056ecb50f",
               type: "gem",
             })),
           })),
         }))));
-      return { [nix.POS]: pos$4, ruby: ruby_1, name, version, gemdir, gemset };
+      return { [nix.POS]: $pos[3], ruby: ruby_1, name, version, gemdir, gemset };
     })())));
   return nix.app(buildRubyGem, nix.thunk(() => (() => {
       const ruby_1 = ruby;
@@ -44,16 +37,16 @@ export default nix.lambda((args) => (() => {
       const pname = gemName;
       const version = "0.1.1";
       const source = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         sha256: "sha256-n1qPiZoUwaD+dMuJKI8k3cR71dg6yIrIAj0ZsFbstQ8=",
       }));
       const propagatedBuildInputs = nix.thunk(() => [deps]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, nix.thunk(() => nix.str`${pname}`))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Grep for keys in YAML and JSON files",
         homepage: "https://github.com/ceritium/flatito",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -65,7 +58,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "flatito",
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         ruby: ruby_1,
         gemName,
         pname,

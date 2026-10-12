@@ -2,15 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["format", 23, 11], ["pname", 24, 32], ["version", 24, 38], ["platform", 25, 19], ["hash", 25, 28]], [["platform", 30, 9], ["hash", 31, 9]], [["platform", 34, 9], ["hash", 35, 9]], [["x86_64-linux", 29, 7], ["aarch64-darwin", 33, 7]], [["sources", 18, 12]], [["changelog", 46, 5], ["description", 47, 5], ["downloadPage", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["passthru", 18, 3], ["src", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchPypi: false, autoPatchelfHook: false, zlib: false }, ellipsis: false };
 const formals$2 = { args: { platform: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["format", 23, 11], ["pname", 24, 32], ["version", 24, 38], ["platform", 25, 19], ["hash", 25, 28]]);
-const pos$2 = nix.positions(here + "/package.nix", [["platform", 30, 9], ["hash", 31, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["platform", 34, 9], ["hash", 35, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 29, 7], ["aarch64-darwin", 33, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sources", 18, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 46, 5], ["description", 47, 5], ["downloadPage", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["passthru", 18, 3], ["src", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "sourcery",
       version: "1.43.0",
       format: "wheel",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         sources: nix.thunk(() => (() => {
           const fetchWheel = nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const platform = nix.arg($_1, "platform");
             const hash = nix.arg($_1, "hash");
             return nix.app(fetchPypi, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 format: "wheel",
                 pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
                 version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -44,14 +38,14 @@ export default nix.lambda((args) => (() => {
               })));
           })(), formals$2);
           return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "x86_64-linux": nix.thunk(() => nix.app(fetchWheel, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 platform: "manylinux1_x86_64",
                 hash: "sha256-oUL7EVbfwgV1K1Rv0kzW5r1AXr167BCXwzntDgVyTc0=",
               })))),
             "aarch64-darwin": nix.thunk(() => nix.app(fetchWheel, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 platform: "macosx_11_0_arm64",
                 hash: "sha256-iQNOSoAClAk2FMjAExfgsFHDXS56vwieePGDCYRRbgQ=",
               })))),
@@ -62,7 +56,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       buildInputs: nix.thunk(() => [zlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: "https://sourcery.ai/changelog/",
         description: "AI-powered code review and pair programming tool for Python",
         downloadPage: "https://pypi.org/project/sourcery/",

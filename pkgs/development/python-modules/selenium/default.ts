@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["testing-vaultwarden", 116, 5]], [["tests", 115, 12]], [["description", 120, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 123, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["preConfigure", 38, 3], ["postInstall", 42, 3], ["build-system", 63, 3], ["dependencies", 65, 3], ["pythonRemoveDeps", 76, 3], ["nativeCheckInputs", 81, 3], ["disabledTestPaths", 89, 3], ["disabledTests", 101, 3], ["__darwinAllowLocalNetworking", 113, 3], ["passthru", 115, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, "selenium-manager": false, setuptools: false, certifi: false, pytestCheckHook: false, trio: false, "trio-typing": false, "trio-websocket": false, "typing-extensions": false, "websocket-client": false, urllib3: false, filetype: false, "pytest-mock": false, "pytest-trio": false, rich: false, nixosTests: false, stdenv: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["testing-vaultwarden", 116, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 115, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 120, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 123, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["preConfigure", 38, 3], ["postInstall", 42, 3], ["build-system", 63, 3], ["dependencies", 65, 3], ["pythonRemoveDeps", 76, 3], ["nativeCheckInputs", 81, 3], ["disabledTestPaths", 89, 3], ["disabledTests", 101, 3], ["__darwinAllowLocalNetworking", 113, 3], ["passthru", 115, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.40.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SeleniumHQ",
           repo: "selenium",
           tag: nix.thunk(() => nix.add(nix.str`selenium-${version}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.app(nix.sel(lib, "versions", "patch"), version), "0")), "-python"))),
@@ -90,14 +86,14 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), selenium_manager)} $DST_PREFIX/common/li
       ]);
       const __darwinAllowLocalNetworking = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "testing-vaultwarden": nix.thunk(() => nix.sel(nixosTests, "vaultwarden")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Bindings for Selenium WebDriver",
         homepage: "https://selenium.dev/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -107,7 +103,7 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), selenium_manager)} $DST_PREFIX/common/li
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

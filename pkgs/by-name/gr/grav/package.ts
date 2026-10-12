@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["description", 37, 5], ["homepage", 38, 5], ["maintainers", 39, 5], ["license", 40, 5], ["knownVulnerabilities", 41, 5]], [["pname", 11, 3], ["version", 12, 11], ["src", 18, 3], ["patches", 23, 3], ["installPhase", 29, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["maintainers", 39, 5], ["license", 40, 5], ["knownVulnerabilities", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 11], ["src", 18, 3], ["patches", 23, 3], ["installPhase", 29, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const version = "1.7.53.5";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "grav",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/getgrav/grav/releases/download/${version}/grav-admin-v${version}.zip`),
           hash: "sha256-eACObEwVHcQHJMKGY531jLxbY5Nqw8DNmFrzMs6cm+Y=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./01-nix.patch")]),
       installPhase: "runHook preInstall\nmkdir -p $out/\ncp -R . $out/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast, simple, and flexible, file-based web platform",
         homepage: "https://getgrav.com",
         maintainers: nix.thunk(() => (() => {

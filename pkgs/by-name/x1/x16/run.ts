@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/run.nix", [[["pname", 18, 3], ["version", 19, 22], ["paths", 21, 3]]]);
 const formals$1 = { args: { runtimeShell: false, symlinkJoin: false, writeShellScriptBin: false }, ellipsis: false };
 const formals$2 = { args: { emulator: false, rom: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/run.nix", [["pname", 18, 3], ["version", 19, 22], ["paths", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
 exec "${emulator}/bin/x16emu" -rom $defaultRom "$@"
 `)));
     return nix.app(symlinkJoin, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: "run-x16",
         version: nix.thunk(() => nix.attr(emulator, "version")),
         paths: nix.thunk(() => [emulator, rom, runScript]),

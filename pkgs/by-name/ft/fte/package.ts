@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["url", 24, 5], ["hash", 25, 5]], [["NIX_CFLAGS_COMPILE", 46, 7]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]], [["pname", 15, 3], ["version", 16, 3], ["ftesrc", 18, 3], ["ftecommon", 23, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["hardeningDisable", 43, 3], ["enableParallelBuilding", 44, 3], ["env", 46, 3], ["installFlags", 47, 3], ["makeFlags", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, perl: false, libx11: false, libxpm: false, gpm: false, ncurses: false, slang: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 46, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["ftesrc", 18, 3], ["ftecommon", 23, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["hardeningDisable", 43, 3], ["enableParallelBuilding", 44, 3], ["env", 46, 3], ["installFlags", 47, 3], ["makeFlags", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const slang = nix.arg($, "slang");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fte",
       version: "0.50.02",
       ftesrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "mirror://sourceforge/fte/fte-20110708-src.zip",
           hash: "sha256-1jEcVC0/DyiQpUpmHDtnIo4nuJS0Fk6frynwFPJUSZ4=",
         })))),
       ftecommon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "mirror://sourceforge/fte/fte-20110708-common.zip",
           hash: "sha256-WEEVeLMZWHZfQtK/Kbeu3Z+RaVXCwZyWkJocA+Akavc=",
         })))),
@@ -43,11 +39,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [perl, libx11, libxpm, gpm, ncurses, slang]),
       hardeningDisable: nix.thunk(() => ["all"]),
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-DHAVE_STRLCAT -DHAVE_STRLCPY" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-DHAVE_STRLCAT -DHAVE_STRLCPY" })),
       installFlags: nix.thunk(() => ["INSTALL_NONROOT=1"]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Free text editor for developers",
         homepage: "https://fte.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

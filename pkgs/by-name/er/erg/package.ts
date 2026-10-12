@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["BUILD_DATE", 33, 5], ["CASE_SENSITIVE", 34, 5], ["GIT_HASH_SHORT", 35, 5]], [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 68, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildFeatures", 30, 3], ["env", 32, 3], ["doCheck", 39, 3], ["postPatch", 42, 3], ["preBuild", 46, 3], ["postInstall", 51, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, makeWrapper: false, python3: false, which: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["BUILD_DATE", 33, 5], ["CASE_SENSITIVE", 34, 5], ["GIT_HASH_SHORT", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildFeatures", 30, 3], ["env", 32, 3], ["doCheck", 39, 3], ["postPatch", 42, 3], ["preBuild", 46, 3], ["postInstall", 51, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "erg",
       version: "0.6.53",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "erg-lang",
           repo: "erg",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, python3, which]),
       buildFeatures: nix.thunk(() => ["full"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         BUILD_DATE: "1970/01/01 00:00:00",
         CASE_SENSITIVE: nix.thunk(() => nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))),
         GIT_HASH_SHORT: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "export HOME=$(mktemp -d)\nexport CARGO_ERG_PATH=$HOME/.erg\n",
       postInstall: "mkdir -p $out/share\nmv \"$CARGO_ERG_PATH\" $out/share/erg\n\nwrapProgram $out/bin/erg \\\n  --set-default ERG_PATH $out/share/erg\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Statically typed language that can deeply improve the Python ecosystem",
         mainProgram: "erg",
         homepage: "https://github.com/erg-lang/erg",

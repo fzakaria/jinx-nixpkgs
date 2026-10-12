@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 18, 5], ["owner", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]], [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]], [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 58, 3], ["propagatedBuildInputs", 59, 3], ["cmakeFlags", 61, 3], ["checkInputs", 74, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, boost: false, rdkafka: false, gtest: false, rapidjson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 18, 5], ["owner", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 58, 3], ["propagatedBuildInputs", 59, 3], ["cmakeFlags", 61, 3], ["checkInputs", 74, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const rapidjson = nix.arg($, "rapidjson");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "modern-cpp-kafka",
       version: "2023.03.07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "modern-cpp-kafka",
           owner: "morganstanley",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,25 +29,25 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-avoid-overwriting-library-paths.patch",
             url: "https://github.com/morganstanley/modern-cpp-kafka/compare/a146d10bcf166f55299c7a55728abaaea52cb0e5...a0b5ec08315759097ce656813be57b2c38d79091.patch",
             hash: "sha256-UsQcMvJoRTn5kgXhmXOyqfW3n59kGKO596U2WjtdqAY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "add-pkg-config-cmake-config.patch",
             url: "https://github.com/morganstanley/modern-cpp-kafka/commit/edc576ab83710412f6201e2bb8de5cb41682ee4a.patch",
             hash: "sha256-OjoSttnpgEwSZjCVKc888xJb5f1Dulu/rQqoGmqXNM4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "add-pkg-config-cmake-config.patch",
             url: "https://github.com/morganstanley/modern-cpp-kafka/commit/236f8f91f5c3ad6e1055a6f55cd3aebd218e1226.patch",
             hash: "sha256-cy568TQUu08sadq79hDz9jMvDqiDjfr+1cLMxFWGm1Q=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "macos-find-dylib.patch",
             url: "https://github.com/morganstanley/modern-cpp-kafka/commit/dc2753cd95b607a7202b40bad3aad472558bf350.patch",
             hash: "sha256-Te3GwAVRDyb6GFWlvkq1mIcNeXCtMyLr+/w1LilUYbE=",
@@ -78,7 +72,7 @@ export default nix.lambda((args) => (() => {
       })()),
       checkInputs: nix.thunk(() => [gtest, rapidjson]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "C++ API for Kafka clients (i.e. KafkaProducer, KafkaConsumer, AdminClient)",
         homepage: "https://github.com/morganstanley/modern-cpp-kafka",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

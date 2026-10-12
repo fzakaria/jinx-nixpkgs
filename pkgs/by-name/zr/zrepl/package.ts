@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["zrepl", 49, 26]], [["tests", 48, 12]], [["homepage", 53, 5], ["changelog", 54, 5], ["description", 55, 5], ["platforms", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 62, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["subPackages", 23, 3], ["nativeBuildInputs", 25, 3], ["ldflags", 29, 3], ["postInstall", 35, 3], ["doInstallCheck", 44, 3], ["nativeInstallCheckInputs", 45, 3], ["versionCheckProgramArg", 46, 3], ["passthru", 48, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, makeWrapper: false, versionCheckHook: false, nixosTests: false, openssh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["zrepl", 49, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 48, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["changelog", 54, 5], ["description", 55, 5], ["platforms", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["subPackages", 23, 3], ["nativeBuildInputs", 25, 3], ["ldflags", 29, 3], ["postInstall", 35, 3], ["doInstallCheck", 44, 3], ["nativeInstallCheckInputs", 45, 3], ["versionCheckProgramArg", 46, 3], ["passthru", 48, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const openssh = nix.arg($, "openssh");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "zrepl",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zrepl",
           repo: "zrepl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,11 +44,11 @@ wrapProgram $out/bin/zrepl \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, zrepl: nix.thunk(() => nix.attr(nixosTests, "zrepl")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], zrepl: nix.thunk(() => nix.attr(nixosTests, "zrepl")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://zrepl.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/zrepl/zrepl/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "One-stop, integrated solution for ZFS replication",

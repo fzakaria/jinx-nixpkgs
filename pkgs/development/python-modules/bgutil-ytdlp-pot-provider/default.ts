@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["name", 34, 5], ["src", 35, 5], ["npmDepsFetcherVersion", 36, 5], ["hash", 37, 5]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["npmDeps", 33, 3], ["npmRoot", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["build-system", 55, 3], ["dependencies", 57, 3], ["doCheck", 59, 3], ["preBuild", 61, 3], ["postInstall", 68, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cairo: false, fetchFromGitHub: false, fetchNpmDeps: false, giflib: false, hatchling: false, nodejs: false, npmHooks: false, pango: false, pixman: false, "pkg-config": false, "yt-dlp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 34, 5], ["src", 35, 5], ["npmDepsFetcherVersion", 36, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["npmDeps", 33, 3], ["npmRoot", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["build-system", 55, 3], ["dependencies", 57, 3], ["doCheck", 59, 3], ["preBuild", 61, 3], ["postInstall", 68, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Brainicism",
           repo: "bgutil-ytdlp-pot-provider",
           tag: version,
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "cp README.md plugin/README.md\n";
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${pname}-${version}-npm-deps`),
           src: nix.thunk(() => nix.add(src, "/server")),
           npmDepsFetcherVersion: 3n,
@@ -59,7 +56,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/bgutil-ytdlp-pot
 cd plugin
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Proof-of-origin token provider plugin for yt-dlp",
         homepage: "https://github.com/Brainicism/bgutil-ytdlp-pot-provider",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -67,7 +64,7 @@ cd plugin
         mainProgram: "bgutil-ytdlp-pot-provider",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

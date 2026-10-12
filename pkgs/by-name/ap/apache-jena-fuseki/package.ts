@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["basic-test", 43, 7]], [["tests", 42, 5]], [["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["sourceProvenance", 52, 5], ["homepage", 56, 5], ["downloadPage", 57, 5], ["mainProgram", 58, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 26, 3], ["passthru", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, coreutils: false, which: false, makeWrapper: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["basic-test", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["sourceProvenance", 52, 5], ["homepage", 56, 5], ["downloadPage", 57, 5], ["mainProgram", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 26, 3], ["passthru", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "apache-jena-fuseki",
       version: "5.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/jena/binaries/apache-jena-fuseki-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-GcwXcLVM2txPC+kkHjEIpqK9dTkQEN9Jkka0EaJRO7Q=",
         })))),
@@ -43,14 +39,14 @@ for i in "$out"/bin/fuseki*; do
 done
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "basic-test": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./basic-test.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "SPARQL server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

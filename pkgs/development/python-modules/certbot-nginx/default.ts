@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 29, 5]], [["pname", 9, 3], ["pyproject", 10, 3], ["src", 12, 21], ["version", 12, 25], ["sourceRoot", 14, 3], ["build-system", 16, 3], ["dependencies", 18, 3], ["pythonImportsCheck", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, certbot: false, pyparsing: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["pyproject", 10, 3], ["src", 12, 21], ["version", 12, 25], ["sourceRoot", 14, 3], ["build-system", 16, 3], ["dependencies", 18, 3], ["pythonImportsCheck", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,9 +20,9 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [certbot, pyparsing]);
       const pythonImportsCheck = nix.thunk(() => ["certbot_nginx", "certbot.plugins.nginx"]);
-      const meta = nix.thunk(() => nix.update(nix.sel(certbot, "meta"), { [nix.POS]: pos$1, description: "Nginx plugin for Certbot" }));
+      const meta = nix.thunk(() => nix.update(nix.sel(certbot, "meta"), { [nix.POS]: $pos[0], description: "Nginx plugin for Certbot" }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         pyproject,
         src,

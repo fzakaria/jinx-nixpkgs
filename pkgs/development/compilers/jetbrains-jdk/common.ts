@@ -2,13 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["aarch64-linux", 51, 7], ["x86_64-linux", 52, 7]], [["owner", 69, 5], ["repo", 70, 5], ["rev", 71, 5], ["hash", 72, 5]], [["BOOT_JDK", 76, 5], ["SOURCE_DATE_EPOCH", 78, 5]], [["description", 214, 5], ["longDescription", 215, 5], ["homepage", 225, 5], ["license", 226, 24], ["mainProgram", 226, 32], ["maintainers", 227, 5], ["platforms", 231, 5]], [["pname", 60, 3], ["javaVersion", 62, 5], ["build", 63, 5], ["version", 64, 5], ["openjdkTag", 65, 5], ["src", 68, 3], ["env", 75, 3], ["patches", 81, 3], ["dontConfigure", 83, 3], ["buildPhase", 85, 3], ["installPhase", 134, 3], ["postInstall", 151, 3], ["dontStrip", 155, 3], ["postFixup", 157, 3], ["nativeBuildInputs", 197, 3], ["buildInputs", 207, 3], ["meta", 213, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, jdk: false, git: false, autoconf: false, unzip: false, rsync: false, shaderc: false, "vulkan-headers": false, libxdamage: false, libxxf86vm: false, libxrandr: false, libxi: false, libxcursor: false, libxrender: false, libx11: false, libxext: false, libxkbcommon: false, libxcb: false, nss: false, nspr: false, libdrm: false, libgbm: false, wayland: false, udev: false, fontconfig: false, debugBuild: true, withJcef: true }, ellipsis: false };
 const formals$2 = { args: { javaVersion: false, build: false, sourceDateEpoch: false, srcHash: false, jcefPackage: true, extraBuildPhase: true, vendorVersionString: true, extraConfigureFlags: true, extraNativeBuildInputs: true, extraBuildInputs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["aarch64-linux", 51, 7], ["x86_64-linux", 52, 7]]);
-const pos$2 = nix.positions(here + "/common.nix", [["owner", 69, 5], ["repo", 70, 5], ["rev", 71, 5], ["hash", 72, 5]]);
-const pos$3 = nix.positions(here + "/common.nix", [["BOOT_JDK", 76, 5], ["SOURCE_DATE_EPOCH", 78, 5]]);
-const pos$4 = nix.positions(here + "/common.nix", [["description", 214, 5], ["longDescription", 215, 5], ["homepage", 225, 5], ["license", 226, 24], ["mainProgram", 226, 32], ["maintainers", 227, 5], ["platforms", 231, 5]]);
-const pos$5 = nix.positions(here + "/common.nix", [["pname", 60, 3], ["javaVersion", 62, 5], ["build", 63, 5], ["version", 64, 5], ["openjdkTag", 65, 5], ["src", 68, 3], ["env", 75, 3], ["patches", 81, 3], ["dontConfigure", 83, 3], ["buildPhase", 85, 3], ["installPhase", 134, 3], ["postInstall", 151, 3], ["dontStrip", 155, 3], ["postFixup", 157, 3], ["nativeBuildInputs", 197, 3], ["buildInputs", 207, 3], ["meta", 213, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,26 +50,26 @@ export default nix.lambda((args) => (() => {
     const extraNativeBuildInputs = nix.argOr($_1, "extraNativeBuildInputs", () => []);
     const extraBuildInputs = nix.argOr($_1, "extraBuildInputs", () => []);
     nix.assert_((!nix.asBool(debugBuild) || nix.asBool(withJcef)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/jetbrains-jdk/common.nix:46:1");
-    const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "aarch64-linux": "aarch64", "x86_64-linux": "x64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+    const arch = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], "aarch64-linux": "aarch64", "x86_64-linux": "x64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
     const cpu = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"));
     const version = nix.thunk(() => nix.str`${javaVersion}-b${build}`);
     const openjdkTag = nix.thunk(() => nix.str`jbr-release-${javaVersion}b${build}`);
     return nix.app(nix.sel(jdk, "overrideAttrs"), (oldAttrs) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: nix.thunk(() => nix.add("jetbrains-jdk", nix.app(nix.sel(lib, "optionalString"), withJcef, "-jcef"))),
         javaVersion: javaVersion,
         build: build,
         version: version,
         openjdkTag: openjdkTag,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "JetBrains",
             repo: "JetBrainsRuntime",
             rev: nix.thunk(() => nix.str`jb${version}`),
             hash: srcHash,
           })))),
         env: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "env"), {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           BOOT_JDK: nix.thunk(() => nix.sel(jdk, "home")),
           SOURCE_DATE_EPOCH: sourceDateEpoch,
         })),
@@ -178,7 +174,7 @@ done
         meta: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(jdk, "meta"));
           return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "OpenJDK fork to better support Jetbrains's products",
           longDescription: "JetBrains Runtime is a runtime environment for running IntelliJ Platform\nbased products on Windows, Mac OS X, and Linux. JetBrains Runtime is\nbased on OpenJDK project with some modifications. These modifications\ninclude: Subpixel Anti-Aliasing, enhanced font rendering on Linux, HiDPI\nsupport, ligatures, some fixes for native crashes not presented in\nofficial build, and other small enhancements.\nJetBrains Runtime is not a certified build of OpenJDK. Please, use at\nyour own risk.\n",
           homepage: "https://github.com/JetBrains/JetBrainsRuntime",

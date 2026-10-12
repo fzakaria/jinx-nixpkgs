@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 10, 5], ["sha256", 11, 5]], [["url", 21, 5], ["sha256", 22, 5]], [["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["buildInputs", 25, 3], ["patchPhase", 27, 3], ["makeFlags", 38, 3], ["preInstall", 40, 3], ["postInstall", 45, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libjpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 10, 5], ["sha256", 11, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["buildInputs", 25, 3], ["patchPhase", 27, 3], ["makeFlags", 38, 3], ["preInstall", 40, 3], ["postInstall", 45, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libjpeg = nix.arg($, "libjpeg");
   const debianPatches = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "mirror://debian/pool/main/u/uvccapture/uvccapture_0.5-3.debian.tar.gz",
       sha256: "0m29by13nw1r8sch366qzdxg5rsd1k766kqg1nj2pdb8f7pwjh9r",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "uvccapture",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/u/uvccapture/uvccapture_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           sha256: "1b3akkcmr3brbf93akr8xi20w8zqf2g0qfq928500wy04qi6jqpi",
         })))),
@@ -42,7 +39,7 @@ done
       preInstall: "mkdir -p \"$out/bin\"\n",
       postInstall: "mkdir -p \"$out/share/man/man1\"\ncp -v debian/uvccapture.1 \"$out/share/man/man1/\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Capture image from USB webcam at a specified interval",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

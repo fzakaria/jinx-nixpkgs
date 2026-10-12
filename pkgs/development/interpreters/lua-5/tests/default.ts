@@ -2,17 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["platforms", 15, 14]], [["nativeBuildInputs", 14, 9], ["meta", 15, 9]], [["propagatedBuildInputs", 26, 5], ["postFixup", 30, 5]], [["5.1", 44, 5], ["5.2", 46, 5], ["5.3", 48, 5], ["5.4", 51, 5], ["5.5", 53, 5], ["2.0", 57, 5], ["2.1", 59, 5]], [["name", 70, 7], ["command", 71, 7]], [["platforms", 94, 14]], [["nativeBuildInputs", 92, 9], ["buildInputs", 93, 9], ["meta", 94, 9]], [["buildInputs", 120, 9]], [["checkInterpreterPath", 65, 3], ["checkWrapping", 78, 3], ["checkSetupHook", 89, 3], ["checkRelativeImports", 101, 3], ["checkPropagatedBuildInputs", 117, 3]]]);
 const formals$1 = { args: { lua: false, hello: false, wrapLua: false, lib: false, pkgs: false }, ellipsis: false };
 const formals$2 = { args: { name: false, command: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["platforms", 15, 14]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 14, 9], ["meta", 15, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 26, 5], ["postFixup", 30, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["5.1", 44, 5], ["5.2", 46, 5], ["5.3", 48, 5], ["5.4", 51, 5], ["5.5", 53, 5], ["2.0", 57, 5], ["2.1", 59, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 70, 7], ["command", 71, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["platforms", 94, 14]]);
-const pos$7 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 92, 9], ["buildInputs", 93, 9], ["meta", 94, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["buildInputs", 120, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["checkInterpreterPath", 65, 3], ["checkWrapping", 78, 3], ["checkSetupHook", 89, 3], ["checkRelativeImports", 101, 3], ["checkPropagatedBuildInputs", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,23 +18,23 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const command = nix.arg($_1, "command");
     return nix.app(nix.sel(pkgs, "runCommandLocal"), nix.thunk(() => nix.str`test-${nix.sel(lua_1, "name")}-${name}`), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         nativeBuildInputs: nix.thunk(() => [lua_1]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           platforms: nix.thunk(() => nix.sel(lua_1, "meta", "platforms")),
         })),
       })), nix.thunk(() => nix.add(nix.add(nix.str`source ${nix.path(here, "./assert.sh")}
 `, command), "touch $out")));
   })(), formals$2);
   const wrappedHello = nix.thunk(() => nix.app(nix.sel(hello, "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       propagatedBuildInputs: nix.thunk(() => [wrapLua, nix.thunk(() => nix.sel(lua, "pkgs", "cjson"))]),
       postFixup: "wrapLuaPrograms\n",
     }))));
   const luaWithModule = nix.thunk(() => nix.app(nix.sel(lua, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "lua-cjson"))]));
   const golden_LUA_PATHS = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "5.1": nix.thunk(() => nix.str`;./?.lua;${lua}/share/lua/5.1/?.lua;${lua}/share/lua/5.1/?/init.lua;${lua}/lib/lua/5.1/?.lua;${lua}/lib/lua/5.1/?/init.lua;`),
     "5.2": nix.thunk(() => nix.str`;${lua}/share/lua/5.2/?.lua;${lua}/share/lua/5.2/?/init.lua;${lua}/lib/lua/5.2/?.lua;${lua}/lib/lua/5.2/?/init.lua;./?.lua;`),
     "5.3": nix.thunk(() => nix.str`;${lua}/share/lua/5.3/?.lua;${lua}/share/lua/5.3/?/init.lua;${lua}/lib/lua/5.3/?.lua;${lua}/lib/lua/5.3/?/init.lua;./?.lua;./?/init.lua;`),
@@ -52,11 +44,11 @@ export default nix.lambda((args) => (() => {
     "2.1": nix.thunk(() => nix.str`;./?.lua;${lua}/share/luajit-2.1/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua;${lua}/share/lua/5.1/?.lua;${lua}/share/lua/5.1/?/init.lua;`),
   }));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       checkInterpreterPath: nix.thunk(() => (() => {
         const golden_LUA_PATH = nix.thunk(() => nix.sel(golden_LUA_PATHS, nix.key(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(lua, "version"))))));
         return nix.app(runTest, lua, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "check-default-lua-path",
             command: nix.thunk(() => nix.str`export LUA_PATH=";;"
 generated=$(lua -e 'print(package.path)')
@@ -68,11 +60,11 @@ assertStringEqual "$generated" "${golden_LUA_PATH}"
 touch $out
 `))),
       checkSetupHook: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), nix.thunk(() => nix.str`test-${nix.sel(lua, "name")}-setup-hook`), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           nativeBuildInputs: nix.thunk(() => [lua]),
           buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(lua, "pkgs", "alt-getopt"))]),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             platforms: nix.thunk(() => nix.sel(lua, "meta", "platforms")),
           })),
         })), nix.thunk(() => nix.str`${lua}/bin/lua -e "require'alt_getopt'"
@@ -92,7 +84,7 @@ assertStringContains "$lua_with_module_package_path" "./?/init.lua"
 touch $out
 `))),
       checkPropagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), nix.thunk(() => nix.str`test-${nix.sel(lua, "name")}-setup-hook`), nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(lua, "pkgs", "luacov"))]),
         })), nix.thunk(() => nix.str`${lua}/bin/lua -e "require'datafile'"
 touch $out

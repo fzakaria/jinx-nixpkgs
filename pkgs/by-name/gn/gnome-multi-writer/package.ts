@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["sha256", 28, 5]], [["packageName", 53, 7]], [["updateScript", 52, 5]], [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["teams", 62, 5], ["platforms", 63, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 41, 3], ["passthru", 51, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "appstream-glib": false, "desktop-file-utils": false, gettext: false, glib: false, gnome: false, gtk3: false, gusb: false, "libcanberra-gtk3": false, libgudev: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, polkit: false, udisks: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["teams", 62, 5], ["platforms", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 41, 3], ["passthru", 51, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gnome-multi-writer";
       const version = "3.35.90";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-multi-writer/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gnome-multi-writer-${version}.tar.xz`),
           sha256: "07vgzjjdrxcp7h73z13h9agafxb4vmqx5i81bcfyw0ilw9kkdzmp",
         }))));
@@ -48,11 +44,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [glib, gtk3, gusb, libcanberra_gtk3, libgudev, polkit, udisks]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: pname })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tool for writing an ISO file to multiple USB devices at once",
         mainProgram: "gnome-multi-writer",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-multi-writer",
@@ -61,7 +57,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

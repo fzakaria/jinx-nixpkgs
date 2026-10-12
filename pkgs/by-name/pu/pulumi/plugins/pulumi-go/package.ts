@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["mainProgram", 37, 5], ["maintainers", 38, 5]], [["pname", 7, 3], ["version", 8, 20], ["src", 8, 28], ["sourceRoot", 10, 3], ["vendorHash", 12, 3], ["ldflags", 14, 3], ["checkFlags", 20, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, pulumi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["mainProgram", 37, 5], ["maintainers", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 20], ["src", 8, 28], ["sourceRoot", 10, 3], ["vendorHash", 12, 3], ["ldflags", 14, 3], ["checkFlags", 20, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const pulumi = nix.arg($, "pulumi");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "pulumi-go",
       version: nix.thunk(() => nix.attr(pulumi, "version")),
       src: nix.thunk(() => nix.attr(pulumi, "src")),
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
           ]))}$`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://www.pulumi.com/docs/iac/languages-sdks/go/",
         description: "Language host for Pulumi programs written in Go",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

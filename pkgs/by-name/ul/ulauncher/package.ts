@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["hash", 33, 5]], [["name", 85, 7], ["url", 86, 7], ["hash", 87, 7]], [["updateScript", 132, 5]], [["name", 137, 7], ["desktopName", 138, 7], ["exec", 139, 7], ["categories", 140, 7], ["icon", 141, 7]], [["description", 146, 5], ["homepage", 147, 5], ["license", 148, 5], ["platforms", 149, 5], ["mainProgram", 150, 5], ["maintainers", 151, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["build-system", 56, 3], ["dependencies", 61, 3], ["nativeCheckInputs", 74, 3], ["patches", 81, 3], ["postPatch", 91, 3], ["doCheck", 99, 3], ["preCheck", 101, 3], ["checkPhase", 107, 3], ["pythonImportsCheck", 118, 3], ["dontWrapGApps", 121, 3], ["preFixup", 122, 3], ["passthru", 131, 3], ["desktopItems", 135, 3], ["meta", 145, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchpatch: false, "nix-update-script": false, python3Packages: false, "gdk-pixbuf": false, glib: false, "adwaita-icon-theme": false, "gobject-introspection": false, gtk3: false, wrapGAppsHook3: false, webkitgtk_4_1: false, libnotify: false, keybinder3: false, libappindicator: false, intltool: false, wmctrl: false, "xvfb-run": false, librsvg: false, libx11: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 85, 7], ["url", 86, 7], ["hash", 87, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 132, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 137, 7], ["desktopName", 138, 7], ["exec", 139, 7], ["categories", 140, 7], ["icon", 141, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 146, 5], ["homepage", 147, 5], ["license", 148, 5], ["platforms", 149, 5], ["mainProgram", 150, 5], ["maintainers", 151, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["build-system", 56, 3], ["dependencies", 61, 3], ["nativeCheckInputs", 74, 3], ["patches", 81, 3], ["postPatch", 91, 3], ["doCheck", 99, 3], ["preCheck", 101, 3], ["checkPhase", 107, 3], ["pythonImportsCheck", 118, 3], ["dontWrapGApps", 121, 3], ["preFixup", 122, 3], ["passthru", 131, 3], ["desktopItems", 135, 3], ["meta", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ulauncher",
       version: "5.15.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Ulauncher/Ulauncher/releases/download/${nix.sel(finalAttrs, "version")}/ulauncher_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-YgOw3Gyy/o8qorWAnAlQrAZ2ZTnyP3PagLs2Qkdg788=",
         })))),
@@ -97,7 +92,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-path.patch"),
         nix.path(here, "./fix-extensions.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "support-gir1.2-webkit2-4.1.patch",
             url: "https://src.fedoraproject.org/rpms/ulauncher/raw/rawhide/f/support-gir1.2-webkit2-4.1.patch",
             hash: "sha256-w1c+Yf6SA3fyMrMn1LXzCXf5yuynRYpofkkUqZUKLS8=",
@@ -122,12 +117,12 @@ substituteInPlace bin/ulauncher-toggle \\
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "ulauncher",
             desktopName: "Ulauncher",
             exec: "ulauncher",
@@ -136,7 +131,7 @@ substituteInPlace bin/ulauncher-toggle \\
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Fast application launcher for Linux, written in Python, using GTK",
         homepage: "https://ulauncher.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

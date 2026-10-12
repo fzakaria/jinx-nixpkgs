@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["rev-prefix", 40, 33]], [["pkg-config", 41, 11]], [["updateScript", 40, 5], ["tests", 41, 5]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["maintainers", 48, 5], ["pkgConfigModules", 49, 5], ["platforms", 50, 5], ["license", 51, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["outputs", 32, 3], ["passthru", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, gitUpdater: false, testers: false, lib: false, cmake: false, ninja: false, "pkg-config": false, "abseil-cpp_202103": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 40, 33]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 41, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 40, 5], ["tests", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["maintainers", 48, 5], ["pkgConfigModules", 49, 5], ["platforms", 50, 5], ["license", 51, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["outputs", 32, 3], ["passthru", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const abseil_cpp_202103 = nix.arg($, "abseil-cpp_202103");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libilbc",
       version: "3.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TimothyGu",
           repo: "libilbc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,15 +31,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [abseil_cpp_202103]),
       outputs: nix.thunk(() => ["out", "bin", "dev", "doc"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Packaged version of iLBC codec from the WebRTC project",
         homepage: "https://github.com/TimothyGu/libilbc",
         changelog: nix.thunk(() => nix.str`https://github.com/TimothyGu/libilbc/blob/v${nix.sel(finalAttrs, "version")}/NEWS.md`),

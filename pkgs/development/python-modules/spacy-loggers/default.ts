@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["doCheck", 51, 7]], [["pytest", 50, 11]], [["tests", 50, 5]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 40, 3], ["nativeCheckInputs", 42, 3], ["doCheck", 47, 3], ["passthru", 49, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, setuptools: false, wandb: false, wasabi: false, pytestCheckHook: false, spacy: false, "spacy-loggers": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 51, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pytest", 50, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 50, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 40, 3], ["nativeCheckInputs", 42, 3], ["doCheck", 47, 3], ["passthru", 49, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const spacy = nix.arg($, "spacy");
   const spacy_loggers = nix.arg($, "spacy-loggers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "spacy-loggers",
       version: "1.0.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "explosion",
           repo: "spacy-loggers",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,14 +34,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [spacy, pytestCheckHook]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(spacy_loggers, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
+          [nix.POS]: $pos[2],
+          pytest: nix.thunk(() => nix.app(nix.sel(spacy_loggers, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Logging utilities for spaCy",
         homepage: "https://github.com/explosion/spacy-loggers",
         changelog: nix.thunk(() => nix.str`https://github.com/explosion/spacy-loggers/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

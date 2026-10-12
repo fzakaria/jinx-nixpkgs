@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]], [["POETRY_DYNAMIC_VERSIONING_BYPASS", 59, 7]], [["cli", 86, 5]], [["description", 140, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["mainProgram", 145, 5]], [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["src", 52, 3], ["env", 59, 3], ["build-system", 61, 3], ["pythonRelaxDeps", 66, 3], ["dependencies", 72, 3], ["optional-dependencies", 85, 3], ["preConfigure", 100, 3], ["postInstall", 104, 3], ["nativeCheckInputs", 107, 3], ["versionCheckKeepEnvironment", 125, 3], ["pythonImportsCheck", 136, 3], ["doCheck", 137, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, "poetry-dynamic-versioning": false, jsonschema: false, numpy: false, onnxruntime: false, pillow: false, pooch: false, pymatting: false, "scikit-image": false, scipy: false, tqdm: false, aiohttp: false, asyncer: false, click: false, fastapi: false, filetype: false, gradio: false, "python-multipart": false, sniffio: false, uvicorn: false, watchdog: false, versionCheckHook: false, pocl: false, withCli: true, config: false, cudaSupport: true, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["POETRY_DYNAMIC_VERSIONING_BYPASS", 59, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cli", 86, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 140, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["mainProgram", 145, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["src", 52, 3], ["env", 59, 3], ["build-system", 61, 3], ["pythonRelaxDeps", 66, 3], ["dependencies", 72, 3], ["optional-dependencies", 85, 3], ["preConfigure", 100, 3], ["postInstall", 104, 3], ["nativeCheckInputs", 107, 3], ["versionCheckKeepEnvironment", 125, 3], ["pythonImportsCheck", 136, 3], ["doCheck", 137, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,19 +40,19 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const isNotAarch64Linux = nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rembg",
       version: "2.0.85",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "danielgatis",
           repo: "rembg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-mUJ18XFEK01jwkYUdEctQrIkz3dx3kw/vcs5VnZ9kY0=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         POETRY_DYNAMIC_VERSIONING_BYPASS: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       "build-system": nix.thunk(() => [poetry_core, poetry_dynamic_versioning]),
@@ -73,7 +69,7 @@ export default nix.lambda((args) => (() => {
         tqdm,
       ], nix.app(nix.sel(lib, "optionals"), withCli, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "cli"))))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         cli: nix.thunk(() => [
           aiohttp,
           asyncer,
@@ -94,7 +90,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isNotAarch64Linux, nix.thunk(() => ["rembg"]))),
       doCheck: isNotAarch64Linux,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tool to remove background from images",
         homepage: "https://github.com/danielgatis/rembg",
         changelog: nix.thunk(() => nix.str`https://github.com/danielgatis/rembg/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

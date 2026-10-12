@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 7, 3], ["extraBuildInputs", 9, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qttools: false, cyrus_sasl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["extraBuildInputs", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const cyrus_sasl = nix.arg($, "cyrus_sasl");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "libkgapi",
       extraBuildInputs: nix.thunk(() => [qttools, cyrus_sasl]),
     })));

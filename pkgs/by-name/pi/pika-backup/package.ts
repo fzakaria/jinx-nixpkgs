@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 30, 5], ["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["pname", 38, 26], ["version", 38, 32], ["src", 38, 40], ["hash", 39, 5]], [["borg", 44, 7]], [["updateScript", 74, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["teams", 83, 5], ["platforms", 84, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 37, 3], ["patches", 42, 3], ["postPatch", 48, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 66, 3], ["passthru", 73, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, rustPlatform: false, replaceVars: false, cargo: false, "desktop-file-utils": false, git: false, itstool: false, meson: false, ninja: false, "pkg-config": false, python3: false, rustc: false, wrapGAppsHook4: false, borgbackup: false, gtk4: false, libadwaita: false, libsecret: false, openssl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 30, 5], ["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 38, 26], ["version", 38, 32], ["src", 38, 40], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["borg", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["teams", 83, 5], ["platforms", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 37, 3], ["patches", 42, 3], ["postPatch", 48, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 66, 3], ["passthru", 73, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pika-backup",
       version: "0.8.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "pika-backup",
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-7Nr/KmjI7zcocfsPxVsYRC+Tye9Qu7pa+14f6nAPgRk=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./borg-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             borg: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), borgbackup)),
           })))),
       ]),
@@ -74,11 +69,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [gtk4, libadwaita, libsecret, openssl]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple backups based on borg",
         homepage: "https://apps.gnome.org/app/org.gnome.World.PikaBackup",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/pika-backup/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

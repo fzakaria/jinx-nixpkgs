@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]], [["watchmedo", 28, 25]], [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["optional-dependencies", 28, 3], ["nativeCheckInputs", 30, 3], ["disabledTestPaths", 39, 3], ["pythonImportsCheck", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, eventlet: false, fetchPypi: false, flaky: false, "pytest-cov-stub": false, "pytest-timeout": false, pytestCheckHook: false, pythonOlder: false, pyyaml: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["watchmedo", 28, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["optional-dependencies", 28, 3], ["nativeCheckInputs", 30, 3], ["disabledTestPaths", 39, 3], ["pythonImportsCheck", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +24,13 @@ export default nix.lambda((args) => (() => {
       const version = "6.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-nd98gv2jro4k3s2hM47eZuHJmIPbk3Edj7lB6qLYwoI=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, watchmedo: nix.thunk(() => [pyyaml]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], watchmedo: nix.thunk(() => [pyyaml]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([flaky, pytest_cov_stub, pytest_timeout, pytestCheckHook], nix.concat(nix.sel(optional_dependencies, "watchmedo"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.13")), nix.thunk(() => [eventlet])))));
       const disabledTestPaths = nix.thunk(() => nix.concat([
         "tests/test_emitter.py::test_create_wrong_encoding",
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
         ]))))));
       const pythonImportsCheck = nix.thunk(() => ["watchdog"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python API and shell utilities to monitor file system events",
         mainProgram: "watchmedo",
         homepage: "https://github.com/gorakhargosh/watchdog",
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

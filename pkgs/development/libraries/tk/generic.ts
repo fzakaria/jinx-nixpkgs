@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["release", 99, 19], ["version", 99, 27], ["libPrefix", 100, 5], ["libdir", 101, 5]], [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["mainProgram", 109, 5], ["maintainers", 110, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 11], ["patches", 20, 15], ["outputs", 22, 3], ["setOutputFlags", 28, 3], ["preConfigure", 30, 3], ["postPatch", 35, 3], ["postInstall", 41, 3], ["configureFlags", 56, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 79, 3], ["propagatedBuildInputs", 88, 3], ["enableParallelBuilding", 92, 3], ["doCheck", 94, 3], ["tcl", 96, 11], ["passthru", 98, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, src: false, "pkg-config": false, tcl: false, harfbuzz: false, libxft: false, zip: false, zlib: false, patches: true, enableAqua: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/generic.nix", [["release", 99, 19], ["version", 99, 27], ["libPrefix", 100, 5], ["libdir", 101, 5]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["mainProgram", 109, 5], ["maintainers", 110, 5]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 11], ["patches", 20, 15], ["outputs", 22, 3], ["setOutputFlags", 28, 3], ["preConfigure", 30, 3], ["postPatch", 35, 3], ["postInstall", 41, 3], ["configureFlags", 56, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 79, 3], ["propagatedBuildInputs", 88, 3], ["enableParallelBuilding", 92, 3], ["doCheck", 94, 3], ["tcl", 96, 11], ["passthru", 98, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const patches = nix.argOr($, "patches", () => []);
   const enableAqua = nix.argOr($, "enableAqua", () => nix.sel(stdenv, "hostPlatform", "isDarwin"));
   return nix.app(nix.sel(tcl, "mkTclDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tk",
       version: nix.thunk(() => nix.sel(tcl, "version")),
       src: src,
@@ -50,10 +48,10 @@ ln -s ${libfile} $out/lib/libtk${nix.sel(stdenv, "hostPlatform", "extensions", "
         const version = nix.thunk(() => nix.attr(tcl, "version"));
         const libPrefix = nix.thunk(() => nix.str`tk${nix.sel(tcl, "release")}`);
         const libdir = nix.thunk(() => nix.str`lib/${libPrefix}`);
-        return { [nix.POS]: pos$1, release, version, libPrefix, libdir };
+        return { [nix.POS]: $pos[0], release, version, libPrefix, libdir };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Widget toolkit that provides a library of basic elements for building a GUI in many different programming languages",
         homepage: "https://www.tcl-lang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "tcltk")),

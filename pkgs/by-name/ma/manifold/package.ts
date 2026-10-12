@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["python", 48, 7]], [["tests", 47, 5]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 64, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 30, 3], ["cmakeFlags", 32, 3], ["excludedTestPatterns", 39, 3], ["doCheck", 41, 3], ["checkPhase", 42, 3], ["passthru", 46, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, clipper2: false, gtest: false, onetbb: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["python", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 30, 3], ["cmakeFlags", 32, 3], ["excludedTestPatterns", 39, 3], ["doCheck", 41, 3], ["checkPhase", 42, 3], ["passthru", 46, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const onetbb = nix.arg($, "onetbb");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "manifold",
       version: "3.5.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elalish",
           repo: "manifold",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,14 +40,14 @@ export default nix.lambda((args) => (() => {
       checkPhase: nix.thunk(() => nix.str`test/manifold_test --gtest_filter=-${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.builtins.concatStringsSep(":", nix.thunk(() => nix.sel(finalAttrs, "excludedTestPatterns")))))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           python: nix.thunk(() => nix.sel(python3Packages, "manifold3d")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Geometry library for topological robustness",
         homepage: "https://github.com/elalish/manifold",
         changelog: nix.thunk(() => nix.str`https://github.com/elalish/manifold/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

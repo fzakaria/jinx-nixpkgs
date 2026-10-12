@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["homepage", 42, 5], ["description", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, gettext: false, intltool: false, "pkg-config": false, glib: false, imagemagick: false, libpng: false, pstoedit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "autotrace";
       const version = "0.31.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "autotrace",
           repo: "autotrace",
           tag: version,
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook, gettext, intltool, pkg_config]);
       const buildInputs = nix.thunk(() => [glib, imagemagick, libpng, pstoedit]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/autotrace/autotrace",
         description: "Utility for converting bitmap into vector graphics",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -42,7 +40,15 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         mainProgram: "autotrace",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return {
+        [nix.POS]: $pos[2],
+        pname,
+        version,
+        src,
+        nativeBuildInputs,
+        buildInputs,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

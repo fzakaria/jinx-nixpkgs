@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["sha256", 30, 5]], [["url", 36, 7], ["sha256", 37, 7]], [["NIX_CFLAGS_COMPILE", 63, 7]], [["url", 73, 5], ["odd-unstable", 74, 5], ["rev-prefix", 75, 5]], [["providedSessions", 70, 12], ["updateScript", 72, 12]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["platforms", 85, 5], ["teams", 86, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 33, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["enableParallelBuilding", 61, 3], ["env", 63, 3], ["postFixup", 65, 3], ["passthru", 70, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gettext: false, xtrans: false, "dbus-glib": false, systemdLibs: false, libsm: false, libxtst: false, glib: false, gtk3: false, libepoxy: false, polkit: false, "hicolor-icon-theme": false, "mate-desktop": false, "mate-screensaver": false, wrapGAppsHook3: false, fetchpatch: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 36, 7], ["sha256", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 63, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 73, 5], ["odd-unstable", 74, 5], ["rev-prefix", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["providedSessions", 70, 12], ["updateScript", 72, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["platforms", 85, 5], ["teams", 86, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 33, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["enableParallelBuilding", 61, 3], ["env", 63, 3], ["postFixup", 65, 3], ["passthru", 70, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,17 +28,17 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "mate-session-manager",
       version: "1.28.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mate-session-manager-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0yzkWVuh2mUpB3cgPyvIK9lzshSjoECAoe9caJkKLXs=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/mate-desktop/mate-session-manager/commit/3ab6fbfc811d00100d7a2959f8bbb157b536690d.patch",
             sha256: "0yjaklq0mp44clymyhy240kxlw95z3azmravh4f5pfm9dys33sg0",
           })))),
@@ -64,22 +58,22 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(glib, "dev")}/include/gio-unix-2.0`),
       })),
       postFixup: "substituteInPlace $out/share/xsessions/mate.desktop \\\n  --replace-fail \"Exec=mate-session\" \"Exec=$out/bin/mate-session\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         providedSessions: nix.thunk(() => ["mate"]),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://git.mate-desktop.org/mate-session-manager",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "MATE Desktop session manager",
         homepage: "https://github.com/mate-desktop/mate-session-manager",
         license: nix.thunk(() => (() => {

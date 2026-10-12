@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["name", 23, 7], ["url", 24, 7], ["sha256", 25, 7]], [["homepage", 48, 5], ["description", 49, 5], ["platforms", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["buildPhase", 29, 3], ["installPhase", 37, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, slurm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 23, 7], ["url", 24, 7], ["sha256", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["platforms", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["buildPhase", 29, 3], ["installPhase", 37, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const slurm = nix.arg($, "slurm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "slurm-spank-stunnel",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stanford-rc",
           repo: "slurm-spank-stunnel",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./backward-compat.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "hostlist_t-signature.patch",
             url: "https://github.com/stanford-rc/slurm-spank-stunnel/commit/84d04e4ccfe538a09c3f17a52dde616903b66db8.patch",
             sha256: "sha256-RaUYqeNmFPvYci2yX8Bxps1nDjX/UAG+e3JbjbcwrO0=",
@@ -43,7 +40,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib $out/etc/slurm/plugstack.conf.d\ninstall -m 755 stunnel.so $out/lib\ninstall -m 644 plugstack.conf $out/etc/slurm/plugstack.conf.d/stunnel.conf.example\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/stanford-rc/slurm-spank-stunnel",
         description: "Plugin for SLURM for SSH tunneling and port forwarding support",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

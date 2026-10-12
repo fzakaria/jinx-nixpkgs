@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["enableLanguages", 16, 28]], [["enableCuda", 20, 7], ["enabledModules", 21, 7], ["runAccuracyTests", 25, 7]], [["mainProgram", 29, 8]], [["pname", 11, 3], ["extraNativeBuildInputs", 13, 3], ["extraBuildInputs", 15, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, "pkg-config": false, qtwayland: false, qtmultimedia: false, opencv: false, tesseractLanguages: true, tesseract5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["enableLanguages", 16, 28]]);
-const pos$2 = nix.positions(here + "/default.nix", [["enableCuda", 20, 7], ["enabledModules", 21, 7], ["runAccuracyTests", 25, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mainProgram", 29, 8]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["extraNativeBuildInputs", 13, 3], ["extraBuildInputs", 15, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const tesseractLanguages = nix.argOr($, "tesseractLanguages", () => []);
   const tesseract5 = nix.arg($, "tesseract5");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "spectacle",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(tesseract5, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableLanguages: tesseractLanguages })))),
+        nix.thunk(() => nix.app(nix.sel(tesseract5, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableLanguages: tesseractLanguages })))),
         qtwayland,
         qtmultimedia,
         nix.thunk(() => nix.app(nix.sel(opencv, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             enableCuda: false,
             enabledModules: nix.thunk(() => ["core", "imgproc"]),
             runAccuracyTests: false,
           })))),
       ]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$3, mainProgram: "spectacle" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[2], mainProgram: "spectacle" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

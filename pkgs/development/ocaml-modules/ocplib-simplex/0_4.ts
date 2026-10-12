@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/0_4.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["preInstall", 27, 3], ["postInstall", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, autoreconfHook: false, ocaml: false, findlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/0_4.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/0_4.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/0_4.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["preInstall", 27, 3], ["postInstall", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const findlib = nix.arg($, "findlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ocplib-simplex",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OCamlPro",
           repo: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`mv $out/lib/${nix.sel(finalAttrs, "pname")} $out/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OCaml library implementing a simplex algorithm, in a functional style, for solving systems of linear inequalities",
         homepage: "https://github.com/OCamlPro/ocplib-simplex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

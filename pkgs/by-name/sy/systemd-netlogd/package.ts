@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["package", 74, 39]], [["version", 74, 7]], [["aarch64-cross", 77, 7]], [["tests", 73, 5], ["updateScript", 80, 5]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 89, 5], ["platforms", 90, 32]], [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 28, 3], ["postPatch", 36, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 58, 3], ["mesonFlags", 64, 3], ["doCheck", 69, 3], ["passthru", 71, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gperf: false, libcap: false, meson: false, ninja: false, "nix-update-script": false, openssl: false, "pkg-config": false, pkgsCross: false, sphinx: false, systemdLibs: false, testers: false, opensslSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 74, 39]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 74, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["aarch64-cross", 77, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 73, 5], ["updateScript", 80, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 89, 5], ["platforms", 90, 32]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 28, 3], ["postPatch", 36, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 58, 3], ["mesonFlags", 64, 3], ["doCheck", 69, 3], ["passthru", 71, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const opensslSupport = nix.argOr($, "opensslSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "systemd-netlogd",
       version: "1.4.4",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "systemd",
           repo: "systemd-netlogd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,15 +53,15 @@ substituteInPlace units/systemd-netlogd.service.in \\
       ]),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform", "system"), "x86_64-linux")), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "aarch64-cross": nix.thunk(() => nix.sel(pkgsCross, "aarch64-multiplatform", "systemd-netlogd")),
           }))))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
@@ -75,7 +69,7 @@ substituteInPlace units/systemd-netlogd.service.in \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(systemdLibs, "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Forwards messages from the journal to other hosts over the network",
         homepage: "https://github.com/systemd/systemd-netlogd",
         changelog: nix.thunk(() => nix.str`https://github.com/systemd/systemd-netlogd/releases/tag/v${nix.sel(finalAttrs, "version")}`),

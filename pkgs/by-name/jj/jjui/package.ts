@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["updateScript", 39, 12]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["strictDeps", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["excludedPackages", 24, 3], ["ldflags", 29, 3], ["checkFlags", 31, 3], ["doInstallCheck", 35, 3], ["nativeInstallCheckInputs", 36, 3], ["versionCheckProgramArg", 37, 3], ["passthru", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildGo127Module: false, fetchFromGitHub: false, "nix-update-script": false, versionCheckHook: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 39, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["strictDeps", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["excludedPackages", 24, 3], ["ldflags", 29, 3], ["checkFlags", 31, 3], ["doInstallCheck", 35, 3], ["nativeInstallCheckInputs", 36, 3], ["versionCheckProgramArg", 37, 3], ["passthru", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jjui",
       version: "0.10.11",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "idursun",
           repo: "jjui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "TUI for Jujutsu VCS",
         homepage: "https://github.com/idursun/jjui",
         changelog: nix.thunk(() => nix.str`https://github.com/idursun/jjui/releases/tag/v${nix.sel(finalAttrs, "version")}`),

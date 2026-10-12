@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["package", 41, 9]], [["platforms", 50, 18]], [["nativeBuildInputs", 46, 13], ["meta", 50, 13]], [["version", 40, 7], ["nushell-integration", 43, 7]], [["tests", 39, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["mainProgram", 81, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["postPatch", 31, 3], ["cargoHash", 36, 3], ["passthru", 38, 3], ["postInstall", 60, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, runCommandLocal: false, withFzf: true, fzf: false, installShellFiles: false, libiconv: false, testers: false, nushell: false, zoxide: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 41, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["platforms", 50, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 46, 13], ["meta", 50, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 40, 7], ["nushell-integration", 43, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 39, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["mainProgram", 81, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["postPatch", 31, 3], ["cargoHash", 36, 3], ["passthru", 38, 3], ["postInstall", 60, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nushell = nix.arg($, "nushell");
   const zoxide = nix.arg($, "zoxide");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "zoxide",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ajeetdsouza",
           repo: "zoxide",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,15 +37,15 @@ export default nix.lambda((args) => (() => {
 `))),
       cargoHash: "sha256-5Be/eIMn3JurFIhoPK6B5L054lLPek9CR93zTJzJS6w=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: zoxide })))),
+          [nix.POS]: $pos[4],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: zoxide })))),
           "nushell-integration": nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.str`test-${nix.sel(zoxide, "name")}-nushell-integration`), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               nativeBuildInputs: nix.thunk(() => [nushell, zoxide]),
               meta: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 platforms: nix.thunk(() => nix.sel(nushell, "meta", "platforms")),
               })),
             })), "mkdir $out\nnu -c \"zoxide init nushell | save zoxide.nu\"\nnu -c \"source zoxide.nu\"\n")),
@@ -60,7 +53,7 @@ export default nix.lambda((args) => (() => {
       })),
       postInstall: "installManPage man/man*/*\ninstallShellCompletion --cmd zoxide \\\n  --bash contrib/completions/zoxide.bash \\\n  --fish contrib/completions/zoxide.fish \\\n  --nushell contrib/completions/zoxide.nu \\\n  --zsh contrib/completions/_zoxide\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Fast cd command that learns your habits",
         homepage: "https://github.com/ajeetdsouza/zoxide",
         changelog: nix.thunk(() => nix.str`https://github.com/ajeetdsouza/zoxide/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

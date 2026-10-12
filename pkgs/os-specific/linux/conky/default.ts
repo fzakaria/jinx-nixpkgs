@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 101, 5], ["repo", 102, 5], ["tag", 103, 5], ["hash", 104, 5]], [["homepage", 195, 5], ["changelog", 196, 5], ["description", 197, 5], ["mainProgram", 198, 5], ["maintainers", 199, 5], ["license", 200, 5], ["platforms", 201, 5]], [["pname", 97, 3], ["version", 98, 3], ["src", 100, 3], ["postPatch", 108, 3], ["strictDeps", 113, 3], ["nativeBuildInputs", 115, 3], ["buildInputs", 131, 3], ["cmakeFlags", 164, 3], ["doCheck", 189, 3], ["nativeInstallCheckInputs", 191, 3], ["doInstallCheck", 192, 3], ["meta", 194, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, cmake: false, glib: false, libxfixes: false, libxinerama: false, catch2: false, gperf: false, mpdSupport: true, ibmSupport: true, docsSupport: true, buildPackages: false, pandoc: false, python3: false, ncursesSupport: true, ncurses: true, x11Support: true, freetype: false, libxft: false, libxext: false, libx11: false, libsm: false, libice: false, waylandSupport: true, pango: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, xdamageSupport: true, libxdamage: true, doubleBufferSupport: true, imlib2Support: true, imlib2: true, luaSupport: true, lua: true, luaImlib2Support: true, luaCairoSupport: true, cairo: true, toluapp: true, wirelessSupport: true, wirelesstools: true, nvidiaSupport: true, libXNVCtrl: true, pulseSupport: true, libpulseaudio: true, curlSupport: true, curl: true, rssSupport: true, journalSupport: true, systemd: true, libxml2: true, extrasSupport: true, versionCheckHook: false, expat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 101, 5], ["repo", 102, 5], ["tag", 103, 5], ["hash", 104, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 195, 5], ["changelog", 196, 5], ["description", 197, 5], ["mainProgram", 198, 5], ["maintainers", 199, 5], ["license", 200, 5], ["platforms", 201, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 97, 3], ["version", 98, 3], ["src", 100, 3], ["postPatch", 108, 3], ["strictDeps", 113, 3], ["nativeBuildInputs", 115, 3], ["buildInputs", 131, 3], ["cmakeFlags", 164, 3], ["doCheck", 189, 3], ["nativeInstallCheckInputs", 191, 3], ["doInstallCheck", 192, 3], ["meta", 194, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -83,11 +81,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(journalSupport) || nix.asBool(!nix.eq(systemd, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/os-specific/linux/conky/default.nix:92:1");
   nix.assert_((!nix.asBool(extrasSupport) || nix.asBool(!nix.eq(python3, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/os-specific/linux/conky/default.nix:94:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "conky",
       version: "1.22.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "brndnmtthws",
           repo: "conky",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -140,7 +138,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://conky.cc",
         changelog: nix.thunk(() => nix.str`https://github.com/brndnmtthws/conky/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Advanced, highly configurable system monitor based on torsmo",

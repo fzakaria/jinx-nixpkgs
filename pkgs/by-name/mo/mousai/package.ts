@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["pname", 37, 13], ["version", 37, 19], ["src", 37, 27], ["hash", 38, 5]], [["updateScript", 68, 5]], [["description", 72, 5], ["mainProgram", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["teams", 77, 5], ["platforms", 78, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 53, 3], ["passthru", 67, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "appstream-glib": false, cargo: false, dbus: false, "desktop-file-utils": false, glib: false, "glib-networking": false, gst_all_1: false, gtk4: false, libadwaita: false, libpulseaudio: false, libsoup_3: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, rustPlatform: false, rustc: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 37, 13], ["version", 37, 19], ["src", 37, 27], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 72, 5], ["mainProgram", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["teams", 77, 5], ["platforms", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 53, 3], ["passthru", 67, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const pname = "mousai";
       const version = "0.7.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SeaDve",
           repo: "Mousai",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-xOP/lmJcZSdTeAMsV/vDpA2cDC7e8NJU6W1PImzLhZ4=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -74,11 +70,11 @@ export default nix.lambda((args) => (() => {
         libsoup_3,
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Identify any songs in seconds",
         mainProgram: "mousai",
         homepage: "https://github.com/SeaDve/Mousai",
@@ -91,7 +87,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

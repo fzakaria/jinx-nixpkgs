@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["packageName", 58, 7]], [["test", 62, 18]], [["updateScript", 57, 5], ["tests", 62, 12]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["teams", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 41, 3], ["preFixup", 50, 3], ["passthru", 56, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, appstream: false, gettext: false, gnome: false, libgtop: false, gtk4: false, libadwaita: false, pango: false, pcre2: false, "vte-gtk4": false, "desktop-file-utils": false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["test", 62, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 57, 5], ["tests", 62, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["teams", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 41, 3], ["preFixup", 50, 3], ["passthru", 56, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gnome-console",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-console/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-console-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-5JUCB/BUfmpsDxjuv89uGhBGHqsPL64KrlErEETHrG4=",
         })))),
@@ -51,15 +46,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libgtop, gtk4, libadwaita, pango, pcre2, vte_gtk4]),
       preFixup: "# FIXME: properly address https://github.com/NixOS/nixpkgs/pull/333911#issuecomment-2362710334\n# and https://gitlab.gnome.org/GNOME/console/-/commit/c81801c82f186f20\ngappsWrapperArgs+=(--set \"TERM\" \"xterm-256color\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-console" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-console" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "kgx")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple user-friendly terminal emulator for the GNOME desktop",
         homepage: "https://gitlab.gnome.org/GNOME/console",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

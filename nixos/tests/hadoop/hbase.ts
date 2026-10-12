@@ -2,52 +2,16 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hbase.nix", [[["fs.defaultFS", 16, 11]], [["enable", 19, 11], ["openFirewall", 20, 11]], [["enable", 28, 32]], [["zookeeper", 28, 22]], [["allowedTCPPorts", 29, 33]], [["firewall", 29, 24]], [["services", 28, 13], ["networking", 29, 13]], [["formatOnInit", 37, 19]], [["namenode", 36, 17]], [["hdfs", 35, 15], ["coreSite", 40, 23]], [["hadoop", 34, 22]], [["services", 34, 13]], [["diskSize", 46, 28]], [["datanode", 48, 20]], [["hdfs", 48, 15], ["coreSite", 49, 23]], [["hadoop", 47, 22]], [["virtualisation", 46, 13], ["services", 47, 13]], [["initHDFS", 61, 19]], [["zookeeperQuorum", 59, 25], ["master", 60, 17]], [["coreSite", 57, 23], ["hbase", 58, 15]], [["hadoop", 56, 22]], [["services", 56, 13]], [["zookeeperQuorum", 72, 25], ["regionServer", 73, 17]], [["coreSite", 70, 23], ["hbase", 71, 15]], [["hadoop", 69, 22]], [["services", 69, 13]], [["zookeeperQuorum", 83, 25], ["thrift", 84, 17]], [["coreSite", 81, 23], ["hbase", 82, 15]], [["hadoop", 80, 22]], [["services", 80, 13]], [["zookeeperQuorum", 94, 25], ["rest", 95, 17]], [["coreSite", 92, 23], ["hbase", 93, 15]], [["hadoop", 91, 22]], [["services", 91, 13]], [["zookeeper", 25, 9], ["namenode", 31, 9], ["datanode", 43, 9], ["master", 53, 9], ["regionserver", 66, 9], ["thrift", 77, 9], ["rest", 88, 9]], [["maintainers", 136, 10]], [["name", 11, 5], ["nodes", 13, 5], ["testScript", 101, 5], ["meta", 136, 5]]]);
 const formals$1 = { args: { package: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { hadoop: true, hbase: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/hbase.nix", [["fs.defaultFS", 16, 11]]);
-const pos$2 = nix.positions(here + "/hbase.nix", [["enable", 19, 11], ["openFirewall", 20, 11]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$3 = nix.positions(here + "/hbase.nix", [["enable", 28, 32]]);
-const pos$4 = nix.positions(here + "/hbase.nix", [["zookeeper", 28, 22]]);
-const pos$5 = nix.positions(here + "/hbase.nix", [["allowedTCPPorts", 29, 33]]);
-const pos$6 = nix.positions(here + "/hbase.nix", [["firewall", 29, 24]]);
-const pos$7 = nix.positions(here + "/hbase.nix", [["services", 28, 13], ["networking", 29, 13]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$8 = nix.positions(here + "/hbase.nix", [["formatOnInit", 37, 19]]);
-const pos$9 = nix.positions(here + "/hbase.nix", [["namenode", 36, 17]]);
-const pos$10 = nix.positions(here + "/hbase.nix", [["hdfs", 35, 15], ["coreSite", 40, 23]]);
-const pos$11 = nix.positions(here + "/hbase.nix", [["hadoop", 34, 22]]);
-const pos$12 = nix.positions(here + "/hbase.nix", [["services", 34, 13]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$13 = nix.positions(here + "/hbase.nix", [["diskSize", 46, 28]]);
-const pos$14 = nix.positions(here + "/hbase.nix", [["datanode", 48, 20]]);
-const pos$15 = nix.positions(here + "/hbase.nix", [["hdfs", 48, 15], ["coreSite", 49, 23]]);
-const pos$16 = nix.positions(here + "/hbase.nix", [["hadoop", 47, 22]]);
-const pos$17 = nix.positions(here + "/hbase.nix", [["virtualisation", 46, 13], ["services", 47, 13]]);
 const formals$6 = { args: {  }, ellipsis: true };
-const pos$18 = nix.positions(here + "/hbase.nix", [["initHDFS", 61, 19]]);
-const pos$19 = nix.positions(here + "/hbase.nix", [["zookeeperQuorum", 59, 25], ["master", 60, 17]]);
-const pos$20 = nix.positions(here + "/hbase.nix", [["coreSite", 57, 23], ["hbase", 58, 15]]);
-const pos$21 = nix.positions(here + "/hbase.nix", [["hadoop", 56, 22]]);
-const pos$22 = nix.positions(here + "/hbase.nix", [["services", 56, 13]]);
 const formals$7 = { args: {  }, ellipsis: true };
-const pos$23 = nix.positions(here + "/hbase.nix", [["zookeeperQuorum", 72, 25], ["regionServer", 73, 17]]);
-const pos$24 = nix.positions(here + "/hbase.nix", [["coreSite", 70, 23], ["hbase", 71, 15]]);
-const pos$25 = nix.positions(here + "/hbase.nix", [["hadoop", 69, 22]]);
-const pos$26 = nix.positions(here + "/hbase.nix", [["services", 69, 13]]);
 const formals$8 = { args: {  }, ellipsis: true };
-const pos$27 = nix.positions(here + "/hbase.nix", [["zookeeperQuorum", 83, 25], ["thrift", 84, 17]]);
-const pos$28 = nix.positions(here + "/hbase.nix", [["coreSite", 81, 23], ["hbase", 82, 15]]);
-const pos$29 = nix.positions(here + "/hbase.nix", [["hadoop", 80, 22]]);
-const pos$30 = nix.positions(here + "/hbase.nix", [["services", 80, 13]]);
 const formals$9 = { args: {  }, ellipsis: true };
-const pos$31 = nix.positions(here + "/hbase.nix", [["zookeeperQuorum", 94, 25], ["rest", 95, 17]]);
-const pos$32 = nix.positions(here + "/hbase.nix", [["coreSite", 92, 23], ["hbase", 93, 15]]);
-const pos$33 = nix.positions(here + "/hbase.nix", [["hadoop", 91, 22]]);
-const pos$34 = nix.positions(here + "/hbase.nix", [["services", 91, 13]]);
-const pos$35 = nix.positions(here + "/hbase.nix", [["zookeeper", 25, 9], ["namenode", 31, 9], ["datanode", 43, 9], ["master", 53, 9], ["regionserver", 66, 9], ["thrift", 77, 9], ["rest", 88, 9]]);
-const pos$36 = nix.positions(here + "/hbase.nix", [["maintainers", 136, 10]]);
-const pos$37 = nix.positions(here + "/hbase.nix", [["name", 11, 5], ["nodes", 13, 5], ["testScript", 101, 5], ["meta", 136, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,39 +23,39 @@ export default nix.lambda((args) => (() => {
       const hbase = nix.argOr($_1, "hbase", () => nix.sel(pkgs, "hbase"));
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), null);
       return {
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         name: nix.thunk(() => nix.str`hadoop-${nix.sel(package$, "version")}-hbase`),
         nodes: nix.thunk(() => (() => {
-          const coreSite = nix.thunk(() => ({ [nix.POS]: pos$1, "fs.defaultFS": "hdfs://namenode:8020" }));
-          const defOpts = nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, openFirewall: true }));
+          const coreSite = nix.thunk(() => ({ [nix.POS]: $pos[0], "fs.defaultFS": "hdfs://namenode:8020" }));
+          const defOpts = nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, openFirewall: true }));
           const zookeeperQuorum = "zookeeper";
           return {
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             zookeeper: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$3);
               return {
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
-                  zookeeper: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+                  [nix.POS]: $pos[3],
+                  zookeeper: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
                 })),
                 networking: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
-                  firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [2181n]) })),
+                  [nix.POS]: $pos[5],
+                  firewall: nix.thunk(() => ({ [nix.POS]: $pos[4], allowedTCPPorts: nix.thunk(() => [2181n]) })),
                 })),
               };
             })(), formals$3),
             namenode: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$4);
               return {
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   hadoop: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     hdfs: nix.thunk(() => ({
-                      [nix.POS]: pos$9,
-                      namenode: nix.thunk(() => nix.update(defOpts, { [nix.POS]: pos$8, formatOnInit: true })),
+                      [nix.POS]: $pos[8],
+                      namenode: nix.thunk(() => nix.update(defOpts, { [nix.POS]: $pos[7], formatOnInit: true })),
                     })),
                     coreSite: coreSite,
                   })),
@@ -101,13 +65,13 @@ export default nix.lambda((args) => (() => {
             datanode: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$5);
               return {
-                [nix.POS]: pos$17,
-                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$13, diskSize: 8192n })),
+                [nix.POS]: $pos[16],
+                virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[12], diskSize: 8192n })),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   hadoop: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
-                    hdfs: nix.thunk(() => ({ [nix.POS]: pos$14, datanode: defOpts })),
+                    [nix.POS]: $pos[14],
+                    hdfs: nix.thunk(() => ({ [nix.POS]: $pos[13], datanode: defOpts })),
                     coreSite: coreSite,
                   })),
                 })),
@@ -116,16 +80,16 @@ export default nix.lambda((args) => (() => {
             master: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$6);
               return {
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   hadoop: nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     coreSite: coreSite,
                     hbase: nix.thunk(() => ({
-                      [nix.POS]: pos$19,
+                      [nix.POS]: $pos[18],
                       zookeeperQuorum: zookeeperQuorum,
-                      master: nix.thunk(() => nix.update(defOpts, { [nix.POS]: pos$18, initHDFS: true })),
+                      master: nix.thunk(() => nix.update(defOpts, { [nix.POS]: $pos[17], initHDFS: true })),
                     })),
                   })),
                 })),
@@ -134,13 +98,13 @@ export default nix.lambda((args) => (() => {
             regionserver: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$7);
               return {
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$25,
+                  [nix.POS]: $pos[24],
                   hadoop: nix.thunk(() => ({
-                    [nix.POS]: pos$24,
+                    [nix.POS]: $pos[23],
                     coreSite: coreSite,
-                    hbase: nix.thunk(() => ({ [nix.POS]: pos$23, zookeeperQuorum: zookeeperQuorum, regionServer: defOpts })),
+                    hbase: nix.thunk(() => ({ [nix.POS]: $pos[22], zookeeperQuorum: zookeeperQuorum, regionServer: defOpts })),
                   })),
                 })),
               };
@@ -148,13 +112,13 @@ export default nix.lambda((args) => (() => {
             thrift: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$8);
               return {
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$29,
+                  [nix.POS]: $pos[28],
                   hadoop: nix.thunk(() => ({
-                    [nix.POS]: pos$28,
+                    [nix.POS]: $pos[27],
                     coreSite: coreSite,
-                    hbase: nix.thunk(() => ({ [nix.POS]: pos$27, zookeeperQuorum: zookeeperQuorum, thrift: defOpts })),
+                    hbase: nix.thunk(() => ({ [nix.POS]: $pos[26], zookeeperQuorum: zookeeperQuorum, thrift: defOpts })),
                   })),
                 })),
               };
@@ -162,13 +126,13 @@ export default nix.lambda((args) => (() => {
             rest: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$9);
               return {
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$33,
+                  [nix.POS]: $pos[32],
                   hadoop: nix.thunk(() => ({
-                    [nix.POS]: pos$32,
+                    [nix.POS]: $pos[31],
                     coreSite: coreSite,
-                    hbase: nix.thunk(() => ({ [nix.POS]: pos$31, zookeeperQuorum: zookeeperQuorum, rest: defOpts })),
+                    hbase: nix.thunk(() => ({ [nix.POS]: $pos[30], zookeeperQuorum: zookeeperQuorum, rest: defOpts })),
                   })),
                 })),
               };
@@ -209,7 +173,7 @@ assert "${nix.sel(hbase, "version")}" in regionserver.succeed("curl http://rest:
 thrift.wait_for_open_port(9090)
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
             return [nix.thunk(() => nix.lookup(w_1, "illustris"))];

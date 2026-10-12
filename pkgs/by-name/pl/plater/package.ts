@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["name", 35, 7], ["exec", 36, 7], ["icon", 37, 7], ["desktopName", 38, 7], ["genericName", 39, 7], ["categories", 40, 7]], [["description", 52, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["license", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["desktopItems", 33, 3], ["postInstall", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { stdenv: false, cmake: false, fetchFromGitHub: false, lib: false, libGLU: false, makeDesktopItem: false, copyDesktopItems: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 7], ["exec", 36, 7], ["icon", 37, 7], ["desktopName", 38, 7], ["genericName", 39, 7], ["categories", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["license", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["desktopItems", 33, 3], ["postInstall", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "plater";
       const version = "1.0.0-unstable-2025-03-24";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Rhoban",
           repo: "Plater",
           rev: "6c4f924504979095b1b45cf8fd81b1e38f0f8642",
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libGLU, nix.thunk(() => nix.sel(qt5, "qtbase"))]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "plater",
             exec: "plater",
             icon: "plater",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "install -D $src/gui/img/plater.png -t $out/share/icons/hicolor/128x128/apps\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "3D-printer parts placer and plate generator",
         homepage: "https://github.com/Rhoban/Plater",
         maintainers: nix.thunk(() => (() => {
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-nc-30")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

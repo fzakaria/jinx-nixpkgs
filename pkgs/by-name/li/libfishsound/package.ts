@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["homepage", 33, 5], ["description", 34, 5], ["longDescription", 35, 5], ["platforms", 42, 5], ["license", 43, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 21, 3], ["nativeBuildInputs", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, libvorbis: false, speex: false, flac: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["longDescription", 35, 5], ["platforms", 42, 5], ["license", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 21, 3], ["nativeBuildInputs", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const flac = nix.arg($, "flac");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libfishsound",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.xiph.org/releases/libfishsound/libfishsound-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-A+sWAeIwatyIx3av3yEiF8ZUeZDS0PnKVE2tmoqdu48=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [libvorbis, speex, flac]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://xiph.org/fishsound/",
         description: "Simple programming interface for decoding and encoding audio data using Xiph.org codecs (FLAC, Speex and Vorbis)",
         longDescription: "libfishsound by itself is designed to handle raw codec streams from a lower level layer such as UDP datagrams. When these codecs are used in files, they are commonly encapsulated in Ogg to produce Ogg FLAC, Speex and Ogg Vorbis files.\n\nlibfishsound is a wrapper around the existing codec libraries and provides a consistent, higher-level programming interface. It has been designed for use in a wide variety of applications; it has no direct dependencies on Ogg encapsulation, though it is most commonly used in conjunction with liboggz to decode or encode FLAC, Speex or Vorbis audio tracks in Ogg files, including Ogg Theora and Annodex.\n\nFishSound has been developed and tested on GNU/Linux, Darwin/MacOSX and Win32. It probably also works on other Unix-like systems via GNU autoconf. For Win32: nmake Makefiles, Visual Studio .NET 2003 solution files and Visual C++ 6.0 workspace files are all provided in the source distribution.\n",

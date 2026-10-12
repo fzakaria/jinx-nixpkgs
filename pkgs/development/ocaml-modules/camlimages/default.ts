@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["branch", 35, 5], ["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, buildDunePackage: false, findlib: false, "dune-configurator": false, cppo: false, graphics: false, stdio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["branch", 35, 5], ["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const graphics = nix.arg($, "graphics");
   const stdio = nix.arg($, "stdio");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "camlimages",
       version: "5.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "camlspotter",
           repo: "camlimages",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cppo]),
       buildInputs: nix.thunk(() => [dune_configurator, findlib, graphics, stdio]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         branch: "5.0",
         homepage: "https://gitlab.com/camlspotter/camlimages",
         description: "OCaml image processing library",

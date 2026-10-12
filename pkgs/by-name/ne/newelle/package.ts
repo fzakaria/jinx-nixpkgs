@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["updateScript", 101, 12]], [["homepage", 104, 5], ["description", 105, 5], ["mainProgram", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5]], [["pname", 27, 3], ["version", 28, 11], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 52, 3], ["dependencies", 61, 3], ["postInstallCheck", 84, 3], ["dontWrapGApps", 88, 3], ["makeWrapperArgs", 90, 3], ["passthru", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, "gobject-introspection": false, "desktop-file-utils": false, libadwaita: false, "vte-gtk4": false, "gsettings-desktop-schemas": false, gtksourceview5: false, "glib-networking": false, webkitgtk_6_0: false, "lsb-release": false, bash: false, ffmpeg: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 101, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 104, 5], ["description", 105, 5], ["mainProgram", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 11], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 52, 3], ["dependencies", 61, 3], ["postInstallCheck", 84, 3], ["dontWrapGApps", 88, 3], ["makeWrapperArgs", 90, 3], ["passthru", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "1.5.0";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "newelle",
       version: version,
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qwersyk",
           repo: "Newelle",
           tag: version,
@@ -91,11 +88,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [lsb_release, bash, ffmpeg]))}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/qwersyk/Newelle",
         description: "Ultimate Virtual Assistant",
         mainProgram: "newelle",

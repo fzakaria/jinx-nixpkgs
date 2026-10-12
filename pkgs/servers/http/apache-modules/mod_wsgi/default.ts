@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["platforms", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["postPatch", 27, 3], ["makeFlags", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, apacheHttpd: false, python3: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["postPatch", 27, 3], ["makeFlags", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mod_wsgi";
       const version = "5.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GrahamDumpleton",
           repo: "mod_wsgi",
           rev: version,
@@ -29,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace configure --replace '/usr/bin/lipo' 'lipo'\n";
       const makeFlags = nix.thunk(() => ["LIBEXECDIR=$(out)/modules"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/GrahamDumpleton/mod_wsgi",
         description: "Host Python applications in Apache through the WSGI interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

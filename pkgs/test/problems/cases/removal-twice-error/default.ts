@@ -2,39 +2,33 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["checkMeta", 6, 12]], [["system", 4, 5], ["overlays", 5, 5], ["config", 6, 5]], [["message", 15, 7]], [["kind", 18, 7], ["message", 19, 7]], [["removal", 14, 5], ["removal2", 17, 5]], [["description", 12, 8], ["problems", 13, 8]], [["pname", 10, 3], ["version", 11, 3], ["meta", 12, 3]]]);
 const formals$1 = { args: { nixpkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["checkMeta", 6, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["system", 4, 5], ["overlays", 5, 5], ["config", 6, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["message", 15, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["kind", 18, 7], ["message", 19, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["removal", 14, 5], ["removal2", 17, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 12, 8], ["problems", 13, 8]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["meta", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.arg($, "nixpkgs");
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       system: "x86_64-linux",
       overlays: [],
-      config: nix.thunk(() => ({ [nix.POS]: pos$1, checkMeta: true })),
+      config: nix.thunk(() => ({ [nix.POS]: $pos[0], checkMeta: true })),
     }))));
   return nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "a",
       version: "0",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Some package",
         problems: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           removal: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             message: "This package has been abandoned upstream and will be removed",
           })),
           removal2: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             kind: "removal",
             message: "This package has been abandoned upstream and will be removed2",
           })),

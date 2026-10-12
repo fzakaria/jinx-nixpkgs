@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 21, 5], ["longDescription", 22, 5], ["homepage", 27, 5], ["downloadPage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["teams", 32, 5]], [["version", 39, 9], ["src", 40, 9], ["hash", 41, 9], ["meta", 42, 9], ["pname", 44, 7], ["sourceDir", 45, 7], ["extraFiles", 46, 7]], [["admin", 50, 5], ["compose", 51, 5], ["discovery", 52, 5], ["one", 53, 5], ["privacy", 54, 5], ["reporter", 55, 5], ["workflow", 56, 5]], [["version", 60, 13], ["src", 60, 21], ["meta", 60, 25], ["pname", 61, 5], ["sourceDir", 62, 5], ["yarnLock", 63, 5], ["hash", 64, 5]], [["owner", 68, 5], ["repo", 69, 5], ["rev", 70, 5], ["hash", 71, 5]], [["pname", 75, 5], ["version", 76, 13], ["meta", 76, 21], ["srcs", 78, 5], ["sourceRoot", 79, 5], ["buildPhase", 81, 5], ["installPhase", 96, 5]], [["mainProgram", 132, 7], ["platforms", 133, 7]], [["pname", 107, 5], ["version", 108, 13], ["src", 108, 21], ["sourceRoot", 110, 5], ["vendorHash", 112, 5], ["preBuild", 114, 5], ["subPackages", 123, 5], ["postInstall", 125, 5], ["meta", 131, 5]], [["corteza-server", 164, 22], ["corteza-webapp", 164, 37]], [["corteza", 165, 36]], [["srcs", 164, 5], ["tests", 165, 5]], [["pname", 138, 3], ["version", 139, 11], ["srcs", 141, 3], ["sourceRoot", 142, 3], ["buildPhase", 144, 3], ["installPhase", 155, 3], ["passthru", 163, 3], ["meta", 168, 28]]]);
 const formals$1 = { args: { withLocales: true, buildGoModule: false, callPackage: false, fetchFromGitHub: false, lib: false, nixosTests: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 21, 5], ["longDescription", 22, 5], ["homepage", 27, 5], ["downloadPage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["teams", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 39, 9], ["src", 40, 9], ["hash", 41, 9], ["meta", 42, 9], ["pname", 44, 7], ["sourceDir", 45, 7], ["extraFiles", 46, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["admin", 50, 5], ["compose", 51, 5], ["discovery", 52, 5], ["one", 53, 5], ["privacy", 54, 5], ["reporter", 55, 5], ["workflow", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 60, 13], ["src", 60, 21], ["meta", 60, 25], ["pname", 61, 5], ["sourceDir", 62, 5], ["yarnLock", 63, 5], ["hash", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 68, 5], ["repo", 69, 5], ["rev", 70, 5], ["hash", 71, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 75, 5], ["version", 76, 13], ["meta", 76, 21], ["srcs", 78, 5], ["sourceRoot", 79, 5], ["buildPhase", 81, 5], ["installPhase", 96, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["mainProgram", 132, 7], ["platforms", 133, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 107, 5], ["version", 108, 13], ["src", 108, 21], ["sourceRoot", 110, 5], ["vendorHash", 112, 5], ["preBuild", 114, 5], ["subPackages", 123, 5], ["postInstall", 125, 5], ["meta", 131, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["corteza-server", 164, 22], ["corteza-webapp", 164, 37]]);
-const pos$11 = nix.positions(here + "/package.nix", [["corteza", 165, 36]]);
-const pos$12 = nix.positions(here + "/package.nix", [["srcs", 164, 5], ["tests", 165, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 138, 3], ["version", 139, 11], ["srcs", 141, 3], ["sourceRoot", 142, 3], ["buildPhase", 144, 3], ["installPhase", 155, 3], ["passthru", 163, 3], ["meta", 168, 28]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const version = "2024.9.10";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "cortezaproject",
       repo: "corteza",
       tag: version,
       hash: "sha256-Q80uFf3mb1yIfG6HrMKbMpi8pncnSKhg4Bgc8BLtSmM=",
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "Low-code platform",
     longDescription: "The Corteza low-code platform lets you build and iterate CRM, business\nprocess and other structured data apps fast, create intelligent business\nprocess workflows and connect with almost any data source.\n",
     homepage: "https://cortezaproject.org/",
@@ -52,7 +40,7 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const mkWebApp = (name) => (hash) => nix.app(callPackage, nix.path(here, "./buildYarnDistOnly.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       src: src,
       hash: hash,
@@ -62,7 +50,7 @@ export default nix.lambda((args) => (() => {
       extraFiles: "../../../{README.md,LICENSE,CONTRIBUTING.md,DCO}",
     })));
   const webApps = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), mkWebApp, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       admin: "sha256-TjgdG+MNojJDmgv1oEb4lzP4EzHBMKbY+Ep0jrnxxKI=",
       compose: "sha256-XxAjyYU/zlHNf+OKbMX3eGnXEI5/Fdz0rbjgsTqTTsk=",
       discovery: "sha256-YN6co0Pixau6x2ulm32PYgmtGMpysHT2KnPcJMol3XU=",
@@ -72,7 +60,7 @@ export default nix.lambda((args) => (() => {
       workflow: "sha256-4oM13BVvW/9hQozfqNCjANMZpSZhpDf+YvPZm8Yxj/c=",
     }))));
   const server_webconsole = nix.thunk(() => nix.app(callPackage, nix.path(here, "./buildYarnDistOnly.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: version,
       src: src,
       meta: meta,
@@ -82,14 +70,14 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-GMXrQtplreg/3bWfRwQQwDNiHQNl6YHF5nhmFNCYsiM=",
     }))));
   const corteza_locale = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       owner: "cortezaproject",
       repo: "corteza-locale",
       rev: "57b1f2403207c44055ebce19d95cedd5573f39df",
       hash: "sha256-j+mfWG6tED8AACkUcRWpol2G05qknTxp8b+kwu7c2NA=",
     }))));
   const corteza_webapp = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "corteza-webapp",
       version: version,
       meta: meta,
@@ -106,7 +94,7 @@ runHook postBuild
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r dist/* $out\n\nrunHook postInstall\n",
     })));
   const corteza_server = nix.thunk(() => nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "corteza-server",
       version: version,
       src: src,
@@ -120,13 +108,13 @@ cp -r ${corteza_locale}/src/* pkg/locale/src/
       subPackages: nix.thunk(() => ["cmd/corteza"]),
       postInstall: "mv $out/bin/corteza{,-server}\ncp -r provision .env.example ../{README.md,LICENSE,CONTRIBUTING.md,DCO} $out\nrm -f $out/provision/README.adoc $out/provision/update.sh\n",
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         mainProgram: "corteza-server",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "corteza",
       version: version,
       srcs: nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "srcs")))),
@@ -142,13 +130,16 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\ncp -r dist $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         srcs: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           "corteza-server": corteza_server,
           "corteza-webapp": corteza_webapp,
         })),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$11, corteza: nix.thunk(() => nix.attr(nixosTests, "corteza")) })),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[10],
+          corteza: nix.thunk(() => nix.attr(nixosTests, "corteza")),
+        })),
       })),
       meta: nix.thunk(() => nix.attr(corteza_server, "meta")),
     }));

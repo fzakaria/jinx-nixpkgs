@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["hash", 20, 5]], [["homepage", 35, 5], ["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 13, 3], ["version", 14, 3], ["minimalOCamlVersion", 16, 3], ["src", 18, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, ctypes: false, "ctypes-foreign": false, "dune-configurator": false, result: false, libargon2: false, buildDunePackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 35, 5], ["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["minimalOCamlVersion", 16, 3], ["src", 18, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const libargon2 = nix.arg($, "libargon2");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "argon2",
       version: "1.0.2",
       minimalOCamlVersion: "4.02.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Khady/ocaml-argon2/releases/download/${nix.sel(finalAttrs, "version")}/argon2-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-NDsOV4kPT2SnSfNHDBAK+VKZgHDIKxW+dNJ/C5bQ8gU=",
         })))),
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [ctypes, ctypes_foreign, libargon2, result]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/Khady/ocaml-argon2",
         description: "Ocaml bindings to Argon2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

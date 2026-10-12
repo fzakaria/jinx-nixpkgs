@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["homepage", 45, 5], ["description", 46, 5], ["longDescription", 48, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["configureFlags", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["patchPhase", 37, 3], ["doCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libxext: false, libxaw3d: false, ghostscriptX: false, perl: false, "pkg-config": false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["longDescription", 48, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["configureFlags", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["patchPhase", 37, 3], ["doCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gv",
       version: "3.7.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/gv/gv-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0q8s43z14vxm41pfa8s5h9kyyzk1fkwjhkiwbf2x70alm6rv6qi1",
         })))),
@@ -35,7 +33,7 @@ sed 's|"gs"|"${ghostscriptX}/bin/gs"|g' -i "src/"*.c
 `),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.gnu.org/software/gv/",
         description: "PostScript/PDF document viewer",
         longDescription: "GNU gv allows users to view and navigate through PostScript and\nPDF documents on an X display by providing a graphical user\ninterface for the Ghostscript interpreter.\n",

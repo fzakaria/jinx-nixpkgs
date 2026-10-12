@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]], [["description", 21, 5], ["mainProgram", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["platforms", 25, 5], ["maintainers", 26, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["installPhase", 16, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 21, 5], ["mainProgram", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["platforms", 25, 5], ["maintainers", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["installPhase", 16, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gpu-switch-unstable",
       version: "2017-04-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "0xbb",
           repo: "gpu-switch",
           rev: "a365f56d435c8ef84c4dd2ab935ede4992359e31",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir -p $out/bin\ncp gpu-switch $out/bin/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Application that allows to switch between the graphic cards of dual-GPU MacBook Pro models",
         mainProgram: "gpu-switch",
         homepage: "https://github.com/0xbb/gpu-switch",

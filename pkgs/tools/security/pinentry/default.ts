@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["flag", 23, 7]], [["flag", 26, 7], ["buildInputs", 27, 7]], [["flag", 30, 7], ["buildInputs", 31, 7], ["nativeBuildInputs", 32, 7]], [["flag", 35, 7], ["buildInputs", 36, 7], ["nativeBuildInputs", 41, 7]], [["flag", 44, 7], ["buildInputs", 45, 7], ["nativeBuildInputs", 50, 7]], [["flag", 53, 7]], [["tty", 22, 5], ["curses", 25, 5], ["gnome3", 29, 5], ["qt5", 34, 5], ["qt", 43, 5], ["emacs", 52, 5]], [["url", 68, 9], ["hash", 69, 9]], [["flavors", 113, 9]], [["homepage", 117, 9], ["description", 118, 9], ["license", 119, 9], ["platforms", 120, 9], ["longDescription", 127, 9], ["maintainers", 131, 9], ["mainProgram", 132, 9]], [["pname", 64, 7], ["version", 65, 7], ["src", 67, 7], ["nativeBuildInputs", 72, 7], ["buildInputs", 78, 7], ["dontWrapGApps", 85, 7], ["dontWrapQtApps", 86, 7], ["patches", 88, 7], ["configureFlags", 93, 7], ["postInstall", 100, 7], ["passthru", 112, 7], ["meta", 116, 7]], [["pinentry-curses", 137, 3], ["pinentry-emacs", 141, 3], ["pinentry-gnome3", 146, 3], ["pinentry-qt5", 151, 3], ["pinentry-qt", 156, 3], ["pinentry-tty", 161, 3], ["pinentry-all", 162, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchpatch: false, "pkg-config": false, autoreconfHook: false, wrapGAppsHook3: false, kdePackages: false, "libgpg-error": false, libassuan: false, libsForQt5: false, qt6: false, ncurses: false, gcr_3: false, withLibsecret: true, libsecret: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["flag", 23, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["flag", 26, 7], ["buildInputs", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["flag", 30, 7], ["buildInputs", 31, 7], ["nativeBuildInputs", 32, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["flag", 35, 7], ["buildInputs", 36, 7], ["nativeBuildInputs", 41, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["flag", 44, 7], ["buildInputs", 45, 7], ["nativeBuildInputs", 50, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["flag", 53, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["tty", 22, 5], ["curses", 25, 5], ["gnome3", 29, 5], ["qt5", 34, 5], ["qt", 43, 5], ["emacs", 52, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["url", 68, 9], ["hash", 69, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["flavors", 113, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["homepage", 117, 9], ["description", 118, 9], ["license", 119, 9], ["platforms", 120, 9], ["longDescription", 127, 9], ["maintainers", 131, 9], ["mainProgram", 132, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 64, 7], ["version", 65, 7], ["src", 67, 7], ["nativeBuildInputs", 72, 7], ["buildInputs", 78, 7], ["dontWrapGApps", 85, 7], ["dontWrapQtApps", 86, 7], ["patches", 88, 7], ["configureFlags", 93, 7], ["postInstall", 100, 7], ["passthru", 112, 7], ["meta", 116, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["pinentry-curses", 137, 3], ["pinentry-emacs", 141, 3], ["pinentry-gnome3", 146, 3], ["pinentry-qt5", 151, 3], ["pinentry-qt", 156, 3], ["pinentry-tty", 161, 3], ["pinentry-all", 162, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,17 +24,17 @@ export default nix.lambda((args) => (() => {
   const withLibsecret = nix.argOr($, "withLibsecret", () => true);
   const libsecret = nix.arg($, "libsecret");
   const flavorInfo = nix.thunk(() => ({
-    [nix.POS]: pos$7,
-    tty: nix.thunk(() => ({ [nix.POS]: pos$1, flag: "tty" })),
-    curses: nix.thunk(() => ({ [nix.POS]: pos$2, flag: "curses", buildInputs: nix.thunk(() => [ncurses]) })),
+    [nix.POS]: $pos[6],
+    tty: nix.thunk(() => ({ [nix.POS]: $pos[0], flag: "tty" })),
+    curses: nix.thunk(() => ({ [nix.POS]: $pos[1], flag: "curses", buildInputs: nix.thunk(() => [ncurses]) })),
     gnome3: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       flag: "gnome3",
       buildInputs: nix.thunk(() => [gcr_3]),
       nativeBuildInputs: nix.thunk(() => [wrapGAppsHook3]),
     })),
     qt5: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       flag: "qt5",
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(libsForQt5, "qtbase")),
@@ -55,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "wrapQtAppsHook"))]),
     })),
     qt: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       flag: "qt",
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(qt6, "qtbase")),
@@ -64,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]),
     })),
-    emacs: nix.thunk(() => ({ [nix.POS]: pos$6, flag: "emacs" })),
+    emacs: nix.thunk(() => ({ [nix.POS]: $pos[5], flag: "emacs" })),
   }));
   const buildPinentry = (pinentryExtraPname) => (buildFlavors) => (() => {
     const enableFeaturePinentry = (f) => nix.app(nix.sel(lib, "enableFeature"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), f, buildFlavors)), nix.thunk(() => nix.add("pinentry-", nix.sel(flavorInfo, nix.key(nix.force(f)), "flag"))));
@@ -72,7 +61,7 @@ export default nix.lambda((args) => (() => {
         const pname = nix.thunk(() => nix.str`pinentry-${pinentryExtraPname}`);
         const version = "1.3.2";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: nix.thunk(() => nix.str`mirror://gnupg/pinentry/pinentry-${version}.tar.bz2`),
             hash: "sha256-jphu2IVhtNpunv4MVPpMqJIwNcmSZN8LBGRJfF+5Tp4=",
           }))));
@@ -90,9 +79,9 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), withLibsecret, "libsecret")),
         ], nix.builtins.map(enableFeaturePinentry, nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), flavorInfo)))));
         const postInstall = nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "gnome3", buildFlavors)), "wrapGApp $out/bin/pinentry-gnome3\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "qt5", buildFlavors)), "wrapQtApp $out/bin/pinentry-qt5\nln -sf $out/bin/pinentry-qt5 $out/bin/pinentry-qt\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "qt", buildFlavors)), "wrapQtApp $out/bin/pinentry-qt\n")));
-        const passthru = nix.thunk(() => ({ [nix.POS]: pos$9, flavors: buildFlavors }));
+        const passthru = nix.thunk(() => ({ [nix.POS]: $pos[8], flavors: buildFlavors }));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           homepage: "https://gnupg.org/software/pinentry/index.html",
           description: "GnuPG’s interface to passphrase input",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -105,7 +94,7 @@ export default nix.lambda((args) => (() => {
           mainProgram: "pinentry",
         }));
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           pname,
           version,
           src,
@@ -122,7 +111,7 @@ export default nix.lambda((args) => (() => {
       })()));
   })();
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     "pinentry-curses": nix.thunk(() => nix.app(buildPinentry, "curses", nix.thunk(() => ["curses", "tty"]))),
     "pinentry-emacs": nix.thunk(() => nix.app(buildPinentry, "emacs", nix.thunk(() => ["emacs", "curses", "tty"]))),
     "pinentry-gnome3": nix.thunk(() => nix.app(buildPinentry, "gnome3", nix.thunk(() => ["gnome3", "curses", "tty"]))),

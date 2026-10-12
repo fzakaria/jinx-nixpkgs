@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["rev-prefix", 45, 5]], [["updateScript", 44, 12]], [["changelog", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["knownVulnerabilities", 53, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 29, 3], ["nativeCheckInputs", 31, 3], ["patches", 37, 3], ["passthru", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, gitUpdater: false, hypothesis: false, openssl: false, pytestCheckHook: false, setuptools: false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 44, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["knownVulnerabilities", 53, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 29, 3], ["nativeCheckInputs", 31, 3], ["patches", 37, 3], ["passthru", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ecdsa",
       version: "0.19.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tlsfuzzer",
           repo: "python-ecdsa",
           tag: nix.thunk(() => nix.str`python-ecdsa-${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [hypothesis, openssl, pytestCheckHook]),
       patches: nix.thunk(() => [nix.path(here, "./pr-371-fix-test-2026-05-23.patch")]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "python-ecdsa-" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "python-ecdsa-" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/tlsfuzzer/python-ecdsa/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "ECDSA cryptographic signature library",
         homepage: "https://github.com/warner/python-ecdsa",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 11], ["repo", 16, 11], ["tag", 17, 11], ["hash", 18, 11]], [["version", 13, 9], ["src", 14, 9], ["postPatch", 24, 9]], [["cyclonedx-python-lib", 12, 7]], [["packageOverrides", 9, 5]], [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["description", 200, 5], ["homepage", 201, 5], ["changelog", 202, 5], ["longDescription", 203, 5], ["mainProgram", 207, 5], ["license", 208, 5], ["maintainers", 209, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["pythonRelaxDeps", 48, 3], ["pythonRemoveDeps", 74, 3], ["build-system", 79, 3], ["dependencies", 81, 3], ["nativeCheckInputs", 127, 3], ["preCheck", 138, 3], ["disabledTests", 142, 3], ["disabledTestPaths", 168, 3], ["pythonImportsCheck", 193, 3], ["postInstall", 195, 3], ["meta", 199, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 11], ["repo", 16, 11], ["tag", 17, 11], ["hash", 18, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 13, 9], ["src", 14, 9], ["postPatch", 24, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cyclonedx-python-lib", 12, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageOverrides", 9, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 200, 5], ["homepage", 201, 5], ["changelog", 202, 5], ["longDescription", 203, 5], ["mainProgram", 207, 5], ["license", 208, 5], ["maintainers", 209, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["pythonRelaxDeps", 48, 3], ["pythonRemoveDeps", 74, 3], ["build-system", 79, 3], ["dependencies", 81, 3], ["nativeCheckInputs", 127, 3], ["preCheck", 138, 3], ["disabledTests", 142, 3], ["disabledTestPaths", 168, 3], ["pythonImportsCheck", 193, 3], ["postInstall", 195, 3], ["meta", 199, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,30 +11,30 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   const py = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       packageOverrides: (self) => (super$) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "cyclonedx-python-lib": nix.thunk(() => nix.app(nix.sel(super$, "cyclonedx-python-lib", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "7.6.2";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 owner: "CycloneDX",
                 repo: "cyclonedx-python-lib",
                 tag: nix.thunk(() => nix.str`v${version}`),
                 hash: "sha256-nklizCiu7Nmynjd5WU5oX/v2TWy9xFVF4GkmCwFKZLI=",
               }))));
             const postPatch = "find . -name '*.py' | xargs -I{} sed -i \\\n  -e 's/serializable\\./py_serializable\\./g' \\\n  -e 's/@serializable/@py_serializable/g' \\\n  -e 's/from serializable/from py_serializable/g' \\\n  -e 's/import serializable/import py_serializable/g' \\\n  {}\n";
-            return { [nix.POS]: pos$2, version, src, postPatch };
+            return { [nix.POS]: $pos[1], version, src, postPatch };
           })())),
       }),
     }))));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "checkov",
       version: "3.3.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "bridgecrewio",
           repo: "checkov",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -177,7 +171,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["checkov"]),
       postInstall: "chmod +x $out/bin/checkov\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Static code analysis tool for infrastructure-as-code",
         homepage: "https://github.com/bridgecrewio/checkov",
         changelog: nix.thunk(() => nix.str`https://github.com/bridgecrewio/checkov/releases/tag/${nix.sel(finalAttrs, "version")}`),

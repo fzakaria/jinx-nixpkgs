@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wofi-pass.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["sha256", 39, 5]], [["description", 59, 5], ["homepage", 60, 5], ["maintainers", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["mainProgram", 64, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["dontBuild", 44, 3], ["installPhase", 46, 3], ["fixupPhase", 51, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pass-wayland": false, coreutils: false, gnugrep: false, libnotify: false, pwgen: false, findutils: false, makeWrapper: false, "wl-clipboard": false, wtype: false, wofi: false, extensions: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wofi-pass.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["sha256", 39, 5]]);
-const pos$2 = nix.positions(here + "/wofi-pass.nix", [["description", 59, 5], ["homepage", 60, 5], ["maintainers", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["mainProgram", 64, 5]]);
-const pos$3 = nix.positions(here + "/wofi-pass.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["dontBuild", 44, 3], ["installPhase", 46, 3], ["fixupPhase", 51, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wofi-pass";
       const version = "24.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "schmidtandreas",
           repo: "wofi-pass",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -53,7 +51,7 @@ wrapProgram $out/bin/wofi-pass \\
   --prefix PATH : "${wrapperPath}"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Script to make wofi work with password-store",
         homepage: "https://github.com/schmidtandreas/wofi-pass",
         maintainers: nix.thunk(() => (() => {
@@ -68,7 +66,7 @@ wrapProgram $out/bin/wofi-pass \\
         mainProgram: "wofi-pass",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

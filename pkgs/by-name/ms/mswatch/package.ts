@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]], [["pname", 13, 3], ["version", 15, 3], ["strictDeps", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchsvn: false, "pkg-config": false, autoreconfHook: false, bison: false, flex: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 15, 3], ["strictDeps", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mswatch",
       version: "1.2.0-unstable-2018-11-21",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "svn://svn.code.sf.net/p/mswatch/code/trunk",
           rev: "369",
           sha256: "sha256-czwwhchTizfgVmeknQGLijYgaFSP/45pD2yhDKj5BKw=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook, bison, flex]),
       buildInputs: nix.thunk(() => [glib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command-line Linux utility that efficiently directs mail synchronization between a pair of mailboxes",
         homepage: "https://mswatch.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

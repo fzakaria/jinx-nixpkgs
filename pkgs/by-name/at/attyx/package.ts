@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5], ["platforms", 60, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["deps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["zigBuildFlags", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, callPackage: false, "pkg-config": false, zig_0_15: false, fontconfig: false, freetype: false, glfw: false, libGL: false, libx11: false, libxcursor: false, libxi: false, libxrandr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5], ["platforms", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["deps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["zigBuildFlags", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libxrandr = nix.arg($, "libxrandr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "attyx",
       version: "0.4.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "semos-labs",
           repo: "attyx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fontconfig, freetype, glfw, libGL, libx11, libxcursor, libxi, libxrandr]),
       zigBuildFlags: nix.thunk(() => ["--system", nix.thunk(() => nix.str`${nix.sel(finalAttrs, "deps")}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast GPU-accelerated terminal emulator built with Zig",
         homepage: "https://github.com/semos-labs/attyx",
         changelog: nix.thunk(() => nix.str`https://github.com/semos-labs/attyx/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

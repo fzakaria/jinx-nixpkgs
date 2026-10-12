@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["extensionPortalSlug", 43, 5], ["extensionUuid", 44, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildPhase", 24, 3], ["installPhase", 30, 3], ["passthru", 42, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, glib: false, lib: false, stdenv: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extensionPortalSlug", 43, 5], ["extensionUuid", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildPhase", 24, 3], ["installPhase", 30, 3], ["passthru", 42, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const uuid = "forge@jmmaranan.com";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gnome-shell-extension-forge",
       version: "50.1-development",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "forge-ext",
           repo: "forge",
           rev: "0319a7125db1088556b159a69bbec77e111afca7",
@@ -38,9 +35,9 @@ echo "export const developers = []" > \\
   $out/share/gnome-shell/extensions/${uuid}/lib/prefs/metadata.js
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, extensionPortalSlug: "forge", extensionUuid: uuid })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], extensionPortalSlug: "forge", extensionUuid: uuid })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tiling and window manager for GNOME",
         homepage: "https://extensions.gnome.org/extension/4481/forge/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

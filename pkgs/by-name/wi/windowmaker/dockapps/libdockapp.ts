@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libdockapp.nix", [[["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 15, 3], ["version", 17, 30], ["src", 17, 38], ["sourceRoot", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["configureFlags", 35, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, "dockapps-sources": false, "font-util": false, libx11: false, libxext: false, libxpm: false, mkfontdir: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libdockapp.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$2 = nix.positions(here + "/libdockapp.nix", [["pname", 15, 3], ["version", 17, 30], ["src", 17, 38], ["sourceRoot", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["configureFlags", 35, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const mkfontdir = nix.arg($, "mkfontdir");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "libdockapp",
       version: nix.thunk(() => nix.attr(dockapps_sources, "version")),
       src: nix.thunk(() => nix.attr(dockapps_sources, "src")),
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxext, libxpm, font_util, mkfontdir]),
       configureFlags: nix.thunk(() => ["--with-examples=no", "--with-font=no"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Library providing a framework for dockapps",
         homepage: "https://www.dockapps.net/libdockapp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

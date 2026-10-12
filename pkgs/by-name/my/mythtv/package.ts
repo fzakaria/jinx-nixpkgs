@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["homepage", 105, 5], ["description", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 52, 3], ["setSourceRoot", 57, 3], ["buildInputs", 59, 3], ["nativeBuildInputs", 89, 3], ["configureFlags", 100, 3], ["enableParallelBuilding", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, which: false, libpulseaudio: false, fftwSinglePrec: false, lame: false, zlib: false, libGLU: false, libGL: false, "alsa-lib": false, freetype: false, perl: false, "pkg-config": false, libsamplerate: false, libbluray: false, lzo: false, libx11: false, libxv: false, libxrandr: false, libxvmc: false, libxinerama: false, libxxf86vm: false, libxmu: false, yasm: false, libuuid: false, taglib: false, libtool: false, autoconf: false, automake: false, file: false, libsForQt5: false, exiv2: false, linuxHeaders: false, soundtouch: false, libzip: false, libhdhomerun: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 105, 5], ["description", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 52, 3], ["setSourceRoot", 57, 3], ["buildInputs", 59, 3], ["nativeBuildInputs", 89, 3], ["configureFlags", 100, 3], ["enableParallelBuilding", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mythtv";
       const version = "35.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MythTV",
           repo: "mythtv",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -101,7 +99,7 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => [nix.thunk(() => nix.str`--dvb-path=${linuxHeaders}/include`)]);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.mythtv.org/",
         description: "Open Source DVR",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -109,7 +107,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

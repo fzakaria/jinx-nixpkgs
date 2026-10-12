@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["broken", 49, 5], ["maintainers", 50, 5]], [["pname", 16, 3], ["version", 18, 29], ["src", 18, 37], ["sourceRoot", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 29, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "pkg-config": false, libtool: false, autoreconfHook: false, pcsclite: false, libnfc: false, python3: false, help2man: false, gengetopt: false, "vsmartcard-vpcd": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["broken", 49, 5], ["maintainers", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 18, 29], ["src", 18, 37], ["sourceRoot", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 29, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const gengetopt = nix.arg($, "gengetopt");
   const vsmartcard_vpcd = nix.arg($, "vsmartcard-vpcd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "vsmartcard-pcsc-relay",
       version: nix.thunk(() => nix.attr(vsmartcard_vpcd, "version")),
       src: nix.thunk(() => nix.attr(vsmartcard_vpcd, "src")),
@@ -42,7 +41,7 @@ export default nix.lambda((args) => (() => {
           })())),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Relays a smart card using an contact-less interface",
         homepage: "https://frankmorgner.github.io/vsmartcard/pcsc-relay/README.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

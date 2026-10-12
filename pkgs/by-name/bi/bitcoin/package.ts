@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 40, 5], ["sha256", 41, 5]], [["urls", 52, 5], ["sha256", 56, 5]], [["enableCurve", 74, 7], ["enableDrafts", 75, 7], ["libsodium", 76, 7]], [["owner", 92, 9], ["repo", 93, 9], ["rev", 94, 9], ["sha256", 95, 9]], [["url", 99, 9], ["hash", 100, 9]], [["url", 104, 9], ["hash", 105, 9]], [["NIX_LDFLAGS", 173, 5]], [["smoke-test", 198, 5]], [["tests", 197, 12]], [["description", 202, 5], ["longDescription", 203, 5], ["homepage", 209, 5], ["downloadPage", 210, 5], ["changelog", 211, 5], ["maintainers", 212, 5], ["license", 216, 5], ["platforms", 217, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 70, 3], ["preUnpack", 89, 3], ["postInstall", 135, 3], ["cmakeFlags", 155, 3], ["env", 172, 3], ["nativeCheckInputs", 176, 3], ["doCheck", 178, 3], ["checkFlags", 180, 3], ["enableParallelBuilding", 187, 3], ["__darwinAllowLocalNetworking", 189, 3], ["nativeInstallCheckInputs", 191, 3], ["versionCheckProgram", 194, 3], ["doInstallCheck", 195, 3], ["passthru", 197, 3], ["meta", 201, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, installShellFiles: false, darwin: false, boost: false, libevent: false, zeromq: false, zlib: false, sqlite: false, qrencode: false, libsystemtap: false, capnproto: false, python3: false, versionCheckHook: false, nixosTests: false, withGui: true, qt6: false, withWallet: true, enableTracing: true, gnupg: false, builderKeys: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 40, 5], ["sha256", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["urls", 52, 5], ["sha256", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["enableCurve", 74, 7], ["enableDrafts", 75, 7], ["libsodium", 76, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 92, 9], ["repo", 93, 9], ["rev", 94, 9], ["sha256", 95, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 99, 9], ["hash", 100, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 104, 9], ["hash", 105, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 173, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["smoke-test", 198, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["tests", 197, 12]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 202, 5], ["longDescription", 203, 5], ["homepage", 209, 5], ["downloadPage", 210, 5], ["changelog", 211, 5], ["maintainers", 212, 5], ["license", 216, 5], ["platforms", 217, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 70, 3], ["preUnpack", 89, 3], ["postInstall", 135, 3], ["cmakeFlags", 155, 3], ["env", 172, 3], ["nativeCheckInputs", 176, 3], ["doCheck", 178, 3], ["checkFlags", 180, 3], ["enableParallelBuilding", 187, 3], ["__darwinAllowLocalNetworking", 189, 3], ["nativeInstallCheckInputs", 191, 3], ["versionCheckProgram", 194, 3], ["doInstallCheck", 195, 3], ["passthru", 197, 3], ["meta", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,17 +38,17 @@ export default nix.lambda((args) => (() => {
     "67AA5B46E7AF78053167FE343B8F814A784218F8",
   ]);
   const desktop = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://raw.githubusercontent.com/bitcoin-core/packaging/c2e5f3e20a8093ea02b73cbaf113bc0947b4140e/debian/bitcoin-qt.desktop",
       sha256: "0cpna0nxcd1dw3nnzli36nf9zj28d2g9jf5y0zl9j18lvanvniha",
     }))));
   const autoSignDarwinBinariesHook = nix.thunk(() => nix.attr(darwin, "autoSignDarwinBinariesHook"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: nix.thunk(() => (nix.asBool(withGui) ? "bitcoin" : "bitcoind")),
       version: "31.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://bitcoincore.org/bin/bitcoin-core-${nix.sel(finalAttrs, "version")}/bitcoin-${nix.sel(finalAttrs, "version")}.tar.gz`),
           ]),
@@ -68,7 +58,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([
         boost,
         libevent,
-        nix.thunk(() => nix.app(nix.sel(zeromq, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, enableCurve: false, enableDrafts: false, libsodium: null })))),
+        nix.thunk(() => nix.app(nix.sel(zeromq, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], enableCurve: false, enableDrafts: false, libsodium: null })))),
         zlib,
         capnproto,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), enableTracing, nix.thunk(() => [libsystemtap])), nix.concat(nix.app(nix.sel(lib, "optionals"), withWallet, nix.thunk(() => [sqlite])), nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => [
@@ -78,19 +68,19 @@ export default nix.lambda((args) => (() => {
         ])))))),
       preUnpack: nix.thunk(() => (() => {
         const publicKeys = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             owner: "bitcoin-core",
             repo: "guix.sigs",
             rev: "8427342623f66a98e4b2503e5e15eb41485200d2",
             sha256: "sha256-X1mA1iPAb0OE9RNP9O5rFe9rzsui+BWQ2zMcV7SghXE=",
           }))));
         const checksums = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: nix.thunk(() => nix.str`https://bitcoincore.org/bin/bitcoin-core-${nix.sel(finalAttrs, "version")}/SHA256SUMS`),
             hash: "sha256-5jAo0Lsz0iyEdHnXOGa+jBFCJGkRdlwAXvv2EbZF5wY=",
           }))));
         const signatures = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: nix.thunk(() => nix.str`https://bitcoincore.org/bin/bitcoin-core-${nix.sel(finalAttrs, "version")}/SHA256SUMS.asc`),
             hash: "sha256-wi4TibZR36L3EDReI/OtxS1OOz2tjteXen4p1VxVmV8=",
           }))));
@@ -132,7 +122,7 @@ install -Dm644 share/pixmaps/bitcoin256.png $out/share/icons/hicolor/256x256/app
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_FUZZ_BINARY", false)),
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_GUI_TESTS", false)),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withWallet)), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_WALLET", false))])), nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_GUI", true))])))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))), nix.thunk(() => ({ [nix.POS]: pos$7, NIX_LDFLAGS: "-levent_core" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))), nix.thunk(() => ({ [nix.POS]: $pos[6], NIX_LDFLAGS: "-levent_core" })))),
       nativeCheckInputs: nix.thunk(() => [python3]),
       doCheck: true,
       checkFlags: nix.thunk(() => nix.concat(["LC_ALL=en_US.UTF-8"], nix.app(nix.sel(lib, "optional"), withGui, nix.thunk(() => nix.str`QT_PLUGIN_PATH=${nix.sel(qt6, "qtbase")}/${nix.sel(qt6, "qtbase", "qtPluginPrefix")}`)))),
@@ -142,14 +132,14 @@ install -Dm644 share/pixmaps/bitcoin256.png $out/share/icons/hicolor/256x256/app
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/bitcoin-cli`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "bitcoind")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Peer-to-peer electronic cash system",
         longDescription: "Bitcoin is a free open source peer-to-peer electronic cash system that is\ncompletely decentralized, without the need for a central server or trusted\nparties. Users hold the crypto keys to their own money and transact directly\nwith each other, with the help of a P2P network to check for double-spending.\n",
         homepage: "https://bitcoin.org/en/",

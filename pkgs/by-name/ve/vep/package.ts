@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 28, 17], ["version", 28, 24], ["owner", 29, 9], ["repo", 30, 9], ["rev", 31, 9]], [["name", 26, 15], ["version", 26, 20], ["src", 27, 7], ["installPhase", 33, 7]], [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["sha256", 45, 5]], [["version", 53, 15], ["owner", 54, 7], ["repo", 55, 7], ["rev", 56, 7], ["sha256", 57, 7]], [["pname", 50, 5], ["version", 51, 5], ["src", 52, 5], ["configurePhase", 60, 5], ["doCheck", 68, 5]], [["owner", 101, 5], ["repo", 102, 5], ["rev", 103, 5], ["sha256", 104, 5]], [["homepage", 131, 5], ["description", 132, 5], ["license", 133, 5], ["mainProgram", 134, 5], ["maintainers", 135, 5], ["platforms", 136, 5]], [["version", 78, 11], ["pname", 79, 3], ["buildInputs", 80, 3], ["propagatedBuildInputs", 99, 3], ["src", 100, 3], ["nativeBuildInputs", 107, 3], ["dontBuild", 108, 3], ["doCheck", 109, 3], ["outputs", 111, 3], ["installPhase", 113, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, htslib: false, perlPackages: false, stdenv: false, fetchFromGitHub: false, perl: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 28, 17], ["version", 28, 24], ["owner", 29, 9], ["repo", 30, 9], ["rev", 31, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 15], ["version", 26, 20], ["src", 27, 7], ["installPhase", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["sha256", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 53, 15], ["owner", 54, 7], ["repo", 55, 7], ["rev", 56, 7], ["sha256", 57, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 50, 5], ["version", 51, 5], ["src", 52, 5], ["configurePhase", 60, 5], ["doCheck", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 101, 5], ["repo", 102, 5], ["rev", 103, 5], ["sha256", 104, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 131, 5], ["description", 132, 5], ["license", 133, 5], ["mainProgram", 134, 5], ["maintainers", 135, 5], ["platforms", 136, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["version", 78, 11], ["pname", 79, 3], ["buildInputs", 80, 3], ["propagatedBuildInputs", 99, 3], ["src", 100, 3], ["nativeBuildInputs", 107, 3], ["dontBuild", 108, 3], ["doCheck", 109, 3], ["outputs", 111, 3], ["installPhase", 113, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +20,11 @@ tests=$(find modules/ -mindepth 1 -maxdepth 1 -type d | grep -v t)
 cp -r $tests $out/${nix.sel(perl, "libPrefix")}/${nix.sel(perl, "version")}/
 `);
   const ensemblGit = (name) => (sha256) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: name,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sha256: sha256,
           version: version,
           owner: "Ensembl",
@@ -45,7 +38,7 @@ ${customInstallPhase}
 runHook postInstall`),
     })));
   const vepPlugins = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "Ensembl",
       repo: "VEP_plugins",
       rev: "8f271c4848338dc7d504881ff71fdf2892c3d096",
@@ -55,7 +48,7 @@ runHook postInstall`),
       const pname = "ensembl-xs";
       const version_1 = "2.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: version_1,
           owner: "Ensembl",
           repo: "ensembl-xs",
@@ -64,7 +57,7 @@ runHook postInstall`),
         }))));
       const configurePhase = "runHook preConfigure\n\nperl Makefile.PL PREFIX=$out INSTALLDIRS=site\n\nrunHook postConfigure\n";
       const doCheck = false;
-      return { [nix.POS]: pos$5, pname, version: version_1, src, configurePhase, doCheck };
+      return { [nix.POS]: $pos[4], pname, version: version_1, src, configurePhase, doCheck };
     })())));
   const ensembl = nix.thunk(() => nix.app(ensemblGit, "ensembl", "sha256-ZhI4VNxIY+53RX2uYRNlFeo/ydAmlwGx00WDXaxv6h4="));
   const ensembl_io = nix.thunk(() => nix.app(ensemblGit, "ensembl-io", "sha256-r3RvN5U2kcyghoKM0XuiBRe54t1U4FaZ0QEeYIFiG0w="));
@@ -89,7 +82,7 @@ runHook postInstall`),
       })(), [ensembl_xs, ensembl, ensembl_funcgen, ensembl_io, ensembl_variation]));
       const propagatedBuildInputs = nix.thunk(() => [htslib]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           owner: "Ensembl",
           repo: nix.thunk(() => nix.str`ensembl-${pname}`),
           rev: nix.thunk(() => nix.str`release/${version_1}`),
@@ -115,7 +108,7 @@ ${customInstallPhase}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://www.ensembl.org/info/docs/tools/vep/index.html",
         description: "Annotate genetics variants based on genes, transcripts, and protein sequence, as well as regulatory regions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -127,7 +120,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         version: version_1,
         pname,
         buildInputs,

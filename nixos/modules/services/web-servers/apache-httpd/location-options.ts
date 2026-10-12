@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/location-options.nix", [[["type", 14, 7], ["default", 15, 7], ["example", 16, 7], ["description", 17, 7]], [["type", 23, 7], ["default", 24, 7], ["example", 25, 7], ["description", 26, 7]], [["type", 32, 7], ["default", 33, 7], ["example", 34, 7], ["description", 35, 7]], [["type", 41, 7], ["default", 42, 7], ["description", 43, 7]], [["type", 49, 7], ["default", 50, 7], ["description", 51, 7]], [["proxyPass", 13, 5], ["index", 22, 5], ["alias", 31, 5], ["extraConfig", 40, 5], ["priority", 48, 5]], [["options", 11, 3]]]);
 const formals$1 = { args: { config: false, lib: false, name: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/location-options.nix", [["type", 14, 7], ["default", 15, 7], ["example", 16, 7], ["description", 17, 7]]);
-const pos$2 = nix.positions(here + "/location-options.nix", [["type", 23, 7], ["default", 24, 7], ["example", 25, 7], ["description", 26, 7]]);
-const pos$3 = nix.positions(here + "/location-options.nix", [["type", 32, 7], ["default", 33, 7], ["example", 34, 7], ["description", 35, 7]]);
-const pos$4 = nix.positions(here + "/location-options.nix", [["type", 41, 7], ["default", 42, 7], ["description", 43, 7]]);
-const pos$5 = nix.positions(here + "/location-options.nix", [["type", 49, 7], ["default", 50, 7], ["description", 51, 7]]);
-const pos$6 = nix.positions(here + "/location-options.nix", [["proxyPass", 13, 5], ["index", 22, 5], ["alias", 31, 5], ["extraConfig", 40, 5], ["priority", 48, 5]]);
-const pos$7 = nix.positions(here + "/location-options.nix", [["options", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       proxyPass: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -33,7 +27,7 @@ export default nix.lambda((args) => (() => {
           description: "Sets up a simple reverse proxy as described by <https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html#simple>.\n",
         })))),
       index: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -43,7 +37,7 @@ export default nix.lambda((args) => (() => {
           description: "Adds DirectoryIndex directive. See <https://httpd.apache.org/docs/2.4/mod/mod_dir.html#directoryindex>.\n",
         })))),
       alias: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -53,13 +47,13 @@ export default nix.lambda((args) => (() => {
           description: "Alias directory for requests. See <https://httpd.apache.org/docs/2.4/mod/mod_alias.html#alias>.\n",
         })))),
       extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           type: nix.thunk(() => nix.sel(types, "lines")),
           default: "",
           description: "These lines go to the end of the location verbatim.\n",
         })))),
       priority: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           type: nix.thunk(() => nix.sel(types, "int")),
           default: 1000n,
           description: "Order of this location block in relation to the others in the vhost.\nThe semantics are the same as with `lib.mkOrder`. Smaller values have\na greater priority.\n",

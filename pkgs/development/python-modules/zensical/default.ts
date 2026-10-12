@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 26], ["version", 28, 32], ["hash", 29, 5]], [["pname", 33, 26], ["version", 33, 32], ["src", 33, 40], ["hash", 34, 5]], [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 27, 3], ["cargoDeps", 32, 3], ["nativeBuildInputs", 37, 3], ["dependencies", 42, 3], ["pythonImportsCheck", 53, 3], ["nativeCheckInputs", 55, 3], ["versionCheckProgramArg", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, rustPlatform: false, versionCheckHook: false, click: false, deepmerge: false, jinja2: false, markdown: false, pygments: false, "pymdown-extensions": false, pyyaml: false, tomli: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 26], ["version", 28, 32], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 33, 26], ["version", 33, 32], ["src", 33, 40], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 27, 3], ["cargoDeps", 32, 3], ["nativeBuildInputs", 37, 3], ["dependencies", 42, 3], ["pythonImportsCheck", 53, 3], ["nativeCheckInputs", 55, 3], ["versionCheckProgramArg", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const tomli = nix.arg($, "tomli");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zensical",
       version: "0.0.62",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-JEkTXqwWHrBTvxE435lLGHlOerQg9zlBplumbkOzdhM=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Static site generator for documentation",
         longDescription: "Zensical is a modern static site generator designed to simplify\nbuilding and maintaining project documentation.  It's built by\nthe creators of Material for MkDocs and shares the same core\ndesign principles and philosophy – batteries included, easy to\nuse, with powerful customization options.\n",
         homepage: "https://zensical.org",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["NIX_LDFLAGS", 33, 5], ["NIX_CFLAGS_COMPILE", 34, 5]], [["homepage", 80, 5], ["description", 81, 5], ["longDescription", 82, 5], ["platforms", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["env", 32, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 55, 3], ["cmakeFlags", 57, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, curl: false, "apple-sdk": false, fftwSinglePrec: false, netcdf: false, pcre2: false, gdal: false, blas: false, lapack: false, ghostscript: false, "dcw-gmt": false, "gshhg-gmt": false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 33, 5], ["NIX_CFLAGS_COMPILE", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 80, 5], ["description", 81, 5], ["longDescription", 82, 5], ["platforms", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["env", 32, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 55, 3], ["cmakeFlags", 57, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gshhg_gmt = nix.arg($, "gshhg-gmt");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gmt",
       version: "6.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GenericMappingTools",
           repo: "gmt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.str`-lxml2 -L${nix.app(nix.sel(lib, "getLib"), libxml2)}/lib`),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-implicit-function-declaration "), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(apple_sdk, "version")), "13.3")))), "-D__LAPACK_int=int"))),
       })),
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "BLAS_LIBRARY", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), blas)}/lib/libblas.so`))),
         ])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.generic-mapping-tools.org",
         description: "Tools for manipulating geographic and cartesian data sets",
         longDescription: "GMT is an open-source collection of command-line tools for manipulating\ngeographic and Cartesian data sets (including filtering, trend fitting,\ngridding, projecting, etc.) and producing high-quality illustrations\nranging from simple x–y plots via contour maps to artificially illuminated\nsurfaces and 3D perspective views. It supports many map projections and\ntransformations and includes supporting data such as coastlines, rivers,\nand political boundaries and optionally country polygons.\n",

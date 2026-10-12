@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["broken", 56, 5], ["mainProgram", 57, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["configureFlags", 45, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoreconfHook: false, "pkg-config": false, "util-macros": false, libx11: false, libxaw: false, libxmu: false, libxt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["broken", 56, 5], ["mainProgram", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["configureFlags", 45, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xedit";
       const version = "1.2.5";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "xorg/app",
           repo: "xedit",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         "--with-appdefaultdir=$out/share/X11/app-defaults",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple graphical text editor using Athena Widgets (Xaw)",
         homepage: "https://gitlab.freedesktop.org/xorg/app/xedit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "xedit",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

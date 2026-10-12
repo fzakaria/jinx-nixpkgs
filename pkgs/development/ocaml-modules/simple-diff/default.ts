@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 30, 3], ["strictDeps", 32, 3], ["buildPhase", 34, 19], ["installPhase", 34, 30], ["meta", 36, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, ocaml: false, findlib: false, topkg: false, ocamlbuild: false, re: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 30, 3], ["strictDeps", 32, 3], ["buildPhase", 34, 19], ["installPhase", 34, 30], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-simple-diff`);
       const version = "0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gjaldon",
           repo: "simple_diff",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = nix.thunk(() => nix.attr(topkg, "buildPhase"));
       const installPhase = nix.thunk(() => nix.attr(topkg, "installPhase"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/gjaldon/simple_diff",
         description: "Simple_diff is a pure OCaml diffing algorithm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

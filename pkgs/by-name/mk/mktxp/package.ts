@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["homepage", 48, 5], ["changelog", 49, 5], ["description", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]], [["pname", 10, 3], ["version", 11, 11], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 23, 3], ["nativeCheckInputs", 35, 3], ["preCheck", 41, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["changelog", 49, 5], ["description", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 11], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 23, 3], ["nativeCheckInputs", 35, 3], ["preCheck", 41, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "2.0.3";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mktxp",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "akpw",
           repo: "mktxp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export HOME=$(mktemp -d)\n",
       pythonImportsCheck: nix.thunk(() => ["mktxp"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/akpw/mktxp",
         changelog: nix.thunk(() => nix.str`https://github.com/akpw/mktxp/releases/tag/v${version}`),
         description: "Prometheus Exporter for Mikrotik RouterOS devices",

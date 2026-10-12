@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["description", 47, 5], ["mainProgram", 48, 5], ["longDescription", 49, 5], ["homepage", 56, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["buildInputs", 27, 3], ["installPhase", 35, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, libx11: false, libglut: false, glew: false, libxext: false, linuxPackages: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["description", 47, 5], ["mainProgram", 48, 5], ["longDescription", 49, 5], ["homepage", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["buildInputs", 27, 3], ["installPhase", 35, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(linuxPackages, "nvidia_x11", "settings"));
   const libXNVCtrl = nix.thunk(() => nix.attr(from, "libXNVCtrl"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gl-gsync-demo",
       version: "1.0-unstable-2020-12-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dahenry",
           repo: "gl-gsync-demo",
           rev: "4fd963a8ad880dc2d846394c8c80b2091a119591",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libglut, glew, libXNVCtrl, libxext]),
       installPhase: "runHook preInstall\n\ninstall -D gl-gsync-demo -t $out/bin/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         maintainers: nix.thunk(() => (() => {

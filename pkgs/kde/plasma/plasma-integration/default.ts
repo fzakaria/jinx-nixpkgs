@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 9, 3], ["patches", 12, 3], ["outputs", 14, 3], ["extraCmakeFlags", 22, 3], ["extraBuildInputs", 64, 3], ["postInstall", 70, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qtbase: false, qtwayland: false, libsForQt5: false, libxcursor: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["patches", 12, 3], ["outputs", 14, 3], ["extraCmakeFlags", 22, 3], ["extraBuildInputs", 64, 3], ["postInstall", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const libxcursor = nix.arg($, "libxcursor");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "plasma-integration",
       patches: nix.thunk(() => [nix.path(here, "./qml-path.patch")]),
       outputs: nix.thunk(() => ["out", "dev", "qt5"]),

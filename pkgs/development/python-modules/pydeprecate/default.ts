@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["audit", 48, 5], ["cli", 51, 5]], [["description", 68, 5], ["homepage", 69, 5], ["downloadPage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["optional-dependencies", 47, 3], ["pythonImportsCheck", 57, 3], ["nativeCheckInputs", 59, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonOlder: false, setuptools: false, "typing-extensions": false, packaging: false, fire: false, rich: false, "pytest-asyncio": false, pytestCheckHook: false, "scikit-learn": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["audit", 48, 5], ["cli", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["downloadPage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["optional-dependencies", 47, 3], ["pythonImportsCheck", 57, 3], ["nativeCheckInputs", 59, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scikit_learn = nix.arg($, "scikit-learn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyDeprecate",
       version: "0.9.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Borda",
           repo: "pyDeprecate",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,14 +35,14 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.13")), nix.thunk(() => [typing_extensions]))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         audit: nix.thunk(() => [packaging]),
         cli: nix.thunk(() => [fire, rich]),
       })),
       pythonImportsCheck: nix.thunk(() => ["deprecate"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_asyncio, pytestCheckHook, scikit_learn, typing_extensions], nix.sel(finalAttrs, "passthru", "optional-dependencies", "cli"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Module for marking deprecated functions or classes and re-routing to the new successors' instance",
         homepage: "https://borda.github.io/pyDeprecate/",
         downloadPage: "https://github.com/Borda/pyDeprecate",

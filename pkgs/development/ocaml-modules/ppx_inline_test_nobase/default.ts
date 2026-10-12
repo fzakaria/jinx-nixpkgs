@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["broken", 34, 5]], [["pname", 11, 3], ["version", 12, 3], ["minimalOCamlVersion", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 23, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, mtime: false, ppxlib: false, sexplib0: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["broken", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["minimalOCamlVersion", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 23, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const sexplib0 = nix.arg($, "sexplib0");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ppx_inline_test_nobase",
       version: "0.17.0.3",
       minimalOCamlVersion: "4.14.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Kakadu",
           repo: "ppx_inline_test_nobase",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [mtime, ppxlib, sexplib0]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Syntax extension for writing in-line tests in ocaml code",
         homepage: "https://github.com/Kakadu/ppx_inline_test_nobase",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

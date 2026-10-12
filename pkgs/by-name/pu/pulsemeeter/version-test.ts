@@ -2,42 +2,35 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/version-test.nix", [[["enable", 11, 27], ["systemWide", 12, 27]], [["pulseaudio", 11, 16]], [["isNormalUser", 14, 9], ["password", 15, 9], ["extraGroups", 16, 9], ["packages", 20, 9]], [["alice", 13, 19]], [["users", 13, 13]], [["services", 11, 7], ["users", 13, 7]], [["machine", 8, 9]], [["name", 6, 3], ["nodes", 8, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: { pkgs: false, version: false }, ellipsis: false };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/version-test.nix", [["enable", 11, 27], ["systemWide", 12, 27]]);
-const pos$2 = nix.positions(here + "/version-test.nix", [["pulseaudio", 11, 16]]);
-const pos$3 = nix.positions(here + "/version-test.nix", [["isNormalUser", 14, 9], ["password", 15, 9], ["extraGroups", 16, 9], ["packages", 20, 9]]);
-const pos$4 = nix.positions(here + "/version-test.nix", [["alice", 13, 19]]);
-const pos$5 = nix.positions(here + "/version-test.nix", [["users", 13, 13]]);
-const pos$6 = nix.positions(here + "/version-test.nix", [["services", 11, 7], ["users", 13, 7]]);
-const pos$7 = nix.positions(here + "/version-test.nix", [["machine", 8, 9]]);
-const pos$8 = nix.positions(here + "/version-test.nix", [["name", 6, 3], ["nodes", 8, 3], ["testScript", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const version = nix.arg($, "version");
   return nix.app(nix.sel(pkgs, "testers", "runNixOSTest"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "pulsemeeter-version",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              pulseaudio: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, systemWide: true })),
+              [nix.POS]: $pos[1],
+              pulseaudio: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true, systemWide: true })),
             })),
             users: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 alice: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   isNormalUser: true,
                   password: "foo",
                   extraGroups: nix.thunk(() => ["wheel", "pulse-access"]),

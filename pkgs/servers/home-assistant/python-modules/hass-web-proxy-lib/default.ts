@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 31, 5], ["version", 32, 26], ["hash", 33, 5]], [["frigate", 54, 48]], [["tests", 53, 12]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 30, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 40, 3], ["pythonImportsCheck", 49, 3], ["passthru", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "poetry-core": false, aiohttp: false, "home-assistant": false, "pytest-aiohttp": false, "pytest-cov-stub": false, "pytest-homeassistant-custom-component": false, "pytest-timeout": false, pytestCheckHook: false, "home-assistant-custom-components": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 31, 5], ["version", 32, 26], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["frigate", 54, 48]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 53, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 30, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 40, 3], ["pythonImportsCheck", 49, 3], ["passthru", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const home_assistant_custom_components = nix.arg($, "home-assistant-custom-components");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hass-web-proxy-lib",
       version: "0.0.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "hass_web_proxy_lib",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-H9C8jwJeR6skvCVn8jeaWqmIL0fmcab+/BQ5SzUIt00=",
@@ -46,14 +42,14 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["hass_web_proxy_lib"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           frigate: nix.thunk(() => nix.attr(home_assistant_custom_components, "frigate")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library to proxy web traffic through Home Assistant integrations",
         homepage: "https://github.com/dermotduffy/hass-web-proxy-lib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

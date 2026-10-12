@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 9], ["sha256", 28, 9]], [["url", 32, 9], ["sha256", 33, 9]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 65, 5]], [["pname", 20, 3], ["version", 21, 3], ["shortVersion", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 37, 3], ["dontStrip", 39, 3], ["dontPatchELF", 40, 3], ["dontBuild", 41, 3], ["installPhase", 43, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "alsa-lib": false, libpulseaudio: false, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 9], ["sha256", 28, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 9], ["sha256", 33, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["shortVersion", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 37, 3], ["dontStrip", 39, 3], ["dontPatchELF", 40, 3], ["dontBuild", 41, 3], ["installPhase", 43, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
       const version = "4.44.64";
       const shortVersion = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://zdoom.org/files/fmod/fmodapi${shortVersion}linux.tar.gz`),
           sha256: "047hk92xapwwqj281f4zwl0ih821rrliya70gfj82sdfjh9lz8i1",
         } : {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://zdoom.org/files/fmod/fmodapi${shortVersion}mac-installer.dmg`),
           sha256: "1m1y4cpcwpkl8x31d3s68xzp107f343ma09w2437i2adn5y7m8ii",
         }))));
@@ -40,7 +37,7 @@ ln -s libfmodex-${version}.so $out/lib/libfmodex.so
 patchelf --set-rpath ${libPath} $out/lib/libfmodex.so
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install -D api/lib/libfmodex.dylib $out/lib/libfmodex.dylib\ninstall -D api/lib/libfmodexL.dylib $out/lib/libfmodexL.dylib\n")), "cp -r api/inc $out/include\n"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Programming library and toolkit for the creation and playback of interactive audio",
         homepage: "http://www.fmod.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
@@ -48,7 +45,7 @@ patchelf --set-rpath ${libPath} $out/lib/libfmodex.so
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "lassulus"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         shortVersion,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unstable.nix", [[["unstable", 26, 30]], [["kernelModuleAttribute", 10, 3], ["kernelMinSupportedMajorMinor", 12, 3], ["kernelMaxSupportedMajorMinor", 13, 3], ["version", 19, 3], ["extraPatches", 23, 3], ["tests", 25, 3], ["hash", 29, 3], ["extraLongDescription", 31, 3]]]);
 const formals$1 = { args: { callPackage: false, nixosTests: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/unstable.nix", [["unstable", 26, 30]]);
-const pos$2 = nix.positions(here + "/unstable.nix", [["kernelModuleAttribute", 10, 3], ["kernelMinSupportedMajorMinor", 12, 3], ["kernelMaxSupportedMajorMinor", 13, 3], ["version", 19, 3], ["extraPatches", 23, 3], ["tests", 25, 3], ["hash", 29, 3], ["extraLongDescription", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), args_1, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       kernelModuleAttribute: "zfs_unstable",
       kernelMinSupportedMajorMinor: "4.18",
       kernelMaxSupportedMajorMinor: "7.2",
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       extraPatches: [],
       tests: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nixosTests, "zfs"));
-        return { [nix.POS]: pos$1, unstable: nix.thunk(() => nix.attr(from, "unstable")) };
+        return { [nix.POS]: $pos[0], unstable: nix.thunk(() => nix.attr(from, "unstable")) };
       })()),
       hash: "sha256-ZgfHTPsNoeDq6GKP4Xiti7Keis3vIZLDaTGQjgCItIc=",
       extraLongDescription: "This is \"unstable\" ZFS, and will usually be a pre-release version of ZFS.\nIt may be less well-tested and have critical bugs.\n",

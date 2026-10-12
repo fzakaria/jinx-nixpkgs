@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["broken", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["cargoHash", 27, 3], ["postInstall", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { fetchCrate: false, installShellFiles: false, lib: false, libbsd: false, "pkg-config": false, rustPlatform: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["broken", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["cargoHash", 27, 3], ["postInstall", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "inputplug",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-8Gy0h0QMcittnjuKm+atIJNsY2d6Ua29oab4fkUU+wE=",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-+GbbCAdEkxhyQoe8g4me2jlsuHx4R5vibd2PQLmqNM4=",
       postInstall: "installManPage inputplug.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Monitor XInput events and run arbitrary scripts on hierarchy change events",
         homepage: "https://github.com/andrewshadura/inputplug",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

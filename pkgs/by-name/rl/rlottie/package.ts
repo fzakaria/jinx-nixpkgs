@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["NIX_CFLAGS_COMPILE", 34, 7]], [["tagPrefix", 39, 5]], [["updateScript", 38, 12]], [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["platforms", 51, 5], ["maintainers", 52, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["patches", 29, 3], ["env", 34, 3], ["passthru", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, unstableGitUpdater: false, meson: false, ninja: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tagPrefix", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 38, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["platforms", 51, 5], ["maintainers", 52, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["patches", 29, 3], ["env", 34, 3], ["passthru", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rlottie",
       version: "0.2-unstable-2026-10-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Samsung",
           repo: "rlottie",
           rev: "ea06d2f29ba01b8d06c00a838d107f5e484ae59b",
@@ -34,15 +29,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       patches: nix.thunk(() => [nix.path(here, "./rename_format_to_run-clang-format.patch")]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), "-U__ARM_NEON__")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagPrefix: "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/Samsung/rlottie",
         description: "Platform independent standalone c++ library for rendering vector based animations and art in realtime",
         license: nix.thunk(() => (() => {

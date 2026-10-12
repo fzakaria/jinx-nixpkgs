@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5]], [["version", 16, 13], ["pname", 16, 21], ["src", 16, 27]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5], ["platforms", 40, 5], ["sourceProvenance", 41, 5]], [["pname", 20, 11], ["version", 20, 17], ["src", 20, 25], ["extraPkgs", 22, 3], ["extraInstallCommands", 28, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { appimageTools: false, lib: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 16, 13], ["pname", 16, 21], ["src", 16, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5], ["platforms", 40, 5], ["sourceProvenance", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 11], ["version", 20, 17], ["src", 20, 25], ["extraPkgs", 22, 3], ["extraInstallCommands", 28, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const pname = "sozi";
   const version = "23.7.25-1690311612";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/sozi-projects/Sozi/releases/download/v23.07/Sozi-${version}.AppImage`),
       hash: "sha256-QHvgevv60ZTkkdt+IWaCuXt0XVnhe5Q5oROwa2LFie8=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, version: version, pname: pname, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], version: version, pname: pname, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -39,7 +36,7 @@ substituteInPlace $out/share/applications/sozi.desktop \\
   --replace 'Exec=AppRun' 'Exec=sozi'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Zooming presentation editor and player",
         homepage: "https://sozi.baierouge.fr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

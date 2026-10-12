@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["ttyd", 53, 26]], [["tests", 52, 12]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]], [["pname", 18, 3], ["version", 19, 3], ["__structuredAttrs", 21, 3], ["strictDeps", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["outputs", 44, 3], ["nativeInstallCheckInputs", 49, 3], ["doInstallCheck", 50, 3], ["passthru", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, xxd: false, openssl: false, libwebsockets: false, json_c: false, libuv: false, zlib: false, versionCheckHook: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ttyd", 53, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 52, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["__structuredAttrs", 21, 3], ["strictDeps", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["outputs", 44, 3], ["nativeInstallCheckInputs", 49, 3], ["doInstallCheck", 50, 3], ["passthru", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ttyd",
       version: "1.7.7",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tsl0922",
           repo: "ttyd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,11 +39,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, ttyd: nix.thunk(() => nix.attr(nixosTests, "ttyd")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], ttyd: nix.thunk(() => nix.attr(nixosTests, "ttyd")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Share your terminal over the web",
         homepage: "https://github.com/tsl0922/ttyd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

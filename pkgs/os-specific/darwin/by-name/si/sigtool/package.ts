@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["installFlags", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["installFlags", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sigtool";
       const version = "0.1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "thefloweringash",
           repo: "sigtool",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [openssl]);
       const installFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for working with embedded signatures in Mach-O files",
         homepage: "https://github.com/thefloweringash/sigtool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sigtool",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

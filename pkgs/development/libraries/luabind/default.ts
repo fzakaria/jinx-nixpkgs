@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["lua", 28, 13]], [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["platforms", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 25, 3], ["passthru", 27, 3], ["postPatch", 33, 3], ["patches", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, lua: false, boost: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lua", 28, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["platforms", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 25, 3], ["passthru", 27, 3], ["postPatch", 33, 3], ["patches", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "luabind",
       version: "0.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Oberon00",
           repo: "luabind",
           rev: "49814f6b47ed99e273edc5198a6ebd7fa19e813a",
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [boost]),
       propagatedBuildInputs: nix.thunk(() => [lua]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, lua: lua })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], lua: lua })),
       postPatch: "substituteInPlace CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required(VERSION 2.8.3)\" \\\n  \"cmake_minimum_required(VERSION 3.10)\"\n",
       patches: nix.thunk(() => [nix.path(here, "./0.9.1-discover-luajit.patch")]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/Oberon00/luabind",
         description: "Library that helps you create bindings between C++ and Lua",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

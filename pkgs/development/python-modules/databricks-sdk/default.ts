@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["pythonRelaxDeps", 40, 3], ["dependencies", 45, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 55, 3], ["disabledTests", 64, 3], ["__darwinAllowLocalNetworking", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "google-auth": false, protobuf: false, requests: false, "langchain-openai": false, openai: false, pyfakefs: false, pytestCheckHook: false, "pytest-mock": false, "requests-mock": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["pythonRelaxDeps", 40, 3], ["dependencies", 45, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 55, 3], ["disabledTests", 64, 3], ["__darwinAllowLocalNetworking", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const requests_mock = nix.arg($, "requests-mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "databricks-sdk",
       version: "0.140.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "databricks",
           repo: "databricks-sdk-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Databricks SDK for Python",
         homepage: "https://github.com/databricks/databricks-sdk-py",
         changelog: nix.thunk(() => nix.str`https://github.com/databricks/databricks-sdk-py/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

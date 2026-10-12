@@ -2,43 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/litestream.nix", [[["maintainers", 9, 5]], [["enabled", 19, 13], ["path", 20, 13]], [["url", 27, 19], ["auto-recover", 28, 19]], [["path", 24, 15], ["replicas", 25, 15]], [["socket", 18, 11], ["dbs", 22, 11]], [["enable", 16, 9], ["settings", 17, 9]], [["addr", 70, 13], ["port", 71, 13]], [["enable", 66, 9], ["allowSFTP", 67, 9], ["listenAddresses", 68, 9]], [["admin_user", 79, 13], ["admin_password", 80, 13], ["secret_key", 81, 13]], [["http_addr", 85, 13], ["http_port", 86, 13]], [["type", 90, 13], ["path", 91, 13], ["wal", 92, 13]], [["security", 78, 11], ["server", 84, 11], ["database", 89, 11]], [["enable", 76, 9], ["settings", 77, 9]], [["litestream", 15, 16], ["openssh", 65, 16], ["grafana", 75, 16]], [["mode", 39, 11], ["user", 40, 11], ["group", 41, 11]], [["d", 38, 28]], [["mode", 44, 11], ["user", 45, 11], ["group", 46, 11]], [["d", 43, 33]], [["/var/lib/grafana", 38, 9], ["/var/lib/grafana/data", 43, 9]], [["10-litestream", 37, 33]], [["settings", 37, 24]], [["ExecStartPre", 50, 9], ["UMask", 51, 9]], [["serviceConfig", 49, 32]], [["RuntimeDirectory", 61, 11], ["ExecStartPre", 62, 11]], [["after", 54, 9], ["requires", 58, 9], ["wants", 59, 9], ["serviceConfig", 60, 9]], [["grafana", 49, 24], ["litestream", 53, 24]], [["tmpfiles", 37, 15], ["services", 49, 15]], [["isNormalUser", 97, 9], ["password", 98, 9]], [["extraGroups", 100, 30]], [["foo", 96, 19], ["litestream", 100, 19]], [["users", 96, 13]], [["systemPackages", 101, 19]], [["services", 15, 7], ["systemd", 37, 7], ["users", 96, 7], ["environment", 101, 7]], [["machine", 12, 9]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 12, 3], ["testScript", 104, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/litestream.nix", [["maintainers", 9, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/litestream.nix", [["enabled", 19, 13], ["path", 20, 13]]);
-const pos$3 = nix.positions(here + "/litestream.nix", [["url", 27, 19], ["auto-recover", 28, 19]]);
-const pos$4 = nix.positions(here + "/litestream.nix", [["path", 24, 15], ["replicas", 25, 15]]);
-const pos$5 = nix.positions(here + "/litestream.nix", [["socket", 18, 11], ["dbs", 22, 11]]);
-const pos$6 = nix.positions(here + "/litestream.nix", [["enable", 16, 9], ["settings", 17, 9]]);
-const pos$7 = nix.positions(here + "/litestream.nix", [["addr", 70, 13], ["port", 71, 13]]);
-const pos$8 = nix.positions(here + "/litestream.nix", [["enable", 66, 9], ["allowSFTP", 67, 9], ["listenAddresses", 68, 9]]);
-const pos$9 = nix.positions(here + "/litestream.nix", [["admin_user", 79, 13], ["admin_password", 80, 13], ["secret_key", 81, 13]]);
-const pos$10 = nix.positions(here + "/litestream.nix", [["http_addr", 85, 13], ["http_port", 86, 13]]);
-const pos$11 = nix.positions(here + "/litestream.nix", [["type", 90, 13], ["path", 91, 13], ["wal", 92, 13]]);
-const pos$12 = nix.positions(here + "/litestream.nix", [["security", 78, 11], ["server", 84, 11], ["database", 89, 11]]);
-const pos$13 = nix.positions(here + "/litestream.nix", [["enable", 76, 9], ["settings", 77, 9]]);
-const pos$14 = nix.positions(here + "/litestream.nix", [["litestream", 15, 16], ["openssh", 65, 16], ["grafana", 75, 16]]);
-const pos$15 = nix.positions(here + "/litestream.nix", [["mode", 39, 11], ["user", 40, 11], ["group", 41, 11]]);
-const pos$16 = nix.positions(here + "/litestream.nix", [["d", 38, 28]]);
-const pos$17 = nix.positions(here + "/litestream.nix", [["mode", 44, 11], ["user", 45, 11], ["group", 46, 11]]);
-const pos$18 = nix.positions(here + "/litestream.nix", [["d", 43, 33]]);
-const pos$19 = nix.positions(here + "/litestream.nix", [["/var/lib/grafana", 38, 9], ["/var/lib/grafana/data", 43, 9]]);
-const pos$20 = nix.positions(here + "/litestream.nix", [["10-litestream", 37, 33]]);
-const pos$21 = nix.positions(here + "/litestream.nix", [["settings", 37, 24]]);
-const pos$22 = nix.positions(here + "/litestream.nix", [["ExecStartPre", 50, 9], ["UMask", 51, 9]]);
-const pos$23 = nix.positions(here + "/litestream.nix", [["serviceConfig", 49, 32]]);
-const pos$24 = nix.positions(here + "/litestream.nix", [["RuntimeDirectory", 61, 11], ["ExecStartPre", 62, 11]]);
-const pos$25 = nix.positions(here + "/litestream.nix", [["after", 54, 9], ["requires", 58, 9], ["wants", 59, 9], ["serviceConfig", 60, 9]]);
-const pos$26 = nix.positions(here + "/litestream.nix", [["grafana", 49, 24], ["litestream", 53, 24]]);
-const pos$27 = nix.positions(here + "/litestream.nix", [["tmpfiles", 37, 15], ["services", 49, 15]]);
-const pos$28 = nix.positions(here + "/litestream.nix", [["isNormalUser", 97, 9], ["password", 98, 9]]);
-const pos$29 = nix.positions(here + "/litestream.nix", [["extraGroups", 100, 30]]);
-const pos$30 = nix.positions(here + "/litestream.nix", [["foo", 96, 19], ["litestream", 100, 19]]);
-const pos$31 = nix.positions(here + "/litestream.nix", [["users", 96, 13]]);
-const pos$32 = nix.positions(here + "/litestream.nix", [["systemPackages", 101, 19]]);
-const pos$33 = nix.positions(here + "/litestream.nix", [["services", 15, 7], ["systemd", 37, 7], ["users", 96, 7], ["environment", 101, 7]]);
-const pos$34 = nix.positions(here + "/litestream.nix", [["machine", 12, 9]]);
-const pos$35 = nix.positions(here + "/litestream.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 12, 3], ["testScript", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,37 +13,37 @@ export default nix.lambda((args) => (() => {
   const dbPath = "/var/lib/grafana/data/grafana.db";
   const socketPath = "/run/litestream/litestream.sock";
   return {
-    [nix.POS]: pos$35,
+    [nix.POS]: $pos[34],
     name: "litestream",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "jwygoda"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             litestream: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                socket: nix.thunk(() => ({ [nix.POS]: pos$2, enabled: true, path: socketPath })),
+                [nix.POS]: $pos[4],
+                socket: nix.thunk(() => ({ [nix.POS]: $pos[1], enabled: true, path: socketPath })),
                 dbs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     path: dbPath,
                     replicas: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$3,
+                        [nix.POS]: $pos[2],
                         url: "sftp://foo:bar@127.0.0.1:22/home/foo/grafana",
                         "auto-recover": true,
                       })),
@@ -87,63 +53,63 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               allowSFTP: true,
-              listenAddresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$7, addr: "127.0.0.1", port: 22n }))]),
+              listenAddresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[6], addr: "127.0.0.1", port: 22n }))]),
             })),
             grafana: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 security: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   admin_user: "admin",
                   admin_password: "admin",
                   secret_key: "SW2YcwTIb9zpOOhoPsMm",
                 })),
-                server: nix.thunk(() => ({ [nix.POS]: pos$10, http_addr: "127.0.0.1", http_port: 3000n })),
-                database: nix.thunk(() => ({ [nix.POS]: pos$11, type: "sqlite3", path: dbPath, wal: true })),
+                server: nix.thunk(() => ({ [nix.POS]: $pos[9], http_addr: "127.0.0.1", http_port: 3000n })),
+                database: nix.thunk(() => ({ [nix.POS]: $pos[10], type: "sqlite3", path: dbPath, wal: true })),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 "10-litestream": nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   "/var/lib/grafana": nix.thunk(() => ({
-                    [nix.POS]: pos$16,
-                    d: nix.thunk(() => ({ [nix.POS]: pos$15, mode: "0750", user: "grafana", group: "grafana" })),
+                    [nix.POS]: $pos[15],
+                    d: nix.thunk(() => ({ [nix.POS]: $pos[14], mode: "0750", user: "grafana", group: "grafana" })),
                   })),
                   "/var/lib/grafana/data": nix.thunk(() => ({
-                    [nix.POS]: pos$18,
-                    d: nix.thunk(() => ({ [nix.POS]: pos$17, mode: "2770", user: "grafana", group: "grafana" })),
+                    [nix.POS]: $pos[17],
+                    d: nix.thunk(() => ({ [nix.POS]: $pos[16], mode: "2770", user: "grafana", group: "grafana" })),
                   })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               grafana: nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   ExecStartPre: nix.thunk(() => nix.app(nix.sel(lib, "mkAfter"), nix.thunk(() => nix.str`+${nix.sel(pkgs_1, "sqlite")}/bin/sqlite3 ${dbPath} 'PRAGMA journal_mode=WAL;'`))),
                   UMask: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "0007")),
                 })),
               })),
               litestream: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 after: nix.thunk(() => ["grafana.service", "sshd.service"]),
                 requires: nix.thunk(() => ["grafana.service"]),
                 wants: nix.thunk(() => ["sshd.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   RuntimeDirectory: "litestream",
                   ExecStartPre: nix.thunk(() => nix.str`+/bin/sh -c 'chmod g+rw ${dbPath}*'`),
                 })),
@@ -151,15 +117,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$31,
+            [nix.POS]: $pos[30],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$30,
-              foo: nix.thunk(() => ({ [nix.POS]: pos$28, isNormalUser: true, password: "bar" })),
-              litestream: nix.thunk(() => ({ [nix.POS]: pos$29, extraGroups: nix.thunk(() => ["grafana"]) })),
+              [nix.POS]: $pos[29],
+              foo: nix.thunk(() => ({ [nix.POS]: $pos[27], isNormalUser: true, password: "bar" })),
+              litestream: nix.thunk(() => ({ [nix.POS]: $pos[28], extraGroups: nix.thunk(() => ["grafana"]) })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "sqlite"))]),
           })),
         };

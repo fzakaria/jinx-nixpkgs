@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["timeout", 9, 8]], [["root", 11, 5], ["fileset", 12, 5]], [["name", 8, 3], ["meta", 9, 3], ["src", 10, 3], ["buildInputs", 15, 3], ["dontInstall", 21, 3], ["buildPhase", 22, 3], ["doCheck", 28, 3], ["checkPhase", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, nanopb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["timeout", 9, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["root", 11, 5], ["fileset", 12, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 8, 3], ["meta", 9, 3], ["src", 10, 3], ["buildInputs", 15, 3], ["dontInstall", 21, 3], ["buildPhase", 22, 3], ["doCheck", 28, 3], ["checkPhase", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const nanopb = nix.arg($, "nanopb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "nanopb-test-message-with-annotations",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 60n })),
       src: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "toSource"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           root: nix.path(here, "./."),
           fileset: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "unions"), nix.thunk(() => [nix.path(here, "./withannotations.proto")]))),
         })))),

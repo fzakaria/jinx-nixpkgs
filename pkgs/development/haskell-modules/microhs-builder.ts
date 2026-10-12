@@ -2,30 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/microhs-builder.nix", [[["url", 30, 5], ["sha256", 31, 13]], [["url", 155, 5], ["sha256", 156, 5], ["name", 157, 5]], [["microhs", 162, 5], ["packages", 163, 5]], [["CABALDIR", 172, 5]], [["buildDepends'", 291, 9], ["buildTools", 292, 9], ["executableFrameworkDepends", 293, 9], ["executableHaskellDepends", 294, 9], ["executablePkgconfigDepends", 295, 9], ["executableSystemDepends", 296, 9], ["executableToolDepends", 297, 9], ["extraLibraries", 298, 9], ["libraryFrameworkDepends", 299, 9], ["libraryHaskellDepends", 300, 9], ["libraryPkgconfigDepends", 301, 9], ["librarySystemDepends", 302, 9], ["libraryToolDepends", 303, 9], ["pkg-configDepends", 304, 9], ["setupHaskellDepends", 305, 9]], [["testDepends", 310, 9], ["testFrameworkDepends", 311, 9], ["testHaskellDepends", 312, 9], ["testPkgconfigDepends", 313, 9], ["testSystemDepends", 314, 9], ["testToolDepends", 315, 9]], [["benchmarkDepends", 320, 9], ["benchmarkFrameworkDepends", 321, 9], ["benchmarkHaskellDepends", 322, 9], ["benchmarkPkgconfigDepends", 323, 9], ["benchmarkSystemDepends", 324, 9], ["benchmarkToolDepends", 325, 9]], [["propagatedBuildInputs", 332, 15], ["otherBuildInputs", 332, 37], ["allPkgconfigDepends", 332, 54], ["haskellBuildInputs", 333, 7], ["systemBuildInputs", 334, 7], ["isHaskellPartition", 335, 7]], [["LOCALE_ARCHIVE", 401, 11]], [["shellHook", 369, 17], ["nativeBuildInputs", 371, 9], ["buildInputs", 376, 9], ["env", 378, 9]], [["pname", 283, 13], ["version", 283, 19], ["compiler", 285, 5], ["getCabalDeps", 289, 5], ["getBuildInputs", 331, 5], ["isHaskellLibrary", 340, 5], ["haddockDir", 342, 5], ["envFunc", 358, 5], ["env", 406, 5]], [["homepage", 410, 13], ["license", 410, 22], ["platforms", 410, 30]], [["broken", 412, 50]], [["description", 413, 55]], [["maintainers", 414, 55]], [["teams", 415, 49]], [["hydraPlatforms", 416, 58]], [["badPlatforms", 417, 56]], [["changelog", 418, 53]], [["mainProgram", 419, 55]], [["pname", 178, 11], ["version", 178, 17], ["pos", 180, 3], ["prePhases", 182, 3], ["preConfigurePhases", 183, 3], ["preInstallPhases", 184, 3], ["src", 186, 11], ["patches", 186, 15], ["depsBuildBuild", 188, 11], ["nativeBuildInputs", 188, 26], ["buildInputs", 189, 3], ["propagatedBuildInputs", 190, 3], ["env", 192, 3], ["prePatch", 194, 3], ["postPatch", 201, 3], ["setupCompilerEnvironmentPhase", 208, 3], ["compileBuildDriverPhase", 220, 3], ["buildPhase", 226, 3], ["doCheck", 234, 11], ["checkPhase", 236, 3], ["haddockPhase", 244, 3], ["installPhase", 252, 3], ["preCompileBuildDriver", 264, 5], ["postCompileBuildDriver", 265, 5], ["preUnpack", 266, 5], ["postUnpack", 267, 5], ["preConfigure", 268, 5], ["postConfigure", 269, 5], ["preBuild", 270, 5], ["postBuild", 271, 5], ["preHaddock", 272, 5], ["postHaddock", 273, 5], ["preInstall", 274, 5], ["postInstall", 275, 5], ["preCheck", 276, 5], ["postCheck", 277, 5], ["preFixup", 278, 5], ["postFixup", 279, 5], ["passthru", 282, 3], ["meta", 409, 3]]]);
 const formals$1 = { args: { buildHaskellPackages: false, buildPackages: false, fetchurl: false, ghc: false, "jailbreak-cabal": false, lib: false, MicroCabal: false, cpphs: false, "ghc-compat": false, "pkg-config": false, runCommandCC: false, stdenv: false, wrapMhs: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, revision: true, sha256: true, src: true, env: true, buildDepends: true, setupHaskellDepends: true, libraryHaskellDepends: true, executableHaskellDepends: true, buildTools: true, libraryToolDepends: true, executableToolDepends: true, testToolDepends: true, benchmarkToolDepends: true, configureFlags: true, description: true, doCheck: true, doBenchmark: true, editedCabalFile: true, extraLibraries: true, librarySystemDepends: true, executableSystemDepends: true, libraryFrameworkDepends: true, executableFrameworkDepends: true, homepage: true, platforms: true, badPlatforms: true, hydraPlatforms: true, isExecutable: true, isLibrary: true, jailbreak: true, license: false, maintainers: true, teams: true, changelog: true, mainProgram: true, passthru: true, "pkg-configDepends": true, libraryPkgconfigDepends: true, executablePkgconfigDepends: true, testPkgconfigDepends: true, benchmarkPkgconfigDepends: true, testDepends: true, testHaskellDepends: true, testSystemDepends: true, testFrameworkDepends: true, benchmarkDepends: true, benchmarkHaskellDepends: true, benchmarkSystemDepends: true, benchmarkFrameworkDepends: true, broken: true, preCompileBuildDriver: true, postCompileBuildDriver: true, preUnpack: true, postUnpack: true, patches: true, patchPhase: true, prePatch: true, postPatch: true, preConfigure: true, postConfigure: true, preBuild: true, postBuild: true, preHaddock: true, postHaddock: true, installPhase: true, preInstall: true, postInstall: true, checkPhase: true, preCheck: true, postCheck: true, preFixup: true, postFixup: true, shellHook: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/microhs-builder.nix", [["url", 30, 5], ["sha256", 31, 13]]);
-const pos$2 = nix.positions(here + "/microhs-builder.nix", [["url", 155, 5], ["sha256", 156, 5], ["name", 157, 5]]);
-const pos$3 = nix.positions(here + "/microhs-builder.nix", [["microhs", 162, 5], ["packages", 163, 5]]);
-const pos$4 = nix.positions(here + "/microhs-builder.nix", [["CABALDIR", 172, 5]]);
-const pos$5 = nix.positions(here + "/microhs-builder.nix", [["buildDepends'", 291, 9], ["buildTools", 292, 9], ["executableFrameworkDepends", 293, 9], ["executableHaskellDepends", 294, 9], ["executablePkgconfigDepends", 295, 9], ["executableSystemDepends", 296, 9], ["executableToolDepends", 297, 9], ["extraLibraries", 298, 9], ["libraryFrameworkDepends", 299, 9], ["libraryHaskellDepends", 300, 9], ["libraryPkgconfigDepends", 301, 9], ["librarySystemDepends", 302, 9], ["libraryToolDepends", 303, 9], ["pkg-configDepends", 304, 9], ["setupHaskellDepends", 305, 9]]);
-const pos$6 = nix.positions(here + "/microhs-builder.nix", [["testDepends", 310, 9], ["testFrameworkDepends", 311, 9], ["testHaskellDepends", 312, 9], ["testPkgconfigDepends", 313, 9], ["testSystemDepends", 314, 9], ["testToolDepends", 315, 9]]);
-const pos$7 = nix.positions(here + "/microhs-builder.nix", [["benchmarkDepends", 320, 9], ["benchmarkFrameworkDepends", 321, 9], ["benchmarkHaskellDepends", 322, 9], ["benchmarkPkgconfigDepends", 323, 9], ["benchmarkSystemDepends", 324, 9], ["benchmarkToolDepends", 325, 9]]);
-const pos$8 = nix.positions(here + "/microhs-builder.nix", [["propagatedBuildInputs", 332, 15], ["otherBuildInputs", 332, 37], ["allPkgconfigDepends", 332, 54], ["haskellBuildInputs", 333, 7], ["systemBuildInputs", 334, 7], ["isHaskellPartition", 335, 7]]);
 const formals$3 = { args: { withHoogle: true }, ellipsis: false };
-const pos$9 = nix.positions(here + "/microhs-builder.nix", [["LOCALE_ARCHIVE", 401, 11]]);
-const pos$10 = nix.positions(here + "/microhs-builder.nix", [["shellHook", 369, 17], ["nativeBuildInputs", 371, 9], ["buildInputs", 376, 9], ["env", 378, 9]]);
-const pos$11 = nix.positions(here + "/microhs-builder.nix", [["pname", 283, 13], ["version", 283, 19], ["compiler", 285, 5], ["getCabalDeps", 289, 5], ["getBuildInputs", 331, 5], ["isHaskellLibrary", 340, 5], ["haddockDir", 342, 5], ["envFunc", 358, 5], ["env", 406, 5]]);
-const pos$12 = nix.positions(here + "/microhs-builder.nix", [["homepage", 410, 13], ["license", 410, 22], ["platforms", 410, 30]]);
-const pos$13 = nix.positions(here + "/microhs-builder.nix", [["broken", 412, 50]]);
-const pos$14 = nix.positions(here + "/microhs-builder.nix", [["description", 413, 55]]);
-const pos$15 = nix.positions(here + "/microhs-builder.nix", [["maintainers", 414, 55]]);
-const pos$16 = nix.positions(here + "/microhs-builder.nix", [["teams", 415, 49]]);
-const pos$17 = nix.positions(here + "/microhs-builder.nix", [["hydraPlatforms", 416, 58]]);
-const pos$18 = nix.positions(here + "/microhs-builder.nix", [["badPlatforms", 417, 56]]);
-const pos$19 = nix.positions(here + "/microhs-builder.nix", [["changelog", 418, 53]]);
-const pos$20 = nix.positions(here + "/microhs-builder.nix", [["mainProgram", 419, 55]]);
-const pos$21 = nix.positions(here + "/microhs-builder.nix", [["pname", 178, 11], ["version", 178, 17], ["pos", 180, 3], ["prePhases", 182, 3], ["preConfigurePhases", 183, 3], ["preInstallPhases", 184, 3], ["src", 186, 11], ["patches", 186, 15], ["depsBuildBuild", 188, 11], ["nativeBuildInputs", 188, 26], ["buildInputs", 189, 3], ["propagatedBuildInputs", 190, 3], ["env", 192, 3], ["prePatch", 194, 3], ["postPatch", 201, 3], ["setupCompilerEnvironmentPhase", 208, 3], ["compileBuildDriverPhase", 220, 3], ["buildPhase", 226, 3], ["doCheck", 234, 11], ["checkPhase", 236, 3], ["haddockPhase", 244, 3], ["installPhase", 252, 3], ["preCompileBuildDriver", 264, 5], ["postCompileBuildDriver", 265, 5], ["preUnpack", 266, 5], ["postUnpack", 267, 5], ["preConfigure", 268, 5], ["postConfigure", 269, 5], ["preBuild", 270, 5], ["postBuild", 271, 5], ["preHaddock", 272, 5], ["postHaddock", 273, 5], ["preInstall", 274, 5], ["postInstall", 275, 5], ["preCheck", 276, 5], ["postCheck", 277, 5], ["preFixup", 278, 5], ["postFixup", 279, 5], ["passthru", 282, 3], ["meta", 409, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,7 +32,7 @@ export default nix.lambda((args) => (() => {
     const revision = nix.argOr($_1, "revision", () => null);
     const sha256 = nix.argOr($_1, "sha256", () => null);
     const src = nix.argOr($_1, "src", () => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`mirror://hackage/${pname}-${version}.tar.gz`),
         sha256: sha256,
       }))));
@@ -147,22 +127,22 @@ export default nix.lambda((args) => (() => {
     const otherBuildInputs = nix.thunk(() => nix.concat(otherBuildInputsHaskell, otherBuildInputsSystem));
     const newCabalFileUrl = nix.thunk(() => nix.str`mirror://hackage/${pname}-${version}/revision/${revision}.cabal`);
     const newCabalFile = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: newCabalFileUrl,
         sha256: editedCabalFile,
         name: nix.thunk(() => nix.str`${pname}-${version}-r${revision}.cabal`),
       }))));
     const hsLibBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (p) => (nix.asBool(nix.has(p, "isHaskellLibrary")) && nix.asBool(nix.sel(p, "isHaskellLibrary"))), propagatedBuildInputs));
-    const compilerWithPkgs = nix.thunk(() => nix.app(wrapMhs, nix.thunk(() => ({ [nix.POS]: pos$3, microhs: compiler, packages: hsLibBuildInputs }))));
+    const compilerWithPkgs = nix.thunk(() => nix.app(wrapMhs, nix.thunk(() => ({ [nix.POS]: $pos[2], microhs: compiler, packages: hsLibBuildInputs }))));
     const compilerCommand$ = "mhs";
     const compilerCommand = nix.thunk(() => nix.str`${nix.sel(compiler, "targetPrefix")}${compilerCommand$}`);
     const compilerLibdir = nix.thunk(() => nix.str`lib/mcabal/${nix.sel(compiler, "haskellCompilerName")}`);
     const env$ = nix.thunk(() => nix.update({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       CABALDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/mcabal`),
     }, env));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         pname: pname,
         version: version,
         pos: nix.thunk(() => nix.builtins.unsafeGetAttrPos("pname", args_2)),
@@ -226,7 +206,7 @@ runHook postInstall
           const version_1 = version;
           const compiler_1 = ghc;
           const getCabalDeps = nix.thunk(() => nix.update({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "buildDepends'": buildDepends$,
             buildTools: buildTools,
             executableFrameworkDepends: executableFrameworkDepends,
@@ -243,7 +223,7 @@ runHook postInstall
             "pkg-configDepends": pkg_configDepends,
             setupHaskellDepends: setupHaskellDepends,
           }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), doCheck, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               testDepends: testDepends,
               testFrameworkDepends: testFrameworkDepends,
               testHaskellDepends: testHaskellDepends,
@@ -251,7 +231,7 @@ runHook postInstall
               testSystemDepends: testSystemDepends,
               testToolDepends: testToolDepends,
             }))), nix.app(nix.sel(lib, "optionalAttrs"), doBenchmark, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               benchmarkDepends: benchmarkDepends,
               benchmarkFrameworkDepends: benchmarkFrameworkDepends,
               benchmarkHaskellDepends: benchmarkHaskellDepends,
@@ -267,7 +247,7 @@ runHook postInstall
             const systemBuildInputs = nix.thunk(() => nix.sel(isHaskellPartition, "wrong"));
             const isHaskellPartition = nix.thunk(() => nix.app(nix.sel(lib, "partition"), (x) => nix.has(x, "isHaskellLibrary"), nix.thunk(() => nix.concat(propagatedBuildInputs_1, nix.concat(otherBuildInputs_1, nix.concat(depsBuildBuild, nativeBuildInputs))))));
             return {
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               propagatedBuildInputs: propagatedBuildInputs_1,
               otherBuildInputs: otherBuildInputs_1,
               allPkgconfigDepends: allPkgconfigDepends_1,
@@ -284,7 +264,7 @@ runHook postInstall
             const name = nix.thunk(() => nix.str`microhs-shell-for-${pname_1}`);
             const compilerCommandCaps = nix.thunk(() => nix.app(nix.sel(lib, "toUpper"), compilerCommand$));
             return nix.app(runCommandCC, name, nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 shellHook: shellHook,
                 nativeBuildInputs: nix.thunk(() => nix.concat([compilerWithPkgs], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(allPkgconfigDepends, [])), pkg_config), collectedToolDepends))),
                 buildInputs: otherBuildInputsSystem,
@@ -292,14 +272,14 @@ runHook postInstall
                   [nix.str`NIX_${compilerCommandCaps}`, nix.thunk(() => nix.str`${compiler_1}/bin/${compilerCommand}`)],
                   [nix.str`NIX_${compilerCommandCaps}_LIBDIR`, nix.thunk(() => nix.str`${compiler_1}/${compilerLibdir}`)],
                 ]), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform", "libc"), "glibc")), nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     LOCALE_ARCHIVE: nix.thunk(() => nix.str`${nix.sel(buildPackages, "glibcLocales")}/lib/locale/locale-archive`),
                   }))), env$))),
               })), "echo $nativeBuildInputs $buildInputs > $out");
           })(), formals$3);
           const env_1 = nix.thunk(() => nix.app(envFunc, nix.thunk(() => ({}))));
           return {
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             pname: pname_1,
             version: version_1,
             compiler: compiler_1,
@@ -312,11 +292,11 @@ runHook postInstall
           };
         })())),
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           homepage: homepage,
           license: license,
           platforms: platforms,
-        }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "broken")), nix.thunk(() => ({ [nix.POS]: pos$13, broken: broken }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "description")), nix.thunk(() => ({ [nix.POS]: pos$14, description: description }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "maintainers")), nix.thunk(() => ({ [nix.POS]: pos$15, maintainers: maintainers }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "teams")), nix.thunk(() => ({ [nix.POS]: pos$16, teams: teams }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "hydraPlatforms")), nix.thunk(() => ({ [nix.POS]: pos$17, hydraPlatforms: hydraPlatforms }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "badPlatforms")), nix.thunk(() => ({ [nix.POS]: pos$18, badPlatforms: badPlatforms }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "changelog")), nix.thunk(() => ({ [nix.POS]: pos$19, changelog: changelog }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "mainProgram")), nix.thunk(() => ({ [nix.POS]: pos$20, mainProgram: mainProgram })))))))))))),
+        }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "broken")), nix.thunk(() => ({ [nix.POS]: $pos[12], broken: broken }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "description")), nix.thunk(() => ({ [nix.POS]: $pos[13], description: description }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "maintainers")), nix.thunk(() => ({ [nix.POS]: $pos[14], maintainers: maintainers }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "teams")), nix.thunk(() => ({ [nix.POS]: $pos[15], teams: teams }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "hydraPlatforms")), nix.thunk(() => ({ [nix.POS]: $pos[16], hydraPlatforms: hydraPlatforms }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "badPlatforms")), nix.thunk(() => ({ [nix.POS]: $pos[17], badPlatforms: badPlatforms }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "changelog")), nix.thunk(() => ({ [nix.POS]: $pos[18], changelog: changelog }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "mainProgram")), nix.thunk(() => ({ [nix.POS]: $pos[19], mainProgram: mainProgram })))))))))))),
       })));
   })(), formals$2);
 })(), formals$1);

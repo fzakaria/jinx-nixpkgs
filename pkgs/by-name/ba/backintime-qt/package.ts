@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 110, 7], ["description", 111, 7], ["license", 112, 7], ["maintainers", 113, 7], ["platforms", 114, 7], ["longDescription", 115, 7]], [["version", 49, 5], ["src", 50, 5], ["installFlags", 51, 5], ["dontAddPrefix", 52, 5], ["pname", 55, 3], ["buildInputs", 57, 3], ["nativeBuildInputs", 66, 3], ["configureFlags", 70, 3], ["preConfigure", 72, 3], ["preFixup", 80, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "backintime-common": false, python3: false, polkit: false, meld: true, meldSupport: true, kdePackages: true, kompareSupport: true, which: false, su: false, coreutils: false, "util-linux": false, qt6: false, man: false, asciidoctor: false, keyringBackends: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 110, 7], ["description", 111, 7], ["license", 112, 7], ["maintainers", 113, 7], ["platforms", 114, 7], ["longDescription", 115, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 49, 5], ["src", 50, 5], ["installFlags", 51, 5], ["dontAddPrefix", 52, 5], ["pname", 55, 3], ["buildInputs", 57, 3], ["nativeBuildInputs", 66, 3], ["configureFlags", 70, 3], ["preConfigure", 72, 3], ["preFixup", 80, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +43,7 @@ export default nix.lambda((args) => (() => {
     })()));
   const diffProgram = nix.thunk(() => (nix.asBool(meldSupport) ? nix.str`${nix.app(nix.sel(lib, "getBin"), meld)}/bin` : (nix.asBool(kompareSupport) ? nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(kdePackages, "kompare")))}/bin` : "")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(backintime_common, "version")),
       src: nix.thunk(() => nix.attr(backintime_common, "src")),
       installFlags: nix.thunk(() => nix.attr(backintime_common, "installFlags")),
@@ -97,7 +96,7 @@ wrapProgram "$out/bin/backintime-qt_polkit" \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(backintime_common, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: nix.thunk(() => nix.attr(from, "description")),
         license: nix.thunk(() => nix.attr(from, "license")),

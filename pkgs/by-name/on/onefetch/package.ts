@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 75, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["cargoPatches", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["nativeCheckInputs", 48, 3], ["preCheck", 52, 3], ["postInstall", 60, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, cmake: false, installShellFiles: false, "pkg-config": false, zstd: false, stdenv: false, darwin: false, gitMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["cargoPatches", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["nativeCheckInputs", 48, 3], ["preCheck", 52, 3], ["postInstall", 60, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const libresolv = nix.thunk(() => nix.attr(darwin, "libresolv"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "onefetch",
       version: "2.27.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "o2sh",
           repo: "onefetch",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "git init\ngit config user.name nixbld\ngit config user.email nixbld@example.com\ngit add .\ngit commit -m test\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd onefetch \\\n  --bash <($out/bin/onefetch --generate bash) \\\n  --fish <($out/bin/onefetch --generate fish) \\\n  --zsh <($out/bin/onefetch --generate zsh)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Git repository summary on your terminal",
         homepage: "https://github.com/o2sh/onefetch",
         changelog: nix.thunk(() => nix.str`https://github.com/o2sh/onefetch/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

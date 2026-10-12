@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 14, 13], ["pname", 15, 5], ["sha256", 16, 5]], [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["buildInputs", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "sane-backends": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 14, 13], ["pname", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["buildInputs", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "python-sane",
           sha256: "JAmOuDxujhsBEm5q16WwR5wHsBPF0iBQm1VYkv5JJd4=",
         }))));
       const buildInputs = nix.thunk(() => [sane_backends]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/python-pillow/Sane",
         description: "Python interface to the SANE scanner and frame grabber",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "doronbehar"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, format, src, buildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, format, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

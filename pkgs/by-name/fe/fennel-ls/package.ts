@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["changelog", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 24], ["mainProgram", 41, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 27, 3], ["makeFlags", 28, 3], ["installFlags", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false, lua5_5: false, pandoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["changelog", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 24], ["mainProgram", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 27, 3], ["makeFlags", 28, 3], ["installFlags", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lua = lua5_5;
   const luaPackages = nix.thunk(() => nix.sel(lua, "pkgs"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fennel-ls",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~xerool",
           repo: "fennel-ls",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(lua, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Language server for intelligent editing of the Fennel Programming Language",
         homepage: "https://git.sr.ht/~xerool/fennel-ls/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

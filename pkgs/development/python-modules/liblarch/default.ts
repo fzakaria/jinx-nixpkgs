@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 46, 5], ["homepage", 47, 5], ["downloadPage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["nativeCheckInputs", 29, 3], ["buildInputs", 35, 3], ["propagatedBuildInputs", 37, 3], ["checkPhase", 39, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, pygobject3: false, "xvfb-run": false, "gobject-introspection": false, gtk3: false, pytest: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["downloadPage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["nativeCheckInputs", 29, 3], ["buildInputs", 35, 3], ["propagatedBuildInputs", 37, 3], ["checkPhase", 39, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "getting-things-gnome",
           repo: "liblarch",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +36,7 @@ ${xvfb_run}/bin/xvfb-run -s '-screen 0 800x600x24' pytest
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library built to easily handle data structure such are lists, trees and acyclic graphs",
         homepage: "https://github.com/getting-things-gnome/liblarch",
         downloadPage: "https://github.com/getting-things-gnome/liblarch/releases",
@@ -50,7 +48,7 @@ runHook postCheck
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

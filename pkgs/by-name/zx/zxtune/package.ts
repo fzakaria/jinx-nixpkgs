@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 59, 5], ["repo", 60, 5], ["rev", 61, 5], ["hash", 62, 5]], [["rev-prefix", 65, 40]], [["updateScript", 65, 12]], [["name", 167, 7], ["exec", 168, 7], ["icon", 169, 7], ["desktopName", 170, 7], ["genericName", 171, 7], ["comment", 172, 7], ["categories", 173, 7], ["type", 177, 7]], [["description", 182, 5], ["longDescription", 183, 5], ["homepage", 190, 5], ["license", 191, 5], ["platforms", 194, 5], ["maintainers", 195, 5], ["mainProgram", 199, 5]], [["pname", 53, 3], ["version", 54, 3], ["outputs", 56, 3], ["src", 58, 3], ["passthru", 65, 3], ["strictDeps", 67, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 75, 3], ["prePatch", 77, 3], ["patches", 81, 3], ["postPatch", 86, 3], ["buildPhase", 103, 3], ["dontPatchELF", 144, 3], ["installPhase", 146, 3], ["dontWrapQtApps", 160, 3], ["preFixup", 161, 3], ["desktopItems", 165, 3], ["meta", 181, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, fetchFromBitbucket: false, dos2unix: false, gitUpdater: false, boost: false, zlib: false, withMp3: true, lame: false, withOgg: true, libvorbis: false, withFlac: true, flac: false, withOpenal: true, openal: false, withSDL: true, SDL: false, withOss: true, withAlsa: true, "alsa-lib": false, withPulse: true, libpulseaudio: false, withQt: true, qt5: false, zip: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 59, 5], ["repo", 60, 5], ["rev", 61, 5], ["hash", 62, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 65, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 167, 7], ["exec", 168, 7], ["icon", 169, 7], ["desktopName", 170, 7], ["genericName", 171, 7], ["comment", 172, 7], ["categories", 173, 7], ["type", 177, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 182, 5], ["longDescription", 183, 5], ["homepage", 190, 5], ["license", 191, 5], ["platforms", 194, 5], ["maintainers", 195, 5], ["mainProgram", 199, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 53, 3], ["version", 54, 3], ["outputs", 56, 3], ["src", 58, 3], ["passthru", 65, 3], ["strictDeps", 67, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 75, 3], ["prePatch", 77, 3], ["patches", 81, 3], ["postPatch", 86, 3], ["buildPhase", 103, 3], ["dontPatchELF", 144, 3], ["installPhase", 146, 3], ["dontWrapQtApps", 160, 3], ["preFixup", 161, 3], ["desktopItems", 165, 3], ["meta", 181, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,15 +44,15 @@ export default nix.lambda((args) => (() => {
       const version = "5112";
       const outputs = nix.thunk(() => ["out"]);
       const src = nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zxtune",
           repo: "zxtune",
           rev: nix.thunk(() => nix.str`r${version}`),
           hash: "sha256-903dvy7XegZzoP/+0ZTWQDg3nWib6k1g+05vGRfcenI=",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "r" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "r" })))),
       }));
       const strictDeps = true;
       const nativeBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withQt, nix.thunk(() => [zip, nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook")), copyDesktopItems])));
@@ -103,7 +98,7 @@ make ${nix.builtins.toString(makeOptsCommon)} -C apps/zxtune123
       const preFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withQt, "wrapQtApp \"$out/bin/zxtune-qt\"\n"));
       const desktopItems = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withQt, nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "ZXTune",
               exec: "zxtune-qt",
               icon: "zxtune",
@@ -115,7 +110,7 @@ make ${nix.builtins.toString(makeOptsCommon)} -C apps/zxtune123
             })))),
         ])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Crossplatform chiptunes player",
         longDescription: "Chiptune music player with truly extensive format support. Supported\nformats/chips include AY/YM, ZX Spectrum, PC, Amiga, Atari, Acorn, Philips\nSAA1099, MOS6581 (Commodore 64), NES, SNES, GameBoy, Atari, TurboGrafX,\nNintendo DS, Sega Master System, and more. Powered by vgmstream, OpenMPT,\nsidplay, and many other libraries.\n",
         homepage: "https://zxtune.bitbucket.io/",
@@ -131,7 +126,7 @@ make ${nix.builtins.toString(makeOptsCommon)} -C apps/zxtune123
         mainProgram: nix.thunk(() => (nix.asBool(withQt) ? "zxtune-qt" : "zxtune123")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         outputs,

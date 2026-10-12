@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 49, 5], ["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["name", 57, 5], ["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]], [["name", 65, 5], ["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]], [["name", 73, 5], ["owner", 74, 5], ["repo", 75, 5], ["tag", 76, 5], ["hash", 77, 5]], [["name", 81, 5], ["owner", 82, 5], ["repo", 83, 5], ["rev", 84, 5], ["hash", 85, 5]], [["name", 89, 5], ["owner", 90, 5], ["repo", 91, 5], ["tag", 92, 5], ["hash", 93, 5]], [["name", 97, 5], ["owner", 98, 5], ["repo", 99, 5], ["rev", 100, 5], ["hash", 101, 5]], [["name", 105, 5], ["owner", 106, 5], ["repo", 107, 5], ["rev", 108, 5], ["hash", 109, 5]], [["owner", 119, 5], ["repo", 120, 5], ["tag", 121, 5], ["fetchSubmodules", 122, 5], ["hash", 123, 5]], [["NIX_LDFLAGS", 359, 7]], [["MIOPEN_PATH", 362, 7], ["HIPFLAGS", 365, 7]], [["NIX_CFLAGS_COMPILE", 377, 7], ["GTEST_FILTER", 378, 7]], [["python", 427, 7]], [["cudaSupport", 424, 13], ["cudaPackages", 424, 25], ["ncclSupport", 424, 38], ["protobuf", 425, 13], ["tests", 426, 5]], [["description", 432, 5], ["longDescription", 433, 5], ["homepage", 442, 5], ["changelog", 443, 5], ["platforms", 445, 5], ["license", 446, 5], ["maintainers", 447, 5], ["broken", 454, 5]], [["pname", 115, 3], ["version", 116, 3], ["src", 118, 3], ["patches", 126, 3], ["postPatch", 142, 3], ["postBuild", 162, 3], ["nativeBuildInputs", 166, 3], ["buildInputs", 189, 3], ["nativeCheckInputs", 250, 3], ["checkInputs", 259, 3], ["outputs", 265, 3], ["separateDebugInfo", 271, 3], ["enableParallelBuilding", 273, 3], ["cmakeDir", 275, 3], ["cmakeFlags", 277, 3], ["env", 357, 3], ["doCheck", 381, 3], ["requiredSystemFeatures", 397, 3], ["hardeningEnable", 399, 3], ["hardeningDisable", 402, 3], ["postInstall", 405, 3], ["strictDeps", 413, 3], ["postFixup", 416, 3], ["disallowedRequisites", 419, 3], ["__structuredAttrs", 421, 3], ["passthru", 423, 3], ["meta", 431, 3]]]);
 const formals$1 = { args: { lib: false, config: false, stdenv: false, fetchFromGitHub: false, "abseil-cpp": false, buildPackages: false, cmake: false, cpuinfo: false, eigen: false, flatbuffers_23: false, glibcLocales: false, gtest: false, "howard-hinnant-date": false, libpng: false, nlohmann_json: false, "pkg-config": false, python3Packages: false, removeReferencesTo: false, re2: false, zlib: false, protobuf: false, "microsoft-gsl": false, darwinMinVersionHook: false, pythonSupport: true, cudaSupport: true, ncclSupport: true, tensorrtSupport: true, openvinoSupport: true, rocmSupport: true, coremlSupport: true, withFullProtobuf: true, cudaPackages: true, openvino: false, rocmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 49, 5], ["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 57, 5], ["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 65, 5], ["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 73, 5], ["owner", 74, 5], ["repo", 75, 5], ["tag", 76, 5], ["hash", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 81, 5], ["owner", 82, 5], ["repo", 83, 5], ["rev", 84, 5], ["hash", 85, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 89, 5], ["owner", 90, 5], ["repo", 91, 5], ["tag", 92, 5], ["hash", 93, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 97, 5], ["owner", 98, 5], ["repo", 99, 5], ["rev", 100, 5], ["hash", 101, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 105, 5], ["owner", 106, 5], ["repo", 107, 5], ["rev", 108, 5], ["hash", 109, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["owner", 119, 5], ["repo", 120, 5], ["tag", 121, 5], ["fetchSubmodules", 122, 5], ["hash", 123, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 359, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["MIOPEN_PATH", 362, 7], ["HIPFLAGS", 365, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 377, 7], ["GTEST_FILTER", 378, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["python", 427, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["cudaSupport", 424, 13], ["cudaPackages", 424, 25], ["ncclSupport", 424, 38], ["protobuf", 425, 13], ["tests", 426, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["description", 432, 5], ["longDescription", 433, 5], ["homepage", 442, 5], ["changelog", 443, 5], ["platforms", 445, 5], ["license", 446, 5], ["maintainers", 447, 5], ["broken", 454, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 115, 3], ["version", 116, 3], ["src", 118, 3], ["patches", 126, 3], ["postPatch", 142, 3], ["postBuild", 162, 3], ["nativeBuildInputs", 166, 3], ["buildInputs", 189, 3], ["nativeCheckInputs", 250, 3], ["checkInputs", 259, 3], ["outputs", 265, 3], ["separateDebugInfo", 271, 3], ["enableParallelBuilding", 273, 3], ["cmakeDir", 275, 3], ["cmakeFlags", 277, 3], ["env", 357, 3], ["doCheck", 381, 3], ["requiredSystemFeatures", 397, 3], ["hardeningEnable", 399, 3], ["hardeningDisable", 402, 3], ["postInstall", 405, 3], ["strictDeps", 413, 3], ["postFixup", 416, 3], ["disallowedRequisites", 419, 3], ["__structuredAttrs", 421, 3], ["passthru", 423, 3], ["meta", 431, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -62,7 +47,7 @@ export default nix.lambda((args) => (() => {
   const cuda_nvcc = nix.thunk(() => nix.attr(cudaPackages, "cuda_nvcc"));
   const cudaArchitecturesString = nix.thunk(() => nix.sel(cudaPackages, "flags", "cmakeCudaArchitecturesString"));
   const mp11_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "mp11-src",
       owner: "boostorg",
       repo: "mp11",
@@ -70,7 +55,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-cLPvjkf2Au+B19PJNrUkTW/VPxybi1MpPxnIl4oo4/o=",
     }))));
   const safeint_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "safeint-src",
       owner: "dcleblanc",
       repo: "safeint",
@@ -78,7 +63,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-pjwjrqq6dfiVsXIhbBtbolhiysiFlFTnx5XcX77f+C0=",
     }))));
   const onnx_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "onnx-src",
       owner: "onnx",
       repo: "onnx",
@@ -86,7 +71,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-eF6BdTwTuHh6ckuLGN1d6z2GLU47lPqtzu4zIv8+cTs=",
     }))));
   const cutlass_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "cutlass-src",
       owner: "NVIDIA",
       repo: "cutlass",
@@ -94,7 +79,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-0q9Ad0Z6E/rO2PdM4uQc8H0E0qs9uKc3reHepiHhjEc=",
     }))));
   const dlpack_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "dlpack-src",
       owner: "dmlc",
       repo: "dlpack",
@@ -102,7 +87,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-YqgzCyNywixebpHGx16tUuczmFS5pjCz5WjR89mv9eI=",
     }))));
   const coremltools_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "coremltools-src",
       owner: "apple",
       repo: "coremltools",
@@ -110,7 +95,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-kajQFHpl+4UK6fp+rM8TP0GiqIFYXPVFc2x1p19rBSw=",
     }))));
   const fp16_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: "fp16-src",
       owner: "Maratyszcza",
       repo: "FP16",
@@ -118,7 +103,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-m2d9bqZoGWzuUPGkd29MsrdscnJRtuIkLIMp3fMmtRY=",
     }))));
   const psimd_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "psimd-src",
       owner: "Maratyszcza",
       repo: "psimd",
@@ -127,11 +112,11 @@ export default nix.lambda((args) => (() => {
     }))));
   const isCudaJetson = nix.thunk(() => (nix.asBool(cudaSupport) && nix.asBool(nix.sel(cudaPackages, "flags", "isJetsonBuild"))));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "onnxruntime",
       version: "1.27.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           owner: "microsoft",
           repo: "onnxruntime",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -267,8 +252,8 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "FETCHCONTENT_SOURCE_DIR_PSIMD", nix.thunk(() => nix.str`${psimd_src}`))),
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_POLICY_VERSION_MINIMUM", "3.5")),
         ]))))))))),
-      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(effectiveStdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$10, NIX_LDFLAGS: "-z,noexecstack" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(effectiveStdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: $pos[9], NIX_LDFLAGS: "-z,noexecstack" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({
+          [nix.POS]: $pos[10],
           MIOPEN_PATH: nix.thunk(() => nix.sel(rocmPackages, "miopen")),
           HIPFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (pkg) => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), pkg)}/include`, nix.thunk(() => [
               nix.thunk(() => nix.sel(rocmPackages, "hipblas")),
@@ -281,7 +266,7 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.sel(rocmPackages, "rocthrust")),
             ]))),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(effectiveStdenv, "hostPlatform", "isMusl")), nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           NIX_CFLAGS_COMPILE: "-DFLATBUFFERS_LOCALE_INDEPENDENT=0",
           GTEST_FILTER: "*:-ContribOpTest.StringNormalizer*",
         })))))),
@@ -296,18 +281,18 @@ export default nix.lambda((args) => (() => {
       disallowedRequisites: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getBin"), cuda_nvcc))]))),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         cudaSupport: cudaSupport,
         cudaPackages: cudaPackages,
         ncclSupport: ncclSupport,
         protobuf: protobuf,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), pythonSupport, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             python: nix.thunk(() => nix.sel(python3Packages, "onnxruntime")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         description: "Cross-platform, high performance scoring engine for ML models",
         longDescription: "ONNX Runtime is a performance-focused complete scoring engine\nfor Open Neural Network Exchange (ONNX) models, with an open\nextensible architecture to continually address the latest developments\nin AI and Deep Learning. ONNX Runtime stays up to date with the ONNX\nstandard with complete implementation of all ONNX operators, and\nsupports all ONNX releases (1.2+) with both future and backwards\ncompatibility.\n",
         homepage: "https://github.com/microsoft/onnxruntime",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ppx.nix", [[["description", 29, 5]], [["pname", 12, 3], ["src", 14, 18], ["version", 14, 22], ["propagatedBuildInputs", 16, 3], ["doCheck", 22, 3], ["checkInputs", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, ppx_deriving: false, ppxlib: false, repr: false, alcotest: false, hex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ppx.nix", [["description", 29, 5]]);
-const pos$2 = nix.positions(here + "/ppx.nix", [["pname", 12, 3], ["src", 14, 18], ["version", 14, 22], ["propagatedBuildInputs", 16, 3], ["doCheck", 22, 3], ["checkInputs", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const hex = nix.arg($, "hex");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ppx_repr",
       src: nix.thunk(() => nix.attr(repr, "src")),
       version: nix.thunk(() => nix.attr(repr, "version")),
       propagatedBuildInputs: nix.thunk(() => [ppx_deriving, ppxlib, repr]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, hex]),
-      meta: nix.thunk(() => nix.update(nix.sel(repr, "meta"), { [nix.POS]: pos$1, description: "PPX deriver for type representations" })),
+      meta: nix.thunk(() => nix.update(nix.sel(repr, "meta"), { [nix.POS]: $pos[0], description: "PPX deriver for type representations" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=ppx.ts.map

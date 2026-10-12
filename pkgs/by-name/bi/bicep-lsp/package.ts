@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["badPlatforms", 54, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["projectFile", 25, 3], ["postPatch", 27, 3], ["nugetDeps", 31, 3], ["dotnet-sdk", 34, 3], ["dotnet-runtime", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["doCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, buildDotnetModule: false, coreutils: false, dotnetCorePackages: false, fetchFromGitHub: false, icu: false, lib: false, libkrb5: false, openssl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["badPlatforms", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["projectFile", 25, 3], ["postPatch", 27, 3], ["nugetDeps", 31, 3], ["dotnet-sdk", 34, 3], ["dotnet-runtime", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["doCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bicep-lsp";
       const version = "0.34.44";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Azure",
           repo: "bicep",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [icu, libkrb5, openssl, nix.thunk(() => nix.sel(stdenv, "cc", "cc", "lib"))])));
       const doCheck = nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Domain Specific Language (DSL) for deploying Azure resources declaratively",
         homepage: "https://github.com/Azure/bicep/",
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/bicep/releases/tag/v${version}`),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
         badPlatforms: nix.thunk(() => ["aarch64-linux"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

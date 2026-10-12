@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 33, 5], ["mainProgram", 34, 5]], [["version", 7, 30], ["src", 7, 38], ["pname", 9, 3], ["pyproject", 10, 3], ["sourceRoot", 12, 3], ["build-system", 14, 3], ["dependencies", 16, 3], ["nativeCheckInputs", 24, 3], ["__structuredAttrs", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { "jrl-cmakemodules": false, gitMinimal: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 33, 5], ["mainProgram", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 7, 30], ["src", 7, 38], ["pname", 9, 3], ["pyproject", 10, 3], ["sourceRoot", 12, 3], ["build-system", 14, 3], ["dependencies", 16, 3], ["nativeCheckInputs", 24, 3], ["__structuredAttrs", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(jrl_cmakemodules, "version")),
       src: nix.thunk(() => nix.attr(jrl_cmakemodules, "src")),
       pname: "jrl-cmakemodules-scripts",
@@ -33,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(nix.sel(jrl_cmakemodules, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Release scripting tools for JRL CMake modules",
         mainProgram: "jrl-release",
       })),

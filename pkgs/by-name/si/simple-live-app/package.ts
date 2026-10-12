@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["ns_danmaku", 26, 13]], [["name", 37, 7], ["exec", 38, 7], ["icon", 39, 7], ["genericName", 40, 7], ["desktopName", 41, 7], ["keywords", 42, 7]], [["updateScript", 54, 12]], [["description", 57, 5], ["homepage", 58, 5], ["mainProgram", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["sourceRoot", 22, 3], ["pubspecLock", 24, 3], ["gitHashes", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["desktopItems", 35, 3], ["postInstall", 46, 3], ["extraWrapProgramArgs", 50, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, flutter332: false, fetchFromGitHub: false, autoPatchelfHook: false, mpv: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ns_danmaku", 26, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 37, 7], ["exec", 38, 7], ["icon", 39, 7], ["genericName", 40, 7], ["desktopName", 41, 7], ["keywords", 42, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["mainProgram", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["sourceRoot", 22, 3], ["pubspecLock", 24, 3], ["gitHashes", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["desktopItems", 35, 3], ["postInstall", 46, 3], ["extraWrapProgramArgs", 50, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "simple-live-app";
       const version = "1.8.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xiaoyaocz",
           repo: "dart_simple_live",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/simple_live_app`);
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const gitHashes = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ns_danmaku: "sha256-Hzp5QsdgBStaPVSHdHul7ZqOhZHQS9dbO+RpC4wMYqo=",
       }));
       const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook, copyDesktopItems]);
       const buildInputs = nix.thunk(() => [mpv]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "simple-live-app",
             exec: "simple_live_app",
             icon: "simple-live-app",
@@ -50,9 +45,9 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "install -Dm644 assets/logo.png $out/share/icons/simple-live-app.png\n";
       const extraWrapProgramArgs = "--prefix LD_LIBRARY_PATH : $out/app/simple-live-app/lib\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simply Watch Live",
         homepage: "https://github.com/xiaoyaocz/dart_simple_live",
         mainProgram: "simple_live_app",
@@ -61,7 +56,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

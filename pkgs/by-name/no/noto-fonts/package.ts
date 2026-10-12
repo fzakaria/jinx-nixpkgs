@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["rev-prefix", 85, 5]], [["noto-fonts", 88, 43]], [["updateScript", 84, 12], ["tests", 88, 12]], [["description", 91, 5], ["homepage", 92, 5], ["longDescription", 93, 13], ["license", 94, 5], ["platforms", 95, 5], ["maintainers", 96, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["outputs", 39, 3], ["installPhase", 44, 3], ["passthru", 84, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gitUpdater: false, rename: false, nixosTests: false, variants: true, suffix: true, longDescription: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["noto-fonts", 88, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 84, 12], ["tests", 88, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["longDescription", 93, 13], ["license", 94, 5], ["platforms", 95, 5], ["maintainers", 96, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["outputs", 39, 3], ["installPhase", 44, 3], ["passthru", 84, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const longDescription = nix.argOr($, "longDescription", () => "When text is rendered by a computer, sometimes characters are\ndisplayed as “tofu”. They are little boxes to indicate your device\ndoesn’t have a font to display the text.\nGoogle has been developing a font family called Noto, which aims to\nsupport all languages with a harmonious look and feel. Noto is\nGoogle’s answer to tofu. The name noto is to convey the idea that\nGoogle’s goal is to see “no more tofu”.  Noto has multiple styles and\nweights, and freely available to all.\n");
   const _variants = nix.thunk(() => nix.builtins.map((variant) => nix.builtins.replaceStrings(nix.thunk(() => [" "]), nix.thunk(() => [""]), variant), variants));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`noto-fonts${suffix}`),
       version: "2026.10.01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "notofonts",
           repo: "notofonts.github.io",
           tag: nix.thunk(() => nix.str`noto-monthly-release-${nix.sel(finalAttrs, "version")}`),
@@ -46,15 +41,15 @@ export default nix.lambda((args) => (() => {
 done
 `)), "rename 's/\\[.*\\]//' $out/share/fonts/noto/*\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "noto-monthly-release-" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "noto-monthly-release-" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "noto-fonts": nix.thunk(() => nix.attr(nixosTests, "noto-fonts")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Beautiful and free fonts for many languages",
         homepage: "https://www.google.com/get/noto/",
         longDescription: longDescription,

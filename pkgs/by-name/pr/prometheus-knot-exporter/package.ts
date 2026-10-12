@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 5], ["version", 15, 13], ["hash", 16, 5]], [["knot", 33, 64]], [["tests", 33, 12]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 19, 3], ["dependencies", 23, 3], ["pythonImportsCheck", 29, 3], ["passthru", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 5], ["version", 15, 13], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["knot", 33, 64]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 33, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 19, 3], ["dependencies", 23, 3], ["pythonImportsCheck", 29, 3], ["passthru", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "knot_exporter",
           version: version,
           hash: "sha256-MFQuB4jZ3+XbOXCRtE30e5jqS2ndh+i9ItReIo7nP1c=",
@@ -36,14 +32,14 @@ export default nix.lambda((args) => (() => {
       })());
       const pythonImportsCheck = nix.thunk(() => ["knot_exporter"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { [nix.POS]: pos$2, knot: nix.thunk(() => nix.attr(from, "knot")) };
+          return { [nix.POS]: $pos[1], knot: nix.thunk(() => nix.attr(from, "knot")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Prometheus exporter for Knot DNS",
         homepage: "https://gitlab.nic.cz/knot/knot-dns/-/tree/master/python/knot_exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "knot-exporter",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

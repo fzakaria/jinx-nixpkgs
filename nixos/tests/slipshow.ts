@@ -2,47 +2,40 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/slipshow.nix", [[["maintainers", 9, 8]], [["owner", 15, 7], ["repo", 16, 7], ["rev", 17, 7], ["hash", 18, 7]], [["source", 14, 32]], [["slipshow", 14, 21]], [["systemPackages", 12, 17], ["etc", 14, 17]], [["environment", 12, 5]], [["machine", 11, 14]], [["name", 7, 3], ["meta", 9, 3], ["containers", 11, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/slipshow.nix", [["maintainers", 9, 8]]);
-const pos$2 = nix.positions(here + "/slipshow.nix", [["owner", 15, 7], ["repo", 16, 7], ["rev", 17, 7], ["hash", 18, 7]]);
-const pos$3 = nix.positions(here + "/slipshow.nix", [["source", 14, 32]]);
-const pos$4 = nix.positions(here + "/slipshow.nix", [["slipshow", 14, 21]]);
-const pos$5 = nix.positions(here + "/slipshow.nix", [["systemPackages", 12, 17], ["etc", 14, 17]]);
-const pos$6 = nix.positions(here + "/slipshow.nix", [["environment", 12, 5]]);
-const pos$7 = nix.positions(here + "/slipshow.nix", [["machine", 11, 14]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/slipshow.nix", [["name", 7, 3], ["meta", 9, 3], ["containers", 11, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "slipshow presentation test",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ethancedwards8"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "slipshow"))];
           })()),
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             slipshow: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   owner: "meithecatte",
                   repo: "bbslides",
                   rev: "ce1c08cafa71ae36dda8cc581956548b8386ae16",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sources", 40, 13]], [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 25]], [["pname", 15, 34], ["version", 15, 40], ["src", 15, 48], ["outputs", 17, 3], ["nativeBuildInputs", 22, 3], ["strictDeps", 29, 3], ["postPatch", 31, 3], ["passthru", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, glslang: false, meson: false, ninja: false, stdenv: false, wine: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sources", 40, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 25]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 34], ["version", 15, 40], ["src", 15, 48], ["outputs", 17, 3], ["nativeBuildInputs", 22, 3], ["strictDeps", 29, 3], ["postPatch", 31, 3], ["passthru", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(sources, "vkd3d-proton"));
       return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [glslang, meson, ninja, wine]),
       strictDeps: true,
       postPatch: "substituteInPlace meson.build \\\n  --replace-fail \"vkd3d_build = vcs_tag(\" \\\n                 \"vkd3d_build = vcs_tag( fallback : '$(cat .nixpkgs-auxfiles/vkd3d_build)'\", \\\n  --replace-fail \"vkd3d_version = vcs_tag(\" \\\n                 \"vkd3d_version = vcs_tag( fallback : '$(cat .nixpkgs-auxfiles/vkd3d_version)'\",\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, sources: sources })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], sources: sources })),
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(wine, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/HansKristian-Work/vkd3d-proton",
         description: "Fork of VKD3D, which aims to implement the full Direct3D 12 API on top of Vulkan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

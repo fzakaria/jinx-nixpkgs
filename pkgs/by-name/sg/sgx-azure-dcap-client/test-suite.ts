@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-suite.nix", [[["nativeBuildInputs", 8, 3], ["patches", 13, 3], ["buildFlags", 21, 3], ["installPhase", 25, 3], ["postFixup", 33, 3]]]);
 const formals$1 = { args: { lib: false, "sgx-azure-dcap-client": false, gtest: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-suite.nix", [["nativeBuildInputs", 8, 3], ["patches", 13, 3], ["buildFlags", 21, 3], ["installPhase", 25, 3], ["postFixup", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(sgx_azure_dcap_client, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [makeWrapper, gtest])),
       patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
         nix.path(here, "./tests-missing-includes.patch"),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 76, 5], ["longDescription", 77, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["mesonFlags", 59, 3], ["postPatch", 70, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, python3Packages: false, "vulkan-headers": false, "vulkan-loader": false, shaderc: false, lcms2: false, libGL: false, libx11: false, libunwind: false, libdovi: false, xxhash: false, "fast-float": false, vulkanSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 76, 5], ["longDescription", 77, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["mesonFlags", 59, 3], ["postPatch", 70, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const fast_float = nix.arg($, "fast-float");
   const vulkanSupport = nix.argOr($, "vulkanSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libplacebo",
       version: "7.360.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "code.videolan.org",
           owner: "videolan",
           repo: "libplacebo",
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "unwind", false))])))),
       postPatch: "substituteInPlace meson.build \\\n  --replace 'python_env.append' '#'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Reusable library for GPU-accelerated video/image rendering primitives",
         longDescription: "Reusable library for GPU-accelerated image/view processing primitives and\nshaders, as well a batteries-included, extensible, high-quality rendering\npipeline (similar to mpv's vo_gpu). Supports Vulkan, OpenGL and Metal (via\nMoltenVK).\n",
         homepage: "https://code.videolan.org/videolan/libplacebo",

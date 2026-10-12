@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["teams", 104, 5], ["platforms", 105, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["cmakeFlags", 73, 3], ["postInstall", 86, 3], ["postFixup", 92, 3], ["pythonImportsCheck", 97, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, withPython: true, cairo: false, cmake: false, curl: false, fcgi: false, freetype: false, fribidi: false, gdal: false, geos: false, giflib: false, harfbuzz: false, libjpeg: false, libpng: false, libpq: false, librsvg: false, libxml2: false, "pkg-config": false, proj: false, protobufc: false, python3: false, swig: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["teams", 104, 5], ["platforms", 105, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["cmakeFlags", 73, 3], ["postInstall", 86, 3], ["postFixup", 92, 3], ["pythonImportsCheck", 97, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const swig = nix.arg($, "swig");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mapserver",
       version: "8.6.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MapServer",
           repo: "MapServer",
           rev: nix.thunk(() => nix.str`rel-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -87,7 +85,7 @@ cp -r src/mapscript/python/mapscript $out/${nix.sel(python3, "sitePackages")}
 `))),
       pythonImportsCheck: nix.thunk(() => ["mapscript"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Platform for publishing spatial data and interactive mapping applications to the web",
         homepage: "https://mapserver.org/",
         changelog: "https://mapserver.org/development/changelog/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["0.4.7", 23, 9], ["0.4.9", 24, 9]], [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 38, 3], ["checkInputs", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDunePackage: false, "camlp-streams": false, cppo: false, cryptokit: false, ocurl: false, yojson: false, ounit2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["0.4.7", 23, 9], ["0.4.9", 24, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 38, 3], ["checkInputs", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gapi-ocaml",
       version: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cryptokit, "version")), "1.21")) ? "0.4.9" : "0.4.7")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "astrada",
           repo: "gapi-ocaml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "0.4.7": "sha256-uQJfrgF0oafURlamHslt9hX9MP4vFeVqDhuX7T/kjiY=",
             "0.4.9": "sha256-UWoWWpCAKCNEwEFO4UBXrTO49QyxLXrulDHX6dGr0z4=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OCaml client for google services",
         homepage: "https://github.com/astrada/gapi-ocaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

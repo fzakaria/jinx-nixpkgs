@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["name", 67, 7], ["exec", 68, 7], ["icon", 69, 7], ["comment", 70, 7], ["desktopName", 71, 7], ["categories", 72, 7]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["cmakeFlags", 53, 3], ["postPatch", 60, 3], ["desktopItems", 65, 3], ["postInstall", 79, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, curl: false, openssl: false, SDL2: false, "alsa-lib": false, libGL: false, libGLU: false, libx11: false, libxi: false, libxcursor: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 67, 7], ["exec", 68, 7], ["icon", 69, 7], ["comment", 70, 7], ["desktopName", 71, 7], ["categories", 72, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["cmakeFlags", 53, 3], ["postPatch", 60, 3], ["desktopItems", 65, 3], ["postInstall", 79, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "skyemu",
       version: "4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "skylersaleh",
           repo: "SkyEmu",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail 'set(CMAKE_OSX_ARCHITECTURES' '#set(CMAKE_OSX_ARCHITECTURES'\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "skyemu",
             exec: "SkyEmu",
             icon: "skyemu",
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -Dm644 $src/src/resources/icons/icon.png $out/share/pixmaps/skyemu.png\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Low level GameBoy, GameBoy Color, Game Boy Advance, and DS emulator",
         homepage: "https://github.com/skylersaleh/SkyEmu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

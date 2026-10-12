@@ -2,35 +2,18 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/paperless.nix", [[["maintainers", 4, 8]], [["systemPackages", 16, 25]], [["forceSSL", 21, 46]], [["localhost", 21, 34]], [["virtualHosts", 21, 21]], [["no-color", 32, 21], ["no-thumbnail", 33, 21]], [["enable", 29, 19], ["settings", 31, 19]], [["enable", 23, 17], ["configureNginx", 24, 17], ["domain", 25, 17], ["passwordFile", 26, 17], ["exporter", 28, 17]], [["nginx", 21, 15], ["paperless", 22, 15]], [["memorySize", 40, 28]], [["environment", 16, 13], ["services", 20, 13], ["virtualisation", 40, 13]], [["createLocally", 44, 39]], [["PAPERLESS_OCR_LANGUAGE", 46, 13]], [["database", 44, 30], ["settings", 45, 30]], [["paperless", 44, 20]], [["imports", 43, 11], ["services", 44, 11]], [["simple", 13, 9], ["postgres", 42, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 10, 3], ["testScript", 53, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/paperless.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/paperless.nix", [["systemPackages", 16, 25]]);
-const pos$3 = nix.positions(here + "/paperless.nix", [["forceSSL", 21, 46]]);
-const pos$4 = nix.positions(here + "/paperless.nix", [["localhost", 21, 34]]);
-const pos$5 = nix.positions(here + "/paperless.nix", [["virtualHosts", 21, 21]]);
-const pos$6 = nix.positions(here + "/paperless.nix", [["no-color", 32, 21], ["no-thumbnail", 33, 21]]);
-const pos$7 = nix.positions(here + "/paperless.nix", [["enable", 29, 19], ["settings", 31, 19]]);
-const pos$8 = nix.positions(here + "/paperless.nix", [["enable", 23, 17], ["configureNginx", 24, 17], ["domain", 25, 17], ["passwordFile", 26, 17], ["exporter", 28, 17]]);
-const pos$9 = nix.positions(here + "/paperless.nix", [["nginx", 21, 15], ["paperless", 22, 15]]);
-const pos$10 = nix.positions(here + "/paperless.nix", [["memorySize", 40, 28]]);
-const pos$11 = nix.positions(here + "/paperless.nix", [["environment", 16, 13], ["services", 20, 13], ["virtualisation", 40, 13]]);
-const pos$12 = nix.positions(here + "/paperless.nix", [["createLocally", 44, 39]]);
-const pos$13 = nix.positions(here + "/paperless.nix", [["PAPERLESS_OCR_LANGUAGE", 46, 13]]);
-const pos$14 = nix.positions(here + "/paperless.nix", [["database", 44, 30], ["settings", 45, 30]]);
-const pos$15 = nix.positions(here + "/paperless.nix", [["paperless", 44, 20]]);
-const pos$16 = nix.positions(here + "/paperless.nix", [["imports", 43, 11], ["services", 44, 11]]);
-const pos$17 = nix.positions(here + "/paperless.nix", [["simple", 13, 9], ["postgres", 42, 9]]);
-const pos$18 = nix.positions(here + "/paperless.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 10, 3], ["testScript", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "paperless",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -42,14 +25,14 @@ export default nix.lambda((args) => (() => {
     })),
     nodes: nix.thunk(() => (() => {
       const self = nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         simple: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               systemPackages: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [
@@ -59,43 +42,43 @@ export default nix.lambda((args) => (() => {
               })()),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               nginx: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 virtualHosts: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
-                  localhost: nix.thunk(() => ({ [nix.POS]: pos$3, forceSSL: false })),
+                  [nix.POS]: $pos[3],
+                  localhost: nix.thunk(() => ({ [nix.POS]: $pos[2], forceSSL: false })),
                 })),
               })),
               paperless: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 enable: true,
                 configureNginx: true,
                 domain: "localhost",
                 passwordFile: nix.thunk(() => nix.builtins.toFile("password", "admin")),
                 exporter: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   enable: true,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     "no-color": nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                     "no-thumbnail": true,
                   })),
                 })),
               })),
             })),
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$10, memorySize: 2048n })),
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[9], memorySize: 2048n })),
           };
         })(), formals$2),
         postgres: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           imports: nix.thunk(() => [nix.thunk(() => nix.sel(self, "simple"))]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             paperless: nix.thunk(() => ({
-              [nix.POS]: pos$14,
-              database: nix.thunk(() => ({ [nix.POS]: pos$12, createLocally: true })),
-              settings: nix.thunk(() => ({ [nix.POS]: pos$13, PAPERLESS_OCR_LANGUAGE: "deu" })),
+              [nix.POS]: $pos[13],
+              database: nix.thunk(() => ({ [nix.POS]: $pos[11], createLocally: true })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[12], PAPERLESS_OCR_LANGUAGE: "deu" })),
             })),
           })),
         })),

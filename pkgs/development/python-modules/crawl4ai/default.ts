@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 61, 5], ["repo", 62, 5], ["tag", 63, 5], ["hash", 64, 5]], [["all", 117, 5], ["cosine", 127, 5], ["pdf", 133, 5], ["sync", 134, 5], ["torch", 135, 5], ["transformer", 140, 5]], [["description", 263, 5], ["homepage", 264, 5], ["changelog", 265, 5], ["license", 266, 5], ["maintainers", 267, 5]], [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["__structuredAttrs", 58, 3], ["src", 60, 3], ["pythonRelaxDeps", 67, 3], ["pythonRemoveDeps", 72, 3], ["build-system", 74, 3], ["dependencies", 79, 3], ["optional-dependencies", 116, 3], ["nativeCheckInputs", 147, 3], ["pytestFlags", 154, 3], ["disabledTestPaths", 156, 3], ["disabledTests", 233, 3], ["pythonImportsCheck", 260, 3], ["meta", 262, 3]]]);
 const formals$1 = { args: { lib: false, aiofiles: false, aiohttp: false, aiosqlite: false, alphashape: false, anyio: false, beautifulsoup4: false, brotli: false, buildPythonPackage: false, chardet: false, click: false, cssselect: false, "fake-useragent": false, fetchFromGitHub: false, h2: false, httpx: false, humanize: false, lark: false, litellm: false, lxml: false, nltk: false, numpy: false, patchright: false, pillow: false, "playwright-stealth": false, playwright: false, psutil: false, pydantic: false, pyopenssl: false, pypdf: false, "pytest-asyncio": false, pytestCheckHook: false, "python-dotenv": false, pyyaml: false, "rank-bm25": false, requests: false, rich: false, "scikit-learn": false, selenium: false, "sentence-transformers": false, setuptools: false, shapely: false, snowballstemmer: false, tokenizers: false, torch: false, transformers: false, "unclecode-litellm": false, writableTmpDirAsHomeHook: false, xxhash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 61, 5], ["repo", 62, 5], ["tag", 63, 5], ["hash", 64, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 117, 5], ["cosine", 127, 5], ["pdf", 133, 5], ["sync", 134, 5], ["torch", 135, 5], ["transformer", 140, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 263, 5], ["homepage", 264, 5], ["changelog", 265, 5], ["license", 266, 5], ["maintainers", 267, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["__structuredAttrs", 58, 3], ["src", 60, 3], ["pythonRelaxDeps", 67, 3], ["pythonRemoveDeps", 72, 3], ["build-system", 74, 3], ["dependencies", 79, 3], ["optional-dependencies", 116, 3], ["nativeCheckInputs", 147, 3], ["pytestFlags", 154, 3], ["disabledTestPaths", 156, 3], ["disabledTests", 233, 3], ["pythonImportsCheck", 260, 3], ["meta", 262, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,13 +57,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xxhash = nix.arg($, "xxhash");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "crawl4ai",
       version: "0.9.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "unclecode",
           repo: "crawl4ai",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -112,7 +109,7 @@ export default nix.lambda((args) => (() => {
         xxhash,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [
           nltk,
           pypdf,
@@ -229,7 +226,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["crawl4ai"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "LLM Friendly Web Crawler & Scraper",
         homepage: "https://github.com/unclecode/crawl4ai",
         changelog: nix.thunk(() => nix.str`https://github.com/unclecode/crawl4ai/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

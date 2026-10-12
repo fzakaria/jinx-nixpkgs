@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["test", 47, 18]], [["tests", 47, 12]], [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["patchPhase", 20, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 31, 3], ["installFlags", 36, 3], ["preFixup", 38, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libsForQt5: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["test", 47, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 47, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["patchPhase", 20, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 31, 3], ["installFlags", 36, 3], ["preFixup", 38, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "1.2.0",
       pname: "cool-retro-term",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Swordfish90",
           repo: "cool-retro-term",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,14 +37,14 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["INSTALL_ROOT=$(out)"]),
       preFixup: nix.thunk(() => nix.add("mv $out/usr/share $out/share\nmv $out/usr/bin $out/bin\nrmdir $out/usr\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -s $out/bin/cool-retro-term.app/Contents/MacOS/cool-retro-term $out/bin/cool-retro-term\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "cool-retro-term")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Terminal emulator which mimics the old cathode display",
         longDescription: "cool-retro-term is a terminal emulator which tries to mimic the look and\nfeel of the old cathode tube screens. It has been designed to be\neye-candy, customizable, and reasonably lightweight.\n",
         homepage: "https://github.com/Swordfish90/cool-retro-term",

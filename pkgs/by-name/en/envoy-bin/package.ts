@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-linux", 16, 7], ["x86_64-linux", 17, 7]], [["aarch64-linux", 23, 7], ["x86_64-linux", 24, 7]], [["url", 33, 5], ["hash", 34, 13]], [["envoy-bin", 58, 11]], [["tests", 58, 5], ["updateScript", 60, 5]], [["homepage", 64, 5], ["changelog", 65, 5], ["description", 66, 5], ["license", 67, 5], ["sourceProvenance", 68, 5], ["maintainers", 69, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]], [["pname", 29, 3], ["version", 30, 11], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["strictDeps", 39, 3], ["dontUnpack", 41, 3], ["dontConfigure", 42, 3], ["dontBuild", 43, 3], ["installPhase", 45, 3], ["nativeInstallCheckInputs", 54, 3], ["doInstallCheck", 55, 3], ["passthru", 57, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, autoPatchelfHook: false, fetchurl: false, nixosTests: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-linux", 16, 7], ["x86_64-linux", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aarch64-linux", 23, 7], ["x86_64-linux", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 33, 5], ["hash", 34, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["envoy-bin", 58, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 58, 5], ["updateScript", 60, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["changelog", 65, 5], ["description", 66, 5], ["license", 67, 5], ["sourceProvenance", 68, 5], ["maintainers", 69, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 11], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["strictDeps", 39, 3], ["dontUnpack", 41, 3], ["dontConfigure", 42, 3], ["dontBuild", 43, 3], ["installPhase", 45, 3], ["nativeInstallCheckInputs", 54, 3], ["doInstallCheck", 55, 3], ["passthru", 57, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`envoy-bin is not available for ${system}.`)));
-  const plat = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "aarch64-linux": "aarch_64", "x86_64-linux": "x86_64" }, () => nix.force(throwSystem), nix.key(nix.force(system))));
+  const plat = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], "aarch64-linux": "aarch_64", "x86_64-linux": "x86_64" }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const hash = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "aarch64-linux": "sha256-hWWtCvSx0dPJhuUWXAJ63TBzV5GC85jdf01yjSXp7GI=",
     "x86_64-linux": "sha256-ACxuHGntD6DqOBiHJHytrfrslIE3X6jY0rFzHuq/QLg=",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "envoy-bin",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/envoyproxy/envoy/releases/download/v${version}/envoy-${version}-linux-${plat}`),
           hash: hash,
         })))),
@@ -47,15 +41,15 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "envoy-bin": nix.thunk(() => nix.sel(nixosTests, "envoy-bin")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://envoyproxy.io",
         changelog: nix.thunk(() => nix.str`https://github.com/envoyproxy/envoy/releases/tag/v${version}`),
         description: "Cloud-native edge and service proxy",

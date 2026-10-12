@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/python-package.nix", [[["pname", 114, 9], ["src", 115, 17], ["version", 115, 21], ["pnpm", 116, 9], ["sourceRoot", 117, 9], ["fetcherVersion", 118, 9], ["hash", 119, 9]], [["pname", 99, 7], ["src", 100, 15], ["version", 100, 19], ["sourceRoot", 101, 7], ["__darwinAllowLocalNetworking", 105, 7], ["nativeBuildInputs", 107, 7], ["pnpmDeps", 113, 7], ["buildPhase", 122, 7], ["installPhase", 127, 7]], [["pname", 147, 9], ["src", 148, 17], ["version", 148, 21], ["pnpm", 149, 9], ["sourceRoot", 150, 9], ["fetcherVersion", 151, 9], ["hash", 152, 9]], [["pname", 134, 7], ["src", 135, 15], ["version", 135, 19], ["sourceRoot", 136, 7], ["__darwinAllowLocalNetworking", 138, 7], ["nativeBuildInputs", 140, 7], ["pnpmDeps", 146, 7], ["buildPhase", 155, 7], ["installPhase", 160, 7]], [["pname", 179, 9], ["version", 180, 9], ["pyproject", 181, 9], ["dontCheckPythonMetadata", 183, 9], ["dontCheckRuntimeDeps", 185, 9], ["src", 187, 17], ["sourceRoot", 188, 9], ["postPatch", 190, 9], ["build-system", 201, 9], ["dependencies", 211, 9], ["pythonRemoveDeps", 213, 9]], [["pname", 219, 7], ["src", 220, 15], ["version", 220, 19], ["pyproject", 221, 7], ["dontCheckPythonMetadata", 223, 7], ["sourceRoot", 225, 7], ["postPatch", 227, 7], ["build-system", 244, 7], ["dependencies", 253, 7]], [["pname", 285, 7], ["src", 286, 15], ["version", 286, 19], ["pyproject", 287, 7], ["dontCheckPythonMetadata", 289, 7], ["sourceRoot", 291, 7], ["postPatch", 293, 7], ["build-system", 312, 7], ["dependencies", 325, 7], ["pythonRelaxDeps", 390, 7]], [["owner", 403, 7], ["repo", 404, 7], ["tag", 405, 7], ["hash", 406, 7]], [["updateScript", 462, 14], ["airflowUi", 463, 14], ["airflowSimpleAuthUi", 464, 14]], [["description", 478, 7], ["homepage", 479, 7], ["changelog", 480, 7], ["license", 481, 7], ["maintainers", 482, 7], ["mainProgram", 485, 7]], [["pname", 397, 5], ["version", 398, 5], ["__structuredAttrs", 400, 5], ["src", 402, 5], ["pyproject", 409, 5], ["postPatch", 411, 5], ["nativeBuildInputs", 421, 5], ["build-system", 423, 5], ["dependencies", 436, 5], ["postInstall", 442, 5], ["installCheckPhase", 448, 5], ["pythonImportsCheck", 457, 5], ["passthru", 462, 5], ["meta", 477, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, writableTmpDirAsHomeHook: false, fetchPnpmDeps: false, nodejs: false, pnpm_10: false, pnpmConfigHook: false, a2wsgi: false, aiosqlite: false, alembic: false, argcomplete: false, asgiref: false, attrs: false, babel: false, buildPythonPackage: false, cachetools: false, cadwyn: false, colorlog: false, "cron-descriptor": false, croniter: false, cryptography: false, deprecated: false, dill: false, fastapi: false, "flit-core": false, fsspec: false, gitdb: false, gitpython: false, greenback: false, hatchling: false, httpx: false, "importlib-metadata": false, isoduration: false, itsdangerous: false, jinja2: false, jsonschema: false, "lazy-object-proxy": false, libcst: false, "linkify-it-py": false, lockfile: false, methodtools: false, msgspec: false, natsort: false, "opentelemetry-api": false, "opentelemetry-exporter-otlp": false, packaging: false, pathspec: false, pendulum: false, pluggy: false, psutil: false, pydantic: false, pygments: false, pygtrie: false, pyjwt: false, python: false, "python-daemon": false, "python-dateutil": false, "python-slugify": false, pyyaml: false, requests: false, retryhttp: false, rich: false, "rich-argparse": false, "rich-click": false, setproctitle: false, smmap: false, sqlalchemy: false, "sqlalchemy-jsonfield": false, "sqlalchemy-utils": false, starlette: false, structlog: false, svcs: false, tabulate: false, tenacity: false, termcolor: false, tomli: false, tomlkit: false, "trove-classifiers": false, "types-requests": false, "typing-extensions": false, "universal-pathlib": false, uuid6: false, uvicorn: false, enabledProviders: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/python-package.nix", [["pname", 114, 9], ["src", 115, 17], ["version", 115, 21], ["pnpm", 116, 9], ["sourceRoot", 117, 9], ["fetcherVersion", 118, 9], ["hash", 119, 9]]);
-const pos$2 = nix.positions(here + "/python-package.nix", [["pname", 99, 7], ["src", 100, 15], ["version", 100, 19], ["sourceRoot", 101, 7], ["__darwinAllowLocalNetworking", 105, 7], ["nativeBuildInputs", 107, 7], ["pnpmDeps", 113, 7], ["buildPhase", 122, 7], ["installPhase", 127, 7]]);
-const pos$3 = nix.positions(here + "/python-package.nix", [["pname", 147, 9], ["src", 148, 17], ["version", 148, 21], ["pnpm", 149, 9], ["sourceRoot", 150, 9], ["fetcherVersion", 151, 9], ["hash", 152, 9]]);
-const pos$4 = nix.positions(here + "/python-package.nix", [["pname", 134, 7], ["src", 135, 15], ["version", 135, 19], ["sourceRoot", 136, 7], ["__darwinAllowLocalNetworking", 138, 7], ["nativeBuildInputs", 140, 7], ["pnpmDeps", 146, 7], ["buildPhase", 155, 7], ["installPhase", 160, 7]]);
-const pos$5 = nix.positions(here + "/python-package.nix", [["pname", 179, 9], ["version", 180, 9], ["pyproject", 181, 9], ["dontCheckPythonMetadata", 183, 9], ["dontCheckRuntimeDeps", 185, 9], ["src", 187, 17], ["sourceRoot", 188, 9], ["postPatch", 190, 9], ["build-system", 201, 9], ["dependencies", 211, 9], ["pythonRemoveDeps", 213, 9]]);
-const pos$6 = nix.positions(here + "/python-package.nix", [["pname", 219, 7], ["src", 220, 15], ["version", 220, 19], ["pyproject", 221, 7], ["dontCheckPythonMetadata", 223, 7], ["sourceRoot", 225, 7], ["postPatch", 227, 7], ["build-system", 244, 7], ["dependencies", 253, 7]]);
-const pos$7 = nix.positions(here + "/python-package.nix", [["pname", 285, 7], ["src", 286, 15], ["version", 286, 19], ["pyproject", 287, 7], ["dontCheckPythonMetadata", 289, 7], ["sourceRoot", 291, 7], ["postPatch", 293, 7], ["build-system", 312, 7], ["dependencies", 325, 7], ["pythonRelaxDeps", 390, 7]]);
-const pos$8 = nix.positions(here + "/python-package.nix", [["owner", 403, 7], ["repo", 404, 7], ["tag", 405, 7], ["hash", 406, 7]]);
-const pos$9 = nix.positions(here + "/python-package.nix", [["updateScript", 462, 14], ["airflowUi", 463, 14], ["airflowSimpleAuthUi", 464, 14]]);
-const pos$10 = nix.positions(here + "/python-package.nix", [["description", 478, 7], ["homepage", 479, 7], ["changelog", 480, 7], ["license", 481, 7], ["maintainers", 482, 7], ["mainProgram", 485, 7]]);
-const pos$11 = nix.positions(here + "/python-package.nix", [["pname", 397, 5], ["version", 398, 5], ["__structuredAttrs", 400, 5], ["src", 402, 5], ["pyproject", 409, 5], ["postPatch", 411, 5], ["nativeBuildInputs", 421, 5], ["build-system", 423, 5], ["dependencies", 436, 5], ["postInstall", 442, 5], ["installCheckPhase", 448, 5], ["pythonImportsCheck", 457, 5], ["passthru", 462, 5], ["meta", 477, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -106,7 +96,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => nix.attr(finalAttrs, "src"));
       const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
       const airflowUi = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (uiAttrs) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "airflow-ui-assets",
           src: src,
           version: version,
@@ -114,7 +104,7 @@ export default nix.lambda((args) => (() => {
           __darwinAllowLocalNetworking: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
           nativeBuildInputs: nix.thunk(() => [nodejs, pnpm_10, pnpmConfigHook]),
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               pname: "airflow-ui",
               src: src,
               version: version,
@@ -127,7 +117,7 @@ export default nix.lambda((args) => (() => {
           installPhase: "mkdir -p $out/share/airflow/ui\ncp -r dist $out/share/airflow/ui/\n",
         })));
       const airflowSimpleAuthUi = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (simpleUiAttrs) => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: "airflow-simple-ui-assets",
           src: src,
           version: version,
@@ -135,7 +125,7 @@ export default nix.lambda((args) => (() => {
           __darwinAllowLocalNetworking: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
           nativeBuildInputs: nix.thunk(() => [nodejs, pnpm_10, pnpmConfigHook]),
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pname: "simple-auth-manager-ui",
               src: src,
               version: version,
@@ -150,7 +140,7 @@ export default nix.lambda((args) => (() => {
       const requiredProviders = nix.thunk(() => ["common_compat", "common_io", "common_sql", "smtp", "standard"]);
       const providers = nix.thunk(() => nix.builtins.import(nix.path(here, "./providers.nix")));
       const buildProvider = (provider) => nix.app(buildPythonPackage, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: nix.thunk(() => nix.str`apache-airflow-providers-${provider}`),
           version: nix.thunk(() => nix.sel(providers, nix.key(nix.force(provider)), "version")),
           pyproject: true,
@@ -172,7 +162,7 @@ export default nix.lambda((args) => (() => {
           pythonRemoveDeps: nix.thunk(() => ["apache-airflow"]),
         })));
       const taskSdk = nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname: "apache-airflow-task-sdk",
           src: src,
           version: version,
@@ -212,7 +202,7 @@ export default nix.lambda((args) => (() => {
           ]),
         }))));
       const airflowCore = nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pname: "apache-airflow-core",
           src: src,
           version: version,
@@ -314,12 +304,12 @@ cp -r ${airflowSimpleAuthUi}/share/airflow/simple-ui/dist src/airflow/api_fastap
           pythonRelaxDeps: nix.thunk(() => ["starlette", "fastapi"]),
         }))));
       return {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         pname: "apache-airflow",
         version: "3.3.2",
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             owner: "apache",
             repo: "airflow",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -348,13 +338,13 @@ ln -s ${airflowCore}/bin/airflow $out/bin/airflow
         installCheckPhase: "runHook preInstallCheck\n\n$out/bin/airflow version\n$out/bin/airflow db reset -y\n\nrunHook postInstallCheck\n",
         pythonImportsCheck: nix.thunk(() => nix.concat(["airflow"], nix.app(nix.sel(lib, "concatMap"), (provider) => nix.sel(providers, nix.key(nix.force(provider)), "imports"), nix.thunk(() => nix.concat(requiredProviders, enabledProviders))))),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           updateScript: nix.path(here, "./update.sh"),
           airflowUi: airflowUi,
           airflowSimpleAuthUi: airflowSimpleAuthUi,
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           description: "Platform to programmatically author, schedule and monitor workflows",
           homepage: "https://airflow.apache.org/",
           changelog: nix.thunk(() => nix.str`https://airflow.apache.org/docs/apache-airflow/${nix.sel(finalAttrs, "version")}/release_notes.html`),

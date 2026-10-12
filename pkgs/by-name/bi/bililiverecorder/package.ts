@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5], ["stripRoot", 24, 5]], [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["mainProgram", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, makeWrapper: false, dotnetCorePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5], ["stripRoot", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["mainProgram", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
       ]));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bililiverecorder",
       version: "2.20.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/BililiveRecorder/BililiveRecorder/releases/download/v${nix.sel(finalAttrs, "version")}/BililiveRecorder-CLI-any.zip`),
           hash: "sha256-nlXjPUvsi/mn3nHfTCXh1Irjjs5qFezjPS8iELCcSUc=",
           stripRoot: false,
@@ -42,7 +40,7 @@ makeWrapper ${dotnet}/bin/dotnet $out/bin/BililiveRecorder \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Convenient free open source bilibili live recording tool",
         homepage: "https://rec.danmuji.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/BililiveRecorder/BililiveRecorder/releases/tag/v${nix.sel(finalAttrs, "version")}`),

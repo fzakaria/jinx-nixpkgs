@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["litellm", 139, 5]], [["extraArgs", 556, 5]], [["updateScript", 555, 12]], [["description", 563, 5], ["homepage", 564, 5], ["changelog", 565, 5], ["license", 566, 5], ["maintainers", 567, 5], ["platforms", 568, 5]], [["pname", 61, 3], ["version", 62, 3], ["pyproject", 63, 3], ["__structuredAttrs", 64, 3], ["src", 66, 25], ["postPatch", 68, 3], ["sourceRoot", 76, 3], ["build-system", 78, 3], ["pythonRelaxDeps", 80, 3], ["dependencies", 104, 3], ["optional-dependencies", 138, 3], ["pythonImportsCheck", 142, 3], ["disabledTestPaths", 144, 3], ["disabledTests", 191, 3], ["nativeCheckInputs", 534, 3], ["pytestFlags", 551, 3], ["passthru", 555, 3], ["meta", 562, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "nix-update-script": false, hatchling: false, aiofiles: false, aiosqlite: false, appdirs: false, "cel-python": false, chromadb: false, click: false, "crewai-cli": false, "crewai-core": false, httpx: false, instructor: false, "json-repair": false, json5: false, jsonref: false, lancedb: false, mcp: false, openai: false, "opentelemetry-api": false, "opentelemetry-exporter-otlp-proto-http": false, "opentelemetry-sdk": false, openpyxl: false, pdfplumber: false, portalocker: false, pydantic: false, "pydantic-settings": false, pyjwt: false, "python-dotenv": false, pyyaml: false, regex: false, tokenizers: false, tomli: false, "tomli-w": false, litellm: false, "a2a-sdk": false, aiocache: false, anthropic: false, boto3: false, "google-genai": false, "pytest-asyncio": false, "pytest-recording": false, "pytest-xdist": false, pytestCheckHook: false, "qdrant-client": false, vcrpy: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["litellm", 139, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 556, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 555, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 563, 5], ["homepage", 564, 5], ["changelog", 565, 5], ["license", 566, 5], ["maintainers", 567, 5], ["platforms", 568, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 61, 3], ["version", 62, 3], ["pyproject", 63, 3], ["__structuredAttrs", 64, 3], ["src", 66, 25], ["postPatch", 68, 3], ["sourceRoot", 76, 3], ["build-system", 78, 3], ["pythonRelaxDeps", 80, 3], ["dependencies", 104, 3], ["optional-dependencies", 138, 3], ["pythonImportsCheck", 142, 3], ["disabledTestPaths", 144, 3], ["disabledTests", 191, 3], ["nativeCheckInputs", 534, 3], ["pytestFlags", 551, 3], ["passthru", 555, 3], ["meta", 562, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,7 +56,7 @@ export default nix.lambda((args) => (() => {
   const vcrpy = nix.arg($, "vcrpy");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "crewai",
       version: "1.15.18",
       pyproject: true,
@@ -125,7 +121,7 @@ export default nix.lambda((args) => (() => {
         tomli,
         tomli_w,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$1, litellm: nix.thunk(() => [litellm]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[0], litellm: nix.thunk(() => [litellm]) })),
       pythonImportsCheck: nix.thunk(() => ["crewai"]),
       disabledTestPaths: nix.thunk(() => [
         "tests/test_crew.py",
@@ -477,14 +473,14 @@ export default nix.lambda((args) => (() => {
       ]),
       pytestFlags: nix.thunk(() => ["--override-ini=addopts="]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "^([0-9]+\\.[0-9]+\\.[0-9]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Framework for orchestrating role-playing, autonomous AI agents",
         homepage: "https://github.com/crewAIInc/crewAI",
         changelog: nix.thunk(() => nix.str`https://github.com/crewAIInc/crewAI/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

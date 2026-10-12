@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/syslogd.nix", [[["description", 30, 5], ["maintainers", 31, 5], ["license", 32, 5]], [["path", 9, 3], ["extraPaths", 11, 3], ["buildInputs", 16, 3], ["MK_FTP", 23, 3], ["MK_LPR", 24, 3], ["MK_PPP", 25, 3], ["MK_TESTS", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { mkDerivation: false, lib: false, libcasper: false, libcapsicum: false, libnv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/syslogd.nix", [["description", 30, 5], ["maintainers", 31, 5], ["license", 32, 5]]);
-const pos$2 = nix.positions(here + "/syslogd.nix", [["path", 9, 3], ["extraPaths", 11, 3], ["buildInputs", 16, 3], ["MK_FTP", 23, 3], ["MK_LPR", 24, 3], ["MK_PPP", 25, 3], ["MK_TESTS", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const libcapsicum = nix.arg($, "libcapsicum");
   const libnv = nix.arg($, "libnv");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.sbin/syslogd",
       extraPaths: nix.thunk(() => ["usr.bin/wall", "sys/sys"]),
       buildInputs: nix.thunk(() => [libcasper, libcapsicum, libnv]),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       MK_PPP: "no",
       MK_TESTS: "no",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "FreeBSD syslog daemon",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

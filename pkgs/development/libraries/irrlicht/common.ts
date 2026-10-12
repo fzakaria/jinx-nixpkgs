@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["url", 8, 5], ["hash", 9, 5]], [["pname", 4, 3], ["version", 5, 3], ["src", 7, 3]]]);
 const formals$1 = { args: { fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["url", 8, 5], ["hash", 9, 5]]);
-const pos$2 = nix.positions(here + "/common.nix", [["pname", 4, 3], ["version", 5, 3], ["src", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +12,11 @@ export default nix.lambda((args) => (() => {
     const pname = "irrlicht";
     const version = "1.8.5";
     const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`mirror://sourceforge/irrlicht/${pname}-${version}.zip`),
         hash: "sha256-cTkzxquMLl84/cSDZnSSQsmXRX/htV8M5NUTbnQuHoM=",
       }))));
-    return { [nix.POS]: pos$2, pname, version, src };
+    return { [nix.POS]: $pos[1], pname, version, src };
   })();
 })(), formals$1);
 //# sourceMappingURL=common.ts.map

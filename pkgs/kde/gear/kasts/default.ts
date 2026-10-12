@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 19, 8]], [["pname", 10, 3], ["extraNativeBuildInputs", 12, 3], ["extraBuildInputs", 13, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qtsvg: false, qtmultimedia: false, "pkg-config": false, taglib_1: false, libvlc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 19, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["extraNativeBuildInputs", 12, 3], ["extraBuildInputs", 13, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const taglib_1 = nix.arg($, "taglib_1");
   const libvlc = nix.arg($, "libvlc");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kasts",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtsvg, qtmultimedia, taglib_1, libvlc]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kasts" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "kasts" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

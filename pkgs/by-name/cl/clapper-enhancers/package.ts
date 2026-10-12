@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["pluginPath", 68, 12]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 38], ["platforms", 74, 50]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["pythonPath", 55, 3], ["postFixup", 59, 3], ["mesonFlags", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, libpeas2: false, "json-glib": false, libsoup_3: false, libmicrodns: false, sqlite: false, glib: false, "clapper-unwrapped": false, gst_all_1: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pluginPath", 68, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 38], ["platforms", 74, 50]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["pythonPath", 55, 3], ["postFixup", 59, 3], ["mesonFlags", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "clapper-enhancers",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Rafostar",
           repo: "clapper-enhancers",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,11 +64,11 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`-Denhancersdir=${nix.builtins.placeholder("out")}/${nix.sel(finalAttrs, "passthru", "pluginPath")}`),
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginPath: "lib/clapper-enhancers/plugins" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], pluginPath: "lib/clapper-enhancers/plugins" })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(clapper_unwrapped, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Plugins enhancing Clapper library capabilities",
         homepage: "https://github.com/Rafostar/clapper-enhancers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

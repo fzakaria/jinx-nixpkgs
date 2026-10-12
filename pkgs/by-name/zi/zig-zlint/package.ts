@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["src", 27, 26], ["pname", 27, 30], ["version", 27, 36], ["fetchAll", 28, 5], ["hash", 29, 5]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5], ["platforms", 65, 24]], [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 15, 3], ["strictDeps", 16, 3], ["src", 18, 3], ["zigDeps", 26, 3], ["postConfigure", 32, 3], ["nativeBuildInputs", 36, 3], ["zigBuildFlags", 40, 3], ["doCheck", 44, 3], ["zigCheckFlags", 45, 3], ["doInstallCheck", 47, 3], ["nativeInstallCheckInputs", 48, 3], ["versionCheckProgram", 49, 3], ["installPhase", 52, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, zig_0_16: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 27, 26], ["pname", 27, 30], ["version", 27, 36], ["fetchAll", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5], ["platforms", 65, 24]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 15, 3], ["strictDeps", 16, 3], ["src", 18, 3], ["zigDeps", 26, 3], ["postConfigure", 32, 3], ["nativeBuildInputs", 36, 3], ["zigBuildFlags", 40, 3], ["doCheck", 44, 3], ["zigCheckFlags", 45, 3], ["doInstallCheck", 47, 3], ["nativeInstallCheckInputs", 48, 3], ["versionCheckProgram", 49, 3], ["installPhase", 52, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const zig = zig_0_16;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zig-zlint",
       version: "0.9.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "zlint",
           owner: "DonIsaac",
           repo: "zlint",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-EUTShGGp1M4ZckLgQJSXzGJQqFMx2r4zwt+mkRIPzPE=",
         })))),
       zigDeps: nix.thunk(() => nix.app(nix.sel(zig, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(zig, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Linter for the Zig programming language",
         homepage: "https://github.com/DonIsaac/zlint",
         changelog: nix.thunk(() => nix.str`https://github.com/DonIsaac/zlint/releases/tag/v${nix.sel(finalAttrs, "version")}`),

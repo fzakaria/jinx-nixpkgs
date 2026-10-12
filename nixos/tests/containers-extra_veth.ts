@@ -2,114 +2,93 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/containers-extra_veth.nix", [[["writableStore", 11, 22], ["vlans", 12, 22], ["additionalPaths", 70, 22]], [["interfaces", 17, 11]], [["interfaces", 20, 11]], [["br0", 16, 9], ["br1", 19, 9]], [["address", 27, 15], ["prefixLength", 28, 15]], [["addresses", 25, 16]], [["address", 33, 15], ["prefixLength", 34, 15]], [["addresses", 31, 16]], [["ipv4", 25, 11], ["ipv6", 31, 11]], [["address", 41, 15], ["prefixLength", 42, 15]], [["addresses", 39, 16]], [["ipv4", 39, 11]], [["br0", 24, 9], ["br1", 38, 9]], [["useDHCP", 14, 18], ["bridges", 15, 18], ["interfaces", 23, 18]], [["hostBridge", 56, 13], ["localAddress", 57, 13]], [["hostAddress", 60, 13], ["localAddress", 61, 13]], [["veth1", 55, 11], ["veth2", 59, 11]], [["allowedTCPPorts", 65, 31]], [["firewall", 65, 22]], [["enable", 66, 15]], [["networking", 65, 11], ["nix", 66, 11]], [["autoStart", 49, 9], ["privateNetwork", 50, 9], ["hostBridge", 51, 9], ["localAddress", 52, 9], ["localAddress6", 53, 9], ["extraVeths", 54, 9], ["config", 64, 9]], [["webserver", 48, 18]], [["imports", 10, 7], ["virtualisation", 11, 7], ["networking", 14, 7], ["containers", 48, 7]], [["machine", 7, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 7, 3], ["testScript", 73, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/containers-extra_veth.nix", [["writableStore", 11, 22], ["vlans", 12, 22], ["additionalPaths", 70, 22]]);
-const pos$2 = nix.positions(here + "/containers-extra_veth.nix", [["interfaces", 17, 11]]);
-const pos$3 = nix.positions(here + "/containers-extra_veth.nix", [["interfaces", 20, 11]]);
-const pos$4 = nix.positions(here + "/containers-extra_veth.nix", [["br0", 16, 9], ["br1", 19, 9]]);
-const pos$5 = nix.positions(here + "/containers-extra_veth.nix", [["address", 27, 15], ["prefixLength", 28, 15]]);
-const pos$6 = nix.positions(here + "/containers-extra_veth.nix", [["addresses", 25, 16]]);
-const pos$7 = nix.positions(here + "/containers-extra_veth.nix", [["address", 33, 15], ["prefixLength", 34, 15]]);
-const pos$8 = nix.positions(here + "/containers-extra_veth.nix", [["addresses", 31, 16]]);
-const pos$9 = nix.positions(here + "/containers-extra_veth.nix", [["ipv4", 25, 11], ["ipv6", 31, 11]]);
-const pos$10 = nix.positions(here + "/containers-extra_veth.nix", [["address", 41, 15], ["prefixLength", 42, 15]]);
-const pos$11 = nix.positions(here + "/containers-extra_veth.nix", [["addresses", 39, 16]]);
-const pos$12 = nix.positions(here + "/containers-extra_veth.nix", [["ipv4", 39, 11]]);
-const pos$13 = nix.positions(here + "/containers-extra_veth.nix", [["br0", 24, 9], ["br1", 38, 9]]);
-const pos$14 = nix.positions(here + "/containers-extra_veth.nix", [["useDHCP", 14, 18], ["bridges", 15, 18], ["interfaces", 23, 18]]);
-const pos$15 = nix.positions(here + "/containers-extra_veth.nix", [["hostBridge", 56, 13], ["localAddress", 57, 13]]);
-const pos$16 = nix.positions(here + "/containers-extra_veth.nix", [["hostAddress", 60, 13], ["localAddress", 61, 13]]);
-const pos$17 = nix.positions(here + "/containers-extra_veth.nix", [["veth1", 55, 11], ["veth2", 59, 11]]);
-const pos$18 = nix.positions(here + "/containers-extra_veth.nix", [["allowedTCPPorts", 65, 31]]);
-const pos$19 = nix.positions(here + "/containers-extra_veth.nix", [["firewall", 65, 22]]);
-const pos$20 = nix.positions(here + "/containers-extra_veth.nix", [["enable", 66, 15]]);
-const pos$21 = nix.positions(here + "/containers-extra_veth.nix", [["networking", 65, 11], ["nix", 66, 11]]);
-const pos$22 = nix.positions(here + "/containers-extra_veth.nix", [["autoStart", 49, 9], ["privateNetwork", 50, 9], ["hostBridge", 51, 9], ["localAddress", 52, 9], ["localAddress6", 53, 9], ["extraVeths", 54, 9], ["config", 64, 9]]);
-const pos$23 = nix.positions(here + "/containers-extra_veth.nix", [["webserver", 48, 18]]);
-const pos$24 = nix.positions(here + "/containers-extra_veth.nix", [["imports", 10, 7], ["virtualisation", 11, 7], ["networking", 14, 7], ["containers", 48, 7]]);
-const pos$25 = nix.positions(here + "/containers-extra_veth.nix", [["machine", 7, 9]]);
-const pos$26 = nix.positions(here + "/containers-extra_veth.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 7, 3], ["testScript", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     name: "containers-extra_veth",
     meta: nix.thunk(() => ({})),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           imports: nix.thunk(() => [nix.path(here, "../modules/installer/cd-dvd/channel.nix")]),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             writableStore: true,
             vlans: [],
             additionalPaths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "stdenv"))]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             useDHCP: false,
             bridges: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              br0: nix.thunk(() => ({ [nix.POS]: pos$2, interfaces: [] })),
-              br1: nix.thunk(() => ({ [nix.POS]: pos$3, interfaces: [] })),
+              [nix.POS]: $pos[3],
+              br0: nix.thunk(() => ({ [nix.POS]: $pos[1], interfaces: [] })),
+              br1: nix.thunk(() => ({ [nix.POS]: $pos[2], interfaces: [] })),
             })),
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               br0: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$5, address: "192.168.0.1", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[4], address: "192.168.0.1", prefixLength: 24n })),
                   ]),
                 })),
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$7, address: "fc00::1", prefixLength: 7n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[6], address: "fc00::1", prefixLength: 7n })),
                   ]),
                 })),
               })),
               br1: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$10, address: "192.168.1.1", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[9], address: "192.168.1.1", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
           })),
           containers: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             webserver: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               autoStart: true,
               privateNetwork: true,
               hostBridge: "br0",
               localAddress: "192.168.0.100/24",
               localAddress6: "fc00::2/7",
               extraVeths: nix.thunk(() => ({
-                [nix.POS]: pos$17,
-                veth1: nix.thunk(() => ({ [nix.POS]: pos$15, hostBridge: "br1", localAddress: "192.168.1.100/24" })),
-                veth2: nix.thunk(() => ({ [nix.POS]: pos$16, hostAddress: "192.168.2.1", localAddress: "192.168.2.100" })),
+                [nix.POS]: $pos[16],
+                veth1: nix.thunk(() => ({ [nix.POS]: $pos[14], hostBridge: "br1", localAddress: "192.168.1.100/24" })),
+                veth2: nix.thunk(() => ({
+                  [nix.POS]: $pos[15],
+                  hostAddress: "192.168.2.1",
+                  localAddress: "192.168.2.100",
+                })),
               })),
               config: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 networking: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
-                  firewall: nix.thunk(() => ({ [nix.POS]: pos$18, allowedTCPPorts: nix.thunk(() => [80n]) })),
+                  [nix.POS]: $pos[18],
+                  firewall: nix.thunk(() => ({ [nix.POS]: $pos[17], allowedTCPPorts: nix.thunk(() => [80n]) })),
                 })),
-                nix: nix.thunk(() => ({ [nix.POS]: pos$20, enable: false })),
+                nix: nix.thunk(() => ({ [nix.POS]: $pos[19], enable: false })),
               })),
             })),
           })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 40, 3], ["pythonImportsCheck", 54, 3], ["disabledTestPaths", 56, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cachelib: false, cryptography: false, fetchFromGitHub: false, "flask-sqlalchemy": false, flask: false, httpx: false, joserfc: false, mock: false, "pytest-asyncio": false, pytestCheckHook: false, "python-multipart": false, requests: false, setuptools: false, starlette: false, werkzeug: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 40, 3], ["pythonImportsCheck", 54, 3], ["disabledTestPaths", 56, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const starlette = nix.arg($, "starlette");
   const werkzeug = nix.arg($, "werkzeug");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "authlib",
       version: "1.7.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lepture",
           repo: "authlib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["authlib"]),
       disabledTestPaths: nix.thunk(() => ["tests/django/", "tests/clients/test_django/", "tests/jose/test_chacha20.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for building OAuth and OpenID Connect servers",
         homepage: "https://github.com/lepture/authlib",
         changelog: nix.thunk(() => nix.str`https://github.com/lepture/authlib/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/upgrades/changelog.rst`),

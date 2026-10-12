@@ -2,61 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mpd.nix", [[["license", 9, 10]], [["name", 6, 5], ["url", 7, 5], ["hash", 8, 5], ["meta", 9, 5]], [["user", 13, 5], ["group", 14, 5], ["dataDir", 15, 5], ["enable", 16, 5]], [["User", 34, 9], ["Group", 35, 9]], [["description", 26, 7], ["requires", 27, 7], ["after", 28, 7], ["wantedBy", 29, 7], ["script", 30, 7], ["serviceConfig", 33, 7]], [["kernelModules", 42, 12]], [["mpd", 43, 16]], [["musicService", 44, 24]], [["services", 44, 15]], [["boot", 42, 7], ["services", 43, 7], ["systemd", 44, 7]], [["maintainers", 50, 5]], [["type", 68, 19], ["name", 69, 19], ["mixer_type", 70, 19]], [["bind_to_address", 65, 15], ["audio_output", 66, 15]], [["settings", 64, 13], ["openFirewall", 74, 13]], [["user", 76, 65], ["group", 76, 70], ["dataDir", 76, 76]], [["mpd", 63, 11], ["musicService", 76, 11]], [["type", 87, 17], ["name", 88, 17]], [["audio_output", 85, 22]], [["settings", 85, 13]], [["user", 93, 65], ["group", 93, 70], ["dataDir", 93, 76]], [["mpd", 84, 11], ["musicService", 93, 11]], [["allowAll", 100, 34]], [["enable", 99, 17], ["anonymousClients", 100, 17]], [["enable", 97, 13], ["systemWide", 98, 13], ["tcp", 99, 13]], [["pulseaudio", 96, 20]], [["PULSE_SERVER", 102, 44]], [["environment", 102, 32]], [["mpd", 102, 28]], [["services", 102, 19]], [["services", 96, 11], ["systemd", 102, 11]], [["client", 57, 5], ["serverALSA", 59, 5], ["serverPulseAudio", 80, 5]], [["name", 48, 3], ["meta", 49, 3], ["nodes", 56, 3], ["testScript", 107, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mpd.nix", [["license", 9, 10]]);
-const pos$2 = nix.positions(here + "/mpd.nix", [["name", 6, 5], ["url", 7, 5], ["hash", 8, 5], ["meta", 9, 5]]);
-const pos$3 = nix.positions(here + "/mpd.nix", [["user", 13, 5], ["group", 14, 5], ["dataDir", 15, 5], ["enable", 16, 5]]);
 const formals$2 = { args: { user: false, group: false, dataDir: false }, ellipsis: false };
-const pos$4 = nix.positions(here + "/mpd.nix", [["User", 34, 9], ["Group", 35, 9]]);
-const pos$5 = nix.positions(here + "/mpd.nix", [["description", 26, 7], ["requires", 27, 7], ["after", 28, 7], ["wantedBy", 29, 7], ["script", 30, 7], ["serviceConfig", 33, 7]]);
 const formals$3 = { args: { mpd: false, musicService: false }, ellipsis: false };
-const pos$6 = nix.positions(here + "/mpd.nix", [["kernelModules", 42, 12]]);
-const pos$7 = nix.positions(here + "/mpd.nix", [["mpd", 43, 16]]);
-const pos$8 = nix.positions(here + "/mpd.nix", [["musicService", 44, 24]]);
-const pos$9 = nix.positions(here + "/mpd.nix", [["services", 44, 15]]);
-const pos$10 = nix.positions(here + "/mpd.nix", [["boot", 42, 7], ["services", 43, 7], ["systemd", 44, 7]]);
-const pos$11 = nix.positions(here + "/mpd.nix", [["maintainers", 50, 5]]);
 const formals$4 = { args: {  }, ellipsis: true };
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$12 = nix.positions(here + "/mpd.nix", [["type", 68, 19], ["name", 69, 19], ["mixer_type", 70, 19]]);
-const pos$13 = nix.positions(here + "/mpd.nix", [["bind_to_address", 65, 15], ["audio_output", 66, 15]]);
-const pos$14 = nix.positions(here + "/mpd.nix", [["settings", 64, 13], ["openFirewall", 74, 13]]);
-const pos$15 = nix.positions(here + "/mpd.nix", [["user", 76, 65], ["group", 76, 70], ["dataDir", 76, 76]]);
-const pos$16 = nix.positions(here + "/mpd.nix", [["mpd", 63, 11], ["musicService", 76, 11]]);
 const formals$6 = { args: {  }, ellipsis: true };
-const pos$17 = nix.positions(here + "/mpd.nix", [["type", 87, 17], ["name", 88, 17]]);
-const pos$18 = nix.positions(here + "/mpd.nix", [["audio_output", 85, 22]]);
-const pos$19 = nix.positions(here + "/mpd.nix", [["settings", 85, 13]]);
-const pos$20 = nix.positions(here + "/mpd.nix", [["user", 93, 65], ["group", 93, 70], ["dataDir", 93, 76]]);
-const pos$21 = nix.positions(here + "/mpd.nix", [["mpd", 84, 11], ["musicService", 93, 11]]);
-const pos$22 = nix.positions(here + "/mpd.nix", [["allowAll", 100, 34]]);
-const pos$23 = nix.positions(here + "/mpd.nix", [["enable", 99, 17], ["anonymousClients", 100, 17]]);
-const pos$24 = nix.positions(here + "/mpd.nix", [["enable", 97, 13], ["systemWide", 98, 13], ["tcp", 99, 13]]);
-const pos$25 = nix.positions(here + "/mpd.nix", [["pulseaudio", 96, 20]]);
-const pos$26 = nix.positions(here + "/mpd.nix", [["PULSE_SERVER", 102, 44]]);
-const pos$27 = nix.positions(here + "/mpd.nix", [["environment", 102, 32]]);
-const pos$28 = nix.positions(here + "/mpd.nix", [["mpd", 102, 28]]);
-const pos$29 = nix.positions(here + "/mpd.nix", [["services", 102, 19]]);
-const pos$30 = nix.positions(here + "/mpd.nix", [["services", 96, 11], ["systemd", 102, 11]]);
-const pos$31 = nix.positions(here + "/mpd.nix", [["client", 57, 5], ["serverALSA", 59, 5], ["serverPulseAudio", 80, 5]]);
-const pos$32 = nix.positions(here + "/mpd.nix", [["name", 48, 3], ["meta", 49, 3], ["nodes", 56, 3], ["testScript", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const track = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "Blue bossa - Jazz at Miadost Club.mp3",
       url: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Jazz_at_Mladost_Club/Jazz_Night/Jazz_at_Mladost_Club_-_07_-_Blue_bossa.mp3?download=1&name=Jazz%20at%20Mladost%20Club%20-%20Blue%20bossa.mp3",
       hash: "sha256-cAG4nBuc97J3ZJc9cm/6vWTgnPL/Hfkar7cA3+89rto=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       })),
     }))));
   const defaultMpdCfg = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     user: "mpd",
     group: "mpd",
     dataDir: "/var/lib/mpd",
@@ -68,14 +37,14 @@ export default nix.lambda((args) => (() => {
     const group = nix.arg($_1, "group");
     const dataDir = nix.arg($_1, "dataDir");
     return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       description: "Sets up the music file(s) for MPD to use.",
       requires: nix.thunk(() => ["mpd.service"]),
       after: nix.thunk(() => ["mpd.service"]),
       wantedBy: nix.thunk(() => ["default.target"]),
       script: nix.thunk(() => nix.str`cp ${track} ${dataDir}/music
 `),
-      serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$4, User: user, Group: group })),
+      serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[3], User: user, Group: group })),
     };
   })(), formals$2);
   const mkServer = nix.lambda((args_1) => (() => {
@@ -83,20 +52,20 @@ export default nix.lambda((args) => (() => {
     const mpd = nix.arg($_1, "mpd");
     const musicService_1 = nix.arg($_1, "musicService");
     return {
-      [nix.POS]: pos$10,
-      boot: nix.thunk(() => ({ [nix.POS]: pos$6, kernelModules: nix.thunk(() => ["snd-dummy"]) })),
-      services: nix.thunk(() => ({ [nix.POS]: pos$7, mpd: mpd })),
+      [nix.POS]: $pos[9],
+      boot: nix.thunk(() => ({ [nix.POS]: $pos[5], kernelModules: nix.thunk(() => ["snd-dummy"]) })),
+      services: nix.thunk(() => ({ [nix.POS]: $pos[6], mpd: mpd })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        services: nix.thunk(() => ({ [nix.POS]: pos$8, musicService: musicService_1 })),
+        [nix.POS]: $pos[8],
+        services: nix.thunk(() => ({ [nix.POS]: $pos[7], musicService: musicService_1 })),
       })),
     };
   })(), formals$3);
   return {
-    [nix.POS]: pos$32,
+    [nix.POS]: $pos[31],
     name: "mpd",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -106,7 +75,7 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {};
@@ -115,20 +84,20 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => nix.app(mkServer, nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 mpd: nix.thunk(() => nix.update(defaultMpdCfg, {
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     bind_to_address: "any",
                     audio_output: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$12, type: "alsa", name: "ALSA", mixer_type: "null" })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[11], type: "alsa", name: "ALSA", mixer_type: "null" })),
                     ]),
                   })),
                   openFirewall: true,
                 })),
                 musicService: nix.thunk(() => nix.app(musicService, nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     user: nix.thunk(() => nix.attr(defaultMpdCfg, "user")),
                     group: nix.thunk(() => nix.attr(defaultMpdCfg, "group")),
                     dataDir: nix.thunk(() => nix.attr(defaultMpdCfg, "dataDir")),
@@ -140,43 +109,43 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$6);
         return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => nix.app(mkServer, nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 mpd: nix.thunk(() => nix.update(defaultMpdCfg, {
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
-                    audio_output: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$17, type: "pulse", name: "The Pulse" }))]),
+                    [nix.POS]: $pos[17],
+                    audio_output: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[16], type: "pulse", name: "The Pulse" }))]),
                   })),
                 })),
                 musicService: nix.thunk(() => nix.app(musicService, nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     user: nix.thunk(() => nix.attr(defaultMpdCfg, "user")),
                     group: nix.thunk(() => nix.attr(defaultMpdCfg, "group")),
                     dataDir: nix.thunk(() => nix.attr(defaultMpdCfg, "dataDir")),
                   })))),
               })))),
             nix.thunk(() => ({
-              [nix.POS]: pos$30,
+              [nix.POS]: $pos[29],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 pulseaudio: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   enable: true,
                   systemWide: true,
                   tcp: nix.thunk(() => ({
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     enable: true,
-                    anonymousClients: nix.thunk(() => ({ [nix.POS]: pos$22, allowAll: true })),
+                    anonymousClients: nix.thunk(() => ({ [nix.POS]: $pos[21], allowAll: true })),
                   })),
                 })),
               })),
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$28,
+                  [nix.POS]: $pos[27],
                   mpd: nix.thunk(() => ({
-                    [nix.POS]: pos$27,
-                    environment: nix.thunk(() => ({ [nix.POS]: pos$26, PULSE_SERVER: "localhost" })),
+                    [nix.POS]: $pos[26],
+                    environment: nix.thunk(() => ({ [nix.POS]: $pos[25], PULSE_SERVER: "localhost" })),
                   })),
                 })),
               })),

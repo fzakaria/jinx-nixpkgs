@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/2.0.nix", [[["url", 19, 5], ["hash", 20, 5]], [["packageName", 38, 7], ["attrPath", 39, 7], ["versionPolicy", 40, 7], ["freeze", 41, 7]], [["updateScript", 37, 5]], [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["platforms", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["strictDeps", 16, 3], ["src", 18, 3], ["outputs", 23, 3], ["nativeBuildInputs", 28, 3], ["doCheck", 34, 3], ["passthru", 36, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/2.0.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/2.0.nix", [["packageName", 38, 7], ["attrPath", 39, 7], ["versionPolicy", 40, 7], ["freeze", 41, 7]]);
-const pos$3 = nix.positions(here + "/2.0.nix", [["updateScript", 37, 5]]);
-const pos$4 = nix.positions(here + "/2.0.nix", [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["platforms", 49, 5]]);
-const pos$5 = nix.positions(here + "/2.0.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["strictDeps", 16, 3], ["src", 18, 3], ["outputs", 23, 3], ["nativeBuildInputs", 28, 3], ["doCheck", 34, 3], ["passthru", 36, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libsigc++",
       version: "2.12.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libsigc++/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libsigc++-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-qdvuMjNR0Qm3ruB0qcuJyj57z4rY7e8YUfTPNZvVCEM=",
         })))),
@@ -33,9 +29,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packageName: "libsigc++",
             attrPath: "libsigcxx_2_0",
             versionPolicy: "odd-unstable",
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://libsigcplusplus.github.io/libsigcplusplus/",
         description: "Typesafe callback system for standard C++",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

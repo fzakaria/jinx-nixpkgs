@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["teams", 100, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["build-system", 44, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 54, 3], ["dependencies", 56, 3], ["pythonImportsCheck", 62, 3], ["nativeCheckInputs", 64, 3], ["preCheck", 71, 3], ["disabledTestMarks", 75, 3], ["disabledTests", 80, 3], ["disabledTestPaths", 90, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, gdal: false, cython: false, setuptools: false, versioneer: false, certifi: false, numpy: false, packaging: false, fiona: false, pandas: false, "pytest-benchmark": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["teams", 100, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["build-system", 44, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 54, 3], ["dependencies", 56, 3], ["pythonImportsCheck", 62, 3], ["nativeCheckInputs", 64, 3], ["preCheck", 71, 3], ["disabledTestMarks", 75, 3], ["disabledTests", 80, 3], ["disabledTestPaths", 90, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pytest_benchmark = nix.arg($, "pytest-benchmark");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pyogrio",
       version: "0.13.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "geopandas",
           repo: "pyogrio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["pyogrio/tests/test_geopandas_io.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Vectorized spatial vector file format I/O using GDAL/OGR",
         homepage: "https://pyogrio.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/geopandas/pyogrio/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

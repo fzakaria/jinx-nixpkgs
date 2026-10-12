@@ -2,22 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/firefox.nix", [[["maintainers", 11, 5]], [["systemPackages", 19, 19]], [["media.autoplay.default", 23, 21]], [["enable", 22, 9], ["preferences", 23, 9], ["package", 24, 9]], [["firefox", 21, 16]], [["playback", 30, 23]], [["enable", 28, 9], ["enableRecorder", 29, 9], ["defaultDevice", 30, 9]], [["alsa", 27, 16]], [["description", 34, 9], ["script", 35, 9]], [["audio-recorder", 33, 24]], [["services", 33, 15]], [["imports", 18, 7], ["environment", 19, 7], ["programs", 21, 7], ["hardware", 27, 7], ["systemd", 33, 7]], [["machine", 14, 9]], [["name", 8, 3], ["meta", 10, 3], ["nodes", 14, 3], ["testScript", 40, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, firefoxPackage: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/firefox.nix", [["maintainers", 11, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/firefox.nix", [["systemPackages", 19, 19]]);
-const pos$3 = nix.positions(here + "/firefox.nix", [["media.autoplay.default", 23, 21]]);
-const pos$4 = nix.positions(here + "/firefox.nix", [["enable", 22, 9], ["preferences", 23, 9], ["package", 24, 9]]);
-const pos$5 = nix.positions(here + "/firefox.nix", [["firefox", 21, 16]]);
-const pos$6 = nix.positions(here + "/firefox.nix", [["playback", 30, 23]]);
-const pos$7 = nix.positions(here + "/firefox.nix", [["enable", 28, 9], ["enableRecorder", 29, 9], ["defaultDevice", 30, 9]]);
-const pos$8 = nix.positions(here + "/firefox.nix", [["alsa", 27, 16]]);
-const pos$9 = nix.positions(here + "/firefox.nix", [["description", 34, 9], ["script", 35, 9]]);
-const pos$10 = nix.positions(here + "/firefox.nix", [["audio-recorder", 33, 24]]);
-const pos$11 = nix.positions(here + "/firefox.nix", [["services", 33, 15]]);
-const pos$12 = nix.positions(here + "/firefox.nix", [["imports", 18, 7], ["environment", 19, 7], ["programs", 21, 7], ["hardware", 27, 7], ["systemd", 33, 7]]);
-const pos$13 = nix.positions(here + "/firefox.nix", [["machine", 14, 9]]);
-const pos$14 = nix.positions(here + "/firefox.nix", [["name", 8, 3], ["meta", 10, 3], ["nodes", 14, 3], ["testScript", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,51 +12,51 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const firefoxPackage = nix.arg($, "firefoxPackage");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: nix.thunk(() => nix.sel(firefoxPackage, "pname")),
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "shlevy"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "xdotool"))]),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             firefox: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
-              preferences: nix.thunk(() => ({ [nix.POS]: pos$3, "media.autoplay.default": 0n })),
+              preferences: nix.thunk(() => ({ [nix.POS]: $pos[2], "media.autoplay.default": 0n })),
               package: firefoxPackage,
             })),
           })),
           hardware: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             alsa: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               enableRecorder: true,
-              defaultDevice: nix.thunk(() => ({ [nix.POS]: pos$6, playback: "pcm.recorder" })),
+              defaultDevice: nix.thunk(() => ({ [nix.POS]: $pos[5], playback: "pcm.recorder" })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               "audio-recorder": nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 description: "Record NixOS test audio to /tmp/record.wav",
                 script: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "alsa-utils")}/bin/arecord -Drecorder -fS16_LE -r48000 -c2 /tmp/record.wav`),
               })),

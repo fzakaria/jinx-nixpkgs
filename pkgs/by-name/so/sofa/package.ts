@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["url", 40, 7], ["hash", 41, 7]], [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["propagatedNativeBuildInputs", 51, 3], ["propagatedBuildInputs", 55, 3], ["cmakeFlags", 69, 3], ["doCheck", 73, 3], ["postFixup", 75, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, qt6Packages: false, boost: false, cxxopts: false, eigen: false, glew: false, gtest: false, libGL: false, metis: false, "tinyxml-2": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 40, 7], ["hash", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["propagatedNativeBuildInputs", 51, 3], ["propagatedBuildInputs", 55, 3], ["cmakeFlags", 69, 3], ["doCheck", 73, 3], ["postFixup", 75, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const tinyxml_2 = nix.arg($, "tinyxml-2");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sofa",
       version: "24.12.00",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sofa-framework",
           repo: "sofa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,12 +35,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/sofa-framework/sofa/commit/700b6cdd94fe24a51b2a7014fb0fc83e6abe1fbc.patch",
             hash: "sha256-czc1u03USQt18d7cMPmXYguBhSb5JOJLplPvoixp+3w=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "sofamatrix-allow-newer-metis-versions.patch",
             url: "https://github.com/sofa-framework/sofa/commit/f1a45da7c77776ea9559b1958576b0187a8b9958.patch",
             hash: "sha256-YPMBKG1Ju5XON14CmSYNqljpqEbFRvI5SgKwOnxs7+I=",
@@ -74,7 +70,7 @@ export default nix.lambda((args) => (() => {
   $out/bin/.runSofa-${nix.sel(finalAttrs, "version")}-wrapped
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Real-time multi-physics simulation with an emphasis on medical simulation",
         homepage: "https://github.com/sofa-framework/sofa/",
         changelog: nix.thunk(() => nix.str`https://github.com/sofa-framework/sofa/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

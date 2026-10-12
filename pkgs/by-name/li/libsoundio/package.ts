@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["NIX_CFLAGS_COMPILE", 41, 7]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]], [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["cmakeFlags", 37, 3], ["env", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "alsa-lib": false, libjack2: false, libpulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["cmakeFlags", 37, 3], ["env", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libjack2 = nix.arg($, "libjack2");
   const libpulseaudio = nix.arg($, "libpulseaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "2.0.0",
       pname: "libsoundio",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "andrewrk",
           repo: "libsoundio",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libjack2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libpulseaudio, alsa_lib])))),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-DBUILD_TESTS=OFF"]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-strict-prototypes")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross platform audio input and output",
         homepage: "http://libsound.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

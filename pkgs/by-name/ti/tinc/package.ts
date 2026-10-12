@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5]], [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["configureFlags", 25, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, lzo: false, openssl: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["configureFlags", 25, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.0.37",
       pname: "tinc",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.tinc-vpn.org/packages/tinc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-9jt+IcMsTGN1dthfNr3SjqZ4taoX+tAkJ2Rd6jDlKsc=",
         })))),
       buildInputs: nix.thunk(() => [lzo, openssl, zlib]),
       configureFlags: nix.thunk(() => ["--localstatedir=/var", "--sysconfdir=/etc"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "VPN daemon with full mesh routing",
         longDescription: "tinc is a Virtual Private Network (VPN) daemon that uses tunnelling and\nencryption to create a secure private network between hosts on the\nInternet.  It features full mesh routing, as well as encryption,\nauthentication, compression and ethernet bridging.\n",
         homepage: "http://www.tinc-vpn.org/",

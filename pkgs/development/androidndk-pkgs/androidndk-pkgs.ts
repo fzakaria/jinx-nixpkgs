@@ -2,23 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/androidndk-pkgs.nix", [[["double", 28, 9]], [["double", 31, 9]], [["double", 39, 9]], [["x86_64-apple-darwin", 27, 7], ["x86_64-unknown-linux-gnu", 30, 7], ["arm64-apple-darwin", 33, 7]], [["triple", 48, 9], ["arch", 49, 9]], [["triple", 52, 9], ["arch", 53, 9]], [["arch", 56, 9], ["triple", 57, 9]], [["arch", 60, 9], ["triple", 61, 9]], [["i686-unknown-linux-android", 47, 7], ["x86_64-unknown-linux-android", 51, 7], ["armv7a-unknown-linux-androideabi", 55, 7], ["aarch64-unknown-linux-android", 59, 7]], [["targetPrefix", 105, 17], ["isClang", 106, 9], ["hardeningUnsupportedFlagsByTargetPlatform", 107, 41]], [["description", 159, 9], ["license", 160, 9], ["teams", 161, 9]], [["pname", 97, 7], ["version", 98, 28], ["nativeBuildInputs", 99, 7], ["propagatedBuildInputs", 103, 7], ["passthru", 104, 7], ["dontUnpack", 109, 7], ["dontBuild", 110, 7], ["dontStrip", 111, 7], ["dontConfigure", 112, 7], ["dontPatch", 113, 7], ["autoPatchelfIgnoreMissingDeps", 114, 7], ["installPhase", 115, 7], ["meta", 158, 7]], [["bintools", 166, 7], ["libc", 167, 7]], [["lib", 173, 9]], [["cc", 171, 7], ["bintools", 175, 7], ["libc", 176, 7], ["extraBuildCommands", 177, 7]], [["binaries", 96, 5], ["binutils", 165, 5], ["clang", 170, 5], ["libraries", 198, 5]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, makeWrapper: false, runCommand: false, wrapBintoolsWith: false, wrapCCWith: false, autoPatchelfHook: false, llvmPackages: false, buildAndroidndk: false, androidndk: false, targetAndroidndkPkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/androidndk-pkgs.nix", [["double", 28, 9]]);
-const pos$2 = nix.positions(here + "/androidndk-pkgs.nix", [["double", 31, 9]]);
-const pos$3 = nix.positions(here + "/androidndk-pkgs.nix", [["double", 39, 9]]);
-const pos$4 = nix.positions(here + "/androidndk-pkgs.nix", [["x86_64-apple-darwin", 27, 7], ["x86_64-unknown-linux-gnu", 30, 7], ["arm64-apple-darwin", 33, 7]]);
-const pos$5 = nix.positions(here + "/androidndk-pkgs.nix", [["triple", 48, 9], ["arch", 49, 9]]);
-const pos$6 = nix.positions(here + "/androidndk-pkgs.nix", [["triple", 52, 9], ["arch", 53, 9]]);
-const pos$7 = nix.positions(here + "/androidndk-pkgs.nix", [["arch", 56, 9], ["triple", 57, 9]]);
-const pos$8 = nix.positions(here + "/androidndk-pkgs.nix", [["arch", 60, 9], ["triple", 61, 9]]);
-const pos$9 = nix.positions(here + "/androidndk-pkgs.nix", [["i686-unknown-linux-android", 47, 7], ["x86_64-unknown-linux-android", 51, 7], ["armv7a-unknown-linux-androideabi", 55, 7], ["aarch64-unknown-linux-android", 59, 7]]);
-const pos$10 = nix.positions(here + "/androidndk-pkgs.nix", [["targetPrefix", 105, 17], ["isClang", 106, 9], ["hardeningUnsupportedFlagsByTargetPlatform", 107, 41]]);
-const pos$11 = nix.positions(here + "/androidndk-pkgs.nix", [["description", 159, 9], ["license", 160, 9], ["teams", 161, 9]]);
-const pos$12 = nix.positions(here + "/androidndk-pkgs.nix", [["pname", 97, 7], ["version", 98, 28], ["nativeBuildInputs", 99, 7], ["propagatedBuildInputs", 103, 7], ["passthru", 104, 7], ["dontUnpack", 109, 7], ["dontBuild", 110, 7], ["dontStrip", 111, 7], ["dontConfigure", 112, 7], ["dontPatch", 113, 7], ["autoPatchelfIgnoreMissingDeps", 114, 7], ["installPhase", 115, 7], ["meta", 158, 7]]);
-const pos$13 = nix.positions(here + "/androidndk-pkgs.nix", [["bintools", 166, 7], ["libc", 167, 7]]);
-const pos$14 = nix.positions(here + "/androidndk-pkgs.nix", [["lib", 173, 9]]);
-const pos$15 = nix.positions(here + "/androidndk-pkgs.nix", [["cc", 171, 7], ["bintools", 175, 7], ["libc", 176, 7], ["extraBuildCommands", 177, 7]]);
-const pos$16 = nix.positions(here + "/androidndk-pkgs.nix", [["binaries", 96, 5], ["binutils", 165, 5], ["clang", 170, 5], ["libraries", 198, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const androidndk = nix.arg($, "androidndk");
   const targetAndroidndkPkgs = nix.arg($, "targetAndroidndkPkgs");
   const ndkBuildInfoFun = (fallback) => nix.selOr({
-    [nix.POS]: pos$4,
-    "x86_64-apple-darwin": nix.thunk(() => ({ [nix.POS]: pos$1, double: "darwin-x86_64" })),
-    "x86_64-unknown-linux-gnu": nix.thunk(() => ({ [nix.POS]: pos$2, double: "linux-x86_64" })),
-    "arm64-apple-darwin": nix.thunk(() => ({ [nix.POS]: pos$3, double: "darwin-x86_64" })),
+    [nix.POS]: $pos[3],
+    "x86_64-apple-darwin": nix.thunk(() => ({ [nix.POS]: $pos[0], double: "darwin-x86_64" })),
+    "x86_64-unknown-linux-gnu": nix.thunk(() => ({ [nix.POS]: $pos[1], double: "linux-x86_64" })),
+    "arm64-apple-darwin": nix.thunk(() => ({ [nix.POS]: $pos[2], double: "darwin-x86_64" })),
   }, () => nix.force(fallback), nix.key(nix.sel(stdenv, "buildPlatform", "config")));
   const ndkTargetInfoFun = (fallback) => nix.selOr({
-    [nix.POS]: pos$9,
-    "i686-unknown-linux-android": nix.thunk(() => ({ [nix.POS]: pos$5, triple: "i686-linux-android", arch: "x86" })),
-    "x86_64-unknown-linux-android": nix.thunk(() => ({ [nix.POS]: pos$6, triple: "x86_64-linux-android", arch: "x86_64" })),
-    "armv7a-unknown-linux-androideabi": nix.thunk(() => ({ [nix.POS]: pos$7, arch: "arm", triple: "arm-linux-androideabi" })),
-    "aarch64-unknown-linux-android": nix.thunk(() => ({ [nix.POS]: pos$8, arch: "arm64", triple: "aarch64-linux-android" })),
+    [nix.POS]: $pos[8],
+    "i686-unknown-linux-android": nix.thunk(() => ({ [nix.POS]: $pos[4], triple: "i686-linux-android", arch: "x86" })),
+    "x86_64-unknown-linux-android": nix.thunk(() => ({ [nix.POS]: $pos[5], triple: "x86_64-linux-android", arch: "x86_64" })),
+    "armv7a-unknown-linux-androideabi": nix.thunk(() => ({ [nix.POS]: $pos[6], arch: "arm", triple: "arm-linux-androideabi" })),
+    "aarch64-unknown-linux-android": nix.thunk(() => ({ [nix.POS]: $pos[7], arch: "arm64", triple: "aarch64-linux-android" })),
   }, () => nix.force(fallback), nix.key(nix.sel(stdenv, "targetPlatform", "config")));
   const buildInfo = nix.thunk(() => nix.app(ndkBuildInfoFun, nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Android NDK doesn't support building on ${nix.sel(stdenv, "buildPlatform", "config")}, as far as we know`)))));
   const targetInfo = nix.thunk(() => nix.app(ndkTargetInfoFun, nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Android NDK doesn't support targetting ${nix.sel(stdenv, "targetPlatform", "config")}, as far as we know`)))));
@@ -54,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const targetPrefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "targetPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => nix.add(nix.sel(stdenv, "targetPlatform", "config"), "-"))));
   return (nix.asBool((nix.asBool(!nix.asBool(nix.sel(config, "allowAliases"))) && nix.asBool((nix.asBool(nix.eq(nix.app(ndkBuildInfoFun, null), null)) || nix.asBool(nix.eq(nix.app(ndkTargetInfoFun, null), null)))))) ? null : nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
       const binaries = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           pname: nix.thunk(() => nix.str`${targetPrefix}ndk-toolchain`),
           version: nix.thunk(() => nix.attr(androidndk, "version")),
           nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])))),
@@ -62,7 +47,7 @@ export default nix.lambda((args) => (() => {
           passthru: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(llvmPackages, "clang", "cc"));
             return {
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             targetPrefix: targetPrefix,
             isClang: true,
             hardeningUnsupportedFlagsByTargetPlatform: nix.thunk(() => nix.attr(from, "hardeningUnsupportedFlagsByTargetPlatform")),
@@ -117,21 +102,21 @@ ln -sf $out/bin/yasm $out/bin/as
 patchShebangs $out/bin
 `),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             description: "Android NDK toolchain, tuned for other platforms",
             license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
             teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "android"))]),
           })),
         }))));
       const binutils = nix.thunk(() => nix.app(wrapBintoolsWith, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           bintools: binaries,
           libc: nix.thunk(() => nix.sel(targetAndroidndkPkgs, "libraries")),
         }))));
       const clang = nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           cc: nix.thunk(() => nix.update(binaries, {
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             lib: nix.thunk(() => nix.sel(targetAndroidndkPkgs, "libraries")),
           })),
           bintools: binutils,
@@ -160,7 +145,7 @@ cp $lpath/*.so $lpath/*.a $out/lib
 chmod +w $out/lib/*
 cp $lpath/* $out/lib
 `)));
-      return { [nix.POS]: pos$16, binaries, binutils, clang, libraries };
+      return { [nix.POS]: $pos[15], binaries, binutils, clang, libraries };
     })())));
 })(), formals$1);
 //# sourceMappingURL=androidndk-pkgs.ts.map

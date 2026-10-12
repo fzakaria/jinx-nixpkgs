@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["broken", 41, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["preConfigure", 22, 3], ["nativeBuildInputs", 26, 3], ["propagatedBuildInputs", 31, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, ocaml: false, findlib: false, zarith: false, "ocplib-simplex": false, csdp: false, autoconf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["broken", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["preConfigure", 22, 3], ["nativeBuildInputs", 26, 3], ["propagatedBuildInputs", 31, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const csdp = nix.arg($, "csdp");
   const autoconf = nix.arg($, "autoconf");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "osdp",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/Embedded-SW-VnV/osdp/releases/download/v1.1.1/osdp-1.1.1.tgz",
           hash: "sha256-X7CS2g+MyQPDjhUCvFS/DoqcCXTEw8SCsSGED64TGKQ=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoconf, findlib, csdp]),
       propagatedBuildInputs: nix.thunk(() => [zarith, ocplib_simplex, csdp]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OCaml Interface to SDP solvers",
         homepage: "https://github.com/Embedded-SW-VnV/osdp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

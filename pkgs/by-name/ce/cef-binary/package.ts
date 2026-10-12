@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-linux", 37, 5], ["x86_64-linux", 38, 5]], [["aarch64-linux", 86, 9], ["x86_64-linux", 87, 9]], [["url", 84, 5], ["hash", 90, 5]], [["buildType", 113, 13], ["updateScript", 114, 5]], [["description", 118, 5], ["homepage", 119, 5], ["maintainers", 120, 5], ["sourceProvenance", 121, 5], ["license", 122, 5], ["platforms", 123, 5]], [["pname", 80, 3], ["version", 81, 11], ["src", 83, 3], ["dontStrip", 93, 3], ["dontPatchELF", 95, 3], ["installPhase", 97, 3], ["passthru", 112, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, glib: false, nss: false, nspr: false, atk: false, "at-spi2-atk": false, libdrm: false, expat: false, libxkbcommon: false, libgbm: false, gtk3: false, pango: false, cairo: false, "alsa-lib": false, dbus: false, "at-spi2-core": false, cups: false, libGL: false, udev: false, systemdLibs: false, libxrandr: false, libxfixes: false, libxext: false, libxdamage: false, libxcomposite: false, libx11: false, libxshmfence: false, libxcb: false, version: true, gitRevision: true, chromiumVersion: true, buildType: true, srcHashes: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-linux", 37, 5], ["x86_64-linux", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aarch64-linux", 86, 9], ["x86_64-linux", 87, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 84, 5], ["hash", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["buildType", 113, 13], ["updateScript", 114, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 118, 5], ["homepage", 119, 5], ["maintainers", 120, 5], ["sourceProvenance", 121, 5], ["license", 122, 5], ["platforms", 123, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 80, 3], ["version", 81, 11], ["src", 83, 3], ["dontStrip", 93, 3], ["dontPatchELF", 95, 3], ["installPhase", 97, 3], ["passthru", 112, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const chromiumVersion = nix.argOr($, "chromiumVersion", () => "151.0.7922.109");
   const buildType = nix.argOr($, "buildType", () => "Release");
   const srcHashes = nix.argOr($, "srcHashes", () => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-linux": "sha256-gRYcEylZAUvKTOmV1zw9TyiEkv6FZ0vhVT1mLwne57k=",
     "x86_64-linux": "sha256-6usxPmA53kZIVYk9KHxNXrTscSaXjqg8YWS/SiPcAXo=",
   }));
@@ -83,12 +78,12 @@ export default nix.lambda((args) => (() => {
     ])));
   const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cef-binary",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          url: nix.thunk(() => nix.str`https://cef-builds.spotifycdn.com/cef_binary_${version}+g${gitRevision}+chromium-${chromiumVersion}_${nix.app(selectSystem, nix.thunk(() => ({ [nix.POS]: pos$2, "aarch64-linux": "linuxarm64", "x86_64-linux": "linux64" })))}_minimal.tar.bz2`),
+          [nix.POS]: $pos[2],
+          url: nix.thunk(() => nix.str`https://cef-builds.spotifycdn.com/cef_binary_${version}+g${gitRevision}+chromium-${chromiumVersion}_${nix.app(selectSystem, nix.thunk(() => ({ [nix.POS]: $pos[1], "aarch64-linux": "linuxarm64", "x86_64-linux": "linux64" })))}_minimal.tar.bz2`),
           hash: nix.thunk(() => nix.app(selectSystem, srcHashes)),
         })))),
       dontStrip: true,
@@ -107,12 +102,12 @@ cp --recursive . $out
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         buildType: buildType,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple framework for embedding Chromium-based browsers in other applications",
         homepage: "https://cef-builds.spotifycdn.com/index.html",
         maintainers: nix.thunk(() => (() => {

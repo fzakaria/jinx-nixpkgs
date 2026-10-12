@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 28, 5], ["mainProgram", 29, 5], ["sourceProvenance", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["homepage", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontUnpack", 17, 3], ["installPhase", 19, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openjdk: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["mainProgram", 29, 5], ["sourceProvenance", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["homepage", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontUnpack", 17, 3], ["installPhase", 19, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const openjdk = nix.arg($, "openjdk");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "leo3",
       version: "1.7.18",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/leoprover/Leo-III/releases/download/v${nix.sel(finalAttrs, "version")}/leo3-v${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "sha256-HEUi8Krxv9u9Rq/2Gu0Tts86sseaAZq+pccJ4Q5MRr0=",
         })))),
@@ -31,7 +29,7 @@ echo "'${openjdk}/bin/java' -jar '$out/lib/java/leo3/leo3.jar' \\"\\$@\\""  >> "
 chmod a+x "$out/bin/leo3"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Automated theorem prover for classical higher-order logic with choice",
         mainProgram: "leo3",
         sourceProvenance: nix.thunk(() => (() => {

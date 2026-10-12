@@ -2,83 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tor.nix", [[["nativeBuildInputs", 22, 9]], [["TestingTorNetwork", 120, 5], ["AssumeReachable", 121, 5], ["AssumeReachableIPv6", 122, 5], ["ControlPort", 123, 5], ["CookieAuthentication", 124, 5], ["%include", 125, 5]], [["addr", 140, 11], ["port", 141, 11]], [["Address", 133, 7], ["Nickname", 134, 7], ["ContactInfo", 135, 7], ["DirPort", 136, 7], ["ORPort", 137, 7], ["SocksPort", 144, 7], ["PublishServerDescriptor", 145, 7], ["PathsNeededToBuildCircuits", 146, 7]], [["allowedTCPPorts", 151, 25]], [["firewall", 151, 16]], [["ExecStartPre", 164, 40]], [["after", 157, 7], ["requires", 158, 7], ["serviceConfig", 164, 26]], [["tor", 156, 22]], [["services", 156, 13]], [["enable", 177, 13], ["role", 178, 13]], [["addr", 189, 13], ["port", 190, 13]], [["AuthoritativeDirectory", 180, 9], ["V3AuthoritativeDirectory", 181, 9], ["Address", 182, 9], ["Nickname", 183, 9], ["ContactInfo", 184, 9], ["DirPort", 185, 9], ["ORPort", 186, 9], ["SocksPort", 193, 9], ["TestingDirAuthVoteExit", 196, 9], ["TestingDirAuthVoteGuard", 197, 9], ["TestingDirAuthVoteHSDir", 198, 9], ["TestingMinExitFlagThreshold", 199, 9], ["V3AuthNIntervalsValid", 200, 9]], [["enable", 176, 7], ["relay", 177, 7], ["settings", 179, 7]], [["tor", 175, 14]], [["networking", 151, 5], ["systemd", 156, 5], ["services", 175, 5]], [["allowedTCPPorts", 207, 25]], [["firewall", 207, 16]], [["enable", 214, 13], ["role", 215, 13]], [["enable", 213, 7], ["relay", 214, 7], ["settings", 216, 7]], [["tor", 212, 14]], [["networking", 207, 5], ["services", 212, 5]], [["allowedTCPPorts", 222, 25]], [["firewall", 222, 16]], [["enable", 229, 13], ["role", 230, 13]], [["ExitRelay", 236, 9], ["ExitPolicy", 237, 9]], [["enable", 228, 7], ["relay", 229, 7], ["settings", 231, 7]], [["tor", 227, 14]], [["networking", 222, 5], ["services", 227, 5]], [["extraConfig", 249, 9]], [["http://:8080", 248, 20]], [["enable", 247, 7], ["virtualHosts", 248, 7]], [["addr", 262, 15], ["port", 263, 15]], [["port", 260, 13], ["target", 261, 13]], [["map", 258, 9]], [["web", 257, 27]], [["onionServices", 257, 13]], [["SocksPort", 269, 9]], [["enable", 256, 7], ["relay", 257, 7], ["settings", 268, 7]], [["caddy", 246, 14], ["tor", 255, 14]], [["services", 246, 5]], [["systemPackages", 276, 17]], [["enable", 280, 14]], [["enable", 279, 7], ["client", 280, 7], ["settings", 281, 7]], [["tor", 278, 14]], [["environment", 276, 5], ["services", 278, 5]], [["allowedTCPPorts", 289, 25]], [["firewall", 289, 16]], [["extraConfig", 294, 9]], [["http://:80", 293, 20]], [["enable", 292, 7], ["virtualHosts", 293, 7]], [["caddy", 291, 14]], [["networking", 289, 5], ["services", 291, 5]], [["socks_listen", 305, 11]], [["dangerously_trust_everyone", 311, 19]], [["cache_dir", 308, 7], ["state_dir", 309, 7], ["port_info_file", 310, 7], ["permissions", 311, 7]], [["allow_local_addrs", 314, 20]], [["ipv4_subnet_family_prefix", 318, 7], ["ipv6_subnet_family_prefix", 319, 7]], [["mode", 324, 15]], [["guard-max-sample-size", 330, 7], ["guard-min-filtered-sample-size", 331, 7], ["guard-n-primary-guards-to-use", 332, 7]], [["proxy", 305, 5], ["storage", 307, 5], ["address_filter", 314, 5], ["path_rules", 317, 5], ["vanguards", 324, 5], ["override_net_params", 329, 5]], [["systemPackages", 366, 17]], [["RuntimeDirectory", 375, 9], ["ExecStartPre", 376, 9], ["ExecStart", 377, 9], ["DynamicUser", 378, 9], ["StateDirectory", 379, 9], ["CacheDirectory", 380, 9]], [["description", 369, 7], ["after", 370, 7], ["wants", 371, 7], ["wantedBy", 372, 7], ["serviceConfig", 374, 7]], [["arti", 368, 22]], [["services", 368, 13]], [["environment", 366, 5], ["systemd", 368, 5]], [["maintainers", 387, 8]], [["ExecStartPre", 396, 42]], [["serviceConfig", 396, 28]], [["tor", 396, 24]], [["services", 396, 15]], [["systemd", 396, 7]], [["hiddenservice", 406, 7], ["webserver", 407, 7], ["client", 408, 7], ["articlient", 409, 7]], [["name", 386, 3], ["meta", 387, 3], ["defaults", 389, 3], ["nodes", 401, 3], ["testScript", 412, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tor.nix", [["nativeBuildInputs", 22, 9]]);
-const pos$2 = nix.positions(here + "/tor.nix", [["TestingTorNetwork", 120, 5], ["AssumeReachable", 121, 5], ["AssumeReachableIPv6", 122, 5], ["ControlPort", 123, 5], ["CookieAuthentication", 124, 5], ["%include", 125, 5]]);
-const pos$3 = nix.positions(here + "/tor.nix", [["addr", 140, 11], ["port", 141, 11]]);
-const pos$4 = nix.positions(here + "/tor.nix", [["Address", 133, 7], ["Nickname", 134, 7], ["ContactInfo", 135, 7], ["DirPort", 136, 7], ["ORPort", 137, 7], ["SocksPort", 144, 7], ["PublishServerDescriptor", 145, 7], ["PathsNeededToBuildCircuits", 146, 7]]);
-const pos$5 = nix.positions(here + "/tor.nix", [["allowedTCPPorts", 151, 25]]);
-const pos$6 = nix.positions(here + "/tor.nix", [["firewall", 151, 16]]);
-const pos$7 = nix.positions(here + "/tor.nix", [["ExecStartPre", 164, 40]]);
-const pos$8 = nix.positions(here + "/tor.nix", [["after", 157, 7], ["requires", 158, 7], ["serviceConfig", 164, 26]]);
-const pos$9 = nix.positions(here + "/tor.nix", [["tor", 156, 22]]);
-const pos$10 = nix.positions(here + "/tor.nix", [["services", 156, 13]]);
-const pos$11 = nix.positions(here + "/tor.nix", [["enable", 177, 13], ["role", 178, 13]]);
-const pos$12 = nix.positions(here + "/tor.nix", [["addr", 189, 13], ["port", 190, 13]]);
-const pos$13 = nix.positions(here + "/tor.nix", [["AuthoritativeDirectory", 180, 9], ["V3AuthoritativeDirectory", 181, 9], ["Address", 182, 9], ["Nickname", 183, 9], ["ContactInfo", 184, 9], ["DirPort", 185, 9], ["ORPort", 186, 9], ["SocksPort", 193, 9], ["TestingDirAuthVoteExit", 196, 9], ["TestingDirAuthVoteGuard", 197, 9], ["TestingDirAuthVoteHSDir", 198, 9], ["TestingMinExitFlagThreshold", 199, 9], ["V3AuthNIntervalsValid", 200, 9]]);
-const pos$14 = nix.positions(here + "/tor.nix", [["enable", 176, 7], ["relay", 177, 7], ["settings", 179, 7]]);
-const pos$15 = nix.positions(here + "/tor.nix", [["tor", 175, 14]]);
-const pos$16 = nix.positions(here + "/tor.nix", [["networking", 151, 5], ["systemd", 156, 5], ["services", 175, 5]]);
-const pos$17 = nix.positions(here + "/tor.nix", [["allowedTCPPorts", 207, 25]]);
-const pos$18 = nix.positions(here + "/tor.nix", [["firewall", 207, 16]]);
-const pos$19 = nix.positions(here + "/tor.nix", [["enable", 214, 13], ["role", 215, 13]]);
-const pos$20 = nix.positions(here + "/tor.nix", [["enable", 213, 7], ["relay", 214, 7], ["settings", 216, 7]]);
-const pos$21 = nix.positions(here + "/tor.nix", [["tor", 212, 14]]);
-const pos$22 = nix.positions(here + "/tor.nix", [["networking", 207, 5], ["services", 212, 5]]);
-const pos$23 = nix.positions(here + "/tor.nix", [["allowedTCPPorts", 222, 25]]);
-const pos$24 = nix.positions(here + "/tor.nix", [["firewall", 222, 16]]);
-const pos$25 = nix.positions(here + "/tor.nix", [["enable", 229, 13], ["role", 230, 13]]);
-const pos$26 = nix.positions(here + "/tor.nix", [["ExitRelay", 236, 9], ["ExitPolicy", 237, 9]]);
-const pos$27 = nix.positions(here + "/tor.nix", [["enable", 228, 7], ["relay", 229, 7], ["settings", 231, 7]]);
-const pos$28 = nix.positions(here + "/tor.nix", [["tor", 227, 14]]);
-const pos$29 = nix.positions(here + "/tor.nix", [["networking", 222, 5], ["services", 227, 5]]);
-const pos$30 = nix.positions(here + "/tor.nix", [["extraConfig", 249, 9]]);
-const pos$31 = nix.positions(here + "/tor.nix", [["http://:8080", 248, 20]]);
-const pos$32 = nix.positions(here + "/tor.nix", [["enable", 247, 7], ["virtualHosts", 248, 7]]);
-const pos$33 = nix.positions(here + "/tor.nix", [["addr", 262, 15], ["port", 263, 15]]);
-const pos$34 = nix.positions(here + "/tor.nix", [["port", 260, 13], ["target", 261, 13]]);
-const pos$35 = nix.positions(here + "/tor.nix", [["map", 258, 9]]);
-const pos$36 = nix.positions(here + "/tor.nix", [["web", 257, 27]]);
-const pos$37 = nix.positions(here + "/tor.nix", [["onionServices", 257, 13]]);
-const pos$38 = nix.positions(here + "/tor.nix", [["SocksPort", 269, 9]]);
-const pos$39 = nix.positions(here + "/tor.nix", [["enable", 256, 7], ["relay", 257, 7], ["settings", 268, 7]]);
-const pos$40 = nix.positions(here + "/tor.nix", [["caddy", 246, 14], ["tor", 255, 14]]);
-const pos$41 = nix.positions(here + "/tor.nix", [["services", 246, 5]]);
-const pos$42 = nix.positions(here + "/tor.nix", [["systemPackages", 276, 17]]);
-const pos$43 = nix.positions(here + "/tor.nix", [["enable", 280, 14]]);
-const pos$44 = nix.positions(here + "/tor.nix", [["enable", 279, 7], ["client", 280, 7], ["settings", 281, 7]]);
-const pos$45 = nix.positions(here + "/tor.nix", [["tor", 278, 14]]);
-const pos$46 = nix.positions(here + "/tor.nix", [["environment", 276, 5], ["services", 278, 5]]);
-const pos$47 = nix.positions(here + "/tor.nix", [["allowedTCPPorts", 289, 25]]);
-const pos$48 = nix.positions(here + "/tor.nix", [["firewall", 289, 16]]);
-const pos$49 = nix.positions(here + "/tor.nix", [["extraConfig", 294, 9]]);
-const pos$50 = nix.positions(here + "/tor.nix", [["http://:80", 293, 20]]);
-const pos$51 = nix.positions(here + "/tor.nix", [["enable", 292, 7], ["virtualHosts", 293, 7]]);
-const pos$52 = nix.positions(here + "/tor.nix", [["caddy", 291, 14]]);
-const pos$53 = nix.positions(here + "/tor.nix", [["networking", 289, 5], ["services", 291, 5]]);
-const pos$54 = nix.positions(here + "/tor.nix", [["socks_listen", 305, 11]]);
-const pos$55 = nix.positions(here + "/tor.nix", [["dangerously_trust_everyone", 311, 19]]);
-const pos$56 = nix.positions(here + "/tor.nix", [["cache_dir", 308, 7], ["state_dir", 309, 7], ["port_info_file", 310, 7], ["permissions", 311, 7]]);
-const pos$57 = nix.positions(here + "/tor.nix", [["allow_local_addrs", 314, 20]]);
-const pos$58 = nix.positions(here + "/tor.nix", [["ipv4_subnet_family_prefix", 318, 7], ["ipv6_subnet_family_prefix", 319, 7]]);
-const pos$59 = nix.positions(here + "/tor.nix", [["mode", 324, 15]]);
-const pos$60 = nix.positions(here + "/tor.nix", [["guard-max-sample-size", 330, 7], ["guard-min-filtered-sample-size", 331, 7], ["guard-n-primary-guards-to-use", 332, 7]]);
-const pos$61 = nix.positions(here + "/tor.nix", [["proxy", 305, 5], ["storage", 307, 5], ["address_filter", 314, 5], ["path_rules", 317, 5], ["vanguards", 324, 5], ["override_net_params", 329, 5]]);
-const pos$62 = nix.positions(here + "/tor.nix", [["systemPackages", 366, 17]]);
-const pos$63 = nix.positions(here + "/tor.nix", [["RuntimeDirectory", 375, 9], ["ExecStartPre", 376, 9], ["ExecStart", 377, 9], ["DynamicUser", 378, 9], ["StateDirectory", 379, 9], ["CacheDirectory", 380, 9]]);
-const pos$64 = nix.positions(here + "/tor.nix", [["description", 369, 7], ["after", 370, 7], ["wants", 371, 7], ["wantedBy", 372, 7], ["serviceConfig", 374, 7]]);
-const pos$65 = nix.positions(here + "/tor.nix", [["arti", 368, 22]]);
-const pos$66 = nix.positions(here + "/tor.nix", [["services", 368, 13]]);
-const pos$67 = nix.positions(here + "/tor.nix", [["environment", 366, 5], ["systemd", 368, 5]]);
-const pos$68 = nix.positions(here + "/tor.nix", [["maintainers", 387, 8]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$69 = nix.positions(here + "/tor.nix", [["ExecStartPre", 396, 42]]);
-const pos$70 = nix.positions(here + "/tor.nix", [["serviceConfig", 396, 28]]);
-const pos$71 = nix.positions(here + "/tor.nix", [["tor", 396, 24]]);
-const pos$72 = nix.positions(here + "/tor.nix", [["services", 396, 15]]);
-const pos$73 = nix.positions(here + "/tor.nix", [["systemd", 396, 7]]);
-const pos$74 = nix.positions(here + "/tor.nix", [["hiddenservice", 406, 7], ["webserver", 407, 7], ["client", 408, 7], ["articlient", 409, 7]]);
-const pos$75 = nix.positions(here + "/tor.nix", [["name", 386, 3], ["meta", 387, 3], ["defaults", 389, 3], ["nodes", 401, 3], ["testScript", 412, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -88,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const nodeIP = (name) => nix.sel(config, "nodes", nix.key(nix.force(name)), "networking", "primaryIPAddress");
   const nodeIPv6 = (name) => nix.sel(config, "nodes", nix.key(nix.force(name)), "networking", "primaryIPv6Address");
   const mkDAKeys = (name) => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`tor-da-keys-${name}`), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "tor"))]),
     })), nix.thunk(() => nix.str`DATADIR=$(mktemp -d)
 mkdir -p "$DATADIR/keys"
@@ -146,7 +72,7 @@ chown tor:tor /run/tor/dirauth.conf
 chmod 0400 /run/tor/dirauth.conf
 `)));
   const commonTorSettings = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     TestingTorNetwork: true,
     AssumeReachable: true,
     AssumeReachableIPv6: true,
@@ -155,7 +81,7 @@ chmod 0400 /run/tor/dirauth.conf
     "%include": "/run/tor/dirauth.conf",
   }));
   const nonDATorSettings = (name) => nix.update(commonTorSettings, {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     Address: nix.thunk(() => nix.app(nodeIP, name)),
     Nickname: name,
     ContactInfo: nix.thunk(() => nix.str`${name} <${name} AT localhost>`),
@@ -163,7 +89,7 @@ chmod 0400 /run/tor/dirauth.conf
     ORPort: nix.thunk(() => [
       9001n,
       nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         addr: nix.thunk(() => nix.str`[${nix.app(nodeIPv6, name)}]`),
         port: 9001n,
       })),
@@ -173,21 +99,21 @@ chmod 0400 /run/tor/dirauth.conf
     PathsNeededToBuildCircuits: "0.25",
   });
   const mkDANode = (name) => ({
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$6,
-      firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [80n, 9001n]) })),
+      [nix.POS]: $pos[5],
+      firewall: nix.thunk(() => ({ [nix.POS]: $pos[4], allowedTCPPorts: nix.thunk(() => [80n, 9001n]) })),
     })),
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         tor: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           after: nix.thunk(() => ["network-online.target"]),
           requires: nix.thunk(() => ["network-online.target"]),
           serviceConfig: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             ExecStartPre: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => [
                 nix.thunk(() => nix.str`+${nix.app(nix.sel(pkgs, "writeShellScript"), nix.thunk(() => nix.str`tor-keys-${name}`), nix.thunk(() => nix.str`mkdir -p /var/lib/tor/keys
 cp ${nix.sel(daKeysets, nix.key(nix.force(name)))}/keys/* /var/lib/tor/keys/
@@ -202,13 +128,13 @@ chmod 600 /var/lib/tor/keys/*
       })),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       tor: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         enable: true,
-        relay: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true, role: "relay" })),
+        relay: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: true, role: "relay" })),
         settings: nix.thunk(() => nix.update(commonTorSettings, {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           AuthoritativeDirectory: true,
           V3AuthoritativeDirectory: true,
           Address: nix.thunk(() => nix.app(nodeIP, name)),
@@ -218,7 +144,7 @@ chmod 600 /var/lib/tor/keys/*
           ORPort: nix.thunk(() => [
             9001n,
             nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               addr: nix.thunk(() => nix.str`[${nix.app(nodeIPv6, name)}]`),
               port: 9001n,
             })),
@@ -234,35 +160,35 @@ chmod 600 /var/lib/tor/keys/*
     })),
   });
   const mkRelayNode = (name) => ({
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$18,
-      firewall: nix.thunk(() => ({ [nix.POS]: pos$17, allowedTCPPorts: nix.thunk(() => [9001n, 9030n]) })),
+      [nix.POS]: $pos[17],
+      firewall: nix.thunk(() => ({ [nix.POS]: $pos[16], allowedTCPPorts: nix.thunk(() => [9001n, 9030n]) })),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       tor: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         enable: true,
-        relay: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true, role: "relay" })),
+        relay: nix.thunk(() => ({ [nix.POS]: $pos[18], enable: true, role: "relay" })),
         settings: nix.thunk(() => nix.app(nonDATorSettings, name)),
       })),
     })),
   });
   const mkExitNode = (name) => ({
-    [nix.POS]: pos$29,
+    [nix.POS]: $pos[28],
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$24,
-      firewall: nix.thunk(() => ({ [nix.POS]: pos$23, allowedTCPPorts: nix.thunk(() => [9001n, 9030n]) })),
+      [nix.POS]: $pos[23],
+      firewall: nix.thunk(() => ({ [nix.POS]: $pos[22], allowedTCPPorts: nix.thunk(() => [9001n, 9030n]) })),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       tor: nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         enable: true,
-        relay: nix.thunk(() => ({ [nix.POS]: pos$25, enable: true, role: "exit" })),
+        relay: nix.thunk(() => ({ [nix.POS]: $pos[24], enable: true, role: "exit" })),
         settings: nix.thunk(() => nix.update(nix.app(nonDATorSettings, name), {
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           ExitRelay: true,
           ExitPolicy: nix.thunk(() => ["accept *:*"]),
         })),
@@ -271,76 +197,76 @@ chmod 600 /var/lib/tor/keys/*
   });
   const hiddenServiceResponse = "Hello from the hidden service";
   const mkHiddenServiceNode = nix.thunk(() => ({
-    [nix.POS]: pos$41,
+    [nix.POS]: $pos[40],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$40,
+      [nix.POS]: $pos[39],
       caddy: nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         enable: true,
         virtualHosts: nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           "http://:8080": nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             extraConfig: nix.thunk(() => nix.str`respond "${hiddenServiceResponse}"
 `),
           })),
         })),
       })),
       tor: nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         enable: true,
         relay: nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           onionServices: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             web: nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               map: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$34,
+                  [nix.POS]: $pos[33],
                   port: 80n,
-                  target: nix.thunk(() => ({ [nix.POS]: pos$33, addr: "127.0.0.1", port: 8080n })),
+                  target: nix.thunk(() => ({ [nix.POS]: $pos[32], addr: "127.0.0.1", port: 8080n })),
                 })),
               ]),
             })),
           })),
         })),
-        settings: nix.thunk(() => nix.update(commonTorSettings, { [nix.POS]: pos$38, SocksPort: 0n })),
+        settings: nix.thunk(() => nix.update(commonTorSettings, { [nix.POS]: $pos[37], SocksPort: 0n })),
       })),
     })),
   }));
   const mkClientNode = nix.thunk(() => ({
-    [nix.POS]: pos$46,
+    [nix.POS]: $pos[45],
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$42,
+      [nix.POS]: $pos[41],
       systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$45,
+      [nix.POS]: $pos[44],
       tor: nix.thunk(() => ({
-        [nix.POS]: pos$44,
+        [nix.POS]: $pos[43],
         enable: true,
-        client: nix.thunk(() => ({ [nix.POS]: pos$43, enable: true })),
+        client: nix.thunk(() => ({ [nix.POS]: $pos[42], enable: true })),
         settings: commonTorSettings,
       })),
     })),
   }));
   const clearnetResponse = "Hello from the clearnet";
   const mkWebServerNode = nix.thunk(() => ({
-    [nix.POS]: pos$53,
+    [nix.POS]: $pos[52],
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$48,
-      firewall: nix.thunk(() => ({ [nix.POS]: pos$47, allowedTCPPorts: nix.thunk(() => [80n]) })),
+      [nix.POS]: $pos[47],
+      firewall: nix.thunk(() => ({ [nix.POS]: $pos[46], allowedTCPPorts: nix.thunk(() => [80n]) })),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$52,
+      [nix.POS]: $pos[51],
       caddy: nix.thunk(() => ({
-        [nix.POS]: pos$51,
+        [nix.POS]: $pos[50],
         enable: true,
         virtualHosts: nix.thunk(() => ({
-          [nix.POS]: pos$50,
+          [nix.POS]: $pos[49],
           "http://:80": nix.thunk(() => ({
-            [nix.POS]: pos$49,
+            [nix.POS]: $pos[48],
             extraConfig: nix.thunk(() => nix.str`respond "${clearnetResponse}"
 `),
           })),
@@ -349,24 +275,24 @@ chmod 600 /var/lib/tor/keys/*
     })),
   }));
   const artiStaticConfig = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))), "generate"), "arti.toml", nix.thunk(() => ({
-      [nix.POS]: pos$61,
-      proxy: nix.thunk(() => ({ [nix.POS]: pos$54, socks_listen: 9150n })),
+      [nix.POS]: $pos[60],
+      proxy: nix.thunk(() => ({ [nix.POS]: $pos[53], socks_listen: 9150n })),
       storage: nix.thunk(() => ({
-        [nix.POS]: pos$56,
+        [nix.POS]: $pos[55],
         cache_dir: "/var/cache/arti",
         state_dir: "/var/lib/arti",
         port_info_file: "/var/lib/arti/public/port_info.json",
-        permissions: nix.thunk(() => ({ [nix.POS]: pos$55, dangerously_trust_everyone: true })),
+        permissions: nix.thunk(() => ({ [nix.POS]: $pos[54], dangerously_trust_everyone: true })),
       })),
-      address_filter: nix.thunk(() => ({ [nix.POS]: pos$57, allow_local_addrs: true })),
+      address_filter: nix.thunk(() => ({ [nix.POS]: $pos[56], allow_local_addrs: true })),
       path_rules: nix.thunk(() => ({
-        [nix.POS]: pos$58,
+        [nix.POS]: $pos[57],
         ipv4_subnet_family_prefix: 33n,
         ipv6_subnet_family_prefix: 129n,
       })),
-      vanguards: nix.thunk(() => ({ [nix.POS]: pos$59, mode: "disabled" })),
+      vanguards: nix.thunk(() => ({ [nix.POS]: $pos[58], mode: "disabled" })),
       override_net_params: nix.thunk(() => ({
-        [nix.POS]: pos$60,
+        [nix.POS]: $pos[59],
         "guard-max-sample-size": 4n,
         "guard-min-filtered-sample-size": 2n,
         "guard-n-primary-guards-to-use": 2n,
@@ -393,23 +319,23 @@ echo 'orports = ["${nix.app(nodeIP, name)}:9001", "[${nix.app(nodeIPv6, name)}]:
 } > "$out"
 `)));
   const mkArtiClientNode = nix.thunk(() => ({
-    [nix.POS]: pos$67,
+    [nix.POS]: $pos[66],
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$62,
+      [nix.POS]: $pos[61],
       systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
     })),
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$66,
+      [nix.POS]: $pos[65],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$65,
+        [nix.POS]: $pos[64],
         arti: nix.thunk(() => ({
-          [nix.POS]: pos$64,
+          [nix.POS]: $pos[63],
           description: "Arti Tor Client",
           after: nix.thunk(() => ["network-online.target"]),
           wants: nix.thunk(() => ["network-online.target"]),
           wantedBy: nix.thunk(() => ["multi-user.target"]),
           serviceConfig: nix.thunk(() => ({
-            [nix.POS]: pos$63,
+            [nix.POS]: $pos[62],
             RuntimeDirectory: "arti",
             ExecStartPre: artiNetworkConfigScript,
             ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "arti")))} proxy -c ${artiStaticConfig} -c /run/arti/network.toml`),
@@ -422,10 +348,10 @@ echo 'orports = ["${nix.app(nodeIP, name)}:9001", "[${nix.app(nodeIPv6, name)}]:
     })),
   }));
   return {
-    [nix.POS]: pos$75,
+    [nix.POS]: $pos[74],
     name: "tor",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$68,
+      [nix.POS]: $pos[67],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jpds"))];
@@ -435,15 +361,15 @@ echo 'orports = ["${nix.app(nodeIP, name)}:9001", "[${nix.app(nodeIPv6, name)}]:
       const $_1 = nix.formals(args_1, formals$2);
       const config_1 = nix.arg($_1, "config");
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config_1, "services", "tor", "enable")), nix.thunk(() => ({
-          [nix.POS]: pos$73,
+          [nix.POS]: $pos[72],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$72,
+            [nix.POS]: $pos[71],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$71,
+              [nix.POS]: $pos[70],
               tor: nix.thunk(() => ({
-                [nix.POS]: pos$70,
+                [nix.POS]: $pos[69],
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$69,
+                  [nix.POS]: $pos[68],
                   ExecStartPre: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => [nix.thunk(() => nix.str`+${torDirAuthExecStartPre}`)]))),
                 })),
               })),
@@ -452,7 +378,7 @@ echo 'orports = ["${nix.app(nodeIP, name)}:9001", "[${nix.app(nodeIPv6, name)}]:
         })));
     })(), formals$2),
     nodes: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "genAttrs"), daNames, mkDANode), nix.update(nix.app(nix.sel(lib, "genAttrs"), relayNames, mkRelayNode), nix.update(nix.app(nix.sel(lib, "genAttrs"), exitNames, mkExitNode), {
-      [nix.POS]: pos$74,
+      [nix.POS]: $pos[73],
       hiddenservice: mkHiddenServiceNode,
       webserver: mkWebServerNode,
       client: mkClientNode,

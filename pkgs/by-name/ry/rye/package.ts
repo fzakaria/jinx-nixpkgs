@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["OPENSSL_NO_VENDOR", 35, 5]], [["updateScript", 99, 5]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["mainProgram", 108, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoHash", 32, 3], ["env", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["postInstall", 47, 3], ["checkFlags", 58, 3], ["nativeInstallCheckInputs", 93, 3], ["doInstallCheck", 96, 3], ["passthru", 98, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, "pkg-config": false, openssl: false, stdenv: false, buildPackages: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["mainProgram", 108, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoHash", 32, 3], ["env", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["postInstall", 47, 3], ["checkFlags", 58, 3], ["nativeInstallCheckInputs", 93, 3], ["doInstallCheck", 96, 3], ["passthru", 98, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rye",
       version: "0.44.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "astral-sh",
           repo: "rye",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-K9xad5Odza0Oxz49yMJjqpfh3cCgmWnbAlv069fHV6Q=",
         })))),
       cargoHash: "sha256-+gFa8hruXIweFm24XvfhqXZxNLAYKVNX+xBSCdAk54A=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       postInstall: nix.thunk(() => (() => {
@@ -79,11 +75,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tool to easily manage python dependencies and environments",
         homepage: "https://github.com/astral-sh/rye",
         changelog: nix.thunk(() => nix.str`https://github.com/astral-sh/rye/releases/tag/${nix.sel(finalAttrs, "version")}`),

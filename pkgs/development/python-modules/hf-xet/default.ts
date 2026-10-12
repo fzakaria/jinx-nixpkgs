@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["pname", 28, 7], ["version", 29, 7], ["src", 30, 7], ["sourceRoot", 31, 7], ["hash", 33, 5]], [["OPENSSL_NO_VENDOR", 46, 7]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["sourceRoot", 24, 3], ["cargoDeps", 26, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["env", 46, 3], ["pythonImportsCheck", 48, 3], ["nativeCheckInputs", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "pkg-config": false, rustPlatform: false, openssl: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 28, 7], ["version", 29, 7], ["src", 30, 7], ["sourceRoot", 31, 7], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["OPENSSL_NO_VENDOR", 46, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["sourceRoot", 24, 3], ["cargoDeps", 26, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["env", 46, 3], ["pythonImportsCheck", 48, 3], ["nativeCheckInputs", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hf-xet",
       version: "1.6.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "huggingface",
           repo: "xet-core",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/hf_xet`),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -46,11 +42,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
       ]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], OPENSSL_NO_VENDOR: 1n })),
       pythonImportsCheck: nix.thunk(() => ["hf_xet"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Xet client tech, used in huggingface_hub",
         homepage: "https://github.com/huggingface/xet-core/tree/main/hf_xet",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/xet-core/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

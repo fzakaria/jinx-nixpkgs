@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["url", 26, 7], ["hash", 27, 7]], [["broken", 60, 5], ["homepage", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["makeFlags", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, "desktop-file-utils": false, SDL: false, gtk3: false, "gsettings-desktop-schemas": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 60, 5], ["homepage", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["makeFlags", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sfxr",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.drpetter.se/files/sfxr-sdl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0dfqgid6wzzyyhc0ha94prxax59wx79hqr25r6if6by9cj4vx4ya",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://src.fedoraproject.org/rpms/sfxr/raw/223e58e68857c2018ced635e8209bb44f3616bf8/f/sfxr-sdl-gcc8x.patch",
             hash: "sha256-etn4AutkNrhEDH9Ep8MhH9JSJEd7V/JXwjQua5uhAmg=",
           })))),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL, gtk3, gsettings_desktop_schemas, wrapGAppsHook3]),
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "http://www.drpetter.se/project_sfxr.html",
         description: "Videogame sound effect generator",

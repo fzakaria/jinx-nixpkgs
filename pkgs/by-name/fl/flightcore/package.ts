@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["pname", 31, 26], ["version", 31, 32], ["src", 31, 40], ["hash", 34, 5]], [["pname", 38, 5], ["version", 39, 26], ["src", 39, 34], ["sourceRoot", 40, 5], ["npmDepsHash", 44, 5], ["installPhase", 46, 5]], [["name", 99, 7], ["desktopName", 100, 7], ["exec", 101, 7], ["icon", 102, 7], ["comment", 103, 7], ["categories", 104, 7], ["terminal", 108, 7]], [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["mainProgram", 117, 5], ["platforms", 118, 5]], [["__structuredAttrs", 19, 3], ["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["npmDeps", 30, 3], ["frontend", 37, 3], ["cargoHash", 56, 3], ["cargoRoot", 58, 3], ["buildAndTestSubdir", 59, 3], ["tauriBuildFlags", 74, 3], ["preBuild", 77, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 91, 3], ["desktopItems", 97, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, "cargo-tauri": false, copyDesktopItems: false, fetchFromGitHub: false, fetchNpmDeps: false, "glib-networking": false, lib: false, makeDesktopItem: false, nodejs: false, openssl: false, "pkg-config": false, rustPlatform: false, stdenv: false, webkitgtk_4_1: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 31, 26], ["version", 31, 32], ["src", 31, 40], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 38, 5], ["version", 39, 26], ["src", 39, 34], ["sourceRoot", 40, 5], ["npmDepsHash", 44, 5], ["installPhase", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 99, 7], ["desktopName", 100, 7], ["exec", 101, 7], ["icon", 102, 7], ["comment", 103, 7], ["categories", 104, 7], ["terminal", 108, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["mainProgram", 117, 5], ["platforms", 118, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["__structuredAttrs", 19, 3], ["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["npmDeps", 30, 3], ["frontend", 37, 3], ["cargoHash", 56, 3], ["cargoRoot", 58, 3], ["buildAndTestSubdir", 59, 3], ["tauriBuildFlags", 74, 3], ["preBuild", 77, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 91, 3], ["desktopItems", 97, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,26 +23,26 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       __structuredAttrs: true,
       pname: "flightcore",
       version: "3.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "R2NorthstarTools",
           repo: "FlightCore",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-eTRtd616hWHgj3wg+jtrt/tFkaxUeKSN0d+XO1CghsE=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-+xrNKFcCatqbl79j/tSLFNTYjxXANFb3/vgWXYY2PGo=",
         })))),
       frontend: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-frontend`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -70,7 +65,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [glib_networking, openssl, webkitgtk_4_1]))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "FlightCore",
             desktopName: "FlightCore",
             exec: "flightcore",
@@ -81,7 +76,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Updater and mod manager for Northstar",
         homepage: "https://github.com/R2NorthstarTools/FlightCore",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

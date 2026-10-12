@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]], [["homepage", 72, 5], ["changelog", 73, 5], ["description", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]], [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["postPatch", 33, 3], ["strictDeps", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["dontUseCmakeConfigure", 55, 3], ["makeFlags", 57, 3], ["installPhase", 62, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, makeWrapper: false, "pkg-config": false, which: false, xxd: false, ffmpeg: false, libcamera: false, live555: false, openssl: false, "v4l-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["changelog", 73, 5], ["description", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["postPatch", 33, 3], ["strictDeps", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["dontUseCmakeConfigure", 55, 3], ["makeFlags", 57, 3], ["installPhase", 62, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.2";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ayufan",
           repo: "camera-streamer",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,7 +49,7 @@ wrapProgram $out/bin/camera-streamer --prefix PATH : ${nix.app(nix.sel(lib, "mak
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ayufan/camera-streamer",
         changelog: nix.thunk(() => nix.str`https://github.com/ayufan/camera-streamer/releases/tag/v${version}`),
         description: "High-performance low-latency camera streamer for Raspberry PI's",
@@ -64,7 +62,7 @@ runHook postInstall
         mainProgram: "camera-streamer",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         __structuredAttrs,

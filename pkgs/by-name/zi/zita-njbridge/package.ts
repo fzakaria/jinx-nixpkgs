@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["preConfigure", 23, 3], ["makeFlags", 27, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libjack2: false, "zita-resampler": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["preConfigure", 23, 3], ["makeFlags", 27, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libjack2 = nix.arg($, "libjack2");
   const zita_resampler = nix.arg($, "zita-resampler");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.4.8",
       pname: "zita-njbridge",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://kokkinizita.linuxaudio.org/linuxaudio/downloads/zita-njbridge-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-EBF2oL1AfKt7/9Mm6NaIbBtlshK8M/LvuXsD+SbEeQc=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cd ./source/\n",
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "MANDIR=$(out)", "SUFFIX=''"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line Jack clients to transmit full quality multichannel audio over a local IP network",
         homepage: "http://kokkinizita.linuxaudio.org/linuxaudio/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

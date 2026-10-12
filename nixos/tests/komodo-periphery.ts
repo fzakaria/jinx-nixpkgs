@@ -2,79 +2,57 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/komodo-periphery.nix", [[["maintainers", 5, 5]], [["enable", 12, 31]], [["docker", 12, 24]], [["enable", 17, 23]], [["bindIp", 15, 19], ["port", 16, 19], ["ssl", 17, 19], ["serverEnabled", 18, 19]], [["level", 23, 19]], [["TEST_SECRET", 25, 21]], [["secrets", 25, 13]], [["privateKey", 27, 16], ["corePublicKeys", 28, 16]], [["enable", 14, 11], ["inbound", 15, 11], ["disableTerminals", 19, 11], ["disableContainerTerminals", 20, 11], ["statsPollingRate", 21, 11], ["containerStatsPollingRate", 22, 11], ["logging", 23, 11], ["extraSettings", 24, 11], ["auth", 27, 11]], [["komodo-periphery", 13, 18]], [["virtualisation", 12, 9], ["services", 13, 9]], [["enable", 35, 31]], [["docker", 35, 24]], [["enable", 38, 23]], [["ssl", 38, 19]], [["level", 39, 19]], [["coreAddress", 40, 20], ["connectAs", 41, 20]], [["enable", 37, 11], ["inbound", 38, 11], ["logging", 39, 11], ["outbound", 40, 11]], [["komodo-periphery", 36, 18]], [["virtualisation", 35, 9], ["services", 36, 9]], [["periphery", 9, 5], ["peripheryOutbound", 32, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 46, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/komodo-periphery.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/komodo-periphery.nix", [["enable", 12, 31]]);
-const pos$3 = nix.positions(here + "/komodo-periphery.nix", [["docker", 12, 24]]);
-const pos$4 = nix.positions(here + "/komodo-periphery.nix", [["enable", 17, 23]]);
-const pos$5 = nix.positions(here + "/komodo-periphery.nix", [["bindIp", 15, 19], ["port", 16, 19], ["ssl", 17, 19], ["serverEnabled", 18, 19]]);
-const pos$6 = nix.positions(here + "/komodo-periphery.nix", [["level", 23, 19]]);
-const pos$7 = nix.positions(here + "/komodo-periphery.nix", [["TEST_SECRET", 25, 21]]);
-const pos$8 = nix.positions(here + "/komodo-periphery.nix", [["secrets", 25, 13]]);
-const pos$9 = nix.positions(here + "/komodo-periphery.nix", [["privateKey", 27, 16], ["corePublicKeys", 28, 16]]);
-const pos$10 = nix.positions(here + "/komodo-periphery.nix", [["enable", 14, 11], ["inbound", 15, 11], ["disableTerminals", 19, 11], ["disableContainerTerminals", 20, 11], ["statsPollingRate", 21, 11], ["containerStatsPollingRate", 22, 11], ["logging", 23, 11], ["extraSettings", 24, 11], ["auth", 27, 11]]);
-const pos$11 = nix.positions(here + "/komodo-periphery.nix", [["komodo-periphery", 13, 18]]);
-const pos$12 = nix.positions(here + "/komodo-periphery.nix", [["virtualisation", 12, 9], ["services", 13, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$13 = nix.positions(here + "/komodo-periphery.nix", [["enable", 35, 31]]);
-const pos$14 = nix.positions(here + "/komodo-periphery.nix", [["docker", 35, 24]]);
-const pos$15 = nix.positions(here + "/komodo-periphery.nix", [["enable", 38, 23]]);
-const pos$16 = nix.positions(here + "/komodo-periphery.nix", [["ssl", 38, 19]]);
-const pos$17 = nix.positions(here + "/komodo-periphery.nix", [["level", 39, 19]]);
-const pos$18 = nix.positions(here + "/komodo-periphery.nix", [["coreAddress", 40, 20], ["connectAs", 41, 20]]);
-const pos$19 = nix.positions(here + "/komodo-periphery.nix", [["enable", 37, 11], ["inbound", 38, 11], ["logging", 39, 11], ["outbound", 40, 11]]);
-const pos$20 = nix.positions(here + "/komodo-periphery.nix", [["komodo-periphery", 36, 18]]);
-const pos$21 = nix.positions(here + "/komodo-periphery.nix", [["virtualisation", 35, 9], ["services", 36, 9]]);
-const pos$22 = nix.positions(here + "/komodo-periphery.nix", [["periphery", 9, 5], ["peripheryOutbound", 32, 5]]);
-const pos$23 = nix.positions(here + "/komodo-periphery.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: "komodo-periphery",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "channinghe"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       periphery: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            docker: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            docker: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             "komodo-periphery": nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               enable: true,
               inbound: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 bindIp: "127.0.0.1",
                 port: 8120n,
-                ssl: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
+                ssl: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: false })),
                 serverEnabled: true,
               })),
               disableTerminals: true,
               disableContainerTerminals: true,
               statsPollingRate: "10-sec",
               containerStatsPollingRate: "1-min",
-              logging: nix.thunk(() => ({ [nix.POS]: pos$6, level: "debug" })),
+              logging: nix.thunk(() => ({ [nix.POS]: $pos[5], level: "debug" })),
               extraSettings: nix.thunk(() => ({
-                [nix.POS]: pos$8,
-                secrets: nix.thunk(() => ({ [nix.POS]: pos$7, TEST_SECRET: "test-value" })),
+                [nix.POS]: $pos[7],
+                secrets: nix.thunk(() => ({ [nix.POS]: $pos[6], TEST_SECRET: "test-value" })),
               })),
               auth: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 privateKey: "file:/var/lib/komodo-periphery/keys/test.key",
                 corePublicKeys: nix.thunk(() => ["MCowBQYDK2VuAyEATZgrjGHeF0KJUe0+n77+qAWOg3YzEzXOmQWaRgO3OGQ="]),
               })),
@@ -85,22 +63,22 @@ export default nix.lambda((args) => (() => {
       peripheryOutbound: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$14,
-            docker: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
+            [nix.POS]: $pos[13],
+            docker: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             "komodo-periphery": nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               enable: true,
               inbound: nix.thunk(() => ({
-                [nix.POS]: pos$16,
-                ssl: nix.thunk(() => ({ [nix.POS]: pos$15, enable: false })),
+                [nix.POS]: $pos[15],
+                ssl: nix.thunk(() => ({ [nix.POS]: $pos[14], enable: false })),
               })),
-              logging: nix.thunk(() => ({ [nix.POS]: pos$17, level: "debug" })),
-              outbound: nix.thunk(() => ({ [nix.POS]: pos$18, coreAddress: "core.invalid", connectAs: "test-server" })),
+              logging: nix.thunk(() => ({ [nix.POS]: $pos[16], level: "debug" })),
+              outbound: nix.thunk(() => ({ [nix.POS]: $pos[17], coreAddress: "core.invalid", connectAs: "test-server" })),
             })),
           })),
         };

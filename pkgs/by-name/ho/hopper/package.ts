@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["curlOptsList", 21, 5], ["hash", 27, 5]], [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]], [["pname", 15, 3], ["version", 16, 3], ["rev", 17, 3], ["src", 19, 3], ["sourceRoot", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["installPhase", 44, 3], ["preFixup", 65, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, libsForQt5: false, "gnustep-libobjc": false, libbsd: false, libffi_3_3: false, libxml2: false, ncurses6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["curlOptsList", 21, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["rev", 17, 3], ["src", 19, 3], ["sourceRoot", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["installPhase", 44, 3], ["preFixup", 65, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const ncurses6 = nix.arg($, "ncurses6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hopper",
       version: "5.19.4",
       rev: "v4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.hopperapp.com/downloader/public/Hopper-${nix.sel(finalAttrs, "rev")}-${nix.sel(finalAttrs, "version")}-Linux-demo.pkg.tar.xz`),
           curlOptsList: nix.thunk(() => [
             "--user-agent",
@@ -62,7 +60,7 @@ mkdir -p "$out/lib"
 ln -s "${nix.app(nix.sel(lib, "getLib"), libxml2)}/lib/libxml2.so" "$out/lib/libxml2.so.2"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.hopperapp.com/index.html",
         description: "MacOS and Linux Disassembler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

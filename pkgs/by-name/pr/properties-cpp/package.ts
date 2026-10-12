@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["pkg-config", 46, 11]], [["tests", 46, 5], ["updateScript", 47, 5]], [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["pkgConfigModules", 56, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["checkInputs", 39, 3], ["doCheck", 43, 3], ["passthru", 45, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, gitUpdater: false, testers: false, cmake: false, "pkg-config": false, gtest: false, doxygen: false, graphviz: false, lomiri: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 46, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 46, 5], ["updateScript", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["pkgConfigModules", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["checkInputs", 39, 3], ["doCheck", 43, 3], ["passthru", 45, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const graphviz = nix.arg($, "graphviz");
   const lomiri = nix.arg($, "lomiri");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "properties-cpp",
       version: "0.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lib-cpp/properties-cpp",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,15 +35,15 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [gtest]),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.com/ubports/development/core/lib-cpp/properties-cpp",
         description: "Very simple convenience library for handling properties and signals in C++11",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

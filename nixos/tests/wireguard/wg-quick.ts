@@ -2,29 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wg-quick.nix", [[["kernelPackages", 13, 12], ["blacklistedKernelModules", 16, 12]], [["enable", 14, 27]], [["nftables", 14, 18]], [["boot", 13, 7], ["networking", 14, 7]], [["allowedUDPPorts", 29, 29]], [["allowedIPs", 40, 13], ["publicKey", 45, 46]], [["address", 31, 11], ["listenPort", 35, 11], ["privateKey", 37, 44], ["peers", 39, 11], ["dns", 48, 11]], [["wg0", 30, 40]], [["interfaces", 30, 29]], [["firewall", 29, 20], ["wg-quick", 30, 20]], [["imports", 27, 9], ["networking", 29, 9]], [["ip4", 24, 7], ["ip6", 25, 7], ["extraConfig", 26, 7]], [["allowedIPs", 72, 13], ["endpoint", 76, 13], ["persistentKeepalive", 77, 13], ["publicKey", 79, 46]], [["address", 65, 11], ["privateKey", 69, 44], ["peers", 71, 11], ["dns", 82, 11]], [["wg0", 64, 40]], [["interfaces", 64, 29]], [["useNetworkd", 63, 20], ["wg-quick", 64, 20]], [["imports", 61, 9], ["networking", 63, 9]], [["ip4", 58, 7], ["ip6", 59, 7], ["extraConfig", 60, 7]], [["peer0", 23, 5], ["peer1", 57, 5]], [["name", 20, 3], ["nodes", 22, 3], ["testScript", 92, 3]]]);
 const formals$1 = { args: { lib: false, kernelPackages: true, nftables: true }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/wg-quick.nix", [["kernelPackages", 13, 12], ["blacklistedKernelModules", 16, 12]]);
-const pos$2 = nix.positions(here + "/wg-quick.nix", [["enable", 14, 27]]);
-const pos$3 = nix.positions(here + "/wg-quick.nix", [["nftables", 14, 18]]);
-const pos$4 = nix.positions(here + "/wg-quick.nix", [["boot", 13, 7], ["networking", 14, 7]]);
-const pos$5 = nix.positions(here + "/wg-quick.nix", [["allowedUDPPorts", 29, 29]]);
-const pos$6 = nix.positions(here + "/wg-quick.nix", [["allowedIPs", 40, 13], ["publicKey", 45, 46]]);
-const pos$7 = nix.positions(here + "/wg-quick.nix", [["address", 31, 11], ["listenPort", 35, 11], ["privateKey", 37, 44], ["peers", 39, 11], ["dns", 48, 11]]);
-const pos$8 = nix.positions(here + "/wg-quick.nix", [["wg0", 30, 40]]);
-const pos$9 = nix.positions(here + "/wg-quick.nix", [["interfaces", 30, 29]]);
-const pos$10 = nix.positions(here + "/wg-quick.nix", [["firewall", 29, 20], ["wg-quick", 30, 20]]);
-const pos$11 = nix.positions(here + "/wg-quick.nix", [["imports", 27, 9], ["networking", 29, 9]]);
-const pos$12 = nix.positions(here + "/wg-quick.nix", [["ip4", 24, 7], ["ip6", 25, 7], ["extraConfig", 26, 7]]);
-const pos$13 = nix.positions(here + "/wg-quick.nix", [["allowedIPs", 72, 13], ["endpoint", 76, 13], ["persistentKeepalive", 77, 13], ["publicKey", 79, 46]]);
-const pos$14 = nix.positions(here + "/wg-quick.nix", [["address", 65, 11], ["privateKey", 69, 44], ["peers", 71, 11], ["dns", 82, 11]]);
-const pos$15 = nix.positions(here + "/wg-quick.nix", [["wg0", 64, 40]]);
-const pos$16 = nix.positions(here + "/wg-quick.nix", [["interfaces", 64, 29]]);
-const pos$17 = nix.positions(here + "/wg-quick.nix", [["useNetworkd", 63, 20], ["wg-quick", 64, 20]]);
-const pos$18 = nix.positions(here + "/wg-quick.nix", [["imports", 61, 9], ["networking", 63, 9]]);
-const pos$19 = nix.positions(here + "/wg-quick.nix", [["ip4", 58, 7], ["ip6", 59, 7], ["extraConfig", 60, 7]]);
-const pos$20 = nix.positions(here + "/wg-quick.nix", [["peer0", 23, 5], ["peer1", 57, 5]]);
-const pos$21 = nix.positions(here + "/wg-quick.nix", [["name", 20, 3], ["nodes", 22, 3], ["testScript", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,48 +17,48 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         kernelPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), nix.thunk(() => nix.app(kernelPackages, pkgs)))),
         blacklistedKernelModules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nftables, nix.thunk(() => ["nft_compat"]))),
       })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        nftables: nix.thunk(() => ({ [nix.POS]: pos$2, enable: nftables })),
+        [nix.POS]: $pos[2],
+        nftables: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: nftables })),
       })),
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     name: "wg-quick",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       peer0: nix.thunk(() => nix.app(peer, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           ip4: "192.168.0.1",
           ip6: "fd00::1",
           extraConfig: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             imports: nix.thunk(() => [commonConfig]),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$10,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedUDPPorts: nix.thunk(() => [23542n]) })),
+              [nix.POS]: $pos[9],
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[4], allowedUDPPorts: nix.thunk(() => [23542n]) })),
               "wg-quick": nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 interfaces: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   wg0: nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(wg_snakeoil_keys, "peer0"));
                     return {
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     address: nix.thunk(() => ["10.23.42.1/32", "fc00::1/128"]),
                     listenPort: 23542n,
                     privateKey: nix.thunk(() => nix.attr(from, "privateKey")),
                     peers: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => (() => {
                         const from_1 = nix.thunk(() => nix.sel(wg_snakeoil_keys, "peer1"));
                         return {
-                        [nix.POS]: pos$6,
+                        [nix.POS]: $pos[5],
                         allowedIPs: nix.thunk(() => ["10.23.42.2/32", "fc00::2/128"]),
                         publicKey: nix.thunk(() => nix.attr(from_1, "publicKey")),
                       };
@@ -92,29 +72,29 @@ export default nix.lambda((args) => (() => {
           })),
         })))),
       peer1: nix.thunk(() => nix.app(peer, nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           ip4: "192.168.0.2",
           ip6: "fd00::2",
           extraConfig: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             imports: nix.thunk(() => [commonConfig]),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               useNetworkd: true,
               "wg-quick": nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 interfaces: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   wg0: nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(wg_snakeoil_keys, "peer1"));
                     return {
-                    [nix.POS]: pos$14,
+                    [nix.POS]: $pos[13],
                     address: nix.thunk(() => ["10.23.42.2/32", "fc00::2/128"]),
                     privateKey: nix.thunk(() => nix.attr(from, "privateKey")),
                     peers: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => (() => {
                         const from_1 = nix.thunk(() => nix.sel(wg_snakeoil_keys, "peer0"));
                         return {
-                        [nix.POS]: pos$13,
+                        [nix.POS]: $pos[12],
                         allowedIPs: nix.thunk(() => ["0.0.0.0/0", "::/0"]),
                         endpoint: "192.168.0.1:23542",
                         persistentKeepalive: 25n,

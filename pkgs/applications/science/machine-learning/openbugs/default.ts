@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 21, 5], ["homepage", 22, 5], ["changelog", 23, 5], ["platforms", 24, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 8, 3], ["version", 9, 3], ["outputs", 11, 3], ["src", 13, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 21, 5], ["homepage", 22, 5], ["changelog", 23, 5], ["platforms", 24, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["outputs", 11, 3], ["src", 13, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,19 +11,19 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "OpenBUGS",
       version: "3.2.3",
       outputs: nix.thunk(() => ["out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jsta",
           repo: "openbugs",
           rev: "cd921342ba13ee89ee60f9aebd2e96c42bd59ae3",
           sha256: "sha256-11LrScN1kvtq0Fo7RWGjbQO0U5b5brCbipl5pdZnrFs=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Software package for performing Bayesian analysis and simulation using Markov Chain Monte Carlo",
         homepage: "https://github.com/jsta/openbugs/",
         changelog: "https://github.com/jsta/openbugs/blob/master/ChangeLog",

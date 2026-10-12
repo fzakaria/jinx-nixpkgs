@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["NIX_CFLAGS_COMPILE", 21, 7]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 65, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["env", 21, 3], ["preConfigure", 25, 3], ["makeFlags", 29, 3], ["installPhase", 49, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["env", 21, 3], ["preConfigure", 25, 3], ["makeFlags", 29, 3], ["installPhase", 49, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "raspberrypi-armstubs",
       version: "unstable-2022-07-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "raspberrypi",
           repo: "tools",
           rev: "439b6198a9b340de5998dd14a26a0d9d38a6bcac",
           hash: "sha512-KMHgj73eXHT++IE8DbCsFeJ87ngc9R3XxMUJy4Z3s4/MtMeB9zblADHkyJqz9oyeugeJTrDtuVETPBRo7M4Y8A==",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-march=armv8-a+crc"]))),
       })),
       preConfigure: "cd armstubs\n",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(optionals, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["armstub8.bin", "armstub8-gic.bin"])), nix.app(optionals, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch32")), nix.thunk(() => ["armstub7.bin", "armstub8-32.bin", "armstub8-32-gic.bin"]))))),
       installPhase: "runHook preInstall\nmkdir -vp $out/\ncp -v *.bin $out/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Firmware related ARM stubs for the Raspberry Pi",
         homepage: "https://github.com/raspberrypi/tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["mainProgram", 34, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["pyproject", 18, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["pythonImportsCheck", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["mainProgram", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["pyproject", 18, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["pythonImportsCheck", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "minimax-coding-plan-mcp",
       version: "0-unstable-2026-02-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MiniMax-AI",
           repo: "MiniMax-Coding-Plan-MCP",
           rev: "fbac3b3e56922a1249e00eebe07d9ee68f4768dc",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["minimax_mcp"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MiniMax MCP server for coding-plan users with web search and image understanding",
         homepage: "https://github.com/MiniMax-AI/MiniMax-Coding-Plan-MCP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

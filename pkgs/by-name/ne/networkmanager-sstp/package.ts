@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["sha256", 29, 5]], [["packageName", 72, 7], ["attrPath", 73, 7]], [["updateScript", 71, 5], ["networkManagerPlugin", 75, 5]], [["description", 79, 5], ["maintainers", 80, 35], ["teams", 80, 47], ["platforms", 80, 53], ["knownVulnerabilities", 81, 5], ["license", 84, 5]], [["pname", 23, 3], ["version", 24, 3], ["name", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 43, 3], ["postPatch", 56, 3], ["configureFlags", 61, 3], ["strictDeps", 68, 3], ["passthru", 70, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, autoreconfHook: false, fetchurl: false, file: false, glib: false, gnome: false, gtk3: false, gtk4: false, gettext: false, libnma: false, "libnma-gtk4": false, libsecret: false, networkmanager: false, "pkg-config": false, ppp: false, sstp: false, withGnome: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 72, 7], ["attrPath", 73, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 71, 5], ["networkManagerPlugin", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 79, 5], ["maintainers", 80, 35], ["teams", 80, 47], ["platforms", 80, 53], ["knownVulnerabilities", 81, 5], ["license", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["name", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 43, 3], ["postPatch", 56, 3], ["configureFlags", 61, 3], ["strictDeps", 68, 3], ["passthru", 70, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.2";
       const name = nix.thunk(() => nix.str`${pname}${nix.app(nix.sel(lib, "optionalString"), withGnome, "-gnome")}-${version}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/${pname}/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${pname}-${version}.tar.xz`),
           sha256: "sha256-zd+g86cZLyibLhYLal6XzUb9wFu7kHROp0KzRM95Qng=",
         }))));
@@ -51,14 +47,14 @@ sed -i 's#/sbin/sstpc#${sstp}/bin/sstpc#' src/nm-sstp-service.c
       ]);
       const strictDeps = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, attrPath: "networkmanager-sstp" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: pname, attrPath: "networkmanager-sstp" })))),
         networkManagerPlugin: "VPN/nm-sstp-service.name",
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(networkmanager, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "NetworkManager's sstp plugin",
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         teams: nix.thunk(() => nix.attr(from, "teams")),
@@ -68,7 +64,7 @@ sed -i 's#/sbin/sstpc#${sstp}/bin/sstpc#' src/nm-sstp-service.c
       };
       })());
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         name,

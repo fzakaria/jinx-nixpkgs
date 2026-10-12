@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 41, 5], ["mainProgram", 42, 5], ["license", 43, 5], ["homepage", 44, 5], ["maintainers", 45, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["subPackages", 19, 3], ["vendorHash", 23, 3], ["ldflags", 25, 3], ["doInstallCheck", 32, 3], ["nativeInstallCheckInputs", 34, 3], ["versionCheckProgramArg", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["license", 43, 5], ["homepage", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["subPackages", 19, 3], ["vendorHash", 23, 3], ["ldflags", 25, 3], ["doInstallCheck", 32, 3], ["nativeInstallCheckInputs", 34, 3], ["versionCheckProgramArg", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ecspresso",
       version: "2.8.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kayac",
           repo: "ecspresso",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Deployment tool for ECS",
         mainProgram: "ecspresso",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

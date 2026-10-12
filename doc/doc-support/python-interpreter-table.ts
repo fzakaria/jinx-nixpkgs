@@ -2,9 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/python-interpreter-table.nix", [[["cpython", 24, 9], ["pypy", 25, 9]], [["pname", 48, 13], ["aliases", 49, 5], ["interpreter", 50, 5]]]);
 const formals$1 = { args: { lib: false, writeText: false, pkgs: false, pythonInterpreters: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/python-interpreter-table.nix", [["cpython", 24, 9], ["pypy", 25, 9]]);
-const pos$2 = nix.positions(here + "/python-interpreter-table.nix", [["pname", 48, 13], ["aliases", 49, 5], ["interpreter", 50, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const pythonInterpreters = nix.arg($, "pythonInterpreters");
   const isPythonInterpreter = (name) => !nix.eq(nix.app(nix.sel(lib, "strings", "match"), "(pypy|python)([[:digit:]]*)", name), null);
   const interpreterName = (pname) => (() => {
-    const cuteName = nix.thunk(() => ({ [nix.POS]: pos$1, cpython: "CPython", pypy: "PyPy" }));
+    const cuteName = nix.thunk(() => ({ [nix.POS]: $pos[0], cpython: "CPython", pypy: "PyPy" }));
     const interpreter = nix.thunk(() => nix.sel(pkgs, nix.key(nix.force(pname))));
     return nix.str`${nix.sel(cuteName, nix.key(nix.sel(interpreter, "implementation")))} ${nix.sel(interpreter, "pythonVersion")}`;
   })();
   const interpreters = nix.thunk(() => nix.app(nix.sel(lib, "reverseList"), nix.thunk(() => nix.app(nix.sel(lib, "naturalSort"), nix.thunk(() => nix.app(nix.sel(lib, "filter"), isPythonInterpreter, nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), pythonInterpreters))))))));
   const aliases = (pname) => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => nix.sel(nix.builtins.tryEval(nix.thunk(() => (nix.asBool((nix.asBool(nix.app(isPythonInterpreter, name)) && nix.asBool(!nix.eq(name, pname)))) && nix.asBool(nix.eq(nix.app(interpreterName, name), nix.app(interpreterName, pname)))))), "value"), pkgs)));
   const result = nix.thunk(() => nix.builtins.map((pname) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       aliases: nix.thunk(() => nix.app(aliases, pname)),
       interpreter: nix.thunk(() => nix.app(interpreterName, pname)),

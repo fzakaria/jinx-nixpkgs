@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["rev-prefix", 57, 5]], [["updateScript", 56, 12]], [["homepage", 61, 5], ["license", 62, 5], ["description", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["postPatch", 32, 3], ["__darwinAllowLocalNetworking", 36, 3], ["doCheck", 38, 3], ["nativeCheckInputs", 40, 3], ["checkTarget", 42, 3], ["enableParallelChecking", 52, 3], ["enableParallelBuilding", 54, 3], ["passthru", 56, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gfortran: false, autoreconfHook: false, perl: false, mpi: false, mpiCheckPhaseHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 56, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["license", 62, 5], ["description", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["postPatch", 32, 3], ["__darwinAllowLocalNetworking", 36, 3], ["doCheck", 38, 3], ["nativeCheckInputs", 40, 3], ["checkTarget", 42, 3], ["enableParallelChecking", 52, 3], ["enableParallelBuilding", 54, 3], ["passthru", 56, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const mpiCheckPhaseHook = nix.arg($, "mpiCheckPhaseHook");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pnetcdf",
       version: "1.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Parallel-NetCDF",
           repo: "PnetCDF",
           tag: nix.thunk(() => nix.str`checkpoint.${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +37,11 @@ export default nix.lambda((args) => (() => {
       enableParallelChecking: false,
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "checkpoint." })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "checkpoint." })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://parallel-netcdf.github.io/",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

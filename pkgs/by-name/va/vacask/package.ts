@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]], [["updateScript", 110, 12]], [["description", 113, 5], ["longDescription", 114, 5], ["homepage", 118, 5], ["changelog", 119, 5], ["mainProgram", 120, 5], ["license", 121, 5], ["platforms", 123, 5], ["maintainers", 124, 5], ["teams", 125, 5]], [["pname", 60, 3], ["version", 61, 3], ["__structuredAttrs", 62, 3], ["strictDeps", 63, 3], ["src", 65, 3], ["postPatch", 72, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 91, 3], ["cmakeFlags", 97, 3], ["doCheck", 103, 3], ["nativeCheckInputs", 105, 3], ["passthru", 110, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, "nix-update-script": false, runCommand: false, bison: false, cmake: false, flex: false, openvaf: false, python3: false, boost188: false, suitesparse: false, tomlplusplus: false, openvafTargetCpu: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 110, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 113, 5], ["longDescription", 114, 5], ["homepage", 118, 5], ["changelog", 119, 5], ["mainProgram", 120, 5], ["license", 121, 5], ["platforms", 123, 5], ["maintainers", 124, 5], ["teams", 125, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 60, 3], ["version", 61, 3], ["__structuredAttrs", 62, 3], ["strictDeps", 63, 3], ["src", 65, 3], ["postPatch", 72, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 91, 3], ["cmakeFlags", 97, 3], ["doCheck", 103, 3], ["nativeCheckInputs", 105, 3], ["passthru", 110, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,13 +32,13 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vacask",
       version: "0.3.3",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arpadbuermen",
           repo: "VACASK",
           tag: nix.thunk(() => nix.str`_${nix.sel(finalAttrs, "version")}`),
@@ -72,11 +69,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [openvaf, pyEnv]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Analog circuit simulator",
         longDescription: "VACASK is a Verilog-A Circuit Analysis Kernel - an analog circuit\nsimulator with a device library built from Verilog-A modules.\n",
         homepage: "https://codeberg.org/arpadbuermen/VACASK",

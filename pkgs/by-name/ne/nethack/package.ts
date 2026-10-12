@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 64, 5], ["sha256", 67, 5]], [["url", 73, 9], ["hash", 74, 9]], [["name", 256, 7], ["exec", 257, 7], ["icon", 264, 7], ["desktopName", 265, 7], ["comment", 266, 7], ["categories", 267, 7]], [["description", 275, 5], ["homepage", 276, 5], ["license", 277, 5], ["platforms", 278, 5], ["maintainers", 279, 5], ["mainProgram", 280, 5]], [["version", 54, 3], ["pname", 55, 3], ["src", 63, 3], ["postUnpack", 70, 3], ["buildInputs", 82, 3], ["nativeBuildInputs", 96, 3], ["makeFlags", 113, 3], ["postPatch", 128, 3], ["configurePhase", 189, 3], ["enableParallelBuilding", 196, 3], ["preFixup", 198, 3], ["postInstall", 202, 3], ["desktopItems", 254, 3], ["meta", 274, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, coreutils: false, groff: false, ncurses: false, gzip: false, less: false, bash: false, buildPackages: false, x11Mode: true, qtMode: true, libxaw: false, libxext: false, libxpm: false, bdftopcf: false, mkfontdir: false, xset: false, "font-misc-misc": false, "font-adobe-75dpi": false, "pkg-config": false, qt5: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 64, 5], ["sha256", 67, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 73, 9], ["hash", 74, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 256, 7], ["exec", 257, 7], ["icon", 264, 7], ["desktopName", 265, 7], ["comment", 266, 7], ["categories", 267, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 275, 5], ["homepage", 276, 5], ["license", 277, 5], ["platforms", 278, 5], ["maintainers", 279, 5], ["mainProgram", 280, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 54, 3], ["pname", 55, 3], ["src", 63, 3], ["postUnpack", 70, 3], ["buildInputs", 82, 3], ["nativeBuildInputs", 96, 3], ["makeFlags", 113, 3], ["postPatch", 128, 3], ["configurePhase", 189, 3], ["enableParallelBuilding", 196, 3], ["preFixup", 198, 3], ["postInstall", 202, 3], ["desktopItems", 254, 3], ["meta", 274, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,17 +39,17 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`${font_adobe_75dpi}/share/fonts/X11/75dpi`),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "5.0.0",
       pname: nix.thunk(() => (nix.asBool(x11Mode) ? "nethack-x11" : (nix.asBool(qtMode) ? "nethack-qt" : "nethack"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://nethack.org/download/${nix.sel(finalAttrs, "version")}/nethack-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}-src.tgz`),
           sha256: "sha256-KVm3iGqsdhhbkK6gyfgNFDQ/YE3grpaz3Sp2D3qzvek=",
         })))),
       postUnpack: nix.thunk(() => (() => {
         const lua548 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://www.lua.org/ftp/lua-5.4.8.tar.gz",
             hash: "sha256-TxjdrhVOeT5G7qtyfFnvHAwMK3ROe5QhlxDXb1MGKa4=",
           }))));
@@ -184,7 +180,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBoo
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(x11Mode) || nix.asBool(qtMode))), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "NetHack",
               exec: nix.thunk(() => (nix.asBool(x11Mode) ? "nethack-x11" : (nix.asBool(qtMode) ? "nethack-qt" : "nethack"))),
               icon: "nethack",
@@ -194,7 +190,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBoo
             })))),
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Rogue-like game",
         homepage: "http://nethack.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ngpl")),

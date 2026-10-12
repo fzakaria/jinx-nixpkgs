@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["finalAttrs", 128, 54]], [["updateScript", 128, 12]], [["description", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["teams", 134, 5], ["platforms", 135, 5], ["broken", 136, 5]], [["pname", 32, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 52, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 69, 3], ["cmakeFlags", 89, 3], ["postPatch", 115, 3], ["postBuild", 124, 3], ["passthru", 128, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, "rocm-cmake": false, clr: false, "pkg-config": false, rpp: false, rocblas: false, miopen: false, migraphx: false, openmp: false, protobuf: false, qtcreator: false, opencv: false, ffmpeg: false, boost: false, half: false, lmdb: false, rapidjson: false, "rocm-docs-core": false, python3Packages: false, useOpenCL: true, useCPU: true, buildDocs: true, gpuTargets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["finalAttrs", 128, 54]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 128, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["teams", 134, 5], ["platforms", 135, 5], ["broken", 136, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 52, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 69, 3], ["cmakeFlags", 89, 3], ["postPatch", 115, 3], ["postBuild", 124, 3], ["passthru", 128, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const buildDocs = nix.argOr($, "buildDocs", () => false);
   const gpuTargets = nix.argOr($, "gpuTargets", () => nix.selOr(clr, () => [], "localGpuTargets"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.add("mivisionx-", (nix.asBool((nix.asBool(!nix.asBool(useOpenCL)) && nix.asBool(!nix.asBool(useCPU)))) ? "hip" : (nix.asBool((nix.asBool(!nix.asBool(useOpenCL)) && nix.asBool(!nix.asBool(useCPU)))) ? "opencl" : "cpu")))),
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "MIVisionX",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -89,11 +85,11 @@ substituteInPlace amd_openvx_extensions/CMakeLists.txt \\
 `),
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildDocs, "python3 -m sphinx -T -E -b html -d _build/doctrees -D language=en ../docs _build/html\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Set of comprehensive computer vision and machine intelligence libraries, utilities, and applications",
         homepage: "https://github.com/ROCm/MIVisionX",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

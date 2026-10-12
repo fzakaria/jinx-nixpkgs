@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["Catppuccin", 23, 5], ["Dracula", 39, 5], ["Gruvbox", 49, 5], ["Original", 60, 5]], [["owner", 95, 7], ["repo", 96, 7], ["rev", 97, 7], ["hash", 98, 7]], [["Catppuccin", 104, 11], ["Dracula", 105, 11], ["Gruvbox", 106, 11]], [["Catppuccin", 111, 11], ["Dracula", 112, 11], ["Gruvbox", 113, 11], ["Original", 114, 11]], [["description", 137, 7], ["homepage", 138, 7], ["maintainers", 139, 7], ["platforms", 140, 7], ["license", 141, 7]], [["pname", 91, 13], ["version", 92, 5], ["src", 94, 5], ["installPhase", 101, 5], ["meta", 136, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, themeVariants: true, catppuccinColorVariants: true, draculaColorVariants: true, gruvboxColorVariants: true, originalColorVariants: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["Catppuccin", 23, 5], ["Dracula", 39, 5], ["Gruvbox", 49, 5], ["Original", 60, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 95, 7], ["repo", 96, 7], ["rev", 97, 7], ["hash", 98, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["Catppuccin", 104, 11], ["Dracula", 105, 11], ["Gruvbox", 106, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["Catppuccin", 111, 11], ["Dracula", 112, 11], ["Gruvbox", 113, 11], ["Original", 114, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 137, 7], ["homepage", 138, 7], ["maintainers", 139, 7], ["platforms", 140, 7], ["license", 141, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 91, 13], ["version", 92, 5], ["src", 94, 5], ["installPhase", 101, 5], ["meta", 136, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const pname = "afterglow-cursors-recolored";
   const availableThemeVariants = nix.thunk(() => ["Catppuccin", "Dracula", "Gruvbox", "Original"]);
   const availableColorVariants = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     Catppuccin: nix.thunk(() => [
       "Blue",
       "Flamingo",
@@ -55,22 +50,27 @@ export default nix.lambda((args) => (() => {
     Original: nix.thunk(() => ["Blue", "Purple", "joris", "joris2", "joris3", "joris4"]),
   }));
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: theme variants`), availableThemeVariants, themeVariants, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: catppuccin color variants`), nix.thunk(() => nix.sel(availableColorVariants, "Catppuccin")), catppuccinColorVariants, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: dracula color variants`), nix.thunk(() => nix.sel(availableColorVariants, "Dracula")), draculaColorVariants, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: gruvbox color variants`), nix.thunk(() => nix.sel(availableColorVariants, "Gruvbox")), gruvboxColorVariants, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: original color variants`), nix.thunk(() => nix.sel(availableColorVariants, "Original")), originalColorVariants, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: "0-unstable-2023-10-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "TeddyBearKilla",
           repo: "Afterglow-Cursors-Recolored",
           rev: "940a5d30e52f8c827fa249d2bbcc4af889534888",
           hash: "sha256-GR+d+jrbeIGpqal5krx83PxuQto2PQTO3unQ+jaJf6s=",
         })))),
       installPhase: nix.thunk(() => (() => {
-        const dist = nix.thunk(() => ({ [nix.POS]: pos$3, Catppuccin: "cat", Dracula: "dracula", Gruvbox: "gruvbox" }));
+        const dist = nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          Catppuccin: "cat",
+          Dracula: "dracula",
+          Gruvbox: "gruvbox",
+        }));
         const withAlternate = (xs) => (xs$) => (nix.asBool(!nix.eq(xs, [])) ? nix.force(xs) : nix.force(xs$));
         const themeVariants$ = nix.thunk(() => nix.app(withAlternate, themeVariants, availableThemeVariants));
         const colorVariants = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           Catppuccin: nix.thunk(() => nix.app(withAlternate, catppuccinColorVariants, nix.thunk(() => nix.sel(availableColorVariants, "Catppuccin")))),
           Dracula: nix.thunk(() => nix.app(withAlternate, draculaColorVariants, nix.thunk(() => nix.sel(availableColorVariants, "Dracula")))),
           Gruvbox: nix.thunk(() => nix.app(withAlternate, gruvboxColorVariants, nix.thunk(() => nix.sel(availableColorVariants, "Gruvbox")))),
@@ -89,7 +89,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Recoloring of the Afterglow Cursors x-cursor theme",
         homepage: "https://github.com/TeddyBearKilla/Afterglow-Cursors-Recolored",
         maintainers: [],

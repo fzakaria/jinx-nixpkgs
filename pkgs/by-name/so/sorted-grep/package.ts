@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["homepage", 49, 5], ["description", 50, 5], ["mainProgram", 51, 5], ["longDescription", 52, 5], ["platforms", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 16, 3], ["buildPhase", 21, 3], ["installPhase", 29, 3], ["installCheckPhase", 37, 3], ["doInstallCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["mainProgram", 51, 5], ["longDescription", 52, 5], ["platforms", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 16, 3], ["buildPhase", 21, 3], ["installPhase", 29, 3], ["installCheckPhase", 37, 3], ["doInstallCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sorted-grep",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/sgrep/sgrep-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-3F7cXrZnB38YwE1sHYm/CIGKmG+1c0QU+Pk3Y53a0T4=",
         })))),
@@ -32,7 +30,7 @@ runHook postBuild
       installCheckPhase: "runHook preInstallCheck\n\nset +o pipefail\n$out/bin/sgrep 2>&1 | grep ^Usage:\n\nrunHook postInstallCheck\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://sgrep.sourceforge.net/",
         description: "Sgrep (sorted grep) searches sorted input files for lines that match a search key",
         mainProgram: "sgrep",

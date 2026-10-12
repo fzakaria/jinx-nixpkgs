@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["url", 20, 7], ["hash", 21, 7]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5], ["mainProgram", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 17, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5], ["mainProgram", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 17, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,23 +11,23 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lcab",
       version: "1.0b12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://deb.debian.org/debian/pool/main/l/lcab/lcab_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           hash: "sha256-Bl8sF5O2XyhHHA9xt88SCnBk8o0cRLB8q/SewOl/H8g=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/debian/lcab/-/raw/f72d6db6504123bd124b1a4be21ead8cc1535c9e/debian/patches/20-version.patch",
             hash: "sha256-Yb6E8nQVdicmjcGnxR7HHdsd7D+ThXk02UHiaB+PLvE=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Create cabinet (.cab) archives",
         homepage: "https://salsa.debian.org/debian/lcab",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

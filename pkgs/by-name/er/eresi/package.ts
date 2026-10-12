@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["url", 24, 7], ["sha256", 25, 7]], [["url", 31, 7], ["sha256", 32, 7]], [["url", 38, 7], ["sha256", 39, 7]], [["NIX_CFLAGS_COMPILE", 44, 7]], [["description", 93, 5], ["license", 94, 5], ["homepage", 95, 5], ["platforms", 96, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["env", 44, 3], ["postPatch", 46, 3], ["configureFlags", 67, 3], ["prefixKey", 75, 3], ["dontDisableStatic", 76, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 79, 3], ["enableParallelBuilding", 83, 3], ["enableParallelInstalling", 86, 3], ["installTargets", 88, 3], ["__structuredAttrs", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, which: false, openssl: false, readline: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["sha256", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 31, 7], ["sha256", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 38, 7], ["sha256", 39, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 44, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 93, 5], ["license", 94, 5], ["homepage", 95, 5], ["platforms", 96, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["env", 44, 3], ["postPatch", 46, 3], ["configureFlags", 67, 3], ["prefixKey", 75, 3], ["dontDisableStatic", 76, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 79, 3], ["enableParallelBuilding", 83, 3], ["enableParallelInstalling", 86, 3], ["installTargets", 88, 3], ["__structuredAttrs", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "eresi",
       version: "0.83-a3-phoenix",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "thorkill",
           repo: "eresi",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,22 +27,22 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/thorkill/eresi/commit/a79406344cc21d594d27fa5ec5922abe9f7475e7.patch",
             sha256: "1mjjc6hj7r06iarvai7prcdvjk9g0k5vwrmkwcm7b8ivd5xzxp2z",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/thorkill/eresi/commit/bc5b9a75c326f277e5f89e01a3b8f7f0519a99f6.patch",
             sha256: "0lqwrnkkhhd3vi1r8ngvziyqkk09h98h93rrs3ndqi048a898ys1",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/thorkill/eresi/commit/f85397c4dce633764fab29b0642f59fc4764658a.patch",
             sha256: "sha256-mKmJHjyWwCNh/pueB94Ndhj/3uZLBZNn/m9gXenP5ns=",
           })))),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       postPatch: "# Two occurences of fprintf() with only two arguments, which should really\n# be fputs().\n#\n# Upstream pull request: https://github.com/thorkill/eresi/pull/162\n#\nsed -i -e 's/fprintf(\\(stderr\\), *\\([a-z0-9]\\+\\))/fputs(\\2, \\1)/g' \\\n  libe2dbg/common/common.c libe2dbg/user/threads.c\n\n# We need to patch out a few ifs here, because it tries to create a series\n# of configuration files in ~/.something. However, our builds are sandboxed\n# and also don't contain a valid home, so let's NOP it out :-)\n#\n# The second fix we need to make is that we need to pretend being Gentoo\n# because otherwise the build process tries to link against libtermcap,\n# which I think is solely for historic reasons (nowadays Terminfo should\n# have largely superseded it).\nsed -i -e '/^if \\[ ! -e/c if false; then' \\\n       -e 's/^GENTOO=.*/GENTOO=1/' configure\n",
       configureFlags: nix.thunk(() => [
         nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "is64bit")) ? "--enable-32-64" : "--enable-32")),
@@ -63,7 +57,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "singleton"), "install"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is64bit")), "install64"))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "ERESI Reverse Engineering Software Interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         homepage: "https://github.com/thorkill/eresi",

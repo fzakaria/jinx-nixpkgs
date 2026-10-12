@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["dependencies", 21, 3], ["installPhase", 27, 3], ["doCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["dependencies", 21, 3], ["installPhase", 27, 3], ["doCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jwtcat",
       version: "0-unstable-2022-10-15",
       pyproject: false,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aress31",
           repo: "jwtcat",
           rev: "f80f3d9352b82f0e7da504b2ee11f4a61f23c385",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm755 jwtcat.py $out/bin/jwtcat\n\nrunHook postInstall\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CPU-based JSON Web Token cracker and scanner",
         homepage: "https://github.com/aress31/jwtcat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

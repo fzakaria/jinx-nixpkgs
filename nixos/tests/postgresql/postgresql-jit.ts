@@ -2,16 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/postgresql-jit.nix", [[["maintainers", 14, 14]], [["package", 20, 23], ["enable", 21, 15], ["enableJIT", 22, 15], ["initialScript", 23, 15]], [["postgresql", 19, 22]], [["services", 19, 13]], [["machine", 16, 15]], [["name", 13, 9], ["meta", 14, 9], ["nodes", 16, 9], ["testScript", 30, 9]], [["makeTestFor", 54, 11]]]);
 const formals$1 = { args: { runTest: false, genTests: false }, ellipsis: true };
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/postgresql-jit.nix", [["maintainers", 14, 14]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/postgresql-jit.nix", [["package", 20, 23], ["enable", 21, 15], ["enableJIT", 22, 15], ["initialScript", 23, 15]]);
-const pos$3 = nix.positions(here + "/postgresql-jit.nix", [["postgresql", 19, 22]]);
-const pos$4 = nix.positions(here + "/postgresql-jit.nix", [["services", 19, 13]]);
-const pos$5 = nix.positions(here + "/postgresql-jit.nix", [["machine", 16, 15]]);
-const pos$6 = nix.positions(here + "/postgresql-jit.nix", [["name", 13, 9], ["meta", 14, 9], ["nodes", 16, 9], ["testScript", 30, 9]]);
-const pos$7 = nix.positions(here + "/postgresql-jit.nix", [["makeTestFor", 54, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,26 +16,26 @@ export default nix.lambda((args) => (() => {
       const lib = nix.arg($_1, "lib");
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: nix.thunk(() => nix.str`postgresql-jit-${nix.sel(package$, "name")}`),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "ma27"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 postgresql: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   package: package$,
                   enable: true,
                   enableJIT: true,
@@ -68,6 +62,6 @@ machine.shutdown()
 `),
       };
     })(), formals$2));
-  return nix.app(genTests, nix.thunk(() => ({ [nix.POS]: pos$7, makeTestFor: makeTestFor })));
+  return nix.app(genTests, nix.thunk(() => ({ [nix.POS]: $pos[6], makeTestFor: makeTestFor })));
 })(), formals$1);
 //# sourceMappingURL=postgresql-jit.ts.map

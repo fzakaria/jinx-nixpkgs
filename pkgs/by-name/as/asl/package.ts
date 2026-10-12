@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 18, 7], ["url", 19, 7], ["hash", 20, 7]], [["homepage", 52, 5], ["description", 53, 5], ["longDescription", 54, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 23, 3], ["nativeBuildInputs", 29, 3], ["postPatch", 31, 3], ["dontConfigure", 39, 3], ["preBuild", 41, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, texliveMedium: false, buildDocs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 18, 7], ["url", 19, 7], ["hash", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["longDescription", 54, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 23, 3], ["nativeBuildInputs", 29, 3], ["postPatch", 31, 3], ["dontConfigure", 39, 3], ["preBuild", 41, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const texliveMedium = nix.arg($, "texliveMedium");
   const buildDocs = nix.argOr($, "buildDocs", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "asl",
       version: "142-bld232",
       src: nix.thunk(() => (() => {
         const pname = nix.thunk(() => nix.attr(finalAttrs, "pname"));
         const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
         return nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: nix.thunk(() => nix.str`${pname}-${version}`),
             url: nix.thunk(() => nix.str`http://john.ccac.rwth-aachen.de:8000/ftp/as/source/c_version/asl-current-${version}.tar.bz2`),
             hash: "sha256-Q50GzXBxFMhbt5s9OgHPNH4bdqz2hhEmTnMmKowVn2E=",
@@ -41,7 +39,7 @@ substituteAll ${nix.path(here, "./Makefile-nixos.def")} Makefile.def
 mkdir -p .objdir
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://john.ccac.rwth-aachen.de:8000/as/index.html",
         description: "Portable macro cross assembler",
         longDescription: "AS is a portable macro cross assembler for a variety of microprocessors\nand -controllers. Though it is mainly targeted at embedded processors and\nsingle-board computers, you also find CPU families in the target list that\nare used in workstations and PCs.\n",

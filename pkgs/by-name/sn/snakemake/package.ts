@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["doCheck", 191, 5]], [["pytest", 190, 18]], [["tests", 190, 12]], [["homepage", 195, 5], ["license", 196, 5], ["description", 197, 5], ["changelog", 198, 5], ["mainProgram", 199, 5], ["longDescription", 200, 5], ["maintainers", 207, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["build-system", 36, 3], ["pythonRelaxDeps", 38, 3], ["dependencies", 43, 3], ["pythonImportsCheck", 78, 3], ["nativeCheckInputs", 85, 3], ["enabledTestPaths", 104, 3], ["disabledTests", 113, 3], ["doCheck", 189, 3], ["passthru", 190, 3], ["meta", 194, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3Packages: false, stress: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, snakemake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["doCheck", 191, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pytest", 190, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 190, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 195, 5], ["license", 196, 5], ["description", 197, 5], ["changelog", 198, 5], ["mainProgram", 199, 5], ["longDescription", 200, 5], ["maintainers", 207, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["build-system", 36, 3], ["pythonRelaxDeps", 38, 3], ["dependencies", 43, 3], ["pythonImportsCheck", 78, 3], ["nativeCheckInputs", 85, 3], ["enabledTestPaths", 104, 3], ["disabledTests", 113, 3], ["doCheck", 189, 3], ["passthru", 190, 3], ["meta", 194, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const snakemake = nix.arg($, "snakemake");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "snakemake",
       version: "9.23.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "snakemake",
           repo: "snakemake",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -145,14 +140,14 @@ export default nix.lambda((args) => (() => {
         ])))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(snakemake, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
+          [nix.POS]: $pos[2],
+          pytest: nix.thunk(() => nix.app(nix.sel(snakemake, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://snakemake.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Python-based execution environment for make-like workflows",

@@ -2,53 +2,42 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/containers-require-bind-mounts.nix", [[["maintainers", 4, 8]], [["/srv/data", 9, 9]], [["enable", 12, 13]], [["nix", 12, 9]], [["bindMounts", 8, 7], ["config", 11, 7]], [["require-bind-mounts", 7, 16]], [["fsType", 18, 9], ["options", 19, 9]], [["/srv/data", 17, 7]], [["fileSystems", 16, 20]], [["containers", 7, 5], ["virtualisation", 16, 5]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 24, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/containers-require-bind-mounts.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/containers-require-bind-mounts.nix", [["/srv/data", 9, 9]]);
-const pos$3 = nix.positions(here + "/containers-require-bind-mounts.nix", [["enable", 12, 13]]);
-const pos$4 = nix.positions(here + "/containers-require-bind-mounts.nix", [["nix", 12, 9]]);
-const pos$5 = nix.positions(here + "/containers-require-bind-mounts.nix", [["bindMounts", 8, 7], ["config", 11, 7]]);
-const pos$6 = nix.positions(here + "/containers-require-bind-mounts.nix", [["require-bind-mounts", 7, 16]]);
-const pos$7 = nix.positions(here + "/containers-require-bind-mounts.nix", [["fsType", 18, 9], ["options", 19, 9]]);
-const pos$8 = nix.positions(here + "/containers-require-bind-mounts.nix", [["/srv/data", 17, 7]]);
-const pos$9 = nix.positions(here + "/containers-require-bind-mounts.nix", [["fileSystems", 16, 20]]);
-const pos$10 = nix.positions(here + "/containers-require-bind-mounts.nix", [["containers", 7, 5], ["virtualisation", 16, 5]]);
-const pos$11 = nix.positions(here + "/containers-require-bind-mounts.nix", [["machine", 6, 9]]);
-const pos$12 = nix.positions(here + "/containers-require-bind-mounts.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "containers-require-bind-mounts",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "kira-bruneau"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         containers: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "require-bind-mounts": nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            bindMounts: nix.thunk(() => ({ [nix.POS]: pos$2, "/srv/data": nix.thunk(() => ({})) })),
+            [nix.POS]: $pos[4],
+            bindMounts: nix.thunk(() => ({ [nix.POS]: $pos[1], "/srv/data": nix.thunk(() => ({})) })),
             config: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              nix: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+              [nix.POS]: $pos[3],
+              nix: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
             })),
           })),
         })),
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           fileSystems: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            "/srv/data": nix.thunk(() => ({ [nix.POS]: pos$7, fsType: "tmpfs", options: nix.thunk(() => ["noauto"]) })),
+            [nix.POS]: $pos[7],
+            "/srv/data": nix.thunk(() => ({ [nix.POS]: $pos[6], fsType: "tmpfs", options: nix.thunk(() => ["noauto"]) })),
           })),
         })),
       })),

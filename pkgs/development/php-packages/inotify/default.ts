@@ -2,22 +2,21 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 12, 5], ["homepage", 13, 5], ["license", 14, 5], ["teams", 15, 5], ["platforms", 16, 5]], [["pname", 4, 3], ["version", 6, 3], ["sha256", 7, 3], ["doCheck", 9, 3], ["meta", 11, 3]]]);
 const formals$1 = { args: { buildPecl: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 12, 5], ["homepage", 13, 5], ["license", 14, 5], ["teams", 15, 5], ["platforms", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 4, 3], ["version", 6, 3], ["sha256", 7, 3], ["doCheck", 9, 3], ["meta", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildPecl = nix.arg($, "buildPecl");
   const lib = nix.arg($, "lib");
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "inotify",
       version: "3.0.0",
       sha256: "sha256-xxt4ZEwBFVecx5T1jnhEFEF1HXgEC52dGiI9Ppwtcj0=",
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Inotify bindings for PHP",
         homepage: "https://github.com/arnaud-lb/php-inotify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),

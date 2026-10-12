@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["spaces", 49, 5]], [["extraArgs", 97, 5]], [["updateScript", 96, 12]], [["description", 101, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["optional-dependencies", 48, 3], ["pythonImportsCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["disabledTestPaths", 61, 3], ["disabledTests", 68, 3], ["passthru", 96, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["spaces", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 97, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 96, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["optional-dependencies", 48, 3], ["pythonImportsCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["disabledTestPaths", 61, 3], ["disabledTests", 68, 3], ["passthru", 96, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "obliteratus",
       version: "0.1.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elder-plinius",
           repo: "OBLITERATUS",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           spaces: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "gradio"))]),
         };
       })()),
@@ -90,11 +85,11 @@ export default nix.lambda((args) => (() => {
         "test_policy_rejects_unknown_cpu_exclusion_gate",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_output_dtype_preserved"])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Ablation Suite for HuggingFace transformers",
         homepage: "https://github.com/elder-plinius/OBLITERATUS",
         changelog: nix.thunk(() => nix.str`https://github.com/elder-plinius/OBLITERATUS/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

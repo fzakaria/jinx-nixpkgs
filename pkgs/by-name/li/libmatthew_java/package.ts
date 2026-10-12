@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["JAVA_HOME", 20, 5], ["PREFIX", 21, 5]], [["platforms", 27, 5], ["license", 28, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["env", 19, 3], ["buildInputs", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jdk8: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["JAVA_HOME", 20, 5], ["PREFIX", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["platforms", 27, 5], ["license", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["env", 19, 3], ["buildInputs", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const jdk8 = nix.arg($, "jdk8");
   const jdk = jdk8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libmatthew-java",
       version: "0.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://src.fedoraproject.org/repo/pkgs/libmatthew-java/libmatthew-java-${nix.sel(finalAttrs, "version")}.tar.gz/8455b8751083ce25c99c2840609271f5/libmatthew-java-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1yldkhsdzm0a41a0i881bin2jklhp85y3ah245jd6fz3npcx7l85",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, JAVA_HOME: jdk, PREFIX: "${out}" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], JAVA_HOME: jdk, PREFIX: "${out}" })),
       buildInputs: nix.thunk(() => [jdk]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

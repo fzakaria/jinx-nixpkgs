@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["url", 27, 5], ["hash", 28, 5]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5], ["mainProgram", 77, 5]], [["pname", 20, 3], ["version", 21, 3], ["strictDeps", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["configureFlags", 31, 3], ["makeFlags", 37, 3], ["postPatch", 41, 3], ["postInstall", 48, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 58, 3], ["nativeInstallCheckInputs", 65, 3], ["doInstallCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openssl: false, zlib: false, e2fsprogs: false, bzip2: false, installShellFiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5], ["mainProgram", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["strictDeps", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["configureFlags", 31, 3], ["makeFlags", 37, 3], ["postPatch", 41, 3], ["postInstall", 48, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 58, 3], ["nativeInstallCheckInputs", 65, 3], ["doInstallCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const zshCompletion = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://gist.githubusercontent.com/thoughtpolice/daa9431044883d3896f6/raw/282360677007db9739e5bf229873d3b231eb303a/tarsnap.zsh",
       hash: "sha256-OarbG6Ao/QON/N/jLGC29n/SL0WwHrVzEv9+yCLHXF0=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tarsnap",
       version: "1.0.41",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://www.tarsnap.com/download/tarsnap-autoconf-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-vr2+Hm6RIzdVvrQu8LStvv2Vc0VSWPAJ+zMVVseZs9A=",
         })))),
@@ -50,7 +47,7 @@ installShellCompletion --cmd tarsnap \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Online backups for the truly paranoid",
         homepage: "http://www.tarsnap.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

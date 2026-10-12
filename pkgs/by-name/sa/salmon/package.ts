@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["fetchSubmodules", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]], [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]], [["enableShared", 65, 7], ["enabledStatic", 66, 7]], [["NIX_LDFLAGS", 99, 7]], [["description", 107, 5], ["mainProgram", 108, 5], ["longDescription", 109, 5], ["homepage", 119, 5], ["downloadPage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["platforms", 123, 5], ["maintainers", 124, 5]], [["pname", 28, 3], ["version", 29, 3], ["pufferFishSrc", 32, 3], ["FQFeederSrc", 41, 3], ["src", 48, 3], ["patches", 55, 3], ["postPatch", 57, 3], ["buildInputs", 63, 3], ["nativeBuildInputs", 86, 3], ["cmakeFlags", 92, 3], ["env", 99, 3], ["strictDeps", 104, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, boost: false, bzip2: false, catch2_3: false, cereal: false, cmake: false, curl: false, fetchFromGitHub: false, htslib: false, icu: false, jemalloc: false, libdeflate: false, libgff: false, libiconv: false, "libstaden-read": false, mimalloc: false, onetbb: false, openssl: false, "pkg-config": false, python3: false, xz: false, "zlib-ng": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["fetchSubmodules", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["enableShared", 65, 7], ["enabledStatic", 66, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 99, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 107, 5], ["mainProgram", 108, 5], ["longDescription", 109, 5], ["homepage", 119, 5], ["downloadPage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["platforms", 123, 5], ["maintainers", 124, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["pufferFishSrc", 32, 3], ["FQFeederSrc", 41, 3], ["src", 48, 3], ["patches", 55, 3], ["postPatch", 57, 3], ["buildInputs", 63, 3], ["nativeBuildInputs", 86, 3], ["cmakeFlags", 92, 3], ["env", 99, 3], ["strictDeps", 104, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zlib_ng = nix.arg($, "zlib-ng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "salmon",
       version: "1.12.1",
       pufferFishSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "COMBINE-lab",
           repo: "pufferfish",
           fetchSubmodules: true,
@@ -49,14 +43,14 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-N9KYmFsl90eY8R1wH1Jbi3nnNld6YVGeQjqoxYxPqtE=",
         })))),
       FQFeederSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "rob-p",
           repo: "FQFeeder",
           rev: "f5b08d1002351c192b69048ac9f6cf4c7c116265",
           hash: "sha256-csRKUdNlEKKHNIvKRRTt79+27LBmnsJpswzBnWtA/XU=",
         })))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "COMBINE-lab",
           repo: "salmon",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +59,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./fix_pufferfish.patch")]),
       postPatch: "patchShebangs .\n\nsubstituteInPlace CMakeLists.txt --replace-fail \"CMP0167 OLD\" \"CMP0167 NEW\"\n",
       buildInputs: nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, enableShared: false, enabledStatic: true })))),
+        nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], enableShared: false, enabledStatic: true })))),
         bzip2,
         catch2_3,
         cereal,
@@ -89,12 +83,12 @@ export default nix.lambda((args) => (() => {
         "-DSALMON_FETCH_MISSING_DEPS=OFF",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lcrypto", "-ldeflate"]))),
       })),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Tool for quantifying the expression of transcripts using RNA-seq data",
         mainProgram: "salmon",
         longDescription: "Salmon is a tool for quantifying the expression of transcripts\nusing RNA-seq data. Salmon uses new algorithms (specifically,\ncoupling the concept of quasi-mapping with a two-phase inference\nprocedure) to provide accurate expression estimates very quickly\nand while using little memory. Salmon performs its inference using\nan expressive and realistic model of RNA-seq data that takes into\naccount experimental attributes and biases commonly observed in\nreal RNA-seq data.\n",

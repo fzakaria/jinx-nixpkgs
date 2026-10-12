@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcrypt.nix", [[["MK_TESTS", 38, 7]], [["path", 11, 3], ["extraPaths", 12, 3], ["outputs", 19, 3], ["noLibc", 25, 3], ["buildInputs", 27, 3], ["preBuild", 34, 3], ["env", 38, 3]]]);
 const formals$1 = { args: { mkDerivation: false, include: false, libcMinimal: false, libgcc: false, libmd: false, csu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcrypt.nix", [["MK_TESTS", 38, 7]]);
-const pos$2 = nix.positions(here + "/libcrypt.nix", [["path", 11, 3], ["extraPaths", 12, 3], ["outputs", 19, 3], ["noLibc", 25, 3], ["buildInputs", 27, 3], ["preBuild", 34, 3], ["env", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libmd = nix.arg($, "libmd");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "lib/libcrypt",
       extraPaths: nix.thunk(() => ["sys/kern", "sys/crypto", "lib/libmd", "secure/lib/libcrypt"]),
       outputs: nix.thunk(() => ["out", "man", "debug"]),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [include, libcMinimal, libgcc, libmd]),
       preBuild: nix.thunk(() => nix.str`export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -B${csu}/lib"
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, MK_TESTS: "no" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], MK_TESTS: "no" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=libcrypt.ts.map

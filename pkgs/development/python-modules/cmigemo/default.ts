@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 26], ["version", 20, 32], ["hash", 21, 5]], [["broken", 45, 5], ["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["preConfigure", 28, 3], ["postPatch", 34, 3], ["nativeCheckInputs", 38, 3], ["enabledTestPaths", 40, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, six: false, cmigemo: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 26], ["version", 20, 32], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["broken", 45, 5], ["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["preConfigure", 28, 3], ["postPatch", 34, 3], ["nativeCheckInputs", 38, 3], ["enabledTestPaths", 40, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const cmigemo = nix.arg($, "cmigemo");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cmigemo",
       version: "0.1.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-cxOqMAf2dgCwZuBKSAXkRFY9FRNB3rMwE1tNzfZERiY=",
@@ -41,7 +39,7 @@ export LD_LIBRARY_PATH="${cmigemo}/lib"
       enabledTestPaths: nix.thunk(() => ["test/"]),
       pythonImportsCheck: nix.thunk(() => ["cmigemo"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/mooz/python-cmigemo",
         description: "Pure python binding for C/Migemo",

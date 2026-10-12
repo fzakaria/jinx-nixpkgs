@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 35, 5], ["version", 36, 26], ["hash", 37, 5]], [["url", 44, 7], ["hash", 45, 7]], [["url", 51, 7], ["hash", 52, 7], ["revert", 53, 7]], [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["platforms", 110, 5], ["maintainers", 111, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["disabled", 27, 3], ["outputs", 29, 3], ["src", 34, 3], ["patches", 40, 3], ["postPatch", 57, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 71, 3], ["checkInputs", 76, 3], ["mesonFlags", 80, 3], ["postInstall", 86, 3], ["postFixup", 92, 3], ["nativeCheckInputs", 96, 3], ["checkPhase", 98, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, fetchpatch: false, isPyPy: false, python: false, meson: false, "meson-python": false, "pkg-config": false, dbus: false, "dbus-glib": false, pygobject3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 35, 5], ["version", 36, 26], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 51, 7], ["hash", 52, 7], ["revert", 53, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["platforms", 110, 5], ["maintainers", 111, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["disabled", 27, 3], ["outputs", 29, 3], ["src", 34, 3], ["patches", 40, 3], ["postPatch", 57, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 71, 3], ["checkInputs", 76, 3], ["mesonFlags", 80, 3], ["postInstall", 86, 3], ["postFixup", 92, 3], ["nativeCheckInputs", 96, 3], ["checkPhase", 98, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,26 +20,26 @@ export default nix.lambda((args) => (() => {
   const dbus_glib = nix.arg($, "dbus-glib");
   const pygobject3 = nix.arg($, "pygobject3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dbus-python",
       version: "1.4.0",
       pyproject: true,
       disabled: isPyPy,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "dbus-python",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-mRZm5Jj2Db8+Sbi3Z49VWbimUDT99hquYs3s232Jx3A=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.freedesktop.org/dbus/dbus-python/-/commit/d5e19698a8d6e1485f05b67a5b2daa2392819aaf.patch",
             hash: "sha256-Rmj/ByRLiLnIF3JsMBElJugxsG8IARcBdixLhoWgIYU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.freedesktop.org/dbus/dbus-python/-/commit/ebecd1747c382a57ad8e47d0e32112cdbd454b40.patch",
             hash: "sha256-Hg4o+FPJvQ1/RW9fd8UJg/YEeVOvbJCov7SS7bT0vvs=",
             revert: true,
@@ -63,7 +59,7 @@ mv $out/${nix.sel(python, "sitePackages")}/.dbus_python.mesonpy.libs/pkgconfig/ 
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(dbus, "out"))]),
       checkPhase: "runHook preCheck\n\nmeson test -C build --no-rebuild --print-errorlogs --timeout-multiplier 0\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python DBus bindings",
         homepage: "https://gitlab.freedesktop.org/dbus/dbus-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

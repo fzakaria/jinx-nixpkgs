@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["NIX_LDFLAGS", 84, 7], ["BOOST_ROOT", 105, 5], ["ZLIBSTATIC", 106, 5], ["BOOST_LIBRARYDIR", 109, 5], ["BOOST_INCLUDEDIR", 110, 5]], [["description", 120, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["mainProgram", 124, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["postPatch", 55, 3], ["patches", 77, 3], ["env", 84, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 91, 3], ["postFixup", 113, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { autoconf: false, bcftools: false, boost: false, bzip2: false, cmake: false, curl: false, fetchFromGitHub: false, htslib: false, lib: false, libdeflate: false, makeWrapper: false, perl: false, python3: false, "rtg-tools": false, samtools: false, stdenv: false, xz: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 84, 7], ["BOOST_ROOT", 105, 5], ["ZLIBSTATIC", 106, 5], ["BOOST_LIBRARYDIR", 109, 5], ["BOOST_INCLUDEDIR", 110, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 120, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["mainProgram", 124, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["postPatch", 55, 3], ["patches", 77, 3], ["env", 84, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 91, 3], ["postFixup", 113, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +38,11 @@ export default nix.lambda((args) => (() => {
   })();
   const my_python = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), my_python_packages));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hap.py",
       version: "0.3.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Illumina",
           repo: "hap.py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./python3.patch"),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ldeflate"]))),
         BOOST_ROOT: nix.thunk(() => nix.str`${nix.sel(boost, "out")}`),
         ZLIBSTATIC: nix.thunk(() => nix.str`${nix.sel(zlib, "static")}`),
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
    --add-flags "--engine-vcfeval-path=${nix.app(nix.sel(lib, "getExe"), rtg_tools)}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Compare genetics variants against a gold dataset",
         homepage: "https://github.com/Illumina/hap.py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["sha256", 29, 5]], [["packageName", 66, 7], ["versionPolicy", 67, 7]], [["updateScript", 65, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["teams", 76, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["strictDeps", 32, 3], ["depsBuildBuild", 33, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 42, 3], ["mesonFlags", 49, 3], ["postFixup", 57, 3], ["separateDebugInfo", 62, 3], ["passthru", 64, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, "gi-docgen": false, glib: false, "json-glib": false, libsoup_3: false, libxml2: false, "gobject-introspection": false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 66, 7], ["versionPolicy", 67, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["teams", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["strictDeps", 32, 3], ["depsBuildBuild", 33, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 42, 3], ["mesonFlags", 49, 3], ["postFixup", 57, 3], ["separateDebugInfo", 62, 3], ["passthru", 64, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "librest",
       version: "0.10.2",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/librest/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/librest-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "e2y5Ers6Is+n3PAFkl3LYogwJNsMCQmUhufWhRGFybg=",
         })))),
@@ -46,11 +42,11 @@ export default nix.lambda((args) => (() => {
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "librest", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "librest", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Helper library for RESTful services",
         homepage: "https://gitlab.gnome.org/GNOME/librest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]], [["description", 64, 5], ["mainProgram", 65, 5], ["longDescription", 66, 5], ["homepage", 82, 5], ["downloadPage", 83, 5], ["license", 84, 5], ["platforms", 85, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["sourceRoot", 26, 3], ["strictDeps", 28, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 43, 3], ["qtWrapperArgs", 51, 3], ["enableParallelBuilding", 53, 3], ["cmakeBuildType", 55, 3], ["cmakeFlags", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, qt5: false, openssl: false, tor: false, protobuf_21: false, "pkg-config": false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["mainProgram", 65, 5], ["longDescription", 66, 5], ["homepage", 82, 5], ["downloadPage", 83, 5], ["license", 84, 5], ["platforms", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["sourceRoot", 26, 3], ["strictDeps", 28, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 43, 3], ["qtWrapperArgs", 51, 3], ["enableParallelBuilding", 53, 3], ["cmakeBuildType", 55, 3], ["cmakeFlags", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ricochet-refresh",
       version: "3.0.45",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "blueprint-freespeech",
           repo: "ricochet-refresh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-release`),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_SUBMODULE_FMT", true)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Secure chat without DNS or WebPKI",
         mainProgram: "ricochet-refresh",
         longDescription: "Ricochet Refresh is a peer-to-peer messenger app that uses Tor\nto connect clients.\n\nWhen you start Ricochet Refresh it creates a Tor hidden\nservice on your computer.  The address of this hidden service\nis your anonymous identity on the Tor network and how others\nwill be able to communicate with you.  When you start a chat\nwith one of your contacts a Tor circuit is created between\nyour machine and the your contact's machine.\n\nThe original Ricochet uses onion \"v2\" hashed-RSA addresses,\nwhich are no longer supported by the Tor network.  Ricochet\nRefresh upgrades the original Ricochet protocol to use the\ncurrent onion \"v3\" ed25519 addresses.\n",

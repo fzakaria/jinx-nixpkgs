@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["fetchSubmodules", 59, 5], ["hash", 60, 5]], [["package", 130, 54]], [["pkg-config", 130, 11]], [["providedSessions", 129, 5], ["tests", 130, 5], ["updateScript", 131, 5]], [["description", 135, 5], ["homepage", 136, 5], ["changelog", 137, 5], ["license", 138, 5], ["teams", 143, 5], ["platforms", 144, 5], ["pkgConfigModules", 145, 5]], [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["outputs", 63, 3], ["patches", 69, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 87, 3], ["propagatedBuildInputs", 109, 3], ["mesonFlags", 114, 3], ["postPatch", 121, 3], ["passthru", 128, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, accountsservice: false, "alsa-lib": false, "budgie-desktop-services": false, "budgie-session": false, "docbook-xsl-nons": false, glib: false, "gnome-desktop": false, "gnome-settings-daemon": false, "gobject-introspection": false, gst_all_1: false, "gtk-doc": false, gtk3: false, "gtk-layer-shell": false, "libcanberra-gtk3": false, libgee: false, libgtop: false, libnotify: false, libpeas2: false, libpulseaudio: false, libuuid: false, libxfce4windowing: false, meson: false, mutter: false, ninja: false, "nix-update-script": false, "pkg-config": false, python3: false, sassc: false, testers: false, upower: false, vala: false, validatePkgConfig: false, wrapGAppsHook3: false, "xdg-desktop-portal": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["fetchSubmodules", 59, 5], ["hash", 60, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 130, 54]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 130, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["providedSessions", 129, 5], ["tests", 130, 5], ["updateScript", 131, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 135, 5], ["homepage", 136, 5], ["changelog", 137, 5], ["license", 138, 5], ["teams", 143, 5], ["platforms", 144, 5], ["pkgConfigModules", 145, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["outputs", 63, 3], ["patches", 69, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 87, 3], ["propagatedBuildInputs", 109, 3], ["mesonFlags", 114, 3], ["postPatch", 121, 3], ["passthru", 128, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,11 +54,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "budgie-desktop",
       version: "10.10.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BuddiesOfBudgie",
           repo: "budgie-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -119,19 +114,19 @@ substituteInPlace src/session/budgie-desktop.in \\
   --replace-fail "@bindir@/org.buddiesofbudgie.Services" "${nix.app(nix.sel(lib, "getExe"), budgie_desktop_services)}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         providedSessions: nix.thunk(() => ["budgie-desktop"]),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Feature-rich, modern desktop designed to keep out the way of the user",
         homepage: "https://github.com/BuddiesOfBudgie/budgie-desktop",
         changelog: nix.thunk(() => nix.str`https://github.com/BuddiesOfBudgie/budgie-desktop/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 11, 5], ["hash", 12, 5]], [["downloadPage", 21, 5], ["description", 22, 5], ["license", 23, 5], ["platforms", 24, 5], ["teams", 25, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["postInstall", 16, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["downloadPage", 21, 5], ["description", 22, 5], ["license", 23, 5], ["platforms", 24, 5], ["teams", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["postInstall", 16, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libgnurx",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/mingw/Other/UserContributed/regex/mingw-regex-${nix.sel(finalAttrs, "version")}/mingw-libgnurx-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-cUe3+AbsPQB4Q7OOGfQqW3xliUpX/8KXp2sNzV9nXXY=",
         })))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), "ln -s $out/lib/libgnurx{.dll.a,.a}\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         downloadPage: "https://sourceforge.net/projects/mingw/files/Other/UserContributed/regex/",
         description: "Regex functionality from glibc extracted into a separate library for win32",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

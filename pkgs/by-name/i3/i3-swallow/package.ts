@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["mainProgram", 38, 5], ["maintainers", 39, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["mainProgram", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "i3-swallow",
       version: "0-unstable-2022-02-18",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jamesofarrell",
           repo: "i3-swallow",
           rev: "6fbc04645c483fe733de56b56743e453693d4c78",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jamesofarrell/i3-swallow",
         description: "Swallow a terminal window in i3wm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

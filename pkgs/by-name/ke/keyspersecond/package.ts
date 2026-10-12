@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["pname", 61, 26], ["data", 62, 5]], [["name", 87, 7], ["desktopName", 88, 7], ["exec", 89, 7], ["icon", 90, 7], ["comment", 91, 7], ["categories", 92, 7]], [["changelog", 97, 5], ["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5], ["sourceProvenance", 104, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["sourceRoot", 52, 3], ["nativeBuildInputs", 54, 3], ["mitmCache", 60, 3], ["__darwinAllowLocalNetworking", 66, 3], ["gradleFlags", 68, 3], ["installPhase", 70, 3], ["desktopItems", 85, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gradle_8: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, jre: false, libGL: false, libx11: false, libxtst: false, libxkbcommon: false, libxcb: false, libxt: false, libxinerama: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 61, 26], ["data", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 87, 7], ["desktopName", 88, 7], ["exec", 89, 7], ["icon", 90, 7], ["comment", 91, 7], ["categories", 92, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 97, 5], ["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5], ["sourceProvenance", 104, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["sourceRoot", 52, 3], ["nativeBuildInputs", 54, 3], ["mitmCache", 60, 3], ["__darwinAllowLocalNetworking", 66, 3], ["gradleFlags", 68, 3], ["installPhase", 70, 3], ["desktopItems", 85, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const gradle = gradle_8;
   const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, libx11, libxtst, libxkbcommon, libxcb, libxt, libxinerama])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "keyspersecond",
       version: "8.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RoanH",
           repo: "KeysPerSecond",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/KeysPerSecond`),
       nativeBuildInputs: nix.thunk(() => [gradle, copyDesktopItems, makeWrapper]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -64,7 +60,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "keyspersecond",
             desktopName: "KeysPerSecond",
             exec: "KeysPerSecond",
@@ -74,7 +70,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/RoanH/KeysPerSecond/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Keys-per-second meter and counter for rhythm games",
         homepage: "https://github.com/RoanH/KeysPerSecond",

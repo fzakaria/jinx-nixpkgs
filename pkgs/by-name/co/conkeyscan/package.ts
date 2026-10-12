@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["postPatch", 28, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["doCheck", 47, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["postPatch", 28, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["doCheck", 47, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "conkeyscan",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CompassSecurity",
           repo: "conkeyscan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "replace-random-user-agent-with-fake-useragent.patch",
             url: "https://github.com/nagapraneethk/conkeyscan/commit/f6cf61cc42fcc07930a06891b6c4a2653bfbf47f.patch",
             hash: "sha256-zfHU/KsgzQvn/kNsWZy1hGZaBHw/he1zDTUHHV/BHFc=",
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["conkeyscan"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to scan Confluence for keywords",
         homepage: "https://github.com/CompassSecurity/conkeyscan",
         changelog: nix.thunk(() => nix.str`https://github.com/CompassSecurity/conkeyscan/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["homepage", 27, 5], ["description", 28, 5], ["longDescription", 29, 5], ["license", 37, 5], ["mainProgram", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 27]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["outputs", 19, 3], ["strictDeps", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["longDescription", 29, 5], ["license", 37, 5], ["mainProgram", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["outputs", 19, 3], ["strictDeps", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "worker",
       version: "5.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.boomerangsworld.de/cms/worker/downloads/worker-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-7w8Kpi1dzBZjHKzEwavPR/4Qwo+wl2FejSCDdORjALY=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libx11, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.boomerangsworld.de/cms/worker/index.html",
         description: "Advanced orthodox file manager",
         longDescription: "Worker is a two-pane file manager for the X Window System on UN*X. The\ndirectories and files are shown in two independent panels supporting a lot\nof advanced file manipulation features. The main focus is to make managing\nfiles easy with full keyboard control, also assisting in finding files and\ndirectories by using history of accessed directories, live filtering, and\naccess to commands by using the keyboard.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 34, 3], ["build-system", 38, 3], ["nativeCheckInputs", 40, 3], ["disabledTests", 49, 3], ["__darwinAllowLocalNetworking", 59, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, imaplib2: false, mock: false, "poetry-core": false, pyopenssl: false, "pytest-asyncio_0": false, pytestCheckHook: false, pytz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 34, 3], ["build-system", 38, 3], ["nativeCheckInputs", 40, 3], ["disabledTests", 49, 3], ["__darwinAllowLocalNetworking", 59, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "iroco-co",
           repo: "aioimaplib",
           tag: version,
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["aioimaplib"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python asyncio IMAP4rev1 client library",
         homepage: "https://github.com/iroco-co/aioimaplib",
         changelog: nix.thunk(() => nix.str`https://github.com/iroco-co/aioimaplib/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dotlambda"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

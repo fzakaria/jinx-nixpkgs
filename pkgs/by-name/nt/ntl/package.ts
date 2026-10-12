@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 81, 5], ["changelog", 83, 5], ["teams", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["broken", 89, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["depsBuildBuild", 26, 3], ["buildInputs", 29, 3], ["sourceRoot", 33, 3], ["enableParallelBuilding", 35, 3], ["dontAddPrefix", 37, 3], ["configurePlatforms", 42, 3], ["dontAddStaticConfigureFlags", 45, 3], ["configureFlags", 46, 3], ["enableParallelChecking", 68, 3], ["doCheck", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, perl: false, gmp: false, gf2x: true, withGf2x: true, tune: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 81, 5], ["changelog", 83, 5], ["teams", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["broken", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["depsBuildBuild", 26, 3], ["buildInputs", 29, 3], ["sourceRoot", 33, 3], ["enableParallelBuilding", 35, 3], ["dontAddPrefix", 37, 3], ["configurePlatforms", 42, 3], ["dontAddStaticConfigureFlags", 45, 3], ["configureFlags", 46, 3], ["enableParallelChecking", 68, 3], ["doCheck", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const tune = nix.argOr($, "tune", () => false);
   nix.assert_((!nix.asBool(withGf2x) || nix.asBool(!nix.eq(gf2x, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/nt/ntl/package.nix:14:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ntl",
       version: "11.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.shoup.net/ntl/ntl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-vA75rOsHWmoGc6yNj0fV+EWMcv6AbkRo+9XT2v8FYYI=",
         })))),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       enableParallelChecking: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for doing Number Theory",
         longDescription: "NTL is a high-performance, portable C++ library providing data\nstructures and algorithms for manipulating signed, arbitrary\nlength integers, and for vectors, matrices, and polynomials over\nthe integers and over finite fields.\n",
         homepage: "http://www.shoup.net/ntl/",

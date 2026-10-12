@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 5], ["version", 21, 13], ["hash", 22, 5]], [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 44, 5], ["license", 45, 5], ["mainProgram", 46, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { fetchPypi: false, buildPythonPackage: false, setuptools: false, packbits: false, pillow: false, pyusb: false, click: false, attrs: false, jsons: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 13], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 44, 5], ["license", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "brother_ql_next",
           version: version,
           hash: "sha256-NTw5hlMJRoABvbteyCYF0Kopc9AjNyuwLSB+zS3RYRQ=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [attrs, click, jsons, packbits, pillow, pyusb]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python package for the raster language protocol of the Brother QL series label printers",
         longDescription: "Python package for the raster language protocol of the Brother QL series label printers\n(QL-500, QL-550, QL-570, QL-700, QL-710W, QL-720NW, QL-800, QL-820NWB, QL-1050 and more)\n",
         homepage: "https://github.com/LunarEclipse363/brother_ql_next",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "brother_ql",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

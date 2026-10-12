@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 27, 7], ["aarch64-linux", 28, 7]], [["x86_64-linux", 36, 9], ["aarch64-linux", 37, 9]], [["url", 33, 5], ["hash", 34, 5]], [["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]], [["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 83, 5], ["PRISMA_QUERY_ENGINE_LIBRARY", 84, 5], ["PRISMA_QUERY_ENGINE_BINARY", 85, 5], ["PRISMA_SCHEMA_ENGINE_BINARY", 86, 5], ["TURBO_NO_UPDATE_NOTIFIER", 87, 5], ["TURBO_FORCE", 88, 5], ["TURBO_REMOTE_CACHE_ENABLED", 89, 5]], [["description", 161, 5], ["homepage", 162, 5], ["license", 163, 5], ["maintainers", 164, 5], ["platforms", 165, 5], ["mainProgram", 169, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["patches", 53, 3], ["npmDepsHash", 59, 3], ["npmDepsFetcherVersion", 60, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 70, 3], ["npmRebuildFlags", 80, 3], ["env", 82, 3], ["preBuild", 92, 3], ["buildPhase", 99, 3], ["installPhase", 109, 3], ["postInstall", 130, 3], ["preFixup", 139, 3], ["meta", 160, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, nodejs: false, "node-gyp": false, "node-pre-gyp": false, pixman: false, fetchFromGitHub: false, fetchurl: false, buildNpmPackage: false, prisma_6: false, "prisma-engines_6": false, vips: false, "pkg-config": false, gzip: false, autoPatchelfHook: false, cairo: false, pango: false, bash: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 27, 7], ["aarch64-linux", 28, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 36, 9], ["aarch64-linux", 37, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 33, 5], ["hash", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 83, 5], ["PRISMA_QUERY_ENGINE_LIBRARY", 84, 5], ["PRISMA_QUERY_ENGINE_BINARY", 85, 5], ["PRISMA_SCHEMA_ENGINE_BINARY", 86, 5], ["TURBO_NO_UPDATE_NOTIFIER", 87, 5], ["TURBO_FORCE", 88, 5], ["TURBO_REMOTE_CACHE_ENABLED", 89, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 161, 5], ["homepage", 162, 5], ["license", 163, 5], ["maintainers", 164, 5], ["platforms", 165, 5], ["mainProgram", 169, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["patches", 53, 3], ["npmDepsHash", 59, 3], ["npmDepsFetcherVersion", 60, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 70, 3], ["npmRebuildFlags", 80, 3], ["env", 82, 3], ["preBuild", 92, 3], ["buildPhase", 99, 3], ["installPhase", 109, 3], ["postInstall", 130, 3], ["preFixup", 139, 3], ["meta", 160, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,25 +28,25 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const skiaCanvasVersion = "3.0.8";
   const skiaCanvasTriplet = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "linux-x64-glibc",
     "aarch64-linux": "linux-arm64-glibc",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported skia-canvas platform ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const skiaCanvasPrebuild = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://github.com/samizdatco/skia-canvas/releases/download/v${skiaCanvasVersion}/${skiaCanvasTriplet}.gz`),
       hash: nix.thunk(() => nix.sel({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "x86_64-linux": "sha256-9FklKQWZ1LfLUhHBI/re4nvImddVZpbi4zPQ76xpN7I=",
         "aarch64-linux": "sha256-BmXQemDAXZEqL9FFmus3cU6wRFwveEhAdjhUbD0uGnA=",
       }, nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
     }))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "documenso",
       version: "2.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "documenso",
           repo: "documenso",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +71,7 @@ export default nix.lambda((args) => (() => {
       ]),
       npmRebuildFlags: nix.thunk(() => ["--ignore-scripts"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1",
         PRISMA_QUERY_ENGINE_LIBRARY: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), prisma_engines_6)}/lib/libquery_engine.node`),
         PRISMA_QUERY_ENGINE_BINARY: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), prisma_engines_6, "query-engine")),
@@ -114,7 +108,7 @@ EOF
       postInstall: "# These optional prebuilds are for musl libc and can make autoPatchelf link\n# glibc addons against incompatible vendored libraries.\nrm -rf $out/node_modules/*musl* $out/node_modules/@*/*musl*\nrm -rf $out/node_modules/@datadog/pprof/prebuilds/linuxmusl-*\nrm -rf $out/node_modules/aws-crt/dist/bin/linux-*-musl\n",
       preFixup: "rm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/assets\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/lib\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/documentation\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/prettier-config\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/signing\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/ui\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/eslint-config\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/tailwind-config\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/email\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/prisma\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/remix\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/openpage-api\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/api\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/tsconfig\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/app-tests\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/trpc\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/ee\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/auth\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Open Source DocuSign Alternative",
         homepage: "https://github.com/documenso/documenso",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

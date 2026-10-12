@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["owner", 153, 7], ["repo", 154, 7], ["rev", 155, 7], ["hash", 156, 7]], [["owner", 159, 7], ["repo", 160, 7], ["rev", 161, 7], ["hash", 162, 7]], [["test-files", 152, 5], ["contrib", 158, 5], ["updateScript", 164, 5]], [["description", 171, 5], ["changelog", 172, 5], ["mainProgram", 173, 5], ["downloadPage", 174, 5], ["homepage", 175, 5], ["license", 176, 5], ["maintainers", 177, 5], ["platforms", 182, 5]], [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["buildInputs", 55, 3], ["nativeBuildInputs", 72, 3], ["enableParallelBuilding", 86, 3], ["postPatch", 88, 3], ["configureFlags", 106, 3], ["postInstall", 124, 3], ["doCheck", 136, 3], ["preCheck", 138, 3], ["passthru", 151, 3], ["checkTarget", 167, 3], ["postCheck", 168, 3], ["meta", 170, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gettext: false, makeWrapper: false, tcl: false, which: false, ncurses: false, perl: false, cyrus_sasl: false, gitUpdater: false, gss: false, gpgme: false, libkrb5: false, libidn2: false, libxml2: false, notmuch: false, openssl: false, lua: false, lmdb: false, libxslt: false, docbook_xsl: false, docbook_xml_dtd_42: false, w3m: false, mailcap: false, sqlite: false, zlib: false, lndir: false, "pkg-config": false, zstd: false, enableZstd: true, enableMixmaster: true, enableLua: true, enableSmimeKeys: true, withContrib: true, withNotmuch: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 153, 7], ["repo", 154, 7], ["rev", 155, 7], ["hash", 156, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 159, 7], ["repo", 160, 7], ["rev", 161, 7], ["hash", 162, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["test-files", 152, 5], ["contrib", 158, 5], ["updateScript", 164, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 171, 5], ["changelog", 172, 5], ["mainProgram", 173, 5], ["downloadPage", 174, 5], ["homepage", 175, 5], ["license", 176, 5], ["maintainers", 177, 5], ["platforms", 182, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["buildInputs", 55, 3], ["nativeBuildInputs", 72, 3], ["enableParallelBuilding", 86, 3], ["postPatch", 88, 3], ["configureFlags", 106, 3], ["postInstall", 124, 3], ["doCheck", 136, 3], ["preCheck", 138, 3], ["passthru", 151, 3], ["checkTarget", 167, 3], ["postCheck", 168, 3], ["meta", 170, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const withNotmuch = nix.argOr($, "withNotmuch", () => true);
   nix.assert_(nix.app(nix.sel(lib, "warnIf"), enableMixmaster, "Support for mixmaster has been removed from neomutt since the 20241002 release", true), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ne/neomutt/package.nix:40:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "neomutt",
       version: "20260616",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "neomutt",
           repo: "neomutt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -132,16 +127,16 @@ substituteInPlace test/main.c \\
   --replace-fail "NEOMUTT_TEST_ITEM(test_expando_node_padding)" ""
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "test-files": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "neomutt",
             repo: "neomutt-test-files",
             rev: "00efc8388110208e77e6ed9d8294dfc333753d54",
             hash: "sha256-/ELowuMq67v56MAJBtO73g6OqV0DVwW4+x+0u4P5mB0=",
           })))),
         contrib: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "neomutt",
             repo: "neomutt-contrib",
             rev: "8e97688693ca47ea1055f3d15055a4f4ecc5c832",
@@ -152,7 +147,7 @@ substituteInPlace test/main.c \\
       checkTarget: "test",
       postCheck: "unset NEOMUTT_TEST_DIR",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Small but very powerful text-based mail client",
         changelog: nix.thunk(() => nix.str`https://github.com/neomutt/neomutt/releases/tag/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         mainProgram: "neomutt",

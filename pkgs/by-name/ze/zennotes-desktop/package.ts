@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 28, 7]], [["name", 80, 7], ["desktopName", 81, 7], ["exec", 82, 7], ["icon", 83, 7], ["comment", 84, 7], ["categories", 85, 7], ["startupWMClass", 90, 7], ["mimeTypes", 91, 7]], [["extraArgs", 98, 47]], [["updateScript", 98, 12]], [["description", 101, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 111, 5], ["platforms", 112, 5]], [["pname", 15, 3], ["version", 16, 3], ["npmDepsHash", 17, 3], ["src", 19, 3], ["npmWorkspace", 26, 3], ["env", 28, 3], ["strictDeps", 30, 3], ["__structuredAttrs", 31, 3], ["nativeBuildInputs", 33, 3], ["preBuild", 38, 3], ["configurePhase", 43, 3], ["installPhase", 54, 3], ["desktopItems", 78, 3], ["passthru", 98, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, electron_42: false, makeBinaryWrapper: false, "nix-update-script": false, installCli: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 80, 7], ["desktopName", 81, 7], ["exec", 82, 7], ["icon", 83, 7], ["comment", 84, 7], ["categories", 85, 7], ["startupWMClass", 90, 7], ["mimeTypes", 91, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 98, 47]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 98, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 111, 5], ["platforms", 112, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["npmDepsHash", 17, 3], ["src", 19, 3], ["npmWorkspace", 26, 3], ["env", 28, 3], ["strictDeps", 30, 3], ["__structuredAttrs", 31, 3], ["nativeBuildInputs", 33, 3], ["preBuild", 38, 3], ["configurePhase", 43, 3], ["installPhase", 54, 3], ["desktopItems", 78, 3], ["passthru", 98, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const installCli = nix.argOr($, "installCli", () => false);
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "zennotes-desktop",
       version: "2.64.0",
       npmDepsHash: "sha256-y7tEeV9F54LnHWswPyx01zvUxVgNkWWvIXe0qCVh9do=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ZenNotes",
           repo: "zennotes",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-pTUPAzPB2KUzUS7pzxBhwQiVh/rMF5H0nvq3CX4GWfY=",
         })))),
       npmWorkspace: "apps/desktop",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       strictDeps: true,
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, copyDesktopItems]),
@@ -64,7 +58,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "zennotes-desktop",
             desktopName: "ZenNotes",
             exec: "zennotes-desktop %U",
@@ -76,11 +70,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Keyboard-first local Markdown notes with Vim motions, diagrams, and MCP integration",
         homepage: "https://zennotes.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/ZenNotes/zennotes/releases/tag/v${nix.sel(finalAttrs, "version")}`),

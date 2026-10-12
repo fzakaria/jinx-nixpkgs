@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/extra-lib-common.nix", [[["truncate", 47, 15], ["majorMinorPatch", 57, 7], ["isGe", 89, 7], ["isGt", 90, 7], ["isLe", 91, 7], ["isLt", 92, 7], ["isEq", 93, 7], ["range", 94, 7]], [["inter", 136, 5], ["union", 139, 5], ["compl", 142, 5], ["true", 143, 5], ["false", 144, 5], ["equal", 147, 5]], [["cond", 207, 7], ["out", 208, 20]], [["versions", 24, 3], ["splitList", 108, 3], ["pred", 134, 3], ["switch-if", 167, 3], ["switch", 197, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/extra-lib-common.nix", [["truncate", 47, 15], ["majorMinorPatch", 57, 7], ["isGe", 89, 7], ["isGt", 90, 7], ["isLe", 91, 7], ["isLt", 92, 7], ["isEq", 93, 7], ["range", 94, 7]]);
-const pos$2 = nix.positions(here + "/extra-lib-common.nix", [["inter", 136, 5], ["union", 139, 5], ["compl", 142, 5], ["true", 143, 5], ["false", 144, 5], ["equal", 147, 5]]);
-const pos$3 = nix.positions(here + "/extra-lib-common.nix", [["cond", 207, 7], ["out", 208, 20]]);
-const pos$4 = nix.positions(here + "/extra-lib-common.nix", [["versions", 24, 3], ["splitList", 108, 3], ["pred", 134, 3], ["switch-if", 167, 3], ["switch", 197, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         const isEq = nix.thunk(() => nix.app(opTruncate, nix.thunk(() => nix.sel(pred, "equal"))));
         const range = (low) => (high) => nix.app(nix.sel(pred, "inter"), nix.thunk(() => nix.app(nix.sel(versions, "isGe"), low)), nix.thunk(() => nix.app(nix.sel(versions, "isLe"), high)));
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           truncate: truncate_1,
           majorMinorPatch,
           isGe,
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
       return nix.app(loop, [], [], l);
     })();
     const pred = nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       inter: (p) => (q) => (x) => (nix.asBool(nix.app(p, x)) && nix.asBool(nix.app(q, x))),
       union: (p) => (q) => (x) => (nix.asBool(nix.app(p, x)) || nix.asBool(nix.app(q, x))),
       compl: (p) => (x) => !nix.asBool(nix.app(p, x)),
@@ -78,13 +75,13 @@ export default nix.lambda((args) => (() => {
       const compare = (f) => (nix.asBool(nix.app(isFunction, f)) ? nix.force(f) : nix.app(nix.lookup(w, "equal"), f));
       const combine = (cl) => (var$_1) => (nix.asBool(nix.has(cl, "case")) ? nix.app(compare, nix.thunk(() => nix.sel(cl, "case")), var$_1) : nix.app(all, nix.thunk(() => nix.app(nix.lookup(w, "equal"), true)), nix.thunk(() => nix.app(zipListsWith, compare, nix.thunk(() => nix.sel(cl, "cases")), var$_1))));
       return nix.app(switch_if, nix.thunk(() => nix.app(nix.builtins.map, (cl) => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             cond: nix.thunk(() => nix.app(combine, cl, var$)),
             out: nix.thunk(() => nix.attr(cl, "out")),
           }), clauses)), default$);
     })();
     return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       versions,
       splitList,
       pred,

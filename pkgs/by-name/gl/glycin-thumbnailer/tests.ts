@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["pname", 10, 3], ["version", 11, 32], ["src", 13, 3], ["preBuild", 22, 3], ["buildPhase", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "glycin-thumbnailer": false, "shared-mime-info": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["pname", 10, 3], ["version", 11, 32], ["src", 13, 3], ["preBuild", 22, 3], ["buildPhase", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const glycin_thumbnailer = nix.arg($, "glycin-thumbnailer");
   const shared_mime_info = nix.arg($, "shared-mime-info");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "glycin-thumbnailer-test",
       version: nix.thunk(() => nix.attr(glycin_thumbnailer, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "sophie-h",
           repo: "test-images",

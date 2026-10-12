@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["pythonRelaxDeps", 45, 3], ["dependencies", 49, 3], ["nativeCheckInputs", 68, 3], ["doCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, boltons: false, gensim: false, gitpython: false, "greek-accentuation": false, nltk: false, pyyaml: false, rapidfuzz: false, requests: false, "scikit-learn": false, scipy: false, spacy: false, stanza: false, torch: false, tqdm: false, colorama: false, "python-dotenv": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["pythonRelaxDeps", 45, 3], ["dependencies", 49, 3], ["nativeCheckInputs", 68, 3], ["doCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cltk",
           repo: "cltk",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, writableTmpDirAsHomeHook]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Natural language processing (NLP) framework for pre-modern languages",
         homepage: "https://cltk.org",
         changelog: nix.thunk(() => nix.str`https://github.com/cltk/cltk/releases/tag/v${version}`),
@@ -76,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

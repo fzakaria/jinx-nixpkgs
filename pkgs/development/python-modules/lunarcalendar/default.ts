@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["homepage", 36, 5], ["description", 37, 5], ["mainProgram", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 25, 3], ["nativeCheckInputs", 31, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "python-dateutil": false, ephem: false, pytz: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 36, 5], ["description", 37, 5], ["mainProgram", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 25, 3], ["nativeCheckInputs", 31, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lunarcalendar",
       version: "0.0.9",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wolfhong",
           repo: "LunarCalendar",
           rev: "885418ea1a2a90b7e0bbe758919af9987fb2863b",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["lunarcalendar"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/wolfhong/LunarCalendar",
         description: "Lunar-Solar Converter, containing a number of lunar and solar festivals in China",
         mainProgram: "lunar-find",

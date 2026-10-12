@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]], [["url", 46, 7], ["hash", 47, 7]], [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["hydraPlatforms", 119, 5], ["maintainers", 120, 5], ["broken", 121, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["nativeBuildInputs", 51, 3], ["pythonRelaxDeps", 56, 3], ["propagatedBuildInputs", 62, 3], ["nativeCheckInputs", 77, 3], ["pythonImportsCheck", 83, 3], ["preCheck", 85, 3], ["pytestFlags", 90, 3], ["disabledTests", 92, 3], ["disabledTestPaths", 109, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, cython: false, which: false, cffi: false, "hydra-core": false, omegaconf: false, sacrebleu: false, numpy: false, regex: false, torch: false, tqdm: false, bitarray: false, torchaudio: false, "scikit-learn": false, packaging: false, expecttest: false, hypothesis: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 46, 7], ["hash", 47, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["hydraPlatforms", 119, 5], ["maintainers", 120, 5], ["broken", 121, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["nativeBuildInputs", 51, 3], ["pythonRelaxDeps", 56, 3], ["propagatedBuildInputs", 62, 3], ["nativeCheckInputs", 77, 3], ["pythonImportsCheck", 83, 3], ["preCheck", 85, 3], ["pytestFlags", 90, 3], ["disabledTests", 92, 3], ["disabledTestPaths", 109, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pytorch",
           repo: "fairseq",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/facebookresearch/fairseq/commit/2fa0768c2115b0a4c207cfa3e1b3e4ff3ad9a00c.patch",
             hash: "sha256-aYYP/knQX6q6vhyA6q9uOOYfRhDAuJCo9QJWfFEDuuA=",
           })))),
@@ -83,7 +80,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTestPaths = nix.thunk(() => ["test_dataclass_utils.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Facebook AI Research Sequence-to-Sequence Toolkit",
         homepage: "https://github.com/pytorch/fairseq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -96,7 +93,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

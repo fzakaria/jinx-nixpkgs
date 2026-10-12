@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["license", 67, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 46, 3], ["dontWrapGApps", 48, 3], ["preFixup", 50, 3], ["checkPhase", 55, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, python: false, "xvfb-run": false, wrapGAppsHook3: false, "gobject-introspection": false, pygobject3: false, graphviz: false, gtk3: false, numpy: false, packaging: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["license", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 46, 3], ["dontWrapGApps", 48, 3], ["preFixup", 50, 3], ["checkPhase", 55, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jrfonseca",
           repo: "xdot.py",
           rev: version,
@@ -49,14 +47,14 @@ xvfb-run -s '-screen 0 800x600x24' ${nix.sel(python, "interpreter")} test.py
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Interactive viewer for graphs written in Graphviz's dot",
         mainProgram: "xdot",
         homepage: "https://github.com/jrfonseca/xdot.py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

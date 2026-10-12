@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["OPENSSL_NO_VENDOR", 32, 7]], [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 67, 5], ["downloadPage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["env", 32, 3], ["__darwinAllowLocalNetworking", 34, 3], ["cargoTestFlags", 37, 3], ["checkFlags", 42, 3], ["nativeInstallCheckInputs", 55, 3], ["versionCheckProgramArg", 58, 3], ["doInstallCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, openssl: false, "pkg-config": false, rustPlatform: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 67, 5], ["downloadPage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["env", 32, 3], ["__darwinAllowLocalNetworking", 34, 3], ["cargoTestFlags", 37, 3], ["checkFlags", 42, 3], ["nativeInstallCheckInputs", 55, 3], ["versionCheckProgramArg", 58, 3], ["doInstallCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "versatiles",
       version: "4.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "versatiles-org",
           repo: "versatiles-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-YGcYjMUEaQjF2zXvckNQNF0oBkN6rt6qsVhd/JN1BBA=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: 1n })),
       __darwinAllowLocalNetworking: true,
       cargoTestFlags: nix.thunk(() => ["--bins"]),
       checkFlags: nix.thunk(() => [
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Toolbox for converting, checking and serving map tiles in various formats",
         longDescription: "VersaTiles is a Rust-based project designed for processing and serving tile data efficiently.\nIt supports multiple tile formats and offers various functionalities for handling tile data.\n",
         homepage: "https://versatiles.org/",

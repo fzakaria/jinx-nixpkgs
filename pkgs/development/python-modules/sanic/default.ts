@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["ext", 58, 5], ["http3", 59, 5]], [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["mainProgram", 139, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["patches", 40, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["optional-dependencies", 57, 3], ["nativeCheckInputs", 62, 3], ["preCheck", 72, 3], ["disabledTests", 86, 3], ["disabledTestPaths", 116, 3], ["__darwinAllowLocalNetworking", 129, 3], ["pythonImportsCheck", 131, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, aiofiles: false, aioquic: false, beautifulsoup4: false, buildPythonPackage: false, fetchFromGitHub: false, gunicorn: false, html5tagger: false, httptools: false, multidict: false, "pytest-asyncio": false, pytestCheckHook: false, "sanic-ext": false, "sanic-routing": false, "sanic-testing": false, setuptools: false, tracerite: false, "typing-extensions": false, ujson: false, uvicorn: false, uvloop: false, websockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ext", 58, 5], ["http3", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["mainProgram", 139, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["patches", 40, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["optional-dependencies", 57, 3], ["nativeCheckInputs", 62, 3], ["preCheck", 72, 3], ["disabledTests", 86, 3], ["disabledTestPaths", 116, 3], ["__darwinAllowLocalNetworking", 129, 3], ["pythonImportsCheck", 131, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.12.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sanic-org",
           repo: "sanic",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         websockets,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ext: nix.thunk(() => [sanic_ext]),
         http3: nix.thunk(() => [aioquic]),
       }));
@@ -98,7 +95,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["sanic"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Web server and web framework",
         homepage: "https://github.com/sanic-org/sanic/",
         changelog: nix.thunk(() => nix.str`https://github.com/sanic-org/sanic/releases/tag/${nix.sel(src, "tag")}`),
@@ -110,7 +107,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sanic",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

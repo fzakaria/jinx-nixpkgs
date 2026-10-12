@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/combine-packages.nix", [[["pname", 59, 7], ["version", 60, 7], ["icu", 61, 21], ["hasCrossTargetBug", 61, 25], ["versions", 63, 7], ["packages", 64, 7], ["targetPackages", 65, 7]], [["description", 71, 7], ["homepage", 73, 9], ["license", 74, 9], ["mainProgram", 75, 9], ["maintainers", 76, 9], ["platforms", 77, 9]], [["name", 25, 5], ["paths", 26, 5], ["pathsToLink", 27, 5], ["ignoreCollisions", 36, 5], ["nativeBuildInputs", 37, 5], ["postBuild", 38, 5], ["passthru", 58, 5], ["meta", 70, 5]], [["propagatedSandboxProfile", 82, 7]]]);
 const formals$1 = { args: { buildEnv: false, makeWrapper: false, lib: false, symlinkJoin: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/combine-packages.nix", [["pname", 59, 7], ["version", 60, 7], ["icu", 61, 21], ["hasCrossTargetBug", 61, 25], ["versions", 63, 7], ["packages", 64, 7], ["targetPackages", 65, 7]]);
-const pos$2 = nix.positions(here + "/combine-packages.nix", [["description", 71, 7], ["homepage", 73, 9], ["license", 74, 9], ["mainProgram", 75, 9], ["maintainers", 76, 9], ["platforms", 77, 9]]);
-const pos$3 = nix.positions(here + "/combine-packages.nix", [["name", 25, 5], ["paths", 26, 5], ["pathsToLink", 27, 5], ["ignoreCollisions", 36, 5], ["nativeBuildInputs", 37, 5], ["postBuild", 38, 5], ["passthru", 58, 5], ["meta", 70, 5]]);
-const pos$4 = nix.positions(here + "/combine-packages.nix", [["propagatedSandboxProfile", 82, 7]]);
 
 export default (dotnetPackages) => nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default (dotnetPackages) => nix.lambda((args) => (() => {
   const mkWrapper = nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({}))));
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.gt(nix.builtins.length(dotnetPackages), 0n)), "You must include at least one package, e.g\n      `with dotnetCorePackages; combinePackages [\n          sdk_9_0 aspnetcore_8_0\n       ];`"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/dotnet/combine-packages.nix:18:1");
   return nix.app(mkWrapper, "sdk", nix.thunk(() => nix.app(nix.sel(nix.app(buildEnv, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "dotnet-combined",
         paths: dotnetPackages,
         pathsToLink: nix.thunk(() => nix.builtins.map((x) => nix.str`/share/dotnet/${x}`, nix.thunk(() => ["host", "metadata", "packs", "sdk", "sdk-manifests", "shared", "templates"]))),
@@ -43,7 +40,7 @@ fi
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(cli, "man")), nix.thunk(() => nix.str`ln -s ${nix.sel(cli, "man")} $man
 `)))),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "dotnet",
           version: "combined",
           icu: nix.thunk(() => nix.attr(cli, "icu")),
@@ -55,7 +52,7 @@ fi
         meta: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(cli, "meta"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: nix.thunk(() => nix.str`${nix.selOr(cli, () => "dotnet", "meta", "description")} (combined)`),
           homepage: nix.thunk(() => nix.attr(from, "homepage")),
           license: nix.thunk(() => nix.attr(from, "license")),
@@ -65,7 +62,7 @@ fi
         };
         })()),
       }))), "overrideAttrs"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         propagatedSandboxProfile: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "catAttrs"), "__propagatedSandboxProfile", dotnetPackages)))))))),
       })))));
 })(), formals$1);

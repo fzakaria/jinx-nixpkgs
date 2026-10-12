@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 17, 5], ["owner", 18, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 16, 3], ["nativeCheckInputs", 24, 3], ["postPatch", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, unittestCheckHook: false, mock: false, isPy3k: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 17, 5], ["owner", 18, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 16, 3], ["nativeCheckInputs", 24, 3], ["postPatch", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const mock = nix.arg($, "mock");
   const isPy3k = nix.arg($, "isPy3k");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "simplebayes",
       version: "1.5.8",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "simplebayes",
           owner: "hickeroar",
           rev: "1.5.7",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [mock, unittestCheckHook]),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), isPy3k, "sed -i -e 's/open *(\\([^)]*\\))/open(\\1, encoding=\"utf-8\")/' setup.py\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Memory-based naive bayesian text classifier",
         homepage: "https://github.com/hickeroar/simplebayes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

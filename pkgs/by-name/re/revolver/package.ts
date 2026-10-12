@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["nativeBuildInputs", 63, 43]], [["package", 77, 9], ["version", 79, 9]], [["demo", 63, 7], ["version", 76, 7]], [["tagPrefix", 83, 7]], [["tests", 62, 5], ["updateScript", 82, 5]], [["description", 88, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["license", 91, 5], ["mainProgram", 92, 5], ["platforms", 93, 24], ["maintainers", 94, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["doInstallCheck", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["nativeInstallCheckInputs", 32, 3], ["patches", 34, 3], ["postPatch", 36, 3], ["installPhase", 41, 3], ["postInstall", 49, 3], ["installCheckPhase", 53, 3], ["passthru", 61, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, zsh: false, installShellFiles: false, ncurses: false, unstableGitUpdater: false, testers: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 63, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 77, 9], ["version", 79, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["demo", 63, 7], ["version", 76, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tagPrefix", 83, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 62, 5], ["updateScript", 82, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["license", 91, 5], ["mainProgram", 92, 5], ["platforms", 93, 24], ["maintainers", 94, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["doInstallCheck", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["nativeInstallCheckInputs", 32, 3], ["patches", 34, 3], ["postPatch", 36, 3], ["installPhase", 41, 3], ["postInstall", 49, 3], ["installCheckPhase", 53, 3], ["passthru", 61, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "revolver",
       version: "0.2.4-unstable-2020-09-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "molovo",
           repo: "revolver",
           rev: "6424e6cb14da38dc5d7760573eb6ecb2438e9661",
@@ -47,25 +40,25 @@ export default nix.lambda((args) => (() => {
       postInstall: "installShellCompletion --cmd revolver --zsh revolver.zsh-completion\n",
       installCheckPhase: "runHook preInstallCheck\n\nPATH=$PATH:$out/bin revolver --help\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           demo: nix.thunk(() => nix.app(runCommand, "revolver-demo", nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "export HOME=\"$TEMPDIR\"\n\n# Drop stdout, redirect stderr to stdout and check if it's not empty\nexec 9>&1\necho \"Running revolver demo...\"\nif [[ $(revolver demo 2>&1 1>/dev/null | tee >(cat - >&9)) ]]; then\n  exit 1\nfi\necho \"Demo done!\"\n\nmkdir $out\n")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: "0.2.0",
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, tagPrefix: "v" })))),
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(zsh, "meta"));
         return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Progress spinner for ZSH scripts",
         homepage: "https://github.com/molovo/revolver",
         downloadPage: "https://github.com/molovo/revolver/releases",

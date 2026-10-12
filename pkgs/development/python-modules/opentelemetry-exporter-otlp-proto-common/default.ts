@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 29, 5], ["description", 30, 5]], [["version", 11, 31], ["src", 11, 39], ["pname", 12, 3], ["pyproject", 13, 3], ["sourceRoot", 15, 3], ["build-system", 17, 3], ["dependencies", 19, 3], ["nativeCheckInputs", 21, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, hatchling: false, "opentelemetry-api": false, "opentelemetry-proto": false, "opentelemetry-test-utils": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 29, 5], ["description", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 11, 31], ["src", 11, 39], ["pname", 12, 3], ["pyproject", 13, 3], ["sourceRoot", 15, 3], ["build-system", 17, 3], ["dependencies", 19, 3], ["nativeCheckInputs", 21, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const opentelemetry_test_utils = nix.arg($, "opentelemetry-test-utils");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(opentelemetry_api, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_api, "src")),
       pname: "opentelemetry-exporter-otlp-proto-common",
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [opentelemetry_test_utils, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.exporter.otlp.proto.common"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_api, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/open-telemetry/opentelemetry-python/tree/main/exporter/opentelemetry-exporter-otlp-proto-common",
         description: "OpenTelemetry Protobuf encoding",
       })),

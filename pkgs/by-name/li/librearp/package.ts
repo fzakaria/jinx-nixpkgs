@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5], ["fetchSubmodules", 31, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["cmakeFlags", 53, 3], ["installPhase", 59, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, cmake: false, "pkg-config": false, cairo: false, libxkbcommon: false, "libxcb-cursor": false, "libxcb-keysyms": false, "libxcb-util": false, libxrandr: false, libxinerama: false, libxcursor: false, "alsa-lib": false, libjack2: false, lv2: false, "gcc-unwrapped": false, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5], ["fetchSubmodules", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["cmakeFlags", 53, 3], ["installPhase", 59, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const gcc_unwrapped = nix.arg($, "gcc-unwrapped");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "librearp",
       version: "2.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LibreArp",
           repo: "LibreArp",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/lib/vst3\ncd LibreArp_artefacts/Release\ncp -r VST3/LibreArp.vst3 $out/lib/vst3\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pattern-based arpeggio generator plugin",
         homepage: "https://librearp.gitlab.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

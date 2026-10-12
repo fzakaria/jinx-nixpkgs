@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["updateScript", 33, 12]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["makeFlags", 30, 3], ["installFlags", 31, 3], ["passthru", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, ncurses: false, "pkg-config": false, "nix-update-script": false, scdoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["makeFlags", 30, 3], ["installFlags", 31, 3], ["passthru", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const scdoc = nix.arg($, "scdoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cbonsai",
       version: "1.4.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jallbrit",
           repo: "cbonsai",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Grow bonsai trees in your terminal",
         homepage: "https://gitlab.com/jallbrit/cbonsai",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

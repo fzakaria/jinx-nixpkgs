@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["description", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 43, 3], ["propagatedBuildInputs", 55, 3], ["outputs", 61, 3], ["doCheck", 66, 3], ["postPatch", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gfortran: false, buildType: true, meson: false, ninja: false, cmake: false, "pkg-config": false, python3: false, jonquil: false, checkPhaseThreadLimitHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 43, 3], ["propagatedBuildInputs", 55, 3], ["outputs", 61, 3], ["doCheck", 66, 3], ["postPatch", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const checkPhaseThreadLimitHook = nix.arg($, "checkPhaseThreadLimitHook");
   nix.assert_(nix.builtins.elem(buildType, nix.thunk(() => ["meson", "cmake"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mc/mctc-lib/package.nix:16:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mctc-lib",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grimme-lab",
           repo: "mctc-lib",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "patchShebangs --build config/install-mod.py\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modular computation tool chain library",
         mainProgram: "mctc-convert",
         homepage: "https://github.com/grimme-lab/mctc-lib",

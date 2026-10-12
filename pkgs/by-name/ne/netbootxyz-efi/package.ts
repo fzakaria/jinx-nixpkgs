@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 10, 7], ["hash", 11, 7]], [["url", 14, 7], ["hash", 15, 7]], [["aarch64-linux", 9, 5], ["x86_64-linux", 13, 5]], [["url", 28, 7], ["hash", 29, 7]], [["updateScript", 39, 12]], [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["sourceProvenance", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]], [["pname", 20, 3], ["version", 21, 11], ["src", 23, 3], ["dontUnpack", 33, 3], ["postInstall", 35, 3], ["passthru", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 10, 7], ["hash", 11, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 14, 7], ["hash", 15, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-linux", 9, 5], ["x86_64-linux", 13, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 39, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["sourceProvenance", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 11], ["src", 23, 3], ["dontUnpack", 33, 3], ["postInstall", 35, 3], ["passthru", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,35 +12,35 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "2.0.88";
   const platformMap = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/netbootxyz/netboot.xyz/releases/download/${version}/netboot.xyz-arm64.efi`),
       hash: "sha256-AeW92FU65XVJKGPi+A/iz7Jvtb7wKIO3xG3Cx7v4kRg=",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://github.com/netbootxyz/netboot.xyz/releases/download/${version}/netboot.xyz.efi`),
       hash: "sha256-ipbZJ0mPCuwzb/TDtXXUBTuWOcSsKGAJ1GEGIgB2G7E=",
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "netboot.xyz-efi",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.selOr(platformMap, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
           return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.attr(from, "url")),
           hash: nix.thunk(() => nix.attr(from, "hash")),
         };
         })()))),
       dontUnpack: true,
       postInstall: "cp $src $out\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://netboot.xyz/",
         description: "Tool to boot OS installers and utilities over the network, to be run from a bootloader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

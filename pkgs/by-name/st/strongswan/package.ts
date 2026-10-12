@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nm", 34, 5], ["cmd", 35, 5], ["stroke", 36, 5], ["swanctl", 37, 5], ["systemd", 38, 5], ["openssl", 40, 5], ["farp", 42, 5], ["dhcp", 43, 5], ["af-alg", 44, 5], ["resolve", 45, 5], ["scripts", 46, 5], ["connmark", 47, 5], ["forecast", 48, 5], ["kernel-netlink", 49, 5], ["aesni", 51, 5], ["rdrand", 52, 5], ["padlock", 53, 5], ["kernel-pfkey", 55, 5], ["kernel-pfroute", 56, 5], ["kernel-libipsec", 57, 5], ["keychain", 59, 5], ["osx-attr", 60, 5], ["ml", 62, 5], ["curl", 66, 5], ["acert", 67, 5], ["pkcs11", 68, 5], ["dnscert", 69, 5], ["unbound", 70, 5], ["chapoly", 71, 5], ["ext-auth", 72, 5], ["socket-dynamic", 73, 5], ["eap-sim", 75, 5], ["eap-sim-file", 76, 5], ["eap-sim-pcsc", 77, 5], ["eap-simaka-pseudonym", 78, 5], ["eap-simaka-reauth", 79, 5], ["eap-identity", 80, 5], ["eap-md5", 81, 5], ["eap-gtc", 82, 5], ["eap-aka", 83, 5], ["eap-aka-3gpp", 84, 5], ["eap-aka-3gpp2", 85, 5], ["eap-mschapv2", 86, 5], ["eap-tls", 87, 5], ["eap-peap", 88, 5], ["eap-radius", 89, 5], ["xauth-eap", 91, 5], ["xauth-pam", 92, 5], ["xauth-noauth", 93, 5], ["gmp", 95, 5]], [["eap-tnc", 98, 5], ["eap-ttls", 99, 5], ["eap-dynamic", 100, 5], ["tnccs-20", 102, 5], ["tnc-imc", 104, 5], ["tnc-imv", 105, 5], ["tnc-ifmap", 106, 5], ["imc-os", 108, 5], ["imv-os", 109, 5], ["imc-attestation", 110, 5], ["imv-attestation", 111, 5], ["aikgen", 113, 5], ["tss-trousers", 114, 5], ["sqlite", 116, 5]], [["tpm", 119, 5], ["tss-tss2", 120, 5]], [["owner", 128, 5], ["repo", 129, 5], ["tag", 130, 5], ["hash", 131, 5]], [["strongswan-swanctl", 185, 43]], [["tests", 185, 12]], [["description", 193, 5], ["homepage", 194, 5], ["changelog", 195, 5], ["license", 196, 5], ["maintainers", 197, 5], ["mainProgram", 198, 5], ["platforms", 199, 5]], [["pname", 124, 3], ["version", 125, 3], ["src", 127, 3], ["patches", 134, 3], ["nativeBuildInputs", 140, 3], ["buildInputs", 149, 3], ["configureFlags", 170, 3], ["installFlags", 177, 3], ["enableParallelBuilding", 181, 3], ["dontPatchELF", 183, 3], ["passthru", 185, 3], ["postPatch", 187, 3], ["meta", 192, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, bison: false, flex: false, curl: false, perl: false, gperf: false, openssl: false, pcsclite: false, networkmanager: false, openresolv: false, glib: false, systemdLibs: false, "tpm2-tss": false, libxml2: false, pam: false, iptables: false, trousers: false, sqlite: false, unbound: false, ldns: false, gmp: false, nixosTests: false, enableNetworkManager: true, enableTNC: true, enableTPM2: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nm", 34, 5], ["cmd", 35, 5], ["stroke", 36, 5], ["swanctl", 37, 5], ["systemd", 38, 5], ["openssl", 40, 5], ["farp", 42, 5], ["dhcp", 43, 5], ["af-alg", 44, 5], ["resolve", 45, 5], ["scripts", 46, 5], ["connmark", 47, 5], ["forecast", 48, 5], ["kernel-netlink", 49, 5], ["aesni", 51, 5], ["rdrand", 52, 5], ["padlock", 53, 5], ["kernel-pfkey", 55, 5], ["kernel-pfroute", 56, 5], ["kernel-libipsec", 57, 5], ["keychain", 59, 5], ["osx-attr", 60, 5], ["ml", 62, 5], ["curl", 66, 5], ["acert", 67, 5], ["pkcs11", 68, 5], ["dnscert", 69, 5], ["unbound", 70, 5], ["chapoly", 71, 5], ["ext-auth", 72, 5], ["socket-dynamic", 73, 5], ["eap-sim", 75, 5], ["eap-sim-file", 76, 5], ["eap-sim-pcsc", 77, 5], ["eap-simaka-pseudonym", 78, 5], ["eap-simaka-reauth", 79, 5], ["eap-identity", 80, 5], ["eap-md5", 81, 5], ["eap-gtc", 82, 5], ["eap-aka", 83, 5], ["eap-aka-3gpp", 84, 5], ["eap-aka-3gpp2", 85, 5], ["eap-mschapv2", 86, 5], ["eap-tls", 87, 5], ["eap-peap", 88, 5], ["eap-radius", 89, 5], ["xauth-eap", 91, 5], ["xauth-pam", 92, 5], ["xauth-noauth", 93, 5], ["gmp", 95, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["eap-tnc", 98, 5], ["eap-ttls", 99, 5], ["eap-dynamic", 100, 5], ["tnccs-20", 102, 5], ["tnc-imc", 104, 5], ["tnc-imv", 105, 5], ["tnc-ifmap", 106, 5], ["imc-os", 108, 5], ["imv-os", 109, 5], ["imc-attestation", 110, 5], ["imv-attestation", 111, 5], ["aikgen", 113, 5], ["tss-trousers", 114, 5], ["sqlite", 116, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tpm", 119, 5], ["tss-tss2", 120, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 128, 5], ["repo", 129, 5], ["tag", 130, 5], ["hash", 131, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["strongswan-swanctl", 185, 43]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 185, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 193, 5], ["homepage", 194, 5], ["changelog", 195, 5], ["license", 196, 5], ["maintainers", 197, 5], ["mainProgram", 198, 5], ["platforms", 199, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 124, 3], ["version", 125, 3], ["src", 127, 3], ["patches", 134, 3], ["nativeBuildInputs", 140, 3], ["buildInputs", 149, 3], ["configureFlags", 170, 3], ["installFlags", 177, 3], ["enableParallelBuilding", 181, 3], ["dontPatchELF", 183, 3], ["passthru", 185, 3], ["postPatch", 187, 3], ["meta", 192, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -95,7 +88,7 @@ export default nix.lambda((args) => (() => {
     const xauth_noauth = true;
     const gmp_1 = eap_aka_3gpp2;
     return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nm,
       cmd,
       stroke,
@@ -148,7 +141,7 @@ export default nix.lambda((args) => (() => {
       gmp: gmp_1,
     };
   })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), enableTNC, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       "eap-tnc": true,
       "eap-ttls": true,
       "eap-dynamic": true,
@@ -163,13 +156,13 @@ export default nix.lambda((args) => (() => {
       aikgen: true,
       "tss-trousers": true,
       sqlite: true,
-    }))), nix.app(nix.sel(lib, "optionalAttrs"), enableTPM2, nix.thunk(() => ({ [nix.POS]: pos$3, tpm: true, "tss-tss2": true }))))));
+    }))), nix.app(nix.sel(lib, "optionalAttrs"), enableTPM2, nix.thunk(() => ({ [nix.POS]: $pos[2], tpm: true, "tss-tss2": true }))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "strongswan",
       version: "6.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "strongswan",
           repo: "strongswan",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -191,9 +184,9 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       dontPatchELF: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "strongswan-swanctl": nix.thunk(() => nix.attr(nixosTests, "strongswan-swanctl")),
         })),
       })),
@@ -201,7 +194,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail "/sbin/resolvconf" "${openresolv}/sbin/resolvconf"
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "OpenSource IPsec-based VPN solution",
         homepage: "https://www.strongswan.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/strongswan/strongswan/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

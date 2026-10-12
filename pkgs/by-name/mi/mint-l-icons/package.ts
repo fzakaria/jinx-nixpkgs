@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["teams", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 22, 3], ["nativeBuildInputs", 27, 3], ["dontCheckForBrokenSymlinks", 32, 3], ["dontDropIconThemeCache", 33, 3], ["installPhase", 35, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, "adwaita-icon-theme": false, "hicolor-icon-theme": false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["teams", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 22, 3], ["nativeBuildInputs", 27, 3], ["dontCheckForBrokenSymlinks", 32, 3], ["dontDropIconThemeCache", 33, 3], ["installPhase", 35, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mint-l-icons",
       version: "1.8.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "mint-l-icons",
           rev: "dbf96f024f7d06905d35edb40a7f127b8e54af65",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dontDropIconThemeCache: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out\nmv usr/share $out\n\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache $theme\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/linuxmint/mint-l-icons",
         description: "Mint-L icon theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

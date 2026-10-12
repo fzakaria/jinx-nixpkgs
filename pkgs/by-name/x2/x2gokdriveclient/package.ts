@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["maintainers", 70, 5], ["license", 71, 5], ["platforms", 72, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 32, 3], ["postPatch", 36, 3], ["makeFlags", 50, 3], ["installTargets", 57, 3], ["qtWrapperArgs", 62, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, qt5: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["maintainers", 70, 5], ["license", 71, 5], ["platforms", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 32, 3], ["postPatch", 36, 3], ["makeFlags", 50, 3], ["installTargets", 57, 3], ["qtWrapperArgs", 62, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const qt5 = nix.arg($, "qt5");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "x2gokdriveclient",
       version: "0.0.0.1-unstable-2024-09-10",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://code.x2go.org/x2gokdriveclient.git",
           rev: "ed53784a236ef4fe00adce726be492c4bf227d73",
           hash: "sha256-hWPM0bye4I34T7y2ipZOULY2+ehVanmTj4V80+lc+iw=",
@@ -47,7 +45,7 @@ substituteInPlace \\
       installTargets: nix.thunk(() => ["install_client", "install_man"]),
       qtWrapperArgs: nix.thunk(() => ["--set QT_QPA_PLATFORM xcb"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Graphical NoMachine NX3 remote desktop client (KDrive client)",
         mainProgram: "x2gokdriveclient",
         homepage: "https://x2go.org/",

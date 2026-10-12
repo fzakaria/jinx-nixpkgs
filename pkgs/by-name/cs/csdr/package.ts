@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["broken", 59, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 37, 3], ["hardeningDisable", 42, 3], ["postFixup", 44, 3], ["nativeInstallCheckInputs", 50, 3], ["versionCheckProgramArg", 51, 3], ["doInstallCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, fftwFloat: false, libsamplerate: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["broken", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 37, 3], ["hardeningDisable", 42, 3], ["postFixup", 44, 3], ["nativeInstallCheckInputs", 50, 3], ["versionCheckProgramArg", 51, 3], ["doInstallCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libsamplerate = nix.arg($, "libsamplerate");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "csdr",
       version: "0.18.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jketterl",
           repo: "csdr",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jketterl/csdr",
         description: "Simple DSP library and command-line tool for Software Defined Radio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 7], ["repo", 24, 7], ["rev", 25, 7], ["hash", 26, 7]], [["description", 36, 7], ["homepage", 37, 7], ["license", 38, 7], ["platforms", 39, 7]], [["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["nativeBuildInputs", 29, 5], ["buildInputs", 30, 5], ["dontWrapQtApps", 34, 5], ["meta", 35, 5]], [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["libmocr", 101, 12]], [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5], ["mainProgram", 109, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["postPatch", 54, 3], ["cmakeFlags", 59, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 74, 3], ["propagatedBuildInputs", 87, 3], ["preFixup", 89, 3], ["passthru", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, qt6Packages: false, sqlite: false, json_c: false, libzip: false, mpv: false, "yt-dlp": false, makeWrapper: false, withOcr: true, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 7], ["repo", 24, 7], ["rev", 25, 7], ["hash", 26, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 7], ["homepage", 37, 7], ["license", 38, 7], ["platforms", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["nativeBuildInputs", 29, 5], ["buildInputs", 30, 5], ["dontWrapQtApps", 34, 5], ["meta", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["libmocr", 101, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5], ["mainProgram", 109, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["postPatch", 54, 3], ["cmakeFlags", 59, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 74, 3], ["propagatedBuildInputs", 87, 3], ["preFixup", 89, 3], ["passthru", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const withOcr = nix.argOr($, "withOcr", () => false);
   const python3 = nix.arg($, "python3");
   const libmocr = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libmocr",
       version: "0-unstable-2023-11-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ripose-jp",
           repo: "libmocr",
           rev: "24ec081102208d0ff6954c3003df2fb691713bd5",
@@ -41,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6Packages, "qtbase")), python3]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "A library for Manga OCR",
         homepage: "https://github.com/ripose-jp/libmocr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -49,11 +43,11 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "memento",
       version: "2.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "ripose-jp",
           repo: "Memento",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -92,9 +86,9 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${yt_dlp}/bin" ${nix.app(nix.sel(lib, "optionalString"), withOcr, nix.thunk(() => nix.str`--suffix PYTHONPATH : "${pyEnv}/${nix.sel(python3, "sitePackages")}"`))}
 `;
       })()),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, libmocr: libmocr })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], libmocr: libmocr })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Mpv-based video player for studying Japanese",
         homepage: "https://ripose-jp.github.io/Memento/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

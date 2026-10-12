@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["SETUPTOOLS_SCM_PRETEND_VERSION", 38, 7]], [["console", 61, 5]], [["optional-dependencies", 60, 12]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 26, 3], ["buildInputs", 31, 3], ["env", 38, 3], ["nativeBuildInputs", 40, 3], ["dontWrapQtApps", 47, 3], ["preFixup", 48, 3], ["dependencies", 53, 3], ["passthru", 60, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchgit: false, setuptools: false, "setuptools-scm": false, numpy: false, pyqt5: false, qt5: false, psutil: false, pytango: false, qtconsole: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["SETUPTOOLS_SCM_PRETEND_VERSION", 38, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["console", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["optional-dependencies", 60, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 26, 3], ["buildInputs", 31, 3], ["env", 38, 3], ["nativeBuildInputs", 40, 3], ["dontWrapQtApps", 47, 3], ["preFixup", 48, 3], ["dependencies", 53, 3], ["passthru", 60, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytango = nix.arg($, "pytango");
   const qtconsole = nix.arg($, "qtconsole");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "quango",
       version: "3.3.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://forge.frm2.tum.de/review/frm2/tango/apps/quango",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-0txeDVX8ohtZFoIm/5rAmdCz3JyNFIXr0X3E/1GN0G4=",
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "qtwayland"))]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         SETUPTOOLS_SCM_PRETEND_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))]),
@@ -45,12 +40,12 @@ export default nix.lambda((args) => (() => {
       preFixup: "wrapQtApp \"$out/bin/quango\"\nwrapQtApp \"$out/bin/quango-mlzgui\"\n",
       dependencies: nix.thunk(() => [numpy, pyqt5, psutil, pytango]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, console: nix.thunk(() => [qtconsole]) })),
+        [nix.POS]: $pos[3],
+        "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[2], console: nix.thunk(() => [qtconsole]) })),
       })),
       pythonImportsCheck: nix.thunk(() => ["quango"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Nice generic user interface for Tango devices",
         homepage: "https://forge.frm2.tum.de/review/plugins/gitiles/frm2/tango/apps/quango",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

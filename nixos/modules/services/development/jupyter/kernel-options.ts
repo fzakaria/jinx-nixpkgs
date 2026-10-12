@@ -2,36 +2,27 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kernel-options.nix", [[["type", 9, 7], ["default", 10, 7], ["example", 11, 7], ["description", 15, 7]], [["type", 21, 7], ["example", 22, 7], ["description", 29, 7]], [["type", 35, 7], ["example", 36, 7], ["description", 37, 7]], [["OMP_NUM_THREADS", 46, 9]], [["type", 43, 7], ["default", 44, 7], ["example", 45, 7], ["description", 48, 7]], [["type", 54, 7], ["default", 55, 7], ["example", 56, 7], ["description", 57, 7]], [["type", 62, 7], ["default", 63, 7], ["example", 64, 7], ["description", 65, 7]], [["type", 71, 7], ["default", 72, 7], ["example", 73, 7], ["description", 74, 7]], [["displayName", 8, 5], ["argv", 20, 5], ["language", 34, 5], ["env", 42, 5], ["logo32", 53, 5], ["logo64", 61, 5], ["extraPaths", 70, 5]], [["freeformType", 4, 3], ["options", 6, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/kernel-options.nix", [["type", 9, 7], ["default", 10, 7], ["example", 11, 7], ["description", 15, 7]]);
-const pos$2 = nix.positions(here + "/kernel-options.nix", [["type", 21, 7], ["example", 22, 7], ["description", 29, 7]]);
-const pos$3 = nix.positions(here + "/kernel-options.nix", [["type", 35, 7], ["example", 36, 7], ["description", 37, 7]]);
-const pos$4 = nix.positions(here + "/kernel-options.nix", [["OMP_NUM_THREADS", 46, 9]]);
-const pos$5 = nix.positions(here + "/kernel-options.nix", [["type", 43, 7], ["default", 44, 7], ["example", 45, 7], ["description", 48, 7]]);
-const pos$6 = nix.positions(here + "/kernel-options.nix", [["type", 54, 7], ["default", 55, 7], ["example", 56, 7], ["description", 57, 7]]);
-const pos$7 = nix.positions(here + "/kernel-options.nix", [["type", 62, 7], ["default", 63, 7], ["example", 64, 7], ["description", 65, 7]]);
-const pos$8 = nix.positions(here + "/kernel-options.nix", [["type", 71, 7], ["default", 72, 7], ["example", 73, 7], ["description", 74, 7]]);
-const pos$9 = nix.positions(here + "/kernel-options.nix", [["displayName", 8, 5], ["argv", 20, 5], ["language", 34, 5], ["env", 42, 5], ["logo32", 53, 5], ["logo64", 61, 5], ["extraPaths", 70, 5]]);
-const pos$10 = nix.positions(here + "/kernel-options.nix", [["freeformType", 4, 3], ["options", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     freeformType: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "type")),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       displayName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           default: "",
           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"Python 3\"\n\"Python 3 for Data Science\"\n")),
           description: "Name that will be shown to the user.\n",
         })))),
       argv: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           example: nix.thunk(() => [
             "{customEnv.interpreter}",
@@ -43,34 +34,34 @@ export default nix.lambda((args) => (() => {
           description: "Command and arguments to start the kernel.\n",
         })))),
       language: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           example: "python",
           description: "Language of the environment. Typically the name of the binary.\n",
         })))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           default: nix.thunk(() => ({})),
-          example: nix.thunk(() => ({ [nix.POS]: pos$4, OMP_NUM_THREADS: "1" })),
+          example: nix.thunk(() => ({ [nix.POS]: $pos[3], OMP_NUM_THREADS: "1" })),
           description: "Environment variables to set for the kernel.\n",
         })))),
       logo32: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
           default: null,
           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${env.sitePackages}/ipykernel/resources/logo-32x32.png\"")),
           description: "Path to 32x32 logo png.\n",
         })))),
       logo64: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
           default: null,
           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${env.sitePackages}/ipykernel/resources/logo-64x64.png\"")),
           description: "Path to 64x64 logo png.\n",
         })))),
       extraPaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
           default: nix.thunk(() => ({})),
           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"{ examples = ${env.sitePack}/IRkernel/kernelspec/kernel.js\"; }")),

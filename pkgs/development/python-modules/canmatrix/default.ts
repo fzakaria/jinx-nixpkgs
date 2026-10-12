@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["arxml", 45, 5], ["fibex", 46, 5], ["kcd", 47, 5], ["ldf", 48, 5], ["odx", 49, 5], ["xls", 50, 5], ["xlsx", 54, 5], ["yaml", 55, 5]], [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 44, 3], ["nativeCheckInputs", 58, 3], ["pytestFlags", 65, 3], ["enabledTestPaths", 70, 3], ["disabledTests", 75, 3], ["pythonImportsCheck", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, attrs: false, buildPythonPackage: false, click: false, fetchFromGitHub: false, ldfparser: false, lxml: false, openpyxl: false, "pytest-cov-stub": false, "pytest-timeout": false, pytestCheckHook: false, pyyaml: false, setuptools: false, xlrd: false, xlwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arxml", 45, 5], ["fibex", 46, 5], ["kcd", 47, 5], ["ldf", 48, 5], ["odx", 49, 5], ["xls", 50, 5], ["xlsx", 54, 5], ["yaml", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 44, 3], ["nativeCheckInputs", 58, 3], ["pytestFlags", 65, 3], ["enabledTestPaths", 70, 3], ["disabledTests", 75, 3], ["pythonImportsCheck", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const xlrd = nix.arg($, "xlrd");
   const xlwt = nix.arg($, "xlwt");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "canmatrix",
       version: "1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ebroecker",
           repo: "canmatrix",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +41,7 @@ substituteInPlace setup.py \\
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [attrs, click]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         arxml: nix.thunk(() => [lxml]),
         fibex: nix.thunk(() => [lxml]),
         kcd: nix.thunk(() => [lxml]),
@@ -60,7 +57,7 @@ substituteInPlace setup.py \\
       disabledTests: nix.thunk(() => ["long_envvar_name_imports"]),
       pythonImportsCheck: nix.thunk(() => ["canmatrix"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Support and convert several CAN (Controller Area Network) database formats",
         homepage: "https://github.com/ebroecker/canmatrix",
         changelog: nix.thunk(() => nix.str`https://github.com/ebroecker/canmatrix/releases/tag/${nix.sel(finalAttrs, "version")}`),

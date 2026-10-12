@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["version", 33, 26], ["pharHash", 34, 35]], [["pharHash", 59, 12]], [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["teams", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["composer", 32, 3], ["vendorHash", 37, 3], ["postInstall", 39, 3], ["doInstallCheck", 52, 3], ["nativeInstallCheckInputs", 53, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, callPackage: false, php: false, makeBinaryWrapper: false, _7zz: false, curl: false, gitMinimal: false, unzip: false, xz: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 33, 26], ["pharHash", 34, 35]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pharHash", 59, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["teams", 67, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["composer", 32, 3], ["vendorHash", 37, 3], ["postInstall", 39, 3], ["doInstallCheck", 52, 3], ["nativeInstallCheckInputs", 53, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "composer",
       version: "2.10.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "composer",
           repo: "composer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       composer: nix.thunk(() => nix.app(callPackage, nix.path(here, "../../../build-support/php/pkgs/composer-phar.nix"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(finalAttrs, "passthru"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pharHash: nix.thunk(() => nix.attr(from, "pharHash")),
         };
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pharHash: "sha256-ei03nVuP/aoChYDvJklMNtL+70sXjT3RRzpNvF4XyNY=",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/composer/composer/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Dependency Manager for PHP",
         homepage: "https://getcomposer.org/",

@@ -2,13 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mkXfceDerivation.nix", [[["domain", 57, 7], ["owner", 58, 7], ["repo", 59, 7], ["rev", 60, 15], ["sha256", 60, 19]], [["rev-prefix", 73, 17], ["odd-unstable", 73, 28], ["patchlevel-unstable", 73, 41]], [["updateScript", 72, 7]], [["homepage", 81, 9], ["license", 82, 9], ["platforms", 83, 9]], [["nativeBuildInputs", 48, 5], ["buildInputs", 53, 5], ["configureFlags", 54, 5], ["src", 56, 5], ["enableParallelBuilding", 63, 5], ["outputs", 64, 5], ["pos", 69, 5], ["passthru", 71, 5], ["meta", 78, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "pkg-config": false, "xfce4-dev-tools": false, "hicolor-icon-theme": false, xfce: false, wrapGAppsHook3: false, gitUpdater: false }, ellipsis: false };
 const formals$2 = { args: { category: false, pname: false, version: false, attrPath: true, "rev-prefix": true, rev: true, sha256: false, "odd-unstable": true, "patchlevel-unstable": true, passthru: true, meta: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mkXfceDerivation.nix", [["domain", 57, 7], ["owner", 58, 7], ["repo", 59, 7], ["rev", 60, 15], ["sha256", 60, 19]]);
-const pos$2 = nix.positions(here + "/mkXfceDerivation.nix", [["rev-prefix", 73, 17], ["odd-unstable", 73, 28], ["patchlevel-unstable", 73, 41]]);
-const pos$3 = nix.positions(here + "/mkXfceDerivation.nix", [["updateScript", 72, 7]]);
-const pos$4 = nix.positions(here + "/mkXfceDerivation.nix", [["homepage", 81, 9], ["license", 82, 9], ["platforms", 83, 9]]);
-const pos$5 = nix.positions(here + "/mkXfceDerivation.nix", [["nativeBuildInputs", 48, 5], ["buildInputs", 53, 5], ["configureFlags", 54, 5], ["src", 56, 5], ["enableParallelBuilding", 63, 5], ["outputs", 64, 5], ["pos", 69, 5], ["passthru", 71, 5], ["meta", 78, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,12 +42,12 @@ export default nix.lambda((args) => (() => {
     const filterAttrNames = (f) => (attrs) => nix.app(filter, (n) => nix.app(f, nix.thunk(() => nix.app(getAttr, n, attrs))), nix.thunk(() => nix.app(attrNames, attrs)));
     const concatAttrLists = (attrsets) => nix.app(zipAttrsWithNames, nix.thunk(() => nix.app(filterAttrNames, isList, nix.thunk(() => nix.app(head, attrsets)))), (_) => nix.force(concatLists), attrsets);
     const template = nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       nativeBuildInputs: nix.thunk(() => [pkg_config, xfce4_dev_tools, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [hicolor_icon_theme]),
       configureFlags: nix.thunk(() => ["--enable-maintainer-mode"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.xfce.org",
           owner: category,
           repo: pname,
@@ -62,16 +58,16 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       pos: nix.thunk(() => nix.builtins.unsafeGetAttrPos("pname", args_2)),
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "rev-prefix": rev_prefix,
             "odd-unstable": odd_unstable,
             "patchlevel-unstable": patchlevel_unstable,
           })))),
       }, passthru)),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: nix.thunk(() => nix.str`https://gitlab.xfce.org/${category}/${pname}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

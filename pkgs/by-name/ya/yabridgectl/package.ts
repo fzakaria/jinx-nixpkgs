@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 14, 3], ["cargoHash", 16, 3], ["patches", 18, 3], ["patchFlags", 26, 3], ["nativeBuildInputs", 28, 3], ["postFixup", 30, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, yabridge: false, makeWrapper: false, wineWow64Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 14, 3], ["cargoHash", 16, 3], ["patches", 18, 3], ["patchFlags", 26, 3], ["nativeBuildInputs", 28, 3], ["postFixup", 30, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const wineWow64Packages = nix.arg($, "wineWow64Packages");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "yabridgectl",
       version: nix.thunk(() => nix.sel(yabridge, "version")),
       src: nix.thunk(() => nix.sel(yabridge, "src")),
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(wineWow64Packages, "yabridge"))]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Small, optional utility to help set up and update yabridge for several directories at once",
         homepage: nix.thunk(() => nix.str`${nix.sel(yabridge, "src", "meta", "homepage")}/tree/${nix.sel(yabridge, "version")}/tools/yabridgectl`),
         changelog: nix.thunk(() => nix.sel(yabridge, "meta", "changelog")),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 81, 5], ["repo", 82, 5], ["tag", 83, 5], ["hash", 84, 5]], [["QTILE_CAIRO_PATH", 98, 5], ["QTILE_PIXMAN_PATH", 99, 5], ["QTILE_LIBDRM_PATH", 100, 5], ["QTILE_WLROOTS_PATH", 101, 5]], [["withXcffib", 116, 27]], [["doCheck", 208, 9]], [["nixosTestSession", 205, 7], ["withCheck", 207, 7]], [["tests", 204, 5], ["providedSessions", 211, 5]], [["homepage", 220, 5], ["license", 221, 5], ["description", 222, 5], ["changelog", 223, 5], ["mainProgram", 224, 5], ["platforms", 225, 5], ["maintainers", 226, 5]], [["pname", 73, 3], ["version", 74, 3], ["pyproject", 78, 3], ["src", 80, 3], ["build-system", 87, 3], ["nativeBuildInputs", 92, 3], ["env", 97, 3], ["pypaBuildFlags", 105, 3], ["dependencies", 114, 3], ["buildInputs", 132, 3], ["propagatedBuildInputs", 141, 3], ["pythonImportsCheck", 145, 3], ["checkInputs", 147, 3], ["doCheck", 152, 3], ["nativeCheckInputs", 154, 3], ["pytestFlags", 170, 3], ["preCheck", 175, 3], ["disabledTests", 179, 3], ["passthru", 203, 3], ["postInstall", 214, 3], ["meta", 219, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, "pkg-config": false, "wayland-scanner": false, cairocffi: false, "dbus-fast": false, iwlib: false, libcst: false, "python-mpd2": false, "prompt-toolkit": false, psutil: false, "pulsectl-asyncio": false, pygobject3: false, pyxdg: false, xcffib: false, extraPackages: true, cairo: false, libinput: false, "libxcb-wm": false, libxkbcommon: false, wayland: false, wlroots: false, libdrm: false, pixman: false, glib: false, pango: false, "libxcb-cursor": false, aiohttp: false, cffi: false, "wayland-protocols": false, gtk3: false, librsvg: false, pytestCheckHook: false, "pytest-asyncio": false, "pytest-httpbin": false, "pytest-rerunfailures": false, writableTmpDirAsHomeHook: false, anyio: false, fontconfig: false, "gdk-pixbuf": false, "gobject-introspection": false, isort: false, wxsvg: false, "xorg-server": false, xterm: false, xvfb: false, qtile: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 81, 5], ["repo", 82, 5], ["tag", 83, 5], ["hash", 84, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["QTILE_CAIRO_PATH", 98, 5], ["QTILE_PIXMAN_PATH", 99, 5], ["QTILE_LIBDRM_PATH", 100, 5], ["QTILE_WLROOTS_PATH", 101, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["withXcffib", 116, 27]]);
-const pos$4 = nix.positions(here + "/default.nix", [["doCheck", 208, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["nixosTestSession", 205, 7], ["withCheck", 207, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 204, 5], ["providedSessions", 211, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["homepage", 220, 5], ["license", 221, 5], ["description", 222, 5], ["changelog", 223, 5], ["mainProgram", 224, 5], ["platforms", 225, 5], ["maintainers", 226, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 73, 3], ["version", 74, 3], ["pyproject", 78, 3], ["src", 80, 3], ["build-system", 87, 3], ["nativeBuildInputs", 92, 3], ["env", 97, 3], ["pypaBuildFlags", 105, 3], ["dependencies", 114, 3], ["buildInputs", 132, 3], ["propagatedBuildInputs", 141, 3], ["pythonImportsCheck", 145, 3], ["checkInputs", 147, 3], ["doCheck", 152, 3], ["nativeCheckInputs", 154, 3], ["pytestFlags", 170, 3], ["preCheck", 175, 3], ["disabledTests", 179, 3], ["passthru", 203, 3], ["postInstall", 214, 3], ["meta", 219, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -66,12 +59,12 @@ export default nix.lambda((args) => (() => {
   const qtile = nix.arg($, "qtile");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "qtile",
       version: "0.37.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qtile",
           repo: "qtile",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +73,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, wayland_scanner]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         QTILE_CAIRO_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), cairo)}/include/cairo`),
         QTILE_PIXMAN_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), pixman)}/include/pixman-1`),
         QTILE_LIBDRM_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), libdrm)}/include/libdrm`),
@@ -96,7 +89,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dependencies: nix.thunk(() => nix.concat(extraPackages, [
         aiohttp,
-        nix.thunk(() => nix.app(nix.sel(cairocffi, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withXcffib: true })))),
+        nix.thunk(() => nix.app(nix.sel(cairocffi, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], withXcffib: true })))),
         cffi,
         dbus_fast,
         iwlib,
@@ -150,17 +143,17 @@ export default nix.lambda((args) => (() => {
         "test_thermal_zone_getting_value",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           nixosTestSession: nix.thunk(() => nix.sel(nixosTests, "qtile")),
-          withCheck: nix.thunk(() => nix.app(nix.sel(qtile, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$4, doCheck: true }))),
+          withCheck: nix.thunk(() => nix.app(nix.sel(qtile, "overridePythonAttrs"), (_) => ({ [nix.POS]: $pos[3], doCheck: true }))),
         })),
         providedSessions: nix.thunk(() => ["qtile"]),
       })),
       postInstall: "install -Dm644 resources/qtile-generic.desktop $out/share/xsessions/qtile.desktop\ninstall -Dm644 resources/qtile-generic.desktop $out/share/wayland-sessions/qtile.desktop\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://qtile.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Small, flexible, scriptable tiling window manager written in Python",

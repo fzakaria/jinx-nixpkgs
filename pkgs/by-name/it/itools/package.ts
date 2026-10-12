@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]], [["pname", 12, 3], ["version", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 19, 3], ["outputs", 24, 3], ["src", 29, 3], ["postPatch", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, perl: false, libitl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 19, 3], ["outputs", 24, 3], ["src", 29, 3], ["postPatch", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const libitl = nix.arg($, "libitl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "itools",
       version: "1.1",
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => [libitl, perl]),
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arabeyes-org",
           repo: "itools",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "rm config.h.in\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Islamic command-line tools for prayer times and hijri dates",
         longDescription: "The itools package is a set of user friendly applications utilizing Arabeyes' ITL library.\n\nThe package addresses two main areas - hijri date and prayertime calculation. The package\nis envisioned to mimic the development of the underlying ITL library and is meant to\nalways give the end-user a simple means to access its functions.\n",
         homepage: "https://www.arabeyes.org/ITL",

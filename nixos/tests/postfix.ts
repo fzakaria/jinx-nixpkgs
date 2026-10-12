@@ -2,50 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/postfix.nix", [[["name", 26, 17], ["destination", 27, 17], ["text", 28, 17]], [["smtp_tls_CAfile", 17, 11], ["smtpd_tls_chain_files", 18, 11], ["smtpd_sasl_auth_enable", 22, 11], ["cyrus_sasl_config_path", 23, 11]], [["main", 16, 18]], [["smtpd_sasl_auth_enable", 37, 11], ["smtpd_client_restrictions", 38, 11], ["milter_macro_daemon_name", 39, 11]], [["enable", 13, 9], ["enableSubmission", 14, 9], ["enableSubmissions", 15, 9], ["settings", 16, 9], ["submissionsOptions", 36, 9]], [["enable", 42, 26]], [["postfix", 12, 16], ["saslauthd", 42, 16]], [["certificateFiles", 44, 20]], [["name", 50, 11]], [["smtp", 49, 9]], [["services", 47, 20]], [["pki", 44, 16], ["pam", 47, 16]], [["extraHosts", 54, 18]], [["systemPackages", 58, 19]], [["imports", 11, 7], ["services", 12, 7], ["security", 44, 7], ["networking", 54, 7], ["environment", 58, 7]], [["machine", 8, 9]], [["name", 6, 3], ["nodes", 8, 3], ["testScript", 141, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/postfix.nix", [["name", 26, 17], ["destination", 27, 17], ["text", 28, 17]]);
-const pos$2 = nix.positions(here + "/postfix.nix", [["smtp_tls_CAfile", 17, 11], ["smtpd_tls_chain_files", 18, 11], ["smtpd_sasl_auth_enable", 22, 11], ["cyrus_sasl_config_path", 23, 11]]);
-const pos$3 = nix.positions(here + "/postfix.nix", [["main", 16, 18]]);
-const pos$4 = nix.positions(here + "/postfix.nix", [["smtpd_sasl_auth_enable", 37, 11], ["smtpd_client_restrictions", 38, 11], ["milter_macro_daemon_name", 39, 11]]);
-const pos$5 = nix.positions(here + "/postfix.nix", [["enable", 13, 9], ["enableSubmission", 14, 9], ["enableSubmissions", 15, 9], ["settings", 16, 9], ["submissionsOptions", 36, 9]]);
-const pos$6 = nix.positions(here + "/postfix.nix", [["enable", 42, 26]]);
-const pos$7 = nix.positions(here + "/postfix.nix", [["postfix", 12, 16], ["saslauthd", 42, 16]]);
-const pos$8 = nix.positions(here + "/postfix.nix", [["certificateFiles", 44, 20]]);
-const pos$9 = nix.positions(here + "/postfix.nix", [["name", 50, 11]]);
-const pos$10 = nix.positions(here + "/postfix.nix", [["smtp", 49, 9]]);
-const pos$11 = nix.positions(here + "/postfix.nix", [["services", 47, 20]]);
-const pos$12 = nix.positions(here + "/postfix.nix", [["pki", 44, 16], ["pam", 47, 16]]);
-const pos$13 = nix.positions(here + "/postfix.nix", [["extraHosts", 54, 18]]);
-const pos$14 = nix.positions(here + "/postfix.nix", [["systemPackages", 58, 19]]);
-const pos$15 = nix.positions(here + "/postfix.nix", [["imports", 11, 7], ["services", 12, 7], ["security", 44, 7], ["networking", 54, 7], ["environment", 58, 7]]);
-const pos$16 = nix.positions(here + "/postfix.nix", [["machine", 8, 9]]);
-const pos$17 = nix.positions(here + "/postfix.nix", [["name", 6, 3], ["nodes", 8, 3], ["testScript", 141, 3]]);
 
 export default nix.thunk(() => (() => {
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")));
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
   return nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       name: "postfix",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         machine: nix.lambda((args) => (() => {
           const $ = nix.formals(args, formals$1);
           const pkgs = nix.arg($, "pkgs");
           return {
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             imports: nix.thunk(() => [nix.path(here, "common/user-account.nix")]),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               postfix: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 enable: true,
                 enableSubmission: true,
                 enableSubmissions: true,
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   main: nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     smtp_tls_CAfile: nix.thunk(() => nix.str`${nix.sel(certs, "ca", "cert")}`),
                     smtpd_tls_chain_files: nix.thunk(() => [
                       nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "key")),
@@ -54,7 +38,7 @@ export default nix.thunk(() => (() => {
                     smtpd_sasl_auth_enable: "yes",
                     cyrus_sasl_config_path: nix.thunk(() => (() => {
                       const smtpdConf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                          [nix.POS]: pos$1,
+                          [nix.POS]: $pos[0],
                           name: "smtpd.conf",
                           destination: "/etc/sasl2/smtpd.conf",
                           text: "pwcheck_method: saslauthd\nmech_list: PLAIN LOGIN\n",
@@ -64,35 +48,35 @@ export default nix.thunk(() => (() => {
                   })),
                 })),
                 submissionsOptions: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   smtpd_sasl_auth_enable: "yes",
                   smtpd_client_restrictions: "permit",
                   milter_macro_daemon_name: "ORIGINATING",
                 })),
               })),
-              saslauthd: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+              saslauthd: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
             })),
             security: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               pki: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
               })),
               pam: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
-                  smtp: nix.thunk(() => ({ [nix.POS]: pos$9, name: "smtp" })),
+                  [nix.POS]: $pos[9],
+                  smtp: nix.thunk(() => ({ [nix.POS]: $pos[8], name: "smtp" })),
                 })),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               extraHosts: nix.thunk(() => nix.str`127.0.0.1 ${domain}
 `),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               systemPackages: nix.thunk(() => (() => {
                 const sendTestMail = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "send-testmail", nix.thunk(() => ({})), nix.thunk(() => nix.str`import smtplib
 

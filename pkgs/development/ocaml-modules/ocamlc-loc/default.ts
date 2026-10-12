@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 17, 5], ["maintainers", 18, 5], ["license", 19, 5]], [["pname", 9, 3], ["src", 10, 18], ["version", 10, 22], ["dontAddPrefix", 12, 3], ["propagatedBuildInputs", 14, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, dune: false, dyn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 17, 5], ["maintainers", 18, 5], ["license", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["src", 10, 18], ["version", 10, 22], ["dontAddPrefix", 12, 3], ["propagatedBuildInputs", 14, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const dune = nix.arg($, "dune");
   const dyn = nix.arg($, "dyn");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ocamlc-loc",
       src: nix.thunk(() => nix.attr(dune, "src")),
       version: nix.thunk(() => nix.attr(dune, "version")),
       dontAddPrefix: true,
       propagatedBuildInputs: nix.thunk(() => [dyn]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Parse ocaml compiler output into structured form",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ulrikstrid"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

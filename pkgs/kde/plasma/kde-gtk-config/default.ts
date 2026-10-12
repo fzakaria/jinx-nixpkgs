@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pgrep", 21, 7], ["xsettingsd", 22, 7]], [["pname", 14, 3], ["patches", 18, 3], ["preConfigure", 26, 3], ["extraNativeBuildInputs", 30, 3], ["extraBuildInputs", 35, 3], ["dontWrapGApps", 36, 3], ["extraCmakeFlags", 38, 3], ["postFixup", 41, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, replaceVars: false, procps: false, xsettingsd: false, "pkg-config": false, wrapGAppsHook3: false, sass: false, qtsvg: false, "gsettings-desktop-schemas": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pgrep", 21, 7], ["xsettingsd", 22, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["patches", 18, 3], ["preConfigure", 26, 3], ["extraNativeBuildInputs", 30, 3], ["extraBuildInputs", 35, 3], ["dontWrapGApps", 36, 3], ["extraCmakeFlags", 38, 3], ["postFixup", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kde-gtk-config",
       patches: nix.thunk(() => [
         nix.path(here, "./0001-gsettings-schemas-path.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dependency-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             pgrep: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), procps, "pgrep")),
             xsettingsd: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), xsettingsd)),
           })))),

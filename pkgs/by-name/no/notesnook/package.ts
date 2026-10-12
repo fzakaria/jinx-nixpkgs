@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 19, 7], ["aarch64-linux", 20, 7], ["aarch64-darwin", 21, 7]], [["x86_64-linux", 29, 9], ["aarch64-linux", 30, 9], ["aarch64-darwin", 31, 9]], [["url", 26, 5], ["hash", 27, 5]], [["updateScript", 37, 5]], [["pname", 41, 13], ["version", 41, 19], ["src", 41, 27]], [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 60, 5]], [["pname", 65, 7], ["version", 66, 7], ["src", 67, 7], ["meta", 68, 7], ["passthru", 69, 7], ["nativeBuildInputs", 72, 5], ["profile", 74, 5], ["extraInstallCommands", 78, 5]], [["pname", 90, 7], ["version", 91, 7], ["src", 92, 7], ["meta", 93, 7], ["passthru", 94, 7], ["nativeBuildInputs", 97, 5], ["sourceRoot", 99, 5], ["unpackPhase", 102, 5], ["installPhase", 106, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, appimageTools: false, fetchurl: false, makeWrapper: false, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 19, 7], ["aarch64-linux", 20, 7], ["aarch64-darwin", 21, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 29, 9], ["aarch64-linux", 30, 9], ["aarch64-darwin", 31, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 37, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 41, 13], ["version", 41, 19], ["src", 41, 27]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 60, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 65, 7], ["version", 66, 7], ["src", 67, 7], ["meta", 68, 7], ["passthru", 69, 7], ["nativeBuildInputs", 72, 5], ["profile", 74, 5], ["extraInstallCommands", 78, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 90, 7], ["version", 91, 7], ["src", 92, 7], ["meta", 93, 7], ["passthru", 94, 7], ["nativeBuildInputs", 97, 5], ["sourceRoot", 99, 5], ["unpackPhase", 102, 5], ["installPhase", 106, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,25 +19,25 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)));
   const suffix = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "linux_x86_64.AppImage",
     "aarch64-linux": "linux_arm64.AppImage",
     "aarch64-darwin": "mac_arm64.dmg",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://github.com/streetwriters/notesnook/releases/download/v${version}/notesnook_${suffix}`),
       hash: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "x86_64-linux": "sha256-NwNfhTufJ25wqdZuRXV73aVOHjdqGPQ4jZdMXaW+3vM=",
         "aarch64-linux": "sha256-dAjLOiWvozJoz8O/feKrM4/qE9XS83INA4IC4gWZtg0=",
         "aarch64-darwin": "sha256-aZFiaWA8tr1Nuule/qKTr1hUuQ/9gTs2AJqrojAFeDQ=",
       }, () => nix.force(throwSystem), nix.key(nix.force(system)))),
     }))));
-  const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$5, pname: pname, version: version, src: src }))));
+  const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") }));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[4], pname: pname, version: version, src: src }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     description: "Fully open source & end-to-end encrypted note taking alternative to Evernote",
     longDescription: "Notesnook is a free (as in speech) & open source note taking app\nfocused on user privacy & ease of use. To ensure zero knowledge\nprinciples, Notesnook encrypts everything on your device using\nXChaCha20-Poly1305 & Argon2.\n",
     homepage: "https://notesnook.com",
@@ -69,7 +62,7 @@ substituteInPlace $out/share/applications/notesnook.desktop \\
   --replace 'Exec=AppRun --no-sandbox %U' 'Exec=${pname_1}'
 `);
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: pname_1,
         version: version_1,
         src: src_1,
@@ -81,7 +74,7 @@ substituteInPlace $out/share/applications/notesnook.desktop \\
       };
     })())));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       src: src,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 151, 5], ["maintainers", 152, 5], ["platforms", 157, 5]], [["name", 125, 3], ["outputHash", 129, 3], ["outputHashMode", 130, 3], ["outputHashAlgo", 131, 3], ["nativeBuildInputs", 133, 3], ["impureEnvVars", 138, 3], ["buildCommand", 140, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { cacert: false, curl: false, lib: false, stack: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 151, 5], ["maintainers", 152, 5], ["platforms", 157, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 125, 3], ["outputHash", 129, 3], ["outputHashMode", 130, 3], ["outputHashAlgo", 131, 3], ["nativeBuildInputs", 133, 3], ["impureEnvVars", 138, 3], ["buildCommand", 140, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -80,7 +79,7 @@ echo "success" > $out
 `);
   const testScriptHash = nix.thunk(() => nix.builtins.hashString("sha256", testScript));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`upstream-stack-hpack-version-test-${nix.sel(stack, "name")}-${nix.sel(hpack, "name")}-${testScriptHash}`),
       outputHash: "sha256-gbK9TqmMjbZlVPvI12N6GmmhMPMx/rcyt1yqtMSGj9U=",
       outputHashMode: "flat",
@@ -95,7 +94,7 @@ echo "success" > $out
 export SSL_CERT_FILE="${cacert}/etc/ssl/certs/ca-bundle.crt"
 `, testScript)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Test that the stack in Nixpkgs uses the same version of Hpack as the upstream stack release",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

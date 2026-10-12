@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]], [["updateScript", 32, 12]], [["name", 81, 7], ["desktopName", 82, 7], ["exec", 83, 7], ["comment", 84, 7], ["icon", 85, 7], ["categories", 86, 7]], [["description", 94, 5], ["longDescription", 95, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["mainProgram", 107, 5], ["platforms", 108, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["passthru", 32, 3], ["patches", 34, 3], ["postPatch", 36, 3], ["enableParallelBuilding", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["buildFlags", 57, 3], ["installPhase", 63, 3], ["desktopItems", 79, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "util-linux": false, SDL2: false, SDL2_ttf: false, SDL2_image: false, libx11: false, openssl: false, zlib: false, which: false, kdePackages: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 32, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 81, 7], ["desktopName", 82, 7], ["exec", 83, 7], ["comment", 84, 7], ["icon", 85, 7], ["categories", 86, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 94, 5], ["longDescription", 95, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["mainProgram", 107, 5], ["platforms", 108, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["passthru", 32, 3], ["patches", 34, 3], ["postPatch", 36, 3], ["enableParallelBuilding", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["buildFlags", 57, 3], ["installPhase", 63, 3], ["desktopItems", 79, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "poptracker",
       version: "0.35.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "black-sliver",
           repo: "PopTracker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       patches: nix.thunk(() => [nix.path(here, "./assets-path.diff")]),
@@ -64,7 +60,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "poptracker",
             desktopName: "PopTracker",
             exec: "poptracker",
@@ -74,7 +70,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Scriptable tracker for randomized games",
         longDescription: "Universal, scriptable randomizer tracking solution that is open source. Supports auto-tracking.\n\nPopTracker packs should be placed in `~/PopTracker/packs` or `./packs`.\n",
         homepage: "https://github.com/black-sliver/PopTracker",

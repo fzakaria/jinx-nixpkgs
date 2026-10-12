@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["changelog", 34, 5], ["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["owner", 13, 3], ["domain", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 26, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { buildHomeAssistantComponent: false, lib: false, fetchFromGitHub: false, "simple-pid": false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-homeassistant-custom-component": false, syrupy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 34, 5], ["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 13, 3], ["domain", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 26, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytest_homeassistant_custom_component = nix.arg($, "pytest-homeassistant-custom-component");
   const syrupy = nix.arg($, "syrupy");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "bvweerd",
       domain: "simple_pid_controller",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bvweerd",
           repo: "simple_pid_controller",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         syrupy,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/bvweerd/simple_pid_controller/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "PID Controller integration for Home Assistant",
         homepage: "https://github.com/bvweerd/simple_pid_controller",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 29, 5], ["hash", 30, 5]], [["initrd-network-openvpn", 74, 26], ["systemd-initrd-networkd-openvpn", 74, 49]], [["tests", 73, 12]], [["description", 78, 5], ["downloadPage", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5], ["mainProgram", 84, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["configureFlags", 54, 3], ["postInstall", 63, 3], ["enableParallelBuilding", 71, 3], ["passthru", 73, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libcap_ng: false, libnl: false, lz4: false, lzo: false, openssl: false, pam: false, useSystemd: true, systemdLibs: false, "update-systemd-resolved": false, pkcs11Support: true, pkcs11helper: false, nixosTests: false, unixtools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["initrd-network-openvpn", 74, 26], ["systemd-initrd-networkd-openvpn", 74, 49]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 73, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 78, 5], ["downloadPage", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5], ["mainProgram", 84, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["configureFlags", 54, 3], ["postInstall", 63, 3], ["enableParallelBuilding", 71, 3], ["passthru", 73, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "openvpn",
       version: "2.6.23",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://swupdate.openvpn.net/community/releases/openvpn-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-QEHHCRYr7BMlq/WqjPJ6JVzEd8Y0sV7jEEEccB/ECpY=",
         })))),
@@ -50,15 +46,15 @@ export default nix.lambda((args) => (() => {
 `)))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "initrd-network-openvpn": nix.thunk(() => nix.attr(nixosTests, "initrd-network-openvpn")),
           "systemd-initrd-networkd-openvpn": nix.thunk(() => nix.attr(nixosTests, "systemd-initrd-networkd-openvpn")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Robust and highly flexible tunneling application",
         downloadPage: "https://openvpn.net/community-downloads/",
         homepage: "https://openvpn.net/",

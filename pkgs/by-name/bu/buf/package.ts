@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["package", 83, 50]], [["version", 83, 18]], [["tests", 83, 12]], [["homepage", 86, 5], ["changelog", 87, 5], ["description", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["mainProgram", 95, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["patches", 24, 3], ["nativeBuildInputs", 29, 3], ["ldflags", 31, 3], ["nativeCheckInputs", 36, 3], ["checkFlags", 41, 3], ["preCheck", 45, 3], ["__darwinAllowLocalNetworking", 59, 3], ["installPhase", 61, 3], ["passthru", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, protobuf: false, git: false, testers: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 83, 50]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 83, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 83, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 86, 5], ["changelog", 87, 5], ["description", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["mainProgram", 95, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["patches", 24, 3], ["nativeBuildInputs", 29, 3], ["ldflags", 31, 3], ["nativeCheckInputs", 36, 3], ["checkFlags", 41, 3], ["preCheck", 45, 3], ["__darwinAllowLocalNetworking", 59, 3], ["installPhase", 61, 3], ["passthru", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "buf",
       version: "1.73.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bufbuild",
           repo: "buf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,17 +35,17 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       installPhase: "runHook preInstall\n\n# Binaries\n# Only install required binaries, don't install testing binaries\nfor FILE in buf protoc-gen-buf-breaking protoc-gen-buf-lint; do\n  install -D -m 555 -t $out/bin $GOPATH/bin/$FILE\ndone\n\n# Completions\ninstallShellCompletion --cmd buf \\\n  --bash <($GOPATH/bin/buf completion bash) \\\n  --fish <($GOPATH/bin/buf completion fish) \\\n  --zsh <($GOPATH/bin/buf completion zsh)\n\n# Man Pages\nmkdir man && $GOPATH/bin/buf manpages man\ninstallManPage man/*\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://buf.build",
         changelog: nix.thunk(() => nix.str`https://github.com/bufbuild/buf/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Create consistent Protobuf APIs that preserve compatibility and comply with design best-practices",

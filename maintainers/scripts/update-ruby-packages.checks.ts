@@ -2,9 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update-ruby-packages.checks.nix", [[["name", 74, 15], ["old", 76, 13], ["new", 77, 13]], [["old", 195, 11], ["new", 196, 11], ["allGems", 198, 11], ["specifiedGems", 199, 11], ["nonSpecifiedGems", 200, 11], ["addedOrRemovedGems", 201, 11], ["keptGems", 202, 11]]]);
 const formals$1 = { args: { old: false, new: false, specifiedGems: false, withData: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/update-ruby-packages.checks.nix", [["name", 74, 15], ["old", 76, 13], ["new", 77, 13]]);
-const pos$2 = nix.positions(here + "/update-ruby-packages.checks.nix", [["old", 195, 11], ["new", 196, 11], ["allGems", 198, 11], ["specifiedGems", 199, 11], ["nonSpecifiedGems", 200, 11], ["addedOrRemovedGems", 201, 11], ["keptGems", 202, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +39,7 @@ export default nix.lambda((args) => (() => {
     const results = nix.thunk(() => nix.builtins.map((name) => (() => {
         const oldv = nix.thunk(() => nix.selOr(old_1, () => null, nix.key(nix.force(name)), "version"));
         const newv = nix.thunk(() => nix.selOr(new$_2, () => null, nix.key(nix.force(name)), "version"));
-        return (nix.asBool(nix.eq(newv, oldv)) ? null : { [nix.POS]: pos$1, name: name, old: oldv, new: newv });
+        return (nix.asBool(nix.eq(newv, oldv)) ? null : { [nix.POS]: $pos[0], name: name, old: oldv, new: newv });
       })(), gems));
     return nix.app(compact, results);
   })();
@@ -97,7 +96,7 @@ ${nix.app(concatMapStringsSep, "\n", (msg) => nix.str` - ${msg}`, failedChecks)}
 `)) : nix.builtins.trace(nix.thunk(() => nix.str`(Report follows...)
 
 ${report}`), nix.thunk(() => (nix.asBool(withData) ? {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       old: old_1,
       new: new$_2,
       allGems: allGems,

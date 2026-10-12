@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mpd.nix", [[["version", 14, 26], ["pname", 15, 5], ["hash", 16, 5]], [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["doCheck", 24, 3], ["pythonImportsCheck", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, pythonPackages: false, fetchPypi: false, mopidy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mpd.nix", [["version", 14, 26], ["pname", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/mpd.nix", [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/mpd.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["doCheck", 24, 3], ["pythonImportsCheck", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const mopidy = nix.arg($, "mopidy");
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mopidy-mpd",
       version: "3.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "Mopidy-MPD",
           hash: "sha256-CeLMRqj9cwBvQrOx7XHVV8MjDjwOosONVlsN2o+vTVM=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["mopidy_mpd"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mopidy/mopidy-mpd",
         description: "Mopidy extension for controlling playback from MPD clients",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

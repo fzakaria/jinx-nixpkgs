@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]], [["url", 23, 7], ["hash", 24, 7]], [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["license", 55, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["pythonImportsCheck", 32, 3], ["checkPhase", 34, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchpatch: false, setuptools: false, numpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["license", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["pythonImportsCheck", 32, 3], ["checkPhase", 34, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.86";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-k6ULWGpNLOxoqy+Z0D71g8V2HY+6VTXLjoHaeB0Nkv8=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/biopython/biopython/pull/5161.patch",
             hash: "sha256-oN0nNlhvshIgNrmm+tIeCAJx1U/OqhdL4tj51DV2CHU=",
           })))),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["Bio"]);
       const checkPhase = "runHook preCheck\n\nexport HOME=$(mktemp -d)\ncd Tests\npython run_tests.py --offline\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python library for bioinformatics",
         longDescription: "Biopython is a set of freely available tools for biological computation\nwritten in Python by an international team of developers. It is a\ndistributed collaborative effort to develop Python libraries and\napplications which address the needs of current and future work in\nbioinformatics.\n",
         homepage: "https://biopython.org/wiki/Documentation",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

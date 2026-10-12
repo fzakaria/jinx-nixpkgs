@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["updateScript", 26, 12]], [["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["mainProgram", 37, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["passthru", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromCodeberg: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 26, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["mainProgram", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["passthru", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "go-errorlint",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "polyfloyd",
           repo: "go-errorlint",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-U/19X5iY7IHOHkbTADT4ueCJBPh/ryI4PCfg8ZbMLzU=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Source code linter that can be used to find code that will cause problems with Go's error wrapping scheme",
         homepage: "https://codeberg.org/polyfloyd/go-errorlint",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/polyfloyd/go-errorlint/src/tag/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

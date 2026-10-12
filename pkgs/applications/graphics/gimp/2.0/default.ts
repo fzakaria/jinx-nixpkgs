@@ -2,26 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 66, 5], ["sha256", 67, 5]], [["cc_version", 74, 7]], [["name", 89, 7], ["url", 91, 7], ["hash", 92, 7]], [["name", 95, 7], ["url", 96, 7], ["hash", 97, 7]], [["name", 100, 7], ["url", 101, 7], ["hash", 102, 7]], [["name", 105, 7], ["url", 107, 7], ["hash", 108, 7]], [["name", 111, 7], ["url", 112, 7], ["hash", 113, 7]], [["name", 116, 7], ["url", 117, 7], ["hash", 118, 7]], [["name", 121, 7], ["url", 122, 7], ["hash", 123, 7]], [["name", 126, 7], ["url", 127, 7], ["hash", 128, 7]], [["name", 131, 7], ["url", 132, 7], ["hash", 133, 7]], [["name", 136, 7], ["url", 137, 7], ["hash", 138, 7]], [["name", 141, 7], ["url", 143, 7], ["hash", 144, 7]], [["name", 147, 7], ["url", 149, 7], ["hash", 150, 7]], [["name", 153, 7], ["url", 154, 7], ["hash", 155, 7]], [["NIX_CFLAGS_COMPILE", 242, 5], ["PKG_CONFIG_GDK_PIXBUF_2_0_GDK_PIXBUF_MODULEDIR", 251, 5]], [["apiVersion", 267, 5], ["appVersion", 273, 5], ["majorVersion", 274, 5], ["targetLibDir", 275, 5], ["targetDataDir", 276, 5], ["targetPluginDir", 277, 5], ["targetScriptDir", 278, 5], ["gtk", 281, 5]], [["description", 285, 5], ["homepage", 286, 5], ["maintainers", 287, 5], ["license", 288, 5], ["platforms", 289, 5], ["mainProgram", 290, 5]], [["pname", 56, 3], ["version", 57, 3], ["outputs", 59, 3], ["src", 65, 3], ["patches", 70, 3], ["preAutoreconf", 160, 3], ["nativeBuildInputs", 164, 3], ["buildInputs", 177, 3], ["propagatedBuildInputs", 223, 3], ["configureFlags", 227, 3], ["enableParallelBuilding", 237, 3], ["doCheck", 239, 3], ["env", 241, 3], ["preConfigure", 254, 3], ["postFixup", 259, 3], ["passthru", 264, 3], ["meta", 284, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchpatch: false, replaceVars: false, autoreconfHook: false, "pkg-config": false, intltool: false, babl: false, gegl: false, gtk2: false, glib: false, "gdk-pixbuf": false, isocodes: false, pango: false, cairo: false, freetype: false, fontconfig: false, lcms: false, libpng: false, libjpeg: false, libjxl: false, poppler: false, poppler_data: false, libtiff: false, libmng: false, librsvg: false, libwmf: false, zlib: false, libzip: false, xz: false, ghostscript: false, aalib: false, "shared-mime-info": false, libexif: false, gettext: false, makeWrapper: false, "gtk-doc": false, libxpm: false, "glib-networking": false, libmypaint: false, gexiv2_0_10: false, harfbuzz: false, "mypaint-brushes1": false, libwebp: false, libheif: false, libxslt: false, libgudev: false, openexr: false, desktopToDarwinBundle: false, "gtk-mac-integration-gtk2": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 66, 5], ["sha256", 67, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cc_version", 74, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 89, 7], ["url", 91, 7], ["hash", 92, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 95, 7], ["url", 96, 7], ["hash", 97, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 100, 7], ["url", 101, 7], ["hash", 102, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 105, 7], ["url", 107, 7], ["hash", 108, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 111, 7], ["url", 112, 7], ["hash", 113, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["name", 116, 7], ["url", 117, 7], ["hash", 118, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["name", 121, 7], ["url", 122, 7], ["hash", 123, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 126, 7], ["url", 127, 7], ["hash", 128, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["name", 131, 7], ["url", 132, 7], ["hash", 133, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["name", 136, 7], ["url", 137, 7], ["hash", 138, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["name", 141, 7], ["url", 143, 7], ["hash", 144, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["name", 147, 7], ["url", 149, 7], ["hash", 150, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["name", 153, 7], ["url", 154, 7], ["hash", 155, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 242, 5], ["PKG_CONFIG_GDK_PIXBUF_2_0_GDK_PIXBUF_MODULEDIR", 251, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["apiVersion", 267, 5], ["appVersion", 273, 5], ["majorVersion", 274, 5], ["targetLibDir", 275, 5], ["targetDataDir", 276, 5], ["targetPluginDir", 277, 5], ["targetScriptDir", 278, 5], ["gtk", 281, 5]]);
-const pos$18 = nix.positions(here + "/default.nix", [["description", 285, 5], ["homepage", 286, 5], ["maintainers", 287, 5], ["license", 288, 5], ["platforms", 289, 5], ["mainProgram", 290, 5]]);
-const pos$19 = nix.positions(here + "/default.nix", [["pname", 56, 3], ["version", 57, 3], ["outputs", 59, 3], ["src", 65, 3], ["patches", 70, 3], ["preAutoreconf", 160, 3], ["nativeBuildInputs", 164, 3], ["buildInputs", 177, 3], ["propagatedBuildInputs", 223, 3], ["configureFlags", 227, 3], ["enableParallelBuilding", 237, 3], ["doCheck", 239, 3], ["env", 241, 3], ["preConfigure", 254, 3], ["postFixup", 259, 3], ["passthru", 264, 3], ["meta", 284, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -77,96 +59,96 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const gtk_mac_integration_gtk2 = nix.arg($, "gtk-mac-integration-gtk2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       pname: "gimp",
       version: "2.10.38",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.gimp.org/pub/gimp/v${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gimp-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-UKhF7sEciDH+hmFweVD1uERuNfMO37ms+Y+FwRM/hW4=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./remove-cc-reference.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             cc_version: nix.thunk(() => nix.sel(stdenv, "cc", "cc", "name")),
           })))),
         nix.path(here, "./hardcode-plugin-interpreters.patch"),
         nix.path(here, "./force-enable-libheif.patch"),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "CVE-2025-2760.patch",
             url: "https://salsa.debian.org/gnome-team/gimp/-/raw/4cb293ec1a3b273281d5d9daf94b833c293797d7/debian/patches/CVE-2025-2760.patch",
             hash: "sha256-BH5cCyg0IjfamHPchZ0HBe8EAPrWeHINQ6r7FHaz0qw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "CVE-2025-2761.patch",
             url: "https://gitlab.gnome.org/GNOME/gimp/-/commit/0806bc76ca74543d20e1307ccf6aebd26395c56c.patch",
             hash: "sha256-I5dyD3gLbVdk5bTft3TveTWgBN7RouNpIByKbCYmGbo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "CVE-2025-5473.patch",
             url: "https://gitlab.gnome.org/GNOME/gimp/-/commit/c855d1df60ebaf5ef8d02807d448eb088f147a2b.patch",
             hash: "sha256-QO8u5XQD3XR+sUN//LsvWpTxHe0i9m4VvdnsUGnor/0=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "CVE-2025-6035.patch",
             url: "https://salsa.debian.org/gnome-team/gimp/-/raw/4cb293ec1a3b273281d5d9daf94b833c293797d7/debian/patches/CVE-2025-6035.patch",
             hash: "sha256-cbALgUEUO8k5jaN5Y7jUR/dHJ9rHF06m9zEM/AOcFDk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "CVE-2025-48797_1.patch",
             url: "https://gitlab.gnome.org/GNOME/gimp/-/commit/8d309dd0385fdd298520b69148542375f56ef977.patch",
             hash: "sha256-/JAUhbPko0EdHGSCnZIWVqPcXpdvRML5Fqx5w/B3P8k=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "CVE-2025-48797_2.patch",
             url: "https://gitlab.gnome.org/GNOME/gimp/-/commit/97f8c2e468cffce70c6772e74cbff8eda4e8c180.patch",
             hash: "sha256-tNG2fpZ0iRk0thrcxjZqb/zgvf4ctmXEy8iSOz5ufCo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             name: "CVE-2025-48797_3.patch",
             url: "https://gitlab.gnome.org/GNOME/gimp/-/commit/d7f0829ae995ca7ca9c64851a1ed03b11702ef1c.patch",
             hash: "sha256-Byvc0i8TS33ZAKONxkrS0iFdWTXZP2w8Ma+k15DGVkw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             name: "CVE-2025-48797_4.patch",
             url: "https://gitlab.gnome.org/GNOME/gimp/-/commit/ffb7cad1a402377927bc2dc62dad324ae03cec92.patch",
             hash: "sha256-PZvP4B3U+YalxWwmLhXyTZRacTtkG289JUWsQtZW4BE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             name: "CVE-2025-48798_1.patch",
             url: "https://gitlab.gnome.org/GNOME/gimp/-/commit/ebf0b569a63f15b5dc7532f16936104af1e09f02.patch",
             hash: "sha256-VyPbSyRTo+sYg2JkAH3h5exYHDMqIEHc9gYRcM/8wzg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             name: "CVE-2025-48798_2.patch",
             url: "https://gitlab.gnome.org/GNOME/gimp/-/commit/e7523ed41271e48a909011b8598d496c1be642e2.patch",
             hash: "sha256-ACoxobr2ySpH9VJVdJyWxQpZXOTSEs1me4Q0Rq3bDaE=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             name: "CVE-2025-10922.patch",
             url: "https://salsa.debian.org/gnome-team/gimp/-/raw/4cb293ec1a3b273281d5d9daf94b833c293797d7/debian/patches/CVE-2025-10922.patch",
             hash: "sha256-xkhmlOqk2QiOi4Le7v6e9PdTNxVHpSmuZJTTqKdThUo=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             name: "CVE-2025-10934.patch",
             url: "https://salsa.debian.org/gnome-team/gimp/-/raw/4cb293ec1a3b273281d5d9daf94b833c293797d7/debian/patches/CVE-2025-10934.patch",
             hash: "sha256-MmYdh74cky/dF3UTHC0xpDW6+aa8Vzh+4ADHCDtIDzo=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             name: "c23.patch",
             url: "https://gitlab.gnome.org/GNOME/gimp/-/commit/85bdad2b2ca7ba36a01bef945b1c4b193a2fa9d0.patch",
             hash: "sha256-6g2Zhbx+WxX7lOCYAFII0yDbwILecExwFD22tZDED50=",
@@ -225,7 +207,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error=int-conversion"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-error=incompatible-pointer-types"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-DGDK_OSX_BIG_SUR=16"]))))))),
         PKG_CONFIG_GDK_PIXBUF_2_0_GDK_PIXBUF_MODULEDIR: nix.thunk(() => nix.str`${librsvg}/${nix.sel(gdk_pixbuf, "moduleDir")}`),
       })),
@@ -236,7 +218,7 @@ export GIO_EXTRA_MODULES="${glib_networking}/lib/gio/modules:$GIO_EXTRA_MODULES"
   --set GDK_PIXBUF_MODULE_FILE "$GDK_PIXBUF_MODULE_FILE"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         apiVersion: nix.thunk(() => nix.str`${nix.builtins.toString(nix.thunk(() => nix.add(nix.app(nix.sel(lib, "toInt"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version"))))), (nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version"))), "99")) ? 1n : 0n))))}.0`),
         appVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
         majorVersion: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "gimp2.majorVersion is deprecated in favour of gimp2.apiVersion and gimp2.appVersion", nix.thunk(() => nix.sel(finalAttrs, "passthru", "apiVersion")))),
@@ -247,7 +229,7 @@ export GIO_EXTRA_MODULES="${glib_networking}/lib/gio/modules:$GIO_EXTRA_MODULES"
         gtk: gtk2,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         description: "GNU Image Manipulation Program",
         homepage: "https://www.gimp.org/",
         maintainers: [],

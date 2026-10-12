@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]], [["url", 23, 5], ["hash", 24, 5]], [["name", 34, 7], ["exec", 35, 7], ["icon", 36, 7], ["comment", 37, 7], ["desktopName", 38, 7], ["categories", 39, 7]], [["description", 58, 5], ["mainProgram", 59, 5], ["longDescription", 60, 5], ["homepage", 64, 5], ["sourceProvenance", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["desktopItems", 32, 3], ["installPhase", 43, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, makeBinaryWrapper: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 34, 7], ["exec", 35, 7], ["icon", 36, 7], ["comment", 37, 7], ["desktopName", 38, 7], ["categories", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["mainProgram", 59, 5], ["longDescription", 60, 5], ["homepage", 64, 5], ["sourceProvenance", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["desktopItems", 32, 3], ["installPhase", 43, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const desktopicon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "netlogo.png",
       url: "https://netlogoweb.org/assets/images/desktopicon.png",
       hash: "sha256-KCsXt1dnBNUEBKvusp5JpKOSH7u9gSwaUvvTMDKkg8Q=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "netlogo",
       version: "6.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://ccl.northwestern.edu/netlogo/${nix.sel(finalAttrs, "version")}/NetLogo-${nix.sel(finalAttrs, "version")}-64.tgz`),
           hash: "sha256-hkciO0KC4L4+YtycRSB/gkELpj3SiSsIrylAy6pq0d4=",
         })))),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "netlogo",
             exec: "netlogo",
             icon: "netlogo",
@@ -58,7 +54,7 @@ install -Dm644 ${desktopicon} $out/share/icons/hicolor/256x256/apps/netlogo.png
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Multi-agent programmable modeling environment",
         mainProgram: "netlogo",
         longDescription: "NetLogo is a multi-agent programmable modeling environment. It is used by\nmany tens of thousands of students, teachers and researchers worldwide.\n",

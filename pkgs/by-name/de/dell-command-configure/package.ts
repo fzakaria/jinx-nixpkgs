@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 27, 7], ["curlOpts", 32, 7], ["hash", 33, 7]], [["version", 23, 13], ["pname", 24, 5], ["src", 26, 5], ["dontBuild", 36, 5], ["nativeBuildInputs", 38, 5], ["unpackPhase", 40, 5], ["installPhase", 46, 5]], [["pname", 55, 5], ["version", 56, 13], ["unpackPhase", 58, 5], ["postPatch", 62, 5], ["installPhase", 67, 5]], [["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["platforms", 118, 5], ["sourceProvenance", 119, 5]], [["version", 74, 11], ["pname", 75, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 79, 3], ["dontConfigure", 84, 3], ["src", 86, 3], ["installPhase", 88, 3], ["postFixup", 102, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, autoPatchelfHook: false, patchelfUnstable: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 27, 7], ["curlOpts", 32, 7], ["hash", 33, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 23, 13], ["pname", 24, 5], ["src", 26, 5], ["dontBuild", 36, 5], ["nativeBuildInputs", 38, 5], ["unpackPhase", 40, 5], ["installPhase", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 55, 5], ["version", 56, 13], ["unpackPhase", 58, 5], ["postPatch", 62, 5], ["installPhase", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["platforms", 118, 5], ["sourceProvenance", 119, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 74, 11], ["pname", 75, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 79, 3], ["dontConfigure", 84, 3], ["src", 86, 3], ["installPhase", 88, 3], ["postFixup", 102, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const version = "5.1.0-6";
   const unpacked = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: version,
       pname: "dell-command-configure-unpacked",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://dl.dell.com/FOLDER12705845M/1/command-configure_${version}.ubuntu24_amd64.tar.gz`),
             "https://web.archive.org/web/20250421172156/https://dl.dell.com/FOLDER12705845M/1/command-configure_5.1.0-6.ubuntu24_amd64.tar.gz",
@@ -42,7 +38,7 @@ dpkg-deb -x srvadmin-hapi_9.5.0_amd64.deb srvadmin-hapi
     })));
   const wrapperLibName = "wrapper-lib.so";
   const wrapperLib = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dell-command-configure-unpacked-wrapper-lib",
       version: version,
       unpackPhase: nix.thunk(() => nix.str`cp ${nix.path(here, "./wrapper-lib.c")} wrapper-lib.c
@@ -55,7 +51,7 @@ cc -fPIC -shared lib.c -o ${wrapperLibName}
 `),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: version,
       pname: "dell-command-configure",
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
@@ -76,7 +72,7 @@ ${patchelfUnstable}/bin/patchelf \\
   $out/lib/*
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Configure BIOS settings on Dell laptops",
         homepage: "https://www.dell.com/support/article/us/en/19/sln311302/dell-command-configure",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

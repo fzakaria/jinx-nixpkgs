@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 23, 7], ["hash", 24, 7]], [["package", 34, 47]], [["version", 34, 7]], [["tests", 33, 14]], [["description", 38, 7], ["homepage", 39, 7], ["license", 40, 7], ["maintainers", 41, 7], ["mainProgram", 42, 7]], [["pname", 17, 13], ["version", 17, 19], ["src", 19, 5], ["dontNpmBuild", 20, 5], ["npmDeps", 22, 5], ["installPhase", 27, 5], ["passthru", 33, 5], ["meta", 37, 5]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchNpmDeps: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 23, 7], ["hash", 24, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 34, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 33, 14]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 38, 7], ["homepage", 39, 7], ["license", 40, 7], ["maintainers", 41, 7], ["mainProgram", 42, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 13], ["version", 17, 19], ["src", 19, 5], ["dontNpmBuild", 20, 5], ["npmDeps", 22, 5], ["installPhase", 27, 5], ["passthru", 33, 5], ["meta", 37, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pname = "purescm";
   const version = nix.thunk(() => nix.sel(packageLock, "packages", nix.key(nix.str`node_modules/${pname}`), "version"));
   const package$ = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: nix.path(here, "./manifests"),
       dontNpmBuild: true,
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           src: nix.path(here, "./manifests"),
           hash: "sha256-ljeFcLvIET77Q0OR6O5Ok1fGnaxaKaoywpcy2aHq/6o=",
         })))),
@@ -36,14 +31,14 @@ cp -r node_modules/ $out/share/${pname}
 ln -s $out/share/${pname}/node_modules/.bin $out/bin
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: package$ })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: package$ })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Chez Scheme back-end for PureScript",
         homepage: "https://github.com/purescm/purescm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["changelog", 52, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 39, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, "blueprint-compiler": false, "desktop-file-utils": false, fetchFromSourcehut: false, "gobject-introspection": false, gtk4: false, libadwaita: false, libnotify: false, meson: false, ninja: false, "pkg-config": false, python3: false, stdenv: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 52, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 39, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "confy",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~fabrixxm",
           repo: "confy",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
           })())),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://git.sr.ht/~fabrixxm/confy/refs/${nix.sel(finalAttrs, "version")}`),
         description: "Conferences schedule viewer",
         homepage: "https://confy.kirgroup.net/",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["sha256", 29, 5]], [["url", 68, 5], ["odd-unstable", 69, 5], ["rev-prefix", 70, 5]], [["updateScript", 67, 12]], [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["teams", 79, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 40, 3], ["preConfigure", 53, 3], ["configureFlags", 59, 3], ["enableParallelBuilding", 65, 3], ["passthru", 67, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gettext: false, itstool: false, gtk3: false, caja: false, "dbus-glib": false, libnotify: false, libxml2: false, "libcanberra-gtk3": false, apacheHttpdPackages: false, "hicolor-icon-theme": false, wrapGAppsHook3: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 68, 5], ["odd-unstable", 69, 5], ["rev-prefix", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 67, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["teams", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 40, 3], ["preConfigure", 53, 3], ["configureFlags", 59, 3], ["enableParallelBuilding", 65, 3], ["passthru", 67, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const apacheHttpd = nix.thunk(() => nix.attr(apacheHttpdPackages, "apacheHttpd"));
   const mod_dnssd = nix.thunk(() => nix.attr(apacheHttpdPackages, "mod_dnssd"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mate-user-share",
       version: "1.28.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mate-user-share-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "iYVgmZkXllE0jkl+8I81C4YIG5expKcwQHfurlc5rjg=",
         })))),
@@ -51,16 +47,16 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.mate-desktop.org/mate-user-share",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "User level public file sharing for the MATE desktop",
         mainProgram: "mate-file-share-properties",
         homepage: "https://github.com/mate-desktop/mate-user-share",

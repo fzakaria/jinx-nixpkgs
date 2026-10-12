@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["src", 39, 7], ["hash", 40, 7]], [["CGO_ENABLED", 37, 5], ["npmDeps", 38, 5], ["npmRoot", 42, 5]], [["name", 67, 7], ["exec", 68, 7], ["icon", 69, 7], ["type", 70, 7], ["terminal", 71, 7], ["desktopName", 72, 7], ["startupWMClass", 73, 7], ["categories", 74, 7], ["mimeTypes", 75, 7], ["comment", 76, 7]], [["npmDeps", 91, 30], ["updateScript", 92, 5]], [["description", 108, 5], ["homepage", 109, 5], ["mainProgram", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["platforms", 113, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["vendorHash", 34, 3], ["env", 36, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["buildPhase", 57, 3], ["desktopItems", 65, 3], ["installPhase", 80, 3], ["passthru", 90, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchNpmDeps: false, imagemagick: false, npmHooks: false, nodejs: false, wails: false, webkitgtk_4_1: false, "pkg-config": false, copyDesktopItems: false, makeDesktopItem: false, autoPatchelfHook: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 37, 5], ["npmDeps", 38, 5], ["npmRoot", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 67, 7], ["exec", 68, 7], ["icon", 69, 7], ["type", 70, 7], ["terminal", 71, 7], ["desktopName", 72, 7], ["startupWMClass", 73, 7], ["categories", 74, 7], ["mimeTypes", 75, 7], ["comment", 76, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["npmDeps", 91, 30], ["updateScript", 92, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 108, 5], ["homepage", 109, 5], ["mainProgram", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["platforms", 113, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["vendorHash", 34, 3], ["env", 36, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["buildPhase", 57, 3], ["desktopItems", 65, 3], ["installPhase", 80, 3], ["passthru", 90, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "tiny-rdm",
       version: "1.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tiny-craft",
           repo: "tiny-rdm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,10 +35,10 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace frontend/src/App.vue \\\n  --replace-fail \"prefStore.autoCheckUpdate\" \"false\"\n",
       vendorHash: "sha256-DaD/NM1ZNVt0X/CJuaGfHqeS9ySTWFd0y5bzog6Yn+E=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CGO_ENABLED: 1n,
         npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/frontend`),
             hash: "sha256-DUYUk4OK5UWDanSR5hSVDYloYX4fYD41omYThzi/700=",
           })))),
@@ -63,7 +57,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nwails build -m -trimpath -devtools -tags webkit2_41 -o tiny-rdm\n\nrunHook postBuild\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "tiny-rdm",
             exec: "tiny-rdm %U",
             icon: "tiny-rdm",
@@ -80,13 +74,13 @@ export default nix.lambda((args) => (() => {
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "env"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         npmDeps: nix.thunk(() => nix.attr(from, "npmDeps")),
         updateScript: nix.thunk(() => nix.app(writeScript, "update-tiny-rdm", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p bash nix nix-update common-updater-scripts\nset -eou pipefail\nversion=$(nix eval --log-format raw --raw --file default.nix tiny-rdm.version)\nnix-update tiny-rdm || true\nlatestVersion=$(nix eval --log-format raw --raw --file default.nix tiny-rdm.version)\nif [[ \"$latestVersion\" == \"$version\" ]]; then\n  exit 0\nfi\nupdate-source-version tiny-rdm \"$latestVersion\" --source-key=npmDeps --ignore-same-version\nnix-update tiny-rdm --version skip\n")),
       };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Modern, colorful, super lightweight Redis GUI client",
         homepage: "https://github.com/tiny-craft/tiny-rdm",
         mainProgram: "tiny-rdm",

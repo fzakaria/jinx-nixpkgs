@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["RUSTONIG_SYSTEM_LIBONIG", 31, 7]], [["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["env", 31, 3], ["postFixup", 33, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, bubblewrap: false, oniguruma: false, "pkg-config": false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTONIG_SYSTEM_LIBONIG", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["env", 31, 3], ["postFixup", 33, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pipr",
       version: "0.0.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ElKowar",
           repo: "pipr",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-SRIv/dZcyKm2E7c5/LtMCDnh+SDqPhJ01GZtkj0RgA0=",
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeWrapper]),
       buildInputs: nix.thunk(() => [oniguruma]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTONIG_SYSTEM_LIBONIG: 1n })),
       postFixup: nix.thunk(() => nix.str`wrapProgram "$out/bin/pipr" --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bubblewrap]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Commandline-tool to interactively write shell pipelines",
         mainProgram: "pipr",
         homepage: "https://github.com/ElKowar/pipr",

@@ -2,44 +2,36 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/alloy.nix", [[["enable", 7, 9]], [["alloy", 6, 16]], [["text", 9, 44]], [["alloy/config.alloy", 9, 23]], [["etc", 9, 19]], [["services", 6, 7], ["environment", 9, 7]], [["machine", 5, 5]], [["maintainers", 17, 5]], [["name", 14, 3], ["meta", 16, 3], ["nodes", 23, 11], ["testScript", 25, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/alloy.nix", [["enable", 7, 9]]);
-const pos$2 = nix.positions(here + "/alloy.nix", [["alloy", 6, 16]]);
-const pos$3 = nix.positions(here + "/alloy.nix", [["text", 9, 44]]);
-const pos$4 = nix.positions(here + "/alloy.nix", [["alloy/config.alloy", 9, 23]]);
-const pos$5 = nix.positions(here + "/alloy.nix", [["etc", 9, 19]]);
-const pos$6 = nix.positions(here + "/alloy.nix", [["services", 6, 7], ["environment", 9, 7]]);
-const pos$7 = nix.positions(here + "/alloy.nix", [["machine", 5, 5]]);
-const pos$8 = nix.positions(here + "/alloy.nix", [["maintainers", 17, 5]]);
-const pos$9 = nix.positions(here + "/alloy.nix", [["name", 14, 3], ["meta", 16, 3], ["nodes", 23, 11], ["testScript", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const nodes = nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     machine: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        alloy: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+        [nix.POS]: $pos[1],
+        alloy: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
       })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         etc: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          "alloy/config.alloy": nix.thunk(() => ({ [nix.POS]: pos$3, text: "" })),
+          [nix.POS]: $pos[3],
+          "alloy/config.alloy": nix.thunk(() => ({ [nix.POS]: $pos[2], text: "" })),
         })),
       })),
     })),
   }));
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "alloy",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "flokli")),
           nix.thunk(() => nix.lookup(w, "hbjydev")),

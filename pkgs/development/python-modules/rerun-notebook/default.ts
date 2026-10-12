@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 5], ["version", 22, 26], ["format", 23, 5], ["python", 24, 5], ["hash", 25, 5]], [["description", 41, 5], ["homepage", 42, 5], ["changelog", 44, 7], ["license", 45, 7], ["maintainers", 46, 7]], [["pname", 13, 3], ["version", 14, 19], ["format", 15, 3], ["__structuredAttrs", 16, 3], ["src", 20, 3], ["pythonRelaxDeps", 28, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, rerun: false, fetchPypi: false, anywidget: false, ipykernel: false, "jupyter-ui-poll": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 5], ["version", 22, 26], ["format", 23, 5], ["python", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 41, 5], ["homepage", 42, 5], ["changelog", 44, 7], ["license", 45, 7], ["maintainers", 46, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 19], ["format", 15, 3], ["__structuredAttrs", 16, 3], ["src", 20, 3], ["pythonRelaxDeps", 28, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const ipykernel = nix.arg($, "ipykernel");
   const jupyter_ui_poll = nix.arg($, "jupyter-ui-poll");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rerun-notebook",
       version: nix.thunk(() => nix.attr(rerun, "version")),
       format: "wheel",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "rerun_notebook",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           format: "wheel",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(rerun, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Implementation helper for running rerun-sdk in notebooks",
         homepage: "https://github.com/rerun-io/rerun/tree/main/rerun_notebook",
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

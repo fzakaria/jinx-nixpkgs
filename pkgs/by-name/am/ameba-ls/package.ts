@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["src", 28, 28]], [["ameba-ls", 28, 19]], [["extraArgs", 54, 9]], [["supportedFeatures", 62, 11]], [["command", 66, 9]], [["command", 72, 9]], [["src", 78, 51]], [["updateScript", 52, 5], ["shardLock", 78, 5]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["maintainers", 89, 5], ["mainProgram", 92, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["shardsFile", 26, 3], ["crystalBinaries", 28, 3], ["buildTargets", 30, 3], ["doCheck", 35, 3], ["installPhase", 37, 3], ["nativeInstallCheckInputs", 45, 3], ["doInstallCheck", 48, 3], ["versionCheckProgram", 49, 3], ["passthru", 51, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, crystal: false, versionCheckHook: false, "_experimental-update-script-combinators": false, "nix-update-script": false, writeShellScript: false, crystal2nix: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 28, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ameba-ls", 28, 19]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 54, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["supportedFeatures", 62, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["command", 66, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["command", 72, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["src", 78, 51]]);
-const pos$9 = nix.positions(here + "/package.nix", [["updateScript", 52, 5], ["shardLock", 78, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["maintainers", 89, 5], ["mainProgram", 92, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["shardsFile", 26, 3], ["crystalBinaries", 28, 3], ["buildTargets", 30, 3], ["doCheck", 35, 3], ["installPhase", 37, 3], ["nativeInstallCheckInputs", 45, 3], ["doInstallCheck", 48, 3], ["versionCheckProgram", 49, 3], ["passthru", 51, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "crystal-ameba",
           repo: "ameba-ls",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,8 +29,8 @@ export default nix.lambda((args) => (() => {
         }))));
       const shardsFile = nix.path(here, "./shards.nix");
       const crystalBinaries = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        "ameba-ls": nix.thunk(() => ({ [nix.POS]: pos$2, src: "src/ameba-ls.cr" })),
+        [nix.POS]: $pos[2],
+        "ameba-ls": nix.thunk(() => ({ [nix.POS]: $pos[1], src: "src/ameba-ls.cr" })),
       }));
       const buildTargets = nix.thunk(() => ["ameba-ls"]);
       const doCheck = false;
@@ -49,32 +39,32 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const versionCheckProgram = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/ameba-ls`);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 extraArgs: nix.thunk(() => ["--use-github-releases", "--src-only"]),
               })))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "ameba-ls.shardLock", nix.thunk(() => nix.str`${nix.builtins.toString(nix.path(here, "./."))}/shard.lock`)), { [nix.POS]: pos$5, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "ameba-ls.shardLock", nix.thunk(() => nix.str`${nix.builtins.toString(nix.path(here, "./."))}/shard.lock`)), { [nix.POS]: $pos[4], supportedFeatures: [] })),
             nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               command: nix.thunk(() => [
                 nix.thunk(() => nix.app(writeShellScript, "update-lock", nix.thunk(() => nix.str`cd $1; ${nix.app(nix.sel(lib, "getExe"), crystal2nix)}`))),
                 nix.path(here, "./."),
               ]),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               command: nix.thunk(() => [
                 "rm",
                 nix.thunk(() => nix.str`${nix.builtins.toString(nix.path(here, "./."))}/shard.lock`),
               ]),
             })),
           ]))),
-        shardLock: nix.thunk(() => nix.app(runCommand, "shard.lock", nix.thunk(() => ({ [nix.POS]: pos$8, src: src })), "cp \"$src/shard.lock\" \"$out\"\n")),
+        shardLock: nix.thunk(() => nix.app(runCommand, "shard.lock", nix.thunk(() => ({ [nix.POS]: $pos[7], src: src })), "cp \"$src/shard.lock\" \"$out\"\n")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Crystal language server powered by Ameba linter",
         homepage: "https://github.com/crystal-ameba/ameba-ls",
         changelog: nix.thunk(() => nix.str`https://github.com/crystal-ameba/ameba-ls/blob/v${version}/CHANGELOG.md`),
@@ -87,7 +77,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ameba-ls",
       }));
       return {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         pname,
         version,
         __structuredAttrs,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["pname", 29, 7], ["version", 30, 7], ["src", 31, 7], ["pnpm", 33, 5], ["fetcherVersion", 34, 5], ["hash", 35, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["pnpmDeps", 27, 3], ["buildPhase", 38, 3], ["installPhase", 46, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, nodejs: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 29, 7], ["version", 30, 7], ["src", 31, 7], ["pnpm", 33, 5], ["fetcherVersion", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["pnpmDeps", 27, 3], ["buildPhase", 38, 3], ["installPhase", 46, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchPnpmDeps = nix.arg($, "fetchPnpmDeps");
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "it-tools",
       version: "0-unstable-2026-02-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CorentinTh",
           repo: "it-tools",
           rev: "d505845f918e946ec300af7b36efc107e2f66e9e",
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_11]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npnpm build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\ncp -R ./dist/* $out/lib/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Self-hostable website containing handy tools for developers, with great UX",
         homepage: "https://it-tools.tech/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

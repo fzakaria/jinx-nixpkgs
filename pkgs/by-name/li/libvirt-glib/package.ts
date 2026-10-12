@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["sha256", 36, 5]], [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7]], [["description", 83, 5], ["longDescription", 84, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5]], [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["src", 34, 3], ["patches", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 63, 3], ["strictDeps", 71, 3], ["mesonFlags", 77, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, meson: false, ninja: false, "pkg-config": false, gettext: false, vala: false, libcap_ng: false, libvirt: false, libxml2: false, buildPackages: false, withIntrospection: true, "gobject-introspection": false, withDocs: true, "gtk-doc": false, "docbook-xsl-nons": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 83, 5], ["longDescription", 84, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["src", 34, 3], ["patches", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 63, 3], ["strictDeps", 71, 3], ["mesonFlags", 77, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const gtk_doc = nix.arg($, "gtk-doc");
   const docbook_xsl_nons = nix.arg($, "docbook-xsl-nons");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libvirt-glib",
       version: "5.0.0",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optional"), withDocs, "devdoc"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://libvirt.org/sources/glib/libvirt-glib-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "m/7DRjgkFqNXXYcpm8ZBsqRkqlGf2bEofjGKpDovO4s=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "relax-max-stack-size-limit.patch",
             url: "https://gitlab.com/libvirt/libvirt-glib/-/commit/062f21ccaa810087637ae24e0eb69f1a0f0a45f5.patch",
             hash: "sha256-6mvINDd1HYS7oZsyNiyEwdNJfK5I5nPx86TRMq2RevA=",
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "introspection", withIntrospection)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wrapper library of libvirt for glib-based applications",
         longDescription: "libvirt-glib wraps libvirt to provide a high-level object-oriented API better\nsuited for glib-based applications, via three libraries:\n\n- libvirt-glib    - GLib main loop integration & misc helper APIs\n- libvirt-gconfig - GObjects for manipulating libvirt XML documents\n- libvirt-gobject - GObjects for managing libvirt objects\n",
         homepage: "https://libvirt.org/",

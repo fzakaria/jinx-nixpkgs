@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["downloadPage", 67, 5], ["maintainers", 68, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["makeFlags", 24, 3], ["postPatch", 30, 3], ["installPhase", 42, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, mfcj470dwlpr: false, makeWrapper: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["downloadPage", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["makeFlags", 24, 3], ["postPatch", 30, 3], ["installPhase", 42, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcj470dw-cupswrapper";
       const version = "3.0.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf006866/mfcj470dw_cupswrapper_GPL_source_${version}.tar.gz`),
           sha256: "b88f9b592723a00c024129560367f40a560ca3cba06fd99512ab368dd6855853",
         }))));
@@ -55,7 +53,7 @@ ln -s ${mfcj470dwlpr}/lib/cups/filter/brother_lpdwrapper_mfcj470dw $FILTERFOLDER
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.brother.com/",
         description: "Brother MFC-J470DW CUPS wrapper driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -64,7 +62,7 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "yochai"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

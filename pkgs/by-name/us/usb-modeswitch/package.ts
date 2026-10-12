@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["description", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["postPatch", 29, 3], ["makeFlags", 36, 3], ["postFixup", 45, 3], ["buildInputs", 56, 3], ["nativeBuildInputs", 61, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "pkg-config": false, makeWrapper: false, libusb1: false, tcl: false, "util-linux": false, coreutils: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["postPatch", 29, 3], ["makeFlags", 36, 3], ["postFixup", 45, 3], ["buildInputs", 56, 3], ["nativeBuildInputs", 61, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "usb-modeswitch",
       version: "2.6.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.draisberghof.de/usb_modeswitch/usb-modeswitch-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-96vTN3hKnRvTnLilh1GK/28qQ9kWFF6v2Asbi3FG22Y=",
         })))),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libusb1, tcl]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeWrapper]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Mode switching tool for controlling 'multi-mode' USB devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         maintainers: nix.thunk(() => (() => {

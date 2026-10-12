@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["description", 74, 5], ["mainProgram", 75, 5], ["longDescription", 76, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5], ["broken", 89, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 30, 3], ["preConfigure", 36, 3], ["configureFlags", 41, 3], ["makeFlags", 46, 3], ["buildInputs", 48, 3], ["nativeBuildInputs", 59, 3], ["enableParallelBuilding", 66, 3], ["postInstall", 68, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchurl: false, which: false, m4: false, protobuf_21: false, boost: false, zlib: false, curl: false, openssl: false, icu: false, jemalloc: false, cctools: false, python3Packages: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 74, 5], ["mainProgram", 75, 5], ["longDescription", 76, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5], ["broken", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 30, 3], ["preConfigure", 36, 3], ["configureFlags", 41, 3], ["makeFlags", 46, 3], ["buildInputs", 48, 3], ["nativeBuildInputs", 59, 3], ["enableParallelBuilding", 66, 3], ["postInstall", 68, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const stdenv = clangStdenv;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rethinkdb",
       version: "2.4.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.rethinkdb.com/repository/raw/dist/rethinkdb-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-UJEjdgK2KDDbLLParKarNGMjI3QeZxDC8N5NhPRCcR8=",
         })))),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH ":" "${nix.sel(python3Packages, "rethinkdb")}/bin"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open-source distributed database built with love",
         mainProgram: "rethinkdb",
         longDescription: "RethinkDB is built to store JSON documents, and scale to\nmultiple machines with very little effort. It has a pleasant\nquery language that supports really useful queries like table\njoins and group by, and is easy to setup and learn.\n",

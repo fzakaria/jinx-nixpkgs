@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5]], [["description", 67, 5], ["longDescription", 68, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["subPackages", 28, 3], ["ldflags", 30, 3], ["preCheck", 39, 3], ["postInstall", 45, 3], ["doInstallCheck", 60, 3], ["nativeInstallCheckInputs", 61, 3], ["versionCheckProgramArg", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, buildPackages: false, installShellFiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["longDescription", 68, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["subPackages", 28, 3], ["ldflags", 30, 3], ["preCheck", 39, 3], ["postInstall", 45, 3], ["doInstallCheck", 60, 3], ["nativeInstallCheckInputs", 61, 3], ["versionCheckProgramArg", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "witness",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "in-toto",
           repo: "witness",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pluggable framework for software supply chain security. Witness prevents tampering of build materials and verifies the integrity of the build process from source to target",
         longDescription: "Witness prevents tampering of build materials and verifies the integrity\nof the build process from source to target. It works by wrapping commands\nexecuted in a continuous integration process. Its attestation system is\npluggable and offers support out of the box for most major CI and\ninfrastructure providers. Verification of Witness metadata and a secure\nPKI distribution system will mitigate against many software supply chain\nattack vectors and can be used as a framework for automated governance.\n",
         mainProgram: "witness",

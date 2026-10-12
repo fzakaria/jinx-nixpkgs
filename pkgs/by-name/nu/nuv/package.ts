@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["name", 54, 9], ["paths", 55, 9]], [["version", 69, 48]], [["simple", 69, 5]], [["tests", 68, 12]], [["homepage", 73, 5], ["description", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5]], [["pname", 23, 11], ["version", 23, 17], ["src", 25, 3], ["subPackages", 32, 3], ["vendorHash", 33, 3], ["nativeBuildInputs", 35, 3], ["ldflags", 41, 3], ["doCheck", 49, 3], ["postInstall", 51, 3], ["passthru", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, callPackage: false, fetchFromGitHub: false, buildGoModule: false, makeWrapper: false, jq: false, curl: false, kubectl: false, eksctl: false, kind: false, k3sup: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 54, 9], ["paths", 55, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 69, 48]]);
-const pos$4 = nix.positions(here + "/package.nix", [["simple", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 68, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 73, 5], ["description", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 23, 11], ["version", 23, 17], ["src", 25, 3], ["subPackages", 32, 3], ["vendorHash", 33, 3], ["nativeBuildInputs", 35, 3], ["ldflags", 41, 3], ["doCheck", 49, 3], ["postInstall", 51, 3], ["passthru", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const version = "3.0.1-beta.2405292059";
   const pname = "nuv";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nuvolaris",
           repo: "nuv",
           rev: version,
@@ -52,7 +46,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: nix.thunk(() => (() => {
         const nuv_bin = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "nuv-bin",
             paths: nix.thunk(() => [coreutils, kubectl, eksctl, kind, k3sup]),
           }))));
@@ -60,14 +54,14 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, version: version })))),
+          [nix.POS]: $pos[3],
+          simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], version: version })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://nuvolaris.io/",
         description: "CLI tool for running tasks using the Nuvolaris serverless engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

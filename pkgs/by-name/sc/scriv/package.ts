@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 18, 26], ["version", 18, 32], ["hash", 19, 5]], [["url", 25, 7], ["hash", 26, 7]], [["package", 61, 37]], [["version", 61, 5]], [["tests", 60, 12]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 41, 3], ["disabledTests", 53, 3], ["passthru", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false, pandoc: false, git: false, scriv: false, testers: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 18, 26], ["version", 18, 32], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 61, 37]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 60, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 41, 3], ["disabledTests", 53, 3], ["passthru", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "scriv",
       version: "1.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-fBqL5jUdA2kuXnV4Te6g2PEbLJD5G+GLD7OjdVVbUl4=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/nedbat/scriv/commit/04ac45da9e1adb24a95ad9643099fe537b3790fd.diff",
             hash: "sha256-Gle3zWC/WypGHsKmVlqedRAZVWsBjGpzMq3uKuG9+SY=",
           })))),
@@ -70,14 +64,14 @@ export default nix.lambda((args) => (() => {
       })()),
       disabledTests: nix.thunk(() => ["test_real_get_github_repos", "test_convert_to_markdown"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: scriv })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: scriv })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Command-line tool for helping developers maintain useful changelogs",
         homepage: "https://github.com/nedbat/scriv",
         changelog: nix.thunk(() => nix.str`https://github.com/nedbat/scriv/releases/tag/${nix.sel(finalAttrs, "version")}`),

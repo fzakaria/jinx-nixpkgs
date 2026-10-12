@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["all", 67, 5], ["proxy", 83, 5], ["server", 98, 5], ["acm", 114, 5], ["acmpca", 115, 5], ["amp", 116, 5], ["apigateway", 117, 5], ["apigatewayv2", 122, 5], ["applicationautoscaling", 126, 5], ["appsync", 127, 5], ["athena", 130, 5], ["autoscaling", 131, 5], ["awslambda", 132, 5], ["awslambda_simple", 135, 5], ["backup", 136, 5], ["batch", 137, 5], ["batch_simple", 140, 5], ["budgets", 141, 5], ["ce", 142, 5], ["cloudformation", 143, 5], ["cloudfront", 155, 5], ["cloudtrail", 156, 5], ["cloudwatch", 157, 5], ["codebuild", 158, 5], ["codecommit", 159, 5], ["codepipeline", 160, 5], ["cognitoidentity", 161, 5], ["cognitoidp", 162, 5], ["comprehend", 165, 5], ["config", 166, 5], ["databrew", 167, 5], ["datapipeline", 168, 5], ["datasync", 169, 5], ["dax", 170, 5], ["dms", 171, 5], ["ds", 172, 5], ["dynamodb", 173, 5], ["dynamodbstreams", 177, 5], ["ebs", 181, 5], ["ec2", 182, 5], ["ec2instanceconnect", 183, 5], ["ecr", 184, 5], ["ecs", 185, 5], ["efs", 186, 5], ["eks", 187, 5], ["elasticache", 188, 5], ["elasticbeanstalk", 189, 5], ["elastictranscoder", 190, 5], ["elb", 191, 5], ["elbv2", 192, 5], ["emr", 193, 5], ["emrcontainers", 194, 5], ["emrserverless", 195, 5], ["es", 196, 5], ["events", 197, 5], ["firehose", 200, 5], ["forecast", 201, 5], ["glacier", 202, 5], ["glue", 203, 5], ["greengrass", 206, 5], ["guardduty", 207, 5], ["iam", 208, 5], ["inspector2", 209, 5], ["iot", 210, 5], ["iotdata", 211, 5], ["ivs", 212, 5], ["kinesis", 213, 5], ["kinesisvideo", 214, 5], ["kinesisvideoarchivedmedia", 215, 5], ["kms", 216, 5], ["logs", 217, 5], ["managedblockchain", 218, 5], ["mediaconnect", 219, 5], ["medialive", 220, 5], ["mediapackage", 221, 5], ["mediastore", 222, 5], ["mediastoredata", 223, 5], ["meteringmarketplace", 224, 5], ["mq", 225, 5], ["opsworks", 226, 5], ["organizations", 227, 5], ["panorama", 228, 5], ["personalize", 229, 5], ["pinpoint", 230, 5], ["polly", 231, 5], ["quicksight", 232, 5], ["ram", 235, 5], ["rds", 236, 5], ["redshift", 237, 5], ["redshiftdata", 238, 5], ["rekognition", 239, 5], ["resourcegroups", 240, 5], ["resourcegroupstaggingapi", 241, 5], ["route53", 251, 5], ["route53resolver", 252, 5], ["s3", 253, 5], ["s3crc32c", 257, 5], ["s3control", 262, 5], ["sagemaker", 263, 5], ["sdb", 264, 5], ["scheduler", 265, 5], ["secretsmanager", 266, 5], ["servicediscovery", 267, 5], ["servicequotas", 268, 5], ["ses", 269, 5], ["signer", 270, 5], ["sns", 271, 5], ["sqs", 272, 5], ["ssm", 273, 5], ["ssoadmin", 276, 5], ["stepfunctions", 277, 5], ["sts", 281, 5], ["support", 282, 5], ["swf", 283, 5], ["textract", 284, 5], ["timestreamwrite", 285, 5], ["transcribe", 286, 5], ["wafv2", 287, 5], ["xray", 288, 5]], [["AWS_ACCESS_KEY_ID", 315, 7], ["AWS_SECRET_ACCESS_KEY", 316, 7]], [["description", 409, 5], ["homepage", 410, 5], ["changelog", 411, 5], ["license", 412, 5], ["maintainers", 413, 5]], [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["build-system", 50, 3], ["dependencies", 54, 3], ["optional-dependencies", 66, 3], ["__darwinAllowLocalNetworking", 294, 3], ["nativeCheckInputs", 296, 3], ["env", 315, 3], ["pytestFlags", 318, 3], ["disabledTestMarks", 323, 3], ["disabledTests", 328, 3], ["disabledTestPaths", 371, 3], ["meta", 408, 3]]]);
 const formals$1 = { args: { lib: false, "antlr4-python3-runtime": false, "aws-xray-sdk": false, boto3: false, botocore: false, buildPythonPackage: false, "cfn-lint": false, crc32c: false, cryptography: false, docker: false, fetchFromGitHub: false, "flask-cors": false, flask: false, freezegun: false, "graphql-core": false, jinja2: false, joserfc: false, "jsonpath-ng": false, jsonschema: false, multipart: false, "openapi-spec-validator": false, "py-partiql-parser": false, pyotp: false, pyparsing: false, "pytest-order": false, "pytest-xdist": false, pytestCheckHook: false, "python-dateutil": false, pyyaml: false, requests: false, responses: false, setuptools: false, werkzeug: false, xmltodict: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 67, 5], ["proxy", 83, 5], ["server", 98, 5], ["acm", 114, 5], ["acmpca", 115, 5], ["amp", 116, 5], ["apigateway", 117, 5], ["apigatewayv2", 122, 5], ["applicationautoscaling", 126, 5], ["appsync", 127, 5], ["athena", 130, 5], ["autoscaling", 131, 5], ["awslambda", 132, 5], ["awslambda_simple", 135, 5], ["backup", 136, 5], ["batch", 137, 5], ["batch_simple", 140, 5], ["budgets", 141, 5], ["ce", 142, 5], ["cloudformation", 143, 5], ["cloudfront", 155, 5], ["cloudtrail", 156, 5], ["cloudwatch", 157, 5], ["codebuild", 158, 5], ["codecommit", 159, 5], ["codepipeline", 160, 5], ["cognitoidentity", 161, 5], ["cognitoidp", 162, 5], ["comprehend", 165, 5], ["config", 166, 5], ["databrew", 167, 5], ["datapipeline", 168, 5], ["datasync", 169, 5], ["dax", 170, 5], ["dms", 171, 5], ["ds", 172, 5], ["dynamodb", 173, 5], ["dynamodbstreams", 177, 5], ["ebs", 181, 5], ["ec2", 182, 5], ["ec2instanceconnect", 183, 5], ["ecr", 184, 5], ["ecs", 185, 5], ["efs", 186, 5], ["eks", 187, 5], ["elasticache", 188, 5], ["elasticbeanstalk", 189, 5], ["elastictranscoder", 190, 5], ["elb", 191, 5], ["elbv2", 192, 5], ["emr", 193, 5], ["emrcontainers", 194, 5], ["emrserverless", 195, 5], ["es", 196, 5], ["events", 197, 5], ["firehose", 200, 5], ["forecast", 201, 5], ["glacier", 202, 5], ["glue", 203, 5], ["greengrass", 206, 5], ["guardduty", 207, 5], ["iam", 208, 5], ["inspector2", 209, 5], ["iot", 210, 5], ["iotdata", 211, 5], ["ivs", 212, 5], ["kinesis", 213, 5], ["kinesisvideo", 214, 5], ["kinesisvideoarchivedmedia", 215, 5], ["kms", 216, 5], ["logs", 217, 5], ["managedblockchain", 218, 5], ["mediaconnect", 219, 5], ["medialive", 220, 5], ["mediapackage", 221, 5], ["mediastore", 222, 5], ["mediastoredata", 223, 5], ["meteringmarketplace", 224, 5], ["mq", 225, 5], ["opsworks", 226, 5], ["organizations", 227, 5], ["panorama", 228, 5], ["personalize", 229, 5], ["pinpoint", 230, 5], ["polly", 231, 5], ["quicksight", 232, 5], ["ram", 235, 5], ["rds", 236, 5], ["redshift", 237, 5], ["redshiftdata", 238, 5], ["rekognition", 239, 5], ["resourcegroups", 240, 5], ["resourcegroupstaggingapi", 241, 5], ["route53", 251, 5], ["route53resolver", 252, 5], ["s3", 253, 5], ["s3crc32c", 257, 5], ["s3control", 262, 5], ["sagemaker", 263, 5], ["sdb", 264, 5], ["scheduler", 265, 5], ["secretsmanager", 266, 5], ["servicediscovery", 267, 5], ["servicequotas", 268, 5], ["ses", 269, 5], ["signer", 270, 5], ["sns", 271, 5], ["sqs", 272, 5], ["ssm", 273, 5], ["ssoadmin", 276, 5], ["stepfunctions", 277, 5], ["sts", 281, 5], ["support", 282, 5], ["swf", 283, 5], ["textract", 284, 5], ["timestreamwrite", 285, 5], ["transcribe", 286, 5], ["wafv2", 287, 5], ["xray", 288, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["AWS_ACCESS_KEY_ID", 315, 7], ["AWS_SECRET_ACCESS_KEY", 316, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 409, 5], ["homepage", 410, 5], ["changelog", 411, 5], ["license", 412, 5], ["maintainers", 413, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["build-system", 50, 3], ["dependencies", 54, 3], ["optional-dependencies", 66, 3], ["__darwinAllowLocalNetworking", 294, 3], ["nativeCheckInputs", 296, 3], ["env", 315, 3], ["pytestFlags", 318, 3], ["disabledTestMarks", 323, 3], ["disabledTests", 328, 3], ["disabledTestPaths", 371, 3], ["meta", 408, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "getmoto",
           repo: "moto",
           tag: version,
@@ -69,7 +65,7 @@ export default nix.lambda((args) => (() => {
         jinja2,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [
           antlr4_python3_runtime,
           joserfc,
@@ -272,7 +268,7 @@ export default nix.lambda((args) => (() => {
         pytest_xdist,
         pytestCheckHook,
       ]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, AWS_ACCESS_KEY_ID: "ak", AWS_SECRET_ACCESS_KEY: "sk" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], AWS_ACCESS_KEY_ID: "ak", AWS_SECRET_ACCESS_KEY: "sk" }));
       const pytestFlags = nix.thunk(() => ["--dist=loadscope"]);
       const disabledTestMarks = nix.thunk(() => ["network", "requires_docker"]);
       const disabledTests = nix.thunk(() => [
@@ -314,7 +310,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_ec2/test_instance_types.py::test_describe_instance_types_gpu_instance_types",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Allows your tests to easily mock out AWS Services",
         homepage: "https://github.com/getmoto/moto",
         changelog: nix.thunk(() => nix.str`https://github.com/getmoto/moto/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -325,7 +321,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

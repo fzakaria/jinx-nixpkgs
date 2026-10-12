@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["mainProgram", 26, 5], ["maintainers", 27, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["dontNpmBuild", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["mainProgram", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["dontNpmBuild", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "prettier-d-slim";
       const version = "1.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mikew",
           repo: "prettier_d_slim",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-zkyB3PYpfeEw5U70KewxIWd4eImIbTgy+e88264sotc=";
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Makes prettier fast",
         homepage: "https://github.com/mikew/prettier_d_slim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         mainProgram: "prettier_d_slim",
         maintainers: [],
       }));
-      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, dontNpmBuild, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, npmDepsHash, dontNpmBuild, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

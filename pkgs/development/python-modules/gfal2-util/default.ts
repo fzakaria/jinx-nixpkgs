@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 16, 3], ["postPatch", 26, 3], ["propagatedBuildInputs", 32, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]], [["gfal2-util", 50, 42]], [["url", 72, 17], ["hash", 73, 17], ["extraGfalCopyFlags", 74, 17], ["pname", 75, 17], ["version", 76, 17], ["allowSubstitutes", 77, 17]], [["url", 81, 17], ["hash", 82, 17], ["recursive", 83, 17], ["extraGfalCopyFlags", 84, 17], ["pname", 85, 17], ["version", 86, 17], ["allowSubstitutes", 87, 17]], [["pname", 97, 23], ["version", 98, 23], ["name", 99, 23], ["nativeBuildInputs", 100, 23], ["url", 101, 23], ["baseNameExpected", 102, 23], ["outputHashMode", 103, 23], ["outputHashAlgo", 104, 23], ["outputHash", 105, 23]], [["test-copy-file-xrootd", 71, 15], ["test-copy-dir-xrootd", 80, 15], ["test-ls-dir-xrootd", 90, 15]], [["gfal2", 47, 32], ["fetchGfal2", 49, 9], ["tests", 54, 9]], [["passthru", 46, 7]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, callPackage: false, fetchFromGitHub: false, runCommandLocal: false, "gfal2-python": false, xrootd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 16, 3], ["postPatch", 26, 3], ["propagatedBuildInputs", 32, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]);
-const pos$4 = nix.positions(here + "/default.nix", [["gfal2-util", 50, 42]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 72, 17], ["hash", 73, 17], ["extraGfalCopyFlags", 74, 17], ["pname", 75, 17], ["version", 76, 17], ["allowSubstitutes", 77, 17]]);
-const pos$6 = nix.positions(here + "/default.nix", [["url", 81, 17], ["hash", 82, 17], ["recursive", 83, 17], ["extraGfalCopyFlags", 84, 17], ["pname", 85, 17], ["version", 86, 17], ["allowSubstitutes", 87, 17]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 97, 23], ["version", 98, 23], ["name", 99, 23], ["nativeBuildInputs", 100, 23], ["url", 101, 23], ["baseNameExpected", 102, 23], ["outputHashMode", 103, 23], ["outputHashAlgo", 104, 23], ["outputHash", 105, 23]]);
-const pos$8 = nix.positions(here + "/default.nix", [["test-copy-file-xrootd", 71, 15], ["test-copy-dir-xrootd", 80, 15], ["test-ls-dir-xrootd", 90, 15]]);
-const pos$9 = nix.positions(here + "/default.nix", [["gfal2", 47, 32], ["fetchGfal2", 49, 9], ["tests", 54, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["passthru", 46, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cern-fts",
           repo: "gfal2-util",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +32,7 @@ done
       const propagatedBuildInputs = nix.thunk(() => [gfal2_python]);
       const pythonImportsCheck = nix.thunk(() => ["gfal2_util"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CLI for gfal2",
         homepage: "https://github.com/cern-fts/gfal2-utils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -51,7 +42,7 @@ done
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,
@@ -62,12 +53,12 @@ done
         meta,
       };
     })())), "overrideAttrs"), (finalAttrs) => (previousAttrs) => nix.app(nix.sel(lib, "recursiveUpdate"), previousAttrs, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           gfal2: nix.thunk(() => nix.attr(gfal2_python, "gfal2")),
           fetchGfal2: nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetchgfal2.nix"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 "gfal2-util": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))))),
           tests: nix.thunk(() => (() => {
@@ -78,9 +69,9 @@ done
                 const hashTestFile = nix.thunk(() => nix.sel(xrootd, "tests", "test-xrdcp", "outputHash"));
                 const urlTestDir = nix.thunk(() => nix.builtins.dirOf(urlTestFile));
                 return {
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   "test-copy-file-xrootd": nix.thunk(() => nix.app(nix.sel(finalAttrs, "passthru", "fetchGfal2"), nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       url: urlTestFile,
                       hash: hashTestFile,
                       extraGfalCopyFlags: nix.thunk(() => ["--verbose"]),
@@ -89,7 +80,7 @@ done
                       allowSubstitutes: false,
                     })))),
                   "test-copy-dir-xrootd": nix.thunk(() => nix.app(nix.sel(finalAttrs, "passthru", "fetchGfal2"), nix.thunk(() => ({
-                      [nix.POS]: pos$6,
+                      [nix.POS]: $pos[5],
                       url: urlTestDir,
                       hash: "sha256-vOahIhvx1oE9sfkqANMGUvGeLHS737wyfYWo4rkvrxw=",
                       recursive: true,
@@ -99,7 +90,7 @@ done
                       allowSubstitutes: false,
                     })))),
                   "test-ls-dir-xrootd": nix.thunk(() => nix.app(nix.sel(nix.app(runCommandLocal, "test-gfal2-util-ls-dir-xrootd", nix.thunk(() => ({})), "set -eu -o pipefail\ngfal-ls \"$url\" | grep \"$baseNameExpected\" | tee \"$out\"\n"), "overrideAttrs"), (finalAttrs_1) => (previousAttrs_1) => ({
-                      [nix.POS]: pos$7,
+                      [nix.POS]: $pos[6],
                       pname: nix.thunk(() => nix.sel(previousAttrs_1, "name")),
                       version: versionFODTests,
                       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs_1, "pname")}-${nix.sel(finalAttrs_1, "version")}`),

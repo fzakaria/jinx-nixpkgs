@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 23, 5], ["longDescription", 24, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 34, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 16, 3], ["doCheck", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 23, 5], ["longDescription", 24, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 16, 3], ["doCheck", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ANSITerminal",
       version: "0.8.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Chris00/ANSITerminal/releases/download/${nix.sel(finalAttrs, "version")}/ANSITerminal-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-q3OyGLajAmfSu8QzEtzzE5gbiwvsVV2SsGuHZkst0w4=",
         })))),
       postPatch: "substituteInPlace src/dune --replace 'libraries unix bytes' 'libraries unix'\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Module allowing to use the colors and cursor movements on ANSI terminals",
         longDescription: "ANSITerminal is a module allowing to use the colors and cursor\nmovements on ANSI terminals. It also works on the windows shell (but\nthis part is currently work in progress).\n",
         homepage: "https://github.com/Chris00/ANSITerminal",

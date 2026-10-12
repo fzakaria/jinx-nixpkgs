@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pluginName", 41, 12]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]], [["__structuredAttrs", 12, 3], ["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["disabled", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["nativeCheckInputs", 29, 3], ["preFixup", 35, 3], ["pythonImportsCheck", 39, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, python: false, netbox: false, django: false, netaddr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pluginName", 41, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["__structuredAttrs", 12, 3], ["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["disabled", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["nativeCheckInputs", 29, 3], ["preFixup", 35, 3], ["pythonImportsCheck", 39, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const django = nix.arg($, "django");
   const netaddr = nix.arg($, "netaddr");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       __structuredAttrs: true,
       pname: "netbox-attachments",
       version: "12.0.0",
       pyproject: true,
       disabled: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Kani999",
           repo: "netbox-attachments",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,9 +34,9 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`export PYTHONPATH=${netbox}/opt/netbox/netbox:$PYTHONPATH
 `),
       pythonImportsCheck: nix.thunk(() => ["netbox_attachments"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_attachments" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], pluginName: "netbox_attachments" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Plugin to manage attachments for any model",
         homepage: "https://github.com/Kani999/netbox-attachments",
         changelog: nix.thunk(() => nix.str`https://github.com/Kani999/netbox-attachments/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

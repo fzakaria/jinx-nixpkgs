@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["name", 75, 7], ["exec", 76, 7], ["icon", 77, 7], ["desktopName", 78, 7], ["categories", 79, 7], ["type", 83, 7]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["makeFlags", 45, 3], ["installPhase", 49, 3], ["desktopItems", 73, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, libpng: false, libjpeg: false, freetype: false, libxext: false, python3: false, imagemagick: false, "gcc-arm-embedded": false, "pkg-config": false, python3Packages: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 75, 7], ["exec", 76, 7], ["icon", 77, 7], ["desktopName", 78, 7], ["categories", 79, 7], ["type", 83, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["makeFlags", 45, 3], ["installPhase", 49, 3], ["desktopItems", 73, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "numworks-epsilon";
       const version = "23.2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "numworks",
           repo: "epsilon",
           rev: version,
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\ncp ./output/release/simulator/linux/epsilon.bin $out/bin/epsilon\n\n# Build the logo\nassets=\"$src/ion/src/simulator/assets\"\nlogo_dir=\"$out/share/icons/hicolor/scalable/apps\"\nlogo=\"$logo_dir/numworks.svg\"\nmkdir -p \"$logo_dir\"\n\n# Take opening svg tag\ngrep '<svg' \"$assets/logo.svg\" > \"$logo\"\n\n# Insert path from logo mask and change color\ngrep path \"$assets/icon_mask.svg\" | sed 's/fill=\"[^\"]*\"/fill=\"#edb14b\"/' >> \"$logo\"\n\n# Add remainder of logo\ngrep -v '<svg' \"$assets/logo.svg\" >> \"$logo\"\n\nrunHook postInstall\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "epsilon",
             exec: "epsilon",
             icon: "numworks",
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simulator for Epsilon, a High-performance graphing calculator operating system",
         homepage: "https://numworks.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-nc-sa-40")),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

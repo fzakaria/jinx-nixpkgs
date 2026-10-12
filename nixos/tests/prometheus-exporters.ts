@@ -2,542 +2,98 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/prometheus-exporters.nix", [[["enable", 68, 11]], [["enable", 71, 28]], [["apcupsd", 71, 20]], [["services", 71, 11]], [["exporterConfig", 67, 9], ["metricProvider", 70, 9], ["exporterTest", 73, 9]], [["enable", 86, 11], ["artiUsername", 87, 11], ["artiPassword", 88, 11]], [["exporterConfig", 85, 9], ["exporterTest", 90, 9]], [["enable", 103, 11]], [["enable", 106, 25], ["extraConfig", 107, 25]], [["bind", 106, 20]], [["services", 106, 11]], [["exporterConfig", 102, 9], ["metricProvider", 105, 9], ["exporterTest", 113, 9]], [["enable", 126, 11]], [["enable", 129, 25], ["config", 130, 25]], [["bird", 129, 20]], [["services", 129, 11]], [["exporterConfig", 125, 9], ["metricProvider", 128, 9], ["exporterTest", 144, 9]], [["enable", 157, 11], ["rpcUser", 158, 11], ["rpcPasswordFile", 159, 11]], [["passwordHMAC", 163, 58]], [["bitcoinrpc", 163, 47]], [["users", 163, 41]], [["enable", 162, 37], ["rpc", 163, 37]], [["default", 162, 29]], [["bitcoind", 162, 20]], [["services", 162, 11]], [["exporterConfig", 156, 9], ["metricProvider", 161, 9], ["exporterTest", 166, 9]], [["preferred_ip_protocol", 184, 22]], [["prober", 183, 17], ["icmp", 184, 17]], [["icmp_v6", 182, 23]], [["modules", 182, 15]], [["enable", 179, 11], ["configFile", 180, 11]], [["testBackend", 177, 9], ["exporterConfig", 178, 9], ["exporterTest", 189, 9]], [["enable", 202, 11], ["user", 203, 11]], [["label", 210, 15], ["path", 211, 15]], [["source_directories", 207, 39], ["repositories", 208, 39], ["keep_daily", 214, 39]], [["enable", 206, 30], ["settings", 207, 30]], [["borgmatic", 206, 20]], [["services", 206, 11]], [["exporterConfig", 201, 9], ["metricProvider", 205, 9], ["exporterTest", 216, 9]], [["enable", 229, 11], ["extraFlags", 230, 11]], [["exporterConfig", 228, 9], ["exporterTest", 232, 9]], [["enable", 266, 11], ["port", 267, 11], ["listenAddress", 268, 11], ["delugeUser", 270, 11], ["delugePort", 271, 11], ["delugePasswordFile", 272, 11]], [["daemon_port", 277, 34]], [["enable", 275, 27], ["declarative", 276, 27], ["config", 277, 27], ["authFile", 278, 27]], [["deluge", 275, 20]], [["services", 275, 11]], [["exporterConfig", 265, 9], ["metricProvider", 274, 9], ["exporterTest", 283, 9]], [["enable", 296, 11], ["leasesPath", 297, 11]], [["enable", 300, 28]], [["dnsmasq", 300, 20]], [["services", 300, 11]], [["exporterConfig", 295, 9], ["metricProvider", 299, 9], ["exporterTest", 302, 9]], [["zone", 320, 17], ["record", 321, 17], ["type", 322, 17]], [["records", 318, 13]], [["enable", 316, 11], ["configuration", 317, 11], ["resolvers", 326, 11]], [["name", 338, 23], ["paths", 339, 23]], [["enable", 330, 13], ["settingsFile", 331, 13]], [["knot", 329, 20]], [["services", 329, 11]], [["exporterConfig", 315, 9], ["metricProvider", 328, 9], ["exporterTest", 357, 9]], [["enable", 373, 11]], [["exporterConfig", 372, 9], ["exporterTest", 375, 9]], [["enable", 387, 11], ["scopes", 388, 11], ["socketPath", 389, 11], ["user", 390, 11]], [["dovecot_config_version", 396, 15], ["dovecot_storage_version", 397, 15]], [["enable", 394, 13], ["settings", 395, 13]], [["dovecot2", 393, 20]], [["services", 393, 11]], [["testBackend", 385, 9], ["exporterConfig", 386, 9], ["metricProvider", 392, 9], ["exporterTest", 401, 9]], [["enable", 418, 11], ["url", 419, 11], ["apiKeyFile", 420, 11]], [["enable", 424, 13], ["environmentFiles", 425, 13]], [["sonarr", 423, 20]], [["services", 423, 11]], [["nodeName", 416, 9], ["exporterConfig", 417, 9], ["metricProvider", 422, 9], ["exporterTest", 428, 9]], [["enable", 442, 11], ["names", 443, 11]], [["testBackend", 440, 9], ["exporterConfig", 441, 9], ["exporterTest", 445, 9]], [["enable", 458, 11], ["url", 459, 11]], [["enable", 464, 31]], [["opensearch", 464, 20]], [["services", 464, 11]], [["exporterConfig", 457, 9], ["metricProvider", 461, 9], ["exporterTest", 466, 9]], [["enable", 481, 11], ["exitOnError", 482, 11], ["username", 483, 11], ["passwordFile", 484, 11]], [["enable", 487, 29]], [["fail2ban", 487, 20]], [["services", 487, 11]], [["exporterConfig", 480, 9], ["metricProvider", 486, 9], ["exporterTest", 489, 9]], [["enable", 503, 11], ["environmentFile", 504, 11]], [["exporterConfig", 502, 9], ["exporterTest", 507, 9]], [["enable", 518, 11]], [["exporterConfig", 517, 9], ["exporterTest", 520, 9]], [["protocol", 541, 17], ["author", 542, 17]], [["match", 538, 15], ["name", 539, 15], ["labels", 540, 15]], [["mappings", 536, 27]], [["enable", 533, 11], ["port", 534, 11], ["graphitePort", 535, 11], ["mappingSettings", 536, 11]], [["exporterConfig", 532, 9], ["exporterTest", 547, 9]], [["username", 565, 17], ["password", 566, 17]], [["default", 564, 15]], [["hosts", 563, 13]], [["enable", 560, 11], ["port", 561, 11], ["configuration", 562, 11]], [["exporterConfig", 559, 9], ["exporterTest", 571, 9]], [["enable", 582, 11], ["sampleExpiry", 583, 11]], [["exporterConfig", 581, 9], ["exporterTest", 585, 9]], [["enable", 606, 11]], [["maintainers", 604, 9], ["exporterConfig", 605, 9], ["exporterTest", 608, 9]], [["enable", 621, 11]], [["after", 624, 54]], [["prometheus-jitsi-exporter", 624, 28]], [["services", 624, 19]], [["enable", 626, 13], ["colibriRestApi", 627, 13]], [["jitsi-videobridge", 625, 20]], [["systemd", 624, 11], ["services", 625, 11]], [["exporterConfig", 620, 9], ["metricProvider", 623, 9], ["exporterTest", 630, 9]], [["name", 653, 23], ["path", 654, 23]], [["metrics", 651, 19]], [["default", 650, 17]], [["modules", 649, 15]], [["enable", 646, 11], ["configFile", 647, 11]], [["after", 663, 53]], [["prometheus-json-exporter", 663, 28]], [["services", 663, 19]], [["extraConfig", 666, 50]], [["/", 666, 46]], [["locations", 666, 36]], [["localhost", 666, 26]], [["enable", 665, 13], ["virtualHosts", 666, 13]], [["nginx", 664, 20]], [["systemd", 663, 11], ["services", 664, 11]], [["exporterConfig", 645, 9], ["metricProvider", 662, 9], ["exporterTest", 671, 9]], [["name", 688, 13], ["text", 689, 13]], [["enable", 686, 11], ["environmentFile", 687, 11]], [["node.id", 703, 15], ["process.roles", 704, 15], ["listeners", 708, 15], ["listener.security.protocol.map", 712, 15], ["controller.quorum.voters", 716, 15], ["controller.listener.names", 719, 15], ["log.dirs", 720, 15]], [["enable", 696, 13], ["clusterId", 698, 13], ["formatLogDirs", 700, 13], ["settings", 702, 13]], [["apache-kafka", 695, 20]], [["StateDirectory", 724, 55]], [["serviceConfig", 724, 41]], [["apache-kafka", 724, 28]], [["services", 724, 19]], [["services", 695, 11], ["systemd", 724, 11]], [["exporterConfig", 685, 9], ["metricProvider", 694, 9], ["exporterTest", 726, 9]], [["enable", 745, 11]], [["name", 763, 23], ["paths", 764, 23]], [["enable", 749, 13], ["extraArgs", 750, 13], ["settingsFile", 751, 13]], [["knot", 748, 20]], [["services", 748, 11]], [["exporterConfig", 744, 9], ["metricProvider", 747, 9], ["exporterTest", 787, 9]], [["enable", 802, 11]], [["exporterConfig", 801, 9], ["exporterTest", 804, 9]], [["enable", 820, 11]], [["enable", 822, 41]], [["kvrocks", 822, 33]], [["services", 822, 24]], [["exporterConfig", 819, 9], ["metricProvider", 822, 9], ["exporterTest", 823, 9]], [["enable", 836, 11], ["lndTlsPath", 837, 11], ["lndMacaroonDir", 838, 11], ["extraFlags", 839, 11]], [["RestartSec", 842, 66]], [["serviceConfig", 842, 52], ["after", 843, 52]], [["ExecStart", 856, 27], ["StateDirectory", 871, 27]], [["serviceConfig", 856, 13], ["wantedBy", 872, 13], ["after", 873, 13], ["postStart", 876, 32]], [["prometheus-lnd-exporter", 842, 28], ["lnd", 855, 28]], [["services", 842, 19]], [["enable", 845, 13], ["extraConfig", 846, 13], ["extraCmdlineOptions", 853, 13]], [["regtest", 844, 29]], [["bitcoind", 844, 20]], [["systemd", 842, 11], ["services", 844, 11]], [["exporterConfig", 835, 9], ["metricProvider", 841, 9], ["exporterTest", 895, 9]], [["name", 914, 17], ["server", 915, 17], ["port", 916, 17], ["from", 917, 17], ["to", 918, 17], ["detectionDir", 919, 17]], [["monitoringInterval", 910, 13], ["mailCheckTimeout", 911, 13], ["servers", 912, 13]], [["enable", 908, 11], ["configuration", 909, 11]], [["enable", 925, 28]], [["postfix", 925, 20]], [["ExecStartPre", 930, 15], ["ProtectHome", 935, 15], ["ReadOnlyPaths", 936, 15], ["ReadWritePaths", 937, 15], ["WorkingDirectory", 938, 15]], [["after", 927, 13], ["requires", 928, 13], ["serviceConfig", 929, 13]], [["prometheus-mail-exporter", 926, 28]], [["services", 926, 19]], [["isSystemUser", 942, 13], ["group", 943, 13]], [["mailexporter", 941, 23]], [["mailexporter", 945, 24]], [["users", 941, 17], ["groups", 945, 17]], [["services", 925, 11], ["systemd", 926, 11], ["users", 941, 11]], [["exporterConfig", 907, 9], ["metricProvider", 924, 9], ["exporterTest", 947, 9]], [["name", 966, 17], ["address", 967, 17], ["user", 968, 17], ["password", 969, 17]], [["bgp", 973, 15], ["dhcp", 974, 15], ["dhcpl", 975, 15], ["dhcpv6", 976, 15], ["health", 977, 15], ["routes", 978, 15], ["poe", 979, 15], ["pools", 980, 15], ["optics", 981, 15], ["w60g", 982, 15], ["wlansta", 983, 15], ["wlanif", 984, 15], ["monitor", 985, 15], ["ipsec", 986, 15]], [["devices", 964, 13], ["features", 972, 13]], [["enable", 961, 11], ["extraFlags", 962, 11], ["configuration", 963, 11]], [["exporterConfig", 960, 9], ["exporterTest", 990, 9]], [["enable", 1004, 11], ["refreshRate", 1005, 11]], [["enable", 1011, 37]], [["networkmanager", 1011, 22]], [["enable", 1013, 13], ["wantedBy", 1014, 13]], [["ModemManager", 1012, 28]], [["services", 1012, 19]], [["networking", 1011, 11], ["systemd", 1012, 11]], [["testBackend", 1002, 9], ["exporterConfig", 1003, 9], ["metricProvider", 1007, 9], ["exporterTest", 1020, 9]], [["enable", 1034, 11], ["environmentFile", 1035, 11]], [["acl", 1045, 19], ["passwordFile", 1046, 19]], [["exporter", 1044, 23]], [["users", 1044, 17]], [["enable", 1041, 13], ["listeners", 1042, 13]], [["mosquitto", 1040, 20]], [["wants", 1052, 13], ["after", 1053, 13]], [["prometheus-mqtt-exporter", 1051, 28]], [["services", 1051, 19]], [["services", 1040, 11], ["systemd", 1051, 11]], [["exporterConfig", 1033, 9], ["metricProvider", 1039, 9], ["exporterTest", 1056, 9]], [["enable", 1070, 11], ["runAsLocalSuperUser", 1071, 11], ["configFile", 1072, 11]], [["enable", 1080, 13], ["package", 1081, 13], ["initialScript", 1082, 13]], [["mysql", 1079, 20]], [["services", 1079, 11]], [["exporterConfig", 1069, 9], ["metricProvider", 1078, 9], ["exporterTest", 1090, 9]], [["enable", 1107, 11], ["passwordFile", 1108, 11], ["url", 1109, 11]], [["ExecStart", 1119, 29]], [["requiredBy", 1117, 15], ["before", 1118, 15], ["serviceConfig", 1119, 15]], [["nc-pwfile", 1112, 28]], [["services", 1112, 19]], [["nextcloud-exporter", 1126, 25]], [["root", 1128, 17], ["tryFiles", 1129, 17]], [["/", 1127, 25]], [["basicAuth", 1126, 15], ["locations", 1127, 15]], [["localhost", 1125, 26]], [["enable", 1124, 13], ["virtualHosts", 1125, 13]], [["nginx", 1123, 20]], [["systemd", 1112, 11], ["services", 1123, 11]], [["exporterConfig", 1106, 9], ["metricProvider", 1111, 9], ["exporterTest", 1134, 9]], [["enable", 1146, 11], ["constLabels", 1147, 11]], [["extraConfig", 1153, 33]], [["test", 1153, 26]], [["enable", 1151, 13], ["statusPage", 1152, 13], ["virtualHosts", 1153, 13]], [["nginx", 1150, 20]], [["services", 1150, 11]], [["exporterConfig", 1145, 9], ["metricProvider", 1149, 9], ["exporterTest", 1156, 9]], [["files", 1175, 19]], [["name", 1173, 17], ["source", 1174, 17]], [["listen_address", 1182, 21], ["format", 1183, 21], ["tags", 1184, 21]], [["syslog", 1181, 19]], [["name", 1179, 17], ["source", 1180, 17]], [["namespaces", 1171, 13]], [["enable", 1168, 11], ["group", 1169, 11], ["settings", 1170, 11]], [["enable", 1193, 13], ["httpConfig", 1194, 13]], [["nginx", 1192, 20]], [["services", 1192, 11]], [["exporterConfig", 1167, 9], ["metricProvider", 1191, 9], ["exporterTest", 1208, 9]], [["enable", 1231, 11]], [["exporterConfig", 1230, 9], ["exporterTest", 1233, 9]], [["enable", 1247, 11], ["paths", 1248, 11]], [["name", 1266, 21], ["text", 1267, 21]], [["name", 1278, 21], ["text", 1279, 21]], [["ExecStartPre", 1263, 29]], [["serviceConfig", 1263, 15]], [["prometheus-node-cert-exporter", 1262, 30]], [["services", 1262, 21]], [["systemd", 1262, 13]], [["nodeName", 1245, 9], ["exporterConfig", 1246, 9], ["exporterTest", 1250, 9], ["metricProvider", 1259, 9]], [["enable", 1317, 11], ["connectionEnvFile", 1318, 11]], [["enable", 1324, 31]], [["listen_addr", 1329, 17], ["auth_type", 1330, 17], ["max_client_conn", 1331, 17], ["ignore_startup_parameters", 1333, 17]], [["postgres", 1336, 17]], [["pgbouncer", 1328, 15], ["databases", 1335, 15]], [["enable", 1326, 13], ["settings", 1327, 13]], [["postgresql", 1324, 20], ["pgbouncer", 1325, 20]], [["services", 1324, 11]], [["exporterConfig", 1316, 9], ["metricProvider", 1323, 9], ["exporterTest", 1346, 9]], [["name", 1365, 13], ["text", 1366, 13]], [["enable", 1363, 11], ["environmentFile", 1364, 11]], [["isSystemUser", 1373, 13], ["group", 1374, 13]], [["php-fpm-exporter", 1372, 23]], [["php-fpm-exporter", 1376, 24]], [["users", 1372, 17], ["groups", 1376, 17]], [["pm", 1381, 15], ["pm.max_children", 1382, 15], ["pm.max_requests", 1383, 15], ["pm.start_servers", 1384, 15], ["pm.min_spare_servers", 1385, 15], ["pm.max_spare_servers", 1386, 15], ["pm.status_path", 1387, 15], ["listen", 1388, 15], ["listen.allowed_clients", 1389, 15]], [["PATH", 1391, 20]], [["user", 1378, 13], ["group", 1379, 13], ["settings", 1380, 13], ["phpEnv", 1391, 13]], [["php-fpm-exporter", 1377, 33]], [["pools", 1377, 27]], [["phpfpm", 1377, 20]], [["users", 1372, 11], ["services", 1377, 11]], [["nodeName", 1361, 9], ["exporterConfig", 1362, 9], ["metricProvider", 1371, 9], ["exporterTest", 1394, 9]], [["host", 1410, 17], ["alias", 1411, 17], ["env", 1412, 17], ["type", 1413, 17]], [["host", 1416, 17], ["alias", 1417, 17], ["type", 1418, 17]], [["host", 1421, 17], ["alias", 1422, 17], ["type", 1423, 17]], [["host", 1426, 17]], [["interval", 1431, 15], ["timeout", 1432, 15], ["history-size", 1433, 15], ["payload-size", 1434, 15]], [["level", 1437, 15]], [["targets", 1408, 13], ["dns", 1429, 13], ["ping", 1430, 13], ["log", 1436, 13]], [["enable", 1405, 11], ["settings", 1407, 11]], [["exporterConfig", 1404, 9], ["exporterTest", 1442, 9]], [["enable", 1453, 11]], [["enable", 1456, 28]], [["postfix", 1456, 20]], [["services", 1456, 11]], [["exporterConfig", 1452, 9], ["metricProvider", 1455, 9], ["exporterTest", 1458, 9]], [["enable", 1476, 11], ["runAsLocalSuperUser", 1477, 11]], [["enable", 1480, 31]], [["postgresql", 1480, 20]], [["services", 1480, 11]], [["exporterConfig", 1475, 9], ["metricProvider", 1479, 9], ["exporterTest", 1482, 9]], [["name", 1512, 15], ["cmdline", 1513, 15]], [["process_names", 1509, 20]], [["enable", 1508, 11], ["settings", 1509, 11]], [["exporterConfig", 1507, 9], ["exporterTest", 1517, 9]], [["name", 1532, 11], ["text", 1533, 11]], [["enable", 1542, 11], ["environmentFile", 1543, 11]], [["exporterConfig", 1541, 9], ["exporterTest", 1545, 9]], [["enable", 1557, 11], ["deviceHostname", 1558, 11]], [["nodeName", 1555, 9], ["exporterConfig", 1556, 9], ["exporterTest", 1560, 9]], [["enable", 1573, 11]], [["enable", 1575, 50]], [["", 1575, 47]], [["servers", 1575, 39]], [["redis", 1575, 33]], [["services", 1575, 24]], [["exporterConfig", 1572, 9], ["metricProvider", 1575, 9], ["exporterTest", 1576, 9]], [["enable", 1593, 11], ["repository", 1594, 19], ["passwordFile", 1594, 30]], [["enable", 1598, 13], ["extraFlags", 1599, 13]], [["server", 1597, 27]], [["restic", 1597, 20]], [["systemPackages", 1601, 23]], [["services", 1597, 11], ["environment", 1601, 11]], [["exporterConfig", 1592, 9], ["metricProvider", 1596, 9], ["exporterTest", 1603, 9]], [["enable", 1624, 11]], [["rtl_433", 1630, 15]], [["overlays", 1628, 19]], [["nixpkgs", 1628, 11]], [["pkgsReadOnly", 1622, 9], ["exporterConfig", 1623, 9], ["metricProvider", 1626, 9], ["exporterTest", 1644, 9]], [["baseUrl", 1662, 15], ["apiKeyFile", 1663, 15]], [["enable", 1659, 11], ["servers", 1660, 11]], [["enable", 1669, 28]], [["sabnzbd", 1669, 20]], [["requires", 1673, 13], ["after", 1674, 13], ["requiredBy", 1675, 13], ["before", 1676, 13], ["script", 1677, 13]], [["sabnzbd-apikey", 1672, 28]], [["services", 1672, 19]], [["services", 1669, 11], ["systemd", 1672, 11]], [["exporterConfig", 1658, 9], ["metricProvider", 1668, 9], ["exporterTest", 1683, 9]], [["enable", 1698, 11], ["metrics-file", 1699, 11]], [["exporterConfig", 1697, 9], ["exporterTest", 1701, 9]], [["name", 1717, 15], ["command", 1718, 15], ["args", 1719, 15]], [["scripts", 1715, 20]], [["enable", 1714, 11], ["settings", 1715, 11]], [["exporterConfig", 1713, 9], ["exporterTest", 1723, 9]], [["enable", 1738, 11], ["devices", 1739, 11]], [["exporterConfig", 1737, 9], ["exporterTest", 1743, 9]], [["enable", 1754, 11], ["hosts", 1755, 11]], [["exporterConfig", 1753, 9], ["exporterTest", 1757, 9]], [["enable", 1777, 11], ["tokenFile", 1778, 11]], [["exporterConfig", 1776, 9], ["exporterTest", 1780, 9]], [["community", 1797, 15], ["version", 1798, 15]], [["public_v2", 1796, 19]], [["test", 1800, 21]], [["auths", 1796, 13], ["modules", 1800, 13]], [["enable", 1794, 11], ["configuration", 1795, 11]], [["exporterConfig", 1793, 9], ["exporterTest", 1803, 9]], [["enable", 1814, 11], ["account", 1815, 11], ["username", 1816, 11], ["warehouse", 1817, 11], ["privateKeyFile", 1820, 11], ["environmentFile", 1821, 11]], [["exporterConfig", 1813, 9], ["exporterTest", 1831, 9]], [["labels", 1849, 17], ["help", 1850, 17], ["values", 1851, 17], ["query", 1852, 17]], [["points", 1848, 15]], [["interval", 1843, 13], ["connections", 1844, 13], ["queries", 1847, 13]], [["points", 1842, 30]], [["jobs", 1842, 25]], [["configuration", 1842, 11], ["enable", 1856, 11], ["user", 1857, 11]], [["enable", 1861, 13], ["initialScript", 1862, 13]], [["postgresql", 1860, 20]], [["after", 1875, 52]], [["prometheus-sql-exporter", 1875, 28]], [["services", 1875, 19]], [["services", 1860, 11], ["systemd", 1875, 11]], [["exporterConfig", 1841, 9], ["metricProvider", 1859, 9], ["exporterTest", 1877, 9]], [["enable", 1888, 11]], [["exporterConfig", 1887, 9], ["exporterTest", 1890, 9]], [["enable", 1911, 11], ["modemAddress", 1912, 11]], [["after", 1915, 58]], [["prometheus-surfboard-exporter", 1915, 28]], [["services", 1915, 19]], [["extraConfig", 1918, 64]], [["/cgi-bin/status", 1918, 46]], [["locations", 1918, 36]], [["localhost", 1918, 26]], [["enable", 1917, 13], ["virtualHosts", 1918, 13]], [["nginx", 1916, 20]], [["systemd", 1915, 11], ["services", 1916, 11]], [["exporterConfig", 1910, 9], ["metricProvider", 1914, 9], ["exporterTest", 1923, 9]], [["enable", 1936, 11], ["extraFlags", 1938, 11]], [["exporterConfig", 1935, 9], ["metricProvider", 1942, 9], ["exporterTest", 1943, 9]], [["patches", 1964, 13]], [["package", 1963, 11], ["enable", 1990, 11], ["environmentFile", 1991, 11]], [["exporterConfig", 1962, 9], ["exporterTest", 1998, 9]], [["enable", 2009, 24], ["controllers", 2010, 24]], [["nodeName", 2008, 9], ["exporterConfig", 2009, 9], ["exporterTest", 2011, 9]], [["host", 2023, 19]], [["enable", 2022, 11], ["unbound", 2023, 11]], [["enable", 2027, 13], ["localControlSocketPath", 2028, 13]], [["unbound", 2026, 20]], [["SupplementaryGroups", 2031, 13]], [["serviceConfig", 2030, 56]], [["prometheus-unbound-exporter", 2030, 28]], [["services", 2030, 19]], [["services", 2026, 11], ["systemd", 2030, 11]], [["exporterConfig", 2021, 9], ["metricProvider", 2025, 9], ["exporterTest", 2034, 9]], [["enable", 2046, 11]], [["after", 2050, 54]], [["prometheus-nginx-exporter", 2050, 28]], [["services", 2050, 19]], [["tag", 2056, 17], ["services", 2057, 17]], [["port", 2061, 19], ["listen", 2062, 19], ["protocol", 2063, 19]], [["address", 2070, 21]], [["listen", 2066, 19], ["port", 2067, 19], ["protocol", 2068, 19], ["settings", 2069, 19], ["tag", 2072, 19]], [["protocol", 2077, 19]], [["protocol", 2080, 19], ["settings", 2081, 19], ["tag", 2082, 19]], [["inboundTag", 2090, 23], ["outboundTag", 2091, 23], ["type", 2092, 23]], [["rules", 2088, 19]], [["strategy", 2086, 17], ["settings", 2087, 17]], [["stats", 2054, 15], ["api", 2055, 15], ["inbounds", 2059, 15], ["outbounds", 2075, 15], ["routing", 2085, 15]], [["enable", 2052, 13], ["config", 2053, 13]], [["v2ray", 2051, 20]], [["systemd", 2050, 11], ["services", 2051, 11]], [["exporterConfig", 2045, 9], ["metricProvider", 2049, 9], ["exporterTest", 2100, 9]], [["enable", 2111, 11], ["instance", 2112, 11], ["group", 2113, 11]], [["after", 2116, 56]], [["prometheus-varnish-exporter", 2116, 28]], [["services", 2116, 19]], [["enable", 2120, 13], ["config", 2121, 13]], [["varnish", 2119, 20]], [["systemd", 2116, 11], ["services", 2119, 11]], [["exporterConfig", 2110, 9], ["metricProvider", 2115, 9], ["exporterTest", 2130, 9]], [["enable", 2145, 24]], [["allowedIPs", 2157, 15], ["publicKey", 2162, 40]], [["ips", 2148, 13], ["listenPort", 2152, 13], ["privateKey", 2154, 38], ["peers", 2156, 13]], [["wg0", 2147, 43]], [["interfaces", 2147, 32]], [["wireguard", 2147, 22]], [["after", 2165, 58]], [["prometheus-wireguard-exporter", 2165, 28]], [["services", 2165, 19]], [["networking", 2147, 11], ["systemd", 2165, 11]], [["exporterConfig", 2145, 9], ["metricProvider", 2146, 9], ["exporterTest", 2167, 9]], [["enable", 2180, 11], ["configFile", 2181, 11]], [["exporterConfig", 2179, 9], ["exporterTest", 2193, 9]], [["enable", 2205, 11]], [["supportedFilesystems", 2208, 16]], [["hostId", 2209, 22]], [["boot", 2208, 11], ["networking", 2209, 11]], [["testBackend", 2203, 9], ["exporterConfig", 2204, 9], ["metricProvider", 2207, 9], ["exporterTest", 2211, 9]], [["apcupsd", 64, 5], ["artifactory", 82, 5], ["bind", 99, 5], ["bird", 122, 5], ["bitcoin", 153, 5], ["blackbox", 174, 5], ["borgmatic", 198, 5], ["collectd", 225, 5], ["deluge", 262, 5], ["dnsmasq", 292, 5], ["dnssec", 312, 5], ["domain", 369, 5], ["dovecot", 382, 5], ["exportarr-sonarr", 410, 5], ["ebpf", 437, 5], ["elasticsearch", 454, 5], ["fail2ban", 477, 5], ["fastly", 499, 5], ["fritzbox", 513, 5], ["graphite", 529, 5], ["idrac", 556, 5], ["influxdb", 578, 5], ["ipmi", 601, 5], ["jitsi", 617, 5], ["json", 642, 5], ["kafka", 682, 5], ["knot", 741, 5], ["keylight", 795, 5], ["kvrocks", 816, 5], ["lnd", 832, 5], ["mail", 904, 5], ["mikrotik", 957, 5], ["modemmanager", 999, 5], ["mqtt", 1030, 5], ["mysqld", 1066, 5], ["nextcloud", 1103, 5], ["nginx", 1142, 5], ["nginxlog", 1164, 5], ["node", 1227, 5], ["node-cert", 1242, 5], ["pgbouncer", 1313, 5], ["php-fpm", 1358, 5], ["ping", 1401, 5], ["postfix", 1449, 5], ["postgres", 1472, 5], ["process", 1504, 5], ["pve", 1528, 5], ["py-air-control", 1552, 5], ["redis", 1569, 5], ["restic", 1585, 5], ["rtl_433", 1619, 5], ["sabnzbd", 1655, 5], ["shelly", 1694, 5], ["script", 1710, 5], ["smartctl", 1734, 5], ["smokeping", 1750, 5], ["storagebox", 1773, 5], ["snmp", 1790, 5], ["snowflake", 1810, 5], ["sql", 1838, 5], ["statsd", 1884, 5], ["surfboard", 1907, 5], ["systemd", 1932, 5], ["tailscale", 1959, 5], ["unpoller", 2005, 5], ["unbound", 2018, 5], ["v2ray", 2042, 5], ["varnish", 2107, 5], ["wireguard", 2138, 5], ["yace", 2176, 5], ["zfs", 2200, 5]], [["pkgs", 2225, 44], ["lib", 2225, 49]], [["pkgsReadOnly", 2231, 12]], [["maintainers", 2260, 12]], [["exporters", 2235, 31]], [["prometheus", 2235, 20]], [["services", 2235, 11]], [["name", 2230, 7], ["node", 2231, 7], ["testScript", 2240, 7], ["meta", 2260, 7]]]);
 const formals$1 = { args: { runTest: false, lib: false }, ellipsis: false };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 68, 11]]);
-const pos$2 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 71, 28]]);
-const pos$3 = nix.positions(here + "/prometheus-exporters.nix", [["apcupsd", 71, 20]]);
-const pos$4 = nix.positions(here + "/prometheus-exporters.nix", [["services", 71, 11]]);
-const pos$5 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 67, 9], ["metricProvider", 70, 9], ["exporterTest", 73, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$6 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 86, 11], ["artiUsername", 87, 11], ["artiPassword", 88, 11]]);
-const pos$7 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 85, 9], ["exporterTest", 90, 9]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$8 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 103, 11]]);
-const pos$9 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 106, 25], ["extraConfig", 107, 25]]);
-const pos$10 = nix.positions(here + "/prometheus-exporters.nix", [["bind", 106, 20]]);
-const pos$11 = nix.positions(here + "/prometheus-exporters.nix", [["services", 106, 11]]);
-const pos$12 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 102, 9], ["metricProvider", 105, 9], ["exporterTest", 113, 9]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$13 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 126, 11]]);
-const pos$14 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 129, 25], ["config", 130, 25]]);
-const pos$15 = nix.positions(here + "/prometheus-exporters.nix", [["bird", 129, 20]]);
-const pos$16 = nix.positions(here + "/prometheus-exporters.nix", [["services", 129, 11]]);
-const pos$17 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 125, 9], ["metricProvider", 128, 9], ["exporterTest", 144, 9]]);
 const formals$6 = { args: { pkgs: false }, ellipsis: true };
-const pos$18 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 157, 11], ["rpcUser", 158, 11], ["rpcPasswordFile", 159, 11]]);
-const pos$19 = nix.positions(here + "/prometheus-exporters.nix", [["passwordHMAC", 163, 58]]);
-const pos$20 = nix.positions(here + "/prometheus-exporters.nix", [["bitcoinrpc", 163, 47]]);
-const pos$21 = nix.positions(here + "/prometheus-exporters.nix", [["users", 163, 41]]);
-const pos$22 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 162, 37], ["rpc", 163, 37]]);
-const pos$23 = nix.positions(here + "/prometheus-exporters.nix", [["default", 162, 29]]);
-const pos$24 = nix.positions(here + "/prometheus-exporters.nix", [["bitcoind", 162, 20]]);
-const pos$25 = nix.positions(here + "/prometheus-exporters.nix", [["services", 162, 11]]);
-const pos$26 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 156, 9], ["metricProvider", 161, 9], ["exporterTest", 166, 9]]);
 const formals$7 = { args: { pkgs: false }, ellipsis: true };
-const pos$27 = nix.positions(here + "/prometheus-exporters.nix", [["preferred_ip_protocol", 184, 22]]);
-const pos$28 = nix.positions(here + "/prometheus-exporters.nix", [["prober", 183, 17], ["icmp", 184, 17]]);
-const pos$29 = nix.positions(here + "/prometheus-exporters.nix", [["icmp_v6", 182, 23]]);
-const pos$30 = nix.positions(here + "/prometheus-exporters.nix", [["modules", 182, 15]]);
-const pos$31 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 179, 11], ["configFile", 180, 11]]);
-const pos$32 = nix.positions(here + "/prometheus-exporters.nix", [["testBackend", 177, 9], ["exporterConfig", 178, 9], ["exporterTest", 189, 9]]);
 const formals$8 = { args: {  }, ellipsis: true };
-const pos$33 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 202, 11], ["user", 203, 11]]);
-const pos$34 = nix.positions(here + "/prometheus-exporters.nix", [["label", 210, 15], ["path", 211, 15]]);
-const pos$35 = nix.positions(here + "/prometheus-exporters.nix", [["source_directories", 207, 39], ["repositories", 208, 39], ["keep_daily", 214, 39]]);
-const pos$36 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 206, 30], ["settings", 207, 30]]);
-const pos$37 = nix.positions(here + "/prometheus-exporters.nix", [["borgmatic", 206, 20]]);
-const pos$38 = nix.positions(here + "/prometheus-exporters.nix", [["services", 206, 11]]);
-const pos$39 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 201, 9], ["metricProvider", 205, 9], ["exporterTest", 216, 9]]);
 const formals$9 = { args: { lib: false }, ellipsis: true };
-const pos$40 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 229, 11], ["extraFlags", 230, 11]]);
-const pos$41 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 228, 9], ["exporterTest", 232, 9]]);
 const formals$10 = { args: { pkgs: false }, ellipsis: true };
-const pos$42 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 266, 11], ["port", 267, 11], ["listenAddress", 268, 11], ["delugeUser", 270, 11], ["delugePort", 271, 11], ["delugePasswordFile", 272, 11]]);
-const pos$43 = nix.positions(here + "/prometheus-exporters.nix", [["daemon_port", 277, 34]]);
-const pos$44 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 275, 27], ["declarative", 276, 27], ["config", 277, 27], ["authFile", 278, 27]]);
-const pos$45 = nix.positions(here + "/prometheus-exporters.nix", [["deluge", 275, 20]]);
-const pos$46 = nix.positions(here + "/prometheus-exporters.nix", [["services", 275, 11]]);
-const pos$47 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 265, 9], ["metricProvider", 274, 9], ["exporterTest", 283, 9]]);
 const formals$11 = { args: {  }, ellipsis: true };
-const pos$48 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 296, 11], ["leasesPath", 297, 11]]);
-const pos$49 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 300, 28]]);
-const pos$50 = nix.positions(here + "/prometheus-exporters.nix", [["dnsmasq", 300, 20]]);
-const pos$51 = nix.positions(here + "/prometheus-exporters.nix", [["services", 300, 11]]);
-const pos$52 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 295, 9], ["metricProvider", 299, 9], ["exporterTest", 302, 9]]);
 const formals$12 = { args: { pkgs: false }, ellipsis: true };
-const pos$53 = nix.positions(here + "/prometheus-exporters.nix", [["zone", 320, 17], ["record", 321, 17], ["type", 322, 17]]);
-const pos$54 = nix.positions(here + "/prometheus-exporters.nix", [["records", 318, 13]]);
-const pos$55 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 316, 11], ["configuration", 317, 11], ["resolvers", 326, 11]]);
-const pos$56 = nix.positions(here + "/prometheus-exporters.nix", [["name", 338, 23], ["paths", 339, 23]]);
-const pos$57 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 330, 13], ["settingsFile", 331, 13]]);
-const pos$58 = nix.positions(here + "/prometheus-exporters.nix", [["knot", 329, 20]]);
-const pos$59 = nix.positions(here + "/prometheus-exporters.nix", [["services", 329, 11]]);
-const pos$60 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 315, 9], ["metricProvider", 328, 9], ["exporterTest", 357, 9]]);
 const formals$13 = { args: {  }, ellipsis: true };
-const pos$61 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 373, 11]]);
-const pos$62 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 372, 9], ["exporterTest", 375, 9]]);
 const formals$14 = { args: { pkgs: false }, ellipsis: true };
-const pos$63 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 387, 11], ["scopes", 388, 11], ["socketPath", 389, 11], ["user", 390, 11]]);
-const pos$64 = nix.positions(here + "/prometheus-exporters.nix", [["dovecot_config_version", 396, 15], ["dovecot_storage_version", 397, 15]]);
-const pos$65 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 394, 13], ["settings", 395, 13]]);
-const pos$66 = nix.positions(here + "/prometheus-exporters.nix", [["dovecot2", 393, 20]]);
-const pos$67 = nix.positions(here + "/prometheus-exporters.nix", [["services", 393, 11]]);
-const pos$68 = nix.positions(here + "/prometheus-exporters.nix", [["testBackend", 385, 9], ["exporterConfig", 386, 9], ["metricProvider", 392, 9], ["exporterTest", 401, 9]]);
 const formals$15 = { args: { pkgs: false }, ellipsis: true };
-const pos$69 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 418, 11], ["url", 419, 11], ["apiKeyFile", 420, 11]]);
-const pos$70 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 424, 13], ["environmentFiles", 425, 13]]);
-const pos$71 = nix.positions(here + "/prometheus-exporters.nix", [["sonarr", 423, 20]]);
-const pos$72 = nix.positions(here + "/prometheus-exporters.nix", [["services", 423, 11]]);
-const pos$73 = nix.positions(here + "/prometheus-exporters.nix", [["nodeName", 416, 9], ["exporterConfig", 417, 9], ["metricProvider", 422, 9], ["exporterTest", 428, 9]]);
 const formals$16 = { args: {  }, ellipsis: true };
-const pos$74 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 442, 11], ["names", 443, 11]]);
-const pos$75 = nix.positions(here + "/prometheus-exporters.nix", [["testBackend", 440, 9], ["exporterConfig", 441, 9], ["exporterTest", 445, 9]]);
 const formals$17 = { args: {  }, ellipsis: true };
-const pos$76 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 458, 11], ["url", 459, 11]]);
-const pos$77 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 464, 31]]);
-const pos$78 = nix.positions(here + "/prometheus-exporters.nix", [["opensearch", 464, 20]]);
-const pos$79 = nix.positions(here + "/prometheus-exporters.nix", [["services", 464, 11]]);
-const pos$80 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 457, 9], ["metricProvider", 461, 9], ["exporterTest", 466, 9]]);
 const formals$18 = { args: { pkgs: false }, ellipsis: true };
-const pos$81 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 481, 11], ["exitOnError", 482, 11], ["username", 483, 11], ["passwordFile", 484, 11]]);
-const pos$82 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 487, 29]]);
-const pos$83 = nix.positions(here + "/prometheus-exporters.nix", [["fail2ban", 487, 20]]);
-const pos$84 = nix.positions(here + "/prometheus-exporters.nix", [["services", 487, 11]]);
-const pos$85 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 480, 9], ["metricProvider", 486, 9], ["exporterTest", 489, 9]]);
 const formals$19 = { args: { pkgs: false }, ellipsis: true };
-const pos$86 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 503, 11], ["environmentFile", 504, 11]]);
-const pos$87 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 502, 9], ["exporterTest", 507, 9]]);
 const formals$20 = { args: {  }, ellipsis: true };
-const pos$88 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 518, 11]]);
-const pos$89 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 517, 9], ["exporterTest", 520, 9]]);
 const formals$21 = { args: {  }, ellipsis: true };
-const pos$90 = nix.positions(here + "/prometheus-exporters.nix", [["protocol", 541, 17], ["author", 542, 17]]);
-const pos$91 = nix.positions(here + "/prometheus-exporters.nix", [["match", 538, 15], ["name", 539, 15], ["labels", 540, 15]]);
-const pos$92 = nix.positions(here + "/prometheus-exporters.nix", [["mappings", 536, 27]]);
-const pos$93 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 533, 11], ["port", 534, 11], ["graphitePort", 535, 11], ["mappingSettings", 536, 11]]);
-const pos$94 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 532, 9], ["exporterTest", 547, 9]]);
 const formals$22 = { args: {  }, ellipsis: true };
-const pos$95 = nix.positions(here + "/prometheus-exporters.nix", [["username", 565, 17], ["password", 566, 17]]);
-const pos$96 = nix.positions(here + "/prometheus-exporters.nix", [["default", 564, 15]]);
-const pos$97 = nix.positions(here + "/prometheus-exporters.nix", [["hosts", 563, 13]]);
-const pos$98 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 560, 11], ["port", 561, 11], ["configuration", 562, 11]]);
-const pos$99 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 559, 9], ["exporterTest", 571, 9]]);
 const formals$23 = { args: {  }, ellipsis: true };
-const pos$100 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 582, 11], ["sampleExpiry", 583, 11]]);
-const pos$101 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 581, 9], ["exporterTest", 585, 9]]);
 const formals$24 = { args: { pkgs: false }, ellipsis: true };
-const pos$102 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 606, 11]]);
-const pos$103 = nix.positions(here + "/prometheus-exporters.nix", [["maintainers", 604, 9], ["exporterConfig", 605, 9], ["exporterTest", 608, 9]]);
 const formals$25 = { args: {  }, ellipsis: true };
-const pos$104 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 621, 11]]);
-const pos$105 = nix.positions(here + "/prometheus-exporters.nix", [["after", 624, 54]]);
-const pos$106 = nix.positions(here + "/prometheus-exporters.nix", [["prometheus-jitsi-exporter", 624, 28]]);
-const pos$107 = nix.positions(here + "/prometheus-exporters.nix", [["services", 624, 19]]);
-const pos$108 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 626, 13], ["colibriRestApi", 627, 13]]);
-const pos$109 = nix.positions(here + "/prometheus-exporters.nix", [["jitsi-videobridge", 625, 20]]);
-const pos$110 = nix.positions(here + "/prometheus-exporters.nix", [["systemd", 624, 11], ["services", 625, 11]]);
-const pos$111 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 620, 9], ["metricProvider", 623, 9], ["exporterTest", 630, 9]]);
 const formals$26 = { args: { pkgs: false }, ellipsis: true };
-const pos$112 = nix.positions(here + "/prometheus-exporters.nix", [["name", 653, 23], ["path", 654, 23]]);
-const pos$113 = nix.positions(here + "/prometheus-exporters.nix", [["metrics", 651, 19]]);
-const pos$114 = nix.positions(here + "/prometheus-exporters.nix", [["default", 650, 17]]);
-const pos$115 = nix.positions(here + "/prometheus-exporters.nix", [["modules", 649, 15]]);
-const pos$116 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 646, 11], ["configFile", 647, 11]]);
-const pos$117 = nix.positions(here + "/prometheus-exporters.nix", [["after", 663, 53]]);
-const pos$118 = nix.positions(here + "/prometheus-exporters.nix", [["prometheus-json-exporter", 663, 28]]);
-const pos$119 = nix.positions(here + "/prometheus-exporters.nix", [["services", 663, 19]]);
-const pos$120 = nix.positions(here + "/prometheus-exporters.nix", [["extraConfig", 666, 50]]);
-const pos$121 = nix.positions(here + "/prometheus-exporters.nix", [["/", 666, 46]]);
-const pos$122 = nix.positions(here + "/prometheus-exporters.nix", [["locations", 666, 36]]);
-const pos$123 = nix.positions(here + "/prometheus-exporters.nix", [["localhost", 666, 26]]);
-const pos$124 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 665, 13], ["virtualHosts", 666, 13]]);
-const pos$125 = nix.positions(here + "/prometheus-exporters.nix", [["nginx", 664, 20]]);
-const pos$126 = nix.positions(here + "/prometheus-exporters.nix", [["systemd", 663, 11], ["services", 664, 11]]);
-const pos$127 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 645, 9], ["metricProvider", 662, 9], ["exporterTest", 671, 9]]);
 const formals$27 = { args: { pkgs: false }, ellipsis: true };
-const pos$128 = nix.positions(here + "/prometheus-exporters.nix", [["name", 688, 13], ["text", 689, 13]]);
-const pos$129 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 686, 11], ["environmentFile", 687, 11]]);
-const pos$130 = nix.positions(here + "/prometheus-exporters.nix", [["node.id", 703, 15], ["process.roles", 704, 15], ["listeners", 708, 15], ["listener.security.protocol.map", 712, 15], ["controller.quorum.voters", 716, 15], ["controller.listener.names", 719, 15], ["log.dirs", 720, 15]]);
-const pos$131 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 696, 13], ["clusterId", 698, 13], ["formatLogDirs", 700, 13], ["settings", 702, 13]]);
-const pos$132 = nix.positions(here + "/prometheus-exporters.nix", [["apache-kafka", 695, 20]]);
-const pos$133 = nix.positions(here + "/prometheus-exporters.nix", [["StateDirectory", 724, 55]]);
-const pos$134 = nix.positions(here + "/prometheus-exporters.nix", [["serviceConfig", 724, 41]]);
-const pos$135 = nix.positions(here + "/prometheus-exporters.nix", [["apache-kafka", 724, 28]]);
-const pos$136 = nix.positions(here + "/prometheus-exporters.nix", [["services", 724, 19]]);
-const pos$137 = nix.positions(here + "/prometheus-exporters.nix", [["services", 695, 11], ["systemd", 724, 11]]);
-const pos$138 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 685, 9], ["metricProvider", 694, 9], ["exporterTest", 726, 9]]);
 const formals$28 = { args: { pkgs: false }, ellipsis: true };
-const pos$139 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 745, 11]]);
-const pos$140 = nix.positions(here + "/prometheus-exporters.nix", [["name", 763, 23], ["paths", 764, 23]]);
-const pos$141 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 749, 13], ["extraArgs", 750, 13], ["settingsFile", 751, 13]]);
-const pos$142 = nix.positions(here + "/prometheus-exporters.nix", [["knot", 748, 20]]);
-const pos$143 = nix.positions(here + "/prometheus-exporters.nix", [["services", 748, 11]]);
-const pos$144 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 744, 9], ["metricProvider", 747, 9], ["exporterTest", 787, 9]]);
 const formals$29 = { args: {  }, ellipsis: true };
-const pos$145 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 802, 11]]);
-const pos$146 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 801, 9], ["exporterTest", 804, 9]]);
 const formals$30 = { args: {  }, ellipsis: true };
-const pos$147 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 820, 11]]);
-const pos$148 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 822, 41]]);
-const pos$149 = nix.positions(here + "/prometheus-exporters.nix", [["kvrocks", 822, 33]]);
-const pos$150 = nix.positions(here + "/prometheus-exporters.nix", [["services", 822, 24]]);
-const pos$151 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 819, 9], ["metricProvider", 822, 9], ["exporterTest", 823, 9]]);
 const formals$31 = { args: { pkgs: false }, ellipsis: true };
-const pos$152 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 836, 11], ["lndTlsPath", 837, 11], ["lndMacaroonDir", 838, 11], ["extraFlags", 839, 11]]);
-const pos$153 = nix.positions(here + "/prometheus-exporters.nix", [["RestartSec", 842, 66]]);
-const pos$154 = nix.positions(here + "/prometheus-exporters.nix", [["serviceConfig", 842, 52], ["after", 843, 52]]);
-const pos$155 = nix.positions(here + "/prometheus-exporters.nix", [["ExecStart", 856, 27], ["StateDirectory", 871, 27]]);
-const pos$156 = nix.positions(here + "/prometheus-exporters.nix", [["serviceConfig", 856, 13], ["wantedBy", 872, 13], ["after", 873, 13], ["postStart", 876, 32]]);
-const pos$157 = nix.positions(here + "/prometheus-exporters.nix", [["prometheus-lnd-exporter", 842, 28], ["lnd", 855, 28]]);
-const pos$158 = nix.positions(here + "/prometheus-exporters.nix", [["services", 842, 19]]);
-const pos$159 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 845, 13], ["extraConfig", 846, 13], ["extraCmdlineOptions", 853, 13]]);
-const pos$160 = nix.positions(here + "/prometheus-exporters.nix", [["regtest", 844, 29]]);
-const pos$161 = nix.positions(here + "/prometheus-exporters.nix", [["bitcoind", 844, 20]]);
-const pos$162 = nix.positions(here + "/prometheus-exporters.nix", [["systemd", 842, 11], ["services", 844, 11]]);
-const pos$163 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 835, 9], ["metricProvider", 841, 9], ["exporterTest", 895, 9]]);
 const formals$32 = { args: { pkgs: false }, ellipsis: true };
-const pos$164 = nix.positions(here + "/prometheus-exporters.nix", [["name", 914, 17], ["server", 915, 17], ["port", 916, 17], ["from", 917, 17], ["to", 918, 17], ["detectionDir", 919, 17]]);
-const pos$165 = nix.positions(here + "/prometheus-exporters.nix", [["monitoringInterval", 910, 13], ["mailCheckTimeout", 911, 13], ["servers", 912, 13]]);
-const pos$166 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 908, 11], ["configuration", 909, 11]]);
-const pos$167 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 925, 28]]);
-const pos$168 = nix.positions(here + "/prometheus-exporters.nix", [["postfix", 925, 20]]);
-const pos$169 = nix.positions(here + "/prometheus-exporters.nix", [["ExecStartPre", 930, 15], ["ProtectHome", 935, 15], ["ReadOnlyPaths", 936, 15], ["ReadWritePaths", 937, 15], ["WorkingDirectory", 938, 15]]);
-const pos$170 = nix.positions(here + "/prometheus-exporters.nix", [["after", 927, 13], ["requires", 928, 13], ["serviceConfig", 929, 13]]);
-const pos$171 = nix.positions(here + "/prometheus-exporters.nix", [["prometheus-mail-exporter", 926, 28]]);
-const pos$172 = nix.positions(here + "/prometheus-exporters.nix", [["services", 926, 19]]);
-const pos$173 = nix.positions(here + "/prometheus-exporters.nix", [["isSystemUser", 942, 13], ["group", 943, 13]]);
-const pos$174 = nix.positions(here + "/prometheus-exporters.nix", [["mailexporter", 941, 23]]);
-const pos$175 = nix.positions(here + "/prometheus-exporters.nix", [["mailexporter", 945, 24]]);
-const pos$176 = nix.positions(here + "/prometheus-exporters.nix", [["users", 941, 17], ["groups", 945, 17]]);
-const pos$177 = nix.positions(here + "/prometheus-exporters.nix", [["services", 925, 11], ["systemd", 926, 11], ["users", 941, 11]]);
-const pos$178 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 907, 9], ["metricProvider", 924, 9], ["exporterTest", 947, 9]]);
 const formals$33 = { args: {  }, ellipsis: true };
-const pos$179 = nix.positions(here + "/prometheus-exporters.nix", [["name", 966, 17], ["address", 967, 17], ["user", 968, 17], ["password", 969, 17]]);
-const pos$180 = nix.positions(here + "/prometheus-exporters.nix", [["bgp", 973, 15], ["dhcp", 974, 15], ["dhcpl", 975, 15], ["dhcpv6", 976, 15], ["health", 977, 15], ["routes", 978, 15], ["poe", 979, 15], ["pools", 980, 15], ["optics", 981, 15], ["w60g", 982, 15], ["wlansta", 983, 15], ["wlanif", 984, 15], ["monitor", 985, 15], ["ipsec", 986, 15]]);
-const pos$181 = nix.positions(here + "/prometheus-exporters.nix", [["devices", 964, 13], ["features", 972, 13]]);
-const pos$182 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 961, 11], ["extraFlags", 962, 11], ["configuration", 963, 11]]);
-const pos$183 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 960, 9], ["exporterTest", 990, 9]]);
 const formals$34 = { args: {  }, ellipsis: true };
-const pos$184 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1004, 11], ["refreshRate", 1005, 11]]);
-const pos$185 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1011, 37]]);
-const pos$186 = nix.positions(here + "/prometheus-exporters.nix", [["networkmanager", 1011, 22]]);
-const pos$187 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1013, 13], ["wantedBy", 1014, 13]]);
-const pos$188 = nix.positions(here + "/prometheus-exporters.nix", [["ModemManager", 1012, 28]]);
-const pos$189 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1012, 19]]);
-const pos$190 = nix.positions(here + "/prometheus-exporters.nix", [["networking", 1011, 11], ["systemd", 1012, 11]]);
-const pos$191 = nix.positions(here + "/prometheus-exporters.nix", [["testBackend", 1002, 9], ["exporterConfig", 1003, 9], ["metricProvider", 1007, 9], ["exporterTest", 1020, 9]]);
 const formals$35 = { args: { pkgs: false }, ellipsis: true };
-const pos$192 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1034, 11], ["environmentFile", 1035, 11]]);
-const pos$193 = nix.positions(here + "/prometheus-exporters.nix", [["acl", 1045, 19], ["passwordFile", 1046, 19]]);
-const pos$194 = nix.positions(here + "/prometheus-exporters.nix", [["exporter", 1044, 23]]);
-const pos$195 = nix.positions(here + "/prometheus-exporters.nix", [["users", 1044, 17]]);
-const pos$196 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1041, 13], ["listeners", 1042, 13]]);
-const pos$197 = nix.positions(here + "/prometheus-exporters.nix", [["mosquitto", 1040, 20]]);
-const pos$198 = nix.positions(here + "/prometheus-exporters.nix", [["wants", 1052, 13], ["after", 1053, 13]]);
-const pos$199 = nix.positions(here + "/prometheus-exporters.nix", [["prometheus-mqtt-exporter", 1051, 28]]);
-const pos$200 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1051, 19]]);
-const pos$201 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1040, 11], ["systemd", 1051, 11]]);
-const pos$202 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1033, 9], ["metricProvider", 1039, 9], ["exporterTest", 1056, 9]]);
 const formals$36 = { args: { pkgs: false }, ellipsis: true };
-const pos$203 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1070, 11], ["runAsLocalSuperUser", 1071, 11], ["configFile", 1072, 11]]);
-const pos$204 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1080, 13], ["package", 1081, 13], ["initialScript", 1082, 13]]);
-const pos$205 = nix.positions(here + "/prometheus-exporters.nix", [["mysql", 1079, 20]]);
-const pos$206 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1079, 11]]);
-const pos$207 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1069, 9], ["metricProvider", 1078, 9], ["exporterTest", 1090, 9]]);
 const formals$37 = { args: { pkgs: false }, ellipsis: true };
-const pos$208 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1107, 11], ["passwordFile", 1108, 11], ["url", 1109, 11]]);
-const pos$209 = nix.positions(here + "/prometheus-exporters.nix", [["ExecStart", 1119, 29]]);
-const pos$210 = nix.positions(here + "/prometheus-exporters.nix", [["requiredBy", 1117, 15], ["before", 1118, 15], ["serviceConfig", 1119, 15]]);
-const pos$211 = nix.positions(here + "/prometheus-exporters.nix", [["nc-pwfile", 1112, 28]]);
-const pos$212 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1112, 19]]);
-const pos$213 = nix.positions(here + "/prometheus-exporters.nix", [["nextcloud-exporter", 1126, 25]]);
-const pos$214 = nix.positions(here + "/prometheus-exporters.nix", [["root", 1128, 17], ["tryFiles", 1129, 17]]);
-const pos$215 = nix.positions(here + "/prometheus-exporters.nix", [["/", 1127, 25]]);
-const pos$216 = nix.positions(here + "/prometheus-exporters.nix", [["basicAuth", 1126, 15], ["locations", 1127, 15]]);
-const pos$217 = nix.positions(here + "/prometheus-exporters.nix", [["localhost", 1125, 26]]);
-const pos$218 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1124, 13], ["virtualHosts", 1125, 13]]);
-const pos$219 = nix.positions(here + "/prometheus-exporters.nix", [["nginx", 1123, 20]]);
-const pos$220 = nix.positions(here + "/prometheus-exporters.nix", [["systemd", 1112, 11], ["services", 1123, 11]]);
-const pos$221 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1106, 9], ["metricProvider", 1111, 9], ["exporterTest", 1134, 9]]);
 const formals$38 = { args: {  }, ellipsis: true };
-const pos$222 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1146, 11], ["constLabels", 1147, 11]]);
-const pos$223 = nix.positions(here + "/prometheus-exporters.nix", [["extraConfig", 1153, 33]]);
-const pos$224 = nix.positions(here + "/prometheus-exporters.nix", [["test", 1153, 26]]);
-const pos$225 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1151, 13], ["statusPage", 1152, 13], ["virtualHosts", 1153, 13]]);
-const pos$226 = nix.positions(here + "/prometheus-exporters.nix", [["nginx", 1150, 20]]);
-const pos$227 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1150, 11]]);
-const pos$228 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1145, 9], ["metricProvider", 1149, 9], ["exporterTest", 1156, 9]]);
 const formals$39 = { args: {  }, ellipsis: true };
-const pos$229 = nix.positions(here + "/prometheus-exporters.nix", [["files", 1175, 19]]);
-const pos$230 = nix.positions(here + "/prometheus-exporters.nix", [["name", 1173, 17], ["source", 1174, 17]]);
-const pos$231 = nix.positions(here + "/prometheus-exporters.nix", [["listen_address", 1182, 21], ["format", 1183, 21], ["tags", 1184, 21]]);
-const pos$232 = nix.positions(here + "/prometheus-exporters.nix", [["syslog", 1181, 19]]);
-const pos$233 = nix.positions(here + "/prometheus-exporters.nix", [["name", 1179, 17], ["source", 1180, 17]]);
-const pos$234 = nix.positions(here + "/prometheus-exporters.nix", [["namespaces", 1171, 13]]);
-const pos$235 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1168, 11], ["group", 1169, 11], ["settings", 1170, 11]]);
-const pos$236 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1193, 13], ["httpConfig", 1194, 13]]);
-const pos$237 = nix.positions(here + "/prometheus-exporters.nix", [["nginx", 1192, 20]]);
-const pos$238 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1192, 11]]);
-const pos$239 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1167, 9], ["metricProvider", 1191, 9], ["exporterTest", 1208, 9]]);
 const formals$40 = { args: {  }, ellipsis: true };
-const pos$240 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1231, 11]]);
-const pos$241 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1230, 9], ["exporterTest", 1233, 9]]);
 const formals$41 = { args: { pkgs: false }, ellipsis: true };
-const pos$242 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1247, 11], ["paths", 1248, 11]]);
 const formals$42 = { args: { config: false }, ellipsis: true };
-const pos$243 = nix.positions(here + "/prometheus-exporters.nix", [["name", 1266, 21], ["text", 1267, 21]]);
-const pos$244 = nix.positions(here + "/prometheus-exporters.nix", [["name", 1278, 21], ["text", 1279, 21]]);
-const pos$245 = nix.positions(here + "/prometheus-exporters.nix", [["ExecStartPre", 1263, 29]]);
-const pos$246 = nix.positions(here + "/prometheus-exporters.nix", [["serviceConfig", 1263, 15]]);
-const pos$247 = nix.positions(here + "/prometheus-exporters.nix", [["prometheus-node-cert-exporter", 1262, 30]]);
-const pos$248 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1262, 21]]);
-const pos$249 = nix.positions(here + "/prometheus-exporters.nix", [["systemd", 1262, 13]]);
-const pos$250 = nix.positions(here + "/prometheus-exporters.nix", [["nodeName", 1245, 9], ["exporterConfig", 1246, 9], ["exporterTest", 1250, 9], ["metricProvider", 1259, 9]]);
 const formals$43 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$251 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1317, 11], ["connectionEnvFile", 1318, 11]]);
-const pos$252 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1324, 31]]);
-const pos$253 = nix.positions(here + "/prometheus-exporters.nix", [["listen_addr", 1329, 17], ["auth_type", 1330, 17], ["max_client_conn", 1331, 17], ["ignore_startup_parameters", 1333, 17]]);
-const pos$254 = nix.positions(here + "/prometheus-exporters.nix", [["postgres", 1336, 17]]);
-const pos$255 = nix.positions(here + "/prometheus-exporters.nix", [["pgbouncer", 1328, 15], ["databases", 1335, 15]]);
-const pos$256 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1326, 13], ["settings", 1327, 13]]);
-const pos$257 = nix.positions(here + "/prometheus-exporters.nix", [["postgresql", 1324, 20], ["pgbouncer", 1325, 20]]);
-const pos$258 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1324, 11]]);
-const pos$259 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1316, 9], ["metricProvider", 1323, 9], ["exporterTest", 1346, 9]]);
 const formals$44 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$260 = nix.positions(here + "/prometheus-exporters.nix", [["name", 1365, 13], ["text", 1366, 13]]);
-const pos$261 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1363, 11], ["environmentFile", 1364, 11]]);
-const pos$262 = nix.positions(here + "/prometheus-exporters.nix", [["isSystemUser", 1373, 13], ["group", 1374, 13]]);
-const pos$263 = nix.positions(here + "/prometheus-exporters.nix", [["php-fpm-exporter", 1372, 23]]);
-const pos$264 = nix.positions(here + "/prometheus-exporters.nix", [["php-fpm-exporter", 1376, 24]]);
-const pos$265 = nix.positions(here + "/prometheus-exporters.nix", [["users", 1372, 17], ["groups", 1376, 17]]);
-const pos$266 = nix.positions(here + "/prometheus-exporters.nix", [["pm", 1381, 15], ["pm.max_children", 1382, 15], ["pm.max_requests", 1383, 15], ["pm.start_servers", 1384, 15], ["pm.min_spare_servers", 1385, 15], ["pm.max_spare_servers", 1386, 15], ["pm.status_path", 1387, 15], ["listen", 1388, 15], ["listen.allowed_clients", 1389, 15]]);
-const pos$267 = nix.positions(here + "/prometheus-exporters.nix", [["PATH", 1391, 20]]);
-const pos$268 = nix.positions(here + "/prometheus-exporters.nix", [["user", 1378, 13], ["group", 1379, 13], ["settings", 1380, 13], ["phpEnv", 1391, 13]]);
-const pos$269 = nix.positions(here + "/prometheus-exporters.nix", [["php-fpm-exporter", 1377, 33]]);
-const pos$270 = nix.positions(here + "/prometheus-exporters.nix", [["pools", 1377, 27]]);
-const pos$271 = nix.positions(here + "/prometheus-exporters.nix", [["phpfpm", 1377, 20]]);
-const pos$272 = nix.positions(here + "/prometheus-exporters.nix", [["users", 1372, 11], ["services", 1377, 11]]);
-const pos$273 = nix.positions(here + "/prometheus-exporters.nix", [["nodeName", 1361, 9], ["exporterConfig", 1362, 9], ["metricProvider", 1371, 9], ["exporterTest", 1394, 9]]);
 const formals$45 = { args: {  }, ellipsis: true };
-const pos$274 = nix.positions(here + "/prometheus-exporters.nix", [["host", 1410, 17], ["alias", 1411, 17], ["env", 1412, 17], ["type", 1413, 17]]);
-const pos$275 = nix.positions(here + "/prometheus-exporters.nix", [["host", 1416, 17], ["alias", 1417, 17], ["type", 1418, 17]]);
-const pos$276 = nix.positions(here + "/prometheus-exporters.nix", [["host", 1421, 17], ["alias", 1422, 17], ["type", 1423, 17]]);
-const pos$277 = nix.positions(here + "/prometheus-exporters.nix", [["host", 1426, 17]]);
-const pos$278 = nix.positions(here + "/prometheus-exporters.nix", [["interval", 1431, 15], ["timeout", 1432, 15], ["history-size", 1433, 15], ["payload-size", 1434, 15]]);
-const pos$279 = nix.positions(here + "/prometheus-exporters.nix", [["level", 1437, 15]]);
-const pos$280 = nix.positions(here + "/prometheus-exporters.nix", [["targets", 1408, 13], ["dns", 1429, 13], ["ping", 1430, 13], ["log", 1436, 13]]);
-const pos$281 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1405, 11], ["settings", 1407, 11]]);
-const pos$282 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1404, 9], ["exporterTest", 1442, 9]]);
 const formals$46 = { args: {  }, ellipsis: true };
-const pos$283 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1453, 11]]);
-const pos$284 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1456, 28]]);
-const pos$285 = nix.positions(here + "/prometheus-exporters.nix", [["postfix", 1456, 20]]);
-const pos$286 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1456, 11]]);
-const pos$287 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1452, 9], ["metricProvider", 1455, 9], ["exporterTest", 1458, 9]]);
 const formals$47 = { args: {  }, ellipsis: true };
-const pos$288 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1476, 11], ["runAsLocalSuperUser", 1477, 11]]);
-const pos$289 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1480, 31]]);
-const pos$290 = nix.positions(here + "/prometheus-exporters.nix", [["postgresql", 1480, 20]]);
-const pos$291 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1480, 11]]);
-const pos$292 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1475, 9], ["metricProvider", 1479, 9], ["exporterTest", 1482, 9]]);
 const formals$48 = { args: {  }, ellipsis: true };
-const pos$293 = nix.positions(here + "/prometheus-exporters.nix", [["name", 1512, 15], ["cmdline", 1513, 15]]);
-const pos$294 = nix.positions(here + "/prometheus-exporters.nix", [["process_names", 1509, 20]]);
-const pos$295 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1508, 11], ["settings", 1509, 11]]);
-const pos$296 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1507, 9], ["exporterTest", 1517, 9]]);
 const formals$49 = { args: { pkgs: false }, ellipsis: true };
-const pos$297 = nix.positions(here + "/prometheus-exporters.nix", [["name", 1532, 11], ["text", 1533, 11]]);
-const pos$298 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1542, 11], ["environmentFile", 1543, 11]]);
-const pos$299 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1541, 9], ["exporterTest", 1545, 9]]);
 const formals$50 = { args: {  }, ellipsis: true };
-const pos$300 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1557, 11], ["deviceHostname", 1558, 11]]);
-const pos$301 = nix.positions(here + "/prometheus-exporters.nix", [["nodeName", 1555, 9], ["exporterConfig", 1556, 9], ["exporterTest", 1560, 9]]);
 const formals$51 = { args: {  }, ellipsis: true };
-const pos$302 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1573, 11]]);
-const pos$303 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1575, 50]]);
-const pos$304 = nix.positions(here + "/prometheus-exporters.nix", [["", 1575, 47]]);
-const pos$305 = nix.positions(here + "/prometheus-exporters.nix", [["servers", 1575, 39]]);
-const pos$306 = nix.positions(here + "/prometheus-exporters.nix", [["redis", 1575, 33]]);
-const pos$307 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1575, 24]]);
-const pos$308 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1572, 9], ["metricProvider", 1575, 9], ["exporterTest", 1576, 9]]);
 const formals$52 = { args: { pkgs: false }, ellipsis: true };
-const pos$309 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1593, 11], ["repository", 1594, 19], ["passwordFile", 1594, 30]]);
-const pos$310 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1598, 13], ["extraFlags", 1599, 13]]);
-const pos$311 = nix.positions(here + "/prometheus-exporters.nix", [["server", 1597, 27]]);
-const pos$312 = nix.positions(here + "/prometheus-exporters.nix", [["restic", 1597, 20]]);
-const pos$313 = nix.positions(here + "/prometheus-exporters.nix", [["systemPackages", 1601, 23]]);
-const pos$314 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1597, 11], ["environment", 1601, 11]]);
-const pos$315 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1592, 9], ["metricProvider", 1596, 9], ["exporterTest", 1603, 9]]);
 const formals$53 = { args: {  }, ellipsis: true };
-const pos$316 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1624, 11]]);
-const pos$317 = nix.positions(here + "/prometheus-exporters.nix", [["rtl_433", 1630, 15]]);
-const pos$318 = nix.positions(here + "/prometheus-exporters.nix", [["overlays", 1628, 19]]);
-const pos$319 = nix.positions(here + "/prometheus-exporters.nix", [["nixpkgs", 1628, 11]]);
-const pos$320 = nix.positions(here + "/prometheus-exporters.nix", [["pkgsReadOnly", 1622, 9], ["exporterConfig", 1623, 9], ["metricProvider", 1626, 9], ["exporterTest", 1644, 9]]);
 const formals$54 = { args: {  }, ellipsis: true };
-const pos$321 = nix.positions(here + "/prometheus-exporters.nix", [["baseUrl", 1662, 15], ["apiKeyFile", 1663, 15]]);
-const pos$322 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1659, 11], ["servers", 1660, 11]]);
-const pos$323 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1669, 28]]);
-const pos$324 = nix.positions(here + "/prometheus-exporters.nix", [["sabnzbd", 1669, 20]]);
-const pos$325 = nix.positions(here + "/prometheus-exporters.nix", [["requires", 1673, 13], ["after", 1674, 13], ["requiredBy", 1675, 13], ["before", 1676, 13], ["script", 1677, 13]]);
-const pos$326 = nix.positions(here + "/prometheus-exporters.nix", [["sabnzbd-apikey", 1672, 28]]);
-const pos$327 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1672, 19]]);
-const pos$328 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1669, 11], ["systemd", 1672, 11]]);
-const pos$329 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1658, 9], ["metricProvider", 1668, 9], ["exporterTest", 1683, 9]]);
 const formals$55 = { args: { pkgs: false }, ellipsis: true };
-const pos$330 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1698, 11], ["metrics-file", 1699, 11]]);
-const pos$331 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1697, 9], ["exporterTest", 1701, 9]]);
 const formals$56 = { args: {  }, ellipsis: true };
-const pos$332 = nix.positions(here + "/prometheus-exporters.nix", [["name", 1717, 15], ["command", 1718, 15], ["args", 1719, 15]]);
-const pos$333 = nix.positions(here + "/prometheus-exporters.nix", [["scripts", 1715, 20]]);
-const pos$334 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1714, 11], ["settings", 1715, 11]]);
-const pos$335 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1713, 9], ["exporterTest", 1723, 9]]);
 const formals$57 = { args: {  }, ellipsis: true };
-const pos$336 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1738, 11], ["devices", 1739, 11]]);
-const pos$337 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1737, 9], ["exporterTest", 1743, 9]]);
 const formals$58 = { args: {  }, ellipsis: true };
-const pos$338 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1754, 11], ["hosts", 1755, 11]]);
-const pos$339 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1753, 9], ["exporterTest", 1757, 9]]);
 const formals$59 = { args: {  }, ellipsis: true };
-const pos$340 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1777, 11], ["tokenFile", 1778, 11]]);
-const pos$341 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1776, 9], ["exporterTest", 1780, 9]]);
 const formals$60 = { args: {  }, ellipsis: true };
-const pos$342 = nix.positions(here + "/prometheus-exporters.nix", [["community", 1797, 15], ["version", 1798, 15]]);
-const pos$343 = nix.positions(here + "/prometheus-exporters.nix", [["public_v2", 1796, 19]]);
-const pos$344 = nix.positions(here + "/prometheus-exporters.nix", [["test", 1800, 21]]);
-const pos$345 = nix.positions(here + "/prometheus-exporters.nix", [["auths", 1796, 13], ["modules", 1800, 13]]);
-const pos$346 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1794, 11], ["configuration", 1795, 11]]);
-const pos$347 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1793, 9], ["exporterTest", 1803, 9]]);
 const formals$61 = { args: { pkgs: false }, ellipsis: true };
-const pos$348 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1814, 11], ["account", 1815, 11], ["username", 1816, 11], ["warehouse", 1817, 11], ["privateKeyFile", 1820, 11], ["environmentFile", 1821, 11]]);
-const pos$349 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1813, 9], ["exporterTest", 1831, 9]]);
 const formals$62 = { args: {  }, ellipsis: true };
-const pos$350 = nix.positions(here + "/prometheus-exporters.nix", [["labels", 1849, 17], ["help", 1850, 17], ["values", 1851, 17], ["query", 1852, 17]]);
-const pos$351 = nix.positions(here + "/prometheus-exporters.nix", [["points", 1848, 15]]);
-const pos$352 = nix.positions(here + "/prometheus-exporters.nix", [["interval", 1843, 13], ["connections", 1844, 13], ["queries", 1847, 13]]);
-const pos$353 = nix.positions(here + "/prometheus-exporters.nix", [["points", 1842, 30]]);
-const pos$354 = nix.positions(here + "/prometheus-exporters.nix", [["jobs", 1842, 25]]);
-const pos$355 = nix.positions(here + "/prometheus-exporters.nix", [["configuration", 1842, 11], ["enable", 1856, 11], ["user", 1857, 11]]);
-const pos$356 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1861, 13], ["initialScript", 1862, 13]]);
-const pos$357 = nix.positions(here + "/prometheus-exporters.nix", [["postgresql", 1860, 20]]);
-const pos$358 = nix.positions(here + "/prometheus-exporters.nix", [["after", 1875, 52]]);
-const pos$359 = nix.positions(here + "/prometheus-exporters.nix", [["prometheus-sql-exporter", 1875, 28]]);
-const pos$360 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1875, 19]]);
-const pos$361 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1860, 11], ["systemd", 1875, 11]]);
-const pos$362 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1841, 9], ["metricProvider", 1859, 9], ["exporterTest", 1877, 9]]);
 const formals$63 = { args: {  }, ellipsis: true };
-const pos$363 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1888, 11]]);
-const pos$364 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1887, 9], ["exporterTest", 1890, 9]]);
 const formals$64 = { args: {  }, ellipsis: true };
-const pos$365 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1911, 11], ["modemAddress", 1912, 11]]);
-const pos$366 = nix.positions(here + "/prometheus-exporters.nix", [["after", 1915, 58]]);
-const pos$367 = nix.positions(here + "/prometheus-exporters.nix", [["prometheus-surfboard-exporter", 1915, 28]]);
-const pos$368 = nix.positions(here + "/prometheus-exporters.nix", [["services", 1915, 19]]);
-const pos$369 = nix.positions(here + "/prometheus-exporters.nix", [["extraConfig", 1918, 64]]);
-const pos$370 = nix.positions(here + "/prometheus-exporters.nix", [["/cgi-bin/status", 1918, 46]]);
-const pos$371 = nix.positions(here + "/prometheus-exporters.nix", [["locations", 1918, 36]]);
-const pos$372 = nix.positions(here + "/prometheus-exporters.nix", [["localhost", 1918, 26]]);
-const pos$373 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1917, 13], ["virtualHosts", 1918, 13]]);
-const pos$374 = nix.positions(here + "/prometheus-exporters.nix", [["nginx", 1916, 20]]);
-const pos$375 = nix.positions(here + "/prometheus-exporters.nix", [["systemd", 1915, 11], ["services", 1916, 11]]);
-const pos$376 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1910, 9], ["metricProvider", 1914, 9], ["exporterTest", 1923, 9]]);
 const formals$65 = { args: {  }, ellipsis: true };
-const pos$377 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 1936, 11], ["extraFlags", 1938, 11]]);
-const pos$378 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1935, 9], ["metricProvider", 1942, 9], ["exporterTest", 1943, 9]]);
 const formals$66 = { args: { pkgs: false }, ellipsis: true };
-const pos$379 = nix.positions(here + "/prometheus-exporters.nix", [["patches", 1964, 13]]);
-const pos$380 = nix.positions(here + "/prometheus-exporters.nix", [["package", 1963, 11], ["enable", 1990, 11], ["environmentFile", 1991, 11]]);
-const pos$381 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 1962, 9], ["exporterTest", 1998, 9]]);
 const formals$67 = { args: {  }, ellipsis: true };
-const pos$382 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 2009, 24], ["controllers", 2010, 24]]);
-const pos$383 = nix.positions(here + "/prometheus-exporters.nix", [["nodeName", 2008, 9], ["exporterConfig", 2009, 9], ["exporterTest", 2011, 9]]);
 const formals$68 = { args: {  }, ellipsis: true };
-const pos$384 = nix.positions(here + "/prometheus-exporters.nix", [["host", 2023, 19]]);
-const pos$385 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 2022, 11], ["unbound", 2023, 11]]);
-const pos$386 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 2027, 13], ["localControlSocketPath", 2028, 13]]);
-const pos$387 = nix.positions(here + "/prometheus-exporters.nix", [["unbound", 2026, 20]]);
-const pos$388 = nix.positions(here + "/prometheus-exporters.nix", [["SupplementaryGroups", 2031, 13]]);
-const pos$389 = nix.positions(here + "/prometheus-exporters.nix", [["serviceConfig", 2030, 56]]);
-const pos$390 = nix.positions(here + "/prometheus-exporters.nix", [["prometheus-unbound-exporter", 2030, 28]]);
-const pos$391 = nix.positions(here + "/prometheus-exporters.nix", [["services", 2030, 19]]);
-const pos$392 = nix.positions(here + "/prometheus-exporters.nix", [["services", 2026, 11], ["systemd", 2030, 11]]);
-const pos$393 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 2021, 9], ["metricProvider", 2025, 9], ["exporterTest", 2034, 9]]);
 const formals$69 = { args: {  }, ellipsis: true };
-const pos$394 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 2046, 11]]);
-const pos$395 = nix.positions(here + "/prometheus-exporters.nix", [["after", 2050, 54]]);
-const pos$396 = nix.positions(here + "/prometheus-exporters.nix", [["prometheus-nginx-exporter", 2050, 28]]);
-const pos$397 = nix.positions(here + "/prometheus-exporters.nix", [["services", 2050, 19]]);
-const pos$398 = nix.positions(here + "/prometheus-exporters.nix", [["tag", 2056, 17], ["services", 2057, 17]]);
-const pos$399 = nix.positions(here + "/prometheus-exporters.nix", [["port", 2061, 19], ["listen", 2062, 19], ["protocol", 2063, 19]]);
-const pos$400 = nix.positions(here + "/prometheus-exporters.nix", [["address", 2070, 21]]);
-const pos$401 = nix.positions(here + "/prometheus-exporters.nix", [["listen", 2066, 19], ["port", 2067, 19], ["protocol", 2068, 19], ["settings", 2069, 19], ["tag", 2072, 19]]);
-const pos$402 = nix.positions(here + "/prometheus-exporters.nix", [["protocol", 2077, 19]]);
-const pos$403 = nix.positions(here + "/prometheus-exporters.nix", [["protocol", 2080, 19], ["settings", 2081, 19], ["tag", 2082, 19]]);
-const pos$404 = nix.positions(here + "/prometheus-exporters.nix", [["inboundTag", 2090, 23], ["outboundTag", 2091, 23], ["type", 2092, 23]]);
-const pos$405 = nix.positions(here + "/prometheus-exporters.nix", [["rules", 2088, 19]]);
-const pos$406 = nix.positions(here + "/prometheus-exporters.nix", [["strategy", 2086, 17], ["settings", 2087, 17]]);
-const pos$407 = nix.positions(here + "/prometheus-exporters.nix", [["stats", 2054, 15], ["api", 2055, 15], ["inbounds", 2059, 15], ["outbounds", 2075, 15], ["routing", 2085, 15]]);
-const pos$408 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 2052, 13], ["config", 2053, 13]]);
-const pos$409 = nix.positions(here + "/prometheus-exporters.nix", [["v2ray", 2051, 20]]);
-const pos$410 = nix.positions(here + "/prometheus-exporters.nix", [["systemd", 2050, 11], ["services", 2051, 11]]);
-const pos$411 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 2045, 9], ["metricProvider", 2049, 9], ["exporterTest", 2100, 9]]);
 const formals$70 = { args: {  }, ellipsis: true };
-const pos$412 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 2111, 11], ["instance", 2112, 11], ["group", 2113, 11]]);
-const pos$413 = nix.positions(here + "/prometheus-exporters.nix", [["after", 2116, 56]]);
-const pos$414 = nix.positions(here + "/prometheus-exporters.nix", [["prometheus-varnish-exporter", 2116, 28]]);
-const pos$415 = nix.positions(here + "/prometheus-exporters.nix", [["services", 2116, 19]]);
-const pos$416 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 2120, 13], ["config", 2121, 13]]);
-const pos$417 = nix.positions(here + "/prometheus-exporters.nix", [["varnish", 2119, 20]]);
-const pos$418 = nix.positions(here + "/prometheus-exporters.nix", [["systemd", 2116, 11], ["services", 2119, 11]]);
-const pos$419 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 2110, 9], ["metricProvider", 2115, 9], ["exporterTest", 2130, 9]]);
 const formals$71 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$420 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 2145, 24]]);
-const pos$421 = nix.positions(here + "/prometheus-exporters.nix", [["allowedIPs", 2157, 15], ["publicKey", 2162, 40]]);
-const pos$422 = nix.positions(here + "/prometheus-exporters.nix", [["ips", 2148, 13], ["listenPort", 2152, 13], ["privateKey", 2154, 38], ["peers", 2156, 13]]);
-const pos$423 = nix.positions(here + "/prometheus-exporters.nix", [["wg0", 2147, 43]]);
-const pos$424 = nix.positions(here + "/prometheus-exporters.nix", [["interfaces", 2147, 32]]);
-const pos$425 = nix.positions(here + "/prometheus-exporters.nix", [["wireguard", 2147, 22]]);
-const pos$426 = nix.positions(here + "/prometheus-exporters.nix", [["after", 2165, 58]]);
-const pos$427 = nix.positions(here + "/prometheus-exporters.nix", [["prometheus-wireguard-exporter", 2165, 28]]);
-const pos$428 = nix.positions(here + "/prometheus-exporters.nix", [["services", 2165, 19]]);
-const pos$429 = nix.positions(here + "/prometheus-exporters.nix", [["networking", 2147, 11], ["systemd", 2165, 11]]);
-const pos$430 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 2145, 9], ["metricProvider", 2146, 9], ["exporterTest", 2167, 9]]);
 const formals$72 = { args: { pkgs: false }, ellipsis: true };
-const pos$431 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 2180, 11], ["configFile", 2181, 11]]);
-const pos$432 = nix.positions(here + "/prometheus-exporters.nix", [["exporterConfig", 2179, 9], ["exporterTest", 2193, 9]]);
 const formals$73 = { args: {  }, ellipsis: true };
-const pos$433 = nix.positions(here + "/prometheus-exporters.nix", [["enable", 2205, 11]]);
-const pos$434 = nix.positions(here + "/prometheus-exporters.nix", [["supportedFilesystems", 2208, 16]]);
-const pos$435 = nix.positions(here + "/prometheus-exporters.nix", [["hostId", 2209, 22]]);
-const pos$436 = nix.positions(here + "/prometheus-exporters.nix", [["boot", 2208, 11], ["networking", 2209, 11]]);
-const pos$437 = nix.positions(here + "/prometheus-exporters.nix", [["testBackend", 2203, 9], ["exporterConfig", 2204, 9], ["metricProvider", 2207, 9], ["exporterTest", 2211, 9]]);
-const pos$438 = nix.positions(here + "/prometheus-exporters.nix", [["apcupsd", 64, 5], ["artifactory", 82, 5], ["bind", 99, 5], ["bird", 122, 5], ["bitcoin", 153, 5], ["blackbox", 174, 5], ["borgmatic", 198, 5], ["collectd", 225, 5], ["deluge", 262, 5], ["dnsmasq", 292, 5], ["dnssec", 312, 5], ["domain", 369, 5], ["dovecot", 382, 5], ["exportarr-sonarr", 410, 5], ["ebpf", 437, 5], ["elasticsearch", 454, 5], ["fail2ban", 477, 5], ["fastly", 499, 5], ["fritzbox", 513, 5], ["graphite", 529, 5], ["idrac", 556, 5], ["influxdb", 578, 5], ["ipmi", 601, 5], ["jitsi", 617, 5], ["json", 642, 5], ["kafka", 682, 5], ["knot", 741, 5], ["keylight", 795, 5], ["kvrocks", 816, 5], ["lnd", 832, 5], ["mail", 904, 5], ["mikrotik", 957, 5], ["modemmanager", 999, 5], ["mqtt", 1030, 5], ["mysqld", 1066, 5], ["nextcloud", 1103, 5], ["nginx", 1142, 5], ["nginxlog", 1164, 5], ["node", 1227, 5], ["node-cert", 1242, 5], ["pgbouncer", 1313, 5], ["php-fpm", 1358, 5], ["ping", 1401, 5], ["postfix", 1449, 5], ["postgres", 1472, 5], ["process", 1504, 5], ["pve", 1528, 5], ["py-air-control", 1552, 5], ["redis", 1569, 5], ["restic", 1585, 5], ["rtl_433", 1619, 5], ["sabnzbd", 1655, 5], ["shelly", 1694, 5], ["script", 1710, 5], ["smartctl", 1734, 5], ["smokeping", 1750, 5], ["storagebox", 1773, 5], ["snmp", 1790, 5], ["snowflake", 1810, 5], ["sql", 1838, 5], ["statsd", 1884, 5], ["surfboard", 1907, 5], ["systemd", 1932, 5], ["tailscale", 1959, 5], ["unpoller", 2005, 5], ["unbound", 2018, 5], ["v2ray", 2042, 5], ["varnish", 2107, 5], ["wireguard", 2138, 5], ["yace", 2176, 5], ["zfs", 2200, 5]]);
 const formals$74 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$439 = nix.positions(here + "/prometheus-exporters.nix", [["pkgs", 2225, 44], ["lib", 2225, 49]]);
-const pos$440 = nix.positions(here + "/prometheus-exporters.nix", [["pkgsReadOnly", 2231, 12]]);
-const pos$441 = nix.positions(here + "/prometheus-exporters.nix", [["maintainers", 2260, 12]]);
-const pos$442 = nix.positions(here + "/prometheus-exporters.nix", [["exporters", 2235, 31]]);
-const pos$443 = nix.positions(here + "/prometheus-exporters.nix", [["prometheus", 2235, 20]]);
-const pos$444 = nix.positions(here + "/prometheus-exporters.nix", [["services", 2235, 11]]);
-const pos$445 = nix.positions(here + "/prometheus-exporters.nix", [["name", 2230, 7], ["node", 2231, 7], ["testScript", 2240, 7], ["meta", 2260, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTest = nix.arg($, "runTest");
   const lib = nix.arg($, "lib");
   const exporterTests = nix.thunk(() => ({
-    [nix.POS]: pos$438,
+    [nix.POS]: $pos[437],
     apcupsd: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       return {
-        [nix.POS]: pos$5,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+        [nix.POS]: $pos[4],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            apcupsd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            apcupsd: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
         })),
         exporterTest: "wait_for_unit(\"apcupsd.service\")\nwait_for_open_port(3551)\nwait_for_unit(\"prometheus-apcupsd-exporter.service\")\nwait_for_open_port(9162)\nsucceed(\"curl -sSf http://localhost:9162/metrics | grep 'apcupsd_info'\")\n",
@@ -546,9 +102,9 @@ export default nix.lambda((args) => (() => {
     artifactory: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           enable: true,
           artiUsername: "artifactory-username",
           artiPassword: "artifactory-password",
@@ -559,14 +115,14 @@ export default nix.lambda((args) => (() => {
     bind: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$4);
       return {
-        [nix.POS]: pos$12,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
+        [nix.POS]: $pos[11],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             bind: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               extraConfig: "statistics-channels {\n  inet 127.0.0.1 port 8053 allow { localhost; };\n};\n",
             })),
@@ -578,14 +134,14 @@ export default nix.lambda((args) => (() => {
     bird: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$5);
       return {
-        [nix.POS]: pos$17,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
+        [nix.POS]: $pos[16],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             bird: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               enable: true,
               config: "router id 127.0.0.1;\n\nprotocol kernel MyObviousTestString {\n  ipv4 {\n    import all;\n    export none;\n  };\n}\n\nprotocol device {\n}\n",
             })),
@@ -598,28 +154,28 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$6);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           enable: true,
           rpcUser: "bitcoinrpc",
           rpcPasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "password", "hunter2")),
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             bitcoind: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               default: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 enable: true,
                 rpc: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   users: nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     bitcoinrpc: nix.thunk(() => ({
-                      [nix.POS]: pos$19,
+                      [nix.POS]: $pos[18],
                       passwordHMAC: "e8fe33f797e698ac258c16c8d7aadfbe$872bdb8f4d787367c26bcfd75e6c23c4f19d44a69f5d1ad329e5adf3f82710f7",
                     })),
                   })),
@@ -635,19 +191,19 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$7);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         testBackend: "nodes",
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           enable: true,
           configFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "config.yml", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 modules: nix.thunk(() => ({
-                  [nix.POS]: pos$29,
+                  [nix.POS]: $pos[28],
                   icmp_v6: nix.thunk(() => ({
-                    [nix.POS]: pos$28,
+                    [nix.POS]: $pos[27],
                     prober: "icmp",
-                    icmp: nix.thunk(() => ({ [nix.POS]: pos$27, preferred_ip_protocol: "ip6" })),
+                    icmp: nix.thunk(() => ({ [nix.POS]: $pos[26], preferred_ip_protocol: "ip6" })),
                   })),
                 })),
               })))))),
@@ -658,20 +214,20 @@ export default nix.lambda((args) => (() => {
     borgmatic: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$8);
       return {
-        [nix.POS]: pos$39,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$33, enable: true, user: "root" })),
+        [nix.POS]: $pos[38],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[32], enable: true, user: "root" })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$37,
+            [nix.POS]: $pos[36],
             borgmatic: nix.thunk(() => ({
-              [nix.POS]: pos$36,
+              [nix.POS]: $pos[35],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$35,
+                [nix.POS]: $pos[34],
                 source_directories: nix.thunk(() => ["/home"]),
                 repositories: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$34, label: "local", path: "/var/backup" })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[33], label: "local", path: "/var/backup" })),
                 ]),
                 keep_daily: 10n,
               })),
@@ -685,9 +241,9 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$9);
       const lib_1 = nix.arg($_1, "lib");
       return {
-        [nix.POS]: pos$41,
+        [nix.POS]: $pos[40],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$40,
+          [nix.POS]: $pos[39],
           enable: true,
           extraFlags: nix.thunk(() => ["--web.collectd-push-path /collectd"]),
         })),
@@ -713,9 +269,9 @@ succeed(
       const $_1 = nix.formals(args_1, formals$10);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$42,
+          [nix.POS]: $pos[41],
           enable: true,
           port: 1234n,
           listenAddress: "127.0.0.1",
@@ -724,14 +280,14 @@ succeed(
           delugePasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "password", "weak_password")),
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$46,
+          [nix.POS]: $pos[45],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$45,
+            [nix.POS]: $pos[44],
             deluge: nix.thunk(() => ({
-              [nix.POS]: pos$44,
+              [nix.POS]: $pos[43],
               enable: true,
               declarative: true,
-              config: nix.thunk(() => ({ [nix.POS]: pos$43, daemon_port: 2345n })),
+              config: nix.thunk(() => ({ [nix.POS]: $pos[42], daemon_port: 2345n })),
               authFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "authFile", "localclient:abcdef:10\nuser:weak_password:10\n")),
             })),
           })),
@@ -742,17 +298,17 @@ succeed(
     dnsmasq: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$11);
       return {
-        [nix.POS]: pos$52,
+        [nix.POS]: $pos[51],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$48,
+          [nix.POS]: $pos[47],
           enable: true,
           leasesPath: "/var/lib/dnsmasq/dnsmasq.leases",
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$51,
+          [nix.POS]: $pos[50],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$50,
-            dnsmasq: nix.thunk(() => ({ [nix.POS]: pos$49, enable: true })),
+            [nix.POS]: $pos[49],
+            dnsmasq: nix.thunk(() => ({ [nix.POS]: $pos[48], enable: true })),
           })),
         })),
         exporterTest: "wait_for_unit(\"dnsmasq.service\")\nwait_for_open_port(53)\nwait_for_file(\"/var/lib/dnsmasq/dnsmasq.leases\")\nwait_for_unit(\"prometheus-dnsmasq-exporter.service\")\nwait_for_open_port(9153)\nsucceed(\"curl -sSf http://localhost:9153/metrics | grep 'dnsmasq_leases 0'\")\n",
@@ -762,31 +318,31 @@ succeed(
       const $_1 = nix.formals(args_1, formals$12);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$60,
+        [nix.POS]: $pos[59],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$55,
+          [nix.POS]: $pos[54],
           enable: true,
           configuration: nix.thunk(() => ({
-            [nix.POS]: pos$54,
+            [nix.POS]: $pos[53],
             records: nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$53, zone: "example.com", record: "@", type: "SOA" })),
+              nix.thunk(() => ({ [nix.POS]: $pos[52], zone: "example.com", record: "@", type: "SOA" })),
             ]),
           })),
           resolvers: nix.thunk(() => ["127.0.0.1:53"]),
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$59,
+          [nix.POS]: $pos[58],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$58,
+            [nix.POS]: $pos[57],
             knot: nix.thunk(() => ({
-              [nix.POS]: pos$57,
+              [nix.POS]: $pos[56],
               enable: true,
               settingsFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "knot.conf", nix.thunk(() => nix.str`server:
   listen: 127.0.0.1@53
 template:
   - id: default
     storage: ${nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-                    [nix.POS]: pos$56,
+                    [nix.POS]: $pos[55],
                     name: "zones",
                     paths: nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "example.com.zone", "@ SOA ns1.example.com. noc.example.com. 2024032401 86400 7200 3600000 172800\n@       NS      ns1\nns1     A       192.168.0.1\n")),
@@ -808,8 +364,8 @@ zone:
     domain: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$13);
       return {
-        [nix.POS]: pos$62,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$61, enable: true })),
+        [nix.POS]: $pos[61],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[60], enable: true })),
         exporterTest: "wait_for_unit(\"prometheus-domain-exporter.service\")\nwait_for_open_port(9222)\nsucceed(\"curl -sSf 'http://localhost:9222/probe?target=nixos.org'\")\n",
       };
     })(), formals$13),
@@ -817,24 +373,24 @@ zone:
       const $_1 = nix.formals(args_1, formals$14);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$68,
+        [nix.POS]: $pos[67],
         testBackend: "nodes",
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$63,
+          [nix.POS]: $pos[62],
           enable: true,
           scopes: nix.thunk(() => ["global"]),
           socketPath: "/var/run/dovecot2/stats-reader",
           user: "root",
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$67,
+          [nix.POS]: $pos[66],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$66,
+            [nix.POS]: $pos[65],
             dovecot2: nix.thunk(() => ({
-              [nix.POS]: pos$65,
+              [nix.POS]: $pos[64],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$64,
+                [nix.POS]: $pos[63],
                 dovecot_config_version: nix.thunk(() => nix.sel(pkgs, "dovecot", "version")),
                 dovecot_storage_version: nix.thunk(() => nix.sel(pkgs, "dovecot", "version")),
               })),
@@ -849,20 +405,20 @@ zone:
       const pkgs = nix.arg($_1, "pkgs");
       const apikey = "eccff6a992bc2e4b88e46d064b26bb4e";
       return {
-        [nix.POS]: pos$73,
+        [nix.POS]: $pos[72],
         nodeName: "exportarr_sonarr",
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$69,
+          [nix.POS]: $pos[68],
           enable: true,
           url: "http://127.0.0.1:8989",
           apiKeyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "dummy-api-key", apikey)),
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$72,
+          [nix.POS]: $pos[71],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$71,
+            [nix.POS]: $pos[70],
             sonarr: nix.thunk(() => ({
-              [nix.POS]: pos$70,
+              [nix.POS]: $pos[69],
               enable: true,
               environmentFiles: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "sonarr-env", nix.thunk(() => nix.str`SONARR__AUTH__APIKEY=${apikey}`))),
@@ -876,22 +432,22 @@ zone:
     ebpf: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$16);
       return {
-        [nix.POS]: pos$75,
+        [nix.POS]: $pos[74],
         testBackend: "nodes",
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$74, enable: true, names: nix.thunk(() => ["timers"]) })),
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[73], enable: true, names: nix.thunk(() => ["timers"]) })),
         exporterTest: "wait_for_unit(\"prometheus-ebpf-exporter.service\")\nwait_for_open_port(9435)\nsucceed(\n    \"curl -sSf http://localhost:9435/metrics | grep 'ebpf_exporter_enabled_configs{name=\\\"timers\\\"} 1'\"\n)\n",
       };
     })(), formals$16),
     elasticsearch: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$17);
       return {
-        [nix.POS]: pos$80,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$76, enable: true, url: "http://localhost:9200" })),
+        [nix.POS]: $pos[79],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[75], enable: true, url: "http://localhost:9200" })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$79,
+          [nix.POS]: $pos[78],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$78,
-            opensearch: nix.thunk(() => ({ [nix.POS]: pos$77, enable: true })),
+            [nix.POS]: $pos[77],
+            opensearch: nix.thunk(() => ({ [nix.POS]: $pos[76], enable: true })),
           })),
         })),
         exporterTest: "wait_for_unit(\"opensearch.service\")\nwait_for_open_port(9200)\nwait_for_unit(\"prometheus-elasticsearch-exporter.service\")\nwait_for_open_port(9114)\nsucceed(\n    \"curl -sSf localhost:9114/metrics | grep 'elasticsearch_cluster_health_status'\"\n)\n",
@@ -901,19 +457,19 @@ zone:
       const $_1 = nix.formals(args_1, formals$18);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$85,
+        [nix.POS]: $pos[84],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$81,
+          [nix.POS]: $pos[80],
           enable: true,
           exitOnError: true,
           username: "fail2ban-web",
           passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "fail2ban-password", "hunter2")),
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$84,
+          [nix.POS]: $pos[83],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$83,
-            fail2ban: nix.thunk(() => ({ [nix.POS]: pos$82, enable: true })),
+            [nix.POS]: $pos[82],
+            fail2ban: nix.thunk(() => ({ [nix.POS]: $pos[81], enable: true })),
           })),
         })),
         exporterTest: "wait_for_unit(\"fail2ban.service\")\nwait_for_unit(\"prometheus-fail2ban-exporter.service\")\nwait_for_open_port(9191)\n\nfail(\"curl -sSf http://localhost:9191/metrics\")\nsucceed(\"curl -sSf --user fail2ban-web:hunter2 http://localhost:9191/metrics | grep 'f2b_errors'\")\n",
@@ -923,9 +479,9 @@ zone:
       const $_1 = nix.formals(args_1, formals$19);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$87,
+        [nix.POS]: $pos[86],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$86,
+          [nix.POS]: $pos[85],
           enable: true,
           environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "fastly-exporter-env", "FASTLY_API_TOKEN=abc123")),
         })),
@@ -935,28 +491,28 @@ zone:
     fritzbox: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$20);
       return {
-        [nix.POS]: pos$89,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$88, enable: true })),
+        [nix.POS]: $pos[88],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[87], enable: true })),
         exporterTest: "wait_for_unit(\"prometheus-fritzbox-exporter.service\")\nwait_for_open_port(9133)\nsucceed(\n    \"curl -sSf http://localhost:9133/metrics | grep 'fritzbox_exporter_collect_errors 0'\"\n)\n",
       };
     })(), formals$20),
     graphite: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$21);
       return {
-        [nix.POS]: pos$94,
+        [nix.POS]: $pos[93],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$93,
+          [nix.POS]: $pos[92],
           enable: true,
           port: 9108n,
           graphitePort: 9109n,
           mappingSettings: nix.thunk(() => ({
-            [nix.POS]: pos$92,
+            [nix.POS]: $pos[91],
             mappings: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$91,
+                [nix.POS]: $pos[90],
                 match: "test.*.*",
                 name: "testing",
-                labels: nix.thunk(() => ({ [nix.POS]: pos$90, protocol: "$1", author: "$2" })),
+                labels: nix.thunk(() => ({ [nix.POS]: $pos[89], protocol: "$1", author: "$2" })),
               })),
             ]),
           })),
@@ -967,16 +523,16 @@ zone:
     idrac: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$22);
       return {
-        [nix.POS]: pos$99,
+        [nix.POS]: $pos[98],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$98,
+          [nix.POS]: $pos[97],
           enable: true,
           port: 9348n,
           configuration: nix.thunk(() => ({
-            [nix.POS]: pos$97,
+            [nix.POS]: $pos[96],
             hosts: nix.thunk(() => ({
-              [nix.POS]: pos$96,
-              default: nix.thunk(() => ({ [nix.POS]: pos$95, username: "username", password: "password" })),
+              [nix.POS]: $pos[95],
+              default: nix.thunk(() => ({ [nix.POS]: $pos[94], username: "username", password: "password" })),
             })),
           })),
         })),
@@ -986,8 +542,8 @@ zone:
     influxdb: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$23);
       return {
-        [nix.POS]: pos$101,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$100, enable: true, sampleExpiry: "3s" })),
+        [nix.POS]: $pos[100],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[99], enable: true, sampleExpiry: "3s" })),
         exporterTest: "wait_for_unit(\"prometheus-influxdb-exporter.service\")\nwait_for_open_port(9122)\nsucceed(\n  \"curl -XPOST http://localhost:9122/write --data-binary 'influxdb_exporter,distro=nixos,added_in=21.09 value=1'\"\n)\nsucceed(\n  \"curl -sSf http://localhost:9122/metrics | grep 'nixos'\"\n)\nexecute(\"sleep 5\")\nfail(\n  \"curl -sSf http://localhost:9122/metrics | grep 'nixos'\"\n)\n",
       };
     })(), formals$23),
@@ -995,29 +551,29 @@ zone:
       const $_1 = nix.formals(args_1, formals$24);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$103,
+        [nix.POS]: $pos[102],
         maintainers: nix.thunk(() => nix.sel(pkgs, "freeipmi", "meta", "maintainers")),
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$102, enable: true })),
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[101], enable: true })),
         exporterTest: "wait_for_unit(\"prometheus-ipmi-exporter.service\")\nwait_for_open_port(9290)\nsucceed(\n  \"curl -sSf http://localhost:9290/metrics | grep 'ipmi_scrape_duration_seconds'\"\n)\n",
       };
     })(), formals$24),
     jitsi: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$25);
       return {
-        [nix.POS]: pos$111,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$104, enable: true })),
+        [nix.POS]: $pos[110],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[103], enable: true })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$110,
+          [nix.POS]: $pos[109],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$107,
+            [nix.POS]: $pos[106],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$106,
-              "prometheus-jitsi-exporter": nix.thunk(() => ({ [nix.POS]: pos$105, after: nix.thunk(() => ["jitsi-videobridge2.service"]) })),
+              [nix.POS]: $pos[105],
+              "prometheus-jitsi-exporter": nix.thunk(() => ({ [nix.POS]: $pos[104], after: nix.thunk(() => ["jitsi-videobridge2.service"]) })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$109,
-            "jitsi-videobridge": nix.thunk(() => ({ [nix.POS]: pos$108, enable: true, colibriRestApi: true })),
+            [nix.POS]: $pos[108],
+            "jitsi-videobridge": nix.thunk(() => ({ [nix.POS]: $pos[107], enable: true, colibriRestApi: true })),
           })),
         })),
         exporterTest: "wait_for_unit(\"jitsi-videobridge2.service\")\nwait_for_open_port(8080)\nwait_for_unit(\"prometheus-jitsi-exporter.service\")\nwait_for_open_port(9700)\nwait_until_succeeds(\n    'journalctl -eu prometheus-jitsi-exporter.service -o cat | grep \"key=participants\"'\n)\nsucceed(\"curl -sSf 'localhost:9700/metrics' | grep 'jitsi_participants 0'\")\n",
@@ -1027,44 +583,44 @@ zone:
       const $_1 = nix.formals(args_1, formals$26);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$127,
+        [nix.POS]: $pos[126],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$116,
+          [nix.POS]: $pos[115],
           enable: true,
           configFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "json-exporter-conf.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-                [nix.POS]: pos$115,
+                [nix.POS]: $pos[114],
                 modules: nix.thunk(() => ({
-                  [nix.POS]: pos$114,
+                  [nix.POS]: $pos[113],
                   default: nix.thunk(() => ({
-                    [nix.POS]: pos$113,
+                    [nix.POS]: $pos[112],
                     metrics: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$112, name: "json_test_metric", path: "{ .test }" })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[111], name: "json_test_metric", path: "{ .test }" })),
                     ]),
                   })),
                 })),
               })))))),
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$126,
+          [nix.POS]: $pos[125],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$119,
+            [nix.POS]: $pos[118],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$118,
-              "prometheus-json-exporter": nix.thunk(() => ({ [nix.POS]: pos$117, after: nix.thunk(() => ["nginx.service"]) })),
+              [nix.POS]: $pos[117],
+              "prometheus-json-exporter": nix.thunk(() => ({ [nix.POS]: $pos[116], after: nix.thunk(() => ["nginx.service"]) })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$125,
+            [nix.POS]: $pos[124],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$124,
+              [nix.POS]: $pos[123],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$123,
+                [nix.POS]: $pos[122],
                 localhost: nix.thunk(() => ({
-                  [nix.POS]: pos$122,
+                  [nix.POS]: $pos[121],
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$121,
-                    "/": nix.thunk(() => ({ [nix.POS]: pos$120, extraConfig: "return 200 \"{\\\"test\\\":1}\";\n" })),
+                    [nix.POS]: $pos[120],
+                    "/": nix.thunk(() => ({ [nix.POS]: $pos[119], extraConfig: "return 200 \"{\\\"test\\\":1}\";\n" })),
                   })),
                 })),
               })),
@@ -1078,27 +634,27 @@ zone:
       const $_1 = nix.formals(args_1, formals$27);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$138,
+        [nix.POS]: $pos[137],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$129,
+          [nix.POS]: $pos[128],
           enable: true,
           environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-              [nix.POS]: pos$128,
+              [nix.POS]: $pos[127],
               name: "/tmp/prometheus-kafka-exporter.env",
               text: "KAFKA_BROKERS=\"localhost:9092\"\n",
             })))),
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$137,
+          [nix.POS]: $pos[136],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$132,
+            [nix.POS]: $pos[131],
             "apache-kafka": nix.thunk(() => ({
-              [nix.POS]: pos$131,
+              [nix.POS]: $pos[130],
               enable: true,
               clusterId: "pHG8aWuXSfWAibHFDCnsCQ",
               formatLogDirs: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$130,
+                [nix.POS]: $pos[129],
                 "node.id": 1n,
                 "process.roles": nix.thunk(() => ["broker", "controller"]),
                 listeners: nix.thunk(() => ["PLAINTEXT://:9092", "CONTROLLER://:9093"]),
@@ -1110,12 +666,12 @@ zone:
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$136,
+            [nix.POS]: $pos[135],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$135,
+              [nix.POS]: $pos[134],
               "apache-kafka": nix.thunk(() => ({
-                [nix.POS]: pos$134,
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$133, StateDirectory: "apache-kafka" })),
+                [nix.POS]: $pos[133],
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[132], StateDirectory: "apache-kafka" })),
               })),
             })),
           })),
@@ -1138,14 +694,14 @@ succeed(
       const $_1 = nix.formals(args_1, formals$28);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$144,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$139, enable: true })),
+        [nix.POS]: $pos[143],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[138], enable: true })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$143,
+          [nix.POS]: $pos[142],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$142,
+            [nix.POS]: $pos[141],
             knot: nix.thunk(() => ({
-              [nix.POS]: pos$141,
+              [nix.POS]: $pos[140],
               enable: true,
               extraArgs: nix.thunk(() => ["-v"]),
               settingsFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "knot.conf", nix.thunk(() => nix.str`server:
@@ -1158,7 +714,7 @@ template:
     zonefile-sync: -1
     zonefile-load: difference
     storage: ${nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-                    [nix.POS]: pos$140,
+                    [nix.POS]: $pos[139],
                     name: "foo",
                     paths: nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "test.zone", "@ SOA ns.example.com. noc.example.com. 2019031301 86400 7200 3600000 172800\n@       NS      ns1\n@       NS      ns2\nns1     A       192.168.0.1\n")),
@@ -1184,21 +740,21 @@ zone:
     keylight: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$29);
       return {
-        [nix.POS]: pos$146,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$145, enable: true })),
+        [nix.POS]: $pos[145],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[144], enable: true })),
         exporterTest: "wait_for_unit(\"prometheus-keylight-exporter.service\")\nwait_for_open_port(9288)\nsucceed(\n    \"curl -sS --write-out '%{http_code}' -o /dev/null http://localhost:9288/metrics | grep '400'\"\n)\nsucceed(\n    \"curl -sS --write-out '%{http_code}' -o /dev/null http://localhost:9288/metrics?target=nosuchdevice | grep '500'\"\n)\n",
       };
     })(), formals$29),
     kvrocks: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$30);
       return {
-        [nix.POS]: pos$151,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$147, enable: true })),
+        [nix.POS]: $pos[150],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[146], enable: true })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$150,
+          [nix.POS]: $pos[149],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$149,
-            kvrocks: nix.thunk(() => ({ [nix.POS]: pos$148, enable: true })),
+            [nix.POS]: $pos[148],
+            kvrocks: nix.thunk(() => ({ [nix.POS]: $pos[147], enable: true })),
           })),
         })),
         exporterTest: "wait_for_unit(\"kvrocks.service\")\nwait_for_unit(\"prometheus-kvrocks-exporter.service\")\nwait_for_open_port(6666)\nwait_for_open_port(9121)\nwait_until_succeeds(\"curl -sSf localhost:9121/metrics | grep 'kvrocks_up 1'\")\n",
@@ -1208,29 +764,29 @@ zone:
       const $_1 = nix.formals(args_1, formals$31);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$163,
+        [nix.POS]: $pos[162],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$152,
+          [nix.POS]: $pos[151],
           enable: true,
           lndTlsPath: "/var/lib/lnd/tls.cert",
           lndMacaroonDir: "/var/lib/lnd",
           extraFlags: nix.thunk(() => ["--lnd.network=regtest"]),
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$162,
+          [nix.POS]: $pos[161],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$158,
+            [nix.POS]: $pos[157],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$157,
+              [nix.POS]: $pos[156],
               "prometheus-lnd-exporter": nix.thunk(() => ({
-                [nix.POS]: pos$154,
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$153, RestartSec: 15n })),
+                [nix.POS]: $pos[153],
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[152], RestartSec: 15n })),
                 after: nix.thunk(() => ["lnd.service"]),
               })),
               lnd: nix.thunk(() => ({
-                [nix.POS]: pos$156,
+                [nix.POS]: $pos[155],
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$155,
+                  [nix.POS]: $pos[154],
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "lnd")}/bin/lnd \\
   --datadir=/var/lib/lnd \\
   --tlscertpath=/var/lib/lnd/tls.cert \\
@@ -1270,11 +826,11 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$161,
+            [nix.POS]: $pos[160],
             bitcoind: nix.thunk(() => ({
-              [nix.POS]: pos$160,
+              [nix.POS]: $pos[159],
               regtest: nix.thunk(() => ({
-                [nix.POS]: pos$159,
+                [nix.POS]: $pos[158],
                 enable: true,
                 extraConfig: "rpcauth=bitcoinrpc:e8fe33f797e698ac258c16c8d7aadfbe$872bdb8f4d787367c26bcfd75e6c23c4f19d44a69f5d1ad329e5adf3f82710f7\nzmqpubrawblock=tcp://127.0.0.1:28332\nzmqpubrawtx=tcp://127.0.0.1:28333\n# https://github.com/lightningnetwork/lnd/issues/9163\ndeprecatedrpc=warnings\n",
                 extraCmdlineOptions: nix.thunk(() => ["-regtest"]),
@@ -1289,17 +845,17 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
       const $_1 = nix.formals(args_1, formals$32);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$178,
+        [nix.POS]: $pos[177],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$166,
+          [nix.POS]: $pos[165],
           enable: true,
           configuration: nix.thunk(() => ({
-            [nix.POS]: pos$165,
+            [nix.POS]: $pos[164],
             monitoringInterval: "2s",
             mailCheckTimeout: "10s",
             servers: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$164,
+                [nix.POS]: $pos[163],
                 name: "testserver",
                 server: "localhost",
                 port: 25n,
@@ -1311,21 +867,21 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
           })),
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$177,
+          [nix.POS]: $pos[176],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$168,
-            postfix: nix.thunk(() => ({ [nix.POS]: pos$167, enable: true })),
+            [nix.POS]: $pos[167],
+            postfix: nix.thunk(() => ({ [nix.POS]: $pos[166], enable: true })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$172,
+            [nix.POS]: $pos[171],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$171,
+              [nix.POS]: $pos[170],
               "prometheus-mail-exporter": nix.thunk(() => ({
-                [nix.POS]: pos$170,
+                [nix.POS]: $pos[169],
                 after: nix.thunk(() => ["postfix.service"]),
                 requires: nix.thunk(() => ["postfix.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$169,
+                  [nix.POS]: $pos[168],
                   ExecStartPre: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeShellScript"), "create-maildir", "mkdir -p -m 0700 mail-exporter/new\n")}`),
                   ]),
@@ -1338,12 +894,12 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$176,
+            [nix.POS]: $pos[175],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$174,
-              mailexporter: nix.thunk(() => ({ [nix.POS]: pos$173, isSystemUser: true, group: "mailexporter" })),
+              [nix.POS]: $pos[173],
+              mailexporter: nix.thunk(() => ({ [nix.POS]: $pos[172], isSystemUser: true, group: "mailexporter" })),
             })),
-            groups: nix.thunk(() => ({ [nix.POS]: pos$175, mailexporter: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: $pos[174], mailexporter: nix.thunk(() => ({})) })),
           })),
         })),
         exporterTest: "wait_for_unit(\"postfix.service\")\nwait_for_unit(\"prometheus-mail-exporter.service\")\nwait_for_open_port(9225)\nwait_until_succeeds(\n    \"curl -sSf http://localhost:9225/metrics | grep 'mail_deliver_success{configname=\\\"testserver\\\"} 1'\"\n)\n",
@@ -1352,16 +908,16 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
     mikrotik: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$33);
       return {
-        [nix.POS]: pos$183,
+        [nix.POS]: $pos[182],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$182,
+          [nix.POS]: $pos[181],
           enable: true,
           extraFlags: nix.thunk(() => ["-timeout=1s"]),
           configuration: nix.thunk(() => ({
-            [nix.POS]: pos$181,
+            [nix.POS]: $pos[180],
             devices: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$179,
+                [nix.POS]: $pos[178],
                 name: "router",
                 address: "192.168.42.48",
                 user: "prometheus",
@@ -1369,7 +925,7 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
               })),
             ]),
             features: nix.thunk(() => ({
-              [nix.POS]: pos$180,
+              [nix.POS]: $pos[179],
               bgp: true,
               dhcp: true,
               dhcpl: true,
@@ -1393,21 +949,21 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
     modemmanager: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$34);
       return {
-        [nix.POS]: pos$191,
+        [nix.POS]: $pos[190],
         testBackend: "nodes",
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$184, enable: true, refreshRate: "10s" })),
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[183], enable: true, refreshRate: "10s" })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$190,
+          [nix.POS]: $pos[189],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$186,
-            networkmanager: nix.thunk(() => ({ [nix.POS]: pos$185, enable: true })),
+            [nix.POS]: $pos[185],
+            networkmanager: nix.thunk(() => ({ [nix.POS]: $pos[184], enable: true })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$189,
+            [nix.POS]: $pos[188],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$188,
+              [nix.POS]: $pos[187],
               ModemManager: nix.thunk(() => ({
-                [nix.POS]: pos$187,
+                [nix.POS]: $pos[186],
                 enable: true,
                 wantedBy: nix.thunk(() => ["NetworkManager.service", "prometheus-modemmanager-exporter.service"]),
               })),
@@ -1421,26 +977,26 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
       const $_1 = nix.formals(args_1, formals$35);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$202,
+        [nix.POS]: $pos[201],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$192,
+          [nix.POS]: $pos[191],
           enable: true,
           environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mqtt-exporter-envfile", "MQTT_PASSWORD=testpassword\n")),
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$201,
+          [nix.POS]: $pos[200],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$197,
+            [nix.POS]: $pos[196],
             mosquitto: nix.thunk(() => ({
-              [nix.POS]: pos$196,
+              [nix.POS]: $pos[195],
               enable: true,
               listeners: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$195,
+                  [nix.POS]: $pos[194],
                   users: nix.thunk(() => ({
-                    [nix.POS]: pos$194,
+                    [nix.POS]: $pos[193],
                     exporter: nix.thunk(() => ({
-                      [nix.POS]: pos$193,
+                      [nix.POS]: $pos[192],
                       acl: nix.thunk(() => ["read #"]),
                       passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mosquitto-password", "testpassword")),
                     })),
@@ -1450,11 +1006,11 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$200,
+            [nix.POS]: $pos[199],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$199,
+              [nix.POS]: $pos[198],
               "prometheus-mqtt-exporter": nix.thunk(() => ({
-                [nix.POS]: pos$198,
+                [nix.POS]: $pos[197],
                 wants: nix.thunk(() => ["mosquitto.service"]),
                 after: nix.thunk(() => ["mosquitto.service"]),
               })),
@@ -1468,19 +1024,19 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
       const $_1 = nix.formals(args_1, formals$36);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$207,
+        [nix.POS]: $pos[206],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$203,
+          [nix.POS]: $pos[202],
           enable: true,
           runAsLocalSuperUser: true,
           configFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "test-prometheus-exporter-mysqld-config.my-cnf", "[client]\nuser = exporter\npassword = snakeoilpassword\n")),
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$206,
+          [nix.POS]: $pos[205],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$205,
+            [nix.POS]: $pos[204],
             mysql: nix.thunk(() => ({
-              [nix.POS]: pos$204,
+              [nix.POS]: $pos[203],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "mariadb")),
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mysql-init-script.sql", "CREATE USER 'exporter'@'localhost'\nIDENTIFIED BY 'snakeoilpassword'\nWITH MAX_USER_CONNECTIONS 3;\nGRANT PROCESS, REPLICATION CLIENT, SLAVE MONITOR, SELECT ON *.* TO 'exporter'@'localhost';\n")),
@@ -1494,27 +1050,27 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
       const $_1 = nix.formals(args_1, formals$37);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$221,
+        [nix.POS]: $pos[220],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$208,
+          [nix.POS]: $pos[207],
           enable: true,
           passwordFile: "/var/nextcloud-pwfile",
           url: "http://localhost",
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$220,
+          [nix.POS]: $pos[219],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$212,
+            [nix.POS]: $pos[211],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$211,
+              [nix.POS]: $pos[210],
               "nc-pwfile": nix.thunk(() => (() => {
                 const passfile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "pwfile", "snakeoilpw"));
                 return {
-                  [nix.POS]: pos$210,
+                  [nix.POS]: $pos[209],
                   requiredBy: nix.thunk(() => ["prometheus-nextcloud-exporter.service"]),
                   before: nix.thunk(() => ["prometheus-nextcloud-exporter.service"]),
                   serviceConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$209,
+                    [nix.POS]: $pos[208],
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/install -o nextcloud-exporter -m 0400 ${passfile} /var/nextcloud-pwfile
 `),
                   })),
@@ -1523,19 +1079,19 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$219,
+            [nix.POS]: $pos[218],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$218,
+              [nix.POS]: $pos[217],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$217,
+                [nix.POS]: $pos[216],
                 localhost: nix.thunk(() => ({
-                  [nix.POS]: pos$216,
-                  basicAuth: nix.thunk(() => ({ [nix.POS]: pos$213, "nextcloud-exporter": "snakeoilpw" })),
+                  [nix.POS]: $pos[215],
+                  basicAuth: nix.thunk(() => ({ [nix.POS]: $pos[212], "nextcloud-exporter": "snakeoilpw" })),
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$215,
+                    [nix.POS]: $pos[214],
                     "/": nix.thunk(() => ({
-                      [nix.POS]: pos$214,
+                      [nix.POS]: $pos[213],
                       root: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-nextcloud-exporter", "src")}/serverinfo/testdata`),
                       tryFiles: "/negative-space.json =404",
                     })),
@@ -1551,19 +1107,23 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
     nginx: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$38);
       return {
-        [nix.POS]: pos$228,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$222, enable: true, constLabels: nix.thunk(() => ["foo=bar"]) })),
+        [nix.POS]: $pos[227],
+        exporterConfig: nix.thunk(() => ({
+          [nix.POS]: $pos[221],
+          enable: true,
+          constLabels: nix.thunk(() => ["foo=bar"]),
+        })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$227,
+          [nix.POS]: $pos[226],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$226,
+            [nix.POS]: $pos[225],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$225,
+              [nix.POS]: $pos[224],
               enable: true,
               statusPage: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$224,
-                test: nix.thunk(() => ({ [nix.POS]: pos$223, extraConfig: "return 204;" })),
+                [nix.POS]: $pos[223],
+                test: nix.thunk(() => ({ [nix.POS]: $pos[222], extraConfig: "return 204;" })),
               })),
             })),
           })),
@@ -1574,29 +1134,29 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
     nginxlog: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$39);
       return {
-        [nix.POS]: pos$239,
+        [nix.POS]: $pos[238],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$235,
+          [nix.POS]: $pos[234],
           enable: true,
           group: "nginx",
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$234,
+            [nix.POS]: $pos[233],
             namespaces: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$230,
+                [nix.POS]: $pos[229],
                 name: "filelogger",
                 source: nix.thunk(() => ({
-                  [nix.POS]: pos$229,
+                  [nix.POS]: $pos[228],
                   files: nix.thunk(() => ["/var/log/nginx/filelogger.access.log"]),
                 })),
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$233,
+                [nix.POS]: $pos[232],
                 name: "syslogger",
                 source: nix.thunk(() => ({
-                  [nix.POS]: pos$232,
+                  [nix.POS]: $pos[231],
                   syslog: nix.thunk(() => ({
-                    [nix.POS]: pos$231,
+                    [nix.POS]: $pos[230],
                     listen_address: "udp://127.0.0.1:10000",
                     format: "rfc3164",
                     tags: nix.thunk(() => ["nginx"]),
@@ -1607,11 +1167,11 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
           })),
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$238,
+          [nix.POS]: $pos[237],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$237,
+            [nix.POS]: $pos[236],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$236,
+              [nix.POS]: $pos[235],
               enable: true,
               httpConfig: "server {\n  listen 80;\n  server_name filelogger.local;\n  access_log /var/log/nginx/filelogger.access.log;\n}\nserver {\n  listen 81;\n  server_name syslogger.local;\n  access_log syslog:server=127.0.0.1:10000,tag=nginx,severity=info;\n}\n",
             })),
@@ -1623,8 +1183,8 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
     node: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$40);
       return {
-        [nix.POS]: pos$241,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$240, enable: true })),
+        [nix.POS]: $pos[240],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[239], enable: true })),
         exporterTest: "wait_for_unit(\"prometheus-node-exporter.service\")\nwait_for_open_port(9100)\nsucceed(\n    \"curl -sSf http://localhost:9100/metrics | grep 'node_exporter_build_info{.\\\\+} 1'\"\n)\n",
       };
     })(), formals$40),
@@ -1632,26 +1192,26 @@ ${nix.sel(pkgs, "curl")}/bin/curl \\
       const $_1 = nix.formals(args_1, formals$41);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$250,
+        [nix.POS]: $pos[249],
         nodeName: "node_cert",
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$242, enable: true, paths: nix.thunk(() => ["/run/certs"]) })),
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[241], enable: true, paths: nix.thunk(() => ["/run/certs"]) })),
         exporterTest: "wait_for_unit(\"prometheus-node-cert-exporter.service\")\nwait_for_open_port(9141)\nsucceed(\"test -f /run/certs/node-cert.cert\")\nwait_until_succeeds(\n    \"curl -sSf http://localhost:9141/metrics | grep 'ssl_certificate_expiry_seconds{.\\\\+path=\\\"/run/certs/node-cert\\\\.cert\\\".\\\\+}'\"\n)\n",
         metricProvider: nix.lambda((args_2) => (() => {
           const $_2 = nix.formals(args_2, formals$42);
           const config = nix.arg($_2, "config");
           return {
-            [nix.POS]: pos$249,
+            [nix.POS]: $pos[248],
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$248,
+              [nix.POS]: $pos[247],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$247,
+                [nix.POS]: $pos[246],
                 "prometheus-node-cert-exporter": nix.thunk(() => ({
-                  [nix.POS]: pos$246,
+                  [nix.POS]: $pos[245],
                   serviceConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$245,
+                    [nix.POS]: $pos[244],
                     ExecStartPre: nix.thunk(() => (() => {
                       const createDir = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-                          [nix.POS]: pos$243,
+                          [nix.POS]: $pos[242],
                           name: "create-dir",
                           text: nix.thunk(() => (() => {
                             const from = nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "node-cert"));
@@ -1663,7 +1223,7 @@ chmod ug+rwx /run/certs
                           })()),
                         }))));
                       const createCerts = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-                          [nix.POS]: pos$244,
+                          [nix.POS]: $pos[243],
                           name: "create-certs",
                           text: nix.thunk(() => nix.str`cd /run/certs
 
@@ -1707,31 +1267,31 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
       const pkgs = nix.arg($_1, "pkgs");
       const lib_1 = nix.arg($_1, "lib");
       return {
-        [nix.POS]: pos$259,
+        [nix.POS]: $pos[258],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$251,
+          [nix.POS]: $pos[250],
           enable: true,
           connectionEnvFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "connstr-env", "PGBOUNCER_EXPORTER_CONNECTION_STRING=postgres://admin@localhost:6432/pgbouncer?sslmode=disable\n")}`),
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$258,
+          [nix.POS]: $pos[257],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$257,
-            postgresql: nix.thunk(() => ({ [nix.POS]: pos$252, enable: true })),
+            [nix.POS]: $pos[256],
+            postgresql: nix.thunk(() => ({ [nix.POS]: $pos[251], enable: true })),
             pgbouncer: nix.thunk(() => ({
-              [nix.POS]: pos$256,
+              [nix.POS]: $pos[255],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$255,
+                [nix.POS]: $pos[254],
                 pgbouncer: nix.thunk(() => ({
-                  [nix.POS]: pos$253,
+                  [nix.POS]: $pos[252],
                   listen_addr: "*",
                   auth_type: "any",
                   max_client_conn: 99n,
                   ignore_startup_parameters: "extra_float_digits",
                 })),
                 databases: nix.thunk(() => ({
-                  [nix.POS]: pos$254,
+                  [nix.POS]: $pos[253],
                   postgres: nix.thunk(() => nix.app(nix.sel(lib_1, "concatStringsSep"), " ", nix.thunk(() => ["host=/run/postgresql", "port=5432", "auth_user=postgres", "dbname=postgres"]))),
                 })),
               })),
@@ -1746,39 +1306,39 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
       const pkgs = nix.arg($_1, "pkgs");
       const lib_1 = nix.arg($_1, "lib");
       return {
-        [nix.POS]: pos$273,
+        [nix.POS]: $pos[272],
         nodeName: "php_fpm",
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$261,
+          [nix.POS]: $pos[260],
           enable: true,
           environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-              [nix.POS]: pos$260,
+              [nix.POS]: $pos[259],
               name: "/tmp/prometheus-php-fpm-exporter.env",
               text: "PHP_FPM_SCRAPE_URI=\"tcp://127.0.0.1:9000/status\"\n",
             })))),
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$272,
+          [nix.POS]: $pos[271],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$265,
+            [nix.POS]: $pos[264],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$263,
-              "php-fpm-exporter": nix.thunk(() => ({ [nix.POS]: pos$262, isSystemUser: true, group: "php-fpm-exporter" })),
+              [nix.POS]: $pos[262],
+              "php-fpm-exporter": nix.thunk(() => ({ [nix.POS]: $pos[261], isSystemUser: true, group: "php-fpm-exporter" })),
             })),
-            groups: nix.thunk(() => ({ [nix.POS]: pos$264, "php-fpm-exporter": nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: $pos[263], "php-fpm-exporter": nix.thunk(() => ({})) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$271,
+            [nix.POS]: $pos[270],
             phpfpm: nix.thunk(() => ({
-              [nix.POS]: pos$270,
+              [nix.POS]: $pos[269],
               pools: nix.thunk(() => ({
-                [nix.POS]: pos$269,
+                [nix.POS]: $pos[268],
                 "php-fpm-exporter": nix.thunk(() => ({
-                  [nix.POS]: pos$268,
+                  [nix.POS]: $pos[267],
                   user: "php-fpm-exporter",
                   group: "php-fpm-exporter",
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$266,
+                    [nix.POS]: $pos[265],
                     pm: "dynamic",
                     "pm.max_children": 32n,
                     "pm.max_requests": 500n,
@@ -1790,7 +1350,7 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
                     "listen.allowed_clients": "127.0.0.1",
                   })),
                   phpEnv: nix.thunk(() => ({
-                    [nix.POS]: pos$267,
+                    [nix.POS]: $pos[266],
                     PATH: nix.thunk(() => nix.app(nix.sel(lib_1, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "php"))]))),
                   })),
                 })),
@@ -1804,33 +1364,33 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
     ping: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$45);
       return {
-        [nix.POS]: pos$282,
+        [nix.POS]: $pos[281],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$281,
+          [nix.POS]: $pos[280],
           enable: true,
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$280,
+            [nix.POS]: $pos[279],
             targets: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$274,
+                [nix.POS]: $pos[273],
                 host: "localhost",
                 alias: "local machine",
                 env: "prod",
                 type: "domain",
               })),
-              nix.thunk(() => ({ [nix.POS]: pos$275, host: "127.0.0.1", alias: "local machine", type: "v4" })),
-              nix.thunk(() => ({ [nix.POS]: pos$276, host: "::1", alias: "local machine", type: "v6" })),
-              nix.thunk(() => ({ [nix.POS]: pos$277, host: "google.com" })),
+              nix.thunk(() => ({ [nix.POS]: $pos[274], host: "127.0.0.1", alias: "local machine", type: "v4" })),
+              nix.thunk(() => ({ [nix.POS]: $pos[275], host: "::1", alias: "local machine", type: "v6" })),
+              nix.thunk(() => ({ [nix.POS]: $pos[276], host: "google.com" })),
             ]),
             dns: nix.thunk(() => ({})),
             ping: nix.thunk(() => ({
-              [nix.POS]: pos$278,
+              [nix.POS]: $pos[277],
               interval: "2s",
               timeout: "3s",
               "history-size": 42n,
               "payload-size": 56n,
             })),
-            log: nix.thunk(() => ({ [nix.POS]: pos$279, level: "warn" })),
+            log: nix.thunk(() => ({ [nix.POS]: $pos[278], level: "warn" })),
           })),
         })),
         exporterTest: "wait_for_unit(\"prometheus-ping-exporter.service\")\nwait_for_open_port(9427)\nsucceed(\"curl -sSf http://localhost:9427/metrics | grep 'ping_up{.*} 1'\")\n",
@@ -1839,13 +1399,13 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
     postfix: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$46);
       return {
-        [nix.POS]: pos$287,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$283, enable: true })),
+        [nix.POS]: $pos[286],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[282], enable: true })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$286,
+          [nix.POS]: $pos[285],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$285,
-            postfix: nix.thunk(() => ({ [nix.POS]: pos$284, enable: true })),
+            [nix.POS]: $pos[284],
+            postfix: nix.thunk(() => ({ [nix.POS]: $pos[283], enable: true })),
           })),
         })),
         exporterTest: "wait_for_unit(\"prometheus-postfix-exporter.service\")\nwait_for_file(\"/var/lib/postfix/queue/public/showq\")\nwait_for_open_port(9154)\nwait_until_succeeds(\n    \"curl -sSf http://localhost:9154/metrics | grep 'postfix_up{path=\\\"unix:///var/lib/postfix/queue/public/showq\\\"} 1'\"\n)\nsucceed(\n    \"curl -sSf http://localhost:9154/metrics | grep 'postfix_smtpd_connects_total 0'\"\n)\nsucceed(\"curl -sSf http://localhost:9154/metrics | grep 'postfix_up{.*} 1'\")\n",
@@ -1854,13 +1414,13 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
     postgres: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$47);
       return {
-        [nix.POS]: pos$292,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$288, enable: true, runAsLocalSuperUser: true })),
+        [nix.POS]: $pos[291],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[287], enable: true, runAsLocalSuperUser: true })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$291,
+          [nix.POS]: $pos[290],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$290,
-            postgresql: nix.thunk(() => ({ [nix.POS]: pos$289, enable: true })),
+            [nix.POS]: $pos[289],
+            postgresql: nix.thunk(() => ({ [nix.POS]: $pos[288], enable: true })),
           })),
         })),
         exporterTest: "wait_for_unit(\"prometheus-postgres-exporter.service\")\nwait_for_open_port(9187)\nwait_for_unit(\"postgresql.target\")\nsucceed(\n    \"curl -sSf http://localhost:9187/metrics | grep 'pg_exporter_last_scrape_error 0'\"\n)\nsucceed(\"curl -sSf http://localhost:9187/metrics | grep 'pg_up 1'\")\nsystemctl(\"stop postgresql\")\nsucceed(\n    \"curl -sSf http://localhost:9187/metrics | grep -v 'pg_exporter_last_scrape_error 0'\"\n)\nsucceed(\"curl -sSf http://localhost:9187/metrics | grep 'pg_up 0'\")\nsystemctl(\"start postgresql\")\nwait_for_unit(\"postgresql.target\")\nsucceed(\n    \"curl -sSf http://localhost:9187/metrics | grep 'pg_exporter_last_scrape_error 0'\"\n)\nsucceed(\"curl -sSf http://localhost:9187/metrics | grep 'pg_up 1'\")\n",
@@ -1869,15 +1429,15 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
     process: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$48);
       return {
-        [nix.POS]: pos$296,
+        [nix.POS]: $pos[295],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$295,
+          [nix.POS]: $pos[294],
           enable: true,
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$294,
+            [nix.POS]: $pos[293],
             process_names: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$293,
+                [nix.POS]: $pos[292],
                 name: "{{.Matches.Wrapped}} {{ .Matches.Args }}",
                 cmdline: nix.thunk(() => ["^/nix/store[^ ]*/(?P<Wrapped>[^ /]*) (?P<Args>.*)"]),
               })),
@@ -1891,39 +1451,39 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
       const $_1 = nix.formals(args_1, formals$49);
       const pkgs = nix.arg($_1, "pkgs");
       const pveExporterEnvFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-          [nix.POS]: pos$297,
+          [nix.POS]: $pos[296],
           name: "pve.env",
           text: "PVE_USER=\"test_user@pam\"\nPVE_PASSWORD=\"hunter3\"\nPVE_VERIFY_SSL=\"false\"\n",
         }))));
       return {
-        [nix.POS]: pos$299,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$298, enable: true, environmentFile: pveExporterEnvFile })),
+        [nix.POS]: $pos[298],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[297], enable: true, environmentFile: pveExporterEnvFile })),
         exporterTest: "wait_for_unit(\"prometheus-pve-exporter.service\")\nwait_for_open_port(9221)\nwait_until_succeeds(\"curl localhost:9221\")\n",
       };
     })(), formals$49),
     "py-air-control": nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$50);
       return {
-        [nix.POS]: pos$301,
+        [nix.POS]: $pos[300],
         nodeName: "py_air_control",
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$300, enable: true, deviceHostname: "127.0.0.1" })),
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[299], enable: true, deviceHostname: "127.0.0.1" })),
         exporterTest: "wait_for_unit(\"prometheus-py-air-control-exporter.service\")\nwait_for_open_port(9896)\nsucceed(\n    \"curl -sSf http://localhost:9896/metrics | grep 'py_air_control_sampling_error_total'\"\n)\n",
       };
     })(), formals$50),
     redis: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$51);
       return {
-        [nix.POS]: pos$308,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$302, enable: true })),
+        [nix.POS]: $pos[307],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[301], enable: true })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$307,
+          [nix.POS]: $pos[306],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$306,
+            [nix.POS]: $pos[305],
             redis: nix.thunk(() => ({
-              [nix.POS]: pos$305,
+              [nix.POS]: $pos[304],
               servers: nix.thunk(() => ({
-                [nix.POS]: pos$304,
-                "": nix.thunk(() => ({ [nix.POS]: pos$303, enable: true })),
+                [nix.POS]: $pos[303],
+                "": nix.thunk(() => ({ [nix.POS]: $pos[302], enable: true })),
               })),
             })),
           })),
@@ -1937,24 +1497,28 @@ ${nix.sel(pkgs, "gnutls")}/bin/certtool     \\
       const repository = "rest:http://127.0.0.1:8000";
       const passwordFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "restic-test-password", "test-password"));
       return {
-        [nix.POS]: pos$315,
+        [nix.POS]: $pos[314],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$309,
+          [nix.POS]: $pos[308],
           enable: true,
           repository: repository,
           passwordFile: passwordFile,
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$314,
+          [nix.POS]: $pos[313],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$312,
+            [nix.POS]: $pos[311],
             restic: nix.thunk(() => ({
-              [nix.POS]: pos$311,
-              server: nix.thunk(() => ({ [nix.POS]: pos$310, enable: true, extraFlags: nix.thunk(() => ["--no-auth"]) })),
+              [nix.POS]: $pos[310],
+              server: nix.thunk(() => ({
+                [nix.POS]: $pos[309],
+                enable: true,
+                extraFlags: nix.thunk(() => ["--no-auth"]),
+              })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$313,
+            [nix.POS]: $pos[312],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "restic"))]),
           })),
         })),
@@ -1976,16 +1540,16 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     rtl_433: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$53);
       return {
-        [nix.POS]: pos$320,
+        [nix.POS]: $pos[319],
         pkgsReadOnly: false,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$316, enable: true })),
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[315], enable: true })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$319,
+          [nix.POS]: $pos[318],
           nixpkgs: nix.thunk(() => ({
-            [nix.POS]: pos$318,
+            [nix.POS]: $pos[317],
             overlays: nix.thunk(() => [
               (self) => (super$) => ({
-                [nix.POS]: pos$317,
+                [nix.POS]: $pos[316],
                 rtl_433: nix.thunk(() => nix.app(nix.sel(self, "runCommand"), "rtl_433", nix.thunk(() => ({})), "mkdir -p \"$out/bin\"\ncat <<EOF > \"$out/bin/rtl_433\"\n#!/bin/sh\nwhile true; do\n  printf '{\"time\" : \"2020-04-26 13:37:42\", \"model\" : \"zopieux\", \"id\" : 55, \"channel\" : 3, \"temperature_C\" : 18.000}\\n'\n  sleep 4\ndone\nEOF\nchmod +x \"$out/bin/rtl_433\"\n")),
               }),
             ]),
@@ -1997,30 +1561,30 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     sabnzbd: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$54);
       return {
-        [nix.POS]: pos$329,
+        [nix.POS]: $pos[328],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$322,
+          [nix.POS]: $pos[321],
           enable: true,
           servers: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$321,
+              [nix.POS]: $pos[320],
               baseUrl: "http://localhost:8080",
               apiKeyFile: "/var/sabnzbd-apikey",
             })),
           ]),
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$328,
+          [nix.POS]: $pos[327],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$324,
-            sabnzbd: nix.thunk(() => ({ [nix.POS]: pos$323, enable: true })),
+            [nix.POS]: $pos[323],
+            sabnzbd: nix.thunk(() => ({ [nix.POS]: $pos[322], enable: true })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$327,
+            [nix.POS]: $pos[326],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$326,
+              [nix.POS]: $pos[325],
               "sabnzbd-apikey": nix.thunk(() => ({
-                [nix.POS]: pos$325,
+                [nix.POS]: $pos[324],
                 requires: nix.thunk(() => ["sabnzbd.service"]),
                 after: nix.thunk(() => ["sabnzbd.service"]),
                 requiredBy: nix.thunk(() => ["prometheus-sabnzbd-exporter.service"]),
@@ -2037,9 +1601,9 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
       const $_1 = nix.formals(args_1, formals$55);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$331,
+        [nix.POS]: $pos[330],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$330,
+          [nix.POS]: $pos[329],
           enable: true,
           "metrics-file": nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "test.json", "{}")}`),
         })),
@@ -2049,15 +1613,15 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     script: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$56);
       return {
-        [nix.POS]: pos$335,
+        [nix.POS]: $pos[334],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$334,
+          [nix.POS]: $pos[333],
           enable: true,
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$333,
+            [nix.POS]: $pos[332],
             scripts: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$332,
+                [nix.POS]: $pos[331],
                 name: "success",
                 command: nix.thunk(() => ["sleep"]),
                 args: nix.thunk(() => ["1"]),
@@ -2071,41 +1635,41 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     smartctl: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$57);
       return {
-        [nix.POS]: pos$337,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$336, enable: true, devices: nix.thunk(() => ["/dev/vda"]) })),
+        [nix.POS]: $pos[336],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[335], enable: true, devices: nix.thunk(() => ["/dev/vda"]) })),
         exporterTest: "wait_until_succeeds(\n    'journalctl -eu prometheus-smartctl-exporter.service -o cat | grep -q \"devices=/dev/vda\"'\n)\n",
       };
     })(), formals$57),
     smokeping: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$58);
       return {
-        [nix.POS]: pos$339,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$338, enable: true, hosts: nix.thunk(() => ["127.0.0.1"]) })),
+        [nix.POS]: $pos[338],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[337], enable: true, hosts: nix.thunk(() => ["127.0.0.1"]) })),
         exporterTest: "wait_for_unit(\"prometheus-smokeping-exporter.service\")\nwait_for_open_port(9374)\nwait_until_succeeds(\n    \"curl -sSf localhost:9374/metrics | grep '{}' | grep -v ' 0$'\".format(\n        'smokeping_requests_total{host=\"127.0.0.1\",ip=\"127.0.0.1\",source=\"\",tos=\"0\"} '\n    )\n)\nwait_until_succeeds(\n    \"curl -sSf localhost:9374/metrics | grep '{}'\".format(\n        'smokeping_response_ttl{host=\"127.0.0.1\",ip=\"127.0.0.1\",source=\"\",tos=\"0\"}'\n    )\n)\n",
       };
     })(), formals$58),
     storagebox: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$59);
       return {
-        [nix.POS]: pos$341,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$340, enable: true, tokenFile: "/tmp/faketoken" })),
+        [nix.POS]: $pos[340],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[339], enable: true, tokenFile: "/tmp/faketoken" })),
         exporterTest: "succeed(\n  'echo faketoken > /tmp/faketoken'\n)\nwait_for_unit(\"prometheus-storagebox-exporter.service\")\nwait_for_open_port(9509)\nsucceed(\"curl -sSf localhost:9509/metrics | grep 'process_open_fds'\")\n",
       };
     })(), formals$59),
     snmp: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$60);
       return {
-        [nix.POS]: pos$347,
+        [nix.POS]: $pos[346],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$346,
+          [nix.POS]: $pos[345],
           enable: true,
           configuration: nix.thunk(() => ({
-            [nix.POS]: pos$345,
+            [nix.POS]: $pos[344],
             auths: nix.thunk(() => ({
-              [nix.POS]: pos$343,
-              public_v2: nix.thunk(() => ({ [nix.POS]: pos$342, community: "public", version: 2n })),
+              [nix.POS]: $pos[342],
+              public_v2: nix.thunk(() => ({ [nix.POS]: $pos[341], community: "public", version: 2n })),
             })),
-            modules: nix.thunk(() => ({ [nix.POS]: pos$344, test: nix.thunk(() => ({})) })),
+            modules: nix.thunk(() => ({ [nix.POS]: $pos[343], test: nix.thunk(() => ({})) })),
           })),
         })),
         exporterTest: "wait_for_unit(\"prometheus-snmp-exporter.service\")\nwait_for_open_port(9116)\nsucceed(\"curl -sSf localhost:9116/metrics | grep 'snmp_request_errors_total 0'\")\n",
@@ -2115,9 +1679,9 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
       const $_1 = nix.formals(args_1, formals$61);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$349,
+        [nix.POS]: $pos[348],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$348,
+          [nix.POS]: $pos[347],
           enable: true,
           account: "dummy",
           username: "dummy",
@@ -2131,23 +1695,23 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     sql: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$62);
       return {
-        [nix.POS]: pos$362,
+        [nix.POS]: $pos[361],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$355,
+          [nix.POS]: $pos[354],
           configuration: nix.thunk(() => ({
-            [nix.POS]: pos$354,
+            [nix.POS]: $pos[353],
             jobs: nix.thunk(() => ({
-              [nix.POS]: pos$353,
+              [nix.POS]: $pos[352],
               points: nix.thunk(() => ({
-                [nix.POS]: pos$352,
+                [nix.POS]: $pos[351],
                 interval: "1m",
                 connections: nix.thunk(() => [
                   "postgres://prometheus-sql-exporter@/data?host=/run/postgresql&sslmode=disable",
                 ]),
                 queries: nix.thunk(() => ({
-                  [nix.POS]: pos$351,
+                  [nix.POS]: $pos[350],
                   points: nix.thunk(() => ({
-                    [nix.POS]: pos$350,
+                    [nix.POS]: $pos[349],
                     labels: nix.thunk(() => ["name"]),
                     help: "Amount of points accumulated per person",
                     values: nix.thunk(() => ["amount"]),
@@ -2161,20 +1725,20 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
           user: "prometheus-sql-exporter",
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$361,
+          [nix.POS]: $pos[360],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$357,
+            [nix.POS]: $pos[356],
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$356,
+              [nix.POS]: $pos[355],
               enable: true,
               initialScript: nix.thunk(() => nix.builtins.toFile("init.sql", "CREATE DATABASE data;\n\\c data;\nCREATE TABLE points (amount INT, name TEXT);\nINSERT INTO points(amount, name) VALUES (1, 'jack');\nINSERT INTO points(amount, name) VALUES (2, 'jill');\nINSERT INTO points(amount, name) VALUES (3, 'jack');\n\nCREATE USER \"prometheus-sql-exporter\";\nGRANT ALL PRIVILEGES ON DATABASE data TO \"prometheus-sql-exporter\";\nGRANT SELECT ON points TO \"prometheus-sql-exporter\";\n")),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$360,
+            [nix.POS]: $pos[359],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$359,
-              "prometheus-sql-exporter": nix.thunk(() => ({ [nix.POS]: pos$358, after: nix.thunk(() => ["postgresql.target"]) })),
+              [nix.POS]: $pos[358],
+              "prometheus-sql-exporter": nix.thunk(() => ({ [nix.POS]: $pos[357], after: nix.thunk(() => ["postgresql.target"]) })),
             })),
           })),
         })),
@@ -2184,37 +1748,37 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     statsd: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$63);
       return {
-        [nix.POS]: pos$364,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$363, enable: true })),
+        [nix.POS]: $pos[363],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[362], enable: true })),
         exporterTest: "wait_for_unit(\"prometheus-statsd-exporter.service\")\nwait_for_open_port(9102)\nsucceed(\"curl http://localhost:9102/metrics | grep 'statsd_exporter_build_info{'\")\nwait_until_succeeds(\n  \"echo 'test.udp:1|c' > /dev/udp/localhost/9125 && \\\n  curl http://localhost:9102/metrics | grep 'test_udp 1'\",\n  timeout=10\n)\nwait_until_succeeds(\n  \"echo 'test.tcp:1|c' > /dev/tcp/localhost/9125 && \\\n  curl http://localhost:9102/metrics | grep 'test_tcp 1'\",\n  timeout=10\n)\n",
       };
     })(), formals$63),
     surfboard: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$64);
       return {
-        [nix.POS]: pos$376,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$365, enable: true, modemAddress: "localhost" })),
+        [nix.POS]: $pos[375],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[364], enable: true, modemAddress: "localhost" })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$375,
+          [nix.POS]: $pos[374],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$368,
+            [nix.POS]: $pos[367],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$367,
-              "prometheus-surfboard-exporter": nix.thunk(() => ({ [nix.POS]: pos$366, after: nix.thunk(() => ["nginx.service"]) })),
+              [nix.POS]: $pos[366],
+              "prometheus-surfboard-exporter": nix.thunk(() => ({ [nix.POS]: $pos[365], after: nix.thunk(() => ["nginx.service"]) })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$374,
+            [nix.POS]: $pos[373],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$373,
+              [nix.POS]: $pos[372],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$372,
+                [nix.POS]: $pos[371],
                 localhost: nix.thunk(() => ({
-                  [nix.POS]: pos$371,
+                  [nix.POS]: $pos[370],
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$370,
-                    "/cgi-bin/status": nix.thunk(() => ({ [nix.POS]: pos$369, extraConfig: "return 204;\n" })),
+                    [nix.POS]: $pos[369],
+                    "/cgi-bin/status": nix.thunk(() => ({ [nix.POS]: $pos[368], extraConfig: "return 204;\n" })),
                   })),
                 })),
               })),
@@ -2227,9 +1791,9 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     systemd: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$65);
       return {
-        [nix.POS]: pos$378,
+        [nix.POS]: $pos[377],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$377,
+          [nix.POS]: $pos[376],
           enable: true,
           extraFlags: nix.thunk(() => ["--systemd.collector.enable-restart-count"]),
         })),
@@ -2241,11 +1805,11 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
       const $_1 = nix.formals(args_1, formals$66);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$381,
+        [nix.POS]: $pos[380],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$380,
+          [nix.POS]: $pos[379],
           package: nix.thunk(() => nix.app(nix.sel(pkgs, "prometheus-tailscale-exporter", "overrideAttrs"), nix.thunk(() => ({
-              [nix.POS]: pos$379,
+              [nix.POS]: $pos[378],
               patches: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "allow-running-without-credentials", "diff --git a/cmd/tailscale-exporter/root.go b/cmd/tailscale-exporter/root.go\nindex 14089f9..2bb9a25 100644\n--- a/cmd/tailscale-exporter/root.go\n+++ b/cmd/tailscale-exporter/root.go\n@@ -162,13 +162,6 @@ func runExporter(cmd *cobra.Command, args []string) error {\n\t\t}\n\n\t\thttpClient := oauthConfig.Client(context.Background())\n-\t\ttoken, err := oauthConfig.Token(context.Background())\n-\t\tif err != nil {\n-\t\t\treturn fmt.Errorf(\"failed to obtain OAuth token: %w\", err)\n-\t\t}\n-\t\tlogger.Info(\"OAuth token obtained\", \"token_type\", token.TokenType)\n-\t\tlogger.Info(\"Successfully obtained OAuth token\", \"expires\", token.Expiry)\n-\n\t\ttsCollector, err := tailscale.NewTailscaleCollector(\n\t\t\tlogger,\n\t\t\thttpClient,\n")),
               ]),
@@ -2259,10 +1823,10 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     unpoller: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$67);
       return {
-        [nix.POS]: pos$383,
+        [nix.POS]: $pos[382],
         nodeName: "unpoller",
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$382,
+          [nix.POS]: $pos[381],
           enable: true,
           controllers: nix.thunk(() => [nix.thunk(() => ({}))]),
         })),
@@ -2272,29 +1836,29 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     unbound: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$68);
       return {
-        [nix.POS]: pos$393,
+        [nix.POS]: $pos[392],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$385,
+          [nix.POS]: $pos[384],
           enable: true,
-          unbound: nix.thunk(() => ({ [nix.POS]: pos$384, host: "unix:///run/unbound/unbound.ctl" })),
+          unbound: nix.thunk(() => ({ [nix.POS]: $pos[383], host: "unix:///run/unbound/unbound.ctl" })),
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$392,
+          [nix.POS]: $pos[391],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$387,
+            [nix.POS]: $pos[386],
             unbound: nix.thunk(() => ({
-              [nix.POS]: pos$386,
+              [nix.POS]: $pos[385],
               enable: true,
               localControlSocketPath: "/run/unbound/unbound.ctl",
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$391,
+            [nix.POS]: $pos[390],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$390,
+              [nix.POS]: $pos[389],
               "prometheus-unbound-exporter": nix.thunk(() => ({
-                [nix.POS]: pos$389,
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$388, SupplementaryGroups: nix.thunk(() => ["unbound"]) })),
+                [nix.POS]: $pos[388],
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[387], SupplementaryGroups: nix.thunk(() => ["unbound"]) })),
               })),
             })),
           })),
@@ -2305,54 +1869,58 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     v2ray: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$69);
       return {
-        [nix.POS]: pos$411,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$394, enable: true })),
+        [nix.POS]: $pos[410],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[393], enable: true })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$410,
+          [nix.POS]: $pos[409],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$397,
+            [nix.POS]: $pos[396],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$396,
-              "prometheus-nginx-exporter": nix.thunk(() => ({ [nix.POS]: pos$395, after: nix.thunk(() => ["v2ray.service"]) })),
+              [nix.POS]: $pos[395],
+              "prometheus-nginx-exporter": nix.thunk(() => ({ [nix.POS]: $pos[394], after: nix.thunk(() => ["v2ray.service"]) })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$409,
+            [nix.POS]: $pos[408],
             v2ray: nix.thunk(() => ({
-              [nix.POS]: pos$408,
+              [nix.POS]: $pos[407],
               enable: true,
               config: nix.thunk(() => ({
-                [nix.POS]: pos$407,
+                [nix.POS]: $pos[406],
                 stats: nix.thunk(() => ({})),
-                api: nix.thunk(() => ({ [nix.POS]: pos$398, tag: "api", services: nix.thunk(() => ["StatsService"]) })),
+                api: nix.thunk(() => ({
+                  [nix.POS]: $pos[397],
+                  tag: "api",
+                  services: nix.thunk(() => ["StatsService"]),
+                })),
                 inbounds: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$399, port: 1080n, listen: "127.0.0.1", protocol: "http" })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[398], port: 1080n, listen: "127.0.0.1", protocol: "http" })),
                   nix.thunk(() => ({
-                    [nix.POS]: pos$401,
+                    [nix.POS]: $pos[400],
                     listen: "127.0.0.1",
                     port: 54321n,
                     protocol: "dokodemo-door",
-                    settings: nix.thunk(() => ({ [nix.POS]: pos$400, address: "127.0.0.1" })),
+                    settings: nix.thunk(() => ({ [nix.POS]: $pos[399], address: "127.0.0.1" })),
                     tag: "api",
                   })),
                 ]),
                 outbounds: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$402, protocol: "freedom" })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[401], protocol: "freedom" })),
                   nix.thunk(() => ({
-                    [nix.POS]: pos$403,
+                    [nix.POS]: $pos[402],
                     protocol: "freedom",
                     settings: nix.thunk(() => ({})),
                     tag: "api",
                   })),
                 ]),
                 routing: nix.thunk(() => ({
-                  [nix.POS]: pos$406,
+                  [nix.POS]: $pos[405],
                   strategy: "rules",
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$405,
+                    [nix.POS]: $pos[404],
                     rules: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$404,
+                        [nix.POS]: $pos[403],
                         inboundTag: nix.thunk(() => ["api"]),
                         outboundTag: "api",
                         type: "field",
@@ -2370,26 +1938,26 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
     varnish: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$70);
       return {
-        [nix.POS]: pos$419,
+        [nix.POS]: $pos[418],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$412,
+          [nix.POS]: $pos[411],
           enable: true,
           instance: "/var/run/varnishd",
           group: "varnish",
         })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$418,
+          [nix.POS]: $pos[417],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$415,
+            [nix.POS]: $pos[414],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$414,
-              "prometheus-varnish-exporter": nix.thunk(() => ({ [nix.POS]: pos$413, after: nix.thunk(() => ["varnish.service"]) })),
+              [nix.POS]: $pos[413],
+              "prometheus-varnish-exporter": nix.thunk(() => ({ [nix.POS]: $pos[412], after: nix.thunk(() => ["varnish.service"]) })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$417,
+            [nix.POS]: $pos[416],
             varnish: nix.thunk(() => ({
-              [nix.POS]: pos$416,
+              [nix.POS]: $pos[415],
               enable: true,
               config: "vcl 4.0;\nbackend default {\n  .host = \"127.0.0.1\";\n  .port = \"80\";\n}\n",
             })),
@@ -2405,27 +1973,27 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
       const snakeoil = nix.thunk(() => nix.builtins.import(nix.path(here, "./wireguard/snakeoil-keys.nix")));
       const publicKeyWithoutNewlines = nix.thunk(() => nix.app(nix.sel(lib_1, "replaceStrings"), nix.thunk(() => ["\n"]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(snakeoil, "peer1", "publicKey"))));
       return {
-        [nix.POS]: pos$430,
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$420, enable: true })),
+        [nix.POS]: $pos[429],
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[419], enable: true })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$429,
+          [nix.POS]: $pos[428],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$425,
+            [nix.POS]: $pos[424],
             wireguard: nix.thunk(() => ({
-              [nix.POS]: pos$424,
+              [nix.POS]: $pos[423],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$423,
+                [nix.POS]: $pos[422],
                 wg0: nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.sel(snakeoil, "peer0"));
                   return {
-                  [nix.POS]: pos$422,
+                  [nix.POS]: $pos[421],
                   ips: nix.thunk(() => ["10.23.42.1/32", "fc00::1/128"]),
                   listenPort: 23542n,
                   privateKey: nix.thunk(() => nix.attr(from, "privateKey")),
                   peers: nix.thunk(() => nix.app(nix.sel(lib_1, "singleton"), nix.thunk(() => (() => {
                       const from_1 = nix.thunk(() => nix.sel(snakeoil, "peer1"));
                       return {
-                      [nix.POS]: pos$421,
+                      [nix.POS]: $pos[420],
                       allowedIPs: nix.thunk(() => ["10.23.42.2/32", "fc00::2/128"]),
                       publicKey: nix.thunk(() => nix.attr(from_1, "publicKey")),
                     };
@@ -2436,10 +2004,10 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$428,
+            [nix.POS]: $pos[427],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$427,
-              "prometheus-wireguard-exporter": nix.thunk(() => ({ [nix.POS]: pos$426, after: nix.thunk(() => ["wireguard-wg0.service"]) })),
+              [nix.POS]: $pos[426],
+              "prometheus-wireguard-exporter": nix.thunk(() => ({ [nix.POS]: $pos[425], after: nix.thunk(() => ["wireguard-wg0.service"]) })),
             })),
           })),
         })),
@@ -2455,9 +2023,9 @@ wait_until_succeeds(
       const $_1 = nix.formals(args_1, formals$72);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$432,
+        [nix.POS]: $pos[431],
         exporterConfig: nix.thunk(() => ({
-          [nix.POS]: pos$431,
+          [nix.POS]: $pos[430],
           enable: true,
           configFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "yace-config.yml", "apiVersion: v1alpha1\nsts-region: us-east-1\ndiscovery:\n  jobs:\n    - type: AWS/EC2\n      regions: [us-east-1]\n      metrics:\n        - name: CPUUtilization\n          statistics: [Average]\n")),
         })),
@@ -2467,13 +2035,13 @@ wait_until_succeeds(
     zfs: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$73);
       return {
-        [nix.POS]: pos$437,
+        [nix.POS]: $pos[436],
         testBackend: "nodes",
-        exporterConfig: nix.thunk(() => ({ [nix.POS]: pos$433, enable: true })),
+        exporterConfig: nix.thunk(() => ({ [nix.POS]: $pos[432], enable: true })),
         metricProvider: nix.thunk(() => ({
-          [nix.POS]: pos$436,
-          boot: nix.thunk(() => ({ [nix.POS]: pos$434, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$435, hostId: "7327ded7" })),
+          [nix.POS]: $pos[435],
+          boot: nix.thunk(() => ({ [nix.POS]: $pos[433], supportedFilesystems: nix.thunk(() => ["zfs"]) })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[434], hostId: "7327ded7" })),
         })),
         exporterTest: "wait_for_unit(\"prometheus-zfs-exporter.service\")\nwait_for_unit(\"zfs.target\")\nwait_for_open_port(9134)\nwait_until_succeeds(\"curl -f localhost:9134/metrics | grep 'zfs_scrape_collector_success{.*} 1'\")\n",
       };
@@ -2483,14 +2051,14 @@ wait_until_succeeds(
         const $_1 = nix.formals(args_1, formals$74);
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
-        const testConfig = nix.thunk(() => nix.app(testConfigFun, nix.thunk(() => ({ [nix.POS]: pos$439, pkgs: pkgs, lib: lib_1 }))));
+        const testConfig = nix.thunk(() => nix.app(testConfigFun, nix.thunk(() => ({ [nix.POS]: $pos[438], pkgs: pkgs, lib: lib_1 }))));
         const testBackend = nix.thunk(() => nix.selOr(testConfig, () => "containers", "testBackend"));
         const nodeName = "machine";
         return nix.attrsDyn({
-          [nix.POS]: pos$445,
+          [nix.POS]: $pos[444],
           name: nix.thunk(() => nix.str`prometheus-${exporter}-exporter`),
           node: nix.thunk(() => ({
-            [nix.POS]: pos$440,
+            [nix.POS]: $pos[439],
             pkgsReadOnly: nix.thunk(() => nix.selOr(testConfig, () => true, "pkgsReadOnly")),
           })),
           testScript: nix.thunk(() => nix.str`${nodeName}.start()
@@ -2502,18 +2070,18 @@ ${nix.app(nix.sel(lib_1, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins
                 ]))) ? nix.force(line) : nix.str`${nodeName}.${line}`), nix.thunk(() => nix.app(nix.sel(lib_1, "splitString"), "\n", nix.thunk(() => nix.app(nix.sel(lib_1, "removeSuffix"), "\n", nix.thunk(() => nix.sel(testConfig, "exporterTest")))))))))}
 `),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$441,
+            [nix.POS]: $pos[440],
             maintainers: nix.thunk(() => nix.selOr(testConfig, () => [], "maintainers")),
           })),
         }, [
           [nix.force(testBackend), nix.thunk(() => nix.attrsDyn({}, [
             [nodeName, nix.thunk(() => nix.app(nix.sel(lib_1, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$444,
+                  [nix.POS]: $pos[443],
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$443,
+                    [nix.POS]: $pos[442],
                     prometheus: nix.thunk(() => ({
-                      [nix.POS]: pos$442,
+                      [nix.POS]: $pos[441],
                       exporters: nix.thunk(() => nix.attrsDyn({}, [
                         [nix.force(exporter), nix.thunk(() => nix.sel(testConfig, "exporterConfig"))],
                       ])),

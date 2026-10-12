@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["postPatch", 43, 3], ["build-system", 52, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 70, 3], ["disabledTests", 75, 3], ["disabledTestPaths", 81, 3], ["pythonImportsCheck", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, setuptools: false, "setuptools-scm": false, numpy: false, "scikit-image": false, torchvision: false, torch: false, runstats: false, "pytorch-lightning": false, h5py: false, pyyaml: false, torchmetrics: false, pandas: false, pytestCheckHook: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["postPatch", 43, 3], ["build-system", 52, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 70, 3], ["disabledTests", 75, 3], ["disabledTestPaths", 81, 3], ["pythonImportsCheck", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fastmri",
       version: "0.3.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebookresearch",
           repo: "fastMRI",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_modules.py"]),
       pythonImportsCheck: nix.thunk(() => ["fastmri"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pytorch-based MRI reconstruction tooling",
         homepage: "https://github.com/facebookresearch/fastMRI",
         changelog: nix.thunk(() => nix.str`https://github.com/facebookresearch/fastMRI/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

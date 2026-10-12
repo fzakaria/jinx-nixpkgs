@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["pythonRelaxDeps", 32, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 49, 3], ["disabledTestPaths", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pythonRelaxDepsHook: false, requests: false, cryptography: false, pyjwt: false, websockets: false, backoff: false, pytestCheckHook: false, "requests-mock": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["pythonRelaxDeps", 32, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 49, 3], ["disabledTestPaths", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coinbase",
           repo: "coinbase-advanced-py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["coinbase", "coinbase.rest", "coinbase.websocket"]);
       const disabledTestPaths = nix.thunk(() => ["tests/websocket/"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Coinbase Advanced API Python SDK",
         homepage: "https://github.com/coinbase/coinbase-advanced-py",
         changelog: nix.thunk(() => nix.str`https://github.com/coinbase/coinbase-advanced-py/releases/tag/v${version}`),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jamiemagee"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

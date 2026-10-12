@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["NIX_CFLAGS_COMPILE", 57, 7]], [["homepage", 77, 5], ["description", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5], ["license", 84, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["hardeningDisable", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["preConfigure", 53, 3], ["env", 57, 3], ["cmakeFlags", 59, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gfortran: false, mpi: false, blas: false, liblapack: false, "pkg-config": false, libGL: false, libGLU: false, "opencascade-occt": false, qt6Packages: false, onetbb: false, vtkWithQt6: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["description", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5], ["license", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["hardeningDisable", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["preConfigure", 53, 3], ["env", 57, 3], ["cmakeFlags", 59, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const vtkWithQt6 = nix.arg($, "vtkWithQt6");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "elmerfem",
       version: "9.0-unstable-2025-05-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elmercsc",
           repo: "elmerfem",
           rev: "2f7360ddf491c34f19fea9a723f340cca0fbe1d4",
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => nix.sel(llvmPackages, "openmp"))))),
       preConfigure: "patchShebangs ./\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       cmakeFlags: nix.thunk(() => nix.concat([
@@ -77,7 +74,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "QWT_INCLUDE_DIR", nix.thunk(() => nix.str`${nix.sel(qt6Packages, "qwt")}/lib/qwt.framework/Headers`))),
         ])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://elmerfem.org",
         description: "Finite element software for multiphysical problems",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

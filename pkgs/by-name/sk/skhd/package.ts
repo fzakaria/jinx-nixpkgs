@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["NIX_CFLAGS_COMPILE", 21, 7]], [["updateScript", 32, 12]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["mainProgram", 38, 5], ["maintainers", 39, 5], ["platforms", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["makeFlags", 19, 3], ["env", 21, 3], ["postInstall", 23, 3], ["nativeInstallCheckInputs", 29, 3], ["doInstallCheck", 30, 3], ["passthru", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 32, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["mainProgram", 38, 5], ["maintainers", 39, 5], ["platforms", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["makeFlags", 19, 3], ["env", 21, 3], ["postInstall", 23, 3], ["nativeInstallCheckInputs", 29, 3], ["doInstallCheck", 30, 3], ["passthru", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "skhd",
       version: "0.3.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "asmvik",
           repo: "skhd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makeFlags: nix.thunk(() => ["BUILD_PATH=$(out)/bin"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       postInstall: nix.thunk(() => nix.str`mkdir -p $out/Library/LaunchDaemons
@@ -39,11 +35,11 @@ substituteInPlace $out/Library/LaunchDaemons/org.nixos.skhd.plist --subst-var ou
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple hotkey daemon for macOS",
         homepage: "https://github.com/asmvik/skhd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

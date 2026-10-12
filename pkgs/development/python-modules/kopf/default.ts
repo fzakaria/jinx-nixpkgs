@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 53, 3], ["disabledTestPaths", 66, 3], ["disabledTests", 78, 3], ["pytestFlags", 83, 3], ["__darwinAllowLocalNetworking", 85, 3], ["pythonImportsCheck", 87, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, pyyaml: false, aiohttp: false, iso8601: false, "python-json-logger": false, click: false, jsonpatch: false, kmock: false, "pytest-mock": false, "pytest-timeout": false, "pytest-asyncio": false, pyngrok: false, freezegun: false, certvalidator: false, aresponses: false, looptime: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 53, 3], ["disabledTestPaths", 66, 3], ["disabledTests", 78, 3], ["pytestFlags", 83, 3], ["__darwinAllowLocalNetworking", 85, 3], ["pythonImportsCheck", 87, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.44.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nolar",
           repo: "kopf",
           tag: version,
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["kopf"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python framework to write Kubernetes operators",
         homepage: "https://kopf.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/nolar/kopf/releases/tag/${nix.sel(src, "tag")}`),
@@ -79,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

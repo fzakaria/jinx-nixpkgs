@@ -2,52 +2,40 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/homepage-dashboard.nix", [[["maintainers", 4, 8]], [["title", 9, 16]], [["abbr", 16, 19], ["href", 17, 19]], [["nixpkgs", 14, 15]], [["Developer", 12, 11]], [["ping", 29, 17]], [["Localhost", 28, 15]], [["Machines", 26, 11]], [["enable", 8, 7], ["settings", 9, 7], ["bookmarks", 10, 7], ["services", 24, 7]], [["homepage-dashboard", 7, 14]], [["services", 7, 5]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 38, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/homepage-dashboard.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/homepage-dashboard.nix", [["title", 9, 16]]);
-const pos$3 = nix.positions(here + "/homepage-dashboard.nix", [["abbr", 16, 19], ["href", 17, 19]]);
-const pos$4 = nix.positions(here + "/homepage-dashboard.nix", [["nixpkgs", 14, 15]]);
-const pos$5 = nix.positions(here + "/homepage-dashboard.nix", [["Developer", 12, 11]]);
-const pos$6 = nix.positions(here + "/homepage-dashboard.nix", [["ping", 29, 17]]);
-const pos$7 = nix.positions(here + "/homepage-dashboard.nix", [["Localhost", 28, 15]]);
-const pos$8 = nix.positions(here + "/homepage-dashboard.nix", [["Machines", 26, 11]]);
-const pos$9 = nix.positions(here + "/homepage-dashboard.nix", [["enable", 8, 7], ["settings", 9, 7], ["bookmarks", 10, 7], ["services", 24, 7]]);
-const pos$10 = nix.positions(here + "/homepage-dashboard.nix", [["homepage-dashboard", 7, 14]]);
-const pos$11 = nix.positions(here + "/homepage-dashboard.nix", [["services", 7, 5]]);
-const pos$12 = nix.positions(here + "/homepage-dashboard.nix", [["machine", 6, 9]]);
-const pos$13 = nix.positions(here + "/homepage-dashboard.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "homepage-dashboard",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "parthiv-krishna"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: (_) => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           "homepage-dashboard": nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             enable: true,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$2, title: "test title rodUsEagid" })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[1], title: "test title rodUsEagid" })),
             bookmarks: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 Developer: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     nixpkgs: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$3, abbr: "NX", href: "https://github.com/nixos/nixpkgs" })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[2], abbr: "NX", href: "https://github.com/nixos/nixpkgs" })),
                     ]),
                   })),
                 ]),
@@ -55,11 +43,11 @@ export default nix.lambda((args) => (() => {
             ]),
             services: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 Machines: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$7,
-                    Localhost: nix.thunk(() => ({ [nix.POS]: pos$6, ping: "127.0.0.1" })),
+                    [nix.POS]: $pos[6],
+                    Localhost: nix.thunk(() => ({ [nix.POS]: $pos[5], ping: "127.0.0.1" })),
                   })),
                 ]),
               })),

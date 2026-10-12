@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["postFetch", 24, 5]], [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "google-auth": false, "google-auth-httplib2": false, "google-api-core": false, httplib2: false, uritemplate: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["postFetch", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const uritemplate = nix.arg($, "uritemplate");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "google-api-python-client",
       version: "2.192.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "google-api-python-client",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [google_auth, google_auth_httplib2, google_api_core, httplib2, uritemplate]),
       pythonImportsCheck: nix.thunk(() => ["googleapiclient"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Official Python client library for Google's discovery based APIs",
         longDescription: "These client libraries are officially supported by Google. However, the\nlibraries are considered complete and are in maintenance mode. This means\nthat we will address critical bugs and security issues but will not add\nany new features.\n",
         homepage: "https://github.com/google/google-api-python-client",

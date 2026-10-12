@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["owner", 24, 7], ["repo", 25, 7], ["fetchSubmodules", 26, 7], ["rev", 27, 15], ["hash", 27, 19]], [["description", 49, 7], ["longDescription", 50, 7], ["homepage", 54, 7], ["license", 55, 7], ["mainProgram", 56, 7], ["maintainers", 57, 7], ["platforms", 58, 7]], [["version", 21, 13], ["src", 23, 5], ["patches", 30, 5], ["postPatch", 38, 5], ["doInstallCheck", 42, 5], ["nativeInstallCheckInputs", 44, 5], ["meta", 48, 5]], [["args", 63, 13], ["microhs-boot", 63, 18]], [["args", 67, 13], ["microhs-boot", 67, 18]], [["args", 72, 7], ["microcabal-stage1", 73, 7], ["microhs-stage1", 74, 7], ["cpphs", 75, 7]], [["microhs", 80, 5]], [["args", 84, 13], ["microhs", 85, 5]]]);
 const formals$1 = { args: { version: false, mcabalVersion: true, rev: true, hash: false }, ellipsis: false };
 const formals$2 = { args: { lib: false, buildPackages: false, pkgsBuildBuild: false, callPackage: false, fetchFromGitHub: false, "microhs-boot": false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["owner", 24, 7], ["repo", 25, 7], ["fetchSubmodules", 26, 7], ["rev", 27, 15], ["hash", 27, 19]]);
-const pos$2 = nix.positions(here + "/common.nix", [["description", 49, 7], ["longDescription", 50, 7], ["homepage", 54, 7], ["license", 55, 7], ["mainProgram", 56, 7], ["maintainers", 57, 7], ["platforms", 58, 7]]);
-const pos$3 = nix.positions(here + "/common.nix", [["version", 21, 13], ["src", 23, 5], ["patches", 30, 5], ["postPatch", 38, 5], ["doInstallCheck", 42, 5], ["nativeInstallCheckInputs", 44, 5], ["meta", 48, 5]]);
-const pos$4 = nix.positions(here + "/common.nix", [["args", 63, 13], ["microhs-boot", 63, 18]]);
-const pos$5 = nix.positions(here + "/common.nix", [["args", 67, 13], ["microhs-boot", 67, 18]]);
-const pos$6 = nix.positions(here + "/common.nix", [["args", 72, 7], ["microcabal-stage1", 73, 7], ["microhs-stage1", 74, 7], ["cpphs", 75, 7]]);
-const pos$7 = nix.positions(here + "/common.nix", [["microhs", 80, 5]]);
-const pos$8 = nix.positions(here + "/common.nix", [["args", 84, 13], ["microhs", 85, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,10 +23,10 @@ export default nix.lambda((args) => (() => {
     const stdenv = nix.arg($_1, "stdenv");
     const versionCheckHook = nix.arg($_1, "versionCheckHook");
     const args_2 = (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "augustss",
           repo: "MicroHs",
           fetchSubmodules: true,
@@ -48,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small compiler for Haskell",
         longDescription: "A compiler for an extended subset of Haskell 2010.\nThe compiler translates to combinators and can compile itself.\n",
         homepage: "https://github.com/augustss/MicroHs",
@@ -61,17 +54,17 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     });
-    const microhs_stage1_build = nix.thunk(() => nix.app(nix.sel(pkgsBuildBuild, "callPackage"), nix.path(here, "./stage1.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, args: args_2, "microhs-boot": microhs_boot }))));
-    const microhs_stage1 = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./stage1.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, args: args_2, "microhs-boot": microhs_boot }))));
+    const microhs_stage1_build = nix.thunk(() => nix.app(nix.sel(pkgsBuildBuild, "callPackage"), nix.path(here, "./stage1.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], args: args_2, "microhs-boot": microhs_boot }))));
+    const microhs_stage1 = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./stage1.nix"), nix.thunk(() => ({ [nix.POS]: $pos[4], args: args_2, "microhs-boot": microhs_boot }))));
     const microhs_stage2 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./stage2.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         args: args_2,
         "microcabal-stage1": microcabal_stage1,
         "microhs-stage1": microhs_stage1,
         cpphs: cpphs,
       }))));
-    const microcabal_stage1 = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.thunk(() => nix.path(here, "../../tools/haskell/microcabal/", mcabalVersion, ".nix")), nix.thunk(() => ({ [nix.POS]: pos$7, microhs: microhs_stage1_build }))));
-    const cpphs = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./cpphs.nix"), nix.thunk(() => ({ [nix.POS]: pos$8, args: args_2, microhs: microhs_stage2 }))));
+    const microcabal_stage1 = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.thunk(() => nix.path(here, "../../tools/haskell/microcabal/", mcabalVersion, ".nix")), nix.thunk(() => ({ [nix.POS]: $pos[6], microhs: microhs_stage1_build }))));
+    const cpphs = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./cpphs.nix"), nix.thunk(() => ({ [nix.POS]: $pos[7], args: args_2, microhs: microhs_stage2 }))));
     return nix.force(microhs_stage2);
   })(), formals$2);
 })(), formals$1);

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/posix.nix", [[["NIX_CFLAGS_COMPILE", 24, 5]], [["pname", 13, 3], ["meta", 15, 5], ["src", 16, 5], ["patches", 17, 5], ["version", 18, 5], ["minimalOCamlVersion", 21, 3], ["env", 23, 3], ["buildInputs", 27, 3], ["propagatedBuildInputs", 31, 3], ["dontStrip", 38, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, lib: false, stdenv: false, "dune-configurator": false, eio: false, fmt: false, logs: false, iomux: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/posix.nix", [["NIX_CFLAGS_COMPILE", 24, 5]]);
-const pos$2 = nix.positions(here + "/posix.nix", [["pname", 13, 3], ["meta", 15, 5], ["src", 16, 5], ["patches", 17, 5], ["version", 18, 5], ["minimalOCamlVersion", 21, 3], ["env", 23, 3], ["buildInputs", 27, 3], ["propagatedBuildInputs", 31, 3], ["dontStrip", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const logs = nix.arg($, "logs");
   const iomux = nix.arg($, "iomux");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "eio_posix",
       meta: nix.thunk(() => nix.attr(eio, "meta")),
       src: nix.thunk(() => nix.attr(eio, "src")),
       patches: nix.thunk(() => nix.attr(eio, "patches")),
       version: nix.thunk(() => nix.attr(eio, "version")),
       minimalOCamlVersion: "5.0",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[0], NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })))),
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [eio, fmt, logs, iomux]),
       dontStrip: true,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/derivation.nix", [[["url", 17, 28], ["sha1", 17, 32]], [["minecraft-server", 38, 36]], [["command", 40, 7], ["supportedFeatures", 42, 7]], [["tests", 38, 5], ["updateScript", 39, 5]], [["description", 47, 5], ["homepage", 48, 5], ["sourceProvenance", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5], ["mainProgram", 58, 5]], [["pname", 14, 3], ["version", 15, 11], ["src", 17, 3], ["preferLocalBuild", 19, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 23, 3], ["dontUnpack", 35, 3], ["passthru", 37, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, nixosTests: false, jre_headless: false, makeWrapper: false, udev: false, version: false, url: false, sha1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/derivation.nix", [["url", 17, 28], ["sha1", 17, 32]]);
-const pos$2 = nix.positions(here + "/derivation.nix", [["minecraft-server", 38, 36]]);
-const pos$3 = nix.positions(here + "/derivation.nix", [["command", 40, 7], ["supportedFeatures", 42, 7]]);
-const pos$4 = nix.positions(here + "/derivation.nix", [["tests", 38, 5], ["updateScript", 39, 5]]);
-const pos$5 = nix.positions(here + "/derivation.nix", [["description", 47, 5], ["homepage", 48, 5], ["sourceProvenance", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5], ["mainProgram", 58, 5]]);
-const pos$6 = nix.positions(here + "/derivation.nix", [["pname", 14, 3], ["version", 15, 11], ["src", 17, 3], ["preferLocalBuild", 19, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 23, 3], ["dontUnpack", 35, 3], ["passthru", 37, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,10 +18,10 @@ export default nix.lambda((args) => (() => {
   const url = nix.arg($, "url");
   const sha1 = nix.arg($, "sha1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "minecraft-server",
       version: version,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, sha1: sha1 })))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, sha1: sha1 })))),
       preferLocalBuild: true,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -41,19 +36,19 @@ runHook postInstall
 `),
       dontUnpack: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "minecraft-server": nix.thunk(() => nix.attr(nixosTests, "minecraft-server")),
         })),
         updateScript: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           command: nix.thunk(() => [nix.path(here, "./update.py")]),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Minecraft Server",
         homepage: "https://minecraft.net",
         sourceProvenance: nix.thunk(() => (() => {

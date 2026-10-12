@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["systemTag", 15, 9], ["capitalized", 16, 9], ["fontFile", 17, 9]], [["darwin", 14, 7]], [["systemTag", 21, 7], ["capitalized", 22, 7], ["fontFile", 23, 7]], [["shortName", 31, 7], ["fullName", 32, 7], ["url", 33, 7], ["free", 34, 7]], [["shortName", 45, 7], ["fullName", 46, 7], ["url", 47, 7], ["free", 48, 7], ["redistributable", 49, 7]], [["darwin", 91, 11]], [["name", 87, 7], ["url", 88, 7], ["sha256", 89, 7]], [["description", 107, 5], ["longDescription", 108, 5], ["homepage", 111, 5], ["hydraPlatforms", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["sourceProvenance", 120, 5]], [["pname", 80, 3], ["version", 81, 3], ["src", 83, 3], ["dontUnpack", 96, 3], ["installPhase", 98, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, config: false, acceptLicense: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["systemTag", 15, 9], ["capitalized", 16, 9], ["fontFile", 17, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["darwin", 14, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["systemTag", 21, 7], ["capitalized", 22, 7], ["fontFile", 23, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["shortName", 31, 7], ["fullName", 32, 7], ["url", 33, 7], ["free", 34, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["shortName", 45, 7], ["fullName", 46, 7], ["url", 47, 7], ["free", 48, 7], ["redistributable", 49, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["darwin", 91, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 87, 7], ["url", 88, 7], ["sha256", 89, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 107, 5], ["longDescription", 108, 5], ["homepage", 111, 5], ["hydraPlatforms", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["sourceProvenance", 120, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 80, 3], ["version", 81, 3], ["src", 83, 3], ["dontUnpack", 96, 3], ["installPhase", 98, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,15 +15,15 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed"));
   const kernel = nix.thunk(() => nix.attr(from, "kernel"));
   const systemSpecific = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     darwin: nix.thunk(() => (() => {
       const systemTag = "nix-darwin";
       const capitalized = systemTag;
       const fontFile = "joypixels-sbix.ttf";
-      return { [nix.POS]: pos$1, systemTag, capitalized, fontFile };
+      return { [nix.POS]: $pos[0], systemTag, capitalized, fontFile };
     })()),
   }, () => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       systemTag: "nixos",
       capitalized: "NixOS",
       fontFile: "joypixels-android.ttf",
@@ -39,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const joypixels_free_license = nix.thunk(() => (() => {
     const systemTag = nix.thunk(() => nix.attr(systemSpecific, "systemTag"));
     return nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         shortName: "JoyPixels-Free",
         fullName: "JoyPixels Free License Agreement",
         url: nix.thunk(() => nix.str`https://cdn.joypixels.com/distributions/${systemTag}/license/free-license.txt`),
@@ -50,7 +42,7 @@ export default nix.lambda((args) => (() => {
     const capitalized = nix.thunk(() => nix.attr(systemSpecific, "capitalized"));
     const systemTag = nix.thunk(() => nix.attr(systemSpecific, "systemTag"));
     return nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         shortName: "JoyPixels-NixOS-Appendix",
         fullName: nix.thunk(() => nix.str`JoyPixels ${capitalized} License Appendix`),
         url: nix.thunk(() => nix.str`https://cdn.joypixels.com/distributions/${systemTag}/appendix/joypixels-license-appendix.txt`),
@@ -88,11 +80,11 @@ config.nix:
         nix.assert_((!nix.asBool(!nix.asBool(acceptLicense)) || nix.asBool(throwLicense)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/jo/joypixels/package.nix:84:5");
         const w = nix.withScope(systemSpecific, null);
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: nix.thunk(() => nix.lookup(w, "fontFile")),
             url: nix.thunk(() => nix.str`https://cdn.joypixels.com/distributions/${nix.lookup(w, "systemTag")}/font/${version}/${nix.lookup(w, "fontFile")}`),
             sha256: nix.thunk(() => nix.selOr({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               darwin: "sha256-NDxhHgnHDenHict39V4W8mLJIqpmBfmDYfsRx7Es06s=",
             }, () => "sha256-taHKy2rin1SE24BKnB8LZ662U8MO9HL5if3+mHQ38Io=", nix.key(nix.sel(kernel, "name")))),
           })));
@@ -108,7 +100,7 @@ runHook postInstall
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Finest emoji you can use legally (formerly EmojiOne)",
         longDescription: "Updated for 2026! 3,991 originally-crafted emoji, Unicode 17 compatible.\n",
         homepage: "https://www.joypixels.com/fonts",
@@ -123,7 +115,7 @@ runHook postInstall
         })()),
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
-      return { [nix.POS]: pos$9, pname, version, src, dontUnpack, installPhase, meta };
+      return { [nix.POS]: $pos[8], pname, version, src, dontUnpack, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

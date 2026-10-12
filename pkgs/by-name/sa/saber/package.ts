@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["ZLIB_ROOT", 64, 7]], [["src", 81, 19], ["nativeBuildInputs", 82, 11]], [["supportedFeatures", 92, 11]], [["command", 96, 9], ["supportedFeatures", 103, 9]], [["pubspecSource", 78, 5], ["updateScript", 87, 5]], [["description", 109, 5], ["homepage", 110, 5], ["mainProgram", 111, 5], ["license", 112, 5], ["maintainers", 113, 5], ["platforms", 114, 5]], [["pname", 37, 3], ["version", 38, 11], ["src", 38, 19], ["gitHashes", 40, 3], ["pubspecLock", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 46, 3], ["postPatch", 56, 3], ["flutterBuildFlags", 62, 3], ["env", 64, 3], ["postInstall", 66, 3], ["preFixup", 73, 3], ["passthru", 77, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, flutter344: false, fetchFromGitHub: false, gst_all_1: false, libunwind: false, orc: false, webkitgtk_4_1: false, autoPatchelfHook: false, libxmu: false, jdk: false, zlib: false, runCommand: false, "yq-go": false, "_experimental-update-script-combinators": false, "nix-update-script": false, dart: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ZLIB_ROOT", 64, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 81, 19], ["nativeBuildInputs", 82, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["supportedFeatures", 92, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["command", 96, 9], ["supportedFeatures", 103, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pubspecSource", 78, 5], ["updateScript", 87, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 109, 5], ["homepage", 110, 5], ["mainProgram", 111, 5], ["license", 112, 5], ["maintainers", 113, 5], ["platforms", 114, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 11], ["src", 38, 19], ["gitHashes", 40, 3], ["pubspecLock", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 46, 3], ["postPatch", 56, 3], ["flutterBuildFlags", 62, 3], ["env", 64, 3], ["postInstall", 66, 3], ["preFixup", 73, 3], ["passthru", 77, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,14 +29,14 @@ ln -s ${zlib}/lib $out/lib
 `)));
   const version = "1.35.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "saber-notes",
       repo: "saber",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-DL05jDZTUFNJE0p1uAm0zWHm85um8bF+OntXuovHueI=",
     }))));
   return nix.app(nix.sel(flutter344, "buildFlutterApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "saber",
       version: version,
       src: src,
@@ -61,17 +54,17 @@ ln -s ${zlib}/lib $out/lib
       ]),
       postPatch: "patchShebangs patches/pre/remove_proprietary_dependencies.sh patches/pre/remove_dev_dependencies.sh\npatches/pre/remove_proprietary_dependencies.sh\npatches/pre/remove_dev_dependencies.sh\n",
       flutterBuildFlags: nix.thunk(() => ["--dart-define=DIRTY=false"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ZLIB_ROOT: zlib_root })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ZLIB_ROOT: zlib_root })),
       postInstall: "install -Dm0644 flatpak/com.adilhanney.saber.desktop $out/share/applications/saber.desktop\ninstall -Dm0644 assets/icon/icon.svg $out/share/icons/hicolor/scalable/apps/com.adilhanney.saber.svg\ninstall -Dm0644 flatpak/com.adilhanney.saber.metainfo.xml -t $out/share/metainfo\n",
       preFixup: "patchelf --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\" $out/app/saber/lib/lib*.so\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: pos$3, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
+        [nix.POS]: $pos[5],
+        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: $pos[2], src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "saber.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$4, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "saber.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: $pos[3], supportedFeatures: [] })),
             nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               command: nix.thunk(() => [
                 nix.thunk(() => nix.sel(dart, "fetchGitHashesScript")),
                 "--input",
@@ -84,7 +77,7 @@ ln -s ${zlib}/lib $out/lib
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Cross-platform open-source app built for handwriting",
         homepage: "https://github.com/saber-notes/saber",
         mainProgram: "saber",

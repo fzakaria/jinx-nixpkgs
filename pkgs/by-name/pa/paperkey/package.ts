@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 26, 5], ["mainProgram", 27, 5], ["longDescription", 28, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 16, 3], ["enableParallelBuilding", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["mainProgram", 27, 5], ["longDescription", 28, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 16, 3], ["enableParallelBuilding", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "paperkey",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.jabberwocky.com/software/paperkey/paperkey-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1xq5gni6gksjkd5avg0zpd73vsr97appksfx0gx2m38s4w9zsid2",
         })))),
       postPatch: "for a in checks/*.sh ; do\n  substituteInPlace $a \\\n    --replace /bin/echo echo\ndone\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Store OpenPGP or GnuPG on paper",
         mainProgram: "paperkey",
         longDescription: "A reasonable way to achieve a long term backup of OpenPGP (GnuPG, PGP, etc)\nkeys is to print them out on paper. Paper and ink have amazingly long\nretention qualities - far longer than the magnetic or optical means that\nare generally used to back up computer data.\n",

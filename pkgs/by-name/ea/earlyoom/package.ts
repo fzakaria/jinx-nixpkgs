@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["earlyoom", 39, 26]], [["tests", 38, 12]], [["homepage", 43, 5], ["description", 44, 5], ["longDescription", 45, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["platforms", 57, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 24, 3], ["patches", 26, 3], ["nativeBuildInputs", 28, 3], ["makeFlags", 30, 3], ["passthru", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, pandoc: false, stdenv: false, nixosTests: false, withManpage: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["earlyoom", 39, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["longDescription", 45, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["platforms", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 24, 3], ["patches", 26, 3], ["nativeBuildInputs", 28, 3], ["makeFlags", 30, 3], ["passthru", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const withManpage = nix.argOr($, "withManpage", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "earlyoom",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rfjakob",
           repo: "earlyoom",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,14 +34,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`SYSTEMDUNITDIR=${nix.builtins.placeholder("out")}/etc/systemd/system`),
       ], nix.app(nix.sel(lib, "optional"), withManpage, nix.thunk(() => nix.str`MANDIR=${nix.builtins.placeholder("man")}/share/man`)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           earlyoom: nix.thunk(() => nix.attr(nixosTests, "earlyoom")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/rfjakob/earlyoom",
         description: "Early OOM Daemon for Linux",
         longDescription: "earlyoom checks the amount of available memory and free swap up to 10\ntimes a second (less often if there is a lot of free memory). By default\nif both are below 10%, it will kill the largest process (highest\noom_score). The percentage value is configurable via command line\narguments.\n",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["src", 45, 26], ["pname", 45, 30], ["version", 45, 36], ["fetchAll", 46, 5], ["hash", 47, 5]], [["providedSessions", 95, 5], ["updateScript", 96, 5]], [["description", 100, 5], ["homepage", 101, 5], ["donationPage", 102, 5], ["longDescription", 103, 5], ["changelog", 108, 5], ["license", 109, 5], ["maintainers", 116, 5], ["mainProgram", 119, 5], ["platforms", 120, 5]], [["pname", 29, 3], ["version", 30, 3], ["__structuredAttrs", 31, 3], ["outputs", 33, 3], ["src", 35, 3], ["strictDeps", 42, 3], ["zigDeps", 44, 3], ["postConfigure", 50, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 62, 3], ["zigBuildFlags", 78, 3], ["doInstallCheck", 86, 3], ["nativeInstallCheckInputs", 87, 3], ["versionCheckProgramArg", 88, 3], ["postInstall", 90, 3], ["passthru", 94, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, libGL: false, libx11: false, libevdev: false, libinput: false, libxkbcommon: false, "nix-update-script": false, pixman: false, "pkg-config": false, scdoc: false, udev: false, versionCheckHook: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, wlroots_0_20: false, xwayland: false, zig_0_16: false, withManpages: true, xwaylandSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 45, 26], ["pname", 45, 30], ["version", 45, 36], ["fetchAll", 46, 5], ["hash", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["providedSessions", 95, 5], ["updateScript", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["donationPage", 102, 5], ["longDescription", 103, 5], ["changelog", 108, 5], ["license", 109, 5], ["maintainers", 116, 5], ["mainProgram", 119, 5], ["platforms", 120, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["__structuredAttrs", 31, 3], ["outputs", 33, 3], ["src", 35, 3], ["strictDeps", 42, 3], ["zigDeps", 44, 3], ["postConfigure", 50, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 62, 3], ["zigBuildFlags", 78, 3], ["doInstallCheck", 86, 3], ["nativeInstallCheckInputs", 87, 3], ["versionCheckProgramArg", 88, 3], ["postInstall", 90, 3], ["passthru", 94, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const xwaylandSupport = nix.argOr($, "xwaylandSupport", () => true);
   const zig = zig_0_16;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "river",
       version: "0.4.8",
       __structuredAttrs: true,
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), withManpages, nix.thunk(() => ["man"])))),
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "river",
           repo: "river",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })))),
       strictDeps: true,
       zigDeps: nix.thunk(() => nix.app(nix.sel(zig, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -77,12 +73,12 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-version",
       postInstall: "install contrib/river.desktop -Dt $out/share/wayland-sessions\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         providedSessions: nix.thunk(() => ["river"]),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Non-monolithic Wayland compositor",
         homepage: "https://codeberg.org/river/river",
         donationPage: "https://codeberg.org/river/river#donate",

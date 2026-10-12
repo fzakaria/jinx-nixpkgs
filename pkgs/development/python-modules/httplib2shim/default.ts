@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["updateScript", 41, 12]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["doCheck", 37, 3], ["pythonImportsCheck", 39, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, certifi: false, fetchFromGitHub: false, httplib2: false, "nix-update-script": false, setuptools: false, six: false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 41, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["doCheck", 37, 3], ["pythonImportsCheck", 39, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "httplib2shim",
       version: "0.0.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GoogleCloudPlatform",
           repo: "httplib2shim",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["httplib2shim"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Urllib3 sanity for httplib2 users",
         homepage: "https://github.com/GoogleCloudPlatform/httplib2shim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

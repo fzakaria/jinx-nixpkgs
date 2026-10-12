@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["description", 50, 5], ["homepage", 51, 5], ["maintainers", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["liveDeps", 33, 3], ["installPhase", 41, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { screenshots: true, video: true, clipboard: true, lib: false, stdenv: false, jq: false, curl: false, fetchFromGitHub: false, makeWrapper: false, maim: true, xclip: true, capture: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["maintainers", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["liveDeps", 33, 3], ["installPhase", 41, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pb_cli-unstable";
       const version = "2019-03-10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ptpb",
           repo: "pb_cli",
           rev: "6b9ce1ee45fe651d06d7c479a20026a173dd328b",
@@ -43,7 +41,7 @@ wrapProgram $out/bin/pb \\
   --prefix PATH : '${nix.app(nix.sel(lib, "makeBinPath"), liveDeps)}'
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "No bullshit 0x0.st client",
         homepage: "https://github.com/ptpb/pb_cli",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ar1a"))]),
@@ -51,7 +49,7 @@ wrapProgram $out/bin/pb \\
         mainProgram: "pb",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

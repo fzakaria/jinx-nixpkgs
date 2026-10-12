@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["NIX_CFLAGS_COMPILE", 32, 7]], [["homepage", 41, 5], ["description", 42, 5], ["platforms", 43, 5], ["license", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["postPatch", 20, 3], ["env", 32, 3], ["nativeBuildInputs", 34, 3], ["preConfigure", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, readline: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["platforms", 43, 5], ["license", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["postPatch", 20, 3], ["env", 32, 3], ["nativeBuildInputs", 34, 3], ["preConfigure", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "renameutils",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/renameutils/renameutils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "18xlkr56jdyajjihcmfqlyyanzyiqqlzbhrm6695mkvw081g1lnb",
         })))),
@@ -34,11 +31,11 @@ substituteInPlace src/icmd.c \\
 substituteInPlace src/qcmd.c \\
   --replace "ls_program = xstrdup(\\"ls\\")" "ls_program = xstrdup(\\"${coreutils}/bin/ls\\")"
 `))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       nativeBuildInputs: nix.thunk(() => [readline]),
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), "export ac_cv_func_lstat64=no\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.nongnu.org/renameutils/",
         description: "Set of programs to make renaming of files faster",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

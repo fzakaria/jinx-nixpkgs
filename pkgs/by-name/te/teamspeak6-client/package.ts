@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 5], ["hash", 43, 5]], [["name", 83, 7], ["exec", 84, 7], ["icon", 85, 7], ["desktopName", 86, 7], ["comment", 87, 7], ["categories", 88, 7], ["startupWMClass", 94, 7]], [["updateScript", 124, 12]], [["description", 127, 5], ["homepage", 128, 5], ["license", 129, 5], ["mainProgram", 130, 5], ["maintainers", 131, 5], ["platforms", 136, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["sourceRoot", 46, 3], ["propagatedBuildInputs", 48, 3], ["nativeBuildInputs", 75, 3], ["desktopItems", 81, 3], ["dontConfigure", 98, 3], ["dontBuild", 99, 3], ["installPhase", 101, 3], ["passthru", 124, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, autoPatchelfHook: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, "alsa-lib": false, "at-spi2-atk": false, atk: false, cairo: false, cups: false, dbus: false, "gcc-unwrapped": false, "gdk-pixbuf": false, glib: false, gtk3: false, libdrm: false, libnotify: false, libpulseaudio: false, libxkbcommon: false, libgbm: false, libvdpau: false, nss: false, pipewire: false, udev: false, libGL: false, libxtst: false, libxscrnsaver: false, libxfixes: false, libxdamage: false, libx11: false, libxshmfence: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 83, 7], ["exec", 84, 7], ["icon", 85, 7], ["desktopName", 86, 7], ["comment", 87, 7], ["categories", 88, 7], ["startupWMClass", 94, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 124, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 127, 5], ["homepage", 128, 5], ["license", 129, 5], ["mainProgram", 130, 5], ["maintainers", 131, 5], ["platforms", 136, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["sourceRoot", 46, 3], ["propagatedBuildInputs", 48, 3], ["nativeBuildInputs", 75, 3], ["desktopItems", 81, 3], ["dontConfigure", 98, 3], ["dontBuild", 99, 3], ["installPhase", 101, 3], ["passthru", 124, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxshmfence = nix.arg($, "libxshmfence");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "teamspeak6-client",
       version: "6.0.0-beta4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://files.teamspeak-services.com/pre_releases/client/${nix.sel(finalAttrs, "version")}/teamspeak-client.tar.gz`),
           hash: "sha256-7f0VQQLa4Gg7qgXMVfoPYPazPRA9uYeX251j3mHaSLo=",
         })))),
@@ -83,7 +79,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook, copyDesktopItems, makeWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "TeamSpeak",
             exec: "TeamSpeak",
             icon: "teamspeak6-client",
@@ -114,9 +110,9 @@ makeWrapper $out/share/teamspeak6-client/TeamSpeak $out/bin/TeamSpeak \\
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "TeamSpeak voice communication tool (beta version)",
         homepage: "https://teamspeak.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "teamspeak")),

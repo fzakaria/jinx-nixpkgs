@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 53, 5], ["license", 54, 5], ["mainProgram", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["sourceRoot", 24, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["buildFlags", 36, 3], ["installFlags", 38, 3], ["doInstallCheck", 40, 3], ["postInstall", 42, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, stdenv: false, libusb1: false, "pkg-config": false, lib: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 53, 5], ["license", 54, 5], ["mainProgram", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["sourceRoot", 24, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["buildFlags", 36, 3], ["installFlags", 38, 3], ["doInstallCheck", 40, 3], ["postInstall", 42, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const stellaris_udev_rules = nix.thunk(() => nix.app(writeText, "61.stellpad.rules", "SUBSYSTEM==\"usb\", ATTRS{idVendor}==\"1cbe\", ATTRS{idProduct}==\"00fd\", MODE=\"0666\"\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lm4flash",
       version: "0.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "utzig",
           repo: "lm4tools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`install -Dm644 "${stellaris_udev_rules}" "$out/etc/udev/rules.d/61.stellpad.rules"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command-line firmware flashing tool for the Stellaris Launchpad",
         longDescription: "Command-line firmware flashing tool using libusb-1.0 to communicate with\nthe Stellaris Launchpad ICDI. Works on all Linux, Mac OS X, Windows, and\nBSD systems.\n",
         homepage: "https://github.com/utzig/lm4tools",

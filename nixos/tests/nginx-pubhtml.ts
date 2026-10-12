@@ -2,69 +2,54 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nginx-pubhtml.nix", [[["ProtectHome", 8, 44]], [["serviceConfig", 8, 30]], [["nginx", 8, 24]], [["services", 8, 15]], [["alias", 11, 48]], [["~ ^/\\~([a-z0-9_]+)(/.*)?$", 11, 19]], [["locations", 11, 9]], [["localhost", 10, 35]], [["enable", 9, 22], ["virtualHosts", 10, 22]], [["nginx", 9, 16]], [["isNormalUser", 13, 23]], [["foo", 13, 19]], [["users", 13, 13]], [["systemd", 8, 7], ["services", 9, 7], ["users", 13, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 16, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nginx-pubhtml.nix", [["ProtectHome", 8, 44]]);
-const pos$2 = nix.positions(here + "/nginx-pubhtml.nix", [["serviceConfig", 8, 30]]);
-const pos$3 = nix.positions(here + "/nginx-pubhtml.nix", [["nginx", 8, 24]]);
-const pos$4 = nix.positions(here + "/nginx-pubhtml.nix", [["services", 8, 15]]);
-const pos$5 = nix.positions(here + "/nginx-pubhtml.nix", [["alias", 11, 48]]);
-const pos$6 = nix.positions(here + "/nginx-pubhtml.nix", [["~ ^/\\~([a-z0-9_]+)(/.*)?$", 11, 19]]);
-const pos$7 = nix.positions(here + "/nginx-pubhtml.nix", [["locations", 11, 9]]);
-const pos$8 = nix.positions(here + "/nginx-pubhtml.nix", [["localhost", 10, 35]]);
-const pos$9 = nix.positions(here + "/nginx-pubhtml.nix", [["enable", 9, 22], ["virtualHosts", 10, 22]]);
-const pos$10 = nix.positions(here + "/nginx-pubhtml.nix", [["nginx", 9, 16]]);
-const pos$11 = nix.positions(here + "/nginx-pubhtml.nix", [["isNormalUser", 13, 23]]);
-const pos$12 = nix.positions(here + "/nginx-pubhtml.nix", [["foo", 13, 19]]);
-const pos$13 = nix.positions(here + "/nginx-pubhtml.nix", [["users", 13, 13]]);
-const pos$14 = nix.positions(here + "/nginx-pubhtml.nix", [["systemd", 8, 7], ["services", 9, 7], ["users", 13, 7]]);
-const pos$15 = nix.positions(here + "/nginx-pubhtml.nix", [["machine", 5, 9]]);
-const pos$16 = nix.positions(here + "/nginx-pubhtml.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     name: "nginx-pubhtml",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               nginx: nix.thunk(() => ({
-                [nix.POS]: pos$2,
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$1, ProtectHome: "read-only" })),
+                [nix.POS]: $pos[1],
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[0], ProtectHome: "read-only" })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 localhost: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
-                    "~ ^/\\~([a-z0-9_]+)(/.*)?$": nix.thunk(() => ({ [nix.POS]: pos$5, alias: "/home/$1/public_html$2" })),
+                    [nix.POS]: $pos[5],
+                    "~ ^/\\~([a-z0-9_]+)(/.*)?$": nix.thunk(() => ({ [nix.POS]: $pos[4], alias: "/home/$1/public_html$2" })),
                   })),
                 })),
               })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$12,
-              foo: nix.thunk(() => ({ [nix.POS]: pos$11, isNormalUser: true })),
+              [nix.POS]: $pos[11],
+              foo: nix.thunk(() => ({ [nix.POS]: $pos[10], isNormalUser: true })),
             })),
           })),
         };

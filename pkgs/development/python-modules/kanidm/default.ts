@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 31, 13], ["version", 31, 19], ["hash", 32, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 47, 3], ["disabledTests", 54, 3], ["disabledTestMarks", 58, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "pdm-backend": false, aiohttp: false, "aiohttp-retry": false, authlib: false, pydantic: false, "python-dateutil": false, toml: false, "typing-extensions": false, "openapi-spec-validator": false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 31, 13], ["version", 31, 19], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 47, 3], ["disabledTests", 54, 3], ["disabledTestMarks", 58, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-KlUxW/bJByQnzPdRd9Z5pStH27SpWrCijZc5jlVT5jE=",
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestMarks = nix.thunk(() => ["network", "openapi"]);
       const pythonImportsCheck = nix.thunk(() => ["kanidm"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Kanidm client library",
         homepage: "https://github.com/kanidm/kanidm/tree/master/pykanidm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

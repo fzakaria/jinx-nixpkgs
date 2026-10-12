@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["fetchSubmodules", 28, 5], ["hash", 29, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 47, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, gjs: false, "gobject-introspection": false, "blueprint-compiler": false, wrapGAppsHook4: false, "desktop-file-utils": false, libadwaita: false, libgda6: false, gsound: false, gst_all_1: false, "libportal-gtk4": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["fetchSubmodules", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 47, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const libportal_gtk4 = nix.arg($, "libportal-gtk4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pomodoro-gtk",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "idevecore",
           repo: "pomodoro",
           rev: "44b724557539084991f3eb55b9593053a2c73eba",
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
         libportal_gtk4,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple and intuitive timer application (also named Planytimer)",
         homepage: "https://gitlab.com/idevecore/pomodoro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

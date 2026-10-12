@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["django", 14, 40]], [["self", 13, 5], ["packageOverrides", 14, 5]], [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["libraries", 124, 17]], [["nativeBuildInputs", 122, 13]], [["netbox", 118, 28], ["satisfiesBaseRequirements", 119, 7]], [["callPackage", 141, 29], ["directory", 142, 11]], [["python", 113, 5], ["pythonPath", 115, 5], ["gunicorn", 116, 23], ["tests", 117, 5], ["updateScript", 136, 5], ["plugins", 137, 5]], [["homepage", 149, 5], ["changelog", 150, 5], ["description", 151, 5], ["mainProgram", 152, 5], ["license", 153, 5], ["maintainers", 154, 5]], [["__structuredAttrs", 20, 3], ["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["dependencies", 37, 3], ["nativeBuildInputs", 92, 3], ["postBuild", 99, 3], ["installPhase", 104, 3], ["passthru", 112, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false, plugins: true, nixosTests: false, "nix-update-script": false, runCommand: false, writers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["django", 14, 40]]);
-const pos$2 = nix.positions(here + "/package.nix", [["self", 13, 5], ["packageOverrides", 14, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["libraries", 124, 17]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 122, 13]]);
-const pos$6 = nix.positions(here + "/package.nix", [["netbox", 118, 28], ["satisfiesBaseRequirements", 119, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["callPackage", 141, 29], ["directory", 142, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["python", 113, 5], ["pythonPath", 115, 5], ["gunicorn", 116, 23], ["tests", 117, 5], ["updateScript", 136, 5], ["plugins", 137, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 149, 5], ["changelog", 150, 5], ["description", 151, 5], ["mainProgram", 152, 5], ["license", 153, 5], ["maintainers", 154, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["__structuredAttrs", 20, 3], ["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["dependencies", 37, 3], ["nativeBuildInputs", 92, 3], ["postBuild", 99, 3], ["installPhase", 104, 3], ["passthru", 112, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const writers = nix.arg($, "writers");
   const py = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       self: py,
-      packageOverrides: (_final) => (prev) => ({ [nix.POS]: pos$1, django: nix.thunk(() => nix.sel(prev, "django_6")) }),
+      packageOverrides: (_final) => (prev) => ({ [nix.POS]: $pos[0], django: nix.thunk(() => nix.sel(prev, "django_6")) }),
     }))));
   const extraBuildInputs = nix.thunk(() => nix.app(plugins, nix.thunk(() => nix.sel(py, "pkgs"))));
   return nix.app(nix.sel(py, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       __structuredAttrs: true,
       pname: "netbox",
       version: "4.7.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "netbox-community",
           repo: "netbox",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -103,18 +94,18 @@ ${nix.sel(py, "pythonOnBuildForHost", "interpreter")} -m mkdocs build
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(py, "pkgs"));
         return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         python: py,
         pythonPath: nix.thunk(() => nix.app(nix.sel(py, "pkgs", "makePythonPath"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "dependencies")))),
         gunicorn: nix.thunk(() => nix.attr(from, "gunicorn")),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           netbox: nix.thunk(() => nix.attr(nixosTests, "netbox")),
           satisfiesBaseRequirements: nix.thunk(() => nix.app(runCommand, "test-netbox-satisfies-base-requirements", nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(writers, "writePython3Bin"), "test-netbox-requirements", nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     libraries: nix.thunk(() => nix.concat(nix.sel(finalAttrs, "passthru", "dependencies"), [
                       nix.thunk(() => nix.sel(py, "pkgs", "packaging")),
                       nix.thunk(() => nix.sel(finalAttrs, "passthru", "gunicorn")),
@@ -129,7 +120,7 @@ touch $out
         plugins: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "makeExtensible"), (self) => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => (() => {
                 const from_1 = nix.thunk(() => nix.sel(py, "pkgs"));
                 return {
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 callPackage: nix.thunk(() => nix.attr(from_1, "callPackage")),
                 directory: nix.path(here, "./plugins"),
               };
@@ -137,7 +128,7 @@ touch $out
       };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://github.com/netbox-community/netbox",
         changelog: nix.thunk(() => nix.str`https://github.com/netbox-community/netbox/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/release-notes/version-${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.md`),
         description: "IP address management (IPAM) and data center infrastructure management (DCIM) tool",

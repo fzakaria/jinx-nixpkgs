@@ -2,65 +2,56 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/docker-tools-cross.nix", [[["localSystem", 16, 9], ["crossSystem", 20, 9]], [["name", 27, 7], ["pathsToLink", 28, 7], ["paths", 29, 7]], [["name", 24, 5], ["tag", 25, 5], ["copyToRoot", 26, 5]], [["name", 34, 5], ["tag", 35, 5], ["contents", 36, 5]], [["maintainers", 43, 5]], [["enable", 52, 18]], [["diskSize", 51, 11], ["docker", 52, 11]], [["virtualisation", 50, 9]], [["docker", 47, 5]], [["name", 41, 3], ["meta", 42, 3], ["nodes", 46, 3], ["testScript", 57, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/docker-tools-cross.nix", [["localSystem", 16, 9], ["crossSystem", 20, 9]]);
-const pos$2 = nix.positions(here + "/docker-tools-cross.nix", [["name", 27, 7], ["pathsToLink", 28, 7], ["paths", 29, 7]]);
-const pos$3 = nix.positions(here + "/docker-tools-cross.nix", [["name", 24, 5], ["tag", 25, 5], ["copyToRoot", 26, 5]]);
-const pos$4 = nix.positions(here + "/docker-tools-cross.nix", [["name", 34, 5], ["tag", 35, 5], ["contents", 36, 5]]);
-const pos$5 = nix.positions(here + "/docker-tools-cross.nix", [["maintainers", 43, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$6 = nix.positions(here + "/docker-tools-cross.nix", [["enable", 52, 18]]);
-const pos$7 = nix.positions(here + "/docker-tools-cross.nix", [["diskSize", 51, 11], ["docker", 52, 11]]);
-const pos$8 = nix.positions(here + "/docker-tools-cross.nix", [["virtualisation", 50, 9]]);
-const pos$9 = nix.positions(here + "/docker-tools-cross.nix", [["docker", 47, 5]]);
-const pos$10 = nix.positions(here + "/docker-tools-cross.nix", [["name", 41, 3], ["meta", 42, 3], ["nodes", 46, 3], ["testScript", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const remoteSystem = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(pkgs, "stdenv", "hostPlatform", "system"), "aarch64-linux")) ? "x86_64-linux" : "aarch64-linux"));
   const remoteCrossPkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       localSystem: remoteSystem,
       crossSystem: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "system")),
     }))));
   const hello1 = nix.thunk(() => nix.app(nix.sel(remoteCrossPkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "hello1",
       tag: "latest",
       copyToRoot: nix.thunk(() => nix.app(nix.sel(remoteCrossPkgs, "buildEnv"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "image-root",
           pathsToLink: nix.thunk(() => ["/bin"]),
           paths: nix.thunk(() => [nix.thunk(() => nix.sel(remoteCrossPkgs, "hello"))]),
         })))),
     }))));
   const hello2 = nix.thunk(() => nix.app(nix.sel(remoteCrossPkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "hello2",
       tag: "latest",
       contents: nix.thunk(() => nix.sel(remoteCrossPkgs, "hello")),
     }))));
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "docker-tools",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "roberth"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       docker: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             diskSize: 2048n,
-            docker: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+            docker: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
           })),
         };
       })(), formals$2),

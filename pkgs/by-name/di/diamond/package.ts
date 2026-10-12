@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 28, 5], ["mainProgram", 29, 5], ["longDescription", 30, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, sqlite: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["mainProgram", 29, 5], ["longDescription", 30, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "diamond",
       version: "2.2.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bbuchfink",
           repo: "diamond",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [sqlite, zlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Accelerated BLAST compatible local sequence aligner",
         mainProgram: "diamond",
         longDescription: "DIAMOND is a sequence aligner for protein and translated DNA searches, designed for high performance analysis of big sequence data. The key features are:\n- Pairwise alignment of proteins and translated DNA at 100x-10,000x speed of BLAST.\n- Frameshift alignments for long read analysis.\n- Low resource requirements and suitable for running on standard desktops or laptops.\n- Various output formats, including BLAST pairwise, tabular and XML, as well as taxonomic classification.\n\nWhen using the tool in published research, please cite:\n- Buchfink B, Reuter K, Drost HG, \"Sensitive protein alignments at tree-of-life scale using DIAMOND\", Nature Methods 18, 366–368 (2021). doi:10.1038/s41592-021-01101-x\n",

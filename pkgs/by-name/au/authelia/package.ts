@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs", 15, 7], ["fetchPnpmDeps", 16, 7], ["pnpmConfigHook", 17, 7], ["pnpm_12", 18, 7], ["fetchFromGitHub", 19, 7]], [["fetchFromGitHub", 27, 43]], [["authelia", 96, 36]], [["web", 94, 13], ["updateScript", 95, 5], ["tests", 96, 5]], [["homepage", 100, 5], ["changelog", 101, 5], ["description", 102, 5], ["longDescription", 103, 5], ["license", 111, 5], ["maintainers", 112, 5], ["mainProgram", 116, 5]], [["pname", 38, 5], ["version", 39, 5], ["src", 40, 5], ["vendorHash", 41, 5], ["nativeBuildInputs", 44, 3], ["postPatch", 47, 3], ["subPackages", 52, 3], ["ldflags", 54, 3], ["doCheck", 68, 3], ["postInstall", 70, 3], ["doInstallCheck", 81, 3], ["installCheckPhase", 82, 3], ["passthru", 92, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, nodejs: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_12: false, fetchFromGitHub: false, buildGo127Module: false, installShellFiles: false, callPackage: false, nixosTests: false, "authelia-web": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs", 15, 7], ["fetchPnpmDeps", 16, 7], ["pnpmConfigHook", 17, 7], ["pnpm_12", 18, 7], ["fetchFromGitHub", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fetchFromGitHub", 27, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["authelia", 96, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["web", 94, 13], ["updateScript", 95, 5], ["tests", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 100, 5], ["changelog", 101, 5], ["description", 102, 5], ["longDescription", 103, 5], ["license", 111, 5], ["maintainers", 112, 5], ["mainProgram", 116, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 38, 5], ["version", 39, 5], ["src", 40, 5], ["vendorHash", 41, 5], ["nativeBuildInputs", 44, 3], ["postPatch", 47, 3], ["subPackages", 52, 3], ["ldflags", 54, 3], ["doCheck", 68, 3], ["postInstall", 70, 3], ["doInstallCheck", 81, 3], ["installCheckPhase", 82, 3], ["passthru", 92, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const nixosTests = nix.arg($, "nixosTests");
   const authelia_web = nix.argOr($, "authelia-web", () => nix.app(callPackage, nix.path(here, "./web.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nodejs: nodejs,
       fetchPnpmDeps: fetchPnpmDeps,
       pnpmConfigHook: pnpmConfigHook,
@@ -32,14 +27,14 @@ export default nix.lambda((args) => (() => {
       fetchFromGitHub: fetchFromGitHub,
     }))));
   const buildGoModule = buildGo127Module;
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, fetchFromGitHub: fetchFromGitHub }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], fetchFromGitHub: fetchFromGitHub }))));
   const pname = nix.thunk(() => nix.attr(from, "pname"));
   const version = nix.thunk(() => nix.attr(from, "version"));
   const src = nix.thunk(() => nix.attr(from, "src"));
   const vendorHash = nix.thunk(() => nix.attr(from, "vendorHash"));
   const web = authelia_web;
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -72,16 +67,16 @@ $out/bin/authelia build-info | grep 'v${nix.sel(finalAttrs, "version")}\\|nixpkg
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         web: web,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           authelia: nix.thunk(() => nix.attr(nixosTests, "authelia")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.authelia.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/authelia/authelia/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Single Sign-On Multi-Factor portal for web apps",

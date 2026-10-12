@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["name", 59, 7], ["exec", 60, 7], ["desktopName", 61, 7], ["categories", 62, 7]], [["homepage", 69, 5], ["description", 70, 5], ["mainProgram", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patchPhase", 32, 3], ["preConfigure", 36, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["desktopItems", 57, 3], ["hardeningDisable", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, SDL2: false, libGLU: false, libGL: false, zlib: false, libjpeg: false, libogg: false, libvorbis: false, libx11: false, openal: false, curl: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 59, 7], ["exec", 60, 7], ["desktopName", 61, 7], ["categories", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["description", 70, 5], ["mainProgram", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patchPhase", 32, 3], ["preConfigure", 36, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["desktopItems", 57, 3], ["hardeningDisable", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dhewm3",
       version: "1.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dhewm",
           repo: "dhewm3",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, libGLU, libGL, libx11, zlib, libjpeg, libogg, libvorbis, openal, curl]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "dhewm3",
             exec: "dhewm3",
             desktopName: "Doom 3",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/dhewm/dhewm3",
         description: "Doom 3 port to SDL",
         mainProgram: "dhewm3",

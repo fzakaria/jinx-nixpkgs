@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/20210117-binary.nix", [[["url", 20, 9], ["hash", 21, 9]], [["url", 25, 9], ["hash", 26, 9]], [["name", 33, 7], ["url", 34, 7], ["decode", 35, 7], ["hash", 36, 7]], [["lib", 82, 39]], [["broken", 83, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 31, 3], ["buildInputs", 40, 3], ["nativeBuildInputs", 44, 3], ["strictDeps", 45, 3], ["buildPhase", 47, 3], ["installPhase", 54, 3], ["postFixup", 58, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchurl: false, patchelf: false, bash: false, gmp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/20210117-binary.nix", [["url", 20, 9], ["hash", 21, 9]]);
-const pos$2 = nix.positions(here + "/20210117-binary.nix", [["url", 25, 9], ["hash", 26, 9]]);
-const pos$3 = nix.positions(here + "/20210117-binary.nix", [["name", 33, 7], ["url", 34, 7], ["decode", 35, 7], ["hash", 36, 7]]);
-const pos$4 = nix.positions(here + "/20210117-binary.nix", [["lib", 82, 39]]);
-const pos$5 = nix.positions(here + "/20210117-binary.nix", [["broken", 83, 5]]);
-const pos$6 = nix.positions(here + "/20210117-binary.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 31, 3], ["buildInputs", 40, 3], ["nativeBuildInputs", 44, 3], ["strictDeps", 45, 3], ["buildPhase", 47, 3], ["installPhase", 54, 3], ["postFixup", 58, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,17 +19,17 @@ export default nix.lambda((args) => (() => {
       const pname = "mlton";
       const version = "20210117";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/MLton/mlton/releases/download/on-${version}-release/${pname}-${version}-1.amd64-linux-glibc2.31.tgz`),
           hash: "sha256-dJy1nWuszWRBQ3Cb6GYQUijSttzUDFB6kLicm14PRdI=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-darwin")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://projects.laas.fr/tina/software/mlton-${version}-1.arm64-darwin-21.6-gmp-static.tgz`),
           hash: "sha256-XYzEBG9QLKfZhnDVORXjoZc+wIJuTEwj4l1IP6ZXweg=",
         }))) : nix.builtins.throw("Architecture not supported"))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "remove-duplicate-if.patch",
             url: "https://github.com/MLton/mlton/commit/22002cd0a53a1ab84491d74cb8dc6a4e50c1f7b7.patch",
             decode: "sed -e 's|Makefile\\.binary|Makefile|g'",
@@ -69,12 +64,12 @@ for e in mllex mlnlffigen mlprof mlyacc; do
     $out/bin/$e
 done
 `))));
-      const meta = nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, lib: lib }))), {
-        [nix.POS]: pos$5,
+      const meta = nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: $pos[3], lib: lib }))), {
+        [nix.POS]: $pos[4],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

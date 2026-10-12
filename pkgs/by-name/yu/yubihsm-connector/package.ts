@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["preBuild", 23, 5]], [["description", 50, 5], ["homepage", 51, 5], ["maintainers", 52, 5], ["license", 56, 5], ["mainProgram", 57, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["overrideModAttrs", 22, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["ldflags", 36, 3], ["preBuild", 41, 3], ["doInstallCheck", 45, 3], ["installCheckInputs", 46, 3], ["versionCheckProgramArg", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, libusb1: false, buildGoModule: false, fetchFromGitHub: false, "pkg-config": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["preBuild", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["maintainers", 52, 5], ["license", 56, 5], ["mainProgram", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["overrideModAttrs", 22, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["ldflags", 36, 3], ["preBuild", 41, 3], ["doInstallCheck", 45, 3], ["installCheckInputs", 46, 3], ["versionCheckProgramArg", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "yubihsm-connector",
       version: "3.0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Yubico",
           repo: "yubihsm-connector",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-ddf8IamX8wC8IG9puFDoSKsVqc9KE/LtsJ0Wk0FFquw=",
         })))),
-      overrideModAttrs: (_) => ({ [nix.POS]: pos$2, preBuild: null }),
+      overrideModAttrs: (_) => ({ [nix.POS]: $pos[1], preBuild: null }),
       vendorHash: "sha256-vtIXFOptDbBKjnDUSD9ng5tnfYQ3lklwgcEUvKMdCOM=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libusb1]),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       installCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Performs the communication between the YubiHSM 2 and applications that use it",
         homepage: "https://developers.yubico.com/yubihsm-connector/",
         maintainers: nix.thunk(() => (() => {

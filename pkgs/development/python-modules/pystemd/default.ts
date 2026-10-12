@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 59, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["build-system", 28, 3], ["nativeBuildInputs", 33, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["preCheck", 47, 3], ["disabledTestPaths", 51, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, systemd: false, lxml: false, psutil: false, pytestCheckHook: false, "pkg-config": false, cython: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["build-system", 28, 3], ["nativeBuildInputs", 33, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["preCheck", 47, 3], ["disabledTestPaths", 51, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.15.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "systemd",
           repo: "pystemd",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["test_version.py", "test_pickle.py"]);
       const pythonImportsCheck = nix.thunk(() => ["pystemd"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Thin Cython-based wrapper on top of libsystemd, focused on exposing the\ndbus API via sd-bus in an automated and easy to consume way\n",
         homepage: "https://github.com/facebookincubator/pystemd",
         changelog: nix.thunk(() => nix.str`https://github.com/systemd/pystemd/releases/tag/${nix.sel(src, "tag")}`),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["pname", 31, 26], ["data", 32, 5]], [["description", 57, 5], ["license", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5], ["sourceProvenance", 63, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["mitmCache", 30, 3], ["__darwinAllowLocalNetworking", 36, 3], ["doCheck", 39, 3], ["gradleBuildTask", 41, 3], ["installPhase", 43, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, jre: false, gradle_8: false, makeWrapper: false, stdenv: false, fetchFromGitLab: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 31, 26], ["data", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["license", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5], ["sourceProvenance", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["mitmCache", 30, 3], ["__darwinAllowLocalNetworking", 36, 3], ["doCheck", 39, 3], ["gradleBuildTask", 41, 3], ["installPhase", 43, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const gradle = gradle_8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bandcamp-collection-downloader",
       version: "0-unstable-2024-10-29",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "framagit.org",
           owner: "Ezwen",
           repo: "bandcamp-collection-downloader",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [gradle, makeWrapper]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -50,7 +47,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/bandcamp-collection
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to automatically download purchased music from bandcamp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         homepage: "https://framagit.org/Ezwen/bandcamp-collection-downloader",

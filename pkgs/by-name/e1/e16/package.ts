@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["url", 62, 5], ["rev-prefix", 63, 5]], [["updateScript", 61, 12]], [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["postPatch", 55, 3], ["passthru", 61, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, freetype: false, imlib2: false, libsm: false, libxcomposite: false, libxdamage: false, libxext: false, libxfixes: false, libxft: false, libxinerama: false, libxrandr: false, libpulseaudio: false, libsndfile: false, pango: false, perl: false, python3: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 62, 5], ["rev-prefix", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 61, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["postPatch", 55, 3], ["passthru", 61, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "e16",
       version: "1.0.32",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/enlightenment/e16-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-BrbvWToTBRcNnLcHFOoVsFSoSon01QfCpdTXTaJj3g0=",
         })))),
@@ -60,15 +56,15 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace scripts/e_gen_menu --replace \"/usr/local:\" \"/run/current-system/sw:/usr/local:\"\nsubstituteInPlace scripts/e_gen_menu --replace \"'/opt'\" \"'/opt', '/run/current-system/sw'\"\nsubstituteInPlace scripts/e_gen_menu --replace \"'/.local'\" \"'/.nix-profile', '/.local'\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.enlightenment.org/e16/e16",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.enlightenment.org/e16",
         description: "Enlightenment DR16 window manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

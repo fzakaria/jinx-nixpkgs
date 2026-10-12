@@ -2,99 +2,77 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gitea-actions-runner.nix", [[["maintainers", 5, 5]], [["type", 13, 18]], [["ENABLED", 15, 19]], [["ROOT_URL", 16, 18]], [["DISABLE_REGISTRATION", 17, 19]], [["actions", 15, 11], ["server", 16, 11], ["service", 17, 11]], [["enable", 12, 9], ["database", 13, 9], ["settings", 14, 9]], [["enabled", 29, 13], ["addr", 30, 13]], [["metrics", 28, 20]], [["enable", 23, 11], ["name", 24, 11], ["url", 25, 11], ["labels", 26, 11], ["tokenFile", 27, 11], ["settings", 28, 11]], [["enabled", 41, 13], ["addr", 42, 13]], [["metrics", 40, 20]], [["enable", 35, 11], ["name", 36, 11], ["url", 37, 11], ["labels", 38, 11], ["tokenFile", 39, 11], ["settings", 40, 11]], [["host", 22, 9], ["podman", 34, 9]], [["instances", 21, 37]], [["gitea", 11, 16], ["gitea-actions-runner", 21, 16]], [["enable", 47, 29]], [["podman", 47, 22]], [["systemPackages", 49, 19]], [["services", 11, 7], ["virtualisation", 47, 7], ["environment", 49, 7]], [["machine", 8, 9]], [["name", 59, 9], ["tag", 60, 9], ["contents", 61, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 56, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gitea-actions-runner.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/gitea-actions-runner.nix", [["type", 13, 18]]);
-const pos$3 = nix.positions(here + "/gitea-actions-runner.nix", [["ENABLED", 15, 19]]);
-const pos$4 = nix.positions(here + "/gitea-actions-runner.nix", [["ROOT_URL", 16, 18]]);
-const pos$5 = nix.positions(here + "/gitea-actions-runner.nix", [["DISABLE_REGISTRATION", 17, 19]]);
-const pos$6 = nix.positions(here + "/gitea-actions-runner.nix", [["actions", 15, 11], ["server", 16, 11], ["service", 17, 11]]);
-const pos$7 = nix.positions(here + "/gitea-actions-runner.nix", [["enable", 12, 9], ["database", 13, 9], ["settings", 14, 9]]);
-const pos$8 = nix.positions(here + "/gitea-actions-runner.nix", [["enabled", 29, 13], ["addr", 30, 13]]);
-const pos$9 = nix.positions(here + "/gitea-actions-runner.nix", [["metrics", 28, 20]]);
-const pos$10 = nix.positions(here + "/gitea-actions-runner.nix", [["enable", 23, 11], ["name", 24, 11], ["url", 25, 11], ["labels", 26, 11], ["tokenFile", 27, 11], ["settings", 28, 11]]);
-const pos$11 = nix.positions(here + "/gitea-actions-runner.nix", [["enabled", 41, 13], ["addr", 42, 13]]);
-const pos$12 = nix.positions(here + "/gitea-actions-runner.nix", [["metrics", 40, 20]]);
-const pos$13 = nix.positions(here + "/gitea-actions-runner.nix", [["enable", 35, 11], ["name", 36, 11], ["url", 37, 11], ["labels", 38, 11], ["tokenFile", 39, 11], ["settings", 40, 11]]);
-const pos$14 = nix.positions(here + "/gitea-actions-runner.nix", [["host", 22, 9], ["podman", 34, 9]]);
-const pos$15 = nix.positions(here + "/gitea-actions-runner.nix", [["instances", 21, 37]]);
-const pos$16 = nix.positions(here + "/gitea-actions-runner.nix", [["gitea", 11, 16], ["gitea-actions-runner", 21, 16]]);
-const pos$17 = nix.positions(here + "/gitea-actions-runner.nix", [["enable", 47, 29]]);
-const pos$18 = nix.positions(here + "/gitea-actions-runner.nix", [["podman", 47, 22]]);
-const pos$19 = nix.positions(here + "/gitea-actions-runner.nix", [["systemPackages", 49, 19]]);
-const pos$20 = nix.positions(here + "/gitea-actions-runner.nix", [["services", 11, 7], ["virtualisation", 47, 7], ["environment", 49, 7]]);
-const pos$21 = nix.positions(here + "/gitea-actions-runner.nix", [["machine", 8, 9]]);
-const pos$22 = nix.positions(here + "/gitea-actions-runner.nix", [["name", 59, 9], ["tag", 60, 9], ["contents", 61, 9]]);
-const pos$23 = nix.positions(here + "/gitea-actions-runner.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: "gitea-actions-runner",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(pkgs, "gitea-actions-runner", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             gitea: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
-              database: nix.thunk(() => ({ [nix.POS]: pos$2, type: "sqlite3" })),
+              database: nix.thunk(() => ({ [nix.POS]: $pos[1], type: "sqlite3" })),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                actions: nix.thunk(() => ({ [nix.POS]: pos$3, ENABLED: true })),
-                server: nix.thunk(() => ({ [nix.POS]: pos$4, ROOT_URL: "http://localhost:3000/" })),
-                service: nix.thunk(() => ({ [nix.POS]: pos$5, DISABLE_REGISTRATION: true })),
+                [nix.POS]: $pos[5],
+                actions: nix.thunk(() => ({ [nix.POS]: $pos[2], ENABLED: true })),
+                server: nix.thunk(() => ({ [nix.POS]: $pos[3], ROOT_URL: "http://localhost:3000/" })),
+                service: nix.thunk(() => ({ [nix.POS]: $pos[4], DISABLE_REGISTRATION: true })),
               })),
             })),
             "gitea-actions-runner": nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               instances: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 host: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   enable: true,
                   name: "ci-host",
                   url: "http://localhost:3000",
                   labels: nix.thunk(() => ["native:host"]),
                   tokenFile: "/var/lib/gitea/runner_token",
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
-                    metrics: nix.thunk(() => ({ [nix.POS]: pos$8, enabled: true, addr: "127.0.0.1:9101" })),
+                    [nix.POS]: $pos[8],
+                    metrics: nix.thunk(() => ({ [nix.POS]: $pos[7], enabled: true, addr: "127.0.0.1:9101" })),
                   })),
                 })),
                 podman: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   enable: true,
                   name: "ci-podman",
                   url: "http://localhost:3000",
                   labels: nix.thunk(() => ["container:docker://test-image:latest"]),
                   tokenFile: "/var/lib/gitea/runner_token",
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
-                    metrics: nix.thunk(() => ({ [nix.POS]: pos$11, enabled: true, addr: "127.0.0.1:9102" })),
+                    [nix.POS]: $pos[11],
+                    metrics: nix.thunk(() => ({ [nix.POS]: $pos[10], enabled: true, addr: "127.0.0.1:9102" })),
                   })),
                 })),
               })),
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$18,
-            podman: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
+            [nix.POS]: $pos[17],
+            podman: nix.thunk(() => ({ [nix.POS]: $pos[16], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "gitea")),
               nix.thunk(() => nix.sel(pkgs_1, "gitMinimal")),
@@ -106,7 +84,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: nix.thunk(() => (() => {
       const containerImage = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           name: "test-image",
           tag: "latest",
           contents: nix.thunk(() => [

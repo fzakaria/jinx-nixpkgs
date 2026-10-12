@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 25, 5], ["license", 26, 5], ["platforms", 27, 5], ["mainProgram", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["projectFile", 19, 3], ["nugetDeps", 20, 3], ["dotnet-sdk", 21, 3], ["dotnet-runtime", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 25, 5], ["license", 26, 5], ["platforms", 27, 5], ["mainProgram", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["projectFile", 19, 3], ["nugetDeps", 20, 3], ["dotnet-sdk", 21, 3], ["dotnet-runtime", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "depotdownloader",
       version: "3.4.0-unstable-2026-05-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Iluhadesu",
           repo: "DepotDownloader",
           rev: "0ab6676c51f27d3b9e63278e3c18484d4d2bf063",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       "dotnet-sdk": nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_9_0")),
       "dotnet-runtime": nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_9_0")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fork of DepotDownloader to be used by BSManager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),

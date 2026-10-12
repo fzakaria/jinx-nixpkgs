@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 26, 3], ["pythonRelaxDeps", 36, 3], ["pythonRemoveDeps", 39, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 46, 3], ["preFixup", 59, 3], ["postInstall", 63, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 26, 3], ["pythonRelaxDeps", 36, 3], ["pythonRemoveDeps", 39, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 46, 3], ["preFixup", 59, 3], ["postInstall", 63, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "friture",
       version: "0.54",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tlecomte",
           repo: "friture",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n",
       postInstall: "substituteInPlace $out/share/applications/friture.desktop --replace-fail usr/bin/friture friture\n\nfor size in 16 32 128 256 512\ndo\n  mkdir -p $out/share/icons/hicolor/$size\\x$size\n  cp $src/resources/images/friture.iconset/icon_$size\\x$size.png $out/share/icons/hicolor/$size\\x$size/friture.png\ndone\nmkdir -p $out/share/icons/hicolor/scalable/apps/\ncp $src/resources/images-src/window-icon.svg $out/share/icons/hicolor/scalable/apps/friture.svg\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Real-time audio analyzer",
         mainProgram: "friture",
         homepage: "https://friture.org/",

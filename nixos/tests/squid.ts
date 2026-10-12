@@ -2,94 +2,59 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/squid.nix", [[["useDHCP", 16, 16]], [["systemPackages", 18, 17]], [["networking", 16, 5], ["environment", 18, 5]], [["pkgsReadOnly", 47, 8]], [["vlans", 55, 26]], [["enable", 56, 31], ["allowedTCPPorts", 59, 31]], [["firewall", 56, 22]], [["index", 66, 29]], [["/", 66, 25]], [["addr", 69, 19], ["port", 70, 19]], [["root", 65, 15], ["locations", 66, 15], ["listen", 67, 15]], [["server", 64, 26]], [["enable", 62, 13], ["virtualHosts", 64, 13]], [["nginx", 61, 20]], [["virtualisation", 55, 11], ["networking", 56, 11], ["services", 61, 11]], [["permittedInsecurePackages", 87, 26]], [["config", 87, 19]], [["vlans", 89, 26]], [["enable", 93, 31], ["allowedTCPPorts", 94, 31]], [["firewall", 93, 22]], [["enable", 97, 13], ["extraConfig", 99, 13]], [["squid", 96, 20]], [["nixpkgs", 87, 11], ["virtualisation", 89, 11], ["networking", 93, 11], ["services", 96, 11]], [["vlans", 114, 26]], [["enable", 115, 31], ["allowedTCPPorts", 116, 31]], [["firewall", 115, 22]], [["index", 123, 29]], [["/", 123, 25]], [["addr", 126, 19], ["port", 127, 19]], [["root", 122, 15], ["locations", 123, 15], ["listen", 124, 15]], [["server", 121, 26]], [["enable", 119, 13], ["virtualHosts", 121, 13]], [["nginx", 118, 20]], [["virtualisation", 114, 11], ["networking", 115, 11], ["services", 118, 11]], [["client", 50, 5], ["proxy", 78, 5], ["server", 109, 5]], [["name", 45, 3], ["node", 47, 3], ["nodes", 49, 3], ["testScript", 136, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/squid.nix", [["useDHCP", 16, 16]]);
-const pos$2 = nix.positions(here + "/squid.nix", [["systemPackages", 18, 17]]);
-const pos$3 = nix.positions(here + "/squid.nix", [["networking", 16, 5], ["environment", 18, 5]]);
-const pos$4 = nix.positions(here + "/squid.nix", [["pkgsReadOnly", 47, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$5 = nix.positions(here + "/squid.nix", [["vlans", 55, 26]]);
-const pos$6 = nix.positions(here + "/squid.nix", [["enable", 56, 31], ["allowedTCPPorts", 59, 31]]);
-const pos$7 = nix.positions(here + "/squid.nix", [["firewall", 56, 22]]);
-const pos$8 = nix.positions(here + "/squid.nix", [["index", 66, 29]]);
-const pos$9 = nix.positions(here + "/squid.nix", [["/", 66, 25]]);
-const pos$10 = nix.positions(here + "/squid.nix", [["addr", 69, 19], ["port", 70, 19]]);
-const pos$11 = nix.positions(here + "/squid.nix", [["root", 65, 15], ["locations", 66, 15], ["listen", 67, 15]]);
-const pos$12 = nix.positions(here + "/squid.nix", [["server", 64, 26]]);
-const pos$13 = nix.positions(here + "/squid.nix", [["enable", 62, 13], ["virtualHosts", 64, 13]]);
-const pos$14 = nix.positions(here + "/squid.nix", [["nginx", 61, 20]]);
-const pos$15 = nix.positions(here + "/squid.nix", [["virtualisation", 55, 11], ["networking", 56, 11], ["services", 61, 11]]);
 const formals$3 = { args: { config: false, nodes: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/squid.nix", [["permittedInsecurePackages", 87, 26]]);
-const pos$17 = nix.positions(here + "/squid.nix", [["config", 87, 19]]);
-const pos$18 = nix.positions(here + "/squid.nix", [["vlans", 89, 26]]);
-const pos$19 = nix.positions(here + "/squid.nix", [["enable", 93, 31], ["allowedTCPPorts", 94, 31]]);
-const pos$20 = nix.positions(here + "/squid.nix", [["firewall", 93, 22]]);
-const pos$21 = nix.positions(here + "/squid.nix", [["enable", 97, 13], ["extraConfig", 99, 13]]);
-const pos$22 = nix.positions(here + "/squid.nix", [["squid", 96, 20]]);
-const pos$23 = nix.positions(here + "/squid.nix", [["nixpkgs", 87, 11], ["virtualisation", 89, 11], ["networking", 93, 11], ["services", 96, 11]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$24 = nix.positions(here + "/squid.nix", [["vlans", 114, 26]]);
-const pos$25 = nix.positions(here + "/squid.nix", [["enable", 115, 31], ["allowedTCPPorts", 116, 31]]);
-const pos$26 = nix.positions(here + "/squid.nix", [["firewall", 115, 22]]);
-const pos$27 = nix.positions(here + "/squid.nix", [["index", 123, 29]]);
-const pos$28 = nix.positions(here + "/squid.nix", [["/", 123, 25]]);
-const pos$29 = nix.positions(here + "/squid.nix", [["addr", 126, 19], ["port", 127, 19]]);
-const pos$30 = nix.positions(here + "/squid.nix", [["root", 122, 15], ["locations", 123, 15], ["listen", 124, 15]]);
-const pos$31 = nix.positions(here + "/squid.nix", [["server", 121, 26]]);
-const pos$32 = nix.positions(here + "/squid.nix", [["enable", 119, 13], ["virtualHosts", 121, 13]]);
-const pos$33 = nix.positions(here + "/squid.nix", [["nginx", 118, 20]]);
-const pos$34 = nix.positions(here + "/squid.nix", [["virtualisation", 114, 11], ["networking", 115, 11], ["services", 118, 11]]);
-const pos$35 = nix.positions(here + "/squid.nix", [["client", 50, 5], ["proxy", 78, 5], ["server", 109, 5]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$36 = nix.positions(here + "/squid.nix", [["name", 45, 3], ["node", 47, 3], ["nodes", 49, 3], ["testScript", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const commonConfig = nix.thunk(() => ({
-    [nix.POS]: pos$3,
-    networking: nix.thunk(() => ({ [nix.POS]: pos$1, useDHCP: false })),
+    [nix.POS]: $pos[2],
+    networking: nix.thunk(() => ({ [nix.POS]: $pos[0], useDHCP: false })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       systemPackages: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "check-connection", "#!/usr/bin/env bash\n\nset -e\n\nif [[ \"$2\" == \"\" || \"$1\" == \"--help\" || \"$1\" == \"-h\" ]];\nthen\n    echo \"check-connection <target-address> <[expect-success|expect-failure]>\"\n    exit 1\nfi\n\nADDRESS=\"$1\"\n\nfunction test_icmp() { timeout 3 ping -c 1 \"$ADDRESS\"; }\n\nif [[ \"$2\" == \"expect-success\" ]];\nthen\n    test_icmp\nelse\n    ! test_icmp\nfi\n")),
       ]),
     })),
   }));
   return {
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     name: "squid",
-    node: nix.thunk(() => ({ [nix.POS]: pos$4, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: $pos[3], pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             commonConfig,
             nix.thunk(() => ({
-              [nix.POS]: pos$15,
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$5, vlans: nix.thunk(() => [1n]) })),
+              [nix.POS]: $pos[14],
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[4], vlans: nix.thunk(() => [1n]) })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                firewall: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true, allowedTCPPorts: nix.thunk(() => [80n]) })),
+                [nix.POS]: $pos[6],
+                firewall: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true, allowedTCPPorts: nix.thunk(() => [80n]) })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 nginx: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   enable: true,
                   virtualHosts: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     server: nix.thunk(() => ({
-                      [nix.POS]: pos$11,
+                      [nix.POS]: $pos[10],
                       root: "/etc",
                       locations: nix.thunk(() => ({
-                        [nix.POS]: pos$9,
-                        "/": nix.thunk(() => ({ [nix.POS]: pos$8, index: "hostname" })),
+                        [nix.POS]: $pos[8],
+                        "/": nix.thunk(() => ({ [nix.POS]: $pos[7], index: "hostname" })),
                       })),
-                      listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$10, addr: "0.0.0.0", port: 80n }))]),
+                      listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[9], addr: "0.0.0.0", port: 80n }))]),
                     })),
                   })),
                 })),
@@ -106,27 +71,27 @@ export default nix.lambda((args) => (() => {
         return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             commonConfig,
             nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               nixpkgs: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   permittedInsecurePackages: nix.thunk(() => ["squid-7.0.1"]),
                 })),
               })),
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$18, vlans: nix.thunk(() => [1n, 2n]) })),
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[17], vlans: nix.thunk(() => [1n, 2n]) })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 firewall: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   enable: true,
                   allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "squid", "proxyPort"))]),
                 })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 squid: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   enable: true,
                   extraConfig: nix.thunk(() => nix.str`acl client src ${clientIp}
 acl server dst ${serverIp}
@@ -143,27 +108,27 @@ http_access deny all
         return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             commonConfig,
             nix.thunk(() => ({
-              [nix.POS]: pos$34,
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$24, vlans: nix.thunk(() => [2n]) })),
+              [nix.POS]: $pos[33],
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[23], vlans: nix.thunk(() => [2n]) })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$26,
-                firewall: nix.thunk(() => ({ [nix.POS]: pos$25, enable: true, allowedTCPPorts: nix.thunk(() => [80n]) })),
+                [nix.POS]: $pos[25],
+                firewall: nix.thunk(() => ({ [nix.POS]: $pos[24], enable: true, allowedTCPPorts: nix.thunk(() => [80n]) })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 nginx: nix.thunk(() => ({
-                  [nix.POS]: pos$32,
+                  [nix.POS]: $pos[31],
                   enable: true,
                   virtualHosts: nix.thunk(() => ({
-                    [nix.POS]: pos$31,
+                    [nix.POS]: $pos[30],
                     server: nix.thunk(() => ({
-                      [nix.POS]: pos$30,
+                      [nix.POS]: $pos[29],
                       root: "/etc",
                       locations: nix.thunk(() => ({
-                        [nix.POS]: pos$28,
-                        "/": nix.thunk(() => ({ [nix.POS]: pos$27, index: "hostname" })),
+                        [nix.POS]: $pos[27],
+                        "/": nix.thunk(() => ({ [nix.POS]: $pos[26], index: "hostname" })),
                       })),
-                      listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$29, addr: "0.0.0.0", port: 80n }))]),
+                      listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[28], addr: "0.0.0.0", port: 80n }))]),
                     })),
                   })),
                 })),

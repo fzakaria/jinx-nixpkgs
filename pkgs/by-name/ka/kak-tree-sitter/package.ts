@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 10, 3], ["version", 11, 39], ["name", 12, 3], ["paths", 14, 3], ["nativeBuildInputs", 15, 3], ["postBuild", 19, 3], ["meta", 26, 39]]]);
 const formals$1 = { args: { lib: false, makeWrapper: false, symlinkJoin: false, tinycc: false, "kak-tree-sitter-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 39], ["name", 12, 3], ["paths", 14, 3], ["nativeBuildInputs", 15, 3], ["postBuild", 19, 3], ["meta", 26, 39]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const tinycc = nix.arg($, "tinycc");
   const kak_tree_sitter_unwrapped = nix.arg($, "kak-tree-sitter-unwrapped");
   return nix.app(symlinkJoin, (finalAttrs) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["-unwrapped"]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(kak_tree_sitter_unwrapped, "pname")))),
       version: nix.thunk(() => nix.attr(kak_tree_sitter_unwrapped, "version")),
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),

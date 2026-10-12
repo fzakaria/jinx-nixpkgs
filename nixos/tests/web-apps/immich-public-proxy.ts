@@ -2,91 +2,71 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/immich-public-proxy.nix", [[["memorySize", 7, 22]], [["systemPackages", 8, 19]], [["enable", 16, 26]], [["enabled", 18, 27]], [["database", 18, 18]], [["enabled", 19, 27]], [["enabled", 20, 15]], [["enabled", 21, 28]], [["import", 22, 26]], [["faces", 22, 20]], [["enabled", 23, 27]], [["enabled", 24, 30]], [["smtp", 24, 25]], [["backup", 18, 11], ["machineLearning", 19, 11], ["map", 20, 11], ["reverseGeocoding", 21, 11], ["metadata", 22, 11], ["newVersionCheck", 23, 11], ["notifications", 24, 11]], [["enable", 13, 9], ["port", 14, 9], ["machine-learning", 16, 9], ["settings", 17, 9]], [["X-NixOS", 31, 38]], [["responseHeaders", 31, 22]], [["ipp", 31, 18]], [["enable", 28, 9], ["immichUrl", 29, 9], ["port", 30, 9], ["settings", 31, 9]], [["package", 35, 27]], [["immich", 12, 16], ["immich-public-proxy", 27, 16], ["postgresql", 35, 16]], [["virtualisation", 7, 7], ["environment", 8, 7], ["services", 12, 7]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 38, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/immich-public-proxy.nix", [["memorySize", 7, 22]]);
-const pos$2 = nix.positions(here + "/immich-public-proxy.nix", [["systemPackages", 8, 19]]);
-const pos$3 = nix.positions(here + "/immich-public-proxy.nix", [["enable", 16, 26]]);
-const pos$4 = nix.positions(here + "/immich-public-proxy.nix", [["enabled", 18, 27]]);
-const pos$5 = nix.positions(here + "/immich-public-proxy.nix", [["database", 18, 18]]);
-const pos$6 = nix.positions(here + "/immich-public-proxy.nix", [["enabled", 19, 27]]);
-const pos$7 = nix.positions(here + "/immich-public-proxy.nix", [["enabled", 20, 15]]);
-const pos$8 = nix.positions(here + "/immich-public-proxy.nix", [["enabled", 21, 28]]);
-const pos$9 = nix.positions(here + "/immich-public-proxy.nix", [["import", 22, 26]]);
-const pos$10 = nix.positions(here + "/immich-public-proxy.nix", [["faces", 22, 20]]);
-const pos$11 = nix.positions(here + "/immich-public-proxy.nix", [["enabled", 23, 27]]);
-const pos$12 = nix.positions(here + "/immich-public-proxy.nix", [["enabled", 24, 30]]);
-const pos$13 = nix.positions(here + "/immich-public-proxy.nix", [["smtp", 24, 25]]);
-const pos$14 = nix.positions(here + "/immich-public-proxy.nix", [["backup", 18, 11], ["machineLearning", 19, 11], ["map", 20, 11], ["reverseGeocoding", 21, 11], ["metadata", 22, 11], ["newVersionCheck", 23, 11], ["notifications", 24, 11]]);
-const pos$15 = nix.positions(here + "/immich-public-proxy.nix", [["enable", 13, 9], ["port", 14, 9], ["machine-learning", 16, 9], ["settings", 17, 9]]);
-const pos$16 = nix.positions(here + "/immich-public-proxy.nix", [["X-NixOS", 31, 38]]);
-const pos$17 = nix.positions(here + "/immich-public-proxy.nix", [["responseHeaders", 31, 22]]);
-const pos$18 = nix.positions(here + "/immich-public-proxy.nix", [["ipp", 31, 18]]);
-const pos$19 = nix.positions(here + "/immich-public-proxy.nix", [["enable", 28, 9], ["immichUrl", 29, 9], ["port", 30, 9], ["settings", 31, 9]]);
-const pos$20 = nix.positions(here + "/immich-public-proxy.nix", [["package", 35, 27]]);
-const pos$21 = nix.positions(here + "/immich-public-proxy.nix", [["immich", 12, 16], ["immich-public-proxy", 27, 16], ["postgresql", 35, 16]]);
-const pos$22 = nix.positions(here + "/immich-public-proxy.nix", [["virtualisation", 7, 7], ["environment", 8, 7], ["services", 12, 7]]);
-const pos$23 = nix.positions(here + "/immich-public-proxy.nix", [["machine", 4, 9]]);
-const pos$24 = nix.positions(here + "/immich-public-proxy.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 38, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$24,
+  [nix.POS]: $pos[23],
   name: "immich-public-proxy",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$22,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, memorySize: 2048n })),
+        [nix.POS]: $pos[21],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], memorySize: 2048n })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "imagemagick")),
             nix.thunk(() => nix.sel(pkgs, "immich-cli")),
           ]),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           immich: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             enable: true,
             port: 2283n,
-            "machine-learning": nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+            "machine-learning": nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               backup: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                database: nix.thunk(() => ({ [nix.POS]: pos$4, enabled: false })),
+                [nix.POS]: $pos[4],
+                database: nix.thunk(() => ({ [nix.POS]: $pos[3], enabled: false })),
               })),
-              machineLearning: nix.thunk(() => ({ [nix.POS]: pos$6, enabled: false })),
-              map: nix.thunk(() => ({ [nix.POS]: pos$7, enabled: false })),
-              reverseGeocoding: nix.thunk(() => ({ [nix.POS]: pos$8, enabled: false })),
+              machineLearning: nix.thunk(() => ({ [nix.POS]: $pos[5], enabled: false })),
+              map: nix.thunk(() => ({ [nix.POS]: $pos[6], enabled: false })),
+              reverseGeocoding: nix.thunk(() => ({ [nix.POS]: $pos[7], enabled: false })),
               metadata: nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                faces: nix.thunk(() => ({ [nix.POS]: pos$9, import: false })),
+                [nix.POS]: $pos[9],
+                faces: nix.thunk(() => ({ [nix.POS]: $pos[8], import: false })),
               })),
-              newVersionCheck: nix.thunk(() => ({ [nix.POS]: pos$11, enabled: false })),
+              newVersionCheck: nix.thunk(() => ({ [nix.POS]: $pos[10], enabled: false })),
               notifications: nix.thunk(() => ({
-                [nix.POS]: pos$13,
-                smtp: nix.thunk(() => ({ [nix.POS]: pos$12, enabled: false })),
+                [nix.POS]: $pos[12],
+                smtp: nix.thunk(() => ({ [nix.POS]: $pos[11], enabled: false })),
               })),
             })),
           })),
           "immich-public-proxy": nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             enable: true,
             immichUrl: "http://localhost:2283",
             port: 8002n,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               ipp: nix.thunk(() => ({
-                [nix.POS]: pos$17,
-                responseHeaders: nix.thunk(() => ({ [nix.POS]: pos$16, "X-NixOS": "Rules" })),
+                [nix.POS]: $pos[16],
+                responseHeaders: nix.thunk(() => ({ [nix.POS]: $pos[15], "X-NixOS": "Rules" })),
               })),
             })),
           })),
-          postgresql: nix.thunk(() => ({ [nix.POS]: pos$20, package: nix.thunk(() => nix.sel(pkgs, "postgresql_16")) })),
+          postgresql: nix.thunk(() => ({
+            [nix.POS]: $pos[19],
+            package: nix.thunk(() => nix.sel(pkgs, "postgresql_16")),
+          })),
         })),
       };
     })(), formals$1),

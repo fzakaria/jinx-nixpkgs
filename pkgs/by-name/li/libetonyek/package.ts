@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7]], [["version", 20, 5], ["src", 21, 5]], [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["configureFlags", 57, 3], ["strictDeps", 59, 3], ["enableParallelBuilding", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchFromGitLab: false, autoreconfHook: false, "pkg-config": false, boost: false, cppunit: false, glm: false, gperf: false, liblangtag: false, librevenge: false, libxml2: false, mdds: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 20, 5], ["src", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["configureFlags", 57, 3], ["strictDeps", 59, 3], ["enableParallelBuilding", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,10 +23,10 @@ export default nix.lambda((args) => (() => {
   const mdds = nix.arg($, "mdds");
   const zlib = nix.arg($, "zlib");
   const mdds_2_1 = nix.thunk(() => nix.app(nix.sel(mdds, "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mdds",
           repo: "mdds",
           rev: "2.1.1",
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
         })))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libetonyek",
       version: "0.1.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "LibreOffice",
           repo: "libetonyek",
           rev: nix.thunk(() => nix.str`libetonyek-${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library and a set of tools for reading and converting Apple iWork documents (Keynote, Pages and Numbers)",
         homepage: "https://github.com/LibreOffice/libetonyek",
         changelog: nix.thunk(() => nix.str`https://github.com/LibreOffice/libetonyek/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

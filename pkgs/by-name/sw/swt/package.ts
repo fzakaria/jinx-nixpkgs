@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["platform", 25, 18], ["hash", 26, 18]], [["platform", 27, 19], ["hash", 28, 19]], [["platform", 29, 19], ["hash", 30, 19]], [["platform", 31, 19], ["hash", 32, 19]], [["platform", 33, 20], ["hash", 34, 20]], [["x86_64-linux", 25, 5], ["aarch64-linux", 27, 5], ["ppc64le-linux", 29, 5], ["riscv64-linux", 31, 5], ["aarch64-darwin", 33, 5]], [["srcMetadataByPlatform", 21, 12], ["srcMetadata", 36, 12]], [["url", 47, 7], ["hash", 48, 29], ["stripRoot", 49, 7], ["postFetch", 50, 7]], [["SWT_JAVA_HOME", 82, 5], ["AWT_LIB_PATH", 83, 5], ["OUTPUT_DIR", 85, 5]], [["NIX_CFLAGS_COMPILE", 88, 5]], [["homepage", 137, 5], ["description", 138, 5], ["license", 142, 5], ["maintainers", 149, 5], ["sourceProvenance", 151, 5], ["platforms", 154, 5], ["broken", 156, 5]], [["pname", 13, 3], ["version", 16, 3], ["fullVersion", 17, 3], ["hardeningDisable", 19, 3], ["passthru", 21, 3], ["src", 41, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 72, 3], ["makeFlags", 79, 3], ["env", 81, 3], ["postPatch", 91, 3], ["preBuild", 92, 3], ["postBuild", 98, 3], ["installPhase", 108, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { fetchzip: false, gtk3: false, jdk: false, lib: false, libGLU: false, "pkg-config": false, stdenv: false, stripJavaArchivesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["platform", 25, 18], ["hash", 26, 18]]);
-const pos$2 = nix.positions(here + "/package.nix", [["platform", 27, 19], ["hash", 28, 19]]);
-const pos$3 = nix.positions(here + "/package.nix", [["platform", 29, 19], ["hash", 30, 19]]);
-const pos$4 = nix.positions(here + "/package.nix", [["platform", 31, 19], ["hash", 32, 19]]);
-const pos$5 = nix.positions(here + "/package.nix", [["platform", 33, 20], ["hash", 34, 20]]);
-const pos$6 = nix.positions(here + "/package.nix", [["x86_64-linux", 25, 5], ["aarch64-linux", 27, 5], ["ppc64le-linux", 29, 5], ["riscv64-linux", 31, 5], ["aarch64-darwin", 33, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["srcMetadataByPlatform", 21, 12], ["srcMetadata", 36, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 47, 7], ["hash", 48, 29], ["stripRoot", 49, 7], ["postFetch", 50, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["SWT_JAVA_HOME", 82, 5], ["AWT_LIB_PATH", 83, 5], ["OUTPUT_DIR", 85, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 88, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["homepage", 137, 5], ["description", 138, 5], ["license", 142, 5], ["maintainers", 149, 5], ["sourceProvenance", 151, 5], ["platforms", 154, 5], ["broken", 156, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 16, 3], ["fullVersion", 17, 3], ["hardeningDisable", 19, 3], ["passthru", 21, 3], ["src", 41, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 72, 3], ["makeFlags", 79, 3], ["env", 81, 3], ["postPatch", 91, 3], ["preBuild", 92, 3], ["postBuild", 98, 3], ["installPhase", 108, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,37 +16,37 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "swt",
       version: nix.thunk(() => nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", nix.thunk(() => nix.sel(finalAttrs, "fullVersion")))), 1n)),
       fullVersion: "R-4.34-202411201800",
       hardeningDisable: nix.thunk(() => ["format"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         srcMetadataByPlatform: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "x86_64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             platform: "gtk-linux-x86_64",
             hash: "sha256-lKAB2aCI3dZdt3pE7uSvSfxc8vc3oMSTCx5R+71Aqdk=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             platform: "gtk-linux-aarch64",
             hash: "sha256-lKAB2aCI3dZdt3pE7uSvSfxc8vc3oMSTCx5R+71Aqdk=",
           })),
           "ppc64le-linux": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             platform: "gtk-linux-ppc64le",
             hash: "sha256-lKAB2aCI3dZdt3pE7uSvSfxc8vc3oMSTCx5R+71Aqdk=",
           })),
           "riscv64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             platform: "gtk-linux-riscv64",
             hash: "sha256-lKAB2aCI3dZdt3pE7uSvSfxc8vc3oMSTCx5R+71Aqdk=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             platform: "cocoa-macosx-aarch64",
             hash: "sha256-jvxmoRFGquYClPgMqWi2ylw26YiGSG5bONnM1PcjlTM=",
           })),
@@ -69,7 +58,7 @@ export default nix.lambda((args) => (() => {
         const srcMetadata = nix.thunk(() => nix.attr(from, "srcMetadata"));
         nix.assert_(!nix.eq(srcMetadata, null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sw/swt/package.nix:45:5");
         return nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: nix.thunk(() => nix.str`https://download.eclipse.org/eclipse/downloads/drops4/${nix.sel(finalAttrs, "fullVersion")}/swt-${nix.sel(finalAttrs, "version")}-${nix.sel(srcMetadata, "platform")}.zip`),
             hash: nix.thunk(() => nix.attr(srcMetadata, "hash")),
             stripRoot: false,
@@ -80,11 +69,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [gtk3, libGLU]))),
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["gtk3"]))),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         SWT_JAVA_HOME: jdk,
         AWT_LIB_PATH: nix.thunk(() => nix.str`${jdk}/lib/openjdk/lib`),
         OUTPUT_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib`),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$10, NIX_CFLAGS_COMPILE: "-std=gnu17" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: $pos[9], NIX_CFLAGS_COMPILE: "-std=gnu17" }))))),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "substituteInPlace library/make_linux.mak --replace-fail 'CFLAGS += -Werror' ''")),
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "cd library\nmkdir -p $OUTPUT_DIR\n")),
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "cd ../\nmkdir out\nfind org/ -name '*.java' -type f -exec javac -encoding utf8 -d out/ {} +\n# Copy non Java resource files\nfind org/ -not -name '*.java' -not -name '*.html' -type f -exec cp {} out/{} \\;\n")),
@@ -99,7 +88,7 @@ rm -rf jar-temp
 
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -m 644 -t out -- version.txt\n(cd out && jar -c *) > \"$out/jars/swt.jar\"\n\n")), "runHook postInstall\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         homepage: "https://www.eclipse.org/swt/",
         description: "A widget toolkit for Java to access the user-interface facilities of\nthe operating systems on which it is implemented.\n",
         license: nix.thunk(() => (() => {

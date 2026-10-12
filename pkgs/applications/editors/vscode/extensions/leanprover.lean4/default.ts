@@ -2,26 +2,24 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 8, 5], ["publisher", 9, 5], ["version", 10, 5], ["hash", 11, 5]], [["description", 15, 5], ["downloadPage", 16, 5], ["homepage", 17, 5], ["license", 18, 5], ["maintainers", 19, 5]], [["mktplcRef", 7, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 8, 5], ["publisher", 9, 5], ["version", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 15, 5], ["downloadPage", 16, 5], ["homepage", 17, 5], ["license", 18, 5], ["maintainers", 19, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 7, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "lean4",
         publisher: "leanprover",
         version: "0.0.240",
         hash: "sha256-ixkQoXTHsHRB6wf5vmkJ0p8i1NrNyM6U595NY1CvbBE=",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "This extension provides VS Code support for the Lean 4 theorem prover and programming language",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=leanprover.lean4",
         homepage: "https://github.com/leanprover/vscode-lean4",

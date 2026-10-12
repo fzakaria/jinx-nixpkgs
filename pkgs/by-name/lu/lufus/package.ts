@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]], [["name", 54, 7], ["desktopName", 55, 7], ["comment", 56, 7], ["exec", 57, 7], ["icon", 58, 7], ["categories", 59, 7]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5], ["mainProgram", 72, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 20, 3], ["pyproject", 28, 3], ["build-system", 30, 3], ["nativeBuildInputs", 35, 3], ["__structuredAttrs", 40, 3], ["postInstall", 42, 3], ["desktopItems", 52, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, python313Packages: false, fetchFromGitHub: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 54, 7], ["desktopName", 55, 7], ["comment", 56, 7], ["exec", 57, 7], ["icon", 58, 7], ["categories", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5], ["mainProgram", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 20, 3], ["pyproject", 28, 3], ["build-system", 30, 3], ["nativeBuildInputs", 35, 3], ["__structuredAttrs", 40, 3], ["postInstall", 42, 3], ["desktopItems", 52, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(python313Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lufus",
       version: "1.0.0b1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Hogjects",
           repo: "Lufus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +54,7 @@ copyDesktopItems
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "lufus",
             desktopName: "Lufus",
             comment: "A rufus clone written in py and designed to work with linux",
@@ -67,7 +64,7 @@ copyDesktopItems
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "A rufus clone written in py and designed to work with linux",
         homepage: "https://github.com/Hogjects/Lufus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

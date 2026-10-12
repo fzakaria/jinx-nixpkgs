@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 25, 5], ["aarch64-linux", 26, 5]], [["policies", 35, 81]], [["x86_64-linux", 49, 9], ["aarch64-linux", 50, 9]], [["url", 46, 5], ["hash", 47, 5]], [["binaryName", 96, 13], ["applicationName", 97, 5], ["libName", 98, 5], ["withFFmpeg", 99, 5], ["withGSSAPI", 100, 5], ["gtk3", 101, 5], ["updateScript", 102, 5]], [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 113, 5], ["mainProgram", 114, 5], ["hydraPlatforms", 115, 5], ["sourceProvenance", 116, 5]], [["pname", 43, 11], ["version", 43, 17], ["src", 45, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 61, 3], ["runtimeDependencies", 69, 3], ["appendRunpaths", 75, 3], ["patchelfFlags", 78, 3], ["installPhase", 80, 3], ["passthru", 95, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, config: false, wrapGAppsHook3: false, autoPatchelfHook: false, "alsa-lib": false, curl: false, "dbus-glib": false, gtk3: false, libxtst: false, libva: false, pciutils: false, pipewire: false, "adwaita-icon-theme": false, writeText: false, patchelfUnstable: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 25, 5], ["aarch64-linux", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["policies", 35, 81]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 49, 9], ["aarch64-linux", 50, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 46, 5], ["hash", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["binaryName", 96, 13], ["applicationName", 97, 5], ["libName", 98, 5], ["withFFmpeg", 99, 5], ["withGSSAPI", 100, 5], ["gtk3", 101, 5], ["updateScript", 102, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 113, 5], ["mainProgram", 114, 5], ["hydraPlatforms", 115, 5], ["sourceProvenance", 116, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 43, 11], ["version", 43, 17], ["src", 45, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 61, 3], ["runtimeDependencies", 69, 3], ["appendRunpaths", 75, 3], ["patchelfFlags", 78, 3], ["installPhase", 80, 3], ["passthru", 95, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,25 +26,25 @@ export default nix.lambda((args) => (() => {
   const patchelfUnstable = nix.arg($, "patchelfUnstable");
   const binaryName = "librewolf";
   const mozillaPlatforms = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "linux-x86_64",
     "aarch64-linux": "linux-arm64",
   }));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const arch = nix.thunk(() => nix.selOr(mozillaPlatforms, () => nix.force(throwSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const policies = nix.thunk(() => nix.selOr(config, () => ({}), "librewolf", "policies"));
-  const policiesJson = nix.thunk(() => nix.app(writeText, "librewolf-policies.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$2, policies: policies }))))));
+  const policiesJson = nix.thunk(() => nix.app(writeText, "librewolf-policies.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[1], policies: policies }))))));
   const pname = "librewolf-bin-unwrapped";
   const version = "156.0.1-1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://codeberg.org/api/packages/librewolf/generic/librewolf/${version}/librewolf-${version}-${arch}-package.tar.xz`),
           hash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "x86_64-linux": "sha256-2D6GwlqhiHdz7i6+9lWWBHZ3XHL/w9/ffCeZzYoOpLc=",
             "aarch64-linux": "sha256-v+w2zgv+HtTii3ifufOcYtaGFOE3WD/dDkTuaZmmOPk=",
           }, () => nix.force(throwSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -73,7 +67,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.selOr(config, () =
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         binaryName: binaryName,
         applicationName: "LibreWolf",
         libName: nix.thunk(() => nix.str`librewolf-bin-${version}`),
@@ -83,7 +77,7 @@ runHook postInstall
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Fork of Firefox, focused on privacy, security and freedom (upstream binary release)",
         homepage: "https://librewolf.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

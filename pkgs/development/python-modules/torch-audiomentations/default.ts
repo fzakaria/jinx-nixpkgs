@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 47, 3], ["pythonImportsCheck", 53, 3], ["disabledTestPaths", 55, 3], ["disabledTests", 63, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, julius: false, librosa: false, torch: false, "torch-pitch-shift": false, torchaudio: false, "pytest-cov-stub": false, pytestCheckHook: false, pyyaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 47, 3], ["pythonImportsCheck", 53, 3], ["disabledTestPaths", 55, 3], ["disabledTests", 63, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pyyaml = nix.arg($, "pyyaml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "torch-audiomentations",
       version: "0.12.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "asteroid-team",
           repo: "torch-audiomentations",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
         "test_transform_is_differentiable",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast audio data augmentation in PyTorch",
         homepage: "https://github.com/asteroid-team/torch-audiomentations",
         changelog: nix.thunk(() => nix.str`https://github.com/asteroid-team/torch-audiomentations/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["cmakeFlags", 24, 5]], [["ogre", 29, 5]], [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]], [["updateScript", 79, 5]], [["description", 83, 5], ["mainProgram", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["platforms", 95, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["postPatch", 49, 3], ["strictDeps", 58, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 65, 3], ["cmakeFlags", 74, 3], ["passthru", 78, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, ogre_13: false, cegui: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, boost183: false, ois: false, openal: false, sfml_2: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["cmakeFlags", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ogre", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 83, 5], ["mainProgram", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["platforms", 95, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["postPatch", 49, 3], ["strictDeps", 58, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 65, 3], ["cmakeFlags", 74, 3], ["passthru", 78, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const sfml_2 = nix.arg($, "sfml_2");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const ogre$ = nix.thunk(() => nix.app(nix.sel(ogre_13, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       cmakeFlags: nix.thunk(() => nix.concat(nix.sel(old, "cmakeFlags"), ["-DOGRE_RESOURCEMANAGER_STRICT=0"])),
     })));
-  const cegui$ = nix.thunk(() => nix.app(nix.sel(cegui, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, ogre: ogre$ }))));
+  const cegui$ = nix.thunk(() => nix.app(nix.sel(cegui, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], ogre: ogre$ }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "opendungeons",
       version: "0-unstable-2024-07-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "paroj",
           repo: "OpenDungeons",
           rev: "2574db9fbe99aeb6a058b7a27bc191da37978c95",
@@ -52,11 +47,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "OD_TREAT_WARNINGS_AS_ERRORS", false)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open source, real time strategy game sharing game elements with the Dungeon Keeper series and Evil Genius",
         mainProgram: "opendungeons",
         homepage: "https://opendungeons.github.io",

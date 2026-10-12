@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["pname", 30, 7], ["version", 31, 7], ["debianRevision", 32, 7], ["patch", 33, 7], ["hash", 34, 7]], [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["platforms", 54, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 23, 3], ["patches", 28, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchDebianPatch: false, autoreconfHook: false, "pkg-config": false, libxt: false, libx11: false, libsm: false, libice: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 30, 7], ["version", 31, 7], ["debianRevision", 32, 7], ["patch", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["platforms", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 23, 3], ["patches", 28, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const libsm = nix.arg($, "libsm");
   const libice = nix.arg($, "libice");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "x11-ssh-askpass",
       version: "1.2.4.1",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pkgs.fedoraproject.org/repo/pkgs/openssh/x11-ssh-askpass-${nix.sel(finalAttrs, "version")}.tar.gz/8f2e41f3f7eaa8543a2440454637f3c3/x11-ssh-askpass-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "620de3c32ae72185a2c9aeaec03af24242b9621964e38eb625afb6cdb30b8c88",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: "ssh-askpass",
             version: "1:1.2.4.1",
             debianRevision: "16",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libx11, libxt, libice, libsm]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/sigmavirus24/x11-ssh-askpass",
         description: "Lightweight passphrase dialog for OpenSSH or other open variants of SSH",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

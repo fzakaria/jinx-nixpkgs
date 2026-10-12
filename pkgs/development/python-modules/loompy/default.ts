@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 28], ["version", 23, 34], ["hash", 24, 7]], [["changelog", 54, 7], ["description", 55, 7], ["homepage", 56, 7], ["license", 57, 7], ["maintainers", 58, 7], ["mainProgram", 59, 7]], [["pname", 16, 5], ["version", 17, 5], ["pyproject", 18, 5], ["__structuredAttrs", 20, 5], ["src", 22, 5], ["build-system", 27, 5], ["dependencies", 29, 5], ["nativeCheckInputs", 38, 5], ["preBuild", 41, 5], ["disabledTests", 46, 5], ["pythonImportsCheck", 51, 5], ["meta", 53, 5]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, h5py: false, numpy: false, scipy: false, numba: false, click: false, "numpy-groupies": false, setuptools: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 28], ["version", 23, 34], ["hash", 24, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 54, 7], ["description", 55, 7], ["homepage", 56, 7], ["license", 57, 7], ["maintainers", 58, 7], ["mainProgram", 59, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 5], ["pyproject", 18, 5], ["__structuredAttrs", 20, 5], ["src", 22, 5], ["build-system", 27, 5], ["dependencies", 29, 5], ["nativeCheckInputs", 38, 5], ["preBuild", 41, 5], ["disabledTests", 46, 5], ["pythonImportsCheck", 51, 5], ["meta", 53, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const finalAttrs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     pname: "loompy",
     version: "3.0.8",
     pyproject: true,
     __structuredAttrs: true,
     src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
         version: nix.thunk(() => nix.attr(finalAttrs, "version")),
         hash: "sha256-wfSNC/Iaorve7iGgV3VTy6lgnZQ118MraHaGu7WGnKc=",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
     disabledTests: nix.thunk(() => ["test_scan_with_default_ordering", "test_get"]),
     pythonImportsCheck: nix.thunk(() => ["loompy"]),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       changelog: nix.thunk(() => nix.str`https://github.com/linnarsson-lab/loompy/releases/tag/${nix.sel(finalAttrs, "version")}`),
       description: "Python implementation of the Loom file format",
       homepage: "https://github.com/linnarsson-lab/loompy",

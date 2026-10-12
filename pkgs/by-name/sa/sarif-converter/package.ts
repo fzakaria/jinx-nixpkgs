@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["package", 35, 7]], [["version", 34, 11]], [["tests", 34, 5], ["updateScript", 37, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["postInstall", 29, 3], ["passthru", 33, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitLab: false, "nix-update-script": false, "sarif-converter": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 34, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 34, 5], ["updateScript", 37, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["postInstall", 29, 3], ["passthru", 33, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const sarif_converter = nix.arg($, "sarif-converter");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sarif-converter",
       version: "0.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ignis-build",
           repo: "sarif-converter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,15 +32,15 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mv $out/bin/main $out/bin/sarif-converter\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: sarif_converter })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: sarif_converter })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Convert from [SARIF](https://sarifweb.azurewebsites.net/) to GitLab Code Quality and SAST report",
         homepage: "https://gitlab.com/ignis-build/sarif-converter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

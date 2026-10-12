@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5], ["platforms", 42, 5], ["sourceProvenance", 43, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["sourceRoot", 24, 3], ["installPhase", 26, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenv: false, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5], ["platforms", 42, 5], ["sourceProvenance", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["sourceRoot", 24, 3], ["installPhase", 26, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const snapshot = "20250820092243";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "apparency",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://web.archive.org/web/${snapshot}/https://www.mothersruin.com/software/downloads/Apparency.dmg`),
           hash: "sha256-QaP7Ll5ZK0QVHPFzDPmV8rd0XmY3Ie0VPBDXJEDMECU=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: "Apparency.app",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications/Apparency.app $out/bin\ncp -R . $out/Applications/Apparency.app\nln -s ../Applications/Apparency.app/Contents/MacOS/appy $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Toolkit for analysing macOS applications",
         homepage: "https://www.mothersruin.com/software/Apparency/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

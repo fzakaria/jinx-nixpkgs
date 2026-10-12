@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["awscli", 47, 5], ["boto3", 48, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["pythonRelaxDeps", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 46, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 53, 3], ["disabledTests", 61, 3], ["__darwinAllowLocalNetworking", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, aiobotocore: false, aiohttp: false, fsspec: false, flask: false, "flask-cors": false, moto: false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["awscli", 47, 5], ["boto3", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["pythonRelaxDeps", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 46, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 53, 3], ["disabledTests", 61, 3], ["__darwinAllowLocalNetworking", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fsspec",
           repo: "s3fs",
           tag: version,
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["fsspec"]);
       const dependencies = nix.thunk(() => [aiobotocore, fsspec, aiohttp]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         awscli: nix.thunk(() => nix.sel(aiobotocore, "optional-dependencies", "awscli")),
         boto3: nix.thunk(() => nix.sel(aiobotocore, "optional-dependencies", "boto3")),
       }));
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_async_close", "test_session_close"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pythonic file interface for S3",
         homepage: "https://github.com/fsspec/s3fs",
         changelog: nix.thunk(() => nix.str`https://github.com/fsspec/s3fs/blob/${nix.sel(src, "tag")}/docs/source/changelog.rst`),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

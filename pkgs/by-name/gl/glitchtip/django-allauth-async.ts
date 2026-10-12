@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/django-allauth-async.nix", [[["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["headless", 71, 5], ["headless-spec", 75, 5], ["idp-oidc", 76, 5], ["mfa", 81, 5], ["openid", 85, 5], ["saml", 86, 5], ["socialaccount", 87, 5], ["steam", 93, 5]], [["description", 116, 5], ["downloadPage", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["maintainers", 120, 5]], [["pname", 41, 3], ["version", 42, 3], ["pyproject", 43, 3], ["__structuredAttrs", 44, 3], ["src", 46, 3], ["nativeBuildInputs", 53, 3], ["build-system", 55, 3], ["dependencies", 60, 3], ["preBuild", 66, 3], ["optional-dependencies", 70, 3], ["pythonImportsCheck", 96, 3], ["nativeCheckInputs", 98, 3], ["disabledTests", 110, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitLab: false, python: false, setuptools: false, "setuptools-scm": false, gettext: false, aiohttp: false, asgiref: false, django: false, fido2: false, oauthlib: false, "python3-openid": false, "python3-saml": false, requests: false, "requests-oauthlib": false, pyjwt: false, qrcode: false, "django-ninja": false, djangorestframework: false, pillow: false, psycopg2: false, "pytest-asyncio": false, "pytest-django": false, pytestCheckHook: false, pyyaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/django-allauth-async.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/django-allauth-async.nix", [["headless", 71, 5], ["headless-spec", 75, 5], ["idp-oidc", 76, 5], ["mfa", 81, 5], ["openid", 85, 5], ["saml", 86, 5], ["socialaccount", 87, 5], ["steam", 93, 5]]);
-const pos$3 = nix.positions(here + "/django-allauth-async.nix", [["description", 116, 5], ["downloadPage", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["maintainers", 120, 5]]);
-const pos$4 = nix.positions(here + "/django-allauth-async.nix", [["pname", 41, 3], ["version", 42, 3], ["pyproject", 43, 3], ["__structuredAttrs", 44, 3], ["src", 46, 3], ["nativeBuildInputs", 53, 3], ["build-system", 55, 3], ["dependencies", 60, 3], ["preBuild", 66, 3], ["optional-dependencies", 70, 3], ["pythonImportsCheck", 96, 3], ["nativeCheckInputs", 98, 3], ["disabledTests", 110, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pyyaml = nix.arg($, "pyyaml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "django-allauth-async",
       version: "65.16.1.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "glitchtip",
           repo: "django-allauth-async",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`${nix.sel(python, "pythonOnBuildForHost", "interpreter")} -m django compilemessages
 `),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         headless: nix.thunk(() => nix.concat([pyjwt], nix.sel(pyjwt, "optional-dependencies", "crypto"))),
         "headless-spec": nix.thunk(() => [pyyaml]),
         "idp-oidc": nix.thunk(() => nix.concat([oauthlib, pyjwt], nix.sel(pyjwt, "optional-dependencies", "crypto"))),
@@ -78,7 +75,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       disabledTests: nix.thunk(() => ["test_login"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Native-asyncio twin of allauth's authentication flows for ASGI applications",
         downloadPage: "https://gitlab.com/glitchtip/django-allauth-async/",
         homepage: "https://allauth.org",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["mainProgram", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 31, 3], ["cargoTestFlags", 38, 3], ["doInstallCheck", 46, 3], ["postInstall", 50, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, git: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["mainProgram", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 31, 3], ["cargoTestFlags", 38, 3], ["doInstallCheck", 46, 3], ["postInstall", 50, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jarl",
       version: "0.6.0-unstable-2026-08-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "etiennebacher",
           repo: "jarl",
           rev: "0abcc17f335010419fa9cae463d746ad1343477e",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: nix.thunk(() => nix.add("rm $out/bin/xtask_codegen\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd jarl \\\n  --bash <(COMPLETE=bash $out/bin/jarl) \\\n  --fish <(COMPLETE=fish $out/bin/jarl) \\\n  --zsh <(COMPLETE=zsh $out/bin/jarl) \\\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Just another R linter",
         homepage: "https://jarl.etiennebacher.com",
         changelog: "https://jarl.etiennebacher.com/changelog",

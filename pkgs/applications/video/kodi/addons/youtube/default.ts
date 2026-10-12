@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["pythonPath", 29, 5]], [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["teams", 36, 5]], [["pname", 11, 3], ["namespace", 12, 3], ["version", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 22, 3], ["passthru", 28, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildKodiAddon: false, fetchFromGitHub: false, requests: false, "inputstream-adaptive": false, inputstreamhelper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pythonPath", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["teams", 36, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["namespace", 12, 3], ["version", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 22, 3], ["passthru", 28, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,23 +18,23 @@ export default nix.lambda((args) => (() => {
       const namespace = "plugin.video.youtube";
       const version = "7.4.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "anxdpanic",
           repo: "plugin.video.youtube",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-epDKZhITQAv3bpS7CGN2Rj35/AamyZo5yzhkfu72ipw=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [requests, inputstream_adaptive, inputstreamhelper]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, pythonPath: "resources/lib" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], pythonPath: "resources/lib" }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/anxdpanic/plugin.video.youtube",
         description: "YouTube is one of the biggest video-sharing websites of the world",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         namespace,
         version,

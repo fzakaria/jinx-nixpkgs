@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5], ["stripRoot", 19, 5]], [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 51, 5], ["homepage", 52, 5], ["mainProgram", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["cmakeFlags", 45, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchzip: false, cmake: false, catch2_3: false, fmt: false, python3: false, simdImplementation: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5], ["stripRoot", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["mainProgram", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["cmakeFlags", 45, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const simdImplementation = nix.argOr($, "simdImplementation", () => "none");
   const ucd_version = "17.0.0";
   const ucd_src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://www.unicode.org/Public/${ucd_version}/ucd/UCD.zip`),
       hash: "sha256-k2OFy8xPvn+Bboyr1EsmZNeVDOglvk2kSZ+H17YaX60=",
       stripRoot: false,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libunicode",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "contour-terminal",
           repo: "libunicode",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "LIBUNICODE_UCD_DIR", nix.thunk(() => nix.str`${ucd_src}`))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Modern C++20 Unicode library",
         homepage: "https://github.com/contour-terminal/libunicode",
         mainProgram: "unicode-query",

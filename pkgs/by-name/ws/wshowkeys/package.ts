@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["mainProgram", 64, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, "pkg-config": false, "wayland-scanner": false, ninja: false, cairo: false, libinput: false, pango: false, wayland: false, "wayland-protocols": false, libxkbcommon: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["mainProgram", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wshowkeys-unstable",
       version: "2021-08-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ammgws",
           repo: "wshowkeys",
           rev: "e8bfc78f08ebdd1316daae59ecc77e62bba68b2b",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, pkg_config, wayland_scanner, ninja]),
       buildInputs: nix.thunk(() => [cairo, libinput, pango, wayland, wayland_protocols, libxkbcommon]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Displays keys being pressed on a Wayland session",
         longDescription: "Displays keypresses on screen on supported Wayland compositors (requires\nwlr_layer_shell_v1 support).\nNote: This tool requires root permissions to read input events, but these\npermissions are dropped after startup. The NixOS module provides such a\nsetuid binary (use \"programs.wshowkeys.enable = true;\").\n",
         homepage: "https://github.com/ammgws/wshowkeys",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5], ["longDescription", 63, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["configureFlags", 39, 3], ["fixupPhase", 44, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, SDL2: false, libpulseaudio: false, glm: false, which: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5], ["longDescription", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["configureFlags", 39, 3], ["fixupPhase", 44, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "projectm",
       version: "3.1.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "projectM-visualizer",
           repo: "projectM",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-qt", "--enable-sdl"]),
       fixupPhase: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "# NOTE: 2019-10-05: Upstream inserts the src path buring build into ELF rpath, so must delete it out\n# upstream report: https://github.com/projectM-visualizer/projectm/issues/245\nfor entry in $out/bin/* ; do\n  patchelf --set-rpath \"$(patchelf --print-rpath $entry | tr ':' '\\n' | grep -v 'src/libprojectM' | tr '\\n' ':')\" \"$entry\"\ndone\n"), "wrapQtApp $out/bin/projectM-pulseaudio\nrm $out/bin/projectM-unittest\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/projectM-visualizer/projectm",
         description: "Cross-platform Milkdrop-compatible music visualizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["build-system", 43, 3], ["buildInputs", 48, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 57, 3], ["enabledTestPaths", 62, 3], ["disabledTests", 64, 3], ["disabledTestPaths", 80, 3], ["pythonImportsCheck", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, coreutils: false, setuptools: false, "setuptools-scm": false, "ansible-compat": false, "ansible-core": false, packaging: false, "pytest-xdist": false, pytest: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["build-system", 43, 3], ["buildInputs", 48, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 57, 3], ["enabledTestPaths", 62, 3], ["disabledTests", 64, 3], ["disabledTestPaths", 80, 3], ["pythonImportsCheck", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pytest-ansible",
       version: "26.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ansible",
           repo: "pytest-ansible",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_adhoc.py", "tests/test_adhoc_result.py"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ansible_core, "version")), "2.16")), nix.thunk(() => ["tests/test_adhoc.py"]))))),
       pythonImportsCheck: nix.thunk(() => ["pytest_ansible"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Plugin for pytest to simplify calling ansible modules from tests or fixtures",
         homepage: "https://github.com/jlaska/pytest-ansible",
         changelog: nix.thunk(() => nix.str`https://github.com/ansible-community/pytest-ansible/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

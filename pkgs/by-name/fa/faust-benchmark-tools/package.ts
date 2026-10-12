@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 121, 5], ["longDescription", 122, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["platforms", 138, 5], ["maintainers", 139, 5], ["mainProgram", 140, 5]], [["pname", 13, 3], ["version", 14, 19], ["src", 14, 27], ["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["sourceRoot", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["postPatch", 38, 3], ["makeFlags", 45, 3], ["enableParallelBuilding", 62, 3], ["installPhase", 67, 3], ["postFixup", 86, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, faust: false, makeWrapper: false, llvm: false, ncurses: false, zlib: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 121, 5], ["longDescription", 122, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["platforms", 138, 5], ["maintainers", 139, 5], ["mainProgram", 140, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 19], ["src", 14, 27], ["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["sourceRoot", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["postPatch", 38, 3], ["makeFlags", 45, 3], ["enableParallelBuilding", 62, 3], ["installPhase", 67, 3], ["postFixup", 86, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "faust-benchmark-tools",
       version: nix.thunk(() => nix.attr(faust, "version")),
       src: nix.thunk(() => nix.attr(faust, "src")),
@@ -67,7 +66,7 @@ for s in faustbench faust2object; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Benchmarking, tracing, and dynamic-compilation tools for the Faust compiler",
         longDescription: "A subset of the tools from the upstream Faust `tools/benchmark/`\ndirectory: dynamic-faust, faustbench-llvm, faustbench-llvm-interp,\nfaustbench-interp, interp-tracer (binaries built against libfaust.a),\nplus the scripts faustbench, faust2object, and faust-tester.\n\nThis package intentionally excludes the JACK/GTK runners (dynamic-jack-gtk,\nfaust-osc-controller, signal-tester, box-tester) and the WASM bench\ntools to keep the closure small. They can be packaged separately if\nneeded.\n",
         homepage: "https://github.com/grame-cncm/faust/tree/master-dev/tools/benchmark",

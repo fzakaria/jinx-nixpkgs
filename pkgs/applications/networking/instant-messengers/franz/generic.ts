@@ -2,9 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["pname", 67, 7], ["version", 68, 7], ["src", 69, 7], ["meta", 70, 7], ["dontPatchELF", 74, 5], ["nativeBuildInputs", 76, 5], ["buildInputs", 82, 5], ["runtimeDependencies", 117, 5], ["installPhase", 127, 5], ["dontWrapGApps", 138, 5], ["postFixup", 140, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, makeWrapper: false, wrapGAppsHook3: false, autoPatchelfHook: false, dpkg: false, libxtst: false, libxscrnsaver: false, libxrender: false, libxrandr: false, libxi: false, libxfixes: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, atk: false, glib: false, pango: false, "gdk-pixbuf": false, cairo: false, freetype: false, fontconfig: false, gtk3: false, dbus: false, nss: false, nspr: false, "alsa-lib": false, cups: false, expat: false, udev: false, libnotify: false, "xdg-utils": false, libgbm: false, libglvnd: false, libappindicator: false, pipewire: false, libpulseaudio: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, name: false, version: false, src: false, meta: false, extraBuildInputs: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/generic.nix", [["pname", 67, 7], ["version", 68, 7], ["src", 69, 7], ["meta", 70, 7], ["dontPatchELF", 74, 5], ["nativeBuildInputs", 76, 5], ["buildInputs", 82, 5], ["runtimeDependencies", 117, 5], ["installPhase", 127, 5], ["dontWrapGApps", 138, 5], ["postFixup", 140, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -123,7 +123,7 @@ wrapProgramShell $out/opt/${name}/${pname_1} \\
   "\${gappsWrapperArgs[@]}"
 `);
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname_1,
           version: version_1,
           src: src_1,

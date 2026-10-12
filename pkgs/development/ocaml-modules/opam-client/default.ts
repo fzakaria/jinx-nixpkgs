@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 30, 5], ["maintainers", 31, 5]], [["pname", 14, 3], ["src", 16, 18], ["version", 16, 22], ["configureFlags", 18, 3], ["propagatedBuildInputs", 20, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, base64: false, cmdliner: false, opam: false, "opam-repository": false, "opam-solver": false, "opam-state": false, re: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 30, 5], ["maintainers", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["src", 16, 18], ["version", 16, 22], ["configureFlags", 18, 3], ["propagatedBuildInputs", 20, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const opam_state = nix.arg($, "opam-state");
   const re = nix.arg($, "re");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "opam-client",
       src: nix.thunk(() => nix.attr(opam, "src")),
       version: nix.thunk(() => nix.attr(opam, "version")),
       configureFlags: nix.thunk(() => ["--disable-checks"]),
       propagatedBuildInputs: nix.thunk(() => [base64, cmdliner, opam_repository, opam_solver, opam_state, re]),
       meta: nix.thunk(() => nix.update(nix.sel(opam, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Actions on the opam root, switches, installations, and front-end",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

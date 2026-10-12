@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cpphs.nix", [[["pname", 15, 5], ["nativeBuildInputs", 17, 5], ["makeFlags", 19, 5], ["buildFlags", 20, 5], ["preBuild", 27, 5], ["installPhase", 41, 5], ["doInstallCheck", 48, 5]]]);
 const formals$1 = { args: { args: false, hugs: false, microhs: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cpphs.nix", [["pname", 15, 5], ["nativeBuildInputs", 17, 5], ["makeFlags", 19, 5], ["buildFlags", 20, 5], ["preBuild", 27, 5], ["installPhase", 41, 5], ["doInstallCheck", 48, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const args$ = nix.thunk(() => nix.app(args_1, finalAttrs));
       return nix.update(args$, {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: "microhs-cpphs",
         nativeBuildInputs: nix.thunk(() => [hugs]),
         makeFlags: nix.thunk(() => ["USECPPHS=$(TMP)/cpphs-boot"]),

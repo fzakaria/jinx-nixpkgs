@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generator.nix", [[["name", 14, 3], ["src", 16, 11], ["version", 16, 15], ["patches", 18, 3], ["dontBuild", 22, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, src: false, version: false, makeWrapper: false, coreutils: false, findutils: false, gnugrep: false, systemd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generator.nix", [["name", 14, 3], ["src", 16, 11], ["version", 16, 15], ["patches", 18, 3], ["dontBuild", 22, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const gnugrep = nix.arg($, "gnugrep");
   const systemd = nix.arg($, "systemd");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "distrobuilder-nixos-generator",
       src: src,
       version: version,

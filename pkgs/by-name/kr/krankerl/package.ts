@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 42, 5], ["mainProgram", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["nativeCheckInputs", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, openssl: false, dbus: false, sqlite: false, file: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["mainProgram", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["nativeCheckInputs", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const file = nix.arg($, "file");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "krankerl",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ChristophWurst",
           repo: "krankerl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, dbus, sqlite]),
       nativeCheckInputs: nix.thunk(() => [file]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CLI helper to manage, package and publish Nextcloud apps",
         mainProgram: "krankerl",
         homepage: "https://github.com/ChristophWurst/krankerl",

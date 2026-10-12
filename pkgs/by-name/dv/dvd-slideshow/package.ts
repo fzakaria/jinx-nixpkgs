@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 59, 5], ["sha256", 60, 5]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]], [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["patchPhase", 63, 3], ["installPhase", 70, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, writeScript: false, cdrtools: false, dvdauthor: false, ffmpeg: false, imagemagick: false, lame: false, mjpegtools: false, sox: false, "vorbis-tools": false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 59, 5], ["sha256", 60, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["patchPhase", 63, 3], ["installPhase", 70, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,11 +53,11 @@ case "$exe" in
 esac
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dvd-slideshow",
       version: "0.8.4-2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/dvd-slideshow/files/dvd-slideshow-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "17c09aqvippiji2sd0pcxjg3nb1mnh9k5nia4gn5lhcvngjcp1q5",
         })))),
@@ -82,7 +80,7 @@ ln -s dvd-slideshow.sh "$out/bin/jigl2slideshow"
 cp -a man "$out/"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Suite of command line programs that creates a slideshow-style video from groups of pictures",
         homepage: "https://dvd-slideshow.sourceforge.net/wiki/Main_Page",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

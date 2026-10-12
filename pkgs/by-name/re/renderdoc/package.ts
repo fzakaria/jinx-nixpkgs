@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]], [["name", 64, 7], ["url", 65, 7], ["hash", 66, 7]], [["name", 69, 7], ["url", 70, 7], ["hash", 71, 7]], [["name", 179, 9], ["dontUnpack", 180, 9], ["buildCommand", 181, 9]], [["vulkanLayersExist", 178, 7]], [["custom_swig", 170, 13], ["updateScript", 171, 5], ["vulkanLayers", 173, 5], ["tests", 177, 5]], [["homepage", 196, 5], ["description", 197, 5], ["longDescription", 198, 5], ["license", 204, 5], ["mainProgram", 205, 5], ["maintainers", 206, 5], ["platforms", 210, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["outputs", 48, 3], ["patches", 56, 3], ["swig_patches", 61, 3], ["postPatch", 74, 3], ["buildInputs", 80, 3], ["nativeBuildInputs", 96, 3], ["cmakeFlags", 110, 3], ["dontWrapQtApps", 123, 3], ["strictDeps", 125, 3], ["postUnpack", 127, 3], ["preConfigure", 135, 3], ["postInstall", 142, 3], ["preFixup", 148, 3], ["postFixup", 165, 3], ["passthru", 169, 3], ["meta", 195, 3]]]);
 const formals$1 = { args: { lib: false, addDriverRunpath: false, autoconf: false, automake: false, bison: false, cmake: false, fetchFromGitHub: false, fetchpatch: false, libxdmcp: false, libglvnd: false, "libpthread-stubs": false, makeWrapper: false, "nix-update-script": false, pcre2: false, "pkg-config": false, python3: false, qt5: false, stdenv: false, "vulkan-loader": false, wayland: false, waylandSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 64, 7], ["url", 65, 7], ["hash", 66, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 69, 7], ["url", 70, 7], ["hash", 71, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 179, 9], ["dontUnpack", 180, 9], ["buildCommand", 181, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["vulkanLayersExist", 178, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["custom_swig", 170, 13], ["updateScript", 171, 5], ["vulkanLayers", 173, 5], ["tests", 177, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 196, 5], ["description", 197, 5], ["longDescription", 198, 5], ["license", 204, 5], ["mainProgram", 205, 5], ["maintainers", 206, 5], ["platforms", 210, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["outputs", 48, 3], ["patches", 56, 3], ["swig_patches", 61, 3], ["postPatch", 74, 3], ["buildInputs", 80, 3], ["nativeBuildInputs", 96, 3], ["cmakeFlags", 110, 3], ["dontWrapQtApps", 123, 3], ["strictDeps", 125, 3], ["postUnpack", 127, 3], ["preConfigure", 135, 3], ["postInstall", 142, 3], ["preFixup", 148, 3], ["postFixup", 165, 3], ["passthru", 169, 3], ["meta", 195, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,18 +29,18 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const waylandSupport = nix.argOr($, "waylandSupport", () => true);
   const custom_swig = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "baldurk",
       repo: "swig",
       rev: "renderdoc-modified-7",
       hash: "sha256-RsdvxBBQvwuE5wSwL8OBXg5KMSpcO6EuMS0CzWapIpc=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "renderdoc",
       version: "1.46",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "baldurk",
           repo: "renderdoc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,13 +50,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./remove-pcre.patch")]),
       swig_patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "renderdoc-swig-pcre2-1.patch",
             url: "https://src.fedoraproject.org/rpms/renderdoc/raw/19ce666d120a229e5c1ab62fc142610ab3b21b3c/f/renderdoc-swig-pcre2-1.patch",
             hash: "sha256-xuqHu72vAbxFELNTfJT5SbQOsnG/ee++MZgpuEGLT/w=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "renderdoc-swig-pcre2-2.patch",
             url: "https://src.fedoraproject.org/rpms/renderdoc/raw/19ce666d120a229e5c1ab62fc142610ab3b21b3c/f/renderdoc-swig-pcre2-2.patch",
             hash: "sha256-LUm5Ekmccy4x+hR+iK49zJc75VxuhDhpNw8rkVnn4rc=",
@@ -120,14 +112,14 @@ wrapProgram $out/bin/renderdoccmd \\
       })()),
       postFixup: "addDriverRunpath $out/lib/librenderdoc.so\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         custom_swig: custom_swig,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         vulkanLayers: nix.thunk(() => ["renderdoc_capture.json"]),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           vulkanLayersExist: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "renderdoc-vulkan-layers-exist",
               dontUnpack: true,
               buildCommand: nix.thunk(() => nix.str`touch $out # Dummy file to satisfy the build system
@@ -143,7 +135,7 @@ done
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://renderdoc.org/",
         description: "Single-frame graphics debugger",
         longDescription: "RenderDoc is a free MIT licensed stand-alone graphics debugger that\nallows quick and easy single-frame capture and detailed introspection\nof any application using Vulkan, D3D11, OpenGL or D3D12 across\nWindows 7 - 10, Linux or Android.\n",

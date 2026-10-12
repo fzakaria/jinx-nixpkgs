@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["PREFIX", 28, 7]], [["jdupes", 33, 13]], [["tests", 32, 12]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["outputs", 13, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["env", 28, 3], ["enableParallelBuilding", 30, 3], ["passthru", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, jdupes: false, fixDarwinDylibNames: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PREFIX", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["jdupes", 33, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 32, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["outputs", 13, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["env", 28, 3], ["enableParallelBuilding", 30, 3], ["passthru", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,26 +13,26 @@ export default nix.lambda((args) => (() => {
   const jdupes = nix.arg($, "jdupes");
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libjodycode",
       version: "4.1.2",
       outputs: nix.thunk(() => ["out", "man", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jbruchon",
           repo: "libjodycode",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-HqDNbZwWDebVnu1uj07N/ttwmvvz1qGk8s/Vrc3hJK4=",
         })))),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), fixDarwinDylibNames)),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, jdupes: jdupes })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], jdupes: jdupes })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Shared code used by several utilities written by Jody Bruchon",
         homepage: "https://codeberg.org/jbruchon/libjodycode",
         changelog: "https://codeberg.org/jbruchon/libjodycode/src/branch/master/CHANGES.txt",

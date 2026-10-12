@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["fetchSubmodules", 42, 5], ["hash", 43, 5]], [["xrootd", 145, 45]], [["pname", 148, 9], ["version", 151, 9], ["url", 155, 9], ["hash", 156, 9]], [["test-xrdcp", 147, 7]], [["fetchxrd", 145, 5], ["tests", 146, 5]], [["description", 162, 5], ["homepage", 163, 5], ["changelog", 164, 5], ["license", 165, 5], ["platforms", 166, 5], ["maintainers", 167, 5], ["mainProgram", 168, 5]], [["pname", 32, 3], ["version", 33, 3], ["__structuredAttrs", 35, 3], ["strictDeps", 36, 3], ["src", 38, 3], ["postPatch", 46, 3], ["outputs", 55, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 70, 3], ["postInstall", 93, 3], ["cmakeFlags", 121, 3], ["doCheck", 134, 3], ["checkInputs", 135, 3], ["postFixup", 137, 3], ["dontPatchELF", 142, 3], ["passthru", 144, 3], ["meta", 161, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromGitHub: false, cmake: false, gtest: false, makeWrapper: false, "pkg-config": false, curl: false, "isa-l": false, fuse: false, libkrb5: false, libuuid: false, libxcrypt: false, libxml2: false, libzip: false, openssl: false, readline: false, "scitokens-cpp": false, systemd: false, voms: false, zlib: false, externalEtc: true, removeReferencesTo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["fetchSubmodules", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["xrootd", 145, 45]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 148, 9], ["version", 151, 9], ["url", 155, 9], ["hash", 156, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["test-xrdcp", 147, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["fetchxrd", 145, 5], ["tests", 146, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 162, 5], ["homepage", 163, 5], ["changelog", 164, 5], ["license", 165, 5], ["platforms", 166, 5], ["maintainers", 167, 5], ["mainProgram", 168, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["__structuredAttrs", 35, 3], ["strictDeps", 36, 3], ["src", 38, 3], ["postPatch", 46, 3], ["outputs", 55, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 70, 3], ["postInstall", 93, 3], ["cmakeFlags", 121, 3], ["doCheck", 134, 3], ["checkInputs", 135, 3], ["postFixup", 137, 3], ["dontPatchELF", 142, 3], ["passthru", 144, 3], ["meta", 161, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const externalEtc = nix.argOr($, "externalEtc", () => "/etc");
   const removeReferencesTo = nix.arg($, "removeReferencesTo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "xrootd",
       version: "6.0.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xrootd",
           repo: "xrootd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -85,15 +79,15 @@ ln -s ${nix.app(nix.sel(lib, "escapeShellArg"), externalEtc)} "$out/etc"
 `))),
       dontPatchELF: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         fetchxrd: nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetchxrd.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             xrootd: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "test-xrdcp": nix.thunk(() => nix.app(nix.sel(finalAttrs, "passthru", "fetchxrd"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pname: "xrootd-test-xrdcp",
               version: nix.thunk(() => nix.add(nix.add(nix.sel(finalAttrs, "version"), "-"), nix.builtins.substring(nix.thunk(() => nix.add(nix.builtins.stringLength(nix.thunk(() => nix.builtins.storeDir)), 1n)), 32n, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}`)))),
               url: "root://eospublic.cern.ch//eos/opendata/alice/2010/LHC10h/000138275/ESD/0000/AliESDs.root",
@@ -102,7 +96,7 @@ ln -s ${nix.app(nix.sel(lib, "escapeShellArg"), externalEtc)} "$out/etc"
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "High performance, scalable fault tolerant data access",
         homepage: "https://xrootd.slac.stanford.edu",
         changelog: nix.thunk(() => nix.str`https://github.com/xrootd/xrootd/releases/tag/v${nix.sel(finalAttrs, "version")}`),

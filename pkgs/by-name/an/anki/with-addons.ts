@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-addons.nix", [[["maintainers", 86, 12]], [["pname", 54, 7], ["version", 55, 7], ["src", 56, 7], ["meta", 86, 7]], [["version", 91, 18], ["pname", 92, 3], ["paths", 94, 3], ["nativeBuildInputs", 96, 3], ["postBuild", 97, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, makeWrapper: false, anki: false, "anki-utils": false, writeTextDir: false, ankiAddons: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/with-addons.nix", [["maintainers", 86, 12]]);
-const pos$2 = nix.positions(here + "/with-addons.nix", [["pname", 54, 7], ["version", 55, 7], ["src", 56, 7], ["meta", 86, 7]]);
-const pos$3 = nix.positions(here + "/with-addons.nix", [["version", 91, 18], ["pname", 92, 3], ["paths", 94, 3], ["nativeBuildInputs", 96, 3], ["postBuild", 97, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const ankiAddons = nix.argOr($, "ankiAddons", () => []);
   const defaultAddons = nix.thunk(() => [
     nix.thunk(() => nix.app(nix.sel(anki_utils, "buildAnkiAddon"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "nixos",
         version: "1.0",
         src: nix.thunk(() => nix.app(writeTextDir, "__init__.py", "import aqt\nfrom aqt.qt import QMessageBox\nimport json\n\ndef addons_dialog_will_show(dialog: aqt.addons.AddonsDialog) -> None:\n  dialog.setEnabled(False)\n  QMessageBox.information(\n    dialog,\n    \"NixOS Info\",\n    (\"These add-ons are managed by NixOS.<br>\"\n     \"See <a href='https://github.com/NixOS/nixpkgs/tree/master/pkgs/by-name/an/anki/with-addons.nix'>\"\n     \"github.com/NixOS/nixpkgs/tree/master/pkgs/by-name/an/anki/with-addons.nix</a>\")\n  )\n\ndef addon_tried_to_write_config(module: str, conf: dict) -> None:\n  message_box = QMessageBox(\n    QMessageBox.Icon.Warning,\n    \"NixOS Info\",\n    (f\"The add-on module: \\\"{module}\\\" tried to update its config.<br>\"\n      \"See <a href='https://github.com/NixOS/nixpkgs/tree/master/pkgs/by-name/an/anki/with-addons.nix'>\"\n      \"github.com/NixOS/nixpkgs/tree/master/pkgs/by-name/an/anki/with-addons.nix</a>\"\n      \" for how to configure add-ons managed by NixOS.\")\n  )\n  message_box.setDetailedText(json.dumps(conf))\n  message_box.exec()\n\naqt.gui_hooks.addons_dialog_will_show.append(addons_dialog_will_show)\naqt.mw.addonManager.writeConfig = addon_tried_to_write_config\n")),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "junestepp"))];
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       })))),
   ]);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: nix.thunk(() => nix.attr(anki, "version")),
       pname: nix.thunk(() => nix.str`${nix.sel(anki, "pname")}-with-addons`),
       paths: nix.thunk(() => [anki]),

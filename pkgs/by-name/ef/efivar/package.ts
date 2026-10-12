@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["url", 40, 7], ["hash", 41, 7]], [["url", 48, 7], ["hash", 49, 7]], [["url", 52, 7], ["hash", 53, 7]], [["url", 56, 7], ["hash", 57, 7]], [["url", 60, 7], ["hash", 61, 7]], [["description", 75, 5], ["homepage", 76, 5], ["platforms", 77, 5], ["license", 78, 5]], [["pname", 13, 3], ["version", 14, 3], ["outputs", 16, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["depsBuildBuild", 35, 3], ["patches", 37, 3], ["makeFlags", 65, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, fetchFromGitHub: false, "pkg-config": false, popt: false, mandoc: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 40, 7], ["hash", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 48, 7], ["hash", 49, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 52, 7], ["hash", 53, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 56, 7], ["hash", 57, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 60, 7], ["hash", 61, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["platforms", 77, 5], ["license", 78, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["outputs", 16, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["depsBuildBuild", 35, 3], ["patches", 37, 3], ["makeFlags", 65, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const mandoc = nix.arg($, "mandoc");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "efivar",
       version: "39",
       outputs: nix.thunk(() => ["bin", "out", "dev", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rhboot",
           repo: "efivar",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,28 +32,28 @@ export default nix.lambda((args) => (() => {
       depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/rhboot/efivar/commit/f521cd7f584c95d8308659ab9d89d750e2bd76da.patch",
             hash: "sha256-I19UIS0tNTsEipuoMQPlTEwih1RrYPz9Q4Wy98u1z0Q=",
           })))),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is32bit")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://github.com/rhboot/efivar/commit/a629c47059e76f971269b76f0f00cee2e991f427.patch",
               hash: "sha256-qdl6EZ6/ovjUQQ7ViIkGQ2BP1eu4pnOwrezZKidSg5A=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: "https://github.com/rhboot/efivar/commit/05aa7e2030acc2b0386972617dc76fcc268c79b1.patch",
               hash: "sha256-CtodF4t2mHeJ6ajsuxljWsWwPovbISEfAAZJgc4gS0Y=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               url: "https://github.com/rhboot/efivar/commit/41ebf550bb206aad6d82022d2f91e846b74bad04.patch",
               hash: "sha256-fAVdtG8To6/pDKiGtvBaCd8rMYZTRh4Td7uVI8/42Rg=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               url: "https://github.com/rhboot/efivar/commit/3633172fdace9cd1b233eb997ad4128d102ae010.patch",
               hash: "sha256-lQ/MQ9mwhaTzwnp9PNEYfn6TIC71kIhwGuKSSYdFheA=",
             })))),
@@ -74,7 +67,7 @@ export default nix.lambda((args) => (() => {
         "PCDIR=$(dev)/lib/pkgconfig",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Tools and library to manipulate EFI variables",
         homepage: "https://github.com/rhboot/efivar",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

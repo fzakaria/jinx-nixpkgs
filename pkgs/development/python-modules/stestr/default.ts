@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]], [["tests", 42, 5]], [["tests", 41, 12]], [["description", 48, 5], ["mainProgram", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["teams", 52, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["doCheck", 39, 3], ["passthru", 41, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, cliff: false, fixtures: false, "flit-core": false, "python-subunit": false, testtools: false, tomlkit: false, voluptuous: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 41, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 48, 5], ["mainProgram", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["teams", 52, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["doCheck", 39, 3], ["passthru", 41, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-Rexjny0cw3LjYwYTuT83zynT3+adSdTz+UCNN7Ebwpw=",
@@ -36,15 +32,15 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [cliff, fixtures, python_subunit, testtools, tomlkit, voluptuous]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["stestr"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Parallel Python test runner built around subunit",
         mainProgram: "stestr",
         homepage: "https://github.com/mtreinish/stestr",
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

@@ -2,27 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/language-packs.nix", [[["name", 21, 9], ["publisher", 22, 9], ["version", 23, 17], ["hash", 23, 25]], [["updateScript", 25, 16]], [["license", 34, 9]], [["mktplcRef", 20, 7], ["passthru", 25, 7], ["meta", 33, 7]], [["language", 43, 5], ["hash", 44, 5]], [["language", 48, 5], ["hash", 49, 5]], [["language", 53, 5], ["hash", 54, 5]], [["language", 58, 5], ["hash", 59, 5]], [["language", 63, 5], ["hash", 64, 5]], [["language", 68, 5], ["hash", 69, 5]], [["language", 73, 5], ["hash", 74, 5]], [["language", 78, 5], ["hash", 79, 5]], [["language", 83, 5], ["hash", 84, 5]], [["language", 88, 5], ["hash", 89, 5]], [["language", 93, 5], ["hash", 94, 5]], [["language", 98, 5], ["hash", 99, 5]], [["language", 103, 5], ["hash", 104, 5]], [["language", 108, 5], ["hash", 109, 5]], [["vscode-language-pack-fr", 42, 3], ["vscode-language-pack-it", 47, 3], ["vscode-language-pack-de", 52, 3], ["vscode-language-pack-es", 57, 3], ["vscode-language-pack-ru", 62, 3], ["vscode-language-pack-zh-hans", 67, 3], ["vscode-language-pack-zh-hant", 72, 3], ["vscode-language-pack-ja", 77, 3], ["vscode-language-pack-ko", 82, 3], ["vscode-language-pack-cs", 87, 3], ["vscode-language-pack-pt-br", 92, 3], ["vscode-language-pack-tr", 97, 3], ["vscode-language-pack-pl", 102, 3], ["vscode-language-pack-qps-ploc", 107, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, writeShellScript: false, "nix-update": false, "vscode-extension-update": false }, ellipsis: false };
 const formals$2 = { args: { language: false, version: true, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/language-packs.nix", [["name", 21, 9], ["publisher", 22, 9], ["version", 23, 17], ["hash", 23, 25]]);
-const pos$2 = nix.positions(here + "/language-packs.nix", [["updateScript", 25, 16]]);
-const pos$3 = nix.positions(here + "/language-packs.nix", [["license", 34, 9]]);
-const pos$4 = nix.positions(here + "/language-packs.nix", [["mktplcRef", 20, 7], ["passthru", 25, 7], ["meta", 33, 7]]);
-const pos$5 = nix.positions(here + "/language-packs.nix", [["language", 43, 5], ["hash", 44, 5]]);
-const pos$6 = nix.positions(here + "/language-packs.nix", [["language", 48, 5], ["hash", 49, 5]]);
-const pos$7 = nix.positions(here + "/language-packs.nix", [["language", 53, 5], ["hash", 54, 5]]);
-const pos$8 = nix.positions(here + "/language-packs.nix", [["language", 58, 5], ["hash", 59, 5]]);
-const pos$9 = nix.positions(here + "/language-packs.nix", [["language", 63, 5], ["hash", 64, 5]]);
-const pos$10 = nix.positions(here + "/language-packs.nix", [["language", 68, 5], ["hash", 69, 5]]);
-const pos$11 = nix.positions(here + "/language-packs.nix", [["language", 73, 5], ["hash", 74, 5]]);
-const pos$12 = nix.positions(here + "/language-packs.nix", [["language", 78, 5], ["hash", 79, 5]]);
-const pos$13 = nix.positions(here + "/language-packs.nix", [["language", 83, 5], ["hash", 84, 5]]);
-const pos$14 = nix.positions(here + "/language-packs.nix", [["language", 88, 5], ["hash", 89, 5]]);
-const pos$15 = nix.positions(here + "/language-packs.nix", [["language", 93, 5], ["hash", 94, 5]]);
-const pos$16 = nix.positions(here + "/language-packs.nix", [["language", 98, 5], ["hash", 99, 5]]);
-const pos$17 = nix.positions(here + "/language-packs.nix", [["language", 103, 5], ["hash", 104, 5]]);
-const pos$18 = nix.positions(here + "/language-packs.nix", [["language", 108, 5], ["hash", 109, 5]]);
-const pos$19 = nix.positions(here + "/language-packs.nix", [["vscode-language-pack-fr", 42, 3], ["vscode-language-pack-it", 47, 3], ["vscode-language-pack-de", 52, 3], ["vscode-language-pack-es", 57, 3], ["vscode-language-pack-ru", 62, 3], ["vscode-language-pack-zh-hans", 67, 3], ["vscode-language-pack-zh-hant", 72, 3], ["vscode-language-pack-ja", 77, 3], ["vscode-language-pack-ko", 82, 3], ["vscode-language-pack-cs", 87, 3], ["vscode-language-pack-pt-br", 92, 3], ["vscode-language-pack-tr", 97, 3], ["vscode-language-pack-pl", 102, 3], ["vscode-language-pack-qps-ploc", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,94 +20,97 @@ export default nix.lambda((args) => (() => {
     const version = nix.argOr($_1, "version", () => "1.131.2026090407");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.lookup(w, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mktplcRef: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`vscode-language-pack-${language}`),
           publisher: "MS-CEINTL",
           version: version,
           hash: hash,
         })),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           updateScript: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(language, "fr")), nix.thunk(() => nix.app(writeShellScript, "vscode-language-packs-update-script", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), vscode_extension_update)} vscode-extensions.ms-ceintl.vscode-language-pack-fr --override-filename "pkgs/applications/editors/vscode/extensions/language-packs.nix"
 for lang in cs de es it ja ko pl pt-br qps-ploc ru tr zh-hans zh-hant; do
   ${nix.app(nix.sel(lib, "getExe"), nix_update)} --version "skip" "vscode-extensions.ms-ceintl.vscode-language-pack-$lang" --override-filename "pkgs/applications/editors/vscode/extensions/language-packs.nix"
 done
 `))))),
         })),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$3, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+        })),
       })));
   })(), formals$2);
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     "vscode-language-pack-fr": nix.thunk(() => nix.app(buildVscodeLanguagePack, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         language: "fr",
         hash: "sha256-4Ss5S6Qr26SzCT2V9MjRNaWfq25vvSHfiOJX1wYK4NA=",
       })))),
     "vscode-language-pack-it": nix.thunk(() => nix.app(buildVscodeLanguagePack, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         language: "it",
         hash: "sha256-SnE4avoYXX1u6u84vgvlQDk/yIPAb6NbnPVRELpjLcA=",
       })))),
     "vscode-language-pack-de": nix.thunk(() => nix.app(buildVscodeLanguagePack, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         language: "de",
         hash: "sha256-sLInJJHtytgQmyL2XsD0P5JwKYeftc7bTqTcdLlO5CE=",
       })))),
     "vscode-language-pack-es": nix.thunk(() => nix.app(buildVscodeLanguagePack, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         language: "es",
         hash: "sha256-EaBK5Dug09NfU0p7NviXZN57FbLRIvXJQO5EO6ItA+g=",
       })))),
     "vscode-language-pack-ru": nix.thunk(() => nix.app(buildVscodeLanguagePack, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         language: "ru",
         hash: "sha256-7hKXmbdzsufEGudgaX4d3Z7/qQSf0FLDEdJ0LvpedY0=",
       })))),
     "vscode-language-pack-zh-hans": nix.thunk(() => nix.app(buildVscodeLanguagePack, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         language: "zh-hans",
         hash: "sha256-C5fytxmwx5iL2v+PPgI8NCL+7/DbVjeav68MMf4X74M=",
       })))),
     "vscode-language-pack-zh-hant": nix.thunk(() => nix.app(buildVscodeLanguagePack, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         language: "zh-hant",
         hash: "sha256-FzZMOgoS0mRbMSvcOmcs4Yi9YJTMH4thWy3qkxUGnGQ=",
       })))),
     "vscode-language-pack-ja": nix.thunk(() => nix.app(buildVscodeLanguagePack, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         language: "ja",
         hash: "sha256-plmz6Q9Q23OQjqe45iHVMxLn2g51HsdK26gyduoZebo=",
       })))),
     "vscode-language-pack-ko": nix.thunk(() => nix.app(buildVscodeLanguagePack, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         language: "ko",
         hash: "sha256-bbfLl+kuBiDHYbD2KQhL9Ys+LYGMTtBczdt6Pm8bY9M=",
       })))),
     "vscode-language-pack-cs": nix.thunk(() => nix.app(buildVscodeLanguagePack, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         language: "cs",
         hash: "sha256-z4LYvyJ/h4Apr7bDh9AvSqWQpF5K0MiycsppxTPQD5E=",
       })))),
     "vscode-language-pack-pt-br": nix.thunk(() => nix.app(buildVscodeLanguagePack, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         language: "pt-BR",
         hash: "sha256-wJsu9rEnM3XRjxnmi4w8E9GqgfBH2B2LbhYvA5V+T5E=",
       })))),
     "vscode-language-pack-tr": nix.thunk(() => nix.app(buildVscodeLanguagePack, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         language: "tr",
         hash: "sha256-5FhpCA4STYz0GBLlTNe7EJdbRtVQQ+UgVwTIMkJusUI=",
       })))),
     "vscode-language-pack-pl": nix.thunk(() => nix.app(buildVscodeLanguagePack, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         language: "pl",
         hash: "sha256-5NAA4+xT/omDGdVV+pI5Vyh+zaL6UyoSeLo7h8CgnwA=",
       })))),
     "vscode-language-pack-qps-ploc": nix.thunk(() => nix.app(buildVscodeLanguagePack, nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         language: "qps-ploc",
         hash: "sha256-GlNEqOug+3iTk6eTsXKoQSr4lkQs5XaYisC7IyZGpyU=",
       })))),

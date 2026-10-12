@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["embedSupport", 23, 5], ["apxs2Support", 24, 5], ["systemdSupport", 25, 5], ["phpdbgSupport", 26, 5], ["cgiSupport", 27, 5], ["fpmSupport", 28, 5]], [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["sha256", 43, 5]], [["NIX_CFLAGS_COMPILE", 78, 7]], [["unit-perl", 84, 5], ["unit-php", 85, 5]], [["tests", 83, 12]], [["description", 89, 5], ["mainProgram", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]], [["version", 36, 3], ["pname", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 48, 3], ["configureFlags", 59, 3], ["usedPhp82", 70, 3], ["postConfigure", 72, 3], ["env", 78, 3], ["passthru", 83, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nixosTests: false, which: false, pcre2: false, withPython3: true, python3: false, ncurses: false, withPHP82: true, php82: false, withPerl: true, perl: false, withSSL: true, openssl: true, withIPv6: true, withDebug: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["embedSupport", 23, 5], ["apxs2Support", 24, 5], ["systemdSupport", 25, 5], ["phpdbgSupport", 26, 5], ["cgiSupport", 27, 5], ["fpmSupport", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["sha256", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 78, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["unit-perl", 84, 5], ["unit-php", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 83, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 89, 5], ["mainProgram", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 36, 3], ["pname", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 48, 3], ["configureFlags", 59, 3], ["usedPhp82", 70, 3], ["postConfigure", 72, 3], ["env", 78, 3], ["passthru", 83, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const withIPv6 = nix.argOr($, "withIPv6", () => true);
   const withDebug = nix.argOr($, "withDebug", () => false);
   const phpConfig = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     embedSupport: true,
     apxs2Support: false,
     systemdSupport: false,
@@ -44,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: "1.35.0",
       pname: "unit",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "nginx",
           repo: "unit",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,19 +62,19 @@ ${nix.app(optionalString, withPHP82, nix.thunk(() => nix.str`./configure php    
 ${nix.app(optionalString, withPerl, nix.thunk(() => nix.str`./configure perl   --module=perl     --perl=${perl}/bin/perl`))}
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=deprecated-declarations"]))),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "unit-perl": nix.thunk(() => nix.sel(nixosTests, "unit-perl")),
           "unit-php": nix.thunk(() => nix.sel(nixosTests, "unit-php")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Dynamic web and application server, designed to run applications in multiple languages",
         mainProgram: "unitd",
         homepage: "https://unit.nginx.org/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 27, 11], ["version", 27, 17], ["src", 28, 3], ["propagatedBuildInputs", 34, 3], ["doCheck", 50, 3], ["checkInputs", 51, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { "alcotest-lwt": false, buildDunePackage: false, "ca-certs": false, colombe: false, containers: false, "domain-name": false, emile: false, fetchFromGitHub: false, fmt: false, lib: false, logs: false, lwt: false, mrmime: false, ptime: false, rresult: false, sendmail: false, "tls-lwt": false, x509: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 11], ["version", 27, 17], ["src", 28, 3], ["propagatedBuildInputs", 34, 3], ["doCheck", 50, 3], ["checkInputs", 51, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const pname = "letters";
   const version = "0.4.0";
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oxidizing",
           repo: "letters",
           tag: version,
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest_lwt]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OCaml library for creating and sending emails over SMTP using LWT",
         homepage: "https://github.com/oxidizing/letters",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

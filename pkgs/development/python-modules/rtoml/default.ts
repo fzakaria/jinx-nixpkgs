@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["pname", 35, 26], ["version", 35, 32], ["src", 35, 40], ["hash", 36, 5]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["postPatch", 29, 3], ["cargoDeps", 34, 3], ["nativeBuildInputs", 39, 3], ["pythonImportsCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["pytestFlags", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, "dirty-equals": false, "pytest-benchmark": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 35, 26], ["version", 35, 32], ["src", 35, 40], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["postPatch", 29, 3], ["cargoDeps", 34, 3], ["nativeBuildInputs", 39, 3], ["pythonImportsCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["pytestFlags", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pytest_benchmark = nix.arg($, "pytest-benchmark");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rtoml",
       version: "0.13",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "samuelcolvin",
           repo: "rtoml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail ', \"pyo3/generate-import-lib\"' \"\"\n",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [dirty_equals, pytest_benchmark, pytestCheckHook]),
       pytestFlags: nix.thunk(() => ["--benchmark-disable"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Rust based TOML library for Python",
         homepage: "https://github.com/samuelcolvin/rtoml",
         changelog: nix.thunk(() => nix.str`https://github.com/samuelcolvin/rtoml/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 7], ["repo", 19, 7], ["tag", 20, 7], ["hash", 21, 7]], [["src", 17, 5], ["patches", 23, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 42, 7]], [["changelog", 124, 5], ["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["mainProgram", 128, 5], ["maintainers", 129, 5], ["platforms", 133, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 16, 3], ["npmDepsHash", 35, 3], ["nativeBuildInputs", 37, 3], ["env", 42, 3], ["buildPhase", 44, 3], ["installPhase", 93, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildNpmPackage: false, electron: false, python3: false, xcodebuild: false, applyPatches: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 7], ["repo", 19, 7], ["tag", 20, 7], ["hash", 21, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 17, 5], ["patches", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 42, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 124, 5], ["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["mainProgram", 128, 5], ["maintainers", 129, 5], ["platforms", 133, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 16, 3], ["npmDepsHash", 35, 3], ["nativeBuildInputs", 37, 3], ["env", 42, 3], ["buildPhase", 44, 3], ["installPhase", 93, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const xcodebuild = nix.arg($, "xcodebuild");
   const applyPatches = nix.arg($, "applyPatches");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dopamine",
       version: "3.0.9",
       src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "digimezzo",
               repo: "dopamine",
               tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
             return [nix.thunk(() => nix.lookup(w, "distutils"))];
           })())),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcodebuild])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 # needed for better-sqlite3 rebuild
@@ -105,7 +101,7 @@ install -Dm644 deployment/AUR/Dopamine.desktop $out/share/applications/dopamine.
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/digimezzo/dopamine/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Audio player that keeps it simple",
         homepage: "https://github.com/digimezzo/dopamine",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["enableSSL", 43, 23]], [["updateScript", 51, 5]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["teams", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["doInstallCheck", 46, 3], ["nativeInstallCheckInputs", 47, 3], ["versionCheckProgramArg", 48, 3], ["passthru", 50, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, gcc16Stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, hyprtoolkit: false, hyprutils: false, pixman: false, libdrm: false, glaze: false, aquamarine: false, hyprgraphics: false, cairo: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enableSSL", 43, 23]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["teams", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["doInstallCheck", 46, 3], ["nativeInstallCheckInputs", 47, 3], ["versionCheckProgramArg", 48, 3], ["passthru", 50, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(gcc16Stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hyprshutdown",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hyprwm",
           repo: "hyprshutdown",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,17 +42,17 @@ export default nix.lambda((args) => (() => {
         aquamarine,
         hyprgraphics,
         cairo,
-        nix.thunk(() => nix.app(nix.sel(glaze, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableSSL: false })))),
+        nix.thunk(() => nix.app(nix.sel(glaze, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], enableSSL: false })))),
       ]),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--help",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "A graceful shutdown utility for Hyprland",
         homepage: "https://github.com/hyprwm/hyprshutdown",
         changelog: nix.thunk(() => nix.str`https://github.com/hyprwm/hyprshutdown/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,27 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hyperv-image.nix", [[["sinceRelease", 19, 7], ["from", 20, 7], ["to", 24, 7]], [["sinceRelease", 30, 7], ["from", 31, 7], ["to", 36, 7]], [["type", 46, 9], ["default", 47, 9], ["description", 48, 9]], [["vmDerivationName", 45, 7]], [["hyperv", 44, 5]], [["enable", 95, 32]], [["diskSize", 58, 20], ["hypervGuest", 95, 20]], [["tags", 60, 18]], [["name", 64, 7], ["baseName", 65, 7], ["postVM", 66, 7], ["format", 70, 7], ["diskSize", 71, 39], ["partitionTableType", 72, 7], ["config", 73, 15], ["lib", 73, 22], ["pkgs", 73, 26]], [["image", 62, 18], ["hypervImage", 63, 18]], [["nixos", 60, 12], ["build", 62, 12]], [["extension", 61, 11]], [["device", 77, 7], ["autoResize", 78, 7], ["fsType", 79, 7]], [["device", 83, 7], ["fsType", 84, 7]], [["/", 76, 17], ["/boot", 82, 17]], [["device", 90, 7], ["efiSupport", 91, 7], ["efiInstallAsRemovable", 92, 7]], [["grub", 89, 17]], [["growPartition", 87, 10], ["loader", 89, 10]], [["virtualisation", 58, 5], ["system", 60, 5], ["image", 61, 5], ["fileSystems", 76, 5], ["boot", 87, 5]], [["imports", 15, 3], ["options", 43, 3], ["config", 55, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/hyperv-image.nix", [["sinceRelease", 19, 7], ["from", 20, 7], ["to", 24, 7]]);
-const pos$2 = nix.positions(here + "/hyperv-image.nix", [["sinceRelease", 30, 7], ["from", 31, 7], ["to", 36, 7]]);
-const pos$3 = nix.positions(here + "/hyperv-image.nix", [["type", 46, 9], ["default", 47, 9], ["description", 48, 9]]);
-const pos$4 = nix.positions(here + "/hyperv-image.nix", [["vmDerivationName", 45, 7]]);
-const pos$5 = nix.positions(here + "/hyperv-image.nix", [["hyperv", 44, 5]]);
-const pos$6 = nix.positions(here + "/hyperv-image.nix", [["enable", 95, 32]]);
-const pos$7 = nix.positions(here + "/hyperv-image.nix", [["diskSize", 58, 20], ["hypervGuest", 95, 20]]);
-const pos$8 = nix.positions(here + "/hyperv-image.nix", [["tags", 60, 18]]);
-const pos$9 = nix.positions(here + "/hyperv-image.nix", [["name", 64, 7], ["baseName", 65, 7], ["postVM", 66, 7], ["format", 70, 7], ["diskSize", 71, 39], ["partitionTableType", 72, 7], ["config", 73, 15], ["lib", 73, 22], ["pkgs", 73, 26]]);
-const pos$10 = nix.positions(here + "/hyperv-image.nix", [["image", 62, 18], ["hypervImage", 63, 18]]);
-const pos$11 = nix.positions(here + "/hyperv-image.nix", [["nixos", 60, 12], ["build", 62, 12]]);
-const pos$12 = nix.positions(here + "/hyperv-image.nix", [["extension", 61, 11]]);
-const pos$13 = nix.positions(here + "/hyperv-image.nix", [["device", 77, 7], ["autoResize", 78, 7], ["fsType", 79, 7]]);
-const pos$14 = nix.positions(here + "/hyperv-image.nix", [["device", 83, 7], ["fsType", 84, 7]]);
-const pos$15 = nix.positions(here + "/hyperv-image.nix", [["/", 76, 17], ["/boot", 82, 17]]);
-const pos$16 = nix.positions(here + "/hyperv-image.nix", [["device", 90, 7], ["efiSupport", 91, 7], ["efiInstallAsRemovable", 92, 7]]);
-const pos$17 = nix.positions(here + "/hyperv-image.nix", [["grub", 89, 17]]);
-const pos$18 = nix.positions(here + "/hyperv-image.nix", [["growPartition", 87, 10], ["loader", 89, 10]]);
-const pos$19 = nix.positions(here + "/hyperv-image.nix", [["virtualisation", 58, 5], ["system", 60, 5], ["image", 61, 5], ["fileSystems", 76, 5], ["boot", 87, 5]]);
-const pos$20 = nix.positions(here + "/hyperv-image.nix", [["imports", 15, 3], ["options", 43, 3], ["config", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,29 +13,29 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "hyperv"));
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     imports: nix.thunk(() => [
       nix.path(here, "./disk-size-option.nix"),
       nix.path(here, "../image/file-options.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sinceRelease: 2411n,
           from: nix.thunk(() => ["hyperv", "baseImageSize"]),
           to: nix.thunk(() => ["virtualisation", "diskSize"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           sinceRelease: 2505n,
           from: nix.thunk(() => ["virtualisation", "hyperv", "vmFileName"]),
           to: nix.thunk(() => ["image", "fileName"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       hyperv: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         vmDerivationName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: nix.thunk(() => nix.str`nixos-hyperv-${nix.sel(config, "system", "nixos", "label")}-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}`),
             description: "The name of the derivation for the hyper-v appliance.\n",
@@ -62,22 +43,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         diskSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 1490n, nix.thunk(() => nix.mul(4n, 1024n)))),
-        hypervGuest: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+        hypervGuest: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
       })),
       system: nix.thunk(() => ({
-        [nix.POS]: pos$11,
-        nixos: nix.thunk(() => ({ [nix.POS]: pos$8, tags: nix.thunk(() => ["hyperv"]) })),
+        [nix.POS]: $pos[10],
+        nixos: nix.thunk(() => ({ [nix.POS]: $pos[7], tags: nix.thunk(() => ["hyperv"]) })),
         build: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           image: nix.thunk(() => nix.sel(config, "system", "build", "hypervImage")),
           hypervImage: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../lib/make-disk-image.nix"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "virtualisation"));
               return {
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               name: nix.thunk(() => nix.sel(cfg, "vmDerivationName")),
               baseName: nix.thunk(() => nix.sel(config, "image", "baseName")),
               postVM: nix.thunk(() => nix.str`${nix.sel(pkgs, "vmTools", "qemu")}/bin/qemu-img convert -f raw -o subformat=dynamic -O vhdx $diskImage $out/${nix.sel(config, "image", "fileName")}
@@ -93,24 +74,24 @@ rm $diskImage
             })()))),
         })),
       })),
-      image: nix.thunk(() => ({ [nix.POS]: pos$12, extension: "vhdx" })),
+      image: nix.thunk(() => ({ [nix.POS]: $pos[11], extension: "vhdx" })),
       fileSystems: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         "/": nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           device: "/dev/disk/by-label/nixos",
           autoResize: true,
           fsType: "ext4",
         })),
-        "/boot": nix.thunk(() => ({ [nix.POS]: pos$14, device: "/dev/disk/by-label/ESP", fsType: "vfat" })),
+        "/boot": nix.thunk(() => ({ [nix.POS]: $pos[13], device: "/dev/disk/by-label/ESP", fsType: "vfat" })),
       })),
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         growPartition: true,
         loader: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           grub: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             device: "nodev",
             efiSupport: true,
             efiInstallAsRemovable: true,

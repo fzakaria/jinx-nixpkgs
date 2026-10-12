@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["NIX_CFLAGS_COMPILE", 51, 7]], [["name", 60, 7], ["exec", 61, 7], ["icon", 62, 7], ["desktopName", 63, 7], ["comment", 64, 7], ["categories", 65, 7]], [["description", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["broken", 80, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["postPatch", 46, 3], ["env", 51, 3], ["postInstall", 53, 3], ["desktopItems", 58, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, imagemagick: false, autoreconfHook: false, SDL: false, SDL_mixer: false, SDL_image: false, SDL_gfx: false, libvorbis: false, libjpeg: false, libpng: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 60, 7], ["exec", 61, 7], ["icon", 62, 7], ["desktopName", 63, 7], ["comment", 64, 7], ["categories", 65, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["broken", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["postPatch", 46, 3], ["env", 51, 3], ["postInstall", 53, 3], ["desktopItems", 58, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "freedroid";
       const version = "1.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ReinhardPrix",
           repo: "FreedroidClassic",
           rev: nix.thunk(() => nix.str`release-${version}`),
@@ -39,11 +35,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems, imagemagick, autoreconfHook]);
       const buildInputs = nix.thunk(() => [SDL, SDL_image, SDL_gfx, SDL_mixer, libjpeg, libpng, libvorbis, zlib]);
       const postPatch = "touch NEWS\n";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" }));
       const postInstall = "mkdir -p $out/share/icons/hicolor/32x32/apps\nconvert graphics/paraicon.bmp $out/share/icons/hicolor/32x32/apps/freedroid.png\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: pname,
             exec: pname,
             icon: pname,
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Clone of the classic game 'Paradroid' on Commodore 64",
         mainProgram: "freedroid",
         homepage: "https://github.com/ReinhardPrix/FreedroidClassic",
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

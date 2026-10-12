@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["updateScript", 54, 12]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5]], [["__structuredAttrs", 20, 3], ["strictDeps", 21, 3], ["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 43, 3], ["mesonFlags", 50, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, vala: false, meson: false, ninja: false, "pkg-config": false, "desktop-file-utils": false, gusb: false, gtk4: false, glib: false, wrapGAppsHook4: false, "blueprint-compiler": false, libadwaita: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["__structuredAttrs", 20, 3], ["strictDeps", 21, 3], ["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 43, 3], ["mesonFlags", 50, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       __structuredAttrs: true,
       strictDeps: true,
       pname: "nxdumpclient",
       version: "1.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "v1993",
           repo: "nxdumpclient",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +47,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk4, glib, gusb, libadwaita]),
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "libportal", false))]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Client program for dumping over USB with nxdumptool",
         homepage: "https://github.com/v1993/nxdumpclient",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

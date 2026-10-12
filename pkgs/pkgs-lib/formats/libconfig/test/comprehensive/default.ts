@@ -2,16 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["val", 12, 5]], [["value", 21, 34]], [["integer", 21, 26]], [["a", 21, 24]], [["has", 21, 20]], [["attrset", 21, 12], ["level-dash", 25, 12]], [["_includes", 67, 7], ["pi", 68, 7], ["bigint", 69, 7], ["hex", 70, 7], ["octal", 71, 7], ["float", 72, 7], ["array_of_ints", 73, 7], ["list_of_weird_types", 78, 7]], [["simple_top_level_attr", 20, 5], ["nested", 21, 5], ["some_floaty", 22, 5], ["top-level-dash", 24, 5], ["list1d", 28, 5], ["list2d", 35, 5], ["array1d", 49, 5], ["array2d", 54, 5], ["nasty_string", 64, 5], ["weirderTypes", 66, 5]], [["name", 92, 3], ["dontUnpack", 94, 3], ["dontBuild", 95, 3], ["doCheck", 97, 3], ["checkPhase", 98, 3], ["installPhase", 105, 3]]]);
 const formals$1 = { args: { lib: false, formats: false, stdenvNoCC: false, writeText: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["val", 12, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["value", 21, 34]]);
-const pos$3 = nix.positions(here + "/default.nix", [["integer", 21, 26]]);
-const pos$4 = nix.positions(here + "/default.nix", [["a", 21, 24]]);
-const pos$5 = nix.positions(here + "/default.nix", [["has", 21, 20]]);
-const pos$6 = nix.positions(here + "/default.nix", [["attrset", 21, 12], ["level-dash", 25, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["_includes", 67, 7], ["pi", 68, 7], ["bigint", 69, 7], ["hex", 70, 7], ["octal", 71, 7], ["float", 72, 7], ["array_of_ints", 73, 7], ["list_of_weird_types", 78, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["simple_top_level_attr", 20, 5], ["nested", 21, 5], ["some_floaty", 22, 5], ["top-level-dash", 24, 5], ["list1d", 28, 5], ["list2d", 35, 5], ["array1d", 49, 5], ["array2d", 54, 5], ["nasty_string", 64, 5], ["weirderTypes", 66, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["name", 92, 3], ["dontUnpack", 94, 3], ["dontBuild", 95, 3], ["doCheck", 97, 3], ["checkPhase", 98, 3], ["installPhase", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,20 +12,20 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const writeText = nix.arg($, "writeText");
   const libconfig = nix.thunk(() => nix.app(nix.sel(formats, "libconfig"), nix.thunk(() => ({}))));
-  const include_expr = nix.thunk(() => ({ [nix.POS]: pos$1, val: 1n }));
+  const include_expr = nix.thunk(() => ({ [nix.POS]: $pos[0], val: 1n }));
   const include_file = nix.thunk(() => nix.app(writeText, "libconfig-test-include", "val=1;\n"));
   const expression = nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     simple_top_level_attr: "1.0",
     nested: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       attrset: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         has: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           a: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            integer: nix.thunk(() => ({ [nix.POS]: pos$2, value: 100n })),
+            [nix.POS]: $pos[2],
+            integer: nix.thunk(() => ({ [nix.POS]: $pos[1], value: 100n })),
           })),
         })),
       })),
@@ -50,7 +42,7 @@ export default nix.lambda((args) => (() => {
     ]),
     nasty_string: "\"@\n\\\t^*bf\n0\";'''$",
     weirderTypes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       _includes: nix.thunk(() => [include_file]),
       pi: 3.141592654,
       bigint: 9223372036854775807n,
@@ -74,7 +66,7 @@ export default nix.lambda((args) => (() => {
   }));
   const libconfig_test_cfg = nix.thunk(() => nix.app(nix.sel(libconfig, "generate"), "libconfig-test.cfg", expression));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       name: "pkgs.formats.libconfig-test-comprehensive",
       dontUnpack: true,
       dontBuild: true,

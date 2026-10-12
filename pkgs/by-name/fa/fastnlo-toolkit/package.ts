@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["CXXFLAGS", 87, 7]], [["homepage", 90, 5], ["description", 91, 5], ["longDescription", 92, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5], ["broken", 106, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["propagatedNativeBuildInputs", 51, 3], ["propagatedBuildInputs", 52, 3], ["preConfigure", 57, 3], ["configureFlags", 66, 3], ["strictDeps", 71, 3], ["enableParallelBuilding", 73, 3], ["doCheck", 75, 3], ["nativeCheckInputs", 76, 3], ["preCheck", 80, 3], ["enableParallelChecking", 83, 3], ["env", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, boost: false, lhapdf: false, ncurses: false, perl: false, python: true, swig: false, yoda: false, zlib: false, withPython: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 87, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 90, 5], ["description", 91, 5], ["longDescription", 92, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5], ["broken", 106, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["propagatedNativeBuildInputs", 51, 3], ["propagatedBuildInputs", 52, 3], ["preConfigure", 57, 3], ["configureFlags", 66, 3], ["strictDeps", 71, 3], ["enableParallelBuilding", 73, 3], ["doCheck", 75, 3], ["nativeCheckInputs", 76, 3], ["preCheck", 80, 3], ["enableParallelChecking", 83, 3], ["env", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withPython = nix.argOr($, "withPython", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fastnlo-toolkit",
       version: "2.5.0-2826",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://fastnlo.hepforge.org/code/v25/fastnlo_toolkit-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-7aIMYCOkHC/17CHYiEfrxvtSJxTDivrS7BQ32cGiEy0=",
         })))),
@@ -45,9 +42,9 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [perl, nix.thunk(() => nix.sel(lhapdf, "pdf_sets", "CT10nlo"))]),
       preCheck: "patchShebangs --build check\n",
       enableParallelChecking: false,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-D_LIBCPP_ENABLE_CXX17_REMOVED_FEATURES" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-D_LIBCPP_ENABLE_CXX17_REMOVED_FEATURES" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://fastnlo.hepforge.org",
         description: "Fast pQCD calculations for hadron-induced processes",
         longDescription: "The fastNLO project provides computer code to create and evaluate fast\ninterpolation tables of pre-computed coefficients in perturbation theory\nfor observables in hadron-induced processes.\n\nThis allows fast theory predictions of these observables for arbitrary\nparton distribution functions (of regular shape), renormalization or\nfactorization scale choices, and/or values of alpha_s(Mz) as e.g. needed\nin PDF fits or in systematic studies. Very time consuming complete\nrecalculations are thus avoided.\n",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 23, 14]], [["description", 16, 5], ["homepage", 17, 5], ["patches", 19, 5], ["passthru", 23, 5], ["buildDepends", 25, 5], ["postInstall", 29, 5]]]);
 const formals$1 = { args: { haskell: false, lib: false, stdenv: false, coreutils: false, libsecret: false, gnupg: false, makeBinaryWrapper: false, withLibsecret: true, withGpg: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 23, 14]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 16, 5], ["homepage", 17, 5], ["patches", 19, 5], ["passthru", 23, 5], ["buildDepends", 25, 5], ["postInstall", 29, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const overrideCabal = nix.thunk(() => nix.attr(from, "overrideCabal"));
   const justStaticExecutables = nix.thunk(() => nix.attr(from, "justStaticExecutables"));
   const overrides = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "OAuth credential MAnager",
     homepage: "https://github.com/pdobsan/oama",
     patches: nix.thunk(() => [nix.path(here, "./no-githash.patch")]),
-    passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
+    passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], updateScript: nix.path(here, "./update.sh") })),
     buildDepends: nix.thunk(() => [makeBinaryWrapper]),
     postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/oama \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([coreutils], nix.concat(nix.app(nix.sel(lib, "optional"), withLibsecret, libsecret), nix.app(nix.sel(lib, "optional"), withGpg, gnupg)))))}

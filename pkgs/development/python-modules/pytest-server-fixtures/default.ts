@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 16, 3], ["version", 17, 35], ["src", 17, 43], ["patches", 17, 47], ["pyproject", 18, 3], ["postPatch", 20, 3], ["build-system", 24, 3], ["buildInputs", 26, 3], ["dependencies", 28, 3], ["doCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, future: false, psutil: false, pytest: false, "pytest-shutil": false, "pytest-fixture-config": false, requests: false, retry: false, six: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 35], ["src", 17, 43], ["patches", 17, 47], ["pyproject", 18, 3], ["postPatch", 20, 3], ["build-system", 24, 3], ["buildInputs", 26, 3], ["dependencies", 28, 3], ["doCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "pytest-server-fixtures",
       version: nix.thunk(() => nix.attr(pytest_fixture_config, "version")),
       src: nix.thunk(() => nix.attr(pytest_fixture_config, "src")),
@@ -32,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [future, psutil, pytest_shutil, pytest_fixture_config, requests, retry, six]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Extensible server fixures for py.test",
         homepage: "https://github.com/manahl/pytest-plugins",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

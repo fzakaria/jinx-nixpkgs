@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["x86_64-linux", 48, 7], ["aarch64-linux", 49, 7], ["aarch64-darwin", 50, 7]], [["package", 54, 7], ["command", 55, 7]], [["version", 53, 11]], [["shellNames", 47, 5], ["tests", 53, 5]], [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 79, 5], ["license", 80, 5], ["sourceProvenance", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5], ["platforms", 84, 24]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 24, 3], ["passthru", 46, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, makeBinaryWrapper: false, coreutils: false, findutils: false, jre: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 48, 7], ["aarch64-linux", 49, 7], ["aarch64-darwin", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 54, 7], ["command", 55, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 53, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["shellNames", 47, 5], ["tests", 53, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 79, 5], ["license", 80, 5], ["sourceProvenance", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5], ["platforms", 84, 24]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 24, 3], ["passthru", 46, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "appfire-cli",
       version: "12.1.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://appfire.atlassian.net/wiki/download/attachments/60562669/acli-${nix.sel(finalAttrs, "version")}-distribution.zip`),
           hash: "sha256-6p8i5ec8IAygACdsdzP8g5u24mQZ7Ci684xuu/kAADo=",
         })))),
@@ -52,17 +46,17 @@ makeBinaryWrapper $out/share/appfire-cli/acli.sh $out/bin/acli
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         shellNames: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "x86_64-linux": "bin/shell-linux-amd64",
           "aarch64-linux": "bin/shell-linux-arm64",
           "aarch64-darwin": "bin/shell-macos-arm64",
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "acli -a getClientInfo",
             })))),
@@ -71,7 +65,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre, "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Integrated family of CLIs for Atlassian, Atlassian-related, and other applications",
         longDescription: "Appfire CLI (ACLI) is an integrated family of CLIs for Atlassian,\nAtlassian-related, and other applications.\n\nACLI provides a consistent and reliable automation platform that allows\nusers, administrators, script writers, and DevOps developers to perform\ntasks, implement business processes, or apply general automation with\nAtlassian products.\n\nThe CLIs are built on the Atlassian remote APIs and deliver a higher\nlevel, client-based API that is easier to use and more powerful than\nthe underlying product APIs.\n\nThe upstream documentation describes configuring acli by placing\n{file}`acli.properties` in the same directory as {file}`acli.sh`.\nSince the /nix/store is not writable, you can instead place the file\nat {file}`$HOME/acli.properties` to achieve the same effect.\n",
         homepage: "https://apps.appf.re/acli",

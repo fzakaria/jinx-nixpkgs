@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5], ["postFetch", 15, 5]], [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 22, 3], ["makefile", 28, 3], ["makeFlags", 29, 3], ["preBuild", 31, 3], ["preInstall", 32, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, p7zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5], ["postFetch", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 22, 3], ["makefile", 28, 3], ["makeFlags", 29, 3], ["preBuild", 31, 3], ["preInstall", 32, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const p7zip = nix.arg($, "p7zip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "snap7",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/snap7/${nix.sel(finalAttrs, "version")}/snap7-full-${nix.sel(finalAttrs, "version")}.7z`),
           sha256: "1n5gs8bwb6g9vfllf3x12r5yzqzapmlq1bmc6hl854b8vkg30y8c",
           postFetch: nix.thunk(() => nix.str`${p7zip}/bin/7z x $downloadedFile
@@ -32,7 +30,7 @@ cp -r snap7-full-${nix.sel(finalAttrs, "version")}/* $out/
       preBuild: "cd build/unix",
       preInstall: "mkdir -p $out/lib\nmkdir -p $dev/include\nmkdir -p $doc/share\ncp $src/examples/cpp/snap7.h $dev/include\ncp -r $src/doc $doc/share/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://snap7.sourceforge.net/",
         description: "Step7 Open Source Ethernet Communication Suite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

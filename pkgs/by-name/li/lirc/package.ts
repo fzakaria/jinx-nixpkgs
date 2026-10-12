@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["sha256", 36, 5]], [["url", 42, 7], ["sha256", 43, 7]], [["DEVINPUT_HEADER", 95, 7]], [["description", 140, 5], ["homepage", 141, 5], ["license", 142, 5], ["platforms", 143, 5], ["maintainers", 144, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 39, 3], ["postPatch", 59, 3], ["preConfigure", 71, 3], ["strictDeps", 75, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 85, 3], ["env", 95, 3], ["configureFlags", 97, 3], ["installFlags", 107, 3], ["outputs", 112, 3], ["postFixup", 128, 3], ["dontCheckForBrokenSymlinks", 137, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, autoreconfHook: false, "pkg-config": false, help2man: false, python3: false, linuxHeaders: false, "alsa-lib": false, libxslt: false, systemd: false, "libusb-compat-0_1": false, libftdi1: false, libice: false, libsm: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 42, 7], ["sha256", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["DEVINPUT_HEADER", 95, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 140, 5], ["homepage", 141, 5], ["license", 142, 5], ["platforms", 143, 5], ["maintainers", 144, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 39, 3], ["postPatch", 59, 3], ["preConfigure", 71, 3], ["strictDeps", 75, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 85, 3], ["env", 95, 3], ["configureFlags", 97, 3], ["installFlags", 107, 3], ["outputs", 112, 3], ["postFixup", 128, 3], ["dontCheckForBrokenSymlinks", 137, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,17 +32,17 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lirc",
       version: "0.10.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/lirc/lirc-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-PUTsgnSIHPJi8WCAVkHwgn/8wgreDYXn5vO5Dg09Iio=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://sourceforge.net/p/lirc/tickets/339/attachment/0001-Fix-Python-bindings.patch",
             sha256: "088a39x8c1qd81qwvbiqd6crb2lk777wmrs8rdh1ga06lglyvbly",
           })))),
@@ -60,7 +56,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, help2man, libxslt, pythonEnv, pkg_config]),
       buildInputs: nix.thunk(() => [alsa_lib, systemd, libusb_compat_0_1, libftdi1, libice, libsm, libx11]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         DEVINPUT_HEADER: nix.thunk(() => nix.str`${linuxHeaders}/include/linux/input-event-codes.h`),
       })),
       configureFlags: nix.thunk(() => [
@@ -82,7 +78,7 @@ ln -s $out/${nix.sel(python3, "sitePackages")}/lirc-setup/lirc-setup $out/bin/li
 `),
       dontCheckForBrokenSymlinks: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Allows to receive and send infrared signals",
         homepage: "https://www.lirc.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

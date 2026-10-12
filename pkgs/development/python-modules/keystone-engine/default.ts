@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 26], ["version", 18, 32], ["sha256", 19, 5]], [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["setupPyBuildFlags", 26, 3], ["preConfigure", 31, 3], ["doCheck", 37, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, keystone: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 26], ["version", 18, 32], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["setupPyBuildFlags", 26, 3], ["preConfigure", 31, 3], ["doCheck", 37, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const keystone = nix.arg($, "keystone");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "keystone-engine",
       version: "0.9.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "1xahdr6bh3dw5swrc2r8kqa8ljhqlb7k2kxv5mrw5rhcmcnzcyig",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["keystone"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight multi-platform, multi-architecture assembler framework",
         homepage: "https://www.keystone-engine.org",
         maintainers: nix.thunk(() => (() => {

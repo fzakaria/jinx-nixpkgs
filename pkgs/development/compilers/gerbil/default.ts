@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sha256", 14, 5], ["fetchSubmodules", 15, 5]], [["version", 8, 3], ["git-version", 9, 3], ["src", 10, 3], ["gambit-support", 17, 11], ["gambit-params", 18, 3], ["gambit-git-version", 19, 3], ["gambit-stampYmd", 20, 3], ["gambit-stampHms", 21, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchFromGitHub: false, "gambit-support": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sha256", 14, 5], ["fetchSubmodules", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 8, 3], ["git-version", 9, 3], ["src", 10, 3], ["gambit-support", 17, 11], ["gambit-params", 18, 3], ["gambit-git-version", 19, 3], ["gambit-stampYmd", 20, 3], ["gambit-stampHms", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.18.1";
       const git_version = "0.18.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mighty-gerbils",
           repo: "gerbil",
           rev: "23c30a6062cd7e63f9d85300ce01585bb9035d2d",
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const gambit_stampYmd = "20231029";
       const gambit_stampHms = "163035";
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version,
         "git-version": git_version,
         src,

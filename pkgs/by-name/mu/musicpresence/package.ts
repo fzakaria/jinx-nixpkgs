@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 7], ["hash", 27, 7]], [["url", 30, 7], ["hash", 31, 7]], [["x86_64-linux", 25, 5], ["aarch64-darwin", 29, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["sourceProvenance", 39, 5], ["platforms", 40, 5], ["mainProgram", 44, 5], ["maintainers", 45, 5]], [["pname", 53, 13], ["version", 53, 19], ["meta", 53, 27], ["src", 55, 5], ["nativeBuildInputs", 57, 5], ["buildInputs", 62, 5], ["dontBuild", 74, 5], ["dontConfigure", 75, 5], ["strictDeps", 77, 5], ["__structuredAttrs", 78, 5], ["installPhase", 80, 5]], [["pname", 99, 13], ["version", 99, 19], ["meta", 99, 27], ["src", 101, 5], ["sourceRoot", 102, 5], ["nativeBuildInputs", 104, 5], ["dontBuild", 109, 5], ["dontConfigure", 110, 5], ["installPhase", 112, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, fetchurl: false, autoPatchelfHook: false, makeWrapper: false, libGL: false, libxcb: false, libx11: false, wayland: false, fontconfig: false, freetype: false, "libgpg-error": false, e2fsprogs: false, xkeyboard_config: false, qt6: false, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 25, 5], ["aarch64-darwin", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["sourceProvenance", 39, 5], ["platforms", 40, 5], ["mainProgram", 44, 5], ["maintainers", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 53, 13], ["version", 53, 19], ["meta", 53, 27], ["src", 55, 5], ["nativeBuildInputs", 57, 5], ["buildInputs", 62, 5], ["dontBuild", 74, 5], ["dontConfigure", 75, 5], ["strictDeps", 77, 5], ["__structuredAttrs", 78, 5], ["installPhase", 80, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 99, 13], ["version", 99, 19], ["meta", 99, 27], ["src", 101, 5], ["sourceRoot", 102, 5], ["nativeBuildInputs", 104, 5], ["dontBuild", 109, 5], ["dontConfigure", 110, 5], ["installPhase", 112, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,20 +27,20 @@ export default nix.lambda((args) => (() => {
   const pname = "musicpresence";
   const version = "2.3.6";
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/ungive/discord-music-presence/releases/download/v${version}/musicpresence-${version}-linux-x86_64.tar.gz`),
         hash: "sha256-w3y1I6nnztEMaihbXIfQqB0ng6s07iA8bqC8PDq+E+I=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/ungive/discord-music-presence/releases/download/v${version}/musicpresence-${version}-mac-arm64.dmg`),
         hash: "sha256-IvUyzR9amMhyWHRuhTuqUFALCE3QTRjHmsASKydnj8Q=",
       })))),
   }));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     description: "Discord music status that works with any media player",
     homepage: "https://github.com/ungive/discord-music-presence",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -65,7 +60,7 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const linuxDrv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       meta: meta,
@@ -100,7 +95,7 @@ runHook postInstall
 `),
     }))));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.force(linuxDrv) : nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       meta: meta,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["extraArgs", 67, 7]], [["skipBulkUpdates", 65, 5], ["updateScript", 66, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 28, 3], ["__structuredAttrs", 29, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 42, 3], ["doCheck", 47, 3], ["checkInputs", 49, 3], ["nativeCheckInputs", 51, 3], ["disabledTests", 57, 3], ["passthru", 63, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, ctestCheckHook: false, eigen: false, fetchFromGitHub: false, gtest: false, "gz-cmake": false, "gz-utils": false, "nix-update-script": false, python3Packages: false, ruby: false, swig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 67, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["skipBulkUpdates", 65, 5], ["updateScript", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 28, 3], ["__structuredAttrs", 29, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 42, 3], ["doCheck", 47, 3], ["checkInputs", 49, 3], ["nativeCheckInputs", 51, 3], ["disabledTests", 57, 3], ["passthru", 63, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const swig = nix.arg($, "swig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gz-math",
       version: "9.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gazebosim",
           repo: "gz-math",
           tag: nix.thunk(() => nix.str`gz-math${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}_${nix.sel(finalAttrs, "version")}`),
@@ -51,15 +47,15 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [ctestCheckHook, ruby, nix.thunk(() => nix.sel(python3Packages, "python"))]),
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["GaussMarkovProcess_TEST.rb", "Rand_TEST.rb"]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdates: true,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=gz-math(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Math classes and functions for robot applications",
         homepage: "https://gazebosim.org/home",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

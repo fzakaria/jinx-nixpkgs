@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5], ["fetchSubmodules", 31, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["teams", 60, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["checkInputs", 48, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, "uv-build": false, affine: false, "async-tiff": false, defusedxml: false, numpy: false, pyproj: false, pydantic: false, rasterio: false, morecantile: false, jsonschema: false, "pytest-asyncio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5], ["fetchSubmodules", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["teams", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["checkInputs", 48, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const jsonschema = nix.arg($, "jsonschema");
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "async-geotiff",
       version: "0.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "developmentseed",
           repo: "async-geotiff",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       checkInputs: nix.thunk(() => [jsonschema, morecantile, rasterio, pydantic, pytest_asyncio]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast, async GeoTIFF and COG reader for Python",
         homepage: "https://developmentseed.org/async-geotiff/latest/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

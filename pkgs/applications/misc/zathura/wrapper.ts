@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["homepage", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["mainProgram", 73, 5]], [["version", 22, 26], ["pname", 23, 3], ["paths", 25, 3], ["nativeBuildInputs", 34, 3], ["postBuild", 36, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { symlinkJoin: false, lib: false, makeWrapper: false, zathura_core: false, zathura_djvu: false, zathura_ps: false, zathura_cb: false, zathura_pdf_mupdf: false, zathura_pdf_poppler: false, file: false, useMupdf: false, plugins: true, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["homepage", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["mainProgram", 73, 5]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["version", 22, 26], ["pname", 23, 3], ["paths", 25, 3], ["nativeBuildInputs", 34, 3], ["postBuild", 36, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
   ]);
   const stdenv = nix.arg($, "stdenv");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(zathura_core, "version")),
       pname: "zathura-with-plugins",
       paths: nix.thunk(() => (() => {
@@ -57,7 +56,7 @@ substitute "${nix.sel(zathura_core, "out")}/${fishCompletion}" "$out/${fishCompl
 `);
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://pwmt.org/projects/zathura",
         description: "Highly customizable and functional PDF viewer",
         longDescription: "Zathura is a highly customizable and functional PDF viewer based on the\npoppler rendering library and the GTK toolkit. The idea behind zathura\nis an application that provides a minimalistic and space saving interface\nas well as an easy usage that mainly focuses on keyboard interaction.\n",

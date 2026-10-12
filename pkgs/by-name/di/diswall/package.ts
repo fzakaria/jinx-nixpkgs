@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["OPENSSL_NO_VENDOR", 25, 7]], [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["env", 25, 3], ["doCheck", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["env", 25, 3], ["doCheck", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "diswall",
       version: "0.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dis-works",
           repo: "diswall-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,10 +26,10 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-WXaNLlTbZc2On19azFUbcsx0fA2LpsNNWxO6BzJ469M=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: 1n })),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Distributed firewall",
         longDescription: "Diswall (distributed firewall) - a client of distributed firewall\nworking on many servers and using NATS for the transport level.\nIts purpose - blocking IPs with a blink of the eye on all servers\nin any infrastructure when some IP checks any of the closed ports\nof anyone of these servers. Therefore, diswall provides good\nprotection of whole infrastructure (as anti-shodan) preventing\nintruder to get any system information.\n",
         homepage: "https://www.diswall.stream",

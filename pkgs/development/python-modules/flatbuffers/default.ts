@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["VERSION", 16, 7]], [["description", 21, 5], ["maintainers", 22, 5], ["mainProgram", 23, 5]], [["pname", 8, 25], ["version", 8, 31], ["src", 8, 39], ["format", 10, 3], ["sourceRoot", 12, 3], ["env", 16, 3], ["pythonImportsCheck", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, flatbuffers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["VERSION", 16, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 21, 5], ["maintainers", 22, 5], ["mainProgram", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 25], ["version", 8, 31], ["src", 8, 39], ["format", 10, 3], ["sourceRoot", 12, 3], ["env", 16, 3], ["pythonImportsCheck", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,10 +16,10 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => nix.attr(flatbuffers, "src"));
       const format = "setuptools";
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/python`);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$1, VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[0], VERSION: version }));
       const pythonImportsCheck = nix.thunk(() => ["flatbuffers"]);
       const meta = nix.thunk(() => nix.update(nix.sel(flatbuffers, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python runtime library for use with the Flatbuffers serialization format",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "flatc",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

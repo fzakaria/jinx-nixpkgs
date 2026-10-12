@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]], [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 28, 7]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["pythonRelaxDeps", 26, 3], ["env", 28, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fonttools: false, protobuf: false, gfmetadata: false, pytestCheckHook: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["pythonRelaxDeps", 26, 3], ["env", 28, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +20,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.20";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-y+x/EUp+LPVkviXKok3pg/mPxpzSiuYimIL27Xm4G28=",
         }))));
       const pythonRelaxDeps = nix.thunk(() => ["protobuf"]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
       const build_system = nix.thunk(() => [setuptools_scm]);
       const dependencies = nix.thunk(() => [fonttools, gfmetadata, protobuf]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["axisregistry"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Google Fonts registry of OpenType variation axis tags",
         homepage: "https://github.com/googlefonts/axisregistry",
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/axisregistry/blob/v${version}/CHANGELOG.md`),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

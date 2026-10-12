@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["url", 90, 17], ["hash", 91, 25], ["downloadToTemp", 92, 17], ["recursiveHash", 93, 17], ["postFetch", 94, 17]], [["nyc_taxi_data.h5", 101, 15], ["teapot.h5", 102, 15]], [["name", 84, 9], ["paths", 85, 9]], [["PLOPP_DATA_DIR", 78, 5]], [["description", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 58, 3], ["env", 76, 3], ["pythonImportsCheck", 107, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, "lazy-loader": false, matplotlib: false, pytestCheckHook: false, anywidget: false, graphviz: false, h5py: false, ipympl: false, ipywidgets: false, mpltoolbox: false, pandas: false, plotly: false, pooch: false, pyarrow: false, pythreejs: false, scipp: false, scipy: false, xarray: false, symlinkJoin: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 90, 17], ["hash", 91, 25], ["downloadToTemp", 92, 17], ["recursiveHash", 93, 17], ["postFetch", 94, 17]]);
-const pos$3 = nix.positions(here + "/default.nix", [["nyc_taxi_data.h5", 101, 15], ["teapot.h5", 102, 15]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 84, 9], ["paths", 85, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["PLOPP_DATA_DIR", 78, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 58, 3], ["env", 76, 3], ["pythonImportsCheck", 107, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "plopp",
       version: "26.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scipp",
           repo: "plopp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,14 +63,14 @@ export default nix.lambda((args) => (() => {
         xarray,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         PLOPP_DATA_DIR: nix.thunk(() => (() => {
           const _version = "1";
           return nix.app(symlinkJoin, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "plopp-test-data",
               paths: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (file) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     url: nix.thunk(() => nix.str`https://public.esss.dk/groups/scipp/plopp/${_version}/${file}`),
                     hash: hash,
                     downloadToTemp: true,
@@ -85,7 +79,7 @@ export default nix.lambda((args) => (() => {
 mv $downloadedFile $out/${_version}/${file}
 `),
                   }))), nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   "nyc_taxi_data.h5": "sha256-hso8ESM+uLRf4y2CW/7dpAmm/kysAfJY3b+5vz78w4Q=",
                   "teapot.h5": "sha256-i6hOw72ce1cBT6FMQTdCEKVe0WOMOjApKperGHoPW34=",
                 })))),
@@ -94,7 +88,7 @@ mv $downloadedFile $out/${_version}/${file}
       })),
       pythonImportsCheck: nix.thunk(() => ["plopp"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Visualization library for scipp",
         homepage: "https://scipp.github.io/plopp/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

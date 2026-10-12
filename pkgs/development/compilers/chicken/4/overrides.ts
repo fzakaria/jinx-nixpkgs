@@ -2,13 +2,12 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/overrides.nix", [["preBuild", 3, 5]]);
-const pos$2 = nix.positions(here + "/overrides.nix", [["setup-helper", 2, 3]]);
+const $pos = nix.positions(here + "/overrides.nix", [[["preBuild", 3, 5]], [["setup-helper", 2, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$2,
+  [nix.POS]: $pos[1],
   "setup-helper": nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     preBuild: "substituteInPlace setup-helper.setup \\\n  --replace \"(chicken-home)\" \\\"$out/share/\\\"\n\n  cat setup-helper.setup\n",
   })),
 }));

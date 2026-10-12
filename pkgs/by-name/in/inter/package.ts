@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["stripRoot", 13, 5], ["hash", 14, 5]], [["homepage", 27, 5], ["description", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["maintainers", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["nativeBuildInputs", 17, 3], ["postPatch", 18, 3], ["dontInstallWebfonts", 22, 3], ["__structuredAttrs", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["stripRoot", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["nativeBuildInputs", 17, 3], ["postPatch", 18, 3], ["dontInstallWebfonts", 22, 3], ["__structuredAttrs", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "inter",
       version: "4.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/rsms/inter/releases/download/v${nix.sel(finalAttrs, "version")}/Inter-${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-5vdKKvHAeZi6igrfpbOdhZlDX2/5+UvzlnCQV6DdqoQ=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontInstallWebfonts: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://rsms.me/inter/",
         description: "Typeface specially designed for user interfaces",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jexec.nix", [[["mainProgram", 11, 8]], [["path", 7, 3], ["buildInputs", 8, 3], ["meta", 11, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, libjail: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/jexec.nix", [["mainProgram", 11, 8]]);
-const pos$2 = nix.positions(here + "/jexec.nix", [["path", 7, 3], ["buildInputs", 8, 3], ["meta", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libjail = nix.arg($, "libjail");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.sbin/jexec",
       buildInputs: nix.thunk(() => [libjail]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "jexec" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "jexec" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=jexec.ts.map

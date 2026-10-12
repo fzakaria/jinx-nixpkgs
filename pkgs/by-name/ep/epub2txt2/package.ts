@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["sha256", 15, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["platforms", 27, 5], ["maintainers", 28, 5], ["mainProgram", 29, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["makeFlags", 18, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["platforms", 27, 5], ["maintainers", 28, 5], ["mainProgram", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["makeFlags", 18, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "epub2txt2",
       version: "2.08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kevinboone",
           repo: "epub2txt2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makeFlags: nix.thunk(() => ["CC:=$(CC)", "PREFIX:=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple command-line utility for Linux, for extracting text from EPUB documents",
         homepage: "https://github.com/kevinboone/epub2txt2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["teams", 66, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 40, 3], ["preCheck", 44, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, cython: false, geos: false, numpy: false, "oldest-supported-numpy": false, setuptools: false, wheel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["teams", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 40, 3], ["preCheck", 44, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "shapely",
           repo: "shapely",
           tag: version,
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_error_handler_exception", "test_error_handler", "test_info_handler"])));
       const pythonImportsCheck = nix.thunk(() => ["shapely"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/shapely/shapely/blob/${nix.sel(src, "tag")}/CHANGES.txt`),
         description: "Manipulation and analysis of geometric objects",
         homepage: "https://github.com/shapely/shapely",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

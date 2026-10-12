@@ -2,16 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/getty.nix", [[["mainProgram", 20, 8]], [["path", 6, 3], ["extraPaths", 7, 3], ["postPatch", 9, 3], ["postInstall", 15, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { mkDerivation: false, login: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/getty.nix", [["mainProgram", 20, 8]]);
-const pos$2 = nix.positions(here + "/getty.nix", [["path", 6, 3], ["extraPaths", 7, 3], ["postPatch", 9, 3], ["postInstall", 15, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDerivation = nix.arg($, "mkDerivation");
   const login = nix.arg($, "login");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "libexec/getty",
       extraPaths: nix.thunk(() => ["etc/gettytab"]),
       postPatch: nix.thunk(() => nix.str`substituteInPlace $BSDSRCDIR/libexec/getty/pathnames.h \\
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
     --replace-fail "/usr/bin/login" "${login}/bin/login"
 `),
       postInstall: "mkdir -p $out/etc\ncp $BSDSRCDIR/etc/gettytab $out/etc/gettytab\n",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "getty" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "getty" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=getty.ts.map

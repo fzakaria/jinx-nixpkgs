@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lib.nix", [[["name", 22, 23]], [["model", 25, 26]], [["parameters", 25, 15]], [["template", 28, 15]], [["genModels", 8, 3]]]);
 const formals$1 = { args: { lib: false, writers: false, writeText: false, linkFarmFromDrvs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lib.nix", [["name", 22, 23]]);
-const pos$2 = nix.positions(here + "/lib.nix", [["model", 25, 26]]);
-const pos$3 = nix.positions(here + "/lib.nix", [["parameters", 25, 15]]);
-const pos$4 = nix.positions(here + "/lib.nix", [["template", 28, 15]]);
-const pos$5 = nix.positions(here + "/lib.nix", [["genModels", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const linkFarmFromDrvs = nix.arg($, "linkFarmFromDrvs");
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     genModels: (configs) => (() => {
       const name = nix.thunk(() => nix.app(nix.sel(lib, "strings", "sanitizeDerivationName"), nix.thunk(() => nix.builtins.concatStringsSep("_", nix.thunk(() => nix.concat(["local-ai-models"], nix.builtins.attrNames(configs)))))));
       const genModelFiles = (name_1) => (config) => (() => {
         const templateName = (type) => nix.add(nix.add(name_1, "_"), type);
-        const config$ = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), config, nix.thunk(() => nix.update({ [nix.POS]: pos$1, name: name_1 }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "isDerivation"), nix.thunk(() => nix.sel(config, "parameters", "model")))), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+        const config$ = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), config, nix.thunk(() => nix.update({ [nix.POS]: $pos[0], name: name_1 }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "isDerivation"), nix.thunk(() => nix.sel(config, "parameters", "model")))), nix.thunk(() => ({
+              [nix.POS]: $pos[2],
               parameters: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 model: nix.thunk(() => nix.sel(config, "parameters", "model", "name")),
               })),
             }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(config, "template")), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               template: nix.thunk(() => nix.builtins.mapAttrs((n) => (_) => nix.app(templateName, n), nix.thunk(() => nix.sel(config, "template")))),
             }))))))));
         return nix.concat([

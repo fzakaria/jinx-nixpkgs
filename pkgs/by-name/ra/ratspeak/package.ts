@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]], [["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]], [["updateScript", 107, 12]], [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["platforms", 115, 5], ["mainProgram", 116, 5]], [["pname", 52, 3], ["version", 53, 3], ["__structuredAttrs", 54, 3], ["src", 56, 3], ["postUnpack", 64, 3], ["cargoHash", 72, 3], ["cargoRoot", 73, 3], ["buildAndTestSubdir", 74, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 83, 3], ["preBuild", 96, 3], ["preFixup", 101, 3], ["passthru", 107, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "cargo-tauri": false, "alsa-lib": false, dbus: false, "glib-networking": false, "libayatana-appindicator": false, libsoup_3: false, openssl: false, pcsclite: false, perl: false, "pkg-config": false, udev: false, webkitgtk_4_1: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 107, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["platforms", 115, 5], ["mainProgram", 116, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 3], ["__structuredAttrs", 54, 3], ["src", 56, 3], ["postUnpack", 64, 3], ["cargoHash", 72, 3], ["cargoRoot", 73, 3], ["buildAndTestSubdir", 74, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 83, 3], ["preBuild", 96, 3], ["preFixup", 101, 3], ["passthru", 107, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,40 +25,40 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const rsReticulum = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "ratspeak",
       repo: "rsReticulum",
       rev: "17e6107aa8fb9a5b0c2cac2f4fe4b68655593bd8",
       hash: "sha256-0HjeGZ57eiz9z9akc+ESdZLAN+/uR9LyNaMLgYiTPO8=",
     }))));
   const rsLXMF = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "ratspeak",
       repo: "rsLXMF",
       rev: "393478019b3a076abc7af5f0d2c7b980b3329550",
       hash: "sha256-uCoU4HtdRy6sB8vi5BtifKFAy0a7FPuHuuRb1EJTJ2c=",
     }))));
   const rsLXST = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "ratspeak",
       repo: "rsLXST",
       rev: "e3f80815bcf1c1d6af1c07135dfe05b6163d596a",
       hash: "sha256-921xMNdneOTurUoUR5ImPEB8ztfEQLl9jCZY+s9Cjuo=",
     }))));
   const lrgp_rs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "ratspeak",
       repo: "lrgp-rs",
       rev: "0b55361ebf91c1caa09d5ed8ab88ac0a6d955de6",
       hash: "sha256-MZGWGCWLc+suHCD9NFV6m8A4EP4pLfogaqm93pMk/ss=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "ratspeak",
       version: "1.0.25",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "ratspeak",
           repo: "Ratspeak",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -97,9 +90,9 @@ chmod -R u+w rsReticulum rsLXMF rsLXST lrgp-rs
   --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libayatana_appindicator]))}
 )
 `))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Reticulum and LXMF client with messaging, file sharing, voice calls and LoRa support",
         homepage: "https://github.com/ratspeak/Ratspeak",
         changelog: nix.thunk(() => nix.str`https://github.com/ratspeak/Ratspeak/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

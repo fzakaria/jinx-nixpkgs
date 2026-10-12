@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["changelog", 28, 5], ["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["mainProgram", 32, 5], ["teams", 33, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["composerLock", 21, 3], ["vendorHash", 22, 3], ["nativeInstallCheckInputs", 24, 3], ["doInstallCheck", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, php: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 28, 5], ["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["mainProgram", 32, 5], ["teams", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["composerLock", 21, 3], ["vendorHash", 22, 3], ["nativeInstallCheckInputs", 24, 3], ["doInstallCheck", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "phpmd",
       version: "2.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "phpmd",
           repo: "phpmd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/phpmd/phpmd/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "PHP code quality analyzer",
         homepage: "https://phpmd.org/",

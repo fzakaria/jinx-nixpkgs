@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["NIX_CFLAGS_COMPILE", 40, 7]], [["url", 79, 9], ["rev", 80, 9], ["hash", 81, 9]], [["src", 78, 7], ["mesonFlags", 85, 7], ["doCheck", 88, 7]], [["versionFormatted", 76, 5], ["flashromChromeos", 77, 5]], [["description", 93, 5], ["license", 94, 5], ["platforms", 95, 5], ["maintainers", 96, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["env", 40, 3], ["enableParallelBuilding", 42, 3], ["postPatch", 44, 3], ["makeFlags", 54, 3], ["postInstall", 66, 3], ["passthru", 75, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitiles: false, "pkg-config": false, makeBinaryWrapper: false, libuuid: false, openssl: false, libyaml: false, xz: false, flashrom: false, withFlashrom: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 79, 9], ["rev", 80, 9], ["hash", 81, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 78, 7], ["mesonFlags", 85, 7], ["doCheck", 88, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["versionFormatted", 76, 5], ["flashromChromeos", 77, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 93, 5], ["license", 94, 5], ["platforms", 95, 5], ["maintainers", 96, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["env", 40, 3], ["enableParallelBuilding", 42, 3], ["postPatch", 44, 3], ["makeFlags", 54, 3], ["postInstall", 66, 3], ["passthru", 75, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const flashrom = nix.arg($, "flashrom");
   const withFlashrom = nix.argOr($, "withFlashrom", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "vboot-utils",
       version: "143.16463",
       src: nix.thunk(() => nix.app(fetchFromGitiles, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://chromium.googlesource.com/chromiumos/platform/vboot_reference",
           rev: nix.thunk(() => nix.str`refs/heads/release-R${nix.sel(finalAttrs, "passthru", "versionFormatted")}.B`),
           hash: "sha256-8a49xD+EYXDouFuBmLyAtPxThYET6DtKImBPzXVhpxE=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeBinaryWrapper]),
       buildInputs: nix.thunk(() => nix.concat([libuuid, libyaml, openssl, xz], nix.app(nix.sel(lib, "optional"), withFlashrom, nix.thunk(() => nix.sel(finalAttrs, "passthru", "flashromChromeos"))))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       enableParallelBuilding: true,
       postPatch: nix.thunk(() => nix.str`substituteInPlace Makefile \\
   --replace-fail "ar qc" '${nix.sel(stdenv, "cc", "bintools", "targetPrefix")}ar qc'
@@ -59,12 +53,12 @@ patchShebangs scripts
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "passthru", "flashromChromeos"))]))}
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         versionFormatted: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "-", nix.thunk(() => nix.app(nix.sel(lib, "versions", "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version")))))),
         flashromChromeos: nix.thunk(() => nix.app(nix.sel(flashrom, "overrideAttrs"), (_prev) => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             src: nix.thunk(() => nix.app(fetchFromGitiles, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 url: "https://chromium.googlesource.com/chromiumos/third_party/flashrom",
                 rev: nix.thunk(() => nix.str`refs/heads/release-R${nix.sel(finalAttrs, "passthru", "versionFormatted")}.B-master`),
                 hash: "sha256-zOoWpuS/vDLvnRPdA9FNGhNbcwh3PMQwbdfqsyqj858=",
@@ -76,7 +70,7 @@ patchShebangs scripts
           }))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Chrome OS partitioning and kernel signing tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

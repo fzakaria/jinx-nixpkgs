@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 27, 5], ["leaveDotGit", 29, 5]], [["extraArgs", 61, 5]], [["updateScript", 60, 12]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["configureFlags", 47, 3], ["enableParallelBuilding", 56, 3], ["doCheck", 58, 3], ["passthru", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libmowgli: false, "pkg-config": false, git: false, gettext: false, pcre2: false, libidn: false, libxcrypt: false, cracklib: false, openssl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 27, 5], ["leaveDotGit", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["configureFlags", 47, 3], ["enableParallelBuilding", 56, 3], ["doCheck", 58, 3], ["passthru", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "atheme",
       version: "7.2.12-unstable-2026-08-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "atheme",
           repo: "atheme",
           rev: "88de242f4755394746444c7bd28da15127d976d2",
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Set of services for IRC networks",
         homepage: "https://atheme.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

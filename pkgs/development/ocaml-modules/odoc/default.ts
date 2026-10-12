@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 75, 5], ["mainProgram", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5]], [["pname", 24, 3], ["version", 25, 25], ["src", 25, 33], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["nativeCheckInputs", 41, 3], ["checkInputs", 45, 3], ["doCheck", 52, 3], ["preCheck", 54, 3], ["outputs", 61, 3], ["installPhase", 67, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, ocaml: false, buildDunePackage: false, removeReferencesTo: false, "ocaml-crunch": false, astring: false, cmdliner: false, cmdliner_1: false, cppo: false, fpath: false, tyxml: false, markup: false, yojson: false, sexplib0: false, jq: false, "odoc-parser": false, ppx_expect: false, bash: false, fmt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 75, 5], ["mainProgram", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 25], ["src", 25, 33], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["nativeCheckInputs", 41, 3], ["checkInputs", 45, 3], ["doCheck", 52, 3], ["preCheck", 54, 3], ["outputs", 61, 3], ["installPhase", 67, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const fmt = nix.arg($, "fmt");
   return nix.app(buildDunePackage, (self) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "odoc",
       version: nix.thunk(() => nix.attr(odoc_parser, "version")),
       src: nix.thunk(() => nix.attr(odoc_parser, "src")),
@@ -56,7 +55,7 @@ remove-references-to -t ${ocaml} $bin/bin/odoc
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Documentation generator for OCaml",
         mainProgram: "odoc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

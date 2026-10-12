@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]], [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]], [["homepage", 46, 5], ["description", 47, 5], ["mainProgram", 48, 5], ["longDescription", 49, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["version", 14, 3], ["format", 15, 3], ["pname", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["propagatedBuildInputs", 32, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchpatch: false, "python-dateutil": false, docopt: false, fetchPypi: false, pytestCheckHook: false, "ruamel-yaml": false, testfixtures: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 46, 5], ["description", 47, 5], ["mainProgram", 48, 5], ["longDescription", 49, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 14, 3], ["format", 15, 3], ["pname", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["propagatedBuildInputs", 32, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "pykwalify";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-eWsq0+1MuZuIMItTP7L1WcMPpu+0+p/aETR/SD0kWIQ=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "pykwalify-fix-tests-ruamel-yaml-0.18.patch",
             url: "https://github.com/Grokzen/pykwalify/commit/57bb2ba5c28b6928edb3f07ef581a5a807524baf.diff",
             hash: "sha256-XUiebDzFSvNrPpRMoc2lv9m+30cfFh0N0rznMiSdQ/0=",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, testfixtures]);
       const pythonImportsCheck = nix.thunk(() => ["pykwalify"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/Grokzen/pykwalify",
         description: "YAML/JSON validation library",
         mainProgram: "pykwalify",
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version,
         format,
         pname,

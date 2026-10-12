@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["pname", 31, 13], ["version", 31, 19], ["src", 31, 27], ["hash", 32, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoDeps", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 46, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, cargo: false, "desktop-file-utils": false, fetchFromGitHub: false, glib: false, gtk4: false, libadwaita: false, meson: false, ninja: false, pipewire: false, "pkg-config": false, rustPlatform: false, rustc: false, stdenv: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 31, 13], ["version", 31, 19], ["src", 31, 27], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoDeps", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 46, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const pname = "audio-mirroring";
       const version = "0.1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mkg20001",
           repo: "audio-mirroring",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-Idu15ZfY8JYVZhub0LRXYtWdiVCMVRyC3MVTX4JcbzY=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: "Audio Mirroring for Linux",
           homepage: "https://github.com/mkg20001/audio-mirroring",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "gpl3Only")),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

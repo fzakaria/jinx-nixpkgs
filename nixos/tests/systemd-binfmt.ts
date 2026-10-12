@@ -2,58 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-binfmt.nix", [[["system", 7, 33], ["config", 7, 40]], [["system", 10, 49], ["pkgs", 10, 56]], [["src", 17, 9]], [["emulatedSystems", 41, 19]], [["binfmt", 41, 12]], [["boot", 41, 7]], [["machine", 40, 11]], [["name", 39, 5], ["nodes", 40, 5], ["testScript", 47, 5]], [["emulatedSystems", 68, 19]], [["binfmt", 68, 12]], [["boot", 68, 7]], [["machine", 67, 11]], [["name", 66, 5], ["nodes", 67, 5], ["testScript", 72, 5]], [["emulatedSystems", 85, 19]], [["binfmt", 85, 12]], [["boot", 85, 7]], [["machine", 84, 11]], [["name", 83, 5], ["nodes", 84, 5], ["testScript", 89, 5]], [["emulatedSystems", 113, 21], ["preferStaticEmulators", 117, 21]], [["binfmt", 113, 14]], [["systemPackages", 119, 21]], [["assertion", 132, 13], ["message", 133, 13]], [["boot", 113, 9], ["environment", 119, 9], ["assertions", 130, 9]], [["machine", 105, 11]], [["name", 104, 5], ["nodes", 105, 5], ["testScript", 137, 5]], [["basic", 38, 3], ["preserveArgvZero", 65, 3], ["ldPreload", 82, 3], ["chroot", 103, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/systemd-binfmt.nix", [["system", 7, 33], ["config", 7, 40]]);
-const pos$2 = nix.positions(here + "/systemd-binfmt.nix", [["system", 10, 49], ["pkgs", 10, 56]]);
-const pos$3 = nix.positions(here + "/systemd-binfmt.nix", [["src", 17, 9]]);
-const pos$4 = nix.positions(here + "/systemd-binfmt.nix", [["emulatedSystems", 41, 19]]);
-const pos$5 = nix.positions(here + "/systemd-binfmt.nix", [["binfmt", 41, 12]]);
-const pos$6 = nix.positions(here + "/systemd-binfmt.nix", [["boot", 41, 7]]);
-const pos$7 = nix.positions(here + "/systemd-binfmt.nix", [["machine", 40, 11]]);
-const pos$8 = nix.positions(here + "/systemd-binfmt.nix", [["name", 39, 5], ["nodes", 40, 5], ["testScript", 47, 5]]);
-const pos$9 = nix.positions(here + "/systemd-binfmt.nix", [["emulatedSystems", 68, 19]]);
-const pos$10 = nix.positions(here + "/systemd-binfmt.nix", [["binfmt", 68, 12]]);
-const pos$11 = nix.positions(here + "/systemd-binfmt.nix", [["boot", 68, 7]]);
-const pos$12 = nix.positions(here + "/systemd-binfmt.nix", [["machine", 67, 11]]);
-const pos$13 = nix.positions(here + "/systemd-binfmt.nix", [["name", 66, 5], ["nodes", 67, 5], ["testScript", 72, 5]]);
-const pos$14 = nix.positions(here + "/systemd-binfmt.nix", [["emulatedSystems", 85, 19]]);
-const pos$15 = nix.positions(here + "/systemd-binfmt.nix", [["binfmt", 85, 12]]);
-const pos$16 = nix.positions(here + "/systemd-binfmt.nix", [["boot", 85, 7]]);
-const pos$17 = nix.positions(here + "/systemd-binfmt.nix", [["machine", 84, 11]]);
-const pos$18 = nix.positions(here + "/systemd-binfmt.nix", [["name", 83, 5], ["nodes", 84, 5], ["testScript", 89, 5]]);
 const formals$2 = { args: { pkgs: false, lib: false, config: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/systemd-binfmt.nix", [["emulatedSystems", 113, 21], ["preferStaticEmulators", 117, 21]]);
-const pos$20 = nix.positions(here + "/systemd-binfmt.nix", [["binfmt", 113, 14]]);
-const pos$21 = nix.positions(here + "/systemd-binfmt.nix", [["systemPackages", 119, 21]]);
-const pos$22 = nix.positions(here + "/systemd-binfmt.nix", [["assertion", 132, 13], ["message", 133, 13]]);
-const pos$23 = nix.positions(here + "/systemd-binfmt.nix", [["boot", 113, 9], ["environment", 119, 9], ["assertions", 130, 9]]);
-const pos$24 = nix.positions(here + "/systemd-binfmt.nix", [["machine", 105, 11]]);
-const pos$25 = nix.positions(here + "/systemd-binfmt.nix", [["name", 104, 5], ["nodes", 105, 5], ["testScript", 137, 5]]);
-const pos$26 = nix.positions(here + "/systemd-binfmt.nix", [["basic", 38, 3], ["preserveArgvZero", 65, 3], ["ldPreload", 82, 3], ["chroot", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const expectArgv0 = (xpkgs) => nix.app(nix.sel(xpkgs, "runCommandCC"), "expect-argv0", nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "expect-argv0.c", "#include <stdio.h>\n#include <string.h>\n\nint main(int argc, char **argv) {\n  fprintf(stderr, \"Our argv[0] is %s\\n\", argv[0]);\n\n  if (strcmp(argv[0], argv[1])) {\n    fprintf(stderr, \"ERROR: argv[0] is %s, should be %s\\n\", argv[0], argv[1]);\n    return 1;\n  }\n\n  return 0;\n}\n")),
     })), "$CC -o $out $src\n");
   return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     basic: nix.thunk(() => nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: "systemd-binfmt",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             boot: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               binfmt: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 emulatedSystems: nix.thunk(() => ["armv7l-linux", "aarch64-linux"]),
               })),
             })),
@@ -75,15 +50,15 @@ assert "world" in machine.succeed(
         })()),
       })))),
     preserveArgvZero: nix.thunk(() => nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         name: "systemd-binfmt-preserve-argv0",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             boot: nix.thunk(() => ({
-              [nix.POS]: pos$10,
-              binfmt: nix.thunk(() => ({ [nix.POS]: pos$9, emulatedSystems: nix.thunk(() => ["aarch64-linux"]) })),
+              [nix.POS]: $pos[9],
+              binfmt: nix.thunk(() => ({ [nix.POS]: $pos[8], emulatedSystems: nix.thunk(() => ["aarch64-linux"]) })),
             })),
           })),
         })),
@@ -95,15 +70,15 @@ machine.succeed("exec -a meow ${testAarch64} meow")
         })()),
       })))),
     ldPreload: nix.thunk(() => nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         name: "systemd-binfmt-ld-preload",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             boot: nix.thunk(() => ({
-              [nix.POS]: pos$15,
-              binfmt: nix.thunk(() => ({ [nix.POS]: pos$14, emulatedSystems: nix.thunk(() => ["aarch64-linux"]) })),
+              [nix.POS]: $pos[14],
+              binfmt: nix.thunk(() => ({ [nix.POS]: $pos[13], emulatedSystems: nix.thunk(() => ["aarch64-linux"]) })),
             })),
           })),
         })),
@@ -119,27 +94,27 @@ assert "error" not in machine.succeed(
         })()),
       })))),
     chroot: nix.thunk(() => nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         name: "systemd-binfmt-chroot",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const pkgs_1 = nix.arg($_1, "pkgs");
             const lib = nix.arg($_1, "lib");
             const config_1 = nix.arg($_1, "config");
             return {
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               boot: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 binfmt: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   emulatedSystems: nix.thunk(() => ["aarch64-linux", "wasm32-wasip1"]),
                   preferStaticEmulators: true,
                 })),
               })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 systemPackages: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeShellScriptBin"), "test-chroot", nix.thunk(() => nix.str`set -euo pipefail
 mkdir -p /tmp/chroot
@@ -152,7 +127,7 @@ echo 42 | chroot /tmp/chroot /yaml2json | grep 42
               })),
               assertions: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   assertion: nix.thunk(() => nix.eq(nix.sel(config_1, "nix", "settings", "extra-sandbox-paths"), [])),
                   message: "Using binfmt_misc with static emulators, nix.settings.extra-sandbox-paths should be empty",
                 })),

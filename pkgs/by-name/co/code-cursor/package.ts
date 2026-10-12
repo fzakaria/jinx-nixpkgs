@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 22], ["hash", 19, 26]], [["pname", 47, 17], ["version", 47, 23], ["src", 48, 9]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["sourceProvenance", 76, 5], ["maintainers", 77, 5], ["platforms", 82, 5], ["mainProgram", 87, 5]], [["commandLineArgs", 26, 11], ["useVSCodeRipgrep", 26, 27], ["version", 27, 25], ["vscodeVersion", 30, 3], ["pname", 36, 3], ["executableName", 38, 3], ["longName", 39, 3], ["shortName", 40, 3], ["libraryName", 41, 3], ["iconName", 42, 3], ["src", 44, 3], ["extraNativeBuildInputs", 54, 3], ["sourceRoot", 56, 3], ["tests", 59, 3], ["updateScript", 61, 3], ["dontFixup", 66, 3], ["patchVSCodePath", 69, 3], ["meta", 71, 3]], [["autoPatchelfIgnoreMissingDeps", 91, 5], ["preFixup", 97, 5], ["postInstall", 103, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildVscode: false, fetchurl: false, appimageTools: false, undmg: false, commandLineArgs: true, useVSCodeRipgrep: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 22], ["hash", 19, 26]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 47, 17], ["version", 47, 23], ["src", 48, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["sourceProvenance", 76, 5], ["maintainers", 77, 5], ["platforms", 82, 5], ["mainProgram", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["commandLineArgs", 26, 11], ["useVSCodeRipgrep", 26, 27], ["version", 27, 25], ["vscodeVersion", 30, 3], ["pname", 36, 3], ["executableName", 38, 3], ["longName", 39, 3], ["shortName", 40, 3], ["libraryName", 41, 3], ["iconName", 42, 3], ["src", 44, 3], ["extraNativeBuildInputs", 54, 3], ["sourceRoot", 56, 3], ["tests", 59, 3], ["updateScript", 61, 3], ["dontFixup", 66, 3], ["patchVSCodePath", 69, 3], ["meta", 71, 3]]);
-const pos$5 = nix.positions(here + "/package.nix", [["autoPatchelfIgnoreMissingDeps", 91, 5], ["preFixup", 97, 5], ["postInstall", 103, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const hostPlatform = nix.thunk(() => nix.attr(stdenv, "hostPlatform"));
   const sourcesJson = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   const sources = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (info) => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.attr(info, "url")),
         hash: nix.thunk(() => nix.attr(info, "hash")),
       }))), nix.thunk(() => nix.sel(sourcesJson, "sources"))));
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const shortName = "cursor";
       const libraryName = "cursor";
       const iconName = "cursor";
-      const src = nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isLinux")) ? nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: source }))) : nix.force(source)));
+      const src = nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isLinux")) ? nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: source }))) : nix.force(source)));
       const extraNativeBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(hostPlatform, "isDarwin")), nix.thunk(() => [undmg])));
       const sourceRoot = nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isLinux")) ? nix.str`${pname}-${version}-extracted/usr/share/cursor` : "Cursor.app"));
       const tests = nix.thunk(() => ({}));
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const dontFixup = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin"));
       const patchVSCodePath = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "AI-powered code editor built on vscode",
         homepage: "https://cursor.com",
         changelog: "https://cursor.com/changelog",
@@ -64,7 +60,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cursor",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         commandLineArgs: commandLineArgs_1,
         useVSCodeRipgrep: useVSCodeRipgrep_1,
         version,
@@ -85,7 +81,7 @@ export default nix.lambda((args) => (() => {
         meta,
       };
     })())), "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       autoPatchelfIgnoreMissingDeps: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "autoPatchelfIgnoreMissingDeps"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))))), nix.thunk(() => ["libc.musl-*.so.*"])))),
       preFixup: nix.thunk(() => nix.add(nix.selOr(oldAttrs, () => "", "preFixup"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(hostPlatform, "isLinux")), "sed -i '/^Keywords=/a MimeType=application/x-cursor-workspace;' \\\n  $out/share/applications/cursor.desktop\n"))),
       postInstall: nix.thunk(() => nix.add(nix.selOr(oldAttrs, () => "", "postInstall"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(hostPlatform, "isLinux")), "install -Dm644 ../mime/packages/cursor-workspace.xml -t $out/share/mime/packages\nrm -f $out/lib/cursor/resources/appimageupdatetool.AppImage\n"))),

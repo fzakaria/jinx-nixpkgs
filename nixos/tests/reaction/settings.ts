@@ -2,41 +2,29 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/settings.nix", [[["set", 7, 9], ["action", 8, 9]], [["type", 5, 7], ["options", 6, 7]], [["set", 15, 9], ["action", 16, 9]], [["after", 12, 7], ["type", 13, 7], ["options", 14, 7]], [["ban", 4, 5], ["unban", 11, 5]], [["type", 26, 7], ["ipv6mask", 27, 7], ["ignore", 28, 7], ["ignorecidr", 32, 7]], [["ip", 25, 5]], [["regex", 51, 11], ["retry", 57, 11], ["retryperiod", 58, 11], ["actions", 59, 11]], [["regex", 62, 11], ["retry", 67, 11], ["retryperiod", 68, 11], ["actions", 69, 11]], [["failedlogin", 50, 9], ["connectionreset", 61, 9]], [["cmd", 41, 7], ["filters", 49, 7]], [["ssh", 40, 5]], [["patterns", 24, 3], ["streams", 39, 3]]]);
 const formals$1 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/settings.nix", [["set", 7, 9], ["action", 8, 9]]);
-const pos$2 = nix.positions(here + "/settings.nix", [["type", 5, 7], ["options", 6, 7]]);
-const pos$3 = nix.positions(here + "/settings.nix", [["set", 15, 9], ["action", 16, 9]]);
-const pos$4 = nix.positions(here + "/settings.nix", [["after", 12, 7], ["type", 13, 7], ["options", 14, 7]]);
-const pos$5 = nix.positions(here + "/settings.nix", [["ban", 4, 5], ["unban", 11, 5]]);
-const pos$6 = nix.positions(here + "/settings.nix", [["type", 26, 7], ["ipv6mask", 27, 7], ["ignore", 28, 7], ["ignorecidr", 32, 7]]);
-const pos$7 = nix.positions(here + "/settings.nix", [["ip", 25, 5]]);
-const pos$8 = nix.positions(here + "/settings.nix", [["regex", 51, 11], ["retry", 57, 11], ["retryperiod", 58, 11], ["actions", 59, 11]]);
-const pos$9 = nix.positions(here + "/settings.nix", [["regex", 62, 11], ["retry", 67, 11], ["retryperiod", 68, 11], ["actions", 69, 11]]);
-const pos$10 = nix.positions(here + "/settings.nix", [["failedlogin", 50, 9], ["connectionreset", 61, 9]]);
-const pos$11 = nix.positions(here + "/settings.nix", [["cmd", 41, 7], ["filters", 49, 7]]);
-const pos$12 = nix.positions(here + "/settings.nix", [["ssh", 40, 5]]);
-const pos$13 = nix.positions(here + "/settings.nix", [["patterns", 24, 3], ["streams", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const banFor = (name) => (duration) => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     ban: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       type: "ipset",
       options: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         set: nix.thunk(() => nix.str`reaction-${name}`),
         action: "add",
       })),
     })),
     unban: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       after: duration,
       type: "ipset",
       options: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         set: nix.thunk(() => nix.str`reaction-${name}`),
         action: "del",
       })),
@@ -44,11 +32,11 @@ export default nix.lambda((args) => (() => {
   });
   const journalctl = nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/bin/journalctl`);
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     patterns: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       ip: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         type: "ip",
         ipv6mask: 64n,
         ignore: nix.thunk(() => ["127.0.0.1", "::1"]),
@@ -56,14 +44,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     streams: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       ssh: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         cmd: nix.thunk(() => [journalctl, "-fn0", "-o", "cat", "-u", "sshd.service"]),
         filters: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           failedlogin: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             regex: nix.thunk(() => [
               "authentication failure;.*rhost=<ip>(?: |$)",
               "Failed password for .* from <ip> port",
@@ -75,7 +63,7 @@ export default nix.lambda((args) => (() => {
             actions: nix.thunk(() => nix.app(banFor, "ssh", "48h")),
           })),
           connectionreset: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             regex: nix.thunk(() => [
               "Connection (?:reset|closed) by(?: authenticating user .*)? <ip> port",
               "Received disconnect from <ip> port .*[preauth]",

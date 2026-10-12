@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["NIX_LDFLAGS", 50, 7]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["longDescription", 62, 5], ["maintainers", 66, 5], ["platforms", 67, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 46, 3], ["env", 50, 3], ["enableParallelBuilding", 52, 3], ["enableParallelInstalling", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, curl: false, fftw: false, gmp: false, gnuplot: false, gtk3: false, gtksourceview3: false, "json-glib": false, lapack: false, libxml2: false, mpfr: false, openblas: false, readline: false, "pkg-config": false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["longDescription", 62, 5], ["maintainers", 66, 5], ["platforms", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 46, 3], ["env", 50, 3], ["enableParallelBuilding", 52, 3], ["enableParallelInstalling", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gretl",
       version: "2026b",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/gretl/gretl-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-+1f0ki2lRgZ8i+VCqvxaJr53+vJmi0DmUe6MkLcCVj0=",
         })))),
@@ -52,13 +49,13 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "openmp"))])))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-lomp")),
       })),
       enableParallelBuilding: true,
       enableParallelInstalling: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Software package for econometric analysis",
         homepage: "https://gretl.sourceforge.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

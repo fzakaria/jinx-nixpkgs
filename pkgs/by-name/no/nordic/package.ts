@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 7], ["repo", 16, 7], ["rev", 17, 7], ["hash", 18, 7], ["name", 19, 7]], [["owner", 23, 7], ["repo", 24, 7], ["rev", 25, 7], ["hash", 26, 7], ["name", 27, 7]], [["owner", 31, 7], ["repo", 32, 7], ["rev", 33, 7], ["hash", 34, 7], ["name", 35, 7]], [["owner", 39, 7], ["repo", 40, 7], ["rev", 41, 7], ["hash", 42, 7], ["name", 43, 7]], [["owner", 47, 7], ["repo", 48, 7], ["rev", 49, 7], ["hash", 50, 7], ["name", 51, 7]], [["owner", 55, 7], ["repo", 56, 7], ["rev", 57, 7], ["hash", 58, 7], ["name", 59, 7]], [["owner", 63, 7], ["repo", 64, 7], ["rev", 65, 7], ["hash", 66, 7], ["name", 67, 7]], [["owner", 71, 7], ["repo", 72, 7], ["rev", 73, 7], ["hash", 74, 7], ["name", 75, 7]], [["description", 157, 5], ["homepage", 158, 5], ["license", 159, 5], ["platforms", 160, 5], ["maintainers", 161, 5]], [["pname", 10, 3], ["version", 11, 3], ["srcs", 13, 3], ["sourceRoot", 79, 3], ["outputs", 81, 3], ["nativeBuildInputs", 86, 3], ["dontWrapQtApps", 88, 3], ["installPhase", 90, 3], ["postFixup", 148, 3], ["meta", 156, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, jdupes: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 7], ["repo", 16, 7], ["rev", 17, 7], ["hash", 18, 7], ["name", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 23, 7], ["repo", 24, 7], ["rev", 25, 7], ["hash", 26, 7], ["name", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 31, 7], ["repo", 32, 7], ["rev", 33, 7], ["hash", 34, 7], ["name", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 39, 7], ["repo", 40, 7], ["rev", 41, 7], ["hash", 42, 7], ["name", 43, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 47, 7], ["repo", 48, 7], ["rev", 49, 7], ["hash", 50, 7], ["name", 51, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 55, 7], ["repo", 56, 7], ["rev", 57, 7], ["hash", 58, 7], ["name", 59, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 63, 7], ["repo", 64, 7], ["rev", 65, 7], ["hash", 66, 7], ["name", 67, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 71, 7], ["repo", 72, 7], ["rev", 73, 7], ["hash", 74, 7], ["name", 75, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 157, 5], ["homepage", 158, 5], ["license", 159, 5], ["platforms", 160, 5], ["maintainers", 161, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["srcs", 13, 3], ["sourceRoot", 79, 3], ["outputs", 81, 3], ["nativeBuildInputs", 86, 3], ["dontWrapQtApps", 88, 3], ["installPhase", 90, 3], ["postFixup", 148, 3], ["meta", 156, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const jdupes = nix.arg($, "jdupes");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "nordic",
       version: "2.2.0-unstable-2025-05-05",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "EliverLara",
             repo: "nordic",
             rev: "d9b5c42cebf9a165bcce7b6b8a019f5cfd5b789c",
@@ -35,7 +26,7 @@ export default nix.lambda((args) => (() => {
             name: "Nordic",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "EliverLara",
             repo: "nordic",
             rev: "361f0d1d23177a1154d415f793ce52a2c09629d4",
@@ -43,7 +34,7 @@ export default nix.lambda((args) => (() => {
             name: "Nordic-standard-buttons",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "EliverLara",
             repo: "nordic",
             rev: "bf05d41c7c7cd03e391854739bcc843fc6053ced",
@@ -51,7 +42,7 @@ export default nix.lambda((args) => (() => {
             name: "Nordic-darker",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             owner: "EliverLara",
             repo: "nordic",
             rev: "98cdf88d77fa7f0535ff660148e0ccbabe47a579",
@@ -59,7 +50,7 @@ export default nix.lambda((args) => (() => {
             name: "Nordic-darker-standard-buttons",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             owner: "EliverLara",
             repo: "nordic",
             rev: "f1e43cf9ba83602f73f71407a8a4ba768122b7f4",
@@ -67,7 +58,7 @@ export default nix.lambda((args) => (() => {
             name: "Nordic-bluish-accent",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             owner: "EliverLara",
             repo: "nordic",
             rev: "52a37ebce50f948129507e4804240d9e7788a7a2",
@@ -75,7 +66,7 @@ export default nix.lambda((args) => (() => {
             name: "Nordic-bluish-accent-standard-buttons",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             owner: "EliverLara",
             repo: "nordic-polar",
             rev: "24dc0325c4a38508039f5fee9a5391c1d9d8d5d5",
@@ -83,7 +74,7 @@ export default nix.lambda((args) => (() => {
             name: "Nordic-Polar",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             owner: "EliverLara",
             repo: "nordic-polar",
             rev: "fe0d657613a1e6330fa8c41378c324af93a42c3a",
@@ -103,7 +94,7 @@ printWords ${nix.sel(kdePackages, "breeze-icons", "out")} ${nix.sel(kdePackages,
   >> $sddm/nix-support/propagated-build-inputs
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Gtk and KDE themes using the Nord color pallete",
         homepage: "https://github.com/EliverLara/Nordic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,39 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lix.nix", [[["enable", 5, 9], ["package", 7, 9]], [["text", 9, 32]], [["test.nix", 9, 21]], [["etc", 9, 17]], [["nix", 5, 5], ["environment", 9, 5]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 18, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lix.nix", [["enable", 5, 9], ["package", 7, 9]]);
-const pos$2 = nix.positions(here + "/lix.nix", [["text", 9, 32]]);
-const pos$3 = nix.positions(here + "/lix.nix", [["test.nix", 9, 21]]);
-const pos$4 = nix.positions(here + "/lix.nix", [["etc", 9, 17]]);
-const pos$5 = nix.positions(here + "/lix.nix", [["nix", 5, 5], ["environment", 9, 5]]);
-const pos$6 = nix.positions(here + "/lix.nix", [["machine", 4, 9]]);
-const pos$7 = nix.positions(here + "/lix.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "lix",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             enable: true,
             package: nix.thunk(() => nix.sel(pkgs, "lix")),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               "test.nix": nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 text: nix.thunk(() => nix.str`derivation {
   name = "test";
   builder = "/bin/sh";

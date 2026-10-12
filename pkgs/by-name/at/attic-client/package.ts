@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["ATTIC_DISTRIBUTOR", 44, 5]], [["NIX_INCLUDE_PATH", 46, 41]], [["atticd", 62, 36]], [["extraArgs", 64, 40]], [["tests", 62, 5], ["updateScript", 64, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 76, 5], ["mainProgram", 77, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["cargoBuildFlags", 40, 3], ["cargoHash", 41, 3], ["env", 43, 3], ["doCheck", 50, 3], ["postInstall", 52, 3], ["passthru", 61, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, nixVersions: false, nixosTests: false, boost: false, "pkg-config": false, stdenv: false, installShellFiles: false, "nix-update-script": false, crates: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ATTIC_DISTRIBUTOR", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_INCLUDE_PATH", 46, 41]]);
-const pos$4 = nix.positions(here + "/package.nix", [["atticd", 62, 36]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 64, 40]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 62, 5], ["updateScript", 64, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 76, 5], ["mainProgram", 77, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["cargoBuildFlags", 40, 3], ["cargoHash", 41, 3], ["env", 43, 3], ["doCheck", 50, 3], ["postInstall", 52, 3], ["passthru", 61, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const needNixInclude = nix.thunk(() => nix.app(nix.sel(lib, "elem"), "attic-client", crates));
   const nix$ = nix.thunk(() => nix.sel(nixVersions, "nix_2_34"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "attic",
       version: "0-unstable-2026-07-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zhaofengli",
           repo: "attic",
           rev: "7a19204df10d606c5070e6bb72615c3461900c05",
@@ -42,19 +35,19 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), needNixInclude, nix$), [boost])),
       cargoBuildFlags: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (c) => nix.str`-p ${c} `, crates)),
       cargoHash: "sha256-UGgM78QEWJ2QgbQhxEI+yLYXH6T4ey+1oenPTMlJ3GU=",
-      env: nix.thunk(() => nix.update({ [nix.POS]: pos$2, ATTIC_DISTRIBUTOR: "nixpkgs" }, nix.app(nix.sel(lib, "optionalAttrs"), needNixInclude, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+      env: nix.thunk(() => nix.update({ [nix.POS]: $pos[1], ATTIC_DISTRIBUTOR: "nixpkgs" }, nix.app(nix.sel(lib, "optionalAttrs"), needNixInclude, nix.thunk(() => ({
+          [nix.POS]: $pos[2],
           NIX_INCLUDE_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), nix$)}/include`),
         }))))),
       doCheck: false,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "if [[ -f $out/bin/attic ]]; then\n  installShellCompletion --cmd attic \\\n    --bash <($out/bin/attic gen-completions bash) \\\n    --zsh <($out/bin/attic gen-completions zsh) \\\n    --fish <($out/bin/attic gen-completions fish)\nfi\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, atticd: nix.thunk(() => nix.attr(nixosTests, "atticd")) })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[5],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], atticd: nix.thunk(() => nix.attr(nixosTests, "atticd")) })),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[4], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Multi-tenant Nix Binary Cache",
         homepage: "https://github.com/zhaofengli/attic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

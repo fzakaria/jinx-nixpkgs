@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libxpdf.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["url", 18, 7], ["sha256", 19, 7]], [["url", 22, 7], ["sha256", 23, 7]], [["url", 26, 7], ["sha256", 27, 7]], [["url", 30, 7], ["sha256", 31, 7]], [["url", 34, 7], ["sha256", 35, 7]], [["platforms", 58, 5], ["license", 59, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 16, 3], ["installPhase", 41, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libxpdf.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/libxpdf.nix", [["url", 18, 7], ["sha256", 19, 7]]);
-const pos$3 = nix.positions(here + "/libxpdf.nix", [["url", 22, 7], ["sha256", 23, 7]]);
-const pos$4 = nix.positions(here + "/libxpdf.nix", [["url", 26, 7], ["sha256", 27, 7]]);
-const pos$5 = nix.positions(here + "/libxpdf.nix", [["url", 30, 7], ["sha256", 31, 7]]);
-const pos$6 = nix.positions(here + "/libxpdf.nix", [["url", 34, 7], ["sha256", 35, 7]]);
-const pos$7 = nix.positions(here + "/libxpdf.nix", [["platforms", 58, 5], ["license", 59, 5]]);
-const pos$8 = nix.positions(here + "/libxpdf.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 16, 3], ["installPhase", 41, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,37 +11,37 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "libxpdf",
       version: "3.02pl5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://dl.xpdfreader.com/old/xpdf-3.02.tar.gz",
           sha256: "000zq4ddbwyxiki4vdwpmxbnw5n9hsg9hvwra2p33hslyib7sfmk",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://dl.xpdfreader.com/old/xpdf-3.02pl1.patch",
             sha256: "1wxv9l0d2kkwi961ihpdwi75whdvk7cgqxkbfym8cjj11fq17xjq",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://dl.xpdfreader.com/old/xpdf-3.02pl2.patch",
             sha256: "1nfrgsh9xj0vryd8h65myzd94bjz117y89gq0hzji9dqn23xihfi",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://dl.xpdfreader.com/old/xpdf-3.02pl3.patch",
             sha256: "0jskkv8x6dqr9zj4azaglas8cziwqqrkbbnzrpm2kzrvsbxyhk2r",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://dl.xpdfreader.com/old/xpdf-3.02pl4.patch",
             sha256: "1c48h7aizx0ngmzlzw0mpja1w8vqyy3pg62hyxp7c60k86al715h",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://dl.xpdfreader.com/old/xpdf-3.02pl5.patch",
             sha256: "1fki66pw56yr6aw38f6amrx7wxwcxbx4704pjqq7pqqr784b7z4j",
           })))),
@@ -57,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/lib/goo\nmkdir -p $out/lib/fofi\nmkdir -p $out/lib/xpdf\nmkdir -p $out/include\n\ncp -v goo/libGoo.a $out/lib/goo\ncp -v fofi/libfofi.a $out/lib/fofi\ncp -v xpdf/libxpdf.a $out/lib/xpdf\n\ncp -v *.h $out/include\ncp -v goo/*.h $out/include\ncp -v fofi/*.h $out/include\ncp -v xpdf/*.h $out/include\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       })),

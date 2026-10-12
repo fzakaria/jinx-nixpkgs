@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["NIX_CFLAGS_COMPILE", 23, 7]], [["homepage", 34, 5], ["description", 35, 5], ["mainProgram", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["env", 23, 3], ["makeFlags", 25, 3], ["nativeBuildInputs", 26, 3], ["enableParallelBuilding", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bison: false, flex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["mainProgram", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["env", 23, 3], ["makeFlags", 25, 3], ["nativeBuildInputs", 26, 3], ["enableParallelBuilding", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,22 +13,22 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pcalc",
       version: "20181202",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vapier",
           repo: "pcalc",
           rev: "d93be9e19ecc0b2674cf00ec91cbb79d32ccb01d",
           sha256: "sha256-m4xdsEJGKxLgp/d5ipxQ+cKG3z7rlvpPL6hELnDu6Hk=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       makeFlags: nix.thunk(() => ["DESTDIR= BINDIR=$(out)/bin"]),
       nativeBuildInputs: nix.thunk(() => [bison, flex]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://vapier.github.io/pcalc/",
         description: "Programmer's calculator",
         mainProgram: "pcalc",

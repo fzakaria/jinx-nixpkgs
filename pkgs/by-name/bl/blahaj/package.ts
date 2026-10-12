@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["mainProgram", 35, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildTargets", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, crystal_1_17: false, fetchFromGitHub: false, multithreading: true, static: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["mainProgram", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildTargets", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "blahaj";
       const version = "2.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GeopJr",
           repo: "BLAHAJ",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`${(nix.asBool(static$) ? "static" : "build")}${(nix.asBool(multithreading) ? "_mt" : "")}`),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Gay sharks at your local terminal - lolcat-like CLI tool",
         homepage: "https://blahaj.geopjr.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "blahaj",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildTargets, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, buildTargets, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

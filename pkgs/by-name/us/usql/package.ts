@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["version", 74, 28], ["package", 75, 7], ["command", 76, 7]], [["version", 73, 11]], [["updateScript", 72, 5], ["tests", 73, 5]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["platforms", 90, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["vendorHash", 32, 3], ["proxyVendor", 33, 3], ["excludedPackages", 38, 3], ["tags", 43, 3], ["ldflags", 55, 3], ["doCheck", 62, 3], ["postInstall", 64, 3], ["passthru", 71, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, installShellFiles: false, stdenv: false, buildGo126Module: false, unixodbc: false, icu: false, "nix-update-script": false, testers: false, usql: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 74, 28], ["package", 75, 7], ["command", 76, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 73, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 72, 5], ["tests", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["platforms", 90, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["vendorHash", 32, 3], ["proxyVendor", 33, 3], ["excludedPackages", 38, 3], ["tags", 43, 3], ["ldflags", 55, 3], ["doCheck", 62, 3], ["postInstall", 64, 3], ["passthru", 71, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const usql = nix.arg($, "usql");
   return nix.app(buildGo126Module, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "usql",
       version: "0.21.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xo",
           repo: "usql",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,12 +52,12 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd usql \\\n  --bash <($out/bin/usql completion bash) \\\n  --fish <($out/bin/usql completion fish) \\\n  --zsh <($out/bin/usql completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: usql,
               command: "usql --version",
@@ -70,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Universal command-line interface for SQL databases",
         homepage: "https://github.com/xo/usql",
         changelog: nix.thunk(() => nix.str`https://github.com/xo/usql/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 24, 13], ["pname", 25, 5], ["hash", 26, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["doCheck", 44, 3], ["pythonImportsCheck", 46, 3], ["pythonNamespaces", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, setuptools: false, sphinx: false, cairosvg: false, inkscape: false, librsvg: false, fetchPypi: false, withCairosvg: true, withInkscape: true, withLibrsvg: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 24, 13], ["pname", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["doCheck", 44, 3], ["pythonImportsCheck", 46, 3], ["pythonNamespaces", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "sphinxcontrib_svg2pdfconverter",
           hash: "sha256-q5yPEIA5HiMYEtIKvyZXpp7jVXRWOxAUQU+VOWSpX6M=",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withCairosvg, "sphinxcontrib.cairosvgconverter"), nix.concat(nix.app(nix.sel(lib, "optional"), withInkscape, "sphinxcontrib.inkscapeconverter"), nix.app(nix.sel(lib, "optional"), withLibrsvg, "sphinxcontrib.rsvgconverter"))));
       const pythonNamespaces = nix.thunk(() => ["sphinxcontrib"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sphinx SVG to PDF converter extension",
         homepage: "https://github.com/missinglinkelectronics/sphinxcontrib-svg2pdfconverter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

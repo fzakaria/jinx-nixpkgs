@@ -2,13 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/buildBatExtrasPkg.nix", [[["program", 109, 15], ["shell", 110, 23], ["flags", 111, 15]], [["shellInit", 103, 9]], [["mainProgram", 115, 27]], [["pname", 37, 5], ["version", 38, 20], ["src", 40, 5], ["nativeBuildInputs", 42, 5], ["buildInputs", 44, 5], ["postPatch", 47, 5], ["dontConfigure", 51, 5], ["dontBuild", 52, 5], ["doCheck", 54, 5], ["nativeCheckInputs", 55, 5], ["checkPhase", 63, 5], ["installPhase", 69, 5], ["dontPatchShebangs", 83, 5], ["passthru", 85, 5], ["meta", 115, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, core: false, bash: false, bat: false, fish: false, getconf: false, makeWrapper: false, nushell: false, zsh: false }, ellipsis: false };
 const formals$2 = { args: { name: false, dependencies: false, meta: true, shellInit: true }, ellipsis: true };
 const formals$3 = { args: { program: false, shell: false, flags: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/buildBatExtrasPkg.nix", [["program", 109, 15], ["shell", 110, 23], ["flags", 111, 15]]);
-const pos$2 = nix.positions(here + "/buildBatExtrasPkg.nix", [["shellInit", 103, 9]]);
-const pos$3 = nix.positions(here + "/buildBatExtrasPkg.nix", [["mainProgram", 115, 27]]);
-const pos$4 = nix.positions(here + "/buildBatExtrasPkg.nix", [["pname", 37, 5], ["version", 38, 20], ["src", 40, 5], ["nativeBuildInputs", 42, 5], ["buildInputs", 44, 5], ["postPatch", 47, 5], ["dontConfigure", 51, 5], ["dontBuild", 52, 5], ["doCheck", 54, 5], ["nativeCheckInputs", 55, 5], ["checkPhase", 63, 5], ["installPhase", 69, 5], ["dontPatchShebangs", 83, 5], ["passthru", 85, 5], ["meta", 115, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
     const meta = nix.argOr($_1, "meta", () => ({}));
     const shellInit = nix.argOr($_1, "shellInit", () => null);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(nix.app(cleanArgs, args_2), {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: name,
         version: nix.thunk(() => nix.attr(core, "version")),
         src: core,
@@ -65,16 +62,16 @@ cp -p bin/${name} $out/bin/${name}
 `);
           })(), formals$3);
           return {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             shellInit: (shell) => (nix.asBool(nix.eq(shellInit, null)) ? "" : nix.app(initScript, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 program: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 shell: shell,
                 flags: nix.thunk(() => nix.selOr(shellInit, () => [], "flags")),
               })))),
           };
         })()),
-        meta: nix.thunk(() => nix.update(nix.sel(core, "meta"), nix.update({ [nix.POS]: pos$3, mainProgram: name }, meta))),
+        meta: nix.thunk(() => nix.update(nix.sel(core, "meta"), nix.update({ [nix.POS]: $pos[2], mainProgram: name }, meta))),
       }));
   })(), formals$2);
 })(), formals$1);

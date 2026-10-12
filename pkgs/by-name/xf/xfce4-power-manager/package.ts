@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["rev-prefix", 71, 5], ["odd-unstable", 72, 5]], [["updateScript", 70, 12]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5], ["teams", 81, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["postPatch", 58, 3], ["configureFlags", 63, 3], ["enableParallelBuilding", 68, 3], ["passthru", 70, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gettext: false, "pkg-config": false, "wayland-scanner": false, "xfce4-dev-tools": false, wrapGAppsHook3: false, gtk3: false, libnotify: false, libxfce4ui: false, libxfce4util: false, polkit: false, upower: false, "wayland-protocols": false, "wlr-protocols": false, xfconf: false, "xfce4-panel": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 71, 5], ["odd-unstable", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 70, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5], ["teams", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["postPatch", 58, 3], ["configureFlags", 63, 3], ["enableParallelBuilding", 68, 3], ["passthru", 70, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const xfce4_panel = nix.arg($, "xfce4-panel");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xfce4-power-manager",
       version: "4.20.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.xfce.org",
           owner: "xfce",
           repo: "xfce4-power-manager",
@@ -59,11 +55,15 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-maintainer-mode", "--sbindir=${out}/bin"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "xfce4-power-manager-", "odd-unstable": true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            "rev-prefix": "xfce4-power-manager-",
+            "odd-unstable": true,
+          })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Power manager for the Xfce Desktop Environment",
         homepage: "https://gitlab.xfce.org/xfce/xfce4-power-manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

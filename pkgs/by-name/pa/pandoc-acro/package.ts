@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]], [["nativeBuildInputs", 35, 9]], [["example-doc", 32, 18]], [["tests", 32, 12]], [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]], [["format", 21, 3], ["pname", 22, 11], ["version", 22, 17], ["src", 22, 25], ["propagatedBuildInputs", 24, 3], ["doCheck", 30, 3], ["passthru", 32, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, pandoc: false, "pandoc-acro": false, texliveTeTeX: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 35, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["example-doc", 32, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 32, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["format", 21, 3], ["pname", 22, 11], ["version", 22, 17], ["src", 22, 25], ["propagatedBuildInputs", 24, 3], ["doCheck", 30, 3], ["passthru", 32, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pname = "pandoc-acro";
   const version = "0.10.1";
   const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: pname,
       version: version,
       hash: "sha256-JMfSQXX+BCGdFQYPFB+r08WRnhT3aXfnBNINROxCUA0=",
     }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       format: "setuptools",
       pname: pname,
       version: version,
@@ -42,12 +37,12 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "example-doc": nix.thunk(() => (() => {
             const env = nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [
                 pandoc,
                 pandoc_acro,
@@ -77,7 +72,7 @@ pandoc -F pandoc-acro  "$exampleFile" "--metadata-file=$metadataFile" \\
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://pypi.org/project/pandoc-acro/",
         description: "Pandoc filter which manages acronyms in Pandoc flavored Markdown sources",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

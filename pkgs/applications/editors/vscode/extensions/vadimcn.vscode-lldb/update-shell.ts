@@ -2,18 +2,17 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update-shell.nix", [[["pkgs", 10, 46]], [["inputsFrom", 9, 3], ["packages", 12, 3]]]);
 const formals$1 = { args: { pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/update-shell.nix", [["pkgs", 10, 46]]);
-const pos$2 = nix.positions(here + "/update-shell.nix", [["inputsFrom", 9, 3], ["packages", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../../..")), nix.thunk(() => ({}))));
   const w = nix.withScope(pkgs, null);
   return nix.app(nix.lookup(w, "mkShell"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       inputsFrom: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../update-shell.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs })))),
+        nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../update-shell.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs })))),
       ]),
       packages: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "nix-prefetch-github")),

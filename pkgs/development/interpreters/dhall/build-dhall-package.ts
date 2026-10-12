@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-dhall-package.nix", [[["dependencies", 75, 27]], [["base-import-url", 105, 9], ["input", 107, 9], ["package-name", 109, 9]]]);
 const formals$1 = { args: { dhall: false, "dhall-docs": false, haskell: false, lib: false, lndir: false, runCommand: false, writeText: false }, ellipsis: false };
 const formals$2 = { args: { name: false, dependencies: true, code: false, source: true, documentationRoot: true, baseImportUrl: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-dhall-package.nix", [["dependencies", 75, 27]]);
-const pos$2 = nix.positions(here + "/build-dhall-package.nix", [["base-import-url", 105, 9], ["input", 107, 9], ["package-name", 109, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +30,7 @@ export default nix.lambda((args) => (() => {
     const cacheDhall = nix.thunk(() => nix.str`${cache}/dhall`);
     const dataDhall = nix.thunk(() => nix.str`${data}/dhall`);
     const sourceFile = "source.dhall";
-    return nix.app(runCommand, name, nix.thunk(() => ({ [nix.POS]: pos$1, dependencies: dependencies })), nix.thunk(() => nix.str`set -eu
+    return nix.app(runCommand, name, nix.thunk(() => ({ [nix.POS]: $pos[0], dependencies: dependencies })), nix.thunk(() => nix.str`set -eu
 
 mkdir -p ${cacheDhall}
 
@@ -58,7 +57,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(source)), 
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(documentationRoot, null)), nix.thunk(() => nix.str`mkdir -p $out/${dataDhall}
 
 XDG_DATA_HOME=$out/${data} ${dhall_docs}/bin/dhall-docs --output-link $out/docs ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "base-import-url": baseImportUrl,
             input: documentationRoot,
             "package-name": name,

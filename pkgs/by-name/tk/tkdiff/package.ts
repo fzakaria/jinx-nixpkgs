@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 18, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["longDescription", 42, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 23, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { diffutils: false, fetchzip: false, lib: false, makeBinaryWrapper: false, stdenv: false, tk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["longDescription", 42, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 23, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const tk = nix.arg($, "tk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tkdiff",
       version: "6.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/tkdiff/tkdiff-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           hash: "sha256-fBPeXL6G9LZZHIapj/lncNrUU02ocnqDOOJfvlKIyRA=",
         })))),
@@ -34,7 +32,7 @@ wrapProgram $out/bin/tkdiff \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Graphical front end to the diff program",
         homepage: "https://tkdiff.sourceforge.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

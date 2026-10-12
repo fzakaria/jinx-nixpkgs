@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["allowUnsupportedSystem", 19, 7]], [["system", 16, 5], ["localSystem", 17, 5], ["config", 18, 5], ["overlays", 21, 5]], [["defaultPkgConfigPackages", 25, 3]]]);
 const formals$1 = { args: { lib: false, config: false, stdenv: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tests.nix", [["allowUnsupportedSystem", 19, 7]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["system", 16, 5], ["localSystem", 17, 5], ["config", 18, 5], ["overlays", 21, 5]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["defaultPkgConfigPackages", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const stdenv = nix.arg($, "stdenv");
   const allPkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../default.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       system: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")),
       localSystem: nix.thunk(() => nix.sel(stdenv, "buildPlatform", "system")),
-      config: nix.thunk(() => nix.update(config, { [nix.POS]: pos$1, allowUnsupportedSystem: true })),
+      config: nix.thunk(() => nix.update(config, { [nix.POS]: $pos[0], allowUnsupportedSystem: true })),
       overlays: [],
     }))));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       defaultPkgConfigPackages: nix.thunk(() => nix.app(nix.sel(allPkgs, "callPackage"), nix.path(here, "./test-defaultPkgConfigPackages.nix"), nix.thunk(() => ({})))),
     })));
 })(), formals$1);

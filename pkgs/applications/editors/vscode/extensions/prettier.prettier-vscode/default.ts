@@ -2,15 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7]], [["name", 29, 7], ["src", 30, 28], ["hash", 31, 7]], [["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 53, 9]], [["name", 17, 5], ["pname", 18, 5], ["version", 19, 5], ["src", 21, 5], ["npmDeps", 28, 5], ["buildInputs", 34, 5], ["nativeBuildInputs", 38, 5], ["strictDeps", 51, 5], ["env", 53, 5], ["buildPhase", 55, 5]], [["attrPath", 78, 7]], [["vsix", 76, 5], ["updateScript", 77, 5]], [["changelog", 83, 5], ["description", 84, 5], ["downloadPage", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 66, 3], ["version", 67, 28], ["vscodeExtPublisher", 69, 3], ["vscodeExtName", 70, 3], ["vscodeExtUniqueId", 71, 3], ["src", 73, 3], ["passthru", 75, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchNpmDeps: false, libsecret: false, "nodejs-slim": false, npmHooks: false, "pkg-config": false, clang_20: false, "vscode-utils": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 29, 7], ["src", 30, 28], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 53, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 17, 5], ["pname", 18, 5], ["version", 19, 5], ["src", 21, 5], ["npmDeps", 28, 5], ["buildInputs", 34, 5], ["nativeBuildInputs", 38, 5], ["strictDeps", 51, 5], ["env", 53, 5], ["buildPhase", 55, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["attrPath", 78, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["vsix", 76, 5], ["updateScript", 77, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["changelog", 83, 5], ["description", 84, 5], ["downloadPage", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 66, 3], ["version", 67, 28], ["vscodeExtPublisher", 69, 3], ["vscodeExtName", 70, 3], ["vscodeExtUniqueId", 71, 3], ["src", 73, 3], ["passthru", 75, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const nix_update_script = nix.arg($, "nix-update-script");
   const vsix = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: nix.thunk(() => nix.str`prettier-vscode-${nix.sel(finalAttrs, "version")}.vsix`),
       pname: "prettier-vscode-vsix",
       version: "12.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "prettier",
           repo: "prettier-vscode",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-N++WB0CvqYQTRg3SQFf9QJrwSJXtUd7z/kvWXQqOSC4=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-vktxhQA2a+D9Nr4vhbmGCnNdGzt0U89K50g0SgiV5SE=",
@@ -51,13 +44,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [pkg_config])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [clang_20]))))),
       strictDeps: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1" })),
       buildPhase: "runHook preBuild\n\nnode --run compile\nnpx @vscode/vsce package --out $out\n\nrunHook postBuild\n",
     })));
   return nix.app(nix.sel(vscode_utils, "buildVscodeExtension"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "src"));
       return {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "prettier-vscode",
       version: nix.thunk(() => nix.attr(from, "version")),
       vscodeExtPublisher: "prettier",
@@ -65,15 +58,15 @@ export default nix.lambda((args) => (() => {
       vscodeExtUniqueId: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "vscodeExtPublisher")}.${nix.sel(finalAttrs, "vscodeExtName")}`),
       src: vsix,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         vsix: nix.thunk(() => nix.sel(finalAttrs, "src")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             attrPath: "vscode-extensions.prettier.prettier-vscode.vsix",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: "https://marketplace.visualstudio.com/items/Prettier.prettier-vscode/changelog",
         description: "Visual Studio Code extension for Prettier",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=Prettier.prettier-vscode",

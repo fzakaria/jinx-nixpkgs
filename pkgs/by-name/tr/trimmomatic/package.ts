@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["updateScript", 42, 5]], [["changelog", 46, 5], ["description", 47, 5], ["longDescription", 48, 5], ["homepage", 54, 5], ["downloadPage", 55, 5], ["license", 56, 5], ["sourceProvenance", 57, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["mvnHash", 22, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 29, 3], ["passthru", 41, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, jre_minimal: false, makeWrapper: false, stripJavaArchivesHook: false, maven: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 46, 5], ["description", 47, 5], ["longDescription", 48, 5], ["homepage", 54, 5], ["downloadPage", 55, 5], ["license", 56, 5], ["sourceProvenance", 57, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["mvnHash", 22, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 29, 3], ["passthru", 41, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "trimmomatic";
       const version = "0.40";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "usadellab",
           repo: "Trimmomatic",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,11 +37,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getBin"), jre_minimal)}/bin/java $out/bin/tr
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/usadellab/Trimmomatic/releases/tag/v${version}`),
         description: "Flexible read trimming tool for Illumina NGS data",
         longDescription: "Trimmomatic performs a variety of useful trimming tasks for illumina\npaired-end and single ended data: adapter trimming, quality trimming,\ncropping to a specified length, length filtering, quality score\nconversion.\n",
@@ -59,7 +56,7 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kupac"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

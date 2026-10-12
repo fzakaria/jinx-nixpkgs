@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["aiohttp", 55, 5], ["oci", 59, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["pythonRelaxDeps", 50, 3], ["optional-dependencies", 54, 3], ["doCheck", 63, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, fastavro: false, httpx: false, pydantic: false, "pydantic-core": false, requests: false, tokenizers: false, "types-requests": false, "typing-extensions": false, aiohttp: false, "httpx-aiohttp": false, oci: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aiohttp", 55, 5], ["oci", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["pythonRelaxDeps", 50, 3], ["optional-dependencies", 54, 3], ["doCheck", 63, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cohere-ai",
           repo: "cohere-python",
           tag: version,
@@ -49,14 +46,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonRelaxDeps = nix.thunk(() => ["pydantic-core"]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         aiohttp: nix.thunk(() => [aiohttp, httpx_aiohttp]),
         oci: nix.thunk(() => [oci]),
       }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["cohere"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simplify interfacing with the Cohere API",
         homepage: "https://docs.cohere.com/docs",
         changelog: nix.thunk(() => nix.str`https://github.com/cohere-ai/cohere-python/releases/tag/${nix.sel(src, "tag")}`),
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

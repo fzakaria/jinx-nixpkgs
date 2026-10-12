@@ -2,30 +2,18 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["maintainers", 6, 5]], [["user", 29, 40]], [["auto", 29, 35]], [["displayManager", 29, 20]], [["enable", 32, 9], ["configFile", 33, 9], ["extraPackages", 34, 9]], [["qtile", 31, 38]], [["windowManager", 31, 24]], [["defaultSession", 37, 31]], [["xserver", 31, 16], ["displayManager", 37, 16]], [["systemPackages", 39, 19]], [["imports", 25, 7], ["test-support", 29, 7], ["services", 31, 7], ["environment", 39, 7]], [["machine", 12, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 12, 3], ["testScript", 42, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["user", 29, 40]]);
-const pos$3 = nix.positions(here + "/default.nix", [["auto", 29, 35]]);
-const pos$4 = nix.positions(here + "/default.nix", [["displayManager", 29, 20]]);
-const pos$5 = nix.positions(here + "/default.nix", [["enable", 32, 9], ["configFile", 33, 9], ["extraPackages", 34, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["qtile", 31, 38]]);
-const pos$7 = nix.positions(here + "/default.nix", [["windowManager", 31, 24]]);
-const pos$8 = nix.positions(here + "/default.nix", [["defaultSession", 37, 31]]);
-const pos$9 = nix.positions(here + "/default.nix", [["xserver", 31, 16], ["displayManager", 37, 16]]);
-const pos$10 = nix.positions(here + "/default.nix", [["systemPackages", 39, 19]]);
-const pos$11 = nix.positions(here + "/default.nix", [["imports", 25, 7], ["test-support", 29, 7], ["services", 31, 7], ["environment", 39, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["machine", 12, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 12, 3], ["testScript", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "qtile-extras",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -35,33 +23,33 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         const config_deriv = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./config.nix"), nix.thunk(() => ({}))));
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           imports: nix.thunk(() => [
             nix.path(here, "../common/x11.nix"),
             nix.path(here, "../common/user-account.nix"),
           ]),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$2, user: "alice" })),
+              [nix.POS]: $pos[2],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[1], user: "alice" })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               windowManager: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 qtile: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   enable: true,
                   configFile: nix.thunk(() => nix.str`${config_deriv}/config.py`),
                   extraPackages: (ps) => [nix.thunk(() => nix.sel(ps, "qtile-extras"))],
@@ -69,12 +57,12 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               defaultSession: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "qtile")),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "kitty"))]),
           })),
         };

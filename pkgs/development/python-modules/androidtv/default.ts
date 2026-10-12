@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["async", 35, 5], ["usb", 36, 47]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 39, 3], ["disabledTests", 46, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, "adb-shell": false, aiofiles: false, "async-timeout": false, buildPythonPackage: false, fetchFromGitHub: false, mock: false, "pure-python-adb": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["async", 35, 5], ["usb", 36, 47]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 39, 3], ["disabledTests", 46, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.75";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JeffLIrion",
           repo: "python-androidtv",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(adb_shell, "optional-dependencies"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         async: nix.thunk(() => [aiofiles]),
         usb: nix.thunk(() => nix.attr(from, "usb")),
       };
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_no_underscores"]);
       const pythonImportsCheck = nix.thunk(() => ["androidtv"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Communicate with an Android TV or Fire TV device via ADB over a network",
         homepage: "https://github.com/JeffLIrion/python-androidtv/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

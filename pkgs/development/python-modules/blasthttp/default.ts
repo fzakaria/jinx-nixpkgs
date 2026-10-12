@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 24, 26], ["version", 24, 32], ["hash", 25, 5]], [["pname", 29, 26], ["version", 29, 32], ["src", 29, 40], ["hash", 30, 5]], [["OPENSSL_NO_VENDOR", 41, 5]], [["updateScript", 72, 12]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["cargoDeps", 28, 3], ["postPatch", 33, 3], ["__darwinAllowLocalNetworking", 38, 3], ["env", 40, 3], ["build-system", 44, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 60, 3], ["disabledTestPaths", 62, 3], ["disabledTests", 67, 3], ["passthru", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, cargo: false, fetchPypi: false, "nix-update-script": false, openssl: false, "pkg-config": false, "pytest-asyncio": false, pytestCheckHook: false, rustc: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 24, 26], ["version", 24, 32], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 29, 26], ["version", 29, 32], ["src", 29, 40], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["OPENSSL_NO_VENDOR", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 72, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["cargoDeps", 28, 3], ["postPatch", 33, 3], ["__darwinAllowLocalNetworking", 38, 3], ["env", 40, 3], ["build-system", 44, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 60, 3], ["disabledTestPaths", 62, 3], ["disabledTests", 67, 3], ["passthru", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "blasthttp",
       version: "0.10.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-UDTqxGTFMGaV9UpDRo65OqqavTZq4UIyC3K5t+e9W9s=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "# The bundled .cargo/config.toml sets OPENSSL_DIR to a relative path\nrm .cargo/config.toml\n",
       __darwinAllowLocalNetworking: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], OPENSSL_NO_VENDOR: "1" })),
       "build-system": nix.thunk(() => [
         cargo,
         pkg_config,
@@ -62,11 +57,11 @@ export default nix.lambda((args) => (() => {
           "test_redirect_onto_no_proxy_host_reevaluates_to_direct",
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Offensive-first HTTP library",
         homepage: "https://pypi.org/project/blasthttp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,80 +2,64 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/conduit.nix", [[["server_name", 12, 25], ["allow_registration", 13, 25]], [["global", 12, 18]], [["RUST_BACKTRACE", 14, 26]], [["enable", 11, 9], ["settings", 12, 9], ["extraEnvironment", 14, 9]], [["proxyPass", 24, 13]], [["/_matrix", 23, 21]], [["enableACME", 19, 11], ["forceSSL", 20, 11], ["onlySSL", 21, 11], ["locations", 23, 11]], [["enable", 17, 9], ["virtualHosts", 18, 9]], [["matrix-conduit", 10, 16], ["nginx", 16, 16]], [["allowedTCPPorts", 28, 27]], [["firewall", 28, 18]], [["services", 10, 7], ["networking", 28, 7]], [["libraries", 34, 53]], [["systemPackages", 33, 21]], [["environment", 33, 9]], [["conduit", 9, 5], ["client", 30, 5]], [["name", 6, 3], ["nodes", 8, 3], ["testScript", 86, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/conduit.nix", [["server_name", 12, 25], ["allow_registration", 13, 25]]);
-const pos$2 = nix.positions(here + "/conduit.nix", [["global", 12, 18]]);
-const pos$3 = nix.positions(here + "/conduit.nix", [["RUST_BACKTRACE", 14, 26]]);
-const pos$4 = nix.positions(here + "/conduit.nix", [["enable", 11, 9], ["settings", 12, 9], ["extraEnvironment", 14, 9]]);
-const pos$5 = nix.positions(here + "/conduit.nix", [["proxyPass", 24, 13]]);
-const pos$6 = nix.positions(here + "/conduit.nix", [["/_matrix", 23, 21]]);
-const pos$7 = nix.positions(here + "/conduit.nix", [["enableACME", 19, 11], ["forceSSL", 20, 11], ["onlySSL", 21, 11], ["locations", 23, 11]]);
-const pos$8 = nix.positions(here + "/conduit.nix", [["enable", 17, 9], ["virtualHosts", 18, 9]]);
-const pos$9 = nix.positions(here + "/conduit.nix", [["matrix-conduit", 10, 16], ["nginx", 16, 16]]);
-const pos$10 = nix.positions(here + "/conduit.nix", [["allowedTCPPorts", 28, 27]]);
-const pos$11 = nix.positions(here + "/conduit.nix", [["firewall", 28, 18]]);
-const pos$12 = nix.positions(here + "/conduit.nix", [["services", 10, 7], ["networking", 28, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/conduit.nix", [["libraries", 34, 53]]);
-const pos$14 = nix.positions(here + "/conduit.nix", [["systemPackages", 33, 21]]);
-const pos$15 = nix.positions(here + "/conduit.nix", [["environment", 33, 9]]);
-const pos$16 = nix.positions(here + "/conduit.nix", [["conduit", 9, 5], ["client", 30, 5]]);
-const pos$17 = nix.positions(here + "/conduit.nix", [["name", 6, 3], ["nodes", 8, 3], ["testScript", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const name = "conduit";
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "matrix-conduit",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       conduit: (args_1) => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           "matrix-conduit": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              global: nix.thunk(() => ({ [nix.POS]: pos$1, server_name: name, allow_registration: true })),
+              [nix.POS]: $pos[1],
+              global: nix.thunk(() => ({ [nix.POS]: $pos[0], server_name: name, allow_registration: true })),
             })),
-            extraEnvironment: nix.thunk(() => ({ [nix.POS]: pos$3, RUST_BACKTRACE: "yes" })),
+            extraEnvironment: nix.thunk(() => ({ [nix.POS]: $pos[2], RUST_BACKTRACE: "yes" })),
           })),
           nginx: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             enable: true,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [name, nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 enableACME: false,
                 forceSSL: false,
                 onlySSL: false,
                 locations: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
-                  "/_matrix": nix.thunk(() => ({ [nix.POS]: pos$5, proxyPass: "http://[::1]:6167" })),
+                  [nix.POS]: $pos[5],
+                  "/_matrix": nix.thunk(() => ({ [nix.POS]: $pos[4], proxyPass: "http://[::1]:6167" })),
                 })),
               }))],
             ])),
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$11,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$10, allowedTCPPorts: nix.thunk(() => [80n]) })),
+          [nix.POS]: $pos[10],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[9], allowedTCPPorts: nix.thunk(() => [80n]) })),
         })),
       }),
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "do_test", nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "matrix-nio"))]),
                 })), "import asyncio\n\nfrom nio import AsyncClient\n\n\nasync def main() -> None:\n    # Connect to conduit\n    client = AsyncClient(\"http://conduit:80\", \"alice\")\n\n    # Register as user alice\n    response = await client.register(\"alice\", \"my-secret-password\")\n\n    # Log in as user alice\n    response = await client.login(\"my-secret-password\")\n\n    # Create a new room\n    response = await client.room_create(federate=False)\n    room_id = response.room_id\n\n    # Join the room\n    response = await client.join(room_id)\n\n    # Send a message to the room\n    response = await client.room_send(\n        room_id=room_id,\n        message_type=\"m.room.message\",\n        content={\n            \"msgtype\": \"m.text\",\n            \"body\": \"Hello conduit!\"\n        }\n    )\n\n    # Sync responses\n    response = await client.sync(timeout=30000)\n\n    # Check the message was received by conduit\n    last_message = response.rooms.join[room_id].timeline.events[-1].body\n    assert last_message == \"Hello conduit!\"\n\n    # Leave the room\n    response = await client.room_leave(room_id)\n\n    # Close the client\n    await client.close()\n\nasyncio.run(main())\n")),
             ]),

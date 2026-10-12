@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["NIX_CFLAGS_COMPILE", 31, 7]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patchPhase", 21, 3], ["strictDeps", 28, 3], ["enableParallelBuilding", 29, 3], ["env", 31, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 36, 3], ["postInstall", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, ctags: false, fetchFromGitLab: false, slang: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patchPhase", 21, 3], ["strictDeps", 28, 3], ["enableParallelBuilding", 29, 3], ["env", 31, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 36, 3], ["postInstall", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const slang = nix.arg($, "slang");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "asciijump",
       version: "1.0.2_beta-12",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "games-team",
           repo: "asciijump",
@@ -31,14 +28,14 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fsigned-char"]))),
       })),
       nativeBuildInputs: nix.thunk(() => [ctags]),
       buildInputs: nix.thunk(() => [slang]),
       postInstall: "rm -rf $out/var\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Small and funny ASCII-art game about ski jumping",
         homepage: "https://salsa.debian.org/games-team/asciijump",
         changelog: nix.thunk(() => nix.str`https://salsa.debian.org/games-team/asciijump/-/blob/${nix.sel(finalAttrs, "src", "tag")}/debian/changelog`),

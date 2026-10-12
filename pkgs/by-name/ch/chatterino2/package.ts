@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 7], ["repo", 15, 7], ["tag", 16, 7], ["hash", 17, 7], ["fetchSubmodules", 18, 7], ["leaveDotGit", 19, 7], ["postFetch", 20, 7]], [["rev-prefix", 29, 9], ["ignoredVersions", 30, 9]], [["buildChatterino", 27, 7], ["updateScript", 28, 7]], [["description", 35, 7], ["mainProgram", 36, 7], ["longDescription", 37, 7], ["homepage", 43, 7], ["changelog", 44, 7], ["license", 45, 7], ["platforms", 46, 7], ["maintainers", 47, 7]], [["pname", 10, 5], ["version", 11, 5], ["src", 13, 5], ["passthru", 26, 5], ["meta", 34, 5]]]);
 const formals$1 = { args: { lib: false, callPackage: false, fetchFromGitHub: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 7], ["repo", 15, 7], ["tag", 16, 7], ["hash", 17, 7], ["fetchSubmodules", 18, 7], ["leaveDotGit", 19, 7], ["postFetch", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 29, 9], ["ignoredVersions", 30, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["buildChatterino", 27, 7], ["updateScript", 28, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 35, 7], ["mainProgram", 36, 7], ["longDescription", 37, 7], ["homepage", 43, 7], ["changelog", 44, 7], ["license", 45, 7], ["platforms", 46, 7], ["maintainers", 47, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 5], ["version", 11, 5], ["src", 13, 5], ["passthru", 26, 5], ["meta", 34, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))), "overrideAttrs"), (finalAttrs) => (_) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "chatterino2",
       version: "2.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Chatterino",
           repo: "chatterino2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,12 +26,12 @@ export default nix.lambda((args) => (() => {
           postFetch: "git -C $out rev-parse --short HEAD > $out/GIT_HASH\nfind \"$out\" -name .git -print0 | xargs -0 rm -rf\n",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         buildChatterino: (args_1) => nix.app(callPackage, nix.path(here, "./common.nix"), args_1),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v", ignoredVersions: "beta" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v", ignoredVersions: "beta" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Chat client for Twitch chat",
         mainProgram: "chatterino",
         longDescription: "Chatterino is a chat client for Twitch chat. It aims to be an\nimproved/extended version of the Twitch web chat. Chatterino 2 is\nthe second installment of the Twitch chat client series\n\"Chatterino\".\n",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]], [["url", 24, 7], ["hash", 25, 7]], [["updateScript", 34, 12]], [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 20, 3], ["nativeBuildInputs", 29, 3], ["doCheck", 32, 3], ["passthru", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, fetchpatch: false, lib: false, "nix-update-script": false, "flit-core": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 34, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 20, 3], ["nativeBuildInputs", 29, 3], ["doCheck", 32, 3], ["passthru", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pkgutil_resolve_name",
           version: version,
           hash: "sha256-NX1snmp1VlPP14iTgXwIU682XdUeyX89NYqBk3O70XQ=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/graingert/pkgutil-resolve-name/commit/042834290c735fa836bb308ce9e93c9f64d67cbe.patch",
             hash: "sha256-M1rcrkdFcoFa3IncPnJaRhnXbelyk56QnMGtmgB6bvk=",
           })))),
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [flit_core]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://pypi.org/project/pkgutil_resolve_name/",
         description: "Backport of Python 3.9’s pkgutil.resolve_name",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]], [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["patches", 39, 3], ["postPatch", 40, 3], ["dontBuild", 46, 3], ["installPhase", 48, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, makeWrapper: false, lib: false, coreutils: false, apg: false, atop: false, bmon: false, cmatrix: false, python3Packages: false, moreutils: false, "util-linux": false, jp2a: false, man: false, mplayer: false, openssh: false, tree: false, mlocate: false, findutils: false, ccze: false, ncurses: false, tmux: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["patches", 39, 3], ["postPatch", 40, 3], ["dontBuild", 46, 3], ["installPhase", 48, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const tmux = nix.arg($, "tmux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hollywood",
       version: "1.22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dustinkirkland",
           repo: "hollywood",
           rev: "35275a68c37bbc39d8b2b0e4664a0c2f5451e5f6",
@@ -79,7 +77,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fill your console with Hollywood melodrama technobabble",
         mainProgram: "hollywood",
         homepage: "https://a.hollywood.computer/",

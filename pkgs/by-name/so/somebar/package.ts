@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["prePatch", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false, meson: false, ninja: false, "pkg-config": false, wayland: false, pango: false, "wayland-protocols": false, "wayland-scanner": false, conf: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["prePatch", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const conf = nix.argOr($, "conf", () => null);
   const configFile = nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isDerivation"), conf)) || nix.asBool(nix.builtins.isPath(conf)))) ? nix.force(conf) : "src/config.def.hpp"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "somebar",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~raphi",
           repo: "somebar",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       prePatch: nix.thunk(() => nix.str`cp ${configFile} src/config.hpp
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git.sr.ht/~raphi/somebar",
         description: "dwm-like bar for dwl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

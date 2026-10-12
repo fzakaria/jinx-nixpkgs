@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 5], ["version", 20, 26], ["format", 21, 5], ["python", 22, 5], ["dist", 23, 5], ["hash", 24, 5]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 11, 3], ["version", 12, 42], ["format", 13, 3], ["__structuredAttrs", 14, 3], ["src", 18, 3], ["pythonRemoveDeps", 27, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 36, 3], ["doCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "nvidia-cutlass-dsl-libs-base": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 26], ["format", 21, 5], ["python", 22, 5], ["dist", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 42], ["format", 13, 3], ["__structuredAttrs", 14, 3], ["src", 18, 3], ["pythonRemoveDeps", 27, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 36, 3], ["doCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const nvidia_cutlass_dsl_libs_base = nix.arg($, "nvidia-cutlass-dsl-libs-base");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nvidia-cutlass-dsl",
       version: nix.thunk(() => nix.attr(nvidia_cutlass_dsl_libs_base, "version")),
       format: "wheel",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "nvidia_cutlass_dsl",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           format: "wheel",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["cutlass"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "NVIDIA CUTLASS Python DSL",
         homepage: "https://github.com/NVIDIA/cutlass",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/cutlass/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

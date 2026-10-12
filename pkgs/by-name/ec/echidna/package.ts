@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["isExecutable", 23, 3], ["buildTools", 25, 3], ["prePatch", 30, 3], ["executableHaskellDepends", 34, 3], ["postInstall", 97, 3], ["doHaddock", 110, 3], ["doCheck", 113, 3], ["homepage", 115, 3], ["description", 116, 3], ["license", 117, 3], ["maintainers", 118, 3], ["platforms", 122, 3], ["mainProgram", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, haskellPackages: false, fetchpatch: false, fetchFromGitHub: false, "slither-analyzer": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["isExecutable", 23, 3], ["buildTools", 25, 3], ["prePatch", 30, 3], ["executableHaskellDepends", 34, 3], ["postInstall", 97, 3], ["doHaddock", 110, 3], ["doCheck", 113, 3], ["homepage", 115, 3], ["description", 116, 3], ["license", 117, 3], ["maintainers", 118, 3], ["platforms", 122, 3], ["mainProgram", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "echidna";
       const version = "2.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "crytic",
           repo: "echidna",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -116,7 +115,7 @@ remove-references-to -t ${nix.sel(nix.lookup(w_2, "wreq"), "out")} "$out/bin/ech
       const platforms = nix.thunk(() => nix.sel(lib, "platforms", "unix"));
       const mainProgram = "echidna";
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

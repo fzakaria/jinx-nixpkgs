@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["src", 32, 26], ["hash", 33, 5]], [["updateScript", 63, 12]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["yarnOfflineCache", 31, 3], ["nativeBuildInputs", 36, 3], ["preInstall", 44, 3], ["installPhase", 48, 3], ["passthru", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchYarnDeps: false, yarnConfigHook: false, yarnBuildHook: false, nodejs: false, makeBinaryWrapper: false, gcc: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 32, 26], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["yarnOfflineCache", 31, 3], ["nativeBuildInputs", 36, 3], ["preInstall", 44, 3], ["installPhase", 48, 3], ["passthru", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gcc = nix.arg($, "gcc");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "webassemblyjs-repl",
       version: "1.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xtuc",
           repo: "webassemblyjs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace packages/**/package.json \\\n  --replace-warn \"1.13.2\" \"1.14.1\"\n\npatchShebangs scripts/\n",
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-gweiisUVp1D4BAcyuf3V81jN+ehm6z5ztftG+tc7M+A=",
         })))),
@@ -54,11 +50,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/wasm \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "WebAssembly REPL",
         homepage: "https://webassembly.js.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

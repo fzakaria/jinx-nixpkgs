@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrap-lua.nix", [[["luaBuild", 13, 17], ["luaHost", 14, 17], ["luarocksBuild", 15, 17], ["luarocksHost", 16, 17]], [["license", 17, 8]], [["name", 11, 3], ["propagatedBuildInputs", 12, 3], ["substitutions", 13, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, lua: false, makeSetupHook: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrap-lua.nix", [["luaBuild", 13, 17], ["luaHost", 14, 17], ["luarocksBuild", 15, 17], ["luarocksHost", 16, 17]]);
-const pos$2 = nix.positions(here + "/wrap-lua.nix", [["license", 17, 8]]);
-const pos$3 = nix.positions(here + "/wrap-lua.nix", [["name", 11, 3], ["propagatedBuildInputs", 12, 3], ["substitutions", 13, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,17 +12,20 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "wrap-lua-hook",
       propagatedBuildInputs: nix.thunk(() => [makeWrapper]),
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         luaBuild: nix.thunk(() => nix.sel(lua, "luaOnBuildForHost")),
         luaHost: nix.thunk(() => nix.sel(lua, "luaOnHostForHost")),
         luarocksBuild: nix.thunk(() => nix.sel(lua, "luaOnBuildForHost", "pkgs", "luarocks_bootstrap")),
         luarocksHost: nix.thunk(() => nix.sel(lua, "luaOnHostForHost", "pkgs", "luarocks_bootstrap")),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })), nix.path(here, "./wrap.sh"));
 })(), formals$1);
 //# sourceMappingURL=wrap-lua.ts.map

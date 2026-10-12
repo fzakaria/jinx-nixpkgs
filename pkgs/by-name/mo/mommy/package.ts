@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["nativeCheckInputs", 36, 3], ["installFlags", 37, 3], ["doCheck", 39, 3], ["checkTarget", 40, 3], ["postInstall", 42, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, writeText: false, shellspec: false, mommySettings: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["nativeCheckInputs", 36, 3], ["installFlags", 37, 3], ["doCheck", 39, 3], ["checkTarget", 40, 3], ["postInstall", 42, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const variables = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`MOMMY_${nix.app(nix.sel(lib, "toUpper"), name)}`), value), mommySettings));
   const configFile = nix.thunk(() => nix.app(writeText, "mommy-config", nix.thunk(() => nix.app(nix.sel(lib, "toShellVars"), variables))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mommy",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FWDekker",
           repo: "mommy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
 `))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "mommy's here to support you, in any shell, on any system~ ❤️",
         homepage: "https://github.com/FWDekker/mommy",
         changelog: nix.thunk(() => nix.str`https://github.com/FWDekker/mommy/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

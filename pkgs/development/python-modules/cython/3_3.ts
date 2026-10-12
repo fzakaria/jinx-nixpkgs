@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/3_3.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pygame-ce", 83, 13], ["sage", 83, 23]], [["tests", 82, 12]], [["homepage", 91, 5], ["description", 92, 5], ["longDescription", 93, 5], ["changelog", 118, 5], ["license", 119, 5], ["mainProgram", 120, 5], ["maintainers", 121, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["nativeBuildInputs", 32, 3], ["nativeCheckInputs", 36, 3], ["doCheck", 44, 3], ["checkPhase", 46, 3], ["passthru", 82, 3], ["setupHook", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, gdb: false, ncurses: false, numpy: false, "pkg-config": false, "pygame-ce": false, python: false, sage: false, setuptools: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/3_3.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/3_3.nix", [["pygame-ce", 83, 13], ["sage", 83, 23]]);
-const pos$3 = nix.positions(here + "/3_3.nix", [["tests", 82, 12]]);
-const pos$4 = nix.positions(here + "/3_3.nix", [["homepage", 91, 5], ["description", 92, 5], ["longDescription", 93, 5], ["changelog", 118, 5], ["license", 119, 5], ["mainProgram", 120, 5], ["maintainers", 121, 5]]);
-const pos$5 = nix.positions(here + "/3_3.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["nativeBuildInputs", 32, 3], ["nativeCheckInputs", 36, 3], ["doCheck", 44, 3], ["checkPhase", 46, 3], ["passthru", 82, 3], ["setupHook", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cython",
       version: "3.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cython",
           repo: "cython",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,12 +47,12 @@ runHook postCheck
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "pygame-ce": pygame_ce, sage: sage })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], "pygame-ce": pygame_ce, sage: sage })),
       })),
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://cython.org",
         description: "Optimising static compiler for both the Python and the extended Cython programming languages",
         longDescription: "Cython is an optimising static compiler for both the Python programming\nlanguage and the extended Cython programming language (based on Pyrex). It\nmakes writing C extensions for Python as easy as Python itself.\n\nCython gives you the combined power of Python and C to let you:\n\n- write Python code that calls back and forth from and to C or C++ code\n  natively at any point.\n- easily tune readable Python code into plain C performance by adding\n  static type declarations, also in Python syntax.\n- use combined source code level debugging to find bugs in your Python,\n  Cython and C code.\n- interact efficiently with large data sets, e.g. using multi-dimensional\n  NumPy arrays.\n- quickly build your applications within the large, mature and widely used\n  CPython ecosystem.\n- integrate natively with existing code and data from legacy, low-level or\n  high-performance libraries and applications.\n\nThe Cython language is a superset of the Python language that additionally\nsupports calling C functions and declaring C types on variables and class\nattributes. This allows the compiler to generate very efficient C code\nfrom Cython code.\n",

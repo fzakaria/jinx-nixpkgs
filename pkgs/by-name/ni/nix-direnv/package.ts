@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["builtin", 33, 9], ["function", 41, 9], ["external", 46, 9]], [["$cmd", 53, 9], ["$direnv", 54, 9], ["$_nix_direnv_nix", 57, 9], ["$ambient_nix", 58, 9], ["$NIX_DIRENV_FALLBACK_NIX", 59, 9]], [["scripts", 29, 7], ["interpreter", 30, 7], ["inputs", 31, 7], ["fake", 32, 7], ["keep", 52, 7], ["prologue", 61, 7]], [["default", 28, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["installPhase", 21, 3], ["solutions", 27, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { resholve: false, lib: false, coreutils: false, nix: false, fetchFromGitHub: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["builtin", 33, 9], ["function", 41, 9], ["external", 46, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["$cmd", 53, 9], ["$direnv", 54, 9], ["$_nix_direnv_nix", 57, 9], ["$ambient_nix", 58, 9], ["$NIX_DIRENV_FALLBACK_NIX", 59, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["scripts", 29, 7], ["interpreter", 30, 7], ["inputs", 31, 7], ["fake", 32, 7], ["keep", 52, 7], ["prologue", 61, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["default", 28, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["installPhase", 21, 3], ["solutions", 27, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const writeText = nix.arg($, "writeText");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "nix-direnv",
       version: "3.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nix-community",
           repo: "nix-direnv",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,14 +26,14 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\ninstall -m400 -D direnvrc $out/share/nix-direnv/direnvrc\nrunHook postInstall\n",
       solutions: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         default: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           scripts: nix.thunk(() => ["share/nix-direnv/direnvrc"]),
           interpreter: "none",
           inputs: nix.thunk(() => [coreutils]),
           fake: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             builtin: nix.thunk(() => [
               "PATH_add",
               "direnv_layout_dir",
@@ -52,7 +46,7 @@ export default nix.lambda((args) => (() => {
             external: nix.thunk(() => ["nix"]),
           })),
           keep: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             $cmd: true,
             $direnv: true,
             $_nix_direnv_nix: true,
@@ -64,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Fast, persistent use_nix implementation for direnv",
         homepage: "https://github.com/nix-community/nix-direnv",
         changelog: nix.thunk(() => nix.str`https://github.com/nix-community/nix-direnv/releases/${nix.sel(finalAttrs, "version")}`),

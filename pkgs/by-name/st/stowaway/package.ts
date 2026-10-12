@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["package", 73, 7], ["command", 74, 7]], [["version", 72, 11]], [["updateScript", 71, 5], ["tests", 72, 5]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5], ["platforms", 84, 5]], [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["strictDeps", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["cmakeFlags", 52, 3], ["preFixup", 57, 3], ["passthru", 70, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, qt6: false, quickshell: false, cliphist: false, "wl-clipboard": false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 73, 7], ["command", 74, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 72, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 71, 5], ["tests", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5], ["platforms", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["strictDeps", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["cmakeFlags", 52, 3], ["preFixup", 57, 3], ["passthru", 70, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "stowaway",
       version: "1.0.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AstraSuite",
           repo: "Stowaway",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,19 +49,19 @@ export default nix.lambda((args) => (() => {
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "stowaway --version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Modern Wayland clipboard manager and emoji picker overlay",
         homepage: "https://github.com/AstraSuite/Stowaway",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

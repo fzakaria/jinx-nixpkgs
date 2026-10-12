@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 7], ["hash", 17, 7], ["stripRoot", 18, 7]], [["updateScript", 31, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 23, 3], ["passthru", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 7], ["hash", 17, 7], ["stripRoot", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 23, 3], ["passthru", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => (() => {
         const underscoreVersion = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version));
         return nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/0xType/0xProto/releases/download/${version}/0xProto_${underscoreVersion}.zip`),
             hash: "sha256-ffYvfEGMoIJKVEcs2XzhDrq++SkTbQOVvb6X9q+uyu8=",
             stripRoot: false,
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
       })());
       const installPhase = "runHook preInstall\ninstall -Dm644 -t $out/share/fonts/opentype/ *.otf ./No-Ligatures/*-NL.otf\ninstall -Dm644 -t $out/share/fonts/truetype/ *.ttf ./No-Ligatures/*-NL.ttf\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free and Open-source font for programming",
         homepage: "https://github.com/0xType/0xProto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { [nix.POS]: pos$4, pname, version, src, installPhase, passthru, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, installPhase, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

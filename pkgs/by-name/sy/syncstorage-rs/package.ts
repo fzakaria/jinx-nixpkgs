@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]], [["SWAGGER_UI_DOWNLOAD_URL", 76, 5]], [["firefox-syncserver", 92, 5]], [["updateScript", 89, 12], ["tests", 91, 12]], [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 105, 5], ["mainProgram", 106, 5]], [["pname", 35, 3], ["version", 36, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 54, 3], ["buildNoDefaultFeatures", 61, 3], ["buildFeatures", 65, 3], ["env", 75, 3], ["preFixup", 79, 3], ["cargoHash", 84, 3], ["doCheck", 87, 3], ["passthru", 89, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchurl: false, rustPlatform: false, "pkg-config": false, python3: false, cmake: false, libmysqlclient: false, libpq: false, openssl: false, makeBinaryWrapper: false, lib: false, "nix-update-script": false, nixosTests: false, dbBackend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["SWAGGER_UI_DOWNLOAD_URL", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["firefox-syncserver", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 89, 12], ["tests", 91, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 105, 5], ["mainProgram", 106, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 54, 3], ["buildNoDefaultFeatures", 61, 3], ["buildFeatures", 65, 3], ["env", 75, 3], ["preFixup", 79, 3], ["cargoHash", 84, 3], ["doCheck", 87, 3], ["passthru", 89, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,17 +28,17 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(p, "cryptography")),
     ]));
   const swaggerUi = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/swagger-api/swagger-ui/archive/refs/tags/v5.17.14.zip",
       hash: "sha256-SBJE0IEgl7Efuu73n3HZQrFxYX+cn5UU5jrL4T5xzNw=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "syncstorage-rs",
       version: "0.23.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "mozilla-services",
           repo: "syncstorage-rs",
           rev: nix.thunk(() => nix.str`refs/tags/${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +56,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         SWAGGER_UI_DOWNLOAD_URL: nix.thunk(() => nix.str`file://${swaggerUi}`),
       })),
       preFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/syncserver \\
@@ -71,15 +65,15 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-BJ5+6o57WlwsTerKCmOPXATPHQfjr5cRYMbqC8CIPg0=",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "firefox-syncserver": nix.thunk(() => nix.sel(nixosTests, "firefox-syncserver", nix.key((nix.asBool(nix.eq(dbBackend, "postgresql")) ? "postgresql" : "mysql")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Mozilla Sync Storage built with Rust",
         homepage: "https://github.com/mozilla-services/syncstorage-rs",
         changelog: nix.thunk(() => nix.str`https://github.com/mozilla-services/syncstorage-rs/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

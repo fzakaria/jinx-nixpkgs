@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/chicken.nix", [[["url", 32, 5], ["sha256", 33, 5]], [["homepage", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["description", 103, 5], ["longDescription", 104, 5]], [["pname", 26, 3], ["version", 27, 11], ["binaryVersion", 29, 3], ["src", 31, 3], ["postPatch", 36, 3], ["setupHook", 43, 3], ["hardeningDisable", 46, 3], ["makeFlags", 48, 3], ["patches", 61, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 72, 3], ["preBuild", 76, 3], ["postInstall", 88, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, darwin: false, "bootstrap-chicken": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/chicken.nix", [["url", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/chicken.nix", [["homepage", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["description", 103, 5], ["longDescription", 104, 5]]);
-const pos$3 = nix.positions(here + "/chicken.nix", [["pname", 26, 3], ["version", 27, 11], ["binaryVersion", 29, 3], ["src", 31, 3], ["postPatch", 36, 3], ["setupHook", 43, 3], ["hardeningDisable", 46, 3], ["makeFlags", 48, 3], ["patches", 61, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 72, 3], ["preBuild", 76, 3], ["postInstall", 88, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.lookup(w, "isDarwin")) ? "macosx" : (nix.asBool(nix.lookup(w, "isCygwin")) ? "cygwin" : (nix.asBool((nix.asBool(nix.lookup(w, "isFreeBSD")) || nix.asBool(nix.lookup(w, "isOpenBSD")))) ? "bsd" : (nix.asBool(nix.lookup(w, "isSunOS")) ? "solaris" : "linux"))));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "chicken",
       version: version,
       binaryVersion: 8n,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://code.call-cc.org/releases/${version}/chicken-${version}.tar.gz`),
           sha256: "0hvckhi5gfny3mlva6d7y9pmx7cbwvq0r7mk11k3sdiik9hlkmdd",
         })))),
@@ -53,7 +51,7 @@ do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.call-cc.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => (() => {

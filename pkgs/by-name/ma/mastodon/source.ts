@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/source.nix", [[["version", 17, 15], ["yarnHash", 18, 7], ["yarnMissingHashes", 19, 7]], [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5], ["passthru", 16, 5]], [["src", 11, 3], ["patches", 22, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, applyPatches: false, patches: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/source.nix", [["version", 17, 15], ["yarnHash", 18, 7], ["yarnMissingHashes", 19, 7]]);
-const pos$2 = nix.positions(here + "/source.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5], ["passthru", 16, 5]]);
-const pos$3 = nix.positions(here + "/source.nix", [["src", 11, 3], ["patches", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,15 +12,15 @@ export default nix.lambda((args) => (() => {
   const patches = nix.argOr($, "patches", () => []);
   const version = "4.7.3";
   return nix.app(applyPatches, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "mastodon",
           repo: "mastodon",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-cKLjdk5FWcM4e5bh2P0W2UDP+9CKI6FgHH9vDnjg2xQ=",
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             version: version,
             yarnHash: "sha256-PTyRdKzbDTjXtIWuaFK1zY3Q1ThTXTdoit+ZUKL7mGE=",
             yarnMissingHashes: nix.path(here, "./missing-hashes.json"),

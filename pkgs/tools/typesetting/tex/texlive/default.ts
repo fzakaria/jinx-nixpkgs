@@ -2,45 +2,10 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["tlpdb", 95, 37]], [["pkgs", 105, 27], ["stdenv", 107, 11], ["lib", 108, 11], ["fetchpatch", 109, 11], ["bin", 110, 11], ["tlpdb", 111, 11], ["tlpdbxz", 112, 11], ["installShellFiles", 113, 11], ["coreutils", 114, 11], ["findutils", 115, 11], ["gawk", 116, 11], ["getopt", 117, 11], ["gettext", 118, 11], ["ghostscript_headless", 119, 11], ["git-latexdiff", 120, 11], ["gnugrep", 121, 11], ["gnumake", 122, 11], ["gnupg", 123, 11], ["gnused", 124, 11], ["gzip", 125, 11], ["html-tidy", 126, 11], ["ncurses", 127, 11], ["perl", 128, 11], ["python3", 129, 11], ["ruby", 130, 11], ["zip", 131, 11], ["luajit", 132, 11], ["texinfo", 133, 11]], [["year", 141, 5], ["month", 142, 5], ["day", 143, 5], ["texliveYear", 145, 5], ["final", 147, 5]], [["urls", 179, 5], ["hash", 184, 5]], [["tlpdbxz", 190, 17], ["tl2nix", 191, 9], ["nativeBuildInputs", 192, 9]], [["lib", 203, 7], ["fetchurl", 204, 7], ["runCommand", 205, 7], ["writeShellScript", 206, 7], ["bash", 207, 7], ["jre_headless", 208, 7], ["perl", 209, 7], ["python3", 210, 7], ["ruby", 211, 7], ["snobol4", 212, 7], ["tk", 213, 7], ["texliveBinaries", 215, 5]], [["mirrors", 229, 17], ["pname", 229, 25], ["fixedHashes", 230, 9]], [["deps", 233, 9]], [["pkgs", 240, 23], ["tlpdbVersion", 241, 13], ["ghostscript", 242, 5], ["lib", 244, 7], ["buildEnv", 245, 7], ["libfaketime", 246, 7], ["makeFontsConf", 247, 7], ["makeWrapper", 248, 7], ["runCommand", 249, 7], ["toTLPkgSets", 250, 7], ["perl", 251, 7], ["coreutils", 252, 7], ["gawk", 253, 7], ["gnugrep", 254, 7], ["gnused", 255, 7]], [["tlDeps", 268, 20]], [["tlType", 276, 63]], [["tlType", 278, 54]], [["tlType", 282, 11]], [["hasManpages", 284, 44]], [["tlType", 286, 72]], [["tlType", 287, 61]], [["tlType", 288, 57]], [["out", 290, 5], ["tex", 291, 5], ["texsource", 292, 5], ["texdoc", 293, 5], ["tlpkg", 294, 5]], [["run", 300, 5], ["doc", 301, 5], ["source", 302, 5], ["bin", 303, 5], ["tlpkg", 304, 5]], [["outputSpecified", 309, 7], ["tlOutputName", 310, 7]], [["name", 307, 5], ["value", 308, 5]], [["pkgs", 323, 41]], [["pkgs", 328, 23], ["buildTeXEnv", 330, 7], ["lib", 331, 7], ["toTLPkgList", 332, 7]], [["scheme-basic", 350, 5], ["scheme-bookpub", 364, 5], ["scheme-context", 383, 5], ["scheme-full", 406, 5], ["scheme-gust", 447, 5], ["scheme-infraonly", 475, 5], ["scheme-medium", 479, 5], ["scheme-minimal", 512, 5], ["scheme-small", 525, 5], ["scheme-tetex", 549, 5]], [["description", 587, 5], ["platforms", 588, 5], ["maintainers", 589, 5], ["license", 593, 5]], [["__extraName", 613, 11], ["__extraVersion", 614, 11], ["requiredTeXPackages", 616, 11], ["__combine", 618, 11]], [["message", 624, 32]], [["removal", 624, 24]], [["description", 622, 15], ["license", 623, 15], ["problems", 624, 15]], [["meta", 621, 13]], [["license", 634, 36]], [["requiredTeXPackages", 635, 11]], [["name", 633, 9], ["value", 634, 9]], [["nix", 659, 5], ["xz", 660, 5]], [["latexindent", 668, 7], ["pygmentex", 669, 7]], [["pkgs", 655, 3], ["tlpdb", 657, 3], ["bin", 663, 3], ["combine", 672, 3], ["combined", 676, 3], ["schemes", 680, 11], ["withPackages", 683, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchurl: false, runCommand: false, writeShellScript: false, writeText: false, buildEnv: false, ghostscript_headless: false, "git-latexdiff": false, harfbuzzFull: false, makeWrapper: false, installShellFiles: false, python3: false, ruby: false, perl: false, tk: false, jre_headless: false, bash: false, snobol4: false, coreutils: false, findutils: false, gawk: false, getopt: false, gettext: false, gnugrep: false, gnumake: false, gnupg: false, gnused: false, gzip: false, "html-tidy": false, ncurses: false, zip: false, libfaketime: false, asymptote: false, "biber-ms": false, makeFontsConf: false, useFixedHashes: true, extraMirrors: true, nixfmt: false, luajit: false, texinfo: false, texlive: false, gnum4: false, jdk_headless: false, perlPackages: false, python3Packages: false, "pkg-config": false, autoconf: false, automake: false, libtool: false, cmake: false, ninja: false, libpaper: false, graphite2: false, zziplib: false, potrace: false, gmp: false, mpfr: false, "mupdf-headless": false, brotli: false, cairo: false, pixman: false, libxi: false, libxfixes: false, clisp: false, biber: false, woff2: false, xxhash: false, unzip: false, fetchFromGitHub: false, buildPackages: false, zlib: false, libiconv: false, libpng: false, libx11: false, freetype: false, ttfautohint: false, gd: false, libxaw: false, icu: false, libxpm: false, libxmu: false, libxext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["tlpdb", 95, 37]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkgs", 105, 27], ["stdenv", 107, 11], ["lib", 108, 11], ["fetchpatch", 109, 11], ["bin", 110, 11], ["tlpdb", 111, 11], ["tlpdbxz", 112, 11], ["installShellFiles", 113, 11], ["coreutils", 114, 11], ["findutils", 115, 11], ["gawk", 116, 11], ["getopt", 117, 11], ["gettext", 118, 11], ["ghostscript_headless", 119, 11], ["git-latexdiff", 120, 11], ["gnugrep", 121, 11], ["gnumake", 122, 11], ["gnupg", 123, 11], ["gnused", 124, 11], ["gzip", 125, 11], ["html-tidy", 126, 11], ["ncurses", 127, 11], ["perl", 128, 11], ["python3", 129, 11], ["ruby", 130, 11], ["zip", 131, 11], ["luajit", 132, 11], ["texinfo", 133, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["year", 141, 5], ["month", 142, 5], ["day", 143, 5], ["texliveYear", 145, 5], ["final", 147, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["urls", 179, 5], ["hash", 184, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tlpdbxz", 190, 17], ["tl2nix", 191, 9], ["nativeBuildInputs", 192, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["lib", 203, 7], ["fetchurl", 204, 7], ["runCommand", 205, 7], ["writeShellScript", 206, 7], ["bash", 207, 7], ["jre_headless", 208, 7], ["perl", 209, 7], ["python3", 210, 7], ["ruby", 211, 7], ["snobol4", 212, 7], ["tk", 213, 7], ["texliveBinaries", 215, 5]]);
 const formals$2 = { args: { revision: false, extraRevision: true }, ellipsis: true };
-const pos$7 = nix.positions(here + "/default.nix", [["mirrors", 229, 17], ["pname", 229, 25], ["fixedHashes", 230, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["deps", 233, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pkgs", 240, 23], ["tlpdbVersion", 241, 13], ["ghostscript", 242, 5], ["lib", 244, 7], ["buildEnv", 245, 7], ["libfaketime", 246, 7], ["makeFontsConf", 247, 7], ["makeWrapper", 248, 7], ["runCommand", 249, 7], ["toTLPkgSets", 250, 7], ["perl", 251, 7], ["coreutils", 252, 7], ["gawk", 253, 7], ["gnugrep", 254, 7], ["gnused", 255, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["tlDeps", 268, 20]]);
-const pos$11 = nix.positions(here + "/default.nix", [["tlType", 276, 63]]);
-const pos$12 = nix.positions(here + "/default.nix", [["tlType", 278, 54]]);
-const pos$13 = nix.positions(here + "/default.nix", [["tlType", 282, 11]]);
-const pos$14 = nix.positions(here + "/default.nix", [["hasManpages", 284, 44]]);
-const pos$15 = nix.positions(here + "/default.nix", [["tlType", 286, 72]]);
-const pos$16 = nix.positions(here + "/default.nix", [["tlType", 287, 61]]);
-const pos$17 = nix.positions(here + "/default.nix", [["tlType", 288, 57]]);
-const pos$18 = nix.positions(here + "/default.nix", [["out", 290, 5], ["tex", 291, 5], ["texsource", 292, 5], ["texdoc", 293, 5], ["tlpkg", 294, 5]]);
-const pos$19 = nix.positions(here + "/default.nix", [["run", 300, 5], ["doc", 301, 5], ["source", 302, 5], ["bin", 303, 5], ["tlpkg", 304, 5]]);
-const pos$20 = nix.positions(here + "/default.nix", [["outputSpecified", 309, 7], ["tlOutputName", 310, 7]]);
-const pos$21 = nix.positions(here + "/default.nix", [["name", 307, 5], ["value", 308, 5]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$22 = nix.positions(here + "/default.nix", [["pkgs", 323, 41]]);
-const pos$23 = nix.positions(here + "/default.nix", [["pkgs", 328, 23], ["buildTeXEnv", 330, 7], ["lib", 331, 7], ["toTLPkgList", 332, 7]]);
-const pos$24 = nix.positions(here + "/default.nix", [["scheme-basic", 350, 5], ["scheme-bookpub", 364, 5], ["scheme-context", 383, 5], ["scheme-full", 406, 5], ["scheme-gust", 447, 5], ["scheme-infraonly", 475, 5], ["scheme-medium", 479, 5], ["scheme-minimal", 512, 5], ["scheme-small", 525, 5], ["scheme-tetex", 549, 5]]);
-const pos$25 = nix.positions(here + "/default.nix", [["description", 587, 5], ["platforms", 588, 5], ["maintainers", 589, 5], ["license", 593, 5]]);
-const pos$26 = nix.positions(here + "/default.nix", [["__extraName", 613, 11], ["__extraVersion", 614, 11], ["requiredTeXPackages", 616, 11], ["__combine", 618, 11]]);
-const pos$27 = nix.positions(here + "/default.nix", [["message", 624, 32]]);
-const pos$28 = nix.positions(here + "/default.nix", [["removal", 624, 24]]);
-const pos$29 = nix.positions(here + "/default.nix", [["description", 622, 15], ["license", 623, 15], ["problems", 624, 15]]);
-const pos$30 = nix.positions(here + "/default.nix", [["meta", 621, 13]]);
-const pos$31 = nix.positions(here + "/default.nix", [["license", 634, 36]]);
-const pos$32 = nix.positions(here + "/default.nix", [["requiredTeXPackages", 635, 11]]);
-const pos$33 = nix.positions(here + "/default.nix", [["name", 633, 9], ["value", 634, 9]]);
-const pos$34 = nix.positions(here + "/default.nix", [["nix", 659, 5], ["xz", 660, 5]]);
-const pos$35 = nix.positions(here + "/default.nix", [["latexindent", 668, 7], ["pygmentex", 669, 7]]);
-const pos$36 = nix.positions(here + "/default.nix", [["pkgs", 655, 3], ["tlpdb", 657, 3], ["bin", 663, 3], ["combine", 672, 3], ["combined", 676, 3], ["schemes", 680, 11], ["withPackages", 683, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -129,12 +94,12 @@ export default nix.lambda((args) => (() => {
   const libxpm = nix.arg($, "libxpm");
   const libxmu = nix.arg($, "libxmu");
   const libxext = nix.arg($, "libxext");
-  const bin = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bin.nix")), nix.thunk(() => nix.update(args_1, { [nix.POS]: pos$1, tlpdb: overriddenTlpdb }))));
+  const bin = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bin.nix")), nix.thunk(() => nix.update(args_1, { [nix.POS]: $pos[0], tlpdb: overriddenTlpdb }))));
   const tlpdb = nix.thunk(() => nix.builtins.import(nix.path(here, "./tlpdb.nix")));
   const tlpdbVersion = nix.thunk(() => nix.sel(tlpdb, "00texlive.config"));
   const overriddenTlpdb = nix.thunk(() => (() => {
     const overrides = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tlpdb-overrides.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pkgs: nix.thunk(() => nix.attr(texlive, "pkgs")),
         stdenv: stdenv,
         lib: lib,
@@ -167,7 +132,7 @@ export default nix.lambda((args) => (() => {
     return nix.app(overrides, tlpdb);
   })());
   const version = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     year: "2026",
     month: "03",
     day: "01",
@@ -181,19 +146,19 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.str`https://texlive.info/tlnet-archive/${nix.sel(version, "year")}/${nix.sel(version, "month")}/${nix.sel(version, "day")}/tlnet`),
   ])));
   const tlpdbxz = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       urls: nix.thunk(() => nix.builtins.map((up) => nix.str`${up}/tlpkg/texlive.tlpdb.xz`, nix.thunk(() => (nix.asBool(nix.sel(version, "final")) ? nix.force(mirrors) : [nix.thunk(() => nix.app(nix.sel(lib, "last"), mirrors))])))),
       hash: "sha256-Vt8DjpBwo9WH7s613vPxVLLKzM7zbUKVu0ngYYl3w0o=",
     }))));
   const tlpdbNix = nix.thunk(() => nix.app(runCommand, "tlpdb.nix", nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       tlpdbxz: tlpdbxz,
       tl2nix: nix.path(here, "./tl2nix.sed"),
       nativeBuildInputs: nix.thunk(() => [nixfmt]),
     })), "xzcat \"$tlpdbxz\" | sed -rn -f \"$tl2nix\" | uniq | nixfmt > \"$out\"\n"));
   const fixedHashes = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), useFixedHashes, nix.thunk(() => nix.builtins.import(nix.path(here, "./fixed-hashes.nix")))));
   const buildTeXLivePackage = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./build-texlive-package.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       lib: lib,
       fetchurl: fetchurl,
       runCommand: runCommand,
@@ -213,17 +178,17 @@ export default nix.lambda((args) => (() => {
       const revision = nix.arg($_1, "revision");
       const extraRevision = nix.argOr($_1, "extraRevision", () => "");
       return nix.app(buildTeXLivePackage, nix.thunk(() => nix.update(args_3, nix.update({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           mirrors: mirrors,
           pname: pname,
           fixedHashes: nix.thunk(() => nix.selOr(fixedHashes, () => ({}), nix.key(nix.str`${pname}-${nix.builtins.toString(revision)}${extraRevision}`))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_3, "deps")), nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             deps: nix.thunk(() => nix.builtins.map((n) => nix.selOr(texlive, () => nix.sel(bin, nix.key(nix.force(n))), "pkgs", nix.key(nix.force(n))), nix.thunk(() => nix.selOr(args_3, () => [], "deps")))),
           })))))));
     })(), formals$2), overriddenTlpdb));
   const buildTeXEnv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./build-tex-env.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pkgs: nix.thunk(() => nix.attr(texlive, "pkgs")),
       tlpdbVersion: tlpdbVersion,
       ghostscript: ghostscript_headless,
@@ -243,16 +208,16 @@ export default nix.lambda((args) => (() => {
   const toTLPkgList = (drv) => (() => {
     const drvWithoutDeps = nix.thunk(() => nix.builtins.removeAttrs(drv, nix.thunk(() => ["tlDeps"])));
     const drvWithDeps = nix.thunk(() => (nix.asBool(nix.has(drv, "tlDeps")) ? nix.update(drv, {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       tlDeps: nix.thunk(() => (nix.asBool(nix.builtins.isFunction(nix.thunk(() => nix.sel(drv, "tlDeps")))) ? nix.app(nix.sel(drv, "tlDeps"), nix.thunk(() => nix.sel(texlive, "pkgs"))) : nix.sel(drv, "tlDeps"))),
     }) : nix.force(drv)));
     return (nix.asBool(nix.selOr(drv, () => false, "outputSpecified")) ? (() => {
       const tlType = nix.thunk(() => nix.selOr(drv, () => nix.selOr(tlOutToType, () => null, nix.key(nix.selOr(drv, () => nix.sel(drv, "outputName"), "tlOutputName"))), "tlType"));
-      return nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(tlType, null)), nix.thunk(() => nix.update(drvWithDeps, { [nix.POS]: pos$11, tlType: tlType })));
-    })() : nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(drv, "tex")), nix.thunk(() => nix.update(nix.sel(drvWithDeps, "tex"), { [nix.POS]: pos$12, tlType: "run" }))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(drv, "texdoc")), nix.thunk(() => nix.update(nix.sel(drvWithoutDeps, "texdoc"), nix.update({ [nix.POS]: pos$13, tlType: "doc" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(drv, "man")), nix.thunk(() => ({ [nix.POS]: pos$14, hasManpages: true }))))))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(drv, "texsource")), nix.thunk(() => nix.update(nix.sel(drvWithoutDeps, "texsource"), { [nix.POS]: pos$15, tlType: "source" }))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(drv, "tlpkg")), nix.thunk(() => nix.update(nix.sel(drvWithDeps, "tlpkg"), { [nix.POS]: pos$16, tlType: "tlpkg" }))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(drv, "out")), nix.thunk(() => nix.update(nix.sel(drvWithDeps, "out"), { [nix.POS]: pos$17, tlType: "bin" }))))))));
+      return nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(tlType, null)), nix.thunk(() => nix.update(drvWithDeps, { [nix.POS]: $pos[10], tlType: tlType })));
+    })() : nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(drv, "tex")), nix.thunk(() => nix.update(nix.sel(drvWithDeps, "tex"), { [nix.POS]: $pos[11], tlType: "run" }))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(drv, "texdoc")), nix.thunk(() => nix.update(nix.sel(drvWithoutDeps, "texdoc"), nix.update({ [nix.POS]: $pos[12], tlType: "doc" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(drv, "man")), nix.thunk(() => ({ [nix.POS]: $pos[13], hasManpages: true }))))))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(drv, "texsource")), nix.thunk(() => nix.update(nix.sel(drvWithoutDeps, "texsource"), { [nix.POS]: $pos[14], tlType: "source" }))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(drv, "tlpkg")), nix.thunk(() => nix.update(nix.sel(drvWithDeps, "tlpkg"), { [nix.POS]: $pos[15], tlType: "tlpkg" }))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(drv, "out")), nix.thunk(() => nix.update(nix.sel(drvWithDeps, "out"), { [nix.POS]: $pos[16], tlType: "bin" }))))))));
   })();
   const tlOutToType = nix.thunk(() => ({
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     out: "bin",
     tex: "run",
     texsource: "source",
@@ -260,7 +225,7 @@ export default nix.lambda((args) => (() => {
     tlpkg: "tlpkg",
   }));
   const tlTypeToOut = nix.thunk(() => ({
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     run: "tex",
     doc: "texdoc",
     source: "texsource",
@@ -270,11 +235,11 @@ export default nix.lambda((args) => (() => {
   const toSpecifiedNV = (p) => (() => {
     const name = nix.thunk(() => nix.sel(value, "tlOutputName"));
     const value = nix.thunk(() => nix.update(nix.builtins.removeAttrs(p, nix.thunk(() => ["pkgs"])), {
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       outputSpecified: true,
       tlOutputName: nix.thunk(() => nix.sel(tlTypeToOut, nix.key(nix.sel(p, "tlType")))),
     }));
-    return { [nix.POS]: pos$21, name, value };
+    return { [nix.POS]: $pos[20], name, value };
   })();
   const toTLPkgSet = (pname) => (drvs) => (() => {
     const set = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map(toSpecifiedNV, drvs))));
@@ -286,9 +251,9 @@ export default nix.lambda((args) => (() => {
     const pkgs = nix.arg($_1, "pkgs");
     return nix.app(nix.sel(lib, "mapAttrsToList"), toTLPkgSet, nix.thunk(() => nix.app(nix.sel(lib, "groupBy"), (p) => nix.sel(p, "pname"), pkgs)));
   })(), formals$3);
-  const allPkgLists = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (drv) => ({ [nix.POS]: pos$22, pkgs: nix.thunk(() => nix.app(toTLPkgList, drv)) }), tl));
+  const allPkgLists = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (drv) => ({ [nix.POS]: $pos[21], pkgs: nix.thunk(() => nix.app(toTLPkgList, drv)) }), tl));
   const combine = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./combine-wrapper.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       pkgs: nix.thunk(() => nix.attr(texlive, "pkgs")),
       buildTeXEnv: buildTeXEnv,
       lib: lib,
@@ -298,7 +263,7 @@ export default nix.lambda((args) => (() => {
   const licenses = nix.thunk(() => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
     return {
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       "scheme-basic": nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "cc-by-sa-40")),
         nix.thunk(() => nix.lookup(w, "free")),
@@ -536,7 +501,7 @@ export default nix.lambda((args) => (() => {
     };
   })());
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$25,
+    [nix.POS]: $pos[24],
     description: "TeX Live environment",
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
     maintainers: nix.thunk(() => (() => {
@@ -560,34 +525,34 @@ export default nix.lambda((args) => (() => {
         "scheme-small",
         "scheme-tetex",
       ]), (pname) => nix.app(nix.sel(nix.app(buildTeXEnv, nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           __extraName: nix.thunk(() => nix.add("combined", nix.app(nix.sel(lib, "removePrefix"), "scheme", pname))),
           __extraVersion: nix.thunk(() => (nix.asBool(nix.sel(version, "final")) ? "-final" : nix.str`.${nix.sel(version, "year")}${nix.sel(version, "month")}${nix.sel(version, "day")}`)),
           requiredTeXPackages: (ps) => [nix.thunk(() => nix.sel(ps, nix.key(nix.force(pname))))],
           __combine: true,
         }))), "overrideAttrs"), nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           meta: nix.thunk(() => nix.update(meta, {
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             description: nix.thunk(() => nix.str`TeX Live environment for ${pname}`),
             license: nix.thunk(() => nix.sel(licenses, nix.key(nix.force(pname)))),
             problems: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               removal: nix.thunk(() => ({
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 message: "texlive.combined schemes are deprecated and will be removed from Nixpkgs 27.05. Please switch to texliveSmall or another top level scheme.",
               })),
             })),
           })),
         })))))));
   const schemes = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((s) => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         name: nix.thunk(() => nix.add("texlive", s)),
         value: nix.thunk(() => nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$31,
+            [nix.POS]: $pos[30],
             license: nix.thunk(() => nix.sel(licenses, nix.key(nix.add("scheme-", nix.app(nix.sel(lib, "toLower"), s))))),
           })), nix.thunk(() => nix.app(buildTeXEnv, nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               requiredTeXPackages: (ps) => [
                 nix.thunk(() => nix.sel(ps, nix.key(nix.add("scheme-", nix.app(nix.sel(lib, "toLower"), s))))),
               ],
@@ -605,13 +570,13 @@ export default nix.lambda((args) => (() => {
         "TeTeX",
       ])))));
   return nix.update(allPkgLists, {
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     pkgs: tl,
-    tlpdb: nix.thunk(() => ({ [nix.POS]: pos$34, nix: tlpdbNix, xz: tlpdbxz })),
+    tlpdb: nix.thunk(() => ({ [nix.POS]: $pos[33], nix: tlpdbNix, xz: tlpdbxz })),
     bin: nix.thunk(() => (() => {
       nix.assert_(assertions, "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/tools/typesetting/tex/texlive/default.nix:664:5");
       return nix.update(bin, {
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         latexindent: nix.thunk(() => nix.sel(texlive, "pkgs", "latexindent")),
         pygmentex: nix.thunk(() => nix.sel(texlive, "pkgs", "pygmentex")),
       });

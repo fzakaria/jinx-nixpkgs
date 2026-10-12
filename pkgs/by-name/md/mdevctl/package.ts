@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]], [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 20, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["doInstallCheck", 32, 3], ["postInstall", 34, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, docutils: false, installShellFiles: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 20, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["doInstallCheck", 32, 3], ["postInstall", 34, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mdevctl",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Zh+Dj3X87tTpqT/weZMpf7f3obqikjPy9pi50ifp6wQ=",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "ln -s mdevctl $out/bin/lsmdev\n\ninstall -Dm444 60-mdevctl.rules -t $out/lib/udev/rules.d\n\ninstallManPage $releaseDir/build/mdevctl-*/out/mdevctl.8\nln -s mdevctl.8 $out/share/man/man8/lsmdev.8\n\ninstallShellCompletion $releaseDir/build/mdevctl-*/out/{lsmdev,mdevctl}.bash\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mdevctl/mdevctl",
         description: "Mediated device management utility for linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

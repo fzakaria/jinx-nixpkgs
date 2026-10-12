@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["capnproto", 37, 50]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["build-system", 40, 3], ["buildInputs", 47, 3], ["nativeCheckInputs", 49, 3], ["__darwinAllowLocalNetworking", 53, 3], ["preCheck", 55, 3], ["postCheck", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, replaceVars: false, fetchFromGitHub: false, setuptools: false, wheel: false, capnproto: false, cython: false, pkgconfig: false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["capnproto", 37, 50]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["build-system", 40, 3], ["buildInputs", 47, 3], ["nativeCheckInputs", 49, 3], ["__darwinAllowLocalNetworking", 53, 3], ["preCheck", 55, 3], ["postCheck", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "capnproto",
           repo: "pycapnp",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-WM0DR1lTlgsKpTU8QlquL0RhrqPU/cUQav6p8EP7x9o=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./include-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, capnproto: capnproto })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./include-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], capnproto: capnproto })))),
       ]);
       const build_system = nix.thunk(() => [setuptools, wheel, cython, pkgconfig]);
       const buildInputs = nix.thunk(() => [capnproto]);
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "enabledTestPaths=$PWD/test\npushd \"$out\"\n";
       const postCheck = "popd\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cython wrapping of the C++ Cap'n Proto library",
         homepage: "https://capnproto.github.io/pycapnp/",
         changelog: nix.thunk(() => nix.str`https://github.com/capnproto/pycapnp/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

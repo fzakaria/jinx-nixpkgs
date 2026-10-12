@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 32, 5], ["license", 33, 5], ["homepage", 34, 5], ["teams", 35, 5]], [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["duneVersion", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, xenstore: false, lwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 32, 5], ["license", 33, 5], ["homepage", 34, 5], ["teams", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["duneVersion", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const minimalOCamlVersion = "4.08";
       const duneVersion = "3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xapi-project",
           repo: "ocaml-xenstore-clients",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [xenstore, lwt]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Low-level libraries for connecting to a xenstore service on a xen host",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         homepage: "https://github.com/xapi-project/ocaml-xenstore-clients",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "xen"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         minimalOCamlVersion,

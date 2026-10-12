@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["sha256", 26, 5]], [["homepage", 59, 5], ["description", 60, 5], ["longDescription", 62, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["strictDeps", 46, 3], ["configureFlags", 48, 3], ["postInstall", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, bash: false, coreutils: false, diffstat: false, diffutils: false, findutils: false, gawk: false, gnugrep: false, gnused: false, patch: false, perl: false, unixtools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["longDescription", 62, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["strictDeps", 46, 3], ["configureFlags", 48, 3], ["postInstall", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const unixtools = nix.arg($, "unixtools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "quilt",
       version: "0.69",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/quilt/quilt-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-VV3f/eIto8htHK9anB+4oVKsK4RzBDe9OcwIhJyfSFI=",
         })))),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/quilt --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://savannah.nongnu.org/projects/quilt",
         description: "Easily manage large numbers of patches",
         longDescription: "Quilt allows you to easily manage large numbers of\npatches by keeping track of the changes each patch\nmakes. Patches can be applied, un-applied, refreshed,\nand more.\n",

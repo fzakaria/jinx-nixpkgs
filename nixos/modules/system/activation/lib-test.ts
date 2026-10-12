@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lib-test.nix", [[["name", 11, 5], ["src", 12, 5], ["buildPhase", 13, 5], ["doCheck", 14, 5], ["postUnpack", 15, 5], ["checkPhase", 18, 5], ["installPhase", 21, 5]], [["name", 27, 5], ["src", 28, 5]], [["runTests", 33, 11], ["runShellcheck", 33, 20]]]);
 const formals$1 = { args: { lib: false, stdenv: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lib-test.nix", [["name", 11, 5], ["src", 12, 5], ["buildPhase", 13, 5], ["doCheck", 14, 5], ["postUnpack", 15, 5], ["checkPhase", 18, 5], ["installPhase", 21, 5]]);
-const pos$2 = nix.positions(here + "/lib-test.nix", [["name", 27, 5], ["src", 28, 5]]);
-const pos$3 = nix.positions(here + "/lib-test.nix", [["runTests", 33, 11], ["runShellcheck", 33, 20]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   const runTests = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "tests-activation-lib",
       src: nix.path(here, "./lib"),
       buildPhase: ":",
@@ -23,10 +21,10 @@ export default nix.lambda((args) => (() => {
       installPhase: "touch $out\n",
     }))));
   const runShellcheck = nix.thunk(() => nix.app(nix.sel(testers, "shellcheck"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "activation-lib",
       src: nix.thunk(() => nix.sel(runTests, "src")),
     }))));
-  return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, runTests: runTests, runShellcheck: runShellcheck })));
+  return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], runTests: runTests, runShellcheck: runShellcheck })));
 })(), formals$1);
 //# sourceMappingURL=lib-test.ts.map

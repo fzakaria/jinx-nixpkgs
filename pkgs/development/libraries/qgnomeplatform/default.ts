@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]], [["gds_gsettings_path", 40, 7]], [["updateScript", 84, 5]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 56, 3], ["dontWrapQtApps", 70, 3], ["cmakeFlags", 72, 3], ["passthru", 83, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, "pkg-config": false, "adwaita-qt": false, "adwaita-qt6": false, glib: false, gtk3: false, qt5: false, qt6: false, replaceVars: false, "gsettings-desktop-schemas": false, useQt6: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gds_gsettings_path", 40, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 84, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 56, 3], ["dontWrapQtApps", 70, 3], ["cmakeFlags", 72, 3], ["passthru", 83, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qgnomeplatform";
       const version = "0.8.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FedoraQt",
           repo: "QGnomePlatform",
           rev: version,
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-gsettings.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             gds_gsettings_path: nix.thunk(() => nix.app(nix.sel(glib, "getSchemaPath"), gsettings_desktop_schemas)),
           })))),
         nix.path(here, "./qt6-cursor-fix.patch"),
@@ -56,11 +52,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_POLICY_VERSION_MINIMUM", "3.31")),
       ], nix.app(nix.sel(lib, "optionals"), useQt6, nix.thunk(() => ["-DUSE_QT6=true"]))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "QPlatformTheme for a better Qt application inclusion in GNOME",
         homepage: "https://github.com/FedoraQt/QGnomePlatform",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -68,7 +64,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

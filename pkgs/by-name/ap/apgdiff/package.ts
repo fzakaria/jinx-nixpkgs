@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sparseCheckout", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 24], ["maintainers", 45, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 21, 3], ["mvnHash", 26, 3], ["nativeBuildInputs", 28, 3], ["installPhase", 30, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, maven: false, fetchFromGitHub: false, jre: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sparseCheckout", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 24], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 21, 3], ["mvnHash", 26, 3], ["nativeBuildInputs", 28, 3], ["installPhase", 30, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "apgdiff";
       const version = "2.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sparseCheckout: nix.thunk(() => ["src"]),
           owner: "fordfrog",
           repo: "apgdiff",
@@ -40,7 +38,7 @@ makeWrapper ${jre}/bin/java $out/bin/apgdiff \\
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Another PostgreSQL diff tool",
         mainProgram: "apgdiff",
         homepage: "https://apgdiff.com",
@@ -50,7 +48,7 @@ makeWrapper ${jre}/bin/java $out/bin/apgdiff \\
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

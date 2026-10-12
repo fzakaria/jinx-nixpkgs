@@ -2,13 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["broken", 70, 9], ["platforms", 71, 9]], [["homepage", 74, 9]], [["name", 35, 7], ["unpackCmd", 37, 7], ["packageRequires", 54, 15], ["buildInputs", 55, 7], ["nativeBuildInputs", 56, 7], ["propagatedBuildInputs", 61, 7], ["propagatedUserEnvPkgs", 62, 7], ["strictDeps", 64, 7], ["__structuredAttrs", 65, 7], ["turnCompilationWarningToError", 67, 15], ["ignoreCompilationError", 67, 45], ["meta", 69, 7]], [["addEmacsNativeLoadPath", 81, 7], ["postInstall", 83, 7]], [["constructDrv", 17, 3], ["extendDrvArgs", 18, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, emacs: false, texinfo: false }, ellipsis: true };
 const formals$2 = { args: { buildInputs: true, nativeBuildInputs: true, packageRequires: true, propagatedBuildInputs: true, propagatedUserEnvPkgs: true, postInstall: true, meta: true, turnCompilationWarningToError: true, ignoreCompilationError: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/generic.nix", [["broken", 70, 9], ["platforms", 71, 9]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["homepage", 74, 9]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["name", 35, 7], ["unpackCmd", 37, 7], ["packageRequires", 54, 15], ["buildInputs", 55, 7], ["nativeBuildInputs", 56, 7], ["propagatedBuildInputs", 61, 7], ["propagatedUserEnvPkgs", 62, 7], ["strictDeps", 64, 7], ["__structuredAttrs", 65, 7], ["turnCompilationWarningToError", 67, 15], ["ignoreCompilationError", 67, 45], ["meta", 69, 7]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["addEmacsNativeLoadPath", 81, 7], ["postInstall", 83, 7]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["constructDrv", 17, 3], ["extendDrvArgs", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const optionalAttrs = nix.thunk(() => nix.attr(lib, "optionalAttrs"));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
         const turnCompilationWarningToError = nix.argOr($_1, "turnCompilationWarningToError", () => false);
         const ignoreCompilationError = nix.argOr($_1, "ignoreCompilationError", () => false);
         return nix.update({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: nix.thunk(() => nix.selOr(args_2, () => nix.str`emacs-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`, "name")),
           unpackCmd: nix.thunk(() => nix.selOr(args_2, () => "case \"$curSrc\" in\n  *.el)\n    # keep original source filename without the hash\n    local filename=$(basename \"$curSrc\")\n    filename=\"${filename:33}\"\n    cp $curSrc $filename\n    chmod +w $filename\n    sourceRoot=\".\"\n    ;;\n  *)\n    _defaultUnpack \"$curSrc\"\n    ;;\nesac\n", "unpackCmd")),
           packageRequires: packageRequires,
@@ -46,15 +42,15 @@ export default nix.lambda((args) => (() => {
           turnCompilationWarningToError: turnCompilationWarningToError,
           ignoreCompilationError: ignoreCompilationError,
           meta: nix.thunk(() => nix.update({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             broken: false,
             platforms: nix.thunk(() => nix.sel(emacs, "meta", "platforms")),
           }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.selOr(args_2, () => "", "src", "meta", "homepage"), "")), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               homepage: nix.thunk(() => nix.sel(args_2, "src", "meta", "homepage")),
             }))), meta))),
         }, nix.app(optionalAttrs, nix.thunk(() => nix.selOr(emacs, () => false, "withNativeCompilation")), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             addEmacsNativeLoadPath: nix.thunk(() => nix.selOr(args_2, () => true, "addEmacsNativeLoadPath")),
             postInstall: nix.thunk(() => nix.add(nix.str`# Besides adding the output directory to the native load path, make sure
 # the current package's elisp files are in the load path, otherwise

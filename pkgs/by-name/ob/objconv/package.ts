@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["outputs", 20, 3], ["unpackPhase", 25, 3], ["buildPhase", 32, 3], ["installPhase", 34, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["outputs", 20, 3], ["unpackPhase", 25, 3], ["buildPhase", 32, 3], ["installPhase", 34, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "objconv",
       version: "2.54.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://archive.org/download/objconv/objconv-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-DFyo+8fvHEr+PMfMkBhxGliFr6y+i868SAKNHskMzHw=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "c++ -o objconv -O2 *.cpp",
       installPhase: "mkdir -p $out/bin $out/doc/objconv\nmv objconv $out/bin\nmv objconv-instructions.pdf $out/doc/objconv\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Object and executable file converter, modifier and disassembler",
         mainProgram: "objconv",
         homepage: "https://www.agner.org/optimize/",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/guest-server.nix", [[["CGO_ENABLED", 11, 7]], [["env", 10, 5]], [["go", 15, 34]], [["GOOS", 22, 5], ["GOARCH", 23, 5], ["PACKAGE", 24, 5]], [["mainProgram", 35, 5], ["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 44, 5]], [["version", 16, 21], ["src", 16, 29], ["modRoot", 17, 3], ["pname", 18, 3], ["vendorHash", 19, 3], ["env", 21, 3], ["ldflags", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, buildPackages: false, winboat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/guest-server.nix", [["CGO_ENABLED", 11, 7]]);
-const pos$2 = nix.positions(here + "/guest-server.nix", [["env", 10, 5]]);
-const pos$3 = nix.positions(here + "/guest-server.nix", [["go", 15, 34]]);
-const pos$4 = nix.positions(here + "/guest-server.nix", [["GOOS", 22, 5], ["GOARCH", 23, 5], ["PACKAGE", 24, 5]]);
-const pos$5 = nix.positions(here + "/guest-server.nix", [["mainProgram", 35, 5], ["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 44, 5]]);
-const pos$6 = nix.positions(here + "/guest-server.nix", [["version", 16, 21], ["src", 16, 29], ["modRoot", 17, 3], ["pname", 18, 3], ["vendorHash", 19, 3], ["env", 21, 3], ["ldflags", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const winboat = nix.arg($, "winboat");
   const go = nix.thunk(() => nix.app(nix.sel(buildPackages, "go", "overrideAttrs"), (previousAttrs) => ({
-      [nix.POS]: pos$2,
-      env: nix.thunk(() => nix.update(nix.sel(previousAttrs, "env"), { [nix.POS]: pos$1, CGO_ENABLED: 0n })),
+      [nix.POS]: $pos[1],
+      env: nix.thunk(() => nix.update(nix.sel(previousAttrs, "env"), { [nix.POS]: $pos[0], CGO_ENABLED: 0n })),
     })));
-  return nix.app(nix.sel(buildGoModule, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, go: go })), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+  return nix.app(nix.sel(buildGoModule, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], go: go })), nix.thunk(() => ({
+      [nix.POS]: $pos[5],
       version: nix.thunk(() => nix.attr(winboat, "version")),
       src: nix.thunk(() => nix.attr(winboat, "src")),
       modRoot: "guest_server",
       pname: "winboat-guest-server",
       vendorHash: "sha256-vpBvSaqbbJ8sHNMm299z/3Qb7FKMWbr62amtKT3acYk=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         GOOS: "windows",
         GOARCH: "amd64",
         PACKAGE: "winboat-server",
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X main.CommitHash=${nix.sel(winboat, "src", "rev")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         mainProgram: "winboat-server.exe",
         description: "Guest server for winboat",
         homepage: "https://github.com/TibixDev/winboat",

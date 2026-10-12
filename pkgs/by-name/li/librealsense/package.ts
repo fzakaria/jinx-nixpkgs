@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["package", 193, 48]], [["moduleNames", 195, 7], ["package", 196, 7]], [["pkg-config", 193, 5], ["cmake-config", 194, 5]], [["tests", 192, 12]], [["description", 201, 5], ["homepage", 202, 5], ["changelog", 203, 5], ["license", 204, 5], ["maintainers", 205, 5], ["pkgConfigModules", 209, 5], ["platforms", 210, 5], ["mainProgram", 211, 5]], [["pname", 40, 3], ["version", 41, 3], ["strictDeps", 43, 3], ["__structuredAttrs", 44, 3], ["outputs", 46, 3], ["src", 51, 3], ["buildInputs", 58, 3], ["patches", 84, 3], ["postPatch", 91, 3], ["nativeBuildInputs", 99, 3], ["cmakeFlags", 109, 3], ["postInstall", 126, 3], ["passthru", 192, 3], ["meta", 200, 3]]]);
 const formals$1 = { args: { stdenv: false, config: false, coreutils: false, lib: false, fetchFromGitHub: false, runtimeShell: false, cmake: false, gnugrep: false, gawk: false, libusb1: false, nlohmann_json: false, ninja: false, makeWrapper: false, "pkg-config": false, gcc: false, libgbm: false, gtk3: false, glfw: false, libGLU: false, curl: false, "v4l-utils": false, testers: false, cudaSupport: true, cudaPackages: true, enablePython: true, pythonPackages: true, enableExamples: true, enableGUI: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 193, 48]]);
-const pos$3 = nix.positions(here + "/package.nix", [["moduleNames", 195, 7], ["package", 196, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 193, 5], ["cmake-config", 194, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 192, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 201, 5], ["homepage", 202, 5], ["changelog", 203, 5], ["license", 204, 5], ["maintainers", 205, 5], ["pkgConfigModules", 209, 5], ["platforms", 210, 5], ["mainProgram", 211, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["strictDeps", 43, 3], ["__structuredAttrs", 44, 3], ["outputs", 46, 3], ["src", 51, 3], ["buildInputs", 58, 3], ["patches", 84, 3], ["postPatch", 91, 3], ["nativeBuildInputs", 99, 3], ["cmakeFlags", 109, 3], ["postInstall", 126, 3], ["passthru", 192, 3], ["meta", 200, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,14 +39,14 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(enableGUI) || nix.asBool(enableExamples)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/librealsense/package.nix:33:1");
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "librealsense",
       version: "2.57.7",
       strictDeps: true,
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "realsenseai",
           repo: "librealsense",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -134,22 +128,22 @@ substituteInPlace $out/lib/cmake/realsense2/realsense2Targets.cmake \\
 `, nix.app(nix.sel(lib, "optionalString"), enablePython, nix.thunk(() => nix.str`cp ../wrappers/python/pyrealsense2/__init__.py $out/${nix.sel(pythonPackages, "python", "sitePackages")}/pyrealsense2
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               moduleNames: nix.thunk(() => ["realsense2"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Cross-platform library for Intel® RealSense™ depth cameras (D400 series and the SR300)",
         homepage: "https://github.com/realsenseai/librealsense",
         changelog: nix.thunk(() => nix.str`https://github.com/realsenseai/librealsense/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

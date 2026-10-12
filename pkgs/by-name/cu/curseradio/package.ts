@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["mpv", 33, 15]], [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["version", 10, 3], ["pyproject", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 25, 3], ["patches", 31, 3], ["doCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, replaceVars: false, python3Packages: false, mpv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mpv", 33, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pyproject", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 25, 3], ["patches", 31, 3], ["doCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const mpv = nix.arg($, "mpv");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "0.2",
       pyproject: true,
       pname: "curseradio",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chronitis",
           repo: "curseradio",
           rev: "1bd4bd0faeec675e0647bac9a100b526cba19f8d",
@@ -40,11 +37,11 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mpv.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, mpv: mpv })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mpv.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], mpv: mpv })))),
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command line radio player",
         mainProgram: "curseradio",
         homepage: "https://github.com/chronitis/curseradio",

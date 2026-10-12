@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["postInstall", 41, 3], ["doCheck", 47, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["postInstall", 41, 3], ["doCheck", 47, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mjmunger",
           repo: "pwgen_secure",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +43,7 @@ substituteInPlace pwgen_secure/rpg.py \\
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pwgen_secure"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Secure password generation library to replace pwgen",
         homepage: "https://github.com/mjmunger/pwgen_secure/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -56,7 +54,7 @@ substituteInPlace pwgen_secure/rpg.py \\
         mainProgram: "spwgen",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

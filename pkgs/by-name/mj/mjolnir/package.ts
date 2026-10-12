@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["yarnLock", 32, 5], ["hash", 33, 5]], [["mjolnir", 56, 28]], [["tests", 55, 5]], [["description", 61, 5], ["homepage", 62, 5], ["longDescription", 63, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["offlineCache", 31, 3], ["nativeBuildInputs", 36, 3], ["postInstall", 44, 3], ["passthru", 54, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, yarnConfigHook: false, yarnBuildHook: false, yarnInstallHook: false, nodejs_22: false, fetchFromGitHub: false, fetchYarnDeps: false, "matrix-sdk-crypto-nodejs": false, makeWrapper: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mjolnir", 56, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["longDescription", 63, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["offlineCache", 31, 3], ["nativeBuildInputs", 36, 3], ["postInstall", 44, 3], ["passthru", 54, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mjolnir",
       version: "1.12.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "matrix-org",
           repo: "mjolnir",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./001-disable-nsfwprotection.patch")]),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-M4gsuzSxKOIDPL4J2HnveRDjviB0RPBmLVYBlTVz788=",
         })))),
@@ -50,11 +45,14 @@ makeWrapper ${nodejs_22}/bin/node "$out/bin/mjolnir" \\
   --add-flags "$out/lib/node_modules/mjolnir/lib/index.js"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, mjolnir: nix.thunk(() => nix.attr(nixosTests, "mjolnir")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          mjolnir: nix.thunk(() => nix.attr(nixosTests, "mjolnir")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Moderation tool for Matrix",
         homepage: "https://github.com/matrix-org/mjolnir",
         longDescription: "As an all-in-one moderation tool, it can protect your server from\nmalicious invites, spam messages, and whatever else you don't want.\nIn addition to server-level protection, Mjolnir is great for communities\nwanting to protect their rooms without having to use their personal\naccounts for moderation.\n\nThe bot by default includes support for bans, redactions, anti-spam,\nserver ACLs, room directory changes, room alias transfers, account\ndeactivation, room shutdown, and more.\n\nA Synapse module is also available to apply the same rulesets the bot\nuses across an entire homeserver.\n",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["pname", 25, 13], ["version", 25, 19], ["src", 25, 27], ["hash", 26, 5]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["platforms", 45, 5], ["license", 46, 5], ["maintainers", 52, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["cargoDeps", 24, 3], ["nativeBuildInputs", 29, 3], ["checkInputs", 35, 3], ["buildInputs", 37, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPythonPackage: false, rustPlatform: false, pytestCheckHook: false, libiconv: false, vectorscan: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 25, 13], ["version", 25, 19], ["src", 25, 27], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["platforms", 45, 5], ["license", 46, 5], ["maintainers", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["cargoDeps", 24, 3], ["nativeBuildInputs", 29, 3], ["checkInputs", 35, 3], ["buildInputs", 37, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +20,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vlaci",
           repo: "pyperscan",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-uGZ0XFxnZHSLEWcwoHVd+xMulDRqEIrQ5Lf7886GdlM=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.concat([vectorscan], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libiconv)));
       const pythonImportsCheck = nix.thunk(() => ["pyperscan"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Hyperscan binding for Python, which supports vectorscan",
         homepage: "https://vlaci.github.io/pyperscan/",
         changelog: nix.thunk(() => nix.str`https://github.com/vlaci/pyperscan/releases/tag/${nix.sel(src, "rev")}`),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

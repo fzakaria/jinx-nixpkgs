@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["1.21.1", 22, 9], ["1.20.1", 23, 9]], [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5]], [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["configurePhase", 29, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 35, 3], ["doCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, ocaml: false, fetchFromGitHub: false, zlib: false, "dune-configurator": false, zarith: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["1.21.1", 22, 9], ["1.20.1", 23, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["configurePhase", 29, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 35, 3], ["doCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const zarith = nix.arg($, "zarith");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.13")) ? "1.21.1" : "1.20.1"));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cryptokit",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "xavierleroy",
           repo: "cryptokit",
           tag: nix.thunk(() => nix.str`release${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "1.21.1": "sha256-9JU9grZpTTrYYO9gai2UPq119HfenI1JAY+EyoR6x7Q=",
             "1.20.1": "sha256-VFY10jGctQfIUVv7dK06KP8zLZHLXTxvLyTCObS+W+E=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [zarith, zlib]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://pauillac.inria.fr/~xleroy/software.html",
         description: "Library of cryptographic primitives for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/2.26.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 20, 3], ["buildPhase", 26, 3], ["installPhase", 31, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, texinfo: false, texLive: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/2.26.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/2.26.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/2.26.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 20, 3], ["buildPhase", 26, 3], ["installPhase", 31, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "asdf";
       const version = "2.26";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://common-lisp.net/project/asdf/archives/asdf-${version}.tar.gz`),
           sha256: "sha256-tuUuIlZcS+a0izXeJl3Ckp+/PYAWkZ0+Cw7blwkh9+M=",
         }))));
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "make asdf.lisp\nmkdir build\nln -s ../asdf.lisp build\n";
       const installPhase = "mkdir -p \"$out\"/lib/common-lisp/asdf/\nmkdir -p \"$out\"/share/doc/asdf/\ncp -r ./* \"$out\"/lib/common-lisp/asdf/\ncp -r doc/* \"$out\"/share/doc/asdf/\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Standard software-system definition library for Common Lisp",
         homepage: "https://asdf.common-lisp.dev/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

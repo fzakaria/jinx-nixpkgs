@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 8, 3], ["version", 9, 3], ["build", 10, 3], ["src", 12, 3], ["dontConfigure", 17, 3], ["dontBuild", 18, 3], ["installPhase", 20, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["build", 10, 3], ["src", 12, 3], ["dontConfigure", 17, 3], ["dontBuild", 18, 3], ["installPhase", 20, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.15.0";
       const build = "06fdc8";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://kasm-static-content.s3.amazonaws.com/kasm_release_${version}.${build}.tar.gz`),
           sha256: "sha256-7z5lc4QEpQQdVGMEMc04wXlJTK5VXJ4rufZmDEflJLw=",
         }))));
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "runHook preInstall\n\nmkdir $out\nrm bin/utils/yq*\ncp -r bin conf www $out/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.kasmweb.com/",
         description: "Streaming containerized apps and desktops to end-users",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         build,

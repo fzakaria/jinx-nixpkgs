@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 15], ["repo", 47, 15], ["rev", 48, 15], ["hash", 49, 23]], [["version", 44, 21], ["vendorHash", 44, 29], ["src", 45, 13]], [["buildGoModule", 39, 7]], [["x86_64-linux", 73, 7], ["aarch64-linux", 74, 7], ["aarch64-darwin", 75, 7]], [["owner", 102, 5], ["repo", 103, 5], ["rev", 104, 5], ["fetchSubmodules", 105, 5], ["hash", 106, 5]], [["FORCE_EMPTY_CACHE", 121, 11], ["FORCE_GIT_DEPS", 122, 11], ["npm_config_progress", 123, 11], ["npm_config_cafile", 124, 11]], [["src", 112, 30], ["nativeBuildInputs", 113, 9], ["outputHashMode", 117, 9], ["outputHashAlgo", 118, 9], ["outputHash", 119, 9], ["env", 120, 9]], [["NODE_OPTIONS", 199, 5], ["NODE_ENV", 200, 5], ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 201, 5], ["ELECTRON_SKIP_BINARY_DOWNLOAD", 202, 5], ["NIX_NODEJS_BUILDNPMPACKAGE", 203, 5], ["npm_config_nodedir", 204, 5], ["npm_config_node_gyp", 205, 5], ["npm_config_offline", 206, 5], ["npm_config_progress", 207, 5], ["forceGitDeps", 208, 5]], [["outputHash", 348, 7]], [["code-server", 351, 28]], [["prefetchNodeModules", 347, 5], ["tests", 350, 5], ["executableName", 354, 5], ["longName", 355, 5]], [["changelog", 359, 5], ["description", 360, 5], ["longDescription", 361, 5], ["homepage", 365, 5], ["license", 366, 5], ["maintainers", 367, 5], ["platforms", 371, 5], ["mainProgram", 376, 5]], [["pname", 98, 3], ["version", 99, 3], ["src", 101, 3], ["nodeModules", 109, 3], ["nativeBuildInputs", 139, 3], ["buildInputs", 152, 3], ["patches", 165, 3], ["postPatch", 175, 3], ["env", 198, 3], ["preConfigure", 211, 3], ["configurePhase", 218, 3], ["buildPhase", 244, 3], ["installPhase", 331, 3], ["passthru", 346, 3], ["meta", 358, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildGoModule: false, makeWrapper: false, cacert: false, moreutils: false, jq: false, git: false, rsync: false, "pkg-config": false, runCommand: false, python3: false, esbuild: false, nodejs_24: false, "node-gyp": false, "npm-lockfile-fix": false, libsecret: false, libkrb5: false, libx11: false, libxkbfile: false, ripgrep: false, cctools: false, xcbuild: false, quilt: false, nixosTests: false, "prefetch-npm-deps": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 15], ["repo", 47, 15], ["rev", 48, 15], ["hash", 49, 23]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 44, 21], ["vendorHash", 44, 29], ["src", 45, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["buildGoModule", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 73, 7], ["aarch64-linux", 74, 7], ["aarch64-darwin", 75, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 102, 5], ["repo", 103, 5], ["rev", 104, 5], ["fetchSubmodules", 105, 5], ["hash", 106, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["FORCE_EMPTY_CACHE", 121, 11], ["FORCE_GIT_DEPS", 122, 11], ["npm_config_progress", 123, 11], ["npm_config_cafile", 124, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["src", 112, 30], ["nativeBuildInputs", 113, 9], ["outputHashMode", 117, 9], ["outputHashAlgo", 118, 9], ["outputHash", 119, 9], ["env", 120, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["NODE_OPTIONS", 199, 5], ["NODE_ENV", 200, 5], ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 201, 5], ["ELECTRON_SKIP_BINARY_DOWNLOAD", 202, 5], ["NIX_NODEJS_BUILDNPMPACKAGE", 203, 5], ["npm_config_nodedir", 204, 5], ["npm_config_node_gyp", 205, 5], ["npm_config_offline", 206, 5], ["npm_config_progress", 207, 5], ["forceGitDeps", 208, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["outputHash", 348, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["code-server", 351, 28]]);
-const pos$11 = nix.positions(here + "/package.nix", [["prefetchNodeModules", 347, 5], ["tests", 350, 5], ["executableName", 354, 5], ["longName", 355, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["changelog", 359, 5], ["description", 360, 5], ["longDescription", 361, 5], ["homepage", 365, 5], ["license", 366, 5], ["maintainers", 367, 5], ["platforms", 371, 5], ["mainProgram", 376, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 98, 3], ["version", 99, 3], ["src", 101, 3], ["nodeModules", 109, 3], ["nativeBuildInputs", 139, 3], ["buildInputs", 152, 3], ["patches", 165, 3], ["postPatch", 175, 3], ["env", 198, 3], ["preConfigure", 211, 3], ["configurePhase", 218, 3], ["buildPhase", 244, 3], ["installPhase", 331, 3], ["passthru", 346, 3], ["meta", 358, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const nodejs = nodejs_24;
   const esbuildFor = (version) => (hash) => (vendorHash) => nix.app(nix.sel(esbuild, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       buildGoModule: (args_1) => nix.app(buildGoModule, nix.thunk(() => nix.update(args_1, {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: version,
           vendorHash: vendorHash,
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "evanw",
               repo: "esbuild",
               rev: nix.thunk(() => nix.str`v${version}`),
@@ -70,18 +58,18 @@ jq "del(.scripts.postinstall)" ${path}/node_modules/esbuild/package.json | spong
 ln -s -f ${nix.app(nix.sel(lib, "getExe"), esbuildPackage)} ${path}/node_modules/esbuild/bin/esbuild
 `;
   const vscodeTarget = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": "linux-x64",
     "aarch64-linux": "linux-arm64",
     "aarch64-darwin": "darwin-arm64",
   }, nix.key(nix.force(system))));
   const commit = "88c2b7432e938f6918f21ff8d9dbfc641cd933d0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "code-server",
       version: "4.134.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "coder",
           repo: "code-server",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -89,14 +77,14 @@ ln -s -f ${nix.app(nix.sel(lib, "getExe"), esbuildPackage)} ${path}/node_modules
           hash: "sha256-wPTFYCZiUXHTbQiDFlT+VA3c6CITDju8L6tJrV78UZ8=",
         })))),
       nodeModules: nix.thunk(() => nix.app(runCommand, "code-server-node-modules", nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(finalAttrs, "nativeBuildInputs"), [npm_lockfile_fix, prefetch_npm_deps])),
           outputHashMode: "recursive",
           outputHashAlgo: "sha256",
           outputHash: "sha256-uCoYvSWOxGJ168sQk0ORVNUYrCX0WL4KF6rbPsp8LVE=",
           env: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             FORCE_EMPTY_CACHE: true,
             FORCE_GIT_DEPS: true,
             npm_config_progress: false,
@@ -143,7 +131,7 @@ substituteInPlace ./lib/vscode/build/npm/postinstall.ts \\
     "try { child_process.execSync('git config blame.ignoreRevsFile .git-blame-ignore-revs'); } catch {}"
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         NODE_OPTIONS: "--openssl-legacy-provider --max-old-space-size=4096",
         NODE_ENV: "development",
         PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1",
@@ -269,17 +257,17 @@ makeWrapper "${nodejs}/bin/node" "$out/bin/code-server" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$11,
-        prefetchNodeModules: nix.thunk(() => nix.app(nix.sel(lib, "overrideDerivation"), nix.thunk(() => nix.sel(finalAttrs, "nodeModules")), (d) => ({ [nix.POS]: pos$9, outputHash: nix.thunk(() => nix.sel(lib, "fakeSha256")) }))),
+        [nix.POS]: $pos[10],
+        prefetchNodeModules: nix.thunk(() => nix.app(nix.sel(lib, "overrideDerivation"), nix.thunk(() => nix.sel(finalAttrs, "nodeModules")), (d) => ({ [nix.POS]: $pos[8], outputHash: nix.thunk(() => nix.sel(lib, "fakeSha256")) }))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           "code-server": nix.thunk(() => nix.attr(nixosTests, "code-server")),
         })),
         executableName: "code-server",
         longName: "Visual Studio Code Server",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         changelog: nix.thunk(() => nix.str`https://github.com/coder/code-server/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Run VS Code on a remote server",
         longDescription: "code-server is VS Code running on a remote server, accessible through the\nbrowser.\n",

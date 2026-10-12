@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["fetchFromGitHub", 12, 49]], [["url", 25, 7], ["hash", 26, 7]], [["jool", 45, 26]], [["tests", 44, 12]], [["homepage", 49, 5], ["description", 50, 5], ["platforms", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["name", 16, 3], ["pname", 17, 3], ["version", 18, 25], ["src", 20, 3], ["patches", 22, 3], ["nativeBuildInputs", 30, 3], ["hardeningDisable", 31, 3], ["prePatch", 33, 3], ["makeFlags", 37, 3], ["installTargets", 42, 3], ["passthru", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, kernel: false, kernelModuleMakeFlags: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["fetchFromGitHub", 12, 49]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["jool", 45, 26]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 44, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 49, 5], ["description", 50, 5], ["platforms", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 16, 3], ["pname", 17, 3], ["version", 18, 25], ["src", 20, 3], ["patches", 22, 3], ["nativeBuildInputs", 30, 3], ["hardeningDisable", 31, 3], ["prePatch", 33, 3], ["makeFlags", 37, 3], ["installTargets", 42, 3], ["passthru", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const nixosTests = nix.arg($, "nixosTests");
-  const sourceAttrs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./source.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchFromGitHub: fetchFromGitHub }))));
+  const sourceAttrs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./source.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-${nix.sel(kernel, "version")}`),
       pname: "jool",
       version: nix.thunk(() => nix.attr(sourceAttrs, "version")),
       src: nix.thunk(() => nix.sel(sourceAttrs, "src")),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(kernel, "version")), "7.2")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://github.com/NICMx/Jool/commit/47a8c7426f08e50505e69eef7ff607a04fbab52e.diff",
               hash: "sha256-EcfBwFKOSFQOBWl8s5Pa2/RJg9lH1ziGzvV4ap2505M=",
             })))),
@@ -43,11 +38,11 @@ export default nix.lambda((args) => (() => {
       ])),
       installTargets: "modules_install",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, jool: nix.thunk(() => nix.attr(nixosTests, "jool")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], jool: nix.thunk(() => nix.attr(nixosTests, "jool")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.jool.mx/",
         description: "Fairly compliant SIIT and Stateful NAT64 for Linux - kernel modules",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

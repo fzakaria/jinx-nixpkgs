@@ -2,203 +2,11 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dictionaries.nix", [[["description", 67, 11], ["platforms", 68, 11]], [["pname", 51, 9], ["strictDeps", 53, 9], ["nativeBuildInputs", 55, 9], ["dontAddPrefix", 60, 9], ["configurePlatforms", 62, 9], ["preBuild", 64, 9], ["meta", 66, 9]], [["url", 89, 11], ["sha256", 90, 19]], [["updateScript", 102, 18]], [["homepage", 129, 11]], [["shortName", 86, 9], ["src", 88, 9], ["postInstall", 98, 9], ["passthru", 102, 9], ["meta", 128, 9]], [["is", 152, 15], ["nb", 156, 15]], [["unpackPhase", 143, 13], ["postPatch", 151, 13]], [["propagatedUserEnvPackages", 179, 9], ["preBuild", 181, 9], ["dontUnpack", 224, 9]], [["license", 240, 10]], [["language", 235, 5], ["version", 236, 5], ["fullName", 237, 5], ["filename", 238, 5], ["sha256", 239, 5], ["meta", 240, 5]], [["license", 249, 10]], [["language", 244, 5], ["version", 245, 5], ["fullName", 246, 5], ["filename", 247, 5], ["sha256", 248, 5], ["meta", 249, 5]], [["license", 258, 10]], [["language", 253, 5], ["version", 254, 5], ["fullName", 255, 5], ["filename", 256, 5], ["sha256", 257, 5], ["meta", 258, 5]], [["license", 267, 10]], [["language", 262, 5], ["version", 263, 5], ["fullName", 264, 5], ["filename", 265, 5], ["sha256", 266, 5], ["meta", 267, 5]], [["license", 276, 10]], [["language", 271, 5], ["version", 272, 5], ["fullName", 273, 5], ["filename", 274, 5], ["sha256", 275, 5], ["meta", 276, 5]], [["license", 285, 10]], [["language", 280, 5], ["version", 281, 5], ["fullName", 282, 5], ["filename", 283, 5], ["sha256", 284, 5], ["meta", 285, 5]], [["license", 294, 10]], [["language", 289, 5], ["version", 290, 5], ["fullName", 291, 5], ["filename", 292, 5], ["sha256", 293, 5], ["meta", 294, 5]], [["license", 303, 10]], [["language", 298, 5], ["version", 299, 5], ["fullName", 300, 5], ["filename", 301, 5], ["sha256", 302, 5], ["meta", 303, 5]], [["license", 312, 10]], [["language", 307, 5], ["version", 308, 5], ["fullName", 309, 5], ["filename", 310, 5], ["sha256", 311, 5], ["meta", 312, 5]], [["license", 321, 10]], [["language", 316, 5], ["version", 317, 5], ["fullName", 318, 5], ["filename", 319, 5], ["sha256", 320, 5], ["meta", 321, 5]], [["license", 330, 10]], [["language", 325, 5], ["version", 326, 5], ["fullName", 327, 5], ["filename", 328, 5], ["sha256", 329, 5], ["meta", 330, 5]], [["license", 339, 10]], [["language", 334, 5], ["version", 335, 5], ["fullName", 336, 5], ["filename", 337, 5], ["sha256", 338, 5], ["meta", 339, 5]], [["license", 348, 10]], [["language", 343, 5], ["version", 344, 5], ["fullName", 345, 5], ["filename", 346, 5], ["sha256", 347, 5], ["meta", 348, 5]], [["license", 357, 10]], [["language", 352, 5], ["version", 353, 5], ["fullName", 354, 5], ["filename", 355, 5], ["sha256", 356, 5], ["meta", 357, 5]], [["license", 366, 10]], [["language", 361, 5], ["version", 362, 5], ["fullName", 363, 5], ["filename", 364, 5], ["sha256", 365, 5], ["meta", 366, 5]], [["license", 375, 10]], [["language", 370, 5], ["version", 371, 5], ["fullName", 372, 5], ["filename", 373, 5], ["sha256", 374, 5], ["meta", 375, 5]], [["license", 384, 10]], [["language", 379, 5], ["version", 380, 5], ["fullName", 381, 5], ["filename", 382, 5], ["sha256", 383, 5], ["meta", 384, 5]], [["license", 395, 10]], [["language", 388, 5], ["version", 389, 5], ["fullName", 390, 5], ["filename", 391, 5], ["sha256", 392, 5], ["meta", 395, 5]], [["license", 408, 10]], [["language", 403, 5], ["version", 404, 5], ["fullName", 405, 5], ["filename", 406, 5], ["sha256", 407, 5], ["meta", 408, 5]], [["license", 417, 10]], [["language", 412, 5], ["version", 413, 5], ["fullName", 414, 5], ["filename", 415, 5], ["sha256", 416, 5], ["meta", 417, 5]], [["license", 426, 10]], [["language", 421, 5], ["version", 422, 5], ["fullName", 423, 5], ["filename", 424, 5], ["sha256", 425, 5], ["meta", 426, 5]], [["license", 435, 10]], [["language", 430, 5], ["version", 431, 5], ["fullName", 432, 5], ["filename", 433, 5], ["sha256", 434, 5], ["meta", 435, 5]], [["license", 444, 10]], [["language", 439, 5], ["version", 440, 5], ["fullName", 441, 5], ["filename", 442, 5], ["sha256", 443, 5], ["meta", 444, 5]], [["license", 453, 10]], [["language", 448, 5], ["version", 449, 5], ["fullName", 450, 5], ["filename", 451, 5], ["sha256", 452, 5], ["meta", 453, 5]], [["license", 462, 10]], [["language", 457, 5], ["version", 458, 5], ["fullName", 459, 5], ["filename", 460, 5], ["sha256", 461, 5], ["meta", 462, 5]], [["license", 471, 10]], [["language", 466, 5], ["version", 467, 5], ["fullName", 468, 5], ["filename", 469, 5], ["sha256", 470, 5], ["meta", 471, 5]], [["license", 480, 10]], [["language", 475, 5], ["version", 476, 5], ["fullName", 477, 5], ["filename", 478, 5], ["sha256", 479, 5], ["meta", 480, 5]], [["license", 489, 10]], [["language", 484, 5], ["version", 485, 5], ["fullName", 486, 5], ["filename", 487, 5], ["sha256", 488, 5], ["meta", 489, 5]], [["license", 498, 10]], [["language", 493, 5], ["version", 494, 5], ["fullName", 495, 5], ["filename", 496, 5], ["sha256", 497, 5], ["meta", 498, 5]], [["license", 507, 10]], [["language", 502, 5], ["version", 503, 5], ["fullName", 504, 5], ["filename", 505, 5], ["sha256", 506, 5], ["meta", 507, 5]], [["license", 516, 10]], [["language", 511, 5], ["version", 512, 5], ["fullName", 513, 5], ["filename", 514, 5], ["sha256", 515, 5], ["meta", 516, 5]], [["license", 525, 10]], [["language", 520, 5], ["version", 521, 5], ["fullName", 522, 5], ["filename", 523, 5], ["sha256", 524, 5], ["meta", 525, 5]], [["license", 534, 10]], [["language", 529, 5], ["version", 530, 5], ["fullName", 531, 5], ["filename", 532, 5], ["sha256", 533, 5], ["meta", 534, 5]], [["license", 543, 10]], [["language", 538, 5], ["version", 539, 5], ["fullName", 540, 5], ["filename", 541, 5], ["sha256", 542, 5], ["meta", 543, 5]], [["license", 552, 10]], [["language", 547, 5], ["version", 548, 5], ["fullName", 549, 5], ["filename", 550, 5], ["sha256", 551, 5], ["meta", 552, 5]], [["license", 561, 10]], [["language", 556, 5], ["version", 557, 5], ["fullName", 558, 5], ["filename", 559, 5], ["sha256", 560, 5], ["meta", 561, 5]], [["license", 570, 10]], [["language", 565, 5], ["version", 566, 5], ["fullName", 567, 5], ["filename", 568, 5], ["sha256", 569, 5], ["meta", 570, 5]], [["license", 579, 10]], [["language", 574, 5], ["version", 575, 5], ["fullName", 576, 5], ["filename", 577, 5], ["sha256", 578, 5], ["meta", 579, 5]], [["license", 588, 10]], [["language", 583, 5], ["version", 584, 5], ["fullName", 585, 5], ["filename", 586, 5], ["sha256", 587, 5], ["meta", 588, 5]], [["license", 597, 10]], [["language", 592, 5], ["version", 593, 5], ["fullName", 594, 5], ["filename", 595, 5], ["sha256", 596, 5], ["meta", 597, 5]], [["license", 606, 10]], [["language", 601, 5], ["version", 602, 5], ["fullName", 603, 5], ["filename", 604, 5], ["sha256", 605, 5], ["meta", 606, 5]], [["license", 615, 10]], [["language", 610, 5], ["version", 611, 5], ["fullName", 612, 5], ["filename", 613, 5], ["sha256", 614, 5], ["meta", 615, 5]], [["license", 624, 10]], [["language", 619, 5], ["version", 620, 5], ["fullName", 621, 5], ["filename", 622, 5], ["sha256", 623, 5], ["meta", 624, 5]], [["license", 633, 10]], [["language", 628, 5], ["version", 629, 5], ["fullName", 630, 5], ["filename", 631, 5], ["sha256", 632, 5], ["meta", 633, 5]], [["license", 642, 10]], [["language", 637, 5], ["version", 638, 5], ["fullName", 639, 5], ["filename", 640, 5], ["sha256", 641, 5], ["meta", 642, 5]], [["license", 651, 10]], [["language", 646, 5], ["version", 647, 5], ["fullName", 648, 5], ["filename", 649, 5], ["sha256", 650, 5], ["meta", 651, 5]], [["license", 660, 10]], [["language", 655, 5], ["version", 656, 5], ["fullName", 657, 5], ["filename", 658, 5], ["sha256", 659, 5], ["meta", 660, 5]], [["license", 669, 10]], [["language", 664, 5], ["version", 665, 5], ["fullName", 666, 5], ["filename", 667, 5], ["sha256", 668, 5], ["meta", 669, 5]], [["license", 678, 10]], [["language", 673, 5], ["version", 674, 5], ["fullName", 675, 5], ["filename", 676, 5], ["sha256", 677, 5], ["meta", 678, 5]], [["license", 687, 10]], [["language", 682, 5], ["version", 683, 5], ["fullName", 684, 5], ["filename", 685, 5], ["sha256", 686, 5], ["meta", 687, 5]], [["license", 696, 10]], [["language", 691, 5], ["version", 692, 5], ["fullName", 693, 5], ["filename", 694, 5], ["sha256", 695, 5], ["meta", 696, 5]], [["license", 705, 10]], [["language", 700, 5], ["version", 701, 5], ["fullName", 702, 5], ["filename", 703, 5], ["sha256", 704, 5], ["meta", 705, 5]], [["license", 714, 10]], [["language", 709, 5], ["version", 710, 5], ["fullName", 711, 5], ["filename", 712, 5], ["sha256", 713, 5], ["meta", 714, 5]], [["license", 723, 10]], [["language", 718, 5], ["version", 719, 5], ["fullName", 720, 5], ["filename", 721, 5], ["sha256", 722, 5], ["meta", 723, 5]], [["license", 732, 10]], [["language", 727, 5], ["version", 728, 5], ["fullName", 729, 5], ["filename", 730, 5], ["sha256", 731, 5], ["meta", 732, 5]], [["license", 741, 10]], [["language", 736, 5], ["version", 737, 5], ["fullName", 738, 5], ["filename", 739, 5], ["sha256", 740, 5], ["meta", 741, 5]], [["license", 750, 10]], [["language", 745, 5], ["version", 746, 5], ["fullName", 747, 5], ["filename", 748, 5], ["sha256", 749, 5], ["meta", 750, 5]], [["license", 759, 10]], [["language", 754, 5], ["version", 755, 5], ["fullName", 756, 5], ["filename", 757, 5], ["sha256", 758, 5], ["meta", 759, 5]], [["license", 768, 10]], [["language", 763, 5], ["version", 764, 5], ["fullName", 765, 5], ["filename", 766, 5], ["sha256", 767, 5], ["meta", 768, 5]], [["license", 777, 10]], [["language", 772, 5], ["version", 773, 5], ["fullName", 774, 5], ["filename", 775, 5], ["sha256", 776, 5], ["meta", 777, 5]], [["license", 794, 10]], [["language", 781, 5], ["version", 782, 5], ["fullName", 783, 5], ["filename", 784, 5], ["sha256", 785, 5], ["postInstall", 787, 5], ["meta", 794, 5]], [["license", 803, 10]], [["language", 798, 5], ["version", 799, 5], ["fullName", 800, 5], ["filename", 801, 5], ["sha256", 802, 5], ["meta", 803, 5]], [["license", 812, 10]], [["language", 807, 5], ["version", 808, 5], ["fullName", 809, 5], ["filename", 810, 5], ["sha256", 811, 5], ["meta", 812, 5]], [["license", 821, 10]], [["language", 816, 5], ["version", 817, 5], ["fullName", 818, 5], ["filename", 819, 5], ["sha256", 820, 5], ["meta", 821, 5]], [["license", 830, 10]], [["language", 825, 5], ["version", 826, 5], ["fullName", 827, 5], ["filename", 828, 5], ["sha256", 829, 5], ["meta", 830, 5]], [["license", 839, 10]], [["language", 834, 5], ["version", 835, 5], ["fullName", 836, 5], ["filename", 837, 5], ["sha256", 838, 5], ["meta", 839, 5]], [["license", 853, 10]], [["language", 848, 5], ["version", 849, 5], ["fullName", 850, 5], ["filename", 851, 5], ["sha256", 852, 5], ["meta", 853, 5]], [["license", 866, 10]], [["language", 861, 5], ["version", 862, 5], ["fullName", 863, 5], ["filename", 864, 5], ["sha256", 865, 5], ["meta", 866, 5]], [["license", 879, 10]], [["language", 874, 5], ["version", 875, 5], ["fullName", 876, 5], ["filename", 877, 5], ["sha256", 878, 5], ["meta", 879, 5]], [["license", 888, 10]], [["language", 883, 5], ["version", 884, 5], ["fullName", 885, 5], ["filename", 886, 5], ["sha256", 887, 5], ["meta", 888, 5]], [["license", 897, 10]], [["language", 892, 5], ["version", 893, 5], ["fullName", 894, 5], ["filename", 895, 5], ["sha256", 896, 5], ["meta", 897, 5]], [["license", 906, 10]], [["language", 901, 5], ["version", 902, 5], ["fullName", 903, 5], ["filename", 904, 5], ["sha256", 905, 5], ["meta", 906, 5]], [["license", 915, 10]], [["language", 910, 5], ["version", 911, 5], ["fullName", 912, 5], ["filename", 913, 5], ["sha256", 914, 5], ["meta", 915, 5]], [["license", 924, 10]], [["language", 919, 5], ["version", 920, 5], ["fullName", 921, 5], ["filename", 922, 5], ["sha256", 923, 5], ["meta", 924, 5]], [["license", 937, 10]], [["language", 932, 5], ["version", 933, 5], ["fullName", 934, 5], ["filename", 935, 5], ["sha256", 936, 5], ["meta", 937, 5]], [["license", 946, 10]], [["language", 941, 5], ["version", 942, 5], ["fullName", 943, 5], ["filename", 944, 5], ["sha256", 945, 5], ["meta", 946, 5]], [["license", 955, 10]], [["language", 950, 5], ["version", 951, 5], ["fullName", 952, 5], ["filename", 953, 5], ["sha256", 954, 5], ["meta", 955, 5]], [["license", 964, 10]], [["language", 959, 5], ["version", 960, 5], ["fullName", 961, 5], ["filename", 962, 5], ["sha256", 963, 5], ["meta", 964, 5]], [["license", 973, 10]], [["language", 968, 5], ["version", 969, 5], ["fullName", 970, 5], ["filename", 971, 5], ["sha256", 972, 5], ["meta", 973, 5]], [["license", 982, 10]], [["language", 977, 5], ["version", 978, 5], ["fullName", 979, 5], ["filename", 980, 5], ["sha256", 981, 5], ["meta", 982, 5]], [["license", 991, 10]], [["language", 986, 5], ["version", 987, 5], ["fullName", 988, 5], ["filename", 989, 5], ["sha256", 990, 5], ["meta", 991, 5]], [["license", 1000, 10]], [["language", 995, 5], ["version", 996, 5], ["fullName", 997, 5], ["filename", 998, 5], ["sha256", 999, 5], ["meta", 1000, 5]], [["license", 1009, 10]], [["language", 1004, 5], ["version", 1005, 5], ["fullName", 1006, 5], ["filename", 1007, 5], ["sha256", 1008, 5], ["meta", 1009, 5]], [["license", 1018, 10]], [["language", 1013, 5], ["version", 1014, 5], ["fullName", 1015, 5], ["filename", 1016, 5], ["sha256", 1017, 5], ["meta", 1018, 5]], [["license", 1027, 10]], [["language", 1022, 5], ["version", 1023, 5], ["fullName", 1024, 5], ["filename", 1025, 5], ["sha256", 1026, 5], ["meta", 1027, 5]], [["license", 1036, 10]], [["language", 1031, 5], ["version", 1032, 5], ["fullName", 1033, 5], ["filename", 1034, 5], ["sha256", 1035, 5], ["meta", 1036, 5]], [["license", 1048, 10]], [["language", 1043, 5], ["version", 1044, 5], ["fullName", 1045, 5], ["filename", 1046, 5], ["sha256", 1047, 5], ["meta", 1048, 5]], [["license", 1057, 10]], [["language", 1052, 5], ["version", 1053, 5], ["fullName", 1054, 5], ["filename", 1055, 5], ["sha256", 1056, 5], ["meta", 1057, 5]], [["license", 1066, 10]], [["language", 1061, 5], ["version", 1062, 5], ["fullName", 1063, 5], ["filename", 1064, 5], ["sha256", 1065, 5], ["meta", 1066, 5]], [["license", 1075, 10]], [["language", 1070, 5], ["version", 1071, 5], ["fullName", 1072, 5], ["filename", 1073, 5], ["sha256", 1074, 5], ["meta", 1075, 5]], [["license", 1084, 10]], [["language", 1079, 5], ["version", 1080, 5], ["fullName", 1081, 5], ["filename", 1082, 5], ["sha256", 1083, 5], ["meta", 1084, 5]], [["af", 234, 3], ["am", 243, 3], ["ar", 252, 3], ["ast", 261, 3], ["az", 270, 3], ["be", 279, 3], ["bg", 288, 3], ["bn", 297, 3], ["br", 306, 3], ["ca", 315, 3], ["cs", 324, 3], ["csb", 333, 3], ["cy", 342, 3], ["da", 351, 3], ["de", 360, 3], ["de-alt", 369, 3], ["el", 378, 3], ["en", 387, 3], ["eo", 402, 3], ["es", 411, 3], ["et", 420, 3], ["fa", 429, 3], ["fi", 438, 3], ["fo", 447, 3], ["fr", 456, 3], ["fy", 465, 3], ["ga", 474, 3], ["gd", 483, 3], ["gl", 492, 3], ["grc", 501, 3], ["gu", 510, 3], ["gv", 519, 3], ["he", 528, 3], ["hi", 537, 3], ["hil", 546, 3], ["hr", 555, 3], ["hsb", 564, 3], ["hu", 573, 3], ["hus", 582, 3], ["hy", 591, 3], ["ia", 600, 3], ["id", 609, 3], ["is", 618, 3], ["it", 627, 3], ["kn", 636, 3], ["ku", 645, 3], ["ky", 654, 3], ["la", 663, 3], ["lt", 672, 3], ["lv", 681, 3], ["mg", 690, 3], ["mi", 699, 3], ["mk", 708, 3], ["ml", 717, 3], ["mn", 726, 3], ["mr", 735, 3], ["ms", 744, 3], ["mt", 753, 3], ["nb", 762, 3], ["nds", 771, 3], ["nl", 780, 3], ["nn", 797, 3], ["ny", 806, 3], ["or", 815, 3], ["pa", 824, 3], ["pl", 833, 3], ["pt_BR", 847, 3], ["pt_PT", 860, 3], ["qu", 873, 3], ["ro", 882, 3], ["ru", 891, 3], ["rw", 900, 3], ["sc", 909, 3], ["sk", 918, 3], ["sl", 931, 3], ["sr", 940, 3], ["sv", 949, 3], ["sw", 958, 3], ["ta", 967, 3], ["te", 976, 3], ["tet", 985, 3], ["tk", 994, 3], ["tl", 1003, 3], ["tn", 1012, 3], ["tr", 1021, 3], ["uk", 1030, 3], ["uz", 1042, 3], ["vi", 1051, 3], ["wa", 1060, 3], ["yi", 1069, 3], ["zu", 1078, 3]], [["en-computers", 1088, 3], ["en-science", 1089, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, aspell: false, which: false, writeScript: false, config: false }, ellipsis: false };
 const formals$2 = { args: { shortName: false, fullName: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/dictionaries.nix", [["description", 67, 11], ["platforms", 68, 11]]);
-const pos$2 = nix.positions(here + "/dictionaries.nix", [["pname", 51, 9], ["strictDeps", 53, 9], ["nativeBuildInputs", 55, 9], ["dontAddPrefix", 60, 9], ["configurePlatforms", 62, 9], ["preBuild", 64, 9], ["meta", 66, 9]]);
 const formals$3 = { args: { language: false, version: false, filename: false, fullName: false, sha256: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/dictionaries.nix", [["url", 89, 11], ["sha256", 90, 19]]);
-const pos$4 = nix.positions(here + "/dictionaries.nix", [["updateScript", 102, 18]]);
-const pos$5 = nix.positions(here + "/dictionaries.nix", [["homepage", 129, 11]]);
-const pos$6 = nix.positions(here + "/dictionaries.nix", [["shortName", 86, 9], ["src", 88, 9], ["postInstall", 98, 9], ["passthru", 102, 9], ["meta", 128, 9]]);
-const pos$7 = nix.positions(here + "/dictionaries.nix", [["is", 152, 15], ["nb", 156, 15]]);
-const pos$8 = nix.positions(here + "/dictionaries.nix", [["unpackPhase", 143, 13], ["postPatch", 151, 13]]);
 const formals$4 = { args: { langInputs: true }, ellipsis: true };
-const pos$9 = nix.positions(here + "/dictionaries.nix", [["propagatedUserEnvPackages", 179, 9], ["preBuild", 181, 9], ["dontUnpack", 224, 9]]);
-const pos$10 = nix.positions(here + "/dictionaries.nix", [["license", 240, 10]]);
-const pos$11 = nix.positions(here + "/dictionaries.nix", [["language", 235, 5], ["version", 236, 5], ["fullName", 237, 5], ["filename", 238, 5], ["sha256", 239, 5], ["meta", 240, 5]]);
-const pos$12 = nix.positions(here + "/dictionaries.nix", [["license", 249, 10]]);
-const pos$13 = nix.positions(here + "/dictionaries.nix", [["language", 244, 5], ["version", 245, 5], ["fullName", 246, 5], ["filename", 247, 5], ["sha256", 248, 5], ["meta", 249, 5]]);
-const pos$14 = nix.positions(here + "/dictionaries.nix", [["license", 258, 10]]);
-const pos$15 = nix.positions(here + "/dictionaries.nix", [["language", 253, 5], ["version", 254, 5], ["fullName", 255, 5], ["filename", 256, 5], ["sha256", 257, 5], ["meta", 258, 5]]);
-const pos$16 = nix.positions(here + "/dictionaries.nix", [["license", 267, 10]]);
-const pos$17 = nix.positions(here + "/dictionaries.nix", [["language", 262, 5], ["version", 263, 5], ["fullName", 264, 5], ["filename", 265, 5], ["sha256", 266, 5], ["meta", 267, 5]]);
-const pos$18 = nix.positions(here + "/dictionaries.nix", [["license", 276, 10]]);
-const pos$19 = nix.positions(here + "/dictionaries.nix", [["language", 271, 5], ["version", 272, 5], ["fullName", 273, 5], ["filename", 274, 5], ["sha256", 275, 5], ["meta", 276, 5]]);
-const pos$20 = nix.positions(here + "/dictionaries.nix", [["license", 285, 10]]);
-const pos$21 = nix.positions(here + "/dictionaries.nix", [["language", 280, 5], ["version", 281, 5], ["fullName", 282, 5], ["filename", 283, 5], ["sha256", 284, 5], ["meta", 285, 5]]);
-const pos$22 = nix.positions(here + "/dictionaries.nix", [["license", 294, 10]]);
-const pos$23 = nix.positions(here + "/dictionaries.nix", [["language", 289, 5], ["version", 290, 5], ["fullName", 291, 5], ["filename", 292, 5], ["sha256", 293, 5], ["meta", 294, 5]]);
-const pos$24 = nix.positions(here + "/dictionaries.nix", [["license", 303, 10]]);
-const pos$25 = nix.positions(here + "/dictionaries.nix", [["language", 298, 5], ["version", 299, 5], ["fullName", 300, 5], ["filename", 301, 5], ["sha256", 302, 5], ["meta", 303, 5]]);
-const pos$26 = nix.positions(here + "/dictionaries.nix", [["license", 312, 10]]);
-const pos$27 = nix.positions(here + "/dictionaries.nix", [["language", 307, 5], ["version", 308, 5], ["fullName", 309, 5], ["filename", 310, 5], ["sha256", 311, 5], ["meta", 312, 5]]);
-const pos$28 = nix.positions(here + "/dictionaries.nix", [["license", 321, 10]]);
-const pos$29 = nix.positions(here + "/dictionaries.nix", [["language", 316, 5], ["version", 317, 5], ["fullName", 318, 5], ["filename", 319, 5], ["sha256", 320, 5], ["meta", 321, 5]]);
-const pos$30 = nix.positions(here + "/dictionaries.nix", [["license", 330, 10]]);
-const pos$31 = nix.positions(here + "/dictionaries.nix", [["language", 325, 5], ["version", 326, 5], ["fullName", 327, 5], ["filename", 328, 5], ["sha256", 329, 5], ["meta", 330, 5]]);
-const pos$32 = nix.positions(here + "/dictionaries.nix", [["license", 339, 10]]);
-const pos$33 = nix.positions(here + "/dictionaries.nix", [["language", 334, 5], ["version", 335, 5], ["fullName", 336, 5], ["filename", 337, 5], ["sha256", 338, 5], ["meta", 339, 5]]);
-const pos$34 = nix.positions(here + "/dictionaries.nix", [["license", 348, 10]]);
-const pos$35 = nix.positions(here + "/dictionaries.nix", [["language", 343, 5], ["version", 344, 5], ["fullName", 345, 5], ["filename", 346, 5], ["sha256", 347, 5], ["meta", 348, 5]]);
-const pos$36 = nix.positions(here + "/dictionaries.nix", [["license", 357, 10]]);
-const pos$37 = nix.positions(here + "/dictionaries.nix", [["language", 352, 5], ["version", 353, 5], ["fullName", 354, 5], ["filename", 355, 5], ["sha256", 356, 5], ["meta", 357, 5]]);
-const pos$38 = nix.positions(here + "/dictionaries.nix", [["license", 366, 10]]);
-const pos$39 = nix.positions(here + "/dictionaries.nix", [["language", 361, 5], ["version", 362, 5], ["fullName", 363, 5], ["filename", 364, 5], ["sha256", 365, 5], ["meta", 366, 5]]);
-const pos$40 = nix.positions(here + "/dictionaries.nix", [["license", 375, 10]]);
-const pos$41 = nix.positions(here + "/dictionaries.nix", [["language", 370, 5], ["version", 371, 5], ["fullName", 372, 5], ["filename", 373, 5], ["sha256", 374, 5], ["meta", 375, 5]]);
-const pos$42 = nix.positions(here + "/dictionaries.nix", [["license", 384, 10]]);
-const pos$43 = nix.positions(here + "/dictionaries.nix", [["language", 379, 5], ["version", 380, 5], ["fullName", 381, 5], ["filename", 382, 5], ["sha256", 383, 5], ["meta", 384, 5]]);
-const pos$44 = nix.positions(here + "/dictionaries.nix", [["license", 395, 10]]);
-const pos$45 = nix.positions(here + "/dictionaries.nix", [["language", 388, 5], ["version", 389, 5], ["fullName", 390, 5], ["filename", 391, 5], ["sha256", 392, 5], ["meta", 395, 5]]);
-const pos$46 = nix.positions(here + "/dictionaries.nix", [["license", 408, 10]]);
-const pos$47 = nix.positions(here + "/dictionaries.nix", [["language", 403, 5], ["version", 404, 5], ["fullName", 405, 5], ["filename", 406, 5], ["sha256", 407, 5], ["meta", 408, 5]]);
-const pos$48 = nix.positions(here + "/dictionaries.nix", [["license", 417, 10]]);
-const pos$49 = nix.positions(here + "/dictionaries.nix", [["language", 412, 5], ["version", 413, 5], ["fullName", 414, 5], ["filename", 415, 5], ["sha256", 416, 5], ["meta", 417, 5]]);
-const pos$50 = nix.positions(here + "/dictionaries.nix", [["license", 426, 10]]);
-const pos$51 = nix.positions(here + "/dictionaries.nix", [["language", 421, 5], ["version", 422, 5], ["fullName", 423, 5], ["filename", 424, 5], ["sha256", 425, 5], ["meta", 426, 5]]);
-const pos$52 = nix.positions(here + "/dictionaries.nix", [["license", 435, 10]]);
-const pos$53 = nix.positions(here + "/dictionaries.nix", [["language", 430, 5], ["version", 431, 5], ["fullName", 432, 5], ["filename", 433, 5], ["sha256", 434, 5], ["meta", 435, 5]]);
-const pos$54 = nix.positions(here + "/dictionaries.nix", [["license", 444, 10]]);
-const pos$55 = nix.positions(here + "/dictionaries.nix", [["language", 439, 5], ["version", 440, 5], ["fullName", 441, 5], ["filename", 442, 5], ["sha256", 443, 5], ["meta", 444, 5]]);
-const pos$56 = nix.positions(here + "/dictionaries.nix", [["license", 453, 10]]);
-const pos$57 = nix.positions(here + "/dictionaries.nix", [["language", 448, 5], ["version", 449, 5], ["fullName", 450, 5], ["filename", 451, 5], ["sha256", 452, 5], ["meta", 453, 5]]);
-const pos$58 = nix.positions(here + "/dictionaries.nix", [["license", 462, 10]]);
-const pos$59 = nix.positions(here + "/dictionaries.nix", [["language", 457, 5], ["version", 458, 5], ["fullName", 459, 5], ["filename", 460, 5], ["sha256", 461, 5], ["meta", 462, 5]]);
-const pos$60 = nix.positions(here + "/dictionaries.nix", [["license", 471, 10]]);
-const pos$61 = nix.positions(here + "/dictionaries.nix", [["language", 466, 5], ["version", 467, 5], ["fullName", 468, 5], ["filename", 469, 5], ["sha256", 470, 5], ["meta", 471, 5]]);
-const pos$62 = nix.positions(here + "/dictionaries.nix", [["license", 480, 10]]);
-const pos$63 = nix.positions(here + "/dictionaries.nix", [["language", 475, 5], ["version", 476, 5], ["fullName", 477, 5], ["filename", 478, 5], ["sha256", 479, 5], ["meta", 480, 5]]);
-const pos$64 = nix.positions(here + "/dictionaries.nix", [["license", 489, 10]]);
-const pos$65 = nix.positions(here + "/dictionaries.nix", [["language", 484, 5], ["version", 485, 5], ["fullName", 486, 5], ["filename", 487, 5], ["sha256", 488, 5], ["meta", 489, 5]]);
-const pos$66 = nix.positions(here + "/dictionaries.nix", [["license", 498, 10]]);
-const pos$67 = nix.positions(here + "/dictionaries.nix", [["language", 493, 5], ["version", 494, 5], ["fullName", 495, 5], ["filename", 496, 5], ["sha256", 497, 5], ["meta", 498, 5]]);
-const pos$68 = nix.positions(here + "/dictionaries.nix", [["license", 507, 10]]);
-const pos$69 = nix.positions(here + "/dictionaries.nix", [["language", 502, 5], ["version", 503, 5], ["fullName", 504, 5], ["filename", 505, 5], ["sha256", 506, 5], ["meta", 507, 5]]);
-const pos$70 = nix.positions(here + "/dictionaries.nix", [["license", 516, 10]]);
-const pos$71 = nix.positions(here + "/dictionaries.nix", [["language", 511, 5], ["version", 512, 5], ["fullName", 513, 5], ["filename", 514, 5], ["sha256", 515, 5], ["meta", 516, 5]]);
-const pos$72 = nix.positions(here + "/dictionaries.nix", [["license", 525, 10]]);
-const pos$73 = nix.positions(here + "/dictionaries.nix", [["language", 520, 5], ["version", 521, 5], ["fullName", 522, 5], ["filename", 523, 5], ["sha256", 524, 5], ["meta", 525, 5]]);
-const pos$74 = nix.positions(here + "/dictionaries.nix", [["license", 534, 10]]);
-const pos$75 = nix.positions(here + "/dictionaries.nix", [["language", 529, 5], ["version", 530, 5], ["fullName", 531, 5], ["filename", 532, 5], ["sha256", 533, 5], ["meta", 534, 5]]);
-const pos$76 = nix.positions(here + "/dictionaries.nix", [["license", 543, 10]]);
-const pos$77 = nix.positions(here + "/dictionaries.nix", [["language", 538, 5], ["version", 539, 5], ["fullName", 540, 5], ["filename", 541, 5], ["sha256", 542, 5], ["meta", 543, 5]]);
-const pos$78 = nix.positions(here + "/dictionaries.nix", [["license", 552, 10]]);
-const pos$79 = nix.positions(here + "/dictionaries.nix", [["language", 547, 5], ["version", 548, 5], ["fullName", 549, 5], ["filename", 550, 5], ["sha256", 551, 5], ["meta", 552, 5]]);
-const pos$80 = nix.positions(here + "/dictionaries.nix", [["license", 561, 10]]);
-const pos$81 = nix.positions(here + "/dictionaries.nix", [["language", 556, 5], ["version", 557, 5], ["fullName", 558, 5], ["filename", 559, 5], ["sha256", 560, 5], ["meta", 561, 5]]);
-const pos$82 = nix.positions(here + "/dictionaries.nix", [["license", 570, 10]]);
-const pos$83 = nix.positions(here + "/dictionaries.nix", [["language", 565, 5], ["version", 566, 5], ["fullName", 567, 5], ["filename", 568, 5], ["sha256", 569, 5], ["meta", 570, 5]]);
-const pos$84 = nix.positions(here + "/dictionaries.nix", [["license", 579, 10]]);
-const pos$85 = nix.positions(here + "/dictionaries.nix", [["language", 574, 5], ["version", 575, 5], ["fullName", 576, 5], ["filename", 577, 5], ["sha256", 578, 5], ["meta", 579, 5]]);
-const pos$86 = nix.positions(here + "/dictionaries.nix", [["license", 588, 10]]);
-const pos$87 = nix.positions(here + "/dictionaries.nix", [["language", 583, 5], ["version", 584, 5], ["fullName", 585, 5], ["filename", 586, 5], ["sha256", 587, 5], ["meta", 588, 5]]);
-const pos$88 = nix.positions(here + "/dictionaries.nix", [["license", 597, 10]]);
-const pos$89 = nix.positions(here + "/dictionaries.nix", [["language", 592, 5], ["version", 593, 5], ["fullName", 594, 5], ["filename", 595, 5], ["sha256", 596, 5], ["meta", 597, 5]]);
-const pos$90 = nix.positions(here + "/dictionaries.nix", [["license", 606, 10]]);
-const pos$91 = nix.positions(here + "/dictionaries.nix", [["language", 601, 5], ["version", 602, 5], ["fullName", 603, 5], ["filename", 604, 5], ["sha256", 605, 5], ["meta", 606, 5]]);
-const pos$92 = nix.positions(here + "/dictionaries.nix", [["license", 615, 10]]);
-const pos$93 = nix.positions(here + "/dictionaries.nix", [["language", 610, 5], ["version", 611, 5], ["fullName", 612, 5], ["filename", 613, 5], ["sha256", 614, 5], ["meta", 615, 5]]);
-const pos$94 = nix.positions(here + "/dictionaries.nix", [["license", 624, 10]]);
-const pos$95 = nix.positions(here + "/dictionaries.nix", [["language", 619, 5], ["version", 620, 5], ["fullName", 621, 5], ["filename", 622, 5], ["sha256", 623, 5], ["meta", 624, 5]]);
-const pos$96 = nix.positions(here + "/dictionaries.nix", [["license", 633, 10]]);
-const pos$97 = nix.positions(here + "/dictionaries.nix", [["language", 628, 5], ["version", 629, 5], ["fullName", 630, 5], ["filename", 631, 5], ["sha256", 632, 5], ["meta", 633, 5]]);
-const pos$98 = nix.positions(here + "/dictionaries.nix", [["license", 642, 10]]);
-const pos$99 = nix.positions(here + "/dictionaries.nix", [["language", 637, 5], ["version", 638, 5], ["fullName", 639, 5], ["filename", 640, 5], ["sha256", 641, 5], ["meta", 642, 5]]);
-const pos$100 = nix.positions(here + "/dictionaries.nix", [["license", 651, 10]]);
-const pos$101 = nix.positions(here + "/dictionaries.nix", [["language", 646, 5], ["version", 647, 5], ["fullName", 648, 5], ["filename", 649, 5], ["sha256", 650, 5], ["meta", 651, 5]]);
-const pos$102 = nix.positions(here + "/dictionaries.nix", [["license", 660, 10]]);
-const pos$103 = nix.positions(here + "/dictionaries.nix", [["language", 655, 5], ["version", 656, 5], ["fullName", 657, 5], ["filename", 658, 5], ["sha256", 659, 5], ["meta", 660, 5]]);
-const pos$104 = nix.positions(here + "/dictionaries.nix", [["license", 669, 10]]);
-const pos$105 = nix.positions(here + "/dictionaries.nix", [["language", 664, 5], ["version", 665, 5], ["fullName", 666, 5], ["filename", 667, 5], ["sha256", 668, 5], ["meta", 669, 5]]);
-const pos$106 = nix.positions(here + "/dictionaries.nix", [["license", 678, 10]]);
-const pos$107 = nix.positions(here + "/dictionaries.nix", [["language", 673, 5], ["version", 674, 5], ["fullName", 675, 5], ["filename", 676, 5], ["sha256", 677, 5], ["meta", 678, 5]]);
-const pos$108 = nix.positions(here + "/dictionaries.nix", [["license", 687, 10]]);
-const pos$109 = nix.positions(here + "/dictionaries.nix", [["language", 682, 5], ["version", 683, 5], ["fullName", 684, 5], ["filename", 685, 5], ["sha256", 686, 5], ["meta", 687, 5]]);
-const pos$110 = nix.positions(here + "/dictionaries.nix", [["license", 696, 10]]);
-const pos$111 = nix.positions(here + "/dictionaries.nix", [["language", 691, 5], ["version", 692, 5], ["fullName", 693, 5], ["filename", 694, 5], ["sha256", 695, 5], ["meta", 696, 5]]);
-const pos$112 = nix.positions(here + "/dictionaries.nix", [["license", 705, 10]]);
-const pos$113 = nix.positions(here + "/dictionaries.nix", [["language", 700, 5], ["version", 701, 5], ["fullName", 702, 5], ["filename", 703, 5], ["sha256", 704, 5], ["meta", 705, 5]]);
-const pos$114 = nix.positions(here + "/dictionaries.nix", [["license", 714, 10]]);
-const pos$115 = nix.positions(here + "/dictionaries.nix", [["language", 709, 5], ["version", 710, 5], ["fullName", 711, 5], ["filename", 712, 5], ["sha256", 713, 5], ["meta", 714, 5]]);
-const pos$116 = nix.positions(here + "/dictionaries.nix", [["license", 723, 10]]);
-const pos$117 = nix.positions(here + "/dictionaries.nix", [["language", 718, 5], ["version", 719, 5], ["fullName", 720, 5], ["filename", 721, 5], ["sha256", 722, 5], ["meta", 723, 5]]);
-const pos$118 = nix.positions(here + "/dictionaries.nix", [["license", 732, 10]]);
-const pos$119 = nix.positions(here + "/dictionaries.nix", [["language", 727, 5], ["version", 728, 5], ["fullName", 729, 5], ["filename", 730, 5], ["sha256", 731, 5], ["meta", 732, 5]]);
-const pos$120 = nix.positions(here + "/dictionaries.nix", [["license", 741, 10]]);
-const pos$121 = nix.positions(here + "/dictionaries.nix", [["language", 736, 5], ["version", 737, 5], ["fullName", 738, 5], ["filename", 739, 5], ["sha256", 740, 5], ["meta", 741, 5]]);
-const pos$122 = nix.positions(here + "/dictionaries.nix", [["license", 750, 10]]);
-const pos$123 = nix.positions(here + "/dictionaries.nix", [["language", 745, 5], ["version", 746, 5], ["fullName", 747, 5], ["filename", 748, 5], ["sha256", 749, 5], ["meta", 750, 5]]);
-const pos$124 = nix.positions(here + "/dictionaries.nix", [["license", 759, 10]]);
-const pos$125 = nix.positions(here + "/dictionaries.nix", [["language", 754, 5], ["version", 755, 5], ["fullName", 756, 5], ["filename", 757, 5], ["sha256", 758, 5], ["meta", 759, 5]]);
-const pos$126 = nix.positions(here + "/dictionaries.nix", [["license", 768, 10]]);
-const pos$127 = nix.positions(here + "/dictionaries.nix", [["language", 763, 5], ["version", 764, 5], ["fullName", 765, 5], ["filename", 766, 5], ["sha256", 767, 5], ["meta", 768, 5]]);
-const pos$128 = nix.positions(here + "/dictionaries.nix", [["license", 777, 10]]);
-const pos$129 = nix.positions(here + "/dictionaries.nix", [["language", 772, 5], ["version", 773, 5], ["fullName", 774, 5], ["filename", 775, 5], ["sha256", 776, 5], ["meta", 777, 5]]);
-const pos$130 = nix.positions(here + "/dictionaries.nix", [["license", 794, 10]]);
-const pos$131 = nix.positions(here + "/dictionaries.nix", [["language", 781, 5], ["version", 782, 5], ["fullName", 783, 5], ["filename", 784, 5], ["sha256", 785, 5], ["postInstall", 787, 5], ["meta", 794, 5]]);
-const pos$132 = nix.positions(here + "/dictionaries.nix", [["license", 803, 10]]);
-const pos$133 = nix.positions(here + "/dictionaries.nix", [["language", 798, 5], ["version", 799, 5], ["fullName", 800, 5], ["filename", 801, 5], ["sha256", 802, 5], ["meta", 803, 5]]);
-const pos$134 = nix.positions(here + "/dictionaries.nix", [["license", 812, 10]]);
-const pos$135 = nix.positions(here + "/dictionaries.nix", [["language", 807, 5], ["version", 808, 5], ["fullName", 809, 5], ["filename", 810, 5], ["sha256", 811, 5], ["meta", 812, 5]]);
-const pos$136 = nix.positions(here + "/dictionaries.nix", [["license", 821, 10]]);
-const pos$137 = nix.positions(here + "/dictionaries.nix", [["language", 816, 5], ["version", 817, 5], ["fullName", 818, 5], ["filename", 819, 5], ["sha256", 820, 5], ["meta", 821, 5]]);
-const pos$138 = nix.positions(here + "/dictionaries.nix", [["license", 830, 10]]);
-const pos$139 = nix.positions(here + "/dictionaries.nix", [["language", 825, 5], ["version", 826, 5], ["fullName", 827, 5], ["filename", 828, 5], ["sha256", 829, 5], ["meta", 830, 5]]);
-const pos$140 = nix.positions(here + "/dictionaries.nix", [["license", 839, 10]]);
-const pos$141 = nix.positions(here + "/dictionaries.nix", [["language", 834, 5], ["version", 835, 5], ["fullName", 836, 5], ["filename", 837, 5], ["sha256", 838, 5], ["meta", 839, 5]]);
-const pos$142 = nix.positions(here + "/dictionaries.nix", [["license", 853, 10]]);
-const pos$143 = nix.positions(here + "/dictionaries.nix", [["language", 848, 5], ["version", 849, 5], ["fullName", 850, 5], ["filename", 851, 5], ["sha256", 852, 5], ["meta", 853, 5]]);
-const pos$144 = nix.positions(here + "/dictionaries.nix", [["license", 866, 10]]);
-const pos$145 = nix.positions(here + "/dictionaries.nix", [["language", 861, 5], ["version", 862, 5], ["fullName", 863, 5], ["filename", 864, 5], ["sha256", 865, 5], ["meta", 866, 5]]);
-const pos$146 = nix.positions(here + "/dictionaries.nix", [["license", 879, 10]]);
-const pos$147 = nix.positions(here + "/dictionaries.nix", [["language", 874, 5], ["version", 875, 5], ["fullName", 876, 5], ["filename", 877, 5], ["sha256", 878, 5], ["meta", 879, 5]]);
-const pos$148 = nix.positions(here + "/dictionaries.nix", [["license", 888, 10]]);
-const pos$149 = nix.positions(here + "/dictionaries.nix", [["language", 883, 5], ["version", 884, 5], ["fullName", 885, 5], ["filename", 886, 5], ["sha256", 887, 5], ["meta", 888, 5]]);
-const pos$150 = nix.positions(here + "/dictionaries.nix", [["license", 897, 10]]);
-const pos$151 = nix.positions(here + "/dictionaries.nix", [["language", 892, 5], ["version", 893, 5], ["fullName", 894, 5], ["filename", 895, 5], ["sha256", 896, 5], ["meta", 897, 5]]);
-const pos$152 = nix.positions(here + "/dictionaries.nix", [["license", 906, 10]]);
-const pos$153 = nix.positions(here + "/dictionaries.nix", [["language", 901, 5], ["version", 902, 5], ["fullName", 903, 5], ["filename", 904, 5], ["sha256", 905, 5], ["meta", 906, 5]]);
-const pos$154 = nix.positions(here + "/dictionaries.nix", [["license", 915, 10]]);
-const pos$155 = nix.positions(here + "/dictionaries.nix", [["language", 910, 5], ["version", 911, 5], ["fullName", 912, 5], ["filename", 913, 5], ["sha256", 914, 5], ["meta", 915, 5]]);
-const pos$156 = nix.positions(here + "/dictionaries.nix", [["license", 924, 10]]);
-const pos$157 = nix.positions(here + "/dictionaries.nix", [["language", 919, 5], ["version", 920, 5], ["fullName", 921, 5], ["filename", 922, 5], ["sha256", 923, 5], ["meta", 924, 5]]);
-const pos$158 = nix.positions(here + "/dictionaries.nix", [["license", 937, 10]]);
-const pos$159 = nix.positions(here + "/dictionaries.nix", [["language", 932, 5], ["version", 933, 5], ["fullName", 934, 5], ["filename", 935, 5], ["sha256", 936, 5], ["meta", 937, 5]]);
-const pos$160 = nix.positions(here + "/dictionaries.nix", [["license", 946, 10]]);
-const pos$161 = nix.positions(here + "/dictionaries.nix", [["language", 941, 5], ["version", 942, 5], ["fullName", 943, 5], ["filename", 944, 5], ["sha256", 945, 5], ["meta", 946, 5]]);
-const pos$162 = nix.positions(here + "/dictionaries.nix", [["license", 955, 10]]);
-const pos$163 = nix.positions(here + "/dictionaries.nix", [["language", 950, 5], ["version", 951, 5], ["fullName", 952, 5], ["filename", 953, 5], ["sha256", 954, 5], ["meta", 955, 5]]);
-const pos$164 = nix.positions(here + "/dictionaries.nix", [["license", 964, 10]]);
-const pos$165 = nix.positions(here + "/dictionaries.nix", [["language", 959, 5], ["version", 960, 5], ["fullName", 961, 5], ["filename", 962, 5], ["sha256", 963, 5], ["meta", 964, 5]]);
-const pos$166 = nix.positions(here + "/dictionaries.nix", [["license", 973, 10]]);
-const pos$167 = nix.positions(here + "/dictionaries.nix", [["language", 968, 5], ["version", 969, 5], ["fullName", 970, 5], ["filename", 971, 5], ["sha256", 972, 5], ["meta", 973, 5]]);
-const pos$168 = nix.positions(here + "/dictionaries.nix", [["license", 982, 10]]);
-const pos$169 = nix.positions(here + "/dictionaries.nix", [["language", 977, 5], ["version", 978, 5], ["fullName", 979, 5], ["filename", 980, 5], ["sha256", 981, 5], ["meta", 982, 5]]);
-const pos$170 = nix.positions(here + "/dictionaries.nix", [["license", 991, 10]]);
-const pos$171 = nix.positions(here + "/dictionaries.nix", [["language", 986, 5], ["version", 987, 5], ["fullName", 988, 5], ["filename", 989, 5], ["sha256", 990, 5], ["meta", 991, 5]]);
-const pos$172 = nix.positions(here + "/dictionaries.nix", [["license", 1000, 10]]);
-const pos$173 = nix.positions(here + "/dictionaries.nix", [["language", 995, 5], ["version", 996, 5], ["fullName", 997, 5], ["filename", 998, 5], ["sha256", 999, 5], ["meta", 1000, 5]]);
-const pos$174 = nix.positions(here + "/dictionaries.nix", [["license", 1009, 10]]);
-const pos$175 = nix.positions(here + "/dictionaries.nix", [["language", 1004, 5], ["version", 1005, 5], ["fullName", 1006, 5], ["filename", 1007, 5], ["sha256", 1008, 5], ["meta", 1009, 5]]);
-const pos$176 = nix.positions(here + "/dictionaries.nix", [["license", 1018, 10]]);
-const pos$177 = nix.positions(here + "/dictionaries.nix", [["language", 1013, 5], ["version", 1014, 5], ["fullName", 1015, 5], ["filename", 1016, 5], ["sha256", 1017, 5], ["meta", 1018, 5]]);
-const pos$178 = nix.positions(here + "/dictionaries.nix", [["license", 1027, 10]]);
-const pos$179 = nix.positions(here + "/dictionaries.nix", [["language", 1022, 5], ["version", 1023, 5], ["fullName", 1024, 5], ["filename", 1025, 5], ["sha256", 1026, 5], ["meta", 1027, 5]]);
-const pos$180 = nix.positions(here + "/dictionaries.nix", [["license", 1036, 10]]);
-const pos$181 = nix.positions(here + "/dictionaries.nix", [["language", 1031, 5], ["version", 1032, 5], ["fullName", 1033, 5], ["filename", 1034, 5], ["sha256", 1035, 5], ["meta", 1036, 5]]);
-const pos$182 = nix.positions(here + "/dictionaries.nix", [["license", 1048, 10]]);
-const pos$183 = nix.positions(here + "/dictionaries.nix", [["language", 1043, 5], ["version", 1044, 5], ["fullName", 1045, 5], ["filename", 1046, 5], ["sha256", 1047, 5], ["meta", 1048, 5]]);
-const pos$184 = nix.positions(here + "/dictionaries.nix", [["license", 1057, 10]]);
-const pos$185 = nix.positions(here + "/dictionaries.nix", [["language", 1052, 5], ["version", 1053, 5], ["fullName", 1054, 5], ["filename", 1055, 5], ["sha256", 1056, 5], ["meta", 1057, 5]]);
-const pos$186 = nix.positions(here + "/dictionaries.nix", [["license", 1066, 10]]);
-const pos$187 = nix.positions(here + "/dictionaries.nix", [["language", 1061, 5], ["version", 1062, 5], ["fullName", 1063, 5], ["filename", 1064, 5], ["sha256", 1065, 5], ["meta", 1066, 5]]);
-const pos$188 = nix.positions(here + "/dictionaries.nix", [["license", 1075, 10]]);
-const pos$189 = nix.positions(here + "/dictionaries.nix", [["language", 1070, 5], ["version", 1071, 5], ["fullName", 1072, 5], ["filename", 1073, 5], ["sha256", 1074, 5], ["meta", 1075, 5]]);
-const pos$190 = nix.positions(here + "/dictionaries.nix", [["license", 1084, 10]]);
-const pos$191 = nix.positions(here + "/dictionaries.nix", [["language", 1079, 5], ["version", 1080, 5], ["fullName", 1081, 5], ["filename", 1082, 5], ["sha256", 1083, 5], ["meta", 1084, 5]]);
-const pos$192 = nix.positions(here + "/dictionaries.nix", [["af", 234, 3], ["am", 243, 3], ["ar", 252, 3], ["ast", 261, 3], ["az", 270, 3], ["be", 279, 3], ["bg", 288, 3], ["bn", 297, 3], ["br", 306, 3], ["ca", 315, 3], ["cs", 324, 3], ["csb", 333, 3], ["cy", 342, 3], ["da", 351, 3], ["de", 360, 3], ["de-alt", 369, 3], ["el", 378, 3], ["en", 387, 3], ["eo", 402, 3], ["es", 411, 3], ["et", 420, 3], ["fa", 429, 3], ["fi", 438, 3], ["fo", 447, 3], ["fr", 456, 3], ["fy", 465, 3], ["ga", 474, 3], ["gd", 483, 3], ["gl", 492, 3], ["grc", 501, 3], ["gu", 510, 3], ["gv", 519, 3], ["he", 528, 3], ["hi", 537, 3], ["hil", 546, 3], ["hr", 555, 3], ["hsb", 564, 3], ["hu", 573, 3], ["hus", 582, 3], ["hy", 591, 3], ["ia", 600, 3], ["id", 609, 3], ["is", 618, 3], ["it", 627, 3], ["kn", 636, 3], ["ku", 645, 3], ["ky", 654, 3], ["la", 663, 3], ["lt", 672, 3], ["lv", 681, 3], ["mg", 690, 3], ["mi", 699, 3], ["mk", 708, 3], ["ml", 717, 3], ["mn", 726, 3], ["mr", 735, 3], ["ms", 744, 3], ["mt", 753, 3], ["nb", 762, 3], ["nds", 771, 3], ["nl", 780, 3], ["nn", 797, 3], ["ny", 806, 3], ["or", 815, 3], ["pa", 824, 3], ["pl", 833, 3], ["pt_BR", 847, 3], ["pt_PT", 860, 3], ["qu", 873, 3], ["ro", 882, 3], ["ru", 891, 3], ["rw", 900, 3], ["sc", 909, 3], ["sk", 918, 3], ["sl", 931, 3], ["sr", 940, 3], ["sv", 949, 3], ["sw", 958, 3], ["ta", 967, 3], ["te", 976, 3], ["tet", 985, 3], ["tk", 994, 3], ["tl", 1003, 3], ["tn", 1012, 3], ["tr", 1021, 3], ["uk", 1030, 3], ["uz", 1042, 3], ["vi", 1051, 3], ["wa", 1060, 3], ["yi", 1069, 3], ["zu", 1078, 3]]);
-const pos$193 = nix.positions(here + "/dictionaries.nix", [["en-computers", 1088, 3], ["en-science", 1089, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -215,7 +23,7 @@ export default nix.lambda((args) => (() => {
     const shortName = nix.arg($_1, "shortName");
     const fullName = nix.arg($_1, "fullName");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: nix.thunk(() => nix.str`aspell-dict-${shortName}`),
         strictDeps: true,
         nativeBuildInputs: nix.thunk(() => [aspell, which]),
@@ -223,7 +31,7 @@ export default nix.lambda((args) => (() => {
         configurePlatforms: [],
         preBuild: "makeFlagsArray=(dictdir=$out/lib/aspell datadir=$out/lib/aspell)",
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           description: nix.thunk(() => nix.str`Aspell dictionary for ${fullName}`),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }, nix.selOr(args_2, () => ({}), "meta"))),
@@ -238,16 +46,16 @@ export default nix.lambda((args) => (() => {
     const fullName = nix.arg($_1, "fullName");
     const sha256 = nix.arg($_1, "sha256");
     const buildArgs = nix.thunk(() => nix.update({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       shortName: nix.thunk(() => nix.str`${language}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`mirror://gnu/aspell/dict/${language}/${filename}-${language}-${version}.tar.bz2`),
           sha256: sha256,
         })))),
       postInstall: "rm -f $out/lib/aspell/u-deva.{cmap,cset}\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-aspellDict-${language}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p nix curl gnused common-updater-scripts
 set -eu -o pipefail
@@ -273,12 +81,15 @@ latestVersion=$(nix-instantiate --eval --expr "$sortVersions" | tr -d '"')
 update-source-version aspellDicts.${language} "$latestVersion"
 `))),
       })),
-      meta: nix.thunk(() => nix.update({ [nix.POS]: pos$5, homepage: "http://ftp.gnu.org/gnu/aspell/dict/0index.html" }, nix.selOr(args_2, () => ({}), "meta"))),
+      meta: nix.thunk(() => nix.update({
+        [nix.POS]: $pos[4],
+        homepage: "http://ftp.gnu.org/gnu/aspell/dict/0index.html",
+      }, nix.selOr(args_2, () => ({}), "meta"))),
     }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), language, nix.thunk(() => ["is", "nb"]))), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         unpackPhase: "runHook preUnpack\n\ntar -xf $src --strip-components=1 || true\n\nrunHook postUnpack\n",
         postPatch: nix.thunk(() => nix.app(nix.sel(lib, "getAttr"), language, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             is: "cp icelandic.alias íslenska.alias\nsed -i 's/ .slenska\\.alias/ íslenska.alias/g' Makefile.pre\n",
             nb: "cp bokmal.alias bokmål.alias\nsed -i 's/ bokm.l\\.alias/ bokmål.alias/g' Makefile.pre\n",
           })))),
@@ -290,7 +101,7 @@ update-source-version aspellDicts.${language} "$latestVersion"
     const args_2 = args_1;
     const langInputs = nix.argOr($_1, "langInputs", () => []);
     return nix.app(buildDict, nix.thunk(() => nix.update({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         propagatedUserEnvPackages: langInputs,
         preBuild: nix.thunk(() => nix.str`# Aspell can't handle multiple data-dirs
 # Copy everything we might possibly need
@@ -336,220 +147,220 @@ aspell-install() {
       }, args_2)));
   })(), formals$4);
   return nix.update({
-    [nix.POS]: pos$192,
+    [nix.POS]: $pos[191],
     af: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         language: "af",
         version: "0.50-0",
         fullName: "Afrikaans",
         filename: "aspell",
         sha256: "00p6k2ndi0gzfr5fkbvx4hkcpj223pidjvmxg0r384arrap00q4x",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         })),
       })))),
     am: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         language: "am",
         version: "0.03-1",
         fullName: "Amharic",
         filename: "aspell6",
         sha256: "11ylp7gjq94wfacyawvp391lsq26rl1b84f268rjn7l7z0hxs9xz",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
         })),
       })))),
     ar: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         language: "ar",
         version: "1.2-0",
         fullName: "Arabic",
         filename: "aspell6",
         sha256: "1avw40bp8yi5bnkq64ihm2rldgw34lk89yz281q9bmndh95a47h4",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     ast: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         language: "ast",
         version: "0.01",
         fullName: "Asturian",
         filename: "aspell6",
         sha256: "14hg85mxcyvdigf96yvslk7f3v9ngdsxn85qpgwkg31k3k83xwj3",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     az: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         language: "az",
         version: "0.02-0",
         fullName: "Azerbaijani",
         filename: "aspell6",
         sha256: "1hs4h1jscpxf9f9iyk6mvjqsnhkf0yslkbjhjkasqqcx8pn7cc86",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     be: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         language: "be",
         version: "0.01",
         fullName: "Belarusian",
         filename: "aspell5",
         sha256: "1svls9p7rsfi3hs0afh0cssj006qb4v1ik2yzqgj8hm10c6as2sm",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     bg: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         language: "bg",
         version: "4.1-0",
         fullName: "Bulgarian",
         filename: "aspell6",
         sha256: "1alacmgpfk0yrgq83y23d16fhav1bxmb98kg8d2a5r9bvh2h0mvl",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     bn: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         language: "bn",
         version: "0.01.1-1",
         fullName: "Bengali",
         filename: "aspell6",
         sha256: "1nc02jd67iggirwxnhdvlvaqm0xfyks35c4psszzj3dhzv29qgxh",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     br: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         language: "br",
         version: "0.50-2",
         fullName: "Breton",
         filename: "aspell",
         sha256: "0fradnm8424bkq9a9zhpl2132dk7y95xmw45sy1c0lx6rinjl4n2",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     ca: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         language: "ca",
         version: "2.1.5-1",
         fullName: "Catalan",
         filename: "aspell6",
         sha256: "1fb5y5kgvk25nlsfvc8cai978hg66x3pbp9py56pldc7vxzf9npb",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     cs: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         language: "cs",
         version: "20040614-1",
         fullName: "Czech",
         filename: "aspell6",
         sha256: "0rihj4hsw96pd9casvmpvw3r8040pfa28p1h73x4vyn20zwr3h01",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     csb: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         language: "csb",
         version: "0.02-0",
         fullName: "Kashubian",
         filename: "aspell6",
         sha256: "1612ypkm684wjvc7n081i87mlrrzif9simc7kyn177hfsl3ssrn1",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     cy: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         language: "cy",
         version: "0.50-3",
         fullName: "Welsh",
         filename: "aspell",
         sha256: "15vq601lzz1gi311xym4bv9lv1k21xcfn50jmzamw7h6f36rsffm",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     da: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         language: "da",
         version: "1.4.42-1",
         fullName: "Danish",
         filename: "aspell5",
         sha256: "1hfkmiyhgrx5lgrb2mffjbdn1hivrm73wcg7x0iid74p2yb0fjpp",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     de: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         language: "de",
         version: "20161207-7-0",
         fullName: "German",
         filename: "aspell6",
         sha256: "0wamclvp66xfmv5wff96v6gdlnfv4y8lx3f8wvxyzm5imwgms4n2",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
       })))),
     "de-alt": nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$41,
+        [nix.POS]: $pos[40],
         language: "de-alt",
         version: "2.1-1",
         fullName: "German - Old Spelling",
         filename: "aspell6",
         sha256: "0wwc2l29svv3fv041fh6vfa5m3hi9q9pkbxibzq1ysrsfin3rl9n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$40,
+          [nix.POS]: $pos[39],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     el: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$43,
+        [nix.POS]: $pos[42],
         language: "el",
         version: "0.08-0",
         fullName: "Greek",
         filename: "aspell6",
         sha256: "1ljcc30zg2v2h3w5h5jr5im41mw8jbsgvvhdd2cii2yzi8d0zxja",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$42,
+          [nix.POS]: $pos[41],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     en: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         language: "en",
         version: "2020.12.07-0",
         fullName: "English",
         filename: "aspell6",
         sha256: "1cwzqkm8gr1w51rpckwlvb43sb0b5nbwy7s8ns5vi250515773sc",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$44,
+          [nix.POS]: $pos[43],
           license: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
             return [
@@ -561,511 +372,511 @@ aspell-install() {
         })),
       })))),
     eo: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         language: "eo",
         version: "2.1.20000225a-2",
         fullName: "Esperanto",
         filename: "aspell6",
         sha256: "09vf0mbiicbmyb4bwb7v7lgpabnylg0wy7m3hlhl5rjdda6x3lj1",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$46,
+          [nix.POS]: $pos[45],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     es: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$49,
+        [nix.POS]: $pos[48],
         language: "es",
         version: "1.11-2",
         fullName: "Spanish",
         filename: "aspell6",
         sha256: "1k5g328ac1hdpp6fsg57d8md6i0aqcwlszp3gbmp5706wyhpydmd",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$48,
+          [nix.POS]: $pos[47],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     et: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$51,
+        [nix.POS]: $pos[50],
         language: "et",
         version: "0.1.21-1",
         fullName: "Estonian",
         filename: "aspell6",
         sha256: "0jdjfa2fskirhnb70fy86xryp9r6gkl729ib8qcjmsma7nm5gs5i",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$50,
+          [nix.POS]: $pos[49],
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         })),
       })))),
     fa: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$53,
+        [nix.POS]: $pos[52],
         language: "fa",
         version: "0.11-0",
         fullName: "Persian",
         filename: "aspell6",
         sha256: "0nz1ybwv56q7nl9ip12hfmdch1vyyq2j55bkjcns13lshzm2cba8",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$52,
+          [nix.POS]: $pos[51],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     fi: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$55,
+        [nix.POS]: $pos[54],
         language: "fi",
         version: "0.7-0",
         fullName: "Finnish",
         filename: "aspell6",
         sha256: "07d5s08ba4dd89cmwy9icc01i6fjdykxlb9ravmhdrhi8mxz1mzq",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$54,
+          [nix.POS]: $pos[53],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     fo: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$57,
+        [nix.POS]: $pos[56],
         language: "fo",
         version: "0.2.16-1",
         fullName: "Faroese",
         filename: "aspell5",
         sha256: "022yz5lll20xrzizcyb7wksm3fgwklnvgnir5la5qkxv770dvq7p",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$56,
+          [nix.POS]: $pos[55],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     fr: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$59,
+        [nix.POS]: $pos[58],
         language: "fr",
         version: "0.50-3",
         fullName: "French",
         filename: "aspell",
         sha256: "14ffy9mn5jqqpp437kannc3559bfdrpk7r36ljkzjalxa53i0hpr",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$58,
+          [nix.POS]: $pos[57],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     fy: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$61,
+        [nix.POS]: $pos[60],
         language: "fy",
         version: "0.12-0",
         fullName: "Frisian",
         filename: "aspell6",
         sha256: "1almi6n4ni91d0rzrk8ig0473m9ypbwqmg56hchz76j51slwyirl",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$60,
+          [nix.POS]: $pos[59],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     ga: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$63,
+        [nix.POS]: $pos[62],
         language: "ga",
         version: "4.5-0",
         fullName: "Irish",
         filename: "aspell5",
         sha256: "0y869mmvfb3bzadfgajwa2rfb0xfhi6m9ydwgxkb9v2claydnps5",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$62,
+          [nix.POS]: $pos[61],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     gd: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$65,
+        [nix.POS]: $pos[64],
         language: "gd",
         version: "0.1.1-1",
         fullName: "Scottish Gaelic",
         filename: "aspell5",
         sha256: "0a89irv5d65j5m9sb0k36851x5rs0wij12gb2m6hv2nsfn5a05p3",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$64,
+          [nix.POS]: $pos[63],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     gl: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$67,
+        [nix.POS]: $pos[66],
         language: "gl",
         version: "0.5a-2",
         fullName: "Galician",
         filename: "aspell6",
         sha256: "12pwghmy18fcdvf9hvhb4q6shi339hb1kwxpkz0bhw0yjxjwzkdk",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$66,
+          [nix.POS]: $pos[65],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     grc: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$69,
+        [nix.POS]: $pos[68],
         language: "grc",
         version: "0.02-0",
         fullName: "Ancient Greek",
         filename: "aspell6",
         sha256: "1zxr8958v37v260fkqd4pg37ns5h5kyqm54hn1hg70wq5cz8h512",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$68,
+          [nix.POS]: $pos[67],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         })),
       })))),
     gu: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$71,
+        [nix.POS]: $pos[70],
         language: "gu",
         version: "0.03-0",
         fullName: "Gujarati",
         filename: "aspell6",
         sha256: "04c38jnl74lpj2jhjz4zpqbs2623vwc71m6wc5h4b1karid14b23",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$70,
+          [nix.POS]: $pos[69],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     gv: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$73,
+        [nix.POS]: $pos[72],
         language: "gv",
         version: "0.50-0",
         fullName: "Manx Gaelic",
         filename: "aspell",
         sha256: "1rknf4yaw9s29c77sdzg98nhnmjwpicdb69igmz1n768npz2drmv",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$72,
+          [nix.POS]: $pos[71],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     he: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$75,
+        [nix.POS]: $pos[74],
         language: "he",
         version: "1.0-0",
         fullName: "Hebrew",
         filename: "aspell6",
         sha256: "13bhbghx5b8g0119g3wxd4n8mlf707y41vlf59irxjj0kynankfn",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$74,
+          [nix.POS]: $pos[73],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     hi: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$77,
+        [nix.POS]: $pos[76],
         language: "hi",
         version: "0.02-0",
         fullName: "Hindi",
         filename: "aspell6",
         sha256: "0drs374qz4419zx1lf2k281ydxf2750jk5ailafj1x0ncz27h1ys",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$76,
+          [nix.POS]: $pos[75],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     hil: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$79,
+        [nix.POS]: $pos[78],
         language: "hil",
         version: "0.11-0",
         fullName: "Hiligaynon",
         filename: "aspell5",
         sha256: "1s482fsfhzic9qa80al4418q3ni3gfn2bkwkd2y46ydrs17kf2jp",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$78,
+          [nix.POS]: $pos[77],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     hr: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$81,
+        [nix.POS]: $pos[80],
         language: "hr",
         version: "0.51-0",
         fullName: "Croatian",
         filename: "aspell",
         sha256: "09aafyf1vqhaxvcf3jfzf365k394b5pf0iivsr2ix5npah1h7i1a",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$80,
+          [nix.POS]: $pos[79],
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         })),
       })))),
     hsb: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$83,
+        [nix.POS]: $pos[82],
         language: "hsb",
         version: "0.02-0",
         fullName: "Upper Sorbian",
         filename: "aspell6",
         sha256: "0bi2vhz7n1vmg43wbbh935pmzihv80iyz9z65j94lxf753j2m7wd",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$82,
+          [nix.POS]: $pos[81],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     hu: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$85,
+        [nix.POS]: $pos[84],
         language: "hu",
         version: "0.99.4.2-0",
         fullName: "Hungarian",
         filename: "aspell6",
         sha256: "1d9nybip2k1dz69zly3iv0npbi3yxgfznh1py364nxzrbjsafd9k",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$84,
+          [nix.POS]: $pos[83],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     hus: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$87,
+        [nix.POS]: $pos[86],
         language: "hus",
         version: "0.03-1",
         fullName: "Huastec",
         filename: "aspell6",
         sha256: "09glipfpkz9xch17z11zw1yn2z7jx1f2svfmjn9l6wm1s5qz6a3d",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$86,
+          [nix.POS]: $pos[85],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         })),
       })))),
     hy: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$89,
+        [nix.POS]: $pos[88],
         language: "hy",
         version: "0.10.0-0",
         fullName: "Armenian",
         filename: "aspell6",
         sha256: "1w5wq8lfl2xp1nid30b1j5qmya4vjyidq0vpr4y3gf53jc08vsid",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$88,
+          [nix.POS]: $pos[87],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     ia: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$91,
+        [nix.POS]: $pos[90],
         language: "ia",
         version: "0.50-1",
         fullName: "Interlingua",
         filename: "aspell",
         sha256: "0bqcpgsa72pga24fv4fkw38b4qqdvqsw97jvzvw7q03dc1cwp5sp",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$90,
+          [nix.POS]: $pos[89],
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         })),
       })))),
     id: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$93,
+        [nix.POS]: $pos[92],
         language: "id",
         version: "1.2-0",
         fullName: "Indonesian",
         filename: "aspell5",
         sha256: "023knfg0q03f7y5w6xnwa1kspnrcvcnky8xvdms93n2850414faj",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$92,
+          [nix.POS]: $pos[91],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     is: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$95,
+        [nix.POS]: $pos[94],
         language: "is",
         version: "0.51.1-0",
         fullName: "Icelandic",
         filename: "aspell",
         sha256: "1mp3248lhbr13cj7iq9zs7h5ix0dcwlprp5cwrkcwafrv8lvsd9h",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$94,
+          [nix.POS]: $pos[93],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     it: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$97,
+        [nix.POS]: $pos[96],
         language: "it",
         version: "2.2_20050523-0",
         fullName: "Italian",
         filename: "aspell6",
         sha256: "1gdf7bc1a0kmxsmphdqq8pl01h667mjsj6hihy6kqy14k5qdq69v",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$96,
+          [nix.POS]: $pos[95],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         })),
       })))),
     kn: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$99,
+        [nix.POS]: $pos[98],
         language: "kn",
         version: "0.01-1",
         fullName: "Kannada",
         filename: "aspell6",
         sha256: "10sk0wx4x4ds1403kf9dqxv9yjvh06w8qqf4agx57y0jlws0n0fb",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$98,
+          [nix.POS]: $pos[97],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         })),
       })))),
     ku: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$101,
+        [nix.POS]: $pos[100],
         language: "ku",
         version: "0.20-1",
         fullName: "Kurdi",
         filename: "aspell5",
         sha256: "09va98krfbgdaxl101nmd85j3ysqgg88qgfcl42c07crii0pd3wn",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$100,
+          [nix.POS]: $pos[99],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     ky: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$103,
+        [nix.POS]: $pos[102],
         language: "ky",
         version: "0.01-0",
         fullName: "Kirghiz",
         filename: "aspell6",
         sha256: "0kzv2syjnnn6pnwx0d578n46hg2l0j62977al47y6wabnhjjy3z1",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$102,
+          [nix.POS]: $pos[101],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     la: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$105,
+        [nix.POS]: $pos[104],
         language: "la",
         version: "20020503-0",
         fullName: "Latin",
         filename: "aspell6",
         sha256: "1199inwi16dznzl087v4skn66fl7h555hi2palx6s1f3s54b11nl",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$104,
+          [nix.POS]: $pos[103],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     lt: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$107,
+        [nix.POS]: $pos[106],
         language: "lt",
         version: "1.2.1-0",
         fullName: "Lithuanian",
         filename: "aspell6",
         sha256: "1asjck911l96q26zj36lmz0jp4b6pivvrf3h38zgc8lc85p3pxgn",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$106,
+          [nix.POS]: $pos[105],
           license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         })),
       })))),
     lv: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$109,
+        [nix.POS]: $pos[108],
         language: "lv",
         version: "0.5.5-1",
         fullName: "Latvian",
         filename: "aspell6",
         sha256: "12pvs584a6437ijndggdqpp5s7d0w607cimpkxsjwasnx83f4c1w",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$108,
+          [nix.POS]: $pos[107],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     mg: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$111,
+        [nix.POS]: $pos[110],
         language: "mg",
         version: "0.03-0",
         fullName: "Malagasy",
         filename: "aspell5",
         sha256: "0hdhbk9b5immjp8l5h4cy82gwgsqzcqbb0qsf7syw333w4rgi0ji",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$110,
+          [nix.POS]: $pos[109],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     mi: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$113,
+        [nix.POS]: $pos[112],
         language: "mi",
         version: "0.50-0",
         fullName: "Maori",
         filename: "aspell",
         sha256: "12bxplpd348yx8d2q8qvahi9dlp7qf28qmanzhziwc7np8rixvmy",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$112,
+          [nix.POS]: $pos[111],
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         })),
       })))),
     mk: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$115,
+        [nix.POS]: $pos[114],
         language: "mk",
         version: "0.50-0",
         fullName: "Macedonian",
         filename: "aspell",
         sha256: "0wcr9n882xi5b7a7ln1hnhq4vfqd5gpqqp87v01j0gb7zf027z0m",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$114,
+          [nix.POS]: $pos[113],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     ml: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$117,
+        [nix.POS]: $pos[116],
         language: "ml",
         version: "0.03-1",
         fullName: "Malayalam",
         filename: "aspell6",
         sha256: "1zcn4114gwia085fkz77qk13z29xrbp53q2qvgj2cvcbalg5bkg4",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$116,
+          [nix.POS]: $pos[115],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         })),
       })))),
     mn: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$119,
+        [nix.POS]: $pos[118],
         language: "mn",
         version: "0.06-2",
         fullName: "Mongolian",
         filename: "aspell6",
         sha256: "150j9y5c9pw80fwp5rzl5q31q9vjbxixaqljkfwxjb5q93fnw6rg",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$118,
+          [nix.POS]: $pos[117],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     mr: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$121,
+        [nix.POS]: $pos[120],
         language: "mr",
         version: "0.10-0",
         fullName: "Marathi",
         filename: "aspell6",
         sha256: "0cvgb2l40sppqbi842ivpznsh2xzp1d4hxc371dll8z0pr05m8yk",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$120,
+          [nix.POS]: $pos[119],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     ms: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$123,
+        [nix.POS]: $pos[122],
         language: "ms",
         version: "0.50-0",
         fullName: "Malay",
         filename: "aspell",
         sha256: "0vr4vhipcfhsxqfs8dim2ph7iiixn22gmlmlb375bx5hgd9y7i1w",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$122,
+          [nix.POS]: $pos[121],
           license: nix.thunk(() => nix.sel(lib, "licenses", "fdl12Only")),
         })),
       })))),
     mt: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$125,
+        [nix.POS]: $pos[124],
         language: "mt",
         version: "0.50-0",
         fullName: "Maltese",
         filename: "aspell",
         sha256: "1d2rl1nlfjq6rfywblvx8m88cyy2x0mzc0mshzbgw359c2nwl3z0",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$124,
+          [nix.POS]: $pos[123],
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         })),
       })))),
     nb: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$127,
+        [nix.POS]: $pos[126],
         language: "nb",
         version: "0.50.1-0",
         fullName: "Norwegian Bokmal",
         filename: "aspell",
         sha256: "12i2bmgdnlkzfinb20j2a0j4a20q91a9j8qpq5vgabbvc65nwx77",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$126,
+          [nix.POS]: $pos[125],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     nds: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$129,
+        [nix.POS]: $pos[128],
         language: "nds",
         version: "0.01-0",
         fullName: "Low Saxon",
         filename: "aspell6",
         sha256: "1nkjhwzn45dizi89d19q4bqyd87cim8xyrgr655fampgkn31wf6f",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$128,
+          [nix.POS]: $pos[127],
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         })),
       })))),
     nl: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$131,
+        [nix.POS]: $pos[130],
         language: "nl",
         version: "0.50-2",
         fullName: "Dutch",
@@ -1073,67 +884,67 @@ aspell-install() {
         sha256: "0ffb87yjsh211hllpc4b9khqqrblial4pzi1h9r3v465z1yhn3j4",
         postInstall: "echo \"add nl.rws\" > $out/lib/aspell/nederlands.multi\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$130,
+          [nix.POS]: $pos[129],
           license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
         })),
       })))),
     nn: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$133,
+        [nix.POS]: $pos[132],
         language: "nn",
         version: "0.50.1-1",
         fullName: "Norwegian Nynorsk",
         filename: "aspell",
         sha256: "0w2k5l5rbqpliripgqwiqixz5ghnjf7i9ggbrc4ly4vy1ia10rmc",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$132,
+          [nix.POS]: $pos[131],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     ny: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$135,
+        [nix.POS]: $pos[134],
         language: "ny",
         version: "0.01-0",
         fullName: "Chichewa",
         filename: "aspell5",
         sha256: "0gjb92vcg60sfgvrm2f6i89sfkgb179ahvwlgs649fx3dc7rfvqp",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$134,
+          [nix.POS]: $pos[133],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     or: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$137,
+        [nix.POS]: $pos[136],
         language: "or",
         version: "0.03-1",
         fullName: "Oriya",
         filename: "aspell6",
         sha256: "0kzj9q225z0ccrlbkijsrafy005pbjy14qcnxb6p93ciz1ls7zyn",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$136,
+          [nix.POS]: $pos[135],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     pa: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$139,
+        [nix.POS]: $pos[138],
         language: "pa",
         version: "0.01-1",
         fullName: "Punjabi",
         filename: "aspell6",
         sha256: "0if93zk10pyrs38wwj3vpcdm01h51m5z9gm85h3jxrpgqnqspwy7",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$138,
+          [nix.POS]: $pos[137],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     pl: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$141,
+        [nix.POS]: $pos[140],
         language: "pl",
         version: "6.0_20061121-0",
         fullName: "Polish",
         filename: "aspell6",
         sha256: "0kap4kh6bqbb22ypja1m5z3krc06vv4n0hakiiqmv20anzy42xq1",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$140,
+          [nix.POS]: $pos[139],
           license: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
             return [
@@ -1146,14 +957,14 @@ aspell-install() {
         })),
       })))),
     pt_BR: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$143,
+        [nix.POS]: $pos[142],
         language: "pt_BR",
         version: "20131030-12-0",
         fullName: "Brazilian Portuguese",
         filename: "aspell6",
         sha256: "1xqlpk21s93c6blkdnpk7l62q9fxjvzdv2x86chl8p2x1gdrj3gb",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$142,
+          [nix.POS]: $pos[141],
           license: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
             return [
@@ -1165,14 +976,14 @@ aspell-install() {
         })),
       })))),
     pt_PT: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$145,
+        [nix.POS]: $pos[144],
         language: "pt_PT",
         version: "20190329-1-0",
         fullName: "Portuguese",
         filename: "aspell6",
         sha256: "0ld0d0ily4jqifjfsxfv4shbicz6ymm2gk56fq9gbzra1j4qnw75",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$144,
+          [nix.POS]: $pos[143],
           license: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
             return [
@@ -1184,74 +995,74 @@ aspell-install() {
         })),
       })))),
     qu: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$147,
+        [nix.POS]: $pos[146],
         language: "qu",
         version: "0.02-0",
         fullName: "Quechua",
         filename: "aspell6",
         sha256: "009z0zsvzq7r3z3m30clyibs94v77b92h5lmzmzxlns2p0lpd5w0",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$146,
+          [nix.POS]: $pos[145],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     ro: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$149,
+        [nix.POS]: $pos[148],
         language: "ro",
         version: "3.3-2",
         fullName: "Romanian",
         filename: "aspell5",
         sha256: "0gb8j9iy1acdl11jq76idgc2lbc1rq3w04favn8cyh55d1v8phsk",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$148,
+          [nix.POS]: $pos[147],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     ru: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$151,
+        [nix.POS]: $pos[150],
         language: "ru",
         version: "0.99f7-1",
         fullName: "Russian",
         filename: "aspell6",
         sha256: "0ip6nq43hcr7vvzbv4lwwmlwgfa60hrhsldh9xy3zg2prv6bcaaw",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$150,
+          [nix.POS]: $pos[149],
           license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
         })),
       })))),
     rw: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$153,
+        [nix.POS]: $pos[152],
         language: "rw",
         version: "0.50-0",
         fullName: "Kinyarwanda",
         filename: "aspell",
         sha256: "10gh8g747jbrvfk2fn3pjxy1nhcfdpwgmnvkmrp4nd1k1qp101il",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$152,
+          [nix.POS]: $pos[151],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     sc: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$155,
+        [nix.POS]: $pos[154],
         language: "sc",
         version: "1.0",
         fullName: "Sardinian",
         filename: "aspell5",
         sha256: "0hl7prh5rccsyljwrv3m1hjcsphyrrywk2qvnj122irbf4py46jr",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$154,
+          [nix.POS]: $pos[153],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     sk: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$157,
+        [nix.POS]: $pos[156],
         language: "sk",
         version: "2.01-2",
         fullName: "Slovak",
         filename: "aspell6",
         sha256: "19k0m1v5pcf7xr4lxgjkzqkdlks8nyb13bvi1n7521f3i4lhma66",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$156,
+          [nix.POS]: $pos[155],
           license: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
             return [
@@ -1263,146 +1074,146 @@ aspell-install() {
         })),
       })))),
     sl: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$159,
+        [nix.POS]: $pos[158],
         language: "sl",
         version: "0.50-0",
         fullName: "Slovenian",
         filename: "aspell",
         sha256: "1l9kc5g35flq8kw9jhn2n0bjb4sipjs4qkqzgggs438kywkx2rp5",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$158,
+          [nix.POS]: $pos[157],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     sr: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$161,
+        [nix.POS]: $pos[160],
         language: "sr",
         version: "0.02",
         fullName: "Serbian",
         filename: "aspell6",
         sha256: "12cj01p4nj80cpf7m3s4jsaf0rsfng7s295j9jfchcq677xmhpkh",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$160,
+          [nix.POS]: $pos[159],
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         })),
       })))),
     sv: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$163,
+        [nix.POS]: $pos[162],
         language: "sv",
         version: "0.51-0",
         fullName: "Swedish",
         filename: "aspell",
         sha256: "02jwkjhr32kvyibnyzgx3smbnm576jwdzg3avdf6zxwckhy5fw4v",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$162,
+          [nix.POS]: $pos[161],
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         })),
       })))),
     sw: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$165,
+        [nix.POS]: $pos[164],
         language: "sw",
         version: "0.50-0",
         fullName: "Swahili",
         filename: "aspell",
         sha256: "15zjh7hdj2b4dgm5bc12w1ims9q357p1q3gjalspnyn5gl81zmby",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$164,
+          [nix.POS]: $pos[163],
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         })),
       })))),
     ta: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$167,
+        [nix.POS]: $pos[166],
         language: "ta",
         version: "20040424-1",
         fullName: "Tamil",
         filename: "aspell6",
         sha256: "0sj8ygjsyvnr93cs6324y7az7k2vyw7rjxdc9vnm7z60lbqm5xaj",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$166,
+          [nix.POS]: $pos[165],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     te: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$169,
+        [nix.POS]: $pos[168],
         language: "te",
         version: "0.01-2",
         fullName: "Telugu",
         filename: "aspell6",
         sha256: "0pgcgxz7dz34zxp9sb85jjzbg3ky6il5wmhffz6ayrbsfn5670in",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$168,
+          [nix.POS]: $pos[167],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     tet: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$171,
+        [nix.POS]: $pos[170],
         language: "tet",
         version: "0.1.1",
         fullName: "Tetum",
         filename: "aspell5",
         sha256: "17n0y4fhjak47j9qnqf4m4z6zra6dn72rwhp7ig0hhlgqk4ldmcx",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$170,
+          [nix.POS]: $pos[169],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     tk: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$173,
+        [nix.POS]: $pos[172],
         language: "tk",
         version: "0.01-0",
         fullName: "Turkmen",
         filename: "aspell5",
         sha256: "02vad4jqhr0xpzqi5q5z7z0xxqccbn8j0c5dhpnm86mnr84l5wl6",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$172,
+          [nix.POS]: $pos[171],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     tl: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$175,
+        [nix.POS]: $pos[174],
         language: "tl",
         version: "0.02-1",
         fullName: "Tagalog",
         filename: "aspell5",
         sha256: "1kca6k7qnpfvvwjnq5r1n242payqsjy96skmw78m7ww6d0n5vdj8",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$174,
+          [nix.POS]: $pos[173],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     tn: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$177,
+        [nix.POS]: $pos[176],
         language: "tn",
         version: "1.0.1-0",
         fullName: "Setswana",
         filename: "aspell5",
         sha256: "0q5x7c6z88cn0kkpk7q1craq34g4g03v8x3xcj5a5jia3l7c5821",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$176,
+          [nix.POS]: $pos[175],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     tr: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$179,
+        [nix.POS]: $pos[178],
         language: "tr",
         version: "0.50-0",
         fullName: "Turkish",
         filename: "aspell",
         sha256: "0jpvpm96ga7s7rmsm6rbyrrr22b2dicxv2hy7ysv5y7bbq757ihb",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$178,
+          [nix.POS]: $pos[177],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     uk: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$181,
+        [nix.POS]: $pos[180],
         language: "uk",
         version: "1.4.0-0",
         fullName: "Ukrainian",
         filename: "aspell6",
         sha256: "137i4njvnslab6l4s291s11xijr5jsy75lbdph32f9y183lagy9m",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$180,
+          [nix.POS]: $pos[179],
           license: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
             return [
@@ -1413,67 +1224,67 @@ aspell-install() {
         })),
       })))),
     uz: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$183,
+        [nix.POS]: $pos[182],
         language: "uz",
         version: "0.6-0",
         fullName: "Uzbek",
         filename: "aspell6",
         sha256: "0sg3wlyply1idpq5ypyj7kgnaadaiskci1sqs811yhg2gzyc3092",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$182,
+          [nix.POS]: $pos[181],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     vi: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$185,
+        [nix.POS]: $pos[184],
         language: "vi",
         version: "0.01.1-1",
         fullName: "Vietnamese",
         filename: "aspell6",
         sha256: "05vwgvf1cj45azhflywx69javqdvqd1f20swrc2d3c32pd9mvn1w",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$184,
+          [nix.POS]: $pos[183],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     wa: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$187,
+        [nix.POS]: $pos[186],
         language: "wa",
         version: "0.50-0",
         fullName: "Walloon",
         filename: "aspell",
         sha256: "1r1zwz7xkx40dga9vf5wc9ja3jwk1dkpcr1kaa7wryvslf5al5ss",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$186,
+          [nix.POS]: $pos[185],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     yi: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$189,
+        [nix.POS]: $pos[188],
         language: "yi",
         version: "0.01.1-1",
         fullName: "Yiddish",
         filename: "aspell6",
         sha256: "0mi842l4038bx3ll2wx9nz44nqrg1x46h5b02zigi1hbbddd6ycq",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$188,
+          [nix.POS]: $pos[187],
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         })),
       })))),
     zu: nix.thunk(() => nix.app(buildOfficialDict, nix.thunk(() => ({
-        [nix.POS]: pos$191,
+        [nix.POS]: $pos[190],
         language: "zu",
         version: "0.50-0",
         fullName: "Zulu",
         filename: "aspell",
         sha256: "15k7gaxrnqnssdyk9l6g27dq317dqp9jz5yzafd25ri01g6mb8iz",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$190,
+          [nix.POS]: $pos[189],
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         })),
       })))),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      [nix.POS]: pos$193,
+      [nix.POS]: $pos[192],
       "en-computers": nix.thunk(() => nix.builtins.throw("'aspellDicts.en-computers' has been removed as upstream url pointed to a gambling website.")),
       "en-science": nix.thunk(() => nix.builtins.throw("'aspellDicts.en-science' has been removed as upstream was removed.")),
     }))));

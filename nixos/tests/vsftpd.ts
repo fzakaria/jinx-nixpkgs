@@ -2,47 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vsftpd.nix", [[["enable", 7, 36]], [["vsftpd", 7, 29]], [["services", 7, 20]], [["pam", 7, 16]], [["enable", 10, 9], ["userlistDeny", 11, 9], ["localUsers", 12, 9], ["userlist", 13, 9], ["writeEnable", 14, 9], ["localRoot", 15, 9]], [["vsftpd", 9, 16]], [["enable", 17, 27]], [["firewall", 17, 18]], [["isSystemUser", 21, 11], ["password", 22, 11], ["group", 23, 11]], [["ftp-test-user", 20, 15]], [["ftp-test-group", 25, 16]], [["users", 20, 9], ["groups", 25, 9]], [["security", 7, 7], ["services", 9, 7], ["networking", 17, 7], ["users", 19, 7]], [["server", 6, 5], ["client", 29, 5]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 32, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/vsftpd.nix", [["enable", 7, 36]]);
-const pos$2 = nix.positions(here + "/vsftpd.nix", [["vsftpd", 7, 29]]);
-const pos$3 = nix.positions(here + "/vsftpd.nix", [["services", 7, 20]]);
-const pos$4 = nix.positions(here + "/vsftpd.nix", [["pam", 7, 16]]);
-const pos$5 = nix.positions(here + "/vsftpd.nix", [["enable", 10, 9], ["userlistDeny", 11, 9], ["localUsers", 12, 9], ["userlist", 13, 9], ["writeEnable", 14, 9], ["localRoot", 15, 9]]);
-const pos$6 = nix.positions(here + "/vsftpd.nix", [["vsftpd", 9, 16]]);
-const pos$7 = nix.positions(here + "/vsftpd.nix", [["enable", 17, 27]]);
-const pos$8 = nix.positions(here + "/vsftpd.nix", [["firewall", 17, 18]]);
-const pos$9 = nix.positions(here + "/vsftpd.nix", [["isSystemUser", 21, 11], ["password", 22, 11], ["group", 23, 11]]);
-const pos$10 = nix.positions(here + "/vsftpd.nix", [["ftp-test-user", 20, 15]]);
-const pos$11 = nix.positions(here + "/vsftpd.nix", [["ftp-test-group", 25, 16]]);
-const pos$12 = nix.positions(here + "/vsftpd.nix", [["users", 20, 9], ["groups", 25, 9]]);
-const pos$13 = nix.positions(here + "/vsftpd.nix", [["security", 7, 7], ["services", 9, 7], ["networking", 17, 7], ["users", 19, 7]]);
-const pos$14 = nix.positions(here + "/vsftpd.nix", [["server", 6, 5], ["client", 29, 5]]);
-const pos$15 = nix.positions(here + "/vsftpd.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "vsftpd",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         security: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pam: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              vsftpd: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+              [nix.POS]: $pos[1],
+              vsftpd: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           vsftpd: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
             userlistDeny: false,
             localUsers: true,
@@ -52,21 +38,21 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$8,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$7, enable: false })),
+          [nix.POS]: $pos[7],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: false })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             "ftp-test-user": nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               isSystemUser: true,
               password: "ftp-test-password",
               group: "ftp-test-group",
             })),
           })),
-          groups: nix.thunk(() => ({ [nix.POS]: pos$11, "ftp-test-group": nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: $pos[10], "ftp-test-group": nix.thunk(() => ({})) })),
         })),
       })),
       client: nix.thunk(() => ({})),

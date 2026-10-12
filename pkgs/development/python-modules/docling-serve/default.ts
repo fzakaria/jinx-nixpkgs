@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]], [["ui", 109, 5], ["tesserocr", 112, 5], ["easyocr", 115, 5], ["rapidocr", 118, 5], ["flash-attn", 122, 5]], [["description", 137, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["mainProgram", 141, 5], ["maintainers", 142, 5]], [["pname", 52, 3], ["version", 53, 3], ["pyproject", 54, 3], ["__structuredAttrs", 55, 3], ["src", 57, 3], ["build-system", 64, 3], ["pythonRelaxDeps", 68, 3], ["dependencies", 72, 3], ["optional-dependencies", 108, 3], ["pythonImportsCheck", 127, 3], ["nativeCheckInputs", 132, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "docling-core": false, "docling-jobkit": false, "docling-mcp": false, "docling-slim": false, fastapi: false, httpx: false, "opentelemetry-api": false, "opentelemetry-exporter-otlp": false, "opentelemetry-exporter-prometheus": false, "opentelemetry-instrumentation-fastapi": false, "opentelemetry-sdk": false, "prometheus-client": false, pydantic: false, "pydantic-settings": false, "python-multipart": false, "scalar-fastapi": false, typer: false, uvicorn: false, websockets: false, gradio: false, tesserocr: false, easyocr: false, rapidocr: false, onnxruntime: false, "flash-attn": false, versionCheckHook: false, withUI: true, withTesserocr: true, withRapidocr: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ui", 109, 5], ["tesserocr", 112, 5], ["easyocr", 115, 5], ["rapidocr", 118, 5], ["flash-attn", 122, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 137, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["mainProgram", 141, 5], ["maintainers", 142, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 52, 3], ["version", 53, 3], ["pyproject", 54, 3], ["__structuredAttrs", 55, 3], ["src", 57, 3], ["build-system", 64, 3], ["pythonRelaxDeps", 68, 3], ["dependencies", 72, 3], ["optional-dependencies", 108, 3], ["pythonImportsCheck", 127, 3], ["nativeCheckInputs", 132, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,13 +41,13 @@ export default nix.lambda((args) => (() => {
   const withTesserocr = nix.argOr($, "withTesserocr", () => false);
   const withRapidocr = nix.argOr($, "withRapidocr", () => false);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "docling-serve",
       version: "1.29.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "docling-project",
           repo: "docling-serve",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +77,7 @@ export default nix.lambda((args) => (() => {
         websockets,
       ], nix.concat(nix.sel(docling_slim, "optional-dependencies", "standard"), nix.concat(nix.sel(docling_slim, "optional-dependencies", "service-client"), nix.concat(nix.sel(docling_slim, "optional-dependencies", "models-remote"), nix.concat(nix.sel(docling_slim, "optional-dependencies", "format-opendocument"), nix.concat(nix.sel(docling_jobkit, "optional-dependencies", "rq"), nix.concat(nix.sel(docling_jobkit, "optional-dependencies", "ray"), nix.concat(nix.sel(docling_jobkit, "optional-dependencies", "azure"), nix.concat(nix.sel(docling_jobkit, "optional-dependencies", "gcloudstorage"), nix.concat(nix.sel(docling_jobkit, "optional-dependencies", "gdrive"), nix.concat(nix.sel(fastapi, "optional-dependencies", "standard"), nix.concat(nix.sel(uvicorn, "optional-dependencies", "standard"), nix.concat(nix.app(nix.sel(lib, "optionals"), withUI, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "ui"))), nix.concat(nix.app(nix.sel(lib, "optionals"), withTesserocr, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "tesserocr"))), nix.app(nix.sel(lib, "optionals"), withRapidocr, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "rapidocr")))))))))))))))))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ui: nix.thunk(() => [gradio]),
         tesserocr: nix.thunk(() => [tesserocr]),
         easyocr: nix.thunk(() => [easyocr]),
@@ -90,7 +87,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["docling_serve"]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Running Docling as an API service",
         homepage: "https://github.com/docling-project/docling-serve",
         changelog: nix.thunk(() => nix.str`https://github.com/docling-project/docling-serve/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

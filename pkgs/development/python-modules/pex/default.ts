@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 7], ["hash", 18, 7]], [["url", 22, 7], ["hash", 23, 7]], [["url", 27, 7], ["hash", 28, 7]], [["url", 32, 7], ["hash", 33, 7]], [["version", 14, 5], ["aarch64-gui", 16, 5], ["aarch64-console", 21, 5], ["x86_64-gui", 26, 5], ["x86_64-console", 31, 5]], [["pname", 43, 13], ["version", 43, 19], ["hash", 44, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["preBuild", 47, 3], ["build-system", 55, 3], ["doCheck", 58, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchurl: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 14, 5], ["aarch64-gui", 16, 5], ["aarch64-console", 21, 5], ["x86_64-gui", 26, 5], ["x86_64-console", 31, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 43, 13], ["version", 43, 19], ["hash", 44, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["preBuild", 47, 3], ["build-system", 55, 3], ["doCheck", 58, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,25 +13,25 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const setuptools = nix.arg($, "setuptools");
   const uv_trampoline = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     version: "0.5.29",
     "aarch64-gui": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/astral-sh/uv/refs/tags/${nix.sel(uv_trampoline, "version")}/crates/uv-trampoline/trampolines/uv-trampoline-aarch64-gui.exe`),
         hash: "sha256-mb8x1FpyH+wy11X5YgWfqh/VUwBb62M4Zf9aFr5V4EE=",
       })))),
     "aarch64-console": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/astral-sh/uv/refs/tags/${nix.sel(uv_trampoline, "version")}/crates/uv-trampoline/trampolines/uv-trampoline-aarch64-console.exe`),
         hash: "sha256-1S2aM+6CV7rKz+3ncM5X7kk7uDQeuha1+8lUEMYC75k=",
       })))),
     "x86_64-gui": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/astral-sh/uv/refs/tags/${nix.sel(uv_trampoline, "version")}/crates/uv-trampoline/trampolines/uv-trampoline-x86_64-gui.exe`),
         hash: "sha256-icnp1oXrOZpc+dHTGvDbTHjr+D8M0eamvRrC9bPI/KI=",
       })))),
     "x86_64-console": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/astral-sh/uv/refs/tags/${nix.sel(uv_trampoline, "version")}/crates/uv-trampoline/trampolines/uv-trampoline-x86_64-console.exe`),
         hash: "sha256-nLopBrlCMMFjkKVRlY7Ke2zFGpQOyF5mSlLs0d7+HRQ=",
       })))),
@@ -48,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.38.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname: pname,
           version: version,
           hash: "sha256-ejd9JWmDutYpwR+KPiS90Y3XKyyOwRAMpCEN013VMdI=",
@@ -63,7 +56,7 @@ cp ${nix.sel(uv_trampoline, "x86_64-console")} pex/windows/stubs/uv-trampoline-x
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pex"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Python library and tool for generating .pex (Python EXecutable) files",
         homepage: "https://github.com/pantsbuild/pex",
         changelog: nix.thunk(() => nix.str`https://github.com/pantsbuild/pex/releases/tag/v${version}`),
@@ -71,7 +64,7 @@ cp ${nix.sel(uv_trampoline, "x86_64-console")} pex/windows/stubs/uv-trampoline-x
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         pyproject,

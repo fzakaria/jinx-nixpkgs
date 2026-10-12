@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 12, 32], ["meta", 12, 40], ["pname", 13, 5], ["__structuredAttrs", 15, 5], ["strictDeps", 16, 5], ["paths", 18, 5]], [["version", 22, 32], ["meta", 22, 40], ["pname", 23, 5], ["__structuredAttrs", 25, 5], ["strictDeps", 26, 5], ["src", 28, 5], ["dontUnpack", 29, 5], ["nativeBuildInputs", 31, 5], ["buildPhase", 32, 5]]]);
 const formals$1 = { args: { lib: false, "zellij-unwrapped": false, makeBinaryWrapper: false, stdenvNoCC: false, symlinkJoin: false, extraPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 12, 32], ["meta", 12, 40], ["pname", 13, 5], ["__structuredAttrs", 15, 5], ["strictDeps", 16, 5], ["paths", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 22, 32], ["meta", 22, 40], ["pname", 23, 5], ["__structuredAttrs", 25, 5], ["strictDeps", 26, 5], ["src", 28, 5], ["dontUnpack", 29, 5], ["nativeBuildInputs", 31, 5], ["buildPhase", 32, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const extraPackages = nix.argOr($, "extraPackages", () => []);
   return (nix.asBool(nix.eq(extraPackages, [])) ? nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: nix.thunk(() => nix.attr(zellij_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(zellij_unwrapped, "meta")),
       pname: "zellij",
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       paths: nix.thunk(() => [zellij_unwrapped]),
     }))) : nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(zellij_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(zellij_unwrapped, "meta")),
       pname: "zellij",

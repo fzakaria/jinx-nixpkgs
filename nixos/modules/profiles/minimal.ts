@@ -2,65 +2,47 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/minimal.nix", [[["enable", 14, 9]], [["enable", 15, 10]], [["enable", 16, 9]], [["enable", 17, 11]], [["enable", 13, 5], ["doc", 14, 5], ["info", 15, 5], ["man", 16, 5], ["nixos", 17, 5]], [["enable", 23, 13]], [["defaultPackages", 22, 5], ["stub-ld", 23, 5]], [["enable", 27, 23]], [["generateCompletions", 28, 10]], [["command-not-found", 27, 5], ["fish", 28, 5]], [["enable", 32, 15]], [["enable", 33, 13]], [["logrotate", 32, 5], ["udisks2", 33, 5]], [["enable", 37, 15]], [["enable", 38, 11]], [["enable", 39, 10]], [["enable", 40, 12]], [["autostart", 37, 5], ["icons", 38, 5], ["mime", 39, 5], ["sounds", 40, 5]], [["documentation", 12, 3], ["environment", 20, 3], ["programs", 26, 3], ["services", 31, 3], ["xdg", 36, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/minimal.nix", [["enable", 14, 9]]);
-const pos$2 = nix.positions(here + "/minimal.nix", [["enable", 15, 10]]);
-const pos$3 = nix.positions(here + "/minimal.nix", [["enable", 16, 9]]);
-const pos$4 = nix.positions(here + "/minimal.nix", [["enable", 17, 11]]);
-const pos$5 = nix.positions(here + "/minimal.nix", [["enable", 13, 5], ["doc", 14, 5], ["info", 15, 5], ["man", 16, 5], ["nixos", 17, 5]]);
-const pos$6 = nix.positions(here + "/minimal.nix", [["enable", 23, 13]]);
-const pos$7 = nix.positions(here + "/minimal.nix", [["defaultPackages", 22, 5], ["stub-ld", 23, 5]]);
-const pos$8 = nix.positions(here + "/minimal.nix", [["enable", 27, 23]]);
-const pos$9 = nix.positions(here + "/minimal.nix", [["generateCompletions", 28, 10]]);
-const pos$10 = nix.positions(here + "/minimal.nix", [["command-not-found", 27, 5], ["fish", 28, 5]]);
-const pos$11 = nix.positions(here + "/minimal.nix", [["enable", 32, 15]]);
-const pos$12 = nix.positions(here + "/minimal.nix", [["enable", 33, 13]]);
-const pos$13 = nix.positions(here + "/minimal.nix", [["logrotate", 32, 5], ["udisks2", 33, 5]]);
-const pos$14 = nix.positions(here + "/minimal.nix", [["enable", 37, 15]]);
-const pos$15 = nix.positions(here + "/minimal.nix", [["enable", 38, 11]]);
-const pos$16 = nix.positions(here + "/minimal.nix", [["enable", 39, 10]]);
-const pos$17 = nix.positions(here + "/minimal.nix", [["enable", 40, 12]]);
-const pos$18 = nix.positions(here + "/minimal.nix", [["autostart", 37, 5], ["icons", 38, 5], ["mime", 39, 5], ["sounds", 40, 5]]);
-const pos$19 = nix.positions(here + "/minimal.nix", [["documentation", 12, 3], ["environment", 20, 3], ["programs", 26, 3], ["services", 31, 3], ["xdg", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const mkDefault = nix.thunk(() => nix.attr(lib, "mkDefault"));
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     documentation: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       enable: nix.thunk(() => nix.app(mkDefault, false)),
-      doc: nix.thunk(() => ({ [nix.POS]: pos$1, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
-      info: nix.thunk(() => ({ [nix.POS]: pos$2, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
-      man: nix.thunk(() => ({ [nix.POS]: pos$3, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
-      nixos: nix.thunk(() => ({ [nix.POS]: pos$4, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      doc: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      info: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      man: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      nixos: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: nix.thunk(() => nix.app(mkDefault, false)) })),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       defaultPackages: nix.thunk(() => nix.app(mkDefault, [])),
-      "stub-ld": nix.thunk(() => ({ [nix.POS]: pos$6, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      "stub-ld": nix.thunk(() => ({ [nix.POS]: $pos[5], enable: nix.thunk(() => nix.app(mkDefault, false)) })),
     })),
     programs: nix.thunk(() => ({
-      [nix.POS]: pos$10,
-      "command-not-found": nix.thunk(() => ({ [nix.POS]: pos$8, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      [nix.POS]: $pos[9],
+      "command-not-found": nix.thunk(() => ({ [nix.POS]: $pos[7], enable: nix.thunk(() => nix.app(mkDefault, false)) })),
       fish: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         generateCompletions: nix.thunk(() => nix.app(mkDefault, false)),
       })),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$13,
-      logrotate: nix.thunk(() => ({ [nix.POS]: pos$11, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
-      udisks2: nix.thunk(() => ({ [nix.POS]: pos$12, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      [nix.POS]: $pos[12],
+      logrotate: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      udisks2: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: nix.thunk(() => nix.app(mkDefault, false)) })),
     })),
     xdg: nix.thunk(() => ({
-      [nix.POS]: pos$18,
-      autostart: nix.thunk(() => ({ [nix.POS]: pos$14, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
-      icons: nix.thunk(() => ({ [nix.POS]: pos$15, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
-      mime: nix.thunk(() => ({ [nix.POS]: pos$16, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
-      sounds: nix.thunk(() => ({ [nix.POS]: pos$17, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      [nix.POS]: $pos[17],
+      autostart: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      icons: nix.thunk(() => ({ [nix.POS]: $pos[14], enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      mime: nix.thunk(() => ({ [nix.POS]: $pos[15], enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      sounds: nix.thunk(() => ({ [nix.POS]: $pos[16], enable: nix.thunk(() => nix.app(mkDefault, false)) })),
     })),
   };
 })(), formals$1);

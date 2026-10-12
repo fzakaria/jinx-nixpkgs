@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 12, 5], ["broken", 15, 5], ["homepage", 16, 5], ["license", 17, 5], ["teams", 18, 5]], [["pname", 8, 3], ["version", 9, 3], ["hash", 10, 3], ["meta", 11, 3]]]);
 const formals$1 = { args: { buildPecl: false, lib: false, php: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 12, 5], ["broken", 15, 5], ["homepage", 16, 5], ["license", 17, 5], ["teams", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["hash", 10, 3], ["meta", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const php = nix.arg($, "php");
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "parallel",
       version: "1.2.6",
       hash: "sha256-tFQUbRxEb7gJlec0447akrngkJ0UZqojz5QNfXqvDcA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Parallel concurrency API",
         broken: nix.thunk(() => !nix.asBool(nix.sel(php, "ztsSupport"))),
         homepage: "https://pecl.php.net/package/parallel",

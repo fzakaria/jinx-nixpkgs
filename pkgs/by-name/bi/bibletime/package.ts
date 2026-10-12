@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["url", 32, 7], ["hash", 33, 7]], [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 47, 3], ["preConfigure", 57, 3], ["cmakeFlags", 62, 3], ["strictDeps", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, boost: false, "clucene-core_2": false, cmake: false, docbook_xml_dtd_45: false, docbook_xsl_ns: false, fetchFromGitHub: false, gettext: false, libxslt: false, perlPackages: false, "pkg-config": false, qt6: false, stdenv: false, sword: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 47, 3], ["preConfigure", 57, 3], ["cmakeFlags", 62, 3], ["strictDeps", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const sword = nix.arg($, "sword");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bibletime",
       version: "3.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bibletime",
           repo: "bibletime",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "http://github.com/bibletime/bibletime/commit/378c83d1fec533a04976b055cf11f2707384f269.patch",
             hash: "sha256-BPqPZqcJSRdCFf/vkqNjD7QvHgtIAeGdtZ+mQtIn71Y=",
           })))),
@@ -72,7 +69,7 @@ export SWORD_HOME=${sword};
       ]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.bibletime.info/",
         description: "Powerful cross platform Bible study tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

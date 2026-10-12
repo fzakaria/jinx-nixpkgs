@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 32, 5], ["mainProgram", 33, 5], ["longDescription", 34, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 8, 3], ["version", 9, 3], ["allowGoReference", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["postInstall", 25, 3], ["doCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["mainProgram", 33, 5], ["longDescription", 34, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["allowGoReference", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["postInstall", 25, 3], ["doCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gocode-gomod",
       version: "1.0.0",
       allowGoReference: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stamblerre",
           repo: "gocode",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mv $out/bin/gocode $out/bin/gocode-gomod\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Autocompletion daemon for the Go programming language",
         mainProgram: "gocode-gomod",
         longDescription: "Gocode is a helper tool which is intended to be integrated with your\nsource code editor, like vim, neovim and emacs. It provides several\nadvanced capabilities, which currently includes:\n\n  - Context-sensitive autocompletion\n\nIt is called daemon, because it uses client/server architecture for\ncaching purposes. In particular, it makes autocompletions very fast.\nTypical autocompletion time with warm cache is 30ms, which is barely\nnoticeable.\n",

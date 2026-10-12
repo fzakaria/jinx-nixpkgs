@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["all", 52, 5], ["gmail", 53, 5], ["msgraph", 58, 5]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 51, 3], ["pythonImportsCheck", 64, 3], ["nativeCheckInputs", 66, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, "azure-identity": false, authres: false, buildPythonPackage: false, cryptography: false, dkimpy: false, dnspython: false, expiringdict: false, fetchFromGitHub: false, "google-api-python-client": false, "google-auth": false, "google-auth-oauthlib": false, hatchling: false, html2text: false, imapclient: false, "mail-parser": false, "msgraph-sdk": false, publicsuffix2: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 52, 5], ["gmail", 53, 5], ["msgraph", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 51, 3], ["pythonImportsCheck", 64, 3], ["nativeCheckInputs", 66, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const publicsuffix2 = nix.arg($, "publicsuffix2");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mailsuite",
       version: "2.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "seanthegeek",
           repo: "mailsuite",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         publicsuffix2,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies")), nix.thunk(() => ["all"]))))),
         gmail: nix.thunk(() => [google_api_python_client, google_auth, google_auth_oauthlib]),
         msgraph: nix.thunk(() => [azure_identity, msgraph_sdk]),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["mailsuite"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python package to simplify receiving, parsing, and sending email",
         homepage: "https://seanthegeek.github.io/mailsuite/",
         changelog: nix.thunk(() => nix.str`https://github.com/seanthegeek/mailsuite/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

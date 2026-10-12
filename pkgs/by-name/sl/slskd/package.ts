@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs", 18, 56]], [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["name", 40, 5], ["src", 41, 13], ["sourceRoot", 42, 5], ["hash", 43, 5]], [["package", 71, 43]], [["version", 71, 11]], [["tests", 71, 5], ["updateScript", 72, 5]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 85, 5], ["platforms", 86, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["runtimeDeps", 36, 3], ["npmRoot", 38, 3], ["npmDeps", 39, 3], ["projectFile", 46, 3], ["nugetDeps", 47, 3], ["dotnet-sdk", 49, 3], ["dotnet-runtime", 50, 3], ["testProjectFile", 52, 3], ["doCheck", 53, 3], ["disabledTests", 54, 3], ["postBuild", 59, 3], ["postInstall", 65, 3], ["passthru", 70, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, buildPackages: false, dotnetCorePackages: false, fetchFromGitHub: false, fetchNpmDeps: false, mono: false, nodejs_24: false, slskd: false, testers: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs", 18, 56]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 40, 5], ["src", 41, 13], ["sourceRoot", 42, 5], ["hash", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 71, 43]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 71, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 71, 5], ["updateScript", 72, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 85, 5], ["platforms", 86, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["runtimeDeps", 36, 3], ["npmRoot", 38, 3], ["npmDeps", 39, 3], ["projectFile", 46, 3], ["nugetDeps", 47, 3], ["dotnet-sdk", 49, 3], ["dotnet-runtime", 50, 3], ["testProjectFile", 52, 3], ["doCheck", 53, 3], ["disabledTests", 54, 3], ["postBuild", 59, 3], ["postInstall", 65, 3], ["passthru", 70, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nix_update_script = nix.arg($, "nix-update-script");
   const nodejs = nodejs_24;
-  const npmHooks = nix.thunk(() => nix.app(nix.sel(buildPackages, "npmHooks", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs }))));
+  const npmHooks = nix.thunk(() => nix.app(nix.sel(buildPackages, "npmHooks", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], nodejs: nodejs }))));
   return nix.app(buildDotnetModule, nix.thunk(() => (() => {
       const pname = "slskd";
       const version = "0.26.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "slskd",
           repo: "slskd",
           tag: version,
@@ -41,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const runtimeDeps = nix.thunk(() => [mono]);
       const npmRoot = "src/web";
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: nix.thunk(() => nix.str`${pname}-${version}-npm-deps`),
           src: src,
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/${npmRoot}`),
@@ -59,15 +52,15 @@ export default nix.lambda((args) => (() => {
       const postBuild = "pushd \"$npmRoot\"\nnpm run build --legacy-peer-deps\npopd\n";
       const postInstall = "rm -r $out/lib/slskd/wwwroot\nmv \"$npmRoot\"/build $out/lib/slskd/wwwroot\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: slskd })))),
+          [nix.POS]: $pos[4],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[3], package: slskd })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Modern client-server application for the Soulseek file sharing network",
         homepage: "https://github.com/slskd/slskd",
         changelog: nix.thunk(() => nix.str`https://github.com/slskd/slskd/releases/tag/${version}`),
@@ -84,7 +77,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

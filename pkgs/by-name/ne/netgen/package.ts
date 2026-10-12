@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["url", 49, 7], ["hash", 50, 7]], [["url", 53, 7], ["hash", 54, 7]], [["url", 57, 7], ["hash", 58, 7]], [["url", 61, 7], ["hash", 62, 7]], [["NIX_CFLAGS_COMPILE", 145, 7]], [["name", 153, 7], ["exec", 154, 7], ["comment", 155, 7], ["desktopName", 156, 7], ["genericName", 157, 7], ["categories", 158, 7], ["icon", 159, 7]], [["avxSupport", 206, 13], ["avx2Support", 206, 24], ["avx512Support", 206, 36]], [["homepage", 210, 5], ["downloadPage", 211, 5], ["description", 212, 5], ["license", 213, 5], ["platforms", 221, 5], ["mainProgram", 222, 5], ["maintainers", 223, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["patches", 47, 3], ["postPatch", 70, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 104, 3], ["propagatedBuildInputs", 118, 3], ["cmakeFlags", 124, 3], ["env", 145, 3], ["__darwinAllowLocalNetworking", 149, 3], ["desktopItems", 151, 3], ["postInstall", 163, 3], ["doInstallCheck", 187, 3], ["preInstallCheck", 189, 3], ["installCheckTarget", 193, 3], ["nativeInstallCheckInputs", 195, 3], ["pythonImportsCheck", 203, 3], ["passthru", 205, 3], ["meta", 209, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, libicns: false, imagemagick: false, makeDesktopItem: false, copyDesktopItems: false, cmake: false, python3Packages: false, mpi: false, mpiCheckPhaseHook: false, metis: false, "opencascade-occt": false, libGLU: false, zlib: false, tcl: false, tk: false, libxmu: false, libjpeg: false, ffmpeg: false, catch2: false, avxSupport: true, avx2Support: true, avx512Support: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 49, 7], ["hash", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 53, 7], ["hash", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 57, 7], ["hash", 58, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 61, 7], ["hash", 62, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 145, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 153, 7], ["exec", 154, 7], ["comment", 155, 7], ["desktopName", 156, 7], ["genericName", 157, 7], ["categories", 158, 7], ["icon", 159, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["avxSupport", 206, 13], ["avx2Support", 206, 24], ["avx512Support", 206, 36]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 210, 5], ["downloadPage", 211, 5], ["description", 212, 5], ["license", 213, 5], ["platforms", 221, 5], ["mainProgram", 222, 5], ["maintainers", 223, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["patches", 47, 3], ["postPatch", 70, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 104, 3], ["propagatedBuildInputs", 118, 3], ["cmakeFlags", 124, 3], ["env", 145, 3], ["__darwinAllowLocalNetworking", 149, 3], ["desktopItems", 151, 3], ["postInstall", 163, 3], ["doInstallCheck", 187, 3], ["preInstallCheck", 189, 3], ["installCheckTarget", 193, 3], ["nativeInstallCheckInputs", 195, 3], ["pythonImportsCheck", 203, 3], ["passthru", 205, 3], ["meta", 209, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const archFlags = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), avxSupport, "-mavx"), nix.concat(nix.app(nix.sel(lib, "optional"), avx2Support, "-mavx2"), nix.app(nix.sel(lib, "optional"), avx512Support, "-mavx512"))))));
   const patchSource = "https://salsa.debian.org/science-team/netgen/-/raw/debian/6.2.2404+dfsg1-5/debian/patches";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "netgen",
       version: "6.2.2605",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ngsolve",
           repo: "netgen",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,22 +47,22 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`${patchSource}/use-local-catch2.patch`),
             hash: "sha256-h4ob8tl6mvGt5B0qXRFNcl9MxPXxRhYw+PrGr5iRGGk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`${patchSource}/ffmpeg_link_libraries.patch`),
             hash: "sha256-S02OPH9hbJjOnBm6JMh6uM5XptcubV24vdyEF0FusoM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: nix.thunk(() => nix.str`${patchSource}/fix_nggui_tcl.patch`),
             hash: "sha256-ODDT67+RWBzPhhq/equWsu78x9L/Yrs3U8VQ1Uu0zZw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: nix.thunk(() => nix.str`${patchSource}/include_stdlib.patch`),
             hash: "sha256-W+NgGBuy/UmzVbPTSqR8FRUlyN/9dl9l9e9rxKklmIc=",
           })))),
@@ -128,13 +119,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_UNIT_TESTS", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doInstallCheck")))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), "-flax-vector-conversions")),
       })),
       __darwinAllowLocalNetworking: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "netgen",
             exec: "netgen",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -158,13 +149,13 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["netgen"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         avxSupport: avxSupport,
         avx2Support: avx2Support,
         avx512Support: avx512Support,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://ngsolve.org",
         downloadPage: "https://github.com/NGSolve/netgen",
         description: "Atomatic 3d tetrahedral mesh generator",

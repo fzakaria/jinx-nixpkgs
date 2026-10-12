@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["homepage", 45, 5]], [["pname", 13, 3], ["version", 14, 3], ["minimalOCamlVersion", 16, 3], ["nativeBuildInputs", 18, 3], ["propagatedBuildInputs", 22, 3], ["checkInputs", 27, 3], ["doCheck", 32, 3], ["src", 34, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDunePackage: false, menhir: false, menhirLib: false, ppx_expect: false, sexplib0: false, zarith: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["homepage", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["minimalOCamlVersion", 16, 3], ["nativeBuildInputs", 18, 3], ["propagatedBuildInputs", 22, 3], ["checkInputs", 27, 3], ["doCheck", 32, 3], ["src", 34, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const sexplib0 = nix.arg($, "sexplib0");
   const zarith = nix.arg($, "zarith");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kdl",
       version: "0.2.0",
       minimalOCamlVersion: "4.14",
@@ -27,14 +25,14 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ppx_expect, zarith]),
       doCheck: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eilvelia",
           repo: "ocaml-kdl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-0MiJe0XbWAlS2NvGxLplsgVfCNaA/7iCMx4+F+6FAtM=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OCaml implementation of the KDL Document Language v2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         maintainers: nix.thunk(() => (() => {

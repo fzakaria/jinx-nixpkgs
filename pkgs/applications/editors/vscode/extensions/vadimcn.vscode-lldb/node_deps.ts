@@ -2,8 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/node_deps.nix", [[["pname", 16, 3], ["version", 17, 11], ["src", 17, 19], ["npmDepsHash", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["dontNpmBuild", 29, 3], ["installPhase", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, stdenv: false, libsecret: false, python3: false, "pkg-config": false, clang_20: false, pname: false, src: false, version: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/node_deps.nix", [["pname", 16, 3], ["version", 17, 11], ["src", 17, 19], ["npmDepsHash", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["dontNpmBuild", 29, 3], ["installPhase", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const version = nix.arg($, "version");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.str`${pname}-node-deps`),
       version: version,
       src: src,

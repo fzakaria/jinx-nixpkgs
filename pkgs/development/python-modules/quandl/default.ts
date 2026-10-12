@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 27, 26], ["pname", 28, 5], ["hash", 29, 5]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 22, 3], ["version", 23, 3], ["format", 24, 3], ["src", 26, 3], ["patches", 32, 3], ["propagatedBuildInputs", 34, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "factory-boy": false, faker: false, fetchPypi: false, httpretty: false, inflection: false, jsondate: false, mock: false, "more-itertools": false, numpy: false, pandas: false, parameterized: false, pytestCheckHook: false, "python-dateutil": false, requests: false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 27, 26], ["pname", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["format", 24, 3], ["src", 26, 3], ["patches", 32, 3], ["propagatedBuildInputs", 34, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "quandl",
       version: "3.7.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "Quandl",
           hash: "sha256-bguC+8eGFhCzV3xTlyd8QiDgZe7g/tTkbNa2AhZVtkw=",
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["quandl"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Quandl Python client library",
         homepage: "https://github.com/quandl/quandl-python",
         changelog: "https://github.com/quandl/quandl-python/blob/master/CHANGELOG.md",

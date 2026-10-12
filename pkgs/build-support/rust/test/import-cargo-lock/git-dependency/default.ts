@@ -2,24 +2,22 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["rand-0.8.3", 12, 7]], [["lockFile", 10, 5], ["outputHashes", 11, 5]], [["pname", 4, 3], ["version", 5, 3], ["src", 7, 3], ["cargoLock", 9, 3], ["doInstallCheck", 16, 3], ["installCheckPhase", 18, 3]]]);
 const formals$1 = { args: { rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["rand-0.8.3", 12, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lockFile", 10, 5], ["outputHashes", 11, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 4, 3], ["version", 5, 3], ["src", 7, 3], ["cargoLock", 9, 3], ["doInstallCheck", 16, 3], ["installCheckPhase", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "git-dependency",
       version: "0.1.0",
       src: nix.path(here, "./package"),
       cargoLock: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         lockFile: nix.path(here, "./package/Cargo.lock"),
         outputHashes: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           "rand-0.8.3": "0ya2hia3cn31qa8894s3av2s8j5bjwb6yq92k0jsnlx7jid0jwqa",
         })),
       })),

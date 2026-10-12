@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5], ["fetchSubmodules", 54, 5]], [["owner", 127, 9], ["repo", 128, 9], ["rev", 129, 9], ["hash", 130, 9]], [["version", 125, 7], ["src", 126, 7], ["dontUsePytestCheck", 134, 7]], [["pygerber", 124, 5]], [["description", 139, 5], ["longDescription", 140, 5], ["homepage", 149, 5], ["changelog", 150, 5], ["mainProgram", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["teams", 154, 5]], [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["dontUseCmakeConfigure", 46, 3], ["__structuredAttrs", 47, 3], ["src", 49, 3], ["postPatch", 57, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 71, 3], ["cmakeFlags", 78, 3], ["build-system", 82, 3], ["dependencies", 90, 3], ["pythonImportsCheck", 102, 3], ["nativeCheckInputs", 106, 3], ["preCheck", 111, 3], ["disabledTests", 116, 3], ["passthru", 121, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, kicad: false, cmake: false, ninja: false, "pkg-config": false, python: false, boost: false, gmp: false, mpfr: false, nanobind: false, "scikit-build-core": false, setuptools: false, "setuptools-scm": false, wheel: false, lxml: false, numpy: false, pygerber: false, pyopengl: false, pyside6: false, scipy: false, sexpdata: false, shapely: false, pytestCheckHook: false, typeguard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5], ["fetchSubmodules", 54, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 127, 9], ["repo", 128, 9], ["rev", 129, 9], ["hash", 130, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 125, 7], ["src", 126, 7], ["dontUsePytestCheck", 134, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pygerber", 124, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 139, 5], ["longDescription", 140, 5], ["homepage", 149, 5], ["changelog", 150, 5], ["mainProgram", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["teams", 154, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["dontUseCmakeConfigure", 46, 3], ["__structuredAttrs", 47, 3], ["src", 49, 3], ["postPatch", 57, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 71, 3], ["cmakeFlags", 78, 3], ["build-system", 82, 3], ["dependencies", 90, 3], ["pythonImportsCheck", 102, 3], ["nativeCheckInputs", 106, 3], ["preCheck", 111, 3], ["disabledTests", 116, 3], ["passthru", 121, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,14 +35,14 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const typeguard = nix.arg($, "typeguard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "padne",
       version: "0.3",
       pyproject: true,
       dontUseCmakeConfigure: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "atx",
           repo: "padne",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,12 +72,12 @@ export default nix.lambda((args) => (() => {
       preCheck: "# remove src module, so tests use the installed module, instead\nmv padne _padne\n",
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["test_basic_rectangle_distance_map"]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pygerber: nix.thunk(() => nix.app(nix.sel(pygerber, "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             version: "2.4.3-unstable-2026-03-20",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 owner: "Argmaster",
                 repo: "pygerber",
                 rev: "5446d44d424897e1b1a68c48c160ed9b4e828f44",
@@ -92,7 +87,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "KiCad-focused Power Delivery Network Simulator",
         longDescription: "Padne is a KiCad-native power delivery network analysis tool.\n\nIt uses the finite element method in order to simulate the voltage drop\ninduced by DC currents on printed circuit boards.\n\nThis allows easy identification of resistive bottlenecks, design of high\ncurrent distribution networks or implementing complex heating elements.\n",
         homepage: "https://github.com/atx/padne",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 71, 5], ["badPlatforms", 73, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["dontWrapQtApps", 31, 3], ["preFixup", 33, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 56, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, qt6Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 71, 5], ["badPlatforms", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["dontWrapQtApps", 31, 3], ["preFixup", 33, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 56, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const qt6Packages = nix.arg($, "qt6Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nagstamon",
       version: "3.18.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "HenriWahl",
           repo: "Nagstamon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Status monitor for the desktop",
         homepage: "https://nagstamon.de/",
         changelog: nix.thunk(() => nix.str`https://github.com/HenriWahl/Nagstamon/releases/tag/v${nix.sel(finalAttrs, "version")}`),

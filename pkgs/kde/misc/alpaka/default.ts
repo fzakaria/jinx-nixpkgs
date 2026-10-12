@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 11, 5], ["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["license", 18, 8], ["mainProgram", 25, 8]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, fetchFromGitLab: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 11, 5], ["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 18, 8], ["mainProgram", 25, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "alpaka",
       version: "0-unstable-2026-07-28",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "invent.kde.org",
           owner: "utilities",
           repo: "alpaka",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-ovKP/yMZPmZ1YCQHwQwNqded0o0z67Ub+1RrPnd99XU=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [

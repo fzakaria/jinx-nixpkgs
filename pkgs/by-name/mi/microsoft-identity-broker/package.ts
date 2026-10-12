@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["intune", 85, 36]], [["updateScript", 84, 5], ["tests", 85, 5]], [["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["sourceProvenance", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["installPhase", 61, 3], ["postInstall", 71, 3], ["passthru", 83, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, dpkg: false, autoPatchelfHook: false, nixosTests: false, dbus: false, "util-linux": false, curl: false, openssl: false, libx11: false, webkitgtk_4_1: false, gtk3: false, zlib: false, pango: false, harfbuzz: false, atk: false, cairo: false, "gdk-pixbuf": false, libsoup_3: false, glib: false, libsecret: false, "p11-kit": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["intune", 85, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 84, 5], ["tests", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["sourceProvenance", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["installPhase", 61, 3], ["postInstall", 71, 3], ["passthru", 83, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "microsoft-identity-broker";
       const version = "3.0.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/m/microsoft-identity-broker/microsoft-identity-broker_${version}-noble_amd64.deb`),
           hash: "sha256-A+YNfbcZflkDllxd97YBrhvbcvzphsz7zb7y/abyx/k=",
         }))));
@@ -66,12 +62,12 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\ncp -a opt/microsoft/identity-broker/bin/* $out/bin/\ncp -a usr/* $out/\n\nrunHook postInstall\n";
       const postInstall = "substituteInPlace $out/lib/systemd/system/microsoft-identity-device-broker.service \\\n  --replace-fail \\\n    /opt/microsoft/identity-broker/bin/microsoft-identity-device-broker \\\n    $out/bin/microsoft-identity-device-broker\n\nsubstituteInPlace $out/share/dbus-1/services/com.microsoft.identity.broker1.service \\\n  --replace-fail \\\n    /opt/microsoft/identity-broker/bin/microsoft-identity-broker \\\n    $out/bin/microsoft-identity-broker\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.path(here, "./update.sh"),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, intune: nix.thunk(() => nix.attr(nixosTests, "intune")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], intune: nix.thunk(() => nix.attr(nixosTests, "intune")) })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Microsoft Authentication Broker for Linux",
         homepage: "https://www.microsoft.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -86,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

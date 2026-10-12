@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 5], ["version", 22, 26], ["hash", 23, 5]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 41, 3], ["disabledTests", 43, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, webtest: false, markupsafe: false, jinja2: false, pytestCheckHook: false, "pytest-cov-stub": false, "zope-deprecation": false, pyramid: false, setuptools_80: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 5], ["version", 22, 26], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 41, 3], ["disabledTests", 43, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pyramid = nix.arg($, "pyramid");
   const setuptools_80 = nix.arg($, "setuptools_80");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pyramid-jinja2",
       version: "2.10.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pyramid_jinja2",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-jFCMs1wTX5UUnKI2EQ+ciHU0NXV0DRbFy3OlDvHCFnc=",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pyramid_jinja2"]),
       disabledTests: nix.thunk(() => ["test_it_relative_to_package", "test_options"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Jinja2 template bindings for the Pyramid web framework",
         homepage: "https://github.com/Pylons/pyramid_jinja2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),

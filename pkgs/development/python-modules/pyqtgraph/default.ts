@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["fontDirectories", 27, 31]], [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["platforms", 96, 5], ["maintainers", 97, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 59, 3], ["preCheck", 61, 3], ["enabledTestPaths", 68, 3], ["disabledTests", 73, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, colorama: false, scipy: false, numpy: false, pyopengl: false, pyqt6: false, qt6: false, pytestCheckHook: false, freefont_ttf: false, makeFontsConf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["fontDirectories", 27, 31]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["platforms", 96, 5], ["maintainers", 97, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 59, 3], ["preCheck", 61, 3], ["enabledTestPaths", 68, 3], ["disabledTests", 73, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,15 +21,15 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const freefont_ttf = nix.arg($, "freefont_ttf");
   const makeFontsConf = nix.arg($, "makeFontsConf");
-  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$1, fontDirectories: nix.thunk(() => [freefont_ttf]) }))));
+  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[0], fontDirectories: nix.thunk(() => [freefont_ttf]) }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyqtgraph",
       version: "0.14.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "pyqtgraph",
           repo: "pyqtgraph",
           tag: nix.thunk(() => nix.str`pyqtgraph-${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +52,7 @@ export FONTCONFIG_FILE=${fontsConf}
         "test_simple",
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))), nix.thunk(() => ["test_PolyLineROI"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_rescaleData"]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Scientific Graphics and GUI Library for Python",
         homepage: "https://www.pyqtgraph.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/pyqtgraph/pyqtgraph/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG`),

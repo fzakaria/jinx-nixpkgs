@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5], ["leaveDotGit", 42, 5]], [["pyseabreeze", 69, 5]], [["homepage", 90, 5], ["description", 91, 5], ["maintainers", 92, 5], ["license", 93, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["enableParallelBuilding", 45, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 54, 3], ["propagatedBuildInputs", 63, 3], ["optional-dependencies", 68, 3], ["postInstall", 72, 3], ["nativeCheckInputs", 78, 3], ["disabledTests", 85, 3], ["setupPyBuildFlags", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, cython: false, git: false, pkgconfig: false, setuptools: false, "setuptools-scm": false, udevCheckHook: false, numpy: false, "libusb-compat-0_1": false, pyusb: false, mock: false, pytestCheckHook: false, zipp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5], ["leaveDotGit", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pyseabreeze", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 90, 5], ["description", 91, 5], ["maintainers", 92, 5], ["license", 93, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["enableParallelBuilding", 45, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 54, 3], ["propagatedBuildInputs", 63, 3], ["optional-dependencies", 68, 3], ["postInstall", 72, 3], ["nativeCheckInputs", 78, 3], ["disabledTests", 85, 3], ["setupPyBuildFlags", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ap--",
           repo: "python-seabreeze",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,20 +42,20 @@ substituteInPlace setup.py \\
 `);
       const nativeBuildInputs = nix.thunk(() => [cython, git, pkgconfig, setuptools, setuptools_scm, udevCheckHook]);
       const propagatedBuildInputs = nix.thunk(() => [numpy, libusb_compat_0_1]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, pyseabreeze: nix.thunk(() => [pyusb]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], pyseabreeze: nix.thunk(() => [pyusb]) }));
       const postInstall = "mkdir -p $out/etc/udev/rules.d\ncp os_support/10-oceanoptics.rules $out/etc/udev/rules.d/10-oceanoptics.rules\n";
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, mock, zipp], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const disabledTests = nix.thunk(() => ["TestHardware"]);
       const setupPyBuildFlags = nix.thunk(() => ["--without-cseabreeze"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/ap--/python-seabreeze",
         description: "Python library to access Ocean Optics spectrometers",
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

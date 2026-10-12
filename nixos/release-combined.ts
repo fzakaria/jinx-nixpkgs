@@ -2,20 +2,14 @@
 import * as nix from "../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/release-combined.nix", [[["outPath", 8, 5], ["revCount", 9, 5], ["shortRev", 10, 5]], [["meta", 30, 18]], [["stableBranch", 41, 15], ["supportedSystems", 42, 7], ["nixpkgs", 43, 7]], [["supportedSystems", 49, 15], ["nixpkgs", 50, 7]], [["description", 67, 9], ["maintainers", 68, 9]], [["name", 65, 7], ["meta", 66, 7], ["constituents", 70, 7]], [["nixos", 39, 3], ["nixpkgs", 47, 3], ["tested", 54, 3]]]);
 const formals$1 = { args: { lib: true, nixpkgs: true, stableBranch: true, supportedSystems: true, limitedSupportedSystems: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/release-combined.nix", [["outPath", 8, 5], ["revCount", 9, 5], ["shortRev", 10, 5]]);
-const pos$2 = nix.positions(here + "/release-combined.nix", [["meta", 30, 18]]);
-const pos$3 = nix.positions(here + "/release-combined.nix", [["stableBranch", 41, 15], ["supportedSystems", 42, 7], ["nixpkgs", 43, 7]]);
-const pos$4 = nix.positions(here + "/release-combined.nix", [["supportedSystems", 49, 15], ["nixpkgs", 50, 7]]);
-const pos$5 = nix.positions(here + "/release-combined.nix", [["description", 67, 9], ["maintainers", 68, 9]]);
-const pos$6 = nix.positions(here + "/release-combined.nix", [["name", 65, 7], ["meta", 66, 7], ["constituents", 70, 7]]);
-const pos$7 = nix.positions(here + "/release-combined.nix", [["nixos", 39, 3], ["nixpkgs", 47, 3], ["tested", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../lib")));
   const nixpkgs = nix.argOr($, "nixpkgs", () => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     outPath: nix.thunk(() => nix.app(nix.sel(lib, "cleanSource"), nix.path(here, "./.."))),
     revCount: 56789n,
     shortRev: "gfedcba",
@@ -26,26 +20,26 @@ export default nix.lambda((args) => (() => {
   const nixpkgsSrc = nixpkgs;
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./..")), nix.thunk(() => ({}))));
   const removeMaintainers = (set) => (nix.asBool(nix.builtins.isAttrs(set)) ? (nix.asBool(nix.eq(nix.selOr(set, () => "", "type"), "derivation")) ? nix.update(set, {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     meta: nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.selOr(set, () => ({}), "meta")), nix.thunk(() => ["maintainers"]))),
   }) : nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => nix.app(removeMaintainers, v), set)) : nix.force(set));
   return (() => {
     const nixos = nix.thunk(() => nix.app(removeMaintainers, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release.nix")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           stableBranch: stableBranch,
           supportedSystems: nix.thunk(() => nix.concat(supportedSystems, limitedSupportedSystems)),
           nixpkgs: nixpkgsSrc,
         }))))));
-    const nixpkgs_1 = nix.thunk(() => nix.app(removeMaintainers, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../pkgs/top-level/release.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, supportedSystems: supportedSystems, nixpkgs: nixpkgsSrc }))))));
+    const nixpkgs_1 = nix.thunk(() => nix.app(removeMaintainers, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../pkgs/top-level/release.nix")), nix.thunk(() => ({ [nix.POS]: $pos[3], supportedSystems: supportedSystems, nixpkgs: nixpkgsSrc }))))));
     const tested = nix.thunk(() => (() => {
       const onFullSupported = (x) => nix.builtins.map((system) => nix.str`${x}.${system}`, supportedSystems);
       const onAllSupported = (x) => nix.builtins.map((system) => nix.str`${x}.${system}`, nix.thunk(() => nix.concat(supportedSystems, limitedSupportedSystems)));
       const onSystems = (systems) => (x) => nix.builtins.map((system) => nix.str`${x}.${system}`, nix.thunk(() => nix.app(nix.sel(lib, "intersectLists"), systems, nix.thunk(() => nix.concat(supportedSystems, limitedSupportedSystems)))));
       return nix.app(nix.sel(pkgs, "releaseTools", "aggregate"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           name: nix.thunk(() => nix.str`nixos-${nix.sel(nixos, "channel", "version")}`),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             description: "Release-critical builds for the NixOS channel",
             maintainers: [],
           })),
@@ -188,7 +182,7 @@ export default nix.lambda((args) => (() => {
             ]))),
         })));
     })());
-    return { [nix.POS]: pos$7, nixos, nixpkgs: nixpkgs_1, tested };
+    return { [nix.POS]: $pos[6], nixos, nixpkgs: nixpkgs_1, tested };
   })();
 })(), formals$1);
 //# sourceMappingURL=release-combined.ts.map

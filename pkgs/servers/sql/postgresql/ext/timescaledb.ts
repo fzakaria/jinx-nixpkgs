@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/timescaledb.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["query", 90, 9], ["expected", 91, 9], ["description", 92, 9]], [["finalPackage", 53, 26], ["withPackages", 54, 5], ["postgresqlExtraSettings", 55, 5], ["sql", 58, 5], ["asserts", 88, 5]], [["extension", 52, 18]], [["tests", 52, 12]], [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["license", 103, 5], ["broken", 104, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["cmakeFlags", 31, 3], ["postPatch", 40, 3], ["passthru", 52, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, lib: false, libkrb5: false, openssl: false, postgresql: false, postgresqlBuildExtension: false, postgresqlTestExtension: false, enableUnfree: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/timescaledb.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/timescaledb.nix", [["query", 90, 9], ["expected", 91, 9], ["description", 92, 9]]);
-const pos$3 = nix.positions(here + "/timescaledb.nix", [["finalPackage", 53, 26], ["withPackages", 54, 5], ["postgresqlExtraSettings", 55, 5], ["sql", 58, 5], ["asserts", 88, 5]]);
-const pos$4 = nix.positions(here + "/timescaledb.nix", [["extension", 52, 18]]);
-const pos$5 = nix.positions(here + "/timescaledb.nix", [["tests", 52, 12]]);
-const pos$6 = nix.positions(here + "/timescaledb.nix", [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["license", 103, 5], ["broken", 104, 5]]);
-const pos$7 = nix.positions(here + "/timescaledb.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["cmakeFlags", 31, 3], ["postPatch", 40, 3], ["passthru", 52, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   const enableUnfree = nix.argOr($, "enableUnfree", () => true);
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: nix.thunk(() => nix.str`timescaledb${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableUnfree)), "-apache")}`),
       version: "2.30.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "timescale",
           repo: "timescaledb",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,18 +37,18 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "for x in CMakeLists.txt sql/CMakeLists.txt; do\n  substituteInPlace \"$x\" \\\n    --replace-fail 'DESTINATION \"${PG_SHAREDIR}/extension\"' \"DESTINATION \\\"$out/share/postgresql/extension\\\"\"\ndone\n\nfor x in src/CMakeLists.txt src/loader/CMakeLists.txt tsl/src/CMakeLists.txt; do\n  substituteInPlace \"$x\" \\\n    --replace-fail 'DESTINATION ${PG_PKGLIBDIR}' \"DESTINATION \\\"$out/lib\\\"\"\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               withPackages: nix.thunk(() => ["timescaledb_toolkit"]),
               postgresqlExtraSettings: "shared_preload_libraries='timescaledb'\n",
               sql: "CREATE EXTENSION timescaledb;\nCREATE EXTENSION timescaledb_toolkit;\n\nCREATE TABLE sth (\n  time TIMESTAMPTZ NOT NULL,\n  value DOUBLE PRECISION\n);\n\nSELECT create_hypertable('sth', 'time');\n\nINSERT INTO sth (time, value) VALUES\n('2003-04-12 04:05:06 America/New_York', 1.0),\n('2003-04-12 04:05:07 America/New_York', 2.0),\n('2003-04-12 04:05:08 America/New_York', 3.0),\n('2003-04-12 04:05:09 America/New_York', 4.0),\n('2003-04-12 04:05:10 America/New_York', 5.0)\n;\n\nWITH t AS (\n  SELECT\n    time_bucket('1 day'::interval, time) AS dt,\n    stats_agg(value) AS stats\n  FROM sth\n  GROUP BY time_bucket('1 day'::interval, time)\n)\nSELECT\n  average(stats)\nFROM t;\n",
               asserts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   query: "SELECT count(*) FROM sth",
                   expected: "5",
                   description: "hypertable can be queried successfully.",
@@ -64,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Scales PostgreSQL for time-series data via automatic partitioning across time and space",
         homepage: "https://www.timescale.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/timescale/timescaledb/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["fetchSubmodules", 19, 5], ["hash", 20, 5]], [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 28]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 30, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 53, 3], ["dontUseCmakeConfigure", 57, 3], ["build-system", 59, 3], ["preBuild", 66, 3], ["doCheck", 71, 3], ["pythonImportsCheck", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, capstone: false, cmake: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, stdenv: false, comfyui: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["fetchSubmodules", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 28]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 30, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 53, 3], ["dontUseCmakeConfigure", 57, 3], ["build-system", 59, 3], ["preBuild", 66, 3], ["doCheck", 71, 3], ["pythonImportsCheck", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const comfyui = nix.arg($, "comfyui");
   const funchookVersion = "1.1.3";
   const funchook = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "kubo",
       repo: "funchook",
       tag: nix.thunk(() => nix.str`v${funchookVersion}`),
@@ -29,12 +26,12 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-u/RXMNyKL6L7p5gEFnAQTErPXXGKXv74jbYlBbG0Wy4=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "comfy-aimdo",
       version: "0.5.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Comfy-Org",
           repo: "comfy-aimdo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +60,7 @@ chmod -R +w build
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(comfyui, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "AI model dynamic offloader for ComfyUI",
         homepage: "https://github.com/Comfy-Org/comfy-aimdo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

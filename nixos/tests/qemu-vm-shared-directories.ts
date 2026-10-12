@@ -2,24 +2,18 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qemu-vm-shared-directories.nix", [[["maintainers", 9, 8], ["platforms", 13, 8]], [["source", 20, 11], ["target", 21, 11], ["cache", 22, 11], ["writable", 23, 11]], [["test", 19, 48]], [["sharedDirectories", 19, 30]], [["virtualisation", 19, 15]], [["name", 18, 9], ["value", 19, 9]], [["name", 7, 3], ["meta", 9, 3], ["nodes", 15, 3], ["testScript", 34, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/qemu-vm-shared-directories.nix", [["maintainers", 9, 8], ["platforms", 13, 8]]);
-const pos$2 = nix.positions(here + "/qemu-vm-shared-directories.nix", [["source", 20, 11], ["target", 21, 11], ["cache", 22, 11], ["writable", 23, 11]]);
-const pos$3 = nix.positions(here + "/qemu-vm-shared-directories.nix", [["test", 19, 48]]);
-const pos$4 = nix.positions(here + "/qemu-vm-shared-directories.nix", [["sharedDirectories", 19, 30]]);
-const pos$5 = nix.positions(here + "/qemu-vm-shared-directories.nix", [["virtualisation", 19, 15]]);
-const pos$6 = nix.positions(here + "/qemu-vm-shared-directories.nix", [["name", 18, 9], ["value", 19, 9]]);
-const pos$7 = nix.positions(here + "/qemu-vm-shared-directories.nix", [["name", 7, 3], ["meta", 9, 3], ["nodes", 15, 3], ["testScript", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "qemu-vm-shared-directories",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "fricklerhandwerk"))];
@@ -27,16 +21,16 @@ export default nix.lambda((args) => (() => {
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
     })),
     nodes: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((policy) => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           name: policy,
           value: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               sharedDirectories: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 test: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   source: nix.thunk(() => nix.str`/tmp/${policy}`),
                   target: "/mnt/test",
                   cache: policy,

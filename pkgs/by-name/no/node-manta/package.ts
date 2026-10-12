@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["package", 47, 7]], [["version", 46, 11]], [["tests", 46, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["npmDepsHash", 21, 3], ["dontBuild", 23, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 27, 3], ["postFixup", 31, 3], ["passthru", 45, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, installShellFiles: false, testers: false, "node-manta": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 46, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 46, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["npmDepsHash", 21, 3], ["dontBuild", 23, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 27, 3], ["postFixup", 31, 3], ["passthru", 45, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "manta";
       const version = "5.4.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TritonDataCenter",
           repo: "node-manta",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const postInstall = "ln -s ./lib/node_modules/manta/bin $out/bin\n";
       const postFixup = "# create completions, following upstream procedure https://github.com/joyent/node-manta/blob/v5.4.1/Makefile#L85-L91\ncmds=$(find ./bin/ -type f -printf \"%f\\n\")\n\nnode $out/lib/node_modules/manta/lib/create_client.js\n\nfor cmd in $cmds; do\n  installShellCompletion --cmd $cmd --bash <($out/bin/$cmd --completion)\n\n  # Strip timestamp from generated bash completion\n  sed -i '/Bash completion generated.*/d' $out/share/bash-completion/completions/$cmd.bash\ndone\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: node_manta })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: node_manta })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Manta Object-Storage Client CLIs and Node.js SDK",
         homepage: "https://github.com/TritonDataCenter/node-manta",
         changelog: nix.thunk(() => nix.str`https://github.com/TritonDataCenter/node-manta/blob/v${version}/CHANGES.md`),
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mls",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

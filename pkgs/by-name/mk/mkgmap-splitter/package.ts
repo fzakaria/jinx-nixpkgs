@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchurl", 17, 50]], [["url", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["updateScript", 96, 12]], [["description", 103, 5], ["downloadPage", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["mainProgram", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5], ["sourceProvenance", 110, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 29, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 62, 3], ["buildPhase", 69, 3], ["doCheck", 75, 11], ["checkPhase", 77, 3], ["installPhase", 84, 3], ["passthru", 96, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchsvn: false, jdk: false, jre: false, ant: false, makeWrapper: false, mkgmap: false, stripJavaArchivesHook: false, doCheck: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchurl", 17, 50]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 96, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 103, 5], ["downloadPage", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["mainProgram", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5], ["sourceProvenance", 110, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 29, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 62, 3], ["buildPhase", 69, 3], ["doCheck", 75, 11], ["checkPhase", 77, 3], ["installPhase", 84, 3], ["passthru", 96, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   const doCheck = nix.argOr($, "doCheck", () => true);
   const deps = nix.thunk(() => nix.attr(mkgmap, "deps"));
-  const testInputs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./testinputs.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl }))));
+  const testInputs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./testinputs.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "splitter",
       version: "654",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://svn.mkgmap.org.uk/mkgmap/splitter/trunk",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-y/pl8kIQ6fiF541ho72LMgJFWJdkUBqPToQGCGmmcfg=",
@@ -74,7 +70,7 @@ makeWrapper ${jre}/bin/java $out/bin/splitter \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => [
           nix.path(here, "./update.sh"),
           "mkgmap-splitter",
@@ -82,7 +78,7 @@ runHook postInstall
         ]),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Utility for splitting OpenStreetMap maps into tiles",
         downloadPage: "https://www.mkgmap.org.uk/download/splitter.html",
         homepage: "https://www.mkgmap.org.uk/",

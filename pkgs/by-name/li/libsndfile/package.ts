@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["url", 43, 7], ["hash", 44, 7]], [["NIX_CFLAGS_LINK", 81, 7]], [["sndfileFileIOSupport", 109, 29]], [["audacity", 97, 7], ["freeswitch", 98, 7], ["libsamplerate", 99, 7], ["moc", 100, 7], ["pipewire", 101, 7], ["pulseaudio", 102, 7], ["soundfile", 105, 7], ["wavefile", 106, 7], ["gst-plugins-bad", 108, 25], ["lame", 109, 5]], [["tests", 95, 12]], [["description", 113, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["platforms", 118, 5], ["longDescription", 120, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 54, 3], ["enableParallelBuilding", 64, 3], ["outputs", 66, 3], ["preConfigure", 76, 3], ["env", 81, 3], ["doCheck", 87, 3], ["preCheck", 88, 3], ["passthru", 95, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, autogen: false, "pkg-config": false, python3: false, flac: false, lame: false, libmpg123: false, libogg: false, libopus: false, libvorbis: false, "alsa-lib": false, audacity: false, freeswitch: false, gst_all_1: false, libsamplerate: false, moc: false, pipewire: false, pulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 43, 7], ["hash", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_LINK", 81, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["sndfileFileIOSupport", 109, 29]]);
-const pos$5 = nix.positions(here + "/package.nix", [["audacity", 97, 7], ["freeswitch", 98, 7], ["libsamplerate", 99, 7], ["moc", 100, 7], ["pipewire", 101, 7], ["pulseaudio", 102, 7], ["soundfile", 105, 7], ["wavefile", 106, 7], ["gst-plugins-bad", 108, 25], ["lame", 109, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 95, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 113, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["platforms", 118, 5], ["longDescription", 120, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 54, 3], ["enableParallelBuilding", 64, 3], ["outputs", 66, 3], ["preConfigure", 76, 3], ["env", 81, 3], ["doCheck", 87, 3], ["preCheck", 88, 3], ["passthru", 95, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const pulseaudio = nix.arg($, "pulseaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "libsndfile",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libsndfile",
           repo: "libsndfile",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/libsndfile/libsndfile/commit/2251737b3b175925684ec0d37029ff4cb521d302.patch",
             hash: "sha256-LaeptEicnjpVBExlK4dNMlN8+AAJhW8dIvemF6S4W2M=",
           })))),
@@ -60,17 +53,17 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["bin", "dev", "out", "man", "doc"]),
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "NIX_CFLAGS_COMPILE+=\" -I$SDKROOT/System/Library/Frameworks/Carbon.framework/Versions/A/Headers\"\n")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_LINK: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-logg", "-lvorbis"]))),
       })),
       doCheck: false,
       preCheck: "patchShebangs tests/test_wrapper.sh tests/pedantic-header-test.sh\n\nsubstituteInPlace tests/test_wrapper.sh \\\n  --replace '/usr/bin/env' \"$(type -P env)\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           audacity: audacity,
           freeswitch: freeswitch,
           libsamplerate: libsamplerate,
@@ -80,12 +73,12 @@ export default nix.lambda((args) => (() => {
           soundfile: nix.thunk(() => nix.attr(from, "soundfile")),
           wavefile: nix.thunk(() => nix.attr(from, "wavefile")),
           "gst-plugins-bad": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-bad")),
-          lame: nix.thunk(() => nix.app(nix.sel(lame, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, sndfileFileIOSupport: true })))),
+          lame: nix.thunk(() => nix.app(nix.sel(lame, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], sndfileFileIOSupport: true })))),
         };
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "C library for reading and writing files containing sampled sound",
         homepage: "https://libsndfile.github.io/libsndfile/",
         changelog: nix.thunk(() => nix.str`https://github.com/libsndfile/libsndfile/releases/tag/${nix.sel(finalAttrs, "version")}`),

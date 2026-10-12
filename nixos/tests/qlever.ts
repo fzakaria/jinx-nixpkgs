@@ -2,14 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qlever.nix", [[["url", 11, 5], ["hash", 12, 5]], [["maintainers", 18, 8]], [["systemPackages", 27, 21]], [["environment", 27, 9]], [["machine", 21, 5]], [["name", 17, 3], ["meta", 18, 3], ["nodes", 20, 3], ["testScript", 35, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/qlever.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/qlever.nix", [["maintainers", 18, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/qlever.nix", [["systemPackages", 27, 21]]);
-const pos$4 = nix.positions(here + "/qlever.nix", [["environment", 27, 9]]);
-const pos$5 = nix.positions(here + "/qlever.nix", [["machine", 21, 5]]);
-const pos$6 = nix.positions(here + "/qlever.nix", [["name", 17, 3], ["meta", 18, 3], ["nodes", 20, 3], ["testScript", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,26 +12,26 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const olympics_qleverfile = nix.thunk(() => nix.str`${nix.sel(pkgs, "qlever-control", "src")}/src/qlever/Qleverfiles/Qleverfile.olympics`);
   const olympics_dataset = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/wallscope/olympics-rdf/raw/54483d539082641d48e1d49873662b3af628ca4d/data/olympics-nt-nodup.zip",
       hash: "sha256-dY28CQKaMDUUw/pw+p9yX0EtJOnbAAplodMFaedL1B8=",
     }))));
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "Basic QLever test",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [

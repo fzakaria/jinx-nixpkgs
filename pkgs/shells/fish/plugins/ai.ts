@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ai.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]], [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["maintainers", 21, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, buildFishPlugin: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ai.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/ai.nix", [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["maintainers", 21, 5]]);
-const pos$3 = nix.positions(here + "/ai.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const buildFishPlugin = nix.arg($, "buildFishPlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ai",
       version: "0-unstable-2025-02-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "derekstavis",
           repo: "fish-ai",
           rev: "b22952232fbf71287c56c8a09c8be2f938d33b51",
           sha256: "sha256-ogkbNX+e5qaEbW+iO3na8JC2Xfk/9BndXRm2AcHyOmc=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Don't remember the command, use AI to figure out",
         homepage: "https://github.com/derekstavis/fish-ai",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

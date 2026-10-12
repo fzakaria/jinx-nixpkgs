@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dconf2nix.nix", [[["url", 18, 5], ["sha256", 19, 5], ["rev", 20, 5], ["fetchSubmodules", 21, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["isLibrary", 23, 3], ["isExecutable", 24, 3], ["libraryHaskellDepends", 25, 3], ["executableHaskellDepends", 33, 3], ["testHaskellDepends", 34, 3], ["description", 42, 3], ["license", 43, 3], ["mainProgram", 44, 3]]]);
 const formals$1 = { args: { mkDerivation: false, base: false, containers: false, emojis: false, fetchgit: false, hedgehog: false, lib: false, "optparse-applicative": false, parsec: false, "template-haskell": false, text: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dconf2nix.nix", [["url", 18, 5], ["sha256", 19, 5], ["rev", 20, 5], ["fetchSubmodules", 21, 5]]);
-const pos$2 = nix.positions(here + "/dconf2nix.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["isLibrary", 23, 3], ["isExecutable", 24, 3], ["libraryHaskellDepends", 25, 3], ["executableHaskellDepends", 33, 3], ["testHaskellDepends", 34, 3], ["description", 42, 3], ["license", 43, 3], ["mainProgram", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const template_haskell = nix.arg($, "template-haskell");
   const text = nix.arg($, "text");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "dconf2nix",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/gvolpe/dconf2nix.git",
           sha256: "0frqnq7ryr4gvkbb67n0615d9h1blps2kp55ic05n7wxyh26adgz",
           rev: "2fc3b0dfbbce9f1ea2ee89f3689a7cb95b33b63f",

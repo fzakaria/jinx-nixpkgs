@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["src", 71, 5], ["hash", 72, 5]], [["extraArgs", 82, 5]], [["updateScript", 81, 12]], [["homepage", 91, 5], ["description", 92, 5], ["longDescription", 93, 5], ["downloadPage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 109, 5], ["mainProgram", 110, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["enableParallelBuilding", 36, 3], ["separateDebugInfo", 38, 3], ["strictDeps", 40, 3], ["depsBuildBuild", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 57, 3], ["cargoDeps", 70, 3], ["cargoRoot", 75, 3], ["preConfigure", 77, 3], ["passthru", 81, 3], ["outputs", 85, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pcre2: false, sqlite: false, readline: false, zlib: false, bzip2: false, autoconf: false, automake: false, curl: false, buildPackages: false, re2c: false, gpm: false, libarchive: false, "nix-update-script": false, cargo: false, rustPlatform: false, rustc: false, libunistring: false, prqlSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 71, 5], ["hash", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 81, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 91, 5], ["description", 92, 5], ["longDescription", 93, 5], ["downloadPage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 109, 5], ["mainProgram", 110, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["enableParallelBuilding", 36, 3], ["separateDebugInfo", 38, 3], ["strictDeps", 40, 3], ["depsBuildBuild", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 57, 3], ["cargoDeps", 70, 3], ["cargoRoot", 75, 3], ["preConfigure", 77, 3], ["passthru", 81, 3], ["outputs", 85, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const libunistring = nix.arg($, "libunistring");
   const prqlSupport = nix.argOr($, "prqlSupport", () => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lnav",
       version: "0.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tstack",
           repo: "lnav",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,22 +46,22 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([autoconf, automake, zlib, nix.thunk(() => nix.sel(curl, "dev")), re2c], nix.app(nix.sel(lib, "optionals"), prqlSupport, nix.thunk(() => [cargo, nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")), rustc])))),
       buildInputs: nix.thunk(() => nix.concat([bzip2, pcre2, readline, sqlite, curl, libarchive, libunistring], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [gpm])))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/src/third-party/lnav-rs-ext`),
           hash: "sha256-Dy+V45X27dy2TN3JRic6nLmmG11I1Pw7m+vYKYJMnQs=",
         })))),
       cargoRoot: "src/third-party/lnav-rs-ext",
       preConfigure: "./autogen.sh\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex=^v(\\d+(?:\\.\\d+)*)$"]),
           })))),
       })),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/tstack/lnav",
         description: "Logfile Navigator",
         longDescription: "The log file navigator, lnav, is an enhanced log file viewer that takes\nadvantage of any semantic information that can be gleaned from the files\nbeing viewed, such as timestamps and log levels. Using this extra\nsemantic information, lnav can do things like interleaving messages from\ndifferent files, generate histograms of messages over time, and providing\nhotkeys for navigating through the file. It is hoped that these features\nwill allow the user to quickly and efficiently zero in on problems.\n",

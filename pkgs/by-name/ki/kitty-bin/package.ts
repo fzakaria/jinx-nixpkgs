@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["updateScript", 38, 12]], [["homepage", 41, 5], ["description", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["sourceProvenance", 45, 5], ["platforms", 46, 5], ["mainProgram", 47, 5], ["maintainers", 48, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["sourceRoot", 22, 3], ["installPhase", 24, 3], ["dontFixup", 36, 3], ["passthru", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, _7zz: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 38, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["sourceProvenance", 45, 5], ["platforms", 46, 5], ["mainProgram", 47, 5], ["maintainers", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["sourceRoot", 22, 3], ["installPhase", 24, 3], ["dontFixup", 36, 3], ["passthru", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const _7zz = nix.arg($, "_7zz");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kitty-bin",
       version: "0.49.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/kovidgoyal/kitty/releases/download/v${nix.sel(finalAttrs, "version")}/kitty-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-5SS4lBRdict2tYTjqWkRlq5Wv6MdUThKRKp3QlK3zvc=",
         })))),
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\" \"$out/bin\"\ncp -R kitty.app \"$out/Applications/kitty.app\"\nln -s \"$out/Applications/kitty.app/Contents/MacOS/kitty\" \"$out/bin/kitty\"\nln -s \"$out/Applications/kitty.app/Contents/MacOS/kitten\" \"$out/bin/kitten\"\n\nrunHook postInstall\n",
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/kovidgoyal/kitty",
         description: "Fast, feature-rich, GPU based terminal emulator (prebuilt signed macOS app)",
         changelog: nix.thunk(() => nix.str`https://github.com/kovidgoyal/kitty/blob/v${nix.sel(finalAttrs, "version")}/docs/changelog.rst`),

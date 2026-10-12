@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 69, 5], ["longDescription", 70, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5], ["mainProgram", 94, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 22, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["postPatch", 38, 3], ["preInstall", 43, 3], ["postInstall", 47, 3], ["checkTarget", 65, 3], ["doCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, perl: false, makeWrapper: false, procps: false, coreutils: false, gawk: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 69, 5], ["longDescription", 70, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5], ["mainProgram", 94, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 22, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["postPatch", 38, 3], ["preInstall", 43, 3], ["postInstall", 47, 3], ["checkTarget", 65, 3], ["doCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "parallel",
       version: "20260822",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/parallel/parallel-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-HTinJYeWAVqSpabu4pM0C5JOT/aOTo6EW4vbtfT32eg=",
         })))),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "check",
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Shell tool for executing jobs in parallel",
         longDescription: "GNU Parallel is a shell tool for executing jobs in parallel.  A job\nis typically a single command or a small script that has to be run\nfor each of the lines in the input.  The typical input is a list of\nfiles, a list of hosts, a list of users, or a list of tables.\n\nIf you use xargs today you will find GNU Parallel very easy to use.\nIf you write loops in shell, you will find GNU Parallel may be able\nto replace most of the loops and make them run faster by running\njobs in parallel.  If you use ppss or pexec you will find GNU\nParallel will often make the command easier to read.\n\nGNU Parallel makes sure output from the commands is the same output\nas you would get had you run the commands sequentially.  This makes\nit possible to use output from GNU Parallel as input for other\nprograms.\n",
         homepage: "https://www.gnu.org/software/parallel/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 5], ["version", 17, 26], ["hash", 18, 5]], [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["platforms", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 21, 3], ["patches", 23, 3], ["doCheck", 26, 3], ["pythonImportsCheck", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 26], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["platforms", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 21, 3], ["patches", 23, 3], ["doCheck", 26, 3], ["pythonImportsCheck", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pyinotify",
       version: "0.9.6",
       __structuredAttrs: true,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pyinotify",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-nJmKXXYGyoNQZc2rwBOubGbrnqdqAKHjvG4M/itPcfQ=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pyinotify"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/seb-m/pyinotify/wiki",
         description: "Monitor filesystems events on Linux platforms with inotify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

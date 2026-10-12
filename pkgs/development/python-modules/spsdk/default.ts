@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]], [["changelog", 158, 5], ["description", 159, 5], ["homepage", 160, 5], ["license", 161, 5], ["maintainers", 162, 5], ["mainProgram", 164, 5]], [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["__structuredAttrs", 57, 3], ["src", 59, 3], ["postPatch", 66, 3], ["build-system", 73, 3], ["pythonRelaxDeps", 78, 3], ["pythonRemoveDeps", 93, 3], ["dependencies", 99, 3], ["pythonImportsCheck", 133, 3], ["nativeCheckInputs", 135, 3], ["disabledTests", 146, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, asn1crypto: false, bincopy: false, bitstring: false, chardet: false, click: false, "click-command-tree": false, "click-option-group": false, colorama: false, crcmod: false, cryptography: false, deepmerge: false, fastjsonschema: false, filelock: false, hexdump: false, libusbsio: false, libuuu: false, oscrypto: false, packaging: false, platformdirs: false, prettytable: false, pyasn1: false, pyocd: false, pyserial: false, requests: false, "ruamel-yaml": false, sly: false, "spsdk-mcu-link": false, "spsdk-pyocd": false, "typing-extensions": false, x690: false, cookiecutter: false, ipykernel: false, "pytest-notebook": false, "pytest-xdist": false, pytestCheckHook: false, versionCheckHook: false, voluptuous: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 158, 5], ["description", 159, 5], ["homepage", 160, 5], ["license", 161, 5], ["maintainers", 162, 5], ["mainProgram", 164, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["__structuredAttrs", 57, 3], ["src", 59, 3], ["postPatch", 66, 3], ["build-system", 73, 3], ["pythonRelaxDeps", 78, 3], ["pythonRemoveDeps", 93, 3], ["dependencies", 99, 3], ["pythonImportsCheck", 133, 3], ["nativeCheckInputs", 135, 3], ["disabledTests", 146, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,13 +51,13 @@ export default nix.lambda((args) => (() => {
   const voluptuous = nix.arg($, "voluptuous");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "spsdk",
       version: "3.11.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nxp-mcuxpresso",
           repo: "spsdk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -132,7 +130,7 @@ export default nix.lambda((args) => (() => {
         "test_keys_generation_ec",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/nxp-mcuxpresso/spsdk/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/release_notes.rst`),
         description: "NXP Secure Provisioning SDK",
         homepage: "https://github.com/nxp-mcuxpresso/spsdk",

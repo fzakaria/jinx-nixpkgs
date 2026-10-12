@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 14, 5], ["owner", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["rev-prefix", 35, 5]], [["updateScript", 34, 12]], [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["maintainers", 42, 5], ["platforms", 46, 5], ["license", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 26, 3], ["postPatch", 28, 3], ["passthru", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, libsForQt5: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 14, 5], ["owner", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 34, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["maintainers", 42, 5], ["platforms", 46, 5], ["license", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 26, 3], ["postPatch", 28, 3], ["passthru", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cmst",
       version: "2023.03.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "cmst",
           owner: "andrew-bibb",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +31,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtbase"))]),
       postPatch: "for f in $(find . -name \\*.cpp -o -name \\*.pri -o -name \\*.pro); do\n  substituteInPlace $f --replace /etc $out/etc --replace /usr $out\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "rev-prefix": nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-`),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "QT GUI for Connman with system tray icon",
         mainProgram: "cmst",
         homepage: "https://github.com/andrew-bibb/cmst",

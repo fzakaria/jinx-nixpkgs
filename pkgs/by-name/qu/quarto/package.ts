@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["packages", 32, 5]], [["url", 163, 9], ["hash", 164, 9]], [["url", 167, 9], ["hash", 168, 9]], [["url", 172, 9], ["hash", 173, 9]], [["x86_64-linux", 162, 7], ["aarch64-linux", 166, 7], ["aarch64-darwin", 171, 7]], [["nativeBuildInputs", 181, 13]], [["quarto-check", 178, 7]], [["sources", 161, 5], ["tests", 177, 5], ["updateScript", 190, 5]], [["description", 217, 5], ["mainProgram", 218, 5], ["longDescription", 219, 5], ["homepage", 223, 5], ["changelog", 224, 5], ["license", 225, 5], ["maintainers", 226, 5], ["platforms", 229, 5], ["sourceProvenance", 230, 5]], [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["sourceRoot", 63, 3], ["strictDeps", 65, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 73, 3], ["dontStrip", 81, 3], ["preFixup", 83, 3], ["installPhase", 106, 3], ["doInstallCheck", 157, 3], ["nativeInstallCheckInputs", 158, 3], ["passthru", 160, 3], ["meta", 216, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, pandoc: false, typst: false, esbuild: false, deno: false, fetchurl: false, "dart-sass": false, installShellFiles: false, rWrapper: false, rPackages: false, extraRPackages: true, makeWrapper: false, runCommand: false, python3: false, extraPythonPackages: true, sysctl: false, which: false, autoPatchelfHook: false, bashNonInteractive: false, coreutils: false, versionCheckHook: false, writeShellScript: false, curl: false, jq: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["packages", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 163, 9], ["hash", 164, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 167, 9], ["hash", 168, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 172, 9], ["hash", 173, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["x86_64-linux", 162, 7], ["aarch64-linux", 166, 7], ["aarch64-darwin", 171, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 181, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["quarto-check", 178, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["sources", 161, 5], ["tests", 177, 5], ["updateScript", 190, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 217, 5], ["mainProgram", 218, 5], ["longDescription", 219, 5], ["homepage", 223, 5], ["changelog", 224, 5], ["license", 225, 5], ["maintainers", 226, 5], ["platforms", 229, 5], ["sourceProvenance", 230, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["sourceRoot", 63, 3], ["strictDeps", 65, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 73, 3], ["dontStrip", 81, 3], ["preFixup", 83, 3], ["installPhase", 106, 3], ["doInstallCheck", 157, 3], ["nativeInstallCheckInputs", 158, 3], ["passthru", 160, 3], ["meta", 216, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const rWithPackages = nix.thunk(() => nix.app(nix.sel(rWrapper, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       packages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(rPackages, "rmarkdown"))], extraRPackages)),
     }))));
   const pythonWithPackages = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
@@ -57,7 +48,7 @@ export default nix.lambda((args) => (() => {
   const denoDomExt = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "dylib" : "so"));
   const denoDomPlugin = nix.thunk(() => nix.str`libplugin.${denoDomExt}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "quarto",
       version: "1.10.18",
       src: nix.thunk(() => nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), "passthru", "sources", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -123,29 +114,29 @@ runHook postInstall
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         sources: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://github.com/quarto-dev/quarto-cli/releases/download/v${nix.sel(finalAttrs, "version")}/quarto-${nix.sel(finalAttrs, "version")}-linux-amd64.tar.gz`),
               hash: "sha256-r60HG1vSLALy0wBpV0MYnTZQ4FN6Uwc+ZUtjDP8rDHM=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://github.com/quarto-dev/quarto-cli/releases/download/v${nix.sel(finalAttrs, "version")}/quarto-${nix.sel(finalAttrs, "version")}-linux-arm64.tar.gz`),
               hash: "sha256-9qB99o4lMwtd809l099mvKYFrM47gwxZOljpGITUz2w=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: nix.thunk(() => nix.str`https://github.com/quarto-dev/quarto-cli/releases/download/v${nix.sel(finalAttrs, "version")}/quarto-${nix.sel(finalAttrs, "version")}-macos.tar.gz`),
               hash: "sha256-3danGp4ESKsV+2VbxYnhHLZYmiSOw1zNf39EE3UxaI4=",
             })))),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "quarto-check": nix.thunk(() => nix.app(runCommand, "quarto-check", nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               nativeBuildInputs: nix.thunk(() => nix.concat([which], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [sysctl])))),
             })), nix.thunk(() => nix.str`export HOME="$(mktemp -d)"
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} check
@@ -171,7 +162,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Open-source scientific and technical publishing system built on Pandoc",
         mainProgram: "quarto",
         longDescription: "Quarto is an open-source scientific and technical publishing system built on Pandoc.\nQuarto documents are authored using markdown, an easy to write plain text format.\n",

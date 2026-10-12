@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["CXXFLAGS", 40, 7]], [["finalAttrs", 48, 54]], [["updateScript", 48, 12]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["teams", 63, 5], ["platforms", 64, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["env", 40, 3], ["postPatch", 42, 3], ["passthru", 48, 3], ["postInstall", 50, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, llvm: false, zlib: false, zstd: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CXXFLAGS", 40, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["finalAttrs", 48, 54]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 48, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["teams", 63, 5], ["platforms", 64, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["env", 40, 3], ["postPatch", 42, 3], ["passthru", 48, 3], ["postInstall", 50, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "hipify",
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "HIPIFY",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +37,7 @@ export default nix.lambda((args) => (() => {
         zstd,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(llvm, "llvm")))}/include -I${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(llvm, "clang-unwrapped")))}/include`),
       })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace CMakeLists.txt \\
@@ -50,12 +45,12 @@ export default nix.lambda((args) => (() => {
 chmod +x bin/*
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$3, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[2], finalAttrs: finalAttrs })))),
       })),
       postInstall: "rm $out/bin/hipify-perl\nchmod +x $out/bin/*\nchmod +x $out/libexec/*\npatchShebangs $out/bin/\npatchShebangs $out/libexec/\nln -s $out/{libexec/hipify,bin}/hipify-perl\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Convert CUDA to Portable C++ Code",
         homepage: "https://github.com/ROCm/HIPIFY",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 53, 5], ["homepage", 54, 5], ["maintainers", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["broken", 60, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["buildFlags", 35, 3], ["cmakeFlags", 38, 3], ["preInstall", 44, 3], ["nativeCheckInputs", 49, 3], ["doCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, utf8cpp: false, libtool: false, libxml2: false, icu: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["maintainers", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["broken", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["buildFlags", 35, 3], ["cmakeFlags", 38, 3], ["preInstall", 44, 3], ["nativeCheckInputs", 49, 3], ["doCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lttoolbox";
       const version = "3.8.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apertium",
           repo: "lttoolbox",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [python3]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Finite state compiler, processor and helper tools used by apertium",
         homepage: "https://github.com/apertium/lttoolbox",
         maintainers: nix.thunk(() => (() => {
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["xmlsec", 37, 15]], [["s2repoze", 63, 5]], [["broken", 93, 5], ["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["postPatch", 44, 3], ["pythonRelaxDeps", 49, 3], ["build-system", 51, 3], ["dependencies", 55, 3], ["optional-dependencies", 62, 3], ["nativeCheckInputs", 70, 3], ["disabledTests", 78, 3], ["pythonImportsCheck", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cryptography: false, defusedxml: false, fetchFromGitHub: false, paste: false, "poetry-core": false, pyasn1: false, pymongo: false, pytestCheckHook: false, "python-dateutil": false, "repoze-who": false, requests: false, responses: false, setuptools: false, replaceVars: false, xmlschema: false, xmlsec: false, "zope-interface": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["xmlsec", 37, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["s2repoze", 63, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["broken", 93, 5], ["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["postPatch", 44, 3], ["pythonRelaxDeps", 49, 3], ["build-system", 51, 3], ["dependencies", 55, 3], ["optional-dependencies", 62, 3], ["nativeCheckInputs", 70, 3], ["disabledTests", 78, 3], ["pythonImportsCheck", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const version = "7.5.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "IdentityPython",
           repo: "pysaml2",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-DDs0jWONZ78995p7bbyIyZTWHnCI93SsbECqyeo0se8=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-xmlsec1-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, xmlsec: xmlsec })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-xmlsec1-path.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], xmlsec: xmlsec })))),
         nix.path(here, "./replace-pyopenssl-with-cryptography.patch"),
       ]);
       const postPatch = "# Fix failing tests on systems with 32bit time_t\nsed -i 's/2999\\(-.*T\\)/2029\\1/g' tests/*.xml\n";
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [cryptography, defusedxml, requests, xmlschema]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         s2repoze: nix.thunk(() => [paste, repoze_who, zope_interface]),
       }));
       const nativeCheckInputs = nix.thunk(() => [pyasn1, pymongo, pytestCheckHook, python_dateutil, responses]);
@@ -63,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["saml2"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(xmlschema, "version")), "4.2.0")),
         description: "Python implementation of SAML Version 2 Standard",
         homepage: "https://github.com/IdentityPython/pysaml2",
@@ -72,7 +68,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

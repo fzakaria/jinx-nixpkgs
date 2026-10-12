@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["CGO_ENABLED", 30, 7]], [["package", 43, 7], ["command", 44, 7]], [["version", 42, 11]], [["updateScript", 41, 5], ["tests", 42, 5]], [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["proxyVendor", 24, 3], ["vendorHash", 25, 3], ["doCheck", 28, 3], ["env", 30, 3], ["ldflags", 32, 3], ["passthru", 40, 3], ["nativeBuildInputs", 48, 3], ["postInstall", 50, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, go: false, buildGoLatestModule: false, fetchFromGitHub: false, "nix-update-script": false, installShellFiles: false, testers: false, updatecli: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 43, 7], ["command", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 42, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 41, 5], ["tests", 42, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["proxyVendor", 24, 3], ["vendorHash", 25, 3], ["doCheck", 28, 3], ["env", 30, 3], ["ldflags", 32, 3], ["passthru", 40, 3], ["nativeBuildInputs", 48, 3], ["postInstall", 50, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const updatecli = nix.arg($, "updatecli");
   return nix.app(buildGoLatestModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "updatecli",
       version: "0.122.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "updatecli",
           repo: "updatecli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +30,7 @@ export default nix.lambda((args) => (() => {
       proxyVendor: true,
       vendorHash: "sha256-3BwtGovBqiUkeGKSq+b2k80H6gf2YHnl/H2G1P+hoZ0=",
       doCheck: false,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -45,17 +39,17 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/updatecli/updatecli/pkg/core/version.Version=${nix.sel(finalAttrs, "version")}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: updatecli, command: "updatecli version" })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: updatecli, command: "updatecli version" })))),
         })),
       })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd updatecli \\\n  --bash <($out/bin/updatecli completion bash) \\\n  --fish <($out/bin/updatecli completion fish) \\\n  --zsh <($out/bin/updatecli completion zsh)\n\n$out/bin/updatecli man > updatecli.1\ninstallManPage updatecli.1\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Declarative Dependency Management tool",
         longDescription: "Updatecli is a command-line tool used to define and apply update strategies.\n",
         homepage: "https://www.updatecli.io",

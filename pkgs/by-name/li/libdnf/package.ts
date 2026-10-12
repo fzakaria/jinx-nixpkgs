@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["description", 101, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5]], [["pname", 27, 3], ["version", 28, 3], ["outputs", 30, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 64, 3], ["prePatch", 72, 3], ["patches", 76, 3], ["postPatch", 78, 3], ["cmakeFlags", 86, 3], ["postInstall", 92, 3], ["postFixup", 96, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gettext: false, "pkg-config": false, libsolv: false, openssl: false, check: false, json_c: false, libmodulemd: false, "util-linux": false, sqlite: false, librepo: false, libyaml: false, rpm: false, zchunk: false, cppunit: false, python3: false, swig: false, pcre2: false, sphinx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["outputs", 30, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 64, 3], ["prePatch", 72, 3], ["patches", 76, 3], ["postPatch", 78, 3], ["cmakeFlags", 86, 3], ["postInstall", 92, 3], ["postFixup", 96, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const sphinx = nix.arg($, "sphinx");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libdnf",
       version: "0.76.0",
       outputs: nix.thunk(() => ["out", "dev", "py"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rpm-software-management",
           repo: "libdnf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -78,7 +76,7 @@ substituteInPlace cmake/modules/FindPythonInstDir.cmake \\
       postFixup: nix.thunk(() => nix.str`moveToOutput "lib/${nix.sel(python3, "libPrefix")}" "$py"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Package management library",
         homepage: "https://github.com/rpm-software-management/libdnf",
         changelog: nix.thunk(() => nix.str`https://github.com/rpm-software-management/libdnf/releases/tag/${nix.sel(finalAttrs, "version")}`),

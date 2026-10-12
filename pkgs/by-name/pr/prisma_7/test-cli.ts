@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-cli.nix", [[["timeout", 21, 10]], [["nativeBuildInputs", 16, 5], ["meta", 21, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, prisma_7: false, "prisma-engines_7": false, "sqlite-interactive": false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-cli.nix", [["timeout", 21, 10]]);
-const pos$2 = nix.positions(here + "/test-cli.nix", [["nativeBuildInputs", 16, 5], ["meta", 21, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,9 +16,9 @@ export default nix.lambda((args) => (() => {
   const prismaMajorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(prisma_7, "version"))));
   const enginesMajorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(prisma_engines_7, "version"))));
   return nix.app(runCommand, "prisma-cli-tests", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => [prisma_7, sqlite_interactive, openssl]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 60n })),
     })), nix.thunk(() => nix.str`mkdir $out
 cd $out
 

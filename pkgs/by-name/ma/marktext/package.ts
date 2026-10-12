@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["pnpm", 37, 13], ["pname", 38, 26], ["src", 38, 32], ["version", 38, 36], ["fetcherVersion", 40, 5], ["pnpmInstallFlags", 41, 5], ["hash", 42, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 64, 7]], [["extraArgs", 131, 47]], [["updateScript", 131, 12]], [["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["platforms", 142, 5], ["mainProgram", 143, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["pnpmDeps", 36, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["env", 64, 3], ["postPatch", 67, 3], ["buildPhase", 75, 3], ["installPhase", 107, 3], ["passthru", 131, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, fetchPnpmDeps: false, pnpm_10: false, pnpmConfigHook: false, nodejs: false, python3: false, "node-gyp": false, libx11: false, xorgproto: false, libxkbfile: false, fontconfig: false, "node-gyp-build": false, "pkg-config": false, libsecret: false, makeWrapper: false, electron: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pnpm", 37, 13], ["pname", 38, 26], ["src", 38, 32], ["version", 38, 36], ["fetcherVersion", 40, 5], ["pnpmInstallFlags", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 64, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 131, 47]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 131, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["platforms", 142, 5], ["mainProgram", 143, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["pnpmDeps", 36, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["env", 64, 3], ["postPatch", 67, 3], ["buildPhase", 75, 3], ["installPhase", 107, 3], ["passthru", 131, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,18 +28,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "marktext",
       version: "0.19.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "marktext",
           repo: "marktext",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-i1CjwRndcDUNpoMUPZ9U2TI/OsSX/WH8zXgEMHy338k=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pnpm: pnpm,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -67,7 +61,7 @@ export default nix.lambda((args) => (() => {
         pnpmConfigHook,
       ]),
       buildInputs: nix.thunk(() => [fontconfig, libsecret, libx11, libxkbfile, pnpm, xorgproto]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       postPatch: "# Fix static/locales folder location\nsubstituteInPlace packages/desktop/src/common/i18n.ts \\\n  --replace-fail \\\n    \"process.resourcesPath, 'static', 'locales'\" \\\n    \"__dirname, '..', '..', 'static', 'locales'\"\n",
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
@@ -122,11 +116,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} "$out/bin/marktext" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Simple and elegant markdown editor, available for Linux, macOS and Windows",
         homepage: "https://www.marktext.me",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

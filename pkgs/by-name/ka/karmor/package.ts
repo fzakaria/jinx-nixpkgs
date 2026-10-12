@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["package", 48, 7], ["command", 49, 7]], [["version", 47, 5]], [["tests", 46, 12]], [["description", 54, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["nativeBuildInputs", 24, 3], ["ldflags", 26, 3], ["doCheck", 34, 3], ["postInstall", 36, 3], ["passthru", 46, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, testers: false, karmor: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 48, 7], ["command", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 46, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 54, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["nativeBuildInputs", 24, 3], ["ldflags", 26, 3], ["doCheck", 34, 3], ["postInstall", 36, 3], ["passthru", 46, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const karmor = nix.arg($, "karmor");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "karmor",
       version: "1.4.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kubearmor",
           repo: "kubearmor-client",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,14 +36,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: nix.thunk(() => nix.add("mv $out/bin/{kubearmor-client,karmor}\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd karmor \\\n  --bash <($out/bin/karmor completion bash) \\\n  --fish <($out/bin/karmor completion fish) \\\n  --zsh  <($out/bin/karmor completion zsh)\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: karmor, command: "karmor version || true" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: karmor, command: "karmor version || true" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Client tool to help manage KubeArmor",
         mainProgram: "karmor",
         homepage: "https://kubearmor.io",

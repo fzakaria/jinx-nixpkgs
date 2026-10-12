@@ -2,59 +2,38 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [[["canokeySupport", 9, 48]], [["package", 9, 8]], [["options", 21, 14]], [["emptyDiskImages", 16, 9], ["useBootLoader", 17, 9], ["mountHostNixStore", 19, 9], ["useEFIBoot", 20, 9], ["qemu", 21, 9]], [["enable", 27, 32]], [["systemd-boot", 27, 19]], [["enable", 29, 27]], [["systemd", 29, 19]], [["loader", 27, 12], ["initrd", 29, 12]], [["systemPackages", 31, 19]], [["device", 36, 13], ["crypttabExtraOpts", 37, 13]], [["cryptroot", 35, 11]], [["devices", 34, 26]], [["luks", 34, 21]], [["initrd", 34, 14]], [["rootDevice", 40, 24]], [["boot", 34, 9], ["virtualisation", 40, 9]], [["configuration", 33, 32]], [["boot-luks", 33, 22]], [["virtualisation", 15, 7], ["boot", 27, 7], ["environment", 31, 7], ["specialisation", 33, 7]], [["machine", 11, 9]], [["name", 7, 3], ["qemu", 9, 3], ["nodes", 11, 3], ["testScript", 44, 3]]]);
 const formals$1 = { args: { lib: false, hostPkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["canokeySupport", 9, 48]]);
-const pos$2 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["package", 9, 8]]);
 const formals$2 = { args: { pkgs: false, config: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["options", 21, 14]]);
-const pos$4 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["emptyDiskImages", 16, 9], ["useBootLoader", 17, 9], ["mountHostNixStore", 19, 9], ["useEFIBoot", 20, 9], ["qemu", 21, 9]]);
-const pos$5 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["enable", 27, 32]]);
-const pos$6 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["systemd-boot", 27, 19]]);
-const pos$7 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["enable", 29, 27]]);
-const pos$8 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["systemd", 29, 19]]);
-const pos$9 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["loader", 27, 12], ["initrd", 29, 12]]);
-const pos$10 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["systemPackages", 31, 19]]);
-const pos$11 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["device", 36, 13], ["crypttabExtraOpts", 37, 13]]);
-const pos$12 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["cryptroot", 35, 11]]);
-const pos$13 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["devices", 34, 26]]);
-const pos$14 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["luks", 34, 21]]);
-const pos$15 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["initrd", 34, 14]]);
-const pos$16 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["rootDevice", 40, 24]]);
-const pos$17 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["boot", 34, 9], ["virtualisation", 40, 9]]);
-const pos$18 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["configuration", 33, 32]]);
-const pos$19 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["boot-luks", 33, 22]]);
-const pos$20 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["virtualisation", 15, 7], ["boot", 27, 7], ["environment", 31, 7], ["specialisation", 33, 7]]);
-const pos$21 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["machine", 11, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$22 = nix.positions(here + "/systemd-initrd-luks-fido2.nix", [["name", 7, 3], ["qemu", 9, 3], ["nodes", 11, 3], ["testScript", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const hostPkgs = nix.arg($, "hostPkgs");
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     name: "systemd-initrd-luks-fido2",
     qemu: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      package: nix.thunk(() => nix.app(nix.sel(hostPkgs, "qemu_test", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, canokeySupport: true })))),
+      [nix.POS]: $pos[1],
+      package: nix.thunk(() => nix.app(nix.sel(hostPkgs, "qemu_test", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], canokeySupport: true })))),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             emptyDiskImages: nix.thunk(() => [512n]),
             useBootLoader: true,
             mountHostNixStore: true,
             useEFIBoot: true,
             qemu: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               options: nix.thunk(() => [
                 "-device pci-ohci,id=usb-bus",
                 "-device canokey,bus=usb-bus.0,file=/tmp/canokey-file",
@@ -62,39 +41,39 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+              [nix.POS]: $pos[5],
+              "systemd-boot": nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
             })),
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$8,
-              systemd: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+              [nix.POS]: $pos[7],
+              systemd: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "cryptsetup"))];
             })()),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             "boot-luks": nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 boot: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   initrd: nix.thunk(() => ({
-                    [nix.POS]: pos$14,
+                    [nix.POS]: $pos[13],
                     luks: nix.thunk(() => ({
-                      [nix.POS]: pos$13,
+                      [nix.POS]: $pos[12],
                       devices: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-                          [nix.POS]: pos$12,
+                          [nix.POS]: $pos[11],
                           cryptroot: nix.thunk(() => ({
-                            [nix.POS]: pos$11,
+                            [nix.POS]: $pos[10],
                             device: "/dev/vdb",
                             crypttabExtraOpts: nix.thunk(() => ["fido2-device=auto"]),
                           })),
@@ -102,7 +81,7 @@ export default nix.lambda((args) => (() => {
                     })),
                   })),
                 })),
-                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$16, rootDevice: "/dev/mapper/cryptroot" })),
+                virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[15], rootDevice: "/dev/mapper/cryptroot" })),
               })),
             })),
           })),

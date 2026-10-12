@@ -2,22 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/system.nix", [[["keys", 19, 28]], [["authorizedKeys", 19, 13]], [["isNormalUser", 16, 5], ["home", 17, 5], ["description", 18, 5], ["openssh", 19, 5]], [["users", 15, 9]], [["trusted-users", 21, 16]], [["settings", 21, 7]], [["diskSize", 23, 29]], [["azureImage", 23, 18]], [["kernelPackages", 25, 8]], [["passwordAuthentication", 28, 20]], [["openssh", 28, 12]], [["wheelNeedsPassword", 29, 17]], [["sudo", 29, 12]], [["systemPackages", 31, 15]], [["imports", 7, 3], ["users", 15, 3], ["nix", 21, 3], ["virtualisation", 23, 3], ["boot", 25, 3], ["services", 28, 3], ["security", 29, 3], ["environment", 31, 3]]]);
 const formals$1 = { args: { pkgs: false, modulesPath: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/system.nix", [["keys", 19, 28]]);
-const pos$2 = nix.positions(here + "/system.nix", [["authorizedKeys", 19, 13]]);
-const pos$3 = nix.positions(here + "/system.nix", [["isNormalUser", 16, 5], ["home", 17, 5], ["description", 18, 5], ["openssh", 19, 5]]);
-const pos$4 = nix.positions(here + "/system.nix", [["users", 15, 9]]);
-const pos$5 = nix.positions(here + "/system.nix", [["trusted-users", 21, 16]]);
-const pos$6 = nix.positions(here + "/system.nix", [["settings", 21, 7]]);
-const pos$7 = nix.positions(here + "/system.nix", [["diskSize", 23, 29]]);
-const pos$8 = nix.positions(here + "/system.nix", [["azureImage", 23, 18]]);
-const pos$9 = nix.positions(here + "/system.nix", [["kernelPackages", 25, 8]]);
-const pos$10 = nix.positions(here + "/system.nix", [["passwordAuthentication", 28, 20]]);
-const pos$11 = nix.positions(here + "/system.nix", [["openssh", 28, 12]]);
-const pos$12 = nix.positions(here + "/system.nix", [["wheelNeedsPassword", 29, 17]]);
-const pos$13 = nix.positions(here + "/system.nix", [["sudo", 29, 12]]);
-const pos$14 = nix.positions(here + "/system.nix", [["systemPackages", 31, 15]]);
-const pos$15 = nix.positions(here + "/system.nix", [["imports", 7, 3], ["users", 15, 3], ["nix", 21, 3], ["virtualisation", 23, 3], ["boot", 25, 3], ["services", 28, 3], ["security", 29, 3], ["environment", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,23 +11,23 @@ export default nix.lambda((args) => (() => {
   const modulesPath = nix.arg($, "modulesPath");
   const username = "azurenixosuser";
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     imports: nix.thunk(() => [
       nix.thunk(() => nix.str`${modulesPath}/virtualisation/azure-common.nix`),
       nix.thunk(() => nix.str`${modulesPath}/virtualisation/azure-image.nix`),
     ]),
     users: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       users: nix.thunk(() => nix.attrsDyn({}, [
         [nix.str`${username}`, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           isNormalUser: true,
           home: nix.thunk(() => nix.str`/home/${username}`),
           description: "Azure NixOS Test User",
           openssh: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             authorizedKeys: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               keys: nix.thunk(() => [
                 nix.thunk(() => nix.builtins.readFile(nix.path("", "~/.ssh/id_ed25519.pub"))),
               ]),
@@ -51,27 +37,27 @@ export default nix.lambda((args) => (() => {
       ])),
     })),
     nix: nix.thunk(() => ({
-      [nix.POS]: pos$6,
-      settings: nix.thunk(() => ({ [nix.POS]: pos$5, "trusted-users": nix.thunk(() => [username]) })),
+      [nix.POS]: $pos[5],
+      settings: nix.thunk(() => ({ [nix.POS]: $pos[4], "trusted-users": nix.thunk(() => [username]) })),
     })),
     virtualisation: nix.thunk(() => ({
-      [nix.POS]: pos$8,
-      azureImage: nix.thunk(() => ({ [nix.POS]: pos$7, diskSize: 2500n })),
+      [nix.POS]: $pos[7],
+      azureImage: nix.thunk(() => ({ [nix.POS]: $pos[6], diskSize: 2500n })),
     })),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$11,
-      openssh: nix.thunk(() => ({ [nix.POS]: pos$10, passwordAuthentication: false })),
+      [nix.POS]: $pos[10],
+      openssh: nix.thunk(() => ({ [nix.POS]: $pos[9], passwordAuthentication: false })),
     })),
     security: nix.thunk(() => ({
-      [nix.POS]: pos$13,
-      sudo: nix.thunk(() => ({ [nix.POS]: pos$12, wheelNeedsPassword: false })),
+      [nix.POS]: $pos[12],
+      sudo: nix.thunk(() => ({ [nix.POS]: $pos[11], wheelNeedsPassword: false })),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       systemPackages: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [

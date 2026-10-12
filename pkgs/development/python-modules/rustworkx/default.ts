@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]], [["pname", 53, 26], ["version", 53, 32], ["src", 53, 40], ["hash", 54, 5]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 48, 3], ["cargoDeps", 52, 3], ["nativeBuildInputs", 57, 3], ["build-system", 63, 3], ["dependencies", 68, 3], ["nativeCheckInputs", 70, 3], ["preCheck", 77, 3], ["pythonImportsCheck", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch: false, buildPythonPackage: false, rustPlatform: false, cargo: false, rustc: false, setuptools: false, "setuptools-rust": false, numpy: false, fixtures: false, networkx: false, pytestCheckHook: false, testtools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 53, 26], ["version", 53, 32], ["src", 53, 40], ["hash", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 48, 3], ["cargoDeps", 52, 3], ["nativeBuildInputs", 57, 3], ["build-system", 63, 3], ["dependencies", 68, 3], ["nativeCheckInputs", 70, 3], ["preCheck", 77, 3], ["pythonImportsCheck", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const testtools = nix.arg($, "testtools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rustworkx",
       version: "0.17.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Qiskit",
           repo: "rustworkx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "networkx-3.6-test-compat.patch",
             url: "https://github.com/Qiskit/rustworkx/commit/04780a59005d0a80bdc3e22427566aea86783eb8.patch",
             hash: "sha256-oUosh1pu/I6Zpg2Di/Gnp5SCwetgs9HDY96Q2bQ7R6M=",
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "rm -rf .cargo/config.toml\n",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -60,7 +56,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -r rustworkx\n",
       pythonImportsCheck: nix.thunk(() => ["rustworkx"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "High performance Python graph library implemented in Rust",
         homepage: "https://github.com/Qiskit/rustworkx",
         changelog: nix.thunk(() => nix.str`https://github.com/Qiskit/rustworkx/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 25, 5]], [["pname", 8, 3], ["version", 9, 3], ["minimalOCamlVersion", 11, 3], ["src", 13, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { fetchurl: false, buildDunePackage: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["minimalOCamlVersion", 11, 3], ["src", 13, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const lib = nix.arg($, "lib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bstr",
       version: "0.1.1",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/robur-coop/bstr/releases/download/v${nix.sel(finalAttrs, "version")}/bstr-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-5lfP/aVpELFLmMdt1uA4LqS8XQFn6IORq6kxlrAW7uA=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "A simple library for bigstrings",
         homepage: "https://git.robur.coop/robur/bstr",
         license: nix.thunk(() => [

@@ -2,57 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/swayfx.nix", [[["broken", 5, 5], ["maintainers", 6, 5]], [["autologinUser", 18, 20]], [["getty", 18, 14]], [["SWAYSOCK", 29, 9], ["WLR_RENDERER", 35, 9]], [["test-x11", 39, 9], ["test-wayland", 40, 9]], [["font", 46, 11]], [["foreground", 49, 11], ["background", 50, 11], ["regular2", 51, 11]], [["main", 45, 9], ["colors", 48, 9]], [["text", 44, 31]], [["text", 55, 28]], [["xdg/foot/foot.ini", 44, 11], ["gpg-agent.conf", 55, 11]], [["systemPackages", 22, 7], ["variables", 28, 7], ["shellAliases", 38, 7], ["etc", 44, 7]], [["packages", 60, 11]], [["loginShellInit", 63, 19]], [["isNixOS", 77, 40]], [["enable", 76, 7], ["package", 77, 7]], [["enable", 81, 26]], [["agent", 81, 20]], [["bash", 63, 14], ["sway", 75, 14], ["gnupg", 81, 14]], [["options", 84, 25]], [["qemu", 84, 20]], [["imports", 17, 5], ["services", 18, 5], ["environment", 20, 5], ["fonts", 60, 5], ["programs", 63, 5], ["virtualisation", 84, 5]], [["machine", 15, 9]], [["name", 3, 3], ["meta", 4, 3], ["skipTypeCheck", 13, 3], ["nodes", 15, 3], ["testScript", 87, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/swayfx.nix", [["broken", 5, 5], ["maintainers", 6, 5]]);
-const pos$2 = nix.positions(here + "/swayfx.nix", [["autologinUser", 18, 20]]);
-const pos$3 = nix.positions(here + "/swayfx.nix", [["getty", 18, 14]]);
-const pos$4 = nix.positions(here + "/swayfx.nix", [["SWAYSOCK", 29, 9], ["WLR_RENDERER", 35, 9]]);
-const pos$5 = nix.positions(here + "/swayfx.nix", [["test-x11", 39, 9], ["test-wayland", 40, 9]]);
-const pos$6 = nix.positions(here + "/swayfx.nix", [["font", 46, 11]]);
-const pos$7 = nix.positions(here + "/swayfx.nix", [["foreground", 49, 11], ["background", 50, 11], ["regular2", 51, 11]]);
-const pos$8 = nix.positions(here + "/swayfx.nix", [["main", 45, 9], ["colors", 48, 9]]);
-const pos$9 = nix.positions(here + "/swayfx.nix", [["text", 44, 31]]);
-const pos$10 = nix.positions(here + "/swayfx.nix", [["text", 55, 28]]);
-const pos$11 = nix.positions(here + "/swayfx.nix", [["xdg/foot/foot.ini", 44, 11], ["gpg-agent.conf", 55, 11]]);
-const pos$12 = nix.positions(here + "/swayfx.nix", [["systemPackages", 22, 7], ["variables", 28, 7], ["shellAliases", 38, 7], ["etc", 44, 7]]);
-const pos$13 = nix.positions(here + "/swayfx.nix", [["packages", 60, 11]]);
-const pos$14 = nix.positions(here + "/swayfx.nix", [["loginShellInit", 63, 19]]);
-const pos$15 = nix.positions(here + "/swayfx.nix", [["isNixOS", 77, 40]]);
-const pos$16 = nix.positions(here + "/swayfx.nix", [["enable", 76, 7], ["package", 77, 7]]);
-const pos$17 = nix.positions(here + "/swayfx.nix", [["enable", 81, 26]]);
-const pos$18 = nix.positions(here + "/swayfx.nix", [["agent", 81, 20]]);
-const pos$19 = nix.positions(here + "/swayfx.nix", [["bash", 63, 14], ["sway", 75, 14], ["gnupg", 81, 14]]);
-const pos$20 = nix.positions(here + "/swayfx.nix", [["options", 84, 25]]);
-const pos$21 = nix.positions(here + "/swayfx.nix", [["qemu", 84, 20]]);
-const pos$22 = nix.positions(here + "/swayfx.nix", [["imports", 17, 5], ["services", 18, 5], ["environment", 20, 5], ["fonts", 60, 5], ["programs", 63, 5], ["virtualisation", 84, 5]]);
-const pos$23 = nix.positions(here + "/swayfx.nix", [["machine", 15, 9]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$24 = nix.positions(here + "/swayfx.nix", [["name", 3, 3], ["meta", 4, 3], ["skipTypeCheck", 13, 3], ["nodes", 15, 3], ["testScript", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$24,
+    [nix.POS]: $pos[23],
     name: "swayfx",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       broken: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")),
       maintainers: [],
     })),
     skipTypeCheck: true,
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          getty: nix.thunk(() => ({ [nix.POS]: pos$2, autologinUser: "alice" })),
+          [nix.POS]: $pos[2],
+          getty: nix.thunk(() => ({ [nix.POS]: $pos[1], autologinUser: "alice" })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -61,54 +38,54 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.lookup(w, "alacritty")),
             ];
           })()),
-          variables: nix.thunk(() => ({ [nix.POS]: pos$4, SWAYSOCK: "/tmp/sway-ipc.sock", WLR_RENDERER: "pixman" })),
+          variables: nix.thunk(() => ({ [nix.POS]: $pos[3], SWAYSOCK: "/tmp/sway-ipc.sock", WLR_RENDERER: "pixman" })),
           shellAliases: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "test-x11": "glinfo | tee /tmp/test-x11.out && touch /tmp/test-x11-exit-ok",
             "test-wayland": "wayland-info | tee /tmp/test-wayland.out && touch /tmp/test-wayland-exit-ok",
           })),
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             "xdg/foot/foot.ini": nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({
-                  [nix.POS]: pos$8,
-                  main: nix.thunk(() => ({ [nix.POS]: pos$6, font: "inconsolata:size=14" })),
+                  [nix.POS]: $pos[7],
+                  main: nix.thunk(() => ({ [nix.POS]: $pos[5], font: "inconsolata:size=14" })),
                   colors: nix.thunk(() => (() => {
                     const foreground = "000000";
                     const background = "ffffff";
                     const regular2 = foreground;
-                    return { [nix.POS]: pos$7, foreground, background, regular2 };
+                    return { [nix.POS]: $pos[6], foreground, background, regular2 };
                   })()),
                 })))),
             })),
-            "gpg-agent.conf": nix.thunk(() => ({ [nix.POS]: pos$10, text: "pinentry-timeout 86400\n" })),
+            "gpg-agent.conf": nix.thunk(() => ({ [nix.POS]: $pos[9], text: "pinentry-timeout 86400\n" })),
           })),
         })),
         fonts: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "inconsolata"))]),
         })),
         programs: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           bash: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             loginShellInit: "if [ \"$(tty)\" = \"/dev/tty1\" ]; then\n  set -e\n\n  mkdir -p ~/.config/sway\n  sed s/Mod4/Mod1/ /etc/sway/config > ~/.config/sway/config\n\n  sway --validate\n  sway && touch /tmp/sway-exit-ok\nfi\n",
           })),
           sway: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             enable: true,
-            package: nix.thunk(() => nix.app(nix.sel(pkgs, "swayfx", "override"), nix.thunk(() => ({ [nix.POS]: pos$15, isNixOS: true })))),
+            package: nix.thunk(() => nix.app(nix.sel(pkgs, "swayfx", "override"), nix.thunk(() => ({ [nix.POS]: $pos[14], isNixOS: true })))),
           })),
           gnupg: nix.thunk(() => ({
-            [nix.POS]: pos$18,
-            agent: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
+            [nix.POS]: $pos[17],
+            agent: nix.thunk(() => ({ [nix.POS]: $pos[16], enable: true })),
           })),
         })),
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           qemu: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             options: nix.thunk(() => ["-vga none -device virtio-gpu-pci"]),
           })),
         })),

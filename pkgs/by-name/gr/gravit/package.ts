@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]], [["NIX_CFLAGS_COMPILE", 67, 7]], [["broken", 72, 5], ["homepage", 73, 5], ["description", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["longDescription", 78, 5], ["platforms", 88, 25], ["hydraPlatforms", 89, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["buildInputs", 41, 3], ["nativeBuildInputs", 53, 3], ["preConfigure", 58, 3], ["enableParallelBuilding", 65, 3], ["env", 67, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, SDL: false, SDL_ttf: false, SDL_image: false, libsm: false, libice: false, libGLU: false, libGL: false, libpng: false, lua5: false, autoconf: false, automake: false, mesa: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 67, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 72, 5], ["homepage", 73, 5], ["description", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["longDescription", 78, 5], ["platforms", 88, 25], ["hydraPlatforms", 89, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["buildInputs", 41, 3], ["nativeBuildInputs", 53, 3], ["preConfigure", 58, 3], ["enableParallelBuilding", 65, 3], ["env", 67, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const mesa = nix.arg($, "mesa");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gravit",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gak",
           repo: "gravit",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fno-common.patch",
             url: "https://github.com/gak/gravit/commit/0f848834889212f16201fd404d2d5b9bb5b47d23.patch",
             hash: "sha256-k1aMIg7idMt53o6dFgIKJflOMp0Jp5NwgWEijcIwXrQ=",
@@ -51,13 +47,13 @@ export default nix.lambda((args) => (() => {
       preConfigure: "./autogen.sh\n\n# Build fails on Linux with windres.\nexport ac_cv_prog_WINDRES=\n",
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DSDL_INCLUDE_GLU_H"]))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         homepage: "https://github.com/gak/gravit",
         description: "Beautiful OpenGL-based gravity simulator",

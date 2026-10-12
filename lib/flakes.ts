@@ -2,14 +2,14 @@
 import * as nix from "../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/flakes.nix", [[["parseFlakeRef", 8, 5], ["flakeRefToString", 9, 5]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/flakes.nix", [["parseFlakeRef", 8, 5], ["flakeRefToString", 9, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     parseFlakeRef: nix.thunk(() => nix.attr(nix.builtins, "parseFlakeRef")),
     flakeRefToString: nix.thunk(() => nix.attr(nix.builtins, "flakeRefToString")),
   };

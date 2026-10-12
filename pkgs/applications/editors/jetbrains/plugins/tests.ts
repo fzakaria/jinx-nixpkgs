@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["name", 62, 7], ["paths", 63, 7]], [["url", 73, 9], ["hash", 74, 9]], [["executable", 79, 9], ["url", 80, 9], ["hash", 81, 9]], [["idePaths", 93, 9]], [["empty", 57, 3], ["stored-correctly", 69, 3]]]);
 const formals$1 = { args: { clion: false, datagrip: false, dataspell: false, fetchurl: false, fetchzip: false, goland: false, "intellij-idea": false, "intellij-idea-oss": false, jetbrains: false, "jetbrains-gateway": false, "jetbrains-mps": false, lib: false, phpstorm: false, pycharm: false, "pycharm-oss": false, rider: false, "ruby-mine": false, runCommand: false, "rust-rover": false, symlinkJoin: false, webstorm: false, ide: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["name", 62, 7], ["paths", 63, 7]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["url", 73, 9], ["hash", 74, 9]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["executable", 79, 9], ["url", 80, 9], ["hash", 81, 9]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["idePaths", 93, 9]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["empty", 57, 3], ["stored-correctly", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,30 +47,30 @@ export default nix.lambda((args) => (() => {
     webstorm,
   ] : [ide]));
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     empty: nix.thunk(() => (() => {
       const modify_ide = (ide_1) => nix.app(nix.sel(jetbrains, "plugins", "addPlugins"), ide_1, []);
       return nix.app(symlinkJoin, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "jetbrains-test-plugins-empty",
           paths: nix.thunk(() => nix.builtins.map(modify_ide, ides)),
         })));
     })()),
     "stored-correctly": nix.thunk(() => (() => {
       const nixidea = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://plugins.jetbrains.com/files/8607/786671/NixIDEA-0.4.0.18.zip",
           hash: "sha256-JShheBoOBiWM9HubMUJvBn4H3DnWykvqPyrmetaCZiM=",
         }))));
       const wakatime = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           executable: true,
           url: "https://plugins.jetbrains.com/files/7425/760442/WakaTime.jar",
           hash: "sha256-DobKZKokueqq0z75d2Fo3BD8mWX9+LpGdT9C7Eu2fHc=",
         }))));
       const modify_ide = (ide_1) => nix.app(nix.sel(jetbrains, "plugins", "addPlugins"), ide_1, nix.thunk(() => [nixidea, wakatime]));
       return nix.app(runCommand, "test-jetbrains-plugins-stored-correctly", nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           idePaths: nix.thunk(() => nix.builtins.map(modify_ide, ides)),
         })), "set -e\nexec &> >(tee -a \"$out\")\n\nIFS=' ' read -ra ideArray <<< \"$idePaths\"\nfor ide in \"${ideArray[@]}\"; do\n  echo \"processing $ide\"\n\n  echo \"> ensure normal plugin is available\"\n  (\n    set -x\n    find -L $ide/*/plugins -type f -iname 'NixIDEA-*.jar' | grep .\n  )\n\n  echo \"> ensure single JAR file plugin is available\"\n  (\n    set -x\n    PATH_TO_LINK=$(find $ide/*/plugins -maxdepth 1 -type l -iname '*wakatime.jar' | grep .)\n    test -f $(readlink $PATH_TO_LINK)\n  )\n  echo \"\"\ndone\n\necho \"test done! ok!\"\n");
     })()),

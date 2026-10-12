@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["postPatch", 26, 3], ["installPhase", 38, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, boost: false, cmake: false, db: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["postPatch", 26, 3], ["installPhase", 38, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const db = nix.arg($, "db");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "benzene",
       version: "0-unstable-2022-12-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cgao3",
           repo: "benzene-vanilla-cmake",
           rev: "95614769bafc9850a3cc54974660bb1795db6086",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Fixes for boost v1.85.0+\n# https://github.com/cgao3/benzene-vanilla-cmake/issues/18\nsubstituteInPlace src/util/Misc.cpp \\\n  --replace-fail '.branch_path()' '.parent_path()' \\\n  --replace-fail '.normalize()' '.lexically_normal()'\n\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail '-DABS_TOP_SRCDIR=\"${top_srcdir}\"' '-DABS_TOP_SRCDIR=\"$ENV{out}\"' \\\n  --replace-fail '-DDATADIR=\"${pkgdatadir}\"' '-DDATADIR=\"$ENV{out}/share\"'\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp src/mohex/mohex $out/bin/mohex\ncp src/wolve/wolve $out/bin/wolve\ncp -r ../share $out/share/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Software for playing and solving the game of Hex",
         homepage: "https://github.com/cgao3/benzene-vanilla-cmake",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

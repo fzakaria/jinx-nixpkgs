@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 5], ["version", 15, 13], ["hash", 16, 5]], [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5]], [["version", 9, 3], ["format", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["nativeCheckInputs", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 5], ["version", 15, 13], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 9, 3], ["format", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["nativeCheckInputs", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,19 +16,19 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "pydispatcher";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "PyDispatcher",
           version: version,
           hash: "sha256-t3fGrQgNwbrXSkwp1qRpFPpnAaxw+UsNZvvP3mL1vjE=",
         }))));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://pydispatcher.sourceforge.net/",
         description: "Signal-registration and routing infrastructure for use in multiple contexts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
-      return { [nix.POS]: pos$3, version, format, pname, src, nativeCheckInputs, meta };
+      return { [nix.POS]: $pos[2], version, format, pname, src, nativeCheckInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

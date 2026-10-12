@@ -2,30 +2,17 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["name", 4, 5], ["owner", 5, 5], ["repo", 6, 5], ["rev", 7, 5], ["hash", 8, 5]], [["name", 12, 5], ["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["name", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5], ["postCheckout", 25, 5]], [["name", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["sparseCheckout", 35, 5], ["sha256", 39, 5]], [["name", 43, 5], ["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["sparseCheckout", 47, 5], ["nonConeMode", 51, 5], ["sha256", 52, 5]], [["name", 56, 5], ["owner", 57, 5], ["repo", 58, 5], ["rev", 59, 5], ["sha256", 60, 5], ["leaveDotGit", 61, 5]], [["name", 65, 5], ["owner", 66, 5], ["repo", 67, 5], ["rev", 68, 5], ["sha256", 69, 5], ["fetchSubmodules", 70, 5]], [["name", 74, 5], ["owner", 75, 5], ["repo", 76, 5], ["rev", 77, 5], ["sha256", 78, 5], ["leaveDotGit", 79, 5], ["fetchSubmodules", 80, 5]], [["name", 84, 5], ["owner", 85, 5], ["repo", 86, 5], ["rev", 87, 5], ["sha256", 88, 5], ["deepClone", 89, 5], ["fetchSubmodules", 90, 5], ["postFetch", 93, 5]], [["name", 97, 5], ["owner", 98, 5], ["repo", 99, 5], ["rev", 100, 5], ["sha256", 101, 5], ["deepClone", 102, 5], ["leaveDotGit", 103, 5], ["fetchSubmodules", 104, 5]], [["name", 108, 5], ["owner", 109, 5], ["repo", 110, 5], ["tag", 111, 5], ["sha256", 112, 5]], [["name", 116, 5], ["owner", 117, 5], ["repo", 118, 5], ["rev", 119, 5], ["fetchTags", 120, 5], ["leaveDotGit", 121, 5], ["sha256", 122, 5], ["postFetch", 123, 5]], [["name", 131, 5], ["owner", 132, 5], ["repo", 133, 5], ["rev", 134, 5], ["rootDir", 135, 5], ["hash", 136, 5]], [["simple", 3, 3], ["simple-tag", 11, 3], ["describe-tag", 19, 3], ["sparseCheckout", 30, 3], ["sparseCheckoutNonConeMode", 42, 3], ["leave-git", 55, 3], ["submodule-simple", 64, 3], ["submodule-leave-git", 73, 3], ["submodule-deep", 83, 3], ["submodule-leave-git-deep", 96, 3], ["dumb-http-signed-tag", 107, 3], ["fetchTags", 115, 3], ["rootDir", 130, 3]]]);
 const formals$1 = { args: { testers: false, fetchFromGitHub: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tests.nix", [["name", 4, 5], ["owner", 5, 5], ["repo", 6, 5], ["rev", 7, 5], ["hash", 8, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["name", 12, 5], ["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["name", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5], ["postCheckout", 25, 5]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["name", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["sparseCheckout", 35, 5], ["sha256", 39, 5]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["name", 43, 5], ["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["sparseCheckout", 47, 5], ["nonConeMode", 51, 5], ["sha256", 52, 5]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["name", 56, 5], ["owner", 57, 5], ["repo", 58, 5], ["rev", 59, 5], ["sha256", 60, 5], ["leaveDotGit", 61, 5]]);
-const pos$7 = nix.positions(here + "/tests.nix", [["name", 65, 5], ["owner", 66, 5], ["repo", 67, 5], ["rev", 68, 5], ["sha256", 69, 5], ["fetchSubmodules", 70, 5]]);
-const pos$8 = nix.positions(here + "/tests.nix", [["name", 74, 5], ["owner", 75, 5], ["repo", 76, 5], ["rev", 77, 5], ["sha256", 78, 5], ["leaveDotGit", 79, 5], ["fetchSubmodules", 80, 5]]);
-const pos$9 = nix.positions(here + "/tests.nix", [["name", 84, 5], ["owner", 85, 5], ["repo", 86, 5], ["rev", 87, 5], ["sha256", 88, 5], ["deepClone", 89, 5], ["fetchSubmodules", 90, 5], ["postFetch", 93, 5]]);
-const pos$10 = nix.positions(here + "/tests.nix", [["name", 97, 5], ["owner", 98, 5], ["repo", 99, 5], ["rev", 100, 5], ["sha256", 101, 5], ["deepClone", 102, 5], ["leaveDotGit", 103, 5], ["fetchSubmodules", 104, 5]]);
-const pos$11 = nix.positions(here + "/tests.nix", [["name", 108, 5], ["owner", 109, 5], ["repo", 110, 5], ["tag", 111, 5], ["sha256", 112, 5]]);
-const pos$12 = nix.positions(here + "/tests.nix", [["name", 116, 5], ["owner", 117, 5], ["repo", 118, 5], ["rev", 119, 5], ["fetchTags", 120, 5], ["leaveDotGit", 121, 5], ["sha256", 122, 5], ["postFetch", 123, 5]]);
-const pos$13 = nix.positions(here + "/tests.nix", [["name", 131, 5], ["owner", 132, 5], ["repo", 133, 5], ["rev", 134, 5], ["rootDir", 135, 5], ["hash", 136, 5]]);
-const pos$14 = nix.positions(here + "/tests.nix", [["simple", 3, 3], ["simple-tag", 11, 3], ["describe-tag", 19, 3], ["sparseCheckout", 30, 3], ["sparseCheckoutNonConeMode", 42, 3], ["leave-git", 55, 3], ["submodule-simple", 64, 3], ["submodule-leave-git", 73, 3], ["submodule-deep", 83, 3], ["submodule-leave-git-deep", 96, 3], ["dumb-http-signed-tag", 107, 3], ["fetchTags", 115, 3], ["rootDir", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const testers = nix.arg($, "testers");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     simple: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "simple-nix-source",
         owner: "NixOS",
         repo: "nix",
@@ -33,7 +20,7 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-7DszvbCNTjpzGRmpIVAWXk20P0/XTrWZ79KSOGLrUWY=",
       })))),
     "simple-tag": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "simple-tag-nix-source",
         owner: "NixOS",
         repo: "nix",
@@ -41,7 +28,7 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-7DszvbCNTjpzGRmpIVAWXk20P0/XTrWZ79KSOGLrUWY=",
       })))),
     "describe-tag": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "describe-tag-nix-source",
         owner: "NixOS",
         repo: "nix",
@@ -50,7 +37,7 @@ export default nix.lambda((args) => (() => {
         postCheckout: "{ git -C \"$out\" describe || echo \"git describe failed\"; } | tee \"$out\"/describe-output.txt\n",
       })))),
     sparseCheckout: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "sparse-checkout-nix-source",
         owner: "NixOS",
         repo: "nix",
@@ -59,7 +46,7 @@ export default nix.lambda((args) => (() => {
         sha256: "sha256-g1PHGTWgAcd/+sXHo1o6AjVWCvC6HiocOfMbMh873LQ=",
       })))),
     sparseCheckoutNonConeMode: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "sparse-checkout-non-cone-nix-source",
         owner: "NixOS",
         repo: "nix",
@@ -69,7 +56,7 @@ export default nix.lambda((args) => (() => {
         sha256: "sha256-FknO6C/PSnMPfhUqObD4vsW4PhkwdmPa9blNzcNvJQ4=",
       })))),
     "leave-git": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "leave-git-nix-source",
         owner: "NixOS",
         repo: "nix",
@@ -78,7 +65,7 @@ export default nix.lambda((args) => (() => {
         leaveDotGit: true,
       })))),
     "submodule-simple": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: "submodule-simple-source",
         owner: "pineapplehunter",
         repo: "nix-test-repo-with-submodule",
@@ -87,7 +74,7 @@ export default nix.lambda((args) => (() => {
         fetchSubmodules: true,
       })))),
     "submodule-leave-git": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: "submodule-leave-git-source",
         owner: "pineapplehunter",
         repo: "nix-test-repo-with-submodule",
@@ -97,7 +84,7 @@ export default nix.lambda((args) => (() => {
         fetchSubmodules: true,
       })))),
     "submodule-deep": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         name: "submodule-deep-source",
         owner: "pineapplehunter",
         repo: "nix-test-repo-with-submodule",
@@ -108,7 +95,7 @@ export default nix.lambda((args) => (() => {
         postFetch: "rm -r $out/.git",
       })))),
     "submodule-leave-git-deep": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         name: "submodule-leave-git-deep-source",
         owner: "pineapplehunter",
         repo: "nix-test-repo-with-submodule",
@@ -119,7 +106,7 @@ export default nix.lambda((args) => (() => {
         fetchSubmodules: true,
       })))),
     "dumb-http-signed-tag": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         name: "dumb-http-signed-tag-source",
         owner: "NixOS",
         repo: "nix",
@@ -127,7 +114,7 @@ export default nix.lambda((args) => (() => {
         sha256: "sha256-uZCaBo9rdWRO/AlQMvVVjpAwzYijB2H5KKQqde6eHkg=",
       })))),
     fetchTags: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         name: "fetchFromGitHub-fetch-tags-test",
         owner: "NixOS",
         repo: "nix",
@@ -138,7 +125,7 @@ export default nix.lambda((args) => (() => {
         postFetch: "cd $out && git describe --tags --always > describe-output.txt 2>&1 || echo \"git describe failed\" > describe-output.txt\n# See https://github.com/NixOS/nixpkgs/issues/412967#issuecomment-2927452118\nrm -rf .git\n",
       })))),
     rootDir: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         name: "fetchFromGitHub-with-rootdir",
         owner: "NixOS",
         repo: "nix",

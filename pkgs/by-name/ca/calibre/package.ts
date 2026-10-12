@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 50, 5], ["hash", 51, 5]], [["name", 62, 9], ["url", 63, 9], ["hash", 64, 9]], [["name", 67, 9], ["url", 68, 9], ["hash", 69, 9]], [["setupPyBuildFlags", 133, 11]], [["python3Packages", 182, 41]], [["HOME", 186, 5], ["MAGICK_INC", 187, 5], ["MAGICK_LIB", 188, 5], ["FC_INC_DIR", 189, 5], ["FC_LIB_DIR", 190, 5], ["PODOFO_INC_DIR", 191, 5], ["PODOFO_LIB_DIR", 192, 5], ["XDG_DATA_HOME", 193, 5], ["XDG_UTILS_INSTALL_MODE", 194, 5]], [["POPPLER_INC_DIR", 197, 5], ["POPPLER_LIB_DIR", 198, 5]], [["PIPER_TTS_DIR", 201, 5]], [["extraArgs", 313, 5]], [["updateScript", 312, 12]], [["homepage", 317, 5], ["description", 318, 5], ["mainProgram", 319, 5], ["longDescription", 320, 5], ["changelog", 326, 5], ["license", 327, 5], ["maintainers", 328, 5], ["platforms", 332, 5], ["broken", 333, 5]], [["pname", 43, 3], ["version", 44, 3], ["__structuredAttrs", 46, 3], ["strictDeps", 47, 3], ["src", 49, 3], ["patches", 54, 3], ["postPatch", 73, 3], ["prePatch", 83, 3], ["dontUseQmakeConfigure", 91, 3], ["dontUseCmakeConfigure", 92, 3], ["dontUseNinjaBuild", 93, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 108, 3], ["env", 185, 3], ["installPhase", 204, 3], ["dontWrapQtApps", 228, 3], ["dontWrapGApps", 229, 3], ["preFixup", 231, 3], ["doInstallCheck", 252, 3], ["installCheckInputs", 253, 3], ["nativeInstallCheckInputs", 256, 3], ["versionCheckProgram", 260, 3], ["installCheckPhase", 261, 3], ["passthru", 312, 3], ["meta", 316, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, "espeak-ng": false, fetchpatch: false, ffmpeg: false, fontconfig: false, hunspell: false, hyphen: false, icu: false, imagemagick: false, libjpeg: false, libmtp: false, libpng: false, libstemmer: false, libuchardet: false, libusb1: false, libwebp: false, "nix-update-script": false, onnxruntime: false, optipng: false, "piper-tts": false, "pkg-config": false, podofo: false, "poppler-utils": false, python314Packages: false, qt6: false, "speechd-minimal": false, sqlite: false, versionCheckHook: false, "xdg-utils": false, wrapGAppsHook3: false, popplerSupport: true, speechSupport: true, unrarSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 62, 9], ["url", 63, 9], ["hash", 64, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 67, 9], ["url", 68, 9], ["hash", 69, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["setupPyBuildFlags", 133, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["python3Packages", 182, 41]]);
-const pos$6 = nix.positions(here + "/package.nix", [["HOME", 186, 5], ["MAGICK_INC", 187, 5], ["MAGICK_LIB", 188, 5], ["FC_INC_DIR", 189, 5], ["FC_LIB_DIR", 190, 5], ["PODOFO_INC_DIR", 191, 5], ["PODOFO_LIB_DIR", 192, 5], ["XDG_DATA_HOME", 193, 5], ["XDG_UTILS_INSTALL_MODE", 194, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["POPPLER_INC_DIR", 197, 5], ["POPPLER_LIB_DIR", 198, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["PIPER_TTS_DIR", 201, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["extraArgs", 313, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["updateScript", 312, 12]]);
-const pos$11 = nix.positions(here + "/package.nix", [["homepage", 317, 5], ["description", 318, 5], ["mainProgram", 319, 5], ["longDescription", 320, 5], ["changelog", 326, 5], ["license", 327, 5], ["maintainers", 328, 5], ["platforms", 332, 5], ["broken", 333, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["__structuredAttrs", 46, 3], ["strictDeps", 47, 3], ["src", 49, 3], ["patches", 54, 3], ["postPatch", 73, 3], ["prePatch", 83, 3], ["dontUseQmakeConfigure", 91, 3], ["dontUseCmakeConfigure", 92, 3], ["dontUseNinjaBuild", 93, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 108, 3], ["env", 185, 3], ["installPhase", 204, 3], ["dontWrapQtApps", 228, 3], ["dontWrapGApps", 229, 3], ["preFixup", 231, 3], ["doInstallCheck", 252, 3], ["installCheckInputs", 253, 3], ["nativeInstallCheckInputs", 256, 3], ["versionCheckProgram", 260, 3], ["installCheckPhase", 261, 3], ["passthru", 312, 3], ["meta", 316, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,13 +45,13 @@ export default nix.lambda((args) => (() => {
   const unrarSupport = nix.argOr($, "unrarSupport", () => false);
   const python3Packages = python314Packages;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "calibre",
       version: "9.15.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.calibre-ebook.com/${nix.sel(finalAttrs, "version")}/calibre-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-nwLTbeyvRrF2ob73Q0kjJQi8wrSwbRZiu9H9QmxX1Vk=",
         })))),
@@ -71,13 +60,13 @@ export default nix.lambda((args) => (() => {
         const debian_tag = nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}+${debian_source}`);
         return [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: nix.thunk(() => nix.str`0001-only-plugin-update-${debian_tag}.patch`),
               url: nix.thunk(() => nix.str`https://github.com/debian-calibre/calibre/raw/refs/tags/debian/${debian_tag}/debian/patches/0001-only-plugin-update.patch`),
               hash: "sha256-2QhNf9CBxvoMiK9ZqBWnA/zdcIYpY+HGG0uguUZbinw=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: nix.thunk(() => nix.str`0007-Hardening-Qt-code-${debian_tag}.patch`),
               url: nix.thunk(() => nix.str`https://github.com/debian-calibre/calibre/raw/refs/tags/debian/${debian_tag}/debian/patches/hardening/0007-Hardening-Qt-code.patch`),
               hash: "sha256-ItJalYmBhK4Qgz6QDGbPpBMaa6oGQetQvg5ie3oxFMM=",
@@ -128,7 +117,7 @@ rm -rf src/odf resources/calibre-portable.*
             const w = nix.withScope(ps, null);
             return nix.concat([
               nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "apsw"), "overrideAttrs"), (_oldAttrs) => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   setupPyBuildFlags: nix.thunk(() => ["--enable=load_extension"]),
                 }))),
               nix.thunk(() => nix.lookup(w, "beautifulsoup4")),
@@ -169,10 +158,10 @@ rm -rf src/odf resources/calibre-portable.*
         xdg_utils,
       ], nix.app(nix.sel(lib, "optionals"), speechSupport, nix.thunk(() => [
           piper_tts,
-          nix.thunk(() => nix.app(nix.sel(speechd_minimal, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, python3Packages: python3Packages })))),
+          nix.thunk(() => nix.app(nix.sel(speechd_minimal, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], python3Packages: python3Packages })))),
         ])))),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         HOME: "/tmp",
         MAGICK_INC: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), imagemagick)}/include/ImageMagick`),
         MAGICK_LIB: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), imagemagick)}/lib`),
@@ -183,11 +172,11 @@ rm -rf src/odf resources/calibre-portable.*
         XDG_DATA_HOME: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share`),
         XDG_UTILS_INSTALL_MODE: "user",
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), popplerSupport, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           POPPLER_INC_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), poppler_utils)}/include/poppler`),
           POPPLER_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), poppler_utils)}/lib`),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), speechSupport, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           PIPER_TTS_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), piper_tts)}/bin`),
         })))))),
       installPhase: "runHook preInstall\n\npython setup.py install --root=$out \\\n  --prefix=$out \\\n  --libdir=$out/lib \\\n  --staging-root=$out \\\n  --staging-libdir=$out/lib \\\n  --staging-sharedir=$out/share\n\nPYFILES=\"$out/bin/* $out/lib/calibre/calibre/web/feeds/*.py\n  $out/lib/calibre/calibre/ebooks/metadata/*.py\n  $out/lib/calibre/calibre/ebooks/rtf2xml/*.py\"\n\nsed -i \"s/env python[0-9.]*/python/\" $PYFILES\nsed -i \"2i import sys; sys.argv[0] = 'calibre'\" $out/bin/calibre\n\nmkdir -p $out/share\ncp -a man-pages $out/share/man\n\nrunHook postInstall\n",
@@ -233,14 +222,14 @@ runHook postInstallCheck
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             extraArgs: nix.thunk(() => ["--url=https://github.com/kovidgoyal/calibre"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         homepage: "https://calibre-ebook.com",
         description: "Comprehensive e-book software",
         mainProgram: "calibre",

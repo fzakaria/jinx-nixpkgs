@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["command", 48, 7], ["version", 49, 7], ["package", 50, 7]], [["versionCheck", 47, 5]], [["tests", 46, 12]], [["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 12, 3], ["version", 13, 3], ["ldflags", 15, 3], ["src", 25, 3], ["modRoot", 33, 3], ["proxyVendor", 34, 3], ["vendorHash", 35, 3], ["nativeBuildInputs", 37, 3], ["postInstall", 39, 3], ["passthru", 46, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, kustomize: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["command", 48, 7], ["version", 49, 7], ["package", 50, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["versionCheck", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 46, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["ldflags", 15, 3], ["src", 25, 3], ["modRoot", 33, 3], ["proxyVendor", 34, 3], ["vendorHash", 35, 3], ["nativeBuildInputs", 37, 3], ["postInstall", 39, 3], ["passthru", 46, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const kustomize = nix.arg($, "kustomize");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kustomize",
       version: "5.8.2",
       ldflags: nix.thunk(() => (() => {
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kubernetes-sigs",
           repo: "kustomize",
           rev: nix.thunk(() => nix.str`kustomize/v${nix.sel(finalAttrs, "version")}`),
@@ -44,11 +39,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd kustomize \\\n  --bash <($out/bin/kustomize completion bash) \\\n  --fish <($out/bin/kustomize completion fish) \\\n  --zsh <($out/bin/kustomize completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           versionCheck: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               command: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "meta", "mainProgram")} version`),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
               package: kustomize,
@@ -56,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Customization of kubernetes YAML configurations",
         mainProgram: "kustomize",
         longDescription: "kustomize lets you customize raw, template-free YAML files for\nmultiple purposes, leaving the original YAML untouched and usable\nas is.\n",

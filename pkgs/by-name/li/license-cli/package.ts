@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["updateScript", 59, 12]], [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["preInstall", 34, 3], ["postInstall", 38, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromSourcehut: false, rustPlatform: false, installShellFiles: false, scdoc: false, makeWrapper: false, "nix-update-script": false, fzf: false, "wl-clipboard": false, xclip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["preInstall", 34, 3], ["postInstall", 38, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const wl_clipboard = nix.arg($, "wl-clipboard");
   const xclip = nix.arg($, "xclip");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "license-cli",
       version: "3.2.1",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~zethra",
           repo: "license",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,11 +47,11 @@ wrapProgram $out/bin/copy-header \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [wl_clipboard, xclip]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://git.sr.ht/~zethra/license",
         description: "Command-line tool to easily add license to your project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

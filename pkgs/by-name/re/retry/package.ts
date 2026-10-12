@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5], ["mainProgram", 33, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, txt2man: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5], ["mainProgram", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "retry";
       const version = "1.0.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "minfrin",
           repo: "retry",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook, txt2man, which]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/minfrin/retry",
         description: "Command wrapper that retries until the command succeeds",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         mainProgram: "retry",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 13], ["version", 14, 19], ["hash", 15, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["pyproject", 18, 3], ["nativeBuildInputs", 20, 3], ["dontUseCmakeConfigure", 25, 3], ["pythonImportsCheck", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "setuptools-scm": false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 13], ["version", 14, 19], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["pyproject", 18, 3], ["nativeBuildInputs", 20, 3], ["dontUseCmakeConfigure", 25, 3], ["pythonImportsCheck", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kuzu";
       const version = "0.11.3";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-576jyjDEu0Ynku7cqn8hJcgAskO7SocuHu3BaRfBlno=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const dontUseCmakeConfigure = true;
       const pythonImportsCheck = nix.thunk(() => ["kuzu"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python bindings for Kuzu, an embeddable property graph database management system",
         homepage: "https://kuzudb.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

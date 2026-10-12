@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["rev", 15, 5], ["sha256", 16, 5], ["fetchSubmodules", 17, 5]], [["name", 21, 5], ["src", 22, 13], ["sourceRoot", 23, 5], ["patches", 24, 5], ["buildInputs", 25, 5], ["nativeBuildInputs", 30, 5], ["postInstall", 36, 5]], [["homepage", 80, 5], ["description", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5], ["mainProgram", 85, 5]], [["pname", 42, 3], ["version", 43, 11], ["src", 45, 11], ["buildInputs", 47, 3], ["nativeBuildInputs", 53, 3], ["preBuild", 58, 3], ["dontWrapQtApps", 62, 3], ["postInstall", 63, 3], ["enableParallelBuilding", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, flex: false, bison: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["rev", 15, 5], ["sha256", 16, 5], ["fetchSubmodules", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 21, 5], ["src", 22, 13], ["sourceRoot", 23, 5], ["patches", 24, 5], ["buildInputs", 25, 5], ["nativeBuildInputs", 30, 5], ["postInstall", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 80, 5], ["description", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5], ["mainProgram", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 11], ["src", 45, 11], ["buildInputs", 47, 3], ["nativeBuildInputs", 53, 3], ["preBuild", 58, 3], ["dontWrapQtApps", 62, 3], ["postInstall", 63, 3], ["enableParallelBuilding", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const version = "5.1";
   const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/kmkolasinski/AwesomeBump.git",
       rev: nix.thunk(() => nix.str`Winx32v${version}`),
       sha256: "1c8b9jki0v8kzkvsvyv7q1w3s7j40br6ph15hh2xi0a1mpwckq56",
       fetchSubmodules: true,
     }))));
   const qtnproperty = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "qtnproperty",
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/Sources/utils/QtnProperty`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -D bin-linux/QtnPEG $out/bin/QtnPEG\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "awesomebump",
       version: version,
       src: src,
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "d=$out/libexec/AwesomeBump\n\nmkdir -p $d\ncp -vr workdir/`cat workdir/current`/bin/AwesomeBump $d/\ncp -prd Bin/Configs Bin/Core $d/\n\n# AwesomeBump expects to find Core and Configs in its current directory.\nmakeQtWrapper $d/AwesomeBump $out/bin/AwesomeBump \\\n    --chdir \"$d\"\n",
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/kmkolasinski/AwesomeBump",
         description: "Program to generate normal, height, specular or ambient occlusion textures from a single image",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

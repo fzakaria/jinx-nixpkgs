@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 29, 3], ["paths", 31, 3], ["nativeBuildInputs", 33, 3], ["postBuild", 35, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { symlinkJoin: false, lib: false, makeWrapper: false, "folder-color-switcher": false, nemo: false, "nemo-emblems": false, "nemo-fileroller": false, "nemo-python": false, python3: false, extensions: true, useDefaultExtensions: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 29, 3], ["paths", 31, 3], ["nativeBuildInputs", 33, 3], ["postBuild", 35, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const selectedExtensions = nix.thunk(() => nix.concat(extensions, nix.app(nix.sel(lib, "optionals"), useDefaultExtensions, nix.thunk(() => [folder_color_switcher, nemo_emblems, nemo_fileroller, nemo_python]))));
   const nemoPythonExtensionsDeps = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (x) => nix.selOr(x, () => [], "nemoPythonExtensionDeps"), selectedExtensions));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`nemo-with-extensions-${nix.sel(nemo, "version")}`),
       paths: nix.thunk(() => nix.concat([nemo], selectedExtensions)),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

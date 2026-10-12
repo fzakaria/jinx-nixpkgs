@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["lockFile", 84, 5]], [["updateScript", 109, 12]], [["description", 112, 5], ["homepage", 113, 5], ["maintainers", 114, 5], ["mainProgram", 120, 5], ["platforms", 121, 5], ["license", 122, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["checkInputs", 67, 3], ["cmakeFlags", 71, 3], ["cargoRoot", 81, 3], ["cargoDeps", 83, 3], ["doCheck", 87, 3], ["patches", 94, 3], ["postPatch", 96, 3], ["passthru", 109, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, rustc: false, cargo: false, rustPlatform: false, ensureNewerSourcesForZipFilesHook: false, pcre2: false, openssl: false, gflags: false, glog: false, libevent: false, edencommon: false, folly: false, fizz: false, wangle: false, fbthrift: false, fb303: false, cpptoml: false, gtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lockFile", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 109, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 112, 5], ["homepage", 113, 5], ["maintainers", 114, 5], ["mainProgram", 120, 5], ["platforms", 121, 5], ["license", 122, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["checkInputs", 67, 3], ["cmakeFlags", 71, 3], ["cargoRoot", 81, 3], ["cargoDeps", 83, 3], ["doCheck", 87, 3], ["patches", 94, 3], ["postPatch", 96, 3], ["passthru", 109, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const cpptoml = nix.arg($, "cpptoml");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "watchman",
       version: "2026.07.27.00",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebook",
           repo: "watchman",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,7 +71,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "WATCHMAN_VERSION_OVERRIDE", nix.thunk(() => nix.sel(finalAttrs, "version")))),
       ]),
       cargoRoot: "watchman/cli",
-      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })))),
+      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") })))),
       doCheck: true,
       patches: nix.thunk(() => [nix.path(here, "./fmt-12.2.0-format-header.patch")]),
       postPatch: nix.thunk(() => nix.str`patchShebangs .
@@ -89,9 +85,9 @@ substituteInPlace CMakeLists.txt \\
   --replace-fail /usr/bin /var/empty
 
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Watches files and takes action when they change",
         homepage: "https://facebook.github.io/watchman",
         maintainers: nix.thunk(() => (() => {

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["updateScript", 78, 5], ["providedSessions", 79, 5]], [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoHash", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["runtimeDependencies", 51, 3], ["checkFlags", 55, 3], ["postInstall", 65, 3], ["passthru", 77, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, autoPatchelfHook: false, fetchFromGitHub: false, installShellFiles: false, libGL: false, libgbm: false, libglvnd: false, libinput: false, "nix-update-script": false, pango: false, pkgconf: false, sqlite: false, udev: false, "vulkan-loader": false, xkeyboard_config: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 78, 5], ["providedSessions", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoHash", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["runtimeDependencies", 51, 3], ["checkFlags", 55, 3], ["postInstall", 65, 3], ["passthru", 77, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const xkeyboard_config = nix.arg($, "xkeyboard_config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jay",
       version: "1.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mahkoh",
           repo: "jay",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,12 +58,12 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.add("install -D etc/jay.portal $out/share/xdg-desktop-portal/portals/jay.portal\ninstall -D etc/jay-portals.conf $out/share/xdg-desktop-portal/jay-portals.conf\ninstall -D etc/jay.desktop $out/share/wayland-sessions/jay.desktop\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd jay \\\n  --bash <(\"$out/bin/jay\" generate-completion bash) \\\n  --zsh <(\"$out/bin/jay\" generate-completion zsh) \\\n  --fish <(\"$out/bin/jay\" generate-completion fish)\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         providedSessions: nix.thunk(() => ["jay"]),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wayland compositor written in Rust",
         homepage: "https://github.com/mahkoh/jay",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

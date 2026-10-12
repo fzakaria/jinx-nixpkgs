@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["allSortedCudaCapabilities", 65, 3], ["cudaArchNameToCapabilities", 76, 3]]]);
 const formals$1 = { args: { lib: false, bootstrapData: false, db: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["allSortedCudaCapabilities", 65, 3], ["cudaArchNameToCapabilities", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const bootstrapData = nix.arg($, "bootstrapData");
   const db = nix.arg($, "db");
   return nix.update(bootstrapData, {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     allSortedCudaCapabilities: nix.thunk(() => nix.app(nix.sel(lib, "sort"), nix.thunk(() => nix.sel(lib, "versionOlder")), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(db, "cudaCapabilityToInfo")))))),
     cudaArchNameToCapabilities: nix.thunk(() => nix.app(nix.sel(lib, "groupBy"), (cudaCapability) => nix.sel(db, "cudaCapabilityToInfo", nix.key(nix.force(cudaCapability)), "archName"), nix.thunk(() => nix.sel(db, "allSortedCudaCapabilities")))),
   });

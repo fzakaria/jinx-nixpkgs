@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 69, 5], ["broken", 70, 5], ["maintainers", 71, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["cmakeFlags", 54, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, cmake: false, "pkg-config": false, "alsa-lib": false, fftw: false, flac: false, lame: false, libjack2: false, libmad: false, libpulseaudio: false, libsamplerate: false, libsndfile: false, libvorbis: false, portaudio: false, qt6: false, wavpack: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 69, 5], ["broken", 70, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["cmakeFlags", 54, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const wavpack = nix.arg($, "wavpack");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "traverso",
       version: "0-unstable-2024-09-28",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.savannah.nongnu.org/git/traverso.git",
           rev: "f34717623a8d19dd7c04d9604ef4468734140abc",
           hash: "sha256-eobQFJohndwQjXRXBAehkTWS9jR/1bQOjrOF1XJN5L4=",
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
         "-DWANT_LV2=0",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cross-platform multitrack audio recording and audio editing suite",
         mainProgram: "traverso",
         homepage: "https://savannah.nongnu.org/projects/traverso",

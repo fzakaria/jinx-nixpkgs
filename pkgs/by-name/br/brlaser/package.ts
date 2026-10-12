@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["cmakeFlags", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, zlib: false, cups: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["cmakeFlags", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const cups = nix.arg($, "cups");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "brlaser",
       version: "6.2.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Owl-Maintain",
           repo: "brlaser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib, cups]),
       cmakeFlags: nix.thunk(() => ["-DCUPS_SERVER_BIN=lib/cups", "-DCUPS_DATA_DIR=share/cups"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CUPS driver for Brother laser printers",
         longDescription: "Although most Brother printers support a standard printer language such as PCL or PostScript, not all do. If you have a monochrome Brother laser printer (or multi-function device) and the other open source drivers don't work, this one might help.\n\nThis driver is known to work with many printers in the DCP, HL and MFC series, along with a few others.\nSee the homepage for a full list.\n",
         homepage: "https://github.com/Owl-Maintain/brlaser",

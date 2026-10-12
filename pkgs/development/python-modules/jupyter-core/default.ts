@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["sage", 63, 13]], [["tests", 62, 12]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["teams", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["nativeCheckInputs", 37, 3], ["preCheck", 42, 3], ["pytestFlags", 46, 3], ["disabledTests", 51, 3], ["postCheck", 56, 3], ["pythonImportsCheck", 60, 3], ["passthru", 62, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, platformdirs: false, traitlets: false, pip: false, pytestCheckHook: false, sage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sage", 63, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 62, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["teams", 71, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["nativeCheckInputs", 37, 3], ["preCheck", 42, 3], ["pytestFlags", 46, 3], ["disabledTests", 51, 3], ["postCheck", 56, 3], ["pythonImportsCheck", 60, 3], ["passthru", 62, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jupyter",
           repo: "jupyter_core",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,9 +36,12 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_argv0"]);
       const postCheck = "$out/bin/jupyter --help > /dev/null\n";
       const pythonImportsCheck = nix.thunk(() => ["jupyter_core"]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) }));
+      const passthru = nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], sage: sage })),
+      }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Base package on which Jupyter projects rely",
         homepage: "https://jupyter.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter/jupyter_core/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -50,7 +49,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "jupyter"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["strictDeps", 36, 3], ["__structuredAttrs", 37, 3], ["postUnpack", 46, 3], ["preConfigure", 54, 3], ["doCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, automake: false, groff: false, ncurses: false, perl: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["strictDeps", 36, 3], ["__structuredAttrs", 37, 3], ["postUnpack", 46, 3], ["preConfigure", 54, 3], ["doCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "empserver",
       version: "4.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gefla",
           repo: "empserver",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ touch "$sourceRoot/.dirty-stamp"
       preConfigure: "./bootstrap\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Multi-player, client/server Internet based war game",
         homepage: "https://www.wolfpackempire.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

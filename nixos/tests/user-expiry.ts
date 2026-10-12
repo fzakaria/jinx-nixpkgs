@@ -2,13 +2,7 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/user-expiry.nix", [["initialPassword", 14, 11], ["isNormalUser", 15, 11], ["expires", 16, 11]]);
-const pos$2 = nix.positions(here + "/user-expiry.nix", [["initialPassword", 19, 11], ["isNormalUser", 20, 11], ["expires", 21, 11]]);
-const pos$3 = nix.positions(here + "/user-expiry.nix", [["initialPassword", 24, 11], ["isNormalUser", 25, 11]]);
-const pos$4 = nix.positions(here + "/user-expiry.nix", [["users", 12, 13]]);
-const pos$5 = nix.positions(here + "/user-expiry.nix", [["users", 12, 7]]);
-const pos$6 = nix.positions(here + "/user-expiry.nix", [["machine", 11, 5]]);
-const pos$7 = nix.positions(here + "/user-expiry.nix", [["name", 8, 3], ["nodes", 10, 3], ["testScript", 31, 3]]);
+const $pos = nix.positions(here + "/user-expiry.nix", [[["initialPassword", 14, 11], ["isNormalUser", 15, 11], ["expires", 16, 11]], [["initialPassword", 19, 11], ["isNormalUser", 20, 11], ["expires", 21, 11]], [["initialPassword", 24, 11], ["isNormalUser", 25, 11]], [["users", 12, 13]], [["users", 12, 7]], [["machine", 11, 5]], [["name", 8, 3], ["nodes", 10, 3], ["testScript", 31, 3]]]);
 
 export default nix.thunk(() => (() => {
   const alice = "alice";
@@ -16,28 +10,28 @@ export default nix.thunk(() => (() => {
   const eve = "eve";
   const passwd = "pass1";
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "user-expiry",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         users: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           users: nix.thunk(() => nix.attrsDyn({}, [
             [alice, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               initialPassword: passwd,
               isNormalUser: true,
               expires: "1990-01-01",
             }))],
             [bob, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               initialPassword: passwd,
               isNormalUser: true,
               expires: "2990-01-01",
             }))],
-            [eve, nix.thunk(() => ({ [nix.POS]: pos$3, initialPassword: passwd, isNormalUser: true }))],
+            [eve, nix.thunk(() => ({ [nix.POS]: $pos[2], initialPassword: passwd, isNormalUser: true }))],
           ])),
         })),
       })),

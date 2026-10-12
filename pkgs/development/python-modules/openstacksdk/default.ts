@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["PBR_VERSION", 48, 7]], [["tests", 84, 5]], [["tests", 83, 12]], [["description", 96, 5], ["mainProgram", 97, 5], ["homepage", 98, 5], ["downloadPage", 99, 5], ["license", 100, 5], ["teams", 101, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 42, 3], ["env", 48, 3], ["build-system", 50, 3], ["outputs", 55, 3], ["sphinxBuilders", 60, 3], ["nativeBuildInputs", 62, 3], ["dependencies", 67, 3], ["doCheck", 81, 3], ["passthru", 83, 3], ["pythonImportsCheck", 88, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, callPackage: false, pbr: false, setuptools: false, cryptography: false, "dogpile-cache": false, jmespath: false, jsonpatch: false, keystoneauth1: false, munch: false, "os-service-types": false, platformdirs: false, psutil: false, pyyaml: false, sphinxHook: false, openstackdocstheme: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PBR_VERSION", 48, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 84, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 83, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 96, 5], ["mainProgram", 97, 5], ["homepage", 98, 5], ["downloadPage", 99, 5], ["license", 100, 5], ["teams", 101, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 42, 3], ["env", 48, 3], ["build-system", 50, 3], ["outputs", 55, 3], ["sphinxBuilders", 60, 3], ["nativeBuildInputs", 62, 3], ["dependencies", 67, 3], ["doCheck", 81, 3], ["passthru", 83, 3], ["pythonImportsCheck", 88, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const sphinxHook = nix.arg($, "sphinxHook");
   const openstackdocstheme = nix.arg($, "openstackdocstheme");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "openstacksdk",
       version: "4.20.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openstack",
           repo: "openstacksdk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./fix-pyproject.patch")]),
       postPatch: "# Disable rsvgconverter not needed to build manpage\nsubstituteInPlace doc/source/conf.py \\\n  --replace-fail \"'sphinxcontrib.rsvgconverter',\" \"#'sphinxcontrib.rsvgconverter',\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       "build-system": nix.thunk(() => [pbr, setuptools]),
@@ -66,9 +61,9 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       })),
@@ -79,7 +74,7 @@ export default nix.lambda((args) => (() => {
         "openstack.test",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "SDK for building applications to work with OpenStack clouds",
         mainProgram: "openstack",
         homepage: "https://docs.openstack.org/openstacksdk/latest/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["changelog", 108, 5], ["description", 109, 5], ["mainProgram", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["maintainers", 113, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 39, 3], ["pythonImportsCheck", 54, 3], ["nativeCheckInputs", 56, 3], ["disabledTestPaths", 62, 3], ["disabledTests", 70, 3], ["enabledTestPaths", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cerberus: false, configparser: false, deepdiff: false, fetchFromGitHub: false, geoip2: false, jinja2: false, netmiko: false, openpyxl: false, pytestCheckHook: false, "poetry-core": false, pyprojectVersionPatchHook: false, pyyaml: false, tabulate: false, "ttp-templates": false, yangson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 108, 5], ["description", 109, 5], ["mainProgram", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["maintainers", 113, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 39, 3], ["pythonImportsCheck", 54, 3], ["nativeCheckInputs", 56, 3], ["disabledTestPaths", 62, 3], ["disabledTests", 70, 3], ["enabledTestPaths", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dmulyalin",
           repo: "ttp",
           tag: version,
@@ -84,7 +82,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const enabledTestPaths = nix.thunk(() => ["test/pytest"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/dmulyalin/ttp/releases/tag/${version}`),
         description: "Template Text Parser",
         mainProgram: "ttp",
@@ -93,7 +91,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

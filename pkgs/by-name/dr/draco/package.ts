@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["CXXFLAGS", 60, 7]], [["updateScript", 66, 12]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 76, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["cmakeFlags", 48, 3], ["env", 60, 3], ["passthru", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, python3: false, gtest: false, withAnimation: true, withTranscoder: true, eigen: false, ghc_filesystem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 66, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["cmakeFlags", 48, 3], ["env", 60, 3], ["passthru", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const ghc_filesystem = nix.arg($, "ghc_filesystem");
   const tinygltf = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tinygltf.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "draco",
       version: "1.5.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "draco",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,15 +45,15 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "DRACO_TINYGLTF_PATH", nix.thunk(() => nix.builtins.toString(tinygltf)))),
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-include", "cstdint"]))),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library for compressing and decompressing 3D geometric meshes and point clouds",
         homepage: "https://google.github.io/draco/",
         changelog: nix.thunk(() => nix.str`https://github.com/google/draco/releases/tag/${nix.sel(finalAttrs, "version")}`),

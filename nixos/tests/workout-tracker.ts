@@ -2,41 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/workout-tracker.nix", [[["maintainers", 6, 8]], [["memorySize", 11, 22]], [["enable", 13, 32]], [["workout-tracker", 13, 16]], [["virtualisation", 11, 7], ["services", 13, 7]], [["machine", 8, 9]], [["name", 4, 3], ["meta", 6, 3], ["nodes", 8, 3], ["testScript", 16, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/workout-tracker.nix", [["maintainers", 6, 8]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/workout-tracker.nix", [["memorySize", 11, 22]]);
-const pos$3 = nix.positions(here + "/workout-tracker.nix", [["enable", 13, 32]]);
-const pos$4 = nix.positions(here + "/workout-tracker.nix", [["workout-tracker", 13, 16]]);
-const pos$5 = nix.positions(here + "/workout-tracker.nix", [["virtualisation", 11, 7], ["services", 13, 7]]);
-const pos$6 = nix.positions(here + "/workout-tracker.nix", [["machine", 8, 9]]);
-const pos$7 = nix.positions(here + "/workout-tracker.nix", [["name", 4, 3], ["meta", 6, 3], ["nodes", 8, 3], ["testScript", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "workout-tracker",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "bhankas"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$5,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2048n })),
+          [nix.POS]: $pos[4],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 2048n })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            "workout-tracker": nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[3],
+            "workout-tracker": nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
           })),
         };
       })(), formals$2),

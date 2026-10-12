@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 9], ["sha256", 30, 9], ["name", 31, 9]], [["pname", 35, 15], ["version", 35, 21], ["src", 36, 7]], [["fontDirectories", 62, 5]], [["description", 96, 5], ["homepage", 97, 5], ["sourceProvenance", 98, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["fontsConf", 61, 3], ["installPhase", 65, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeFontsConf: false, appimageTools: false, qt5: false, autoPatchelfHook: false, "desktop-file-utils": false, imagemagick: false, "twemoji-color-font": false, "xkeyboard-config": false, libxscrnsaver: false, libxcursor: false, libx11: false, libsodium: false, libopus: false, libGL: false, "alsa-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 9], ["sha256", 30, 9], ["name", 31, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 35, 15], ["version", 35, 21], ["src", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["fontDirectories", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["sourceProvenance", 98, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["fontsConf", 61, 3], ["installPhase", 65, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +30,12 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.29";
       const src = nix.thunk(() => (() => {
         const appimage = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://cancel.fm/dl/Ripcord-${version}-x86_64.AppImage`),
             sha256: "sha256-4yDLPEBDsPKWtLwdpmSyl3b5XCwLAr2/EVtNRrFmmJk=",
             name: nix.thunk(() => nix.str`${pname}-${version}.AppImage`),
           }))));
-        return nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: appimage })));
+        return nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: appimage })));
       })());
       const nativeBuildInputs = nix.thunk(() => [
         autoPatchelfHook,
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
         libxcursor,
         xkeyboard_config,
       ]);
-      const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$3, fontDirectories: nix.thunk(() => [twemoji_color_font]) }))));
+      const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[2], fontDirectories: nix.thunk(() => [twemoji_color_font]) }))));
       const installPhase = nix.thunk(() => nix.str`runHook preInstall
 
 mkdir -p $out
@@ -92,7 +88,7 @@ makeQtWrapper $out/Ripcord $out/bin/ripcord \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Desktop chat client for Slack and Discord",
         homepage: "https://cancel.fm/ripcord/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -104,7 +100,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

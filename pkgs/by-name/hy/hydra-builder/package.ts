@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5], ["platforms", 49, 5]], [["pname", 11, 3], ["version", 12, 19], ["src", 12, 27], ["__structuredAttrs", 13, 3], ["cargoHash", 15, 3], ["cargoBuildFlags", 17, 3], ["buildFeatures", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["doCheck", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, hydra: false, "pkg-config": false, protobuf: false, "rust-jemalloc-sys": false, withOtel: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5], ["platforms", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 19], ["src", 12, 27], ["__structuredAttrs", 13, 3], ["cargoHash", 15, 3], ["cargoBuildFlags", 17, 3], ["buildFeatures", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["doCheck", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const rust_jemalloc_sys = nix.arg($, "rust-jemalloc-sys");
   const withOtel = nix.argOr($, "withOtel", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "hydra-builder",
       version: nix.thunk(() => nix.attr(hydra, "version")),
       src: nix.thunk(() => nix.attr(hydra, "src")),
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [protobuf, rust_jemalloc_sys]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Build agent for the Nix-based continuous build system Hydra",
         homepage: "https://github.com/NixOS/hydra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

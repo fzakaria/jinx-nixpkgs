@@ -2,34 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["description", 43, 5], ["changelog", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 51, 5]], [["pname", 58, 5], ["version", 59, 13], ["src", 59, 21], ["meta", 59, 25], ["sourceRoot", 61, 5], ["nativeBuildInputs", 63, 5], ["buildPhase", 68, 5], ["installPhase", 81, 5]], [["pname", 94, 5], ["version", 95, 13], ["src", 95, 21], ["meta", 95, 25], ["postPatch", 97, 5], ["nativeBuildInputs", 102, 5], ["buildPhase", 108, 5]], [["pname", 126, 5], ["src", 127, 13], ["version", 127, 17], ["meta", 127, 25], ["sourceRoot", 129, 5], ["nodejs", 131, 13], ["npmDepsHash", 132, 5], ["npmDepsFetcherVersion", 133, 5], ["makeCacheWritable", 134, 5], ["npmInstallFlags", 135, 5], ["npmRebuildFlags", 136, 5], ["dontNpmBuild", 137, 5], ["installPhase", 141, 5], ["dontCheckForBrokenSymlinks", 147, 5], ["dontPatchShebangs", 148, 5]], [["pname", 152, 5], ["src", 153, 13], ["version", 153, 17], ["meta", 153, 25], ["nativeBuildInputs", 155, 5], ["sourceRoot", 157, 5], ["buildPhase", 159, 5], ["installPhase", 177, 5]], [["aarch64-linux", 192, 9], ["x86_64-linux", 193, 9]], [["pname", 185, 5], ["src", 186, 13], ["version", 186, 17], ["meta", 186, 25], ["sourceRoot", 188, 5], ["outputHash", 190, 5], ["outputHashMode", 196, 5], ["nativeBuildInputs", 198, 5], ["buildPhase", 203, 5], ["installPhase", 212, 5], ["dontCheckForBrokenSymlinks", 218, 5], ["dontPatchShebangs", 219, 5]], [["pname", 223, 5], ["src", 224, 13], ["version", 224, 17], ["meta", 224, 25], ["sourceRoot", 226, 5], ["nativeBuildInputs", 228, 5], ["postPatch", 232, 5], ["buildPhase", 238, 5], ["CHROMEDRIVER_FILEPATH", 261, 5], ["installPhase", 263, 5], ["NODE_ENV", 271, 5], ["NODE_OPTIONS", 272, 5], ["npmInstallFlags", 274, 5]], [["pname", 287, 9], ["version", 288, 17], ["src", 288, 25], ["meta", 288, 29], ["pyproject", 289, 9], ["sourceRoot", 291, 9], ["build-system", 293, 9], ["nativeBuildInputs", 295, 9], ["propagatedBuildInputs", 297, 9]], [["pname", 304, 9], ["version", 305, 17], ["src", 305, 25], ["meta", 305, 29], ["pyproject", 306, 9], ["sourceRoot", 308, 9], ["build-system", 310, 9], ["nativeBuildInputs", 312, 9], ["pythonRelaxDeps", 314, 9], ["dependencies", 318, 9]], [["pname", 332, 9], ["version", 333, 17], ["src", 333, 25], ["meta", 333, 29], ["pyproject", 334, 9], ["sourceRoot", 336, 9], ["build-system", 338, 9], ["nativeBuildInputs", 340, 9], ["pythonRelaxDeps", 342, 9], ["dependencies", 346, 9]], [["pname", 361, 9], ["version", 362, 17], ["src", 362, 25], ["meta", 362, 29], ["pyproject", 363, 9], ["sourceRoot", 365, 9], ["build-system", 367, 9], ["nativeBuildInputs", 369, 9], ["propagatedBuildInputs", 371, 9]], [["pname", 378, 9], ["version", 379, 17], ["src", 379, 25], ["meta", 379, 29], ["pyproject", 380, 9], ["postPatch", 382, 9], ["build-system", 394, 9], ["pythonRemoveDeps", 396, 9], ["pythonRelaxDeps", 398, 9], ["dependencies", 400, 9], ["postInstall", 476, 9]], [["django", 284, 7], ["ak-guardian", 286, 7], ["django-channels-postgres", 303, 7], ["django-dramatiq-postgres", 331, 7], ["django-postgres-cache", 360, 7], ["authentik-django", 377, 7]], [["self", 281, 5], ["packageOverrides", 282, 5]], [["stdenv", 491, 54]], [["PYO3_PYTHON", 506, 7], ["RUSTFLAGS", 507, 7]], [["pname", 492, 5], ["version", 493, 13], ["src", 493, 21], ["meta", 493, 25], ["cargoHash", 495, 5], ["nativeBuildInputs", 497, 5], ["buildInputs", 503, 5], ["env", 505, 5], ["cargoBuildFlags", 510, 5], ["doCheck", 513, 5]], [["name", 522, 9]], [["CGO_ENABLED", 557, 9]], [["postPatch", 560, 22]], [["pname", 543, 5], ["version", 544, 13], ["src", 544, 21], ["meta", 544, 25], ["postPatch", 546, 5], ["nativeBuildInputs", 555, 5], ["env", 557, 5], ["overrideModAttrs", 560, 5], ["vendorHash", 562, 5], ["postInstall", 564, 5], ["subPackages", 569, 5]], [["vendorHash", 606, 23], ["apiGoVendorHook", 607, 15]], [["proxy", 604, 13], ["worker", 604, 19], ["apiGoVendorHook", 604, 26], ["outposts", 605, 5]], [["mainProgram", 614, 5]], [["pname", 574, 3], ["src", 575, 11], ["version", 575, 15], ["buildInputs", 577, 3], ["postPatch", 579, 3], ["installPhase", 584, 3], ["passthru", 603, 3], ["nativeBuildInputs", 611, 3], ["meta", 613, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, callPackages: false, cacert: false, clangStdenv: false, cmake: false, fetchFromGitHub: false, buildGoModule: false, buildNpmPackage: false, bash: false, chromedriver: false, nodejs_24: false, python314: false, makeWrapper: false, "openapi-generator-cli": false, perl: false, rustPlatform: false, go: false, typescript_7: false, makeSetupHook: false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["changelog", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 58, 5], ["version", 59, 13], ["src", 59, 21], ["meta", 59, 25], ["sourceRoot", 61, 5], ["nativeBuildInputs", 63, 5], ["buildPhase", 68, 5], ["installPhase", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 94, 5], ["version", 95, 13], ["src", 95, 21], ["meta", 95, 25], ["postPatch", 97, 5], ["nativeBuildInputs", 102, 5], ["buildPhase", 108, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 126, 5], ["src", 127, 13], ["version", 127, 17], ["meta", 127, 25], ["sourceRoot", 129, 5], ["nodejs", 131, 13], ["npmDepsHash", 132, 5], ["npmDepsFetcherVersion", 133, 5], ["makeCacheWritable", 134, 5], ["npmInstallFlags", 135, 5], ["npmRebuildFlags", 136, 5], ["dontNpmBuild", 137, 5], ["installPhase", 141, 5], ["dontCheckForBrokenSymlinks", 147, 5], ["dontPatchShebangs", 148, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 152, 5], ["src", 153, 13], ["version", 153, 17], ["meta", 153, 25], ["nativeBuildInputs", 155, 5], ["sourceRoot", 157, 5], ["buildPhase", 159, 5], ["installPhase", 177, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["aarch64-linux", 192, 9], ["x86_64-linux", 193, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 185, 5], ["src", 186, 13], ["version", 186, 17], ["meta", 186, 25], ["sourceRoot", 188, 5], ["outputHash", 190, 5], ["outputHashMode", 196, 5], ["nativeBuildInputs", 198, 5], ["buildPhase", 203, 5], ["installPhase", 212, 5], ["dontCheckForBrokenSymlinks", 218, 5], ["dontPatchShebangs", 219, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 223, 5], ["src", 224, 13], ["version", 224, 17], ["meta", 224, 25], ["sourceRoot", 226, 5], ["nativeBuildInputs", 228, 5], ["postPatch", 232, 5], ["buildPhase", 238, 5], ["CHROMEDRIVER_FILEPATH", 261, 5], ["installPhase", 263, 5], ["NODE_ENV", 271, 5], ["NODE_OPTIONS", 272, 5], ["npmInstallFlags", 274, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 287, 9], ["version", 288, 17], ["src", 288, 25], ["meta", 288, 29], ["pyproject", 289, 9], ["sourceRoot", 291, 9], ["build-system", 293, 9], ["nativeBuildInputs", 295, 9], ["propagatedBuildInputs", 297, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 304, 9], ["version", 305, 17], ["src", 305, 25], ["meta", 305, 29], ["pyproject", 306, 9], ["sourceRoot", 308, 9], ["build-system", 310, 9], ["nativeBuildInputs", 312, 9], ["pythonRelaxDeps", 314, 9], ["dependencies", 318, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 332, 9], ["version", 333, 17], ["src", 333, 25], ["meta", 333, 29], ["pyproject", 334, 9], ["sourceRoot", 336, 9], ["build-system", 338, 9], ["nativeBuildInputs", 340, 9], ["pythonRelaxDeps", 342, 9], ["dependencies", 346, 9]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 361, 9], ["version", 362, 17], ["src", 362, 25], ["meta", 362, 29], ["pyproject", 363, 9], ["sourceRoot", 365, 9], ["build-system", 367, 9], ["nativeBuildInputs", 369, 9], ["propagatedBuildInputs", 371, 9]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 378, 9], ["version", 379, 17], ["src", 379, 25], ["meta", 379, 29], ["pyproject", 380, 9], ["postPatch", 382, 9], ["build-system", 394, 9], ["pythonRemoveDeps", 396, 9], ["pythonRelaxDeps", 398, 9], ["dependencies", 400, 9], ["postInstall", 476, 9]]);
-const pos$15 = nix.positions(here + "/package.nix", [["django", 284, 7], ["ak-guardian", 286, 7], ["django-channels-postgres", 303, 7], ["django-dramatiq-postgres", 331, 7], ["django-postgres-cache", 360, 7], ["authentik-django", 377, 7]]);
-const pos$16 = nix.positions(here + "/package.nix", [["self", 281, 5], ["packageOverrides", 282, 5]]);
-const pos$17 = nix.positions(here + "/package.nix", [["stdenv", 491, 54]]);
-const pos$18 = nix.positions(here + "/package.nix", [["PYO3_PYTHON", 506, 7], ["RUSTFLAGS", 507, 7]]);
-const pos$19 = nix.positions(here + "/package.nix", [["pname", 492, 5], ["version", 493, 13], ["src", 493, 21], ["meta", 493, 25], ["cargoHash", 495, 5], ["nativeBuildInputs", 497, 5], ["buildInputs", 503, 5], ["env", 505, 5], ["cargoBuildFlags", 510, 5], ["doCheck", 513, 5]]);
-const pos$20 = nix.positions(here + "/package.nix", [["name", 522, 9]]);
-const pos$21 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 557, 9]]);
-const pos$22 = nix.positions(here + "/package.nix", [["postPatch", 560, 22]]);
-const pos$23 = nix.positions(here + "/package.nix", [["pname", 543, 5], ["version", 544, 13], ["src", 544, 21], ["meta", 544, 25], ["postPatch", 546, 5], ["nativeBuildInputs", 555, 5], ["env", 557, 5], ["overrideModAttrs", 560, 5], ["vendorHash", 562, 5], ["postInstall", 564, 5], ["subPackages", 569, 5]]);
-const pos$24 = nix.positions(here + "/package.nix", [["vendorHash", 606, 23], ["apiGoVendorHook", 607, 15]]);
-const pos$25 = nix.positions(here + "/package.nix", [["proxy", 604, 13], ["worker", 604, 19], ["apiGoVendorHook", 604, 26], ["outposts", 605, 5]]);
-const pos$26 = nix.positions(here + "/package.nix", [["mainProgram", 614, 5]]);
-const pos$27 = nix.positions(here + "/package.nix", [["pname", 574, 3], ["src", 575, 11], ["version", 575, 15], ["buildInputs", 577, 3], ["postPatch", 579, 3], ["installPhase", 584, 3], ["passthru", 603, 3], ["nativeBuildInputs", 611, 3], ["meta", 613, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,14 +32,14 @@ export default nix.lambda((args) => (() => {
   const version = "2026.5.6";
   const cargoPackageFlags = nix.thunk(() => ["--package", "authentik"]);
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "goauthentik",
       repo: "authentik",
       tag: nix.thunk(() => nix.str`version/${version}`),
       hash: "sha256-/HdXzjjvuSW7zjbCNJKm3Fj8gvIwfrDf8mOYev0yuIg=",
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "Authentication glue you need",
     changelog: nix.thunk(() => nix.str`https://github.com/goauthentik/authentik/releases/tag/version%2F${version}`),
     homepage: "https://goauthentik.io/",
@@ -80,7 +54,7 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const client_go = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "authentik-client-go",
       version: version,
       src: src,
@@ -101,7 +75,7 @@ runHook postBuild
       installPhase: "runHook preInstall\n\ncd $out\nrm -rf test\nrm -f go.mod go.sum\nrm -f .travis.yml git_push.sh\n\nrunHook postInstall\n",
     }))));
   const client_ts = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "authentik-client-ts",
       version: version,
       src: src,
@@ -124,7 +98,7 @@ runHook postBuild
 `),
     }))));
   const website_deps = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "authentik-website-deps",
       src: src,
       version: version,
@@ -142,7 +116,7 @@ runHook postBuild
       dontPatchShebangs: true,
     }))));
   const website = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "authentik-website",
       src: src,
       version: version,
@@ -168,14 +142,14 @@ runHook postBuild
       installPhase: "mkdir $out\ncp -r api/build $out/help\n",
     }))));
   const webui_deps = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "authentik-webui-deps",
       src: src,
       version: version,
       meta: meta,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/web`),
       outputHash: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         "aarch64-linux": "sha256-ZdfDKrrcVpNImY8cYa9CPEwI7tuaoPn3kM6MXGGio2U=",
         "x86_64-linux": "sha256-p6xjAinU2Isl/uYgoJuacqHN7jBnbWam40J6AQudbtQ=",
       }, () => nix.builtins.throw("authentik-webui-deps: unsupported host platform"), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
@@ -187,7 +161,7 @@ runHook postBuild
       dontPatchShebangs: true,
     }))));
   const webui = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "authentik-webui",
       src: src,
       version: version,
@@ -226,13 +200,13 @@ runHook postBuild
       npmInstallFlags: nix.thunk(() => ["--include=dev", "--ignore-scripts"]),
     }))));
   const python = nix.thunk(() => nix.app(nix.sel(python314, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       self: python,
       packageOverrides: (final) => (prev) => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         django: nix.thunk(() => nix.sel(final, "django_5")),
         "ak-guardian": nix.thunk(() => nix.app(nix.sel(final, "buildPythonPackage"), nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             pname: "ak-guardian",
             version: version,
             src: src,
@@ -256,7 +230,7 @@ runHook postBuild
             })()),
           })))),
         "django-channels-postgres": nix.thunk(() => nix.app(nix.sel(final, "buildPythonPackage"), nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             pname: "django-channels-postgres",
             version: version,
             src: src,
@@ -285,7 +259,7 @@ runHook postBuild
             })()),
           })))),
         "django-dramatiq-postgres": nix.thunk(() => nix.app(nix.sel(final, "buildPythonPackage"), nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             pname: "django-dramatiq-postgres",
             version: version,
             src: src,
@@ -315,7 +289,7 @@ runHook postBuild
             })()),
           })))),
         "django-postgres-cache": nix.thunk(() => nix.app(nix.sel(final, "buildPythonPackage"), nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             pname: "django-postgres-cache",
             version: version,
             src: src,
@@ -339,7 +313,7 @@ runHook postBuild
             })()),
           })))),
         "authentik-django": nix.thunk(() => nix.app(nix.sel(final, "buildPythonPackage"), nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             pname: "authentik",
             version: version,
             src: src,
@@ -446,8 +420,8 @@ ln -s $out/${nix.sel(prev, "python", "sitePackages")}/lifecycle $out/lifecycle
     }))));
   const from = nix.thunk(() => nix.sel(python, "pkgs"));
   const authentik_django = nix.thunk(() => nix.attr(from, "authentik-django"));
-  const worker = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$17, stdenv: clangStdenv })), nix.thunk(() => ({
-      [nix.POS]: pos$19,
+  const worker = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: $pos[16], stdenv: clangStdenv })), nix.thunk(() => ({
+      [nix.POS]: $pos[18],
       pname: "authentik-worker",
       version: version,
       src: src,
@@ -456,14 +430,14 @@ ln -s $out/${nix.sel(prev, "python", "sitePackages")}/lifecycle $out/lifecycle
       nativeBuildInputs: nix.thunk(() => [cmake, go, perl]),
       buildInputs: nix.thunk(() => [python]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         PYO3_PYTHON: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), python)),
         RUSTFLAGS: "--cfg tokio_unstable",
       })),
       cargoBuildFlags: cargoPackageFlags,
       doCheck: false,
     }))));
-  const apiGoVendorHook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({ [nix.POS]: pos$20, name: "authentik-api-go-vendor-hook" })), nix.thunk(() => nix.app(writeShellScript, "authentik-api-go-vendor-hook", nix.thunk(() => nix.str`authentikApiGoVendorHook() {
+  const apiGoVendorHook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({ [nix.POS]: $pos[19], name: "authentik-api-go-vendor-hook" })), nix.thunk(() => nix.app(writeShellScript, "authentik-api-go-vendor-hook", nix.thunk(() => nix.str`authentikApiGoVendorHook() {
   chmod -R +w packages/client-go
   rm -rf packages/client-go
   cp -r ${client_go} packages/client-go
@@ -478,7 +452,7 @@ if [ -z \${outputHash-} ]; then
 fi
 `)))));
   const proxy = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       pname: "authentik-proxy",
       version: version,
       src: src,
@@ -491,14 +465,14 @@ substituteInPlace internal/web/static.go \\
   --replace-fail './web' "${authentik_django}/web"
 `),
       nativeBuildInputs: nix.thunk(() => [apiGoVendorHook]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$21, CGO_ENABLED: 0n })),
-      overrideModAttrs: nix.thunk(() => ({ [nix.POS]: pos$22, postPatch: "" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[20], CGO_ENABLED: 0n })),
+      overrideModAttrs: nix.thunk(() => ({ [nix.POS]: $pos[21], postPatch: "" })),
       vendorHash: "sha256-EVDOZ4USaJoIBDB8mM4ZSBfsSc1d/NOm1Qv/hUJ+8f4=",
       postInstall: "mv $out/bin/server $out/bin/authentik-server\nln -s authentik-server $out/bin/authentik\n",
       subPackages: nix.thunk(() => ["cmd/server"]),
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       pname: "authentik",
       src: src,
       version: version,
@@ -520,18 +494,18 @@ wrapProgram $out/bin/ak \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         proxy: proxy,
         worker: worker,
         apiGoVendorHook: apiGoVendorHook,
         outposts: nix.thunk(() => nix.app(callPackages, nix.path(here, "./outposts.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             vendorHash: nix.thunk(() => nix.attr(proxy, "vendorHash")),
             apiGoVendorHook: apiGoVendorHook,
           })))),
       })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$26, mainProgram: "ak" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[25], mainProgram: "ak" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

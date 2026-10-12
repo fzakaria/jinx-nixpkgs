@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["expected", 17, 9]], [["command", 26, 7], ["includes", 27, 7]], [["nixfmt", 25, 15]], [["on-unmatched", 22, 5], ["tree-root-file", 23, 5], ["formatter", 25, 5]], [["settings", 32, 5], ["runtimeInputs", 33, 5]], [["assertion", 60, 5], ["actual", 61, 5], ["expected", 62, 5]], [["assertion", 66, 5], ["actual", 67, 5], ["expected", 68, 5]], [["tree-root-file", 82, 9]], [["assertion", 79, 5], ["actual", 80, 5], ["expected", 84, 5]], [["drv", 97, 5], ["expectedBuilderExitCode", 98, 5], ["expectedBuilderLogEntries", 99, 5]], [["nativeBuildInputs", 113, 9], ["input", 114, 9], ["expected", 121, 9], ["__structuredAttrs", 128, 9]], [["buildConfigEmpty", 59, 3], ["buildConfigExample", 65, 3], ["buildConfigModules", 78, 3], ["nixfmtExampleCheckPasses", 94, 3], ["nixfmtExampleCheckFails", 96, 3], ["runNixfmtExample", 110, 3]]]);
 const formals$1 = { args: { lib: false, runCommand: false, runCommandLocal: false, testers: false, treefmt: false, nixfmt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["expected", 17, 9]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["command", 26, 7], ["includes", 27, 7]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["nixfmt", 25, 15]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["on-unmatched", 22, 5], ["tree-root-file", 23, 5], ["formatter", 25, 5]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["settings", 32, 5], ["runtimeInputs", 33, 5]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["assertion", 60, 5], ["actual", 61, 5], ["expected", 62, 5]]);
-const pos$7 = nix.positions(here + "/tests.nix", [["assertion", 66, 5], ["actual", 67, 5], ["expected", 68, 5]]);
-const pos$8 = nix.positions(here + "/tests.nix", [["tree-root-file", 82, 9]]);
-const pos$9 = nix.positions(here + "/tests.nix", [["assertion", 79, 5], ["actual", 80, 5], ["expected", 84, 5]]);
-const pos$10 = nix.positions(here + "/tests.nix", [["drv", 97, 5], ["expectedBuilderExitCode", 98, 5], ["expectedBuilderLogEntries", 99, 5]]);
-const pos$11 = nix.positions(here + "/tests.nix", [["nativeBuildInputs", 113, 9], ["input", 114, 9], ["expected", 121, 9], ["__structuredAttrs", 128, 9]]);
-const pos$12 = nix.positions(here + "/tests.nix", [["buildConfigEmpty", 59, 3], ["buildConfigExample", 65, 3], ["buildConfigModules", 78, 3], ["nixfmtExampleCheckPasses", 94, 3], ["nixfmtExampleCheckFails", 96, 3], ["runNixfmtExample", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,46 +16,46 @@ export default nix.lambda((args) => (() => {
   const buildConfig = nix.thunk(() => nix.attr(treefmt, "buildConfig"));
   const withConfig = nix.thunk(() => nix.attr(treefmt, "withConfig"));
   const testEqualContents = (args_1) => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => nix.update(args_1, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.builtins.isString(nix.thunk(() => nix.sel(args_1, "expected")))), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         expected: nix.thunk(() => nix.builtins.toFile("expected", nix.thunk(() => nix.sel(args_1, "expected")))),
       }))))));
   const nixfmtExampleConfig = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "on-unmatched": "info",
     "tree-root-file": ".git/index",
     formatter: nix.thunk(() => ({
-      [nix.POS]: pos$3,
-      nixfmt: nix.thunk(() => ({ [nix.POS]: pos$2, command: "nixfmt", includes: nix.thunk(() => ["*.nix"]) })),
+      [nix.POS]: $pos[2],
+      nixfmt: nix.thunk(() => ({ [nix.POS]: $pos[1], command: "nixfmt", includes: nix.thunk(() => ["*.nix"]) })),
     })),
   }));
   const nixfmtExamplePackage = nix.thunk(() => nix.app(withConfig, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       settings: nixfmtExampleConfig,
       runtimeInputs: nix.thunk(() => [nixfmt]),
     }))));
   const wellFormattedTree = nix.thunk(() => nix.app(runCommandLocal, "well-formatted-project", nix.thunk(() => ({})), "mkdir \"$out\"\ncat > \"$out/file.nix\" <<EOF\n{\n  foo = \"bar\";\n  attrs = { };\n  list = [ ];\n}\nEOF\n"));
   const unformattedTree = nix.thunk(() => nix.app(runCommandLocal, "unformatted-project", nix.thunk(() => ({})), "mkdir \"$out\"\ncat > \"$out/file.nix\" <<EOF\n{\n  foo=\"bar\";\n  attrs={};\n  list=[];\n}\nEOF\n"));
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     buildConfigEmpty: nix.thunk(() => nix.app(testEqualContents, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         assertion: "`buildConfig { }` builds an empty config file",
         actual: nix.thunk(() => nix.app(buildConfig, nix.thunk(() => ({})))),
         expected: "",
       })))),
     buildConfigExample: nix.thunk(() => nix.app(testEqualContents, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         assertion: "`buildConfig` builds the example config",
         actual: nix.thunk(() => nix.app(buildConfig, nixfmtExampleConfig)),
         expected: "on-unmatched = \"info\"\ntree-root-file = \".git/index\"\n\n[formatter.nixfmt]\ncommand = \"nixfmt\"\nincludes = [\"*.nix\"]\n",
       })))),
     buildConfigModules: nix.thunk(() => nix.app(testEqualContents, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         assertion: "`buildConfig` evaluates modules to build a config",
         actual: nix.thunk(() => nix.app(buildConfig, nix.thunk(() => [
             nixfmtExampleConfig,
             nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               "tree-root-file": nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "overridden")),
             })),
           ]))),
@@ -74,7 +63,7 @@ export default nix.lambda((args) => (() => {
       })))),
     nixfmtExampleCheckPasses: nix.thunk(() => nix.app(nix.sel(nixfmtExamplePackage, "check"), wellFormattedTree)),
     nixfmtExampleCheckFails: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         drv: nix.thunk(() => nix.app(nix.sel(nixfmtExamplePackage, "check"), unformattedTree)),
         expectedBuilderExitCode: 1n,
         expectedBuilderLogEntries: nix.thunk(() => [
@@ -88,7 +77,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     runNixfmtExample: nix.thunk(() => nix.app(runCommand, "run-nixfmt-example", nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         nativeBuildInputs: nix.thunk(() => [nixfmtExamplePackage]),
         input: "{\n  foo=\"bar\";\n  attrs={};\n  list=[];\n}\n",
         expected: "{\n  foo = \"bar\";\n  attrs = { };\n  list = [ ];\n}\n",

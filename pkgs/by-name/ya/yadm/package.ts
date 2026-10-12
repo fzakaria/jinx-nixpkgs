@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 50, 5], ["repo", 51, 5], ["rev", 52, 5], ["hash", 53, 5]], [["external", 90, 9]], [["$GIT_PROGRAM", 93, 9], ["$GPG_PROGRAM", 94, 9], ["$OPENSSL_PROGRAM", 95, 9], ["$AWK_PROGRAM", 96, 9], ["$ESH_PROGRAM", 100, 9]], [["$YADM_COMMAND", 106, 9], ["$processor", 107, 9], ["$log", 108, 9], ["$SHELL", 109, 9], ["$hook_command", 110, 9], ["exec", 111, 9], ["$GPG_PROGRAM", 113, 9], ["$OPENSSL_PROGRAM", 114, 9], ["$AWK_PROGRAM", 115, 9], ["$J2CLI_PROGRAM", 116, 9], ["$ESH_PROGRAM", 117, 9], ["$ENVTPL_PROGRAM", 120, 9], ["$LSB_RELEASE_PROGRAM", 121, 9]], [["scripts", 74, 7], ["interpreter", 75, 7], ["inputs", 76, 7], ["fake", 89, 7], ["fix", 92, 7], ["keep", 105, 7], ["execer", 127, 7]], [["yadm", 73, 5]], [["minimal", 136, 5]], [["tests", 135, 12]], [["homepage", 143, 5], ["description", 144, 5], ["longDescription", 145, 5], ["changelog", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["platforms", 157, 5], ["mainProgram", 158, 5]], [["pname", 41, 3], ["version", 42, 3], ["strictDeps", 44, 3], ["__structuredAttrs", 45, 3], ["nativeBuildInputs", 47, 3], ["src", 49, 3], ["dontConfigure", 56, 3], ["dontBuild", 57, 3], ["installPhase", 59, 3], ["postInstall", 65, 3], ["solutions", 72, 3], ["passthru", 135, 3], ["meta", 142, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, resholve: false, fetchFromGitHub: false, git: false, bash: false, openssl: false, gawk: false, esh: false, gnupg: false, coreutils: false, gnutar: false, installShellFiles: false, runCommand: false, yadm: false, withAwk: true, withEsh: true, withGpg: true, withOpenssl: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 50, 5], ["repo", 51, 5], ["rev", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["external", 90, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["$GIT_PROGRAM", 93, 9], ["$GPG_PROGRAM", 94, 9], ["$OPENSSL_PROGRAM", 95, 9], ["$AWK_PROGRAM", 96, 9], ["$ESH_PROGRAM", 100, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["$YADM_COMMAND", 106, 9], ["$processor", 107, 9], ["$log", 108, 9], ["$SHELL", 109, 9], ["$hook_command", 110, 9], ["exec", 111, 9], ["$GPG_PROGRAM", 113, 9], ["$OPENSSL_PROGRAM", 114, 9], ["$AWK_PROGRAM", 115, 9], ["$J2CLI_PROGRAM", 116, 9], ["$ESH_PROGRAM", 117, 9], ["$ENVTPL_PROGRAM", 120, 9], ["$LSB_RELEASE_PROGRAM", 121, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["scripts", 74, 7], ["interpreter", 75, 7], ["inputs", 76, 7], ["fake", 89, 7], ["fix", 92, 7], ["keep", 105, 7], ["execer", 127, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["yadm", 73, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["minimal", 136, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 135, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 143, 5], ["description", 144, 5], ["longDescription", 145, 5], ["changelog", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["platforms", 157, 5], ["mainProgram", 158, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["strictDeps", 44, 3], ["__structuredAttrs", 45, 3], ["nativeBuildInputs", 47, 3], ["src", 49, 3], ["dontConfigure", 56, 3], ["dontBuild", 57, 3], ["installPhase", 59, 3], ["postInstall", 65, 3], ["solutions", 72, 3], ["passthru", 135, 3], ["meta", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,14 +28,14 @@ export default nix.lambda((args) => (() => {
   const withOpenssl = nix.argOr($, "withOpenssl", () => true);
   const withTar = nix.thunk(() => (nix.asBool(withGpg) || nix.asBool(withOpenssl)));
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "yadm",
       version: "3.5.0",
       strictDeps: true,
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yadm-dev",
           repo: "yadm",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,18 +46,18 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstall -Dt $out/bin yadm\nrunHook postInstall\n",
       postInstall: "installManPage yadm.1\ninstallShellCompletion --cmd yadm \\\n  --zsh completion/zsh/_yadm \\\n  --bash completion/bash/yadm\n",
       solutions: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         yadm: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           scripts: nix.thunk(() => ["bin/yadm"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/sh`),
           inputs: nix.thunk(() => nix.concat([bash, coreutils, git], nix.concat(nix.app(nix.sel(lib, "optional"), withGpg, gnupg), nix.concat(nix.app(nix.sel(lib, "optional"), withOpenssl, openssl), nix.concat(nix.app(nix.sel(lib, "optional"), withAwk, gawk), nix.concat(nix.app(nix.sel(lib, "optional"), withEsh, esh), nix.app(nix.sel(lib, "optional"), withTar, gnutar))))))),
           fake: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             external: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin"))), "cygpath"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withTar)), "tar"))),
           })),
           fix: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             $GIT_PROGRAM: nix.thunk(() => ["git"]),
             $GPG_PROGRAM: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withGpg, "gpg")),
             $OPENSSL_PROGRAM: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withOpenssl, "openssl")),
@@ -74,7 +65,7 @@ export default nix.lambda((args) => (() => {
             $ESH_PROGRAM: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withEsh, "esh")),
           })),
           keep: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             $YADM_COMMAND: true,
             $processor: true,
             $log: true,
@@ -97,16 +88,16 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           minimal: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`export HOME=$out
 ${yadm}/bin/yadm init
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://github.com/yadm-dev/yadm",
         description: "Yet Another Dotfiles Manager",
         longDescription: "yadm is a dotfile management tool with 3 main features:\n* Manages files across systems using a single Git repository.\n* Provides a way to use alternate files on a specific OS or host.\n* Supplies a method of encrypting confidential data so it can safely be stored in your repository.\n",

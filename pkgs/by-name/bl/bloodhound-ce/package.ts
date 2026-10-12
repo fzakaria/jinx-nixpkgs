@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["src", 57, 28], ["patches", 57, 32], ["missingHashes", 57, 40], ["hash", 58, 7]], [["pname", 32, 5], ["version", 33, 13], ["src", 33, 21], ["patches", 35, 5], ["nativeBuildInputs", 41, 5], ["missingHashes", 54, 5], ["offlineCache", 56, 5], ["preConfigure", 61, 5], ["buildPhase", 65, 5], ["installPhase", 71, 5]], [["url", 84, 9], ["hash", 85, 9]], [["os", 91, 11], ["arch", 92, 11], ["hash", 93, 11]], [["os", 96, 11], ["arch", 97, 11], ["hash", 98, 11]], [["os", 101, 11], ["arch", 102, 11], ["hash", 103, 11]], [["os", 106, 11], ["arch", 107, 11], ["hash", 108, 11]], [["os", 111, 11], ["arch", 112, 11], ["hash", 113, 11]], [["os", 116, 11], ["arch", 117, 11], ["hash", 118, 11]], [["url", 126, 15], ["hash", 127, 27]], [["pname", 135, 13], ["version", 136, 21], ["src", 136, 29], ["nativeBuildInputs", 138, 13], ["installPhase", 140, 13]], [["frontend", 188, 13], ["collectors", 188, 22]], [["description", 192, 5], ["homepage", 193, 5], ["changelog", 194, 5], ["downloadPage", 195, 5], ["license", 196, 5], ["platforms", 197, 5], ["maintainers", 198, 5], ["mainProgram", 199, 5]], [["pname", 155, 11], ["version", 155, 17], ["src", 155, 25], ["nativeBuildInputs", 157, 3], ["ldflags", 161, 3], ["subPackages", 169, 3], ["vendorHash", 173, 3], ["preBuild", 175, 3], ["postInstall", 180, 3], ["passthru", 187, 3], ["meta", 191, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, fetchurl: false, lib: false, makeWrapper: false, nodejs_22: false, p7zip: false, python3: false, stdenv: false, "yarn-berry_3": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 57, 28], ["patches", 57, 32], ["missingHashes", 57, 40], ["hash", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 5], ["version", 33, 13], ["src", 33, 21], ["patches", 35, 5], ["nativeBuildInputs", 41, 5], ["missingHashes", 54, 5], ["offlineCache", 56, 5], ["preConfigure", 61, 5], ["buildPhase", 65, 5], ["installPhase", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 84, 9], ["hash", 85, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["os", 91, 11], ["arch", 92, 11], ["hash", 93, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["os", 96, 11], ["arch", 97, 11], ["hash", 98, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["os", 101, 11], ["arch", 102, 11], ["hash", 103, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["os", 106, 11], ["arch", 107, 11], ["hash", 108, 11]]);
-const pos$9 = nix.positions(here + "/package.nix", [["os", 111, 11], ["arch", 112, 11], ["hash", 113, 11]]);
-const pos$10 = nix.positions(here + "/package.nix", [["os", 116, 11], ["arch", 117, 11], ["hash", 118, 11]]);
-const pos$11 = nix.positions(here + "/package.nix", [["url", 126, 15], ["hash", 127, 27]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 135, 13], ["version", 136, 21], ["src", 136, 29], ["nativeBuildInputs", 138, 13], ["installPhase", 140, 13]]);
-const pos$13 = nix.positions(here + "/package.nix", [["frontend", 188, 13], ["collectors", 188, 22]]);
-const pos$14 = nix.positions(here + "/package.nix", [["description", 192, 5], ["homepage", 193, 5], ["changelog", 194, 5], ["downloadPage", 195, 5], ["license", 196, 5], ["platforms", 197, 5], ["maintainers", 198, 5], ["mainProgram", 199, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pname", 155, 11], ["version", 155, 17], ["src", 155, 25], ["nativeBuildInputs", 157, 3], ["ldflags", 161, 3], ["subPackages", 169, 3], ["vendorHash", 173, 3], ["preBuild", 175, 3], ["postInstall", 180, 3], ["passthru", 187, 3], ["meta", 191, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const pname = "bloodhound-ce";
   const version = "8.3.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "SpecterOps",
       repo: "BloodHound",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +34,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const yarn_berry = yarn_berry_3;
   const frontend = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bloodhound-ce-frontend",
       version: version,
       src: src,
@@ -64,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
@@ -78,56 +64,56 @@ export default nix.lambda((args) => (() => {
     const azver = "v2.8.1";
     const shver = "v2.8.0";
     const sharphound = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         url: nix.thunk(() => nix.str`https://github.com/SpecterOps/SharpHound/releases/download/${shver}/sharphound_${shver}_windows_x86.zip`),
         hash: "sha256-BjBOxjhQYpqD/qUy9EsuXplK8JAuPU/LE2O0Ooxr+r4=",
       }))));
     return nix.app(pipe, nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           os: "darwin",
           arch: "amd64",
           hash: "sha256-HD5vMc6vt71wj5ST6On417iY3DJZQXdG8Il73H22m9Q=",
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           os: "darwin",
           arch: "arm64",
           hash: "sha256-57i+/9gV17pqQqqnEianJdJ6Jtg4DsExMkfAEqaeNns=",
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           os: "linux",
           arch: "amd64",
           hash: "sha256-8wrEef0+ik5WAsIV7tInyUlNnsUBw6Ux9LE7gVS3Fhs=",
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           os: "linux",
           arch: "arm64",
           hash: "sha256-23lokcbd2Yp9pWibsb5SNW/YE/eHpHCFZv2PbBlw0Xo=",
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           os: "windows",
           arch: "amd64",
           hash: "sha256-IkEfEh2VFNTnuUAez6/vMY7sMv4rtDR3Paerev/xoqs=",
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           os: "windows",
           arch: "arm64",
           hash: "sha256-qEgmO7oNy/pUXH7lbOoJxNznl2mPofj2R5RGBZdOoUI=",
         })),
       ]), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.builtins.map, (x) => nix.str`cp ${nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               url: nix.thunk(() => nix.str`https://github.com/SpecterOps/AzureHound/releases/download/${azver}/azurehound_${azver}_${nix.sel(x, "os")}_${nix.sel(x, "arch")}.zip`),
               hash: nix.thunk(() => nix.attr(x, "hash")),
             })))} azurehound_${azver}_${nix.sel(x, "os")}_${nix.sel(x, "arch")}.zip`)),
         concatLines,
         (copyAzurehoundZips) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             pname: "bloodhound-ce-collectors",
             version: version,
             src: src,
@@ -145,7 +131,7 @@ for i in $out/*/*.zip; do sha256sum "$i" > "$i.sha256"; done
       ]));
   })());
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: pname,
       version: version,
       src: src,
@@ -167,9 +153,9 @@ cp -r ${frontend} cmd/api/src/api/static/assets
 wrapProgram $out/bin/bloodhound-ce \\
   --set BHE_COLLECTORS_BASE_PATH ${collectors}
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$13, frontend: frontend, collectors: collectors })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[12], frontend: frontend, collectors: collectors })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "Six Degrees of Domain Admin",
         homepage: "https://github.com/SpecterOps/BloodHound",
         changelog: nix.thunk(() => nix.str`https://github.com/SpecterOps/BloodHound/releases/tag/v${version}`),

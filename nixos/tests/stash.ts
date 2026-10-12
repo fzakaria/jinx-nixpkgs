@@ -2,20 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stash.nix", [[["maintainers", 10, 10]], [["owner", 26, 15], ["repo", 27, 15], ["rev", 28, 15], ["hash", 29, 15]], [["src", 33, 53]], [["src", 37, 53]], [["owner", 47, 15], ["repo", 48, 15], ["rev", 49, 15], ["hash", 50, 15]], [["src", 54, 46]], [["path", 63, 23]], [["host", 61, 19], ["port", 61, 24], ["stash", 63, 11]], [["dataDir", 14, 17], ["enable", 15, 9], ["username", 17, 9], ["passwordFile", 18, 9], ["jwtSecretKeyFile", 20, 9], ["sessionStoreKeyFile", 21, 9], ["plugins", 23, 9], ["mutableScrapers", 43, 9], ["scrapers", 44, 9], ["settings", 60, 9]], [["stash", 13, 16]], [["services", 13, 7]], [["machine", 12, 11]], [["name", 9, 5], ["meta", 10, 5], ["nodes", 12, 5], ["testScript", 68, 5]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/stash.nix", [["maintainers", 10, 10]]);
-const pos$2 = nix.positions(here + "/stash.nix", [["owner", 26, 15], ["repo", 27, 15], ["rev", 28, 15], ["hash", 29, 15]]);
-const pos$3 = nix.positions(here + "/stash.nix", [["src", 33, 53]]);
-const pos$4 = nix.positions(here + "/stash.nix", [["src", 37, 53]]);
-const pos$5 = nix.positions(here + "/stash.nix", [["owner", 47, 15], ["repo", 48, 15], ["rev", 49, 15], ["hash", 50, 15]]);
-const pos$6 = nix.positions(here + "/stash.nix", [["src", 54, 46]]);
-const pos$7 = nix.positions(here + "/stash.nix", [["path", 63, 23]]);
-const pos$8 = nix.positions(here + "/stash.nix", [["host", 61, 19], ["port", 61, 24], ["stash", 63, 11]]);
-const pos$9 = nix.positions(here + "/stash.nix", [["dataDir", 14, 17], ["enable", 15, 9], ["username", 17, 9], ["passwordFile", 18, 9], ["jwtSecretKeyFile", 20, 9], ["sessionStoreKeyFile", 21, 9], ["plugins", 23, 9], ["mutableScrapers", 43, 9], ["scrapers", 44, 9], ["settings", 60, 9]]);
-const pos$10 = nix.positions(here + "/stash.nix", [["stash", 13, 16]]);
-const pos$11 = nix.positions(here + "/stash.nix", [["services", 13, 7]]);
-const pos$12 = nix.positions(here + "/stash.nix", [["machine", 12, 11]]);
-const pos$13 = nix.positions(here + "/stash.nix", [["name", 9, 5], ["meta", 10, 5], ["nodes", 12, 5], ["testScript", 68, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => (() => {
     const host = "127.0.0.1";
@@ -25,20 +13,20 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         name: "stash",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => nix.sel(pkgs, "stash", "meta", "maintainers")),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               stash: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 dataDir: dataDir,
                 enable: true,
                 username: "test",
@@ -47,35 +35,35 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
                 sessionStoreKeyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "session_store_key", "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")),
                 plugins: nix.thunk(() => (() => {
                   const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-                      [nix.POS]: pos$2,
+                      [nix.POS]: $pos[1],
                       owner: "stashapp",
                       repo: "CommunityScripts",
                       rev: "9b6fac4934c2fac2ef0859ea68ebee5111fc5be5",
                       hash: "sha256-PO3J15vaA7SD4r/LyHlXjnpaeYAN9Q++O94bIWdz7OA=",
                     }))));
                   return [
-                    nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "stashNotes", nix.thunk(() => ({ [nix.POS]: pos$3, src: src })), "mkdir -p $out/plugins\ncp -r $src/plugins/stashNotes $out/plugins/stashNotes\n")),
-                    nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "Theme-Plex", nix.thunk(() => ({ [nix.POS]: pos$4, src: src })), "mkdir -p $out/plugins\ncp -r $src/themes/Theme-Plex $out/plugins/Theme-Plex\n")),
+                    nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "stashNotes", nix.thunk(() => ({ [nix.POS]: $pos[2], src: src })), "mkdir -p $out/plugins\ncp -r $src/plugins/stashNotes $out/plugins/stashNotes\n")),
+                    nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "Theme-Plex", nix.thunk(() => ({ [nix.POS]: $pos[3], src: src })), "mkdir -p $out/plugins\ncp -r $src/themes/Theme-Plex $out/plugins/Theme-Plex\n")),
                   ];
                 })()),
                 mutableScrapers: true,
                 scrapers: nix.thunk(() => (() => {
                   const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       owner: "stashapp",
                       repo: "CommunityScrapers",
                       rev: "2ece82d17ddb0952c16842b0775274bcda598d81",
                       hash: "sha256-AEmnvM8Nikhue9LNF9dkbleYgabCvjKHtzFpMse4otM=",
                     }))));
                   return [
-                    nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "FTV", nix.thunk(() => ({ [nix.POS]: pos$6, src: src })), "mkdir -p $out/scrapers/FTV\ncp -r $src/scrapers/FTV.yml $out/scrapers/FTV\n")),
+                    nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "FTV", nix.thunk(() => ({ [nix.POS]: $pos[5], src: src })), "mkdir -p $out/scrapers/FTV\ncp -r $src/scrapers/FTV.yml $out/scrapers/FTV\n")),
                   ];
                 })()),
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   host: host,
                   port: port,
-                  stash: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$7, path: "/srv" }))]),
+                  stash: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[6], path: "/srv" }))]),
                 })),
               })),
             })),

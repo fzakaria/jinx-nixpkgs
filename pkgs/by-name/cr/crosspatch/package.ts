@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["hash", 18, 5], ["tag", 19, 5]], [["mainProgram", 36, 10]], [["version", 32, 13], ["src", 32, 21], ["pname", 33, 5], ["sourceRoot", 34, 5], ["nugetDeps", 35, 5], ["meta", 36, 5]], [["name", 59, 13], ["desktopName", 60, 5], ["exec", 61, 5]], [["mainProgram", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]], [["version", 40, 11], ["src", 40, 19], ["pname", 41, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 43, 3], ["postPatch", 45, 3], ["buildPhase", 51, 3], ["desktopItems", 58, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { buildDotnetModule: false, copyDesktopItems: false, fetchFromGitHub: false, lib: false, makeDesktopItem: false, makeWrapper: false, python3: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["hash", 18, 5], ["tag", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 36, 10]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 32, 13], ["src", 32, 21], ["pname", 33, 5], ["sourceRoot", 34, 5], ["nugetDeps", 35, 5], ["meta", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 59, 13], ["desktopName", 60, 5], ["exec", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 40, 11], ["src", 40, 19], ["pname", 41, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 43, 3], ["postPatch", 45, 3], ["buildPhase", 51, 3], ["desktopItems", 58, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const name = "crosspatch";
   const version = "1.1.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "nockcs",
       repo: "CrossPatch",
       hash: "sha256-Ux+tLP5Hv8ecnuITMqLiuX0YtF2ENZ7ezi2gNKfuNcM=",
@@ -43,9 +38,9 @@ export default nix.lambda((args) => (() => {
       const pname = "crosspatch-parser";
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src_1, "name")}/tools/CrossPatchParser`);
       const nugetDeps = nix.path(here, "./dependencies.json");
-      const meta = nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "CrossPatchParser" }));
+      const meta = nix.thunk(() => ({ [nix.POS]: $pos[1], mainProgram: "CrossPatchParser" }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version: version_1,
         src: src_1,
         pname,
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: version,
       src: src,
       pname: name,
@@ -70,9 +65,14 @@ mkdir -p "$out/bin"
 makeWrapper "${nix.app(nix.sel(lib, "getExe"), python)}" "$out/bin/crosspatch" --add-flag "$out/src/CrossPatch.py"
 runHook postBuild
 `),
-      desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({ [nix.POS]: pos$4, name: name, desktopName: "CrossPatch", exec: "crosspatch" })))))),
+      desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
+            [nix.POS]: $pos[3],
+            name: name,
+            desktopName: "CrossPatch",
+            exec: "crosspatch",
+          })))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         mainProgram: "crosspatch",
         description: "A mod Manager for Sonic Racing: CrossWorlds",
         homepage: "https://github.com/nockcs/CrossPatch",

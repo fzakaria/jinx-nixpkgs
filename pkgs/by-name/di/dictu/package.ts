@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["NIX_CFLAGS_COMPILE", 46, 7]], [["description", 91, 5], ["mainProgram", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5], ["broken", 97, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["patches", 36, 3], ["postPatch", 40, 3], ["env", 46, 3], ["cmakeFlags", 48, 3], ["postBuild", 59, 3], ["doCheck", 63, 3], ["preCheck", 65, 3], ["checkPhase", 75, 3], ["installPhase", 80, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, sqlite: false, httpSupport: true, curl: false, cliSupport: true, linenoiseSupport: true, linenoise: false, enableLTO: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 91, 5], ["mainProgram", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5], ["broken", 97, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["patches", 36, 3], ["postPatch", 40, 3], ["env", 46, 3], ["cmakeFlags", 48, 3], ["postBuild", 59, 3], ["doCheck", 63, 3], ["preCheck", 65, 3], ["checkPhase", 75, 3], ["installPhase", 80, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const enableLTO = nix.argOr($, "enableLTO", () => nix.sel(stdenv, "cc", "isGNU"));
   nix.assert_((!nix.asBool(enableLTO) || nix.asBool(nix.sel(stdenv, "cc", "isGNU"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/di/dictu/package.nix:15:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dictu",
       version: "0.25.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dictu-lang",
           repo: "dictu",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
     -e 's/-flto/${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-Wno-error=format-truncation")}/'
 `))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=unterminated-string-initialization",
       })),
       cmakeFlags: nix.thunk(() => nix.concat([
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n./dictu tests/runTests.du\n",
       installPhase: nix.thunk(() => nix.add("mkdir -p $out\ncp -r src/include $out/include\nmkdir -p $out/lib\ncp build/src/libdictu_api* $out/lib\n", nix.app(nix.sel(lib, "optionalString"), cliSupport, "install -Dm755 dictu $out/bin/dictu\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "High-level dynamically typed, multi-paradigm, interpreted programming language",
         mainProgram: "dictu",
         homepage: "https://dictu-lang.com",

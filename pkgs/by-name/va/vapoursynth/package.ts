@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["lib", 61, 9], ["python3", 62, 9], ["buildEnv", 63, 9], ["runCommandCC", 64, 9], ["stdenv", 65, 9], ["runCommand", 66, 9], ["vapoursynth", 67, 9], ["makeWrapper", 68, 9], ["withPlugins", 69, 9]], [["package", 74, 7], ["version", 76, 7]], [["version", 73, 11]], [["python3", 57, 13], ["withPlugins", 59, 5], ["tests", 73, 5]], [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["platforms", 113, 5], ["maintainers", 114, 5], ["mainProgram", 118, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["enableParallelBuilding", 49, 3], ["doInstallCheck", 50, 3], ["passthru", 52, 3], ["postPatch", 80, 3], ["postInstall", 88, 3], ["installCheckPhase", 97, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, autoreconfHook: false, makeWrapper: false, runCommandCC: false, runCommand: false, vapoursynth: false, buildEnv: false, zimg: false, libass: false, python3: false, testers: false, darwinMinVersionHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lib", 61, 9], ["python3", 62, 9], ["buildEnv", 63, 9], ["runCommandCC", 64, 9], ["stdenv", 65, 9], ["runCommand", 66, 9], ["vapoursynth", 67, 9], ["makeWrapper", 68, 9], ["withPlugins", 69, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 74, 7], ["version", 76, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 73, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["python3", 57, 13], ["withPlugins", 59, 5], ["tests", 73, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["platforms", 113, 5], ["maintainers", 114, 5], ["mainProgram", 118, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["enableParallelBuilding", 49, 3], ["doInstallCheck", 50, 3], ["passthru", 52, 3], ["postPatch", 80, 3], ["postInstall", 88, 3], ["installCheckPhase", 97, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const darwinMinVersionHook = nix.arg($, "darwinMinVersionHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "vapoursynth",
       version: "73",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vapoursynth",
           repo: "vapoursynth",
           rev: nix.thunk(() => nix.str`R${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +50,7 @@ export default nix.lambda((args) => (() => {
       passthru: nix.thunk(() => (() => {
         const python3_1 = python3;
         const withPlugins = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plugin-interface.nix")), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             lib: lib,
             python3: python3_1,
             buildEnv: buildEnv,
@@ -68,14 +62,14 @@ export default nix.lambda((args) => (() => {
             withPlugins: withPlugins,
           }))));
         const tests = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: vapoursynth,
               version: nix.thunk(() => nix.str`Core R${nix.sel(finalAttrs, "version")}`),
             })))),
         }));
-        return { [nix.POS]: pos$5, python3: python3_1, withPlugins, tests };
+        return { [nix.POS]: $pos[4], python3: python3_1, withPlugins, tests };
       })()),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "# Export weak symbol nixPluginDir to permit override of default plugin path\nsed -E -i \\\n  -e 's/(VS_PATH_PLUGINDIR)/(nixPluginDir ? nixPluginDir : \\1)/g' \\\n  -e '1i\\extern char const __attribute__((weak)) nixPluginDir[];' \\\n  src/core/vscore.cpp\n")),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/vspipe \\
@@ -96,7 +90,7 @@ fi
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Video processing framework with the future in mind",
         homepage: "http://www.vapoursynth.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

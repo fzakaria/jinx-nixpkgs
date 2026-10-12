@@ -2,9 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/extra-python-packages.nix", [[["ExcelFiles", 9, 5], ["PyPlot", 10, 5], ["PythonPlot", 11, 5], ["SymPy", 12, 5]], [["packageMapping", 8, 3], ["getExtraPythonPackages", 15, 3]]]);
 const formals$1 = { args: { lib: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/extra-python-packages.nix", [["ExcelFiles", 9, 5], ["PyPlot", 10, 5], ["PythonPlot", 11, 5], ["SymPy", 12, 5]]);
-const pos$2 = nix.positions(here + "/extra-python-packages.nix", [["packageMapping", 8, 3], ["getExtraPythonPackages", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   return (() => {
     const packageMapping = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       ExcelFiles: nix.thunk(() => ["xlrd"]),
       PyPlot: nix.thunk(() => ["matplotlib"]),
       PythonPlot: nix.thunk(() => ["matplotlib"]),
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
         const allCandidates = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasAttr"), name, packageMapping)) ? nix.app(nix.sel(lib, "getAttr"), name, packageMapping) : []));
         return nix.app(nix.sel(lib, "filter"), (x) => nix.app(nix.sel(lib, "hasAttr"), x, nix.thunk(() => nix.sel(python3, "pkgs"))), allCandidates);
       })(), names);
-    return { [nix.POS]: pos$2, packageMapping, getExtraPythonPackages };
+    return { [nix.POS]: $pos[1], packageMapping, getExtraPythonPackages };
   })();
 })(), formals$1);
 //# sourceMappingURL=extra-python-packages.ts.map

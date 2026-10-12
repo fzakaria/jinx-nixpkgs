@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["wpa_supplicant", 157, 26], ["wpa_supplicant_gui", 158, 13]], [["tests", 156, 12]], [["cpeParts", 168, 17]], [["homepage", 162, 5], ["description", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["platforms", 167, 5], ["identifiers", 168, 5]], [["version", 20, 3], ["pname", 22, 3], ["src", 24, 3], ["patches", 29, 3], ["strictDeps", 35, 3], ["__structuredAttrs", 36, 3], ["enableParallelBuilding", 37, 3], ["extraConfig", 41, 3], ["preBuild", 116, 3], ["buildInputs", 130, 3], ["nativeBuildInputs", 138, 3], ["postInstall", 140, 3], ["passthru", 156, 3], ["meta", 161, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openssl: false, "pkg-config": false, libnl: false, nixosTests: false, wpa_supplicant_gui: false, dbusSupport: true, dbus: false, withReadline: true, readline: false, withPcsclite: true, pcsclite: false, unprivileged: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["wpa_supplicant", 157, 26], ["wpa_supplicant_gui", 158, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 156, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["cpeParts", 168, 17]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 162, 5], ["description", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["platforms", 167, 5], ["identifiers", 168, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 20, 3], ["pname", 22, 3], ["src", 24, 3], ["patches", 29, 3], ["strictDeps", 35, 3], ["__structuredAttrs", 36, 3], ["enableParallelBuilding", 37, 3], ["extraConfig", 41, 3], ["preBuild", 116, 3], ["buildInputs", 130, 3], ["nativeBuildInputs", 138, 3], ["postInstall", 140, 3], ["passthru", 156, 3], ["meta", 161, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pcsclite = nix.arg($, "pcsclite");
   const unprivileged = nix.argOr($, "unprivileged", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "2.12",
       pname: "wpa_supplicant",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://w1.fi/releases/wpa_supplicant-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-COI5N+FtAVXlXKsrUfUfvhDYChqpHE4VRCZFBZtzfvY=",
         })))),
@@ -60,22 +55,22 @@ export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE \\
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       postInstall: nix.thunk(() => nix.add(nix.add("mkdir -p $out/share/man/man5 $out/share/man/man8\ncp -v \"doc/docbook/\"*.5 $out/share/man/man5/\ncp -v \"doc/docbook/\"*.8 $out/share/man/man8/\n", nix.app(nix.sel(lib, "optionalString"), dbusSupport, "mkdir -p $out/share/dbus-1/system.d $out/share/dbus-1/system-services $out/etc/systemd/system\ncp -v \"dbus/\"*service $out/share/dbus-1/system-services\ncp -v dbus/dbus-wpa_supplicant.conf $out/share/dbus-1/system.d\ncp -v \"systemd/\"*.service $out/etc/systemd/system\n")), "rm $out/share/man/man8/wpa_priv.8\ninstall -Dm444 wpa_supplicant.conf $out/share/doc/wpa_supplicant/wpa_supplicant.conf.example\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           wpa_supplicant: nix.thunk(() => nix.attr(nixosTests, "wpa_supplicant")),
           wpa_supplicant_gui: wpa_supplicant_gui,
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://w1.fi/wpa_supplicant/",
         description: "Tool for connecting to WPA and WPA2-protected wireless networks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "w1.fi", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

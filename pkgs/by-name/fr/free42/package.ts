@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["name", 38, 7], ["desktopName", 39, 7], ["genericName", 40, 7], ["exec", 41, 7], ["type", 42, 7], ["comment", 43, 7], ["icon", 44, 7], ["categories", 45, 7]], [["name", 51, 7], ["desktopName", 52, 7], ["genericName", 53, 7], ["exec", 54, 7], ["type", 55, 7], ["comment", 56, 7], ["icon", 57, 7], ["categories", 58, 7]], [["extraArgs", 109, 5]], [["updateScript", 108, 12]], [["homepage", 113, 5], ["changelog", 114, 5], ["description", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["mainProgram", 118, 5], ["platforms", 119, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["postPatch", 29, 3], ["dontConfigure", 34, 3], ["desktopItems", 36, 3], ["buildPhase", 65, 3], ["installPhase", 77, 3], ["dontWrapGApps", 96, 3], ["postFixup", 98, 3], ["passthru", 108, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "alsa-lib": false, copyDesktopItems: false, wrapGAppsHook3: false, makeDesktopItem: false, "pkg-config": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 38, 7], ["desktopName", 39, 7], ["genericName", 40, 7], ["exec", 41, 7], ["type", 42, 7], ["comment", 43, 7], ["icon", 44, 7], ["categories", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 51, 7], ["desktopName", 52, 7], ["genericName", 53, 7], ["exec", 54, 7], ["type", 55, 7], ["comment", 56, 7], ["icon", 57, 7], ["categories", 58, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 109, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 108, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 113, 5], ["changelog", 114, 5], ["description", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["mainProgram", 118, 5], ["platforms", 119, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["postPatch", 29, 3], ["dontConfigure", 34, 3], ["desktopItems", 36, 3], ["buildPhase", 65, 3], ["installPhase", 77, 3], ["dontWrapGApps", 96, 3], ["postFixup", 98, 3], ["passthru", 108, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "free42",
       version: "3.3.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://thomasokken.com/free42/upstream/free42-nologo-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-Ybr5IwqYBIXGWcLBM2drKuN2NDBta299X/3hvzvGPeU=",
         })))),
@@ -37,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "free42bin",
             desktopName: "Free42Bin",
             genericName: "Calculator",
@@ -48,7 +42,7 @@ export default nix.lambda((args) => (() => {
             categories: nix.thunk(() => ["Utility", "Calculator"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "free42dec",
             desktopName: "Free42Dec",
             genericName: "Calculator",
@@ -71,14 +65,14 @@ wrapProgram $out/bin/free42bin \\
   "\${gappsWrapperArgs[@]}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--url=https://codeberg.org/thomasokken/free42"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://thomasokken.com/free42/",
         changelog: "https://thomasokken.com/free42/history.html",
         description: "Software clone of the HP-42S calculator",

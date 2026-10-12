@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 84, 5], ["hash", 85, 5]], [["gcm", 90, 7], ["glibc", 91, 15], ["tzdata", 91, 21], ["shadow", 91, 28], ["cups", 92, 15], ["networkmanagerapplet", 92, 20]], [["extraLoaders", 189, 9]], [["packageName", 213, 7]], [["updateScript", 212, 5]], [["description", 218, 5], ["mainProgram", 219, 5], ["license", 220, 5], ["teams", 221, 5], ["platforms", 222, 5]], [["pname", 80, 3], ["version", 81, 3], ["src", 83, 3], ["patches", 88, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 110, 3], ["nativeCheckInputs", 163, 3], ["doCheck", 171, 3], ["preConfigure", 173, 3], ["preCheck", 178, 3], ["postInstall", 184, 3], ["preFixup", 198, 3], ["separateDebugInfo", 209, 3], ["passthru", 211, 3], ["meta", 217, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, replaceVars: false, accountsservice: false, "adwaita-icon-theme": false, "blueprint-compiler": false, colord: false, "colord-gtk4": false, cups: false, dbus: false, "docbook-xsl-nons": false, fontconfig: false, "gdk-pixbuf": false, gdm: false, gettext: false, glib: false, "glib-networking": false, gcr_4: false, glibc: false, "gnome-bluetooth": false, "gnome-color-manager": false, "gnome-desktop": false, "gnome-online-accounts": false, "gnome-settings-daemon": false, "gnome-tecla": false, gnome: false, "gsettings-desktop-schemas": false, gsound: false, gst_all_1: false, gtk3: false, gtk4: false, ibus: false, "json-glib": false, libgtop: false, libgudev: false, libadwaita: false, libkrb5: false, libjxl: false, libpulseaudio: false, libpwquality: false, librsvg: false, "webp-pixbuf-loader": false, libsecret: false, libsoup_3: false, libwacom: false, libxml2: false, libxslt: false, meson: false, modemmanager: false, mutter: false, networkmanager: false, networkmanagerapplet: false, "libnma-gtk4": false, ninja: false, "pkg-config": false, polkit: false, python3: false, samba: false, setxkbmap: false, shadow: false, "shared-mime-info": false, "sound-theme-freedesktop": false, tinysparql: false, localsearch: false, tzdata: false, udisks: false, upower: false, "wayland-scanner": false, libepoxy: false, gmobile: false, "gnome-user-share": false, "gnome-remote-desktop": false, wrapGAppsHook4: false, "xorg-server": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 84, 5], ["hash", 85, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gcm", 90, 7], ["glibc", 91, 15], ["tzdata", 91, 21], ["shadow", 91, 28], ["cups", 92, 15], ["networkmanagerapplet", 92, 20]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraLoaders", 189, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageName", 213, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 212, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 218, 5], ["mainProgram", 219, 5], ["license", 220, 5], ["teams", 221, 5], ["platforms", 222, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 80, 3], ["version", 81, 3], ["src", 83, 3], ["patches", 88, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 110, 3], ["nativeCheckInputs", 163, 3], ["doCheck", 171, 3], ["preConfigure", 173, 3], ["preCheck", 178, 3], ["postInstall", 184, 3], ["preFixup", 198, 3], ["separateDebugInfo", 209, 3], ["passthru", 211, 3], ["meta", 217, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -89,17 +83,17 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const xorg_server = nix.arg($, "xorg-server");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gnome-control-center",
       version: "50.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-control-center/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-control-center-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-WFbHOZm+30XnT3O6w9YeK17BaJ+LzxlDc3uu7oIE+xE=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             gcm: gnome_color_manager,
             glibc: glibc,
             tzdata: tzdata,
@@ -190,7 +184,7 @@ export XDG_DATA_DIRS=${nix.app(nix.sel(glib, "getSchemaDataDirPath"), gsettings_
       postInstall: nix.thunk(() => nix.str`# Pull in WebP and JXL support for gnome-backgrounds.
 # In postInstall to run before gappsWrapperArgsHook.
 export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           extraLoaders: nix.thunk(() => [libjxl, librsvg, webp_pixbuf_loader]),
         })))}"
 `),
@@ -205,11 +199,11 @@ export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_
 `),
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "gnome-control-center" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[3], packageName: "gnome-control-center" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Utilities to configure the GNOME desktop",
         mainProgram: "gnome-control-center",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

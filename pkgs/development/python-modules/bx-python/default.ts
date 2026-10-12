@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 33, 3], ["buildInputs", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 46, 3], ["doCheck", 52, 3], ["postInstall", 54, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, numpy: false, pyparsing: false, cython: false, zlib: false, "python-lzo": false, pytestCheckHook: false, setuptools: false, "oldest-supported-numpy": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 33, 3], ["buildInputs", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 46, 3], ["doCheck", 52, 3], ["postInstall", 54, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bxlab",
           repo: "bx-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const postInstall = "cp -r scripts/* $out/bin\n\n# This is a small hack; the test suite uses the scripts which need to\n# be patched. Linking the patched scripts in $out back to the\n# working directory allows the tests to run\nrm -rf scripts\nln -s $out/bin scripts\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tools for manipulating biological data, particularly multiple sequence alignments",
         homepage: "https://github.com/bxlab/bx-python",
         changelog: nix.thunk(() => nix.str`https://github.com/bxlab/bx-python/releases/tag/${nix.sel(src, "tag")}`),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

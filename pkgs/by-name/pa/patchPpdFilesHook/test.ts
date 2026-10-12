@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["keep", 13, 5], ["patch", 14, 5], ["pathkeep", 15, 5], ["pathpatch", 16, 5]], [["keep", 20, 5], ["patch", 21, 5], ["pathkeep", 22, 5], ["pathpatch", 23, 5]], [["name", 28, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 30, 3], ["dontUnpack", 34, 3], ["dontInstall", 35, 3], ["ppdFileCommands", 36, 3], ["preFixup", 37, 3], ["postFixup", 41, 3]]]);
 const formals$1 = { args: { lib: false, replaceVars: false, diffutils: false, stdenv: false, patchPpdFilesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test.nix", [["keep", 13, 5], ["patch", 14, 5], ["pathkeep", 15, 5], ["pathpatch", 16, 5]]);
-const pos$2 = nix.positions(here + "/test.nix", [["keep", 20, 5], ["patch", 21, 5], ["pathkeep", 22, 5], ["pathpatch", 23, 5]]);
-const pos$3 = nix.positions(here + "/test.nix", [["name", 28, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 30, 3], ["dontUnpack", 34, 3], ["dontInstall", 35, 3], ["ppdFileCommands", 36, 3], ["preFixup", 37, 3], ["postFixup", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(lib, "meta"));
   const getExe$ = nix.thunk(() => nix.attr(from, "getExe'"));
   const input = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./test.ppd"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       keep: "cmp",
       patch: "cmp",
       pathkeep: "/bin/cmp",
       pathpatch: "/bin/cmp",
     }))));
   const output = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./test.ppd"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       keep: "cmp",
       patch: nix.thunk(() => nix.app(getExe$, diffutils, "cmp")),
       pathkeep: "/bin/cmp",
       pathpatch: nix.thunk(() => nix.app(getExe$, diffutils, "cmp")),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`${nix.sel(patchPpdFilesHook, "name")}-test`),
       buildInputs: nix.thunk(() => [diffutils]),
       nativeBuildInputs: nix.thunk(() => [diffutils, patchPpdFilesHook]),

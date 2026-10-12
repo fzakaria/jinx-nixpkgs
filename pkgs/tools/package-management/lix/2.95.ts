@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/2.95.nix", [[["domain", 10, 5], ["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["name", 18, 5], ["src", 19, 13], ["hash", 20, 5]], [["attrPath", 24, 5], ["extraArgs", 25, 5]], [["version", 7, 3], ["src", 9, 3], ["cargoDeps", 17, 3], ["updateScript", 23, 3]]]);
 const formals$1 = { args: { fetchFromGitea: false, "nix-update-script": false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/2.95.nix", [["domain", 10, 5], ["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/2.95.nix", [["name", 18, 5], ["src", 19, 13], ["hash", 20, 5]]);
-const pos$3 = nix.positions(here + "/2.95.nix", [["attrPath", 24, 5], ["extraArgs", 25, 5]]);
-const pos$4 = nix.positions(here + "/2.95.nix", [["version", 7, 3], ["src", 9, 3], ["cargoDeps", 17, 3], ["updateScript", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +13,7 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const version = "2.95.3";
     const src = nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         domain: "git.lix.systems",
         owner: "lix-project",
         repo: "lix",
@@ -24,20 +21,20 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-rEhhsqccghnnJHjsqCCBzdD7PyF/ibDe8zadnajBmjI=",
       }))));
     const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: nix.thunk(() => nix.str`lix-${version}`),
         src: src,
         hash: "sha256-a5XtutX+NS4wOqxeqbscWZMs99teKick5+cQfbCRGxQ=",
       }))));
     const updateScript = nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         attrPath: "lixPackageSets.lix_2_95.lix",
         extraArgs: nix.thunk(() => [
           "--override-filename=pkgs/tools/package-management/lix/2.95.nix",
           "--version-regex=^(2[.]95[.][0-9]+)$",
         ]),
       }))));
-    return { [nix.POS]: pos$4, version, src, cargoDeps, updateScript };
+    return { [nix.POS]: $pos[3], version, src, cargoDeps, updateScript };
   })();
 })(), formals$1);
 //# sourceMappingURL=2.95.ts.map

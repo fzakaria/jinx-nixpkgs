@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchurl", 12, 44]], [["updateScript", 20, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["mainProgram", 31, 5], ["platforms", 32, 5], ["sourceProvenance", 36, 5]], [["pname", 42, 7], ["version", 43, 7], ["src", 44, 7], ["passthru", 45, 7], ["meta", 46, 7], ["nativeBuildInputs", 49, 5], ["sourceRoot", 54, 5], ["installPhase", 56, 5]], [["pname", 68, 48], ["version", 68, 54], ["src", 68, 62]], [["pname", 72, 7], ["version", 73, 7], ["src", 74, 7], ["passthru", 75, 7], ["meta", 76, 7], ["extraInstallCommands", 79, 5]]]);
 const formals$1 = { args: { appimageTools: false, lib: false, fetchurl: false, stdenv: false, stdenvNoCC: false, undmg: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchurl", 12, 44]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["mainProgram", 31, 5], ["platforms", 32, 5], ["sourceProvenance", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 42, 7], ["version", 43, 7], ["src", 44, 7], ["passthru", 45, 7], ["meta", 46, 7], ["nativeBuildInputs", 49, 5], ["sourceRoot", 54, 5], ["installPhase", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 68, 48], ["version", 68, 54], ["src", 68, 62]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 72, 7], ["version", 73, 7], ["src", 74, 7], ["passthru", 75, 7], ["meta", 76, 7], ["extraInstallCommands", 79, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const undmg = nix.arg($, "undmg");
   const makeWrapper = nix.arg($, "makeWrapper");
-  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl }))));
+  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
   const source = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const pname = "snipaste";
   const version = nix.thunk(() => nix.attr(source, "version"));
   const src = nix.thunk(() => nix.attr(source, "src"));
-  const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     description: "Screenshot tools",
     homepage: "https://www.snipaste.com/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -42,7 +37,7 @@ export default nix.lambda((args) => (() => {
     sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -52,9 +47,9 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications $out/bin\ncp -R Snipaste.app $out/Applications\nmakeWrapper $out/Applications/Snipaste.app/Contents/MacOS/Snipaste $out/bin/snipaste\n\nrunHook postInstall\n",
     }))) : (() => {
-    const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$5, pname: pname, version: version, src: src }))));
+    const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[4], pname: pname, version: version, src: src }))));
     return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: pname,
         version: version,
         src: src,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 51, 5], ["homepage", 54, 7], ["changelog", 55, 7], ["license", 56, 7], ["maintainers", 57, 7], ["teams", 58, 7]], [["pname", 14, 3], ["pyproject", 15, 3], ["__structuredAttrs", 16, 3], ["version", 19, 5], ["src", 20, 5], ["sourceRoot", 23, 3], ["postPatch", 25, 3], ["build-system", 30, 3], ["pythonImportsCheck", 34, 3], ["nativeCheckInputs", 38, 3], ["disabledTests", 42, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, torchlensmaker: false, "uv-build": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 54, 7], ["changelog", 55, 7], ["license", 56, 7], ["maintainers", 57, 7], ["teams", 58, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["pyproject", 15, 3], ["__structuredAttrs", 16, 3], ["version", 19, 5], ["src", 20, 5], ["sourceRoot", 23, 3], ["postPatch", 25, 3], ["build-system", 30, 3], ["pythonImportsCheck", 34, 3], ["nativeCheckInputs", 38, 3], ["disabledTests", 42, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const uv_build = nix.arg($, "uv-build");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "tlmviewer",
       pyproject: true,
       __structuredAttrs: true,
@@ -33,7 +32,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(torchlensmaker, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "3D optical scene viewer for torchlensmaker",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

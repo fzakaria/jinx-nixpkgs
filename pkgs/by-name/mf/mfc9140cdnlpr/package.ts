@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 74, 5], ["homepage", 75, 5], ["sourceProvenance", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["unpackPhase", 24, 3], ["nativeBuildInputs", 28, 3], ["dontBuild", 33, 3], ["installPhase", 35, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, dpkg: false, makeWrapper: false, coreutils: false, file: false, gawk: false, ghostscript: false, gnused: false, pkgsi686Linux: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["sourceProvenance", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["unpackPhase", 24, 3], ["nativeBuildInputs", 28, 3], ["dontBuild", 33, 3], ["installPhase", 35, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfc9140cdnlpr";
       const version = "1.1.2-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf100405/${pname}-${version}.i386.deb`),
           sha256: "1wqx8njrv078fc3vlq90qyrfg3cw9kr9m6f3qvfnkhq1f95fbslh",
         }))));
@@ -52,7 +50,7 @@ wrapProgram $dir/lpd/psconvertij2 \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnused, gawk]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Brother MFC-9140CDN LPR printer driver",
         homepage: "http://www.brother.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -67,7 +65,7 @@ wrapProgram $dir/lpd/psconvertij2 \\
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

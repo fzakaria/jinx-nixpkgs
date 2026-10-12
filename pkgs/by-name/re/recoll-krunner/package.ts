@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 34, 27], ["license", 34, 36], ["description", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5]], [["pname", 11, 3], ["src", 12, 20], ["version", 12, 24], ["strictDeps", 14, 3], ["buildInputs", 15, 3], ["postPatch", 22, 3], ["dontWrapQtApps", 26, 3], ["nativeBuildInputs", 28, 3], ["cmakeDir", 30, 3], ["__structuredAttrs", 32, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, kdePackages: false, recoll: false, xapian: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 34, 27], ["license", 34, 36], ["description", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["src", 12, 20], ["version", 12, 24], ["strictDeps", 14, 3], ["buildInputs", 15, 3], ["postPatch", 22, 3], ["dontWrapQtApps", 26, 3], ["nativeBuildInputs", 28, 3], ["cmakeDir", 30, 3], ["__structuredAttrs", 32, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const recoll = nix.arg($, "recoll");
   const xapian = nix.arg($, "xapian");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "recoll-krunner",
       src: nix.thunk(() => nix.attr(recoll, "src")),
       version: nix.thunk(() => nix.attr(recoll, "version")),
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(recoll, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Krunner plugin for recoll",

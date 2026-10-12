@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["buildTools", 44, 3], ["prePatch", 46, 3], ["isLibrary", 52, 3], ["isExecutable", 53, 3], ["executableHaskellDepends", 54, 3], ["testHaskellDepends", 78, 3], ["homepage", 86, 3], ["description", 87, 3], ["license", 88, 3], ["maintainers", 89, 3]]]);
 const formals$1 = { args: { mkDerivation: false, HsOpenSSL: false, QuickCheck: false, aeson: false, async: false, base: false, bytestring: false, containers: false, "crypton-connection": false, directory: false, hpack: false, hspec: false, "hspec-discover": false, "hspec-expectations": false, "http-client": false, "http-client-openssl": false, "http-conduit": false, lib: false, megaparsec: false, "network-uri": false, "optparse-applicative": false, "parser-combinators": false, "quickcheck-instances": false, retry: false, text: false, unix: false, "unordered-containers": false, "utf8-string": false, dotenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["buildTools", 44, 3], ["prePatch", 46, 3], ["isLibrary", 52, 3], ["isExecutable", 53, 3], ["executableHaskellDepends", 54, 3], ["testHaskellDepends", 78, 3], ["homepage", 86, 3], ["description", 87, 3], ["license", 88, 3], ["maintainers", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vaultenv";
       const version = "0.19.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "channable",
           repo: "vaultenv",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -89,7 +88,7 @@ export default nix.lambda((args) => (() => {
       const license = nix.thunk(() => nix.sel(lib, "licenses", "bsd3"));
       const maintainers = [];
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

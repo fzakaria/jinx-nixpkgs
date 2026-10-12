@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["userborn", 35, 9], ["userborn-migration", 36, 9], ["userborn-mutable-users", 37, 9], ["userborn-mutable-etc", 38, 9], ["userborn-immutable-users", 39, 9], ["userborn-immutable-etc", 40, 9], ["userborn-static", 41, 9], ["userborn-subids", 42, 9], ["userborn-subids-immutable-etc", 43, 9], ["userborn-subids-mutable-etc", 44, 9]], [["updateScript", 32, 5], ["tests", 33, 5]], [["homepage", 50, 5], ["description", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["stripAllList", 29, 3], ["passthru", 31, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, libxcrypt: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["userborn", 35, 9], ["userborn-migration", 36, 9], ["userborn-mutable-users", 37, 9], ["userborn-mutable-etc", 38, 9], ["userborn-immutable-users", 39, 9], ["userborn-immutable-etc", 40, 9], ["userborn-static", 41, 9], ["userborn-subids", 42, 9], ["userborn-subids-immutable-etc", 43, 9], ["userborn-subids-mutable-etc", 44, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 32, 5], ["tests", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["stripAllList", 29, 3], ["passthru", 31, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "userborn",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nikstur",
           repo: "userborn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,10 +30,10 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxcrypt]),
       stripAllList: nix.thunk(() => ["bin"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           userborn: nix.thunk(() => nix.attr(nixosTests, "userborn")),
           "userborn-migration": nix.thunk(() => nix.attr(nixosTests, "userborn-migration")),
           "userborn-mutable-users": nix.thunk(() => nix.attr(nixosTests, "userborn-mutable-users")),
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/nikstur/userborn",
         description: "Declaratively bear (manage) Linux users and groups",
         changelog: nix.thunk(() => nix.str`https://github.com/nikstur/userborn/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["sha256", 31, 5]], [["homepage", 69, 25], ["platforms", 69, 34], ["description", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["mesonFlags", 61, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libglut: false, libGL: false, libGLU: false, libx11: false, libxcb: false, libxext: false, libgbm: false, mesa: false, meson: false, ninja: false, "pkg-config": false, wayland: false, "wayland-scanner": false, "wayland-protocols": false, "vulkan-loader": false, libxkbcommon: false, libdecor: false, glslang: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 69, 25], ["platforms", 69, 34], ["description", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["mesonFlags", 61, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const libdecor = nix.arg($, "libdecor");
   const glslang = nix.arg($, "glslang");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mesa-demos",
       version: "9.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://archive.mesa3d.org/demos/mesa-demos-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-MEaj0mp7BRr3690lel8jv+sWDK1u2VIynN/x6fHtSWs=",
         })))),
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Collection of demos and test programs for OpenGL and Mesa",

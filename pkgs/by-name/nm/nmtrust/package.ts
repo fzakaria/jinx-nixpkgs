@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["nmtrust", 55, 43]], [["tests", 55, 12]], [["description", 58, 5], ["longDescription", 59, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5], ["platforms", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["nativeCheckInputs", 30, 3], ["doCheck", 32, 3], ["checkPhase", 33, 3], ["installPhase", 39, 3], ["passthru", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, nixosTests: false, shellcheck: false, bash: false, systemd: false, coreutils: false, gawk: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nmtrust", 55, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 55, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["longDescription", 59, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5], ["platforms", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["nativeCheckInputs", 30, 3], ["doCheck", 32, 3], ["checkPhase", 33, 3], ["installPhase", 39, 3], ["passthru", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nmtrust",
       version: "0.1.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "brett",
           repo: "nmtrust-nix",
           rev: "v0.1.1",
@@ -46,11 +42,14 @@ wrapProgram $out/bin/nmtrust \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nmtrust: nix.thunk(() => nix.attr(nixosTests, "nmtrust")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          nmtrust: nix.thunk(() => nix.attr(nixosTests, "nmtrust")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Declarative network trust management for NixOS",
         longDescription: "nmtrust evaluates the trust state of active NetworkManager connections\nand activates corresponding systemd targets. Services bound to these\ntargets start and stop automatically as you move between trusted,\nuntrusted, and offline networks.\n\nA NixOS-native reimplementation of nmtrust by Peter Hogg (pigmonkey).\n",
         homepage: "https://github.com/brett/nmtrust-nix",

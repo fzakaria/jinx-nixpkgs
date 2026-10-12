@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["description", 71, 5], ["maintainers", 72, 5], ["homepage", 73, 5], ["license", 74, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["postPatch", 33, 3], ["buildPhase", 35, 3], ["installPhase", 50, 3], ["outputs", 65, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, kbd: false, bdftopcf: false, libfaketime: false, mkfontscale: false, fonttosfnt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 71, 5], ["maintainers", 72, 5], ["homepage", 73, 5], ["license", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["postPatch", 33, 3], ["buildPhase", 35, 3], ["installPhase", 50, 3], ["outputs", 65, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const mkfontscale = nix.arg($, "mkfontscale");
   const fonttosfnt = nix.arg($, "fonttosfnt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "uni-vga",
       version: "0-unstable-2002-10-31",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.inp.nsk.su/~bolkhov/files/fonts/univga/uni-vga.tgz",
           sha256: "05sns8h5yspa7xkl81ri7y1yxf5icgsnl497f3xnaryhx11s2rv6",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.add("# install pcf and otb (for X11 and GTK applications)\ninstall -m 644 -D *.otb *.pcf.gz -t \"$out/share/fonts\"\nmkfontdir \"$out/share/fonts\"\n\n# install bdf font\ninstall -m 644 -D *.bdf -t \"$bdf/share/fonts\"\nmkfontdir \"$bdf/share/fonts\"\n\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "# install psf (for linux virtual terminal)\ninstall -m 644 -D *.psf.gz -t \"$out/share/consolefonts\"\n"))),
       outputs: nix.thunk(() => ["out", "bdf"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unicode VGA font",
         maintainers: [],
         homepage: "http://www.inp.nsk.su/~bolkhov/files/fonts/univga/",

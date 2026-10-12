@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["homepage", 19, 5], ["description", 20, 5], ["license", 21, 5], ["maintainers", 22, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, melpaBuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 19, 5], ["description", 20, 5], ["license", 21, 5], ["maintainers", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const melpaBuild = nix.arg($, "melpaBuild");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "grid",
       version: "0-unstable-2024-05-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ichernyshovvv",
           repo: "grid.el",
           rev: "564eccf4e009955f1a6c268382d00e157d4eb302",
           hash: "sha256-3QDw4W3FbFvb2zpkDHAo9BJKxs3LaehyvUVJPKqS9RE=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ichernyshovvv/grid.el",
         description: "Library to put text data into boxes and manipulate them",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

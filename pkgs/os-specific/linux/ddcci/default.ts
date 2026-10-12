@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5], ["broken", 51, 5]], [["pname", 10, 3], ["version", 11, 3], ["name", 12, 3], ["src", 14, 3], ["hardeningDisable", 21, 3], ["nativeBuildInputs", 23, 3], ["prePatch", 25, 3], ["patches", 34, 3], ["makeFlags", 38, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, kernel: false, kernelModuleMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5], ["broken", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["name", 12, 3], ["src", 14, 3], ["hardeningDisable", 21, 3], ["nativeBuildInputs", 23, 3], ["prePatch", 25, 3], ["patches", 34, 3], ["makeFlags", 38, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.5-unstable-2025-09-27";
       const name = nix.thunk(() => nix.str`${pname}-${nix.sel(kernel, "version")}-${version}`);
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: nix.thunk(() => nix.str`${pname}-linux`),
           repo: nix.thunk(() => nix.str`${pname}-linux`),
           rev: "bbb7553373f815d78e93a4a9f071ce968563694a",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         "INCLUDEDIR=$(out)/include",
       ]));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Kernel module driver for DDC/CI monitors",
         homepage: "https://gitlab.com/ddcci-driver-linux/ddcci-driver-linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelOlder"), "5.1")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         name,

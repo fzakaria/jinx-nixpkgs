@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["package", 50, 5], ["command", 51, 5], ["version", 52, 5]], [["version", 49, 18]], [["tests", 49, 12]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]], [["pname", 19, 3], ["version", 20, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["passthru", 49, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, testers: false, wrapGAppsHook3: false, "gobject-introspection": false, texinfo: false, "pkg-config": false, autoreconfHook: false, pulseaudio: false, libpng: false, gtk3: false, "gdk-pixbuf": false, "gsettings-desktop-schemas": false, "adwaita-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 50, 5], ["command", 51, 5], ["version", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 49, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 49, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["passthru", 49, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const adwaita_icon_theme = nix.arg($, "adwaita-icon-theme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "xroar",
       version: "1.13.0.dev-unstable-2026-08-07",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.6809.org.uk/git/xroar.git",
           rev: "190788e71ae63a4ca44f4e6e66f907852aaf26bb",
           hash: "sha256-GMOh7EQT7u4JeRnIHaSIZqgTTWK4s/3jXtNscGuOm5w=",
@@ -49,11 +44,11 @@ export default nix.lambda((args) => (() => {
         adwaita_icon_theme,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "xroar --version",
               version: nix.thunk(() => nix.str`XRoar ${nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", nix.thunk(() => nix.sel(finalAttrs, "version")))), 0n)}`),
@@ -61,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Emulator for the Dragon 32/64; Tandy Colour Computers 1, 2 and 3; the Tandy MC-10; and others",
         homepage: "https://www.6809.org.uk/xroar/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

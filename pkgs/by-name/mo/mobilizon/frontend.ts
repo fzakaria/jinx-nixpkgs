@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontend.nix", [[["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 13, 5], ["version", 14, 5], ["src", 15, 5], ["patches", 16, 5], ["npmDepsHash", 19, 3], ["nativeBuildInputs", 21, 3], ["postInstall", 23, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, buildNpmPackage: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontend.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$2 = nix.positions(here + "/frontend.nix", [["pname", 13, 5], ["version", 14, 5], ["src", 15, 5], ["patches", 16, 5], ["npmDepsHash", 19, 3], ["nativeBuildInputs", 21, 3], ["postInstall", 23, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(common, "pname")),
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.attr(common, "src")),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [imagemagick]),
       postInstall: "cp -r priv/static $out/static\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Frontend for the Mobilizon server",
         homepage: "https://joinmobilizon.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

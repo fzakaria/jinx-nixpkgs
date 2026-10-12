@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 20, 5], ["url", 21, 5], ["hash", 22, 5]], [["description", 64, 5], ["homepage", 65, 5], ["sourceProvenance", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["autoPatchelfIgnoreMissingDeps", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["dontBuild", 45, 3], ["dontStrip", 46, 3], ["installPhase", 48, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, dpkg: false, qt6: false, libjack2: false, "alsa-lib": false, bzip2: false, libpulseaudio: false, xz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 20, 5], ["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["sourceProvenance", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["autoPatchelfIgnoreMissingDeps", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["dontBuild", 45, 3], ["dontStrip", 46, 3], ["installPhase", 48, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ocenaudio",
       version: "3.20.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "ocenaudio.deb",
           url: nix.thunk(() => nix.str`https://www.ocenaudio.com/downloads/index.php/ocenaudio_debian12.deb?version=v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-flO5jlWZllUPl31okwmNjHI/9ctR0pziUx4/i+YRWQY=",
@@ -56,7 +54,7 @@ ln -s ${nix.sel(bzip2, "out")}/lib/libbz2.so.1 $out/lib/libbz2.so.1.0
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cross-platform, easy to use, fast and functional audio editor",
         homepage: "https://www.ocenaudio.com",
         sourceProvenance: nix.thunk(() => (() => {

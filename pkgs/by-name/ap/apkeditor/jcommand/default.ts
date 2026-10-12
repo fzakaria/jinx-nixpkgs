@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 7], ["repo", 16, 7], ["rev", 21, 7], ["hash", 22, 7]], [["pkg", 26, 7], ["data", 27, 7]], [["license", 30, 10]], [["pname", 10, 5], ["version", 11, 5], ["projectName", 12, 5], ["src", 14, 5], ["mitmCache", 25, 5], ["meta", 30, 5]]]);
 const formals$1 = { args: { fetchFromGitHub: false, gradle: false, lib: false, REAndroidLibrary: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 7], ["repo", 16, 7], ["rev", 21, 7], ["hash", 22, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg", 26, 7], ["data", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["license", 30, 10]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 5], ["version", 11, 5], ["projectName", 12, 5], ["src", 14, 5], ["mitmCache", 25, 5], ["meta", 30, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,20 +12,20 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const REAndroidLibrary = nix.arg($, "REAndroidLibrary");
   const self = nix.thunk(() => nix.app(REAndroidLibrary, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jcommand",
       version: "0-unstable-2025-01-21",
       projectName: "JCommand",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "REAndroid",
           repo: "JCommand",
           rev: "27d5fd21dc7da268182ea81e59007af890adb06e",
           hash: "sha256-sbblGrp16rMGGGt7xAFd9F3ACeadYYEymBEL+s5BZ1E=",
         })))),
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$2, pkg: self, data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: $pos[1], pkg: self, data: nix.path(here, "./deps.json") })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
     }))));

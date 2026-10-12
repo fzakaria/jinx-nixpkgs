@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchLFS", 26, 5]], [["src", 30, 13], ["version", 30, 17], ["pname", 31, 5], ["pyproject", 32, 5], ["sourceRoot", 34, 5], ["build-system", 36, 5], ["dependencies", 38, 5], ["nativeCheckInputs", 46, 5]], [["src", 55, 13], ["version", 55, 17], ["pname", 56, 5], ["pyproject", 57, 5], ["sourceRoot", 59, 5], ["build-system", 61, 5], ["dependencies", 63, 5], ["nativeCheckInputs", 67, 5]], [["extraArgs", 89, 47]], [["updateScript", 89, 12]], [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5]], [["src", 75, 11], ["version", 75, 15], ["owner", 76, 3], ["domain", 77, 3], ["dependencies", 79, 3], ["nativeCheckInputs", 84, 3], ["passthru", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { beautifulsoup4: false, buildHomeAssistantComponent: false, buildPythonPackage: false, cryptography: false, defusedxml: false, fetchFromGitHub: false, hatchling: false, lib: false, "nix-update-script": false, pydantic: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-homeassistant-custom-component": false, "pytest-socket": false, pyyaml: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchLFS", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 30, 13], ["version", 30, 17], ["pname", 31, 5], ["pyproject", 32, 5], ["sourceRoot", 34, 5], ["build-system", 36, 5], ["dependencies", 38, 5], ["nativeCheckInputs", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 55, 13], ["version", 55, 17], ["pname", 56, 5], ["pyproject", 57, 5], ["sourceRoot", 59, 5], ["build-system", 61, 5], ["dependencies", 63, 5], ["nativeCheckInputs", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 89, 47]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 89, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["src", 75, 11], ["version", 75, 15], ["owner", 76, 3], ["domain", 77, 3], ["dependencies", 79, 3], ["nativeCheckInputs", 84, 3], ["passthru", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const version = "3.14.0-beta.21";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "solentlabs",
       repo: "cable_modem_monitor",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
       fetchLFS: true,
     }))));
   const core = nix.thunk(() => nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: src,
       version: version,
       pname: "solentlabs-cable-modem-monitor-core",
@@ -50,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [cryptography, pytestCheckHook, pytest_cov_stub, pytest_socket]),
     })));
   const catalog = nix.thunk(() => nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: src,
       version: version,
       pname: "solentlabs-cable-modem-monitor-catalog",
@@ -68,11 +62,11 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [catalog, core]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_homeassistant_custom_component]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Home Assistant integration for monitoring cable modem signal quality",
         homepage: "https://solentlabs.io/cable-modem-monitor",
         changelog: nix.thunk(() => nix.str`https://github.com/solentlabs/cable_modem_monitor/blob/${nix.sel(src_1, "tag")}/CHANGELOG.md`),
@@ -83,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         src: src_1,
         version: version_1,
         owner,

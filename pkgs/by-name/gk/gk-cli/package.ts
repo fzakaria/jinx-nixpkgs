@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 69, 11], ["hash", 70, 11], ["stripRoot", 71, 11]], [["url", 74, 11], ["hash", 75, 11], ["stripRoot", 76, 11]], [["url", 79, 11], ["hash", 80, 11], ["stripRoot", 81, 11]], [["url", 84, 11], ["hash", 85, 11], ["stripRoot", 86, 11]], [["url", 89, 11], ["hash", 90, 11], ["stripRoot", 91, 11]], [["url", 94, 11], ["hash", 95, 11], ["stripRoot", 96, 11]], [["url", 99, 11], ["hash", 100, 11], ["stripRoot", 101, 11]], [["aarch64-linux", 68, 9], ["x86_32-linux", 73, 9], ["x86_64-linux", 78, 9], ["aarch64-darwin", 83, 9], ["aarch64-windows", 88, 9], ["i686-windows", 93, 9], ["x86_64-windows", 98, 9]], [["sources", 63, 5], ["updateScript", 104, 5]], [["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["sourceProvenance", 128, 5], ["maintainers", 129, 5], ["mainProgram", 130, 5], ["platforms", 131, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 29, 3], ["postInstall", 40, 3], ["doInstallCheck", 48, 3], ["installCheckPhase", 49, 3], ["passthru", 62, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, coreutils: false, installShellFiles: false, makeWrapper: false, gitMinimal: false, writeShellScript: false, curl: false, jq: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 69, 11], ["hash", 70, 11], ["stripRoot", 71, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 74, 11], ["hash", 75, 11], ["stripRoot", 76, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 79, 11], ["hash", 80, 11], ["stripRoot", 81, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 84, 11], ["hash", 85, 11], ["stripRoot", 86, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 89, 11], ["hash", 90, 11], ["stripRoot", 91, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 94, 11], ["hash", 95, 11], ["stripRoot", 96, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 99, 11], ["hash", 100, 11], ["stripRoot", 101, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["aarch64-linux", 68, 9], ["x86_32-linux", 73, 9], ["x86_64-linux", 78, 9], ["aarch64-darwin", 83, 9], ["aarch64-windows", 88, 9], ["i686-windows", 93, 9], ["x86_64-windows", 98, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["sources", 63, 5], ["updateScript", 104, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["sourceProvenance", 128, 5], ["maintainers", 129, 5], ["mainProgram", 130, 5], ["platforms", 131, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 29, 3], ["postInstall", 40, 3], ["doInstallCheck", 48, 3], ["installCheckPhase", 49, 3], ["passthru", 62, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "gk-cli",
       version: "3.0.9",
       src: nix.thunk(() => nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`gk-cli ${nix.sel(finalAttrs, "version")} unsupported system: ${nix.sel(stdenv, "system")}`)), "passthru", "sources", nix.key(nix.sel(stdenv, "system")))),
@@ -57,49 +47,49 @@ echo "$OUTPUT" | grep --quiet '^Git binary found: ✓$'
 echo "$OUTPUT" | grep --quiet '^CLI version: ${nix.sel(finalAttrs, "version")}$'
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         sources: nix.thunk(() => (() => {
           const base_url = nix.thunk(() => nix.str`https://github.com/gitkraken/gk-cli/releases/download/v${nix.sel(finalAttrs, "version")}/gk_${nix.sel(finalAttrs, "version")}_`);
           return {
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             "aarch64-linux": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 url: nix.thunk(() => nix.str`${base_url}linux_arm64.zip`),
                 hash: "sha256-aYgHLpG4nX3Op0+j733jYbK4ZwVKkctMkDPweNTJWso=",
                 stripRoot: false,
               })))),
             "x86_32-linux": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 url: nix.thunk(() => nix.str`${base_url}linux_386.zip`),
                 hash: "sha256-lVu25S7e6a/kHmiD5dxGAlHMQ5yN46+SdFpt8lghejM=",
                 stripRoot: false,
               })))),
             "x86_64-linux": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 url: nix.thunk(() => nix.str`${base_url}linux_amd64.zip`),
                 hash: "sha256-/z2G//Zh8lTHkeJPahyld1EEXXhd/cgIvCojUmzFX8E=",
                 stripRoot: false,
               })))),
             "aarch64-darwin": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 url: nix.thunk(() => nix.str`${base_url}darwin_arm64.zip`),
                 hash: "sha256-nDVehD0TTNTvhuDU8RB4lZiVcEJpB+l6EGkzckC7JuU=",
                 stripRoot: false,
               })))),
             "aarch64-windows": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 url: nix.thunk(() => nix.str`${base_url}windows_arm64.zip`),
                 hash: "sha256-sXHeqR4AW/sRPp74PieXI1n4VGV94CnrcMF1ovAek8E=",
                 stripRoot: false,
               })))),
             "i686-windows": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 url: nix.thunk(() => nix.str`${base_url}windows_386.zip`),
                 hash: "sha256-u6DyHoYIaExS2CHu20odDVJxzI4k9PpdFQf6UDPAzz0=",
                 stripRoot: false,
               })))),
             "x86_64-windows": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 url: nix.thunk(() => nix.str`${base_url}windows_amd64.zip`),
                 hash: "sha256-nh+JPR95IWLm7CTrS8qK2dP3c4SH/zm1oIS5GNgxcyo=",
                 stripRoot: false,
@@ -119,7 +109,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "CLI for Git collaboration across multiple repos and services",
         homepage: "https://www.gitkraken.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

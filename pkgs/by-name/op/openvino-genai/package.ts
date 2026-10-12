@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["aarch64-linux", 49, 7], ["riscv64-linux", 50, 7], ["x86_64-linux", 51, 7]], [["owner", 65, 7], ["repo", 66, 7], ["tag", 67, 7], ["hash", 68, 7]], [["updateScript", 204, 12]], [["description", 207, 5], ["longDescription", 208, 5], ["homepage", 214, 5], ["changelog", 215, 5], ["license", 216, 5], ["platforms", 217, 5], ["maintainers", 218, 5]], [["pname", 57, 3], ["version", 58, 3], ["__structuredAttrs", 60, 3], ["src", 62, 3], ["outputs", 71, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 84, 3], ["strictDeps", 93, 3], ["cmakeFlags", 95, 3], ["postInstall", 124, 3], ["preFixup", 147, 3], ["postFixup", 151, 3], ["nativeCheckInputs", 163, 3], ["doCheck", 168, 3], ["preCheck", 170, 3], ["checkPhase", 176, 3], ["enableParallelBuilding", 202, 3], ["passthru", 204, 3], ["meta", 206, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoPatchelfHook: false, cmake: false, gtest: false, "nix-update-script": false, nlohmann_json: false, "ocl-icd": false, "opencl-clhpp": false, "opencl-headers": false, onetbb: false, openvino: false, "openvino-tokenizers": false, "pkg-config": false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["aarch64-linux", 49, 7], ["riscv64-linux", 50, 7], ["x86_64-linux", 51, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 65, 7], ["repo", 66, 7], ["tag", 67, 7], ["hash", 68, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 204, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 207, 5], ["longDescription", 208, 5], ["homepage", 214, 5], ["changelog", 215, 5], ["license", 216, 5], ["platforms", 217, 5], ["maintainers", 218, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 57, 3], ["version", 58, 3], ["__structuredAttrs", 60, 3], ["src", 62, 3], ["outputs", 71, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 84, 3], ["strictDeps", 93, 3], ["cmakeFlags", 95, 3], ["postInstall", 124, 3], ["preFixup", 147, 3], ["postFixup", 151, 3], ["nativeCheckInputs", 163, 3], ["doCheck", 168, 3], ["preCheck", 170, 3], ["checkPhase", 176, 3], ["enableParallelBuilding", 202, 3], ["passthru", 204, 3], ["meta", 206, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,21 +26,21 @@ export default nix.lambda((args) => (() => {
   const cmakeBool = nix.thunk(() => nix.attr(lib, "cmakeBool"));
   const cmakeFeature = nix.thunk(() => nix.attr(lib, "cmakeFeature"));
   const minja_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "google",
       repo: "minja",
       rev: "3e4c61c616eda133cfb1e440fc7a14bf1729bbee",
       hash: "sha256-aqOpLNB7XiY/W2gDRtnAqx37gMhHMRCJQmcX24vGIxA=",
     }))));
   const safetensors_h_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "hsnyder",
       repo: "safetensors.h",
       rev: "974a85d7dfd6e010558353226638bb26d6b9d756",
       hash: "sha256-sBgm4panHB9X2RghC3Qi0wEL0k9uUz+h60pfxTGZ0BA=",
     }))));
   const gguflib_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "Lourdle",
       repo: "gguf-tools",
       rev: "bac796ada809ac293e685db59b075971181cb008",
@@ -55,20 +48,20 @@ export default nix.lambda((args) => (() => {
     }))));
   const python = nix.thunk(() => nix.app(nix.sel(python3Packages, "python", "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "pybind11"))]));
   const archName = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "aarch64-linux": "aarch64",
     "riscv64-linux": "riscv64",
     "x86_64-linux": "intel64",
   }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "openvino-genai",
       version: "2026.4.0.0",
       __structuredAttrs: true,
       src: nix.thunk(() => (() => {
         nix.assert_(nix.app(nix.sel(lib, "hasPrefix"), nix.thunk(() => nix.sel(openvino, "version")), nix.thunk(() => nix.sel(finalAttrs, "version"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/op/openvino-genai/package.nix:63:5");
         return nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             owner: "openvinotoolkit",
             repo: "openvino.genai",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -160,11 +153,11 @@ runHook postCheck
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Generative AI inference pipeline library built on OpenVINO Runtime",
         longDescription: "OpenVINO GenAI provides a high-level C++ and Python API for running large\nlanguage models and other generative AI workloads using OpenVINO Runtime as\nthe inference backend. It supports continuous batching, speculative decoding,\nand a range of text, image, and speech generation pipelines.\n",
         homepage: "https://github.com/openvinotoolkit/openvino.genai",

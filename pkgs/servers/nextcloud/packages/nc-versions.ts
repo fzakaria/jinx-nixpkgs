@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nc-versions.nix", [[["n", 17, 11], ["e", 18, 3]]]);
 const formals$1 = { args: { pkgs: true, lib: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nc-versions.nix", [["n", 17, 11], ["e", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
   const n = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (v) => nix.sel(v, "version"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (k) => (v) => (nix.asBool(!nix.eq(nix.builtins.match("nextcloud[0-9]+", k), null)) && nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.sel(v, "version"))), "success"))), pkgs))));
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     n: n,
     e: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", n)),
   };

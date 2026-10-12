@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["pythonRelaxDeps", 27, 3], ["build-system", 32, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 59, 3], ["disabledTests", 69, 3], ["disabledTestPaths", 76, 3], ["pythonImportsCheck", 82, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, nodejs: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["pythonRelaxDeps", 27, 3], ["build-system", 32, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 59, 3], ["disabledTests", 69, 3], ["disabledTestPaths", 76, 3], ["pythonImportsCheck", 82, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cwltool",
       version: "3.2.20260720092025",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "common-workflow-language",
           repo: "cwltool",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -83,7 +81,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["cwltool"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Common Workflow Language reference implementation",
         homepage: "https://www.commonwl.org",
         changelog: nix.thunk(() => nix.str`https://github.com/common-workflow-language/cwltool/releases/tag/${nix.sel(finalAttrs, "version")}`),

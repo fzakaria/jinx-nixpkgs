@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["postPatch", 38, 3], ["cmakeFlags", 47, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, imgui: false, ninja: false, withEmscripten: true, emscripten: false, withCurl: true, curl: false, withNcurses: true, ncurses: false, static: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["postPatch", 38, 3], ["cmakeFlags", 47, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "imtui";
       const version = "1.0.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ggerganov",
           repo: "imtui",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +44,7 @@ chmod -R u+w third-party/imgui
         "-DIMTUI_INSTALL_IMGUI_HEADERS:BOOL=OFF",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Immediate mode text-based user interface library",
         longDescription: "ImTui is an immediate mode text-based user interface library. Supports 256\nANSI colors and mouse/keyboard input.\n",
         homepage: "https://imtui.ggerganov.com",
@@ -56,7 +54,7 @@ chmod -R u+w third-party/imgui
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

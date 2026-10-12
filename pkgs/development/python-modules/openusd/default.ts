@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]], [["name", 70, 7], ["url", 71, 7], ["hash", 72, 7]], [["OSL_LOCATION", 76, 7]], [["description", 164, 5], ["longDescription", 165, 5], ["homepage", 170, 5], ["changelog", 171, 5], ["license", 172, 5], ["maintainers", 173, 5]], [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["src", 58, 3], ["outputs", 65, 3], ["patches", 67, 3], ["env", 76, 3], ["cmakeFlags", 78, 3], ["nativeBuildInputs", 97, 3], ["buildInputs", 111, 3], ["propagatedBuildInputs", 132, 3], ["pythonImportsCheck", 148, 3], ["postInstall", 153, 3], ["meta", 163, 3]]]);
 const formals$1 = { args: { alembic: false, bison: false, boost: false, buildPythonPackage: false, cmake: false, doxygen: false, draco: false, embree: false, fetchFromGitHub: false, fetchpatch: false, flex: false, git: false, "graphviz-nox": false, imath: false, jinja2: false, lib: false, libGL: false, libx11: false, libxt: false, materialx: false, ninja: false, numpy: false, opencolorio: false, openimageio: false, openshadinglanguage: false, opensubdiv: false, ptex: false, pyopengl: false, pyqt6: false, pyside6: false, python: false, qt6: false, setuptools: false, stdenv: false, onetbb: false, withDocs: true, withOsl: true, withTools: true, withUsdView: true, withMaterialX: true, writeShellScriptBin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 70, 7], ["url", 71, 7], ["hash", 72, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["OSL_LOCATION", 76, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 164, 5], ["longDescription", 165, 5], ["homepage", 170, 5], ["changelog", 171, 5], ["license", 172, 5], ["maintainers", 173, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["src", 58, 3], ["outputs", 65, 3], ["patches", 67, 3], ["env", 76, 3], ["cmakeFlags", 78, 3], ["nativeBuildInputs", 97, 3], ["buildInputs", 111, 3], ["propagatedBuildInputs", 132, 3], ["pythonImportsCheck", 148, 3], ["postInstall", 153, 3], ["meta", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.05";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PixarAnimationStudios",
           repo: "OpenUSD",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -68,14 +64,14 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optional"), withDocs, "doc")));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "propagate-dependencies-opengl.patch",
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/usd/-/raw/41469f20113d3550c5b42e67d1139dedc1062b8c/usd-find-dependency-OpenGL.patch?full_index=1",
             hash: "sha256-aUWGKn365qov0ttGOq5GgNxYGIGZ4DfmeMJfakbOugQ=",
           })))),
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         OSL_LOCATION: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withOsl, nix.thunk(() => nix.str`${openshadinglanguage}`))),
       }));
       const cmakeFlags = nix.thunk(() => [
@@ -124,7 +120,7 @@ mkdir -p $(dirname $target_dir)
 mv $out/lib/python $target_dir
 `, nix.app(nix.sel(lib, "optionalString"), withDocs, "mv $out/docs $doc\n")));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Universal Scene Description",
         longDescription: "Universal Scene Description (USD) is an efficient, scalable system\nfor authoring, reading, and streaming time-sampled scene description\nfor interchange between graphics applications.\n",
         homepage: "https://openusd.org/",
@@ -139,7 +135,7 @@ mv $out/lib/python $target_dir
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

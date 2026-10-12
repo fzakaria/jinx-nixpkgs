@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 29, 5], ["broken", 30, 5], ["mainProgram", 31, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["modRoot", 19, 3], ["proxyVendor", 21, 3], ["vendorHash", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 29, 5], ["broken", 30, 5], ["mainProgram", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["modRoot", 19, 3], ["proxyVendor", 21, 3], ["vendorHash", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "livedl",
       version: "unstable-2021-05-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "himananiito",
           repo: "livedl",
           rev: "a8720f1e358e5b0ade6fdeb8aacc00781e6cc504",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       proxyVendor: true,
       vendorHash: "sha256-C7lUusq/cWBCnA2wP9fzQglJCXvQyvFG4JY13H0cP6g=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command-line tool to download nicovideo.jp livestreams",
         homepage: "https://github.com/himananiito/livedl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

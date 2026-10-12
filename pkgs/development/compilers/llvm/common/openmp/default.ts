@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["passthru", 35, 33], ["strictDeps", 36, 11], ["__structuredAttrs", 37, 11]], [["homepage", 105, 5], ["description", 106, 5], ["longDescription", 107, 5], ["license", 116, 5]], [["pname", 28, 3], ["version", 29, 11], ["src", 31, 3], ["sourceRoot", 47, 3], ["outputs", 49, 3], ["patches", 54, 3], ["nativeBuildInputs", 60, 3], ["propagatedNativeBuildInputs", 69, 3], ["buildInputs", 73, 3], ["strictDeps", 80, 3], ["cmakeFlags", 82, 3], ["doCheck", 94, 3], ["checkTarget", 96, 3], ["preCheck", 98, 3], ["__structuredAttrs", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, llvm_meta: false, release_version: false, monorepoSrc: true, src: true, runCommand: false, cmake: false, ninja: false, llvm: false, lit: false, "clang-unwrapped": false, perl: false, "pkg-config": false, python3: false, version: false, devExtraCmakeFlags: true, ompdSupport: true, ompdGdbSupport: true, getVersionFile: false, checkPhaseThreadLimitHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["passthru", 35, 33], ["strictDeps", 36, 11], ["__structuredAttrs", 37, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 105, 5], ["description", 106, 5], ["longDescription", 107, 5], ["license", 116, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 11], ["src", 31, 3], ["sourceRoot", 47, 3], ["outputs", 49, 3], ["patches", 54, 3], ["nativeBuildInputs", 60, 3], ["propagatedNativeBuildInputs", 69, 3], ["buildInputs", 73, 3], ["strictDeps", 80, 3], ["cmakeFlags", 82, 3], ["doCheck", 94, 3], ["checkTarget", 96, 3], ["preCheck", 98, 3], ["__structuredAttrs", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const checkPhaseThreadLimitHook = nix.arg($, "checkPhaseThreadLimitHook");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(ompdGdbSupport) || nix.asBool(ompdSupport))), "OMPD GDB support requires OMPD support!"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/llvm/common/openmp/default.nix:25:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openmp",
       version: version,
       src: nix.thunk(() => (nix.asBool(!nix.eq(monorepoSrc, null)) ? nix.app(runCommand, nix.thunk(() => nix.str`openmp-src-${version}`), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -64,7 +62,7 @@ cp -r ${monorepoSrc}/openmp "$out"
       preCheck: "patchShebangs ../tools/archer/tests/deflake.bash\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://openmp.llvm.org/",
         description: "Support for the OpenMP language",
         longDescription: "The OpenMP subproject of LLVM contains the components required to build an\nexecutable OpenMP program that are outside the compiler itself.\nContains the code for the runtime library against which code compiled by\n\"clang -fopenmp\" must be linked before it can run and the library that\nsupports offload to target devices.\n",

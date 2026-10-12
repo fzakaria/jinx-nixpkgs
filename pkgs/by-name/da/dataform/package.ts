@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["extraArgs", 46, 7]], [["package", 51, 9]], [["name", 55, 9], ["nativeBuildInputs", 56, 9], ["script", 57, 9]], [["nativeBuildInputs", 71, 15]], [["name", 67, 9], ["drv", 68, 9], ["expectedBuilderLogEntries", 78, 9]], [["name", 89, 9], ["nativeBuildInputs", 90, 9], ["script", 95, 9]], [["version", 50, 7], ["help", 54, 7], ["install-refuses", 66, 7], ["workflow", 88, 7]], [["updateScript", 45, 5], ["tests", 49, 5]], [["type", 128, 9], ["spec", 129, 9]], [["cpeParts", 126, 7], ["purlParts", 127, 7]], [["mainProgram", 113, 5], ["description", 114, 5], ["longDescription", 115, 5], ["homepage", 120, 5], ["downloadPage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["sourceProvenance", 124, 5], ["identifiers", 125, 5], ["platforms", 132, 5], ["maintainers", 133, 5]], [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["nodejs", 21, 11], ["src", 23, 3], ["postPatch", 29, 3], ["npmDepsHash", 33, 3], ["dontNpmBuild", 35, 3], ["nativeBuildInputs", 37, 3], ["postInstall", 39, 3], ["passthru", 44, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchurl: false, "nix-update-script": false, nodejs: false, makeWrapper: false, testers: false, runCommand: false, writableTmpDirAsHomeHook: false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 51, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 55, 9], ["nativeBuildInputs", 56, 9], ["script", 57, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 71, 15]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 67, 9], ["drv", 68, 9], ["expectedBuilderLogEntries", 78, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 89, 9], ["nativeBuildInputs", 90, 9], ["script", 95, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["version", 50, 7], ["help", 54, 7], ["install-refuses", 66, 7], ["workflow", 88, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["updateScript", 45, 5], ["tests", 49, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["type", 128, 9], ["spec", 129, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["cpeParts", 126, 7], ["purlParts", 127, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["mainProgram", 113, 5], ["description", 114, 5], ["longDescription", 115, 5], ["homepage", 120, 5], ["downloadPage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["sourceProvenance", 124, 5], ["identifiers", 125, 5], ["platforms", 132, 5], ["maintainers", 133, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["nodejs", 21, 11], ["src", 23, 3], ["postPatch", 29, 3], ["npmDepsHash", 33, 3], ["dontNpmBuild", 35, 3], ["nativeBuildInputs", 37, 3], ["postInstall", 39, 3], ["passthru", 44, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const cacert = nix.arg($, "cacert");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "dataform",
       version: "3.0.71",
       __structuredAttrs: true,
       strictDeps: true,
       nodejs: nodejs,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/@dataform/cli/-/cli-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-kqwLREOvZaMFy1bbkLB6dNJP/Hml+aET8gsnUb26hBg=",
         })))),
@@ -50,31 +38,31 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nodejs]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
+        [nix.POS]: $pos[8],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           help: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-help-test`),
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "dataform --help | grep -F \"dataform [command]\"\ntouch $out\n",
             })))),
           "install-refuses": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-install-refuses-test`),
               drv: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-install-refuses-test`), nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
                 })), "dataform init test-project my-test-db US\ncd test-project\ndataform install .\n")),
               expectedBuilderLogEntries: nix.thunk(() => ["No installation is needed when using workflow_settings.yaml"]),
             })))),
           workflow: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-workflow-test`),
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
@@ -86,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         mainProgram: "dataform",
         description: "Dataform CLI",
         longDescription: "Dataform is a framework for managing SQL based data operations in BigQuery\nDataform CLI is an open-source command-line tool that allows developers to locally build,\ncompile, test, and execute SQLX data transformation pipelines for BigQuery.\n",
@@ -99,10 +87,10 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "binaryBytecode"))];
         })()),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "dataform-co", nix.thunk(() => nix.sel(finalAttrs, "version")))),
           purlParts: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             type: "npm",
             spec: nix.thunk(() => nix.str`%40dataform/cli@${nix.sel(finalAttrs, "version")}`),
           })),

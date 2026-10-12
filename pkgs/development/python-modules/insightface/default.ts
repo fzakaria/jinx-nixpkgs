@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 44, 26], ["version", 44, 32], ["hash", 45, 5]], [["gui", 66, 5], ["face3d", 72, 5]], [["package", 89, 7], ["command", 90, 7], ["version", 93, 7]], [["version", 88, 5]], [["tests", 87, 12]], [["description", 98, 5], ["mainProgram", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["src", 43, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["optional-dependencies", 65, 3], ["pythonImportsCheck", 78, 3], ["doCheck", 85, 3], ["passthru", 87, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, cython: false, setuptools: false, mxnet: false, numpy: false, onnx: false, onnxruntime: false, "opencv-python": false, requests: false, "scikit-image": false, scipy: false, tqdm: false, pillow: false, pyside6: false, reportlab: false, "scikit-learn": false, albumentationsx: false, matplotlib: false, insightface: false, testers: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 44, 26], ["version", 44, 32], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gui", 66, 5], ["face3d", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["package", 89, 7], ["command", 90, 7], ["version", 93, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 88, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 87, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 98, 5], ["mainProgram", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["src", 43, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["optional-dependencies", 65, 3], ["pythonImportsCheck", 78, 3], ["doCheck", 85, 3], ["passthru", 87, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "insightface",
       version: "1.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-J68kiRu7pHDLNXOzZqD8yomJ/IUDyfjygejLpv1xYHU=",
@@ -61,18 +55,18 @@ export default nix.lambda((args) => (() => {
         tqdm,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         gui: nix.thunk(() => [pillow, pyside6, reportlab, scikit_learn]),
         face3d: nix.thunk(() => [albumentationsx, matplotlib]),
       })),
       pythonImportsCheck: nix.thunk(() => ["insightface", "insightface.app", "insightface.data"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: insightface,
               command: "insightface-cli --help",
               version: "help",
@@ -80,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "State-of-the-art 2D and 3D Face Analysis Project",
         mainProgram: "insightface-cli",
         homepage: "https://github.com/deepinsight/insightface",

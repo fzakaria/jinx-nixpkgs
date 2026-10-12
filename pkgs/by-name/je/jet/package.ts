@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["version", 41, 26], ["package", 42, 5], ["command", 43, 5]], [["version", 40, 18]], [["tests", 40, 12]], [["description", 47, 5], ["homepage", 48, 5], ["sourceProvenance", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["extraNativeImageBuildArgs", 17, 3], ["doInstallCheck", 27, 3], ["installCheckPhase", 28, 3], ["passthru", 40, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildGraalvmNativeImage: false, fetchurl: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 41, 26], ["package", 42, 5], ["command", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 40, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 40, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["sourceProvenance", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["extraNativeImageBuildArgs", 17, 3], ["doInstallCheck", 27, 3], ["installCheckPhase", 28, 3], ["passthru", 40, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const testers = nix.arg($, "testers");
   return nix.app(buildGraalvmNativeImage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "jet",
       version: "0.7.27",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/borkdude/jet/releases/download/v${nix.sel(finalAttrs, "version")}/jet-${nix.sel(finalAttrs, "version")}-standalone.jar`),
           sha256: "sha256-250/1DBNCXlU1b4jjLUUOXI+uSbOyPXtBN1JJRpdmFc=",
         })))),
@@ -36,11 +31,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\noutput=\"$(\n  printf '%s\\n' '{\"value\":1}' \\\n    | $out/bin/jet --from json --to edn --keywordize\n)\"\ntest \"$output\" = '{:value 1}'\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "jet --version",
@@ -48,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CLI to transform between JSON, EDN, YAML and Transit, powered with a minimal query language",
         homepage: "https://github.com/borkdude/jet",
         sourceProvenance: nix.thunk(() => (() => {

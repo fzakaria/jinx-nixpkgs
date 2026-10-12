@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/packages.nix", [[["varnish", 9, 53]], [["varnish", 8, 5], ["modules", 9, 5]], [["varnish80Packages", 7, 3]]]);
 const formals$1 = { args: { callPackages: false, varnish80: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/packages.nix", [["varnish", 9, 53]]);
-const pos$2 = nix.positions(here + "/packages.nix", [["varnish", 8, 5], ["modules", 9, 5]]);
-const pos$3 = nix.positions(here + "/packages.nix", [["varnish80Packages", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const varnish80 = nix.arg($, "varnish80");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     varnish80Packages: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
         const varnish = varnish80;
-        const modules = nix.thunk(() => nix.sel(nix.app(callPackages, nix.path(here, "./modules.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, varnish: varnish }))), "modules27"));
-        return { [nix.POS]: pos$2, varnish, modules };
+        const modules = nix.thunk(() => nix.sel(nix.app(callPackages, nix.path(here, "./modules.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], varnish: varnish }))), "modules27"));
+        return { [nix.POS]: $pos[1], varnish, modules };
       })()))),
   };
 })(), formals$1);

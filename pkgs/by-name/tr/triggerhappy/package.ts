@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["makeFlags", 27, 3], ["postInstall", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, perl: false, systemd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["makeFlags", 27, 3], ["postInstall", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const systemd = nix.arg($, "systemd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "triggerhappy",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wertarbyte",
           repo: "triggerhappy",
           rev: nix.thunk(() => nix.str`release/${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "BINDIR=$(out)/bin"]),
       postInstall: "install -D -m 644 -t \"$out/etc/triggerhappy/triggers.d\" \"triggerhappy.conf.examples\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight hotkey daemon",
         longDescription: "Triggerhappy is a hotkey daemon developed with small and embedded systems in\nmind, e.g. linux based routers. It attaches to the input device files and\ninterprets the event data received and executes scripts configured in its\nconfiguration.\n",
         homepage: "https://github.com/wertarbyte/triggerhappy/",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["postConfigure", 54, 5]], [["owner", 65, 5], ["repo", 66, 5], ["tag", 67, 5], ["hash", 68, 5]], [["extraArgs", 156, 5]], [["updateScript", 155, 12]], [["description", 170, 5], ["longDescription", 171, 5], ["homepage", 178, 5], ["changelog", 179, 5], ["license", 180, 5], ["maintainers", 181, 5], ["platforms", 185, 5], ["mainProgram", 186, 5]], [["pname", 61, 3], ["version", 62, 3], ["src", 64, 3], ["strictDeps", 75, 3], ["doInstallCheck", 76, 3], ["nativeInstallCheckInputs", 78, 3], ["versionCheckProgram", 79, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 87, 3], ["cmakeFlags", 102, 3], ["postPatch", 107, 3], ["postInstall", 127, 3], ["passthru", 155, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, SDL2: false, SDL2_image: false, SDL2_mixer: false, SDL2_net: false, makeBinaryWrapper: false, SDL2_ttf: false, sdl3: false, "sdl3-image": false, "sdl3-mixer": false, pango: false, gettext: false, boost186: false, libvorbis: false, fribidi: false, dbus: false, libpng: false, openssl: false, icu: false, lua5_4: false, curl: false, "nix-update-script": false, versionCheckHook: false, enableDevel: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["postConfigure", 54, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 65, 5], ["repo", 66, 5], ["tag", 67, 5], ["hash", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 156, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 155, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 170, 5], ["longDescription", 171, 5], ["homepage", 178, 5], ["changelog", 179, 5], ["license", 180, 5], ["maintainers", 181, 5], ["platforms", 185, 5], ["mainProgram", 186, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 61, 3], ["version", 62, 3], ["src", 64, 3], ["strictDeps", 75, 3], ["doInstallCheck", 76, 3], ["nativeInstallCheckInputs", 78, 3], ["versionCheckProgram", 79, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 87, 3], ["cmakeFlags", 102, 3], ["postPatch", 107, 3], ["postInstall", 127, 3], ["passthru", 155, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,13 +38,13 @@ export default nix.lambda((args) => (() => {
   const boost = boost186;
   const suffix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableDevel, "-devel"));
   const sdl = nix.thunk(() => (nix.asBool(enableDevel) ? [sdl3, sdl3_image, sdl3_mixer] : [SDL2, SDL2_image, SDL2_mixer, SDL2_net, SDL2_ttf]));
-  const lua = nix.thunk(() => nix.app(nix.sel(lua5_4, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, postConfigure: "makeFlagsArray+=(\"CC=$CXX\")\n" }))));
+  const lua = nix.thunk(() => nix.app(nix.sel(lua5_4, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], postConfigure: "makeFlagsArray+=(\"CC=$CXX\")\n" }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`wesnoth${suffix}`),
       version: nix.thunk(() => (nix.asBool(enableDevel) ? "1.19.28" : "1.18.8")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "wesnoth",
           repo: "wesnoth",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -122,9 +117,9 @@ ln -s "$app_contents/MacOS/wesnothd${suffix}" "$out/bin/wesnothd${suffix}"
 makeBinaryWrapper "$app_bundle/Contents/MacOS/wesnoth${suffix}" "$out/bin/wesnoth${suffix}"
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => [
               "--version-regex",
               nix.thunk(() => (nix.asBool(enableDevel) ? "^(\\d+\\.\\d*[13579]\\.\\d+.*)$" : "^(\\d+\\.\\d*[02468]\\.\\d+)$")),
@@ -132,7 +127,7 @@ makeBinaryWrapper "$app_bundle/Contents/MacOS/wesnoth${suffix}" "$out/bin/wesnot
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Battle for Wesnoth, a free, turn-based strategy game with a fantasy theme",
         longDescription: "The Battle for Wesnoth is a Free, turn-based tactical strategy\ngame with a high fantasy theme, featuring both single-player, and\nonline/hotseat multiplayer combat. Fight a desperate battle to\nreclaim the throne of Wesnoth, or take hand in any number of other\nadventures.\n",
         homepage: "https://www.wesnoth.org/",

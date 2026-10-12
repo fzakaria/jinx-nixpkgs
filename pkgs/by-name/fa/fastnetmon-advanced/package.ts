@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["fastnetmon-advanced", 58, 43]], [["tests", 58, 12]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["sourceProvenance", 64, 5], ["maintainers", 65, 5], ["license", 69, 5], ["platforms", 70, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["unpackPhase", 27, 3], ["installPhase", 35, 3], ["doInstallCheck", 49, 3], ["installCheckPhase", 50, 3], ["passthru", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, bzip2: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fastnetmon-advanced", 58, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 58, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["sourceProvenance", 64, 5], ["maintainers", 65, 5], ["license", 69, 5], ["platforms", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["unpackPhase", 27, 3], ["installPhase", 35, 3], ["doInstallCheck", 49, 3], ["installCheckPhase", 50, 3], ["passthru", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fastnetmon-advanced";
       const version = "2.0.383";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://noble.ubuntu.repo.fastnetmon.com/pool/stable/f/fa/fastnetmon_${version}_amd64.deb`),
           hash: "sha256-n43LDnkk5cMvnfbHc8MtR+zmQok7DEbUwR0ZeHOq2UY=",
         }))));
@@ -32,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const installCheckPhase = "set +o pipefail\n$out/bin/fastnetmon 2>&1 | grep \"Can't open log file\"\n$out/bin/fcli 2>&1 | grep \"Please run this tool with root rights\"\n$out/bin/fnm-gobgp --help 2>&1 | grep \"Available Commands\"\n$out/bin/fnm-gobgpd --help 2>&1 | grep \"Application Options\"\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "fastnetmon-advanced": nix.thunk(() => nix.attr(nixosTests, "fastnetmon-advanced")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "High performance DDoS detector / sensor - commercial edition",
         homepage: "https://fastnetmon.com",
         changelog: nix.thunk(() => nix.str`https://github.com/FastNetMon/fastnetmon-advanced-releases/releases/tag/v${version}`),
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

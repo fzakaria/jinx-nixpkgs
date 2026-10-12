@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cava.nix", [[["description", 12, 8]], [["name", 7, 3], ["buildInputs", 8, 3], ["meta", 12, 3]]]);
 const formals$1 = { args: { buildAstalModule: false, libcava: false, fftw: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cava.nix", [["description", 12, 8]]);
-const pos$2 = nix.positions(here + "/cava.nix", [["name", 7, 3], ["buildInputs", 8, 3], ["meta", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const libcava = nix.arg($, "libcava");
   const fftw = nix.arg($, "fftw");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "cava",
       buildInputs: nix.thunk(() => [libcava, fftw]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Astal module for audio visualization using cava",
       })),
     })));

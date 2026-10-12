@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["disabled", 19, 3], ["src", 21, 3], ["sourceRoot", 28, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 48, 3], ["__structuredAttrs", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonOlder: false, setuptools: false, aiohttp: false, bleak: false, "pytest-asyncio": false, "pytest-aiohttp": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["disabled", 19, 3], ["src", 21, 3], ["sourceRoot", 28, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 48, 3], ["__structuredAttrs", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pytest_aiohttp = nix.arg($, "pytest-aiohttp");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "matter-ble-proxy",
       version: "1.4.0",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.12")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "matter-js",
           repo: "matterjs-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["matter_ble_proxy"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Client library for the OHF Matter Server BLE proxy protocol",
         homepage: "https://github.com/matter-js/matterjs-server/tree/main/python_ble_proxy",
         changelog: nix.thunk(() => nix.str`https://github.com/matter-js/matterjs-server/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

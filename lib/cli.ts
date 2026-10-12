@@ -2,12 +2,11 @@
 import * as nix from "../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cli.nix", [[["option", 249, 9], ["sep", 250, 9], ["explicitBool", 251, 17], ["formatArg", 251, 30]], [["toGNUCommandLineShell", 58, 3], ["toGNUCommandLine", 134, 3], ["toCommandLineShellGNU", 180, 3], ["toCommandLineGNU", 241, 3], ["toCommandLineShell", 264, 3], ["toCommandLine", 435, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
 const formals$2 = { args: { mkOptionName: true, mkBool: true, mkList: true, mkOption: true, optionValueSeparator: true }, ellipsis: false };
 const formals$3 = { args: { isLong: true, explicitBool: true, formatArg: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cli.nix", [["option", 249, 9], ["sep", 250, 9], ["explicitBool", 251, 17], ["formatArg", 251, 30]]);
 const formals$4 = { args: { option: false, sep: false, explicitBool: false, formatArg: true }, ellipsis: false };
-const pos$2 = nix.positions(here + "/cli.nix", [["toGNUCommandLineShell", 58, 3], ["toGNUCommandLine", 134, 3], ["toCommandLineShellGNU", 180, 3], ["toCommandLineGNU", 241, 3], ["toCommandLineShell", 264, 3], ["toCommandLine", 435, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const explicitBool = nix.argOr($_1, "explicitBool", () => false);
       const formatArg = nix.argOr($_1, "formatArg", () => nix.force(mkValueString));
       const optionFormat = (optionName) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         option: nix.thunk(() => (nix.asBool(nix.app(isLong, optionName)) ? nix.str`--${optionName}` : nix.str`-${optionName}`)),
         sep: nix.thunk(() => (nix.asBool(nix.app(isLong, optionName)) ? "=" : "")),
         explicitBool: explicitBool,
@@ -75,7 +74,7 @@ export default nix.lambda((args) => (() => {
       return (attrs) => nix.app(concatLists, nix.thunk(() => nix.app(mapAttrsToList, handlePair, attrs)));
     })();
     return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       toGNUCommandLineShell,
       toGNUCommandLine,
       toCommandLineShellGNU,

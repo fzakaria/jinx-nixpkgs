@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 5], ["homepage", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["doInstallCheck", 23, 3], ["dontBuild", 25, 3], ["dontConfigure", 26, 3], ["installPhase", 28, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 5], ["homepage", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["doInstallCheck", 23, 3], ["dontBuild", 25, 3], ["dontConfigure", 26, 3], ["installPhase", 28, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ledger-udev-rules",
       version: "0-unstable-2024-02-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LedgerHQ",
           repo: "udev-rules",
           rev: "f474382e370c9fa2a2207e6e675b9b364441aed7",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       installPhase: "mkdir -p $out/lib/udev/rules.d\ncp 20-hw1.rules $out/lib/udev/rules.d/20-ledger.rules\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "udev rules for Ledger devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

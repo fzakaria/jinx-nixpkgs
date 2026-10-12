@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["hash", 36, 5]], [["url", 80, 7], ["revert", 81, 7], ["sha256", 82, 7]], [["url", 86, 7], ["sha256", 87, 7]], [["url", 91, 7], ["excludes", 92, 7], ["hash", 93, 7]], [["changelog", 98, 5], ["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 108, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["outputs", 39, 3], ["nativeBuildInputs", 45, 3], ["propagatedNativeBuildInputs", 50, 3], ["propagatedBuildInputs", 54, 3], ["patches", 76, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchpatch: false, fetchzip: false, aspell: false, audiofile: false, "binutils-unwrapped": false, cups: false, giflib: false, gmp: false, "gnustep-libobjc": false, "gnustep-make": false, gnutls: false, icu: false, libffi: false, libgcrypt: false, libiberty: false, libiconv: false, libjpeg: false, libpng: false, libtiff: false, libxml2: false, libxslt: false, "pkg-config": false, portaudio: false, wrapGNUstepAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 80, 7], ["revert", 81, 7], ["sha256", 82, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 86, 7], ["sha256", 87, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 91, 7], ["excludes", 92, 7], ["hash", 93, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 98, 5], ["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 108, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["outputs", 39, 3], ["nativeBuildInputs", 45, 3], ["propagatedNativeBuildInputs", 50, 3], ["propagatedBuildInputs", 54, 3], ["patches", 76, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const portaudio = nix.arg($, "portaudio");
   const wrapGNUstepAppsHook = nix.arg($, "wrapGNUstepAppsHook");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gnustep-base",
       version: "1.29.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`ftp://ftp.gnustep.org/pub/gnustep/core/gnustep-base-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-4fjdsLBsYEDxLOFrq17dKii2sLKvOaFCu0cw3qQtM5U=",
         })))),
@@ -74,25 +69,25 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./fixup-paths.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/gnustep/libs-base/commit/bd5f2909e6edc8012a0a6e44ea1402dfbe1353a4.patch",
             revert: true,
             sha256: "02awigkbhqa60hfhqfh2wjsa960y3q6557qck1k2l231piz2xasa",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/gnustep/libs-base/commit/37913d006d96a6bdcb963f4ca4889888dcce6094.patch",
             sha256: "PyOmzRIirSKG5SQY+UwD6moCidPb8PXCx3aFgfwxsXE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/gnustep/libs-base/commit/b4feee311f2beaf499a5742967213f523de30f16.patch",
             excludes: nix.thunk(() => ["ChangeLog"]),
             hash: "sha256-r0qpxjpEM6y+F/gju6JhpDNxnFJNHFG/mt3NmC1hWrs=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/gnustep/libs-base/releases/tag/base-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
         description: "Implementation of AppKit and Foundation libraries of OPENSTEP and Cocoa",
         homepage: "https://gnustep.github.io/",

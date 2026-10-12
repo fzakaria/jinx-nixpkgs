@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 30, 5], ["src", 31, 26], ["hash", 32, 5]], [["anubis", 84, 36]], [["extraArgs", 85, 40]], [["tests", 84, 5], ["updateScript", 85, 5]], [["description", 89, 5], ["homepage", 90, 5], ["downloadPage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 100, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["npmDeps", 29, 3], ["nativeBuildInputs", 35, 3], ["subPackages", 44, 3], ["ldflags", 46, 3], ["prePatch", 53, 3], ["postPatch", 60, 3], ["preBuild", 67, 3], ["preCheck", 77, 3], ["__darwinAllowLocalNetworking", 81, 3], ["passthru", 83, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchNpmDeps: false, nixosTests: false, stdenv: false, npmHooks: false, nodejs: false, esbuild: false, brotli: false, zstd: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 5], ["src", 31, 26], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["anubis", 84, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 85, 40]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 84, 5], ["updateScript", 85, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["downloadPage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 100, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["npmDeps", 29, 3], ["nativeBuildInputs", 35, 3], ["subPackages", 44, 3], ["ldflags", 46, 3], ["prePatch", 53, 3], ["postPatch", 60, 3], ["preBuild", 67, 3], ["preCheck", 77, 3], ["__darwinAllowLocalNetworking", 81, 3], ["passthru", 83, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "anubis",
       version: "1.27.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TecharoHQ",
           repo: "anubis",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-5eHlR1zMogegkCO9yCU0kZcNQhTdDha0WhUPeR5eep8=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "anubis-npm-deps",
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-DDql6lIZdqv59wl7oJSY6SrXe+EYpy6aaRqOGukunm8=",
@@ -62,15 +56,15 @@ export default nix.lambda((args) => (() => {
       preCheck: "export DONT_USE_NETWORK=1\n",
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, anubis: nix.thunk(() => nix.attr(nixosTests, "anubis")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], anubis: nix.thunk(() => nix.attr(nixosTests, "anubis")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex=^v(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Weighs the soul of incoming HTTP requests using proof-of-work to stop AI crawlers",
         homepage: "https://anubis.techaro.lol/",
         downloadPage: "https://github.com/TecharoHQ/anubis",

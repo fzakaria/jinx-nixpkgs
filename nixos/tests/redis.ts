@@ -2,20 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/redis.nix", [[["maintainers", 9, 8]], [["enable", 19, 24]], [["enable", 20, 28]], [["", 19, 21], ["test", 20, 21]], [["package", 18, 21], ["servers", 19, 13]], [["redis", 17, 11]], [["createHome", 29, 17], ["description", 30, 17], ["isNormalUser", 31, 17], ["extraGroups", 32, 17]], [["users", 24, 15]], [["services", 16, 9], ["users", 24, 9]], [["machine", 12, 5]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 43, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, package: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/redis.nix", [["maintainers", 9, 8]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/redis.nix", [["enable", 19, 24]]);
-const pos$3 = nix.positions(here + "/redis.nix", [["enable", 20, 28]]);
-const pos$4 = nix.positions(here + "/redis.nix", [["", 19, 21], ["test", 20, 21]]);
-const pos$5 = nix.positions(here + "/redis.nix", [["package", 18, 21], ["servers", 19, 13]]);
-const pos$6 = nix.positions(here + "/redis.nix", [["redis", 17, 11]]);
-const pos$7 = nix.positions(here + "/redis.nix", [["createHome", 29, 17], ["description", 30, 17], ["isNormalUser", 31, 17], ["extraGroups", 32, 17]]);
-const pos$8 = nix.positions(here + "/redis.nix", [["users", 24, 15]]);
-const pos$9 = nix.positions(here + "/redis.nix", [["services", 16, 9], ["users", 24, 9]]);
-const pos$10 = nix.positions(here + "/redis.nix", [["machine", 12, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/redis.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,35 +13,35 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const package$ = nix.arg($, "package");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: nix.thunk(() => nix.sel(package$, "pname")),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "redis", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             redis: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: package$,
               servers: nix.thunk(() => ({
-                [nix.POS]: pos$4,
-                "": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
-                test: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+                [nix.POS]: $pos[3],
+                "": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
+                test: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
               })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             users: nix.thunk(() => nix.app(nix.sel(lib_1, "listToAttrs"), nix.thunk(() => nix.builtins.map((suffix) => nix.app(nix.sel(lib_1, "nameValuePair"), nix.thunk(() => nix.str`member${suffix}`), nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     createHome: false,
                     description: nix.thunk(() => nix.str`A member of the redis${suffix} group`),
                     isNormalUser: true,

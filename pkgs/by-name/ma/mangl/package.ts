@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["installPhase", 29, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, glfw: false, freetype: false, "pkg-config": false, bzip2: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["installPhase", 29, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mangl",
       version: "1.1.5-unstable-2024-07-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zigalenarcic",
           repo: "mangl",
           rev: "9d369fb0b9637969bbdfaafca73832fe8a31445b",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [freetype, glfw, bzip2, zlib]),
       installPhase: "runHook preInstall\n\ninstall -Dm0555 mangl -t $out/bin\ninstall -Dm0444 mangl.1 -t $out/man/man1\ninstall -Dm0444 art/mangl.svg -t $out/share/icons/hicolor/scalable/apps\ninstall -Dm0444 mangl.desktop -t $out/share/applications\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/zigalenarcic/mangl",
         description: "Graphical man page viewer based on the mandoc library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

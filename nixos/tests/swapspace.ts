@@ -2,30 +2,19 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/swapspace.nix", [[["maintainers", 8, 7]], [["memorySize", 15, 22]], [["swappath", 22, 11], ["cooldown", 23, 11]], [["enable", 18, 9], ["extraArgs", 19, 9], ["settings", 20, 9]], [["swapspace", 17, 16]], [["size", 29, 11], ["device", 30, 11]], [["vm.swappiness", 33, 26]], [["sysctl", 33, 19]], [["kernel", 33, 12]], [["virtualisation", 15, 7], ["services", 17, 7], ["swapDevices", 27, 7], ["boot", 33, 7]], [["machine", 14, 11]], [["name", 5, 5], ["meta", 7, 5], ["nodes", 14, 5], ["testScript", 36, 5]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/swapspace.nix", [["maintainers", 8, 7]]);
-const pos$2 = nix.positions(here + "/swapspace.nix", [["memorySize", 15, 22]]);
-const pos$3 = nix.positions(here + "/swapspace.nix", [["swappath", 22, 11], ["cooldown", 23, 11]]);
-const pos$4 = nix.positions(here + "/swapspace.nix", [["enable", 18, 9], ["extraArgs", 19, 9], ["settings", 20, 9]]);
-const pos$5 = nix.positions(here + "/swapspace.nix", [["swapspace", 17, 16]]);
-const pos$6 = nix.positions(here + "/swapspace.nix", [["size", 29, 11], ["device", 30, 11]]);
-const pos$7 = nix.positions(here + "/swapspace.nix", [["vm.swappiness", 33, 26]]);
-const pos$8 = nix.positions(here + "/swapspace.nix", [["sysctl", 33, 19]]);
-const pos$9 = nix.positions(here + "/swapspace.nix", [["kernel", 33, 12]]);
-const pos$10 = nix.positions(here + "/swapspace.nix", [["virtualisation", 15, 7], ["services", 17, 7], ["swapDevices", 27, 7], ["boot", 33, 7]]);
-const pos$11 = nix.positions(here + "/swapspace.nix", [["machine", 14, 11]]);
-const pos$12 = nix.positions(here + "/swapspace.nix", [["name", 5, 5], ["meta", 7, 5], ["nodes", 14, 5], ["testScript", 36, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       name: "swapspace",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w, "Luflosi")),
             nix.thunk(() => nix.lookup(w, "phanirithvij")),
@@ -33,27 +22,27 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
         };
       })()),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$10,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 512n })),
+          [nix.POS]: $pos[9],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 512n })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             swapspace: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               extraArgs: nix.thunk(() => ["-v"]),
-              settings: nix.thunk(() => ({ [nix.POS]: pos$3, swappath: "/swamp", cooldown: 1n })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[2], swappath: "/swamp", cooldown: 1n })),
             })),
           })),
           swapDevices: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$6, size: 127n, device: "/root/swapfile" })),
+              nix.thunk(() => ({ [nix.POS]: $pos[5], size: 127n, device: "/root/swapfile" })),
             ]))),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             kernel: nix.thunk(() => ({
-              [nix.POS]: pos$8,
-              sysctl: nix.thunk(() => ({ [nix.POS]: pos$7, "vm.swappiness": 60n })),
+              [nix.POS]: $pos[7],
+              sysctl: nix.thunk(() => ({ [nix.POS]: $pos[6], "vm.swappiness": 60n })),
             })),
           })),
         })),

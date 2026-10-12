@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["prefixKey", 24, 7]], [["extraArgs", 27, 5]], [["updateScript", 26, 12]], [["homepage", 34, 5], ["description", 35, 5], ["mainProgram", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["enableParallelBuilding", 21, 3], ["env", 24, 3], ["passthru", 26, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["prefixKey", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 27, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 26, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["mainProgram", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 41, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["enableParallelBuilding", 21, 3], ["env", 24, 3], ["passthru", 26, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "openrsync",
       version: "0.5.0-unstable-2026-05-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kristapsdz",
           repo: "openrsync",
           rev: "48070e68d73f67d6922b2ffc8c2dee9754e659c6",
@@ -30,16 +25,16 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, prefixKey: "PREFIX=" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], prefixKey: "PREFIX=" })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex=^VERSION_(\\d+)_(\\d+)_(\\d+.*)", "--version=branch"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.openrsync.org/",
         description: "BSD-licensed implementation of rsync",
         mainProgram: "openrsync",

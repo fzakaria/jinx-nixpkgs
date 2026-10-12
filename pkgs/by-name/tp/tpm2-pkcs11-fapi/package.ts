@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fapiSupport", 9, 5], ["defaultToFapi", 10, 5], ["extraDescription", 11, 5]]]);
 const formals$1 = { args: { "tpm2-pkcs11": false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["fapiSupport", 9, 5], ["defaultToFapi", 10, 5], ["extraDescription", 11, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const tpm2_pkcs11 = nix.arg($, "tpm2-pkcs11");
   return nix.app(nix.sel(tpm2_pkcs11, "override"), nix.thunk(() => nix.update(args_1, {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fapiSupport: true,
       defaultToFapi: true,
       extraDescription: "Enables fapi by default, as if TPM2_PKCS11_BACKEND defaulted to 'fapi'.",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["napari", 92, 13]], [["tests", 91, 12]], [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["mainProgram", 101, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["dependencies", 52, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 67, 3], ["disabledTests", 77, 3], ["passthru", 91, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "hatch-vcs": false, build: false, platformdirs: false, psygnal: false, pydantic: false, "pydantic-extra-types": false, pyyaml: false, rich: false, tomli: false, "tomli-w": false, typer: false, imagemagick: false, jsonschema: false, magicgui: false, "napari-plugin-engine": false, numpy: false, "pytest-pretty": false, pytestCheckHook: false, napari: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["napari", 92, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 91, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["mainProgram", 101, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["dependencies", 52, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 67, 3], ["disabledTests", 77, 3], ["passthru", 91, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const napari = nix.arg($, "napari");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "npe2",
       version: "0.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "napari",
           repo: "npe2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,11 +76,11 @@ export default nix.lambda((args) => (() => {
         "test_conversion",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, napari: napari })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], napari: napari })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Plugin system for napari (the image visualizer)",
         homepage: "https://github.com/napari/npe2",
         changelog: nix.thunk(() => nix.str`https://github.com/napari/npe2/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

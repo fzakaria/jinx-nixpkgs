@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["rev-prefix", 44, 5]], [["updateScript", 43, 12]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 41, 3], ["passthru", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, "microsoft-kiota-abstractions": false, "pytest-asyncio": false, pendulum: false, "pytest-mock": false, pytestCheckHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 43, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 41, 3], ["passthru", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "microsoft-kiota-serialization-form",
       version: "1.14.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "kiota-python",
           tag: nix.thunk(() => nix.str`microsoft-kiota-serialization-form-v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +35,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_mock, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["kiota_serialization_form"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "microsoft-kiota-serialization-form-v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "microsoft-kiota-serialization-form-v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Form serialization implementation for Kiota clients in Python",
         homepage: "https://github.com/microsoft/kiota-python/tree/main/packages/serialization/form",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/kiota-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["pname", 37, 5], ["version", 38, 26], ["src", 38, 34], ["hash", 39, 5]], [["CARGO_BUILD_TARGET", 75, 5], ["CARGO_BUILD_RUSTFLAGS", 76, 5]], [["deltachat-desktop", 81, 15], ["deltachat-repl", 81, 33], ["deltachat-rpc-server", 81, 48], ["python", 82, 7]], [["tests", 80, 5]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["cargoDeps", 36, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 53, 3], ["nativeCheckInputs", 62, 3], ["postInstall", 69, 3], ["env", 74, 3], ["passthru", 79, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cargo: false, cmake: false, "deltachat-desktop": false, "deltachat-repl": false, "deltachat-rpc-server": false, openssl: false, perl: false, "pkg-config": false, python3: false, rustPlatform: false, sqlcipher: false, sqlite: false, fixDarwinDylibNames: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 37, 5], ["version", 38, 26], ["src", 38, 34], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CARGO_BUILD_TARGET", 75, 5], ["CARGO_BUILD_RUSTFLAGS", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["deltachat-desktop", 81, 15], ["deltachat-repl", 81, 33], ["deltachat-rpc-server", 81, 48], ["python", 82, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 80, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["cargoDeps", 36, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 53, 3], ["nativeCheckInputs", 62, 3], ["postInstall", 69, 3], ["env", 74, 3], ["passthru", 79, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "libdeltachat",
       version: "2.62.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chatmail",
           repo: "core",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./no-static-lib.patch")]),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "chatmail-core",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -65,14 +59,14 @@ export default nix.lambda((args) => (() => {
   --replace __FILE__ '"${nix.builtins.placeholder("out")}/include/deltachat.h"'
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")),
         CARGO_BUILD_RUSTFLAGS: nix.thunk(() => nix.str`-C linker=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "deltachat-desktop": deltachat_desktop,
           "deltachat-repl": deltachat_repl,
           "deltachat-rpc-server": deltachat_rpc_server,
@@ -80,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Delta Chat Rust Core library",
         homepage: "https://github.com/chatmail/core",
         changelog: nix.thunk(() => nix.str`https://github.com/chatmail/core/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

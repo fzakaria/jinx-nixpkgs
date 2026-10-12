@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["vc", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["NIX_CFLAGS_COMPILE", 29, 7]], [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 20, 3], ["env", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false, meson: false, ninja: false, "pkg-config": false, wayland: false, libx11: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["vc", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 20, 3], ["env", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "glpaper",
       version: "0-unstable-2024-08-07",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~scoopta",
           repo: "glpaper",
           vc: "hg",
@@ -34,13 +31,13 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-zgvnWqsw243jZ9e6fG6L0hDfRRHwzmIdsxwnnWhimu0=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [wayland, libx11, libGL]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wallpaper program for wlroots based Wayland compositors such as sway that allows you to render glsl shaders as your wallpaper",
         mainProgram: "glpaper",
         homepage: "https://hg.sr.ht/~scoopta/glpaper",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 12, 5], ["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 39, 5], ["license", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 19, 3], ["subPackages", 21, 3], ["doCheck", 23, 3], ["postInstall", 25, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildGo127Module: false, fetchFromGitea: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 12, 5], ["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 39, 5], ["license", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 19, 3], ["subPackages", 21, 3], ["doCheck", 23, 3], ["postInstall", 25, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGo127Module = nix.arg($, "buildGo127Module");
   const fetchFromGitea = nix.arg($, "fetchFromGitea");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gitea-mcp-server",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitea.com",
           owner: "gitea",
           repo: "gitea-mcp",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "install -Dm644 README.md LICENSE -t $out/share/doc/gitea-mcp-server\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Gitea Model Context Protocol (MCP) Server",
         longDescription: "The Gitea MCP Server is a Model Context Protocol (MCP) server that provides\nseamless integration with Gitea APIs, enabling advanced automation and\ninteraction capabilities for developers and tools.\n\nThis server allows LLMs to interact with Gitea repositories, issues, pull\nrequests, and other Gitea features through structured API interactions.\n",
         homepage: "https://gitea.com/gitea/gitea-mcp",

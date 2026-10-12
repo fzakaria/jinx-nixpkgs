@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 14, 5], ["postPatch", 16, 5], ["doCheck", 23, 5], ["maintainers", 25, 5]]]);
 const formals$1 = { args: { haskell: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 14, 5], ["postPatch", 16, 5], ["doCheck", 23, 5], ["maintainers", 25, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const ghcVersion = "ghc910";
   const haskellPackages = nix.thunk(() => nix.sel(haskell, "packages", nix.key(ghcVersion)));
   const overrides = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: nix.thunk(() => nix.str`${nix.sel(raw_pkg, "version")}-unstable-2024-12-09`),
     postPatch: "sed -i -E \\\n  's/([ ,]+[^ =]+)[ =^><]+[0-9.]+/\\1/' \\\n  kind-lang.cabal\n",
     doCheck: false,

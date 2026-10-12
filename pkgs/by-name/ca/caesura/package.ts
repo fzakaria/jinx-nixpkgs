@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]], [["CAESURA_NIX", 51, 5], ["SSL_CERT_FILE", 52, 5]], [["runtimeDeps", 72, 13]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["cargoHash", 39, 3], ["nativeBuildInputs", 41, 3], ["nativeCheckInputs", 44, 3], ["env", 50, 3], ["postPatch", 55, 3], ["preCheck", 60, 3], ["postInstall", 66, 3], ["passthru", 71, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch2: false, rustPlatform: false, cacert: false, writableTmpDirAsHomeHook: false, flac: false, lame: false, makeBinaryWrapper: false, sox_ng: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CAESURA_NIX", 51, 5], ["SSL_CERT_FILE", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["runtimeDeps", 72, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["cargoHash", 39, 3], ["nativeBuildInputs", 41, 3], ["nativeCheckInputs", 44, 3], ["env", 50, 3], ["postPatch", 55, 3], ["preCheck", 60, 3], ["postInstall", 66, 3], ["passthru", 71, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const sox_ng = nix.arg($, "sox_ng");
   const runtimeDeps = nix.thunk(() => [flac, lame, sox_ng]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "caesura",
       version: "0.31.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RogueOneEcho",
           repo: "caesura",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "normalize-sox-dependent-full-spectrogram-widths.patch",
             url: "https://github.com/RogueOneEcho/caesura/commit/3af818ae35a3e18f444c889d9d3b88294f4f110f.patch?full_index=1",
             hash: "sha256-znAbk6hFVj198BUUwwDo76SWei0cKINeXzlYEFvTwHA=",
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       nativeCheckInputs: nix.thunk(() => nix.concat([cacert, writableTmpDirAsHomeHook], runtimeDeps)),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CAESURA_NIX: "1",
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
       })),
@@ -57,9 +52,9 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/caesura \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "runtimeDeps")))}
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, runtimeDeps: runtimeDeps })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], runtimeDeps: runtimeDeps })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Versatile command line tool for automated verifying and transcoding of all your torrents",
         homepage: "https://github.com/RogueOneEcho/caesura",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["sparseCheckout", 23, 5], ["postFetch", 24, 5]], [["yarnLock", 41, 5], ["hash", 42, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["yarnOfflineCache", 40, 3], ["nativeBuildInputs", 45, 3], ["yarnBuildScript", 52, 3], ["dontNpmPrune", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, jq: false, fetchYarnDeps: false, yarnConfigHook: false, yarnBuildHook: false, npmHooks: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["sparseCheckout", 23, 5], ["postFetch", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["yarnOfflineCache", 40, 3], ["nativeBuildInputs", 45, 3], ["yarnBuildScript", 52, 3], ["dontNpmPrune", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const npmHooks = nix.arg($, "npmHooks");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "awk-language-server",
       version: "0.10.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Beaglefoot",
           repo: "awk-language-server",
           tag: nix.thunk(() => nix.str`server-${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +42,7 @@ mv -f package.json $out/
 `),
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-PaebqpXQGBxqcaxun8zi6TPeIgHmY+2fjsE/3LaWPN8=",
         })))),
@@ -58,7 +55,7 @@ mv -f package.json $out/
       yarnBuildScript: "build:server",
       dontNpmPrune: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Language Server for AWK and associated VSCode client extension",
         homepage: "https://github.com/Beaglefoot/awk-language-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

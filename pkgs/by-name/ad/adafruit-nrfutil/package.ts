@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]], [["homepage", 58, 5], ["description", 59, 5], ["mainProgram", 60, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 44, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["description", 59, 5], ["mainProgram", 60, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 44, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.3.post17";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "adafruit",
           repo: "Adafruit_nRF52_nrfutil",
           tag: version,
@@ -28,13 +24,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-tests.patch",
             url: "https://github.com/adafruit/Adafruit_nRF52_nrfutil/commit/e5fbcc8ee5958041db38c04139ba686bf7d1b845.patch",
             hash: "sha256-0tbJldGtYcDdUzA3wZRv0lenXVn6dqV016U9nMpQ6/w=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fix-test-test_get_vk_pem.patch",
             url: "https://github.com/adafruit/Adafruit_nRF52_nrfutil/commit/f42cee3c2d7c8d0911f27ba24d6a140083cb85cf.patch",
             hash: "sha256-7WoRqPKc8O5EYK7Fj1WrMJREwhueiVpkEizIfVnEPBU=",
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "mkdir test-reports\n";
       const pythonImportsCheck = nix.thunk(() => ["nordicsemi"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/adafruit/Adafruit_nRF52_nrfutil",
         description: "Modified version of Nordic's nrfutil 0.5.x for use with the Adafruit Feather nRF52",
         mainProgram: "adafruit-nrfutil",
@@ -70,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

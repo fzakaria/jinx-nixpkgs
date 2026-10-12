@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["binDeps", 28, 3], ["nativeBuildInputs", 38, 3], ["dontConfigure", 43, 3], ["dontBuild", 44, 3], ["postPatch", 46, 3], ["doInstallCheck", 56, 3], ["installPhase", 58, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, makeWrapper: false, ipcalc: false, iproute2: false, "util-linux": false, coreutils: false, ethtool: false, gnugrep: false, gnused: false, "nvme-cli": false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["binDeps", 28, 3], ["nativeBuildInputs", 38, 3], ["dontConfigure", 43, 3], ["dontBuild", 44, 3], ["postPatch", 46, 3], ["doInstallCheck", 56, 3], ["installPhase", 58, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nvme_cli = nix.arg($, "nvme-cli");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "google-guest-configs",
       version: "20211116.00",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GoogleCloudPlatform",
           repo: "guest-configs",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +46,7 @@ patch -p1 < ./fix-paths.patch
       doInstallCheck: true,
       installPhase: "mkdir -p $out/{bin,etc,lib}\ncp -r src/etc/{modprobe.d,sysctl.d} $out/etc\ncp -r src/lib/udev $out/lib\ncp -r src/sbin/* $out/bin\ncp -r src/usr/bin/* $out/bin\n\nfor i in $out/bin/* $out/lib/udev/google_nvme_id; do\n  wrapProgram \"$i\" \\\n    --prefix \"PATH\" \":\" \"$binDeps\"\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/GoogleCloudPlatform/guest-configs",
         description: "Linux Guest Environment for Google Compute Engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

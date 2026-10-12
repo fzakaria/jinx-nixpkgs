@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["packageName", 29, 7]], [["updateScript", 28, 5]], [["platforms", 58, 5], ["teams", 59, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["passthru", 27, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 46, 3], ["dontDropIconThemeCache", 51, 3], ["postInstall", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, intltool: false, gtk3: false, gnome: false, "adwaita-icon-theme": false, librsvg: false, "pkg-config": false, pango: false, atk: false, gtk2: false, "gdk-pixbuf": false, "hicolor-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["platforms", 58, 5], ["teams", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["passthru", 27, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 46, 3], ["dontDropIconThemeCache", 51, 3], ["postInstall", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +25,13 @@ export default nix.lambda((args) => (() => {
       const pname = "gnome-themes-extra";
       const version = "3.28";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-themes-extra/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gnome-themes-extra-${version}.tar.xz`),
           hash: "sha256-fEugv/AB8G2Jg8/BBa2qxC3x0SZ6JZF5ingLrFV6WBk=",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: pname })))),
       }));
       const nativeBuildInputs = nix.thunk(() => [pkg_config, intltool, gtk3]);
       const buildInputs = nix.thunk(() => [gtk3, librsvg, pango, atk, gtk2, gdk_pixbuf]);
@@ -43,12 +39,12 @@ export default nix.lambda((args) => (() => {
       const dontDropIconThemeCache = true;
       const postInstall = "gtk-update-icon-cache \"$out\"/share/icons/HighContrast\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

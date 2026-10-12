@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["PKG_CONFIG_LIBNM_VPNSERVICEDIR", 48, 7]], [["networkManagerPlugin", 51, 5], ["networkManagerDbusDeps", 52, 5], ["networkManagerTmpfilesRules", 53, 5]], [["description", 59, 5], ["platforms", 60, 35], ["license", 61, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["configureFlags", 40, 3], ["env", 48, 3], ["passthru", 50, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, intltool: false, "pkg-config": false, networkmanager: false, strongswanNM: false, gtk3: false, gtk4: false, libsecret: false, libnma: false, "libnma-gtk4": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_LIBNM_VPNSERVICEDIR", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["networkManagerPlugin", 51, 5], ["networkManagerDbusDeps", 52, 5], ["networkManagerTmpfilesRules", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 59, 5], ["platforms", 60, 35], ["license", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["configureFlags", 40, 3], ["env", 48, 3], ["passthru", 50, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libnma = nix.arg($, "libnma");
   const libnma_gtk4 = nix.arg($, "libnma-gtk4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "NetworkManager-strongswan",
       version: "1.6.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.strongswan.org/NetworkManager/NetworkManager-strongswan-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-OpHK38x8dGFkcLKw+A203BfxAzYrOG7XY0edhQBQG2c=",
         })))),
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
         "--with-gtk4",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_LIBNM_VPNSERVICEDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/NetworkManager/VPN`),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         networkManagerPlugin: "VPN/nm-strongswan-service.name",
         networkManagerDbusDeps: nix.thunk(() => [strongswanNM]),
         networkManagerTmpfilesRules: nix.thunk(() => ["d /etc/ipsec.d 0700 root root -"]),
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(networkmanager, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "NetworkManager's strongswan plugin",
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

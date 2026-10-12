@@ -2,15 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["arch", 15, 11], ["hash", 16, 11]], [["arch", 19, 11], ["hash", 20, 11]], [["arch", 23, 11], ["hash", 24, 11]], [["x86_64-linux", 14, 9], ["aarch64-linux", 18, 9], ["aarch64-darwin", 22, 9]], [["name", 29, 7], ["publisher", 30, 7], ["version", 31, 7]], [["updateScript", 43, 12]], [["description", 46, 5], ["homepage", 47, 5], ["downloadPage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 56, 5]], [["mktplcRef", 11, 3], ["__structuredAttrs", 36, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["passthru", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, "vscode-utils": false, "vscode-extension-update-script": false, stdenv: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["arch", 15, 11], ["hash", 16, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arch", 19, 11], ["hash", 20, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["arch", 23, 11], ["hash", 24, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 14, 9], ["aarch64-linux", 18, 9], ["aarch64-darwin", 22, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 29, 7], ["publisher", 30, 7], ["version", 31, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["updateScript", 43, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["downloadPage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 56, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["mktplcRef", 11, 3], ["__structuredAttrs", 36, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["passthru", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,37 +14,42 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       mktplcRef: nix.thunk(() => (() => {
         const sources = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "x86_64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             arch: "linux-x64",
             hash: "sha256-41D15WSCK67DK1ArIOgbApndYYq6X0Br1cDajjkhHsE=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             arch: "linux-arm64",
             hash: "sha256-gWBEMWsootSivCnPI0q0VqMvw3vaQUS+AYTrGd9mV20=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             arch: "darwin-arm64",
             hash: "sha256-Qs3+dRfHs3iZ+mS1uj6o4vPrMF66NgH/8Xmpyo6vTeE=",
           })),
         }));
-        return nix.update({ [nix.POS]: pos$5, name: "visualjj", publisher: "visualjj", version: "0.35.4" }, nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
+        return nix.update({
+          [nix.POS]: $pos[4],
+          name: "visualjj",
+          publisher: "visualjj",
+          version: "0.35.4",
+        }, nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
       })()),
       __structuredAttrs: true,
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Jujutsu version control integration, for simpler Git workflow",
         homepage: "https://www.visualjj.com",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=visualjj.visualjj",

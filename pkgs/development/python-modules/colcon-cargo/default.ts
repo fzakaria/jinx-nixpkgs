@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 33, 3], ["disabledTests", 41, 3], ["disabledTestPaths", 47, 3], ["pythonImportsCheck", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, colcon: false, cargo: false, fetchFromGitHub: false, scspell: false, setuptools: false, pytestCheckHook: false, rustfmt: false, toml: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 33, 3], ["disabledTests", 41, 3], ["disabledTestPaths", 47, 3], ["pythonImportsCheck", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const toml = nix.arg($, "toml");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "colcon-cargo",
       version: "0.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "colcon",
           repo: "colcon-cargo",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["test/test_flake8.py"]),
       pythonImportsCheck: nix.thunk(() => ["colcon_cargo"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extension for colcon-core to support Rust packages built with Cargo",
         homepage: "https://github.com/colcon/colcon-cargo",
         changelog: nix.thunk(() => nix.str`https://github.com/colcon/colcon-cargo/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

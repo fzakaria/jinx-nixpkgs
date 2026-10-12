@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mpv-gallery-view.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["updateScript", 63, 5], ["extraWrapperArgs", 64, 5]], [["description", 71, 5], ["homepage", 72, 5], ["platforms", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["dontFixup", 40, 3], ["installPhase", 42, 3], ["scriptPath", 55, 3], ["extraScripts", 56, 3], ["passthru", 62, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, unstableGitUpdater: false, buildLua: false, extraThumbgens: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mpv-gallery-view.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/mpv-gallery-view.nix", [["updateScript", 63, 5], ["extraWrapperArgs", 64, 5]]);
-const pos$3 = nix.positions(here + "/mpv-gallery-view.nix", [["description", 71, 5], ["homepage", 72, 5], ["platforms", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$4 = nix.positions(here + "/mpv-gallery-view.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["dontFixup", 40, 3], ["installPhase", 42, 3], ["scriptPath", 55, 3], ["extraScripts", 56, 3], ["passthru", 62, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const width = nix.thunk(() => nix.builtins.stringLength(nix.thunk(() => nix.builtins.toString(extraThumbgens))));
   const extraThumbgenScripts = nix.thunk(() => nix.builtins.genList((i) => nix.str`gallery-thumbgen.${nix.app(zeroPad, nix.thunk(() => nix.add(i, 1n)), width)}.lua`, extraThumbgens));
   return nix.app(buildLua, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mpv-gallery-view",
       version: "0-unstable-2024-09-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "occivink",
           repo: "mpv-gallery-view",
           rev: "4a8e664d52679fff3f05f29aa7a54b86150704bc",
@@ -50,7 +47,7 @@ runHook postInstall
       scriptPath: "playlist-view.lua",
       extraScripts: nix.thunk(() => nix.concat(["contact-sheet.lua", "gallery-thumbgen.lua"], extraThumbgenScripts)),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         extraWrapperArgs: nix.thunk(() => nix.builtins.map((script) => [
             "--add-flags",
@@ -58,7 +55,7 @@ runHook postInstall
           ], nix.thunk(() => nix.sel(finalAttrs, "extraScripts")))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Gallery-view scripts for mpv",
         homepage: "https://github.com/occivink/mpv-gallery-view",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

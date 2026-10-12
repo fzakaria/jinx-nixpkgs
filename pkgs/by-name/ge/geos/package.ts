@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["geos", 33, 38]], [["pkg-config", 32, 5], ["geos", 33, 5]], [["tests", 31, 12]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["mainProgram", 40, 5], ["teams", 41, 5], ["pkgConfigModules", 42, 5], ["changelog", 43, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["cmakeFlags", 25, 3], ["doCheck", 29, 3], ["passthru", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromGitHub: false, testers: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["geos", 33, 38]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 32, 5], ["geos", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 31, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["mainProgram", 40, 5], ["teams", 41, 5], ["pkgConfigModules", 42, 5], ["changelog", 43, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["cmakeFlags", 25, 3], ["doCheck", 29, 3], ["passthru", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "geos",
       version: "3.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libgeos",
           repo: "geos",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,15 +28,18 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ["-DCMAKE_CTEST_ARGUMENTS=--exclude-regex;unit-geom-Envelope"]))),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
-          geos: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, geos: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+          geos: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
+              [nix.POS]: $pos[1],
+              geos: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
+            })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "C/C++ library for computational geometry with a focus on algorithms used in geographic information systems (GIS) software",
         homepage: "https://libgeos.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

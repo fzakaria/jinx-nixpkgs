@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["package", 59, 7], ["command", 60, 7]], [["updateScript", 57, 5], ["tests", 58, 5]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["pythonRelaxDeps", 24, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 34, 3], ["nativeCheckInputs", 52, 3], ["passthru", 56, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, pyrosimple: false, python3: false, testers: false, withInotify: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 59, 7], ["command", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 5], ["tests", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["pythonRelaxDeps", 24, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 34, 3], ["nativeCheckInputs", 52, 3], ["passthru", 56, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const withInotify = nix.argOr($, "withInotify", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pyrosimple",
       version: "2.14.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kannibalox",
           repo: "pyrosimple",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,12 +54,12 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w_2, "pytestCheckHook"))];
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: pyrosimple, command: "pyroadmin --version" })))),
+        tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: pyrosimple, command: "pyroadmin --version" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "RTorrent client",
         homepage: "https://kannibalox.github.io/pyrosimple/",
         changelog: nix.thunk(() => nix.str`https://github.com/kannibalox/pyrosimple/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

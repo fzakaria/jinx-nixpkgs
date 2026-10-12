@@ -2,68 +2,55 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cups-pdf.nix", [[["systemPackages", 9, 19]], [["packages", 10, 13]], [["installPrinter", 14, 15]], [["opt", 13, 9], ["noopt", 14, 9]], [["enable", 11, 34], ["instances", 12, 34]], [["cups-pdf", 11, 25]], [["printing", 11, 16]], [["name", 18, 11], ["model", 19, 11], ["deviceUri", 20, 11]], [["ensurePrinters", 16, 25]], [["printers", 16, 16]], [["imports", 8, 7], ["environment", 9, 7], ["fonts", 10, 7], ["services", 11, 7], ["hardware", 16, 7]], [["machine", 5, 9]], [["maintainers", 44, 8]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 29, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { hostPkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cups-pdf.nix", [["systemPackages", 9, 19]]);
-const pos$2 = nix.positions(here + "/cups-pdf.nix", [["packages", 10, 13]]);
-const pos$3 = nix.positions(here + "/cups-pdf.nix", [["installPrinter", 14, 15]]);
-const pos$4 = nix.positions(here + "/cups-pdf.nix", [["opt", 13, 9], ["noopt", 14, 9]]);
-const pos$5 = nix.positions(here + "/cups-pdf.nix", [["enable", 11, 34], ["instances", 12, 34]]);
-const pos$6 = nix.positions(here + "/cups-pdf.nix", [["cups-pdf", 11, 25]]);
-const pos$7 = nix.positions(here + "/cups-pdf.nix", [["printing", 11, 16]]);
-const pos$8 = nix.positions(here + "/cups-pdf.nix", [["name", 18, 11], ["model", 19, 11], ["deviceUri", 20, 11]]);
-const pos$9 = nix.positions(here + "/cups-pdf.nix", [["ensurePrinters", 16, 25]]);
-const pos$10 = nix.positions(here + "/cups-pdf.nix", [["printers", 16, 16]]);
-const pos$11 = nix.positions(here + "/cups-pdf.nix", [["imports", 8, 7], ["environment", 9, 7], ["fonts", 10, 7], ["services", 11, 7], ["hardware", 16, 7]]);
-const pos$12 = nix.positions(here + "/cups-pdf.nix", [["machine", 5, 9]]);
-const pos$13 = nix.positions(here + "/cups-pdf.nix", [["maintainers", 44, 8]]);
-const pos$14 = nix.positions(here + "/cups-pdf.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 29, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const hostPkgs = nix.arg($, "hostPkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "cups-pdf",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "poppler-utils"))]),
           })),
           fonts: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dejavu_fonts"))]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             printing: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               "cups-pdf": nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 enable: true,
                 instances: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   opt: nix.thunk(() => ({})),
-                  noopt: nix.thunk(() => ({ [nix.POS]: pos$3, installPrinter: false })),
+                  noopt: nix.thunk(() => ({ [nix.POS]: $pos[2], installPrinter: false })),
                 })),
               })),
             })),
           })),
           hardware: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             printers: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               ensurePrinters: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   name: "noopt",
                   model: "CUPS-PDF_noopt.ppd",
                   deviceUri: "cups-pdf:/noopt",
@@ -88,7 +75,7 @@ for name in ("opt", "noopt"):
     assert text.encode() in run(f"${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(hostPkgs, "tesseract")))} $out/{name}.jpeg stdout", shell=True, check=True, capture_output=True).stdout
 `),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "yarny"))]),
     })),
   };

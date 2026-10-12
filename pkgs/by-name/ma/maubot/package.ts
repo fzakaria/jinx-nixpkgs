@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 20, 28], ["version", 20, 34], ["hash", 21, 7]], [["url", 27, 9], ["hash", 28, 9]], [["withOlm", 40, 29]], [["unwrapped", 84, 11], ["python3", 85, 11]], [["simple", 90, 11]], [["maubot", 98, 11], ["python3", 99, 11]], [["pythonPackages", 102, 64]], [["plugins", 105, 50]], [["baseConfig", 108, 56]], [["tests", 89, 9], ["python", 95, 17], ["plugins", 97, 9], ["withPythonPackages", 102, 9], ["withPlugins", 105, 9], ["withBaseConfig", 108, 9]], [["description", 112, 7], ["homepage", 113, 7], ["changelog", 114, 7], ["license", 115, 7], ["mainProgram", 119, 7], ["maintainers", 120, 7]], [["pname", 15, 5], ["version", 16, 5], ["pyproject", 17, 5], ["src", 19, 5], ["patches", 24, 5], ["build-system", 32, 5], ["dependencies", 36, 5], ["propagatedNativeBuildInputs", 63, 5], ["postInstall", 68, 5], ["pythonRelaxDeps", 72, 5], ["pythonImportsCheck", 77, 5], ["passthru", 81, 5], ["meta", 111, 5]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, fetchpatch: false, callPackage: false, runCommand: false, python3: false, encryptionSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 20, 28], ["version", 20, 34], ["hash", 21, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 9], ["hash", 28, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withOlm", 40, 29]]);
-const pos$4 = nix.positions(here + "/package.nix", [["unwrapped", 84, 11], ["python3", 85, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["simple", 90, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["maubot", 98, 11], ["python3", 99, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pythonPackages", 102, 64]]);
-const pos$8 = nix.positions(here + "/package.nix", [["plugins", 105, 50]]);
-const pos$9 = nix.positions(here + "/package.nix", [["baseConfig", 108, 56]]);
-const pos$10 = nix.positions(here + "/package.nix", [["tests", 89, 9], ["python", 95, 17], ["plugins", 97, 9], ["withPythonPackages", 102, 9], ["withPlugins", 105, 9], ["withBaseConfig", 108, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 112, 7], ["homepage", 113, 7], ["changelog", 114, 7], ["license", 115, 7], ["mainProgram", 119, 7], ["maintainers", 120, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 15, 5], ["version", 16, 5], ["pyproject", 17, 5], ["src", 19, 5], ["patches", 24, 5], ["build-system", 32, 5], ["dependencies", 36, 5], ["propagatedNativeBuildInputs", 63, 5], ["postInstall", 68, 5], ["pythonRelaxDeps", 72, 5], ["pythonImportsCheck", 77, 5], ["passthru", 81, 5], ["meta", 111, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const encryptionSupport = nix.argOr($, "encryptionSupport", () => true);
   const python = python3;
   const maubot = nix.thunk(() => nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "maubot",
       version: "0.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ZXwyctTjKg1ssYE6Ehc1s1DPhWyc08dIQ4MQz6EQXGg=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/maubot/maubot/commit/ef6e23eccb530187dd3447b6aac2047d4a32fb83.patch",
             hash: "sha256-d5fu47F93aXZmk6MiSsxTE8pHjMKNL0FUdU+ynUqY2o=",
           })))),
@@ -51,7 +40,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
         return nix.concat([
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "mautrix"), "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withOlm: encryptionSupport })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "mautrix"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], withOlm: encryptionSupport })))),
           nix.thunk(() => nix.lookup(w_1, "aiohttp")),
           nix.thunk(() => nix.lookup(w_1, "yarl")),
           nix.thunk(() => nix.lookup(w_1, "asyncpg")),
@@ -82,23 +71,23 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["bcrypt", "ruamel.yaml"]),
       pythonImportsCheck: nix.thunk(() => ["maubot"]),
       passthru: nix.thunk(() => (() => {
-        const wrapper = nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, unwrapped: maubot, python3: python }))));
+        const wrapper = nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], unwrapped: maubot, python3: python }))));
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             simple: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-tests`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${maubot}/bin/mbc --help > $out
 `))),
           })),
           python: python,
-          plugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins"), nix.thunk(() => ({ [nix.POS]: pos$6, maubot: maubot, python3: python })))),
-          withPythonPackages: (pythonPackages) => nix.app(wrapper, nix.thunk(() => ({ [nix.POS]: pos$7, pythonPackages: pythonPackages }))),
-          withPlugins: (plugins) => nix.app(wrapper, nix.thunk(() => ({ [nix.POS]: pos$8, plugins: plugins }))),
-          withBaseConfig: (baseConfig) => nix.app(wrapper, nix.thunk(() => ({ [nix.POS]: pos$9, baseConfig: baseConfig }))),
+          plugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins"), nix.thunk(() => ({ [nix.POS]: $pos[5], maubot: maubot, python3: python })))),
+          withPythonPackages: (pythonPackages) => nix.app(wrapper, nix.thunk(() => ({ [nix.POS]: $pos[6], pythonPackages: pythonPackages }))),
+          withPlugins: (plugins) => nix.app(wrapper, nix.thunk(() => ({ [nix.POS]: $pos[7], plugins: plugins }))),
+          withBaseConfig: (baseConfig) => nix.app(wrapper, nix.thunk(() => ({ [nix.POS]: $pos[8], baseConfig: baseConfig }))),
         };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Plugin-based Matrix bot system written in Python",
         homepage: "https://maubot.xyz/",
         changelog: nix.thunk(() => nix.str`https://github.com/maubot/maubot/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

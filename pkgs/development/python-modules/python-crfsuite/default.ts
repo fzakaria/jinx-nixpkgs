@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 15, 13], ["pname", 16, 5], ["hash", 17, 5]], [["description", 34, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["teams", 38, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["preCheck", 20, 3], ["build-system", 25, 3], ["nativeCheckInputs", 29, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pytestCheckHook: false, cython: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 15, 13], ["pname", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 34, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["teams", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["preCheck", 20, 3], ["build-system", 25, 3], ["nativeCheckInputs", 29, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.12";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "python_crfsuite",
           hash: "sha256-2zf8zDvY8MScKKdpfKecidZ7P9W/EZEihmFpJArExIA=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pycrfsuite"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python binding for CRFsuite",
         homepage: "https://github.com/scrapinghub/python-crfsuite",
         changelog: nix.thunk(() => nix.str`https://github.com/scrapinghub/python-crfsuite/blob/${version}/CHANGES.rst`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "tts"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

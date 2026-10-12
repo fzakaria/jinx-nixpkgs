@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["platforms", 27, 5]], [["pname", 7, 3], ["version", 10, 3], ["src", 12, 3], ["dontUnpack", 14, 3], ["dontBuild", 16, 3], ["installPhase", 18, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["platforms", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 10, 3], ["src", 12, 3], ["dontUnpack", 14, 3], ["dontBuild", 16, 3], ["installPhase", 18, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "dn42-cacert",
       version: "0-unstable-2016-01-16",
       src: nix.path(here, "./root-ca.crt"),
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "install -Dm644 $src $out/etc/ssl/certs/dn42-ca.crt\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "DN42 Root CA certificate",
         homepage: "https://wiki.dn42.dev/services/Certificate-Authority.md",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

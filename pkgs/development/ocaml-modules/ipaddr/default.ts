@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 32, 5], ["maintainers", 33, 5]], [["pname", 12, 3], ["version", 14, 21], ["src", 14, 29], ["minimalOCamlVersion", 16, 3], ["duneVersion", 17, 3], ["propagatedBuildInputs", 19, 3], ["checkInputs", 25, 3], ["doCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, macaddr: false, "domain-name": false, "stdlib-shims": false, ounit2: false, ppx_sexp_conv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 32, 5], ["maintainers", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 14, 21], ["src", 14, 29], ["minimalOCamlVersion", 16, 3], ["duneVersion", 17, 3], ["propagatedBuildInputs", 19, 3], ["checkInputs", 25, 3], ["doCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const ounit2 = nix.arg($, "ounit2");
   const ppx_sexp_conv = nix.arg($, "ppx_sexp_conv");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ipaddr",
       version: nix.thunk(() => nix.attr(macaddr, "version")),
       src: nix.thunk(() => nix.attr(macaddr, "src")),
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ppx_sexp_conv, ounit2]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(macaddr, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Library for manipulation of IP (and MAC) address representations",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

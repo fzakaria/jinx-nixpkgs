@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/2.x.nix", [[["version", 22, 7], ["hash", 23, 7], ["pname", 24, 7]], [["version", 28, 7], ["hash", 29, 7], ["pname", 30, 7]], [["2.12", 21, 5], ["2.13", 27, 5]], [["hash", 43, 13], ["url", 44, 5]], [["updateScript", 78, 5]], [["description", 102, 5], ["longDescription", 103, 5], ["homepage", 111, 5], ["license", 112, 5], ["platforms", 113, 5], ["branch", 114, 5], ["maintainers", 115, 5]], [["version", 38, 11], ["pname", 40, 3], ["src", 42, 3], ["propagatedBuildInputs", 47, 3], ["nativeBuildInputs", 49, 3], ["installPhase", 51, 3], ["doInstallCheck", 70, 3], ["installCheckPhase", 71, 3], ["passthru", 77, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, makeWrapper: false, jre: false, gnugrep: false, coreutils: false, writeScript: false, "common-updater-scripts": false, git: false, gnused: false, nix: false, majorVersion: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/2.x.nix", [["version", 22, 7], ["hash", 23, 7], ["pname", 24, 7]]);
-const pos$2 = nix.positions(here + "/2.x.nix", [["version", 28, 7], ["hash", 29, 7], ["pname", 30, 7]]);
-const pos$3 = nix.positions(here + "/2.x.nix", [["2.12", 21, 5], ["2.13", 27, 5]]);
-const pos$4 = nix.positions(here + "/2.x.nix", [["hash", 43, 13], ["url", 44, 5]]);
-const pos$5 = nix.positions(here + "/2.x.nix", [["updateScript", 78, 5]]);
-const pos$6 = nix.positions(here + "/2.x.nix", [["description", 102, 5], ["longDescription", 103, 5], ["homepage", 111, 5], ["license", 112, 5], ["platforms", 113, 5], ["branch", 114, 5], ["maintainers", 115, 5]]);
-const pos$7 = nix.positions(here + "/2.x.nix", [["version", 38, 11], ["pname", 40, 3], ["src", 42, 3], ["propagatedBuildInputs", 47, 3], ["nativeBuildInputs", 49, 3], ["installPhase", 51, 3], ["doInstallCheck", 70, 3], ["installCheckPhase", 71, 3], ["passthru", 77, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,15 +22,15 @@ export default nix.lambda((args) => (() => {
   const majorVersion = nix.arg($, "majorVersion");
   const repo = "git@github.com:scala/scala.git";
   const versionMap = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "2.12": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "2.12.18",
       hash: "sha256-naIJCET+YPrbXln39F9aU3DBdnjcn7PYMmhDxETOA5g=",
       pname: "scala_2_12",
     })),
     "2.13": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "2.13.15",
       hash: "sha256-jXIZ0q2IHIHPdwmp5JU05s4S0Bft4Uc+r9Hpuyh8ObE=",
       pname: "scala_2_13",
@@ -47,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.lookup(w, "version"));
       const pname = "scala";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: nix.thunk(() => nix.lookup(w, "hash")),
           url: nix.thunk(() => nix.str`https://www.scala-lang.org/files/archive/scala-${version}.tgz`),
         }))));
@@ -76,7 +70,7 @@ runHook postInstall
 echo 'println("foo"*3)' | $out/bin/scala 2>/dev/null | grep "foofoofoo"
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}
 set -o errexit
 PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [common_updater_scripts, coreutils, git, gnused, nix$]))}
@@ -91,7 +85,7 @@ fi
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "General purpose programming language",
         longDescription: "Scala is a general purpose programming language designed to express\ncommon programming patterns in a concise, elegant, and type-safe way.\nIt smoothly integrates features of object-oriented and functional\nlanguages, enabling Java and other programmers to be more productive.\nCode sizes are typically reduced by a factor of two to three when\ncompared to an equivalent Java application.\n",
         homepage: "https://www.scala-lang.org/",
@@ -104,7 +98,7 @@ fi
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         version,
         pname,
         src,

@@ -2,24 +2,19 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/chromadb.nix", [["maintainers", 3, 8]]);
-const pos$2 = nix.positions(here + "/chromadb.nix", [["enable", 8, 9]]);
-const pos$3 = nix.positions(here + "/chromadb.nix", [["chromadb", 7, 16]]);
-const pos$4 = nix.positions(here + "/chromadb.nix", [["services", 7, 7]]);
-const pos$5 = nix.positions(here + "/chromadb.nix", [["machine", 6, 5]]);
-const pos$6 = nix.positions(here + "/chromadb.nix", [["name", 2, 3], ["meta", 3, 3], ["nodes", 5, 3], ["testScript", 13, 3]]);
+const $pos = nix.positions(here + "/chromadb.nix", [[["maintainers", 3, 8]], [["enable", 8, 9]], [["chromadb", 7, 16]], [["services", 7, 7]], [["machine", 6, 5]], [["name", 2, 3], ["meta", 3, 3], ["nodes", 5, 3], ["testScript", 13, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$6,
+  [nix.POS]: $pos[5],
   name: "chromadb",
-  meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+  meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     machine: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        chromadb: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+        [nix.POS]: $pos[2],
+        chromadb: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
       })),
     })),
   })),

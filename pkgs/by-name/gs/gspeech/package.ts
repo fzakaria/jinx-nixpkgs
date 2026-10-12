@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]], [["description", 83, 5], ["homepage", 84, 5], ["maintainers", 85, 5], ["license", 86, 5], ["platforms", 87, 5]], [["pname", 23, 3], ["version", 24, 3], ["format", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 55, 3], ["postInstall", 60, 3], ["postFixup", 65, 3], ["strictDeps", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false, gtk3: false, wrapGAppsHook3: false, glibcLocales: false, "gobject-introspection": false, gettext: false, pango: false, "gdk-pixbuf": false, librsvg: false, atk: false, libnotify: false, libappindicator: false, gst_all_1: false, makeWrapper: false, picotts: false, sox: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["maintainers", 85, 5], ["license", 86, 5], ["platforms", 87, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["format", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 55, 3], ["postInstall", 60, 3], ["postFixup", 65, 3], ["strictDeps", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const picotts = nix.arg($, "picotts");
   const sox = nix.arg($, "sox");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gSpeech",
       version: "0.13.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mothsart",
           repo: "gSpeech",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +62,7 @@ wrapProgram $out/bin/gspeech-cli --prefix PATH : ${nix.app(nix.sel(lib, "makeBin
 `),
       strictDeps: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Minimal GUI for the Text To Speech 'Svox Pico'. Read clipboard or selected text in different languages and manage it : pause, stop, replay",
         homepage: "https://github.com/mothsART/gSpeech",
         maintainers: nix.thunk(() => (() => {

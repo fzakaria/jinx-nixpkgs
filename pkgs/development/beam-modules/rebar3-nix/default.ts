@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["sha256", 13, 5]], [["description", 17, 5], ["license", 18, 5], ["homepage", 19, 5], ["maintainers", 20, 5]], [["name", 7, 3], ["version", 8, 3], ["src", 9, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, buildRebar3: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 17, 5], ["license", 18, 5], ["homepage", 19, 5], ["maintainers", 20, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 7, 3], ["version", 8, 3], ["src", 9, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +14,14 @@ export default nix.lambda((args) => (() => {
       const name = "rebar3_nix";
       const version = "0.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "erlang-nix",
           repo: name,
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "10ijc06qvv5hqv0qy3w7mbv9pshdb8bvy0f3phr1vd5hksbk731y",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "nix integration for rebar3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/erlang-nix/rebar3_nix",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { [nix.POS]: pos$3, name, version, src, meta };
+      return { [nix.POS]: $pos[2], name, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

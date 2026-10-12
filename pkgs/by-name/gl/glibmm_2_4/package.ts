@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["packageName", 47, 7], ["attrPath", 48, 7], ["versionPolicy", 49, 7], ["freeze", 50, 7]], [["updateScript", 46, 5]], [["description", 55, 5], ["homepage", 57, 5], ["license", 59, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["src", 21, 3], ["outputs", 26, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 38, 3], ["doCheck", 43, 3], ["passthru", 45, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gnum4: false, glib: false, libsigcxx_2_0: false, gnome: false, meson: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 47, 7], ["attrPath", 48, 7], ["versionPolicy", 49, 7], ["freeze", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 57, 5], ["license", 59, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["src", 21, 3], ["outputs", 26, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 38, 3], ["doCheck", 43, 3], ["passthru", 45, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "glibmm",
       version: "2.66.8",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/glibmm/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/glibmm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ZPEdO5WiTiqNQWbs/1GHMPeezCciLvQfr3x+A0D8kyk=",
         })))),
@@ -37,9 +33,9 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [glib, libsigcxx_2_0]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packageName: "glibmm",
             attrPath: "glibmm_2_4",
             versionPolicy: "odd-unstable",
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C++ interface to the GLib library",
         homepage: "https://gtkmm.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 41, 5], ["hash", 45, 5], ["extension", 46, 5], ["stripRoot", 47, 5], ["postFetch", 48, 5]], [["x86_64-linux", 59, 9], ["i686-linux", 60, 9]], [["description", 116, 5], ["homepage", 117, 5], ["sourceProvenance", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["platforms", 121, 5]], [["pname", 31, 3], ["version", 32, 3], ["dontStrip", 34, 3], ["src", 36, 3], ["sourceRoot", 54, 3], ["unpackCmd", 56, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 76, 3], ["propagatedBuildInputs", 80, 3], ["installPhase", 86, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, cups: false, autoPatchelfHook: false, python3Packages: false, region: true, withQtGui: true, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 41, 5], ["hash", 45, 5], ["extension", 46, 5], ["stripRoot", 47, 5], ["postFetch", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 59, 9], ["i686-linux", 60, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 116, 5], ["homepage", 117, 5], ["sourceProvenance", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["platforms", 121, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["dontStrip", 34, 3], ["src", 36, 3], ["sourceRoot", 54, 3], ["unpackCmd", 56, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 76, 3], ["propagatedBuildInputs", 80, 3], ["installPhase", 86, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.str`${kyodialog_version}-${date}`);
       const dontStrip = true;
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://www.kyoceradocumentsolutions.us/content/download-center-americas/us/drivers/drivers/KyoceraLinuxPackages_${date}_tar_gz.download.gz`),
             nix.thunk(() => nix.str`https://web.archive.org/web/20260107200228/https://www.kyoceradocumentsolutions.us/content/download-center-americas/us/drivers/drivers/KyoceraLinuxPackages_${date}_tar_gz.download.gz`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const sourceRoot = ".";
       const unpackCmd = nix.thunk(() => (() => {
-        const platforms = nix.thunk(() => ({ [nix.POS]: pos$2, "x86_64-linux": "amd64", "i686-linux": "i386" }));
+        const platforms = nix.thunk(() => ({ [nix.POS]: $pos[1], "x86_64-linux": "amd64", "i686-linux": "i386" }));
         const platform = nix.thunk(() => nix.selOr(platforms, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
         return nix.str`ar p "$src/Debian/${region}/kyodialog_${platform}/kyodialog_${kyodialog_version}-0_${platform}.deb" data.tar.gz | tar -xz
 `;
@@ -80,7 +77,7 @@ substituteInPlace $out/share/applications/kyodialog.desktop \\
   --replace Icon=/usr/share/kyocera/appicon_H.png Icon=$out/share/${pname}/icons/appicon_H.png
 `))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CUPS drivers for several Kyocera printers",
         homepage: "https://www.kyoceradocumentsolutions.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -92,7 +89,7 @@ substituteInPlace $out/share/applications/kyodialog.desktop \\
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         dontStrip,

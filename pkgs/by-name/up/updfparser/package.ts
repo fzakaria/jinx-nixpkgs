@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 13, 26], ["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["hash", 17, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["pname", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["src", 12, 3], ["makeFlags", 20, 3], ["installPhase", 25, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitea: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 13, 26], ["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["src", 12, 3], ["makeFlags", 20, 3], ["installPhase", 25, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitea = nix.arg($, "fetchFromGitea");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "updfparser",
       version: "0-unstable-2024-03-24",
       rev: "6060d123441a06df699eb275ae5ffdd50409b8f3",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: nix.thunk(() => nix.attr(finalAttrs, "rev")),
           domain: "forge.soutade.fr",
           owner: "soutade",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["BUILD_STATIC=1", "BUILD_SHARED=1"]),
       installPhase: "runHook preInstall\ninstall -Dt $out/include include/*.h\ninstall -Dt $out/lib libupdfparser.so\ninstall -Dt $out/lib libupdfparser.a\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Very simple PDF parser",
         homepage: "https://forge.soutade.fr/soutade/updfparser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

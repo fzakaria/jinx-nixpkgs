@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["NIX_CFLAGS_COMPILE", 25, 7]], [["description", 50, 5], ["mainProgram", 51, 5], ["longDescription", 52, 5], ["homepage", 62, 5], ["downloadPage", 63, 5], ["license", 64, 5], ["platforms", 65, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["patches", 21, 3], ["makeFlags", 23, 3], ["env", 25, 3], ["enableParallelBuilding", 31, 3], ["doCheck", 35, 3], ["checkTarget", 36, 3], ["installPhase", 38, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["mainProgram", 51, 5], ["longDescription", 52, 5], ["homepage", 62, 5], ["downloadPage", 63, 5], ["license", 64, 5], ["platforms", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["patches", 21, 3], ["makeFlags", 23, 3], ["env", 25, 3], ["enableParallelBuilding", 31, 3], ["doCheck", 35, 3], ["checkTarget", 36, 3], ["installPhase", 38, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "picoc",
       version: "2.1-unstable-2018-06-05",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zsaleeba",
           repo: "picoc",
           rev: "dc85a51e9211cfb644f0a85ea9546e15dc1141c3",
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./gcc15-fixes.patch")]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))))),
       })),
       enableParallelBuilding: true,
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "test",
       installPhase: "runHook preInstall\n\ninstall -Dm755 picoc $out/bin/picoc\n\nmkdir -p $out/include\ninstall -m644 *.h $out/include\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Very small C interpreter for scripting",
         mainProgram: "picoc",
         longDescription: "PicoC is a very small C interpreter for scripting. It was originally\nwritten as a script language for a UAV's on-board flight system. It's\nalso very suitable for other robotic, embedded and non-embedded\napplications. The core C source code is around 3500 lines of code. It's\nnot intended to be a complete implementation of ISO C but it has all the\nessentials. When compiled it only takes a few k of code space and is also\nvery sparing of data space. This means it can work well in small embedded\ndevices.\n",

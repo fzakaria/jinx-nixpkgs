@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 13, 3], ["paths", 15, 3], ["pathsToLink", 17, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["postBuild", 36, 3], ["meta", 115, 18]]]);
 const formals$1 = { args: { lib: false, buildEnv: false, makeWrapper: false, dconf: false, "hicolor-icon-theme": false, ibus: false, librsvg: false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 13, 3], ["paths", 15, 3], ["pathsToLink", 17, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["postBuild", 36, 3], ["meta", 115, 18]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const plugins = nix.argOr($, "plugins", () => []);
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.add("ibus-with-plugins-", nix.app(nix.sel(lib, "getVersion"), ibus))),
       paths: nix.thunk(() => nix.concat([ibus], plugins)),
       pathsToLink: nix.thunk(() => [

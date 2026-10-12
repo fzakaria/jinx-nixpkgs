@@ -2,27 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pacemaker.nix", [[["maintainers", 5, 5]], [["address", 13, 13], ["prefixLength", 14, 13]], [["addresses", 11, 41]], [["ipv4", 11, 36]], [["eth1", 11, 31]], [["interfaces", 11, 20]], [["nodeid", 22, 13], ["name", 23, 21], ["ring_addrs", 24, 13]], [["enable", 19, 11], ["clusterName", 20, 11], ["nodelist", 21, 11]], [["enable", 37, 28]], [["corosync", 18, 18], ["pacemaker", 37, 18]], [["source", 30, 11], ["mode", 34, 11]], [["corosync/authkey", 29, 25]], [["etc", 29, 21]], [["ExecStart", 42, 25]], [["description", 41, 11], ["serviceConfig", 42, 11]], [["ha-cat", 40, 26]], [["services", 40, 17]], [["networking", 11, 9], ["services", 18, 9], ["environment", 29, 9], ["systemd", 40, 9]], [["node1", 47, 7], ["node2", 48, 7], ["node3", 49, 7]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 54, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pacemaker.nix", [["maintainers", 5, 5]]);
-const pos$2 = nix.positions(here + "/pacemaker.nix", [["address", 13, 13], ["prefixLength", 14, 13]]);
-const pos$3 = nix.positions(here + "/pacemaker.nix", [["addresses", 11, 41]]);
-const pos$4 = nix.positions(here + "/pacemaker.nix", [["ipv4", 11, 36]]);
-const pos$5 = nix.positions(here + "/pacemaker.nix", [["eth1", 11, 31]]);
-const pos$6 = nix.positions(here + "/pacemaker.nix", [["interfaces", 11, 20]]);
-const pos$7 = nix.positions(here + "/pacemaker.nix", [["nodeid", 22, 13], ["name", 23, 21], ["ring_addrs", 24, 13]]);
-const pos$8 = nix.positions(here + "/pacemaker.nix", [["enable", 19, 11], ["clusterName", 20, 11], ["nodelist", 21, 11]]);
-const pos$9 = nix.positions(here + "/pacemaker.nix", [["enable", 37, 28]]);
-const pos$10 = nix.positions(here + "/pacemaker.nix", [["corosync", 18, 18], ["pacemaker", 37, 18]]);
-const pos$11 = nix.positions(here + "/pacemaker.nix", [["source", 30, 11], ["mode", 34, 11]]);
-const pos$12 = nix.positions(here + "/pacemaker.nix", [["corosync/authkey", 29, 25]]);
-const pos$13 = nix.positions(here + "/pacemaker.nix", [["etc", 29, 21]]);
-const pos$14 = nix.positions(here + "/pacemaker.nix", [["ExecStart", 42, 25]]);
-const pos$15 = nix.positions(here + "/pacemaker.nix", [["description", 41, 11], ["serviceConfig", 42, 11]]);
-const pos$16 = nix.positions(here + "/pacemaker.nix", [["ha-cat", 40, 26]]);
-const pos$17 = nix.positions(here + "/pacemaker.nix", [["services", 40, 17]]);
-const pos$18 = nix.positions(here + "/pacemaker.nix", [["networking", 11, 9], ["services", 18, 9], ["environment", 29, 9], ["systemd", 40, 9]]);
-const pos$19 = nix.positions(here + "/pacemaker.nix", [["node1", 47, 7], ["node2", 48, 7], ["node3", 49, 7]]);
-const pos$20 = nix.positions(here + "/pacemaker.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,24 +14,24 @@ export default nix.lambda((args) => (() => {
     const meta = nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "astro"))]),
       };
     })());
     const nodes = nix.thunk(() => (() => {
       const node = (i) => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 addresses: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     address: nix.thunk(() => nix.str`192.168.0.${nix.builtins.toString(i)}`),
                     prefixLength: 24n,
                   })),
@@ -60,13 +41,13 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           corosync: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             enable: true,
             clusterName: "zentralwerk-network",
             nodelist: nix.thunk(() => nix.app(nix.sel(lib, "imap"), (i_1) => (name_1) => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 nodeid: i_1,
                 name: name_1,
                 ring_addrs: nix.thunk(() => [
@@ -74,28 +55,28 @@ export default nix.lambda((args) => (() => {
                 ]),
               }), nix.thunk(() => nix.builtins.attrNames(nodes)))),
           })),
-          pacemaker: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+          pacemaker: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             "corosync/authkey": nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               source: nix.thunk(() => nix.builtins.toFile("authkey", "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest")),
               mode: "0400",
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             "ha-cat": nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               description: "Highly available netcat",
               serviceConfig: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "netcat")}/bin/nc -l discard`),
               })),
             })),
@@ -103,7 +84,7 @@ export default nix.lambda((args) => (() => {
         })),
       });
       return {
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         node1: nix.thunk(() => nix.app(node, 1n)),
         node2: nix.thunk(() => nix.app(node, 2n)),
         node3: nix.thunk(() => nix.app(node, 3n)),
@@ -158,7 +139,7 @@ while True:
 next_node.log("Service migrated here!")
 `;
     })());
-    return { [nix.POS]: pos$20, name, meta, nodes, testScript };
+    return { [nix.POS]: $pos[19], name, meta, nodes, testScript };
   })();
 })(), formals$1);
 //# sourceMappingURL=pacemaker.ts.map

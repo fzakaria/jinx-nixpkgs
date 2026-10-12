@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 44, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch2: false, "pyexcel-io": false, odfpy: false, pyexcel: false, "pyexcel-xls": false, psutil: false, pytestCheckHook: false, "pytest-cov-stub": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 44, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyexcel",
           repo: "pyexcel-ods",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "nose-to-pytest.patch",
             url: "https://github.com/pyexcel/pyexcel-ods/compare/661d4f0b484ed281128c72e1a2701e2d33fc1879...838b410e800a86c147644568aaa8b2c005d13491.diff?full_index=1",
             hash: "sha256-voBdAjSJIsLEn7Tr44aagJy1FU9vWnBs1bM48zYxujA=",
@@ -45,14 +42,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pyexcel_io, odfpy]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub, pyexcel, pyexcel_xls, psutil]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Plug-in to pyexcel providing the capbility to read, manipulate and write data in ods formats using odfpy",
         homepage: "http://docs.pyexcel.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["changelog", 52, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 38, 3], ["preCheck", 45, 3], ["__darwinAllowLocalNetworking", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, click: false, robotframework: false, "robotframework-pythonlibcore": false, selenium: false, approvaltests: false, "pytest-mockito": false, pytestCheckHook: false, robotstatuschecker: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 52, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 38, 3], ["preCheck", 45, 3], ["__darwinAllowLocalNetworking", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const robotstatuschecker = nix.arg($, "robotstatuschecker");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "robotframework-seleniumlibrary",
       version: "6.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "robotframework",
           repo: "SeleniumLibrary",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "mkdir utest/output_dir\n",
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/robotframework/SeleniumLibrary/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/SeleniumLibrary-${nix.sel(finalAttrs, "version")}.rst`),
         description: "Web testing library for Robot Framework",
         homepage: "https://github.com/robotframework/SeleniumLibrary",

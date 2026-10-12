@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["java", 16, 37]], [["jre", 17, 37]], [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5], ["leaveDotGit", 28, 5], ["postFetch", 29, 5]], [["gradle", 38, 49]], [["pname", 53, 26], ["data", 54, 5]], [["JAVA_TOOL_OPTIONS", 83, 7]], [["updateScript", 109, 12]], [["description", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["platforms", 115, 5], ["maintainers", 116, 5], ["mainProgram", 117, 5], ["sourceProvenance", 118, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 37, 3], ["nativeBuildInputs", 44, 3], ["mitmCache", 52, 3], ["doCheck", 58, 3], ["gradleBuildTask", 62, 3], ["gradleFlags", 64, 3], ["preBuild", 79, 3], ["env", 83, 3], ["__darwinAllowLocalNetworking", 84, 3], ["preCheck", 86, 3], ["installPhase", 91, 3], ["passthru", 109, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gradle_9: false, "temurin-bin-21": false, kotlin: false, "nix-update-script": false, replaceVars: false, makeWrapper: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["java", 16, 37]]);
-const pos$2 = nix.positions(here + "/package.nix", [["jre", 17, 37]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5], ["leaveDotGit", 28, 5], ["postFetch", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["gradle", 38, 49]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 53, 26], ["data", 54, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["JAVA_TOOL_OPTIONS", 83, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 109, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["platforms", 115, 5], ["maintainers", 116, 5], ["mainProgram", 117, 5], ["sourceProvenance", 118, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 37, 3], ["nativeBuildInputs", 44, 3], ["mitmCache", 52, 3], ["doCheck", 58, 3], ["gradleBuildTask", 62, 3], ["gradleFlags", 64, 3], ["preBuild", 79, 3], ["env", 83, 3], ["__darwinAllowLocalNetworking", 84, 3], ["preCheck", 86, 3], ["installPhase", 91, 3], ["passthru", 109, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const jdk = temurin_bin_21;
   const gradle = gradle_9;
-  const gradleOverlay = nix.thunk(() => nix.app(nix.sel(gradle, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, java: jdk }))));
-  const kotlinOverlay = nix.thunk(() => nix.app(nix.sel(kotlin, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, jre: jdk }))));
+  const gradleOverlay = nix.thunk(() => nix.app(nix.sel(gradle, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], java: jdk }))));
+  const kotlinOverlay = nix.thunk(() => nix.app(nix.sel(kotlin, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], jre: jdk }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "pkl",
       version: "0.31.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "apple",
           repo: "pkl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,14 +35,14 @@ export default nix.lambda((args) => (() => {
           postFetch: "pushd $out\ngit rev-parse HEAD | tr -d '\\n' > .commit-hash\nrm -rf .git\npopd\n",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix_kotlin_classpath.patch"), nix.thunk(() => ({ [nix.POS]: pos$4, gradle: nix.thunk(() => nix.sel(gradle, "unwrapped")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix_kotlin_classpath.patch"), nix.thunk(() => ({ [nix.POS]: $pos[3], gradle: nix.thunk(() => nix.sel(gradle, "unwrapped")) })))),
         nix.path(here, "./disable_gradle_codegen_tests.patch"),
         nix.path(here, "./disable_bad_tests.patch"),
         nix.path(here, "./repair_org.msgpack-msgpack-core_lockfiles.patch"),
       ]),
       nativeBuildInputs: nix.thunk(() => [gradleOverlay, jdk, kotlinOverlay, makeWrapper, installShellFiles]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -67,7 +59,7 @@ export default nix.lambda((args) => (() => {
         "-Porg.gradle.java.installations.auto-detect=false",
       ]),
       preBuild: "gradleFlagsArray+=(-DcommitId=$(cat .commit-hash))\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$6, JAVA_TOOL_OPTIONS: "-Dfile.encoding=utf-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[5], JAVA_TOOL_OPTIONS: "-Dfile.encoding=utf-8" })),
       __darwinAllowLocalNetworking: true,
       preCheck: "export LANG=C.UTF-8\nexport LC_ALL=C.UTF-8\n",
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -82,11 +74,11 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Configuration-as-code language with rich validation and tooling",
         homepage: "https://pkl-lang.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 41, 5], ["hash", 42, 5]], [["description", 131, 5], ["longDescription", 132, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["platforms", 153, 5], ["maintainers", 154, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 56, 3], ["pythonPath", 77, 3], ["patches", 85, 3], ["preBuild", 90, 3], ["sconsFlags", 99, 3], ["preCheck", 109, 3], ["preInstall", 114, 3], ["doInstallCheck", 118, 3], ["installTargets", 120, 3], ["postFixup", 126, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, scons: false, "pkg-config": false, dbus: false, libusb1: false, ncurses: false, kppsSupport: true, "pps-tools": false, python3Packages: false, guiSupport: true, "dbus-glib": false, libx11: false, libxt: false, libxpm: false, libxaw: false, libxext: false, "gobject-introspection": false, pango: false, "gdk-pixbuf": false, atk: false, wrapGAppsHook3: false, gpsdUser: true, gpsdGroup: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 131, 5], ["longDescription", 132, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["platforms", 153, 5], ["maintainers", 154, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 56, 3], ["pythonPath", 77, 3], ["patches", 85, 3], ["preBuild", 90, 3], ["sconsFlags", 99, 3], ["preCheck", 109, 3], ["preInstall", 114, 3], ["doInstallCheck", 118, 3], ["installTargets", 120, 3], ["postFixup", 126, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const gpsdUser = nix.argOr($, "gpsdUser", () => "gpsd");
   const gpsdGroup = nix.argOr($, "gpsdGroup", () => "dialout");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gpsd",
       version: "3.27.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/${nix.sel(finalAttrs, "pname")}/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-QJhz9QSEYu8axBOlGrNcqotQsxvmKzNHvuHMKZTnxkk=",
         })))),
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["install", "udev-install"]),
       postFixup: "wrapPythonProgramsIn $out/bin \"$out ${pythonPath[*]}\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GPS service daemon",
         longDescription: "gpsd is a service daemon that monitors one or more GPSes or AIS\nreceivers attached to a host computer through serial or USB ports,\nmaking all data on the location/course/velocity of the sensors\navailable to be queried on TCP port 2947 of the host computer. With\ngpsd, multiple location-aware client applications (such as navigational\nand wardriving software) can share access to receivers without\ncontention or loss of data. Also, gpsd responds to queries with a\nformat that is substantially easier to parse than the NMEA 0183 emitted\nby most GPSes. The gpsd distribution includes a linkable C service\nlibrary, a C++ wrapper class, and a Python module that developers of\ngpsd-aware applications can use to encapsulate all communication with\ngpsd. Third-party client bindings for Java and Perl also exist.\n\nBesides gpsd itself, the project provides auxiliary tools for\ndiagnostic monitoring and profiling of receivers and feeding\nlocation-aware applications GPS/AIS logs for diagnostic purposes.\n",
         homepage: "https://gpsd.gitlab.io/gpsd/index.html",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["command", 36, 9], ["package", 37, 9]], [["loki", 34, 28], ["version", 35, 7]], [["tests", 33, 5], ["updateScript", 41, 5]], [["description", 59, 5], ["mainProgram", 60, 5], ["license", 61, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["maintainers", 67, 5]], [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["passthru", 32, 3], ["ldflags", 44, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, nixosTests: false, testers: false, "grafana-loki": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["command", 36, 9], ["package", 37, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["loki", 34, 28], ["version", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 33, 5], ["updateScript", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["license", 61, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["maintainers", 67, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["passthru", 32, 3], ["ldflags", 44, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const grafana_loki = nix.arg($, "grafana-loki");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "3.7.8",
       pname: "grafana-loki",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grafana",
           repo: "loki",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +28,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: null,
       subPackages: nix.thunk(() => ["cmd/loki", "cmd/loki-canary", "cmd/logcli", "cmd/lokitool"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           loki: nix.thunk(() => nix.attr(nixosTests, "loki")),
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, command: "loki --version", package: grafana_loki })))),
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], command: "loki --version", package: grafana_loki })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Like Prometheus, but for logs",
         mainProgram: "loki",
         license: nix.thunk(() => (() => {

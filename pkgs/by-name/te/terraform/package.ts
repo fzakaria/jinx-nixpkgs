@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 7], ["repo", 22, 7], ["rev", 23, 7], ["hash", 24, 7]], [["CGO_ENABLED", 35, 9]], [["terraform_plugins_test", 75, 25]], [["plugins", 74, 15], ["tests", 75, 7]], [["description", 79, 7], ["homepage", 80, 7], ["changelog", 81, 7], ["license", 82, 7], ["maintainers", 83, 7], ["mainProgram", 92, 7]], [["pname", 17, 5], ["version", 18, 5], ["src", 20, 5], ["vendorHash", 27, 5], ["patches", 29, 5], ["env", 35, 5], ["ldflags", 37, 5], ["postPatch", 43, 5], ["postConfigure", 53, 5], ["nativeBuildInputs", 59, 5], ["postInstall", 61, 5], ["preCheck", 66, 5], ["subPackages", 71, 5], ["passthru", 73, 5], ["meta", 78, 5]], [["buildInputs", 102, 51]], [["withPlugins", 127, 13], ["full", 128, 13], ["overrideDerivation", 150, 13], ["overrideAttrs", 151, 13], ["override", 152, 13]], [["passthru", 159, 13]], [["meta", 164, 35], ["pname", 164, 40], ["version", 164, 46], ["nativeBuildInputs", 165, 15], ["passthru", 171, 15], ["buildCommand", 173, 15]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildGo127Module: false, fetchFromGitHub: false, makeWrapper: false, coreutils: false, runCommand: false, runtimeShell: false, writeText: false, "terraform-providers": false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 7], ["repo", 22, 7], ["rev", 23, 7], ["hash", 24, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 35, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["terraform_plugins_test", 75, 25]]);
-const pos$4 = nix.positions(here + "/package.nix", [["plugins", 74, 15], ["tests", 75, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 79, 7], ["homepage", 80, 7], ["changelog", 81, 7], ["license", 82, 7], ["maintainers", 83, 7], ["mainProgram", 92, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 5], ["version", 18, 5], ["src", 20, 5], ["vendorHash", 27, 5], ["patches", 29, 5], ["env", 35, 5], ["ldflags", 37, 5], ["postPatch", 43, 5], ["postConfigure", 53, 5], ["nativeBuildInputs", 59, 5], ["postInstall", 61, 5], ["preCheck", 66, 5], ["subPackages", 71, 5], ["passthru", 73, 5], ["meta", 78, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["buildInputs", 102, 51]]);
-const pos$8 = nix.positions(here + "/package.nix", [["withPlugins", 127, 13], ["full", 128, 13], ["overrideDerivation", 150, 13], ["overrideAttrs", 151, 13], ["override", 152, 13]]);
-const pos$9 = nix.positions(here + "/package.nix", [["passthru", 159, 13]]);
-const pos$10 = nix.positions(here + "/package.nix", [["meta", 164, 35], ["pname", 164, 40], ["version", 164, 46], ["nativeBuildInputs", 165, 15], ["passthru", 171, 15], ["buildCommand", 173, 15]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "terraform";
       const version = "1.16.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hashicorp",
           repo: "terraform",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-1NR5xhfZrHvG8VUwAJMgKCRvfs2AA8y5KPB/IYQiQB0=";
       const patches = nix.thunk(() => [nix.path(here, "./provider-path-0_15.patch")]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CGO_ENABLED: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "1" : "0")),
       }));
       const ldflags = nix.thunk(() => ["-s", "-w", "-X 'github.com/hashicorp/terraform/version.dev=no'"]);
@@ -54,12 +45,12 @@ substituteInPlace vendor/github.com/bgentry/speakeasy/speakeasy_unix.go \\
       const preCheck = "export HOME=$TMPDIR\nexport TF_SKIP_REMOTE_TESTS=1\n";
       const subPackages = nix.thunk(() => ["."]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         plugins: plugins,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, terraform_plugins_test: terraform_plugins_test })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], terraform_plugins_test: terraform_plugins_test })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tool for building, changing, and versioning infrastructure",
         homepage: "https://www.terraform.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/hashicorp/terraform/blob/v${version}/CHANGELOG.md`),
@@ -79,7 +70,7 @@ substituteInPlace vendor/github.com/bgentry/speakeasy/speakeasy_unix.go \\
         mainProgram: "terraform",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,
@@ -100,7 +91,7 @@ substituteInPlace vendor/github.com/bgentry/speakeasy/speakeasy_unix.go \\
   const terraform_plugins_test = nix.thunk(() => (() => {
     const mainTf = nix.thunk(() => nix.app(writeText, "main.tf", "resource \"random_id\" \"test\" {}\n"));
     const terraform = nix.thunk(() => nix.app(nix.sel(nix.app(pluggable, package$), "withPlugins"), (p) => [nix.thunk(() => nix.sel(p, "hashicorp_random"))]));
-    const test = nix.thunk(() => nix.app(runCommand, "terraform-plugin-test", nix.thunk(() => ({ [nix.POS]: pos$7, buildInputs: nix.thunk(() => [terraform]) })), nix.thunk(() => nix.str`set -e
+    const test = nix.thunk(() => nix.app(runCommand, "terraform-plugin-test", nix.thunk(() => ({ [nix.POS]: $pos[6], buildInputs: nix.thunk(() => [terraform]) })), nix.thunk(() => nix.str`set -e
 # make it fail outside of sandbox
 export HTTP_PROXY=http://127.0.0.1:0 HTTPS_PROXY=https://127.0.0.1:0
 cp ${mainTf} main.tf
@@ -114,7 +105,7 @@ touch $out
       const actualPlugins = nix.thunk(() => nix.app(plugins_1, nix.thunk(() => nix.sel(terraform, "plugins"))));
       const wrapperInputs = nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "catAttrs"), "propagatedBuildInputs", nix.thunk(() => nix.builtins.filter((x) => !nix.eq(x, null), actualPlugins))))))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         withPlugins: (newplugins) => nix.app(withPlugins, (x) => nix.concat(nix.app(newplugins, x), actualPlugins)),
         full: nix.thunk(() => nix.app(withPlugins, (p) => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.sel(lib, "isDerivation")), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(p, "actualProviders"))))))),
         overrideDerivation: (f) => nix.app(nix.sel(nix.app(pluggable, nix.thunk(() => nix.app(nix.sel(terraform, "overrideDerivation"), f))), "withPlugins"), plugins_1),
@@ -122,10 +113,10 @@ touch $out
         override: (x) => nix.app(nix.sel(nix.app(pluggable, nix.thunk(() => nix.app(nix.sel(terraform, "override"), x))), "withPlugins"), plugins_1),
       }));
       return (nix.asBool(nix.eq(actualPlugins, [])) ? nix.app(nix.sel(terraform, "overrideAttrs"), (orig) => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           passthru: nix.thunk(() => nix.update(nix.sel(orig, "passthru"), passthru)),
         })) : nix.app(nix.sel(lib, "appendToName"), "with-plugins", nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             meta: nix.thunk(() => nix.attr(terraform, "meta")),
             pname: nix.thunk(() => nix.attr(terraform, "pname")),
             version: nix.thunk(() => nix.attr(terraform, "version")),

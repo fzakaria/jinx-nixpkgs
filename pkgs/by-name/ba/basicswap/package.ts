@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 7], ["repo", 18, 7], ["rev", 19, 7], ["hash", 20, 7]], [["src", 16, 5], ["configureFlags", 22, 5]], [["secp256k1", 32, 7]], [["owner", 37, 11], ["repo", 38, 11], ["tag", 39, 11], ["hash", 40, 11]], [["version", 35, 9], ["src", 36, 9], ["patches", 42, 9]], [["particl", 46, 7], ["bitcoin", 47, 7], ["namecoin", 48, 7], ["monero", 49, 7], ["wownero", 50, 7]], [["owner", 61, 5], ["repo", 62, 5], ["tag", 63, 5], ["hash", 64, 5]], [["bindir", 95, 12]], [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5]], [["pname", 56, 3], ["version", 57, 3], ["pyproject", 58, 3], ["src", 60, 3], ["postPatch", 67, 3], ["build-system", 74, 3], ["dependencies", 78, 3], ["postInstall", 89, 3], ["doCheck", 93, 3], ["passthru", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, linkFarm: false, secp256k1: false, "particl-core": false, bitcoind: false, namecoind: false, "monero-cli": false, wownero: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 7], ["repo", 18, 7], ["rev", 19, 7], ["hash", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 16, 5], ["configureFlags", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["secp256k1", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 37, 11], ["repo", 38, 11], ["tag", 39, 11], ["hash", 40, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 35, 9], ["src", 36, 9], ["patches", 42, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["particl", 46, 7], ["bitcoin", 47, 7], ["namecoin", 48, 7], ["monero", 49, 7], ["wownero", 50, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 61, 5], ["repo", 62, 5], ["tag", 63, 5], ["hash", 64, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["bindir", 95, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 56, 3], ["version", 57, 3], ["pyproject", 58, 3], ["src", 60, 3], ["postPatch", 67, 3], ["build-system", 74, 3], ["dependencies", 78, 3], ["postInstall", 89, 3], ["doCheck", 93, 3], ["passthru", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,9 +18,9 @@ export default nix.lambda((args) => (() => {
   const monero_cli = nix.arg($, "monero-cli");
   const wownero = nix.arg($, "wownero");
   const secp256k1_basicswap = nix.thunk(() => nix.app(nix.sel(secp256k1, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "basicswap",
           repo: "secp256k1",
           rev: "fd8b63ccf8bcb48358a42c456f34e2488a55a688",
@@ -43,11 +34,11 @@ export default nix.lambda((args) => (() => {
         "--enable-module-ecdsaotves",
       ])),
     })));
-  const coincurve_basicswap = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(python3Packages, "coincurve", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, secp256k1: secp256k1_basicswap }))), "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+  const coincurve_basicswap = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(python3Packages, "coincurve", "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], secp256k1: secp256k1_basicswap }))), "overrideAttrs"), nix.thunk(() => ({
+      [nix.POS]: $pos[4],
       version: "21.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "basicswap",
           repo: "coincurve",
           tag: "basicswap_v0.3",
@@ -56,7 +47,7 @@ export default nix.lambda((args) => (() => {
       patches: [],
     }))));
   const bindir = nix.thunk(() => nix.app(linkFarm, "bindir", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (p) => nix.str`${nix.app(nix.sel(lib, "getBin"), p)}/bin`, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         particl: particl_core,
         bitcoin: bitcoind,
         namecoin: namecoind,
@@ -64,12 +55,12 @@ export default nix.lambda((args) => (() => {
         wownero: wownero,
       }))))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "basicswap",
       version: "0.17.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "basicswap",
           repo: "basicswap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -99,9 +90,9 @@ substituteInPlace basicswap/bin/prepare.py \\
       })()),
       postInstall: "install -Dm755 scripts/createoffers.py $out/bin/basicswap-createoffers\n",
       doCheck: false,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$8, bindir: bindir })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[7], bindir: bindir })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Basic Atomic Swap Proof of Concept",
         homepage: "https://basicswapdex.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

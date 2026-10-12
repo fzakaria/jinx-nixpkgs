@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 16, 5], ["stripRoot", 17, 5]], [["NIX_CFLAGS_COMPILE", 24, 7]], [["homepage", 43, 5], ["description", 44, 5], ["mainProgram", 45, 5], ["license", 46, 5], ["platforms", 47, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 20, 3], ["hardeningDisable", 22, 3], ["env", 24, 3], ["postPatch", 26, 3], ["buildPhase", 31, 3], ["installPhase", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, libtommath: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 16, 5], ["stripRoot", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["mainProgram", 45, 5], ["license", 46, 5], ["platforms", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 20, 3], ["hardeningDisable", 22, 3], ["env", 24, 3], ["postPatch", 26, 3], ["buildPhase", 31, 3], ["installPhase", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const libtommath = nix.arg($, "libtommath");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "convertlit",
       version: "1.8",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.convertlit.com/convertlit${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}src.zip`),
           sha256: "182nsin7qscgbw2h92m0zadh3h8q410h5cza6v486yjfvla3dxjx",
           stripRoot: false,
@@ -27,14 +24,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libtommath]),
       hardeningDisable: nix.thunk(() => ["format"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       postPatch: "substituteInPlace clit18/Makefile --replace gcc \\$\\(CC\\)\nsubstituteInPlace clit18/Makefile --replace ../libtommath-0.30/libtommath.a -ltommath\n",
       buildPhase: "cd lib\nmake\ncd ../clit18\nmake\n",
       installPhase: "install -Dm755 clit $out/bin/clit\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.convertlit.com/",
         description: "Tool for converting Microsoft Reader ebooks to more open formats",
         mainProgram: "clit",

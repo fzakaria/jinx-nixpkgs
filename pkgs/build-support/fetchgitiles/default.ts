@@ -2,11 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 30, 12]], [["name", 27, 15], ["url", 28, 7], ["stripRoot", 29, 7], ["meta", 30, 7]], [["rev", 39, 13], ["tag", 39, 17]]]);
 const formals$1 = { args: { fetchzip: false, repoRevToNameMaybe: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { url: false, rev: true, tag: true, name: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 30, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 27, 15], ["url", 28, 7], ["stripRoot", 29, 7], ["meta", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev", 39, 13], ["tag", 39, 17]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
       nix.assert_((nix.asBool(nix.app(nix.sel(lib, "xor"), nix.thunk(() => nix.eq(tag, null)), nix.thunk(() => nix.eq(rev, null)))) || nix.asBool(nix.builtins.throw("fetchFromGitiles requires one of either `rev` or `tag` to be provided (not both)."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/fetchgitiles/default.nix:16:3");
       const realrev = nix.thunk(() => (nix.asBool(!nix.eq(tag, null)) ? nix.add("refs/tags/", tag) : nix.force(rev)));
       return nix.update(nix.app(fetchzip, nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: name,
           url: nix.thunk(() => nix.str`${url}/+archive/${realrev}.tar.gz`),
           stripRoot: false,
-          meta: nix.thunk(() => ({ [nix.POS]: pos$1, homepage: url })),
-        }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["url", "tag", "rev"]))))), { [nix.POS]: pos$3, rev: rev, tag: tag });
+          meta: nix.thunk(() => ({ [nix.POS]: $pos[0], homepage: url })),
+        }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["url", "tag", "rev"]))))), { [nix.POS]: $pos[2], rev: rev, tag: tag });
     })(), formals$2));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

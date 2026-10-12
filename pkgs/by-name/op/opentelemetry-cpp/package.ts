@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["url", 46, 7], ["hash", 47, 7]], [["enableHttp", 117, 7], ["enableGrpc", 118, 7], ["enablePrometheus", 119, 7], ["enableElasticSearch", 120, 7], ["enableZipkin", 121, 7]], [["full", 116, 5]], [["updateScript", 108, 12], ["opentelemetry-proto", 111, 12], ["tests", 113, 12]], [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["maintainers", 129, 5], ["platforms", 133, 5], ["broken", 135, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 54, 3], ["propagatedBuildInputs", 59, 3], ["doCheck", 68, 3], ["checkInputs", 70, 3], ["strictDeps", 74, 3], ["cmakeFlags", 76, 3], ["outputs", 91, 3], ["postInstall", 103, 3], ["passthru", 108, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, cmake: false, gtest: false, protobuf: false, curl: false, grpc: false, "prometheus-cpp": false, nlohmann_json: false, "nix-update-script": false, cxxStandard: true, enableHttp: true, enableGrpc: true, enablePrometheus: true, enableElasticSearch: true, enableZipkin: true, "opentelemetry-cpp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 46, 7], ["hash", 47, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["enableHttp", 117, 7], ["enableGrpc", 118, 7], ["enablePrometheus", 119, 7], ["enableElasticSearch", 120, 7], ["enableZipkin", 121, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["full", 116, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 108, 12], ["opentelemetry-proto", 111, 12], ["tests", 113, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["maintainers", 129, 5], ["platforms", 133, 5], ["broken", 135, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 54, 3], ["propagatedBuildInputs", 59, 3], ["doCheck", 68, 3], ["checkInputs", 70, 3], ["strictDeps", 74, 3], ["cmakeFlags", 76, 3], ["outputs", 91, 3], ["postInstall", 103, 3], ["passthru", 108, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const enableZipkin = nix.argOr($, "enableZipkin", () => false);
   const opentelemetry_cpp = nix.arg($, "opentelemetry-cpp");
   const opentelemetry_proto = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "open-telemetry",
       repo: "opentelemetry-proto",
       rev: "v1.11.0",
       hash: "sha256-1s94AS5+bPD0/UKbI/Ox+nSZe4PGLkinUcItITVgEiQ=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "opentelemetry-cpp",
       version: "1.29.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "open-telemetry",
           repo: "opentelemetry-cpp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +47,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => nix.concat([
         nix.path(here, "./0001-Disable-tests-requiring-network-access.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/open-telemetry/opentelemetry-cpp/commit/e62f627ccb220e9c72eaebf32b246ec0bf98d60f.patch?full_index=1",
             hash: "sha256-YCg0kHP8QW9FFivNWYqJvwKLVUvY+grTsev5nJY6xjY=",
           })))),
@@ -81,13 +74,13 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       postInstall: "substituteInPlace $out/lib/cmake/opentelemetry-cpp/opentelemetry-cpp*-target.cmake \\\n  --replace-quiet \"\\${_IMPORT_PREFIX}/include\" \"$dev/include\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         "opentelemetry-proto": opentelemetry_proto,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           full: nix.thunk(() => nix.app(nix.sel(opentelemetry_cpp, "override"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enableHttp: true,
               enableGrpc: true,
               enablePrometheus: true,
@@ -97,7 +90,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "OpenTelemetry C++ Client Library",
         homepage: "https://github.com/open-telemetry/opentelemetry-cpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

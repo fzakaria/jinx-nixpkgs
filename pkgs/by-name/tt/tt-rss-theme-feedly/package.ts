@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["tt-rss", 28, 36]], [["tests", 28, 5]], [["description", 32, 5], ["license", 33, 5], ["homepage", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontBuild", 19, 3], ["installPhase", 21, 3], ["passthru", 27, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, nixosTests: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tt-rss", 28, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 32, 5], ["license", 33, 5], ["homepage", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontBuild", 19, 3], ["installPhase", 21, 3], ["passthru", 27, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tt-rss-theme-feedly",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "levito",
           repo: "tt-rss-feedly-theme",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,11 +25,14 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "mkdir $out\n\ncp -ra feedly *.css $out\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "tt-rss": nix.thunk(() => nix.attr(nixosTests, "tt-rss")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          "tt-rss": nix.thunk(() => nix.attr(nixosTests, "tt-rss")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Feedly theme for Tiny Tiny RSS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/levito/tt-rss-feedly-theme",

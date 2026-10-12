@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["pnpm", 37, 13], ["fetcherVersion", 38, 5], ["hash", 39, 5]], [["NODE_ENV", 43, 5], ["MOONLIGHT_BRANCH", 44, 5], ["MOONLIGHT_VERSION", 45, 5]], [["updateScript", 69, 5], ["tests", 70, 5]], [["description", 76, 5], ["longDescription", 77, 5], ["homepage", 82, 5], ["downloadPage", 83, 5], ["changelog", 84, 5], ["license", 86, 5], ["maintainers", 87, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["pnpmDeps", 35, 3], ["env", 42, 3], ["patches", 48, 3], ["buildPhase", 52, 3], ["installPhase", 60, 3], ["passthru", 68, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, nodejs: false, fetchFromGitHub: false, "nix-update-script": false, discord: false, "discord-ptb": false, "discord-canary": false, "discord-development": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["pnpm", 37, 13], ["fetcherVersion", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NODE_ENV", 43, 5], ["MOONLIGHT_BRANCH", 44, 5], ["MOONLIGHT_VERSION", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 69, 5], ["tests", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 76, 5], ["longDescription", 77, 5], ["homepage", 82, 5], ["downloadPage", 83, 5], ["changelog", 84, 5], ["license", 86, 5], ["maintainers", 87, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["pnpmDeps", 35, 3], ["env", 42, 3], ["patches", 48, 3], ["buildPhase", 52, 3], ["installPhase", 60, 3], ["passthru", 68, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const discord_development = nix.arg($, "discord-development");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "moonlight",
       version: "2026.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "moonlight-mod",
           repo: "moonlight",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-g1wlpbUlGwE3Chrry89gJX2+3+jY/jyXYwiAWAfoHlA=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NODE_ENV: "production",
         MOONLIGHT_BRANCH: "stable",
         MOONLIGHT_VERSION: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")} (nixpkgs)`),
@@ -56,12 +51,12 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npnpm run build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ncp -r dist $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs'"), nix.thunk(() => [discord, discord_ptb, discord_canary, discord_development]), (p) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(p, "pname")), nix.thunk(() => nix.sel(p, "tests", "withMoonlight"))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Discord client modification, focused on enhancing user and developer experience",
         longDescription: "Moonlight is a ***passion project***—yet another Discord client mod—focused on providing a decent user\nand developer experience. Heavily inspired by hh3 (a private client mod) and the projects before it, namely EndPwn.\nAll core code is original or used with permission from their respective authors where not copyleft.\n",
         homepage: "https://moonlight-mod.github.io",

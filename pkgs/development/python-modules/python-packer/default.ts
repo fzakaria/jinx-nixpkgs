@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["sha256", 16, 5]], [["url", 20, 5], ["excludes", 21, 5], ["sha256", 22, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["propagatedBuildInputs", 25, 3], ["doCheck", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchpatch: false, sh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 20, 5], ["excludes", 21, 5], ["sha256", 22, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["propagatedBuildInputs", 25, 3], ["doCheck", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "fd363dae9bd2efd447739bbf7a4f29c1e4741596ae7b02d252fe525b2b4176e7",
         }))));
       const patches = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`${nix.sel(meta, "homepage")}/commit/de3421bf13bf7c3ec11fe0a381f0944e102b1d97.patch`),
           excludes: nix.thunk(() => ["dev-requirements.txt"]),
           sha256: "0rgmkyn7i6y1xs8m75dpl8hq7j2ns2s3dvp7kv9j4zwic93rrlsc",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [sh]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Interface for packer.io",
         homepage: "https://github.com/nir0s/python-packer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

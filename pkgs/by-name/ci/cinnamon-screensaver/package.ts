@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["homepage", 110, 5], ["description", 111, 5], ["license", 112, 5], ["platforms", 116, 5], ["teams", 117, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 62, 3], ["postPatch", 89, 3], ["preFixup", 97, 3], ["postFixup", 104, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, meson: false, ninja: false, glib: false, dbus: false, gettext: false, "cinnamon-desktop": false, cinnamon: false, intltool: false, libxslt: false, gtk3: false, libgnomekbd: false, caribou: false, libtool: false, wrapGAppsHook3: false, "gobject-introspection": false, python3: false, pam: false, cairo: false, xdotool: false, libxrandr: false, libxinerama: false, libxext: false, libx11: false, "iso-flags-png-320x240": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 110, 5], ["description", 111, 5], ["license", 112, 5], ["platforms", 116, 5], ["teams", 117, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 62, 3], ["postPatch", 89, 3], ["preFixup", 97, 3], ["postFixup", 104, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const iso_flags_png_320x240 = nix.arg($, "iso-flags-png-320x240");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cinnamon-screensaver",
       version: "6.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "cinnamon-screensaver",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -98,7 +96,7 @@ gappsWrapperArgs+=(
 `),
       postFixup: "# Shared objects can't be wrapped.\nmv $out/libexec/cinnamon-screensaver/{.libcscreensaver.so-wrapped,libcscreensaver.so}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/linuxmint/cinnamon-screensaver",
         description: "Cinnamon screen locker and screensaver program",
         license: nix.thunk(() => [

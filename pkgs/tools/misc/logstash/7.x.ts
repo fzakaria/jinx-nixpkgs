@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/7.x.nix", [[["x86_64-linux", 20, 9], ["aarch64-linux", 21, 9]], [["x86_64-linux", 25, 9], ["aarch64-linux", 26, 9]], [["url", 33, 7], ["hash", 34, 7]], [["description", 67, 7], ["homepage", 68, 7], ["sourceProvenance", 69, 7], ["license", 74, 7], ["platforms", 75, 7], ["maintainers", 76, 7]], [["elk", 83, 9]], [["tests", 80, 14]], [["version", 29, 5], ["pname", 30, 5], ["src", 32, 5], ["dontBuild", 37, 5], ["dontPatchELF", 38, 5], ["dontStrip", 39, 5], ["dontPatchShebangs", 40, 5], ["nativeBuildInputs", 42, 5], ["buildInputs", 46, 5], ["installPhase", 50, 5], ["meta", 66, 5], ["passthru", 80, 5]]]);
 const formals$1 = { args: { config: false, elk7Version: false, enableUnfree: true, lib: false, stdenv: false, fetchurl: false, makeWrapper: false, nixosTests: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/7.x.nix", [["x86_64-linux", 20, 9], ["aarch64-linux", 21, 9]]);
-const pos$2 = nix.positions(here + "/7.x.nix", [["x86_64-linux", 25, 9], ["aarch64-linux", 26, 9]]);
-const pos$3 = nix.positions(here + "/7.x.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$4 = nix.positions(here + "/7.x.nix", [["description", 67, 7], ["homepage", 68, 7], ["sourceProvenance", 69, 7], ["license", 74, 7], ["platforms", 75, 7], ["maintainers", 76, 7]]);
-const pos$5 = nix.positions(here + "/7.x.nix", [["elk", 83, 9]]);
-const pos$6 = nix.positions(here + "/7.x.nix", [["tests", 80, 14]]);
-const pos$7 = nix.positions(here + "/7.x.nix", [["version", 29, 5], ["pname", 30, 5], ["src", 32, 5], ["dontBuild", 37, 5], ["dontPatchELF", 38, 5], ["dontStrip", 39, 5], ["dontPatchShebangs", 40, 5], ["nativeBuildInputs", 42, 5], ["buildInputs", 46, 5], ["installPhase", 50, 5], ["meta", 66, 5], ["passthru", 80, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const arch = nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), info, 0n));
   const plat = nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), info, 1n));
   const hashes = nix.thunk(() => (nix.asBool(enableUnfree) ? {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "sha512-9JzopnY43Osoy4/0G9gxJYlbCl1a9Qy2pL4GL1uyjJ3uSNoOskEBhhsqLp9BhtJXOaquuRDgbJnXhbBrlE0rKg==",
     "aarch64-linux": "sha512-V2Nt/lup4ofgoMqpAH3OHF8Fp0PvC1M8nl6sCKmTf+ZXQYHNjAJkJwGJwHeQQ0L/348JHyCkeWL43dS7Jr6ZJQ==",
   } : {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "x86_64-linux": "sha512-L11ZUdXC8VDiSEVDBMous2OaMlAFgvkQ+eDbmbA9r/sDIXY8W7dx3jgPNXoorDtatTemwy8aXw1XJGaVmj4T3Q==",
     "aarch64-linux": "sha512-iVft0kZYhvFJ1NKCfdePhRxDljPTwV+3G7wV94iykYISgLTVoehzDTMdxUyfK/mmQhu3hmmHbVpw1jXjTrS7ng==",
   }));
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = elk7Version;
       const pname = nix.thunk(() => nix.str`logstash${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableUnfree)), "-oss")}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://artifacts.elastic.co/downloads/logstash/${pname}-${version}-${plat}-${arch}.tar.gz`),
           hash: nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw("Unknown architecture"), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
         }))));
@@ -63,7 +57,7 @@ wrapProgram $out/bin/logstash-plugin \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Logstash is a data pipeline that helps you process logs and other event data from a variety of systems",
         homepage: "https://www.elastic.co/products/logstash",
         sourceProvenance: nix.thunk(() => (() => {
@@ -82,17 +76,17 @@ runHook postInstall
         })()),
       }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(config, "allowUnfree")) && nix.asBool(enableUnfree))), nix.thunk(() => (() => {
             nix.assert_(nix.eq(nix.sel(this$, "drvPath"), nix.sel(nixosTests, "elk", "unfree", "ELK-7", "elkPackages", "logstash", "drvPath")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/tools/misc/logstash/7.x.nix:81:7");
             return {
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               elk: nix.thunk(() => nix.sel(nixosTests, "elk", "unfree", "ELK-7")),
             };
           })()))),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         version,
         pname,
         src,

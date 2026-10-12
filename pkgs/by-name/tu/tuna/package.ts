@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["postPatch", 21, 3], ["build-system", 33, 3], ["nativeBuildInputs", 35, 3], ["dependencies", 42, 3], ["postInstall", 48, 3], ["doCheck", 54, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchurl: false, glib: false, "gobject-introspection": false, gtk3: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["postPatch", 21, 3], ["build-system", 33, 3], ["nativeBuildInputs", 35, 3], ["dependencies", 42, 3], ["postInstall", 48, 3], ["doCheck", 54, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tuna",
       version: "0.19",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/utils/tuna/tuna.git/snapshot/tuna-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-t10CxtwnTOg1uQgm6mTrNUIU8LkXJ3BkTycjWteQvuU=",
         })))),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["tuna"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Thread and IRQ affinity setting GUI and cmd line tool",
         mainProgram: "tuna",
         homepage: "https://git.kernel.org/pub/scm/utils/tuna/tuna.git",

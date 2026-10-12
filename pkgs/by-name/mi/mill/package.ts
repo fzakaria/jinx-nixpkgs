@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["suffix", 26, 7], ["hash", 27, 7]], [["suffix", 30, 7], ["hash", 31, 7]], [["suffix", 34, 7], ["hash", 35, 7]], [["aarch64-darwin", 25, 5], ["aarch64-linux", 29, 5], ["x86_64-linux", 33, 5]], [["url", 51, 5], ["hash", 52, 22]], [["name", 88, 7], ["runtimeInputs", 90, 7], ["text", 101, 7]], [["command", 87, 5], ["supportedFeatures", 179, 5]], [["updateScript", 86, 12]], [["homepage", 183, 5], ["changelog", 184, 5], ["license", 185, 5], ["description", 186, 5], ["mainProgram", 187, 5], ["longDescription", 188, 5], ["maintainers", 195, 5], ["platforms", 199, 5], ["sourceProvenance", 200, 5]], [["pname", 44, 3], ["version", 45, 3], ["__structuredAttrs", 47, 3], ["strictDeps", 48, 3], ["src", 50, 3], ["buildInputs", 55, 3], ["nativeBuildInputs", 56, 3], ["dontUnpack", 61, 3], ["dontConfigure", 62, 3], ["dontBuild", 63, 3], ["preferLocalBuild", 66, 3], ["installPhase", 70, 3], ["passthru", 86, 3], ["meta", 182, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, fetchurl: false, jre: false, lib: false, makeWrapper: false, stdenvNoCC: false, zlib: false, writeShellApplication: false, stdenv: false, "common-updater-scripts": false, coreutils: false, curl: false, git: false, gnugrep: false, gnused: false, jq: false, nix: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["suffix", 26, 7], ["hash", 27, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["suffix", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["suffix", 34, 7], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["aarch64-darwin", 25, 5], ["aarch64-linux", 29, 5], ["x86_64-linux", 33, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 51, 5], ["hash", 52, 22]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 88, 7], ["runtimeInputs", 90, 7], ["text", 101, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["command", 87, 5], ["supportedFeatures", 179, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 86, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 183, 5], ["changelog", 184, 5], ["license", 185, 5], ["description", 186, 5], ["mainProgram", 187, 5], ["longDescription", 188, 5], ["maintainers", 195, 5], ["platforms", 199, 5], ["sourceProvenance", 200, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["__structuredAttrs", 47, 3], ["strictDeps", 48, 3], ["src", 50, 3], ["buildInputs", 55, 3], ["nativeBuildInputs", 56, 3], ["dontUnpack", 61, 3], ["dontConfigure", 62, 3], ["dontBuild", 63, 3], ["preferLocalBuild", 66, 3], ["installPhase", 70, 3], ["passthru", 86, 3], ["meta", 182, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,32 +25,32 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const nix$ = nix.arg($, "nix");
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       suffix: "native-mac-aarch64",
       hash: "sha256-QRSTbViDa64TrzpVx7hz4PNPHLufW/GKNjT9IU/4OqM=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       suffix: "native-linux-aarch64",
       hash: "sha256-lwCt1bsYbOWIRCjphxDUub7h8onjKifdfArp0Vze3Ro=",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       suffix: "native-linux-amd64",
       hash: "sha256-p3mXy754MUvKjbAgyg4eDX9Clgv82F3NO6OkzlsbX7A=",
     })),
   }));
   const source = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "mill",
       version: "1.1.10",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`https://repo1.maven.org/maven2/com/lihaoyi/mill-dist-${nix.sel(source, "suffix")}/${nix.sel(finalAttrs, "version")}/mill-dist-${nix.sel(source, "suffix")}-${nix.sel(finalAttrs, "version")}.exe`),
           hash: nix.thunk(() => nix.attr(source, "hash")),
         })))),
@@ -84,11 +75,11 @@ runHook postInstall
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         updateScript: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 name: "update-mill",
                 runtimeInputs: nix.thunk(() => [common_updater_scripts, coreutils, curl, git, gnugrep, gnused, jq, nix$]),
                 text: nix.thunk(() => nix.str`# stdout is reserved for the JSON expected by the \`commit\` updateScript
@@ -171,7 +162,7 @@ jq --null-input --compact-output \\
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://com-lihaoyi.github.io/mill/",
         changelog: nix.thunk(() => nix.str`https://github.com/com-lihaoyi/mill/releases/tag/${nix.sel(finalAttrs, "version")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

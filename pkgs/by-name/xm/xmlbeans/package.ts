@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5], ["stripRoot", 16, 5]], [["description", 44, 5], ["homepage", 45, 5], ["downloadPage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["installPhase", 33, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, jre_headless: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5], ["stripRoot", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["downloadPage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["installPhase", 33, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const jre_headless = nix.arg($, "jre_headless");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xmlbeans",
       version: "5.3.0-20241203",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20250404194918/https://dlcdn.apache.org/poi/xmlbeans/release/bin/apache-xmlbeans-bin-5.3.0-20241203.zip",
           hash: "sha256-AeV+s0VfBgb0YbsY6dNJeqcsguZhDmjuyqXT/415a3k=",
           stripRoot: false,
@@ -37,7 +35,7 @@ done
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out\nchmod +x bin/*\ncp -r bin/ lib/ $out/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Java library for accessing XML by binding it to Java types",
         homepage: "https://xmlbeans.apache.org/",
         downloadPage: "https://dlcdn.apache.org/poi/xmlbeans/release/bin/",

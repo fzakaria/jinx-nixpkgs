@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["cli", 43, 5], ["scannerd", 44, 5]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 50, 3], ["doCheck", 60, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, "aws-sam-cli": false, boto3: false, buildPythonPackage: false, "cfn-lint": false, fetchFromGitHub: false, mock: false, moto: false, "mypy-boto3-ebs": false, "poetry-core": false, pytestCheckHook: false, typer: false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cli", 43, 5], ["scannerd", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 50, 3], ["doCheck", 60, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RhinoSecurityLabs",
           repo: "dsnap",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [boto3, urllib3]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cli: nix.thunk(() => [typer]),
         scannerd: nix.thunk(() => [aws_sam_cli, cfn_lint]),
       }));
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["dsnap"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utility for downloading and mounting EBS snapshots using the EBS Direct API's",
         homepage: "https://github.com/RhinoSecurityLabs/dsnap",
         changelog: nix.thunk(() => nix.str`https://github.com/RhinoSecurityLabs/dsnap/releases/tag/v${version}`),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "dsnap",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

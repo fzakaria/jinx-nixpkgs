@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5]], [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["cargoHash", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["nativeCheckInputs", 55, 3], ["checkFlags", 58, 3], ["nativeInstallCheckInputs", 60, 3], ["versionCheckProgramArg", 61, 3], ["doInstallCheck", 62, 3], ["dontWrapGApps", 64, 3], ["dontWrapQtApps", 65, 3], ["postFixup", 67, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, git: false, "pkg-config": false, makeWrapper: false, wrapGAppsHook4: false, versionCheckHook: false, fontconfig: false, freetype: false, gtk4: false, libGL: false, libxcb: false, libxkbcommon: false, qt6: false, "vulkan-loader": false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["cargoHash", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["nativeCheckInputs", 55, 3], ["checkFlags", 58, 3], ["nativeInstallCheckInputs", 60, 3], ["versionCheckProgramArg", 61, 3], ["doInstallCheck", 62, 3], ["dontWrapGApps", 64, 3], ["dontWrapQtApps", 65, 3], ["postFixup", 67, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "agentaps",
       version: "0.5.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "domenkozar",
           repo: "agentaps",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
   --suffix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, libxcb, libxkbcommon, vulkan_loader, wayland]))}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Desktop client for Agent Client Protocol agents",
         homepage: "https://github.com/domenkozar/agentaps",
         changelog: nix.thunk(() => nix.str`https://github.com/domenkozar/agentaps/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

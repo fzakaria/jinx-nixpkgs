@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["hash", 35, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["teams", 53, 5], ["platforms", 54, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 25, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 45, 3], ["doCheck", 48, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, pari: false, ntl: false, gmp: false, withFlint: true, flint: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["teams", 53, 5], ["platforms", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 25, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 45, 3], ["doCheck", 48, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const flint = nix.argOr($, "flint", () => null);
   nix.assert_((!nix.asBool(withFlint) || nix.asBool(!nix.eq(flint, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ec/eclib/package.nix:16:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "eclib",
       version: "20250627",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/JohnCremona/eclib/releases/download/${nix.sel(finalAttrs, "version")}/eclib-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-uI1LUmEuSRxUFZRtnjXyBiyhAV7n+74LYfFY+nTLS8k=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Elliptic curve tools",
         homepage: "https://github.com/JohnCremona/eclib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

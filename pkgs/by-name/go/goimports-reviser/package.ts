@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["CGO_ENABLED", 19, 7]], [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 17, 3], ["env", 19, 3], ["subPackages", 21, 3], ["ldflags", 23, 3], ["checkFlags", 29, 3], ["preCheck", 33, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 17, 3], ["env", 19, 3], ["subPackages", 21, 3], ["ldflags", 23, 3], ["checkFlags", 29, 3], ["preCheck", 33, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "goimports-reviser",
       version: "3.13.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "incu6us",
           repo: "goimports-reviser",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-iM3qyBrNKeWY9HXW9q0V3d+eKgS+p74BlOcBAr85uDk=",
         })))),
       vendorHash: "sha256-aTPzvqIwjZzEq9LHFdebIgbKMwsBOqLbpEWB7rN7cYY=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["."]),
       ldflags: nix.thunk(() => [
         "-s",
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["-skip=TestSourceFile_Fix_WithAliasForVersionSuffix/success_with_set_alias"]),
       preCheck: "# unset to run all tests\nunset subPackages\n# unset as some tests require cgo\nunset CGO_ENABLED\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Right imports sorting & code formatting tool (goimports alternative)",
         mainProgram: "goimports-reviser",
         homepage: "https://github.com/incu6us/goimports-reviser",

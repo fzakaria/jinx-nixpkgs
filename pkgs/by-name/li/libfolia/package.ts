@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["CXXFLAGS", 44, 7]], [["rev-prefix", 47, 33]], [["frog", 53, 17]], [["reverseDependencies", 52, 7]], [["updateScript", 47, 5], ["tests", 48, 5]], [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5], ["longDescription", 66, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["env", 44, 3], ["passthru", 46, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false, autoreconfHook: false, libtool: false, "pkg-config": false, "autoconf-archive": false, libxml2: false, icu: false, bzip2: false, libtar: false, ticcutils: false, frog: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 47, 33]]);
-const pos$4 = nix.positions(here + "/package.nix", [["frog", 53, 17]]);
-const pos$5 = nix.positions(here + "/package.nix", [["reverseDependencies", 52, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 47, 5], ["tests", 48, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5], ["longDescription", 66, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["env", 44, 3], ["passthru", 46, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const ticcutils = nix.arg($, "ticcutils");
   const frog = nix.arg($, "frog");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "libfolia",
       version: "2.22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LanguageMachines",
           repo: "libfolia",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,19 +35,19 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => [bzip2, libtool, autoconf_archive, libtar, libxml2, icu, ticcutils]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DU_USING_ICU_NAMESPACE=1"]))),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          reverseDependencies: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({ [nix.POS]: pos$4, frog: frog })))),
+          [nix.POS]: $pos[4],
+          reverseDependencies: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[3], frog: frog })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "C++ API for FoLiA documents; an XML-based linguistic annotation format",
         mainProgram: "folialint",
         homepage: "https://proycon.github.io/folia/",

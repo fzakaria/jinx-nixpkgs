@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["description", 45, 5], ["mainProgram", 46, 5], ["longDescription", 47, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 28, 3], ["configureFlags", 35, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, curl: false, hdf5: false, netcdf: false, eccodes: false, python3: false, enable_cdi_lib: true, enable_all_static: true, enable_cxx: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["mainProgram", 46, 5], ["longDescription", 47, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 28, 3], ["configureFlags", 35, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const enable_all_static = nix.argOr($, "enable_all_static", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const enable_cxx = nix.argOr($, "enable_cxx", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cdo",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://code.mpimet.mpg.de/attachments/download/29864/cdo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-QYv5HoZMv+VHw8jhUNMUGc+nFefTRVCMVZGxq9pUV9E=",
         })))),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-eccodes=${eccodes}`),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), enable_cdi_lib, "--enable-cdi-lib"), nix.concat(nix.app(nix.sel(lib, "optional"), enable_all_static, "--enable-all-static"), nix.app(nix.sel(lib, "optional"), enable_cxx, "--enable-cxx"))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of command line Operators to manipulate and analyse Climate and NWP model Data",
         mainProgram: "cdo",
         longDescription: "Supported data formats are GRIB 1/2, netCDF 3/4, SERVICE, EXTRA and IEG.\nThere are more than 600 operators available.\n",

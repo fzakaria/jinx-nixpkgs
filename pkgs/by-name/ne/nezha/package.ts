@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["path", 24, 11], ["name", 25, 11], ["repository", 26, 11], ["author", 27, 11], ["version", 28, 11], ["is_official", 29, 11], ["is_admin", 30, 11]], [["name", 36, 11], ["is_admin", 37, 11], ["is_official", 38, 11]], [["name", 41, 11], ["is_official", 42, 11]], [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["nezha", 119, 28]], [["updateScript", 117, 5], ["tests", 118, 5]], [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["mainProgram", 129, 5]], [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["proxyVendor", 61, 3], ["prePatch", 63, 3], ["patches", 80, 3], ["postPatch", 87, 3], ["nativeBuildInputs", 91, 3], ["postConfigure", 94, 3], ["vendorHash", 98, 3], ["ldflags", 100, 3], ["__darwinAllowLocalNetworking", 105, 3], ["checkFlags", 106, 3], ["postInstall", 108, 3], ["nativeInstallCheckInputs", 112, 3], ["versionCheckProgramArg", 113, 3], ["doInstallCheck", 114, 3], ["passthru", 116, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "go-swag": false, versionCheckHook: false, "dbip-country-lite": false, formats: false, "nix-update-script": false, nixosTests: false, "nezha-theme-admin": false, "nezha-theme-user": false, withThemes: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["path", 24, 11], ["name", 25, 11], ["repository", 26, 11], ["author", 27, 11], ["version", 28, 11], ["is_official", 29, 11], ["is_admin", 30, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 36, 11], ["is_admin", 37, 11], ["is_official", 38, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 41, 11], ["is_official", 42, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nezha", 119, 28]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 117, 5], ["tests", 118, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["mainProgram", 129, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["proxyVendor", 61, 3], ["prePatch", 63, 3], ["patches", 80, 3], ["postPatch", 87, 3], ["nativeBuildInputs", 91, 3], ["postConfigure", 94, 3], ["vendorHash", 98, 3], ["ldflags", 100, 3], ["__darwinAllowLocalNetworking", 105, 3], ["checkFlags", 106, 3], ["postInstall", 108, 3], ["nativeInstallCheckInputs", 112, 3], ["versionCheckProgramArg", 113, 3], ["doInstallCheck", 114, 3], ["passthru", 116, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const frontendName = nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "nezha-theme-"));
   const frontend_templates = nix.thunk(() => (() => {
     const mkTemplate = (theme) => (extra) => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: nix.thunk(() => nix.str`${nix.app(frontendName, nix.thunk(() => nix.sel(theme, "pname")))}-dist`),
       name: nix.thunk(() => nix.app(frontendName, nix.thunk(() => nix.sel(theme, "pname")))),
       repository: nix.thunk(() => nix.selOr(theme, () => "", "meta", "homepage")),
@@ -39,18 +32,18 @@ export default nix.lambda((args) => (() => {
       is_admin: false,
     }, extra);
     const officialThemes = nix.thunk(() => [
-      nix.thunk(() => nix.app(mkTemplate, nezha_theme_admin, nix.thunk(() => ({ [nix.POS]: pos$2, name: "OfficialAdmin", is_admin: true, is_official: true })))),
-      nix.thunk(() => nix.app(mkTemplate, nezha_theme_user, nix.thunk(() => ({ [nix.POS]: pos$3, name: "Official", is_official: true })))),
+      nix.thunk(() => nix.app(mkTemplate, nezha_theme_admin, nix.thunk(() => ({ [nix.POS]: $pos[1], name: "OfficialAdmin", is_admin: true, is_official: true })))),
+      nix.thunk(() => nix.app(mkTemplate, nezha_theme_user, nix.thunk(() => ({ [nix.POS]: $pos[2], name: "Official", is_official: true })))),
     ]);
     const communityThemes = nix.thunk(() => nix.builtins.map((t) => nix.app(mkTemplate, t, nix.thunk(() => ({}))), withThemes));
     return nix.app(nix.sel(nix.app(nix.sel(formats, "yaml"), nix.thunk(() => ({}))), "generate"), "frontend-templates.yaml", nix.thunk(() => nix.concat(officialThemes, communityThemes)));
   })());
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "nezha",
       version: "2.3.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "nezhahq",
           repo: "nezha",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -83,12 +76,12 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", installThemeCmd, allThemes)
       versionCheckProgramArg: "-v",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, nezha: nix.thunk(() => nix.attr(nixosTests, "nezha")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[4], nezha: nix.thunk(() => nix.attr(nixosTests, "nezha")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Self-hosted, lightweight server and website monitoring and O&M tool",
         homepage: "https://github.com/nezhahq/nezha",
         changelog: nix.thunk(() => nix.str`https://github.com/nezhahq/nezha/releases/tag/v${nix.sel(finalAttrs, "version")}`),

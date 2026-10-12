@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["__structuredAttrs", 20, 3], ["cargoPatches", 22, 3], ["cargoHash", 31, 3], ["nativeInstallCheckInputs", 33, 3], ["doInstallCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, fetchpatch2: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["__structuredAttrs", 20, 3], ["cargoPatches", 22, 3], ["cargoHash", 31, 3], ["nativeInstallCheckInputs", 33, 3], ["doInstallCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "yscan",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yetidevworks",
           repo: "yscan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       cargoPatches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "cargo-lock.patch",
             url: "https://github.com/yetidevworks/yscan/commit/54c0d9f008e0a9205ff639db8223c0a89fe72f34.patch?full_index=1",
             hash: "sha256-n1JthKGLAS+Rx4BiLNwtRNZ4NHpS0Azv6uThjQgWqJg=",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "TUI IP and Port Scanner",
         homepage: "https://github.com/yetidevworks/yscan",
         changelog: nix.thunk(() => nix.str`https://github.com/yetidevworks/yscan/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

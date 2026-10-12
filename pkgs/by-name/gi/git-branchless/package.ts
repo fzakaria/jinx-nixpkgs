@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["LIBGIT2_NO_VENDOR", 32, 5], ["LIBZ_SYS_STATIC", 33, 5]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5]], [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["env", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["postInstall", 46, 3], ["preCheck", 50, 3], ["doCheck", 59, 3], ["checkFlags", 61, 3], ["nativeInstallCheckInputs", 68, 3], ["versionCheckProgramArg", 69, 3], ["doInstallCheck", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, git: false, ncurses: false, openssl: false, "pkg-config": false, rustPlatform: false, libgit2: false, libz: false, sqlite: false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBGIT2_NO_VENDOR", 32, 5], ["LIBZ_SYS_STATIC", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["env", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["postInstall", 46, 3], ["preCheck", 50, 3], ["doCheck", 59, 3], ["checkFlags", 61, 3], ["nativeInstallCheckInputs", 68, 3], ["versionCheckProgramArg", 69, 3], ["doInstallCheck", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "git-branchless",
       version: "0.11.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arxanas",
           repo: "git-branchless",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-V769kYbmUe6JtVoo83ejxUsegyiBh07tMYPVhJiFNgs=",
         })))),
       cargoHash: "sha256-5uygCOzPNqHjKJfq2LFTfaRT/N++/AY/PwlBJ8j8QwM=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n, LIBZ_SYS_STATIC: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LIBGIT2_NO_VENDOR: 1n, LIBZ_SYS_STATIC: 0n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [ncurses, libgit2, libz, openssl, sqlite]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (() => {
@@ -55,7 +52,7 @@ export TEST_GIT_EXEC_PATH=$(${git}/bin/git --exec-path)
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Suite of tools to help you visualize, navigate, manipulate, and repair your commit history",
         homepage: "https://github.com/arxanas/git-branchless",
         license: nix.thunk(() => [

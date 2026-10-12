@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["fetchSubmodules", 20, 5], ["hash", 21, 5]], [["homepage", 34, 35], ["description", 35, 5], ["platforms", 36, 5], ["license", 37, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]], [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["mesonFlags", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { cmake: false, lib: false, stdenv: false, fetchFromGitHub: false, fuse: false, meson: false, ninja: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["fetchSubmodules", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 34, 35], ["description", 35, 5], ["platforms", 36, 5], ["license", 37, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["mesonFlags", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.1.1-unstable-2025-07-13",
       pname: "pfsshell",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ps2homebrew",
           repo: "pfsshell",
           rev: "8192de3907a05bb1844afcb1ae490179a38d4ed6",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "PFS (PlayStation File System) shell for POSIX-based systems",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

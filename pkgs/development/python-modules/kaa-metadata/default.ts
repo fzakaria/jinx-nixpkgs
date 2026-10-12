@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 13], ["version", 19, 19], ["sha256", 20, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["version", 13, 3], ["format", 14, 3], ["pname", 15, 3], ["disabled", 16, 3], ["src", 18, 3], ["doCheck", 23, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 27, 3], ["installPhase", 30, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "kaa-base": false, isPyPy: false, isPy3k: false, python: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 13], ["version", 19, 19], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 13, 3], ["format", 14, 3], ["pname", 15, 3], ["disabled", 16, 3], ["src", 18, 3], ["doCheck", 23, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 27, 3], ["installPhase", 30, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kaa-metadata";
       const disabled = nix.thunk(() => (nix.asBool(isPyPy) || nix.asBool(isPy3k)));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "0bkbzfgxvmby8lvzkqjp86anxvv3vjd9nksv2g4l7shsk1n7y27a",
@@ -51,14 +49,14 @@ rm -f "$out/${nix.sel(python, "sitePackages")}"/site.py*
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for parsing media metadata, which can extract metadata (e.g., such as id3 tags) from a wide range of media files",
         homepage: "https://github.com/freevo/kaa-metadata",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         format,
         pname,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/1_0_1.nix", [[["owner", 10, 5], ["repo", 11, 5], ["tag", 12, 5], ["hash", 13, 5]], [["version", 7, 3], ["src", 9, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/1_0_1.nix", [["owner", 10, 5], ["repo", 11, 5], ["tag", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/1_0_1.nix", [["version", 7, 3], ["src", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => (() => {
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "g-truc",
           repo: "glm",
           tag: version,
           hash: "sha256-GnGyzNRpzuguc3yYbEFtYLvG+KiCtRAktiN+NvbOICE=",
         }))));
-      return { [nix.POS]: pos$2, version, src };
+      return { [nix.POS]: $pos[1], version, src };
     })()));
 })(), formals$1);
 //# sourceMappingURL=1_0_1.ts.map

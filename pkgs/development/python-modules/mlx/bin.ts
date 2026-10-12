@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bin.nix", [[["pname", 25, 7], ["version", 27, 9], ["platform", 28, 9], ["dist", 29, 9], ["hash", 30, 9], ["format", 32, 7], ["python", 33, 7], ["abi", 34, 7]], [["owner", 72, 7], ["repo", 73, 7], ["tag", 74, 7], ["hash", 75, 7]], [["mlx", 69, 5], ["mlx-metal", 70, 5], ["testSource", 71, 5]], [["mlx", 81, 7], ["metalSupport", 82, 7], ["src", 83, 7]], [["mlxTest", 79, 18]], [["updateScript", 66, 12], ["srcs", 68, 12], ["tests", 79, 12]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["sourceProvenance", 95, 5], ["platforms", 96, 5]], [["pname", 40, 3], ["version", 41, 11], ["format", 42, 3], ["__structuredAttrs", 43, 3], ["disabled", 45, 3], ["src", 47, 3], ["dependencies", 50, 3], ["postInstall", 55, 3], ["pythonImportsCheck", 62, 3], ["passthru", 66, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, callPackage: false, fetchFromGitHub: false, fetchPypi: false, lib: false, "mlx-metal": false, python: false, stdenv: false }, ellipsis: false };
 const formals$2 = { args: { platform: false, dist: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bin.nix", [["pname", 25, 7], ["version", 27, 9], ["platform", 28, 9], ["dist", 29, 9], ["hash", 30, 9], ["format", 32, 7], ["python", 33, 7], ["abi", 34, 7]]);
-const pos$2 = nix.positions(here + "/bin.nix", [["owner", 72, 7], ["repo", 73, 7], ["tag", 74, 7], ["hash", 75, 7]]);
-const pos$3 = nix.positions(here + "/bin.nix", [["mlx", 69, 5], ["mlx-metal", 70, 5], ["testSource", 71, 5]]);
-const pos$4 = nix.positions(here + "/bin.nix", [["mlx", 81, 7], ["metalSupport", 82, 7], ["src", 83, 7]]);
-const pos$5 = nix.positions(here + "/bin.nix", [["mlxTest", 79, 18]]);
-const pos$6 = nix.positions(here + "/bin.nix", [["updateScript", 66, 12], ["srcs", 68, 12], ["tests", 79, 12]]);
-const pos$7 = nix.positions(here + "/bin.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["sourceProvenance", 95, 5], ["platforms", 96, 5]]);
-const pos$8 = nix.positions(here + "/bin.nix", [["pname", 40, 3], ["version", 41, 11], ["format", 42, 3], ["__structuredAttrs", 43, 3], ["disabled", 45, 3], ["src", 47, 3], ["dependencies", 50, 3], ["postInstall", 55, 3], ["pythonImportsCheck", 62, 3], ["passthru", 66, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +26,7 @@ export default nix.lambda((args) => (() => {
     const dist = nix.arg($_1, "dist");
     const hash = nix.arg($_1, "hash");
     return nix.app(fetchPypi, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: "mlx",
         version: version,
         platform: platform,
@@ -46,7 +39,7 @@ export default nix.lambda((args) => (() => {
   })(), formals$2);
   const srcs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (source) => nix.app(getSrcFromPypi, source), nix.thunk(() => nix.sel(wheelSources, "mlx"))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "mlx",
       version: version,
       format: "wheel",
@@ -64,14 +57,14 @@ ln -s ${mlx_metal}/${nix.sel(python, "sitePackages")}/mlx/share $out/${nix.sel(p
 `),
       pythonImportsCheck: nix.thunk(() => ["mlx"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update-wheels.nix"), nix.thunk(() => ({})))),
         srcs: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           mlx: srcs,
           "mlx-metal": nix.thunk(() => nix.sel(mlx_metal, "srcs")),
           testSource: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               owner: "ml-explore",
               repo: "mlx",
               tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,9 +72,9 @@ ln -s ${mlx_metal}/${nix.sel(python, "sitePackages")}/mlx/share $out/${nix.sel(p
             })))),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           mlxTest: nix.thunk(() => nix.sel(nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               mlx: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               metalSupport: true,
               src: nix.thunk(() => nix.sel(finalAttrs, "passthru", "srcs", "testSource")),
@@ -89,7 +82,7 @@ ln -s ${mlx_metal}/${nix.sel(python, "sitePackages")}/mlx/share $out/${nix.sel(p
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Prebuilt MLX wheel for Apple silicon with Metal runtime",
         homepage: "https://github.com/ml-explore/mlx",
         changelog: nix.thunk(() => nix.str`https://github.com/ml-explore/mlx/releases/tag/v${version}`),

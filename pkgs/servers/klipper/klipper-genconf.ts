@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/klipper-genconf.nix", [[["name", 8, 3], ["runtimeInputs", 9, 3], ["text", 13, 3]]]);
 const formals$1 = { args: { writeShellApplication: false, klipper: false, python3: false, gnumake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/klipper-genconf.nix", [["name", 8, 3], ["runtimeInputs", 9, 3], ["text", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const gnumake = nix.arg($, "gnumake");
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "klipper-genconf",
       runtimeInputs: nix.thunk(() => [python3, gnumake]),
       text: nix.thunk(() => nix.str`CURRENT_DIR=$(pwd)

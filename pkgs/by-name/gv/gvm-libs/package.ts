@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["cmakeFlags", 68, 3], ["hardeningDisable", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cjson: false, cmake: false, curl: false, doxygen: false, fetchFromGitHub: false, glib: false, gnutls: false, gpgme: false, hiredis: false, libgcrypt: false, libnet: false, libpcap: false, libssh: false, libuuid: false, libxcrypt: false, libxml2: false, openldap: false, "paho-mqtt-c": false, "pkg-config": false, radcli: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["cmakeFlags", 68, 3], ["hardeningDisable", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const radcli = nix.arg($, "radcli");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gvm-libs",
       version: "23.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "greenbone",
           repo: "gvm-libs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Libraries module for the Greenbone Vulnerability Management Solution",
         homepage: "https://github.com/greenbone/gvm-libs",
         changelog: nix.thunk(() => nix.str`https://github.com/greenbone/gvm-libs/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

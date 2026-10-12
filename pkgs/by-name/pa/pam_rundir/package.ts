@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["homepage", 35, 5], ["description", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 16, 3], ["buildInputs", 21, 3], ["configureFlags", 25, 3], ["installFlags", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, pam: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 35, 5], ["description", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 16, 3], ["buildInputs", 21, 3], ["configureFlags", 25, 3], ["installFlags", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const pam = nix.arg($, "pam");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pam_rundir",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://jjacky.com/pam_rundir/pam_rundir-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-x3m2me0jd3o726h7f2ftOV/pV/PJYTj67kX4eie8wCA=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--securedir=/lib/security", "--with-parentdir=/run/user"]),
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://jjacky.com/pam_rundir",
         description: "Provide user runtime directory on Linux systems",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

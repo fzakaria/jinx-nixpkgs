@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 20, 3], ["installPhase", 31, 3], ["doCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, john: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 20, 3], ["installPhase", 31, 3], ["doCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const john = nix.arg($, "john");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "adenum",
       version: "0-unstable-2022-04-01",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SecuProject",
           repo: "ADenum",
           rev: "0e3576eca1d987d3ef22d53fc725189bb301e804",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\n# Add shebang so we can patch it\nsed -i -e '1i#!/usr/bin/python' ADenum.py\npatchShebangs ADenum.py\ninstall -vD ADenum.py $out/bin/adenum\n\nrunHook postInstall\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to find misconfiguration through LDAP",
         mainProgram: "adenum",
         homepage: "https://github.com/SecuProject/ADenum",

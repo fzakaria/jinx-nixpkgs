@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unwrapped.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]], [["sddm", 109, 43]], [["tests", 109, 12]], [["description", 112, 5], ["homepage", 113, 5], ["maintainers", 114, 5], ["platforms", 117, 5], ["license", 118, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 34, 3], ["patches", 39, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["dontWrapQtApps", 74, 3], ["cmakeFlags", 76, 3], ["postInstall", 100, 3], ["passthru", 109, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, qttools: false, libxcb: false, libxau: false, pam: false, qtbase: false, qtdeclarative: false, qtquickcontrols2: true, systemdLibs: false, "xkeyboard-config": false, nixosTests: false, docutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unwrapped.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/unwrapped.nix", [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]]);
-const pos$3 = nix.positions(here + "/unwrapped.nix", [["sddm", 109, 43]]);
-const pos$4 = nix.positions(here + "/unwrapped.nix", [["tests", 109, 12]]);
-const pos$5 = nix.positions(here + "/unwrapped.nix", [["description", 112, 5], ["homepage", 113, 5], ["maintainers", 114, 5], ["platforms", 117, 5], ["license", 118, 5]]);
-const pos$6 = nix.positions(here + "/unwrapped.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 34, 3], ["patches", 39, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["dontWrapQtApps", 74, 3], ["cmakeFlags", 76, 3], ["postInstall", 100, 3], ["passthru", 109, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const docutils = nix.arg($, "docutils");
   const isQt6 = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sddm-unwrapped",
       version: "0.21.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sddm",
           repo: "sddm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./sddm-ignore-config-mtime.patch"),
         nix.path(here, "./sddm-default-session.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "sddm-fix-cmake-4.patch",
             url: "https://github.com/sddm/sddm/commit/228778c2b4b7e26db1e1d69fe484ed75c5791c3a.patch",
             hash: "sha256-Okt9LeZBhTDhP7NKBexWAZhkK6N6j9dFkAEgpidSnzE=",
@@ -76,11 +71,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "# remove empty scripts\nrm \"$out/share/sddm/scripts/Xsetup\" \"$out/share/sddm/scripts/Xstop\"\nfor f in $out/share/sddm/themes/**/theme.conf ; do\n  substituteInPlace $f \\\n    --replace 'background=' \"background=$(dirname $f)/\"\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, sddm: nix.thunk(() => nix.attr(nixosTests, "sddm")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], sddm: nix.thunk(() => nix.attr(nixosTests, "sddm")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "QML based X11 display manager",
         homepage: "https://github.com/sddm/sddm",
         maintainers: nix.thunk(() => (() => {

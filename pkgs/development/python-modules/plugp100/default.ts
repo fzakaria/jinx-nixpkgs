@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 46, 3], ["disabledTestPaths", 51, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, certifi: false, scapy: false, urllib3: false, "semantic-version": false, aiohttp: false, jsons: false, requests: false, cryptography: false, pytestCheckHook: false, "pytest-asyncio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 46, 3], ["disabledTestPaths", 51, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "plugp100",
       version: "6.0.0.dev2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "petretiandrea",
           repo: "plugp100",
           tag: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => [".dev"]), nix.thunk(() => ["-dev."]), nix.thunk(() => nix.sel(finalAttrs, "version")))),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
         "tests/unit/test_klap_protocol.py",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library to control Tapo Plug P100 devices",
         homepage: "https://github.com/petretiandrea/plugp100",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

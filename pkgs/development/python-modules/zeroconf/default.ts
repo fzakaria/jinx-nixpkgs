@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 36, 3], ["disabledTests", 44, 3], ["__darwinAllowLocalNetworking", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, cython: false, buildPythonPackage: false, fetchFromGitHub: false, ifaddr: false, "poetry-core": false, "pytest-asyncio": false, "pytest-codspeed": false, "pytest-cov-stub": false, "pytest-timeout": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 36, 3], ["disabledTests", 44, 3], ["__darwinAllowLocalNetworking", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zeroconf",
       version: "0.151.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jstasiak",
           repo: "python-zeroconf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["zeroconf", "zeroconf.asyncio"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python implementation of multicast DNS service discovery",
         homepage: "https://github.com/python-zeroconf/python-zeroconf",
         changelog: nix.thunk(() => nix.str`https://github.com/python-zeroconf/python-zeroconf/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

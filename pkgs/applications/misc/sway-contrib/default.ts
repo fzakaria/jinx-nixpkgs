@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5]], [["description", 87, 7], ["maintainers", 88, 7], ["mainProgram", 89, 7]], [["version", 38, 13], ["src", 38, 21], ["pname", 40, 5], ["dontBuild", 42, 5], ["dontConfigure", 43, 5], ["outputs", 45, 5], ["strictDeps", 50, 5], ["nativeBuildInputs", 51, 5], ["buildInputs", 55, 5], ["installPhase", 56, 5], ["doInstallCheck", 76, 5], ["installCheckPhase", 78, 5], ["meta", 86, 5]], [["description", 116, 11], ["mainProgram", 117, 11], ["maintainers", 118, 11]], [["version", 99, 15], ["src", 99, 23], ["pname", 101, 7], ["pyproject", 103, 7], ["dontBuild", 104, 7], ["dontConfigure", 105, 7], ["propagatedBuildInputs", 107, 7], ["installPhase", 109, 7], ["meta", 113, 7]], [["grimshot", 37, 3], ["inactive-windows-transparency", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, coreutils: false, makeWrapper: false, "sway-unwrapped": false, installShellFiles: false, "wl-clipboard": false, libnotify: false, slurp: false, grim: false, jq: false, gnugrep: false, bash: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 87, 7], ["maintainers", 88, 7], ["mainProgram", 89, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 38, 13], ["src", 38, 21], ["pname", 40, 5], ["dontBuild", 42, 5], ["dontConfigure", 43, 5], ["outputs", 45, 5], ["strictDeps", 50, 5], ["nativeBuildInputs", 51, 5], ["buildInputs", 55, 5], ["installPhase", 56, 5], ["doInstallCheck", 76, 5], ["installCheckPhase", 78, 5], ["meta", 86, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 116, 11], ["mainProgram", 117, 11], ["maintainers", 118, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 99, 15], ["src", 99, 23], ["pname", 101, 7], ["pyproject", 103, 7], ["dontBuild", 104, 7], ["dontConfigure", 105, 7], ["propagatedBuildInputs", 107, 7], ["installPhase", 109, 7], ["meta", 113, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["grimshot", 37, 3], ["inactive-windows-transparency", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,22 +24,22 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const version = "1.11";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "OctopusET",
       repo: "sway-contrib",
       tag: version,
       hash: "sha256-/gWL0hA8hDjpK5YJxuZqmvo0zuVRQkhAkgHlI4JzNP8=",
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     homepage: "https://github.com/OctopusET/sway-contrib",
     license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
   }));
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     grimshot: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: version,
         src: src,
         pname: "grimshot",
@@ -65,7 +59,7 @@ wrapProgram $out/bin/grimshot --set PATH \\
         doInstallCheck: true,
         installCheckPhase: "# check always returns 0\nif [[ $($out/bin/grimshot check | grep \"NOT FOUND\") ]]; then false\nelse\n  echo \"grimshot check passed\"\nfi\n",
         meta: nix.thunk(() => nix.update(meta, {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: "Helper for screenshots within sway",
           maintainers: [],
           mainProgram: "grimshot",
@@ -74,7 +68,7 @@ wrapProgram $out/bin/grimshot --set PATH \\
     "inactive-windows-transparency": nix.thunk(() => (() => {
       const lname = "inactive-windows-transparency";
       return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           version: version,
           src: src,
           pname: nix.thunk(() => nix.str`sway-${lname}`),
@@ -85,7 +79,7 @@ wrapProgram $out/bin/grimshot --set PATH \\
           installPhase: nix.thunk(() => nix.str`install -Dm 0755 $src/${lname}.py $out/bin/${lname}.py
 `),
           meta: nix.thunk(() => nix.update(meta, {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             description: "It makes inactive sway windows transparent",
             mainProgram: nix.thunk(() => nix.str`${lname}.py`),
             maintainers: [],

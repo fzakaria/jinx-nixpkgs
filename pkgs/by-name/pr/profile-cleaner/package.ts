@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]], [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, parallel: false, sqlite: false, bc: false, file: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bc = nix.arg($, "bc");
   const file = nix.arg($, "file");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "2.46",
       pname: "profile-cleaner",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "graysky2",
           repo: "profile-cleaner",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ wrapProgram $out/bin/profile-cleaner \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [parallel, sqlite, bc, file]))}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Reduces browser profile sizes by cleaning their sqlite databases",
         longDescription: "Use profile-cleaner to reduce the size of browser profiles by organizing\ntheir sqlite databases using sqlite3's vacuum and reindex functions. The\nterm \"browser\" is used loosely since profile-cleaner happily works on\nsome email clients and newsreaders too.\n",
         homepage: "https://github.com/graysky2/profile-cleaner",

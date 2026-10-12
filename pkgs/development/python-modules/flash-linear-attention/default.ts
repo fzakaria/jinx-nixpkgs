@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["cuda", 48, 5], ["cpu", 49, 5], ["tilelang", 50, 5], ["conv1d", 51, 5], ["benchmark", 52, 5], ["test", 57, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["optional-dependencies", 47, 3], ["doCheck", 64, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, einops: false, torch: false, transformers: false, tilelang: false, "causal-conv1d": false, pandas: false, "pytest-xdist": false, matplotlib: false, datasets: false, pytest: false, triton: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cuda", 48, 5], ["cpu", 49, 5], ["tilelang", 50, 5], ["conv1d", 51, 5], ["benchmark", 52, 5], ["test", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["optional-dependencies", 47, 3], ["doCheck", 64, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const triton = nix.arg($, "triton");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "flash-linear-attention",
       version: "0.5.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fla-org",
           repo: "flash-linear-attention",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [einops, torch, transformers]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cuda: nix.thunk(() => [triton]),
         cpu: nix.thunk(() => [triton]),
         tilelang: nix.thunk(() => [tilelang]),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["fla"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Triton-based implementations of causal linear attention",
         homepage: "https://github.com/fla-org/flash-linear-attention",
         changelog: nix.thunk(() => nix.str`https://github.com/fla-org/flash-linear-attention/releases/tag/v${nix.sel(finalAttrs, "version")}`),

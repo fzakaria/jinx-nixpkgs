@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["description", 28, 9], ["longDescription", 29, 9], ["homepage", 30, 9], ["changelog", 31, 9], ["license", 32, 9], ["maintainers", 33, 9], ["mainProgram", 34, 9], ["platforms", 35, 9]], [["name", 13, 54], ["paths", 15, 5], ["pathsToLink", 17, 5], ["nativeBuildInputs", 19, 5], ["postBuild", 21, 5], ["meta", 26, 5]]]);
 const formals$1 = { args: { lib: false, buildEnv: false, hunspell: false, hunspellDicts: false, makeBinaryWrapper: false }, ellipsis: false };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["description", 28, 9], ["longDescription", 29, 9], ["homepage", 30, 9], ["changelog", 31, 9], ["license", 32, 9], ["maintainers", 33, 9], ["mainProgram", 34, 9], ["platforms", 35, 9]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["name", 13, 54], ["paths", 15, 5], ["pathsToLink", 17, 5], ["nativeBuildInputs", 19, 5], ["postBuild", 21, 5], ["meta", 26, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       return (f) => nix.app(buildEnv, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.app(nix.sel(lib, "appendToName"), "with-dicts", hunspell));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.attr(from, "name")),
           paths: nix.thunk(() => nix.app(f, dicts)),
           pathsToLink: nix.thunk(() => ["/share/hunspell"]),
@@ -31,7 +30,7 @@ export default nix.lambda((args) => (() => {
           meta: nix.thunk(() => (() => {
             const from_1 = nix.thunk(() => nix.sel(hunspell, "meta"));
             return {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             description: nix.thunk(() => nix.attr(from_1, "description")),
             longDescription: nix.thunk(() => nix.attr(from_1, "longDescription")),
             homepage: nix.thunk(() => nix.attr(from_1, "homepage")),

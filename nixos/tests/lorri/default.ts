@@ -2,29 +2,25 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["systemPackages", 8, 19]], [["enable", 10, 11]], [["imports", 7, 7], ["environment", 8, 7], ["nix", 10, 7]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 13, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["systemPackages", 8, 19]]);
-const pos$2 = nix.positions(here + "/default.nix", [["enable", 10, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["imports", 7, 7], ["environment", 8, 7], ["nix", 10, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["machine", 4, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 13, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$5,
+  [nix.POS]: $pos[4],
   name: "lorri",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         imports: nix.thunk(() => [nix.path(here, "../../modules/profiles/minimal.nix")]),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lorri"))]),
         })),
-        nix: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+        nix: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
       };
     })(), formals$1),
   })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["maintainers", 33, 5], ["mainProgram", 34, 5], ["license", 35, 5], ["homepage", 36, 5], ["description", 37, 5], ["longDescription", 38, 5]], [["pname", 7, 3], ["version", 8, 3], ["pyproject", 9, 3], ["build-system", 11, 3], ["dependencies", 13, 3], ["doCheck", 15, 3], ["src", 17, 3], ["patches", 23, 3], ["postPatch", 24, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { python312Packages: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["maintainers", 33, 5], ["mainProgram", 34, 5], ["license", 35, 5], ["homepage", 36, 5], ["description", 37, 5], ["longDescription", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["pyproject", 9, 3], ["build-system", 11, 3], ["dependencies", 13, 3], ["doCheck", 15, 3], ["src", 17, 3], ["patches", 23, 3], ["postPatch", 24, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(python312Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vanguards",
       version: "0.3.1",
       pyproject: true,
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(python312Packages, "stem"))]),
       doCheck: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mikeperry-tor",
           repo: "vanguards",
           rev: "8132fa0e556fbcbb3538ff9b48a2180c0c5e8fbd",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# fix import cycle issue\nsubstituteInPlace src/vanguards/main.py --replace-fail \\\n  'import stem.response.events' 'import stem.socket; import stem.control; import stem.response.events'\n",
       pythonImportsCheck: nix.thunk(() => ["vanguards"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "ForgottenBeast"))];

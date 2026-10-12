@@ -2,15 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/disable-module-with-toString-key.nix", [[["enable", 8, 7]], [["key", 6, 5], ["config", 7, 5]], [["imports", 16, 9]], [["type", 15, 7], ["default", 21, 7]], [["imports", 25, 9], ["disabledModules", 29, 9]], [["type", 24, 7], ["default", 31, 7]], [["positive", 14, 5], ["negative", 23, 5]], [["options", 13, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/disable-module-with-toString-key.nix", [["enable", 8, 7]]);
-const pos$2 = nix.positions(here + "/disable-module-with-toString-key.nix", [["key", 6, 5], ["config", 7, 5]]);
-const pos$3 = nix.positions(here + "/disable-module-with-toString-key.nix", [["imports", 16, 9]]);
-const pos$4 = nix.positions(here + "/disable-module-with-toString-key.nix", [["type", 15, 7], ["default", 21, 7]]);
-const pos$5 = nix.positions(here + "/disable-module-with-toString-key.nix", [["imports", 25, 9], ["disabledModules", 29, 9]]);
-const pos$6 = nix.positions(here + "/disable-module-with-toString-key.nix", [["type", 24, 7], ["default", 31, 7]]);
-const pos$7 = nix.positions(here + "/disable-module-with-toString-key.nix", [["positive", 14, 5], ["negative", 23, 5]]);
-const pos$8 = nix.positions(here + "/disable-module-with-toString-key.nix", [["options", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,26 +11,26 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const moduleWithKey = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     key: 123n,
-    config: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+    config: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
   }));
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       positive: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               imports: nix.thunk(() => [nix.path(here, "./declare-enable.nix"), moduleWithKey]),
             })))),
           default: nix.thunk(() => ({})),
         })))),
       negative: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               imports: nix.thunk(() => [nix.path(here, "./declare-enable.nix"), moduleWithKey]),
               disabledModules: nix.thunk(() => [123n]),
             })))),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 20, 5], ["hash", 21, 5]], [["url", 37, 7], ["hash", 38, 7], ["name", 39, 7]], [["oncall", 97, 28]], [["tests", 96, 5], ["pythonPath", 99, 5]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["mainProgram", 108, 5]], [["pname", 11, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["dependencies", 43, 3], ["postInstall", 61, 3], ["checkInputs", 66, 3], ["disabledTestPaths", 71, 3], ["pythonImportsCheck", 91, 3], ["passthru", 95, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, fetchPypi: false, oncall: false, nixosTests: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7], ["name", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["oncall", 97, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 96, 5], ["pythonPath", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["mainProgram", 108, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["dependencies", 43, 3], ["postInstall", 61, 3], ["checkInputs", 66, 3], ["disabledTestPaths", 71, 3], ["pythonImportsCheck", 91, 3], ["passthru", 95, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0-unstable-2025-04-15";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linkedin",
           repo: "oncall",
           rev: "030f5d0286b253e4300d36de1954c7b2a7490a76",
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./support_custom_state_dir.patch"),
         nix.path(here, "./verbose_logging.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/linkedin/oncall/commit/4ccf2239fb8c8aeda376f57735461174f48614f2.patch",
             hash: "sha256-XT7Z6NUg2zxoRtgxaM0ZbBhXtO9xvhKv30Jo1ZaEGMU=",
             name: "falcon_4_support.patch",
@@ -89,12 +84,12 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["oncall"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, oncall: nix.thunk(() => nix.attr(nixosTests, "oncall")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], oncall: nix.thunk(() => nix.attr(nixosTests, "oncall")) })),
         pythonPath: nix.thunk(() => nix.str`${nix.app(nix.sel(python3, "pkgs", "makePythonPath"), dependencies)}:${oncall}/${nix.sel(python3, "sitePackages")}`),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Calendar web-app designed for scheduling and managing on-call shifts",
         homepage: "https://oncall.tools",
         changelog: nix.thunk(() => nix.str`https://github.com/linkedin/oncall/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -106,7 +101,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "oncall",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         format,

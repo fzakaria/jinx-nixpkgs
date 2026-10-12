@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 23, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["checkFlags", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, openssl: false, "alsa-lib": false, ffmpeg_6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 23, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["checkFlags", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const ffmpeg_6 = nix.arg($, "ffmpeg_6");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rustplayer",
       version: "1.1.2-unstable-2024-07-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Kingtous",
           repo: "RustPlayer",
           rev: "29a16f01912bc3e92008c7ae2f9569c8d7250bd3",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [alsa_lib, openssl, ffmpeg_6]),
       checkFlags: nix.thunk(() => ["--skip=fetch_and_play"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/Kingtous/RustPlayer",
         description: "Local audio player and network m3u8 radio player using a terminal interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

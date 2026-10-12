@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["gitolite", 62, 5]], [["tests", 61, 12]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 29, 3], ["dontBuild", 31, 3], ["postPatch", 33, 3], ["postFixup", 45, 3], ["installPhase", 55, 3], ["passthru", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { stdenv: false, coreutils: false, fetchFromCodeberg: false, git: false, lib: false, makeWrapper: false, "net-tools": false, perl: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gitolite", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 61, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 29, 3], ["dontBuild", 31, 3], ["postPatch", 33, 3], ["postFixup", 45, 3], ["installPhase", 55, 3], ["passthru", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gitolite",
       version: "3.6.15",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sitaramc",
           repo: "gitolite",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,11 +52,14 @@ perl ./install -to $out/bin
 echo ${nix.sel(finalAttrs, "version")} > $out/bin/VERSION
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, gitolite: nix.thunk(() => nix.sel(nixosTests, "gitolite")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          gitolite: nix.thunk(() => nix.sel(nixosTests, "gitolite")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Finely-grained git repository hosting",
         homepage: "https://gitolite.com/gitolite/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

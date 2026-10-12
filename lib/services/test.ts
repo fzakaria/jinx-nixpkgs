@@ -2,92 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/test.nix", [["system", 13, 7], ["name", 14, 7], ["builder", 15, 7]]);
-const pos$2 = nix.positions(here + "/test.nix", [["coreutils", 23, 7]]);
-const pos$3 = nix.positions(here + "/test.nix", [["serviceManagerPkgs", 22, 5], ["extraRootModules", 25, 5], ["extraRootSpecialArgs", 26, 5]]);
-const pos$4 = nix.positions(here + "/test.nix", [["argv", 33, 11]]);
-const pos$5 = nix.positions(here + "/test.nix", [["assertion", 40, 13], ["message", 41, 13]]);
-const pos$6 = nix.positions(here + "/test.nix", [["process", 32, 9], ["assertions", 38, 9], ["warnings", 44, 9]]);
-const pos$7 = nix.positions(here + "/test.nix", [["argv", 52, 11], ["reloadCommand", 56, 11]]);
-const pos$8 = nix.positions(here + "/test.nix", [["process", 49, 9]]);
-const pos$9 = nix.positions(here + "/test.nix", [["argv", 61, 11]]);
-const pos$10 = nix.positions(here + "/test.nix", [["mainProgram", 69, 24]]);
-const pos$11 = nix.positions(here + "/test.nix", [["meta", 69, 19]]);
-const pos$12 = nix.positions(here + "/test.nix", [["argv", 65, 13], ["reloadSignal", 74, 13]]);
-const pos$13 = nix.positions(here + "/test.nix", [["assertion", 78, 15], ["message", 79, 15]]);
-const pos$14 = nix.positions(here + "/test.nix", [["process", 64, 11], ["assertions", 76, 11], ["warnings", 82, 11]]);
-const pos$15 = nix.positions(here + "/test.nix", [["exclacow", 63, 18]]);
-const pos$16 = nix.positions(here + "/test.nix", [["process", 60, 9], ["services", 63, 9]]);
-const pos$17 = nix.positions(here + "/test.nix", [["--bool-off", 92, 13], ["--bool-on", 93, 13], ["--config", 94, 13], ["--count", 95, 13], ["--name", 96, 13], ["--unset", 97, 13]]);
-const pos$18 = nix.positions(here + "/test.nix", [["argv", 90, 11], ["flags", 91, 11]]);
-const pos$19 = nix.positions(here + "/test.nix", [["process", 89, 9]]);
-const pos$20 = nix.positions(here + "/test.nix", [["option", 106, 13], ["sep", 107, 13], ["explicitBool", 108, 13]]);
-const pos$21 = nix.positions(here + "/test.nix", [["port", 111, 13], ["quiet", 112, 13], ["verbose", 113, 13]]);
-const pos$22 = nix.positions(here + "/test.nix", [["argv", 104, 11], ["flagFormat", 105, 11], ["flags", 110, 11]]);
-const pos$23 = nix.positions(here + "/test.nix", [["process", 103, 9]]);
-const pos$24 = nix.positions(here + "/test.nix", [["--host", 122, 15]]);
-const pos$25 = nix.positions(here + "/test.nix", [["--host", 123, 15]]);
-const pos$26 = nix.positions(here + "/test.nix", [["argv", 120, 11], ["flags", 121, 11]]);
-const pos$27 = nix.positions(here + "/test.nix", [["process", 119, 9]]);
-const pos$28 = nix.positions(here + "/test.nix", [["--listen", 136, 15]]);
-const pos$29 = nix.positions(here + "/test.nix", [["--disable-landlock", 137, 15]]);
-const pos$30 = nix.positions(here + "/test.nix", [["argv", 130, 11], ["flags", 135, 11]]);
-const pos$31 = nix.positions(here + "/test.nix", [["process", 129, 9]]);
-const pos$32 = nix.positions(here + "/test.nix", [["service1", 31, 7], ["service2", 48, 7], ["service3", 59, 7], ["flagsDefault", 88, 7], ["flagsCustomFormat", 102, 7], ["flagsRepeated", 118, 7], ["flagsOrdering", 128, 7]]);
-const pos$33 = nix.positions(here + "/test.nix", [["services", 30, 5]]);
-const pos$34 = nix.positions(here + "/test.nix", [["type", 148, 11]]);
-const pos$35 = nix.positions(here + "/test.nix", [["services", 147, 17]]);
-const pos$36 = nix.positions(here + "/test.nix", [["options", 147, 9]]);
-const pos$37 = nix.positions(here + "/test.nix", [["modules", 145, 5]]);
-const pos$38 = nix.positions(here + "/test.nix", [["argv", 166, 44], ["reloadCommand", 166, 49], ["reloadSignal", 166, 63]]);
-const pos$39 = nix.positions(here + "/test.nix", [["warnings", 163, 24], ["assertions", 164, 7], ["process", 166, 7]]);
-const pos$40 = nix.positions(here + "/test.nix", [["services", 169, 7]]);
-const pos$41 = nix.positions(here + "/test.nix", [["argv", 178, 15], ["reloadCommand", 182, 15], ["reloadSignal", 183, 15]]);
-const pos$42 = nix.positions(here + "/test.nix", [["assertion", 188, 17], ["message", 189, 17]]);
-const pos$43 = nix.positions(here + "/test.nix", [["process", 177, 13], ["services", 185, 13], ["assertions", 186, 13], ["warnings", 192, 13]]);
-const pos$44 = nix.positions(here + "/test.nix", [["argv", 198, 15], ["reloadCommand", 202, 15], ["reloadSignal", 203, 15]]);
-const pos$45 = nix.positions(here + "/test.nix", [["process", 197, 13], ["services", 205, 13], ["assertions", 206, 13], ["warnings", 207, 13]]);
-const pos$46 = nix.positions(here + "/test.nix", [["argv", 211, 15], ["reloadCommand", 212, 15], ["reloadSignal", 213, 15]]);
-const pos$47 = nix.positions(here + "/test.nix", [["argv", 217, 17], ["reloadCommand", 221, 17], ["reloadSignal", 222, 17]]);
-const pos$48 = nix.positions(here + "/test.nix", [["assertion", 227, 19], ["message", 228, 19]]);
-const pos$49 = nix.positions(here + "/test.nix", [["process", 216, 15], ["services", 224, 15], ["assertions", 225, 15], ["warnings", 231, 15]]);
-const pos$50 = nix.positions(here + "/test.nix", [["exclacow", 215, 22]]);
-const pos$51 = nix.positions(here + "/test.nix", [["process", 210, 13], ["services", 215, 13], ["assertions", 233, 13], ["warnings", 234, 13]]);
-const pos$52 = nix.positions(here + "/test.nix", [["argv", 238, 15], ["reloadCommand", 248, 15], ["reloadSignal", 249, 15]]);
-const pos$53 = nix.positions(here + "/test.nix", [["process", 237, 13], ["services", 251, 13], ["assertions", 252, 13], ["warnings", 253, 13]]);
-const pos$54 = nix.positions(here + "/test.nix", [["argv", 257, 15], ["reloadCommand", 263, 15], ["reloadSignal", 264, 15]]);
-const pos$55 = nix.positions(here + "/test.nix", [["process", 256, 13], ["services", 266, 13], ["assertions", 267, 13], ["warnings", 268, 13]]);
-const pos$56 = nix.positions(here + "/test.nix", [["argv", 272, 15], ["reloadCommand", 279, 15], ["reloadSignal", 280, 15]]);
-const pos$57 = nix.positions(here + "/test.nix", [["process", 271, 13], ["services", 282, 13], ["assertions", 283, 13], ["warnings", 284, 13]]);
-const pos$58 = nix.positions(here + "/test.nix", [["argv", 288, 15], ["reloadCommand", 296, 15], ["reloadSignal", 297, 15]]);
-const pos$59 = nix.positions(here + "/test.nix", [["process", 287, 13], ["services", 299, 13], ["assertions", 300, 13], ["warnings", 301, 13]]);
-const pos$60 = nix.positions(here + "/test.nix", [["service1", 176, 11], ["service2", 196, 11], ["service3", 209, 11], ["flagsDefault", 236, 11], ["flagsCustomFormat", 255, 11], ["flagsRepeated", 270, 11], ["flagsOrdering", 286, 11]]);
-const pos$61 = nix.positions(here + "/test.nix", [["services", 175, 9]]);
-const pos$62 = nix.positions(here + "/test.nix", [["message", 314, 11], ["assertion", 315, 11]]);
-const pos$63 = nix.positions(here + "/test.nix", [["message", 326, 11], ["assertion", 327, 11]]);
+const $pos = nix.positions(here + "/test.nix", [[["system", 13, 7], ["name", 14, 7], ["builder", 15, 7]], [["coreutils", 23, 7]], [["serviceManagerPkgs", 22, 5], ["extraRootModules", 25, 5], ["extraRootSpecialArgs", 26, 5]], [["argv", 33, 11]], [["assertion", 40, 13], ["message", 41, 13]], [["process", 32, 9], ["assertions", 38, 9], ["warnings", 44, 9]], [["argv", 52, 11], ["reloadCommand", 56, 11]], [["process", 49, 9]], [["argv", 61, 11]], [["mainProgram", 69, 24]], [["meta", 69, 19]], [["argv", 65, 13], ["reloadSignal", 74, 13]], [["assertion", 78, 15], ["message", 79, 15]], [["process", 64, 11], ["assertions", 76, 11], ["warnings", 82, 11]], [["exclacow", 63, 18]], [["process", 60, 9], ["services", 63, 9]], [["--bool-off", 92, 13], ["--bool-on", 93, 13], ["--config", 94, 13], ["--count", 95, 13], ["--name", 96, 13], ["--unset", 97, 13]], [["argv", 90, 11], ["flags", 91, 11]], [["process", 89, 9]], [["option", 106, 13], ["sep", 107, 13], ["explicitBool", 108, 13]], [["port", 111, 13], ["quiet", 112, 13], ["verbose", 113, 13]], [["argv", 104, 11], ["flagFormat", 105, 11], ["flags", 110, 11]], [["process", 103, 9]], [["--host", 122, 15]], [["--host", 123, 15]], [["argv", 120, 11], ["flags", 121, 11]], [["process", 119, 9]], [["--listen", 136, 15]], [["--disable-landlock", 137, 15]], [["argv", 130, 11], ["flags", 135, 11]], [["process", 129, 9]], [["service1", 31, 7], ["service2", 48, 7], ["service3", 59, 7], ["flagsDefault", 88, 7], ["flagsCustomFormat", 102, 7], ["flagsRepeated", 118, 7], ["flagsOrdering", 128, 7]], [["services", 30, 5]], [["type", 148, 11]], [["services", 147, 17]], [["options", 147, 9]], [["modules", 145, 5]], [["argv", 166, 44], ["reloadCommand", 166, 49], ["reloadSignal", 166, 63]], [["warnings", 163, 24], ["assertions", 164, 7], ["process", 166, 7]], [["services", 169, 7]], [["argv", 178, 15], ["reloadCommand", 182, 15], ["reloadSignal", 183, 15]], [["assertion", 188, 17], ["message", 189, 17]], [["process", 177, 13], ["services", 185, 13], ["assertions", 186, 13], ["warnings", 192, 13]], [["argv", 198, 15], ["reloadCommand", 202, 15], ["reloadSignal", 203, 15]], [["process", 197, 13], ["services", 205, 13], ["assertions", 206, 13], ["warnings", 207, 13]], [["argv", 211, 15], ["reloadCommand", 212, 15], ["reloadSignal", 213, 15]], [["argv", 217, 17], ["reloadCommand", 221, 17], ["reloadSignal", 222, 17]], [["assertion", 227, 19], ["message", 228, 19]], [["process", 216, 15], ["services", 224, 15], ["assertions", 225, 15], ["warnings", 231, 15]], [["exclacow", 215, 22]], [["process", 210, 13], ["services", 215, 13], ["assertions", 233, 13], ["warnings", 234, 13]], [["argv", 238, 15], ["reloadCommand", 248, 15], ["reloadSignal", 249, 15]], [["process", 237, 13], ["services", 251, 13], ["assertions", 252, 13], ["warnings", 253, 13]], [["argv", 257, 15], ["reloadCommand", 263, 15], ["reloadSignal", 264, 15]], [["process", 256, 13], ["services", 266, 13], ["assertions", 267, 13], ["warnings", 268, 13]], [["argv", 272, 15], ["reloadCommand", 279, 15], ["reloadSignal", 280, 15]], [["process", 271, 13], ["services", 282, 13], ["assertions", 283, 13], ["warnings", 284, 13]], [["argv", 288, 15], ["reloadCommand", 296, 15], ["reloadSignal", 297, 15]], [["process", 287, 13], ["services", 299, 13], ["assertions", 300, 13], ["warnings", 301, 13]], [["service1", 176, 11], ["service2", 196, 11], ["service3", 209, 11], ["flagsDefault", 236, 11], ["flagsCustomFormat", 255, 11], ["flagsRepeated", 270, 11], ["flagsOrdering", 286, 11]], [["services", 175, 9]], [["message", 314, 11], ["assertion", 315, 11]], [["message", 326, 11], ["assertion", 327, 11]]]);
 
 export default nix.thunk(() => (() => {
   const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../.")));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const portable_lib = nix.thunk(() => nix.sel(lib, "services"));
-  const dummyPkg = (name) => nix.app(nix.builtins.derivation, nix.thunk(() => ({ [nix.POS]: pos$1, system: "dummy", name: name, builder: "/bin/false" })));
+  const dummyPkg = (name) => nix.app(nix.builtins.derivation, nix.thunk(() => ({ [nix.POS]: $pos[0], system: "dummy", name: name, builder: "/bin/false" })));
   const configured = nix.thunk(() => nix.app(nix.sel(portable_lib, "configure"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
-      serviceManagerPkgs: nix.thunk(() => ({ [nix.POS]: pos$2, coreutils: nix.thunk(() => nix.app(dummyPkg, "coreutils")) })),
+      [nix.POS]: $pos[2],
+      serviceManagerPkgs: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        coreutils: nix.thunk(() => nix.app(dummyPkg, "coreutils")),
+      })),
       extraRootModules: [],
       extraRootSpecialArgs: nix.thunk(() => ({})),
     }))));
   const exampleConfig = nix.thunk(() => ({
-    [nix.POS]: pos$33,
+    [nix.POS]: $pos[32],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       service1: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        process: nix.thunk(() => ({ [nix.POS]: pos$4, argv: nix.thunk(() => ["/usr/bin/echo", "hello"]) })),
+        [nix.POS]: $pos[5],
+        process: nix.thunk(() => ({ [nix.POS]: $pos[3], argv: nix.thunk(() => ["/usr/bin/echo", "hello"]) })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             assertion: false,
             message: "you can't enable this for that reason",
           })),
@@ -95,26 +36,26 @@ export default nix.thunk(() => (() => {
         warnings: nix.thunk(() => ["The `foo' service is deprecated and will go away soon!"]),
       })),
       service2: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         process: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           argv: nix.thunk(() => [nix.thunk(() => nix.app(dummyPkg, "cowsay.sh")), "world"]),
           reloadCommand: nix.thunk(() => nix.str`${nix.app(dummyPkg, "cowsay.sh")} reload`),
         })),
       })),
       service3: nix.thunk(() => ({
-        [nix.POS]: pos$16,
-        process: nix.thunk(() => ({ [nix.POS]: pos$9, argv: nix.thunk(() => ["/bin/false"]) })),
+        [nix.POS]: $pos[15],
+        process: nix.thunk(() => ({ [nix.POS]: $pos[8], argv: nix.thunk(() => ["/bin/false"]) })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           exclacow: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             process: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               argv: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.update(nix.app(dummyPkg, "cowsay-ng"), {
-                    [nix.POS]: pos$11,
-                    meta: nix.thunk(() => ({ [nix.POS]: pos$10, mainProgram: "cowsay" })),
+                    [nix.POS]: $pos[10],
+                    meta: nix.thunk(() => ({ [nix.POS]: $pos[9], mainProgram: "cowsay" })),
                   })))),
                 "!",
               ]),
@@ -122,7 +63,7 @@ export default nix.thunk(() => (() => {
             })),
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 assertion: false,
                 message: "you can't enable this for such reason",
               })),
@@ -132,12 +73,12 @@ export default nix.thunk(() => (() => {
         })),
       })),
       flagsDefault: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         process: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           argv: nix.thunk(() => ["/bin/flagged"]),
           flags: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             "--bool-off": false,
             "--bool-on": true,
             "--config": nix.path(here, "./test.nix"),
@@ -148,43 +89,43 @@ export default nix.thunk(() => (() => {
         })),
       })),
       flagsCustomFormat: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         process: nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           argv: nix.thunk(() => ["/bin/flagged"]),
           flagFormat: (name) => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             option: nix.thunk(() => nix.str`--${name}`),
             sep: "=",
             explicitBool: true,
           }),
-          flags: nix.thunk(() => ({ [nix.POS]: pos$21, port: 8080n, quiet: false, verbose: true })),
+          flags: nix.thunk(() => ({ [nix.POS]: $pos[20], port: 8080n, quiet: false, verbose: true })),
         })),
       })),
       flagsRepeated: nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         process: nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           argv: nix.thunk(() => ["/bin/flagged"]),
           flags: nix.thunk(() => [
-            nix.thunk(() => ({ [nix.POS]: pos$24, "--host": "a" })),
-            nix.thunk(() => ({ [nix.POS]: pos$25, "--host": "b" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[23], "--host": "a" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[24], "--host": "b" })),
           ]),
         })),
       })),
       flagsOrdering: nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         process: nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           argv: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => ["/bin/gt"]))),
               nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 800n, nix.thunk(() => ["server"]))),
               nix.thunk(() => nix.app(nix.sel(lib, "mkAfter"), nix.thunk(() => ["TRAILING"]))),
             ]))),
           flags: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$28, "--listen": "a" })),
+              nix.thunk(() => ({ [nix.POS]: $pos[27], "--listen": "a" })),
               nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 "--disable-landlock": nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 600n, true)),
               })),
             ]))),
@@ -193,14 +134,14 @@ export default nix.thunk(() => (() => {
     })),
   }));
   const exampleEval = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-      [nix.POS]: pos$37,
+      [nix.POS]: $pos[36],
       modules: nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           options: nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             services: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(configured, "serviceSubmodule")))),
               })))),
           })),
@@ -210,31 +151,31 @@ export default nix.thunk(() => (() => {
     }))));
   const failures = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (a) => !nix.asBool(nix.sel(a, "assertion"))));
   const filterEval = (config) => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(config, "process")), nix.thunk(() => ({
-      [nix.POS]: pos$39,
+      [nix.POS]: $pos[38],
       warnings: nix.thunk(() => nix.attr(config, "warnings")),
       assertions: nix.thunk(() => nix.app(failures, nix.thunk(() => nix.sel(config, "assertions")))),
       process: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(config, "process"));
         return {
-        [nix.POS]: pos$38,
+        [nix.POS]: $pos[37],
         argv: nix.thunk(() => nix.attr(from, "argv")),
         reloadCommand: nix.thunk(() => nix.attr(from, "reloadCommand")),
         reloadSignal: nix.thunk(() => nix.attr(from, "reloadSignal")),
       };
       })()),
     }))), {
-    [nix.POS]: pos$40,
+    [nix.POS]: $pos[39],
     services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (k) => filterEval, nix.thunk(() => nix.sel(config, "services")))),
   });
   const test = nix.thunk(() => (() => {
     nix.assert_(nix.eq(nix.app(filterEval, nix.thunk(() => nix.sel(exampleEval, "config"))), {
-      [nix.POS]: pos$61,
+      [nix.POS]: $pos[60],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$60,
+        [nix.POS]: $pos[59],
         service1: nix.thunk(() => ({
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           process: nix.thunk(() => ({
-            [nix.POS]: pos$41,
+            [nix.POS]: $pos[40],
             argv: nix.thunk(() => ["/usr/bin/echo", "hello"]),
             reloadCommand: null,
             reloadSignal: null,
@@ -242,7 +183,7 @@ export default nix.thunk(() => (() => {
           services: nix.thunk(() => ({})),
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$42,
+              [nix.POS]: $pos[41],
               assertion: false,
               message: "you can't enable this for that reason",
             })),
@@ -250,9 +191,9 @@ export default nix.thunk(() => (() => {
           warnings: nix.thunk(() => ["The `foo' service is deprecated and will go away soon!"]),
         })),
         service2: nix.thunk(() => ({
-          [nix.POS]: pos$45,
+          [nix.POS]: $pos[44],
           process: nix.thunk(() => ({
-            [nix.POS]: pos$44,
+            [nix.POS]: $pos[43],
             argv: nix.thunk(() => [nix.thunk(() => nix.str`${nix.app(dummyPkg, "cowsay.sh")}`), "world"]),
             reloadCommand: nix.thunk(() => nix.str`${nix.app(dummyPkg, "cowsay.sh")} reload`),
             reloadSignal: null,
@@ -262,19 +203,19 @@ export default nix.thunk(() => (() => {
           warnings: [],
         })),
         service3: nix.thunk(() => ({
-          [nix.POS]: pos$51,
+          [nix.POS]: $pos[50],
           process: nix.thunk(() => ({
-            [nix.POS]: pos$46,
+            [nix.POS]: $pos[45],
             argv: nix.thunk(() => ["/bin/false"]),
             reloadCommand: null,
             reloadSignal: null,
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$50,
+            [nix.POS]: $pos[49],
             exclacow: nix.thunk(() => ({
-              [nix.POS]: pos$49,
+              [nix.POS]: $pos[48],
               process: nix.thunk(() => ({
-                [nix.POS]: pos$47,
+                [nix.POS]: $pos[46],
                 argv: nix.thunk(() => [nix.thunk(() => nix.str`${nix.app(dummyPkg, "cowsay-ng")}/bin/cowsay`), "!"]),
                 reloadCommand: nix.thunk(() => nix.str`${nix.app(dummyPkg, "coreutils")}/bin/kill -HUP $MAINPID`),
                 reloadSignal: "HUP",
@@ -282,7 +223,7 @@ export default nix.thunk(() => (() => {
               services: nix.thunk(() => ({})),
               assertions: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$48,
+                  [nix.POS]: $pos[47],
                   assertion: false,
                   message: "you can't enable this for such reason",
                 })),
@@ -294,9 +235,9 @@ export default nix.thunk(() => (() => {
           warnings: [],
         })),
         flagsDefault: nix.thunk(() => ({
-          [nix.POS]: pos$53,
+          [nix.POS]: $pos[52],
           process: nix.thunk(() => ({
-            [nix.POS]: pos$52,
+            [nix.POS]: $pos[51],
             argv: nix.thunk(() => [
               "/bin/flagged",
               "--bool-on",
@@ -315,9 +256,9 @@ export default nix.thunk(() => (() => {
           warnings: [],
         })),
         flagsCustomFormat: nix.thunk(() => ({
-          [nix.POS]: pos$55,
+          [nix.POS]: $pos[54],
           process: nix.thunk(() => ({
-            [nix.POS]: pos$54,
+            [nix.POS]: $pos[53],
             argv: nix.thunk(() => ["/bin/flagged", "--port=8080", "--quiet=false", "--verbose=true"]),
             reloadCommand: null,
             reloadSignal: null,
@@ -327,9 +268,9 @@ export default nix.thunk(() => (() => {
           warnings: [],
         })),
         flagsRepeated: nix.thunk(() => ({
-          [nix.POS]: pos$57,
+          [nix.POS]: $pos[56],
           process: nix.thunk(() => ({
-            [nix.POS]: pos$56,
+            [nix.POS]: $pos[55],
             argv: nix.thunk(() => ["/bin/flagged", "--host", "a", "--host", "b"]),
             reloadCommand: null,
             reloadSignal: null,
@@ -339,9 +280,9 @@ export default nix.thunk(() => (() => {
           warnings: [],
         })),
         flagsOrdering: nix.thunk(() => ({
-          [nix.POS]: pos$59,
+          [nix.POS]: $pos[58],
           process: nix.thunk(() => ({
-            [nix.POS]: pos$58,
+            [nix.POS]: $pos[57],
             argv: nix.thunk(() => ["/bin/gt", "--disable-landlock", "server", "--listen", "a", "TRAILING"]),
             reloadCommand: null,
             reloadSignal: null,
@@ -355,7 +296,7 @@ export default nix.thunk(() => (() => {
     nix.assert_(nix.eq(nix.app(nix.sel(portable_lib, "getWarnings"), nix.thunk(() => ["service1"]), nix.thunk(() => nix.sel(exampleEval, "config", "services", "service1"))), ["in service1: The `foo' service is deprecated and will go away soon!"]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/services/test.nix:306:5");
     nix.assert_(nix.eq(nix.app(failures, nix.thunk(() => nix.app(nix.sel(portable_lib, "getAssertions"), nix.thunk(() => ["service1"]), nix.thunk(() => nix.sel(exampleEval, "config", "services", "service1"))))), [
       nix.thunk(() => ({
-        [nix.POS]: pos$62,
+        [nix.POS]: $pos[61],
         message: "in service1: you can't enable this for that reason",
         assertion: false,
       })),
@@ -365,7 +306,7 @@ export default nix.thunk(() => (() => {
     ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/services/test.nix:319:5");
     nix.assert_(nix.eq(nix.app(failures, nix.thunk(() => nix.app(nix.sel(portable_lib, "getAssertions"), nix.thunk(() => ["service3"]), nix.thunk(() => nix.sel(exampleEval, "config", "services", "service3"))))), [
       nix.thunk(() => ({
-        [nix.POS]: pos$63,
+        [nix.POS]: $pos[62],
         message: "in service3.services.exclacow: you can't enable this for such reason",
         assertion: false,
       })),

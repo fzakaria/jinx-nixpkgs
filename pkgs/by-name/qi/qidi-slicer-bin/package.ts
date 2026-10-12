@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["version", 19, 13], ["pname", 19, 21], ["src", 19, 27]], [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5], ["platforms", 46, 5], ["sourceProvenance", 47, 5]], [["pname", 23, 11], ["version", 23, 17], ["src", 23, 25], ["extraPkgs", 24, 3], ["extraInstallCommands", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { appimageTools: false, fetchurl: false, webkitgtk_4_1: false, libsoup_3: false, libpng: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 19, 13], ["pname", 19, 21], ["src", 19, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5], ["platforms", 46, 5], ["sourceProvenance", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 11], ["version", 23, 17], ["src", 23, 25], ["extraPkgs", 24, 3], ["extraInstallCommands", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pname = "qidi-slicer";
   const version = "1.2.3";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/QIDITECH/QIDISlicer/releases/download/V${version}/QIDISlicer_${version}_Linux_Ubuntu24.AppImage`),
       hash: "sha256-76bdVQu+xCf6uCwkHcpLNNna5MgHm4vbuwMFoQ26N0Y=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, version: version, pname: pname, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], version: version, pname: pname, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -35,7 +32,7 @@ install -m 444 -D ${appimageContents}/QIDISlicer.desktop $out/share/applications
 install -m 444 -D ${appimageContents}/usr/bin/resources/icons/QIDISlicer.svg $out/share/icons/hicolor/scalable/apps/QIDISlicer.svg
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Slicer for QIDI 3D Printers, based on PrusaSlicer",
         longDescription: "QIDISlicer is a 3D printer slicing software that works with all QIDI Technology printers and filaments.\nIt is easy to use and has all the functions you need to learn 3D printing.\n",
         homepage: "https://github.com/QIDITECH/QIDISlicer",

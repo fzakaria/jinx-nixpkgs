@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugins.nix", [[["callPackage", 4, 11], ["roundcubePlugin", 6, 3], ["carddav", 8, 3], ["contextmenu", 9, 3], ["custom_from", 10, 3], ["persistent_login", 11, 3], ["thunderbird_labels", 12, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/plugins.nix", [["callPackage", 4, 11], ["roundcubePlugin", 6, 3], ["carddav", 8, 3], ["contextmenu", 9, 3], ["custom_from", 10, 3], ["persistent_login", 11, 3], ["thunderbird_labels", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     callPackage: callPackage,
     roundcubePlugin: nix.thunk(() => nix.app(callPackage, nix.path(here, "./roundcube-plugin.nix"), nix.thunk(() => ({})))),
     carddav: nix.thunk(() => nix.app(callPackage, nix.path(here, "./carddav"), nix.thunk(() => ({})))),

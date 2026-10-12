@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["pipewire", 53, 15]], [["url", 57, 7], ["rev-prefix", 58, 7]], [["tests", 52, 5], ["updateScript", 55, 5]], [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 13, 3], ["version", 14, 3], ["outputs", 16, 3], ["src", 21, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["mesonFlags", 33, 3], ["passthru", 51, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, pipewire: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pipewire", 53, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 57, 7], ["rev-prefix", 58, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 52, 5], ["updateScript", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["outputs", 16, 3], ["src", 21, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["mesonFlags", 33, 3], ["passthru", 51, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lv2",
       version: "1.18.10",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://lv2plug.in/spec/lv2-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-eMUbzyG1Tli7Yymsy7Ta4Dsu15tSD5oB5zS9neUwlT8=",
         })))),
@@ -40,12 +35,12 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-Dlv2dir=${nix.builtins.placeholder("out")}/lib/lv2`),
         ])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, pipewire: pipewire })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://gitlab.com/lv2/lv2.git", "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], pipewire: pipewire })),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], url: "https://gitlab.com/lv2/lv2.git", "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://lv2plug.in",
         description: "Plugin standard for audio systems",
         mainProgram: "lv2_validate",

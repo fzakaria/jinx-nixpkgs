@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/graphviz.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]], [["pname", 8, 3], ["version", 9, 3], ["idrisDeps", 11, 3], ["src", 13, 3], ["postUnpack", 20, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { "build-idris-package": false, fetchFromGitLab: false, lightyear: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/graphviz.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/graphviz.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]]);
-const pos$3 = nix.positions(here + "/graphviz.nix", [["pname", 8, 3], ["version", 9, 3], ["idrisDeps", 11, 3], ["src", 13, 3], ["postUnpack", 20, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const lightyear = nix.arg($, "lightyear");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "graphviz",
       version: "2017-01-16",
       idrisDeps: nix.thunk(() => [lightyear]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mgttlinger",
           repo: "idris-graphviz",
           rev: "805da92ac888530134c3b4090fae0d025d86bb05",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postUnpack: "sed -i \"/^author /cauthor = Merlin Goettlinger\" source/graphviz.ipkg\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Parser and library for graphviz dot files",
         homepage: "https://gitlab.com/mgttlinger/idris-graphviz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 22, 5], ["longDescription", 23, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["preInstall", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, stdenvNoCC: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 22, 5], ["longDescription", 23, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["preInstall", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "linearicons-free",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://cdn.linearicons.com/free/${nix.sel(finalAttrs, "version")}/Linearicons-Free-v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-0Gb0CRdgzSnpeN+x8TrH5TCrAA57+jsBWZ4FgJ8cm08=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       preInstall: "cd \"$src/Desktop Font/\"",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Crisp Line Icons by Perxis",
         longDescription: "See cheat sheet here: https://linearicons.com/free#cheat-sheet\n",
         homepage: "https://linearicons.com/free",

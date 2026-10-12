@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["platforms", 24, 9], ["maintainers", 25, 9], ["license", 28, 9]], [["pname", 17, 7], ["version", 18, 7], ["owner", 19, 7], ["repo", 20, 7], ["rev", 21, 7], ["sha256", 22, 7], ["meta", 23, 7]], [["name", 15, 17], ["value", 16, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["platforms", 24, 9], ["maintainers", 25, 9], ["license", 28, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 17, 7], ["version", 18, 7], ["owner", 19, 7], ["repo", 20, 7], ["rev", 21, 7], ["sha256", 22, 7], ["meta", 23, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 15, 17], ["value", 16, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const maintainers = nix.thunk(() => nix.attr(lib, "maintainers"));
   const platforms = nix.thunk(() => nix.attr(lib, "platforms"));
   return nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((v) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: nix.thunk(() => nix.attr(v, "name")),
         value: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.sel(v, "name")),
             version: nix.thunk(() => nix.sel(v, "version")),
             owner: "DFgraphics",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
             rev: nix.thunk(() => nix.sel(v, "version")),
             sha256: nix.thunk(() => nix.sel(v, "sha256")),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               platforms: nix.thunk(() => nix.sel(platforms, "all")),
               maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(maintainers, "shazow"))]),
               license: nix.thunk(() => nix.sel(licenses, "unfree")),

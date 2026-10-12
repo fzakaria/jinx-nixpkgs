@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["updateScript", 47, 12]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["nativeCheckInputs", 32, 3], ["buildInputs", 36, 3], ["doCheck", 45, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { fetchFromGitLab: false, lib: false, nettle: false, "nix-update-script": false, rustPlatform: false, "pkg-config": false, pcsclite: false, openssl: false, gnupg: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 47, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["nativeCheckInputs", 32, 3], ["buildInputs", 36, 3], ["doCheck", 45, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gnupg = nix.arg($, "gnupg");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openpgp-ca",
       version: "0.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openpgp-ca",
           repo: "openpgp-ca",
           rev: nix.thunk(() => nix.str`openpgp-ca/v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, sqlite, pcsclite, nettle]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool for managing OpenPGP keys within organizations",
         homepage: "https://openpgp-ca.org/",
         changelog: "https://openpgp-ca.org/doc/changelog/",

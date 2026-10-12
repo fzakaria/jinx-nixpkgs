@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 79, 5], ["platforms", 80, 5]], [["pname", 40, 3], ["version", 41, 3], ["__structuredAttrs", 42, 3], ["strictDeps", 43, 3], ["src", 46, 3], ["nativeBuildInputs", 53, 3], ["preConfigure", 58, 3], ["cmakeFlags", 62, 3], ["requiredSystemFeatures", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, python3: false, llvmTargetsToBuild: true, llvmProjectsToBuild: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 79, 5], ["platforms", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["__structuredAttrs", 42, 3], ["strictDeps", 43, 3], ["src", 46, 3], ["nativeBuildInputs", 53, 3], ["preConfigure", 58, 3], ["cmakeFlags", 62, 3], ["requiredSystemFeatures", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const inferNativeTarget = (t) => (nix.asBool(nix.eq(t, "NATIVE")) ? nix.force(llvmNativeTarget) : nix.force(t));
   const llvmTargetsToBuild$ = nix.thunk(() => nix.concat(["AMDGPU", "NVPTX"], nix.builtins.map(inferNativeTarget, llvmTargetsToBuild)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tokenspeed-triton-llvm",
       version: "24.0.0-unstable-2026-08-03",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "llvm",
           repo: "llvm-project",
           rev: "b010a18d2b648cab83c83967ff26b8fde11acdc6",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of modular and reusable compiler and toolchain technologies",
         homepage: "https://github.com/llvm/llvm-project",
         license: nix.thunk(() => (() => {

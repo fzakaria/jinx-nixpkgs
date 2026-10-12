@@ -2,14 +2,14 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["file_picker", 4, 3], ["flutter_discord_rpc", 5, 3], ["flutter_secure_storage_linux", 6, 3], ["flutter_vodozemac", 7, 3], ["flutter_volume_controller", 8, 3], ["fvp", 9, 3], ["handy_window", 10, 3], ["hotkey_manager_linux", 11, 3], ["matrix", 12, 3], ["media_kit_libs_linux", 13, 3], ["olm", 14, 3], ["pdfium_dart", 15, 3], ["pdfium_flutter", 16, 3], ["pdfrx", 17, 3], ["printing", 18, 3], ["rhttp", 19, 3], ["sentry_flutter", 20, 3], ["sqlcipher_flutter_libs", 21, 3], ["sqlite3", 22, 3], ["sqlite3_flutter_libs", 23, 3], ["system_tray", 24, 3], ["super_native_extensions", 25, 3], ["volume_controller", 26, 3], ["xdg_directories", 27, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["file_picker", 4, 3], ["flutter_discord_rpc", 5, 3], ["flutter_secure_storage_linux", 6, 3], ["flutter_vodozemac", 7, 3], ["flutter_volume_controller", 8, 3], ["fvp", 9, 3], ["handy_window", 10, 3], ["hotkey_manager_linux", 11, 3], ["matrix", 12, 3], ["media_kit_libs_linux", 13, 3], ["olm", 14, 3], ["pdfium_dart", 15, 3], ["pdfium_flutter", 16, 3], ["pdfrx", 17, 3], ["printing", 18, 3], ["rhttp", 19, 3], ["sentry_flutter", 20, 3], ["sqlcipher_flutter_libs", 21, 3], ["sqlite3", 22, 3], ["sqlite3_flutter_libs", 23, 3], ["system_tray", 24, 3], ["super_native_extensions", 25, 3], ["volume_controller", 26, 3], ["xdg_directories", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     file_picker: nix.thunk(() => nix.app(callPackage, nix.path(here, "./file_picker"), nix.thunk(() => ({})))),
     flutter_discord_rpc: nix.thunk(() => nix.app(callPackage, nix.path(here, "./flutter_discord_rpc"), nix.thunk(() => ({})))),
     flutter_secure_storage_linux: nix.thunk(() => nix.app(callPackage, nix.path(here, "./flutter-secure-storage-linux"), nix.thunk(() => ({})))),

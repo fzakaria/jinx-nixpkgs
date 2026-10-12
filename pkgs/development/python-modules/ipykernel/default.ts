@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 32, 26], ["version", 32, 32], ["hash", 33, 5]], [["pytest", 60, 5], ["sage", 61, 13]], [["tests", 59, 12]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["teams", 69, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["pythonRemoveDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["propagatedBuildInputs", 41, 3], ["doCheck", 57, 3], ["passthru", 59, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, callPackage: false, fetchPypi: false, hatchling: false, appnope: false, comm: false, ipython: false, "jupyter-client": false, "jupyter-core": false, "matplotlib-inline": false, "nest-asyncio2": false, packaging: false, psutil: false, pyzmq: false, tornado: false, traitlets: false, sage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 32, 26], ["version", 32, 32], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pytest", 60, 5], ["sage", 61, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 59, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["teams", 69, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["pythonRemoveDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["propagatedBuildInputs", 41, 3], ["doCheck", 57, 3], ["passthru", 59, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const traitlets = nix.arg($, "traitlets");
   const sage = nix.arg($, "sage");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ipykernel",
       version: "7.3.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-msqq+X0WNVFm5Aha/p0iW/vfK371IPnfO+jyskgnXgk=",
@@ -59,15 +55,15 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [appnope])))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pytest: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
           sage: sage,
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "IPython Kernel for Jupyter",
         homepage: "https://ipython.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/ipython/ipykernel/releases/tag/v${nix.sel(finalAttrs, "version")}`),

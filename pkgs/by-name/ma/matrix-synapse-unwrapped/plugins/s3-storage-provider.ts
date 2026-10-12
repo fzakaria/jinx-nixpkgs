@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/s3-storage-provider.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 34, 3], ["doCheck", 45, 3], ["pythonImportsCheck", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, boto3: false, buildPythonPackage: false, fetchFromGitHub: false, humanize: false, "matrix-synapse-unwrapped": false, tqdm: false, twisted: false, psycopg2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/s3-storage-provider.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/s3-storage-provider.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/s3-storage-provider.nix", [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 34, 3], ["doCheck", 45, 3], ["pythonImportsCheck", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "matrix-org",
           repo: "synapse-s3-storage-provider",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["s3_storage_provider"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Synapse storage provider to fetch and store media in Amazon S3",
         mainProgram: "s3_media_upload",
         homepage: "https://github.com/matrix-org/synapse-s3-storage-provider",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

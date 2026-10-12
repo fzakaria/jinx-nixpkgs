@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]], [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]], [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 44, 3], ["cmakeFlags", 49, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "abseil-cpp": false, pybind11: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 44, 3], ["cmakeFlags", 49, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "202402.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pybind",
           repo: "pybind11_abseil",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,19 +28,19 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "pybind11_abseil.patch",
             url: "https://build.opensuse.org/public/source/openSUSE:Factory/pybind11-abseil/pybind11_abseil.patch?rev=2",
             hash: "sha256-zwxCIhYMvexdSUmKM22OMBMEo0NRDgMtSVMDySFCn6U=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "use-system-packages-if-possible.patch",
             url: "https://build.opensuse.org/public/source/openSUSE:Factory/pybind11-abseil/use-system-packages-if-possible.patch?rev=2",
             hash: "sha256-CLHOSni2ej6ICtvMtBoCIpR9CNPPibwIS+hYbOCAwBE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "0001-Install-headers-and-CMake-development-files.patch",
             url: "https://build.opensuse.org/public/source/openSUSE:Factory/pybind11-abseil/0001-Install-headers-and-CMake-development-files.patch?rev=2",
             hash: "sha256-TU9AzvF83aROY4gwys2ITOcdtjEm4x2IbhX4cHNWp0M=",
@@ -58,7 +53,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "Python_EXECUTABLE", nix.thunk(() => nix.sel(python, "interpreter")))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Pybind11 bindings for the Abseil C++ Common Libraries",
         homepage: "https://github.com/pybind/pybind11_abseil",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -68,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

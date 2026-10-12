@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 22, 26], ["pname", 23, 5], ["hash", 24, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 39, 3], ["preCheck", 44, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, cython: false, pytestCheckHook: false, setuptools: false, decorator: false, numpy: false, scipy: false, "standard-pkg-resources": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 22, 26], ["pname", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 39, 3], ["preCheck", 44, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const standard_pkg_resources = nix.arg($, "standard-pkg-resources");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pysptk",
       version: "1.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "pysptk",
           hash: "sha256-eLHJM4v3laQc3D/wP81GmcQBwyP1RjC7caGXEAeNCz8=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_rapt_regression", "test_swipe_regression"]),
       pythonImportsCheck: nix.thunk(() => ["pysptk"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Wrapper for Speech Signal Processing Toolkit (SPTK)",
         homepage: "https://pysptk.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

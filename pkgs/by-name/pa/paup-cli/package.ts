@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["sourceProvenance", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5], ["platforms", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["unpackPhase", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["installPhase", 35, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, autoPatchelfHook: false, curl: false, gfortran: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["sourceProvenance", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5], ["platforms", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["unpackPhase", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["installPhase", 35, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gfortran = nix.arg($, "gfortran");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "paup-cli",
       version: "4.0a168",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://phylosolutions.com/paup-test/paup4a168_centos64.gz",
           hash: "sha256-41dZswlrIQ05f1zJzId78DKmPf0QH1SfrexzvCAUxq8=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl, gfortran, zlib]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 paup -t $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Software package for inferring evolutionary trees",
         homepage: "http://phylosolutions.com/paup-test/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

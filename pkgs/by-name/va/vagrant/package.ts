@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["type", 41, 13], ["path", 42, 13]], [["source", 40, 11], ["version", 44, 19], ["dontCheckForBrokenSymlinks", 45, 11]], [["vagrant", 39, 9]], [["pname", 30, 5], ["version", 31, 13], ["ruby", 33, 13], ["gemdir", 34, 5], ["gemfile", 35, 5], ["lockfile", 36, 5], ["gemset", 37, 5], ["postBuild", 54, 5]], [["ruby", 135, 13], ["deps", 135, 18]], [["description", 139, 5], ["homepage", 140, 5], ["license", 141, 5], ["maintainers", 142, 5], ["platforms", 143, 5]], [["name", 66, 3], ["gemName", 67, 3], ["ruby", 68, 11], ["version", 68, 16], ["src", 68, 24], ["doInstallCheck", 70, 3], ["dontBuild", 71, 3], ["buildInputs", 76, 3], ["patches", 78, 3], ["postPatch", 84, 3], ["postInstall", 94, 3], ["installCheckPhase", 130, 3], ["passthru", 134, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, buildRubyGem: false, bundlerEnv: false, ruby_3_4: false, libarchive: false, libguestfs: false, qemu: false, writeText: false, withLibvirt: true, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["type", 41, 13], ["path", 42, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["source", 40, 11], ["version", 44, 19], ["dontCheckForBrokenSymlinks", 45, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["vagrant", 39, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 5], ["version", 31, 13], ["ruby", 33, 13], ["gemdir", 34, 5], ["gemfile", 35, 5], ["lockfile", 36, 5], ["gemset", 37, 5], ["postBuild", 54, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["ruby", 135, 13], ["deps", 135, 18]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 139, 5], ["homepage", 140, 5], ["license", 141, 5], ["maintainers", 142, 5], ["platforms", 143, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 66, 3], ["gemName", 67, 3], ["ruby", 68, 11], ["version", 68, 16], ["src", 68, 24], ["doInstallCheck", 70, 3], ["dontBuild", 71, 3], ["buildInputs", 76, 3], ["patches", 78, 3], ["postPatch", 84, 3], ["postInstall", 94, 3], ["installCheckPhase", 130, 3], ["passthru", 134, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const version = "2.4.9";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "hashicorp",
       repo: "vagrant",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,17 +36,17 @@ export default nix.lambda((args) => (() => {
       const gemfile = nix.thunk(() => nix.app(writeText, "Gemfile", ""));
       const lockfile = nix.thunk(() => nix.app(writeText, "Gemfile.lock", ""));
       const gemset = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix"))), nix.thunk(() => nix.update({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           vagrant: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            source: nix.thunk(() => ({ [nix.POS]: pos$2, type: "path", path: src })),
+            [nix.POS]: $pos[2],
+            source: nix.thunk(() => ({ [nix.POS]: $pos[1], type: "path", path: src })),
             version: version_1,
             dontCheckForBrokenSymlinks: true,
           })),
         }, nix.app(nix.sel(lib, "optionalAttrs"), withLibvirt, nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset_libvirt.nix"))))))));
       const postBuild = "for gem in \"$out\"/lib/ruby/gems/*/gems/*; do\n  cp -a \"$gem/\" \"$gem.new\"\n  rm \"$gem\"\n  # needed on macOS, otherwise the mv yields permission denied\n  chmod +w \"$gem.new\"\n  mv \"$gem.new\" \"$gem\"\ndone\n";
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version: version_1,
         ruby: ruby_1,
@@ -101,9 +94,9 @@ cp -av contrib/zsh/_vagrant $out/share/zsh/site-functions/
 `)));
       })());
       const installCheckPhase = "HOME=\"$(mktemp -d)\" $out/bin/vagrant init --output - > /dev/null\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$6, ruby: ruby_1, deps: deps }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[5], ruby: ruby_1, deps: deps }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Tool for building complete development environments",
         homepage: "https://www.vagrantup.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsl11")),
@@ -117,7 +110,7 @@ cp -av contrib/zsh/_vagrant $out/share/zsh/site-functions/
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name,
         gemName,
         ruby: ruby_1,

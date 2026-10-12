@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 40, 5], ["version", 41, 13], ["hash", 42, 5]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["teams", 84, 5]], [["pname", 36, 11], ["version", 36, 17], ["pyproject", 37, 3], ["src", 39, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 50, 3], ["propagatedBuildInputs", 52, 3], ["nativeCheckInputs", 64, 3], ["checkPhase", 72, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, coreutils: false, setuptools: false, pbr: false, prettytable: false, keystoneauth1: false, requests: false, warlock: false, openstacksdk: false, "oslo-i18n": false, "oslo-utils": false, wrapt: false, pyopenssl: false, stestr: false, testscenarios: false, ddt: false, "requests-mock": false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 40, 5], ["version", 41, 13], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["teams", 84, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 36, 11], ["version", 36, 17], ["pyproject", 37, 3], ["src", 39, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 50, 3], ["propagatedBuildInputs", 52, 3], ["nativeCheckInputs", 64, 3], ["checkPhase", 72, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +36,12 @@ export default nix.lambda((args) => (() => {
     "glanceclient\\.tests\\.unit\\.test_ssl\\.TestHTTPSVerifyCert\\..*",
   ]);
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "python_glanceclient",
           version: version,
           hash: "sha256-+jNZvIvZPnrryjctr+yOGQA7TB9kSZ4uuCsncdqPpBw=",
@@ -70,7 +68,7 @@ runHook postCheck
 `),
       pythonImportsCheck: nix.thunk(() => ["glanceclient"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python bindings for the OpenStack Images API",
         homepage: "https://github.com/openstack/python-glanceclient/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

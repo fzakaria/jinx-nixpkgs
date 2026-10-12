@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bin.nix", [[["url", 15, 5], ["hash", 16, 5]], [["updateScript", 27, 12]], [["description", 47, 5], ["homepage", 48, 5], ["downloadPage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["installPhase", 19, 3], ["passthru", 27, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false, writeShellScript: false, curl: false, "nix-update": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bin.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/bin.nix", [["updateScript", 27, 12]]);
-const pos$3 = nix.positions(here + "/bin.nix", [["description", 47, 5], ["homepage", 48, 5], ["downloadPage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$4 = nix.positions(here + "/bin.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["installPhase", 19, 3], ["passthru", 27, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const nix_update = nix.arg($, "nix-update");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fasm-bin",
       version: "1.73.35",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://flatassembler.net/fasm-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-o03sfQvC3Hn6q7aL2LwvYrbPsx1pwBRJNnzkzYCYk04=",
         })))),
@@ -32,7 +29,7 @@ install -D fasm${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-fasm", nix.thunk(() => nix.str`set -euo pipefail
 
 version=""
@@ -52,7 +49,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} fasm-bin --version "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "x86(-64) macro assembler to binary, MZ, PE, COFF, and ELF",
         homepage: "https://flatassembler.net/",
         downloadPage: "https://flatassembler.net/download.php",

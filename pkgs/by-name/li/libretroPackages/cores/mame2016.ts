@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mame2016.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["NIX_BUILD_CORES", 32, 5], ["NIX_CFLAGS_COMPILE", 34, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5]], [["core", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["patches", 25, 3], ["extraNativeBuildInputs", 26, 3], ["extraBuildInputs", 27, 3], ["makeFlags", 28, 3], ["env", 30, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, "alsa-lib": false, fetchFromGitHub: false, mkLibretroCore: false, python3: false, rapidjson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mame2016.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/mame2016.nix", [["NIX_BUILD_CORES", 32, 5], ["NIX_CFLAGS_COMPILE", 34, 5]]);
-const pos$3 = nix.positions(here + "/mame2016.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5]]);
-const pos$4 = nix.positions(here + "/mame2016.nix", [["core", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["patches", 25, 3], ["extraNativeBuildInputs", 26, 3], ["extraBuildInputs", 27, 3], ["makeFlags", 28, 3], ["env", 30, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const rapidjson = nix.arg($, "rapidjson");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       core: "mame2016",
       version: "0-unstable-2022-04-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "mame2016-libretro",
           rev: "01058613a0109424c4e7211e49ed83ac950d3993",
@@ -35,12 +32,12 @@ ln -s ${nix.app(nix.sel(lib, "getInclude"), rapidjson)} 3rdparty/rapidjson
       extraBuildInputs: nix.thunk(() => [alsa_lib]),
       makeFlags: nix.thunk(() => ["PYTHON_EXECUTABLE=python3"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_BUILD_CORES: 8n,
         NIX_CFLAGS_COMPILE: "-Wno-error -fpermissive",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Port of MAME ~2016 to libretro, compatible with MAME 0.174 sets",
         homepage: "https://github.com/libretro/mame2016-libretro",
         license: nix.thunk(() => (() => {

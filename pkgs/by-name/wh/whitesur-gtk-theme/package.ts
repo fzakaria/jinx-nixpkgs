@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 100, 7], ["repo", 101, 7], ["rev", 102, 7], ["hash", 103, 7]], [["updateScript", 157, 14]], [["description", 160, 7], ["homepage", 161, 7], ["license", 162, 7], ["platforms", 163, 7], ["maintainers", 164, 7]], [["pname", 96, 5], ["version", 97, 5], ["src", 99, 5], ["nativeBuildInputs", 106, 5], ["buildInputs", 115, 5], ["postPatch", 119, 5], ["dontBuild", 131, 5], ["installPhase", 133, 5], ["passthru", 157, 5], ["meta", 159, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false, dialog: false, glib: false, "gnome-themes-extra": false, jdupes: false, libxml2: false, sassc: false, "util-linux": false, altVariants: true, colorVariants: true, opacityVariants: true, themeVariants: true, schemeVariants: true, iconVariant: true, nautilusStyle: true, panelOpacity: true, panelSize: true, roundedMaxWindow: true, darkerColor: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 100, 7], ["repo", 101, 7], ["rev", 102, 7], ["hash", 103, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 157, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 160, 7], ["homepage", 161, 7], ["license", 162, 7], ["platforms", 163, 7], ["maintainers", 164, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 96, 5], ["version", 97, 5], ["src", 99, 5], ["nativeBuildInputs", 106, 5], ["buildInputs", 115, 5], ["postPatch", 119, 5], ["dontBuild", 131, 5], ["installPhase", 133, 5], ["passthru", 157, 5], ["meta", 159, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = "whitesur-gtk-theme";
       const version = "2026-08-08";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vinceliuice",
           repo: "whitesur-gtk-theme",
           rev: version,
@@ -100,11 +97,11 @@ jdupes --quiet --link-soft --recurse $out/share
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "MacOS BigSur like Gtk+ theme based on Elegant Design",
         homepage: "https://github.com/vinceliuice/WhiteSur-gtk-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -115,7 +112,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname_1,
         version,
         src,

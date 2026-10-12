@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 23, 3], ["preConfigure", 25, 3], ["makeFlags", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, libtoxcore: false, conf: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 23, 3], ["preConfigure", 25, 3], ["makeFlags", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const conf = nix.argOr($, "conf", () => null);
   const configFile = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(conf, null)), nix.thunk(() => nix.builtins.toFile("config.h", conf))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ratox",
       version: "0.4.20180303",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.2f30.org/ratox.git",
           rev: "269f7f97fb374a8f9c0b82195c21de15b81ddbbb",
           sha256: "0bpn37h8jvsqd66fkba8ky42nydc8acawa5x31yxqlxc8mc66k74",
@@ -33,7 +31,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(conf, null)), 
 `),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "FIFO based tox client",
         mainProgram: "ratox",
         homepage: "http://ratox.2f30.org/",

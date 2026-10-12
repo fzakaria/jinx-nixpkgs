@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["fetchSubmodules", 27, 5], ["hash", 28, 5]], [["pname", 33, 28], ["src", 33, 34], ["version", 33, 38], ["sourceRoot", 34, 7], ["vendorHash", 35, 7], ["nativeBuildInputs", 37, 7], ["proxyVendor", 39, 7]], [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["platforms", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["goModules", 31, 3], ["postPatch", 42, 3], ["preConfigure", 56, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 70, 3], ["postInstall", 76, 3], ["nativeInstallCheckInputs", 90, 3], ["versionCheckProgram", 93, 3], ["doInstallCheck", 94, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildGoModule: false, cmake: false, curl: false, go: false, unzip: false, zip: false, catch2: false, cxxopts: false, fmt: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["fetchSubmodules", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 33, 28], ["src", 33, 34], ["version", 33, 38], ["sourceRoot", 34, 7], ["vendorHash", 35, 7], ["nativeBuildInputs", 37, 7], ["proxyVendor", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["platforms", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["goModules", 31, 3], ["postPatch", 42, 3], ["preConfigure", 56, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 70, 3], ["postInstall", 76, 3], ["nativeInstallCheckInputs", 90, 3], ["versionCheckProgram", 93, 3], ["doInstallCheck", 94, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "protonmail-export",
       version: "1.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ProtonMail",
           repo: "proton-mail-export",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-ZYUqbxT9Aq3iaXdaCag4xstbrm9z9X435zm/Qz8OOyM=",
         })))),
       goModules: nix.thunk(() => nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -62,7 +59,7 @@ rm -f $out/bin/${so}
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/proton-mail-export-cli`),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Export your Proton Mail emails as eml files",
         homepage: "https://github.com/ProtonMail/proton-mail-export",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

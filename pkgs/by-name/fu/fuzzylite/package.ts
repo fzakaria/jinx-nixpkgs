@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["tagPrefix", 43, 48]], [["updateScript", 43, 12]], [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 22, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 32, 3], ["cmakeFlags", 37, 3], ["passthru", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, useFloat: true, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tagPrefix", 43, 48]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 43, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 22, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 32, 3], ["cmakeFlags", 37, 3], ["passthru", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const useFloat = nix.argOr($, "useFloat", () => false);
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fuzzylite",
       version: "6.0-unstable-2025-08-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fuzzylite",
           repo: "fuzzylite",
           rev: "fe62b61ad0e301fbd8868d5fc3d76d7590c59636",
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DFL_USE_FLOAT:BOOL=${(nix.asBool(useFloat) ? "ON" : "OFF")}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fuzzy logic control library in C++",
         mainProgram: "fuzzylite",
         homepage: "https://fuzzylite.com",

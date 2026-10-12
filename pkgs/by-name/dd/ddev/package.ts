@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 36, 3], ["vendorHash", 41, 3], ["ldflags", 43, 3], ["doCheck", 50, 3], ["postInstall", 52, 3], ["doInstallCheck", 69, 3], ["nativeInstallCheckInputs", 70, 3], ["versionCheckKeepEnvironment", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGo127Module: false, "docker-buildx": false, fetchFromGitHub: false, installShellFiles: false, makeBinaryWrapper: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 36, 3], ["vendorHash", 41, 3], ["ldflags", 43, 3], ["doCheck", 50, 3], ["postInstall", 52, 3], ["doInstallCheck", 69, 3], ["nativeInstallCheckInputs", 70, 3], ["versionCheckKeepEnvironment", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const dockerCliPlugins = nix.thunk(() => [docker_buildx]);
   const dockerCliPluginsDirs = nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), ":", nix.thunk(() => nix.builtins.map((p) => nix.str`${p}/libexec/docker/cli-plugins`, dockerCliPlugins))));
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ddev",
       version: "1.25.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ddev",
           repo: "ddev",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +48,7 @@ wrapProgram $out/bin/ddev \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, writableTmpDirAsHomeHook]),
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Docker-based local PHP+Node.js web development environments",
         homepage: "https://ddev.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

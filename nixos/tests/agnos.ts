@@ -2,57 +2,19 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/agnos.nix", [[["system", 3, 33]], [["system", 8, 55], ["pkgs", 8, 62]], [["maintainers", 43, 9]], [["systemPackages", 52, 25]], [["nameservers", 53, 24]], [["imports", 51, 13], ["environment", 52, 13], ["networking", 53, 13]], [["allowedTCPPorts", 60, 33], ["allowedUDPPorts", 61, 33]], [["firewall", 60, 24]], [["file", 69, 17], ["master", 70, 17]], [["agnos.test", 68, 21]], [["cacheNetworks", 63, 15], ["enable", 64, 15], ["extraOptions", 65, 15], ["zones", 68, 15]], [["bind", 62, 22]], [["networking", 60, 13], ["services", 62, 13]], [["extraHosts", 81, 24]], [["enable", 86, 28]], [["domains", 100, 23], ["fullchain_output_file", 102, 23], ["key_output_file", 103, 23]], [["domains", 107, 23], ["fullchain_output_file", 112, 23], ["key_output_file", 113, 23]], [["email", 94, 19], ["private_key_path", 96, 19], ["certificates", 98, 19]], [["domains", 125, 23], ["fullchain_output_file", 127, 23], ["key_output_file", 128, 23]], [["domains", 132, 23], ["fullchain_output_file", 137, 23], ["key_output_file", 138, 23]], [["email", 119, 19], ["private_key_path", 121, 19], ["certificates", 123, 19]], [["accounts", 92, 24]], [["enable", 85, 15], ["generateKeys", 86, 15], ["persistent", 87, 15], ["server", 88, 15], ["serverCa", 89, 15], ["temporarilyOpenFirewall", 90, 15], ["settings", 92, 15]], [["agnos", 84, 22]], [["imports", 79, 13], ["networking", 81, 13], ["security", 84, 13]], [["acme", 48, 9], ["dnsserver", 57, 9], ["server", 76, 9]], [["name", 41, 15], ["meta", 42, 7], ["nodes", 46, 7], ["testScript", 147, 7]], [["name", 191, 5]], [["enable", 197, 27]], [["nftables", 197, 18]], [["networking", 197, 7]], [["name", 195, 5], ["extraServerConfig", 196, 5]], [["enable", 204, 27]], [["firewall", 204, 18]], [["temporarilyOpenFirewall", 205, 22]], [["agnos", 205, 16]], [["networking", 204, 7], ["security", 205, 7]], [["name", 202, 5], ["extraServerConfig", 203, 5], ["checkFirewallClosed", 207, 5]], [["iptables", 190, 3], ["nftables", 194, 3], ["no-firewall", 201, 3]]]);
 const formals$1 = { args: { system: true, pkgs: true, lib: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/agnos.nix", [["system", 3, 33]]);
-const pos$2 = nix.positions(here + "/agnos.nix", [["system", 8, 55], ["pkgs", 8, 62]]);
 const formals$2 = { args: { name: false, extraServerConfig: true, checkFirewallClosed: true }, ellipsis: false };
-const pos$3 = nix.positions(here + "/agnos.nix", [["maintainers", 43, 9]]);
 const formals$3 = { args: { nodes: false, pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/agnos.nix", [["systemPackages", 52, 25]]);
-const pos$5 = nix.positions(here + "/agnos.nix", [["nameservers", 53, 24]]);
-const pos$6 = nix.positions(here + "/agnos.nix", [["imports", 51, 13], ["environment", 52, 13], ["networking", 53, 13]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/agnos.nix", [["allowedTCPPorts", 60, 33], ["allowedUDPPorts", 61, 33]]);
-const pos$8 = nix.positions(here + "/agnos.nix", [["firewall", 60, 24]]);
-const pos$9 = nix.positions(here + "/agnos.nix", [["file", 69, 17], ["master", 70, 17]]);
-const pos$10 = nix.positions(here + "/agnos.nix", [["agnos.test", 68, 21]]);
-const pos$11 = nix.positions(here + "/agnos.nix", [["cacheNetworks", 63, 15], ["enable", 64, 15], ["extraOptions", 65, 15], ["zones", 68, 15]]);
-const pos$12 = nix.positions(here + "/agnos.nix", [["bind", 62, 22]]);
-const pos$13 = nix.positions(here + "/agnos.nix", [["networking", 60, 13], ["services", 62, 13]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/agnos.nix", [["extraHosts", 81, 24]]);
-const pos$15 = nix.positions(here + "/agnos.nix", [["enable", 86, 28]]);
-const pos$16 = nix.positions(here + "/agnos.nix", [["domains", 100, 23], ["fullchain_output_file", 102, 23], ["key_output_file", 103, 23]]);
-const pos$17 = nix.positions(here + "/agnos.nix", [["domains", 107, 23], ["fullchain_output_file", 112, 23], ["key_output_file", 113, 23]]);
-const pos$18 = nix.positions(here + "/agnos.nix", [["email", 94, 19], ["private_key_path", 96, 19], ["certificates", 98, 19]]);
-const pos$19 = nix.positions(here + "/agnos.nix", [["domains", 125, 23], ["fullchain_output_file", 127, 23], ["key_output_file", 128, 23]]);
-const pos$20 = nix.positions(here + "/agnos.nix", [["domains", 132, 23], ["fullchain_output_file", 137, 23], ["key_output_file", 138, 23]]);
-const pos$21 = nix.positions(here + "/agnos.nix", [["email", 119, 19], ["private_key_path", 121, 19], ["certificates", 123, 19]]);
-const pos$22 = nix.positions(here + "/agnos.nix", [["accounts", 92, 24]]);
-const pos$23 = nix.positions(here + "/agnos.nix", [["enable", 85, 15], ["generateKeys", 86, 15], ["persistent", 87, 15], ["server", 88, 15], ["serverCa", 89, 15], ["temporarilyOpenFirewall", 90, 15], ["settings", 92, 15]]);
-const pos$24 = nix.positions(here + "/agnos.nix", [["agnos", 84, 22]]);
-const pos$25 = nix.positions(here + "/agnos.nix", [["imports", 79, 13], ["networking", 81, 13], ["security", 84, 13]]);
-const pos$26 = nix.positions(here + "/agnos.nix", [["acme", 48, 9], ["dnsserver", 57, 9], ["server", 76, 9]]);
-const pos$27 = nix.positions(here + "/agnos.nix", [["name", 41, 15], ["meta", 42, 7], ["nodes", 46, 7], ["testScript", 147, 7]]);
-const pos$28 = nix.positions(here + "/agnos.nix", [["name", 191, 5]]);
-const pos$29 = nix.positions(here + "/agnos.nix", [["enable", 197, 27]]);
-const pos$30 = nix.positions(here + "/agnos.nix", [["nftables", 197, 18]]);
-const pos$31 = nix.positions(here + "/agnos.nix", [["networking", 197, 7]]);
-const pos$32 = nix.positions(here + "/agnos.nix", [["name", 195, 5], ["extraServerConfig", 196, 5]]);
-const pos$33 = nix.positions(here + "/agnos.nix", [["enable", 204, 27]]);
-const pos$34 = nix.positions(here + "/agnos.nix", [["firewall", 204, 18]]);
-const pos$35 = nix.positions(here + "/agnos.nix", [["temporarilyOpenFirewall", 205, 22]]);
-const pos$36 = nix.positions(here + "/agnos.nix", [["agnos", 205, 16]]);
-const pos$37 = nix.positions(here + "/agnos.nix", [["networking", 204, 7], ["security", 205, 7]]);
-const pos$38 = nix.positions(here + "/agnos.nix", [["name", 202, 5], ["extraServerConfig", 203, 5], ["checkFirewallClosed", 207, 5]]);
-const pos$39 = nix.positions(here + "/agnos.nix", [["iptables", 190, 3], ["nftables", 194, 3], ["no-firewall", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system }))));
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs }))));
   const makeTest = nix.thunk(() => nix.attr(from, "makeTest"));
   const nodeIP = (n) => nix.sel(n, "networking", "primaryIPAddress");
   const dnsZone = (nodes) => nix.app(nix.sel(pkgs, "writeText"), "agnos.test.zone", nix.thunk(() => nix.str`$TTL    604800
@@ -81,30 +43,30 @@ _acme-challenge.d.agnos.test.   IN     NS      agnos-ns.agnos.test.
     const extraServerConfig = nix.argOr($_1, "extraServerConfig", () => ({}));
     const checkFirewallClosed = nix.argOr($_1, "checkFirewallClosed", () => true);
     return nix.app(makeTest, nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         name: name,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "justinas"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           acme: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const nodes = nix.arg($_2, "nodes");
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               imports: nix.thunk(() => [nix.path(here, "./common/acme/server")]),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "netcat"))]),
               })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 nameservers: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
                     nix.thunk(() => nix.app(nodeIP, nix.thunk(() => nix.sel(nodes, "dnsserver")))),
                   ]))),
@@ -115,26 +77,26 @@ _acme-challenge.d.agnos.test.   IN     NS      agnos-ns.agnos.test.
             const $_2 = nix.formals(args_2, formals$4);
             const nodes = nix.arg($_2, "nodes");
             return {
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 firewall: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   allowedTCPPorts: nix.thunk(() => [53n]),
                   allowedUDPPorts: nix.thunk(() => [53n]),
                 })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 bind: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   cacheNetworks: nix.thunk(() => ["192.168.1.0/24"]),
                   enable: true,
                   extraOptions: "dnssec-validation no;\n",
                   zones: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     "agnos.test": nix.thunk(() => ({
-                      [nix.POS]: pos$9,
+                      [nix.POS]: $pos[8],
                       file: nix.thunk(() => nix.app(dnsZone, nodes)),
                       master: true,
                     })),
@@ -147,39 +109,39 @@ _acme-challenge.d.agnos.test.   IN     NS      agnos-ns.agnos.test.
             const $_2 = nix.formals(args_2, formals$5);
             const nodes = nix.arg($_2, "nodes");
             return {
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               imports: nix.thunk(() => [extraServerConfig]),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 extraHosts: nix.thunk(() => nix.str`${nix.app(nodeIP, nix.thunk(() => nix.sel(nodes, "acme")))} acme.test
 `),
               })),
               security: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 agnos: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   enable: true,
-                  generateKeys: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
+                  generateKeys: nix.thunk(() => ({ [nix.POS]: $pos[14], enable: true })),
                   persistent: false,
                   server: "https://acme.test/dir",
                   serverCa: nix.path(here, "./common/acme/server/ca.cert.pem"),
                   temporarilyOpenFirewall: true,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
+                    [nix.POS]: $pos[21],
                     accounts: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$18,
+                        [nix.POS]: $pos[17],
                         email: "webmaster@agnos.test",
                         private_key_path: nix.thunk(() => nix.str`${nix.path(here, "./common/acme/server/acme.test.key.pem")}`),
                         certificates: nix.thunk(() => [
                           nix.thunk(() => ({
-                            [nix.POS]: pos$16,
+                            [nix.POS]: $pos[15],
                             domains: nix.thunk(() => ["a.agnos.test"]),
                             fullchain_output_file: "/tmp/a.agnos.test.crt",
                             key_output_file: "/tmp/a.agnos.test.key",
                           })),
                           nix.thunk(() => ({
-                            [nix.POS]: pos$17,
+                            [nix.POS]: $pos[16],
                             domains: nix.thunk(() => ["b.agnos.test", "*.b.agnos.test"]),
                             fullchain_output_file: "b.agnos.test.crt",
                             key_output_file: "b.agnos.test.key",
@@ -187,18 +149,18 @@ _acme-challenge.d.agnos.test.   IN     NS      agnos-ns.agnos.test.
                         ]),
                       })),
                       nix.thunk(() => ({
-                        [nix.POS]: pos$21,
+                        [nix.POS]: $pos[20],
                         email: "webmaster2@agnos.test",
                         private_key_path: "webmaster2.key",
                         certificates: nix.thunk(() => [
                           nix.thunk(() => ({
-                            [nix.POS]: pos$19,
+                            [nix.POS]: $pos[18],
                             domains: nix.thunk(() => ["c.agnos.test"]),
                             fullchain_output_file: "/tmp/c.agnos.test.crt",
                             key_output_file: "/tmp/c.agnos.test.key",
                           })),
                           nix.thunk(() => ({
-                            [nix.POS]: pos$20,
+                            [nix.POS]: $pos[19],
                             domains: nix.thunk(() => ["d.agnos.test", "*.d.agnos.test"]),
                             fullchain_output_file: "d.agnos.test.crt",
                             key_output_file: "d.agnos.test.key",
@@ -254,35 +216,35 @@ ${nix.app(nix.sel(lib, "optionalString"), checkFirewallClosed, "check_firewall_c
       })));
   })(), formals$2);
   return {
-    [nix.POS]: pos$39,
-    iptables: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({ [nix.POS]: pos$28, name: "iptables" })))),
+    [nix.POS]: $pos[38],
+    iptables: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({ [nix.POS]: $pos[27], name: "iptables" })))),
     nftables: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         name: "nftables",
         extraServerConfig: nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$30,
-            nftables: nix.thunk(() => ({ [nix.POS]: pos$29, enable: true })),
+            [nix.POS]: $pos[29],
+            nftables: nix.thunk(() => ({ [nix.POS]: $pos[28], enable: true })),
           })),
         })),
       })))),
     "no-firewall": nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({
-        [nix.POS]: pos$38,
+        [nix.POS]: $pos[37],
         name: "no-firewall",
         extraServerConfig: nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$33,
+              [nix.POS]: $pos[32],
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             agnos: nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               temporarilyOpenFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
             })),
           })),

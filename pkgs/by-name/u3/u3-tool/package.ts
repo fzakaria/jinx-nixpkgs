@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["enableParallelBuilding", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["enableParallelBuilding", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "u3-tool",
       version: "1.0",
       strictDeps: true,
       __structuredAttrs: true,
       enableParallelBuilding: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "marcusrugger",
           repo: "u3-tool",
           tag: nix.thunk(() => nix.str`u3-tool-${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for controlling the special features of a 'U3 smart drive' USB Flash disk",
         homepage: "https://sourceforge.net/projects/u3-tool/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

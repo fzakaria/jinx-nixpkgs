@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 55, 5], ["hash", 56, 5]], [["description", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["maintainers", 131, 5], ["platforms", 132, 5], ["mainProgram", 133, 5]], [["pname", 44, 3], ["version", 45, 3], ["outputs", 47, 3], ["src", 54, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 79, 3], ["configureFlags", 104, 3], ["dontUseCmakeConfigure", 108, 3], ["prePatch", 110, 3], ["preConfigure", 123, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ostree: false, rpm: false, which: false, autoconf: false, automake: false, libtool: false, "pkg-config": false, cargo: false, rustc: false, "gobject-introspection": false, "gtk-doc": false, libxml2: false, libxslt: false, docbook_xsl: false, docbook_xml_dtd_42: false, docbook_xml_dtd_43: false, gperf: false, cmake: false, libcap: false, glib: false, systemdLibs: false, "json-glib": false, libarchive: false, libsolv: false, librepo: false, polkit: false, bubblewrap: false, pcre2: false, check: false, python3: false, json_c: false, zchunk: false, libmodulemd: false, "util-linux": false, sqlite: false, cppunit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["maintainers", 131, 5], ["platforms", 132, 5], ["mainProgram", 133, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["outputs", 47, 3], ["src", 54, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 79, 3], ["configureFlags", 104, 3], ["dontUseCmakeConfigure", 108, 3], ["prePatch", 110, 3], ["preConfigure", 123, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,12 +47,12 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const cppunit = nix.arg($, "cppunit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rpm-ostree",
       version: "2026.1",
       outputs: nix.thunk(() => ["out", "dev", "man", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/coreos/rpm-ostree/releases/download/v${nix.sel(finalAttrs, "version")}/rpm-ostree-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-/dgF4jN4Sq7pRFmSMWXmG21y0PlkPPOMf8QhP8CB+yA=",
         })))),
@@ -113,7 +111,7 @@ substituteInPlace Makefile-rpm-ostree.am \\
 `),
       preConfigure: "env NOCONFIGURE=1 ./autogen.sh\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Hybrid image/package system. It uses OSTree as an image format, and uses RPM as a component model",
         homepage: "https://coreos.github.io/rpm-ostree/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/freecad-utils.nix", [[["nativeBuildInputs", 65, 44]], [["name", 86, 19], ["paths", 87, 11]], [["customize", 48, 7], ["override", 92, 7], ["overrideAttrs", 93, 7]], [["makeCustomizable", 97, 11]]]);
 const formals$1 = { args: { runCommand: false, buildEnv: false, makeWrapper: false, lib: false, python: false, writeShellScript: false }, ellipsis: false };
 const formals$2 = { args: { name: true, modules: true, pythons: true, makeWrapperFlags: true, userCfg: true, systemCfg: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/freecad-utils.nix", [["nativeBuildInputs", 65, 44]]);
-const pos$2 = nix.positions(here + "/freecad-utils.nix", [["name", 86, 19], ["paths", 87, 11]]);
-const pos$3 = nix.positions(here + "/freecad-utils.nix", [["customize", 48, 7], ["override", 92, 7], ["overrideAttrs", 93, 7]]);
-const pos$4 = nix.positions(here + "/freecad-utils.nix", [["makeCustomizable", 97, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ fi
   })();
   const pythonsProcessed = nix.thunk(() => nix.app(nix.builtins.map, (pyt) => (nix.asBool(nix.builtins.isString(pyt)) ? nix.force(pyt) : (nix.asBool(nix.builtins.isFunction(pyt)) ? nix.str`${nix.app(nix.sel(python, "withPackages"), pyt)}/${nix.sel(python, "sitePackages")}` : nix.builtins.throw("Expected string or function as python paths for freecad")))));
   const makeCustomizable = (freecad) => nix.update(freecad, {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     customize: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const name = nix.argOr($_1, "name", () => nix.sel(freecad, "name"));
@@ -43,7 +40,7 @@ fi
       const makeWrapperFlagsStr = nix.thunk(() => nix.builtins.concatStringsSep(" ", nix.thunk(() => nix.builtins.map((f) => nix.str`'${f}'`, makeWrapperFlags))));
       const userCfgStr = nix.thunk(() => nix.app(wrapCfgStr, "user", userCfg));
       const systemCfgStr = nix.thunk(() => nix.app(wrapCfgStr, "system", systemCfg));
-      const bin = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${name}-bin`), nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p "$out/bin"
+      const bin = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${name}-bin`), nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p "$out/bin"
 for exe in FreeCAD{,Cmd}; do
   if [[ ! -e ${freecad}/bin/$exe ]]; then
     echo "No binary $exe in freecad package"
@@ -62,7 +59,7 @@ ln -s FreeCAD $out/bin/freecad
 ln -s FreeCADCmd $out/bin/freecadcmd
 `)));
       return nix.app(makeCustomizable, nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: name,
             paths: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "lowPrio"), freecad)), bin]),
           })))));
@@ -70,6 +67,6 @@ ln -s FreeCADCmd $out/bin/freecadcmd
     override: (f) => nix.app(makeCustomizable, nix.thunk(() => nix.app(nix.sel(freecad, "override"), f))),
     overrideAttrs: (f) => nix.app(makeCustomizable, nix.thunk(() => nix.app(nix.sel(freecad, "overrideAttrs"), f))),
   });
-  return { [nix.POS]: pos$4, makeCustomizable: makeCustomizable };
+  return { [nix.POS]: $pos[3], makeCustomizable: makeCustomizable };
 })(), formals$1);
 //# sourceMappingURL=freecad-utils.ts.map

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7]], [["pname", 18, 5], ["version", 19, 5], ["src", 21, 5], ["patches", 29, 5], ["installFlags", 31, 5]], [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["NIX_CFLAGS_COMPILE", 69, 7]], [["homepage", 110, 5], ["description", 111, 5], ["license", 112, 5], ["platforms", 113, 5], ["maintainers", 114, 5], ["broken", 115, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["buildInputs", 45, 3], ["preBuild", 55, 3], ["env", 69, 3], ["enableParallelBuilding", 71, 3], ["outputs", 73, 3], ["doCheck", 79, 3], ["nativeCheckInputs", 80, 3], ["checkPhase", 81, 3], ["postInstall", 103, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, bzip2: false, expat: false, libedit: false, lmdb: false, mcpp: false, openssl: false, libxcrypt: false, python3: false, cpp11: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 18, 5], ["version", 19, 5], ["src", 21, 5], ["patches", 29, 5], ["installFlags", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 69, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 110, 5], ["description", 111, 5], ["license", 112, 5], ["platforms", 113, 5], ["maintainers", 114, 5], ["broken", 115, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["buildInputs", 45, 3], ["preBuild", 55, 3], ["env", 69, 3], ["enableParallelBuilding", 71, 3], ["outputs", 73, 3], ["doCheck", 79, 3], ["nativeCheckInputs", 80, 3], ["checkPhase", 81, 3], ["postInstall", 103, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mcpp-zeroc-ice";
       const version = "2.7.2.20";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zeroc-ice",
           repo: "mcpp",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,13 +31,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = [];
       const installFlags = nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "installFlags"), ["PREFIX=$(out)"]));
-      return { [nix.POS]: pos$2, pname, version, src, patches, installFlags };
+      return { [nix.POS]: $pos[1], pname, version, src, patches, installFlags };
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "zeroc-ice";
       const version = "3.7.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "zeroc-ice",
           repo: "ice",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -60,7 +55,7 @@ export default nix.lambda((args) => (() => {
   "fully_static_ldflags="
 )
 `);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-std=gnu++17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-std=gnu++17" }));
       const enableParallelBuilding = true;
       const outputs = nix.thunk(() => ["out", "bin", "dev"]);
       const doCheck = true;
@@ -85,7 +80,7 @@ runHook postCheck
       })());
       const postInstall = "mkdir -p $bin $dev/share\nmv $out/bin $bin\nmv $out/share/ice $dev/share\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.zeroc.com/ice.html",
         description: "Internet communications engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -94,7 +89,7 @@ runHook postCheck
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

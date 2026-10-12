@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["url", 23, 5], ["hash", 24, 5]], [["name", 82, 7], ["exec", 83, 7], ["icon", 84, 7], ["comment", 85, 7], ["desktopName", 86, 7], ["categories", 87, 7]], [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["mainProgram", 97, 5], ["platforms", 98, 5], ["sourceProvenance", 99, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 32, 3], ["doCheck", 78, 3], ["desktopItems", 80, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, jre: false, makeWrapper: false, jdk: false, makeDesktopItem: false, copyDesktopItems: false, fetchzip: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 82, 7], ["exec", 83, 7], ["icon", 84, 7], ["comment", 85, 7], ["desktopName", 86, 7], ["categories", 87, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["mainProgram", 97, 5], ["platforms", 98, 5], ["sourceProvenance", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 32, 3], ["doCheck", 78, 3], ["desktopItems", 80, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const fetchurl = nix.arg($, "fetchurl");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://raw.githubusercontent.com/hrehfeld/QuakeInjector/b741bae9904acbf2e18cdb1ca8e71a12e7d416cf/src/main/resources/Inject2_256.png",
       hash: "sha256-769YoSJ52+BTk7s+wh4oOyHwPPrR7AeOxCS58CdQ93s=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "quake-injector",
       version: "08",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/hrehfeld/QuakeInjector/releases/download/alpha${nix.sel(finalAttrs, "version")}/QuakeInjector-alpha${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-u2Ir7KxptgX9hcCf0GECl/z2+qSfHUdMgCoN8qbQMUs=",
         })))),
@@ -78,7 +74,7 @@ runHook postInstall
       doCheck: false,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "quake-injector",
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             icon: "quake-injector",
@@ -88,7 +84,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Download, install and play quake singleplayer maps from the quaddicted.com archive",
         homepage: "https://github.com/hrehfeld/QuakeInjector",
         changelog: "https://github.com/hrehfeld/QuakeInjector/releases",

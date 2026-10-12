@@ -2,12 +2,10 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["nativeBuildInputs", 106, 9], ["__darwinAllowLocalNetworking", 110, 9]], [["model", 118, 15], ["runtime", 119, 15], ["port", 120, 15], ["nocontainer", 121, 15]], [["mkServeTestRunner", 92, 11], ["mkServeTest", 94, 3]]]);
 const formals$1 = { args: { curl: false, lib: false, ramalama: false, runCommand: false, writableTmpDirAsHomeHook: false, writeShellScriptBin: false }, ellipsis: false };
 const formals$2 = { args: { model: false, runtime: true, port: false, host: true, nocontainer: true, image: true, extraCheck: true }, ellipsis: false };
 const formals$3 = { args: { name: false, model: false, runtime: true, port: false, setup: true, nocontainer: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["nativeBuildInputs", 106, 9], ["__darwinAllowLocalNetworking", 110, 9]]);
-const pos$2 = nix.positions(here + "/common.nix", [["model", 118, 15], ["runtime", 119, 15], ["port", 120, 15], ["nocontainer", 121, 15]]);
-const pos$3 = nix.positions(here + "/common.nix", [["mkServeTestRunner", 92, 11], ["mkServeTest", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -85,7 +83,7 @@ fi
 `));
   })(), formals$2);
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     mkServeTestRunner: mkServeTestRunner,
     mkServeTest: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
@@ -96,13 +94,13 @@ fi
       const setup = nix.argOr($_1, "setup", () => "");
       const nocontainer = nix.argOr($_1, "nocontainer", () => false);
       return nix.app(runCommand, name, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           nativeBuildInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
           __darwinAllowLocalNetworking: true,
         })), nix.thunk(() => nix.str`${setup}
 
 ${nix.app(mkServeTestRunner, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             model: model,
             runtime: runtime,
             port: port,

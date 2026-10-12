@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mk-runtime-check.nix", [[["feature", 10, 13], ["libraries", 11, 13], ["name", 12, 5]]]);
 const formals$1 = { args: { cudaPackages: false, feature: false, libraries: false, versionAttr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mk-runtime-check.nix", [["feature", 10, 13], ["libraries", 11, 13], ["name", 12, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const libraries = nix.arg($, "libraries");
   const versionAttr = nix.arg($, "versionAttr");
   return nix.app(nix.sel(cudaPackages, "writeGpuTestPython"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       feature: feature,
       libraries: libraries,
       name: nix.thunk(() => nix.str`${feature}Available`),

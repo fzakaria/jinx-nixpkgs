@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["hash", 20, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 13, 3], ["version", 14, 3], ["duneVersion", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 23, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, cstruct: false, fmt: false, lwt: false, macaddr: false, "mirage-device": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["duneVersion", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 23, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const macaddr = nix.arg($, "macaddr");
   const mirage_device = nix.arg($, "mirage-device");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mirage-net",
       version: "4.0.0",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-net/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-net-v${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-Zo7/0Ye4GgqzJFCHDBXbuJ/5ETl/8ziolRgH4lDhlM4=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [cstruct, fmt, lwt, macaddr, mirage_device]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Network signatures for MirageOS",
         homepage: "https://github.com/mirage/mirage-net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

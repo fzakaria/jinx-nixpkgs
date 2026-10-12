@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 61, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 25, 3], ["nativeBuildInputs", 30, 3], ["nativeCheckInputs", 32, 3], ["disabledTests", 36, 3], ["postInstall", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 25, 3], ["nativeBuildInputs", 30, 3], ["nativeCheckInputs", 32, 3], ["disabledTests", 36, 3], ["postInstall", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tldr",
       version: "3.4.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tldr-pages",
           repo: "tldr-python-client",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_error_message"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd tldr \\\n  --bash <($out/bin/tldr --print-completion bash | sed -E \"s#\\\"/nix/store/[^\\\"]+/bin/python[^\\\"]*\\\" -m tldr#\\\"$out/bin/tldr\\\"#g\") \\\n  --zsh <($out/bin/tldr --print-completion zsh | sed -E \"s#\\\"/nix/store/[^\\\"]+/bin/python[^\\\"]*\\\" -m tldr#\\\"$out/bin/tldr\\\"#g\")\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simplified and community-driven man pages",
         longDescription: "tldr pages gives common use cases for commands, so you don't need to hunt\nthrough a man page for the correct flags.\n",
         homepage: "https://tldr.sh",

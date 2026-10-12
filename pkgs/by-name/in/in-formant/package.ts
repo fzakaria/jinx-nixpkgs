@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]], [["description", 70, 5], ["mainProgram", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["platforms", 75, 5], ["maintainers", 76, 5]], [["pname", 21, 3], ["version", 22, 3], ["strictDeps", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["patches", 35, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["installPhase", 62, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { stdenv: false, cmake: false, lib: false, fetchFromGitHub: false, fftw: false, "libtorch-bin": false, portaudio: false, eigen: false, "pkg-config": false, autoPatchelfHook: false, soxr: false, libsamplerate: false, armadillo: false, tomlplusplus: false, libxcb: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 70, 5], ["mainProgram", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["platforms", 75, 5], ["maintainers", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["strictDeps", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["patches", 35, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["installPhase", 62, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "in-formant",
       version: "3.1.2-unstable-2022-09-15",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "in-formant",
           repo: "in-formant",
           rev: "e0606feecff70f0fd4226ff8f116e46817dd7462",
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/bin\ncp in-formant $out/bin\ninstall -Dm444 $src/dist-res/in-formant.desktop -t $out/share/applications\ninstall -Dm444 $src/dist-res/in-formant.png -t $out/share/icons/hicolor/512x512/apps\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Real-time pitch and formant tracking software",
         mainProgram: "in-formant",
         homepage: "https://github.com/in-formant/in-formant",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["unwrapped", 40, 5], ["headers", 41, 34], ["dist", 41, 42]], [["pname", 13, 3], ["version", 14, 32], ["nativeBuildInputs", 16, 3], ["buildInputs", 20, 3], ["dontWrapGApps", 27, 3], ["buildCommand", 29, 3], ["passthru", 39, 3], ["__structuredAttrs", 44, 3], ["strictDeps", 45, 3], ["meta", 47, 32]]]);
 const formals$1 = { args: { stdenv: false, "electron-unwrapped": false, wrapGAppsHook3: false, makeWrapper: false, "gsettings-desktop-schemas": false, glib: false, gtk3: false, gtk4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["unwrapped", 40, 5], ["headers", 41, 34], ["dist", 41, 42]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["pname", 13, 3], ["version", 14, 32], ["nativeBuildInputs", 16, 3], ["buildInputs", 20, 3], ["dontWrapGApps", 27, 3], ["buildCommand", 29, 3], ["passthru", 39, 3], ["__structuredAttrs", 44, 3], ["strictDeps", 45, 3], ["meta", 47, 32]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gtk4 = nix.arg($, "gtk4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "electron",
       version: nix.thunk(() => nix.attr(electron_unwrapped, "version")),
       nativeBuildInputs: nix.thunk(() => [wrapGAppsHook3, makeWrapper]),
@@ -32,7 +31,7 @@ makeWrapper "${electron_unwrapped}/libexec/electron/electron" "$out/bin/electron
 ln -s ${electron_unwrapped}/libexec $out/libexec
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         unwrapped: electron_unwrapped,
         headers: nix.thunk(() => nix.attr(electron_unwrapped, "headers")),
         dist: nix.thunk(() => nix.attr(electron_unwrapped, "dist")),

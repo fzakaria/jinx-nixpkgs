@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 32, 5], ["homepage", 33, 5], ["maintainers", 34, 5], ["license", 35, 27], ["platforms", 35, 35]], [["pname", 12, 3], ["version", 13, 20], ["src", 13, 28], ["vendorHash", 13, 32], ["patches", 15, 3], ["buildPhase", 17, 3], ["installPhase", 24, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, rclone: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["maintainers", 34, 5], ["license", 35, 27], ["platforms", 35, 35]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 20], ["src", 13, 28], ["vendorHash", 13, 32], ["patches", 15, 3], ["buildPhase", 17, 3], ["installPhase", 24, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const rclone = nix.arg($, "rclone");
   const ext = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "librclone",
       version: nix.thunk(() => nix.attr(rclone, "version")),
       src: nix.thunk(() => nix.attr(rclone, "src")),
@@ -33,7 +32,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(rclone, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Rclone as a C library",
         homepage: "https://github.com/rclone/rclone/tree/master/librclone",
         maintainers: nix.thunk(() => (() => {

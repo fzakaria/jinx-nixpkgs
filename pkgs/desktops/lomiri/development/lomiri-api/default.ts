@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["fontDirectories", 97, 41]], [["FONTCONFIG_FILE", 97, 7]], [["pkg-config", 115, 7]], [["tests", 114, 5], ["updateScript", 117, 5]], [["description", 121, 5], ["homepage", 122, 5], ["changelog", 123, 5], ["license", 126, 5], ["teams", 130, 5], ["platforms", 131, 5], ["pkgConfigModules", 132, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["outputs", 45, 3], ["postPatch", 53, 3], ["strictDeps", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 76, 3], ["nativeCheckInputs", 85, 3], ["dontWrapQtApps", 90, 3], ["cmakeFlags", 92, 3], ["env", 97, 3], ["preBuild", 99, 3], ["doCheck", 104, 3], ["preCheck", 106, 3], ["passthru", 112, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, makeFontsConf: false, testers: false, cmake: false, "cmake-extras": false, dbus: false, doxygen: false, glib: false, graphviz: false, gtest: false, libqtdbustest: false, "pkg-config": false, python3: false, qtbase: false, qtdeclarative: false, withDocumentation: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fontDirectories", 97, 41]]);
-const pos$3 = nix.positions(here + "/default.nix", [["FONTCONFIG_FILE", 97, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pkg-config", 115, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 114, 5], ["updateScript", 117, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 121, 5], ["homepage", 122, 5], ["changelog", 123, 5], ["license", 126, 5], ["teams", 130, 5], ["platforms", 131, 5], ["pkgConfigModules", 132, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["outputs", 45, 3], ["postPatch", 53, 3], ["strictDeps", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 76, 3], ["nativeCheckInputs", 85, 3], ["dontWrapQtApps", 90, 3], ["cmakeFlags", 92, 3], ["env", 97, 3], ["preBuild", 99, 3], ["doCheck", 104, 3], ["preCheck", 106, 3], ["passthru", 112, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const withQt6 = nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionAtLeast"), nix.thunk(() => nix.sel(qtbase, "version")), "6"));
   const shellPlugindirSuffix = nix.thunk(() => nix.app(nix.sel(lib, "strings", "removePrefix"), "lib/", nix.thunk(() => nix.sel(qtbase, "qtQmlPrefix"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "lomiri-api",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-api",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,8 +55,8 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "NO_TESTS", nix.thunk(() => !nix.asBool(nix.sel(finalAttrs, "finalPackage", "doCheck"))))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))),
+        [nix.POS]: $pos[2],
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[1], fontDirectories: [] })))),
       })),
       preBuild: "# Makes fontconfig produce less noise in logs\nexport HOME=$TMPDIR\n",
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
@@ -71,15 +65,15 @@ export QT_PLUGIN_PATH=${nix.app(nix.sel(lib, "getBin"), qtbase)}/${nix.sel(qtbas
 export QML2_IMPORT_PATH=${nix.app(nix.sel(lib, "getBin"), qtdeclarative)}/${nix.sel(qtbase, "qtQmlPrefix")}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withQt6)), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           })))),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Lomiri API Library for integrating with the Lomiri shell",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-api",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-api/-/blob/${(nix.asBool(!nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(finalAttrs, "src", "tag"))))) ? nix.sel(finalAttrs, "src", "tag") : nix.sel(finalAttrs, "src", "rev"))}/ChangeLog`),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 84, 5], ["hash", 85, 5]], [["glib_compile_schemas", 91, 7], ["gsettings", 92, 7], ["unzip", 93, 7]], [["url", 113, 7], ["hash", 114, 7]], [["extraLoaders", 220, 9]], [["packageName", 258, 7]], [["mozillaPlugin", 256, 5], ["updateScript", 257, 5]], [["description", 265, 5], ["homepage", 266, 5], ["changelog", 267, 5], ["license", 268, 5], ["teams", 269, 5], ["platforms", 270, 5]], [["pname", 75, 3], ["version", 76, 3], ["outputs", 78, 3], ["src", 83, 3], ["patches", 88, 3], ["nativeBuildInputs", 118, 3], ["buildInputs", 132, 3], ["mesonFlags", 190, 3], ["postPatch", 195, 3], ["preInstall", 208, 3], ["postInstall", 215, 3], ["preFixup", 229, 3], ["postFixup", 243, 3], ["separateDebugInfo", 253, 3], ["passthru", 255, 3], ["strictDeps", 262, 3], ["meta", 264, 3]]]);
 const formals$1 = { args: { fetchurl: false, fetchpatch: false, replaceVars: false, lib: false, stdenv: false, docutils: false, meson: false, ninja: false, "pkg-config": false, gnome: false, "json-glib": false, gettext: false, libsecret: false, python3: false, polkit: false, networkmanager: false, "gi-docgen": false, "at-spi2-core": false, unzip: false, "shared-mime-info": false, libgweather: false, libjxl: false, librsvg: false, "webp-pixbuf-loader": false, geoclue2: false, "desktop-file-utils": false, libpulseaudio: false, libical: false, "gobject-introspection": false, wrapGAppsHook4: false, libxslt: false, gcr_4: false, accountsservice: false, "gdk-pixbuf": false, gdm: false, upower: false, ibus: false, "libnma-gtk4": false, "gnome-desktop": false, "gsettings-desktop-schemas": false, "gnome-keyring": false, glib: false, gjs: false, mutter: false, "evolution-data-server-gtk4": false, gtk4: false, libadwaita: false, sassc: false, systemd: false, pipewire: false, gst_all_1: false, "adwaita-icon-theme": false, "glycin-loaders": false, "gnome-bluetooth": false, "gnome-clocks": false, "gnome-settings-daemon": false, "gnome-autoar": false, "bash-completion": false, lcms2: false, libgbm: false, libGL: false, libxi: false, libx11: false, libxkbcommon: false, libsoup_3: false, libxml2: false, webkitgtk_6_0: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 84, 5], ["hash", 85, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["glib_compile_schemas", 91, 7], ["gsettings", 92, 7], ["unzip", 93, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 113, 7], ["hash", 114, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraLoaders", 220, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["packageName", 258, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mozillaPlugin", 256, 5], ["updateScript", 257, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 265, 5], ["homepage", 266, 5], ["changelog", 267, 5], ["license", 268, 5], ["teams", 269, 5], ["platforms", 270, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 75, 3], ["version", 76, 3], ["outputs", 78, 3], ["src", 83, 3], ["patches", 88, 3], ["nativeBuildInputs", 118, 3], ["buildInputs", 132, 3], ["mesonFlags", 190, 3], ["postPatch", 195, 3], ["preInstall", 208, 3], ["postInstall", 215, 3], ["preFixup", 229, 3], ["postFixup", 243, 3], ["separateDebugInfo", 253, 3], ["passthru", 255, 3], ["strictDeps", 262, 3], ["meta", 264, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -86,18 +79,18 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "pygobject3"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "gnome-shell",
       version: "50.4",
       outputs: nix.thunk(() => ["out", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-shell/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-shell-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-xTGTlTnbMWpBrvI2cDcKvRMw0yVPhLyw+fTa5dbjYs8=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             glib_compile_schemas: nix.thunk(() => nix.str`${nix.sel(glib, "dev")}/bin/glib-compile-schemas`),
             gsettings: nix.thunk(() => nix.str`${nix.sel(glib, "bin")}/bin/gsettings`),
             unzip: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), unzip)}/bin/unzip`),
@@ -107,7 +100,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./icon-theme-directory-identity.patch"),
         nix.path(here, "./greeter-logo-size.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://src.fedoraproject.org/rpms/gnome-shell/raw/dcd112d9708954187e7490564c2229d82ba5326f/f/0001-gdm-Work-around-failing-fingerprint-auth.patch",
             hash: "sha256-mgXty5HhiwUO1UV3/eDgWtauQKM0cRFQ0U7uocST25s=",
           })))),
@@ -194,7 +187,7 @@ cp "${nix.app(nix.sel(glib, "getSchemaPath"), mutter)}/org.gnome.mutter.gschema.
       postInstall: nix.thunk(() => nix.str`# Pull in WebP and JXL support for gnome-backgrounds.
 # In postInstall to run before gappsWrapperArgsHook.
 export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           extraLoaders: nix.thunk(() => [libjxl, librsvg, webp_pixbuf_loader]),
         })))}"
 `),
@@ -205,13 +198,13 @@ export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_
       postFixup: "# The services need typelibs.\nfor svc in org.gnome.ScreenSaver org.gnome.Shell.Extensions org.gnome.Shell.Notifications org.gnome.Shell.Screencast; do\n  wrapGApp $out/share/gnome-shell/$svc\ndone\n\n# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         mozillaPlugin: "/lib/mozilla/plugins",
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$5, packageName: "gnome-shell" })))),
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[4], packageName: "gnome-shell" })))),
       })),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Core user interface for the GNOME desktop",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-shell",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-shell/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

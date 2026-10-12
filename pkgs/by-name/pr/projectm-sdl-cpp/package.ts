@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]], [["NIX_CFLAGS_COMPILE", 54, 7]], [["updateScript", 58, 12]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 5], ["broken", 67, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 28, 3], ["cmakeFlags", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["env", 54, 3], ["strictDeps", 56, 3], ["passthru", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libprojectm: false, libGL: false, libx11: false, poco: false, utf8proc: false, SDL2: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 54, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 58, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 5], ["broken", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 28, 3], ["cmakeFlags", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["env", 54, 3], ["strictDeps", 56, 3], ["passthru", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "projectm-sdl-cpp",
       version: "0-unstable-2026-01-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "projectM-visualizer",
           repo: "frontend-sdl-cpp",
           rev: "7a07229428c51378f43843cf160bcddc21ef70ff",
@@ -41,16 +37,16 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [libprojectm, poco, utf8proc, libGL, libx11, SDL2]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=gnu++17"]))),
       })),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Standalone application based on libprojectM and libSDL that turns your desktop audio into awesome visuals",
         homepage: "https://github.com/projectM-visualizer/frontend-sdl-cpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

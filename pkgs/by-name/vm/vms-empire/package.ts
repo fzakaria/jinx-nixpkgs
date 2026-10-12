@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["homepage", 57, 5], ["description", 58, 5], ["longDescription", 59, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 28, 3], ["outputs", 32, 3], ["strictDeps", 38, 3], ["postBuild", 40, 3], ["installPhase", 45, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false, xmlto: false, docbook_xml_dtd_44: false, docbook_xsl: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 57, 5], ["description", 58, 5], ["longDescription", 59, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 28, 3], ["outputs", 32, 3], ["strictDeps", 38, 3], ["postBuild", 40, 3], ["installPhase", 45, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const docbook_xsl = nix.arg($, "docbook_xsl");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vms-empire",
       version: "1.20",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.catb.org/~esr/vms-empire/vms-empire-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ILRmql+jlOhJ08yLBpnrpeI5fyMVzcXrXIll4n3lTbM=",
         })))),
@@ -41,7 +39,7 @@ installManPage empire.6
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://catb.org/~esr/vms-empire/",
         description: "Ancestor of all expand/explore/exploit/exterminate games",
         longDescription: "Empire is a simulation of a full-scale war between two emperors, the\ncomputer and you. Naturally, there is only room for one, so the object of\nthe game is to destroy the other. The computer plays by the same rules\nthat you do. This game was ancestral to all later\nexpand/explore/exploit/exterminate games, including Civilization and\nMaster of Orion.\n",

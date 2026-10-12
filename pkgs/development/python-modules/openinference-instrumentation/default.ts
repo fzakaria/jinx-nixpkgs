@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["updateScript", 60, 12]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["sourceRoot", 33, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 53, 3], ["disabledTests", 55, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, jsonschema: false, "nix-update-script": false, openai: false, "openinference-semantic-conventions": false, "opentelemetry-api": false, "opentelemetry-sdk": false, "pytest-asyncio": false, "pytest-vcr": false, pytestCheckHook: false, "typing-extensions": false, wrapt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 60, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["sourceRoot", 33, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 53, 3], ["disabledTests", 55, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const wrapt = nix.arg($, "wrapt");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openinference-instrumentation",
       version: "0.1.57",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Arize-ai",
           repo: "openinference",
           tag: nix.thunk(() => nix.str`python-openinference-instrumentation-v${nix.sel(finalAttrs, "version")}`),
@@ -51,11 +48,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["openinference.instrumentation"]),
       disabledTests: nix.thunk(() => ["TestTracerLLMDecorator"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OpenTelemetry Instrumentation for AI Observability",
         homepage: "https://github.com/Arize-ai/openinference",
         changelog: nix.thunk(() => nix.str`https://github.com/Arize-ai/openinference/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

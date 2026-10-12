@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["updateScript", 102, 12]], [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5]], [["pname", 28, 3], ["version", 29, 3], ["outputs", 31, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 61, 3], ["checkInputs", 67, 3], ["cmakeDir", 71, 3], ["cmakeFlags", 73, 3], ["__darwinAllowLocalNetworking", 87, 3], ["doCheck", 89, 3], ["preCheck", 91, 3], ["passthru", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, openssl: false, glog: false, "double-conversion": false, zstd: false, gflags: false, libevent: false, darwinMinVersionHook: false, folly: false, libsodium: false, zlib: false, gtest: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 102, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["outputs", 31, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 61, 3], ["checkInputs", 67, 3], ["cmakeDir", 71, 3], ["cmakeFlags", 73, 3], ["__darwinAllowLocalNetworking", 87, 3], ["doCheck", 89, 3], ["preCheck", 91, 3], ["passthru", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fizz",
       version: "2026.07.27.00",
       outputs: nix.thunk(() => ["bin", "out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebookincubator",
           repo: "fizz",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,11 +58,11 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C++14 implementation of the TLS-1.3 standard",
         homepage: "https://github.com/facebookincubator/fizz",
         changelog: nix.thunk(() => nix.str`https://github.com/facebookincubator/fizz/releases/tag/v${nix.sel(finalAttrs, "version")}`),

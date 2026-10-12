@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["TOOLSET", 39, 7]], [["homepage", 112, 5], ["description", 113, 5], ["license", 114, 5], ["maintainers", 115, 5], ["platforms", 116, 5]], [["pname", 15, 3], ["version", 16, 3], ["strictDeps", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["env", 39, 3], ["configurePhase", 63, 3], ["buildPhase", 76, 3], ["installPhase", 89, 3], ["fixupPhase", 102, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "alsa-lib": false, fltk_1_3: false, gtk3: false, gtk4: false, makeWrapper: false, "pkg-config": false, psmisc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["TOOLSET", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 112, 5], ["description", 113, 5], ["license", 114, 5], ["maintainers", 115, 5], ["platforms", 116, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["strictDeps", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["env", 39, 3], ["configurePhase", 63, 3], ["buildPhase", 76, 3], ["installPhase", 89, 3], ["fixupPhase", 102, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const psmisc = nix.arg($, "psmisc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "alsa-tools",
       version: "1.2.15",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://alsa/tools/alsa-tools-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-gASY01IzZy72f0v3TMbh034f5wwFQOLS4GLyMZ57Xfc=",
         })))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, pkg_config, fltk_1_3]),
       buildInputs: nix.thunk(() => [alsa_lib, gtk3, gtk4, psmisc]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         TOOLSET: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
             "as10k1",
             "envy24control",
@@ -64,7 +61,7 @@ wrapProgram $out/bin/hdajackretask \\
 runHook postFixup
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.alsa-project.org/",
         description: "ALSA Tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

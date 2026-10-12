@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["BUILD_README", 34, 7]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["pythonRelaxDeps", 21, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["pythonImportsCheck", 32, 3], ["env", 34, 3], ["nativeCheckInputs", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, lib: false, "pylint-plugin-utils": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["BUILD_README", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["pythonRelaxDeps", 21, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["pythonImportsCheck", 32, 3], ["env", 34, 3], ["nativeCheckInputs", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "10.0.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OCA",
           repo: "pylint-odoo",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,10 +28,10 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [pylint_plugin_utils]);
       const pythonImportsCheck = nix.thunk(() => ["pylint_odoo"]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, BUILD_README: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], BUILD_README: true }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Odoo plugin for Pylint",
         homepage: "https://github.com/OCA/pylint-odoo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

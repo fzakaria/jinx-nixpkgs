@@ -2,68 +2,55 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pam-u2f.nix", [[["u2fEmuSupport", 6, 48]], [["package", 6, 8]], [["options", 11, 27]], [["qemu", 11, 22]], [["debug", 20, 11], ["origin", 21, 11]], [["enable", 17, 9], ["control", 18, 9], ["settings", 19, 9]], [["u2f", 16, 20]], [["pam", 16, 16]], [["isNormalUser", 26, 9], ["uid", 27, 9]], [["alice", 25, 19]], [["users", 25, 13]], [["systemPackages", 30, 19]], [["extraRules", 36, 21]], [["udev", 36, 16]], [["virtualisation", 11, 7], ["security", 16, 7], ["users", 25, 7], ["environment", 30, 7], ["services", 36, 7]], [["machine", 8, 9]], [["name", 4, 3], ["qemu", 6, 3], ["nodes", 8, 3], ["testScript", 41, 3]]]);
 const formals$1 = { args: { hostPkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pam-u2f.nix", [["u2fEmuSupport", 6, 48]]);
-const pos$2 = nix.positions(here + "/pam-u2f.nix", [["package", 6, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/pam-u2f.nix", [["options", 11, 27]]);
-const pos$4 = nix.positions(here + "/pam-u2f.nix", [["qemu", 11, 22]]);
-const pos$5 = nix.positions(here + "/pam-u2f.nix", [["debug", 20, 11], ["origin", 21, 11]]);
-const pos$6 = nix.positions(here + "/pam-u2f.nix", [["enable", 17, 9], ["control", 18, 9], ["settings", 19, 9]]);
-const pos$7 = nix.positions(here + "/pam-u2f.nix", [["u2f", 16, 20]]);
-const pos$8 = nix.positions(here + "/pam-u2f.nix", [["pam", 16, 16]]);
-const pos$9 = nix.positions(here + "/pam-u2f.nix", [["isNormalUser", 26, 9], ["uid", 27, 9]]);
-const pos$10 = nix.positions(here + "/pam-u2f.nix", [["alice", 25, 19]]);
-const pos$11 = nix.positions(here + "/pam-u2f.nix", [["users", 25, 13]]);
-const pos$12 = nix.positions(here + "/pam-u2f.nix", [["systemPackages", 30, 19]]);
-const pos$13 = nix.positions(here + "/pam-u2f.nix", [["extraRules", 36, 21]]);
-const pos$14 = nix.positions(here + "/pam-u2f.nix", [["udev", 36, 16]]);
-const pos$15 = nix.positions(here + "/pam-u2f.nix", [["virtualisation", 11, 7], ["security", 16, 7], ["users", 25, 7], ["environment", 30, 7], ["services", 36, 7]]);
-const pos$16 = nix.positions(here + "/pam-u2f.nix", [["machine", 8, 9]]);
-const pos$17 = nix.positions(here + "/pam-u2f.nix", [["name", 4, 3], ["qemu", 6, 3], ["nodes", 8, 3], ["testScript", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const hostPkgs = nix.arg($, "hostPkgs");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "pam-u2f",
     qemu: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      package: nix.thunk(() => nix.app(nix.sel(hostPkgs, "qemu_test", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, u2fEmuSupport: true })))),
+      [nix.POS]: $pos[1],
+      package: nix.thunk(() => nix.app(nix.sel(hostPkgs, "qemu_test", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], u2fEmuSupport: true })))),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            qemu: nix.thunk(() => ({ [nix.POS]: pos$3, options: nix.thunk(() => ["-usb", "-device u2f-emulated"]) })),
+            [nix.POS]: $pos[3],
+            qemu: nix.thunk(() => ({
+              [nix.POS]: $pos[2],
+              options: nix.thunk(() => ["-usb", "-device u2f-emulated"]),
+            })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             pam: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               u2f: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 enable: true,
                 control: "sufficient",
-                settings: nix.thunk(() => ({ [nix.POS]: pos$5, debug: true, origin: "pam://nixos-test" })),
+                settings: nix.thunk(() => ({ [nix.POS]: $pos[4], debug: true, origin: "pam://nixos-test" })),
               })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$10,
-              alice: nix.thunk(() => ({ [nix.POS]: pos$9, isNormalUser: true, uid: 1000n })),
+              [nix.POS]: $pos[9],
+              alice: nix.thunk(() => ({ [nix.POS]: $pos[8], isNormalUser: true, uid: 1000n })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -73,9 +60,9 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             udev: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               extraRules: "KERNEL==\"hidraw*\", SUBSYSTEM==\"hidraw\", MODE=\"0666\"\n",
             })),
           })),

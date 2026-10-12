@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5], ["stripRoot", 23, 5]], [["url", 27, 5], ["hash", 28, 5]], [["name", 63, 7], ["desktopName", 64, 7], ["exec", 65, 7], ["icon", 66, 7], ["terminal", 67, 7], ["categories", 68, 7], ["comment", 69, 7], ["mimeTypes", 70, 7]], [["description", 75, 5], ["homepage", 76, 5], ["sourceProvenance", 77, 5], ["license", 78, 5], ["platforms", 79, 25], ["maintainers", 80, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["icon", 26, 3], ["nativeBuildInputs", 31, 3], ["nativeRuntimeInputs", 36, 3], ["installPhase", 41, 3], ["desktopItems", 61, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchurl: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false, wineWow64Packages: false, winetricks: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5], ["stripRoot", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 63, 7], ["desktopName", 64, 7], ["exec", 65, 7], ["icon", 66, 7], ["terminal", 67, 7], ["categories", 68, 7], ["comment", 69, 7], ["mimeTypes", 70, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["sourceProvenance", 77, 5], ["license", 78, 5], ["platforms", 79, 25], ["maintainers", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["icon", 26, 3], ["nativeBuildInputs", 31, 3], ["nativeRuntimeInputs", 36, 3], ["installPhase", 41, 3], ["desktopItems", 61, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +21,13 @@ export default nix.lambda((args) => (() => {
       const pname = "vtfedit";
       const version = "1.3.3";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://nemstools.github.io/files/vtfedit${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}.zip`),
           hash: "sha256-6a8YuxgYm7FB+2pFcZAMtE1db4hqpEk0z5gv2wHl9bI=",
           stripRoot: false,
         }))));
       const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://web.archive.org/web/20230906220249im_/https://valvedev.info/tools/vtfedit/thumb.png",
           hash: "sha256-Jpqo/s1wO2U5Z1DSZvADTfdH+8ycr0KF6otQbAE+jts=",
         }))));
@@ -57,7 +53,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: pname,
             desktopName: "VTFEdit",
             exec: "vtfedit %f",
@@ -71,7 +67,7 @@ runHook postInstall
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wine, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "VTF file viewer/editor",
         homepage: "https://nemstools.github.io/pages/VTFLib.html",
         sourceProvenance: nix.thunk(() => (() => {
@@ -84,7 +80,7 @@ runHook postInstall
       };
       })());
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

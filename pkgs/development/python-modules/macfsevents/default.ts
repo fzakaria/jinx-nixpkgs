@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 5], ["version", 15, 13], ["hash", 16, 5]], [["NIX_CFLAGS_COMPILE", 26, 7]], [["description", 34, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 19, 3], ["build-system", 21, 3], ["env", 26, 3], ["doCheck", 29, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 5], ["version", 15, 13], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 34, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 19, 3], ["build-system", 21, 3], ["env", 26, 3], ["doCheck", 29, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +16,18 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "MacFSEvents",
           version: version,
           hash: "sha256-v3KD8dUXdkzNyBlbIWMdu6wcUGuSC/mo6ilWsxJ2Ucs=",
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./fix-packaging.patch")]);
       const build_system = nix.thunk(() => [setuptools]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["fsevents"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Thread-based interface to file system observation primitives",
         homepage: "https://github.com/malthe/macfsevents",
         changelog: nix.thunk(() => nix.str`https://github.com/malthe/macfsevents/blob/${version}/CHANGES.rst`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

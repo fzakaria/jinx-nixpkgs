@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["unpackPhase", 16, 3], ["postPatch", 24, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, melpaBuild: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["unpackPhase", 16, 3], ["postPatch", 24, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const melpaBuild = nix.arg($, "melpaBuild");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(melpaBuild, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jam-mode",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dev.gentoo.org/~ulm/distfiles/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.el.xz`),
           hash: "sha256-0IlYqbPa4AAwOpjdd20k8hqtvDhZmcz1WHa/LHx8kMk=",
         })))),
       unpackPhase: "runHook preUnpack\n\nxz -cd $src > jam-mode.el\n\nrunHook postUnpack\n",
       postPatch: "echo \";;; jam-mode.el ---\" > tmp.el\ncat jam-mode.el >> tmp.el\nmv tmp.el jam-mode.el\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Emacs major mode for editing Jam files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {

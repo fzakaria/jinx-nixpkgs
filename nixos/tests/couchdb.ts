@@ -2,30 +2,24 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/couchdb.nix", [[["systemPackages", 7, 19]], [["enable", 8, 24], ["package", 9, 24], ["adminUser", 10, 24], ["adminPass", 11, 24]], [["couchdb", 8, 16]], [["environment", 7, 7], ["services", 8, 7]], [["maintainers", 20, 8]], [["couchdb3", 23, 5]], [["name", 19, 3], ["meta", 20, 3], ["nodes", 22, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/couchdb.nix", [["systemPackages", 7, 19]]);
-const pos$2 = nix.positions(here + "/couchdb.nix", [["enable", 8, 24], ["package", 9, 24], ["adminUser", 10, 24], ["adminPass", 11, 24]]);
-const pos$3 = nix.positions(here + "/couchdb.nix", [["couchdb", 8, 16]]);
-const pos$4 = nix.positions(here + "/couchdb.nix", [["environment", 7, 7], ["services", 8, 7]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/couchdb.nix", [["maintainers", 20, 8]]);
-const pos$6 = nix.positions(here + "/couchdb.nix", [["couchdb3", 23, 5]]);
-const pos$7 = nix.positions(here + "/couchdb.nix", [["name", 19, 3], ["meta", 20, 3], ["nodes", 22, 3], ["testScript", 26, 3]]);
 
 export default nix.thunk(() => (() => {
   const makeNode = (couchpkg) => (user) => (passwd) => nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         couchdb: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           enable: true,
           package: couchpkg,
           adminUser: user,
@@ -42,11 +36,11 @@ export default nix.thunk(() => (() => {
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: "couchdb",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$5, maintainers: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[4], maintainers: [] })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         couchdb3: nix.thunk(() => nix.app(makeNode, nix.thunk(() => nix.sel(pkgs, "couchdb3")), testuser, testpass)),
       })),
       testScript: nix.thunk(() => (() => {

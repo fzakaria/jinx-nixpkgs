@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 20, 5], ["hash", 21, 5]], [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 14, 3], ["version", 15, 3], ["minimalOCamlVersion", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["propagatedBuildInputs", 28, 3], ["checkInputs", 33, 3], ["doCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, alcotest: false, base64: false, cmdliner: false, rresult: false, xmlm: false, yojson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["minimalOCamlVersion", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["propagatedBuildInputs", 28, 3], ["checkInputs", 33, 3], ["doCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const xmlm = nix.arg($, "xmlm");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rpclib",
       version: "10.2.0",
       minimalOCamlVersion: "4.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-rpc/releases/download/${nix.sel(finalAttrs, "version")}/rpclib-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-N+xKTdU/yy042EZBXTpFl21aeMFTHm2HbbJDbpRxcvM=",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mirage/ocaml-rpc",
         description: "Light library to deal with RPCs in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

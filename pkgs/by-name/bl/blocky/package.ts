@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["blocky", 31, 43]], [["tests", 31, 12]], [["description", 34, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["doCheck", 21, 3], ["vendorHash", 23, 3], ["ldflags", 25, 3], ["passthru", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["blocky", 31, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 31, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["doCheck", 21, 3], ["vendorHash", 23, 3], ["ldflags", 25, 3], ["passthru", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "blocky",
       version: "0.35.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "0xERR0R",
           repo: "blocky",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/0xERR0R/blocky/util.Version=${nix.sel(finalAttrs, "version")}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, blocky: nix.thunk(() => nix.attr(nixosTests, "blocky")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], blocky: nix.thunk(() => nix.attr(nixosTests, "blocky")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast and lightweight DNS proxy as ad-blocker for local network with many features",
         homepage: "https://0xerr0r.github.io/blocky",
         changelog: "https://github.com/0xERR0R/blocky/releases",

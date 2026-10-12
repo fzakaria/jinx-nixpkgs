@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libbfd.nix", [[["url", 26, 7], ["sha256", 27, 7]], [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]], [["pname", 15, 3], ["version", 16, 37], ["src", 16, 45], ["outputs", 18, 3], ["patches", 23, 3], ["postPatch", 32, 3], ["postAutoreconf", 36, 3], ["dontUpdateAutotoolsGnuConfigScripts", 42, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 49, 3], ["configurePlatforms", 55, 3], ["configureFlags", 59, 3], ["enableParallelBuilding", 67, 3], ["__structuredAttrs", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, "gnu-config": false, autoreconfHook: false, bison: false, "binutils-unwrapped_2_38": false, libiberty: false, libintl: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libbfd.nix", [["url", 26, 7], ["sha256", 27, 7]]);
-const pos$2 = nix.positions(here + "/libbfd.nix", [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]]);
-const pos$3 = nix.positions(here + "/libbfd.nix", [["pname", 15, 3], ["version", 16, 37], ["src", 16, 45], ["outputs", 18, 3], ["patches", 23, 3], ["postPatch", 32, 3], ["postAutoreconf", 36, 3], ["dontUpdateAutotoolsGnuConfigScripts", 42, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 49, 3], ["configurePlatforms", 55, 3], ["configureFlags", 59, 3], ["enableParallelBuilding", 67, 3], ["__structuredAttrs", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const libintl = nix.arg($, "libintl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libbfd",
       version: nix.thunk(() => nix.attr(binutils_unwrapped_2_38, "version")),
       src: nix.thunk(() => nix.attr(binutils_unwrapped_2_38, "src")),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => nix.concat(nix.sel(binutils_unwrapped_2_38, "patches"), [
         nix.path(here, "./build-components-separately.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://raw.githubusercontent.com/mxe/mxe/e1d4c144ee1994f70f86cf7fd8168fe69bd629c6/src/bfd-1-disable-subdir-doc.patch",
             sha256: "0pzb3i74d1r7lhjan376h59a7kirw15j7swwm8pz3zy9lkdqkj6q",
           })))),
@@ -51,7 +49,7 @@ cp -f ${gnu_config}/config.{guess,sub} ../
       enableParallelBuilding: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for manipulating containers of machine code",
         longDescription: "BFD is a library which provides a single interface to read and write\nobject files, executables, archive files, and core files in any format.\nIt is associated with GNU Binutils, and elsewhere often distributed with\nit.\n",
         homepage: "https://www.gnu.org/software/binutils/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["url", 26, 7], ["hash", 27, 7]], [["description", 47, 5], ["longDescription", 49, 5], ["license", 60, 5], ["homepage", 62, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["postPatch", 31, 3], ["buildInputs", 39, 3], ["doCheck", 41, 3], ["__structuredAttrs", 43, 3], ["strictDeps", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch2: false, gettext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["longDescription", 49, 5], ["license", 60, 5], ["homepage", 62, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["postPatch", 31, 3], ["buildInputs", 39, 3], ["doCheck", 41, 3], ["__structuredAttrs", 43, 3], ["strictDeps", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "enscript",
       version: "1.6.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/enscript/enscript-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1fy0ymvzrrvs889zanxcaxjfcxarm2d3k43c9frmbl1ld7dblmkd",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./0001-use-system-getopt.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/debian/enscript/-/raw/7a51479540a210dee5eee4ece5b54e3ce15dec52/debian/patches/1096582-gcc-15",
             hash: "sha256-0H8FNCKgQ1YCwcBaMChQSuFaYlmzSsoqtfsNSr567+Y=",
           })))),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Converter from ASCII to PostScript, HTML, or RTF",
         longDescription: "GNU Enscript converts ASCII files to PostScript, HTML, or RTF and\nstores generated output to a file or sends it directly to the\nprinter.  It includes features for `pretty-printing'\n(language-sensitive code highlighting) in several programming\nlanguages.\n\nEnscript can be easily extended to handle different output media and\nit has many options that can be used to customize printouts.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]], [["NIX_CFLAGS_COMPILE", 114, 7]], [["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5]], [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 69, 3], ["patches", 88, 3], ["postPatch", 92, 3], ["cmakeFlags", 109, 3], ["env", 114, 3], ["nativeCheckInputs", 116, 3], ["doCheck", 117, 3], ["preFixup", 119, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, curl: false, boost: false, jsoncpp: false, libbsd: false, dbus: false, glibmm_2_4: false, "gsettings-desktop-schemas": false, "hicolor-icon-theme": false, libappindicator: false, libnotify: false, libxdg_basedir: false, wxwidgets_3_2: false, "glib-networking": false, gst_all_1: false, "lsb-release": false, python3: false, gtest: false, wrapGAppsHook3: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 114, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 69, 3], ["patches", 88, 3], ["postPatch", 92, 3], ["cmakeFlags", 109, 3], ["env", 114, 3], ["nativeCheckInputs", 116, 3], ["doCheck", 117, 3], ["preFixup", 119, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,11 +50,11 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "radiotray-ng",
       version: "0.2.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ebruck",
           repo: "radiotray-ng",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -84,14 +81,14 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_TESTS", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")))),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })),
       nativeCheckInputs: nix.thunk(() => [gtest]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))),
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(--suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [dbus]))})
 wrapProgram $out/bin/rt2rtng --prefix PYTHONPATH : $PYTHONPATH
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Internet radio player for linux",
         homepage: "https://github.com/ebruck/radiotray-ng",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

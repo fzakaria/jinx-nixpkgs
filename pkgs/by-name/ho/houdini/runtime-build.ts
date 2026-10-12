@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/runtime-build.nix", [[["version", 11, 13], ["src", 11, 21], ["pname", 12, 5], ["buildInputs", 14, 5], ["installPhase", 15, 5], ["dontFixup", 30, 5]], [["outputHash", 37, 17], ["outputHashAlgo", 38, 9], ["outputHashMode", 39, 9]]]);
 const formals$1 = { args: { stdenv: false, bc: false, version: false, src: false, eulaDate: false, outputHash: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/runtime-build.nix", [["version", 11, 13], ["src", 11, 21], ["pname", 12, 5], ["buildInputs", 14, 5], ["installPhase", 15, 5], ["dontFixup", 30, 5]]);
-const pos$2 = nix.positions(here + "/runtime-build.nix", [["outputHash", 37, 17], ["outputHashAlgo", 38, 9], ["outputHashMode", 39, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const eulaDate = nix.arg($, "eulaDate");
   const outputHash = nix.argOr($, "outputHash", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: version,
       src: src,
       pname: "houdini-runtime",
@@ -35,7 +34,7 @@ sed -i 's@'"$out"'@$HFS@g' $out/packages/package_dirs.json  # this seem to be in
 `),
       dontFixup: true,
     }, (nix.asBool(nix.builtins.isNull(outputHash)) ? {} : {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       outputHash: outputHash,
       outputHashAlgo: "sha256",
       outputHashMode: "recursive",

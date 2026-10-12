@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["CXXFLAGS", 51, 5]], [["updateScript", 62, 12]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 73, 5], ["platforms", 74, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["preBuild", 39, 3], ["cmakeFlags", 44, 3], ["env", 50, 3], ["doCheck", 54, 3], ["doInstallCheck", 55, 3], ["nativeInstallCheckInputs", 57, 3], ["checkPhase", 58, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gflags: false, libsodium: false, openssl: false, protobuf: false, zlib: false, catch2: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 73, 5], ["platforms", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["preBuild", 39, 3], ["cmakeFlags", 44, 3], ["env", 50, 3], ["doCheck", 54, 3], ["doInstallCheck", 55, 3], ["nativeInstallCheckInputs", 57, 3], ["checkPhase", 58, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "eternal-terminal",
       version: "7.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MisterTea",
           repo: "EternalTerminal",
           tag: nix.thunk(() => nix.str`et-v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +37,7 @@ cp ${catch2}/include/catch2/catch.hpp ../external_imported/Catch2/single_include
 `),
       cmakeFlags: nix.thunk(() => ["-DDISABLE_VCPKG=TRUE", "-DDISABLE_SENTRY=TRUE", "-DDISABLE_CRASH_LOG=TRUE"]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++17"]))),
         })))),
       doCheck: true,
@@ -49,11 +45,11 @@ cp ${catch2}/include/catch2/catch.hpp ../external_imported/Catch2/single_include
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       checkPhase: "ctest --output-on-failure -E 'et-test\\.LargeInputNoDeadlock'\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Remote shell that automatically reconnects without interrupting the session",
         homepage: "https://eternalterminal.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/MisterTea/EternalTerminal/releases/tag/et-v${nix.sel(finalAttrs, "version")}`),

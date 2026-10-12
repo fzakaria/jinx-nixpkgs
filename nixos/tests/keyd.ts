@@ -2,20 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/keyd.nix", [[["default", 37, 33]], [["enable", 36, 11], ["keyboards", 37, 11]], [["keyd", 35, 18]], [["services", 35, 9]], [["machine", 34, 13]], [["name", 32, 15], ["nodes", 34, 7], ["testScript", 41, 7]], [["press", 75, 10], ["expect", 81, 10]], [["a", 90, 9], ["b", 91, 9], ["control", 92, 9], ["rightalt", 93, 9]], [["main", 89, 16]], [["settings", 89, 7], ["extraConfig", 95, 7]], [["test", 75, 5], ["default", 88, 5]], [["swap-ab_and_ctrl-as-shift", 74, 3]]]);
 const formals$1 = { args: { pkgs: false, runTest: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { default: false, test: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/keyd.nix", [["default", 37, 33]]);
-const pos$2 = nix.positions(here + "/keyd.nix", [["enable", 36, 11], ["keyboards", 37, 11]]);
-const pos$3 = nix.positions(here + "/keyd.nix", [["keyd", 35, 18]]);
-const pos$4 = nix.positions(here + "/keyd.nix", [["services", 35, 9]]);
-const pos$5 = nix.positions(here + "/keyd.nix", [["machine", 34, 13]]);
-const pos$6 = nix.positions(here + "/keyd.nix", [["name", 32, 15], ["nodes", 34, 7], ["testScript", 41, 7]]);
-const pos$7 = nix.positions(here + "/keyd.nix", [["press", 75, 10], ["expect", 81, 10]]);
-const pos$8 = nix.positions(here + "/keyd.nix", [["a", 90, 9], ["b", 91, 9], ["control", 92, 9], ["rightalt", 93, 9]]);
-const pos$9 = nix.positions(here + "/keyd.nix", [["main", 89, 16]]);
-const pos$10 = nix.positions(here + "/keyd.nix", [["settings", 89, 7], ["extraConfig", 95, 7]]);
-const pos$11 = nix.positions(here + "/keyd.nix", [["test", 75, 5], ["default", 88, 5]]);
-const pos$12 = nix.positions(here + "/keyd.nix", [["swap-ab_and_ctrl-as-shift", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,18 +31,18 @@ mv  ${resultFile}.tmp ${resultFile}
     const default$ = nix.arg($_1, "default");
     const test = nix.arg($_1, "test");
     return nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: name,
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               keyd: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 enable: true,
-                keyboards: nix.thunk(() => ({ [nix.POS]: pos$1, default: default$ })),
+                keyboards: nix.thunk(() => ({ [nix.POS]: $pos[0], default: default$ })),
               })),
             })),
           })),
@@ -89,20 +78,20 @@ run_test_case("openvt -sw --", "${name}", test["press"], test["expect"])
       })));
   })(), formals$2);
   return nix.app(nix.sel(lib, "mapAttrs"), mkKeyboardTest, nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       "swap-ab_and_ctrl-as-shift": nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         test: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           press: nix.thunk(() => ["a", "ctrl-b", "c", "alt_r-h"]),
           expect: nix.thunk(() => ["b", "A", "c", "q"]),
         })),
         default: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             main: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               a: "b",
               b: "a",
               control: "oneshot(shift)",

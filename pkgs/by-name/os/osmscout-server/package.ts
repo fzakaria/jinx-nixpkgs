@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["cxxStandard", 30, 7]], [["abseil-cpp", 29, 5]], [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5], ["fetchSubmodules", 43, 5]], [["NIX_CFLAGS_COMPILE", 76, 7]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["qmakeFlags", 70, 3], ["env", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, boost: false, libsForQt5: false, kyotocabinet: false, libmicrohttpd: false, libosmscout: false, libpostal: false, libtiff: false, marisa: false, "osrm-backend": false, protobuf_21: false, sqlite: false, valhalla: false, "abseil-cpp_202103": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cxxStandard", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["abseil-cpp", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5], ["fetchSubmodules", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 76, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["qmakeFlags", 70, 3], ["env", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,22 +25,22 @@ export default nix.lambda((args) => (() => {
   const valhalla = nix.arg($, "valhalla");
   const abseil_cpp_202103 = nix.arg($, "abseil-cpp_202103");
   const date = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "HowardHinnant",
       repo: "date",
       rev: "a45ea7c17b4a7f320e199b71436074bd624c9e15",
       hash: "sha256-Mq7Yd+y8M3JNG9BEScwVEmxGWYEy6gaNNSlTGgR9LB4=",
     }))));
   const protobuf$ = nix.thunk(() => nix.app(nix.sel(protobuf_21, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
-      "abseil-cpp": nix.thunk(() => nix.app(nix.sel(abseil_cpp_202103, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, cxxStandard: "17" })))),
+      [nix.POS]: $pos[2],
+      "abseil-cpp": nix.thunk(() => nix.app(nix.sel(abseil_cpp_202103, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], cxxStandard: "17" })))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "osmscout-server",
       version: "3.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "rinigus",
           repo: "osmscout-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,9 +70,9 @@ export default nix.lambda((args) => (() => {
         date,
       ]),
       qmakeFlags: nix.thunk(() => ["SCOUT_FLAVOR=qtcontrols", "CONFIG+=disable_mapnik"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_COMPILE: "-std=c++20" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], NIX_CFLAGS_COMPILE: "-std=c++20" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Maps server providing tiles, geocoder, and router",
         homepage: "https://github.com/rinigus/osmscout-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

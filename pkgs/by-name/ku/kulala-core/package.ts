@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["pname", 26, 5], ["version", 27, 26], ["src", 27, 34], ["strictDeps", 29, 5], ["__structuredAttrs", 30, 5], ["nativeBuildInputs", 32, 5], ["dontConfigure", 37, 5], ["buildPhase", 39, 5], ["installPhase", 53, 5], ["dontFixup", 62, 5], ["outputHash", 64, 5], ["outputHashAlgo", 65, 5], ["outputHashMode", 66, 5]], [["description", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["mainProgram", 123, 5], ["platforms", 124, 5]], [["pname", 12, 3], ["version", 13, 3], ["strictDeps", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["node_modules", 25, 3], ["nativeBuildInputs", 69, 3], ["dontConfigure", 74, 3], ["buildPhase", 76, 3], ["installPhase", 92, 3], ["doInstallCheck", 104, 3], ["installCheckPhase", 105, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bun: false, curl: false, fetchFromGitHub: false, makeWrapper: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 26, 5], ["version", 27, 26], ["src", 27, 34], ["strictDeps", 29, 5], ["__structuredAttrs", 30, 5], ["nativeBuildInputs", 32, 5], ["dontConfigure", 37, 5], ["buildPhase", 39, 5], ["installPhase", 53, 5], ["dontFixup", 62, 5], ["outputHash", 64, 5], ["outputHashAlgo", 65, 5], ["outputHashMode", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["mainProgram", 123, 5], ["platforms", 124, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["strictDeps", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["node_modules", 25, 3], ["nativeBuildInputs", 69, 3], ["dontConfigure", 74, 3], ["buildPhase", 76, 3], ["installPhase", 92, 3], ["doInstallCheck", 104, 3], ["installCheckPhase", 105, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kulala-core",
       version: "0.37.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mistweaverco",
           repo: "kulala-core",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-rqfxp+i2o2DA8vle8yr+C6TzHcF2Q7kwYkW2VLMaKw0=",
         })))),
       node_modules: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -75,7 +72,7 @@ runHook postInstall
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\nkulalaResponse=$(\n  printf '%s' '{\"action\":\"from_curl\",\"curl\":\"curl https://example.com\"}' | \\\n    $out/bin/kulala-core\n)\n[[ \"$kulalaResponse\" = *'\"ok\": true'* ]]\n[[ \"$kulalaResponse\" = *'GET https://example.com'* ]]\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "HTTP client library powering the Kulala toolchain",
         homepage: "https://github.com/mistweaverco/kulala-core",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

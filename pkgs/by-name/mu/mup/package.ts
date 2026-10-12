@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 22, 5], ["hash", 28, 5]], [["NIX_CFLAGS_COMPILE", 64, 5]], [["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["patches", 47, 3], ["postPatch", 49, 3], ["env", 63, 3], ["enableParallelBuilding", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, bison: false, flex: false, ghostscript: false, groff: false, netpbm: false, fltk: false, libxinerama: false, libxpm: false, libjpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 22, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["patches", 47, 3], ["postPatch", 49, 3], ["env", 63, 3], ["enableParallelBuilding", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libxpm = nix.arg($, "libxpm");
   const libjpeg = nix.arg($, "libjpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mup",
       version: "7.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             "http://www.arkkra.com/ftp/pub/unix/mup72src.tar.gz",
             "https://web.archive.org/web/20250907143445/http://www.arkkra.com/ftp/pub/unix/mup72src.tar.gz",
@@ -39,10 +36,10 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fltk, libxinerama, libxpm, libjpeg]),
       patches: nix.thunk(() => [nix.path(here, "./ghostscript-permit-file-write.patch")]),
       postPatch: "for f in Makefile.am doc/Makefile.am doc/htmldocs/Makefile.am src/mupmate/Preferences.C; do\n  substituteInPlace $f --replace-fail doc/packages doc\ndone\nsubstituteInPlace src/mupprnt/mupprnt \\\n  --replace-fail 'mup ' $out/bin/mup' '\nsubstituteInPlace src/mupdisp/genfile.c \\\n  --replace-fail '\"mup\"' '\"'$out/bin/mup'\"'\nsubstituteInPlace src/mupmate/Preferences.C \\\n  --replace-fail '\"mup\"' '\"'$out/bin/mup'\"' \\\n  --replace-fail '\"gv\"' '\"xdg-open\"' \\\n  --replace-fail /usr/share/doc $out/share/doc\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.arkkra.com/",
         description: "Music typesetting program (ASCII to PostScript and MIDI)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

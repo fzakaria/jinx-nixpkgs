@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stubs.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["teams", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["disabled", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["postPatch", 31, 3], ["pythonImportsCheck", 38, 3], ["doCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "hatch-vcs": false, "home-assistant": false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/stubs.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/stubs.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["teams", 49, 5]]);
-const pos$3 = nix.positions(here + "/stubs.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["disabled", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["postPatch", 31, 3], ["pythonImportsCheck", 38, 3], ["doCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => !nix.eq(nix.sel(python, "version"), nix.sel(home_assistant, "python3Packages", "python", "version")));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KapJI",
           repo: "homeassistant-stubs",
           tag: version,
@@ -37,7 +35,7 @@ substituteInPlace pyproject.toml --replace-fail \\
       const pythonImportsCheck = nix.thunk(() => ["homeassistant-stubs"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Typing stubs for Home Assistant Core",
         homepage: "https://github.com/KapJI/homeassistant-stubs",
         changelog: nix.thunk(() => nix.str`https://github.com/KapJI/homeassistant-stubs/releases/tag/${nix.sel(src, "tag")}`),
@@ -45,7 +43,7 @@ substituteInPlace pyproject.toml --replace-fail \\
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "home-assistant"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

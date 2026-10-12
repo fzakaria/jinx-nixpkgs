@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["yarnLock", 26, 5], ["hash", 27, 5]], [["nativeBuildInputs", 51, 51]], [["format", 50, 7]], [["updateScript", 47, 5], ["tests", 49, 5]], [["mainProgram", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["changelog", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["offlineCache", 25, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["postInstall", 41, 3], ["passthru", 46, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchYarnDeps: false, yarnConfigHook: false, yarnBuildHook: false, yarnInstallHook: false, nodejs: false, "nix-update-script": false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 51, 51]]);
-const pos$4 = nix.positions(here + "/package.nix", [["format", 50, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 47, 5], ["tests", 49, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mainProgram", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["changelog", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["offlineCache", 25, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["postInstall", 41, 3], ["passthru", 46, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "prettierd",
       version: "0.28.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fsouza",
           repo: "prettierd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-nPaf5p+/ryhEefkiHW9MUk2An/pIQ1UQqW9LeBojAmg=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-Z0IOyp70150zAB7CDvyw87rnzoxNdEuTMZTR6/9QP7U=",
         })))),
@@ -45,12 +39,12 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nodejs]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             format: nix.thunk(() => nix.app(runCommand, "prettierd-format-file-test", nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               })), nix.thunk(() => nix.str`export HOME=$(mktemp -d)
 prettierd ${nix.sel(finalAttrs, "src")}/package.json < ${nix.sel(finalAttrs, "src")}/package.json > $out
@@ -58,7 +52,7 @@ prettierd ${nix.sel(finalAttrs, "src")}/package.json < ${nix.sel(finalAttrs, "sr
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         mainProgram: "prettierd",
         description: "Prettier, as a daemon, for improved formatting speed",
         homepage: "https://github.com/fsouza/prettierd",

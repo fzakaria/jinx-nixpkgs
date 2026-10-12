@@ -2,31 +2,26 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/litellm.nix", [[["enable", 13, 11]], [["litellm", 12, 18]], [["services", 12, 9]], [["machine", 9, 5]], [["maintainers", 25, 5]], [["name", 6, 3], ["nodes", 8, 3], ["testScript", 18, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/litellm.nix", [["enable", 13, 11]]);
-const pos$2 = nix.positions(here + "/litellm.nix", [["litellm", 12, 18]]);
-const pos$3 = nix.positions(here + "/litellm.nix", [["services", 12, 9]]);
-const pos$4 = nix.positions(here + "/litellm.nix", [["machine", 9, 5]]);
-const pos$5 = nix.positions(here + "/litellm.nix", [["maintainers", 25, 5]]);
-const pos$6 = nix.positions(here + "/litellm.nix", [["name", 6, 3], ["nodes", 8, 3], ["testScript", 18, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const mainPort = "8080";
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "litellm",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            litellm: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+            [nix.POS]: $pos[1],
+            litellm: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
           })),
         };
       })(), formals$2),
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
 machine.wait_for_unit("litellm.service")
 machine.wait_for_open_port(${mainPort})
 `),
-    meta: nix.thunk(() => ({ [nix.POS]: pos$5, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[4], maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=litellm.ts.map

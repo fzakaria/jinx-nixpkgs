@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sd-image-aarch64.nix", [[["enable", 16, 20]], [["enable", 17, 43]], [["grub", 16, 15], ["generic-extlinux-compatible", 17, 15]], [["loader", 16, 8], ["consoleLogLevel", 19, 8], ["kernelParams", 24, 8]], [["populateFirmwareCommands", 31, 5], ["populateRootCommands", 110, 5]], [["imports", 11, 3], ["boot", 16, 3], ["sdImage", 30, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sd-image-aarch64.nix", [["enable", 16, 20]]);
-const pos$2 = nix.positions(here + "/sd-image-aarch64.nix", [["enable", 17, 43]]);
-const pos$3 = nix.positions(here + "/sd-image-aarch64.nix", [["grub", 16, 15], ["generic-extlinux-compatible", 17, 15]]);
-const pos$4 = nix.positions(here + "/sd-image-aarch64.nix", [["loader", 16, 8], ["consoleLogLevel", 19, 8], ["kernelParams", 24, 8]]);
-const pos$5 = nix.positions(here + "/sd-image-aarch64.nix", [["populateFirmwareCommands", 31, 5], ["populateRootCommands", 110, 5]]);
-const pos$6 = nix.positions(here + "/sd-image-aarch64.nix", [["imports", 11, 3], ["boot", 16, 3], ["sdImage", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,20 +11,20 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     imports: nix.thunk(() => [nix.path(here, "../../profiles/base.nix"), nix.path(here, "./sd-image.nix")]),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       loader: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        grub: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
-        "generic-extlinux-compatible": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+        [nix.POS]: $pos[2],
+        grub: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: false })),
+        "generic-extlinux-compatible": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
       })),
       consoleLogLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 7n)),
       kernelParams: nix.thunk(() => ["console=ttyS0,115200n8", "console=ttyAMA0,115200n8", "console=tty0"]),
     })),
     sdImage: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       populateFirmwareCommands: nix.thunk(() => (() => {
         const configTxt = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "config.txt", "kernel=u-boot.bin\n\n# Boot in 64-bit mode.\narm_64bit=1\n\n# U-Boot needs this to work, regardless of whether UART is actually used or not.\n# Look in arch/arm/mach-bcm283x/Kconfig in the U-Boot tree to see if this is still\n# a requirement in the future.\nenable_uart=1\n\n# Prevent the firmware from smashing the framebuffer setup done by the mainline kernel\n# when attempting to show low-voltage or overtemperature warnings.\navoid_warnings=1\n\n[pi3]\n# Otherwise the serial output will be garbled.\ncore_freq=250\n\n[pi4]\nenable_gic=1\narmstub=armstub8-gic.bin\n\n# Otherwise the resolution will be weird in most cases, compared to\n# what the pi3 firmware does by default.\ndisable_overscan=1\n\n# Supported in newer board revisions\narm_boost=1\n\n[cm4]\n# Enable host mode on the 2711 built-in XHCI USB controller.\n# This line should be removed if the legacy DWC2 controller is required\n# (e.g. for USB device mode) or if USB support is not required.\notg_mode=1\n\n[cm5]\ndtoverlay=dwc2,dr_mode=host\n\n[pi5]\n# On some revisions of the RPi5, U-Boot interprets picks up\n# ghost inputs from the uart, interrupting the boot process.\n# https://bugzilla.opensuse.org/show_bug.cgi?id=1251192\nenable_uart=0\n"));
         return nix.str`(cd ${nix.sel(pkgs, "raspberrypifw")}/share/raspberrypi/boot && cp bootcode.bin fixup*.dat start*.elf $NIX_BUILD_TOP/firmware/)

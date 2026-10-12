@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["pname", 8, 3], ["version", 9, 20], ["pyproject", 10, 3], ["src", 12, 3], ["dontBuild", 14, 3], ["dontInstall", 15, 3], ["nativeCheckInputs", 17, 3], ["doCheck", 19, 3], ["checkPhase", 23, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, isPyPy: false, pytest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["pname", 8, 3], ["version", 9, 20], ["pyproject", 10, 3], ["src", 12, 3], ["dontBuild", 14, 3], ["dontInstall", 15, 3], ["nativeCheckInputs", 17, 3], ["doCheck", 19, 3], ["checkPhase", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +33,7 @@ find $out/lib -name "*opt-2.pyc" -delete
 runHook postCheck
 `);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname,
         version,
         pyproject,

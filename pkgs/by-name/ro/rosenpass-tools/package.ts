@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 37, 5], ["mainProgram", 38, 5]], [["version", 13, 23], ["src", 13, 31], ["pname", 14, 3], ["nativeBuildInputs", 16, 3], ["postInstall", 21, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, installShellFiles: false, coreutils: false, findutils: false, gawk: false, rosenpass: false, "wireguard-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 37, 5], ["mainProgram", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 13, 23], ["src", 13, 31], ["pname", 14, 3], ["nativeBuildInputs", 16, 3], ["postInstall", 21, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const rosenpass = nix.arg($, "rosenpass");
   const wireguard_tools = nix.arg($, "wireguard-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(rosenpass, "version")),
       src: nix.thunk(() => nix.attr(rosenpass, "src")),
       pname: "rosenpass-tools",
@@ -29,7 +28,7 @@ wrapProgram $out/bin/rp \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, findutils, gawk, rosenpass, wireguard_tools]))}
 `),
       meta: nix.thunk(() => nix.update(nix.sel(rosenpass, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Rosenpass tool `rp`, which is a script that wraps the `rosenpass` binary",
         mainProgram: "rp",
       })),

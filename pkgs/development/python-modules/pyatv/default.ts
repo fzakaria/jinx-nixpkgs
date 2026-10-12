@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["pytest-asyncio", 82, 32]], [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["pythonRelaxDeps", 47, 3], ["build-system", 61, 3], ["dependencies", 63, 3], ["nativeCheckInputs", 79, 3], ["disabledTests", 89, 3], ["disabledTestPaths", 94, 3], ["__darwinAllowLocalNetworking", 100, 3], ["pythonImportsCheck", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, aiohttp: false, "async-timeout": false, "chacha20poly1305-reuseable": false, cryptography: false, deepdiff: false, fetchFromGitHub: false, ifaddr: false, miniaudio: false, protobuf: false, pydantic: false, pyfakefs: false, "pytest-aiohttp": false, "pytest-asyncio_0": false, "pytest-httpserver": false, "pytest-timeout": false, pytestCheckHook: false, pythonAtLeast: false, requests: false, setuptools: false, srptools: false, stdenv: false, tabulate: false, tinytag: false, zeroconf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pytest-asyncio", 82, 32]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["pythonRelaxDeps", 47, 3], ["build-system", 61, 3], ["dependencies", 63, 3], ["nativeCheckInputs", 79, 3], ["disabledTests", 89, 3], ["disabledTestPaths", 94, 3], ["__darwinAllowLocalNetworking", 100, 3], ["pythonImportsCheck", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const tinytag = nix.arg($, "tinytag");
   const zeroconf = nix.arg($, "zeroconf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyatv",
       version: "0.18.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "postlund",
           repo: "pyatv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +78,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [
         deepdiff,
         pyfakefs,
-        nix.thunk(() => nix.app(nix.sel(pytest_aiohttp, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "pytest-asyncio": pytest_asyncio_0 })))),
+        nix.thunk(() => nix.app(nix.sel(pytest_aiohttp, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], "pytest-asyncio": pytest_asyncio_0 })))),
         pytest_asyncio_0,
         pytest_httpserver,
         pytest_timeout,
@@ -95,7 +92,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["pyatv"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python client library for the Apple TV",
         homepage: "https://github.com/postlund/pyatv",
         changelog: nix.thunk(() => nix.str`https://github.com/postlund/pyatv/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

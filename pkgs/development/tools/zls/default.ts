@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 25, 7], ["mainProgram", 26, 7], ["changelog", 27, 7], ["homepage", 28, 7], ["license", 29, 7], ["maintainers", 30, 7], ["platforms", 35, 7]], [["pname", 13, 5], ["strictDeps", 15, 5], ["zigBuildFlags", 17, 5], ["__structuredAttrs", 22, 5], ["meta", 24, 5]], [["owner", 44, 7], ["repo", 45, 7], ["tag", 46, 7], ["fetchSubmodules", 47, 7], ["hash", 48, 7]], [["version", 41, 5], ["src", 43, 5], ["deps", 51, 5], ["nativeBuildInputs", 53, 5]], [["owner", 60, 7], ["repo", 61, 7], ["tag", 62, 7], ["fetchSubmodules", 63, 7], ["hash", 64, 7]], [["version", 57, 5], ["src", 59, 5], ["deps", 67, 5], ["nativeBuildInputs", 69, 5]], [["owner", 76, 7], ["repo", 77, 7], ["tag", 78, 7], ["fetchSubmodules", 79, 7], ["hash", 80, 7]], [["version", 73, 5], ["src", 75, 5], ["deps", 83, 5], ["nativeBuildInputs", 85, 5]], [["zls_0_14", 40, 3], ["zls_0_15", 56, 3], ["zls_0_16", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, zig_0_14: false, zig_0_15: false, zig_0_16: false, fetchFromGitHub: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 25, 7], ["mainProgram", 26, 7], ["changelog", 27, 7], ["homepage", 28, 7], ["license", 29, 7], ["maintainers", 30, 7], ["platforms", 35, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 13, 5], ["strictDeps", 15, 5], ["zigBuildFlags", 17, 5], ["__structuredAttrs", 22, 5], ["meta", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 44, 7], ["repo", 45, 7], ["tag", 46, 7], ["fetchSubmodules", 47, 7], ["hash", 48, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 41, 5], ["src", 43, 5], ["deps", 51, 5], ["nativeBuildInputs", 53, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["owner", 60, 7], ["repo", 61, 7], ["tag", 62, 7], ["fetchSubmodules", 63, 7], ["hash", 64, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 57, 5], ["src", 59, 5], ["deps", 67, 5], ["nativeBuildInputs", 69, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["owner", 76, 7], ["repo", 77, 7], ["tag", 78, 7], ["fetchSubmodules", 79, 7], ["hash", 80, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["version", 73, 5], ["src", 75, 5], ["deps", 83, 5], ["nativeBuildInputs", 85, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["zls_0_14", 40, 3], ["zls_0_15", 56, 3], ["zls_0_16", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const callPackage = nix.arg($, "callPackage");
   const common = (finalAttrs) => (_) => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     pname: "zls",
     strictDeps: true,
     zigBuildFlags: nix.thunk(() => ["--system", nix.thunk(() => nix.str`${nix.sel(finalAttrs, "deps")}`)]),
     __structuredAttrs: true,
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       description: "Zig LSP implementation + Zig Language Server",
       mainProgram: "zls",
       changelog: nix.thunk(() => nix.str`https://github.com/zigtools/zls/releases/tag/${nix.sel(finalAttrs, "version")}`),
@@ -47,12 +39,12 @@ export default nix.lambda((args) => (() => {
     })),
   });
   return nix.app(nix.sel(lib, "mapAttrs"), (_) => (extension) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.app(nix.sel(lib, "extends"), common, extension))), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       zls_0_14: (finalAttrs) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: "0.14.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "zigtools",
             repo: "zls",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,10 +55,10 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => [zig_0_14]),
       }),
       zls_0_15: (finalAttrs) => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version: "0.15.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             owner: "zigtools",
             repo: "zls",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -77,10 +69,10 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => [zig_0_15]),
       }),
       zls_0_16: (finalAttrs) => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         version: "0.16.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             owner: "zigtools",
             repo: "zls",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),

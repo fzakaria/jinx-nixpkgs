@@ -2,17 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-nspawn-configfile.nix", [[["Boot", 94, 13], ["ProcessTwo", 95, 13], ["NotifyReady", 96, 13]], [["ReadOnly", 100, 13], ["Volatile", 101, 13], ["PrivateUsersChown", 102, 13], ["PrivateUsersOwnership", 103, 13]], [["Private", 107, 13], ["VirtualEthernet", 108, 13]], [["enable", 91, 11], ["execConfig", 93, 11], ["filesConfig", 99, 11], ["networkConfig", 106, 11]], [["nspawn", 90, 17]], [["systemd", 90, 9]], [["node", 87, 5]], [["maintainers", 128, 8]], [["name", 84, 3], ["nodes", 86, 3], ["testScript", 114, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-nspawn-configfile.nix", [["Boot", 94, 13], ["ProcessTwo", 95, 13], ["NotifyReady", 96, 13]]);
-const pos$2 = nix.positions(here + "/systemd-nspawn-configfile.nix", [["ReadOnly", 100, 13], ["Volatile", 101, 13], ["PrivateUsersChown", 102, 13], ["PrivateUsersOwnership", 103, 13]]);
-const pos$3 = nix.positions(here + "/systemd-nspawn-configfile.nix", [["Private", 107, 13], ["VirtualEthernet", 108, 13]]);
-const pos$4 = nix.positions(here + "/systemd-nspawn-configfile.nix", [["enable", 91, 11], ["execConfig", 93, 11], ["filesConfig", 99, 11], ["networkConfig", 106, 11]]);
-const pos$5 = nix.positions(here + "/systemd-nspawn-configfile.nix", [["nspawn", 90, 17]]);
-const pos$6 = nix.positions(here + "/systemd-nspawn-configfile.nix", [["systemd", 90, 9]]);
-const pos$7 = nix.positions(here + "/systemd-nspawn-configfile.nix", [["node", 87, 5]]);
-const pos$8 = nix.positions(here + "/systemd-nspawn-configfile.nix", [["maintainers", 128, 8]]);
-const pos$9 = nix.positions(here + "/systemd-nspawn-configfile.nix", [["name", 84, 3], ["nodes", 86, 3], ["testScript", 114, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -90,30 +82,30 @@ export default nix.lambda((args) => (() => {
   const unitName = "options-test";
   const configFile = nix.thunk(() => nix.str`/etc/systemd/nspawn/${unitName}.nspawn`);
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "systemd-nspawn-configfile",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       node: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             nspawn: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${unitName}`, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 enable: true,
-                execConfig: nix.thunk(() => nix.update(nix.app(optionsToConfig, execOptions), { [nix.POS]: pos$1, Boot: true, ProcessTwo: true, NotifyReady: true })),
+                execConfig: nix.thunk(() => nix.update(nix.app(optionsToConfig, execOptions), { [nix.POS]: $pos[0], Boot: true, ProcessTwo: true, NotifyReady: true })),
                 filesConfig: nix.thunk(() => nix.update(nix.app(optionsToConfig, filesOptions), {
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   ReadOnly: true,
                   Volatile: "state",
                   PrivateUsersChown: true,
                   PrivateUsersOwnership: "auto",
                 })),
-                networkConfig: nix.thunk(() => nix.update(nix.app(optionsToConfig, networkOptions), { [nix.POS]: pos$3, Private: true, VirtualEthernet: true })),
+                networkConfig: nix.thunk(() => nix.update(nix.app(optionsToConfig, networkOptions), { [nix.POS]: $pos[2], Private: true, VirtualEthernet: true })),
               }))],
             ])),
           })),
@@ -133,7 +125,7 @@ with subtest("Test for absence of misspelled option 'MachineId' (instead of 'Mac
   node.fail("grep --quiet MachineId ${configFile}")
 `),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "zi3m5f"))]),
     })),
   };

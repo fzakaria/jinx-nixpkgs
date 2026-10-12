@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["pname", 27, 5], ["version", 28, 13], ["runScript", 29, 5], ["targetPkgs", 31, 5], ["multiPkgs", 52, 5]], [["updateScript", 152, 12]], [["description", 155, 5], ["homepage", 156, 5], ["downloadPage", 157, 5], ["changelog", 158, 5], ["license", 159, 5], ["maintainers", 160, 5], ["platforms", 161, 5], ["sourceProvenance", 162, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["fhsEnv", 26, 3], ["dontConfigure", 122, 3], ["dontBuild", 123, 3], ["installPhase", 125, 3], ["passthru", 152, 3], ["meta", 154, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, makeWrapper: false, buildFHSEnv: false, extraPkgs: true, extraLibs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 27, 5], ["version", 28, 13], ["runScript", 29, 5], ["targetPkgs", 31, 5], ["multiPkgs", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 152, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 155, 5], ["homepage", 156, 5], ["downloadPage", 157, 5], ["changelog", 158, 5], ["license", 159, 5], ["maintainers", 160, 5], ["platforms", 161, 5], ["sourceProvenance", 162, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["fhsEnv", 26, 3], ["dontConfigure", 122, 3], ["dontBuild", 123, 3], ["installPhase", 125, 3], ["passthru", 152, 3], ["meta", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +19,13 @@ export default nix.lambda((args) => (() => {
       const pname = "unityhub";
       const version = "3.19.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://hub-dist.unity3d.com/artifactory/hub-debian-prod-local/pool/main/u/unity/unityhub_amd64/UnityHubSetup-${version}-amd64.deb`),
           hash: "sha256-WltXrcnOIJMcQVTFf/3tCPP/onQyhv3xTJ563WshJUA=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [dpkg, makeWrapper]);
       const fhsEnv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.str`${pname}-fhs-env`),
           version: version,
           runScript: "",
@@ -131,9 +127,9 @@ rm $out/opt/unityhub/resources/package-type
 
 runHook postInstall
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Official Unity3D app to download and manage Unity Projects and installations",
         homepage: "https://unity.com/",
         downloadPage: "https://unity.com/unity-hub",
@@ -150,7 +146,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

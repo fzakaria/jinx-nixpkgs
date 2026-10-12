@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["echoip", 32, 36]], [["extraArgs", 33, 40]], [["tests", 32, 5], ["updateScript", 33, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["nativeBuildInputs", 23, 3], ["postInstall", 25, 3], ["passthru", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, makeWrapper: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["echoip", 32, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 33, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 32, 5], ["updateScript", 33, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 45, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["nativeBuildInputs", 23, 3], ["postInstall", 25, 3], ["passthru", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "echoip",
       version: "0-unstable-2026-09-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mpolden",
           repo: "echoip",
           rev: "27646b3c4c39041baf8734063e87e71d46f53362",
@@ -33,12 +28,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postInstall: "install -D html/* -t $out/share/echoip/html\nwrapProgram $out/bin/echoip \\\n  --add-flags \"-t $out/share/echoip/html\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, echoip: nix.thunk(() => nix.attr(nixosTests, "echoip")) })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], echoip: nix.thunk(() => nix.attr(nixosTests, "echoip")) })),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "IP address lookup service",
         homepage: "https://github.com/mpolden/echoip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

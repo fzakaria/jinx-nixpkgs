@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/multi.nix", [[["version", 23, 27], ["lib", 24, 11]], [["passthru", 22, 9]], [["libc", 54, 7]], [["libgcc", 58, 29], ["langCC", 59, 7]], [["libc", 51, 5], ["bintools", 53, 5], ["gccForLibs", 57, 5]]]);
 const formals$1 = { args: { runCommand: false, clang: false, gcc64: false, gcc32: false, glibc_multi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/multi.nix", [["version", 23, 27], ["lib", 24, 11]]);
-const pos$2 = nix.positions(here + "/multi.nix", [["passthru", 22, 9]]);
-const pos$3 = nix.positions(here + "/multi.nix", [["libc", 54, 7]]);
-const pos$4 = nix.positions(here + "/multi.nix", [["libgcc", 58, 29], ["langCC", 59, 7]]);
-const pos$5 = nix.positions(here + "/multi.nix", [["libc", 51, 5], ["bintools", 53, 5], ["gccForLibs", 57, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,9 +19,9 @@ chmod u+rw -R $out/lib
 cp -r ${nix.sel(basegcc, "libc")}/lib/* $(ls -d $out/lib/gcc/*/*)
 `));
   const gcc_multi_sysroot = nix.thunk(() => nix.app(runCommand, "gcc-multi-sysroot", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         version: nix.thunk(() => nix.attr(gcc64, "version")),
         lib: gcc_multi_sysroot,
       })),
@@ -48,11 +44,11 @@ ln -s ${nix.sel(glibc_multi, "out")}/lib/ld-linux* $out/lib
 ln -s ${nix.sel(glibc_multi, "out")}/lib/32/ld-linux* $out/lib/32/
 `)));
   const clangMulti = nix.thunk(() => nix.app(nix.sel(clang, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       libc: gcc_multi_sysroot,
-      bintools: nix.thunk(() => nix.app(nix.sel(clang, "bintools", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, libc: gcc_multi_sysroot })))),
+      bintools: nix.thunk(() => nix.app(nix.sel(clang, "bintools", "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], libc: gcc_multi_sysroot })))),
       gccForLibs: nix.thunk(() => nix.update(gcc_multi_sysroot, {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         libgcc: nix.thunk(() => nix.attr(glibc_multi, "libgcc")),
         langCC: nix.thunk(() => (() => {
           nix.assert_((!nix.asBool(!nix.eq(nix.sel(gcc64, "cc", "langCC"), nix.sel(gcc32, "cc", "langCC"))) || nix.asBool(nix.builtins.throw(nix.thunk(() => nix.str`(gcc64.cc.langCC=${nix.sel(gcc64, "cc", "langCC")}) != (gcc32.cc.langCC=${nix.sel(gcc32, "cc", "langCC")})`)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/llvm/multi.nix:60:9");

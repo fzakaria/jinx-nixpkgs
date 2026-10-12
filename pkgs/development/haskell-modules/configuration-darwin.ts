@@ -2,43 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/configuration-darwin.nix", [[["testToolDepends", 21, 7], ["doCheck", 22, 7]], [["preCheck", 30, 7]], [["preCheck", 51, 7]], [["postPatch", 80, 9]], [["postPatch", 89, 9]], [["postPatch", 98, 9]], [["doCheck", 114, 7], ["preCompileBuildDriver", 119, 7]], [["systemd", 125, 38]], [["librarySystemDepends", 129, 7], ["libraryHaskellDepends", 130, 7], ["preConfigure", 131, 7]], [["librarySystemDepends", 139, 7]], [["postPatch", 152, 7]], [["libraryHaskellDepends", 160, 7]], [["postPatch", 172, 7]], [["postPatch", 181, 7], ["patches", 185, 7]], [["postPatch", 194, 7]], [["url", 221, 7], ["name", 222, 7], ["sha256", 223, 7], ["revert", 224, 7], ["stripLen", 225, 7]], [["__darwinAllowLocalNetworking", 235, 11]], [["__darwinAllowLocalNetworking", 284, 7], ["testFlags", 287, 7]], [["libraryHaskellDepends", 294, 7], ["executableHaskellDepends", 298, 7]], [["libraryHaskellDepends", 305, 7], ["executableHaskellDepends", 309, 7]], [["libraryHaskellDepends", 316, 7]], [["jsaddle-webkit2gtk", 326, 9]], [["preConfigure", 332, 7]], [["preBuild", 342, 7]], [["preBuild", 354, 7]], [["shell-conduit", 17, 5], ["hakyll", 20, 5], ["double-conversion", 25, 5], ["mockery", 29, 5], ["shake", 37, 5], ["filecache", 39, 5], ["gtk3", 43, 5], ["gtk", 44, 5], ["with-utf8", 47, 5], ["git-annex", 49, 5], ["immortal", 64, 5], ["x509-system", 77, 5], ["crypton-x509-system", 86, 5], ["HsOpenSSL-x509-system", 95, 5], ["foundation", 106, 5], ["system-fileio", 110, 5], ["llvm-hs", 112, 5], ["hidapi", 125, 5], ["OpenGLRaw", 128, 5], ["bindings-GLFW", 138, 5], ["hinotify", 144, 5], ["fsnotify", 148, 5], ["HTF", 150, 5], ["cas-store", 159, 5], ["tmp-postgres", 167, 5], ["GLHUI", 171, 5], ["SDL-image", 178, 5], ["SDL-mixer", 193, 5], ["SDL-ttf", 201, 5], ["aws-cloudfront-signed-cookies", 211, 5], ["acid-state", 214, 5], ["c2hsc", 217, 5], ["inline-c-cpp", 220, 5], ["zip", 229, 5], ["cisco-spark-api", 238, 7], ["conduit-extra", 239, 7], ["context-http-client", 240, 7], ["context-wai-middleware", 241, 7], ["dap", 242, 7], ["essence-of-live-coding-warp", 243, 7], ["haskell-bee-redis", 244, 7], ["http-client-websockets", 245, 7], ["http-io-streams", 246, 7], ["http-streams", 247, 7], ["http2", 248, 7], ["io-streams", 249, 7], ["io-streams-haproxy", 250, 7], ["jsaddle-warp", 251, 7], ["katip-wai", 252, 7], ["keter", 253, 7], ["monad-metrics-extensible", 254, 7], ["mysql-haskell", 255, 7], ["network", 256, 7], ["network-transport-tcp", 257, 7], ["network-wait", 258, 7], ["om-socket", 259, 7], ["openssl-streams", 260, 7], ["polysemy-webserver", 261, 7], ["port-utils", 262, 7], ["servant-auth-client", 263, 7], ["servant-client", 264, 7], ["servant-hmac-auth", 265, 7], ["servant-prometheus", 266, 7], ["snap", 267, 7], ["spacecookie", 268, 7], ["streaming-commons", 269, 7], ["sydtest-servant", 270, 7], ["sydtest-wai", 271, 7], ["sydtest-yesod", 272, 7], ["wai-app-file-cgi", 273, 7], ["wai-make-assets", 274, 7], ["wai-token-bucket-ratelimiter", 275, 7], ["webex-teams-api", 276, 7], ["webex-teams-pipes", 277, 7], ["ws-chans", 278, 7], ["yesod-core", 279, 7], ["zeromq4-haskell", 280, 7], ["warp", 283, 5], ["ghcjs-dom-hello", 293, 5], ["jsaddle-hello", 304, 5], ["jsaddle-wkwebview", 315, 5], ["reflex-dom", 324, 5], ["di-core", 331, 5], ["hercules-ci-agent", 341, 5], ["cachix", 353, 5], ["http-reverse-proxy", 363, 5], ["servant-auth-server", 364, 5], ["sysinfo", 366, 5]], [["postInstall", 381, 7]], [["postInstall", 390, 7]], [["postInstall", 399, 7]], [["postInstall", 406, 7]], [["preConfigure", 421, 7]], [["libraryHaskellDepends", 436, 7]], [["libraryHaskellDepends", 439, 7]], [["cabal2nix", 380, 5], ["cabal2nix-unstable", 389, 5], ["happy", 398, 5], ["hadolint", 405, 5], ["unliftio", 414, 5], ["rio", 420, 5], ["text-icu", 428, 5], ["cryptonite", 431, 5], ["ormolu", 435, 5], ["fourmolu", 438, 5], ["Agda", 442, 5], ["eventsourcing-postgresql", 450, 5], ["gargoyle-postgresql-connect", 451, 5], ["hs-opentelemetry-instrumentation-postgresql-simple", 452, 5], ["moto-postgresql", 453, 5], ["persistent-postgresql", 454, 5], ["pipes-postgresql-simple", 455, 5], ["postgresql-connector", 456, 5], ["postgresql-migration", 457, 5], ["postgresql-schema", 458, 5], ["postgresql-simple", 459, 5], ["postgresql-simple-interpolate", 460, 5], ["postgresql-simple-migration", 461, 5], ["postgresql-simple-url", 462, 5], ["postgresql-transactional", 463, 5], ["postgrest", 464, 5], ["rivet-adaptor-postgresql", 465, 5], ["tmp-proc-postgres", 466, 5]], [["testFlags", 482, 7]], [["regex-rure", 474, 5], ["jacinda", 477, 5], ["ad", 481, 5]]]);
 const formals$1 = { args: { pkgs: false, haskellLib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/configuration-darwin.nix", [["testToolDepends", 21, 7], ["doCheck", 22, 7]]);
-const pos$2 = nix.positions(here + "/configuration-darwin.nix", [["preCheck", 30, 7]]);
-const pos$3 = nix.positions(here + "/configuration-darwin.nix", [["preCheck", 51, 7]]);
-const pos$4 = nix.positions(here + "/configuration-darwin.nix", [["postPatch", 80, 9]]);
-const pos$5 = nix.positions(here + "/configuration-darwin.nix", [["postPatch", 89, 9]]);
-const pos$6 = nix.positions(here + "/configuration-darwin.nix", [["postPatch", 98, 9]]);
-const pos$7 = nix.positions(here + "/configuration-darwin.nix", [["doCheck", 114, 7], ["preCompileBuildDriver", 119, 7]]);
-const pos$8 = nix.positions(here + "/configuration-darwin.nix", [["systemd", 125, 38]]);
-const pos$9 = nix.positions(here + "/configuration-darwin.nix", [["librarySystemDepends", 129, 7], ["libraryHaskellDepends", 130, 7], ["preConfigure", 131, 7]]);
-const pos$10 = nix.positions(here + "/configuration-darwin.nix", [["librarySystemDepends", 139, 7]]);
-const pos$11 = nix.positions(here + "/configuration-darwin.nix", [["postPatch", 152, 7]]);
-const pos$12 = nix.positions(here + "/configuration-darwin.nix", [["libraryHaskellDepends", 160, 7]]);
-const pos$13 = nix.positions(here + "/configuration-darwin.nix", [["postPatch", 172, 7]]);
-const pos$14 = nix.positions(here + "/configuration-darwin.nix", [["postPatch", 181, 7], ["patches", 185, 7]]);
-const pos$15 = nix.positions(here + "/configuration-darwin.nix", [["postPatch", 194, 7]]);
-const pos$16 = nix.positions(here + "/configuration-darwin.nix", [["url", 221, 7], ["name", 222, 7], ["sha256", 223, 7], ["revert", 224, 7], ["stripLen", 225, 7]]);
-const pos$17 = nix.positions(here + "/configuration-darwin.nix", [["__darwinAllowLocalNetworking", 235, 11]]);
-const pos$18 = nix.positions(here + "/configuration-darwin.nix", [["__darwinAllowLocalNetworking", 284, 7], ["testFlags", 287, 7]]);
-const pos$19 = nix.positions(here + "/configuration-darwin.nix", [["libraryHaskellDepends", 294, 7], ["executableHaskellDepends", 298, 7]]);
-const pos$20 = nix.positions(here + "/configuration-darwin.nix", [["libraryHaskellDepends", 305, 7], ["executableHaskellDepends", 309, 7]]);
-const pos$21 = nix.positions(here + "/configuration-darwin.nix", [["libraryHaskellDepends", 316, 7]]);
-const pos$22 = nix.positions(here + "/configuration-darwin.nix", [["jsaddle-webkit2gtk", 326, 9]]);
-const pos$23 = nix.positions(here + "/configuration-darwin.nix", [["preConfigure", 332, 7]]);
-const pos$24 = nix.positions(here + "/configuration-darwin.nix", [["preBuild", 342, 7]]);
-const pos$25 = nix.positions(here + "/configuration-darwin.nix", [["preBuild", 354, 7]]);
-const pos$26 = nix.positions(here + "/configuration-darwin.nix", [["shell-conduit", 17, 5], ["hakyll", 20, 5], ["double-conversion", 25, 5], ["mockery", 29, 5], ["shake", 37, 5], ["filecache", 39, 5], ["gtk3", 43, 5], ["gtk", 44, 5], ["with-utf8", 47, 5], ["git-annex", 49, 5], ["immortal", 64, 5], ["x509-system", 77, 5], ["crypton-x509-system", 86, 5], ["HsOpenSSL-x509-system", 95, 5], ["foundation", 106, 5], ["system-fileio", 110, 5], ["llvm-hs", 112, 5], ["hidapi", 125, 5], ["OpenGLRaw", 128, 5], ["bindings-GLFW", 138, 5], ["hinotify", 144, 5], ["fsnotify", 148, 5], ["HTF", 150, 5], ["cas-store", 159, 5], ["tmp-postgres", 167, 5], ["GLHUI", 171, 5], ["SDL-image", 178, 5], ["SDL-mixer", 193, 5], ["SDL-ttf", 201, 5], ["aws-cloudfront-signed-cookies", 211, 5], ["acid-state", 214, 5], ["c2hsc", 217, 5], ["inline-c-cpp", 220, 5], ["zip", 229, 5], ["cisco-spark-api", 238, 7], ["conduit-extra", 239, 7], ["context-http-client", 240, 7], ["context-wai-middleware", 241, 7], ["dap", 242, 7], ["essence-of-live-coding-warp", 243, 7], ["haskell-bee-redis", 244, 7], ["http-client-websockets", 245, 7], ["http-io-streams", 246, 7], ["http-streams", 247, 7], ["http2", 248, 7], ["io-streams", 249, 7], ["io-streams-haproxy", 250, 7], ["jsaddle-warp", 251, 7], ["katip-wai", 252, 7], ["keter", 253, 7], ["monad-metrics-extensible", 254, 7], ["mysql-haskell", 255, 7], ["network", 256, 7], ["network-transport-tcp", 257, 7], ["network-wait", 258, 7], ["om-socket", 259, 7], ["openssl-streams", 260, 7], ["polysemy-webserver", 261, 7], ["port-utils", 262, 7], ["servant-auth-client", 263, 7], ["servant-client", 264, 7], ["servant-hmac-auth", 265, 7], ["servant-prometheus", 266, 7], ["snap", 267, 7], ["spacecookie", 268, 7], ["streaming-commons", 269, 7], ["sydtest-servant", 270, 7], ["sydtest-wai", 271, 7], ["sydtest-yesod", 272, 7], ["wai-app-file-cgi", 273, 7], ["wai-make-assets", 274, 7], ["wai-token-bucket-ratelimiter", 275, 7], ["webex-teams-api", 276, 7], ["webex-teams-pipes", 277, 7], ["ws-chans", 278, 7], ["yesod-core", 279, 7], ["zeromq4-haskell", 280, 7], ["warp", 283, 5], ["ghcjs-dom-hello", 293, 5], ["jsaddle-hello", 304, 5], ["jsaddle-wkwebview", 315, 5], ["reflex-dom", 324, 5], ["di-core", 331, 5], ["hercules-ci-agent", 341, 5], ["cachix", 353, 5], ["http-reverse-proxy", 363, 5], ["servant-auth-server", 364, 5], ["sysinfo", 366, 5]]);
-const pos$27 = nix.positions(here + "/configuration-darwin.nix", [["postInstall", 381, 7]]);
-const pos$28 = nix.positions(here + "/configuration-darwin.nix", [["postInstall", 390, 7]]);
-const pos$29 = nix.positions(here + "/configuration-darwin.nix", [["postInstall", 399, 7]]);
-const pos$30 = nix.positions(here + "/configuration-darwin.nix", [["postInstall", 406, 7]]);
-const pos$31 = nix.positions(here + "/configuration-darwin.nix", [["preConfigure", 421, 7]]);
-const pos$32 = nix.positions(here + "/configuration-darwin.nix", [["libraryHaskellDepends", 436, 7]]);
-const pos$33 = nix.positions(here + "/configuration-darwin.nix", [["libraryHaskellDepends", 439, 7]]);
-const pos$34 = nix.positions(here + "/configuration-darwin.nix", [["cabal2nix", 380, 5], ["cabal2nix-unstable", 389, 5], ["happy", 398, 5], ["hadolint", 405, 5], ["unliftio", 414, 5], ["rio", 420, 5], ["text-icu", 428, 5], ["cryptonite", 431, 5], ["ormolu", 435, 5], ["fourmolu", 438, 5], ["Agda", 442, 5], ["eventsourcing-postgresql", 450, 5], ["gargoyle-postgresql-connect", 451, 5], ["hs-opentelemetry-instrumentation-postgresql-simple", 452, 5], ["moto-postgresql", 453, 5], ["persistent-postgresql", 454, 5], ["pipes-postgresql-simple", 455, 5], ["postgresql-connector", 456, 5], ["postgresql-migration", 457, 5], ["postgresql-schema", 458, 5], ["postgresql-simple", 459, 5], ["postgresql-simple-interpolate", 460, 5], ["postgresql-simple-migration", 461, 5], ["postgresql-simple-url", 462, 5], ["postgresql-transactional", 463, 5], ["postgrest", 464, 5], ["rivet-adaptor-postgresql", 465, 5], ["tmp-proc-postgres", 466, 5]]);
-const pos$35 = nix.positions(here + "/configuration-darwin.nix", [["testFlags", 482, 7]]);
-const pos$36 = nix.positions(here + "/configuration-darwin.nix", [["regex-rure", 474, 5], ["jacinda", 477, 5], ["ad", 481, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.thunk(() => nix.attr(pkgs, "darwin"));
   const w = nix.withScope(haskellLib, null);
   return (self) => (super$) => nix.update((() => {
-    const from = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({ [nix.POS]: pos$17, __darwinAllowLocalNetworking: true })), super$));
+    const from = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({ [nix.POS]: $pos[16], __darwinAllowLocalNetworking: true })), super$));
     return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     "shell-conduit": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "shell-conduit")))),
-    hakyll: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), nix.thunk(() => ({ [nix.POS]: pos$1, testToolDepends: [], doCheck: false })), nix.thunk(() => nix.sel(super$, "hakyll")))),
+    hakyll: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), nix.thunk(() => ({ [nix.POS]: $pos[0], testToolDepends: [], doCheck: false })), nix.thunk(() => nix.sel(super$, "hakyll")))),
     "double-conversion": nix.thunk(() => nix.app(nix.lookup(w, "addExtraLibrary"), nix.thunk(() => nix.sel(pkgs, "libcxx")), nix.thunk(() => nix.sel(super$, "double-conversion")))),
     mockery: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         preCheck: nix.thunk(() => nix.add("export TRAVIS=true\n", nix.selOr(drv, () => "", "preCheck"))),
       }), nix.thunk(() => nix.sel(super$, "mockery")))),
     shake: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "shake")))),
@@ -64,59 +29,59 @@ export default nix.lambda((args) => (() => {
     gtk: nix.thunk(() => nix.app(nix.lookup(w, "appendConfigureFlag"), "-f have-quartz-gtk", nix.thunk(() => nix.sel(super$, "gtk")))),
     "with-utf8": nix.thunk(() => nix.app(nix.lookup(w, "addExtraLibrary"), nix.thunk(() => nix.sel(pkgs, "libiconv")), nix.thunk(() => nix.sel(super$, "with-utf8")))),
     "git-annex": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         preCheck: nix.thunk(() => nix.add(nix.selOr(drv, () => "", "preCheck"), "checkFlagsArray+=(\n  # The addurl test cases require security(1) to be in PATH which we can't\n  # provide from nixpkgs to my (@sternenseemann) knowledge.\n  \"-p\" \"!/addurl/\"\n)\n")),
       }), nix.thunk(() => nix.sel(super$, "git-annex")))),
     immortal: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "immortal")))),
     "x509-system": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(pkgs, "stdenv", "cc", "nativeLibc"))), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           postPatch: nix.thunk(() => nix.add("substituteInPlace System/X509/MacOS.hs --replace-fail security /usr/bin/security\n", nix.selOr(drv, () => "", "postPatch"))),
         }))), nix.thunk(() => nix.sel(super$, "x509-system")))),
     "crypton-x509-system": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(pkgs, "stdenv", "cc", "nativeLibc"))), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           postPatch: nix.thunk(() => nix.add("substituteInPlace System/X509/MacOS.hs --replace-fail security /usr/bin/security\n", nix.selOr(drv, () => "", "postPatch"))),
         }))), nix.thunk(() => nix.sel(super$, "crypton-x509-system")))),
     "HsOpenSSL-x509-system": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(pkgs, "stdenv", "cc", "nativeLibc"))), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           postPatch: nix.thunk(() => nix.add("substituteInPlace OpenSSL/X509/SystemStore/MacOSX.hs --replace-fail security /usr/bin/security\n", nix.selOr(drv, () => "", "postPatch"))),
         }))), nix.thunk(() => nix.sel(super$, "HsOpenSSL-x509-system")))),
     foundation: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "foundation")))),
     "system-fileio": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "system-fileio")))),
     "llvm-hs": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (oldAttrs) => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         doCheck: false,
         preCompileBuildDriver: nix.thunk(() => nix.add("substituteInPlace Setup.hs --replace-fail \"addToLdLibraryPath libDir\" \"pure ()\"\n", nix.selOr(oldAttrs, () => "", "preCompileBuildDriver"))),
       }), nix.thunk(() => nix.sel(super$, "llvm-hs")))),
-    hidapi: nix.thunk(() => nix.app(nix.sel(super$, "hidapi", "override"), nix.thunk(() => ({ [nix.POS]: pos$8, systemd: null })))),
+    hidapi: nix.thunk(() => nix.app(nix.sel(super$, "hidapi", "override"), nix.thunk(() => ({ [nix.POS]: $pos[7], systemd: null })))),
     OpenGLRaw: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         librarySystemDepends: [],
         libraryHaskellDepends: nix.thunk(() => nix.sel(drv, "libraryHaskellDepends")),
         preConfigure: nix.thunk(() => nix.add("frameworkPaths=($(for i in $nativeBuildInputs; do if [ -d \"$i\"/Library/Frameworks ]; then echo \"-F$i/Library/Frameworks\"; fi done))\nframeworkPaths=$(IFS=, ; echo \"${frameworkPaths[@]}\")\nconfigureFlags+=$(if [ -n \"$frameworkPaths\" ]; then echo -n \"--ghc-options=-optl=$frameworkPaths\"; fi)\n", nix.selOr(drv, () => "", "preConfigure"))),
       }), nix.thunk(() => nix.sel(super$, "OpenGLRaw")))),
-    "bindings-GLFW": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({ [nix.POS]: pos$10, librarySystemDepends: [] }), nix.thunk(() => nix.sel(super$, "bindings-GLFW")))),
+    "bindings-GLFW": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({ [nix.POS]: $pos[9], librarySystemDepends: [] }), nix.thunk(() => nix.sel(super$, "bindings-GLFW")))),
     hinotify: nix.thunk(() => nix.sel(self, "hfsevents")),
     fsnotify: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "fsnotify")))),
     HTF: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         postPatch: nix.thunk(() => nix.add("substituteInPlace scripts/local-htfpp --replace-fail \"find=gfind\" \"find=find\"\n", nix.selOr(drv, () => "", "postPatch"))),
       }), nix.thunk(() => nix.sel(super$, "HTF")))),
     "cas-store": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         libraryHaskellDepends: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(self, "kqueue"))], nix.selOr(drv, () => [], "libraryHaskellDepends"))),
       }), nix.thunk(() => nix.sel(super$, "cas-store")))),
     "tmp-postgres": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "tmp-postgres")))),
     GLHUI: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         postPatch: nix.thunk(() => nix.add("substituteInPlace GLHUI.cabal --replace-fail \" rt\" \"\"\n", nix.selOr(drv, () => "", "postPatch"))),
       }), nix.thunk(() => nix.sel(super$, "GLHUI")))),
     "SDL-image": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         postPatch: nix.thunk(() => nix.add("substituteInPlace configure --replace-fail xDarwin noDarwinSpecialCasing\n", nix.selOr(drv, () => "", "postPatch"))),
         patches: nix.thunk(() => [nix.path(here, "./patches/SDL-image-darwin-hsc.patch")]),
       }), nix.thunk(() => nix.sel(super$, "SDL-image")))),
     "SDL-mixer": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         postPatch: nix.thunk(() => nix.add("substituteInPlace configure --replace-fail xDarwin noDarwinSpecialCasing\n", nix.selOr(drv, () => "", "postPatch"))),
       }), nix.thunk(() => nix.sel(super$, "SDL-mixer")))),
     "SDL-ttf": nix.thunk(() => nix.app(nix.lookup(w, "appendPatch"), nix.path(here, "./patches/SDL-ttf-darwin-hsc.patch"), nix.thunk(() => nix.sel(super$, "SDL-ttf")))),
@@ -124,7 +89,7 @@ export default nix.lambda((args) => (() => {
     "acid-state": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "acid-state")))),
     c2hsc: nix.thunk(() => nix.app(nix.lookup(w, "addTestToolDepends"), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gcc"))]), nix.thunk(() => nix.sel(super$, "c2hsc")))),
     "inline-c-cpp": nix.thunk(() => nix.app(nix.lookup(w, "appendPatch"), nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           url: "https://github.com/fpco/inline-c/commit/e8dc553b13bb847409fdced649a6a863323cff8a.patch",
           name: "revert-use-system-cxx-std-lib.patch",
           sha256: "sha256-ql1/+8bvmWexyCdFR0VS4M4cY2lD0Px/9dHYLqlKyNA=",
@@ -176,12 +141,12 @@ export default nix.lambda((args) => (() => {
     "yesod-core": nix.thunk(() => nix.attr(from, "yesod-core")),
     "zeromq4-haskell": nix.thunk(() => nix.attr(from, "zeromq4-haskell")),
     warp: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         __darwinAllowLocalNetworking: true,
         testFlags: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "testFlags"), ["--skip=/Response/range requests/", "--skip=/Response/partial files/"])),
       }), nix.thunk(() => nix.sel(super$, "warp")))),
     "ghcjs-dom-hello": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         libraryHaskellDepends: nix.thunk(() => (() => {
           const w_1 = nix.withScope(self, w);
           return [
@@ -198,7 +163,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }), nix.thunk(() => nix.sel(super$, "ghcjs-dom-hello")))),
     "jsaddle-hello": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         libraryHaskellDepends: nix.thunk(() => (() => {
           const w_1 = nix.withScope(self, w);
           return [
@@ -215,7 +180,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }), nix.thunk(() => nix.sel(super$, "jsaddle-hello")))),
     "jsaddle-wkwebview": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         libraryHaskellDepends: nix.thunk(() => (() => {
           const w_1 = nix.withScope(self, w);
           return [
@@ -225,17 +190,17 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }), nix.thunk(() => nix.sel(super$, "jsaddle-wkwebview")))),
-    "reflex-dom": nix.thunk(() => nix.app(nix.lookup(w, "addBuildDepend"), nix.thunk(() => nix.sel(self, "jsaddle-wkwebview")), nix.thunk(() => nix.app(nix.sel(super$, "reflex-dom", "override"), (drv) => ({ [nix.POS]: pos$22, "jsaddle-webkit2gtk": null }))))),
+    "reflex-dom": nix.thunk(() => nix.app(nix.lookup(w, "addBuildDepend"), nix.thunk(() => nix.sel(self, "jsaddle-wkwebview")), nix.thunk(() => nix.app(nix.sel(super$, "reflex-dom", "override"), (drv) => ({ [nix.POS]: $pos[21], "jsaddle-webkit2gtk": null }))))),
     "di-core": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         preConfigure: "substituteInPlace test/Main.hs --replace-fail \\\n  \"2 @=? List.length (List.nub (List.sort (map Di.log_time logs)))\" \"\"\n",
       }), nix.thunk(() => nix.sel(super$, "di-core")))),
     "hercules-ci-agent": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (old) => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         preBuild: nix.thunk(() => nix.add("DYLD_INSERT_LIBRARIES=\"${DYLD_INSERT_LIBRARIES:+$DYLD_INSERT_LIBRARIES:}$(pkg-config --variable=libdir nix-store)/libnixstore.dylib:$(pkg-config --variable=libdir nix-util)/libnixutil.dylib\"\nexport DYLD_INSERT_LIBRARIES\necho \"DYLD_INSERT_LIBRARIES=$DYLD_INSERT_LIBRARIES\"\n", nix.selOr(old, () => "", "preBuild"))),
       }), nix.thunk(() => nix.sel(super$, "hercules-ci-agent")))),
     cachix: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (old) => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         preBuild: nix.thunk(() => nix.add("DYLD_INSERT_LIBRARIES=\"${DYLD_INSERT_LIBRARIES:+$DYLD_INSERT_LIBRARIES:}$(pkg-config --variable=libdir nix-store)/libnixstore.dylib:$(pkg-config --variable=libdir nix-util)/libnixutil.dylib\"\nexport DYLD_INSERT_LIBRARIES\necho \"DYLD_INSERT_LIBRARIES=$DYLD_INSERT_LIBRARIES\"\n", nix.selOr(old, () => "", "preBuild"))),
       }), nix.thunk(() => nix.sel(super$, "cachix")))),
     "http-reverse-proxy": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "http-reverse-proxy")))),
@@ -243,9 +208,9 @@ export default nix.lambda((args) => (() => {
     sysinfo: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "sysinfo")))),
   };
   })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")), nix.thunk(() => ({
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       cabal2nix: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (old) => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           postInstall: nix.thunk(() => nix.str`remove-references-to -t ${nix.sel(self, "hpack")} "\${!outputBin}/bin/cabal2nix"
 # Note: The \`data\` output is needed at runtime.
 remove-references-to -t ${nix.sel(self, "distribution-nixpkgs", "out")} "\${!outputBin}/bin/hackage2nix"
@@ -254,7 +219,7 @@ ${nix.selOr(old, () => "", "postInstall")}
 `),
         }), nix.thunk(() => nix.sel(super$, "cabal2nix")))),
       "cabal2nix-unstable": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (old) => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           postInstall: nix.thunk(() => nix.str`remove-references-to -t ${nix.sel(self, "hpack")} "\${!outputBin}/bin/cabal2nix"
 # Note: The \`data\` output is needed at runtime.
 remove-references-to -t ${nix.sel(self, "distribution-nixpkgs-unstable", "out")} "\${!outputBin}/bin/hackage2nix"
@@ -263,14 +228,14 @@ ${nix.selOr(old, () => "", "postInstall")}
 `),
         }), nix.thunk(() => nix.sel(super$, "cabal2nix-unstable")))),
       happy: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (old) => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           postInstall: nix.thunk(() => nix.str`remove-references-to -t ${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(self, "happy-lib")))} "\${!outputBin}/bin/happy"
 
 ${nix.selOr(old, () => "", "postInstall")}
 `),
         }), nix.thunk(() => nix.sel(super$, "happy")))),
       hadolint: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (old) => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           postInstall: nix.thunk(() => nix.str`remove-references-to -t ${nix.sel(self, "ShellCheck")} "$out/bin/hadolint"
 
 ${nix.selOr(old, () => "", "postInstall")}
@@ -278,17 +243,17 @@ ${nix.selOr(old, () => "", "postInstall")}
         }), nix.thunk(() => nix.sel(super$, "hadolint")))),
       unliftio: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "unliftio")))),
       rio: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           preConfigure: "sed -i 's/\\bit /xit /g' test/RIO/FileSpec.hs\n",
         }), nix.thunk(() => nix.sel(super$, "rio")))),
       "text-icu": nix.thunk(() => nix.app(nix.lookup(w, "disableCabalFlag"), "homebrew", nix.thunk(() => nix.sel(super$, "text-icu")))),
       cryptonite: nix.thunk(() => nix.app(nix.lookup(w, "appendPatch"), nix.path(here, "./patches/cryptonite-remove-argon2.patch"), nix.thunk(() => nix.sel(super$, "cryptonite")))),
       ormolu: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           libraryHaskellDepends: nix.thunk(() => nix.concat(nix.sel(drv, "libraryHaskellDepends"), [nix.thunk(() => nix.sel(self, "file-embed"))])),
         }), nix.thunk(() => nix.app(nix.lookup(w, "disableCabalFlag"), "fixity-th", nix.thunk(() => nix.sel(super$, "ormolu")))))),
       fourmolu: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           libraryHaskellDepends: nix.thunk(() => nix.concat(nix.sel(drv, "libraryHaskellDepends"), [nix.thunk(() => nix.sel(self, "file-embed"))])),
         }), nix.thunk(() => nix.app(nix.lookup(w, "disableCabalFlag"), "fixity-th", nix.thunk(() => nix.sel(super$, "fourmolu")))))),
       Agda: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(super$, "Agda")), nix.thunk(() => [
@@ -313,11 +278,11 @@ ${nix.selOr(old, () => "", "postInstall")}
       "rivet-adaptor-postgresql": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "rivet-adaptor-postgresql")))),
       "tmp-proc-postgres": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "tmp-proc-postgres")))),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86_64")), nix.thunk(() => ({
-      [nix.POS]: pos$36,
+      [nix.POS]: $pos[35],
       "regex-rure": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "regex-rure")))),
       jacinda: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "jacinda")))),
       ad: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           testFlags: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "testFlags"), ["-p", "!/issue-108/"])),
         }), nix.thunk(() => nix.sel(super$, "ad")))),
     })))));

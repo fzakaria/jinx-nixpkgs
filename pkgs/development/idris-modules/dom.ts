@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dom.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]], [["pname", 10, 3], ["version", 11, 3], ["idrisDeps", 13, 3], ["src", 19, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { "build-idris-package": false, fetchFromGitHub: false, idrisscript: false, html: false, xhr: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dom.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/dom.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]]);
-const pos$3 = nix.positions(here + "/dom.nix", [["pname", 10, 3], ["version", 11, 3], ["idrisDeps", 13, 3], ["src", 19, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const xhr = nix.arg($, "xhr");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dom",
       version: "2017-04-22",
       idrisDeps: nix.thunk(() => [idrisscript, html, xhr]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pierrebeaucamp",
           repo: "idris-dom",
           rev: "6e5a2d143f62ef422358924ee7db6e8147cdc531",
           sha256: "16z9mykw2d9rjikn07kd6igb53jgaqi8zby4nc4n0gmplmhwdx4x",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Idris library to interact with the DOM",
         homepage: "https://github.com/pierrebeaucamp/idris-dom",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

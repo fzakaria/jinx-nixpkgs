@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["package", 70, 7], ["command", 71, 7], ["version", 72, 7]], [["version", 69, 11]], [["updateScript", 68, 5], ["tests", 69, 5]], [["homepage", 77, 5], ["changelog", 78, 5], ["description", 79, 5], ["mainProgram", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["pythonRemoveDeps", 27, 3], ["dependencies", 31, 3], ["preCheck", 42, 3], ["nativeCheckInputs", 47, 3], ["disabledTests", 52, 3], ["pythonImportsCheck", 56, 3], ["postInstall", 60, 3], ["passthru", 67, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, installShellFiles: false, python3: false, fetchFromGitHub: false, "nix-update-script": false, testers: false, "gimme-aws-creds": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 70, 7], ["command", 71, 7], ["version", 72, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 69, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 68, 5], ["tests", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["changelog", 78, 5], ["description", 79, 5], ["mainProgram", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["pythonRemoveDeps", 27, 3], ["dependencies", 31, 3], ["preCheck", 42, 3], ["nativeCheckInputs", 47, 3], ["disabledTests", 52, 3], ["pythonImportsCheck", 56, 3], ["postInstall", 60, 3], ["passthru", 67, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const gimme_aws_creds = nix.arg($, "gimme-aws-creds");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gimme-aws-creds",
       version: "2.8.2",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Nike-Inc",
           repo: "gimme-aws-creds",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,12 +53,12 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["gimme_aws_creds"]),
       postInstall: "rm $out/bin/gimme-aws-creds.cmd\nchmod +x $out/bin/gimme-aws-creds\ninstallShellCompletion --bash --name gimme-aws-creds $out/bin/gimme-aws-creds-autocomplete.sh\nrm $out/bin/gimme-aws-creds-autocomplete.sh\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: gimme_aws_creds,
               command: "touch tmp.conf && OKTA_CONFIG=\"tmp.conf\" gimme-aws-creds --version",
               version: nix.thunk(() => nix.str`gimme-aws-creds ${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/Nike-Inc/gimme-aws-creds",
         changelog: "https://github.com/Nike-Inc/gimme-aws-creds/releases",
         description: "CLI that utilizes Okta IdP via SAML to acquire temporary AWS credentials",

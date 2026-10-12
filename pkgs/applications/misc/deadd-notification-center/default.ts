@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["isLibrary", 35, 3], ["isExecutable", 37, 3], ["libraryHaskellDepends", 39, 3], ["executableHaskellDepends", 78, 3], ["doCheck", 81, 3], ["postPatch", 83, 3], ["postInstall", 89, 3], ["description", 95, 3], ["homepage", 96, 3], ["license", 97, 3], ["maintainers", 98, 3], ["platforms", 102, 3], ["mainProgram", 103, 3]]]);
 const formals$1 = { args: { mkDerivation: false, haskellPackages: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["isLibrary", 35, 3], ["isExecutable", 37, 3], ["libraryHaskellDepends", 39, 3], ["executableHaskellDepends", 78, 3], ["doCheck", 81, 3], ["postPatch", 83, 3], ["postInstall", 89, 3], ["description", 95, 3], ["homepage", 96, 3], ["license", 97, 3], ["maintainers", 98, 3], ["platforms", 102, 3], ["mainProgram", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "deadd-notification-center";
       const version = "2.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "phuhl",
           repo: "linux_notification_center",
           rev: version,
@@ -89,7 +88,7 @@ echo "${systemd_service}" > $out/lib/systemd/user/deadd-notification-center.serv
       const platforms = nix.thunk(() => nix.sel(lib, "platforms", "linux"));
       const mainProgram = "deadd-notification-center";
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

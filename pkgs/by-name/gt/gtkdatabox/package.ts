@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 22, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gtk3: false, pango: false, cairo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 22, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const cairo = nix.arg($, "cairo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gtkdatabox",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/gtkdatabox/gtkdatabox-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1qykm551bx8j8pfgxs60l2vhpi8lv4r8va69zvn2594lchh71vlb",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       propagatedBuildInputs: nix.thunk(() => [gtk3, pango, cairo]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GTK widget for displaying large amounts of numerical data",
         homepage: "https://gtkdatabox.sourceforge.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 29, 3], ["src", 30, 20], ["version", 30, 24], ["outputs", 32, 3], ["strictDeps", 37, 3], ["depsBuildBuild", 38, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 40, 3], ["postUnpack", 42, 3], ["postPatch", 47, 3], ["preConfigure", 51, 3], ["configurePlatforms", 136, 3], ["configureFlags", 140, 3], ["makeFlags", 146, 3], ["postInstall", 148, 3], ["__structuredAttrs", 155, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoLibs: false, buildPackages: false, gcc: false, glibc: false, libiberty: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["src", 30, 20], ["version", 30, 24], ["outputs", 32, 3], ["strictDeps", 37, 3], ["depsBuildBuild", 38, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 40, 3], ["postUnpack", 42, 3], ["postPatch", 47, 3], ["preConfigure", 51, 3], ["configurePlatforms", 136, 3], ["configureFlags", 140, 3], ["makeFlags", 146, 3], ["postInstall", 148, 3], ["__structuredAttrs", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(gcc, "cc"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "libgcc",
       src: nix.thunk(() => nix.attr(from, "src")),
       version: nix.thunk(() => nix.attr(from, "version")),

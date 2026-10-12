@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["updateScript", 25, 12]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5], ["platforms", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["src", 16, 3], ["npmDepsHash", 23, 3], ["passthru", 25, 3], ["doInstallCheck", 27, 3], ["nativeInstallCheckInputs", 28, 3], ["makeWrapperArgs", 30, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "nix-update-script": false, buildNpmPackage: false, versionCheckHook: false, jdk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 25, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5], ["platforms", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["src", 16, 3], ["npmDepsHash", 23, 3], ["passthru", 25, 3], ["doInstallCheck", 27, 3], ["nativeInstallCheckInputs", 28, 3], ["makeWrapperArgs", 30, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const jdk = nix.arg($, "jdk");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "npm-groovy-lint",
       version: "17.0.5",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nvuillam",
           repo: "npm-groovy-lint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-XGXiuqA0JmuFVretXDjWejV9HJAK6eWR9/LR3rUI99s=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       doInstallCheck: true,
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jdk]))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lint, format and auto-fix your Groovy / Jenkinsfile / Gradle files using command line",
         homepage: "https://github.com/nvuillam/npm-groovy-lint",
         changelog: nix.thunk(() => nix.str`https://github.com/nvuillam/npm-groovy-lint/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

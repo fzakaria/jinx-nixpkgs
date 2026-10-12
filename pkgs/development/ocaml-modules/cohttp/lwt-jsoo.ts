@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt-jsoo.nix", [[["description", 37, 5]], [["pname", 16, 3], ["version", 17, 24], ["src", 17, 32], ["propagatedBuildInputs", 19, 3], ["doCheck", 29, 3], ["checkInputs", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, cohttp: false, "cohttp-lwt": false, logs: false, lwt: false, js_of_ocaml: false, "js_of_ocaml-ppx": false, "js_of_ocaml-lwt": false, nodejs: false, lwt_ppx: false, ppx_expect: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt-jsoo.nix", [["description", 37, 5]]);
-const pos$2 = nix.positions(here + "/lwt-jsoo.nix", [["pname", 16, 3], ["version", 17, 24], ["src", 17, 32], ["propagatedBuildInputs", 19, 3], ["doCheck", 29, 3], ["checkInputs", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const lwt_ppx = nix.arg($, "lwt_ppx");
   const ppx_expect = nix.arg($, "ppx_expect");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "cohttp-lwt-jsoo",
       version: nix.thunk(() => nix.attr(cohttp_lwt, "version")),
       src: nix.thunk(() => nix.attr(cohttp_lwt, "src")),
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [nodejs, lwt_ppx, ppx_expect]),
       meta: nix.thunk(() => nix.update(nix.sel(cohttp_lwt, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "CoHTTP implementation for the Js_of_ocaml JavaScript compiler",
       })),
     })));

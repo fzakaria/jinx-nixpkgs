@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 7], ["hash", 19, 7]], [["url", 22, 7], ["hash", 23, 7]], [["aarch64-linux", 17, 5], ["x86_64-linux", 21, 5]], [["pname", 32, 13], ["version", 32, 19], ["src", 32, 27]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]], [["pname", 36, 11], ["version", 36, 17], ["src", 36, 25], ["extraPkgs", 38, 3], ["extraInstallCommands", 40, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, appimageTools: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-linux", 17, 5], ["x86_64-linux", 21, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 13], ["version", 32, 19], ["src", 32, 27]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 36, 11], ["version", 36, 17], ["src", 36, 25], ["extraPkgs", 38, 3], ["extraInstallCommands", 40, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const version = "1.12.1";
   const suffixedUrl = (suffix) => nix.str`https://github.com/emqx/MQTTX/releases/download/v${version}/MQTTX-${version}${suffix}.AppImage`;
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.app(suffixedUrl, "-arm64")),
         hash: "sha256-IfxPrr4VjSGFOWjrpiwwq9OKQ33J1YIJKK0ILF9nTXw=",
       })))),
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.app(suffixedUrl, "")),
         hash: "sha256-TUtW2heIjTB+mb8U8v90Saz98alha3aFjqHotWW4tgw=",
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[3], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -51,7 +46,7 @@ substituteInPlace $out/share/applications/${pname}.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=${pname}'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Powerful cross-platform MQTT 5.0 Desktop, CLI, and WebSocket client tools",
         homepage: "https://mqttx.app/",
         changelog: nix.thunk(() => nix.str`https://github.com/emqx/MQTTX/releases/tag/v${version}`),

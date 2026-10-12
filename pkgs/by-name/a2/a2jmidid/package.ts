@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["fetchSubmodules", 25, 5], ["hash", 26, 5]], [["updateScript", 50, 12]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["postInstall", 45, 3], ["passthru", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitea: false, makeWrapper: false, "pkg-config": false, "alsa-lib": false, dbus: false, libjack2: false, python3Packages: false, meson: false, ninja: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["fetchSubmodules", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 50, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["postInstall", 45, 3], ["passthru", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "a2jmidid",
       version: "12",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitea.ladish.org",
           owner: "LADI",
           repo: "a2jmidid",
@@ -45,11 +42,11 @@ export default nix.lambda((args) => (() => {
       })())),
       postInstall: "wrapProgram $out/bin/a2j_control --set PYTHONPATH $PYTHONPATH\nsubstituteInPlace $out/bin/a2j --replace-fail \"a2j_control\" \"$out/bin/a2j_control\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Daemon for exposing legacy ALSA sequencer applications in JACK MIDI system",
         homepage: "https://a2jmidid.ladish.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

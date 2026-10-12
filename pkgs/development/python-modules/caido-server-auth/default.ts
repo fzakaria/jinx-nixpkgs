@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 5], ["version", 19, 26], ["hash", 20, 5]], [["updateScript", 41, 12]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["postPatch", 23, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["pythonImportsCheck", 36, 3], ["doCheck", 39, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, gql: false, "nix-update-script": false, "uv-build": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 26], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 41, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["postPatch", 23, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["pythonImportsCheck", 36, 3], ["doCheck", 39, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const uv_build = nix.arg($, "uv-build");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "caido-server-auth",
       version: "0.1.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "caido_server_auth",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-XuqlS9X4y4QMRK+jHLpiiuzMyEXJZScT7RAodHwxsHA=",
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["caido_server_auth"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Authenticate with a Caido instance",
         homepage: "https://github.com/caido-community/sdk-py/tree/main/packages/caido-server-auth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

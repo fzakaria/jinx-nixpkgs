@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["package", 72, 7]], [["pkg-config", 71, 11]], [["tests", 71, 5]], [["description", 77, 5], ["homepage", 78, 5], ["platforms", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["broken", 82, 5], ["pkgConfigModules", 83, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["cmakeFlags", 47, 3], ["outputs", 56, 3], ["doInstallCheck", 61, 3], ["installCheckPhase", 63, 3], ["passthru", 70, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, libx11: false, libxcb: false, libxrandr: false, wayland: false, moltenvk: false, "vulkan-headers": false, addDriverRunpath: false, enableX11: true, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 72, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 71, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["platforms", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["broken", 82, 5], ["pkgConfigModules", 83, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["cmakeFlags", 47, 3], ["outputs", 56, 3], ["doInstallCheck", 61, 3], ["installCheckPhase", 63, 3], ["passthru", 70, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const enableX11 = nix.argOr($, "enableX11", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "vulkan-loader",
       version: "1.4.357.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KhronosGroup",
           repo: "Vulkan-Loader",
           rev: nix.thunk(() => nix.str`vulkan-sdk-${nix.sel(finalAttrs, "version")}`),
@@ -53,17 +48,17 @@ export default nix.lambda((args) => (() => {
 }
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "LunarG Vulkan loader",
         homepage: "https://www.lunarg.com",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),

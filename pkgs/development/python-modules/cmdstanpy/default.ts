@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["cmdstan", 32, 7]], [["url", 36, 7], ["hash", 37, 7]], [["url", 40, 7], ["hash", 41, 7]], [["all", 62, 5]], [["homepage", 95, 5], ["description", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 50, 3], ["propagatedBuildInputs", 54, 3], ["optional-dependencies", 61, 3], ["pythonRelaxDeps", 65, 3], ["preCheck", 67, 3], ["nativeCheckInputs", 71, 3], ["disabledTestPaths", 73, 3], ["disabledTests", 79, 3], ["pythonImportsCheck", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, replaceVars: false, cmdstan: false, setuptools: false, pandas: false, numpy: false, tqdm: false, stanio: false, xarray: false, pytestCheckHook: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cmdstan", 32, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 40, 7], ["hash", 41, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["all", 62, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 95, 5], ["description", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 50, 3], ["propagatedBuildInputs", 54, 3], ["optional-dependencies", 61, 3], ["pythonRelaxDeps", 65, 3], ["preCheck", 67, 3], ["nativeCheckInputs", 71, 3], ["disabledTestPaths", 73, 3], ["disabledTests", 79, 3], ["pythonImportsCheck", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,26 +22,29 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cmdstanpy",
       version: "1.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stan-dev",
           repo: "cmdstanpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-XVviGdJ41mcjCscL3jvcpHi6zMREHsuShGHpnMQX6V8=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-nix-cmdstan-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, cmdstan: nix.thunk(() => nix.str`${cmdstan}/opt/cmdstan`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-nix-cmdstan-path.patch"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            cmdstan: nix.thunk(() => nix.str`${cmdstan}/opt/cmdstan`),
+          })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/stan-dev/cmdstanpy/commit/5ef72db67660b8fb0ea0ba25bef9667e88aafc5f.patch",
             hash: "sha256-BZcJiRAluItsfzvGJ2yJVDHuUp92AI19x7d06wRGzY4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/stan-dev/cmdstanpy/commit/f08c69835d2d4a69c7e526d939757b8f609da8f6.patch",
             hash: "sha256-3o8d5h0eRkghav2vuG6eERf6u6GJSKEaqmnGhfBXbjk=",
           })))),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# conftest.py would have used git to clean up, which is unnecessary here\nrm test/conftest.py\n",
       nativeBuildInputs: nix.thunk(() => [setuptools]),
       propagatedBuildInputs: nix.thunk(() => [pandas, numpy, tqdm, stanio]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$5, all: nix.thunk(() => [xarray]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[4], all: nix.thunk(() => [xarray]) })),
       pythonRelaxDeps: nix.thunk(() => ["stanio"]),
       preCheck: "export HOME=$(mktemp -d)\n",
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "all"))),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_init_types"])))),
       pythonImportsCheck: nix.thunk(() => ["cmdstanpy"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/stan-dev/cmdstanpy",
         description: "Lightweight interface to Stan for Python users",
         changelog: nix.thunk(() => nix.str`https://github.com/stan-dev/cmdstanpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

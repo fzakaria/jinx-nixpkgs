@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["src", 63, 26], ["hash", 64, 5]], [["name", 68, 5], ["ruby", 69, 13], ["gemfile", 70, 5], ["lockfile", 73, 5], ["gemset", 74, 5], ["groups", 75, 5]], [["greenlight", 103, 36]], [["rubyEnv", 102, 26], ["tests", 103, 5], ["updateScript", 105, 5]], [["description", 112, 5], ["homepage", 113, 5], ["platforms", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["teams", 117, 5]], [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 54, 3], ["npmDeps", 62, 3], ["rubyEnv", 67, 3], ["makeCacheWritable", 77, 3], ["buildPhase", 79, 3], ["installPhase", 89, 3], ["passthru", 101, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bundlerEnv: false, fetchNpmDeps: false, nodejs_26: false, npmHooks: false, ruby_3_3: false, makeWrapper: false, which: false, nixosTests: false, "nix-update-script": false, "_experimental-update-script-combinators": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 63, 26], ["hash", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 68, 5], ["ruby", 69, 13], ["gemfile", 70, 5], ["lockfile", 73, 5], ["gemset", 74, 5], ["groups", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["greenlight", 103, 36]]);
-const pos$5 = nix.positions(here + "/package.nix", [["rubyEnv", 102, 26], ["tests", 103, 5], ["updateScript", 105, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 112, 5], ["homepage", 113, 5], ["platforms", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["teams", 117, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 54, 3], ["npmDeps", 62, 3], ["rubyEnv", 67, 3], ["makeCacheWritable", 77, 3], ["buildPhase", 79, 3], ["installPhase", 89, 3], ["passthru", 101, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const ruby = ruby_3_3;
   const nodejs = nodejs_26;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "greenlight",
       version: "3.8.2.4",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bigbluebutton",
           repo: "greenlight",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -51,12 +45,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(finalAttrs, "rubyEnv", "wrappedRuby")),
       ]),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-aTDd6+mc3DIE5FiaPVjjorJ0r8RfodhEVCs3o2zHbZk=",
         })))),
       rubyEnv: nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: nix.thunk(() => nix.str`greenlight-env-${nix.sel(finalAttrs, "version")}`),
           ruby: ruby,
           gemfile: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/Gemfile`),
@@ -68,10 +62,10 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nexport BUNDLE_WITHOUT=development:test\nexport SECRET_KEY_BASE=1\nbundle exec rails assets:precompile\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/greenlight $out/bin\ncp -r app bin config config.ru db lib public vendor Gemfile Gemfile.lock Rakefile $out/share/greenlight/\nln -s $out/share/greenlight/lib $out/lib\nln -s $out/share/greenlight/bin $out/bin\nln -sf /tmp $out/share/greenlight/tmp\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         rubyEnv: nix.thunk(() => nix.attr(finalAttrs, "rubyEnv")),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           greenlight: nix.thunk(() => nix.attr(nixosTests, "greenlight")),
         })),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
@@ -80,7 +74,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "End-user web interface for BigBlueButton server",
         homepage: "https://github.com/bigbluebutton/greenlight",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

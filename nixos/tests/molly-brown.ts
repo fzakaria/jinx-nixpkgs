@@ -2,30 +2,19 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/molly-brown.nix", [[["systemPackages", 21, 21]], [["allowedTCPPorts", 47, 29]], [["firewall", 47, 20]], [["enable", 50, 11], ["docBase", 51, 11], ["certPath", 52, 11], ["keyPath", 53, 11]], [["molly-brown", 49, 18]], [["StateDirectory", 57, 25]], [["serviceConfig", 57, 11], ["preStart", 58, 11]], [["molly-brown", 56, 26]], [["services", 56, 17]], [["environment", 21, 9], ["networking", 47, 9], ["services", 49, 9], ["systemd", 56, 9]], [["geminiServer", 12, 5]], [["name", 8, 3], ["nodes", 10, 3], ["testScript", 72, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/molly-brown.nix", [["systemPackages", 21, 21]]);
-const pos$2 = nix.positions(here + "/molly-brown.nix", [["allowedTCPPorts", 47, 29]]);
-const pos$3 = nix.positions(here + "/molly-brown.nix", [["firewall", 47, 20]]);
-const pos$4 = nix.positions(here + "/molly-brown.nix", [["enable", 50, 11], ["docBase", 51, 11], ["certPath", 52, 11], ["keyPath", 53, 11]]);
-const pos$5 = nix.positions(here + "/molly-brown.nix", [["molly-brown", 49, 18]]);
-const pos$6 = nix.positions(here + "/molly-brown.nix", [["StateDirectory", 57, 25]]);
-const pos$7 = nix.positions(here + "/molly-brown.nix", [["serviceConfig", 57, 11], ["preStart", 58, 11]]);
-const pos$8 = nix.positions(here + "/molly-brown.nix", [["molly-brown", 56, 26]]);
-const pos$9 = nix.positions(here + "/molly-brown.nix", [["services", 56, 17]]);
-const pos$10 = nix.positions(here + "/molly-brown.nix", [["environment", 21, 9], ["networking", 47, 9], ["services", 49, 9], ["systemd", 56, 9]]);
-const pos$11 = nix.positions(here + "/molly-brown.nix", [["geminiServer", 12, 5]]);
-const pos$12 = nix.positions(here + "/molly-brown.nix", [["name", 8, 3], ["nodes", 10, 3], ["testScript", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const testString = "NixOS Gemini test successful";
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "molly-brown",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       geminiServer: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
@@ -35,9 +24,9 @@ export default nix.lambda((args) => (() => {
         const cfg = nix.thunk(() => nix.sel(config, "services", "molly-brown"));
         const openssl = nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "getExe"), nix.thunk(() => nix.sel(pkgs_1, "openssl"))));
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeScriptBin"), "test-gemini", nix.thunk(() => nix.str`#!${nix.sel(pkgs_1, "python3")}/bin/python
 
@@ -64,16 +53,16 @@ print(fp.readline().strip())
             ]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "Port"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "molly-brown": nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               docBase: "/var/lib/molly-brown/docs",
               certPath: "/var/lib/molly-brown/cert.pem",
@@ -81,12 +70,12 @@ print(fp.readline().strip())
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               "molly-brown": nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$6, StateDirectory: "molly-brown" })),
+                [nix.POS]: $pos[6],
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[5], StateDirectory: "molly-brown" })),
                 preStart: nix.thunk(() => nix.str`${openssl} genrsa -out "$STATE_DIRECTORY/key.pem"
 ${openssl} req -new \\
   -subj "/CN=${hostName}" \\

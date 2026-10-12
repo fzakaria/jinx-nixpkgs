@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-plugins.nix", [[["name", 15, 3], ["paths", 16, 3], ["nativeBuildInputs", 18, 3], ["postBuild", 20, 3]]]);
 const formals$1 = { args: { lib: false, makeWrapper: false, symlinkJoin: false, evolution: false, "evolution-data-server": false, "evolution-ews": false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/with-plugins.nix", [["name", 15, 3], ["paths", 16, 3], ["nativeBuildInputs", 18, 3], ["postBuild", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const evolution_ews = nix.arg($, "evolution-ews");
   const plugins = nix.argOr($, "plugins", () => [evolution, evolution_ews]);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "evolution-with-plugins",
       paths: nix.thunk(() => nix.concat([evolution_data_server], plugins)),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

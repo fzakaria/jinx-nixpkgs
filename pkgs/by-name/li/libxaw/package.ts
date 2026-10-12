@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["pkg-config", 63, 11]], [["updateScript", 55, 5], ["tests", 63, 5]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 75, 5], ["pkgConfigModules", 76, 5], ["platforms", 80, 5]], [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 25, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 43, 3], ["postInstall", 50, 3], ["passthru", 54, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, xorgproto: false, libx11: false, libxext: false, libxmu: false, libxpm: false, libxt: false, writeScript: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 63, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 55, 5], ["tests", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 75, 5], ["pkgConfigModules", 76, 5], ["platforms", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 25, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 43, 3], ["postInstall", 50, 3], ["passthru", 54, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libxaw",
       version: "1.0.16",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/lib/libXaw-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-cx1XK1THCPgeGXpq+oAWkY4uBt/TAl4GbKZCpbjDnI8=",
         })))),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [xorgproto, libxt, libxmu]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), "rm $out/lib/*.so*")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname libXaw \\
@@ -48,12 +44,12 @@ version="$(list-directory-versions --pname libXaw \\
 update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "X Athena Widget Set, based on the X Toolkit Intrinsics (Xt) Library",
         homepage: "https://gitlab.freedesktop.org/xorg/lib/libxaw",
         license: nix.thunk(() => (() => {

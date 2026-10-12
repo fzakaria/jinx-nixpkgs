@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["CXXFLAGS", 22, 7]], [["updateScript", 24, 12]], [["description", 27, 5], ["mainProgram", 28, 5], ["maintainers", 29, 5], ["license", 30, 5], ["homepage", 31, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["env", 22, 3], ["passthru", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, autoreconfHook: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 24, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 27, 5], ["mainProgram", 28, 5], ["maintainers", 29, 5], ["license", 30, 5], ["homepage", 31, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["env", 22, 3], ["passthru", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,24 +13,24 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "log4shib",
       version: "1.0.9",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Shibboleth",
           repo: "cpp-log4shib",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-PcIkn8LuB4zdYiV0LDM+pzDxeWdS1PiXQox2bGhhORs=",
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=c++11" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-std=c++11" })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Forked version of log4cpp that has been created for the Shibboleth project",
         mainProgram: "log4shib-config",
         maintainers: nix.thunk(() => (() => {

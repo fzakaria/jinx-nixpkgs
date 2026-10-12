@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 46, 5], ["hash", 47, 5]], [["homepage", 105, 5], ["description", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5]], [["pname", 35, 3], ["version", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["src", 45, 3], ["patches", 50, 3], ["installPhase", 59, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, autoPatchelfHook: false, makeWrapper: false, perl: false, gnused: false, ghostscript: false, file: false, coreutils: false, gnugrep: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 105, 5], ["description", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["src", 45, 3], ["patches", 50, 3], ["installPhase", 59, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [dpkg, makeWrapper, autoPatchelfHook]);
       const buildInputs = nix.thunk(() => [perl]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf103535//hll2375dwpdrv-${version}.i386.deb`),
           hash: "sha256-N5VCBZLFrfw29QjjzlSvQ12urvyaf7ez/RJ08UwqHdk=",
         }))));
@@ -71,7 +69,7 @@ ln -s \\
 runHook postInstall
 `));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.brother.com/",
         description: "Brother HLL2375DW printer driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -79,7 +77,7 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "gador"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         nativeBuildInputs,

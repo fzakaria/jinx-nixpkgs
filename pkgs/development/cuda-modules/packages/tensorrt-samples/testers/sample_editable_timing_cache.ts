@@ -2,8 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sample_editable_timing_cache.nix", [[["default", 8, 3]]]);
 const formals$1 = { args: { atLeast: false, lib: false, mkTester: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sample_editable_timing_cache.nix", [["default", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkTester = nix.arg($, "mkTester");
   return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(atLeast, "10.8")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       default: nix.thunk(() => nix.app(mkTester, "sample_editable_timing_cache", nix.thunk(() => ["sample_editable_timing_cache"]))),
     })));
 })(), formals$1);

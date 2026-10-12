@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["pname", 54, 26], ["version", 54, 32], ["src", 54, 40], ["pnpm", 55, 13], ["fetcherVersion", 56, 5], ["hash", 57, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 93, 5], ["NIX_CFLAGS_COMPILE", 94, 5]], [["name", 115, 7], ["desktopName", 116, 7], ["comment", 117, 7], ["exec", 118, 7], ["terminal", 119, 7], ["icon", 120, 7], ["startupWMClass", 121, 7], ["categories", 122, 7], ["mimeTypes", 123, 7]], [["updateScript", 153, 12]], [["description", 156, 5], ["homepage", 157, 5], ["changelog", 158, 5], ["mainProgram", 159, 5], ["platforms", 160, 5], ["maintainers", 161, 5], ["license", 162, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["pnpmDeps", 53, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 75, 3], ["autoPatchelfIgnoreMissingDeps", 86, 3], ["strictDeps", 90, 3], ["env", 92, 3], ["buildPhase", 97, 3], ["desktopItems", 113, 3], ["installPhase", 127, 3], ["passthru", 153, 3], ["meta", 155, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, electron_40: false, "nodejs-slim": false, pnpm_10_29_2: false, pnpmConfigHook: false, makeWrapper: false, writableTmpDirAsHomeHook: false, copyDesktopItems: false, cctools: false, autoPatchelfHook: false, "pkg-config": false, makeDesktopItem: false, "nix-update-script": false, "alsa-lib": false, libevdev: false, libx11: false, libxi: false, libxfixes: false, libxtst: false, wayland: false, commandLineArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 54, 26], ["version", 54, 32], ["src", 54, 40], ["pnpm", 55, 13], ["fetcherVersion", 56, 5], ["hash", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 93, 5], ["NIX_CFLAGS_COMPILE", 94, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 115, 7], ["desktopName", 116, 7], ["comment", 117, 7], ["exec", 118, 7], ["terminal", 119, 7], ["icon", 120, 7], ["startupWMClass", 121, 7], ["categories", 122, 7], ["mimeTypes", 123, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 153, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 156, 5], ["homepage", 157, 5], ["changelog", 158, 5], ["mainProgram", 159, 5], ["platforms", 160, 5], ["maintainers", 161, 5], ["license", 162, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["pnpmDeps", 53, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 75, 3], ["autoPatchelfIgnoreMissingDeps", 86, 3], ["strictDeps", 90, 3], ["env", 92, 3], ["buildPhase", 97, 3], ["desktopItems", 113, 3], ["installPhase", 127, 3], ["passthru", 153, 3], ["meta", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const electron = electron_40;
   const pnpm = pnpm_10_29_2;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cherry-studio",
       version: "1.9.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CherryHQ",
           repo: "cherry-studio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace src/main/services/ConfigManager.ts \\\n  --replace-fail \"ConfigKeys.AutoUpdate, true\" \"ConfigKeys.AutoUpdate, false\" \\\n  --replace-fail \"ConfigKeys.AutoUpdate, value\" \"ConfigKeys.AutoUpdate, false\"\nsubstituteInPlace src/main/services/AppUpdater.ts \\\n  --replace-fail \" = isActive\" \" = false\"\nsubstituteInPlace src/renderer/src/hooks/useSettings.ts \\\n  --replace-fail \"isAutoUpdate)\" \"false)\"\n",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -85,7 +79,7 @@ export default nix.lambda((args) => (() => {
       autoPatchelfIgnoreMissingDeps: nix.thunk(() => ["libc.musl-*.so.*"]),
       strictDeps: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), libevdev)}/include/libevdev-1.0`))),
       })),
@@ -105,7 +99,7 @@ runHook postBuild
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "cherry-studio",
             desktopName: "Cherry Studio",
             comment: "A powerful AI assistant for producer.",
@@ -129,11 +123,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/cherry-studio 
   --add-flags ${nix.app(nix.sel(lib, "escapeShellArg"), commandLineArgs)}
 `))), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Desktop client that supports for multiple LLM providers",
         homepage: "https://github.com/CherryHQ/cherry-studio",
         changelog: nix.thunk(() => nix.str`https://github.com/CherryHQ/cherry-studio/releases/tag/v${nix.sel(finalAttrs, "version")}`),

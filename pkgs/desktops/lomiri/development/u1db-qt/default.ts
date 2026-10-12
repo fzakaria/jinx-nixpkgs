@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]], [["pkg-config", 99, 11]], [["tests", 99, 5], ["updateScript", 100, 5]], [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["teams", 108, 5], ["platforms", 109, 5], ["pkgConfigModules", 110, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["outputs", 27, 3], ["patches", 34, 3], ["postPatch", 43, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 64, 3], ["nativeCheckInputs", 69, 3], ["cmakeFlags", 71, 3], ["dontWrapQtApps", 75, 3], ["preBuild", 77, 3], ["doCheck", 82, 3], ["preCheck", 84, 3], ["postInstall", 88, 3], ["passthru", 98, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, fetchpatch: false, gitUpdater: false, testers: false, cmake: false, "dbus-test-runner": false, "pkg-config": false, qtbase: false, qtdeclarative: false, qttools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pkg-config", 99, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 99, 5], ["updateScript", 100, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["teams", 108, 5], ["platforms", 109, 5], ["pkgConfigModules", 110, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["outputs", 27, 3], ["patches", 34, 3], ["postPatch", 43, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 64, 3], ["nativeCheckInputs", 69, 3], ["cmakeFlags", 71, 3], ["dontWrapQtApps", 75, 3], ["preBuild", 77, 3], ["doCheck", 82, 3], ["preCheck", 84, 3], ["postInstall", 88, 3], ["passthru", 98, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const qttools = nix.arg($, "qttools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "u1db-qt",
       version: "0.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/u1db-qt",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "doc", "examples"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-u1db-qt-Use-BUILD_TESTING.patch",
             url: "https://gitlab.com/ubports/development/core/u1db-qt/-/commit/df5d526df26c056d54bfa532a3a3fa025d655690.patch",
             hash: "sha256-CILMcvqXrTbEL/N2Tic4IsKLnTtmFJ2QbV3r4PsQ5t0=",
@@ -67,15 +62,15 @@ export QT_PLUGIN_PATH=${nix.app(nix.sel(lib, "getBin"), qtbase)}/${nix.sel(qtbas
       preCheck: "export QT_QPA_PLATFORM=minimal\n",
       postInstall: "# Example seems unmaintained & depends on old things\n# (unity-icon-theme, QtWebKit, Ubuntu namespace compat in LUITK)\n# With an uneducated attempt at porting it to QtWebView, only displays blank window. Just throw it away.\nrm -r $out/share/applications\n\nmoveToOutput share/u1db-qt/qtcreator $dev\nmoveToOutput share/u1db-qt/examples $examples\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Qt5 binding and QtQuick2 plugin for U1DB",
         homepage: "https://gitlab.com/ubports/development/core/u1db-qt",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/u1db-qt/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

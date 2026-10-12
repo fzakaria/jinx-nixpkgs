@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["updateScript", 65, 12]], [["changelog", 68, 5], ["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 51, 3], ["dependencies", 56, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, python3: false, appstream: false, "blueprint-compiler": false, "desktop-file-utils": false, glib: false, libxml2: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, "gobject-introspection": false, libadwaita: false, librsvg: false, gtk4: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 68, 5], ["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 51, 3], ["dependencies", 56, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const gtk4 = nix.arg($, "gtk4");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "saldo",
       version: "0.8.4",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tabos",
           repo: "saldo",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,11 +63,11 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://gitlab.com/tabos/saldo/-/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "Banking application for small screens",
         homepage: "https://www.tabos.org/projects/saldo/",

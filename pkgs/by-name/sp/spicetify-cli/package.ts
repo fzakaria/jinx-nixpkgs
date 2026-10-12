@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["package", 64, 50]], [["version", 64, 18]], [["tests", 64, 12]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 74, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["postPatch", 23, 3], ["ldflags", 28, 3], ["nativeBuildInputs", 33, 3], ["postBuild", 38, 3], ["postInstall", 44, 3], ["passthru", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, testers: false, "spicetify-cli": false, nodejs: false, esbuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 64, 50]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 64, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 64, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["postPatch", 23, 3], ["ldflags", 28, 3], ["nativeBuildInputs", 33, 3], ["postBuild", 38, 3], ["postInstall", 44, 3], ["passthru", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const esbuild = nix.arg($, "esbuild");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "spicetify-cli",
       version: "2.45.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "spicetify",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,14 +37,14 @@ export default nix.lambda((args) => (() => {
       postBuild: "esbuild ./src/jsHelper/spicetifyWrapper/index.js \\\n  --bundle --minify --target=chrome108 --format=iife \\\n  --outfile=spicetifyWrapper.js\n",
       postInstall: "mkdir -p $out/share/spicetify\n\ncp -r $src/jsHelper $out/share/spicetify/jsHelper\nchmod -R u+w $out/share/spicetify/jsHelper\ncp $src/css-map.json $out/share/spicetify/css-map.json\ncp spicetifyWrapper.js $out/share/spicetify/jsHelper/spicetifyWrapper.js\n\nmv $out/bin/cli $out/share/spicetify/spicetify\n\nln -s $out/share/spicetify/spicetify $out/bin/spicetify\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: spicetify_cli })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: spicetify_cli })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Command-line tool to customize Spotify client",
         homepage: "https://github.com/spicetify/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

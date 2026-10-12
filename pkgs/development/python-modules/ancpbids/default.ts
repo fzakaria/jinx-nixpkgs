@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["homepage", 39, 5], ["description", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 17, 3], ["build-system", 24, 3], ["nativeCheckInputs", 26, 3], ["pythonImportsCheck", 32, 3], ["enabledTestPaths", 34, 3], ["disabledTests", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, setuptools: false, numpy: false, pandas: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 39, 5], ["description", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 17, 3], ["build-system", 24, 3], ["nativeCheckInputs", 26, 3], ["pythonImportsCheck", 32, 3], ["enabledTestPaths", 34, 3], ["disabledTests", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ANCPLabOldenburg",
           repo: "ancp-bids",
           tag: version,
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/auto"]);
       const disabledTests = nix.thunk(() => ["test_fetch_dataset"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://ancpbids.readthedocs.io",
         description: "Read/write/validate/query BIDS datasets",
         changelog: nix.thunk(() => nix.str`https://github.com/ANCPLabOldenburg/ancp-bids/releases/tag/${nix.sel(src, "tag")}`),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

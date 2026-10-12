@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs", 15, 28]], [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 42, 7]], [["escape", 59, 44]], [["MallocNanoZone", 67, 23]], [["CFBundleName", 60, 9], ["CFBundleExecutable", 61, 9], ["CFBundleIconFile", 62, 9], ["CFBundleIdentifier", 63, 9], ["CFBundleShortVersionString", 64, 9], ["CFBundleVersion", 65, 9], ["LSApplicationCategoryType", 66, 9], ["LSEnvironment", 67, 9], ["NSHighResolutionCapable", 68, 9], ["NSPrincipalClass", 69, 9], ["NSCameraUsageDescription", 70, 9], ["NSMicrophoneUsageDescription", 71, 9]], [["type", 73, 37]], [["name", 111, 7], ["exec", 112, 7], ["icon", 113, 7], ["desktopName", 114, 7], ["comment", 115, 7], ["categories", 116, 7]], [["updateScript", 123, 12]], [["description", 126, 5], ["homepage", 127, 5], ["downloadPage", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["mainProgram", 131, 5], ["maintainers", 132, 5], ["platforms", 137, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["npmDepsHash", 26, 3], ["makeCacheWritable", 28, 3], ["nativeBuildInputs", 30, 3], ["env", 42, 3], ["postPatch", 45, 3], ["installPhase", 56, 3], ["desktopItems", 109, 3], ["passthru", 123, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, copyDesktopItems: false, python3: false, "xdg-utils": false, electron_43: false, makeDesktopItem: false, nodejs_22: false, darwin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs", 15, 28]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 42, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["escape", 59, 44]]);
-const pos$5 = nix.positions(here + "/package.nix", [["MallocNanoZone", 67, 23]]);
-const pos$6 = nix.positions(here + "/package.nix", [["CFBundleName", 60, 9], ["CFBundleExecutable", 61, 9], ["CFBundleIconFile", 62, 9], ["CFBundleIdentifier", 63, 9], ["CFBundleShortVersionString", 64, 9], ["CFBundleVersion", 65, 9], ["LSApplicationCategoryType", 66, 9], ["LSEnvironment", 67, 9], ["NSHighResolutionCapable", 68, 9], ["NSPrincipalClass", 69, 9], ["NSCameraUsageDescription", 70, 9], ["NSMicrophoneUsageDescription", 71, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["type", 73, 37]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 111, 7], ["exec", 112, 7], ["icon", 113, 7], ["desktopName", 114, 7], ["comment", 115, 7], ["categories", 116, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["updateScript", 123, 12]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 126, 5], ["homepage", 127, 5], ["downloadPage", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["mainProgram", 131, 5], ["maintainers", 132, 5], ["platforms", 137, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["npmDepsHash", 26, 3], ["makeCacheWritable", 28, 3], ["nativeBuildInputs", 30, 3], ["env", 42, 3], ["postPatch", 45, 3], ["installPhase", 56, 3], ["desktopItems", 109, 3], ["passthru", 123, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nodejs_22 = nix.arg($, "nodejs_22");
   const darwin = nix.arg($, "darwin");
-  return nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs_22 })), nix.thunk(() => (() => {
+  return nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], nodejs: nodejs_22 })), nix.thunk(() => (() => {
       const pname = "webcord";
       const version = "4.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "SpacingBat3",
           repo: "WebCord",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,12 +31,12 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-ozo1jb7TXVBHIgYoFKTJKmbLpnOdMcGAM/uTJWJVu1I=";
       const makeCacheWritable = true;
       const nativeBuildInputs = nix.thunk(() => nix.concat([python3], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [copyDesktopItems])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook"))])))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const postPatch = nix.thunk(() => nix.add("rm -rf .husky\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# fix font rendering on about page\nsubstituteInPlace sources/assets/web/css/fonts.css \\\n  --replace-fail 'sans-serif, Twemoji' 'sans-serif, \"Helvetica Neue\", Twemoji' \\\n  --replace-fail 'monospace, Twemoji' 'monospace, Menlo, Twemoji'\n")));
       const installPhase = nix.thunk(() => (() => {
         const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdg_utils])));
-        const infoPlist = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: pos$4, escape: true })), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+        const infoPlist = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: $pos[3], escape: true })), nix.thunk(() => ({
+            [nix.POS]: $pos[5],
             CFBundleName: "WebCord",
             CFBundleExecutable: "Electron",
             CFBundleIconFile: "webcord.icns",
@@ -54,13 +44,13 @@ export default nix.lambda((args) => (() => {
             CFBundleShortVersionString: version,
             CFBundleVersion: version,
             LSApplicationCategoryType: "public.app-category.social-networking",
-            LSEnvironment: nix.thunk(() => ({ [nix.POS]: pos$5, MallocNanoZone: "0" })),
+            LSEnvironment: nix.thunk(() => ({ [nix.POS]: $pos[4], MallocNanoZone: "0" })),
             NSHighResolutionCapable: true,
             NSPrincipalClass: "AtomApplication",
             NSCameraUsageDescription: "Camera access",
             NSMicrophoneUsageDescription: "Mic access",
           }))));
-        const buildInfo = nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$7, type: "release" }))));
+        const buildInfo = nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[6], type: "release" }))));
         return nix.add(nix.add(nix.add("runHook preInstall\n\n# Remove dev deps that aren't necessary for running the app\nnpm prune --omit=dev\n\nmkdir -p $out/lib/node_modules/webcord\ncp -r app node_modules sources package.json $out/lib/node_modules/webcord/\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`install -Dm644 sources/assets/icons/app.png $out/share/icons/hicolor/256x256/apps/webcord.png
 
 # Add xdg-utils to path via suffix, per PR #181171
@@ -82,7 +72,7 @@ cp ${nix.builtins.toFile("buildInfo.json", buildInfo)} $app/Contents/Resources/a
       })());
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "webcord",
             exec: "webcord",
             icon: "webcord",
@@ -91,9 +81,9 @@ cp ${nix.builtins.toFile("buildInfo.json", buildInfo)} $app/Contents/Resources/a
             categories: nix.thunk(() => ["Network", "InstantMessaging"]),
           })))),
       ]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$9, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[8], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Discord and SpaceBar electron-based client implemented without Discord API",
         homepage: "https://github.com/SpacingBat3/WebCord",
         downloadPage: "https://github.com/SpacingBat3/WebCord/releases",
@@ -111,7 +101,7 @@ cp ${nix.builtins.toFile("buildInfo.json", buildInfo)} $app/Contents/Resources/a
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         pname,
         version,
         src,

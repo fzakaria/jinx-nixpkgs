@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtdoc.nix", [[["withClang", 17, 45]], [["pname", 9, 3], ["postPatch", 11, 3], ["nativeBuildInputs", 17, 3], ["propagatedBuildInputs", 18, 3], ["ninjaFlags", 20, 3], ["installTargets", 21, 3]]]);
 const formals$1 = { args: { qtModule: false, qtdeclarative: false, qtbase: false, qttools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtdoc.nix", [["withClang", 17, 45]]);
-const pos$2 = nix.positions(here + "/qtdoc.nix", [["pname", 9, 3], ["postPatch", 11, 3], ["nativeBuildInputs", 17, 3], ["propagatedBuildInputs", 18, 3], ["ninjaFlags", 20, 3], ["installTargets", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qttools = nix.arg($, "qttools");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qtdoc",
       postPatch: nix.thunk(() => nix.str`for file in $(grep -rl '$QT_INSTALL_DOCS'); do
   substituteInPlace $file \\
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       nativeBuildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(qttools, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withClang: true })))),
+        nix.thunk(() => nix.app(nix.sel(qttools, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withClang: true })))),
       ]),
       propagatedBuildInputs: nix.thunk(() => [qtdeclarative]),
       ninjaFlags: nix.thunk(() => ["docs"]),

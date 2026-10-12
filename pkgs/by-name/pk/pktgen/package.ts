@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["RTE_SDK", 48, 5], ["NIX_CFLAGS_COMPILE", 49, 5], ["NIX_LDFLAGS", 53, 5]], [["updateScript", 66, 12]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]], [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["env", 47, 3], ["postPatch", 56, 3], ["postInstall", 60, 3], ["passthru", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, dpdk: false, libbsd: false, libpcap: false, lua5_3: false, numactl: false, "util-linux": false, which: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RTE_SDK", 48, 5], ["NIX_CFLAGS_COMPILE", 49, 5], ["NIX_LDFLAGS", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 66, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["env", 47, 3], ["postPatch", 56, 3], ["postInstall", 60, 3], ["passthru", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pktgen",
       version: "26.03.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pktgen",
           repo: "Pktgen-DPDK",
           tag: nix.thunk(() => nix.str`pktgen-${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [dpdk, libbsd, libpcap, lua5_3, numactl, which]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RTE_SDK: dpdk,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=sign-compare"]))),
         NIX_LDFLAGS: "-lrte_net_bond",
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "# meson installs unneeded files with conflicting generic names, such as\n# include/cli.h and lib/liblua.so.\nrm -rf $out/include $out/lib\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Traffic generator powered by DPDK",
         homepage: "http://dpdk.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

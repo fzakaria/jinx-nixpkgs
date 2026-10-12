@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]], [["url", 31, 5], ["hash", 32, 5]], [["pname", 36, 5], ["version", 37, 13], ["format", 38, 5], ["src", 40, 5], ["dependencies", 41, 5]], [["privateTmp", 49, 7]], [["todds", 73, 47]], [["steam-run", 74, 46]], [["beautifulsoup4", 91, 7], ["certifi", 92, 7], ["chardet", 93, 7], ["imageio", 94, 7], ["loguru", 95, 7], ["lxml", 96, 7], ["msgspec", 97, 7], ["natsort", 98, 7], ["networkx", 99, 7], ["packaging", 100, 7], ["platformdirs", 101, 7], ["psutil", 102, 7], ["pygit2", 103, 7], ["pygithub", 104, 7], ["pyperclip", 105, 7], ["pyside6", 106, 7], ["requests", 107, 7], ["sqlalchemy", 108, 7], ["steam", 109, 7], ["toposort", 110, 7], ["watchdog", 111, 7], ["xmltodict", 112, 7], ["zstandard", 113, 7], ["steamworks", 114, 7]], [["name", 157, 7], ["desktopName", 158, 7], ["exec", 159, 7], ["icon", 160, 7], ["comment", 161, 7], ["categories", 162, 7], ["startupWMClass", 163, 7]], [["extraArgs", 192, 5]], [["updateScript", 191, 12]], [["description", 200, 5], ["homepage", 201, 5], ["license", 202, 5], ["maintainers", 207, 5], ["mainProgram", 210, 5], ["platforms", 212, 5]], [["__structuredAttrs", 54, 3], ["pname", 56, 11], ["version", 57, 11], ["src", 58, 11], ["unpackPhase", 60, 3], ["sourceRoot", 70, 3], ["patches", 72, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 83, 3], ["dontBuild", 118, 3], ["nativeCheckInputs", 120, 3], ["doCheck", 131, 3], ["preCheck", 133, 3], ["disabledTestPaths", 139, 3], ["disabledTests", 146, 3], ["pytestFlags", 153, 3], ["desktopItems", 155, 3], ["installPhase", 167, 3], ["postFixup", 180, 3], ["passthru", 191, 3], ["meta", 199, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, qt6: false, fetchFromGitHub: false, fetchzip: false, makeBinaryWrapper: false, "nix-update-script": false, makeDesktopItem: false, copyDesktopItems: false, replaceVars: false, todds: false, steam: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 36, 5], ["version", 37, 13], ["format", 38, 5], ["src", 40, 5], ["dependencies", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["privateTmp", 49, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["todds", 73, 47]]);
-const pos$6 = nix.positions(here + "/package.nix", [["steam-run", 74, 46]]);
-const pos$7 = nix.positions(here + "/package.nix", [["beautifulsoup4", 91, 7], ["certifi", 92, 7], ["chardet", 93, 7], ["imageio", 94, 7], ["loguru", 95, 7], ["lxml", 96, 7], ["msgspec", 97, 7], ["natsort", 98, 7], ["networkx", 99, 7], ["packaging", 100, 7], ["platformdirs", 101, 7], ["psutil", 102, 7], ["pygit2", 103, 7], ["pygithub", 104, 7], ["pyperclip", 105, 7], ["pyside6", 106, 7], ["requests", 107, 7], ["sqlalchemy", 108, 7], ["steam", 109, 7], ["toposort", 110, 7], ["watchdog", 111, 7], ["xmltodict", 112, 7], ["zstandard", 113, 7], ["steamworks", 114, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 157, 7], ["desktopName", 158, 7], ["exec", 159, 7], ["icon", 160, 7], ["comment", 161, 7], ["categories", 162, 7], ["startupWMClass", 163, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["extraArgs", 192, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["updateScript", 191, 12]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 200, 5], ["homepage", 201, 5], ["license", 202, 5], ["maintainers", 207, 5], ["mainProgram", 210, 5], ["platforms", 212, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["__structuredAttrs", 54, 3], ["pname", 56, 11], ["version", 57, 11], ["src", 58, 11], ["unpackPhase", 60, 3], ["sourceRoot", 70, 3], ["patches", 72, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 83, 3], ["dontBuild", 118, 3], ["nativeCheckInputs", 120, 3], ["doCheck", 131, 3], ["preCheck", 133, 3], ["disabledTestPaths", 139, 3], ["disabledTests", 146, 3], ["pytestFlags", 153, 3], ["desktopItems", 155, 3], ["installPhase", 167, 3], ["postFixup", 180, 3], ["passthru", 191, 3], ["meta", 199, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const pname = "rimsort";
   const version = "1.14.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "RimSort",
       repo: "RimSort",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,12 +31,12 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   const steamworksSrc = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://web.archive.org/web/20250527013243/https://partner.steamgames.com/downloads/steamworks_sdk_162.zip",
       hash: "sha256-yDA92nGj3AKTNI4vnoLaa+7mDqupQv0E4YKRRUWqyZw=",
     }))));
   const steamfiles = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "steamfiles",
       version: version,
       format: "setuptools",
@@ -60,9 +49,9 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
     }))));
-  const steam_run = nix.thunk(() => nix.sel(nix.app(nix.sel(steam, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, privateTmp: false }))), "run"));
+  const steam_run = nix.thunk(() => nix.sel(nix.app(nix.sel(steam, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], privateTmp: false }))), "run"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       __structuredAttrs: true,
       pname: pname,
       version: version,
@@ -77,8 +66,8 @@ runHook postUnpack
 `),
       sourceRoot: "source",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./todds-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$5, todds: todds })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./steam-run.patch"), nix.thunk(() => ({ [nix.POS]: pos$6, "steam-run": steam_run })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./todds-path.patch"), nix.thunk(() => ({ [nix.POS]: $pos[4], todds: todds })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./steam-run.patch"), nix.thunk(() => ({ [nix.POS]: $pos[5], "steam-run": steam_run })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [
         makeBinaryWrapper,
@@ -91,7 +80,7 @@ runHook postUnpack
         nix.thunk(() => nix.sel(qt6, "qtbase")),
         nix.thunk(() => nix.sel(qt6, "qtwayland")),
       ], nix.builtins.attrValues(nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           beautifulsoup4: nix.thunk(() => nix.attr(python3Packages, "beautifulsoup4")),
           certifi: nix.thunk(() => nix.attr(python3Packages, "certifi")),
           chardet: nix.thunk(() => nix.attr(python3Packages, "chardet")),
@@ -145,7 +134,7 @@ runHook postUnpack
       pytestFlags: nix.thunk(() => ["--doctest-modules"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "io.github.rimsort.RimSort",
             desktopName: "RimSort",
             exec: "rimsort",
@@ -166,14 +155,14 @@ runHook postUnpack
   "\${qtWrapperArgs[@]}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             extraArgs: nix.thunk(() => ["--version-regex", "v([0-9.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Open source mod manager for the video game RimWorld",
         homepage: "https://github.com/RimSort/RimSort",
         license: nix.thunk(() => (() => {

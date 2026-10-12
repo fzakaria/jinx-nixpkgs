@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 45, 5], ["hash", 46, 5]], [["extraLoaders", 94, 9]], [["packageName", 121, 7]], [["updateScript", 120, 5]], [["description", 126, 5], ["homepage", 127, 5], ["changelog", 128, 5], ["license", 129, 5], ["teams", 130, 5], ["platforms", 131, 5], ["mainProgram", 132, 5]], [["pname", 35, 3], ["version", 36, 3], ["outputs", 38, 3], ["src", 44, 3], ["patches", 49, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 68, 3], ["mesonFlags", 85, 3], ["postInstall", 89, 3], ["preFixup", 104, 3], ["postFixup", 114, 3], ["passthru", 119, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, gettext: false, itstool: false, "pkg-config": false, libxml2: false, libjpeg: false, libpeas: false, "libportal-gtk3": false, gnome: false, gtk3: false, libhandy: false, glib: false, "gsettings-desktop-schemas": false, "gnome-desktop": false, lcms2: false, "gdk-pixbuf": false, exempi: false, "shared-mime-info": false, wrapGAppsHook3: false, libjxl: false, librsvg: false, "webp-pixbuf-loader": false, libheif: false, libexif: false, "gobject-introspection": false, "gi-docgen": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraLoaders", 94, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 121, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 120, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 126, 5], ["homepage", 127, 5], ["changelog", 128, 5], ["license", 129, 5], ["teams", 130, 5], ["platforms", 131, 5], ["mainProgram", 132, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["outputs", 38, 3], ["src", 44, 3], ["patches", 49, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 68, 3], ["mesonFlags", 85, 3], ["postInstall", 89, 3], ["preFixup", 104, 3], ["postFixup", 114, 3], ["passthru", 119, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const gi_docgen = nix.arg($, "gi-docgen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "eog",
       version: "50.2",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/eog/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/eog-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-xsKv3+QKg43gxrJkiEqA04jxwu+j9zoV7eCIJMRr4LM=",
         })))),
@@ -84,7 +79,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`# Pull in WebP and JXL support for gnome-backgrounds.
 # In postInstall to run before gappsWrapperArgsHook.
 export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           extraLoaders: nix.thunk(() => [
             libjxl,
             librsvg,
@@ -103,11 +98,11 @@ export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_
 `),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "eog" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "eog" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "GNOME image viewer",
         homepage: "https://gitlab.gnome.org/GNOME/eog",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/eog/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

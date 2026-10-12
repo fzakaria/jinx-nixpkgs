@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["NIX_CFLAGS_COMPILE", 43, 7]], [["description", 71, 5], ["license", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["propagatedBuildInputs", 41, 3], ["env", 43, 3], ["strictDeps", 45, 3], ["enableParallelBuilding", 47, 3], ["postPatch", 49, 3], ["postInstall", 57, 3], ["hardeningDisable", 64, 3], ["doInstallCheck", 66, 3], ["installCheckTarget", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoreconfHook: false, bash: false, python3: false, root: false, makeWrapper: false, zlib: false, withRootSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["license", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["propagatedBuildInputs", 41, 3], ["env", 43, 3], ["strictDeps", 45, 3], ["enableParallelBuilding", 47, 3], ["postPatch", 49, 3], ["postInstall", 57, 3], ["hardeningDisable", 64, 3], ["doInstallCheck", 66, 3], ["installCheckTarget", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withRootSupport = nix.argOr($, "withRootSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "yoda",
       version: "2.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hepcedar",
           repo: "yoda",
           rev: nix.thunk(() => nix.str`yoda-${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       })(), nix.app(nix.sel(lib, "optionals"), withRootSupport, nix.thunk(() => [root]))))),
       propagatedBuildInputs: nix.thunk(() => [zlib]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DWITH_OSX")),
       })),
       strictDeps: true,
@@ -60,7 +57,7 @@ substituteInPlace pyext/yoda/plotting/script_generator.py \\
       doInstallCheck: true,
       installCheckTarget: "check",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Provides small set of data analysis (specifically histogramming) classes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         homepage: "https://yoda.hepforge.org",

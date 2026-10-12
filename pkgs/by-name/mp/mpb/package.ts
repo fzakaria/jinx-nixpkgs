@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["NIX_CFLAGS_COMPILE", 48, 7]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["env", 48, 3], ["enableParallelBuilding", 50, 3], ["configureFlags", 52, 3], ["doCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, autoreconfHook: false, gfortran: false, "pkg-config": false, blas: false, lapack: false, fftw: false, hdf5: false, libctl: false, guile: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["env", 48, 3], ["enableParallelBuilding", 50, 3], ["configureFlags", 52, 3], ["doCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_(!nix.asBool(nix.sel(blas, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mp/mpb/package.nix:17:1");
   nix.assert_(!nix.asBool(nix.sel(lapack, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mp/mpb/package.nix:18:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mpb",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NanoComp",
           repo: "mpb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, gfortran, pkg_config]),
       buildInputs: nix.thunk(() => [blas, lapack, fftw, hdf5, libctl, guile, perl]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion" })),
       enableParallelBuilding: true,
       configureFlags: nix.thunk(() => nix.concat([
         "--with-libctl=yes",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))), "--enable-shared"))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "MIT Photonic-Bands: computation of photonic band structures in periodic media",
         homepage: "https://mpb.readthedocs.io/en/latest/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

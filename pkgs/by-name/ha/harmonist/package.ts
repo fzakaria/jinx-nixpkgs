@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 38, 5], ["mainProgram", 39, 5], ["longDescription", 40, 5], ["changelog", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["vendorHash", 28, 3], ["ldflags", 30, 3], ["nativeInstallCheckInputs", 34, 3], ["doInstallCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromCodeberg: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["mainProgram", 39, 5], ["longDescription", 40, 5], ["changelog", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["vendorHash", 28, 3], ["ldflags", 30, 3], ["nativeInstallCheckInputs", 34, 3], ["doInstallCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "harmonist",
       version: "1.0.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "anaseto",
           repo: "harmonist",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Stealth coffee-break roguelike game",
         mainProgram: "harmonist",
         longDescription: "Harmonist is a stealth coffee-break roguelike game. The game has a heavy\nfocus on tactical positioning, light and noise mechanisms, making use of\nvarious terrain types and cones of view for monsters. Aiming for a\nreplayable streamlined experience, the game avoids complex inventory\nmanagement and character building, relying on items and player\nadaptability for character progression.\n",

@@ -2,141 +2,102 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/terminal-emulators.nix", [[["system", 18, 33], ["config", 18, 40]], [["system", 21, 49], ["pkgs", 21, 56]], [["pkg", 26, 15]], [["pkg", 28, 13], ["cmd", 29, 13]], [["pkg", 31, 21], ["colourTest", 32, 21]], [["pkg", 34, 9], ["pinkValue", 35, 9]], [["pkg", 37, 14]], [["pkg", 39, 14]], [["pkg", 41, 13]], [["pkg", 43, 20]], [["pkg", 45, 11], ["cmd", 46, 11], ["kill", 47, 11]], [["pkg", 49, 11]], [["pkg", 51, 12]], [["pkg", 53, 9], ["cmd", 54, 9], ["kill", 55, 9]], [["pkg", 57, 11], ["cmd", 58, 11]], [["pkg", 60, 13]], [["pkg", 62, 16]], [["pkg", 64, 19], ["cmd", 65, 19]], [["pkg", 67, 12], ["kill", 68, 12]], [["pkg", 70, 15], ["kill", 71, 15]], [["pkg", 73, 9], ["cmd", 74, 9], ["colourTest", 75, 9]], [["pkg", 77, 13], ["cmd", 78, 13]], [["pkg", 80, 12]], [["pkg", 82, 8], ["kill", 83, 8]], [["pkg", 85, 16], ["cmd", 86, 16]], [["pkg", 88, 16], ["cmd", 89, 16]], [["pkg", 91, 17], ["cmd", 92, 17], ["colourTest", 93, 17]], [["pkg", 95, 14]], [["pkg", 97, 11]], [["pkg", 99, 11], ["cmd", 100, 11]], [["pkg", 102, 11]], [["pkg", 104, 11], ["pinkValue", 105, 11]], [["pkg", 110, 20]], [["pkg", 112, 11]], [["pkg", 114, 11]], [["alacritty", 26, 5], ["contour", 28, 5], ["cool-retro-term", 31, 5], ["ctx", 34, 5], ["darktile", 37, 5], ["germinal", 39, 5], ["ghostty", 41, 5], ["gnome-terminal", 43, 5], ["guake", 45, 5], ["hyper", 49, 5], ["kermit", 51, 5], ["kgx", 53, 5], ["kitty", 57, 5], ["konsole", 60, 5], ["lxterminal", 62, 5], ["mate-terminal", 64, 5], ["mlterm", 67, 5], ["qterminal", 70, 5], ["rio", 73, 5], ["roxterm", 77, 5], ["sakura", 80, 5], ["st", 82, 5], ["stupidterm", 85, 5], ["terminator", 88, 5], ["terminology", 91, 5], ["termonad", 95, 5], ["tilda", 97, 5], ["tilix", 99, 5], ["urxvt", 102, 5], ["wayst", 104, 5], ["xfce4-terminal", 110, 5], ["xterm", 112, 5], ["zutty", 114, 5]], [["maintainers", 130, 7]], [["user", 143, 42]], [["auto", 143, 37]], [["displayManager", 143, 22]], [["systemPackages", 145, 21]], [["imports", 137, 9], ["test-support", 143, 9], ["environment", 145, 9], ["warnings", 172, 9]], [["machine", 133, 11]], [["name", 128, 5], ["meta", 129, 5], ["nodes", 133, 5], ["enableOCR", 180, 5], ["testScript", 182, 5]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/terminal-emulators.nix", [["system", 18, 33], ["config", 18, 40]]);
-const pos$2 = nix.positions(here + "/terminal-emulators.nix", [["system", 21, 49], ["pkgs", 21, 56]]);
-const pos$3 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 26, 15]]);
-const pos$4 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 28, 13], ["cmd", 29, 13]]);
-const pos$5 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 31, 21], ["colourTest", 32, 21]]);
-const pos$6 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 34, 9], ["pinkValue", 35, 9]]);
-const pos$7 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 37, 14]]);
-const pos$8 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 39, 14]]);
-const pos$9 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 41, 13]]);
-const pos$10 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 43, 20]]);
-const pos$11 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 45, 11], ["cmd", 46, 11], ["kill", 47, 11]]);
-const pos$12 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 49, 11]]);
-const pos$13 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 51, 12]]);
-const pos$14 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 53, 9], ["cmd", 54, 9], ["kill", 55, 9]]);
-const pos$15 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 57, 11], ["cmd", 58, 11]]);
-const pos$16 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 60, 13]]);
-const pos$17 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 62, 16]]);
-const pos$18 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 64, 19], ["cmd", 65, 19]]);
-const pos$19 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 67, 12], ["kill", 68, 12]]);
-const pos$20 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 70, 15], ["kill", 71, 15]]);
-const pos$21 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 73, 9], ["cmd", 74, 9], ["colourTest", 75, 9]]);
-const pos$22 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 77, 13], ["cmd", 78, 13]]);
-const pos$23 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 80, 12]]);
-const pos$24 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 82, 8], ["kill", 83, 8]]);
-const pos$25 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 85, 16], ["cmd", 86, 16]]);
-const pos$26 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 88, 16], ["cmd", 89, 16]]);
-const pos$27 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 91, 17], ["cmd", 92, 17], ["colourTest", 93, 17]]);
-const pos$28 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 95, 14]]);
-const pos$29 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 97, 11]]);
-const pos$30 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 99, 11], ["cmd", 100, 11]]);
-const pos$31 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 102, 11]]);
-const pos$32 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 104, 11], ["pinkValue", 105, 11]]);
-const pos$33 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 110, 20]]);
-const pos$34 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 112, 11]]);
-const pos$35 = nix.positions(here + "/terminal-emulators.nix", [["pkg", 114, 11]]);
-const pos$36 = nix.positions(here + "/terminal-emulators.nix", [["alacritty", 26, 5], ["contour", 28, 5], ["cool-retro-term", 31, 5], ["ctx", 34, 5], ["darktile", 37, 5], ["germinal", 39, 5], ["ghostty", 41, 5], ["gnome-terminal", 43, 5], ["guake", 45, 5], ["hyper", 49, 5], ["kermit", 51, 5], ["kgx", 53, 5], ["kitty", 57, 5], ["konsole", 60, 5], ["lxterminal", 62, 5], ["mate-terminal", 64, 5], ["mlterm", 67, 5], ["qterminal", 70, 5], ["rio", 73, 5], ["roxterm", 77, 5], ["sakura", 80, 5], ["st", 82, 5], ["stupidterm", 85, 5], ["terminator", 88, 5], ["terminology", 91, 5], ["termonad", 95, 5], ["tilda", 97, 5], ["tilix", 99, 5], ["urxvt", 102, 5], ["wayst", 104, 5], ["xfce4-terminal", 110, 5], ["xterm", 112, 5], ["zutty", 114, 5]]);
 const formals$2 = { args: { pkg: false, executable: true, cmd: true, colourTest: true, pinkValue: true, kill: true }, ellipsis: false };
-const pos$37 = nix.positions(here + "/terminal-emulators.nix", [["maintainers", 130, 7]]);
 const formals$3 = { args: { pkgsInner: false }, ellipsis: true };
-const pos$38 = nix.positions(here + "/terminal-emulators.nix", [["user", 143, 42]]);
-const pos$39 = nix.positions(here + "/terminal-emulators.nix", [["auto", 143, 37]]);
-const pos$40 = nix.positions(here + "/terminal-emulators.nix", [["displayManager", 143, 22]]);
-const pos$41 = nix.positions(here + "/terminal-emulators.nix", [["systemPackages", 145, 21]]);
-const pos$42 = nix.positions(here + "/terminal-emulators.nix", [["imports", 137, 9], ["test-support", 143, 9], ["environment", 145, 9], ["warnings", 172, 9]]);
-const pos$43 = nix.positions(here + "/terminal-emulators.nix", [["machine", 133, 11]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$44 = nix.positions(here + "/terminal-emulators.nix", [["name", 128, 5], ["meta", 129, 5], ["nodes", 133, 5], ["enableOCR", 180, 5], ["testScript", 182, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const tests = nix.thunk(() => ({
-    [nix.POS]: pos$36,
-    alacritty: nix.thunk(() => ({ [nix.POS]: pos$3, pkg: (p) => nix.sel(p, "alacritty") })),
+    [nix.POS]: $pos[35],
+    alacritty: nix.thunk(() => ({ [nix.POS]: $pos[2], pkg: (p) => nix.sel(p, "alacritty") })),
     contour: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pkg: (p) => nix.sel(p, "contour"),
       cmd: "contour early-exit-threshold 0 execute $command",
     })),
     "cool-retro-term": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pkg: (p) => nix.sel(p, "cool-retro-term"),
       colourTest: false,
     })),
-    ctx: nix.thunk(() => ({ [nix.POS]: pos$6, pkg: (p) => nix.sel(p, "ctx"), pinkValue: "#FE0065" })),
-    darktile: nix.thunk(() => ({ [nix.POS]: pos$7, pkg: (p) => nix.sel(p, "darktile") })),
-    germinal: nix.thunk(() => ({ [nix.POS]: pos$8, pkg: (p) => nix.sel(p, "germinal") })),
-    ghostty: nix.thunk(() => ({ [nix.POS]: pos$9, pkg: (p) => nix.sel(p, "ghostty") })),
-    "gnome-terminal": nix.thunk(() => ({ [nix.POS]: pos$10, pkg: (p) => nix.sel(p, "gnome-terminal") })),
+    ctx: nix.thunk(() => ({ [nix.POS]: $pos[5], pkg: (p) => nix.sel(p, "ctx"), pinkValue: "#FE0065" })),
+    darktile: nix.thunk(() => ({ [nix.POS]: $pos[6], pkg: (p) => nix.sel(p, "darktile") })),
+    germinal: nix.thunk(() => ({ [nix.POS]: $pos[7], pkg: (p) => nix.sel(p, "germinal") })),
+    ghostty: nix.thunk(() => ({ [nix.POS]: $pos[8], pkg: (p) => nix.sel(p, "ghostty") })),
+    "gnome-terminal": nix.thunk(() => ({ [nix.POS]: $pos[9], pkg: (p) => nix.sel(p, "gnome-terminal") })),
     guake: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pkg: (p) => nix.sel(p, "guake"),
       cmd: "SHELL=$command guake --show",
       kill: true,
     })),
-    hyper: nix.thunk(() => ({ [nix.POS]: pos$12, pkg: (p) => nix.sel(p, "hyper") })),
-    kermit: nix.thunk(() => ({ [nix.POS]: pos$13, pkg: (p) => nix.sel(p, "kermit-terminal") })),
+    hyper: nix.thunk(() => ({ [nix.POS]: $pos[11], pkg: (p) => nix.sel(p, "hyper") })),
+    kermit: nix.thunk(() => ({ [nix.POS]: $pos[12], pkg: (p) => nix.sel(p, "kermit-terminal") })),
     kgx: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pkg: (p) => nix.sel(p, "kgx"),
       cmd: "kgx -e $command",
       kill: true,
     })),
-    kitty: nix.thunk(() => ({ [nix.POS]: pos$15, pkg: (p) => nix.sel(p, "kitty"), cmd: "kitty $command" })),
-    konsole: nix.thunk(() => ({ [nix.POS]: pos$16, pkg: (p) => nix.sel(p, "kdePackages", "konsole") })),
-    lxterminal: nix.thunk(() => ({ [nix.POS]: pos$17, pkg: (p) => nix.sel(p, "lxterminal") })),
+    kitty: nix.thunk(() => ({ [nix.POS]: $pos[14], pkg: (p) => nix.sel(p, "kitty"), cmd: "kitty $command" })),
+    konsole: nix.thunk(() => ({ [nix.POS]: $pos[15], pkg: (p) => nix.sel(p, "kdePackages", "konsole") })),
+    lxterminal: nix.thunk(() => ({ [nix.POS]: $pos[16], pkg: (p) => nix.sel(p, "lxterminal") })),
     "mate-terminal": nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       pkg: (p) => nix.sel(p, "mate-terminal"),
       cmd: "SHELL=$command mate-terminal --disable-factory",
     })),
-    mlterm: nix.thunk(() => ({ [nix.POS]: pos$19, pkg: (p) => nix.sel(p, "mlterm"), kill: true })),
-    qterminal: nix.thunk(() => ({ [nix.POS]: pos$20, pkg: (p) => nix.sel(p, "lxqt", "qterminal"), kill: true })),
+    mlterm: nix.thunk(() => ({ [nix.POS]: $pos[18], pkg: (p) => nix.sel(p, "mlterm"), kill: true })),
+    qterminal: nix.thunk(() => ({ [nix.POS]: $pos[19], pkg: (p) => nix.sel(p, "lxqt", "qterminal"), kill: true })),
     rio: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       pkg: (p) => nix.sel(p, "rio"),
       cmd: "rio -e $command",
       colourTest: false,
     })),
     roxterm: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       pkg: (p) => nix.sel(p, "roxterm"),
       cmd: "roxterm -e $command",
     })),
-    sakura: nix.thunk(() => ({ [nix.POS]: pos$23, pkg: (p) => nix.sel(p, "sakura") })),
-    st: nix.thunk(() => ({ [nix.POS]: pos$24, pkg: (p) => nix.sel(p, "st"), kill: true })),
+    sakura: nix.thunk(() => ({ [nix.POS]: $pos[22], pkg: (p) => nix.sel(p, "sakura") })),
+    st: nix.thunk(() => ({ [nix.POS]: $pos[23], pkg: (p) => nix.sel(p, "st"), kill: true })),
     stupidterm: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       pkg: (p) => nix.sel(p, "stupidterm"),
       cmd: "stupidterm -- $command",
     })),
     terminator: nix.thunk(() => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       pkg: (p) => nix.sel(p, "terminator"),
       cmd: "terminator -e $command",
     })),
     terminology: nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       pkg: (p) => nix.sel(p, "enlightenment", "terminology"),
       cmd: "SHELL=$command terminology --no-wizard=true",
       colourTest: false,
     })),
-    termonad: nix.thunk(() => ({ [nix.POS]: pos$28, pkg: (p) => nix.sel(p, "termonad") })),
-    tilda: nix.thunk(() => ({ [nix.POS]: pos$29, pkg: (p) => nix.sel(p, "tilda") })),
-    tilix: nix.thunk(() => ({ [nix.POS]: pos$30, pkg: (p) => nix.sel(p, "tilix"), cmd: "tilix -e $command" })),
-    urxvt: nix.thunk(() => ({ [nix.POS]: pos$31, pkg: (p) => nix.sel(p, "rxvt-unicode") })),
-    wayst: nix.thunk(() => ({ [nix.POS]: pos$32, pkg: (p) => nix.sel(p, "wayst"), pinkValue: "#FF0066" })),
-    "xfce4-terminal": nix.thunk(() => ({ [nix.POS]: pos$33, pkg: (p) => nix.sel(p, "xfce4-terminal") })),
-    xterm: nix.thunk(() => ({ [nix.POS]: pos$34, pkg: (p) => nix.sel(p, "xterm") })),
-    zutty: nix.thunk(() => ({ [nix.POS]: pos$35, pkg: (p) => nix.sel(p, "zutty") })),
+    termonad: nix.thunk(() => ({ [nix.POS]: $pos[27], pkg: (p) => nix.sel(p, "termonad") })),
+    tilda: nix.thunk(() => ({ [nix.POS]: $pos[28], pkg: (p) => nix.sel(p, "tilda") })),
+    tilix: nix.thunk(() => ({
+      [nix.POS]: $pos[29],
+      pkg: (p) => nix.sel(p, "tilix"),
+      cmd: "tilix -e $command",
+    })),
+    urxvt: nix.thunk(() => ({ [nix.POS]: $pos[30], pkg: (p) => nix.sel(p, "rxvt-unicode") })),
+    wayst: nix.thunk(() => ({ [nix.POS]: $pos[31], pkg: (p) => nix.sel(p, "wayst"), pinkValue: "#FF0066" })),
+    "xfce4-terminal": nix.thunk(() => ({ [nix.POS]: $pos[32], pkg: (p) => nix.sel(p, "xfce4-terminal") })),
+    xterm: nix.thunk(() => ({ [nix.POS]: $pos[33], pkg: (p) => nix.sel(p, "xterm") })),
+    zutty: nix.thunk(() => ({ [nix.POS]: $pos[34], pkg: (p) => nix.sel(p, "zutty") })),
   }));
   return nix.app(nix.lookup(w_1, "mapAttrs"), (name) => nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
@@ -147,35 +108,35 @@ export default nix.lambda((args) => (() => {
       const pinkValue = nix.argOr($_1, "pinkValue", () => "#FF0087");
       const kill = nix.argOr($_1, "kill", () => false);
       return nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-          [nix.POS]: pos$44,
+          [nix.POS]: $pos[43],
           name: nix.thunk(() => nix.str`terminal-emulator-${name}`),
           meta: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
             return {
-              [nix.POS]: pos$37,
+              [nix.POS]: $pos[36],
               maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "jjjollyjim"))]),
             };
           })()),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$43,
+            [nix.POS]: $pos[42],
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$3);
               const pkgsInner = nix.arg($_2, "pkgsInner");
               return {
-                [nix.POS]: pos$42,
+                [nix.POS]: $pos[41],
                 imports: nix.thunk(() => [
                   nix.path(here, "./common/x11.nix"),
                   nix.path(here, "./common/user-account.nix"),
                 ]),
                 "test-support": nix.thunk(() => ({
-                  [nix.POS]: pos$40,
+                  [nix.POS]: $pos[39],
                   displayManager: nix.thunk(() => ({
-                    [nix.POS]: pos$39,
-                    auto: nix.thunk(() => ({ [nix.POS]: pos$38, user: "alice" })),
+                    [nix.POS]: $pos[38],
+                    auto: nix.thunk(() => ({ [nix.POS]: $pos[37], user: "alice" })),
                   })),
                 })),
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$41,
+                  [nix.POS]: $pos[40],
                   systemPackages: nix.thunk(() => [
                     nix.thunk(() => nix.app(pkg, pkgs)),
                     nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "report-success", nix.thunk(() => nix.str`echo 1 > /tmp/term-ran-successfully

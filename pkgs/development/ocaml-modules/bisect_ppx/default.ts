@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["url", 24, 7], ["hash", 25, 7]], [["url", 28, 7], ["hash", 29, 7]], [["url", 32, 7], ["hash", 33, 7]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["minimalOCamlVersion", 37, 3], ["buildInputs", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch: false, buildDunePackage: false, cmdliner: false, ppxlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["minimalOCamlVersion", 37, 3], ["buildInputs", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cmdliner = nix.arg($, "cmdliner");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "bisect_ppx",
       version: "2.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aantron",
           repo: "bisect_ppx",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,17 +26,17 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://github.com/aantron/bisect_ppx/commit/f35fdf4bdcb82c308d70f7c9c313a77777f54bdf.patch",
               hash: "sha256-hQMDU6zrHDV9JszGAj2p4bd9zlqqjc1TLU+cfMEgz9c=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://github.com/aantron/bisect_ppx/commit/07bfceec652773de4b140cebc236a15e2429809e.patch",
               hash: "sha256-9gDIndPIZMkIkd847qd2QstsZJInBPuWXAUIzZMkHcw=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: "https://github.com/aantron/bisect_ppx/commit/4f0cb2a2e1b0b786b6b5f1c94985b201aa012f12.patch",
               hash: "sha256-20nr7ApKPnnol0VEOirwXdJX+AiFRzBzAq4YzCWn7W0=",
             })))),
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
       minimalOCamlVersion: "4.11",
       buildInputs: nix.thunk(() => [cmdliner, ppxlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Bisect_ppx is a code coverage tool for OCaml and Reason. It helps you test thoroughly by showing what's not tested",
         homepage: "https://github.com/aantron/bisect_ppx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

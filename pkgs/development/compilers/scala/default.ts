@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 12, 7], ["fetchurl", 13, 7], ["makeWrapper", 14, 7], ["jre", 15, 7]], [["bare", 35, 24]], [["pname", 21, 3], ["version", 22, 18], ["dontUnpack", 24, 3], ["installPhase", 26, 3], ["meta", 33, 18], ["passthru", 35, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, makeWrapper: false, jre: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 12, 7], ["fetchurl", 13, 7], ["makeWrapper", 14, 7], ["jre", 15, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["bare", 35, 24]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 18], ["dontUnpack", 24, 3], ["installPhase", 26, 3], ["meta", 33, 18], ["passthru", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const callPackage = nix.arg($, "callPackage");
   const bare = nix.thunk(() => nix.app(callPackage, nix.path(here, "./bare.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       stdenv: stdenv,
       fetchurl: fetchurl,
       makeWrapper: makeWrapper,
       jre: jre,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "scala",
       version: nix.thunk(() => nix.attr(bare, "version")),
       dontUnpack: true,
@@ -32,7 +30,7 @@ ln -s ${bare}/bin/scaladoc $out/bin/scaladoc
 ln -s ${bare}/bin/scala $out/bin/scala
 `),
       meta: nix.thunk(() => nix.attr(bare, "meta")),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, bare: bare })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], bare: bare })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

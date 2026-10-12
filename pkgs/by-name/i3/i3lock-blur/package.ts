@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["broken", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["buildInputs", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { "i3lock-color": false, lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["broken", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["buildInputs", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "i3lock-blur";
       const version = "2.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "karulont",
           repo: "i3lock-blur",
           tag: version,
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fno-common.patch",
             url: "https://github.com/karulont/i3lock-blur/commit/ec8fe0e7f7d78bf445602ed517efd5c324bb32f7.patch",
             hash: "sha256-0hXUr+ZEB1tpI3xw80/hGzKyeGuna4CQmEvK6t0VBqU=",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => nix.concat(nix.sel(oldAttrs, "buildInputs"), [libGL]));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Improved screenlocker based upon XCB and PAM with background blurring filter",
         homepage: "https://github.com/karulont/i3lock-blur/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
-      return { [nix.POS]: pos$4, pname, version, src, patches, buildInputs, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, patches, buildInputs, meta };
     })());
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

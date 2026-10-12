@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["sha256", 31, 5]], [["pdflatex", 38, 15], ["lualatex", 38, 24]], [["description", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["platforms", 139, 5]], [["pname", 23, 3], ["version", 24, 3], ["format", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 56, 3], ["strictDeps", 67, 3], ["dontUseSetuptoolsBuild", 70, 3], ["doCheck", 73, 3], ["dontWrapGApps", 76, 3], ["buildPhase", 78, 3], ["installPhase", 96, 3], ["preFixup", 105, 3], ["postFixup", 128, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, writeScript: false, fetchFromGitHub: false, replaceVars: false, inkscape: false, pdflatex: false, lualatex: false, python3: false, wrapGAppsHook3: false, "gobject-introspection": false, gtk3: false, gtksourceview3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pdflatex", 38, 15], ["lualatex", 38, 24]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["platforms", 139, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["format", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 56, 3], ["strictDeps", 67, 3], ["dontUseSetuptoolsBuild", 70, 3], ["doCheck", 73, 3], ["dontWrapGApps", 76, 3], ["buildPhase", 78, 3], ["installPhase", 96, 3], ["preFixup", 105, 3], ["postFixup", 128, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,19 +21,19 @@ export default nix.lambda((args) => (() => {
   const gtksourceview3 = nix.arg($, "gtksourceview3");
   const launchScript = nix.thunk(() => nix.app(writeScript, "launch.sh", "cd $(dirname $0)\n./__main__.py $*\n"));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "textext",
       version: "1.13.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "textext",
           repo: "textext",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-fEPSpI9uO+r3d5p+gV1XcorYvUPw0sLgG9nHUPeTtYs=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, pdflatex: pdflatex, lualatex: lualatex })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], pdflatex: pdflatex, lualatex: lualatex })))),
         nix.path(here, "./interpreter.patch"),
       ]),
       nativeBuildInputs: nix.thunk(() => [wrapGAppsHook3, gobject_introspection]),
@@ -91,7 +88,7 @@ wrapPythonProgramsIn "$out/share/inkscape/extensions/textext" "$out \${pythonPat
 cp ${launchScript} $out/share/inkscape/extensions/textext/launch.sh
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Re-editable LaTeX graphics for Inkscape",
         homepage: "https://textext.github.io/textext/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

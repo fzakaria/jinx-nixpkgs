@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5]], [["pname", 15, 3], ["version", 16, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 41, 3], ["configurePhase", 47, 3], ["buildFlags", 55, 3], ["preInstall", 60, 3], ["postInstall", 66, 3], ["doCheck", 73, 3], ["checkInputs", 74, 3], ["checkTarget", 75, 3], ["enableParallelBuilding", 77, 3], ["hardeningDisable", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, gfortran: false, blas: false, lapack: false, python3: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 41, 3], ["configurePhase", 47, 3], ["buildFlags", 55, 3], ["preInstall", 60, 3], ["postInstall", 66, 3], ["doCheck", 73, 3], ["checkInputs", 74, 3], ["checkTarget", 75, 3], ["enableParallelBuilding", 77, 3], ["hardeningDisable", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +18,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_(!nix.asBool(nix.sel(blas, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/wa/wannier90/package.nix:11:1");
   nix.assert_(nix.eq(nix.sel(blas, "isILP64"), nix.sel(lapack, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/wa/wannier90/package.nix:12:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wannier90",
       version: "3.1.0",
       nativeBuildInputs: nix.thunk(() => [gfortran]),
       buildInputs: nix.thunk(() => [blas, lapack]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wannier-developers",
           repo: "wannier90",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "replace-obsolete-pipes-module",
             url: "https://github.com/wannier-developers/wannier90/commit/8aef6edaa4f169d45b479dc5d5c5efb8b9385a49.patch",
             hash: "sha256-6ZfHd8CVTzfaj99AA3dsJJ/EOeCZmzACAM5pe2wBo8g=",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Calculation of maximally localised Wannier functions",
         homepage: "https://github.com/wannier-developers/wannier90",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

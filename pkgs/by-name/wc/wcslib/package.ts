@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["NIX_CFLAGS_COMPILE", 18, 7]], [["homepage", 39, 5], ["description", 40, 5], ["longDescription", 41, 5], ["maintainers", 46, 5], ["license", 49, 5], ["platforms", 50, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 18, 3], ["nativeBuildInputs", 20, 3], ["enableParallelBuilding", 22, 3], ["outputs", 24, 3], ["postInstall", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, flex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 18, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 39, 5], ["description", 40, 5], ["longDescription", 41, 5], ["maintainers", 46, 5], ["license", 49, 5], ["platforms", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 18, 3], ["nativeBuildInputs", 20, 3], ["enableParallelBuilding", 22, 3], ["outputs", 24, 3], ["postInstall", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wcslib",
       version: "8.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`ftp://ftp.atnf.csiro.au/pub/software/wcslib/wcslib-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-s5TTMG2ppSQQ8FYTaRFJblmbXEjxz/LyIVY2lwd7vY0=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-include stdio.h")),
       })),
       nativeBuildInputs: nix.thunk(() => [flex]),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       postInstall: "rm $out/share/doc/wcslib/wcslib\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.atnf.csiro.au/people/mcalabre/WCS/",
         description: "World Coordinate System library for astronomy",
         longDescription: "Library for world coordinate systems for spherical geometries\nand their conversion to image coordinate systems. This is the\nstandard library for this purpose in astronomy.\n",

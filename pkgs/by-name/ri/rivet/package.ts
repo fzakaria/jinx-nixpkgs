@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["description", 113, 5], ["license", 114, 5], ["homepage", 115, 5], ["platforms", 116, 5], ["maintainers", 117, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["latex", 31, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 54, 3], ["propagatedBuildInputs", 62, 3], ["preConfigure", 68, 3], ["preInstall", 80, 3], ["configureFlags", 97, 3], ["enableParallelBuilding", 104, 3], ["postInstall", 106, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fastjet: false, "fastjet-contrib": false, ghostscript: false, "graphicsmagick-imagemagick-compat": false, hdf5: false, hepmc3: false, highfive: false, less: false, "pkg-config": false, python3: false, rsync: false, texliveBasic: false, yoda: false, which: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 113, 5], ["license", 114, 5], ["homepage", 115, 5], ["platforms", 116, 5], ["maintainers", 117, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["latex", 31, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 54, 3], ["propagatedBuildInputs", 62, 3], ["preConfigure", 68, 3], ["preInstall", 80, 3], ["configureFlags", 97, 3], ["enableParallelBuilding", 104, 3], ["postInstall", 106, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rivet";
       const version = "4.1.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.hepforge.org/archive/rivet/Rivet-${version}.tar.bz2`),
           hash: "sha256-t63JsIdAISFd8CbuFv5B5EgodMjNWx9a8zzWlnRZnZk=",
         }))));
@@ -95,7 +93,7 @@ substituteInPlace bin/rivet-mkhtml-tex \\
       const enableParallelBuilding = true;
       const postInstall = "for prog in \"$out\"/bin/*; do\n  wrapProgram \"$prog\" --set PYTHONPATH $PYTHONPATH:$(toPythonPath \"$out\")\ndone\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Framework for comparison of experimental measurements from high-energy particle colliders to theory predictions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         homepage: "https://rivet.hepforge.org",
@@ -106,7 +104,7 @@ substituteInPlace bin/rivet-mkhtml-tex \\
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

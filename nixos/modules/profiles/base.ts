@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/base.nix", [[["systemPackages", 14, 15]], [["zfs", 67, 7]], [["supportedFilesystems", 54, 8]], [["hostId", 72, 14]], [["environment", 14, 3], ["boot", 54, 3], ["networking", 72, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/base.nix", [["systemPackages", 14, 15]]);
-const pos$2 = nix.positions(here + "/base.nix", [["zfs", 67, 7]]);
-const pos$3 = nix.positions(here + "/base.nix", [["supportedFilesystems", 54, 8]]);
-const pos$4 = nix.positions(here + "/base.nix", [["hostId", 72, 14]]);
-const pos$5 = nix.positions(here + "/base.nix", [["environment", 14, 3], ["boot", 54, 3], ["networking", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       systemPackages: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "w3m-nographics")),
         nix.thunk(() => nix.sel(pkgs, "testdisk")),
@@ -48,17 +44,17 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       supportedFilesystems: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ["ext2", "ext3", "ext4", "btrfs", "cifs", "f2fs", "ntfs", "vfat", "xfs"]),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform")), nix.thunk(() => nix.sel(config, "boot", "zfs", "package")))), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               zfs: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             })))),
         ]))),
     })),
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       hostId: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "8425e349")),
     })),
   };

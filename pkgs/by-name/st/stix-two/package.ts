@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["stripRoot", 23, 5], ["hash", 24, 5]], [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["preInstall", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["stripRoot", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["preInstall", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "webfont"]);
       const preInstall = "rm -r static_ttf_woff2/";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/stipub/stixfonts/raw/v${version}/zipfiles/STIX${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}-all.zip`),
           stripRoot: false,
           hash: "sha256-hfQmrw7HjlhQSA0rVTs84i3j3iMVR0k7tCRBcB6hEpU=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.stixfonts.org/",
         description: "Fonts for Scientific and Technical Information eXchange",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rycee"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         outputs,

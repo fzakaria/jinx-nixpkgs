@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["all", 40, 5]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 37, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 50, 3], ["pythonImportsCheck", 57, 3], ["disabledTestPaths", 59, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, dask: false, fetchFromGitHub: false, matplotlib: false, pint: false, pooch: false, pytestCheckHook: false, regex: false, rich: false, scipy: false, "setuptools-scm": false, setuptools: false, shapely: false, xarray: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 37, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 50, 3], ["pythonImportsCheck", 57, 3], ["disabledTestPaths", 59, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const shapely = nix.arg($, "shapely");
   const xarray = nix.arg($, "xarray");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cf-xarray",
       version: "0.11.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xarray-contrib",
           repo: "cf-xarray",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm, xarray]),
       dependencies: nix.thunk(() => [xarray]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [matplotlib, pint, pooch, regex, rich, shapely]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([dask, pytestCheckHook, scipy], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         "cf_xarray/tests/test_helpers.py",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Accessor for xarray objects that interprets CF attributes",
         homepage: "https://github.com/xarray-contrib/cf-xarray",
         changelog: nix.thunk(() => nix.str`https://github.com/xarray-contrib/cf-xarray/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

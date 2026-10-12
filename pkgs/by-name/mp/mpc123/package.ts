@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["NIX_CFLAGS_COMPILE", 41, 7]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["makeFlags", 34, 3], ["env", 41, 3], ["installPhase", 44, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, gettext: false, libao: false, libmpcdec: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["makeFlags", 34, 3], ["env", 41, 3], ["installPhase", 44, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libao = nix.arg($, "libao");
   const libmpcdec = nix.arg($, "libmpcdec");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mpc123",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "mpc123",
@@ -32,10 +29,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gettext]),
       buildInputs: nix.thunk(() => [gettext, libao, libmpcdec]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fcommon" })),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/bin\"\ncp -v mpc123 \"$out/bin\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Musepack (.mpc) audio player",
         homepage: "https://github.com/bucciarati/mpc123",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

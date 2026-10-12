@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 18, 5], ["longDescription", 19, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["platforms", 27, 5]], [["license", 40, 12]], [["name", 37, 7], ["url", 38, 7], ["sha256", 39, 7], ["meta", 40, 7]], [["name", 31, 13], ["exec", 35, 5], ["icon", 36, 5], ["desktopName", 42, 5], ["genericName", 43, 5], ["categories", 44, 5], ["startupNotify", 49, 5]], [["name", 65, 11], ["meta", 65, 16], ["paths", 66, 3]]]);
 const formals$1 = { args: { fetchurl: false, "google-chrome": false, lib: false, makeDesktopItem: false, runtimeShell: false, symlinkJoin: false, writeScriptBin: false, commandLineArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 18, 5], ["longDescription", 19, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["platforms", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 40, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 37, 7], ["url", 38, 7], ["sha256", 39, 7], ["meta", 40, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 31, 13], ["exec", 35, 5], ["icon", 36, 5], ["desktopName", 42, 5], ["genericName", 43, 5], ["categories", 44, 5], ["startupNotify", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 65, 11], ["meta", 65, 16], ["paths", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const commandLineArgs = nix.argOr($, "commandLineArgs", () => []);
   const name = "netflix-via-google-chrome";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Open Netflix in Google Chrome app mode",
     longDescription: "Netflix is a video streaming service providing films, TV series and exclusive content. See https://www.netflix.com.\n\nThis package installs an application launcher item that opens Netflix in a dedicated Google Chrome window. If your preferred browser doesn't support Netflix's DRM, this package provides a quick and easy way to launch Netflix on a supported browser, without polluting your application list with a redundant, single-purpose browser.\n",
     homepage: nix.thunk(() => nix.selOr(google_chrome, () => null, "meta", "homepage")),
@@ -30,16 +26,16 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.selOr(google_chrome, () => nix.sel(lib, "platforms", "all"), "meta", "platforms")),
   }));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: name,
       exec: name,
       icon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "netflix-icon-2016.png",
           url: "https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.png",
           sha256: "sha256-c0H3uLCuPA2krqVZ78MfC1PZ253SkWZP3PfWGP2V7Yo=",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
           })),
         })))),
@@ -57,7 +53,7 @@ exec ${google_chrome}/bin/${nix.sel(google_chrome, "meta", "mainProgram")} ${nix
   "$@"
 `)));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: name,
       meta: meta,
       paths: nix.thunk(() => [script, desktopItem]),

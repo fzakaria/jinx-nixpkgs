@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 12, 3], ["version", 13, 3], ["strictDeps", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["doCheck", 36, 3], ["makeFlags", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, guile: false, "pkg-config": false, texinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["strictDeps", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["doCheck", 36, 3], ["makeFlags", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "guile-commonmark",
       version: "0.1.2-unstable-2020-04-30",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OrangeShark",
           repo: "guile-commonmark",
           rev: "538ffea25ca69d9f3ee17033534ba03cc27ba468",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       makeFlags: nix.thunk(() => ["GUILE_AUTO_COMPILE=0"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/OrangeShark/guile-commonmark",
         description: "Implementation of CommonMark for Guile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

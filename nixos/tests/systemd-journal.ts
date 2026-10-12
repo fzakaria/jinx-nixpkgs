@@ -2,90 +2,70 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-journal.nix", [[["maintainers", 6, 5]], [["systemPackages", 10, 17]], [["environment", 10, 5]], [["enable", 13, 21]], [["enable", 14, 20]], [["auditd", 13, 14], ["audit", 14, 14]], [["security", 13, 5]], [["Audit", 18, 40]], [["Journal", 18, 32]], [["settings", 18, 23]], [["journald", 18, 14]], [["enable", 19, 20]], [["audit", 19, 14]], [["services", 18, 5], ["security", 19, 5]], [["enable", 25, 13]], [["nix", 25, 9]], [["autoStart", 23, 7], ["config", 24, 7]], [["c1", 22, 16]], [["containers", 22, 5]], [["machine", 9, 9], ["auditd", 12, 9], ["journaldAudit", 16, 9], ["containerCheck", 21, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 30, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-journal.nix", [["maintainers", 6, 5]]);
-const pos$2 = nix.positions(here + "/systemd-journal.nix", [["systemPackages", 10, 17]]);
-const pos$3 = nix.positions(here + "/systemd-journal.nix", [["environment", 10, 5]]);
-const pos$4 = nix.positions(here + "/systemd-journal.nix", [["enable", 13, 21]]);
-const pos$5 = nix.positions(here + "/systemd-journal.nix", [["enable", 14, 20]]);
-const pos$6 = nix.positions(here + "/systemd-journal.nix", [["auditd", 13, 14], ["audit", 14, 14]]);
-const pos$7 = nix.positions(here + "/systemd-journal.nix", [["security", 13, 5]]);
-const pos$8 = nix.positions(here + "/systemd-journal.nix", [["Audit", 18, 40]]);
-const pos$9 = nix.positions(here + "/systemd-journal.nix", [["Journal", 18, 32]]);
-const pos$10 = nix.positions(here + "/systemd-journal.nix", [["settings", 18, 23]]);
-const pos$11 = nix.positions(here + "/systemd-journal.nix", [["journald", 18, 14]]);
-const pos$12 = nix.positions(here + "/systemd-journal.nix", [["enable", 19, 20]]);
-const pos$13 = nix.positions(here + "/systemd-journal.nix", [["audit", 19, 14]]);
-const pos$14 = nix.positions(here + "/systemd-journal.nix", [["services", 18, 5], ["security", 19, 5]]);
-const pos$15 = nix.positions(here + "/systemd-journal.nix", [["enable", 25, 13]]);
-const pos$16 = nix.positions(here + "/systemd-journal.nix", [["nix", 25, 9]]);
-const pos$17 = nix.positions(here + "/systemd-journal.nix", [["autoStart", 23, 7], ["config", 24, 7]]);
-const pos$18 = nix.positions(here + "/systemd-journal.nix", [["c1", 22, 16]]);
-const pos$19 = nix.positions(here + "/systemd-journal.nix", [["containers", 22, 5]]);
-const pos$20 = nix.positions(here + "/systemd-journal.nix", [["machine", 9, 9], ["auditd", 12, 9], ["journaldAudit", 16, 9], ["containerCheck", 21, 9]]);
-const pos$21 = nix.positions(here + "/systemd-journal.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     name: "systemd-journal",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "lewo"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "audit"))]),
         })),
       })),
       auditd: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         security: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          auditd: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
-          audit: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+          [nix.POS]: $pos[5],
+          auditd: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
+          audit: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
         })),
       })),
       journaldAudit: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           journald: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               Journal: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 Audit: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               })),
             })),
           })),
         })),
         security: nix.thunk(() => ({
-          [nix.POS]: pos$13,
-          audit: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
+          [nix.POS]: $pos[12],
+          audit: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: true })),
         })),
       })),
       containerCheck: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         containers: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           c1: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             autoStart: true,
             config: nix.thunk(() => ({
-              [nix.POS]: pos$16,
-              nix: nix.thunk(() => ({ [nix.POS]: pos$15, enable: false })),
+              [nix.POS]: $pos[15],
+              nix: nix.thunk(() => ({ [nix.POS]: $pos[14], enable: false })),
             })),
           })),
         })),

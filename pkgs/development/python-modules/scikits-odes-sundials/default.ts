@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 38, 5], ["homepage", 39, 5]], [["version", 13, 31], ["src", 13, 39], ["pname", 14, 3], ["pyproject", 15, 3], ["sourceRoot", 17, 3], ["build-system", 19, 3], ["buildInputs", 26, 3], ["dependencies", 28, 3], ["pythonImportsCheck", 33, 3], ["nativeCheckInputs", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, sundials: false, cython: false, numpy: false, pkgconfig: false, setuptools: false, "scikits-odes-core": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 13, 31], ["src", 13, 39], ["pname", 14, 3], ["pyproject", 15, 3], ["sourceRoot", 17, 3], ["build-system", 19, 3], ["buildInputs", 26, 3], ["dependencies", 28, 3], ["pythonImportsCheck", 33, 3], ["nativeCheckInputs", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +27,12 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["scikits_odes_sundials"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => nix.update(nix.sel(scikits_odes_core, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Sundials wrapper module for scikits-odes",
         homepage: "https://github.com/bmcage/odes/blob/master/packages/scikits-odes-sundials",
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version,
         src,
         pname,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["url", 27, 7], ["hash", 28, 7]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["build-system", 32, 3], ["buildInputs", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 45, 3], ["pytestFlags", 47, 3], ["disabledTests", 51, 3], ["disabledTestPaths", 63, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, hatchling: false, pytest: false, black: false, ruff: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["build-system", 32, 3], ["buildInputs", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 45, 3], ["pytestFlags", 47, 3], ["disabledTests", 51, 3], ["disabledTestPaths", 63, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.18";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pydantic",
           repo: "pytest-examples",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/pydantic/pytest-examples/pull/65/commits/60ae70d05ee345b38c2d2048d36b4a4545c98b6b.diff",
             hash: "sha256-Rhrg0zVChwwa7Gk+WYrCu44VgUQmxLBeq8pWSF6Nzdo=",
           })))),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_run_examples.py::test_run_example_ok_fail"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pytest plugin for testing examples in docstrings and markdown files",
         homepage: "https://github.com/pydantic/pytest-examples",
         changelog: nix.thunk(() => nix.str`https://github.com/pydantic/pytest-examples/releases/tag/${nix.sel(src, "tag")}`),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

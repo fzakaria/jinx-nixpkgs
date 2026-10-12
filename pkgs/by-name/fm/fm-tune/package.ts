@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, "liquid-dsp": false, soapysdr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const liquid_dsp = nix.arg($, "liquid-dsp");
   const soapysdr = nix.arg($, "soapysdr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fm-tune",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "viraptor",
           repo: "fm_tune",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [liquid_dsp, soapysdr]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Find initial calibration offset for SDR devices",
         longDescription: "fm_tune finds the initial offset for calibrating an SDR device. This is\nbased a given FM radio station frequency. The offset given by this tool is\nnot precise, but can be useful as a starting point for other tools which\ncannot correct for very large errors.\n",
         homepage: "https://github.com/viraptor/fm_tune",

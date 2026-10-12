@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 38, 5], ["hash", 39, 5]], [["name", 108, 7], ["desktopName", 109, 7], ["genericName", 110, 7], ["comment", 111, 7], ["tryExec", 112, 7], ["exec", 113, 7], ["icon", 114, 7], ["startupNotify", 115, 7], ["startupWMClass", 116, 7], ["terminal", 117, 7], ["keywords", 118, 7], ["categories", 129, 7], ["mimeTypes", 133, 7]], [["description", 140, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["mainProgram", 144, 5], ["platforms", 145, 5], ["badPlatforms", 146, 5], ["maintainers", 150, 5], ["sourceProvenance", 151, 5]], [["pname", 31, 3], ["version", 32, 3], ["__darwinAllowLocalNetworking", 34, 3], ["src", 37, 3], ["dontUnpack", 42, 3], ["dontConfigure", 43, 3], ["dontBuild", 44, 3], ["preferLocal", 46, 3], ["nativeBuildInputs", 48, 3], ["installPhase", 54, 3], ["desktopItems", 106, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeBinaryWrapper: false, makeDesktopItem: false, copyDesktopItems: false, jre: false, "alsa-lib": false, libjack2: false, libpulseaudio: false, pipewire: false, libGL: false, libx11: false, libxcursor: false, libxext: false, libxrandr: false, libxxf86vm: false, xrandr: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 108, 7], ["desktopName", 109, 7], ["genericName", 110, 7], ["comment", 111, 7], ["tryExec", 112, 7], ["exec", 113, 7], ["icon", 114, 7], ["startupNotify", 115, 7], ["startupWMClass", 116, 7], ["terminal", 117, 7], ["keywords", 118, 7], ["categories", 129, 7], ["mimeTypes", 133, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 140, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["mainProgram", 144, 5], ["platforms", 145, 5], ["badPlatforms", 146, 5], ["maintainers", 150, 5], ["sourceProvenance", 151, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["__darwinAllowLocalNetworking", 34, 3], ["src", 37, 3], ["dontUnpack", 42, 3], ["dontConfigure", 43, 3], ["dontBuild", 44, 3], ["preferLocal", 46, 3], ["nativeBuildInputs", 48, 3], ["installPhase", 54, 3], ["desktopItems", 106, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const xrandr = nix.arg($, "xrandr");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ocelot-desktop",
       version: "1.14.2",
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gitlab.com/api/v4/projects/9941848/packages/generic/ocelot-desktop/v${nix.sel(finalAttrs, "version")}/ocelot-desktop-v${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-ZnXFCcm/b4hXLUrL7QZmRYwEFksKkIGI8zDqfXB+uhc=",
         })))),
@@ -82,7 +79,7 @@ runHook postInstall
       })()),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ocelot-desktop",
             desktopName: "Ocelot Desktop",
             genericName: "OpenComputers Emulator",
@@ -109,7 +106,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Advanced OpenComputers emulator",
         homepage: "https://ocelot.fomalhaut.me/desktop",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/cc-ru/ocelot/ocelot-desktop/-/releases/v${nix.sel(finalAttrs, "version")}`),

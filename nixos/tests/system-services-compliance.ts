@@ -2,50 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/system-services-compliance.nix", [[["services", 18, 16], ["stateVersion", 19, 16]], [["device", 21, 11], ["fsType", 22, 11]], [["/", 20, 21]], [["enable", 24, 26]], [["grub", 24, 21]], [["loader", 24, 14]], [["system", 18, 9], ["fileSystems", 20, 9], ["boot", 24, 9]], [["config", 38, 9], ["checkDrv", 39, 9]], [["services", 51, 30]], [["system", 51, 23]], [["machine", 51, 15]], [["maintainers", 56, 14]], [["_class", 49, 9], ["name", 50, 17], ["nodes", 51, 9], ["testScript", 52, 9], ["meta", 56, 9]], [["sharedDir", 30, 13], ["namePrefix", 31, 5], ["evalConfig", 32, 5], ["callReload", 41, 5], ["mkTest", 42, 5]], [["argv", 66, 27]], [["process", 66, 19]], [["service", 66, 11]], [["argv", 72, 21]], [["systemd", 73, 34]], [["process", 72, 13], ["notificationProtocol", 73, 13]], [["service", 71, 11]], [["argv", 80, 21], ["reloadSignal", 81, 21]], [["process", 80, 13]], [["service", 79, 11]], [["argv", 90, 21]], [["ExecReload", 91, 43]], [["serviceConfig", 91, 29]], [["service", 91, 21]], [["process", 90, 13], ["systemd", 91, 13]], [["service", 89, 11]], [["expr", 97, 9], ["expected", 98, 9]], [["expr", 102, 9], ["expected", 103, 9]], [["expr", 107, 9], ["expected", 108, 9]], [["expr", 115, 9], ["expected", 116, 9]], [["expr", 120, 9], ["expected", 121, 9]], [["testDefaultType", 96, 7], ["testNotifyType", 101, 7], ["testReloadExecReload", 106, 7], ["testNoReloadExecReloadUnset", 114, 7], ["testServiceOwnExecReload", 119, 7]], [["tests", 129, 7], ["failures", 130, 7]], [["__structuredAttrs", 126, 5], ["name", 127, 5], ["passthru", 128, 5], ["testResults", 132, 5], ["buildCommand", 133, 5]], [["test", 168, 7], ["driver", 169, 7]], [["systemd-eval", 171, 15]]]);
 const formals$1 = { args: { pkgs: false, evalSystem: false, runTest: false, callTest: false }, ellipsis: false };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/system-services-compliance.nix", [["services", 18, 16], ["stateVersion", 19, 16]]);
-const pos$2 = nix.positions(here + "/system-services-compliance.nix", [["device", 21, 11], ["fsType", 22, 11]]);
-const pos$3 = nix.positions(here + "/system-services-compliance.nix", [["/", 20, 21]]);
-const pos$4 = nix.positions(here + "/system-services-compliance.nix", [["enable", 24, 26]]);
-const pos$5 = nix.positions(here + "/system-services-compliance.nix", [["grub", 24, 21]]);
-const pos$6 = nix.positions(here + "/system-services-compliance.nix", [["loader", 24, 14]]);
-const pos$7 = nix.positions(here + "/system-services-compliance.nix", [["system", 18, 9], ["fileSystems", 20, 9], ["boot", 24, 9]]);
 const formals$3 = { args: { services: false }, ellipsis: false };
-const pos$8 = nix.positions(here + "/system-services-compliance.nix", [["config", 38, 9], ["checkDrv", 39, 9]]);
 const formals$4 = { args: { name: false, services: false, testExe: false }, ellipsis: false };
-const pos$9 = nix.positions(here + "/system-services-compliance.nix", [["services", 51, 30]]);
-const pos$10 = nix.positions(here + "/system-services-compliance.nix", [["system", 51, 23]]);
-const pos$11 = nix.positions(here + "/system-services-compliance.nix", [["machine", 51, 15]]);
-const pos$12 = nix.positions(here + "/system-services-compliance.nix", [["maintainers", 56, 14]]);
-const pos$13 = nix.positions(here + "/system-services-compliance.nix", [["_class", 49, 9], ["name", 50, 17], ["nodes", 51, 9], ["testScript", 52, 9], ["meta", 56, 9]]);
-const pos$14 = nix.positions(here + "/system-services-compliance.nix", [["sharedDir", 30, 13], ["namePrefix", 31, 5], ["evalConfig", 32, 5], ["callReload", 41, 5], ["mkTest", 42, 5]]);
-const pos$15 = nix.positions(here + "/system-services-compliance.nix", [["argv", 66, 27]]);
-const pos$16 = nix.positions(here + "/system-services-compliance.nix", [["process", 66, 19]]);
-const pos$17 = nix.positions(here + "/system-services-compliance.nix", [["service", 66, 11]]);
-const pos$18 = nix.positions(here + "/system-services-compliance.nix", [["argv", 72, 21]]);
-const pos$19 = nix.positions(here + "/system-services-compliance.nix", [["systemd", 73, 34]]);
-const pos$20 = nix.positions(here + "/system-services-compliance.nix", [["process", 72, 13], ["notificationProtocol", 73, 13]]);
-const pos$21 = nix.positions(here + "/system-services-compliance.nix", [["service", 71, 11]]);
-const pos$22 = nix.positions(here + "/system-services-compliance.nix", [["argv", 80, 21], ["reloadSignal", 81, 21]]);
-const pos$23 = nix.positions(here + "/system-services-compliance.nix", [["process", 80, 13]]);
-const pos$24 = nix.positions(here + "/system-services-compliance.nix", [["service", 79, 11]]);
-const pos$25 = nix.positions(here + "/system-services-compliance.nix", [["argv", 90, 21]]);
-const pos$26 = nix.positions(here + "/system-services-compliance.nix", [["ExecReload", 91, 43]]);
-const pos$27 = nix.positions(here + "/system-services-compliance.nix", [["serviceConfig", 91, 29]]);
-const pos$28 = nix.positions(here + "/system-services-compliance.nix", [["service", 91, 21]]);
-const pos$29 = nix.positions(here + "/system-services-compliance.nix", [["process", 90, 13], ["systemd", 91, 13]]);
-const pos$30 = nix.positions(here + "/system-services-compliance.nix", [["service", 89, 11]]);
-const pos$31 = nix.positions(here + "/system-services-compliance.nix", [["expr", 97, 9], ["expected", 98, 9]]);
-const pos$32 = nix.positions(here + "/system-services-compliance.nix", [["expr", 102, 9], ["expected", 103, 9]]);
-const pos$33 = nix.positions(here + "/system-services-compliance.nix", [["expr", 107, 9], ["expected", 108, 9]]);
-const pos$34 = nix.positions(here + "/system-services-compliance.nix", [["expr", 115, 9], ["expected", 116, 9]]);
-const pos$35 = nix.positions(here + "/system-services-compliance.nix", [["expr", 120, 9], ["expected", 121, 9]]);
-const pos$36 = nix.positions(here + "/system-services-compliance.nix", [["testDefaultType", 96, 7], ["testNotifyType", 101, 7], ["testReloadExecReload", 106, 7], ["testNoReloadExecReloadUnset", 114, 7], ["testServiceOwnExecReload", 119, 7]]);
-const pos$37 = nix.positions(here + "/system-services-compliance.nix", [["tests", 129, 7], ["failures", 130, 7]]);
-const pos$38 = nix.positions(here + "/system-services-compliance.nix", [["__structuredAttrs", 126, 5], ["name", 127, 5], ["passthru", 128, 5], ["testResults", 132, 5], ["buildCommand", 133, 5]]);
-const pos$39 = nix.positions(here + "/system-services-compliance.nix", [["test", 168, 7], ["driver", 169, 7]]);
-const pos$40 = nix.positions(here + "/system-services-compliance.nix", [["systemd-eval", 171, 15]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,23 +20,23 @@ export default nix.lambda((args) => (() => {
   const evalSystemServices = (services) => nix.app(evalSystem, nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       return {
-        [nix.POS]: pos$7,
-        system: nix.thunk(() => ({ [nix.POS]: pos$1, services: services, stateVersion: "25.05" })),
+        [nix.POS]: $pos[6],
+        system: nix.thunk(() => ({ [nix.POS]: $pos[0], services: services, stateVersion: "25.05" })),
         fileSystems: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          "/": nix.thunk(() => ({ [nix.POS]: pos$2, device: "/test/dummy", fsType: "auto" })),
+          [nix.POS]: $pos[2],
+          "/": nix.thunk(() => ({ [nix.POS]: $pos[1], device: "/test/dummy", fsType: "auto" })),
         })),
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           loader: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            grub: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
+            [nix.POS]: $pos[4],
+            grub: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: false })),
           })),
         })),
       };
     })(), formals$2));
   const suite = nix.thunk(() => nix.app(nix.sel(pkgs, "testers", "modularServiceCompliance"), nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       sharedDir: sharedDir,
       namePrefix: "system-services-compliance",
       evalConfig: nix.lambda((args_1) => (() => {
@@ -83,7 +44,7 @@ export default nix.lambda((args) => (() => {
         const services = nix.arg($_1, "services");
         const machine = nix.thunk(() => nix.app(evalSystemServices, services));
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           config: nix.thunk(() => nix.sel(machine, "config", "system", "services")),
           checkDrv: nix.thunk(() => nix.sel(machine, "config", "system", "build", "toplevel")),
         };
@@ -95,21 +56,21 @@ export default nix.lambda((args) => (() => {
         const services = nix.arg($_1, "services");
         const testExe = nix.arg($_1, "testExe");
         return nix.app(runTest, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             _class: "nixosTest",
             name: name,
             nodes: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               machine: nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                system: nix.thunk(() => ({ [nix.POS]: pos$9, services: services })),
+                [nix.POS]: $pos[9],
+                system: nix.thunk(() => ({ [nix.POS]: $pos[8], services: services })),
               })),
             })),
             testScript: nix.thunk(() => nix.str`machine.wait_for_unit("multi-user.target")
 machine.succeed("${testExe}")
 `),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
                 return [nix.thunk(() => nix.lookup(w, "roberth"))];
@@ -120,51 +81,51 @@ machine.succeed("${testExe}")
     }))));
   const systemdEvalTests = nix.thunk(() => (() => {
     const defaultUnits = nix.thunk(() => nix.sel(nix.app(evalSystemServices, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         service: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           process: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             argv: nix.thunk(() => [nix.thunk(() => nix.str`${coreutils}/bin/true`)]),
           })),
         })),
       }))), "config", "systemd", "services"));
     const notifyUnits = nix.thunk(() => nix.sel(nix.app(evalSystemServices, nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         service: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           process: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             argv: nix.thunk(() => [nix.thunk(() => nix.str`${coreutils}/bin/true`)]),
           })),
-          notificationProtocol: nix.thunk(() => ({ [nix.POS]: pos$19, systemd: true })),
+          notificationProtocol: nix.thunk(() => ({ [nix.POS]: $pos[18], systemd: true })),
         })),
       }))), "config", "systemd", "services"));
     const reloadUnits = nix.thunk(() => nix.sel(nix.app(evalSystemServices, nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         service: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           process: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             argv: nix.thunk(() => [nix.thunk(() => nix.str`${coreutils}/bin/true`)]),
             reloadSignal: "HUP",
           })),
         })),
       }))), "config", "systemd", "services"));
     const ownExecReloadUnits = nix.thunk(() => nix.sel(nix.app(evalSystemServices, nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         service: nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           process: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             argv: nix.thunk(() => [nix.thunk(() => nix.str`${coreutils}/bin/true`)]),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             service: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               serviceConfig: nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 ExecReload: nix.thunk(() => nix.str`${coreutils}/bin/kill -USR2 $MAINPID`),
               })),
             })),
@@ -172,46 +133,46 @@ machine.succeed("${testExe}")
         })),
       }))), "config", "systemd", "services"));
     return {
-      [nix.POS]: pos$36,
+      [nix.POS]: $pos[35],
       testDefaultType: nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         expr: nix.thunk(() => nix.sel(defaultUnits, "service", "serviceConfig", "Type")),
         expected: "simple",
       })),
       testNotifyType: nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         expr: nix.thunk(() => nix.sel(notifyUnits, "service", "serviceConfig", "Type")),
         expected: "notify",
       })),
       testReloadExecReload: nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         expr: nix.thunk(() => nix.sel(reloadUnits, "service", "serviceConfig", "ExecReload")),
         expected: nix.thunk(() => nix.str`${coreutils}/bin/kill -HUP $MAINPID`),
       })),
       testNoReloadExecReloadUnset: nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         expr: nix.thunk(() => nix.has(nix.sel(defaultUnits, "service", "serviceConfig"), "ExecReload")),
         expected: false,
       })),
       testServiceOwnExecReload: nix.thunk(() => ({
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         expr: nix.thunk(() => nix.sel(ownExecReloadUnits, "service", "serviceConfig", "ExecReload")),
         expected: nix.thunk(() => nix.str`${coreutils}/bin/kill -USR2 $MAINPID`),
       })),
     };
   })());
   const systemdEval = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$38,
+      [nix.POS]: $pos[37],
       __structuredAttrs: true,
       name: "system-services-compliance-systemd-eval-report",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         tests: systemdEvalTests,
         failures: nix.thunk(() => nix.app(nix.sel(lib, "runTests"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "tests")))),
       })),
       testResults: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (test) => nix.eq(nix.sel(test, "expr"), nix.sel(test, "expected")), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "tests")))),
       buildCommand: nix.thunk(() => nix.add("touch $out\nfor testName in \"${!testResults[@]}\"; do\n  if [[ -n \"${testResults[$testName]}\" ]]; then\n    echo \"PASS  $testName\"\n  else\n    echo \"FAIL  $testName\"\n  fi\ndone\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "any"), (v) => !nix.asBool(v), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(finalAttrs, "testResults")))))), "{\n  echo \"\"\n  echo \"systemd-specific eval-level compliance failures:\"\n  for testName in \"${!testResults[@]}\"; do\n    if [[ -z \"${testResults[$testName]}\" ]]; then\n      echo \"- $testName\"\n    fi\n  done\n} >&2\nexit 1\n"))),
     })));
-  return nix.app(nix.sel(pkgs, "lib", "mapAttrs"), (_) => (v) => (nix.asBool(nix.has(v, "test")) ? nix.force(v) : nix.app(callTest, nix.thunk(() => ({ [nix.POS]: pos$39, test: v, driver: v })))), nix.thunk(() => nix.update(suite, { [nix.POS]: pos$40, "systemd-eval": systemdEval })));
+  return nix.app(nix.sel(pkgs, "lib", "mapAttrs"), (_) => (v) => (nix.asBool(nix.has(v, "test")) ? nix.force(v) : nix.app(callTest, nix.thunk(() => ({ [nix.POS]: $pos[38], test: v, driver: v })))), nix.thunk(() => nix.update(suite, { [nix.POS]: $pos[39], "systemd-eval": systemdEval })));
 })(), formals$1);
 //# sourceMappingURL=system-services-compliance.ts.map

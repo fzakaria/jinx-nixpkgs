@@ -2,16 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["useSwift", 33, 81]], [["name", 37, 5], ["paths", 38, 5]], [["name", 84, 5], ["paths", 85, 5]], [["name", 91, 5], ["paths", 92, 5]], [["callPackage", 229, 15], ["directory", 230, 7]], [["swiftc", 227, 13], ["swift-driver", 227, 20], ["tests", 228, 5], ["swiftLibSubdir", 234, 5], ["swiftStaticLibSubdir", 235, 5], ["swiftModuleSubdir", 238, 5], ["swiftStaticModuleSubdir", 239, 5]], [["swift", 243, 5], ["swiftArch", 244, 5], ["swiftDriver", 245, 5], ["swiftOs", 246, 5]], [["mainProgram", 250, 5], ["description", 251, 5], ["homepage", 252, 5], ["platforms", 253, 27], ["badPlatforms", 253, 37], ["license", 254, 5], ["teams", 255, 5]], [["pname", 102, 3], ["version", 103, 3], ["outputs", 105, 3], ["strictDeps", 111, 3], ["depsTargetTargetPropagated", 114, 3], ["buildCommand", 136, 3], ["__structuredAttrs", 224, 3], ["passthru", 226, 3], ["meta", 249, 3]]]);
 const formals$1 = { args: { lib: false, config: false, "apple-sdk_14": false, "apple-sdk_26": false, callPackage: false, llvmPackages: false, llvmPackages_upstream: false, patchelf: false, stdenv: false, stdlib: false, "swift-corelibs-foundation": false, "swift-corelibs-libdispatch": false, "swift-corelibs-xctest": false, "swift-driver": false, "swift-foundation": false, "swift-foundation-icu": false, "swift-testing": false, swiftc: false, symlinkJoin: false, swift_release: false, enableRepl: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["useSwift", 33, 81]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 37, 5], ["paths", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 84, 5], ["paths", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 91, 5], ["paths", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["callPackage", 229, 15], ["directory", 230, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["swiftc", 227, 13], ["swift-driver", 227, 20], ["tests", 228, 5], ["swiftLibSubdir", 234, 5], ["swiftStaticLibSubdir", 235, 5], ["swiftModuleSubdir", 238, 5], ["swiftStaticModuleSubdir", 239, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["swift", 243, 5], ["swiftArch", 244, 5], ["swiftDriver", 245, 5], ["swiftOs", 246, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["mainProgram", 250, 5], ["description", 251, 5], ["homepage", 252, 5], ["platforms", 253, 27], ["badPlatforms", 253, 37], ["license", 254, 5], ["teams", 255, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 102, 3], ["version", 103, 3], ["outputs", 105, 3], ["strictDeps", 111, 3], ["depsTargetTargetPropagated", 114, 3], ["buildCommand", 136, 3], ["__structuredAttrs", 224, 3], ["passthru", 226, 3], ["meta", 249, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,9 +30,9 @@ export default nix.lambda((args) => (() => {
   const enableRepl = nix.argOr($, "enableRepl", () => true);
   const includeTesting = nix.thunk(() => (nix.asBool(nix.sel(swiftc, "supportsMacros")) && nix.asBool(!nix.eq(swift_testing, null))));
   const propagated_sdk = nix.thunk(() => (nix.asBool(nix.sel(swiftc, "supportsMacros")) ? nix.force(apple_sdk_26) : nix.force(apple_sdk_14)));
-  const swift_corelibs_libdispatch_no_overlay = nix.thunk(() => nix.app(nix.sel(swift_corelibs_libdispatch, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, useSwift: false }))));
+  const swift_corelibs_libdispatch_no_overlay = nix.thunk(() => nix.app(nix.sel(swift_corelibs_libdispatch, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], useSwift: false }))));
   const outLinks = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.add(nix.add("swift", nix.app(nix.sel(lib, "removePrefix"), "swiftc", nix.thunk(() => nix.app(nix.sel(lib, "getName"), swiftc)))), nix.str`-${swift_release}-out`)),
       paths: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.sel(swiftc, "out")),
@@ -72,17 +64,17 @@ export default nix.lambda((args) => (() => {
           ])))))))))))),
     }))));
   const docLinks = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.add(nix.add("swift", nix.app(nix.sel(lib, "removePrefix"), "swiftc", nix.thunk(() => nix.app(nix.sel(lib, "getName"), swiftc)))), nix.str`-${swift_release}-doc`)),
       paths: nix.thunk(() => [nix.thunk(() => nix.sel(swiftc, "doc"))]),
     }))));
   const manLinks = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: nix.thunk(() => nix.add(nix.add("swift", nix.app(nix.sel(lib, "removePrefix"), "swiftc", nix.thunk(() => nix.app(nix.sel(lib, "getName"), swiftc)))), nix.str`-${swift_release}-man`)),
       paths: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(swiftc, "man"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) && nix.asBool(!nix.eq(swift_corelibs_libdispatch, null)))), nix.thunk(() => [nix.thunk(() => nix.sel(swift_corelibs_libdispatch, "man"))])))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: nix.thunk(() => nix.add("swift", nix.app(nix.sel(lib, "removePrefix"), "swiftc", nix.thunk(() => nix.app(nix.sel(lib, "getName"), swiftc))))),
       version: swift_release,
       outputs: nix.thunk(() => ["out", "doc", "man"]),
@@ -183,11 +175,11 @@ noBrokenSymlinksInAllOutputs
 `),
       __structuredAttrs: true,
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         swiftc: swiftc,
         "swift-driver": swift_driver,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             callPackage: callPackage,
             directory: nix.path(here, "./tests"),
           })))),
@@ -196,7 +188,7 @@ noBrokenSymlinksInAllOutputs
         swiftModuleSubdir: nix.thunk(() => nix.str`lib/swift/${nix.sel(stdenv, "hostPlatform", "swift", "platform")}`),
         swiftStaticModuleSubdir: nix.thunk(() => nix.str`lib/swift_static/${nix.sel(stdenv, "hostPlatform", "swift", "platform")}`),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           swift: nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "`swift` is an alias for this (`swift`) package. Just use it directly.", nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           swiftArch: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "'swiftArch' is an alias for 'stdenv.hostPlatform.swift.arch'.", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "swift", "arch")))),
           swiftDriver: nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "'swiftDriver' has been renamed to 'swift-driver'", nix.thunk(() => nix.sel(finalAttrs, "passthru", "swift-driver")))),
@@ -205,7 +197,7 @@ noBrokenSymlinksInAllOutputs
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(swiftc, "meta"));
         return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         mainProgram: "swift",
         description: "Swift Programming Language",
         homepage: "https://github.com/swiftlang/swift",

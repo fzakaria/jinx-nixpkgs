@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 32, 3], ["postPatch", 37, 3], ["preConfigure", 48, 3], ["postInstall", 53, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 75, 3], ["configureFlags", 83, 3], ["enableParallelBuilding", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, removeReferencesTo: false, fetchFromGitHub: false, autoconf: false, automake: false, libtool: false, "pkg-config": false, gitMinimal: false, perl: false, python3: false, flex: false, hwloc: false, libevent: false, zlib: false, pmix: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 32, 3], ["postPatch", 37, 3], ["preConfigure", 48, 3], ["postInstall", 53, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 75, 3], ["configureFlags", 83, 3], ["enableParallelBuilding", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const pmix = nix.arg($, "pmix");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "prrte",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openpmix",
           repo: "prrte",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +64,7 @@ remove-references-to -t "\${!outputDev}" $(readlink -f $out/lib/libprrte${nix.se
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PMIx Reference Runtime Environment",
         homepage: "https://docs.prrte.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

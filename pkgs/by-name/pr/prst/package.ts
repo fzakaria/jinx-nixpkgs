@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5]], [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["license", 70, 5], ["sourceProvenance", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["enableParallelBuilding", 21, 3], ["strictDeps", 23, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 27, 3], ["postPatch", 31, 3], ["makeFlags", 40, 3], ["installPhase", 45, 3], ["doInstallCheck", 53, 3], ["nativeInstallCheckInputs", 54, 3], ["versionCheckProgramArg", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gmp: false, installShellFiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["license", 70, 5], ["sourceProvenance", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["enableParallelBuilding", 21, 3], ["strictDeps", 23, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 27, 3], ["postPatch", 31, 3], ["makeFlags", 40, 3], ["installPhase", 45, 3], ["doInstallCheck", 53, 3], ["nativeInstallCheckInputs", 54, 3], ["versionCheckProgramArg", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "prst",
       version: "14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "patnashev",
           repo: "prst",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-v",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Primality testing utility written in C++",
         longDescription: "This utility is best used for systematic searches of large prime numbers, either by public distributed projects or by private individuals.\nIt can handle numbers of many popular forms like Proth numbers, Thabit numbers, generalized Fermat numbers, factorials, primorials and arbitrary numbers.\nMersenne numbers are better handled by GIMPS.\nIt is assumed that input candidates are previously sieved by a sieving utility best suited for the specific form of numbers.\n",
         homepage: "https://github.com/patnashev/prst",

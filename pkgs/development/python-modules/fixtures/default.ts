@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]], [["streams", 28, 5]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["optional-dependencies", 27, 3], ["nativeCheckInputs", 31, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, "hatch-vcs": false, testtools: false, mock: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["streams", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["optional-dependencies", 27, 3], ["nativeCheckInputs", 31, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,23 +20,23 @@ export default nix.lambda((args) => (() => {
       const version = "4.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-t9tkAUcyUT8j0SsMSa5Se6DAwfJmfsl9kTbWcVfrzl0=",
         }))));
       const build_system = nix.thunk(() => [hatchling, hatch_vcs]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, streams: nix.thunk(() => [testtools]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], streams: nix.thunk(() => [testtools]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([mock, pytestCheckHook], nix.sel(optional_dependencies, "streams")));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Reusable state for writing clean tests and more",
         homepage: "https://github.com/testing-cabal/fixtures",
         changelog: nix.thunk(() => nix.str`https://github.com/testing-cabal/fixtures/blob/${version}/NEWS`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

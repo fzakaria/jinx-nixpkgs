@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["updateScript", 57, 12]], [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 20, 3], ["patches", 22, 3], ["patchFlags", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["installPhase", 40, 3], ["doInstallCheck", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "nix-update-script": false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 57, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 20, 3], ["patches", 22, 3], ["patchFlags", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["installPhase", 40, 3], ["doInstallCheck", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "candle",
       version: "1.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Denvi",
           repo: "Candle",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +37,11 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "runHook preInstall\nmkdir -p $out/Applications\ncp -r Candle.app $out/Applications/\nrunHook postInstall\n" : "runHook preInstall\ninstall -Dm755 Candle $out/bin/candle\nrunHook postInstall\n")),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GRBL controller application with G-Code visualizer written in Qt",
         mainProgram: "candle",
         homepage: "https://github.com/Denvi/Candle",

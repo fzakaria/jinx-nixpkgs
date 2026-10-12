@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 107, 5], ["owner", 108, 5], ["repo", 109, 5], ["rev", 110, 5], ["hash", 111, 5]], [["BUILDCC", 235, 5], ["LIVE555_PREFIX", 236, 5]], [["url", 243, 7], ["hash", 244, 7]], [["updateScript", 318, 12]], [["description", 321, 5], ["homepage", 322, 5], ["donationPage", 323, 5], ["license", 324, 5], ["maintainers", 325, 5], ["platforms", 328, 5], ["mainProgram", 329, 5]], [["pname", 103, 3], ["version", 104, 3], ["src", 106, 3], ["depsBuildBuild", 114, 3], ["nativeBuildInputs", 116, 3], ["buildInputs", 136, 3], ["strictDeps", 223, 3], ["__structuredAttrs", 224, 3], ["outputs", 226, 3], ["env", 233, 3], ["patches", 239, 3], ["postPatch", 251, 3], ["enableParallelBuilding", 266, 3], ["dontWrapGApps", 268, 3], ["configureFlags", 272, 3], ["postConfigure", 285, 3], ["postInstall", 291, 3], ["preFixup", 295, 3], ["postFixup", 306, 3], ["passthru", 318, 3], ["meta", 320, 3]]]);
 const formals$1 = { args: { lib: false, "alsa-lib": false, autoreconfHook: false, avahi: false, bison: false, cairo: false, dbus: false, faad2: false, fetchFromGitLab: false, fetchpatch: false, ffmpeg_7: false, flac: false, flex: false, fluidsynth: false, fontconfig: false, freefont_ttf: false, freetype: false, fribidi: false, gnutls: false, harfbuzz: false, libGL: false, libsm: false, libxext: false, libxinerama: false, libxpm: false, libarchive: false, libaacs: false, libass: false, "libbluray-full": false, libcaca: false, libcddb: false, libdc1394: false, libdvbpsi: false, libdvdnav: false, libebml: false, libgcrypt: false, "libgpg-error": false, libjack2: false, libjpeg: false, libkate: false, libmad: false, libmatroska: false, libmicrodns: false, libmodplug: false, libmtp: false, libogg: false, libopus: false, libplacebo_5: false, libpng: false, libpulseaudio: false, librsvg: false, libsForQt5: false, libsamplerate: false, libspatialaudio: false, libssh2: false, libtheora: false, libtiger: false, libupnp: false, libv4l: false, libva: false, libvorbis: false, libxml2: false, live555: false, lua5: false, ncurses: false, "nix-update-script": false, perl: false, "pkg-config": false, pkgsBuildBuild: false, protobuf: false, removeReferencesTo: false, samba: false, schroedinger: false, speex: false, srt: false, stdenv: false, systemdLibs: false, taglib_1: false, unzip: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, wrapGAppsHook3: false, "libxcb-keysyms": false, zlib: false, chromecastSupport: true, jackSupport: true, onlyLibVLC: true, skins2Support: true, waylandSupport: true, withQt5: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 107, 5], ["owner", 108, 5], ["repo", 109, 5], ["rev", 110, 5], ["hash", 111, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["BUILDCC", 235, 5], ["LIVE555_PREFIX", 236, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 243, 7], ["hash", 244, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 318, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 321, 5], ["homepage", 322, 5], ["donationPage", 323, 5], ["license", 324, 5], ["maintainers", 325, 5], ["platforms", 328, 5], ["mainProgram", 329, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 103, 3], ["version", 104, 3], ["src", 106, 3], ["depsBuildBuild", 114, 3], ["nativeBuildInputs", 116, 3], ["buildInputs", 136, 3], ["strictDeps", 223, 3], ["__structuredAttrs", 224, 3], ["outputs", 226, 3], ["env", 233, 3], ["patches", 239, 3], ["postPatch", 251, 3], ["enableParallelBuilding", 266, 3], ["dontWrapGApps", 268, 3], ["configureFlags", 272, 3], ["postConfigure", 285, 3], ["postInstall", 291, 3], ["preFixup", 295, 3], ["postFixup", 306, 3], ["passthru", 318, 3], ["meta", 320, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -106,11 +101,11 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`${nix.app(optionalString, onlyLibVLC, "lib")}vlc`),
       version: "3.0.24",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "code.videolan.org",
           owner: "videolan",
           repo: "vlc",
@@ -202,13 +197,13 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "dev", "doc", "man"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         BUILDCC: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgsBuildBuild, "stdenv", "cc")))),
         LIVE555_PREFIX: live555,
       })),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://code.videolan.org/videolan/vlc/uploads/eb1c313d2d499b8a777314f789794f9d/0001-Add-lssl-and-lcrypto-to-liblive555_plugin_la_LIBADD.patch",
             hash: "sha256-qs3gY1ksCZlf931TSZyMuT2JD0sqrmcRCZwL+wVG0U8=",
           })))),
@@ -233,11 +228,11 @@ ${(nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(
 `, nix.app(optionalString, withQt5, nix.thunk(() => nix.str`remove-references-to -t "${nix.sel(libsForQt5, "qtbase", "dev")}" $out/lib/vlc/plugins/gui/libqt_plugin.so
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cross-platform media player and streaming server",
         homepage: "https://www.videolan.org/vlc/",
         donationPage: "https://www.videolan.org/contribute.html#money",

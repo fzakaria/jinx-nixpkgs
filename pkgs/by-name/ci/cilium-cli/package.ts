@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["package", 47, 5], ["command", 48, 5], ["version", 49, 5]], [["version", 46, 18]], [["tests", 46, 12]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 62, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["nativeInstallCheckInputs", 27, 3], ["vendorHash", 29, 3], ["subPackages", 31, 3], ["ldflags", 33, 3], ["postInstall", 39, 3], ["passthru", 46, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, "cilium-cli": false, fetchFromGitHub: false, installShellFiles: false, writableTmpDirAsHomeHook: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 47, 5], ["command", 48, 5], ["version", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 46, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 46, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 62, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["nativeInstallCheckInputs", 27, 3], ["vendorHash", 29, 3], ["subPackages", 31, 3], ["ldflags", 33, 3], ["postInstall", 39, 3], ["passthru", 46, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cilium-cli",
       version: "0.19.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cilium",
           repo: "cilium-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,11 +37,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd cilium \\\n  --bash <($out/bin/cilium completion bash) \\\n  --fish <($out/bin/cilium completion fish) \\\n  --zsh <($out/bin/cilium completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: cilium_cli,
               command: "cilium version --client",
               version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CLI to install, manage & troubleshoot Kubernetes clusters running Cilium",
         homepage: "https://www.cilium.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/cilium/cilium-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

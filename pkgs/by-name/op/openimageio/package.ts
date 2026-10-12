@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["homepage", 88, 5], ["description", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["outputs", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["propagatedBuildInputs", 69, 3], ["cmakeFlags", 73, 3], ["postFixup", 82, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, boost: false, bzip2: false, cmake: false, enablePython: true, fetchFromGitHub: false, fmt: false, giflib: false, libheif: false, libjpeg: false, libjxl: false, libpng: false, libtiff: false, libultrahdr: false, libwebp: false, opencolorio: false, openexr: false, openjph: false, ptex: false, python3Packages: false, "robin-map": false, stdenv: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 88, 5], ["description", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["outputs", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["propagatedBuildInputs", 69, 3], ["cmakeFlags", 73, 3], ["postFixup", 82, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openimageio",
       version: "3.1.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AcademySoftwareFoundation",
           repo: "OpenImageIO",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "substituteInPlace $dev/lib/cmake/OpenImageIO/OpenImageIOTargets-*.cmake \\\n  --replace \"\\${_IMPORT_PREFIX}/lib/lib\" \"$out/lib/lib\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://openimageio.org",
         description: "Library and tools for reading and writing images",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

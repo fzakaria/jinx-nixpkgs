@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/time2.nix", [[["description", 23, 5], ["maintainers", 24, 5]], [["pname", 10, 3], ["version", 12, 24], ["src", 12, 32], ["propagatedBuildInputs", 14, 3], ["doCheck", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, "posix-base": false, "posix-types": false, "posix-errno": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/time2.nix", [["description", 23, 5], ["maintainers", 24, 5]]);
-const pos$2 = nix.positions(here + "/time2.nix", [["pname", 10, 3], ["version", 12, 24], ["src", 12, 32], ["propagatedBuildInputs", 14, 3], ["doCheck", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const posix_types = nix.arg($, "posix-types");
   const posix_errno = nix.arg($, "posix-errno");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "posix-time2",
       version: nix.thunk(() => nix.attr(posix_base, "version")),
       src: nix.thunk(() => nix.attr(posix_base, "src")),
       propagatedBuildInputs: nix.thunk(() => [posix_base, posix_types, posix_errno]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(posix_base, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Posix-time2 provides the types and bindings for posix time APIs",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

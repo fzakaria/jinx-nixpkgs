@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/flatpak-deno-generator.nix", [[["src", 11, 11], ["version", 11, 15], ["pname", 12, 3], ["sourceRoot", 14, 3], ["nativeBuildInputs", 16, 3], ["installPhase", 18, 3], ["installCheckPhase", 29, 3]]]);
 const formals$1 = { args: { deno: false, lib: false, makeWrapper: false, src: false, stdenvNoCC: false, version: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/flatpak-deno-generator.nix", [["src", 11, 11], ["version", 11, 15], ["pname", 12, 3], ["sourceRoot", 14, 3], ["nativeBuildInputs", 16, 3], ["installPhase", 18, 3], ["installCheckPhase", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const version = nix.arg($, "version");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       src: src,
       version: version,
       pname: "flatpak-deno-generator",

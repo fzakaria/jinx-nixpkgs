@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontBuild", 19, 3], ["installPhase", 21, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false, wget: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontBuild", 19, 3], ["installPhase", 21, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "junest";
       const version = "7.4.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fsquillace",
           repo: "junest",
           tag: version,
@@ -37,7 +35,7 @@ substituteInPlace $out/lib/core/common.sh --replace-fail "wget" ${nix.app(nix.se
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Arch distro that runs on top of another without root",
         homepage: "https://github.com/fsquillace/junest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -48,7 +46,7 @@ runHook postInstall
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, dontBuild, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, dontBuild, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

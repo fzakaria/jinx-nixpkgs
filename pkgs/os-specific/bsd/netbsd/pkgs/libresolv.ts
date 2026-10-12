@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libresolv.nix", [[["platforms", 14, 8]], [["path", 8, 3], ["libcMinimal", 10, 3], ["extraPaths", 12, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, libcMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libresolv.nix", [["platforms", 14, 8]]);
-const pos$2 = nix.positions(here + "/libresolv.nix", [["path", 8, 3], ["libcMinimal", 10, 3], ["extraPaths", 12, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libcMinimal = nix.arg($, "libcMinimal");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "lib/libresolv",
       libcMinimal: true,
       extraPaths: nix.thunk(() => [nix.thunk(() => nix.sel(libcMinimal, "path"))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
     })));

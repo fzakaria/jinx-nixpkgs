@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]], [["MPLBACKEND", 38, 7]], [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 29, 3], ["env", 38, 3], ["nativeCheckInputs", 40, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, "setuptools-scm": false, demes: false, matplotlib: false, numpy: false, scipy: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-xdist": false, mpmath: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["MPLBACKEND", 38, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 29, 3], ["env", 38, 3], ["nativeCheckInputs", 40, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-sPxdSXWRh6qnUKmP9g/AghOX5Ydrxv2Le2iadefQDws=",
@@ -36,13 +33,13 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools_scm]);
       const propagatedBuildInputs = nix.thunk(() => [demes, matplotlib, numpy, scipy]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         MPLBACKEND: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "Agg")),
       }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub, pytest_xdist, mpmath]);
       const pythonImportsCheck = nix.thunk(() => ["demesdraw"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Drawing functions for Demes demographic models",
         mainProgram: "demesdraw",
         homepage: "https://github.com/grahamgower/demesdraw",
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

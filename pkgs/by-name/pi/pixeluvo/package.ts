@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 53, 5], ["homepage", 54, 5], ["sourceProvenance", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 26, 3], ["libPath", 31, 3], ["dontBuild", 33, 3], ["dontConfigure", 34, 3], ["installPhase", 36, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, autoPatchelfHook: false, makeWrapper: false, "gtk3-x11": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["sourceProvenance", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 26, 3], ["libPath", 31, 3], ["dontBuild", 33, 3], ["dontConfigure", 34, 3], ["installPhase", 36, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pixeluvo";
       const version = "1.6.0-2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.pixeluvo.com/downloads/${pname}_${version}_amd64.deb`),
           sha256: "sha256-QYSuD6o3kHg0DrFihYEcf9e3b8U1bu4Zf78+Akmm8yo=",
         }))));
@@ -44,7 +42,7 @@ makeWrapper $out/opt/pixeluvo/bin/Pixeluvo64 $out/bin/pixeluvo \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Beautifully Designed Image and Photo Editor for Windows and Linux",
         homepage: "http://www.pixeluvo.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -57,7 +55,7 @@ runHook postInstall
         mainProgram: "pixeluvo",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

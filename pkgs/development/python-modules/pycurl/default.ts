@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]], [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 106, 5], ["maintainers", 110, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["disabled", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["preConfigure", 41, 3], ["build-system", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 51, 3], ["pythonImportsCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["__darwinAllowLocalNetworking", 67, 3], ["enabledTestPaths", 69, 3], ["preCheck", 74, 3], ["disabledTests", 78, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, isPyPy: false, fetchFromGitHub: false, fetchpatch2: false, curl: false, openssl: false, bottle: false, pytestCheckHook: false, flaky: false, flask: false, numpy: false, websockets: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 106, 5], ["maintainers", 110, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["disabled", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["preConfigure", 41, 3], ["build-system", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 51, 3], ["pythonImportsCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["__darwinAllowLocalNetworking", 67, 3], ["enabledTestPaths", 69, 3], ["preCheck", 74, 3], ["disabledTests", 78, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pycurl",
           repo: "pycurl",
           tag: nix.thunk(() => nix.str`REL_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "pycurl-curl-8.21.0-ws-support.patch",
             url: "https://github.com/pycurl/pycurl/commit/c78fd8aba82e2f8037275063138eaa7706c111af.diff?full_index=1",
             hash: "sha256-EBXgGiaMtXTsgJOOrzzZFJ7Q/ofAlc4zuipoEpfdFqU=",
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
         "test_multi_unassign_inside_socket_callback",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["cadata_test"]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python Interface To The cURL library",
         homepage: "http://pycurl.io/",
         changelog: nix.thunk(() => nix.add(nix.add("https://github.com/pycurl/pycurl/blob/REL_", nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)), "/ChangeLog")),
@@ -79,7 +76,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

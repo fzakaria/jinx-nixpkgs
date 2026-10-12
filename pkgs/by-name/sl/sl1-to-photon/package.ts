@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["maintainers", 35, 5], ["license", 36, 5], ["description", 37, 5], ["homepage", 38, 5], ["mainProgram", 39, 5]], [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["pythonPath", 20, 3], ["format", 28, 3], ["installPhase", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python312Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["maintainers", 35, 5], ["license", 36, 5], ["description", 37, 5], ["homepage", 38, 5], ["mainProgram", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["pythonPath", 20, 3], ["format", 28, 3], ["installPhase", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sl1-to-photon";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cab404",
           repo: "SL1toPhoton",
           rev: "7edc6ea99818622f5d49ac7af80ddd4916b8c19f",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = nix.thunk(() => nix.str`install -D -m 0755 SL1_to_Photon.py $out/bin/${pname}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "cab404"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         description: "Tool for converting Slic3r PE's SL1 files to Photon files for the Anycubic Photon 3D-Printer",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sl1-to-photon",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version: version_1,
         src,

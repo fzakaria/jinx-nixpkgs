@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["name", 53, 7], ["exec", 54, 7], ["icon", 55, 7], ["terminal", 56, 7], ["desktopName", 57, 7], ["comment", 58, 7], ["categories", 59, 7], ["mimeTypes", 60, 7]], [["updateScript", 64, 12]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5], ["sourceProvenance", 73, 5], ["mainProgram", 74, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 29, 3], ["unpackPhase", 31, 3], ["installPhase", 40, 3], ["desktopItems", 51, 3], ["passthru", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, unzip: false, "appimage-run": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 53, 7], ["exec", 54, 7], ["icon", 55, 7], ["terminal", 56, 7], ["desktopName", 57, 7], ["comment", 58, 7], ["categories", 59, 7], ["mimeTypes", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 64, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5], ["sourceProvenance", 73, 5], ["mainProgram", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 29, 3], ["unpackPhase", 31, 3], ["installPhase", 40, 3], ["desktopItems", 51, 3], ["passthru", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const appimage_run = nix.arg($, "appimage-run");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ldtk",
       version: "1.5.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/deepnight/ldtk/releases/download/v${nix.sel(finalAttrs, "version")}/ubuntu-distribution.zip`),
           hash: "sha256-i7HIcKs10srfvwihGdMEnnmGoqgFWNJhC6vGf81QJWY=",
         })))),
@@ -49,7 +45,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ldtk",
             exec: "ldtk",
             icon: "ldtk",
@@ -61,11 +57,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Modern, lightweight and efficient 2D level editor",
         homepage: "https://ldtk.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/deepnight/ldtk/releases/tag/v${nix.sel(finalAttrs, "version")}`),

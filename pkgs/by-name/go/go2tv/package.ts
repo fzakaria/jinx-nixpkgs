@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["CGO_CFLAGS_ALLOW", 37, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["vendorHash", 31, 3], ["nativeBuildInputs", 33, 3], ["env", 35, 3], ["buildInputs", 40, 3], ["ldflags", 54, 3], ["subPackages", 61, 3], ["doCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, libxxf86vm: false, libxrandr: false, libxi: false, libxinerama: false, libxext: false, libxcursor: false, libx11: false, libglvnd: false, libxkbcommon: false, pipewire: false, "pkg-config": false, wayland: false, withGui: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_CFLAGS_ALLOW", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["vendorHash", 31, 3], ["nativeBuildInputs", 33, 3], ["env", 35, 3], ["buildInputs", 40, 3], ["ldflags", 54, 3], ["subPackages", 61, 3], ["doCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.add("go2tv", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(withGui)), "-lite")));
       const version = "2.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alexballas",
           repo: "go2tv",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-tabupT5OF1BzMWuSNPEe7G6DF/PJWZ7WeRLNHefYvP0=";
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_CFLAGS_ALLOW: "-fno-strict-overflow" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_CFLAGS_ALLOW: "-fno-strict-overflow" }));
       const buildInputs = nix.thunk(() => [
         libx11,
         libxcursor,
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const subPackages = nix.thunk(() => [nix.thunk(() => nix.str`cmd/${pname}`)]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cast media files to UPnP/DLNA Media Renderers and Smart TVs",
         homepage: "https://github.com/alexballas/go2tv",
         changelog: nix.thunk(() => nix.str`https://github.com/alexballas/go2tv/releases/tag/v${version}`),
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: pname,
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

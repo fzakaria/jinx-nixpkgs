@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/meta.nix", [[["description", 5, 3], ["longDescription", 6, 3], ["homepage", 15, 3], ["license", 16, 3], ["maintainers", 17, 3], ["platforms", 18, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/meta.nix", [["description", 5, 3], ["longDescription", 6, 3], ["homepage", 15, 3], ["license", 16, 3], ["maintainers", 17, 3], ["platforms", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Open-source, whole-program, optimizing Standard ML compiler",
     longDescription: "MLton is an open source, whole-program optimizing compiler for the Standard ML programming language.\nMLton aims to produce fast executables, and to encourage rapid prototyping and modular programming\nby eliminating performance penalties often associated with the use of high-level language features.\nMLton development began in 1997, and continues to this day with a growing worldwide community of\ndevelopers and users, who have helped to port MLton to a number of platforms.\nDescription taken from http://en.wikipedia.org/wiki/Mlton .\n",
     homepage: "http://mlton.org/",

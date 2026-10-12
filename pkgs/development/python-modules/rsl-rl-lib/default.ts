@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["wandb", 59, 5]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["optional-dependencies", 54, 3], ["pythonImportsCheck", 64, 3], ["nativeCheckInputs", 66, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, gitpython: false, numpy: false, onnx: false, onnxscript: false, tensorboard: false, tensordict: false, torch: false, torchvision: false, wandb: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["wandb", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["optional-dependencies", 54, 3], ["pythonImportsCheck", 64, 3], ["nativeCheckInputs", 66, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const wandb = nix.arg($, "wandb");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rsl-rl-lib",
       version: "5.5.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "leggedrobotics",
           repo: "rsl_rl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,11 +45,11 @@ export default nix.lambda((args) => (() => {
         torch,
         torchvision,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, wandb: nix.thunk(() => [wandb]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], wandb: nix.thunk(() => [wandb]) })),
       pythonImportsCheck: nix.thunk(() => ["rsl_rl"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast and simple implementation of learning algorithms for robotics",
         homepage: "https://github.com/leggedrobotics/rsl_rl",
         changelog: nix.thunk(() => nix.str`https://github.com/leggedrobotics/rsl_rl/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

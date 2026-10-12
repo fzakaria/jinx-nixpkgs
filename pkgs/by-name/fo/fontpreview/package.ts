@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["homepage", 44, 5], ["description", 45, 5], ["longDescription", 46, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["preInstall", 26, 3], ["installFlags", 28, 3], ["postInstall", 30, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, makeWrapper: false, xdotool: false, fzf: false, imagemagick: false, sxiv: false, getopt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["longDescription", 46, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["preInstall", 26, 3], ["installFlags", 28, 3], ["postInstall", 30, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const sxiv = nix.arg($, "sxiv");
   const getopt = nix.arg($, "getopt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fontpreview",
       version: "1.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sdushantha",
           repo: "fontpreview",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdotool, fzf, imagemagick, sxiv, getopt]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/sdushantha/fontpreview",
         description: "Highly customizable and minimal font previewer written in bash",
         longDescription: "fontpreview is a commandline tool that lets you quickly search for fonts\nthat are installed on your machine and preview them. The fuzzy search\nfeature is provided by fzf and the preview is generated with imagemagick\nand then displayed using sxiv. This tool is highly customizable, almost\nall of the variables in this tool can be changed using the commandline\nflags or you can configure them using environment variables.\n",

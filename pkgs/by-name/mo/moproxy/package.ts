@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["url", 24, 9], ["hash", 25, 9]], [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["preBuild", 21, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, rustPlatform: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 9], ["hash", 25, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["preBuild", 21, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "moproxy",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sorz",
           repo: "moproxy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-SJHsXck2f9xJZ4GmOkISjdfqxlF4LCAH9WYjqSqFFkE=",
       preBuild: nix.thunk(() => (() => {
         const webBundle = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/sorz/moproxy-web/releases/download/v0.1.8/build.zip",
             hash: "sha256-bLC76LnTWR2/xnDcZtX/t0OUmP7vdI/o3TCRzG9eH/g=",
           }))));
@@ -37,7 +34,7 @@ sed -i '15s/.*/let zip_path = PathBuf::from("${nix.app(nix.sel(lib, "escape"), n
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/sorz/moproxy",
         description: "Transparent TCP to SOCKSv5/HTTP proxy on Linux written in Rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

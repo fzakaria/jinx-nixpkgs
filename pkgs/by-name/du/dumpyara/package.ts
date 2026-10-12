@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["nativeBuildInputs", 56, 11]], [["requiredTools", 53, 11]], [["tests", 53, 5], ["updateScript", 71, 5]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["makeWrapperArgs", 40, 3], ["passthru", 52, 3], ["__structuredAttrs", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, runCommand: false, python3Packages: false, fetchFromGitHub: false, callPackage: false, "nix-update-script": false, _7zz: false, "android-tools": false, cpio: false, dumpyara: false, "erofs-utils": false, "squashfs-tools": false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 56, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["requiredTools", 53, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 53, 5], ["updateScript", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["makeWrapperArgs", 40, 3], ["passthru", 52, 3], ["__structuredAttrs", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const squashfs_tools = nix.arg($, "squashfs-tools");
   const zip = nix.arg($, "zip");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dumpyara",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sebaubuntu-python",
           repo: "dumpyara",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,11 +55,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [_7zz, android_tools, cpio, erofs_utils]))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           requiredTools: nix.thunk(() => nix.app(runCommand, "check-required-tools", nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [android_tools, dumpyara, squashfs_tools, zip]),
             })), "echo foo > bar.txt\nmkbootimg --kernel bar.txt -o boot.img\nmksquashfs bar.txt system.img\nzip system.zip *.img\ndumpyara system.zip\ntouch $out\n")),
         })),
@@ -72,7 +67,7 @@ export default nix.lambda((args) => (() => {
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Android firmware dumper",
         homepage: "https://github.com/sebaubuntu-python/dumpyara",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

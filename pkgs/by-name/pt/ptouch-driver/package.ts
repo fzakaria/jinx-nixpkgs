@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["changelog", 67, 5], ["description", 68, 5], ["downloadPage", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5], ["longDescription", 74, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 34, 3], ["postPatch", 41, 3], ["postInstall", 45, 3], ["postFixup", 52, 3], ["ppdFileCommands", 60, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cups: false, "cups-filters": false, "foomatic-db-engine": false, ghostscript: false, libpng: false, libxml2: false, autoreconfHook: false, perl: false, patchPpdFilesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 67, 5], ["description", 68, 5], ["downloadPage", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5], ["longDescription", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 34, 3], ["postPatch", 41, 3], ["postInstall", 45, 3], ["postFixup", 52, 3], ["ppdFileCommands", 60, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const patchPpdFilesHook = nix.arg($, "patchPpdFilesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ptouch-driver",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "philpem",
           repo: "printer-driver-ptouch",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +51,7 @@ find -H "${nix.builtins.placeholder("out")}/share/cups/model/ptouch-driver" -typ
 `),
       ppdFileCommands: nix.thunk(() => ["rastertoptch", "gs", "foomatic-rip"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/philpem/printer-driver-ptouch/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Printer Driver for Brother P-touch and QL Label Printers",
         downloadPage: "https://github.com/philpem/printer-driver-ptouch",

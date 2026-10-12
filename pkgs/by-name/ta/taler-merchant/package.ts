@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["tag", 26, 5], ["fetchSubmodules", 27, 5], ["hash", 28, 5]], [["tests", 103, 12]], [["description", 106, 5], ["longDescription", 107, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["teams", 119, 5], ["platforms", 120, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postUnpack", 31, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 54, 3], ["strictDeps", 61, 3], ["propagatedBuildInputs", 63, 3], ["preAutoreconf", 66, 3], ["configureFlags", 74, 3], ["postInstall", 80, 3], ["postFixup", 87, 3], ["enableParallelBuilding", 95, 3], ["doInstallCheck", 97, 3], ["nativeCheckInputs", 99, 3], ["checkTarget", 101, 3], ["passthru", 103, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, gnunet: false, qrencode: false, "taler-exchange": false, "taler-wallet-core": false, libtool: false, "pkg-config": false, autoreconfHook: false, makeWrapper: false, jq: false, libgcrypt: false, texinfo: false, curl: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["tag", 26, 5], ["fetchSubmodules", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 103, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 106, 5], ["longDescription", 107, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["teams", 119, 5], ["platforms", 120, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postUnpack", 31, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 54, 3], ["strictDeps", 61, 3], ["propagatedBuildInputs", 63, 3], ["preAutoreconf", 66, 3], ["configureFlags", 74, 3], ["postInstall", 80, 3], ["postFixup", 87, 3], ["enableParallelBuilding", 95, 3], ["doInstallCheck", 97, 3], ["nativeCheckInputs", 99, 3], ["checkTarget", 101, 3], ["passthru", 103, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "taler-merchant",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git-www.taler.net/merchant.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           fetchSubmodules: true,
@@ -55,11 +52,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [jq]),
       checkTarget: "check",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => nix.sel(nixosTests, "taler", "basic")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Merchant component for the GNU Taler electronic payment system",
         longDescription: "This is the GNU Taler merchant backend. It provides the logic that should run\nat every GNU Taler merchant.  The GNU Taler merchant is a RESTful backend that\ncan be used to setup orders and process payments.  This component allows\nmerchants to receive payments without invading the customers' privacy. Of\ncourse, this applies mostly for digital goods, as the merchant does not need\nto know the customer's physical address.\n",
         homepage: "https://www.taler.net/en/",

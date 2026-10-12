@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 27, 5], ["hash", 28, 5]], [["src", 37, 21], ["postUnpack", 38, 13]], [["curry-frontend", 34, 9]], [["overrides", 33, 7]], [["homepage", 108, 5], ["description", 109, 5], ["license", 110, 5], ["longDescription", 112, 5], ["maintainers", 124, 5], ["platforms", 125, 5]], [["pname", 46, 11], ["version", 46, 17], ["src", 46, 25], ["buildInputs", 48, 3], ["nativeBuildInputs", 49, 3], ["makeFlags", 55, 3], ["preConfigure", 63, 3], ["preBuild", 73, 3], ["installPhase", 79, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch2: false, makeWrapper: false, haskellPackages: false, haskell: false, which: false, "swi-prolog": false, rlwrap: false, tk: false, curl: false, git: false, unzip: false, gnutar: false, coreutils: false, sqlite: false, gettext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 37, 21], ["postUnpack", 38, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["curry-frontend", 34, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["overrides", 33, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 108, 5], ["description", 109, 5], ["license", 110, 5], ["longDescription", 112, 5], ["maintainers", 124, 5], ["platforms", 125, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 46, 11], ["version", 46, 17], ["src", 46, 25], ["buildInputs", 48, 3], ["nativeBuildInputs", 49, 3], ["makeFlags", 55, 3], ["preConfigure", 63, 3], ["preBuild", 73, 3], ["installPhase", 79, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,22 +28,22 @@ export default nix.lambda((args) => (() => {
   const pname = "pakcs";
   const version = "3.9.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://www.curry-lang.org/pakcs/download/pakcs-${version}-src.tar.gz`),
       hash: "sha256-uiWlHJsiy1o4CQOZBa69YJacjhFBap1mSlhxEMtUDKI=",
     }))));
   const curry_frontend = nix.thunk(() => nix.sel(nix.app(nix.sel(haskellPackages, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       overrides: (self) => (super$) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "curry-frontend": nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.app(nix.sel(super$, "callPackage"), nix.path(here, "./curry-frontend.nix"), nix.thunk(() => ({})))), nix.thunk(() => [
             nix.thunk(() => nix.sel(haskell, "lib", "doJailbreak")),
-            nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "overrideCabal"), (drv) => ({ [nix.POS]: pos$2, src: src, postUnpack: "sourceRoot+=/frontend" }))),
+            nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "overrideCabal"), (drv) => ({ [nix.POS]: $pos[1], src: src, postUnpack: "sourceRoot+=/frontend" }))),
           ]))),
       }),
     }))), "curry-frontend"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -80,7 +75,7 @@ wrapProgram $out/pakcs/bin/cypm \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.curry-lang.org/pakcs",
         description: "Implementation of the multi-paradigm declarative language Curry",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

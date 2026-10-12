@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["updateScript", 48, 5]], [["description", 52, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["teams", 55, 5], ["platforms", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 39, 3], ["passthru", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false, vala: false, "pkg-config": false, "desktop-file-utils": false, glib: false, gtk4: false, "json-glib": false, libadwaita: false, libgee: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["teams", 55, 5], ["platforms", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 39, 3], ["passthru", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libgee = nix.arg($, "libgee");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "khronos",
       version: "4.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lainsce",
           repo: "khronos",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [desktop_file_utils, meson, ninja, vala, pkg_config, wrapGAppsHook4]),
       buildInputs: nix.thunk(() => [glib, gtk4, json_glib, libadwaita, libgee]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Track each task's time in a simple unobtrusive way",
         homepage: "https://github.com/lainsce/khronos",
         maintainers: nix.thunk(() => (() => {

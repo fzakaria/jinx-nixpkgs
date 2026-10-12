@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 17, 5], ["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 41, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, autoreconfHook: false, "pkg-config": false, libpng: false, openjpeg: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 17, 5], ["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openjpeg = nix.arg($, "openjpeg");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libicns",
       version: "0.8.1-unstable-2022-04-10",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "libicns",
           url: "https://git.code.sf.net/p/icns/code",
           rev: "921f972c461c505e5ac981aaddbdfdde97e8bb2b",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libpng, openjpeg, zlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for manipulation of the Mac OS icns resource format",
         homepage: "https://icns.sourceforge.io",
         license: nix.thunk(() => (() => {

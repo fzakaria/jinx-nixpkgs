@@ -2,21 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/xmonad.nix", [[["maintainers", 59, 5]], [["user", 71, 40]], [["auto", 71, 35]], [["displayManager", 71, 20]], [["defaultSession", 72, 31]], [["enable", 74, 9], ["enableConfiguredRecompile", 75, 9], ["enableContribAndExtras", 76, 9], ["extraPackages", 77, 9], ["config", 78, 9]], [["xmonad", 73, 38]], [["windowManager", 73, 24]], [["displayManager", 72, 16], ["xserver", 73, 16]], [["imports", 67, 7], ["test-support", 71, 7], ["services", 72, 7]], [["machine", 64, 9]], [["name", 57, 3], ["meta", 58, 3], ["nodes", 64, 3], ["testScript", 82, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/xmonad.nix", [["maintainers", 59, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/xmonad.nix", [["user", 71, 40]]);
-const pos$3 = nix.positions(here + "/xmonad.nix", [["auto", 71, 35]]);
-const pos$4 = nix.positions(here + "/xmonad.nix", [["displayManager", 71, 20]]);
-const pos$5 = nix.positions(here + "/xmonad.nix", [["defaultSession", 72, 31]]);
-const pos$6 = nix.positions(here + "/xmonad.nix", [["enable", 74, 9], ["enableConfiguredRecompile", 75, 9], ["enableContribAndExtras", 76, 9], ["extraPackages", 77, 9], ["config", 78, 9]]);
-const pos$7 = nix.positions(here + "/xmonad.nix", [["xmonad", 73, 38]]);
-const pos$8 = nix.positions(here + "/xmonad.nix", [["windowManager", 73, 24]]);
-const pos$9 = nix.positions(here + "/xmonad.nix", [["displayManager", 72, 16], ["xserver", 73, 16]]);
-const pos$10 = nix.positions(here + "/xmonad.nix", [["imports", 67, 7], ["test-support", 71, 7], ["services", 72, 7]]);
-const pos$11 = nix.positions(here + "/xmonad.nix", [["machine", 64, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$12 = nix.positions(here + "/xmonad.nix", [["name", 57, 3], ["meta", 58, 3], ["nodes", 64, 3], ["testScript", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -69,42 +58,42 @@ compileRestart resume = do
   ]);
   const newConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "xmonad.hs", nix.thunk(() => nix.app(mkConfig, "newXMonad", newKeys))));
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "xmonad",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ivanbrennan"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           imports: nix.thunk(() => [
             nix.path(here, "./common/x11.nix"),
             nix.path(here, "./common/user-account.nix"),
           ]),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$2, user: "alice" })),
+              [nix.POS]: $pos[2],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[1], user: "alice" })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            displayManager: nix.thunk(() => ({ [nix.POS]: pos$5, defaultSession: "none+xmonad" })),
+            [nix.POS]: $pos[8],
+            displayManager: nix.thunk(() => ({ [nix.POS]: $pos[4], defaultSession: "none+xmonad" })),
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               windowManager: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 xmonad: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   enable: true,
                   enableConfiguredRecompile: true,
                   enableContribAndExtras: true,

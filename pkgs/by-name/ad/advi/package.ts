@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 5], ["hash", 43, 5]], [["homepage", 78, 5], ["description", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 36, 3], ["version", 37, 3], ["minimalOCamlVersion", 39, 3], ["src", 41, 3], ["postPatch", 46, 3], ["duneVersion", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["preInstall", 70, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, makeWrapper: false, writeShellScriptBin: false, ghostscriptX: false, "ocaml-ng": false, texliveMedium: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 78, 5], ["description", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["minimalOCamlVersion", 39, 3], ["src", 41, 3], ["postPatch", 46, 3], ["duneVersion", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["preInstall", 70, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const minimalOCamlVersion = "4.11";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://advi.inria.fr/advi-${version}.tar.gz`),
           hash: "sha256-c0DQHlvdekJyXCxmR4+Ut/njtoCzmqX6hNazNv8PpBQ=",
         }))));
@@ -47,14 +45,14 @@ substituteInPlace ./src/discover.sh \\
       })());
       const preInstall = "make install\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://advi.inria.fr/",
         description: "Unix-platform DVI previewer and a programmable presenter for slides written in LaTeX",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "xworld21"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         minimalOCamlVersion,

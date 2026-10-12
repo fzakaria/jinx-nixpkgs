@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 41, 5], ["path", 42, 5], ["extraPaths", 43, 5]], [["src", 46, 5], ["patches", 47, 5], ["postPatch", 51, 5]], [["name", 68, 7], ["value", 69, 7]], [["env", 125, 12]], [["description", 158, 5]], [["pname", 74, 3], ["src", 77, 3], ["path", 78, 3], ["autoPickPatches", 79, 3], ["nativeBuildInputs", 81, 3], ["NIX_ENFORCE_PURITY", 102, 3], ["AWK", 104, 3], ["CWARNEXTRA", 106, 3], ["hardeningDisable", 108, 3], ["NIX_CFLAGS_COMPILE", 114, 3], ["env", 124, 11], ["passthru", 125, 3], ["makeFlags", 127, 3], ["KODIR", 129, 3], ["KMODDIR", 130, 3], ["DTBDIR", 131, 3], ["DTBODIR", 132, 3], ["KERN_DEBUGDIR", 134, 3], ["KERN_DEBUGDIR_KODIR", 135, 3], ["KERN_DEBUGDIR_KMODDIR", 136, 3], ["skipIncludesPhase", 138, 3], ["configurePhase", 140, 3], ["preBuild", 148, 3], ["outputs", 152, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, writeText: false, stdenv: false, buildPackages: false, "freebsd-lib": false, patchesRoot: false, filterSource: false, applyPatches: false, baseConfig: true, extraConfig: true, extraFlags: true, bsdSetupHook: false, mandoc: false, groff: false, gawk: false, freebsdSetupHook: false, makeMinimal: false, install: false, config: false, rpcgen: false, file2c: false, bintrans: false, "xargs-j": false, kldxref: false, ctfconvert: false, ctfmerge: false, dtc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 41, 5], ["path", 42, 5], ["extraPaths", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 46, 5], ["patches", 47, 5], ["postPatch", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 68, 7], ["value", 69, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["env", 125, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 158, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 74, 3], ["src", 77, 3], ["path", 78, 3], ["autoPickPatches", 79, 3], ["nativeBuildInputs", 81, 3], ["NIX_ENFORCE_PURITY", 102, 3], ["AWK", 104, 3], ["CWARNEXTRA", 106, 3], ["hardeningDisable", 108, 3], ["NIX_CFLAGS_COMPILE", 114, 3], ["env", 124, 11], ["passthru", 125, 3], ["makeFlags", 127, 3], ["KODIR", 129, 3], ["KMODDIR", 130, 3], ["DTBDIR", 131, 3], ["DTBODIR", 132, 3], ["KERN_DEBUGDIR", 134, 3], ["KERN_DEBUGDIR_KODIR", 135, 3], ["KERN_DEBUGDIR_KMODDIR", 136, 3], ["skipIncludesPhase", 138, 3], ["configurePhase", 140, 3], ["preBuild", 148, 3], ["outputs", 152, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,20 +38,20 @@ export default nix.lambda((args) => (() => {
   const baseConfigFile = nix.thunk(() => (nix.asBool(nix.eq(extraConfig, null)) ? null : (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isDerivation"), extraConfig)) || nix.asBool(nix.app(nix.sel(lib, "isPath"), extraConfig)))) ? nix.force(extraConfig) : nix.app(writeText, "extraConfig", extraConfig))));
   const hostMachineBsd = nix.thunk(() => nix.app(nix.sel(freebsd_lib, "mkBsdMachine"), stdenv));
   const filteredSource = nix.thunk(() => nix.app(filterSource, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "sys",
       path: "sys",
       extraPaths: nix.thunk(() => ["include"]),
     }))));
   const patchedSource = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: filteredSource,
       patches: nix.thunk(() => nix.app(nix.sel(freebsd_lib, "filterPatches"), patchesRoot, nix.thunk(() => ["sys", "include"]))),
       postPatch: nix.thunk(() => nix.add("for f in sys/contrib/dev/acpica/acpica_prep.sh; do\n  substituteInPlace \"$f\" --replace-warn 'xargs -J' 'xargs-j '\ndone\n\nfor f in sys/conf/*.mk; do\n  substituteInPlace \"$f\" --replace-quiet 'KERN_DEBUGDIR}${' 'KERN_DEBUGDIR_'\ndone\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(baseConfigFile, null)), nix.thunk(() => nix.str`cat ${baseConfigFile} >>sys/${hostMachineBsd}/conf/${baseConfig}
 `)))),
     }))));
   const env = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs'")), extraFlags, (name) => (value) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`MK_${nix.app(nix.sel(lib, "toUpper"), name)}`),
       value: nix.thunk(() => nix.app(nix.sel(lib, "boolToYesNo"), value)),
     })));
@@ -96,7 +91,7 @@ export default nix.lambda((args) => (() => {
         "-Wno-unused-function",
       ]);
       const env_1 = env;
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, env: env_1 }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], env: env_1 }));
       const makeFlags = nix.thunk(() => ["XARGS_J=xargs-j"]);
       const KODIR = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/kernel`);
       const KMODDIR = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/kernel`);
@@ -116,9 +111,9 @@ runHook postConfigure
       const preBuild = nix.thunk(() => nix.str`cd ../compile/${baseConfig}
 `);
       const outputs = nix.thunk(() => ["out", "debug"]);
-      const meta = nix.thunk(() => ({ [nix.POS]: pos$5, description: "FreeBSD kernel and modules" }));
+      const meta = nix.thunk(() => ({ [nix.POS]: $pos[4], description: "FreeBSD kernel and modules" }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         src,
         path,

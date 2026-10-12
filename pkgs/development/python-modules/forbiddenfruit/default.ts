@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["FFRUIT_EXTENSION", 22, 7]], [["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 38, 5]], [["version", 9, 3], ["pname", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["env", 22, 3], ["pythonImportsCheck", 24, 3], ["doCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["FFRUIT_EXTENSION", 22, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 38, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 9, 3], ["pname", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["env", 22, 3], ["pythonImportsCheck", 24, 3], ["doCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +16,18 @@ export default nix.lambda((args) => (() => {
       const pname = "forbiddenfruit";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "clarete",
           repo: "forbiddenfruit",
           tag: version,
           hash: "sha256-yHIZsVn2UVmWeBNIzWDE6AOwAXZilPqXo+bVtXqGkJk=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, FFRUIT_EXTENSION: "true" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], FFRUIT_EXTENSION: "true" }));
       const pythonImportsCheck = nix.thunk(() => ["forbiddenfruit"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Patch python built-in objects",
         homepage: "https://github.com/clarete/forbiddenfruit",
         changelog: nix.thunk(() => nix.str`https://github.com/clarete/forbiddenfruit/releases/tag/${version}`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version,
         pname,
         pyproject,

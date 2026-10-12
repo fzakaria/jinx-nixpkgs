@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["dependencies", 27, 3], ["nativeCheckInputs", 29, 3], ["disabledTests", 31, 3], ["doCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bottle: false, buildPythonPackage: false, fetchPypi: false, pytestCheckHook: false, pythonAtLeast: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["dependencies", 27, 3], ["nativeCheckInputs", 29, 3], ["disabledTests", 31, 3], ["doCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-HqqGfLiZLCGEMPFwj9rM2lPfBkFE0cVlax5vHuYABCQ=",
@@ -40,13 +38,13 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.11")), nix.thunk(() => ["test_findgarbage", "test_get_tree", "test_prune"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ["test_edges_new", "test_edges_old", "test_split"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_untracked_containers"]))))));
       const doCheck = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to measure, monitor and analyze memory behavior",
         homepage: "https://github.com/pympler/pympler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,
